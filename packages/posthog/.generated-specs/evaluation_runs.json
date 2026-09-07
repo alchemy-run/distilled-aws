@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.evaluation_runs#EvaluationRunsCreateRequest": {
+    "com.posthog.evaluation_runs#CreateEvaluationRunRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -64,7 +65,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.evaluation_runs#EvaluationRunsCreateResponseBodyMap": {
+    "com.posthog.evaluation_runs#CreateEvaluationRunResponseBodyMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -74,11 +75,11 @@
       },
       "traits": {}
     },
-    "com.posthog.evaluation_runs#EvaluationRunsCreateResponse": {
+    "com.posthog.evaluation_runs#CreateEvaluationRunResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.posthog.evaluation_runs#EvaluationRunsCreateResponseBodyMap",
+          "target": "com.posthog.evaluation_runs#CreateEvaluationRunResponseBodyMap",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -89,13 +90,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.posthog.evaluation_runs#EvaluationRunsCreate": {
+    "com.posthog.evaluation_runs#CreateEvaluationRun": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.evaluation_runs#EvaluationRunsCreateRequest"
+        "target": "com.posthog.evaluation_runs#CreateEvaluationRunRequest"
       },
       "output": {
-        "target": "com.posthog.evaluation_runs#EvaluationRunsCreateResponse"
+        "target": "com.posthog.evaluation_runs#CreateEvaluationRunResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -111,7 +112,7 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.evaluation_runs#EvaluationRunsCreate"
+          "target": "com.posthog.evaluation_runs#CreateEvaluationRun"
         }
       ],
       "traits": {

@@ -14,16 +14,17 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.advisor#AdvisorScoresGet": {
+    "com.azure.advisor#GetAdvisorScore": {
       "type": "operation",
       "input": {
-        "target": "com.azure.advisor#AdvisorScoresGetRequest"
+        "target": "com.azure.advisor#GetAdvisorScoreRequest"
       },
       "output": {
-        "target": "com.azure.advisor#AdvisorScoresGetResponse"
+        "target": "com.azure.advisor#GetAdvisorScoreResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -36,7 +37,7 @@
         "com.distilled.openapi#apiVersion": "2025-01-01"
       }
     },
-    "com.azure.advisor#AdvisorScoresGetResponse": {
+    "com.azure.advisor#GetAdvisorScoreResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -64,7 +65,7 @@
           }
         },
         "properties": {
-          "target": "com.azure.advisor#AdvisorScoresGetResponseProperties",
+          "target": "com.azure.advisor#GetAdvisorScoreResponseProperties",
           "traits": {
             "smithy.api#documentation": "The Advisor score data."
           }
@@ -74,7 +75,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.advisor#AdvisorScoresGetResponseProperties": {
+    "com.azure.advisor#GetAdvisorScoreResponseProperties": {
       "type": "structure",
       "members": {
         "lastRefreshedScore": {
@@ -310,7 +311,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.advisor#AdvisorScoresGetRequest": {
+    "com.azure.advisor#GetAdvisorScoreRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -334,10 +335,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.advisor#AdvisorScoresList": {
+    "com.azure.advisor#ListAdvisorScores": {
       "type": "operation",
       "input": {
-        "target": "com.azure.advisor#AdvisorScoresListRequest"
+        "target": "com.azure.advisor#ListAdvisorScoresRequest"
       },
       "output": {
         "target": "com.azure.advisor#AdvisorScoreResponse"
@@ -432,7 +433,7 @@
         "smithy.api#documentation": "The Advisor score data."
       }
     },
-    "com.azure.advisor#AdvisorScoresListRequest": {
+    "com.azure.advisor#ListAdvisorScoresRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -685,10 +686,10 @@
         "smithy.api#documentation": "Type of the prediction."
       }
     },
-    "com.azure.advisor#SuppressionsList": {
+    "com.azure.advisor#ListSuppressions": {
       "type": "operation",
       "input": {
-        "target": "com.azure.advisor#SuppressionsListRequest"
+        "target": "com.azure.advisor#ListSuppressionsRequest"
       },
       "output": {
         "target": "com.azure.advisor#SuppressionContractListResult"
@@ -797,7 +798,7 @@
         "smithy.api#documentation": "The properties of the suppression."
       }
     },
-    "com.azure.advisor#SuppressionsListRequest": {
+    "com.azure.advisor#ListSuppressionsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -827,10 +828,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.advisor#SuppressionsDelete": {
+    "com.azure.advisor#DeleteSuppression": {
       "type": "operation",
       "input": {
-        "target": "com.azure.advisor#SuppressionsDeleteRequest"
+        "target": "com.azure.advisor#DeleteSuppressionRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -846,7 +847,7 @@
         "com.distilled.openapi#apiVersion": "2025-01-01"
       }
     },
-    "com.azure.advisor#SuppressionsDeleteRequest": {
+    "com.azure.advisor#DeleteSuppressionRequest": {
       "type": "structure",
       "members": {
         "resourceUri": {
@@ -878,13 +879,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.advisor#SuppressionsCreate": {
+    "com.azure.advisor#CreateSuppression": {
       "type": "operation",
       "input": {
-        "target": "com.azure.advisor#SuppressionsCreateRequest"
+        "target": "com.azure.advisor#CreateSuppressionRequest"
       },
       "output": {
-        "target": "com.azure.advisor#SuppressionsCreateResponse"
+        "target": "com.azure.advisor#CreateSuppressionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -897,7 +898,7 @@
         "com.distilled.openapi#apiVersion": "2025-01-01"
       }
     },
-    "com.azure.advisor#SuppressionsCreateResponse": {
+    "com.azure.advisor#CreateSuppressionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -935,7 +936,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.advisor#SuppressionsCreateRequest": {
+    "com.azure.advisor#CreateSuppressionRequest": {
       "type": "structure",
       "members": {
         "resourceUri": {
@@ -993,13 +994,13 @@
         "smithy.api#documentation": "The properties of the suppression."
       }
     },
-    "com.azure.advisor#SuppressionsGet": {
+    "com.azure.advisor#GetSuppression": {
       "type": "operation",
       "input": {
-        "target": "com.azure.advisor#SuppressionsGetRequest"
+        "target": "com.azure.advisor#GetSuppressionRequest"
       },
       "output": {
-        "target": "com.azure.advisor#SuppressionsGetResponse"
+        "target": "com.azure.advisor#GetSuppressionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1012,7 +1013,7 @@
         "com.distilled.openapi#apiVersion": "2025-01-01"
       }
     },
-    "com.azure.advisor#SuppressionsGetResponse": {
+    "com.azure.advisor#GetSuppressionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1050,7 +1051,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.advisor#SuppressionsGetRequest": {
+    "com.azure.advisor#GetSuppressionRequest": {
       "type": "structure",
       "members": {
         "resourceUri": {
@@ -1082,13 +1083,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.advisor#RecommendationsGet": {
+    "com.azure.advisor#GetRecommendation": {
       "type": "operation",
       "input": {
-        "target": "com.azure.advisor#RecommendationsGetRequest"
+        "target": "com.azure.advisor#GetRecommendationRequest"
       },
       "output": {
-        "target": "com.azure.advisor#RecommendationsGetResponse"
+        "target": "com.azure.advisor#GetRecommendationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1101,7 +1102,7 @@
         "com.distilled.openapi#apiVersion": "2025-01-01"
       }
     },
-    "com.azure.advisor#RecommendationsGetResponse": {
+    "com.azure.advisor#GetRecommendationResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1545,7 +1546,7 @@
         "smithy.api#documentation": "The category of the recommendation."
       }
     },
-    "com.azure.advisor#RecommendationsGetRequest": {
+    "com.azure.advisor#GetRecommendationRequest": {
       "type": "structure",
       "members": {
         "resourceUri": {
@@ -1569,7 +1570,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.advisor#OperationsList": {
+    "com.azure.advisor#ListOperations": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -1669,10 +1670,10 @@
         "smithy.api#documentation": "The operation supported by Advisor."
       }
     },
-    "com.azure.advisor#RecommendationsList": {
+    "com.azure.advisor#ListRecommendations": {
       "type": "operation",
       "input": {
-        "target": "com.azure.advisor#RecommendationsListRequest"
+        "target": "com.azure.advisor#ListRecommendationsRequest"
       },
       "output": {
         "target": "com.azure.advisor#ResourceRecommendationBaseListResult"
@@ -1755,7 +1756,7 @@
         "smithy.api#documentation": "Advisor Recommendation."
       }
     },
-    "com.azure.advisor#RecommendationsListRequest": {
+    "com.azure.advisor#ListRecommendationsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1835,10 +1836,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.advisor#RecommendationsGenerate": {
+    "com.azure.advisor#GenerateRecommendation": {
       "type": "operation",
       "input": {
-        "target": "com.azure.advisor#RecommendationsGenerateRequest"
+        "target": "com.azure.advisor#GenerateRecommendationRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1854,7 +1855,7 @@
         "com.distilled.openapi#apiVersion": "2025-01-01"
       }
     },
-    "com.azure.advisor#RecommendationsGenerateRequest": {
+    "com.azure.advisor#GenerateRecommendationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1870,13 +1871,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.advisor#ConfigurationsCreateInResourceGroup": {
+    "com.azure.advisor#CreateConfigurationInResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.advisor#ConfigurationsCreateInResourceGroupRequest"
+        "target": "com.azure.advisor#CreateConfigurationInResourceGroupRequest"
       },
       "output": {
-        "target": "com.azure.advisor#ConfigurationsCreateInResourceGroupResponse"
+        "target": "com.azure.advisor#CreateConfigurationInResourceGroupResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1889,7 +1890,7 @@
         "com.distilled.openapi#apiVersion": "2025-01-01"
       }
     },
-    "com.azure.advisor#ConfigurationsCreateInResourceGroupResponse": {
+    "com.azure.advisor#CreateConfigurationInResourceGroupResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2153,7 +2154,7 @@
         "smithy.api#documentation": "Minimum percentage threshold for Advisor low CPU utilization evaluation. Valid only for subscriptions. Valid values: 5 (default), 10, 15 or 20."
       }
     },
-    "com.azure.advisor#ConfigurationsCreateInResourceGroupRequest": {
+    "com.azure.advisor#CreateConfigurationInResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2173,7 +2174,7 @@
           }
         },
         "configurationName": {
-          "target": "com.azure.advisor#ConfigurationsCreateInResourceGroupRequestConfigurationName",
+          "target": "com.azure.advisor#CreateConfigurationInResourceGroupRequestConfigurationName",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -2191,7 +2192,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.advisor#ConfigurationsCreateInResourceGroupRequestConfigurationName": {
+    "com.azure.advisor#CreateConfigurationInResourceGroupRequestConfigurationName": {
       "type": "enum",
       "members": {
         "DEFAULT": {
@@ -2203,10 +2204,10 @@
       },
       "traits": {}
     },
-    "com.azure.advisor#ConfigurationsListByResourceGroup": {
+    "com.azure.advisor#ListConfigurationByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.advisor#ConfigurationsListByResourceGroupRequest"
+        "target": "com.azure.advisor#ListConfigurationByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.advisor#ConfigurationListResult"
@@ -2289,7 +2290,7 @@
         "smithy.api#documentation": "The Advisor configuration data structure."
       }
     },
-    "com.azure.advisor#ConfigurationsListByResourceGroupRequest": {
+    "com.azure.advisor#ListConfigurationByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2313,13 +2314,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.advisor#ConfigurationsCreateInSubscription": {
+    "com.azure.advisor#CreateConfigurationInSubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.advisor#ConfigurationsCreateInSubscriptionRequest"
+        "target": "com.azure.advisor#CreateConfigurationInSubscriptionRequest"
       },
       "output": {
-        "target": "com.azure.advisor#ConfigurationsCreateInSubscriptionResponse"
+        "target": "com.azure.advisor#CreateConfigurationInSubscriptionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2332,7 +2333,7 @@
         "com.distilled.openapi#apiVersion": "2025-01-01"
       }
     },
-    "com.azure.advisor#ConfigurationsCreateInSubscriptionResponse": {
+    "com.azure.advisor#CreateConfigurationInSubscriptionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2370,7 +2371,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.advisor#ConfigurationsCreateInSubscriptionRequest": {
+    "com.azure.advisor#CreateConfigurationInSubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2382,7 +2383,7 @@
           }
         },
         "configurationName": {
-          "target": "com.azure.advisor#ConfigurationsCreateInSubscriptionRequestConfigurationName",
+          "target": "com.azure.advisor#CreateConfigurationInSubscriptionRequestConfigurationName",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -2400,7 +2401,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.advisor#ConfigurationsCreateInSubscriptionRequestConfigurationName": {
+    "com.azure.advisor#CreateConfigurationInSubscriptionRequestConfigurationName": {
       "type": "enum",
       "members": {
         "DEFAULT": {
@@ -2412,10 +2413,10 @@
       },
       "traits": {}
     },
-    "com.azure.advisor#ConfigurationsListBySubscription": {
+    "com.azure.advisor#ListConfigurationBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.advisor#ConfigurationsListBySubscriptionRequest"
+        "target": "com.azure.advisor#ListConfigurationBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.advisor#ConfigurationListResult"
@@ -2431,7 +2432,7 @@
         "com.distilled.openapi#apiVersion": "2025-01-01"
       }
     },
-    "com.azure.advisor#ConfigurationsListBySubscriptionRequest": {
+    "com.azure.advisor#ListConfigurationBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2447,10 +2448,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.advisor#RecommendationMetadataList": {
+    "com.azure.advisor#ListRecommendationMetadata": {
       "type": "operation",
       "input": {
-        "target": "com.azure.advisor#RecommendationMetadataListRequest"
+        "target": "com.azure.advisor#ListRecommendationMetadataRequest"
       },
       "output": {
         "target": "com.azure.advisor#MetadataEntityListResult"
@@ -2618,7 +2619,7 @@
         "smithy.api#documentation": "The list of keys on which this entity depends on."
       }
     },
-    "com.azure.advisor#RecommendationMetadataListRequest": {
+    "com.azure.advisor#ListRecommendationMetadataRequest": {
       "type": "structure",
       "members": {
         "_filter": {
@@ -2633,10 +2634,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.advisor#RecommendationMetadataGet": {
+    "com.azure.advisor#GetRecommendationMetadata": {
       "type": "operation",
       "input": {
-        "target": "com.azure.advisor#RecommendationMetadataGetRequest"
+        "target": "com.azure.advisor#GetRecommendationMetadataRequest"
       },
       "output": {
         "target": "com.azure.advisor#MetadataEntity"
@@ -2652,7 +2653,7 @@
         "com.distilled.openapi#apiVersion": "2025-01-01"
       }
     },
-    "com.azure.advisor#RecommendationMetadataGetRequest": {
+    "com.azure.advisor#GetRecommendationMetadataRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -2673,58 +2674,58 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.advisor#AdvisorScoresGet"
+          "target": "com.azure.advisor#GetAdvisorScore"
         },
         {
-          "target": "com.azure.advisor#AdvisorScoresList"
+          "target": "com.azure.advisor#ListAdvisorScores"
         },
         {
           "target": "com.azure.advisor#Predict"
         },
         {
-          "target": "com.azure.advisor#SuppressionsList"
+          "target": "com.azure.advisor#ListSuppressions"
         },
         {
-          "target": "com.azure.advisor#SuppressionsDelete"
+          "target": "com.azure.advisor#DeleteSuppression"
         },
         {
-          "target": "com.azure.advisor#SuppressionsCreate"
+          "target": "com.azure.advisor#CreateSuppression"
         },
         {
-          "target": "com.azure.advisor#SuppressionsGet"
+          "target": "com.azure.advisor#GetSuppression"
         },
         {
-          "target": "com.azure.advisor#RecommendationsGet"
+          "target": "com.azure.advisor#GetRecommendation"
         },
         {
-          "target": "com.azure.advisor#OperationsList"
+          "target": "com.azure.advisor#ListOperations"
         },
         {
-          "target": "com.azure.advisor#RecommendationsList"
+          "target": "com.azure.advisor#ListRecommendations"
         },
         {
           "target": "com.azure.advisor#RecommendationsGetGenerateStatus"
         },
         {
-          "target": "com.azure.advisor#RecommendationsGenerate"
+          "target": "com.azure.advisor#GenerateRecommendation"
         },
         {
-          "target": "com.azure.advisor#ConfigurationsCreateInResourceGroup"
+          "target": "com.azure.advisor#CreateConfigurationInResourceGroup"
         },
         {
-          "target": "com.azure.advisor#ConfigurationsListByResourceGroup"
+          "target": "com.azure.advisor#ListConfigurationByResourceGroup"
         },
         {
-          "target": "com.azure.advisor#ConfigurationsCreateInSubscription"
+          "target": "com.azure.advisor#CreateConfigurationInSubscription"
         },
         {
-          "target": "com.azure.advisor#ConfigurationsListBySubscription"
+          "target": "com.azure.advisor#ListConfigurationBySubscription"
         },
         {
-          "target": "com.azure.advisor#RecommendationMetadataList"
+          "target": "com.azure.advisor#ListRecommendationMetadata"
         },
         {
-          "target": "com.azure.advisor#RecommendationMetadataGet"
+          "target": "com.azure.advisor#GetRecommendationMetadata"
         }
       ],
       "traits": {

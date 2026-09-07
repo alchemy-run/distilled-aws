@@ -13,6 +13,38 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
+export interface DeleteFleetRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Compute Fleet */
+  fleetName: string;
+}
+export const DeleteFleetRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    fleetName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureFleet/fleets/{fleetName}",
+      code: 200,
+      apiVersion: "2024-11-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteFleetRequest",
+}) as any as S.Schema<DeleteFleetRequest>;
+
+export interface DeleteFleetResponse {}
+export const DeleteFleetResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteFleetResponse",
+}) as any as S.Schema<DeleteFleetResponse>;
+
 /** Resource tags. */
 export type FleetsCreateOrUpdateRequestTagsMap = {
   [key: string]: string | undefined;
@@ -2537,7 +2569,7 @@ export const FleetsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "FleetsCreateOrUpdateResponse",
 }) as any as S.Schema<FleetsCreateOrUpdateResponse>;
 
-export interface FleetsDeleteRequest {
+export interface GetFleetRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2545,39 +2577,7 @@ export interface FleetsDeleteRequest {
   /** The name of the Compute Fleet */
   fleetName: string;
 }
-export const FleetsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    fleetName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureFleet/fleets/{fleetName}",
-      code: 200,
-      apiVersion: "2024-11-01",
-    }),
-  ),
-).annotate({
-  identifier: "FleetsDeleteRequest",
-}) as any as S.Schema<FleetsDeleteRequest>;
-
-export interface FleetsDeleteResponse {}
-export const FleetsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "FleetsDeleteResponse",
-}) as any as S.Schema<FleetsDeleteResponse>;
-
-export interface FleetsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Compute Fleet */
-  fleetName: string;
-}
-export const FleetsGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetFleetRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -2591,31 +2591,31 @@ export const FleetsGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "FleetsGetRequest",
-}) as any as S.Schema<FleetsGetRequest>;
+  identifier: "GetFleetRequest",
+}) as any as S.Schema<GetFleetRequest>;
 
 /** Resource tags. */
-export type FleetsGetResponseTagsMap = { [key: string]: string | undefined };
-export const FleetsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetFleetResponseTagsMap = { [key: string]: string | undefined };
+export const GetFleetResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<FleetsGetResponseTagsMap>;
+) as any as S.Schema<GetFleetResponseTagsMap>;
 
 /** Zones in which the Compute Fleet is available */
-export type FleetsGetResponseZonesList = Array<string>;
-export const FleetsGetResponseZonesList = /*@__PURE__*/ S.Array(
+export type GetFleetResponseZonesList = Array<string>;
+export const GetFleetResponseZonesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<FleetsGetResponseZonesList>;
+) as any as S.Schema<GetFleetResponseZonesList>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type FleetsGetResponseIdentity = FleetsCreateOrUpdateResponseIdentity;
-export const FleetsGetResponseIdentity = FleetsCreateOrUpdateResponseIdentity;
+export type GetFleetResponseIdentity = FleetsCreateOrUpdateResponseIdentity;
+export const GetFleetResponseIdentity = FleetsCreateOrUpdateResponseIdentity;
 
 /** Plan for the resource. */
-export type FleetsGetResponsePlan = FleetsCreateOrUpdateRequestPlan;
-export const FleetsGetResponsePlan = FleetsCreateOrUpdateRequestPlan;
+export type GetFleetResponsePlan = FleetsCreateOrUpdateRequestPlan;
+export const GetFleetResponsePlan = FleetsCreateOrUpdateRequestPlan;
 
-export interface FleetsGetResponse {
+export interface GetFleetResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -2625,42 +2625,42 @@ export interface FleetsGetResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: FleetsGetResponseTagsMap;
+  tags?: GetFleetResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: FleetProperties;
   /** Zones in which the Compute Fleet is available */
-  zones?: FleetsGetResponseZonesList;
+  zones?: GetFleetResponseZonesList;
   /** Managed service identity (system assigned and/or user assigned identities) */
   identity?: FleetsCreateOrUpdateResponseIdentity;
   /** Plan for the resource. */
   plan?: FleetsCreateOrUpdateRequestPlan;
 }
-export const FleetsGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetFleetResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(FleetsGetResponseTagsMap),
+    tags: S.optional(GetFleetResponseTagsMap),
     location: S.String,
     properties: S.optional(FleetProperties),
-    zones: S.optional(FleetsGetResponseZonesList),
+    zones: S.optional(GetFleetResponseZonesList),
     identity: S.optional(FleetsCreateOrUpdateResponseIdentity),
     plan: S.optional(FleetsCreateOrUpdateRequestPlan),
   }),
 ).annotate({
-  identifier: "FleetsGetResponse",
-}) as any as S.Schema<FleetsGetResponse>;
+  identifier: "GetFleetResponse",
+}) as any as S.Schema<GetFleetResponse>;
 
-export interface FleetsListByResourceGroupRequest {
+export interface ListFleetByResourceGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
 }
-export const FleetsListByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListFleetByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -2673,8 +2673,8 @@ export const FleetsListByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "FleetsListByResourceGroupRequest",
-}) as any as S.Schema<FleetsListByResourceGroupRequest>;
+  identifier: "ListFleetByResourceGroupRequest",
+}) as any as S.Schema<ListFleetByResourceGroupRequest>;
 
 /** Resource tags. */
 export type FleetTagsMap = { [key: string]: string | undefined };
@@ -2757,11 +2757,11 @@ export const FleetListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "FleetListResult",
 }) as any as S.Schema<FleetListResult>;
 
-export interface FleetsListBySubscriptionRequest {
+export interface ListFleetBySubscriptionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
 }
-export const FleetsListBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListFleetBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
   }).pipe(
@@ -2773,10 +2773,10 @@ export const FleetsListBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "FleetsListBySubscriptionRequest",
-}) as any as S.Schema<FleetsListBySubscriptionRequest>;
+  identifier: "ListFleetBySubscriptionRequest",
+}) as any as S.Schema<ListFleetBySubscriptionRequest>;
 
-export interface FleetsListVirtualMachineScaleSetsRequest {
+export interface ListFleetVirtualMachineScaleSetsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2784,7 +2784,7 @@ export interface FleetsListVirtualMachineScaleSetsRequest {
   /** The name of the Fleet */
   name: string;
 }
-export const FleetsListVirtualMachineScaleSetsRequest = /*@__PURE__*/ S.suspend(
+export const ListFleetVirtualMachineScaleSetsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -2799,8 +2799,8 @@ export const FleetsListVirtualMachineScaleSetsRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "FleetsListVirtualMachineScaleSetsRequest",
-}) as any as S.Schema<FleetsListVirtualMachineScaleSetsRequest>;
+  identifier: "ListFleetVirtualMachineScaleSetsRequest",
+}) as any as S.Schema<ListFleetVirtualMachineScaleSetsRequest>;
 
 /** API error base. */
 export interface ApiErrorBase {
@@ -2910,12 +2910,100 @@ export const VirtualMachineScaleSetListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "VirtualMachineScaleSetListResult",
 }) as any as S.Schema<VirtualMachineScaleSetListResult>;
 
+export interface ListOperationsRequest {}
+export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/providers/Microsoft.AzureFleet/operations",
+      code: 200,
+      apiVersion: "2024-11-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListOperationsRequest",
+}) as any as S.Schema<ListOperationsRequest>;
+
+/** Localized display information for this particular operation. */
+export interface OperationDisplay {
+  /** The localized friendly form of the resource provider name, e.g. "Microsoft Monitoring Insights" or "Microsoft Compute". */
+  provider?: string;
+  /** The localized friendly name of the resource type related to this operation. E.g. "Virtual Machines" or "Job Schedule Collections". */
+  resource?: string;
+  /** The concise, localized friendly name for the operation; suitable for dropdowns. E.g. "Create or Update Virtual Machine", "Restart Virtual Machine". */
+  operation?: string;
+  /** The short, localized friendly description of the operation; suitable for tool tips and detailed views. */
+  description?: string;
+}
+export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provider: S.optional(S.String),
+    resource: S.optional(S.String),
+    operation: S.optional(S.String),
+    description: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "OperationDisplay",
+}) as any as S.Schema<OperationDisplay>;
+
+/** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
+export type OperationOrigin = "user" | "system" | "user,system";
+export const OperationOrigin = /*@__PURE__*/ S.String;
+
+/** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
+export type OperationActionType = "Internal";
+export const OperationActionType = /*@__PURE__*/ S.String;
+
+/** Details of a REST API operation, returned from the Resource Provider Operations API */
+export interface Operation {
+  /** The name of the operation, as per Resource-Based Access Control (RBAC). Examples: "Microsoft.Compute/virtualMachines/write", "Microsoft.Compute/virtualMachines/capture/action" */
+  name?: string;
+  /** Whether the operation applies to data-plane. This is "true" for data-plane operations and "false" for ARM/control-plane operations. */
+  isDataAction?: boolean;
+  /** Localized display information for this particular operation. */
+  display?: OperationDisplay;
+  /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
+  origin?: OperationOrigin;
+  /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
+  actionType?: OperationActionType;
+}
+export const Operation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    isDataAction: S.optional(S.Boolean),
+    display: S.optional(OperationDisplay),
+    origin: S.optional(OperationOrigin),
+    actionType: S.optional(OperationActionType),
+  }),
+).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
+
+/** List of operations supported by the resource provider */
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
+  Operation,
+) as any as S.Schema<ListOperationsResponseValueList>;
+
+export interface ListOperationsResponse {
+  /** List of operations supported by the resource provider */
+  value?: ListOperationsResponseValueList;
+  /** URL to get the next set of operation list results (if there are any). */
+  nextLink?: string;
+}
+export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(ListOperationsResponseValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ListOperationsResponse",
+}) as any as S.Schema<ListOperationsResponse>;
+
 /** Resource tags. */
-export type FleetsUpdateRequestTagsMap = { [key: string]: string | undefined };
-export const FleetsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateFleetRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateFleetRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<FleetsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateFleetRequestTagsMap>;
 
 /** Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed). */
 export type ManagedServiceIdentityUpdateInputType =
@@ -2984,7 +3072,7 @@ export const ResourcePlanUpdate = /*@__PURE__*/ S.suspend(() =>
   identifier: "ResourcePlanUpdate",
 }) as any as S.Schema<ResourcePlanUpdate>;
 
-export interface FleetsUpdateRequest {
+export interface UpdateFleetRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2992,7 +3080,7 @@ export interface FleetsUpdateRequest {
   /** The name of the Compute Fleet */
   fleetName: string;
   /** Resource tags. */
-  tags?: FleetsUpdateRequestTagsMap;
+  tags?: UpdateFleetRequestTagsMap;
   /** Updatable managed service identity */
   identity?: ManagedServiceIdentityUpdateInput;
   /** Updatable resource plan */
@@ -3000,12 +3088,12 @@ export interface FleetsUpdateRequest {
   /** RP-specific updatable properties */
   properties?: FleetPropertiesInput;
 }
-export const FleetsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateFleetRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     fleetName: S.String.pipe(T.Label()),
-    tags: S.optional(FleetsUpdateRequestTagsMap),
+    tags: S.optional(UpdateFleetRequestTagsMap),
     identity: S.optional(ManagedServiceIdentityUpdateInput),
     plan: S.optional(ResourcePlanUpdate),
     properties: S.optional(FleetPropertiesInput),
@@ -3018,32 +3106,31 @@ export const FleetsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "FleetsUpdateRequest",
-}) as any as S.Schema<FleetsUpdateRequest>;
+  identifier: "UpdateFleetRequest",
+}) as any as S.Schema<UpdateFleetRequest>;
 
 /** Resource tags. */
-export type FleetsUpdateResponseTagsMap = { [key: string]: string | undefined };
-export const FleetsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateFleetResponseTagsMap = { [key: string]: string | undefined };
+export const UpdateFleetResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<FleetsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateFleetResponseTagsMap>;
 
 /** Zones in which the Compute Fleet is available */
-export type FleetsUpdateResponseZonesList = Array<string>;
-export const FleetsUpdateResponseZonesList = /*@__PURE__*/ S.Array(
+export type UpdateFleetResponseZonesList = Array<string>;
+export const UpdateFleetResponseZonesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<FleetsUpdateResponseZonesList>;
+) as any as S.Schema<UpdateFleetResponseZonesList>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type FleetsUpdateResponseIdentity = FleetsCreateOrUpdateResponseIdentity;
-export const FleetsUpdateResponseIdentity =
-  FleetsCreateOrUpdateResponseIdentity;
+export type UpdateFleetResponseIdentity = FleetsCreateOrUpdateResponseIdentity;
+export const UpdateFleetResponseIdentity = FleetsCreateOrUpdateResponseIdentity;
 
 /** Plan for the resource. */
-export type FleetsUpdateResponsePlan = FleetsCreateOrUpdateRequestPlan;
-export const FleetsUpdateResponsePlan = FleetsCreateOrUpdateRequestPlan;
+export type UpdateFleetResponsePlan = FleetsCreateOrUpdateRequestPlan;
+export const UpdateFleetResponsePlan = FleetsCreateOrUpdateRequestPlan;
 
-export interface FleetsUpdateResponse {
+export interface UpdateFleetResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -3053,122 +3140,49 @@ export interface FleetsUpdateResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: FleetsUpdateResponseTagsMap;
+  tags?: UpdateFleetResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: FleetProperties;
   /** Zones in which the Compute Fleet is available */
-  zones?: FleetsUpdateResponseZonesList;
+  zones?: UpdateFleetResponseZonesList;
   /** Managed service identity (system assigned and/or user assigned identities) */
   identity?: FleetsCreateOrUpdateResponseIdentity;
   /** Plan for the resource. */
   plan?: FleetsCreateOrUpdateRequestPlan;
 }
-export const FleetsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateFleetResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(FleetsUpdateResponseTagsMap),
+    tags: S.optional(UpdateFleetResponseTagsMap),
     location: S.String,
     properties: S.optional(FleetProperties),
-    zones: S.optional(FleetsUpdateResponseZonesList),
+    zones: S.optional(UpdateFleetResponseZonesList),
     identity: S.optional(FleetsCreateOrUpdateResponseIdentity),
     plan: S.optional(FleetsCreateOrUpdateRequestPlan),
   }),
 ).annotate({
-  identifier: "FleetsUpdateResponse",
-}) as any as S.Schema<FleetsUpdateResponse>;
+  identifier: "UpdateFleetResponse",
+}) as any as S.Schema<UpdateFleetResponse>;
 
-export interface OperationsListRequest {}
-export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/providers/Microsoft.AzureFleet/operations",
-      code: 200,
-      apiVersion: "2024-11-01",
-    }),
-  ),
-).annotate({
-  identifier: "OperationsListRequest",
-}) as any as S.Schema<OperationsListRequest>;
-
-/** Localized display information for this particular operation. */
-export interface OperationDisplay {
-  /** The localized friendly form of the resource provider name, e.g. "Microsoft Monitoring Insights" or "Microsoft Compute". */
-  provider?: string;
-  /** The localized friendly name of the resource type related to this operation. E.g. "Virtual Machines" or "Job Schedule Collections". */
-  resource?: string;
-  /** The concise, localized friendly name for the operation; suitable for dropdowns. E.g. "Create or Update Virtual Machine", "Restart Virtual Machine". */
-  operation?: string;
-  /** The short, localized friendly description of the operation; suitable for tool tips and detailed views. */
-  description?: string;
-}
-export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provider: S.optional(S.String),
-    resource: S.optional(S.String),
-    operation: S.optional(S.String),
-    description: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OperationDisplay",
-}) as any as S.Schema<OperationDisplay>;
-
-/** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
-export type OperationOrigin = "user" | "system" | "user,system";
-export const OperationOrigin = /*@__PURE__*/ S.String;
-
-/** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
-export type OperationActionType = "Internal";
-export const OperationActionType = /*@__PURE__*/ S.String;
-
-/** Details of a REST API operation, returned from the Resource Provider Operations API */
-export interface Operation {
-  /** The name of the operation, as per Resource-Based Access Control (RBAC). Examples: "Microsoft.Compute/virtualMachines/write", "Microsoft.Compute/virtualMachines/capture/action" */
-  name?: string;
-  /** Whether the operation applies to data-plane. This is "true" for data-plane operations and "false" for ARM/control-plane operations. */
-  isDataAction?: boolean;
-  /** Localized display information for this particular operation. */
-  display?: OperationDisplay;
-  /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
-  origin?: OperationOrigin;
-  /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
-  actionType?: OperationActionType;
-}
-export const Operation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    isDataAction: S.optional(S.Boolean),
-    display: S.optional(OperationDisplay),
-    origin: S.optional(OperationOrigin),
-    actionType: S.optional(OperationActionType),
-  }),
-).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
-
-/** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
-  Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
-
-export interface OperationsListResponse {
-  /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
-  /** URL to get the next set of operation list results (if there are any). */
-  nextLink?: string;
-}
-export const OperationsListResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(OperationsListResponseValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OperationsListResponse",
-}) as any as S.Schema<OperationsListResponse>;
+export type DeleteFleetError = AzureOpError;
+/** Delete a Fleet */
+export const DeleteFleet: API.OperationMethod<
+  DeleteFleetRequest,
+  DeleteFleetResponse,
+  DeleteFleetError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteFleetRequest,
+  output: DeleteFleetResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
 export type FleetsCreateOrUpdateError = AzureOpError;
 /** Create a Fleet */
@@ -3185,106 +3199,91 @@ export const FleetsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type FleetsDeleteError = AzureOpError;
-/** Delete a Fleet */
-export const FleetsDelete: API.OperationMethod<
-  FleetsDeleteRequest,
-  FleetsDeleteResponse,
-  FleetsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FleetsDeleteRequest,
-  output: FleetsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type FleetsGetError = AzureOpError;
+export type GetFleetError = AzureOpError;
 /** Get a Fleet */
-export const FleetsGet: API.OperationMethod<
-  FleetsGetRequest,
-  FleetsGetResponse,
-  FleetsGetError,
+export const GetFleet: API.OperationMethod<
+  GetFleetRequest,
+  GetFleetResponse,
+  GetFleetError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FleetsGetRequest,
-  output: FleetsGetResponse,
+  input: GetFleetRequest,
+  output: GetFleetResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type FleetsListByResourceGroupError = AzureOpError;
+export type ListFleetByResourceGroupError = AzureOpError;
 /** List Fleet resources by resource group */
-export const FleetsListByResourceGroup: API.OperationMethod<
-  FleetsListByResourceGroupRequest,
+export const ListFleetByResourceGroup: API.OperationMethod<
+  ListFleetByResourceGroupRequest,
   FleetListResult,
-  FleetsListByResourceGroupError,
+  ListFleetByResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FleetsListByResourceGroupRequest,
+  input: ListFleetByResourceGroupRequest,
   output: FleetListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type FleetsListBySubscriptionError = AzureOpError;
+export type ListFleetBySubscriptionError = AzureOpError;
 /** List Fleet resources by subscription ID */
-export const FleetsListBySubscription: API.OperationMethod<
-  FleetsListBySubscriptionRequest,
+export const ListFleetBySubscription: API.OperationMethod<
+  ListFleetBySubscriptionRequest,
   FleetListResult,
-  FleetsListBySubscriptionError,
+  ListFleetBySubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FleetsListBySubscriptionRequest,
+  input: ListFleetBySubscriptionRequest,
   output: FleetListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type FleetsListVirtualMachineScaleSetsError = AzureOpError;
+export type ListFleetVirtualMachineScaleSetsError = AzureOpError;
 /** List VirtualMachineScaleSet resources by Fleet */
-export const FleetsListVirtualMachineScaleSets: API.OperationMethod<
-  FleetsListVirtualMachineScaleSetsRequest,
+export const ListFleetVirtualMachineScaleSets: API.OperationMethod<
+  ListFleetVirtualMachineScaleSetsRequest,
   VirtualMachineScaleSetListResult,
-  FleetsListVirtualMachineScaleSetsError,
+  ListFleetVirtualMachineScaleSetsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FleetsListVirtualMachineScaleSetsRequest,
+  input: ListFleetVirtualMachineScaleSetsRequest,
   output: VirtualMachineScaleSetListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type FleetsUpdateError = AzureOpError;
-/** Update a Fleet */
-export const FleetsUpdate: API.OperationMethod<
-  FleetsUpdateRequest,
-  FleetsUpdateResponse,
-  FleetsUpdateError,
+export type ListOperationsError = AzureOpError;
+/** List the operations for the provider */
+export const ListOperations: API.OperationMethod<
+  ListOperationsRequest,
+  ListOperationsResponse,
+  ListOperationsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FleetsUpdateRequest,
-  output: FleetsUpdateResponse,
+  input: ListOperationsRequest,
+  output: ListOperationsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type OperationsListError = AzureOpError;
-/** List the operations for the provider */
-export const OperationsList: API.OperationMethod<
-  OperationsListRequest,
-  OperationsListResponse,
-  OperationsListError,
+export type UpdateFleetError = AzureOpError;
+/** Update a Fleet */
+export const UpdateFleet: API.OperationMethod<
+  UpdateFleetRequest,
+  UpdateFleetResponse,
+  UpdateFleetError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OperationsListRequest,
-  output: OperationsListResponse,
+  input: UpdateFleetRequest,
+  output: UpdateFleetResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

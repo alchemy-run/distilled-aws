@@ -14,16 +14,17 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.kubernetesruntime#OperationsList": {
+    "com.azure.kubernetesruntime#ListOperations": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
       },
       "output": {
-        "target": "com.azure.kubernetesruntime#OperationsListResponse"
+        "target": "com.azure.kubernetesruntime#ListOperationsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -36,11 +37,11 @@
         "com.distilled.openapi#apiVersion": "2024-03-01"
       }
     },
-    "com.azure.kubernetesruntime#OperationsListResponse": {
+    "com.azure.kubernetesruntime#ListOperationsResponse": {
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.kubernetesruntime#OperationsListResponseValueList",
+          "target": "com.azure.kubernetesruntime#ListOperationsResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of operations supported by the resource provider"
           }
@@ -56,7 +57,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.kubernetesruntime#OperationsListResponseValueList": {
+    "com.azure.kubernetesruntime#ListOperationsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.kubernetesruntime#Operation"
@@ -175,10 +176,10 @@
         "smithy.api#documentation": "Localized display information for this particular operation."
       }
     },
-    "com.azure.kubernetesruntime#StorageClassDelete": {
+    "com.azure.kubernetesruntime#DeleteStorageClass": {
       "type": "operation",
       "input": {
-        "target": "com.azure.kubernetesruntime#StorageClassDeleteRequest"
+        "target": "com.azure.kubernetesruntime#DeleteStorageClassRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -194,7 +195,7 @@
         "com.distilled.openapi#apiVersion": "2024-03-01"
       }
     },
-    "com.azure.kubernetesruntime#StorageClassDeleteRequest": {
+    "com.azure.kubernetesruntime#DeleteStorageClassRequest": {
       "type": "structure",
       "members": {
         "resourceUri": {
@@ -218,13 +219,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.kubernetesruntime#StorageClassUpdate": {
+    "com.azure.kubernetesruntime#UpdateStorageClass": {
       "type": "operation",
       "input": {
-        "target": "com.azure.kubernetesruntime#StorageClassUpdateRequest"
+        "target": "com.azure.kubernetesruntime#UpdateStorageClassRequest"
       },
       "output": {
-        "target": "com.azure.kubernetesruntime#StorageClassUpdateResponse"
+        "target": "com.azure.kubernetesruntime#UpdateStorageClassResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -237,7 +238,7 @@
         "com.distilled.openapi#apiVersion": "2024-03-01"
       }
     },
-    "com.azure.kubernetesruntime#StorageClassUpdateResponse": {
+    "com.azure.kubernetesruntime#UpdateStorageClassResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -744,7 +745,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.kubernetesruntime#StorageClassUpdateRequest": {
+    "com.azure.kubernetesruntime#UpdateStorageClassRequest": {
       "type": "structure",
       "members": {
         "resourceUri": {
@@ -1153,13 +1154,13 @@
         "smithy.api#documentation": "Additional mount options"
       }
     },
-    "com.azure.kubernetesruntime#StorageClassGet": {
+    "com.azure.kubernetesruntime#GetStorageClass": {
       "type": "operation",
       "input": {
-        "target": "com.azure.kubernetesruntime#StorageClassGetRequest"
+        "target": "com.azure.kubernetesruntime#GetStorageClassRequest"
       },
       "output": {
-        "target": "com.azure.kubernetesruntime#StorageClassGetResponse"
+        "target": "com.azure.kubernetesruntime#GetStorageClassResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1172,7 +1173,7 @@
         "com.distilled.openapi#apiVersion": "2024-03-01"
       }
     },
-    "com.azure.kubernetesruntime#StorageClassGetResponse": {
+    "com.azure.kubernetesruntime#GetStorageClassResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1210,7 +1211,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.kubernetesruntime#StorageClassGetRequest": {
+    "com.azure.kubernetesruntime#GetStorageClassRequest": {
       "type": "structure",
       "members": {
         "resourceUri": {
@@ -1234,10 +1235,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.kubernetesruntime#StorageClassList": {
+    "com.azure.kubernetesruntime#ListStorageClass": {
       "type": "operation",
       "input": {
-        "target": "com.azure.kubernetesruntime#StorageClassListRequest"
+        "target": "com.azure.kubernetesruntime#ListStorageClassRequest"
       },
       "output": {
         "target": "com.azure.kubernetesruntime#StorageClassResourceListResult"
@@ -1321,7 +1322,7 @@
         "smithy.api#documentation": "A StorageClass resource for an Arc connected cluster (Microsoft.Kubernetes/connectedClusters)"
       }
     },
-    "com.azure.kubernetesruntime#StorageClassListRequest": {
+    "com.azure.kubernetesruntime#ListStorageClassRequest": {
       "type": "structure",
       "members": {
         "resourceUri": {
@@ -1337,10 +1338,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.kubernetesruntime#ServicesDelete": {
+    "com.azure.kubernetesruntime#DeleteService": {
       "type": "operation",
       "input": {
-        "target": "com.azure.kubernetesruntime#ServicesDeleteRequest"
+        "target": "com.azure.kubernetesruntime#DeleteServiceRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1356,7 +1357,7 @@
         "com.distilled.openapi#apiVersion": "2024-03-01"
       }
     },
-    "com.azure.kubernetesruntime#ServicesDeleteRequest": {
+    "com.azure.kubernetesruntime#DeleteServiceRequest": {
       "type": "structure",
       "members": {
         "resourceUri": {
@@ -1494,13 +1495,13 @@
         "smithy.api#documentation": "Properties for the service resource"
       }
     },
-    "com.azure.kubernetesruntime#ServicesGet": {
+    "com.azure.kubernetesruntime#GetService": {
       "type": "operation",
       "input": {
-        "target": "com.azure.kubernetesruntime#ServicesGetRequest"
+        "target": "com.azure.kubernetesruntime#GetServiceRequest"
       },
       "output": {
-        "target": "com.azure.kubernetesruntime#ServicesGetResponse"
+        "target": "com.azure.kubernetesruntime#GetServiceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1513,7 +1514,7 @@
         "com.distilled.openapi#apiVersion": "2024-03-01"
       }
     },
-    "com.azure.kubernetesruntime#ServicesGetResponse": {
+    "com.azure.kubernetesruntime#GetServiceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1551,7 +1552,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.kubernetesruntime#ServicesGetRequest": {
+    "com.azure.kubernetesruntime#GetServiceRequest": {
       "type": "structure",
       "members": {
         "resourceUri": {
@@ -1575,10 +1576,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.kubernetesruntime#ServicesList": {
+    "com.azure.kubernetesruntime#ListServices": {
       "type": "operation",
       "input": {
-        "target": "com.azure.kubernetesruntime#ServicesListRequest"
+        "target": "com.azure.kubernetesruntime#ListServicesRequest"
       },
       "output": {
         "target": "com.azure.kubernetesruntime#ServiceResourceListResult"
@@ -1662,7 +1663,7 @@
         "smithy.api#documentation": "A Service resource for an Arc connected cluster (Microsoft.Kubernetes/connectedClusters)"
       }
     },
-    "com.azure.kubernetesruntime#ServicesListRequest": {
+    "com.azure.kubernetesruntime#ListServicesRequest": {
       "type": "structure",
       "members": {
         "resourceUri": {
@@ -1678,10 +1679,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.kubernetesruntime#LoadBalancersDelete": {
+    "com.azure.kubernetesruntime#DeleteLoadBalancer": {
       "type": "operation",
       "input": {
-        "target": "com.azure.kubernetesruntime#LoadBalancersDeleteRequest"
+        "target": "com.azure.kubernetesruntime#DeleteLoadBalancerRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1697,7 +1698,7 @@
         "com.distilled.openapi#apiVersion": "2024-03-01"
       }
     },
-    "com.azure.kubernetesruntime#LoadBalancersDeleteRequest": {
+    "com.azure.kubernetesruntime#DeleteLoadBalancerRequest": {
       "type": "structure",
       "members": {
         "resourceUri": {
@@ -1968,13 +1969,13 @@
         "smithy.api#documentation": "IP Range"
       }
     },
-    "com.azure.kubernetesruntime#LoadBalancersGet": {
+    "com.azure.kubernetesruntime#GetLoadBalancer": {
       "type": "operation",
       "input": {
-        "target": "com.azure.kubernetesruntime#LoadBalancersGetRequest"
+        "target": "com.azure.kubernetesruntime#GetLoadBalancerRequest"
       },
       "output": {
-        "target": "com.azure.kubernetesruntime#LoadBalancersGetResponse"
+        "target": "com.azure.kubernetesruntime#GetLoadBalancerResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1987,7 +1988,7 @@
         "com.distilled.openapi#apiVersion": "2024-03-01"
       }
     },
-    "com.azure.kubernetesruntime#LoadBalancersGetResponse": {
+    "com.azure.kubernetesruntime#GetLoadBalancerResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2025,7 +2026,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.kubernetesruntime#LoadBalancersGetRequest": {
+    "com.azure.kubernetesruntime#GetLoadBalancerRequest": {
       "type": "structure",
       "members": {
         "resourceUri": {
@@ -2049,10 +2050,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.kubernetesruntime#LoadBalancersList": {
+    "com.azure.kubernetesruntime#ListLoadBalancers": {
       "type": "operation",
       "input": {
-        "target": "com.azure.kubernetesruntime#LoadBalancersListRequest"
+        "target": "com.azure.kubernetesruntime#ListLoadBalancersRequest"
       },
       "output": {
         "target": "com.azure.kubernetesruntime#LoadBalancerListResult"
@@ -2136,7 +2137,7 @@
         "smithy.api#documentation": "A LoadBalancer resource for an Arc connected cluster (Microsoft.Kubernetes/connectedClusters)"
       }
     },
-    "com.azure.kubernetesruntime#LoadBalancersListRequest": {
+    "com.azure.kubernetesruntime#ListLoadBalancersRequest": {
       "type": "structure",
       "members": {
         "resourceUri": {
@@ -2152,10 +2153,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.kubernetesruntime#BgpPeersDelete": {
+    "com.azure.kubernetesruntime#DeleteBgpPeer": {
       "type": "operation",
       "input": {
-        "target": "com.azure.kubernetesruntime#BgpPeersDeleteRequest"
+        "target": "com.azure.kubernetesruntime#DeleteBgpPeerRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2171,7 +2172,7 @@
         "com.distilled.openapi#apiVersion": "2024-03-01"
       }
     },
-    "com.azure.kubernetesruntime#BgpPeersDeleteRequest": {
+    "com.azure.kubernetesruntime#DeleteBgpPeerRequest": {
       "type": "structure",
       "members": {
         "resourceUri": {
@@ -2346,13 +2347,13 @@
         "smithy.api#documentation": "Details of the BgpPeer."
       }
     },
-    "com.azure.kubernetesruntime#BgpPeersGet": {
+    "com.azure.kubernetesruntime#GetBgpPeer": {
       "type": "operation",
       "input": {
-        "target": "com.azure.kubernetesruntime#BgpPeersGetRequest"
+        "target": "com.azure.kubernetesruntime#GetBgpPeerRequest"
       },
       "output": {
-        "target": "com.azure.kubernetesruntime#BgpPeersGetResponse"
+        "target": "com.azure.kubernetesruntime#GetBgpPeerResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2365,7 +2366,7 @@
         "com.distilled.openapi#apiVersion": "2024-03-01"
       }
     },
-    "com.azure.kubernetesruntime#BgpPeersGetResponse": {
+    "com.azure.kubernetesruntime#GetBgpPeerResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2403,7 +2404,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.kubernetesruntime#BgpPeersGetRequest": {
+    "com.azure.kubernetesruntime#GetBgpPeerRequest": {
       "type": "structure",
       "members": {
         "resourceUri": {
@@ -2427,10 +2428,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.kubernetesruntime#BgpPeersList": {
+    "com.azure.kubernetesruntime#ListBgpPeers": {
       "type": "operation",
       "input": {
-        "target": "com.azure.kubernetesruntime#BgpPeersListRequest"
+        "target": "com.azure.kubernetesruntime#ListBgpPeersRequest"
       },
       "output": {
         "target": "com.azure.kubernetesruntime#BgpPeerListResult"
@@ -2514,7 +2515,7 @@
         "smithy.api#documentation": "A BgpPeer resource for an Arc connected cluster (Microsoft.Kubernetes/connectedClusters)"
       }
     },
-    "com.azure.kubernetesruntime#BgpPeersListRequest": {
+    "com.azure.kubernetesruntime#ListBgpPeersRequest": {
       "type": "structure",
       "members": {
         "resourceUri": {
@@ -2535,58 +2536,58 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.kubernetesruntime#OperationsList"
+          "target": "com.azure.kubernetesruntime#ListOperations"
         },
         {
-          "target": "com.azure.kubernetesruntime#StorageClassDelete"
+          "target": "com.azure.kubernetesruntime#DeleteStorageClass"
         },
         {
-          "target": "com.azure.kubernetesruntime#StorageClassUpdate"
+          "target": "com.azure.kubernetesruntime#UpdateStorageClass"
         },
         {
           "target": "com.azure.kubernetesruntime#StorageClassCreateOrUpdate"
         },
         {
-          "target": "com.azure.kubernetesruntime#StorageClassGet"
+          "target": "com.azure.kubernetesruntime#GetStorageClass"
         },
         {
-          "target": "com.azure.kubernetesruntime#StorageClassList"
+          "target": "com.azure.kubernetesruntime#ListStorageClass"
         },
         {
-          "target": "com.azure.kubernetesruntime#ServicesDelete"
+          "target": "com.azure.kubernetesruntime#DeleteService"
         },
         {
           "target": "com.azure.kubernetesruntime#ServicesCreateOrUpdate"
         },
         {
-          "target": "com.azure.kubernetesruntime#ServicesGet"
+          "target": "com.azure.kubernetesruntime#GetService"
         },
         {
-          "target": "com.azure.kubernetesruntime#ServicesList"
+          "target": "com.azure.kubernetesruntime#ListServices"
         },
         {
-          "target": "com.azure.kubernetesruntime#LoadBalancersDelete"
+          "target": "com.azure.kubernetesruntime#DeleteLoadBalancer"
         },
         {
           "target": "com.azure.kubernetesruntime#LoadBalancersCreateOrUpdate"
         },
         {
-          "target": "com.azure.kubernetesruntime#LoadBalancersGet"
+          "target": "com.azure.kubernetesruntime#GetLoadBalancer"
         },
         {
-          "target": "com.azure.kubernetesruntime#LoadBalancersList"
+          "target": "com.azure.kubernetesruntime#ListLoadBalancers"
         },
         {
-          "target": "com.azure.kubernetesruntime#BgpPeersDelete"
+          "target": "com.azure.kubernetesruntime#DeleteBgpPeer"
         },
         {
           "target": "com.azure.kubernetesruntime#BgpPeersCreateOrUpdate"
         },
         {
-          "target": "com.azure.kubernetesruntime#BgpPeersGet"
+          "target": "com.azure.kubernetesruntime#GetBgpPeer"
         },
         {
-          "target": "com.azure.kubernetesruntime#BgpPeersList"
+          "target": "com.azure.kubernetesruntime#ListBgpPeers"
         }
       ],
       "traits": {

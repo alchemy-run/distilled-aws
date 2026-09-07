@@ -14,25 +14,29 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "keyDictionary": {
+      "aiBotsProtection": "ai_bots_protection",
+      "autoUpdateModel": "auto_update_model",
+      "bmCookieEnabled": "bm_cookie_enabled",
+      "cfRobotsVariant": "cf_robots_variant",
+      "contentBotsProtection": "content_bots_protection",
+      "crawlerProtection": "crawler_protection",
+      "enableJs": "enable_js",
+      "fightMode": "fight_mode",
+      "isRobotsTxtManaged": "is_robots_txt_managed",
+      "optimizeWordpress": "optimize_wordpress",
+      "sbfmDefinitelyAutomated": "sbfm_definitely_automated",
+      "sbfmLikelyAutomated": "sbfm_likely_automated",
+      "sbfmStaticResourceProtection": "sbfm_static_resource_protection",
+      "sbfmVerifiedBots": "sbfm_verified_bots",
+      "staleZoneConfiguration": "stale_zone_configuration",
+      "suppressSessionScore": "suppress_session_score",
+      "usingLatestModel": "using_latest_model"
+    },
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.cloudflare.bot_management#GetRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.bot_management#GetResultBotFightModeConfigurationAiBotsProtection": {
       "type": "enum",
       "members": {
@@ -849,39 +853,6 @@
         }
       }
     },
-    "com.cloudflare.bot_management#GetResponse": {
-      "type": "structure",
-      "members": {
-        "result": {
-          "target": "com.cloudflare.bot_management#GetResult",
-          "traits": {
-            "com.cloudflare.protocols#envelopePayload": {},
-            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.bot_management#Get": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.bot_management#GetRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.bot_management#GetResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/zones/{zone_id}/bot_management",
-          "code": 200
-        },
-        "smithy.api#documentation": "Retrieve a zone's Bot Management Config",
-        "smithy.api#readonly": {}
-      }
-    },
     "com.cloudflare.bot_management#UpdateRequestAiBotsProtection": {
       "type": "enum",
       "members": {
@@ -1144,124 +1115,6 @@
             "smithy.api#enumValue": "managed_challenge"
           }
         }
-      }
-    },
-    "com.cloudflare.bot_management#UpdateRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "ai_bots_protection": {
-          "target": "com.cloudflare.bot_management#UpdateRequestAiBotsProtection",
-          "traits": {
-            "smithy.api#documentation": "Enable rule to block AI Scrapers and Crawlers."
-          }
-        },
-        "cf_robots_variant": {
-          "target": "com.cloudflare.bot_management#UpdateRequestCfRobotsVariant",
-          "traits": {
-            "smithy.api#documentation": "Specifies the Robots Access Control License variant to use."
-          }
-        },
-        "content_bots_protection": {
-          "target": "com.cloudflare.bot_management#UpdateRequestContentBotsProtection",
-          "traits": {
-            "smithy.api#documentation": "Enable rule to block content bots. When enabled, blocks automated traffic with low bot scores, excluding safe verified bot categories. Exceptions should be managed via skip rules."
-          }
-        },
-        "crawler_protection": {
-          "target": "com.cloudflare.bot_management#UpdateRequestCrawlerProtection",
-          "traits": {
-            "smithy.api#documentation": "Enable rule to punish AI Scrapers and Crawlers via a link maze."
-          }
-        },
-        "enable_js": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Use lightweight, invisible JavaScript detections to improve Bot Management. [Learn more about JavaScript Detections](https://developers.cloudflare.com/bots/reference/javascript-detections/)."
-          }
-        },
-        "fight_mode": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether to enable Bot Fight Mode."
-          }
-        },
-        "is_robots_txt_managed": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Enable cloudflare managed robots.txt. If an existing robots.txt is detected, then managed robots.txt will be prepended to the existing robots.txt."
-          }
-        },
-        "stale_zone_configuration": {
-          "target": "com.cloudflare.bot_management#UpdateRequestStaleZoneConfiguration",
-          "traits": {
-            "smithy.api#documentation": "A read-only field that shows which unauthorized settings are currently active on the zone. These settings typically result from upgrades or downgrades."
-          }
-        },
-        "using_latest_model": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "A read-only field that indicates whether the zone currently is running the latest ML model."
-          }
-        },
-        "optimize_wordpress": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether to optimize Super Bot Fight Mode protections for Wordpress."
-          }
-        },
-        "sbfm_definitely_automated": {
-          "target": "com.cloudflare.bot_management#UpdateRequestSbfmDefinitelyAutomated",
-          "traits": {
-            "smithy.api#documentation": "Super Bot Fight Mode (SBFM) action to take on definitely automated requests."
-          }
-        },
-        "sbfm_static_resource_protection": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Super Bot Fight Mode (SBFM) to enable static resource protection."
-          }
-        },
-        "sbfm_verified_bots": {
-          "target": "com.cloudflare.bot_management#UpdateRequestSbfmVerifiedBots",
-          "traits": {
-            "smithy.api#documentation": "Super Bot Fight Mode (SBFM) action to take on verified bots requests."
-          }
-        },
-        "sbfm_likely_automated": {
-          "target": "com.cloudflare.bot_management#UpdateRequestSbfmLikelyAutomated",
-          "traits": {
-            "smithy.api#documentation": "Super Bot Fight Mode (SBFM) action to take on likely automated requests."
-          }
-        },
-        "auto_update_model": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Automatically update to the newest bot detection models created by Cloudflare as they are released. [Learn more.](https://developers.cloudflare.com/bots/reference/machine-learning-models#model-versions-and-release-notes)"
-          }
-        },
-        "bm_cookie_enabled": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Indicates that the bot management cookie can be placed on end user devices accessing the site. Defaults to true"
-          }
-        },
-        "suppress_session_score": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether to disable tracking the highest bot score for a session in the Bot Management cookie."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.bot_management#UpdateResultBotFightModeConfigurationAiBotsProtection": {
@@ -2080,40 +1933,7 @@
         }
       }
     },
-    "com.cloudflare.bot_management#UpdateResponse": {
-      "type": "structure",
-      "members": {
-        "result": {
-          "target": "com.cloudflare.bot_management#UpdateResult",
-          "traits": {
-            "com.cloudflare.protocols#envelopePayload": {},
-            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.bot_management#Update": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.bot_management#UpdateRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.bot_management#UpdateResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "PUT",
-          "uri": "/zones/{zone_id}/bot_management",
-          "code": 200
-        },
-        "smithy.api#documentation": "Updates the Bot Management configuration for a zone. This API is used to update: - **Bot Fight Mode** - **Super Bot Fight Mode** - **Bot Management for Enterprise** See [Bot Plans](https://developers.cloudflare.com/bots/plans/) for more information on the different plans \\ If you recently upgraded or downgraded your plan, refer to the following examples to clean up old configurations. Copy and paste the example body to remove old zone configurations based on your current plan. #### Clean up configuration for Bot Fight Mode plan ```json { \"sbfm_likely_automated\": \"allow\", \"sbfm_definitely_automated\": \"allow\", \"sbfm_verified_bots\": \"allow\", \"sbfm_static_resource_protection\": false, \"optimize_wordpress\": false, \"suppress_session_score\": false } ``` #### Clean up configuration for SBFM Pro plan ```json { \"sbfm_likely_automated\": \"allow\", \"fight_mode\": false } ``` #### Clean up configuration for SBFM Biz plan ```json { \"fight_mode\": false } ``` #### Clean up configuration for BM Enterprise Subscription plan It is strongly recommended that you ensure you have [custom rules](https://developers.cloudflare.com/waf/custom-rules/) in place to protect your zone before disabling the SBFM rules. Without these protections, your zone is vulnerable to attacks. ```json { \"sbfm_likely_automated\": \"allow\", \"sbfm_definitely_automated\": \"allow\", \"sbfm_verified_bots\": \"allow\", \"sbfm_static_resource_protection\": false, \"optimize_wordpress\": false, \"fight_mode\": false } ```",
-        "smithy.api#idempotent": {}
-      }
-    },
-    "com.cloudflare.bot_management#FeedbackCreateRequestRequestsByAttribute": {
+    "com.cloudflare.bot_management#CreateFeedbackRequestRequestsByAttribute": {
       "type": "structure",
       "members": {
         "metric": {
@@ -2130,7 +1950,7 @@
         }
       }
     },
-    "com.cloudflare.bot_management#FeedbackCreateRequestType": {
+    "com.cloudflare.bot_management#CreateFeedbackRequestType": {
       "type": "enum",
       "members": {
         "FALSE_POSITIVE": {
@@ -2147,7 +1967,7 @@
         }
       }
     },
-    "com.cloudflare.bot_management#FeedbackCreateRequest": {
+    "com.cloudflare.bot_management#CreateFeedbackRequest": {
       "type": "structure",
       "members": {
         "zone_id": {
@@ -2190,7 +2010,7 @@
           }
         },
         "requests_by_attribute": {
-          "target": "com.cloudflare.bot_management#FeedbackCreateRequestRequestsByAttribute",
+          "target": "com.cloudflare.bot_management#CreateFeedbackRequestRequestsByAttribute",
           "traits": {
             "smithy.api#documentation": "Top attributes contributing to the feedback sample. Keys include topASNs, topCountries, topHosts, topIPs, topJA3Hashes, topJA4s, topPaths, topUserAgents.",
             "smithy.api#required": {}
@@ -2211,7 +2031,7 @@
           }
         },
         "type": {
-          "target": "com.cloudflare.bot_management#FeedbackCreateRequestType",
+          "target": "com.cloudflare.bot_management#CreateFeedbackRequestType",
           "traits": {
             "smithy.api#documentation": "Type of feedback report.",
             "smithy.api#required": {}
@@ -2225,10 +2045,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.bot_management#FeedbackCreate": {
+    "com.cloudflare.bot_management#CreateFeedback": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.bot_management#FeedbackCreateRequest"
+        "target": "com.cloudflare.bot_management#CreateFeedbackRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2242,7 +2062,7 @@
         "smithy.api#documentation": "Submit a feedback report for the specified zone. Use `type` to indicate whether the report is a false positive (good traffic flagged as bot) or a false negative (bot traffic missed). Furthermore, you can also use `expression` as a wirefilter to identify the affected traffic sample. See more accepted API fields and expression types at https://developers.cloudflare.com/bots/concepts/feedback-loop/#api-fields and https://developers.cloudflare.com/bots/concepts/feedback-loop/#expression-fields, respectively."
       }
     },
-    "com.cloudflare.bot_management#FeedbackListRequest": {
+    "com.cloudflare.bot_management#ListFeedbackRequest": {
       "type": "structure",
       "members": {
         "zone_id": {
@@ -2258,7 +2078,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.bot_management#FeedbackListResponseRequestsByAttribute": {
+    "com.cloudflare.bot_management#ListFeedbackResponseRequestsByAttribute": {
       "type": "structure",
       "members": {
         "metric": {
@@ -2275,7 +2095,7 @@
         }
       }
     },
-    "com.cloudflare.bot_management#FeedbackListResponseType": {
+    "com.cloudflare.bot_management#ListFeedbackResponseType": {
       "type": "enum",
       "members": {
         "FALSE_POSITIVE": {
@@ -2292,7 +2112,7 @@
         }
       }
     },
-    "com.cloudflare.bot_management#FeedbackListResponse": {
+    "com.cloudflare.bot_management#ListFeedbackResponse": {
       "type": "structure",
       "members": {
         "description": {
@@ -2327,7 +2147,7 @@
           }
         },
         "requests_by_attribute": {
-          "target": "com.cloudflare.bot_management#FeedbackListResponseRequestsByAttribute",
+          "target": "com.cloudflare.bot_management#ListFeedbackResponseRequestsByAttribute",
           "traits": {
             "smithy.api#documentation": "Top attributes contributing to the feedback sample. Keys include topASNs, topCountries, topHosts, topIPs, topJA3Hashes, topJA4s, topPaths, topUserAgents.",
             "smithy.api#required": {}
@@ -2348,7 +2168,7 @@
           }
         },
         "type": {
-          "target": "com.cloudflare.bot_management#FeedbackListResponseType",
+          "target": "com.cloudflare.bot_management#ListFeedbackResponseType",
           "traits": {
             "smithy.api#documentation": "Type of feedback report.",
             "smithy.api#required": {}
@@ -2366,13 +2186,13 @@
         "smithy.api#documentation": "Raw response payload (operation does not use the standard v4 result envelope)."
       }
     },
-    "com.cloudflare.bot_management#FeedbackList": {
+    "com.cloudflare.bot_management#ListFeedback": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.bot_management#FeedbackListRequest"
+        "target": "com.cloudflare.bot_management#ListFeedbackRequest"
       },
       "output": {
-        "target": "com.cloudflare.bot_management#FeedbackListResponse"
+        "target": "com.cloudflare.bot_management#ListFeedbackResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2389,22 +2209,251 @@
       "version": "4.0",
       "operations": [
         {
-          "target": "com.cloudflare.bot_management#Get"
+          "target": "com.cloudflare.bot_management#CreateFeedback"
         },
         {
-          "target": "com.cloudflare.bot_management#Update"
+          "target": "com.cloudflare.bot_management#ListFeedback"
         },
         {
-          "target": "com.cloudflare.bot_management#FeedbackCreate"
+          "target": "com.cloudflare.bot_management#GetBotManagement"
         },
         {
-          "target": "com.cloudflare.bot_management#FeedbackList"
+          "target": "com.cloudflare.bot_management#PutBotManagement"
         }
       ],
       "traits": {
         "com.cloudflare.protocols#v4Json": {},
         "smithy.api#title": "Cloudflare BotManagement",
         "smithy.api#documentation": "Cloudflare API — bot_management resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+      }
+    },
+    "com.cloudflare.bot_management#Forbidden": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.cloudflare.bot_management#GetBotManagement": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.bot_management#GetBotManagementRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.bot_management#GetBotManagementResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/bot_management",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieve a zone's Bot Management Config",
+        "smithy.api#readonly": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.bot_management#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.bot_management#GetBotManagementRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.bot_management#GetBotManagementResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.bot_management#GetResult",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.bot_management#PutBotManagement": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.bot_management#PutBotManagementRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.bot_management#PutBotManagementResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/zones/{zone_id}/bot_management",
+          "code": 200
+        },
+        "smithy.api#documentation": "Updates the Bot Management configuration for a zone. This API is used to update: - **Bot Fight Mode** - **Super Bot Fight Mode** - **Bot Management for Enterprise** See [Bot Plans](https://developers.cloudflare.com/bots/plans/) for more information on the different plans \\ If you recently upgraded or downgraded your plan, refer to the following examples to clean up old configurations. Copy and paste the example body to remove old zone configurations based on your current plan. #### Clean up configuration for Bot Fight Mode plan ```json { \"sbfm_likely_automated\": \"allow\", \"sbfm_definitely_automated\": \"allow\", \"sbfm_verified_bots\": \"allow\", \"sbfm_static_resource_protection\": false, \"optimize_wordpress\": false, \"suppress_session_score\": false } ``` #### Clean up configuration for SBFM Pro plan ```json { \"sbfm_likely_automated\": \"allow\", \"fight_mode\": false } ``` #### Clean up configuration for SBFM Biz plan ```json { \"fight_mode\": false } ``` #### Clean up configuration for BM Enterprise Subscription plan It is strongly recommended that you ensure you have [custom rules](https://developers.cloudflare.com/waf/custom-rules/) in place to protect your zone before disabling the SBFM rules. Without these protections, your zone is vulnerable to attacks. ```json { \"sbfm_likely_automated\": \"allow\", \"sbfm_definitely_automated\": \"allow\", \"sbfm_verified_bots\": \"allow\", \"sbfm_static_resource_protection\": false, \"optimize_wordpress\": false, \"fight_mode\": false } ```",
+        "smithy.api#idempotent": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.bot_management#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.bot_management#PutBotManagementRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "ai_bots_protection": {
+          "target": "com.cloudflare.bot_management#UpdateRequestAiBotsProtection",
+          "traits": {
+            "smithy.api#documentation": "Enable rule to block AI Scrapers and Crawlers."
+          }
+        },
+        "cf_robots_variant": {
+          "target": "com.cloudflare.bot_management#UpdateRequestCfRobotsVariant",
+          "traits": {
+            "smithy.api#documentation": "Specifies the Robots Access Control License variant to use."
+          }
+        },
+        "content_bots_protection": {
+          "target": "com.cloudflare.bot_management#UpdateRequestContentBotsProtection",
+          "traits": {
+            "smithy.api#documentation": "Enable rule to block content bots. When enabled, blocks automated traffic with low bot scores, excluding safe verified bot categories. Exceptions should be managed via skip rules."
+          }
+        },
+        "crawler_protection": {
+          "target": "com.cloudflare.bot_management#UpdateRequestCrawlerProtection",
+          "traits": {
+            "smithy.api#documentation": "Enable rule to punish AI Scrapers and Crawlers via a link maze."
+          }
+        },
+        "enable_js": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Use lightweight, invisible JavaScript detections to improve Bot Management. [Learn more about JavaScript Detections](https://developers.cloudflare.com/bots/reference/javascript-detections/)."
+          }
+        },
+        "fight_mode": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to enable Bot Fight Mode."
+          }
+        },
+        "is_robots_txt_managed": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Enable cloudflare managed robots.txt. If an existing robots.txt is detected, then managed robots.txt will be prepended to the existing robots.txt."
+          }
+        },
+        "stale_zone_configuration": {
+          "target": "com.cloudflare.bot_management#UpdateRequestStaleZoneConfiguration",
+          "traits": {
+            "smithy.api#documentation": "A read-only field that shows which unauthorized settings are currently active on the zone. These settings typically result from upgrades or downgrades."
+          }
+        },
+        "using_latest_model": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "A read-only field that indicates whether the zone currently is running the latest ML model."
+          }
+        },
+        "optimize_wordpress": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to optimize Super Bot Fight Mode protections for Wordpress."
+          }
+        },
+        "sbfm_definitely_automated": {
+          "target": "com.cloudflare.bot_management#UpdateRequestSbfmDefinitelyAutomated",
+          "traits": {
+            "smithy.api#documentation": "Super Bot Fight Mode (SBFM) action to take on definitely automated requests."
+          }
+        },
+        "sbfm_static_resource_protection": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Super Bot Fight Mode (SBFM) to enable static resource protection."
+          }
+        },
+        "sbfm_verified_bots": {
+          "target": "com.cloudflare.bot_management#UpdateRequestSbfmVerifiedBots",
+          "traits": {
+            "smithy.api#documentation": "Super Bot Fight Mode (SBFM) action to take on verified bots requests."
+          }
+        },
+        "sbfm_likely_automated": {
+          "target": "com.cloudflare.bot_management#UpdateRequestSbfmLikelyAutomated",
+          "traits": {
+            "smithy.api#documentation": "Super Bot Fight Mode (SBFM) action to take on likely automated requests."
+          }
+        },
+        "auto_update_model": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Automatically update to the newest bot detection models created by Cloudflare as they are released. [Learn more.](https://developers.cloudflare.com/bots/reference/machine-learning-models#model-versions-and-release-notes)"
+          }
+        },
+        "bm_cookie_enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates that the bot management cookie can be placed on end user devices accessing the site. Defaults to true"
+          }
+        },
+        "suppress_session_score": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to disable tracking the highest bot score for a session in the Bot Management cookie."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.bot_management#PutBotManagementResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.bot_management#UpdateResult",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
       }
     }
   }

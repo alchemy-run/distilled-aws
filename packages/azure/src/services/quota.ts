@@ -12,33 +12,91 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
-export interface GroupQuotaLimitsListRequest {
+export interface DeleteGroupQuotasRequest {
   /** The management group ID. */
   managementGroupId: string;
   /** The GroupQuota name. The name should be unique for the provided context tenantId/MgId. */
   groupQuotaName: string;
-  /** The resource provider name, such as - Microsoft.Compute. Currently only Microsoft.Compute resource provider supports this API. */
-  resourceProviderName: string;
-  /** The name of the Azure region. */
-  location: string;
 }
-export const GroupQuotaLimitsListRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteGroupQuotasRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     managementGroupId: S.String.pipe(T.Label()),
     groupQuotaName: S.String.pipe(T.Label()),
-    resourceProviderName: S.String.pipe(T.Label()),
-    location: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
-      method: "GET",
-      uri: "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupQuotaName}/resourceProviders/{resourceProviderName}/groupQuotaLimits/{location}",
+      method: "DELETE",
+      uri: "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupQuotaName}",
       code: 200,
       apiVersion: "2025-09-01",
     }),
   ),
 ).annotate({
-  identifier: "GroupQuotaLimitsListRequest",
-}) as any as S.Schema<GroupQuotaLimitsListRequest>;
+  identifier: "DeleteGroupQuotasRequest",
+}) as any as S.Schema<DeleteGroupQuotasRequest>;
+
+export interface DeleteGroupQuotasResponse {}
+export const DeleteGroupQuotasResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteGroupQuotasResponse",
+}) as any as S.Schema<DeleteGroupQuotasResponse>;
+
+export interface DeleteGroupQuotaSubscriptionRequest {
+  /** The management group ID. */
+  managementGroupId: string;
+  /** The GroupQuota name. The name should be unique for the provided context tenantId/MgId. */
+  groupQuotaName: string;
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+}
+export const DeleteGroupQuotaSubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    managementGroupId: S.String.pipe(T.Label()),
+    groupQuotaName: S.String.pipe(T.Label()),
+    subscriptionId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupQuotaName}/subscriptions/{subscriptionId}",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteGroupQuotaSubscriptionRequest",
+}) as any as S.Schema<DeleteGroupQuotaSubscriptionRequest>;
+
+export interface DeleteGroupQuotaSubscriptionResponse {}
+export const DeleteGroupQuotaSubscriptionResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "DeleteGroupQuotaSubscriptionResponse",
+}) as any as S.Schema<DeleteGroupQuotaSubscriptionResponse>;
+
+export interface GetGroupQuotaLimitsRequestRequest {
+  /** The management group ID. */
+  managementGroupId: string;
+  /** The GroupQuota name. The name should be unique for the provided context tenantId/MgId. */
+  groupQuotaName: string;
+  /** Request Id. */
+  requestId: string;
+}
+export const GetGroupQuotaLimitsRequestRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    managementGroupId: S.String.pipe(T.Label()),
+    groupQuotaName: S.String.pipe(T.Label()),
+    requestId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupQuotaName}/groupQuotaRequests/{requestId}",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetGroupQuotaLimitsRequestRequest",
+}) as any as S.Schema<GetGroupQuotaLimitsRequestRequest>;
 
 /** The type of identity that created the resource. */
 export type SystemDataCreatedByType =
@@ -82,6 +140,55 @@ export const SystemData = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "SystemData" }) as any as S.Schema<SystemData>;
 
+/** Name of the resource provided by the resource provider. This property is already included in the request URI, so it is a readonly property returned in the response. */
+export interface GroupQuotaRequestBasePropertiesName {
+  /** Resource name. */
+  value?: string;
+  /** Resource display name. */
+  localizedValue?: string;
+}
+export const GroupQuotaRequestBasePropertiesName = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(S.String),
+    localizedValue: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GroupQuotaRequestBasePropertiesName",
+}) as any as S.Schema<GroupQuotaRequestBasePropertiesName>;
+
+export interface GroupQuotaRequestBaseProperties {
+  /** The new quota limit for the subscription. The incremental quota will be allocated from pre-approved group quota. */
+  limit?: number;
+  /** Name of the resource provided by the resource provider. This property is already included in the request URI, so it is a readonly property returned in the response. */
+  name?: GroupQuotaRequestBasePropertiesName;
+  /** Location/Azure region for the quota requested for resource. */
+  region?: string;
+  /** GroupQuota Request comments and details for request. This is optional paramter to provide more details related to the requested resource. */
+  comments?: string;
+}
+export const GroupQuotaRequestBaseProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    limit: S.optional(S.Number),
+    name: S.optional(GroupQuotaRequestBasePropertiesName),
+    region: S.optional(S.String),
+    comments: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GroupQuotaRequestBaseProperties",
+}) as any as S.Schema<GroupQuotaRequestBaseProperties>;
+
+/** The new GroupQuota limit requested. */
+export interface GroupQuotaRequestBase {
+  properties?: GroupQuotaRequestBaseProperties;
+}
+export const GroupQuotaRequestBase = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    properties: S.optional(GroupQuotaRequestBaseProperties),
+  }),
+).annotate({
+  identifier: "GroupQuotaRequestBase",
+}) as any as S.Schema<GroupQuotaRequestBase>;
+
 /** Request status. */
 export type RequestState =
   | "Accepted"
@@ -94,21 +201,981 @@ export type RequestState =
   | "Canceled";
 export const RequestState = /*@__PURE__*/ S.String;
 
-/** Name of the resource provided by the resource provider. This property is already included in the request URI, so it is a readonly property returned in the response. */
-export interface GroupQuotaDetailsName {
-  /** Resource name. */
-  value?: string;
-  /** Resource display name. */
-  localizedValue?: string;
+export interface SubmittedResourceRequestStatusProperties {
+  /** Requested Resource. */
+  requestedResource?: GroupQuotaRequestBase;
+  /** The request submission time. The date conforms to the following format specified by the ISO 8601 standard: yyyy-MM-ddTHH:mm:ssZ */
+  requestSubmitTime?: string;
+  /** Request status. */
+  provisioningState?: RequestState;
+  /** Details of the failure. */
+  faultCode?: string;
 }
-export const GroupQuotaDetailsName = /*@__PURE__*/ S.suspend(() =>
+export const SubmittedResourceRequestStatusProperties = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      requestedResource: S.optional(GroupQuotaRequestBase),
+      requestSubmitTime: S.optional(S.String),
+      provisioningState: S.optional(RequestState),
+      faultCode: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "SubmittedResourceRequestStatusProperties",
+}) as any as S.Schema<SubmittedResourceRequestStatusProperties>;
+
+export interface GetGroupQuotaLimitsRequestResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  properties?: SubmittedResourceRequestStatusProperties;
+}
+export const GetGroupQuotaLimitsRequestResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(S.String),
-    localizedValue: S.optional(S.String),
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(SubmittedResourceRequestStatusProperties),
   }),
 ).annotate({
-  identifier: "GroupQuotaDetailsName",
-}) as any as S.Schema<GroupQuotaDetailsName>;
+  identifier: "GetGroupQuotaLimitsRequestResponse",
+}) as any as S.Schema<GetGroupQuotaLimitsRequestResponse>;
+
+export interface GetGroupQuotaLocationSettingsRequest {
+  /** The management group ID. */
+  managementGroupId: string;
+  /** The GroupQuota name. The name should be unique for the provided context tenantId/MgId. */
+  groupQuotaName: string;
+  /** The resource provider name, such as - Microsoft.Compute. Currently only Microsoft.Compute resource provider supports this API. */
+  resourceProviderName: string;
+  /** The name of the Azure region. */
+  location: string;
+}
+export const GetGroupQuotaLocationSettingsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      managementGroupId: S.String.pipe(T.Label()),
+      groupQuotaName: S.String.pipe(T.Label()),
+      resourceProviderName: S.String.pipe(T.Label()),
+      location: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupQuotaName}/resourceProviders/{resourceProviderName}/locationSettings/{location}",
+        code: 200,
+        apiVersion: "2025-09-01",
+      }),
+    ),
+).annotate({
+  identifier: "GetGroupQuotaLocationSettingsRequest",
+}) as any as S.Schema<GetGroupQuotaLocationSettingsRequest>;
+
+/** Enforcement status. */
+export type EnforcementState = "Enabled" | "Disabled" | "NotAvailable";
+export const EnforcementState = /*@__PURE__*/ S.String;
+
+export interface GroupQuotasEnforcementStatusProperties {
+  /** Is the GroupQuota Enforcement enabled for the Azure region. */
+  enforcementEnabled?: EnforcementState;
+  /** The name of the group that is enforced. */
+  enforcedGroupName?: string;
+  /** Request status. */
+  provisioningState?: RequestState;
+  /** Details of the failure. */
+  faultCode?: string;
+}
+export const GroupQuotasEnforcementStatusProperties = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      enforcementEnabled: S.optional(EnforcementState),
+      enforcedGroupName: S.optional(S.String),
+      provisioningState: S.optional(RequestState),
+      faultCode: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "GroupQuotasEnforcementStatusProperties",
+}) as any as S.Schema<GroupQuotasEnforcementStatusProperties>;
+
+export interface GetGroupQuotaLocationSettingsResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  properties?: GroupQuotasEnforcementStatusProperties;
+}
+export const GetGroupQuotaLocationSettingsResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(GroupQuotasEnforcementStatusProperties),
+    }),
+).annotate({
+  identifier: "GetGroupQuotaLocationSettingsResponse",
+}) as any as S.Schema<GetGroupQuotaLocationSettingsResponse>;
+
+export interface GetGroupQuotasRequest {
+  /** The management group ID. */
+  managementGroupId: string;
+  /** The GroupQuota name. The name should be unique for the provided context tenantId/MgId. */
+  groupQuotaName: string;
+}
+export const GetGroupQuotasRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    managementGroupId: S.String.pipe(T.Label()),
+    groupQuotaName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupQuotaName}",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetGroupQuotasRequest",
+}) as any as S.Schema<GetGroupQuotasRequest>;
+
+/** Type of the group. */
+export type GroupType = "AllocationGroup" | "EnforcedGroup";
+export const GroupType = /*@__PURE__*/ S.String;
+
+/** Properties and filters for ShareQuota. The request parameter is optional, if there are no filters specified. */
+export interface GroupQuotasEntityBase {
+  /** Display name of the GroupQuota entity. */
+  displayName?: string;
+  /** Type of the group. */
+  groupType?: GroupType;
+  /** Provisioning state of the operation. */
+  provisioningState?: RequestState;
+}
+export const GroupQuotasEntityBase = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    displayName: S.optional(S.String),
+    groupType: S.optional(GroupType),
+    provisioningState: S.optional(RequestState),
+  }),
+).annotate({
+  identifier: "GroupQuotasEntityBase",
+}) as any as S.Schema<GroupQuotasEntityBase>;
+
+export interface GetGroupQuotasResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties */
+  properties?: GroupQuotasEntityBase;
+}
+export const GetGroupQuotasResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(GroupQuotasEntityBase),
+  }),
+).annotate({
+  identifier: "GetGroupQuotasResponse",
+}) as any as S.Schema<GetGroupQuotasResponse>;
+
+export interface GetGroupQuotaSubscriptionRequest2 {
+  /** The management group ID. */
+  managementGroupId: string;
+  /** The GroupQuota name. The name should be unique for the provided context tenantId/MgId. */
+  groupQuotaName: string;
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+}
+export const GetGroupQuotaSubscriptionRequest2 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    managementGroupId: S.String.pipe(T.Label()),
+    groupQuotaName: S.String.pipe(T.Label()),
+    subscriptionId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupQuotaName}/subscriptions/{subscriptionId}",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetGroupQuotaSubscriptionRequest2",
+}) as any as S.Schema<GetGroupQuotaSubscriptionRequest2>;
+
+export interface GroupQuotaSubscriptionIdProperties {
+  /** An Azure subscriptionId. */
+  subscriptionId?: string;
+  /** Status of this subscriptionId being associated with the GroupQuotasEntity. */
+  provisioningState?: RequestState;
+}
+export const GroupQuotaSubscriptionIdProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.optional(S.String),
+    provisioningState: S.optional(RequestState),
+  }),
+).annotate({
+  identifier: "GroupQuotaSubscriptionIdProperties",
+}) as any as S.Schema<GroupQuotaSubscriptionIdProperties>;
+
+export interface GetGroupQuotaSubscriptionResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  properties?: GroupQuotaSubscriptionIdProperties;
+}
+export const GetGroupQuotaSubscriptionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(GroupQuotaSubscriptionIdProperties),
+  }),
+).annotate({
+  identifier: "GetGroupQuotaSubscriptionResponse",
+}) as any as S.Schema<GetGroupQuotaSubscriptionResponse>;
+
+export interface GetGroupQuotaSubscriptionAllocationRequestRequest {
+  /** The management group ID. */
+  managementGroupId: string;
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The GroupQuota name. The name should be unique for the provided context tenantId/MgId. */
+  groupQuotaName: string;
+  /** The resource provider name, such as - Microsoft.Compute. Currently only Microsoft.Compute resource provider supports this API. */
+  resourceProviderName: string;
+  /** Request Id. */
+  allocationId: string;
+}
+export const GetGroupQuotaSubscriptionAllocationRequestRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      managementGroupId: S.String.pipe(T.Label()),
+      subscriptionId: S.String.pipe(T.Label()),
+      groupQuotaName: S.String.pipe(T.Label()),
+      resourceProviderName: S.String.pipe(T.Label()),
+      allocationId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/providers/Microsoft.Management/managementGroups/{managementGroupId}/subscriptions/{subscriptionId}/providers/Microsoft.Quota/groupQuotas/{groupQuotaName}/resourceProviders/{resourceProviderName}/quotaAllocationRequests/{allocationId}",
+        code: 200,
+        apiVersion: "2025-09-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "GetGroupQuotaSubscriptionAllocationRequestRequest",
+  }) as any as S.Schema<GetGroupQuotaSubscriptionAllocationRequestRequest>;
+
+/** Name of the resource provided by the resource provider. This property is already included in the request URI, so it is a readonly property returned in the response. */
+export type QuotaAllocationRequestBasePropertiesName =
+  GroupQuotaRequestBasePropertiesName;
+export const QuotaAllocationRequestBasePropertiesName =
+  GroupQuotaRequestBasePropertiesName;
+
+export interface QuotaAllocationRequestBaseProperties {
+  /** The new quota limit for the subscription. The incremental quota will be allocated from pre-approved group quota. */
+  limit?: number;
+  /** Name of the resource provided by the resource provider. This property is already included in the request URI, so it is a readonly property returned in the response. */
+  name?: GroupQuotaRequestBasePropertiesName;
+  /** The location for which the subscription is allocated */
+  region?: string;
+}
+export const QuotaAllocationRequestBaseProperties = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      limit: S.optional(S.Number),
+      name: S.optional(GroupQuotaRequestBasePropertiesName),
+      region: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "QuotaAllocationRequestBaseProperties",
+}) as any as S.Schema<QuotaAllocationRequestBaseProperties>;
+
+/** The new quota request allocated to subscription. */
+export interface QuotaAllocationRequestBase {
+  properties?: QuotaAllocationRequestBaseProperties;
+}
+export const QuotaAllocationRequestBase = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    properties: S.optional(QuotaAllocationRequestBaseProperties),
+  }),
+).annotate({
+  identifier: "QuotaAllocationRequestBase",
+}) as any as S.Schema<QuotaAllocationRequestBase>;
+
+export interface QuotaAllocationRequestStatusProperties {
+  /** The new quota request allocated to subscription. */
+  requestedResource?: QuotaAllocationRequestBase;
+  /** The request submission time. The date conforms to the following format specified by the ISO 8601 standard: yyyy-MM-ddTHH:mm:ssZ */
+  requestSubmitTime?: string;
+  /** Request status. */
+  provisioningState?: RequestState;
+  /** Details of the failure. */
+  faultCode?: string;
+}
+export const QuotaAllocationRequestStatusProperties = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      requestedResource: S.optional(QuotaAllocationRequestBase),
+      requestSubmitTime: S.optional(S.String),
+      provisioningState: S.optional(RequestState),
+      faultCode: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "QuotaAllocationRequestStatusProperties",
+}) as any as S.Schema<QuotaAllocationRequestStatusProperties>;
+
+export interface GetGroupQuotaSubscriptionAllocationRequestResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  properties?: QuotaAllocationRequestStatusProperties;
+}
+export const GetGroupQuotaSubscriptionAllocationRequestResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(QuotaAllocationRequestStatusProperties),
+    }),
+  ).annotate({
+    identifier: "GetGroupQuotaSubscriptionAllocationRequestResponse",
+  }) as any as S.Schema<GetGroupQuotaSubscriptionAllocationRequestResponse>;
+
+export interface GetGroupQuotaSubscriptionRequestRequest {
+  /** The management group ID. */
+  managementGroupId: string;
+  /** The GroupQuota name. The name should be unique for the provided context tenantId/MgId. */
+  groupQuotaName: string;
+  /** Request Id. */
+  requestId: string;
+}
+export const GetGroupQuotaSubscriptionRequestRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      managementGroupId: S.String.pipe(T.Label()),
+      groupQuotaName: S.String.pipe(T.Label()),
+      requestId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupQuotaName}/subscriptionRequests/{requestId}",
+        code: 200,
+        apiVersion: "2025-09-01",
+      }),
+    ),
+).annotate({
+  identifier: "GetGroupQuotaSubscriptionRequestRequest",
+}) as any as S.Schema<GetGroupQuotaSubscriptionRequestRequest>;
+
+export interface GroupQuotaSubscriptionRequestStatusProperties {
+  /** The subscription Id */
+  subscriptionId?: string;
+  /** The request submission time. The date conforms to the following format specified by the ISO 8601 standard: yyyy-MM-ddTHH:mm:ssZ */
+  requestSubmitTime?: string;
+  /** Status of this subscriptionId being associated with the GroupQuotasEntity. */
+  provisioningState?: RequestState;
+}
+export const GroupQuotaSubscriptionRequestStatusProperties =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.optional(S.String),
+      requestSubmitTime: S.optional(S.String),
+      provisioningState: S.optional(RequestState),
+    }),
+  ).annotate({
+    identifier: "GroupQuotaSubscriptionRequestStatusProperties",
+  }) as any as S.Schema<GroupQuotaSubscriptionRequestStatusProperties>;
+
+export interface GetGroupQuotaSubscriptionRequestResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  properties?: GroupQuotaSubscriptionRequestStatusProperties;
+}
+export const GetGroupQuotaSubscriptionRequestResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(GroupQuotaSubscriptionRequestStatusProperties),
+    }),
+).annotate({
+  identifier: "GetGroupQuotaSubscriptionRequestResponse",
+}) as any as S.Schema<GetGroupQuotaSubscriptionRequestResponse>;
+
+export interface GetQuotaRequest {
+  /** The fully qualified Azure Resource manager identifier of the resource. */
+  scope: string;
+  /** Resource name for a given resource provider. For example: - SKU name for Microsoft.Compute - SKU or TotalLowPriorityCores for Microsoft.MachineLearningServices For Microsoft.Network PublicIPAddresses. */
+  resourceName: string;
+}
+export const GetQuotaRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    scope: S.String.pipe(T.Label()),
+    resourceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/{scope}/providers/Microsoft.Quota/quotas/{resourceName}",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetQuotaRequest",
+}) as any as S.Schema<GetQuotaRequest>;
+
+/** The limit object type. */
+export type LimitType = "LimitValue";
+export const LimitType = /*@__PURE__*/ S.String;
+
+/** LimitJson abstract class. */
+export interface LimitJsonObject {
+  /** The limit object type. */
+  limitObjectType: LimitType | (string & {});
+}
+export const LimitJsonObject = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    limitObjectType: LimitType,
+  }),
+).annotate({
+  identifier: "LimitJsonObject",
+}) as any as S.Schema<LimitJsonObject>;
+
+/** Name of the resource provided by the resource Provider. When requesting quota, use this property name. */
+export type ResourceName = GroupQuotaRequestBasePropertiesName;
+export const ResourceName = GroupQuotaRequestBasePropertiesName;
+
+/** Quota properties for the specified resource. */
+export interface QuotaProperties {
+  /** Resource quota limit properties. */
+  limit?: LimitJsonObject;
+  /** The quota units, such as Count and Bytes. When requesting quota, use the **unit** value returned in the GET response in the request body of your PUT operation. */
+  unit?: string;
+  /** Resource name provided by the resource provider. Use this property name when requesting quota. */
+  name?: GroupQuotaRequestBasePropertiesName;
+  /** The name of the resource type. Optional field. */
+  resourceType?: string;
+  /** The time period over which the quota usage values are summarized. For example: *P1D (per one day) *PT1M (per one minute) *PT1S (per one second). This parameter is optional because, for some resources like compute, the period is irrelevant. */
+  quotaPeriod?: string;
+  /** States if quota can be requested for this resource. */
+  isQuotaApplicable?: boolean;
+  /** Additional properties for the specific resource provider. */
+  properties?: unknown;
+}
+export const QuotaProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    limit: S.optional(LimitJsonObject),
+    unit: S.optional(S.String),
+    name: S.optional(GroupQuotaRequestBasePropertiesName),
+    resourceType: S.optional(S.String),
+    quotaPeriod: S.optional(S.String),
+    isQuotaApplicable: S.optional(S.Boolean),
+    properties: S.optional(S.Unknown),
+  }),
+).annotate({
+  identifier: "QuotaProperties",
+}) as any as S.Schema<QuotaProperties>;
+
+export interface GetQuotaResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Quota properties for the specified resource, based on the API called, Quotas or Usages. */
+  properties?: QuotaProperties;
+}
+export const GetQuotaResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(QuotaProperties),
+  }),
+).annotate({
+  identifier: "GetQuotaResponse",
+}) as any as S.Schema<GetQuotaResponse>;
+
+export interface GetQuotaRequestStatusRequest {
+  /** The fully qualified Azure Resource manager identifier of the resource. */
+  scope: string;
+  /** Quota request ID. */
+  id: string;
+}
+export const GetQuotaRequestStatusRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    scope: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/{scope}/providers/Microsoft.Quota/quotaRequests/{id}",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetQuotaRequestStatusRequest",
+}) as any as S.Schema<GetQuotaRequestStatusRequest>;
+
+/** Quota request status. */
+export type QuotaRequestState =
+  | "Accepted"
+  | "Invalid"
+  | "Succeeded"
+  | "Failed"
+  | "InProgress";
+export const QuotaRequestState = /*@__PURE__*/ S.String;
+
+/** Error details. */
+export interface ServiceErrorDetail {
+  /** Error code. */
+  code?: string;
+  /** Error message. */
+  message?: string;
+}
+export const ServiceErrorDetail = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    code: S.optional(S.String),
+    message: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ServiceErrorDetail",
+}) as any as S.Schema<ServiceErrorDetail>;
+
+/** Request property. */
+export interface SubRequest {
+  /** Resource name. */
+  name?: GroupQuotaRequestBasePropertiesName;
+  /** Resource type for which the quota properties were requested. */
+  resourceType?: string;
+  /** Quota limit units, such as Count and Bytes. When requesting quota, use the **unit** value returned in the GET response in the request body of your PUT operation. */
+  unit?: string;
+  /** The quota request status. */
+  provisioningState?: QuotaRequestState;
+  /** User-friendly status message. */
+  message?: string;
+  /** Quota request ID. */
+  subRequestId?: string;
+  /** Resource quota limit properties. */
+  limit?: LimitJsonObject;
+}
+export const SubRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(GroupQuotaRequestBasePropertiesName),
+    resourceType: S.optional(S.String),
+    unit: S.optional(S.String),
+    provisioningState: S.optional(QuotaRequestState),
+    message: S.optional(S.String),
+    subRequestId: S.optional(S.String),
+    limit: S.optional(LimitJsonObject),
+  }),
+).annotate({ identifier: "SubRequest" }) as any as S.Schema<SubRequest>;
+
+/** Quota request details. */
+export type QuotaRequestPropertiesValueList = Array<SubRequest>;
+export const QuotaRequestPropertiesValueList = /*@__PURE__*/ S.Array(
+  SubRequest,
+) as any as S.Schema<QuotaRequestPropertiesValueList>;
+
+/** Quota request properties. */
+export interface QuotaRequestProperties {
+  /** The quota request status. */
+  provisioningState?: QuotaRequestState;
+  /** User-friendly status message. */
+  message?: string;
+  /** Error details of the quota request. */
+  error?: ServiceErrorDetail;
+  /** The quota request submission time. The date conforms to the following format specified by the ISO 8601 standard: yyyy-MM-ddTHH:mm:ssZ */
+  requestSubmitTime?: string;
+  /** Quota request details. */
+  value?: QuotaRequestPropertiesValueList;
+}
+export const QuotaRequestProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provisioningState: S.optional(QuotaRequestState),
+    message: S.optional(S.String),
+    error: S.optional(ServiceErrorDetail),
+    requestSubmitTime: S.optional(S.String),
+    value: S.optional(QuotaRequestPropertiesValueList),
+  }),
+).annotate({
+  identifier: "QuotaRequestProperties",
+}) as any as S.Schema<QuotaRequestProperties>;
+
+export interface GetQuotaRequestStatusResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Quota request details. */
+  properties?: QuotaRequestProperties;
+}
+export const GetQuotaRequestStatusResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(QuotaRequestProperties),
+  }),
+).annotate({
+  identifier: "GetQuotaRequestStatusResponse",
+}) as any as S.Schema<GetQuotaRequestStatusResponse>;
+
+export interface GetUsageRequest {
+  /** The fully qualified Azure Resource manager identifier of the resource. */
+  scope: string;
+  /** Resource name for a given resource provider. For example: - SKU name for Microsoft.Compute - SKU or TotalLowPriorityCores for Microsoft.MachineLearningServices For Microsoft.Network PublicIPAddresses. */
+  resourceName: string;
+}
+export const GetUsageRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    scope: S.String.pipe(T.Label()),
+    resourceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/{scope}/providers/Microsoft.Quota/usages/{resourceName}",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetUsageRequest",
+}) as any as S.Schema<GetUsageRequest>;
+
+/** The quota or usages limit types. */
+export type UsagesTypes = "Individual" | "Combined";
+export const UsagesTypes = /*@__PURE__*/ S.String;
+
+/** The resource usages value. */
+export interface UsagesObject {
+  /** The usages value. */
+  value: number;
+  /** The quota or usages limit types. */
+  usagesType?: UsagesTypes;
+}
+export const UsagesObject = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.Number,
+    usagesType: S.optional(UsagesTypes),
+  }),
+).annotate({ identifier: "UsagesObject" }) as any as S.Schema<UsagesObject>;
+
+/** Usage properties for the specified resource. */
+export interface UsagesProperties {
+  /** The quota limit properties for this resource. */
+  usages?: UsagesObject;
+  /** The units for the quota usage, such as Count and Bytes. When requesting quota, use the **unit** value returned in the GET response in the request body of your PUT operation. */
+  unit?: string;
+  /** Resource name provided by the resource provider. Use this property name when requesting quota. */
+  name?: GroupQuotaRequestBasePropertiesName;
+  /** The name of the resource type. Optional field. */
+  resourceType?: string;
+  /** The time period for the summary of the quota usage values. For example: *P1D (per one day) *PT1M (per one minute) *PT1S (per one second). This parameter is optional because it is not relevant for all resources such as compute. */
+  quotaPeriod?: string;
+  /** States if quota can be requested for this resource. */
+  isQuotaApplicable?: boolean;
+  /** Additional properties for the specific resource provider. */
+  properties?: unknown;
+}
+export const UsagesProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    usages: S.optional(UsagesObject),
+    unit: S.optional(S.String),
+    name: S.optional(GroupQuotaRequestBasePropertiesName),
+    resourceType: S.optional(S.String),
+    quotaPeriod: S.optional(S.String),
+    isQuotaApplicable: S.optional(S.Boolean),
+    properties: S.optional(S.Unknown),
+  }),
+).annotate({
+  identifier: "UsagesProperties",
+}) as any as S.Schema<UsagesProperties>;
+
+export interface GetUsageResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Usage properties for the specified resource. */
+  properties?: UsagesProperties;
+}
+export const GetUsageResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(UsagesProperties),
+  }),
+).annotate({
+  identifier: "GetUsageResponse",
+}) as any as S.Schema<GetUsageResponse>;
+
+export interface GroupQuotasEnforcementStatusPropertiesInput {
+  /** Is the GroupQuota Enforcement enabled for the Azure region. */
+  enforcementEnabled?: EnforcementState | (string & {});
+}
+export const GroupQuotasEnforcementStatusPropertiesInput =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      enforcementEnabled: S.optional(EnforcementState),
+    }),
+  ).annotate({
+    identifier: "GroupQuotasEnforcementStatusPropertiesInput",
+  }) as any as S.Schema<GroupQuotasEnforcementStatusPropertiesInput>;
+
+export interface GroupQuotaLocationSettingsCreateOrUpdateRequest {
+  /** The management group ID. */
+  managementGroupId: string;
+  /** The GroupQuota name. The name should be unique for the provided context tenantId/MgId. */
+  groupQuotaName: string;
+  /** The resource provider name, such as - Microsoft.Compute. Currently only Microsoft.Compute resource provider supports this API. */
+  resourceProviderName: string;
+  /** The name of the Azure region. */
+  location: string;
+  properties?: GroupQuotasEnforcementStatusPropertiesInput;
+}
+export const GroupQuotaLocationSettingsCreateOrUpdateRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      managementGroupId: S.String.pipe(T.Label()),
+      groupQuotaName: S.String.pipe(T.Label()),
+      resourceProviderName: S.String.pipe(T.Label()),
+      location: S.String.pipe(T.Label()),
+      properties: S.optional(GroupQuotasEnforcementStatusPropertiesInput),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupQuotaName}/resourceProviders/{resourceProviderName}/locationSettings/{location}",
+        code: 200,
+        apiVersion: "2025-09-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "GroupQuotaLocationSettingsCreateOrUpdateRequest",
+  }) as any as S.Schema<GroupQuotaLocationSettingsCreateOrUpdateRequest>;
+
+export interface GroupQuotaLocationSettingsCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  properties?: GroupQuotasEnforcementStatusProperties;
+}
+export const GroupQuotaLocationSettingsCreateOrUpdateResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(GroupQuotasEnforcementStatusProperties),
+    }),
+  ).annotate({
+    identifier: "GroupQuotaLocationSettingsCreateOrUpdateResponse",
+  }) as any as S.Schema<GroupQuotaLocationSettingsCreateOrUpdateResponse>;
+
+/** Properties and filters for ShareQuota. The request parameter is optional, if there are no filters specified. */
+export interface GroupQuotasEntityBaseInput {
+  /** Display name of the GroupQuota entity. */
+  displayName?: string;
+}
+export const GroupQuotasEntityBaseInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    displayName: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GroupQuotasEntityBaseInput",
+}) as any as S.Schema<GroupQuotasEntityBaseInput>;
+
+export interface GroupQuotasCreateOrUpdateRequest {
+  /** The management group ID. */
+  managementGroupId: string;
+  /** The GroupQuota name. The name should be unique for the provided context tenantId/MgId. */
+  groupQuotaName: string;
+  /** Properties */
+  properties?: GroupQuotasEntityBaseInput;
+}
+export const GroupQuotasCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    managementGroupId: S.String.pipe(T.Label()),
+    groupQuotaName: S.String.pipe(T.Label()),
+    properties: S.optional(GroupQuotasEntityBaseInput),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupQuotaName}",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "GroupQuotasCreateOrUpdateRequest",
+}) as any as S.Schema<GroupQuotasCreateOrUpdateRequest>;
+
+export interface GroupQuotasCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties */
+  properties?: GroupQuotasEntityBase;
+}
+export const GroupQuotasCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(GroupQuotasEntityBase),
+  }),
+).annotate({
+  identifier: "GroupQuotasCreateOrUpdateResponse",
+}) as any as S.Schema<GroupQuotasCreateOrUpdateResponse>;
+
+export interface GroupQuotaSubscriptionsCreateOrUpdateRequest {
+  /** Management Group Id. */
+  managementGroupId: string;
+  /** The GroupQuota name. The name should be unique for the provided context tenantId/MgId. */
+  groupQuotaName: string;
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+}
+export const GroupQuotaSubscriptionsCreateOrUpdateRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      managementGroupId: S.String.pipe(T.Label()),
+      groupQuotaName: S.String.pipe(T.Label()),
+      subscriptionId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupQuotaName}/subscriptions/{subscriptionId}",
+        code: 200,
+        apiVersion: "2025-09-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "GroupQuotaSubscriptionsCreateOrUpdateRequest",
+  }) as any as S.Schema<GroupQuotaSubscriptionsCreateOrUpdateRequest>;
+
+export interface GroupQuotaSubscriptionsCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  properties?: GroupQuotaSubscriptionIdProperties;
+}
+export const GroupQuotaSubscriptionsCreateOrUpdateResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(GroupQuotaSubscriptionIdProperties),
+    }),
+  ).annotate({
+    identifier: "GroupQuotaSubscriptionsCreateOrUpdateResponse",
+  }) as any as S.Schema<GroupQuotaSubscriptionsCreateOrUpdateResponse>;
+
+export interface ListGroupQuotaLimitsRequest {
+  /** The management group ID. */
+  managementGroupId: string;
+  /** The GroupQuota name. The name should be unique for the provided context tenantId/MgId. */
+  groupQuotaName: string;
+  /** The resource provider name, such as - Microsoft.Compute. Currently only Microsoft.Compute resource provider supports this API. */
+  resourceProviderName: string;
+  /** The name of the Azure region. */
+  location: string;
+}
+export const ListGroupQuotaLimitsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    managementGroupId: S.String.pipe(T.Label()),
+    groupQuotaName: S.String.pipe(T.Label()),
+    resourceProviderName: S.String.pipe(T.Label()),
+    location: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupQuotaName}/resourceProviders/{resourceProviderName}/groupQuotaLimits/{location}",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListGroupQuotaLimitsRequest",
+}) as any as S.Schema<ListGroupQuotaLimitsRequest>;
+
+/** Name of the resource provided by the resource provider. This property is already included in the request URI, so it is a readonly property returned in the response. */
+export type GroupQuotaDetailsName = GroupQuotaRequestBasePropertiesName;
+export const GroupQuotaDetailsName = GroupQuotaRequestBasePropertiesName;
 
 /** SubscriptionIds and quota allocated to subscriptions from the GroupQuota. */
 export interface AllocatedToSubscription {
@@ -157,7 +1224,7 @@ export interface GroupQuotaDetails {
   /** The usages units, such as Count and Bytes. When requesting quota, use the **unit** value returned in the GET response in the request body of your PUT operation. */
   unit?: string;
   /** Name of the resource provided by the resource provider. This property is already included in the request URI, so it is a readonly property returned in the response. */
-  name?: GroupQuotaDetailsName;
+  name?: GroupQuotaRequestBasePropertiesName;
   /** The available Group Quota Limit at the MG level. This Group quota can be allocated to subscription(s). */
   availableLimit?: number;
   /** Quota allocated to subscriptions */
@@ -169,7 +1236,7 @@ export const GroupQuotaDetails = /*@__PURE__*/ S.suspend(() =>
     limit: S.optional(S.Number),
     comment: S.optional(S.String),
     unit: S.optional(S.String),
-    name: S.optional(GroupQuotaDetailsName),
+    name: S.optional(GroupQuotaRequestBasePropertiesName),
     availableLimit: S.optional(S.Number),
     allocatedToSubscriptions: S.optional(AllocatedQuotaToSubscriptionList),
   }),
@@ -214,7 +1281,7 @@ export const GroupQuotaLimitListProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "GroupQuotaLimitListProperties",
 }) as any as S.Schema<GroupQuotaLimitListProperties>;
 
-export interface GroupQuotaLimitsListResponse {
+export interface ListGroupQuotaLimitsResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -225,7 +1292,7 @@ export interface GroupQuotaLimitsListResponse {
   systemData?: SystemData;
   properties?: GroupQuotaLimitListProperties;
 }
-export const GroupQuotaLimitsListResponse = /*@__PURE__*/ S.suspend(() =>
+export const ListGroupQuotaLimitsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -234,117 +1301,10 @@ export const GroupQuotaLimitsListResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(GroupQuotaLimitListProperties),
   }),
 ).annotate({
-  identifier: "GroupQuotaLimitsListResponse",
-}) as any as S.Schema<GroupQuotaLimitsListResponse>;
+  identifier: "ListGroupQuotaLimitsResponse",
+}) as any as S.Schema<ListGroupQuotaLimitsResponse>;
 
-export interface GroupQuotaLimitsRequestGetRequest {
-  /** The management group ID. */
-  managementGroupId: string;
-  /** The GroupQuota name. The name should be unique for the provided context tenantId/MgId. */
-  groupQuotaName: string;
-  /** Request Id. */
-  requestId: string;
-}
-export const GroupQuotaLimitsRequestGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    managementGroupId: S.String.pipe(T.Label()),
-    groupQuotaName: S.String.pipe(T.Label()),
-    requestId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupQuotaName}/groupQuotaRequests/{requestId}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "GroupQuotaLimitsRequestGetRequest",
-}) as any as S.Schema<GroupQuotaLimitsRequestGetRequest>;
-
-/** Name of the resource provided by the resource provider. This property is already included in the request URI, so it is a readonly property returned in the response. */
-export type GroupQuotaRequestBasePropertiesName = GroupQuotaDetailsName;
-export const GroupQuotaRequestBasePropertiesName = GroupQuotaDetailsName;
-
-export interface GroupQuotaRequestBaseProperties {
-  /** The new quota limit for the subscription. The incremental quota will be allocated from pre-approved group quota. */
-  limit?: number;
-  /** Name of the resource provided by the resource provider. This property is already included in the request URI, so it is a readonly property returned in the response. */
-  name?: GroupQuotaDetailsName;
-  /** Location/Azure region for the quota requested for resource. */
-  region?: string;
-  /** GroupQuota Request comments and details for request. This is optional paramter to provide more details related to the requested resource. */
-  comments?: string;
-}
-export const GroupQuotaRequestBaseProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    limit: S.optional(S.Number),
-    name: S.optional(GroupQuotaDetailsName),
-    region: S.optional(S.String),
-    comments: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "GroupQuotaRequestBaseProperties",
-}) as any as S.Schema<GroupQuotaRequestBaseProperties>;
-
-/** The new GroupQuota limit requested. */
-export interface GroupQuotaRequestBase {
-  properties?: GroupQuotaRequestBaseProperties;
-}
-export const GroupQuotaRequestBase = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    properties: S.optional(GroupQuotaRequestBaseProperties),
-  }),
-).annotate({
-  identifier: "GroupQuotaRequestBase",
-}) as any as S.Schema<GroupQuotaRequestBase>;
-
-export interface SubmittedResourceRequestStatusProperties {
-  /** Requested Resource. */
-  requestedResource?: GroupQuotaRequestBase;
-  /** The request submission time. The date conforms to the following format specified by the ISO 8601 standard: yyyy-MM-ddTHH:mm:ssZ */
-  requestSubmitTime?: string;
-  /** Request status. */
-  provisioningState?: RequestState;
-  /** Details of the failure. */
-  faultCode?: string;
-}
-export const SubmittedResourceRequestStatusProperties = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      requestedResource: S.optional(GroupQuotaRequestBase),
-      requestSubmitTime: S.optional(S.String),
-      provisioningState: S.optional(RequestState),
-      faultCode: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "SubmittedResourceRequestStatusProperties",
-}) as any as S.Schema<SubmittedResourceRequestStatusProperties>;
-
-export interface GroupQuotaLimitsRequestGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  properties?: SubmittedResourceRequestStatusProperties;
-}
-export const GroupQuotaLimitsRequestGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(SubmittedResourceRequestStatusProperties),
-  }),
-).annotate({
-  identifier: "GroupQuotaLimitsRequestGetResponse",
-}) as any as S.Schema<GroupQuotaLimitsRequestGetResponse>;
-
-export interface GroupQuotaLimitsRequestListRequest {
+export interface ListGroupQuotaLimitsRequestRequest {
   /** The management group ID. */
   managementGroupId: string;
   /** The GroupQuota name. The name should be unique for the provided context tenantId/MgId. */
@@ -354,7 +1314,7 @@ export interface GroupQuotaLimitsRequestListRequest {
   /** | Field | Supported operators \r\n|---------------------|------------------------\n\r\n location eq {location} and resource eq {resourceName}\n Example: $filter=location eq eastus and resourceName eq cores */
   _filter: string;
 }
-export const GroupQuotaLimitsRequestListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListGroupQuotaLimitsRequestRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     managementGroupId: S.String.pipe(T.Label()),
     groupQuotaName: S.String.pipe(T.Label()),
@@ -369,8 +1329,8 @@ export const GroupQuotaLimitsRequestListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GroupQuotaLimitsRequestListRequest",
-}) as any as S.Schema<GroupQuotaLimitsRequestListRequest>;
+  identifier: "ListGroupQuotaLimitsRequestRequest",
+}) as any as S.Schema<ListGroupQuotaLimitsRequestRequest>;
 
 /** Status of a single GroupQuota request. */
 export interface SubmittedResourceRequestStatus {
@@ -420,480 +1380,11 @@ export const SubmittedResourceRequestStatusList = /*@__PURE__*/ S.suspend(() =>
   identifier: "SubmittedResourceRequestStatusList",
 }) as any as S.Schema<SubmittedResourceRequestStatusList>;
 
-/** Group Quota details. */
-export interface GroupQuotaDetailsInput {
-  /** The resource name, such as SKU name. */
-  resourceName?: string;
-  /** The current Group Quota Limit at the parentId level. */
-  limit?: number;
-  /** Any comment related to quota request. */
-  comment?: string;
-}
-export const GroupQuotaDetailsInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    resourceName: S.optional(S.String),
-    limit: S.optional(S.Number),
-    comment: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "GroupQuotaDetailsInput",
-}) as any as S.Schema<GroupQuotaDetailsInput>;
-
-/** Group Quota limit. */
-export interface GroupQuotaLimitInput {
-  /** Group Quota properties for the specified resource. */
-  properties?: GroupQuotaDetailsInput;
-}
-export const GroupQuotaLimitInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    properties: S.optional(GroupQuotaDetailsInput),
-  }),
-).annotate({
-  identifier: "GroupQuotaLimitInput",
-}) as any as S.Schema<GroupQuotaLimitInput>;
-
-/** List of Group Quota Limit details. */
-export type GroupQuotaLimitListPropertiesInputValueList =
-  Array<GroupQuotaLimitInput>;
-export const GroupQuotaLimitListPropertiesInputValueList =
-  /*@__PURE__*/ S.Array(
-    GroupQuotaLimitInput,
-  ) as any as S.Schema<GroupQuotaLimitListPropertiesInputValueList>;
-
-export interface GroupQuotaLimitListPropertiesInput {
-  /** List of Group Quota Limit details. */
-  value?: GroupQuotaLimitListPropertiesInputValueList;
-}
-export const GroupQuotaLimitListPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(GroupQuotaLimitListPropertiesInputValueList),
-  }),
-).annotate({
-  identifier: "GroupQuotaLimitListPropertiesInput",
-}) as any as S.Schema<GroupQuotaLimitListPropertiesInput>;
-
-export interface GroupQuotaLimitsRequestUpdateRequest {
-  /** The management group ID. */
-  managementGroupId: string;
-  /** The GroupQuota name. The name should be unique for the provided context tenantId/MgId. */
-  groupQuotaName: string;
-  /** The resource provider name, such as - Microsoft.Compute. Currently only Microsoft.Compute resource provider supports this API. */
-  resourceProviderName: string;
-  /** The name of the Azure region. */
-  location: string;
-  properties?: GroupQuotaLimitListPropertiesInput;
-}
-export const GroupQuotaLimitsRequestUpdateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      managementGroupId: S.String.pipe(T.Label()),
-      groupQuotaName: S.String.pipe(T.Label()),
-      resourceProviderName: S.String.pipe(T.Label()),
-      location: S.String.pipe(T.Label()),
-      properties: S.optional(GroupQuotaLimitListPropertiesInput),
-    }).pipe(
-      T.Http({
-        method: "PATCH",
-        uri: "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupQuotaName}/resourceProviders/{resourceProviderName}/groupQuotaLimits/{location}",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
-).annotate({
-  identifier: "GroupQuotaLimitsRequestUpdateRequest",
-}) as any as S.Schema<GroupQuotaLimitsRequestUpdateRequest>;
-
-export interface GroupQuotaLimitsRequestUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  properties?: GroupQuotaLimitListProperties;
-}
-export const GroupQuotaLimitsRequestUpdateResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(GroupQuotaLimitListProperties),
-    }),
-).annotate({
-  identifier: "GroupQuotaLimitsRequestUpdateResponse",
-}) as any as S.Schema<GroupQuotaLimitsRequestUpdateResponse>;
-
-/** Enforcement status. */
-export type EnforcementState = "Enabled" | "Disabled" | "NotAvailable";
-export const EnforcementState = /*@__PURE__*/ S.String;
-
-export interface GroupQuotasEnforcementStatusPropertiesInput {
-  /** Is the GroupQuota Enforcement enabled for the Azure region. */
-  enforcementEnabled?: EnforcementState | (string & {});
-}
-export const GroupQuotasEnforcementStatusPropertiesInput =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      enforcementEnabled: S.optional(EnforcementState),
-    }),
-  ).annotate({
-    identifier: "GroupQuotasEnforcementStatusPropertiesInput",
-  }) as any as S.Schema<GroupQuotasEnforcementStatusPropertiesInput>;
-
-export interface GroupQuotaLocationSettingsCreateOrUpdateRequest {
-  /** The management group ID. */
-  managementGroupId: string;
-  /** The GroupQuota name. The name should be unique for the provided context tenantId/MgId. */
-  groupQuotaName: string;
-  /** The resource provider name, such as - Microsoft.Compute. Currently only Microsoft.Compute resource provider supports this API. */
-  resourceProviderName: string;
-  /** The name of the Azure region. */
-  location: string;
-  properties?: GroupQuotasEnforcementStatusPropertiesInput;
-}
-export const GroupQuotaLocationSettingsCreateOrUpdateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      managementGroupId: S.String.pipe(T.Label()),
-      groupQuotaName: S.String.pipe(T.Label()),
-      resourceProviderName: S.String.pipe(T.Label()),
-      location: S.String.pipe(T.Label()),
-      properties: S.optional(GroupQuotasEnforcementStatusPropertiesInput),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupQuotaName}/resourceProviders/{resourceProviderName}/locationSettings/{location}",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "GroupQuotaLocationSettingsCreateOrUpdateRequest",
-  }) as any as S.Schema<GroupQuotaLocationSettingsCreateOrUpdateRequest>;
-
-export interface GroupQuotasEnforcementStatusProperties {
-  /** Is the GroupQuota Enforcement enabled for the Azure region. */
-  enforcementEnabled?: EnforcementState;
-  /** The name of the group that is enforced. */
-  enforcedGroupName?: string;
-  /** Request status. */
-  provisioningState?: RequestState;
-  /** Details of the failure. */
-  faultCode?: string;
-}
-export const GroupQuotasEnforcementStatusProperties = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      enforcementEnabled: S.optional(EnforcementState),
-      enforcedGroupName: S.optional(S.String),
-      provisioningState: S.optional(RequestState),
-      faultCode: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "GroupQuotasEnforcementStatusProperties",
-}) as any as S.Schema<GroupQuotasEnforcementStatusProperties>;
-
-export interface GroupQuotaLocationSettingsCreateOrUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  properties?: GroupQuotasEnforcementStatusProperties;
-}
-export const GroupQuotaLocationSettingsCreateOrUpdateResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(GroupQuotasEnforcementStatusProperties),
-    }),
-  ).annotate({
-    identifier: "GroupQuotaLocationSettingsCreateOrUpdateResponse",
-  }) as any as S.Schema<GroupQuotaLocationSettingsCreateOrUpdateResponse>;
-
-export interface GroupQuotaLocationSettingsGetRequest {
-  /** The management group ID. */
-  managementGroupId: string;
-  /** The GroupQuota name. The name should be unique for the provided context tenantId/MgId. */
-  groupQuotaName: string;
-  /** The resource provider name, such as - Microsoft.Compute. Currently only Microsoft.Compute resource provider supports this API. */
-  resourceProviderName: string;
-  /** The name of the Azure region. */
-  location: string;
-}
-export const GroupQuotaLocationSettingsGetRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      managementGroupId: S.String.pipe(T.Label()),
-      groupQuotaName: S.String.pipe(T.Label()),
-      resourceProviderName: S.String.pipe(T.Label()),
-      location: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupQuotaName}/resourceProviders/{resourceProviderName}/locationSettings/{location}",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
-).annotate({
-  identifier: "GroupQuotaLocationSettingsGetRequest",
-}) as any as S.Schema<GroupQuotaLocationSettingsGetRequest>;
-
-export interface GroupQuotaLocationSettingsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  properties?: GroupQuotasEnforcementStatusProperties;
-}
-export const GroupQuotaLocationSettingsGetResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(GroupQuotasEnforcementStatusProperties),
-    }),
-).annotate({
-  identifier: "GroupQuotaLocationSettingsGetResponse",
-}) as any as S.Schema<GroupQuotaLocationSettingsGetResponse>;
-
-export interface GroupQuotaLocationSettingsUpdateRequest {
-  /** The management group ID. */
-  managementGroupId: string;
-  /** The GroupQuota name. The name should be unique for the provided context tenantId/MgId. */
-  groupQuotaName: string;
-  /** The resource provider name, such as - Microsoft.Compute. Currently only Microsoft.Compute resource provider supports this API. */
-  resourceProviderName: string;
-  /** The name of the Azure region. */
-  location: string;
-  properties?: GroupQuotasEnforcementStatusPropertiesInput;
-}
-export const GroupQuotaLocationSettingsUpdateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      managementGroupId: S.String.pipe(T.Label()),
-      groupQuotaName: S.String.pipe(T.Label()),
-      resourceProviderName: S.String.pipe(T.Label()),
-      location: S.String.pipe(T.Label()),
-      properties: S.optional(GroupQuotasEnforcementStatusPropertiesInput),
-    }).pipe(
-      T.Http({
-        method: "PATCH",
-        uri: "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupQuotaName}/resourceProviders/{resourceProviderName}/locationSettings/{location}",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
-).annotate({
-  identifier: "GroupQuotaLocationSettingsUpdateRequest",
-}) as any as S.Schema<GroupQuotaLocationSettingsUpdateRequest>;
-
-export interface GroupQuotaLocationSettingsUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  properties?: GroupQuotasEnforcementStatusProperties;
-}
-export const GroupQuotaLocationSettingsUpdateResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(GroupQuotasEnforcementStatusProperties),
-    }),
-).annotate({
-  identifier: "GroupQuotaLocationSettingsUpdateResponse",
-}) as any as S.Schema<GroupQuotaLocationSettingsUpdateResponse>;
-
-/** Properties and filters for ShareQuota. The request parameter is optional, if there are no filters specified. */
-export interface GroupQuotasEntityBaseInput {
-  /** Display name of the GroupQuota entity. */
-  displayName?: string;
-}
-export const GroupQuotasEntityBaseInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    displayName: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "GroupQuotasEntityBaseInput",
-}) as any as S.Schema<GroupQuotasEntityBaseInput>;
-
-export interface GroupQuotasCreateOrUpdateRequest {
-  /** The management group ID. */
-  managementGroupId: string;
-  /** The GroupQuota name. The name should be unique for the provided context tenantId/MgId. */
-  groupQuotaName: string;
-  /** Properties */
-  properties?: GroupQuotasEntityBaseInput;
-}
-export const GroupQuotasCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    managementGroupId: S.String.pipe(T.Label()),
-    groupQuotaName: S.String.pipe(T.Label()),
-    properties: S.optional(GroupQuotasEntityBaseInput),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupQuotaName}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "GroupQuotasCreateOrUpdateRequest",
-}) as any as S.Schema<GroupQuotasCreateOrUpdateRequest>;
-
-/** Type of the group. */
-export type GroupType = "AllocationGroup" | "EnforcedGroup";
-export const GroupType = /*@__PURE__*/ S.String;
-
-/** Properties and filters for ShareQuota. The request parameter is optional, if there are no filters specified. */
-export interface GroupQuotasEntityBase {
-  /** Display name of the GroupQuota entity. */
-  displayName?: string;
-  /** Type of the group. */
-  groupType?: GroupType;
-  /** Provisioning state of the operation. */
-  provisioningState?: RequestState;
-}
-export const GroupQuotasEntityBase = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    displayName: S.optional(S.String),
-    groupType: S.optional(GroupType),
-    provisioningState: S.optional(RequestState),
-  }),
-).annotate({
-  identifier: "GroupQuotasEntityBase",
-}) as any as S.Schema<GroupQuotasEntityBase>;
-
-export interface GroupQuotasCreateOrUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties */
-  properties?: GroupQuotasEntityBase;
-}
-export const GroupQuotasCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(GroupQuotasEntityBase),
-  }),
-).annotate({
-  identifier: "GroupQuotasCreateOrUpdateResponse",
-}) as any as S.Schema<GroupQuotasCreateOrUpdateResponse>;
-
-export interface GroupQuotasDeleteRequest {
-  /** The management group ID. */
-  managementGroupId: string;
-  /** The GroupQuota name. The name should be unique for the provided context tenantId/MgId. */
-  groupQuotaName: string;
-}
-export const GroupQuotasDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    managementGroupId: S.String.pipe(T.Label()),
-    groupQuotaName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupQuotaName}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "GroupQuotasDeleteRequest",
-}) as any as S.Schema<GroupQuotasDeleteRequest>;
-
-export interface GroupQuotasDeleteResponse {}
-export const GroupQuotasDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "GroupQuotasDeleteResponse",
-}) as any as S.Schema<GroupQuotasDeleteResponse>;
-
-export interface GroupQuotasGetRequest {
-  /** The management group ID. */
-  managementGroupId: string;
-  /** The GroupQuota name. The name should be unique for the provided context tenantId/MgId. */
-  groupQuotaName: string;
-}
-export const GroupQuotasGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    managementGroupId: S.String.pipe(T.Label()),
-    groupQuotaName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupQuotaName}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "GroupQuotasGetRequest",
-}) as any as S.Schema<GroupQuotasGetRequest>;
-
-export interface GroupQuotasGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties */
-  properties?: GroupQuotasEntityBase;
-}
-export const GroupQuotasGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(GroupQuotasEntityBase),
-  }),
-).annotate({
-  identifier: "GroupQuotasGetResponse",
-}) as any as S.Schema<GroupQuotasGetResponse>;
-
-export interface GroupQuotasListRequest {
+export interface ListGroupQuotasRequest {
   /** The management group ID. */
   managementGroupId: string;
 }
-export const GroupQuotasListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListGroupQuotasRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     managementGroupId: S.String.pipe(T.Label()),
   }).pipe(
@@ -905,8 +1396,8 @@ export const GroupQuotasListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GroupQuotasListRequest",
-}) as any as S.Schema<GroupQuotasListRequest>;
+  identifier: "ListGroupQuotasRequest",
+}) as any as S.Schema<ListGroupQuotasRequest>;
 
 /** Properties and filters for ShareQuota. The request parameter is optional, if there are no filters specified. */
 export interface GroupQuotasEntity {
@@ -953,7 +1444,7 @@ export const GroupQuotaList = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "GroupQuotaList" }) as any as S.Schema<GroupQuotaList>;
 
-export interface GroupQuotaSubscriptionAllocationListRequest {
+export interface ListGroupQuotaSubscriptionAllocationRequest2 {
   /** The management group ID. */
   managementGroupId: string;
   /** The ID of the target subscription. The value must be an UUID. */
@@ -965,7 +1456,7 @@ export interface GroupQuotaSubscriptionAllocationListRequest {
   /** The name of the Azure region. */
   location: string;
 }
-export const GroupQuotaSubscriptionAllocationListRequest =
+export const ListGroupQuotaSubscriptionAllocationRequest2 =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       managementGroupId: S.String.pipe(T.Label()),
@@ -982,12 +1473,12 @@ export const GroupQuotaSubscriptionAllocationListRequest =
       }),
     ),
   ).annotate({
-    identifier: "GroupQuotaSubscriptionAllocationListRequest",
-  }) as any as S.Schema<GroupQuotaSubscriptionAllocationListRequest>;
+    identifier: "ListGroupQuotaSubscriptionAllocationRequest2",
+  }) as any as S.Schema<ListGroupQuotaSubscriptionAllocationRequest2>;
 
 /** Name of the resource provided by the resource provider. This property is already included in the request URI, so it is a readonly property returned in the response. */
-export type SubscriptionQuotaDetailsName = GroupQuotaDetailsName;
-export const SubscriptionQuotaDetailsName = GroupQuotaDetailsName;
+export type SubscriptionQuotaDetailsName = GroupQuotaRequestBasePropertiesName;
+export const SubscriptionQuotaDetailsName = GroupQuotaRequestBasePropertiesName;
 
 /** Subscription Quota details. */
 export interface SubscriptionQuotaDetails {
@@ -998,14 +1489,14 @@ export interface SubscriptionQuotaDetails {
   /** The shareable quota for the subscription. */
   shareableQuota?: number;
   /** Name of the resource provided by the resource provider. This property is already included in the request URI, so it is a readonly property returned in the response. */
-  name?: GroupQuotaDetailsName;
+  name?: GroupQuotaRequestBasePropertiesName;
 }
 export const SubscriptionQuotaDetails = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     resourceName: S.optional(S.String),
     limit: S.optional(S.Number),
     shareableQuota: S.optional(S.Number),
-    name: S.optional(GroupQuotaDetailsName),
+    name: S.optional(GroupQuotaRequestBasePropertiesName),
   }),
 ).annotate({
   identifier: "SubscriptionQuotaDetails",
@@ -1051,7 +1542,7 @@ export const SubscriptionQuotaAllocationsListProperties =
     identifier: "SubscriptionQuotaAllocationsListProperties",
   }) as any as S.Schema<SubscriptionQuotaAllocationsListProperties>;
 
-export interface GroupQuotaSubscriptionAllocationListResponse {
+export interface ListGroupQuotaSubscriptionAllocationResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -1062,7 +1553,7 @@ export interface GroupQuotaSubscriptionAllocationListResponse {
   systemData?: SystemData;
   properties?: SubscriptionQuotaAllocationsListProperties;
 }
-export const GroupQuotaSubscriptionAllocationListResponse =
+export const ListGroupQuotaSubscriptionAllocationResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
@@ -1072,123 +1563,10 @@ export const GroupQuotaSubscriptionAllocationListResponse =
       properties: S.optional(SubscriptionQuotaAllocationsListProperties),
     }),
   ).annotate({
-    identifier: "GroupQuotaSubscriptionAllocationListResponse",
-  }) as any as S.Schema<GroupQuotaSubscriptionAllocationListResponse>;
+    identifier: "ListGroupQuotaSubscriptionAllocationResponse",
+  }) as any as S.Schema<ListGroupQuotaSubscriptionAllocationResponse>;
 
-export interface GroupQuotaSubscriptionAllocationRequestGetRequest {
-  /** The management group ID. */
-  managementGroupId: string;
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The GroupQuota name. The name should be unique for the provided context tenantId/MgId. */
-  groupQuotaName: string;
-  /** The resource provider name, such as - Microsoft.Compute. Currently only Microsoft.Compute resource provider supports this API. */
-  resourceProviderName: string;
-  /** Request Id. */
-  allocationId: string;
-}
-export const GroupQuotaSubscriptionAllocationRequestGetRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      managementGroupId: S.String.pipe(T.Label()),
-      subscriptionId: S.String.pipe(T.Label()),
-      groupQuotaName: S.String.pipe(T.Label()),
-      resourceProviderName: S.String.pipe(T.Label()),
-      allocationId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/providers/Microsoft.Management/managementGroups/{managementGroupId}/subscriptions/{subscriptionId}/providers/Microsoft.Quota/groupQuotas/{groupQuotaName}/resourceProviders/{resourceProviderName}/quotaAllocationRequests/{allocationId}",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "GroupQuotaSubscriptionAllocationRequestGetRequest",
-  }) as any as S.Schema<GroupQuotaSubscriptionAllocationRequestGetRequest>;
-
-/** Name of the resource provided by the resource provider. This property is already included in the request URI, so it is a readonly property returned in the response. */
-export type QuotaAllocationRequestBasePropertiesName = GroupQuotaDetailsName;
-export const QuotaAllocationRequestBasePropertiesName = GroupQuotaDetailsName;
-
-export interface QuotaAllocationRequestBaseProperties {
-  /** The new quota limit for the subscription. The incremental quota will be allocated from pre-approved group quota. */
-  limit?: number;
-  /** Name of the resource provided by the resource provider. This property is already included in the request URI, so it is a readonly property returned in the response. */
-  name?: GroupQuotaDetailsName;
-  /** The location for which the subscription is allocated */
-  region?: string;
-}
-export const QuotaAllocationRequestBaseProperties = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      limit: S.optional(S.Number),
-      name: S.optional(GroupQuotaDetailsName),
-      region: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "QuotaAllocationRequestBaseProperties",
-}) as any as S.Schema<QuotaAllocationRequestBaseProperties>;
-
-/** The new quota request allocated to subscription. */
-export interface QuotaAllocationRequestBase {
-  properties?: QuotaAllocationRequestBaseProperties;
-}
-export const QuotaAllocationRequestBase = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    properties: S.optional(QuotaAllocationRequestBaseProperties),
-  }),
-).annotate({
-  identifier: "QuotaAllocationRequestBase",
-}) as any as S.Schema<QuotaAllocationRequestBase>;
-
-export interface QuotaAllocationRequestStatusProperties {
-  /** The new quota request allocated to subscription. */
-  requestedResource?: QuotaAllocationRequestBase;
-  /** The request submission time. The date conforms to the following format specified by the ISO 8601 standard: yyyy-MM-ddTHH:mm:ssZ */
-  requestSubmitTime?: string;
-  /** Request status. */
-  provisioningState?: RequestState;
-  /** Details of the failure. */
-  faultCode?: string;
-}
-export const QuotaAllocationRequestStatusProperties = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      requestedResource: S.optional(QuotaAllocationRequestBase),
-      requestSubmitTime: S.optional(S.String),
-      provisioningState: S.optional(RequestState),
-      faultCode: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "QuotaAllocationRequestStatusProperties",
-}) as any as S.Schema<QuotaAllocationRequestStatusProperties>;
-
-export interface GroupQuotaSubscriptionAllocationRequestGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  properties?: QuotaAllocationRequestStatusProperties;
-}
-export const GroupQuotaSubscriptionAllocationRequestGetResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(QuotaAllocationRequestStatusProperties),
-    }),
-  ).annotate({
-    identifier: "GroupQuotaSubscriptionAllocationRequestGetResponse",
-  }) as any as S.Schema<GroupQuotaSubscriptionAllocationRequestGetResponse>;
-
-export interface GroupQuotaSubscriptionAllocationRequestListRequest {
+export interface ListGroupQuotaSubscriptionAllocationRequestRequest {
   /** The management group ID. */
   managementGroupId: string;
   /** The ID of the target subscription. The value must be an UUID. */
@@ -1200,7 +1578,7 @@ export interface GroupQuotaSubscriptionAllocationRequestListRequest {
   /** | Field | Supported operators |---------------------|------------------------ location eq {location} Example: $filter=location eq eastus */
   _filter: string;
 }
-export const GroupQuotaSubscriptionAllocationRequestListRequest =
+export const ListGroupQuotaSubscriptionAllocationRequestRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       managementGroupId: S.String.pipe(T.Label()),
@@ -1217,8 +1595,8 @@ export const GroupQuotaSubscriptionAllocationRequestListRequest =
       }),
     ),
   ).annotate({
-    identifier: "GroupQuotaSubscriptionAllocationRequestListRequest",
-  }) as any as S.Schema<GroupQuotaSubscriptionAllocationRequestListRequest>;
+    identifier: "ListGroupQuotaSubscriptionAllocationRequestRequest",
+  }) as any as S.Schema<ListGroupQuotaSubscriptionAllocationRequestRequest>;
 
 /** The subscription quota allocation status. */
 export interface QuotaAllocationRequestStatus {
@@ -1267,192 +1645,13 @@ export const QuotaAllocationRequestStatusList = /*@__PURE__*/ S.suspend(() =>
   identifier: "QuotaAllocationRequestStatusList",
 }) as any as S.Schema<QuotaAllocationRequestStatusList>;
 
-/** Subscription Quota details. */
-export interface SubscriptionQuotaDetailsInput {
-  /** The resource name, such as SKU name. */
-  resourceName?: string;
-  /** The total quota limit for the subscription. */
-  limit?: number;
-}
-export const SubscriptionQuotaDetailsInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    resourceName: S.optional(S.String),
-    limit: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "SubscriptionQuotaDetailsInput",
-}) as any as S.Schema<SubscriptionQuotaDetailsInput>;
-
-/** Quota allocated to a subscription for the specific Resource Provider, Location, ResourceName. This will include the GroupQuota and total quota allocated to the subscription. Only the Group quota allocated to the subscription can be allocated back to the MG Group Quota. */
-export interface SubscriptionQuotaAllocationsInput {
-  /** Quota properties for the specified resource. */
-  properties?: SubscriptionQuotaDetailsInput;
-}
-export const SubscriptionQuotaAllocationsInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    properties: S.optional(SubscriptionQuotaDetailsInput),
-  }),
-).annotate({
-  identifier: "SubscriptionQuotaAllocationsInput",
-}) as any as S.Schema<SubscriptionQuotaAllocationsInput>;
-
-/** Subscription quota list. */
-export type SubscriptionQuotaAllocationsListPropertiesInputValueList =
-  Array<SubscriptionQuotaAllocationsInput>;
-export const SubscriptionQuotaAllocationsListPropertiesInputValueList =
-  /*@__PURE__*/ S.Array(
-    SubscriptionQuotaAllocationsInput,
-  ) as any as S.Schema<SubscriptionQuotaAllocationsListPropertiesInputValueList>;
-
-export interface SubscriptionQuotaAllocationsListPropertiesInput {
-  /** Subscription quota list. */
-  value?: SubscriptionQuotaAllocationsListPropertiesInputValueList;
-}
-export const SubscriptionQuotaAllocationsListPropertiesInput =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      value: S.optional(
-        SubscriptionQuotaAllocationsListPropertiesInputValueList,
-      ),
-    }),
-  ).annotate({
-    identifier: "SubscriptionQuotaAllocationsListPropertiesInput",
-  }) as any as S.Schema<SubscriptionQuotaAllocationsListPropertiesInput>;
-
-export interface GroupQuotaSubscriptionAllocationRequestUpdateRequest {
-  /** The management group ID. */
-  managementGroupId: string;
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The GroupQuota name. The name should be unique for the provided context tenantId/MgId. */
-  groupQuotaName: string;
-  /** The resource provider name, such as - Microsoft.Compute. Currently only Microsoft.Compute resource provider supports this API. */
-  resourceProviderName: string;
-  /** The name of the Azure region. */
-  location: string;
-  properties?: SubscriptionQuotaAllocationsListPropertiesInput;
-}
-export const GroupQuotaSubscriptionAllocationRequestUpdateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      managementGroupId: S.String.pipe(T.Label()),
-      subscriptionId: S.String.pipe(T.Label()),
-      groupQuotaName: S.String.pipe(T.Label()),
-      resourceProviderName: S.String.pipe(T.Label()),
-      location: S.String.pipe(T.Label()),
-      properties: S.optional(SubscriptionQuotaAllocationsListPropertiesInput),
-    }).pipe(
-      T.Http({
-        method: "PATCH",
-        uri: "/providers/Microsoft.Management/managementGroups/{managementGroupId}/subscriptions/{subscriptionId}/providers/Microsoft.Quota/groupQuotas/{groupQuotaName}/resourceProviders/{resourceProviderName}/quotaAllocations/{location}",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "GroupQuotaSubscriptionAllocationRequestUpdateRequest",
-  }) as any as S.Schema<GroupQuotaSubscriptionAllocationRequestUpdateRequest>;
-
-export interface GroupQuotaSubscriptionAllocationRequestUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  properties?: SubscriptionQuotaAllocationsListProperties;
-}
-export const GroupQuotaSubscriptionAllocationRequestUpdateResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(SubscriptionQuotaAllocationsListProperties),
-    }),
-  ).annotate({
-    identifier: "GroupQuotaSubscriptionAllocationRequestUpdateResponse",
-  }) as any as S.Schema<GroupQuotaSubscriptionAllocationRequestUpdateResponse>;
-
-export interface GroupQuotaSubscriptionRequestsGetRequest {
-  /** The management group ID. */
-  managementGroupId: string;
-  /** The GroupQuota name. The name should be unique for the provided context tenantId/MgId. */
-  groupQuotaName: string;
-  /** Request Id. */
-  requestId: string;
-}
-export const GroupQuotaSubscriptionRequestsGetRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      managementGroupId: S.String.pipe(T.Label()),
-      groupQuotaName: S.String.pipe(T.Label()),
-      requestId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupQuotaName}/subscriptionRequests/{requestId}",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
-).annotate({
-  identifier: "GroupQuotaSubscriptionRequestsGetRequest",
-}) as any as S.Schema<GroupQuotaSubscriptionRequestsGetRequest>;
-
-export interface GroupQuotaSubscriptionRequestStatusProperties {
-  /** The subscription Id */
-  subscriptionId?: string;
-  /** The request submission time. The date conforms to the following format specified by the ISO 8601 standard: yyyy-MM-ddTHH:mm:ssZ */
-  requestSubmitTime?: string;
-  /** Status of this subscriptionId being associated with the GroupQuotasEntity. */
-  provisioningState?: RequestState;
-}
-export const GroupQuotaSubscriptionRequestStatusProperties =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.optional(S.String),
-      requestSubmitTime: S.optional(S.String),
-      provisioningState: S.optional(RequestState),
-    }),
-  ).annotate({
-    identifier: "GroupQuotaSubscriptionRequestStatusProperties",
-  }) as any as S.Schema<GroupQuotaSubscriptionRequestStatusProperties>;
-
-export interface GroupQuotaSubscriptionRequestsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  properties?: GroupQuotaSubscriptionRequestStatusProperties;
-}
-export const GroupQuotaSubscriptionRequestsGetResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(GroupQuotaSubscriptionRequestStatusProperties),
-    }),
-  ).annotate({
-    identifier: "GroupQuotaSubscriptionRequestsGetResponse",
-  }) as any as S.Schema<GroupQuotaSubscriptionRequestsGetResponse>;
-
-export interface GroupQuotaSubscriptionRequestsListRequest {
+export interface ListGroupQuotaSubscriptionRequestsRequest {
   /** The management group ID. */
   managementGroupId: string;
   /** The GroupQuota name. The name should be unique for the provided context tenantId/MgId. */
   groupQuotaName: string;
 }
-export const GroupQuotaSubscriptionRequestsListRequest =
+export const ListGroupQuotaSubscriptionRequestsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       managementGroupId: S.String.pipe(T.Label()),
@@ -1466,8 +1665,8 @@ export const GroupQuotaSubscriptionRequestsListRequest =
       }),
     ),
   ).annotate({
-    identifier: "GroupQuotaSubscriptionRequestsListRequest",
-  }) as any as S.Schema<GroupQuotaSubscriptionRequestsListRequest>;
+    identifier: "ListGroupQuotaSubscriptionRequestsRequest",
+  }) as any as S.Schema<ListGroupQuotaSubscriptionRequestsRequest>;
 
 /** The new quota limit request status. */
 export interface GroupQuotaSubscriptionRequestStatus {
@@ -1518,159 +1717,13 @@ export const GroupQuotaSubscriptionRequestStatusList = /*@__PURE__*/ S.suspend(
   identifier: "GroupQuotaSubscriptionRequestStatusList",
 }) as any as S.Schema<GroupQuotaSubscriptionRequestStatusList>;
 
-export interface GroupQuotaSubscriptionsCreateOrUpdateRequest {
-  /** Management Group Id. */
-  managementGroupId: string;
-  /** The GroupQuota name. The name should be unique for the provided context tenantId/MgId. */
-  groupQuotaName: string;
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-}
-export const GroupQuotaSubscriptionsCreateOrUpdateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      managementGroupId: S.String.pipe(T.Label()),
-      groupQuotaName: S.String.pipe(T.Label()),
-      subscriptionId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupQuotaName}/subscriptions/{subscriptionId}",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "GroupQuotaSubscriptionsCreateOrUpdateRequest",
-  }) as any as S.Schema<GroupQuotaSubscriptionsCreateOrUpdateRequest>;
-
-export interface GroupQuotaSubscriptionIdProperties {
-  /** An Azure subscriptionId. */
-  subscriptionId?: string;
-  /** Status of this subscriptionId being associated with the GroupQuotasEntity. */
-  provisioningState?: RequestState;
-}
-export const GroupQuotaSubscriptionIdProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.optional(S.String),
-    provisioningState: S.optional(RequestState),
-  }),
-).annotate({
-  identifier: "GroupQuotaSubscriptionIdProperties",
-}) as any as S.Schema<GroupQuotaSubscriptionIdProperties>;
-
-export interface GroupQuotaSubscriptionsCreateOrUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  properties?: GroupQuotaSubscriptionIdProperties;
-}
-export const GroupQuotaSubscriptionsCreateOrUpdateResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(GroupQuotaSubscriptionIdProperties),
-    }),
-  ).annotate({
-    identifier: "GroupQuotaSubscriptionsCreateOrUpdateResponse",
-  }) as any as S.Schema<GroupQuotaSubscriptionsCreateOrUpdateResponse>;
-
-export interface GroupQuotaSubscriptionsDeleteRequest {
-  /** The management group ID. */
-  managementGroupId: string;
-  /** The GroupQuota name. The name should be unique for the provided context tenantId/MgId. */
-  groupQuotaName: string;
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-}
-export const GroupQuotaSubscriptionsDeleteRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      managementGroupId: S.String.pipe(T.Label()),
-      groupQuotaName: S.String.pipe(T.Label()),
-      subscriptionId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupQuotaName}/subscriptions/{subscriptionId}",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
-).annotate({
-  identifier: "GroupQuotaSubscriptionsDeleteRequest",
-}) as any as S.Schema<GroupQuotaSubscriptionsDeleteRequest>;
-
-export interface GroupQuotaSubscriptionsDeleteResponse {}
-export const GroupQuotaSubscriptionsDeleteResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "GroupQuotaSubscriptionsDeleteResponse",
-}) as any as S.Schema<GroupQuotaSubscriptionsDeleteResponse>;
-
-export interface GroupQuotaSubscriptionsGetRequest {
-  /** The management group ID. */
-  managementGroupId: string;
-  /** The GroupQuota name. The name should be unique for the provided context tenantId/MgId. */
-  groupQuotaName: string;
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-}
-export const GroupQuotaSubscriptionsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    managementGroupId: S.String.pipe(T.Label()),
-    groupQuotaName: S.String.pipe(T.Label()),
-    subscriptionId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupQuotaName}/subscriptions/{subscriptionId}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "GroupQuotaSubscriptionsGetRequest",
-}) as any as S.Schema<GroupQuotaSubscriptionsGetRequest>;
-
-export interface GroupQuotaSubscriptionsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  properties?: GroupQuotaSubscriptionIdProperties;
-}
-export const GroupQuotaSubscriptionsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(GroupQuotaSubscriptionIdProperties),
-  }),
-).annotate({
-  identifier: "GroupQuotaSubscriptionsGetResponse",
-}) as any as S.Schema<GroupQuotaSubscriptionsGetResponse>;
-
-export interface GroupQuotaSubscriptionsListRequest {
+export interface ListGroupQuotaSubscriptionsRequest {
   /** The management group ID. */
   managementGroupId: string;
   /** The GroupQuota name. The name should be unique for the provided context tenantId/MgId. */
   groupQuotaName: string;
 }
-export const GroupQuotaSubscriptionsListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListGroupQuotaSubscriptionsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     managementGroupId: S.String.pipe(T.Label()),
     groupQuotaName: S.String.pipe(T.Label()),
@@ -1683,8 +1736,8 @@ export const GroupQuotaSubscriptionsListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GroupQuotaSubscriptionsListRequest",
-}) as any as S.Schema<GroupQuotaSubscriptionsListRequest>;
+  identifier: "ListGroupQuotaSubscriptionsRequest",
+}) as any as S.Schema<ListGroupQuotaSubscriptionsRequest>;
 
 /** This represents a Azure subscriptionId that is associated with a GroupQuotasEntity. */
 export interface GroupQuotaSubscriptionId {
@@ -1733,110 +1786,7 @@ export const GroupQuotaSubscriptionIdList = /*@__PURE__*/ S.suspend(() =>
   identifier: "GroupQuotaSubscriptionIdList",
 }) as any as S.Schema<GroupQuotaSubscriptionIdList>;
 
-export interface GroupQuotaSubscriptionsUpdateRequest {
-  /** Management Group Id. */
-  managementGroupId: string;
-  /** The GroupQuota name. The name should be unique for the provided context tenantId/MgId. */
-  groupQuotaName: string;
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-}
-export const GroupQuotaSubscriptionsUpdateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      managementGroupId: S.String.pipe(T.Label()),
-      groupQuotaName: S.String.pipe(T.Label()),
-      subscriptionId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "PATCH",
-        uri: "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupQuotaName}/subscriptions/{subscriptionId}",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
-).annotate({
-  identifier: "GroupQuotaSubscriptionsUpdateRequest",
-}) as any as S.Schema<GroupQuotaSubscriptionsUpdateRequest>;
-
-export interface GroupQuotaSubscriptionsUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  properties?: GroupQuotaSubscriptionIdProperties;
-}
-export const GroupQuotaSubscriptionsUpdateResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(GroupQuotaSubscriptionIdProperties),
-    }),
-).annotate({
-  identifier: "GroupQuotaSubscriptionsUpdateResponse",
-}) as any as S.Schema<GroupQuotaSubscriptionsUpdateResponse>;
-
-/** Properties and filters for ShareQuota. The request parameter is optional, if there are no filters specified. */
-export type GroupQuotasEntityBasePatchInput = GroupQuotasEntityBaseInput;
-export const GroupQuotasEntityBasePatchInput = GroupQuotasEntityBaseInput;
-
-export interface GroupQuotasUpdateRequest {
-  /** The management group ID. */
-  managementGroupId: string;
-  /** The GroupQuota name. The name should be unique for the provided context tenantId/MgId. */
-  groupQuotaName: string;
-  /** Properties */
-  properties?: GroupQuotasEntityBaseInput;
-}
-export const GroupQuotasUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    managementGroupId: S.String.pipe(T.Label()),
-    groupQuotaName: S.String.pipe(T.Label()),
-    properties: S.optional(GroupQuotasEntityBaseInput),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupQuotaName}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "GroupQuotasUpdateRequest",
-}) as any as S.Schema<GroupQuotasUpdateRequest>;
-
-export interface GroupQuotasUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties */
-  properties?: GroupQuotasEntityBase;
-}
-export const GroupQuotasUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(GroupQuotasEntityBase),
-  }),
-).annotate({
-  identifier: "GroupQuotasUpdateResponse",
-}) as any as S.Schema<GroupQuotasUpdateResponse>;
-
-export interface GroupQuotaUsagesListRequest {
+export interface ListGroupQuotaUsagesRequest {
   /** The management group ID. */
   managementGroupId: string;
   /** The GroupQuota name. The name should be unique for the provided context tenantId/MgId. */
@@ -1846,7 +1796,7 @@ export interface GroupQuotaUsagesListRequest {
   /** The name of the Azure region. */
   location: string;
 }
-export const GroupQuotaUsagesListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListGroupQuotaUsagesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     managementGroupId: S.String.pipe(T.Label()),
     groupQuotaName: S.String.pipe(T.Label()),
@@ -1861,17 +1811,17 @@ export const GroupQuotaUsagesListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "GroupQuotaUsagesListRequest",
-}) as any as S.Schema<GroupQuotaUsagesListRequest>;
+  identifier: "ListGroupQuotaUsagesRequest",
+}) as any as S.Schema<ListGroupQuotaUsagesRequest>;
 
 /** Name of the resource provided by the resource provider. This property is already included in the request URI, so it is a readonly property returned in the response. */
-export type GroupQuotaUsagesBaseName = GroupQuotaDetailsName;
-export const GroupQuotaUsagesBaseName = GroupQuotaDetailsName;
+export type GroupQuotaUsagesBaseName = GroupQuotaRequestBasePropertiesName;
+export const GroupQuotaUsagesBaseName = GroupQuotaRequestBasePropertiesName;
 
 /** Resource details with usages and GroupQuota. */
 export interface GroupQuotaUsagesBase {
   /** Name of the resource provided by the resource provider. This property is already included in the request URI, so it is a readonly property returned in the response. */
-  name?: GroupQuotaDetailsName;
+  name?: GroupQuotaRequestBasePropertiesName;
   /** Quota/limits for the resource. */
   limit?: number;
   /** Usages for the resource. */
@@ -1881,7 +1831,7 @@ export interface GroupQuotaUsagesBase {
 }
 export const GroupQuotaUsagesBase = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    name: S.optional(GroupQuotaDetailsName),
+    name: S.optional(GroupQuotaRequestBasePropertiesName),
     limit: S.optional(S.Number),
     usages: S.optional(S.Number),
     unit: S.optional(S.String),
@@ -1935,22 +1885,278 @@ export const ResourceUsageList = /*@__PURE__*/ S.suspend(() =>
   identifier: "ResourceUsageList",
 }) as any as S.Schema<ResourceUsageList>;
 
-/** The limit object type. */
-export type LimitType = "LimitValue";
-export const LimitType = /*@__PURE__*/ S.String;
-
-/** LimitJson abstract class. */
-export interface LimitJsonObject {
-  /** The limit object type. */
-  limitObjectType: LimitType | (string & {});
+export interface ListQuotaRequest {
+  /** The fully qualified Azure Resource manager identifier of the resource. */
+  scope: string;
 }
-export const LimitJsonObject = /*@__PURE__*/ S.suspend(() =>
+export const ListQuotaRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    limitObjectType: LimitType,
+    scope: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/{scope}/providers/Microsoft.Quota/quotas",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListQuotaRequest",
+}) as any as S.Schema<ListQuotaRequest>;
+
+/** Quota limit. */
+export interface CurrentQuotaLimitBase {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Quota properties for the specified resource, based on the API called, Quotas or Usages. */
+  properties?: QuotaProperties;
+}
+export const CurrentQuotaLimitBase = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(QuotaProperties),
   }),
 ).annotate({
-  identifier: "LimitJsonObject",
-}) as any as S.Schema<LimitJsonObject>;
+  identifier: "CurrentQuotaLimitBase",
+}) as any as S.Schema<CurrentQuotaLimitBase>;
+
+/** The CurrentQuotaLimitBase items on this page */
+export type QuotaLimitsValueList = Array<CurrentQuotaLimitBase>;
+export const QuotaLimitsValueList = /*@__PURE__*/ S.Array(
+  CurrentQuotaLimitBase,
+) as any as S.Schema<QuotaLimitsValueList>;
+
+/** Quota limits. */
+export interface QuotaLimits {
+  /** The CurrentQuotaLimitBase items on this page */
+  value: QuotaLimitsValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const QuotaLimits = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: QuotaLimitsValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({ identifier: "QuotaLimits" }) as any as S.Schema<QuotaLimits>;
+
+export interface ListQuotaOperationRequest {}
+export const ListQuotaOperationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/providers/Microsoft.Quota/operations",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListQuotaOperationRequest",
+}) as any as S.Schema<ListQuotaOperationRequest>;
+
+export interface OperationDisplay {
+  /** Provider name. */
+  provider?: string;
+  /** Resource name. */
+  resource?: string;
+  /** Operation name. */
+  operation?: string;
+  /** Operation description. */
+  description?: string;
+}
+export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provider: S.optional(S.String),
+    resource: S.optional(S.String),
+    operation: S.optional(S.String),
+    description: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "OperationDisplay",
+}) as any as S.Schema<OperationDisplay>;
+
+export interface OperationResponse {
+  name?: string;
+  display?: OperationDisplay;
+  origin?: string;
+}
+export const OperationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    display: S.optional(OperationDisplay),
+    origin: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "OperationResponse",
+}) as any as S.Schema<OperationResponse>;
+
+/** The list of connected cluster API operations. */
+export type OperationListValueList = Array<OperationResponse>;
+export const OperationListValueList = /*@__PURE__*/ S.Array(
+  OperationResponse,
+) as any as S.Schema<OperationListValueList>;
+
+/** The paginated list of connected cluster API operations. */
+export interface OperationList {
+  /** The list of connected cluster API operations. */
+  value: OperationListValueList;
+  /** The link to fetch the next page of connected cluster API operations. */
+  nextLink?: string;
+}
+export const OperationList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: OperationListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({ identifier: "OperationList" }) as any as S.Schema<OperationList>;
+
+export interface ListQuotaRequestStatusRequest {
+  /** The fully qualified Azure Resource manager identifier of the resource. */
+  scope: string;
+  /** | Field | Supported operators |---------------------|------------------------ |requestSubmitTime | ge, le, eq, gt, lt |provisioningState eq {QuotaRequestState} |resourceName eq {resourceName} */
+  _filter?: string;
+  /** Number of records to return. */
+  _top?: number;
+  /** The **Skiptoken** parameter is used only if a previous operation returned a partial result. If a previous response contains a **nextLink** element, its value includes a **skiptoken** parameter that specifies a starting point to use for subsequent calls. */
+  _skiptoken?: string;
+}
+export const ListQuotaRequestStatusRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    scope: S.String.pipe(T.Label()),
+    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+    _top: S.optional(S.Number.pipe(T.Query("$top"))),
+    _skiptoken: S.optional(S.String.pipe(T.Query("$skiptoken"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/{scope}/providers/Microsoft.Quota/quotaRequests",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListQuotaRequestStatusRequest",
+}) as any as S.Schema<ListQuotaRequestStatusRequest>;
+
+/** List of quota requests with details. */
+export interface QuotaRequestDetails {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Quota request details. */
+  properties?: QuotaRequestProperties;
+}
+export const QuotaRequestDetails = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(QuotaRequestProperties),
+  }),
+).annotate({
+  identifier: "QuotaRequestDetails",
+}) as any as S.Schema<QuotaRequestDetails>;
+
+/** The QuotaRequestDetails items on this page */
+export type QuotaRequestDetailsListValueList = Array<QuotaRequestDetails>;
+export const QuotaRequestDetailsListValueList = /*@__PURE__*/ S.Array(
+  QuotaRequestDetails,
+) as any as S.Schema<QuotaRequestDetailsListValueList>;
+
+/** Quota request information. */
+export interface QuotaRequestDetailsList {
+  /** The QuotaRequestDetails items on this page */
+  value: QuotaRequestDetailsListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const QuotaRequestDetailsList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: QuotaRequestDetailsListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "QuotaRequestDetailsList",
+}) as any as S.Schema<QuotaRequestDetailsList>;
+
+export interface ListUsagesRequest {
+  /** The fully qualified Azure Resource manager identifier of the resource. */
+  scope: string;
+}
+export const ListUsagesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    scope: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/{scope}/providers/Microsoft.Quota/usages",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListUsagesRequest",
+}) as any as S.Schema<ListUsagesRequest>;
+
+/** Resource usage. */
+export interface CurrentUsagesBase {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Usage properties for the specified resource. */
+  properties?: UsagesProperties;
+}
+export const CurrentUsagesBase = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(UsagesProperties),
+  }),
+).annotate({
+  identifier: "CurrentUsagesBase",
+}) as any as S.Schema<CurrentUsagesBase>;
+
+/** The CurrentUsagesBase items on this page */
+export type UsagesLimitsValueList = Array<CurrentUsagesBase>;
+export const UsagesLimitsValueList = /*@__PURE__*/ S.Array(
+  CurrentUsagesBase,
+) as any as S.Schema<UsagesLimitsValueList>;
+
+/** Quota limits. */
+export interface UsagesLimits {
+  /** The CurrentUsagesBase items on this page */
+  value: UsagesLimitsValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const UsagesLimits = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: UsagesLimitsValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({ identifier: "UsagesLimits" }) as any as S.Schema<UsagesLimits>;
 
 /** Name of the resource provided by the resource Provider. When requesting quota, use this property name. */
 export interface ResourceNameInput {
@@ -2012,41 +2218,6 @@ export const QuotaCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "QuotaCreateOrUpdateRequest",
 }) as any as S.Schema<QuotaCreateOrUpdateRequest>;
 
-/** Name of the resource provided by the resource Provider. When requesting quota, use this property name. */
-export type ResourceName = GroupQuotaDetailsName;
-export const ResourceName = GroupQuotaDetailsName;
-
-/** Quota properties for the specified resource. */
-export interface QuotaProperties {
-  /** Resource quota limit properties. */
-  limit?: LimitJsonObject;
-  /** The quota units, such as Count and Bytes. When requesting quota, use the **unit** value returned in the GET response in the request body of your PUT operation. */
-  unit?: string;
-  /** Resource name provided by the resource provider. Use this property name when requesting quota. */
-  name?: GroupQuotaDetailsName;
-  /** The name of the resource type. Optional field. */
-  resourceType?: string;
-  /** The time period over which the quota usage values are summarized. For example: *P1D (per one day) *PT1M (per one minute) *PT1S (per one second). This parameter is optional because, for some resources like compute, the period is irrelevant. */
-  quotaPeriod?: string;
-  /** States if quota can be requested for this resource. */
-  isQuotaApplicable?: boolean;
-  /** Additional properties for the specific resource provider. */
-  properties?: unknown;
-}
-export const QuotaProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    limit: S.optional(LimitJsonObject),
-    unit: S.optional(S.String),
-    name: S.optional(GroupQuotaDetailsName),
-    resourceType: S.optional(S.String),
-    quotaPeriod: S.optional(S.String),
-    isQuotaApplicable: S.optional(S.Boolean),
-    properties: S.optional(S.Unknown),
-  }),
-).annotate({
-  identifier: "QuotaProperties",
-}) as any as S.Schema<QuotaProperties>;
-
 export interface QuotaCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
@@ -2071,29 +2242,90 @@ export const QuotaCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "QuotaCreateOrUpdateResponse",
 }) as any as S.Schema<QuotaCreateOrUpdateResponse>;
 
-export interface QuotaGetRequest {
-  /** The fully qualified Azure Resource manager identifier of the resource. */
-  scope: string;
-  /** Resource name for a given resource provider. For example: - SKU name for Microsoft.Compute - SKU or TotalLowPriorityCores for Microsoft.MachineLearningServices For Microsoft.Network PublicIPAddresses. */
-  resourceName: string;
+/** Group Quota details. */
+export interface GroupQuotaDetailsInput {
+  /** The resource name, such as SKU name. */
+  resourceName?: string;
+  /** The current Group Quota Limit at the parentId level. */
+  limit?: number;
+  /** Any comment related to quota request. */
+  comment?: string;
 }
-export const QuotaGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GroupQuotaDetailsInput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    scope: S.String.pipe(T.Label()),
-    resourceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/{scope}/providers/Microsoft.Quota/quotas/{resourceName}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
+    resourceName: S.optional(S.String),
+    limit: S.optional(S.Number),
+    comment: S.optional(S.String),
+  }),
 ).annotate({
-  identifier: "QuotaGetRequest",
-}) as any as S.Schema<QuotaGetRequest>;
+  identifier: "GroupQuotaDetailsInput",
+}) as any as S.Schema<GroupQuotaDetailsInput>;
 
-export interface QuotaGetResponse {
+/** Group Quota limit. */
+export interface GroupQuotaLimitInput {
+  /** Group Quota properties for the specified resource. */
+  properties?: GroupQuotaDetailsInput;
+}
+export const GroupQuotaLimitInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    properties: S.optional(GroupQuotaDetailsInput),
+  }),
+).annotate({
+  identifier: "GroupQuotaLimitInput",
+}) as any as S.Schema<GroupQuotaLimitInput>;
+
+/** List of Group Quota Limit details. */
+export type GroupQuotaLimitListPropertiesInputValueList =
+  Array<GroupQuotaLimitInput>;
+export const GroupQuotaLimitListPropertiesInputValueList =
+  /*@__PURE__*/ S.Array(
+    GroupQuotaLimitInput,
+  ) as any as S.Schema<GroupQuotaLimitListPropertiesInputValueList>;
+
+export interface GroupQuotaLimitListPropertiesInput {
+  /** List of Group Quota Limit details. */
+  value?: GroupQuotaLimitListPropertiesInputValueList;
+}
+export const GroupQuotaLimitListPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(GroupQuotaLimitListPropertiesInputValueList),
+  }),
+).annotate({
+  identifier: "GroupQuotaLimitListPropertiesInput",
+}) as any as S.Schema<GroupQuotaLimitListPropertiesInput>;
+
+export interface UpdateGroupQuotaLimitsRequestRequest {
+  /** The management group ID. */
+  managementGroupId: string;
+  /** The GroupQuota name. The name should be unique for the provided context tenantId/MgId. */
+  groupQuotaName: string;
+  /** The resource provider name, such as - Microsoft.Compute. Currently only Microsoft.Compute resource provider supports this API. */
+  resourceProviderName: string;
+  /** The name of the Azure region. */
+  location: string;
+  properties?: GroupQuotaLimitListPropertiesInput;
+}
+export const UpdateGroupQuotaLimitsRequestRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      managementGroupId: S.String.pipe(T.Label()),
+      groupQuotaName: S.String.pipe(T.Label()),
+      resourceProviderName: S.String.pipe(T.Label()),
+      location: S.String.pipe(T.Label()),
+      properties: S.optional(GroupQuotaLimitListPropertiesInput),
+    }).pipe(
+      T.Http({
+        method: "PATCH",
+        uri: "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupQuotaName}/resourceProviders/{resourceProviderName}/groupQuotaLimits/{location}",
+        code: 200,
+        apiVersion: "2025-09-01",
+      }),
+    ),
+).annotate({
+  identifier: "UpdateGroupQuotaLimitsRequestRequest",
+}) as any as S.Schema<UpdateGroupQuotaLimitsRequestRequest>;
+
+export interface UpdateGroupQuotaLimitsRequestResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -2102,42 +2334,53 @@ export interface QuotaGetResponse {
   type?: string;
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
-  /** Quota properties for the specified resource, based on the API called, Quotas or Usages. */
-  properties?: QuotaProperties;
+  properties?: GroupQuotaLimitListProperties;
 }
-export const QuotaGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(QuotaProperties),
-  }),
-).annotate({
-  identifier: "QuotaGetResponse",
-}) as any as S.Schema<QuotaGetResponse>;
-
-export interface QuotaListRequest {
-  /** The fully qualified Azure Resource manager identifier of the resource. */
-  scope: string;
-}
-export const QuotaListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    scope: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/{scope}/providers/Microsoft.Quota/quotas",
-      code: 200,
-      apiVersion: "2025-09-01",
+export const UpdateGroupQuotaLimitsRequestResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(GroupQuotaLimitListProperties),
     }),
-  ),
 ).annotate({
-  identifier: "QuotaListRequest",
-}) as any as S.Schema<QuotaListRequest>;
+  identifier: "UpdateGroupQuotaLimitsRequestResponse",
+}) as any as S.Schema<UpdateGroupQuotaLimitsRequestResponse>;
 
-/** Quota limit. */
-export interface CurrentQuotaLimitBase {
+export interface UpdateGroupQuotaLocationSettingsRequest {
+  /** The management group ID. */
+  managementGroupId: string;
+  /** The GroupQuota name. The name should be unique for the provided context tenantId/MgId. */
+  groupQuotaName: string;
+  /** The resource provider name, such as - Microsoft.Compute. Currently only Microsoft.Compute resource provider supports this API. */
+  resourceProviderName: string;
+  /** The name of the Azure region. */
+  location: string;
+  properties?: GroupQuotasEnforcementStatusPropertiesInput;
+}
+export const UpdateGroupQuotaLocationSettingsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      managementGroupId: S.String.pipe(T.Label()),
+      groupQuotaName: S.String.pipe(T.Label()),
+      resourceProviderName: S.String.pipe(T.Label()),
+      location: S.String.pipe(T.Label()),
+      properties: S.optional(GroupQuotasEnforcementStatusPropertiesInput),
+    }).pipe(
+      T.Http({
+        method: "PATCH",
+        uri: "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupQuotaName}/resourceProviders/{resourceProviderName}/locationSettings/{location}",
+        code: 200,
+        apiVersion: "2025-09-01",
+      }),
+    ),
+).annotate({
+  identifier: "UpdateGroupQuotaLocationSettingsRequest",
+}) as any as S.Schema<UpdateGroupQuotaLocationSettingsRequest>;
+
+export interface UpdateGroupQuotaLocationSettingsResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -2146,219 +2389,51 @@ export interface CurrentQuotaLimitBase {
   type?: string;
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
-  /** Quota properties for the specified resource, based on the API called, Quotas or Usages. */
-  properties?: QuotaProperties;
+  properties?: GroupQuotasEnforcementStatusProperties;
 }
-export const CurrentQuotaLimitBase = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(QuotaProperties),
-  }),
-).annotate({
-  identifier: "CurrentQuotaLimitBase",
-}) as any as S.Schema<CurrentQuotaLimitBase>;
-
-/** The CurrentQuotaLimitBase items on this page */
-export type QuotaLimitsValueList = Array<CurrentQuotaLimitBase>;
-export const QuotaLimitsValueList = /*@__PURE__*/ S.Array(
-  CurrentQuotaLimitBase,
-) as any as S.Schema<QuotaLimitsValueList>;
-
-/** Quota limits. */
-export interface QuotaLimits {
-  /** The CurrentQuotaLimitBase items on this page */
-  value: QuotaLimitsValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const QuotaLimits = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: QuotaLimitsValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({ identifier: "QuotaLimits" }) as any as S.Schema<QuotaLimits>;
-
-export interface QuotaOperationListRequest {}
-export const QuotaOperationListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/providers/Microsoft.Quota/operations",
-      code: 200,
-      apiVersion: "2025-09-01",
+export const UpdateGroupQuotaLocationSettingsResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(GroupQuotasEnforcementStatusProperties),
     }),
-  ),
 ).annotate({
-  identifier: "QuotaOperationListRequest",
-}) as any as S.Schema<QuotaOperationListRequest>;
+  identifier: "UpdateGroupQuotaLocationSettingsResponse",
+}) as any as S.Schema<UpdateGroupQuotaLocationSettingsResponse>;
 
-export interface OperationDisplay {
-  /** Provider name. */
-  provider?: string;
-  /** Resource name. */
-  resource?: string;
-  /** Operation name. */
-  operation?: string;
-  /** Operation description. */
-  description?: string;
+/** Properties and filters for ShareQuota. The request parameter is optional, if there are no filters specified. */
+export type GroupQuotasEntityBasePatchInput = GroupQuotasEntityBaseInput;
+export const GroupQuotasEntityBasePatchInput = GroupQuotasEntityBaseInput;
+
+export interface UpdateGroupQuotasRequest {
+  /** The management group ID. */
+  managementGroupId: string;
+  /** The GroupQuota name. The name should be unique for the provided context tenantId/MgId. */
+  groupQuotaName: string;
+  /** Properties */
+  properties?: GroupQuotasEntityBaseInput;
 }
-export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
+export const UpdateGroupQuotasRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    provider: S.optional(S.String),
-    resource: S.optional(S.String),
-    operation: S.optional(S.String),
-    description: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OperationDisplay",
-}) as any as S.Schema<OperationDisplay>;
-
-export interface OperationResponse {
-  name?: string;
-  display?: OperationDisplay;
-  origin?: string;
-}
-export const OperationResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    display: S.optional(OperationDisplay),
-    origin: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OperationResponse",
-}) as any as S.Schema<OperationResponse>;
-
-/** The list of connected cluster API operations. */
-export type OperationListValueList = Array<OperationResponse>;
-export const OperationListValueList = /*@__PURE__*/ S.Array(
-  OperationResponse,
-) as any as S.Schema<OperationListValueList>;
-
-/** The paginated list of connected cluster API operations. */
-export interface OperationList {
-  /** The list of connected cluster API operations. */
-  value: OperationListValueList;
-  /** The link to fetch the next page of connected cluster API operations. */
-  nextLink?: string;
-}
-export const OperationList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: OperationListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({ identifier: "OperationList" }) as any as S.Schema<OperationList>;
-
-export interface QuotaRequestStatusGetRequest {
-  /** The fully qualified Azure Resource manager identifier of the resource. */
-  scope: string;
-  /** Quota request ID. */
-  id: string;
-}
-export const QuotaRequestStatusGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    scope: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
+    managementGroupId: S.String.pipe(T.Label()),
+    groupQuotaName: S.String.pipe(T.Label()),
+    properties: S.optional(GroupQuotasEntityBaseInput),
   }).pipe(
     T.Http({
-      method: "GET",
-      uri: "/{scope}/providers/Microsoft.Quota/quotaRequests/{id}",
+      method: "PATCH",
+      uri: "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupQuotaName}",
       code: 200,
       apiVersion: "2025-09-01",
     }),
   ),
 ).annotate({
-  identifier: "QuotaRequestStatusGetRequest",
-}) as any as S.Schema<QuotaRequestStatusGetRequest>;
+  identifier: "UpdateGroupQuotasRequest",
+}) as any as S.Schema<UpdateGroupQuotasRequest>;
 
-/** Quota request status. */
-export type QuotaRequestState =
-  | "Accepted"
-  | "Invalid"
-  | "Succeeded"
-  | "Failed"
-  | "InProgress";
-export const QuotaRequestState = /*@__PURE__*/ S.String;
-
-/** Error details. */
-export interface ServiceErrorDetail {
-  /** Error code. */
-  code?: string;
-  /** Error message. */
-  message?: string;
-}
-export const ServiceErrorDetail = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    code: S.optional(S.String),
-    message: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ServiceErrorDetail",
-}) as any as S.Schema<ServiceErrorDetail>;
-
-/** Request property. */
-export interface SubRequest {
-  /** Resource name. */
-  name?: GroupQuotaDetailsName;
-  /** Resource type for which the quota properties were requested. */
-  resourceType?: string;
-  /** Quota limit units, such as Count and Bytes. When requesting quota, use the **unit** value returned in the GET response in the request body of your PUT operation. */
-  unit?: string;
-  /** The quota request status. */
-  provisioningState?: QuotaRequestState;
-  /** User-friendly status message. */
-  message?: string;
-  /** Quota request ID. */
-  subRequestId?: string;
-  /** Resource quota limit properties. */
-  limit?: LimitJsonObject;
-}
-export const SubRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(GroupQuotaDetailsName),
-    resourceType: S.optional(S.String),
-    unit: S.optional(S.String),
-    provisioningState: S.optional(QuotaRequestState),
-    message: S.optional(S.String),
-    subRequestId: S.optional(S.String),
-    limit: S.optional(LimitJsonObject),
-  }),
-).annotate({ identifier: "SubRequest" }) as any as S.Schema<SubRequest>;
-
-/** Quota request details. */
-export type QuotaRequestPropertiesValueList = Array<SubRequest>;
-export const QuotaRequestPropertiesValueList = /*@__PURE__*/ S.Array(
-  SubRequest,
-) as any as S.Schema<QuotaRequestPropertiesValueList>;
-
-/** Quota request properties. */
-export interface QuotaRequestProperties {
-  /** The quota request status. */
-  provisioningState?: QuotaRequestState;
-  /** User-friendly status message. */
-  message?: string;
-  /** Error details of the quota request. */
-  error?: ServiceErrorDetail;
-  /** The quota request submission time. The date conforms to the following format specified by the ISO 8601 standard: yyyy-MM-ddTHH:mm:ssZ */
-  requestSubmitTime?: string;
-  /** Quota request details. */
-  value?: QuotaRequestPropertiesValueList;
-}
-export const QuotaRequestProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provisioningState: S.optional(QuotaRequestState),
-    message: S.optional(S.String),
-    error: S.optional(ServiceErrorDetail),
-    requestSubmitTime: S.optional(S.String),
-    value: S.optional(QuotaRequestPropertiesValueList),
-  }),
-).annotate({
-  identifier: "QuotaRequestProperties",
-}) as any as S.Schema<QuotaRequestProperties>;
-
-export interface QuotaRequestStatusGetResponse {
+export interface UpdateGroupQuotasResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -2367,51 +2442,47 @@ export interface QuotaRequestStatusGetResponse {
   type?: string;
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
-  /** Quota request details. */
-  properties?: QuotaRequestProperties;
+  /** Properties */
+  properties?: GroupQuotasEntityBase;
 }
-export const QuotaRequestStatusGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateGroupQuotasResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    properties: S.optional(QuotaRequestProperties),
+    properties: S.optional(GroupQuotasEntityBase),
   }),
 ).annotate({
-  identifier: "QuotaRequestStatusGetResponse",
-}) as any as S.Schema<QuotaRequestStatusGetResponse>;
+  identifier: "UpdateGroupQuotasResponse",
+}) as any as S.Schema<UpdateGroupQuotasResponse>;
 
-export interface QuotaRequestStatusListRequest {
-  /** The fully qualified Azure Resource manager identifier of the resource. */
-  scope: string;
-  /** | Field | Supported operators |---------------------|------------------------ |requestSubmitTime | ge, le, eq, gt, lt |provisioningState eq {QuotaRequestState} |resourceName eq {resourceName} */
-  _filter?: string;
-  /** Number of records to return. */
-  _top?: number;
-  /** The **Skiptoken** parameter is used only if a previous operation returned a partial result. If a previous response contains a **nextLink** element, its value includes a **skiptoken** parameter that specifies a starting point to use for subsequent calls. */
-  _skiptoken?: string;
+export interface UpdateGroupQuotaSubscriptionRequest {
+  /** Management Group Id. */
+  managementGroupId: string;
+  /** The GroupQuota name. The name should be unique for the provided context tenantId/MgId. */
+  groupQuotaName: string;
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
 }
-export const QuotaRequestStatusListRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateGroupQuotaSubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    scope: S.String.pipe(T.Label()),
-    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-    _top: S.optional(S.Number.pipe(T.Query("$top"))),
-    _skiptoken: S.optional(S.String.pipe(T.Query("$skiptoken"))),
+    managementGroupId: S.String.pipe(T.Label()),
+    groupQuotaName: S.String.pipe(T.Label()),
+    subscriptionId: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
-      method: "GET",
-      uri: "/{scope}/providers/Microsoft.Quota/quotaRequests",
+      method: "PATCH",
+      uri: "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupQuotaName}/subscriptions/{subscriptionId}",
       code: 200,
       apiVersion: "2025-09-01",
     }),
   ),
 ).annotate({
-  identifier: "QuotaRequestStatusListRequest",
-}) as any as S.Schema<QuotaRequestStatusListRequest>;
+  identifier: "UpdateGroupQuotaSubscriptionRequest",
+}) as any as S.Schema<UpdateGroupQuotaSubscriptionRequest>;
 
-/** List of quota requests with details. */
-export interface QuotaRequestDetails {
+export interface UpdateGroupQuotaSubscriptionResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -2420,44 +2491,132 @@ export interface QuotaRequestDetails {
   type?: string;
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
-  /** Quota request details. */
-  properties?: QuotaRequestProperties;
+  properties?: GroupQuotaSubscriptionIdProperties;
 }
-export const QuotaRequestDetails = /*@__PURE__*/ S.suspend(() =>
+export const UpdateGroupQuotaSubscriptionResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(GroupQuotaSubscriptionIdProperties),
+    }),
+).annotate({
+  identifier: "UpdateGroupQuotaSubscriptionResponse",
+}) as any as S.Schema<UpdateGroupQuotaSubscriptionResponse>;
+
+/** Subscription Quota details. */
+export interface SubscriptionQuotaDetailsInput {
+  /** The resource name, such as SKU name. */
+  resourceName?: string;
+  /** The total quota limit for the subscription. */
+  limit?: number;
+}
+export const SubscriptionQuotaDetailsInput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(QuotaRequestProperties),
+    resourceName: S.optional(S.String),
+    limit: S.optional(S.Number),
   }),
 ).annotate({
-  identifier: "QuotaRequestDetails",
-}) as any as S.Schema<QuotaRequestDetails>;
+  identifier: "SubscriptionQuotaDetailsInput",
+}) as any as S.Schema<SubscriptionQuotaDetailsInput>;
 
-/** The QuotaRequestDetails items on this page */
-export type QuotaRequestDetailsListValueList = Array<QuotaRequestDetails>;
-export const QuotaRequestDetailsListValueList = /*@__PURE__*/ S.Array(
-  QuotaRequestDetails,
-) as any as S.Schema<QuotaRequestDetailsListValueList>;
-
-/** Quota request information. */
-export interface QuotaRequestDetailsList {
-  /** The QuotaRequestDetails items on this page */
-  value: QuotaRequestDetailsListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
+/** Quota allocated to a subscription for the specific Resource Provider, Location, ResourceName. This will include the GroupQuota and total quota allocated to the subscription. Only the Group quota allocated to the subscription can be allocated back to the MG Group Quota. */
+export interface SubscriptionQuotaAllocationsInput {
+  /** Quota properties for the specified resource. */
+  properties?: SubscriptionQuotaDetailsInput;
 }
-export const QuotaRequestDetailsList = /*@__PURE__*/ S.suspend(() =>
+export const SubscriptionQuotaAllocationsInput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: QuotaRequestDetailsListValueList,
-    nextLink: S.optional(S.String),
+    properties: S.optional(SubscriptionQuotaDetailsInput),
   }),
 ).annotate({
-  identifier: "QuotaRequestDetailsList",
-}) as any as S.Schema<QuotaRequestDetailsList>;
+  identifier: "SubscriptionQuotaAllocationsInput",
+}) as any as S.Schema<SubscriptionQuotaAllocationsInput>;
 
-export interface QuotaUpdateRequest {
+/** Subscription quota list. */
+export type SubscriptionQuotaAllocationsListPropertiesInputValueList =
+  Array<SubscriptionQuotaAllocationsInput>;
+export const SubscriptionQuotaAllocationsListPropertiesInputValueList =
+  /*@__PURE__*/ S.Array(
+    SubscriptionQuotaAllocationsInput,
+  ) as any as S.Schema<SubscriptionQuotaAllocationsListPropertiesInputValueList>;
+
+export interface SubscriptionQuotaAllocationsListPropertiesInput {
+  /** Subscription quota list. */
+  value?: SubscriptionQuotaAllocationsListPropertiesInputValueList;
+}
+export const SubscriptionQuotaAllocationsListPropertiesInput =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      value: S.optional(
+        SubscriptionQuotaAllocationsListPropertiesInputValueList,
+      ),
+    }),
+  ).annotate({
+    identifier: "SubscriptionQuotaAllocationsListPropertiesInput",
+  }) as any as S.Schema<SubscriptionQuotaAllocationsListPropertiesInput>;
+
+export interface UpdateGroupQuotaSubscriptionAllocationRequestRequest {
+  /** The management group ID. */
+  managementGroupId: string;
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The GroupQuota name. The name should be unique for the provided context tenantId/MgId. */
+  groupQuotaName: string;
+  /** The resource provider name, such as - Microsoft.Compute. Currently only Microsoft.Compute resource provider supports this API. */
+  resourceProviderName: string;
+  /** The name of the Azure region. */
+  location: string;
+  properties?: SubscriptionQuotaAllocationsListPropertiesInput;
+}
+export const UpdateGroupQuotaSubscriptionAllocationRequestRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      managementGroupId: S.String.pipe(T.Label()),
+      subscriptionId: S.String.pipe(T.Label()),
+      groupQuotaName: S.String.pipe(T.Label()),
+      resourceProviderName: S.String.pipe(T.Label()),
+      location: S.String.pipe(T.Label()),
+      properties: S.optional(SubscriptionQuotaAllocationsListPropertiesInput),
+    }).pipe(
+      T.Http({
+        method: "PATCH",
+        uri: "/providers/Microsoft.Management/managementGroups/{managementGroupId}/subscriptions/{subscriptionId}/providers/Microsoft.Quota/groupQuotas/{groupQuotaName}/resourceProviders/{resourceProviderName}/quotaAllocations/{location}",
+        code: 200,
+        apiVersion: "2025-09-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "UpdateGroupQuotaSubscriptionAllocationRequestRequest",
+  }) as any as S.Schema<UpdateGroupQuotaSubscriptionAllocationRequestRequest>;
+
+export interface UpdateGroupQuotaSubscriptionAllocationRequestResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  properties?: SubscriptionQuotaAllocationsListProperties;
+}
+export const UpdateGroupQuotaSubscriptionAllocationRequestResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(SubscriptionQuotaAllocationsListProperties),
+    }),
+  ).annotate({
+    identifier: "UpdateGroupQuotaSubscriptionAllocationRequestResponse",
+  }) as any as S.Schema<UpdateGroupQuotaSubscriptionAllocationRequestResponse>;
+
+export interface UpdateQuotaRequest {
   /** The fully qualified Azure Resource manager identifier of the resource. */
   scope: string;
   /** Resource name for a given resource provider. For example: - SKU name for Microsoft.Compute - SKU or TotalLowPriorityCores for Microsoft.MachineLearningServices For Microsoft.Network PublicIPAddresses. */
@@ -2465,7 +2624,7 @@ export interface QuotaUpdateRequest {
   /** Quota properties for the specified resource, based on the API called, Quotas or Usages. */
   properties?: QuotaPropertiesInput;
 }
-export const QuotaUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateQuotaRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     scope: S.String.pipe(T.Label()),
     resourceName: S.String.pipe(T.Label()),
@@ -2479,10 +2638,10 @@ export const QuotaUpdateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "QuotaUpdateRequest",
-}) as any as S.Schema<QuotaUpdateRequest>;
+  identifier: "UpdateQuotaRequest",
+}) as any as S.Schema<UpdateQuotaRequest>;
 
-export interface QuotaUpdateResponse {
+export interface UpdateQuotaResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -2494,7 +2653,7 @@ export interface QuotaUpdateResponse {
   /** Quota properties for the specified resource, based on the API called, Quotas or Usages. */
   properties?: QuotaProperties;
 }
-export const QuotaUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateQuotaResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -2503,223 +2662,169 @@ export const QuotaUpdateResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(QuotaProperties),
   }),
 ).annotate({
-  identifier: "QuotaUpdateResponse",
-}) as any as S.Schema<QuotaUpdateResponse>;
+  identifier: "UpdateQuotaResponse",
+}) as any as S.Schema<UpdateQuotaResponse>;
 
-export interface UsagesGetRequest {
-  /** The fully qualified Azure Resource manager identifier of the resource. */
-  scope: string;
-  /** Resource name for a given resource provider. For example: - SKU name for Microsoft.Compute - SKU or TotalLowPriorityCores for Microsoft.MachineLearningServices For Microsoft.Network PublicIPAddresses. */
-  resourceName: string;
-}
-export const UsagesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    scope: S.String.pipe(T.Label()),
-    resourceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/{scope}/providers/Microsoft.Quota/usages/{resourceName}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "UsagesGetRequest",
-}) as any as S.Schema<UsagesGetRequest>;
-
-/** The quota or usages limit types. */
-export type UsagesTypes = "Individual" | "Combined";
-export const UsagesTypes = /*@__PURE__*/ S.String;
-
-/** The resource usages value. */
-export interface UsagesObject {
-  /** The usages value. */
-  value: number;
-  /** The quota or usages limit types. */
-  usagesType?: UsagesTypes;
-}
-export const UsagesObject = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.Number,
-    usagesType: S.optional(UsagesTypes),
-  }),
-).annotate({ identifier: "UsagesObject" }) as any as S.Schema<UsagesObject>;
-
-/** Usage properties for the specified resource. */
-export interface UsagesProperties {
-  /** The quota limit properties for this resource. */
-  usages?: UsagesObject;
-  /** The units for the quota usage, such as Count and Bytes. When requesting quota, use the **unit** value returned in the GET response in the request body of your PUT operation. */
-  unit?: string;
-  /** Resource name provided by the resource provider. Use this property name when requesting quota. */
-  name?: GroupQuotaDetailsName;
-  /** The name of the resource type. Optional field. */
-  resourceType?: string;
-  /** The time period for the summary of the quota usage values. For example: *P1D (per one day) *PT1M (per one minute) *PT1S (per one second). This parameter is optional because it is not relevant for all resources such as compute. */
-  quotaPeriod?: string;
-  /** States if quota can be requested for this resource. */
-  isQuotaApplicable?: boolean;
-  /** Additional properties for the specific resource provider. */
-  properties?: unknown;
-}
-export const UsagesProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    usages: S.optional(UsagesObject),
-    unit: S.optional(S.String),
-    name: S.optional(GroupQuotaDetailsName),
-    resourceType: S.optional(S.String),
-    quotaPeriod: S.optional(S.String),
-    isQuotaApplicable: S.optional(S.Boolean),
-    properties: S.optional(S.Unknown),
-  }),
-).annotate({
-  identifier: "UsagesProperties",
-}) as any as S.Schema<UsagesProperties>;
-
-export interface UsagesGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Usage properties for the specified resource. */
-  properties?: UsagesProperties;
-}
-export const UsagesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(UsagesProperties),
-  }),
-).annotate({
-  identifier: "UsagesGetResponse",
-}) as any as S.Schema<UsagesGetResponse>;
-
-export interface UsagesListRequest {
-  /** The fully qualified Azure Resource manager identifier of the resource. */
-  scope: string;
-}
-export const UsagesListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    scope: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/{scope}/providers/Microsoft.Quota/usages",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "UsagesListRequest",
-}) as any as S.Schema<UsagesListRequest>;
-
-/** Resource usage. */
-export interface CurrentUsagesBase {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Usage properties for the specified resource. */
-  properties?: UsagesProperties;
-}
-export const CurrentUsagesBase = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(UsagesProperties),
-  }),
-).annotate({
-  identifier: "CurrentUsagesBase",
-}) as any as S.Schema<CurrentUsagesBase>;
-
-/** The CurrentUsagesBase items on this page */
-export type UsagesLimitsValueList = Array<CurrentUsagesBase>;
-export const UsagesLimitsValueList = /*@__PURE__*/ S.Array(
-  CurrentUsagesBase,
-) as any as S.Schema<UsagesLimitsValueList>;
-
-/** Quota limits. */
-export interface UsagesLimits {
-  /** The CurrentUsagesBase items on this page */
-  value: UsagesLimitsValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const UsagesLimits = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: UsagesLimitsValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({ identifier: "UsagesLimits" }) as any as S.Schema<UsagesLimits>;
-
-export type GroupQuotaLimitsListError = AzureOpError;
-/** Gets the GroupQuotaLimits for the specified resource provider and location for resource names passed in $filter=resourceName eq {SKU}. */
-export const GroupQuotaLimitsList: API.OperationMethod<
-  GroupQuotaLimitsListRequest,
-  GroupQuotaLimitsListResponse,
-  GroupQuotaLimitsListError,
+export type DeleteGroupQuotasError = AzureOpError;
+/** Deletes the GroupQuotas for the name passed. All the remaining shareQuota in the GroupQuotas will be lost. */
+export const DeleteGroupQuotas: API.OperationMethod<
+  DeleteGroupQuotasRequest,
+  DeleteGroupQuotasResponse,
+  DeleteGroupQuotasError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GroupQuotaLimitsListRequest,
-  output: GroupQuotaLimitsListResponse,
+  input: DeleteGroupQuotasRequest,
+  output: DeleteGroupQuotasResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GroupQuotaLimitsRequestGetError = AzureOpError;
+export type DeleteGroupQuotaSubscriptionError = AzureOpError;
+/** Removes the subscription from GroupQuotas. The request's TenantId is validated against the subscription's TenantId. */
+export const DeleteGroupQuotaSubscription: API.OperationMethod<
+  DeleteGroupQuotaSubscriptionRequest,
+  DeleteGroupQuotaSubscriptionResponse,
+  DeleteGroupQuotaSubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteGroupQuotaSubscriptionRequest,
+  output: DeleteGroupQuotaSubscriptionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetGroupQuotaLimitsRequestError = AzureOpError;
 /** Get API to check the status of a GroupQuota request by requestId. */
-export const GroupQuotaLimitsRequestGet: API.OperationMethod<
-  GroupQuotaLimitsRequestGetRequest,
-  GroupQuotaLimitsRequestGetResponse,
-  GroupQuotaLimitsRequestGetError,
+export const GetGroupQuotaLimitsRequest: API.OperationMethod<
+  GetGroupQuotaLimitsRequestRequest,
+  GetGroupQuotaLimitsRequestResponse,
+  GetGroupQuotaLimitsRequestError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GroupQuotaLimitsRequestGetRequest,
-  output: GroupQuotaLimitsRequestGetResponse,
+  input: GetGroupQuotaLimitsRequestRequest,
+  output: GetGroupQuotaLimitsRequestResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GroupQuotaLimitsRequestListError = AzureOpError;
-/** Get API to check the status of a GroupQuota request by requestId. */
-export const GroupQuotaLimitsRequestList: API.OperationMethod<
-  GroupQuotaLimitsRequestListRequest,
-  SubmittedResourceRequestStatusList,
-  GroupQuotaLimitsRequestListError,
+export type GetGroupQuotaLocationSettingsError = AzureOpError;
+/** Gets the GroupQuotas enforcement settings for the ResourceProvider/location. The locations, where GroupQuota enforcement is not enabled will return Not Found. */
+export const GetGroupQuotaLocationSettings: API.OperationMethod<
+  GetGroupQuotaLocationSettingsRequest,
+  GetGroupQuotaLocationSettingsResponse,
+  GetGroupQuotaLocationSettingsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GroupQuotaLimitsRequestListRequest,
-  output: SubmittedResourceRequestStatusList,
+  input: GetGroupQuotaLocationSettingsRequest,
+  output: GetGroupQuotaLocationSettingsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GroupQuotaLimitsRequestUpdateError = AzureOpError;
-/** Create the GroupQuota requests for a specific ResourceProvider/Location/Resource. The resourceName properties are specified in the request body. Only 1 resource quota can be requested. Please note that patch request creates a new groupQuota request. Use the polling API - OperationsStatus URI specified in Azure-AsyncOperation header field, with retry-after duration in seconds to check the intermediate status. This API provides the finals status with the request details and status. */
-export const GroupQuotaLimitsRequestUpdate: API.OperationMethod<
-  GroupQuotaLimitsRequestUpdateRequest,
-  GroupQuotaLimitsRequestUpdateResponse,
-  GroupQuotaLimitsRequestUpdateError,
+export type GetGroupQuotasError = AzureOpError;
+/** Gets the GroupQuotas for the name passed. It will return the GroupQuotas properties only. The details on group quota can be access from the group quota APIs. */
+export const GetGroupQuotas: API.OperationMethod<
+  GetGroupQuotasRequest,
+  GetGroupQuotasResponse,
+  GetGroupQuotasError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GroupQuotaLimitsRequestUpdateRequest,
-  output: GroupQuotaLimitsRequestUpdateResponse,
+  input: GetGroupQuotasRequest,
+  output: GetGroupQuotasResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetGroupQuotaSubscriptionError = AzureOpError;
+/** Returns the subscriptionIds along with its provisioning state for being associated with the GroupQuota. If the subscription is not a member of GroupQuota, it will return 404, else 200. */
+export const GetGroupQuotaSubscription: API.OperationMethod<
+  GetGroupQuotaSubscriptionRequest2,
+  GetGroupQuotaSubscriptionResponse,
+  GetGroupQuotaSubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetGroupQuotaSubscriptionRequest2,
+  output: GetGroupQuotaSubscriptionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetGroupQuotaSubscriptionAllocationRequestError = AzureOpError;
+/** Get the quota allocation request status for the subscriptionId by allocationId. */
+export const GetGroupQuotaSubscriptionAllocationRequest: API.OperationMethod<
+  GetGroupQuotaSubscriptionAllocationRequestRequest,
+  GetGroupQuotaSubscriptionAllocationRequestResponse,
+  GetGroupQuotaSubscriptionAllocationRequestError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetGroupQuotaSubscriptionAllocationRequestRequest,
+  output: GetGroupQuotaSubscriptionAllocationRequestResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetGroupQuotaSubscriptionRequestError = AzureOpError;
+/** Get API to check the status of a subscriptionIds request by requestId. Use the polling API - OperationsStatus URI specified in Azure-AsyncOperation header field, with retry-after duration in seconds to check the intermediate status. This API provides the finals status with the request details and status. */
+export const GetGroupQuotaSubscriptionRequest: API.OperationMethod<
+  GetGroupQuotaSubscriptionRequestRequest,
+  GetGroupQuotaSubscriptionRequestResponse,
+  GetGroupQuotaSubscriptionRequestError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetGroupQuotaSubscriptionRequestRequest,
+  output: GetGroupQuotaSubscriptionRequestResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetQuotaError = AzureOpError;
+/** Get the quota limit of a resource. The response can be used to determine the remaining quota to calculate a new quota limit that can be submitted with a PUT request. */
+export const GetQuota: API.OperationMethod<
+  GetQuotaRequest,
+  GetQuotaResponse,
+  GetQuotaError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetQuotaRequest,
+  output: GetQuotaResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetQuotaRequestStatusError = AzureOpError;
+/** Get the quota request details and status by quota request ID for the resources of the resource provider at a specific location. The quota request ID **id** is returned in the response of the PUT operation. */
+export const GetQuotaRequestStatus: API.OperationMethod<
+  GetQuotaRequestStatusRequest,
+  GetQuotaRequestStatusResponse,
+  GetQuotaRequestStatusError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetQuotaRequestStatusRequest,
+  output: GetQuotaRequestStatusResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetUsageError = AzureOpError;
+/** Get the current usage of a resource. */
+export const GetUsage: API.OperationMethod<
+  GetUsageRequest,
+  GetUsageResponse,
+  GetUsageError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetUsageRequest,
+  output: GetUsageResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -2740,36 +2845,6 @@ export const GroupQuotaLocationSettingsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GroupQuotaLocationSettingsGetError = AzureOpError;
-/** Gets the GroupQuotas enforcement settings for the ResourceProvider/location. The locations, where GroupQuota enforcement is not enabled will return Not Found. */
-export const GroupQuotaLocationSettingsGet: API.OperationMethod<
-  GroupQuotaLocationSettingsGetRequest,
-  GroupQuotaLocationSettingsGetResponse,
-  GroupQuotaLocationSettingsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GroupQuotaLocationSettingsGetRequest,
-  output: GroupQuotaLocationSettingsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GroupQuotaLocationSettingsUpdateError = AzureOpError;
-/** Enables the GroupQuotas enforcement for the resource provider and the location specified. The resource provider will start using the group quotas as the overall quota for the subscriptions included in the GroupQuota. The subscriptions cannot request quota at subscription level since it is now part of an enforced group. The subscriptions share the GroupQuotaLimits assigned to the GroupQuota. If the GroupQuotaLimits is used, then submit a groupQuotaLimit request for the specific resource - provider/location/resource. Once the GroupQuota Enforcement is enabled then, it cannot be deleted or reverted back. To disable GroupQuota Enforcement - 1. Remove all the subscriptions from the groupQuota using the delete API for Subscriptions (Check the example - GroupQuotaSubscriptions_Delete). 2. Ten delete the GroupQuota (Check the example - GroupQuotas_Delete). */
-export const GroupQuotaLocationSettingsUpdate: API.OperationMethod<
-  GroupQuotaLocationSettingsUpdateRequest,
-  GroupQuotaLocationSettingsUpdateResponse,
-  GroupQuotaLocationSettingsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GroupQuotaLocationSettingsUpdateRequest,
-  output: GroupQuotaLocationSettingsUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type GroupQuotasCreateOrUpdateError = AzureOpError;
 /** Creates a new GroupQuota for the name passed. A RequestId will be returned by the Service. The status can be polled periodically. The status Async polling is using standards defined at - https://github.com/Azure/azure-resource-manager-rpc/blob/master/v1.0/async-api-reference.md#asynchronous-operations. Use the OperationsStatus URI provided in Azure-AsyncOperation header, the duration will be specified in retry-after header. Once the operation gets to terminal state - Succeeded | Failed, then the URI will change to Get URI and full details can be checked. */
 export const GroupQuotasCreateOrUpdate: API.OperationMethod<
@@ -2780,141 +2855,6 @@ export const GroupQuotasCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: GroupQuotasCreateOrUpdateRequest,
   output: GroupQuotasCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GroupQuotasDeleteError = AzureOpError;
-/** Deletes the GroupQuotas for the name passed. All the remaining shareQuota in the GroupQuotas will be lost. */
-export const GroupQuotasDelete: API.OperationMethod<
-  GroupQuotasDeleteRequest,
-  GroupQuotasDeleteResponse,
-  GroupQuotasDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GroupQuotasDeleteRequest,
-  output: GroupQuotasDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GroupQuotasGetError = AzureOpError;
-/** Gets the GroupQuotas for the name passed. It will return the GroupQuotas properties only. The details on group quota can be access from the group quota APIs. */
-export const GroupQuotasGet: API.OperationMethod<
-  GroupQuotasGetRequest,
-  GroupQuotasGetResponse,
-  GroupQuotasGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GroupQuotasGetRequest,
-  output: GroupQuotasGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GroupQuotasListError = AzureOpError;
-/** Lists GroupQuotas for the scope passed. It will return the GroupQuotas QuotaEntity properties only.The details on group quota can be access from the group quota APIs. */
-export const GroupQuotasList: API.OperationMethod<
-  GroupQuotasListRequest,
-  GroupQuotaList,
-  GroupQuotasListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GroupQuotasListRequest,
-  output: GroupQuotaList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GroupQuotaSubscriptionAllocationListError = AzureOpError;
-/** Gets all the quota allocated to a subscription for the specified resource provider and location for resource names passed in $filter=resourceName eq {SKU}. This will include the GroupQuota and total quota allocated to the subscription. Only the Group quota allocated to the subscription can be allocated back to the MG Group Quota. */
-export const GroupQuotaSubscriptionAllocationList: API.OperationMethod<
-  GroupQuotaSubscriptionAllocationListRequest,
-  GroupQuotaSubscriptionAllocationListResponse,
-  GroupQuotaSubscriptionAllocationListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GroupQuotaSubscriptionAllocationListRequest,
-  output: GroupQuotaSubscriptionAllocationListResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GroupQuotaSubscriptionAllocationRequestGetError = AzureOpError;
-/** Get the quota allocation request status for the subscriptionId by allocationId. */
-export const GroupQuotaSubscriptionAllocationRequestGet: API.OperationMethod<
-  GroupQuotaSubscriptionAllocationRequestGetRequest,
-  GroupQuotaSubscriptionAllocationRequestGetResponse,
-  GroupQuotaSubscriptionAllocationRequestGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GroupQuotaSubscriptionAllocationRequestGetRequest,
-  output: GroupQuotaSubscriptionAllocationRequestGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GroupQuotaSubscriptionAllocationRequestListError = AzureOpError;
-/** Get all the quotaAllocationRequests for a resourceProvider/location. The filter paramter for location is required. */
-export const GroupQuotaSubscriptionAllocationRequestList: API.OperationMethod<
-  GroupQuotaSubscriptionAllocationRequestListRequest,
-  QuotaAllocationRequestStatusList,
-  GroupQuotaSubscriptionAllocationRequestListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GroupQuotaSubscriptionAllocationRequestListRequest,
-  output: QuotaAllocationRequestStatusList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GroupQuotaSubscriptionAllocationRequestUpdateError = AzureOpError;
-/** Request to assign quota from group quota to a specific Subscription. The assign GroupQuota to subscriptions or reduce the quota allocated to subscription to give back the unused quota ( quota >= usages) to the groupQuota. So, this API can be used to assign Quota to subscriptions and assign back unused quota to group quota, which can be assigned to another subscriptions in the GroupQuota. User can collect unused quotas from multiple subscriptions within the groupQuota and assign the groupQuota to the subscription, where it's needed. */
-export const GroupQuotaSubscriptionAllocationRequestUpdate: API.OperationMethod<
-  GroupQuotaSubscriptionAllocationRequestUpdateRequest,
-  GroupQuotaSubscriptionAllocationRequestUpdateResponse,
-  GroupQuotaSubscriptionAllocationRequestUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GroupQuotaSubscriptionAllocationRequestUpdateRequest,
-  output: GroupQuotaSubscriptionAllocationRequestUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GroupQuotaSubscriptionRequestsGetError = AzureOpError;
-/** Get API to check the status of a subscriptionIds request by requestId. Use the polling API - OperationsStatus URI specified in Azure-AsyncOperation header field, with retry-after duration in seconds to check the intermediate status. This API provides the finals status with the request details and status. */
-export const GroupQuotaSubscriptionRequestsGet: API.OperationMethod<
-  GroupQuotaSubscriptionRequestsGetRequest,
-  GroupQuotaSubscriptionRequestsGetResponse,
-  GroupQuotaSubscriptionRequestsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GroupQuotaSubscriptionRequestsGetRequest,
-  output: GroupQuotaSubscriptionRequestsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GroupQuotaSubscriptionRequestsListError = AzureOpError;
-/** List API to check the status of a subscriptionId requests by requestId. Request history is maintained for 1 year. */
-export const GroupQuotaSubscriptionRequestsList: API.OperationMethod<
-  GroupQuotaSubscriptionRequestsListRequest,
-  GroupQuotaSubscriptionRequestStatusList,
-  GroupQuotaSubscriptionRequestsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GroupQuotaSubscriptionRequestsListRequest,
-  output: GroupQuotaSubscriptionRequestStatusList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -2935,91 +2875,181 @@ export const GroupQuotaSubscriptionsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GroupQuotaSubscriptionsDeleteError = AzureOpError;
-/** Removes the subscription from GroupQuotas. The request's TenantId is validated against the subscription's TenantId. */
-export const GroupQuotaSubscriptionsDelete: API.OperationMethod<
-  GroupQuotaSubscriptionsDeleteRequest,
-  GroupQuotaSubscriptionsDeleteResponse,
-  GroupQuotaSubscriptionsDeleteError,
+export type ListGroupQuotaLimitsError = AzureOpError;
+/** Gets the GroupQuotaLimits for the specified resource provider and location for resource names passed in $filter=resourceName eq {SKU}. */
+export const ListGroupQuotaLimits: API.OperationMethod<
+  ListGroupQuotaLimitsRequest,
+  ListGroupQuotaLimitsResponse,
+  ListGroupQuotaLimitsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GroupQuotaSubscriptionsDeleteRequest,
-  output: GroupQuotaSubscriptionsDeleteResponse,
+  input: ListGroupQuotaLimitsRequest,
+  output: ListGroupQuotaLimitsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GroupQuotaSubscriptionsGetError = AzureOpError;
-/** Returns the subscriptionIds along with its provisioning state for being associated with the GroupQuota. If the subscription is not a member of GroupQuota, it will return 404, else 200. */
-export const GroupQuotaSubscriptionsGet: API.OperationMethod<
-  GroupQuotaSubscriptionsGetRequest,
-  GroupQuotaSubscriptionsGetResponse,
-  GroupQuotaSubscriptionsGetError,
+export type ListGroupQuotaLimitsRequest2Error = AzureOpError;
+/** Get API to check the status of a GroupQuota request by requestId. */
+export const ListGroupQuotaLimitsRequest2: API.OperationMethod<
+  ListGroupQuotaLimitsRequestRequest,
+  SubmittedResourceRequestStatusList,
+  ListGroupQuotaLimitsRequest2Error,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GroupQuotaSubscriptionsGetRequest,
-  output: GroupQuotaSubscriptionsGetResponse,
+  input: ListGroupQuotaLimitsRequestRequest,
+  output: SubmittedResourceRequestStatusList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GroupQuotaSubscriptionsListError = AzureOpError;
+export type ListGroupQuotasError = AzureOpError;
+/** Lists GroupQuotas for the scope passed. It will return the GroupQuotas QuotaEntity properties only.The details on group quota can be access from the group quota APIs. */
+export const ListGroupQuotas: API.OperationMethod<
+  ListGroupQuotasRequest,
+  GroupQuotaList,
+  ListGroupQuotasError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListGroupQuotasRequest,
+  output: GroupQuotaList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListGroupQuotaSubscriptionAllocationError = AzureOpError;
+/** Gets all the quota allocated to a subscription for the specified resource provider and location for resource names passed in $filter=resourceName eq {SKU}. This will include the GroupQuota and total quota allocated to the subscription. Only the Group quota allocated to the subscription can be allocated back to the MG Group Quota. */
+export const ListGroupQuotaSubscriptionAllocation: API.OperationMethod<
+  ListGroupQuotaSubscriptionAllocationRequest2,
+  ListGroupQuotaSubscriptionAllocationResponse,
+  ListGroupQuotaSubscriptionAllocationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListGroupQuotaSubscriptionAllocationRequest2,
+  output: ListGroupQuotaSubscriptionAllocationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListGroupQuotaSubscriptionAllocationRequestError = AzureOpError;
+/** Get all the quotaAllocationRequests for a resourceProvider/location. The filter paramter for location is required. */
+export const ListGroupQuotaSubscriptionAllocationRequest: API.OperationMethod<
+  ListGroupQuotaSubscriptionAllocationRequestRequest,
+  QuotaAllocationRequestStatusList,
+  ListGroupQuotaSubscriptionAllocationRequestError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListGroupQuotaSubscriptionAllocationRequestRequest,
+  output: QuotaAllocationRequestStatusList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListGroupQuotaSubscriptionRequestsError = AzureOpError;
+/** List API to check the status of a subscriptionId requests by requestId. Request history is maintained for 1 year. */
+export const ListGroupQuotaSubscriptionRequests: API.OperationMethod<
+  ListGroupQuotaSubscriptionRequestsRequest,
+  GroupQuotaSubscriptionRequestStatusList,
+  ListGroupQuotaSubscriptionRequestsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListGroupQuotaSubscriptionRequestsRequest,
+  output: GroupQuotaSubscriptionRequestStatusList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListGroupQuotaSubscriptionsError = AzureOpError;
 /** Returns a list of the subscriptionIds associated with the GroupQuotas. */
-export const GroupQuotaSubscriptionsList: API.OperationMethod<
-  GroupQuotaSubscriptionsListRequest,
+export const ListGroupQuotaSubscriptions: API.OperationMethod<
+  ListGroupQuotaSubscriptionsRequest,
   GroupQuotaSubscriptionIdList,
-  GroupQuotaSubscriptionsListError,
+  ListGroupQuotaSubscriptionsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GroupQuotaSubscriptionsListRequest,
+  input: ListGroupQuotaSubscriptionsRequest,
   output: GroupQuotaSubscriptionIdList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GroupQuotaSubscriptionsUpdateError = AzureOpError;
-/** Updates the GroupQuotas with the subscription to add to the subscriptions list. The subscriptions will be validated if additionalAttributes are defined in the GroupQuota. The request's TenantId is validated against the subscription's TenantId. */
-export const GroupQuotaSubscriptionsUpdate: API.OperationMethod<
-  GroupQuotaSubscriptionsUpdateRequest,
-  GroupQuotaSubscriptionsUpdateResponse,
-  GroupQuotaSubscriptionsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GroupQuotaSubscriptionsUpdateRequest,
-  output: GroupQuotaSubscriptionsUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GroupQuotasUpdateError = AzureOpError;
-/** Updates the GroupQuotas for the name passed. A GroupQuotas RequestId will be returned by the Service. The status can be polled periodically. The status Async polling is using standards defined at - https://github.com/Azure/azure-resource-manager-rpc/blob/master/v1.0/async-api-reference.md#asynchronous-operations. Use the OperationsStatus URI provided in Azure-AsyncOperation header, the duration will be specified in retry-after header. Once the operation gets to terminal state - Succeeded | Failed, then the URI will change to Get URI and full details can be checked. Any change in the filters will be applicable to the future quota assignments, existing quota allocated to subscriptions from the GroupQuotas remains unchanged. */
-export const GroupQuotasUpdate: API.OperationMethod<
-  GroupQuotasUpdateRequest,
-  GroupQuotasUpdateResponse,
-  GroupQuotasUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GroupQuotasUpdateRequest,
-  output: GroupQuotasUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GroupQuotaUsagesListError = AzureOpError;
+export type ListGroupQuotaUsagesError = AzureOpError;
 /** Gets the GroupQuotas usages and limits(quota). Location is required paramter. */
-export const GroupQuotaUsagesList: API.OperationMethod<
-  GroupQuotaUsagesListRequest,
+export const ListGroupQuotaUsages: API.OperationMethod<
+  ListGroupQuotaUsagesRequest,
   ResourceUsageList,
-  GroupQuotaUsagesListError,
+  ListGroupQuotaUsagesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GroupQuotaUsagesListRequest,
+  input: ListGroupQuotaUsagesRequest,
   output: ResourceUsageList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListQuotaError = AzureOpError;
+/** Get a list of current quota limits of all resources for the specified scope. The response from this GET operation can be leveraged to submit requests to update a quota. */
+export const ListQuota: API.OperationMethod<
+  ListQuotaRequest,
+  QuotaLimits,
+  ListQuotaError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListQuotaRequest,
+  output: QuotaLimits,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListQuotaOperationError = AzureOpError;
+/** List the operations for the provider */
+export const ListQuotaOperation: API.OperationMethod<
+  ListQuotaOperationRequest,
+  OperationList,
+  ListQuotaOperationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListQuotaOperationRequest,
+  output: OperationList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListQuotaRequestStatusError = AzureOpError;
+/** For the specified scope, get the current quota requests for a one year period ending at the time is made. Use the **oData** filter to select quota requests. */
+export const ListQuotaRequestStatus: API.OperationMethod<
+  ListQuotaRequestStatusRequest,
+  QuotaRequestDetailsList,
+  ListQuotaRequestStatusError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListQuotaRequestStatusRequest,
+  output: QuotaRequestDetailsList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListUsagesError = AzureOpError;
+/** Get a list of current usage for all resources for the scope specified. */
+export const ListUsages: API.OperationMethod<
+  ListUsagesRequest,
+  UsagesLimits,
+  ListUsagesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListUsagesRequest,
+  output: UsagesLimits,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -3040,121 +3070,91 @@ export const QuotaCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type QuotaGetError = AzureOpError;
-/** Get the quota limit of a resource. The response can be used to determine the remaining quota to calculate a new quota limit that can be submitted with a PUT request. */
-export const QuotaGet: API.OperationMethod<
-  QuotaGetRequest,
-  QuotaGetResponse,
-  QuotaGetError,
+export type UpdateGroupQuotaLimitsRequestError = AzureOpError;
+/** Create the GroupQuota requests for a specific ResourceProvider/Location/Resource. The resourceName properties are specified in the request body. Only 1 resource quota can be requested. Please note that patch request creates a new groupQuota request. Use the polling API - OperationsStatus URI specified in Azure-AsyncOperation header field, with retry-after duration in seconds to check the intermediate status. This API provides the finals status with the request details and status. */
+export const UpdateGroupQuotaLimitsRequest: API.OperationMethod<
+  UpdateGroupQuotaLimitsRequestRequest,
+  UpdateGroupQuotaLimitsRequestResponse,
+  UpdateGroupQuotaLimitsRequestError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: QuotaGetRequest,
-  output: QuotaGetResponse,
+  input: UpdateGroupQuotaLimitsRequestRequest,
+  output: UpdateGroupQuotaLimitsRequestResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type QuotaListError = AzureOpError;
-/** Get a list of current quota limits of all resources for the specified scope. The response from this GET operation can be leveraged to submit requests to update a quota. */
-export const QuotaList: API.OperationMethod<
-  QuotaListRequest,
-  QuotaLimits,
-  QuotaListError,
+export type UpdateGroupQuotaLocationSettingsError = AzureOpError;
+/** Enables the GroupQuotas enforcement for the resource provider and the location specified. The resource provider will start using the group quotas as the overall quota for the subscriptions included in the GroupQuota. The subscriptions cannot request quota at subscription level since it is now part of an enforced group. The subscriptions share the GroupQuotaLimits assigned to the GroupQuota. If the GroupQuotaLimits is used, then submit a groupQuotaLimit request for the specific resource - provider/location/resource. Once the GroupQuota Enforcement is enabled then, it cannot be deleted or reverted back. To disable GroupQuota Enforcement - 1. Remove all the subscriptions from the groupQuota using the delete API for Subscriptions (Check the example - GroupQuotaSubscriptions_Delete). 2. Ten delete the GroupQuota (Check the example - GroupQuotas_Delete). */
+export const UpdateGroupQuotaLocationSettings: API.OperationMethod<
+  UpdateGroupQuotaLocationSettingsRequest,
+  UpdateGroupQuotaLocationSettingsResponse,
+  UpdateGroupQuotaLocationSettingsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: QuotaListRequest,
-  output: QuotaLimits,
+  input: UpdateGroupQuotaLocationSettingsRequest,
+  output: UpdateGroupQuotaLocationSettingsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type QuotaOperationListError = AzureOpError;
-/** List the operations for the provider */
-export const QuotaOperationList: API.OperationMethod<
-  QuotaOperationListRequest,
-  OperationList,
-  QuotaOperationListError,
+export type UpdateGroupQuotasError = AzureOpError;
+/** Updates the GroupQuotas for the name passed. A GroupQuotas RequestId will be returned by the Service. The status can be polled periodically. The status Async polling is using standards defined at - https://github.com/Azure/azure-resource-manager-rpc/blob/master/v1.0/async-api-reference.md#asynchronous-operations. Use the OperationsStatus URI provided in Azure-AsyncOperation header, the duration will be specified in retry-after header. Once the operation gets to terminal state - Succeeded | Failed, then the URI will change to Get URI and full details can be checked. Any change in the filters will be applicable to the future quota assignments, existing quota allocated to subscriptions from the GroupQuotas remains unchanged. */
+export const UpdateGroupQuotas: API.OperationMethod<
+  UpdateGroupQuotasRequest,
+  UpdateGroupQuotasResponse,
+  UpdateGroupQuotasError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: QuotaOperationListRequest,
-  output: OperationList,
+  input: UpdateGroupQuotasRequest,
+  output: UpdateGroupQuotasResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type QuotaRequestStatusGetError = AzureOpError;
-/** Get the quota request details and status by quota request ID for the resources of the resource provider at a specific location. The quota request ID **id** is returned in the response of the PUT operation. */
-export const QuotaRequestStatusGet: API.OperationMethod<
-  QuotaRequestStatusGetRequest,
-  QuotaRequestStatusGetResponse,
-  QuotaRequestStatusGetError,
+export type UpdateGroupQuotaSubscriptionError = AzureOpError;
+/** Updates the GroupQuotas with the subscription to add to the subscriptions list. The subscriptions will be validated if additionalAttributes are defined in the GroupQuota. The request's TenantId is validated against the subscription's TenantId. */
+export const UpdateGroupQuotaSubscription: API.OperationMethod<
+  UpdateGroupQuotaSubscriptionRequest,
+  UpdateGroupQuotaSubscriptionResponse,
+  UpdateGroupQuotaSubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: QuotaRequestStatusGetRequest,
-  output: QuotaRequestStatusGetResponse,
+  input: UpdateGroupQuotaSubscriptionRequest,
+  output: UpdateGroupQuotaSubscriptionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type QuotaRequestStatusListError = AzureOpError;
-/** For the specified scope, get the current quota requests for a one year period ending at the time is made. Use the **oData** filter to select quota requests. */
-export const QuotaRequestStatusList: API.OperationMethod<
-  QuotaRequestStatusListRequest,
-  QuotaRequestDetailsList,
-  QuotaRequestStatusListError,
+export type UpdateGroupQuotaSubscriptionAllocationRequestError = AzureOpError;
+/** Request to assign quota from group quota to a specific Subscription. The assign GroupQuota to subscriptions or reduce the quota allocated to subscription to give back the unused quota ( quota >= usages) to the groupQuota. So, this API can be used to assign Quota to subscriptions and assign back unused quota to group quota, which can be assigned to another subscriptions in the GroupQuota. User can collect unused quotas from multiple subscriptions within the groupQuota and assign the groupQuota to the subscription, where it's needed. */
+export const UpdateGroupQuotaSubscriptionAllocationRequest: API.OperationMethod<
+  UpdateGroupQuotaSubscriptionAllocationRequestRequest,
+  UpdateGroupQuotaSubscriptionAllocationRequestResponse,
+  UpdateGroupQuotaSubscriptionAllocationRequestError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: QuotaRequestStatusListRequest,
-  output: QuotaRequestDetailsList,
+  input: UpdateGroupQuotaSubscriptionAllocationRequestRequest,
+  output: UpdateGroupQuotaSubscriptionAllocationRequestResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type QuotaUpdateError = AzureOpError;
+export type UpdateQuotaError = AzureOpError;
 /** Update the quota limit for a specific resource to the specified value: 1. Use the Usages-GET and Quota-GET operations to determine the remaining quota for the specific resource and to calculate the new quota limit. These steps are detailed in [this example](https://techcommunity.microsoft.com/t5/azure-governance-and-management/using-the-new-quota-rest-api/ba-p/2183670). 2. Use this PUT operation to update the quota limit. Please check the URI in location header for the detailed status of the request. */
-export const QuotaUpdate: API.OperationMethod<
-  QuotaUpdateRequest,
-  QuotaUpdateResponse,
-  QuotaUpdateError,
+export const UpdateQuota: API.OperationMethod<
+  UpdateQuotaRequest,
+  UpdateQuotaResponse,
+  UpdateQuotaError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: QuotaUpdateRequest,
-  output: QuotaUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UsagesGetError = AzureOpError;
-/** Get the current usage of a resource. */
-export const UsagesGet: API.OperationMethod<
-  UsagesGetRequest,
-  UsagesGetResponse,
-  UsagesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UsagesGetRequest,
-  output: UsagesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UsagesListError = AzureOpError;
-/** Get a list of current usage for all resources for the scope specified. */
-export const UsagesList: API.OperationMethod<
-  UsagesListRequest,
-  UsagesLimits,
-  UsagesListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UsagesListRequest,
-  output: UsagesLimits,
+  input: UpdateQuotaRequest,
+  output: UpdateQuotaResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

@@ -1,12 +1,11 @@
 /**
  * The generic generator CLI harness (dev-time only).
  *
- * Owns the smithy-model pipeline every SDK package shares: scan the model
- * directory (plus optional hand-authored manual specs), apply the RFC-6902
- * patch chain (`patches/<resource>/*.json`, `*.manual.json` last; stale
- * targets warn, malformed patches fail the run), compile each model through
- * {@link generateService} with the provider's {@link SdkSpec}, write the
- * service modules and the namespaced barrel.
+ * Owns the smithy→SDK pipeline every SDK package shares: scan the model
+ * directory (plus optional hand-authored manual specs), compile each model
+ * through {@link generateService} with the provider's {@link SdkSpec}, write
+ * the service modules and the namespaced barrel. RFC-6902 patches apply in
+ * convert so `.generated-specs` is already the patched model.
  *
  * A provider's `scripts/generate.ts` is: trait consts + an SdkSpec + a
  * `runGeneratorCli` call.
@@ -17,11 +16,6 @@ import * as FileSystem from "effect/FileSystem";
 import * as Path from "effect/Path";
 import { Flag } from "effect/unstable/cli";
 import { Command } from "effect/unstable/cli";
-import {
-  applyOperation,
-  isStaleTargetError,
-  type PatchFile,
-} from "../json-patch.ts";
 import { barrel } from "./emit.ts";
 import { formatGenerated } from "./format.ts";
 import { generateService, type SdkSpec } from "./generator.ts";
@@ -85,13 +79,15 @@ export interface GeneratorCliOptions {
   readonly continueOnModelError?: boolean;
   /** Directory of hand-authored models merged after the generated ones. */
   readonly manualSpecsDir?: string;
-  /** RFC-6902 patch chain root. Default `patches`; `false` disables. */
-  readonly patchesDir?: string | false;
   /**
-   * Model transform applied AFTER the patch chain, before generation —
-   * for whole-model rewrites that must see post-patch shape names (e.g.
-   * cloudflare's scope-twin structural dedup). May mutate the model;
-   * a returned log line is printed.
+   * RFC-6902 patches apply in convert, never here. Only `false` is accepted
+   * so a string is a type error rather than a silently ignored setting.
+   */
+  readonly patchesDir?: false;
+  /**
+   * Model transform applied before generation (e.g. AWS dropping
+   * unreachable foreign-namespace shapes from a vendored model). Does not
+   * write back to `.generated-specs` — convert owns the committed model.
    */
   readonly transformModel?: (model: any, resource: string) => string | void;
   /** The provider spec — built per model (metadata may vary per model). */
@@ -168,28 +164,6 @@ export const runGeneratorCli = (options: GeneratorCliOptions): void => {
         const written: string[] = [];
         const failedModels: string[] = [];
         let totalOps = 0;
-        let totalPatches = 0;
-        let staleOps = 0;
-        const badPatches: string[] = [];
-
-        // Orphan check: a patch directory matching no smithy model would be
-        // silently dropped — flag it instead.
-        const patchRoot =
-          options.patchesDir === false
-            ? undefined
-            : path.join(root, options.patchesDir ?? "patches");
-        if (patchRoot && (yield* fs.exists(patchRoot))) {
-          const resources = new Set(
-            entries.map((e) => e.file.replace(/\.json$/, "")),
-          );
-          for (const dir of yield* fs.readDirectory(patchRoot)) {
-            if (!resources.has(dir)) {
-              yield* Console.warn(
-                `⚠️  patches/${dir}/ matches no smithy model — orphaned?`,
-              );
-            }
-          }
-        }
 
         for (const { file, dir } of entries) {
           const model = JSON.parse(
@@ -201,43 +175,6 @@ export const runGeneratorCli = (options: GeneratorCliOptions): void => {
             options.resourceName?.({ model, file }) ??
             file.replace(/\.json$/, "");
           if (config.resource && resource !== config.resource) continue;
-
-          // Apply the RFC-6902 patch chain before generating. Hand-written
-          // *.manual.json patches apply after the generated ones — they
-          // usually target post-rename shape names.
-          const patchDir = patchRoot && path.join(patchRoot, resource);
-          if (patchDir && (yield* fs.exists(patchDir))) {
-            const patchFiles = (yield* fs.readDirectory(patchDir))
-              .filter((f) => f.endsWith(".json"))
-              .sort(
-                (a, b) =>
-                  Number(a.endsWith(".manual.json")) -
-                    Number(b.endsWith(".manual.json")) || a.localeCompare(b),
-              );
-            for (const pf of patchFiles) {
-              const parsed = JSON.parse(
-                yield* fs.readFileString(path.join(patchDir, pf)),
-              ) as PatchFile;
-              for (const patchOp of parsed.patches ?? []) {
-                try {
-                  applyOperation(model, patchOp);
-                } catch (e) {
-                  const msg = e instanceof Error ? e.message : String(e);
-                  if (isStaleTargetError(msg)) {
-                    staleOps++;
-                    yield* Console.warn(
-                      `   ⚠️  stale: ${resource}/${pf} [${patchOp.op} ${patchOp.path}]`,
-                    );
-                  } else {
-                    badPatches.push(
-                      `${resource}/${pf} [${patchOp.op} ${patchOp.path}]: ${msg}`,
-                    );
-                  }
-                }
-              }
-              totalPatches++;
-            }
-          }
 
           if (options.transformModel) {
             const note = options.transformModel(model, resource);
@@ -265,17 +202,6 @@ export const runGeneratorCli = (options: GeneratorCliOptions): void => {
           yield* fs.writeFileString(path.join(outDir, `${resource}.ts`), code);
           written.push(resource);
           totalOps += operations;
-        }
-
-        if (badPatches.length) {
-          for (const b of badPatches) {
-            yield* Console.error(`❌ bad patch: ${b}`);
-          }
-          return yield* Effect.die(
-            new Error(
-              `${badPatches.length} malformed patch operation(s) — fix or remove them`,
-            ),
-          );
         }
 
         // Barrel — namespace per resource to avoid op-name collisions.
@@ -331,10 +257,7 @@ export const runGeneratorCli = (options: GeneratorCliOptions): void => {
         yield* (options.finalize ?? formatGenerated)(outDir);
 
         yield* Console.log(
-          `\n✅ Generated ${totalOps} operations across ${written.length} resource modules` +
-            (totalPatches
-              ? ` (${totalPatches} patch files applied${staleOps ? `, ${staleOps} stale op(s) skipped` : ""}).`
-              : "."),
+          `\n✅ Generated ${totalOps} operations across ${written.length} resource modules.`,
         );
         yield* Console.log(`   ${path.join(outDir, "index.ts")}`);
 

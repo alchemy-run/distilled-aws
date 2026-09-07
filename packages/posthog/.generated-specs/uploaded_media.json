@@ -14,10 +14,29 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.uploaded_media#UploadedMediaCreateRequest": {
+    "com.posthog.uploaded_media#ListUploadedMediaRequestPurpose": {
+      "type": "enum",
+      "members": {
+        "CANVAS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "canvas"
+          }
+        },
+        "EMAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "email"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.uploaded_media#ListUploadedMediaRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -27,13 +46,196 @@
             "smithy.api#required": {},
             "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
           }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        },
+        "purpose": {
+          "target": "com.posthog.uploaded_media#ListUploadedMediaRequestPurpose",
+          "traits": {
+            "smithy.api#httpQuery": "purpose",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The library to list."
+          }
         }
       },
       "traits": {
         "smithy.api#input": {}
       }
     },
-    "com.posthog.uploaded_media#UploadedMediaCreateResponseBodyMap": {
+    "com.posthog.uploaded_media#PaginatedUploadedMediaList": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.uploaded_media#PaginatedUploadedMediaListResultsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.uploaded_media#UploadedMedia2": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The file's original name.",
+            "smithy.api#required": {}
+          }
+        },
+        "purpose": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "content_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "size_bytes": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Permanent, public URL of the image. For emails, put this in an image block's values.src.url.",
+            "smithy.api#required": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.uploaded_media#PaginatedUploadedMediaListResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.uploaded_media#UploadedMedia2"
+      },
+      "traits": {}
+    },
+    "com.posthog.uploaded_media#ListUploadedMedia": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.uploaded_media#ListUploadedMediaRequest"
+      },
+      "output": {
+        "target": "com.posthog.uploaded_media#PaginatedUploadedMediaList"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.uploaded_media#BadRequest"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/uploaded_media/",
+          "code": 200
+        },
+        "smithy.api#documentation": "List images in the media library. Requires a `purpose` filter — the library is scoped per consumer (e.g. `email`), so browsing without one would mix in unrelated uploads (dashboard images, toolbar screenshots, ...)."
+      }
+    },
+    "com.posthog.uploaded_media#CreateUploadedMediaRequestPurpose": {
+      "type": "enum",
+      "members": {
+        "EMAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "email"
+          }
+        },
+        "CANVAS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "canvas"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Library to add this image to. Omit to upload without joining a library (as dashboard text cards and notebooks do)."
+      }
+    },
+    "com.posthog.uploaded_media#CreateUploadedMediaRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "image": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Image file. Must be under 4MB and a real, decodable image.",
+            "smithy.api#required": {}
+          }
+        },
+        "purpose": {
+          "target": "com.posthog.uploaded_media#CreateUploadedMediaRequestPurpose",
+          "traits": {
+            "smithy.api#documentation": "Library to add this image to. Omit to upload without joining a library (as dashboard text cards and notebooks do)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.uploaded_media#CreateUploadedMediaResponseBodyMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -43,11 +245,11 @@
       },
       "traits": {}
     },
-    "com.posthog.uploaded_media#UploadedMediaCreateResponse": {
+    "com.posthog.uploaded_media#CreateUploadedMediaResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.posthog.uploaded_media#UploadedMediaCreateResponseBodyMap",
+          "target": "com.posthog.uploaded_media#CreateUploadedMediaResponseBodyMap",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -58,13 +260,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.posthog.uploaded_media#UploadedMediaCreate": {
+    "com.posthog.uploaded_media#CreateUploadedMedia": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.uploaded_media#UploadedMediaCreateRequest"
+        "target": "com.posthog.uploaded_media#CreateUploadedMediaRequest"
       },
       "output": {
-        "target": "com.posthog.uploaded_media#UploadedMediaCreateResponse"
+        "target": "com.posthog.uploaded_media#CreateUploadedMediaResponse"
       },
       "errors": [
         {
@@ -78,9 +280,171 @@
         "smithy.api#http": {
           "method": "POST",
           "uri": "/api/projects/{project_id}/uploaded_media/",
+          "code": 200,
+          "contentType": "multipart"
+        },
+        "smithy.api#documentation": "When object storage is available this API allows upload of media which can be used, for example, in text cards on dashboards.\n\n    Uploaded media must be less than 4MB and decode as a PNG, JPEG, GIF, WebP, AVIF or BMP image — the formats\n    the download route will serve inline. Pass `purpose` to also add the image to a library, making it visible\n    to `GET ?purpose=...`.",
+        "com.distilled.openapi#contentType": "multipart"
+      }
+    },
+    "com.posthog.uploaded_media#UploadedMediaCompleteUploadCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this uploaded media."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.uploaded_media#UploadedMediaCompleteUploadCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.uploaded_media#UploadedMediaCompleteUploadCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.uploaded_media#UploadedMedia2"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.uploaded_media#BadRequest"
+        },
+        {
+          "target": "com.posthog.uploaded_media#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/uploaded_media/{id}/complete_upload/",
           "code": 200
         },
-        "smithy.api#documentation": "When object storage is available this API allows upload of media which can be used, for example, in text cards on dashboards.\n\n    Uploaded media must have a content type beginning with 'image/' and be less than 4MB."
+        "smithy.api#documentation": "Step 2 of the presigned upload flow: verifies the object POSTed to the upload_url, sniffs its real content type, and activates it — after this it appears in the library and is publicly servable."
+      }
+    },
+    "com.posthog.uploaded_media#UploadedMediaStartUploadCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The file's display name, e.g. 'logo.png'.",
+            "smithy.api#required": {}
+          }
+        },
+        "purpose": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Library to add this image to once uploaded, e.g. 'email'.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.uploaded_media#UploadedMediaUploadStarted": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Id of the pending upload — pass this to complete_upload.",
+            "smithy.api#required": {}
+          }
+        },
+        "upload_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "POST the image file here as multipart/form-data.",
+            "smithy.api#required": {}
+          }
+        },
+        "form_fields": {
+          "target": "com.posthog.uploaded_media#UploadedMediaUploadStartedFormFieldsMap",
+          "traits": {
+            "smithy.api#documentation": "Extra form fields to send alongside the file in the same POST.",
+            "smithy.api#required": {}
+          }
+        },
+        "expires_in": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Seconds before upload_url expires.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.uploaded_media#UploadedMediaUploadStartedFormFieldsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Extra form fields to send alongside the file in the same POST."
+      }
+    },
+    "com.posthog.uploaded_media#UploadedMediaStartUploadCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.uploaded_media#UploadedMediaStartUploadCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.uploaded_media#UploadedMediaUploadStarted"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.uploaded_media#BadRequest"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/uploaded_media/start_upload/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Step 1 of the presigned upload flow: reserves a pending image and returns a presigned URL to POST the file to directly, bytes never pass through this API. Call complete_upload with the returned id once the upload finishes."
+      }
+    },
+    "com.posthog.uploaded_media#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
       }
     },
     "com.posthog.uploaded_media#Forbidden": {
@@ -114,7 +478,16 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.uploaded_media#UploadedMediaCreate"
+          "target": "com.posthog.uploaded_media#ListUploadedMedia"
+        },
+        {
+          "target": "com.posthog.uploaded_media#CreateUploadedMedia"
+        },
+        {
+          "target": "com.posthog.uploaded_media#UploadedMediaCompleteUploadCreate"
+        },
+        {
+          "target": "com.posthog.uploaded_media#UploadedMediaStartUploadCreate"
         }
       ],
       "traits": {

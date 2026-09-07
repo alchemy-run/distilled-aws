@@ -11,7 +11,7 @@ import * as Retry from "../retry.ts";
 
 export type { PosthogOpError, PosthogOpContext };
 
-export interface TaskMentionsListRequest {
+export interface ListTaskMentionsRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** Maximum number of mentions to return (newest first). */
@@ -21,7 +21,7 @@ export interface TaskMentionsListRequest {
   /** Only return mentions created after this ISO 8601 timestamp. */
   since?: string;
 }
-export const TaskMentionsListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListTaskMentionsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     limit: S.optional(S.Number.pipe(T.Query())),
@@ -35,8 +35,8 @@ export const TaskMentionsListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "TaskMentionsListRequest",
-}) as any as S.Schema<TaskMentionsListRequest>;
+  identifier: "ListTaskMentionsRequest",
+}) as any as S.Schema<ListTaskMentionsRequest>;
 
 export type TaskUserBasicInfoHedgehogConfigMap = {
   [key: string]: unknown | undefined;
@@ -122,15 +122,15 @@ export const PaginatedTaskMentionDTOList = /*@__PURE__*/ S.suspend(() =>
   identifier: "PaginatedTaskMentionDTOList",
 }) as any as S.Schema<PaginatedTaskMentionDTOList>;
 
-export type TaskMentionsListError = PosthogOpError;
+export type ListTaskMentionsError = PosthogOpError;
 /** List mentions of the requester Thread messages that @-mention the requester, newest first, restricted to tasks they can see. */
-export const taskMentionsList: API.OperationMethod<
-  TaskMentionsListRequest,
+export const listTaskMentions: API.OperationMethod<
+  ListTaskMentionsRequest,
   PaginatedTaskMentionDTOList,
-  TaskMentionsListError,
+  ListTaskMentionsError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: TaskMentionsListRequest,
+  input: ListTaskMentionsRequest,
   output: PaginatedTaskMentionDTOList,
   errors: [],
   protocol: PosthogProtocol,

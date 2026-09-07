@@ -4,9 +4,100 @@
     "service": "biglake",
     "version": "v1",
     "title": "Lakehouse API",
-    "baseUrl": "https://biglake.googleapis.com/"
+    "baseUrl": "https://biglake.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
+    "com.gcp.biglake_v1#ListCatalogsResponse": {
+      "type": "structure",
+      "members": {
+        "catalogs": {
+          "target": "com.gcp.biglake_v1#CatalogList",
+          "traits": {
+            "smithy.api#documentation": "The catalogs from the specified project."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for the ListCatalogs method."
+      }
+    },
+    "com.gcp.biglake_v1#CatalogList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.biglake_v1#Catalog"
+      }
+    },
+    "com.gcp.biglake_v1#TestIamPermissionsResponse": {
+      "type": "structure",
+      "members": {
+        "permissions": {
+          "target": "com.gcp.biglake_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "A subset of `TestPermissionsRequest.permissions` that the caller is allowed."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for `TestIamPermissions` method."
+      }
+    },
+    "com.gcp.biglake_v1#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.biglake_v1#Policy": {
+      "type": "structure",
+      "members": {
+        "auditConfigs": {
+          "target": "com.gcp.biglake_v1#AuditConfigList",
+          "traits": {
+            "smithy.api#documentation": "Specifies cloud audit logging configuration for this policy."
+          }
+        },
+        "version": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "`etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy. **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost."
+          }
+        },
+        "bindings": {
+          "target": "com.gcp.biglake_v1#BindingList",
+          "traits": {
+            "smithy.api#documentation": "Associates a list of `members`, or principals, with a `role`. Optionally, may specify a `condition` that determines how and when the `bindings` are applied. Each of the `bindings` must contain at least one principal. The `bindings` in a `Policy` can refer to up to 1,500 principals; up to 250 of these principals can be Google groups. Each occurrence of a principal counts towards these limits. For example, if the `bindings` grant 50 different roles to `user:alice@example.com`, and not to any other principal, then you can add another 1,450 principals to the `bindings` in the `Policy`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/)."
+      }
+    },
+    "com.gcp.biglake_v1#AuditConfigList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.biglake_v1#AuditConfig"
+      }
+    },
+    "com.gcp.biglake_v1#BindingList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.biglake_v1#Binding"
+      }
+    },
     "com.gcp.biglake_v1#Binding": {
       "type": "structure",
       "members": {
@@ -33,25 +124,108 @@
         "smithy.api#documentation": "Associates `members`, or principals, with a `role`."
       }
     },
-    "com.gcp.biglake_v1#StringList": {
+    "com.gcp.biglake_v1#RenameTableRequest": {
+      "type": "structure",
+      "members": {
+        "newName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The new `name` for the specified table, must be in the same database. Format: projects/{project_id_or_number}/locations/{location_id}/catalogs/{catalog_id}/databases/{database_id}/tables/{table_id}"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request message for the RenameTable method in MetastoreService"
+      }
+    },
+    "com.gcp.biglake_v1#ListTablesResponse": {
+      "type": "structure",
+      "members": {
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages."
+          }
+        },
+        "tables": {
+          "target": "com.gcp.biglake_v1#TableList",
+          "traits": {
+            "smithy.api#documentation": "The tables from the specified database."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for the ListTables method."
+      }
+    },
+    "com.gcp.biglake_v1#TableList": {
       "type": "list",
       "member": {
-        "target": "smithy.api#String"
+        "target": "com.gcp.biglake_v1#Table"
+      }
+    },
+    "com.gcp.biglake_v1#AuditLogConfig": {
+      "type": "structure",
+      "members": {
+        "logType": {
+          "target": "com.gcp.biglake_v1#AuditLogConfigLogTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "The log type that this config enables."
+          }
+        },
+        "exemptedMembers": {
+          "target": "com.gcp.biglake_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Specifies the identities that do not cause logging for this type of permission. Follows the same format of Binding.members."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Provides the configuration for logging a type of permissions. Example: { \"audit_log_configs\": [ { \"log_type\": \"DATA_READ\", \"exempted_members\": [ \"user:jose@example.com\" ] }, { \"log_type\": \"DATA_WRITE\" } ] } This enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting jose@example.com from DATA_READ logging."
+      }
+    },
+    "com.gcp.biglake_v1#AuditLogConfigLogTypeEnum": {
+      "type": "enum",
+      "members": {
+        "LOG_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOG_TYPE_UNSPECIFIED"
+          }
+        },
+        "ADMIN_READ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ADMIN_READ"
+          }
+        },
+        "DATA_WRITE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_WRITE"
+          }
+        },
+        "DATA_READ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_READ"
+          }
+        }
       }
     },
     "com.gcp.biglake_v1#HiveDatabaseOptions": {
       "type": "structure",
       "members": {
-        "locationUri": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Cloud Storage folder URI where the database data is stored, starting with \"gs://\"."
-          }
-        },
         "parameters": {
           "target": "com.gcp.biglake_v1#StringMap",
           "traits": {
             "smithy.api#documentation": "Stores user supplied Hive database parameters."
+          }
+        },
+        "locationUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Cloud Storage folder URI where the database data is stored, starting with \"gs://\"."
           }
         }
       },
@@ -68,23 +242,145 @@
         "target": "smithy.api#String"
       }
     },
-    "com.gcp.biglake_v1#TestIamPermissionsResponse": {
+    "com.gcp.biglake_v1#StorageDescriptor": {
       "type": "structure",
       "members": {
-        "permissions": {
-          "target": "com.gcp.biglake_v1#StringList",
+        "inputFormat": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "A subset of `TestPermissionsRequest.permissions` that the caller is allowed."
+            "smithy.api#documentation": "The fully qualified Java class name of the input format."
+          }
+        },
+        "locationUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Cloud Storage folder URI where the table data is stored, starting with \"gs://\"."
+          }
+        },
+        "outputFormat": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The fully qualified Java class name of the output format."
+          }
+        },
+        "serdeInfo": {
+          "target": "com.gcp.biglake_v1#SerDeInfo",
+          "traits": {
+            "smithy.api#documentation": "Serializer and deserializer information."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Response message for `TestIamPermissions` method."
+        "smithy.api#documentation": "Stores physical storage information of the data."
+      }
+    },
+    "com.gcp.biglake_v1#Expr": {
+      "type": "structure",
+      "members": {
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. String indicating the location of the expression for error reporting, e.g. a file name and a position in the file."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI."
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression."
+          }
+        },
+        "expression": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Textual representation of an expression in Common Expression Language syntax."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: \"Summary size limit\" description: \"Determines if a summary is less than 100 chars\" expression: \"document.summary.size() < 100\" Example (Equality): title: \"Requestor is owner\" description: \"Determines if requestor is the document owner\" expression: \"document.owner == request.auth.claims.email\" Example (Logic): title: \"Public documents\" description: \"Determine whether the document should be publicly visible\" expression: \"document.type != 'private' && document.type != 'internal'\" Example (Data Manipulation): title: \"Notification string\" description: \"Create a notification string with a timestamp.\" expression: \"'New message received at ' + string(document.create_time)\" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information."
+      }
+    },
+    "com.gcp.biglake_v1#SetIamPolicyRequest": {
+      "type": "structure",
+      "members": {
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: `paths: \"bindings, etag\"`"
+          }
+        },
+        "policy": {
+          "target": "com.gcp.biglake_v1#Policy",
+          "traits": {
+            "smithy.api#documentation": "REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Google Cloud services (such as Projects) might reject them."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request message for `SetIamPolicy` method."
+      }
+    },
+    "com.gcp.biglake_v1#SerDeInfo": {
+      "type": "structure",
+      "members": {
+        "serializationLib": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The fully qualified Java class name of the serialization library."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Serializer and deserializer information."
+      }
+    },
+    "com.gcp.biglake_v1#HiveTableOptions": {
+      "type": "structure",
+      "members": {
+        "parameters": {
+          "target": "com.gcp.biglake_v1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Stores user supplied Hive table parameters."
+          }
+        },
+        "storageDescriptor": {
+          "target": "com.gcp.biglake_v1#StorageDescriptor",
+          "traits": {
+            "smithy.api#documentation": "Stores physical storage information of the data."
+          }
+        },
+        "tableType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Hive table type. For example, MANAGED_TABLE, EXTERNAL_TABLE."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Options of a Hive table."
       }
     },
     "com.gcp.biglake_v1#Database": {
       "type": "structure",
       "members": {
+        "expireTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time when this database is considered expired. Only set after the database is deleted."
+          }
+        },
+        "type": {
+          "target": "com.gcp.biglake_v1#DatabaseTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "The database type."
+          }
+        },
         "createTime": {
           "target": "smithy.api#String",
           "traits": {
@@ -103,22 +399,10 @@
             "smithy.api#documentation": "Output only. The deletion time of the database. Only set after the database is deleted."
           }
         },
-        "expireTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The time when this database is considered expired. Only set after the database is deleted."
-          }
-        },
         "name": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Output only. The resource name. Format: projects/{project_id_or_number}/locations/{location_id}/catalogs/{catalog_id}/databases/{database_id}"
-          }
-        },
-        "type": {
-          "target": "com.gcp.biglake_v1#DatabaseTypeEnum",
-          "traits": {
-            "smithy.api#documentation": "The database type."
           }
         },
         "updateTime": {
@@ -175,279 +459,77 @@
         "target": "com.gcp.biglake_v1#Database"
       }
     },
-    "com.gcp.biglake_v1#AuditLogConfig": {
+    "com.gcp.biglake_v1#Table": {
       "type": "structure",
       "members": {
-        "logType": {
-          "target": "com.gcp.biglake_v1#AuditLogConfigLogTypeEnum",
-          "traits": {
-            "smithy.api#documentation": "The log type that this config enables."
-          }
-        },
-        "exemptedMembers": {
-          "target": "com.gcp.biglake_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "Specifies the identities that do not cause logging for this type of permission. Follows the same format of Binding.members."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Provides the configuration for logging a type of permissions. Example: { \"audit_log_configs\": [ { \"log_type\": \"DATA_READ\", \"exempted_members\": [ \"user:jose@example.com\" ] }, { \"log_type\": \"DATA_WRITE\" } ] } This enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting jose@example.com from DATA_READ logging."
-      }
-    },
-    "com.gcp.biglake_v1#AuditLogConfigLogTypeEnum": {
-      "type": "enum",
-      "members": {
-        "LOG_TYPE_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "LOG_TYPE_UNSPECIFIED"
-          }
-        },
-        "ADMIN_READ": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "ADMIN_READ"
-          }
-        },
-        "DATA_WRITE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "DATA_WRITE"
-          }
-        },
-        "DATA_READ": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "DATA_READ"
-          }
-        }
-      }
-    },
-    "com.gcp.biglake_v1#Catalog": {
-      "type": "structure",
-      "members": {
-        "updateTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The last modification time of the catalog."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The resource name. Format: projects/{project_id_or_number}/locations/{location_id}/catalogs/{catalog_id}"
-          }
-        },
         "deleteTime": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Output only. The deletion time of the catalog. Only set after the catalog is deleted."
+            "smithy.api#documentation": "Output only. The deletion time of the table. Only set after the table is deleted."
+          }
+        },
+        "updateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The last modification time of the table."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The checksum of a table object computed by the server based on the value of other fields. It may be sent on update requests to ensure the client has an up-to-date value before proceeding. It is only checked for update table operations."
           }
         },
         "expireTime": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Output only. The time when this catalog is considered expired. Only set after the catalog is deleted."
+            "smithy.api#documentation": "Output only. The time when this table is considered expired. Only set after the table is deleted."
           }
         },
         "createTime": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Output only. The creation time of the catalog."
+            "smithy.api#documentation": "Output only. The creation time of the table."
+          }
+        },
+        "type": {
+          "target": "com.gcp.biglake_v1#TableTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "The table type."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The resource name. Format: projects/{project_id_or_number}/locations/{location_id}/catalogs/{catalog_id}/databases/{database_id}/tables/{table_id}"
+          }
+        },
+        "hiveOptions": {
+          "target": "com.gcp.biglake_v1#HiveTableOptions",
+          "traits": {
+            "smithy.api#documentation": "Options of a Hive table."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Catalog is the container of databases."
+        "smithy.api#documentation": "Represents a table."
       }
     },
-    "com.gcp.biglake_v1#SerDeInfo": {
-      "type": "structure",
+    "com.gcp.biglake_v1#TableTypeEnum": {
+      "type": "enum",
       "members": {
-        "serializationLib": {
-          "target": "smithy.api#String",
+        "TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#documentation": "The fully qualified Java class name of the serialization library."
+            "smithy.api#enumValue": "TYPE_UNSPECIFIED"
+          }
+        },
+        "HIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HIVE"
           }
         }
-      },
-      "traits": {
-        "smithy.api#documentation": "Serializer and deserializer information."
-      }
-    },
-    "com.gcp.biglake_v1#RenameTableRequest": {
-      "type": "structure",
-      "members": {
-        "newName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The new `name` for the specified table, must be in the same database. Format: projects/{project_id_or_number}/locations/{location_id}/catalogs/{catalog_id}/databases/{database_id}/tables/{table_id}"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Request message for the RenameTable method in MetastoreService"
-      }
-    },
-    "com.gcp.biglake_v1#ListTablesResponse": {
-      "type": "structure",
-      "members": {
-        "tables": {
-          "target": "com.gcp.biglake_v1#TableList",
-          "traits": {
-            "smithy.api#documentation": "The tables from the specified database."
-          }
-        },
-        "nextPageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Response message for the ListTables method."
-      }
-    },
-    "com.gcp.biglake_v1#TableList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.biglake_v1#Table"
-      }
-    },
-    "com.gcp.biglake_v1#HiveTableOptions": {
-      "type": "structure",
-      "members": {
-        "tableType": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Hive table type. For example, MANAGED_TABLE, EXTERNAL_TABLE."
-          }
-        },
-        "storageDescriptor": {
-          "target": "com.gcp.biglake_v1#StorageDescriptor",
-          "traits": {
-            "smithy.api#documentation": "Stores physical storage information of the data."
-          }
-        },
-        "parameters": {
-          "target": "com.gcp.biglake_v1#StringMap",
-          "traits": {
-            "smithy.api#documentation": "Stores user supplied Hive table parameters."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Options of a Hive table."
-      }
-    },
-    "com.gcp.biglake_v1#Expr": {
-      "type": "structure",
-      "members": {
-        "expression": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Textual representation of an expression in Common Expression Language syntax."
-          }
-        },
-        "location": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. String indicating the location of the expression for error reporting, e.g. a file name and a position in the file."
-          }
-        },
-        "title": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression."
-          }
-        },
-        "description": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: \"Summary size limit\" description: \"Determines if a summary is less than 100 chars\" expression: \"document.summary.size() < 100\" Example (Equality): title: \"Requestor is owner\" description: \"Determines if requestor is the document owner\" expression: \"document.owner == request.auth.claims.email\" Example (Logic): title: \"Public documents\" description: \"Determine whether the document should be publicly visible\" expression: \"document.type != 'private' && document.type != 'internal'\" Example (Data Manipulation): title: \"Notification string\" description: \"Create a notification string with a timestamp.\" expression: \"'New message received at ' + string(document.create_time)\" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information."
-      }
-    },
-    "com.gcp.biglake_v1#Policy": {
-      "type": "structure",
-      "members": {
-        "etag": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "`etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy. **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost."
-          }
-        },
-        "bindings": {
-          "target": "com.gcp.biglake_v1#BindingList",
-          "traits": {
-            "smithy.api#documentation": "Associates a list of `members`, or principals, with a `role`. Optionally, may specify a `condition` that determines how and when the `bindings` are applied. Each of the `bindings` must contain at least one principal. The `bindings` in a `Policy` can refer to up to 1,500 principals; up to 250 of these principals can be Google groups. Each occurrence of a principal counts towards these limits. For example, if the `bindings` grant 50 different roles to `user:alice@example.com`, and not to any other principal, then you can add another 1,450 principals to the `bindings` in the `Policy`."
-          }
-        },
-        "version": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
-          }
-        },
-        "auditConfigs": {
-          "target": "com.gcp.biglake_v1#AuditConfigList",
-          "traits": {
-            "smithy.api#documentation": "Specifies cloud audit logging configuration for this policy."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/)."
-      }
-    },
-    "com.gcp.biglake_v1#BindingList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.biglake_v1#Binding"
-      }
-    },
-    "com.gcp.biglake_v1#AuditConfigList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.biglake_v1#AuditConfig"
-      }
-    },
-    "com.gcp.biglake_v1#StorageDescriptor": {
-      "type": "structure",
-      "members": {
-        "inputFormat": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The fully qualified Java class name of the input format."
-          }
-        },
-        "serdeInfo": {
-          "target": "com.gcp.biglake_v1#SerDeInfo",
-          "traits": {
-            "smithy.api#documentation": "Serializer and deserializer information."
-          }
-        },
-        "outputFormat": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The fully qualified Java class name of the output format."
-          }
-        },
-        "locationUri": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Cloud Storage folder URI where the table data is stored, starting with \"gs://\"."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Stores physical storage information of the data."
       }
     },
     "com.gcp.biglake_v1#AuditConfig": {
@@ -476,103 +558,42 @@
         "target": "com.gcp.biglake_v1#AuditLogConfig"
       }
     },
-    "com.gcp.biglake_v1#Table": {
+    "com.gcp.biglake_v1#Catalog": {
       "type": "structure",
       "members": {
-        "updateTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The last modification time of the table."
-          }
-        },
         "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Output only. The resource name. Format: projects/{project_id_or_number}/locations/{location_id}/catalogs/{catalog_id}/databases/{database_id}/tables/{table_id}"
-          }
-        },
-        "type": {
-          "target": "com.gcp.biglake_v1#TableTypeEnum",
-          "traits": {
-            "smithy.api#documentation": "The table type."
-          }
-        },
-        "hiveOptions": {
-          "target": "com.gcp.biglake_v1#HiveTableOptions",
-          "traits": {
-            "smithy.api#documentation": "Options of a Hive table."
+            "smithy.api#documentation": "Output only. The resource name. Format: projects/{project_id_or_number}/locations/{location_id}/catalogs/{catalog_id}"
           }
         },
         "createTime": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Output only. The creation time of the table."
-          }
-        },
-        "etag": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The checksum of a table object computed by the server based on the value of other fields. It may be sent on update requests to ensure the client has an up-to-date value before proceeding. It is only checked for update table operations."
-          }
-        },
-        "deleteTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The deletion time of the table. Only set after the table is deleted."
+            "smithy.api#documentation": "Output only. The creation time of the catalog."
           }
         },
         "expireTime": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Output only. The time when this table is considered expired. Only set after the table is deleted."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Represents a table."
-      }
-    },
-    "com.gcp.biglake_v1#TableTypeEnum": {
-      "type": "enum",
-      "members": {
-        "TYPE_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "TYPE_UNSPECIFIED"
+            "smithy.api#documentation": "Output only. The time when this catalog is considered expired. Only set after the catalog is deleted."
           }
         },
-        "HIVE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "HIVE"
-          }
-        }
-      }
-    },
-    "com.gcp.biglake_v1#ListCatalogsResponse": {
-      "type": "structure",
-      "members": {
-        "nextPageToken": {
+        "updateTime": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages."
+            "smithy.api#documentation": "Output only. The last modification time of the catalog."
           }
         },
-        "catalogs": {
-          "target": "com.gcp.biglake_v1#CatalogList",
+        "deleteTime": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The catalogs from the specified project."
+            "smithy.api#documentation": "Output only. The deletion time of the catalog. Only set after the catalog is deleted."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Response message for the ListCatalogs method."
-      }
-    },
-    "com.gcp.biglake_v1#CatalogList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.biglake_v1#Catalog"
+        "smithy.api#documentation": "Catalog is the container of databases."
       }
     },
     "com.gcp.biglake_v1#TestIamPermissionsRequest": {
@@ -587,26 +608,6 @@
       },
       "traits": {
         "smithy.api#documentation": "Request message for `TestIamPermissions` method."
-      }
-    },
-    "com.gcp.biglake_v1#SetIamPolicyRequest": {
-      "type": "structure",
-      "members": {
-        "policy": {
-          "target": "com.gcp.biglake_v1#Policy",
-          "traits": {
-            "smithy.api#documentation": "REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Google Cloud services (such as Projects) might reject them."
-          }
-        },
-        "updateMask": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: `paths: \"bindings, etag\"`"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Request message for `SetIamPolicy` method."
       }
     },
     "com.gcp.biglake_v1#GetIamPolicyProjectsCatalogsRequest": {
@@ -679,19 +680,19 @@
         "smithy.api#documentation": "Gets the IAM policy for the specified Catalog."
       }
     },
-    "com.gcp.biglake_v1#TestIamPermissionsProjectsCatalogsRequest": {
+    "com.gcp.biglake_v1#SetIamPolicyProjectsCatalogsRequest": {
       "type": "structure",
       "members": {
         "resource": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+            "smithy.api#documentation": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
           }
         },
         "body": {
-          "target": "com.gcp.biglake_v1#TestIamPermissionsRequest",
+          "target": "com.gcp.biglake_v1#SetIamPolicyRequest",
           "traits": {
             "smithy.api#httpPayload": {},
             "smithy.api#documentation": "Request body"
@@ -725,6 +726,56 @@
         ]
       }
     },
+    "com.gcp.biglake_v1#SetIamPolicyProjectsCatalogs": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.biglake_v1#SetIamPolicyProjectsCatalogsRequest"
+      },
+      "output": {
+        "target": "com.gcp.biglake_v1#Policy"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.biglake_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.biglake_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.biglake_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.biglake_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+resource}:setIamPolicy"
+        },
+        "smithy.api#documentation": "Sets the IAM policy for the specified catalog."
+      }
+    },
+    "com.gcp.biglake_v1#TestIamPermissionsProjectsCatalogsRequest": {
+      "type": "structure",
+      "members": {
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.biglake_v1#TestIamPermissionsRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
     "com.gcp.biglake_v1#TestIamPermissionsProjectsCatalogs": {
       "type": "operation",
       "input": {
@@ -755,30 +806,30 @@
         "smithy.api#documentation": "Tests the IAM permissions for the specified catalog."
       }
     },
-    "com.gcp.biglake_v1#SetIamPolicyProjectsCatalogsRequest": {
+    "com.gcp.biglake_v1#GetIamPolicyProjectsCatalogsNamespacesRequest": {
       "type": "structure",
       "members": {
+        "options.requestedPolicyVersion": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
+            "smithy.api#httpQuery": "options.requestedPolicyVersion"
+          }
+        },
         "resource": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+            "smithy.api#documentation": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.biglake_v1#SetIamPolicyRequest",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
           }
         }
       }
     },
-    "com.gcp.biglake_v1#SetIamPolicyProjectsCatalogs": {
+    "com.gcp.biglake_v1#GetIamPolicyProjectsCatalogsNamespaces": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.biglake_v1#SetIamPolicyProjectsCatalogsRequest"
+        "target": "com.gcp.biglake_v1#GetIamPolicyProjectsCatalogsNamespacesRequest"
       },
       "output": {
         "target": "com.gcp.biglake_v1#Policy"
@@ -789,20 +840,14 @@
         },
         {
           "target": "com.gcp.biglake_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.biglake_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.biglake_v1#Conflict"
         }
       ],
       "traits": {
         "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1/{+resource}:setIamPolicy"
+          "method": "GET",
+          "uri": "v1/{+resource}:getIamPolicy"
         },
-        "smithy.api#documentation": "Sets the IAM policy for the specified catalog."
+        "smithy.api#documentation": "Gets the IAM policy for the specified Catalog."
       }
     },
     "com.gcp.biglake_v1#SetIamPolicyProjectsCatalogsNamespacesRequest": {
@@ -905,94 +950,6 @@
         "smithy.api#documentation": "Tests the IAM permissions for the specified namespace."
       }
     },
-    "com.gcp.biglake_v1#GetIamPolicyProjectsCatalogsNamespacesRequest": {
-      "type": "structure",
-      "members": {
-        "resource": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "options.requestedPolicyVersion": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
-            "smithy.api#httpQuery": "options.requestedPolicyVersion"
-          }
-        }
-      }
-    },
-    "com.gcp.biglake_v1#GetIamPolicyProjectsCatalogsNamespaces": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.biglake_v1#GetIamPolicyProjectsCatalogsNamespacesRequest"
-      },
-      "output": {
-        "target": "com.gcp.biglake_v1#Policy"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.biglake_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.biglake_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+resource}:getIamPolicy"
-        },
-        "smithy.api#documentation": "Gets the IAM policy for the specified Catalog."
-      }
-    },
-    "com.gcp.biglake_v1#GetIamPolicyProjectsCatalogsNamespacesTablesRequest": {
-      "type": "structure",
-      "members": {
-        "resource": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "options.requestedPolicyVersion": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
-            "smithy.api#httpQuery": "options.requestedPolicyVersion"
-          }
-        }
-      }
-    },
-    "com.gcp.biglake_v1#GetIamPolicyProjectsCatalogsNamespacesTables": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.biglake_v1#GetIamPolicyProjectsCatalogsNamespacesTablesRequest"
-      },
-      "output": {
-        "target": "com.gcp.biglake_v1#Policy"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.biglake_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.biglake_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+resource}:getIamPolicy"
-        },
-        "smithy.api#documentation": "Gets the IAM policy for the specified Catalog."
-      }
-    },
     "com.gcp.biglake_v1#TestIamPermissionsProjectsCatalogsNamespacesTablesRequest": {
       "type": "structure",
       "members": {
@@ -1041,6 +998,50 @@
           "uri": "v1/{+resource}:testIamPermissions"
         },
         "smithy.api#documentation": "Tests the IAM permissions for the specified table."
+      }
+    },
+    "com.gcp.biglake_v1#GetIamPolicyProjectsCatalogsNamespacesTablesRequest": {
+      "type": "structure",
+      "members": {
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "options.requestedPolicyVersion": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
+            "smithy.api#httpQuery": "options.requestedPolicyVersion"
+          }
+        }
+      }
+    },
+    "com.gcp.biglake_v1#GetIamPolicyProjectsCatalogsNamespacesTables": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.biglake_v1#GetIamPolicyProjectsCatalogsNamespacesTablesRequest"
+      },
+      "output": {
+        "target": "com.gcp.biglake_v1#Policy"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.biglake_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.biglake_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+resource}:getIamPolicy"
+        },
+        "smithy.api#documentation": "Gets the IAM policy for the specified Catalog."
       }
     },
     "com.gcp.biglake_v1#SetIamPolicyProjectsCatalogsNamespacesTablesRequest": {
@@ -1093,22 +1094,114 @@
         "smithy.api#documentation": "Sets the IAM policy for the specified catalog."
       }
     },
+    "com.gcp.biglake_v1#GetProjectsLocationsCatalogsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the catalog to retrieve. Format: projects/{project_id_or_number}/locations/{location_id}/catalogs/{catalog_id}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.biglake_v1#GetProjectsLocationsCatalogs": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.biglake_v1#GetProjectsLocationsCatalogsRequest"
+      },
+      "output": {
+        "target": "com.gcp.biglake_v1#Catalog"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.biglake_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.biglake_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Gets the catalog specified by the resource name."
+      }
+    },
+    "com.gcp.biglake_v1#ListProjectsLocationsCatalogsRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of catalogs to return. The service may return fewer than this value. If unspecified, at most 50 catalogs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent, which owns this collection of catalogs. Format: projects/{project_id_or_number}/locations/{location_id}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A page token, received from a previous `ListCatalogs` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListCatalogs` must match the call that provided the page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.biglake_v1#ListProjectsLocationsCatalogs": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.biglake_v1#ListProjectsLocationsCatalogsRequest"
+      },
+      "output": {
+        "target": "com.gcp.biglake_v1#ListCatalogsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.biglake_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.biglake_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/catalogs"
+        },
+        "smithy.api#documentation": "List all catalogs in a specified project.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
     "com.gcp.biglake_v1#CreateProjectsLocationsCatalogsRequest": {
       "type": "structure",
       "members": {
+        "catalogId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The ID to use for the catalog, which will become the final component of the catalog's resource name.",
+            "smithy.api#httpQuery": "catalogId"
+          }
+        },
         "parent": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Required. The parent resource where this catalog will be created. Format: projects/{project_id_or_number}/locations/{location_id}",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
-          }
-        },
-        "catalogId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The ID to use for the catalog, which will become the final component of the catalog's resource name.",
-            "smithy.api#httpQuery": "catalogId"
           }
         },
         "body": {
@@ -1193,155 +1286,6 @@
         "smithy.api#documentation": "Deletes an existing catalog specified by the catalog ID."
       }
     },
-    "com.gcp.biglake_v1#GetProjectsLocationsCatalogsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The name of the catalog to retrieve. Format: projects/{project_id_or_number}/locations/{location_id}/catalogs/{catalog_id}",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.biglake_v1#GetProjectsLocationsCatalogs": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.biglake_v1#GetProjectsLocationsCatalogsRequest"
-      },
-      "output": {
-        "target": "com.gcp.biglake_v1#Catalog"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.biglake_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.biglake_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Gets the catalog specified by the resource name."
-      }
-    },
-    "com.gcp.biglake_v1#ListProjectsLocationsCatalogsRequest": {
-      "type": "structure",
-      "members": {
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The maximum number of catalogs to return. The service may return fewer than this value. If unspecified, at most 50 catalogs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        },
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A page token, received from a previous `ListCatalogs` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListCatalogs` must match the call that provided the page token.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        },
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The parent, which owns this collection of catalogs. Format: projects/{project_id_or_number}/locations/{location_id}",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.biglake_v1#ListProjectsLocationsCatalogs": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.biglake_v1#ListProjectsLocationsCatalogsRequest"
-      },
-      "output": {
-        "target": "com.gcp.biglake_v1#ListCatalogsResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.biglake_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.biglake_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+parent}/catalogs"
-        },
-        "smithy.api#documentation": "List all catalogs in a specified project.",
-        "smithy.api#paginated": {
-          "inputToken": "pageToken",
-          "outputToken": "nextPageToken"
-        }
-      }
-    },
-    "com.gcp.biglake_v1#CreateProjectsLocationsCatalogsDatabasesRequest": {
-      "type": "structure",
-      "members": {
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The parent resource where this database will be created. Format: projects/{project_id_or_number}/locations/{location_id}/catalogs/{catalog_id}",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "databaseId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The ID to use for the database, which will become the final component of the database's resource name.",
-            "smithy.api#httpQuery": "databaseId"
-          }
-        },
-        "body": {
-          "target": "com.gcp.biglake_v1#Database",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.biglake_v1#CreateProjectsLocationsCatalogsDatabases": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.biglake_v1#CreateProjectsLocationsCatalogsDatabasesRequest"
-      },
-      "output": {
-        "target": "com.gcp.biglake_v1#Database"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.biglake_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.biglake_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.biglake_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.biglake_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1/{+parent}/databases"
-        },
-        "smithy.api#documentation": "Creates a new database."
-      }
-    },
     "com.gcp.biglake_v1#DeleteProjectsLocationsCatalogsDatabasesRequest": {
       "type": "structure",
       "members": {
@@ -1383,6 +1327,61 @@
           "uri": "v1/{+name}"
         },
         "smithy.api#documentation": "Deletes an existing database specified by the database ID."
+      }
+    },
+    "com.gcp.biglake_v1#ListProjectsLocationsCatalogsDatabasesRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent, which owns this collection of databases. Format: projects/{project_id_or_number}/locations/{location_id}/catalogs/{catalog_id}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of databases to return. The service may return fewer than this value. If unspecified, at most 50 databases will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A page token, received from a previous `ListDatabases` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListDatabases` must match the call that provided the page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.biglake_v1#ListProjectsLocationsCatalogsDatabases": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.biglake_v1#ListProjectsLocationsCatalogsDatabasesRequest"
+      },
+      "output": {
+        "target": "com.gcp.biglake_v1#ListDatabasesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.biglake_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.biglake_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/databases"
+        },
+        "smithy.api#documentation": "List all databases in a specified catalog.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
       }
     },
     "com.gcp.biglake_v1#PatchProjectsLocationsCatalogsDatabasesRequest": {
@@ -1442,61 +1441,6 @@
         "smithy.api#documentation": "Updates an existing database specified by the database ID."
       }
     },
-    "com.gcp.biglake_v1#ListProjectsLocationsCatalogsDatabasesRequest": {
-      "type": "structure",
-      "members": {
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A page token, received from a previous `ListDatabases` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListDatabases` must match the call that provided the page token.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        },
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The maximum number of databases to return. The service may return fewer than this value. If unspecified, at most 50 databases will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        },
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The parent, which owns this collection of databases. Format: projects/{project_id_or_number}/locations/{location_id}/catalogs/{catalog_id}",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.biglake_v1#ListProjectsLocationsCatalogsDatabases": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.biglake_v1#ListProjectsLocationsCatalogsDatabasesRequest"
-      },
-      "output": {
-        "target": "com.gcp.biglake_v1#ListDatabasesResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.biglake_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.biglake_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+parent}/databases"
-        },
-        "smithy.api#documentation": "List all databases in a specified catalog.",
-        "smithy.api#paginated": {
-          "inputToken": "pageToken",
-          "outputToken": "nextPageToken"
-        }
-      }
-    },
     "com.gcp.biglake_v1#GetProjectsLocationsCatalogsDatabasesRequest": {
       "type": "structure",
       "members": {
@@ -1534,26 +1478,40 @@
         "smithy.api#documentation": "Gets the database specified by the resource name."
       }
     },
-    "com.gcp.biglake_v1#GetProjectsLocationsCatalogsDatabasesTablesRequest": {
+    "com.gcp.biglake_v1#CreateProjectsLocationsCatalogsDatabasesRequest": {
       "type": "structure",
       "members": {
-        "name": {
+        "parent": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Required. The name of the table to retrieve. Format: projects/{project_id_or_number}/locations/{location_id}/catalogs/{catalog_id}/databases/{database_id}/tables/{table_id}",
+            "smithy.api#documentation": "Required. The parent resource where this database will be created. Format: projects/{project_id_or_number}/locations/{location_id}/catalogs/{catalog_id}",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
+          }
+        },
+        "databaseId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The ID to use for the database, which will become the final component of the database's resource name.",
+            "smithy.api#httpQuery": "databaseId"
+          }
+        },
+        "body": {
+          "target": "com.gcp.biglake_v1#Database",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
           }
         }
       }
     },
-    "com.gcp.biglake_v1#GetProjectsLocationsCatalogsDatabasesTables": {
+    "com.gcp.biglake_v1#CreateProjectsLocationsCatalogsDatabases": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.biglake_v1#GetProjectsLocationsCatalogsDatabasesTablesRequest"
+        "target": "com.gcp.biglake_v1#CreateProjectsLocationsCatalogsDatabasesRequest"
       },
       "output": {
-        "target": "com.gcp.biglake_v1#Table"
+        "target": "com.gcp.biglake_v1#Database"
       },
       "errors": [
         {
@@ -1561,14 +1519,20 @@
         },
         {
           "target": "com.gcp.biglake_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.biglake_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.biglake_v1#Conflict"
         }
       ],
       "traits": {
         "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+name}"
+          "method": "POST",
+          "uri": "v1/{+parent}/databases"
         },
-        "smithy.api#documentation": "Gets the table specified by the resource name."
+        "smithy.api#documentation": "Creates a new database."
       }
     },
     "com.gcp.biglake_v1#ListProjectsLocationsCatalogsDatabasesTablesViewEnum": {
@@ -1597,6 +1561,20 @@
     "com.gcp.biglake_v1#ListProjectsLocationsCatalogsDatabasesTablesRequest": {
       "type": "structure",
       "members": {
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A page token, received from a previous `ListTables` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListTables` must match the call that provided the page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of tables to return. The service may return fewer than this value. If unspecified, at most 50 tables will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
         "parent": {
           "target": "smithy.api#String",
           "traits": {
@@ -1610,20 +1588,6 @@
           "traits": {
             "smithy.api#documentation": "The view for the returned tables.",
             "smithy.api#httpQuery": "view"
-          }
-        },
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A page token, received from a previous `ListTables` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListTables` must match the call that provided the page token.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        },
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The maximum number of tables to return. The service may return fewer than this value. If unspecified, at most 50 tables will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
-            "smithy.api#httpQuery": "pageSize"
           }
         }
       }
@@ -1654,63 +1618,6 @@
           "inputToken": "pageToken",
           "outputToken": "nextPageToken"
         }
-      }
-    },
-    "com.gcp.biglake_v1#PatchProjectsLocationsCatalogsDatabasesTablesRequest": {
-      "type": "structure",
-      "members": {
-        "updateMask": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The list of fields to update. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask If not set, defaults to all of the fields that are allowed to update.",
-            "smithy.api#httpQuery": "updateMask"
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The resource name. Format: projects/{project_id_or_number}/locations/{location_id}/catalogs/{catalog_id}/databases/{database_id}/tables/{table_id}",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.biglake_v1#Table",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.biglake_v1#PatchProjectsLocationsCatalogsDatabasesTables": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.biglake_v1#PatchProjectsLocationsCatalogsDatabasesTablesRequest"
-      },
-      "output": {
-        "target": "com.gcp.biglake_v1#Table"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.biglake_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.biglake_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.biglake_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.biglake_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "PATCH",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Updates an existing table specified by the table ID."
       }
     },
     "com.gcp.biglake_v1#CreateProjectsLocationsCatalogsDatabasesTablesRequest": {
@@ -1770,49 +1677,6 @@
         "smithy.api#documentation": "Creates a new table."
       }
     },
-    "com.gcp.biglake_v1#DeleteProjectsLocationsCatalogsDatabasesTablesRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The name of the table to delete. Format: projects/{project_id_or_number}/locations/{location_id}/catalogs/{catalog_id}/databases/{database_id}/tables/{table_id}",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.biglake_v1#DeleteProjectsLocationsCatalogsDatabasesTables": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.biglake_v1#DeleteProjectsLocationsCatalogsDatabasesTablesRequest"
-      },
-      "output": {
-        "target": "com.gcp.biglake_v1#Table"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.biglake_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.biglake_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.biglake_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.biglake_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Deletes an existing table specified by the table ID."
-      }
-    },
     "com.gcp.biglake_v1#RenameProjectsLocationsCatalogsDatabasesTablesRequest": {
       "type": "structure",
       "members": {
@@ -1861,6 +1725,143 @@
           "uri": "v1/{+name}:rename"
         },
         "smithy.api#documentation": "Renames an existing table specified by the table ID."
+      }
+    },
+    "com.gcp.biglake_v1#GetProjectsLocationsCatalogsDatabasesTablesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the table to retrieve. Format: projects/{project_id_or_number}/locations/{location_id}/catalogs/{catalog_id}/databases/{database_id}/tables/{table_id}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.biglake_v1#GetProjectsLocationsCatalogsDatabasesTables": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.biglake_v1#GetProjectsLocationsCatalogsDatabasesTablesRequest"
+      },
+      "output": {
+        "target": "com.gcp.biglake_v1#Table"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.biglake_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.biglake_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Gets the table specified by the resource name."
+      }
+    },
+    "com.gcp.biglake_v1#PatchProjectsLocationsCatalogsDatabasesTablesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The resource name. Format: projects/{project_id_or_number}/locations/{location_id}/catalogs/{catalog_id}/databases/{database_id}/tables/{table_id}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The list of fields to update. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask If not set, defaults to all of the fields that are allowed to update.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "body": {
+          "target": "com.gcp.biglake_v1#Table",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.biglake_v1#PatchProjectsLocationsCatalogsDatabasesTables": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.biglake_v1#PatchProjectsLocationsCatalogsDatabasesTablesRequest"
+      },
+      "output": {
+        "target": "com.gcp.biglake_v1#Table"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.biglake_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.biglake_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.biglake_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.biglake_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Updates an existing table specified by the table ID."
+      }
+    },
+    "com.gcp.biglake_v1#DeleteProjectsLocationsCatalogsDatabasesTablesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the table to delete. Format: projects/{project_id_or_number}/locations/{location_id}/catalogs/{catalog_id}/databases/{database_id}/tables/{table_id}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.biglake_v1#DeleteProjectsLocationsCatalogsDatabasesTables": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.biglake_v1#DeleteProjectsLocationsCatalogsDatabasesTablesRequest"
+      },
+      "output": {
+        "target": "com.gcp.biglake_v1#Table"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.biglake_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.biglake_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.biglake_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.biglake_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Deletes an existing table specified by the table ID."
       }
     }
   }

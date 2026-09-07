@@ -14,7 +14,38 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "keyDictionary": {
+      "atBookmark": "at_bookmark",
+      "changedDb": "changed_db",
+      "createdAt": "created_at",
+      "currentBookmark": "current_bookmark",
+      "dumpOptions": "dump_options",
+      "fileSize": "file_size",
+      "finalBookmark": "final_bookmark",
+      "lastRowId": "last_row_id",
+      "noData": "no_data",
+      "noSchema": "no_schema",
+      "numQueries": "num_queries",
+      "numTables": "num_tables",
+      "outputFormat": "output_format",
+      "perPage": "per_page",
+      "previousBookmark": "previous_bookmark",
+      "primaryLocationHint": "primary_location_hint",
+      "readReplication": "read_replication",
+      "resultInfo": "result_info",
+      "rowsRead": "rows_read",
+      "rowsWritten": "rows_written",
+      "servedByColo": "served_by_colo",
+      "servedByPrimary": "served_by_primary",
+      "servedByRegion": "served_by_region",
+      "signedUrl": "signed_url",
+      "sizeAfter": "size_after",
+      "sqlDurationMs": "sql_duration_ms",
+      "totalCount": "total_count",
+      "uploadUrl": "upload_url"
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.d1#DatabaseCreateRequestJurisdiction": {
@@ -104,47 +135,6 @@
         }
       }
     },
-    "com.cloudflare.d1#DatabaseCreateRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Account identifier tag.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "D1 database name.",
-            "smithy.api#required": {}
-          }
-        },
-        "jurisdiction": {
-          "target": "com.cloudflare.d1#DatabaseCreateRequestJurisdiction",
-          "traits": {
-            "smithy.api#documentation": "Specify the location to restrict the D1 database to run and store data. If this option is present, the location hint is ignored."
-          }
-        },
-        "primary_location_hint": {
-          "target": "com.cloudflare.d1#DatabaseCreateRequestPrimaryLocationHint",
-          "traits": {
-            "smithy.api#documentation": "Specify the region to create the D1 primary, if available. If this option is omitted, the D1 will be created as close as possible to the current user."
-          }
-        },
-        "read_replication": {
-          "target": "com.cloudflare.d1#DatabaseCreateRequestReadReplication",
-          "traits": {
-            "smithy.api#documentation": "Configuration for D1 read replication."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.d1#DatabaseCreateResponseJurisdiction": {
       "type": "enum",
       "members": {
@@ -191,131 +181,6 @@
         }
       }
     },
-    "com.cloudflare.d1#DatabaseCreateResponse": {
-      "type": "structure",
-      "members": {
-        "created_at": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Specifies the timestamp the resource was created as an ISO8601 string."
-          }
-        },
-        "file_size": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The D1 database's size, in bytes."
-          }
-        },
-        "jurisdiction": {
-          "target": "com.cloudflare.d1#DatabaseCreateResponseJurisdiction",
-          "traits": {
-            "smithy.api#documentation": "Specify the location to restrict the D1 database to run and store data. If this option is present, the location hint is ignored."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "D1 database name."
-          }
-        },
-        "num_tables": {
-          "target": "smithy.api#Double"
-        },
-        "read_replication": {
-          "target": "com.cloudflare.d1#DatabaseCreateResponseReadReplication",
-          "traits": {
-            "smithy.api#documentation": "Configuration for D1 read replication."
-          }
-        },
-        "uuid": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "D1 database identifier (UUID)."
-          }
-        },
-        "version": {
-          "target": "smithy.api#String"
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.d1#DatabaseCreate": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.d1#DatabaseCreateRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.d1#DatabaseCreateResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "/accounts/{account_id}/d1/database",
-          "code": 200
-        },
-        "smithy.api#documentation": "Returns the created D1 database."
-      }
-    },
-    "com.cloudflare.d1#DatabaseDeleteRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Account identifier tag.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "database_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "D1 database identifier (UUID).",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.d1#DatabaseDeleteResponse": {
-      "type": "structure",
-      "members": {
-        "result": {
-          "target": "smithy.api#Document",
-          "traits": {
-            "com.cloudflare.protocols#envelopePayload": {},
-            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.d1#DatabaseDelete": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.d1#DatabaseDeleteRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.d1#DatabaseDeleteResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "/accounts/{account_id}/d1/database/{database_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Deletes the specified D1 database.",
-        "smithy.api#idempotent": {}
-      }
-    },
     "com.cloudflare.d1#DatabaseEditRequestReadReplicationMode": {
       "type": "enum",
       "members": {
@@ -343,36 +208,6 @@
             "smithy.api#required": {}
           }
         }
-      }
-    },
-    "com.cloudflare.d1#DatabaseEditRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Account identifier tag.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "database_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "D1 database identifier (UUID).",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "read_replication": {
-          "target": "com.cloudflare.d1#DatabaseEditRequestReadReplication",
-          "traits": {
-            "smithy.api#documentation": "Configuration for D1 read replication."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.d1#DatabaseEditResponseJurisdiction": {
@@ -421,74 +256,6 @@
         }
       }
     },
-    "com.cloudflare.d1#DatabaseEditResponse": {
-      "type": "structure",
-      "members": {
-        "created_at": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Specifies the timestamp the resource was created as an ISO8601 string."
-          }
-        },
-        "file_size": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The D1 database's size, in bytes."
-          }
-        },
-        "jurisdiction": {
-          "target": "com.cloudflare.d1#DatabaseEditResponseJurisdiction",
-          "traits": {
-            "smithy.api#documentation": "Specify the location to restrict the D1 database to run and store data. If this option is present, the location hint is ignored."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "D1 database name."
-          }
-        },
-        "num_tables": {
-          "target": "smithy.api#Double"
-        },
-        "read_replication": {
-          "target": "com.cloudflare.d1#DatabaseEditResponseReadReplication",
-          "traits": {
-            "smithy.api#documentation": "Configuration for D1 read replication."
-          }
-        },
-        "uuid": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "D1 database identifier (UUID)."
-          }
-        },
-        "version": {
-          "target": "smithy.api#String"
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.d1#DatabaseEdit": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.d1#DatabaseEditRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.d1#DatabaseEditResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "PATCH",
-          "uri": "/accounts/{account_id}/d1/database/{database_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Updates partially the specified D1 database."
-      }
-    },
     "com.cloudflare.d1#DatabaseExportRequestOutputFormat": {
       "type": "enum",
       "members": {
@@ -527,46 +294,6 @@
             "smithy.api#documentation": "Filter the export to just one or more tables. Passing an empty array is the same as not passing anything and means: export all tables."
           }
         }
-      }
-    },
-    "com.cloudflare.d1#DatabaseExportRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Account identifier tag.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "database_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "D1 database identifier (UUID).",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "output_format": {
-          "target": "com.cloudflare.d1#DatabaseExportRequestOutputFormat",
-          "traits": {
-            "smithy.api#documentation": "Specifies that you will poll this endpoint until the export completes",
-            "smithy.api#required": {}
-          }
-        },
-        "current_bookmark": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "To poll an in-progress export, provide the current bookmark (returned by your first polling response)"
-          }
-        },
-        "dump_options": {
-          "target": "com.cloudflare.d1#DatabaseExportRequestDumpOptions"
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.d1#DatabaseExportResponseMessagesList": {
@@ -618,65 +345,6 @@
             "smithy.api#enumValue": "export"
           }
         }
-      }
-    },
-    "com.cloudflare.d1#DatabaseExportResponse": {
-      "type": "structure",
-      "members": {
-        "at_bookmark": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The current time-travel bookmark for your D1, used to poll for updates. Will not change for the duration of the export task."
-          }
-        },
-        "error": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Only present when status = 'error'. Contains the error message."
-          }
-        },
-        "messages": {
-          "target": "com.cloudflare.d1#DatabaseExportResponseMessagesList",
-          "traits": {
-            "smithy.api#documentation": "Logs since the last time you polled"
-          }
-        },
-        "result": {
-          "target": "com.cloudflare.d1#DatabaseExportResponseResult",
-          "traits": {
-            "smithy.api#documentation": "Only present when status = 'complete'"
-          }
-        },
-        "status": {
-          "target": "com.cloudflare.d1#DatabaseExportResponseStatus"
-        },
-        "success": {
-          "target": "smithy.api#Boolean"
-        },
-        "type": {
-          "target": "com.cloudflare.d1#DatabaseExportResponseType"
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.d1#DatabaseExport": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.d1#DatabaseExportRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.d1#DatabaseExportResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "/accounts/{account_id}/d1/database/{database_id}/export",
-          "code": 200
-        },
-        "smithy.api#documentation": "Returns a URL where the SQL contents of your D1 can be downloaded. Note: this process may take some time for larger DBs, during which your D1 will be unavailable to serve queries. To avoid blocking your DB unnecessarily, an in-progress export must be continually polled or will automatically cancel."
       }
     },
     "com.cloudflare.d1#DatabaseGetRequestFields": {
@@ -744,37 +412,6 @@
         "target": "com.cloudflare.d1#DatabaseGetRequestFields"
       }
     },
-    "com.cloudflare.d1#DatabaseGetRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Account identifier tag.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "database_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "D1 database identifier (UUID).",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "fields": {
-          "target": "com.cloudflare.d1#DatabaseGetRequestFieldsList",
-          "traits": {
-            "smithy.api#documentation": "Comma-separated list of fields to include in the response. When omitted,",
-            "smithy.api#httpQuery": "fields"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.d1#DatabaseGetResponseJurisdiction": {
       "type": "enum",
       "members": {
@@ -821,75 +458,6 @@
         }
       }
     },
-    "com.cloudflare.d1#DatabaseGetResponse": {
-      "type": "structure",
-      "members": {
-        "created_at": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Specifies the timestamp the resource was created as an ISO8601 string."
-          }
-        },
-        "file_size": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The D1 database's size, in bytes."
-          }
-        },
-        "jurisdiction": {
-          "target": "com.cloudflare.d1#DatabaseGetResponseJurisdiction",
-          "traits": {
-            "smithy.api#documentation": "Specify the location to restrict the D1 database to run and store data. If this option is present, the location hint is ignored."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "D1 database name."
-          }
-        },
-        "num_tables": {
-          "target": "smithy.api#Double"
-        },
-        "read_replication": {
-          "target": "com.cloudflare.d1#DatabaseGetResponseReadReplication",
-          "traits": {
-            "smithy.api#documentation": "Configuration for D1 read replication."
-          }
-        },
-        "uuid": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "D1 database identifier (UUID)."
-          }
-        },
-        "version": {
-          "target": "smithy.api#String"
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.d1#DatabaseGet": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.d1#DatabaseGetRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.d1#DatabaseGetResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/accounts/{account_id}/d1/database/{database_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Returns the specified D1 database.",
-        "smithy.api#readonly": {}
-      }
-    },
     "com.cloudflare.d1#DatabaseImportRequestAction": {
       "type": "enum",
       "members": {
@@ -911,55 +479,6 @@
             "smithy.api#enumValue": "poll"
           }
         }
-      }
-    },
-    "com.cloudflare.d1#DatabaseImportRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Account identifier tag.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "database_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "D1 database identifier (UUID).",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "action": {
-          "target": "com.cloudflare.d1#DatabaseImportRequestAction",
-          "traits": {
-            "smithy.api#documentation": "Indicates you have a new SQL file to upload.",
-            "smithy.api#required": {}
-          }
-        },
-        "etag": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required when action is 'init' or 'ingest'. An md5 hash of the file you're uploading. Used to check if it already exists, and validate its contents before ingesting."
-          }
-        },
-        "filename": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The filename you have successfully uploaded."
-          }
-        },
-        "current_bookmark": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "This identifies the currently-running import, checking its status."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.d1#DatabaseImportResponseMessagesList": {
@@ -1139,114 +658,6 @@
         }
       }
     },
-    "com.cloudflare.d1#DatabaseImportResponse": {
-      "type": "structure",
-      "members": {
-        "at_bookmark": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The current time-travel bookmark for your D1, used to poll for updates. Will not change for the duration of the import. Only returned if an import process is currently running or recently finished."
-          }
-        },
-        "error": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Only present when status = 'error'. Contains the error message that prevented the import from succeeding."
-          }
-        },
-        "filename": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Derived from the database ID and etag, to use in avoiding repeated uploads. Only returned when for the 'init' action."
-          }
-        },
-        "messages": {
-          "target": "com.cloudflare.d1#DatabaseImportResponseMessagesList",
-          "traits": {
-            "smithy.api#documentation": "Logs since the last time you polled"
-          }
-        },
-        "result": {
-          "target": "com.cloudflare.d1#DatabaseImportResponseResult",
-          "traits": {
-            "smithy.api#documentation": "Only present when status = 'complete'"
-          }
-        },
-        "status": {
-          "target": "com.cloudflare.d1#DatabaseImportResponseStatus"
-        },
-        "success": {
-          "target": "smithy.api#Boolean"
-        },
-        "type": {
-          "target": "com.cloudflare.d1#DatabaseImportResponseType"
-        },
-        "upload_url": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The R2 presigned URL to use for uploading. Only returned when for the 'init' action."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.d1#DatabaseImport": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.d1#DatabaseImportRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.d1#DatabaseImportResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "/accounts/{account_id}/d1/database/{database_id}/import",
-          "code": 200
-        },
-        "smithy.api#documentation": "Generates a temporary URL for uploading an SQL file to, then instructing the D1 to import it and polling it for status updates. Imports block the D1 for their duration."
-      }
-    },
-    "com.cloudflare.d1#DatabaseListRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Account identifier tag.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "a database name to search for.",
-            "smithy.api#httpQuery": "name"
-          }
-        },
-        "page": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Page number of paginated results.",
-            "smithy.api#httpQuery": "page"
-          }
-        },
-        "per_page": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Number of items per page.",
-            "smithy.api#httpQuery": "per_page"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.d1#DatabaseListResultItemJurisdiction": {
       "type": "enum",
       "members": {
@@ -1302,49 +713,16 @@
         "target": "com.cloudflare.d1#DatabaseListResultItem"
       }
     },
-    "com.cloudflare.d1#DatabaseListResponse": {
-      "type": "structure",
-      "members": {
-        "result": {
-          "target": "com.cloudflare.d1#DatabaseListResultList",
-          "traits": {
-            "com.cloudflare.protocols#envelopePayload": {},
-            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.d1#DatabaseList": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.d1#DatabaseListRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.d1#DatabaseListResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/accounts/{account_id}/d1/database",
-          "code": 200
-        },
-        "smithy.api#documentation": "Returns a list of D1 databases.",
-        "smithy.api#readonly": {}
-      }
-    },
     "com.cloudflare.d1#DatabaseQueryRequestParamsList": {
       "type": "list",
       "member": {
-        "target": "smithy.api#String"
+        "target": "smithy.api#Document"
       }
     },
     "com.cloudflare.d1#DatabaseQueryRequestBatchItemParamsList": {
       "type": "list",
       "member": {
-        "target": "smithy.api#String"
+        "target": "smithy.api#Document"
       }
     },
     "com.cloudflare.d1#DatabaseQueryRequestBatchItem": {
@@ -1366,42 +744,6 @@
       "type": "list",
       "member": {
         "target": "com.cloudflare.d1#DatabaseQueryRequestBatchItem"
-      }
-    },
-    "com.cloudflare.d1#DatabaseQueryRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Account identifier tag.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "database_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "D1 database identifier (UUID).",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "sql": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Your SQL query. Supports multiple statements, joined by semicolons, which will be executed as a batch."
-          }
-        },
-        "params": {
-          "target": "com.cloudflare.d1#DatabaseQueryRequestParamsList"
-        },
-        "batch": {
-          "target": "com.cloudflare.d1#DatabaseQueryRequestBatchList"
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.d1#DatabaseQueryResultItemMetaServedByRegion": {
@@ -1553,48 +895,16 @@
         "target": "com.cloudflare.d1#DatabaseQueryResultItem"
       }
     },
-    "com.cloudflare.d1#DatabaseQueryResponse": {
-      "type": "structure",
-      "members": {
-        "result": {
-          "target": "com.cloudflare.d1#DatabaseQueryResultList",
-          "traits": {
-            "com.cloudflare.protocols#envelopePayload": {},
-            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.d1#DatabaseQuery": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.d1#DatabaseQueryRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.d1#DatabaseQueryResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "/accounts/{account_id}/d1/database/{database_id}/query",
-          "code": 200
-        },
-        "smithy.api#documentation": "Returns the query result as an object."
-      }
-    },
     "com.cloudflare.d1#DatabaseRawRequestParamsList": {
       "type": "list",
       "member": {
-        "target": "smithy.api#String"
+        "target": "smithy.api#Document"
       }
     },
     "com.cloudflare.d1#DatabaseRawRequestBatchItemParamsList": {
       "type": "list",
       "member": {
-        "target": "smithy.api#String"
+        "target": "smithy.api#Document"
       }
     },
     "com.cloudflare.d1#DatabaseRawRequestBatchItem": {
@@ -1616,42 +926,6 @@
       "type": "list",
       "member": {
         "target": "com.cloudflare.d1#DatabaseRawRequestBatchItem"
-      }
-    },
-    "com.cloudflare.d1#DatabaseRawRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Account identifier tag.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "database_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "D1 database identifier (UUID).",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "sql": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Your SQL query. Supports multiple statements, joined by semicolons, which will be executed as a batch."
-          }
-        },
-        "params": {
-          "target": "com.cloudflare.d1#DatabaseRawRequestParamsList"
-        },
-        "batch": {
-          "target": "com.cloudflare.d1#DatabaseRawRequestBatchList"
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.d1#DatabaseRawResultItemMetaServedByRegion": {
@@ -1820,38 +1094,6 @@
         "target": "com.cloudflare.d1#DatabaseRawResultItem"
       }
     },
-    "com.cloudflare.d1#DatabaseRawResponse": {
-      "type": "structure",
-      "members": {
-        "result": {
-          "target": "com.cloudflare.d1#DatabaseRawResultList",
-          "traits": {
-            "com.cloudflare.protocols#envelopePayload": {},
-            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.d1#DatabaseRaw": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.d1#DatabaseRawRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.d1#DatabaseRawResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "/accounts/{account_id}/d1/database/{database_id}/raw",
-          "code": 200
-        },
-        "smithy.api#documentation": "Returns the query result rows as arrays rather than objects. This is a performance-optimized version of the /query endpoint."
-      }
-    },
     "com.cloudflare.d1#DatabaseUpdateRequestReadReplicationMode": {
       "type": "enum",
       "members": {
@@ -1879,37 +1121,6 @@
             "smithy.api#required": {}
           }
         }
-      }
-    },
-    "com.cloudflare.d1#DatabaseUpdateRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Account identifier tag.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "database_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "D1 database identifier (UUID).",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "read_replication": {
-          "target": "com.cloudflare.d1#DatabaseUpdateRequestReadReplication",
-          "traits": {
-            "smithy.api#documentation": "Configuration for D1 read replication.",
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.d1#DatabaseUpdateResponseJurisdiction": {
@@ -1958,7 +1169,1323 @@
         }
       }
     },
-    "com.cloudflare.d1#DatabaseUpdateResponse": {
+    "com.cloudflare.d1#D1": {
+      "type": "service",
+      "version": "4.0",
+      "operations": [
+        {
+          "target": "com.cloudflare.d1#CreateDatabase"
+        },
+        {
+          "target": "com.cloudflare.d1#DeleteDatabase"
+        },
+        {
+          "target": "com.cloudflare.d1#ExportDatabase"
+        },
+        {
+          "target": "com.cloudflare.d1#GetBookmarkDatabaseTimeTravel"
+        },
+        {
+          "target": "com.cloudflare.d1#GetDatabase"
+        },
+        {
+          "target": "com.cloudflare.d1#ImportDatabase"
+        },
+        {
+          "target": "com.cloudflare.d1#ListDatabases"
+        },
+        {
+          "target": "com.cloudflare.d1#PatchDatabase"
+        },
+        {
+          "target": "com.cloudflare.d1#QueryDatabase"
+        },
+        {
+          "target": "com.cloudflare.d1#RawDatabase"
+        },
+        {
+          "target": "com.cloudflare.d1#RestoreDatabaseTimeTravel"
+        },
+        {
+          "target": "com.cloudflare.d1#UpdateDatabase"
+        }
+      ],
+      "traits": {
+        "com.cloudflare.protocols#v4Json": {},
+        "smithy.api#title": "Cloudflare D1",
+        "smithy.api#documentation": "Cloudflare API — d1 resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+      }
+    },
+    "com.cloudflare.d1#DatabaseAlreadyExists": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "code": 7502
+          }
+        ]
+      }
+    },
+    "com.cloudflare.d1#DatabaseNotFound": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "code": 7404
+          }
+        ]
+      }
+    },
+    "com.cloudflare.d1#InternalError": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "code": 7500
+          }
+        ]
+      }
+    },
+    "com.cloudflare.d1#InvalidObjectIdentifier": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "code": 7003
+          }
+        ]
+      }
+    },
+    "com.cloudflare.d1#InvalidProperty": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "code": 7400
+          }
+        ]
+      }
+    },
+    "com.cloudflare.d1#InvalidRequest": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "code": 7400
+          }
+        ]
+      }
+    },
+    "com.cloudflare.d1#NoHistoryAvailable": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "code": 7500
+          }
+        ]
+      }
+    },
+    "com.cloudflare.d1#TimestampTooOld": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "code": 7400
+          }
+        ]
+      }
+    },
+    "com.cloudflare.d1#UnknownError": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "code": 0
+          }
+        ]
+      }
+    },
+    "com.cloudflare.d1#CreateDatabase": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.d1#CreateDatabaseRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.d1#CreateDatabaseResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/d1/database",
+          "code": 200
+        },
+        "smithy.api#documentation": "Returns the created D1 database."
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.d1#InvalidObjectIdentifier"
+        },
+        {
+          "target": "com.cloudflare.d1#InvalidProperty"
+        },
+        {
+          "target": "com.cloudflare.d1#DatabaseAlreadyExists"
+        }
+      ]
+    },
+    "com.cloudflare.d1#CreateDatabaseRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier tag.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "D1 database name.",
+            "smithy.api#required": {}
+          }
+        },
+        "jurisdiction": {
+          "target": "com.cloudflare.d1#DatabaseCreateRequestJurisdiction",
+          "traits": {
+            "smithy.api#documentation": "Specify the location to restrict the D1 database to run and store data. If this option is present, the location hint is ignored."
+          }
+        },
+        "primary_location_hint": {
+          "target": "com.cloudflare.d1#DatabaseCreateRequestPrimaryLocationHint",
+          "traits": {
+            "smithy.api#documentation": "Specify the region to create the D1 primary, if available. If this option is omitted, the D1 will be created as close as possible to the current user."
+          }
+        },
+        "read_replication": {
+          "target": "com.cloudflare.d1#DatabaseCreateRequestReadReplication",
+          "traits": {
+            "smithy.api#documentation": "Configuration for D1 read replication."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.d1#CreateDatabaseResponse": {
+      "type": "structure",
+      "members": {
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the timestamp the resource was created as an ISO8601 string."
+          }
+        },
+        "file_size": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The D1 database's size, in bytes."
+          }
+        },
+        "jurisdiction": {
+          "target": "com.cloudflare.d1#DatabaseCreateResponseJurisdiction",
+          "traits": {
+            "smithy.api#documentation": "Specify the location to restrict the D1 database to run and store data. If this option is present, the location hint is ignored."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "D1 database name."
+          }
+        },
+        "num_tables": {
+          "target": "smithy.api#Double"
+        },
+        "read_replication": {
+          "target": "com.cloudflare.d1#DatabaseCreateResponseReadReplication",
+          "traits": {
+            "smithy.api#documentation": "Configuration for D1 read replication."
+          }
+        },
+        "uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "D1 database identifier (UUID)."
+          }
+        },
+        "version": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.d1#DeleteDatabase": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.d1#DeleteDatabaseRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.d1#DeleteDatabaseResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/accounts/{account_id}/d1/database/{database_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Deletes the specified D1 database.",
+        "smithy.api#idempotent": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.d1#InvalidObjectIdentifier"
+        },
+        {
+          "target": "com.cloudflare.d1#DatabaseNotFound"
+        },
+        {
+          "target": "com.cloudflare.d1#UnknownError"
+        }
+      ]
+    },
+    "com.cloudflare.d1#DeleteDatabaseRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier tag.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "database_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "D1 database identifier (UUID).",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.d1#DeleteDatabaseResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.d1#ExportDatabase": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.d1#ExportDatabaseRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.d1#ExportDatabaseResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/d1/database/{database_id}/export",
+          "code": 200
+        },
+        "smithy.api#documentation": "Returns a URL where the SQL contents of your D1 can be downloaded. Note: this process may take some time for larger DBs, during which your D1 will be unavailable to serve queries. To avoid blocking your DB unnecessarily, an in-progress export must be continually polled or will automatically cancel."
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.d1#InvalidObjectIdentifier"
+        },
+        {
+          "target": "com.cloudflare.d1#InvalidRequest"
+        },
+        {
+          "target": "com.cloudflare.d1#DatabaseNotFound"
+        }
+      ]
+    },
+    "com.cloudflare.d1#ExportDatabaseRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier tag.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "database_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "D1 database identifier (UUID).",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "output_format": {
+          "target": "com.cloudflare.d1#DatabaseExportRequestOutputFormat",
+          "traits": {
+            "smithy.api#documentation": "Specifies that you will poll this endpoint until the export completes",
+            "smithy.api#required": {}
+          }
+        },
+        "current_bookmark": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "To poll an in-progress export, provide the current bookmark (returned by your first polling response)"
+          }
+        },
+        "dump_options": {
+          "target": "com.cloudflare.d1#DatabaseExportRequestDumpOptions"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.d1#ExportDatabaseResponse": {
+      "type": "structure",
+      "members": {
+        "at_bookmark": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The current time-travel bookmark for your D1, used to poll for updates. Will not change for the duration of the export task."
+          }
+        },
+        "error": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Only present when status = 'error'. Contains the error message."
+          }
+        },
+        "messages": {
+          "target": "com.cloudflare.d1#DatabaseExportResponseMessagesList",
+          "traits": {
+            "smithy.api#documentation": "Logs since the last time you polled"
+          }
+        },
+        "result": {
+          "target": "com.cloudflare.d1#DatabaseExportResponseResult",
+          "traits": {
+            "smithy.api#documentation": "Only present when status = 'complete'"
+          }
+        },
+        "status": {
+          "target": "com.cloudflare.d1#DatabaseExportResponseStatus"
+        },
+        "success": {
+          "target": "smithy.api#Boolean"
+        },
+        "type": {
+          "target": "com.cloudflare.d1#DatabaseExportResponseType"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.d1#GetBookmarkDatabaseTimeTravel": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.d1#GetBookmarkDatabaseTimeTravelRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.d1#GetBookmarkDatabaseTimeTravelResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/d1/database/{database_id}/time_travel/bookmark",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieves the current bookmark, or the nearest bookmark at or before a provided timestamp. Bookmarks can be used with the restore endpoint to revert the database to a previous point in time.",
+        "smithy.api#readonly": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.d1#InvalidObjectIdentifier"
+        },
+        {
+          "target": "com.cloudflare.d1#NoHistoryAvailable"
+        },
+        {
+          "target": "com.cloudflare.d1#TimestampTooOld"
+        },
+        {
+          "target": "com.cloudflare.d1#DatabaseNotFound"
+        }
+      ]
+    },
+    "com.cloudflare.d1#GetBookmarkDatabaseTimeTravelRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier tag.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "database_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "D1 database identifier (UUID).",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "timestamp": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An optional ISO 8601 timestamp. If provided, returns the nearest available bookmark at or before this timestamp. If omitted, returns the current bookmark.",
+            "smithy.api#httpQuery": "timestamp"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.d1#GetBookmarkDatabaseTimeTravelResponse": {
+      "type": "structure",
+      "members": {
+        "bookmark": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A bookmark representing a specific state of the database at a specific point in time."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.d1#GetDatabase": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.d1#GetDatabaseRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.d1#GetDatabaseResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/d1/database/{database_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Returns the specified D1 database.",
+        "smithy.api#readonly": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.d1#InvalidObjectIdentifier"
+        },
+        {
+          "target": "com.cloudflare.d1#DatabaseNotFound"
+        },
+        {
+          "target": "com.cloudflare.d1#UnknownError"
+        }
+      ]
+    },
+    "com.cloudflare.d1#GetDatabaseRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier tag.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "database_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "D1 database identifier (UUID).",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "fields": {
+          "target": "com.cloudflare.d1#DatabaseGetRequestFieldsList",
+          "traits": {
+            "smithy.api#documentation": "Comma-separated list of fields to include in the response. When omitted,",
+            "smithy.api#httpQuery": "fields"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.d1#GetDatabaseResponse": {
+      "type": "structure",
+      "members": {
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the timestamp the resource was created as an ISO8601 string."
+          }
+        },
+        "file_size": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The D1 database's size, in bytes."
+          }
+        },
+        "jurisdiction": {
+          "target": "com.cloudflare.d1#DatabaseGetResponseJurisdiction",
+          "traits": {
+            "smithy.api#documentation": "Specify the location to restrict the D1 database to run and store data. If this option is present, the location hint is ignored."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "D1 database name."
+          }
+        },
+        "num_tables": {
+          "target": "smithy.api#Double"
+        },
+        "read_replication": {
+          "target": "com.cloudflare.d1#DatabaseGetResponseReadReplication",
+          "traits": {
+            "smithy.api#documentation": "Configuration for D1 read replication."
+          }
+        },
+        "uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "D1 database identifier (UUID)."
+          }
+        },
+        "version": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.d1#ImportDatabase": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.d1#ImportDatabaseRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.d1#ImportDatabaseResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/d1/database/{database_id}/import",
+          "code": 200
+        },
+        "smithy.api#documentation": "Generates a temporary URL for uploading an SQL file to, then instructing the D1 to import it and polling it for status updates. Imports block the D1 for their duration."
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.d1#InvalidObjectIdentifier"
+        }
+      ]
+    },
+    "com.cloudflare.d1#ImportDatabaseRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier tag.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "database_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "D1 database identifier (UUID).",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "action": {
+          "target": "com.cloudflare.d1#DatabaseImportRequestAction",
+          "traits": {
+            "smithy.api#documentation": "Indicates you have a new SQL file to upload.",
+            "smithy.api#required": {}
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required when action is 'init' or 'ingest'. An md5 hash of the file you're uploading. Used to check if it already exists, and validate its contents before ingesting."
+          }
+        },
+        "filename": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The filename you have successfully uploaded."
+          }
+        },
+        "current_bookmark": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This identifies the currently-running import, checking its status."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.d1#ImportDatabaseResponse": {
+      "type": "structure",
+      "members": {
+        "at_bookmark": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The current time-travel bookmark for your D1, used to poll for updates. Will not change for the duration of the import. Only returned if an import process is currently running or recently finished."
+          }
+        },
+        "error": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Only present when status = 'error'. Contains the error message that prevented the import from succeeding."
+          }
+        },
+        "filename": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Derived from the database ID and etag, to use in avoiding repeated uploads. Only returned when for the 'init' action."
+          }
+        },
+        "messages": {
+          "target": "com.cloudflare.d1#DatabaseImportResponseMessagesList",
+          "traits": {
+            "smithy.api#documentation": "Logs since the last time you polled"
+          }
+        },
+        "result": {
+          "target": "com.cloudflare.d1#DatabaseImportResponseResult",
+          "traits": {
+            "smithy.api#documentation": "Only present when status = 'complete'"
+          }
+        },
+        "status": {
+          "target": "com.cloudflare.d1#DatabaseImportResponseStatus"
+        },
+        "success": {
+          "target": "smithy.api#Boolean"
+        },
+        "type": {
+          "target": "com.cloudflare.d1#DatabaseImportResponseType"
+        },
+        "upload_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The R2 presigned URL to use for uploading. Only returned when for the 'init' action."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.d1#ListDatabases": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.d1#ListDatabasesRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.d1#ListDatabasesResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/d1/database",
+          "code": 200
+        },
+        "smithy.api#documentation": "Returns a list of D1 databases.",
+        "smithy.api#readonly": {},
+        "smithy.api#paginated": {
+          "mode": "page",
+          "inputToken": "page",
+          "outputToken": "resultInfo.page",
+          "items": "result",
+          "pageSize": "perPage"
+        }
+      }
+    },
+    "com.cloudflare.d1#ListDatabasesRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier tag.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "a database name to search for.",
+            "smithy.api#httpQuery": "name"
+          }
+        },
+        "page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Page number of paginated results.",
+            "smithy.api#httpQuery": "page"
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Number of items per page.",
+            "smithy.api#httpQuery": "per_page"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.d1#ListDatabasesResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.d1#DatabaseListResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.d1#PatchDatabase": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.d1#PatchDatabaseRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.d1#PatchDatabaseResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/accounts/{account_id}/d1/database/{database_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Updates partially the specified D1 database."
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.d1#InvalidObjectIdentifier"
+        },
+        {
+          "target": "com.cloudflare.d1#InternalError"
+        },
+        {
+          "target": "com.cloudflare.d1#DatabaseNotFound"
+        }
+      ]
+    },
+    "com.cloudflare.d1#PatchDatabaseRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier tag.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "database_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "D1 database identifier (UUID).",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "read_replication": {
+          "target": "com.cloudflare.d1#DatabaseEditRequestReadReplication",
+          "traits": {
+            "smithy.api#documentation": "Configuration for D1 read replication."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.d1#PatchDatabaseResponse": {
+      "type": "structure",
+      "members": {
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the timestamp the resource was created as an ISO8601 string."
+          }
+        },
+        "file_size": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The D1 database's size, in bytes."
+          }
+        },
+        "jurisdiction": {
+          "target": "com.cloudflare.d1#DatabaseEditResponseJurisdiction",
+          "traits": {
+            "smithy.api#documentation": "Specify the location to restrict the D1 database to run and store data. If this option is present, the location hint is ignored."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "D1 database name."
+          }
+        },
+        "num_tables": {
+          "target": "smithy.api#Double"
+        },
+        "read_replication": {
+          "target": "com.cloudflare.d1#DatabaseEditResponseReadReplication",
+          "traits": {
+            "smithy.api#documentation": "Configuration for D1 read replication."
+          }
+        },
+        "uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "D1 database identifier (UUID)."
+          }
+        },
+        "version": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.d1#QueryDatabase": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.d1#QueryDatabaseRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.d1#QueryDatabaseResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/d1/database/{database_id}/query",
+          "code": 200
+        },
+        "smithy.api#documentation": "Returns the query result as an object.",
+        "smithy.api#paginated": {
+          "mode": "single",
+          "items": "result"
+        }
+      }
+    },
+    "com.cloudflare.d1#QueryDatabaseRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier tag.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "database_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "D1 database identifier (UUID).",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "sql": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Your SQL query. Supports multiple statements, joined by semicolons, which will be executed as a batch."
+          }
+        },
+        "params": {
+          "target": "com.cloudflare.d1#DatabaseQueryRequestParamsList"
+        },
+        "batch": {
+          "target": "com.cloudflare.d1#DatabaseQueryRequestBatchList"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.d1#QueryDatabaseResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.d1#DatabaseQueryResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.d1#RawDatabase": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.d1#RawDatabaseRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.d1#RawDatabaseResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/d1/database/{database_id}/raw",
+          "code": 200
+        },
+        "smithy.api#documentation": "Returns the query result rows as arrays rather than objects. This is a performance-optimized version of the /query endpoint.",
+        "smithy.api#paginated": {
+          "mode": "single",
+          "items": "result"
+        }
+      }
+    },
+    "com.cloudflare.d1#RawDatabaseRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier tag.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "database_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "D1 database identifier (UUID).",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "sql": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Your SQL query. Supports multiple statements, joined by semicolons, which will be executed as a batch."
+          }
+        },
+        "params": {
+          "target": "com.cloudflare.d1#DatabaseRawRequestParamsList"
+        },
+        "batch": {
+          "target": "com.cloudflare.d1#DatabaseRawRequestBatchList"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.d1#RawDatabaseResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.d1#DatabaseRawResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.d1#RestoreDatabaseTimeTravel": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.d1#RestoreDatabaseTimeTravelRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.d1#RestoreDatabaseTimeTravelResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/d1/database/{database_id}/time_travel/restore",
+          "code": 200
+        },
+        "smithy.api#documentation": "Restores a D1 database to a previous point in time either via a bookmark or a timestamp."
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.d1#InvalidObjectIdentifier"
+        },
+        {
+          "target": "com.cloudflare.d1#NoHistoryAvailable"
+        },
+        {
+          "target": "com.cloudflare.d1#DatabaseNotFound"
+        },
+        {
+          "target": "com.cloudflare.d1#InvalidProperty"
+        }
+      ]
+    },
+    "com.cloudflare.d1#RestoreDatabaseTimeTravelRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier tag.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "database_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "D1 database identifier (UUID).",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "bookmark": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A bookmark to restore the database to. Required if `timestamp` is not provided.",
+            "smithy.api#httpQuery": "bookmark"
+          }
+        },
+        "timestamp": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An ISO 8601 timestamp to restore the database to. Required if `bookmark` is not provided.",
+            "smithy.api#httpQuery": "timestamp"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.d1#RestoreDatabaseTimeTravelResponse": {
+      "type": "structure",
+      "members": {
+        "bookmark": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The new bookmark representing the state of the database after the restore operation."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A message describing the result of the restore operation."
+          }
+        },
+        "previous_bookmark": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The bookmark representing the state of the database before the restore operation. Can be used to undo the restore if needed."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.d1#UpdateDatabase": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.d1#UpdateDatabaseRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.d1#UpdateDatabaseResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/accounts/{account_id}/d1/database/{database_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Updates the specified D1 database.",
+        "smithy.api#idempotent": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.d1#InvalidObjectIdentifier"
+        },
+        {
+          "target": "com.cloudflare.d1#InternalError"
+        },
+        {
+          "target": "com.cloudflare.d1#DatabaseNotFound"
+        }
+      ]
+    },
+    "com.cloudflare.d1#UpdateDatabaseRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier tag.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "database_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "D1 database identifier (UUID).",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "read_replication": {
+          "target": "com.cloudflare.d1#DatabaseUpdateRequestReadReplication",
+          "traits": {
+            "smithy.api#documentation": "Configuration for D1 read replication.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.d1#UpdateDatabaseResponse": {
       "type": "structure",
       "members": {
         "created_at": {
@@ -2007,217 +2534,6 @@
       "traits": {
         "smithy.api#output": {},
         "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.d1#DatabaseUpdate": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.d1#DatabaseUpdateRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.d1#DatabaseUpdateResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "PUT",
-          "uri": "/accounts/{account_id}/d1/database/{database_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Updates the specified D1 database.",
-        "smithy.api#idempotent": {}
-      }
-    },
-    "com.cloudflare.d1#DatabaseTimeTravelGetBookmarkRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Account identifier tag.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "database_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "D1 database identifier (UUID).",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "timestamp": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "An optional ISO 8601 timestamp. If provided, returns the nearest available bookmark at or before this timestamp. If omitted, returns the current bookmark.",
-            "smithy.api#httpQuery": "timestamp"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.d1#DatabaseTimeTravelGetBookmarkResponse": {
-      "type": "structure",
-      "members": {
-        "bookmark": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A bookmark representing a specific state of the database at a specific point in time."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.d1#DatabaseTimeTravelGetBookmark": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.d1#DatabaseTimeTravelGetBookmarkRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.d1#DatabaseTimeTravelGetBookmarkResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/accounts/{account_id}/d1/database/{database_id}/time_travel/bookmark",
-          "code": 200
-        },
-        "smithy.api#documentation": "Retrieves the current bookmark, or the nearest bookmark at or before a provided timestamp. Bookmarks can be used with the restore endpoint to revert the database to a previous point in time.",
-        "smithy.api#readonly": {}
-      }
-    },
-    "com.cloudflare.d1#DatabaseTimeTravelRestoreRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Account identifier tag.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "database_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "D1 database identifier (UUID).",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "bookmark": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A bookmark to restore the database to. Required if `timestamp` is not provided.",
-            "smithy.api#httpQuery": "bookmark"
-          }
-        },
-        "timestamp": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "An ISO 8601 timestamp to restore the database to. Required if `bookmark` is not provided.",
-            "smithy.api#httpQuery": "timestamp"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.d1#DatabaseTimeTravelRestoreResponse": {
-      "type": "structure",
-      "members": {
-        "bookmark": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The new bookmark representing the state of the database after the restore operation."
-          }
-        },
-        "message": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A message describing the result of the restore operation."
-          }
-        },
-        "previous_bookmark": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The bookmark representing the state of the database before the restore operation. Can be used to undo the restore if needed."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.d1#DatabaseTimeTravelRestore": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.d1#DatabaseTimeTravelRestoreRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.d1#DatabaseTimeTravelRestoreResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "/accounts/{account_id}/d1/database/{database_id}/time_travel/restore",
-          "code": 200
-        },
-        "smithy.api#documentation": "Restores a D1 database to a previous point in time either via a bookmark or a timestamp."
-      }
-    },
-    "com.cloudflare.d1#D1": {
-      "type": "service",
-      "version": "4.0",
-      "operations": [
-        {
-          "target": "com.cloudflare.d1#DatabaseCreate"
-        },
-        {
-          "target": "com.cloudflare.d1#DatabaseDelete"
-        },
-        {
-          "target": "com.cloudflare.d1#DatabaseEdit"
-        },
-        {
-          "target": "com.cloudflare.d1#DatabaseExport"
-        },
-        {
-          "target": "com.cloudflare.d1#DatabaseGet"
-        },
-        {
-          "target": "com.cloudflare.d1#DatabaseImport"
-        },
-        {
-          "target": "com.cloudflare.d1#DatabaseList"
-        },
-        {
-          "target": "com.cloudflare.d1#DatabaseQuery"
-        },
-        {
-          "target": "com.cloudflare.d1#DatabaseRaw"
-        },
-        {
-          "target": "com.cloudflare.d1#DatabaseUpdate"
-        },
-        {
-          "target": "com.cloudflare.d1#DatabaseTimeTravelGetBookmark"
-        },
-        {
-          "target": "com.cloudflare.d1#DatabaseTimeTravelRestore"
-        }
-      ],
-      "traits": {
-        "com.cloudflare.protocols#v4Json": {},
-        "smithy.api#title": "Cloudflare D1",
-        "smithy.api#documentation": "Cloudflare API — d1 resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
       }
     }
   }

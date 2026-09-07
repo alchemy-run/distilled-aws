@@ -12,7 +12,438 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
-export interface FeaturesDisableRequest {
+/** Properties for guest subscription. */
+export interface GuestSubscriptionPropertiesInput {}
+export const GuestSubscriptionPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "GuestSubscriptionPropertiesInput",
+}) as any as S.Schema<GuestSubscriptionPropertiesInput>;
+
+export interface CreateGuestSubscriptionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the Azure region. */
+  location: string;
+  /** The name of the GuestSubscription */
+  guestSubscriptionId: string;
+  /** The resource-specific properties for this resource. */
+  properties?: GuestSubscriptionPropertiesInput;
+}
+export const CreateGuestSubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    location: S.String.pipe(T.Label()),
+    guestSubscriptionId: S.String.pipe(T.Label()),
+    properties: S.optional(GuestSubscriptionPropertiesInput),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ComputeLimit/locations/{location}/guestSubscriptions/{guestSubscriptionId}",
+      code: 200,
+      apiVersion: "2026-07-31",
+    }),
+  ),
+).annotate({
+  identifier: "CreateGuestSubscriptionRequest",
+}) as any as S.Schema<CreateGuestSubscriptionRequest>;
+
+/** The type of identity that created the resource. */
+export type SystemDataCreatedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+
+/** The type of identity that last modified the resource. */
+export type SystemDataLastModifiedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+
+/** Metadata pertaining to creation and last modification of the resource. */
+export interface SystemData {
+  /** The identity that created the resource. */
+  createdBy?: string;
+  /** The type of identity that created the resource. */
+  createdByType?: SystemDataCreatedByType;
+  /** The timestamp of resource creation (UTC). */
+  createdAt?: string;
+  /** The identity that last modified the resource. */
+  lastModifiedBy?: string;
+  /** The type of identity that last modified the resource. */
+  lastModifiedByType?: SystemDataLastModifiedByType;
+  /** The timestamp of resource last modification (UTC) */
+  lastModifiedAt?: string;
+}
+export const SystemData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    createdBy: S.optional(S.String),
+    createdByType: S.optional(SystemDataCreatedByType),
+    createdAt: S.optional(S.String),
+    lastModifiedBy: S.optional(S.String),
+    lastModifiedByType: S.optional(SystemDataLastModifiedByType),
+    lastModifiedAt: S.optional(S.String),
+  }),
+).annotate({ identifier: "SystemData" }) as any as S.Schema<SystemData>;
+
+/** The provisioning state of a resource type. */
+export type AzureResourceManagerResourceProvisioningState =
+  | "Succeeded"
+  | "Failed"
+  | "Canceled";
+export const AzureResourceManagerResourceProvisioningState =
+  /*@__PURE__*/ S.String;
+
+/** Properties for guest subscription. */
+export interface GuestSubscriptionProperties {
+  /** The provisioning state of the resource. */
+  provisioningState?: AzureResourceManagerResourceProvisioningState;
+}
+export const GuestSubscriptionProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provisioningState: S.optional(
+      AzureResourceManagerResourceProvisioningState,
+    ),
+  }),
+).annotate({
+  identifier: "GuestSubscriptionProperties",
+}) as any as S.Schema<GuestSubscriptionProperties>;
+
+export interface CreateGuestSubscriptionResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: GuestSubscriptionProperties;
+}
+export const CreateGuestSubscriptionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(GuestSubscriptionProperties),
+  }),
+).annotate({
+  identifier: "CreateGuestSubscriptionResponse",
+}) as any as S.Schema<CreateGuestSubscriptionResponse>;
+
+/** Properties of the compute shared limit. */
+export type SharedLimitPropertiesInput = GuestSubscriptionPropertiesInput;
+export const SharedLimitPropertiesInput = GuestSubscriptionPropertiesInput;
+
+export interface CreateSharedLimitRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the Azure region. */
+  location: string;
+  /** The name of the SharedLimit */
+  name: string;
+  /** The resource-specific properties for this resource. */
+  properties?: GuestSubscriptionPropertiesInput;
+}
+export const CreateSharedLimitRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    location: S.String.pipe(T.Label()),
+    name: S.String.pipe(T.Label()),
+    properties: S.optional(GuestSubscriptionPropertiesInput),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ComputeLimit/locations/{location}/sharedLimits/{name}",
+      code: 200,
+      apiVersion: "2026-07-31",
+    }),
+  ),
+).annotate({
+  identifier: "CreateSharedLimitRequest",
+}) as any as S.Schema<CreateSharedLimitRequest>;
+
+/** Properties of the limit name. */
+export interface LimitName {
+  /** The limit name. */
+  value: string;
+  /** The localized limit name. */
+  localizedValue?: string;
+}
+export const LimitName = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.String,
+    localizedValue: S.optional(S.String),
+  }),
+).annotate({ identifier: "LimitName" }) as any as S.Schema<LimitName>;
+
+/** Properties of the compute shared limit. */
+export interface SharedLimitProperties {
+  /** The limit name properties. */
+  resourceName?: LimitName;
+  /** The maximum permitted usage of the resource. */
+  limit?: number;
+  /** The quota units, such as Count. */
+  unit?: string;
+  /** The provisioning state of the resource. */
+  provisioningState?: AzureResourceManagerResourceProvisioningState;
+}
+export const SharedLimitProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    resourceName: S.optional(LimitName),
+    limit: S.optional(S.Number),
+    unit: S.optional(S.String),
+    provisioningState: S.optional(
+      AzureResourceManagerResourceProvisioningState,
+    ),
+  }),
+).annotate({
+  identifier: "SharedLimitProperties",
+}) as any as S.Schema<SharedLimitProperties>;
+
+export interface CreateSharedLimitResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: SharedLimitProperties;
+}
+export const CreateSharedLimitResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(SharedLimitProperties),
+  }),
+).annotate({
+  identifier: "CreateSharedLimitResponse",
+}) as any as S.Schema<CreateSharedLimitResponse>;
+
+export interface CreateTrustedHostSubscriptionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the Azure region. */
+  location: string;
+  /** The name of the TrustedHostSubscription */
+  hostSubscriptionId: string;
+}
+export const CreateTrustedHostSubscriptionRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      location: S.String.pipe(T.Label()),
+      hostSubscriptionId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ComputeLimit/locations/{location}/trustedHostSubscriptions/{hostSubscriptionId}",
+        code: 200,
+        apiVersion: "2026-07-31",
+      }),
+    ),
+).annotate({
+  identifier: "CreateTrustedHostSubscriptionRequest",
+}) as any as S.Schema<CreateTrustedHostSubscriptionRequest>;
+
+export interface CreateTrustedHostSubscriptionResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+}
+export const CreateTrustedHostSubscriptionResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+    }),
+).annotate({
+  identifier: "CreateTrustedHostSubscriptionResponse",
+}) as any as S.Schema<CreateTrustedHostSubscriptionResponse>;
+
+export interface DeleteGuestSubscriptionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the Azure region. */
+  location: string;
+  /** The name of the GuestSubscription */
+  guestSubscriptionId: string;
+}
+export const DeleteGuestSubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    location: S.String.pipe(T.Label()),
+    guestSubscriptionId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ComputeLimit/locations/{location}/guestSubscriptions/{guestSubscriptionId}",
+      code: 200,
+      apiVersion: "2026-07-31",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteGuestSubscriptionRequest",
+}) as any as S.Schema<DeleteGuestSubscriptionRequest>;
+
+export interface DeleteGuestSubscriptionResponse {}
+export const DeleteGuestSubscriptionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteGuestSubscriptionResponse",
+}) as any as S.Schema<DeleteGuestSubscriptionResponse>;
+
+export interface DeleteMemberCapOverrideRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the Azure region. */
+  location: string;
+  /** The name of the SharedLimitCap */
+  vmFamilyName: string;
+  /** The name of the MemberCapOverride */
+  memberSubscriptionId: string;
+}
+export const DeleteMemberCapOverrideRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    location: S.String.pipe(T.Label()),
+    vmFamilyName: S.String.pipe(T.Label()),
+    memberSubscriptionId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ComputeLimit/locations/{location}/sharedLimitCaps/{vmFamilyName}/memberCapOverrides/{memberSubscriptionId}",
+      code: 200,
+      apiVersion: "2026-07-31",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteMemberCapOverrideRequest",
+}) as any as S.Schema<DeleteMemberCapOverrideRequest>;
+
+export interface DeleteMemberCapOverrideResponse {}
+export const DeleteMemberCapOverrideResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteMemberCapOverrideResponse",
+}) as any as S.Schema<DeleteMemberCapOverrideResponse>;
+
+export interface DeleteSharedLimitRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the Azure region. */
+  location: string;
+  /** The name of the SharedLimit */
+  name: string;
+}
+export const DeleteSharedLimitRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    location: S.String.pipe(T.Label()),
+    name: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ComputeLimit/locations/{location}/sharedLimits/{name}",
+      code: 200,
+      apiVersion: "2026-07-31",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteSharedLimitRequest",
+}) as any as S.Schema<DeleteSharedLimitRequest>;
+
+export interface DeleteSharedLimitResponse {}
+export const DeleteSharedLimitResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteSharedLimitResponse",
+}) as any as S.Schema<DeleteSharedLimitResponse>;
+
+export interface DeleteSharedLimitCapRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the Azure region. */
+  location: string;
+  /** The name of the SharedLimitCap */
+  vmFamilyName: string;
+}
+export const DeleteSharedLimitCapRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    location: S.String.pipe(T.Label()),
+    vmFamilyName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ComputeLimit/locations/{location}/sharedLimitCaps/{vmFamilyName}",
+      code: 200,
+      apiVersion: "2026-07-31",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteSharedLimitCapRequest",
+}) as any as S.Schema<DeleteSharedLimitCapRequest>;
+
+export interface DeleteSharedLimitCapResponse {}
+export const DeleteSharedLimitCapResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteSharedLimitCapResponse",
+}) as any as S.Schema<DeleteSharedLimitCapResponse>;
+
+export interface DeleteTrustedHostSubscriptionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the Azure region. */
+  location: string;
+  /** The name of the TrustedHostSubscription */
+  hostSubscriptionId: string;
+}
+export const DeleteTrustedHostSubscriptionRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      location: S.String.pipe(T.Label()),
+      hostSubscriptionId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ComputeLimit/locations/{location}/trustedHostSubscriptions/{hostSubscriptionId}",
+        code: 200,
+        apiVersion: "2026-07-31",
+      }),
+    ),
+).annotate({
+  identifier: "DeleteTrustedHostSubscriptionRequest",
+}) as any as S.Schema<DeleteTrustedHostSubscriptionRequest>;
+
+export interface DeleteTrustedHostSubscriptionResponse {}
+export const DeleteTrustedHostSubscriptionResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "DeleteTrustedHostSubscriptionResponse",
+}) as any as S.Schema<DeleteTrustedHostSubscriptionResponse>;
+
+export interface DisableFeatureRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the Azure region. */
@@ -20,7 +451,7 @@ export interface FeaturesDisableRequest {
   /** The name of the Feature */
   featureName: string;
 }
-export const FeaturesDisableRequest = /*@__PURE__*/ S.suspend(() =>
+export const DisableFeatureRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     location: S.String.pipe(T.Label()),
@@ -34,8 +465,8 @@ export const FeaturesDisableRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "FeaturesDisableRequest",
-}) as any as S.Schema<FeaturesDisableRequest>;
+  identifier: "DisableFeatureRequest",
+}) as any as S.Schema<DisableFeatureRequest>;
 
 /** The operations list. */
 export type OperationStatusResultOperationsList = Array<OperationStatusResult>;
@@ -132,13 +563,12 @@ export const OperationStatusResult = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<OperationStatusResult>;
 
 /** The operations list. */
-export type FeaturesDisableResponseOperationsList =
-  Array<OperationStatusResult>;
-export const FeaturesDisableResponseOperationsList = /*@__PURE__*/ S.Array(
+export type DisableFeatureResponseOperationsList = Array<OperationStatusResult>;
+export const DisableFeatureResponseOperationsList = /*@__PURE__*/ S.Array(
   OperationStatusResult,
-) as any as S.Schema<FeaturesDisableResponseOperationsList>;
+) as any as S.Schema<DisableFeatureResponseOperationsList>;
 
-export interface FeaturesDisableResponse {
+export interface DisableFeatureResponse {
   /** Fully qualified ID for the async operation. */
   id?: string;
   /** Fully qualified ID of the resource against which the original async operation was started. */
@@ -154,11 +584,11 @@ export interface FeaturesDisableResponse {
   /** The end time of the operation. */
   endTime?: string;
   /** The operations list. */
-  operations?: FeaturesDisableResponseOperationsList;
+  operations?: DisableFeatureResponseOperationsList;
   /** If present, details of the operation error. */
   error?: ErrorDetail;
 }
-export const FeaturesDisableResponse = /*@__PURE__*/ S.suspend(() =>
+export const DisableFeatureResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     resourceId: S.optional(S.String),
@@ -167,14 +597,14 @@ export const FeaturesDisableResponse = /*@__PURE__*/ S.suspend(() =>
     percentComplete: S.optional(S.Number),
     startTime: S.optional(S.String),
     endTime: S.optional(S.String),
-    operations: S.optional(FeaturesDisableResponseOperationsList),
+    operations: S.optional(DisableFeatureResponseOperationsList),
     error: S.optional(ErrorDetail),
   }),
 ).annotate({
-  identifier: "FeaturesDisableResponse",
-}) as any as S.Schema<FeaturesDisableResponse>;
+  identifier: "DisableFeatureResponse",
+}) as any as S.Schema<DisableFeatureResponse>;
 
-export interface FeaturesEnableRequest {
+export interface EnableFeatureRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the Azure region. */
@@ -184,7 +614,7 @@ export interface FeaturesEnableRequest {
   /** The Service Tree identifier associated with this feature action. */
   serviceTreeId?: string;
 }
-export const FeaturesEnableRequest = /*@__PURE__*/ S.suspend(() =>
+export const EnableFeatureRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     location: S.String.pipe(T.Label()),
@@ -199,16 +629,16 @@ export const FeaturesEnableRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "FeaturesEnableRequest",
-}) as any as S.Schema<FeaturesEnableRequest>;
+  identifier: "EnableFeatureRequest",
+}) as any as S.Schema<EnableFeatureRequest>;
 
 /** The operations list. */
-export type FeaturesEnableResponseOperationsList = Array<OperationStatusResult>;
-export const FeaturesEnableResponseOperationsList = /*@__PURE__*/ S.Array(
+export type EnableFeatureResponseOperationsList = Array<OperationStatusResult>;
+export const EnableFeatureResponseOperationsList = /*@__PURE__*/ S.Array(
   OperationStatusResult,
-) as any as S.Schema<FeaturesEnableResponseOperationsList>;
+) as any as S.Schema<EnableFeatureResponseOperationsList>;
 
-export interface FeaturesEnableResponse {
+export interface EnableFeatureResponse {
   /** Fully qualified ID for the async operation. */
   id?: string;
   /** Fully qualified ID of the resource against which the original async operation was started. */
@@ -224,11 +654,11 @@ export interface FeaturesEnableResponse {
   /** The end time of the operation. */
   endTime?: string;
   /** The operations list. */
-  operations?: FeaturesEnableResponseOperationsList;
+  operations?: EnableFeatureResponseOperationsList;
   /** If present, details of the operation error. */
   error?: ErrorDetail;
 }
-export const FeaturesEnableResponse = /*@__PURE__*/ S.suspend(() =>
+export const EnableFeatureResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     resourceId: S.optional(S.String),
@@ -237,14 +667,14 @@ export const FeaturesEnableResponse = /*@__PURE__*/ S.suspend(() =>
     percentComplete: S.optional(S.Number),
     startTime: S.optional(S.String),
     endTime: S.optional(S.String),
-    operations: S.optional(FeaturesEnableResponseOperationsList),
+    operations: S.optional(EnableFeatureResponseOperationsList),
     error: S.optional(ErrorDetail),
   }),
 ).annotate({
-  identifier: "FeaturesEnableResponse",
-}) as any as S.Schema<FeaturesEnableResponse>;
+  identifier: "EnableFeatureResponse",
+}) as any as S.Schema<EnableFeatureResponse>;
 
-export interface FeaturesGetRequest {
+export interface GetFeatureRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the Azure region. */
@@ -252,7 +682,7 @@ export interface FeaturesGetRequest {
   /** The name of the Feature */
   featureName: string;
 }
-export const FeaturesGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetFeatureRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     location: S.String.pipe(T.Label()),
@@ -266,62 +696,12 @@ export const FeaturesGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "FeaturesGetRequest",
-}) as any as S.Schema<FeaturesGetRequest>;
-
-/** The type of identity that created the resource. */
-export type SystemDataCreatedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
-
-/** The type of identity that last modified the resource. */
-export type SystemDataLastModifiedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
-
-/** Metadata pertaining to creation and last modification of the resource. */
-export interface SystemData {
-  /** The identity that created the resource. */
-  createdBy?: string;
-  /** The type of identity that created the resource. */
-  createdByType?: SystemDataCreatedByType;
-  /** The timestamp of resource creation (UTC). */
-  createdAt?: string;
-  /** The identity that last modified the resource. */
-  lastModifiedBy?: string;
-  /** The type of identity that last modified the resource. */
-  lastModifiedByType?: SystemDataLastModifiedByType;
-  /** The timestamp of resource last modification (UTC) */
-  lastModifiedAt?: string;
-}
-export const SystemData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    createdBy: S.optional(S.String),
-    createdByType: S.optional(SystemDataCreatedByType),
-    createdAt: S.optional(S.String),
-    lastModifiedBy: S.optional(S.String),
-    lastModifiedByType: S.optional(SystemDataLastModifiedByType),
-    lastModifiedAt: S.optional(S.String),
-  }),
-).annotate({ identifier: "SystemData" }) as any as S.Schema<SystemData>;
+  identifier: "GetFeatureRequest",
+}) as any as S.Schema<GetFeatureRequest>;
 
 /** The allowed states for a compute limit feature. */
 export type FeatureState = "Enabled" | "Disabled";
 export const FeatureState = /*@__PURE__*/ S.String;
-
-/** The provisioning state of a resource type. */
-export type AzureResourceManagerResourceProvisioningState =
-  | "Succeeded"
-  | "Failed"
-  | "Canceled";
-export const AzureResourceManagerResourceProvisioningState =
-  /*@__PURE__*/ S.String;
 
 /** Properties of the compute limit feature. */
 export interface FeatureProperties {
@@ -341,7 +721,7 @@ export const FeatureProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "FeatureProperties",
 }) as any as S.Schema<FeatureProperties>;
 
-export interface FeaturesGetResponse {
+export interface GetFeatureResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -353,7 +733,7 @@ export interface FeaturesGetResponse {
   /** The resource-specific properties for this resource. */
   properties?: FeatureProperties;
 }
-export const FeaturesGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetFeatureResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -362,16 +742,367 @@ export const FeaturesGetResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(FeatureProperties),
   }),
 ).annotate({
-  identifier: "FeaturesGetResponse",
-}) as any as S.Schema<FeaturesGetResponse>;
+  identifier: "GetFeatureResponse",
+}) as any as S.Schema<GetFeatureResponse>;
 
-export interface FeaturesListBySubscriptionLocationResourceRequest {
+export interface GetGuestSubscriptionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the Azure region. */
+  location: string;
+  /** The name of the GuestSubscription */
+  guestSubscriptionId: string;
+}
+export const GetGuestSubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    location: S.String.pipe(T.Label()),
+    guestSubscriptionId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ComputeLimit/locations/{location}/guestSubscriptions/{guestSubscriptionId}",
+      code: 200,
+      apiVersion: "2026-07-31",
+    }),
+  ),
+).annotate({
+  identifier: "GetGuestSubscriptionRequest",
+}) as any as S.Schema<GetGuestSubscriptionRequest>;
+
+export interface GetGuestSubscriptionResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: GuestSubscriptionProperties;
+}
+export const GetGuestSubscriptionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(GuestSubscriptionProperties),
+  }),
+).annotate({
+  identifier: "GetGuestSubscriptionResponse",
+}) as any as S.Schema<GetGuestSubscriptionResponse>;
+
+export interface GetMemberCapOverrideRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the Azure region. */
+  location: string;
+  /** The name of the SharedLimitCap */
+  vmFamilyName: string;
+  /** The name of the MemberCapOverride */
+  memberSubscriptionId: string;
+}
+export const GetMemberCapOverrideRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    location: S.String.pipe(T.Label()),
+    vmFamilyName: S.String.pipe(T.Label()),
+    memberSubscriptionId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ComputeLimit/locations/{location}/sharedLimitCaps/{vmFamilyName}/memberCapOverrides/{memberSubscriptionId}",
+      code: 200,
+      apiVersion: "2026-07-31",
+    }),
+  ),
+).annotate({
+  identifier: "GetMemberCapOverrideRequest",
+}) as any as S.Schema<GetMemberCapOverrideRequest>;
+
+/** Properties of a per-member cap override. */
+export interface MemberCapOverrideProperties {
+  /** The cap value in count units for this member subscription. */
+  cap: number;
+  /** The provisioning state of the resource. */
+  provisioningState?: AzureResourceManagerResourceProvisioningState;
+}
+export const MemberCapOverrideProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    cap: S.Number,
+    provisioningState: S.optional(
+      AzureResourceManagerResourceProvisioningState,
+    ),
+  }),
+).annotate({
+  identifier: "MemberCapOverrideProperties",
+}) as any as S.Schema<MemberCapOverrideProperties>;
+
+export interface GetMemberCapOverrideResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: MemberCapOverrideProperties;
+}
+export const GetMemberCapOverrideResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(MemberCapOverrideProperties),
+  }),
+).annotate({
+  identifier: "GetMemberCapOverrideResponse",
+}) as any as S.Schema<GetMemberCapOverrideResponse>;
+
+export interface GetSharedLimitRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the Azure region. */
+  location: string;
+  /** The name of the SharedLimit */
+  name: string;
+}
+export const GetSharedLimitRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    location: S.String.pipe(T.Label()),
+    name: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ComputeLimit/locations/{location}/sharedLimits/{name}",
+      code: 200,
+      apiVersion: "2026-07-31",
+    }),
+  ),
+).annotate({
+  identifier: "GetSharedLimitRequest",
+}) as any as S.Schema<GetSharedLimitRequest>;
+
+export interface GetSharedLimitResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: SharedLimitProperties;
+}
+export const GetSharedLimitResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(SharedLimitProperties),
+  }),
+).annotate({
+  identifier: "GetSharedLimitResponse",
+}) as any as S.Schema<GetSharedLimitResponse>;
+
+export interface GetSharedLimitCapRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the Azure region. */
+  location: string;
+  /** The name of the SharedLimitCap */
+  vmFamilyName: string;
+}
+export const GetSharedLimitCapRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    location: S.String.pipe(T.Label()),
+    vmFamilyName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ComputeLimit/locations/{location}/sharedLimitCaps/{vmFamilyName}",
+      code: 200,
+      apiVersion: "2026-07-31",
+    }),
+  ),
+).annotate({
+  identifier: "GetSharedLimitCapRequest",
+}) as any as S.Schema<GetSharedLimitCapRequest>;
+
+/** Properties of a shared limit cap resource. */
+export interface SharedLimitCapProperties {
+  /** The default member cap value (in count units). Set to a non-negative integer to apply a cap to all member subscriptions that do not have a per-member override. Omit the property to leave no default cap in effect. */
+  defaultMemberCap?: number;
+  /** Controls whether the service validates the aggregate cap against the group limit for the VM family. SUM(caps) is the sum of all per-member overrides' cap values plus `defaultMemberCap` multiplied by the number of member subscriptions without an override. When true, the service rejects any configuration where SUM(caps) exceeds the group limit. When false, SUM(caps) is permitted to exceed the group limit. Enabling this flag is rejected if the current configuration already breaches the group limit; reduce caps first, then enable. */
+  isBoundedCap: boolean;
+  /** The provisioning state of the resource. */
+  provisioningState?: AzureResourceManagerResourceProvisioningState;
+}
+export const SharedLimitCapProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    defaultMemberCap: S.optional(S.Number),
+    isBoundedCap: S.Boolean,
+    provisioningState: S.optional(
+      AzureResourceManagerResourceProvisioningState,
+    ),
+  }),
+).annotate({
+  identifier: "SharedLimitCapProperties",
+}) as any as S.Schema<SharedLimitCapProperties>;
+
+export interface GetSharedLimitCapResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: SharedLimitCapProperties;
+}
+export const GetSharedLimitCapResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(SharedLimitCapProperties),
+  }),
+).annotate({
+  identifier: "GetSharedLimitCapResponse",
+}) as any as S.Schema<GetSharedLimitCapResponse>;
+
+export interface GetTrustedHostSubscriptionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the Azure region. */
+  location: string;
+  /** The name of the TrustedHostSubscription */
+  hostSubscriptionId: string;
+}
+export const GetTrustedHostSubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    location: S.String.pipe(T.Label()),
+    hostSubscriptionId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ComputeLimit/locations/{location}/trustedHostSubscriptions/{hostSubscriptionId}",
+      code: 200,
+      apiVersion: "2026-07-31",
+    }),
+  ),
+).annotate({
+  identifier: "GetTrustedHostSubscriptionRequest",
+}) as any as S.Schema<GetTrustedHostSubscriptionRequest>;
+
+export interface GetTrustedHostSubscriptionResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+}
+export const GetTrustedHostSubscriptionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+  }),
+).annotate({
+  identifier: "GetTrustedHostSubscriptionResponse",
+}) as any as S.Schema<GetTrustedHostSubscriptionResponse>;
+
+export interface GetVmFamilyRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the Azure region. */
+  location: string;
+  /** The name of the VmFamily */
+  vmFamilyName: string;
+}
+export const GetVmFamilyRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    location: S.String.pipe(T.Label()),
+    vmFamilyName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ComputeLimit/locations/{location}/vmFamilies/{vmFamilyName}",
+      code: 200,
+      apiVersion: "2026-07-31",
+    }),
+  ),
+).annotate({
+  identifier: "GetVmFamilyRequest",
+}) as any as S.Schema<GetVmFamilyRequest>;
+
+/** Properties of a VM family resource. */
+export interface VmFamilyProperties {
+  /** The category of the VM family (for example, GeneralPurpose, ComputeOptimized). */
+  category?: string;
+  /** The provisioning state of the resource. */
+  provisioningState?: AzureResourceManagerResourceProvisioningState;
+}
+export const VmFamilyProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    category: S.optional(S.String),
+    provisioningState: S.optional(
+      AzureResourceManagerResourceProvisioningState,
+    ),
+  }),
+).annotate({
+  identifier: "VmFamilyProperties",
+}) as any as S.Schema<VmFamilyProperties>;
+
+export interface GetVmFamilyResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: VmFamilyProperties;
+}
+export const GetVmFamilyResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(VmFamilyProperties),
+  }),
+).annotate({
+  identifier: "GetVmFamilyResponse",
+}) as any as S.Schema<GetVmFamilyResponse>;
+
+export interface ListFeatureBySubscriptionLocationResourceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the Azure region. */
   location: string;
 }
-export const FeaturesListBySubscriptionLocationResourceRequest =
+export const ListFeatureBySubscriptionLocationResourceRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -385,8 +1116,8 @@ export const FeaturesListBySubscriptionLocationResourceRequest =
       }),
     ),
   ).annotate({
-    identifier: "FeaturesListBySubscriptionLocationResourceRequest",
-  }) as any as S.Schema<FeaturesListBySubscriptionLocationResourceRequest>;
+    identifier: "ListFeatureBySubscriptionLocationResourceRequest",
+  }) as any as S.Schema<ListFeatureBySubscriptionLocationResourceRequest>;
 
 /** Compute limit feature. */
 export interface Feature {
@@ -433,169 +1164,13 @@ export const FeatureListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "FeatureListResult",
 }) as any as S.Schema<FeatureListResult>;
 
-/** Properties for guest subscription. */
-export interface GuestSubscriptionPropertiesInput {}
-export const GuestSubscriptionPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "GuestSubscriptionPropertiesInput",
-}) as any as S.Schema<GuestSubscriptionPropertiesInput>;
-
-export interface GuestSubscriptionsCreateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the Azure region. */
-  location: string;
-  /** The name of the GuestSubscription */
-  guestSubscriptionId: string;
-  /** The resource-specific properties for this resource. */
-  properties?: GuestSubscriptionPropertiesInput;
-}
-export const GuestSubscriptionsCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    location: S.String.pipe(T.Label()),
-    guestSubscriptionId: S.String.pipe(T.Label()),
-    properties: S.optional(GuestSubscriptionPropertiesInput),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ComputeLimit/locations/{location}/guestSubscriptions/{guestSubscriptionId}",
-      code: 200,
-      apiVersion: "2026-07-31",
-    }),
-  ),
-).annotate({
-  identifier: "GuestSubscriptionsCreateRequest",
-}) as any as S.Schema<GuestSubscriptionsCreateRequest>;
-
-/** Properties for guest subscription. */
-export interface GuestSubscriptionProperties {
-  /** The provisioning state of the resource. */
-  provisioningState?: AzureResourceManagerResourceProvisioningState;
-}
-export const GuestSubscriptionProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provisioningState: S.optional(
-      AzureResourceManagerResourceProvisioningState,
-    ),
-  }),
-).annotate({
-  identifier: "GuestSubscriptionProperties",
-}) as any as S.Schema<GuestSubscriptionProperties>;
-
-export interface GuestSubscriptionsCreateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: GuestSubscriptionProperties;
-}
-export const GuestSubscriptionsCreateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(GuestSubscriptionProperties),
-  }),
-).annotate({
-  identifier: "GuestSubscriptionsCreateResponse",
-}) as any as S.Schema<GuestSubscriptionsCreateResponse>;
-
-export interface GuestSubscriptionsDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the Azure region. */
-  location: string;
-  /** The name of the GuestSubscription */
-  guestSubscriptionId: string;
-}
-export const GuestSubscriptionsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    location: S.String.pipe(T.Label()),
-    guestSubscriptionId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ComputeLimit/locations/{location}/guestSubscriptions/{guestSubscriptionId}",
-      code: 200,
-      apiVersion: "2026-07-31",
-    }),
-  ),
-).annotate({
-  identifier: "GuestSubscriptionsDeleteRequest",
-}) as any as S.Schema<GuestSubscriptionsDeleteRequest>;
-
-export interface GuestSubscriptionsDeleteResponse {}
-export const GuestSubscriptionsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "GuestSubscriptionsDeleteResponse",
-}) as any as S.Schema<GuestSubscriptionsDeleteResponse>;
-
-export interface GuestSubscriptionsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the Azure region. */
-  location: string;
-  /** The name of the GuestSubscription */
-  guestSubscriptionId: string;
-}
-export const GuestSubscriptionsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    location: S.String.pipe(T.Label()),
-    guestSubscriptionId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ComputeLimit/locations/{location}/guestSubscriptions/{guestSubscriptionId}",
-      code: 200,
-      apiVersion: "2026-07-31",
-    }),
-  ),
-).annotate({
-  identifier: "GuestSubscriptionsGetRequest",
-}) as any as S.Schema<GuestSubscriptionsGetRequest>;
-
-export interface GuestSubscriptionsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: GuestSubscriptionProperties;
-}
-export const GuestSubscriptionsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(GuestSubscriptionProperties),
-  }),
-).annotate({
-  identifier: "GuestSubscriptionsGetResponse",
-}) as any as S.Schema<GuestSubscriptionsGetResponse>;
-
-export interface GuestSubscriptionsListBySubscriptionLocationResourceRequest {
+export interface ListGuestSubscriptionBySubscriptionLocationResourceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the Azure region. */
   location: string;
 }
-export const GuestSubscriptionsListBySubscriptionLocationResourceRequest =
+export const ListGuestSubscriptionBySubscriptionLocationResourceRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -609,8 +1184,8 @@ export const GuestSubscriptionsListBySubscriptionLocationResourceRequest =
       }),
     ),
   ).annotate({
-    identifier: "GuestSubscriptionsListBySubscriptionLocationResourceRequest",
-  }) as any as S.Schema<GuestSubscriptionsListBySubscriptionLocationResourceRequest>;
+    identifier: "ListGuestSubscriptionBySubscriptionLocationResourceRequest",
+  }) as any as S.Schema<ListGuestSubscriptionBySubscriptionLocationResourceRequest>;
 
 /** Guest subscription that consumes shared compute limits. */
 export interface GuestSubscription {
@@ -659,182 +1234,7 @@ export const GuestSubscriptionListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "GuestSubscriptionListResult",
 }) as any as S.Schema<GuestSubscriptionListResult>;
 
-/** Properties of a per-member cap override. */
-export interface MemberCapOverridePropertiesInput {
-  /** The cap value in count units for this member subscription. */
-  cap: number;
-}
-export const MemberCapOverridePropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    cap: S.Number,
-  }),
-).annotate({
-  identifier: "MemberCapOverridePropertiesInput",
-}) as any as S.Schema<MemberCapOverridePropertiesInput>;
-
-export interface MemberCapOverridesCreateOrUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the Azure region. */
-  location: string;
-  /** The name of the SharedLimitCap */
-  vmFamilyName: string;
-  /** The name of the MemberCapOverride */
-  memberSubscriptionId: string;
-  /** The resource-specific properties for this resource. */
-  properties?: MemberCapOverridePropertiesInput;
-}
-export const MemberCapOverridesCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      location: S.String.pipe(T.Label()),
-      vmFamilyName: S.String.pipe(T.Label()),
-      memberSubscriptionId: S.String.pipe(T.Label()),
-      properties: S.optional(MemberCapOverridePropertiesInput),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ComputeLimit/locations/{location}/sharedLimitCaps/{vmFamilyName}/memberCapOverrides/{memberSubscriptionId}",
-        code: 200,
-        apiVersion: "2026-07-31",
-      }),
-    ),
-).annotate({
-  identifier: "MemberCapOverridesCreateOrUpdateRequest",
-}) as any as S.Schema<MemberCapOverridesCreateOrUpdateRequest>;
-
-/** Properties of a per-member cap override. */
-export interface MemberCapOverrideProperties {
-  /** The cap value in count units for this member subscription. */
-  cap: number;
-  /** The provisioning state of the resource. */
-  provisioningState?: AzureResourceManagerResourceProvisioningState;
-}
-export const MemberCapOverrideProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    cap: S.Number,
-    provisioningState: S.optional(
-      AzureResourceManagerResourceProvisioningState,
-    ),
-  }),
-).annotate({
-  identifier: "MemberCapOverrideProperties",
-}) as any as S.Schema<MemberCapOverrideProperties>;
-
-export interface MemberCapOverridesCreateOrUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: MemberCapOverrideProperties;
-}
-export const MemberCapOverridesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(MemberCapOverrideProperties),
-    }),
-).annotate({
-  identifier: "MemberCapOverridesCreateOrUpdateResponse",
-}) as any as S.Schema<MemberCapOverridesCreateOrUpdateResponse>;
-
-export interface MemberCapOverridesDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the Azure region. */
-  location: string;
-  /** The name of the SharedLimitCap */
-  vmFamilyName: string;
-  /** The name of the MemberCapOverride */
-  memberSubscriptionId: string;
-}
-export const MemberCapOverridesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    location: S.String.pipe(T.Label()),
-    vmFamilyName: S.String.pipe(T.Label()),
-    memberSubscriptionId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ComputeLimit/locations/{location}/sharedLimitCaps/{vmFamilyName}/memberCapOverrides/{memberSubscriptionId}",
-      code: 200,
-      apiVersion: "2026-07-31",
-    }),
-  ),
-).annotate({
-  identifier: "MemberCapOverridesDeleteRequest",
-}) as any as S.Schema<MemberCapOverridesDeleteRequest>;
-
-export interface MemberCapOverridesDeleteResponse {}
-export const MemberCapOverridesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "MemberCapOverridesDeleteResponse",
-}) as any as S.Schema<MemberCapOverridesDeleteResponse>;
-
-export interface MemberCapOverridesGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the Azure region. */
-  location: string;
-  /** The name of the SharedLimitCap */
-  vmFamilyName: string;
-  /** The name of the MemberCapOverride */
-  memberSubscriptionId: string;
-}
-export const MemberCapOverridesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    location: S.String.pipe(T.Label()),
-    vmFamilyName: S.String.pipe(T.Label()),
-    memberSubscriptionId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ComputeLimit/locations/{location}/sharedLimitCaps/{vmFamilyName}/memberCapOverrides/{memberSubscriptionId}",
-      code: 200,
-      apiVersion: "2026-07-31",
-    }),
-  ),
-).annotate({
-  identifier: "MemberCapOverridesGetRequest",
-}) as any as S.Schema<MemberCapOverridesGetRequest>;
-
-export interface MemberCapOverridesGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: MemberCapOverrideProperties;
-}
-export const MemberCapOverridesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(MemberCapOverrideProperties),
-  }),
-).annotate({
-  identifier: "MemberCapOverridesGetResponse",
-}) as any as S.Schema<MemberCapOverridesGetResponse>;
-
-export interface MemberCapOverridesListByParentRequest {
+export interface ListMemberCapOverrideByParentRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the Azure region. */
@@ -842,7 +1242,7 @@ export interface MemberCapOverridesListByParentRequest {
   /** The name of the SharedLimitCap */
   vmFamilyName: string;
 }
-export const MemberCapOverridesListByParentRequest = /*@__PURE__*/ S.suspend(
+export const ListMemberCapOverrideByParentRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -857,8 +1257,8 @@ export const MemberCapOverridesListByParentRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "MemberCapOverridesListByParentRequest",
-}) as any as S.Schema<MemberCapOverridesListByParentRequest>;
+  identifier: "ListMemberCapOverrideByParentRequest",
+}) as any as S.Schema<ListMemberCapOverrideByParentRequest>;
 
 /** Member cap override as a standalone child resource of `SharedLimitCap`. Use this resource to read or modify a single member's cap without resending the entire `memberCapOverrides` array on the parent. */
 export interface MemberCapOverride {
@@ -907,8 +1307,8 @@ export const MemberCapOverrideListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "MemberCapOverrideListResult",
 }) as any as S.Schema<MemberCapOverrideListResult>;
 
-export interface OperationsListRequest {}
-export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
+export interface ListOperationsRequest {}
+export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
     T.Http({
       method: "GET",
@@ -918,8 +1318,8 @@ export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "OperationsListRequest",
-}) as any as S.Schema<OperationsListRequest>;
+  identifier: "ListOperationsRequest",
+}) as any as S.Schema<ListOperationsRequest>;
 
 /** Localized display information for this particular operation. */
 export interface OperationDisplay {
@@ -975,521 +1375,33 @@ export const Operation = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 /** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
   Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
+) as any as S.Schema<ListOperationsResponseValueList>;
 
-export interface OperationsListResponse {
+export interface ListOperationsResponse {
   /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
+  value?: ListOperationsResponseValueList;
   /** URL to get the next set of operation list results (if there are any). */
   nextLink?: string;
 }
-export const OperationsListResponse = /*@__PURE__*/ S.suspend(() =>
+export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(OperationsListResponseValueList),
+    value: S.optional(ListOperationsResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "OperationsListResponse",
-}) as any as S.Schema<OperationsListResponse>;
+  identifier: "ListOperationsResponse",
+}) as any as S.Schema<ListOperationsResponse>;
 
-/** Properties of a shared limit cap resource. */
-export interface SharedLimitCapPropertiesInput {
-  /** The default member cap value (in count units). Set to a non-negative integer to apply a cap to all member subscriptions that do not have a per-member override. Omit the property to leave no default cap in effect. */
-  defaultMemberCap?: number;
-  /** Controls whether the service validates the aggregate cap against the group limit for the VM family. SUM(caps) is the sum of all per-member overrides' cap values plus `defaultMemberCap` multiplied by the number of member subscriptions without an override. When true, the service rejects any configuration where SUM(caps) exceeds the group limit. When false, SUM(caps) is permitted to exceed the group limit. Enabling this flag is rejected if the current configuration already breaches the group limit; reduce caps first, then enable. */
-  isBoundedCap: boolean;
-}
-export const SharedLimitCapPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    defaultMemberCap: S.optional(S.Number),
-    isBoundedCap: S.Boolean,
-  }),
-).annotate({
-  identifier: "SharedLimitCapPropertiesInput",
-}) as any as S.Schema<SharedLimitCapPropertiesInput>;
-
-export interface SharedLimitCapsCreateOrUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the Azure region. */
-  location: string;
-  /** The name of the SharedLimitCap */
-  vmFamilyName: string;
-  /** The resource-specific properties for this resource. */
-  properties?: SharedLimitCapPropertiesInput;
-}
-export const SharedLimitCapsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      location: S.String.pipe(T.Label()),
-      vmFamilyName: S.String.pipe(T.Label()),
-      properties: S.optional(SharedLimitCapPropertiesInput),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ComputeLimit/locations/{location}/sharedLimitCaps/{vmFamilyName}",
-        code: 200,
-        apiVersion: "2026-07-31",
-      }),
-    ),
-).annotate({
-  identifier: "SharedLimitCapsCreateOrUpdateRequest",
-}) as any as S.Schema<SharedLimitCapsCreateOrUpdateRequest>;
-
-/** Properties of a shared limit cap resource. */
-export interface SharedLimitCapProperties {
-  /** The default member cap value (in count units). Set to a non-negative integer to apply a cap to all member subscriptions that do not have a per-member override. Omit the property to leave no default cap in effect. */
-  defaultMemberCap?: number;
-  /** Controls whether the service validates the aggregate cap against the group limit for the VM family. SUM(caps) is the sum of all per-member overrides' cap values plus `defaultMemberCap` multiplied by the number of member subscriptions without an override. When true, the service rejects any configuration where SUM(caps) exceeds the group limit. When false, SUM(caps) is permitted to exceed the group limit. Enabling this flag is rejected if the current configuration already breaches the group limit; reduce caps first, then enable. */
-  isBoundedCap: boolean;
-  /** The provisioning state of the resource. */
-  provisioningState?: AzureResourceManagerResourceProvisioningState;
-}
-export const SharedLimitCapProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    defaultMemberCap: S.optional(S.Number),
-    isBoundedCap: S.Boolean,
-    provisioningState: S.optional(
-      AzureResourceManagerResourceProvisioningState,
-    ),
-  }),
-).annotate({
-  identifier: "SharedLimitCapProperties",
-}) as any as S.Schema<SharedLimitCapProperties>;
-
-export interface SharedLimitCapsCreateOrUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: SharedLimitCapProperties;
-}
-export const SharedLimitCapsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(SharedLimitCapProperties),
-    }),
-).annotate({
-  identifier: "SharedLimitCapsCreateOrUpdateResponse",
-}) as any as S.Schema<SharedLimitCapsCreateOrUpdateResponse>;
-
-export interface SharedLimitCapsDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the Azure region. */
-  location: string;
-  /** The name of the SharedLimitCap */
-  vmFamilyName: string;
-}
-export const SharedLimitCapsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    location: S.String.pipe(T.Label()),
-    vmFamilyName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ComputeLimit/locations/{location}/sharedLimitCaps/{vmFamilyName}",
-      code: 200,
-      apiVersion: "2026-07-31",
-    }),
-  ),
-).annotate({
-  identifier: "SharedLimitCapsDeleteRequest",
-}) as any as S.Schema<SharedLimitCapsDeleteRequest>;
-
-export interface SharedLimitCapsDeleteResponse {}
-export const SharedLimitCapsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "SharedLimitCapsDeleteResponse",
-}) as any as S.Schema<SharedLimitCapsDeleteResponse>;
-
-export interface SharedLimitCapsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the Azure region. */
-  location: string;
-  /** The name of the SharedLimitCap */
-  vmFamilyName: string;
-}
-export const SharedLimitCapsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    location: S.String.pipe(T.Label()),
-    vmFamilyName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ComputeLimit/locations/{location}/sharedLimitCaps/{vmFamilyName}",
-      code: 200,
-      apiVersion: "2026-07-31",
-    }),
-  ),
-).annotate({
-  identifier: "SharedLimitCapsGetRequest",
-}) as any as S.Schema<SharedLimitCapsGetRequest>;
-
-export interface SharedLimitCapsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: SharedLimitCapProperties;
-}
-export const SharedLimitCapsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(SharedLimitCapProperties),
-  }),
-).annotate({
-  identifier: "SharedLimitCapsGetResponse",
-}) as any as S.Schema<SharedLimitCapsGetResponse>;
-
-export interface SharedLimitCapsListBySubscriptionLocationResourceRequest {
+export interface ListSharedLimitBySubscriptionLocationResourceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the Azure region. */
   location: string;
 }
-export const SharedLimitCapsListBySubscriptionLocationResourceRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      location: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ComputeLimit/locations/{location}/sharedLimitCaps",
-        code: 200,
-        apiVersion: "2026-07-31",
-      }),
-    ),
-  ).annotate({
-    identifier: "SharedLimitCapsListBySubscriptionLocationResourceRequest",
-  }) as any as S.Schema<SharedLimitCapsListBySubscriptionLocationResourceRequest>;
-
-/** Shared limit cap configuration for a VM family, owned by a host subscription and propagated to its member subscriptions. The same resource type is readable by host and member subscriptions, but write operations (PUT/DELETE) are scoped to the caller's subscription as the host. */
-export interface SharedLimitCap {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: SharedLimitCapProperties;
-}
-export const SharedLimitCap = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(SharedLimitCapProperties),
-  }),
-).annotate({ identifier: "SharedLimitCap" }) as any as S.Schema<SharedLimitCap>;
-
-/** The SharedLimitCap items on this page */
-export type SharedLimitCapListResultValueList = Array<SharedLimitCap>;
-export const SharedLimitCapListResultValueList = /*@__PURE__*/ S.Array(
-  SharedLimitCap,
-) as any as S.Schema<SharedLimitCapListResultValueList>;
-
-/** The response of a SharedLimitCap list operation. */
-export interface SharedLimitCapListResult {
-  /** The SharedLimitCap items on this page */
-  value: SharedLimitCapListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const SharedLimitCapListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: SharedLimitCapListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SharedLimitCapListResult",
-}) as any as S.Schema<SharedLimitCapListResult>;
-
-/** Per-member cap override. Pairs a member subscription with its cap value. */
-export interface MemberCap {
-  /** The member subscription identifier this cap applies to. */
-  subscriptionId: string;
-  /** The cap value in count units for this member subscription. */
-  cap: number;
-}
-export const MemberCap = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String,
-    cap: S.Number,
-  }),
-).annotate({ identifier: "MemberCap" }) as any as S.Schema<MemberCap>;
-
-/** The full set of per-member cap overrides to persist for this resource. This call replaces the existing set entirely; supply an empty array (`[]`) to clear all overrides. */
-export type SharedLimitCapsSetMemberCapOverridesRequestMemberCapOverridesList =
-  Array<MemberCap>;
-export const SharedLimitCapsSetMemberCapOverridesRequestMemberCapOverridesList =
-  /*@__PURE__*/ S.Array(
-    MemberCap,
-  ) as any as S.Schema<SharedLimitCapsSetMemberCapOverridesRequestMemberCapOverridesList>;
-
-export interface SharedLimitCapsSetMemberCapOverridesRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the Azure region. */
-  location: string;
-  /** The name of the SharedLimitCap */
-  vmFamilyName: string;
-  /** The full set of per-member cap overrides to persist for this resource. This call replaces the existing set entirely; supply an empty array (`[]`) to clear all overrides. */
-  memberCapOverrides: SharedLimitCapsSetMemberCapOverridesRequestMemberCapOverridesList;
-}
-export const SharedLimitCapsSetMemberCapOverridesRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      location: S.String.pipe(T.Label()),
-      vmFamilyName: S.String.pipe(T.Label()),
-      memberCapOverrides:
-        SharedLimitCapsSetMemberCapOverridesRequestMemberCapOverridesList,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ComputeLimit/locations/{location}/sharedLimitCaps/{vmFamilyName}/setMemberCapOverrides",
-        code: 200,
-        apiVersion: "2026-07-31",
-      }),
-    ),
-  ).annotate({
-    identifier: "SharedLimitCapsSetMemberCapOverridesRequest",
-  }) as any as S.Schema<SharedLimitCapsSetMemberCapOverridesRequest>;
-
-/** The per-member cap overrides as persisted after the action completed. */
-export type SetMemberCapOverridesResultMemberCapOverridesList =
-  Array<MemberCap>;
-export const SetMemberCapOverridesResultMemberCapOverridesList =
-  /*@__PURE__*/ S.Array(
-    MemberCap,
-  ) as any as S.Schema<SetMemberCapOverridesResultMemberCapOverridesList>;
-
-/** Response body for the `setMemberCapOverrides` action. */
-export interface SetMemberCapOverridesResult {
-  /** The per-member cap overrides as persisted after the action completed. */
-  memberCapOverrides: SetMemberCapOverridesResultMemberCapOverridesList;
-}
-export const SetMemberCapOverridesResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    memberCapOverrides: SetMemberCapOverridesResultMemberCapOverridesList,
-  }),
-).annotate({
-  identifier: "SetMemberCapOverridesResult",
-}) as any as S.Schema<SetMemberCapOverridesResult>;
-
-/** Properties of the compute shared limit. */
-export type SharedLimitPropertiesInput = GuestSubscriptionPropertiesInput;
-export const SharedLimitPropertiesInput = GuestSubscriptionPropertiesInput;
-
-export interface SharedLimitsCreateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the Azure region. */
-  location: string;
-  /** The name of the SharedLimit */
-  name: string;
-  /** The resource-specific properties for this resource. */
-  properties?: GuestSubscriptionPropertiesInput;
-}
-export const SharedLimitsCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    location: S.String.pipe(T.Label()),
-    name: S.String.pipe(T.Label()),
-    properties: S.optional(GuestSubscriptionPropertiesInput),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ComputeLimit/locations/{location}/sharedLimits/{name}",
-      code: 200,
-      apiVersion: "2026-07-31",
-    }),
-  ),
-).annotate({
-  identifier: "SharedLimitsCreateRequest",
-}) as any as S.Schema<SharedLimitsCreateRequest>;
-
-/** Properties of the limit name. */
-export interface LimitName {
-  /** The limit name. */
-  value: string;
-  /** The localized limit name. */
-  localizedValue?: string;
-}
-export const LimitName = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.String,
-    localizedValue: S.optional(S.String),
-  }),
-).annotate({ identifier: "LimitName" }) as any as S.Schema<LimitName>;
-
-/** Properties of the compute shared limit. */
-export interface SharedLimitProperties {
-  /** The limit name properties. */
-  resourceName?: LimitName;
-  /** The maximum permitted usage of the resource. */
-  limit?: number;
-  /** The quota units, such as Count. */
-  unit?: string;
-  /** The provisioning state of the resource. */
-  provisioningState?: AzureResourceManagerResourceProvisioningState;
-}
-export const SharedLimitProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    resourceName: S.optional(LimitName),
-    limit: S.optional(S.Number),
-    unit: S.optional(S.String),
-    provisioningState: S.optional(
-      AzureResourceManagerResourceProvisioningState,
-    ),
-  }),
-).annotate({
-  identifier: "SharedLimitProperties",
-}) as any as S.Schema<SharedLimitProperties>;
-
-export interface SharedLimitsCreateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: SharedLimitProperties;
-}
-export const SharedLimitsCreateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(SharedLimitProperties),
-  }),
-).annotate({
-  identifier: "SharedLimitsCreateResponse",
-}) as any as S.Schema<SharedLimitsCreateResponse>;
-
-export interface SharedLimitsDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the Azure region. */
-  location: string;
-  /** The name of the SharedLimit */
-  name: string;
-}
-export const SharedLimitsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    location: S.String.pipe(T.Label()),
-    name: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ComputeLimit/locations/{location}/sharedLimits/{name}",
-      code: 200,
-      apiVersion: "2026-07-31",
-    }),
-  ),
-).annotate({
-  identifier: "SharedLimitsDeleteRequest",
-}) as any as S.Schema<SharedLimitsDeleteRequest>;
-
-export interface SharedLimitsDeleteResponse {}
-export const SharedLimitsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "SharedLimitsDeleteResponse",
-}) as any as S.Schema<SharedLimitsDeleteResponse>;
-
-export interface SharedLimitsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the Azure region. */
-  location: string;
-  /** The name of the SharedLimit */
-  name: string;
-}
-export const SharedLimitsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    location: S.String.pipe(T.Label()),
-    name: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ComputeLimit/locations/{location}/sharedLimits/{name}",
-      code: 200,
-      apiVersion: "2026-07-31",
-    }),
-  ),
-).annotate({
-  identifier: "SharedLimitsGetRequest",
-}) as any as S.Schema<SharedLimitsGetRequest>;
-
-export interface SharedLimitsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: SharedLimitProperties;
-}
-export const SharedLimitsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(SharedLimitProperties),
-  }),
-).annotate({
-  identifier: "SharedLimitsGetResponse",
-}) as any as S.Schema<SharedLimitsGetResponse>;
-
-export interface SharedLimitsListBySubscriptionLocationResourceRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the Azure region. */
-  location: string;
-}
-export const SharedLimitsListBySubscriptionLocationResourceRequest =
+export const ListSharedLimitBySubscriptionLocationResourceRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -1503,8 +1415,8 @@ export const SharedLimitsListBySubscriptionLocationResourceRequest =
       }),
     ),
   ).annotate({
-    identifier: "SharedLimitsListBySubscriptionLocationResourceRequest",
-  }) as any as S.Schema<SharedLimitsListBySubscriptionLocationResourceRequest>;
+    identifier: "ListSharedLimitBySubscriptionLocationResourceRequest",
+  }) as any as S.Schema<ListSharedLimitBySubscriptionLocationResourceRequest>;
 
 /** Compute limits shared by the subscription. */
 export interface SharedLimit {
@@ -1551,33 +1463,31 @@ export const SharedLimitListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "SharedLimitListResult",
 }) as any as S.Schema<SharedLimitListResult>;
 
-export interface TrustedHostSubscriptionsCreateRequest {
+export interface ListSharedLimitCapBySubscriptionLocationResourceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the Azure region. */
   location: string;
-  /** The name of the TrustedHostSubscription */
-  hostSubscriptionId: string;
 }
-export const TrustedHostSubscriptionsCreateRequest = /*@__PURE__*/ S.suspend(
-  () =>
+export const ListSharedLimitCapBySubscriptionLocationResourceRequest =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       location: S.String.pipe(T.Label()),
-      hostSubscriptionId: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ComputeLimit/locations/{location}/trustedHostSubscriptions/{hostSubscriptionId}",
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ComputeLimit/locations/{location}/sharedLimitCaps",
         code: 200,
         apiVersion: "2026-07-31",
       }),
     ),
-).annotate({
-  identifier: "TrustedHostSubscriptionsCreateRequest",
-}) as any as S.Schema<TrustedHostSubscriptionsCreateRequest>;
+  ).annotate({
+    identifier: "ListSharedLimitCapBySubscriptionLocationResourceRequest",
+  }) as any as S.Schema<ListSharedLimitCapBySubscriptionLocationResourceRequest>;
 
-export interface TrustedHostSubscriptionsCreateResponse {
+/** Shared limit cap configuration for a VM family, owned by a host subscription and propagated to its member subscriptions. The same resource type is readable by host and member subscriptions, but write operations (PUT/DELETE) are scoped to the caller's subscription as the host. */
+export interface SharedLimitCap {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -1586,105 +1496,48 @@ export interface TrustedHostSubscriptionsCreateResponse {
   type?: string;
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: SharedLimitCapProperties;
 }
-export const TrustedHostSubscriptionsCreateResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-    }),
-).annotate({
-  identifier: "TrustedHostSubscriptionsCreateResponse",
-}) as any as S.Schema<TrustedHostSubscriptionsCreateResponse>;
-
-export interface TrustedHostSubscriptionsDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the Azure region. */
-  location: string;
-  /** The name of the TrustedHostSubscription */
-  hostSubscriptionId: string;
-}
-export const TrustedHostSubscriptionsDeleteRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      location: S.String.pipe(T.Label()),
-      hostSubscriptionId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ComputeLimit/locations/{location}/trustedHostSubscriptions/{hostSubscriptionId}",
-        code: 200,
-        apiVersion: "2026-07-31",
-      }),
-    ),
-).annotate({
-  identifier: "TrustedHostSubscriptionsDeleteRequest",
-}) as any as S.Schema<TrustedHostSubscriptionsDeleteRequest>;
-
-export interface TrustedHostSubscriptionsDeleteResponse {}
-export const TrustedHostSubscriptionsDeleteResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "TrustedHostSubscriptionsDeleteResponse",
-}) as any as S.Schema<TrustedHostSubscriptionsDeleteResponse>;
-
-export interface TrustedHostSubscriptionsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the Azure region. */
-  location: string;
-  /** The name of the TrustedHostSubscription */
-  hostSubscriptionId: string;
-}
-export const TrustedHostSubscriptionsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    location: S.String.pipe(T.Label()),
-    hostSubscriptionId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ComputeLimit/locations/{location}/trustedHostSubscriptions/{hostSubscriptionId}",
-      code: 200,
-      apiVersion: "2026-07-31",
-    }),
-  ),
-).annotate({
-  identifier: "TrustedHostSubscriptionsGetRequest",
-}) as any as S.Schema<TrustedHostSubscriptionsGetRequest>;
-
-export interface TrustedHostSubscriptionsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-}
-export const TrustedHostSubscriptionsGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const SharedLimitCap = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
+    properties: S.optional(SharedLimitCapProperties),
+  }),
+).annotate({ identifier: "SharedLimitCap" }) as any as S.Schema<SharedLimitCap>;
+
+/** The SharedLimitCap items on this page */
+export type SharedLimitCapListResultValueList = Array<SharedLimitCap>;
+export const SharedLimitCapListResultValueList = /*@__PURE__*/ S.Array(
+  SharedLimitCap,
+) as any as S.Schema<SharedLimitCapListResultValueList>;
+
+/** The response of a SharedLimitCap list operation. */
+export interface SharedLimitCapListResult {
+  /** The SharedLimitCap items on this page */
+  value: SharedLimitCapListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const SharedLimitCapListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: SharedLimitCapListResultValueList,
+    nextLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "TrustedHostSubscriptionsGetResponse",
-}) as any as S.Schema<TrustedHostSubscriptionsGetResponse>;
+  identifier: "SharedLimitCapListResult",
+}) as any as S.Schema<SharedLimitCapListResult>;
 
-export interface TrustedHostSubscriptionsListBySubscriptionLocationResourceRequest {
+export interface ListTrustedHostSubscriptionBySubscriptionLocationResourceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the Azure region. */
   location: string;
 }
-export const TrustedHostSubscriptionsListBySubscriptionLocationResourceRequest =
+export const ListTrustedHostSubscriptionBySubscriptionLocationResourceRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -1699,8 +1552,8 @@ export const TrustedHostSubscriptionsListBySubscriptionLocationResourceRequest =
     ),
   ).annotate({
     identifier:
-      "TrustedHostSubscriptionsListBySubscriptionLocationResourceRequest",
-  }) as any as S.Schema<TrustedHostSubscriptionsListBySubscriptionLocationResourceRequest>;
+      "ListTrustedHostSubscriptionBySubscriptionLocationResourceRequest",
+  }) as any as S.Schema<ListTrustedHostSubscriptionBySubscriptionLocationResourceRequest>;
 
 /** Common fields that are returned in the response for all Azure Resource Manager resources */
 export interface Resource {
@@ -1744,74 +1597,7 @@ export const TrustedHostSubscriptionListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "TrustedHostSubscriptionListResult",
 }) as any as S.Schema<TrustedHostSubscriptionListResult>;
 
-export interface VmFamiliesGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the Azure region. */
-  location: string;
-  /** The name of the VmFamily */
-  vmFamilyName: string;
-}
-export const VmFamiliesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    location: S.String.pipe(T.Label()),
-    vmFamilyName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ComputeLimit/locations/{location}/vmFamilies/{vmFamilyName}",
-      code: 200,
-      apiVersion: "2026-07-31",
-    }),
-  ),
-).annotate({
-  identifier: "VmFamiliesGetRequest",
-}) as any as S.Schema<VmFamiliesGetRequest>;
-
-/** Properties of a VM family resource. */
-export interface VmFamilyProperties {
-  /** The category of the VM family (for example, GeneralPurpose, ComputeOptimized). */
-  category?: string;
-  /** The provisioning state of the resource. */
-  provisioningState?: AzureResourceManagerResourceProvisioningState;
-}
-export const VmFamilyProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    category: S.optional(S.String),
-    provisioningState: S.optional(
-      AzureResourceManagerResourceProvisioningState,
-    ),
-  }),
-).annotate({
-  identifier: "VmFamilyProperties",
-}) as any as S.Schema<VmFamilyProperties>;
-
-export interface VmFamiliesGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: VmFamilyProperties;
-}
-export const VmFamiliesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(VmFamilyProperties),
-  }),
-).annotate({
-  identifier: "VmFamiliesGetResponse",
-}) as any as S.Schema<VmFamiliesGetResponse>;
-
-export interface VmFamiliesListBySubscriptionLocationResourceRequest {
+export interface ListVmFamilyBySubscriptionLocationResourceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the Azure region. */
@@ -1819,7 +1605,7 @@ export interface VmFamiliesListBySubscriptionLocationResourceRequest {
   /** The filter to apply to the list operation. Filter can be applied to the 'category' property. Example: $filter=category eq 'generalPurposeCategory'. */
   _filter?: string;
 }
-export const VmFamiliesListBySubscriptionLocationResourceRequest =
+export const ListVmFamilyBySubscriptionLocationResourceRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -1834,8 +1620,8 @@ export const VmFamiliesListBySubscriptionLocationResourceRequest =
       }),
     ),
   ).annotate({
-    identifier: "VmFamiliesListBySubscriptionLocationResourceRequest",
-  }) as any as S.Schema<VmFamiliesListBySubscriptionLocationResourceRequest>;
+    identifier: "ListVmFamilyBySubscriptionLocationResourceRequest",
+  }) as any as S.Schema<ListVmFamilyBySubscriptionLocationResourceRequest>;
 
 /** VM family resource representing a virtual machine family and its category. */
 export interface VmFamily {
@@ -1882,122 +1668,592 @@ export const VmFamilyListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "VmFamilyListResult",
 }) as any as S.Schema<VmFamilyListResult>;
 
-export type FeaturesDisableError = AzureOpError;
+/** Properties of a per-member cap override. */
+export interface MemberCapOverridePropertiesInput {
+  /** The cap value in count units for this member subscription. */
+  cap: number;
+}
+export const MemberCapOverridePropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    cap: S.Number,
+  }),
+).annotate({
+  identifier: "MemberCapOverridePropertiesInput",
+}) as any as S.Schema<MemberCapOverridePropertiesInput>;
+
+export interface MemberCapOverridesCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the Azure region. */
+  location: string;
+  /** The name of the SharedLimitCap */
+  vmFamilyName: string;
+  /** The name of the MemberCapOverride */
+  memberSubscriptionId: string;
+  /** The resource-specific properties for this resource. */
+  properties?: MemberCapOverridePropertiesInput;
+}
+export const MemberCapOverridesCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      location: S.String.pipe(T.Label()),
+      vmFamilyName: S.String.pipe(T.Label()),
+      memberSubscriptionId: S.String.pipe(T.Label()),
+      properties: S.optional(MemberCapOverridePropertiesInput),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ComputeLimit/locations/{location}/sharedLimitCaps/{vmFamilyName}/memberCapOverrides/{memberSubscriptionId}",
+        code: 200,
+        apiVersion: "2026-07-31",
+      }),
+    ),
+).annotate({
+  identifier: "MemberCapOverridesCreateOrUpdateRequest",
+}) as any as S.Schema<MemberCapOverridesCreateOrUpdateRequest>;
+
+export interface MemberCapOverridesCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: MemberCapOverrideProperties;
+}
+export const MemberCapOverridesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(MemberCapOverrideProperties),
+    }),
+).annotate({
+  identifier: "MemberCapOverridesCreateOrUpdateResponse",
+}) as any as S.Schema<MemberCapOverridesCreateOrUpdateResponse>;
+
+/** Per-member cap override. Pairs a member subscription with its cap value. */
+export interface MemberCap {
+  /** The member subscription identifier this cap applies to. */
+  subscriptionId: string;
+  /** The cap value in count units for this member subscription. */
+  cap: number;
+}
+export const MemberCap = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String,
+    cap: S.Number,
+  }),
+).annotate({ identifier: "MemberCap" }) as any as S.Schema<MemberCap>;
+
+/** The full set of per-member cap overrides to persist for this resource. This call replaces the existing set entirely; supply an empty array (`[]`) to clear all overrides. */
+export type SetSharedLimitCapMemberCapOverridesRequestMemberCapOverridesList =
+  Array<MemberCap>;
+export const SetSharedLimitCapMemberCapOverridesRequestMemberCapOverridesList =
+  /*@__PURE__*/ S.Array(
+    MemberCap,
+  ) as any as S.Schema<SetSharedLimitCapMemberCapOverridesRequestMemberCapOverridesList>;
+
+export interface SetSharedLimitCapMemberCapOverridesRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the Azure region. */
+  location: string;
+  /** The name of the SharedLimitCap */
+  vmFamilyName: string;
+  /** The full set of per-member cap overrides to persist for this resource. This call replaces the existing set entirely; supply an empty array (`[]`) to clear all overrides. */
+  memberCapOverrides: SetSharedLimitCapMemberCapOverridesRequestMemberCapOverridesList;
+}
+export const SetSharedLimitCapMemberCapOverridesRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      location: S.String.pipe(T.Label()),
+      vmFamilyName: S.String.pipe(T.Label()),
+      memberCapOverrides:
+        SetSharedLimitCapMemberCapOverridesRequestMemberCapOverridesList,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ComputeLimit/locations/{location}/sharedLimitCaps/{vmFamilyName}/setMemberCapOverrides",
+        code: 200,
+        apiVersion: "2026-07-31",
+      }),
+    ),
+  ).annotate({
+    identifier: "SetSharedLimitCapMemberCapOverridesRequest",
+  }) as any as S.Schema<SetSharedLimitCapMemberCapOverridesRequest>;
+
+/** The per-member cap overrides as persisted after the action completed. */
+export type SetMemberCapOverridesResultMemberCapOverridesList =
+  Array<MemberCap>;
+export const SetMemberCapOverridesResultMemberCapOverridesList =
+  /*@__PURE__*/ S.Array(
+    MemberCap,
+  ) as any as S.Schema<SetMemberCapOverridesResultMemberCapOverridesList>;
+
+/** Response body for the `setMemberCapOverrides` action. */
+export interface SetMemberCapOverridesResult {
+  /** The per-member cap overrides as persisted after the action completed. */
+  memberCapOverrides: SetMemberCapOverridesResultMemberCapOverridesList;
+}
+export const SetMemberCapOverridesResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    memberCapOverrides: SetMemberCapOverridesResultMemberCapOverridesList,
+  }),
+).annotate({
+  identifier: "SetMemberCapOverridesResult",
+}) as any as S.Schema<SetMemberCapOverridesResult>;
+
+/** Properties of a shared limit cap resource. */
+export interface SharedLimitCapPropertiesInput {
+  /** The default member cap value (in count units). Set to a non-negative integer to apply a cap to all member subscriptions that do not have a per-member override. Omit the property to leave no default cap in effect. */
+  defaultMemberCap?: number;
+  /** Controls whether the service validates the aggregate cap against the group limit for the VM family. SUM(caps) is the sum of all per-member overrides' cap values plus `defaultMemberCap` multiplied by the number of member subscriptions without an override. When true, the service rejects any configuration where SUM(caps) exceeds the group limit. When false, SUM(caps) is permitted to exceed the group limit. Enabling this flag is rejected if the current configuration already breaches the group limit; reduce caps first, then enable. */
+  isBoundedCap: boolean;
+}
+export const SharedLimitCapPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    defaultMemberCap: S.optional(S.Number),
+    isBoundedCap: S.Boolean,
+  }),
+).annotate({
+  identifier: "SharedLimitCapPropertiesInput",
+}) as any as S.Schema<SharedLimitCapPropertiesInput>;
+
+export interface SharedLimitCapsCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the Azure region. */
+  location: string;
+  /** The name of the SharedLimitCap */
+  vmFamilyName: string;
+  /** The resource-specific properties for this resource. */
+  properties?: SharedLimitCapPropertiesInput;
+}
+export const SharedLimitCapsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      location: S.String.pipe(T.Label()),
+      vmFamilyName: S.String.pipe(T.Label()),
+      properties: S.optional(SharedLimitCapPropertiesInput),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ComputeLimit/locations/{location}/sharedLimitCaps/{vmFamilyName}",
+        code: 200,
+        apiVersion: "2026-07-31",
+      }),
+    ),
+).annotate({
+  identifier: "SharedLimitCapsCreateOrUpdateRequest",
+}) as any as S.Schema<SharedLimitCapsCreateOrUpdateRequest>;
+
+export interface SharedLimitCapsCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: SharedLimitCapProperties;
+}
+export const SharedLimitCapsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(SharedLimitCapProperties),
+    }),
+).annotate({
+  identifier: "SharedLimitCapsCreateOrUpdateResponse",
+}) as any as S.Schema<SharedLimitCapsCreateOrUpdateResponse>;
+
+export type CreateGuestSubscriptionError = AzureOpError;
+/** Adds a subscription as a guest to consume the compute limits shared by the host subscription. */
+export const CreateGuestSubscription: API.OperationMethod<
+  CreateGuestSubscriptionRequest,
+  CreateGuestSubscriptionResponse,
+  CreateGuestSubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateGuestSubscriptionRequest,
+  output: CreateGuestSubscriptionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateSharedLimitError = AzureOpError;
+/** Enables sharing of a compute limit by the host subscription with its guest subscriptions. */
+export const CreateSharedLimit: API.OperationMethod<
+  CreateSharedLimitRequest,
+  CreateSharedLimitResponse,
+  CreateSharedLimitError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateSharedLimitRequest,
+  output: CreateSharedLimitResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateTrustedHostSubscriptionError = AzureOpError;
+/** Adds a host subscription to the guest subscription's list of trusted hosts. A guest subscription can trust multiple host subscriptions; this only establishes trust and does not check the guest in to the host. Guest-to-host association is determined at check-in time, where a subscription can be a guest of at most one host per region. */
+export const CreateTrustedHostSubscription: API.OperationMethod<
+  CreateTrustedHostSubscriptionRequest,
+  CreateTrustedHostSubscriptionResponse,
+  CreateTrustedHostSubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateTrustedHostSubscriptionRequest,
+  output: CreateTrustedHostSubscriptionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteGuestSubscriptionError = AzureOpError;
+/** Deletes a subscription as a guest to stop consuming the compute limits shared by the host subscription. */
+export const DeleteGuestSubscription: API.OperationMethod<
+  DeleteGuestSubscriptionRequest,
+  DeleteGuestSubscriptionResponse,
+  DeleteGuestSubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteGuestSubscriptionRequest,
+  output: DeleteGuestSubscriptionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteMemberCapOverrideError = AzureOpError;
+/** Removes the per-member cap override for a member subscription. */
+export const DeleteMemberCapOverride: API.OperationMethod<
+  DeleteMemberCapOverrideRequest,
+  DeleteMemberCapOverrideResponse,
+  DeleteMemberCapOverrideError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteMemberCapOverrideRequest,
+  output: DeleteMemberCapOverrideResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteSharedLimitError = AzureOpError;
+/** Disables sharing of a compute limit by the host subscription with its guest subscriptions. */
+export const DeleteSharedLimit: API.OperationMethod<
+  DeleteSharedLimitRequest,
+  DeleteSharedLimitResponse,
+  DeleteSharedLimitError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteSharedLimitRequest,
+  output: DeleteSharedLimitResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteSharedLimitCapError = AzureOpError;
+/** Deletes the shared limit cap configuration for a VM family. The caller's subscription is treated as the host subscription. */
+export const DeleteSharedLimitCap: API.OperationMethod<
+  DeleteSharedLimitCapRequest,
+  DeleteSharedLimitCapResponse,
+  DeleteSharedLimitCapError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteSharedLimitCapRequest,
+  output: DeleteSharedLimitCapResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteTrustedHostSubscriptionError = AzureOpError;
+/** Removes a host subscription from the guest subscription's list of trusted hosts. */
+export const DeleteTrustedHostSubscription: API.OperationMethod<
+  DeleteTrustedHostSubscriptionRequest,
+  DeleteTrustedHostSubscriptionResponse,
+  DeleteTrustedHostSubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteTrustedHostSubscriptionRequest,
+  output: DeleteTrustedHostSubscriptionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DisableFeatureError = AzureOpError;
 /** Disables a compute limit feature for the subscription at the specified location. Requires the Contributor role. */
-export const FeaturesDisable: API.OperationMethod<
-  FeaturesDisableRequest,
-  FeaturesDisableResponse,
-  FeaturesDisableError,
+export const DisableFeature: API.OperationMethod<
+  DisableFeatureRequest,
+  DisableFeatureResponse,
+  DisableFeatureError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FeaturesDisableRequest,
-  output: FeaturesDisableResponse,
+  input: DisableFeatureRequest,
+  output: DisableFeatureResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type FeaturesEnableError = AzureOpError;
+export type EnableFeatureError = AzureOpError;
 /** Enables a compute limit feature for the subscription at the specified location. Requires the Contributor role. */
-export const FeaturesEnable: API.OperationMethod<
-  FeaturesEnableRequest,
-  FeaturesEnableResponse,
-  FeaturesEnableError,
+export const EnableFeature: API.OperationMethod<
+  EnableFeatureRequest,
+  EnableFeatureResponse,
+  EnableFeatureError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FeaturesEnableRequest,
-  output: FeaturesEnableResponse,
+  input: EnableFeatureRequest,
+  output: EnableFeatureResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type FeaturesGetError = AzureOpError;
+export type GetFeatureError = AzureOpError;
 /** Gets the properties of a compute limit feature. */
-export const FeaturesGet: API.OperationMethod<
-  FeaturesGetRequest,
-  FeaturesGetResponse,
-  FeaturesGetError,
+export const GetFeature: API.OperationMethod<
+  GetFeatureRequest,
+  GetFeatureResponse,
+  GetFeatureError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FeaturesGetRequest,
-  output: FeaturesGetResponse,
+  input: GetFeatureRequest,
+  output: GetFeatureResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type FeaturesListBySubscriptionLocationResourceError = AzureOpError;
-/** Lists all compute limit features for the subscription at the specified location. */
-export const FeaturesListBySubscriptionLocationResource: API.OperationMethod<
-  FeaturesListBySubscriptionLocationResourceRequest,
-  FeatureListResult,
-  FeaturesListBySubscriptionLocationResourceError,
+export type GetGuestSubscriptionError = AzureOpError;
+/** Gets the properties of a guest subscription. */
+export const GetGuestSubscription: API.OperationMethod<
+  GetGuestSubscriptionRequest,
+  GetGuestSubscriptionResponse,
+  GetGuestSubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FeaturesListBySubscriptionLocationResourceRequest,
+  input: GetGuestSubscriptionRequest,
+  output: GetGuestSubscriptionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetMemberCapOverrideError = AzureOpError;
+/** Gets the cap override configured for a single member subscription. */
+export const GetMemberCapOverride: API.OperationMethod<
+  GetMemberCapOverrideRequest,
+  GetMemberCapOverrideResponse,
+  GetMemberCapOverrideError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetMemberCapOverrideRequest,
+  output: GetMemberCapOverrideResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSharedLimitError = AzureOpError;
+/** Gets the properties of a compute limit shared by the host subscription with its guest subscriptions. */
+export const GetSharedLimit: API.OperationMethod<
+  GetSharedLimitRequest,
+  GetSharedLimitResponse,
+  GetSharedLimitError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSharedLimitRequest,
+  output: GetSharedLimitResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSharedLimitCapError = AzureOpError;
+/** Gets the shared limit cap configuration for a VM family, as visible to the caller's subscription. */
+export const GetSharedLimitCap: API.OperationMethod<
+  GetSharedLimitCapRequest,
+  GetSharedLimitCapResponse,
+  GetSharedLimitCapError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSharedLimitCapRequest,
+  output: GetSharedLimitCapResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetTrustedHostSubscriptionError = AzureOpError;
+/** Gets a host subscription that the guest subscription trusts. */
+export const GetTrustedHostSubscription: API.OperationMethod<
+  GetTrustedHostSubscriptionRequest,
+  GetTrustedHostSubscriptionResponse,
+  GetTrustedHostSubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetTrustedHostSubscriptionRequest,
+  output: GetTrustedHostSubscriptionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetVmFamilyError = AzureOpError;
+/** Gets the properties of a VM family. */
+export const GetVmFamily: API.OperationMethod<
+  GetVmFamilyRequest,
+  GetVmFamilyResponse,
+  GetVmFamilyError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetVmFamilyRequest,
+  output: GetVmFamilyResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListFeatureBySubscriptionLocationResourceError = AzureOpError;
+/** Lists all compute limit features for the subscription at the specified location. */
+export const ListFeatureBySubscriptionLocationResource: API.OperationMethod<
+  ListFeatureBySubscriptionLocationResourceRequest,
+  FeatureListResult,
+  ListFeatureBySubscriptionLocationResourceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListFeatureBySubscriptionLocationResourceRequest,
   output: FeatureListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GuestSubscriptionsCreateError = AzureOpError;
-/** Adds a subscription as a guest to consume the compute limits shared by the host subscription. */
-export const GuestSubscriptionsCreate: API.OperationMethod<
-  GuestSubscriptionsCreateRequest,
-  GuestSubscriptionsCreateResponse,
-  GuestSubscriptionsCreateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GuestSubscriptionsCreateRequest,
-  output: GuestSubscriptionsCreateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GuestSubscriptionsDeleteError = AzureOpError;
-/** Deletes a subscription as a guest to stop consuming the compute limits shared by the host subscription. */
-export const GuestSubscriptionsDelete: API.OperationMethod<
-  GuestSubscriptionsDeleteRequest,
-  GuestSubscriptionsDeleteResponse,
-  GuestSubscriptionsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GuestSubscriptionsDeleteRequest,
-  output: GuestSubscriptionsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GuestSubscriptionsGetError = AzureOpError;
-/** Gets the properties of a guest subscription. */
-export const GuestSubscriptionsGet: API.OperationMethod<
-  GuestSubscriptionsGetRequest,
-  GuestSubscriptionsGetResponse,
-  GuestSubscriptionsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GuestSubscriptionsGetRequest,
-  output: GuestSubscriptionsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GuestSubscriptionsListBySubscriptionLocationResourceError =
+export type ListGuestSubscriptionBySubscriptionLocationResourceError =
   AzureOpError;
 /** Lists all guest subscriptions in a location. */
-export const GuestSubscriptionsListBySubscriptionLocationResource: API.OperationMethod<
-  GuestSubscriptionsListBySubscriptionLocationResourceRequest,
+export const ListGuestSubscriptionBySubscriptionLocationResource: API.OperationMethod<
+  ListGuestSubscriptionBySubscriptionLocationResourceRequest,
   GuestSubscriptionListResult,
-  GuestSubscriptionsListBySubscriptionLocationResourceError,
+  ListGuestSubscriptionBySubscriptionLocationResourceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GuestSubscriptionsListBySubscriptionLocationResourceRequest,
+  input: ListGuestSubscriptionBySubscriptionLocationResourceRequest,
   output: GuestSubscriptionListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListMemberCapOverrideByParentError = AzureOpError;
+/** Lists all per-member cap overrides configured under a SharedLimitCap. */
+export const ListMemberCapOverrideByParent: API.OperationMethod<
+  ListMemberCapOverrideByParentRequest,
+  MemberCapOverrideListResult,
+  ListMemberCapOverrideByParentError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListMemberCapOverrideByParentRequest,
+  output: MemberCapOverrideListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListOperationsError = AzureOpError;
+/** List the operations for the provider */
+export const ListOperations: API.OperationMethod<
+  ListOperationsRequest,
+  ListOperationsResponse,
+  ListOperationsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListOperationsRequest,
+  output: ListOperationsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSharedLimitBySubscriptionLocationResourceError = AzureOpError;
+/** Lists all compute limits shared by the host subscription with its guest subscriptions. */
+export const ListSharedLimitBySubscriptionLocationResource: API.OperationMethod<
+  ListSharedLimitBySubscriptionLocationResourceRequest,
+  SharedLimitListResult,
+  ListSharedLimitBySubscriptionLocationResourceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSharedLimitBySubscriptionLocationResourceRequest,
+  output: SharedLimitListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSharedLimitCapBySubscriptionLocationResourceError =
+  AzureOpError;
+/** Lists all shared limit cap configurations visible to the caller's subscription. */
+export const ListSharedLimitCapBySubscriptionLocationResource: API.OperationMethod<
+  ListSharedLimitCapBySubscriptionLocationResourceRequest,
+  SharedLimitCapListResult,
+  ListSharedLimitCapBySubscriptionLocationResourceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSharedLimitCapBySubscriptionLocationResourceRequest,
+  output: SharedLimitCapListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListTrustedHostSubscriptionBySubscriptionLocationResourceError =
+  AzureOpError;
+/** Lists all host subscriptions that the guest subscription trusts in a location. */
+export const ListTrustedHostSubscriptionBySubscriptionLocationResource: API.OperationMethod<
+  ListTrustedHostSubscriptionBySubscriptionLocationResourceRequest,
+  TrustedHostSubscriptionListResult,
+  ListTrustedHostSubscriptionBySubscriptionLocationResourceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListTrustedHostSubscriptionBySubscriptionLocationResourceRequest,
+  output: TrustedHostSubscriptionListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListVmFamilyBySubscriptionLocationResourceError = AzureOpError;
+/** Lists all VM families for the subscription at the specified location. */
+export const ListVmFamilyBySubscriptionLocationResource: API.OperationMethod<
+  ListVmFamilyBySubscriptionLocationResourceRequest,
+  VmFamilyListResult,
+  ListVmFamilyBySubscriptionLocationResourceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListVmFamilyBySubscriptionLocationResourceRequest,
+  output: VmFamilyListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -2018,61 +2274,16 @@ export const MemberCapOverridesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type MemberCapOverridesDeleteError = AzureOpError;
-/** Removes the per-member cap override for a member subscription. */
-export const MemberCapOverridesDelete: API.OperationMethod<
-  MemberCapOverridesDeleteRequest,
-  MemberCapOverridesDeleteResponse,
-  MemberCapOverridesDeleteError,
+export type SetSharedLimitCapMemberCapOverridesError = AzureOpError;
+/** Replaces the full set of per-member cap overrides for this shared limit cap. The supplied array becomes the new complete set of overrides; supplying an empty array clears all existing overrides. */
+export const SetSharedLimitCapMemberCapOverrides: API.OperationMethod<
+  SetSharedLimitCapMemberCapOverridesRequest,
+  SetMemberCapOverridesResult,
+  SetSharedLimitCapMemberCapOverridesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: MemberCapOverridesDeleteRequest,
-  output: MemberCapOverridesDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type MemberCapOverridesGetError = AzureOpError;
-/** Gets the cap override configured for a single member subscription. */
-export const MemberCapOverridesGet: API.OperationMethod<
-  MemberCapOverridesGetRequest,
-  MemberCapOverridesGetResponse,
-  MemberCapOverridesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: MemberCapOverridesGetRequest,
-  output: MemberCapOverridesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type MemberCapOverridesListByParentError = AzureOpError;
-/** Lists all per-member cap overrides configured under a SharedLimitCap. */
-export const MemberCapOverridesListByParent: API.OperationMethod<
-  MemberCapOverridesListByParentRequest,
-  MemberCapOverrideListResult,
-  MemberCapOverridesListByParentError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: MemberCapOverridesListByParentRequest,
-  output: MemberCapOverrideListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type OperationsListError = AzureOpError;
-/** List the operations for the provider */
-export const OperationsList: API.OperationMethod<
-  OperationsListRequest,
-  OperationsListResponse,
-  OperationsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: OperationsListRequest,
-  output: OperationsListResponse,
+  input: SetSharedLimitCapMemberCapOverridesRequest,
+  output: SetMemberCapOverridesResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -2088,218 +2299,6 @@ export const SharedLimitCapsCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: SharedLimitCapsCreateOrUpdateRequest,
   output: SharedLimitCapsCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SharedLimitCapsDeleteError = AzureOpError;
-/** Deletes the shared limit cap configuration for a VM family. The caller's subscription is treated as the host subscription. */
-export const SharedLimitCapsDelete: API.OperationMethod<
-  SharedLimitCapsDeleteRequest,
-  SharedLimitCapsDeleteResponse,
-  SharedLimitCapsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SharedLimitCapsDeleteRequest,
-  output: SharedLimitCapsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SharedLimitCapsGetError = AzureOpError;
-/** Gets the shared limit cap configuration for a VM family, as visible to the caller's subscription. */
-export const SharedLimitCapsGet: API.OperationMethod<
-  SharedLimitCapsGetRequest,
-  SharedLimitCapsGetResponse,
-  SharedLimitCapsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SharedLimitCapsGetRequest,
-  output: SharedLimitCapsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SharedLimitCapsListBySubscriptionLocationResourceError =
-  AzureOpError;
-/** Lists all shared limit cap configurations visible to the caller's subscription. */
-export const SharedLimitCapsListBySubscriptionLocationResource: API.OperationMethod<
-  SharedLimitCapsListBySubscriptionLocationResourceRequest,
-  SharedLimitCapListResult,
-  SharedLimitCapsListBySubscriptionLocationResourceError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SharedLimitCapsListBySubscriptionLocationResourceRequest,
-  output: SharedLimitCapListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SharedLimitCapsSetMemberCapOverridesError = AzureOpError;
-/** Replaces the full set of per-member cap overrides for this shared limit cap. The supplied array becomes the new complete set of overrides; supplying an empty array clears all existing overrides. */
-export const SharedLimitCapsSetMemberCapOverrides: API.OperationMethod<
-  SharedLimitCapsSetMemberCapOverridesRequest,
-  SetMemberCapOverridesResult,
-  SharedLimitCapsSetMemberCapOverridesError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SharedLimitCapsSetMemberCapOverridesRequest,
-  output: SetMemberCapOverridesResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SharedLimitsCreateError = AzureOpError;
-/** Enables sharing of a compute limit by the host subscription with its guest subscriptions. */
-export const SharedLimitsCreate: API.OperationMethod<
-  SharedLimitsCreateRequest,
-  SharedLimitsCreateResponse,
-  SharedLimitsCreateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SharedLimitsCreateRequest,
-  output: SharedLimitsCreateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SharedLimitsDeleteError = AzureOpError;
-/** Disables sharing of a compute limit by the host subscription with its guest subscriptions. */
-export const SharedLimitsDelete: API.OperationMethod<
-  SharedLimitsDeleteRequest,
-  SharedLimitsDeleteResponse,
-  SharedLimitsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SharedLimitsDeleteRequest,
-  output: SharedLimitsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SharedLimitsGetError = AzureOpError;
-/** Gets the properties of a compute limit shared by the host subscription with its guest subscriptions. */
-export const SharedLimitsGet: API.OperationMethod<
-  SharedLimitsGetRequest,
-  SharedLimitsGetResponse,
-  SharedLimitsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SharedLimitsGetRequest,
-  output: SharedLimitsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SharedLimitsListBySubscriptionLocationResourceError = AzureOpError;
-/** Lists all compute limits shared by the host subscription with its guest subscriptions. */
-export const SharedLimitsListBySubscriptionLocationResource: API.OperationMethod<
-  SharedLimitsListBySubscriptionLocationResourceRequest,
-  SharedLimitListResult,
-  SharedLimitsListBySubscriptionLocationResourceError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SharedLimitsListBySubscriptionLocationResourceRequest,
-  output: SharedLimitListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TrustedHostSubscriptionsCreateError = AzureOpError;
-/** Adds a host subscription to the guest subscription's list of trusted hosts. A guest subscription can trust multiple host subscriptions; this only establishes trust and does not check the guest in to the host. Guest-to-host association is determined at check-in time, where a subscription can be a guest of at most one host per region. */
-export const TrustedHostSubscriptionsCreate: API.OperationMethod<
-  TrustedHostSubscriptionsCreateRequest,
-  TrustedHostSubscriptionsCreateResponse,
-  TrustedHostSubscriptionsCreateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TrustedHostSubscriptionsCreateRequest,
-  output: TrustedHostSubscriptionsCreateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TrustedHostSubscriptionsDeleteError = AzureOpError;
-/** Removes a host subscription from the guest subscription's list of trusted hosts. */
-export const TrustedHostSubscriptionsDelete: API.OperationMethod<
-  TrustedHostSubscriptionsDeleteRequest,
-  TrustedHostSubscriptionsDeleteResponse,
-  TrustedHostSubscriptionsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TrustedHostSubscriptionsDeleteRequest,
-  output: TrustedHostSubscriptionsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TrustedHostSubscriptionsGetError = AzureOpError;
-/** Gets a host subscription that the guest subscription trusts. */
-export const TrustedHostSubscriptionsGet: API.OperationMethod<
-  TrustedHostSubscriptionsGetRequest,
-  TrustedHostSubscriptionsGetResponse,
-  TrustedHostSubscriptionsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TrustedHostSubscriptionsGetRequest,
-  output: TrustedHostSubscriptionsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TrustedHostSubscriptionsListBySubscriptionLocationResourceError =
-  AzureOpError;
-/** Lists all host subscriptions that the guest subscription trusts in a location. */
-export const TrustedHostSubscriptionsListBySubscriptionLocationResource: API.OperationMethod<
-  TrustedHostSubscriptionsListBySubscriptionLocationResourceRequest,
-  TrustedHostSubscriptionListResult,
-  TrustedHostSubscriptionsListBySubscriptionLocationResourceError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TrustedHostSubscriptionsListBySubscriptionLocationResourceRequest,
-  output: TrustedHostSubscriptionListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VmFamiliesGetError = AzureOpError;
-/** Gets the properties of a VM family. */
-export const VmFamiliesGet: API.OperationMethod<
-  VmFamiliesGetRequest,
-  VmFamiliesGetResponse,
-  VmFamiliesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VmFamiliesGetRequest,
-  output: VmFamiliesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VmFamiliesListBySubscriptionLocationResourceError = AzureOpError;
-/** Lists all VM families for the subscription at the specified location. */
-export const VmFamiliesListBySubscriptionLocationResource: API.OperationMethod<
-  VmFamiliesListBySubscriptionLocationResourceRequest,
-  VmFamilyListResult,
-  VmFamiliesListBySubscriptionLocationResourceError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VmFamiliesListBySubscriptionLocationResourceRequest,
-  output: VmFamilyListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

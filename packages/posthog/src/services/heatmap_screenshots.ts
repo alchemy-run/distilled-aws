@@ -30,7 +30,7 @@ export class NotFound
     [{ status: 404 }],
   ) {}
 
-export interface HeatmapScreenshotsContentRetrieveRequest {
+export interface GetHeatmapScreenshotsContentRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A UUID string identifying this saved heatmap. */
@@ -38,42 +38,42 @@ export interface HeatmapScreenshotsContentRetrieveRequest {
   /** Viewport width (CSS pixels) to fetch. Defaults to 1024. If no exact render exists for this width the closest available one is returned. */
   width?: number;
 }
-export const HeatmapScreenshotsContentRetrieveRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-      width: S.optional(S.Number.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/heatmap_screenshots/{id}/content/",
-        code: 200,
-      }),
-    ),
+export const GetHeatmapScreenshotsContentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+    width: S.optional(S.Number.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/heatmap_screenshots/{id}/content/",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "HeatmapScreenshotsContentRetrieveRequest",
-}) as any as S.Schema<HeatmapScreenshotsContentRetrieveRequest>;
+  identifier: "GetHeatmapScreenshotsContentRequest",
+}) as any as S.Schema<GetHeatmapScreenshotsContentRequest>;
 
-export interface HeatmapScreenshotsContentRetrieveResponse {}
-export const HeatmapScreenshotsContentRetrieveResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "HeatmapScreenshotsContentRetrieveResponse",
-  }) as any as S.Schema<HeatmapScreenshotsContentRetrieveResponse>;
+export interface GetHeatmapScreenshotsContentResponse {}
+export const GetHeatmapScreenshotsContentResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "GetHeatmapScreenshotsContentResponse",
+}) as any as S.Schema<GetHeatmapScreenshotsContentResponse>;
 
-export type HeatmapScreenshotsContentRetrieveError =
+export type GetHeatmapScreenshotsContentError =
   | Forbidden
   | NotFound
   | PosthogOpError;
 /** Fetch the rendered screenshot image (JPEG bytes) for a saved heatmap at a given viewport width. Returns 202 with the saved-heatmap metadata while the screenshot is still being generated. */
-export const heatmapScreenshotsContentRetrieve: API.OperationMethod<
-  HeatmapScreenshotsContentRetrieveRequest,
-  HeatmapScreenshotsContentRetrieveResponse,
-  HeatmapScreenshotsContentRetrieveError,
+export const getHeatmapScreenshotsContent: API.OperationMethod<
+  GetHeatmapScreenshotsContentRequest,
+  GetHeatmapScreenshotsContentResponse,
+  GetHeatmapScreenshotsContentError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: HeatmapScreenshotsContentRetrieveRequest,
-  output: HeatmapScreenshotsContentRetrieveResponse,
+  input: GetHeatmapScreenshotsContentRequest,
+  output: GetHeatmapScreenshotsContentResponse,
   errors: [Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,

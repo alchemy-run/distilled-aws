@@ -39,7 +39,81 @@ export class NotFound
     [{ status: 404 }],
   ) {}
 
-export interface LiveDebuggerBreakpointsActiveRetrieveRequest {
+export interface CreateLiveDebuggerBreakpointRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  repository?: string | null;
+  filename?: string;
+  line_number?: number;
+  enabled?: boolean;
+  condition?: string | null;
+}
+export const CreateLiveDebuggerBreakpointRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    repository: S.optional(S.NullOr(S.String)),
+    filename: S.optional(S.String),
+    line_number: S.optional(S.Number),
+    enabled: S.optional(S.Boolean),
+    condition: S.optional(S.NullOr(S.String)),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/api/projects/{project_id}/live_debugger_breakpoints/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateLiveDebuggerBreakpointRequest",
+}) as any as S.Schema<CreateLiveDebuggerBreakpointRequest>;
+
+export interface LiveDebuggerBreakpoint {
+  id?: string;
+  repository?: string | null;
+  filename?: string;
+  line_number?: number;
+  enabled?: boolean;
+  condition?: string | null;
+  created_at?: string;
+  updated_at?: string;
+}
+export const LiveDebuggerBreakpoint = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    repository: S.optional(S.NullOr(S.String)),
+    filename: S.optional(S.String),
+    line_number: S.optional(S.Number),
+    enabled: S.optional(S.Boolean),
+    condition: S.optional(S.NullOr(S.String)),
+    created_at: S.optional(S.String),
+    updated_at: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "LiveDebuggerBreakpoint",
+}) as any as S.Schema<LiveDebuggerBreakpoint>;
+
+export interface GetLiveDebuggerBreakpointRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this live debugger breakpoint. */
+  id: string;
+}
+export const GetLiveDebuggerBreakpointRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/live_debugger_breakpoints/{id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetLiveDebuggerBreakpointRequest",
+}) as any as S.Schema<GetLiveDebuggerBreakpointRequest>;
+
+export interface GetLiveDebuggerBreakpointsActiveRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** Only return enabled breakpoints */
@@ -49,8 +123,8 @@ export interface LiveDebuggerBreakpointsActiveRetrieveRequest {
   /** Filter breakpoints for a specific repository (e.g., 'PostHog/posthog') */
   repository?: string;
 }
-export const LiveDebuggerBreakpointsActiveRetrieveRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const GetLiveDebuggerBreakpointsActiveRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
       enabled: S.optional(S.Boolean.pipe(T.Query())),
@@ -63,9 +137,9 @@ export const LiveDebuggerBreakpointsActiveRetrieveRequest =
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "LiveDebuggerBreakpointsActiveRetrieveRequest",
-  }) as any as S.Schema<LiveDebuggerBreakpointsActiveRetrieveRequest>;
+).annotate({
+  identifier: "GetLiveDebuggerBreakpointsActiveRequest",
+}) as any as S.Schema<GetLiveDebuggerBreakpointsActiveRequest>;
 
 /** Schema for a single active breakpoint */
 export interface ActiveBreakpoint {
@@ -114,7 +188,7 @@ export const ActiveBreakpointsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ActiveBreakpointsResponse",
 }) as any as S.Schema<ActiveBreakpointsResponse>;
 
-export interface LiveDebuggerBreakpointsBreakpointHitsRetrieveRequest {
+export interface GetLiveDebuggerBreakpointsBreakpointHitRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** Filter hits for specific breakpoints (repeat parameter for multiple IDs, e.g., ?breakpoint_ids=uuid1&breakpoint_ids=uuid2) */
@@ -124,7 +198,7 @@ export interface LiveDebuggerBreakpointsBreakpointHitsRetrieveRequest {
   /** Pagination offset for retrieving additional results (default: 0) */
   offset?: number;
 }
-export const LiveDebuggerBreakpointsBreakpointHitsRetrieveRequest =
+export const GetLiveDebuggerBreakpointsBreakpointHitRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
@@ -139,8 +213,8 @@ export const LiveDebuggerBreakpointsBreakpointHitsRetrieveRequest =
       }),
     ),
   ).annotate({
-    identifier: "LiveDebuggerBreakpointsBreakpointHitsRetrieveRequest",
-  }) as any as S.Schema<LiveDebuggerBreakpointsBreakpointHitsRetrieveRequest>;
+    identifier: "GetLiveDebuggerBreakpointsBreakpointHitRequest",
+  }) as any as S.Schema<GetLiveDebuggerBreakpointsBreakpointHitRequest>;
 
 /** Local variables at the time of the hit */
 export type BreakpointHitVariablesMap = { [key: string]: unknown | undefined };
@@ -212,59 +286,57 @@ export const BreakpointHitsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "BreakpointHitsResponse",
 }) as any as S.Schema<BreakpointHitsResponse>;
 
-export interface LiveDebuggerBreakpointsCreateRequest {
+export interface ListLiveDebuggerBreakpointsRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
-  repository?: string | null;
   filename?: string;
-  line_number?: number;
-  enabled?: boolean;
-  condition?: string | null;
+  /** Number of results to return per page. */
+  limit?: number;
+  /** The initial index from which to return the results. */
+  offset?: number;
+  repository?: string;
 }
-export const LiveDebuggerBreakpointsCreateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      repository: S.optional(S.NullOr(S.String)),
-      filename: S.optional(S.String),
-      line_number: S.optional(S.Number),
-      enabled: S.optional(S.Boolean),
-      condition: S.optional(S.NullOr(S.String)),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/api/projects/{project_id}/live_debugger_breakpoints/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "LiveDebuggerBreakpointsCreateRequest",
-}) as any as S.Schema<LiveDebuggerBreakpointsCreateRequest>;
-
-export interface LiveDebuggerBreakpoint {
-  id?: string;
-  repository?: string | null;
-  filename?: string;
-  line_number?: number;
-  enabled?: boolean;
-  condition?: string | null;
-  created_at?: string;
-  updated_at?: string;
-}
-export const LiveDebuggerBreakpoint = /*@__PURE__*/ S.suspend(() =>
+export const ListLiveDebuggerBreakpointsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    id: S.optional(S.String),
-    repository: S.optional(S.NullOr(S.String)),
-    filename: S.optional(S.String),
-    line_number: S.optional(S.Number),
-    enabled: S.optional(S.Boolean),
-    condition: S.optional(S.NullOr(S.String)),
-    created_at: S.optional(S.String),
-    updated_at: S.optional(S.String),
+    project_id: S.String.pipe(T.Label()),
+    filename: S.optional(S.String.pipe(T.Query())),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    offset: S.optional(S.Number.pipe(T.Query())),
+    repository: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/live_debugger_breakpoints/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListLiveDebuggerBreakpointsRequest",
+}) as any as S.Schema<ListLiveDebuggerBreakpointsRequest>;
+
+export type PaginatedLiveDebuggerBreakpointListResultsList =
+  Array<LiveDebuggerBreakpoint>;
+export const PaginatedLiveDebuggerBreakpointListResultsList =
+  /*@__PURE__*/ S.Array(
+    LiveDebuggerBreakpoint,
+  ) as any as S.Schema<PaginatedLiveDebuggerBreakpointListResultsList>;
+
+export interface PaginatedLiveDebuggerBreakpointList {
+  count?: number;
+  next?: string | null;
+  previous?: string | null;
+  results?: PaginatedLiveDebuggerBreakpointListResultsList;
+}
+export const PaginatedLiveDebuggerBreakpointList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    count: S.optional(S.Number),
+    next: S.optional(S.NullOr(S.String)),
+    previous: S.optional(S.NullOr(S.String)),
+    results: S.optional(PaginatedLiveDebuggerBreakpointListResultsList),
   }),
 ).annotate({
-  identifier: "LiveDebuggerBreakpoint",
-}) as any as S.Schema<LiveDebuggerBreakpoint>;
+  identifier: "PaginatedLiveDebuggerBreakpointList",
+}) as any as S.Schema<PaginatedLiveDebuggerBreakpointList>;
 
 export interface LiveDebuggerBreakpointsDestroyRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -295,59 +367,7 @@ export const LiveDebuggerBreakpointsDestroyResponse = /*@__PURE__*/ S.suspend(
   identifier: "LiveDebuggerBreakpointsDestroyResponse",
 }) as any as S.Schema<LiveDebuggerBreakpointsDestroyResponse>;
 
-export interface LiveDebuggerBreakpointsListRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  filename?: string;
-  /** Number of results to return per page. */
-  limit?: number;
-  /** The initial index from which to return the results. */
-  offset?: number;
-  repository?: string;
-}
-export const LiveDebuggerBreakpointsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    filename: S.optional(S.String.pipe(T.Query())),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    offset: S.optional(S.Number.pipe(T.Query())),
-    repository: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/live_debugger_breakpoints/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "LiveDebuggerBreakpointsListRequest",
-}) as any as S.Schema<LiveDebuggerBreakpointsListRequest>;
-
-export type PaginatedLiveDebuggerBreakpointListResultsList =
-  Array<LiveDebuggerBreakpoint>;
-export const PaginatedLiveDebuggerBreakpointListResultsList =
-  /*@__PURE__*/ S.Array(
-    LiveDebuggerBreakpoint,
-  ) as any as S.Schema<PaginatedLiveDebuggerBreakpointListResultsList>;
-
-export interface PaginatedLiveDebuggerBreakpointList {
-  count?: number;
-  next?: string | null;
-  previous?: string | null;
-  results?: PaginatedLiveDebuggerBreakpointListResultsList;
-}
-export const PaginatedLiveDebuggerBreakpointList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    count: S.optional(S.Number),
-    next: S.optional(S.NullOr(S.String)),
-    previous: S.optional(S.NullOr(S.String)),
-    results: S.optional(PaginatedLiveDebuggerBreakpointListResultsList),
-  }),
-).annotate({
-  identifier: "PaginatedLiveDebuggerBreakpointList",
-}) as any as S.Schema<PaginatedLiveDebuggerBreakpointList>;
-
-export interface LiveDebuggerBreakpointsPartialUpdateRequest {
+export interface UpdateLiveDebuggerBreakpointRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A UUID string identifying this live debugger breakpoint. */
@@ -358,7 +378,38 @@ export interface LiveDebuggerBreakpointsPartialUpdateRequest {
   enabled?: boolean;
   condition?: string | null;
 }
-export const LiveDebuggerBreakpointsPartialUpdateRequest =
+export const UpdateLiveDebuggerBreakpointRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+    repository: S.optional(S.NullOr(S.String)),
+    filename: S.optional(S.String),
+    line_number: S.optional(S.Number),
+    enabled: S.optional(S.Boolean),
+    condition: S.optional(S.NullOr(S.String)),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/api/projects/{project_id}/live_debugger_breakpoints/{id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "UpdateLiveDebuggerBreakpointRequest",
+}) as any as S.Schema<UpdateLiveDebuggerBreakpointRequest>;
+
+export interface UpdateLiveDebuggerBreakpointsPartialRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this live debugger breakpoint. */
+  id: string;
+  repository?: string | null;
+  filename?: string;
+  line_number?: number;
+  enabled?: boolean;
+  condition?: string | null;
+}
+export const UpdateLiveDebuggerBreakpointsPartialRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
@@ -376,115 +427,98 @@ export const LiveDebuggerBreakpointsPartialUpdateRequest =
       }),
     ),
   ).annotate({
-    identifier: "LiveDebuggerBreakpointsPartialUpdateRequest",
-  }) as any as S.Schema<LiveDebuggerBreakpointsPartialUpdateRequest>;
+    identifier: "UpdateLiveDebuggerBreakpointsPartialRequest",
+  }) as any as S.Schema<UpdateLiveDebuggerBreakpointsPartialRequest>;
 
-export interface LiveDebuggerBreakpointsRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this live debugger breakpoint. */
-  id: string;
-}
-export const LiveDebuggerBreakpointsRetrieveRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/live_debugger_breakpoints/{id}/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "LiveDebuggerBreakpointsRetrieveRequest",
-}) as any as S.Schema<LiveDebuggerBreakpointsRetrieveRequest>;
+export type CreateLiveDebuggerBreakpointError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+/** Create, Read, Update and Delete breakpoints for live debugging. */
+export const createLiveDebuggerBreakpoint: API.OperationMethod<
+  CreateLiveDebuggerBreakpointRequest,
+  LiveDebuggerBreakpoint,
+  CreateLiveDebuggerBreakpointError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateLiveDebuggerBreakpointRequest,
+  output: LiveDebuggerBreakpoint,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
 
-export interface LiveDebuggerBreakpointsUpdateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this live debugger breakpoint. */
-  id: string;
-  repository?: string | null;
-  filename?: string;
-  line_number?: number;
-  enabled?: boolean;
-  condition?: string | null;
-}
-export const LiveDebuggerBreakpointsUpdateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-      repository: S.optional(S.NullOr(S.String)),
-      filename: S.optional(S.String),
-      line_number: S.optional(S.Number),
-      enabled: S.optional(S.Boolean),
-      condition: S.optional(S.NullOr(S.String)),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/api/projects/{project_id}/live_debugger_breakpoints/{id}/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "LiveDebuggerBreakpointsUpdateRequest",
-}) as any as S.Schema<LiveDebuggerBreakpointsUpdateRequest>;
+export type GetLiveDebuggerBreakpointError =
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+/** Create, Read, Update and Delete breakpoints for live debugging. */
+export const getLiveDebuggerBreakpoint: API.OperationMethod<
+  GetLiveDebuggerBreakpointRequest,
+  LiveDebuggerBreakpoint,
+  GetLiveDebuggerBreakpointError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetLiveDebuggerBreakpointRequest,
+  output: LiveDebuggerBreakpoint,
+  errors: [Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
 
-export type LiveDebuggerBreakpointsActiveRetrieveError =
+export type GetLiveDebuggerBreakpointsActiveError =
   | BadRequest
   | Forbidden
   | NotFound
   | PosthogOpError;
 /** Get active breakpoints (External API) External API endpoint for client applications to fetch active breakpoints using Project API key. This endpoint allows external client applications (like Python scripts, Node.js apps, etc.) to fetch the list of active breakpoints so they can instrument their code accordingly. Authentication: Requires a Project API Key in the Authorization header: `Authorization: Bearer phs_<your-project-api-key>`. You can find your Project API Key in PostHog at: Settings → Project → Project API Key */
-export const liveDebuggerBreakpointsActiveRetrieve: API.OperationMethod<
-  LiveDebuggerBreakpointsActiveRetrieveRequest,
+export const getLiveDebuggerBreakpointsActive: API.OperationMethod<
+  GetLiveDebuggerBreakpointsActiveRequest,
   ActiveBreakpointsResponse,
-  LiveDebuggerBreakpointsActiveRetrieveError,
+  GetLiveDebuggerBreakpointsActiveError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: LiveDebuggerBreakpointsActiveRetrieveRequest,
+  input: GetLiveDebuggerBreakpointsActiveRequest,
   output: ActiveBreakpointsResponse,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type LiveDebuggerBreakpointsBreakpointHitsRetrieveError =
+export type GetLiveDebuggerBreakpointsBreakpointHitError =
   | BadRequest
   | Forbidden
   | NotFound
   | PosthogOpError;
 /** Get breakpoint hits Retrieve breakpoint hit events from ClickHouse with optional filtering and pagination. Returns hit events containing stack traces, local variables, and execution context from your application's runtime. Security: Breakpoint IDs are filtered to only include those belonging to the current team. */
-export const liveDebuggerBreakpointsBreakpointHitsRetrieve: API.OperationMethod<
-  LiveDebuggerBreakpointsBreakpointHitsRetrieveRequest,
+export const getLiveDebuggerBreakpointsBreakpointHit: API.OperationMethod<
+  GetLiveDebuggerBreakpointsBreakpointHitRequest,
   BreakpointHitsResponse,
-  LiveDebuggerBreakpointsBreakpointHitsRetrieveError,
+  GetLiveDebuggerBreakpointsBreakpointHitError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: LiveDebuggerBreakpointsBreakpointHitsRetrieveRequest,
+  input: GetLiveDebuggerBreakpointsBreakpointHitRequest,
   output: BreakpointHitsResponse,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type LiveDebuggerBreakpointsCreateError =
+export type ListLiveDebuggerBreakpointsError =
   | BadRequest
   | Forbidden
   | NotFound
   | PosthogOpError;
 /** Create, Read, Update and Delete breakpoints for live debugging. */
-export const liveDebuggerBreakpointsCreate: API.OperationMethod<
-  LiveDebuggerBreakpointsCreateRequest,
-  LiveDebuggerBreakpoint,
-  LiveDebuggerBreakpointsCreateError,
+export const listLiveDebuggerBreakpoints: API.OperationMethod<
+  ListLiveDebuggerBreakpointsRequest,
+  PaginatedLiveDebuggerBreakpointList,
+  ListLiveDebuggerBreakpointsError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: LiveDebuggerBreakpointsCreateRequest,
-  output: LiveDebuggerBreakpoint,
+  input: ListLiveDebuggerBreakpointsRequest,
+  output: PaginatedLiveDebuggerBreakpointList,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
@@ -508,75 +542,38 @@ export const liveDebuggerBreakpointsDestroy: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type LiveDebuggerBreakpointsListError =
+export type UpdateLiveDebuggerBreakpointError =
   | BadRequest
   | Forbidden
   | NotFound
   | PosthogOpError;
 /** Create, Read, Update and Delete breakpoints for live debugging. */
-export const liveDebuggerBreakpointsList: API.OperationMethod<
-  LiveDebuggerBreakpointsListRequest,
-  PaginatedLiveDebuggerBreakpointList,
-  LiveDebuggerBreakpointsListError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: LiveDebuggerBreakpointsListRequest,
-  output: PaginatedLiveDebuggerBreakpointList,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type LiveDebuggerBreakpointsPartialUpdateError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** Create, Read, Update and Delete breakpoints for live debugging. */
-export const liveDebuggerBreakpointsPartialUpdate: API.OperationMethod<
-  LiveDebuggerBreakpointsPartialUpdateRequest,
+export const updateLiveDebuggerBreakpoint: API.OperationMethod<
+  UpdateLiveDebuggerBreakpointRequest,
   LiveDebuggerBreakpoint,
-  LiveDebuggerBreakpointsPartialUpdateError,
+  UpdateLiveDebuggerBreakpointError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: LiveDebuggerBreakpointsPartialUpdateRequest,
+  input: UpdateLiveDebuggerBreakpointRequest,
   output: LiveDebuggerBreakpoint,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type LiveDebuggerBreakpointsRetrieveError =
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** Create, Read, Update and Delete breakpoints for live debugging. */
-export const liveDebuggerBreakpointsRetrieve: API.OperationMethod<
-  LiveDebuggerBreakpointsRetrieveRequest,
-  LiveDebuggerBreakpoint,
-  LiveDebuggerBreakpointsRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: LiveDebuggerBreakpointsRetrieveRequest,
-  output: LiveDebuggerBreakpoint,
-  errors: [Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type LiveDebuggerBreakpointsUpdateError =
+export type UpdateLiveDebuggerBreakpointsPartialError =
   | BadRequest
   | Forbidden
   | NotFound
   | PosthogOpError;
 /** Create, Read, Update and Delete breakpoints for live debugging. */
-export const liveDebuggerBreakpointsUpdate: API.OperationMethod<
-  LiveDebuggerBreakpointsUpdateRequest,
+export const updateLiveDebuggerBreakpointsPartial: API.OperationMethod<
+  UpdateLiveDebuggerBreakpointsPartialRequest,
   LiveDebuggerBreakpoint,
-  LiveDebuggerBreakpointsUpdateError,
+  UpdateLiveDebuggerBreakpointsPartialError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: LiveDebuggerBreakpointsUpdateRequest,
+  input: UpdateLiveDebuggerBreakpointsPartialRequest,
   output: LiveDebuggerBreakpoint,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,

@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.event_filter#EventFilterRetrieveRequest": {
+    "com.posthog.event_filter#GetEventFilterRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -40,7 +41,7 @@
           "target": "smithy.api#String"
         },
         "mode": {
-          "target": "com.posthog.event_filter#EventFilterConfigModeEnum"
+          "target": "com.posthog.event_filter#EventFilterModeEnum"
         },
         "filter_tree": {
           "target": "smithy.api#Document",
@@ -63,7 +64,7 @@
       },
       "traits": {}
     },
-    "com.posthog.event_filter#EventFilterConfigModeEnum": {
+    "com.posthog.event_filter#EventFilterModeEnum": {
       "type": "enum",
       "members": {
         "DISABLED": {
@@ -89,10 +90,10 @@
         "smithy.api#documentation": "* `disabled` - Disabled\n* `dry_run` - Dry Run\n* `live` - Live"
       }
     },
-    "com.posthog.event_filter#EventFilterRetrieve": {
+    "com.posthog.event_filter#GetEventFilter": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.event_filter#EventFilterRetrieveRequest"
+        "target": "com.posthog.event_filter#GetEventFilterRequest"
       },
       "output": {
         "target": "com.posthog.event_filter#EventFilterConfig"
@@ -106,7 +107,7 @@
         "smithy.api#documentation": "Returns the event filter config for the team, or null if not yet created."
       }
     },
-    "com.posthog.event_filter#EventFilterCreateRequest": {
+    "com.posthog.event_filter#CreateEventFilterRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -118,7 +119,7 @@
           }
         },
         "mode": {
-          "target": "com.posthog.event_filter#EventFilterConfigModeEnum"
+          "target": "com.posthog.event_filter#EventFilterModeEnum"
         },
         "filter_tree": {
           "target": "smithy.api#Document",
@@ -137,10 +138,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.event_filter#EventFilterCreate": {
+    "com.posthog.event_filter#CreateEventFilter": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.event_filter#EventFilterCreateRequest"
+        "target": "com.posthog.event_filter#CreateEventFilterRequest"
       },
       "output": {
         "target": "com.posthog.event_filter#EventFilterConfig"
@@ -154,7 +155,7 @@
         "smithy.api#documentation": "Create or update the event filter config."
       }
     },
-    "com.posthog.event_filter#EventFilterMetricsRetrieveRequest": {
+    "com.posthog.event_filter#GetEventFilterMetricsRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -215,10 +216,10 @@
       },
       "traits": {}
     },
-    "com.posthog.event_filter#EventFilterMetricsRetrieve": {
+    "com.posthog.event_filter#GetEventFilterMetrics": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.event_filter#EventFilterMetricsRetrieveRequest"
+        "target": "com.posthog.event_filter#GetEventFilterMetricsRequest"
       },
       "output": {
         "target": "com.posthog.event_filter#AppMetricsResponse"
@@ -232,7 +233,7 @@
         "smithy.api#documentation": "Single event filter per team.\nGET  /event_filter/ — returns the config (or null if not yet created)\nPOST /event_filter/ — creates or updates the config (upsert)\nGET  /event_filter/metrics/ — time-series metrics\nGET  /event_filter/metrics/totals/ — aggregate totals"
       }
     },
-    "com.posthog.event_filter#EventFilterMetricsTotalsRetrieveRequest": {
+    "com.posthog.event_filter#GetEventFilterMetricsTotalRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -267,10 +268,10 @@
       },
       "traits": {}
     },
-    "com.posthog.event_filter#EventFilterMetricsTotalsRetrieve": {
+    "com.posthog.event_filter#GetEventFilterMetricsTotal": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.event_filter#EventFilterMetricsTotalsRetrieveRequest"
+        "target": "com.posthog.event_filter#GetEventFilterMetricsTotalRequest"
       },
       "output": {
         "target": "com.posthog.event_filter#AppMetricsTotalsResponse"
@@ -289,16 +290,16 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.event_filter#EventFilterRetrieve"
+          "target": "com.posthog.event_filter#GetEventFilter"
         },
         {
-          "target": "com.posthog.event_filter#EventFilterCreate"
+          "target": "com.posthog.event_filter#CreateEventFilter"
         },
         {
-          "target": "com.posthog.event_filter#EventFilterMetricsRetrieve"
+          "target": "com.posthog.event_filter#GetEventFilterMetrics"
         },
         {
-          "target": "com.posthog.event_filter#EventFilterMetricsTotalsRetrieve"
+          "target": "com.posthog.event_filter#GetEventFilterMetricsTotal"
         }
       ],
       "traits": {

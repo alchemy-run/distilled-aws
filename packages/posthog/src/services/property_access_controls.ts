@@ -15,7 +15,7 @@ export type { PosthogOpError, PosthogOpContext };
 export type AccessLevelEnum = "read_write" | "read" | "none";
 export const AccessLevelEnum = /*@__PURE__*/ S.String;
 
-export interface PropertyAccessControlsCreateRequest {
+export interface CreatePropertyAccessControlRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** The property definition ID this rule applies to. */
@@ -27,7 +27,7 @@ export interface PropertyAccessControlsCreateRequest {
   /** The role UUID to set an override for. */
   role?: string | null;
 }
-export const PropertyAccessControlsCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreatePropertyAccessControlRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     property_definition_id: S.String,
@@ -42,8 +42,8 @@ export const PropertyAccessControlsCreateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "PropertyAccessControlsCreateRequest",
-}) as any as S.Schema<PropertyAccessControlsCreateRequest>;
+  identifier: "CreatePropertyAccessControlRequest",
+}) as any as S.Schema<CreatePropertyAccessControlRequest>;
 
 /** Serializes a single access control rule DTO. */
 export interface PropertyAccessControlRule {
@@ -72,62 +72,26 @@ export const PropertyAccessControlRule = /*@__PURE__*/ S.suspend(() =>
   identifier: "PropertyAccessControlRule",
 }) as any as S.Schema<PropertyAccessControlRule>;
 
-export interface PropertyAccessControlsDestroyRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** The organization member UUID whose override should be deleted. */
-  organization_member?: string;
-  /** The property definition ID the rule applies to. */
-  property_definition_id: string;
-  /** The role UUID whose override should be deleted. */
-  role?: string;
-}
-export const PropertyAccessControlsDestroyRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      organization_member: S.optional(S.String.pipe(T.Query())),
-      property_definition_id: S.String.pipe(T.Query()),
-      role: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/api/projects/{project_id}/property_access_controls/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "PropertyAccessControlsDestroyRequest",
-}) as any as S.Schema<PropertyAccessControlsDestroyRequest>;
-
-export interface PropertyAccessControlsDestroyResponse {}
-export const PropertyAccessControlsDestroyResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "PropertyAccessControlsDestroyResponse",
-}) as any as S.Schema<PropertyAccessControlsDestroyResponse>;
-
-export interface PropertyAccessControlsRetrieveRequest {
+export interface GetPropertyAccessControlRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** The property definition ID to fetch access control rules for. */
   property_definition_id: string;
 }
-export const PropertyAccessControlsRetrieveRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      property_definition_id: S.String.pipe(T.Query()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/property_access_controls/",
-        code: 200,
-      }),
-    ),
+export const GetPropertyAccessControlRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    property_definition_id: S.String.pipe(T.Query()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/property_access_controls/",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "PropertyAccessControlsRetrieveRequest",
-}) as any as S.Schema<PropertyAccessControlsRetrieveRequest>;
+  identifier: "GetPropertyAccessControlRequest",
+}) as any as S.Schema<GetPropertyAccessControlRequest>;
 
 /** List of all access control rules for this property definition. */
 export type PropertyAccessControlStateAccessControlsList =
@@ -164,16 +128,66 @@ export const PropertyAccessControlState = /*@__PURE__*/ S.suspend(() =>
   identifier: "PropertyAccessControlState",
 }) as any as S.Schema<PropertyAccessControlState>;
 
-export type PropertyAccessControlsCreateError = PosthogOpError;
+export interface PropertyAccessControlsDestroyRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** The organization member UUID whose override should be deleted. */
+  organization_member?: string;
+  /** The property definition ID the rule applies to. */
+  property_definition_id: string;
+  /** The role UUID whose override should be deleted. */
+  role?: string;
+}
+export const PropertyAccessControlsDestroyRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      organization_member: S.optional(S.String.pipe(T.Query())),
+      property_definition_id: S.String.pipe(T.Query()),
+      role: S.optional(S.String.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/api/projects/{project_id}/property_access_controls/",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "PropertyAccessControlsDestroyRequest",
+}) as any as S.Schema<PropertyAccessControlsDestroyRequest>;
+
+export interface PropertyAccessControlsDestroyResponse {}
+export const PropertyAccessControlsDestroyResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "PropertyAccessControlsDestroyResponse",
+}) as any as S.Schema<PropertyAccessControlsDestroyResponse>;
+
+export type CreatePropertyAccessControlError = PosthogOpError;
 /** Create or update a property access control rule. */
-export const propertyAccessControlsCreate: API.OperationMethod<
-  PropertyAccessControlsCreateRequest,
+export const createPropertyAccessControl: API.OperationMethod<
+  CreatePropertyAccessControlRequest,
   PropertyAccessControlRule,
-  PropertyAccessControlsCreateError,
+  CreatePropertyAccessControlError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PropertyAccessControlsCreateRequest,
+  input: CreatePropertyAccessControlRequest,
   output: PropertyAccessControlRule,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetPropertyAccessControlError = PosthogOpError;
+/** Get all property access control rules for a property definition. */
+export const getPropertyAccessControl: API.OperationMethod<
+  GetPropertyAccessControlRequest,
+  PropertyAccessControlState,
+  GetPropertyAccessControlError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPropertyAccessControlRequest,
+  output: PropertyAccessControlState,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
@@ -189,21 +203,6 @@ export const propertyAccessControlsDestroy: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: PropertyAccessControlsDestroyRequest,
   output: PropertyAccessControlsDestroyResponse,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PropertyAccessControlsRetrieveError = PosthogOpError;
-/** Get all property access control rules for a property definition. */
-export const propertyAccessControlsRetrieve: API.OperationMethod<
-  PropertyAccessControlsRetrieveRequest,
-  PropertyAccessControlState,
-  PropertyAccessControlsRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PropertyAccessControlsRetrieveRequest,
-  output: PropertyAccessControlState,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,

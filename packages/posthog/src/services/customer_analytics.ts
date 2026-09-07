@@ -30,55 +30,164 @@ export class Forbidden
     [{ status: 403 }],
   ) {}
 
-export type AccountNotesListRequestAssignedToList = Array<number>;
-export const AccountNotesListRequestAssignedToList = /*@__PURE__*/ S.Array(
-  S.Number,
-) as any as S.Schema<AccountNotesListRequestAssignedToList>;
-
-export type AccountNotesListRequestCreatedByList = Array<number>;
-export const AccountNotesListRequestCreatedByList = /*@__PURE__*/ S.Array(
-  S.Number,
-) as any as S.Schema<AccountNotesListRequestCreatedByList>;
-
-export interface AccountNotesListRequest {
+export interface AccountsNotebooksDestroyRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
-  /** Only return notes linked to this account. */
-  account_id?: string;
-  /** Only return notes on accounts assigned to these user IDs (the account's CSM or account executive; repeat the param per user). */
-  assigned_to?: AccountNotesListRequestAssignedToList;
-  /** Only return notes created by these user IDs (repeat the param per user). */
-  created_by?: AccountNotesListRequestCreatedByList;
-  /** Number of results to return per page. */
-  limit?: number;
-  /** The initial index from which to return the results. */
-  offset?: number;
-  /** Full-text search across note title and content, plus substring match on account name. */
-  search?: string;
+  /** UUID of the parent account. */
+  account_id: string;
+  short_id: string;
 }
-export const AccountNotesListRequest = /*@__PURE__*/ S.suspend(() =>
+export const AccountsNotebooksDestroyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
-    account_id: S.optional(S.String.pipe(T.Query())),
-    assigned_to: S.optional(
-      AccountNotesListRequestAssignedToList.pipe(T.Query()),
-    ),
-    created_by: S.optional(
-      AccountNotesListRequestCreatedByList.pipe(T.Query()),
-    ),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    offset: S.optional(S.Number.pipe(T.Query())),
-    search: S.optional(S.String.pipe(T.Query())),
+    account_id: S.String.pipe(T.Label()),
+    short_id: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/account_notes/",
+      method: "DELETE",
+      uri: "/api/projects/{project_id}/accounts/{account_id}/notebooks/{short_id}/",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "AccountNotesListRequest",
-}) as any as S.Schema<AccountNotesListRequest>;
+  identifier: "AccountsNotebooksDestroyRequest",
+}) as any as S.Schema<AccountsNotebooksDestroyRequest>;
+
+export interface AccountsNotebooksDestroyResponse {}
+export const AccountsNotebooksDestroyResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "AccountsNotebooksDestroyResponse",
+}) as any as S.Schema<AccountsNotebooksDestroyResponse>;
+
+export interface AccountsRelationshipsDestroyRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** UUID of the parent account. */
+  account_id: string;
+  id: string;
+}
+export const AccountsRelationshipsDestroyRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    account_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/api/projects/{project_id}/accounts/{account_id}/relationships/{id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "AccountsRelationshipsDestroyRequest",
+}) as any as S.Schema<AccountsRelationshipsDestroyRequest>;
+
+export interface AccountsRelationshipsDestroyResponse {}
+export const AccountsRelationshipsDestroyResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "AccountsRelationshipsDestroyResponse",
+}) as any as S.Schema<AccountsRelationshipsDestroyResponse>;
+
+/** Value to store, matching the definition's type: a number for number/currency/percent, a boolean for boolean, an ISO-8601 string for date/datetime, an HTTP or HTTPS URL for link properties, or text for text properties. */
+export type CreateAccountsCustomPropertyValueRequestValue =
+  | string
+  | number
+  | boolean;
+export const CreateAccountsCustomPropertyValueRequestValue =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateAccountsCustomPropertyValueRequestValue>;
+
+export interface CreateAccountsCustomPropertyValueRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** UUID of the parent account. */
+  account_id: string;
+  /** UUID of the custom property definition whose value to set for this account. */
+  definition: string;
+  /** Value to store, matching the definition's type: a number for number/currency/percent, a boolean for boolean, an ISO-8601 string for date/datetime, an HTTP or HTTPS URL for link properties, or text for text properties. */
+  value: CreateAccountsCustomPropertyValueRequestValue;
+}
+export const CreateAccountsCustomPropertyValueRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      account_id: S.String.pipe(T.Label()),
+      definition: S.String,
+      value: CreateAccountsCustomPropertyValueRequestValue,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/projects/{project_id}/accounts/{account_id}/custom_property_values/",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "CreateAccountsCustomPropertyValueRequest",
+}) as any as S.Schema<CreateAccountsCustomPropertyValueRequest>;
+
+/** The stored value, typed per the property's data type. */
+export type CustomPropertyValueValue = string | number | boolean;
+export const CustomPropertyValueValue =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomPropertyValueValue>;
+
+/** An account's current value for a custom property (read shape). */
+export interface CustomPropertyValue {
+  /** Unique id of this value record. */
+  id: string;
+  /** Account the value belongs to. */
+  account_id: string;
+  /** Custom property definition the value is for. */
+  definition_id: string;
+  /** The stored value, typed per the property's data type. */
+  value: CustomPropertyValueValue;
+  /** When this value was set. */
+  created_at: string;
+  /** Id of the user who set this value, if known. */
+  created_by_id: number | null;
+}
+export const CustomPropertyValue = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    account_id: S.String,
+    definition_id: S.String,
+    value: CustomPropertyValueValue,
+    created_at: S.String,
+    created_by_id: S.NullOr(S.Number),
+  }),
+).annotate({
+  identifier: "CustomPropertyValue",
+}) as any as S.Schema<CustomPropertyValue>;
+
+export interface CreateAccountsNotebookRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** UUID of the parent account. */
+  account_id: string;
+  /** Human-readable title of the account notebook. */
+  title?: string | null;
+  /** Notebook content as a ProseMirror JSON document structure. */
+  content?: unknown;
+  /** Plain text representation of the notebook content for search. */
+  text_content?: string | null;
+}
+export const CreateAccountsNotebookRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    account_id: S.String.pipe(T.Label()),
+    title: S.optional(S.NullOr(S.String)),
+    content: S.optional(S.Unknown),
+    text_content: S.optional(S.NullOr(S.String)),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/api/projects/{project_id}/accounts/{account_id}/notebooks/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateAccountsNotebookRequest",
+}) as any as S.Schema<CreateAccountsNotebookRequest>;
 
 export type UserBasicHedgehogConfigMap = { [key: string]: unknown | undefined };
 export const UserBasicHedgehogConfigMap = /*@__PURE__*/ S.Record(
@@ -131,194 +240,6 @@ export const UserBasic = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "UserBasic" }) as any as S.Schema<UserBasic>;
 
-/** A team-wide account note — an internal notebook linked to a Customer analytics account. */
-export interface AccountNote {
-  /** URL-safe short ID of the notebook. */
-  short_id: string;
-  /** Title of the note. */
-  title: string | null;
-  /** When the note was created. */
-  created_at: string;
-  /** When the note was last modified. */
-  last_modified_at: string;
-  /** UUID of the account this note is linked to. */
-  account_id: string;
-  /** Name of the account this note is linked to. */
-  account_name: string;
-  /** User who created the note, if known. */
-  created_by: UserBasic | null;
-}
-export const AccountNote = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    short_id: S.String,
-    title: S.NullOr(S.String),
-    created_at: S.String,
-    last_modified_at: S.String,
-    account_id: S.String,
-    account_name: S.String,
-    created_by: S.NullOr(UserBasic),
-  }),
-).annotate({ identifier: "AccountNote" }) as any as S.Schema<AccountNote>;
-
-export type PaginatedAccountNoteListResultsList = Array<AccountNote>;
-export const PaginatedAccountNoteListResultsList = /*@__PURE__*/ S.Array(
-  AccountNote,
-) as any as S.Schema<PaginatedAccountNoteListResultsList>;
-
-export interface PaginatedAccountNoteList {
-  count: number;
-  next?: string | null;
-  previous?: string | null;
-  results: PaginatedAccountNoteListResultsList;
-}
-export const PaginatedAccountNoteList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    count: S.Number,
-    next: S.optional(S.NullOr(S.String)),
-    previous: S.optional(S.NullOr(S.String)),
-    results: PaginatedAccountNoteListResultsList,
-  }),
-).annotate({
-  identifier: "PaginatedAccountNoteList",
-}) as any as S.Schema<PaginatedAccountNoteList>;
-
-/** Value to store, matching the definition's type: a number for number/currency/percent, a boolean for boolean, an ISO-8601 string for date/datetime, an HTTP or HTTPS URL for link properties, or text for text properties. */
-export type AccountsCustomPropertyValuesCreateRequestValue =
-  | string
-  | number
-  | boolean;
-export const AccountsCustomPropertyValuesCreateRequestValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AccountsCustomPropertyValuesCreateRequestValue>;
-
-export interface AccountsCustomPropertyValuesCreateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** UUID of the parent account. */
-  account_id: string;
-  /** UUID of the custom property definition whose value to set for this account. */
-  definition: string;
-  /** Value to store, matching the definition's type: a number for number/currency/percent, a boolean for boolean, an ISO-8601 string for date/datetime, an HTTP or HTTPS URL for link properties, or text for text properties. */
-  value: AccountsCustomPropertyValuesCreateRequestValue;
-}
-export const AccountsCustomPropertyValuesCreateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      account_id: S.String.pipe(T.Label()),
-      definition: S.String,
-      value: AccountsCustomPropertyValuesCreateRequestValue,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/api/projects/{project_id}/accounts/{account_id}/custom_property_values/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "AccountsCustomPropertyValuesCreateRequest",
-  }) as any as S.Schema<AccountsCustomPropertyValuesCreateRequest>;
-
-/** The stored value, typed per the property's data type. */
-export type CustomPropertyValueValue = string | number | boolean;
-export const CustomPropertyValueValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<CustomPropertyValueValue>;
-
-/** An account's current value for a custom property (read shape). */
-export interface CustomPropertyValue {
-  /** Unique id of this value record. */
-  id: string;
-  /** Account the value belongs to. */
-  account_id: string;
-  /** Custom property definition the value is for. */
-  definition_id: string;
-  /** The stored value, typed per the property's data type. */
-  value: CustomPropertyValueValue;
-  /** When this value was set. */
-  created_at: string;
-  /** Id of the user who set this value, if known. */
-  created_by_id: number | null;
-}
-export const CustomPropertyValue = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    account_id: S.String,
-    definition_id: S.String,
-    value: CustomPropertyValueValue,
-    created_at: S.String,
-    created_by_id: S.NullOr(S.Number),
-  }),
-).annotate({
-  identifier: "CustomPropertyValue",
-}) as any as S.Schema<CustomPropertyValue>;
-
-export interface AccountsCustomPropertyValuesListRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** UUID of the parent account. */
-  account_id: string;
-}
-export const AccountsCustomPropertyValuesListRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      account_id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/accounts/{account_id}/custom_property_values/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "AccountsCustomPropertyValuesListRequest",
-}) as any as S.Schema<AccountsCustomPropertyValuesListRequest>;
-
-export type AccountsCustomPropertyValuesListResponseBodyList =
-  Array<CustomPropertyValue>;
-export const AccountsCustomPropertyValuesListResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    CustomPropertyValue,
-  ) as any as S.Schema<AccountsCustomPropertyValuesListResponseBodyList>;
-
-export type AccountsCustomPropertyValuesListResponse =
-  AccountsCustomPropertyValuesListResponseBodyList;
-export const AccountsCustomPropertyValuesListResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    AccountsCustomPropertyValuesListResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "AccountsCustomPropertyValuesListResponse",
-}) as any as S.Schema<AccountsCustomPropertyValuesListResponse>;
-
-export interface AccountsNotebooksCreateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** UUID of the parent account. */
-  account_id: string;
-  /** Human-readable title of the account notebook. */
-  title?: string | null;
-  /** Notebook content as a ProseMirror JSON document structure. */
-  content?: unknown;
-  /** Plain text representation of the notebook content for search. */
-  text_content?: string | null;
-}
-export const AccountsNotebooksCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    account_id: S.String.pipe(T.Label()),
-    title: S.optional(S.NullOr(S.String)),
-    content: S.optional(S.Unknown),
-    text_content: S.optional(S.NullOr(S.String)),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/api/projects/{project_id}/accounts/{account_id}/notebooks/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "AccountsNotebooksCreateRequest",
-}) as any as S.Schema<AccountsNotebooksCreateRequest>;
-
 export interface AccountNotebook {
   id: string;
   short_id: string;
@@ -349,122 +270,7 @@ export const AccountNotebook = /*@__PURE__*/ S.suspend(() =>
   identifier: "AccountNotebook",
 }) as any as S.Schema<AccountNotebook>;
 
-export interface AccountsNotebooksDestroyRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** UUID of the parent account. */
-  account_id: string;
-  short_id: string;
-}
-export const AccountsNotebooksDestroyRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    account_id: S.String.pipe(T.Label()),
-    short_id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/api/projects/{project_id}/accounts/{account_id}/notebooks/{short_id}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "AccountsNotebooksDestroyRequest",
-}) as any as S.Schema<AccountsNotebooksDestroyRequest>;
-
-export interface AccountsNotebooksDestroyResponse {}
-export const AccountsNotebooksDestroyResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "AccountsNotebooksDestroyResponse",
-}) as any as S.Schema<AccountsNotebooksDestroyResponse>;
-
-export type AccountsNotebooksListRequestOrdering =
-  | "-created_at"
-  | "-created_by"
-  | "created_at"
-  | "created_by";
-export const AccountsNotebooksListRequestOrdering = /*@__PURE__*/ S.String;
-
-export interface AccountsNotebooksListRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** UUID of the parent account. */
-  account_id: string;
-  /** Number of results to return per page. */
-  limit?: number;
-  /** The initial index from which to return the results. */
-  offset?: number;
-  /** Sort by creation date or author. Defaults to '-created_at'. */
-  ordering?: AccountsNotebooksListRequestOrdering | (string & {});
-  /** Full-text search across notebook title and content. */
-  search?: string;
-}
-export const AccountsNotebooksListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    account_id: S.String.pipe(T.Label()),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    offset: S.optional(S.Number.pipe(T.Query())),
-    ordering: S.optional(AccountsNotebooksListRequestOrdering.pipe(T.Query())),
-    search: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/accounts/{account_id}/notebooks/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "AccountsNotebooksListRequest",
-}) as any as S.Schema<AccountsNotebooksListRequest>;
-
-export type PaginatedAccountNotebookListResultsList = Array<AccountNotebook>;
-export const PaginatedAccountNotebookListResultsList = /*@__PURE__*/ S.Array(
-  AccountNotebook,
-) as any as S.Schema<PaginatedAccountNotebookListResultsList>;
-
-export interface PaginatedAccountNotebookList {
-  count: number;
-  next?: string | null;
-  previous?: string | null;
-  results: PaginatedAccountNotebookListResultsList;
-}
-export const PaginatedAccountNotebookList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    count: S.Number,
-    next: S.optional(S.NullOr(S.String)),
-    previous: S.optional(S.NullOr(S.String)),
-    results: PaginatedAccountNotebookListResultsList,
-  }),
-).annotate({
-  identifier: "PaginatedAccountNotebookList",
-}) as any as S.Schema<PaginatedAccountNotebookList>;
-
-export interface AccountsNotebooksRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** UUID of the parent account. */
-  account_id: string;
-  short_id: string;
-}
-export const AccountsNotebooksRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    account_id: S.String.pipe(T.Label()),
-    short_id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/accounts/{account_id}/notebooks/{short_id}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "AccountsNotebooksRetrieveRequest",
-}) as any as S.Schema<AccountsNotebooksRetrieveRequest>;
-
-export interface AccountsRelationshipsCreateRequest {
+export interface CreateAccountsRelationshipRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** UUID of the parent account. */
@@ -474,7 +280,7 @@ export interface AccountsRelationshipsCreateRequest {
   /** PostHog user id of the assignee. Must be a member of the account's organization. */
   user: number;
 }
-export const AccountsRelationshipsCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateAccountsRelationshipRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     account_id: S.String.pipe(T.Label()),
@@ -488,8 +294,8 @@ export const AccountsRelationshipsCreateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "AccountsRelationshipsCreateRequest",
-}) as any as S.Schema<AccountsRelationshipsCreateRequest>;
+  identifier: "CreateAccountsRelationshipRequest",
+}) as any as S.Schema<CreateAccountsRelationshipRequest>;
 
 /** A team-defined account relationship type (CSM, Onboarding manager, ...). */
 export interface AccountRelationshipDefinition {
@@ -554,44 +360,14 @@ export const AccountRelationship = /*@__PURE__*/ S.suspend(() =>
   identifier: "AccountRelationship",
 }) as any as S.Schema<AccountRelationship>;
 
-export interface AccountsRelationshipsDestroyRequest {
+export interface CreateAccountsRelationshipsEndRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** UUID of the parent account. */
   account_id: string;
   id: string;
 }
-export const AccountsRelationshipsDestroyRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    account_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/api/projects/{project_id}/accounts/{account_id}/relationships/{id}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "AccountsRelationshipsDestroyRequest",
-}) as any as S.Schema<AccountsRelationshipsDestroyRequest>;
-
-export interface AccountsRelationshipsDestroyResponse {}
-export const AccountsRelationshipsDestroyResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "AccountsRelationshipsDestroyResponse",
-}) as any as S.Schema<AccountsRelationshipsDestroyResponse>;
-
-export interface AccountsRelationshipsEndCreateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** UUID of the parent account. */
-  account_id: string;
-  id: string;
-}
-export const AccountsRelationshipsEndCreateRequest = /*@__PURE__*/ S.suspend(
+export const CreateAccountsRelationshipsEndRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
@@ -605,48 +381,230 @@ export const AccountsRelationshipsEndCreateRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "AccountsRelationshipsEndCreateRequest",
-}) as any as S.Schema<AccountsRelationshipsEndCreateRequest>;
+  identifier: "CreateAccountsRelationshipsEndRequest",
+}) as any as S.Schema<CreateAccountsRelationshipsEndRequest>;
 
-export interface AccountsRelationshipsListRequest {
+/** Names of the events to stream (matched exactly). Duplicates and blanks are dropped. */
+export type CreateEventStreamRequestEventNamesList = Array<string>;
+export const CreateEventStreamRequestEventNamesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CreateEventStreamRequestEventNamesList>;
+
+export interface CreateEventStreamRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
-  /** UUID of the parent account. */
-  account_id: string;
-  /** Include ended assignments (the full timeline), not just active ones. */
-  include_history?: boolean;
+  /** Whether the stream delivers to Slack. Delivery also requires at least one event, at least one member account with an external ID, and a Slack workspace + channel. */
+  enabled?: boolean;
+  /** Names of the events to stream (matched exactly). Duplicates and blanks are dropped. */
+  event_names?: CreateEventStreamRequestEventNamesList;
+  /** ID of the team's Slack workspace integration to deliver through. */
+  slack_integration?: number | null;
+  /** Slack channel ID to post to (e.g. C0123ABC). */
+  slack_channel_id?: string;
+  /** Display name of the Slack channel (e.g. #customer-events). Informational only. */
+  slack_channel_name?: string;
 }
-export const AccountsRelationshipsListRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateEventStreamRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
-    account_id: S.String.pipe(T.Label()),
-    include_history: S.optional(S.Boolean.pipe(T.Query())),
+    enabled: S.optional(S.Boolean),
+    event_names: S.optional(CreateEventStreamRequestEventNamesList),
+    slack_integration: S.optional(S.NullOr(S.Number)),
+    slack_channel_id: S.optional(S.String),
+    slack_channel_name: S.optional(S.String),
   }).pipe(
     T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/accounts/{account_id}/relationships/",
+      method: "POST",
+      uri: "/api/projects/{project_id}/event_streams/",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "AccountsRelationshipsListRequest",
-}) as any as S.Schema<AccountsRelationshipsListRequest>;
+  identifier: "CreateEventStreamRequest",
+}) as any as S.Schema<CreateEventStreamRequest>;
 
-export type AccountsRelationshipsListResponseBodyList =
-  Array<AccountRelationship>;
-export const AccountsRelationshipsListResponseBodyList = /*@__PURE__*/ S.Array(
-  AccountRelationship,
-) as any as S.Schema<AccountsRelationshipsListResponseBodyList>;
+/** Names of the events to stream (matched exactly). Duplicates and blanks are dropped. */
+export type EventStreamEventNamesList = Array<string>;
+export const EventStreamEventNamesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<EventStreamEventNamesList>;
 
-export type AccountsRelationshipsListResponse =
-  AccountsRelationshipsListResponseBodyList;
-export const AccountsRelationshipsListResponse = /*@__PURE__*/ S.suspend(() =>
-  AccountsRelationshipsListResponseBodyList.pipe(T.RawResponseRoot()),
+/** UUIDs of the member accounts whose users' events are streamed. Managed via the add_account/remove_account endpoints. */
+export type EventStreamAccountIdsList = Array<string>;
+export const EventStreamAccountIdsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<EventStreamAccountIdsList>;
+
+/** The caller's event stream — a live feed of selected accounts' events posted to a Slack channel of their choice. One stream per user per project. */
+export interface EventStream {
+  id: string;
+  /** Whether the stream delivers to Slack. Delivery also requires at least one event, at least one member account with an external ID, and a Slack workspace + channel. */
+  enabled?: boolean;
+  /** Names of the events to stream (matched exactly). Duplicates and blanks are dropped. */
+  event_names?: EventStreamEventNamesList;
+  /** ID of the team's Slack workspace integration to deliver through. */
+  slack_integration?: number | null;
+  /** Slack channel ID to post to (e.g. C0123ABC). */
+  slack_channel_id?: string;
+  /** Display name of the Slack channel (e.g. #customer-events). Informational only. */
+  slack_channel_name?: string;
+  /** UUIDs of the member accounts whose users' events are streamed. Managed via the add_account/remove_account endpoints. */
+  account_ids: EventStreamAccountIdsList;
+  created_at: string;
+  created_by: number | null;
+  updated_at: string | null;
+}
+export const EventStream = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    enabled: S.optional(S.Boolean),
+    event_names: S.optional(EventStreamEventNamesList),
+    slack_integration: S.optional(S.NullOr(S.Number)),
+    slack_channel_id: S.optional(S.String),
+    slack_channel_name: S.optional(S.String),
+    account_ids: EventStreamAccountIdsList,
+    created_at: S.String,
+    created_by: S.NullOr(S.Number),
+    updated_at: S.NullOr(S.String),
+  }),
+).annotate({ identifier: "EventStream" }) as any as S.Schema<EventStream>;
+
+export interface EventStreamsAddAccountCreateRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this event stream. */
+  id: string;
+  /** UUID of the account to add to or remove from the stream. */
+  account_id: string;
+}
+export const EventStreamsAddAccountCreateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+    account_id: S.String,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/api/projects/{project_id}/event_streams/{id}/add_account/",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "AccountsRelationshipsListResponse",
-}) as any as S.Schema<AccountsRelationshipsListResponse>;
+  identifier: "EventStreamsAddAccountCreateRequest",
+}) as any as S.Schema<EventStreamsAddAccountCreateRequest>;
 
-export interface CustomerAnalyticsExternalAccountsRetrieveRequest {
+export interface EventStreamsDestroyRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this event stream. */
+  id: string;
+}
+export const EventStreamsDestroyRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/api/projects/{project_id}/event_streams/{id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "EventStreamsDestroyRequest",
+}) as any as S.Schema<EventStreamsDestroyRequest>;
+
+export interface EventStreamsDestroyResponse {}
+export const EventStreamsDestroyResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "EventStreamsDestroyResponse",
+}) as any as S.Schema<EventStreamsDestroyResponse>;
+
+export interface EventStreamsRemoveAccountCreateRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this event stream. */
+  id: string;
+  /** UUID of the account to add to or remove from the stream. */
+  account_id: string;
+}
+export const EventStreamsRemoveAccountCreateRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      id: S.String.pipe(T.Label()),
+      account_id: S.String,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/projects/{project_id}/event_streams/{id}/remove_account/",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "EventStreamsRemoveAccountCreateRequest",
+}) as any as S.Schema<EventStreamsRemoveAccountCreateRequest>;
+
+export interface EventStreamsSendTestMessageCreateRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this event stream. */
+  id: string;
+}
+export const EventStreamsSendTestMessageCreateRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      id: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/projects/{project_id}/event_streams/{id}/send_test_message/",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "EventStreamsSendTestMessageCreateRequest",
+}) as any as S.Schema<EventStreamsSendTestMessageCreateRequest>;
+
+/** Result of posting an event-stream test message to Slack. */
+export interface EventStreamTestMessage {
+  /** Slack channel ID the test message was posted to (e.g. C0123ABC). */
+  channel_id: string;
+}
+export const EventStreamTestMessage = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    channel_id: S.String,
+  }),
+).annotate({
+  identifier: "EventStreamTestMessage",
+}) as any as S.Schema<EventStreamTestMessage>;
+
+export interface GetAccountsNotebookRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** UUID of the parent account. */
+  account_id: string;
+  short_id: string;
+}
+export const GetAccountsNotebookRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    account_id: S.String.pipe(T.Label()),
+    short_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/accounts/{account_id}/notebooks/{short_id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetAccountsNotebookRequest",
+}) as any as S.Schema<GetAccountsNotebookRequest>;
+
+export interface GetCustomerAnalyticsExternalAccountRequest {
   /** When true, return only accounts with at least one active relationship assignment to a current member of the project's organization. */
   assigned_only?: boolean;
   /** Account UUID from `next_cursor` to continue listing from. Omit for the first page. */
@@ -656,7 +614,7 @@ export interface CustomerAnalyticsExternalAccountsRetrieveRequest {
   /** Maximum number of accounts to return. Values below 1 are clamped to 1; values above 100 are clamped to 100. */
   limit?: number;
 }
-export const CustomerAnalyticsExternalAccountsRetrieveRequest =
+export const GetCustomerAnalyticsExternalAccountRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       assigned_only: S.optional(S.Boolean.pipe(T.Query())),
@@ -671,8 +629,8 @@ export const CustomerAnalyticsExternalAccountsRetrieveRequest =
       }),
     ),
   ).annotate({
-    identifier: "CustomerAnalyticsExternalAccountsRetrieveRequest",
-  }) as any as S.Schema<CustomerAnalyticsExternalAccountsRetrieveRequest>;
+    identifier: "GetCustomerAnalyticsExternalAccountRequest",
+  }) as any as S.Schema<GetCustomerAnalyticsExternalAccountRequest>;
 
 export interface ExternalAccountListAssignment {
   /** PostHog user id of the assigned user. */
@@ -753,148 +711,250 @@ export const ExternalAccountListPage = /*@__PURE__*/ S.suspend(() =>
   identifier: "ExternalAccountListPage",
 }) as any as S.Schema<ExternalAccountListPage>;
 
-export interface EventStreamsAddAccountCreateRequest {
+export type ListAccountNotesRequestAssignedToList = Array<number>;
+export const ListAccountNotesRequestAssignedToList = /*@__PURE__*/ S.Array(
+  S.Number,
+) as any as S.Schema<ListAccountNotesRequestAssignedToList>;
+
+export type ListAccountNotesRequestCreatedByList = Array<number>;
+export const ListAccountNotesRequestCreatedByList = /*@__PURE__*/ S.Array(
+  S.Number,
+) as any as S.Schema<ListAccountNotesRequestCreatedByList>;
+
+export interface ListAccountNotesRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
-  /** A UUID string identifying this event stream. */
-  id: string;
-  /** UUID of the account to add to or remove from the stream. */
+  /** Only return notes linked to this account. */
+  account_id?: string;
+  /** Only return notes on accounts assigned to these user IDs (the account's CSM or account executive; repeat the param per user). */
+  assigned_to?: ListAccountNotesRequestAssignedToList;
+  /** Only return notes created by these user IDs (repeat the param per user). */
+  created_by?: ListAccountNotesRequestCreatedByList;
+  /** Number of results to return per page. */
+  limit?: number;
+  /** The initial index from which to return the results. */
+  offset?: number;
+  /** Full-text search across note title and content, plus substring match on account name. */
+  search?: string;
+}
+export const ListAccountNotesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    account_id: S.optional(S.String.pipe(T.Query())),
+    assigned_to: S.optional(
+      ListAccountNotesRequestAssignedToList.pipe(T.Query()),
+    ),
+    created_by: S.optional(
+      ListAccountNotesRequestCreatedByList.pipe(T.Query()),
+    ),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    offset: S.optional(S.Number.pipe(T.Query())),
+    search: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/account_notes/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListAccountNotesRequest",
+}) as any as S.Schema<ListAccountNotesRequest>;
+
+/** A team-wide account note — an internal notebook linked to a Customer analytics account. */
+export interface AccountNote {
+  /** URL-safe short ID of the notebook. */
+  short_id: string;
+  /** Title of the note. */
+  title: string | null;
+  /** When the note was created. */
+  created_at: string;
+  /** When the note was last modified. */
+  last_modified_at: string;
+  /** UUID of the account this note is linked to. */
+  account_id: string;
+  /** Name of the account this note is linked to. */
+  account_name: string;
+  /** User who created the note, if known. */
+  created_by: UserBasic | null;
+}
+export const AccountNote = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    short_id: S.String,
+    title: S.NullOr(S.String),
+    created_at: S.String,
+    last_modified_at: S.String,
+    account_id: S.String,
+    account_name: S.String,
+    created_by: S.NullOr(UserBasic),
+  }),
+).annotate({ identifier: "AccountNote" }) as any as S.Schema<AccountNote>;
+
+export type PaginatedAccountNoteListResultsList = Array<AccountNote>;
+export const PaginatedAccountNoteListResultsList = /*@__PURE__*/ S.Array(
+  AccountNote,
+) as any as S.Schema<PaginatedAccountNoteListResultsList>;
+
+export interface PaginatedAccountNoteList {
+  count: number;
+  next?: string | null;
+  previous?: string | null;
+  results: PaginatedAccountNoteListResultsList;
+}
+export const PaginatedAccountNoteList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    count: S.Number,
+    next: S.optional(S.NullOr(S.String)),
+    previous: S.optional(S.NullOr(S.String)),
+    results: PaginatedAccountNoteListResultsList,
+  }),
+).annotate({
+  identifier: "PaginatedAccountNoteList",
+}) as any as S.Schema<PaginatedAccountNoteList>;
+
+export interface ListAccountsCustomPropertyValuesRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** UUID of the parent account. */
   account_id: string;
 }
-export const EventStreamsAddAccountCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListAccountsCustomPropertyValuesRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      account_id: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/projects/{project_id}/accounts/{account_id}/custom_property_values/",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "ListAccountsCustomPropertyValuesRequest",
+}) as any as S.Schema<ListAccountsCustomPropertyValuesRequest>;
+
+export type ListAccountsCustomPropertyValuesResponseBodyList =
+  Array<CustomPropertyValue>;
+export const ListAccountsCustomPropertyValuesResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    CustomPropertyValue,
+  ) as any as S.Schema<ListAccountsCustomPropertyValuesResponseBodyList>;
+
+export type ListAccountsCustomPropertyValuesResponse =
+  ListAccountsCustomPropertyValuesResponseBodyList;
+export const ListAccountsCustomPropertyValuesResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    ListAccountsCustomPropertyValuesResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListAccountsCustomPropertyValuesResponse",
+}) as any as S.Schema<ListAccountsCustomPropertyValuesResponse>;
+
+export type ListAccountsNotebooksRequestOrdering =
+  | "-created_at"
+  | "-created_by"
+  | "created_at"
+  | "created_by";
+export const ListAccountsNotebooksRequestOrdering = /*@__PURE__*/ S.String;
+
+export interface ListAccountsNotebooksRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** UUID of the parent account. */
+  account_id: string;
+  /** Number of results to return per page. */
+  limit?: number;
+  /** The initial index from which to return the results. */
+  offset?: number;
+  /** Sort by creation date or author. Defaults to '-created_at'. */
+  ordering?: ListAccountsNotebooksRequestOrdering | (string & {});
+  /** Full-text search across notebook title and content. */
+  search?: string;
+}
+export const ListAccountsNotebooksRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-    account_id: S.String,
+    account_id: S.String.pipe(T.Label()),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    offset: S.optional(S.Number.pipe(T.Query())),
+    ordering: S.optional(ListAccountsNotebooksRequestOrdering.pipe(T.Query())),
+    search: S.optional(S.String.pipe(T.Query())),
   }).pipe(
     T.Http({
-      method: "POST",
-      uri: "/api/projects/{project_id}/event_streams/{id}/add_account/",
+      method: "GET",
+      uri: "/api/projects/{project_id}/accounts/{account_id}/notebooks/",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "EventStreamsAddAccountCreateRequest",
-}) as any as S.Schema<EventStreamsAddAccountCreateRequest>;
+  identifier: "ListAccountsNotebooksRequest",
+}) as any as S.Schema<ListAccountsNotebooksRequest>;
 
-/** Names of the events to stream (matched exactly). Duplicates and blanks are dropped. */
-export type EventStreamEventNamesList = Array<string>;
-export const EventStreamEventNamesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<EventStreamEventNamesList>;
+export type PaginatedAccountNotebookListResultsList = Array<AccountNotebook>;
+export const PaginatedAccountNotebookListResultsList = /*@__PURE__*/ S.Array(
+  AccountNotebook,
+) as any as S.Schema<PaginatedAccountNotebookListResultsList>;
 
-/** UUIDs of the member accounts whose users' events are streamed. Managed via the add_account/remove_account endpoints. */
-export type EventStreamAccountIdsList = Array<string>;
-export const EventStreamAccountIdsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<EventStreamAccountIdsList>;
-
-/** The caller's event stream — a live feed of selected accounts' events posted to a Slack channel of their choice. One stream per user per project. */
-export interface EventStream {
-  id: string;
-  /** Whether the stream delivers to Slack. Delivery also requires at least one event, at least one member account with an external ID, and a Slack workspace + channel. */
-  enabled?: boolean;
-  /** Names of the events to stream (matched exactly). Duplicates and blanks are dropped. */
-  event_names?: EventStreamEventNamesList;
-  /** ID of the team's Slack workspace integration to deliver through. */
-  slack_integration?: number | null;
-  /** Slack channel ID to post to (e.g. C0123ABC). */
-  slack_channel_id?: string;
-  /** Display name of the Slack channel (e.g. #customer-events). Informational only. */
-  slack_channel_name?: string;
-  /** UUIDs of the member accounts whose users' events are streamed. Managed via the add_account/remove_account endpoints. */
-  account_ids: EventStreamAccountIdsList;
-  created_at: string;
-  created_by: number | null;
-  updated_at: string | null;
+export interface PaginatedAccountNotebookList {
+  count: number;
+  next?: string | null;
+  previous?: string | null;
+  results: PaginatedAccountNotebookListResultsList;
 }
-export const EventStream = /*@__PURE__*/ S.suspend(() =>
+export const PaginatedAccountNotebookList = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    id: S.String,
-    enabled: S.optional(S.Boolean),
-    event_names: S.optional(EventStreamEventNamesList),
-    slack_integration: S.optional(S.NullOr(S.Number)),
-    slack_channel_id: S.optional(S.String),
-    slack_channel_name: S.optional(S.String),
-    account_ids: EventStreamAccountIdsList,
-    created_at: S.String,
-    created_by: S.NullOr(S.Number),
-    updated_at: S.NullOr(S.String),
+    count: S.Number,
+    next: S.optional(S.NullOr(S.String)),
+    previous: S.optional(S.NullOr(S.String)),
+    results: PaginatedAccountNotebookListResultsList,
   }),
-).annotate({ identifier: "EventStream" }) as any as S.Schema<EventStream>;
+).annotate({
+  identifier: "PaginatedAccountNotebookList",
+}) as any as S.Schema<PaginatedAccountNotebookList>;
 
-/** Names of the events to stream (matched exactly). Duplicates and blanks are dropped. */
-export type EventStreamsCreateRequestEventNamesList = Array<string>;
-export const EventStreamsCreateRequestEventNamesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<EventStreamsCreateRequestEventNamesList>;
-
-export interface EventStreamsCreateRequest {
+export interface ListAccountsRelationshipsRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
-  /** Whether the stream delivers to Slack. Delivery also requires at least one event, at least one member account with an external ID, and a Slack workspace + channel. */
-  enabled?: boolean;
-  /** Names of the events to stream (matched exactly). Duplicates and blanks are dropped. */
-  event_names?: EventStreamsCreateRequestEventNamesList;
-  /** ID of the team's Slack workspace integration to deliver through. */
-  slack_integration?: number | null;
-  /** Slack channel ID to post to (e.g. C0123ABC). */
-  slack_channel_id?: string;
-  /** Display name of the Slack channel (e.g. #customer-events). Informational only. */
-  slack_channel_name?: string;
+  /** UUID of the parent account. */
+  account_id: string;
+  /** Include ended assignments (the full timeline), not just active ones. */
+  include_history?: boolean;
 }
-export const EventStreamsCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListAccountsRelationshipsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
-    enabled: S.optional(S.Boolean),
-    event_names: S.optional(EventStreamsCreateRequestEventNamesList),
-    slack_integration: S.optional(S.NullOr(S.Number)),
-    slack_channel_id: S.optional(S.String),
-    slack_channel_name: S.optional(S.String),
+    account_id: S.String.pipe(T.Label()),
+    include_history: S.optional(S.Boolean.pipe(T.Query())),
   }).pipe(
     T.Http({
-      method: "POST",
-      uri: "/api/projects/{project_id}/event_streams/",
+      method: "GET",
+      uri: "/api/projects/{project_id}/accounts/{account_id}/relationships/",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "EventStreamsCreateRequest",
-}) as any as S.Schema<EventStreamsCreateRequest>;
+  identifier: "ListAccountsRelationshipsRequest",
+}) as any as S.Schema<ListAccountsRelationshipsRequest>;
 
-export interface EventStreamsDestroyRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this event stream. */
-  id: string;
-}
-export const EventStreamsDestroyRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/api/projects/{project_id}/event_streams/{id}/",
-      code: 200,
-    }),
-  ),
+export type ListAccountsRelationshipsResponseBodyList =
+  Array<AccountRelationship>;
+export const ListAccountsRelationshipsResponseBodyList = /*@__PURE__*/ S.Array(
+  AccountRelationship,
+) as any as S.Schema<ListAccountsRelationshipsResponseBodyList>;
+
+export type ListAccountsRelationshipsResponse =
+  ListAccountsRelationshipsResponseBodyList;
+export const ListAccountsRelationshipsResponse = /*@__PURE__*/ S.suspend(() =>
+  ListAccountsRelationshipsResponseBodyList.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "EventStreamsDestroyRequest",
-}) as any as S.Schema<EventStreamsDestroyRequest>;
+  identifier: "ListAccountsRelationshipsResponse",
+}) as any as S.Schema<ListAccountsRelationshipsResponse>;
 
-export interface EventStreamsDestroyResponse {}
-export const EventStreamsDestroyResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "EventStreamsDestroyResponse",
-}) as any as S.Schema<EventStreamsDestroyResponse>;
-
-export interface EventStreamsListRequest {
+export interface ListEventStreamsRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
 }
-export const EventStreamsListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListEventStreamsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
   }).pipe(
@@ -905,131 +965,28 @@ export const EventStreamsListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "EventStreamsListRequest",
-}) as any as S.Schema<EventStreamsListRequest>;
+  identifier: "ListEventStreamsRequest",
+}) as any as S.Schema<ListEventStreamsRequest>;
 
-export type EventStreamsListResponseBodyList = Array<EventStream>;
-export const EventStreamsListResponseBodyList = /*@__PURE__*/ S.Array(
+export type ListEventStreamsResponseBodyList = Array<EventStream>;
+export const ListEventStreamsResponseBodyList = /*@__PURE__*/ S.Array(
   EventStream,
-) as any as S.Schema<EventStreamsListResponseBodyList>;
+) as any as S.Schema<ListEventStreamsResponseBodyList>;
 
-export type EventStreamsListResponse = EventStreamsListResponseBodyList;
-export const EventStreamsListResponse = /*@__PURE__*/ S.suspend(() =>
-  EventStreamsListResponseBodyList.pipe(T.RawResponseRoot()),
+export type ListEventStreamsResponse = ListEventStreamsResponseBodyList;
+export const ListEventStreamsResponse = /*@__PURE__*/ S.suspend(() =>
+  ListEventStreamsResponseBodyList.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "EventStreamsListResponse",
-}) as any as S.Schema<EventStreamsListResponse>;
+  identifier: "ListEventStreamsResponse",
+}) as any as S.Schema<ListEventStreamsResponse>;
 
 /** Names of the events to stream (matched exactly). Duplicates and blanks are dropped. */
-export type EventStreamsPartialUpdateRequestEventNamesList = Array<string>;
-export const EventStreamsPartialUpdateRequestEventNamesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<EventStreamsPartialUpdateRequestEventNamesList>;
-
-export interface EventStreamsPartialUpdateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this event stream. */
-  id: string;
-  /** Whether the stream delivers to Slack. Delivery also requires at least one event, at least one member account with an external ID, and a Slack workspace + channel. */
-  enabled?: boolean;
-  /** Names of the events to stream (matched exactly). Duplicates and blanks are dropped. */
-  event_names?: EventStreamsPartialUpdateRequestEventNamesList;
-  /** ID of the team's Slack workspace integration to deliver through. */
-  slack_integration?: number | null;
-  /** Slack channel ID to post to (e.g. C0123ABC). */
-  slack_channel_id?: string;
-  /** Display name of the Slack channel (e.g. #customer-events). Informational only. */
-  slack_channel_name?: string;
-}
-export const EventStreamsPartialUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-    enabled: S.optional(S.Boolean),
-    event_names: S.optional(EventStreamsPartialUpdateRequestEventNamesList),
-    slack_integration: S.optional(S.NullOr(S.Number)),
-    slack_channel_id: S.optional(S.String),
-    slack_channel_name: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/api/projects/{project_id}/event_streams/{id}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "EventStreamsPartialUpdateRequest",
-}) as any as S.Schema<EventStreamsPartialUpdateRequest>;
-
-export interface EventStreamsRemoveAccountCreateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this event stream. */
-  id: string;
-  /** UUID of the account to add to or remove from the stream. */
-  account_id: string;
-}
-export const EventStreamsRemoveAccountCreateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-      account_id: S.String,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/api/projects/{project_id}/event_streams/{id}/remove_account/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "EventStreamsRemoveAccountCreateRequest",
-}) as any as S.Schema<EventStreamsRemoveAccountCreateRequest>;
-
-export interface EventStreamsSendTestMessageCreateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this event stream. */
-  id: string;
-}
-export const EventStreamsSendTestMessageCreateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/api/projects/{project_id}/event_streams/{id}/send_test_message/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "EventStreamsSendTestMessageCreateRequest",
-}) as any as S.Schema<EventStreamsSendTestMessageCreateRequest>;
-
-/** Result of posting an event-stream test message to Slack. */
-export interface EventStreamTestMessage {
-  /** Slack channel ID the test message was posted to (e.g. C0123ABC). */
-  channel_id: string;
-}
-export const EventStreamTestMessage = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    channel_id: S.String,
-  }),
-).annotate({
-  identifier: "EventStreamTestMessage",
-}) as any as S.Schema<EventStreamTestMessage>;
-
-/** Names of the events to stream (matched exactly). Duplicates and blanks are dropped. */
-export type EventStreamsUpdateRequestEventNamesList = Array<string>;
-export const EventStreamsUpdateRequestEventNamesList = /*@__PURE__*/ S.Array(
+export type UpdateEventStreamRequestEventNamesList = Array<string>;
+export const UpdateEventStreamRequestEventNamesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<EventStreamsUpdateRequestEventNamesList>;
+) as any as S.Schema<UpdateEventStreamRequestEventNamesList>;
 
-export interface EventStreamsUpdateRequest {
+export interface UpdateEventStreamRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A UUID string identifying this event stream. */
@@ -1037,7 +994,7 @@ export interface EventStreamsUpdateRequest {
   /** Whether the stream delivers to Slack. Delivery also requires at least one event, at least one member account with an external ID, and a Slack workspace + channel. */
   enabled?: boolean;
   /** Names of the events to stream (matched exactly). Duplicates and blanks are dropped. */
-  event_names?: EventStreamsUpdateRequestEventNamesList;
+  event_names?: UpdateEventStreamRequestEventNamesList;
   /** ID of the team's Slack workspace integration to deliver through. */
   slack_integration?: number | null;
   /** Slack channel ID to post to (e.g. C0123ABC). */
@@ -1045,12 +1002,12 @@ export interface EventStreamsUpdateRequest {
   /** Display name of the Slack channel (e.g. #customer-events). Informational only. */
   slack_channel_name?: string;
 }
-export const EventStreamsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateEventStreamRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     id: S.String.pipe(T.Label()),
     enabled: S.optional(S.Boolean),
-    event_names: S.optional(EventStreamsUpdateRequestEventNamesList),
+    event_names: S.optional(UpdateEventStreamRequestEventNamesList),
     slack_integration: S.optional(S.NullOr(S.Number)),
     slack_channel_id: S.optional(S.String),
     slack_channel_name: S.optional(S.String),
@@ -1062,64 +1019,51 @@ export const EventStreamsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "EventStreamsUpdateRequest",
-}) as any as S.Schema<EventStreamsUpdateRequest>;
+  identifier: "UpdateEventStreamRequest",
+}) as any as S.Schema<UpdateEventStreamRequest>;
 
-export type AccountNotesListError = PosthogOpError;
-export const accountNotesList: API.OperationMethod<
-  AccountNotesListRequest,
-  PaginatedAccountNoteList,
-  AccountNotesListError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccountNotesListRequest,
-  output: PaginatedAccountNoteList,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
+/** Names of the events to stream (matched exactly). Duplicates and blanks are dropped. */
+export type UpdateEventStreamsPartialRequestEventNamesList = Array<string>;
+export const UpdateEventStreamsPartialRequestEventNamesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<UpdateEventStreamsPartialRequestEventNamesList>;
 
-export type AccountsCustomPropertyValuesCreateError = PosthogOpError;
-export const accountsCustomPropertyValuesCreate: API.OperationMethod<
-  AccountsCustomPropertyValuesCreateRequest,
-  CustomPropertyValue,
-  AccountsCustomPropertyValuesCreateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccountsCustomPropertyValuesCreateRequest,
-  output: CustomPropertyValue,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AccountsCustomPropertyValuesListError = PosthogOpError;
-export const accountsCustomPropertyValuesList: API.OperationMethod<
-  AccountsCustomPropertyValuesListRequest,
-  AccountsCustomPropertyValuesListResponse,
-  AccountsCustomPropertyValuesListError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccountsCustomPropertyValuesListRequest,
-  output: AccountsCustomPropertyValuesListResponse,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AccountsNotebooksCreateError = PosthogOpError;
-export const accountsNotebooksCreate: API.OperationMethod<
-  AccountsNotebooksCreateRequest,
-  AccountNotebook,
-  AccountsNotebooksCreateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccountsNotebooksCreateRequest,
-  output: AccountNotebook,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
+export interface UpdateEventStreamsPartialRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this event stream. */
+  id: string;
+  /** Whether the stream delivers to Slack. Delivery also requires at least one event, at least one member account with an external ID, and a Slack workspace + channel. */
+  enabled?: boolean;
+  /** Names of the events to stream (matched exactly). Duplicates and blanks are dropped. */
+  event_names?: UpdateEventStreamsPartialRequestEventNamesList;
+  /** ID of the team's Slack workspace integration to deliver through. */
+  slack_integration?: number | null;
+  /** Slack channel ID to post to (e.g. C0123ABC). */
+  slack_channel_id?: string;
+  /** Display name of the Slack channel (e.g. #customer-events). Informational only. */
+  slack_channel_name?: string;
+}
+export const UpdateEventStreamsPartialRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+    enabled: S.optional(S.Boolean),
+    event_names: S.optional(UpdateEventStreamsPartialRequestEventNamesList),
+    slack_integration: S.optional(S.NullOr(S.Number)),
+    slack_channel_id: S.optional(S.String),
+    slack_channel_name: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/api/projects/{project_id}/event_streams/{id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "UpdateEventStreamsPartialRequest",
+}) as any as S.Schema<UpdateEventStreamsPartialRequest>;
 
 export type AccountsNotebooksDestroyError = PosthogOpError;
 export const accountsNotebooksDestroy: API.OperationMethod<
@@ -1130,48 +1074,6 @@ export const accountsNotebooksDestroy: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: AccountsNotebooksDestroyRequest,
   output: AccountsNotebooksDestroyResponse,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AccountsNotebooksListError = PosthogOpError;
-export const accountsNotebooksList: API.OperationMethod<
-  AccountsNotebooksListRequest,
-  PaginatedAccountNotebookList,
-  AccountsNotebooksListError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccountsNotebooksListRequest,
-  output: PaginatedAccountNotebookList,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AccountsNotebooksRetrieveError = PosthogOpError;
-export const accountsNotebooksRetrieve: API.OperationMethod<
-  AccountsNotebooksRetrieveRequest,
-  AccountNotebook,
-  AccountsNotebooksRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccountsNotebooksRetrieveRequest,
-  output: AccountNotebook,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AccountsRelationshipsCreateError = PosthogOpError;
-export const accountsRelationshipsCreate: API.OperationMethod<
-  AccountsRelationshipsCreateRequest,
-  AccountRelationship,
-  AccountsRelationshipsCreateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccountsRelationshipsCreateRequest,
-  output: AccountRelationship,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
@@ -1191,48 +1093,73 @@ export const accountsRelationshipsDestroy: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type AccountsRelationshipsEndCreateError = PosthogOpError;
-export const accountsRelationshipsEndCreate: API.OperationMethod<
-  AccountsRelationshipsEndCreateRequest,
-  AccountRelationship,
-  AccountsRelationshipsEndCreateError,
+export type CreateAccountsCustomPropertyValueError = PosthogOpError;
+export const createAccountsCustomPropertyValue: API.OperationMethod<
+  CreateAccountsCustomPropertyValueRequest,
+  CustomPropertyValue,
+  CreateAccountsCustomPropertyValueError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AccountsRelationshipsEndCreateRequest,
+  input: CreateAccountsCustomPropertyValueRequest,
+  output: CustomPropertyValue,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateAccountsNotebookError = PosthogOpError;
+export const createAccountsNotebook: API.OperationMethod<
+  CreateAccountsNotebookRequest,
+  AccountNotebook,
+  CreateAccountsNotebookError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateAccountsNotebookRequest,
+  output: AccountNotebook,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateAccountsRelationshipError = PosthogOpError;
+export const createAccountsRelationship: API.OperationMethod<
+  CreateAccountsRelationshipRequest,
+  AccountRelationship,
+  CreateAccountsRelationshipError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateAccountsRelationshipRequest,
   output: AccountRelationship,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type AccountsRelationshipsListError = PosthogOpError;
-export const accountsRelationshipsList: API.OperationMethod<
-  AccountsRelationshipsListRequest,
-  AccountsRelationshipsListResponse,
-  AccountsRelationshipsListError,
+export type CreateAccountsRelationshipsEndError = PosthogOpError;
+export const createAccountsRelationshipsEnd: API.OperationMethod<
+  CreateAccountsRelationshipsEndRequest,
+  AccountRelationship,
+  CreateAccountsRelationshipsEndError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AccountsRelationshipsListRequest,
-  output: AccountsRelationshipsListResponse,
+  input: CreateAccountsRelationshipsEndRequest,
+  output: AccountRelationship,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type CustomerAnalyticsExternalAccountsRetrieveError =
-  | BadRequest
-  | Forbidden
-  | PosthogOpError;
-/** List external customer analytics accounts List tracked accounts with external IDs, lifecycle timestamps, and active relationship assignments. Set `include_ignored=true` to include ignored accounts. Requires a project secret API key with the `account:read` scope. */
-export const customerAnalyticsExternalAccountsRetrieve: API.OperationMethod<
-  CustomerAnalyticsExternalAccountsRetrieveRequest,
-  ExternalAccountListPage,
-  CustomerAnalyticsExternalAccountsRetrieveError,
+export type CreateEventStreamError = PosthogOpError;
+/** The caller's event stream: a live feed of selected accounts' events posted to a Slack channel of their choice. Per-user — each team member owns at most one stream, and every endpoint is scoped to the caller's own. Delivery runs through a managed CDP destination that is re-provisioned inside the same transaction as every write, so config and delivery can't drift apart. */
+export const createEventStream: API.OperationMethod<
+  CreateEventStreamRequest,
+  EventStream,
+  CreateEventStreamError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CustomerAnalyticsExternalAccountsRetrieveRequest,
-  output: ExternalAccountListPage,
-  errors: [BadRequest, Forbidden],
+  input: CreateEventStreamRequest,
+  output: EventStream,
+  errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
@@ -1252,21 +1179,6 @@ export const eventStreamsAddAccountCreate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type EventStreamsCreateError = PosthogOpError;
-/** The caller's event stream: a live feed of selected accounts' events posted to a Slack channel of their choice. Per-user — each team member owns at most one stream, and every endpoint is scoped to the caller's own. Delivery runs through a managed CDP destination that is re-provisioned inside the same transaction as every write, so config and delivery can't drift apart. */
-export const eventStreamsCreate: API.OperationMethod<
-  EventStreamsCreateRequest,
-  EventStream,
-  EventStreamsCreateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: EventStreamsCreateRequest,
-  output: EventStream,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
 export type EventStreamsDestroyError = PosthogOpError;
 /** The caller's event stream: a live feed of selected accounts' events posted to a Slack channel of their choice. Per-user — each team member owns at most one stream, and every endpoint is scoped to the caller's own. Delivery runs through a managed CDP destination that is re-provisioned inside the same transaction as every write, so config and delivery can't drift apart. */
 export const eventStreamsDestroy: API.OperationMethod<
@@ -1277,36 +1189,6 @@ export const eventStreamsDestroy: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: EventStreamsDestroyRequest,
   output: EventStreamsDestroyResponse,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type EventStreamsListError = PosthogOpError;
-/** The caller's event stream: a live feed of selected accounts' events posted to a Slack channel of their choice. Per-user — each team member owns at most one stream, and every endpoint is scoped to the caller's own. Delivery runs through a managed CDP destination that is re-provisioned inside the same transaction as every write, so config and delivery can't drift apart. */
-export const eventStreamsList: API.OperationMethod<
-  EventStreamsListRequest,
-  EventStreamsListResponse,
-  EventStreamsListError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: EventStreamsListRequest,
-  output: EventStreamsListResponse,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type EventStreamsPartialUpdateError = PosthogOpError;
-/** The caller's event stream: a live feed of selected accounts' events posted to a Slack channel of their choice. Per-user — each team member owns at most one stream, and every endpoint is scoped to the caller's own. Delivery runs through a managed CDP destination that is re-provisioned inside the same transaction as every write, so config and delivery can't drift apart. */
-export const eventStreamsPartialUpdate: API.OperationMethod<
-  EventStreamsPartialUpdateRequest,
-  EventStream,
-  EventStreamsPartialUpdateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: EventStreamsPartialUpdateRequest,
-  output: EventStream,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
@@ -1342,15 +1224,133 @@ export const eventStreamsSendTestMessageCreate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type EventStreamsUpdateError = PosthogOpError;
-/** The caller's event stream: a live feed of selected accounts' events posted to a Slack channel of their choice. Per-user — each team member owns at most one stream, and every endpoint is scoped to the caller's own. Delivery runs through a managed CDP destination that is re-provisioned inside the same transaction as every write, so config and delivery can't drift apart. */
-export const eventStreamsUpdate: API.OperationMethod<
-  EventStreamsUpdateRequest,
-  EventStream,
-  EventStreamsUpdateError,
+export type GetAccountsNotebookError = PosthogOpError;
+export const getAccountsNotebook: API.OperationMethod<
+  GetAccountsNotebookRequest,
+  AccountNotebook,
+  GetAccountsNotebookError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: EventStreamsUpdateRequest,
+  input: GetAccountsNotebookRequest,
+  output: AccountNotebook,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetCustomerAnalyticsExternalAccountError =
+  | BadRequest
+  | Forbidden
+  | PosthogOpError;
+/** List external customer analytics accounts List tracked accounts with external IDs, lifecycle timestamps, and active relationship assignments. Set `include_ignored=true` to include ignored accounts. Requires a project secret API key with the `account:read` scope. */
+export const getCustomerAnalyticsExternalAccount: API.OperationMethod<
+  GetCustomerAnalyticsExternalAccountRequest,
+  ExternalAccountListPage,
+  GetCustomerAnalyticsExternalAccountError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCustomerAnalyticsExternalAccountRequest,
+  output: ExternalAccountListPage,
+  errors: [BadRequest, Forbidden],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListAccountNotesError = PosthogOpError;
+export const listAccountNotes: API.OperationMethod<
+  ListAccountNotesRequest,
+  PaginatedAccountNoteList,
+  ListAccountNotesError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListAccountNotesRequest,
+  output: PaginatedAccountNoteList,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListAccountsCustomPropertyValuesError = PosthogOpError;
+export const listAccountsCustomPropertyValues: API.OperationMethod<
+  ListAccountsCustomPropertyValuesRequest,
+  ListAccountsCustomPropertyValuesResponse,
+  ListAccountsCustomPropertyValuesError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListAccountsCustomPropertyValuesRequest,
+  output: ListAccountsCustomPropertyValuesResponse,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListAccountsNotebooksError = PosthogOpError;
+export const listAccountsNotebooks: API.OperationMethod<
+  ListAccountsNotebooksRequest,
+  PaginatedAccountNotebookList,
+  ListAccountsNotebooksError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListAccountsNotebooksRequest,
+  output: PaginatedAccountNotebookList,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListAccountsRelationshipsError = PosthogOpError;
+export const listAccountsRelationships: API.OperationMethod<
+  ListAccountsRelationshipsRequest,
+  ListAccountsRelationshipsResponse,
+  ListAccountsRelationshipsError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListAccountsRelationshipsRequest,
+  output: ListAccountsRelationshipsResponse,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListEventStreamsError = PosthogOpError;
+/** The caller's event stream: a live feed of selected accounts' events posted to a Slack channel of their choice. Per-user — each team member owns at most one stream, and every endpoint is scoped to the caller's own. Delivery runs through a managed CDP destination that is re-provisioned inside the same transaction as every write, so config and delivery can't drift apart. */
+export const listEventStreams: API.OperationMethod<
+  ListEventStreamsRequest,
+  ListEventStreamsResponse,
+  ListEventStreamsError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListEventStreamsRequest,
+  output: ListEventStreamsResponse,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateEventStreamError = PosthogOpError;
+/** The caller's event stream: a live feed of selected accounts' events posted to a Slack channel of their choice. Per-user — each team member owns at most one stream, and every endpoint is scoped to the caller's own. Delivery runs through a managed CDP destination that is re-provisioned inside the same transaction as every write, so config and delivery can't drift apart. */
+export const updateEventStream: API.OperationMethod<
+  UpdateEventStreamRequest,
+  EventStream,
+  UpdateEventStreamError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateEventStreamRequest,
+  output: EventStream,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateEventStreamsPartialError = PosthogOpError;
+/** The caller's event stream: a live feed of selected accounts' events posted to a Slack channel of their choice. Per-user — each team member owns at most one stream, and every endpoint is scoped to the caller's own. Delivery runs through a managed CDP destination that is re-provisioned inside the same transaction as every write, so config and delivery can't drift apart. */
+export const updateEventStreamsPartial: API.OperationMethod<
+  UpdateEventStreamsPartialRequest,
+  EventStream,
+  UpdateEventStreamsPartialError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateEventStreamsPartialRequest,
   output: EventStream,
   errors: [],
   protocol: PosthogProtocol,

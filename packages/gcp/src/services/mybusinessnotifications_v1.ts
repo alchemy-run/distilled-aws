@@ -112,18 +112,18 @@ export const NotificationSettingNotificationTypesItemEnumList =
 export interface NotificationSetting {
   /** The types of notifications that will be sent to the Pub/Sub topic. To stop receiving notifications entirely, use NotificationSettings.UpdateNotificationSetting with an empty notification_types or set the pubsub_topic to an empty string. */
   notificationTypes?: NotificationSettingNotificationTypesItemEnumList;
-  /** Optional. The Google Pub/Sub topic that will receive notifications when locations managed by this account are updated. If unset, no notifications will be posted. The account mybusiness-api-pubsub@system.gserviceaccount.com must have at least Publish permissions on the Pub/Sub topic. */
-  pubsubTopic?: string;
   /** Required. The resource name this setting is for. This is of the form `accounts/{account_id}/notificationSetting`. */
   name?: string;
+  /** Optional. The Google Pub/Sub topic that will receive notifications when locations managed by this account are updated. If unset, no notifications will be posted. The account mybusiness-api-pubsub@system.gserviceaccount.com must have at least Publish permissions on the Pub/Sub topic. */
+  pubsubTopic?: string;
 }
 export const NotificationSetting = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     notificationTypes: S.optional(
       NotificationSettingNotificationTypesItemEnumList,
     ),
-    pubsubTopic: S.optional(S.String),
     name: S.optional(S.String),
+    pubsubTopic: S.optional(S.String),
   }),
 ).annotate({
   identifier: "NotificationSetting",

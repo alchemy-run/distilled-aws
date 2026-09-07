@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.vercel.microfrontends#GetMicrofrontendsGroupsRequest": {
@@ -2860,6 +2861,12 @@
             "smithy.api#enumValue": "express"
           }
         },
+        "FACTORY_EVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "factory-eve"
+          }
+        },
         "FASTAPI": {
           "target": "smithy.api#Unit",
           "traits": {
@@ -3334,6 +3341,12 @@
           "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "express"
+          }
+        },
+        "FACTORY_EVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "factory-eve"
           }
         },
         "FASTAPI": {
@@ -4548,9 +4561,6 @@
         "createdAt": {
           "target": "smithy.api#Double"
         },
-        "updatedAt": {
-          "target": "smithy.api#Double"
-        },
         "org": {
           "target": "smithy.api#String",
           "traits": {
@@ -4580,6 +4590,9 @@
           "traits": {
             "smithy.api#required": {}
           }
+        },
+        "updatedAt": {
+          "target": "smithy.api#Double"
         },
         "sourceless": {
           "target": "smithy.api#Boolean"
@@ -7275,6 +7288,587 @@
         "smithy.api#documentation": "Enum containing the actions that can be performed against a resource. Group operations are included."
       }
     },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsAliasProjectList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsAliasProtectionBypassList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsBulkRedirectsList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsBuildMachineList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsConnectConfigurationLinkList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsDataCacheNamespaceList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentBuildLogsList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentCheckList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentCheckPreviewList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentCheckReRunFromProductionBranchList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentProductionGitList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentV0List": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentPreviewList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentPrivateList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentPromoteList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentRollbackList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsEdgeCacheNamespaceList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsEnvironmentsList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsJobList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsLogsList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsLogsPresetList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsObservabilityDataList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsOnDemandBuildList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsOnDemandConcurrencyList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsOptionsAllowlistList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsPasswordProtectionList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsPrivateLinkEndpointList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProductionAliasProtectionBypassList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProductionShareableLinkList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectAccessGroupList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectAnalyticsSamplingList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectAnalyticsUsageList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectCheckList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectCheckRunList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDeploymentExpirationList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDeploymentHookList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDeploymentProtectionStrictList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDomainList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDomainCheckConfigList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDomainMoveList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDomainVerifyList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectEventList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectEnvVarsList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectEnvVarsProductionList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectEnvVarsUnownedByIntegrationList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectFlagsList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectFlagsProductionList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectFlagsSdkKeyList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectFromV0List": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectIdList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectIntegrationConfigurationList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectLinkList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectMemberList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectMonitoringList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectOIDCTokenList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectPermissionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectProductionBranchList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectProtectionBypassList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectRollingReleaseList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectRoutesList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectSupportCaseList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectSupportCaseCommentList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectTierList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectTransferList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectTransferOutList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectUsageList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsPageIntegrityList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsSeawallConfigList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsSecurityPlusConfigurationList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsShareableLinkList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsShareableLinkStrictList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsSharedEnvVarConnectionList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsSkewProtectionList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsAnalyticsList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsTrustedIpsList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsTrustedSourcesList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsV0ChatList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsVercelAuthList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsVercelRunList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsWebAnalyticsList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsWorkflowRunDataList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
     "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsOauth2ConnectionList": {
       "type": "list",
       "member": {
@@ -7409,6 +8003,20 @@
       "traits": {}
     },
     "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsAiGatewaySettingsList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsAiGatewayTranscriptsList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsAiGatewayTranscriptsSettingsList": {
       "type": "list",
       "member": {
         "target": "com.vercel.microfrontends#ACLAction"
@@ -8339,6 +8947,13 @@
       },
       "traits": {}
     },
+    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectTransferRequestList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.microfrontends#ACLAction"
+      },
+      "traits": {}
+    },
     "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProTrialOnboardingList": {
       "type": "list",
       "member": {
@@ -8633,590 +9248,258 @@
       },
       "traits": {}
     },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsAliasProjectList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsAliasProtectionBypassList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsBulkRedirectsList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsBuildMachineList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsConnectConfigurationLinkList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsDataCacheNamespaceList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentBuildLogsList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentCheckList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentCheckPreviewList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentCheckReRunFromProductionBranchList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentProductionGitList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentV0List": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentPreviewList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentPrivateList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentPromoteList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentRollbackList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsEdgeCacheNamespaceList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsEnvironmentsList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsJobList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsLogsList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsLogsPresetList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsObservabilityDataList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsOnDemandBuildList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsOnDemandConcurrencyList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsOptionsAllowlistList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsPasswordProtectionList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsPrivateLinkEndpointList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProductionAliasProtectionBypassList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProductionShareableLinkList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectAccessGroupList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectAnalyticsSamplingList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectAnalyticsUsageList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectCheckList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectCheckRunList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDeploymentExpirationList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDeploymentHookList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDeploymentProtectionStrictList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDomainList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDomainCheckConfigList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDomainMoveList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDomainVerifyList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectEventList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectEnvVarsList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectEnvVarsProductionList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectEnvVarsUnownedByIntegrationList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectFlagsList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectFlagsProductionList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectFlagsSdkKeyList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectFromV0List": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectIdList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectIntegrationConfigurationList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectLinkList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectMemberList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectMonitoringList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectOIDCTokenList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectPermissionsList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectProductionBranchList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectProtectionBypassList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectRollingReleaseList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectRoutesList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectSupportCaseList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectSupportCaseCommentList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectTierList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectTransferList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectTransferOutList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectUsageList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsPageIntegrityList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsSeawallConfigList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsSecurityPlusConfigurationList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsShareableLinkList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsShareableLinkStrictList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsSharedEnvVarConnectionList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsSkewProtectionList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsAnalyticsList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsTrustedIpsList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsTrustedSourcesList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsV0ChatList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsVercelAuthList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsVercelRunList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsWebAnalyticsList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
-    "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsWorkflowRunDataList": {
-      "type": "list",
-      "member": {
-        "target": "com.vercel.microfrontends#ACLAction"
-      },
-      "traits": {}
-    },
     "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissions": {
       "type": "structure",
       "members": {
+        "aliasProject": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsAliasProjectList"
+        },
+        "aliasProtectionBypass": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsAliasProtectionBypassList"
+        },
+        "bulkRedirects": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsBulkRedirectsList"
+        },
+        "buildMachine": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsBuildMachineList"
+        },
+        "connectConfigurationLink": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsConnectConfigurationLinkList"
+        },
+        "dataCacheNamespace": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsDataCacheNamespaceList"
+        },
+        "deployment": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentList"
+        },
+        "deploymentBuildLogs": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentBuildLogsList"
+        },
+        "deploymentCheck": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentCheckList"
+        },
+        "deploymentCheckPreview": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentCheckPreviewList"
+        },
+        "deploymentCheckReRunFromProductionBranch": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentCheckReRunFromProductionBranchList"
+        },
+        "deploymentProductionGit": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentProductionGitList"
+        },
+        "deploymentV0": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentV0List"
+        },
+        "deploymentPreview": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentPreviewList"
+        },
+        "deploymentPrivate": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentPrivateList"
+        },
+        "deploymentPromote": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentPromoteList"
+        },
+        "deploymentRollback": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentRollbackList"
+        },
+        "edgeCacheNamespace": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsEdgeCacheNamespaceList"
+        },
+        "environments": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsEnvironmentsList"
+        },
+        "job": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsJobList"
+        },
+        "logs": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsLogsList"
+        },
+        "logsPreset": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsLogsPresetList"
+        },
+        "observabilityData": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsObservabilityDataList"
+        },
+        "onDemandBuild": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsOnDemandBuildList"
+        },
+        "onDemandConcurrency": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsOnDemandConcurrencyList"
+        },
+        "optionsAllowlist": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsOptionsAllowlistList"
+        },
+        "passwordProtection": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsPasswordProtectionList"
+        },
+        "privateLinkEndpoint": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsPrivateLinkEndpointList"
+        },
+        "productionAliasProtectionBypass": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProductionAliasProtectionBypassList"
+        },
+        "productionShareableLink": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProductionShareableLinkList"
+        },
+        "project": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectList"
+        },
+        "projectAccessGroup": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectAccessGroupList"
+        },
+        "projectAnalyticsSampling": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectAnalyticsSamplingList"
+        },
+        "projectAnalyticsUsage": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectAnalyticsUsageList"
+        },
+        "projectCheck": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectCheckList"
+        },
+        "projectCheckRun": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectCheckRunList"
+        },
+        "projectDeploymentExpiration": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDeploymentExpirationList"
+        },
+        "projectDeploymentHook": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDeploymentHookList"
+        },
+        "projectDeploymentProtectionStrict": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDeploymentProtectionStrictList"
+        },
+        "projectDomain": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDomainList"
+        },
+        "projectDomainCheckConfig": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDomainCheckConfigList"
+        },
+        "projectDomainMove": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDomainMoveList"
+        },
+        "projectDomainVerify": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDomainVerifyList"
+        },
+        "projectEvent": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectEventList"
+        },
+        "projectEnvVars": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectEnvVarsList"
+        },
+        "projectEnvVarsProduction": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectEnvVarsProductionList"
+        },
+        "projectEnvVarsUnownedByIntegration": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectEnvVarsUnownedByIntegrationList"
+        },
+        "projectFlags": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectFlagsList"
+        },
+        "projectFlagsProduction": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectFlagsProductionList"
+        },
+        "projectFlagsSdkKey": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectFlagsSdkKeyList"
+        },
+        "projectFromV0": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectFromV0List"
+        },
+        "projectId": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectIdList"
+        },
+        "projectIntegrationConfiguration": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectIntegrationConfigurationList"
+        },
+        "projectLink": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectLinkList"
+        },
+        "projectMember": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectMemberList"
+        },
+        "projectMonitoring": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectMonitoringList"
+        },
+        "projectOIDCToken": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectOIDCTokenList"
+        },
+        "projectPermissions": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectPermissionsList"
+        },
+        "projectProductionBranch": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectProductionBranchList"
+        },
+        "projectProtectionBypass": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectProtectionBypassList"
+        },
+        "projectRollingRelease": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectRollingReleaseList"
+        },
+        "projectRoutes": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectRoutesList"
+        },
+        "projectSupportCase": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectSupportCaseList"
+        },
+        "projectSupportCaseComment": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectSupportCaseCommentList"
+        },
+        "projectTier": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectTierList"
+        },
+        "projectTransfer": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectTransferList"
+        },
+        "projectTransferOut": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectTransferOutList"
+        },
+        "projectUsage": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectUsageList"
+        },
+        "pageIntegrity": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsPageIntegrityList"
+        },
+        "seawallConfig": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsSeawallConfigList"
+        },
+        "securityPlusConfiguration": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsSecurityPlusConfigurationList"
+        },
+        "shareableLink": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsShareableLinkList"
+        },
+        "shareableLinkStrict": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsShareableLinkStrictList"
+        },
+        "sharedEnvVarConnection": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsSharedEnvVarConnectionList"
+        },
+        "skewProtection": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsSkewProtectionList"
+        },
+        "analytics": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsAnalyticsList"
+        },
+        "trustedIps": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsTrustedIpsList"
+        },
+        "trustedSources": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsTrustedSourcesList"
+        },
+        "v0Chat": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsV0ChatList"
+        },
+        "vercelAuth": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsVercelAuthList"
+        },
+        "vercelRun": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsVercelRunList"
+        },
+        "webAnalytics": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsWebAnalyticsList"
+        },
+        "workflowRunData": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsWorkflowRunDataList"
+        },
         "oauth2Connection": {
           "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsOauth2ConnectionList"
         },
@@ -9276,6 +9559,12 @@
         },
         "aiGatewaySettings": {
           "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsAiGatewaySettingsList"
+        },
+        "aiGatewayTranscripts": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsAiGatewayTranscriptsList"
+        },
+        "aiGatewayTranscriptsSettings": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsAiGatewayTranscriptsSettingsList"
         },
         "aiGatewayUsage": {
           "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsAiGatewayUsageList"
@@ -9673,6 +9962,9 @@
         "projectTransferIn": {
           "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectTransferInList"
         },
+        "projectTransferRequest": {
+          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectTransferRequestList"
+        },
         "proTrialOnboarding": {
           "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProTrialOnboardingList"
         },
@@ -9801,255 +10093,6 @@
           "traits": {
             "smithy.api#jsonName": "webhook-event"
           }
-        },
-        "aliasProject": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsAliasProjectList"
-        },
-        "aliasProtectionBypass": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsAliasProtectionBypassList"
-        },
-        "bulkRedirects": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsBulkRedirectsList"
-        },
-        "buildMachine": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsBuildMachineList"
-        },
-        "connectConfigurationLink": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsConnectConfigurationLinkList"
-        },
-        "dataCacheNamespace": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsDataCacheNamespaceList"
-        },
-        "deployment": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentList"
-        },
-        "deploymentBuildLogs": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentBuildLogsList"
-        },
-        "deploymentCheck": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentCheckList"
-        },
-        "deploymentCheckPreview": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentCheckPreviewList"
-        },
-        "deploymentCheckReRunFromProductionBranch": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentCheckReRunFromProductionBranchList"
-        },
-        "deploymentProductionGit": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentProductionGitList"
-        },
-        "deploymentV0": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentV0List"
-        },
-        "deploymentPreview": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentPreviewList"
-        },
-        "deploymentPrivate": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentPrivateList"
-        },
-        "deploymentPromote": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentPromoteList"
-        },
-        "deploymentRollback": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsDeploymentRollbackList"
-        },
-        "edgeCacheNamespace": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsEdgeCacheNamespaceList"
-        },
-        "environments": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsEnvironmentsList"
-        },
-        "job": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsJobList"
-        },
-        "logs": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsLogsList"
-        },
-        "logsPreset": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsLogsPresetList"
-        },
-        "observabilityData": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsObservabilityDataList"
-        },
-        "onDemandBuild": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsOnDemandBuildList"
-        },
-        "onDemandConcurrency": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsOnDemandConcurrencyList"
-        },
-        "optionsAllowlist": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsOptionsAllowlistList"
-        },
-        "passwordProtection": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsPasswordProtectionList"
-        },
-        "privateLinkEndpoint": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsPrivateLinkEndpointList"
-        },
-        "productionAliasProtectionBypass": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProductionAliasProtectionBypassList"
-        },
-        "productionShareableLink": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProductionShareableLinkList"
-        },
-        "project": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectList"
-        },
-        "projectAccessGroup": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectAccessGroupList"
-        },
-        "projectAnalyticsSampling": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectAnalyticsSamplingList"
-        },
-        "projectAnalyticsUsage": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectAnalyticsUsageList"
-        },
-        "projectCheck": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectCheckList"
-        },
-        "projectCheckRun": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectCheckRunList"
-        },
-        "projectDeploymentExpiration": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDeploymentExpirationList"
-        },
-        "projectDeploymentHook": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDeploymentHookList"
-        },
-        "projectDeploymentProtectionStrict": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDeploymentProtectionStrictList"
-        },
-        "projectDomain": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDomainList"
-        },
-        "projectDomainCheckConfig": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDomainCheckConfigList"
-        },
-        "projectDomainMove": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDomainMoveList"
-        },
-        "projectDomainVerify": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectDomainVerifyList"
-        },
-        "projectEvent": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectEventList"
-        },
-        "projectEnvVars": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectEnvVarsList"
-        },
-        "projectEnvVarsProduction": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectEnvVarsProductionList"
-        },
-        "projectEnvVarsUnownedByIntegration": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectEnvVarsUnownedByIntegrationList"
-        },
-        "projectFlags": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectFlagsList"
-        },
-        "projectFlagsProduction": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectFlagsProductionList"
-        },
-        "projectFlagsSdkKey": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectFlagsSdkKeyList"
-        },
-        "projectFromV0": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectFromV0List"
-        },
-        "projectId": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectIdList"
-        },
-        "projectIntegrationConfiguration": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectIntegrationConfigurationList"
-        },
-        "projectLink": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectLinkList"
-        },
-        "projectMember": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectMemberList"
-        },
-        "projectMonitoring": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectMonitoringList"
-        },
-        "projectOIDCToken": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectOIDCTokenList"
-        },
-        "projectPermissions": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectPermissionsList"
-        },
-        "projectProductionBranch": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectProductionBranchList"
-        },
-        "projectProtectionBypass": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectProtectionBypassList"
-        },
-        "projectRollingRelease": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectRollingReleaseList"
-        },
-        "projectRoutes": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectRoutesList"
-        },
-        "projectSupportCase": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectSupportCaseList"
-        },
-        "projectSupportCaseComment": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectSupportCaseCommentList"
-        },
-        "projectTier": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectTierList"
-        },
-        "projectTransfer": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectTransferList"
-        },
-        "projectTransferOut": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectTransferOutList"
-        },
-        "projectUsage": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsProjectUsageList"
-        },
-        "pageIntegrity": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsPageIntegrityList"
-        },
-        "seawallConfig": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsSeawallConfigList"
-        },
-        "securityPlusConfiguration": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsSecurityPlusConfigurationList"
-        },
-        "shareableLink": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsShareableLinkList"
-        },
-        "shareableLinkStrict": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsShareableLinkStrictList"
-        },
-        "sharedEnvVarConnection": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsSharedEnvVarConnectionList"
-        },
-        "skewProtection": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsSkewProtectionList"
-        },
-        "analytics": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsAnalyticsList"
-        },
-        "trustedIps": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsTrustedIpsList"
-        },
-        "trustedSources": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsTrustedSourcesList"
-        },
-        "v0Chat": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsV0ChatList"
-        },
-        "vercelAuth": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsVercelAuthList"
-        },
-        "vercelRun": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsVercelRunList"
-        },
-        "webAnalytics": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsWebAnalyticsList"
-        },
-        "workflowRunData": {
-          "target": "com.vercel.microfrontends#GetMicrofrontendsInGroupResponseProjectsItemPermissionsWorkflowRunDataList"
         }
       },
       "traits": {}

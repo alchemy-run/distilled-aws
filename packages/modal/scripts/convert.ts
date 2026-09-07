@@ -23,6 +23,7 @@ import {
   parseProto,
   rpcGroupName,
 } from "@distilled.cloud/core/codegen/proto";
+import { finalizeConvert } from "@distilled.cloud/core/codegen/patches";
 import { resolveSpecPath } from "@distilled.cloud/core/codegen/spec-path";
 
 const ROOT = path.resolve(import.meta.dir, "..");
@@ -143,3 +144,5 @@ console.log(
     (totalStreaming ? `, ${totalStreaming} streaming skipped` : "") +
     `) → ${OUT_DIR}`,
 );
+
+await finalizeConvert({ root: ROOT });

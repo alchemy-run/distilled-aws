@@ -14,13 +14,14 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.appconfiguration#SnapshotsCreate": {
+    "com.azure.appconfiguration#CreateSnapshot": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appconfiguration#SnapshotsCreateRequest"
+        "target": "com.azure.appconfiguration#CreateSnapshotRequest"
       },
       "output": {
         "target": "com.azure.appconfiguration#Snapshot"
@@ -281,7 +282,7 @@
         "smithy.api#documentation": "The provisioning state of the snapshot."
       }
     },
-    "com.azure.appconfiguration#SnapshotsCreateRequest": {
+    "com.azure.appconfiguration#CreateSnapshotRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -401,10 +402,10 @@
         "smithy.api#documentation": "A list of filters used to filter the key-values included in the snapshot."
       }
     },
-    "com.azure.appconfiguration#SnapshotsGet": {
+    "com.azure.appconfiguration#GetSnapshot": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appconfiguration#SnapshotsGetRequest"
+        "target": "com.azure.appconfiguration#GetSnapshotRequest"
       },
       "output": {
         "target": "com.azure.appconfiguration#Snapshot"
@@ -420,7 +421,7 @@
         "com.distilled.openapi#apiVersion": "2024-06-01"
       }
     },
-    "com.azure.appconfiguration#SnapshotsGetRequest": {
+    "com.azure.appconfiguration#GetSnapshotRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -460,10 +461,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appconfiguration#ReplicasDelete": {
+    "com.azure.appconfiguration#DeleteReplicas": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appconfiguration#ReplicasDeleteRequest"
+        "target": "com.azure.appconfiguration#DeleteReplicasRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -479,7 +480,7 @@
         "com.distilled.openapi#apiVersion": "2024-06-01"
       }
     },
-    "com.azure.appconfiguration#ReplicasDeleteRequest": {
+    "com.azure.appconfiguration#DeleteReplicasRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -519,10 +520,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appconfiguration#ReplicasCreate": {
+    "com.azure.appconfiguration#CreateReplicas": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appconfiguration#ReplicasCreateRequest"
+        "target": "com.azure.appconfiguration#CreateReplicasRequest"
       },
       "output": {
         "target": "com.azure.appconfiguration#Replica"
@@ -748,7 +749,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.appconfiguration#ReplicasCreateRequest": {
+    "com.azure.appconfiguration#CreateReplicasRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -794,10 +795,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appconfiguration#ReplicasGet": {
+    "com.azure.appconfiguration#GetReplicas": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appconfiguration#ReplicasGetRequest"
+        "target": "com.azure.appconfiguration#GetReplicasRequest"
       },
       "output": {
         "target": "com.azure.appconfiguration#Replica"
@@ -813,7 +814,7 @@
         "com.distilled.openapi#apiVersion": "2024-06-01"
       }
     },
-    "com.azure.appconfiguration#ReplicasGetRequest": {
+    "com.azure.appconfiguration#GetReplicasRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -853,10 +854,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appconfiguration#ReplicasListByConfigurationStore": {
+    "com.azure.appconfiguration#ListReplicasByConfigurationStore": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appconfiguration#ReplicasListByConfigurationStoreRequest"
+        "target": "com.azure.appconfiguration#ListReplicasByConfigurationStoreRequest"
       },
       "output": {
         "target": "com.azure.appconfiguration#ReplicaListResult"
@@ -901,7 +902,7 @@
         "smithy.api#documentation": "The collection value."
       }
     },
-    "com.azure.appconfiguration#ReplicasListByConfigurationStoreRequest": {
+    "com.azure.appconfiguration#ListReplicasByConfigurationStoreRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1037,10 +1038,10 @@
         "smithy.api#documentation": "The resource type to check for name availability."
       }
     },
-    "com.azure.appconfiguration#ConfigurationStoresPurgeDeleted": {
+    "com.azure.appconfiguration#PurgeConfigurationStoreDeleted": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appconfiguration#ConfigurationStoresPurgeDeletedRequest"
+        "target": "com.azure.appconfiguration#PurgeConfigurationStoreDeletedRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1056,7 +1057,7 @@
         "com.distilled.openapi#apiVersion": "2024-06-01"
       }
     },
-    "com.azure.appconfiguration#ConfigurationStoresPurgeDeletedRequest": {
+    "com.azure.appconfiguration#PurgeConfigurationStoreDeletedRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1088,10 +1089,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appconfiguration#ConfigurationStoresGetDeleted": {
+    "com.azure.appconfiguration#GetConfigurationStoreDeleted": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appconfiguration#ConfigurationStoresGetDeletedRequest"
+        "target": "com.azure.appconfiguration#GetConfigurationStoreDeletedRequest"
       },
       "output": {
         "target": "com.azure.appconfiguration#DeletedConfigurationStore"
@@ -1195,7 +1196,7 @@
         "smithy.api#documentation": "Tags of the original configuration store."
       }
     },
-    "com.azure.appconfiguration#ConfigurationStoresGetDeletedRequest": {
+    "com.azure.appconfiguration#GetConfigurationStoreDeletedRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1227,10 +1228,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appconfiguration#ConfigurationStoresListDeleted": {
+    "com.azure.appconfiguration#ListConfigurationStoreDeleted": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appconfiguration#ConfigurationStoresListDeletedRequest"
+        "target": "com.azure.appconfiguration#ListConfigurationStoreDeletedRequest"
       },
       "output": {
         "target": "com.azure.appconfiguration#DeletedConfigurationStoreListResult"
@@ -1275,7 +1276,7 @@
         "smithy.api#documentation": "The list of deleted configuration store."
       }
     },
-    "com.azure.appconfiguration#ConfigurationStoresListDeletedRequest": {
+    "com.azure.appconfiguration#ListConfigurationStoreDeletedRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1291,10 +1292,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appconfiguration#KeyValuesDelete": {
+    "com.azure.appconfiguration#DeleteKeyValue": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appconfiguration#KeyValuesDeleteRequest"
+        "target": "com.azure.appconfiguration#DeleteKeyValueRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1310,7 +1311,7 @@
         "com.distilled.openapi#apiVersion": "2024-06-01"
       }
     },
-    "com.azure.appconfiguration#KeyValuesDeleteRequest": {
+    "com.azure.appconfiguration#DeleteKeyValueRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1553,10 +1554,10 @@
         "smithy.api#documentation": "A dictionary of tags that can help identify what a key-value may be applicable for."
       }
     },
-    "com.azure.appconfiguration#KeyValuesGet": {
+    "com.azure.appconfiguration#GetKeyValue": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appconfiguration#KeyValuesGetRequest"
+        "target": "com.azure.appconfiguration#GetKeyValueRequest"
       },
       "output": {
         "target": "com.azure.appconfiguration#KeyValue"
@@ -1572,7 +1573,7 @@
         "com.distilled.openapi#apiVersion": "2024-06-01"
       }
     },
-    "com.azure.appconfiguration#KeyValuesGetRequest": {
+    "com.azure.appconfiguration#GetKeyValueRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1612,10 +1613,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appconfiguration#PrivateLinkResourcesGet": {
+    "com.azure.appconfiguration#GetPrivateLinkResource": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appconfiguration#PrivateLinkResourcesGetRequest"
+        "target": "com.azure.appconfiguration#GetPrivateLinkResourceRequest"
       },
       "output": {
         "target": "com.azure.appconfiguration#PrivateLinkResource"
@@ -1707,7 +1708,7 @@
         "smithy.api#documentation": "The private link resource required member names."
       }
     },
-    "com.azure.appconfiguration#PrivateLinkResourcesGetRequest": {
+    "com.azure.appconfiguration#GetPrivateLinkResourceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1747,10 +1748,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appconfiguration#PrivateLinkResourcesListByConfigurationStore": {
+    "com.azure.appconfiguration#ListPrivateLinkResourceByConfigurationStore": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appconfiguration#PrivateLinkResourcesListByConfigurationStoreRequest"
+        "target": "com.azure.appconfiguration#ListPrivateLinkResourceByConfigurationStoreRequest"
       },
       "output": {
         "target": "com.azure.appconfiguration#PrivateLinkResourceListResult"
@@ -1795,7 +1796,7 @@
         "smithy.api#documentation": "The collection value."
       }
     },
-    "com.azure.appconfiguration#PrivateLinkResourcesListByConfigurationStoreRequest": {
+    "com.azure.appconfiguration#ListPrivateLinkResourceByConfigurationStoreRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1827,10 +1828,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appconfiguration#PrivateEndpointConnectionsDelete": {
+    "com.azure.appconfiguration#DeletePrivateEndpointConnection": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appconfiguration#PrivateEndpointConnectionsDeleteRequest"
+        "target": "com.azure.appconfiguration#DeletePrivateEndpointConnectionRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1846,7 +1847,7 @@
         "com.distilled.openapi#apiVersion": "2024-06-01"
       }
     },
-    "com.azure.appconfiguration#PrivateEndpointConnectionsDeleteRequest": {
+    "com.azure.appconfiguration#DeletePrivateEndpointConnectionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2219,10 +2220,10 @@
         "smithy.api#documentation": "The private link service connection status."
       }
     },
-    "com.azure.appconfiguration#PrivateEndpointConnectionsGet": {
+    "com.azure.appconfiguration#GetPrivateEndpointConnection": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appconfiguration#PrivateEndpointConnectionsGetRequest"
+        "target": "com.azure.appconfiguration#GetPrivateEndpointConnectionRequest"
       },
       "output": {
         "target": "com.azure.appconfiguration#PrivateEndpointConnection"
@@ -2238,7 +2239,7 @@
         "com.distilled.openapi#apiVersion": "2024-06-01"
       }
     },
-    "com.azure.appconfiguration#PrivateEndpointConnectionsGetRequest": {
+    "com.azure.appconfiguration#GetPrivateEndpointConnectionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2278,10 +2279,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appconfiguration#PrivateEndpointConnectionsListByConfigurationStore": {
+    "com.azure.appconfiguration#ListPrivateEndpointConnectionByConfigurationStore": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appconfiguration#PrivateEndpointConnectionsListByConfigurationStoreRequest"
+        "target": "com.azure.appconfiguration#ListPrivateEndpointConnectionByConfigurationStoreRequest"
       },
       "output": {
         "target": "com.azure.appconfiguration#PrivateEndpointConnectionListResult"
@@ -2326,7 +2327,7 @@
         "smithy.api#documentation": "The collection value."
       }
     },
-    "com.azure.appconfiguration#PrivateEndpointConnectionsListByConfigurationStoreRequest": {
+    "com.azure.appconfiguration#ListPrivateEndpointConnectionByConfigurationStoreRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2358,10 +2359,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appconfiguration#OperationsList": {
+    "com.azure.appconfiguration#ListOperations": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appconfiguration#OperationsListRequest"
+        "target": "com.azure.appconfiguration#ListOperationsRequest"
       },
       "output": {
         "target": "com.azure.appconfiguration#OperationDefinitionListResult"
@@ -2645,7 +2646,7 @@
         "smithy.api#documentation": "The display information for a configuration store operation."
       }
     },
-    "com.azure.appconfiguration#OperationsListRequest": {
+    "com.azure.appconfiguration#ListOperationsRequest": {
       "type": "structure",
       "members": {
         "_skipToken": {
@@ -2660,10 +2661,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appconfiguration#ConfigurationStoresRegenerateKey": {
+    "com.azure.appconfiguration#RegenerateConfigurationStoreKey": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appconfiguration#ConfigurationStoresRegenerateKeyRequest"
+        "target": "com.azure.appconfiguration#RegenerateConfigurationStoreKeyRequest"
       },
       "output": {
         "target": "com.azure.appconfiguration#ApiKey"
@@ -2724,7 +2725,7 @@
         "smithy.api#documentation": "An API key used for authenticating with a configuration store endpoint."
       }
     },
-    "com.azure.appconfiguration#ConfigurationStoresRegenerateKeyRequest": {
+    "com.azure.appconfiguration#RegenerateConfigurationStoreKeyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2762,10 +2763,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appconfiguration#ConfigurationStoresListKeys": {
+    "com.azure.appconfiguration#ListConfigurationStoreKeys": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appconfiguration#ConfigurationStoresListKeysRequest"
+        "target": "com.azure.appconfiguration#ListConfigurationStoreKeysRequest"
       },
       "output": {
         "target": "com.azure.appconfiguration#ApiKeyListResult"
@@ -2810,7 +2811,7 @@
         "smithy.api#documentation": "The collection value."
       }
     },
-    "com.azure.appconfiguration#ConfigurationStoresListKeysRequest": {
+    "com.azure.appconfiguration#ListConfigurationStoreKeysRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2849,10 +2850,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appconfiguration#OperationsCheckNameAvailability": {
+    "com.azure.appconfiguration#CheckOperationNameAvailability": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appconfiguration#OperationsCheckNameAvailabilityRequest"
+        "target": "com.azure.appconfiguration#CheckOperationNameAvailabilityRequest"
       },
       "output": {
         "target": "com.azure.appconfiguration#NameAvailabilityStatus"
@@ -2868,7 +2869,7 @@
         "com.distilled.openapi#apiVersion": "2024-06-01"
       }
     },
-    "com.azure.appconfiguration#OperationsCheckNameAvailabilityRequest": {
+    "com.azure.appconfiguration#CheckOperationNameAvailabilityRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2887,7 +2888,7 @@
           }
         },
         "type": {
-          "target": "com.azure.appconfiguration#OperationsCheckNameAvailabilityRequestType",
+          "target": "com.azure.appconfiguration#CheckOperationNameAvailabilityRequestType",
           "traits": {
             "smithy.api#documentation": "The resource type to check for name availability.",
             "smithy.api#required": {}
@@ -2898,7 +2899,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appconfiguration#OperationsCheckNameAvailabilityRequestType": {
+    "com.azure.appconfiguration#CheckOperationNameAvailabilityRequestType": {
       "type": "enum",
       "members": {
         "MICROSOFT_APPCONFIGURATION_CONFIGURATIONSTORES": {
@@ -2912,10 +2913,10 @@
         "smithy.api#documentation": "The resource type to check for name availability."
       }
     },
-    "com.azure.appconfiguration#ConfigurationStoresDelete": {
+    "com.azure.appconfiguration#DeleteConfigurationStore": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appconfiguration#ConfigurationStoresDeleteRequest"
+        "target": "com.azure.appconfiguration#DeleteConfigurationStoreRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2931,7 +2932,7 @@
         "com.distilled.openapi#apiVersion": "2024-06-01"
       }
     },
-    "com.azure.appconfiguration#ConfigurationStoresDeleteRequest": {
+    "com.azure.appconfiguration#DeleteConfigurationStoreRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2963,13 +2964,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appconfiguration#ConfigurationStoresUpdate": {
+    "com.azure.appconfiguration#UpdateConfigurationStore": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appconfiguration#ConfigurationStoresUpdateRequest"
+        "target": "com.azure.appconfiguration#UpdateConfigurationStoreRequest"
       },
       "output": {
-        "target": "com.azure.appconfiguration#ConfigurationStoresUpdateResponse"
+        "target": "com.azure.appconfiguration#UpdateConfigurationStoreResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2982,7 +2983,7 @@
         "com.distilled.openapi#apiVersion": "2024-06-01"
       }
     },
-    "com.azure.appconfiguration#ConfigurationStoresUpdateResponse": {
+    "com.azure.appconfiguration#UpdateConfigurationStoreResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3004,7 +3005,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.appconfiguration#ConfigurationStoresUpdateResponseTagsMap",
+          "target": "com.azure.appconfiguration#UpdateConfigurationStoreResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3036,7 +3037,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.appconfiguration#ConfigurationStoresUpdateResponseSystemData",
+          "target": "com.azure.appconfiguration#UpdateConfigurationStoreResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -3046,7 +3047,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.appconfiguration#ConfigurationStoresUpdateResponseSystemData": {
+    "com.azure.appconfiguration#UpdateConfigurationStoreResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -3056,7 +3057,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.appconfiguration#ConfigurationStoresUpdateResponseSystemDataCreatedByType",
+          "target": "com.azure.appconfiguration#UpdateConfigurationStoreResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -3074,7 +3075,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.appconfiguration#ConfigurationStoresUpdateResponseSystemDataLastModifiedByType",
+          "target": "com.azure.appconfiguration#UpdateConfigurationStoreResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -3090,7 +3091,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.appconfiguration#ConfigurationStoresUpdateResponseSystemDataLastModifiedByType": {
+    "com.azure.appconfiguration#UpdateConfigurationStoreResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -3122,7 +3123,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.appconfiguration#ConfigurationStoresUpdateResponseSystemDataCreatedByType": {
+    "com.azure.appconfiguration#UpdateConfigurationStoreResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -3564,7 +3565,7 @@
         "smithy.api#documentation": "The type of managed identity used. The type 'SystemAssigned, UserAssigned' includes both an implicitly created identity and a set of user-assigned identities. The type 'None' will remove any identities."
       }
     },
-    "com.azure.appconfiguration#ConfigurationStoresUpdateResponseTagsMap": {
+    "com.azure.appconfiguration#UpdateConfigurationStoreResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3576,7 +3577,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.appconfiguration#ConfigurationStoresUpdateRequest": {
+    "com.azure.appconfiguration#UpdateConfigurationStoreRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3622,7 +3623,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.appconfiguration#ConfigurationStoresUpdateRequestTagsMap",
+          "target": "com.azure.appconfiguration#UpdateConfigurationStoreRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "The ARM resource tags."
           }
@@ -3632,7 +3633,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appconfiguration#ConfigurationStoresUpdateRequestTagsMap": {
+    "com.azure.appconfiguration#UpdateConfigurationStoreRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3779,13 +3780,13 @@
         "smithy.api#documentation": "Control permission for data plane traffic coming from public networks while private endpoint is enabled."
       }
     },
-    "com.azure.appconfiguration#ConfigurationStoresCreate": {
+    "com.azure.appconfiguration#CreateConfigurationStore": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appconfiguration#ConfigurationStoresCreateRequest"
+        "target": "com.azure.appconfiguration#CreateConfigurationStoreRequest"
       },
       "output": {
-        "target": "com.azure.appconfiguration#ConfigurationStoresCreateResponse"
+        "target": "com.azure.appconfiguration#CreateConfigurationStoreResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3798,7 +3799,7 @@
         "com.distilled.openapi#apiVersion": "2024-06-01"
       }
     },
-    "com.azure.appconfiguration#ConfigurationStoresCreateResponse": {
+    "com.azure.appconfiguration#CreateConfigurationStoreResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3820,7 +3821,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.appconfiguration#ConfigurationStoresCreateResponseTagsMap",
+          "target": "com.azure.appconfiguration#CreateConfigurationStoreResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3852,7 +3853,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.appconfiguration#ConfigurationStoresCreateResponseSystemData",
+          "target": "com.azure.appconfiguration#CreateConfigurationStoreResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -3862,7 +3863,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.appconfiguration#ConfigurationStoresCreateResponseSystemData": {
+    "com.azure.appconfiguration#CreateConfigurationStoreResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -3872,7 +3873,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.appconfiguration#ConfigurationStoresCreateResponseSystemDataCreatedByType",
+          "target": "com.azure.appconfiguration#CreateConfigurationStoreResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -3890,7 +3891,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.appconfiguration#ConfigurationStoresCreateResponseSystemDataLastModifiedByType",
+          "target": "com.azure.appconfiguration#CreateConfigurationStoreResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -3906,7 +3907,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.appconfiguration#ConfigurationStoresCreateResponseSystemDataLastModifiedByType": {
+    "com.azure.appconfiguration#CreateConfigurationStoreResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -3938,7 +3939,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.appconfiguration#ConfigurationStoresCreateResponseSystemDataCreatedByType": {
+    "com.azure.appconfiguration#CreateConfigurationStoreResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -3970,7 +3971,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.appconfiguration#ConfigurationStoresCreateResponseTagsMap": {
+    "com.azure.appconfiguration#CreateConfigurationStoreResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3982,7 +3983,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.appconfiguration#ConfigurationStoresCreateRequest": {
+    "com.azure.appconfiguration#CreateConfigurationStoreRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4010,7 +4011,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.appconfiguration#ConfigurationStoresCreateRequestTagsMap",
+          "target": "com.azure.appconfiguration#CreateConfigurationStoreRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4142,7 +4143,7 @@
         "smithy.api#documentation": "Control permission for data plane traffic coming from public networks while private endpoint is enabled."
       }
     },
-    "com.azure.appconfiguration#ConfigurationStoresCreateRequestTagsMap": {
+    "com.azure.appconfiguration#CreateConfigurationStoreRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4154,13 +4155,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.appconfiguration#ConfigurationStoresGet": {
+    "com.azure.appconfiguration#GetConfigurationStore": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appconfiguration#ConfigurationStoresGetRequest"
+        "target": "com.azure.appconfiguration#GetConfigurationStoreRequest"
       },
       "output": {
-        "target": "com.azure.appconfiguration#ConfigurationStoresGetResponse"
+        "target": "com.azure.appconfiguration#GetConfigurationStoreResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4173,7 +4174,7 @@
         "com.distilled.openapi#apiVersion": "2024-06-01"
       }
     },
-    "com.azure.appconfiguration#ConfigurationStoresGetResponse": {
+    "com.azure.appconfiguration#GetConfigurationStoreResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -4195,7 +4196,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.appconfiguration#ConfigurationStoresGetResponseTagsMap",
+          "target": "com.azure.appconfiguration#GetConfigurationStoreResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4227,7 +4228,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.appconfiguration#ConfigurationStoresGetResponseSystemData",
+          "target": "com.azure.appconfiguration#GetConfigurationStoreResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -4237,7 +4238,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.appconfiguration#ConfigurationStoresGetResponseSystemData": {
+    "com.azure.appconfiguration#GetConfigurationStoreResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -4247,7 +4248,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.appconfiguration#ConfigurationStoresGetResponseSystemDataCreatedByType",
+          "target": "com.azure.appconfiguration#GetConfigurationStoreResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -4265,7 +4266,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.appconfiguration#ConfigurationStoresGetResponseSystemDataLastModifiedByType",
+          "target": "com.azure.appconfiguration#GetConfigurationStoreResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -4281,7 +4282,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.appconfiguration#ConfigurationStoresGetResponseSystemDataLastModifiedByType": {
+    "com.azure.appconfiguration#GetConfigurationStoreResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -4313,7 +4314,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.appconfiguration#ConfigurationStoresGetResponseSystemDataCreatedByType": {
+    "com.azure.appconfiguration#GetConfigurationStoreResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -4345,7 +4346,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.appconfiguration#ConfigurationStoresGetResponseTagsMap": {
+    "com.azure.appconfiguration#GetConfigurationStoreResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4357,7 +4358,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.appconfiguration#ConfigurationStoresGetRequest": {
+    "com.azure.appconfiguration#GetConfigurationStoreRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4389,10 +4390,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appconfiguration#ConfigurationStoresListByResourceGroup": {
+    "com.azure.appconfiguration#ListConfigurationStoreByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appconfiguration#ConfigurationStoresListByResourceGroupRequest"
+        "target": "com.azure.appconfiguration#ListConfigurationStoreByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.appconfiguration#ConfigurationStoreListResult"
@@ -4621,7 +4622,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.appconfiguration#ConfigurationStoresListByResourceGroupRequest": {
+    "com.azure.appconfiguration#ListConfigurationStoreByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4652,10 +4653,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appconfiguration#ConfigurationStoresList": {
+    "com.azure.appconfiguration#ListConfigurationStores": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appconfiguration#ConfigurationStoresListRequest"
+        "target": "com.azure.appconfiguration#ListConfigurationStoresRequest"
       },
       "output": {
         "target": "com.azure.appconfiguration#ConfigurationStoreListResult"
@@ -4671,7 +4672,7 @@
         "com.distilled.openapi#apiVersion": "2024-06-01"
       }
     },
-    "com.azure.appconfiguration#ConfigurationStoresListRequest": {
+    "com.azure.appconfiguration#ListConfigurationStoresRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4699,91 +4700,91 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.appconfiguration#SnapshotsCreate"
+          "target": "com.azure.appconfiguration#CreateSnapshot"
         },
         {
-          "target": "com.azure.appconfiguration#SnapshotsGet"
+          "target": "com.azure.appconfiguration#GetSnapshot"
         },
         {
-          "target": "com.azure.appconfiguration#ReplicasDelete"
+          "target": "com.azure.appconfiguration#DeleteReplicas"
         },
         {
-          "target": "com.azure.appconfiguration#ReplicasCreate"
+          "target": "com.azure.appconfiguration#CreateReplicas"
         },
         {
-          "target": "com.azure.appconfiguration#ReplicasGet"
+          "target": "com.azure.appconfiguration#GetReplicas"
         },
         {
-          "target": "com.azure.appconfiguration#ReplicasListByConfigurationStore"
+          "target": "com.azure.appconfiguration#ListReplicasByConfigurationStore"
         },
         {
           "target": "com.azure.appconfiguration#OperationsRegionalCheckNameAvailability"
         },
         {
-          "target": "com.azure.appconfiguration#ConfigurationStoresPurgeDeleted"
+          "target": "com.azure.appconfiguration#PurgeConfigurationStoreDeleted"
         },
         {
-          "target": "com.azure.appconfiguration#ConfigurationStoresGetDeleted"
+          "target": "com.azure.appconfiguration#GetConfigurationStoreDeleted"
         },
         {
-          "target": "com.azure.appconfiguration#ConfigurationStoresListDeleted"
+          "target": "com.azure.appconfiguration#ListConfigurationStoreDeleted"
         },
         {
-          "target": "com.azure.appconfiguration#KeyValuesDelete"
+          "target": "com.azure.appconfiguration#DeleteKeyValue"
         },
         {
           "target": "com.azure.appconfiguration#KeyValuesCreateOrUpdate"
         },
         {
-          "target": "com.azure.appconfiguration#KeyValuesGet"
+          "target": "com.azure.appconfiguration#GetKeyValue"
         },
         {
-          "target": "com.azure.appconfiguration#PrivateLinkResourcesGet"
+          "target": "com.azure.appconfiguration#GetPrivateLinkResource"
         },
         {
-          "target": "com.azure.appconfiguration#PrivateLinkResourcesListByConfigurationStore"
+          "target": "com.azure.appconfiguration#ListPrivateLinkResourceByConfigurationStore"
         },
         {
-          "target": "com.azure.appconfiguration#PrivateEndpointConnectionsDelete"
+          "target": "com.azure.appconfiguration#DeletePrivateEndpointConnection"
         },
         {
           "target": "com.azure.appconfiguration#PrivateEndpointConnectionsCreateOrUpdate"
         },
         {
-          "target": "com.azure.appconfiguration#PrivateEndpointConnectionsGet"
+          "target": "com.azure.appconfiguration#GetPrivateEndpointConnection"
         },
         {
-          "target": "com.azure.appconfiguration#PrivateEndpointConnectionsListByConfigurationStore"
+          "target": "com.azure.appconfiguration#ListPrivateEndpointConnectionByConfigurationStore"
         },
         {
-          "target": "com.azure.appconfiguration#OperationsList"
+          "target": "com.azure.appconfiguration#ListOperations"
         },
         {
-          "target": "com.azure.appconfiguration#ConfigurationStoresRegenerateKey"
+          "target": "com.azure.appconfiguration#RegenerateConfigurationStoreKey"
         },
         {
-          "target": "com.azure.appconfiguration#ConfigurationStoresListKeys"
+          "target": "com.azure.appconfiguration#ListConfigurationStoreKeys"
         },
         {
-          "target": "com.azure.appconfiguration#OperationsCheckNameAvailability"
+          "target": "com.azure.appconfiguration#CheckOperationNameAvailability"
         },
         {
-          "target": "com.azure.appconfiguration#ConfigurationStoresDelete"
+          "target": "com.azure.appconfiguration#DeleteConfigurationStore"
         },
         {
-          "target": "com.azure.appconfiguration#ConfigurationStoresUpdate"
+          "target": "com.azure.appconfiguration#UpdateConfigurationStore"
         },
         {
-          "target": "com.azure.appconfiguration#ConfigurationStoresCreate"
+          "target": "com.azure.appconfiguration#CreateConfigurationStore"
         },
         {
-          "target": "com.azure.appconfiguration#ConfigurationStoresGet"
+          "target": "com.azure.appconfiguration#GetConfigurationStore"
         },
         {
-          "target": "com.azure.appconfiguration#ConfigurationStoresListByResourceGroup"
+          "target": "com.azure.appconfiguration#ListConfigurationStoreByResourceGroup"
         },
         {
-          "target": "com.azure.appconfiguration#ConfigurationStoresList"
+          "target": "com.azure.appconfiguration#ListConfigurationStores"
         }
       ],
       "traits": {

@@ -464,6 +464,18 @@ export const DeletePromoCodeResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeletePromoCodeResponse",
 }) as any as S.Schema<DeletePromoCodeResponse>;
 
+export interface GetPromoCodeRequest {
+  /** Promo code ID (`promo_` tag). */
+  id: string;
+}
+export const GetPromoCodeRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/promo_codes/{id}", code: 200 })),
+).annotate({
+  identifier: "GetPromoCodeRequest",
+}) as any as S.Schema<GetPromoCodeRequest>;
+
 export type ListPromoCodesRequestStatus =
   | "active"
   | "inactive"
@@ -743,18 +755,6 @@ export const ListPromoCodesResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ListPromoCodesResponse",
 }) as any as S.Schema<ListPromoCodesResponse>;
-
-export interface RetrievePromoCodeRequest {
-  /** Promo code ID (`promo_` tag). */
-  id: string;
-}
-export const RetrievePromoCodeRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/promo_codes/{id}", code: 200 })),
-).annotate({
-  identifier: "RetrievePromoCodeRequest",
-}) as any as S.Schema<RetrievePromoCodeRequest>;
 
 /** Statuses that can be applied to promo codes through update operations. */
 export type PromoCodeUpdateStatus = "active" | "inactive";
@@ -1040,6 +1040,21 @@ export const deletePromoCode: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetPromoCodeError = NotFound | WhopOpError;
+/** Retrieve Promo Code Retrieves a promo code by ID. */
+export const getPromoCode: API.OperationMethod<
+  GetPromoCodeRequest,
+  PromoCode,
+  GetPromoCodeError,
+  WhopOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPromoCodeRequest,
+  output: PromoCode,
+  errors: [NotFound],
+  protocol: WhopProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListPromoCodesError = BadRequest | NotFound | WhopOpError;
 /** List Promo Codes Lists promo codes for an account with cursor pagination, filters, and sorting. */
 export const listPromoCodes: API.PaginatedOperationMethod<
@@ -1066,21 +1081,6 @@ export const listPromoCodes: API.PaginatedOperationMethod<
   }),
   paginateRelay,
 ) as any;
-
-export type RetrievePromoCodeError = NotFound | WhopOpError;
-/** Retrieve Promo Code Retrieves a promo code by ID. */
-export const retrievePromoCode: API.OperationMethod<
-  RetrievePromoCodeRequest,
-  PromoCode,
-  RetrievePromoCodeError,
-  WhopOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrievePromoCodeRequest,
-  output: PromoCode,
-  errors: [NotFound],
-  protocol: WhopProtocol,
-  retry: Retry.Retry,
-}));
 
 export type UpdatePromoCodeError =
   | BadRequest

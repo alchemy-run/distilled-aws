@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.customer_analytics#CustomerAnalyticsExternalAccountsRetrieveRequest": {
+    "com.posthog.customer_analytics#GetCustomerAnalyticsExternalAccountRequest": {
       "type": "structure",
       "members": {
         "assigned_only": {
@@ -173,10 +174,10 @@
         "smithy.api#documentation": "Accounts in this page, ordered by account id."
       }
     },
-    "com.posthog.customer_analytics#CustomerAnalyticsExternalAccountsRetrieve": {
+    "com.posthog.customer_analytics#GetCustomerAnalyticsExternalAccount": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.customer_analytics#CustomerAnalyticsExternalAccountsRetrieveRequest"
+        "target": "com.posthog.customer_analytics#GetCustomerAnalyticsExternalAccountRequest"
       },
       "output": {
         "target": "com.posthog.customer_analytics#ExternalAccountListPage"
@@ -198,21 +199,21 @@
         "smithy.api#documentation": "List external customer analytics accounts\n\nList tracked accounts with external IDs, lifecycle timestamps, and active relationship assignments. Set `include_ignored=true` to include ignored accounts. Requires a project secret API key with the `account:read` scope."
       }
     },
-    "com.posthog.customer_analytics#AccountNotesListRequestAssignedToList": {
+    "com.posthog.customer_analytics#ListAccountNotesRequestAssignedToList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.posthog.customer_analytics#AccountNotesListRequestCreatedByList": {
+    "com.posthog.customer_analytics#ListAccountNotesRequestCreatedByList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
       },
       "traits": {}
     },
-    "com.posthog.customer_analytics#AccountNotesListRequest": {
+    "com.posthog.customer_analytics#ListAccountNotesRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -231,14 +232,14 @@
           }
         },
         "assigned_to": {
-          "target": "com.posthog.customer_analytics#AccountNotesListRequestAssignedToList",
+          "target": "com.posthog.customer_analytics#ListAccountNotesRequestAssignedToList",
           "traits": {
             "smithy.api#httpQuery": "assigned_to",
             "smithy.api#documentation": "Only return notes on accounts assigned to these user IDs (the account's CSM or account executive; repeat the param per user)."
           }
         },
         "created_by": {
-          "target": "com.posthog.customer_analytics#AccountNotesListRequestCreatedByList",
+          "target": "com.posthog.customer_analytics#ListAccountNotesRequestCreatedByList",
           "traits": {
             "smithy.api#httpQuery": "created_by",
             "smithy.api#documentation": "Only return notes created by these user IDs (repeat the param per user)."
@@ -507,10 +508,10 @@
       },
       "traits": {}
     },
-    "com.posthog.customer_analytics#AccountNotesList": {
+    "com.posthog.customer_analytics#ListAccountNotes": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.customer_analytics#AccountNotesListRequest"
+        "target": "com.posthog.customer_analytics#ListAccountNotesRequest"
       },
       "output": {
         "target": "com.posthog.customer_analytics#PaginatedAccountNoteList"
@@ -523,7 +524,7 @@
         }
       }
     },
-    "com.posthog.customer_analytics#AccountsCustomPropertyValuesListRequest": {
+    "com.posthog.customer_analytics#ListAccountsCustomPropertyValuesRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -615,18 +616,18 @@
         "smithy.api#documentation": "The stored value, typed per the property's data type."
       }
     },
-    "com.posthog.customer_analytics#AccountsCustomPropertyValuesListResponseBodyList": {
+    "com.posthog.customer_analytics#ListAccountsCustomPropertyValuesResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.posthog.customer_analytics#CustomPropertyValue"
       },
       "traits": {}
     },
-    "com.posthog.customer_analytics#AccountsCustomPropertyValuesListResponse": {
+    "com.posthog.customer_analytics#ListAccountsCustomPropertyValuesResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.posthog.customer_analytics#AccountsCustomPropertyValuesListResponseBodyList",
+          "target": "com.posthog.customer_analytics#ListAccountsCustomPropertyValuesResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -637,13 +638,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.posthog.customer_analytics#AccountsCustomPropertyValuesList": {
+    "com.posthog.customer_analytics#ListAccountsCustomPropertyValues": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.customer_analytics#AccountsCustomPropertyValuesListRequest"
+        "target": "com.posthog.customer_analytics#ListAccountsCustomPropertyValuesRequest"
       },
       "output": {
-        "target": "com.posthog.customer_analytics#AccountsCustomPropertyValuesListResponse"
+        "target": "com.posthog.customer_analytics#ListAccountsCustomPropertyValuesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -653,7 +654,7 @@
         }
       }
     },
-    "com.posthog.customer_analytics#AccountsCustomPropertyValuesCreateRequestValue": {
+    "com.posthog.customer_analytics#CreateAccountsCustomPropertyValueRequestValue": {
       "type": "union",
       "members": {
         "Case0": {
@@ -670,7 +671,7 @@
         "smithy.api#documentation": "Value to store, matching the definition's type: a number for number/currency/percent, a boolean for boolean, an ISO-8601 string for date/datetime, an HTTP or HTTPS URL for link properties, or text for text properties."
       }
     },
-    "com.posthog.customer_analytics#AccountsCustomPropertyValuesCreateRequest": {
+    "com.posthog.customer_analytics#CreateAccountsCustomPropertyValueRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -697,7 +698,7 @@
           }
         },
         "value": {
-          "target": "com.posthog.customer_analytics#AccountsCustomPropertyValuesCreateRequestValue",
+          "target": "com.posthog.customer_analytics#CreateAccountsCustomPropertyValueRequestValue",
           "traits": {
             "smithy.api#documentation": "Value to store, matching the definition's type: a number for number/currency/percent, a boolean for boolean, an ISO-8601 string for date/datetime, an HTTP or HTTPS URL for link properties, or text for text properties.",
             "smithy.api#required": {}
@@ -708,10 +709,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.customer_analytics#AccountsCustomPropertyValuesCreate": {
+    "com.posthog.customer_analytics#CreateAccountsCustomPropertyValue": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.customer_analytics#AccountsCustomPropertyValuesCreateRequest"
+        "target": "com.posthog.customer_analytics#CreateAccountsCustomPropertyValueRequest"
       },
       "output": {
         "target": "com.posthog.customer_analytics#CustomPropertyValue"
@@ -724,7 +725,7 @@
         }
       }
     },
-    "com.posthog.customer_analytics#AccountsNotebooksListRequestOrdering": {
+    "com.posthog.customer_analytics#ListAccountsNotebooksRequestOrdering": {
       "type": "enum",
       "members": {
         "CREATED_AT": {
@@ -754,7 +755,7 @@
       },
       "traits": {}
     },
-    "com.posthog.customer_analytics#AccountsNotebooksListRequest": {
+    "com.posthog.customer_analytics#ListAccountsNotebooksRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -788,7 +789,7 @@
           }
         },
         "ordering": {
-          "target": "com.posthog.customer_analytics#AccountsNotebooksListRequestOrdering",
+          "target": "com.posthog.customer_analytics#ListAccountsNotebooksRequestOrdering",
           "traits": {
             "smithy.api#httpQuery": "ordering",
             "smithy.api#documentation": "Sort by creation date or author. Defaults to '-created_at'."
@@ -905,10 +906,10 @@
       },
       "traits": {}
     },
-    "com.posthog.customer_analytics#AccountsNotebooksList": {
+    "com.posthog.customer_analytics#ListAccountsNotebooks": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.customer_analytics#AccountsNotebooksListRequest"
+        "target": "com.posthog.customer_analytics#ListAccountsNotebooksRequest"
       },
       "output": {
         "target": "com.posthog.customer_analytics#PaginatedAccountNotebookList"
@@ -921,7 +922,7 @@
         }
       }
     },
-    "com.posthog.customer_analytics#AccountsNotebooksCreateRequest": {
+    "com.posthog.customer_analytics#CreateAccountsNotebookRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -965,10 +966,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.customer_analytics#AccountsNotebooksCreate": {
+    "com.posthog.customer_analytics#CreateAccountsNotebook": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.customer_analytics#AccountsNotebooksCreateRequest"
+        "target": "com.posthog.customer_analytics#CreateAccountsNotebookRequest"
       },
       "output": {
         "target": "com.posthog.customer_analytics#AccountNotebook"
@@ -981,7 +982,7 @@
         }
       }
     },
-    "com.posthog.customer_analytics#AccountsNotebooksRetrieveRequest": {
+    "com.posthog.customer_analytics#GetAccountsNotebookRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1012,10 +1013,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.customer_analytics#AccountsNotebooksRetrieve": {
+    "com.posthog.customer_analytics#GetAccountsNotebook": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.customer_analytics#AccountsNotebooksRetrieveRequest"
+        "target": "com.posthog.customer_analytics#GetAccountsNotebookRequest"
       },
       "output": {
         "target": "com.posthog.customer_analytics#AccountNotebook"
@@ -1075,7 +1076,7 @@
         }
       }
     },
-    "com.posthog.customer_analytics#AccountsRelationshipsListRequest": {
+    "com.posthog.customer_analytics#ListAccountsRelationshipsRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1208,18 +1209,18 @@
         "smithy.api#documentation": "A user assigned to an account relationship (read shape)."
       }
     },
-    "com.posthog.customer_analytics#AccountsRelationshipsListResponseBodyList": {
+    "com.posthog.customer_analytics#ListAccountsRelationshipsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.posthog.customer_analytics#AccountRelationship"
       },
       "traits": {}
     },
-    "com.posthog.customer_analytics#AccountsRelationshipsListResponse": {
+    "com.posthog.customer_analytics#ListAccountsRelationshipsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.posthog.customer_analytics#AccountsRelationshipsListResponseBodyList",
+          "target": "com.posthog.customer_analytics#ListAccountsRelationshipsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -1230,13 +1231,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.posthog.customer_analytics#AccountsRelationshipsList": {
+    "com.posthog.customer_analytics#ListAccountsRelationships": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.customer_analytics#AccountsRelationshipsListRequest"
+        "target": "com.posthog.customer_analytics#ListAccountsRelationshipsRequest"
       },
       "output": {
-        "target": "com.posthog.customer_analytics#AccountsRelationshipsListResponse"
+        "target": "com.posthog.customer_analytics#ListAccountsRelationshipsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1246,7 +1247,7 @@
         }
       }
     },
-    "com.posthog.customer_analytics#AccountsRelationshipsCreateRequest": {
+    "com.posthog.customer_analytics#CreateAccountsRelationshipRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1284,10 +1285,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.customer_analytics#AccountsRelationshipsCreate": {
+    "com.posthog.customer_analytics#CreateAccountsRelationship": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.customer_analytics#AccountsRelationshipsCreateRequest"
+        "target": "com.posthog.customer_analytics#CreateAccountsRelationshipRequest"
       },
       "output": {
         "target": "com.posthog.customer_analytics#AccountRelationship"
@@ -1347,7 +1348,7 @@
         }
       }
     },
-    "com.posthog.customer_analytics#AccountsRelationshipsEndCreateRequest": {
+    "com.posthog.customer_analytics#CreateAccountsRelationshipsEndRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1378,10 +1379,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.customer_analytics#AccountsRelationshipsEndCreate": {
+    "com.posthog.customer_analytics#CreateAccountsRelationshipsEnd": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.customer_analytics#AccountsRelationshipsEndCreateRequest"
+        "target": "com.posthog.customer_analytics#CreateAccountsRelationshipsEndRequest"
       },
       "output": {
         "target": "com.posthog.customer_analytics#AccountRelationship"
@@ -1394,7 +1395,7 @@
         }
       }
     },
-    "com.posthog.customer_analytics#EventStreamsListRequest": {
+    "com.posthog.customer_analytics#ListEventStreamsRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1500,18 +1501,18 @@
         "smithy.api#documentation": "UUIDs of the member accounts whose users' events are streamed. Managed via the add_account/remove_account endpoints."
       }
     },
-    "com.posthog.customer_analytics#EventStreamsListResponseBodyList": {
+    "com.posthog.customer_analytics#ListEventStreamsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.posthog.customer_analytics#EventStream"
       },
       "traits": {}
     },
-    "com.posthog.customer_analytics#EventStreamsListResponse": {
+    "com.posthog.customer_analytics#ListEventStreamsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.posthog.customer_analytics#EventStreamsListResponseBodyList",
+          "target": "com.posthog.customer_analytics#ListEventStreamsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -1522,13 +1523,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.posthog.customer_analytics#EventStreamsList": {
+    "com.posthog.customer_analytics#ListEventStreams": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.customer_analytics#EventStreamsListRequest"
+        "target": "com.posthog.customer_analytics#ListEventStreamsRequest"
       },
       "output": {
-        "target": "com.posthog.customer_analytics#EventStreamsListResponse"
+        "target": "com.posthog.customer_analytics#ListEventStreamsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1539,7 +1540,7 @@
         "smithy.api#documentation": "The caller's event stream: a live feed of selected accounts' events posted to a\nSlack channel of their choice. Per-user — each team member owns at most one stream, and\nevery endpoint is scoped to the caller's own. Delivery runs through a managed CDP\ndestination that is re-provisioned inside the same transaction as every write, so\nconfig and delivery can't drift apart."
       }
     },
-    "com.posthog.customer_analytics#EventStreamsCreateRequestEventNamesList": {
+    "com.posthog.customer_analytics#CreateEventStreamRequestEventNamesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -1548,7 +1549,7 @@
         "smithy.api#documentation": "Names of the events to stream (matched exactly). Duplicates and blanks are dropped."
       }
     },
-    "com.posthog.customer_analytics#EventStreamsCreateRequest": {
+    "com.posthog.customer_analytics#CreateEventStreamRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1566,7 +1567,7 @@
           }
         },
         "event_names": {
-          "target": "com.posthog.customer_analytics#EventStreamsCreateRequestEventNamesList",
+          "target": "com.posthog.customer_analytics#CreateEventStreamRequestEventNamesList",
           "traits": {
             "smithy.api#documentation": "Names of the events to stream (matched exactly). Duplicates and blanks are dropped."
           }
@@ -1595,10 +1596,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.customer_analytics#EventStreamsCreate": {
+    "com.posthog.customer_analytics#CreateEventStream": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.customer_analytics#EventStreamsCreateRequest"
+        "target": "com.posthog.customer_analytics#CreateEventStreamRequest"
       },
       "output": {
         "target": "com.posthog.customer_analytics#EventStream"
@@ -1612,7 +1613,7 @@
         "smithy.api#documentation": "The caller's event stream: a live feed of selected accounts' events posted to a\nSlack channel of their choice. Per-user — each team member owns at most one stream, and\nevery endpoint is scoped to the caller's own. Delivery runs through a managed CDP\ndestination that is re-provisioned inside the same transaction as every write, so\nconfig and delivery can't drift apart."
       }
     },
-    "com.posthog.customer_analytics#EventStreamsUpdateRequestEventNamesList": {
+    "com.posthog.customer_analytics#UpdateEventStreamRequestEventNamesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -1621,7 +1622,7 @@
         "smithy.api#documentation": "Names of the events to stream (matched exactly). Duplicates and blanks are dropped."
       }
     },
-    "com.posthog.customer_analytics#EventStreamsUpdateRequest": {
+    "com.posthog.customer_analytics#UpdateEventStreamRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1647,7 +1648,7 @@
           }
         },
         "event_names": {
-          "target": "com.posthog.customer_analytics#EventStreamsUpdateRequestEventNamesList",
+          "target": "com.posthog.customer_analytics#UpdateEventStreamRequestEventNamesList",
           "traits": {
             "smithy.api#documentation": "Names of the events to stream (matched exactly). Duplicates and blanks are dropped."
           }
@@ -1676,10 +1677,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.customer_analytics#EventStreamsUpdate": {
+    "com.posthog.customer_analytics#UpdateEventStream": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.customer_analytics#EventStreamsUpdateRequest"
+        "target": "com.posthog.customer_analytics#UpdateEventStreamRequest"
       },
       "output": {
         "target": "com.posthog.customer_analytics#EventStream"
@@ -1693,7 +1694,7 @@
         "smithy.api#documentation": "The caller's event stream: a live feed of selected accounts' events posted to a\nSlack channel of their choice. Per-user — each team member owns at most one stream, and\nevery endpoint is scoped to the caller's own. Delivery runs through a managed CDP\ndestination that is re-provisioned inside the same transaction as every write, so\nconfig and delivery can't drift apart."
       }
     },
-    "com.posthog.customer_analytics#EventStreamsPartialUpdateRequestEventNamesList": {
+    "com.posthog.customer_analytics#UpdateEventStreamsPartialRequestEventNamesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -1702,7 +1703,7 @@
         "smithy.api#documentation": "Names of the events to stream (matched exactly). Duplicates and blanks are dropped."
       }
     },
-    "com.posthog.customer_analytics#EventStreamsPartialUpdateRequest": {
+    "com.posthog.customer_analytics#UpdateEventStreamsPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1728,7 +1729,7 @@
           }
         },
         "event_names": {
-          "target": "com.posthog.customer_analytics#EventStreamsPartialUpdateRequestEventNamesList",
+          "target": "com.posthog.customer_analytics#UpdateEventStreamsPartialRequestEventNamesList",
           "traits": {
             "smithy.api#documentation": "Names of the events to stream (matched exactly). Duplicates and blanks are dropped."
           }
@@ -1757,10 +1758,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.customer_analytics#EventStreamsPartialUpdate": {
+    "com.posthog.customer_analytics#UpdateEventStreamsPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.customer_analytics#EventStreamsPartialUpdateRequest"
+        "target": "com.posthog.customer_analytics#UpdateEventStreamsPartialRequest"
       },
       "output": {
         "target": "com.posthog.customer_analytics#EventStream"
@@ -1998,52 +1999,52 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.customer_analytics#CustomerAnalyticsExternalAccountsRetrieve"
+          "target": "com.posthog.customer_analytics#GetCustomerAnalyticsExternalAccount"
         },
         {
-          "target": "com.posthog.customer_analytics#AccountNotesList"
+          "target": "com.posthog.customer_analytics#ListAccountNotes"
         },
         {
-          "target": "com.posthog.customer_analytics#AccountsCustomPropertyValuesList"
+          "target": "com.posthog.customer_analytics#ListAccountsCustomPropertyValues"
         },
         {
-          "target": "com.posthog.customer_analytics#AccountsCustomPropertyValuesCreate"
+          "target": "com.posthog.customer_analytics#CreateAccountsCustomPropertyValue"
         },
         {
-          "target": "com.posthog.customer_analytics#AccountsNotebooksList"
+          "target": "com.posthog.customer_analytics#ListAccountsNotebooks"
         },
         {
-          "target": "com.posthog.customer_analytics#AccountsNotebooksCreate"
+          "target": "com.posthog.customer_analytics#CreateAccountsNotebook"
         },
         {
-          "target": "com.posthog.customer_analytics#AccountsNotebooksRetrieve"
+          "target": "com.posthog.customer_analytics#GetAccountsNotebook"
         },
         {
           "target": "com.posthog.customer_analytics#AccountsNotebooksDestroy"
         },
         {
-          "target": "com.posthog.customer_analytics#AccountsRelationshipsList"
+          "target": "com.posthog.customer_analytics#ListAccountsRelationships"
         },
         {
-          "target": "com.posthog.customer_analytics#AccountsRelationshipsCreate"
+          "target": "com.posthog.customer_analytics#CreateAccountsRelationship"
         },
         {
           "target": "com.posthog.customer_analytics#AccountsRelationshipsDestroy"
         },
         {
-          "target": "com.posthog.customer_analytics#AccountsRelationshipsEndCreate"
+          "target": "com.posthog.customer_analytics#CreateAccountsRelationshipsEnd"
         },
         {
-          "target": "com.posthog.customer_analytics#EventStreamsList"
+          "target": "com.posthog.customer_analytics#ListEventStreams"
         },
         {
-          "target": "com.posthog.customer_analytics#EventStreamsCreate"
+          "target": "com.posthog.customer_analytics#CreateEventStream"
         },
         {
-          "target": "com.posthog.customer_analytics#EventStreamsUpdate"
+          "target": "com.posthog.customer_analytics#UpdateEventStream"
         },
         {
-          "target": "com.posthog.customer_analytics#EventStreamsPartialUpdate"
+          "target": "com.posthog.customer_analytics#UpdateEventStreamsPartial"
         },
         {
           "target": "com.posthog.customer_analytics#EventStreamsDestroy"

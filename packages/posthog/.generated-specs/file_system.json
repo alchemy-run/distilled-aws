@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.file_system#FileSystemListRequest": {
+    "com.posthog.file_system#ListFileSystemRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -290,10 +291,10 @@
       },
       "traits": {}
     },
-    "com.posthog.file_system#FileSystemList": {
+    "com.posthog.file_system#ListFileSystem": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.file_system#FileSystemListRequest"
+        "target": "com.posthog.file_system#ListFileSystemRequest"
       },
       "output": {
         "target": "com.posthog.file_system#PaginatedFileSystemList"
@@ -317,7 +318,7 @@
         }
       }
     },
-    "com.posthog.file_system#FileSystemCreateRequest": {
+    "com.posthog.file_system#CreateFileSystemRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -360,10 +361,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.file_system#FileSystemCreate": {
+    "com.posthog.file_system#CreateFileSystem": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.file_system#FileSystemCreateRequest"
+        "target": "com.posthog.file_system#CreateFileSystemRequest"
       },
       "output": {
         "target": "com.posthog.file_system#FileSystem2"
@@ -387,7 +388,7 @@
         }
       }
     },
-    "com.posthog.file_system#FileSystemRetrieveRequest": {
+    "com.posthog.file_system#GetFileSystemRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -411,10 +412,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.file_system#FileSystemRetrieve": {
+    "com.posthog.file_system#GetFileSystem": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.file_system#FileSystemRetrieveRequest"
+        "target": "com.posthog.file_system#GetFileSystemRequest"
       },
       "output": {
         "target": "com.posthog.file_system#FileSystem2"
@@ -435,7 +436,7 @@
         }
       }
     },
-    "com.posthog.file_system#FileSystemUpdateRequest": {
+    "com.posthog.file_system#UpdateFileSystemRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -486,10 +487,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.file_system#FileSystemUpdate": {
+    "com.posthog.file_system#UpdateFileSystem": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.file_system#FileSystemUpdateRequest"
+        "target": "com.posthog.file_system#UpdateFileSystemRequest"
       },
       "output": {
         "target": "com.posthog.file_system#FileSystem2"
@@ -513,7 +514,7 @@
         }
       }
     },
-    "com.posthog.file_system#FileSystemPartialUpdateRequest": {
+    "com.posthog.file_system#UpdateFileSystemPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -564,10 +565,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.file_system#FileSystemPartialUpdate": {
+    "com.posthog.file_system#UpdateFileSystemPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.file_system#FileSystemPartialUpdateRequest"
+        "target": "com.posthog.file_system#UpdateFileSystemPartialRequest"
       },
       "output": {
         "target": "com.posthog.file_system#FileSystem2"
@@ -753,19 +754,19 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.file_system#FileSystemList"
+          "target": "com.posthog.file_system#ListFileSystem"
         },
         {
-          "target": "com.posthog.file_system#FileSystemCreate"
+          "target": "com.posthog.file_system#CreateFileSystem"
         },
         {
-          "target": "com.posthog.file_system#FileSystemRetrieve"
+          "target": "com.posthog.file_system#GetFileSystem"
         },
         {
-          "target": "com.posthog.file_system#FileSystemUpdate"
+          "target": "com.posthog.file_system#UpdateFileSystem"
         },
         {
-          "target": "com.posthog.file_system#FileSystemPartialUpdate"
+          "target": "com.posthog.file_system#UpdateFileSystemPartial"
         },
         {
           "target": "com.posthog.file_system#FileSystemDestroy"

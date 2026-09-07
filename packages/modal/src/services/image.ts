@@ -12,10 +12,34 @@ import * as Retry from "../retry.ts";
 
 export type { ModalOpError, ModalOpContext };
 
-export interface ImageBuildChainGetRequest {
+export interface DeleteImageRequest {
   imageId?: string;
 }
-export const ImageBuildChainGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteImageRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    imageId: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/modal.client.ModalClient/ImageDelete",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DeleteImageRequest",
+}) as any as S.Schema<DeleteImageRequest>;
+
+export interface DeleteImageResponse {}
+export const DeleteImageResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteImageResponse",
+}) as any as S.Schema<DeleteImageResponse>;
+
+export interface GetImageBuildChainRequest {
+  imageId?: string;
+}
+export const GetImageBuildChainRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     imageId: S.optional(S.String),
   }).pipe(
@@ -26,8 +50,8 @@ export const ImageBuildChainGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ImageBuildChainGetRequest",
-}) as any as S.Schema<ImageBuildChainGetRequest>;
+  identifier: "GetImageBuildChainRequest",
+}) as any as S.Schema<GetImageBuildChainRequest>;
 
 export interface ImageBuildStep {
   imageId?: string;
@@ -51,40 +75,16 @@ export const ImageBuildStepList = /*@__PURE__*/ S.Array(
   ImageBuildStep,
 ) as any as S.Schema<ImageBuildStepList>;
 
-export interface ImageBuildChainGetResponse {
+export interface GetImageBuildChainResponse {
   buildSteps?: ImageBuildStepList;
 }
-export const ImageBuildChainGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetImageBuildChainResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     buildSteps: S.optional(ImageBuildStepList),
   }),
 ).annotate({
-  identifier: "ImageBuildChainGetResponse",
-}) as any as S.Schema<ImageBuildChainGetResponse>;
-
-export interface ImageDeleteRequest {
-  imageId?: string;
-}
-export const ImageDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    imageId: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/modal.client.ModalClient/ImageDelete",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ImageDeleteRequest",
-}) as any as S.Schema<ImageDeleteRequest>;
-
-export interface ImageDeleteResponse {}
-export const ImageDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ImageDeleteResponse",
-}) as any as S.Schema<ImageDeleteResponse>;
+  identifier: "GetImageBuildChainResponse",
+}) as any as S.Schema<GetImageBuildChainResponse>;
 
 export interface ImageFromIdRequest {
   imageId?: string;
@@ -326,6 +326,10 @@ export const VolumeMountList = /*@__PURE__*/ S.Array(
   VolumeMount,
 ) as any as S.Schema<VolumeMountList>;
 
+/** CPU architecture an image is built for and must run on. */
+export type Arch = "ARCH_UNSPECIFIED" | "ARCH_X86_64" | "ARCH_AARCH64";
+export const Arch = /*@__PURE__*/ S.String;
+
 export interface Image {
   baseImages?: BaseImageList;
   dockerfileCommands?: StringList;
@@ -348,6 +352,8 @@ export interface Image {
   buildArgs?: StringMap;
   /** Volume mount for RUN commands */
   volumeMounts?: VolumeMountList;
+  /** CPU architecture the image is built for. Images with an unspecified arch predate this field and are treated as x86_64. */
+  arch?: Arch | (string & {});
 }
 export const Image = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -366,6 +372,7 @@ export const Image = /*@__PURE__*/ S.suspend(() =>
     buildFunction: S.optional(BuildFunction),
     buildArgs: S.optional(StringMap),
     volumeMounts: S.optional(VolumeMountList),
+    arch: S.optional(Arch),
   }),
 ).annotate({ identifier: "Image" }) as any as S.Schema<Image>;
 
@@ -541,45 +548,6 @@ export const ImageListTagsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ImageListTagsResponse",
 }) as any as S.Schema<ImageListTagsResponse>;
 
-export interface ImagePublishRequest {
-  imageId?: string;
-  /** Named image reference: "[[workspace/]environment/]name[:tag]". The tag suffix defaults to "latest" when omitted. */
-  tag?: string;
-  /** New clients should send environment name as a /-separated prefix of the `tag` field. environment_name only accepted when tag has no environment or workspace prefix. */
-  environmentName?: string;
-  /** Explicit opt-in required when publishing to a public environment. */
-  allowPublic?: boolean;
-}
-export const ImagePublishRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    imageId: S.optional(S.String),
-    tag: S.optional(S.String),
-    environmentName: S.optional(S.String),
-    allowPublic: S.optional(S.Boolean),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/modal.client.ModalClient/ImagePublish",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ImagePublishRequest",
-}) as any as S.Schema<ImagePublishRequest>;
-
-export interface ImagePublishResponse {
-  imageId?: string;
-  revisionId?: string;
-}
-export const ImagePublishResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    imageId: S.optional(S.String),
-    revisionId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ImagePublishResponse",
-}) as any as S.Schema<ImagePublishResponse>;
-
 export interface ImageTagRevisionsRequest {
   /** Named image reference: "[[workspace/]environment/]name[:tag]". The tag suffix defaults to "latest" when omitted. */
   tag?: string;
@@ -645,30 +613,69 @@ export const ImageTagRevisionsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ImageTagRevisionsResponse",
 }) as any as S.Schema<ImageTagRevisionsResponse>;
 
-export type ImageBuildChainGetError = ModalOpError;
-/** Images */
-export const imageBuildChainGet: API.OperationMethod<
-  ImageBuildChainGetRequest,
-  ImageBuildChainGetResponse,
-  ImageBuildChainGetError,
+export interface PublishImageRequest {
+  imageId?: string;
+  /** Named image reference: "[[workspace/]environment/]name[:tag]". The tag suffix defaults to "latest" when omitted. */
+  tag?: string;
+  /** New clients should send environment name as a /-separated prefix of the `tag` field. environment_name only accepted when tag has no environment or workspace prefix. */
+  environmentName?: string;
+  /** Explicit opt-in required when publishing to a public environment. */
+  allowPublic?: boolean;
+}
+export const PublishImageRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    imageId: S.optional(S.String),
+    tag: S.optional(S.String),
+    environmentName: S.optional(S.String),
+    allowPublic: S.optional(S.Boolean),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/modal.client.ModalClient/ImagePublish",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "PublishImageRequest",
+}) as any as S.Schema<PublishImageRequest>;
+
+export interface PublishImageResponse {
+  imageId?: string;
+  revisionId?: string;
+}
+export const PublishImageResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    imageId: S.optional(S.String),
+    revisionId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PublishImageResponse",
+}) as any as S.Schema<PublishImageResponse>;
+
+export type DeleteImageError = ModalOpError;
+export const deleteImage: API.OperationMethod<
+  DeleteImageRequest,
+  DeleteImageResponse,
+  DeleteImageError,
   ModalOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ImageBuildChainGetRequest,
-  output: ImageBuildChainGetResponse,
+  input: DeleteImageRequest,
+  output: DeleteImageResponse,
   errors: [UnknownModalError],
   protocol: ModalProtocol,
   retry: Retry.Retry,
 }));
 
-export type ImageDeleteError = ModalOpError;
-export const imageDelete: API.OperationMethod<
-  ImageDeleteRequest,
-  ImageDeleteResponse,
-  ImageDeleteError,
+export type GetImageBuildChainError = ModalOpError;
+/** Images */
+export const getImageBuildChain: API.OperationMethod<
+  GetImageBuildChainRequest,
+  GetImageBuildChainResponse,
+  GetImageBuildChainError,
   ModalOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ImageDeleteRequest,
-  output: ImageDeleteResponse,
+  input: GetImageBuildChainRequest,
+  output: GetImageBuildChainResponse,
   errors: [UnknownModalError],
   protocol: ModalProtocol,
   retry: Retry.Retry,
@@ -730,20 +737,6 @@ export const imageListTags: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ImagePublishError = ModalOpError;
-export const imagePublish: API.OperationMethod<
-  ImagePublishRequest,
-  ImagePublishResponse,
-  ImagePublishError,
-  ModalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ImagePublishRequest,
-  output: ImagePublishResponse,
-  errors: [UnknownModalError],
-  protocol: ModalProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ImageTagRevisionsError = ModalOpError;
 export const imageTagRevisions: API.OperationMethod<
   ImageTagRevisionsRequest,
@@ -753,6 +746,20 @@ export const imageTagRevisions: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ImageTagRevisionsRequest,
   output: ImageTagRevisionsResponse,
+  errors: [UnknownModalError],
+  protocol: ModalProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PublishImageError = ModalOpError;
+export const publishImage: API.OperationMethod<
+  PublishImageRequest,
+  PublishImageResponse,
+  PublishImageError,
+  ModalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PublishImageRequest,
+  output: PublishImageResponse,
   errors: [UnknownModalError],
   protocol: ModalProtocol,
   retry: Retry.Retry,

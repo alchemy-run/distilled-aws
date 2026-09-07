@@ -36,98 +36,6 @@ export const ContainerCheckpointResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ContainerCheckpointResponse",
 }) as any as S.Schema<ContainerCheckpointResponse>;
 
-export type StringList = Array<string>;
-export const StringList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<StringList>;
-
-export type PTYInfoPTYType =
-  | "PTY_TYPE_UNSPECIFIED"
-  | "PTY_TYPE_FUNCTION"
-  | "PTY_TYPE_SHELL";
-export const PTYInfoPTYType = /*@__PURE__*/ S.String;
-
-export interface PTYInfo {
-  enabled?: boolean;
-  /** Soon deprecated */
-  winszRows?: number;
-  winszCols?: number;
-  envTerm?: string;
-  envColorterm?: string;
-  envTermProgram?: string;
-  /** Replace function with shell */
-  ptyType?: PTYInfoPTYType | (string & {});
-  noTerminateOnIdleStdin?: boolean;
-}
-export const PTYInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    enabled: S.optional(S.Boolean),
-    winszRows: S.optional(S.Number),
-    winszCols: S.optional(S.Number),
-    envTerm: S.optional(S.String),
-    envColorterm: S.optional(S.String),
-    envTermProgram: S.optional(S.String),
-    ptyType: S.optional(PTYInfoPTYType),
-    noTerminateOnIdleStdin: S.optional(S.Boolean),
-  }),
-).annotate({ identifier: "PTYInfo" }) as any as S.Schema<PTYInfo>;
-
-export type ExecOutputOption =
-  | "EXEC_OUTPUT_OPTION_UNSPECIFIED"
-  | "EXEC_OUTPUT_OPTION_DEVNULL"
-  | "EXEC_OUTPUT_OPTION_PIPE"
-  | "EXEC_OUTPUT_OPTION_STDOUT";
-export const ExecOutputOption = /*@__PURE__*/ S.String;
-
-export interface ContainerExecRequest {
-  taskId?: string;
-  command?: StringList;
-  /** If pty_info is provided, open a PTY, but also this container exec is treated an "interactive shell" request, and it will be terminated if messages are not periodically sent on the stdin stream on some interval (currently 40 seconds). */
-  ptyInfo?: PTYInfo;
-  /** Send SIGTERM to running container on exit of exec command. */
-  terminateContainerOnExit?: boolean;
-  runtimeDebug?: boolean;
-  /** For internal debugging use only. */
-  stdoutOutput?: ExecOutputOption | (string & {});
-  stderrOutput?: ExecOutputOption | (string & {});
-  timeoutSecs?: number;
-  workdir?: string;
-  secretIds?: StringList;
-}
-export const ContainerExecRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    taskId: S.optional(S.String),
-    command: S.optional(StringList),
-    ptyInfo: S.optional(PTYInfo),
-    terminateContainerOnExit: S.optional(S.Boolean),
-    runtimeDebug: S.optional(S.Boolean),
-    stdoutOutput: S.optional(ExecOutputOption),
-    stderrOutput: S.optional(ExecOutputOption),
-    timeoutSecs: S.optional(S.Number),
-    workdir: S.optional(S.String),
-    secretIds: S.optional(StringList),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/modal.client.ModalClient/ContainerExec",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ContainerExecRequest",
-}) as any as S.Schema<ContainerExecRequest>;
-
-export interface ContainerExecResponse {
-  execId?: string;
-}
-export const ContainerExecResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    execId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ContainerExecResponse",
-}) as any as S.Schema<ContainerExecResponse>;
-
 /** Whether to use RDMA interfaces */
 export interface RuntimeInputMessage {
   message?: string;
@@ -202,227 +110,6 @@ export const ContainerExecWaitResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ContainerExecWaitResponse",
 }) as any as S.Schema<ContainerExecWaitResponse>;
 
-export interface ContainerFileOpenRequest {
-  /** file descriptor is hydrated when sent from server -> worker */
-  fileDescriptor?: string;
-  path?: string;
-  mode?: string;
-}
-export const ContainerFileOpenRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    fileDescriptor: S.optional(S.String),
-    path: S.optional(S.String),
-    mode: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ContainerFileOpenRequest",
-}) as any as S.Schema<ContainerFileOpenRequest>;
-
-export interface ContainerFileWriteRequest {
-  fileDescriptor?: string;
-  data?: string;
-}
-export const ContainerFileWriteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    fileDescriptor: S.optional(S.String),
-    data: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ContainerFileWriteRequest",
-}) as any as S.Schema<ContainerFileWriteRequest>;
-
-export interface ContainerFileReadRequest {
-  fileDescriptor?: string;
-  n?: number;
-}
-export const ContainerFileReadRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    fileDescriptor: S.optional(S.String),
-    n: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "ContainerFileReadRequest",
-}) as any as S.Schema<ContainerFileReadRequest>;
-
-export interface ContainerFileFlushRequest {
-  fileDescriptor?: string;
-}
-export const ContainerFileFlushRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    fileDescriptor: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ContainerFileFlushRequest",
-}) as any as S.Schema<ContainerFileFlushRequest>;
-
-export type ContainerFileReadLineRequest = ContainerFileFlushRequest;
-export const ContainerFileReadLineRequest = ContainerFileFlushRequest;
-
-export type SeekWhence = "SEEK_SET" | "SEEK_CUR" | "SEEK_END";
-export const SeekWhence = /*@__PURE__*/ S.String;
-
-export interface ContainerFileSeekRequest {
-  fileDescriptor?: string;
-  offset?: number;
-  whence?: SeekWhence | (string & {});
-}
-export const ContainerFileSeekRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    fileDescriptor: S.optional(S.String),
-    offset: S.optional(S.Number),
-    whence: S.optional(SeekWhence),
-  }),
-).annotate({
-  identifier: "ContainerFileSeekRequest",
-}) as any as S.Schema<ContainerFileSeekRequest>;
-
-export interface ContainerFileDeleteBytesRequest {
-  fileDescriptor?: string;
-  startInclusive?: number;
-  endExclusive?: number;
-}
-export const ContainerFileDeleteBytesRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    fileDescriptor: S.optional(S.String),
-    startInclusive: S.optional(S.Number),
-    endExclusive: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "ContainerFileDeleteBytesRequest",
-}) as any as S.Schema<ContainerFileDeleteBytesRequest>;
-
-export interface ContainerFileWriteReplaceBytesRequest {
-  fileDescriptor?: string;
-  data?: string;
-  startInclusive?: number;
-  endExclusive?: number;
-}
-export const ContainerFileWriteReplaceBytesRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      fileDescriptor: S.optional(S.String),
-      data: S.optional(S.String),
-      startInclusive: S.optional(S.Number),
-      endExclusive: S.optional(S.Number),
-    }),
-).annotate({
-  identifier: "ContainerFileWriteReplaceBytesRequest",
-}) as any as S.Schema<ContainerFileWriteReplaceBytesRequest>;
-
-export type ContainerFileCloseRequest = ContainerFileFlushRequest;
-export const ContainerFileCloseRequest = ContainerFileFlushRequest;
-
-export interface ContainerFileLsRequest {
-  path?: string;
-}
-export const ContainerFileLsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    path: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ContainerFileLsRequest",
-}) as any as S.Schema<ContainerFileLsRequest>;
-
-export interface ContainerFileMkdirRequest {
-  path?: string;
-  makeParents?: boolean;
-}
-export const ContainerFileMkdirRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    path: S.optional(S.String),
-    makeParents: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "ContainerFileMkdirRequest",
-}) as any as S.Schema<ContainerFileMkdirRequest>;
-
-export interface ContainerFileRmRequest {
-  path?: string;
-  recursive?: boolean;
-}
-export const ContainerFileRmRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    path: S.optional(S.String),
-    recursive: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "ContainerFileRmRequest",
-}) as any as S.Schema<ContainerFileRmRequest>;
-
-export interface ContainerFileWatchRequest {
-  path?: string;
-  recursive?: boolean;
-  timeoutSecs?: string;
-}
-export const ContainerFileWatchRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    path: S.optional(S.String),
-    recursive: S.optional(S.Boolean),
-    timeoutSecs: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ContainerFileWatchRequest",
-}) as any as S.Schema<ContainerFileWatchRequest>;
-
-export interface ContainerFilesystemExecRequest {
-  fileOpenRequest?: ContainerFileOpenRequest;
-  fileWriteRequest?: ContainerFileWriteRequest;
-  fileReadRequest?: ContainerFileReadRequest;
-  fileFlushRequest?: ContainerFileFlushRequest;
-  fileReadLineRequest?: ContainerFileFlushRequest;
-  fileSeekRequest?: ContainerFileSeekRequest;
-  fileDeleteBytesRequest?: ContainerFileDeleteBytesRequest;
-  fileWriteReplaceBytesRequest?: ContainerFileWriteReplaceBytesRequest;
-  fileCloseRequest?: ContainerFileFlushRequest;
-  fileLsRequest?: ContainerFileLsRequest;
-  fileMkdirRequest?: ContainerFileMkdirRequest;
-  fileRmRequest?: ContainerFileRmRequest;
-  fileWatchRequest?: ContainerFileWatchRequest;
-  taskId?: string;
-}
-export const ContainerFilesystemExecRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    fileOpenRequest: S.optional(ContainerFileOpenRequest),
-    fileWriteRequest: S.optional(ContainerFileWriteRequest),
-    fileReadRequest: S.optional(ContainerFileReadRequest),
-    fileFlushRequest: S.optional(ContainerFileFlushRequest),
-    fileReadLineRequest: S.optional(ContainerFileFlushRequest),
-    fileSeekRequest: S.optional(ContainerFileSeekRequest),
-    fileDeleteBytesRequest: S.optional(ContainerFileDeleteBytesRequest),
-    fileWriteReplaceBytesRequest: S.optional(
-      ContainerFileWriteReplaceBytesRequest,
-    ),
-    fileCloseRequest: S.optional(ContainerFileFlushRequest),
-    fileLsRequest: S.optional(ContainerFileLsRequest),
-    fileMkdirRequest: S.optional(ContainerFileMkdirRequest),
-    fileRmRequest: S.optional(ContainerFileRmRequest),
-    fileWatchRequest: S.optional(ContainerFileWatchRequest),
-    taskId: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/modal.client.ModalClient/ContainerFilesystemExec",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ContainerFilesystemExecRequest",
-}) as any as S.Schema<ContainerFilesystemExecRequest>;
-
-export interface ContainerFilesystemExecResponse {
-  execId?: string;
-  /** only set when the request opens a new file, i.e., ContainerFileOpenRequest */
-  fileDescriptor?: string;
-}
-export const ContainerFilesystemExecResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    execId: S.optional(S.String),
-    fileDescriptor: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ContainerFilesystemExecResponse",
-}) as any as S.Schema<ContainerFilesystemExecResponse>;
-
 export interface ContainerHeartbeatRequest {
   canceledInputsReturnOutputs?: boolean;
   /** Bad client version. */
@@ -442,6 +129,11 @@ export const ContainerHeartbeatRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ContainerHeartbeatRequest",
 }) as any as S.Schema<ContainerHeartbeatRequest>;
+
+export type StringList = Array<string>;
+export const StringList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<StringList>;
 
 export interface CancelInputEvent {
   inputIds?: StringList;
@@ -630,11 +322,319 @@ export const ContainerServerLifecycleReadyResponse = /*@__PURE__*/ S.suspend(
   identifier: "ContainerServerLifecycleReadyResponse",
 }) as any as S.Schema<ContainerServerLifecycleReadyResponse>;
 
-export interface ContainerStopRequest {
+export type PTYInfoPTYType =
+  | "PTY_TYPE_UNSPECIFIED"
+  | "PTY_TYPE_FUNCTION"
+  | "PTY_TYPE_SHELL";
+export const PTYInfoPTYType = /*@__PURE__*/ S.String;
+
+export interface PTYInfo {
+  enabled?: boolean;
+  /** Soon deprecated */
+  winszRows?: number;
+  winszCols?: number;
+  envTerm?: string;
+  envColorterm?: string;
+  envTermProgram?: string;
+  /** Replace function with shell */
+  ptyType?: PTYInfoPTYType | (string & {});
+  noTerminateOnIdleStdin?: boolean;
+}
+export const PTYInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    enabled: S.optional(S.Boolean),
+    winszRows: S.optional(S.Number),
+    winszCols: S.optional(S.Number),
+    envTerm: S.optional(S.String),
+    envColorterm: S.optional(S.String),
+    envTermProgram: S.optional(S.String),
+    ptyType: S.optional(PTYInfoPTYType),
+    noTerminateOnIdleStdin: S.optional(S.Boolean),
+  }),
+).annotate({ identifier: "PTYInfo" }) as any as S.Schema<PTYInfo>;
+
+export type ExecOutputOption =
+  | "EXEC_OUTPUT_OPTION_UNSPECIFIED"
+  | "EXEC_OUTPUT_OPTION_DEVNULL"
+  | "EXEC_OUTPUT_OPTION_PIPE"
+  | "EXEC_OUTPUT_OPTION_STDOUT";
+export const ExecOutputOption = /*@__PURE__*/ S.String;
+
+export interface ExecContainerRequest {
+  taskId?: string;
+  command?: StringList;
+  /** If pty_info is provided, open a PTY, but also this container exec is treated an "interactive shell" request, and it will be terminated if messages are not periodically sent on the stdin stream on some interval (currently 40 seconds). */
+  ptyInfo?: PTYInfo;
+  /** Send SIGTERM to running container on exit of exec command. */
+  terminateContainerOnExit?: boolean;
+  runtimeDebug?: boolean;
+  /** For internal debugging use only. */
+  stdoutOutput?: ExecOutputOption | (string & {});
+  stderrOutput?: ExecOutputOption | (string & {});
+  timeoutSecs?: number;
+  workdir?: string;
+  secretIds?: StringList;
+}
+export const ExecContainerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    taskId: S.optional(S.String),
+    command: S.optional(StringList),
+    ptyInfo: S.optional(PTYInfo),
+    terminateContainerOnExit: S.optional(S.Boolean),
+    runtimeDebug: S.optional(S.Boolean),
+    stdoutOutput: S.optional(ExecOutputOption),
+    stderrOutput: S.optional(ExecOutputOption),
+    timeoutSecs: S.optional(S.Number),
+    workdir: S.optional(S.String),
+    secretIds: S.optional(StringList),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/modal.client.ModalClient/ContainerExec",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ExecContainerRequest",
+}) as any as S.Schema<ExecContainerRequest>;
+
+export interface ExecContainerResponse {
+  execId?: string;
+}
+export const ExecContainerResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    execId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ExecContainerResponse",
+}) as any as S.Schema<ExecContainerResponse>;
+
+export interface ContainerFileOpenRequest {
+  /** file descriptor is hydrated when sent from server -> worker */
+  fileDescriptor?: string;
+  path?: string;
+  mode?: string;
+}
+export const ContainerFileOpenRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    fileDescriptor: S.optional(S.String),
+    path: S.optional(S.String),
+    mode: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ContainerFileOpenRequest",
+}) as any as S.Schema<ContainerFileOpenRequest>;
+
+export interface ContainerFileWriteRequest {
+  fileDescriptor?: string;
+  data?: string;
+}
+export const ContainerFileWriteRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    fileDescriptor: S.optional(S.String),
+    data: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ContainerFileWriteRequest",
+}) as any as S.Schema<ContainerFileWriteRequest>;
+
+export interface ContainerFileReadRequest {
+  fileDescriptor?: string;
+  n?: number;
+}
+export const ContainerFileReadRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    fileDescriptor: S.optional(S.String),
+    n: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "ContainerFileReadRequest",
+}) as any as S.Schema<ContainerFileReadRequest>;
+
+export interface ContainerFileFlushRequest {
+  fileDescriptor?: string;
+}
+export const ContainerFileFlushRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    fileDescriptor: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ContainerFileFlushRequest",
+}) as any as S.Schema<ContainerFileFlushRequest>;
+
+export type ContainerFileReadLineRequest = ContainerFileFlushRequest;
+export const ContainerFileReadLineRequest = ContainerFileFlushRequest;
+
+export type SeekWhence = "SEEK_SET" | "SEEK_CUR" | "SEEK_END";
+export const SeekWhence = /*@__PURE__*/ S.String;
+
+export interface ContainerFileSeekRequest {
+  fileDescriptor?: string;
+  offset?: number;
+  whence?: SeekWhence | (string & {});
+}
+export const ContainerFileSeekRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    fileDescriptor: S.optional(S.String),
+    offset: S.optional(S.Number),
+    whence: S.optional(SeekWhence),
+  }),
+).annotate({
+  identifier: "ContainerFileSeekRequest",
+}) as any as S.Schema<ContainerFileSeekRequest>;
+
+export interface ContainerFileDeleteBytesRequest {
+  fileDescriptor?: string;
+  startInclusive?: number;
+  endExclusive?: number;
+}
+export const ContainerFileDeleteBytesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    fileDescriptor: S.optional(S.String),
+    startInclusive: S.optional(S.Number),
+    endExclusive: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "ContainerFileDeleteBytesRequest",
+}) as any as S.Schema<ContainerFileDeleteBytesRequest>;
+
+export interface ContainerFileWriteReplaceBytesRequest {
+  fileDescriptor?: string;
+  data?: string;
+  startInclusive?: number;
+  endExclusive?: number;
+}
+export const ContainerFileWriteReplaceBytesRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      fileDescriptor: S.optional(S.String),
+      data: S.optional(S.String),
+      startInclusive: S.optional(S.Number),
+      endExclusive: S.optional(S.Number),
+    }),
+).annotate({
+  identifier: "ContainerFileWriteReplaceBytesRequest",
+}) as any as S.Schema<ContainerFileWriteReplaceBytesRequest>;
+
+export type ContainerFileCloseRequest = ContainerFileFlushRequest;
+export const ContainerFileCloseRequest = ContainerFileFlushRequest;
+
+export interface ContainerFileLsRequest {
+  path?: string;
+}
+export const ContainerFileLsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    path: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ContainerFileLsRequest",
+}) as any as S.Schema<ContainerFileLsRequest>;
+
+export interface ContainerFileMkdirRequest {
+  path?: string;
+  makeParents?: boolean;
+}
+export const ContainerFileMkdirRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    path: S.optional(S.String),
+    makeParents: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "ContainerFileMkdirRequest",
+}) as any as S.Schema<ContainerFileMkdirRequest>;
+
+export interface ContainerFileRmRequest {
+  path?: string;
+  recursive?: boolean;
+}
+export const ContainerFileRmRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    path: S.optional(S.String),
+    recursive: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "ContainerFileRmRequest",
+}) as any as S.Schema<ContainerFileRmRequest>;
+
+export interface ContainerFileWatchRequest {
+  path?: string;
+  recursive?: boolean;
+  timeoutSecs?: string;
+}
+export const ContainerFileWatchRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    path: S.optional(S.String),
+    recursive: S.optional(S.Boolean),
+    timeoutSecs: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ContainerFileWatchRequest",
+}) as any as S.Schema<ContainerFileWatchRequest>;
+
+export interface ExecContainerFilesystemRequest {
+  fileOpenRequest?: ContainerFileOpenRequest;
+  fileWriteRequest?: ContainerFileWriteRequest;
+  fileReadRequest?: ContainerFileReadRequest;
+  fileFlushRequest?: ContainerFileFlushRequest;
+  fileReadLineRequest?: ContainerFileFlushRequest;
+  fileSeekRequest?: ContainerFileSeekRequest;
+  fileDeleteBytesRequest?: ContainerFileDeleteBytesRequest;
+  fileWriteReplaceBytesRequest?: ContainerFileWriteReplaceBytesRequest;
+  fileCloseRequest?: ContainerFileFlushRequest;
+  fileLsRequest?: ContainerFileLsRequest;
+  fileMkdirRequest?: ContainerFileMkdirRequest;
+  fileRmRequest?: ContainerFileRmRequest;
+  fileWatchRequest?: ContainerFileWatchRequest;
+  taskId?: string;
+}
+export const ExecContainerFilesystemRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    fileOpenRequest: S.optional(ContainerFileOpenRequest),
+    fileWriteRequest: S.optional(ContainerFileWriteRequest),
+    fileReadRequest: S.optional(ContainerFileReadRequest),
+    fileFlushRequest: S.optional(ContainerFileFlushRequest),
+    fileReadLineRequest: S.optional(ContainerFileFlushRequest),
+    fileSeekRequest: S.optional(ContainerFileSeekRequest),
+    fileDeleteBytesRequest: S.optional(ContainerFileDeleteBytesRequest),
+    fileWriteReplaceBytesRequest: S.optional(
+      ContainerFileWriteReplaceBytesRequest,
+    ),
+    fileCloseRequest: S.optional(ContainerFileFlushRequest),
+    fileLsRequest: S.optional(ContainerFileLsRequest),
+    fileMkdirRequest: S.optional(ContainerFileMkdirRequest),
+    fileRmRequest: S.optional(ContainerFileRmRequest),
+    fileWatchRequest: S.optional(ContainerFileWatchRequest),
+    taskId: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/modal.client.ModalClient/ContainerFilesystemExec",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ExecContainerFilesystemRequest",
+}) as any as S.Schema<ExecContainerFilesystemRequest>;
+
+export interface ExecContainerFilesystemResponse {
+  execId?: string;
+  /** only set when the request opens a new file, i.e., ContainerFileOpenRequest */
+  fileDescriptor?: string;
+}
+export const ExecContainerFilesystemResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    execId: S.optional(S.String),
+    fileDescriptor: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ExecContainerFilesystemResponse",
+}) as any as S.Schema<ExecContainerFilesystemResponse>;
+
+export interface StopContainerRequest {
   taskId?: string;
   graceful?: boolean;
 }
-export const ContainerStopRequest = /*@__PURE__*/ S.suspend(() =>
+export const StopContainerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     taskId: S.optional(S.String),
     graceful: S.optional(S.Boolean),
@@ -646,15 +646,15 @@ export const ContainerStopRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ContainerStopRequest",
-}) as any as S.Schema<ContainerStopRequest>;
+  identifier: "StopContainerRequest",
+}) as any as S.Schema<StopContainerRequest>;
 
-export interface ContainerStopResponse {}
-export const ContainerStopResponse = /*@__PURE__*/ S.suspend(() =>
+export interface StopContainerResponse {}
+export const StopContainerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "ContainerStopResponse",
-}) as any as S.Schema<ContainerStopResponse>;
+  identifier: "StopContainerResponse",
+}) as any as S.Schema<StopContainerResponse>;
 
 export type ContainerCheckpointError = ModalOpError;
 /** Container */
@@ -666,20 +666,6 @@ export const containerCheckpoint: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ContainerCheckpointRequest,
   output: ContainerCheckpointResponse,
-  errors: [UnknownModalError],
-  protocol: ModalProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ContainerExecError = ModalOpError;
-export const containerExec: API.OperationMethod<
-  ContainerExecRequest,
-  ContainerExecResponse,
-  ContainerExecError,
-  ModalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ContainerExecRequest,
-  output: ContainerExecResponse,
   errors: [UnknownModalError],
   protocol: ModalProtocol,
   retry: Retry.Retry,
@@ -708,20 +694,6 @@ export const containerExecWait: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ContainerExecWaitRequest,
   output: ContainerExecWaitResponse,
-  errors: [UnknownModalError],
-  protocol: ModalProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ContainerFilesystemExecError = ModalOpError;
-export const containerFilesystemExec: API.OperationMethod<
-  ContainerFilesystemExecRequest,
-  ContainerFilesystemExecResponse,
-  ContainerFilesystemExecError,
-  ModalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ContainerFilesystemExecRequest,
-  output: ContainerFilesystemExecResponse,
   errors: [UnknownModalError],
   protocol: ModalProtocol,
   retry: Retry.Retry,
@@ -797,15 +769,43 @@ export const containerServerLifecycleReady: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ContainerStopError = ModalOpError;
-export const containerStop: API.OperationMethod<
-  ContainerStopRequest,
-  ContainerStopResponse,
-  ContainerStopError,
+export type ExecContainerError = ModalOpError;
+export const execContainer: API.OperationMethod<
+  ExecContainerRequest,
+  ExecContainerResponse,
+  ExecContainerError,
   ModalOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ContainerStopRequest,
-  output: ContainerStopResponse,
+  input: ExecContainerRequest,
+  output: ExecContainerResponse,
+  errors: [UnknownModalError],
+  protocol: ModalProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ExecContainerFilesystemError = ModalOpError;
+export const execContainerFilesystem: API.OperationMethod<
+  ExecContainerFilesystemRequest,
+  ExecContainerFilesystemResponse,
+  ExecContainerFilesystemError,
+  ModalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ExecContainerFilesystemRequest,
+  output: ExecContainerFilesystemResponse,
+  errors: [UnknownModalError],
+  protocol: ModalProtocol,
+  retry: Retry.Retry,
+}));
+
+export type StopContainerError = ModalOpError;
+export const stopContainer: API.OperationMethod<
+  StopContainerRequest,
+  StopContainerResponse,
+  StopContainerError,
+  ModalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: StopContainerRequest,
+  output: StopContainerResponse,
   errors: [UnknownModalError],
   protocol: ModalProtocol,
   retry: Retry.Retry,

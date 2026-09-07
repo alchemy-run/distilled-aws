@@ -12,288 +12,7 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
-export interface OperationsListRequest {}
-export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/providers/Microsoft.SignalRService/operations",
-      code: 200,
-      apiVersion: "2024-03-01",
-    }),
-  ),
-).annotate({
-  identifier: "OperationsListRequest",
-}) as any as S.Schema<OperationsListRequest>;
-
-/** The object that describes a operation. */
-export interface OperationDisplay {
-  /** Friendly name of the resource provider */
-  provider?: string;
-  /** Resource type on which the operation is performed. */
-  resource?: string;
-  /** The localized friendly name for the operation. */
-  operation?: string;
-  /** The localized friendly description for the operation */
-  description?: string;
-}
-export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provider: S.optional(S.String),
-    resource: S.optional(S.String),
-    operation: S.optional(S.String),
-    description: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OperationDisplay",
-}) as any as S.Schema<OperationDisplay>;
-
-/** Specifications of the Dimension of metrics. */
-export interface Dimension {
-  /** The public facing name of the dimension. */
-  name?: string;
-  /** Localized friendly display name of the dimension. */
-  displayName?: string;
-  /** Name of the dimension as it appears in MDM. */
-  internalName?: string;
-  /** A Boolean flag indicating whether this dimension should be included for the shoebox export scenario. */
-  toBeExportedForShoebox?: boolean;
-}
-export const Dimension = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    displayName: S.optional(S.String),
-    internalName: S.optional(S.String),
-    toBeExportedForShoebox: S.optional(S.Boolean),
-  }),
-).annotate({ identifier: "Dimension" }) as any as S.Schema<Dimension>;
-
-/** The dimensions of the metrics. */
-export type MetricSpecificationDimensionsList = Array<Dimension>;
-export const MetricSpecificationDimensionsList = /*@__PURE__*/ S.Array(
-  Dimension,
-) as any as S.Schema<MetricSpecificationDimensionsList>;
-
-/** Specifications of the Metrics for Azure Monitoring. */
-export interface MetricSpecification {
-  /** Name of the metric. */
-  name?: string;
-  /** Localized friendly display name of the metric. */
-  displayName?: string;
-  /** Localized friendly description of the metric. */
-  displayDescription?: string;
-  /** The unit that makes sense for the metric. */
-  unit?: string;
-  /** Only provide one value for this field. Valid values: Average, Minimum, Maximum, Total, Count. */
-  aggregationType?: string;
-  /** Optional. If set to true, then zero will be returned for time duration where no metric is emitted/published. Ex. a metric that returns the number of times a particular error code was emitted. The error code may not appear often, instead of the RP publishing 0, Shoebox can auto fill in 0s for time periods where nothing was emitted. */
-  fillGapWithZero?: string;
-  /** The name of the metric category that the metric belongs to. A metric can only belong to a single category. */
-  category?: string;
-  /** The dimensions of the metrics. */
-  dimensions?: MetricSpecificationDimensionsList;
-}
-export const MetricSpecification = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    displayName: S.optional(S.String),
-    displayDescription: S.optional(S.String),
-    unit: S.optional(S.String),
-    aggregationType: S.optional(S.String),
-    fillGapWithZero: S.optional(S.String),
-    category: S.optional(S.String),
-    dimensions: S.optional(MetricSpecificationDimensionsList),
-  }),
-).annotate({
-  identifier: "MetricSpecification",
-}) as any as S.Schema<MetricSpecification>;
-
-/** Specifications of the Metrics for Azure Monitoring. */
-export type ServiceSpecificationMetricSpecificationsList =
-  Array<MetricSpecification>;
-export const ServiceSpecificationMetricSpecificationsList =
-  /*@__PURE__*/ S.Array(
-    MetricSpecification,
-  ) as any as S.Schema<ServiceSpecificationMetricSpecificationsList>;
-
-/** Specifications of the Logs for Azure Monitoring. */
-export interface LogSpecification {
-  /** Name of the log. */
-  name?: string;
-  /** Localized friendly display name of the log. */
-  displayName?: string;
-}
-export const LogSpecification = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    displayName: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "LogSpecification",
-}) as any as S.Schema<LogSpecification>;
-
-/** Specifications of the Logs for Azure Monitoring. */
-export type ServiceSpecificationLogSpecificationsList = Array<LogSpecification>;
-export const ServiceSpecificationLogSpecificationsList = /*@__PURE__*/ S.Array(
-  LogSpecification,
-) as any as S.Schema<ServiceSpecificationLogSpecificationsList>;
-
-/** An object that describes a specification. */
-export interface ServiceSpecification {
-  /** Specifications of the Metrics for Azure Monitoring. */
-  metricSpecifications?: ServiceSpecificationMetricSpecificationsList;
-  /** Specifications of the Logs for Azure Monitoring. */
-  logSpecifications?: ServiceSpecificationLogSpecificationsList;
-}
-export const ServiceSpecification = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    metricSpecifications: S.optional(
-      ServiceSpecificationMetricSpecificationsList,
-    ),
-    logSpecifications: S.optional(ServiceSpecificationLogSpecificationsList),
-  }),
-).annotate({
-  identifier: "ServiceSpecification",
-}) as any as S.Schema<ServiceSpecification>;
-
-/** Extra Operation properties. */
-export interface OperationProperties {
-  serviceSpecification?: ServiceSpecification;
-}
-export const OperationProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    serviceSpecification: S.optional(ServiceSpecification),
-  }),
-).annotate({
-  identifier: "OperationProperties",
-}) as any as S.Schema<OperationProperties>;
-
-/** REST API operation supported by resource provider. */
-export interface Operation {
-  /** Name of the operation with format: {provider}/{resource}/{operation} */
-  name?: string;
-  /** If the operation is a data action. (for data plane rbac) */
-  isDataAction?: boolean;
-  display?: OperationDisplay;
-  /** Optional. The intended executor of the operation; governs the display of the operation in the RBAC UX and the audit logs UX. */
-  origin?: string;
-  properties?: OperationProperties;
-}
-export const Operation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    isDataAction: S.optional(S.Boolean),
-    display: S.optional(OperationDisplay),
-    origin: S.optional(S.String),
-    properties: S.optional(OperationProperties),
-  }),
-).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
-
-/** List of operations supported by the resource provider. */
-export type OperationListValueList = Array<Operation>;
-export const OperationListValueList = /*@__PURE__*/ S.Array(
-  Operation,
-) as any as S.Schema<OperationListValueList>;
-
-/** Result of the request to list REST API operations. It contains a list of operations. */
-export interface OperationList {
-  /** List of operations supported by the resource provider. */
-  value?: OperationListValueList;
-  /** The URL the client should use to fetch the next page (per server side paging). It's null for now, added for future use. */
-  nextLink?: string;
-}
-export const OperationList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(OperationListValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({ identifier: "OperationList" }) as any as S.Schema<OperationList>;
-
-export interface UsagesListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** the location like "eastus" */
-  location: string;
-}
-export const UsagesListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    location: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.SignalRService/locations/{location}/usages",
-      code: 200,
-      apiVersion: "2024-03-01",
-    }),
-  ),
-).annotate({
-  identifier: "UsagesListRequest",
-}) as any as S.Schema<UsagesListRequest>;
-
-/** Localizable String object containing the name and a localized value. */
-export interface SignalRServiceUsageName {
-  /** The identifier of the usage. */
-  value?: string;
-  /** Localized name of the usage. */
-  localizedValue?: string;
-}
-export const SignalRServiceUsageName = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(S.String),
-    localizedValue: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SignalRServiceUsageName",
-}) as any as S.Schema<SignalRServiceUsageName>;
-
-/** Object that describes a specific usage of the resources. */
-export interface SignalRServiceUsage {
-  /** Fully qualified ARM resource id */
-  id?: string;
-  /** Current value for the usage quota. */
-  currentValue?: number;
-  /** The maximum permitted value for the usage quota. If there is no limit, this value will be -1. */
-  limit?: number;
-  name?: SignalRServiceUsageName;
-  /** Representing the units of the usage quota. Possible values are: Count, Bytes, Seconds, Percent, CountPerSecond, BytesPerSecond. */
-  unit?: string;
-}
-export const SignalRServiceUsage = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    currentValue: S.optional(S.Number),
-    limit: S.optional(S.Number),
-    name: S.optional(SignalRServiceUsageName),
-    unit: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SignalRServiceUsage",
-}) as any as S.Schema<SignalRServiceUsage>;
-
-/** List of the resource usages */
-export type SignalRServiceUsageListValueList = Array<SignalRServiceUsage>;
-export const SignalRServiceUsageListValueList = /*@__PURE__*/ S.Array(
-  SignalRServiceUsage,
-) as any as S.Schema<SignalRServiceUsageListValueList>;
-
-/** Object that includes an array of the resource usages and a possible link for next set. */
-export interface SignalRServiceUsageList {
-  /** List of the resource usages */
-  value?: SignalRServiceUsageListValueList;
-  /** The URL the client should use to fetch the next page (per server side paging). It's null for now, added for future use. */
-  nextLink?: string;
-}
-export const SignalRServiceUsageList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(SignalRServiceUsageListValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SignalRServiceUsageList",
-}) as any as S.Schema<SignalRServiceUsageList>;
-
-export interface WebPubSubCheckNameAvailabilityRequest {
+export interface CheckWebPubSubNameAvailabilityRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** the region */
@@ -303,7 +22,7 @@ export interface WebPubSubCheckNameAvailabilityRequest {
   /** The resource name to validate. e.g."my-resource-name" */
   name: string;
 }
-export const WebPubSubCheckNameAvailabilityRequest = /*@__PURE__*/ S.suspend(
+export const CheckWebPubSubNameAvailabilityRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -319,8 +38,8 @@ export const WebPubSubCheckNameAvailabilityRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "WebPubSubCheckNameAvailabilityRequest",
-}) as any as S.Schema<WebPubSubCheckNameAvailabilityRequest>;
+  identifier: "CheckWebPubSubNameAvailabilityRequest",
+}) as any as S.Schema<CheckWebPubSubNameAvailabilityRequest>;
 
 /** Result of the request to check name availability. It contains a flag and possible reason of failure. */
 export interface NameAvailability {
@@ -341,36 +60,524 @@ export const NameAvailability = /*@__PURE__*/ S.suspend(() =>
   identifier: "NameAvailability",
 }) as any as S.Schema<NameAvailability>;
 
+export interface DeleteWebPubSubRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the resource. */
+  resourceName: string;
+}
+export const DeleteWebPubSubRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    resourceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}",
+      code: 200,
+      apiVersion: "2024-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteWebPubSubRequest",
+}) as any as S.Schema<DeleteWebPubSubRequest>;
+
+export interface DeleteWebPubSubResponse {}
+export const DeleteWebPubSubResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteWebPubSubResponse",
+}) as any as S.Schema<DeleteWebPubSubResponse>;
+
+export interface DeleteWebPubSubCustomCertificateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the resource. */
+  resourceName: string;
+  /** Custom certificate name */
+  certificateName: string;
+}
+export const DeleteWebPubSubCustomCertificateRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      resourceName: S.String.pipe(T.Label()),
+      certificateName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}/customCertificates/{certificateName}",
+        code: 200,
+        apiVersion: "2024-03-01",
+      }),
+    ),
+).annotate({
+  identifier: "DeleteWebPubSubCustomCertificateRequest",
+}) as any as S.Schema<DeleteWebPubSubCustomCertificateRequest>;
+
+export interface DeleteWebPubSubCustomCertificateResponse {}
+export const DeleteWebPubSubCustomCertificateResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "DeleteWebPubSubCustomCertificateResponse",
+}) as any as S.Schema<DeleteWebPubSubCustomCertificateResponse>;
+
+export interface DeleteWebPubSubCustomDomainRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the resource. */
+  resourceName: string;
+  /** Custom domain name. */
+  name: string;
+}
+export const DeleteWebPubSubCustomDomainRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    resourceName: S.String.pipe(T.Label()),
+    name: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}/customDomains/{name}",
+      code: 200,
+      apiVersion: "2024-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteWebPubSubCustomDomainRequest",
+}) as any as S.Schema<DeleteWebPubSubCustomDomainRequest>;
+
+export interface DeleteWebPubSubCustomDomainResponse {}
+export const DeleteWebPubSubCustomDomainResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteWebPubSubCustomDomainResponse",
+}) as any as S.Schema<DeleteWebPubSubCustomDomainResponse>;
+
+export interface DeleteWebPubSubHubRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the resource. */
+  resourceName: string;
+  /** The hub name. */
+  hubName: string;
+}
+export const DeleteWebPubSubHubRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    resourceName: S.String.pipe(T.Label()),
+    hubName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}/hubs/{hubName}",
+      code: 200,
+      apiVersion: "2024-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteWebPubSubHubRequest",
+}) as any as S.Schema<DeleteWebPubSubHubRequest>;
+
+export interface DeleteWebPubSubHubResponse {}
+export const DeleteWebPubSubHubResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteWebPubSubHubResponse",
+}) as any as S.Schema<DeleteWebPubSubHubResponse>;
+
+export interface DeleteWebPubSubPrivateEndpointConnectionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the resource. */
+  resourceName: string;
+  /** The name of the private endpoint connection associated with the Azure resource. */
+  privateEndpointConnectionName: string;
+}
+export const DeleteWebPubSubPrivateEndpointConnectionRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      resourceName: S.String.pipe(T.Label()),
+      privateEndpointConnectionName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}/privateEndpointConnections/{privateEndpointConnectionName}",
+        code: 200,
+        apiVersion: "2024-03-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "DeleteWebPubSubPrivateEndpointConnectionRequest",
+  }) as any as S.Schema<DeleteWebPubSubPrivateEndpointConnectionRequest>;
+
+export interface DeleteWebPubSubPrivateEndpointConnectionResponse {}
+export const DeleteWebPubSubPrivateEndpointConnectionResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "DeleteWebPubSubPrivateEndpointConnectionResponse",
+  }) as any as S.Schema<DeleteWebPubSubPrivateEndpointConnectionResponse>;
+
+export interface DeleteWebPubSubReplicasRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the resource. */
+  resourceName: string;
+  /** The name of the replica. */
+  replicaName: string;
+}
+export const DeleteWebPubSubReplicasRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    resourceName: S.String.pipe(T.Label()),
+    replicaName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}/replicas/{replicaName}",
+      code: 200,
+      apiVersion: "2024-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteWebPubSubReplicasRequest",
+}) as any as S.Schema<DeleteWebPubSubReplicasRequest>;
+
+export interface DeleteWebPubSubReplicasResponse {}
+export const DeleteWebPubSubReplicasResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteWebPubSubReplicasResponse",
+}) as any as S.Schema<DeleteWebPubSubReplicasResponse>;
+
+export interface DeleteWebPubSubSharedPrivateLinkResourceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the resource. */
+  resourceName: string;
+  /** The name of the shared private link resource. */
+  sharedPrivateLinkResourceName: string;
+}
+export const DeleteWebPubSubSharedPrivateLinkResourceRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      resourceName: S.String.pipe(T.Label()),
+      sharedPrivateLinkResourceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}/sharedPrivateLinkResources/{sharedPrivateLinkResourceName}",
+        code: 200,
+        apiVersion: "2024-03-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "DeleteWebPubSubSharedPrivateLinkResourceRequest",
+  }) as any as S.Schema<DeleteWebPubSubSharedPrivateLinkResourceRequest>;
+
+export interface DeleteWebPubSubSharedPrivateLinkResourceResponse {}
+export const DeleteWebPubSubSharedPrivateLinkResourceResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "DeleteWebPubSubSharedPrivateLinkResourceResponse",
+  }) as any as S.Schema<DeleteWebPubSubSharedPrivateLinkResourceResponse>;
+
+export interface GetWebPubSubRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the resource. */
+  resourceName: string;
+}
+export const GetWebPubSubRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    resourceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}",
+      code: 200,
+      apiVersion: "2024-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetWebPubSubRequest",
+}) as any as S.Schema<GetWebPubSubRequest>;
+
+/** The type of identity that created the resource. */
+export type SystemDataCreatedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+
+/** The type of identity that last modified the resource. */
+export type SystemDataLastModifiedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+
+/** Metadata pertaining to creation and last modification of the resource. */
+export interface SystemData {
+  /** The identity that created the resource. */
+  createdBy?: string;
+  /** The type of identity that created the resource. */
+  createdByType?: SystemDataCreatedByType;
+  /** The timestamp of resource creation (UTC). */
+  createdAt?: string;
+  /** The identity that last modified the resource. */
+  lastModifiedBy?: string;
+  /** The type of identity that last modified the resource. */
+  lastModifiedByType?: SystemDataLastModifiedByType;
+  /** The timestamp of resource last modification (UTC) */
+  lastModifiedAt?: string;
+}
+export const SystemData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    createdBy: S.optional(S.String),
+    createdByType: S.optional(SystemDataCreatedByType),
+    createdAt: S.optional(S.String),
+    lastModifiedBy: S.optional(S.String),
+    lastModifiedByType: S.optional(SystemDataLastModifiedByType),
+    lastModifiedAt: S.optional(S.String),
+  }),
+).annotate({ identifier: "SystemData" }) as any as S.Schema<SystemData>;
+
 /** Resource tags. */
-export type WebPubSubCreateOrUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const WebPubSubCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type GetWebPubSubResponseTagsMap = { [key: string]: string | undefined };
+export const GetWebPubSubResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<WebPubSubCreateOrUpdateRequestTagsMap>;
+) as any as S.Schema<GetWebPubSubResponseTagsMap>;
 
 /** Optional tier of this particular SKU. 'Standard' or 'Free'. `Basic` is deprecated, use `Standard` instead. */
 export type WebPubSubSkuTier = "Free" | "Basic" | "Standard" | "Premium";
 export const WebPubSubSkuTier = /*@__PURE__*/ S.String;
 
 /** The billing information of the resource. */
-export interface ResourceSkuInput {
+export interface ResourceSku {
   /** The name of the SKU. Required. Allowed values: Standard_S1, Free_F1, Premium_P1, Premium_P2 */
   name: string;
-  tier?: WebPubSubSkuTier | (string & {});
+  tier?: WebPubSubSkuTier;
+  /** Not used. Retained for future use. */
+  size?: string;
+  /** Not used. Retained for future use. */
+  family?: string;
   /** Optional, integer. The unit count of the resource. 1 for Free_F1/Standard_S1/Premium_P1, 100 for Premium_P2 by default. If present, following values are allowed: Free_F1: 1; Standard_S1: 1,2,3,4,5,6,7,8,9,10,20,30,40,50,60,70,80,90,100; Premium_P1: 1,2,3,4,5,6,7,8,9,10,20,30,40,50,60,70,80,90,100; Premium_P2: 100,200,300,400,500,600,700,800,900,1000; */
   capacity?: number;
 }
-export const ResourceSkuInput = /*@__PURE__*/ S.suspend(() =>
+export const ResourceSku = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     name: S.String,
     tier: S.optional(WebPubSubSkuTier),
+    size: S.optional(S.String),
+    family: S.optional(S.String),
     capacity: S.optional(S.Number),
   }),
+).annotate({ identifier: "ResourceSku" }) as any as S.Schema<ResourceSku>;
+
+/** Provisioning state of the resource. */
+export type ProvisioningState =
+  | "Unknown"
+  | "Succeeded"
+  | "Failed"
+  | "Canceled"
+  | "Running"
+  | "Creating"
+  | "Updating"
+  | "Deleting"
+  | "Moving";
+export const ProvisioningState = /*@__PURE__*/ S.String;
+
+/** Private endpoint */
+export interface PrivateEndpoint {
+  /** Full qualified Id of the private endpoint */
+  id?: string;
+}
+export const PrivateEndpoint = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+  }),
 ).annotate({
-  identifier: "ResourceSkuInput",
-}) as any as S.Schema<ResourceSkuInput>;
+  identifier: "PrivateEndpoint",
+}) as any as S.Schema<PrivateEndpoint>;
+
+/** Group IDs */
+export type PrivateEndpointConnectionPropertiesGroupIdsList = Array<string>;
+export const PrivateEndpointConnectionPropertiesGroupIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<PrivateEndpointConnectionPropertiesGroupIdsList>;
+
+/** Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service. */
+export type PrivateLinkServiceConnectionStatus =
+  | "Pending"
+  | "Approved"
+  | "Rejected"
+  | "Disconnected";
+export const PrivateLinkServiceConnectionStatus = /*@__PURE__*/ S.String;
+
+/** Connection state of the private endpoint connection */
+export interface PrivateLinkServiceConnectionState {
+  status?: PrivateLinkServiceConnectionStatus | (string & {});
+  /** The reason for approval/rejection of the connection. */
+  description?: string;
+  /** A message indicating if changes on the service provider require any updates on the consumer. */
+  actionsRequired?: string;
+}
+export const PrivateLinkServiceConnectionState = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: S.optional(PrivateLinkServiceConnectionStatus),
+    description: S.optional(S.String),
+    actionsRequired: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PrivateLinkServiceConnectionState",
+}) as any as S.Schema<PrivateLinkServiceConnectionState>;
+
+/** Private endpoint connection properties */
+export interface PrivateEndpointConnectionProperties {
+  provisioningState?: ProvisioningState;
+  privateEndpoint?: PrivateEndpoint;
+  /** Group IDs */
+  groupIds?: PrivateEndpointConnectionPropertiesGroupIdsList;
+  privateLinkServiceConnectionState?: PrivateLinkServiceConnectionState;
+}
+export const PrivateEndpointConnectionProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provisioningState: S.optional(ProvisioningState),
+    privateEndpoint: S.optional(PrivateEndpoint),
+    groupIds: S.optional(PrivateEndpointConnectionPropertiesGroupIdsList),
+    privateLinkServiceConnectionState: S.optional(
+      PrivateLinkServiceConnectionState,
+    ),
+  }),
+).annotate({
+  identifier: "PrivateEndpointConnectionProperties",
+}) as any as S.Schema<PrivateEndpointConnectionProperties>;
+
+/** A private endpoint connection to an azure resource */
+export interface PrivateEndpointConnection {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  properties?: PrivateEndpointConnectionProperties;
+}
+export const PrivateEndpointConnection = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(PrivateEndpointConnectionProperties),
+  }),
+).annotate({
+  identifier: "PrivateEndpointConnection",
+}) as any as S.Schema<PrivateEndpointConnection>;
+
+/** Private endpoint connections to the resource. */
+export type WebPubSubPropertiesPrivateEndpointConnectionsList =
+  Array<PrivateEndpointConnection>;
+export const WebPubSubPropertiesPrivateEndpointConnectionsList =
+  /*@__PURE__*/ S.Array(
+    PrivateEndpointConnection,
+  ) as any as S.Schema<WebPubSubPropertiesPrivateEndpointConnectionsList>;
+
+/** Status of the shared private link resource */
+export type SharedPrivateLinkResourceStatus =
+  | "Pending"
+  | "Approved"
+  | "Rejected"
+  | "Disconnected"
+  | "Timeout";
+export const SharedPrivateLinkResourceStatus = /*@__PURE__*/ S.String;
+
+/** Describes the properties of an existing Shared Private Link Resource */
+export interface SharedPrivateLinkResourceProperties {
+  /** The group id from the provider of resource the shared private link resource is for */
+  groupId: string;
+  /** The resource id of the resource the shared private link resource is for */
+  privateLinkResourceId: string;
+  provisioningState?: ProvisioningState;
+  /** The request message for requesting approval of the shared private link resource */
+  requestMessage?: string;
+  status?: SharedPrivateLinkResourceStatus;
+}
+export const SharedPrivateLinkResourceProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    groupId: S.String,
+    privateLinkResourceId: S.String,
+    provisioningState: S.optional(ProvisioningState),
+    requestMessage: S.optional(S.String),
+    status: S.optional(SharedPrivateLinkResourceStatus),
+  }),
+).annotate({
+  identifier: "SharedPrivateLinkResourceProperties",
+}) as any as S.Schema<SharedPrivateLinkResourceProperties>;
+
+/** Describes a Shared Private Link Resource */
+export interface SharedPrivateLinkResource {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  properties?: SharedPrivateLinkResourceProperties;
+}
+export const SharedPrivateLinkResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(SharedPrivateLinkResourceProperties),
+  }),
+).annotate({
+  identifier: "SharedPrivateLinkResource",
+}) as any as S.Schema<SharedPrivateLinkResource>;
+
+/** The list of shared private link resources. */
+export type WebPubSubPropertiesSharedPrivateLinkResourcesList =
+  Array<SharedPrivateLinkResource>;
+export const WebPubSubPropertiesSharedPrivateLinkResourcesList =
+  /*@__PURE__*/ S.Array(
+    SharedPrivateLinkResource,
+  ) as any as S.Schema<WebPubSubPropertiesSharedPrivateLinkResourcesList>;
 
 /** TLS settings for the resource */
 export interface WebPubSubTlsSettings {
@@ -591,372 +798,6 @@ export const WebPubSubSocketIOSettings = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<WebPubSubSocketIOSettings>;
 
 /** A class that describes the properties of the resource */
-export interface WebPubSubPropertiesInput {
-  tls?: WebPubSubTlsSettings;
-  liveTraceConfiguration?: LiveTraceConfiguration;
-  resourceLogConfiguration?: ResourceLogConfiguration;
-  networkACLs?: WebPubSubNetworkACLs;
-  /** Enable or disable public network access. Default to "Enabled". When it's Enabled, network ACLs still apply. When it's Disabled, public network access is always disabled no matter what you set in network ACLs. */
-  publicNetworkAccess?: string;
-  /** DisableLocalAuth Enable or disable local auth with AccessKey When set as true, connection with AccessKey=xxx won't work. */
-  disableLocalAuth?: boolean;
-  /** DisableLocalAuth Enable or disable aad auth When set as true, connection with AuthType=aad won't work. */
-  disableAadAuth?: boolean;
-  /** Enable or disable the regional endpoint. Default to "Enabled". When it's Disabled, new connections will not be routed to this endpoint, however existing connections will not be affected. This property is replica specific. Disable the regional endpoint without replica is not allowed. */
-  regionEndpointEnabled?: string;
-  /** Stop or start the resource. Default to "False". When it's true, the data plane of the resource is shutdown. When it's false, the data plane of the resource is started. */
-  resourceStopped?: string;
-  socketIO?: WebPubSubSocketIOSettings;
-}
-export const WebPubSubPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    tls: S.optional(WebPubSubTlsSettings),
-    liveTraceConfiguration: S.optional(LiveTraceConfiguration),
-    resourceLogConfiguration: S.optional(ResourceLogConfiguration),
-    networkACLs: S.optional(WebPubSubNetworkACLs),
-    publicNetworkAccess: S.optional(S.String),
-    disableLocalAuth: S.optional(S.Boolean),
-    disableAadAuth: S.optional(S.Boolean),
-    regionEndpointEnabled: S.optional(S.String),
-    resourceStopped: S.optional(S.String),
-    socketIO: S.optional(WebPubSubSocketIOSettings),
-  }),
-).annotate({
-  identifier: "WebPubSubPropertiesInput",
-}) as any as S.Schema<WebPubSubPropertiesInput>;
-
-/** The kind of the service */
-export type ServiceKind = "WebPubSub" | "SocketIO";
-export const ServiceKind = /*@__PURE__*/ S.String;
-
-/** Represents the identity type: systemAssigned, userAssigned, None */
-export type ManagedIdentityType = "None" | "SystemAssigned" | "UserAssigned";
-export const ManagedIdentityType = /*@__PURE__*/ S.String;
-
-/** Properties of user assigned identity. */
-export interface UserAssignedIdentityPropertyInput {}
-export const UserAssignedIdentityPropertyInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "UserAssignedIdentityPropertyInput",
-}) as any as S.Schema<UserAssignedIdentityPropertyInput>;
-
-/** Get or set the user assigned identities */
-export type ManagedIdentityInputUserAssignedIdentitiesMap = {
-  [key: string]: UserAssignedIdentityPropertyInput | undefined;
-};
-export const ManagedIdentityInputUserAssignedIdentitiesMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    UserAssignedIdentityPropertyInput,
-  ) as any as S.Schema<ManagedIdentityInputUserAssignedIdentitiesMap>;
-
-/** A class represent managed identities used for request and response */
-export interface ManagedIdentityInput {
-  type?: ManagedIdentityType | (string & {});
-  /** Get or set the user assigned identities */
-  userAssignedIdentities?: ManagedIdentityInputUserAssignedIdentitiesMap;
-}
-export const ManagedIdentityInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: S.optional(ManagedIdentityType),
-    userAssignedIdentities: S.optional(
-      ManagedIdentityInputUserAssignedIdentitiesMap,
-    ),
-  }),
-).annotate({
-  identifier: "ManagedIdentityInput",
-}) as any as S.Schema<ManagedIdentityInput>;
-
-export interface WebPubSubCreateOrUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the resource. */
-  resourceName: string;
-  /** Resource tags. */
-  tags?: WebPubSubCreateOrUpdateRequestTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  sku?: ResourceSkuInput;
-  properties?: WebPubSubPropertiesInput;
-  kind?: ServiceKind | (string & {});
-  identity?: ManagedIdentityInput;
-}
-export const WebPubSubCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    resourceName: S.String.pipe(T.Label()),
-    tags: S.optional(WebPubSubCreateOrUpdateRequestTagsMap),
-    location: S.String,
-    sku: S.optional(ResourceSkuInput),
-    properties: S.optional(WebPubSubPropertiesInput),
-    kind: S.optional(ServiceKind),
-    identity: S.optional(ManagedIdentityInput),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}",
-      code: 200,
-      apiVersion: "2024-03-01",
-    }),
-  ),
-).annotate({
-  identifier: "WebPubSubCreateOrUpdateRequest",
-}) as any as S.Schema<WebPubSubCreateOrUpdateRequest>;
-
-/** The type of identity that created the resource. */
-export type SystemDataCreatedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
-
-/** The type of identity that last modified the resource. */
-export type SystemDataLastModifiedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
-
-/** Metadata pertaining to creation and last modification of the resource. */
-export interface SystemData {
-  /** The identity that created the resource. */
-  createdBy?: string;
-  /** The type of identity that created the resource. */
-  createdByType?: SystemDataCreatedByType;
-  /** The timestamp of resource creation (UTC). */
-  createdAt?: string;
-  /** The identity that last modified the resource. */
-  lastModifiedBy?: string;
-  /** The type of identity that last modified the resource. */
-  lastModifiedByType?: SystemDataLastModifiedByType;
-  /** The timestamp of resource last modification (UTC) */
-  lastModifiedAt?: string;
-}
-export const SystemData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    createdBy: S.optional(S.String),
-    createdByType: S.optional(SystemDataCreatedByType),
-    createdAt: S.optional(S.String),
-    lastModifiedBy: S.optional(S.String),
-    lastModifiedByType: S.optional(SystemDataLastModifiedByType),
-    lastModifiedAt: S.optional(S.String),
-  }),
-).annotate({ identifier: "SystemData" }) as any as S.Schema<SystemData>;
-
-/** Resource tags. */
-export type WebPubSubCreateOrUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const WebPubSubCreateOrUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<WebPubSubCreateOrUpdateResponseTagsMap>;
-
-/** The billing information of the resource. */
-export interface ResourceSku {
-  /** The name of the SKU. Required. Allowed values: Standard_S1, Free_F1, Premium_P1, Premium_P2 */
-  name: string;
-  tier?: WebPubSubSkuTier;
-  /** Not used. Retained for future use. */
-  size?: string;
-  /** Not used. Retained for future use. */
-  family?: string;
-  /** Optional, integer. The unit count of the resource. 1 for Free_F1/Standard_S1/Premium_P1, 100 for Premium_P2 by default. If present, following values are allowed: Free_F1: 1; Standard_S1: 1,2,3,4,5,6,7,8,9,10,20,30,40,50,60,70,80,90,100; Premium_P1: 1,2,3,4,5,6,7,8,9,10,20,30,40,50,60,70,80,90,100; Premium_P2: 100,200,300,400,500,600,700,800,900,1000; */
-  capacity?: number;
-}
-export const ResourceSku = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String,
-    tier: S.optional(WebPubSubSkuTier),
-    size: S.optional(S.String),
-    family: S.optional(S.String),
-    capacity: S.optional(S.Number),
-  }),
-).annotate({ identifier: "ResourceSku" }) as any as S.Schema<ResourceSku>;
-
-/** Provisioning state of the resource. */
-export type ProvisioningState =
-  | "Unknown"
-  | "Succeeded"
-  | "Failed"
-  | "Canceled"
-  | "Running"
-  | "Creating"
-  | "Updating"
-  | "Deleting"
-  | "Moving";
-export const ProvisioningState = /*@__PURE__*/ S.String;
-
-/** Private endpoint */
-export interface PrivateEndpoint {
-  /** Full qualified Id of the private endpoint */
-  id?: string;
-}
-export const PrivateEndpoint = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PrivateEndpoint",
-}) as any as S.Schema<PrivateEndpoint>;
-
-/** Group IDs */
-export type PrivateEndpointConnectionPropertiesGroupIdsList = Array<string>;
-export const PrivateEndpointConnectionPropertiesGroupIdsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PrivateEndpointConnectionPropertiesGroupIdsList>;
-
-/** Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service. */
-export type PrivateLinkServiceConnectionStatus =
-  | "Pending"
-  | "Approved"
-  | "Rejected"
-  | "Disconnected";
-export const PrivateLinkServiceConnectionStatus = /*@__PURE__*/ S.String;
-
-/** Connection state of the private endpoint connection */
-export interface PrivateLinkServiceConnectionState {
-  status?: PrivateLinkServiceConnectionStatus | (string & {});
-  /** The reason for approval/rejection of the connection. */
-  description?: string;
-  /** A message indicating if changes on the service provider require any updates on the consumer. */
-  actionsRequired?: string;
-}
-export const PrivateLinkServiceConnectionState = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    status: S.optional(PrivateLinkServiceConnectionStatus),
-    description: S.optional(S.String),
-    actionsRequired: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PrivateLinkServiceConnectionState",
-}) as any as S.Schema<PrivateLinkServiceConnectionState>;
-
-/** Private endpoint connection properties */
-export interface PrivateEndpointConnectionProperties {
-  provisioningState?: ProvisioningState;
-  privateEndpoint?: PrivateEndpoint;
-  /** Group IDs */
-  groupIds?: PrivateEndpointConnectionPropertiesGroupIdsList;
-  privateLinkServiceConnectionState?: PrivateLinkServiceConnectionState;
-}
-export const PrivateEndpointConnectionProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provisioningState: S.optional(ProvisioningState),
-    privateEndpoint: S.optional(PrivateEndpoint),
-    groupIds: S.optional(PrivateEndpointConnectionPropertiesGroupIdsList),
-    privateLinkServiceConnectionState: S.optional(
-      PrivateLinkServiceConnectionState,
-    ),
-  }),
-).annotate({
-  identifier: "PrivateEndpointConnectionProperties",
-}) as any as S.Schema<PrivateEndpointConnectionProperties>;
-
-/** A private endpoint connection to an azure resource */
-export interface PrivateEndpointConnection {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  properties?: PrivateEndpointConnectionProperties;
-}
-export const PrivateEndpointConnection = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(PrivateEndpointConnectionProperties),
-  }),
-).annotate({
-  identifier: "PrivateEndpointConnection",
-}) as any as S.Schema<PrivateEndpointConnection>;
-
-/** Private endpoint connections to the resource. */
-export type WebPubSubPropertiesPrivateEndpointConnectionsList =
-  Array<PrivateEndpointConnection>;
-export const WebPubSubPropertiesPrivateEndpointConnectionsList =
-  /*@__PURE__*/ S.Array(
-    PrivateEndpointConnection,
-  ) as any as S.Schema<WebPubSubPropertiesPrivateEndpointConnectionsList>;
-
-/** Status of the shared private link resource */
-export type SharedPrivateLinkResourceStatus =
-  | "Pending"
-  | "Approved"
-  | "Rejected"
-  | "Disconnected"
-  | "Timeout";
-export const SharedPrivateLinkResourceStatus = /*@__PURE__*/ S.String;
-
-/** Describes the properties of an existing Shared Private Link Resource */
-export interface SharedPrivateLinkResourceProperties {
-  /** The group id from the provider of resource the shared private link resource is for */
-  groupId: string;
-  /** The resource id of the resource the shared private link resource is for */
-  privateLinkResourceId: string;
-  provisioningState?: ProvisioningState;
-  /** The request message for requesting approval of the shared private link resource */
-  requestMessage?: string;
-  status?: SharedPrivateLinkResourceStatus;
-}
-export const SharedPrivateLinkResourceProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    groupId: S.String,
-    privateLinkResourceId: S.String,
-    provisioningState: S.optional(ProvisioningState),
-    requestMessage: S.optional(S.String),
-    status: S.optional(SharedPrivateLinkResourceStatus),
-  }),
-).annotate({
-  identifier: "SharedPrivateLinkResourceProperties",
-}) as any as S.Schema<SharedPrivateLinkResourceProperties>;
-
-/** Describes a Shared Private Link Resource */
-export interface SharedPrivateLinkResource {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  properties?: SharedPrivateLinkResourceProperties;
-}
-export const SharedPrivateLinkResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(SharedPrivateLinkResourceProperties),
-  }),
-).annotate({
-  identifier: "SharedPrivateLinkResource",
-}) as any as S.Schema<SharedPrivateLinkResource>;
-
-/** The list of shared private link resources. */
-export type WebPubSubPropertiesSharedPrivateLinkResourcesList =
-  Array<SharedPrivateLinkResource>;
-export const WebPubSubPropertiesSharedPrivateLinkResourcesList =
-  /*@__PURE__*/ S.Array(
-    SharedPrivateLinkResource,
-  ) as any as S.Schema<WebPubSubPropertiesSharedPrivateLinkResourcesList>;
-
-/** A class that describes the properties of the resource */
 export interface WebPubSubProperties {
   provisioningState?: ProvisioningState;
   /** The publicly accessible IP of the resource. */
@@ -1021,6 +862,14 @@ export const WebPubSubProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "WebPubSubProperties",
 }) as any as S.Schema<WebPubSubProperties>;
 
+/** The kind of the service */
+export type ServiceKind = "WebPubSub" | "SocketIO";
+export const ServiceKind = /*@__PURE__*/ S.String;
+
+/** Represents the identity type: systemAssigned, userAssigned, None */
+export type ManagedIdentityType = "None" | "SystemAssigned" | "UserAssigned";
+export const ManagedIdentityType = /*@__PURE__*/ S.String;
+
 /** Properties of user assigned identity. */
 export interface UserAssignedIdentityProperty {
   /** Get the principal id for the user assigned identity */
@@ -1069,7 +918,7 @@ export const ManagedIdentity = /*@__PURE__*/ S.suspend(() =>
   identifier: "ManagedIdentity",
 }) as any as S.Schema<ManagedIdentity>;
 
-export interface WebPubSubCreateOrUpdateResponse {
+export interface GetWebPubSubResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -1079,7 +928,7 @@ export interface WebPubSubCreateOrUpdateResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: WebPubSubCreateOrUpdateResponseTagsMap;
+  tags?: GetWebPubSubResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   sku?: ResourceSku;
@@ -1087,13 +936,13 @@ export interface WebPubSubCreateOrUpdateResponse {
   kind?: ServiceKind;
   identity?: ManagedIdentity;
 }
-export const WebPubSubCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetWebPubSubResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(WebPubSubCreateOrUpdateResponseTagsMap),
+    tags: S.optional(GetWebPubSubResponseTagsMap),
     location: S.String,
     sku: S.optional(ResourceSku),
     properties: S.optional(WebPubSubProperties),
@@ -1101,29 +950,10 @@ export const WebPubSubCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
     identity: S.optional(ManagedIdentity),
   }),
 ).annotate({
-  identifier: "WebPubSubCreateOrUpdateResponse",
-}) as any as S.Schema<WebPubSubCreateOrUpdateResponse>;
+  identifier: "GetWebPubSubResponse",
+}) as any as S.Schema<GetWebPubSubResponse>;
 
-/** Custom certificate properties. */
-export interface CustomCertificatePropertiesInput {
-  /** Base uri of the KeyVault that stores certificate. */
-  keyVaultBaseUri: string;
-  /** Certificate secret name. */
-  keyVaultSecretName: string;
-  /** Certificate secret version. */
-  keyVaultSecretVersion?: string;
-}
-export const CustomCertificatePropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    keyVaultBaseUri: S.String,
-    keyVaultSecretName: S.String,
-    keyVaultSecretVersion: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "CustomCertificatePropertiesInput",
-}) as any as S.Schema<CustomCertificatePropertiesInput>;
-
-export interface WebPubSubCustomCertificatesCreateOrUpdateRequest {
+export interface GetWebPubSubCustomCertificateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1132,27 +962,25 @@ export interface WebPubSubCustomCertificatesCreateOrUpdateRequest {
   resourceName: string;
   /** Custom certificate name */
   certificateName: string;
-  properties: CustomCertificatePropertiesInput;
 }
-export const WebPubSubCustomCertificatesCreateOrUpdateRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const GetWebPubSubCustomCertificateRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       resourceName: S.String.pipe(T.Label()),
       certificateName: S.String.pipe(T.Label()),
-      properties: CustomCertificatePropertiesInput,
     }).pipe(
       T.Http({
-        method: "PUT",
+        method: "GET",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}/customCertificates/{certificateName}",
         code: 200,
         apiVersion: "2024-03-01",
       }),
     ),
-  ).annotate({
-    identifier: "WebPubSubCustomCertificatesCreateOrUpdateRequest",
-  }) as any as S.Schema<WebPubSubCustomCertificatesCreateOrUpdateRequest>;
+).annotate({
+  identifier: "GetWebPubSubCustomCertificateRequest",
+}) as any as S.Schema<GetWebPubSubCustomCertificateRequest>;
 
 /** Custom certificate properties. */
 export interface CustomCertificateProperties {
@@ -1175,7 +1003,7 @@ export const CustomCertificateProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "CustomCertificateProperties",
 }) as any as S.Schema<CustomCertificateProperties>;
 
-export interface WebPubSubCustomCertificatesCreateOrUpdateResponse {
+export interface GetWebPubSubCustomCertificateResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -1186,95 +1014,7 @@ export interface WebPubSubCustomCertificatesCreateOrUpdateResponse {
   systemData?: SystemData;
   properties: CustomCertificateProperties;
 }
-export const WebPubSubCustomCertificatesCreateOrUpdateResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: CustomCertificateProperties,
-    }),
-  ).annotate({
-    identifier: "WebPubSubCustomCertificatesCreateOrUpdateResponse",
-  }) as any as S.Schema<WebPubSubCustomCertificatesCreateOrUpdateResponse>;
-
-export interface WebPubSubCustomCertificatesDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the resource. */
-  resourceName: string;
-  /** Custom certificate name */
-  certificateName: string;
-}
-export const WebPubSubCustomCertificatesDeleteRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-      certificateName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}/customCertificates/{certificateName}",
-        code: 200,
-        apiVersion: "2024-03-01",
-      }),
-    ),
-).annotate({
-  identifier: "WebPubSubCustomCertificatesDeleteRequest",
-}) as any as S.Schema<WebPubSubCustomCertificatesDeleteRequest>;
-
-export interface WebPubSubCustomCertificatesDeleteResponse {}
-export const WebPubSubCustomCertificatesDeleteResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "WebPubSubCustomCertificatesDeleteResponse",
-  }) as any as S.Schema<WebPubSubCustomCertificatesDeleteResponse>;
-
-export interface WebPubSubCustomCertificatesGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the resource. */
-  resourceName: string;
-  /** Custom certificate name */
-  certificateName: string;
-}
-export const WebPubSubCustomCertificatesGetRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-      certificateName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}/customCertificates/{certificateName}",
-        code: 200,
-        apiVersion: "2024-03-01",
-      }),
-    ),
-).annotate({
-  identifier: "WebPubSubCustomCertificatesGetRequest",
-}) as any as S.Schema<WebPubSubCustomCertificatesGetRequest>;
-
-export interface WebPubSubCustomCertificatesGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  properties: CustomCertificateProperties;
-}
-export const WebPubSubCustomCertificatesGetResponse = /*@__PURE__*/ S.suspend(
+export const GetWebPubSubCustomCertificateResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
@@ -1284,80 +1024,36 @@ export const WebPubSubCustomCertificatesGetResponse = /*@__PURE__*/ S.suspend(
       properties: CustomCertificateProperties,
     }),
 ).annotate({
-  identifier: "WebPubSubCustomCertificatesGetResponse",
-}) as any as S.Schema<WebPubSubCustomCertificatesGetResponse>;
+  identifier: "GetWebPubSubCustomCertificateResponse",
+}) as any as S.Schema<GetWebPubSubCustomCertificateResponse>;
 
-export interface WebPubSubCustomCertificatesListRequest {
+export interface GetWebPubSubCustomDomainRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of the resource. */
   resourceName: string;
+  /** Custom domain name. */
+  name: string;
 }
-export const WebPubSubCustomCertificatesListRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}/customCertificates",
-        code: 200,
-        apiVersion: "2024-03-01",
-      }),
-    ),
-).annotate({
-  identifier: "WebPubSubCustomCertificatesListRequest",
-}) as any as S.Schema<WebPubSubCustomCertificatesListRequest>;
-
-/** A custom certificate. */
-export interface CustomCertificate {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  properties: CustomCertificateProperties;
-}
-export const CustomCertificate = /*@__PURE__*/ S.suspend(() =>
+export const GetWebPubSubCustomDomainRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: CustomCertificateProperties,
-  }),
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    resourceName: S.String.pipe(T.Label()),
+    name: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}/customDomains/{name}",
+      code: 200,
+      apiVersion: "2024-03-01",
+    }),
+  ),
 ).annotate({
-  identifier: "CustomCertificate",
-}) as any as S.Schema<CustomCertificate>;
-
-/** List of custom certificates of this resource. */
-export type CustomCertificateListValueList = Array<CustomCertificate>;
-export const CustomCertificateListValueList = /*@__PURE__*/ S.Array(
-  CustomCertificate,
-) as any as S.Schema<CustomCertificateListValueList>;
-
-/** Custom certificates list. */
-export interface CustomCertificateList {
-  /** List of custom certificates of this resource. */
-  value?: CustomCertificateListValueList;
-  /** The URL the client should use to fetch the next page (per server side paging). It's null for now, added for future use. */
-  nextLink?: string;
-}
-export const CustomCertificateList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(CustomCertificateListValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "CustomCertificateList",
-}) as any as S.Schema<CustomCertificateList>;
+  identifier: "GetWebPubSubCustomDomainRequest",
+}) as any as S.Schema<GetWebPubSubCustomDomainRequest>;
 
 /** Reference to a resource. */
 export interface ResourceReference {
@@ -1371,52 +1067,6 @@ export const ResourceReference = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ResourceReference",
 }) as any as S.Schema<ResourceReference>;
-
-/** Properties of a custom domain. */
-export interface CustomDomainPropertiesInput {
-  /** The custom domain name. */
-  domainName: string;
-  customCertificate: ResourceReference;
-}
-export const CustomDomainPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    domainName: S.String,
-    customCertificate: ResourceReference,
-  }),
-).annotate({
-  identifier: "CustomDomainPropertiesInput",
-}) as any as S.Schema<CustomDomainPropertiesInput>;
-
-export interface WebPubSubCustomDomainsCreateOrUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the resource. */
-  resourceName: string;
-  /** Custom domain name. */
-  name: string;
-  properties: CustomDomainPropertiesInput;
-}
-export const WebPubSubCustomDomainsCreateOrUpdateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-      name: S.String.pipe(T.Label()),
-      properties: CustomDomainPropertiesInput,
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}/customDomains/{name}",
-        code: 200,
-        apiVersion: "2024-03-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "WebPubSubCustomDomainsCreateOrUpdateRequest",
-  }) as any as S.Schema<WebPubSubCustomDomainsCreateOrUpdateRequest>;
 
 /** Properties of a custom domain. */
 export interface CustomDomainProperties {
@@ -1435,7 +1085,7 @@ export const CustomDomainProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "CustomDomainProperties",
 }) as any as S.Schema<CustomDomainProperties>;
 
-export interface WebPubSubCustomDomainsCreateOrUpdateResponse {
+export interface GetWebPubSubCustomDomainResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -1446,94 +1096,7 @@ export interface WebPubSubCustomDomainsCreateOrUpdateResponse {
   systemData?: SystemData;
   properties: CustomDomainProperties;
 }
-export const WebPubSubCustomDomainsCreateOrUpdateResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: CustomDomainProperties,
-    }),
-  ).annotate({
-    identifier: "WebPubSubCustomDomainsCreateOrUpdateResponse",
-  }) as any as S.Schema<WebPubSubCustomDomainsCreateOrUpdateResponse>;
-
-export interface WebPubSubCustomDomainsDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the resource. */
-  resourceName: string;
-  /** Custom domain name. */
-  name: string;
-}
-export const WebPubSubCustomDomainsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    resourceName: S.String.pipe(T.Label()),
-    name: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}/customDomains/{name}",
-      code: 200,
-      apiVersion: "2024-03-01",
-    }),
-  ),
-).annotate({
-  identifier: "WebPubSubCustomDomainsDeleteRequest",
-}) as any as S.Schema<WebPubSubCustomDomainsDeleteRequest>;
-
-export interface WebPubSubCustomDomainsDeleteResponse {}
-export const WebPubSubCustomDomainsDeleteResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "WebPubSubCustomDomainsDeleteResponse",
-}) as any as S.Schema<WebPubSubCustomDomainsDeleteResponse>;
-
-export interface WebPubSubCustomDomainsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the resource. */
-  resourceName: string;
-  /** Custom domain name. */
-  name: string;
-}
-export const WebPubSubCustomDomainsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    resourceName: S.String.pipe(T.Label()),
-    name: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}/customDomains/{name}",
-      code: 200,
-      apiVersion: "2024-03-01",
-    }),
-  ),
-).annotate({
-  identifier: "WebPubSubCustomDomainsGetRequest",
-}) as any as S.Schema<WebPubSubCustomDomainsGetRequest>;
-
-export interface WebPubSubCustomDomainsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  properties: CustomDomainProperties;
-}
-export const WebPubSubCustomDomainsGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetWebPubSubCustomDomainResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -1542,176 +1105,36 @@ export const WebPubSubCustomDomainsGetResponse = /*@__PURE__*/ S.suspend(() =>
     properties: CustomDomainProperties,
   }),
 ).annotate({
-  identifier: "WebPubSubCustomDomainsGetResponse",
-}) as any as S.Schema<WebPubSubCustomDomainsGetResponse>;
+  identifier: "GetWebPubSubCustomDomainResponse",
+}) as any as S.Schema<GetWebPubSubCustomDomainResponse>;
 
-export interface WebPubSubCustomDomainsListRequest {
+export interface GetWebPubSubHubRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of the resource. */
   resourceName: string;
+  /** The hub name. */
+  hubName: string;
 }
-export const WebPubSubCustomDomainsListRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetWebPubSubHubRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     resourceName: S.String.pipe(T.Label()),
+    hubName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}/customDomains",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}/hubs/{hubName}",
       code: 200,
       apiVersion: "2024-03-01",
     }),
   ),
 ).annotate({
-  identifier: "WebPubSubCustomDomainsListRequest",
-}) as any as S.Schema<WebPubSubCustomDomainsListRequest>;
-
-/** A custom domain */
-export interface CustomDomain {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  properties: CustomDomainProperties;
-}
-export const CustomDomain = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: CustomDomainProperties,
-  }),
-).annotate({ identifier: "CustomDomain" }) as any as S.Schema<CustomDomain>;
-
-/** List of custom domains that bind to this resource. */
-export type CustomDomainListValueList = Array<CustomDomain>;
-export const CustomDomainListValueList = /*@__PURE__*/ S.Array(
-  CustomDomain,
-) as any as S.Schema<CustomDomainListValueList>;
-
-/** Custom domains list */
-export interface CustomDomainList {
-  /** List of custom domains that bind to this resource. */
-  value?: CustomDomainListValueList;
-  /** The URL the client should use to fetch the next page (per server side paging). It's null for now, added for future use. */
-  nextLink?: string;
-}
-export const CustomDomainList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(CustomDomainListValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "CustomDomainList",
-}) as any as S.Schema<CustomDomainList>;
-
-export interface WebPubSubDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the resource. */
-  resourceName: string;
-}
-export const WebPubSubDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    resourceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}",
-      code: 200,
-      apiVersion: "2024-03-01",
-    }),
-  ),
-).annotate({
-  identifier: "WebPubSubDeleteRequest",
-}) as any as S.Schema<WebPubSubDeleteRequest>;
-
-export interface WebPubSubDeleteResponse {}
-export const WebPubSubDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "WebPubSubDeleteResponse",
-}) as any as S.Schema<WebPubSubDeleteResponse>;
-
-export interface WebPubSubGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the resource. */
-  resourceName: string;
-}
-export const WebPubSubGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    resourceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}",
-      code: 200,
-      apiVersion: "2024-03-01",
-    }),
-  ),
-).annotate({
-  identifier: "WebPubSubGetRequest",
-}) as any as S.Schema<WebPubSubGetRequest>;
-
-/** Resource tags. */
-export type WebPubSubGetResponseTagsMap = { [key: string]: string | undefined };
-export const WebPubSubGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<WebPubSubGetResponseTagsMap>;
-
-export interface WebPubSubGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: WebPubSubGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  sku?: ResourceSku;
-  properties?: WebPubSubProperties;
-  kind?: ServiceKind;
-  identity?: ManagedIdentity;
-}
-export const WebPubSubGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(WebPubSubGetResponseTagsMap),
-    location: S.String,
-    sku: S.optional(ResourceSku),
-    properties: S.optional(WebPubSubProperties),
-    kind: S.optional(ServiceKind),
-    identity: S.optional(ManagedIdentity),
-  }),
-).annotate({
-  identifier: "WebPubSubGetResponse",
-}) as any as S.Schema<WebPubSubGetResponse>;
+  identifier: "GetWebPubSubHubRequest",
+}) as any as S.Schema<GetWebPubSubHubRequest>;
 
 /** Gets or sets the list of system events. */
 export type EventHandlerSystemEventsList = Array<string>;
@@ -1845,37 +1268,7 @@ export const WebPubSubHubProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "WebPubSubHubProperties",
 }) as any as S.Schema<WebPubSubHubProperties>;
 
-export interface WebPubSubHubsCreateOrUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the resource. */
-  resourceName: string;
-  /** The hub name. */
-  hubName: string;
-  properties: WebPubSubHubProperties;
-}
-export const WebPubSubHubsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    resourceName: S.String.pipe(T.Label()),
-    hubName: S.String.pipe(T.Label()),
-    properties: WebPubSubHubProperties,
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}/hubs/{hubName}",
-      code: 200,
-      apiVersion: "2024-03-01",
-    }),
-  ),
-).annotate({
-  identifier: "WebPubSubHubsCreateOrUpdateRequest",
-}) as any as S.Schema<WebPubSubHubsCreateOrUpdateRequest>;
-
-export interface WebPubSubHubsCreateOrUpdateResponse {
+export interface GetWebPubSubHubResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -1886,7 +1279,7 @@ export interface WebPubSubHubsCreateOrUpdateResponse {
   systemData?: SystemData;
   properties: WebPubSubHubProperties;
 }
-export const WebPubSubHubsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetWebPubSubHubResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -1895,73 +1288,117 @@ export const WebPubSubHubsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
     properties: WebPubSubHubProperties,
   }),
 ).annotate({
-  identifier: "WebPubSubHubsCreateOrUpdateResponse",
-}) as any as S.Schema<WebPubSubHubsCreateOrUpdateResponse>;
+  identifier: "GetWebPubSubHubResponse",
+}) as any as S.Schema<GetWebPubSubHubResponse>;
 
-export interface WebPubSubHubsDeleteRequest {
+export interface GetWebPubSubPrivateEndpointConnectionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of the resource. */
   resourceName: string;
-  /** The hub name. */
-  hubName: string;
+  /** The name of the private endpoint connection associated with the Azure resource. */
+  privateEndpointConnectionName: string;
 }
-export const WebPubSubHubsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    resourceName: S.String.pipe(T.Label()),
-    hubName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}/hubs/{hubName}",
-      code: 200,
-      apiVersion: "2024-03-01",
+export const GetWebPubSubPrivateEndpointConnectionRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      resourceName: S.String.pipe(T.Label()),
+      privateEndpointConnectionName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}/privateEndpointConnections/{privateEndpointConnectionName}",
+        code: 200,
+        apiVersion: "2024-03-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "GetWebPubSubPrivateEndpointConnectionRequest",
+  }) as any as S.Schema<GetWebPubSubPrivateEndpointConnectionRequest>;
+
+export interface GetWebPubSubPrivateEndpointConnectionResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  properties?: PrivateEndpointConnectionProperties;
+}
+export const GetWebPubSubPrivateEndpointConnectionResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(PrivateEndpointConnectionProperties),
     }),
-  ),
-).annotate({
-  identifier: "WebPubSubHubsDeleteRequest",
-}) as any as S.Schema<WebPubSubHubsDeleteRequest>;
+  ).annotate({
+    identifier: "GetWebPubSubPrivateEndpointConnectionResponse",
+  }) as any as S.Schema<GetWebPubSubPrivateEndpointConnectionResponse>;
 
-export interface WebPubSubHubsDeleteResponse {}
-export const WebPubSubHubsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "WebPubSubHubsDeleteResponse",
-}) as any as S.Schema<WebPubSubHubsDeleteResponse>;
-
-export interface WebPubSubHubsGetRequest {
+export interface GetWebPubSubReplicasRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of the resource. */
   resourceName: string;
-  /** The hub name. */
-  hubName: string;
+  /** The name of the replica. */
+  replicaName: string;
 }
-export const WebPubSubHubsGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetWebPubSubReplicasRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     resourceName: S.String.pipe(T.Label()),
-    hubName: S.String.pipe(T.Label()),
+    replicaName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}/hubs/{hubName}",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}/replicas/{replicaName}",
       code: 200,
       apiVersion: "2024-03-01",
     }),
   ),
 ).annotate({
-  identifier: "WebPubSubHubsGetRequest",
-}) as any as S.Schema<WebPubSubHubsGetRequest>;
+  identifier: "GetWebPubSubReplicasRequest",
+}) as any as S.Schema<GetWebPubSubReplicasRequest>;
 
-export interface WebPubSubHubsGetResponse {
+/** Resource tags. */
+export type GetWebPubSubReplicasResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetWebPubSubReplicasResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetWebPubSubReplicasResponseTagsMap>;
+
+export interface ReplicaProperties {
+  provisioningState?: ProvisioningState;
+  /** Enable or disable the regional endpoint. Default to "Enabled". When it's Disabled, new connections will not be routed to this endpoint, however existing connections will not be affected. */
+  regionEndpointEnabled?: string;
+  /** Stop or start the resource. Default to "false". When it's true, the data plane of the resource is shutdown. When it's false, the data plane of the resource is started. */
+  resourceStopped?: string;
+}
+export const ReplicaProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provisioningState: S.optional(ProvisioningState),
+    regionEndpointEnabled: S.optional(S.String),
+    resourceStopped: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ReplicaProperties",
+}) as any as S.Schema<ReplicaProperties>;
+
+export interface GetWebPubSubReplicasResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -1970,47 +1407,61 @@ export interface WebPubSubHubsGetResponse {
   type?: string;
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
-  properties: WebPubSubHubProperties;
+  /** Resource tags. */
+  tags?: GetWebPubSubReplicasResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  sku?: ResourceSku;
+  properties?: ReplicaProperties;
 }
-export const WebPubSubHubsGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetWebPubSubReplicasResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    properties: WebPubSubHubProperties,
+    tags: S.optional(GetWebPubSubReplicasResponseTagsMap),
+    location: S.String,
+    sku: S.optional(ResourceSku),
+    properties: S.optional(ReplicaProperties),
   }),
 ).annotate({
-  identifier: "WebPubSubHubsGetResponse",
-}) as any as S.Schema<WebPubSubHubsGetResponse>;
+  identifier: "GetWebPubSubReplicasResponse",
+}) as any as S.Schema<GetWebPubSubReplicasResponse>;
 
-export interface WebPubSubHubsListRequest {
+export interface GetWebPubSubReplicaSharedPrivateLinkResourceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of the resource. */
   resourceName: string;
+  /** The name of the replica. */
+  replicaName: string;
+  /** The name of the shared private link resource. */
+  sharedPrivateLinkResourceName: string;
 }
-export const WebPubSubHubsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    resourceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}/hubs",
-      code: 200,
-      apiVersion: "2024-03-01",
-    }),
-  ),
-).annotate({
-  identifier: "WebPubSubHubsListRequest",
-}) as any as S.Schema<WebPubSubHubsListRequest>;
+export const GetWebPubSubReplicaSharedPrivateLinkResourceRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      resourceName: S.String.pipe(T.Label()),
+      replicaName: S.String.pipe(T.Label()),
+      sharedPrivateLinkResourceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}/replicas/{replicaName}/sharedPrivateLinkResources/{sharedPrivateLinkResourceName}",
+        code: 200,
+        apiVersion: "2024-03-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "GetWebPubSubReplicaSharedPrivateLinkResourceRequest",
+  }) as any as S.Schema<GetWebPubSubReplicaSharedPrivateLinkResourceRequest>;
 
-/** A hub setting */
-export interface WebPubSubHub {
+export interface GetWebPubSubReplicaSharedPrivateLinkResourceResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -2019,47 +1470,362 @@ export interface WebPubSubHub {
   type?: string;
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
-  properties: WebPubSubHubProperties;
+  properties?: SharedPrivateLinkResourceProperties;
 }
-export const WebPubSubHub = /*@__PURE__*/ S.suspend(() =>
+export const GetWebPubSubReplicaSharedPrivateLinkResourceResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(SharedPrivateLinkResourceProperties),
+    }),
+  ).annotate({
+    identifier: "GetWebPubSubReplicaSharedPrivateLinkResourceResponse",
+  }) as any as S.Schema<GetWebPubSubReplicaSharedPrivateLinkResourceResponse>;
+
+export interface GetWebPubSubSharedPrivateLinkResourceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the resource. */
+  resourceName: string;
+  /** The name of the shared private link resource. */
+  sharedPrivateLinkResourceName: string;
+}
+export const GetWebPubSubSharedPrivateLinkResourceRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      resourceName: S.String.pipe(T.Label()),
+      sharedPrivateLinkResourceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}/sharedPrivateLinkResources/{sharedPrivateLinkResourceName}",
+        code: 200,
+        apiVersion: "2024-03-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "GetWebPubSubSharedPrivateLinkResourceRequest",
+  }) as any as S.Schema<GetWebPubSubSharedPrivateLinkResourceRequest>;
+
+export interface GetWebPubSubSharedPrivateLinkResourceResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  properties?: SharedPrivateLinkResourceProperties;
+}
+export const GetWebPubSubSharedPrivateLinkResourceResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(SharedPrivateLinkResourceProperties),
+    }),
+  ).annotate({
+    identifier: "GetWebPubSubSharedPrivateLinkResourceResponse",
+  }) as any as S.Schema<GetWebPubSubSharedPrivateLinkResourceResponse>;
+
+export interface ListOperationsRequest {}
+export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/providers/Microsoft.SignalRService/operations",
+      code: 200,
+      apiVersion: "2024-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListOperationsRequest",
+}) as any as S.Schema<ListOperationsRequest>;
+
+/** The object that describes a operation. */
+export interface OperationDisplay {
+  /** Friendly name of the resource provider */
+  provider?: string;
+  /** Resource type on which the operation is performed. */
+  resource?: string;
+  /** The localized friendly name for the operation. */
+  operation?: string;
+  /** The localized friendly description for the operation */
+  description?: string;
+}
+export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: WebPubSubHubProperties,
+    provider: S.optional(S.String),
+    resource: S.optional(S.String),
+    operation: S.optional(S.String),
+    description: S.optional(S.String),
   }),
-).annotate({ identifier: "WebPubSubHub" }) as any as S.Schema<WebPubSubHub>;
+).annotate({
+  identifier: "OperationDisplay",
+}) as any as S.Schema<OperationDisplay>;
 
-/** List of hub settings to this resource. */
-export type WebPubSubHubListValueList = Array<WebPubSubHub>;
-export const WebPubSubHubListValueList = /*@__PURE__*/ S.Array(
-  WebPubSubHub,
-) as any as S.Schema<WebPubSubHubListValueList>;
+/** Specifications of the Dimension of metrics. */
+export interface Dimension {
+  /** The public facing name of the dimension. */
+  name?: string;
+  /** Localized friendly display name of the dimension. */
+  displayName?: string;
+  /** Name of the dimension as it appears in MDM. */
+  internalName?: string;
+  /** A Boolean flag indicating whether this dimension should be included for the shoebox export scenario. */
+  toBeExportedForShoebox?: boolean;
+}
+export const Dimension = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    displayName: S.optional(S.String),
+    internalName: S.optional(S.String),
+    toBeExportedForShoebox: S.optional(S.Boolean),
+  }),
+).annotate({ identifier: "Dimension" }) as any as S.Schema<Dimension>;
 
-/** Hub setting list */
-export interface WebPubSubHubList {
-  /** List of hub settings to this resource. */
-  value?: WebPubSubHubListValueList;
+/** The dimensions of the metrics. */
+export type MetricSpecificationDimensionsList = Array<Dimension>;
+export const MetricSpecificationDimensionsList = /*@__PURE__*/ S.Array(
+  Dimension,
+) as any as S.Schema<MetricSpecificationDimensionsList>;
+
+/** Specifications of the Metrics for Azure Monitoring. */
+export interface MetricSpecification {
+  /** Name of the metric. */
+  name?: string;
+  /** Localized friendly display name of the metric. */
+  displayName?: string;
+  /** Localized friendly description of the metric. */
+  displayDescription?: string;
+  /** The unit that makes sense for the metric. */
+  unit?: string;
+  /** Only provide one value for this field. Valid values: Average, Minimum, Maximum, Total, Count. */
+  aggregationType?: string;
+  /** Optional. If set to true, then zero will be returned for time duration where no metric is emitted/published. Ex. a metric that returns the number of times a particular error code was emitted. The error code may not appear often, instead of the RP publishing 0, Shoebox can auto fill in 0s for time periods where nothing was emitted. */
+  fillGapWithZero?: string;
+  /** The name of the metric category that the metric belongs to. A metric can only belong to a single category. */
+  category?: string;
+  /** The dimensions of the metrics. */
+  dimensions?: MetricSpecificationDimensionsList;
+}
+export const MetricSpecification = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    displayName: S.optional(S.String),
+    displayDescription: S.optional(S.String),
+    unit: S.optional(S.String),
+    aggregationType: S.optional(S.String),
+    fillGapWithZero: S.optional(S.String),
+    category: S.optional(S.String),
+    dimensions: S.optional(MetricSpecificationDimensionsList),
+  }),
+).annotate({
+  identifier: "MetricSpecification",
+}) as any as S.Schema<MetricSpecification>;
+
+/** Specifications of the Metrics for Azure Monitoring. */
+export type ServiceSpecificationMetricSpecificationsList =
+  Array<MetricSpecification>;
+export const ServiceSpecificationMetricSpecificationsList =
+  /*@__PURE__*/ S.Array(
+    MetricSpecification,
+  ) as any as S.Schema<ServiceSpecificationMetricSpecificationsList>;
+
+/** Specifications of the Logs for Azure Monitoring. */
+export interface LogSpecification {
+  /** Name of the log. */
+  name?: string;
+  /** Localized friendly display name of the log. */
+  displayName?: string;
+}
+export const LogSpecification = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    displayName: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "LogSpecification",
+}) as any as S.Schema<LogSpecification>;
+
+/** Specifications of the Logs for Azure Monitoring. */
+export type ServiceSpecificationLogSpecificationsList = Array<LogSpecification>;
+export const ServiceSpecificationLogSpecificationsList = /*@__PURE__*/ S.Array(
+  LogSpecification,
+) as any as S.Schema<ServiceSpecificationLogSpecificationsList>;
+
+/** An object that describes a specification. */
+export interface ServiceSpecification {
+  /** Specifications of the Metrics for Azure Monitoring. */
+  metricSpecifications?: ServiceSpecificationMetricSpecificationsList;
+  /** Specifications of the Logs for Azure Monitoring. */
+  logSpecifications?: ServiceSpecificationLogSpecificationsList;
+}
+export const ServiceSpecification = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    metricSpecifications: S.optional(
+      ServiceSpecificationMetricSpecificationsList,
+    ),
+    logSpecifications: S.optional(ServiceSpecificationLogSpecificationsList),
+  }),
+).annotate({
+  identifier: "ServiceSpecification",
+}) as any as S.Schema<ServiceSpecification>;
+
+/** Extra Operation properties. */
+export interface OperationProperties {
+  serviceSpecification?: ServiceSpecification;
+}
+export const OperationProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceSpecification: S.optional(ServiceSpecification),
+  }),
+).annotate({
+  identifier: "OperationProperties",
+}) as any as S.Schema<OperationProperties>;
+
+/** REST API operation supported by resource provider. */
+export interface Operation {
+  /** Name of the operation with format: {provider}/{resource}/{operation} */
+  name?: string;
+  /** If the operation is a data action. (for data plane rbac) */
+  isDataAction?: boolean;
+  display?: OperationDisplay;
+  /** Optional. The intended executor of the operation; governs the display of the operation in the RBAC UX and the audit logs UX. */
+  origin?: string;
+  properties?: OperationProperties;
+}
+export const Operation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    isDataAction: S.optional(S.Boolean),
+    display: S.optional(OperationDisplay),
+    origin: S.optional(S.String),
+    properties: S.optional(OperationProperties),
+  }),
+).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
+
+/** List of operations supported by the resource provider. */
+export type OperationListValueList = Array<Operation>;
+export const OperationListValueList = /*@__PURE__*/ S.Array(
+  Operation,
+) as any as S.Schema<OperationListValueList>;
+
+/** Result of the request to list REST API operations. It contains a list of operations. */
+export interface OperationList {
+  /** List of operations supported by the resource provider. */
+  value?: OperationListValueList;
   /** The URL the client should use to fetch the next page (per server side paging). It's null for now, added for future use. */
   nextLink?: string;
 }
-export const WebPubSubHubList = /*@__PURE__*/ S.suspend(() =>
+export const OperationList = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(WebPubSubHubListValueList),
+    value: S.optional(OperationListValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({ identifier: "OperationList" }) as any as S.Schema<OperationList>;
+
+export interface ListUsagesRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** the location like "eastus" */
+  location: string;
+}
+export const ListUsagesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    location: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.SignalRService/locations/{location}/usages",
+      code: 200,
+      apiVersion: "2024-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListUsagesRequest",
+}) as any as S.Schema<ListUsagesRequest>;
+
+/** Localizable String object containing the name and a localized value. */
+export interface SignalRServiceUsageName {
+  /** The identifier of the usage. */
+  value?: string;
+  /** Localized name of the usage. */
+  localizedValue?: string;
+}
+export const SignalRServiceUsageName = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(S.String),
+    localizedValue: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "SignalRServiceUsageName",
+}) as any as S.Schema<SignalRServiceUsageName>;
+
+/** Object that describes a specific usage of the resources. */
+export interface SignalRServiceUsage {
+  /** Fully qualified ARM resource id */
+  id?: string;
+  /** Current value for the usage quota. */
+  currentValue?: number;
+  /** The maximum permitted value for the usage quota. If there is no limit, this value will be -1. */
+  limit?: number;
+  name?: SignalRServiceUsageName;
+  /** Representing the units of the usage quota. Possible values are: Count, Bytes, Seconds, Percent, CountPerSecond, BytesPerSecond. */
+  unit?: string;
+}
+export const SignalRServiceUsage = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    currentValue: S.optional(S.Number),
+    limit: S.optional(S.Number),
+    name: S.optional(SignalRServiceUsageName),
+    unit: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "SignalRServiceUsage",
+}) as any as S.Schema<SignalRServiceUsage>;
+
+/** List of the resource usages */
+export type SignalRServiceUsageListValueList = Array<SignalRServiceUsage>;
+export const SignalRServiceUsageListValueList = /*@__PURE__*/ S.Array(
+  SignalRServiceUsage,
+) as any as S.Schema<SignalRServiceUsageListValueList>;
+
+/** Object that includes an array of the resource usages and a possible link for next set. */
+export interface SignalRServiceUsageList {
+  /** List of the resource usages */
+  value?: SignalRServiceUsageListValueList;
+  /** The URL the client should use to fetch the next page (per server side paging). It's null for now, added for future use. */
+  nextLink?: string;
+}
+export const SignalRServiceUsageList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(SignalRServiceUsageListValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "WebPubSubHubList",
-}) as any as S.Schema<WebPubSubHubList>;
+  identifier: "SignalRServiceUsageList",
+}) as any as S.Schema<SignalRServiceUsageList>;
 
-export interface WebPubSubListByResourceGroupRequest {
+export interface ListWebPubSubByResourceGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
 }
-export const WebPubSubListByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListWebPubSubByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -2072,8 +1838,8 @@ export const WebPubSubListByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "WebPubSubListByResourceGroupRequest",
-}) as any as S.Schema<WebPubSubListByResourceGroupRequest>;
+  identifier: "ListWebPubSubByResourceGroupRequest",
+}) as any as S.Schema<ListWebPubSubByResourceGroupRequest>;
 
 /** Resource tags. */
 export type WebPubSubResourceTagsMap = { [key: string]: string | undefined };
@@ -2140,11 +1906,11 @@ export const WebPubSubResourceList = /*@__PURE__*/ S.suspend(() =>
   identifier: "WebPubSubResourceList",
 }) as any as S.Schema<WebPubSubResourceList>;
 
-export interface WebPubSubListBySubscriptionRequest {
+export interface ListWebPubSubBySubscriptionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
 }
-export const WebPubSubListBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListWebPubSubBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
   }).pipe(
@@ -2156,10 +1922,10 @@ export const WebPubSubListBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "WebPubSubListBySubscriptionRequest",
-}) as any as S.Schema<WebPubSubListBySubscriptionRequest>;
+  identifier: "ListWebPubSubBySubscriptionRequest",
+}) as any as S.Schema<ListWebPubSubBySubscriptionRequest>;
 
-export interface WebPubSubListKeysRequest {
+export interface ListWebPubSubCustomCertificatesRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2167,7 +1933,217 @@ export interface WebPubSubListKeysRequest {
   /** The name of the resource. */
   resourceName: string;
 }
-export const WebPubSubListKeysRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListWebPubSubCustomCertificatesRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      resourceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}/customCertificates",
+        code: 200,
+        apiVersion: "2024-03-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListWebPubSubCustomCertificatesRequest",
+}) as any as S.Schema<ListWebPubSubCustomCertificatesRequest>;
+
+/** A custom certificate. */
+export interface CustomCertificate {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  properties: CustomCertificateProperties;
+}
+export const CustomCertificate = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: CustomCertificateProperties,
+  }),
+).annotate({
+  identifier: "CustomCertificate",
+}) as any as S.Schema<CustomCertificate>;
+
+/** List of custom certificates of this resource. */
+export type CustomCertificateListValueList = Array<CustomCertificate>;
+export const CustomCertificateListValueList = /*@__PURE__*/ S.Array(
+  CustomCertificate,
+) as any as S.Schema<CustomCertificateListValueList>;
+
+/** Custom certificates list. */
+export interface CustomCertificateList {
+  /** List of custom certificates of this resource. */
+  value?: CustomCertificateListValueList;
+  /** The URL the client should use to fetch the next page (per server side paging). It's null for now, added for future use. */
+  nextLink?: string;
+}
+export const CustomCertificateList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(CustomCertificateListValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "CustomCertificateList",
+}) as any as S.Schema<CustomCertificateList>;
+
+export interface ListWebPubSubCustomDomainsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the resource. */
+  resourceName: string;
+}
+export const ListWebPubSubCustomDomainsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    resourceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}/customDomains",
+      code: 200,
+      apiVersion: "2024-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListWebPubSubCustomDomainsRequest",
+}) as any as S.Schema<ListWebPubSubCustomDomainsRequest>;
+
+/** A custom domain */
+export interface CustomDomain {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  properties: CustomDomainProperties;
+}
+export const CustomDomain = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: CustomDomainProperties,
+  }),
+).annotate({ identifier: "CustomDomain" }) as any as S.Schema<CustomDomain>;
+
+/** List of custom domains that bind to this resource. */
+export type CustomDomainListValueList = Array<CustomDomain>;
+export const CustomDomainListValueList = /*@__PURE__*/ S.Array(
+  CustomDomain,
+) as any as S.Schema<CustomDomainListValueList>;
+
+/** Custom domains list */
+export interface CustomDomainList {
+  /** List of custom domains that bind to this resource. */
+  value?: CustomDomainListValueList;
+  /** The URL the client should use to fetch the next page (per server side paging). It's null for now, added for future use. */
+  nextLink?: string;
+}
+export const CustomDomainList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(CustomDomainListValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "CustomDomainList",
+}) as any as S.Schema<CustomDomainList>;
+
+export interface ListWebPubSubHubsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the resource. */
+  resourceName: string;
+}
+export const ListWebPubSubHubsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    resourceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}/hubs",
+      code: 200,
+      apiVersion: "2024-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListWebPubSubHubsRequest",
+}) as any as S.Schema<ListWebPubSubHubsRequest>;
+
+/** A hub setting */
+export interface WebPubSubHub {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  properties: WebPubSubHubProperties;
+}
+export const WebPubSubHub = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: WebPubSubHubProperties,
+  }),
+).annotate({ identifier: "WebPubSubHub" }) as any as S.Schema<WebPubSubHub>;
+
+/** List of hub settings to this resource. */
+export type WebPubSubHubListValueList = Array<WebPubSubHub>;
+export const WebPubSubHubListValueList = /*@__PURE__*/ S.Array(
+  WebPubSubHub,
+) as any as S.Schema<WebPubSubHubListValueList>;
+
+/** Hub setting list */
+export interface WebPubSubHubList {
+  /** List of hub settings to this resource. */
+  value?: WebPubSubHubListValueList;
+  /** The URL the client should use to fetch the next page (per server side paging). It's null for now, added for future use. */
+  nextLink?: string;
+}
+export const WebPubSubHubList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(WebPubSubHubListValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "WebPubSubHubList",
+}) as any as S.Schema<WebPubSubHubList>;
+
+export interface ListWebPubSubKeysRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the resource. */
+  resourceName: string;
+}
+export const ListWebPubSubKeysRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -2181,8 +2157,8 @@ export const WebPubSubListKeysRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "WebPubSubListKeysRequest",
-}) as any as S.Schema<WebPubSubListKeysRequest>;
+  identifier: "ListWebPubSubKeysRequest",
+}) as any as S.Schema<ListWebPubSubKeysRequest>;
 
 /** A class represents the access keys of the resource. */
 export interface WebPubSubKeys {
@@ -2204,102 +2180,7 @@ export const WebPubSubKeys = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "WebPubSubKeys" }) as any as S.Schema<WebPubSubKeys>;
 
-export interface WebPubSubListReplicaSkusRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the resource. */
-  resourceName: string;
-  /** The name of the replica. */
-  replicaName: string;
-}
-export const WebPubSubListReplicaSkusRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    resourceName: S.String.pipe(T.Label()),
-    replicaName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}/replicas/{replicaName}/skus",
-      code: 200,
-      apiVersion: "2024-03-01",
-    }),
-  ),
-).annotate({
-  identifier: "WebPubSubListReplicaSkusRequest",
-}) as any as S.Schema<WebPubSubListReplicaSkusRequest>;
-
-/** Allows capacity value list. */
-export type SkuCapacityAllowedValuesList = Array<number>;
-export const SkuCapacityAllowedValuesList = /*@__PURE__*/ S.Array(
-  S.Number,
-) as any as S.Schema<SkuCapacityAllowedValuesList>;
-
-/** The scale type applicable to the sku. */
-export type ScaleType = "None" | "Manual" | "Automatic";
-export const ScaleType = /*@__PURE__*/ S.String;
-
-/** Describes scaling information of a sku. */
-export interface SkuCapacity {
-  /** The lowest permitted capacity for this resource */
-  minimum?: number;
-  /** The highest permitted capacity for this resource */
-  maximum?: number;
-  /** The default capacity. */
-  default?: number;
-  /** Allows capacity value list. */
-  allowedValues?: SkuCapacityAllowedValuesList;
-  scaleType?: ScaleType;
-}
-export const SkuCapacity = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    minimum: S.optional(S.Number),
-    maximum: S.optional(S.Number),
-    default: S.optional(S.Number),
-    allowedValues: S.optional(SkuCapacityAllowedValuesList),
-    scaleType: S.optional(ScaleType),
-  }),
-).annotate({ identifier: "SkuCapacity" }) as any as S.Schema<SkuCapacity>;
-
-/** Describes an available sku." */
-export interface Sku {
-  /** The resource type that this object applies to */
-  resourceType?: string;
-  sku?: ResourceSku;
-  capacity?: SkuCapacity;
-}
-export const Sku = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    resourceType: S.optional(S.String),
-    sku: S.optional(ResourceSku),
-    capacity: S.optional(SkuCapacity),
-  }),
-).annotate({ identifier: "Sku" }) as any as S.Schema<Sku>;
-
-/** The list of skus available for the resource. */
-export type SkuListValueList = Array<Sku>;
-export const SkuListValueList = /*@__PURE__*/ S.Array(
-  Sku,
-) as any as S.Schema<SkuListValueList>;
-
-/** The list skus operation response */
-export interface SkuList {
-  /** The list of skus available for the resource. */
-  value?: SkuListValueList;
-  /** The URL the client should use to fetch the next page (per server side paging). It's null for now, added for future use. */
-  nextLink?: string;
-}
-export const SkuList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(SkuListValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({ identifier: "SkuList" }) as any as S.Schema<SkuList>;
-
-export interface WebPubSubListSkusRequest {
+export interface ListWebPubSubPrivateEndpointConnectionsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2307,120 +2188,7 @@ export interface WebPubSubListSkusRequest {
   /** The name of the resource. */
   resourceName: string;
 }
-export const WebPubSubListSkusRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    resourceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}/skus",
-      code: 200,
-      apiVersion: "2024-03-01",
-    }),
-  ),
-).annotate({
-  identifier: "WebPubSubListSkusRequest",
-}) as any as S.Schema<WebPubSubListSkusRequest>;
-
-export interface WebPubSubPrivateEndpointConnectionsDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the resource. */
-  resourceName: string;
-  /** The name of the private endpoint connection associated with the Azure resource. */
-  privateEndpointConnectionName: string;
-}
-export const WebPubSubPrivateEndpointConnectionsDeleteRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-      privateEndpointConnectionName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}/privateEndpointConnections/{privateEndpointConnectionName}",
-        code: 200,
-        apiVersion: "2024-03-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "WebPubSubPrivateEndpointConnectionsDeleteRequest",
-  }) as any as S.Schema<WebPubSubPrivateEndpointConnectionsDeleteRequest>;
-
-export interface WebPubSubPrivateEndpointConnectionsDeleteResponse {}
-export const WebPubSubPrivateEndpointConnectionsDeleteResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "WebPubSubPrivateEndpointConnectionsDeleteResponse",
-  }) as any as S.Schema<WebPubSubPrivateEndpointConnectionsDeleteResponse>;
-
-export interface WebPubSubPrivateEndpointConnectionsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the resource. */
-  resourceName: string;
-  /** The name of the private endpoint connection associated with the Azure resource. */
-  privateEndpointConnectionName: string;
-}
-export const WebPubSubPrivateEndpointConnectionsGetRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-      privateEndpointConnectionName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}/privateEndpointConnections/{privateEndpointConnectionName}",
-        code: 200,
-        apiVersion: "2024-03-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "WebPubSubPrivateEndpointConnectionsGetRequest",
-  }) as any as S.Schema<WebPubSubPrivateEndpointConnectionsGetRequest>;
-
-export interface WebPubSubPrivateEndpointConnectionsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  properties?: PrivateEndpointConnectionProperties;
-}
-export const WebPubSubPrivateEndpointConnectionsGetResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(PrivateEndpointConnectionProperties),
-    }),
-  ).annotate({
-    identifier: "WebPubSubPrivateEndpointConnectionsGetResponse",
-  }) as any as S.Schema<WebPubSubPrivateEndpointConnectionsGetResponse>;
-
-export interface WebPubSubPrivateEndpointConnectionsListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the resource. */
-  resourceName: string;
-}
-export const WebPubSubPrivateEndpointConnectionsListRequest =
+export const ListWebPubSubPrivateEndpointConnectionsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -2435,8 +2203,8 @@ export const WebPubSubPrivateEndpointConnectionsListRequest =
       }),
     ),
   ).annotate({
-    identifier: "WebPubSubPrivateEndpointConnectionsListRequest",
-  }) as any as S.Schema<WebPubSubPrivateEndpointConnectionsListRequest>;
+    identifier: "ListWebPubSubPrivateEndpointConnectionsRequest",
+  }) as any as S.Schema<ListWebPubSubPrivateEndpointConnectionsRequest>;
 
 /** The list of the private endpoint connections */
 export type PrivateEndpointConnectionListValueList =
@@ -2461,79 +2229,7 @@ export const PrivateEndpointConnectionList = /*@__PURE__*/ S.suspend(() =>
   identifier: "PrivateEndpointConnectionList",
 }) as any as S.Schema<PrivateEndpointConnectionList>;
 
-/** Private endpoint connection properties */
-export interface PrivateEndpointConnectionPropertiesInput {
-  privateEndpoint?: PrivateEndpoint;
-  privateLinkServiceConnectionState?: PrivateLinkServiceConnectionState;
-}
-export const PrivateEndpointConnectionPropertiesInput = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      privateEndpoint: S.optional(PrivateEndpoint),
-      privateLinkServiceConnectionState: S.optional(
-        PrivateLinkServiceConnectionState,
-      ),
-    }),
-).annotate({
-  identifier: "PrivateEndpointConnectionPropertiesInput",
-}) as any as S.Schema<PrivateEndpointConnectionPropertiesInput>;
-
-export interface WebPubSubPrivateEndpointConnectionsUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the resource. */
-  resourceName: string;
-  /** The name of the private endpoint connection associated with the Azure resource. */
-  privateEndpointConnectionName: string;
-  properties?: PrivateEndpointConnectionPropertiesInput;
-}
-export const WebPubSubPrivateEndpointConnectionsUpdateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-      privateEndpointConnectionName: S.String.pipe(T.Label()),
-      properties: S.optional(PrivateEndpointConnectionPropertiesInput),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}/privateEndpointConnections/{privateEndpointConnectionName}",
-        code: 200,
-        apiVersion: "2024-03-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "WebPubSubPrivateEndpointConnectionsUpdateRequest",
-  }) as any as S.Schema<WebPubSubPrivateEndpointConnectionsUpdateRequest>;
-
-export interface WebPubSubPrivateEndpointConnectionsUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  properties?: PrivateEndpointConnectionProperties;
-}
-export const WebPubSubPrivateEndpointConnectionsUpdateResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(PrivateEndpointConnectionProperties),
-    }),
-  ).annotate({
-    identifier: "WebPubSubPrivateEndpointConnectionsUpdateResponse",
-  }) as any as S.Schema<WebPubSubPrivateEndpointConnectionsUpdateResponse>;
-
-export interface WebPubSubPrivateLinkResourcesListRequest {
+export interface ListWebPubSubPrivateLinkResourcesRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2541,7 +2237,7 @@ export interface WebPubSubPrivateLinkResourcesListRequest {
   /** The name of the resource. */
   resourceName: string;
 }
-export const WebPubSubPrivateLinkResourcesListRequest = /*@__PURE__*/ S.suspend(
+export const ListWebPubSubPrivateLinkResourcesRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -2556,8 +2252,8 @@ export const WebPubSubPrivateLinkResourcesListRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "WebPubSubPrivateLinkResourcesListRequest",
-}) as any as S.Schema<WebPubSubPrivateLinkResourcesListRequest>;
+  identifier: "ListWebPubSubPrivateLinkResourcesRequest",
+}) as any as S.Schema<ListWebPubSubPrivateLinkResourcesRequest>;
 
 /** Required members of the private link resource */
 export type PrivateLinkResourcePropertiesRequiredMembersList = Array<string>;
@@ -2690,11 +2386,290 @@ export const PrivateLinkResourceList = /*@__PURE__*/ S.suspend(() =>
   identifier: "PrivateLinkResourceList",
 }) as any as S.Schema<PrivateLinkResourceList>;
 
+export interface ListWebPubSubReplicasRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the resource. */
+  resourceName: string;
+}
+export const ListWebPubSubReplicasRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    resourceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}/replicas",
+      code: 200,
+      apiVersion: "2024-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListWebPubSubReplicasRequest",
+}) as any as S.Schema<ListWebPubSubReplicasRequest>;
+
+/** Resource tags. */
+export type ReplicaTagsMap = { [key: string]: string | undefined };
+export const ReplicaTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<ReplicaTagsMap>;
+
+/** A class represent a replica resource. */
+export interface Replica {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: ReplicaTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  sku?: ResourceSku;
+  properties?: ReplicaProperties;
+}
+export const Replica = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(ReplicaTagsMap),
+    location: S.String,
+    sku: S.optional(ResourceSku),
+    properties: S.optional(ReplicaProperties),
+  }),
+).annotate({ identifier: "Replica" }) as any as S.Schema<Replica>;
+
+/** List of the replica */
+export type ReplicaListValueList = Array<Replica>;
+export const ReplicaListValueList = /*@__PURE__*/ S.Array(
+  Replica,
+) as any as S.Schema<ReplicaListValueList>;
+
+export interface ReplicaList {
+  /** List of the replica */
+  value?: ReplicaListValueList;
+  /** The URL the client should use to fetch the next page (per server side paging). It's null for now, added for future use. */
+  nextLink?: string;
+}
+export const ReplicaList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(ReplicaListValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({ identifier: "ReplicaList" }) as any as S.Schema<ReplicaList>;
+
+export interface ListWebPubSubReplicaSharedPrivateLinkResourcesRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the resource. */
+  resourceName: string;
+  /** The name of the replica. */
+  replicaName: string;
+}
+export const ListWebPubSubReplicaSharedPrivateLinkResourcesRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      resourceName: S.String.pipe(T.Label()),
+      replicaName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}/replicas/{replicaName}/sharedPrivateLinkResources",
+        code: 200,
+        apiVersion: "2024-03-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListWebPubSubReplicaSharedPrivateLinkResourcesRequest",
+  }) as any as S.Schema<ListWebPubSubReplicaSharedPrivateLinkResourcesRequest>;
+
+/** The list of the shared private link resources */
+export type SharedPrivateLinkResourceListValueList =
+  Array<SharedPrivateLinkResource>;
+export const SharedPrivateLinkResourceListValueList = /*@__PURE__*/ S.Array(
+  SharedPrivateLinkResource,
+) as any as S.Schema<SharedPrivateLinkResourceListValueList>;
+
+/** A list of shared private link resources */
+export interface SharedPrivateLinkResourceList {
+  /** The list of the shared private link resources */
+  value?: SharedPrivateLinkResourceListValueList;
+  /** Request URL that can be used to query next page of private endpoint connections. Returned when the total number of requested private endpoint connections exceed maximum page size. */
+  nextLink?: string;
+}
+export const SharedPrivateLinkResourceList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(SharedPrivateLinkResourceListValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "SharedPrivateLinkResourceList",
+}) as any as S.Schema<SharedPrivateLinkResourceList>;
+
+export interface ListWebPubSubReplicaSkusRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the resource. */
+  resourceName: string;
+  /** The name of the replica. */
+  replicaName: string;
+}
+export const ListWebPubSubReplicaSkusRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    resourceName: S.String.pipe(T.Label()),
+    replicaName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}/replicas/{replicaName}/skus",
+      code: 200,
+      apiVersion: "2024-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListWebPubSubReplicaSkusRequest",
+}) as any as S.Schema<ListWebPubSubReplicaSkusRequest>;
+
+/** Allows capacity value list. */
+export type SkuCapacityAllowedValuesList = Array<number>;
+export const SkuCapacityAllowedValuesList = /*@__PURE__*/ S.Array(
+  S.Number,
+) as any as S.Schema<SkuCapacityAllowedValuesList>;
+
+/** The scale type applicable to the sku. */
+export type ScaleType = "None" | "Manual" | "Automatic";
+export const ScaleType = /*@__PURE__*/ S.String;
+
+/** Describes scaling information of a sku. */
+export interface SkuCapacity {
+  /** The lowest permitted capacity for this resource */
+  minimum?: number;
+  /** The highest permitted capacity for this resource */
+  maximum?: number;
+  /** The default capacity. */
+  default?: number;
+  /** Allows capacity value list. */
+  allowedValues?: SkuCapacityAllowedValuesList;
+  scaleType?: ScaleType;
+}
+export const SkuCapacity = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    minimum: S.optional(S.Number),
+    maximum: S.optional(S.Number),
+    default: S.optional(S.Number),
+    allowedValues: S.optional(SkuCapacityAllowedValuesList),
+    scaleType: S.optional(ScaleType),
+  }),
+).annotate({ identifier: "SkuCapacity" }) as any as S.Schema<SkuCapacity>;
+
+/** Describes an available sku." */
+export interface Sku {
+  /** The resource type that this object applies to */
+  resourceType?: string;
+  sku?: ResourceSku;
+  capacity?: SkuCapacity;
+}
+export const Sku = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    resourceType: S.optional(S.String),
+    sku: S.optional(ResourceSku),
+    capacity: S.optional(SkuCapacity),
+  }),
+).annotate({ identifier: "Sku" }) as any as S.Schema<Sku>;
+
+/** The list of skus available for the resource. */
+export type SkuListValueList = Array<Sku>;
+export const SkuListValueList = /*@__PURE__*/ S.Array(
+  Sku,
+) as any as S.Schema<SkuListValueList>;
+
+/** The list skus operation response */
+export interface SkuList {
+  /** The list of skus available for the resource. */
+  value?: SkuListValueList;
+  /** The URL the client should use to fetch the next page (per server side paging). It's null for now, added for future use. */
+  nextLink?: string;
+}
+export const SkuList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(SkuListValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({ identifier: "SkuList" }) as any as S.Schema<SkuList>;
+
+export interface ListWebPubSubSharedPrivateLinkResourcesRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the resource. */
+  resourceName: string;
+}
+export const ListWebPubSubSharedPrivateLinkResourcesRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      resourceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}/sharedPrivateLinkResources",
+        code: 200,
+        apiVersion: "2024-03-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListWebPubSubSharedPrivateLinkResourcesRequest",
+  }) as any as S.Schema<ListWebPubSubSharedPrivateLinkResourcesRequest>;
+
+export interface ListWebPubSubSkusRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the resource. */
+  resourceName: string;
+}
+export const ListWebPubSubSkusRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    resourceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}/skus",
+      code: 200,
+      apiVersion: "2024-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListWebPubSubSkusRequest",
+}) as any as S.Schema<ListWebPubSubSkusRequest>;
+
 /** The type of access key. */
 export type KeyType = "Primary" | "Secondary" | "Salt";
 export const KeyType = /*@__PURE__*/ S.String;
 
-export interface WebPubSubRegenerateKeyRequest {
+export interface RegenerateWebPubSubKeyRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2703,7 +2678,7 @@ export interface WebPubSubRegenerateKeyRequest {
   resourceName: string;
   keyType?: KeyType | (string & {});
 }
-export const WebPubSubRegenerateKeyRequest = /*@__PURE__*/ S.suspend(() =>
+export const RegenerateWebPubSubKeyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -2718,18 +2693,336 @@ export const WebPubSubRegenerateKeyRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "WebPubSubRegenerateKeyRequest",
-}) as any as S.Schema<WebPubSubRegenerateKeyRequest>;
+  identifier: "RegenerateWebPubSubKeyRequest",
+}) as any as S.Schema<RegenerateWebPubSubKeyRequest>;
+
+export interface RestartWebPubSubRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the resource. */
+  resourceName: string;
+}
+export const RestartWebPubSubRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    resourceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}/restart",
+      code: 200,
+      apiVersion: "2024-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "RestartWebPubSubRequest",
+}) as any as S.Schema<RestartWebPubSubRequest>;
+
+export interface RestartWebPubSubResponse {}
+export const RestartWebPubSubResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "RestartWebPubSubResponse",
+}) as any as S.Schema<RestartWebPubSubResponse>;
+
+export interface RestartWebPubSubReplicasRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the resource. */
+  resourceName: string;
+  /** The name of the replica. */
+  replicaName: string;
+}
+export const RestartWebPubSubReplicasRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    resourceName: S.String.pipe(T.Label()),
+    replicaName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}/replicas/{replicaName}/restart",
+      code: 200,
+      apiVersion: "2024-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "RestartWebPubSubReplicasRequest",
+}) as any as S.Schema<RestartWebPubSubReplicasRequest>;
+
+export interface RestartWebPubSubReplicasResponse {}
+export const RestartWebPubSubReplicasResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "RestartWebPubSubReplicasResponse",
+}) as any as S.Schema<RestartWebPubSubReplicasResponse>;
 
 /** Resource tags. */
-export type WebPubSubReplicasCreateOrUpdateRequestTagsMap = {
+export type UpdateWebPubSubRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const WebPubSubReplicasCreateOrUpdateRequestTagsMap =
+export const UpdateWebPubSubRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateWebPubSubRequestTagsMap>;
+
+/** The billing information of the resource. */
+export interface ResourceSkuInput {
+  /** The name of the SKU. Required. Allowed values: Standard_S1, Free_F1, Premium_P1, Premium_P2 */
+  name: string;
+  tier?: WebPubSubSkuTier | (string & {});
+  /** Optional, integer. The unit count of the resource. 1 for Free_F1/Standard_S1/Premium_P1, 100 for Premium_P2 by default. If present, following values are allowed: Free_F1: 1; Standard_S1: 1,2,3,4,5,6,7,8,9,10,20,30,40,50,60,70,80,90,100; Premium_P1: 1,2,3,4,5,6,7,8,9,10,20,30,40,50,60,70,80,90,100; Premium_P2: 100,200,300,400,500,600,700,800,900,1000; */
+  capacity?: number;
+}
+export const ResourceSkuInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String,
+    tier: S.optional(WebPubSubSkuTier),
+    capacity: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "ResourceSkuInput",
+}) as any as S.Schema<ResourceSkuInput>;
+
+/** A class that describes the properties of the resource */
+export interface WebPubSubPropertiesInput {
+  tls?: WebPubSubTlsSettings;
+  liveTraceConfiguration?: LiveTraceConfiguration;
+  resourceLogConfiguration?: ResourceLogConfiguration;
+  networkACLs?: WebPubSubNetworkACLs;
+  /** Enable or disable public network access. Default to "Enabled". When it's Enabled, network ACLs still apply. When it's Disabled, public network access is always disabled no matter what you set in network ACLs. */
+  publicNetworkAccess?: string;
+  /** DisableLocalAuth Enable or disable local auth with AccessKey When set as true, connection with AccessKey=xxx won't work. */
+  disableLocalAuth?: boolean;
+  /** DisableLocalAuth Enable or disable aad auth When set as true, connection with AuthType=aad won't work. */
+  disableAadAuth?: boolean;
+  /** Enable or disable the regional endpoint. Default to "Enabled". When it's Disabled, new connections will not be routed to this endpoint, however existing connections will not be affected. This property is replica specific. Disable the regional endpoint without replica is not allowed. */
+  regionEndpointEnabled?: string;
+  /** Stop or start the resource. Default to "False". When it's true, the data plane of the resource is shutdown. When it's false, the data plane of the resource is started. */
+  resourceStopped?: string;
+  socketIO?: WebPubSubSocketIOSettings;
+}
+export const WebPubSubPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    tls: S.optional(WebPubSubTlsSettings),
+    liveTraceConfiguration: S.optional(LiveTraceConfiguration),
+    resourceLogConfiguration: S.optional(ResourceLogConfiguration),
+    networkACLs: S.optional(WebPubSubNetworkACLs),
+    publicNetworkAccess: S.optional(S.String),
+    disableLocalAuth: S.optional(S.Boolean),
+    disableAadAuth: S.optional(S.Boolean),
+    regionEndpointEnabled: S.optional(S.String),
+    resourceStopped: S.optional(S.String),
+    socketIO: S.optional(WebPubSubSocketIOSettings),
+  }),
+).annotate({
+  identifier: "WebPubSubPropertiesInput",
+}) as any as S.Schema<WebPubSubPropertiesInput>;
+
+/** Properties of user assigned identity. */
+export interface UserAssignedIdentityPropertyInput {}
+export const UserAssignedIdentityPropertyInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "UserAssignedIdentityPropertyInput",
+}) as any as S.Schema<UserAssignedIdentityPropertyInput>;
+
+/** Get or set the user assigned identities */
+export type ManagedIdentityInputUserAssignedIdentitiesMap = {
+  [key: string]: UserAssignedIdentityPropertyInput | undefined;
+};
+export const ManagedIdentityInputUserAssignedIdentitiesMap =
   /*@__PURE__*/ S.Record(
     S.String,
-    S.String,
-  ) as any as S.Schema<WebPubSubReplicasCreateOrUpdateRequestTagsMap>;
+    UserAssignedIdentityPropertyInput,
+  ) as any as S.Schema<ManagedIdentityInputUserAssignedIdentitiesMap>;
+
+/** A class represent managed identities used for request and response */
+export interface ManagedIdentityInput {
+  type?: ManagedIdentityType | (string & {});
+  /** Get or set the user assigned identities */
+  userAssignedIdentities?: ManagedIdentityInputUserAssignedIdentitiesMap;
+}
+export const ManagedIdentityInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: S.optional(ManagedIdentityType),
+    userAssignedIdentities: S.optional(
+      ManagedIdentityInputUserAssignedIdentitiesMap,
+    ),
+  }),
+).annotate({
+  identifier: "ManagedIdentityInput",
+}) as any as S.Schema<ManagedIdentityInput>;
+
+export interface UpdateWebPubSubRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the resource. */
+  resourceName: string;
+  /** Resource tags. */
+  tags?: UpdateWebPubSubRequestTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  sku?: ResourceSkuInput;
+  properties?: WebPubSubPropertiesInput;
+  kind?: ServiceKind | (string & {});
+  identity?: ManagedIdentityInput;
+}
+export const UpdateWebPubSubRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    resourceName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateWebPubSubRequestTagsMap),
+    location: S.String,
+    sku: S.optional(ResourceSkuInput),
+    properties: S.optional(WebPubSubPropertiesInput),
+    kind: S.optional(ServiceKind),
+    identity: S.optional(ManagedIdentityInput),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}",
+      code: 200,
+      apiVersion: "2024-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateWebPubSubRequest",
+}) as any as S.Schema<UpdateWebPubSubRequest>;
+
+/** Resource tags. */
+export type UpdateWebPubSubResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateWebPubSubResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateWebPubSubResponseTagsMap>;
+
+export interface UpdateWebPubSubResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateWebPubSubResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  sku?: ResourceSku;
+  properties?: WebPubSubProperties;
+  kind?: ServiceKind;
+  identity?: ManagedIdentity;
+}
+export const UpdateWebPubSubResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateWebPubSubResponseTagsMap),
+    location: S.String,
+    sku: S.optional(ResourceSku),
+    properties: S.optional(WebPubSubProperties),
+    kind: S.optional(ServiceKind),
+    identity: S.optional(ManagedIdentity),
+  }),
+).annotate({
+  identifier: "UpdateWebPubSubResponse",
+}) as any as S.Schema<UpdateWebPubSubResponse>;
+
+/** Private endpoint connection properties */
+export interface PrivateEndpointConnectionPropertiesInput {
+  privateEndpoint?: PrivateEndpoint;
+  privateLinkServiceConnectionState?: PrivateLinkServiceConnectionState;
+}
+export const PrivateEndpointConnectionPropertiesInput = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      privateEndpoint: S.optional(PrivateEndpoint),
+      privateLinkServiceConnectionState: S.optional(
+        PrivateLinkServiceConnectionState,
+      ),
+    }),
+).annotate({
+  identifier: "PrivateEndpointConnectionPropertiesInput",
+}) as any as S.Schema<PrivateEndpointConnectionPropertiesInput>;
+
+export interface UpdateWebPubSubPrivateEndpointConnectionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the resource. */
+  resourceName: string;
+  /** The name of the private endpoint connection associated with the Azure resource. */
+  privateEndpointConnectionName: string;
+  properties?: PrivateEndpointConnectionPropertiesInput;
+}
+export const UpdateWebPubSubPrivateEndpointConnectionRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      resourceName: S.String.pipe(T.Label()),
+      privateEndpointConnectionName: S.String.pipe(T.Label()),
+      properties: S.optional(PrivateEndpointConnectionPropertiesInput),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}/privateEndpointConnections/{privateEndpointConnectionName}",
+        code: 200,
+        apiVersion: "2024-03-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "UpdateWebPubSubPrivateEndpointConnectionRequest",
+  }) as any as S.Schema<UpdateWebPubSubPrivateEndpointConnectionRequest>;
+
+export interface UpdateWebPubSubPrivateEndpointConnectionResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  properties?: PrivateEndpointConnectionProperties;
+}
+export const UpdateWebPubSubPrivateEndpointConnectionResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(PrivateEndpointConnectionProperties),
+    }),
+  ).annotate({
+    identifier: "UpdateWebPubSubPrivateEndpointConnectionResponse",
+  }) as any as S.Schema<UpdateWebPubSubPrivateEndpointConnectionResponse>;
+
+/** Resource tags. */
+export type UpdateWebPubSubReplicasRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateWebPubSubReplicasRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateWebPubSubReplicasRequestTagsMap>;
 
 export interface ReplicaPropertiesInput {
   /** Enable or disable the regional endpoint. Default to "Enabled". When it's Disabled, new connections will not be routed to this endpoint, however existing connections will not be affected. */
@@ -2745,6 +3038,383 @@ export const ReplicaPropertiesInput = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ReplicaPropertiesInput",
 }) as any as S.Schema<ReplicaPropertiesInput>;
+
+export interface UpdateWebPubSubReplicasRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the resource. */
+  resourceName: string;
+  /** The name of the replica. */
+  replicaName: string;
+  /** Resource tags. */
+  tags?: UpdateWebPubSubReplicasRequestTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  sku?: ResourceSkuInput;
+  properties?: ReplicaPropertiesInput;
+}
+export const UpdateWebPubSubReplicasRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    resourceName: S.String.pipe(T.Label()),
+    replicaName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateWebPubSubReplicasRequestTagsMap),
+    location: S.String,
+    sku: S.optional(ResourceSkuInput),
+    properties: S.optional(ReplicaPropertiesInput),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}/replicas/{replicaName}",
+      code: 200,
+      apiVersion: "2024-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateWebPubSubReplicasRequest",
+}) as any as S.Schema<UpdateWebPubSubReplicasRequest>;
+
+/** Resource tags. */
+export type UpdateWebPubSubReplicasResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateWebPubSubReplicasResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateWebPubSubReplicasResponseTagsMap>;
+
+export interface UpdateWebPubSubReplicasResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateWebPubSubReplicasResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  sku?: ResourceSku;
+  properties?: ReplicaProperties;
+}
+export const UpdateWebPubSubReplicasResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateWebPubSubReplicasResponseTagsMap),
+    location: S.String,
+    sku: S.optional(ResourceSku),
+    properties: S.optional(ReplicaProperties),
+  }),
+).annotate({
+  identifier: "UpdateWebPubSubReplicasResponse",
+}) as any as S.Schema<UpdateWebPubSubReplicasResponse>;
+
+/** Resource tags. */
+export type WebPubSubCreateOrUpdateRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const WebPubSubCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<WebPubSubCreateOrUpdateRequestTagsMap>;
+
+export interface WebPubSubCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the resource. */
+  resourceName: string;
+  /** Resource tags. */
+  tags?: WebPubSubCreateOrUpdateRequestTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  sku?: ResourceSkuInput;
+  properties?: WebPubSubPropertiesInput;
+  kind?: ServiceKind | (string & {});
+  identity?: ManagedIdentityInput;
+}
+export const WebPubSubCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    resourceName: S.String.pipe(T.Label()),
+    tags: S.optional(WebPubSubCreateOrUpdateRequestTagsMap),
+    location: S.String,
+    sku: S.optional(ResourceSkuInput),
+    properties: S.optional(WebPubSubPropertiesInput),
+    kind: S.optional(ServiceKind),
+    identity: S.optional(ManagedIdentityInput),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}",
+      code: 200,
+      apiVersion: "2024-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "WebPubSubCreateOrUpdateRequest",
+}) as any as S.Schema<WebPubSubCreateOrUpdateRequest>;
+
+/** Resource tags. */
+export type WebPubSubCreateOrUpdateResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const WebPubSubCreateOrUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<WebPubSubCreateOrUpdateResponseTagsMap>;
+
+export interface WebPubSubCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: WebPubSubCreateOrUpdateResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  sku?: ResourceSku;
+  properties?: WebPubSubProperties;
+  kind?: ServiceKind;
+  identity?: ManagedIdentity;
+}
+export const WebPubSubCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(WebPubSubCreateOrUpdateResponseTagsMap),
+    location: S.String,
+    sku: S.optional(ResourceSku),
+    properties: S.optional(WebPubSubProperties),
+    kind: S.optional(ServiceKind),
+    identity: S.optional(ManagedIdentity),
+  }),
+).annotate({
+  identifier: "WebPubSubCreateOrUpdateResponse",
+}) as any as S.Schema<WebPubSubCreateOrUpdateResponse>;
+
+/** Custom certificate properties. */
+export interface CustomCertificatePropertiesInput {
+  /** Base uri of the KeyVault that stores certificate. */
+  keyVaultBaseUri: string;
+  /** Certificate secret name. */
+  keyVaultSecretName: string;
+  /** Certificate secret version. */
+  keyVaultSecretVersion?: string;
+}
+export const CustomCertificatePropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    keyVaultBaseUri: S.String,
+    keyVaultSecretName: S.String,
+    keyVaultSecretVersion: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "CustomCertificatePropertiesInput",
+}) as any as S.Schema<CustomCertificatePropertiesInput>;
+
+export interface WebPubSubCustomCertificatesCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the resource. */
+  resourceName: string;
+  /** Custom certificate name */
+  certificateName: string;
+  properties: CustomCertificatePropertiesInput;
+}
+export const WebPubSubCustomCertificatesCreateOrUpdateRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      resourceName: S.String.pipe(T.Label()),
+      certificateName: S.String.pipe(T.Label()),
+      properties: CustomCertificatePropertiesInput,
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}/customCertificates/{certificateName}",
+        code: 200,
+        apiVersion: "2024-03-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "WebPubSubCustomCertificatesCreateOrUpdateRequest",
+  }) as any as S.Schema<WebPubSubCustomCertificatesCreateOrUpdateRequest>;
+
+export interface WebPubSubCustomCertificatesCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  properties: CustomCertificateProperties;
+}
+export const WebPubSubCustomCertificatesCreateOrUpdateResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: CustomCertificateProperties,
+    }),
+  ).annotate({
+    identifier: "WebPubSubCustomCertificatesCreateOrUpdateResponse",
+  }) as any as S.Schema<WebPubSubCustomCertificatesCreateOrUpdateResponse>;
+
+/** Properties of a custom domain. */
+export interface CustomDomainPropertiesInput {
+  /** The custom domain name. */
+  domainName: string;
+  customCertificate: ResourceReference;
+}
+export const CustomDomainPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    domainName: S.String,
+    customCertificate: ResourceReference,
+  }),
+).annotate({
+  identifier: "CustomDomainPropertiesInput",
+}) as any as S.Schema<CustomDomainPropertiesInput>;
+
+export interface WebPubSubCustomDomainsCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the resource. */
+  resourceName: string;
+  /** Custom domain name. */
+  name: string;
+  properties: CustomDomainPropertiesInput;
+}
+export const WebPubSubCustomDomainsCreateOrUpdateRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      resourceName: S.String.pipe(T.Label()),
+      name: S.String.pipe(T.Label()),
+      properties: CustomDomainPropertiesInput,
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}/customDomains/{name}",
+        code: 200,
+        apiVersion: "2024-03-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "WebPubSubCustomDomainsCreateOrUpdateRequest",
+  }) as any as S.Schema<WebPubSubCustomDomainsCreateOrUpdateRequest>;
+
+export interface WebPubSubCustomDomainsCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  properties: CustomDomainProperties;
+}
+export const WebPubSubCustomDomainsCreateOrUpdateResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: CustomDomainProperties,
+    }),
+  ).annotate({
+    identifier: "WebPubSubCustomDomainsCreateOrUpdateResponse",
+  }) as any as S.Schema<WebPubSubCustomDomainsCreateOrUpdateResponse>;
+
+export interface WebPubSubHubsCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the resource. */
+  resourceName: string;
+  /** The hub name. */
+  hubName: string;
+  properties: WebPubSubHubProperties;
+}
+export const WebPubSubHubsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    resourceName: S.String.pipe(T.Label()),
+    hubName: S.String.pipe(T.Label()),
+    properties: WebPubSubHubProperties,
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}/hubs/{hubName}",
+      code: 200,
+      apiVersion: "2024-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "WebPubSubHubsCreateOrUpdateRequest",
+}) as any as S.Schema<WebPubSubHubsCreateOrUpdateRequest>;
+
+export interface WebPubSubHubsCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  properties: WebPubSubHubProperties;
+}
+export const WebPubSubHubsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: WebPubSubHubProperties,
+  }),
+).annotate({
+  identifier: "WebPubSubHubsCreateOrUpdateResponse",
+}) as any as S.Schema<WebPubSubHubsCreateOrUpdateResponse>;
+
+/** Resource tags. */
+export type WebPubSubReplicasCreateOrUpdateRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const WebPubSubReplicasCreateOrUpdateRequestTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<WebPubSubReplicasCreateOrUpdateRequestTagsMap>;
 
 export interface WebPubSubReplicasCreateOrUpdateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -2795,23 +3465,6 @@ export const WebPubSubReplicasCreateOrUpdateResponseTagsMap =
     S.String,
   ) as any as S.Schema<WebPubSubReplicasCreateOrUpdateResponseTagsMap>;
 
-export interface ReplicaProperties {
-  provisioningState?: ProvisioningState;
-  /** Enable or disable the regional endpoint. Default to "Enabled". When it's Disabled, new connections will not be routed to this endpoint, however existing connections will not be affected. */
-  regionEndpointEnabled?: string;
-  /** Stop or start the resource. Default to "false". When it's true, the data plane of the resource is shutdown. When it's false, the data plane of the resource is started. */
-  resourceStopped?: string;
-}
-export const ReplicaProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provisioningState: S.optional(ProvisioningState),
-    regionEndpointEnabled: S.optional(S.String),
-    resourceStopped: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ReplicaProperties",
-}) as any as S.Schema<ReplicaProperties>;
-
 export interface WebPubSubReplicasCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
@@ -2843,109 +3496,6 @@ export const WebPubSubReplicasCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
 ).annotate({
   identifier: "WebPubSubReplicasCreateOrUpdateResponse",
 }) as any as S.Schema<WebPubSubReplicasCreateOrUpdateResponse>;
-
-export interface WebPubSubReplicasDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the resource. */
-  resourceName: string;
-  /** The name of the replica. */
-  replicaName: string;
-}
-export const WebPubSubReplicasDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    resourceName: S.String.pipe(T.Label()),
-    replicaName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}/replicas/{replicaName}",
-      code: 200,
-      apiVersion: "2024-03-01",
-    }),
-  ),
-).annotate({
-  identifier: "WebPubSubReplicasDeleteRequest",
-}) as any as S.Schema<WebPubSubReplicasDeleteRequest>;
-
-export interface WebPubSubReplicasDeleteResponse {}
-export const WebPubSubReplicasDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "WebPubSubReplicasDeleteResponse",
-}) as any as S.Schema<WebPubSubReplicasDeleteResponse>;
-
-export interface WebPubSubReplicasGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the resource. */
-  resourceName: string;
-  /** The name of the replica. */
-  replicaName: string;
-}
-export const WebPubSubReplicasGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    resourceName: S.String.pipe(T.Label()),
-    replicaName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}/replicas/{replicaName}",
-      code: 200,
-      apiVersion: "2024-03-01",
-    }),
-  ),
-).annotate({
-  identifier: "WebPubSubReplicasGetRequest",
-}) as any as S.Schema<WebPubSubReplicasGetRequest>;
-
-/** Resource tags. */
-export type WebPubSubReplicasGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const WebPubSubReplicasGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<WebPubSubReplicasGetResponseTagsMap>;
-
-export interface WebPubSubReplicasGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: WebPubSubReplicasGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  sku?: ResourceSku;
-  properties?: ReplicaProperties;
-}
-export const WebPubSubReplicasGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(WebPubSubReplicasGetResponseTagsMap),
-    location: S.String,
-    sku: S.optional(ResourceSku),
-    properties: S.optional(ReplicaProperties),
-  }),
-).annotate({
-  identifier: "WebPubSubReplicasGetResponse",
-}) as any as S.Schema<WebPubSubReplicasGetResponse>;
 
 /** Describes the properties of an existing Shared Private Link Resource */
 export interface SharedPrivateLinkResourcePropertiesInput {
@@ -3027,349 +3577,6 @@ export const WebPubSubReplicaSharedPrivateLinkResourcesCreateOrUpdateResponse =
       "WebPubSubReplicaSharedPrivateLinkResourcesCreateOrUpdateResponse",
   }) as any as S.Schema<WebPubSubReplicaSharedPrivateLinkResourcesCreateOrUpdateResponse>;
 
-export interface WebPubSubReplicaSharedPrivateLinkResourcesGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the resource. */
-  resourceName: string;
-  /** The name of the replica. */
-  replicaName: string;
-  /** The name of the shared private link resource. */
-  sharedPrivateLinkResourceName: string;
-}
-export const WebPubSubReplicaSharedPrivateLinkResourcesGetRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-      replicaName: S.String.pipe(T.Label()),
-      sharedPrivateLinkResourceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}/replicas/{replicaName}/sharedPrivateLinkResources/{sharedPrivateLinkResourceName}",
-        code: 200,
-        apiVersion: "2024-03-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "WebPubSubReplicaSharedPrivateLinkResourcesGetRequest",
-  }) as any as S.Schema<WebPubSubReplicaSharedPrivateLinkResourcesGetRequest>;
-
-export interface WebPubSubReplicaSharedPrivateLinkResourcesGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  properties?: SharedPrivateLinkResourceProperties;
-}
-export const WebPubSubReplicaSharedPrivateLinkResourcesGetResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(SharedPrivateLinkResourceProperties),
-    }),
-  ).annotate({
-    identifier: "WebPubSubReplicaSharedPrivateLinkResourcesGetResponse",
-  }) as any as S.Schema<WebPubSubReplicaSharedPrivateLinkResourcesGetResponse>;
-
-export interface WebPubSubReplicaSharedPrivateLinkResourcesListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the resource. */
-  resourceName: string;
-  /** The name of the replica. */
-  replicaName: string;
-}
-export const WebPubSubReplicaSharedPrivateLinkResourcesListRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-      replicaName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}/replicas/{replicaName}/sharedPrivateLinkResources",
-        code: 200,
-        apiVersion: "2024-03-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "WebPubSubReplicaSharedPrivateLinkResourcesListRequest",
-  }) as any as S.Schema<WebPubSubReplicaSharedPrivateLinkResourcesListRequest>;
-
-/** The list of the shared private link resources */
-export type SharedPrivateLinkResourceListValueList =
-  Array<SharedPrivateLinkResource>;
-export const SharedPrivateLinkResourceListValueList = /*@__PURE__*/ S.Array(
-  SharedPrivateLinkResource,
-) as any as S.Schema<SharedPrivateLinkResourceListValueList>;
-
-/** A list of shared private link resources */
-export interface SharedPrivateLinkResourceList {
-  /** The list of the shared private link resources */
-  value?: SharedPrivateLinkResourceListValueList;
-  /** Request URL that can be used to query next page of private endpoint connections. Returned when the total number of requested private endpoint connections exceed maximum page size. */
-  nextLink?: string;
-}
-export const SharedPrivateLinkResourceList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(SharedPrivateLinkResourceListValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SharedPrivateLinkResourceList",
-}) as any as S.Schema<SharedPrivateLinkResourceList>;
-
-export interface WebPubSubReplicasListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the resource. */
-  resourceName: string;
-}
-export const WebPubSubReplicasListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    resourceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}/replicas",
-      code: 200,
-      apiVersion: "2024-03-01",
-    }),
-  ),
-).annotate({
-  identifier: "WebPubSubReplicasListRequest",
-}) as any as S.Schema<WebPubSubReplicasListRequest>;
-
-/** Resource tags. */
-export type ReplicaTagsMap = { [key: string]: string | undefined };
-export const ReplicaTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ReplicaTagsMap>;
-
-/** A class represent a replica resource. */
-export interface Replica {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: ReplicaTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  sku?: ResourceSku;
-  properties?: ReplicaProperties;
-}
-export const Replica = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(ReplicaTagsMap),
-    location: S.String,
-    sku: S.optional(ResourceSku),
-    properties: S.optional(ReplicaProperties),
-  }),
-).annotate({ identifier: "Replica" }) as any as S.Schema<Replica>;
-
-/** List of the replica */
-export type ReplicaListValueList = Array<Replica>;
-export const ReplicaListValueList = /*@__PURE__*/ S.Array(
-  Replica,
-) as any as S.Schema<ReplicaListValueList>;
-
-export interface ReplicaList {
-  /** List of the replica */
-  value?: ReplicaListValueList;
-  /** The URL the client should use to fetch the next page (per server side paging). It's null for now, added for future use. */
-  nextLink?: string;
-}
-export const ReplicaList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(ReplicaListValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({ identifier: "ReplicaList" }) as any as S.Schema<ReplicaList>;
-
-export interface WebPubSubReplicasRestartRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the resource. */
-  resourceName: string;
-  /** The name of the replica. */
-  replicaName: string;
-}
-export const WebPubSubReplicasRestartRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    resourceName: S.String.pipe(T.Label()),
-    replicaName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}/replicas/{replicaName}/restart",
-      code: 200,
-      apiVersion: "2024-03-01",
-    }),
-  ),
-).annotate({
-  identifier: "WebPubSubReplicasRestartRequest",
-}) as any as S.Schema<WebPubSubReplicasRestartRequest>;
-
-export interface WebPubSubReplicasRestartResponse {}
-export const WebPubSubReplicasRestartResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "WebPubSubReplicasRestartResponse",
-}) as any as S.Schema<WebPubSubReplicasRestartResponse>;
-
-/** Resource tags. */
-export type WebPubSubReplicasUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const WebPubSubReplicasUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<WebPubSubReplicasUpdateRequestTagsMap>;
-
-export interface WebPubSubReplicasUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the resource. */
-  resourceName: string;
-  /** The name of the replica. */
-  replicaName: string;
-  /** Resource tags. */
-  tags?: WebPubSubReplicasUpdateRequestTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  sku?: ResourceSkuInput;
-  properties?: ReplicaPropertiesInput;
-}
-export const WebPubSubReplicasUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    resourceName: S.String.pipe(T.Label()),
-    replicaName: S.String.pipe(T.Label()),
-    tags: S.optional(WebPubSubReplicasUpdateRequestTagsMap),
-    location: S.String,
-    sku: S.optional(ResourceSkuInput),
-    properties: S.optional(ReplicaPropertiesInput),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}/replicas/{replicaName}",
-      code: 200,
-      apiVersion: "2024-03-01",
-    }),
-  ),
-).annotate({
-  identifier: "WebPubSubReplicasUpdateRequest",
-}) as any as S.Schema<WebPubSubReplicasUpdateRequest>;
-
-/** Resource tags. */
-export type WebPubSubReplicasUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const WebPubSubReplicasUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<WebPubSubReplicasUpdateResponseTagsMap>;
-
-export interface WebPubSubReplicasUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: WebPubSubReplicasUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  sku?: ResourceSku;
-  properties?: ReplicaProperties;
-}
-export const WebPubSubReplicasUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(WebPubSubReplicasUpdateResponseTagsMap),
-    location: S.String,
-    sku: S.optional(ResourceSku),
-    properties: S.optional(ReplicaProperties),
-  }),
-).annotate({
-  identifier: "WebPubSubReplicasUpdateResponse",
-}) as any as S.Schema<WebPubSubReplicasUpdateResponse>;
-
-export interface WebPubSubRestartRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the resource. */
-  resourceName: string;
-}
-export const WebPubSubRestartRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    resourceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}/restart",
-      code: 200,
-      apiVersion: "2024-03-01",
-    }),
-  ),
-).annotate({
-  identifier: "WebPubSubRestartRequest",
-}) as any as S.Schema<WebPubSubRestartRequest>;
-
-export interface WebPubSubRestartResponse {}
-export const WebPubSubRestartResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "WebPubSubRestartResponse",
-}) as any as S.Schema<WebPubSubRestartResponse>;
-
 export interface WebPubSubSharedPrivateLinkResourcesCreateOrUpdateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -3425,252 +3632,556 @@ export const WebPubSubSharedPrivateLinkResourcesCreateOrUpdateResponse =
     identifier: "WebPubSubSharedPrivateLinkResourcesCreateOrUpdateResponse",
   }) as any as S.Schema<WebPubSubSharedPrivateLinkResourcesCreateOrUpdateResponse>;
 
-export interface WebPubSubSharedPrivateLinkResourcesDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the resource. */
-  resourceName: string;
-  /** The name of the shared private link resource. */
-  sharedPrivateLinkResourceName: string;
-}
-export const WebPubSubSharedPrivateLinkResourcesDeleteRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-      sharedPrivateLinkResourceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}/sharedPrivateLinkResources/{sharedPrivateLinkResourceName}",
-        code: 200,
-        apiVersion: "2024-03-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "WebPubSubSharedPrivateLinkResourcesDeleteRequest",
-  }) as any as S.Schema<WebPubSubSharedPrivateLinkResourcesDeleteRequest>;
-
-export interface WebPubSubSharedPrivateLinkResourcesDeleteResponse {}
-export const WebPubSubSharedPrivateLinkResourcesDeleteResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "WebPubSubSharedPrivateLinkResourcesDeleteResponse",
-  }) as any as S.Schema<WebPubSubSharedPrivateLinkResourcesDeleteResponse>;
-
-export interface WebPubSubSharedPrivateLinkResourcesGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the resource. */
-  resourceName: string;
-  /** The name of the shared private link resource. */
-  sharedPrivateLinkResourceName: string;
-}
-export const WebPubSubSharedPrivateLinkResourcesGetRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-      sharedPrivateLinkResourceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}/sharedPrivateLinkResources/{sharedPrivateLinkResourceName}",
-        code: 200,
-        apiVersion: "2024-03-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "WebPubSubSharedPrivateLinkResourcesGetRequest",
-  }) as any as S.Schema<WebPubSubSharedPrivateLinkResourcesGetRequest>;
-
-export interface WebPubSubSharedPrivateLinkResourcesGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  properties?: SharedPrivateLinkResourceProperties;
-}
-export const WebPubSubSharedPrivateLinkResourcesGetResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(SharedPrivateLinkResourceProperties),
-    }),
-  ).annotate({
-    identifier: "WebPubSubSharedPrivateLinkResourcesGetResponse",
-  }) as any as S.Schema<WebPubSubSharedPrivateLinkResourcesGetResponse>;
-
-export interface WebPubSubSharedPrivateLinkResourcesListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the resource. */
-  resourceName: string;
-}
-export const WebPubSubSharedPrivateLinkResourcesListRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}/sharedPrivateLinkResources",
-        code: 200,
-        apiVersion: "2024-03-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "WebPubSubSharedPrivateLinkResourcesListRequest",
-  }) as any as S.Schema<WebPubSubSharedPrivateLinkResourcesListRequest>;
-
-/** Resource tags. */
-export type WebPubSubUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const WebPubSubUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<WebPubSubUpdateRequestTagsMap>;
-
-export interface WebPubSubUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the resource. */
-  resourceName: string;
-  /** Resource tags. */
-  tags?: WebPubSubUpdateRequestTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  sku?: ResourceSkuInput;
-  properties?: WebPubSubPropertiesInput;
-  kind?: ServiceKind | (string & {});
-  identity?: ManagedIdentityInput;
-}
-export const WebPubSubUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    resourceName: S.String.pipe(T.Label()),
-    tags: S.optional(WebPubSubUpdateRequestTagsMap),
-    location: S.String,
-    sku: S.optional(ResourceSkuInput),
-    properties: S.optional(WebPubSubPropertiesInput),
-    kind: S.optional(ServiceKind),
-    identity: S.optional(ManagedIdentityInput),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.SignalRService/webPubSub/{resourceName}",
-      code: 200,
-      apiVersion: "2024-03-01",
-    }),
-  ),
-).annotate({
-  identifier: "WebPubSubUpdateRequest",
-}) as any as S.Schema<WebPubSubUpdateRequest>;
-
-/** Resource tags. */
-export type WebPubSubUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const WebPubSubUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<WebPubSubUpdateResponseTagsMap>;
-
-export interface WebPubSubUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: WebPubSubUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  sku?: ResourceSku;
-  properties?: WebPubSubProperties;
-  kind?: ServiceKind;
-  identity?: ManagedIdentity;
-}
-export const WebPubSubUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(WebPubSubUpdateResponseTagsMap),
-    location: S.String,
-    sku: S.optional(ResourceSku),
-    properties: S.optional(WebPubSubProperties),
-    kind: S.optional(ServiceKind),
-    identity: S.optional(ManagedIdentity),
-  }),
-).annotate({
-  identifier: "WebPubSubUpdateResponse",
-}) as any as S.Schema<WebPubSubUpdateResponse>;
-
-export type OperationsListError = AzureOpError;
-/** Lists all of the available REST API operations of the Microsoft.SignalRService provider. */
-export const OperationsList: API.OperationMethod<
-  OperationsListRequest,
-  OperationList,
-  OperationsListError,
+export type CheckWebPubSubNameAvailabilityError = AzureOpError;
+/** Checks that the resource name is valid and is not already in use. */
+export const CheckWebPubSubNameAvailability: API.OperationMethod<
+  CheckWebPubSubNameAvailabilityRequest,
+  NameAvailability,
+  CheckWebPubSubNameAvailabilityError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OperationsListRequest,
+  input: CheckWebPubSubNameAvailabilityRequest,
+  output: NameAvailability,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteWebPubSubError = AzureOpError;
+/** Operation to delete a resource. */
+export const DeleteWebPubSub: API.OperationMethod<
+  DeleteWebPubSubRequest,
+  DeleteWebPubSubResponse,
+  DeleteWebPubSubError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteWebPubSubRequest,
+  output: DeleteWebPubSubResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteWebPubSubCustomCertificateError = AzureOpError;
+/** Delete a custom certificate. */
+export const DeleteWebPubSubCustomCertificate: API.OperationMethod<
+  DeleteWebPubSubCustomCertificateRequest,
+  DeleteWebPubSubCustomCertificateResponse,
+  DeleteWebPubSubCustomCertificateError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteWebPubSubCustomCertificateRequest,
+  output: DeleteWebPubSubCustomCertificateResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteWebPubSubCustomDomainError = AzureOpError;
+/** Delete a custom domain. */
+export const DeleteWebPubSubCustomDomain: API.OperationMethod<
+  DeleteWebPubSubCustomDomainRequest,
+  DeleteWebPubSubCustomDomainResponse,
+  DeleteWebPubSubCustomDomainError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteWebPubSubCustomDomainRequest,
+  output: DeleteWebPubSubCustomDomainResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteWebPubSubHubError = AzureOpError;
+/** Delete a hub setting. */
+export const DeleteWebPubSubHub: API.OperationMethod<
+  DeleteWebPubSubHubRequest,
+  DeleteWebPubSubHubResponse,
+  DeleteWebPubSubHubError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteWebPubSubHubRequest,
+  output: DeleteWebPubSubHubResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteWebPubSubPrivateEndpointConnectionError = AzureOpError;
+/** Delete the specified private endpoint connection */
+export const DeleteWebPubSubPrivateEndpointConnection: API.OperationMethod<
+  DeleteWebPubSubPrivateEndpointConnectionRequest,
+  DeleteWebPubSubPrivateEndpointConnectionResponse,
+  DeleteWebPubSubPrivateEndpointConnectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteWebPubSubPrivateEndpointConnectionRequest,
+  output: DeleteWebPubSubPrivateEndpointConnectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteWebPubSubReplicasError = AzureOpError;
+/** Operation to delete a replica. */
+export const DeleteWebPubSubReplicas: API.OperationMethod<
+  DeleteWebPubSubReplicasRequest,
+  DeleteWebPubSubReplicasResponse,
+  DeleteWebPubSubReplicasError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteWebPubSubReplicasRequest,
+  output: DeleteWebPubSubReplicasResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteWebPubSubSharedPrivateLinkResourceError = AzureOpError;
+/** Delete the specified shared private link resource */
+export const DeleteWebPubSubSharedPrivateLinkResource: API.OperationMethod<
+  DeleteWebPubSubSharedPrivateLinkResourceRequest,
+  DeleteWebPubSubSharedPrivateLinkResourceResponse,
+  DeleteWebPubSubSharedPrivateLinkResourceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteWebPubSubSharedPrivateLinkResourceRequest,
+  output: DeleteWebPubSubSharedPrivateLinkResourceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetWebPubSubError = AzureOpError;
+/** Get the resource and its properties. */
+export const GetWebPubSub: API.OperationMethod<
+  GetWebPubSubRequest,
+  GetWebPubSubResponse,
+  GetWebPubSubError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetWebPubSubRequest,
+  output: GetWebPubSubResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetWebPubSubCustomCertificateError = AzureOpError;
+/** Get a custom certificate. */
+export const GetWebPubSubCustomCertificate: API.OperationMethod<
+  GetWebPubSubCustomCertificateRequest,
+  GetWebPubSubCustomCertificateResponse,
+  GetWebPubSubCustomCertificateError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetWebPubSubCustomCertificateRequest,
+  output: GetWebPubSubCustomCertificateResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetWebPubSubCustomDomainError = AzureOpError;
+/** Get a custom domain. */
+export const GetWebPubSubCustomDomain: API.OperationMethod<
+  GetWebPubSubCustomDomainRequest,
+  GetWebPubSubCustomDomainResponse,
+  GetWebPubSubCustomDomainError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetWebPubSubCustomDomainRequest,
+  output: GetWebPubSubCustomDomainResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetWebPubSubHubError = AzureOpError;
+/** Get a hub setting. */
+export const GetWebPubSubHub: API.OperationMethod<
+  GetWebPubSubHubRequest,
+  GetWebPubSubHubResponse,
+  GetWebPubSubHubError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetWebPubSubHubRequest,
+  output: GetWebPubSubHubResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetWebPubSubPrivateEndpointConnectionError = AzureOpError;
+/** Get the specified private endpoint connection */
+export const GetWebPubSubPrivateEndpointConnection: API.OperationMethod<
+  GetWebPubSubPrivateEndpointConnectionRequest,
+  GetWebPubSubPrivateEndpointConnectionResponse,
+  GetWebPubSubPrivateEndpointConnectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetWebPubSubPrivateEndpointConnectionRequest,
+  output: GetWebPubSubPrivateEndpointConnectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetWebPubSubReplicasError = AzureOpError;
+/** Get the replica and its properties. */
+export const GetWebPubSubReplicas: API.OperationMethod<
+  GetWebPubSubReplicasRequest,
+  GetWebPubSubReplicasResponse,
+  GetWebPubSubReplicasError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetWebPubSubReplicasRequest,
+  output: GetWebPubSubReplicasResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetWebPubSubReplicaSharedPrivateLinkResourceError = AzureOpError;
+/** Get the specified shared private link resource */
+export const GetWebPubSubReplicaSharedPrivateLinkResource: API.OperationMethod<
+  GetWebPubSubReplicaSharedPrivateLinkResourceRequest,
+  GetWebPubSubReplicaSharedPrivateLinkResourceResponse,
+  GetWebPubSubReplicaSharedPrivateLinkResourceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetWebPubSubReplicaSharedPrivateLinkResourceRequest,
+  output: GetWebPubSubReplicaSharedPrivateLinkResourceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetWebPubSubSharedPrivateLinkResourceError = AzureOpError;
+/** Get the specified shared private link resource */
+export const GetWebPubSubSharedPrivateLinkResource: API.OperationMethod<
+  GetWebPubSubSharedPrivateLinkResourceRequest,
+  GetWebPubSubSharedPrivateLinkResourceResponse,
+  GetWebPubSubSharedPrivateLinkResourceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetWebPubSubSharedPrivateLinkResourceRequest,
+  output: GetWebPubSubSharedPrivateLinkResourceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListOperationsError = AzureOpError;
+/** Lists all of the available REST API operations of the Microsoft.SignalRService provider. */
+export const ListOperations: API.OperationMethod<
+  ListOperationsRequest,
+  OperationList,
+  ListOperationsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListOperationsRequest,
   output: OperationList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type UsagesListError = AzureOpError;
+export type ListUsagesError = AzureOpError;
 /** List resource usage quotas by location. */
-export const UsagesList: API.OperationMethod<
-  UsagesListRequest,
+export const ListUsages: API.OperationMethod<
+  ListUsagesRequest,
   SignalRServiceUsageList,
-  UsagesListError,
+  ListUsagesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UsagesListRequest,
+  input: ListUsagesRequest,
   output: SignalRServiceUsageList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type WebPubSubCheckNameAvailabilityError = AzureOpError;
-/** Checks that the resource name is valid and is not already in use. */
-export const WebPubSubCheckNameAvailability: API.OperationMethod<
-  WebPubSubCheckNameAvailabilityRequest,
-  NameAvailability,
-  WebPubSubCheckNameAvailabilityError,
+export type ListWebPubSubByResourceGroupError = AzureOpError;
+/** Handles requests to list all resources in a resource group. */
+export const ListWebPubSubByResourceGroup: API.OperationMethod<
+  ListWebPubSubByResourceGroupRequest,
+  WebPubSubResourceList,
+  ListWebPubSubByResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: WebPubSubCheckNameAvailabilityRequest,
-  output: NameAvailability,
+  input: ListWebPubSubByResourceGroupRequest,
+  output: WebPubSubResourceList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListWebPubSubBySubscriptionError = AzureOpError;
+/** Handles requests to list all resources in a subscription. */
+export const ListWebPubSubBySubscription: API.OperationMethod<
+  ListWebPubSubBySubscriptionRequest,
+  WebPubSubResourceList,
+  ListWebPubSubBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListWebPubSubBySubscriptionRequest,
+  output: WebPubSubResourceList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListWebPubSubCustomCertificatesError = AzureOpError;
+/** List all custom certificates. */
+export const ListWebPubSubCustomCertificates: API.OperationMethod<
+  ListWebPubSubCustomCertificatesRequest,
+  CustomCertificateList,
+  ListWebPubSubCustomCertificatesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListWebPubSubCustomCertificatesRequest,
+  output: CustomCertificateList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListWebPubSubCustomDomainsError = AzureOpError;
+/** List all custom domains. */
+export const ListWebPubSubCustomDomains: API.OperationMethod<
+  ListWebPubSubCustomDomainsRequest,
+  CustomDomainList,
+  ListWebPubSubCustomDomainsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListWebPubSubCustomDomainsRequest,
+  output: CustomDomainList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListWebPubSubHubsError = AzureOpError;
+/** List hub settings. */
+export const ListWebPubSubHubs: API.OperationMethod<
+  ListWebPubSubHubsRequest,
+  WebPubSubHubList,
+  ListWebPubSubHubsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListWebPubSubHubsRequest,
+  output: WebPubSubHubList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListWebPubSubKeysError = AzureOpError;
+/** Get the access keys of the resource. */
+export const ListWebPubSubKeys: API.OperationMethod<
+  ListWebPubSubKeysRequest,
+  WebPubSubKeys,
+  ListWebPubSubKeysError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListWebPubSubKeysRequest,
+  output: WebPubSubKeys,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListWebPubSubPrivateEndpointConnectionsError = AzureOpError;
+/** List private endpoint connections */
+export const ListWebPubSubPrivateEndpointConnections: API.OperationMethod<
+  ListWebPubSubPrivateEndpointConnectionsRequest,
+  PrivateEndpointConnectionList,
+  ListWebPubSubPrivateEndpointConnectionsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListWebPubSubPrivateEndpointConnectionsRequest,
+  output: PrivateEndpointConnectionList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListWebPubSubPrivateLinkResourcesError = AzureOpError;
+/** Get the private link resources that need to be created for a resource. */
+export const ListWebPubSubPrivateLinkResources: API.OperationMethod<
+  ListWebPubSubPrivateLinkResourcesRequest,
+  PrivateLinkResourceList,
+  ListWebPubSubPrivateLinkResourcesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListWebPubSubPrivateLinkResourcesRequest,
+  output: PrivateLinkResourceList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListWebPubSubReplicasError = AzureOpError;
+/** List all replicas belong to this resource */
+export const ListWebPubSubReplicas: API.OperationMethod<
+  ListWebPubSubReplicasRequest,
+  ReplicaList,
+  ListWebPubSubReplicasError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListWebPubSubReplicasRequest,
+  output: ReplicaList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListWebPubSubReplicaSharedPrivateLinkResourcesError = AzureOpError;
+/** List shared private link resources */
+export const ListWebPubSubReplicaSharedPrivateLinkResources: API.OperationMethod<
+  ListWebPubSubReplicaSharedPrivateLinkResourcesRequest,
+  SharedPrivateLinkResourceList,
+  ListWebPubSubReplicaSharedPrivateLinkResourcesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListWebPubSubReplicaSharedPrivateLinkResourcesRequest,
+  output: SharedPrivateLinkResourceList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListWebPubSubReplicaSkusError = AzureOpError;
+/** List all available skus of the replica resource. */
+export const ListWebPubSubReplicaSkus: API.OperationMethod<
+  ListWebPubSubReplicaSkusRequest,
+  SkuList,
+  ListWebPubSubReplicaSkusError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListWebPubSubReplicaSkusRequest,
+  output: SkuList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListWebPubSubSharedPrivateLinkResourcesError = AzureOpError;
+/** List shared private link resources */
+export const ListWebPubSubSharedPrivateLinkResources: API.OperationMethod<
+  ListWebPubSubSharedPrivateLinkResourcesRequest,
+  SharedPrivateLinkResourceList,
+  ListWebPubSubSharedPrivateLinkResourcesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListWebPubSubSharedPrivateLinkResourcesRequest,
+  output: SharedPrivateLinkResourceList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListWebPubSubSkusError = AzureOpError;
+/** List all available skus of the resource. */
+export const ListWebPubSubSkus: API.OperationMethod<
+  ListWebPubSubSkusRequest,
+  SkuList,
+  ListWebPubSubSkusError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListWebPubSubSkusRequest,
+  output: SkuList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RegenerateWebPubSubKeyError = AzureOpError;
+/** Regenerate the access key for the resource. PrimaryKey and SecondaryKey cannot be regenerated at the same time. */
+export const RegenerateWebPubSubKey: API.OperationMethod<
+  RegenerateWebPubSubKeyRequest,
+  WebPubSubKeys,
+  RegenerateWebPubSubKeyError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RegenerateWebPubSubKeyRequest,
+  output: WebPubSubKeys,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RestartWebPubSubError = AzureOpError;
+/** Operation to restart a resource. */
+export const RestartWebPubSub: API.OperationMethod<
+  RestartWebPubSubRequest,
+  RestartWebPubSubResponse,
+  RestartWebPubSubError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RestartWebPubSubRequest,
+  output: RestartWebPubSubResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RestartWebPubSubReplicasError = AzureOpError;
+/** Operation to restart a replica. */
+export const RestartWebPubSubReplicas: API.OperationMethod<
+  RestartWebPubSubReplicasRequest,
+  RestartWebPubSubReplicasResponse,
+  RestartWebPubSubReplicasError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RestartWebPubSubReplicasRequest,
+  output: RestartWebPubSubReplicasResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateWebPubSubError = AzureOpError;
+/** Operation to update an exiting resource. */
+export const UpdateWebPubSub: API.OperationMethod<
+  UpdateWebPubSubRequest,
+  UpdateWebPubSubResponse,
+  UpdateWebPubSubError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateWebPubSubRequest,
+  output: UpdateWebPubSubResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateWebPubSubPrivateEndpointConnectionError = AzureOpError;
+/** Update the state of specified private endpoint connection */
+export const UpdateWebPubSubPrivateEndpointConnection: API.OperationMethod<
+  UpdateWebPubSubPrivateEndpointConnectionRequest,
+  UpdateWebPubSubPrivateEndpointConnectionResponse,
+  UpdateWebPubSubPrivateEndpointConnectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateWebPubSubPrivateEndpointConnectionRequest,
+  output: UpdateWebPubSubPrivateEndpointConnectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateWebPubSubReplicasError = AzureOpError;
+/** Operation to update an exiting replica. */
+export const UpdateWebPubSubReplicas: API.OperationMethod<
+  UpdateWebPubSubReplicasRequest,
+  UpdateWebPubSubReplicasResponse,
+  UpdateWebPubSubReplicasError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateWebPubSubReplicasRequest,
+  output: UpdateWebPubSubReplicasResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -3706,51 +4217,6 @@ export const WebPubSubCustomCertificatesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type WebPubSubCustomCertificatesDeleteError = AzureOpError;
-/** Delete a custom certificate. */
-export const WebPubSubCustomCertificatesDelete: API.OperationMethod<
-  WebPubSubCustomCertificatesDeleteRequest,
-  WebPubSubCustomCertificatesDeleteResponse,
-  WebPubSubCustomCertificatesDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WebPubSubCustomCertificatesDeleteRequest,
-  output: WebPubSubCustomCertificatesDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WebPubSubCustomCertificatesGetError = AzureOpError;
-/** Get a custom certificate. */
-export const WebPubSubCustomCertificatesGet: API.OperationMethod<
-  WebPubSubCustomCertificatesGetRequest,
-  WebPubSubCustomCertificatesGetResponse,
-  WebPubSubCustomCertificatesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WebPubSubCustomCertificatesGetRequest,
-  output: WebPubSubCustomCertificatesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WebPubSubCustomCertificatesListError = AzureOpError;
-/** List all custom certificates. */
-export const WebPubSubCustomCertificatesList: API.OperationMethod<
-  WebPubSubCustomCertificatesListRequest,
-  CustomCertificateList,
-  WebPubSubCustomCertificatesListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WebPubSubCustomCertificatesListRequest,
-  output: CustomCertificateList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type WebPubSubCustomDomainsCreateOrUpdateError = AzureOpError;
 /** Create or update a custom domain. */
 export const WebPubSubCustomDomainsCreateOrUpdate: API.OperationMethod<
@@ -3761,81 +4227,6 @@ export const WebPubSubCustomDomainsCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: WebPubSubCustomDomainsCreateOrUpdateRequest,
   output: WebPubSubCustomDomainsCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WebPubSubCustomDomainsDeleteError = AzureOpError;
-/** Delete a custom domain. */
-export const WebPubSubCustomDomainsDelete: API.OperationMethod<
-  WebPubSubCustomDomainsDeleteRequest,
-  WebPubSubCustomDomainsDeleteResponse,
-  WebPubSubCustomDomainsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WebPubSubCustomDomainsDeleteRequest,
-  output: WebPubSubCustomDomainsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WebPubSubCustomDomainsGetError = AzureOpError;
-/** Get a custom domain. */
-export const WebPubSubCustomDomainsGet: API.OperationMethod<
-  WebPubSubCustomDomainsGetRequest,
-  WebPubSubCustomDomainsGetResponse,
-  WebPubSubCustomDomainsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WebPubSubCustomDomainsGetRequest,
-  output: WebPubSubCustomDomainsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WebPubSubCustomDomainsListError = AzureOpError;
-/** List all custom domains. */
-export const WebPubSubCustomDomainsList: API.OperationMethod<
-  WebPubSubCustomDomainsListRequest,
-  CustomDomainList,
-  WebPubSubCustomDomainsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WebPubSubCustomDomainsListRequest,
-  output: CustomDomainList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WebPubSubDeleteError = AzureOpError;
-/** Operation to delete a resource. */
-export const WebPubSubDelete: API.OperationMethod<
-  WebPubSubDeleteRequest,
-  WebPubSubDeleteResponse,
-  WebPubSubDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WebPubSubDeleteRequest,
-  output: WebPubSubDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WebPubSubGetError = AzureOpError;
-/** Get the resource and its properties. */
-export const WebPubSubGet: API.OperationMethod<
-  WebPubSubGetRequest,
-  WebPubSubGetResponse,
-  WebPubSubGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WebPubSubGetRequest,
-  output: WebPubSubGetResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -3856,216 +4247,6 @@ export const WebPubSubHubsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type WebPubSubHubsDeleteError = AzureOpError;
-/** Delete a hub setting. */
-export const WebPubSubHubsDelete: API.OperationMethod<
-  WebPubSubHubsDeleteRequest,
-  WebPubSubHubsDeleteResponse,
-  WebPubSubHubsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WebPubSubHubsDeleteRequest,
-  output: WebPubSubHubsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WebPubSubHubsGetError = AzureOpError;
-/** Get a hub setting. */
-export const WebPubSubHubsGet: API.OperationMethod<
-  WebPubSubHubsGetRequest,
-  WebPubSubHubsGetResponse,
-  WebPubSubHubsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WebPubSubHubsGetRequest,
-  output: WebPubSubHubsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WebPubSubHubsListError = AzureOpError;
-/** List hub settings. */
-export const WebPubSubHubsList: API.OperationMethod<
-  WebPubSubHubsListRequest,
-  WebPubSubHubList,
-  WebPubSubHubsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WebPubSubHubsListRequest,
-  output: WebPubSubHubList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WebPubSubListByResourceGroupError = AzureOpError;
-/** Handles requests to list all resources in a resource group. */
-export const WebPubSubListByResourceGroup: API.OperationMethod<
-  WebPubSubListByResourceGroupRequest,
-  WebPubSubResourceList,
-  WebPubSubListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WebPubSubListByResourceGroupRequest,
-  output: WebPubSubResourceList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WebPubSubListBySubscriptionError = AzureOpError;
-/** Handles requests to list all resources in a subscription. */
-export const WebPubSubListBySubscription: API.OperationMethod<
-  WebPubSubListBySubscriptionRequest,
-  WebPubSubResourceList,
-  WebPubSubListBySubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WebPubSubListBySubscriptionRequest,
-  output: WebPubSubResourceList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WebPubSubListKeysError = AzureOpError;
-/** Get the access keys of the resource. */
-export const WebPubSubListKeys: API.OperationMethod<
-  WebPubSubListKeysRequest,
-  WebPubSubKeys,
-  WebPubSubListKeysError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WebPubSubListKeysRequest,
-  output: WebPubSubKeys,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WebPubSubListReplicaSkusError = AzureOpError;
-/** List all available skus of the replica resource. */
-export const WebPubSubListReplicaSkus: API.OperationMethod<
-  WebPubSubListReplicaSkusRequest,
-  SkuList,
-  WebPubSubListReplicaSkusError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WebPubSubListReplicaSkusRequest,
-  output: SkuList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WebPubSubListSkusError = AzureOpError;
-/** List all available skus of the resource. */
-export const WebPubSubListSkus: API.OperationMethod<
-  WebPubSubListSkusRequest,
-  SkuList,
-  WebPubSubListSkusError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WebPubSubListSkusRequest,
-  output: SkuList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WebPubSubPrivateEndpointConnectionsDeleteError = AzureOpError;
-/** Delete the specified private endpoint connection */
-export const WebPubSubPrivateEndpointConnectionsDelete: API.OperationMethod<
-  WebPubSubPrivateEndpointConnectionsDeleteRequest,
-  WebPubSubPrivateEndpointConnectionsDeleteResponse,
-  WebPubSubPrivateEndpointConnectionsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WebPubSubPrivateEndpointConnectionsDeleteRequest,
-  output: WebPubSubPrivateEndpointConnectionsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WebPubSubPrivateEndpointConnectionsGetError = AzureOpError;
-/** Get the specified private endpoint connection */
-export const WebPubSubPrivateEndpointConnectionsGet: API.OperationMethod<
-  WebPubSubPrivateEndpointConnectionsGetRequest,
-  WebPubSubPrivateEndpointConnectionsGetResponse,
-  WebPubSubPrivateEndpointConnectionsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WebPubSubPrivateEndpointConnectionsGetRequest,
-  output: WebPubSubPrivateEndpointConnectionsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WebPubSubPrivateEndpointConnectionsListError = AzureOpError;
-/** List private endpoint connections */
-export const WebPubSubPrivateEndpointConnectionsList: API.OperationMethod<
-  WebPubSubPrivateEndpointConnectionsListRequest,
-  PrivateEndpointConnectionList,
-  WebPubSubPrivateEndpointConnectionsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WebPubSubPrivateEndpointConnectionsListRequest,
-  output: PrivateEndpointConnectionList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WebPubSubPrivateEndpointConnectionsUpdateError = AzureOpError;
-/** Update the state of specified private endpoint connection */
-export const WebPubSubPrivateEndpointConnectionsUpdate: API.OperationMethod<
-  WebPubSubPrivateEndpointConnectionsUpdateRequest,
-  WebPubSubPrivateEndpointConnectionsUpdateResponse,
-  WebPubSubPrivateEndpointConnectionsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WebPubSubPrivateEndpointConnectionsUpdateRequest,
-  output: WebPubSubPrivateEndpointConnectionsUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WebPubSubPrivateLinkResourcesListError = AzureOpError;
-/** Get the private link resources that need to be created for a resource. */
-export const WebPubSubPrivateLinkResourcesList: API.OperationMethod<
-  WebPubSubPrivateLinkResourcesListRequest,
-  PrivateLinkResourceList,
-  WebPubSubPrivateLinkResourcesListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WebPubSubPrivateLinkResourcesListRequest,
-  output: PrivateLinkResourceList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WebPubSubRegenerateKeyError = AzureOpError;
-/** Regenerate the access key for the resource. PrimaryKey and SecondaryKey cannot be regenerated at the same time. */
-export const WebPubSubRegenerateKey: API.OperationMethod<
-  WebPubSubRegenerateKeyRequest,
-  WebPubSubKeys,
-  WebPubSubRegenerateKeyError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WebPubSubRegenerateKeyRequest,
-  output: WebPubSubKeys,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type WebPubSubReplicasCreateOrUpdateError = AzureOpError;
 /** Create or update a replica. */
 export const WebPubSubReplicasCreateOrUpdate: API.OperationMethod<
@@ -4076,36 +4257,6 @@ export const WebPubSubReplicasCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: WebPubSubReplicasCreateOrUpdateRequest,
   output: WebPubSubReplicasCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WebPubSubReplicasDeleteError = AzureOpError;
-/** Operation to delete a replica. */
-export const WebPubSubReplicasDelete: API.OperationMethod<
-  WebPubSubReplicasDeleteRequest,
-  WebPubSubReplicasDeleteResponse,
-  WebPubSubReplicasDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WebPubSubReplicasDeleteRequest,
-  output: WebPubSubReplicasDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WebPubSubReplicasGetError = AzureOpError;
-/** Get the replica and its properties. */
-export const WebPubSubReplicasGet: API.OperationMethod<
-  WebPubSubReplicasGetRequest,
-  WebPubSubReplicasGetResponse,
-  WebPubSubReplicasGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WebPubSubReplicasGetRequest,
-  output: WebPubSubReplicasGetResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -4127,96 +4278,6 @@ export const WebPubSubReplicaSharedPrivateLinkResourcesCreateOrUpdate: API.Opera
   retry: Retry.Retry,
 }));
 
-export type WebPubSubReplicaSharedPrivateLinkResourcesGetError = AzureOpError;
-/** Get the specified shared private link resource */
-export const WebPubSubReplicaSharedPrivateLinkResourcesGet: API.OperationMethod<
-  WebPubSubReplicaSharedPrivateLinkResourcesGetRequest,
-  WebPubSubReplicaSharedPrivateLinkResourcesGetResponse,
-  WebPubSubReplicaSharedPrivateLinkResourcesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WebPubSubReplicaSharedPrivateLinkResourcesGetRequest,
-  output: WebPubSubReplicaSharedPrivateLinkResourcesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WebPubSubReplicaSharedPrivateLinkResourcesListError = AzureOpError;
-/** List shared private link resources */
-export const WebPubSubReplicaSharedPrivateLinkResourcesList: API.OperationMethod<
-  WebPubSubReplicaSharedPrivateLinkResourcesListRequest,
-  SharedPrivateLinkResourceList,
-  WebPubSubReplicaSharedPrivateLinkResourcesListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WebPubSubReplicaSharedPrivateLinkResourcesListRequest,
-  output: SharedPrivateLinkResourceList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WebPubSubReplicasListError = AzureOpError;
-/** List all replicas belong to this resource */
-export const WebPubSubReplicasList: API.OperationMethod<
-  WebPubSubReplicasListRequest,
-  ReplicaList,
-  WebPubSubReplicasListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WebPubSubReplicasListRequest,
-  output: ReplicaList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WebPubSubReplicasRestartError = AzureOpError;
-/** Operation to restart a replica. */
-export const WebPubSubReplicasRestart: API.OperationMethod<
-  WebPubSubReplicasRestartRequest,
-  WebPubSubReplicasRestartResponse,
-  WebPubSubReplicasRestartError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WebPubSubReplicasRestartRequest,
-  output: WebPubSubReplicasRestartResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WebPubSubReplicasUpdateError = AzureOpError;
-/** Operation to update an exiting replica. */
-export const WebPubSubReplicasUpdate: API.OperationMethod<
-  WebPubSubReplicasUpdateRequest,
-  WebPubSubReplicasUpdateResponse,
-  WebPubSubReplicasUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WebPubSubReplicasUpdateRequest,
-  output: WebPubSubReplicasUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WebPubSubRestartError = AzureOpError;
-/** Operation to restart a resource. */
-export const WebPubSubRestart: API.OperationMethod<
-  WebPubSubRestartRequest,
-  WebPubSubRestartResponse,
-  WebPubSubRestartError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WebPubSubRestartRequest,
-  output: WebPubSubRestartResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type WebPubSubSharedPrivateLinkResourcesCreateOrUpdateError =
   AzureOpError;
 /** Create or update a shared private link resource */
@@ -4228,66 +4289,6 @@ export const WebPubSubSharedPrivateLinkResourcesCreateOrUpdate: API.OperationMet
 > = /*@__PURE__*/ API.make(() => ({
   input: WebPubSubSharedPrivateLinkResourcesCreateOrUpdateRequest,
   output: WebPubSubSharedPrivateLinkResourcesCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WebPubSubSharedPrivateLinkResourcesDeleteError = AzureOpError;
-/** Delete the specified shared private link resource */
-export const WebPubSubSharedPrivateLinkResourcesDelete: API.OperationMethod<
-  WebPubSubSharedPrivateLinkResourcesDeleteRequest,
-  WebPubSubSharedPrivateLinkResourcesDeleteResponse,
-  WebPubSubSharedPrivateLinkResourcesDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WebPubSubSharedPrivateLinkResourcesDeleteRequest,
-  output: WebPubSubSharedPrivateLinkResourcesDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WebPubSubSharedPrivateLinkResourcesGetError = AzureOpError;
-/** Get the specified shared private link resource */
-export const WebPubSubSharedPrivateLinkResourcesGet: API.OperationMethod<
-  WebPubSubSharedPrivateLinkResourcesGetRequest,
-  WebPubSubSharedPrivateLinkResourcesGetResponse,
-  WebPubSubSharedPrivateLinkResourcesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WebPubSubSharedPrivateLinkResourcesGetRequest,
-  output: WebPubSubSharedPrivateLinkResourcesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WebPubSubSharedPrivateLinkResourcesListError = AzureOpError;
-/** List shared private link resources */
-export const WebPubSubSharedPrivateLinkResourcesList: API.OperationMethod<
-  WebPubSubSharedPrivateLinkResourcesListRequest,
-  SharedPrivateLinkResourceList,
-  WebPubSubSharedPrivateLinkResourcesListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WebPubSubSharedPrivateLinkResourcesListRequest,
-  output: SharedPrivateLinkResourceList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WebPubSubUpdateError = AzureOpError;
-/** Operation to update an exiting resource. */
-export const WebPubSubUpdate: API.OperationMethod<
-  WebPubSubUpdateRequest,
-  WebPubSubUpdateResponse,
-  WebPubSubUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WebPubSubUpdateRequest,
-  output: WebPubSubUpdateResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

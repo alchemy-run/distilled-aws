@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.logic#OperationsList": {
+    "com.azure.logic#ListOperations": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -129,10 +130,10 @@
         "smithy.api#documentation": "The object that represents the operation."
       }
     },
-    "com.azure.logic#IntegrationServiceEnvironmentManagedApiOperationsList": {
+    "com.azure.logic#ListIntegrationServiceEnvironmentManagedApiOperations": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#IntegrationServiceEnvironmentManagedApiOperationsListRequest"
+        "target": "com.azure.logic#ListIntegrationServiceEnvironmentManagedApiOperationsRequest"
       },
       "output": {
         "target": "com.azure.logic#ApiOperationListResult"
@@ -1078,7 +1079,7 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.logic#IntegrationServiceEnvironmentManagedApiOperationsListRequest": {
+    "com.azure.logic#ListIntegrationServiceEnvironmentManagedApiOperationsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1118,10 +1119,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.logic#IntegrationServiceEnvironmentManagedApisDelete": {
+    "com.azure.logic#DeleteIntegrationServiceEnvironmentManagedApis": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#IntegrationServiceEnvironmentManagedApisDeleteRequest"
+        "target": "com.azure.logic#DeleteIntegrationServiceEnvironmentManagedApisRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1137,7 +1138,7 @@
         "com.distilled.openapi#apiVersion": "2019-05-01"
       }
     },
-    "com.azure.logic#IntegrationServiceEnvironmentManagedApisDeleteRequest": {
+    "com.azure.logic#DeleteIntegrationServiceEnvironmentManagedApisRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1177,13 +1178,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.logic#IntegrationServiceEnvironmentManagedApisPut": {
+    "com.azure.logic#PutIntegrationServiceEnvironmentManagedApis": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#IntegrationServiceEnvironmentManagedApisPutRequest"
+        "target": "com.azure.logic#PutIntegrationServiceEnvironmentManagedApisRequest"
       },
       "output": {
-        "target": "com.azure.logic#IntegrationServiceEnvironmentManagedApisPutResponse"
+        "target": "com.azure.logic#PutIntegrationServiceEnvironmentManagedApisResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1196,7 +1197,7 @@
         "com.distilled.openapi#apiVersion": "2019-05-01"
       }
     },
-    "com.azure.logic#IntegrationServiceEnvironmentManagedApisPutResponse": {
+    "com.azure.logic#PutIntegrationServiceEnvironmentManagedApisResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1224,7 +1225,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.logic#IntegrationServiceEnvironmentManagedApisPutResponseTagsMap",
+          "target": "com.azure.logic#PutIntegrationServiceEnvironmentManagedApisResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags."
           }
@@ -1915,7 +1916,7 @@
         "smithy.api#documentation": "The connection parameters."
       }
     },
-    "com.azure.logic#IntegrationServiceEnvironmentManagedApisPutResponseTagsMap": {
+    "com.azure.logic#PutIntegrationServiceEnvironmentManagedApisResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1927,7 +1928,7 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.logic#IntegrationServiceEnvironmentManagedApisPutRequest": {
+    "com.azure.logic#PutIntegrationServiceEnvironmentManagedApisRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1969,7 +1970,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.logic#IntegrationServiceEnvironmentManagedApisPutRequestTagsMap",
+          "target": "com.azure.logic#PutIntegrationServiceEnvironmentManagedApisRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags."
           }
@@ -2047,7 +2048,7 @@
         "smithy.api#documentation": "The resource reference."
       }
     },
-    "com.azure.logic#IntegrationServiceEnvironmentManagedApisPutRequestTagsMap": {
+    "com.azure.logic#PutIntegrationServiceEnvironmentManagedApisRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2059,13 +2060,13 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.logic#IntegrationServiceEnvironmentManagedApisGet": {
+    "com.azure.logic#GetIntegrationServiceEnvironmentManagedApis": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#IntegrationServiceEnvironmentManagedApisGetRequest"
+        "target": "com.azure.logic#GetIntegrationServiceEnvironmentManagedApisRequest"
       },
       "output": {
-        "target": "com.azure.logic#IntegrationServiceEnvironmentManagedApisGetResponse"
+        "target": "com.azure.logic#GetIntegrationServiceEnvironmentManagedApisResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2078,7 +2079,7 @@
         "com.distilled.openapi#apiVersion": "2019-05-01"
       }
     },
-    "com.azure.logic#IntegrationServiceEnvironmentManagedApisGetResponse": {
+    "com.azure.logic#GetIntegrationServiceEnvironmentManagedApisResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2106,7 +2107,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.logic#IntegrationServiceEnvironmentManagedApisGetResponseTagsMap",
+          "target": "com.azure.logic#GetIntegrationServiceEnvironmentManagedApisResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags."
           }
@@ -2122,7 +2123,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.logic#IntegrationServiceEnvironmentManagedApisGetResponseTagsMap": {
+    "com.azure.logic#GetIntegrationServiceEnvironmentManagedApisResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2134,7 +2135,7 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.logic#IntegrationServiceEnvironmentManagedApisGetRequest": {
+    "com.azure.logic#GetIntegrationServiceEnvironmentManagedApisRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2174,10 +2175,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.logic#IntegrationServiceEnvironmentManagedApisList": {
+    "com.azure.logic#ListIntegrationServiceEnvironmentManagedApis": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#IntegrationServiceEnvironmentManagedApisListRequest"
+        "target": "com.azure.logic#ListIntegrationServiceEnvironmentManagedApisRequest"
       },
       "output": {
         "target": "com.azure.logic#IntegrationServiceEnvironmentManagedApiListResult"
@@ -2278,7 +2279,7 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.logic#IntegrationServiceEnvironmentManagedApisListRequest": {
+    "com.azure.logic#ListIntegrationServiceEnvironmentManagedApisRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2310,13 +2311,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.logic#IntegrationServiceEnvironmentNetworkHealthGet": {
+    "com.azure.logic#GetIntegrationServiceEnvironmentNetworkHealth": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#IntegrationServiceEnvironmentNetworkHealthGetRequest"
+        "target": "com.azure.logic#GetIntegrationServiceEnvironmentNetworkHealthRequest"
       },
       "output": {
-        "target": "com.azure.logic#IntegrationServiceEnvironmentNetworkHealthGetResponse"
+        "target": "com.azure.logic#GetIntegrationServiceEnvironmentNetworkHealthResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2329,7 +2330,7 @@
         "com.distilled.openapi#apiVersion": "2019-05-01"
       }
     },
-    "com.azure.logic#IntegrationServiceEnvironmentNetworkHealthGetResponse": {
+    "com.azure.logic#GetIntegrationServiceEnvironmentNetworkHealthResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -2701,7 +2702,7 @@
         "smithy.api#documentation": "The integration service environment network dependency category type."
       }
     },
-    "com.azure.logic#IntegrationServiceEnvironmentNetworkHealthGetRequest": {
+    "com.azure.logic#GetIntegrationServiceEnvironmentNetworkHealthRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2733,10 +2734,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.logic#IntegrationServiceEnvironmentsRestart": {
+    "com.azure.logic#RestartIntegrationServiceEnvironment": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#IntegrationServiceEnvironmentsRestartRequest"
+        "target": "com.azure.logic#RestartIntegrationServiceEnvironmentRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2752,7 +2753,7 @@
         "com.distilled.openapi#apiVersion": "2019-05-01"
       }
     },
-    "com.azure.logic#IntegrationServiceEnvironmentsRestartRequest": {
+    "com.azure.logic#RestartIntegrationServiceEnvironmentRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2784,10 +2785,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.logic#IntegrationServiceEnvironmentSkusList": {
+    "com.azure.logic#ListIntegrationServiceEnvironmentSkus": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#IntegrationServiceEnvironmentSkusListRequest"
+        "target": "com.azure.logic#ListIntegrationServiceEnvironmentSkusRequest"
       },
       "output": {
         "target": "com.azure.logic#IntegrationServiceEnvironmentSkuList"
@@ -2962,7 +2963,7 @@
         "smithy.api#documentation": "The integration service environment sku name."
       }
     },
-    "com.azure.logic#IntegrationServiceEnvironmentSkusListRequest": {
+    "com.azure.logic#ListIntegrationServiceEnvironmentSkusRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2994,10 +2995,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.logic#IntegrationServiceEnvironmentsDelete": {
+    "com.azure.logic#DeleteIntegrationServiceEnvironment": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#IntegrationServiceEnvironmentsDeleteRequest"
+        "target": "com.azure.logic#DeleteIntegrationServiceEnvironmentRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3013,7 +3014,7 @@
         "com.distilled.openapi#apiVersion": "2019-05-01"
       }
     },
-    "com.azure.logic#IntegrationServiceEnvironmentsDeleteRequest": {
+    "com.azure.logic#DeleteIntegrationServiceEnvironmentRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3045,13 +3046,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.logic#IntegrationServiceEnvironmentsUpdate": {
+    "com.azure.logic#UpdateIntegrationServiceEnvironment": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#IntegrationServiceEnvironmentsUpdateRequest"
+        "target": "com.azure.logic#UpdateIntegrationServiceEnvironmentRequest"
       },
       "output": {
-        "target": "com.azure.logic#IntegrationServiceEnvironmentsUpdateResponse"
+        "target": "com.azure.logic#UpdateIntegrationServiceEnvironmentResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3064,7 +3065,7 @@
         "com.distilled.openapi#apiVersion": "2019-05-01"
       }
     },
-    "com.azure.logic#IntegrationServiceEnvironmentsUpdateResponse": {
+    "com.azure.logic#UpdateIntegrationServiceEnvironmentResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3092,7 +3093,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.logic#IntegrationServiceEnvironmentsUpdateResponseTagsMap",
+          "target": "com.azure.logic#UpdateIntegrationServiceEnvironmentResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags."
           }
@@ -3503,7 +3504,7 @@
         "smithy.api#documentation": "The workflow state."
       }
     },
-    "com.azure.logic#IntegrationServiceEnvironmentsUpdateResponseTagsMap": {
+    "com.azure.logic#UpdateIntegrationServiceEnvironmentResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3515,7 +3516,7 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.logic#IntegrationServiceEnvironmentsUpdateRequest": {
+    "com.azure.logic#UpdateIntegrationServiceEnvironmentRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3549,7 +3550,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.logic#IntegrationServiceEnvironmentsUpdateRequestTagsMap",
+          "target": "com.azure.logic#UpdateIntegrationServiceEnvironmentRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags."
           }
@@ -3759,7 +3760,7 @@
         "smithy.api#documentation": "The subnets."
       }
     },
-    "com.azure.logic#IntegrationServiceEnvironmentsUpdateRequestTagsMap": {
+    "com.azure.logic#UpdateIntegrationServiceEnvironmentRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3926,13 +3927,13 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.logic#IntegrationServiceEnvironmentsGet": {
+    "com.azure.logic#GetIntegrationServiceEnvironment": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#IntegrationServiceEnvironmentsGetRequest"
+        "target": "com.azure.logic#GetIntegrationServiceEnvironmentRequest"
       },
       "output": {
-        "target": "com.azure.logic#IntegrationServiceEnvironmentsGetResponse"
+        "target": "com.azure.logic#GetIntegrationServiceEnvironmentResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3945,7 +3946,7 @@
         "com.distilled.openapi#apiVersion": "2019-05-01"
       }
     },
-    "com.azure.logic#IntegrationServiceEnvironmentsGetResponse": {
+    "com.azure.logic#GetIntegrationServiceEnvironmentResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3973,7 +3974,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.logic#IntegrationServiceEnvironmentsGetResponseTagsMap",
+          "target": "com.azure.logic#GetIntegrationServiceEnvironmentResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags."
           }
@@ -3998,7 +3999,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.logic#IntegrationServiceEnvironmentsGetResponseTagsMap": {
+    "com.azure.logic#GetIntegrationServiceEnvironmentResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4010,7 +4011,7 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.logic#IntegrationServiceEnvironmentsGetRequest": {
+    "com.azure.logic#GetIntegrationServiceEnvironmentRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4042,10 +4043,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.logic#IntegrationServiceEnvironmentsListByResourceGroup": {
+    "com.azure.logic#ListIntegrationServiceEnvironmentByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#IntegrationServiceEnvironmentsListByResourceGroupRequest"
+        "target": "com.azure.logic#ListIntegrationServiceEnvironmentByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.logic#IntegrationServiceEnvironmentListResult"
@@ -4150,7 +4151,7 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.logic#IntegrationServiceEnvironmentsListByResourceGroupRequest": {
+    "com.azure.logic#ListIntegrationServiceEnvironmentByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4181,10 +4182,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.logic#IntegrationServiceEnvironmentsListBySubscription": {
+    "com.azure.logic#ListIntegrationServiceEnvironmentBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#IntegrationServiceEnvironmentsListBySubscriptionRequest"
+        "target": "com.azure.logic#ListIntegrationServiceEnvironmentBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.logic#IntegrationServiceEnvironmentListResult"
@@ -4200,7 +4201,7 @@
         "com.distilled.openapi#apiVersion": "2019-05-01"
       }
     },
-    "com.azure.logic#IntegrationServiceEnvironmentsListBySubscriptionRequest": {
+    "com.azure.logic#ListIntegrationServiceEnvironmentBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4223,10 +4224,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.logic#IntegrationAccountSessionsDelete": {
+    "com.azure.logic#DeleteIntegrationAccountSession": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#IntegrationAccountSessionsDeleteRequest"
+        "target": "com.azure.logic#DeleteIntegrationAccountSessionRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4242,7 +4243,7 @@
         "com.distilled.openapi#apiVersion": "2019-05-01"
       }
     },
-    "com.azure.logic#IntegrationAccountSessionsDeleteRequest": {
+    "com.azure.logic#DeleteIntegrationAccountSessionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4469,13 +4470,13 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.logic#IntegrationAccountSessionsGet": {
+    "com.azure.logic#GetIntegrationAccountSession": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#IntegrationAccountSessionsGetRequest"
+        "target": "com.azure.logic#GetIntegrationAccountSessionRequest"
       },
       "output": {
-        "target": "com.azure.logic#IntegrationAccountSessionsGetResponse"
+        "target": "com.azure.logic#GetIntegrationAccountSessionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4488,7 +4489,7 @@
         "com.distilled.openapi#apiVersion": "2019-05-01"
       }
     },
-    "com.azure.logic#IntegrationAccountSessionsGetResponse": {
+    "com.azure.logic#GetIntegrationAccountSessionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -4516,7 +4517,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.logic#IntegrationAccountSessionsGetResponseTagsMap",
+          "target": "com.azure.logic#GetIntegrationAccountSessionResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags."
           }
@@ -4533,7 +4534,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.logic#IntegrationAccountSessionsGetResponseTagsMap": {
+    "com.azure.logic#GetIntegrationAccountSessionResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4545,7 +4546,7 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.logic#IntegrationAccountSessionsGetRequest": {
+    "com.azure.logic#GetIntegrationAccountSessionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4585,10 +4586,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.logic#IntegrationAccountSessionsList": {
+    "com.azure.logic#ListIntegrationAccountSessions": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#IntegrationAccountSessionsListRequest"
+        "target": "com.azure.logic#ListIntegrationAccountSessionsRequest"
       },
       "output": {
         "target": "com.azure.logic#IntegrationAccountSessionListResult"
@@ -4690,7 +4691,7 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.logic#IntegrationAccountSessionsListRequest": {
+    "com.azure.logic#ListIntegrationAccountSessionsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4736,10 +4737,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.logic#IntegrationAccountCertificatesDelete": {
+    "com.azure.logic#DeleteIntegrationAccountCertificate": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#IntegrationAccountCertificatesDeleteRequest"
+        "target": "com.azure.logic#DeleteIntegrationAccountCertificateRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4755,7 +4756,7 @@
         "com.distilled.openapi#apiVersion": "2019-05-01"
       }
     },
-    "com.azure.logic#IntegrationAccountCertificatesDeleteRequest": {
+    "com.azure.logic#DeleteIntegrationAccountCertificateRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5102,13 +5103,13 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.logic#IntegrationAccountCertificatesGet": {
+    "com.azure.logic#GetIntegrationAccountCertificate": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#IntegrationAccountCertificatesGetRequest"
+        "target": "com.azure.logic#GetIntegrationAccountCertificateRequest"
       },
       "output": {
-        "target": "com.azure.logic#IntegrationAccountCertificatesGetResponse"
+        "target": "com.azure.logic#GetIntegrationAccountCertificateResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5121,7 +5122,7 @@
         "com.distilled.openapi#apiVersion": "2019-05-01"
       }
     },
-    "com.azure.logic#IntegrationAccountCertificatesGetResponse": {
+    "com.azure.logic#GetIntegrationAccountCertificateResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -5149,7 +5150,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.logic#IntegrationAccountCertificatesGetResponseTagsMap",
+          "target": "com.azure.logic#GetIntegrationAccountCertificateResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags."
           }
@@ -5166,7 +5167,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.logic#IntegrationAccountCertificatesGetResponseTagsMap": {
+    "com.azure.logic#GetIntegrationAccountCertificateResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5178,7 +5179,7 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.logic#IntegrationAccountCertificatesGetRequest": {
+    "com.azure.logic#GetIntegrationAccountCertificateRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5218,10 +5219,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.logic#IntegrationAccountCertificatesList": {
+    "com.azure.logic#ListIntegrationAccountCertificates": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#IntegrationAccountCertificatesListRequest"
+        "target": "com.azure.logic#ListIntegrationAccountCertificatesRequest"
       },
       "output": {
         "target": "com.azure.logic#IntegrationAccountCertificateListResult"
@@ -5323,7 +5324,7 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.logic#IntegrationAccountCertificatesListRequest": {
+    "com.azure.logic#ListIntegrationAccountCertificatesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5362,10 +5363,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.logic#IntegrationAccountAgreementsListContentCallbackUrl": {
+    "com.azure.logic#ListIntegrationAccountAgreementContentCallbackUrl": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#IntegrationAccountAgreementsListContentCallbackUrlRequest"
+        "target": "com.azure.logic#ListIntegrationAccountAgreementContentCallbackUrlRequest"
       },
       "output": {
         "target": "com.azure.logic#WorkflowTriggerCallbackUrl"
@@ -5473,7 +5474,7 @@
         "smithy.api#documentation": "Gets the workflow trigger callback URL relative path parameters."
       }
     },
-    "com.azure.logic#IntegrationAccountAgreementsListContentCallbackUrlRequest": {
+    "com.azure.logic#ListIntegrationAccountAgreementContentCallbackUrlRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5551,10 +5552,10 @@
         "smithy.api#documentation": "The key type."
       }
     },
-    "com.azure.logic#IntegrationAccountAgreementsDelete": {
+    "com.azure.logic#DeleteIntegrationAccountAgreement": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#IntegrationAccountAgreementsDeleteRequest"
+        "target": "com.azure.logic#DeleteIntegrationAccountAgreementRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -5570,7 +5571,7 @@
         "com.distilled.openapi#apiVersion": "2019-05-01"
       }
     },
-    "com.azure.logic#IntegrationAccountAgreementsDeleteRequest": {
+    "com.azure.logic#DeleteIntegrationAccountAgreementRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8933,13 +8934,13 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.logic#IntegrationAccountAgreementsGet": {
+    "com.azure.logic#GetIntegrationAccountAgreement": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#IntegrationAccountAgreementsGetRequest"
+        "target": "com.azure.logic#GetIntegrationAccountAgreementRequest"
       },
       "output": {
-        "target": "com.azure.logic#IntegrationAccountAgreementsGetResponse"
+        "target": "com.azure.logic#GetIntegrationAccountAgreementResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -8952,7 +8953,7 @@
         "com.distilled.openapi#apiVersion": "2019-05-01"
       }
     },
-    "com.azure.logic#IntegrationAccountAgreementsGetResponse": {
+    "com.azure.logic#GetIntegrationAccountAgreementResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -8980,7 +8981,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.logic#IntegrationAccountAgreementsGetResponseTagsMap",
+          "target": "com.azure.logic#GetIntegrationAccountAgreementResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags."
           }
@@ -8997,7 +8998,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.logic#IntegrationAccountAgreementsGetResponseTagsMap": {
+    "com.azure.logic#GetIntegrationAccountAgreementResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -9009,7 +9010,7 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.logic#IntegrationAccountAgreementsGetRequest": {
+    "com.azure.logic#GetIntegrationAccountAgreementRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9049,10 +9050,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.logic#IntegrationAccountAgreementsList": {
+    "com.azure.logic#ListIntegrationAccountAgreements": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#IntegrationAccountAgreementsListRequest"
+        "target": "com.azure.logic#ListIntegrationAccountAgreementsRequest"
       },
       "output": {
         "target": "com.azure.logic#IntegrationAccountAgreementListResult"
@@ -9154,7 +9155,7 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.logic#IntegrationAccountAgreementsListRequest": {
+    "com.azure.logic#ListIntegrationAccountAgreementsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9200,10 +9201,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.logic#IntegrationAccountPartnersListContentCallbackUrl": {
+    "com.azure.logic#ListIntegrationAccountPartnerContentCallbackUrl": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#IntegrationAccountPartnersListContentCallbackUrlRequest"
+        "target": "com.azure.logic#ListIntegrationAccountPartnerContentCallbackUrlRequest"
       },
       "output": {
         "target": "com.azure.logic#WorkflowTriggerCallbackUrl"
@@ -9219,7 +9220,7 @@
         "com.distilled.openapi#apiVersion": "2019-05-01"
       }
     },
-    "com.azure.logic#IntegrationAccountPartnersListContentCallbackUrlRequest": {
+    "com.azure.logic#ListIntegrationAccountPartnerContentCallbackUrlRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9271,10 +9272,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.logic#IntegrationAccountPartnersDelete": {
+    "com.azure.logic#DeleteIntegrationAccountPartner": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#IntegrationAccountPartnersDeleteRequest"
+        "target": "com.azure.logic#DeleteIntegrationAccountPartnerRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -9290,7 +9291,7 @@
         "com.distilled.openapi#apiVersion": "2019-05-01"
       }
     },
-    "com.azure.logic#IntegrationAccountPartnersDeleteRequest": {
+    "com.azure.logic#DeleteIntegrationAccountPartnerRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9602,13 +9603,13 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.logic#IntegrationAccountPartnersGet": {
+    "com.azure.logic#GetIntegrationAccountPartner": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#IntegrationAccountPartnersGetRequest"
+        "target": "com.azure.logic#GetIntegrationAccountPartnerRequest"
       },
       "output": {
-        "target": "com.azure.logic#IntegrationAccountPartnersGetResponse"
+        "target": "com.azure.logic#GetIntegrationAccountPartnerResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -9621,7 +9622,7 @@
         "com.distilled.openapi#apiVersion": "2019-05-01"
       }
     },
-    "com.azure.logic#IntegrationAccountPartnersGetResponse": {
+    "com.azure.logic#GetIntegrationAccountPartnerResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -9649,7 +9650,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.logic#IntegrationAccountPartnersGetResponseTagsMap",
+          "target": "com.azure.logic#GetIntegrationAccountPartnerResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags."
           }
@@ -9666,7 +9667,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.logic#IntegrationAccountPartnersGetResponseTagsMap": {
+    "com.azure.logic#GetIntegrationAccountPartnerResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -9678,7 +9679,7 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.logic#IntegrationAccountPartnersGetRequest": {
+    "com.azure.logic#GetIntegrationAccountPartnerRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9718,10 +9719,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.logic#IntegrationAccountPartnersList": {
+    "com.azure.logic#ListIntegrationAccountPartners": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#IntegrationAccountPartnersListRequest"
+        "target": "com.azure.logic#ListIntegrationAccountPartnersRequest"
       },
       "output": {
         "target": "com.azure.logic#IntegrationAccountPartnerListResult"
@@ -9823,7 +9824,7 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.logic#IntegrationAccountPartnersListRequest": {
+    "com.azure.logic#ListIntegrationAccountPartnersRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9869,10 +9870,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.logic#IntegrationAccountMapsListContentCallbackUrl": {
+    "com.azure.logic#ListIntegrationAccountMapContentCallbackUrl": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#IntegrationAccountMapsListContentCallbackUrlRequest"
+        "target": "com.azure.logic#ListIntegrationAccountMapContentCallbackUrlRequest"
       },
       "output": {
         "target": "com.azure.logic#WorkflowTriggerCallbackUrl"
@@ -9888,7 +9889,7 @@
         "com.distilled.openapi#apiVersion": "2019-05-01"
       }
     },
-    "com.azure.logic#IntegrationAccountMapsListContentCallbackUrlRequest": {
+    "com.azure.logic#ListIntegrationAccountMapContentCallbackUrlRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9940,10 +9941,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.logic#IntegrationAccountMapsDelete": {
+    "com.azure.logic#DeleteIntegrationAccountMap": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#IntegrationAccountMapsDeleteRequest"
+        "target": "com.azure.logic#DeleteIntegrationAccountMapRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -9959,7 +9960,7 @@
         "com.distilled.openapi#apiVersion": "2019-05-01"
       }
     },
-    "com.azure.logic#IntegrationAccountMapsDeleteRequest": {
+    "com.azure.logic#DeleteIntegrationAccountMapRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10308,13 +10309,13 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.logic#IntegrationAccountMapsGet": {
+    "com.azure.logic#GetIntegrationAccountMap": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#IntegrationAccountMapsGetRequest"
+        "target": "com.azure.logic#GetIntegrationAccountMapRequest"
       },
       "output": {
-        "target": "com.azure.logic#IntegrationAccountMapsGetResponse"
+        "target": "com.azure.logic#GetIntegrationAccountMapResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -10327,7 +10328,7 @@
         "com.distilled.openapi#apiVersion": "2019-05-01"
       }
     },
-    "com.azure.logic#IntegrationAccountMapsGetResponse": {
+    "com.azure.logic#GetIntegrationAccountMapResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -10355,7 +10356,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.logic#IntegrationAccountMapsGetResponseTagsMap",
+          "target": "com.azure.logic#GetIntegrationAccountMapResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags."
           }
@@ -10372,7 +10373,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.logic#IntegrationAccountMapsGetResponseTagsMap": {
+    "com.azure.logic#GetIntegrationAccountMapResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -10384,7 +10385,7 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.logic#IntegrationAccountMapsGetRequest": {
+    "com.azure.logic#GetIntegrationAccountMapRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10424,10 +10425,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.logic#IntegrationAccountMapsList": {
+    "com.azure.logic#ListIntegrationAccountMaps": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#IntegrationAccountMapsListRequest"
+        "target": "com.azure.logic#ListIntegrationAccountMapsRequest"
       },
       "output": {
         "target": "com.azure.logic#IntegrationAccountMapListResult"
@@ -10529,7 +10530,7 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.logic#IntegrationAccountMapsListRequest": {
+    "com.azure.logic#ListIntegrationAccountMapsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10575,10 +10576,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.logic#IntegrationAccountSchemasListContentCallbackUrl": {
+    "com.azure.logic#ListIntegrationAccountSchemaContentCallbackUrl": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#IntegrationAccountSchemasListContentCallbackUrlRequest"
+        "target": "com.azure.logic#ListIntegrationAccountSchemaContentCallbackUrlRequest"
       },
       "output": {
         "target": "com.azure.logic#WorkflowTriggerCallbackUrl"
@@ -10594,7 +10595,7 @@
         "com.distilled.openapi#apiVersion": "2019-05-01"
       }
     },
-    "com.azure.logic#IntegrationAccountSchemasListContentCallbackUrlRequest": {
+    "com.azure.logic#ListIntegrationAccountSchemaContentCallbackUrlRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10646,10 +10647,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.logic#IntegrationAccountSchemasDelete": {
+    "com.azure.logic#DeleteIntegrationAccountSchema": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#IntegrationAccountSchemasDeleteRequest"
+        "target": "com.azure.logic#DeleteIntegrationAccountSchemaRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -10665,7 +10666,7 @@
         "com.distilled.openapi#apiVersion": "2019-05-01"
       }
     },
-    "com.azure.logic#IntegrationAccountSchemasDeleteRequest": {
+    "com.azure.logic#DeleteIntegrationAccountSchemaRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10992,13 +10993,13 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.logic#IntegrationAccountSchemasGet": {
+    "com.azure.logic#GetIntegrationAccountSchema": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#IntegrationAccountSchemasGetRequest"
+        "target": "com.azure.logic#GetIntegrationAccountSchemaRequest"
       },
       "output": {
-        "target": "com.azure.logic#IntegrationAccountSchemasGetResponse"
+        "target": "com.azure.logic#GetIntegrationAccountSchemaResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -11011,7 +11012,7 @@
         "com.distilled.openapi#apiVersion": "2019-05-01"
       }
     },
-    "com.azure.logic#IntegrationAccountSchemasGetResponse": {
+    "com.azure.logic#GetIntegrationAccountSchemaResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -11039,7 +11040,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.logic#IntegrationAccountSchemasGetResponseTagsMap",
+          "target": "com.azure.logic#GetIntegrationAccountSchemaResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags."
           }
@@ -11056,7 +11057,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.logic#IntegrationAccountSchemasGetResponseTagsMap": {
+    "com.azure.logic#GetIntegrationAccountSchemaResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -11068,7 +11069,7 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.logic#IntegrationAccountSchemasGetRequest": {
+    "com.azure.logic#GetIntegrationAccountSchemaRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11108,10 +11109,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.logic#IntegrationAccountSchemasList": {
+    "com.azure.logic#ListIntegrationAccountSchemas": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#IntegrationAccountSchemasListRequest"
+        "target": "com.azure.logic#ListIntegrationAccountSchemasRequest"
       },
       "output": {
         "target": "com.azure.logic#IntegrationAccountSchemaListResult"
@@ -11213,7 +11214,7 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.logic#IntegrationAccountSchemasListRequest": {
+    "com.azure.logic#ListIntegrationAccountSchemasRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11259,13 +11260,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.logic#IntegrationAccountsRegenerateAccessKey": {
+    "com.azure.logic#RegenerateIntegrationAccountAccessKey": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#IntegrationAccountsRegenerateAccessKeyRequest"
+        "target": "com.azure.logic#RegenerateIntegrationAccountAccessKeyRequest"
       },
       "output": {
-        "target": "com.azure.logic#IntegrationAccountsRegenerateAccessKeyResponse"
+        "target": "com.azure.logic#RegenerateIntegrationAccountAccessKeyResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -11278,7 +11279,7 @@
         "com.distilled.openapi#apiVersion": "2019-05-01"
       }
     },
-    "com.azure.logic#IntegrationAccountsRegenerateAccessKeyResponse": {
+    "com.azure.logic#RegenerateIntegrationAccountAccessKeyResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -11306,7 +11307,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.logic#IntegrationAccountsRegenerateAccessKeyResponseTagsMap",
+          "target": "com.azure.logic#RegenerateIntegrationAccountAccessKeyResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags."
           }
@@ -11395,7 +11396,7 @@
         "smithy.api#documentation": "The integration account properties."
       }
     },
-    "com.azure.logic#IntegrationAccountsRegenerateAccessKeyResponseTagsMap": {
+    "com.azure.logic#RegenerateIntegrationAccountAccessKeyResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -11407,7 +11408,7 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.logic#IntegrationAccountsRegenerateAccessKeyRequest": {
+    "com.azure.logic#RegenerateIntegrationAccountAccessKeyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11754,10 +11755,10 @@
         "smithy.api#documentation": "The track events operation options."
       }
     },
-    "com.azure.logic#IntegrationAccountsListKeyVaultKeys": {
+    "com.azure.logic#ListIntegrationAccountKeyVaultKeys": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#IntegrationAccountsListKeyVaultKeysRequest"
+        "target": "com.azure.logic#ListIntegrationAccountKeyVaultKeysRequest"
       },
       "output": {
         "target": "com.azure.logic#KeyVaultKeyCollection"
@@ -11848,7 +11849,7 @@
         "smithy.api#documentation": "The key attributes."
       }
     },
-    "com.azure.logic#IntegrationAccountsListKeyVaultKeysRequest": {
+    "com.azure.logic#ListIntegrationAccountKeyVaultKeysRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11907,10 +11908,10 @@
         "smithy.api#documentation": "The key vault reference."
       }
     },
-    "com.azure.logic#IntegrationAccountsListCallbackUrl": {
+    "com.azure.logic#ListIntegrationAccountCallbackUrl": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#IntegrationAccountsListCallbackUrlRequest"
+        "target": "com.azure.logic#ListIntegrationAccountCallbackUrlRequest"
       },
       "output": {
         "target": "com.azure.logic#CallbackUrl"
@@ -11940,7 +11941,7 @@
         "smithy.api#documentation": "The callback url."
       }
     },
-    "com.azure.logic#IntegrationAccountsListCallbackUrlRequest": {
+    "com.azure.logic#ListIntegrationAccountCallbackUrlRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11984,10 +11985,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.logic#IntegrationAccountBatchConfigurationsDelete": {
+    "com.azure.logic#DeleteIntegrationAccountBatchConfiguration": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#IntegrationAccountBatchConfigurationsDeleteRequest"
+        "target": "com.azure.logic#DeleteIntegrationAccountBatchConfigurationRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -12003,7 +12004,7 @@
         "com.distilled.openapi#apiVersion": "2019-05-01"
       }
     },
-    "com.azure.logic#IntegrationAccountBatchConfigurationsDeleteRequest": {
+    "com.azure.logic#DeleteIntegrationAccountBatchConfigurationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -12554,13 +12555,13 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.logic#IntegrationAccountBatchConfigurationsGet": {
+    "com.azure.logic#GetIntegrationAccountBatchConfiguration": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#IntegrationAccountBatchConfigurationsGetRequest"
+        "target": "com.azure.logic#GetIntegrationAccountBatchConfigurationRequest"
       },
       "output": {
-        "target": "com.azure.logic#IntegrationAccountBatchConfigurationsGetResponse"
+        "target": "com.azure.logic#GetIntegrationAccountBatchConfigurationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -12573,7 +12574,7 @@
         "com.distilled.openapi#apiVersion": "2019-05-01"
       }
     },
-    "com.azure.logic#IntegrationAccountBatchConfigurationsGetResponse": {
+    "com.azure.logic#GetIntegrationAccountBatchConfigurationResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -12601,7 +12602,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.logic#IntegrationAccountBatchConfigurationsGetResponseTagsMap",
+          "target": "com.azure.logic#GetIntegrationAccountBatchConfigurationResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags."
           }
@@ -12618,7 +12619,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.logic#IntegrationAccountBatchConfigurationsGetResponseTagsMap": {
+    "com.azure.logic#GetIntegrationAccountBatchConfigurationResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -12630,7 +12631,7 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.logic#IntegrationAccountBatchConfigurationsGetRequest": {
+    "com.azure.logic#GetIntegrationAccountBatchConfigurationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -12670,10 +12671,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.logic#IntegrationAccountBatchConfigurationsList": {
+    "com.azure.logic#ListIntegrationAccountBatchConfigurations": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#IntegrationAccountBatchConfigurationsListRequest"
+        "target": "com.azure.logic#ListIntegrationAccountBatchConfigurationsRequest"
       },
       "output": {
         "target": "com.azure.logic#BatchConfigurationCollection"
@@ -12764,7 +12765,7 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.logic#IntegrationAccountBatchConfigurationsListRequest": {
+    "com.azure.logic#ListIntegrationAccountBatchConfigurationsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -12796,10 +12797,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.logic#IntegrationAccountAssembliesListContentCallbackUrl": {
+    "com.azure.logic#ListIntegrationAccountAssemblyContentCallbackUrl": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#IntegrationAccountAssembliesListContentCallbackUrlRequest"
+        "target": "com.azure.logic#ListIntegrationAccountAssemblyContentCallbackUrlRequest"
       },
       "output": {
         "target": "com.azure.logic#WorkflowTriggerCallbackUrl"
@@ -12815,7 +12816,7 @@
         "com.distilled.openapi#apiVersion": "2019-05-01"
       }
     },
-    "com.azure.logic#IntegrationAccountAssembliesListContentCallbackUrlRequest": {
+    "com.azure.logic#ListIntegrationAccountAssemblyContentCallbackUrlRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -12855,10 +12856,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.logic#IntegrationAccountAssembliesDelete": {
+    "com.azure.logic#DeleteIntegrationAccountAssembly": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#IntegrationAccountAssembliesDeleteRequest"
+        "target": "com.azure.logic#DeleteIntegrationAccountAssemblyRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -12874,7 +12875,7 @@
         "com.distilled.openapi#apiVersion": "2019-05-01"
       }
     },
-    "com.azure.logic#IntegrationAccountAssembliesDeleteRequest": {
+    "com.azure.logic#DeleteIntegrationAccountAssemblyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -13187,13 +13188,13 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.logic#IntegrationAccountAssembliesGet": {
+    "com.azure.logic#GetIntegrationAccountAssembly": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#IntegrationAccountAssembliesGetRequest"
+        "target": "com.azure.logic#GetIntegrationAccountAssemblyRequest"
       },
       "output": {
-        "target": "com.azure.logic#IntegrationAccountAssembliesGetResponse"
+        "target": "com.azure.logic#GetIntegrationAccountAssemblyResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -13206,7 +13207,7 @@
         "com.distilled.openapi#apiVersion": "2019-05-01"
       }
     },
-    "com.azure.logic#IntegrationAccountAssembliesGetResponse": {
+    "com.azure.logic#GetIntegrationAccountAssemblyResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -13234,7 +13235,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.logic#IntegrationAccountAssembliesGetResponseTagsMap",
+          "target": "com.azure.logic#GetIntegrationAccountAssemblyResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags."
           }
@@ -13251,7 +13252,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.logic#IntegrationAccountAssembliesGetResponseTagsMap": {
+    "com.azure.logic#GetIntegrationAccountAssemblyResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -13263,7 +13264,7 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.logic#IntegrationAccountAssembliesGetRequest": {
+    "com.azure.logic#GetIntegrationAccountAssemblyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -13303,10 +13304,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.logic#IntegrationAccountAssembliesList": {
+    "com.azure.logic#ListIntegrationAccountAssemblies": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#IntegrationAccountAssembliesListRequest"
+        "target": "com.azure.logic#ListIntegrationAccountAssembliesRequest"
       },
       "output": {
         "target": "com.azure.logic#AssemblyCollection"
@@ -13397,7 +13398,7 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.logic#IntegrationAccountAssembliesListRequest": {
+    "com.azure.logic#ListIntegrationAccountAssembliesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -13429,10 +13430,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.logic#IntegrationAccountsDelete": {
+    "com.azure.logic#DeleteIntegrationAccount": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#IntegrationAccountsDeleteRequest"
+        "target": "com.azure.logic#DeleteIntegrationAccountRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -13448,7 +13449,7 @@
         "com.distilled.openapi#apiVersion": "2019-05-01"
       }
     },
-    "com.azure.logic#IntegrationAccountsDeleteRequest": {
+    "com.azure.logic#DeleteIntegrationAccountRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -13480,13 +13481,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.logic#IntegrationAccountsUpdate": {
+    "com.azure.logic#UpdateIntegrationAccount": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#IntegrationAccountsUpdateRequest"
+        "target": "com.azure.logic#UpdateIntegrationAccountRequest"
       },
       "output": {
-        "target": "com.azure.logic#IntegrationAccountsUpdateResponse"
+        "target": "com.azure.logic#UpdateIntegrationAccountResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -13499,7 +13500,7 @@
         "com.distilled.openapi#apiVersion": "2019-05-01"
       }
     },
-    "com.azure.logic#IntegrationAccountsUpdateResponse": {
+    "com.azure.logic#UpdateIntegrationAccountResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -13527,7 +13528,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.logic#IntegrationAccountsUpdateResponseTagsMap",
+          "target": "com.azure.logic#UpdateIntegrationAccountResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags."
           }
@@ -13549,7 +13550,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.logic#IntegrationAccountsUpdateResponseTagsMap": {
+    "com.azure.logic#UpdateIntegrationAccountResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -13561,7 +13562,7 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.logic#IntegrationAccountsUpdateRequest": {
+    "com.azure.logic#UpdateIntegrationAccountRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -13595,7 +13596,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.logic#IntegrationAccountsUpdateRequestTagsMap",
+          "target": "com.azure.logic#UpdateIntegrationAccountRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags."
           }
@@ -13637,7 +13638,7 @@
         "smithy.api#documentation": "The integration account properties."
       }
     },
-    "com.azure.logic#IntegrationAccountsUpdateRequestTagsMap": {
+    "com.azure.logic#UpdateIntegrationAccountRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -13798,13 +13799,13 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.logic#IntegrationAccountsGet": {
+    "com.azure.logic#GetIntegrationAccount": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#IntegrationAccountsGetRequest"
+        "target": "com.azure.logic#GetIntegrationAccountRequest"
       },
       "output": {
-        "target": "com.azure.logic#IntegrationAccountsGetResponse"
+        "target": "com.azure.logic#GetIntegrationAccountResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -13817,7 +13818,7 @@
         "com.distilled.openapi#apiVersion": "2019-05-01"
       }
     },
-    "com.azure.logic#IntegrationAccountsGetResponse": {
+    "com.azure.logic#GetIntegrationAccountResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -13845,7 +13846,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.logic#IntegrationAccountsGetResponseTagsMap",
+          "target": "com.azure.logic#GetIntegrationAccountResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags."
           }
@@ -13867,7 +13868,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.logic#IntegrationAccountsGetResponseTagsMap": {
+    "com.azure.logic#GetIntegrationAccountResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -13879,7 +13880,7 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.logic#IntegrationAccountsGetRequest": {
+    "com.azure.logic#GetIntegrationAccountRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -13911,10 +13912,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.logic#IntegrationAccountsListByResourceGroup": {
+    "com.azure.logic#ListIntegrationAccountByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#IntegrationAccountsListByResourceGroupRequest"
+        "target": "com.azure.logic#ListIntegrationAccountByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.logic#IntegrationAccountListResult"
@@ -14021,7 +14022,7 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.logic#IntegrationAccountsListByResourceGroupRequest": {
+    "com.azure.logic#ListIntegrationAccountByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -14052,10 +14053,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.logic#IntegrationAccountsListBySubscription": {
+    "com.azure.logic#ListIntegrationAccountBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#IntegrationAccountsListBySubscriptionRequest"
+        "target": "com.azure.logic#ListIntegrationAccountBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.logic#IntegrationAccountListResult"
@@ -14071,7 +14072,7 @@
         "com.distilled.openapi#apiVersion": "2019-05-01"
       }
     },
-    "com.azure.logic#IntegrationAccountsListBySubscriptionRequest": {
+    "com.azure.logic#ListIntegrationAccountBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -14094,10 +14095,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.logic#WorkflowsValidateByLocation": {
+    "com.azure.logic#ValidateWorkflowByLocation": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#WorkflowsValidateByLocationRequest"
+        "target": "com.azure.logic#ValidateWorkflowByLocationRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -14113,7 +14114,7 @@
         "com.distilled.openapi#apiVersion": "2019-05-01"
       }
     },
-    "com.azure.logic#WorkflowsValidateByLocationRequest": {
+    "com.azure.logic#ValidateWorkflowByLocationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -14149,7 +14150,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.logic#WorkflowsValidateByLocationRequestTagsMap",
+          "target": "com.azure.logic#ValidateWorkflowByLocationRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags."
           }
@@ -14488,7 +14489,7 @@
         "smithy.api#documentation": "The ip address range."
       }
     },
-    "com.azure.logic#WorkflowsValidateByLocationRequestTagsMap": {
+    "com.azure.logic#ValidateWorkflowByLocationRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -14500,13 +14501,13 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.logic#WorkflowRunOperationsGet": {
+    "com.azure.logic#GetWorkflowRunOperation": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#WorkflowRunOperationsGetRequest"
+        "target": "com.azure.logic#GetWorkflowRunOperationRequest"
       },
       "output": {
-        "target": "com.azure.logic#WorkflowRunOperationsGetResponse"
+        "target": "com.azure.logic#GetWorkflowRunOperationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -14519,7 +14520,7 @@
         "com.distilled.openapi#apiVersion": "2019-05-01"
       }
     },
-    "com.azure.logic#WorkflowRunOperationsGetResponse": {
+    "com.azure.logic#GetWorkflowRunOperationResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -14873,7 +14874,7 @@
         "smithy.api#documentation": "The workflow output parameter."
       }
     },
-    "com.azure.logic#WorkflowRunOperationsGetRequest": {
+    "com.azure.logic#GetWorkflowRunOperationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -14921,13 +14922,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.logic#WorkflowRunActionScopeRepetitionsGet": {
+    "com.azure.logic#GetWorkflowRunActionScopeRepetition": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#WorkflowRunActionScopeRepetitionsGetRequest"
+        "target": "com.azure.logic#GetWorkflowRunActionScopeRepetitionRequest"
       },
       "output": {
-        "target": "com.azure.logic#WorkflowRunActionScopeRepetitionsGetResponse"
+        "target": "com.azure.logic#GetWorkflowRunActionScopeRepetitionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -14940,7 +14941,7 @@
         "com.distilled.openapi#apiVersion": "2019-05-01"
       }
     },
-    "com.azure.logic#WorkflowRunActionScopeRepetitionsGetResponse": {
+    "com.azure.logic#GetWorkflowRunActionScopeRepetitionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -14968,7 +14969,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.logic#WorkflowRunActionScopeRepetitionsGetResponseTagsMap",
+          "target": "com.azure.logic#GetWorkflowRunActionScopeRepetitionResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags."
           }
@@ -15229,7 +15230,7 @@
         "smithy.api#documentation": "The client keywords."
       }
     },
-    "com.azure.logic#WorkflowRunActionScopeRepetitionsGetResponseTagsMap": {
+    "com.azure.logic#GetWorkflowRunActionScopeRepetitionResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -15241,7 +15242,7 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.logic#WorkflowRunActionScopeRepetitionsGetRequest": {
+    "com.azure.logic#GetWorkflowRunActionScopeRepetitionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -15297,10 +15298,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.logic#WorkflowRunActionScopeRepetitionsList": {
+    "com.azure.logic#ListWorkflowRunActionScopeRepetitions": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#WorkflowRunActionScopeRepetitionsListRequest"
+        "target": "com.azure.logic#ListWorkflowRunActionScopeRepetitionsRequest"
       },
       "output": {
         "target": "com.azure.logic#WorkflowRunActionRepetitionDefinitionCollection"
@@ -15397,7 +15398,7 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.logic#WorkflowRunActionScopeRepetitionsListRequest": {
+    "com.azure.logic#ListWorkflowRunActionScopeRepetitionsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -15445,13 +15446,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.logic#WorkflowRunActionRequestHistoriesGet": {
+    "com.azure.logic#GetWorkflowRunActionRequestHistory": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#WorkflowRunActionRequestHistoriesGetRequest"
+        "target": "com.azure.logic#GetWorkflowRunActionRequestHistoryRequest"
       },
       "output": {
-        "target": "com.azure.logic#WorkflowRunActionRequestHistoriesGetResponse"
+        "target": "com.azure.logic#GetWorkflowRunActionRequestHistoryResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -15464,7 +15465,7 @@
         "com.distilled.openapi#apiVersion": "2019-05-01"
       }
     },
-    "com.azure.logic#WorkflowRunActionRequestHistoriesGetResponse": {
+    "com.azure.logic#GetWorkflowRunActionRequestHistoryResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -15492,7 +15493,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.logic#WorkflowRunActionRequestHistoriesGetResponseTagsMap",
+          "target": "com.azure.logic#GetWorkflowRunActionRequestHistoryResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags."
           }
@@ -15592,7 +15593,7 @@
         "smithy.api#documentation": "A request."
       }
     },
-    "com.azure.logic#WorkflowRunActionRequestHistoriesGetResponseTagsMap": {
+    "com.azure.logic#GetWorkflowRunActionRequestHistoryResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -15604,7 +15605,7 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.logic#WorkflowRunActionRequestHistoriesGetRequest": {
+    "com.azure.logic#GetWorkflowRunActionRequestHistoryRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -15660,10 +15661,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.logic#WorkflowRunActionRequestHistoriesList": {
+    "com.azure.logic#ListWorkflowRunActionRequestHistories": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#WorkflowRunActionRequestHistoriesListRequest"
+        "target": "com.azure.logic#ListWorkflowRunActionRequestHistoriesRequest"
       },
       "output": {
         "target": "com.azure.logic#RequestHistoryListResult"
@@ -15764,7 +15765,7 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.logic#WorkflowRunActionRequestHistoriesListRequest": {
+    "com.azure.logic#ListWorkflowRunActionRequestHistoriesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -15812,13 +15813,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.logic#WorkflowRunActionRepetitionsRequestHistoriesGet": {
+    "com.azure.logic#GetWorkflowRunActionRepetitionsRequestHistory": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#WorkflowRunActionRepetitionsRequestHistoriesGetRequest"
+        "target": "com.azure.logic#GetWorkflowRunActionRepetitionsRequestHistoryRequest"
       },
       "output": {
-        "target": "com.azure.logic#WorkflowRunActionRepetitionsRequestHistoriesGetResponse"
+        "target": "com.azure.logic#GetWorkflowRunActionRepetitionsRequestHistoryResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -15831,7 +15832,7 @@
         "com.distilled.openapi#apiVersion": "2019-05-01"
       }
     },
-    "com.azure.logic#WorkflowRunActionRepetitionsRequestHistoriesGetResponse": {
+    "com.azure.logic#GetWorkflowRunActionRepetitionsRequestHistoryResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -15859,7 +15860,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.logic#WorkflowRunActionRepetitionsRequestHistoriesGetResponseTagsMap",
+          "target": "com.azure.logic#GetWorkflowRunActionRepetitionsRequestHistoryResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags."
           }
@@ -15875,7 +15876,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.logic#WorkflowRunActionRepetitionsRequestHistoriesGetResponseTagsMap": {
+    "com.azure.logic#GetWorkflowRunActionRepetitionsRequestHistoryResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -15887,7 +15888,7 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.logic#WorkflowRunActionRepetitionsRequestHistoriesGetRequest": {
+    "com.azure.logic#GetWorkflowRunActionRepetitionsRequestHistoryRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -15951,10 +15952,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.logic#WorkflowRunActionRepetitionsRequestHistoriesList": {
+    "com.azure.logic#ListWorkflowRunActionRepetitionsRequestHistories": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#WorkflowRunActionRepetitionsRequestHistoriesListRequest"
+        "target": "com.azure.logic#ListWorkflowRunActionRepetitionsRequestHistoriesRequest"
       },
       "output": {
         "target": "com.azure.logic#RequestHistoryListResult"
@@ -15970,7 +15971,7 @@
         "com.distilled.openapi#apiVersion": "2019-05-01"
       }
     },
-    "com.azure.logic#WorkflowRunActionRepetitionsRequestHistoriesListRequest": {
+    "com.azure.logic#ListWorkflowRunActionRepetitionsRequestHistoriesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -16026,10 +16027,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.logic#WorkflowRunActionRepetitionsListExpressionTraces": {
+    "com.azure.logic#ListWorkflowRunActionRepetitionExpressionTraces": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#WorkflowRunActionRepetitionsListExpressionTracesRequest"
+        "target": "com.azure.logic#ListWorkflowRunActionRepetitionExpressionTracesRequest"
       },
       "output": {
         "target": "com.azure.logic#ExpressionTraces"
@@ -16176,7 +16177,7 @@
         "smithy.api#documentation": "The sub expressions."
       }
     },
-    "com.azure.logic#WorkflowRunActionRepetitionsListExpressionTracesRequest": {
+    "com.azure.logic#ListWorkflowRunActionRepetitionExpressionTracesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -16232,13 +16233,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.logic#WorkflowRunActionRepetitionsGet": {
+    "com.azure.logic#GetWorkflowRunActionRepetition": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#WorkflowRunActionRepetitionsGetRequest"
+        "target": "com.azure.logic#GetWorkflowRunActionRepetitionRequest"
       },
       "output": {
-        "target": "com.azure.logic#WorkflowRunActionRepetitionsGetResponse"
+        "target": "com.azure.logic#GetWorkflowRunActionRepetitionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -16251,7 +16252,7 @@
         "com.distilled.openapi#apiVersion": "2019-05-01"
       }
     },
-    "com.azure.logic#WorkflowRunActionRepetitionsGetResponse": {
+    "com.azure.logic#GetWorkflowRunActionRepetitionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -16279,7 +16280,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.logic#WorkflowRunActionRepetitionsGetResponseTagsMap",
+          "target": "com.azure.logic#GetWorkflowRunActionRepetitionResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags."
           }
@@ -16296,7 +16297,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.logic#WorkflowRunActionRepetitionsGetResponseTagsMap": {
+    "com.azure.logic#GetWorkflowRunActionRepetitionResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -16308,7 +16309,7 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.logic#WorkflowRunActionRepetitionsGetRequest": {
+    "com.azure.logic#GetWorkflowRunActionRepetitionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -16364,10 +16365,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.logic#WorkflowRunActionRepetitionsList": {
+    "com.azure.logic#ListWorkflowRunActionRepetitions": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#WorkflowRunActionRepetitionsListRequest"
+        "target": "com.azure.logic#ListWorkflowRunActionRepetitionsRequest"
       },
       "output": {
         "target": "com.azure.logic#WorkflowRunActionRepetitionDefinitionCollection"
@@ -16383,7 +16384,7 @@
         "com.distilled.openapi#apiVersion": "2019-05-01"
       }
     },
-    "com.azure.logic#WorkflowRunActionRepetitionsListRequest": {
+    "com.azure.logic#ListWorkflowRunActionRepetitionsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -16431,10 +16432,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.logic#WorkflowRunActionsListExpressionTraces": {
+    "com.azure.logic#ListWorkflowRunActionExpressionTraces": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#WorkflowRunActionsListExpressionTracesRequest"
+        "target": "com.azure.logic#ListWorkflowRunActionExpressionTracesRequest"
       },
       "output": {
         "target": "com.azure.logic#ExpressionTraces"
@@ -16450,7 +16451,7 @@
         "com.distilled.openapi#apiVersion": "2019-05-01"
       }
     },
-    "com.azure.logic#WorkflowRunActionsListExpressionTracesRequest": {
+    "com.azure.logic#ListWorkflowRunActionExpressionTracesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -16498,13 +16499,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.logic#WorkflowRunActionsGet": {
+    "com.azure.logic#GetWorkflowRunAction": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#WorkflowRunActionsGetRequest"
+        "target": "com.azure.logic#GetWorkflowRunActionRequest"
       },
       "output": {
-        "target": "com.azure.logic#WorkflowRunActionsGetResponse"
+        "target": "com.azure.logic#GetWorkflowRunActionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -16517,7 +16518,7 @@
         "com.distilled.openapi#apiVersion": "2019-05-01"
       }
     },
-    "com.azure.logic#WorkflowRunActionsGetResponse": {
+    "com.azure.logic#GetWorkflowRunActionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -16632,7 +16633,7 @@
         "smithy.api#documentation": "Gets the retry histories."
       }
     },
-    "com.azure.logic#WorkflowRunActionsGetRequest": {
+    "com.azure.logic#GetWorkflowRunActionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -16680,10 +16681,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.logic#WorkflowRunActionsList": {
+    "com.azure.logic#ListWorkflowRunActions": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#WorkflowRunActionsListRequest"
+        "target": "com.azure.logic#ListWorkflowRunActionsRequest"
       },
       "output": {
         "target": "com.azure.logic#WorkflowRunActionListResult"
@@ -16760,7 +16761,7 @@
         "smithy.api#documentation": "The workflow run action."
       }
     },
-    "com.azure.logic#WorkflowRunActionsListRequest": {
+    "com.azure.logic#ListWorkflowRunActionsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -16814,10 +16815,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.logic#WorkflowRunsCancel": {
+    "com.azure.logic#CancelWorkflowRun": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#WorkflowRunsCancelRequest"
+        "target": "com.azure.logic#CancelWorkflowRunRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -16833,7 +16834,7 @@
         "com.distilled.openapi#apiVersion": "2019-05-01"
       }
     },
-    "com.azure.logic#WorkflowRunsCancelRequest": {
+    "com.azure.logic#CancelWorkflowRunRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -16873,13 +16874,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.logic#WorkflowRunsGet": {
+    "com.azure.logic#GetWorkflowRun": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#WorkflowRunsGetRequest"
+        "target": "com.azure.logic#GetWorkflowRunRequest"
       },
       "output": {
-        "target": "com.azure.logic#WorkflowRunsGetResponse"
+        "target": "com.azure.logic#GetWorkflowRunResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -16892,7 +16893,7 @@
         "com.distilled.openapi#apiVersion": "2019-05-01"
       }
     },
-    "com.azure.logic#WorkflowRunsGetResponse": {
+    "com.azure.logic#GetWorkflowRunResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -16924,7 +16925,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.logic#WorkflowRunsGetRequest": {
+    "com.azure.logic#GetWorkflowRunRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -16964,10 +16965,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.logic#WorkflowRunsList": {
+    "com.azure.logic#ListWorkflowRuns": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#WorkflowRunsListRequest"
+        "target": "com.azure.logic#ListWorkflowRunsRequest"
       },
       "output": {
         "target": "com.azure.logic#WorkflowRunListResult"
@@ -17044,7 +17045,7 @@
         "smithy.api#documentation": "The workflow run."
       }
     },
-    "com.azure.logic#WorkflowRunsListRequest": {
+    "com.azure.logic#ListWorkflowRunsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -17157,13 +17158,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.logic#WorkflowTriggerHistoriesGet": {
+    "com.azure.logic#GetWorkflowTriggerHistory": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#WorkflowTriggerHistoriesGetRequest"
+        "target": "com.azure.logic#GetWorkflowTriggerHistoryRequest"
       },
       "output": {
-        "target": "com.azure.logic#WorkflowTriggerHistoriesGetResponse"
+        "target": "com.azure.logic#GetWorkflowTriggerHistoryResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -17176,7 +17177,7 @@
         "com.distilled.openapi#apiVersion": "2019-05-01"
       }
     },
-    "com.azure.logic#WorkflowTriggerHistoriesGetResponse": {
+    "com.azure.logic#GetWorkflowTriggerHistoryResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -17288,7 +17289,7 @@
         "smithy.api#documentation": "The workflow trigger history properties."
       }
     },
-    "com.azure.logic#WorkflowTriggerHistoriesGetRequest": {
+    "com.azure.logic#GetWorkflowTriggerHistoryRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -17336,10 +17337,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.logic#WorkflowTriggerHistoriesList": {
+    "com.azure.logic#ListWorkflowTriggerHistories": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#WorkflowTriggerHistoriesListRequest"
+        "target": "com.azure.logic#ListWorkflowTriggerHistoriesRequest"
       },
       "output": {
         "target": "com.azure.logic#WorkflowTriggerHistoryListResult"
@@ -17416,7 +17417,7 @@
         "smithy.api#documentation": "The workflow trigger history."
       }
     },
-    "com.azure.logic#WorkflowTriggerHistoriesListRequest": {
+    "com.azure.logic#ListWorkflowTriggerHistoriesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -17470,10 +17471,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.logic#WorkflowVersionTriggersListCallbackUrl": {
+    "com.azure.logic#ListWorkflowVersionTriggerCallbackUrl": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#WorkflowVersionTriggersListCallbackUrlRequest"
+        "target": "com.azure.logic#ListWorkflowVersionTriggerCallbackUrlRequest"
       },
       "output": {
         "target": "com.azure.logic#WorkflowTriggerCallbackUrl"
@@ -17489,7 +17490,7 @@
         "com.distilled.openapi#apiVersion": "2019-05-01"
       }
     },
-    "com.azure.logic#WorkflowVersionTriggersListCallbackUrlRequest": {
+    "com.azure.logic#ListWorkflowVersionTriggerCallbackUrlRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -17549,10 +17550,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.logic#WorkflowTriggersListCallbackUrl": {
+    "com.azure.logic#ListWorkflowTriggerCallbackUrl": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#WorkflowTriggersListCallbackUrlRequest"
+        "target": "com.azure.logic#ListWorkflowTriggerCallbackUrlRequest"
       },
       "output": {
         "target": "com.azure.logic#WorkflowTriggerCallbackUrl"
@@ -17568,7 +17569,7 @@
         "com.distilled.openapi#apiVersion": "2019-05-01"
       }
     },
-    "com.azure.logic#WorkflowTriggersListCallbackUrlRequest": {
+    "com.azure.logic#ListWorkflowTriggerCallbackUrlRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -17608,10 +17609,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.logic#WorkflowTriggersSetState": {
+    "com.azure.logic#SetWorkflowTriggerState": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#WorkflowTriggersSetStateRequest"
+        "target": "com.azure.logic#SetWorkflowTriggerStateRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -17627,7 +17628,7 @@
         "com.distilled.openapi#apiVersion": "2019-05-01"
       }
     },
-    "com.azure.logic#WorkflowTriggersSetStateRequest": {
+    "com.azure.logic#SetWorkflowTriggerStateRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -17700,10 +17701,10 @@
         "smithy.api#documentation": "The workflow trigger reference."
       }
     },
-    "com.azure.logic#WorkflowTriggersGetSchemaJson": {
+    "com.azure.logic#GetWorkflowTriggerSchemaJson": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#WorkflowTriggersGetSchemaJsonRequest"
+        "target": "com.azure.logic#GetWorkflowTriggerSchemaJsonRequest"
       },
       "output": {
         "target": "com.azure.logic#JsonSchema"
@@ -17739,7 +17740,7 @@
         "smithy.api#documentation": "The JSON schema."
       }
     },
-    "com.azure.logic#WorkflowTriggersGetSchemaJsonRequest": {
+    "com.azure.logic#GetWorkflowTriggerSchemaJsonRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -17779,10 +17780,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.logic#WorkflowTriggersRun": {
+    "com.azure.logic#TriggerRunWorkflow": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#WorkflowTriggersRunRequest"
+        "target": "com.azure.logic#TriggerRunWorkflowRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -17798,7 +17799,7 @@
         "com.distilled.openapi#apiVersion": "2019-05-01"
       }
     },
-    "com.azure.logic#WorkflowTriggersRunRequest": {
+    "com.azure.logic#TriggerRunWorkflowRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -17838,10 +17839,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.logic#WorkflowTriggersReset": {
+    "com.azure.logic#ResetWorkflowTrigger": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#WorkflowTriggersResetRequest"
+        "target": "com.azure.logic#ResetWorkflowTriggerRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -17857,7 +17858,7 @@
         "com.distilled.openapi#apiVersion": "2019-05-01"
       }
     },
-    "com.azure.logic#WorkflowTriggersResetRequest": {
+    "com.azure.logic#ResetWorkflowTriggerRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -17897,13 +17898,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.logic#WorkflowTriggersGet": {
+    "com.azure.logic#GetWorkflowTrigger": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#WorkflowTriggersGetRequest"
+        "target": "com.azure.logic#GetWorkflowTriggerRequest"
       },
       "output": {
-        "target": "com.azure.logic#WorkflowTriggersGetResponse"
+        "target": "com.azure.logic#GetWorkflowTriggerResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -17916,7 +17917,7 @@
         "com.distilled.openapi#apiVersion": "2019-05-01"
       }
     },
-    "com.azure.logic#WorkflowTriggersGetResponse": {
+    "com.azure.logic#GetWorkflowTriggerResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -18126,7 +18127,7 @@
         "smithy.api#documentation": "The workflow trigger provisioning state."
       }
     },
-    "com.azure.logic#WorkflowTriggersGetRequest": {
+    "com.azure.logic#GetWorkflowTriggerRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -18166,10 +18167,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.logic#WorkflowTriggersList": {
+    "com.azure.logic#ListWorkflowTriggers": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#WorkflowTriggersListRequest"
+        "target": "com.azure.logic#ListWorkflowTriggersRequest"
       },
       "output": {
         "target": "com.azure.logic#WorkflowTriggerListResult"
@@ -18246,7 +18247,7 @@
         "smithy.api#documentation": "The workflow trigger."
       }
     },
-    "com.azure.logic#WorkflowTriggersListRequest": {
+    "com.azure.logic#ListWorkflowTriggersRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -18292,13 +18293,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.logic#WorkflowVersionsGet": {
+    "com.azure.logic#GetWorkflowVersion": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#WorkflowVersionsGetRequest"
+        "target": "com.azure.logic#GetWorkflowVersionRequest"
       },
       "output": {
-        "target": "com.azure.logic#WorkflowVersionsGetResponse"
+        "target": "com.azure.logic#GetWorkflowVersionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -18311,7 +18312,7 @@
         "com.distilled.openapi#apiVersion": "2019-05-01"
       }
     },
-    "com.azure.logic#WorkflowVersionsGetResponse": {
+    "com.azure.logic#GetWorkflowVersionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -18339,7 +18340,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.logic#WorkflowVersionsGetResponseTagsMap",
+          "target": "com.azure.logic#GetWorkflowVersionResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags."
           }
@@ -18512,7 +18513,7 @@
         "smithy.api#documentation": "The sku name."
       }
     },
-    "com.azure.logic#WorkflowVersionsGetResponseTagsMap": {
+    "com.azure.logic#GetWorkflowVersionResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -18524,7 +18525,7 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.logic#WorkflowVersionsGetRequest": {
+    "com.azure.logic#GetWorkflowVersionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -18564,10 +18565,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.logic#WorkflowVersionsList": {
+    "com.azure.logic#ListWorkflowVersions": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#WorkflowVersionsListRequest"
+        "target": "com.azure.logic#ListWorkflowVersionsRequest"
       },
       "output": {
         "target": "com.azure.logic#WorkflowVersionListResult"
@@ -18668,7 +18669,7 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.logic#WorkflowVersionsListRequest": {
+    "com.azure.logic#ListWorkflowVersionsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -18707,10 +18708,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.logic#WorkflowsValidateByResourceGroup": {
+    "com.azure.logic#ValidateWorkflowByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#WorkflowsValidateByResourceGroupRequest"
+        "target": "com.azure.logic#ValidateWorkflowByResourceGroupRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -18726,7 +18727,7 @@
         "com.distilled.openapi#apiVersion": "2019-05-01"
       }
     },
-    "com.azure.logic#WorkflowsValidateByResourceGroupRequest": {
+    "com.azure.logic#ValidateWorkflowByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -18760,7 +18761,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.logic#WorkflowsValidateByResourceGroupRequestTagsMap",
+          "target": "com.azure.logic#ValidateWorkflowByResourceGroupRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags."
           }
@@ -18779,7 +18780,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.logic#WorkflowsValidateByResourceGroupRequestTagsMap": {
+    "com.azure.logic#ValidateWorkflowByResourceGroupRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -18791,10 +18792,10 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.logic#WorkflowsRegenerateAccessKey": {
+    "com.azure.logic#RegenerateWorkflowAccessKey": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#WorkflowsRegenerateAccessKeyRequest"
+        "target": "com.azure.logic#RegenerateWorkflowAccessKeyRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -18810,7 +18811,7 @@
         "com.distilled.openapi#apiVersion": "2019-05-01"
       }
     },
-    "com.azure.logic#WorkflowsRegenerateAccessKeyRequest": {
+    "com.azure.logic#RegenerateWorkflowAccessKeyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -18848,10 +18849,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.logic#WorkflowsMove": {
+    "com.azure.logic#MoveWorkflow": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#WorkflowsMoveRequest"
+        "target": "com.azure.logic#MoveWorkflowRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -18867,7 +18868,7 @@
         "com.distilled.openapi#apiVersion": "2019-05-01"
       }
     },
-    "com.azure.logic#WorkflowsMoveRequest": {
+    "com.azure.logic#MoveWorkflowRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -18905,13 +18906,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.logic#WorkflowsListSwagger": {
+    "com.azure.logic#ListWorkflowSwagger": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#WorkflowsListSwaggerRequest"
+        "target": "com.azure.logic#ListWorkflowSwaggerRequest"
       },
       "output": {
-        "target": "com.azure.logic#WorkflowsListSwaggerResponse"
+        "target": "com.azure.logic#ListWorkflowSwaggerResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -18924,7 +18925,7 @@
         "com.distilled.openapi#apiVersion": "2019-05-01"
       }
     },
-    "com.azure.logic#WorkflowsListSwaggerResponse": {
+    "com.azure.logic#ListWorkflowSwaggerResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -18939,7 +18940,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.logic#WorkflowsListSwaggerRequest": {
+    "com.azure.logic#ListWorkflowSwaggerRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -18971,10 +18972,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.logic#WorkflowsListCallbackUrl": {
+    "com.azure.logic#ListWorkflowCallbackUrl": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#WorkflowsListCallbackUrlRequest"
+        "target": "com.azure.logic#ListWorkflowCallbackUrlRequest"
       },
       "output": {
         "target": "com.azure.logic#WorkflowTriggerCallbackUrl"
@@ -18990,7 +18991,7 @@
         "com.distilled.openapi#apiVersion": "2019-05-01"
       }
     },
-    "com.azure.logic#WorkflowsListCallbackUrlRequest": {
+    "com.azure.logic#ListWorkflowCallbackUrlRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -19034,13 +19035,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.logic#WorkflowsGenerateUpgradedDefinition": {
+    "com.azure.logic#GenerateWorkflowUpgradedDefinition": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#WorkflowsGenerateUpgradedDefinitionRequest"
+        "target": "com.azure.logic#GenerateWorkflowUpgradedDefinitionRequest"
       },
       "output": {
-        "target": "com.azure.logic#WorkflowsGenerateUpgradedDefinitionResponse"
+        "target": "com.azure.logic#GenerateWorkflowUpgradedDefinitionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -19053,7 +19054,7 @@
         "com.distilled.openapi#apiVersion": "2019-05-01"
       }
     },
-    "com.azure.logic#WorkflowsGenerateUpgradedDefinitionResponse": {
+    "com.azure.logic#GenerateWorkflowUpgradedDefinitionResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -19068,7 +19069,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.logic#WorkflowsGenerateUpgradedDefinitionRequest": {
+    "com.azure.logic#GenerateWorkflowUpgradedDefinitionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -19106,10 +19107,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.logic#WorkflowsEnable": {
+    "com.azure.logic#EnableWorkflow": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#WorkflowsEnableRequest"
+        "target": "com.azure.logic#EnableWorkflowRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -19125,7 +19126,7 @@
         "com.distilled.openapi#apiVersion": "2019-05-01"
       }
     },
-    "com.azure.logic#WorkflowsEnableRequest": {
+    "com.azure.logic#EnableWorkflowRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -19157,10 +19158,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.logic#WorkflowsDisable": {
+    "com.azure.logic#DisableWorkflow": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#WorkflowsDisableRequest"
+        "target": "com.azure.logic#DisableWorkflowRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -19176,7 +19177,7 @@
         "com.distilled.openapi#apiVersion": "2019-05-01"
       }
     },
-    "com.azure.logic#WorkflowsDisableRequest": {
+    "com.azure.logic#DisableWorkflowRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -19208,10 +19209,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.logic#WorkflowsDelete": {
+    "com.azure.logic#DeleteWorkflow": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#WorkflowsDeleteRequest"
+        "target": "com.azure.logic#DeleteWorkflowRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -19227,7 +19228,7 @@
         "com.distilled.openapi#apiVersion": "2019-05-01"
       }
     },
-    "com.azure.logic#WorkflowsDeleteRequest": {
+    "com.azure.logic#DeleteWorkflowRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -19259,13 +19260,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.logic#WorkflowsUpdate": {
+    "com.azure.logic#UpdateWorkflow": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#WorkflowsUpdateRequest"
+        "target": "com.azure.logic#UpdateWorkflowRequest"
       },
       "output": {
-        "target": "com.azure.logic#WorkflowsUpdateResponse"
+        "target": "com.azure.logic#UpdateWorkflowResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -19278,7 +19279,7 @@
         "com.distilled.openapi#apiVersion": "2019-05-01"
       }
     },
-    "com.azure.logic#WorkflowsUpdateResponse": {
+    "com.azure.logic#UpdateWorkflowResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -19306,7 +19307,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.logic#WorkflowsUpdateResponseTagsMap",
+          "target": "com.azure.logic#UpdateWorkflowResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags."
           }
@@ -19423,7 +19424,7 @@
         "smithy.api#documentation": "The parameters."
       }
     },
-    "com.azure.logic#WorkflowsUpdateResponseTagsMap": {
+    "com.azure.logic#UpdateWorkflowResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -19435,7 +19436,7 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.logic#WorkflowsUpdateRequest": {
+    "com.azure.logic#UpdateWorkflowRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -19610,13 +19611,13 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.logic#WorkflowsGet": {
+    "com.azure.logic#GetWorkflow": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#WorkflowsGetRequest"
+        "target": "com.azure.logic#GetWorkflowRequest"
       },
       "output": {
-        "target": "com.azure.logic#WorkflowsGetResponse"
+        "target": "com.azure.logic#GetWorkflowResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -19629,7 +19630,7 @@
         "com.distilled.openapi#apiVersion": "2019-05-01"
       }
     },
-    "com.azure.logic#WorkflowsGetResponse": {
+    "com.azure.logic#GetWorkflowResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -19657,7 +19658,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.logic#WorkflowsGetResponseTagsMap",
+          "target": "com.azure.logic#GetWorkflowResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags."
           }
@@ -19676,7 +19677,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.logic#WorkflowsGetResponseTagsMap": {
+    "com.azure.logic#GetWorkflowResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -19688,7 +19689,7 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.logic#WorkflowsGetRequest": {
+    "com.azure.logic#GetWorkflowRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -19720,10 +19721,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.logic#WorkflowsListByResourceGroup": {
+    "com.azure.logic#ListWorkflowByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#WorkflowsListByResourceGroupRequest"
+        "target": "com.azure.logic#ListWorkflowByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.logic#WorkflowListResult"
@@ -19827,7 +19828,7 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.logic#WorkflowsListByResourceGroupRequest": {
+    "com.azure.logic#ListWorkflowByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -19865,10 +19866,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.logic#WorkflowsListBySubscription": {
+    "com.azure.logic#ListWorkflowBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.logic#WorkflowsListBySubscriptionRequest"
+        "target": "com.azure.logic#ListWorkflowBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.logic#WorkflowListResult"
@@ -19884,7 +19885,7 @@
         "com.distilled.openapi#apiVersion": "2019-05-01"
       }
     },
-    "com.azure.logic#WorkflowsListBySubscriptionRequest": {
+    "com.azure.logic#ListWorkflowBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -19919,322 +19920,322 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.logic#OperationsList"
+          "target": "com.azure.logic#ListOperations"
         },
         {
-          "target": "com.azure.logic#IntegrationServiceEnvironmentManagedApiOperationsList"
+          "target": "com.azure.logic#ListIntegrationServiceEnvironmentManagedApiOperations"
         },
         {
-          "target": "com.azure.logic#IntegrationServiceEnvironmentManagedApisDelete"
+          "target": "com.azure.logic#DeleteIntegrationServiceEnvironmentManagedApis"
         },
         {
-          "target": "com.azure.logic#IntegrationServiceEnvironmentManagedApisPut"
+          "target": "com.azure.logic#PutIntegrationServiceEnvironmentManagedApis"
         },
         {
-          "target": "com.azure.logic#IntegrationServiceEnvironmentManagedApisGet"
+          "target": "com.azure.logic#GetIntegrationServiceEnvironmentManagedApis"
         },
         {
-          "target": "com.azure.logic#IntegrationServiceEnvironmentManagedApisList"
+          "target": "com.azure.logic#ListIntegrationServiceEnvironmentManagedApis"
         },
         {
-          "target": "com.azure.logic#IntegrationServiceEnvironmentNetworkHealthGet"
+          "target": "com.azure.logic#GetIntegrationServiceEnvironmentNetworkHealth"
         },
         {
-          "target": "com.azure.logic#IntegrationServiceEnvironmentsRestart"
+          "target": "com.azure.logic#RestartIntegrationServiceEnvironment"
         },
         {
-          "target": "com.azure.logic#IntegrationServiceEnvironmentSkusList"
+          "target": "com.azure.logic#ListIntegrationServiceEnvironmentSkus"
         },
         {
-          "target": "com.azure.logic#IntegrationServiceEnvironmentsDelete"
+          "target": "com.azure.logic#DeleteIntegrationServiceEnvironment"
         },
         {
-          "target": "com.azure.logic#IntegrationServiceEnvironmentsUpdate"
+          "target": "com.azure.logic#UpdateIntegrationServiceEnvironment"
         },
         {
           "target": "com.azure.logic#IntegrationServiceEnvironmentsCreateOrUpdate"
         },
         {
-          "target": "com.azure.logic#IntegrationServiceEnvironmentsGet"
+          "target": "com.azure.logic#GetIntegrationServiceEnvironment"
         },
         {
-          "target": "com.azure.logic#IntegrationServiceEnvironmentsListByResourceGroup"
+          "target": "com.azure.logic#ListIntegrationServiceEnvironmentByResourceGroup"
         },
         {
-          "target": "com.azure.logic#IntegrationServiceEnvironmentsListBySubscription"
+          "target": "com.azure.logic#ListIntegrationServiceEnvironmentBySubscription"
         },
         {
-          "target": "com.azure.logic#IntegrationAccountSessionsDelete"
+          "target": "com.azure.logic#DeleteIntegrationAccountSession"
         },
         {
           "target": "com.azure.logic#IntegrationAccountSessionsCreateOrUpdate"
         },
         {
-          "target": "com.azure.logic#IntegrationAccountSessionsGet"
+          "target": "com.azure.logic#GetIntegrationAccountSession"
         },
         {
-          "target": "com.azure.logic#IntegrationAccountSessionsList"
+          "target": "com.azure.logic#ListIntegrationAccountSessions"
         },
         {
-          "target": "com.azure.logic#IntegrationAccountCertificatesDelete"
+          "target": "com.azure.logic#DeleteIntegrationAccountCertificate"
         },
         {
           "target": "com.azure.logic#IntegrationAccountCertificatesCreateOrUpdate"
         },
         {
-          "target": "com.azure.logic#IntegrationAccountCertificatesGet"
+          "target": "com.azure.logic#GetIntegrationAccountCertificate"
         },
         {
-          "target": "com.azure.logic#IntegrationAccountCertificatesList"
+          "target": "com.azure.logic#ListIntegrationAccountCertificates"
         },
         {
-          "target": "com.azure.logic#IntegrationAccountAgreementsListContentCallbackUrl"
+          "target": "com.azure.logic#ListIntegrationAccountAgreementContentCallbackUrl"
         },
         {
-          "target": "com.azure.logic#IntegrationAccountAgreementsDelete"
+          "target": "com.azure.logic#DeleteIntegrationAccountAgreement"
         },
         {
           "target": "com.azure.logic#IntegrationAccountAgreementsCreateOrUpdate"
         },
         {
-          "target": "com.azure.logic#IntegrationAccountAgreementsGet"
+          "target": "com.azure.logic#GetIntegrationAccountAgreement"
         },
         {
-          "target": "com.azure.logic#IntegrationAccountAgreementsList"
+          "target": "com.azure.logic#ListIntegrationAccountAgreements"
         },
         {
-          "target": "com.azure.logic#IntegrationAccountPartnersListContentCallbackUrl"
+          "target": "com.azure.logic#ListIntegrationAccountPartnerContentCallbackUrl"
         },
         {
-          "target": "com.azure.logic#IntegrationAccountPartnersDelete"
+          "target": "com.azure.logic#DeleteIntegrationAccountPartner"
         },
         {
           "target": "com.azure.logic#IntegrationAccountPartnersCreateOrUpdate"
         },
         {
-          "target": "com.azure.logic#IntegrationAccountPartnersGet"
+          "target": "com.azure.logic#GetIntegrationAccountPartner"
         },
         {
-          "target": "com.azure.logic#IntegrationAccountPartnersList"
+          "target": "com.azure.logic#ListIntegrationAccountPartners"
         },
         {
-          "target": "com.azure.logic#IntegrationAccountMapsListContentCallbackUrl"
+          "target": "com.azure.logic#ListIntegrationAccountMapContentCallbackUrl"
         },
         {
-          "target": "com.azure.logic#IntegrationAccountMapsDelete"
+          "target": "com.azure.logic#DeleteIntegrationAccountMap"
         },
         {
           "target": "com.azure.logic#IntegrationAccountMapsCreateOrUpdate"
         },
         {
-          "target": "com.azure.logic#IntegrationAccountMapsGet"
+          "target": "com.azure.logic#GetIntegrationAccountMap"
         },
         {
-          "target": "com.azure.logic#IntegrationAccountMapsList"
+          "target": "com.azure.logic#ListIntegrationAccountMaps"
         },
         {
-          "target": "com.azure.logic#IntegrationAccountSchemasListContentCallbackUrl"
+          "target": "com.azure.logic#ListIntegrationAccountSchemaContentCallbackUrl"
         },
         {
-          "target": "com.azure.logic#IntegrationAccountSchemasDelete"
+          "target": "com.azure.logic#DeleteIntegrationAccountSchema"
         },
         {
           "target": "com.azure.logic#IntegrationAccountSchemasCreateOrUpdate"
         },
         {
-          "target": "com.azure.logic#IntegrationAccountSchemasGet"
+          "target": "com.azure.logic#GetIntegrationAccountSchema"
         },
         {
-          "target": "com.azure.logic#IntegrationAccountSchemasList"
+          "target": "com.azure.logic#ListIntegrationAccountSchemas"
         },
         {
-          "target": "com.azure.logic#IntegrationAccountsRegenerateAccessKey"
+          "target": "com.azure.logic#RegenerateIntegrationAccountAccessKey"
         },
         {
           "target": "com.azure.logic#IntegrationAccountsLogTrackingEvents"
         },
         {
-          "target": "com.azure.logic#IntegrationAccountsListKeyVaultKeys"
+          "target": "com.azure.logic#ListIntegrationAccountKeyVaultKeys"
         },
         {
-          "target": "com.azure.logic#IntegrationAccountsListCallbackUrl"
+          "target": "com.azure.logic#ListIntegrationAccountCallbackUrl"
         },
         {
-          "target": "com.azure.logic#IntegrationAccountBatchConfigurationsDelete"
+          "target": "com.azure.logic#DeleteIntegrationAccountBatchConfiguration"
         },
         {
           "target": "com.azure.logic#IntegrationAccountBatchConfigurationsCreateOrUpdate"
         },
         {
-          "target": "com.azure.logic#IntegrationAccountBatchConfigurationsGet"
+          "target": "com.azure.logic#GetIntegrationAccountBatchConfiguration"
         },
         {
-          "target": "com.azure.logic#IntegrationAccountBatchConfigurationsList"
+          "target": "com.azure.logic#ListIntegrationAccountBatchConfigurations"
         },
         {
-          "target": "com.azure.logic#IntegrationAccountAssembliesListContentCallbackUrl"
+          "target": "com.azure.logic#ListIntegrationAccountAssemblyContentCallbackUrl"
         },
         {
-          "target": "com.azure.logic#IntegrationAccountAssembliesDelete"
+          "target": "com.azure.logic#DeleteIntegrationAccountAssembly"
         },
         {
           "target": "com.azure.logic#IntegrationAccountAssembliesCreateOrUpdate"
         },
         {
-          "target": "com.azure.logic#IntegrationAccountAssembliesGet"
+          "target": "com.azure.logic#GetIntegrationAccountAssembly"
         },
         {
-          "target": "com.azure.logic#IntegrationAccountAssembliesList"
+          "target": "com.azure.logic#ListIntegrationAccountAssemblies"
         },
         {
-          "target": "com.azure.logic#IntegrationAccountsDelete"
+          "target": "com.azure.logic#DeleteIntegrationAccount"
         },
         {
-          "target": "com.azure.logic#IntegrationAccountsUpdate"
+          "target": "com.azure.logic#UpdateIntegrationAccount"
         },
         {
           "target": "com.azure.logic#IntegrationAccountsCreateOrUpdate"
         },
         {
-          "target": "com.azure.logic#IntegrationAccountsGet"
+          "target": "com.azure.logic#GetIntegrationAccount"
         },
         {
-          "target": "com.azure.logic#IntegrationAccountsListByResourceGroup"
+          "target": "com.azure.logic#ListIntegrationAccountByResourceGroup"
         },
         {
-          "target": "com.azure.logic#IntegrationAccountsListBySubscription"
+          "target": "com.azure.logic#ListIntegrationAccountBySubscription"
         },
         {
-          "target": "com.azure.logic#WorkflowsValidateByLocation"
+          "target": "com.azure.logic#ValidateWorkflowByLocation"
         },
         {
-          "target": "com.azure.logic#WorkflowRunOperationsGet"
+          "target": "com.azure.logic#GetWorkflowRunOperation"
         },
         {
-          "target": "com.azure.logic#WorkflowRunActionScopeRepetitionsGet"
+          "target": "com.azure.logic#GetWorkflowRunActionScopeRepetition"
         },
         {
-          "target": "com.azure.logic#WorkflowRunActionScopeRepetitionsList"
+          "target": "com.azure.logic#ListWorkflowRunActionScopeRepetitions"
         },
         {
-          "target": "com.azure.logic#WorkflowRunActionRequestHistoriesGet"
+          "target": "com.azure.logic#GetWorkflowRunActionRequestHistory"
         },
         {
-          "target": "com.azure.logic#WorkflowRunActionRequestHistoriesList"
+          "target": "com.azure.logic#ListWorkflowRunActionRequestHistories"
         },
         {
-          "target": "com.azure.logic#WorkflowRunActionRepetitionsRequestHistoriesGet"
+          "target": "com.azure.logic#GetWorkflowRunActionRepetitionsRequestHistory"
         },
         {
-          "target": "com.azure.logic#WorkflowRunActionRepetitionsRequestHistoriesList"
+          "target": "com.azure.logic#ListWorkflowRunActionRepetitionsRequestHistories"
         },
         {
-          "target": "com.azure.logic#WorkflowRunActionRepetitionsListExpressionTraces"
+          "target": "com.azure.logic#ListWorkflowRunActionRepetitionExpressionTraces"
         },
         {
-          "target": "com.azure.logic#WorkflowRunActionRepetitionsGet"
+          "target": "com.azure.logic#GetWorkflowRunActionRepetition"
         },
         {
-          "target": "com.azure.logic#WorkflowRunActionRepetitionsList"
+          "target": "com.azure.logic#ListWorkflowRunActionRepetitions"
         },
         {
-          "target": "com.azure.logic#WorkflowRunActionsListExpressionTraces"
+          "target": "com.azure.logic#ListWorkflowRunActionExpressionTraces"
         },
         {
-          "target": "com.azure.logic#WorkflowRunActionsGet"
+          "target": "com.azure.logic#GetWorkflowRunAction"
         },
         {
-          "target": "com.azure.logic#WorkflowRunActionsList"
+          "target": "com.azure.logic#ListWorkflowRunActions"
         },
         {
-          "target": "com.azure.logic#WorkflowRunsCancel"
+          "target": "com.azure.logic#CancelWorkflowRun"
         },
         {
-          "target": "com.azure.logic#WorkflowRunsGet"
+          "target": "com.azure.logic#GetWorkflowRun"
         },
         {
-          "target": "com.azure.logic#WorkflowRunsList"
+          "target": "com.azure.logic#ListWorkflowRuns"
         },
         {
           "target": "com.azure.logic#WorkflowTriggerHistoriesResubmit"
         },
         {
-          "target": "com.azure.logic#WorkflowTriggerHistoriesGet"
+          "target": "com.azure.logic#GetWorkflowTriggerHistory"
         },
         {
-          "target": "com.azure.logic#WorkflowTriggerHistoriesList"
+          "target": "com.azure.logic#ListWorkflowTriggerHistories"
         },
         {
-          "target": "com.azure.logic#WorkflowVersionTriggersListCallbackUrl"
+          "target": "com.azure.logic#ListWorkflowVersionTriggerCallbackUrl"
         },
         {
-          "target": "com.azure.logic#WorkflowTriggersListCallbackUrl"
+          "target": "com.azure.logic#ListWorkflowTriggerCallbackUrl"
         },
         {
-          "target": "com.azure.logic#WorkflowTriggersSetState"
+          "target": "com.azure.logic#SetWorkflowTriggerState"
         },
         {
-          "target": "com.azure.logic#WorkflowTriggersGetSchemaJson"
+          "target": "com.azure.logic#GetWorkflowTriggerSchemaJson"
         },
         {
-          "target": "com.azure.logic#WorkflowTriggersRun"
+          "target": "com.azure.logic#TriggerRunWorkflow"
         },
         {
-          "target": "com.azure.logic#WorkflowTriggersReset"
+          "target": "com.azure.logic#ResetWorkflowTrigger"
         },
         {
-          "target": "com.azure.logic#WorkflowTriggersGet"
+          "target": "com.azure.logic#GetWorkflowTrigger"
         },
         {
-          "target": "com.azure.logic#WorkflowTriggersList"
+          "target": "com.azure.logic#ListWorkflowTriggers"
         },
         {
-          "target": "com.azure.logic#WorkflowVersionsGet"
+          "target": "com.azure.logic#GetWorkflowVersion"
         },
         {
-          "target": "com.azure.logic#WorkflowVersionsList"
+          "target": "com.azure.logic#ListWorkflowVersions"
         },
         {
-          "target": "com.azure.logic#WorkflowsValidateByResourceGroup"
+          "target": "com.azure.logic#ValidateWorkflowByResourceGroup"
         },
         {
-          "target": "com.azure.logic#WorkflowsRegenerateAccessKey"
+          "target": "com.azure.logic#RegenerateWorkflowAccessKey"
         },
         {
-          "target": "com.azure.logic#WorkflowsMove"
+          "target": "com.azure.logic#MoveWorkflow"
         },
         {
-          "target": "com.azure.logic#WorkflowsListSwagger"
+          "target": "com.azure.logic#ListWorkflowSwagger"
         },
         {
-          "target": "com.azure.logic#WorkflowsListCallbackUrl"
+          "target": "com.azure.logic#ListWorkflowCallbackUrl"
         },
         {
-          "target": "com.azure.logic#WorkflowsGenerateUpgradedDefinition"
+          "target": "com.azure.logic#GenerateWorkflowUpgradedDefinition"
         },
         {
-          "target": "com.azure.logic#WorkflowsEnable"
+          "target": "com.azure.logic#EnableWorkflow"
         },
         {
-          "target": "com.azure.logic#WorkflowsDisable"
+          "target": "com.azure.logic#DisableWorkflow"
         },
         {
-          "target": "com.azure.logic#WorkflowsDelete"
+          "target": "com.azure.logic#DeleteWorkflow"
         },
         {
-          "target": "com.azure.logic#WorkflowsUpdate"
+          "target": "com.azure.logic#UpdateWorkflow"
         },
         {
           "target": "com.azure.logic#WorkflowsCreateOrUpdate"
         },
         {
-          "target": "com.azure.logic#WorkflowsGet"
+          "target": "com.azure.logic#GetWorkflow"
         },
         {
-          "target": "com.azure.logic#WorkflowsListByResourceGroup"
+          "target": "com.azure.logic#ListWorkflowByResourceGroup"
         },
         {
-          "target": "com.azure.logic#WorkflowsListBySubscription"
+          "target": "com.azure.logic#ListWorkflowBySubscription"
         }
       ],
       "traits": {

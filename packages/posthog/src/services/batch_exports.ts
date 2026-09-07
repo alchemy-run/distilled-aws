@@ -106,187 +106,208 @@ export const BatchExportsBackfillsCancelCreateResponse =
     identifier: "BatchExportsBackfillsCancelCreateResponse",
   }) as any as S.Schema<BatchExportsBackfillsCancelCreateResponse>;
 
-export interface BatchExportsBackfillsCreateRequest {
+export interface BatchExportsDestroyRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this batch export. */
+  id: string;
+}
+export const BatchExportsDestroyRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/api/projects/{project_id}/batch_exports/{id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "BatchExportsDestroyRequest",
+}) as any as S.Schema<BatchExportsDestroyRequest>;
+
+export interface BatchExportsDestroyResponse {}
+export const BatchExportsDestroyResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "BatchExportsDestroyResponse",
+}) as any as S.Schema<BatchExportsDestroyResponse>;
+
+/** * `Cancelled` - Cancelled * `Completed` - Completed * `ContinuedAsNew` - Continued As New * `Failed` - Failed * `FailedRetryable` - Failed Retryable * `FailedBilling` - Failed Billing * `Terminated` - Terminated * `TimedOut` - Timedout * `Running` - Running * `Starting` - Starting */
+export type BatchExportRunStatusEnum =
+  | "Cancelled"
+  | "Completed"
+  | "ContinuedAsNew"
+  | "Failed"
+  | "FailedRetryable"
+  | "FailedBilling"
+  | "Terminated"
+  | "TimedOut"
+  | "Running"
+  | "Starting";
+export const BatchExportRunStatusEnum = /*@__PURE__*/ S.String;
+
+export interface BatchExportsRunsCancelCreateRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   batch_export_id: string;
+  /** A UUID string identifying this batch export run. */
+  id: string;
+  /** The status of this run. * `Cancelled` - Cancelled * `Completed` - Completed * `ContinuedAsNew` - Continued As New * `Failed` - Failed * `FailedRetryable` - Failed Retryable * `FailedBilling` - Failed Billing * `Terminated` - Terminated * `TimedOut` - Timedout * `Running` - Running * `Starting` - Starting */
+  status?: BatchExportRunStatusEnum | (string & {});
+  /** The number of records that have been exported. */
+  records_completed?: number | null;
+  /** The number of records that failed downstream processing (e.g. hog function execution errors). */
+  records_failed?: number | null;
+  /** The latest error that occurred during this run. */
+  latest_error?: string | null;
   /** The start of the data interval. */
-  start_at?: string | null;
+  data_interval_start?: string | null;
   /** The end of the data interval. */
-  end_at?: string | null;
-  /** The status of this backfill. * `Cancelled` - Cancelled * `Completed` - Completed * `ContinuedAsNew` - Continued As New * `Failed` - Failed * `FailedRetryable` - Failed Retryable * `Terminated` - Terminated * `TimedOut` - Timedout * `Running` - Running * `Starting` - Starting */
-  status?: BatchExportBackfillStatusEnum | (string & {});
-  /** The timestamp at which this BatchExportBackfill finished, successfully or not. */
+  data_interval_end?: string;
+  /** An opaque cursor that may be used to resume. */
+  cursor?: string | null;
+  /** The timestamp at which this BatchExportRun finished, successfully or not. */
   finished_at?: string | null;
-  /** The total number of records to export. Initially estimated, updated with actual count after completion. */
-  total_records_count?: number | null;
-  /** The actual start time after adjustment for earliest available data. May differ from start_at if user requested a date before data exists. */
-  adjusted_start_at?: string | null;
-  /** The team this belongs to. */
-  team?: number;
-  /** The BatchExport this backfill belongs to. */
-  batch_export?: string;
+  /** The total count of records that should be exported in this BatchExportRun. */
+  records_total_count?: number | null;
+  /** The number of bytes that have been exported in this BatchExportRun. */
+  bytes_exported?: number | null;
+  /** The `BatchExportOnDemand` this run belongs to. */
+  batch_export_on_demand?: string | null;
+  /** The backfill this run belongs to. */
+  backfill?: string | null;
 }
-export const BatchExportsBackfillsCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const BatchExportsRunsCancelCreateRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     batch_export_id: S.String.pipe(T.Label()),
-    start_at: S.optional(S.NullOr(S.String)),
-    end_at: S.optional(S.NullOr(S.String)),
-    status: S.optional(BatchExportBackfillStatusEnum),
+    id: S.String.pipe(T.Label()),
+    status: S.optional(BatchExportRunStatusEnum),
+    records_completed: S.optional(S.NullOr(S.Number)),
+    records_failed: S.optional(S.NullOr(S.Number)),
+    latest_error: S.optional(S.NullOr(S.String)),
+    data_interval_start: S.optional(S.NullOr(S.String)),
+    data_interval_end: S.optional(S.String),
+    cursor: S.optional(S.NullOr(S.String)),
     finished_at: S.optional(S.NullOr(S.String)),
-    total_records_count: S.optional(S.NullOr(S.Number)),
-    adjusted_start_at: S.optional(S.NullOr(S.String)),
-    team: S.optional(S.Number),
-    batch_export: S.optional(S.String),
+    records_total_count: S.optional(S.NullOr(S.Number)),
+    bytes_exported: S.optional(S.NullOr(S.Number)),
+    batch_export_on_demand: S.optional(S.NullOr(S.String)),
+    backfill: S.optional(S.NullOr(S.String)),
   }).pipe(
     T.Http({
       method: "POST",
-      uri: "/api/projects/{project_id}/batch_exports/{batch_export_id}/backfills/",
+      uri: "/api/projects/{project_id}/batch_exports/{batch_export_id}/runs/{id}/cancel/",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "BatchExportsBackfillsCreateRequest",
-}) as any as S.Schema<BatchExportsBackfillsCreateRequest>;
+  identifier: "BatchExportsRunsCancelCreateRequest",
+}) as any as S.Schema<BatchExportsRunsCancelCreateRequest>;
 
-export interface BatchExportBackfillProgress {
-  total_runs?: number | null;
-  finished_runs?: number | null;
-  progress?: number | null;
-}
-export const BatchExportBackfillProgress = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    total_runs: S.optional(S.NullOr(S.Number)),
-    finished_runs: S.optional(S.NullOr(S.Number)),
-    progress: S.optional(S.NullOr(S.Number)),
-  }),
+export interface BatchExportsRunsCancelCreateResponse {}
+export const BatchExportsRunsCancelCreateResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
 ).annotate({
-  identifier: "BatchExportBackfillProgress",
-}) as any as S.Schema<BatchExportBackfillProgress>;
+  identifier: "BatchExportsRunsCancelCreateResponse",
+}) as any as S.Schema<BatchExportsRunsCancelCreateResponse>;
 
-export interface BatchExportBackfill {
-  id?: string;
-  progress?: BatchExportBackfillProgress | null;
-  /** The start of the data interval. */
-  start_at?: string | null;
-  /** The end of the data interval. */
-  end_at?: string | null;
-  /** The status of this backfill. * `Cancelled` - Cancelled * `Completed` - Completed * `ContinuedAsNew` - Continued As New * `Failed` - Failed * `FailedRetryable` - Failed Retryable * `Terminated` - Terminated * `TimedOut` - Timedout * `Running` - Running * `Starting` - Starting */
-  status?: BatchExportBackfillStatusEnum;
-  /** The timestamp at which this BatchExportBackfill was created. */
-  created_at?: string;
-  /** The timestamp at which this BatchExportBackfill finished, successfully or not. */
-  finished_at?: string | null;
-  /** The timestamp at which this BatchExportBackfill was last updated. */
-  last_updated_at?: string;
-  /** The total number of records to export. Initially estimated, updated with actual count after completion. */
-  total_records_count?: number | null;
-  /** The actual start time after adjustment for earliest available data. May differ from start_at if user requested a date before data exists. */
-  adjusted_start_at?: string | null;
-  /** The team this belongs to. */
-  team?: number;
-  /** The BatchExport this backfill belongs to. */
-  batch_export?: string;
-}
-export const BatchExportBackfill = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    progress: S.optional(S.NullOr(BatchExportBackfillProgress)),
-    start_at: S.optional(S.NullOr(S.String)),
-    end_at: S.optional(S.NullOr(S.String)),
-    status: S.optional(BatchExportBackfillStatusEnum),
-    created_at: S.optional(S.String),
-    finished_at: S.optional(S.NullOr(S.String)),
-    last_updated_at: S.optional(S.String),
-    total_records_count: S.optional(S.NullOr(S.Number)),
-    adjusted_start_at: S.optional(S.NullOr(S.String)),
-    team: S.optional(S.Number),
-    batch_export: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "BatchExportBackfill",
-}) as any as S.Schema<BatchExportBackfill>;
-
-export interface BatchExportsBackfillsListRequest {
+export interface BatchExportsRunsRetryCreateRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   batch_export_id: string;
-  /** The pagination cursor value. */
-  cursor?: string;
-  /** Which field to use when ordering the results. */
-  ordering?: string;
+  /** A UUID string identifying this batch export run. */
+  id: string;
+  /** The status of this run. * `Cancelled` - Cancelled * `Completed` - Completed * `ContinuedAsNew` - Continued As New * `Failed` - Failed * `FailedRetryable` - Failed Retryable * `FailedBilling` - Failed Billing * `Terminated` - Terminated * `TimedOut` - Timedout * `Running` - Running * `Starting` - Starting */
+  status?: BatchExportRunStatusEnum | (string & {});
+  /** The number of records that have been exported. */
+  records_completed?: number | null;
+  /** The number of records that failed downstream processing (e.g. hog function execution errors). */
+  records_failed?: number | null;
+  /** The latest error that occurred during this run. */
+  latest_error?: string | null;
+  /** The start of the data interval. */
+  data_interval_start?: string | null;
+  /** The end of the data interval. */
+  data_interval_end?: string;
+  /** An opaque cursor that may be used to resume. */
+  cursor?: string | null;
+  /** The timestamp at which this BatchExportRun finished, successfully or not. */
+  finished_at?: string | null;
+  /** The total count of records that should be exported in this BatchExportRun. */
+  records_total_count?: number | null;
+  /** The number of bytes that have been exported in this BatchExportRun. */
+  bytes_exported?: number | null;
+  /** The `BatchExportOnDemand` this run belongs to. */
+  batch_export_on_demand?: string | null;
+  /** The backfill this run belongs to. */
+  backfill?: string | null;
 }
-export const BatchExportsBackfillsListRequest = /*@__PURE__*/ S.suspend(() =>
+export const BatchExportsRunsRetryCreateRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     batch_export_id: S.String.pipe(T.Label()),
-    cursor: S.optional(S.String.pipe(T.Query())),
-    ordering: S.optional(S.String.pipe(T.Query())),
+    id: S.String.pipe(T.Label()),
+    status: S.optional(BatchExportRunStatusEnum),
+    records_completed: S.optional(S.NullOr(S.Number)),
+    records_failed: S.optional(S.NullOr(S.Number)),
+    latest_error: S.optional(S.NullOr(S.String)),
+    data_interval_start: S.optional(S.NullOr(S.String)),
+    data_interval_end: S.optional(S.String),
+    cursor: S.optional(S.NullOr(S.String)),
+    finished_at: S.optional(S.NullOr(S.String)),
+    records_total_count: S.optional(S.NullOr(S.Number)),
+    bytes_exported: S.optional(S.NullOr(S.Number)),
+    batch_export_on_demand: S.optional(S.NullOr(S.String)),
+    backfill: S.optional(S.NullOr(S.String)),
   }).pipe(
     T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/batch_exports/{batch_export_id}/backfills/",
+      method: "POST",
+      uri: "/api/projects/{project_id}/batch_exports/{batch_export_id}/runs/{id}/retry/",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "BatchExportsBackfillsListRequest",
-}) as any as S.Schema<BatchExportsBackfillsListRequest>;
+  identifier: "BatchExportsRunsRetryCreateRequest",
+}) as any as S.Schema<BatchExportsRunsRetryCreateRequest>;
 
-export type PaginatedBatchExportBackfillListResultsList =
-  Array<BatchExportBackfill>;
-export const PaginatedBatchExportBackfillListResultsList =
-  /*@__PURE__*/ S.Array(
-    BatchExportBackfill,
-  ) as any as S.Schema<PaginatedBatchExportBackfillListResultsList>;
-
-export interface PaginatedBatchExportBackfillList {
-  next?: string | null;
-  previous?: string | null;
-  results?: PaginatedBatchExportBackfillListResultsList;
-}
-export const PaginatedBatchExportBackfillList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    next: S.optional(S.NullOr(S.String)),
-    previous: S.optional(S.NullOr(S.String)),
-    results: S.optional(PaginatedBatchExportBackfillListResultsList),
-  }),
+export interface BatchExportsRunsRetryCreateResponse {}
+export const BatchExportsRunsRetryCreateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
 ).annotate({
-  identifier: "PaginatedBatchExportBackfillList",
-}) as any as S.Schema<PaginatedBatchExportBackfillList>;
-
-export interface BatchExportsBackfillsRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  batch_export_id: string;
-  /** A UUID string identifying this batch export backfill. */
-  id: string;
-}
-export const BatchExportsBackfillsRetrieveRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      batch_export_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/batch_exports/{batch_export_id}/backfills/{id}/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "BatchExportsBackfillsRetrieveRequest",
-}) as any as S.Schema<BatchExportsBackfillsRetrieveRequest>;
+  identifier: "BatchExportsRunsRetryCreateResponse",
+}) as any as S.Schema<BatchExportsRunsRetryCreateResponse>;
 
 /** * `events` - Events * `persons` - Persons * `sessions` - Sessions * `hogql` - Hogql */
 export type ModelEnum = "events" | "persons" | "sessions" | "hogql";
 export const ModelEnum = /*@__PURE__*/ S.String;
 
-/** * `Databricks` - Databricks */
-export type DatabricksDestinationRequestTypeEnum = "Databricks";
-export const DatabricksDestinationRequestTypeEnum = /*@__PURE__*/ S.String;
+export type BlankEnum = "";
+export const BlankEnum = /*@__PURE__*/ S.String;
+
+/** Which model this BatchExport is exporting. * `events` - Events * `persons` - Persons * `sessions` - Sessions * `hogql` - Hogql */
+export type BatchExportsUnpauseCreateRequestModel = ModelEnum | BlankEnum;
+export const BatchExportsUnpauseCreateRequestModel =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<BatchExportsUnpauseCreateRequestModel>;
+
+/** * `S3` - S3 * `AwsS3` - Aws S3 * `S3Compatible` - S3 Compatible * `Snowflake` - Snowflake * `Postgres` - Postgres * `Redshift` - Redshift * `BigQuery` - Bigquery * `Databricks` - Databricks * `AzureBlob` - Azure Blob * `Workflows` - Workflows * `HTTP` - Http * `NoOp` - Noop * `FileDownload` - File Download */
+export type BatchExportDestinationDestinationEnum =
+  | "S3"
+  | "AwsS3"
+  | "S3Compatible"
+  | "Snowflake"
+  | "Postgres"
+  | "Redshift"
+  | "BigQuery"
+  | "Databricks"
+  | "AzureBlob"
+  | "Workflows"
+  | "HTTP"
+  | "NoOp"
+  | "FileDownload";
+export const BatchExportDestinationDestinationEnum = /*@__PURE__*/ S.String;
 
 /** Typed configuration for a Databricks batch-export destination. Credentials live in the linked Integration, not in this config. Mirrors `DatabricksBatchExportInputs` in `products/batch_exports/backend/service.py`. */
 export interface DatabricksDestinationConfig {
@@ -315,27 +336,6 @@ export const DatabricksDestinationConfig = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "DatabricksDestinationConfig",
 }) as any as S.Schema<DatabricksDestinationConfig>;
-
-/** Request shape for creating or updating a Databricks batch-export destination. */
-export interface DatabricksDestinationRequest {
-  type: DatabricksDestinationRequestTypeEnum;
-  /** ID of a databricks-kind Integration. Use the integrations-list MCP tool to find one. */
-  integration_id: number;
-  config: DatabricksDestinationConfig;
-}
-export const DatabricksDestinationRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: DatabricksDestinationRequestTypeEnum,
-    integration_id: S.Number,
-    config: DatabricksDestinationConfig,
-  }),
-).annotate({
-  identifier: "DatabricksDestinationRequest",
-}) as any as S.Schema<DatabricksDestinationRequest>;
-
-/** * `AzureBlob` - AzureBlob */
-export type AzureBlobDestinationRequestTypeEnum = "AzureBlob";
-export const AzureBlobDestinationRequestTypeEnum = /*@__PURE__*/ S.String;
 
 /** * `brotli` - brotli * `gzip` - gzip * `lz4` - lz4 * `snappy` - snappy * `zstd` - zstd */
 export type CompressionEnum = "brotli" | "gzip" | "lz4" | "snappy" | "zstd";
@@ -370,27 +370,6 @@ export const AzureBlobDestinationConfig = /*@__PURE__*/ S.suspend(() =>
   identifier: "AzureBlobDestinationConfig",
 }) as any as S.Schema<AzureBlobDestinationConfig>;
 
-/** Request shape for creating or updating an Azure Blob Storage batch-export destination. */
-export interface AzureBlobDestinationRequest {
-  type: AzureBlobDestinationRequestTypeEnum;
-  /** ID of an azure-blob-kind Integration. Use the integrations-list MCP tool to find one. */
-  integration_id: number;
-  config: AzureBlobDestinationConfig;
-}
-export const AzureBlobDestinationRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: AzureBlobDestinationRequestTypeEnum,
-    integration_id: S.Number,
-    config: AzureBlobDestinationConfig,
-  }),
-).annotate({
-  identifier: "AzureBlobDestinationRequest",
-}) as any as S.Schema<AzureBlobDestinationRequest>;
-
-/** * `BigQuery` - BigQuery */
-export type BigQueryDestinationRequestTypeEnum = "BigQuery";
-export const BigQueryDestinationRequestTypeEnum = /*@__PURE__*/ S.String;
-
 /** Typed configuration for a BigQuery batch-export destination. Credentials live in the linked Integration, not in this config. Mirrors the non-credential fields of `BigQueryBatchExportInputs` in `products/batch_exports/backend/service.py`. */
 export interface BigQueryDestinationConfig {
   /** BigQuery dataset ID to write to. */
@@ -409,27 +388,6 @@ export const BigQueryDestinationConfig = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "BigQueryDestinationConfig",
 }) as any as S.Schema<BigQueryDestinationConfig>;
-
-/** Request shape for creating or updating a BigQuery batch-export destination. */
-export interface BigQueryDestinationRequest {
-  type: BigQueryDestinationRequestTypeEnum;
-  /** ID of a google-cloud-service-account-kind Integration. Use the integrations-list MCP tool to find one. */
-  integration_id: number;
-  config: BigQueryDestinationConfig;
-}
-export const BigQueryDestinationRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: BigQueryDestinationRequestTypeEnum,
-    integration_id: S.Number,
-    config: BigQueryDestinationConfig,
-  }),
-).annotate({
-  identifier: "BigQueryDestinationRequest",
-}) as any as S.Schema<BigQueryDestinationRequest>;
-
-/** * `Postgres` - Postgres */
-export type PostgresDestinationRequestTypeEnum = "Postgres";
-export const PostgresDestinationRequestTypeEnum = /*@__PURE__*/ S.String;
 
 /** Typed configuration for a PostgreSQL batch-export destination. Connection credentials may live in a linked Integration (when one is provided) or inline in this config (legacy). Mirrors the non-credential fields of `PostgresBatchExportInputs` in `products/batch_exports/backend/service.py`. */
 export interface PostgresDestinationConfig {
@@ -452,27 +410,6 @@ export const PostgresDestinationConfig = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "PostgresDestinationConfig",
 }) as any as S.Schema<PostgresDestinationConfig>;
-
-/** Request shape for creating or updating a PostgreSQL batch-export destination. */
-export interface PostgresDestinationRequest {
-  type: PostgresDestinationRequestTypeEnum;
-  /** ID of a postgresql-kind Integration providing connection credentials. Required when creating a batch export. Use the integrations-list MCP tool to find one. */
-  integration_id: number;
-  config: PostgresDestinationConfig;
-}
-export const PostgresDestinationRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: PostgresDestinationRequestTypeEnum,
-    integration_id: S.Number,
-    config: PostgresDestinationConfig,
-  }),
-).annotate({
-  identifier: "PostgresDestinationRequest",
-}) as any as S.Schema<PostgresDestinationRequest>;
-
-/** * `AwsS3` - AwsS3 */
-export type AwsS3DestinationRequestTypeEnum = "AwsS3";
-export const AwsS3DestinationRequestTypeEnum = /*@__PURE__*/ S.String;
 
 /** Typed configuration for an AWS S3 batch-export destination. AWS credentials live in the linked aws-s3 Integration. Mirrors the non-credential fields of `AwsS3BatchExportInputs` in `products/batch_exports/backend/service.py`. */
 export interface AwsS3DestinationConfig {
@@ -508,27 +445,6 @@ export const AwsS3DestinationConfig = /*@__PURE__*/ S.suspend(() =>
   identifier: "AwsS3DestinationConfig",
 }) as any as S.Schema<AwsS3DestinationConfig>;
 
-/** Request shape for creating or updating an AWS S3 batch-export destination. */
-export interface AwsS3DestinationRequest {
-  type: AwsS3DestinationRequestTypeEnum;
-  /** ID of an aws-s3-kind Integration providing AWS credentials. Required when creating a batch export. Use the integrations-list MCP tool to find one. */
-  integration_id: number;
-  config: AwsS3DestinationConfig;
-}
-export const AwsS3DestinationRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: AwsS3DestinationRequestTypeEnum,
-    integration_id: S.Number,
-    config: AwsS3DestinationConfig,
-  }),
-).annotate({
-  identifier: "AwsS3DestinationRequest",
-}) as any as S.Schema<AwsS3DestinationRequest>;
-
-/** * `S3Compatible` - S3Compatible */
-export type S3CompatibleDestinationRequestTypeEnum = "S3Compatible";
-export const S3CompatibleDestinationRequestTypeEnum = /*@__PURE__*/ S.String;
-
 /** Typed configuration for an S3-compatible batch-export destination (Cloudflare R2, DigitalOcean Spaces, etc.). Credentials and the provider `endpoint_url` live in the linked s3-compatible Integration. Mirrors the non-credential fields of `S3CompatibleBatchExportInputs` in `products/batch_exports/backend/service.py`. */
 export interface S3CompatibleDestinationConfig {
   /** Name of the destination bucket. */
@@ -560,27 +476,6 @@ export const S3CompatibleDestinationConfig = /*@__PURE__*/ S.suspend(() =>
   identifier: "S3CompatibleDestinationConfig",
 }) as any as S.Schema<S3CompatibleDestinationConfig>;
 
-/** Request shape for creating or updating an S3-compatible batch-export destination. */
-export interface S3CompatibleDestinationRequest {
-  type: S3CompatibleDestinationRequestTypeEnum;
-  /** ID of an s3-compatible-kind Integration providing credentials and the provider endpoint URL. Required when creating a batch export. Use the integrations-list MCP tool to find one. */
-  integration_id: number;
-  config: S3CompatibleDestinationConfig;
-}
-export const S3CompatibleDestinationRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: S3CompatibleDestinationRequestTypeEnum,
-    integration_id: S.Number,
-    config: S3CompatibleDestinationConfig,
-  }),
-).annotate({
-  identifier: "S3CompatibleDestinationRequest",
-}) as any as S.Schema<S3CompatibleDestinationRequest>;
-
-/** * `Snowflake` - Snowflake */
-export type SnowflakeDestinationRequestTypeEnum = "Snowflake";
-export const SnowflakeDestinationRequestTypeEnum = /*@__PURE__*/ S.String;
-
 /** Typed configuration for a Snowflake batch-export destination. Account, user, authentication type and credentials may live in a linked Integration (when one is provided) or inline in this config (legacy). Mirrors the non-credential fields of `SnowflakeBatchExportInputs` in `products/batch_exports/backend/service.py`. */
 export interface SnowflakeDestinationConfig {
   /** Snowflake database to write to. */
@@ -605,27 +500,6 @@ export const SnowflakeDestinationConfig = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "SnowflakeDestinationConfig",
 }) as any as S.Schema<SnowflakeDestinationConfig>;
-
-/** Request shape for creating or updating a Snowflake batch-export destination. */
-export interface SnowflakeDestinationRequest {
-  type: SnowflakeDestinationRequestTypeEnum;
-  /** ID of a snowflake-kind Integration providing the account, user and credentials. Preferred over inline credentials. Use the integrations-list MCP tool to find one. */
-  integration_id?: number;
-  config: SnowflakeDestinationConfig;
-}
-export const SnowflakeDestinationRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: SnowflakeDestinationRequestTypeEnum,
-    integration_id: S.optional(S.Number),
-    config: SnowflakeDestinationConfig,
-  }),
-).annotate({
-  identifier: "SnowflakeDestinationRequest",
-}) as any as S.Schema<SnowflakeDestinationRequest>;
-
-/** * `Redshift` - Redshift */
-export type RedshiftDestinationRequestTypeEnum = "Redshift";
-export const RedshiftDestinationRequestTypeEnum = /*@__PURE__*/ S.String;
 
 /** * `varchar` - varchar * `super` - super */
 export type PropertiesDataTypeEnum = "varchar" | "super";
@@ -728,117 +602,6 @@ export const RedshiftDestinationConfig = /*@__PURE__*/ S.suspend(() =>
   identifier: "RedshiftDestinationConfig",
 }) as any as S.Schema<RedshiftDestinationConfig>;
 
-/** Request shape for creating or updating a Redshift batch-export destination. */
-export interface RedshiftDestinationRequest {
-  type: RedshiftDestinationRequestTypeEnum;
-  /** ID of an aws-redshift-kind Integration providing connection credentials. Preferred over inline credentials. Use the integrations-list MCP tool to find one. */
-  integration_id?: number;
-  config: RedshiftDestinationConfig;
-}
-export const RedshiftDestinationRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: RedshiftDestinationRequestTypeEnum,
-    integration_id: S.optional(S.Number),
-    config: RedshiftDestinationConfig,
-  }),
-).annotate({
-  identifier: "RedshiftDestinationRequest",
-}) as any as S.Schema<RedshiftDestinationRequest>;
-
-export type BatchExportDestinationRequest =
-  | DatabricksDestinationRequest
-  | AzureBlobDestinationRequest
-  | BigQueryDestinationRequest
-  | PostgresDestinationRequest
-  | AwsS3DestinationRequest
-  | S3CompatibleDestinationRequest
-  | SnowflakeDestinationRequest
-  | RedshiftDestinationRequest;
-export const BatchExportDestinationRequest =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<BatchExportDestinationRequest>;
-
-/** * `hour` - hour * `day` - day * `week` - week * `every 5 minutes` - every 5 minutes * `every 15 minutes` - every 15 minutes */
-export type BatchExportIntervalEnum =
-  | "hour"
-  | "day"
-  | "week"
-  | "every 5 minutes"
-  | "every 15 minutes";
-export const BatchExportIntervalEnum = /*@__PURE__*/ S.String;
-
-export interface BatchExportsCreateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** Human-readable name for the batch export. */
-  name: string;
-  /** Which data model to export (events, persons, sessions). * `events` - Events * `persons` - Persons * `sessions` - Sessions * `hogql` - Hogql */
-  model?: ModelEnum | (string & {});
-  /** Destination configuration. Required integration_id is enforced per destination type. */
-  destination: BatchExportDestinationRequest;
-  /** How often the batch export should run. * `hour` - hour * `day` - day * `week` - week * `every 5 minutes` - every 5 minutes * `every 15 minutes` - every 15 minutes */
-  interval: BatchExportIntervalEnum | (string & {});
-  /** Whether the batch export is paused. */
-  paused?: boolean;
-  /** Optional HogQL SELECT defining a custom model schema. Only recommended in advanced use cases. */
-  hogql_query?: string;
-  /** Optional list of property filters to restrict which events are exported. Each filter is a serialized HogQL property filter object with a 'type' of one of: 'event', 'hogql', 'person' (e.g. {"key": "$browser", "operator": "exact", "type": "event", "value": ["Firefox"]}). */
-  filters?: unknown;
-  /** IANA timezone name (e.g. 'America/New_York', 'Europe/London', 'UTC') controlling daily and weekly interval boundaries. */
-  timezone?: string | null;
-  /** Day-of-week offset for weekly intervals (0=Sunday, 6=Saturday). */
-  offset_day?: number | null;
-  /** Hour-of-day offset (0-23) for daily and weekly intervals. */
-  offset_hour?: number | null;
-}
-export const BatchExportsCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    name: S.String,
-    model: S.optional(ModelEnum),
-    destination: BatchExportDestinationRequest,
-    interval: BatchExportIntervalEnum,
-    paused: S.optional(S.Boolean),
-    hogql_query: S.optional(S.String),
-    filters: S.optional(S.Unknown),
-    timezone: S.optional(S.NullOr(S.String)),
-    offset_day: S.optional(S.NullOr(S.Number)),
-    offset_hour: S.optional(S.NullOr(S.Number)),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/api/projects/{project_id}/batch_exports/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "BatchExportsCreateRequest",
-}) as any as S.Schema<BatchExportsCreateRequest>;
-
-export type BlankEnum = "";
-export const BlankEnum = /*@__PURE__*/ S.String;
-
-/** Which model this BatchExport is exporting. * `events` - Events * `persons` - Persons * `sessions` - Sessions * `hogql` - Hogql */
-export type BatchExportOutputModel = ModelEnum | BlankEnum;
-export const BatchExportOutputModel =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<BatchExportOutputModel>;
-
-/** * `S3` - S3 * `AwsS3` - Aws S3 * `S3Compatible` - S3 Compatible * `Snowflake` - Snowflake * `Postgres` - Postgres * `Redshift` - Redshift * `BigQuery` - Bigquery * `Databricks` - Databricks * `AzureBlob` - Azure Blob * `Workflows` - Workflows * `HTTP` - Http * `NoOp` - Noop * `FileDownload` - File Download */
-export type BatchExportDestinationTypeEnum =
-  | "S3"
-  | "AwsS3"
-  | "S3Compatible"
-  | "Snowflake"
-  | "Postgres"
-  | "Redshift"
-  | "BigQuery"
-  | "Databricks"
-  | "AzureBlob"
-  | "Workflows"
-  | "HTTP"
-  | "NoOp"
-  | "FileDownload";
-export const BatchExportDestinationTypeEnum = /*@__PURE__*/ S.String;
-
 export type BatchExportDestinationConfig =
   | DatabricksDestinationConfig
   | AzureBlobDestinationConfig
@@ -852,98 +615,35 @@ export const BatchExportDestinationConfig =
   /*@__PURE__*/ S.Unknown as any as S.Schema<BatchExportDestinationConfig>;
 
 /** Serializer for an BatchExportDestination model. The `config` field is polymorphic and typed only for destinations that keep credentials in the linked Integration (currently Databricks, AzureBlob, BigQuery, Postgres, AwsS3, S3Compatible, Snowflake, Redshift). Other destination types accept the same JSON shape but without a typed OpenAPI schema. Secret fields are stripped from `config` on read. */
-export interface BatchExportDestinationOutput {
+export interface BatchExportDestination {
   /** A choice of supported BatchExportDestination types. * `S3` - S3 * `AwsS3` - Aws S3 * `S3Compatible` - S3 Compatible * `Snowflake` - Snowflake * `Postgres` - Postgres * `Redshift` - Redshift * `BigQuery` - Bigquery * `Databricks` - Databricks * `AzureBlob` - Azure Blob * `Workflows` - Workflows * `HTTP` - Http * `NoOp` - Noop * `FileDownload` - File Download */
-  type?: BatchExportDestinationTypeEnum;
+  type?: BatchExportDestinationDestinationEnum | (string & {});
   /** Destination-specific configuration. Fields depend on `type`. Credentials for integration-backed destinations (Databricks, AzureBlob, BigQuery, Postgres, AwsS3, S3Compatible, Snowflake, Redshift) are NOT stored here — they live in the linked Integration. Secret fields are stripped from responses. */
   config?: BatchExportDestinationConfig;
   /** The integration for this destination. */
   integration?: number | null;
+  /** ID of a team-scoped Integration providing credentials, for destinations that authenticate through one. Required for all of those except Snowflake, which still supports inline credentials. */
+  integration_id?: number | null;
 }
-export const BatchExportDestinationOutput = /*@__PURE__*/ S.suspend(() =>
+export const BatchExportDestination = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    type: S.optional(BatchExportDestinationTypeEnum),
+    type: S.optional(BatchExportDestinationDestinationEnum),
     config: S.optional(BatchExportDestinationConfig),
     integration: S.optional(S.NullOr(S.Number)),
+    integration_id: S.optional(S.NullOr(S.Number)),
   }),
 ).annotate({
-  identifier: "BatchExportDestinationOutput",
-}) as any as S.Schema<BatchExportDestinationOutput>;
+  identifier: "BatchExportDestination",
+}) as any as S.Schema<BatchExportDestination>;
 
-/** * `Cancelled` - Cancelled * `Completed` - Completed * `ContinuedAsNew` - Continued As New * `Failed` - Failed * `FailedRetryable` - Failed Retryable * `FailedBilling` - Failed Billing * `Terminated` - Terminated * `TimedOut` - Timedout * `Running` - Running * `Starting` - Starting */
-export type BatchExportRunStatusEnum =
-  | "Cancelled"
-  | "Completed"
-  | "ContinuedAsNew"
-  | "Failed"
-  | "FailedRetryable"
-  | "FailedBilling"
-  | "Terminated"
-  | "TimedOut"
-  | "Running"
-  | "Starting";
-export const BatchExportRunStatusEnum = /*@__PURE__*/ S.String;
-
-/** Serializer for a BatchExportRun model. */
-export interface BatchExportRun {
-  id?: string;
-  /** The status of this run. * `Cancelled` - Cancelled * `Completed` - Completed * `ContinuedAsNew` - Continued As New * `Failed` - Failed * `FailedRetryable` - Failed Retryable * `FailedBilling` - Failed Billing * `Terminated` - Terminated * `TimedOut` - Timedout * `Running` - Running * `Starting` - Starting */
-  status?: BatchExportRunStatusEnum;
-  /** The number of records that have been exported. */
-  records_completed?: number | null;
-  /** The number of records that failed downstream processing (e.g. hog function execution errors). */
-  records_failed?: number | null;
-  /** The latest error that occurred during this run. */
-  latest_error?: string | null;
-  /** The start of the data interval. */
-  data_interval_start?: string | null;
-  /** The end of the data interval. */
-  data_interval_end?: string;
-  /** An opaque cursor that may be used to resume. */
-  cursor?: string | null;
-  /** The timestamp at which this BatchExportRun was created. */
-  created_at?: string;
-  /** The timestamp at which this BatchExportRun finished, successfully or not. */
-  finished_at?: string | null;
-  /** The timestamp at which this BatchExportRun was last updated. */
-  last_updated_at?: string;
-  /** The total count of records that should be exported in this BatchExportRun. */
-  records_total_count?: number | null;
-  /** The number of bytes that have been exported in this BatchExportRun. */
-  bytes_exported?: number | null;
-  /** The `BatchExport` this run belongs to. */
-  batch_export?: string | null;
-  /** The `BatchExportOnDemand` this run belongs to. */
-  batch_export_on_demand?: string | null;
-  /** The backfill this run belongs to. */
-  backfill?: string | null;
-}
-export const BatchExportRun = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    status: S.optional(BatchExportRunStatusEnum),
-    records_completed: S.optional(S.NullOr(S.Number)),
-    records_failed: S.optional(S.NullOr(S.Number)),
-    latest_error: S.optional(S.NullOr(S.String)),
-    data_interval_start: S.optional(S.NullOr(S.String)),
-    data_interval_end: S.optional(S.String),
-    cursor: S.optional(S.NullOr(S.String)),
-    created_at: S.optional(S.String),
-    finished_at: S.optional(S.NullOr(S.String)),
-    last_updated_at: S.optional(S.String),
-    records_total_count: S.optional(S.NullOr(S.Number)),
-    bytes_exported: S.optional(S.NullOr(S.Number)),
-    batch_export: S.optional(S.NullOr(S.String)),
-    batch_export_on_demand: S.optional(S.NullOr(S.String)),
-    backfill: S.optional(S.NullOr(S.String)),
-  }),
-).annotate({ identifier: "BatchExportRun" }) as any as S.Schema<BatchExportRun>;
-
-/** The 10 most recent runs of this batch export, ordered newest first. */
-export type BatchExportOutputLatestRunsList = Array<BatchExportRun>;
-export const BatchExportOutputLatestRunsList = /*@__PURE__*/ S.Array(
-  BatchExportRun,
-) as any as S.Schema<BatchExportOutputLatestRunsList>;
+/** * `hour` - hour * `day` - day * `week` - week * `every 5 minutes` - every 5 minutes * `every 15 minutes` - every 15 minutes */
+export type BatchExportIntervalEnum =
+  | "hour"
+  | "day"
+  | "week"
+  | "every 5 minutes"
+  | "every 15 minutes";
+export const BatchExportIntervalEnum = /*@__PURE__*/ S.String;
 
 /** * `Africa/Abidjan` - Africa/Abidjan * `Africa/Accra` - Africa/Accra * `Africa/Addis_Ababa` - Africa/Addis_Ababa * `Africa/Algiers` - Africa/Algiers * `Africa/Asmara` - Africa/Asmara * `Africa/Asmera` - Africa/Asmera * `Africa/Bamako` - Africa/Bamako * `Africa/Bangui` - Africa/Bangui * `Africa/Banjul` - Africa/Banjul * `Africa/Bissau` - Africa/Bissau * `Africa/Blantyre` - Africa/Blantyre * `Africa/Brazzaville` - Africa/Brazzaville * `Africa/Bujumbura` - Africa/Bujumbura * `Africa/Cairo` - Africa/Cairo * `Africa/Casablanca` - Africa/Casablanca * `Africa/Ceuta` - Africa/Ceuta * `Africa/Conakry` - Africa/Conakry * `Africa/Dakar` - Africa/Dakar * `Africa/Dar_es_Salaam` - Africa/Dar_es_Salaam * `Africa/Djibouti` - Africa/Djibouti * `Africa/Douala` - Africa/Douala * `Africa/El_Aaiun` - Africa/El_Aaiun * `Africa/Freetown` - Africa/Freetown * `Africa/Gaborone` - Africa/Gaborone * `Africa/Harare` - Africa/Harare * `Africa/Johannesburg` - Africa/Johannesburg * `Africa/Juba` - Africa/Juba * `Africa/Kampala` - Africa/Kampala * `Africa/Khartoum` - Africa/Khartoum * `Africa/Kigali` - Africa/Kigali * `Africa/Kinshasa` - Africa/Kinshasa * `Africa/Lagos` - Africa/Lagos * `Africa/Libreville` - Africa/Libreville * `Africa/Lome` - Africa/Lome * `Africa/Luanda` - Africa/Luanda * `Africa/Lubumbashi` - Africa/Lubumbashi * `Africa/Lusaka` - Africa/Lusaka * `Africa/Malabo` - Africa/Malabo * `Africa/Maputo` - Africa/Maputo * `Africa/Maseru` - Africa/Maseru * `Africa/Mbabane` - Africa/Mbabane * `Africa/Mogadishu` - Africa/Mogadishu * `Africa/Monrovia` - Africa/Monrovia * `Africa/Nairobi` - Africa/Nairobi * `Africa/Ndjamena` - Africa/Ndjamena * `Africa/Niamey` - Africa/Niamey * `Africa/Nouakchott` - Africa/Nouakchott * `Africa/Ouagadougou` - Africa/Ouagadougou * `Africa/Porto-Novo` - Africa/Porto-Novo * `Africa/Sao_Tome` - Africa/Sao_Tome * `Africa/Timbuktu` - Africa/Timbuktu * `Africa/Tripoli` - Africa/Tripoli * `Africa/Tunis` - Africa/Tunis * `Africa/Windhoek` - Africa/Windhoek * `America/Adak` - America/Adak * `America/Anchorage` - America/Anchorage * `America/Anguilla` - America/Anguilla * `America/Antigua` - America/Antigua * `America/Araguaina` - America/Araguaina * `America/Argentina/Buenos_Aires` - America/Argentina/Buenos_Aires * `America/Argentina/Catamarca` - America/Argentina/Catamarca * `America/Argentina/ComodRivadavia` - America/Argentina/ComodRivadavia * `America/Argentina/Cordoba` - America/Argentina/Cordoba * `America/Argentina/Jujuy` - America/Argentina/Jujuy * `America/Argentina/La_Rioja` - America/Argentina/La_Rioja * `America/Argentina/Mendoza` - America/Argentina/Mendoza * `America/Argentina/Rio_Gallegos` - America/Argentina/Rio_Gallegos * `America/Argentina/Salta` - America/Argentina/Salta * `America/Argentina/San_Juan` - America/Argentina/San_Juan * `America/Argentina/San_Luis` - America/Argentina/San_Luis * `America/Argentina/Tucuman` - America/Argentina/Tucuman * `America/Argentina/Ushuaia` - America/Argentina/Ushuaia * `America/Aruba` - America/Aruba * `America/Asuncion` - America/Asuncion * `America/Atikokan` - America/Atikokan * `America/Atka` - America/Atka * `America/Bahia` - America/Bahia * `America/Bahia_Banderas` - America/Bahia_Banderas * `America/Barbados` - America/Barbados * `America/Belem` - America/Belem * `America/Belize` - America/Belize * `America/Blanc-Sablon` - America/Blanc-Sablon * `America/Boa_Vista` - America/Boa_Vista * `America/Bogota` - America/Bogota * `America/Boise` - America/Boise * `America/Buenos_Aires` - America/Buenos_Aires * `America/Cambridge_Bay` - America/Cambridge_Bay * `America/Campo_Grande` - America/Campo_Grande * `America/Cancun` - America/Cancun * `America/Caracas` - America/Caracas * `America/Catamarca` - America/Catamarca * `America/Cayenne` - America/Cayenne * `America/Cayman` - America/Cayman * `America/Chicago` - America/Chicago * `America/Chihuahua` - America/Chihuahua * `America/Ciudad_Juarez` - America/Ciudad_Juarez * `America/Coral_Harbour` - America/Coral_Harbour * `America/Cordoba` - America/Cordoba * `America/Costa_Rica` - America/Costa_Rica * `America/Creston` - America/Creston * `America/Cuiaba` - America/Cuiaba * `America/Curacao` - America/Curacao * `America/Danmarkshavn` - America/Danmarkshavn * `America/Dawson` - America/Dawson * `America/Dawson_Creek` - America/Dawson_Creek * `America/Denver` - America/Denver * `America/Detroit` - America/Detroit * `America/Dominica` - America/Dominica * `America/Edmonton` - America/Edmonton * `America/Eirunepe` - America/Eirunepe * `America/El_Salvador` - America/El_Salvador * `America/Ensenada` - America/Ensenada * `America/Fort_Nelson` - America/Fort_Nelson * `America/Fort_Wayne` - America/Fort_Wayne * `America/Fortaleza` - America/Fortaleza * `America/Glace_Bay` - America/Glace_Bay * `America/Godthab` - America/Godthab * `America/Goose_Bay` - America/Goose_Bay * `America/Grand_Turk` - America/Grand_Turk * `America/Grenada` - America/Grenada * `America/Guadeloupe` - America/Guadeloupe * `America/Guatemala` - America/Guatemala * `America/Guayaquil` - America/Guayaquil * `America/Guyana` - America/Guyana * `America/Halifax` - America/Halifax * `America/Havana` - America/Havana * `America/Hermosillo` - America/Hermosillo * `America/Indiana/Indianapolis` - America/Indiana/Indianapolis * `America/Indiana/Knox` - America/Indiana/Knox * `America/Indiana/Marengo` - America/Indiana/Marengo * `America/Indiana/Petersburg` - America/Indiana/Petersburg * `America/Indiana/Tell_City` - America/Indiana/Tell_City * `America/Indiana/Vevay` - America/Indiana/Vevay * `America/Indiana/Vincennes` - America/Indiana/Vincennes * `America/Indiana/Winamac` - America/Indiana/Winamac * `America/Indianapolis` - America/Indianapolis * `America/Inuvik` - America/Inuvik * `America/Iqaluit` - America/Iqaluit * `America/Jamaica` - America/Jamaica * `America/Jujuy` - America/Jujuy * `America/Juneau` - America/Juneau * `America/Kentucky/Louisville` - America/Kentucky/Louisville * `America/Kentucky/Monticello` - America/Kentucky/Monticello * `America/Knox_IN` - America/Knox_IN * `America/Kralendijk` - America/Kralendijk * `America/La_Paz` - America/La_Paz * `America/Lima` - America/Lima * `America/Los_Angeles` - America/Los_Angeles * `America/Louisville` - America/Louisville * `America/Lower_Princes` - America/Lower_Princes * `America/Maceio` - America/Maceio * `America/Managua` - America/Managua * `America/Manaus` - America/Manaus * `America/Marigot` - America/Marigot * `America/Martinique` - America/Martinique * `America/Matamoros` - America/Matamoros * `America/Mazatlan` - America/Mazatlan * `America/Mendoza` - America/Mendoza * `America/Menominee` - America/Menominee * `America/Merida` - America/Merida * `America/Metlakatla` - America/Metlakatla * `America/Mexico_City` - America/Mexico_City * `America/Miquelon` - America/Miquelon * `America/Moncton` - America/Moncton * `America/Monterrey` - America/Monterrey * `America/Montevideo` - America/Montevideo * `America/Montreal` - America/Montreal * `America/Montserrat` - America/Montserrat * `America/Nassau` - America/Nassau * `America/New_York` - America/New_York * `America/Nipigon` - America/Nipigon * `America/Nome` - America/Nome * `America/Noronha` - America/Noronha * `America/North_Dakota/Beulah` - America/North_Dakota/Beulah * `America/North_Dakota/Center` - America/North_Dakota/Center * `America/North_Dakota/New_Salem` - America/North_Dakota/New_Salem * `America/Nuuk` - America/Nuuk * `America/Ojinaga` - America/Ojinaga * `America/Panama` - America/Panama * `America/Pangnirtung` - America/Pangnirtung * `America/Paramaribo` - America/Paramaribo * `America/Phoenix` - America/Phoenix * `America/Port-au-Prince` - America/Port-au-Prince * `America/Port_of_Spain` - America/Port_of_Spain * `America/Porto_Acre` - America/Porto_Acre * `America/Porto_Velho` - America/Porto_Velho * `America/Puerto_Rico` - America/Puerto_Rico * `America/Punta_Arenas` - America/Punta_Arenas * `America/Rainy_River` - America/Rainy_River * `America/Rankin_Inlet` - America/Rankin_Inlet * `America/Recife` - America/Recife * `America/Regina` - America/Regina * `America/Resolute` - America/Resolute * `America/Rio_Branco` - America/Rio_Branco * `America/Rosario` - America/Rosario * `America/Santa_Isabel` - America/Santa_Isabel * `America/Santarem` - America/Santarem * `America/Santiago` - America/Santiago * `America/Santo_Domingo` - America/Santo_Domingo * `America/Sao_Paulo` - America/Sao_Paulo * `America/Scoresbysund` - America/Scoresbysund * `America/Shiprock` - America/Shiprock * `America/Sitka` - America/Sitka * `America/St_Barthelemy` - America/St_Barthelemy * `America/St_Johns` - America/St_Johns * `America/St_Kitts` - America/St_Kitts * `America/St_Lucia` - America/St_Lucia * `America/St_Thomas` - America/St_Thomas * `America/St_Vincent` - America/St_Vincent * `America/Swift_Current` - America/Swift_Current * `America/Tegucigalpa` - America/Tegucigalpa * `America/Thule` - America/Thule * `America/Thunder_Bay` - America/Thunder_Bay * `America/Tijuana` - America/Tijuana * `America/Toronto` - America/Toronto * `America/Tortola` - America/Tortola * `America/Vancouver` - America/Vancouver * `America/Virgin` - America/Virgin * `America/Whitehorse` - America/Whitehorse * `America/Winnipeg` - America/Winnipeg * `America/Yakutat` - America/Yakutat * `America/Yellowknife` - America/Yellowknife * `Antarctica/Casey` - Antarctica/Casey * `Antarctica/Davis` - Antarctica/Davis * `Antarctica/DumontDUrville` - Antarctica/DumontDUrville * `Antarctica/Macquarie` - Antarctica/Macquarie * `Antarctica/Mawson` - Antarctica/Mawson * `Antarctica/McMurdo` - Antarctica/McMurdo * `Antarctica/Palmer` - Antarctica/Palmer * `Antarctica/Rothera` - Antarctica/Rothera * `Antarctica/South_Pole` - Antarctica/South_Pole * `Antarctica/Syowa` - Antarctica/Syowa * `Antarctica/Troll` - Antarctica/Troll * `Antarctica/Vostok` - Antarctica/Vostok * `Arctic/Longyearbyen` - Arctic/Longyearbyen * `Asia/Aden` - Asia/Aden * `Asia/Almaty` - Asia/Almaty * `Asia/Amman` - Asia/Amman * `Asia/Anadyr` - Asia/Anadyr * `Asia/Aqtau` - Asia/Aqtau * `Asia/Aqtobe` - Asia/Aqtobe * `Asia/Ashgabat` - Asia/Ashgabat * `Asia/Ashkhabad` - Asia/Ashkhabad * `Asia/Atyrau` - Asia/Atyrau * `Asia/Baghdad` - Asia/Baghdad * `Asia/Bahrain` - Asia/Bahrain * `Asia/Baku` - Asia/Baku * `Asia/Bangkok` - Asia/Bangkok * `Asia/Barnaul` - Asia/Barnaul * `Asia/Beirut` - Asia/Beirut * `Asia/Bishkek` - Asia/Bishkek * `Asia/Brunei` - Asia/Brunei * `Asia/Calcutta` - Asia/Calcutta * `Asia/Chita` - Asia/Chita * `Asia/Choibalsan` - Asia/Choibalsan * `Asia/Chongqing` - Asia/Chongqing * `Asia/Chungking` - Asia/Chungking * `Asia/Colombo` - Asia/Colombo * `Asia/Dacca` - Asia/Dacca * `Asia/Damascus` - Asia/Damascus * `Asia/Dhaka` - Asia/Dhaka * `Asia/Dili` - Asia/Dili * `Asia/Dubai` - Asia/Dubai * `Asia/Dushanbe` - Asia/Dushanbe * `Asia/Famagusta` - Asia/Famagusta * `Asia/Gaza` - Asia/Gaza * `Asia/Harbin` - Asia/Harbin * `Asia/Hebron` - Asia/Hebron * `Asia/Ho_Chi_Minh` - Asia/Ho_Chi_Minh * `Asia/Hong_Kong` - Asia/Hong_Kong * `Asia/Hovd` - Asia/Hovd * `Asia/Irkutsk` - Asia/Irkutsk * `Asia/Istanbul` - Asia/Istanbul * `Asia/Jakarta` - Asia/Jakarta * `Asia/Jayapura` - Asia/Jayapura * `Asia/Jerusalem` - Asia/Jerusalem * `Asia/Kabul` - Asia/Kabul * `Asia/Kamchatka` - Asia/Kamchatka * `Asia/Karachi` - Asia/Karachi * `Asia/Kashgar` - Asia/Kashgar * `Asia/Kathmandu` - Asia/Kathmandu * `Asia/Katmandu` - Asia/Katmandu * `Asia/Khandyga` - Asia/Khandyga * `Asia/Kolkata` - Asia/Kolkata * `Asia/Krasnoyarsk` - Asia/Krasnoyarsk * `Asia/Kuala_Lumpur` - Asia/Kuala_Lumpur * `Asia/Kuching` - Asia/Kuching * `Asia/Kuwait` - Asia/Kuwait * `Asia/Macao` - Asia/Macao * `Asia/Macau` - Asia/Macau * `Asia/Magadan` - Asia/Magadan * `Asia/Makassar` - Asia/Makassar * `Asia/Manila` - Asia/Manila * `Asia/Muscat` - Asia/Muscat * `Asia/Nicosia` - Asia/Nicosia * `Asia/Novokuznetsk` - Asia/Novokuznetsk * `Asia/Novosibirsk` - Asia/Novosibirsk * `Asia/Omsk` - Asia/Omsk * `Asia/Oral` - Asia/Oral * `Asia/Phnom_Penh` - Asia/Phnom_Penh * `Asia/Pontianak` - Asia/Pontianak * `Asia/Pyongyang` - Asia/Pyongyang * `Asia/Qatar` - Asia/Qatar * `Asia/Qostanay` - Asia/Qostanay * `Asia/Qyzylorda` - Asia/Qyzylorda * `Asia/Rangoon` - Asia/Rangoon * `Asia/Riyadh` - Asia/Riyadh * `Asia/Saigon` - Asia/Saigon * `Asia/Sakhalin` - Asia/Sakhalin * `Asia/Samarkand` - Asia/Samarkand * `Asia/Seoul` - Asia/Seoul * `Asia/Shanghai` - Asia/Shanghai * `Asia/Singapore` - Asia/Singapore * `Asia/Srednekolymsk` - Asia/Srednekolymsk * `Asia/Taipei` - Asia/Taipei * `Asia/Tashkent` - Asia/Tashkent * `Asia/Tbilisi` - Asia/Tbilisi * `Asia/Tehran` - Asia/Tehran * `Asia/Tel_Aviv` - Asia/Tel_Aviv * `Asia/Thimbu` - Asia/Thimbu * `Asia/Thimphu` - Asia/Thimphu * `Asia/Tokyo` - Asia/Tokyo * `Asia/Tomsk` - Asia/Tomsk * `Asia/Ujung_Pandang` - Asia/Ujung_Pandang * `Asia/Ulaanbaatar` - Asia/Ulaanbaatar * `Asia/Ulan_Bator` - Asia/Ulan_Bator * `Asia/Urumqi` - Asia/Urumqi * `Asia/Ust-Nera` - Asia/Ust-Nera * `Asia/Vientiane` - Asia/Vientiane * `Asia/Vladivostok` - Asia/Vladivostok * `Asia/Yakutsk` - Asia/Yakutsk * `Asia/Yangon` - Asia/Yangon * `Asia/Yekaterinburg` - Asia/Yekaterinburg * `Asia/Yerevan` - Asia/Yerevan * `Atlantic/Azores` - Atlantic/Azores * `Atlantic/Bermuda` - Atlantic/Bermuda * `Atlantic/Canary` - Atlantic/Canary * `Atlantic/Cape_Verde` - Atlantic/Cape_Verde * `Atlantic/Faeroe` - Atlantic/Faeroe * `Atlantic/Faroe` - Atlantic/Faroe * `Atlantic/Jan_Mayen` - Atlantic/Jan_Mayen * `Atlantic/Madeira` - Atlantic/Madeira * `Atlantic/Reykjavik` - Atlantic/Reykjavik * `Atlantic/South_Georgia` - Atlantic/South_Georgia * `Atlantic/St_Helena` - Atlantic/St_Helena * `Atlantic/Stanley` - Atlantic/Stanley * `Australia/ACT` - Australia/ACT * `Australia/Adelaide` - Australia/Adelaide * `Australia/Brisbane` - Australia/Brisbane * `Australia/Broken_Hill` - Australia/Broken_Hill * `Australia/Canberra` - Australia/Canberra * `Australia/Currie` - Australia/Currie * `Australia/Darwin` - Australia/Darwin * `Australia/Eucla` - Australia/Eucla * `Australia/Hobart` - Australia/Hobart * `Australia/LHI` - Australia/LHI * `Australia/Lindeman` - Australia/Lindeman * `Australia/Lord_Howe` - Australia/Lord_Howe * `Australia/Melbourne` - Australia/Melbourne * `Australia/NSW` - Australia/NSW * `Australia/North` - Australia/North * `Australia/Perth` - Australia/Perth * `Australia/Queensland` - Australia/Queensland * `Australia/South` - Australia/South * `Australia/Sydney` - Australia/Sydney * `Australia/Tasmania` - Australia/Tasmania * `Australia/Victoria` - Australia/Victoria * `Australia/West` - Australia/West * `Australia/Yancowinna` - Australia/Yancowinna * `Brazil/Acre` - Brazil/Acre * `Brazil/DeNoronha` - Brazil/DeNoronha * `Brazil/East` - Brazil/East * `Brazil/West` - Brazil/West * `CET` - CET * `CST6CDT` - CST6CDT * `Canada/Atlantic` - Canada/Atlantic * `Canada/Central` - Canada/Central * `Canada/Eastern` - Canada/Eastern * `Canada/Mountain` - Canada/Mountain * `Canada/Newfoundland` - Canada/Newfoundland * `Canada/Pacific` - Canada/Pacific * `Canada/Saskatchewan` - Canada/Saskatchewan * `Canada/Yukon` - Canada/Yukon * `Chile/Continental` - Chile/Continental * `Chile/EasterIsland` - Chile/EasterIsland * `Cuba` - Cuba * `EET` - EET * `EST` - EST * `EST5EDT` - EST5EDT * `Egypt` - Egypt * `Eire` - Eire * `Etc/GMT` - Etc/GMT * `Etc/GMT+0` - Etc/GMT+0 * `Etc/GMT+1` - Etc/GMT+1 * `Etc/GMT+10` - Etc/GMT+10 * `Etc/GMT+11` - Etc/GMT+11 * `Etc/GMT+12` - Etc/GMT+12 * `Etc/GMT+2` - Etc/GMT+2 * `Etc/GMT+3` - Etc/GMT+3 * `Etc/GMT+4` - Etc/GMT+4 * `Etc/GMT+5` - Etc/GMT+5 * `Etc/GMT+6` - Etc/GMT+6 * `Etc/GMT+7` - Etc/GMT+7 * `Etc/GMT+8` - Etc/GMT+8 * `Etc/GMT+9` - Etc/GMT+9 * `Etc/GMT-0` - Etc/GMT-0 * `Etc/GMT-1` - Etc/GMT-1 * `Etc/GMT-10` - Etc/GMT-10 * `Etc/GMT-11` - Etc/GMT-11 * `Etc/GMT-12` - Etc/GMT-12 * `Etc/GMT-13` - Etc/GMT-13 * `Etc/GMT-14` - Etc/GMT-14 * `Etc/GMT-2` - Etc/GMT-2 * `Etc/GMT-3` - Etc/GMT-3 * `Etc/GMT-4` - Etc/GMT-4 * `Etc/GMT-5` - Etc/GMT-5 * `Etc/GMT-6` - Etc/GMT-6 * `Etc/GMT-7` - Etc/GMT-7 * `Etc/GMT-8` - Etc/GMT-8 * `Etc/GMT-9` - Etc/GMT-9 * `Etc/GMT0` - Etc/GMT0 * `Etc/Greenwich` - Etc/Greenwich * `Etc/UCT` - Etc/UCT * `Etc/UTC` - Etc/UTC * `Etc/Universal` - Etc/Universal * `Etc/Zulu` - Etc/Zulu * `Europe/Amsterdam` - Europe/Amsterdam * `Europe/Andorra` - Europe/Andorra * `Europe/Astrakhan` - Europe/Astrakhan * `Europe/Athens` - Europe/Athens * `Europe/Belfast` - Europe/Belfast * `Europe/Belgrade` - Europe/Belgrade * `Europe/Berlin` - Europe/Berlin * `Europe/Bratislava` - Europe/Bratislava * `Europe/Brussels` - Europe/Brussels * `Europe/Bucharest` - Europe/Bucharest * `Europe/Budapest` - Europe/Budapest * `Europe/Busingen` - Europe/Busingen * `Europe/Chisinau` - Europe/Chisinau * `Europe/Copenhagen` - Europe/Copenhagen * `Europe/Dublin` - Europe/Dublin * `Europe/Gibraltar` - Europe/Gibraltar * `Europe/Guernsey` - Europe/Guernsey * `Europe/Helsinki` - Europe/Helsinki * `Europe/Isle_of_Man` - Europe/Isle_of_Man * `Europe/Istanbul` - Europe/Istanbul * `Europe/Jersey` - Europe/Jersey * `Europe/Kaliningrad` - Europe/Kaliningrad * `Europe/Kiev` - Europe/Kiev * `Europe/Kirov` - Europe/Kirov * `Europe/Kyiv` - Europe/Kyiv * `Europe/Lisbon` - Europe/Lisbon * `Europe/Ljubljana` - Europe/Ljubljana * `Europe/London` - Europe/London * `Europe/Luxembourg` - Europe/Luxembourg * `Europe/Madrid` - Europe/Madrid * `Europe/Malta` - Europe/Malta * `Europe/Mariehamn` - Europe/Mariehamn * `Europe/Minsk` - Europe/Minsk * `Europe/Monaco` - Europe/Monaco * `Europe/Moscow` - Europe/Moscow * `Europe/Nicosia` - Europe/Nicosia * `Europe/Oslo` - Europe/Oslo * `Europe/Paris` - Europe/Paris * `Europe/Podgorica` - Europe/Podgorica * `Europe/Prague` - Europe/Prague * `Europe/Riga` - Europe/Riga * `Europe/Rome` - Europe/Rome * `Europe/Samara` - Europe/Samara * `Europe/San_Marino` - Europe/San_Marino * `Europe/Sarajevo` - Europe/Sarajevo * `Europe/Saratov` - Europe/Saratov * `Europe/Simferopol` - Europe/Simferopol * `Europe/Skopje` - Europe/Skopje * `Europe/Sofia` - Europe/Sofia * `Europe/Stockholm` - Europe/Stockholm * `Europe/Tallinn` - Europe/Tallinn * `Europe/Tirane` - Europe/Tirane * `Europe/Tiraspol` - Europe/Tiraspol * `Europe/Ulyanovsk` - Europe/Ulyanovsk * `Europe/Uzhgorod` - Europe/Uzhgorod * `Europe/Vaduz` - Europe/Vaduz * `Europe/Vatican` - Europe/Vatican * `Europe/Vienna` - Europe/Vienna * `Europe/Vilnius` - Europe/Vilnius * `Europe/Volgograd` - Europe/Volgograd * `Europe/Warsaw` - Europe/Warsaw * `Europe/Zagreb` - Europe/Zagreb * `Europe/Zaporozhye` - Europe/Zaporozhye * `Europe/Zurich` - Europe/Zurich * `GB` - GB * `GB-Eire` - GB-Eire * `GMT` - GMT * `GMT+0` - GMT+0 * `GMT-0` - GMT-0 * `GMT0` - GMT0 * `Greenwich` - Greenwich * `HST` - HST * `Hongkong` - Hongkong * `Iceland` - Iceland * `Indian/Antananarivo` - Indian/Antananarivo * `Indian/Chagos` - Indian/Chagos * `Indian/Christmas` - Indian/Christmas * `Indian/Cocos` - Indian/Cocos * `Indian/Comoro` - Indian/Comoro * `Indian/Kerguelen` - Indian/Kerguelen * `Indian/Mahe` - Indian/Mahe * `Indian/Maldives` - Indian/Maldives * `Indian/Mauritius` - Indian/Mauritius * `Indian/Mayotte` - Indian/Mayotte * `Indian/Reunion` - Indian/Reunion * `Iran` - Iran * `Israel` - Israel * `Jamaica` - Jamaica * `Japan` - Japan * `Kwajalein` - Kwajalein * `Libya` - Libya * `MET` - MET * `MST` - MST * `MST7MDT` - MST7MDT * `Mexico/BajaNorte` - Mexico/BajaNorte * `Mexico/BajaSur` - Mexico/BajaSur * `Mexico/General` - Mexico/General * `NZ` - NZ * `NZ-CHAT` - NZ-CHAT * `Navajo` - Navajo * `PRC` - PRC * `PST8PDT` - PST8PDT * `Pacific/Apia` - Pacific/Apia * `Pacific/Auckland` - Pacific/Auckland * `Pacific/Bougainville` - Pacific/Bougainville * `Pacific/Chatham` - Pacific/Chatham * `Pacific/Chuuk` - Pacific/Chuuk * `Pacific/Easter` - Pacific/Easter * `Pacific/Efate` - Pacific/Efate * `Pacific/Enderbury` - Pacific/Enderbury * `Pacific/Fakaofo` - Pacific/Fakaofo * `Pacific/Fiji` - Pacific/Fiji * `Pacific/Funafuti` - Pacific/Funafuti * `Pacific/Galapagos` - Pacific/Galapagos * `Pacific/Gambier` - Pacific/Gambier * `Pacific/Guadalcanal` - Pacific/Guadalcanal * `Pacific/Guam` - Pacific/Guam * `Pacific/Honolulu` - Pacific/Honolulu * `Pacific/Johnston` - Pacific/Johnston * `Pacific/Kanton` - Pacific/Kanton * `Pacific/Kiritimati` - Pacific/Kiritimati * `Pacific/Kosrae` - Pacific/Kosrae * `Pacific/Kwajalein` - Pacific/Kwajalein * `Pacific/Majuro` - Pacific/Majuro * `Pacific/Marquesas` - Pacific/Marquesas * `Pacific/Midway` - Pacific/Midway * `Pacific/Nauru` - Pacific/Nauru * `Pacific/Niue` - Pacific/Niue * `Pacific/Norfolk` - Pacific/Norfolk * `Pacific/Noumea` - Pacific/Noumea * `Pacific/Pago_Pago` - Pacific/Pago_Pago * `Pacific/Palau` - Pacific/Palau * `Pacific/Pitcairn` - Pacific/Pitcairn * `Pacific/Pohnpei` - Pacific/Pohnpei * `Pacific/Ponape` - Pacific/Ponape * `Pacific/Port_Moresby` - Pacific/Port_Moresby * `Pacific/Rarotonga` - Pacific/Rarotonga * `Pacific/Saipan` - Pacific/Saipan * `Pacific/Samoa` - Pacific/Samoa * `Pacific/Tahiti` - Pacific/Tahiti * `Pacific/Tarawa` - Pacific/Tarawa * `Pacific/Tongatapu` - Pacific/Tongatapu * `Pacific/Truk` - Pacific/Truk * `Pacific/Wake` - Pacific/Wake * `Pacific/Wallis` - Pacific/Wallis * `Pacific/Yap` - Pacific/Yap * `Poland` - Poland * `Portugal` - Portugal * `ROC` - ROC * `ROK` - ROK * `Singapore` - Singapore * `Turkey` - Turkey * `UCT` - UCT * `US/Alaska` - US/Alaska * `US/Aleutian` - US/Aleutian * `US/Arizona` - US/Arizona * `US/Central` - US/Central * `US/East-Indiana` - US/East-Indiana * `US/Eastern` - US/Eastern * `US/Hawaii` - US/Hawaii * `US/Indiana-Starke` - US/Indiana-Starke * `US/Michigan` - US/Michigan * `US/Mountain` - US/Mountain * `US/Pacific` - US/Pacific * `US/Samoa` - US/Samoa * `UTC` - UTC * `Universal` - Universal * `W-SU` - W-SU * `WET` - WET * `Zulu` - Zulu */
 export type TimezoneEnum =
@@ -1545,815 +1245,6 @@ export type TimezoneEnum =
   | "Zulu";
 export const TimezoneEnum = /*@__PURE__*/ S.String;
 
-/** Serializer for a BatchExport model. */
-export interface BatchExportOutput {
-  id?: string;
-  /** The team this belongs to. */
-  team_id?: number;
-  /** A human-readable name for this BatchExport. */
-  name?: string;
-  /** Which model this BatchExport is exporting. * `events` - Events * `persons` - Persons * `sessions` - Sessions * `hogql` - Hogql */
-  model?: BatchExportOutputModel | null;
-  /** Destination configuration (type, config, and optional integration). */
-  destination?: BatchExportDestinationOutput;
-  /** How often the batch export should run. * `hour` - hour * `day` - day * `week` - week * `every 5 minutes` - every 5 minutes * `every 15 minutes` - every 15 minutes */
-  interval?: BatchExportIntervalEnum;
-  /** Whether this BatchExport is paused or not. */
-  paused?: boolean;
-  /** The timestamp at which this BatchExport was created. */
-  created_at?: string;
-  /** The timestamp at which this BatchExport was last updated. */
-  last_updated_at?: string;
-  /** The timestamp at which this BatchExport was last paused. */
-  last_paused_at?: string | null;
-  /** Time before which any Batch Export runs won't be triggered. */
-  start_at?: string | null;
-  /** Time after which any Batch Export runs won't be triggered. */
-  end_at?: string | null;
-  /** The 10 most recent runs of this batch export, ordered newest first. */
-  latest_runs?: BatchExportOutputLatestRunsList;
-  /** Optional HogQL SELECT defining a custom model schema. Only recommended in advanced use cases. */
-  hogql_query?: string;
-  /** A schema of custom fields to select when exporting data. */
-  schema?: unknown;
-  filters?: unknown;
-  /** IANA timezone name controlling daily and weekly interval boundaries. Defaults to UTC. * `Africa/Abidjan` - Africa/Abidjan * `Africa/Accra` - Africa/Accra * `Africa/Addis_Ababa` - Africa/Addis_Ababa * `Africa/Algiers` - Africa/Algiers * `Africa/Asmara` - Africa/Asmara * `Africa/Asmera` - Africa/Asmera * `Africa/Bamako` - Africa/Bamako * `Africa/Bangui` - Africa/Bangui * `Africa/Banjul` - Africa/Banjul * `Africa/Bissau` - Africa/Bissau * `Africa/Blantyre` - Africa/Blantyre * `Africa/Brazzaville` - Africa/Brazzaville * `Africa/Bujumbura` - Africa/Bujumbura * `Africa/Cairo` - Africa/Cairo * `Africa/Casablanca` - Africa/Casablanca * `Africa/Ceuta` - Africa/Ceuta * `Africa/Conakry` - Africa/Conakry * `Africa/Dakar` - Africa/Dakar * `Africa/Dar_es_Salaam` - Africa/Dar_es_Salaam * `Africa/Djibouti` - Africa/Djibouti * `Africa/Douala` - Africa/Douala * `Africa/El_Aaiun` - Africa/El_Aaiun * `Africa/Freetown` - Africa/Freetown * `Africa/Gaborone` - Africa/Gaborone * `Africa/Harare` - Africa/Harare * `Africa/Johannesburg` - Africa/Johannesburg * `Africa/Juba` - Africa/Juba * `Africa/Kampala` - Africa/Kampala * `Africa/Khartoum` - Africa/Khartoum * `Africa/Kigali` - Africa/Kigali * `Africa/Kinshasa` - Africa/Kinshasa * `Africa/Lagos` - Africa/Lagos * `Africa/Libreville` - Africa/Libreville * `Africa/Lome` - Africa/Lome * `Africa/Luanda` - Africa/Luanda * `Africa/Lubumbashi` - Africa/Lubumbashi * `Africa/Lusaka` - Africa/Lusaka * `Africa/Malabo` - Africa/Malabo * `Africa/Maputo` - Africa/Maputo * `Africa/Maseru` - Africa/Maseru * `Africa/Mbabane` - Africa/Mbabane * `Africa/Mogadishu` - Africa/Mogadishu * `Africa/Monrovia` - Africa/Monrovia * `Africa/Nairobi` - Africa/Nairobi * `Africa/Ndjamena` - Africa/Ndjamena * `Africa/Niamey` - Africa/Niamey * `Africa/Nouakchott` - Africa/Nouakchott * `Africa/Ouagadougou` - Africa/Ouagadougou * `Africa/Porto-Novo` - Africa/Porto-Novo * `Africa/Sao_Tome` - Africa/Sao_Tome * `Africa/Timbuktu` - Africa/Timbuktu * `Africa/Tripoli` - Africa/Tripoli * `Africa/Tunis` - Africa/Tunis * `Africa/Windhoek` - Africa/Windhoek * `America/Adak` - America/Adak * `America/Anchorage` - America/Anchorage * `America/Anguilla` - America/Anguilla * `America/Antigua` - America/Antigua * `America/Araguaina` - America/Araguaina * `America/Argentina/Buenos_Aires` - America/Argentina/Buenos_Aires * `America/Argentina/Catamarca` - America/Argentina/Catamarca * `America/Argentina/ComodRivadavia` - America/Argentina/ComodRivadavia * `America/Argentina/Cordoba` - America/Argentina/Cordoba * `America/Argentina/Jujuy` - America/Argentina/Jujuy * `America/Argentina/La_Rioja` - America/Argentina/La_Rioja * `America/Argentina/Mendoza` - America/Argentina/Mendoza * `America/Argentina/Rio_Gallegos` - America/Argentina/Rio_Gallegos * `America/Argentina/Salta` - America/Argentina/Salta * `America/Argentina/San_Juan` - America/Argentina/San_Juan * `America/Argentina/San_Luis` - America/Argentina/San_Luis * `America/Argentina/Tucuman` - America/Argentina/Tucuman * `America/Argentina/Ushuaia` - America/Argentina/Ushuaia * `America/Aruba` - America/Aruba * `America/Asuncion` - America/Asuncion * `America/Atikokan` - America/Atikokan * `America/Atka` - America/Atka * `America/Bahia` - America/Bahia * `America/Bahia_Banderas` - America/Bahia_Banderas * `America/Barbados` - America/Barbados * `America/Belem` - America/Belem * `America/Belize` - America/Belize * `America/Blanc-Sablon` - America/Blanc-Sablon * `America/Boa_Vista` - America/Boa_Vista * `America/Bogota` - America/Bogota * `America/Boise` - America/Boise * `America/Buenos_Aires` - America/Buenos_Aires * `America/Cambridge_Bay` - America/Cambridge_Bay * `America/Campo_Grande` - America/Campo_Grande * `America/Cancun` - America/Cancun * `America/Caracas` - America/Caracas * `America/Catamarca` - America/Catamarca * `America/Cayenne` - America/Cayenne * `America/Cayman` - America/Cayman * `America/Chicago` - America/Chicago * `America/Chihuahua` - America/Chihuahua * `America/Ciudad_Juarez` - America/Ciudad_Juarez * `America/Coral_Harbour` - America/Coral_Harbour * `America/Cordoba` - America/Cordoba * `America/Costa_Rica` - America/Costa_Rica * `America/Creston` - America/Creston * `America/Cuiaba` - America/Cuiaba * `America/Curacao` - America/Curacao * `America/Danmarkshavn` - America/Danmarkshavn * `America/Dawson` - America/Dawson * `America/Dawson_Creek` - America/Dawson_Creek * `America/Denver` - America/Denver * `America/Detroit` - America/Detroit * `America/Dominica` - America/Dominica * `America/Edmonton` - America/Edmonton * `America/Eirunepe` - America/Eirunepe * `America/El_Salvador` - America/El_Salvador * `America/Ensenada` - America/Ensenada * `America/Fort_Nelson` - America/Fort_Nelson * `America/Fort_Wayne` - America/Fort_Wayne * `America/Fortaleza` - America/Fortaleza * `America/Glace_Bay` - America/Glace_Bay * `America/Godthab` - America/Godthab * `America/Goose_Bay` - America/Goose_Bay * `America/Grand_Turk` - America/Grand_Turk * `America/Grenada` - America/Grenada * `America/Guadeloupe` - America/Guadeloupe * `America/Guatemala` - America/Guatemala * `America/Guayaquil` - America/Guayaquil * `America/Guyana` - America/Guyana * `America/Halifax` - America/Halifax * `America/Havana` - America/Havana * `America/Hermosillo` - America/Hermosillo * `America/Indiana/Indianapolis` - America/Indiana/Indianapolis * `America/Indiana/Knox` - America/Indiana/Knox * `America/Indiana/Marengo` - America/Indiana/Marengo * `America/Indiana/Petersburg` - America/Indiana/Petersburg * `America/Indiana/Tell_City` - America/Indiana/Tell_City * `America/Indiana/Vevay` - America/Indiana/Vevay * `America/Indiana/Vincennes` - America/Indiana/Vincennes * `America/Indiana/Winamac` - America/Indiana/Winamac * `America/Indianapolis` - America/Indianapolis * `America/Inuvik` - America/Inuvik * `America/Iqaluit` - America/Iqaluit * `America/Jamaica` - America/Jamaica * `America/Jujuy` - America/Jujuy * `America/Juneau` - America/Juneau * `America/Kentucky/Louisville` - America/Kentucky/Louisville * `America/Kentucky/Monticello` - America/Kentucky/Monticello * `America/Knox_IN` - America/Knox_IN * `America/Kralendijk` - America/Kralendijk * `America/La_Paz` - America/La_Paz * `America/Lima` - America/Lima * `America/Los_Angeles` - America/Los_Angeles * `America/Louisville` - America/Louisville * `America/Lower_Princes` - America/Lower_Princes * `America/Maceio` - America/Maceio * `America/Managua` - America/Managua * `America/Manaus` - America/Manaus * `America/Marigot` - America/Marigot * `America/Martinique` - America/Martinique * `America/Matamoros` - America/Matamoros * `America/Mazatlan` - America/Mazatlan * `America/Mendoza` - America/Mendoza * `America/Menominee` - America/Menominee * `America/Merida` - America/Merida * `America/Metlakatla` - America/Metlakatla * `America/Mexico_City` - America/Mexico_City * `America/Miquelon` - America/Miquelon * `America/Moncton` - America/Moncton * `America/Monterrey` - America/Monterrey * `America/Montevideo` - America/Montevideo * `America/Montreal` - America/Montreal * `America/Montserrat` - America/Montserrat * `America/Nassau` - America/Nassau * `America/New_York` - America/New_York * `America/Nipigon` - America/Nipigon * `America/Nome` - America/Nome * `America/Noronha` - America/Noronha * `America/North_Dakota/Beulah` - America/North_Dakota/Beulah * `America/North_Dakota/Center` - America/North_Dakota/Center * `America/North_Dakota/New_Salem` - America/North_Dakota/New_Salem * `America/Nuuk` - America/Nuuk * `America/Ojinaga` - America/Ojinaga * `America/Panama` - America/Panama * `America/Pangnirtung` - America/Pangnirtung * `America/Paramaribo` - America/Paramaribo * `America/Phoenix` - America/Phoenix * `America/Port-au-Prince` - America/Port-au-Prince * `America/Port_of_Spain` - America/Port_of_Spain * `America/Porto_Acre` - America/Porto_Acre * `America/Porto_Velho` - America/Porto_Velho * `America/Puerto_Rico` - America/Puerto_Rico * `America/Punta_Arenas` - America/Punta_Arenas * `America/Rainy_River` - America/Rainy_River * `America/Rankin_Inlet` - America/Rankin_Inlet * `America/Recife` - America/Recife * `America/Regina` - America/Regina * `America/Resolute` - America/Resolute * `America/Rio_Branco` - America/Rio_Branco * `America/Rosario` - America/Rosario * `America/Santa_Isabel` - America/Santa_Isabel * `America/Santarem` - America/Santarem * `America/Santiago` - America/Santiago * `America/Santo_Domingo` - America/Santo_Domingo * `America/Sao_Paulo` - America/Sao_Paulo * `America/Scoresbysund` - America/Scoresbysund * `America/Shiprock` - America/Shiprock * `America/Sitka` - America/Sitka * `America/St_Barthelemy` - America/St_Barthelemy * `America/St_Johns` - America/St_Johns * `America/St_Kitts` - America/St_Kitts * `America/St_Lucia` - America/St_Lucia * `America/St_Thomas` - America/St_Thomas * `America/St_Vincent` - America/St_Vincent * `America/Swift_Current` - America/Swift_Current * `America/Tegucigalpa` - America/Tegucigalpa * `America/Thule` - America/Thule * `America/Thunder_Bay` - America/Thunder_Bay * `America/Tijuana` - America/Tijuana * `America/Toronto` - America/Toronto * `America/Tortola` - America/Tortola * `America/Vancouver` - America/Vancouver * `America/Virgin` - America/Virgin * `America/Whitehorse` - America/Whitehorse * `America/Winnipeg` - America/Winnipeg * `America/Yakutat` - America/Yakutat * `America/Yellowknife` - America/Yellowknife * `Antarctica/Casey` - Antarctica/Casey * `Antarctica/Davis` - Antarctica/Davis * `Antarctica/DumontDUrville` - Antarctica/DumontDUrville * `Antarctica/Macquarie` - Antarctica/Macquarie * `Antarctica/Mawson` - Antarctica/Mawson * `Antarctica/McMurdo` - Antarctica/McMurdo * `Antarctica/Palmer` - Antarctica/Palmer * `Antarctica/Rothera` - Antarctica/Rothera * `Antarctica/South_Pole` - Antarctica/South_Pole * `Antarctica/Syowa` - Antarctica/Syowa * `Antarctica/Troll` - Antarctica/Troll * `Antarctica/Vostok` - Antarctica/Vostok * `Arctic/Longyearbyen` - Arctic/Longyearbyen * `Asia/Aden` - Asia/Aden * `Asia/Almaty` - Asia/Almaty * `Asia/Amman` - Asia/Amman * `Asia/Anadyr` - Asia/Anadyr * `Asia/Aqtau` - Asia/Aqtau * `Asia/Aqtobe` - Asia/Aqtobe * `Asia/Ashgabat` - Asia/Ashgabat * `Asia/Ashkhabad` - Asia/Ashkhabad * `Asia/Atyrau` - Asia/Atyrau * `Asia/Baghdad` - Asia/Baghdad * `Asia/Bahrain` - Asia/Bahrain * `Asia/Baku` - Asia/Baku * `Asia/Bangkok` - Asia/Bangkok * `Asia/Barnaul` - Asia/Barnaul * `Asia/Beirut` - Asia/Beirut * `Asia/Bishkek` - Asia/Bishkek * `Asia/Brunei` - Asia/Brunei * `Asia/Calcutta` - Asia/Calcutta * `Asia/Chita` - Asia/Chita * `Asia/Choibalsan` - Asia/Choibalsan * `Asia/Chongqing` - Asia/Chongqing * `Asia/Chungking` - Asia/Chungking * `Asia/Colombo` - Asia/Colombo * `Asia/Dacca` - Asia/Dacca * `Asia/Damascus` - Asia/Damascus * `Asia/Dhaka` - Asia/Dhaka * `Asia/Dili` - Asia/Dili * `Asia/Dubai` - Asia/Dubai * `Asia/Dushanbe` - Asia/Dushanbe * `Asia/Famagusta` - Asia/Famagusta * `Asia/Gaza` - Asia/Gaza * `Asia/Harbin` - Asia/Harbin * `Asia/Hebron` - Asia/Hebron * `Asia/Ho_Chi_Minh` - Asia/Ho_Chi_Minh * `Asia/Hong_Kong` - Asia/Hong_Kong * `Asia/Hovd` - Asia/Hovd * `Asia/Irkutsk` - Asia/Irkutsk * `Asia/Istanbul` - Asia/Istanbul * `Asia/Jakarta` - Asia/Jakarta * `Asia/Jayapura` - Asia/Jayapura * `Asia/Jerusalem` - Asia/Jerusalem * `Asia/Kabul` - Asia/Kabul * `Asia/Kamchatka` - Asia/Kamchatka * `Asia/Karachi` - Asia/Karachi * `Asia/Kashgar` - Asia/Kashgar * `Asia/Kathmandu` - Asia/Kathmandu * `Asia/Katmandu` - Asia/Katmandu * `Asia/Khandyga` - Asia/Khandyga * `Asia/Kolkata` - Asia/Kolkata * `Asia/Krasnoyarsk` - Asia/Krasnoyarsk * `Asia/Kuala_Lumpur` - Asia/Kuala_Lumpur * `Asia/Kuching` - Asia/Kuching * `Asia/Kuwait` - Asia/Kuwait * `Asia/Macao` - Asia/Macao * `Asia/Macau` - Asia/Macau * `Asia/Magadan` - Asia/Magadan * `Asia/Makassar` - Asia/Makassar * `Asia/Manila` - Asia/Manila * `Asia/Muscat` - Asia/Muscat * `Asia/Nicosia` - Asia/Nicosia * `Asia/Novokuznetsk` - Asia/Novokuznetsk * `Asia/Novosibirsk` - Asia/Novosibirsk * `Asia/Omsk` - Asia/Omsk * `Asia/Oral` - Asia/Oral * `Asia/Phnom_Penh` - Asia/Phnom_Penh * `Asia/Pontianak` - Asia/Pontianak * `Asia/Pyongyang` - Asia/Pyongyang * `Asia/Qatar` - Asia/Qatar * `Asia/Qostanay` - Asia/Qostanay * `Asia/Qyzylorda` - Asia/Qyzylorda * `Asia/Rangoon` - Asia/Rangoon * `Asia/Riyadh` - Asia/Riyadh * `Asia/Saigon` - Asia/Saigon * `Asia/Sakhalin` - Asia/Sakhalin * `Asia/Samarkand` - Asia/Samarkand * `Asia/Seoul` - Asia/Seoul * `Asia/Shanghai` - Asia/Shanghai * `Asia/Singapore` - Asia/Singapore * `Asia/Srednekolymsk` - Asia/Srednekolymsk * `Asia/Taipei` - Asia/Taipei * `Asia/Tashkent` - Asia/Tashkent * `Asia/Tbilisi` - Asia/Tbilisi * `Asia/Tehran` - Asia/Tehran * `Asia/Tel_Aviv` - Asia/Tel_Aviv * `Asia/Thimbu` - Asia/Thimbu * `Asia/Thimphu` - Asia/Thimphu * `Asia/Tokyo` - Asia/Tokyo * `Asia/Tomsk` - Asia/Tomsk * `Asia/Ujung_Pandang` - Asia/Ujung_Pandang * `Asia/Ulaanbaatar` - Asia/Ulaanbaatar * `Asia/Ulan_Bator` - Asia/Ulan_Bator * `Asia/Urumqi` - Asia/Urumqi * `Asia/Ust-Nera` - Asia/Ust-Nera * `Asia/Vientiane` - Asia/Vientiane * `Asia/Vladivostok` - Asia/Vladivostok * `Asia/Yakutsk` - Asia/Yakutsk * `Asia/Yangon` - Asia/Yangon * `Asia/Yekaterinburg` - Asia/Yekaterinburg * `Asia/Yerevan` - Asia/Yerevan * `Atlantic/Azores` - Atlantic/Azores * `Atlantic/Bermuda` - Atlantic/Bermuda * `Atlantic/Canary` - Atlantic/Canary * `Atlantic/Cape_Verde` - Atlantic/Cape_Verde * `Atlantic/Faeroe` - Atlantic/Faeroe * `Atlantic/Faroe` - Atlantic/Faroe * `Atlantic/Jan_Mayen` - Atlantic/Jan_Mayen * `Atlantic/Madeira` - Atlantic/Madeira * `Atlantic/Reykjavik` - Atlantic/Reykjavik * `Atlantic/South_Georgia` - Atlantic/South_Georgia * `Atlantic/St_Helena` - Atlantic/St_Helena * `Atlantic/Stanley` - Atlantic/Stanley * `Australia/ACT` - Australia/ACT * `Australia/Adelaide` - Australia/Adelaide * `Australia/Brisbane` - Australia/Brisbane * `Australia/Broken_Hill` - Australia/Broken_Hill * `Australia/Canberra` - Australia/Canberra * `Australia/Currie` - Australia/Currie * `Australia/Darwin` - Australia/Darwin * `Australia/Eucla` - Australia/Eucla * `Australia/Hobart` - Australia/Hobart * `Australia/LHI` - Australia/LHI * `Australia/Lindeman` - Australia/Lindeman * `Australia/Lord_Howe` - Australia/Lord_Howe * `Australia/Melbourne` - Australia/Melbourne * `Australia/NSW` - Australia/NSW * `Australia/North` - Australia/North * `Australia/Perth` - Australia/Perth * `Australia/Queensland` - Australia/Queensland * `Australia/South` - Australia/South * `Australia/Sydney` - Australia/Sydney * `Australia/Tasmania` - Australia/Tasmania * `Australia/Victoria` - Australia/Victoria * `Australia/West` - Australia/West * `Australia/Yancowinna` - Australia/Yancowinna * `Brazil/Acre` - Brazil/Acre * `Brazil/DeNoronha` - Brazil/DeNoronha * `Brazil/East` - Brazil/East * `Brazil/West` - Brazil/West * `CET` - CET * `CST6CDT` - CST6CDT * `Canada/Atlantic` - Canada/Atlantic * `Canada/Central` - Canada/Central * `Canada/Eastern` - Canada/Eastern * `Canada/Mountain` - Canada/Mountain * `Canada/Newfoundland` - Canada/Newfoundland * `Canada/Pacific` - Canada/Pacific * `Canada/Saskatchewan` - Canada/Saskatchewan * `Canada/Yukon` - Canada/Yukon * `Chile/Continental` - Chile/Continental * `Chile/EasterIsland` - Chile/EasterIsland * `Cuba` - Cuba * `EET` - EET * `EST` - EST * `EST5EDT` - EST5EDT * `Egypt` - Egypt * `Eire` - Eire * `Etc/GMT` - Etc/GMT * `Etc/GMT+0` - Etc/GMT+0 * `Etc/GMT+1` - Etc/GMT+1 * `Etc/GMT+10` - Etc/GMT+10 * `Etc/GMT+11` - Etc/GMT+11 * `Etc/GMT+12` - Etc/GMT+12 * `Etc/GMT+2` - Etc/GMT+2 * `Etc/GMT+3` - Etc/GMT+3 * `Etc/GMT+4` - Etc/GMT+4 * `Etc/GMT+5` - Etc/GMT+5 * `Etc/GMT+6` - Etc/GMT+6 * `Etc/GMT+7` - Etc/GMT+7 * `Etc/GMT+8` - Etc/GMT+8 * `Etc/GMT+9` - Etc/GMT+9 * `Etc/GMT-0` - Etc/GMT-0 * `Etc/GMT-1` - Etc/GMT-1 * `Etc/GMT-10` - Etc/GMT-10 * `Etc/GMT-11` - Etc/GMT-11 * `Etc/GMT-12` - Etc/GMT-12 * `Etc/GMT-13` - Etc/GMT-13 * `Etc/GMT-14` - Etc/GMT-14 * `Etc/GMT-2` - Etc/GMT-2 * `Etc/GMT-3` - Etc/GMT-3 * `Etc/GMT-4` - Etc/GMT-4 * `Etc/GMT-5` - Etc/GMT-5 * `Etc/GMT-6` - Etc/GMT-6 * `Etc/GMT-7` - Etc/GMT-7 * `Etc/GMT-8` - Etc/GMT-8 * `Etc/GMT-9` - Etc/GMT-9 * `Etc/GMT0` - Etc/GMT0 * `Etc/Greenwich` - Etc/Greenwich * `Etc/UCT` - Etc/UCT * `Etc/UTC` - Etc/UTC * `Etc/Universal` - Etc/Universal * `Etc/Zulu` - Etc/Zulu * `Europe/Amsterdam` - Europe/Amsterdam * `Europe/Andorra` - Europe/Andorra * `Europe/Astrakhan` - Europe/Astrakhan * `Europe/Athens` - Europe/Athens * `Europe/Belfast` - Europe/Belfast * `Europe/Belgrade` - Europe/Belgrade * `Europe/Berlin` - Europe/Berlin * `Europe/Bratislava` - Europe/Bratislava * `Europe/Brussels` - Europe/Brussels * `Europe/Bucharest` - Europe/Bucharest * `Europe/Budapest` - Europe/Budapest * `Europe/Busingen` - Europe/Busingen * `Europe/Chisinau` - Europe/Chisinau * `Europe/Copenhagen` - Europe/Copenhagen * `Europe/Dublin` - Europe/Dublin * `Europe/Gibraltar` - Europe/Gibraltar * `Europe/Guernsey` - Europe/Guernsey * `Europe/Helsinki` - Europe/Helsinki * `Europe/Isle_of_Man` - Europe/Isle_of_Man * `Europe/Istanbul` - Europe/Istanbul * `Europe/Jersey` - Europe/Jersey * `Europe/Kaliningrad` - Europe/Kaliningrad * `Europe/Kiev` - Europe/Kiev * `Europe/Kirov` - Europe/Kirov * `Europe/Kyiv` - Europe/Kyiv * `Europe/Lisbon` - Europe/Lisbon * `Europe/Ljubljana` - Europe/Ljubljana * `Europe/London` - Europe/London * `Europe/Luxembourg` - Europe/Luxembourg * `Europe/Madrid` - Europe/Madrid * `Europe/Malta` - Europe/Malta * `Europe/Mariehamn` - Europe/Mariehamn * `Europe/Minsk` - Europe/Minsk * `Europe/Monaco` - Europe/Monaco * `Europe/Moscow` - Europe/Moscow * `Europe/Nicosia` - Europe/Nicosia * `Europe/Oslo` - Europe/Oslo * `Europe/Paris` - Europe/Paris * `Europe/Podgorica` - Europe/Podgorica * `Europe/Prague` - Europe/Prague * `Europe/Riga` - Europe/Riga * `Europe/Rome` - Europe/Rome * `Europe/Samara` - Europe/Samara * `Europe/San_Marino` - Europe/San_Marino * `Europe/Sarajevo` - Europe/Sarajevo * `Europe/Saratov` - Europe/Saratov * `Europe/Simferopol` - Europe/Simferopol * `Europe/Skopje` - Europe/Skopje * `Europe/Sofia` - Europe/Sofia * `Europe/Stockholm` - Europe/Stockholm * `Europe/Tallinn` - Europe/Tallinn * `Europe/Tirane` - Europe/Tirane * `Europe/Tiraspol` - Europe/Tiraspol * `Europe/Ulyanovsk` - Europe/Ulyanovsk * `Europe/Uzhgorod` - Europe/Uzhgorod * `Europe/Vaduz` - Europe/Vaduz * `Europe/Vatican` - Europe/Vatican * `Europe/Vienna` - Europe/Vienna * `Europe/Vilnius` - Europe/Vilnius * `Europe/Volgograd` - Europe/Volgograd * `Europe/Warsaw` - Europe/Warsaw * `Europe/Zagreb` - Europe/Zagreb * `Europe/Zaporozhye` - Europe/Zaporozhye * `Europe/Zurich` - Europe/Zurich * `GB` - GB * `GB-Eire` - GB-Eire * `GMT` - GMT * `GMT+0` - GMT+0 * `GMT-0` - GMT-0 * `GMT0` - GMT0 * `Greenwich` - Greenwich * `HST` - HST * `Hongkong` - Hongkong * `Iceland` - Iceland * `Indian/Antananarivo` - Indian/Antananarivo * `Indian/Chagos` - Indian/Chagos * `Indian/Christmas` - Indian/Christmas * `Indian/Cocos` - Indian/Cocos * `Indian/Comoro` - Indian/Comoro * `Indian/Kerguelen` - Indian/Kerguelen * `Indian/Mahe` - Indian/Mahe * `Indian/Maldives` - Indian/Maldives * `Indian/Mauritius` - Indian/Mauritius * `Indian/Mayotte` - Indian/Mayotte * `Indian/Reunion` - Indian/Reunion * `Iran` - Iran * `Israel` - Israel * `Jamaica` - Jamaica * `Japan` - Japan * `Kwajalein` - Kwajalein * `Libya` - Libya * `MET` - MET * `MST` - MST * `MST7MDT` - MST7MDT * `Mexico/BajaNorte` - Mexico/BajaNorte * `Mexico/BajaSur` - Mexico/BajaSur * `Mexico/General` - Mexico/General * `NZ` - NZ * `NZ-CHAT` - NZ-CHAT * `Navajo` - Navajo * `PRC` - PRC * `PST8PDT` - PST8PDT * `Pacific/Apia` - Pacific/Apia * `Pacific/Auckland` - Pacific/Auckland * `Pacific/Bougainville` - Pacific/Bougainville * `Pacific/Chatham` - Pacific/Chatham * `Pacific/Chuuk` - Pacific/Chuuk * `Pacific/Easter` - Pacific/Easter * `Pacific/Efate` - Pacific/Efate * `Pacific/Enderbury` - Pacific/Enderbury * `Pacific/Fakaofo` - Pacific/Fakaofo * `Pacific/Fiji` - Pacific/Fiji * `Pacific/Funafuti` - Pacific/Funafuti * `Pacific/Galapagos` - Pacific/Galapagos * `Pacific/Gambier` - Pacific/Gambier * `Pacific/Guadalcanal` - Pacific/Guadalcanal * `Pacific/Guam` - Pacific/Guam * `Pacific/Honolulu` - Pacific/Honolulu * `Pacific/Johnston` - Pacific/Johnston * `Pacific/Kanton` - Pacific/Kanton * `Pacific/Kiritimati` - Pacific/Kiritimati * `Pacific/Kosrae` - Pacific/Kosrae * `Pacific/Kwajalein` - Pacific/Kwajalein * `Pacific/Majuro` - Pacific/Majuro * `Pacific/Marquesas` - Pacific/Marquesas * `Pacific/Midway` - Pacific/Midway * `Pacific/Nauru` - Pacific/Nauru * `Pacific/Niue` - Pacific/Niue * `Pacific/Norfolk` - Pacific/Norfolk * `Pacific/Noumea` - Pacific/Noumea * `Pacific/Pago_Pago` - Pacific/Pago_Pago * `Pacific/Palau` - Pacific/Palau * `Pacific/Pitcairn` - Pacific/Pitcairn * `Pacific/Pohnpei` - Pacific/Pohnpei * `Pacific/Ponape` - Pacific/Ponape * `Pacific/Port_Moresby` - Pacific/Port_Moresby * `Pacific/Rarotonga` - Pacific/Rarotonga * `Pacific/Saipan` - Pacific/Saipan * `Pacific/Samoa` - Pacific/Samoa * `Pacific/Tahiti` - Pacific/Tahiti * `Pacific/Tarawa` - Pacific/Tarawa * `Pacific/Tongatapu` - Pacific/Tongatapu * `Pacific/Truk` - Pacific/Truk * `Pacific/Wake` - Pacific/Wake * `Pacific/Wallis` - Pacific/Wallis * `Pacific/Yap` - Pacific/Yap * `Poland` - Poland * `Portugal` - Portugal * `ROC` - ROC * `ROK` - ROK * `Singapore` - Singapore * `Turkey` - Turkey * `UCT` - UCT * `US/Alaska` - US/Alaska * `US/Aleutian` - US/Aleutian * `US/Arizona` - US/Arizona * `US/Central` - US/Central * `US/East-Indiana` - US/East-Indiana * `US/Eastern` - US/Eastern * `US/Hawaii` - US/Hawaii * `US/Indiana-Starke` - US/Indiana-Starke * `US/Michigan` - US/Michigan * `US/Mountain` - US/Mountain * `US/Pacific` - US/Pacific * `US/Samoa` - US/Samoa * `UTC` - UTC * `Universal` - Universal * `W-SU` - W-SU * `WET` - WET * `Zulu` - Zulu */
-  timezone?: TimezoneEnum | null;
-  /** Day-of-week offset for weekly intervals (0=Sunday, 6=Saturday). Only valid when interval is 'week'. */
-  offset_day?: number | null;
-  /** Hour-of-day offset (0-23) for daily and weekly intervals. Only valid when interval is 'day' or 'week'. */
-  offset_hour?: number | null;
-}
-export const BatchExportOutput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    team_id: S.optional(S.Number),
-    name: S.optional(S.String),
-    model: S.optional(S.NullOr(BatchExportOutputModel)),
-    destination: S.optional(BatchExportDestinationOutput),
-    interval: S.optional(BatchExportIntervalEnum),
-    paused: S.optional(S.Boolean),
-    created_at: S.optional(S.String),
-    last_updated_at: S.optional(S.String),
-    last_paused_at: S.optional(S.NullOr(S.String)),
-    start_at: S.optional(S.NullOr(S.String)),
-    end_at: S.optional(S.NullOr(S.String)),
-    latest_runs: S.optional(BatchExportOutputLatestRunsList),
-    hogql_query: S.optional(S.String),
-    schema: S.optional(S.Unknown),
-    filters: S.optional(S.Unknown),
-    timezone: S.optional(S.NullOr(TimezoneEnum)),
-    offset_day: S.optional(S.NullOr(S.Number)),
-    offset_hour: S.optional(S.NullOr(S.Number)),
-  }),
-).annotate({
-  identifier: "BatchExportOutput",
-}) as any as S.Schema<BatchExportOutput>;
-
-export interface BatchExportsDestroyRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this batch export. */
-  id: string;
-}
-export const BatchExportsDestroyRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/api/projects/{project_id}/batch_exports/{id}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "BatchExportsDestroyRequest",
-}) as any as S.Schema<BatchExportsDestroyRequest>;
-
-export interface BatchExportsDestroyResponse {}
-export const BatchExportsDestroyResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "BatchExportsDestroyResponse",
-}) as any as S.Schema<BatchExportsDestroyResponse>;
-
-export interface BatchExportsListRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** Number of results to return per page. */
-  limit?: number;
-  /** The initial index from which to return the results. */
-  offset?: number;
-}
-export const BatchExportsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    offset: S.optional(S.Number.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/batch_exports/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "BatchExportsListRequest",
-}) as any as S.Schema<BatchExportsListRequest>;
-
-export type PaginatedBatchExportListOutputResultsList =
-  Array<BatchExportOutput>;
-export const PaginatedBatchExportListOutputResultsList = /*@__PURE__*/ S.Array(
-  BatchExportOutput,
-) as any as S.Schema<PaginatedBatchExportListOutputResultsList>;
-
-export interface PaginatedBatchExportListOutput {
-  count?: number;
-  next?: string | null;
-  previous?: string | null;
-  results?: PaginatedBatchExportListOutputResultsList;
-}
-export const PaginatedBatchExportListOutput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    count: S.optional(S.Number),
-    next: S.optional(S.NullOr(S.String)),
-    previous: S.optional(S.NullOr(S.String)),
-    results: S.optional(PaginatedBatchExportListOutputResultsList),
-  }),
-).annotate({
-  identifier: "PaginatedBatchExportListOutput",
-}) as any as S.Schema<PaginatedBatchExportListOutput>;
-
-export interface BatchExportsLogsRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this batch export. */
-  id: string;
-  /** Only return entries after this ISO 8601 timestamp. Defaults to 7 days ago; pass an explicit value to read further back. */
-  after?: string;
-  /** Only return entries before this ISO 8601 timestamp. */
-  before?: string;
-  /** Filter logs to a specific execution instance. */
-  instance_id?: string;
-  /** Comma-separated log levels to include, e.g. 'WARN,ERROR'. Valid levels: DEBUG, LOG, INFO, WARN, ERROR. */
-  level?: string;
-  /** Maximum number of log entries to return (1-500, default 50). */
-  limit?: number;
-  /** Case-insensitive substring search across log messages. */
-  search?: string;
-}
-export const BatchExportsLogsRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-    after: S.optional(S.String.pipe(T.Query())),
-    before: S.optional(S.String.pipe(T.Query())),
-    instance_id: S.optional(S.String.pipe(T.Query())),
-    level: S.optional(S.String.pipe(T.Query())),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    search: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/batch_exports/{id}/logs/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "BatchExportsLogsRetrieveRequest",
-}) as any as S.Schema<BatchExportsLogsRetrieveRequest>;
-
-export interface BatchExportsLogsRetrieveResponse {}
-export const BatchExportsLogsRetrieveResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "BatchExportsLogsRetrieveResponse",
-}) as any as S.Schema<BatchExportsLogsRetrieveResponse>;
-
-export interface BatchExportsPartialUpdateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this batch export. */
-  id: string;
-  /** Human-readable name for the batch export. */
-  name?: string;
-  /** Which data model to export (events, persons, sessions). * `events` - Events * `persons` - Persons * `sessions` - Sessions * `hogql` - Hogql */
-  model?: ModelEnum | (string & {});
-  /** Destination configuration. Required integration_id is enforced per destination type. */
-  destination?: BatchExportDestinationRequest;
-  /** How often the batch export should run. * `hour` - hour * `day` - day * `week` - week * `every 5 minutes` - every 5 minutes * `every 15 minutes` - every 15 minutes */
-  interval?: BatchExportIntervalEnum | (string & {});
-  /** Whether the batch export is paused. */
-  paused?: boolean;
-  /** Optional HogQL SELECT defining a custom model schema. Only recommended in advanced use cases. */
-  hogql_query?: string;
-  /** Optional list of property filters to restrict which events are exported. Each filter is a serialized HogQL property filter object with a 'type' of one of: 'event', 'hogql', 'person' (e.g. {"key": "$browser", "operator": "exact", "type": "event", "value": ["Firefox"]}). */
-  filters?: unknown;
-  /** IANA timezone name (e.g. 'America/New_York', 'Europe/London', 'UTC') controlling daily and weekly interval boundaries. */
-  timezone?: string | null;
-  /** Day-of-week offset for weekly intervals (0=Sunday, 6=Saturday). */
-  offset_day?: number | null;
-  /** Hour-of-day offset (0-23) for daily and weekly intervals. */
-  offset_hour?: number | null;
-}
-export const BatchExportsPartialUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-    name: S.optional(S.String),
-    model: S.optional(ModelEnum),
-    destination: S.optional(BatchExportDestinationRequest),
-    interval: S.optional(BatchExportIntervalEnum),
-    paused: S.optional(S.Boolean),
-    hogql_query: S.optional(S.String),
-    filters: S.optional(S.Unknown),
-    timezone: S.optional(S.NullOr(S.String)),
-    offset_day: S.optional(S.NullOr(S.Number)),
-    offset_hour: S.optional(S.NullOr(S.Number)),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/api/projects/{project_id}/batch_exports/{id}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "BatchExportsPartialUpdateRequest",
-}) as any as S.Schema<BatchExportsPartialUpdateRequest>;
-
-/** Which model this BatchExport is exporting. * `events` - Events * `persons` - Persons * `sessions` - Sessions * `hogql` - Hogql */
-export type BatchExportsPauseCreateRequestModel = ModelEnum | BlankEnum;
-export const BatchExportsPauseCreateRequestModel =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<BatchExportsPauseCreateRequestModel>;
-
-/** Serializer for an BatchExportDestination model. The `config` field is polymorphic and typed only for destinations that keep credentials in the linked Integration (currently Databricks, AzureBlob, BigQuery, Postgres, AwsS3, S3Compatible, Snowflake, Redshift). Other destination types accept the same JSON shape but without a typed OpenAPI schema. Secret fields are stripped from `config` on read. */
-export interface BatchExportDestination {
-  /** A choice of supported BatchExportDestination types. * `S3` - S3 * `AwsS3` - Aws S3 * `S3Compatible` - S3 Compatible * `Snowflake` - Snowflake * `Postgres` - Postgres * `Redshift` - Redshift * `BigQuery` - Bigquery * `Databricks` - Databricks * `AzureBlob` - Azure Blob * `Workflows` - Workflows * `HTTP` - Http * `NoOp` - Noop * `FileDownload` - File Download */
-  type?: BatchExportDestinationTypeEnum | (string & {});
-  /** Destination-specific configuration. Fields depend on `type`. Credentials for integration-backed destinations (Databricks, AzureBlob, BigQuery, Postgres, AwsS3, S3Compatible, Snowflake, Redshift) are NOT stored here — they live in the linked Integration. Secret fields are stripped from responses. */
-  config?: BatchExportDestinationConfig;
-  /** The integration for this destination. */
-  integration?: number | null;
-  /** ID of a team-scoped Integration providing credentials. Required when creating Databricks, AzureBlob, BigQuery, Postgres, AwsS3, and S3Compatible destinations; optional for Snowflake and Redshift (inline credentials remain supported); unused for other types. */
-  integration_id?: number | null;
-}
-export const BatchExportDestination = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: S.optional(BatchExportDestinationTypeEnum),
-    config: S.optional(BatchExportDestinationConfig),
-    integration: S.optional(S.NullOr(S.Number)),
-    integration_id: S.optional(S.NullOr(S.Number)),
-  }),
-).annotate({
-  identifier: "BatchExportDestination",
-}) as any as S.Schema<BatchExportDestination>;
-
-export interface BatchExportsPauseCreateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this batch export. */
-  id: string;
-  /** A human-readable name for this BatchExport. */
-  name?: string;
-  /** Which model this BatchExport is exporting. * `events` - Events * `persons` - Persons * `sessions` - Sessions * `hogql` - Hogql */
-  model?: BatchExportsPauseCreateRequestModel | null;
-  /** Destination configuration (type, config, and optional integration). */
-  destination?: BatchExportDestination;
-  /** How often the batch export should run. * `hour` - hour * `day` - day * `week` - week * `every 5 minutes` - every 5 minutes * `every 15 minutes` - every 15 minutes */
-  interval?: BatchExportIntervalEnum | (string & {});
-  /** Whether this BatchExport is paused or not. */
-  paused?: boolean;
-  /** The timestamp at which this BatchExport was last paused. */
-  last_paused_at?: string | null;
-  /** Time before which any Batch Export runs won't be triggered. */
-  start_at?: string | null;
-  /** Time after which any Batch Export runs won't be triggered. */
-  end_at?: string | null;
-  /** Optional HogQL SELECT defining a custom model schema. Only recommended in advanced use cases. */
-  hogql_query?: string;
-  filters?: unknown;
-  /** IANA timezone name controlling daily and weekly interval boundaries. Defaults to UTC. * `Africa/Abidjan` - Africa/Abidjan * `Africa/Accra` - Africa/Accra * `Africa/Addis_Ababa` - Africa/Addis_Ababa * `Africa/Algiers` - Africa/Algiers * `Africa/Asmara` - Africa/Asmara * `Africa/Asmera` - Africa/Asmera * `Africa/Bamako` - Africa/Bamako * `Africa/Bangui` - Africa/Bangui * `Africa/Banjul` - Africa/Banjul * `Africa/Bissau` - Africa/Bissau * `Africa/Blantyre` - Africa/Blantyre * `Africa/Brazzaville` - Africa/Brazzaville * `Africa/Bujumbura` - Africa/Bujumbura * `Africa/Cairo` - Africa/Cairo * `Africa/Casablanca` - Africa/Casablanca * `Africa/Ceuta` - Africa/Ceuta * `Africa/Conakry` - Africa/Conakry * `Africa/Dakar` - Africa/Dakar * `Africa/Dar_es_Salaam` - Africa/Dar_es_Salaam * `Africa/Djibouti` - Africa/Djibouti * `Africa/Douala` - Africa/Douala * `Africa/El_Aaiun` - Africa/El_Aaiun * `Africa/Freetown` - Africa/Freetown * `Africa/Gaborone` - Africa/Gaborone * `Africa/Harare` - Africa/Harare * `Africa/Johannesburg` - Africa/Johannesburg * `Africa/Juba` - Africa/Juba * `Africa/Kampala` - Africa/Kampala * `Africa/Khartoum` - Africa/Khartoum * `Africa/Kigali` - Africa/Kigali * `Africa/Kinshasa` - Africa/Kinshasa * `Africa/Lagos` - Africa/Lagos * `Africa/Libreville` - Africa/Libreville * `Africa/Lome` - Africa/Lome * `Africa/Luanda` - Africa/Luanda * `Africa/Lubumbashi` - Africa/Lubumbashi * `Africa/Lusaka` - Africa/Lusaka * `Africa/Malabo` - Africa/Malabo * `Africa/Maputo` - Africa/Maputo * `Africa/Maseru` - Africa/Maseru * `Africa/Mbabane` - Africa/Mbabane * `Africa/Mogadishu` - Africa/Mogadishu * `Africa/Monrovia` - Africa/Monrovia * `Africa/Nairobi` - Africa/Nairobi * `Africa/Ndjamena` - Africa/Ndjamena * `Africa/Niamey` - Africa/Niamey * `Africa/Nouakchott` - Africa/Nouakchott * `Africa/Ouagadougou` - Africa/Ouagadougou * `Africa/Porto-Novo` - Africa/Porto-Novo * `Africa/Sao_Tome` - Africa/Sao_Tome * `Africa/Timbuktu` - Africa/Timbuktu * `Africa/Tripoli` - Africa/Tripoli * `Africa/Tunis` - Africa/Tunis * `Africa/Windhoek` - Africa/Windhoek * `America/Adak` - America/Adak * `America/Anchorage` - America/Anchorage * `America/Anguilla` - America/Anguilla * `America/Antigua` - America/Antigua * `America/Araguaina` - America/Araguaina * `America/Argentina/Buenos_Aires` - America/Argentina/Buenos_Aires * `America/Argentina/Catamarca` - America/Argentina/Catamarca * `America/Argentina/ComodRivadavia` - America/Argentina/ComodRivadavia * `America/Argentina/Cordoba` - America/Argentina/Cordoba * `America/Argentina/Jujuy` - America/Argentina/Jujuy * `America/Argentina/La_Rioja` - America/Argentina/La_Rioja * `America/Argentina/Mendoza` - America/Argentina/Mendoza * `America/Argentina/Rio_Gallegos` - America/Argentina/Rio_Gallegos * `America/Argentina/Salta` - America/Argentina/Salta * `America/Argentina/San_Juan` - America/Argentina/San_Juan * `America/Argentina/San_Luis` - America/Argentina/San_Luis * `America/Argentina/Tucuman` - America/Argentina/Tucuman * `America/Argentina/Ushuaia` - America/Argentina/Ushuaia * `America/Aruba` - America/Aruba * `America/Asuncion` - America/Asuncion * `America/Atikokan` - America/Atikokan * `America/Atka` - America/Atka * `America/Bahia` - America/Bahia * `America/Bahia_Banderas` - America/Bahia_Banderas * `America/Barbados` - America/Barbados * `America/Belem` - America/Belem * `America/Belize` - America/Belize * `America/Blanc-Sablon` - America/Blanc-Sablon * `America/Boa_Vista` - America/Boa_Vista * `America/Bogota` - America/Bogota * `America/Boise` - America/Boise * `America/Buenos_Aires` - America/Buenos_Aires * `America/Cambridge_Bay` - America/Cambridge_Bay * `America/Campo_Grande` - America/Campo_Grande * `America/Cancun` - America/Cancun * `America/Caracas` - America/Caracas * `America/Catamarca` - America/Catamarca * `America/Cayenne` - America/Cayenne * `America/Cayman` - America/Cayman * `America/Chicago` - America/Chicago * `America/Chihuahua` - America/Chihuahua * `America/Ciudad_Juarez` - America/Ciudad_Juarez * `America/Coral_Harbour` - America/Coral_Harbour * `America/Cordoba` - America/Cordoba * `America/Costa_Rica` - America/Costa_Rica * `America/Creston` - America/Creston * `America/Cuiaba` - America/Cuiaba * `America/Curacao` - America/Curacao * `America/Danmarkshavn` - America/Danmarkshavn * `America/Dawson` - America/Dawson * `America/Dawson_Creek` - America/Dawson_Creek * `America/Denver` - America/Denver * `America/Detroit` - America/Detroit * `America/Dominica` - America/Dominica * `America/Edmonton` - America/Edmonton * `America/Eirunepe` - America/Eirunepe * `America/El_Salvador` - America/El_Salvador * `America/Ensenada` - America/Ensenada * `America/Fort_Nelson` - America/Fort_Nelson * `America/Fort_Wayne` - America/Fort_Wayne * `America/Fortaleza` - America/Fortaleza * `America/Glace_Bay` - America/Glace_Bay * `America/Godthab` - America/Godthab * `America/Goose_Bay` - America/Goose_Bay * `America/Grand_Turk` - America/Grand_Turk * `America/Grenada` - America/Grenada * `America/Guadeloupe` - America/Guadeloupe * `America/Guatemala` - America/Guatemala * `America/Guayaquil` - America/Guayaquil * `America/Guyana` - America/Guyana * `America/Halifax` - America/Halifax * `America/Havana` - America/Havana * `America/Hermosillo` - America/Hermosillo * `America/Indiana/Indianapolis` - America/Indiana/Indianapolis * `America/Indiana/Knox` - America/Indiana/Knox * `America/Indiana/Marengo` - America/Indiana/Marengo * `America/Indiana/Petersburg` - America/Indiana/Petersburg * `America/Indiana/Tell_City` - America/Indiana/Tell_City * `America/Indiana/Vevay` - America/Indiana/Vevay * `America/Indiana/Vincennes` - America/Indiana/Vincennes * `America/Indiana/Winamac` - America/Indiana/Winamac * `America/Indianapolis` - America/Indianapolis * `America/Inuvik` - America/Inuvik * `America/Iqaluit` - America/Iqaluit * `America/Jamaica` - America/Jamaica * `America/Jujuy` - America/Jujuy * `America/Juneau` - America/Juneau * `America/Kentucky/Louisville` - America/Kentucky/Louisville * `America/Kentucky/Monticello` - America/Kentucky/Monticello * `America/Knox_IN` - America/Knox_IN * `America/Kralendijk` - America/Kralendijk * `America/La_Paz` - America/La_Paz * `America/Lima` - America/Lima * `America/Los_Angeles` - America/Los_Angeles * `America/Louisville` - America/Louisville * `America/Lower_Princes` - America/Lower_Princes * `America/Maceio` - America/Maceio * `America/Managua` - America/Managua * `America/Manaus` - America/Manaus * `America/Marigot` - America/Marigot * `America/Martinique` - America/Martinique * `America/Matamoros` - America/Matamoros * `America/Mazatlan` - America/Mazatlan * `America/Mendoza` - America/Mendoza * `America/Menominee` - America/Menominee * `America/Merida` - America/Merida * `America/Metlakatla` - America/Metlakatla * `America/Mexico_City` - America/Mexico_City * `America/Miquelon` - America/Miquelon * `America/Moncton` - America/Moncton * `America/Monterrey` - America/Monterrey * `America/Montevideo` - America/Montevideo * `America/Montreal` - America/Montreal * `America/Montserrat` - America/Montserrat * `America/Nassau` - America/Nassau * `America/New_York` - America/New_York * `America/Nipigon` - America/Nipigon * `America/Nome` - America/Nome * `America/Noronha` - America/Noronha * `America/North_Dakota/Beulah` - America/North_Dakota/Beulah * `America/North_Dakota/Center` - America/North_Dakota/Center * `America/North_Dakota/New_Salem` - America/North_Dakota/New_Salem * `America/Nuuk` - America/Nuuk * `America/Ojinaga` - America/Ojinaga * `America/Panama` - America/Panama * `America/Pangnirtung` - America/Pangnirtung * `America/Paramaribo` - America/Paramaribo * `America/Phoenix` - America/Phoenix * `America/Port-au-Prince` - America/Port-au-Prince * `America/Port_of_Spain` - America/Port_of_Spain * `America/Porto_Acre` - America/Porto_Acre * `America/Porto_Velho` - America/Porto_Velho * `America/Puerto_Rico` - America/Puerto_Rico * `America/Punta_Arenas` - America/Punta_Arenas * `America/Rainy_River` - America/Rainy_River * `America/Rankin_Inlet` - America/Rankin_Inlet * `America/Recife` - America/Recife * `America/Regina` - America/Regina * `America/Resolute` - America/Resolute * `America/Rio_Branco` - America/Rio_Branco * `America/Rosario` - America/Rosario * `America/Santa_Isabel` - America/Santa_Isabel * `America/Santarem` - America/Santarem * `America/Santiago` - America/Santiago * `America/Santo_Domingo` - America/Santo_Domingo * `America/Sao_Paulo` - America/Sao_Paulo * `America/Scoresbysund` - America/Scoresbysund * `America/Shiprock` - America/Shiprock * `America/Sitka` - America/Sitka * `America/St_Barthelemy` - America/St_Barthelemy * `America/St_Johns` - America/St_Johns * `America/St_Kitts` - America/St_Kitts * `America/St_Lucia` - America/St_Lucia * `America/St_Thomas` - America/St_Thomas * `America/St_Vincent` - America/St_Vincent * `America/Swift_Current` - America/Swift_Current * `America/Tegucigalpa` - America/Tegucigalpa * `America/Thule` - America/Thule * `America/Thunder_Bay` - America/Thunder_Bay * `America/Tijuana` - America/Tijuana * `America/Toronto` - America/Toronto * `America/Tortola` - America/Tortola * `America/Vancouver` - America/Vancouver * `America/Virgin` - America/Virgin * `America/Whitehorse` - America/Whitehorse * `America/Winnipeg` - America/Winnipeg * `America/Yakutat` - America/Yakutat * `America/Yellowknife` - America/Yellowknife * `Antarctica/Casey` - Antarctica/Casey * `Antarctica/Davis` - Antarctica/Davis * `Antarctica/DumontDUrville` - Antarctica/DumontDUrville * `Antarctica/Macquarie` - Antarctica/Macquarie * `Antarctica/Mawson` - Antarctica/Mawson * `Antarctica/McMurdo` - Antarctica/McMurdo * `Antarctica/Palmer` - Antarctica/Palmer * `Antarctica/Rothera` - Antarctica/Rothera * `Antarctica/South_Pole` - Antarctica/South_Pole * `Antarctica/Syowa` - Antarctica/Syowa * `Antarctica/Troll` - Antarctica/Troll * `Antarctica/Vostok` - Antarctica/Vostok * `Arctic/Longyearbyen` - Arctic/Longyearbyen * `Asia/Aden` - Asia/Aden * `Asia/Almaty` - Asia/Almaty * `Asia/Amman` - Asia/Amman * `Asia/Anadyr` - Asia/Anadyr * `Asia/Aqtau` - Asia/Aqtau * `Asia/Aqtobe` - Asia/Aqtobe * `Asia/Ashgabat` - Asia/Ashgabat * `Asia/Ashkhabad` - Asia/Ashkhabad * `Asia/Atyrau` - Asia/Atyrau * `Asia/Baghdad` - Asia/Baghdad * `Asia/Bahrain` - Asia/Bahrain * `Asia/Baku` - Asia/Baku * `Asia/Bangkok` - Asia/Bangkok * `Asia/Barnaul` - Asia/Barnaul * `Asia/Beirut` - Asia/Beirut * `Asia/Bishkek` - Asia/Bishkek * `Asia/Brunei` - Asia/Brunei * `Asia/Calcutta` - Asia/Calcutta * `Asia/Chita` - Asia/Chita * `Asia/Choibalsan` - Asia/Choibalsan * `Asia/Chongqing` - Asia/Chongqing * `Asia/Chungking` - Asia/Chungking * `Asia/Colombo` - Asia/Colombo * `Asia/Dacca` - Asia/Dacca * `Asia/Damascus` - Asia/Damascus * `Asia/Dhaka` - Asia/Dhaka * `Asia/Dili` - Asia/Dili * `Asia/Dubai` - Asia/Dubai * `Asia/Dushanbe` - Asia/Dushanbe * `Asia/Famagusta` - Asia/Famagusta * `Asia/Gaza` - Asia/Gaza * `Asia/Harbin` - Asia/Harbin * `Asia/Hebron` - Asia/Hebron * `Asia/Ho_Chi_Minh` - Asia/Ho_Chi_Minh * `Asia/Hong_Kong` - Asia/Hong_Kong * `Asia/Hovd` - Asia/Hovd * `Asia/Irkutsk` - Asia/Irkutsk * `Asia/Istanbul` - Asia/Istanbul * `Asia/Jakarta` - Asia/Jakarta * `Asia/Jayapura` - Asia/Jayapura * `Asia/Jerusalem` - Asia/Jerusalem * `Asia/Kabul` - Asia/Kabul * `Asia/Kamchatka` - Asia/Kamchatka * `Asia/Karachi` - Asia/Karachi * `Asia/Kashgar` - Asia/Kashgar * `Asia/Kathmandu` - Asia/Kathmandu * `Asia/Katmandu` - Asia/Katmandu * `Asia/Khandyga` - Asia/Khandyga * `Asia/Kolkata` - Asia/Kolkata * `Asia/Krasnoyarsk` - Asia/Krasnoyarsk * `Asia/Kuala_Lumpur` - Asia/Kuala_Lumpur * `Asia/Kuching` - Asia/Kuching * `Asia/Kuwait` - Asia/Kuwait * `Asia/Macao` - Asia/Macao * `Asia/Macau` - Asia/Macau * `Asia/Magadan` - Asia/Magadan * `Asia/Makassar` - Asia/Makassar * `Asia/Manila` - Asia/Manila * `Asia/Muscat` - Asia/Muscat * `Asia/Nicosia` - Asia/Nicosia * `Asia/Novokuznetsk` - Asia/Novokuznetsk * `Asia/Novosibirsk` - Asia/Novosibirsk * `Asia/Omsk` - Asia/Omsk * `Asia/Oral` - Asia/Oral * `Asia/Phnom_Penh` - Asia/Phnom_Penh * `Asia/Pontianak` - Asia/Pontianak * `Asia/Pyongyang` - Asia/Pyongyang * `Asia/Qatar` - Asia/Qatar * `Asia/Qostanay` - Asia/Qostanay * `Asia/Qyzylorda` - Asia/Qyzylorda * `Asia/Rangoon` - Asia/Rangoon * `Asia/Riyadh` - Asia/Riyadh * `Asia/Saigon` - Asia/Saigon * `Asia/Sakhalin` - Asia/Sakhalin * `Asia/Samarkand` - Asia/Samarkand * `Asia/Seoul` - Asia/Seoul * `Asia/Shanghai` - Asia/Shanghai * `Asia/Singapore` - Asia/Singapore * `Asia/Srednekolymsk` - Asia/Srednekolymsk * `Asia/Taipei` - Asia/Taipei * `Asia/Tashkent` - Asia/Tashkent * `Asia/Tbilisi` - Asia/Tbilisi * `Asia/Tehran` - Asia/Tehran * `Asia/Tel_Aviv` - Asia/Tel_Aviv * `Asia/Thimbu` - Asia/Thimbu * `Asia/Thimphu` - Asia/Thimphu * `Asia/Tokyo` - Asia/Tokyo * `Asia/Tomsk` - Asia/Tomsk * `Asia/Ujung_Pandang` - Asia/Ujung_Pandang * `Asia/Ulaanbaatar` - Asia/Ulaanbaatar * `Asia/Ulan_Bator` - Asia/Ulan_Bator * `Asia/Urumqi` - Asia/Urumqi * `Asia/Ust-Nera` - Asia/Ust-Nera * `Asia/Vientiane` - Asia/Vientiane * `Asia/Vladivostok` - Asia/Vladivostok * `Asia/Yakutsk` - Asia/Yakutsk * `Asia/Yangon` - Asia/Yangon * `Asia/Yekaterinburg` - Asia/Yekaterinburg * `Asia/Yerevan` - Asia/Yerevan * `Atlantic/Azores` - Atlantic/Azores * `Atlantic/Bermuda` - Atlantic/Bermuda * `Atlantic/Canary` - Atlantic/Canary * `Atlantic/Cape_Verde` - Atlantic/Cape_Verde * `Atlantic/Faeroe` - Atlantic/Faeroe * `Atlantic/Faroe` - Atlantic/Faroe * `Atlantic/Jan_Mayen` - Atlantic/Jan_Mayen * `Atlantic/Madeira` - Atlantic/Madeira * `Atlantic/Reykjavik` - Atlantic/Reykjavik * `Atlantic/South_Georgia` - Atlantic/South_Georgia * `Atlantic/St_Helena` - Atlantic/St_Helena * `Atlantic/Stanley` - Atlantic/Stanley * `Australia/ACT` - Australia/ACT * `Australia/Adelaide` - Australia/Adelaide * `Australia/Brisbane` - Australia/Brisbane * `Australia/Broken_Hill` - Australia/Broken_Hill * `Australia/Canberra` - Australia/Canberra * `Australia/Currie` - Australia/Currie * `Australia/Darwin` - Australia/Darwin * `Australia/Eucla` - Australia/Eucla * `Australia/Hobart` - Australia/Hobart * `Australia/LHI` - Australia/LHI * `Australia/Lindeman` - Australia/Lindeman * `Australia/Lord_Howe` - Australia/Lord_Howe * `Australia/Melbourne` - Australia/Melbourne * `Australia/NSW` - Australia/NSW * `Australia/North` - Australia/North * `Australia/Perth` - Australia/Perth * `Australia/Queensland` - Australia/Queensland * `Australia/South` - Australia/South * `Australia/Sydney` - Australia/Sydney * `Australia/Tasmania` - Australia/Tasmania * `Australia/Victoria` - Australia/Victoria * `Australia/West` - Australia/West * `Australia/Yancowinna` - Australia/Yancowinna * `Brazil/Acre` - Brazil/Acre * `Brazil/DeNoronha` - Brazil/DeNoronha * `Brazil/East` - Brazil/East * `Brazil/West` - Brazil/West * `CET` - CET * `CST6CDT` - CST6CDT * `Canada/Atlantic` - Canada/Atlantic * `Canada/Central` - Canada/Central * `Canada/Eastern` - Canada/Eastern * `Canada/Mountain` - Canada/Mountain * `Canada/Newfoundland` - Canada/Newfoundland * `Canada/Pacific` - Canada/Pacific * `Canada/Saskatchewan` - Canada/Saskatchewan * `Canada/Yukon` - Canada/Yukon * `Chile/Continental` - Chile/Continental * `Chile/EasterIsland` - Chile/EasterIsland * `Cuba` - Cuba * `EET` - EET * `EST` - EST * `EST5EDT` - EST5EDT * `Egypt` - Egypt * `Eire` - Eire * `Etc/GMT` - Etc/GMT * `Etc/GMT+0` - Etc/GMT+0 * `Etc/GMT+1` - Etc/GMT+1 * `Etc/GMT+10` - Etc/GMT+10 * `Etc/GMT+11` - Etc/GMT+11 * `Etc/GMT+12` - Etc/GMT+12 * `Etc/GMT+2` - Etc/GMT+2 * `Etc/GMT+3` - Etc/GMT+3 * `Etc/GMT+4` - Etc/GMT+4 * `Etc/GMT+5` - Etc/GMT+5 * `Etc/GMT+6` - Etc/GMT+6 * `Etc/GMT+7` - Etc/GMT+7 * `Etc/GMT+8` - Etc/GMT+8 * `Etc/GMT+9` - Etc/GMT+9 * `Etc/GMT-0` - Etc/GMT-0 * `Etc/GMT-1` - Etc/GMT-1 * `Etc/GMT-10` - Etc/GMT-10 * `Etc/GMT-11` - Etc/GMT-11 * `Etc/GMT-12` - Etc/GMT-12 * `Etc/GMT-13` - Etc/GMT-13 * `Etc/GMT-14` - Etc/GMT-14 * `Etc/GMT-2` - Etc/GMT-2 * `Etc/GMT-3` - Etc/GMT-3 * `Etc/GMT-4` - Etc/GMT-4 * `Etc/GMT-5` - Etc/GMT-5 * `Etc/GMT-6` - Etc/GMT-6 * `Etc/GMT-7` - Etc/GMT-7 * `Etc/GMT-8` - Etc/GMT-8 * `Etc/GMT-9` - Etc/GMT-9 * `Etc/GMT0` - Etc/GMT0 * `Etc/Greenwich` - Etc/Greenwich * `Etc/UCT` - Etc/UCT * `Etc/UTC` - Etc/UTC * `Etc/Universal` - Etc/Universal * `Etc/Zulu` - Etc/Zulu * `Europe/Amsterdam` - Europe/Amsterdam * `Europe/Andorra` - Europe/Andorra * `Europe/Astrakhan` - Europe/Astrakhan * `Europe/Athens` - Europe/Athens * `Europe/Belfast` - Europe/Belfast * `Europe/Belgrade` - Europe/Belgrade * `Europe/Berlin` - Europe/Berlin * `Europe/Bratislava` - Europe/Bratislava * `Europe/Brussels` - Europe/Brussels * `Europe/Bucharest` - Europe/Bucharest * `Europe/Budapest` - Europe/Budapest * `Europe/Busingen` - Europe/Busingen * `Europe/Chisinau` - Europe/Chisinau * `Europe/Copenhagen` - Europe/Copenhagen * `Europe/Dublin` - Europe/Dublin * `Europe/Gibraltar` - Europe/Gibraltar * `Europe/Guernsey` - Europe/Guernsey * `Europe/Helsinki` - Europe/Helsinki * `Europe/Isle_of_Man` - Europe/Isle_of_Man * `Europe/Istanbul` - Europe/Istanbul * `Europe/Jersey` - Europe/Jersey * `Europe/Kaliningrad` - Europe/Kaliningrad * `Europe/Kiev` - Europe/Kiev * `Europe/Kirov` - Europe/Kirov * `Europe/Kyiv` - Europe/Kyiv * `Europe/Lisbon` - Europe/Lisbon * `Europe/Ljubljana` - Europe/Ljubljana * `Europe/London` - Europe/London * `Europe/Luxembourg` - Europe/Luxembourg * `Europe/Madrid` - Europe/Madrid * `Europe/Malta` - Europe/Malta * `Europe/Mariehamn` - Europe/Mariehamn * `Europe/Minsk` - Europe/Minsk * `Europe/Monaco` - Europe/Monaco * `Europe/Moscow` - Europe/Moscow * `Europe/Nicosia` - Europe/Nicosia * `Europe/Oslo` - Europe/Oslo * `Europe/Paris` - Europe/Paris * `Europe/Podgorica` - Europe/Podgorica * `Europe/Prague` - Europe/Prague * `Europe/Riga` - Europe/Riga * `Europe/Rome` - Europe/Rome * `Europe/Samara` - Europe/Samara * `Europe/San_Marino` - Europe/San_Marino * `Europe/Sarajevo` - Europe/Sarajevo * `Europe/Saratov` - Europe/Saratov * `Europe/Simferopol` - Europe/Simferopol * `Europe/Skopje` - Europe/Skopje * `Europe/Sofia` - Europe/Sofia * `Europe/Stockholm` - Europe/Stockholm * `Europe/Tallinn` - Europe/Tallinn * `Europe/Tirane` - Europe/Tirane * `Europe/Tiraspol` - Europe/Tiraspol * `Europe/Ulyanovsk` - Europe/Ulyanovsk * `Europe/Uzhgorod` - Europe/Uzhgorod * `Europe/Vaduz` - Europe/Vaduz * `Europe/Vatican` - Europe/Vatican * `Europe/Vienna` - Europe/Vienna * `Europe/Vilnius` - Europe/Vilnius * `Europe/Volgograd` - Europe/Volgograd * `Europe/Warsaw` - Europe/Warsaw * `Europe/Zagreb` - Europe/Zagreb * `Europe/Zaporozhye` - Europe/Zaporozhye * `Europe/Zurich` - Europe/Zurich * `GB` - GB * `GB-Eire` - GB-Eire * `GMT` - GMT * `GMT+0` - GMT+0 * `GMT-0` - GMT-0 * `GMT0` - GMT0 * `Greenwich` - Greenwich * `HST` - HST * `Hongkong` - Hongkong * `Iceland` - Iceland * `Indian/Antananarivo` - Indian/Antananarivo * `Indian/Chagos` - Indian/Chagos * `Indian/Christmas` - Indian/Christmas * `Indian/Cocos` - Indian/Cocos * `Indian/Comoro` - Indian/Comoro * `Indian/Kerguelen` - Indian/Kerguelen * `Indian/Mahe` - Indian/Mahe * `Indian/Maldives` - Indian/Maldives * `Indian/Mauritius` - Indian/Mauritius * `Indian/Mayotte` - Indian/Mayotte * `Indian/Reunion` - Indian/Reunion * `Iran` - Iran * `Israel` - Israel * `Jamaica` - Jamaica * `Japan` - Japan * `Kwajalein` - Kwajalein * `Libya` - Libya * `MET` - MET * `MST` - MST * `MST7MDT` - MST7MDT * `Mexico/BajaNorte` - Mexico/BajaNorte * `Mexico/BajaSur` - Mexico/BajaSur * `Mexico/General` - Mexico/General * `NZ` - NZ * `NZ-CHAT` - NZ-CHAT * `Navajo` - Navajo * `PRC` - PRC * `PST8PDT` - PST8PDT * `Pacific/Apia` - Pacific/Apia * `Pacific/Auckland` - Pacific/Auckland * `Pacific/Bougainville` - Pacific/Bougainville * `Pacific/Chatham` - Pacific/Chatham * `Pacific/Chuuk` - Pacific/Chuuk * `Pacific/Easter` - Pacific/Easter * `Pacific/Efate` - Pacific/Efate * `Pacific/Enderbury` - Pacific/Enderbury * `Pacific/Fakaofo` - Pacific/Fakaofo * `Pacific/Fiji` - Pacific/Fiji * `Pacific/Funafuti` - Pacific/Funafuti * `Pacific/Galapagos` - Pacific/Galapagos * `Pacific/Gambier` - Pacific/Gambier * `Pacific/Guadalcanal` - Pacific/Guadalcanal * `Pacific/Guam` - Pacific/Guam * `Pacific/Honolulu` - Pacific/Honolulu * `Pacific/Johnston` - Pacific/Johnston * `Pacific/Kanton` - Pacific/Kanton * `Pacific/Kiritimati` - Pacific/Kiritimati * `Pacific/Kosrae` - Pacific/Kosrae * `Pacific/Kwajalein` - Pacific/Kwajalein * `Pacific/Majuro` - Pacific/Majuro * `Pacific/Marquesas` - Pacific/Marquesas * `Pacific/Midway` - Pacific/Midway * `Pacific/Nauru` - Pacific/Nauru * `Pacific/Niue` - Pacific/Niue * `Pacific/Norfolk` - Pacific/Norfolk * `Pacific/Noumea` - Pacific/Noumea * `Pacific/Pago_Pago` - Pacific/Pago_Pago * `Pacific/Palau` - Pacific/Palau * `Pacific/Pitcairn` - Pacific/Pitcairn * `Pacific/Pohnpei` - Pacific/Pohnpei * `Pacific/Ponape` - Pacific/Ponape * `Pacific/Port_Moresby` - Pacific/Port_Moresby * `Pacific/Rarotonga` - Pacific/Rarotonga * `Pacific/Saipan` - Pacific/Saipan * `Pacific/Samoa` - Pacific/Samoa * `Pacific/Tahiti` - Pacific/Tahiti * `Pacific/Tarawa` - Pacific/Tarawa * `Pacific/Tongatapu` - Pacific/Tongatapu * `Pacific/Truk` - Pacific/Truk * `Pacific/Wake` - Pacific/Wake * `Pacific/Wallis` - Pacific/Wallis * `Pacific/Yap` - Pacific/Yap * `Poland` - Poland * `Portugal` - Portugal * `ROC` - ROC * `ROK` - ROK * `Singapore` - Singapore * `Turkey` - Turkey * `UCT` - UCT * `US/Alaska` - US/Alaska * `US/Aleutian` - US/Aleutian * `US/Arizona` - US/Arizona * `US/Central` - US/Central * `US/East-Indiana` - US/East-Indiana * `US/Eastern` - US/Eastern * `US/Hawaii` - US/Hawaii * `US/Indiana-Starke` - US/Indiana-Starke * `US/Michigan` - US/Michigan * `US/Mountain` - US/Mountain * `US/Pacific` - US/Pacific * `US/Samoa` - US/Samoa * `UTC` - UTC * `Universal` - Universal * `W-SU` - W-SU * `WET` - WET * `Zulu` - Zulu */
-  timezone?: TimezoneEnum | (string & {}) | null;
-  /** Day-of-week offset for weekly intervals (0=Sunday, 6=Saturday). Only valid when interval is 'week'. */
-  offset_day?: number | null;
-  /** Hour-of-day offset (0-23) for daily and weekly intervals. Only valid when interval is 'day' or 'week'. */
-  offset_hour?: number | null;
-}
-export const BatchExportsPauseCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-    name: S.optional(S.String),
-    model: S.optional(S.NullOr(BatchExportsPauseCreateRequestModel)),
-    destination: S.optional(BatchExportDestination),
-    interval: S.optional(BatchExportIntervalEnum),
-    paused: S.optional(S.Boolean),
-    last_paused_at: S.optional(S.NullOr(S.String)),
-    start_at: S.optional(S.NullOr(S.String)),
-    end_at: S.optional(S.NullOr(S.String)),
-    hogql_query: S.optional(S.String),
-    filters: S.optional(S.Unknown),
-    timezone: S.optional(S.NullOr(TimezoneEnum)),
-    offset_day: S.optional(S.NullOr(S.Number)),
-    offset_hour: S.optional(S.NullOr(S.Number)),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/api/projects/{project_id}/batch_exports/{id}/pause/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "BatchExportsPauseCreateRequest",
-}) as any as S.Schema<BatchExportsPauseCreateRequest>;
-
-export interface BatchExportsPauseCreateResponse {}
-export const BatchExportsPauseCreateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "BatchExportsPauseCreateResponse",
-}) as any as S.Schema<BatchExportsPauseCreateResponse>;
-
-export interface BatchExportsRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this batch export. */
-  id: string;
-}
-export const BatchExportsRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/batch_exports/{id}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "BatchExportsRetrieveRequest",
-}) as any as S.Schema<BatchExportsRetrieveRequest>;
-
-export interface BatchExportsRunsCancelCreateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  batch_export_id: string;
-  /** A UUID string identifying this batch export run. */
-  id: string;
-  /** The status of this run. * `Cancelled` - Cancelled * `Completed` - Completed * `ContinuedAsNew` - Continued As New * `Failed` - Failed * `FailedRetryable` - Failed Retryable * `FailedBilling` - Failed Billing * `Terminated` - Terminated * `TimedOut` - Timedout * `Running` - Running * `Starting` - Starting */
-  status?: BatchExportRunStatusEnum | (string & {});
-  /** The number of records that have been exported. */
-  records_completed?: number | null;
-  /** The number of records that failed downstream processing (e.g. hog function execution errors). */
-  records_failed?: number | null;
-  /** The latest error that occurred during this run. */
-  latest_error?: string | null;
-  /** The start of the data interval. */
-  data_interval_start?: string | null;
-  /** The end of the data interval. */
-  data_interval_end?: string;
-  /** An opaque cursor that may be used to resume. */
-  cursor?: string | null;
-  /** The timestamp at which this BatchExportRun finished, successfully or not. */
-  finished_at?: string | null;
-  /** The total count of records that should be exported in this BatchExportRun. */
-  records_total_count?: number | null;
-  /** The number of bytes that have been exported in this BatchExportRun. */
-  bytes_exported?: number | null;
-  /** The `BatchExportOnDemand` this run belongs to. */
-  batch_export_on_demand?: string | null;
-  /** The backfill this run belongs to. */
-  backfill?: string | null;
-}
-export const BatchExportsRunsCancelCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    batch_export_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-    status: S.optional(BatchExportRunStatusEnum),
-    records_completed: S.optional(S.NullOr(S.Number)),
-    records_failed: S.optional(S.NullOr(S.Number)),
-    latest_error: S.optional(S.NullOr(S.String)),
-    data_interval_start: S.optional(S.NullOr(S.String)),
-    data_interval_end: S.optional(S.String),
-    cursor: S.optional(S.NullOr(S.String)),
-    finished_at: S.optional(S.NullOr(S.String)),
-    records_total_count: S.optional(S.NullOr(S.Number)),
-    bytes_exported: S.optional(S.NullOr(S.Number)),
-    batch_export_on_demand: S.optional(S.NullOr(S.String)),
-    backfill: S.optional(S.NullOr(S.String)),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/api/projects/{project_id}/batch_exports/{batch_export_id}/runs/{id}/cancel/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "BatchExportsRunsCancelCreateRequest",
-}) as any as S.Schema<BatchExportsRunsCancelCreateRequest>;
-
-export interface BatchExportsRunsCancelCreateResponse {}
-export const BatchExportsRunsCancelCreateResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "BatchExportsRunsCancelCreateResponse",
-}) as any as S.Schema<BatchExportsRunsCancelCreateResponse>;
-
-/** * `Cancelled` - Cancelled * `Completed` - Completed * `ContinuedAsNew` - Continued As New * `Failed` - Failed * `FailedRetryable` - Failed Retryable * `FailedBilling` - Failed Billing * `Terminated` - Terminated * `TimedOut` - Timedout * `Running` - Running * `Starting` - Starting */
-export type BatchExportsRunsListRequestStatusItem =
-  | "Cancelled"
-  | "Completed"
-  | "ContinuedAsNew"
-  | "Failed"
-  | "FailedRetryable"
-  | "FailedBilling"
-  | "Terminated"
-  | "TimedOut"
-  | "Running"
-  | "Starting";
-export const BatchExportsRunsListRequestStatusItem = /*@__PURE__*/ S.String;
-
-export type BatchExportsRunsListRequestStatusList = Array<
-  BatchExportsRunsListRequestStatusItem | (string & {})
->;
-export const BatchExportsRunsListRequestStatusList = /*@__PURE__*/ S.Array(
-  BatchExportsRunsListRequestStatusItem,
-) as any as S.Schema<BatchExportsRunsListRequestStatusList>;
-
-export interface BatchExportsRunsListRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  batch_export_id: string;
-  /** Only return runs created at or after this point. Accepts an ISO-8601 datetime or a relative value like `-7d`. Defaults to `-7d`. Ignored when ordering by `data_interval_start`. */
-  after?: string;
-  /** Only return runs created at or before this point. Accepts an ISO-8601 datetime or a relative value like `-1d`. Defaults to now. Ignored when ordering by `data_interval_start`. */
-  before?: string;
-  /** The pagination cursor value. */
-  cursor?: string;
-  /** Only return runs whose data interval ends at or before this point. Accepts an ISO-8601 datetime or a relative value like `-1d`. Defaults to now. Only applies when ordering by `data_interval_start`. */
-  end?: string;
-  /** Which field to use when ordering the results. */
-  ordering?: string;
-  /** Only return runs whose data interval starts at or after this point. Accepts an ISO-8601 datetime or a relative value like `-7d`. Defaults to `-7d`. Only applies when ordering by `data_interval_start`. */
-  start?: string;
-  /** Only return runs in these statuses. Repeat the parameter to pass more than one status. */
-  status?: BatchExportsRunsListRequestStatusList;
-}
-export const BatchExportsRunsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    batch_export_id: S.String.pipe(T.Label()),
-    after: S.optional(S.String.pipe(T.Query())),
-    before: S.optional(S.String.pipe(T.Query())),
-    cursor: S.optional(S.String.pipe(T.Query())),
-    end: S.optional(S.String.pipe(T.Query())),
-    ordering: S.optional(S.String.pipe(T.Query())),
-    start: S.optional(S.String.pipe(T.Query())),
-    status: S.optional(BatchExportsRunsListRequestStatusList.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/batch_exports/{batch_export_id}/runs/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "BatchExportsRunsListRequest",
-}) as any as S.Schema<BatchExportsRunsListRequest>;
-
-export type PaginatedBatchExportRunListResultsList = Array<BatchExportRun>;
-export const PaginatedBatchExportRunListResultsList = /*@__PURE__*/ S.Array(
-  BatchExportRun,
-) as any as S.Schema<PaginatedBatchExportRunListResultsList>;
-
-export interface PaginatedBatchExportRunList {
-  next?: string | null;
-  previous?: string | null;
-  results?: PaginatedBatchExportRunListResultsList;
-}
-export const PaginatedBatchExportRunList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    next: S.optional(S.NullOr(S.String)),
-    previous: S.optional(S.NullOr(S.String)),
-    results: S.optional(PaginatedBatchExportRunListResultsList),
-  }),
-).annotate({
-  identifier: "PaginatedBatchExportRunList",
-}) as any as S.Schema<PaginatedBatchExportRunList>;
-
-export interface BatchExportsRunsLogsRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  batch_export_id: string;
-  /** A UUID string identifying this batch export run. */
-  id: string;
-  /** Only return entries after this ISO 8601 timestamp. Defaults to 7 days ago; pass an explicit value to read further back. */
-  after?: string;
-  /** Only return entries before this ISO 8601 timestamp. */
-  before?: string;
-  /** Filter logs to a specific execution instance. */
-  instance_id?: string;
-  /** Comma-separated log levels to include, e.g. 'WARN,ERROR'. Valid levels: DEBUG, LOG, INFO, WARN, ERROR. */
-  level?: string;
-  /** Maximum number of log entries to return (1-500, default 50). */
-  limit?: number;
-  /** Case-insensitive substring search across log messages. */
-  search?: string;
-}
-export const BatchExportsRunsLogsRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    batch_export_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-    after: S.optional(S.String.pipe(T.Query())),
-    before: S.optional(S.String.pipe(T.Query())),
-    instance_id: S.optional(S.String.pipe(T.Query())),
-    level: S.optional(S.String.pipe(T.Query())),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    search: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/batch_exports/{batch_export_id}/runs/{id}/logs/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "BatchExportsRunsLogsRetrieveRequest",
-}) as any as S.Schema<BatchExportsRunsLogsRetrieveRequest>;
-
-export interface BatchExportsRunsLogsRetrieveResponse {}
-export const BatchExportsRunsLogsRetrieveResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "BatchExportsRunsLogsRetrieveResponse",
-}) as any as S.Schema<BatchExportsRunsLogsRetrieveResponse>;
-
-export interface BatchExportsRunsRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  batch_export_id: string;
-  /** A UUID string identifying this batch export run. */
-  id: string;
-}
-export const BatchExportsRunsRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    batch_export_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/batch_exports/{batch_export_id}/runs/{id}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "BatchExportsRunsRetrieveRequest",
-}) as any as S.Schema<BatchExportsRunsRetrieveRequest>;
-
-export interface BatchExportsRunsRetryCreateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  batch_export_id: string;
-  /** A UUID string identifying this batch export run. */
-  id: string;
-  /** The status of this run. * `Cancelled` - Cancelled * `Completed` - Completed * `ContinuedAsNew` - Continued As New * `Failed` - Failed * `FailedRetryable` - Failed Retryable * `FailedBilling` - Failed Billing * `Terminated` - Terminated * `TimedOut` - Timedout * `Running` - Running * `Starting` - Starting */
-  status?: BatchExportRunStatusEnum | (string & {});
-  /** The number of records that have been exported. */
-  records_completed?: number | null;
-  /** The number of records that failed downstream processing (e.g. hog function execution errors). */
-  records_failed?: number | null;
-  /** The latest error that occurred during this run. */
-  latest_error?: string | null;
-  /** The start of the data interval. */
-  data_interval_start?: string | null;
-  /** The end of the data interval. */
-  data_interval_end?: string;
-  /** An opaque cursor that may be used to resume. */
-  cursor?: string | null;
-  /** The timestamp at which this BatchExportRun finished, successfully or not. */
-  finished_at?: string | null;
-  /** The total count of records that should be exported in this BatchExportRun. */
-  records_total_count?: number | null;
-  /** The number of bytes that have been exported in this BatchExportRun. */
-  bytes_exported?: number | null;
-  /** The `BatchExportOnDemand` this run belongs to. */
-  batch_export_on_demand?: string | null;
-  /** The backfill this run belongs to. */
-  backfill?: string | null;
-}
-export const BatchExportsRunsRetryCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    batch_export_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-    status: S.optional(BatchExportRunStatusEnum),
-    records_completed: S.optional(S.NullOr(S.Number)),
-    records_failed: S.optional(S.NullOr(S.Number)),
-    latest_error: S.optional(S.NullOr(S.String)),
-    data_interval_start: S.optional(S.NullOr(S.String)),
-    data_interval_end: S.optional(S.String),
-    cursor: S.optional(S.NullOr(S.String)),
-    finished_at: S.optional(S.NullOr(S.String)),
-    records_total_count: S.optional(S.NullOr(S.Number)),
-    bytes_exported: S.optional(S.NullOr(S.Number)),
-    batch_export_on_demand: S.optional(S.NullOr(S.String)),
-    backfill: S.optional(S.NullOr(S.String)),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/api/projects/{project_id}/batch_exports/{batch_export_id}/runs/{id}/retry/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "BatchExportsRunsRetryCreateRequest",
-}) as any as S.Schema<BatchExportsRunsRetryCreateRequest>;
-
-export interface BatchExportsRunsRetryCreateResponse {}
-export const BatchExportsRunsRetryCreateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "BatchExportsRunsRetryCreateResponse",
-}) as any as S.Schema<BatchExportsRunsRetryCreateResponse>;
-
-/** Which model this BatchExport is exporting. * `events` - Events * `persons` - Persons * `sessions` - Sessions * `hogql` - Hogql */
-export type BatchExportsRunTestStepCreateRequestModel = ModelEnum | BlankEnum;
-export const BatchExportsRunTestStepCreateRequestModel =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<BatchExportsRunTestStepCreateRequestModel>;
-
-export interface BatchExportsRunTestStepCreateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this batch export. */
-  id: string;
-  /** A human-readable name for this BatchExport. */
-  name?: string;
-  /** Which model this BatchExport is exporting. * `events` - Events * `persons` - Persons * `sessions` - Sessions * `hogql` - Hogql */
-  model?: BatchExportsRunTestStepCreateRequestModel | null;
-  /** Destination configuration (type, config, and optional integration). */
-  destination?: BatchExportDestination;
-  /** How often the batch export should run. * `hour` - hour * `day` - day * `week` - week * `every 5 minutes` - every 5 minutes * `every 15 minutes` - every 15 minutes */
-  interval?: BatchExportIntervalEnum | (string & {});
-  /** Whether this BatchExport is paused or not. */
-  paused?: boolean;
-  /** The timestamp at which this BatchExport was last paused. */
-  last_paused_at?: string | null;
-  /** Time before which any Batch Export runs won't be triggered. */
-  start_at?: string | null;
-  /** Time after which any Batch Export runs won't be triggered. */
-  end_at?: string | null;
-  /** Optional HogQL SELECT defining a custom model schema. Only recommended in advanced use cases. */
-  hogql_query?: string;
-  filters?: unknown;
-  /** IANA timezone name controlling daily and weekly interval boundaries. Defaults to UTC. * `Africa/Abidjan` - Africa/Abidjan * `Africa/Accra` - Africa/Accra * `Africa/Addis_Ababa` - Africa/Addis_Ababa * `Africa/Algiers` - Africa/Algiers * `Africa/Asmara` - Africa/Asmara * `Africa/Asmera` - Africa/Asmera * `Africa/Bamako` - Africa/Bamako * `Africa/Bangui` - Africa/Bangui * `Africa/Banjul` - Africa/Banjul * `Africa/Bissau` - Africa/Bissau * `Africa/Blantyre` - Africa/Blantyre * `Africa/Brazzaville` - Africa/Brazzaville * `Africa/Bujumbura` - Africa/Bujumbura * `Africa/Cairo` - Africa/Cairo * `Africa/Casablanca` - Africa/Casablanca * `Africa/Ceuta` - Africa/Ceuta * `Africa/Conakry` - Africa/Conakry * `Africa/Dakar` - Africa/Dakar * `Africa/Dar_es_Salaam` - Africa/Dar_es_Salaam * `Africa/Djibouti` - Africa/Djibouti * `Africa/Douala` - Africa/Douala * `Africa/El_Aaiun` - Africa/El_Aaiun * `Africa/Freetown` - Africa/Freetown * `Africa/Gaborone` - Africa/Gaborone * `Africa/Harare` - Africa/Harare * `Africa/Johannesburg` - Africa/Johannesburg * `Africa/Juba` - Africa/Juba * `Africa/Kampala` - Africa/Kampala * `Africa/Khartoum` - Africa/Khartoum * `Africa/Kigali` - Africa/Kigali * `Africa/Kinshasa` - Africa/Kinshasa * `Africa/Lagos` - Africa/Lagos * `Africa/Libreville` - Africa/Libreville * `Africa/Lome` - Africa/Lome * `Africa/Luanda` - Africa/Luanda * `Africa/Lubumbashi` - Africa/Lubumbashi * `Africa/Lusaka` - Africa/Lusaka * `Africa/Malabo` - Africa/Malabo * `Africa/Maputo` - Africa/Maputo * `Africa/Maseru` - Africa/Maseru * `Africa/Mbabane` - Africa/Mbabane * `Africa/Mogadishu` - Africa/Mogadishu * `Africa/Monrovia` - Africa/Monrovia * `Africa/Nairobi` - Africa/Nairobi * `Africa/Ndjamena` - Africa/Ndjamena * `Africa/Niamey` - Africa/Niamey * `Africa/Nouakchott` - Africa/Nouakchott * `Africa/Ouagadougou` - Africa/Ouagadougou * `Africa/Porto-Novo` - Africa/Porto-Novo * `Africa/Sao_Tome` - Africa/Sao_Tome * `Africa/Timbuktu` - Africa/Timbuktu * `Africa/Tripoli` - Africa/Tripoli * `Africa/Tunis` - Africa/Tunis * `Africa/Windhoek` - Africa/Windhoek * `America/Adak` - America/Adak * `America/Anchorage` - America/Anchorage * `America/Anguilla` - America/Anguilla * `America/Antigua` - America/Antigua * `America/Araguaina` - America/Araguaina * `America/Argentina/Buenos_Aires` - America/Argentina/Buenos_Aires * `America/Argentina/Catamarca` - America/Argentina/Catamarca * `America/Argentina/ComodRivadavia` - America/Argentina/ComodRivadavia * `America/Argentina/Cordoba` - America/Argentina/Cordoba * `America/Argentina/Jujuy` - America/Argentina/Jujuy * `America/Argentina/La_Rioja` - America/Argentina/La_Rioja * `America/Argentina/Mendoza` - America/Argentina/Mendoza * `America/Argentina/Rio_Gallegos` - America/Argentina/Rio_Gallegos * `America/Argentina/Salta` - America/Argentina/Salta * `America/Argentina/San_Juan` - America/Argentina/San_Juan * `America/Argentina/San_Luis` - America/Argentina/San_Luis * `America/Argentina/Tucuman` - America/Argentina/Tucuman * `America/Argentina/Ushuaia` - America/Argentina/Ushuaia * `America/Aruba` - America/Aruba * `America/Asuncion` - America/Asuncion * `America/Atikokan` - America/Atikokan * `America/Atka` - America/Atka * `America/Bahia` - America/Bahia * `America/Bahia_Banderas` - America/Bahia_Banderas * `America/Barbados` - America/Barbados * `America/Belem` - America/Belem * `America/Belize` - America/Belize * `America/Blanc-Sablon` - America/Blanc-Sablon * `America/Boa_Vista` - America/Boa_Vista * `America/Bogota` - America/Bogota * `America/Boise` - America/Boise * `America/Buenos_Aires` - America/Buenos_Aires * `America/Cambridge_Bay` - America/Cambridge_Bay * `America/Campo_Grande` - America/Campo_Grande * `America/Cancun` - America/Cancun * `America/Caracas` - America/Caracas * `America/Catamarca` - America/Catamarca * `America/Cayenne` - America/Cayenne * `America/Cayman` - America/Cayman * `America/Chicago` - America/Chicago * `America/Chihuahua` - America/Chihuahua * `America/Ciudad_Juarez` - America/Ciudad_Juarez * `America/Coral_Harbour` - America/Coral_Harbour * `America/Cordoba` - America/Cordoba * `America/Costa_Rica` - America/Costa_Rica * `America/Creston` - America/Creston * `America/Cuiaba` - America/Cuiaba * `America/Curacao` - America/Curacao * `America/Danmarkshavn` - America/Danmarkshavn * `America/Dawson` - America/Dawson * `America/Dawson_Creek` - America/Dawson_Creek * `America/Denver` - America/Denver * `America/Detroit` - America/Detroit * `America/Dominica` - America/Dominica * `America/Edmonton` - America/Edmonton * `America/Eirunepe` - America/Eirunepe * `America/El_Salvador` - America/El_Salvador * `America/Ensenada` - America/Ensenada * `America/Fort_Nelson` - America/Fort_Nelson * `America/Fort_Wayne` - America/Fort_Wayne * `America/Fortaleza` - America/Fortaleza * `America/Glace_Bay` - America/Glace_Bay * `America/Godthab` - America/Godthab * `America/Goose_Bay` - America/Goose_Bay * `America/Grand_Turk` - America/Grand_Turk * `America/Grenada` - America/Grenada * `America/Guadeloupe` - America/Guadeloupe * `America/Guatemala` - America/Guatemala * `America/Guayaquil` - America/Guayaquil * `America/Guyana` - America/Guyana * `America/Halifax` - America/Halifax * `America/Havana` - America/Havana * `America/Hermosillo` - America/Hermosillo * `America/Indiana/Indianapolis` - America/Indiana/Indianapolis * `America/Indiana/Knox` - America/Indiana/Knox * `America/Indiana/Marengo` - America/Indiana/Marengo * `America/Indiana/Petersburg` - America/Indiana/Petersburg * `America/Indiana/Tell_City` - America/Indiana/Tell_City * `America/Indiana/Vevay` - America/Indiana/Vevay * `America/Indiana/Vincennes` - America/Indiana/Vincennes * `America/Indiana/Winamac` - America/Indiana/Winamac * `America/Indianapolis` - America/Indianapolis * `America/Inuvik` - America/Inuvik * `America/Iqaluit` - America/Iqaluit * `America/Jamaica` - America/Jamaica * `America/Jujuy` - America/Jujuy * `America/Juneau` - America/Juneau * `America/Kentucky/Louisville` - America/Kentucky/Louisville * `America/Kentucky/Monticello` - America/Kentucky/Monticello * `America/Knox_IN` - America/Knox_IN * `America/Kralendijk` - America/Kralendijk * `America/La_Paz` - America/La_Paz * `America/Lima` - America/Lima * `America/Los_Angeles` - America/Los_Angeles * `America/Louisville` - America/Louisville * `America/Lower_Princes` - America/Lower_Princes * `America/Maceio` - America/Maceio * `America/Managua` - America/Managua * `America/Manaus` - America/Manaus * `America/Marigot` - America/Marigot * `America/Martinique` - America/Martinique * `America/Matamoros` - America/Matamoros * `America/Mazatlan` - America/Mazatlan * `America/Mendoza` - America/Mendoza * `America/Menominee` - America/Menominee * `America/Merida` - America/Merida * `America/Metlakatla` - America/Metlakatla * `America/Mexico_City` - America/Mexico_City * `America/Miquelon` - America/Miquelon * `America/Moncton` - America/Moncton * `America/Monterrey` - America/Monterrey * `America/Montevideo` - America/Montevideo * `America/Montreal` - America/Montreal * `America/Montserrat` - America/Montserrat * `America/Nassau` - America/Nassau * `America/New_York` - America/New_York * `America/Nipigon` - America/Nipigon * `America/Nome` - America/Nome * `America/Noronha` - America/Noronha * `America/North_Dakota/Beulah` - America/North_Dakota/Beulah * `America/North_Dakota/Center` - America/North_Dakota/Center * `America/North_Dakota/New_Salem` - America/North_Dakota/New_Salem * `America/Nuuk` - America/Nuuk * `America/Ojinaga` - America/Ojinaga * `America/Panama` - America/Panama * `America/Pangnirtung` - America/Pangnirtung * `America/Paramaribo` - America/Paramaribo * `America/Phoenix` - America/Phoenix * `America/Port-au-Prince` - America/Port-au-Prince * `America/Port_of_Spain` - America/Port_of_Spain * `America/Porto_Acre` - America/Porto_Acre * `America/Porto_Velho` - America/Porto_Velho * `America/Puerto_Rico` - America/Puerto_Rico * `America/Punta_Arenas` - America/Punta_Arenas * `America/Rainy_River` - America/Rainy_River * `America/Rankin_Inlet` - America/Rankin_Inlet * `America/Recife` - America/Recife * `America/Regina` - America/Regina * `America/Resolute` - America/Resolute * `America/Rio_Branco` - America/Rio_Branco * `America/Rosario` - America/Rosario * `America/Santa_Isabel` - America/Santa_Isabel * `America/Santarem` - America/Santarem * `America/Santiago` - America/Santiago * `America/Santo_Domingo` - America/Santo_Domingo * `America/Sao_Paulo` - America/Sao_Paulo * `America/Scoresbysund` - America/Scoresbysund * `America/Shiprock` - America/Shiprock * `America/Sitka` - America/Sitka * `America/St_Barthelemy` - America/St_Barthelemy * `America/St_Johns` - America/St_Johns * `America/St_Kitts` - America/St_Kitts * `America/St_Lucia` - America/St_Lucia * `America/St_Thomas` - America/St_Thomas * `America/St_Vincent` - America/St_Vincent * `America/Swift_Current` - America/Swift_Current * `America/Tegucigalpa` - America/Tegucigalpa * `America/Thule` - America/Thule * `America/Thunder_Bay` - America/Thunder_Bay * `America/Tijuana` - America/Tijuana * `America/Toronto` - America/Toronto * `America/Tortola` - America/Tortola * `America/Vancouver` - America/Vancouver * `America/Virgin` - America/Virgin * `America/Whitehorse` - America/Whitehorse * `America/Winnipeg` - America/Winnipeg * `America/Yakutat` - America/Yakutat * `America/Yellowknife` - America/Yellowknife * `Antarctica/Casey` - Antarctica/Casey * `Antarctica/Davis` - Antarctica/Davis * `Antarctica/DumontDUrville` - Antarctica/DumontDUrville * `Antarctica/Macquarie` - Antarctica/Macquarie * `Antarctica/Mawson` - Antarctica/Mawson * `Antarctica/McMurdo` - Antarctica/McMurdo * `Antarctica/Palmer` - Antarctica/Palmer * `Antarctica/Rothera` - Antarctica/Rothera * `Antarctica/South_Pole` - Antarctica/South_Pole * `Antarctica/Syowa` - Antarctica/Syowa * `Antarctica/Troll` - Antarctica/Troll * `Antarctica/Vostok` - Antarctica/Vostok * `Arctic/Longyearbyen` - Arctic/Longyearbyen * `Asia/Aden` - Asia/Aden * `Asia/Almaty` - Asia/Almaty * `Asia/Amman` - Asia/Amman * `Asia/Anadyr` - Asia/Anadyr * `Asia/Aqtau` - Asia/Aqtau * `Asia/Aqtobe` - Asia/Aqtobe * `Asia/Ashgabat` - Asia/Ashgabat * `Asia/Ashkhabad` - Asia/Ashkhabad * `Asia/Atyrau` - Asia/Atyrau * `Asia/Baghdad` - Asia/Baghdad * `Asia/Bahrain` - Asia/Bahrain * `Asia/Baku` - Asia/Baku * `Asia/Bangkok` - Asia/Bangkok * `Asia/Barnaul` - Asia/Barnaul * `Asia/Beirut` - Asia/Beirut * `Asia/Bishkek` - Asia/Bishkek * `Asia/Brunei` - Asia/Brunei * `Asia/Calcutta` - Asia/Calcutta * `Asia/Chita` - Asia/Chita * `Asia/Choibalsan` - Asia/Choibalsan * `Asia/Chongqing` - Asia/Chongqing * `Asia/Chungking` - Asia/Chungking * `Asia/Colombo` - Asia/Colombo * `Asia/Dacca` - Asia/Dacca * `Asia/Damascus` - Asia/Damascus * `Asia/Dhaka` - Asia/Dhaka * `Asia/Dili` - Asia/Dili * `Asia/Dubai` - Asia/Dubai * `Asia/Dushanbe` - Asia/Dushanbe * `Asia/Famagusta` - Asia/Famagusta * `Asia/Gaza` - Asia/Gaza * `Asia/Harbin` - Asia/Harbin * `Asia/Hebron` - Asia/Hebron * `Asia/Ho_Chi_Minh` - Asia/Ho_Chi_Minh * `Asia/Hong_Kong` - Asia/Hong_Kong * `Asia/Hovd` - Asia/Hovd * `Asia/Irkutsk` - Asia/Irkutsk * `Asia/Istanbul` - Asia/Istanbul * `Asia/Jakarta` - Asia/Jakarta * `Asia/Jayapura` - Asia/Jayapura * `Asia/Jerusalem` - Asia/Jerusalem * `Asia/Kabul` - Asia/Kabul * `Asia/Kamchatka` - Asia/Kamchatka * `Asia/Karachi` - Asia/Karachi * `Asia/Kashgar` - Asia/Kashgar * `Asia/Kathmandu` - Asia/Kathmandu * `Asia/Katmandu` - Asia/Katmandu * `Asia/Khandyga` - Asia/Khandyga * `Asia/Kolkata` - Asia/Kolkata * `Asia/Krasnoyarsk` - Asia/Krasnoyarsk * `Asia/Kuala_Lumpur` - Asia/Kuala_Lumpur * `Asia/Kuching` - Asia/Kuching * `Asia/Kuwait` - Asia/Kuwait * `Asia/Macao` - Asia/Macao * `Asia/Macau` - Asia/Macau * `Asia/Magadan` - Asia/Magadan * `Asia/Makassar` - Asia/Makassar * `Asia/Manila` - Asia/Manila * `Asia/Muscat` - Asia/Muscat * `Asia/Nicosia` - Asia/Nicosia * `Asia/Novokuznetsk` - Asia/Novokuznetsk * `Asia/Novosibirsk` - Asia/Novosibirsk * `Asia/Omsk` - Asia/Omsk * `Asia/Oral` - Asia/Oral * `Asia/Phnom_Penh` - Asia/Phnom_Penh * `Asia/Pontianak` - Asia/Pontianak * `Asia/Pyongyang` - Asia/Pyongyang * `Asia/Qatar` - Asia/Qatar * `Asia/Qostanay` - Asia/Qostanay * `Asia/Qyzylorda` - Asia/Qyzylorda * `Asia/Rangoon` - Asia/Rangoon * `Asia/Riyadh` - Asia/Riyadh * `Asia/Saigon` - Asia/Saigon * `Asia/Sakhalin` - Asia/Sakhalin * `Asia/Samarkand` - Asia/Samarkand * `Asia/Seoul` - Asia/Seoul * `Asia/Shanghai` - Asia/Shanghai * `Asia/Singapore` - Asia/Singapore * `Asia/Srednekolymsk` - Asia/Srednekolymsk * `Asia/Taipei` - Asia/Taipei * `Asia/Tashkent` - Asia/Tashkent * `Asia/Tbilisi` - Asia/Tbilisi * `Asia/Tehran` - Asia/Tehran * `Asia/Tel_Aviv` - Asia/Tel_Aviv * `Asia/Thimbu` - Asia/Thimbu * `Asia/Thimphu` - Asia/Thimphu * `Asia/Tokyo` - Asia/Tokyo * `Asia/Tomsk` - Asia/Tomsk * `Asia/Ujung_Pandang` - Asia/Ujung_Pandang * `Asia/Ulaanbaatar` - Asia/Ulaanbaatar * `Asia/Ulan_Bator` - Asia/Ulan_Bator * `Asia/Urumqi` - Asia/Urumqi * `Asia/Ust-Nera` - Asia/Ust-Nera * `Asia/Vientiane` - Asia/Vientiane * `Asia/Vladivostok` - Asia/Vladivostok * `Asia/Yakutsk` - Asia/Yakutsk * `Asia/Yangon` - Asia/Yangon * `Asia/Yekaterinburg` - Asia/Yekaterinburg * `Asia/Yerevan` - Asia/Yerevan * `Atlantic/Azores` - Atlantic/Azores * `Atlantic/Bermuda` - Atlantic/Bermuda * `Atlantic/Canary` - Atlantic/Canary * `Atlantic/Cape_Verde` - Atlantic/Cape_Verde * `Atlantic/Faeroe` - Atlantic/Faeroe * `Atlantic/Faroe` - Atlantic/Faroe * `Atlantic/Jan_Mayen` - Atlantic/Jan_Mayen * `Atlantic/Madeira` - Atlantic/Madeira * `Atlantic/Reykjavik` - Atlantic/Reykjavik * `Atlantic/South_Georgia` - Atlantic/South_Georgia * `Atlantic/St_Helena` - Atlantic/St_Helena * `Atlantic/Stanley` - Atlantic/Stanley * `Australia/ACT` - Australia/ACT * `Australia/Adelaide` - Australia/Adelaide * `Australia/Brisbane` - Australia/Brisbane * `Australia/Broken_Hill` - Australia/Broken_Hill * `Australia/Canberra` - Australia/Canberra * `Australia/Currie` - Australia/Currie * `Australia/Darwin` - Australia/Darwin * `Australia/Eucla` - Australia/Eucla * `Australia/Hobart` - Australia/Hobart * `Australia/LHI` - Australia/LHI * `Australia/Lindeman` - Australia/Lindeman * `Australia/Lord_Howe` - Australia/Lord_Howe * `Australia/Melbourne` - Australia/Melbourne * `Australia/NSW` - Australia/NSW * `Australia/North` - Australia/North * `Australia/Perth` - Australia/Perth * `Australia/Queensland` - Australia/Queensland * `Australia/South` - Australia/South * `Australia/Sydney` - Australia/Sydney * `Australia/Tasmania` - Australia/Tasmania * `Australia/Victoria` - Australia/Victoria * `Australia/West` - Australia/West * `Australia/Yancowinna` - Australia/Yancowinna * `Brazil/Acre` - Brazil/Acre * `Brazil/DeNoronha` - Brazil/DeNoronha * `Brazil/East` - Brazil/East * `Brazil/West` - Brazil/West * `CET` - CET * `CST6CDT` - CST6CDT * `Canada/Atlantic` - Canada/Atlantic * `Canada/Central` - Canada/Central * `Canada/Eastern` - Canada/Eastern * `Canada/Mountain` - Canada/Mountain * `Canada/Newfoundland` - Canada/Newfoundland * `Canada/Pacific` - Canada/Pacific * `Canada/Saskatchewan` - Canada/Saskatchewan * `Canada/Yukon` - Canada/Yukon * `Chile/Continental` - Chile/Continental * `Chile/EasterIsland` - Chile/EasterIsland * `Cuba` - Cuba * `EET` - EET * `EST` - EST * `EST5EDT` - EST5EDT * `Egypt` - Egypt * `Eire` - Eire * `Etc/GMT` - Etc/GMT * `Etc/GMT+0` - Etc/GMT+0 * `Etc/GMT+1` - Etc/GMT+1 * `Etc/GMT+10` - Etc/GMT+10 * `Etc/GMT+11` - Etc/GMT+11 * `Etc/GMT+12` - Etc/GMT+12 * `Etc/GMT+2` - Etc/GMT+2 * `Etc/GMT+3` - Etc/GMT+3 * `Etc/GMT+4` - Etc/GMT+4 * `Etc/GMT+5` - Etc/GMT+5 * `Etc/GMT+6` - Etc/GMT+6 * `Etc/GMT+7` - Etc/GMT+7 * `Etc/GMT+8` - Etc/GMT+8 * `Etc/GMT+9` - Etc/GMT+9 * `Etc/GMT-0` - Etc/GMT-0 * `Etc/GMT-1` - Etc/GMT-1 * `Etc/GMT-10` - Etc/GMT-10 * `Etc/GMT-11` - Etc/GMT-11 * `Etc/GMT-12` - Etc/GMT-12 * `Etc/GMT-13` - Etc/GMT-13 * `Etc/GMT-14` - Etc/GMT-14 * `Etc/GMT-2` - Etc/GMT-2 * `Etc/GMT-3` - Etc/GMT-3 * `Etc/GMT-4` - Etc/GMT-4 * `Etc/GMT-5` - Etc/GMT-5 * `Etc/GMT-6` - Etc/GMT-6 * `Etc/GMT-7` - Etc/GMT-7 * `Etc/GMT-8` - Etc/GMT-8 * `Etc/GMT-9` - Etc/GMT-9 * `Etc/GMT0` - Etc/GMT0 * `Etc/Greenwich` - Etc/Greenwich * `Etc/UCT` - Etc/UCT * `Etc/UTC` - Etc/UTC * `Etc/Universal` - Etc/Universal * `Etc/Zulu` - Etc/Zulu * `Europe/Amsterdam` - Europe/Amsterdam * `Europe/Andorra` - Europe/Andorra * `Europe/Astrakhan` - Europe/Astrakhan * `Europe/Athens` - Europe/Athens * `Europe/Belfast` - Europe/Belfast * `Europe/Belgrade` - Europe/Belgrade * `Europe/Berlin` - Europe/Berlin * `Europe/Bratislava` - Europe/Bratislava * `Europe/Brussels` - Europe/Brussels * `Europe/Bucharest` - Europe/Bucharest * `Europe/Budapest` - Europe/Budapest * `Europe/Busingen` - Europe/Busingen * `Europe/Chisinau` - Europe/Chisinau * `Europe/Copenhagen` - Europe/Copenhagen * `Europe/Dublin` - Europe/Dublin * `Europe/Gibraltar` - Europe/Gibraltar * `Europe/Guernsey` - Europe/Guernsey * `Europe/Helsinki` - Europe/Helsinki * `Europe/Isle_of_Man` - Europe/Isle_of_Man * `Europe/Istanbul` - Europe/Istanbul * `Europe/Jersey` - Europe/Jersey * `Europe/Kaliningrad` - Europe/Kaliningrad * `Europe/Kiev` - Europe/Kiev * `Europe/Kirov` - Europe/Kirov * `Europe/Kyiv` - Europe/Kyiv * `Europe/Lisbon` - Europe/Lisbon * `Europe/Ljubljana` - Europe/Ljubljana * `Europe/London` - Europe/London * `Europe/Luxembourg` - Europe/Luxembourg * `Europe/Madrid` - Europe/Madrid * `Europe/Malta` - Europe/Malta * `Europe/Mariehamn` - Europe/Mariehamn * `Europe/Minsk` - Europe/Minsk * `Europe/Monaco` - Europe/Monaco * `Europe/Moscow` - Europe/Moscow * `Europe/Nicosia` - Europe/Nicosia * `Europe/Oslo` - Europe/Oslo * `Europe/Paris` - Europe/Paris * `Europe/Podgorica` - Europe/Podgorica * `Europe/Prague` - Europe/Prague * `Europe/Riga` - Europe/Riga * `Europe/Rome` - Europe/Rome * `Europe/Samara` - Europe/Samara * `Europe/San_Marino` - Europe/San_Marino * `Europe/Sarajevo` - Europe/Sarajevo * `Europe/Saratov` - Europe/Saratov * `Europe/Simferopol` - Europe/Simferopol * `Europe/Skopje` - Europe/Skopje * `Europe/Sofia` - Europe/Sofia * `Europe/Stockholm` - Europe/Stockholm * `Europe/Tallinn` - Europe/Tallinn * `Europe/Tirane` - Europe/Tirane * `Europe/Tiraspol` - Europe/Tiraspol * `Europe/Ulyanovsk` - Europe/Ulyanovsk * `Europe/Uzhgorod` - Europe/Uzhgorod * `Europe/Vaduz` - Europe/Vaduz * `Europe/Vatican` - Europe/Vatican * `Europe/Vienna` - Europe/Vienna * `Europe/Vilnius` - Europe/Vilnius * `Europe/Volgograd` - Europe/Volgograd * `Europe/Warsaw` - Europe/Warsaw * `Europe/Zagreb` - Europe/Zagreb * `Europe/Zaporozhye` - Europe/Zaporozhye * `Europe/Zurich` - Europe/Zurich * `GB` - GB * `GB-Eire` - GB-Eire * `GMT` - GMT * `GMT+0` - GMT+0 * `GMT-0` - GMT-0 * `GMT0` - GMT0 * `Greenwich` - Greenwich * `HST` - HST * `Hongkong` - Hongkong * `Iceland` - Iceland * `Indian/Antananarivo` - Indian/Antananarivo * `Indian/Chagos` - Indian/Chagos * `Indian/Christmas` - Indian/Christmas * `Indian/Cocos` - Indian/Cocos * `Indian/Comoro` - Indian/Comoro * `Indian/Kerguelen` - Indian/Kerguelen * `Indian/Mahe` - Indian/Mahe * `Indian/Maldives` - Indian/Maldives * `Indian/Mauritius` - Indian/Mauritius * `Indian/Mayotte` - Indian/Mayotte * `Indian/Reunion` - Indian/Reunion * `Iran` - Iran * `Israel` - Israel * `Jamaica` - Jamaica * `Japan` - Japan * `Kwajalein` - Kwajalein * `Libya` - Libya * `MET` - MET * `MST` - MST * `MST7MDT` - MST7MDT * `Mexico/BajaNorte` - Mexico/BajaNorte * `Mexico/BajaSur` - Mexico/BajaSur * `Mexico/General` - Mexico/General * `NZ` - NZ * `NZ-CHAT` - NZ-CHAT * `Navajo` - Navajo * `PRC` - PRC * `PST8PDT` - PST8PDT * `Pacific/Apia` - Pacific/Apia * `Pacific/Auckland` - Pacific/Auckland * `Pacific/Bougainville` - Pacific/Bougainville * `Pacific/Chatham` - Pacific/Chatham * `Pacific/Chuuk` - Pacific/Chuuk * `Pacific/Easter` - Pacific/Easter * `Pacific/Efate` - Pacific/Efate * `Pacific/Enderbury` - Pacific/Enderbury * `Pacific/Fakaofo` - Pacific/Fakaofo * `Pacific/Fiji` - Pacific/Fiji * `Pacific/Funafuti` - Pacific/Funafuti * `Pacific/Galapagos` - Pacific/Galapagos * `Pacific/Gambier` - Pacific/Gambier * `Pacific/Guadalcanal` - Pacific/Guadalcanal * `Pacific/Guam` - Pacific/Guam * `Pacific/Honolulu` - Pacific/Honolulu * `Pacific/Johnston` - Pacific/Johnston * `Pacific/Kanton` - Pacific/Kanton * `Pacific/Kiritimati` - Pacific/Kiritimati * `Pacific/Kosrae` - Pacific/Kosrae * `Pacific/Kwajalein` - Pacific/Kwajalein * `Pacific/Majuro` - Pacific/Majuro * `Pacific/Marquesas` - Pacific/Marquesas * `Pacific/Midway` - Pacific/Midway * `Pacific/Nauru` - Pacific/Nauru * `Pacific/Niue` - Pacific/Niue * `Pacific/Norfolk` - Pacific/Norfolk * `Pacific/Noumea` - Pacific/Noumea * `Pacific/Pago_Pago` - Pacific/Pago_Pago * `Pacific/Palau` - Pacific/Palau * `Pacific/Pitcairn` - Pacific/Pitcairn * `Pacific/Pohnpei` - Pacific/Pohnpei * `Pacific/Ponape` - Pacific/Ponape * `Pacific/Port_Moresby` - Pacific/Port_Moresby * `Pacific/Rarotonga` - Pacific/Rarotonga * `Pacific/Saipan` - Pacific/Saipan * `Pacific/Samoa` - Pacific/Samoa * `Pacific/Tahiti` - Pacific/Tahiti * `Pacific/Tarawa` - Pacific/Tarawa * `Pacific/Tongatapu` - Pacific/Tongatapu * `Pacific/Truk` - Pacific/Truk * `Pacific/Wake` - Pacific/Wake * `Pacific/Wallis` - Pacific/Wallis * `Pacific/Yap` - Pacific/Yap * `Poland` - Poland * `Portugal` - Portugal * `ROC` - ROC * `ROK` - ROK * `Singapore` - Singapore * `Turkey` - Turkey * `UCT` - UCT * `US/Alaska` - US/Alaska * `US/Aleutian` - US/Aleutian * `US/Arizona` - US/Arizona * `US/Central` - US/Central * `US/East-Indiana` - US/East-Indiana * `US/Eastern` - US/Eastern * `US/Hawaii` - US/Hawaii * `US/Indiana-Starke` - US/Indiana-Starke * `US/Michigan` - US/Michigan * `US/Mountain` - US/Mountain * `US/Pacific` - US/Pacific * `US/Samoa` - US/Samoa * `UTC` - UTC * `Universal` - Universal * `W-SU` - W-SU * `WET` - WET * `Zulu` - Zulu */
-  timezone?: TimezoneEnum | (string & {}) | null;
-  /** Day-of-week offset for weekly intervals (0=Sunday, 6=Saturday). Only valid when interval is 'week'. */
-  offset_day?: number | null;
-  /** Hour-of-day offset (0-23) for daily and weekly intervals. Only valid when interval is 'day' or 'week'. */
-  offset_hour?: number | null;
-}
-export const BatchExportsRunTestStepCreateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-      name: S.optional(S.String),
-      model: S.optional(S.NullOr(BatchExportsRunTestStepCreateRequestModel)),
-      destination: S.optional(BatchExportDestination),
-      interval: S.optional(BatchExportIntervalEnum),
-      paused: S.optional(S.Boolean),
-      last_paused_at: S.optional(S.NullOr(S.String)),
-      start_at: S.optional(S.NullOr(S.String)),
-      end_at: S.optional(S.NullOr(S.String)),
-      hogql_query: S.optional(S.String),
-      filters: S.optional(S.Unknown),
-      timezone: S.optional(S.NullOr(TimezoneEnum)),
-      offset_day: S.optional(S.NullOr(S.Number)),
-      offset_hour: S.optional(S.NullOr(S.Number)),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/api/projects/{project_id}/batch_exports/{id}/run_test_step/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "BatchExportsRunTestStepCreateRequest",
-}) as any as S.Schema<BatchExportsRunTestStepCreateRequest>;
-
-export interface BatchExportsRunTestStepCreateResponse {}
-export const BatchExportsRunTestStepCreateResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "BatchExportsRunTestStepCreateResponse",
-}) as any as S.Schema<BatchExportsRunTestStepCreateResponse>;
-
-/** Which model this BatchExport is exporting. * `events` - Events * `persons` - Persons * `sessions` - Sessions * `hogql` - Hogql */
-export type BatchExportsRunTestStepNewCreateRequestModel =
-  | ModelEnum
-  | BlankEnum;
-export const BatchExportsRunTestStepNewCreateRequestModel =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<BatchExportsRunTestStepNewCreateRequestModel>;
-
-export interface BatchExportsRunTestStepNewCreateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A human-readable name for this BatchExport. */
-  name?: string;
-  /** Which model this BatchExport is exporting. * `events` - Events * `persons` - Persons * `sessions` - Sessions * `hogql` - Hogql */
-  model?: BatchExportsRunTestStepNewCreateRequestModel | null;
-  /** Destination configuration (type, config, and optional integration). */
-  destination?: BatchExportDestination;
-  /** How often the batch export should run. * `hour` - hour * `day` - day * `week` - week * `every 5 minutes` - every 5 minutes * `every 15 minutes` - every 15 minutes */
-  interval?: BatchExportIntervalEnum | (string & {});
-  /** Whether this BatchExport is paused or not. */
-  paused?: boolean;
-  /** The timestamp at which this BatchExport was last paused. */
-  last_paused_at?: string | null;
-  /** Time before which any Batch Export runs won't be triggered. */
-  start_at?: string | null;
-  /** Time after which any Batch Export runs won't be triggered. */
-  end_at?: string | null;
-  /** Optional HogQL SELECT defining a custom model schema. Only recommended in advanced use cases. */
-  hogql_query?: string;
-  filters?: unknown;
-  /** IANA timezone name controlling daily and weekly interval boundaries. Defaults to UTC. * `Africa/Abidjan` - Africa/Abidjan * `Africa/Accra` - Africa/Accra * `Africa/Addis_Ababa` - Africa/Addis_Ababa * `Africa/Algiers` - Africa/Algiers * `Africa/Asmara` - Africa/Asmara * `Africa/Asmera` - Africa/Asmera * `Africa/Bamako` - Africa/Bamako * `Africa/Bangui` - Africa/Bangui * `Africa/Banjul` - Africa/Banjul * `Africa/Bissau` - Africa/Bissau * `Africa/Blantyre` - Africa/Blantyre * `Africa/Brazzaville` - Africa/Brazzaville * `Africa/Bujumbura` - Africa/Bujumbura * `Africa/Cairo` - Africa/Cairo * `Africa/Casablanca` - Africa/Casablanca * `Africa/Ceuta` - Africa/Ceuta * `Africa/Conakry` - Africa/Conakry * `Africa/Dakar` - Africa/Dakar * `Africa/Dar_es_Salaam` - Africa/Dar_es_Salaam * `Africa/Djibouti` - Africa/Djibouti * `Africa/Douala` - Africa/Douala * `Africa/El_Aaiun` - Africa/El_Aaiun * `Africa/Freetown` - Africa/Freetown * `Africa/Gaborone` - Africa/Gaborone * `Africa/Harare` - Africa/Harare * `Africa/Johannesburg` - Africa/Johannesburg * `Africa/Juba` - Africa/Juba * `Africa/Kampala` - Africa/Kampala * `Africa/Khartoum` - Africa/Khartoum * `Africa/Kigali` - Africa/Kigali * `Africa/Kinshasa` - Africa/Kinshasa * `Africa/Lagos` - Africa/Lagos * `Africa/Libreville` - Africa/Libreville * `Africa/Lome` - Africa/Lome * `Africa/Luanda` - Africa/Luanda * `Africa/Lubumbashi` - Africa/Lubumbashi * `Africa/Lusaka` - Africa/Lusaka * `Africa/Malabo` - Africa/Malabo * `Africa/Maputo` - Africa/Maputo * `Africa/Maseru` - Africa/Maseru * `Africa/Mbabane` - Africa/Mbabane * `Africa/Mogadishu` - Africa/Mogadishu * `Africa/Monrovia` - Africa/Monrovia * `Africa/Nairobi` - Africa/Nairobi * `Africa/Ndjamena` - Africa/Ndjamena * `Africa/Niamey` - Africa/Niamey * `Africa/Nouakchott` - Africa/Nouakchott * `Africa/Ouagadougou` - Africa/Ouagadougou * `Africa/Porto-Novo` - Africa/Porto-Novo * `Africa/Sao_Tome` - Africa/Sao_Tome * `Africa/Timbuktu` - Africa/Timbuktu * `Africa/Tripoli` - Africa/Tripoli * `Africa/Tunis` - Africa/Tunis * `Africa/Windhoek` - Africa/Windhoek * `America/Adak` - America/Adak * `America/Anchorage` - America/Anchorage * `America/Anguilla` - America/Anguilla * `America/Antigua` - America/Antigua * `America/Araguaina` - America/Araguaina * `America/Argentina/Buenos_Aires` - America/Argentina/Buenos_Aires * `America/Argentina/Catamarca` - America/Argentina/Catamarca * `America/Argentina/ComodRivadavia` - America/Argentina/ComodRivadavia * `America/Argentina/Cordoba` - America/Argentina/Cordoba * `America/Argentina/Jujuy` - America/Argentina/Jujuy * `America/Argentina/La_Rioja` - America/Argentina/La_Rioja * `America/Argentina/Mendoza` - America/Argentina/Mendoza * `America/Argentina/Rio_Gallegos` - America/Argentina/Rio_Gallegos * `America/Argentina/Salta` - America/Argentina/Salta * `America/Argentina/San_Juan` - America/Argentina/San_Juan * `America/Argentina/San_Luis` - America/Argentina/San_Luis * `America/Argentina/Tucuman` - America/Argentina/Tucuman * `America/Argentina/Ushuaia` - America/Argentina/Ushuaia * `America/Aruba` - America/Aruba * `America/Asuncion` - America/Asuncion * `America/Atikokan` - America/Atikokan * `America/Atka` - America/Atka * `America/Bahia` - America/Bahia * `America/Bahia_Banderas` - America/Bahia_Banderas * `America/Barbados` - America/Barbados * `America/Belem` - America/Belem * `America/Belize` - America/Belize * `America/Blanc-Sablon` - America/Blanc-Sablon * `America/Boa_Vista` - America/Boa_Vista * `America/Bogota` - America/Bogota * `America/Boise` - America/Boise * `America/Buenos_Aires` - America/Buenos_Aires * `America/Cambridge_Bay` - America/Cambridge_Bay * `America/Campo_Grande` - America/Campo_Grande * `America/Cancun` - America/Cancun * `America/Caracas` - America/Caracas * `America/Catamarca` - America/Catamarca * `America/Cayenne` - America/Cayenne * `America/Cayman` - America/Cayman * `America/Chicago` - America/Chicago * `America/Chihuahua` - America/Chihuahua * `America/Ciudad_Juarez` - America/Ciudad_Juarez * `America/Coral_Harbour` - America/Coral_Harbour * `America/Cordoba` - America/Cordoba * `America/Costa_Rica` - America/Costa_Rica * `America/Creston` - America/Creston * `America/Cuiaba` - America/Cuiaba * `America/Curacao` - America/Curacao * `America/Danmarkshavn` - America/Danmarkshavn * `America/Dawson` - America/Dawson * `America/Dawson_Creek` - America/Dawson_Creek * `America/Denver` - America/Denver * `America/Detroit` - America/Detroit * `America/Dominica` - America/Dominica * `America/Edmonton` - America/Edmonton * `America/Eirunepe` - America/Eirunepe * `America/El_Salvador` - America/El_Salvador * `America/Ensenada` - America/Ensenada * `America/Fort_Nelson` - America/Fort_Nelson * `America/Fort_Wayne` - America/Fort_Wayne * `America/Fortaleza` - America/Fortaleza * `America/Glace_Bay` - America/Glace_Bay * `America/Godthab` - America/Godthab * `America/Goose_Bay` - America/Goose_Bay * `America/Grand_Turk` - America/Grand_Turk * `America/Grenada` - America/Grenada * `America/Guadeloupe` - America/Guadeloupe * `America/Guatemala` - America/Guatemala * `America/Guayaquil` - America/Guayaquil * `America/Guyana` - America/Guyana * `America/Halifax` - America/Halifax * `America/Havana` - America/Havana * `America/Hermosillo` - America/Hermosillo * `America/Indiana/Indianapolis` - America/Indiana/Indianapolis * `America/Indiana/Knox` - America/Indiana/Knox * `America/Indiana/Marengo` - America/Indiana/Marengo * `America/Indiana/Petersburg` - America/Indiana/Petersburg * `America/Indiana/Tell_City` - America/Indiana/Tell_City * `America/Indiana/Vevay` - America/Indiana/Vevay * `America/Indiana/Vincennes` - America/Indiana/Vincennes * `America/Indiana/Winamac` - America/Indiana/Winamac * `America/Indianapolis` - America/Indianapolis * `America/Inuvik` - America/Inuvik * `America/Iqaluit` - America/Iqaluit * `America/Jamaica` - America/Jamaica * `America/Jujuy` - America/Jujuy * `America/Juneau` - America/Juneau * `America/Kentucky/Louisville` - America/Kentucky/Louisville * `America/Kentucky/Monticello` - America/Kentucky/Monticello * `America/Knox_IN` - America/Knox_IN * `America/Kralendijk` - America/Kralendijk * `America/La_Paz` - America/La_Paz * `America/Lima` - America/Lima * `America/Los_Angeles` - America/Los_Angeles * `America/Louisville` - America/Louisville * `America/Lower_Princes` - America/Lower_Princes * `America/Maceio` - America/Maceio * `America/Managua` - America/Managua * `America/Manaus` - America/Manaus * `America/Marigot` - America/Marigot * `America/Martinique` - America/Martinique * `America/Matamoros` - America/Matamoros * `America/Mazatlan` - America/Mazatlan * `America/Mendoza` - America/Mendoza * `America/Menominee` - America/Menominee * `America/Merida` - America/Merida * `America/Metlakatla` - America/Metlakatla * `America/Mexico_City` - America/Mexico_City * `America/Miquelon` - America/Miquelon * `America/Moncton` - America/Moncton * `America/Monterrey` - America/Monterrey * `America/Montevideo` - America/Montevideo * `America/Montreal` - America/Montreal * `America/Montserrat` - America/Montserrat * `America/Nassau` - America/Nassau * `America/New_York` - America/New_York * `America/Nipigon` - America/Nipigon * `America/Nome` - America/Nome * `America/Noronha` - America/Noronha * `America/North_Dakota/Beulah` - America/North_Dakota/Beulah * `America/North_Dakota/Center` - America/North_Dakota/Center * `America/North_Dakota/New_Salem` - America/North_Dakota/New_Salem * `America/Nuuk` - America/Nuuk * `America/Ojinaga` - America/Ojinaga * `America/Panama` - America/Panama * `America/Pangnirtung` - America/Pangnirtung * `America/Paramaribo` - America/Paramaribo * `America/Phoenix` - America/Phoenix * `America/Port-au-Prince` - America/Port-au-Prince * `America/Port_of_Spain` - America/Port_of_Spain * `America/Porto_Acre` - America/Porto_Acre * `America/Porto_Velho` - America/Porto_Velho * `America/Puerto_Rico` - America/Puerto_Rico * `America/Punta_Arenas` - America/Punta_Arenas * `America/Rainy_River` - America/Rainy_River * `America/Rankin_Inlet` - America/Rankin_Inlet * `America/Recife` - America/Recife * `America/Regina` - America/Regina * `America/Resolute` - America/Resolute * `America/Rio_Branco` - America/Rio_Branco * `America/Rosario` - America/Rosario * `America/Santa_Isabel` - America/Santa_Isabel * `America/Santarem` - America/Santarem * `America/Santiago` - America/Santiago * `America/Santo_Domingo` - America/Santo_Domingo * `America/Sao_Paulo` - America/Sao_Paulo * `America/Scoresbysund` - America/Scoresbysund * `America/Shiprock` - America/Shiprock * `America/Sitka` - America/Sitka * `America/St_Barthelemy` - America/St_Barthelemy * `America/St_Johns` - America/St_Johns * `America/St_Kitts` - America/St_Kitts * `America/St_Lucia` - America/St_Lucia * `America/St_Thomas` - America/St_Thomas * `America/St_Vincent` - America/St_Vincent * `America/Swift_Current` - America/Swift_Current * `America/Tegucigalpa` - America/Tegucigalpa * `America/Thule` - America/Thule * `America/Thunder_Bay` - America/Thunder_Bay * `America/Tijuana` - America/Tijuana * `America/Toronto` - America/Toronto * `America/Tortola` - America/Tortola * `America/Vancouver` - America/Vancouver * `America/Virgin` - America/Virgin * `America/Whitehorse` - America/Whitehorse * `America/Winnipeg` - America/Winnipeg * `America/Yakutat` - America/Yakutat * `America/Yellowknife` - America/Yellowknife * `Antarctica/Casey` - Antarctica/Casey * `Antarctica/Davis` - Antarctica/Davis * `Antarctica/DumontDUrville` - Antarctica/DumontDUrville * `Antarctica/Macquarie` - Antarctica/Macquarie * `Antarctica/Mawson` - Antarctica/Mawson * `Antarctica/McMurdo` - Antarctica/McMurdo * `Antarctica/Palmer` - Antarctica/Palmer * `Antarctica/Rothera` - Antarctica/Rothera * `Antarctica/South_Pole` - Antarctica/South_Pole * `Antarctica/Syowa` - Antarctica/Syowa * `Antarctica/Troll` - Antarctica/Troll * `Antarctica/Vostok` - Antarctica/Vostok * `Arctic/Longyearbyen` - Arctic/Longyearbyen * `Asia/Aden` - Asia/Aden * `Asia/Almaty` - Asia/Almaty * `Asia/Amman` - Asia/Amman * `Asia/Anadyr` - Asia/Anadyr * `Asia/Aqtau` - Asia/Aqtau * `Asia/Aqtobe` - Asia/Aqtobe * `Asia/Ashgabat` - Asia/Ashgabat * `Asia/Ashkhabad` - Asia/Ashkhabad * `Asia/Atyrau` - Asia/Atyrau * `Asia/Baghdad` - Asia/Baghdad * `Asia/Bahrain` - Asia/Bahrain * `Asia/Baku` - Asia/Baku * `Asia/Bangkok` - Asia/Bangkok * `Asia/Barnaul` - Asia/Barnaul * `Asia/Beirut` - Asia/Beirut * `Asia/Bishkek` - Asia/Bishkek * `Asia/Brunei` - Asia/Brunei * `Asia/Calcutta` - Asia/Calcutta * `Asia/Chita` - Asia/Chita * `Asia/Choibalsan` - Asia/Choibalsan * `Asia/Chongqing` - Asia/Chongqing * `Asia/Chungking` - Asia/Chungking * `Asia/Colombo` - Asia/Colombo * `Asia/Dacca` - Asia/Dacca * `Asia/Damascus` - Asia/Damascus * `Asia/Dhaka` - Asia/Dhaka * `Asia/Dili` - Asia/Dili * `Asia/Dubai` - Asia/Dubai * `Asia/Dushanbe` - Asia/Dushanbe * `Asia/Famagusta` - Asia/Famagusta * `Asia/Gaza` - Asia/Gaza * `Asia/Harbin` - Asia/Harbin * `Asia/Hebron` - Asia/Hebron * `Asia/Ho_Chi_Minh` - Asia/Ho_Chi_Minh * `Asia/Hong_Kong` - Asia/Hong_Kong * `Asia/Hovd` - Asia/Hovd * `Asia/Irkutsk` - Asia/Irkutsk * `Asia/Istanbul` - Asia/Istanbul * `Asia/Jakarta` - Asia/Jakarta * `Asia/Jayapura` - Asia/Jayapura * `Asia/Jerusalem` - Asia/Jerusalem * `Asia/Kabul` - Asia/Kabul * `Asia/Kamchatka` - Asia/Kamchatka * `Asia/Karachi` - Asia/Karachi * `Asia/Kashgar` - Asia/Kashgar * `Asia/Kathmandu` - Asia/Kathmandu * `Asia/Katmandu` - Asia/Katmandu * `Asia/Khandyga` - Asia/Khandyga * `Asia/Kolkata` - Asia/Kolkata * `Asia/Krasnoyarsk` - Asia/Krasnoyarsk * `Asia/Kuala_Lumpur` - Asia/Kuala_Lumpur * `Asia/Kuching` - Asia/Kuching * `Asia/Kuwait` - Asia/Kuwait * `Asia/Macao` - Asia/Macao * `Asia/Macau` - Asia/Macau * `Asia/Magadan` - Asia/Magadan * `Asia/Makassar` - Asia/Makassar * `Asia/Manila` - Asia/Manila * `Asia/Muscat` - Asia/Muscat * `Asia/Nicosia` - Asia/Nicosia * `Asia/Novokuznetsk` - Asia/Novokuznetsk * `Asia/Novosibirsk` - Asia/Novosibirsk * `Asia/Omsk` - Asia/Omsk * `Asia/Oral` - Asia/Oral * `Asia/Phnom_Penh` - Asia/Phnom_Penh * `Asia/Pontianak` - Asia/Pontianak * `Asia/Pyongyang` - Asia/Pyongyang * `Asia/Qatar` - Asia/Qatar * `Asia/Qostanay` - Asia/Qostanay * `Asia/Qyzylorda` - Asia/Qyzylorda * `Asia/Rangoon` - Asia/Rangoon * `Asia/Riyadh` - Asia/Riyadh * `Asia/Saigon` - Asia/Saigon * `Asia/Sakhalin` - Asia/Sakhalin * `Asia/Samarkand` - Asia/Samarkand * `Asia/Seoul` - Asia/Seoul * `Asia/Shanghai` - Asia/Shanghai * `Asia/Singapore` - Asia/Singapore * `Asia/Srednekolymsk` - Asia/Srednekolymsk * `Asia/Taipei` - Asia/Taipei * `Asia/Tashkent` - Asia/Tashkent * `Asia/Tbilisi` - Asia/Tbilisi * `Asia/Tehran` - Asia/Tehran * `Asia/Tel_Aviv` - Asia/Tel_Aviv * `Asia/Thimbu` - Asia/Thimbu * `Asia/Thimphu` - Asia/Thimphu * `Asia/Tokyo` - Asia/Tokyo * `Asia/Tomsk` - Asia/Tomsk * `Asia/Ujung_Pandang` - Asia/Ujung_Pandang * `Asia/Ulaanbaatar` - Asia/Ulaanbaatar * `Asia/Ulan_Bator` - Asia/Ulan_Bator * `Asia/Urumqi` - Asia/Urumqi * `Asia/Ust-Nera` - Asia/Ust-Nera * `Asia/Vientiane` - Asia/Vientiane * `Asia/Vladivostok` - Asia/Vladivostok * `Asia/Yakutsk` - Asia/Yakutsk * `Asia/Yangon` - Asia/Yangon * `Asia/Yekaterinburg` - Asia/Yekaterinburg * `Asia/Yerevan` - Asia/Yerevan * `Atlantic/Azores` - Atlantic/Azores * `Atlantic/Bermuda` - Atlantic/Bermuda * `Atlantic/Canary` - Atlantic/Canary * `Atlantic/Cape_Verde` - Atlantic/Cape_Verde * `Atlantic/Faeroe` - Atlantic/Faeroe * `Atlantic/Faroe` - Atlantic/Faroe * `Atlantic/Jan_Mayen` - Atlantic/Jan_Mayen * `Atlantic/Madeira` - Atlantic/Madeira * `Atlantic/Reykjavik` - Atlantic/Reykjavik * `Atlantic/South_Georgia` - Atlantic/South_Georgia * `Atlantic/St_Helena` - Atlantic/St_Helena * `Atlantic/Stanley` - Atlantic/Stanley * `Australia/ACT` - Australia/ACT * `Australia/Adelaide` - Australia/Adelaide * `Australia/Brisbane` - Australia/Brisbane * `Australia/Broken_Hill` - Australia/Broken_Hill * `Australia/Canberra` - Australia/Canberra * `Australia/Currie` - Australia/Currie * `Australia/Darwin` - Australia/Darwin * `Australia/Eucla` - Australia/Eucla * `Australia/Hobart` - Australia/Hobart * `Australia/LHI` - Australia/LHI * `Australia/Lindeman` - Australia/Lindeman * `Australia/Lord_Howe` - Australia/Lord_Howe * `Australia/Melbourne` - Australia/Melbourne * `Australia/NSW` - Australia/NSW * `Australia/North` - Australia/North * `Australia/Perth` - Australia/Perth * `Australia/Queensland` - Australia/Queensland * `Australia/South` - Australia/South * `Australia/Sydney` - Australia/Sydney * `Australia/Tasmania` - Australia/Tasmania * `Australia/Victoria` - Australia/Victoria * `Australia/West` - Australia/West * `Australia/Yancowinna` - Australia/Yancowinna * `Brazil/Acre` - Brazil/Acre * `Brazil/DeNoronha` - Brazil/DeNoronha * `Brazil/East` - Brazil/East * `Brazil/West` - Brazil/West * `CET` - CET * `CST6CDT` - CST6CDT * `Canada/Atlantic` - Canada/Atlantic * `Canada/Central` - Canada/Central * `Canada/Eastern` - Canada/Eastern * `Canada/Mountain` - Canada/Mountain * `Canada/Newfoundland` - Canada/Newfoundland * `Canada/Pacific` - Canada/Pacific * `Canada/Saskatchewan` - Canada/Saskatchewan * `Canada/Yukon` - Canada/Yukon * `Chile/Continental` - Chile/Continental * `Chile/EasterIsland` - Chile/EasterIsland * `Cuba` - Cuba * `EET` - EET * `EST` - EST * `EST5EDT` - EST5EDT * `Egypt` - Egypt * `Eire` - Eire * `Etc/GMT` - Etc/GMT * `Etc/GMT+0` - Etc/GMT+0 * `Etc/GMT+1` - Etc/GMT+1 * `Etc/GMT+10` - Etc/GMT+10 * `Etc/GMT+11` - Etc/GMT+11 * `Etc/GMT+12` - Etc/GMT+12 * `Etc/GMT+2` - Etc/GMT+2 * `Etc/GMT+3` - Etc/GMT+3 * `Etc/GMT+4` - Etc/GMT+4 * `Etc/GMT+5` - Etc/GMT+5 * `Etc/GMT+6` - Etc/GMT+6 * `Etc/GMT+7` - Etc/GMT+7 * `Etc/GMT+8` - Etc/GMT+8 * `Etc/GMT+9` - Etc/GMT+9 * `Etc/GMT-0` - Etc/GMT-0 * `Etc/GMT-1` - Etc/GMT-1 * `Etc/GMT-10` - Etc/GMT-10 * `Etc/GMT-11` - Etc/GMT-11 * `Etc/GMT-12` - Etc/GMT-12 * `Etc/GMT-13` - Etc/GMT-13 * `Etc/GMT-14` - Etc/GMT-14 * `Etc/GMT-2` - Etc/GMT-2 * `Etc/GMT-3` - Etc/GMT-3 * `Etc/GMT-4` - Etc/GMT-4 * `Etc/GMT-5` - Etc/GMT-5 * `Etc/GMT-6` - Etc/GMT-6 * `Etc/GMT-7` - Etc/GMT-7 * `Etc/GMT-8` - Etc/GMT-8 * `Etc/GMT-9` - Etc/GMT-9 * `Etc/GMT0` - Etc/GMT0 * `Etc/Greenwich` - Etc/Greenwich * `Etc/UCT` - Etc/UCT * `Etc/UTC` - Etc/UTC * `Etc/Universal` - Etc/Universal * `Etc/Zulu` - Etc/Zulu * `Europe/Amsterdam` - Europe/Amsterdam * `Europe/Andorra` - Europe/Andorra * `Europe/Astrakhan` - Europe/Astrakhan * `Europe/Athens` - Europe/Athens * `Europe/Belfast` - Europe/Belfast * `Europe/Belgrade` - Europe/Belgrade * `Europe/Berlin` - Europe/Berlin * `Europe/Bratislava` - Europe/Bratislava * `Europe/Brussels` - Europe/Brussels * `Europe/Bucharest` - Europe/Bucharest * `Europe/Budapest` - Europe/Budapest * `Europe/Busingen` - Europe/Busingen * `Europe/Chisinau` - Europe/Chisinau * `Europe/Copenhagen` - Europe/Copenhagen * `Europe/Dublin` - Europe/Dublin * `Europe/Gibraltar` - Europe/Gibraltar * `Europe/Guernsey` - Europe/Guernsey * `Europe/Helsinki` - Europe/Helsinki * `Europe/Isle_of_Man` - Europe/Isle_of_Man * `Europe/Istanbul` - Europe/Istanbul * `Europe/Jersey` - Europe/Jersey * `Europe/Kaliningrad` - Europe/Kaliningrad * `Europe/Kiev` - Europe/Kiev * `Europe/Kirov` - Europe/Kirov * `Europe/Kyiv` - Europe/Kyiv * `Europe/Lisbon` - Europe/Lisbon * `Europe/Ljubljana` - Europe/Ljubljana * `Europe/London` - Europe/London * `Europe/Luxembourg` - Europe/Luxembourg * `Europe/Madrid` - Europe/Madrid * `Europe/Malta` - Europe/Malta * `Europe/Mariehamn` - Europe/Mariehamn * `Europe/Minsk` - Europe/Minsk * `Europe/Monaco` - Europe/Monaco * `Europe/Moscow` - Europe/Moscow * `Europe/Nicosia` - Europe/Nicosia * `Europe/Oslo` - Europe/Oslo * `Europe/Paris` - Europe/Paris * `Europe/Podgorica` - Europe/Podgorica * `Europe/Prague` - Europe/Prague * `Europe/Riga` - Europe/Riga * `Europe/Rome` - Europe/Rome * `Europe/Samara` - Europe/Samara * `Europe/San_Marino` - Europe/San_Marino * `Europe/Sarajevo` - Europe/Sarajevo * `Europe/Saratov` - Europe/Saratov * `Europe/Simferopol` - Europe/Simferopol * `Europe/Skopje` - Europe/Skopje * `Europe/Sofia` - Europe/Sofia * `Europe/Stockholm` - Europe/Stockholm * `Europe/Tallinn` - Europe/Tallinn * `Europe/Tirane` - Europe/Tirane * `Europe/Tiraspol` - Europe/Tiraspol * `Europe/Ulyanovsk` - Europe/Ulyanovsk * `Europe/Uzhgorod` - Europe/Uzhgorod * `Europe/Vaduz` - Europe/Vaduz * `Europe/Vatican` - Europe/Vatican * `Europe/Vienna` - Europe/Vienna * `Europe/Vilnius` - Europe/Vilnius * `Europe/Volgograd` - Europe/Volgograd * `Europe/Warsaw` - Europe/Warsaw * `Europe/Zagreb` - Europe/Zagreb * `Europe/Zaporozhye` - Europe/Zaporozhye * `Europe/Zurich` - Europe/Zurich * `GB` - GB * `GB-Eire` - GB-Eire * `GMT` - GMT * `GMT+0` - GMT+0 * `GMT-0` - GMT-0 * `GMT0` - GMT0 * `Greenwich` - Greenwich * `HST` - HST * `Hongkong` - Hongkong * `Iceland` - Iceland * `Indian/Antananarivo` - Indian/Antananarivo * `Indian/Chagos` - Indian/Chagos * `Indian/Christmas` - Indian/Christmas * `Indian/Cocos` - Indian/Cocos * `Indian/Comoro` - Indian/Comoro * `Indian/Kerguelen` - Indian/Kerguelen * `Indian/Mahe` - Indian/Mahe * `Indian/Maldives` - Indian/Maldives * `Indian/Mauritius` - Indian/Mauritius * `Indian/Mayotte` - Indian/Mayotte * `Indian/Reunion` - Indian/Reunion * `Iran` - Iran * `Israel` - Israel * `Jamaica` - Jamaica * `Japan` - Japan * `Kwajalein` - Kwajalein * `Libya` - Libya * `MET` - MET * `MST` - MST * `MST7MDT` - MST7MDT * `Mexico/BajaNorte` - Mexico/BajaNorte * `Mexico/BajaSur` - Mexico/BajaSur * `Mexico/General` - Mexico/General * `NZ` - NZ * `NZ-CHAT` - NZ-CHAT * `Navajo` - Navajo * `PRC` - PRC * `PST8PDT` - PST8PDT * `Pacific/Apia` - Pacific/Apia * `Pacific/Auckland` - Pacific/Auckland * `Pacific/Bougainville` - Pacific/Bougainville * `Pacific/Chatham` - Pacific/Chatham * `Pacific/Chuuk` - Pacific/Chuuk * `Pacific/Easter` - Pacific/Easter * `Pacific/Efate` - Pacific/Efate * `Pacific/Enderbury` - Pacific/Enderbury * `Pacific/Fakaofo` - Pacific/Fakaofo * `Pacific/Fiji` - Pacific/Fiji * `Pacific/Funafuti` - Pacific/Funafuti * `Pacific/Galapagos` - Pacific/Galapagos * `Pacific/Gambier` - Pacific/Gambier * `Pacific/Guadalcanal` - Pacific/Guadalcanal * `Pacific/Guam` - Pacific/Guam * `Pacific/Honolulu` - Pacific/Honolulu * `Pacific/Johnston` - Pacific/Johnston * `Pacific/Kanton` - Pacific/Kanton * `Pacific/Kiritimati` - Pacific/Kiritimati * `Pacific/Kosrae` - Pacific/Kosrae * `Pacific/Kwajalein` - Pacific/Kwajalein * `Pacific/Majuro` - Pacific/Majuro * `Pacific/Marquesas` - Pacific/Marquesas * `Pacific/Midway` - Pacific/Midway * `Pacific/Nauru` - Pacific/Nauru * `Pacific/Niue` - Pacific/Niue * `Pacific/Norfolk` - Pacific/Norfolk * `Pacific/Noumea` - Pacific/Noumea * `Pacific/Pago_Pago` - Pacific/Pago_Pago * `Pacific/Palau` - Pacific/Palau * `Pacific/Pitcairn` - Pacific/Pitcairn * `Pacific/Pohnpei` - Pacific/Pohnpei * `Pacific/Ponape` - Pacific/Ponape * `Pacific/Port_Moresby` - Pacific/Port_Moresby * `Pacific/Rarotonga` - Pacific/Rarotonga * `Pacific/Saipan` - Pacific/Saipan * `Pacific/Samoa` - Pacific/Samoa * `Pacific/Tahiti` - Pacific/Tahiti * `Pacific/Tarawa` - Pacific/Tarawa * `Pacific/Tongatapu` - Pacific/Tongatapu * `Pacific/Truk` - Pacific/Truk * `Pacific/Wake` - Pacific/Wake * `Pacific/Wallis` - Pacific/Wallis * `Pacific/Yap` - Pacific/Yap * `Poland` - Poland * `Portugal` - Portugal * `ROC` - ROC * `ROK` - ROK * `Singapore` - Singapore * `Turkey` - Turkey * `UCT` - UCT * `US/Alaska` - US/Alaska * `US/Aleutian` - US/Aleutian * `US/Arizona` - US/Arizona * `US/Central` - US/Central * `US/East-Indiana` - US/East-Indiana * `US/Eastern` - US/Eastern * `US/Hawaii` - US/Hawaii * `US/Indiana-Starke` - US/Indiana-Starke * `US/Michigan` - US/Michigan * `US/Mountain` - US/Mountain * `US/Pacific` - US/Pacific * `US/Samoa` - US/Samoa * `UTC` - UTC * `Universal` - Universal * `W-SU` - W-SU * `WET` - WET * `Zulu` - Zulu */
-  timezone?: TimezoneEnum | (string & {}) | null;
-  /** Day-of-week offset for weekly intervals (0=Sunday, 6=Saturday). Only valid when interval is 'week'. */
-  offset_day?: number | null;
-  /** Hour-of-day offset (0-23) for daily and weekly intervals. Only valid when interval is 'day' or 'week'. */
-  offset_hour?: number | null;
-}
-export const BatchExportsRunTestStepNewCreateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      name: S.optional(S.String),
-      model: S.optional(S.NullOr(BatchExportsRunTestStepNewCreateRequestModel)),
-      destination: S.optional(BatchExportDestination),
-      interval: S.optional(BatchExportIntervalEnum),
-      paused: S.optional(S.Boolean),
-      last_paused_at: S.optional(S.NullOr(S.String)),
-      start_at: S.optional(S.NullOr(S.String)),
-      end_at: S.optional(S.NullOr(S.String)),
-      hogql_query: S.optional(S.String),
-      filters: S.optional(S.Unknown),
-      timezone: S.optional(S.NullOr(TimezoneEnum)),
-      offset_day: S.optional(S.NullOr(S.Number)),
-      offset_hour: S.optional(S.NullOr(S.Number)),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/api/projects/{project_id}/batch_exports/run_test_step_new/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "BatchExportsRunTestStepNewCreateRequest",
-}) as any as S.Schema<BatchExportsRunTestStepNewCreateRequest>;
-
-export interface BatchExportsRunTestStepNewCreateResponse {}
-export const BatchExportsRunTestStepNewCreateResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "BatchExportsRunTestStepNewCreateResponse",
-}) as any as S.Schema<BatchExportsRunTestStepNewCreateResponse>;
-
-export interface BatchExportsTestRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-}
-export const BatchExportsTestRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/batch_exports/test/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "BatchExportsTestRetrieveRequest",
-}) as any as S.Schema<BatchExportsTestRetrieveRequest>;
-
-export interface BatchExportsTestRetrieveResponse {}
-export const BatchExportsTestRetrieveResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "BatchExportsTestRetrieveResponse",
-}) as any as S.Schema<BatchExportsTestRetrieveResponse>;
-
-/** Which model this BatchExport is exporting. * `events` - Events * `persons` - Persons * `sessions` - Sessions * `hogql` - Hogql */
-export type BatchExportsUnpauseCreateRequestModel = ModelEnum | BlankEnum;
-export const BatchExportsUnpauseCreateRequestModel =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<BatchExportsUnpauseCreateRequestModel>;
-
 export interface BatchExportsUnpauseCreateRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
@@ -2420,11 +1311,189 @@ export const BatchExportsUnpauseCreateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "BatchExportsUnpauseCreateResponse",
 }) as any as S.Schema<BatchExportsUnpauseCreateResponse>;
 
-export interface BatchExportsUpdateRequest {
+/** * `Databricks` - Databricks */
+export type DatabricksDestinationRequestTypeEnum = "Databricks";
+export const DatabricksDestinationRequestTypeEnum = /*@__PURE__*/ S.String;
+
+/** Request shape for creating or updating a Databricks batch-export destination. */
+export interface DatabricksDestinationRequest {
+  type: DatabricksDestinationRequestTypeEnum;
+  /** ID of a databricks-kind Integration. Use the integrations-list MCP tool to find one. */
+  integration_id: number;
+  config: DatabricksDestinationConfig;
+}
+export const DatabricksDestinationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: DatabricksDestinationRequestTypeEnum,
+    integration_id: S.Number,
+    config: DatabricksDestinationConfig,
+  }),
+).annotate({
+  identifier: "DatabricksDestinationRequest",
+}) as any as S.Schema<DatabricksDestinationRequest>;
+
+/** * `AzureBlob` - AzureBlob */
+export type AzureBlobDestinationRequestTypeEnum = "AzureBlob";
+export const AzureBlobDestinationRequestTypeEnum = /*@__PURE__*/ S.String;
+
+/** Request shape for creating or updating an Azure Blob Storage batch-export destination. */
+export interface AzureBlobDestinationRequest {
+  type: AzureBlobDestinationRequestTypeEnum;
+  /** ID of an azure-blob-kind Integration. Use the integrations-list MCP tool to find one. */
+  integration_id: number;
+  config: AzureBlobDestinationConfig;
+}
+export const AzureBlobDestinationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: AzureBlobDestinationRequestTypeEnum,
+    integration_id: S.Number,
+    config: AzureBlobDestinationConfig,
+  }),
+).annotate({
+  identifier: "AzureBlobDestinationRequest",
+}) as any as S.Schema<AzureBlobDestinationRequest>;
+
+/** * `BigQuery` - BigQuery */
+export type BigQueryDestinationRequestTypeEnum = "BigQuery";
+export const BigQueryDestinationRequestTypeEnum = /*@__PURE__*/ S.String;
+
+/** Request shape for creating or updating a BigQuery batch-export destination. */
+export interface BigQueryDestinationRequest {
+  type: BigQueryDestinationRequestTypeEnum;
+  /** ID of a google-cloud-service-account-kind Integration. Use the integrations-list MCP tool to find one. */
+  integration_id: number;
+  config: BigQueryDestinationConfig;
+}
+export const BigQueryDestinationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: BigQueryDestinationRequestTypeEnum,
+    integration_id: S.Number,
+    config: BigQueryDestinationConfig,
+  }),
+).annotate({
+  identifier: "BigQueryDestinationRequest",
+}) as any as S.Schema<BigQueryDestinationRequest>;
+
+/** * `Postgres` - Postgres */
+export type PostgresDestinationRequestTypeEnum = "Postgres";
+export const PostgresDestinationRequestTypeEnum = /*@__PURE__*/ S.String;
+
+/** Request shape for creating or updating a PostgreSQL batch-export destination. */
+export interface PostgresDestinationRequest {
+  type: PostgresDestinationRequestTypeEnum;
+  /** ID of a postgresql-kind Integration providing connection credentials. Required when creating a batch export. Use the integrations-list MCP tool to find one. */
+  integration_id: number;
+  config: PostgresDestinationConfig;
+}
+export const PostgresDestinationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: PostgresDestinationRequestTypeEnum,
+    integration_id: S.Number,
+    config: PostgresDestinationConfig,
+  }),
+).annotate({
+  identifier: "PostgresDestinationRequest",
+}) as any as S.Schema<PostgresDestinationRequest>;
+
+/** * `AwsS3` - AwsS3 */
+export type AwsS3DestinationRequestTypeEnum = "AwsS3";
+export const AwsS3DestinationRequestTypeEnum = /*@__PURE__*/ S.String;
+
+/** Request shape for creating or updating an AWS S3 batch-export destination. */
+export interface AwsS3DestinationRequest {
+  type: AwsS3DestinationRequestTypeEnum;
+  /** ID of an aws-s3-kind Integration providing AWS credentials. Use the integrations-list MCP tool to find one. */
+  integration_id: number;
+  config: AwsS3DestinationConfig;
+}
+export const AwsS3DestinationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: AwsS3DestinationRequestTypeEnum,
+    integration_id: S.Number,
+    config: AwsS3DestinationConfig,
+  }),
+).annotate({
+  identifier: "AwsS3DestinationRequest",
+}) as any as S.Schema<AwsS3DestinationRequest>;
+
+/** * `S3Compatible` - S3Compatible */
+export type S3CompatibleDestinationRequestTypeEnum = "S3Compatible";
+export const S3CompatibleDestinationRequestTypeEnum = /*@__PURE__*/ S.String;
+
+/** Request shape for creating or updating an S3-compatible batch-export destination. */
+export interface S3CompatibleDestinationRequest {
+  type: S3CompatibleDestinationRequestTypeEnum;
+  /** ID of an s3-compatible-kind Integration providing credentials and the provider endpoint URL. Use the integrations-list MCP tool to find one. */
+  integration_id: number;
+  config: S3CompatibleDestinationConfig;
+}
+export const S3CompatibleDestinationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: S3CompatibleDestinationRequestTypeEnum,
+    integration_id: S.Number,
+    config: S3CompatibleDestinationConfig,
+  }),
+).annotate({
+  identifier: "S3CompatibleDestinationRequest",
+}) as any as S.Schema<S3CompatibleDestinationRequest>;
+
+/** * `Snowflake` - Snowflake */
+export type SnowflakeDestinationRequestTypeEnum = "Snowflake";
+export const SnowflakeDestinationRequestTypeEnum = /*@__PURE__*/ S.String;
+
+/** Request shape for creating or updating a Snowflake batch-export destination. */
+export interface SnowflakeDestinationRequest {
+  type: SnowflakeDestinationRequestTypeEnum;
+  /** ID of a snowflake-kind Integration providing the account, user and credentials. Preferred over inline credentials. Use the integrations-list MCP tool to find one. */
+  integration_id?: number;
+  config: SnowflakeDestinationConfig;
+}
+export const SnowflakeDestinationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: SnowflakeDestinationRequestTypeEnum,
+    integration_id: S.optional(S.Number),
+    config: SnowflakeDestinationConfig,
+  }),
+).annotate({
+  identifier: "SnowflakeDestinationRequest",
+}) as any as S.Schema<SnowflakeDestinationRequest>;
+
+/** * `Redshift` - Redshift */
+export type RedshiftDestinationRequestTypeEnum = "Redshift";
+export const RedshiftDestinationRequestTypeEnum = /*@__PURE__*/ S.String;
+
+/** Request shape for creating or updating a Redshift batch-export destination. */
+export interface RedshiftDestinationRequest {
+  type: RedshiftDestinationRequestTypeEnum;
+  /** ID of an aws-redshift-kind Integration providing connection credentials. Use the integrations-list MCP tool to find one. */
+  integration_id: number;
+  config: RedshiftDestinationConfig;
+}
+export const RedshiftDestinationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: RedshiftDestinationRequestTypeEnum,
+    integration_id: S.Number,
+    config: RedshiftDestinationConfig,
+  }),
+).annotate({
+  identifier: "RedshiftDestinationRequest",
+}) as any as S.Schema<RedshiftDestinationRequest>;
+
+export type BatchExportDestinationRequest =
+  | DatabricksDestinationRequest
+  | AzureBlobDestinationRequest
+  | BigQueryDestinationRequest
+  | PostgresDestinationRequest
+  | AwsS3DestinationRequest
+  | S3CompatibleDestinationRequest
+  | SnowflakeDestinationRequest
+  | RedshiftDestinationRequest;
+export const BatchExportDestinationRequest =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<BatchExportDestinationRequest>;
+
+export interface CreateBatchExportRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
-  /** A UUID string identifying this batch export. */
-  id: string;
   /** Human-readable name for the batch export. */
   name: string;
   /** Which data model to export (events, persons, sessions). * `events` - Events * `persons` - Persons * `sessions` - Sessions * `hogql` - Hogql */
@@ -2446,10 +1515,9 @@ export interface BatchExportsUpdateRequest {
   /** Hour-of-day offset (0-23) for daily and weekly intervals. */
   offset_hour?: number | null;
 }
-export const BatchExportsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateBatchExportRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
     name: S.String,
     model: S.optional(ModelEnum),
     destination: BatchExportDestinationRequest,
@@ -2462,14 +1530,480 @@ export const BatchExportsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
     offset_hour: S.optional(S.NullOr(S.Number)),
   }).pipe(
     T.Http({
-      method: "PUT",
-      uri: "/api/projects/{project_id}/batch_exports/{id}/",
+      method: "POST",
+      uri: "/api/projects/{project_id}/batch_exports/",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "BatchExportsUpdateRequest",
-}) as any as S.Schema<BatchExportsUpdateRequest>;
+  identifier: "CreateBatchExportRequest",
+}) as any as S.Schema<CreateBatchExportRequest>;
+
+/** Which model this BatchExport is exporting. * `events` - Events * `persons` - Persons * `sessions` - Sessions * `hogql` - Hogql */
+export type BatchExportOutputModel = ModelEnum | BlankEnum;
+export const BatchExportOutputModel =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<BatchExportOutputModel>;
+
+/** Serializer for an BatchExportDestination model. The `config` field is polymorphic and typed only for destinations that keep credentials in the linked Integration (currently Databricks, AzureBlob, BigQuery, Postgres, AwsS3, S3Compatible, Snowflake, Redshift). Other destination types accept the same JSON shape but without a typed OpenAPI schema. Secret fields are stripped from `config` on read. */
+export interface BatchExportDestinationOutput {
+  /** A choice of supported BatchExportDestination types. * `S3` - S3 * `AwsS3` - Aws S3 * `S3Compatible` - S3 Compatible * `Snowflake` - Snowflake * `Postgres` - Postgres * `Redshift` - Redshift * `BigQuery` - Bigquery * `Databricks` - Databricks * `AzureBlob` - Azure Blob * `Workflows` - Workflows * `HTTP` - Http * `NoOp` - Noop * `FileDownload` - File Download */
+  type?: BatchExportDestinationDestinationEnum;
+  /** Destination-specific configuration. Fields depend on `type`. Credentials for integration-backed destinations (Databricks, AzureBlob, BigQuery, Postgres, AwsS3, S3Compatible, Snowflake, Redshift) are NOT stored here — they live in the linked Integration. Secret fields are stripped from responses. */
+  config?: BatchExportDestinationConfig;
+  /** The integration for this destination. */
+  integration?: number | null;
+}
+export const BatchExportDestinationOutput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: S.optional(BatchExportDestinationDestinationEnum),
+    config: S.optional(BatchExportDestinationConfig),
+    integration: S.optional(S.NullOr(S.Number)),
+  }),
+).annotate({
+  identifier: "BatchExportDestinationOutput",
+}) as any as S.Schema<BatchExportDestinationOutput>;
+
+/** Serializer for a BatchExportRun model. */
+export interface BatchExportRun {
+  id?: string;
+  /** The status of this run. * `Cancelled` - Cancelled * `Completed` - Completed * `ContinuedAsNew` - Continued As New * `Failed` - Failed * `FailedRetryable` - Failed Retryable * `FailedBilling` - Failed Billing * `Terminated` - Terminated * `TimedOut` - Timedout * `Running` - Running * `Starting` - Starting */
+  status?: BatchExportRunStatusEnum;
+  /** The number of records that have been exported. */
+  records_completed?: number | null;
+  /** The number of records that failed downstream processing (e.g. hog function execution errors). */
+  records_failed?: number | null;
+  /** The latest error that occurred during this run. */
+  latest_error?: string | null;
+  /** The start of the data interval. */
+  data_interval_start?: string | null;
+  /** The end of the data interval. */
+  data_interval_end?: string;
+  /** An opaque cursor that may be used to resume. */
+  cursor?: string | null;
+  /** The timestamp at which this BatchExportRun was created. */
+  created_at?: string;
+  /** The timestamp at which this BatchExportRun finished, successfully or not. */
+  finished_at?: string | null;
+  /** The timestamp at which this BatchExportRun was last updated. */
+  last_updated_at?: string;
+  /** The total count of records that should be exported in this BatchExportRun. */
+  records_total_count?: number | null;
+  /** The number of bytes that have been exported in this BatchExportRun. */
+  bytes_exported?: number | null;
+  /** The `BatchExport` this run belongs to. */
+  batch_export?: string | null;
+  /** The `BatchExportOnDemand` this run belongs to. */
+  batch_export_on_demand?: string | null;
+  /** The backfill this run belongs to. */
+  backfill?: string | null;
+}
+export const BatchExportRun = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    status: S.optional(BatchExportRunStatusEnum),
+    records_completed: S.optional(S.NullOr(S.Number)),
+    records_failed: S.optional(S.NullOr(S.Number)),
+    latest_error: S.optional(S.NullOr(S.String)),
+    data_interval_start: S.optional(S.NullOr(S.String)),
+    data_interval_end: S.optional(S.String),
+    cursor: S.optional(S.NullOr(S.String)),
+    created_at: S.optional(S.String),
+    finished_at: S.optional(S.NullOr(S.String)),
+    last_updated_at: S.optional(S.String),
+    records_total_count: S.optional(S.NullOr(S.Number)),
+    bytes_exported: S.optional(S.NullOr(S.Number)),
+    batch_export: S.optional(S.NullOr(S.String)),
+    batch_export_on_demand: S.optional(S.NullOr(S.String)),
+    backfill: S.optional(S.NullOr(S.String)),
+  }),
+).annotate({ identifier: "BatchExportRun" }) as any as S.Schema<BatchExportRun>;
+
+/** The 10 most recent runs of this batch export, ordered newest first. */
+export type BatchExportOutputLatestRunsList = Array<BatchExportRun>;
+export const BatchExportOutputLatestRunsList = /*@__PURE__*/ S.Array(
+  BatchExportRun,
+) as any as S.Schema<BatchExportOutputLatestRunsList>;
+
+/** Serializer for a BatchExport model. */
+export interface BatchExportOutput {
+  id?: string;
+  /** The team this belongs to. */
+  team_id?: number;
+  /** A human-readable name for this BatchExport. */
+  name?: string;
+  /** Which model this BatchExport is exporting. * `events` - Events * `persons` - Persons * `sessions` - Sessions * `hogql` - Hogql */
+  model?: BatchExportOutputModel | null;
+  /** Destination configuration (type, config, and optional integration). */
+  destination?: BatchExportDestinationOutput;
+  /** How often the batch export should run. * `hour` - hour * `day` - day * `week` - week * `every 5 minutes` - every 5 minutes * `every 15 minutes` - every 15 minutes */
+  interval?: BatchExportIntervalEnum;
+  /** Whether this BatchExport is paused or not. */
+  paused?: boolean;
+  /** The timestamp at which this BatchExport was created. */
+  created_at?: string;
+  /** The timestamp at which this BatchExport was last updated. */
+  last_updated_at?: string;
+  /** The timestamp at which this BatchExport was last paused. */
+  last_paused_at?: string | null;
+  /** Time before which any Batch Export runs won't be triggered. */
+  start_at?: string | null;
+  /** Time after which any Batch Export runs won't be triggered. */
+  end_at?: string | null;
+  /** The 10 most recent runs of this batch export, ordered newest first. */
+  latest_runs?: BatchExportOutputLatestRunsList;
+  /** Optional HogQL SELECT defining a custom model schema. Only recommended in advanced use cases. */
+  hogql_query?: string;
+  /** A schema of custom fields to select when exporting data. */
+  schema?: unknown;
+  filters?: unknown;
+  /** IANA timezone name controlling daily and weekly interval boundaries. Defaults to UTC. * `Africa/Abidjan` - Africa/Abidjan * `Africa/Accra` - Africa/Accra * `Africa/Addis_Ababa` - Africa/Addis_Ababa * `Africa/Algiers` - Africa/Algiers * `Africa/Asmara` - Africa/Asmara * `Africa/Asmera` - Africa/Asmera * `Africa/Bamako` - Africa/Bamako * `Africa/Bangui` - Africa/Bangui * `Africa/Banjul` - Africa/Banjul * `Africa/Bissau` - Africa/Bissau * `Africa/Blantyre` - Africa/Blantyre * `Africa/Brazzaville` - Africa/Brazzaville * `Africa/Bujumbura` - Africa/Bujumbura * `Africa/Cairo` - Africa/Cairo * `Africa/Casablanca` - Africa/Casablanca * `Africa/Ceuta` - Africa/Ceuta * `Africa/Conakry` - Africa/Conakry * `Africa/Dakar` - Africa/Dakar * `Africa/Dar_es_Salaam` - Africa/Dar_es_Salaam * `Africa/Djibouti` - Africa/Djibouti * `Africa/Douala` - Africa/Douala * `Africa/El_Aaiun` - Africa/El_Aaiun * `Africa/Freetown` - Africa/Freetown * `Africa/Gaborone` - Africa/Gaborone * `Africa/Harare` - Africa/Harare * `Africa/Johannesburg` - Africa/Johannesburg * `Africa/Juba` - Africa/Juba * `Africa/Kampala` - Africa/Kampala * `Africa/Khartoum` - Africa/Khartoum * `Africa/Kigali` - Africa/Kigali * `Africa/Kinshasa` - Africa/Kinshasa * `Africa/Lagos` - Africa/Lagos * `Africa/Libreville` - Africa/Libreville * `Africa/Lome` - Africa/Lome * `Africa/Luanda` - Africa/Luanda * `Africa/Lubumbashi` - Africa/Lubumbashi * `Africa/Lusaka` - Africa/Lusaka * `Africa/Malabo` - Africa/Malabo * `Africa/Maputo` - Africa/Maputo * `Africa/Maseru` - Africa/Maseru * `Africa/Mbabane` - Africa/Mbabane * `Africa/Mogadishu` - Africa/Mogadishu * `Africa/Monrovia` - Africa/Monrovia * `Africa/Nairobi` - Africa/Nairobi * `Africa/Ndjamena` - Africa/Ndjamena * `Africa/Niamey` - Africa/Niamey * `Africa/Nouakchott` - Africa/Nouakchott * `Africa/Ouagadougou` - Africa/Ouagadougou * `Africa/Porto-Novo` - Africa/Porto-Novo * `Africa/Sao_Tome` - Africa/Sao_Tome * `Africa/Timbuktu` - Africa/Timbuktu * `Africa/Tripoli` - Africa/Tripoli * `Africa/Tunis` - Africa/Tunis * `Africa/Windhoek` - Africa/Windhoek * `America/Adak` - America/Adak * `America/Anchorage` - America/Anchorage * `America/Anguilla` - America/Anguilla * `America/Antigua` - America/Antigua * `America/Araguaina` - America/Araguaina * `America/Argentina/Buenos_Aires` - America/Argentina/Buenos_Aires * `America/Argentina/Catamarca` - America/Argentina/Catamarca * `America/Argentina/ComodRivadavia` - America/Argentina/ComodRivadavia * `America/Argentina/Cordoba` - America/Argentina/Cordoba * `America/Argentina/Jujuy` - America/Argentina/Jujuy * `America/Argentina/La_Rioja` - America/Argentina/La_Rioja * `America/Argentina/Mendoza` - America/Argentina/Mendoza * `America/Argentina/Rio_Gallegos` - America/Argentina/Rio_Gallegos * `America/Argentina/Salta` - America/Argentina/Salta * `America/Argentina/San_Juan` - America/Argentina/San_Juan * `America/Argentina/San_Luis` - America/Argentina/San_Luis * `America/Argentina/Tucuman` - America/Argentina/Tucuman * `America/Argentina/Ushuaia` - America/Argentina/Ushuaia * `America/Aruba` - America/Aruba * `America/Asuncion` - America/Asuncion * `America/Atikokan` - America/Atikokan * `America/Atka` - America/Atka * `America/Bahia` - America/Bahia * `America/Bahia_Banderas` - America/Bahia_Banderas * `America/Barbados` - America/Barbados * `America/Belem` - America/Belem * `America/Belize` - America/Belize * `America/Blanc-Sablon` - America/Blanc-Sablon * `America/Boa_Vista` - America/Boa_Vista * `America/Bogota` - America/Bogota * `America/Boise` - America/Boise * `America/Buenos_Aires` - America/Buenos_Aires * `America/Cambridge_Bay` - America/Cambridge_Bay * `America/Campo_Grande` - America/Campo_Grande * `America/Cancun` - America/Cancun * `America/Caracas` - America/Caracas * `America/Catamarca` - America/Catamarca * `America/Cayenne` - America/Cayenne * `America/Cayman` - America/Cayman * `America/Chicago` - America/Chicago * `America/Chihuahua` - America/Chihuahua * `America/Ciudad_Juarez` - America/Ciudad_Juarez * `America/Coral_Harbour` - America/Coral_Harbour * `America/Cordoba` - America/Cordoba * `America/Costa_Rica` - America/Costa_Rica * `America/Creston` - America/Creston * `America/Cuiaba` - America/Cuiaba * `America/Curacao` - America/Curacao * `America/Danmarkshavn` - America/Danmarkshavn * `America/Dawson` - America/Dawson * `America/Dawson_Creek` - America/Dawson_Creek * `America/Denver` - America/Denver * `America/Detroit` - America/Detroit * `America/Dominica` - America/Dominica * `America/Edmonton` - America/Edmonton * `America/Eirunepe` - America/Eirunepe * `America/El_Salvador` - America/El_Salvador * `America/Ensenada` - America/Ensenada * `America/Fort_Nelson` - America/Fort_Nelson * `America/Fort_Wayne` - America/Fort_Wayne * `America/Fortaleza` - America/Fortaleza * `America/Glace_Bay` - America/Glace_Bay * `America/Godthab` - America/Godthab * `America/Goose_Bay` - America/Goose_Bay * `America/Grand_Turk` - America/Grand_Turk * `America/Grenada` - America/Grenada * `America/Guadeloupe` - America/Guadeloupe * `America/Guatemala` - America/Guatemala * `America/Guayaquil` - America/Guayaquil * `America/Guyana` - America/Guyana * `America/Halifax` - America/Halifax * `America/Havana` - America/Havana * `America/Hermosillo` - America/Hermosillo * `America/Indiana/Indianapolis` - America/Indiana/Indianapolis * `America/Indiana/Knox` - America/Indiana/Knox * `America/Indiana/Marengo` - America/Indiana/Marengo * `America/Indiana/Petersburg` - America/Indiana/Petersburg * `America/Indiana/Tell_City` - America/Indiana/Tell_City * `America/Indiana/Vevay` - America/Indiana/Vevay * `America/Indiana/Vincennes` - America/Indiana/Vincennes * `America/Indiana/Winamac` - America/Indiana/Winamac * `America/Indianapolis` - America/Indianapolis * `America/Inuvik` - America/Inuvik * `America/Iqaluit` - America/Iqaluit * `America/Jamaica` - America/Jamaica * `America/Jujuy` - America/Jujuy * `America/Juneau` - America/Juneau * `America/Kentucky/Louisville` - America/Kentucky/Louisville * `America/Kentucky/Monticello` - America/Kentucky/Monticello * `America/Knox_IN` - America/Knox_IN * `America/Kralendijk` - America/Kralendijk * `America/La_Paz` - America/La_Paz * `America/Lima` - America/Lima * `America/Los_Angeles` - America/Los_Angeles * `America/Louisville` - America/Louisville * `America/Lower_Princes` - America/Lower_Princes * `America/Maceio` - America/Maceio * `America/Managua` - America/Managua * `America/Manaus` - America/Manaus * `America/Marigot` - America/Marigot * `America/Martinique` - America/Martinique * `America/Matamoros` - America/Matamoros * `America/Mazatlan` - America/Mazatlan * `America/Mendoza` - America/Mendoza * `America/Menominee` - America/Menominee * `America/Merida` - America/Merida * `America/Metlakatla` - America/Metlakatla * `America/Mexico_City` - America/Mexico_City * `America/Miquelon` - America/Miquelon * `America/Moncton` - America/Moncton * `America/Monterrey` - America/Monterrey * `America/Montevideo` - America/Montevideo * `America/Montreal` - America/Montreal * `America/Montserrat` - America/Montserrat * `America/Nassau` - America/Nassau * `America/New_York` - America/New_York * `America/Nipigon` - America/Nipigon * `America/Nome` - America/Nome * `America/Noronha` - America/Noronha * `America/North_Dakota/Beulah` - America/North_Dakota/Beulah * `America/North_Dakota/Center` - America/North_Dakota/Center * `America/North_Dakota/New_Salem` - America/North_Dakota/New_Salem * `America/Nuuk` - America/Nuuk * `America/Ojinaga` - America/Ojinaga * `America/Panama` - America/Panama * `America/Pangnirtung` - America/Pangnirtung * `America/Paramaribo` - America/Paramaribo * `America/Phoenix` - America/Phoenix * `America/Port-au-Prince` - America/Port-au-Prince * `America/Port_of_Spain` - America/Port_of_Spain * `America/Porto_Acre` - America/Porto_Acre * `America/Porto_Velho` - America/Porto_Velho * `America/Puerto_Rico` - America/Puerto_Rico * `America/Punta_Arenas` - America/Punta_Arenas * `America/Rainy_River` - America/Rainy_River * `America/Rankin_Inlet` - America/Rankin_Inlet * `America/Recife` - America/Recife * `America/Regina` - America/Regina * `America/Resolute` - America/Resolute * `America/Rio_Branco` - America/Rio_Branco * `America/Rosario` - America/Rosario * `America/Santa_Isabel` - America/Santa_Isabel * `America/Santarem` - America/Santarem * `America/Santiago` - America/Santiago * `America/Santo_Domingo` - America/Santo_Domingo * `America/Sao_Paulo` - America/Sao_Paulo * `America/Scoresbysund` - America/Scoresbysund * `America/Shiprock` - America/Shiprock * `America/Sitka` - America/Sitka * `America/St_Barthelemy` - America/St_Barthelemy * `America/St_Johns` - America/St_Johns * `America/St_Kitts` - America/St_Kitts * `America/St_Lucia` - America/St_Lucia * `America/St_Thomas` - America/St_Thomas * `America/St_Vincent` - America/St_Vincent * `America/Swift_Current` - America/Swift_Current * `America/Tegucigalpa` - America/Tegucigalpa * `America/Thule` - America/Thule * `America/Thunder_Bay` - America/Thunder_Bay * `America/Tijuana` - America/Tijuana * `America/Toronto` - America/Toronto * `America/Tortola` - America/Tortola * `America/Vancouver` - America/Vancouver * `America/Virgin` - America/Virgin * `America/Whitehorse` - America/Whitehorse * `America/Winnipeg` - America/Winnipeg * `America/Yakutat` - America/Yakutat * `America/Yellowknife` - America/Yellowknife * `Antarctica/Casey` - Antarctica/Casey * `Antarctica/Davis` - Antarctica/Davis * `Antarctica/DumontDUrville` - Antarctica/DumontDUrville * `Antarctica/Macquarie` - Antarctica/Macquarie * `Antarctica/Mawson` - Antarctica/Mawson * `Antarctica/McMurdo` - Antarctica/McMurdo * `Antarctica/Palmer` - Antarctica/Palmer * `Antarctica/Rothera` - Antarctica/Rothera * `Antarctica/South_Pole` - Antarctica/South_Pole * `Antarctica/Syowa` - Antarctica/Syowa * `Antarctica/Troll` - Antarctica/Troll * `Antarctica/Vostok` - Antarctica/Vostok * `Arctic/Longyearbyen` - Arctic/Longyearbyen * `Asia/Aden` - Asia/Aden * `Asia/Almaty` - Asia/Almaty * `Asia/Amman` - Asia/Amman * `Asia/Anadyr` - Asia/Anadyr * `Asia/Aqtau` - Asia/Aqtau * `Asia/Aqtobe` - Asia/Aqtobe * `Asia/Ashgabat` - Asia/Ashgabat * `Asia/Ashkhabad` - Asia/Ashkhabad * `Asia/Atyrau` - Asia/Atyrau * `Asia/Baghdad` - Asia/Baghdad * `Asia/Bahrain` - Asia/Bahrain * `Asia/Baku` - Asia/Baku * `Asia/Bangkok` - Asia/Bangkok * `Asia/Barnaul` - Asia/Barnaul * `Asia/Beirut` - Asia/Beirut * `Asia/Bishkek` - Asia/Bishkek * `Asia/Brunei` - Asia/Brunei * `Asia/Calcutta` - Asia/Calcutta * `Asia/Chita` - Asia/Chita * `Asia/Choibalsan` - Asia/Choibalsan * `Asia/Chongqing` - Asia/Chongqing * `Asia/Chungking` - Asia/Chungking * `Asia/Colombo` - Asia/Colombo * `Asia/Dacca` - Asia/Dacca * `Asia/Damascus` - Asia/Damascus * `Asia/Dhaka` - Asia/Dhaka * `Asia/Dili` - Asia/Dili * `Asia/Dubai` - Asia/Dubai * `Asia/Dushanbe` - Asia/Dushanbe * `Asia/Famagusta` - Asia/Famagusta * `Asia/Gaza` - Asia/Gaza * `Asia/Harbin` - Asia/Harbin * `Asia/Hebron` - Asia/Hebron * `Asia/Ho_Chi_Minh` - Asia/Ho_Chi_Minh * `Asia/Hong_Kong` - Asia/Hong_Kong * `Asia/Hovd` - Asia/Hovd * `Asia/Irkutsk` - Asia/Irkutsk * `Asia/Istanbul` - Asia/Istanbul * `Asia/Jakarta` - Asia/Jakarta * `Asia/Jayapura` - Asia/Jayapura * `Asia/Jerusalem` - Asia/Jerusalem * `Asia/Kabul` - Asia/Kabul * `Asia/Kamchatka` - Asia/Kamchatka * `Asia/Karachi` - Asia/Karachi * `Asia/Kashgar` - Asia/Kashgar * `Asia/Kathmandu` - Asia/Kathmandu * `Asia/Katmandu` - Asia/Katmandu * `Asia/Khandyga` - Asia/Khandyga * `Asia/Kolkata` - Asia/Kolkata * `Asia/Krasnoyarsk` - Asia/Krasnoyarsk * `Asia/Kuala_Lumpur` - Asia/Kuala_Lumpur * `Asia/Kuching` - Asia/Kuching * `Asia/Kuwait` - Asia/Kuwait * `Asia/Macao` - Asia/Macao * `Asia/Macau` - Asia/Macau * `Asia/Magadan` - Asia/Magadan * `Asia/Makassar` - Asia/Makassar * `Asia/Manila` - Asia/Manila * `Asia/Muscat` - Asia/Muscat * `Asia/Nicosia` - Asia/Nicosia * `Asia/Novokuznetsk` - Asia/Novokuznetsk * `Asia/Novosibirsk` - Asia/Novosibirsk * `Asia/Omsk` - Asia/Omsk * `Asia/Oral` - Asia/Oral * `Asia/Phnom_Penh` - Asia/Phnom_Penh * `Asia/Pontianak` - Asia/Pontianak * `Asia/Pyongyang` - Asia/Pyongyang * `Asia/Qatar` - Asia/Qatar * `Asia/Qostanay` - Asia/Qostanay * `Asia/Qyzylorda` - Asia/Qyzylorda * `Asia/Rangoon` - Asia/Rangoon * `Asia/Riyadh` - Asia/Riyadh * `Asia/Saigon` - Asia/Saigon * `Asia/Sakhalin` - Asia/Sakhalin * `Asia/Samarkand` - Asia/Samarkand * `Asia/Seoul` - Asia/Seoul * `Asia/Shanghai` - Asia/Shanghai * `Asia/Singapore` - Asia/Singapore * `Asia/Srednekolymsk` - Asia/Srednekolymsk * `Asia/Taipei` - Asia/Taipei * `Asia/Tashkent` - Asia/Tashkent * `Asia/Tbilisi` - Asia/Tbilisi * `Asia/Tehran` - Asia/Tehran * `Asia/Tel_Aviv` - Asia/Tel_Aviv * `Asia/Thimbu` - Asia/Thimbu * `Asia/Thimphu` - Asia/Thimphu * `Asia/Tokyo` - Asia/Tokyo * `Asia/Tomsk` - Asia/Tomsk * `Asia/Ujung_Pandang` - Asia/Ujung_Pandang * `Asia/Ulaanbaatar` - Asia/Ulaanbaatar * `Asia/Ulan_Bator` - Asia/Ulan_Bator * `Asia/Urumqi` - Asia/Urumqi * `Asia/Ust-Nera` - Asia/Ust-Nera * `Asia/Vientiane` - Asia/Vientiane * `Asia/Vladivostok` - Asia/Vladivostok * `Asia/Yakutsk` - Asia/Yakutsk * `Asia/Yangon` - Asia/Yangon * `Asia/Yekaterinburg` - Asia/Yekaterinburg * `Asia/Yerevan` - Asia/Yerevan * `Atlantic/Azores` - Atlantic/Azores * `Atlantic/Bermuda` - Atlantic/Bermuda * `Atlantic/Canary` - Atlantic/Canary * `Atlantic/Cape_Verde` - Atlantic/Cape_Verde * `Atlantic/Faeroe` - Atlantic/Faeroe * `Atlantic/Faroe` - Atlantic/Faroe * `Atlantic/Jan_Mayen` - Atlantic/Jan_Mayen * `Atlantic/Madeira` - Atlantic/Madeira * `Atlantic/Reykjavik` - Atlantic/Reykjavik * `Atlantic/South_Georgia` - Atlantic/South_Georgia * `Atlantic/St_Helena` - Atlantic/St_Helena * `Atlantic/Stanley` - Atlantic/Stanley * `Australia/ACT` - Australia/ACT * `Australia/Adelaide` - Australia/Adelaide * `Australia/Brisbane` - Australia/Brisbane * `Australia/Broken_Hill` - Australia/Broken_Hill * `Australia/Canberra` - Australia/Canberra * `Australia/Currie` - Australia/Currie * `Australia/Darwin` - Australia/Darwin * `Australia/Eucla` - Australia/Eucla * `Australia/Hobart` - Australia/Hobart * `Australia/LHI` - Australia/LHI * `Australia/Lindeman` - Australia/Lindeman * `Australia/Lord_Howe` - Australia/Lord_Howe * `Australia/Melbourne` - Australia/Melbourne * `Australia/NSW` - Australia/NSW * `Australia/North` - Australia/North * `Australia/Perth` - Australia/Perth * `Australia/Queensland` - Australia/Queensland * `Australia/South` - Australia/South * `Australia/Sydney` - Australia/Sydney * `Australia/Tasmania` - Australia/Tasmania * `Australia/Victoria` - Australia/Victoria * `Australia/West` - Australia/West * `Australia/Yancowinna` - Australia/Yancowinna * `Brazil/Acre` - Brazil/Acre * `Brazil/DeNoronha` - Brazil/DeNoronha * `Brazil/East` - Brazil/East * `Brazil/West` - Brazil/West * `CET` - CET * `CST6CDT` - CST6CDT * `Canada/Atlantic` - Canada/Atlantic * `Canada/Central` - Canada/Central * `Canada/Eastern` - Canada/Eastern * `Canada/Mountain` - Canada/Mountain * `Canada/Newfoundland` - Canada/Newfoundland * `Canada/Pacific` - Canada/Pacific * `Canada/Saskatchewan` - Canada/Saskatchewan * `Canada/Yukon` - Canada/Yukon * `Chile/Continental` - Chile/Continental * `Chile/EasterIsland` - Chile/EasterIsland * `Cuba` - Cuba * `EET` - EET * `EST` - EST * `EST5EDT` - EST5EDT * `Egypt` - Egypt * `Eire` - Eire * `Etc/GMT` - Etc/GMT * `Etc/GMT+0` - Etc/GMT+0 * `Etc/GMT+1` - Etc/GMT+1 * `Etc/GMT+10` - Etc/GMT+10 * `Etc/GMT+11` - Etc/GMT+11 * `Etc/GMT+12` - Etc/GMT+12 * `Etc/GMT+2` - Etc/GMT+2 * `Etc/GMT+3` - Etc/GMT+3 * `Etc/GMT+4` - Etc/GMT+4 * `Etc/GMT+5` - Etc/GMT+5 * `Etc/GMT+6` - Etc/GMT+6 * `Etc/GMT+7` - Etc/GMT+7 * `Etc/GMT+8` - Etc/GMT+8 * `Etc/GMT+9` - Etc/GMT+9 * `Etc/GMT-0` - Etc/GMT-0 * `Etc/GMT-1` - Etc/GMT-1 * `Etc/GMT-10` - Etc/GMT-10 * `Etc/GMT-11` - Etc/GMT-11 * `Etc/GMT-12` - Etc/GMT-12 * `Etc/GMT-13` - Etc/GMT-13 * `Etc/GMT-14` - Etc/GMT-14 * `Etc/GMT-2` - Etc/GMT-2 * `Etc/GMT-3` - Etc/GMT-3 * `Etc/GMT-4` - Etc/GMT-4 * `Etc/GMT-5` - Etc/GMT-5 * `Etc/GMT-6` - Etc/GMT-6 * `Etc/GMT-7` - Etc/GMT-7 * `Etc/GMT-8` - Etc/GMT-8 * `Etc/GMT-9` - Etc/GMT-9 * `Etc/GMT0` - Etc/GMT0 * `Etc/Greenwich` - Etc/Greenwich * `Etc/UCT` - Etc/UCT * `Etc/UTC` - Etc/UTC * `Etc/Universal` - Etc/Universal * `Etc/Zulu` - Etc/Zulu * `Europe/Amsterdam` - Europe/Amsterdam * `Europe/Andorra` - Europe/Andorra * `Europe/Astrakhan` - Europe/Astrakhan * `Europe/Athens` - Europe/Athens * `Europe/Belfast` - Europe/Belfast * `Europe/Belgrade` - Europe/Belgrade * `Europe/Berlin` - Europe/Berlin * `Europe/Bratislava` - Europe/Bratislava * `Europe/Brussels` - Europe/Brussels * `Europe/Bucharest` - Europe/Bucharest * `Europe/Budapest` - Europe/Budapest * `Europe/Busingen` - Europe/Busingen * `Europe/Chisinau` - Europe/Chisinau * `Europe/Copenhagen` - Europe/Copenhagen * `Europe/Dublin` - Europe/Dublin * `Europe/Gibraltar` - Europe/Gibraltar * `Europe/Guernsey` - Europe/Guernsey * `Europe/Helsinki` - Europe/Helsinki * `Europe/Isle_of_Man` - Europe/Isle_of_Man * `Europe/Istanbul` - Europe/Istanbul * `Europe/Jersey` - Europe/Jersey * `Europe/Kaliningrad` - Europe/Kaliningrad * `Europe/Kiev` - Europe/Kiev * `Europe/Kirov` - Europe/Kirov * `Europe/Kyiv` - Europe/Kyiv * `Europe/Lisbon` - Europe/Lisbon * `Europe/Ljubljana` - Europe/Ljubljana * `Europe/London` - Europe/London * `Europe/Luxembourg` - Europe/Luxembourg * `Europe/Madrid` - Europe/Madrid * `Europe/Malta` - Europe/Malta * `Europe/Mariehamn` - Europe/Mariehamn * `Europe/Minsk` - Europe/Minsk * `Europe/Monaco` - Europe/Monaco * `Europe/Moscow` - Europe/Moscow * `Europe/Nicosia` - Europe/Nicosia * `Europe/Oslo` - Europe/Oslo * `Europe/Paris` - Europe/Paris * `Europe/Podgorica` - Europe/Podgorica * `Europe/Prague` - Europe/Prague * `Europe/Riga` - Europe/Riga * `Europe/Rome` - Europe/Rome * `Europe/Samara` - Europe/Samara * `Europe/San_Marino` - Europe/San_Marino * `Europe/Sarajevo` - Europe/Sarajevo * `Europe/Saratov` - Europe/Saratov * `Europe/Simferopol` - Europe/Simferopol * `Europe/Skopje` - Europe/Skopje * `Europe/Sofia` - Europe/Sofia * `Europe/Stockholm` - Europe/Stockholm * `Europe/Tallinn` - Europe/Tallinn * `Europe/Tirane` - Europe/Tirane * `Europe/Tiraspol` - Europe/Tiraspol * `Europe/Ulyanovsk` - Europe/Ulyanovsk * `Europe/Uzhgorod` - Europe/Uzhgorod * `Europe/Vaduz` - Europe/Vaduz * `Europe/Vatican` - Europe/Vatican * `Europe/Vienna` - Europe/Vienna * `Europe/Vilnius` - Europe/Vilnius * `Europe/Volgograd` - Europe/Volgograd * `Europe/Warsaw` - Europe/Warsaw * `Europe/Zagreb` - Europe/Zagreb * `Europe/Zaporozhye` - Europe/Zaporozhye * `Europe/Zurich` - Europe/Zurich * `GB` - GB * `GB-Eire` - GB-Eire * `GMT` - GMT * `GMT+0` - GMT+0 * `GMT-0` - GMT-0 * `GMT0` - GMT0 * `Greenwich` - Greenwich * `HST` - HST * `Hongkong` - Hongkong * `Iceland` - Iceland * `Indian/Antananarivo` - Indian/Antananarivo * `Indian/Chagos` - Indian/Chagos * `Indian/Christmas` - Indian/Christmas * `Indian/Cocos` - Indian/Cocos * `Indian/Comoro` - Indian/Comoro * `Indian/Kerguelen` - Indian/Kerguelen * `Indian/Mahe` - Indian/Mahe * `Indian/Maldives` - Indian/Maldives * `Indian/Mauritius` - Indian/Mauritius * `Indian/Mayotte` - Indian/Mayotte * `Indian/Reunion` - Indian/Reunion * `Iran` - Iran * `Israel` - Israel * `Jamaica` - Jamaica * `Japan` - Japan * `Kwajalein` - Kwajalein * `Libya` - Libya * `MET` - MET * `MST` - MST * `MST7MDT` - MST7MDT * `Mexico/BajaNorte` - Mexico/BajaNorte * `Mexico/BajaSur` - Mexico/BajaSur * `Mexico/General` - Mexico/General * `NZ` - NZ * `NZ-CHAT` - NZ-CHAT * `Navajo` - Navajo * `PRC` - PRC * `PST8PDT` - PST8PDT * `Pacific/Apia` - Pacific/Apia * `Pacific/Auckland` - Pacific/Auckland * `Pacific/Bougainville` - Pacific/Bougainville * `Pacific/Chatham` - Pacific/Chatham * `Pacific/Chuuk` - Pacific/Chuuk * `Pacific/Easter` - Pacific/Easter * `Pacific/Efate` - Pacific/Efate * `Pacific/Enderbury` - Pacific/Enderbury * `Pacific/Fakaofo` - Pacific/Fakaofo * `Pacific/Fiji` - Pacific/Fiji * `Pacific/Funafuti` - Pacific/Funafuti * `Pacific/Galapagos` - Pacific/Galapagos * `Pacific/Gambier` - Pacific/Gambier * `Pacific/Guadalcanal` - Pacific/Guadalcanal * `Pacific/Guam` - Pacific/Guam * `Pacific/Honolulu` - Pacific/Honolulu * `Pacific/Johnston` - Pacific/Johnston * `Pacific/Kanton` - Pacific/Kanton * `Pacific/Kiritimati` - Pacific/Kiritimati * `Pacific/Kosrae` - Pacific/Kosrae * `Pacific/Kwajalein` - Pacific/Kwajalein * `Pacific/Majuro` - Pacific/Majuro * `Pacific/Marquesas` - Pacific/Marquesas * `Pacific/Midway` - Pacific/Midway * `Pacific/Nauru` - Pacific/Nauru * `Pacific/Niue` - Pacific/Niue * `Pacific/Norfolk` - Pacific/Norfolk * `Pacific/Noumea` - Pacific/Noumea * `Pacific/Pago_Pago` - Pacific/Pago_Pago * `Pacific/Palau` - Pacific/Palau * `Pacific/Pitcairn` - Pacific/Pitcairn * `Pacific/Pohnpei` - Pacific/Pohnpei * `Pacific/Ponape` - Pacific/Ponape * `Pacific/Port_Moresby` - Pacific/Port_Moresby * `Pacific/Rarotonga` - Pacific/Rarotonga * `Pacific/Saipan` - Pacific/Saipan * `Pacific/Samoa` - Pacific/Samoa * `Pacific/Tahiti` - Pacific/Tahiti * `Pacific/Tarawa` - Pacific/Tarawa * `Pacific/Tongatapu` - Pacific/Tongatapu * `Pacific/Truk` - Pacific/Truk * `Pacific/Wake` - Pacific/Wake * `Pacific/Wallis` - Pacific/Wallis * `Pacific/Yap` - Pacific/Yap * `Poland` - Poland * `Portugal` - Portugal * `ROC` - ROC * `ROK` - ROK * `Singapore` - Singapore * `Turkey` - Turkey * `UCT` - UCT * `US/Alaska` - US/Alaska * `US/Aleutian` - US/Aleutian * `US/Arizona` - US/Arizona * `US/Central` - US/Central * `US/East-Indiana` - US/East-Indiana * `US/Eastern` - US/Eastern * `US/Hawaii` - US/Hawaii * `US/Indiana-Starke` - US/Indiana-Starke * `US/Michigan` - US/Michigan * `US/Mountain` - US/Mountain * `US/Pacific` - US/Pacific * `US/Samoa` - US/Samoa * `UTC` - UTC * `Universal` - Universal * `W-SU` - W-SU * `WET` - WET * `Zulu` - Zulu */
+  timezone?: TimezoneEnum | null;
+  /** Day-of-week offset for weekly intervals (0=Sunday, 6=Saturday). Only valid when interval is 'week'. */
+  offset_day?: number | null;
+  /** Hour-of-day offset (0-23) for daily and weekly intervals. Only valid when interval is 'day' or 'week'. */
+  offset_hour?: number | null;
+}
+export const BatchExportOutput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    team_id: S.optional(S.Number),
+    name: S.optional(S.String),
+    model: S.optional(S.NullOr(BatchExportOutputModel)),
+    destination: S.optional(BatchExportDestinationOutput),
+    interval: S.optional(BatchExportIntervalEnum),
+    paused: S.optional(S.Boolean),
+    created_at: S.optional(S.String),
+    last_updated_at: S.optional(S.String),
+    last_paused_at: S.optional(S.NullOr(S.String)),
+    start_at: S.optional(S.NullOr(S.String)),
+    end_at: S.optional(S.NullOr(S.String)),
+    latest_runs: S.optional(BatchExportOutputLatestRunsList),
+    hogql_query: S.optional(S.String),
+    schema: S.optional(S.Unknown),
+    filters: S.optional(S.Unknown),
+    timezone: S.optional(S.NullOr(TimezoneEnum)),
+    offset_day: S.optional(S.NullOr(S.Number)),
+    offset_hour: S.optional(S.NullOr(S.Number)),
+  }),
+).annotate({
+  identifier: "BatchExportOutput",
+}) as any as S.Schema<BatchExportOutput>;
+
+export interface CreateBatchExportsBackfillRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  batch_export_id: string;
+  /** The start of the data interval. */
+  start_at?: string | null;
+  /** The end of the data interval. */
+  end_at?: string | null;
+  /** The status of this backfill. * `Cancelled` - Cancelled * `Completed` - Completed * `ContinuedAsNew` - Continued As New * `Failed` - Failed * `FailedRetryable` - Failed Retryable * `Terminated` - Terminated * `TimedOut` - Timedout * `Running` - Running * `Starting` - Starting */
+  status?: BatchExportBackfillStatusEnum | (string & {});
+  /** The timestamp at which this BatchExportBackfill finished, successfully or not. */
+  finished_at?: string | null;
+  /** The total number of records to export. Initially estimated, updated with actual count after completion. */
+  total_records_count?: number | null;
+  /** The actual start time after adjustment for earliest available data. May differ from start_at if user requested a date before data exists. */
+  adjusted_start_at?: string | null;
+  /** The team this belongs to. */
+  team?: number;
+  /** The BatchExport this backfill belongs to. */
+  batch_export?: string;
+}
+export const CreateBatchExportsBackfillRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    batch_export_id: S.String.pipe(T.Label()),
+    start_at: S.optional(S.NullOr(S.String)),
+    end_at: S.optional(S.NullOr(S.String)),
+    status: S.optional(BatchExportBackfillStatusEnum),
+    finished_at: S.optional(S.NullOr(S.String)),
+    total_records_count: S.optional(S.NullOr(S.Number)),
+    adjusted_start_at: S.optional(S.NullOr(S.String)),
+    team: S.optional(S.Number),
+    batch_export: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/api/projects/{project_id}/batch_exports/{batch_export_id}/backfills/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateBatchExportsBackfillRequest",
+}) as any as S.Schema<CreateBatchExportsBackfillRequest>;
+
+export interface BatchExportBackfillProgress {
+  total_runs?: number | null;
+  finished_runs?: number | null;
+  progress?: number | null;
+}
+export const BatchExportBackfillProgress = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    total_runs: S.optional(S.NullOr(S.Number)),
+    finished_runs: S.optional(S.NullOr(S.Number)),
+    progress: S.optional(S.NullOr(S.Number)),
+  }),
+).annotate({
+  identifier: "BatchExportBackfillProgress",
+}) as any as S.Schema<BatchExportBackfillProgress>;
+
+export interface BatchExportBackfill {
+  id?: string;
+  progress?: BatchExportBackfillProgress | null;
+  /** The start of the data interval. */
+  start_at?: string | null;
+  /** The end of the data interval. */
+  end_at?: string | null;
+  /** The status of this backfill. * `Cancelled` - Cancelled * `Completed` - Completed * `ContinuedAsNew` - Continued As New * `Failed` - Failed * `FailedRetryable` - Failed Retryable * `Terminated` - Terminated * `TimedOut` - Timedout * `Running` - Running * `Starting` - Starting */
+  status?: BatchExportBackfillStatusEnum;
+  /** The timestamp at which this BatchExportBackfill was created. */
+  created_at?: string;
+  /** The timestamp at which this BatchExportBackfill finished, successfully or not. */
+  finished_at?: string | null;
+  /** The timestamp at which this BatchExportBackfill was last updated. */
+  last_updated_at?: string;
+  /** The total number of records to export. Initially estimated, updated with actual count after completion. */
+  total_records_count?: number | null;
+  /** The actual start time after adjustment for earliest available data. May differ from start_at if user requested a date before data exists. */
+  adjusted_start_at?: string | null;
+  /** The team this belongs to. */
+  team?: number;
+  /** The BatchExport this backfill belongs to. */
+  batch_export?: string;
+}
+export const BatchExportBackfill = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    progress: S.optional(S.NullOr(BatchExportBackfillProgress)),
+    start_at: S.optional(S.NullOr(S.String)),
+    end_at: S.optional(S.NullOr(S.String)),
+    status: S.optional(BatchExportBackfillStatusEnum),
+    created_at: S.optional(S.String),
+    finished_at: S.optional(S.NullOr(S.String)),
+    last_updated_at: S.optional(S.String),
+    total_records_count: S.optional(S.NullOr(S.Number)),
+    adjusted_start_at: S.optional(S.NullOr(S.String)),
+    team: S.optional(S.Number),
+    batch_export: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "BatchExportBackfill",
+}) as any as S.Schema<BatchExportBackfill>;
+
+/** Which model this BatchExport is exporting. * `events` - Events * `persons` - Persons * `sessions` - Sessions * `hogql` - Hogql */
+export type CreateBatchExportsPauseRequestModel = ModelEnum | BlankEnum;
+export const CreateBatchExportsPauseRequestModel =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateBatchExportsPauseRequestModel>;
+
+export interface CreateBatchExportsPauseRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this batch export. */
+  id: string;
+  /** A human-readable name for this BatchExport. */
+  name?: string;
+  /** Which model this BatchExport is exporting. * `events` - Events * `persons` - Persons * `sessions` - Sessions * `hogql` - Hogql */
+  model?: CreateBatchExportsPauseRequestModel | null;
+  /** Destination configuration (type, config, and optional integration). */
+  destination?: BatchExportDestination;
+  /** How often the batch export should run. * `hour` - hour * `day` - day * `week` - week * `every 5 minutes` - every 5 minutes * `every 15 minutes` - every 15 minutes */
+  interval?: BatchExportIntervalEnum | (string & {});
+  /** Whether this BatchExport is paused or not. */
+  paused?: boolean;
+  /** The timestamp at which this BatchExport was last paused. */
+  last_paused_at?: string | null;
+  /** Time before which any Batch Export runs won't be triggered. */
+  start_at?: string | null;
+  /** Time after which any Batch Export runs won't be triggered. */
+  end_at?: string | null;
+  /** Optional HogQL SELECT defining a custom model schema. Only recommended in advanced use cases. */
+  hogql_query?: string;
+  filters?: unknown;
+  /** IANA timezone name controlling daily and weekly interval boundaries. Defaults to UTC. * `Africa/Abidjan` - Africa/Abidjan * `Africa/Accra` - Africa/Accra * `Africa/Addis_Ababa` - Africa/Addis_Ababa * `Africa/Algiers` - Africa/Algiers * `Africa/Asmara` - Africa/Asmara * `Africa/Asmera` - Africa/Asmera * `Africa/Bamako` - Africa/Bamako * `Africa/Bangui` - Africa/Bangui * `Africa/Banjul` - Africa/Banjul * `Africa/Bissau` - Africa/Bissau * `Africa/Blantyre` - Africa/Blantyre * `Africa/Brazzaville` - Africa/Brazzaville * `Africa/Bujumbura` - Africa/Bujumbura * `Africa/Cairo` - Africa/Cairo * `Africa/Casablanca` - Africa/Casablanca * `Africa/Ceuta` - Africa/Ceuta * `Africa/Conakry` - Africa/Conakry * `Africa/Dakar` - Africa/Dakar * `Africa/Dar_es_Salaam` - Africa/Dar_es_Salaam * `Africa/Djibouti` - Africa/Djibouti * `Africa/Douala` - Africa/Douala * `Africa/El_Aaiun` - Africa/El_Aaiun * `Africa/Freetown` - Africa/Freetown * `Africa/Gaborone` - Africa/Gaborone * `Africa/Harare` - Africa/Harare * `Africa/Johannesburg` - Africa/Johannesburg * `Africa/Juba` - Africa/Juba * `Africa/Kampala` - Africa/Kampala * `Africa/Khartoum` - Africa/Khartoum * `Africa/Kigali` - Africa/Kigali * `Africa/Kinshasa` - Africa/Kinshasa * `Africa/Lagos` - Africa/Lagos * `Africa/Libreville` - Africa/Libreville * `Africa/Lome` - Africa/Lome * `Africa/Luanda` - Africa/Luanda * `Africa/Lubumbashi` - Africa/Lubumbashi * `Africa/Lusaka` - Africa/Lusaka * `Africa/Malabo` - Africa/Malabo * `Africa/Maputo` - Africa/Maputo * `Africa/Maseru` - Africa/Maseru * `Africa/Mbabane` - Africa/Mbabane * `Africa/Mogadishu` - Africa/Mogadishu * `Africa/Monrovia` - Africa/Monrovia * `Africa/Nairobi` - Africa/Nairobi * `Africa/Ndjamena` - Africa/Ndjamena * `Africa/Niamey` - Africa/Niamey * `Africa/Nouakchott` - Africa/Nouakchott * `Africa/Ouagadougou` - Africa/Ouagadougou * `Africa/Porto-Novo` - Africa/Porto-Novo * `Africa/Sao_Tome` - Africa/Sao_Tome * `Africa/Timbuktu` - Africa/Timbuktu * `Africa/Tripoli` - Africa/Tripoli * `Africa/Tunis` - Africa/Tunis * `Africa/Windhoek` - Africa/Windhoek * `America/Adak` - America/Adak * `America/Anchorage` - America/Anchorage * `America/Anguilla` - America/Anguilla * `America/Antigua` - America/Antigua * `America/Araguaina` - America/Araguaina * `America/Argentina/Buenos_Aires` - America/Argentina/Buenos_Aires * `America/Argentina/Catamarca` - America/Argentina/Catamarca * `America/Argentina/ComodRivadavia` - America/Argentina/ComodRivadavia * `America/Argentina/Cordoba` - America/Argentina/Cordoba * `America/Argentina/Jujuy` - America/Argentina/Jujuy * `America/Argentina/La_Rioja` - America/Argentina/La_Rioja * `America/Argentina/Mendoza` - America/Argentina/Mendoza * `America/Argentina/Rio_Gallegos` - America/Argentina/Rio_Gallegos * `America/Argentina/Salta` - America/Argentina/Salta * `America/Argentina/San_Juan` - America/Argentina/San_Juan * `America/Argentina/San_Luis` - America/Argentina/San_Luis * `America/Argentina/Tucuman` - America/Argentina/Tucuman * `America/Argentina/Ushuaia` - America/Argentina/Ushuaia * `America/Aruba` - America/Aruba * `America/Asuncion` - America/Asuncion * `America/Atikokan` - America/Atikokan * `America/Atka` - America/Atka * `America/Bahia` - America/Bahia * `America/Bahia_Banderas` - America/Bahia_Banderas * `America/Barbados` - America/Barbados * `America/Belem` - America/Belem * `America/Belize` - America/Belize * `America/Blanc-Sablon` - America/Blanc-Sablon * `America/Boa_Vista` - America/Boa_Vista * `America/Bogota` - America/Bogota * `America/Boise` - America/Boise * `America/Buenos_Aires` - America/Buenos_Aires * `America/Cambridge_Bay` - America/Cambridge_Bay * `America/Campo_Grande` - America/Campo_Grande * `America/Cancun` - America/Cancun * `America/Caracas` - America/Caracas * `America/Catamarca` - America/Catamarca * `America/Cayenne` - America/Cayenne * `America/Cayman` - America/Cayman * `America/Chicago` - America/Chicago * `America/Chihuahua` - America/Chihuahua * `America/Ciudad_Juarez` - America/Ciudad_Juarez * `America/Coral_Harbour` - America/Coral_Harbour * `America/Cordoba` - America/Cordoba * `America/Costa_Rica` - America/Costa_Rica * `America/Creston` - America/Creston * `America/Cuiaba` - America/Cuiaba * `America/Curacao` - America/Curacao * `America/Danmarkshavn` - America/Danmarkshavn * `America/Dawson` - America/Dawson * `America/Dawson_Creek` - America/Dawson_Creek * `America/Denver` - America/Denver * `America/Detroit` - America/Detroit * `America/Dominica` - America/Dominica * `America/Edmonton` - America/Edmonton * `America/Eirunepe` - America/Eirunepe * `America/El_Salvador` - America/El_Salvador * `America/Ensenada` - America/Ensenada * `America/Fort_Nelson` - America/Fort_Nelson * `America/Fort_Wayne` - America/Fort_Wayne * `America/Fortaleza` - America/Fortaleza * `America/Glace_Bay` - America/Glace_Bay * `America/Godthab` - America/Godthab * `America/Goose_Bay` - America/Goose_Bay * `America/Grand_Turk` - America/Grand_Turk * `America/Grenada` - America/Grenada * `America/Guadeloupe` - America/Guadeloupe * `America/Guatemala` - America/Guatemala * `America/Guayaquil` - America/Guayaquil * `America/Guyana` - America/Guyana * `America/Halifax` - America/Halifax * `America/Havana` - America/Havana * `America/Hermosillo` - America/Hermosillo * `America/Indiana/Indianapolis` - America/Indiana/Indianapolis * `America/Indiana/Knox` - America/Indiana/Knox * `America/Indiana/Marengo` - America/Indiana/Marengo * `America/Indiana/Petersburg` - America/Indiana/Petersburg * `America/Indiana/Tell_City` - America/Indiana/Tell_City * `America/Indiana/Vevay` - America/Indiana/Vevay * `America/Indiana/Vincennes` - America/Indiana/Vincennes * `America/Indiana/Winamac` - America/Indiana/Winamac * `America/Indianapolis` - America/Indianapolis * `America/Inuvik` - America/Inuvik * `America/Iqaluit` - America/Iqaluit * `America/Jamaica` - America/Jamaica * `America/Jujuy` - America/Jujuy * `America/Juneau` - America/Juneau * `America/Kentucky/Louisville` - America/Kentucky/Louisville * `America/Kentucky/Monticello` - America/Kentucky/Monticello * `America/Knox_IN` - America/Knox_IN * `America/Kralendijk` - America/Kralendijk * `America/La_Paz` - America/La_Paz * `America/Lima` - America/Lima * `America/Los_Angeles` - America/Los_Angeles * `America/Louisville` - America/Louisville * `America/Lower_Princes` - America/Lower_Princes * `America/Maceio` - America/Maceio * `America/Managua` - America/Managua * `America/Manaus` - America/Manaus * `America/Marigot` - America/Marigot * `America/Martinique` - America/Martinique * `America/Matamoros` - America/Matamoros * `America/Mazatlan` - America/Mazatlan * `America/Mendoza` - America/Mendoza * `America/Menominee` - America/Menominee * `America/Merida` - America/Merida * `America/Metlakatla` - America/Metlakatla * `America/Mexico_City` - America/Mexico_City * `America/Miquelon` - America/Miquelon * `America/Moncton` - America/Moncton * `America/Monterrey` - America/Monterrey * `America/Montevideo` - America/Montevideo * `America/Montreal` - America/Montreal * `America/Montserrat` - America/Montserrat * `America/Nassau` - America/Nassau * `America/New_York` - America/New_York * `America/Nipigon` - America/Nipigon * `America/Nome` - America/Nome * `America/Noronha` - America/Noronha * `America/North_Dakota/Beulah` - America/North_Dakota/Beulah * `America/North_Dakota/Center` - America/North_Dakota/Center * `America/North_Dakota/New_Salem` - America/North_Dakota/New_Salem * `America/Nuuk` - America/Nuuk * `America/Ojinaga` - America/Ojinaga * `America/Panama` - America/Panama * `America/Pangnirtung` - America/Pangnirtung * `America/Paramaribo` - America/Paramaribo * `America/Phoenix` - America/Phoenix * `America/Port-au-Prince` - America/Port-au-Prince * `America/Port_of_Spain` - America/Port_of_Spain * `America/Porto_Acre` - America/Porto_Acre * `America/Porto_Velho` - America/Porto_Velho * `America/Puerto_Rico` - America/Puerto_Rico * `America/Punta_Arenas` - America/Punta_Arenas * `America/Rainy_River` - America/Rainy_River * `America/Rankin_Inlet` - America/Rankin_Inlet * `America/Recife` - America/Recife * `America/Regina` - America/Regina * `America/Resolute` - America/Resolute * `America/Rio_Branco` - America/Rio_Branco * `America/Rosario` - America/Rosario * `America/Santa_Isabel` - America/Santa_Isabel * `America/Santarem` - America/Santarem * `America/Santiago` - America/Santiago * `America/Santo_Domingo` - America/Santo_Domingo * `America/Sao_Paulo` - America/Sao_Paulo * `America/Scoresbysund` - America/Scoresbysund * `America/Shiprock` - America/Shiprock * `America/Sitka` - America/Sitka * `America/St_Barthelemy` - America/St_Barthelemy * `America/St_Johns` - America/St_Johns * `America/St_Kitts` - America/St_Kitts * `America/St_Lucia` - America/St_Lucia * `America/St_Thomas` - America/St_Thomas * `America/St_Vincent` - America/St_Vincent * `America/Swift_Current` - America/Swift_Current * `America/Tegucigalpa` - America/Tegucigalpa * `America/Thule` - America/Thule * `America/Thunder_Bay` - America/Thunder_Bay * `America/Tijuana` - America/Tijuana * `America/Toronto` - America/Toronto * `America/Tortola` - America/Tortola * `America/Vancouver` - America/Vancouver * `America/Virgin` - America/Virgin * `America/Whitehorse` - America/Whitehorse * `America/Winnipeg` - America/Winnipeg * `America/Yakutat` - America/Yakutat * `America/Yellowknife` - America/Yellowknife * `Antarctica/Casey` - Antarctica/Casey * `Antarctica/Davis` - Antarctica/Davis * `Antarctica/DumontDUrville` - Antarctica/DumontDUrville * `Antarctica/Macquarie` - Antarctica/Macquarie * `Antarctica/Mawson` - Antarctica/Mawson * `Antarctica/McMurdo` - Antarctica/McMurdo * `Antarctica/Palmer` - Antarctica/Palmer * `Antarctica/Rothera` - Antarctica/Rothera * `Antarctica/South_Pole` - Antarctica/South_Pole * `Antarctica/Syowa` - Antarctica/Syowa * `Antarctica/Troll` - Antarctica/Troll * `Antarctica/Vostok` - Antarctica/Vostok * `Arctic/Longyearbyen` - Arctic/Longyearbyen * `Asia/Aden` - Asia/Aden * `Asia/Almaty` - Asia/Almaty * `Asia/Amman` - Asia/Amman * `Asia/Anadyr` - Asia/Anadyr * `Asia/Aqtau` - Asia/Aqtau * `Asia/Aqtobe` - Asia/Aqtobe * `Asia/Ashgabat` - Asia/Ashgabat * `Asia/Ashkhabad` - Asia/Ashkhabad * `Asia/Atyrau` - Asia/Atyrau * `Asia/Baghdad` - Asia/Baghdad * `Asia/Bahrain` - Asia/Bahrain * `Asia/Baku` - Asia/Baku * `Asia/Bangkok` - Asia/Bangkok * `Asia/Barnaul` - Asia/Barnaul * `Asia/Beirut` - Asia/Beirut * `Asia/Bishkek` - Asia/Bishkek * `Asia/Brunei` - Asia/Brunei * `Asia/Calcutta` - Asia/Calcutta * `Asia/Chita` - Asia/Chita * `Asia/Choibalsan` - Asia/Choibalsan * `Asia/Chongqing` - Asia/Chongqing * `Asia/Chungking` - Asia/Chungking * `Asia/Colombo` - Asia/Colombo * `Asia/Dacca` - Asia/Dacca * `Asia/Damascus` - Asia/Damascus * `Asia/Dhaka` - Asia/Dhaka * `Asia/Dili` - Asia/Dili * `Asia/Dubai` - Asia/Dubai * `Asia/Dushanbe` - Asia/Dushanbe * `Asia/Famagusta` - Asia/Famagusta * `Asia/Gaza` - Asia/Gaza * `Asia/Harbin` - Asia/Harbin * `Asia/Hebron` - Asia/Hebron * `Asia/Ho_Chi_Minh` - Asia/Ho_Chi_Minh * `Asia/Hong_Kong` - Asia/Hong_Kong * `Asia/Hovd` - Asia/Hovd * `Asia/Irkutsk` - Asia/Irkutsk * `Asia/Istanbul` - Asia/Istanbul * `Asia/Jakarta` - Asia/Jakarta * `Asia/Jayapura` - Asia/Jayapura * `Asia/Jerusalem` - Asia/Jerusalem * `Asia/Kabul` - Asia/Kabul * `Asia/Kamchatka` - Asia/Kamchatka * `Asia/Karachi` - Asia/Karachi * `Asia/Kashgar` - Asia/Kashgar * `Asia/Kathmandu` - Asia/Kathmandu * `Asia/Katmandu` - Asia/Katmandu * `Asia/Khandyga` - Asia/Khandyga * `Asia/Kolkata` - Asia/Kolkata * `Asia/Krasnoyarsk` - Asia/Krasnoyarsk * `Asia/Kuala_Lumpur` - Asia/Kuala_Lumpur * `Asia/Kuching` - Asia/Kuching * `Asia/Kuwait` - Asia/Kuwait * `Asia/Macao` - Asia/Macao * `Asia/Macau` - Asia/Macau * `Asia/Magadan` - Asia/Magadan * `Asia/Makassar` - Asia/Makassar * `Asia/Manila` - Asia/Manila * `Asia/Muscat` - Asia/Muscat * `Asia/Nicosia` - Asia/Nicosia * `Asia/Novokuznetsk` - Asia/Novokuznetsk * `Asia/Novosibirsk` - Asia/Novosibirsk * `Asia/Omsk` - Asia/Omsk * `Asia/Oral` - Asia/Oral * `Asia/Phnom_Penh` - Asia/Phnom_Penh * `Asia/Pontianak` - Asia/Pontianak * `Asia/Pyongyang` - Asia/Pyongyang * `Asia/Qatar` - Asia/Qatar * `Asia/Qostanay` - Asia/Qostanay * `Asia/Qyzylorda` - Asia/Qyzylorda * `Asia/Rangoon` - Asia/Rangoon * `Asia/Riyadh` - Asia/Riyadh * `Asia/Saigon` - Asia/Saigon * `Asia/Sakhalin` - Asia/Sakhalin * `Asia/Samarkand` - Asia/Samarkand * `Asia/Seoul` - Asia/Seoul * `Asia/Shanghai` - Asia/Shanghai * `Asia/Singapore` - Asia/Singapore * `Asia/Srednekolymsk` - Asia/Srednekolymsk * `Asia/Taipei` - Asia/Taipei * `Asia/Tashkent` - Asia/Tashkent * `Asia/Tbilisi` - Asia/Tbilisi * `Asia/Tehran` - Asia/Tehran * `Asia/Tel_Aviv` - Asia/Tel_Aviv * `Asia/Thimbu` - Asia/Thimbu * `Asia/Thimphu` - Asia/Thimphu * `Asia/Tokyo` - Asia/Tokyo * `Asia/Tomsk` - Asia/Tomsk * `Asia/Ujung_Pandang` - Asia/Ujung_Pandang * `Asia/Ulaanbaatar` - Asia/Ulaanbaatar * `Asia/Ulan_Bator` - Asia/Ulan_Bator * `Asia/Urumqi` - Asia/Urumqi * `Asia/Ust-Nera` - Asia/Ust-Nera * `Asia/Vientiane` - Asia/Vientiane * `Asia/Vladivostok` - Asia/Vladivostok * `Asia/Yakutsk` - Asia/Yakutsk * `Asia/Yangon` - Asia/Yangon * `Asia/Yekaterinburg` - Asia/Yekaterinburg * `Asia/Yerevan` - Asia/Yerevan * `Atlantic/Azores` - Atlantic/Azores * `Atlantic/Bermuda` - Atlantic/Bermuda * `Atlantic/Canary` - Atlantic/Canary * `Atlantic/Cape_Verde` - Atlantic/Cape_Verde * `Atlantic/Faeroe` - Atlantic/Faeroe * `Atlantic/Faroe` - Atlantic/Faroe * `Atlantic/Jan_Mayen` - Atlantic/Jan_Mayen * `Atlantic/Madeira` - Atlantic/Madeira * `Atlantic/Reykjavik` - Atlantic/Reykjavik * `Atlantic/South_Georgia` - Atlantic/South_Georgia * `Atlantic/St_Helena` - Atlantic/St_Helena * `Atlantic/Stanley` - Atlantic/Stanley * `Australia/ACT` - Australia/ACT * `Australia/Adelaide` - Australia/Adelaide * `Australia/Brisbane` - Australia/Brisbane * `Australia/Broken_Hill` - Australia/Broken_Hill * `Australia/Canberra` - Australia/Canberra * `Australia/Currie` - Australia/Currie * `Australia/Darwin` - Australia/Darwin * `Australia/Eucla` - Australia/Eucla * `Australia/Hobart` - Australia/Hobart * `Australia/LHI` - Australia/LHI * `Australia/Lindeman` - Australia/Lindeman * `Australia/Lord_Howe` - Australia/Lord_Howe * `Australia/Melbourne` - Australia/Melbourne * `Australia/NSW` - Australia/NSW * `Australia/North` - Australia/North * `Australia/Perth` - Australia/Perth * `Australia/Queensland` - Australia/Queensland * `Australia/South` - Australia/South * `Australia/Sydney` - Australia/Sydney * `Australia/Tasmania` - Australia/Tasmania * `Australia/Victoria` - Australia/Victoria * `Australia/West` - Australia/West * `Australia/Yancowinna` - Australia/Yancowinna * `Brazil/Acre` - Brazil/Acre * `Brazil/DeNoronha` - Brazil/DeNoronha * `Brazil/East` - Brazil/East * `Brazil/West` - Brazil/West * `CET` - CET * `CST6CDT` - CST6CDT * `Canada/Atlantic` - Canada/Atlantic * `Canada/Central` - Canada/Central * `Canada/Eastern` - Canada/Eastern * `Canada/Mountain` - Canada/Mountain * `Canada/Newfoundland` - Canada/Newfoundland * `Canada/Pacific` - Canada/Pacific * `Canada/Saskatchewan` - Canada/Saskatchewan * `Canada/Yukon` - Canada/Yukon * `Chile/Continental` - Chile/Continental * `Chile/EasterIsland` - Chile/EasterIsland * `Cuba` - Cuba * `EET` - EET * `EST` - EST * `EST5EDT` - EST5EDT * `Egypt` - Egypt * `Eire` - Eire * `Etc/GMT` - Etc/GMT * `Etc/GMT+0` - Etc/GMT+0 * `Etc/GMT+1` - Etc/GMT+1 * `Etc/GMT+10` - Etc/GMT+10 * `Etc/GMT+11` - Etc/GMT+11 * `Etc/GMT+12` - Etc/GMT+12 * `Etc/GMT+2` - Etc/GMT+2 * `Etc/GMT+3` - Etc/GMT+3 * `Etc/GMT+4` - Etc/GMT+4 * `Etc/GMT+5` - Etc/GMT+5 * `Etc/GMT+6` - Etc/GMT+6 * `Etc/GMT+7` - Etc/GMT+7 * `Etc/GMT+8` - Etc/GMT+8 * `Etc/GMT+9` - Etc/GMT+9 * `Etc/GMT-0` - Etc/GMT-0 * `Etc/GMT-1` - Etc/GMT-1 * `Etc/GMT-10` - Etc/GMT-10 * `Etc/GMT-11` - Etc/GMT-11 * `Etc/GMT-12` - Etc/GMT-12 * `Etc/GMT-13` - Etc/GMT-13 * `Etc/GMT-14` - Etc/GMT-14 * `Etc/GMT-2` - Etc/GMT-2 * `Etc/GMT-3` - Etc/GMT-3 * `Etc/GMT-4` - Etc/GMT-4 * `Etc/GMT-5` - Etc/GMT-5 * `Etc/GMT-6` - Etc/GMT-6 * `Etc/GMT-7` - Etc/GMT-7 * `Etc/GMT-8` - Etc/GMT-8 * `Etc/GMT-9` - Etc/GMT-9 * `Etc/GMT0` - Etc/GMT0 * `Etc/Greenwich` - Etc/Greenwich * `Etc/UCT` - Etc/UCT * `Etc/UTC` - Etc/UTC * `Etc/Universal` - Etc/Universal * `Etc/Zulu` - Etc/Zulu * `Europe/Amsterdam` - Europe/Amsterdam * `Europe/Andorra` - Europe/Andorra * `Europe/Astrakhan` - Europe/Astrakhan * `Europe/Athens` - Europe/Athens * `Europe/Belfast` - Europe/Belfast * `Europe/Belgrade` - Europe/Belgrade * `Europe/Berlin` - Europe/Berlin * `Europe/Bratislava` - Europe/Bratislava * `Europe/Brussels` - Europe/Brussels * `Europe/Bucharest` - Europe/Bucharest * `Europe/Budapest` - Europe/Budapest * `Europe/Busingen` - Europe/Busingen * `Europe/Chisinau` - Europe/Chisinau * `Europe/Copenhagen` - Europe/Copenhagen * `Europe/Dublin` - Europe/Dublin * `Europe/Gibraltar` - Europe/Gibraltar * `Europe/Guernsey` - Europe/Guernsey * `Europe/Helsinki` - Europe/Helsinki * `Europe/Isle_of_Man` - Europe/Isle_of_Man * `Europe/Istanbul` - Europe/Istanbul * `Europe/Jersey` - Europe/Jersey * `Europe/Kaliningrad` - Europe/Kaliningrad * `Europe/Kiev` - Europe/Kiev * `Europe/Kirov` - Europe/Kirov * `Europe/Kyiv` - Europe/Kyiv * `Europe/Lisbon` - Europe/Lisbon * `Europe/Ljubljana` - Europe/Ljubljana * `Europe/London` - Europe/London * `Europe/Luxembourg` - Europe/Luxembourg * `Europe/Madrid` - Europe/Madrid * `Europe/Malta` - Europe/Malta * `Europe/Mariehamn` - Europe/Mariehamn * `Europe/Minsk` - Europe/Minsk * `Europe/Monaco` - Europe/Monaco * `Europe/Moscow` - Europe/Moscow * `Europe/Nicosia` - Europe/Nicosia * `Europe/Oslo` - Europe/Oslo * `Europe/Paris` - Europe/Paris * `Europe/Podgorica` - Europe/Podgorica * `Europe/Prague` - Europe/Prague * `Europe/Riga` - Europe/Riga * `Europe/Rome` - Europe/Rome * `Europe/Samara` - Europe/Samara * `Europe/San_Marino` - Europe/San_Marino * `Europe/Sarajevo` - Europe/Sarajevo * `Europe/Saratov` - Europe/Saratov * `Europe/Simferopol` - Europe/Simferopol * `Europe/Skopje` - Europe/Skopje * `Europe/Sofia` - Europe/Sofia * `Europe/Stockholm` - Europe/Stockholm * `Europe/Tallinn` - Europe/Tallinn * `Europe/Tirane` - Europe/Tirane * `Europe/Tiraspol` - Europe/Tiraspol * `Europe/Ulyanovsk` - Europe/Ulyanovsk * `Europe/Uzhgorod` - Europe/Uzhgorod * `Europe/Vaduz` - Europe/Vaduz * `Europe/Vatican` - Europe/Vatican * `Europe/Vienna` - Europe/Vienna * `Europe/Vilnius` - Europe/Vilnius * `Europe/Volgograd` - Europe/Volgograd * `Europe/Warsaw` - Europe/Warsaw * `Europe/Zagreb` - Europe/Zagreb * `Europe/Zaporozhye` - Europe/Zaporozhye * `Europe/Zurich` - Europe/Zurich * `GB` - GB * `GB-Eire` - GB-Eire * `GMT` - GMT * `GMT+0` - GMT+0 * `GMT-0` - GMT-0 * `GMT0` - GMT0 * `Greenwich` - Greenwich * `HST` - HST * `Hongkong` - Hongkong * `Iceland` - Iceland * `Indian/Antananarivo` - Indian/Antananarivo * `Indian/Chagos` - Indian/Chagos * `Indian/Christmas` - Indian/Christmas * `Indian/Cocos` - Indian/Cocos * `Indian/Comoro` - Indian/Comoro * `Indian/Kerguelen` - Indian/Kerguelen * `Indian/Mahe` - Indian/Mahe * `Indian/Maldives` - Indian/Maldives * `Indian/Mauritius` - Indian/Mauritius * `Indian/Mayotte` - Indian/Mayotte * `Indian/Reunion` - Indian/Reunion * `Iran` - Iran * `Israel` - Israel * `Jamaica` - Jamaica * `Japan` - Japan * `Kwajalein` - Kwajalein * `Libya` - Libya * `MET` - MET * `MST` - MST * `MST7MDT` - MST7MDT * `Mexico/BajaNorte` - Mexico/BajaNorte * `Mexico/BajaSur` - Mexico/BajaSur * `Mexico/General` - Mexico/General * `NZ` - NZ * `NZ-CHAT` - NZ-CHAT * `Navajo` - Navajo * `PRC` - PRC * `PST8PDT` - PST8PDT * `Pacific/Apia` - Pacific/Apia * `Pacific/Auckland` - Pacific/Auckland * `Pacific/Bougainville` - Pacific/Bougainville * `Pacific/Chatham` - Pacific/Chatham * `Pacific/Chuuk` - Pacific/Chuuk * `Pacific/Easter` - Pacific/Easter * `Pacific/Efate` - Pacific/Efate * `Pacific/Enderbury` - Pacific/Enderbury * `Pacific/Fakaofo` - Pacific/Fakaofo * `Pacific/Fiji` - Pacific/Fiji * `Pacific/Funafuti` - Pacific/Funafuti * `Pacific/Galapagos` - Pacific/Galapagos * `Pacific/Gambier` - Pacific/Gambier * `Pacific/Guadalcanal` - Pacific/Guadalcanal * `Pacific/Guam` - Pacific/Guam * `Pacific/Honolulu` - Pacific/Honolulu * `Pacific/Johnston` - Pacific/Johnston * `Pacific/Kanton` - Pacific/Kanton * `Pacific/Kiritimati` - Pacific/Kiritimati * `Pacific/Kosrae` - Pacific/Kosrae * `Pacific/Kwajalein` - Pacific/Kwajalein * `Pacific/Majuro` - Pacific/Majuro * `Pacific/Marquesas` - Pacific/Marquesas * `Pacific/Midway` - Pacific/Midway * `Pacific/Nauru` - Pacific/Nauru * `Pacific/Niue` - Pacific/Niue * `Pacific/Norfolk` - Pacific/Norfolk * `Pacific/Noumea` - Pacific/Noumea * `Pacific/Pago_Pago` - Pacific/Pago_Pago * `Pacific/Palau` - Pacific/Palau * `Pacific/Pitcairn` - Pacific/Pitcairn * `Pacific/Pohnpei` - Pacific/Pohnpei * `Pacific/Ponape` - Pacific/Ponape * `Pacific/Port_Moresby` - Pacific/Port_Moresby * `Pacific/Rarotonga` - Pacific/Rarotonga * `Pacific/Saipan` - Pacific/Saipan * `Pacific/Samoa` - Pacific/Samoa * `Pacific/Tahiti` - Pacific/Tahiti * `Pacific/Tarawa` - Pacific/Tarawa * `Pacific/Tongatapu` - Pacific/Tongatapu * `Pacific/Truk` - Pacific/Truk * `Pacific/Wake` - Pacific/Wake * `Pacific/Wallis` - Pacific/Wallis * `Pacific/Yap` - Pacific/Yap * `Poland` - Poland * `Portugal` - Portugal * `ROC` - ROC * `ROK` - ROK * `Singapore` - Singapore * `Turkey` - Turkey * `UCT` - UCT * `US/Alaska` - US/Alaska * `US/Aleutian` - US/Aleutian * `US/Arizona` - US/Arizona * `US/Central` - US/Central * `US/East-Indiana` - US/East-Indiana * `US/Eastern` - US/Eastern * `US/Hawaii` - US/Hawaii * `US/Indiana-Starke` - US/Indiana-Starke * `US/Michigan` - US/Michigan * `US/Mountain` - US/Mountain * `US/Pacific` - US/Pacific * `US/Samoa` - US/Samoa * `UTC` - UTC * `Universal` - Universal * `W-SU` - W-SU * `WET` - WET * `Zulu` - Zulu */
+  timezone?: TimezoneEnum | (string & {}) | null;
+  /** Day-of-week offset for weekly intervals (0=Sunday, 6=Saturday). Only valid when interval is 'week'. */
+  offset_day?: number | null;
+  /** Hour-of-day offset (0-23) for daily and weekly intervals. Only valid when interval is 'day' or 'week'. */
+  offset_hour?: number | null;
+}
+export const CreateBatchExportsPauseRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+    name: S.optional(S.String),
+    model: S.optional(S.NullOr(CreateBatchExportsPauseRequestModel)),
+    destination: S.optional(BatchExportDestination),
+    interval: S.optional(BatchExportIntervalEnum),
+    paused: S.optional(S.Boolean),
+    last_paused_at: S.optional(S.NullOr(S.String)),
+    start_at: S.optional(S.NullOr(S.String)),
+    end_at: S.optional(S.NullOr(S.String)),
+    hogql_query: S.optional(S.String),
+    filters: S.optional(S.Unknown),
+    timezone: S.optional(S.NullOr(TimezoneEnum)),
+    offset_day: S.optional(S.NullOr(S.Number)),
+    offset_hour: S.optional(S.NullOr(S.Number)),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/api/projects/{project_id}/batch_exports/{id}/pause/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateBatchExportsPauseRequest",
+}) as any as S.Schema<CreateBatchExportsPauseRequest>;
+
+export interface CreateBatchExportsPauseResponse {}
+export const CreateBatchExportsPauseResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "CreateBatchExportsPauseResponse",
+}) as any as S.Schema<CreateBatchExportsPauseResponse>;
+
+/** Which model this BatchExport is exporting. * `events` - Events * `persons` - Persons * `sessions` - Sessions * `hogql` - Hogql */
+export type CreateBatchExportsRunTestStepRequestModel = ModelEnum | BlankEnum;
+export const CreateBatchExportsRunTestStepRequestModel =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateBatchExportsRunTestStepRequestModel>;
+
+export interface CreateBatchExportsRunTestStepRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this batch export. */
+  id: string;
+  /** A human-readable name for this BatchExport. */
+  name?: string;
+  /** Which model this BatchExport is exporting. * `events` - Events * `persons` - Persons * `sessions` - Sessions * `hogql` - Hogql */
+  model?: CreateBatchExportsRunTestStepRequestModel | null;
+  /** Destination configuration (type, config, and optional integration). */
+  destination?: BatchExportDestination;
+  /** How often the batch export should run. * `hour` - hour * `day` - day * `week` - week * `every 5 minutes` - every 5 minutes * `every 15 minutes` - every 15 minutes */
+  interval?: BatchExportIntervalEnum | (string & {});
+  /** Whether this BatchExport is paused or not. */
+  paused?: boolean;
+  /** The timestamp at which this BatchExport was last paused. */
+  last_paused_at?: string | null;
+  /** Time before which any Batch Export runs won't be triggered. */
+  start_at?: string | null;
+  /** Time after which any Batch Export runs won't be triggered. */
+  end_at?: string | null;
+  /** Optional HogQL SELECT defining a custom model schema. Only recommended in advanced use cases. */
+  hogql_query?: string;
+  filters?: unknown;
+  /** IANA timezone name controlling daily and weekly interval boundaries. Defaults to UTC. * `Africa/Abidjan` - Africa/Abidjan * `Africa/Accra` - Africa/Accra * `Africa/Addis_Ababa` - Africa/Addis_Ababa * `Africa/Algiers` - Africa/Algiers * `Africa/Asmara` - Africa/Asmara * `Africa/Asmera` - Africa/Asmera * `Africa/Bamako` - Africa/Bamako * `Africa/Bangui` - Africa/Bangui * `Africa/Banjul` - Africa/Banjul * `Africa/Bissau` - Africa/Bissau * `Africa/Blantyre` - Africa/Blantyre * `Africa/Brazzaville` - Africa/Brazzaville * `Africa/Bujumbura` - Africa/Bujumbura * `Africa/Cairo` - Africa/Cairo * `Africa/Casablanca` - Africa/Casablanca * `Africa/Ceuta` - Africa/Ceuta * `Africa/Conakry` - Africa/Conakry * `Africa/Dakar` - Africa/Dakar * `Africa/Dar_es_Salaam` - Africa/Dar_es_Salaam * `Africa/Djibouti` - Africa/Djibouti * `Africa/Douala` - Africa/Douala * `Africa/El_Aaiun` - Africa/El_Aaiun * `Africa/Freetown` - Africa/Freetown * `Africa/Gaborone` - Africa/Gaborone * `Africa/Harare` - Africa/Harare * `Africa/Johannesburg` - Africa/Johannesburg * `Africa/Juba` - Africa/Juba * `Africa/Kampala` - Africa/Kampala * `Africa/Khartoum` - Africa/Khartoum * `Africa/Kigali` - Africa/Kigali * `Africa/Kinshasa` - Africa/Kinshasa * `Africa/Lagos` - Africa/Lagos * `Africa/Libreville` - Africa/Libreville * `Africa/Lome` - Africa/Lome * `Africa/Luanda` - Africa/Luanda * `Africa/Lubumbashi` - Africa/Lubumbashi * `Africa/Lusaka` - Africa/Lusaka * `Africa/Malabo` - Africa/Malabo * `Africa/Maputo` - Africa/Maputo * `Africa/Maseru` - Africa/Maseru * `Africa/Mbabane` - Africa/Mbabane * `Africa/Mogadishu` - Africa/Mogadishu * `Africa/Monrovia` - Africa/Monrovia * `Africa/Nairobi` - Africa/Nairobi * `Africa/Ndjamena` - Africa/Ndjamena * `Africa/Niamey` - Africa/Niamey * `Africa/Nouakchott` - Africa/Nouakchott * `Africa/Ouagadougou` - Africa/Ouagadougou * `Africa/Porto-Novo` - Africa/Porto-Novo * `Africa/Sao_Tome` - Africa/Sao_Tome * `Africa/Timbuktu` - Africa/Timbuktu * `Africa/Tripoli` - Africa/Tripoli * `Africa/Tunis` - Africa/Tunis * `Africa/Windhoek` - Africa/Windhoek * `America/Adak` - America/Adak * `America/Anchorage` - America/Anchorage * `America/Anguilla` - America/Anguilla * `America/Antigua` - America/Antigua * `America/Araguaina` - America/Araguaina * `America/Argentina/Buenos_Aires` - America/Argentina/Buenos_Aires * `America/Argentina/Catamarca` - America/Argentina/Catamarca * `America/Argentina/ComodRivadavia` - America/Argentina/ComodRivadavia * `America/Argentina/Cordoba` - America/Argentina/Cordoba * `America/Argentina/Jujuy` - America/Argentina/Jujuy * `America/Argentina/La_Rioja` - America/Argentina/La_Rioja * `America/Argentina/Mendoza` - America/Argentina/Mendoza * `America/Argentina/Rio_Gallegos` - America/Argentina/Rio_Gallegos * `America/Argentina/Salta` - America/Argentina/Salta * `America/Argentina/San_Juan` - America/Argentina/San_Juan * `America/Argentina/San_Luis` - America/Argentina/San_Luis * `America/Argentina/Tucuman` - America/Argentina/Tucuman * `America/Argentina/Ushuaia` - America/Argentina/Ushuaia * `America/Aruba` - America/Aruba * `America/Asuncion` - America/Asuncion * `America/Atikokan` - America/Atikokan * `America/Atka` - America/Atka * `America/Bahia` - America/Bahia * `America/Bahia_Banderas` - America/Bahia_Banderas * `America/Barbados` - America/Barbados * `America/Belem` - America/Belem * `America/Belize` - America/Belize * `America/Blanc-Sablon` - America/Blanc-Sablon * `America/Boa_Vista` - America/Boa_Vista * `America/Bogota` - America/Bogota * `America/Boise` - America/Boise * `America/Buenos_Aires` - America/Buenos_Aires * `America/Cambridge_Bay` - America/Cambridge_Bay * `America/Campo_Grande` - America/Campo_Grande * `America/Cancun` - America/Cancun * `America/Caracas` - America/Caracas * `America/Catamarca` - America/Catamarca * `America/Cayenne` - America/Cayenne * `America/Cayman` - America/Cayman * `America/Chicago` - America/Chicago * `America/Chihuahua` - America/Chihuahua * `America/Ciudad_Juarez` - America/Ciudad_Juarez * `America/Coral_Harbour` - America/Coral_Harbour * `America/Cordoba` - America/Cordoba * `America/Costa_Rica` - America/Costa_Rica * `America/Creston` - America/Creston * `America/Cuiaba` - America/Cuiaba * `America/Curacao` - America/Curacao * `America/Danmarkshavn` - America/Danmarkshavn * `America/Dawson` - America/Dawson * `America/Dawson_Creek` - America/Dawson_Creek * `America/Denver` - America/Denver * `America/Detroit` - America/Detroit * `America/Dominica` - America/Dominica * `America/Edmonton` - America/Edmonton * `America/Eirunepe` - America/Eirunepe * `America/El_Salvador` - America/El_Salvador * `America/Ensenada` - America/Ensenada * `America/Fort_Nelson` - America/Fort_Nelson * `America/Fort_Wayne` - America/Fort_Wayne * `America/Fortaleza` - America/Fortaleza * `America/Glace_Bay` - America/Glace_Bay * `America/Godthab` - America/Godthab * `America/Goose_Bay` - America/Goose_Bay * `America/Grand_Turk` - America/Grand_Turk * `America/Grenada` - America/Grenada * `America/Guadeloupe` - America/Guadeloupe * `America/Guatemala` - America/Guatemala * `America/Guayaquil` - America/Guayaquil * `America/Guyana` - America/Guyana * `America/Halifax` - America/Halifax * `America/Havana` - America/Havana * `America/Hermosillo` - America/Hermosillo * `America/Indiana/Indianapolis` - America/Indiana/Indianapolis * `America/Indiana/Knox` - America/Indiana/Knox * `America/Indiana/Marengo` - America/Indiana/Marengo * `America/Indiana/Petersburg` - America/Indiana/Petersburg * `America/Indiana/Tell_City` - America/Indiana/Tell_City * `America/Indiana/Vevay` - America/Indiana/Vevay * `America/Indiana/Vincennes` - America/Indiana/Vincennes * `America/Indiana/Winamac` - America/Indiana/Winamac * `America/Indianapolis` - America/Indianapolis * `America/Inuvik` - America/Inuvik * `America/Iqaluit` - America/Iqaluit * `America/Jamaica` - America/Jamaica * `America/Jujuy` - America/Jujuy * `America/Juneau` - America/Juneau * `America/Kentucky/Louisville` - America/Kentucky/Louisville * `America/Kentucky/Monticello` - America/Kentucky/Monticello * `America/Knox_IN` - America/Knox_IN * `America/Kralendijk` - America/Kralendijk * `America/La_Paz` - America/La_Paz * `America/Lima` - America/Lima * `America/Los_Angeles` - America/Los_Angeles * `America/Louisville` - America/Louisville * `America/Lower_Princes` - America/Lower_Princes * `America/Maceio` - America/Maceio * `America/Managua` - America/Managua * `America/Manaus` - America/Manaus * `America/Marigot` - America/Marigot * `America/Martinique` - America/Martinique * `America/Matamoros` - America/Matamoros * `America/Mazatlan` - America/Mazatlan * `America/Mendoza` - America/Mendoza * `America/Menominee` - America/Menominee * `America/Merida` - America/Merida * `America/Metlakatla` - America/Metlakatla * `America/Mexico_City` - America/Mexico_City * `America/Miquelon` - America/Miquelon * `America/Moncton` - America/Moncton * `America/Monterrey` - America/Monterrey * `America/Montevideo` - America/Montevideo * `America/Montreal` - America/Montreal * `America/Montserrat` - America/Montserrat * `America/Nassau` - America/Nassau * `America/New_York` - America/New_York * `America/Nipigon` - America/Nipigon * `America/Nome` - America/Nome * `America/Noronha` - America/Noronha * `America/North_Dakota/Beulah` - America/North_Dakota/Beulah * `America/North_Dakota/Center` - America/North_Dakota/Center * `America/North_Dakota/New_Salem` - America/North_Dakota/New_Salem * `America/Nuuk` - America/Nuuk * `America/Ojinaga` - America/Ojinaga * `America/Panama` - America/Panama * `America/Pangnirtung` - America/Pangnirtung * `America/Paramaribo` - America/Paramaribo * `America/Phoenix` - America/Phoenix * `America/Port-au-Prince` - America/Port-au-Prince * `America/Port_of_Spain` - America/Port_of_Spain * `America/Porto_Acre` - America/Porto_Acre * `America/Porto_Velho` - America/Porto_Velho * `America/Puerto_Rico` - America/Puerto_Rico * `America/Punta_Arenas` - America/Punta_Arenas * `America/Rainy_River` - America/Rainy_River * `America/Rankin_Inlet` - America/Rankin_Inlet * `America/Recife` - America/Recife * `America/Regina` - America/Regina * `America/Resolute` - America/Resolute * `America/Rio_Branco` - America/Rio_Branco * `America/Rosario` - America/Rosario * `America/Santa_Isabel` - America/Santa_Isabel * `America/Santarem` - America/Santarem * `America/Santiago` - America/Santiago * `America/Santo_Domingo` - America/Santo_Domingo * `America/Sao_Paulo` - America/Sao_Paulo * `America/Scoresbysund` - America/Scoresbysund * `America/Shiprock` - America/Shiprock * `America/Sitka` - America/Sitka * `America/St_Barthelemy` - America/St_Barthelemy * `America/St_Johns` - America/St_Johns * `America/St_Kitts` - America/St_Kitts * `America/St_Lucia` - America/St_Lucia * `America/St_Thomas` - America/St_Thomas * `America/St_Vincent` - America/St_Vincent * `America/Swift_Current` - America/Swift_Current * `America/Tegucigalpa` - America/Tegucigalpa * `America/Thule` - America/Thule * `America/Thunder_Bay` - America/Thunder_Bay * `America/Tijuana` - America/Tijuana * `America/Toronto` - America/Toronto * `America/Tortola` - America/Tortola * `America/Vancouver` - America/Vancouver * `America/Virgin` - America/Virgin * `America/Whitehorse` - America/Whitehorse * `America/Winnipeg` - America/Winnipeg * `America/Yakutat` - America/Yakutat * `America/Yellowknife` - America/Yellowknife * `Antarctica/Casey` - Antarctica/Casey * `Antarctica/Davis` - Antarctica/Davis * `Antarctica/DumontDUrville` - Antarctica/DumontDUrville * `Antarctica/Macquarie` - Antarctica/Macquarie * `Antarctica/Mawson` - Antarctica/Mawson * `Antarctica/McMurdo` - Antarctica/McMurdo * `Antarctica/Palmer` - Antarctica/Palmer * `Antarctica/Rothera` - Antarctica/Rothera * `Antarctica/South_Pole` - Antarctica/South_Pole * `Antarctica/Syowa` - Antarctica/Syowa * `Antarctica/Troll` - Antarctica/Troll * `Antarctica/Vostok` - Antarctica/Vostok * `Arctic/Longyearbyen` - Arctic/Longyearbyen * `Asia/Aden` - Asia/Aden * `Asia/Almaty` - Asia/Almaty * `Asia/Amman` - Asia/Amman * `Asia/Anadyr` - Asia/Anadyr * `Asia/Aqtau` - Asia/Aqtau * `Asia/Aqtobe` - Asia/Aqtobe * `Asia/Ashgabat` - Asia/Ashgabat * `Asia/Ashkhabad` - Asia/Ashkhabad * `Asia/Atyrau` - Asia/Atyrau * `Asia/Baghdad` - Asia/Baghdad * `Asia/Bahrain` - Asia/Bahrain * `Asia/Baku` - Asia/Baku * `Asia/Bangkok` - Asia/Bangkok * `Asia/Barnaul` - Asia/Barnaul * `Asia/Beirut` - Asia/Beirut * `Asia/Bishkek` - Asia/Bishkek * `Asia/Brunei` - Asia/Brunei * `Asia/Calcutta` - Asia/Calcutta * `Asia/Chita` - Asia/Chita * `Asia/Choibalsan` - Asia/Choibalsan * `Asia/Chongqing` - Asia/Chongqing * `Asia/Chungking` - Asia/Chungking * `Asia/Colombo` - Asia/Colombo * `Asia/Dacca` - Asia/Dacca * `Asia/Damascus` - Asia/Damascus * `Asia/Dhaka` - Asia/Dhaka * `Asia/Dili` - Asia/Dili * `Asia/Dubai` - Asia/Dubai * `Asia/Dushanbe` - Asia/Dushanbe * `Asia/Famagusta` - Asia/Famagusta * `Asia/Gaza` - Asia/Gaza * `Asia/Harbin` - Asia/Harbin * `Asia/Hebron` - Asia/Hebron * `Asia/Ho_Chi_Minh` - Asia/Ho_Chi_Minh * `Asia/Hong_Kong` - Asia/Hong_Kong * `Asia/Hovd` - Asia/Hovd * `Asia/Irkutsk` - Asia/Irkutsk * `Asia/Istanbul` - Asia/Istanbul * `Asia/Jakarta` - Asia/Jakarta * `Asia/Jayapura` - Asia/Jayapura * `Asia/Jerusalem` - Asia/Jerusalem * `Asia/Kabul` - Asia/Kabul * `Asia/Kamchatka` - Asia/Kamchatka * `Asia/Karachi` - Asia/Karachi * `Asia/Kashgar` - Asia/Kashgar * `Asia/Kathmandu` - Asia/Kathmandu * `Asia/Katmandu` - Asia/Katmandu * `Asia/Khandyga` - Asia/Khandyga * `Asia/Kolkata` - Asia/Kolkata * `Asia/Krasnoyarsk` - Asia/Krasnoyarsk * `Asia/Kuala_Lumpur` - Asia/Kuala_Lumpur * `Asia/Kuching` - Asia/Kuching * `Asia/Kuwait` - Asia/Kuwait * `Asia/Macao` - Asia/Macao * `Asia/Macau` - Asia/Macau * `Asia/Magadan` - Asia/Magadan * `Asia/Makassar` - Asia/Makassar * `Asia/Manila` - Asia/Manila * `Asia/Muscat` - Asia/Muscat * `Asia/Nicosia` - Asia/Nicosia * `Asia/Novokuznetsk` - Asia/Novokuznetsk * `Asia/Novosibirsk` - Asia/Novosibirsk * `Asia/Omsk` - Asia/Omsk * `Asia/Oral` - Asia/Oral * `Asia/Phnom_Penh` - Asia/Phnom_Penh * `Asia/Pontianak` - Asia/Pontianak * `Asia/Pyongyang` - Asia/Pyongyang * `Asia/Qatar` - Asia/Qatar * `Asia/Qostanay` - Asia/Qostanay * `Asia/Qyzylorda` - Asia/Qyzylorda * `Asia/Rangoon` - Asia/Rangoon * `Asia/Riyadh` - Asia/Riyadh * `Asia/Saigon` - Asia/Saigon * `Asia/Sakhalin` - Asia/Sakhalin * `Asia/Samarkand` - Asia/Samarkand * `Asia/Seoul` - Asia/Seoul * `Asia/Shanghai` - Asia/Shanghai * `Asia/Singapore` - Asia/Singapore * `Asia/Srednekolymsk` - Asia/Srednekolymsk * `Asia/Taipei` - Asia/Taipei * `Asia/Tashkent` - Asia/Tashkent * `Asia/Tbilisi` - Asia/Tbilisi * `Asia/Tehran` - Asia/Tehran * `Asia/Tel_Aviv` - Asia/Tel_Aviv * `Asia/Thimbu` - Asia/Thimbu * `Asia/Thimphu` - Asia/Thimphu * `Asia/Tokyo` - Asia/Tokyo * `Asia/Tomsk` - Asia/Tomsk * `Asia/Ujung_Pandang` - Asia/Ujung_Pandang * `Asia/Ulaanbaatar` - Asia/Ulaanbaatar * `Asia/Ulan_Bator` - Asia/Ulan_Bator * `Asia/Urumqi` - Asia/Urumqi * `Asia/Ust-Nera` - Asia/Ust-Nera * `Asia/Vientiane` - Asia/Vientiane * `Asia/Vladivostok` - Asia/Vladivostok * `Asia/Yakutsk` - Asia/Yakutsk * `Asia/Yangon` - Asia/Yangon * `Asia/Yekaterinburg` - Asia/Yekaterinburg * `Asia/Yerevan` - Asia/Yerevan * `Atlantic/Azores` - Atlantic/Azores * `Atlantic/Bermuda` - Atlantic/Bermuda * `Atlantic/Canary` - Atlantic/Canary * `Atlantic/Cape_Verde` - Atlantic/Cape_Verde * `Atlantic/Faeroe` - Atlantic/Faeroe * `Atlantic/Faroe` - Atlantic/Faroe * `Atlantic/Jan_Mayen` - Atlantic/Jan_Mayen * `Atlantic/Madeira` - Atlantic/Madeira * `Atlantic/Reykjavik` - Atlantic/Reykjavik * `Atlantic/South_Georgia` - Atlantic/South_Georgia * `Atlantic/St_Helena` - Atlantic/St_Helena * `Atlantic/Stanley` - Atlantic/Stanley * `Australia/ACT` - Australia/ACT * `Australia/Adelaide` - Australia/Adelaide * `Australia/Brisbane` - Australia/Brisbane * `Australia/Broken_Hill` - Australia/Broken_Hill * `Australia/Canberra` - Australia/Canberra * `Australia/Currie` - Australia/Currie * `Australia/Darwin` - Australia/Darwin * `Australia/Eucla` - Australia/Eucla * `Australia/Hobart` - Australia/Hobart * `Australia/LHI` - Australia/LHI * `Australia/Lindeman` - Australia/Lindeman * `Australia/Lord_Howe` - Australia/Lord_Howe * `Australia/Melbourne` - Australia/Melbourne * `Australia/NSW` - Australia/NSW * `Australia/North` - Australia/North * `Australia/Perth` - Australia/Perth * `Australia/Queensland` - Australia/Queensland * `Australia/South` - Australia/South * `Australia/Sydney` - Australia/Sydney * `Australia/Tasmania` - Australia/Tasmania * `Australia/Victoria` - Australia/Victoria * `Australia/West` - Australia/West * `Australia/Yancowinna` - Australia/Yancowinna * `Brazil/Acre` - Brazil/Acre * `Brazil/DeNoronha` - Brazil/DeNoronha * `Brazil/East` - Brazil/East * `Brazil/West` - Brazil/West * `CET` - CET * `CST6CDT` - CST6CDT * `Canada/Atlantic` - Canada/Atlantic * `Canada/Central` - Canada/Central * `Canada/Eastern` - Canada/Eastern * `Canada/Mountain` - Canada/Mountain * `Canada/Newfoundland` - Canada/Newfoundland * `Canada/Pacific` - Canada/Pacific * `Canada/Saskatchewan` - Canada/Saskatchewan * `Canada/Yukon` - Canada/Yukon * `Chile/Continental` - Chile/Continental * `Chile/EasterIsland` - Chile/EasterIsland * `Cuba` - Cuba * `EET` - EET * `EST` - EST * `EST5EDT` - EST5EDT * `Egypt` - Egypt * `Eire` - Eire * `Etc/GMT` - Etc/GMT * `Etc/GMT+0` - Etc/GMT+0 * `Etc/GMT+1` - Etc/GMT+1 * `Etc/GMT+10` - Etc/GMT+10 * `Etc/GMT+11` - Etc/GMT+11 * `Etc/GMT+12` - Etc/GMT+12 * `Etc/GMT+2` - Etc/GMT+2 * `Etc/GMT+3` - Etc/GMT+3 * `Etc/GMT+4` - Etc/GMT+4 * `Etc/GMT+5` - Etc/GMT+5 * `Etc/GMT+6` - Etc/GMT+6 * `Etc/GMT+7` - Etc/GMT+7 * `Etc/GMT+8` - Etc/GMT+8 * `Etc/GMT+9` - Etc/GMT+9 * `Etc/GMT-0` - Etc/GMT-0 * `Etc/GMT-1` - Etc/GMT-1 * `Etc/GMT-10` - Etc/GMT-10 * `Etc/GMT-11` - Etc/GMT-11 * `Etc/GMT-12` - Etc/GMT-12 * `Etc/GMT-13` - Etc/GMT-13 * `Etc/GMT-14` - Etc/GMT-14 * `Etc/GMT-2` - Etc/GMT-2 * `Etc/GMT-3` - Etc/GMT-3 * `Etc/GMT-4` - Etc/GMT-4 * `Etc/GMT-5` - Etc/GMT-5 * `Etc/GMT-6` - Etc/GMT-6 * `Etc/GMT-7` - Etc/GMT-7 * `Etc/GMT-8` - Etc/GMT-8 * `Etc/GMT-9` - Etc/GMT-9 * `Etc/GMT0` - Etc/GMT0 * `Etc/Greenwich` - Etc/Greenwich * `Etc/UCT` - Etc/UCT * `Etc/UTC` - Etc/UTC * `Etc/Universal` - Etc/Universal * `Etc/Zulu` - Etc/Zulu * `Europe/Amsterdam` - Europe/Amsterdam * `Europe/Andorra` - Europe/Andorra * `Europe/Astrakhan` - Europe/Astrakhan * `Europe/Athens` - Europe/Athens * `Europe/Belfast` - Europe/Belfast * `Europe/Belgrade` - Europe/Belgrade * `Europe/Berlin` - Europe/Berlin * `Europe/Bratislava` - Europe/Bratislava * `Europe/Brussels` - Europe/Brussels * `Europe/Bucharest` - Europe/Bucharest * `Europe/Budapest` - Europe/Budapest * `Europe/Busingen` - Europe/Busingen * `Europe/Chisinau` - Europe/Chisinau * `Europe/Copenhagen` - Europe/Copenhagen * `Europe/Dublin` - Europe/Dublin * `Europe/Gibraltar` - Europe/Gibraltar * `Europe/Guernsey` - Europe/Guernsey * `Europe/Helsinki` - Europe/Helsinki * `Europe/Isle_of_Man` - Europe/Isle_of_Man * `Europe/Istanbul` - Europe/Istanbul * `Europe/Jersey` - Europe/Jersey * `Europe/Kaliningrad` - Europe/Kaliningrad * `Europe/Kiev` - Europe/Kiev * `Europe/Kirov` - Europe/Kirov * `Europe/Kyiv` - Europe/Kyiv * `Europe/Lisbon` - Europe/Lisbon * `Europe/Ljubljana` - Europe/Ljubljana * `Europe/London` - Europe/London * `Europe/Luxembourg` - Europe/Luxembourg * `Europe/Madrid` - Europe/Madrid * `Europe/Malta` - Europe/Malta * `Europe/Mariehamn` - Europe/Mariehamn * `Europe/Minsk` - Europe/Minsk * `Europe/Monaco` - Europe/Monaco * `Europe/Moscow` - Europe/Moscow * `Europe/Nicosia` - Europe/Nicosia * `Europe/Oslo` - Europe/Oslo * `Europe/Paris` - Europe/Paris * `Europe/Podgorica` - Europe/Podgorica * `Europe/Prague` - Europe/Prague * `Europe/Riga` - Europe/Riga * `Europe/Rome` - Europe/Rome * `Europe/Samara` - Europe/Samara * `Europe/San_Marino` - Europe/San_Marino * `Europe/Sarajevo` - Europe/Sarajevo * `Europe/Saratov` - Europe/Saratov * `Europe/Simferopol` - Europe/Simferopol * `Europe/Skopje` - Europe/Skopje * `Europe/Sofia` - Europe/Sofia * `Europe/Stockholm` - Europe/Stockholm * `Europe/Tallinn` - Europe/Tallinn * `Europe/Tirane` - Europe/Tirane * `Europe/Tiraspol` - Europe/Tiraspol * `Europe/Ulyanovsk` - Europe/Ulyanovsk * `Europe/Uzhgorod` - Europe/Uzhgorod * `Europe/Vaduz` - Europe/Vaduz * `Europe/Vatican` - Europe/Vatican * `Europe/Vienna` - Europe/Vienna * `Europe/Vilnius` - Europe/Vilnius * `Europe/Volgograd` - Europe/Volgograd * `Europe/Warsaw` - Europe/Warsaw * `Europe/Zagreb` - Europe/Zagreb * `Europe/Zaporozhye` - Europe/Zaporozhye * `Europe/Zurich` - Europe/Zurich * `GB` - GB * `GB-Eire` - GB-Eire * `GMT` - GMT * `GMT+0` - GMT+0 * `GMT-0` - GMT-0 * `GMT0` - GMT0 * `Greenwich` - Greenwich * `HST` - HST * `Hongkong` - Hongkong * `Iceland` - Iceland * `Indian/Antananarivo` - Indian/Antananarivo * `Indian/Chagos` - Indian/Chagos * `Indian/Christmas` - Indian/Christmas * `Indian/Cocos` - Indian/Cocos * `Indian/Comoro` - Indian/Comoro * `Indian/Kerguelen` - Indian/Kerguelen * `Indian/Mahe` - Indian/Mahe * `Indian/Maldives` - Indian/Maldives * `Indian/Mauritius` - Indian/Mauritius * `Indian/Mayotte` - Indian/Mayotte * `Indian/Reunion` - Indian/Reunion * `Iran` - Iran * `Israel` - Israel * `Jamaica` - Jamaica * `Japan` - Japan * `Kwajalein` - Kwajalein * `Libya` - Libya * `MET` - MET * `MST` - MST * `MST7MDT` - MST7MDT * `Mexico/BajaNorte` - Mexico/BajaNorte * `Mexico/BajaSur` - Mexico/BajaSur * `Mexico/General` - Mexico/General * `NZ` - NZ * `NZ-CHAT` - NZ-CHAT * `Navajo` - Navajo * `PRC` - PRC * `PST8PDT` - PST8PDT * `Pacific/Apia` - Pacific/Apia * `Pacific/Auckland` - Pacific/Auckland * `Pacific/Bougainville` - Pacific/Bougainville * `Pacific/Chatham` - Pacific/Chatham * `Pacific/Chuuk` - Pacific/Chuuk * `Pacific/Easter` - Pacific/Easter * `Pacific/Efate` - Pacific/Efate * `Pacific/Enderbury` - Pacific/Enderbury * `Pacific/Fakaofo` - Pacific/Fakaofo * `Pacific/Fiji` - Pacific/Fiji * `Pacific/Funafuti` - Pacific/Funafuti * `Pacific/Galapagos` - Pacific/Galapagos * `Pacific/Gambier` - Pacific/Gambier * `Pacific/Guadalcanal` - Pacific/Guadalcanal * `Pacific/Guam` - Pacific/Guam * `Pacific/Honolulu` - Pacific/Honolulu * `Pacific/Johnston` - Pacific/Johnston * `Pacific/Kanton` - Pacific/Kanton * `Pacific/Kiritimati` - Pacific/Kiritimati * `Pacific/Kosrae` - Pacific/Kosrae * `Pacific/Kwajalein` - Pacific/Kwajalein * `Pacific/Majuro` - Pacific/Majuro * `Pacific/Marquesas` - Pacific/Marquesas * `Pacific/Midway` - Pacific/Midway * `Pacific/Nauru` - Pacific/Nauru * `Pacific/Niue` - Pacific/Niue * `Pacific/Norfolk` - Pacific/Norfolk * `Pacific/Noumea` - Pacific/Noumea * `Pacific/Pago_Pago` - Pacific/Pago_Pago * `Pacific/Palau` - Pacific/Palau * `Pacific/Pitcairn` - Pacific/Pitcairn * `Pacific/Pohnpei` - Pacific/Pohnpei * `Pacific/Ponape` - Pacific/Ponape * `Pacific/Port_Moresby` - Pacific/Port_Moresby * `Pacific/Rarotonga` - Pacific/Rarotonga * `Pacific/Saipan` - Pacific/Saipan * `Pacific/Samoa` - Pacific/Samoa * `Pacific/Tahiti` - Pacific/Tahiti * `Pacific/Tarawa` - Pacific/Tarawa * `Pacific/Tongatapu` - Pacific/Tongatapu * `Pacific/Truk` - Pacific/Truk * `Pacific/Wake` - Pacific/Wake * `Pacific/Wallis` - Pacific/Wallis * `Pacific/Yap` - Pacific/Yap * `Poland` - Poland * `Portugal` - Portugal * `ROC` - ROC * `ROK` - ROK * `Singapore` - Singapore * `Turkey` - Turkey * `UCT` - UCT * `US/Alaska` - US/Alaska * `US/Aleutian` - US/Aleutian * `US/Arizona` - US/Arizona * `US/Central` - US/Central * `US/East-Indiana` - US/East-Indiana * `US/Eastern` - US/Eastern * `US/Hawaii` - US/Hawaii * `US/Indiana-Starke` - US/Indiana-Starke * `US/Michigan` - US/Michigan * `US/Mountain` - US/Mountain * `US/Pacific` - US/Pacific * `US/Samoa` - US/Samoa * `UTC` - UTC * `Universal` - Universal * `W-SU` - W-SU * `WET` - WET * `Zulu` - Zulu */
+  timezone?: TimezoneEnum | (string & {}) | null;
+  /** Day-of-week offset for weekly intervals (0=Sunday, 6=Saturday). Only valid when interval is 'week'. */
+  offset_day?: number | null;
+  /** Hour-of-day offset (0-23) for daily and weekly intervals. Only valid when interval is 'day' or 'week'. */
+  offset_hour?: number | null;
+}
+export const CreateBatchExportsRunTestStepRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      id: S.String.pipe(T.Label()),
+      name: S.optional(S.String),
+      model: S.optional(S.NullOr(CreateBatchExportsRunTestStepRequestModel)),
+      destination: S.optional(BatchExportDestination),
+      interval: S.optional(BatchExportIntervalEnum),
+      paused: S.optional(S.Boolean),
+      last_paused_at: S.optional(S.NullOr(S.String)),
+      start_at: S.optional(S.NullOr(S.String)),
+      end_at: S.optional(S.NullOr(S.String)),
+      hogql_query: S.optional(S.String),
+      filters: S.optional(S.Unknown),
+      timezone: S.optional(S.NullOr(TimezoneEnum)),
+      offset_day: S.optional(S.NullOr(S.Number)),
+      offset_hour: S.optional(S.NullOr(S.Number)),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/projects/{project_id}/batch_exports/{id}/run_test_step/",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "CreateBatchExportsRunTestStepRequest",
+}) as any as S.Schema<CreateBatchExportsRunTestStepRequest>;
+
+export interface CreateBatchExportsRunTestStepResponse {}
+export const CreateBatchExportsRunTestStepResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "CreateBatchExportsRunTestStepResponse",
+}) as any as S.Schema<CreateBatchExportsRunTestStepResponse>;
+
+/** Which model this BatchExport is exporting. * `events` - Events * `persons` - Persons * `sessions` - Sessions * `hogql` - Hogql */
+export type CreateBatchExportsRunTestStepNewRequestModel =
+  | ModelEnum
+  | BlankEnum;
+export const CreateBatchExportsRunTestStepNewRequestModel =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<CreateBatchExportsRunTestStepNewRequestModel>;
+
+export interface CreateBatchExportsRunTestStepNewRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A human-readable name for this BatchExport. */
+  name?: string;
+  /** Which model this BatchExport is exporting. * `events` - Events * `persons` - Persons * `sessions` - Sessions * `hogql` - Hogql */
+  model?: CreateBatchExportsRunTestStepNewRequestModel | null;
+  /** Destination configuration (type, config, and optional integration). */
+  destination?: BatchExportDestination;
+  /** How often the batch export should run. * `hour` - hour * `day` - day * `week` - week * `every 5 minutes` - every 5 minutes * `every 15 minutes` - every 15 minutes */
+  interval?: BatchExportIntervalEnum | (string & {});
+  /** Whether this BatchExport is paused or not. */
+  paused?: boolean;
+  /** The timestamp at which this BatchExport was last paused. */
+  last_paused_at?: string | null;
+  /** Time before which any Batch Export runs won't be triggered. */
+  start_at?: string | null;
+  /** Time after which any Batch Export runs won't be triggered. */
+  end_at?: string | null;
+  /** Optional HogQL SELECT defining a custom model schema. Only recommended in advanced use cases. */
+  hogql_query?: string;
+  filters?: unknown;
+  /** IANA timezone name controlling daily and weekly interval boundaries. Defaults to UTC. * `Africa/Abidjan` - Africa/Abidjan * `Africa/Accra` - Africa/Accra * `Africa/Addis_Ababa` - Africa/Addis_Ababa * `Africa/Algiers` - Africa/Algiers * `Africa/Asmara` - Africa/Asmara * `Africa/Asmera` - Africa/Asmera * `Africa/Bamako` - Africa/Bamako * `Africa/Bangui` - Africa/Bangui * `Africa/Banjul` - Africa/Banjul * `Africa/Bissau` - Africa/Bissau * `Africa/Blantyre` - Africa/Blantyre * `Africa/Brazzaville` - Africa/Brazzaville * `Africa/Bujumbura` - Africa/Bujumbura * `Africa/Cairo` - Africa/Cairo * `Africa/Casablanca` - Africa/Casablanca * `Africa/Ceuta` - Africa/Ceuta * `Africa/Conakry` - Africa/Conakry * `Africa/Dakar` - Africa/Dakar * `Africa/Dar_es_Salaam` - Africa/Dar_es_Salaam * `Africa/Djibouti` - Africa/Djibouti * `Africa/Douala` - Africa/Douala * `Africa/El_Aaiun` - Africa/El_Aaiun * `Africa/Freetown` - Africa/Freetown * `Africa/Gaborone` - Africa/Gaborone * `Africa/Harare` - Africa/Harare * `Africa/Johannesburg` - Africa/Johannesburg * `Africa/Juba` - Africa/Juba * `Africa/Kampala` - Africa/Kampala * `Africa/Khartoum` - Africa/Khartoum * `Africa/Kigali` - Africa/Kigali * `Africa/Kinshasa` - Africa/Kinshasa * `Africa/Lagos` - Africa/Lagos * `Africa/Libreville` - Africa/Libreville * `Africa/Lome` - Africa/Lome * `Africa/Luanda` - Africa/Luanda * `Africa/Lubumbashi` - Africa/Lubumbashi * `Africa/Lusaka` - Africa/Lusaka * `Africa/Malabo` - Africa/Malabo * `Africa/Maputo` - Africa/Maputo * `Africa/Maseru` - Africa/Maseru * `Africa/Mbabane` - Africa/Mbabane * `Africa/Mogadishu` - Africa/Mogadishu * `Africa/Monrovia` - Africa/Monrovia * `Africa/Nairobi` - Africa/Nairobi * `Africa/Ndjamena` - Africa/Ndjamena * `Africa/Niamey` - Africa/Niamey * `Africa/Nouakchott` - Africa/Nouakchott * `Africa/Ouagadougou` - Africa/Ouagadougou * `Africa/Porto-Novo` - Africa/Porto-Novo * `Africa/Sao_Tome` - Africa/Sao_Tome * `Africa/Timbuktu` - Africa/Timbuktu * `Africa/Tripoli` - Africa/Tripoli * `Africa/Tunis` - Africa/Tunis * `Africa/Windhoek` - Africa/Windhoek * `America/Adak` - America/Adak * `America/Anchorage` - America/Anchorage * `America/Anguilla` - America/Anguilla * `America/Antigua` - America/Antigua * `America/Araguaina` - America/Araguaina * `America/Argentina/Buenos_Aires` - America/Argentina/Buenos_Aires * `America/Argentina/Catamarca` - America/Argentina/Catamarca * `America/Argentina/ComodRivadavia` - America/Argentina/ComodRivadavia * `America/Argentina/Cordoba` - America/Argentina/Cordoba * `America/Argentina/Jujuy` - America/Argentina/Jujuy * `America/Argentina/La_Rioja` - America/Argentina/La_Rioja * `America/Argentina/Mendoza` - America/Argentina/Mendoza * `America/Argentina/Rio_Gallegos` - America/Argentina/Rio_Gallegos * `America/Argentina/Salta` - America/Argentina/Salta * `America/Argentina/San_Juan` - America/Argentina/San_Juan * `America/Argentina/San_Luis` - America/Argentina/San_Luis * `America/Argentina/Tucuman` - America/Argentina/Tucuman * `America/Argentina/Ushuaia` - America/Argentina/Ushuaia * `America/Aruba` - America/Aruba * `America/Asuncion` - America/Asuncion * `America/Atikokan` - America/Atikokan * `America/Atka` - America/Atka * `America/Bahia` - America/Bahia * `America/Bahia_Banderas` - America/Bahia_Banderas * `America/Barbados` - America/Barbados * `America/Belem` - America/Belem * `America/Belize` - America/Belize * `America/Blanc-Sablon` - America/Blanc-Sablon * `America/Boa_Vista` - America/Boa_Vista * `America/Bogota` - America/Bogota * `America/Boise` - America/Boise * `America/Buenos_Aires` - America/Buenos_Aires * `America/Cambridge_Bay` - America/Cambridge_Bay * `America/Campo_Grande` - America/Campo_Grande * `America/Cancun` - America/Cancun * `America/Caracas` - America/Caracas * `America/Catamarca` - America/Catamarca * `America/Cayenne` - America/Cayenne * `America/Cayman` - America/Cayman * `America/Chicago` - America/Chicago * `America/Chihuahua` - America/Chihuahua * `America/Ciudad_Juarez` - America/Ciudad_Juarez * `America/Coral_Harbour` - America/Coral_Harbour * `America/Cordoba` - America/Cordoba * `America/Costa_Rica` - America/Costa_Rica * `America/Creston` - America/Creston * `America/Cuiaba` - America/Cuiaba * `America/Curacao` - America/Curacao * `America/Danmarkshavn` - America/Danmarkshavn * `America/Dawson` - America/Dawson * `America/Dawson_Creek` - America/Dawson_Creek * `America/Denver` - America/Denver * `America/Detroit` - America/Detroit * `America/Dominica` - America/Dominica * `America/Edmonton` - America/Edmonton * `America/Eirunepe` - America/Eirunepe * `America/El_Salvador` - America/El_Salvador * `America/Ensenada` - America/Ensenada * `America/Fort_Nelson` - America/Fort_Nelson * `America/Fort_Wayne` - America/Fort_Wayne * `America/Fortaleza` - America/Fortaleza * `America/Glace_Bay` - America/Glace_Bay * `America/Godthab` - America/Godthab * `America/Goose_Bay` - America/Goose_Bay * `America/Grand_Turk` - America/Grand_Turk * `America/Grenada` - America/Grenada * `America/Guadeloupe` - America/Guadeloupe * `America/Guatemala` - America/Guatemala * `America/Guayaquil` - America/Guayaquil * `America/Guyana` - America/Guyana * `America/Halifax` - America/Halifax * `America/Havana` - America/Havana * `America/Hermosillo` - America/Hermosillo * `America/Indiana/Indianapolis` - America/Indiana/Indianapolis * `America/Indiana/Knox` - America/Indiana/Knox * `America/Indiana/Marengo` - America/Indiana/Marengo * `America/Indiana/Petersburg` - America/Indiana/Petersburg * `America/Indiana/Tell_City` - America/Indiana/Tell_City * `America/Indiana/Vevay` - America/Indiana/Vevay * `America/Indiana/Vincennes` - America/Indiana/Vincennes * `America/Indiana/Winamac` - America/Indiana/Winamac * `America/Indianapolis` - America/Indianapolis * `America/Inuvik` - America/Inuvik * `America/Iqaluit` - America/Iqaluit * `America/Jamaica` - America/Jamaica * `America/Jujuy` - America/Jujuy * `America/Juneau` - America/Juneau * `America/Kentucky/Louisville` - America/Kentucky/Louisville * `America/Kentucky/Monticello` - America/Kentucky/Monticello * `America/Knox_IN` - America/Knox_IN * `America/Kralendijk` - America/Kralendijk * `America/La_Paz` - America/La_Paz * `America/Lima` - America/Lima * `America/Los_Angeles` - America/Los_Angeles * `America/Louisville` - America/Louisville * `America/Lower_Princes` - America/Lower_Princes * `America/Maceio` - America/Maceio * `America/Managua` - America/Managua * `America/Manaus` - America/Manaus * `America/Marigot` - America/Marigot * `America/Martinique` - America/Martinique * `America/Matamoros` - America/Matamoros * `America/Mazatlan` - America/Mazatlan * `America/Mendoza` - America/Mendoza * `America/Menominee` - America/Menominee * `America/Merida` - America/Merida * `America/Metlakatla` - America/Metlakatla * `America/Mexico_City` - America/Mexico_City * `America/Miquelon` - America/Miquelon * `America/Moncton` - America/Moncton * `America/Monterrey` - America/Monterrey * `America/Montevideo` - America/Montevideo * `America/Montreal` - America/Montreal * `America/Montserrat` - America/Montserrat * `America/Nassau` - America/Nassau * `America/New_York` - America/New_York * `America/Nipigon` - America/Nipigon * `America/Nome` - America/Nome * `America/Noronha` - America/Noronha * `America/North_Dakota/Beulah` - America/North_Dakota/Beulah * `America/North_Dakota/Center` - America/North_Dakota/Center * `America/North_Dakota/New_Salem` - America/North_Dakota/New_Salem * `America/Nuuk` - America/Nuuk * `America/Ojinaga` - America/Ojinaga * `America/Panama` - America/Panama * `America/Pangnirtung` - America/Pangnirtung * `America/Paramaribo` - America/Paramaribo * `America/Phoenix` - America/Phoenix * `America/Port-au-Prince` - America/Port-au-Prince * `America/Port_of_Spain` - America/Port_of_Spain * `America/Porto_Acre` - America/Porto_Acre * `America/Porto_Velho` - America/Porto_Velho * `America/Puerto_Rico` - America/Puerto_Rico * `America/Punta_Arenas` - America/Punta_Arenas * `America/Rainy_River` - America/Rainy_River * `America/Rankin_Inlet` - America/Rankin_Inlet * `America/Recife` - America/Recife * `America/Regina` - America/Regina * `America/Resolute` - America/Resolute * `America/Rio_Branco` - America/Rio_Branco * `America/Rosario` - America/Rosario * `America/Santa_Isabel` - America/Santa_Isabel * `America/Santarem` - America/Santarem * `America/Santiago` - America/Santiago * `America/Santo_Domingo` - America/Santo_Domingo * `America/Sao_Paulo` - America/Sao_Paulo * `America/Scoresbysund` - America/Scoresbysund * `America/Shiprock` - America/Shiprock * `America/Sitka` - America/Sitka * `America/St_Barthelemy` - America/St_Barthelemy * `America/St_Johns` - America/St_Johns * `America/St_Kitts` - America/St_Kitts * `America/St_Lucia` - America/St_Lucia * `America/St_Thomas` - America/St_Thomas * `America/St_Vincent` - America/St_Vincent * `America/Swift_Current` - America/Swift_Current * `America/Tegucigalpa` - America/Tegucigalpa * `America/Thule` - America/Thule * `America/Thunder_Bay` - America/Thunder_Bay * `America/Tijuana` - America/Tijuana * `America/Toronto` - America/Toronto * `America/Tortola` - America/Tortola * `America/Vancouver` - America/Vancouver * `America/Virgin` - America/Virgin * `America/Whitehorse` - America/Whitehorse * `America/Winnipeg` - America/Winnipeg * `America/Yakutat` - America/Yakutat * `America/Yellowknife` - America/Yellowknife * `Antarctica/Casey` - Antarctica/Casey * `Antarctica/Davis` - Antarctica/Davis * `Antarctica/DumontDUrville` - Antarctica/DumontDUrville * `Antarctica/Macquarie` - Antarctica/Macquarie * `Antarctica/Mawson` - Antarctica/Mawson * `Antarctica/McMurdo` - Antarctica/McMurdo * `Antarctica/Palmer` - Antarctica/Palmer * `Antarctica/Rothera` - Antarctica/Rothera * `Antarctica/South_Pole` - Antarctica/South_Pole * `Antarctica/Syowa` - Antarctica/Syowa * `Antarctica/Troll` - Antarctica/Troll * `Antarctica/Vostok` - Antarctica/Vostok * `Arctic/Longyearbyen` - Arctic/Longyearbyen * `Asia/Aden` - Asia/Aden * `Asia/Almaty` - Asia/Almaty * `Asia/Amman` - Asia/Amman * `Asia/Anadyr` - Asia/Anadyr * `Asia/Aqtau` - Asia/Aqtau * `Asia/Aqtobe` - Asia/Aqtobe * `Asia/Ashgabat` - Asia/Ashgabat * `Asia/Ashkhabad` - Asia/Ashkhabad * `Asia/Atyrau` - Asia/Atyrau * `Asia/Baghdad` - Asia/Baghdad * `Asia/Bahrain` - Asia/Bahrain * `Asia/Baku` - Asia/Baku * `Asia/Bangkok` - Asia/Bangkok * `Asia/Barnaul` - Asia/Barnaul * `Asia/Beirut` - Asia/Beirut * `Asia/Bishkek` - Asia/Bishkek * `Asia/Brunei` - Asia/Brunei * `Asia/Calcutta` - Asia/Calcutta * `Asia/Chita` - Asia/Chita * `Asia/Choibalsan` - Asia/Choibalsan * `Asia/Chongqing` - Asia/Chongqing * `Asia/Chungking` - Asia/Chungking * `Asia/Colombo` - Asia/Colombo * `Asia/Dacca` - Asia/Dacca * `Asia/Damascus` - Asia/Damascus * `Asia/Dhaka` - Asia/Dhaka * `Asia/Dili` - Asia/Dili * `Asia/Dubai` - Asia/Dubai * `Asia/Dushanbe` - Asia/Dushanbe * `Asia/Famagusta` - Asia/Famagusta * `Asia/Gaza` - Asia/Gaza * `Asia/Harbin` - Asia/Harbin * `Asia/Hebron` - Asia/Hebron * `Asia/Ho_Chi_Minh` - Asia/Ho_Chi_Minh * `Asia/Hong_Kong` - Asia/Hong_Kong * `Asia/Hovd` - Asia/Hovd * `Asia/Irkutsk` - Asia/Irkutsk * `Asia/Istanbul` - Asia/Istanbul * `Asia/Jakarta` - Asia/Jakarta * `Asia/Jayapura` - Asia/Jayapura * `Asia/Jerusalem` - Asia/Jerusalem * `Asia/Kabul` - Asia/Kabul * `Asia/Kamchatka` - Asia/Kamchatka * `Asia/Karachi` - Asia/Karachi * `Asia/Kashgar` - Asia/Kashgar * `Asia/Kathmandu` - Asia/Kathmandu * `Asia/Katmandu` - Asia/Katmandu * `Asia/Khandyga` - Asia/Khandyga * `Asia/Kolkata` - Asia/Kolkata * `Asia/Krasnoyarsk` - Asia/Krasnoyarsk * `Asia/Kuala_Lumpur` - Asia/Kuala_Lumpur * `Asia/Kuching` - Asia/Kuching * `Asia/Kuwait` - Asia/Kuwait * `Asia/Macao` - Asia/Macao * `Asia/Macau` - Asia/Macau * `Asia/Magadan` - Asia/Magadan * `Asia/Makassar` - Asia/Makassar * `Asia/Manila` - Asia/Manila * `Asia/Muscat` - Asia/Muscat * `Asia/Nicosia` - Asia/Nicosia * `Asia/Novokuznetsk` - Asia/Novokuznetsk * `Asia/Novosibirsk` - Asia/Novosibirsk * `Asia/Omsk` - Asia/Omsk * `Asia/Oral` - Asia/Oral * `Asia/Phnom_Penh` - Asia/Phnom_Penh * `Asia/Pontianak` - Asia/Pontianak * `Asia/Pyongyang` - Asia/Pyongyang * `Asia/Qatar` - Asia/Qatar * `Asia/Qostanay` - Asia/Qostanay * `Asia/Qyzylorda` - Asia/Qyzylorda * `Asia/Rangoon` - Asia/Rangoon * `Asia/Riyadh` - Asia/Riyadh * `Asia/Saigon` - Asia/Saigon * `Asia/Sakhalin` - Asia/Sakhalin * `Asia/Samarkand` - Asia/Samarkand * `Asia/Seoul` - Asia/Seoul * `Asia/Shanghai` - Asia/Shanghai * `Asia/Singapore` - Asia/Singapore * `Asia/Srednekolymsk` - Asia/Srednekolymsk * `Asia/Taipei` - Asia/Taipei * `Asia/Tashkent` - Asia/Tashkent * `Asia/Tbilisi` - Asia/Tbilisi * `Asia/Tehran` - Asia/Tehran * `Asia/Tel_Aviv` - Asia/Tel_Aviv * `Asia/Thimbu` - Asia/Thimbu * `Asia/Thimphu` - Asia/Thimphu * `Asia/Tokyo` - Asia/Tokyo * `Asia/Tomsk` - Asia/Tomsk * `Asia/Ujung_Pandang` - Asia/Ujung_Pandang * `Asia/Ulaanbaatar` - Asia/Ulaanbaatar * `Asia/Ulan_Bator` - Asia/Ulan_Bator * `Asia/Urumqi` - Asia/Urumqi * `Asia/Ust-Nera` - Asia/Ust-Nera * `Asia/Vientiane` - Asia/Vientiane * `Asia/Vladivostok` - Asia/Vladivostok * `Asia/Yakutsk` - Asia/Yakutsk * `Asia/Yangon` - Asia/Yangon * `Asia/Yekaterinburg` - Asia/Yekaterinburg * `Asia/Yerevan` - Asia/Yerevan * `Atlantic/Azores` - Atlantic/Azores * `Atlantic/Bermuda` - Atlantic/Bermuda * `Atlantic/Canary` - Atlantic/Canary * `Atlantic/Cape_Verde` - Atlantic/Cape_Verde * `Atlantic/Faeroe` - Atlantic/Faeroe * `Atlantic/Faroe` - Atlantic/Faroe * `Atlantic/Jan_Mayen` - Atlantic/Jan_Mayen * `Atlantic/Madeira` - Atlantic/Madeira * `Atlantic/Reykjavik` - Atlantic/Reykjavik * `Atlantic/South_Georgia` - Atlantic/South_Georgia * `Atlantic/St_Helena` - Atlantic/St_Helena * `Atlantic/Stanley` - Atlantic/Stanley * `Australia/ACT` - Australia/ACT * `Australia/Adelaide` - Australia/Adelaide * `Australia/Brisbane` - Australia/Brisbane * `Australia/Broken_Hill` - Australia/Broken_Hill * `Australia/Canberra` - Australia/Canberra * `Australia/Currie` - Australia/Currie * `Australia/Darwin` - Australia/Darwin * `Australia/Eucla` - Australia/Eucla * `Australia/Hobart` - Australia/Hobart * `Australia/LHI` - Australia/LHI * `Australia/Lindeman` - Australia/Lindeman * `Australia/Lord_Howe` - Australia/Lord_Howe * `Australia/Melbourne` - Australia/Melbourne * `Australia/NSW` - Australia/NSW * `Australia/North` - Australia/North * `Australia/Perth` - Australia/Perth * `Australia/Queensland` - Australia/Queensland * `Australia/South` - Australia/South * `Australia/Sydney` - Australia/Sydney * `Australia/Tasmania` - Australia/Tasmania * `Australia/Victoria` - Australia/Victoria * `Australia/West` - Australia/West * `Australia/Yancowinna` - Australia/Yancowinna * `Brazil/Acre` - Brazil/Acre * `Brazil/DeNoronha` - Brazil/DeNoronha * `Brazil/East` - Brazil/East * `Brazil/West` - Brazil/West * `CET` - CET * `CST6CDT` - CST6CDT * `Canada/Atlantic` - Canada/Atlantic * `Canada/Central` - Canada/Central * `Canada/Eastern` - Canada/Eastern * `Canada/Mountain` - Canada/Mountain * `Canada/Newfoundland` - Canada/Newfoundland * `Canada/Pacific` - Canada/Pacific * `Canada/Saskatchewan` - Canada/Saskatchewan * `Canada/Yukon` - Canada/Yukon * `Chile/Continental` - Chile/Continental * `Chile/EasterIsland` - Chile/EasterIsland * `Cuba` - Cuba * `EET` - EET * `EST` - EST * `EST5EDT` - EST5EDT * `Egypt` - Egypt * `Eire` - Eire * `Etc/GMT` - Etc/GMT * `Etc/GMT+0` - Etc/GMT+0 * `Etc/GMT+1` - Etc/GMT+1 * `Etc/GMT+10` - Etc/GMT+10 * `Etc/GMT+11` - Etc/GMT+11 * `Etc/GMT+12` - Etc/GMT+12 * `Etc/GMT+2` - Etc/GMT+2 * `Etc/GMT+3` - Etc/GMT+3 * `Etc/GMT+4` - Etc/GMT+4 * `Etc/GMT+5` - Etc/GMT+5 * `Etc/GMT+6` - Etc/GMT+6 * `Etc/GMT+7` - Etc/GMT+7 * `Etc/GMT+8` - Etc/GMT+8 * `Etc/GMT+9` - Etc/GMT+9 * `Etc/GMT-0` - Etc/GMT-0 * `Etc/GMT-1` - Etc/GMT-1 * `Etc/GMT-10` - Etc/GMT-10 * `Etc/GMT-11` - Etc/GMT-11 * `Etc/GMT-12` - Etc/GMT-12 * `Etc/GMT-13` - Etc/GMT-13 * `Etc/GMT-14` - Etc/GMT-14 * `Etc/GMT-2` - Etc/GMT-2 * `Etc/GMT-3` - Etc/GMT-3 * `Etc/GMT-4` - Etc/GMT-4 * `Etc/GMT-5` - Etc/GMT-5 * `Etc/GMT-6` - Etc/GMT-6 * `Etc/GMT-7` - Etc/GMT-7 * `Etc/GMT-8` - Etc/GMT-8 * `Etc/GMT-9` - Etc/GMT-9 * `Etc/GMT0` - Etc/GMT0 * `Etc/Greenwich` - Etc/Greenwich * `Etc/UCT` - Etc/UCT * `Etc/UTC` - Etc/UTC * `Etc/Universal` - Etc/Universal * `Etc/Zulu` - Etc/Zulu * `Europe/Amsterdam` - Europe/Amsterdam * `Europe/Andorra` - Europe/Andorra * `Europe/Astrakhan` - Europe/Astrakhan * `Europe/Athens` - Europe/Athens * `Europe/Belfast` - Europe/Belfast * `Europe/Belgrade` - Europe/Belgrade * `Europe/Berlin` - Europe/Berlin * `Europe/Bratislava` - Europe/Bratislava * `Europe/Brussels` - Europe/Brussels * `Europe/Bucharest` - Europe/Bucharest * `Europe/Budapest` - Europe/Budapest * `Europe/Busingen` - Europe/Busingen * `Europe/Chisinau` - Europe/Chisinau * `Europe/Copenhagen` - Europe/Copenhagen * `Europe/Dublin` - Europe/Dublin * `Europe/Gibraltar` - Europe/Gibraltar * `Europe/Guernsey` - Europe/Guernsey * `Europe/Helsinki` - Europe/Helsinki * `Europe/Isle_of_Man` - Europe/Isle_of_Man * `Europe/Istanbul` - Europe/Istanbul * `Europe/Jersey` - Europe/Jersey * `Europe/Kaliningrad` - Europe/Kaliningrad * `Europe/Kiev` - Europe/Kiev * `Europe/Kirov` - Europe/Kirov * `Europe/Kyiv` - Europe/Kyiv * `Europe/Lisbon` - Europe/Lisbon * `Europe/Ljubljana` - Europe/Ljubljana * `Europe/London` - Europe/London * `Europe/Luxembourg` - Europe/Luxembourg * `Europe/Madrid` - Europe/Madrid * `Europe/Malta` - Europe/Malta * `Europe/Mariehamn` - Europe/Mariehamn * `Europe/Minsk` - Europe/Minsk * `Europe/Monaco` - Europe/Monaco * `Europe/Moscow` - Europe/Moscow * `Europe/Nicosia` - Europe/Nicosia * `Europe/Oslo` - Europe/Oslo * `Europe/Paris` - Europe/Paris * `Europe/Podgorica` - Europe/Podgorica * `Europe/Prague` - Europe/Prague * `Europe/Riga` - Europe/Riga * `Europe/Rome` - Europe/Rome * `Europe/Samara` - Europe/Samara * `Europe/San_Marino` - Europe/San_Marino * `Europe/Sarajevo` - Europe/Sarajevo * `Europe/Saratov` - Europe/Saratov * `Europe/Simferopol` - Europe/Simferopol * `Europe/Skopje` - Europe/Skopje * `Europe/Sofia` - Europe/Sofia * `Europe/Stockholm` - Europe/Stockholm * `Europe/Tallinn` - Europe/Tallinn * `Europe/Tirane` - Europe/Tirane * `Europe/Tiraspol` - Europe/Tiraspol * `Europe/Ulyanovsk` - Europe/Ulyanovsk * `Europe/Uzhgorod` - Europe/Uzhgorod * `Europe/Vaduz` - Europe/Vaduz * `Europe/Vatican` - Europe/Vatican * `Europe/Vienna` - Europe/Vienna * `Europe/Vilnius` - Europe/Vilnius * `Europe/Volgograd` - Europe/Volgograd * `Europe/Warsaw` - Europe/Warsaw * `Europe/Zagreb` - Europe/Zagreb * `Europe/Zaporozhye` - Europe/Zaporozhye * `Europe/Zurich` - Europe/Zurich * `GB` - GB * `GB-Eire` - GB-Eire * `GMT` - GMT * `GMT+0` - GMT+0 * `GMT-0` - GMT-0 * `GMT0` - GMT0 * `Greenwich` - Greenwich * `HST` - HST * `Hongkong` - Hongkong * `Iceland` - Iceland * `Indian/Antananarivo` - Indian/Antananarivo * `Indian/Chagos` - Indian/Chagos * `Indian/Christmas` - Indian/Christmas * `Indian/Cocos` - Indian/Cocos * `Indian/Comoro` - Indian/Comoro * `Indian/Kerguelen` - Indian/Kerguelen * `Indian/Mahe` - Indian/Mahe * `Indian/Maldives` - Indian/Maldives * `Indian/Mauritius` - Indian/Mauritius * `Indian/Mayotte` - Indian/Mayotte * `Indian/Reunion` - Indian/Reunion * `Iran` - Iran * `Israel` - Israel * `Jamaica` - Jamaica * `Japan` - Japan * `Kwajalein` - Kwajalein * `Libya` - Libya * `MET` - MET * `MST` - MST * `MST7MDT` - MST7MDT * `Mexico/BajaNorte` - Mexico/BajaNorte * `Mexico/BajaSur` - Mexico/BajaSur * `Mexico/General` - Mexico/General * `NZ` - NZ * `NZ-CHAT` - NZ-CHAT * `Navajo` - Navajo * `PRC` - PRC * `PST8PDT` - PST8PDT * `Pacific/Apia` - Pacific/Apia * `Pacific/Auckland` - Pacific/Auckland * `Pacific/Bougainville` - Pacific/Bougainville * `Pacific/Chatham` - Pacific/Chatham * `Pacific/Chuuk` - Pacific/Chuuk * `Pacific/Easter` - Pacific/Easter * `Pacific/Efate` - Pacific/Efate * `Pacific/Enderbury` - Pacific/Enderbury * `Pacific/Fakaofo` - Pacific/Fakaofo * `Pacific/Fiji` - Pacific/Fiji * `Pacific/Funafuti` - Pacific/Funafuti * `Pacific/Galapagos` - Pacific/Galapagos * `Pacific/Gambier` - Pacific/Gambier * `Pacific/Guadalcanal` - Pacific/Guadalcanal * `Pacific/Guam` - Pacific/Guam * `Pacific/Honolulu` - Pacific/Honolulu * `Pacific/Johnston` - Pacific/Johnston * `Pacific/Kanton` - Pacific/Kanton * `Pacific/Kiritimati` - Pacific/Kiritimati * `Pacific/Kosrae` - Pacific/Kosrae * `Pacific/Kwajalein` - Pacific/Kwajalein * `Pacific/Majuro` - Pacific/Majuro * `Pacific/Marquesas` - Pacific/Marquesas * `Pacific/Midway` - Pacific/Midway * `Pacific/Nauru` - Pacific/Nauru * `Pacific/Niue` - Pacific/Niue * `Pacific/Norfolk` - Pacific/Norfolk * `Pacific/Noumea` - Pacific/Noumea * `Pacific/Pago_Pago` - Pacific/Pago_Pago * `Pacific/Palau` - Pacific/Palau * `Pacific/Pitcairn` - Pacific/Pitcairn * `Pacific/Pohnpei` - Pacific/Pohnpei * `Pacific/Ponape` - Pacific/Ponape * `Pacific/Port_Moresby` - Pacific/Port_Moresby * `Pacific/Rarotonga` - Pacific/Rarotonga * `Pacific/Saipan` - Pacific/Saipan * `Pacific/Samoa` - Pacific/Samoa * `Pacific/Tahiti` - Pacific/Tahiti * `Pacific/Tarawa` - Pacific/Tarawa * `Pacific/Tongatapu` - Pacific/Tongatapu * `Pacific/Truk` - Pacific/Truk * `Pacific/Wake` - Pacific/Wake * `Pacific/Wallis` - Pacific/Wallis * `Pacific/Yap` - Pacific/Yap * `Poland` - Poland * `Portugal` - Portugal * `ROC` - ROC * `ROK` - ROK * `Singapore` - Singapore * `Turkey` - Turkey * `UCT` - UCT * `US/Alaska` - US/Alaska * `US/Aleutian` - US/Aleutian * `US/Arizona` - US/Arizona * `US/Central` - US/Central * `US/East-Indiana` - US/East-Indiana * `US/Eastern` - US/Eastern * `US/Hawaii` - US/Hawaii * `US/Indiana-Starke` - US/Indiana-Starke * `US/Michigan` - US/Michigan * `US/Mountain` - US/Mountain * `US/Pacific` - US/Pacific * `US/Samoa` - US/Samoa * `UTC` - UTC * `Universal` - Universal * `W-SU` - W-SU * `WET` - WET * `Zulu` - Zulu */
+  timezone?: TimezoneEnum | (string & {}) | null;
+  /** Day-of-week offset for weekly intervals (0=Sunday, 6=Saturday). Only valid when interval is 'week'. */
+  offset_day?: number | null;
+  /** Hour-of-day offset (0-23) for daily and weekly intervals. Only valid when interval is 'day' or 'week'. */
+  offset_hour?: number | null;
+}
+export const CreateBatchExportsRunTestStepNewRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      name: S.optional(S.String),
+      model: S.optional(S.NullOr(CreateBatchExportsRunTestStepNewRequestModel)),
+      destination: S.optional(BatchExportDestination),
+      interval: S.optional(BatchExportIntervalEnum),
+      paused: S.optional(S.Boolean),
+      last_paused_at: S.optional(S.NullOr(S.String)),
+      start_at: S.optional(S.NullOr(S.String)),
+      end_at: S.optional(S.NullOr(S.String)),
+      hogql_query: S.optional(S.String),
+      filters: S.optional(S.Unknown),
+      timezone: S.optional(S.NullOr(TimezoneEnum)),
+      offset_day: S.optional(S.NullOr(S.Number)),
+      offset_hour: S.optional(S.NullOr(S.Number)),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/projects/{project_id}/batch_exports/run_test_step_new/",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "CreateBatchExportsRunTestStepNewRequest",
+}) as any as S.Schema<CreateBatchExportsRunTestStepNewRequest>;
+
+export interface CreateBatchExportsRunTestStepNewResponse {}
+export const CreateBatchExportsRunTestStepNewResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "CreateBatchExportsRunTestStepNewResponse",
+}) as any as S.Schema<CreateBatchExportsRunTestStepNewResponse>;
 
 /** Typed configuration for a FileDownload batch-export destination. */
 export interface FileDownloadDestinationFileConfig {
@@ -2561,6 +2095,48 @@ export const FileDownloadBatchExportsCancelCreateResponse =
     identifier: "FileDownloadBatchExportsCancelCreateResponse",
   }) as any as S.Schema<FileDownloadBatchExportsCancelCreateResponse>;
 
+/** * `hogql` - hogql */
+export type FileDownloadHogQLModelEnum = "hogql";
+export const FileDownloadHogQLModelEnum = /*@__PURE__*/ S.String;
+
+export interface FileDownloadBatchExportsCountRowsCreateRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** Model to count rows for. Only 'hogql' is supported. * `hogql` - hogql */
+  model: FileDownloadHogQLModelEnum;
+  /** HogQL SELECT query whose results are exported. This model is in closed beta and is enabled per team; when it is not enabled, the request fails with a permission error that names HogQL batch exports. Contact PostHog support to request access. Placeholders are not currently supported, and every column in the SELECT clause must be a field or have an alias. It is recommended to limit the query with a WHERE clause, for example bounding timestamp on the events table, both to avoid exporting more rows than expected and because user queries run under stricter resource limits than the other models. */
+  hogql_query: string;
+}
+export const FileDownloadBatchExportsCountRowsCreateRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      model: FileDownloadHogQLModelEnum,
+      hogql_query: S.String,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/projects/{project_id}/file_download_batch_exports/count_rows/",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "FileDownloadBatchExportsCountRowsCreateRequest",
+  }) as any as S.Schema<FileDownloadBatchExportsCountRowsCreateRequest>;
+
+/** Typed output for view set `count_rows`. */
+export interface FileDownloadCountRowsResponse {
+  /** Number of rows the query returns now. A HogQL batch export runs its query as of the time the export starts, so a run started now would export this many rows. */
+  count: number;
+}
+export const FileDownloadCountRowsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    count: S.Number,
+  }),
+).annotate({
+  identifier: "FileDownloadCountRowsResponse",
+}) as any as S.Schema<FileDownloadCountRowsResponse>;
+
 /** * `events` - events */
 export type FileDownloadEventsRequestModelEnum = "events";
 export const FileDownloadEventsRequestModelEnum = /*@__PURE__*/ S.String;
@@ -2641,21 +2217,17 @@ export const FileDownloadSessionsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "FileDownloadSessionsRequest",
 }) as any as S.Schema<FileDownloadSessionsRequest>;
 
-/** * `hogql` - hogql */
-export type FileDownloadHogQLRequestModelEnum = "hogql";
-export const FileDownloadHogQLRequestModelEnum = /*@__PURE__*/ S.String;
-
 /** Typed configuration for the hogql model. */
 export interface FileDownloadHogQLRequest {
   file: FileDownloadDestinationFileConfig;
-  model: FileDownloadHogQLRequestModelEnum;
+  model: FileDownloadHogQLModelEnum;
   /** HogQL SELECT query whose results are exported. This model is in closed beta and is enabled per team; when it is not enabled, the request fails with a permission error that names HogQL batch exports. Contact PostHog support to request access. Placeholders are not currently supported, and every column in the SELECT clause must be a field or have an alias. It is recommended to limit the query with a WHERE clause, for example bounding timestamp on the events table, both to avoid exporting more rows than expected and because user queries run under stricter resource limits than the other models. */
   hogql_query: string;
 }
 export const FileDownloadHogQLRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     file: FileDownloadDestinationFileConfig,
-    model: FileDownloadHogQLRequestModelEnum,
+    model: FileDownloadHogQLModelEnum,
     hogql_query: S.String,
   }),
 ).annotate({
@@ -2934,6 +2506,471 @@ export const FileDownloadBatchExportsRetrieveResponse = /*@__PURE__*/ S.suspend(
   identifier: "FileDownloadBatchExportsRetrieveResponse",
 }) as any as S.Schema<FileDownloadBatchExportsRetrieveResponse>;
 
+export interface GetBatchExportRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this batch export. */
+  id: string;
+}
+export const GetBatchExportRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/batch_exports/{id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetBatchExportRequest",
+}) as any as S.Schema<GetBatchExportRequest>;
+
+export interface GetBatchExportsBackfillRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  batch_export_id: string;
+  /** A UUID string identifying this batch export backfill. */
+  id: string;
+}
+export const GetBatchExportsBackfillRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    batch_export_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/batch_exports/{batch_export_id}/backfills/{id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetBatchExportsBackfillRequest",
+}) as any as S.Schema<GetBatchExportsBackfillRequest>;
+
+export interface GetBatchExportsLogRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this batch export. */
+  id: string;
+  /** Only return entries after this ISO 8601 timestamp. Defaults to 7 days ago; pass an explicit value to read further back. */
+  after?: string;
+  /** Only return entries before this ISO 8601 timestamp. */
+  before?: string;
+  /** Filter logs to a specific execution instance. */
+  instance_id?: string;
+  /** Comma-separated log levels to include, e.g. 'WARN,ERROR'. Valid levels: DEBUG, LOG, INFO, WARN, ERROR. */
+  level?: string;
+  /** Maximum number of log entries to return (1-500, default 50). */
+  limit?: number;
+  /** Case-insensitive substring search across log messages. */
+  search?: string;
+}
+export const GetBatchExportsLogRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+    after: S.optional(S.String.pipe(T.Query())),
+    before: S.optional(S.String.pipe(T.Query())),
+    instance_id: S.optional(S.String.pipe(T.Query())),
+    level: S.optional(S.String.pipe(T.Query())),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    search: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/batch_exports/{id}/logs/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetBatchExportsLogRequest",
+}) as any as S.Schema<GetBatchExportsLogRequest>;
+
+export interface GetBatchExportsLogResponse {}
+export const GetBatchExportsLogResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "GetBatchExportsLogResponse",
+}) as any as S.Schema<GetBatchExportsLogResponse>;
+
+export interface GetBatchExportsRunRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  batch_export_id: string;
+  /** A UUID string identifying this batch export run. */
+  id: string;
+}
+export const GetBatchExportsRunRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    batch_export_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/batch_exports/{batch_export_id}/runs/{id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetBatchExportsRunRequest",
+}) as any as S.Schema<GetBatchExportsRunRequest>;
+
+export interface GetBatchExportsRunsLogRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  batch_export_id: string;
+  /** A UUID string identifying this batch export run. */
+  id: string;
+  /** Only return entries after this ISO 8601 timestamp. Defaults to 7 days ago; pass an explicit value to read further back. */
+  after?: string;
+  /** Only return entries before this ISO 8601 timestamp. */
+  before?: string;
+  /** Filter logs to a specific execution instance. */
+  instance_id?: string;
+  /** Comma-separated log levels to include, e.g. 'WARN,ERROR'. Valid levels: DEBUG, LOG, INFO, WARN, ERROR. */
+  level?: string;
+  /** Maximum number of log entries to return (1-500, default 50). */
+  limit?: number;
+  /** Case-insensitive substring search across log messages. */
+  search?: string;
+}
+export const GetBatchExportsRunsLogRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    batch_export_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+    after: S.optional(S.String.pipe(T.Query())),
+    before: S.optional(S.String.pipe(T.Query())),
+    instance_id: S.optional(S.String.pipe(T.Query())),
+    level: S.optional(S.String.pipe(T.Query())),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    search: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/batch_exports/{batch_export_id}/runs/{id}/logs/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetBatchExportsRunsLogRequest",
+}) as any as S.Schema<GetBatchExportsRunsLogRequest>;
+
+export interface GetBatchExportsRunsLogResponse {}
+export const GetBatchExportsRunsLogResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "GetBatchExportsRunsLogResponse",
+}) as any as S.Schema<GetBatchExportsRunsLogResponse>;
+
+export interface GetBatchExportsTestRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+}
+export const GetBatchExportsTestRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/batch_exports/test/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetBatchExportsTestRequest",
+}) as any as S.Schema<GetBatchExportsTestRequest>;
+
+export interface GetBatchExportsTestResponse {}
+export const GetBatchExportsTestResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "GetBatchExportsTestResponse",
+}) as any as S.Schema<GetBatchExportsTestResponse>;
+
+export interface ListBatchExportsRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** Number of results to return per page. */
+  limit?: number;
+  /** The initial index from which to return the results. */
+  offset?: number;
+}
+export const ListBatchExportsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    offset: S.optional(S.Number.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/batch_exports/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListBatchExportsRequest",
+}) as any as S.Schema<ListBatchExportsRequest>;
+
+export type PaginatedBatchExportListOutputResultsList =
+  Array<BatchExportOutput>;
+export const PaginatedBatchExportListOutputResultsList = /*@__PURE__*/ S.Array(
+  BatchExportOutput,
+) as any as S.Schema<PaginatedBatchExportListOutputResultsList>;
+
+export interface PaginatedBatchExportListOutput {
+  count?: number;
+  next?: string | null;
+  previous?: string | null;
+  results?: PaginatedBatchExportListOutputResultsList;
+}
+export const PaginatedBatchExportListOutput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    count: S.optional(S.Number),
+    next: S.optional(S.NullOr(S.String)),
+    previous: S.optional(S.NullOr(S.String)),
+    results: S.optional(PaginatedBatchExportListOutputResultsList),
+  }),
+).annotate({
+  identifier: "PaginatedBatchExportListOutput",
+}) as any as S.Schema<PaginatedBatchExportListOutput>;
+
+export interface ListBatchExportsBackfillsRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  batch_export_id: string;
+  /** The pagination cursor value. */
+  cursor?: string;
+  /** Which field to use when ordering the results. */
+  ordering?: string;
+}
+export const ListBatchExportsBackfillsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    batch_export_id: S.String.pipe(T.Label()),
+    cursor: S.optional(S.String.pipe(T.Query())),
+    ordering: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/batch_exports/{batch_export_id}/backfills/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListBatchExportsBackfillsRequest",
+}) as any as S.Schema<ListBatchExportsBackfillsRequest>;
+
+export type PaginatedBatchExportBackfillListResultsList =
+  Array<BatchExportBackfill>;
+export const PaginatedBatchExportBackfillListResultsList =
+  /*@__PURE__*/ S.Array(
+    BatchExportBackfill,
+  ) as any as S.Schema<PaginatedBatchExportBackfillListResultsList>;
+
+export interface PaginatedBatchExportBackfillList {
+  next?: string | null;
+  previous?: string | null;
+  results?: PaginatedBatchExportBackfillListResultsList;
+}
+export const PaginatedBatchExportBackfillList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    next: S.optional(S.NullOr(S.String)),
+    previous: S.optional(S.NullOr(S.String)),
+    results: S.optional(PaginatedBatchExportBackfillListResultsList),
+  }),
+).annotate({
+  identifier: "PaginatedBatchExportBackfillList",
+}) as any as S.Schema<PaginatedBatchExportBackfillList>;
+
+/** * `Cancelled` - Cancelled * `Completed` - Completed * `ContinuedAsNew` - Continued As New * `Failed` - Failed * `FailedRetryable` - Failed Retryable * `FailedBilling` - Failed Billing * `Terminated` - Terminated * `TimedOut` - Timedout * `Running` - Running * `Starting` - Starting */
+export type ListBatchExportsRunsRequestStatusItem =
+  | "Cancelled"
+  | "Completed"
+  | "ContinuedAsNew"
+  | "Failed"
+  | "FailedRetryable"
+  | "FailedBilling"
+  | "Terminated"
+  | "TimedOut"
+  | "Running"
+  | "Starting";
+export const ListBatchExportsRunsRequestStatusItem = /*@__PURE__*/ S.String;
+
+export type ListBatchExportsRunsRequestStatusList = Array<
+  ListBatchExportsRunsRequestStatusItem | (string & {})
+>;
+export const ListBatchExportsRunsRequestStatusList = /*@__PURE__*/ S.Array(
+  ListBatchExportsRunsRequestStatusItem,
+) as any as S.Schema<ListBatchExportsRunsRequestStatusList>;
+
+export interface ListBatchExportsRunsRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  batch_export_id: string;
+  /** Only return runs created at or after this point. Accepts an ISO-8601 datetime or a relative value like `-7d`. Defaults to `-7d`. Ignored when ordering by `data_interval_start`. */
+  after?: string;
+  /** Only return runs created at or before this point. Accepts an ISO-8601 datetime or a relative value like `-1d`. Defaults to now. Ignored when ordering by `data_interval_start`. */
+  before?: string;
+  /** The pagination cursor value. */
+  cursor?: string;
+  /** Only return runs whose data interval ends at or before this point. Accepts an ISO-8601 datetime or a relative value like `-1d`. Defaults to now. Only applies when ordering by `data_interval_start`. */
+  end?: string;
+  /** Which field to use when ordering the results. */
+  ordering?: string;
+  /** Only return runs whose data interval starts at or after this point. Accepts an ISO-8601 datetime or a relative value like `-7d`. Defaults to `-7d`. Only applies when ordering by `data_interval_start`. */
+  start?: string;
+  /** Only return runs in these statuses. Repeat the parameter to pass more than one status. */
+  status?: ListBatchExportsRunsRequestStatusList;
+}
+export const ListBatchExportsRunsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    batch_export_id: S.String.pipe(T.Label()),
+    after: S.optional(S.String.pipe(T.Query())),
+    before: S.optional(S.String.pipe(T.Query())),
+    cursor: S.optional(S.String.pipe(T.Query())),
+    end: S.optional(S.String.pipe(T.Query())),
+    ordering: S.optional(S.String.pipe(T.Query())),
+    start: S.optional(S.String.pipe(T.Query())),
+    status: S.optional(ListBatchExportsRunsRequestStatusList.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/batch_exports/{batch_export_id}/runs/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListBatchExportsRunsRequest",
+}) as any as S.Schema<ListBatchExportsRunsRequest>;
+
+export type PaginatedBatchExportRunListResultsList = Array<BatchExportRun>;
+export const PaginatedBatchExportRunListResultsList = /*@__PURE__*/ S.Array(
+  BatchExportRun,
+) as any as S.Schema<PaginatedBatchExportRunListResultsList>;
+
+export interface PaginatedBatchExportRunList {
+  next?: string | null;
+  previous?: string | null;
+  results?: PaginatedBatchExportRunListResultsList;
+}
+export const PaginatedBatchExportRunList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    next: S.optional(S.NullOr(S.String)),
+    previous: S.optional(S.NullOr(S.String)),
+    results: S.optional(PaginatedBatchExportRunListResultsList),
+  }),
+).annotate({
+  identifier: "PaginatedBatchExportRunList",
+}) as any as S.Schema<PaginatedBatchExportRunList>;
+
+export interface UpdateBatchExportRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this batch export. */
+  id: string;
+  /** Human-readable name for the batch export. */
+  name: string;
+  /** Which data model to export (events, persons, sessions). * `events` - Events * `persons` - Persons * `sessions` - Sessions * `hogql` - Hogql */
+  model?: ModelEnum | (string & {});
+  /** Destination configuration. Required integration_id is enforced per destination type. */
+  destination: BatchExportDestinationRequest;
+  /** How often the batch export should run. * `hour` - hour * `day` - day * `week` - week * `every 5 minutes` - every 5 minutes * `every 15 minutes` - every 15 minutes */
+  interval: BatchExportIntervalEnum | (string & {});
+  /** Whether the batch export is paused. */
+  paused?: boolean;
+  /** Optional HogQL SELECT defining a custom model schema. Only recommended in advanced use cases. */
+  hogql_query?: string;
+  /** Optional list of property filters to restrict which events are exported. Each filter is a serialized HogQL property filter object with a 'type' of one of: 'event', 'hogql', 'person' (e.g. {"key": "$browser", "operator": "exact", "type": "event", "value": ["Firefox"]}). */
+  filters?: unknown;
+  /** IANA timezone name (e.g. 'America/New_York', 'Europe/London', 'UTC') controlling daily and weekly interval boundaries. */
+  timezone?: string | null;
+  /** Day-of-week offset for weekly intervals (0=Sunday, 6=Saturday). */
+  offset_day?: number | null;
+  /** Hour-of-day offset (0-23) for daily and weekly intervals. */
+  offset_hour?: number | null;
+}
+export const UpdateBatchExportRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+    name: S.String,
+    model: S.optional(ModelEnum),
+    destination: BatchExportDestinationRequest,
+    interval: BatchExportIntervalEnum,
+    paused: S.optional(S.Boolean),
+    hogql_query: S.optional(S.String),
+    filters: S.optional(S.Unknown),
+    timezone: S.optional(S.NullOr(S.String)),
+    offset_day: S.optional(S.NullOr(S.Number)),
+    offset_hour: S.optional(S.NullOr(S.Number)),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/api/projects/{project_id}/batch_exports/{id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "UpdateBatchExportRequest",
+}) as any as S.Schema<UpdateBatchExportRequest>;
+
+export interface UpdateBatchExportsPartialRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this batch export. */
+  id: string;
+  /** Human-readable name for the batch export. */
+  name?: string;
+  /** Which data model to export (events, persons, sessions). * `events` - Events * `persons` - Persons * `sessions` - Sessions * `hogql` - Hogql */
+  model?: ModelEnum | (string & {});
+  /** Destination configuration. Required integration_id is enforced per destination type. */
+  destination?: BatchExportDestinationRequest;
+  /** How often the batch export should run. * `hour` - hour * `day` - day * `week` - week * `every 5 minutes` - every 5 minutes * `every 15 minutes` - every 15 minutes */
+  interval?: BatchExportIntervalEnum | (string & {});
+  /** Whether the batch export is paused. */
+  paused?: boolean;
+  /** Optional HogQL SELECT defining a custom model schema. Only recommended in advanced use cases. */
+  hogql_query?: string;
+  /** Optional list of property filters to restrict which events are exported. Each filter is a serialized HogQL property filter object with a 'type' of one of: 'event', 'hogql', 'person' (e.g. {"key": "$browser", "operator": "exact", "type": "event", "value": ["Firefox"]}). */
+  filters?: unknown;
+  /** IANA timezone name (e.g. 'America/New_York', 'Europe/London', 'UTC') controlling daily and weekly interval boundaries. */
+  timezone?: string | null;
+  /** Day-of-week offset for weekly intervals (0=Sunday, 6=Saturday). */
+  offset_day?: number | null;
+  /** Hour-of-day offset (0-23) for daily and weekly intervals. */
+  offset_hour?: number | null;
+}
+export const UpdateBatchExportsPartialRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+    name: S.optional(S.String),
+    model: S.optional(ModelEnum),
+    destination: S.optional(BatchExportDestinationRequest),
+    interval: S.optional(BatchExportIntervalEnum),
+    paused: S.optional(S.Boolean),
+    hogql_query: S.optional(S.String),
+    filters: S.optional(S.Unknown),
+    timezone: S.optional(S.NullOr(S.String)),
+    offset_day: S.optional(S.NullOr(S.Number)),
+    offset_hour: S.optional(S.NullOr(S.Number)),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/api/projects/{project_id}/batch_exports/{id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "UpdateBatchExportsPartialRequest",
+}) as any as S.Schema<UpdateBatchExportsPartialRequest>;
+
 export type BatchExportsBackfillsCancelCreateError =
   | BadRequest
   | Forbidden
@@ -2953,80 +2990,6 @@ export const batchExportsBackfillsCancelCreate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type BatchExportsBackfillsCreateError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** Create a new backfill for a BatchExport. */
-export const batchExportsBackfillsCreate: API.OperationMethod<
-  BatchExportsBackfillsCreateRequest,
-  BatchExportBackfill,
-  BatchExportsBackfillsCreateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BatchExportsBackfillsCreateRequest,
-  output: BatchExportBackfill,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BatchExportsBackfillsListError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** ViewSet for BatchExportBackfill models. Allows creating and reading backfills, but not updating or deleting them. */
-export const batchExportsBackfillsList: API.OperationMethod<
-  BatchExportsBackfillsListRequest,
-  PaginatedBatchExportBackfillList,
-  BatchExportsBackfillsListError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BatchExportsBackfillsListRequest,
-  output: PaginatedBatchExportBackfillList,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BatchExportsBackfillsRetrieveError =
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** ViewSet for BatchExportBackfill models. Allows creating and reading backfills, but not updating or deleting them. */
-export const batchExportsBackfillsRetrieve: API.OperationMethod<
-  BatchExportsBackfillsRetrieveRequest,
-  BatchExportBackfill,
-  BatchExportsBackfillsRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BatchExportsBackfillsRetrieveRequest,
-  output: BatchExportBackfill,
-  errors: [Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BatchExportsCreateError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-export const batchExportsCreate: API.OperationMethod<
-  BatchExportsCreateRequest,
-  BatchExportOutput,
-  BatchExportsCreateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BatchExportsCreateRequest,
-  output: BatchExportOutput,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
 export type BatchExportsDestroyError = Forbidden | NotFound | PosthogOpError;
 export const batchExportsDestroy: API.OperationMethod<
   BatchExportsDestroyRequest,
@@ -3036,93 +2999,6 @@ export const batchExportsDestroy: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: BatchExportsDestroyRequest,
   output: BatchExportsDestroyResponse,
-  errors: [Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BatchExportsListError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-export const batchExportsList: API.OperationMethod<
-  BatchExportsListRequest,
-  PaginatedBatchExportListOutput,
-  BatchExportsListError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BatchExportsListRequest,
-  output: PaginatedBatchExportListOutput,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BatchExportsLogsRetrieveError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-export const batchExportsLogsRetrieve: API.OperationMethod<
-  BatchExportsLogsRetrieveRequest,
-  BatchExportsLogsRetrieveResponse,
-  BatchExportsLogsRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BatchExportsLogsRetrieveRequest,
-  output: BatchExportsLogsRetrieveResponse,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BatchExportsPartialUpdateError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-export const batchExportsPartialUpdate: API.OperationMethod<
-  BatchExportsPartialUpdateRequest,
-  BatchExportOutput,
-  BatchExportsPartialUpdateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BatchExportsPartialUpdateRequest,
-  output: BatchExportOutput,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BatchExportsPauseCreateError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** Pause a BatchExport. */
-export const batchExportsPauseCreate: API.OperationMethod<
-  BatchExportsPauseCreateRequest,
-  BatchExportsPauseCreateResponse,
-  BatchExportsPauseCreateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BatchExportsPauseCreateRequest,
-  output: BatchExportsPauseCreateResponse,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BatchExportsRetrieveError = Forbidden | NotFound | PosthogOpError;
-export const batchExportsRetrieve: API.OperationMethod<
-  BatchExportsRetrieveRequest,
-  BatchExportOutput,
-  BatchExportsRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BatchExportsRetrieveRequest,
-  output: BatchExportOutput,
   errors: [Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
@@ -3147,59 +3023,6 @@ export const batchExportsRunsCancelCreate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type BatchExportsRunsListError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-export const batchExportsRunsList: API.OperationMethod<
-  BatchExportsRunsListRequest,
-  PaginatedBatchExportRunList,
-  BatchExportsRunsListError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BatchExportsRunsListRequest,
-  output: PaginatedBatchExportRunList,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BatchExportsRunsLogsRetrieveError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-export const batchExportsRunsLogsRetrieve: API.OperationMethod<
-  BatchExportsRunsLogsRetrieveRequest,
-  BatchExportsRunsLogsRetrieveResponse,
-  BatchExportsRunsLogsRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BatchExportsRunsLogsRetrieveRequest,
-  output: BatchExportsRunsLogsRetrieveResponse,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BatchExportsRunsRetrieveError =
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-export const batchExportsRunsRetrieve: API.OperationMethod<
-  BatchExportsRunsRetrieveRequest,
-  BatchExportRun,
-  BatchExportsRunsRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BatchExportsRunsRetrieveRequest,
-  output: BatchExportRun,
-  errors: [Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
 export type BatchExportsRunsRetryCreateError =
   | BadRequest
   | Forbidden
@@ -3215,59 +3038,6 @@ export const batchExportsRunsRetryCreate: API.OperationMethod<
   input: BatchExportsRunsRetryCreateRequest,
   output: BatchExportsRunsRetryCreateResponse,
   errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BatchExportsRunTestStepCreateError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-export const batchExportsRunTestStepCreate: API.OperationMethod<
-  BatchExportsRunTestStepCreateRequest,
-  BatchExportsRunTestStepCreateResponse,
-  BatchExportsRunTestStepCreateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BatchExportsRunTestStepCreateRequest,
-  output: BatchExportsRunTestStepCreateResponse,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BatchExportsRunTestStepNewCreateError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-export const batchExportsRunTestStepNewCreate: API.OperationMethod<
-  BatchExportsRunTestStepNewCreateRequest,
-  BatchExportsRunTestStepNewCreateResponse,
-  BatchExportsRunTestStepNewCreateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BatchExportsRunTestStepNewCreateRequest,
-  output: BatchExportsRunTestStepNewCreateResponse,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BatchExportsTestRetrieveError =
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-export const batchExportsTestRetrieve: API.OperationMethod<
-  BatchExportsTestRetrieveRequest,
-  BatchExportsTestRetrieveResponse,
-  BatchExportsTestRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BatchExportsTestRetrieveRequest,
-  output: BatchExportsTestRetrieveResponse,
-  errors: [Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
@@ -3291,19 +3061,93 @@ export const batchExportsUnpauseCreate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type BatchExportsUpdateError =
+export type CreateBatchExportError =
   | BadRequest
   | Forbidden
   | NotFound
   | PosthogOpError;
-export const batchExportsUpdate: API.OperationMethod<
-  BatchExportsUpdateRequest,
+export const createBatchExport: API.OperationMethod<
+  CreateBatchExportRequest,
   BatchExportOutput,
-  BatchExportsUpdateError,
+  CreateBatchExportError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: BatchExportsUpdateRequest,
+  input: CreateBatchExportRequest,
   output: BatchExportOutput,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateBatchExportsBackfillError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+/** Create a new backfill for a BatchExport. */
+export const createBatchExportsBackfill: API.OperationMethod<
+  CreateBatchExportsBackfillRequest,
+  BatchExportBackfill,
+  CreateBatchExportsBackfillError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateBatchExportsBackfillRequest,
+  output: BatchExportBackfill,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateBatchExportsPauseError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+/** Pause a BatchExport. */
+export const createBatchExportsPause: API.OperationMethod<
+  CreateBatchExportsPauseRequest,
+  CreateBatchExportsPauseResponse,
+  CreateBatchExportsPauseError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateBatchExportsPauseRequest,
+  output: CreateBatchExportsPauseResponse,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateBatchExportsRunTestStepError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+export const createBatchExportsRunTestStep: API.OperationMethod<
+  CreateBatchExportsRunTestStepRequest,
+  CreateBatchExportsRunTestStepResponse,
+  CreateBatchExportsRunTestStepError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateBatchExportsRunTestStepRequest,
+  output: CreateBatchExportsRunTestStepResponse,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateBatchExportsRunTestStepNewError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+export const createBatchExportsRunTestStepNew: API.OperationMethod<
+  CreateBatchExportsRunTestStepNewRequest,
+  CreateBatchExportsRunTestStepNewResponse,
+  CreateBatchExportsRunTestStepNewError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateBatchExportsRunTestStepNewRequest,
+  output: CreateBatchExportsRunTestStepNewResponse,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
@@ -3320,6 +3164,24 @@ export const fileDownloadBatchExportsCancelCreate: API.OperationMethod<
   input: FileDownloadBatchExportsCancelCreateRequest,
   output: FileDownloadBatchExportsCancelCreateResponse,
   errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type FileDownloadBatchExportsCountRowsCreateError =
+  | BadRequest
+  | Forbidden
+  | PosthogOpError;
+/** Count the rows a HogQL batch export would produce if started now. */
+export const fileDownloadBatchExportsCountRowsCreate: API.OperationMethod<
+  FileDownloadBatchExportsCountRowsCreateRequest,
+  FileDownloadCountRowsResponse,
+  FileDownloadBatchExportsCountRowsCreateError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: FileDownloadBatchExportsCountRowsCreateRequest,
+  output: FileDownloadCountRowsResponse,
+  errors: [BadRequest, Forbidden],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
@@ -3393,6 +3255,193 @@ export const fileDownloadBatchExportsRetrieve: API.OperationMethod<
   input: FileDownloadBatchExportsRetrieveRequest,
   output: FileDownloadBatchExportsRetrieveResponse,
   errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetBatchExportError = Forbidden | NotFound | PosthogOpError;
+export const getBatchExport: API.OperationMethod<
+  GetBatchExportRequest,
+  BatchExportOutput,
+  GetBatchExportError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetBatchExportRequest,
+  output: BatchExportOutput,
+  errors: [Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetBatchExportsBackfillError =
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+/** ViewSet for BatchExportBackfill models. Allows creating and reading backfills, but not updating or deleting them. */
+export const getBatchExportsBackfill: API.OperationMethod<
+  GetBatchExportsBackfillRequest,
+  BatchExportBackfill,
+  GetBatchExportsBackfillError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetBatchExportsBackfillRequest,
+  output: BatchExportBackfill,
+  errors: [Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetBatchExportsLogError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+export const getBatchExportsLog: API.OperationMethod<
+  GetBatchExportsLogRequest,
+  GetBatchExportsLogResponse,
+  GetBatchExportsLogError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetBatchExportsLogRequest,
+  output: GetBatchExportsLogResponse,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetBatchExportsRunError = Forbidden | NotFound | PosthogOpError;
+export const getBatchExportsRun: API.OperationMethod<
+  GetBatchExportsRunRequest,
+  BatchExportRun,
+  GetBatchExportsRunError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetBatchExportsRunRequest,
+  output: BatchExportRun,
+  errors: [Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetBatchExportsRunsLogError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+export const getBatchExportsRunsLog: API.OperationMethod<
+  GetBatchExportsRunsLogRequest,
+  GetBatchExportsRunsLogResponse,
+  GetBatchExportsRunsLogError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetBatchExportsRunsLogRequest,
+  output: GetBatchExportsRunsLogResponse,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetBatchExportsTestError = Forbidden | NotFound | PosthogOpError;
+export const getBatchExportsTest: API.OperationMethod<
+  GetBatchExportsTestRequest,
+  GetBatchExportsTestResponse,
+  GetBatchExportsTestError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetBatchExportsTestRequest,
+  output: GetBatchExportsTestResponse,
+  errors: [Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListBatchExportsError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+export const listBatchExports: API.OperationMethod<
+  ListBatchExportsRequest,
+  PaginatedBatchExportListOutput,
+  ListBatchExportsError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListBatchExportsRequest,
+  output: PaginatedBatchExportListOutput,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListBatchExportsBackfillsError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+/** ViewSet for BatchExportBackfill models. Allows creating and reading backfills, but not updating or deleting them. */
+export const listBatchExportsBackfills: API.OperationMethod<
+  ListBatchExportsBackfillsRequest,
+  PaginatedBatchExportBackfillList,
+  ListBatchExportsBackfillsError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListBatchExportsBackfillsRequest,
+  output: PaginatedBatchExportBackfillList,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListBatchExportsRunsError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+export const listBatchExportsRuns: API.OperationMethod<
+  ListBatchExportsRunsRequest,
+  PaginatedBatchExportRunList,
+  ListBatchExportsRunsError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListBatchExportsRunsRequest,
+  output: PaginatedBatchExportRunList,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateBatchExportError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+export const updateBatchExport: API.OperationMethod<
+  UpdateBatchExportRequest,
+  BatchExportOutput,
+  UpdateBatchExportError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateBatchExportRequest,
+  output: BatchExportOutput,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateBatchExportsPartialError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+export const updateBatchExportsPartial: API.OperationMethod<
+  UpdateBatchExportsPartialRequest,
+  BatchExportOutput,
+  UpdateBatchExportsPartialError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateBatchExportsPartialRequest,
+  output: BatchExportOutput,
+  errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));

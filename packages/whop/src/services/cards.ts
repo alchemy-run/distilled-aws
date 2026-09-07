@@ -234,6 +234,211 @@ export const CreateCardResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateCardResponse",
 }) as any as S.Schema<CreateCardResponse>;
 
+export interface GetCardRequest {
+  /** Card ID to retrieve, prefixed `icrd_`. */
+  id: string;
+  /** The owning account ID (a biz_ identifier). Provide this or user_id. */
+  account_id?: string;
+  /** The owning user ID (a user_ identifier). Provide this or account_id. */
+  user_id?: string;
+}
+export const GetCardRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+    account_id: S.optional(S.String.pipe(T.Query())),
+    user_id: S.optional(S.String.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/cards/{id}", code: 200 })),
+).annotate({ identifier: "GetCardRequest" }) as any as S.Schema<GetCardRequest>;
+
+/** The billing address. */
+export type GetCardResponseBilling = CreateCardResponseBilling;
+export const GetCardResponseBilling = CreateCardResponseBilling;
+
+/** The window the limit amount applies to. `per_transaction` caps each individual authorization and is what a limit set with `transaction_limit` reports. */
+export type GetCardResponseLimitFrequency =
+  | "daily"
+  | "weekly"
+  | "monthly"
+  | "one_time"
+  | "per_transaction";
+export const GetCardResponseLimitFrequency = /*@__PURE__*/ S.String;
+
+/** The spending limit configuration. */
+export interface GetCardResponseLimit {
+  /** The limit amount in dollars. */
+  amount: number;
+  /** The window the limit amount applies to. `per_transaction` caps each individual authorization and is what a limit set with `transaction_limit` reports. */
+  frequency: GetCardResponseLimitFrequency;
+}
+export const GetCardResponseLimit = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    amount: S.Number,
+    frequency: GetCardResponseLimitFrequency,
+  }),
+).annotate({
+  identifier: "GetCardResponseLimit",
+}) as any as S.Schema<GetCardResponseLimit>;
+
+export type GetCardResponseObject = "card";
+export const GetCardResponseObject = /*@__PURE__*/ S.String;
+
+/** Sensitive card details. Present only on `GET /cards/:id` for active cards; `null` when the card is inactive or details cannot be retrieved. */
+export type GetCardResponseSecrets = CreateCardResponseSecrets;
+export const GetCardResponseSecrets = CreateCardResponseSecrets;
+
+/** The card status. `denied` means the issuer declined the cardholder, so the card will never be issued. */
+export type GetCardResponseStatus =
+  | "active"
+  | "frozen"
+  | "canceled"
+  | "invited"
+  | "denied";
+export const GetCardResponseStatus = /*@__PURE__*/ S.String;
+
+/** The card type. */
+export type GetCardResponseType = "virtual" | "physical";
+export const GetCardResponseType = /*@__PURE__*/ S.String;
+
+export interface GetCardResponse {
+  /** The billing address. */
+  billing: CreateCardResponseBilling | null;
+  /** When the card was canceled. */
+  canceled_at: string | null;
+  /** When the card was created. */
+  created_at: string | null;
+  /** Card expiration month. */
+  expiration_month: string | null;
+  /** Card expiration year. */
+  expiration_year: string | null;
+  /** Card ID, prefixed `icrd_`. */
+  id: string;
+  /** Last four digits of the card number. `null` for pending invitation cards. */
+  last4: string | null;
+  /** The spending limit configuration. */
+  limit: GetCardResponseLimit | null;
+  /** Card display name. */
+  name: string | null;
+  object: GetCardResponseObject;
+  /** Sensitive card details. Present only on `GET /cards/:id` for active cards; `null` when the card is inactive or details cannot be retrieved. */
+  secrets?: CreateCardResponseSecrets | null;
+  /** Total spend in the last 30 days, in cents. */
+  spent_last_month: number | null;
+  /** The card status. `denied` means the issuer declined the cardholder, so the card will never be issued. */
+  status: GetCardResponseStatus | null;
+  /** The card type. */
+  type: GetCardResponseType | null;
+  /** Cardholder user ID, prefixed `user_`, when assigned. */
+  user_id: string | null;
+}
+export const GetCardResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    billing: S.NullOr(CreateCardResponseBilling),
+    canceled_at: S.NullOr(S.String),
+    created_at: S.NullOr(S.String),
+    expiration_month: S.NullOr(S.String),
+    expiration_year: S.NullOr(S.String),
+    id: S.String,
+    last4: S.NullOr(S.String),
+    limit: S.NullOr(GetCardResponseLimit),
+    name: S.NullOr(S.String),
+    object: GetCardResponseObject,
+    secrets: S.optional(S.NullOr(CreateCardResponseSecrets)),
+    spent_last_month: S.NullOr(S.Number),
+    status: S.NullOr(GetCardResponseStatus),
+    type: S.NullOr(GetCardResponseType),
+    user_id: S.NullOr(S.String),
+  }),
+).annotate({
+  identifier: "GetCardResponse",
+}) as any as S.Schema<GetCardResponse>;
+
+export interface GetCardTransactionRequest {
+  /** The card transaction ID, prefixed `citx_`. */
+  id: string;
+  /** The account that owns the transaction, prefixed `biz_`. Defaults to the credential's account. */
+  account_id?: string;
+}
+export const GetCardTransactionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+    account_id: S.optional(S.String.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/card_transactions/{id}", code: 200 })),
+).annotate({
+  identifier: "GetCardTransactionRequest",
+}) as any as S.Schema<GetCardTransactionRequest>;
+
+/** Current status of the transaction. */
+export type CardTransactionStatus =
+  | "pending"
+  | "completed"
+  | "reversed"
+  | "declined";
+export const CardTransactionStatus = /*@__PURE__*/ S.String;
+
+/** The kind of card transaction. Always `spend` today. */
+export type CardTransactionTransactionType = "spend";
+export const CardTransactionTransactionType = /*@__PURE__*/ S.String;
+
+export interface CardTransaction {
+  /** The card this transaction was charged to, prefixed `icrd_`. */
+  card_id: string;
+  /** The user the card is assigned to, prefixed `user_`. Null when the card has no assigned cardholder. */
+  cardholder_id: string | null;
+  /** Cashback earned on this transaction as a USD amount. Zero for declined or ineligible transactions, and null when cashback has not been computed yet. */
+  cashback_usd_amount: number | null;
+  /** When the transaction was authorized, as an ISO 8601 timestamp. */
+  created_at: string;
+  /** ISO 4217 currency code the merchant charged in. */
+  currency: string | null;
+  /** Why the transaction was declined. Null unless `status` is `declined`. */
+  declined_reason: string | null;
+  /** Card transaction ID, prefixed `citx_`. */
+  id: string;
+  /** True when the merchant is outside the card's home country. */
+  international: boolean;
+  /** Amount the merchant charged in their own currency. Pair with `currency`. */
+  local_amount: number | null;
+  /** Merchant category label, enriched where available and otherwise as the card network reported it. */
+  merchant_category: string | null;
+  /** Four-digit ISO 18245 merchant category code (MCC). */
+  merchant_category_code: string | null;
+  /** URL of the enriched merchant logo. Null when no logo was matched. */
+  merchant_icon_url: string | null;
+  /** Merchant name, enriched where available and otherwise as the card network reported it. */
+  merchant_name: string | null;
+  /** When the card network settled the transaction, as an ISO 8601 timestamp. Null until it settles. */
+  posted_at: string | null;
+  /** Current status of the transaction. */
+  status: CardTransactionStatus;
+  /** The kind of card transaction. Always `spend` today. */
+  transaction_type: CardTransactionTransactionType;
+  /** Amount charged in USD. Negative when the merchant refunded the card. */
+  usd_amount: number | null;
+}
+export const CardTransaction = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    card_id: S.String,
+    cardholder_id: S.NullOr(S.String),
+    cashback_usd_amount: S.NullOr(S.Number),
+    created_at: S.String,
+    currency: S.NullOr(S.String),
+    declined_reason: S.NullOr(S.String),
+    id: S.String,
+    international: S.Boolean,
+    local_amount: S.NullOr(S.Number),
+    merchant_category: S.NullOr(S.String),
+    merchant_category_code: S.NullOr(S.String),
+    merchant_icon_url: S.NullOr(S.String),
+    merchant_name: S.NullOr(S.String),
+    posted_at: S.NullOr(S.String),
+    status: CardTransactionStatus,
+    transaction_type: CardTransactionTransactionType,
+    usd_amount: S.NullOr(S.Number),
+  }),
+).annotate({
+  identifier: "CardTransaction",
+}) as any as S.Schema<CardTransaction>;
+
 export interface ListCardsRequest {
   /** The owning account ID (a biz_ identifier). Provide this or user_id. */
   account_id?: string;
@@ -449,78 +654,6 @@ export const ListCardTransactionsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListCardTransactionsRequest",
 }) as any as S.Schema<ListCardTransactionsRequest>;
 
-/** Current status of the transaction. */
-export type CardTransactionStatus =
-  | "pending"
-  | "completed"
-  | "reversed"
-  | "declined";
-export const CardTransactionStatus = /*@__PURE__*/ S.String;
-
-/** The kind of card transaction. Always `spend` today. */
-export type CardTransactionTransactionType = "spend";
-export const CardTransactionTransactionType = /*@__PURE__*/ S.String;
-
-export interface CardTransaction {
-  /** The card this transaction was charged to, prefixed `icrd_`. */
-  card_id: string;
-  /** The user the card is assigned to, prefixed `user_`. Null when the card has no assigned cardholder. */
-  cardholder_id: string | null;
-  /** Cashback earned on this transaction as a USD amount. Zero for declined or ineligible transactions, and null when cashback has not been computed yet. */
-  cashback_usd_amount: number | null;
-  /** When the transaction was authorized, as an ISO 8601 timestamp. */
-  created_at: string;
-  /** ISO 4217 currency code the merchant charged in. */
-  currency: string | null;
-  /** Why the transaction was declined. Null unless `status` is `declined`. */
-  declined_reason: string | null;
-  /** Card transaction ID, prefixed `citx_`. */
-  id: string;
-  /** True when the merchant is outside the card's home country. */
-  international: boolean;
-  /** Amount the merchant charged in their own currency. Pair with `currency`. */
-  local_amount: number | null;
-  /** Merchant category label, enriched where available and otherwise as the card network reported it. */
-  merchant_category: string | null;
-  /** Four-digit ISO 18245 merchant category code (MCC). */
-  merchant_category_code: string | null;
-  /** URL of the enriched merchant logo. Null when no logo was matched. */
-  merchant_icon_url: string | null;
-  /** Merchant name, enriched where available and otherwise as the card network reported it. */
-  merchant_name: string | null;
-  /** When the card network settled the transaction, as an ISO 8601 timestamp. Null until it settles. */
-  posted_at: string | null;
-  /** Current status of the transaction. */
-  status: CardTransactionStatus;
-  /** The kind of card transaction. Always `spend` today. */
-  transaction_type: CardTransactionTransactionType;
-  /** Amount charged in USD. Negative when the merchant refunded the card. */
-  usd_amount: number | null;
-}
-export const CardTransaction = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    card_id: S.String,
-    cardholder_id: S.NullOr(S.String),
-    cashback_usd_amount: S.NullOr(S.Number),
-    created_at: S.String,
-    currency: S.NullOr(S.String),
-    declined_reason: S.NullOr(S.String),
-    id: S.String,
-    international: S.Boolean,
-    local_amount: S.NullOr(S.Number),
-    merchant_category: S.NullOr(S.String),
-    merchant_category_code: S.NullOr(S.String),
-    merchant_icon_url: S.NullOr(S.String),
-    merchant_name: S.NullOr(S.String),
-    posted_at: S.NullOr(S.String),
-    status: CardTransactionStatus,
-    transaction_type: CardTransactionTransactionType,
-    usd_amount: S.NullOr(S.Number),
-  }),
-).annotate({
-  identifier: "CardTransaction",
-}) as any as S.Schema<CardTransaction>;
-
 export type ListCardTransactionsResponseDataList = Array<CardTransaction>;
 export const ListCardTransactionsResponseDataList = /*@__PURE__*/ S.Array(
   CardTransaction,
@@ -556,141 +689,6 @@ export const ListCardTransactionsResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ListCardTransactionsResponse",
 }) as any as S.Schema<ListCardTransactionsResponse>;
-
-export interface RetrieveCardRequest {
-  /** Card ID to retrieve, prefixed `icrd_`. */
-  id: string;
-  /** The owning account ID (a biz_ identifier). Provide this or user_id. */
-  account_id?: string;
-  /** The owning user ID (a user_ identifier). Provide this or account_id. */
-  user_id?: string;
-}
-export const RetrieveCardRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-    account_id: S.optional(S.String.pipe(T.Query())),
-    user_id: S.optional(S.String.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/cards/{id}", code: 200 })),
-).annotate({
-  identifier: "RetrieveCardRequest",
-}) as any as S.Schema<RetrieveCardRequest>;
-
-/** The billing address. */
-export type RetrieveCardResponseBilling = CreateCardResponseBilling;
-export const RetrieveCardResponseBilling = CreateCardResponseBilling;
-
-/** The window the limit amount applies to. `per_transaction` caps each individual authorization and is what a limit set with `transaction_limit` reports. */
-export type RetrieveCardResponseLimitFrequency =
-  | "daily"
-  | "weekly"
-  | "monthly"
-  | "one_time"
-  | "per_transaction";
-export const RetrieveCardResponseLimitFrequency = /*@__PURE__*/ S.String;
-
-/** The spending limit configuration. */
-export interface RetrieveCardResponseLimit {
-  /** The limit amount in dollars. */
-  amount: number;
-  /** The window the limit amount applies to. `per_transaction` caps each individual authorization and is what a limit set with `transaction_limit` reports. */
-  frequency: RetrieveCardResponseLimitFrequency;
-}
-export const RetrieveCardResponseLimit = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    amount: S.Number,
-    frequency: RetrieveCardResponseLimitFrequency,
-  }),
-).annotate({
-  identifier: "RetrieveCardResponseLimit",
-}) as any as S.Schema<RetrieveCardResponseLimit>;
-
-export type RetrieveCardResponseObject = "card";
-export const RetrieveCardResponseObject = /*@__PURE__*/ S.String;
-
-/** Sensitive card details. Present only on `GET /cards/:id` for active cards; `null` when the card is inactive or details cannot be retrieved. */
-export type RetrieveCardResponseSecrets = CreateCardResponseSecrets;
-export const RetrieveCardResponseSecrets = CreateCardResponseSecrets;
-
-/** The card status. `denied` means the issuer declined the cardholder, so the card will never be issued. */
-export type RetrieveCardResponseStatus =
-  | "active"
-  | "frozen"
-  | "canceled"
-  | "invited"
-  | "denied";
-export const RetrieveCardResponseStatus = /*@__PURE__*/ S.String;
-
-/** The card type. */
-export type RetrieveCardResponseType = "virtual" | "physical";
-export const RetrieveCardResponseType = /*@__PURE__*/ S.String;
-
-export interface RetrieveCardResponse {
-  /** The billing address. */
-  billing: CreateCardResponseBilling | null;
-  /** When the card was canceled. */
-  canceled_at: string | null;
-  /** When the card was created. */
-  created_at: string | null;
-  /** Card expiration month. */
-  expiration_month: string | null;
-  /** Card expiration year. */
-  expiration_year: string | null;
-  /** Card ID, prefixed `icrd_`. */
-  id: string;
-  /** Last four digits of the card number. `null` for pending invitation cards. */
-  last4: string | null;
-  /** The spending limit configuration. */
-  limit: RetrieveCardResponseLimit | null;
-  /** Card display name. */
-  name: string | null;
-  object: RetrieveCardResponseObject;
-  /** Sensitive card details. Present only on `GET /cards/:id` for active cards; `null` when the card is inactive or details cannot be retrieved. */
-  secrets?: CreateCardResponseSecrets | null;
-  /** Total spend in the last 30 days, in cents. */
-  spent_last_month: number | null;
-  /** The card status. `denied` means the issuer declined the cardholder, so the card will never be issued. */
-  status: RetrieveCardResponseStatus | null;
-  /** The card type. */
-  type: RetrieveCardResponseType | null;
-  /** Cardholder user ID, prefixed `user_`, when assigned. */
-  user_id: string | null;
-}
-export const RetrieveCardResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    billing: S.NullOr(CreateCardResponseBilling),
-    canceled_at: S.NullOr(S.String),
-    created_at: S.NullOr(S.String),
-    expiration_month: S.NullOr(S.String),
-    expiration_year: S.NullOr(S.String),
-    id: S.String,
-    last4: S.NullOr(S.String),
-    limit: S.NullOr(RetrieveCardResponseLimit),
-    name: S.NullOr(S.String),
-    object: RetrieveCardResponseObject,
-    secrets: S.optional(S.NullOr(CreateCardResponseSecrets)),
-    spent_last_month: S.NullOr(S.Number),
-    status: S.NullOr(RetrieveCardResponseStatus),
-    type: S.NullOr(RetrieveCardResponseType),
-    user_id: S.NullOr(S.String),
-  }),
-).annotate({
-  identifier: "RetrieveCardResponse",
-}) as any as S.Schema<RetrieveCardResponse>;
-
-export interface RetrieveCardTransactionRequest {
-  /** The card transaction ID, prefixed `citx_`. */
-  id: string;
-  /** The account that owns the transaction, prefixed `biz_`. Defaults to the credential's account. */
-  account_id?: string;
-}
-export const RetrieveCardTransactionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-    account_id: S.optional(S.String.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/card_transactions/{id}", code: 200 })),
-).annotate({
-  identifier: "RetrieveCardTransactionRequest",
-}) as any as S.Schema<RetrieveCardTransactionRequest>;
 
 /** New billing address. Requires line1, city, region, postal_code, and country_code. On an invited card, passing billing alone (as the invited user) completes onboarding and starts card provisioning. */
 export interface UpdateCardRequestBilling {
@@ -895,6 +893,36 @@ export const createCard: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetCardError = NotFound | WhopOpError;
+/** Retrieve Card Retrieve a single card. */
+export const getCard: API.OperationMethod<
+  GetCardRequest,
+  GetCardResponse,
+  GetCardError,
+  WhopOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCardRequest,
+  output: GetCardResponse,
+  errors: [NotFound],
+  protocol: WhopProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetCardTransactionError = Forbidden | NotFound | WhopOpError;
+/** Retrieve Card Transaction Fetches a single card transaction by its `citx_` identifier. The owner defaults to the account the credential belongs to. */
+export const getCardTransaction: API.OperationMethod<
+  GetCardTransactionRequest,
+  CardTransaction,
+  GetCardTransactionError,
+  WhopOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCardTransactionRequest,
+  output: CardTransaction,
+  errors: [Forbidden, NotFound],
+  protocol: WhopProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListCardsError = BadRequest | Forbidden | NotFound | WhopOpError;
 /** List Cards Lists the Whop cards of an account or user, including ones still being set up. Team members only see the cards assigned to them. */
 export const listCards: API.OperationMethod<
@@ -936,36 +964,6 @@ export const listCardTransactions: API.PaginatedOperationMethod<
   }),
   paginateRelay,
 ) as any;
-
-export type RetrieveCardError = NotFound | WhopOpError;
-/** Retrieve Card Retrieve a single card. */
-export const retrieveCard: API.OperationMethod<
-  RetrieveCardRequest,
-  RetrieveCardResponse,
-  RetrieveCardError,
-  WhopOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveCardRequest,
-  output: RetrieveCardResponse,
-  errors: [NotFound],
-  protocol: WhopProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveCardTransactionError = Forbidden | NotFound | WhopOpError;
-/** Retrieve Card Transaction Fetches a single card transaction by its `citx_` identifier. The owner defaults to the account the credential belongs to. */
-export const retrieveCardTransaction: API.OperationMethod<
-  RetrieveCardTransactionRequest,
-  CardTransaction,
-  RetrieveCardTransactionError,
-  WhopOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveCardTransactionRequest,
-  output: CardTransaction,
-  errors: [Forbidden, NotFound],
-  protocol: WhopProtocol,
-  retry: Retry.Retry,
-}));
 
 export type UpdateCardError =
   | BadRequest

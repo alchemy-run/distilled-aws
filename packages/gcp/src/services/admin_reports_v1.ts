@@ -68,19 +68,19 @@ export class NotFound
 export interface GetCustomerUsageReportsRequest {
   /** The unique ID of the customer to retrieve data for. */
   customerId?: string;
+  /** Represents the date the usage occurred, based on UTC-8:00 (Pacific Standard Time). The timestamp is in the [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601), `yyyy-mm-dd`. */
+  date: string;
   /** The `parameters` query string is a comma-separated list of event parameters that refine a report's results. The parameter is associated with a specific application. The application values for the Customers usage report include `accounts`, `app_maker`, `apps_scripts`, `calendar`, `chat`, `classroom`, `cros`, `docs`, `gmail`, `gplus`, `device_management`, `meet`, and `sites`. A `parameters` query string is in the CSV form of `app_name1:param_name1, app_name2:param_name2`. *Note:* The API doesn't accept multiple values of a parameter. If a particular parameter is supplied more than once in the API request, the API only accepts the last value of that request parameter. In addition, if an invalid request parameter is supplied in the API request, the API ignores that request parameter and returns the response corresponding to the remaining valid request parameters. An example of an invalid request parameter is one that does not belong to the application. If no parameters are requested, all parameters are returned. */
   parameters?: string;
   /** Token to specify next page. A report with multiple pages has a `nextPageToken` property in the response. For your follow-on requests getting all of the report's pages, enter the `nextPageToken` value in the `pageToken` query string. */
   pageToken?: string;
-  /** Represents the date the usage occurred, based on UTC-8:00 (Pacific Standard Time). The timestamp is in the [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601), `yyyy-mm-dd`. */
-  date: string;
 }
 export const GetCustomerUsageReportsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     customerId: S.optional(S.String.pipe(T.Query())),
+    date: S.String.pipe(T.Label()),
     parameters: S.optional(S.String.pipe(T.Query())),
     pageToken: S.optional(S.String.pipe(T.Query())),
-    date: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
@@ -92,49 +92,29 @@ export const GetCustomerUsageReportsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetCustomerUsageReportsRequest",
 }) as any as S.Schema<GetCustomerUsageReportsRequest>;
 
-export interface UsageReportsWarningsItemDataItem {
-  /** Key associated with a key-value pair to give detailed information on the warning. */
-  key?: string;
-  /** Value associated with a key-value pair to give detailed information on the warning. */
-  value?: string;
+export interface UsageReportEntity {
+  /** Output only. The user's immutable Google Workspace profile identifier. */
+  profileId?: string;
+  /** Output only. The unique identifier of the customer's account. */
+  customerId?: string;
+  /** Output only. The type of item. The value is `user`. */
+  type?: string;
+  /** Output only. The user's email address. Only relevant if entity.type = "USER" */
+  userEmail?: string;
+  /** Output only. Object key. Only relevant if entity.type = "OBJECT" Note: external-facing name of report is "Entities" rather than "Objects". */
+  entityId?: string;
 }
-export const UsageReportsWarningsItemDataItem = /*@__PURE__*/ S.suspend(() =>
+export const UsageReportEntity = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    key: S.optional(S.String),
-    value: S.optional(S.String),
+    profileId: S.optional(S.String),
+    customerId: S.optional(S.String),
+    type: S.optional(S.String),
+    userEmail: S.optional(S.String),
+    entityId: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "UsageReportsWarningsItemDataItem",
-}) as any as S.Schema<UsageReportsWarningsItemDataItem>;
-
-export type UsageReportsWarningsItemDataItemList =
-  Array<UsageReportsWarningsItemDataItem>;
-export const UsageReportsWarningsItemDataItemList = /*@__PURE__*/ S.Array(
-  UsageReportsWarningsItemDataItem,
-) as any as S.Schema<UsageReportsWarningsItemDataItemList>;
-
-export interface UsageReportsWarningsItem {
-  /** Machine readable code or warning type. The warning code value is `200`. */
-  code?: string;
-  /** Key-value pairs to give detailed information on the warning. */
-  data?: UsageReportsWarningsItemDataItemList;
-  /** The human readable messages for a warning are: - Data is not available warning - Sorry, data for date yyyy-mm-dd for application "`application name`" is not available. - Partial data is available warning - Data for date yyyy-mm-dd for application "`application name`" is not available right now, please try again after a few hours. */
-  message?: string;
-}
-export const UsageReportsWarningsItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    code: S.optional(S.String),
-    data: S.optional(UsageReportsWarningsItemDataItemList),
-    message: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "UsageReportsWarningsItem",
-}) as any as S.Schema<UsageReportsWarningsItem>;
-
-export type UsageReportsWarningsItemList = Array<UsageReportsWarningsItem>;
-export const UsageReportsWarningsItemList = /*@__PURE__*/ S.Array(
-  UsageReportsWarningsItem,
-) as any as S.Schema<UsageReportsWarningsItemList>;
+  identifier: "UsageReportEntity",
+}) as any as S.Schema<UsageReportEntity>;
 
 export type DocumentMap = { [key: string]: unknown | undefined };
 export const DocumentMap = /*@__PURE__*/ S.Record(
@@ -148,27 +128,27 @@ export const DocumentMapList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<DocumentMapList>;
 
 export interface UsageReportParametersItem {
+  /** The name of the parameter. For the User Usage Report parameter names, see the User Usage parameters reference. */
+  name?: string;
   /** The RFC 3339 formatted value of the parameter, for example 2010-10-28T10:26:35.000Z. */
   datetimeValue?: string;
   /** Output only. Integer value of the parameter. */
   intValue?: string;
-  /** Output only. String value of the parameter. */
-  stringValue?: string;
-  /** The name of the parameter. For the User Usage Report parameter names, see the User Usage parameters reference. */
-  name?: string;
-  /** Output only. Boolean value of the parameter. */
-  boolValue?: boolean;
   /** Output only. Nested message value of the parameter. */
   msgValue?: DocumentMapList;
+  /** Output only. Boolean value of the parameter. */
+  boolValue?: boolean;
+  /** Output only. String value of the parameter. */
+  stringValue?: string;
 }
 export const UsageReportParametersItem = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    name: S.optional(S.String),
     datetimeValue: S.optional(S.String),
     intValue: S.optional(S.String),
-    stringValue: S.optional(S.String),
-    name: S.optional(S.String),
-    boolValue: S.optional(S.Boolean),
     msgValue: S.optional(DocumentMapList),
+    boolValue: S.optional(S.Boolean),
+    stringValue: S.optional(S.String),
   }),
 ).annotate({
   identifier: "UsageReportParametersItem",
@@ -179,50 +159,26 @@ export const UsageReportParametersItemList = /*@__PURE__*/ S.Array(
   UsageReportParametersItem,
 ) as any as S.Schema<UsageReportParametersItemList>;
 
-export interface UsageReportEntity {
-  /** Output only. The type of item. The value is `user`. */
-  type?: string;
-  /** Output only. The user's email address. Only relevant if entity.type = "USER" */
-  userEmail?: string;
-  /** Output only. The user's immutable Google Workspace profile identifier. */
-  profileId?: string;
-  /** Output only. The unique identifier of the customer's account. */
-  customerId?: string;
-  /** Output only. Object key. Only relevant if entity.type = "OBJECT" Note: external-facing name of report is "Entities" rather than "Objects". */
-  entityId?: string;
-}
-export const UsageReportEntity = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: S.optional(S.String),
-    userEmail: S.optional(S.String),
-    profileId: S.optional(S.String),
-    customerId: S.optional(S.String),
-    entityId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "UsageReportEntity",
-}) as any as S.Schema<UsageReportEntity>;
-
 /** JSON template for a usage report. */
 export interface UsageReport {
+  /** Output only. The date of the report request. */
+  date?: string;
+  /** The type of API resource. For a usage report, the value is `admin#reports#usageReport`. */
+  kind?: string;
+  /** Output only. Information about the type of the item. */
+  entity?: UsageReportEntity;
   /** Output only. Parameter value pairs for various applications. For the Entity Usage Report parameters and values, see [the Entity Usage parameters reference](https://developers.google.com/workspace/admin/reports/v1/reference/usage-ref-appendix-a/entities). */
   parameters?: UsageReportParametersItemList;
   /** ETag of the resource. */
   etag?: string;
-  /** The type of API resource. For a usage report, the value is `admin#reports#usageReport`. */
-  kind?: string;
-  /** Output only. The date of the report request. */
-  date?: string;
-  /** Output only. Information about the type of the item. */
-  entity?: UsageReportEntity;
 }
 export const UsageReport = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    date: S.optional(S.String),
+    kind: S.optional(S.String),
+    entity: S.optional(UsageReportEntity),
     parameters: S.optional(UsageReportParametersItemList),
     etag: S.optional(S.String),
-    kind: S.optional(S.String),
-    date: S.optional(S.String),
-    entity: S.optional(UsageReportEntity),
   }),
 ).annotate({ identifier: "UsageReport" }) as any as S.Schema<UsageReport>;
 
@@ -231,25 +187,69 @@ export const UsageReportList = /*@__PURE__*/ S.Array(
   UsageReport,
 ) as any as S.Schema<UsageReportList>;
 
+export interface UsageReportsWarningsItemDataItem {
+  /** Value associated with a key-value pair to give detailed information on the warning. */
+  value?: string;
+  /** Key associated with a key-value pair to give detailed information on the warning. */
+  key?: string;
+}
+export const UsageReportsWarningsItemDataItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(S.String),
+    key: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "UsageReportsWarningsItemDataItem",
+}) as any as S.Schema<UsageReportsWarningsItemDataItem>;
+
+export type UsageReportsWarningsItemDataItemList =
+  Array<UsageReportsWarningsItemDataItem>;
+export const UsageReportsWarningsItemDataItemList = /*@__PURE__*/ S.Array(
+  UsageReportsWarningsItemDataItem,
+) as any as S.Schema<UsageReportsWarningsItemDataItemList>;
+
+export interface UsageReportsWarningsItem {
+  /** Key-value pairs to give detailed information on the warning. */
+  data?: UsageReportsWarningsItemDataItemList;
+  /** The human readable messages for a warning are: - Data is not available warning - Sorry, data for date yyyy-mm-dd for application "`application name`" is not available. - Partial data is available warning - Data for date yyyy-mm-dd for application "`application name`" is not available right now, please try again after a few hours. */
+  message?: string;
+  /** Machine readable code or warning type. The warning code value is `200`. */
+  code?: string;
+}
+export const UsageReportsWarningsItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: S.optional(UsageReportsWarningsItemDataItemList),
+    message: S.optional(S.String),
+    code: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "UsageReportsWarningsItem",
+}) as any as S.Schema<UsageReportsWarningsItem>;
+
+export type UsageReportsWarningsItemList = Array<UsageReportsWarningsItem>;
+export const UsageReportsWarningsItemList = /*@__PURE__*/ S.Array(
+  UsageReportsWarningsItem,
+) as any as S.Schema<UsageReportsWarningsItemList>;
+
 export interface UsageReports {
-  /** Warnings, if any. */
-  warnings?: UsageReportsWarningsItemList;
-  /** The type of API resource. For a usage report, the value is `admin#reports#usageReports`. */
-  kind?: string;
-  /** Various application parameter records. */
-  usageReports?: UsageReportList;
   /** Token to specify next page. A report with multiple pages has a `nextPageToken` property in the response. For your follow-on requests getting all of the report's pages, enter the `nextPageToken` value in the `pageToken` query string. */
   nextPageToken?: string;
+  /** The type of API resource. For a usage report, the value is `admin#reports#usageReports`. */
+  kind?: string;
   /** ETag of the resource. */
   etag?: string;
+  /** Various application parameter records. */
+  usageReports?: UsageReportList;
+  /** Warnings, if any. */
+  warnings?: UsageReportsWarningsItemList;
 }
 export const UsageReports = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    warnings: S.optional(UsageReportsWarningsItemList),
-    kind: S.optional(S.String),
-    usageReports: S.optional(UsageReportList),
     nextPageToken: S.optional(S.String),
+    kind: S.optional(S.String),
     etag: S.optional(S.String),
+    usageReports: S.optional(UsageReportList),
+    warnings: S.optional(UsageReportsWarningsItemList),
   }),
 ).annotate({ identifier: "UsageReports" }) as any as S.Schema<UsageReports>;
 
@@ -257,33 +257,33 @@ export type GetEntityUsageReportsEntityTypeEnum = "gplus_communities";
 export const GetEntityUsageReportsEntityTypeEnum = /*@__PURE__*/ S.String;
 
 export interface GetEntityUsageReportsRequest {
-  /** Represents the key of the object to filter the data with. It is a string which can take the value `all` to get activity events for all users, or any other value for an app-specific entity. For details on how to obtain the `entityKey` for a particular `entityType`, see the Entities Usage parameters reference guides. */
-  entityKey: string;
-  /** The unique ID of the customer to retrieve data for. */
-  customerId?: string;
-  /** Determines how many activity records are shown on each response page. For example, if the request sets `maxResults=1` and the report has two activities, the report has two pages. The response's `nextPageToken` property has the token to the second page. */
-  maxResults?: number;
-  /** Represents the type of entity for the report. */
-  entityType: GetEntityUsageReportsEntityTypeEnum | (string & {});
-  /** The `parameters` query string is a comma-separated list of event parameters that refine a report's results. The parameter is associated with a specific application. The application values for the Entities usage report are only `gplus`. A `parameter` query string is in the CSV form of `[app_name1:param_name1], [app_name2:param_name2]...`. *Note:* The API doesn't accept multiple values of a parameter. If a particular parameter is supplied more than once in the API request, the API only accepts the last value of that request parameter. In addition, if an invalid request parameter is supplied in the API request, the API ignores that request parameter and returns the response corresponding to the remaining valid request parameters. An example of an invalid request parameter is one that does not belong to the application. If no parameters are requested, all parameters are returned. */
-  parameters?: string;
-  /** Represents the date the usage occurred, based on UTC-8:00 (Pacific Standard Time). The timestamp is in the [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601), `yyyy-mm-dd`. */
-  date: string;
-  /** The `filters` query string is a comma-separated list of an application's event parameters where the parameter's value is manipulated by a relational operator. The `filters` query string includes the name of the application whose usage is returned in the report. The application values for the Entities usage report include `accounts`, `docs`, and `gmail`. Filters are in the form `[application name]:parameter name[parameter value],...`. In this example, the `<>` 'not equal to' operator is URL-encoded in the request's query string (%3C%3E): GET https://www.googleapis.com/admin/reports/v1/usage/gplus_communities/all/dates/2017-12-01 ?parameters=gplus:community_name,gplus:num_total_members &filters=gplus:num_total_members%3C%3E0 The relational operators include: - `==` - 'equal to'. - `<>` - 'not equal to'. It is URL-encoded (%3C%3E). - `<` - 'less than'. It is URL-encoded (%3C). - `<=` - 'less than or equal to'. It is URL-encoded (%3C=). - `>` - 'greater than'. It is URL-encoded (%3E). - `>=` - 'greater than or equal to'. It is URL-encoded (%3E=). Filters can only be applied to numeric parameters. */
-  filters?: string;
   /** Token to specify next page. A report with multiple pages has a `nextPageToken` property in the response. In your follow-on request getting the next page of the report, enter the `nextPageToken` value in the `pageToken` query string. */
   pageToken?: string;
+  /** The `parameters` query string is a comma-separated list of event parameters that refine a report's results. The parameter is associated with a specific application. The application values for the Entities usage report are only `gplus`. A `parameter` query string is in the CSV form of `[app_name1:param_name1], [app_name2:param_name2]...`. *Note:* The API doesn't accept multiple values of a parameter. If a particular parameter is supplied more than once in the API request, the API only accepts the last value of that request parameter. In addition, if an invalid request parameter is supplied in the API request, the API ignores that request parameter and returns the response corresponding to the remaining valid request parameters. An example of an invalid request parameter is one that does not belong to the application. If no parameters are requested, all parameters are returned. */
+  parameters?: string;
+  /** The `filters` query string is a comma-separated list of an application's event parameters where the parameter's value is manipulated by a relational operator. The `filters` query string includes the name of the application whose usage is returned in the report. The application values for the Entities usage report include `accounts`, `docs`, and `gmail`. Filters are in the form `[application name]:parameter name[parameter value],...`. In this example, the `<>` 'not equal to' operator is URL-encoded in the request's query string (%3C%3E): GET https://www.googleapis.com/admin/reports/v1/usage/gplus_communities/all/dates/2017-12-01 ?parameters=gplus:community_name,gplus:num_total_members &filters=gplus:num_total_members%3C%3E0 The relational operators include: - `==` - 'equal to'. - `<>` - 'not equal to'. It is URL-encoded (%3C%3E). - `<` - 'less than'. It is URL-encoded (%3C). - `<=` - 'less than or equal to'. It is URL-encoded (%3C=). - `>` - 'greater than'. It is URL-encoded (%3E). - `>=` - 'greater than or equal to'. It is URL-encoded (%3E=). Filters can only be applied to numeric parameters. */
+  filters?: string;
+  /** Represents the date the usage occurred, based on UTC-8:00 (Pacific Standard Time). The timestamp is in the [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601), `yyyy-mm-dd`. */
+  date: string;
+  /** Determines how many activity records are shown on each response page. For example, if the request sets `maxResults=1` and the report has two activities, the report has two pages. The response's `nextPageToken` property has the token to the second page. */
+  maxResults?: number;
+  /** Represents the key of the object to filter the data with. It is a string which can take the value `all` to get activity events for all users, or any other value for an app-specific entity. For details on how to obtain the `entityKey` for a particular `entityType`, see the Entities Usage parameters reference guides. */
+  entityKey: string;
+  /** Represents the type of entity for the report. */
+  entityType: GetEntityUsageReportsEntityTypeEnum | (string & {});
+  /** The unique ID of the customer to retrieve data for. */
+  customerId?: string;
 }
 export const GetEntityUsageReportsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    entityKey: S.String.pipe(T.Label()),
-    customerId: S.optional(S.String.pipe(T.Query())),
-    maxResults: S.optional(S.Number.pipe(T.Query())),
-    entityType: GetEntityUsageReportsEntityTypeEnum.pipe(T.Label()),
-    parameters: S.optional(S.String.pipe(T.Query())),
-    date: S.String.pipe(T.Label()),
-    filters: S.optional(S.String.pipe(T.Query())),
     pageToken: S.optional(S.String.pipe(T.Query())),
+    parameters: S.optional(S.String.pipe(T.Query())),
+    filters: S.optional(S.String.pipe(T.Query())),
+    date: S.String.pipe(T.Label()),
+    maxResults: S.optional(S.Number.pipe(T.Query())),
+    entityKey: S.String.pipe(T.Label()),
+    entityType: GetEntityUsageReportsEntityTypeEnum.pipe(T.Label()),
+    customerId: S.optional(S.String.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -296,36 +296,36 @@ export const GetEntityUsageReportsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetEntityUsageReportsRequest>;
 
 export interface GetUserUsageReportRequest {
+  /** ID of the organizational unit to report on. User activity will be shown only for users who belong to the specified organizational unit. Data before Dec 17, 2018 doesn't appear in the filtered results. */
+  orgUnitID?: string;
+  /** The `parameters` query string is a comma-separated list of event parameters that refine a report's results. The parameter is associated with a specific application. The application values for the Customers Usage report include `accounts`, `app_maker`, `apps_scripts`, `calendar`, `chat`, `classroom`, `cros`, `docs`, `gmail`, `gplus`, `device_management`, `meet`, and `sites`. A `parameters` query string is in the CSV form of `app_name1:param_name1, app_name2:param_name2`. *Note:* The API doesn't accept multiple values of a parameter. If a particular parameter is supplied more than once in the API request, the API only accepts the last value of that request parameter. In addition, if an invalid request parameter is supplied in the API request, the API ignores that request parameter and returns the response corresponding to the remaining valid request parameters. An example of an invalid request parameter is one that does not belong to the application. If no parameters are requested, all parameters are returned. */
+  parameters?: string;
+  /** The unique ID of the customer to retrieve data for. */
+  customerId?: string;
+  /** Token to specify next page. A report with multiple pages has a `nextPageToken` property in the response. In your follow-on request getting the next page of the report, enter the `nextPageToken` value in the `pageToken` query string. */
+  pageToken?: string;
+  /** The `filters` query string is a comma-separated list of an application's event parameters where the parameter's value is manipulated by a relational operator. The `filters` query string includes the name of the application whose usage is returned in the report. The application values for the Users Usage Report include `accounts`, `chat`, `docs`, and `gmail`. Filters are in the form `[application name]:parameter name[parameter value],...`. In this example, the `<>` 'not equal to' operator is URL-encoded in the request's query string (%3C%3E): GET https://www.googleapis.com/admin/reports/v1/usage/users/all/dates/2013-03-03 ?parameters=accounts:last_login_time &filters=accounts:last_login_time%3C%3E2010-10-28T10:26:35.000Z The relational operators include: - `==` - 'equal to'. - `<>` - 'not equal to'. It is URL-encoded (%3C%3E). - `<` - 'less than'. It is URL-encoded (%3C). - `<=` - 'less than or equal to'. It is URL-encoded (%3C=). - `>` - 'greater than'. It is URL-encoded (%3E). - `>=` - 'greater than or equal to'. It is URL-encoded (%3E=). */
+  filters?: string;
   /** Represents the profile ID or the user email for which the data should be filtered. Can be `all` for all information, or `userKey` for a user's unique Google Workspace profile ID or their primary email address. Must not be a deleted user. For a deleted user, call `users.list` in Directory API with `showDeleted=true`, then use the returned `ID` as the `userKey`. */
   userKey: string;
   /** Comma separated group ids (obfuscated) on which user activities are filtered, i.e. the response will contain activities for only those users that are a part of at least one of the group ids mentioned here. Format: "id:abc123,id:xyz456" */
   groupIdFilter?: string;
-  /** The `filters` query string is a comma-separated list of an application's event parameters where the parameter's value is manipulated by a relational operator. The `filters` query string includes the name of the application whose usage is returned in the report. The application values for the Users Usage Report include `accounts`, `chat`, `docs`, and `gmail`. Filters are in the form `[application name]:parameter name[parameter value],...`. In this example, the `<>` 'not equal to' operator is URL-encoded in the request's query string (%3C%3E): GET https://www.googleapis.com/admin/reports/v1/usage/users/all/dates/2013-03-03 ?parameters=accounts:last_login_time &filters=accounts:last_login_time%3C%3E2010-10-28T10:26:35.000Z The relational operators include: - `==` - 'equal to'. - `<>` - 'not equal to'. It is URL-encoded (%3C%3E). - `<` - 'less than'. It is URL-encoded (%3C). - `<=` - 'less than or equal to'. It is URL-encoded (%3C=). - `>` - 'greater than'. It is URL-encoded (%3E). - `>=` - 'greater than or equal to'. It is URL-encoded (%3E=). */
-  filters?: string;
   /** Represents the date the usage occurred, based on UTC-8:00 (Pacific Standard Time). The timestamp is in the [ISO 8601 format](https://en.wikipedia.org/wiki/ISO_8601), `yyyy-mm-dd`. */
   date: string;
-  /** The unique ID of the customer to retrieve data for. */
-  customerId?: string;
   /** Determines how many activity records are shown on each response page. For example, if the request sets `maxResults=1` and the report has two activities, the report has two pages. The response's `nextPageToken` property has the token to the second page. The `maxResults` query string is optional. */
   maxResults?: number;
-  /** The `parameters` query string is a comma-separated list of event parameters that refine a report's results. The parameter is associated with a specific application. The application values for the Customers Usage report include `accounts`, `app_maker`, `apps_scripts`, `calendar`, `chat`, `classroom`, `cros`, `docs`, `gmail`, `gplus`, `device_management`, `meet`, and `sites`. A `parameters` query string is in the CSV form of `app_name1:param_name1, app_name2:param_name2`. *Note:* The API doesn't accept multiple values of a parameter. If a particular parameter is supplied more than once in the API request, the API only accepts the last value of that request parameter. In addition, if an invalid request parameter is supplied in the API request, the API ignores that request parameter and returns the response corresponding to the remaining valid request parameters. An example of an invalid request parameter is one that does not belong to the application. If no parameters are requested, all parameters are returned. */
-  parameters?: string;
-  /** ID of the organizational unit to report on. User activity will be shown only for users who belong to the specified organizational unit. Data before Dec 17, 2018 doesn't appear in the filtered results. */
-  orgUnitID?: string;
-  /** Token to specify next page. A report with multiple pages has a `nextPageToken` property in the response. In your follow-on request getting the next page of the report, enter the `nextPageToken` value in the `pageToken` query string. */
-  pageToken?: string;
 }
 export const GetUserUsageReportRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    orgUnitID: S.optional(S.String.pipe(T.Query())),
+    parameters: S.optional(S.String.pipe(T.Query())),
+    customerId: S.optional(S.String.pipe(T.Query())),
+    pageToken: S.optional(S.String.pipe(T.Query())),
+    filters: S.optional(S.String.pipe(T.Query())),
     userKey: S.String.pipe(T.Label()),
     groupIdFilter: S.optional(S.String.pipe(T.Query())),
-    filters: S.optional(S.String.pipe(T.Query())),
     date: S.String.pipe(T.Label()),
-    customerId: S.optional(S.String.pipe(T.Query())),
     maxResults: S.optional(S.Number.pipe(T.Query())),
-    parameters: S.optional(S.String.pipe(T.Query())),
-    orgUnitID: S.optional(S.String.pipe(T.Query())),
-    pageToken: S.optional(S.String.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -382,66 +382,66 @@ export type ListActivitiesApplicationNameEnum =
 export const ListActivitiesApplicationNameEnum = /*@__PURE__*/ S.String;
 
 export interface ListActivitiesRequest {
-  /** Comma separated group ids (obfuscated) on which user activities are filtered, i.e. the response will contain activities for only those users that are a part of at least one of the group ids mentioned here. Format: "id:abc123,id:xyz456" *Important:* To filter by groups, you must explicitly add the groups to your filtering groups allowlist. For more information about adding groups to filtering groups allowlist, see [Filter results by Google Group](https://support.google.com/a/answer/11482175) */
-  groupIdFilter?: string;
-  /** Optional. Used to filter on the `regionCode` field present in [`NetworkInfo`](#networkinfo) message. **Usage** ``` GET...&networkInfoFilter=regionCode="IN" GET...&networkInfoFilter=regionCode=%22IN%22 ``` */
-  networkInfoFilter?: string;
-  /** The Internet Protocol (IP) Address of host where the event was performed. This is an additional way to filter a report's summary using the IP address of the user whose activity is being reported. This IP address may or may not reflect the user's physical location. For example, the IP address can be the user's proxy server's address or a virtual private network (VPN) address. This parameter supports both IPv4 and IPv6 address versions. */
-  actorIpAddress?: string;
-  /** The unique ID of the customer to retrieve data for. */
-  customerId?: string;
-  /** Application name for which the events are to be retrieved. */
-  applicationName: ListActivitiesApplicationNameEnum | (string & {});
-  /** Sets the beginning of the range of time shown in the report. The date is in the RFC 3339 format, for example 2010-10-28T10:26:35.000Z. The report returns all activities from `startTime` until `endTime`. The `startTime` must be before the `endTime` (if specified) and the current time when the request is made, or the API returns an error. For Gmail requests, `startTime` and `endTime` must be provided and the difference must not be greater than 30 days. */
-  startTime?: string;
-  /** Optional. Used to filter on the `statusCode` field present in [`Status`](#status) message. **Usage** ``` GET...&statusFilter=statusCode="200" GET...&statusFilter=statusCode=%22200%22 ``` */
-  statusFilter?: string;
-  /** The name of the event being queried by the API. Each `eventName` is related to a specific Google Workspace service or feature which the API organizes into types of events. An example is the Google Calendar events in the Admin console application's reports. The Calendar Settings `type` structure has all of the Calendar `eventName` activities reported by the API. When an administrator changes a Calendar setting, the API reports this activity in the Calendar Settings `type` and `eventName` parameters. For more information about `eventName` query strings and parameters, see the list of event names for various applications above in `applicationName`. */
-  eventName?: string;
-  /** Optional. The `resourceDetailsFilter` query string is an AND separated list composed of [Resource Details](#resourcedetails) fields manipulated by relational operators. Resource Details Filters are in the form `{resourceDetails.field1}{relational operator}{field1 value} AND {resourceDetails.field2}{relational operator}{field2 value}...` All the inner fields are traversed using the `.` operator, as shown in the following example: ``` resourceDetails.id = "resourceId" AND resourceDetails.appliedLabels.id = "appliedLabelId" AND resourceDetails.appliedLabels.fieldValue.id = "fieldValueId" ``` `resourceDetailsFilter` query supports these relational operators: * `=`—'equal to'. * `!=`—'not equal to'. * `:`—'exists'. This is used for filtering on repeated fields. [`FieldValue`](#fieldvalue) types that are repeated in nature uses `exists` operator for filtering. The following [`FieldValue`](#fieldvalue) types are repeated: * [`TextListValue`](#textlistvalue) * [`SelectionListValue`](#selectionlistvalue) * [`UserListValue`](#userlistvalue) For example, in the following filter, [`SelectionListValue`](#selectionlistvalue), is a repeated field. The filter checks whether [`SelectionListValue`](#selectionlistvalue) contains `selection_id`: ``` resourceDetails.id = "resourceId" AND resourceDetails.appliedLabels.id = "appliedLabelId" AND resourceDetails.appliedLabels.fieldValue.id = "fieldValueId" AND resourceDetails.appliedLabels.fieldValue.type = "SELECTION_LIST_VALUE" AND resourceDetails.appliedLabels.fieldValue.selectionListValue.id: "id" ``` **Usage** ``` GET...&resourceDetailsFilter=resourceDetails.id = "resourceId" AND resourceDetails.appliedLabels.id = "appliedLabelId" GET...&resourceDetailsFilter=resourceDetails.id=%22resourceId%22%20AND%20resourceDetails.appliedLabels.id=%22appliedLabelId%22 ``` **Note the following**: * You must URL encode the query string before sending the request. * The API supports a maximum of 5 fields separated by the AND operator. - When filtering on deeper levels (e.g., [`AppliedLabel`](#appliedlabel), [`FieldValue`](#fieldvalue)), the IDs of all preceding levels in the hierarchy must be included in the filter. For example: Filtering on [`FieldValue`](#fieldvalue) requires [`AppliedLabel`](#appliedlabel) ID and resourceDetails ID to be present. *Sample Query*: ``` resourceDetails.id = "resourceId" AND resourceDetails.appliedLabels.id = "appliedLabelId" AND resourceDetails.appliedLabels.fieldValue.id = "fieldValueId" ``` * Filtering on inner [`FieldValue`](#fieldvalue) types like `longTextValue` and `textValue` requires `resourceDetails.appliedLabels.fieldValue.type` to be present. * Only Filtering on a single [`AppliedLabel`](#appliedlabel) id and [`FieldValue`](#fieldvalue) id is supported. */
-  resourceDetailsFilter?: string;
-  /** ID of the organizational unit to report on. Activity records will be shown only for users who belong to the specified organizational unit. Data before Dec 17, 2018 doesn't appear in the filtered results. */
-  orgUnitID?: string;
-  /** The `filters` query string is a comma-separated list composed of event parameters manipulated by relational operators. Event parameters are in the form `{parameter1 name}{relational operator}{parameter1 value},{parameter2 name}{relational operator}{parameter2 value},...` These event parameters are associated with a specific `eventName`. An empty report is returned if the request's parameter doesn't belong to the `eventName`. For more information about the available `eventName` fields for each application and their associated parameters, go to the [ApplicationName](#applicationname) table, then click through to the Activity Events page in the Appendix for the application you want. In the following Drive activity examples, the returned list consists of all `edit` events where the `doc_id` parameter value matches the conditions defined by the relational operator. In the first example, the request returns all edited documents with a `doc_id` value equal to `12345`. In the second example, the report returns any edited documents where the `doc_id` value is not equal to `98765`. The `<>` operator is URL-encoded in the request's query string (`%3C%3E`): ``` GET...&eventName=edit&filters=doc_id==12345 GET...&eventName=edit&filters=doc_id%3C%3E98765 ``` A `filters` query supports these relational operators: * `==`—'equal to'. * `<>`—'not equal to'. Must be URL-encoded (%3C%3E). * `<`—'less than'. Must be URL-encoded (%3C). * `<=`—'less than or equal to'. Must be URL-encoded (%3C=). * `>`—'greater than'. Must be URL-encoded (%3E). * `>=`—'greater than or equal to'. Must be URL-encoded (%3E=). **Note:** The API doesn't accept multiple values of the same parameter. If a parameter is supplied more than once in the API request, the API only accepts the last value of that parameter. In addition, if an invalid parameter is supplied in the API request, the API ignores that parameter and returns the response corresponding to the remaining valid parameters. If no parameters are requested, all parameters are returned. */
-  filters?: string;
-  /** Optional. Used to filter on the fields present in [`UserDeviceInfo`](#userdeviceinfo) message like `deviceId`, `deviceType`, and `deviceOsVersion`. **Usage** ``` GET...&deviceFilter=deviceId="123" GET...&deviceFilter=deviceType="ANDROID" GET...&deviceFilter=deviceOsVersion="14.0" ``` */
-  deviceFilter?: string;
-  /** Optional. When set to `true`, this field allows sensitive user-generated content to be included in the returned audit logs. This parameter is supported only for Rules (DLP), Chat and Workspace Studio applications; using it with any other application will result in a permission error. */
-  includeSensitiveData?: boolean;
-  /** Determines how many activity records are shown on each response page. For example, if the request sets `maxResults=1` and the report has two activities, the report has two pages. The response's `nextPageToken` property has the token to the second page. The `maxResults` query string is optional in the request. The default value is 1000. */
-  maxResults?: number;
-  /** The token to specify next page. A report with multiple pages has a `nextPageToken` property in the response. In your follow-on request getting the next page of the report, enter the `nextPageToken` value in the `pageToken` query string. */
-  pageToken?: string;
   /** Sets the end of the range of time shown in the report. The date is in the RFC 3339 format, for example 2010-10-28T10:26:35.000Z. The default value is the approximate time of the API request. An API report has three basic time concepts: - *Date of the API's request for a report*: When the API created and retrieved the report. - *Report's start time*: The beginning of the timespan shown in the report. The `startTime` must be before the `endTime` (if specified) and the current time when the request is made, or the API returns an error. - *Report's end time*: The end of the timespan shown in the report. For example, the timespan of events summarized in a report can start in April and end in May. The report itself can be requested in August. If the `endTime` is not specified, the report returns all activities from the `startTime` until the current time or the most recent 180 days if the `startTime` is more than 180 days in the past. For Gmail requests, `startTime` and `endTime` must be provided and the difference must not be greater than 30 days. */
   endTime?: string;
-  /** Represents the profile ID or the user email for which the data should be filtered. Can be `all` for all information, or `userKey` for a user's unique Google Workspace profile ID or their primary email address. Must not be a deleted user. For a deleted user, call `users.list` in Directory API with `showDeleted=true`, then use the returned `ID` as the `userKey`. */
-  userKey: string;
-  /** Optional. Filters on agent info fields in the activity. This filter gets applied in conjunction(AND) with other filters. Example: "agentInfoFilter=agentId=\"agent-id\" AND agentName=\"agent-name\" AND agentOwnerEmail=\"agent-owner-email\"" */
-  agentInfoFilter?: string;
   /** Optional. Used to filter on the `oAuthClientId` field present in [`ApplicationInfo`](#applicationinfo) message. **Usage** ``` GET...&applicationInfoFilter=oAuthClientId="clientId" GET...&applicationInfoFilter=oAuthClientId=%22clientId%22 ``` */
   applicationInfoFilter?: string;
+  /** The unique ID of the customer to retrieve data for. */
+  customerId?: string;
+  /** Optional. Used to filter on the fields present in [`UserDeviceInfo`](#userdeviceinfo) message like `deviceId`, `deviceType`, and `deviceOsVersion`. **Usage** ``` GET...&deviceFilter=deviceId="123" GET...&deviceFilter=deviceType="ANDROID" GET...&deviceFilter=deviceOsVersion="14.0" ``` */
+  deviceFilter?: string;
+  /** Determines how many activity records are shown on each response page. For example, if the request sets `maxResults=1` and the report has two activities, the report has two pages. The response's `nextPageToken` property has the token to the second page. The `maxResults` query string is optional in the request. The default value is 1000. */
+  maxResults?: number;
+  /** Optional. The `resourceDetailsFilter` query string is an AND separated list composed of [Resource Details](#resourcedetails) fields manipulated by relational operators. Resource Details Filters are in the form `{resourceDetails.field1}{relational operator}{field1 value} AND {resourceDetails.field2}{relational operator}{field2 value}...` All the inner fields are traversed using the `.` operator, as shown in the following example: ``` resourceDetails.id = "resourceId" AND resourceDetails.appliedLabels.id = "appliedLabelId" AND resourceDetails.appliedLabels.fieldValue.id = "fieldValueId" ``` `resourceDetailsFilter` query supports these relational operators: * `=`—'equal to'. * `!=`—'not equal to'. * `:`—'exists'. This is used for filtering on repeated fields. [`FieldValue`](#fieldvalue) types that are repeated in nature uses `exists` operator for filtering. The following [`FieldValue`](#fieldvalue) types are repeated: * [`TextListValue`](#textlistvalue) * [`SelectionListValue`](#selectionlistvalue) * [`UserListValue`](#userlistvalue) For example, in the following filter, [`SelectionListValue`](#selectionlistvalue), is a repeated field. The filter checks whether [`SelectionListValue`](#selectionlistvalue) contains `selection_id`: ``` resourceDetails.id = "resourceId" AND resourceDetails.appliedLabels.id = "appliedLabelId" AND resourceDetails.appliedLabels.fieldValue.id = "fieldValueId" AND resourceDetails.appliedLabels.fieldValue.type = "SELECTION_LIST_VALUE" AND resourceDetails.appliedLabels.fieldValue.selectionListValue.id: "id" ``` **Usage** ``` GET...&resourceDetailsFilter=resourceDetails.id = "resourceId" AND resourceDetails.appliedLabels.id = "appliedLabelId" GET...&resourceDetailsFilter=resourceDetails.id=%22resourceId%22%20AND%20resourceDetails.appliedLabels.id=%22appliedLabelId%22 ``` **Note the following**: * You must URL encode the query string before sending the request. * The API supports a maximum of 5 fields separated by the AND operator. - When filtering on deeper levels (e.g., [`AppliedLabel`](#appliedlabel), [`FieldValue`](#fieldvalue)), the IDs of all preceding levels in the hierarchy must be included in the filter. For example: Filtering on [`FieldValue`](#fieldvalue) requires [`AppliedLabel`](#appliedlabel) ID and resourceDetails ID to be present. *Sample Query*: ``` resourceDetails.id = "resourceId" AND resourceDetails.appliedLabels.id = "appliedLabelId" AND resourceDetails.appliedLabels.fieldValue.id = "fieldValueId" ``` * Filtering on inner [`FieldValue`](#fieldvalue) types like `longTextValue` and `textValue` requires `resourceDetails.appliedLabels.fieldValue.type` to be present. * Only Filtering on a single [`AppliedLabel`](#appliedlabel) id and [`FieldValue`](#fieldvalue) id is supported. */
+  resourceDetailsFilter?: string;
+  /** Comma separated group ids (obfuscated) on which user activities are filtered, i.e. the response will contain activities for only those users that are a part of at least one of the group ids mentioned here. Format: "id:abc123,id:xyz456" *Important:* To filter by groups, you must explicitly add the groups to your filtering groups allowlist. For more information about adding groups to filtering groups allowlist, see [Filter results by Google Group](https://support.google.com/a/answer/11482175) */
+  groupIdFilter?: string;
+  /** Optional. Used to filter on the `statusCode` field present in [`Status`](#status) message. **Usage** ``` GET...&statusFilter=statusCode="200" GET...&statusFilter=statusCode=%22200%22 ``` */
+  statusFilter?: string;
+  /** The `filters` query string is a comma-separated list composed of event parameters manipulated by relational operators. Event parameters are in the form `{parameter1 name}{relational operator}{parameter1 value},{parameter2 name}{relational operator}{parameter2 value},...` These event parameters are associated with a specific `eventName`. An empty report is returned if the request's parameter doesn't belong to the `eventName`. For more information about the available `eventName` fields for each application and their associated parameters, go to the [ApplicationName](#applicationname) table, then click through to the Activity Events page in the Appendix for the application you want. In the following Drive activity examples, the returned list consists of all `edit` events where the `doc_id` parameter value matches the conditions defined by the relational operator. In the first example, the request returns all edited documents with a `doc_id` value equal to `12345`. In the second example, the report returns any edited documents where the `doc_id` value is not equal to `98765`. The `<>` operator is URL-encoded in the request's query string (`%3C%3E`): ``` GET...&eventName=edit&filters=doc_id==12345 GET...&eventName=edit&filters=doc_id%3C%3E98765 ``` A `filters` query supports these relational operators: * `==`—'equal to'. * `<>`—'not equal to'. Must be URL-encoded (%3C%3E). * `<`—'less than'. Must be URL-encoded (%3C). * `<=`—'less than or equal to'. Must be URL-encoded (%3C=). * `>`—'greater than'. Must be URL-encoded (%3E). * `>=`—'greater than or equal to'. Must be URL-encoded (%3E=). **Note:** The API doesn't accept multiple values of the same parameter. If a parameter is supplied more than once in the API request, the API only accepts the last value of that parameter. In addition, if an invalid parameter is supplied in the API request, the API ignores that parameter and returns the response corresponding to the remaining valid parameters. If no parameters are requested, all parameters are returned. */
+  filters?: string;
+  /** Optional. When set to `true`, this field allows sensitive user-generated content to be included in the returned audit logs. This parameter is supported only for Rules (DLP), Chat and Workspace Studio applications; using it with any other application will result in a permission error. */
+  includeSensitiveData?: boolean;
+  /** ID of the organizational unit to report on. Activity records will be shown only for users who belong to the specified organizational unit. Data before Dec 17, 2018 doesn't appear in the filtered results. */
+  orgUnitID?: string;
+  /** Optional. Used to filter on the `regionCode` field present in [`NetworkInfo`](#networkinfo) message. **Usage** ``` GET...&networkInfoFilter=regionCode="IN" GET...&networkInfoFilter=regionCode=%22IN%22 ``` */
+  networkInfoFilter?: string;
+  /** Sets the beginning of the range of time shown in the report. The date is in the RFC 3339 format, for example 2010-10-28T10:26:35.000Z. The report returns all activities from `startTime` until `endTime`. The `startTime` must be before the `endTime` (if specified) and the current time when the request is made, or the API returns an error. For Gmail requests, `startTime` and `endTime` must be provided and the difference must not be greater than 30 days. */
+  startTime?: string;
+  /** The token to specify next page. A report with multiple pages has a `nextPageToken` property in the response. In your follow-on request getting the next page of the report, enter the `nextPageToken` value in the `pageToken` query string. */
+  pageToken?: string;
+  /** Application name for which the events are to be retrieved. */
+  applicationName: ListActivitiesApplicationNameEnum | (string & {});
+  /** The Internet Protocol (IP) Address of host where the event was performed. This is an additional way to filter a report's summary using the IP address of the user whose activity is being reported. This IP address may or may not reflect the user's physical location. For example, the IP address can be the user's proxy server's address or a virtual private network (VPN) address. This parameter supports both IPv4 and IPv6 address versions. */
+  actorIpAddress?: string;
+  /** Optional. Filters on agent info fields in the activity. This filter gets applied in conjunction(AND) with other filters. Example: "agentInfoFilter=agentId=\"agent-id\" AND agentName=\"agent-name\" AND agentOwnerEmail=\"agent-owner-email\"" */
+  agentInfoFilter?: string;
+  /** Represents the profile ID or the user email for which the data should be filtered. Can be `all` for all information, or `userKey` for a user's unique Google Workspace profile ID or their primary email address. Must not be a deleted user. For a deleted user, call `users.list` in Directory API with `showDeleted=true`, then use the returned `ID` as the `userKey`. */
+  userKey: string;
+  /** The name of the event being queried by the API. Each `eventName` is related to a specific Google Workspace service or feature which the API organizes into types of events. An example is the Google Calendar events in the Admin console application's reports. The Calendar Settings `type` structure has all of the Calendar `eventName` activities reported by the API. When an administrator changes a Calendar setting, the API reports this activity in the Calendar Settings `type` and `eventName` parameters. For more information about `eventName` query strings and parameters, see the list of event names for various applications above in `applicationName`. */
+  eventName?: string;
 }
 export const ListActivitiesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    groupIdFilter: S.optional(S.String.pipe(T.Query())),
-    networkInfoFilter: S.optional(S.String.pipe(T.Query())),
-    actorIpAddress: S.optional(S.String.pipe(T.Query())),
-    customerId: S.optional(S.String.pipe(T.Query())),
-    applicationName: ListActivitiesApplicationNameEnum.pipe(T.Label()),
-    startTime: S.optional(S.String.pipe(T.Query())),
-    statusFilter: S.optional(S.String.pipe(T.Query())),
-    eventName: S.optional(S.String.pipe(T.Query())),
-    resourceDetailsFilter: S.optional(S.String.pipe(T.Query())),
-    orgUnitID: S.optional(S.String.pipe(T.Query())),
-    filters: S.optional(S.String.pipe(T.Query())),
-    deviceFilter: S.optional(S.String.pipe(T.Query())),
-    includeSensitiveData: S.optional(S.Boolean.pipe(T.Query())),
-    maxResults: S.optional(S.Number.pipe(T.Query())),
-    pageToken: S.optional(S.String.pipe(T.Query())),
     endTime: S.optional(S.String.pipe(T.Query())),
-    userKey: S.String.pipe(T.Label()),
-    agentInfoFilter: S.optional(S.String.pipe(T.Query())),
     applicationInfoFilter: S.optional(S.String.pipe(T.Query())),
+    customerId: S.optional(S.String.pipe(T.Query())),
+    deviceFilter: S.optional(S.String.pipe(T.Query())),
+    maxResults: S.optional(S.Number.pipe(T.Query())),
+    resourceDetailsFilter: S.optional(S.String.pipe(T.Query())),
+    groupIdFilter: S.optional(S.String.pipe(T.Query())),
+    statusFilter: S.optional(S.String.pipe(T.Query())),
+    filters: S.optional(S.String.pipe(T.Query())),
+    includeSensitiveData: S.optional(S.Boolean.pipe(T.Query())),
+    orgUnitID: S.optional(S.String.pipe(T.Query())),
+    networkInfoFilter: S.optional(S.String.pipe(T.Query())),
+    startTime: S.optional(S.String.pipe(T.Query())),
+    pageToken: S.optional(S.String.pipe(T.Query())),
+    applicationName: ListActivitiesApplicationNameEnum.pipe(T.Label()),
+    actorIpAddress: S.optional(S.String.pipe(T.Query())),
+    agentInfoFilter: S.optional(S.String.pipe(T.Query())),
+    userKey: S.String.pipe(T.Label()),
+    eventName: S.optional(S.String.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -452,595 +452,6 @@ export const ListActivitiesRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ListActivitiesRequest",
 }) as any as S.Schema<ListActivitiesRequest>;
-
-export type IntegerList = Array<number>;
-export const IntegerList = /*@__PURE__*/ S.Array(
-  S.Number,
-) as any as S.Schema<IntegerList>;
-
-/** Network information of the user doing the action. */
-export interface ActivityNetworkInfo {
-  /** ISO 3166-1 alpha-2 region code of the user doing the action. */
-  regionCode?: string;
-  /** IP Address of the user doing the action. */
-  ipAsn?: IntegerList;
-  /** ISO 3166-2 region code (states and provinces) for countries of the user doing the action. */
-  subdivisionCode?: string;
-}
-export const ActivityNetworkInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    regionCode: S.optional(S.String),
-    ipAsn: S.optional(IntegerList),
-    subdivisionCode: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ActivityNetworkInfo",
-}) as any as S.Schema<ActivityNetworkInfo>;
-
-/** The reason why the label/field was applied. */
-export interface Reason {
-  /** The type of the reason. */
-  reasonType?: string;
-}
-export const Reason = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    reasonType: S.optional(S.String),
-  }),
-).annotate({ identifier: "Reason" }) as any as S.Schema<Reason>;
-
-/** Setting a selection value by selecting a single value from a dropdown. */
-export interface FieldValueSelectionValue {
-  /** Whether the selection is badged. */
-  badged?: boolean;
-  /** Identifier of the selection. */
-  id?: string;
-  /** Display name of the selection. */
-  displayName?: string;
-}
-export const FieldValueSelectionValue = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    badged: S.optional(S.Boolean),
-    id: S.optional(S.String),
-    displayName: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "FieldValueSelectionValue",
-}) as any as S.Schema<FieldValueSelectionValue>;
-
-export type FieldValueSelectionValueList = Array<FieldValueSelectionValue>;
-export const FieldValueSelectionValueList = /*@__PURE__*/ S.Array(
-  FieldValueSelectionValue,
-) as any as S.Schema<FieldValueSelectionValueList>;
-
-/** Setting a selection list value by selecting multiple values from a dropdown. */
-export interface FieldValueSelectionListValue {
-  /** List of selections. */
-  values?: FieldValueSelectionValueList;
-}
-export const FieldValueSelectionListValue = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    values: S.optional(FieldValueSelectionValueList),
-  }),
-).annotate({
-  identifier: "FieldValueSelectionListValue",
-}) as any as S.Schema<FieldValueSelectionListValue>;
-
-/** Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp */
-export interface Admin_Date {
-  /** Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year. */
-  year?: number;
-  /** Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day. */
-  month?: number;
-  /** Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant. */
-  day?: number;
-}
-export const Admin_Date = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    year: S.optional(S.Number),
-    month: S.optional(S.Number),
-    day: S.optional(S.Number),
-  }),
-).annotate({ identifier: "Admin_Date" }) as any as S.Schema<Admin_Date>;
-
-/** Setting a user value by selecting a single user. */
-export interface FieldValueUserValue {
-  /** Email of the user. */
-  email?: string;
-}
-export const FieldValueUserValue = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    email: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "FieldValueUserValue",
-}) as any as S.Schema<FieldValueUserValue>;
-
-export type StringList = Array<string>;
-export const StringList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<StringList>;
-
-/** Setting a text list value. */
-export interface FieldValueTextListValue {
-  /** List of text values. */
-  values?: StringList;
-}
-export const FieldValueTextListValue = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    values: S.optional(StringList),
-  }),
-).annotate({
-  identifier: "FieldValueTextListValue",
-}) as any as S.Schema<FieldValueTextListValue>;
-
-export type FieldValueUserValueList = Array<FieldValueUserValue>;
-export const FieldValueUserValueList = /*@__PURE__*/ S.Array(
-  FieldValueUserValue,
-) as any as S.Schema<FieldValueUserValueList>;
-
-/** Setting a user list value by selecting multiple users. */
-export interface FieldValueUserListValue {
-  /** List of users. */
-  values?: FieldValueUserValueList;
-}
-export const FieldValueUserListValue = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    values: S.optional(FieldValueUserValueList),
-  }),
-).annotate({
-  identifier: "FieldValueUserListValue",
-}) as any as S.Schema<FieldValueUserListValue>;
-
-/** Details of the field value set by the user for the particular label. */
-export interface FieldValue {
-  /** Setting a long text value. */
-  longTextValue?: string;
-  /** The reason why the field was applied to the label. */
-  reason?: Reason;
-  /** Setting an integer value. */
-  integerValue?: string;
-  /** Setting a selection list value by selecting multiple values from a dropdown. */
-  selectionListValue?: FieldValueSelectionListValue;
-  /** Setting a date value. */
-  dateValue?: Admin_Date;
-  /** Setting a user value by selecting a single user. */
-  userValue?: FieldValueUserValue;
-  /** Setting a text value. */
-  textValue?: string;
-  /** Setting a selection value by selecting a single value from a dropdown. */
-  selectionValue?: FieldValueSelectionValue;
-  /** Display name of the field */
-  displayName?: string;
-  /** Setting a text list value. */
-  textListValue?: FieldValueTextListValue;
-  /** Type of the field */
-  type?: string;
-  /** Setting a user list value by selecting multiple users. */
-  userListValue?: FieldValueUserListValue;
-  /** If the field is unset, this will be true. */
-  unsetValue?: boolean;
-  /** Identifier of the field */
-  id?: string;
-}
-export const FieldValue = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    longTextValue: S.optional(S.String),
-    reason: S.optional(Reason),
-    integerValue: S.optional(S.String),
-    selectionListValue: S.optional(FieldValueSelectionListValue),
-    dateValue: S.optional(Admin_Date),
-    userValue: S.optional(FieldValueUserValue),
-    textValue: S.optional(S.String),
-    selectionValue: S.optional(FieldValueSelectionValue),
-    displayName: S.optional(S.String),
-    textListValue: S.optional(FieldValueTextListValue),
-    type: S.optional(S.String),
-    userListValue: S.optional(FieldValueUserListValue),
-    unsetValue: S.optional(S.Boolean),
-    id: S.optional(S.String),
-  }),
-).annotate({ identifier: "FieldValue" }) as any as S.Schema<FieldValue>;
-
-export type FieldValueList = Array<FieldValue>;
-export const FieldValueList = /*@__PURE__*/ S.Array(
-  FieldValue,
-) as any as S.Schema<FieldValueList>;
-
-/** Details of the label applied on the resource. */
-export interface AppliedLabel {
-  /** Identifier of the label - Only the label id, not the full OnePlatform resource name. */
-  id?: string;
-  /** List of fields which are part of the label and have been set by the user. If label has a field which was not set by the user, it would not be present in this list. */
-  fieldValues?: FieldValueList;
-  /** The reason why the label was applied on the resource. */
-  reason?: Reason;
-  /** Title of the label */
-  title?: string;
-}
-export const AppliedLabel = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    fieldValues: S.optional(FieldValueList),
-    reason: S.optional(Reason),
-    title: S.optional(S.String),
-  }),
-).annotate({ identifier: "AppliedLabel" }) as any as S.Schema<AppliedLabel>;
-
-export type AppliedLabelList = Array<AppliedLabel>;
-export const AppliedLabelList = /*@__PURE__*/ S.Array(
-  AppliedLabel,
-) as any as S.Schema<AppliedLabelList>;
-
-/** Identity of the user who owns the resource. */
-export interface UserIdentity {
-  /** User gaia id. */
-  id?: string;
-  /** User email. */
-  userEmail?: string;
-}
-export const UserIdentity = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    userEmail: S.optional(S.String),
-  }),
-).annotate({ identifier: "UserIdentity" }) as any as S.Schema<UserIdentity>;
-
-/** Identity of the Google Workspace customer who owns the resource. */
-export interface CustomerIdentity {
-  /** Customer id. */
-  id?: string;
-}
-export const CustomerIdentity = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "CustomerIdentity",
-}) as any as S.Schema<CustomerIdentity>;
-
-/** Identity of the shared drive who owns the resource. */
-export interface SharedDriveIdentity {
-  /** Shared drive name. */
-  sharedDriveName?: string;
-  /** Shared drive gaia id. */
-  id?: string;
-}
-export const SharedDriveIdentity = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    sharedDriveName: S.optional(S.String),
-    id: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SharedDriveIdentity",
-}) as any as S.Schema<SharedDriveIdentity>;
-
-/** Identity of the group who owns the resource. */
-export interface GroupIdentity {
-  /** Group gaia id. */
-  id?: string;
-  /** Group email. */
-  groupEmail?: string;
-}
-export const GroupIdentity = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    groupEmail: S.optional(S.String),
-  }),
-).annotate({ identifier: "GroupIdentity" }) as any as S.Schema<GroupIdentity>;
-
-/** Identity details of the owner of the resource. */
-export interface OwnerIdentity {
-  /** Identity of the user who owns the resource. */
-  userIdentity?: UserIdentity;
-  /** Identity of the Google Workspace customer who owns the resource. */
-  customerIdentity?: CustomerIdentity;
-  /** Identity of the shared drive who owns the resource. */
-  sharedDriveIdentity?: SharedDriveIdentity;
-  /** Identity of the group who owns the resource. */
-  groupIdentity?: GroupIdentity;
-}
-export const OwnerIdentity = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    userIdentity: S.optional(UserIdentity),
-    customerIdentity: S.optional(CustomerIdentity),
-    sharedDriveIdentity: S.optional(SharedDriveIdentity),
-    groupIdentity: S.optional(GroupIdentity),
-  }),
-).annotate({ identifier: "OwnerIdentity" }) as any as S.Schema<OwnerIdentity>;
-
-export type OwnerIdentityList = Array<OwnerIdentity>;
-export const OwnerIdentityList = /*@__PURE__*/ S.Array(
-  OwnerIdentity,
-) as any as S.Schema<OwnerIdentityList>;
-
-/** Details of the owner of the resource. */
-export interface OwnerDetails {
-  /** Type of the owner of the resource. */
-  ownerType?: string;
-  /** Identity details of the owner(s) of the resource. */
-  ownerIdentity?: OwnerIdentityList;
-}
-export const OwnerDetails = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ownerType: S.optional(S.String),
-    ownerIdentity: S.optional(OwnerIdentityList),
-  }),
-).annotate({ identifier: "OwnerDetails" }) as any as S.Schema<OwnerDetails>;
-
-/** Details of the resource on which the action was performed. */
-export interface ResourceDetails {
-  /** Title of the resource. For instance, in case of a drive document, this would be the title of the document. In case of an email, this would be the subject. */
-  title?: string;
-  /** List of labels applied on the resource */
-  appliedLabels?: AppliedLabelList;
-  /** Type of the resource - document, email, chat message */
-  type?: string;
-  /** Owner details of the resource. */
-  ownerDetails?: OwnerDetails;
-  /** Defines relationship of the resource to the events */
-  relation?: string;
-  /** Identifier of the resource, such as a doc_id for a Drive document, a conference_id for a Meet conference, or a "gaia_id/rfc2822_message_id" for an email. */
-  id?: string;
-}
-export const ResourceDetails = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    title: S.optional(S.String),
-    appliedLabels: S.optional(AppliedLabelList),
-    type: S.optional(S.String),
-    ownerDetails: S.optional(OwnerDetails),
-    relation: S.optional(S.String),
-    id: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ResourceDetails",
-}) as any as S.Schema<ResourceDetails>;
-
-export type ResourceDetailsList = Array<ResourceDetails>;
-export const ResourceDetailsList = /*@__PURE__*/ S.Array(
-  ResourceDetails,
-) as any as S.Schema<ResourceDetailsList>;
-
-export type BooleanList = Array<boolean>;
-export const BooleanList = /*@__PURE__*/ S.Array(
-  S.Boolean,
-) as any as S.Schema<BooleanList>;
-
-/** JSON template for a parameter used in various reports. */
-export interface NestedParameter {
-  /** Multiple boolean values of the parameter. */
-  multiBoolValue?: BooleanList;
-  /** Boolean value of the parameter. */
-  boolValue?: boolean;
-  /** Multiple string values of the parameter. */
-  multiValue?: StringList;
-  /** Multiple integer values of the parameter. */
-  multiIntValue?: StringList;
-  /** The name of the parameter. */
-  name?: string;
-  /** Integer value of the parameter. */
-  intValue?: string;
-  /** String value of the parameter. */
-  value?: string;
-}
-export const NestedParameter = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    multiBoolValue: S.optional(BooleanList),
-    boolValue: S.optional(S.Boolean),
-    multiValue: S.optional(StringList),
-    multiIntValue: S.optional(StringList),
-    name: S.optional(S.String),
-    intValue: S.optional(S.String),
-    value: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "NestedParameter",
-}) as any as S.Schema<NestedParameter>;
-
-export type NestedParameterList = Array<NestedParameter>;
-export const NestedParameterList = /*@__PURE__*/ S.Array(
-  NestedParameter,
-) as any as S.Schema<NestedParameterList>;
-
-export interface ActivityEventsItemParametersItemMessageValue {
-  /** Parameter values */
-  parameter?: NestedParameterList;
-}
-export const ActivityEventsItemParametersItemMessageValue =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      parameter: S.optional(NestedParameterList),
-    }),
-  ).annotate({
-    identifier: "ActivityEventsItemParametersItemMessageValue",
-  }) as any as S.Schema<ActivityEventsItemParametersItemMessageValue>;
-
-export type ActivityEventsItemParametersItemMultiMessageValueItem =
-  ActivityEventsItemParametersItemMessageValue;
-export const ActivityEventsItemParametersItemMultiMessageValueItem =
-  ActivityEventsItemParametersItemMessageValue;
-
-export type ActivityEventsItemParametersItemMultiMessageValueItemList =
-  Array<ActivityEventsItemParametersItemMessageValue>;
-export const ActivityEventsItemParametersItemMultiMessageValueItemList =
-  /*@__PURE__*/ S.Array(
-    ActivityEventsItemParametersItemMessageValue,
-  ) as any as S.Schema<ActivityEventsItemParametersItemMultiMessageValueItemList>;
-
-export interface ActivityEventsItemParametersItem {
-  /** String values of the parameter. */
-  multiValue?: StringList;
-  /** Integer values of the parameter. */
-  multiIntValue?: StringList;
-  /** The name of the parameter. */
-  name?: string;
-  /** String value of the parameter. */
-  value?: string;
-  /** Boolean value of the parameter. */
-  boolValue?: boolean;
-  /** Nested parameter value pairs associated with this parameter. Complex value type for a parameter are returned as a list of parameter values. For example, the address parameter may have a value as `[{parameter: [{name: city, value: abc}]}]` */
-  messageValue?: ActivityEventsItemParametersItemMessageValue;
-  /** List of `messageValue` objects. */
-  multiMessageValue?: ActivityEventsItemParametersItemMultiMessageValueItemList;
-  /** Integer value of the parameter. */
-  intValue?: string;
-}
-export const ActivityEventsItemParametersItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    multiValue: S.optional(StringList),
-    multiIntValue: S.optional(StringList),
-    name: S.optional(S.String),
-    value: S.optional(S.String),
-    boolValue: S.optional(S.Boolean),
-    messageValue: S.optional(ActivityEventsItemParametersItemMessageValue),
-    multiMessageValue: S.optional(
-      ActivityEventsItemParametersItemMultiMessageValueItemList,
-    ),
-    intValue: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ActivityEventsItemParametersItem",
-}) as any as S.Schema<ActivityEventsItemParametersItem>;
-
-export type ActivityEventsItemParametersItemList =
-  Array<ActivityEventsItemParametersItem>;
-export const ActivityEventsItemParametersItemList = /*@__PURE__*/ S.Array(
-  ActivityEventsItemParametersItem,
-) as any as S.Schema<ActivityEventsItemParametersItemList>;
-
-/** Status of the event. Note: Not all events have status. */
-export interface ActivityEventsStatus {
-  /** Status code of the event. Note: Field can be empty. */
-  httpStatusCode?: number;
-  /** Error code of the event. Note: Field can be empty. */
-  errorCode?: string;
-  /** Status of the event. Possible values if not empty: - UNKNOWN_EVENT_STATUS - SUCCEEDED - SUCCEEDED_WITH_WARNINGS - FAILED - SKIPPED */
-  eventStatus?: string;
-  /** Error message of the event. Note: Field can be empty. */
-  errorMessage?: string;
-}
-export const ActivityEventsStatus = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    httpStatusCode: S.optional(S.Number),
-    errorCode: S.optional(S.String),
-    eventStatus: S.optional(S.String),
-    errorMessage: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ActivityEventsStatus",
-}) as any as S.Schema<ActivityEventsStatus>;
-
-export type ActivityEventsItemSensitiveParametersItemMultiMessageValueItem =
-  ActivityEventsItemParametersItemMessageValue;
-export const ActivityEventsItemSensitiveParametersItemMultiMessageValueItem =
-  ActivityEventsItemParametersItemMessageValue;
-
-export type ActivityEventsItemSensitiveParametersItemMultiMessageValueItemList =
-  Array<ActivityEventsItemParametersItemMessageValue>;
-export const ActivityEventsItemSensitiveParametersItemMultiMessageValueItemList =
-  /*@__PURE__*/ S.Array(
-    ActivityEventsItemParametersItemMessageValue,
-  ) as any as S.Schema<ActivityEventsItemSensitiveParametersItemMultiMessageValueItemList>;
-
-export type ActivityEventsItemSensitiveParametersItemMessageValue =
-  ActivityEventsItemParametersItemMessageValue;
-export const ActivityEventsItemSensitiveParametersItemMessageValue =
-  ActivityEventsItemParametersItemMessageValue;
-
-export interface ActivityEventsItemSensitiveParametersItem {
-  /** The name of the parameter. */
-  name?: string;
-  /** List of `messageValue` objects. */
-  multiMessageValue?: ActivityEventsItemSensitiveParametersItemMultiMessageValueItemList;
-  /** Boolean value of the parameter. */
-  boolValue?: boolean;
-  /** Integer values of the parameter. */
-  multiIntValue?: StringList;
-  /** Integer value of the parameter. */
-  intValue?: string;
-  /** String value of the parameter. */
-  value?: string;
-  /** String values of the parameter. */
-  multiValue?: StringList;
-  /** Nested parameter value pairs associated with this parameter. Complex value type for a parameter are returned as a list of parameter values. For example, the address parameter may have a value as `[{parameter: [{name: city, value: abc}]}]` */
-  messageValue?: ActivityEventsItemParametersItemMessageValue;
-}
-export const ActivityEventsItemSensitiveParametersItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      name: S.optional(S.String),
-      multiMessageValue: S.optional(
-        ActivityEventsItemSensitiveParametersItemMultiMessageValueItemList,
-      ),
-      boolValue: S.optional(S.Boolean),
-      multiIntValue: S.optional(StringList),
-      intValue: S.optional(S.String),
-      value: S.optional(S.String),
-      multiValue: S.optional(StringList),
-      messageValue: S.optional(ActivityEventsItemParametersItemMessageValue),
-    }),
-  ).annotate({
-    identifier: "ActivityEventsItemSensitiveParametersItem",
-  }) as any as S.Schema<ActivityEventsItemSensitiveParametersItem>;
-
-export type ActivityEventsItemSensitiveParametersItemList =
-  Array<ActivityEventsItemSensitiveParametersItem>;
-export const ActivityEventsItemSensitiveParametersItemList =
-  /*@__PURE__*/ S.Array(
-    ActivityEventsItemSensitiveParametersItem,
-  ) as any as S.Schema<ActivityEventsItemSensitiveParametersItemList>;
-
-export interface ActivityEventsItem {
-  /** Type of event. The Google Workspace service or feature that an administrator changes is identified in the `type` property which identifies an event using the `eventName` property. For a full list of the API's `type` categories, see the list of event names for various applications above in `applicationName`. */
-  type?: string;
-  /** Name of the event. This is the specific name of the activity reported by the API. And each `eventName` is related to a specific Google Workspace service or feature which the API organizes into types of events. For `eventName` request parameters in general: - If no `eventName` is given, the report returns all possible instances of an `eventName`. - When you request an `eventName`, the API's response returns all activities which contain that `eventName`. For more information about `eventName` properties, see the list of event names for various applications above in `applicationName`. */
-  name?: string;
-  /** Resource ids associated with the event. */
-  resourceIds?: StringList;
-  /** Parameter value pairs for various applications. For more information about `eventName` parameters, see the list of event names for various applications above in `applicationName`. */
-  parameters?: ActivityEventsItemParametersItemList;
-  /** Status of the event. Note: Not all events have status. */
-  status?: ActivityEventsStatus;
-  /** Includes sensitive parameter value pairs for various applications. */
-  sensitiveParameters?: ActivityEventsItemSensitiveParametersItemList;
-}
-export const ActivityEventsItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: S.optional(S.String),
-    name: S.optional(S.String),
-    resourceIds: S.optional(StringList),
-    parameters: S.optional(ActivityEventsItemParametersItemList),
-    status: S.optional(ActivityEventsStatus),
-    sensitiveParameters: S.optional(
-      ActivityEventsItemSensitiveParametersItemList,
-    ),
-  }),
-).annotate({
-  identifier: "ActivityEventsItem",
-}) as any as S.Schema<ActivityEventsItem>;
-
-export type ActivityEventsItemList = Array<ActivityEventsItem>;
-export const ActivityEventsItemList = /*@__PURE__*/ S.Array(
-  ActivityEventsItem,
-) as any as S.Schema<ActivityEventsItemList>;
-
-/** Device details of the user doing the action. */
-export interface ActivityUserDeviceInfo {
-  /** Output only. Device ID of the user's device. */
-  deviceId?: string;
-  /** Output only. The type of the user's device. */
-  deviceType?: string;
-  /** Output only. Device OS version of the user's device. */
-  deviceOsVersion?: string;
-}
-export const ActivityUserDeviceInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    deviceId: S.optional(S.String),
-    deviceType: S.optional(S.String),
-    deviceOsVersion: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ActivityUserDeviceInfo",
-}) as any as S.Schema<ActivityUserDeviceInfo>;
 
 export interface ActivityActorApplicationInfo {
   /** Name of the application used to perform the action. */
@@ -1075,108 +486,701 @@ export const AgentAttributionInfoAgentOwner = /*@__PURE__*/ S.suspend(() =>
 
 /** Details of the AI agent that was the actor for the activity. */
 export interface AgentAttributionInfo {
-  /** The owner of the agent. */
-  agentOwner?: AgentAttributionInfoAgentOwner;
   /** The ID of the agent. */
   agentId?: string;
-  /** Type of the agent. */
-  agentType?: string;
   /** The user visible name of the agent. */
   agentName?: string;
+  /** The owner of the agent. */
+  agentOwner?: AgentAttributionInfoAgentOwner;
+  /** Type of the agent. */
+  agentType?: string;
 }
 export const AgentAttributionInfo = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    agentOwner: S.optional(AgentAttributionInfoAgentOwner),
     agentId: S.optional(S.String),
-    agentType: S.optional(S.String),
     agentName: S.optional(S.String),
+    agentOwner: S.optional(AgentAttributionInfoAgentOwner),
+    agentType: S.optional(S.String),
   }),
 ).annotate({
   identifier: "AgentAttributionInfo",
 }) as any as S.Schema<AgentAttributionInfo>;
 
 export interface ActivityActor {
-  /** Only present when `callerType` is `KEY`. Can be the `consumer_key` of the requestor for OAuth 2LO API requests or an identifier for robot accounts. */
-  key?: string;
-  /** Details of the application that was the actor for the activity. */
-  applicationInfo?: ActivityActorApplicationInfo;
   /** The type of actor. */
   callerType?: string;
-  /** The unique Google Workspace profile ID of the actor. This value might be absent if the actor is not a Google Workspace user, or may be the number 105250506097979753968 which acts as a placeholder ID. */
-  profileId?: string;
   /** The primary email address of the actor. May be absent if there is no email address associated with the actor. */
   email?: string;
+  /** Details of the application that was the actor for the activity. */
+  applicationInfo?: ActivityActorApplicationInfo;
   /** Details of the AI agent that was the actor for the activity. */
   agentAttributionInfo?: AgentAttributionInfo;
+  /** The unique Google Workspace profile ID of the actor. This value might be absent if the actor is not a Google Workspace user, or may be the number 105250506097979753968 which acts as a placeholder ID. */
+  profileId?: string;
+  /** Only present when `callerType` is `KEY`. Can be the `consumer_key` of the requestor for OAuth 2LO API requests or an identifier for robot accounts. */
+  key?: string;
 }
 export const ActivityActor = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    key: S.optional(S.String),
-    applicationInfo: S.optional(ActivityActorApplicationInfo),
     callerType: S.optional(S.String),
-    profileId: S.optional(S.String),
     email: S.optional(S.String),
+    applicationInfo: S.optional(ActivityActorApplicationInfo),
     agentAttributionInfo: S.optional(AgentAttributionInfo),
+    profileId: S.optional(S.String),
+    key: S.optional(S.String),
   }),
 ).annotate({ identifier: "ActivityActor" }) as any as S.Schema<ActivityActor>;
 
 export interface ActivityId {
   /** Unique qualifier if multiple events have the same time. */
   uniqueQualifier?: string;
-  /** Time of occurrence of the activity. This is in UNIX epoch time in seconds. */
-  time?: string;
   /** The unique identifier for a Google Workspace account. */
   customerId?: string;
+  /** Time of occurrence of the activity. This is in UNIX epoch time in seconds. */
+  time?: string;
   /** Application name to which the event belongs. For possible values see the list of applications above in `applicationName`. */
   applicationName?: string;
 }
 export const ActivityId = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     uniqueQualifier: S.optional(S.String),
-    time: S.optional(S.String),
     customerId: S.optional(S.String),
+    time: S.optional(S.String),
     applicationName: S.optional(S.String),
   }),
 ).annotate({ identifier: "ActivityId" }) as any as S.Schema<ActivityId>;
 
+/** Device details of the user doing the action. */
+export interface ActivityUserDeviceInfo {
+  /** Output only. The type of the user's device. */
+  deviceType?: string;
+  /** Output only. Device ID of the user's device. */
+  deviceId?: string;
+  /** Output only. Device OS version of the user's device. */
+  deviceOsVersion?: string;
+}
+export const ActivityUserDeviceInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    deviceType: S.optional(S.String),
+    deviceId: S.optional(S.String),
+    deviceOsVersion: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ActivityUserDeviceInfo",
+}) as any as S.Schema<ActivityUserDeviceInfo>;
+
+/** Identity of the group who owns the resource. */
+export interface GroupIdentity {
+  /** Group email. */
+  groupEmail?: string;
+  /** Group gaia id. */
+  id?: string;
+}
+export const GroupIdentity = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    groupEmail: S.optional(S.String),
+    id: S.optional(S.String),
+  }),
+).annotate({ identifier: "GroupIdentity" }) as any as S.Schema<GroupIdentity>;
+
+/** Identity of the Google Workspace customer who owns the resource. */
+export interface CustomerIdentity {
+  /** Customer id. */
+  id?: string;
+}
+export const CustomerIdentity = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "CustomerIdentity",
+}) as any as S.Schema<CustomerIdentity>;
+
+/** Identity of the user who owns the resource. */
+export interface UserIdentity {
+  /** User gaia id. */
+  id?: string;
+  /** User email. */
+  userEmail?: string;
+}
+export const UserIdentity = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    userEmail: S.optional(S.String),
+  }),
+).annotate({ identifier: "UserIdentity" }) as any as S.Schema<UserIdentity>;
+
+/** Identity of the shared drive who owns the resource. */
+export interface SharedDriveIdentity {
+  /** Shared drive gaia id. */
+  id?: string;
+  /** Shared drive name. */
+  sharedDriveName?: string;
+}
+export const SharedDriveIdentity = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    sharedDriveName: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "SharedDriveIdentity",
+}) as any as S.Schema<SharedDriveIdentity>;
+
+/** Identity details of the owner of the resource. */
+export interface OwnerIdentity {
+  /** Identity of the group who owns the resource. */
+  groupIdentity?: GroupIdentity;
+  /** Identity of the Google Workspace customer who owns the resource. */
+  customerIdentity?: CustomerIdentity;
+  /** Identity of the user who owns the resource. */
+  userIdentity?: UserIdentity;
+  /** Identity of the shared drive who owns the resource. */
+  sharedDriveIdentity?: SharedDriveIdentity;
+}
+export const OwnerIdentity = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    groupIdentity: S.optional(GroupIdentity),
+    customerIdentity: S.optional(CustomerIdentity),
+    userIdentity: S.optional(UserIdentity),
+    sharedDriveIdentity: S.optional(SharedDriveIdentity),
+  }),
+).annotate({ identifier: "OwnerIdentity" }) as any as S.Schema<OwnerIdentity>;
+
+export type OwnerIdentityList = Array<OwnerIdentity>;
+export const OwnerIdentityList = /*@__PURE__*/ S.Array(
+  OwnerIdentity,
+) as any as S.Schema<OwnerIdentityList>;
+
+/** Details of the owner of the resource. */
+export interface OwnerDetails {
+  /** Type of the owner of the resource. */
+  ownerType?: string;
+  /** Identity details of the owner(s) of the resource. */
+  ownerIdentity?: OwnerIdentityList;
+}
+export const OwnerDetails = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ownerType: S.optional(S.String),
+    ownerIdentity: S.optional(OwnerIdentityList),
+  }),
+).annotate({ identifier: "OwnerDetails" }) as any as S.Schema<OwnerDetails>;
+
+/** The reason why the label/field was applied. */
+export interface Reason {
+  /** The type of the reason. */
+  reasonType?: string;
+}
+export const Reason = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    reasonType: S.optional(S.String),
+  }),
+).annotate({ identifier: "Reason" }) as any as S.Schema<Reason>;
+
+export type StringList = Array<string>;
+export const StringList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<StringList>;
+
+/** Setting a text list value. */
+export interface FieldValueTextListValue {
+  /** List of text values. */
+  values?: StringList;
+}
+export const FieldValueTextListValue = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    values: S.optional(StringList),
+  }),
+).annotate({
+  identifier: "FieldValueTextListValue",
+}) as any as S.Schema<FieldValueTextListValue>;
+
+/** Setting a selection value by selecting a single value from a dropdown. */
+export interface FieldValueSelectionValue {
+  /** Whether the selection is badged. */
+  badged?: boolean;
+  /** Identifier of the selection. */
+  id?: string;
+  /** Display name of the selection. */
+  displayName?: string;
+}
+export const FieldValueSelectionValue = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    badged: S.optional(S.Boolean),
+    id: S.optional(S.String),
+    displayName: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "FieldValueSelectionValue",
+}) as any as S.Schema<FieldValueSelectionValue>;
+
+/** Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp */
+export interface Admin_Date {
+  /** Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant. */
+  day?: number;
+  /** Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day. */
+  month?: number;
+  /** Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year. */
+  year?: number;
+}
+export const Admin_Date = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    day: S.optional(S.Number),
+    month: S.optional(S.Number),
+    year: S.optional(S.Number),
+  }),
+).annotate({ identifier: "Admin_Date" }) as any as S.Schema<Admin_Date>;
+
+/** Setting a user value by selecting a single user. */
+export interface FieldValueUserValue {
+  /** Email of the user. */
+  email?: string;
+}
+export const FieldValueUserValue = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    email: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "FieldValueUserValue",
+}) as any as S.Schema<FieldValueUserValue>;
+
+export type FieldValueUserValueList = Array<FieldValueUserValue>;
+export const FieldValueUserValueList = /*@__PURE__*/ S.Array(
+  FieldValueUserValue,
+) as any as S.Schema<FieldValueUserValueList>;
+
+/** Setting a user list value by selecting multiple users. */
+export interface FieldValueUserListValue {
+  /** List of users. */
+  values?: FieldValueUserValueList;
+}
+export const FieldValueUserListValue = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    values: S.optional(FieldValueUserValueList),
+  }),
+).annotate({
+  identifier: "FieldValueUserListValue",
+}) as any as S.Schema<FieldValueUserListValue>;
+
+export type FieldValueSelectionValueList = Array<FieldValueSelectionValue>;
+export const FieldValueSelectionValueList = /*@__PURE__*/ S.Array(
+  FieldValueSelectionValue,
+) as any as S.Schema<FieldValueSelectionValueList>;
+
+/** Setting a selection list value by selecting multiple values from a dropdown. */
+export interface FieldValueSelectionListValue {
+  /** List of selections. */
+  values?: FieldValueSelectionValueList;
+}
+export const FieldValueSelectionListValue = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    values: S.optional(FieldValueSelectionValueList),
+  }),
+).annotate({
+  identifier: "FieldValueSelectionListValue",
+}) as any as S.Schema<FieldValueSelectionListValue>;
+
+/** Details of the field value set by the user for the particular label. */
+export interface FieldValue {
+  /** The reason why the field was applied to the label. */
+  reason?: Reason;
+  /** Setting a text list value. */
+  textListValue?: FieldValueTextListValue;
+  /** Setting a selection value by selecting a single value from a dropdown. */
+  selectionValue?: FieldValueSelectionValue;
+  /** Type of the field */
+  type?: string;
+  /** Setting a long text value. */
+  longTextValue?: string;
+  /** Display name of the field */
+  displayName?: string;
+  /** Setting a date value. */
+  dateValue?: Admin_Date;
+  /** Setting a user value by selecting a single user. */
+  userValue?: FieldValueUserValue;
+  /** If the field is unset, this will be true. */
+  unsetValue?: boolean;
+  /** Identifier of the field */
+  id?: string;
+  /** Setting a user list value by selecting multiple users. */
+  userListValue?: FieldValueUserListValue;
+  /** Setting a text value. */
+  textValue?: string;
+  /** Setting a selection list value by selecting multiple values from a dropdown. */
+  selectionListValue?: FieldValueSelectionListValue;
+  /** Setting an integer value. */
+  integerValue?: string;
+}
+export const FieldValue = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    reason: S.optional(Reason),
+    textListValue: S.optional(FieldValueTextListValue),
+    selectionValue: S.optional(FieldValueSelectionValue),
+    type: S.optional(S.String),
+    longTextValue: S.optional(S.String),
+    displayName: S.optional(S.String),
+    dateValue: S.optional(Admin_Date),
+    userValue: S.optional(FieldValueUserValue),
+    unsetValue: S.optional(S.Boolean),
+    id: S.optional(S.String),
+    userListValue: S.optional(FieldValueUserListValue),
+    textValue: S.optional(S.String),
+    selectionListValue: S.optional(FieldValueSelectionListValue),
+    integerValue: S.optional(S.String),
+  }),
+).annotate({ identifier: "FieldValue" }) as any as S.Schema<FieldValue>;
+
+export type FieldValueList = Array<FieldValue>;
+export const FieldValueList = /*@__PURE__*/ S.Array(
+  FieldValue,
+) as any as S.Schema<FieldValueList>;
+
+/** Details of the label applied on the resource. */
+export interface AppliedLabel {
+  /** The reason why the label was applied on the resource. */
+  reason?: Reason;
+  /** Identifier of the label - Only the label id, not the full OnePlatform resource name. */
+  id?: string;
+  /** Title of the label */
+  title?: string;
+  /** List of fields which are part of the label and have been set by the user. If label has a field which was not set by the user, it would not be present in this list. */
+  fieldValues?: FieldValueList;
+}
+export const AppliedLabel = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    reason: S.optional(Reason),
+    id: S.optional(S.String),
+    title: S.optional(S.String),
+    fieldValues: S.optional(FieldValueList),
+  }),
+).annotate({ identifier: "AppliedLabel" }) as any as S.Schema<AppliedLabel>;
+
+export type AppliedLabelList = Array<AppliedLabel>;
+export const AppliedLabelList = /*@__PURE__*/ S.Array(
+  AppliedLabel,
+) as any as S.Schema<AppliedLabelList>;
+
+/** Details of the resource on which the action was performed. */
+export interface ResourceDetails {
+  /** Owner details of the resource. */
+  ownerDetails?: OwnerDetails;
+  /** Defines relationship of the resource to the events */
+  relation?: string;
+  /** List of labels applied on the resource */
+  appliedLabels?: AppliedLabelList;
+  /** Type of the resource - document, email, chat message */
+  type?: string;
+  /** Identifier of the resource, such as a doc_id for a Drive document, a conference_id for a Meet conference, or a "gaia_id/rfc2822_message_id" for an email. */
+  id?: string;
+  /** Title of the resource. For instance, in case of a drive document, this would be the title of the document. In case of an email, this would be the subject. */
+  title?: string;
+}
+export const ResourceDetails = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ownerDetails: S.optional(OwnerDetails),
+    relation: S.optional(S.String),
+    appliedLabels: S.optional(AppliedLabelList),
+    type: S.optional(S.String),
+    id: S.optional(S.String),
+    title: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ResourceDetails",
+}) as any as S.Schema<ResourceDetails>;
+
+export type ResourceDetailsList = Array<ResourceDetails>;
+export const ResourceDetailsList = /*@__PURE__*/ S.Array(
+  ResourceDetails,
+) as any as S.Schema<ResourceDetailsList>;
+
+export type IntegerList = Array<number>;
+export const IntegerList = /*@__PURE__*/ S.Array(
+  S.Number,
+) as any as S.Schema<IntegerList>;
+
+/** Network information of the user doing the action. */
+export interface ActivityNetworkInfo {
+  /** IP Address of the user doing the action. */
+  ipAsn?: IntegerList;
+  /** ISO 3166-1 alpha-2 region code of the user doing the action. */
+  regionCode?: string;
+  /** ISO 3166-2 region code (states and provinces) for countries of the user doing the action. */
+  subdivisionCode?: string;
+}
+export const ActivityNetworkInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ipAsn: S.optional(IntegerList),
+    regionCode: S.optional(S.String),
+    subdivisionCode: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ActivityNetworkInfo",
+}) as any as S.Schema<ActivityNetworkInfo>;
+
+/** Status of the event. Note: Not all events have status. */
+export interface ActivityEventsStatus {
+  /** Status code of the event. Note: Field can be empty. */
+  httpStatusCode?: number;
+  /** Status of the event. Possible values if not empty: - UNKNOWN_EVENT_STATUS - SUCCEEDED - SUCCEEDED_WITH_WARNINGS - FAILED - SKIPPED */
+  eventStatus?: string;
+  /** Error message of the event. Note: Field can be empty. */
+  errorMessage?: string;
+  /** Error code of the event. Note: Field can be empty. */
+  errorCode?: string;
+}
+export const ActivityEventsStatus = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    httpStatusCode: S.optional(S.Number),
+    eventStatus: S.optional(S.String),
+    errorMessage: S.optional(S.String),
+    errorCode: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ActivityEventsStatus",
+}) as any as S.Schema<ActivityEventsStatus>;
+
+export type BooleanList = Array<boolean>;
+export const BooleanList = /*@__PURE__*/ S.Array(
+  S.Boolean,
+) as any as S.Schema<BooleanList>;
+
+/** JSON template for a parameter used in various reports. */
+export interface NestedParameter {
+  /** Multiple string values of the parameter. */
+  multiValue?: StringList;
+  /** Multiple boolean values of the parameter. */
+  multiBoolValue?: BooleanList;
+  /** Multiple integer values of the parameter. */
+  multiIntValue?: StringList;
+  /** Integer value of the parameter. */
+  intValue?: string;
+  /** String value of the parameter. */
+  value?: string;
+  /** The name of the parameter. */
+  name?: string;
+  /** Boolean value of the parameter. */
+  boolValue?: boolean;
+}
+export const NestedParameter = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    multiValue: S.optional(StringList),
+    multiBoolValue: S.optional(BooleanList),
+    multiIntValue: S.optional(StringList),
+    intValue: S.optional(S.String),
+    value: S.optional(S.String),
+    name: S.optional(S.String),
+    boolValue: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "NestedParameter",
+}) as any as S.Schema<NestedParameter>;
+
+export type NestedParameterList = Array<NestedParameter>;
+export const NestedParameterList = /*@__PURE__*/ S.Array(
+  NestedParameter,
+) as any as S.Schema<NestedParameterList>;
+
+export interface ActivityEventsItemParametersItemMultiMessageValueItem {
+  /** Parameter values */
+  parameter?: NestedParameterList;
+}
+export const ActivityEventsItemParametersItemMultiMessageValueItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      parameter: S.optional(NestedParameterList),
+    }),
+  ).annotate({
+    identifier: "ActivityEventsItemParametersItemMultiMessageValueItem",
+  }) as any as S.Schema<ActivityEventsItemParametersItemMultiMessageValueItem>;
+
+export type ActivityEventsItemParametersItemMultiMessageValueItemList =
+  Array<ActivityEventsItemParametersItemMultiMessageValueItem>;
+export const ActivityEventsItemParametersItemMultiMessageValueItemList =
+  /*@__PURE__*/ S.Array(
+    ActivityEventsItemParametersItemMultiMessageValueItem,
+  ) as any as S.Schema<ActivityEventsItemParametersItemMultiMessageValueItemList>;
+
+export type ActivityEventsItemParametersItemMessageValue =
+  ActivityEventsItemParametersItemMultiMessageValueItem;
+export const ActivityEventsItemParametersItemMessageValue =
+  ActivityEventsItemParametersItemMultiMessageValueItem;
+
+export interface ActivityEventsItemParametersItem {
+  /** The name of the parameter. */
+  name?: string;
+  /** String values of the parameter. */
+  multiValue?: StringList;
+  /** List of `messageValue` objects. */
+  multiMessageValue?: ActivityEventsItemParametersItemMultiMessageValueItemList;
+  /** Boolean value of the parameter. */
+  boolValue?: boolean;
+  /** Nested parameter value pairs associated with this parameter. Complex value type for a parameter are returned as a list of parameter values. For example, the address parameter may have a value as `[{parameter: [{name: city, value: abc}]}]` */
+  messageValue?: ActivityEventsItemParametersItemMultiMessageValueItem;
+  /** String value of the parameter. */
+  value?: string;
+  /** Integer value of the parameter. */
+  intValue?: string;
+  /** Integer values of the parameter. */
+  multiIntValue?: StringList;
+}
+export const ActivityEventsItemParametersItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    multiValue: S.optional(StringList),
+    multiMessageValue: S.optional(
+      ActivityEventsItemParametersItemMultiMessageValueItemList,
+    ),
+    boolValue: S.optional(S.Boolean),
+    messageValue: S.optional(
+      ActivityEventsItemParametersItemMultiMessageValueItem,
+    ),
+    value: S.optional(S.String),
+    intValue: S.optional(S.String),
+    multiIntValue: S.optional(StringList),
+  }),
+).annotate({
+  identifier: "ActivityEventsItemParametersItem",
+}) as any as S.Schema<ActivityEventsItemParametersItem>;
+
+export type ActivityEventsItemParametersItemList =
+  Array<ActivityEventsItemParametersItem>;
+export const ActivityEventsItemParametersItemList = /*@__PURE__*/ S.Array(
+  ActivityEventsItemParametersItem,
+) as any as S.Schema<ActivityEventsItemParametersItemList>;
+
+export type ActivityEventsItemSensitiveParametersItemMessageValue =
+  ActivityEventsItemParametersItemMultiMessageValueItem;
+export const ActivityEventsItemSensitiveParametersItemMessageValue =
+  ActivityEventsItemParametersItemMultiMessageValueItem;
+
+export type ActivityEventsItemSensitiveParametersItemMultiMessageValueItem =
+  ActivityEventsItemParametersItemMultiMessageValueItem;
+export const ActivityEventsItemSensitiveParametersItemMultiMessageValueItem =
+  ActivityEventsItemParametersItemMultiMessageValueItem;
+
+export type ActivityEventsItemSensitiveParametersItemMultiMessageValueItemList =
+  Array<ActivityEventsItemParametersItemMultiMessageValueItem>;
+export const ActivityEventsItemSensitiveParametersItemMultiMessageValueItemList =
+  /*@__PURE__*/ S.Array(
+    ActivityEventsItemParametersItemMultiMessageValueItem,
+  ) as any as S.Schema<ActivityEventsItemSensitiveParametersItemMultiMessageValueItemList>;
+
+export interface ActivityEventsItemSensitiveParametersItem {
+  /** Nested parameter value pairs associated with this parameter. Complex value type for a parameter are returned as a list of parameter values. For example, the address parameter may have a value as `[{parameter: [{name: city, value: abc}]}]` */
+  messageValue?: ActivityEventsItemParametersItemMultiMessageValueItem;
+  /** Integer value of the parameter. */
+  intValue?: string;
+  /** Boolean value of the parameter. */
+  boolValue?: boolean;
+  /** String values of the parameter. */
+  multiValue?: StringList;
+  /** Integer values of the parameter. */
+  multiIntValue?: StringList;
+  /** List of `messageValue` objects. */
+  multiMessageValue?: ActivityEventsItemSensitiveParametersItemMultiMessageValueItemList;
+  /** String value of the parameter. */
+  value?: string;
+  /** The name of the parameter. */
+  name?: string;
+}
+export const ActivityEventsItemSensitiveParametersItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      messageValue: S.optional(
+        ActivityEventsItemParametersItemMultiMessageValueItem,
+      ),
+      intValue: S.optional(S.String),
+      boolValue: S.optional(S.Boolean),
+      multiValue: S.optional(StringList),
+      multiIntValue: S.optional(StringList),
+      multiMessageValue: S.optional(
+        ActivityEventsItemSensitiveParametersItemMultiMessageValueItemList,
+      ),
+      value: S.optional(S.String),
+      name: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "ActivityEventsItemSensitiveParametersItem",
+  }) as any as S.Schema<ActivityEventsItemSensitiveParametersItem>;
+
+export type ActivityEventsItemSensitiveParametersItemList =
+  Array<ActivityEventsItemSensitiveParametersItem>;
+export const ActivityEventsItemSensitiveParametersItemList =
+  /*@__PURE__*/ S.Array(
+    ActivityEventsItemSensitiveParametersItem,
+  ) as any as S.Schema<ActivityEventsItemSensitiveParametersItemList>;
+
+export interface ActivityEventsItem {
+  /** Status of the event. Note: Not all events have status. */
+  status?: ActivityEventsStatus;
+  /** Type of event. The Google Workspace service or feature that an administrator changes is identified in the `type` property which identifies an event using the `eventName` property. For a full list of the API's `type` categories, see the list of event names for various applications above in `applicationName`. */
+  type?: string;
+  /** Parameter value pairs for various applications. For more information about `eventName` parameters, see the list of event names for various applications above in `applicationName`. */
+  parameters?: ActivityEventsItemParametersItemList;
+  /** Resource ids associated with the event. */
+  resourceIds?: StringList;
+  /** Name of the event. This is the specific name of the activity reported by the API. And each `eventName` is related to a specific Google Workspace service or feature which the API organizes into types of events. For `eventName` request parameters in general: - If no `eventName` is given, the report returns all possible instances of an `eventName`. - When you request an `eventName`, the API's response returns all activities which contain that `eventName`. For more information about `eventName` properties, see the list of event names for various applications above in `applicationName`. */
+  name?: string;
+  /** Includes sensitive parameter value pairs for various applications. */
+  sensitiveParameters?: ActivityEventsItemSensitiveParametersItemList;
+}
+export const ActivityEventsItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: S.optional(ActivityEventsStatus),
+    type: S.optional(S.String),
+    parameters: S.optional(ActivityEventsItemParametersItemList),
+    resourceIds: S.optional(StringList),
+    name: S.optional(S.String),
+    sensitiveParameters: S.optional(
+      ActivityEventsItemSensitiveParametersItemList,
+    ),
+  }),
+).annotate({
+  identifier: "ActivityEventsItem",
+}) as any as S.Schema<ActivityEventsItem>;
+
+export type ActivityEventsItemList = Array<ActivityEventsItem>;
+export const ActivityEventsItemList = /*@__PURE__*/ S.Array(
+  ActivityEventsItem,
+) as any as S.Schema<ActivityEventsItemList>;
+
 /** JSON template for the activity resource. */
 export interface Activity {
-  /** Network information of the user doing the action. */
-  networkInfo?: ActivityNetworkInfo;
-  /** ETag of the entry. */
-  etag?: string;
-  /** IP address of the user doing the action. This is the Internet Protocol (IP) address of the user when logging into Google Workspace, which may or may not reflect the user's physical location. For example, the IP address can be the user's proxy server's address or a virtual private network (VPN) address. The API supports IPv4 and IPv6. */
-  ipAddress?: string;
-  /** Details of the resource on which the action was performed. */
-  resourceDetails?: ResourceDetailsList;
-  /** Activity events in the report. */
-  events?: ActivityEventsItemList;
-  /** Device details of the user doing the action. This field is only exposed for the `contacts`, `gemini_in_workspace_apps`, `keep`, `meet_hardware`, `meet`, `chat`, `chrome`, `directory_sync`, `drive`, `groups`, `rules`, `data_studio`, `saml` applications. */
-  userDeviceInfo?: ActivityUserDeviceInfo;
   /** User doing the action. */
   actor?: ActivityActor;
-  /** This is the domain that is affected by the report's event. For example domain of Admin console or the Drive application's document owner. */
-  ownerDomain?: string;
-  /** The type of API resource. For an activity report, the value is `audit#activity`. */
-  kind?: string;
-  /** Whether the activity was performed by an agent. */
-  isAgenticAction?: boolean;
   /** Unique identifier for each activity record. */
   id?: ActivityId;
+  /** Device details of the user doing the action. This field is only exposed for the `contacts`, `gemini_in_workspace_apps`, `keep`, `meet_hardware`, `meet`, `chat`, `chrome`, `directory_sync`, `drive`, `groups`, `rules`, `data_studio`, `saml` applications. */
+  userDeviceInfo?: ActivityUserDeviceInfo;
+  /** IP address of the user doing the action. This is the Internet Protocol (IP) address of the user when logging into Google Workspace, which may or may not reflect the user's physical location. For example, the IP address can be the user's proxy server's address or a virtual private network (VPN) address. The API supports IPv4 and IPv6. */
+  ipAddress?: string;
+  /** Whether the activity was performed by an agent. */
+  isAgenticAction?: boolean;
+  /** ETag of the entry. */
+  etag?: string;
+  /** Details of the resource on which the action was performed. */
+  resourceDetails?: ResourceDetailsList;
+  /** Network information of the user doing the action. */
+  networkInfo?: ActivityNetworkInfo;
+  /** Activity events in the report. */
+  events?: ActivityEventsItemList;
+  /** The type of API resource. For an activity report, the value is `audit#activity`. */
+  kind?: string;
+  /** This is the domain that is affected by the report's event. For example domain of Admin console or the Drive application's document owner. */
+  ownerDomain?: string;
 }
 export const Activity = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    networkInfo: S.optional(ActivityNetworkInfo),
-    etag: S.optional(S.String),
-    ipAddress: S.optional(S.String),
-    resourceDetails: S.optional(ResourceDetailsList),
-    events: S.optional(ActivityEventsItemList),
-    userDeviceInfo: S.optional(ActivityUserDeviceInfo),
     actor: S.optional(ActivityActor),
-    ownerDomain: S.optional(S.String),
-    kind: S.optional(S.String),
-    isAgenticAction: S.optional(S.Boolean),
     id: S.optional(ActivityId),
+    userDeviceInfo: S.optional(ActivityUserDeviceInfo),
+    ipAddress: S.optional(S.String),
+    isAgenticAction: S.optional(S.Boolean),
+    etag: S.optional(S.String),
+    resourceDetails: S.optional(ResourceDetailsList),
+    networkInfo: S.optional(ActivityNetworkInfo),
+    events: S.optional(ActivityEventsItemList),
+    kind: S.optional(S.String),
+    ownerDomain: S.optional(S.String),
   }),
 ).annotate({ identifier: "Activity" }) as any as S.Schema<Activity>;
 
@@ -1187,20 +1191,20 @@ export const ActivityList = /*@__PURE__*/ S.Array(
 
 /** JSON template for a collection of activities. */
 export interface Activities {
-  /** Token for retrieving the follow-on next page of the report. The `nextPageToken` value is used in the request's `pageToken` query string. */
-  nextPageToken?: string;
-  /** Each activity record in the response. */
-  items: ActivityList;
   /** The type of API resource. For an activity report, the value is `reports#activities`. */
   kind?: string;
+  /** Each activity record in the response. */
+  items: ActivityList;
+  /** Token for retrieving the follow-on next page of the report. The `nextPageToken` value is used in the request's `pageToken` query string. */
+  nextPageToken?: string;
   /** ETag of the resource. */
   etag?: string;
 }
 export const Activities = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    nextPageToken: S.optional(S.String),
-    items: ActivityList,
     kind: S.optional(S.String),
+    items: ActivityList,
+    nextPageToken: S.optional(S.String),
     etag: S.optional(S.String),
   }),
 ).annotate({ identifier: "Activities" }) as any as S.Schema<Activities>;
@@ -1213,39 +1217,39 @@ export const StringMap = /*@__PURE__*/ S.Record(
 
 /** A notification channel used to watch for resource changes. */
 export interface Channel {
-  /** An arbitrary string delivered to the target address with each notification delivered over this channel. Optional. */
-  token?: string;
-  /** A version-specific identifier for the watched resource. */
-  resourceUri?: string;
-  /** Additional parameters controlling delivery channel behavior. Optional. */
-  params?: StringMap;
-  /** The address where notifications are delivered for this channel. */
-  address?: string;
-  /** A UUID or similar unique string that identifies this channel. */
-  id?: string;
-  /** An opaque ID that identifies the resource being watched on this channel. Stable across different API versions. */
-  resourceId?: string;
-  /** The type of delivery mechanism used for this channel. The value should be set to `"web_hook"`. */
-  type?: string;
-  /** A Boolean value to indicate whether payload is wanted. A payload is data that is sent in the body of an HTTP POST, PUT, or PATCH message and contains important information about the request. Optional. */
-  payload?: boolean;
-  /** Identifies this as a notification channel used to watch for changes to a resource, which is "`api#channel`". */
-  kind?: string;
   /** Date and time of notification channel expiration, expressed as a Unix timestamp, in milliseconds. Optional. */
   expiration?: string;
+  /** An arbitrary string delivered to the target address with each notification delivered over this channel. Optional. */
+  token?: string;
+  /** A UUID or similar unique string that identifies this channel. */
+  id?: string;
+  /** Additional parameters controlling delivery channel behavior. Optional. */
+  params?: StringMap;
+  /** A Boolean value to indicate whether payload is wanted. A payload is data that is sent in the body of an HTTP POST, PUT, or PATCH message and contains important information about the request. Optional. */
+  payload?: boolean;
+  /** A version-specific identifier for the watched resource. */
+  resourceUri?: string;
+  /** The type of delivery mechanism used for this channel. The value should be set to `"web_hook"`. */
+  type?: string;
+  /** Identifies this as a notification channel used to watch for changes to a resource, which is "`api#channel`". */
+  kind?: string;
+  /** The address where notifications are delivered for this channel. */
+  address?: string;
+  /** An opaque ID that identifies the resource being watched on this channel. Stable across different API versions. */
+  resourceId?: string;
 }
 export const Channel = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    token: S.optional(S.String),
-    resourceUri: S.optional(S.String),
-    params: S.optional(StringMap),
-    address: S.optional(S.String),
-    id: S.optional(S.String),
-    resourceId: S.optional(S.String),
-    type: S.optional(S.String),
-    payload: S.optional(S.Boolean),
-    kind: S.optional(S.String),
     expiration: S.optional(S.String),
+    token: S.optional(S.String),
+    id: S.optional(S.String),
+    params: S.optional(StringMap),
+    payload: S.optional(S.Boolean),
+    resourceUri: S.optional(S.String),
+    type: S.optional(S.String),
+    kind: S.optional(S.String),
+    address: S.optional(S.String),
+    resourceId: S.optional(S.String),
   }),
 ).annotate({ identifier: "Channel" }) as any as S.Schema<Channel>;
 
@@ -1300,47 +1304,47 @@ export type WatchActivitiesApplicationNameEnum =
 export const WatchActivitiesApplicationNameEnum = /*@__PURE__*/ S.String;
 
 export interface WatchActivitiesRequest {
-  /** The token to specify next page. A report with multiple pages has a `nextPageToken` property in the response. In your follow-on request getting the next page of the report, enter the `nextPageToken` value in the `pageToken` query string. */
-  pageToken?: string;
-  /** `Deprecated`. This field is deprecated and is no longer supported. Comma separated group ids (obfuscated) on which user activities are filtered, i.e. the response will contain activities for only those users that are a part of at least one of the group ids mentioned here. Format: "id:abc123,id:xyz456" *Important:* To filter by groups, you must explicitly add the groups to your filtering groups allowlist. For more information about adding groups to filtering groups allowlist, see [Filter results by Google Group](https://support.google.com/a/answer/11482175) */
-  groupIdFilter?: string;
-  /** `Deprecated`. This field is deprecated and is no longer supported. ID of the organizational unit to report on. Activity records will be shown only for users who belong to the specified organizational unit. Data before Dec 17, 2018 doesn't appear in the filtered results. */
-  orgUnitID?: string;
-  /** The name of the event being queried by the API. Each `eventName` is related to a specific Google Workspace service or feature which the API organizes into types of events. An example is the Google Calendar events in the Admin console application's reports. The Calendar Settings `type` structure has all of the Calendar `eventName` activities reported by the API. When an administrator changes a Calendar setting, the API reports this activity in the Calendar Settings `type` and `eventName` parameters. For more information about `eventName` query strings and parameters, see the list of event names for various applications above in `applicationName`. */
-  eventName?: string;
-  /** Application name for which the events are to be retrieved. */
-  applicationName: WatchActivitiesApplicationNameEnum | (string & {});
-  /** Determines how many activity records are shown on each response page. For example, if the request sets `maxResults=1` and the report has two activities, the report has two pages. The response's `nextPageToken` property has the token to the second page. The `maxResults` query string is optional in the request. The default value is 1000. */
-  maxResults?: number;
-  /** The `filters` query string is a comma-separated list composed of event parameters manipulated by relational operators. Event parameters are in the form `{parameter1 name}{relational operator}{parameter1 value},{parameter2 name}{relational operator}{parameter2 value},...` These event parameters are associated with a specific `eventName`. An empty report is returned if the request's parameter doesn't belong to the `eventName`. For more information about the available `eventName` fields for each application and their associated parameters, go to the [ApplicationName](#applicationname) table, then click through to the Activity Events page in the Appendix for the application you want. In the following Drive activity examples, the returned list consists of all `edit` events where the `doc_id` parameter value matches the conditions defined by the relational operator. In the first example, the request returns all edited documents with a `doc_id` value equal to `12345`. In the second example, the report returns any edited documents where the `doc_id` value is not equal to `98765`. The `<>` operator is URL-encoded in the request's query string (`%3C%3E`): ``` GET...&eventName=edit&filters=doc_id==12345 GET...&eventName=edit&filters=doc_id%3C%3E98765 ``` A `filters` query supports these relational operators: * `==`—'equal to'. * `<>`—'not equal to'. Must be URL-encoded (%3C%3E). * `<`—'less than'. Must be URL-encoded (%3C). * `<=`—'less than or equal to'. Must be URL-encoded (%3C=). * `>`—'greater than'. Must be URL-encoded (%3E). * `>=`—'greater than or equal to'. Must be URL-encoded (%3E=). **Note:** The API doesn't accept multiple values of the same parameter. If a parameter is supplied more than once in the API request, the API only accepts the last value of that parameter. In addition, if an invalid parameter is supplied in the API request, the API ignores that parameter and returns the response corresponding to the remaining valid parameters. If no parameters are requested, all parameters are returned. */
-  filters?: string;
-  /** The unique ID of the customer to retrieve data for. */
-  customerId?: string;
   /** Represents the profile ID or the user email for which the data should be filtered. Can be `all` for all information, or `userKey` for a user's unique Google Workspace profile ID or their primary email address. Must not be a deleted user. For a deleted user, call `users.list` in Directory API with `showDeleted=true`, then use the returned `ID` as the `userKey`. */
   userKey: string;
-  /** Sets the end of the range of time shown in the report. The date is in the RFC 3339 format, for example 2010-10-28T10:26:35.000Z. The default value is the approximate time of the API request. An API report has three basic time concepts: - *Date of the API's request for a report*: When the API created and retrieved the report. - *Report's start time*: The beginning of the timespan shown in the report. The `startTime` must be before the `endTime` (if specified) and the current time when the request is made, or the API returns an error. - *Report's end time*: The end of the timespan shown in the report. For example, the timespan of events summarized in a report can start in April and end in May. The report itself can be requested in August. If the `endTime` is not specified, the report returns all activities from the `startTime` until the current time or the most recent 180 days if the `startTime` is more than 180 days in the past. */
-  endTime?: string;
+  /** The `filters` query string is a comma-separated list composed of event parameters manipulated by relational operators. Event parameters are in the form `{parameter1 name}{relational operator}{parameter1 value},{parameter2 name}{relational operator}{parameter2 value},...` These event parameters are associated with a specific `eventName`. An empty report is returned if the request's parameter doesn't belong to the `eventName`. For more information about the available `eventName` fields for each application and their associated parameters, go to the [ApplicationName](#applicationname) table, then click through to the Activity Events page in the Appendix for the application you want. In the following Drive activity examples, the returned list consists of all `edit` events where the `doc_id` parameter value matches the conditions defined by the relational operator. In the first example, the request returns all edited documents with a `doc_id` value equal to `12345`. In the second example, the report returns any edited documents where the `doc_id` value is not equal to `98765`. The `<>` operator is URL-encoded in the request's query string (`%3C%3E`): ``` GET...&eventName=edit&filters=doc_id==12345 GET...&eventName=edit&filters=doc_id%3C%3E98765 ``` A `filters` query supports these relational operators: * `==`—'equal to'. * `<>`—'not equal to'. Must be URL-encoded (%3C%3E). * `<`—'less than'. Must be URL-encoded (%3C). * `<=`—'less than or equal to'. Must be URL-encoded (%3C=). * `>`—'greater than'. Must be URL-encoded (%3E). * `>=`—'greater than or equal to'. Must be URL-encoded (%3E=). **Note:** The API doesn't accept multiple values of the same parameter. If a parameter is supplied more than once in the API request, the API only accepts the last value of that parameter. In addition, if an invalid parameter is supplied in the API request, the API ignores that parameter and returns the response corresponding to the remaining valid parameters. If no parameters are requested, all parameters are returned. */
+  filters?: string;
+  /** Application name for which the events are to be retrieved. */
+  applicationName: WatchActivitiesApplicationNameEnum | (string & {});
   /** The Internet Protocol (IP) Address of host where the event was performed. This is an additional way to filter a report's summary using the IP address of the user whose activity is being reported. This IP address may or may not reflect the user's physical location. For example, the IP address can be the user's proxy server's address or a virtual private network (VPN) address. This parameter supports both IPv4 and IPv6 address versions. */
   actorIpAddress?: string;
+  /** The token to specify next page. A report with multiple pages has a `nextPageToken` property in the response. In your follow-on request getting the next page of the report, enter the `nextPageToken` value in the `pageToken` query string. */
+  pageToken?: string;
+  /** The unique ID of the customer to retrieve data for. */
+  customerId?: string;
   /** Sets the beginning of the range of time shown in the report. The date is in the RFC 3339 format, for example 2010-10-28T10:26:35.000Z. The report returns all activities from `startTime` until `endTime`. The `startTime` must be before the `endTime` (if specified) and the current time when the request is made, or the API returns an error. */
   startTime?: string;
+  /** Determines how many activity records are shown on each response page. For example, if the request sets `maxResults=1` and the report has two activities, the report has two pages. The response's `nextPageToken` property has the token to the second page. The `maxResults` query string is optional in the request. The default value is 1000. */
+  maxResults?: number;
+  /** The name of the event being queried by the API. Each `eventName` is related to a specific Google Workspace service or feature which the API organizes into types of events. An example is the Google Calendar events in the Admin console application's reports. The Calendar Settings `type` structure has all of the Calendar `eventName` activities reported by the API. When an administrator changes a Calendar setting, the API reports this activity in the Calendar Settings `type` and `eventName` parameters. For more information about `eventName` query strings and parameters, see the list of event names for various applications above in `applicationName`. */
+  eventName?: string;
+  /** `Deprecated`. This field is deprecated and is no longer supported. ID of the organizational unit to report on. Activity records will be shown only for users who belong to the specified organizational unit. Data before Dec 17, 2018 doesn't appear in the filtered results. */
+  orgUnitID?: string;
+  /** Sets the end of the range of time shown in the report. The date is in the RFC 3339 format, for example 2010-10-28T10:26:35.000Z. The default value is the approximate time of the API request. An API report has three basic time concepts: - *Date of the API's request for a report*: When the API created and retrieved the report. - *Report's start time*: The beginning of the timespan shown in the report. The `startTime` must be before the `endTime` (if specified) and the current time when the request is made, or the API returns an error. - *Report's end time*: The end of the timespan shown in the report. For example, the timespan of events summarized in a report can start in April and end in May. The report itself can be requested in August. If the `endTime` is not specified, the report returns all activities from the `startTime` until the current time or the most recent 180 days if the `startTime` is more than 180 days in the past. */
+  endTime?: string;
+  /** `Deprecated`. This field is deprecated and is no longer supported. Comma separated group ids (obfuscated) on which user activities are filtered, i.e. the response will contain activities for only those users that are a part of at least one of the group ids mentioned here. Format: "id:abc123,id:xyz456" *Important:* To filter by groups, you must explicitly add the groups to your filtering groups allowlist. For more information about adding groups to filtering groups allowlist, see [Filter results by Google Group](https://support.google.com/a/answer/11482175) */
+  groupIdFilter?: string;
   /** Request body */
   body?: Channel;
 }
 export const WatchActivitiesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    pageToken: S.optional(S.String.pipe(T.Query())),
-    groupIdFilter: S.optional(S.String.pipe(T.Query())),
-    orgUnitID: S.optional(S.String.pipe(T.Query())),
-    eventName: S.optional(S.String.pipe(T.Query())),
-    applicationName: WatchActivitiesApplicationNameEnum.pipe(T.Label()),
-    maxResults: S.optional(S.Number.pipe(T.Query())),
-    filters: S.optional(S.String.pipe(T.Query())),
-    customerId: S.optional(S.String.pipe(T.Query())),
     userKey: S.String.pipe(T.Label()),
-    endTime: S.optional(S.String.pipe(T.Query())),
+    filters: S.optional(S.String.pipe(T.Query())),
+    applicationName: WatchActivitiesApplicationNameEnum.pipe(T.Label()),
     actorIpAddress: S.optional(S.String.pipe(T.Query())),
+    pageToken: S.optional(S.String.pipe(T.Query())),
+    customerId: S.optional(S.String.pipe(T.Query())),
     startTime: S.optional(S.String.pipe(T.Query())),
+    maxResults: S.optional(S.Number.pipe(T.Query())),
+    eventName: S.optional(S.String.pipe(T.Query())),
+    orgUnitID: S.optional(S.String.pipe(T.Query())),
+    endTime: S.optional(S.String.pipe(T.Query())),
+    groupIdFilter: S.optional(S.String.pipe(T.Query())),
     body: S.optional(Channel.pipe(T.HttpBody())),
   }).pipe(
     T.Http({

@@ -119,24 +119,24 @@ export const DeleteOperationsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DeleteOperationsRequest>;
 
 export interface ListOperationsRequest {
-  /** When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation. */
-  returnPartialSuccess?: boolean;
-  /** The standard list page token. */
-  pageToken?: string;
-  /** The name of the operation's parent resource. */
-  name: string;
-  /** The standard list page size. */
-  pageSize?: number;
   /** The standard list filter. */
   filter?: string;
+  /** The standard list page token. */
+  pageToken?: string;
+  /** The standard list page size. */
+  pageSize?: number;
+  /** The name of the operation's parent resource. */
+  name: string;
+  /** When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation. */
+  returnPartialSuccess?: boolean;
 }
 export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    returnPartialSuccess: S.optional(S.Boolean.pipe(T.Query())),
-    pageToken: S.optional(S.String.pipe(T.Query())),
-    name: S.String.pipe(T.Label()),
-    pageSize: S.optional(S.Number.pipe(T.Query())),
     filter: S.optional(S.String.pipe(T.Query())),
+    pageToken: S.optional(S.String.pipe(T.Query())),
+    pageSize: S.optional(S.Number.pipe(T.Query())),
+    name: S.String.pipe(T.Label()),
+    returnPartialSuccess: S.optional(S.Boolean.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -147,6 +147,11 @@ export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ListOperationsRequest",
 }) as any as S.Schema<ListOperationsRequest>;
+
+export type StringList = Array<string>;
+export const StringList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<StringList>;
 
 export type DocumentMap = { [key: string]: unknown | undefined };
 export const DocumentMap = /*@__PURE__*/ S.Record(
@@ -163,16 +168,16 @@ export const DocumentMapList = /*@__PURE__*/ S.Array(
 export interface Status {
   /** A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client. */
   message?: string;
-  /** The status code, which should be an enum value of google.rpc.Code. */
-  code?: number;
   /** A list of messages that carry the error details. There is a common set of message types for APIs to use. */
   details?: DocumentMapList;
+  /** The status code, which should be an enum value of google.rpc.Code. */
+  code?: number;
 }
 export const Status = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     message: S.optional(S.String),
-    code: S.optional(S.Number),
     details: S.optional(DocumentMapList),
+    code: S.optional(S.Number),
   }),
 ).annotate({ identifier: "Status" }) as any as S.Schema<Status>;
 
@@ -180,21 +185,21 @@ export const Status = /*@__PURE__*/ S.suspend(() =>
 export interface Operation {
   /** The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`. */
   name?: string;
+  /** The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`. */
+  response?: DocumentMap;
   /** If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available. */
   done?: boolean;
   /** Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any. */
   metadata?: DocumentMap;
-  /** The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`. */
-  response?: DocumentMap;
   /** The error result of the operation in case of failure or cancellation. */
   error?: Status;
 }
 export const Operation = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     name: S.optional(S.String),
+    response: S.optional(DocumentMap),
     done: S.optional(S.Boolean),
     metadata: S.optional(DocumentMap),
-    response: S.optional(DocumentMap),
     error: S.optional(Status),
   }),
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
@@ -204,25 +209,20 @@ export const OperationList = /*@__PURE__*/ S.Array(
   Operation,
 ) as any as S.Schema<OperationList>;
 
-export type StringList = Array<string>;
-export const StringList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<StringList>;
-
 /** The response message for Operations.ListOperations. */
 export interface ListOperationsResponse {
   /** The standard List next-page token. */
   nextPageToken?: string;
-  /** A list of operations that matches the specified filter in the request. */
-  operations?: OperationList;
   /** Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations. */
   unreachable?: StringList;
+  /** A list of operations that matches the specified filter in the request. */
+  operations?: OperationList;
 }
 export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     nextPageToken: S.optional(S.String),
-    operations: S.optional(OperationList),
     unreachable: S.optional(StringList),
+    operations: S.optional(OperationList),
   }),
 ).annotate({
   identifier: "ListOperationsResponse",

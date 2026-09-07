@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.iotcentral#OperationsList": {
+    "com.azure.iotcentral#ListOperations": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -129,10 +130,10 @@
         "smithy.api#documentation": "The object that represents the operation."
       }
     },
-    "com.azure.iotcentral#AppsListTemplates": {
+    "com.azure.iotcentral#ListAppTemplates": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iotcentral#AppsListTemplatesRequest"
+        "target": "com.azure.iotcentral#ListAppTemplatesRequest"
       },
       "output": {
         "target": "com.azure.iotcentral#AppTemplatesResult"
@@ -262,7 +263,7 @@
         "smithy.api#documentation": "IoT Central Application Template Locations."
       }
     },
-    "com.azure.iotcentral#AppsListTemplatesRequest": {
+    "com.azure.iotcentral#ListAppTemplatesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -278,10 +279,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.iotcentral#AppsCheckSubdomainAvailability": {
+    "com.azure.iotcentral#CheckAppSubdomainAvailability": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iotcentral#AppsCheckSubdomainAvailabilityRequest"
+        "target": "com.azure.iotcentral#CheckAppSubdomainAvailabilityRequest"
       },
       "output": {
         "target": "com.azure.iotcentral#AppAvailabilityInfo"
@@ -323,7 +324,7 @@
         "smithy.api#documentation": "The properties indicating whether a given IoT Central application name or subdomain is available."
       }
     },
-    "com.azure.iotcentral#AppsCheckSubdomainAvailabilityRequest": {
+    "com.azure.iotcentral#CheckAppSubdomainAvailabilityRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -352,10 +353,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.iotcentral#AppsCheckNameAvailability": {
+    "com.azure.iotcentral#CheckAppNameAvailability": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iotcentral#AppsCheckNameAvailabilityRequest"
+        "target": "com.azure.iotcentral#CheckAppNameAvailabilityRequest"
       },
       "output": {
         "target": "com.azure.iotcentral#AppAvailabilityInfo"
@@ -371,7 +372,7 @@
         "com.distilled.openapi#apiVersion": "2021-06-01"
       }
     },
-    "com.azure.iotcentral#AppsCheckNameAvailabilityRequest": {
+    "com.azure.iotcentral#CheckAppNameAvailabilityRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -400,10 +401,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.iotcentral#AppsListByResourceGroup": {
+    "com.azure.iotcentral#ListAppByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iotcentral#AppsListByResourceGroupRequest"
+        "target": "com.azure.iotcentral#ListAppByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.iotcentral#AppListResult"
@@ -663,7 +664,7 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.iotcentral#AppsListByResourceGroupRequest": {
+    "com.azure.iotcentral#ListAppByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -687,10 +688,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.iotcentral#AppsListBySubscription": {
+    "com.azure.iotcentral#ListAppBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iotcentral#AppsListBySubscriptionRequest"
+        "target": "com.azure.iotcentral#ListAppBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.iotcentral#AppListResult"
@@ -706,7 +707,7 @@
         "com.distilled.openapi#apiVersion": "2021-06-01"
       }
     },
-    "com.azure.iotcentral#AppsListBySubscriptionRequest": {
+    "com.azure.iotcentral#ListAppBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -722,10 +723,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.iotcentral#AppsDelete": {
+    "com.azure.iotcentral#DeleteApp": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iotcentral#AppsDeleteRequest"
+        "target": "com.azure.iotcentral#DeleteAppRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -741,7 +742,7 @@
         "com.distilled.openapi#apiVersion": "2021-06-01"
       }
     },
-    "com.azure.iotcentral#AppsDeleteRequest": {
+    "com.azure.iotcentral#DeleteAppRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -773,13 +774,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.iotcentral#AppsUpdate": {
+    "com.azure.iotcentral#UpdateApp": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iotcentral#AppsUpdateRequest"
+        "target": "com.azure.iotcentral#UpdateAppRequest"
       },
       "output": {
-        "target": "com.azure.iotcentral#AppsUpdateResponse"
+        "target": "com.azure.iotcentral#UpdateAppResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -792,7 +793,7 @@
         "com.distilled.openapi#apiVersion": "2021-06-01"
       }
     },
-    "com.azure.iotcentral#AppsUpdateResponse": {
+    "com.azure.iotcentral#UpdateAppResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -821,7 +822,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.iotcentral#AppsUpdateResponseTagsMap",
+          "target": "com.azure.iotcentral#UpdateAppResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags."
           }
@@ -840,7 +841,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.iotcentral#AppsUpdateResponseIdentity",
+          "target": "com.azure.iotcentral#UpdateAppResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (either system assigned, or none)"
           }
@@ -850,7 +851,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.iotcentral#AppsUpdateResponseIdentity": {
+    "com.azure.iotcentral#UpdateAppResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -876,7 +877,7 @@
         "smithy.api#documentation": "Managed service identity (either system assigned, or none)"
       }
     },
-    "com.azure.iotcentral#AppsUpdateResponseTagsMap": {
+    "com.azure.iotcentral#UpdateAppResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -888,7 +889,7 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.iotcentral#AppsUpdateRequest": {
+    "com.azure.iotcentral#UpdateAppRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -916,7 +917,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.iotcentral#AppsUpdateRequestTagsMap",
+          "target": "com.azure.iotcentral#UpdateAppRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Instance tags"
           }
@@ -934,7 +935,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.iotcentral#AppsUpdateRequestIdentity",
+          "target": "com.azure.iotcentral#UpdateAppRequestIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (either system assigned, or none)"
           }
@@ -944,7 +945,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.iotcentral#AppsUpdateRequestIdentity": {
+    "com.azure.iotcentral#UpdateAppRequestIdentity": {
       "type": "structure",
       "members": {
         "type": {
@@ -984,7 +985,7 @@
         "smithy.api#documentation": "The properties of an IoT Central application."
       }
     },
-    "com.azure.iotcentral#AppsUpdateRequestTagsMap": {
+    "com.azure.iotcentral#UpdateAppRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1201,13 +1202,13 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.iotcentral#AppsGet": {
+    "com.azure.iotcentral#GetApp": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iotcentral#AppsGetRequest"
+        "target": "com.azure.iotcentral#GetAppRequest"
       },
       "output": {
-        "target": "com.azure.iotcentral#AppsGetResponse"
+        "target": "com.azure.iotcentral#GetAppResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1220,7 +1221,7 @@
         "com.distilled.openapi#apiVersion": "2021-06-01"
       }
     },
-    "com.azure.iotcentral#AppsGetResponse": {
+    "com.azure.iotcentral#GetAppResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1249,7 +1250,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.iotcentral#AppsGetResponseTagsMap",
+          "target": "com.azure.iotcentral#GetAppResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags."
           }
@@ -1268,7 +1269,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.iotcentral#AppsGetResponseIdentity",
+          "target": "com.azure.iotcentral#GetAppResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (either system assigned, or none)"
           }
@@ -1278,7 +1279,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.iotcentral#AppsGetResponseIdentity": {
+    "com.azure.iotcentral#GetAppResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -1304,7 +1305,7 @@
         "smithy.api#documentation": "Managed service identity (either system assigned, or none)"
       }
     },
-    "com.azure.iotcentral#AppsGetResponseTagsMap": {
+    "com.azure.iotcentral#GetAppResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1316,7 +1317,7 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.iotcentral#AppsGetRequest": {
+    "com.azure.iotcentral#GetAppRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1353,34 +1354,34 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.iotcentral#OperationsList"
+          "target": "com.azure.iotcentral#ListOperations"
         },
         {
-          "target": "com.azure.iotcentral#AppsListTemplates"
+          "target": "com.azure.iotcentral#ListAppTemplates"
         },
         {
-          "target": "com.azure.iotcentral#AppsCheckSubdomainAvailability"
+          "target": "com.azure.iotcentral#CheckAppSubdomainAvailability"
         },
         {
-          "target": "com.azure.iotcentral#AppsCheckNameAvailability"
+          "target": "com.azure.iotcentral#CheckAppNameAvailability"
         },
         {
-          "target": "com.azure.iotcentral#AppsListByResourceGroup"
+          "target": "com.azure.iotcentral#ListAppByResourceGroup"
         },
         {
-          "target": "com.azure.iotcentral#AppsListBySubscription"
+          "target": "com.azure.iotcentral#ListAppBySubscription"
         },
         {
-          "target": "com.azure.iotcentral#AppsDelete"
+          "target": "com.azure.iotcentral#DeleteApp"
         },
         {
-          "target": "com.azure.iotcentral#AppsUpdate"
+          "target": "com.azure.iotcentral#UpdateApp"
         },
         {
           "target": "com.azure.iotcentral#AppsCreateOrUpdate"
         },
         {
-          "target": "com.azure.iotcentral#AppsGet"
+          "target": "com.azure.iotcentral#GetApp"
         }
       ],
       "traits": {

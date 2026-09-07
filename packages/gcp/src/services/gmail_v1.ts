@@ -156,22 +156,22 @@ export const ClassificationLabelValueList = /*@__PURE__*/ S.Array(
 export interface BatchModifyMessagesRequest {
   /** A list of label IDs to add to messages. */
   addLabelIds?: StringList;
-  /** A list of Classification Label values to remove from messages. */
-  removeClassificationLabelIds?: StringList;
-  /** A list of Classification Label values to add. If a Classification Label with the same label ID is already applied to the message, fields with existing field IDs will be updated and fields with new field IDs will be added. There's a limit of 20 Classification Label values per request. If the message is already classified and the final total number of Classification Label values exceeds the maximum allowed number of Classification Label values per message, the modification fails. */
-  addClassificationLabels?: ClassificationLabelValueList;
-  /** A list of label IDs to remove from messages. */
-  removeLabelIds?: StringList;
   /** The IDs of the messages to modify. There is a limit of 1000 ids per request. */
   ids?: StringList;
+  /** A list of Classification Label values to add. If a Classification Label with the same label ID is already applied to the message, fields with existing field IDs will be updated and fields with new field IDs will be added. There's a limit of 20 Classification Label values per request. If the message is already classified and the final total number of Classification Label values exceeds the maximum allowed number of Classification Label values per message, the modification fails. */
+  addClassificationLabels?: ClassificationLabelValueList;
+  /** A list of Classification Label values to remove from messages. */
+  removeClassificationLabelIds?: StringList;
+  /** A list of label IDs to remove from messages. */
+  removeLabelIds?: StringList;
 }
 export const BatchModifyMessagesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     addLabelIds: S.optional(StringList),
-    removeClassificationLabelIds: S.optional(StringList),
-    addClassificationLabels: S.optional(ClassificationLabelValueList),
-    removeLabelIds: S.optional(StringList),
     ids: S.optional(StringList),
+    addClassificationLabels: S.optional(ClassificationLabelValueList),
+    removeClassificationLabelIds: S.optional(StringList),
+    removeLabelIds: S.optional(StringList),
   }),
 ).annotate({
   identifier: "BatchModifyMessagesRequest",
@@ -205,40 +205,40 @@ export const BatchModifyUsersMessagesResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "BatchModifyUsersMessagesResponse",
 }) as any as S.Schema<BatchModifyUsersMessagesResponse>;
 
-/** The body of a single MIME message part. */
-export interface MessagePartBody {
-  /** When present, contains the ID of an external attachment that can be retrieved in a separate `messages.attachments.get` request. When not present, the entire content of the message part body is contained in the data field. */
-  attachmentId?: string;
-  /** Number of bytes for the message part data (encoding notwithstanding). */
-  size?: number;
-  /** The body data of a MIME message part as a base64url encoded string. May be empty for MIME container types that have no message body or when the body data is sent as a separate attachment. An attachment ID is present if the body data is contained in a separate attachment. */
-  data?: string;
-}
-export const MessagePartBody = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    attachmentId: S.optional(S.String),
-    size: S.optional(S.Number),
-    data: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "MessagePartBody",
-}) as any as S.Schema<MessagePartBody>;
-
 export type MessagePartList = Array<MessagePart>;
 export const MessagePartList = /*@__PURE__*/ S.Array(
   S.suspend(() => MessagePart),
 ) as any as S.Schema<MessagePartList>;
 
+/** The body of a single MIME message part. */
+export interface MessagePartBody {
+  /** When present, contains the ID of an external attachment that can be retrieved in a separate `messages.attachments.get` request. When not present, the entire content of the message part body is contained in the data field. */
+  attachmentId?: string;
+  /** The body data of a MIME message part as a base64url encoded string. May be empty for MIME container types that have no message body or when the body data is sent as a separate attachment. An attachment ID is present if the body data is contained in a separate attachment. */
+  data?: string;
+  /** Number of bytes for the message part data (encoding notwithstanding). */
+  size?: number;
+}
+export const MessagePartBody = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    attachmentId: S.optional(S.String),
+    data: S.optional(S.String),
+    size: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "MessagePartBody",
+}) as any as S.Schema<MessagePartBody>;
+
 export interface MessagePartHeader {
-  /** The name of the header before the `:` separator. For example, `To`. */
-  name?: string;
   /** The value of the header after the `:` separator. For example, `someuser@example.com`. */
   value?: string;
+  /** The name of the header before the `:` separator. For example, `To`. */
+  name?: string;
 }
 export const MessagePartHeader = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    name: S.optional(S.String),
     value: S.optional(S.String),
+    name: S.optional(S.String),
   }),
 ).annotate({
   identifier: "MessagePartHeader",
@@ -251,14 +251,14 @@ export const MessagePartHeaderList = /*@__PURE__*/ S.Array(
 
 /** A single MIME message part. */
 export interface MessagePart {
+  /** The filename of the attachment. Only present if this message part represents an attachment. */
+  filename?: string;
+  /** The child MIME message parts of this part. This only applies to container MIME message parts, for example `multipart/*`. For non- container MIME message part types, such as `text/plain`, this field is empty. For more information, see RFC 1521. */
+  parts?: MessagePartList;
   /** The message part body for this part, which may be empty for container MIME message parts. */
   body?: MessagePartBody;
   /** The immutable ID of the message part. */
   partId?: string;
-  /** The child MIME message parts of this part. This only applies to container MIME message parts, for example `multipart/*`. For non- container MIME message part types, such as `text/plain`, this field is empty. For more information, see RFC 1521. */
-  parts?: MessagePartList;
-  /** The filename of the attachment. Only present if this message part represents an attachment. */
-  filename?: string;
   /** The MIME type of the message part. */
   mimeType?: string;
   /** List of headers on this message part. For the top-level message part, representing the entire message payload, it will contain the standard RFC 2822 email headers such as `To`, `From`, and `Subject`. */
@@ -266,10 +266,10 @@ export interface MessagePart {
 }
 export const MessagePart = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    filename: S.optional(S.String),
+    parts: S.optional(MessagePartList),
     body: S.optional(MessagePartBody),
     partId: S.optional(S.String),
-    parts: S.optional(MessagePartList),
-    filename: S.optional(S.String),
     mimeType: S.optional(S.String),
     headers: S.optional(MessagePartHeaderList),
   }),
@@ -277,53 +277,53 @@ export const MessagePart = /*@__PURE__*/ S.suspend(() =>
 
 /** An email message. */
 export interface Message {
-  /** The parsed email structure in the message parts. */
-  payload?: MessagePart;
-  /** The ID of the last history record that modified this message. */
-  historyId?: string;
-  /** A short part of the message text. */
-  snippet?: string;
-  /** Estimated size in bytes of the message. */
-  sizeEstimate?: number;
-  /** The internal message creation timestamp (epoch ms), which determines ordering in the inbox. For normal SMTP-received email, this represents the time the message was originally accepted by Google, which is more reliable than the `Date` header. However, for API-migrated mail, it can be configured by client to be based on the `Date` header. */
-  internalDate?: string;
-  /** The entire email message in an RFC 2822 formatted and base64url encoded string. Returned in `messages.get` and `drafts.get` responses when the `format=RAW` parameter is supplied. @required gmail.users.drafts.create gmail.users.drafts.update */
-  raw?: string;
-  /** The ID of the thread the message belongs to. To add a message or draft to a thread, the following criteria must be met: 1. The requested `threadId` must be specified on the `Message` or `Draft.Message` you supply with your request. 2. The `References` and `In-Reply-To` headers must be set in compliance with the [RFC 2822](https://tools.ietf.org/html/rfc2822) standard. 3. The `Subject` headers must match. */
-  threadId?: string;
-  /** The immutable ID of the message. */
-  id?: string;
   /** Classification Label values on the message. Available Classification Label schemas can be queried using the Google Drive Labels API. Each classification label ID must be unique. If duplicate IDs are provided, only one will be retained, and the selection is arbitrary. Only used for Google Workspace accounts. There's a limit of 20 Classification Label values per request. If the Classification Label values exceeds the maximum allowed number, the request fails. */
   classificationLabelValues?: ClassificationLabelValueList;
+  /** A short part of the message text. */
+  snippet?: string;
+  /** The parsed email structure in the message parts. */
+  payload?: MessagePart;
+  /** The immutable ID of the message. */
+  id?: string;
   /** List of IDs of labels applied to this message. */
   labelIds?: StringList;
+  /** Estimated size in bytes of the message. */
+  sizeEstimate?: number;
+  /** The ID of the thread the message belongs to. To add a message or draft to a thread, the following criteria must be met: 1. The requested `threadId` must be specified on the `Message` or `Draft.Message` you supply with your request. 2. The `References` and `In-Reply-To` headers must be set in compliance with the [RFC 2822](https://tools.ietf.org/html/rfc2822) standard. 3. The `Subject` headers must match. */
+  threadId?: string;
+  /** The entire email message in an RFC 2822 formatted and base64url encoded string. Returned in `messages.get` and `drafts.get` responses when the `format=RAW` parameter is supplied. @required gmail.users.drafts.create gmail.users.drafts.update */
+  raw?: string;
+  /** The ID of the last history record that modified this message. */
+  historyId?: string;
+  /** The internal message creation timestamp (epoch ms), which determines ordering in the inbox. For normal SMTP-received email, this represents the time the message was originally accepted by Google, which is more reliable than the `Date` header. However, for API-migrated mail, it can be configured by client to be based on the `Date` header. */
+  internalDate?: string;
 }
 export const Message = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    payload: S.optional(MessagePart),
-    historyId: S.optional(S.String),
-    snippet: S.optional(S.String),
-    sizeEstimate: S.optional(S.Number),
-    internalDate: S.optional(S.String),
-    raw: S.optional(S.String),
-    threadId: S.optional(S.String),
-    id: S.optional(S.String),
     classificationLabelValues: S.optional(ClassificationLabelValueList),
+    snippet: S.optional(S.String),
+    payload: S.optional(MessagePart),
+    id: S.optional(S.String),
     labelIds: S.optional(StringList),
+    sizeEstimate: S.optional(S.Number),
+    threadId: S.optional(S.String),
+    raw: S.optional(S.String),
+    historyId: S.optional(S.String),
+    internalDate: S.optional(S.String),
   }),
 ).annotate({ identifier: "Message" }) as any as S.Schema<Message>;
 
 /** A draft email in the user's mailbox. */
 export interface Draft {
-  /** The message content of the draft. */
-  message?: Message;
   /** The immutable ID of the draft. */
   id?: string;
+  /** The message content of the draft. */
+  message?: Message;
 }
 export const Draft = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    message: S.optional(Message),
     id: S.optional(S.String),
+    message: S.optional(Message),
   }),
 ).annotate({ identifier: "Draft" }) as any as S.Schema<Draft>;
 
@@ -348,8 +348,18 @@ export const CreateUsersDraftsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateUsersDraftsRequest",
 }) as any as S.Schema<CreateUsersDraftsRequest>;
 
-export type LabelMessageListVisibilityEnum = "show" | "hide";
-export const LabelMessageListVisibilityEnum = /*@__PURE__*/ S.String;
+export interface LabelColor {
+  /** The text color of the label, represented as hex string. This field is required in order to set the color of a label. Only the following predefined set of color values are allowed: \#000000, #434343, #666666, #999999, #cccccc, #efefef, #f3f3f3, #ffffff, \#fb4c2f, #ffad47, #fad165, #16a766, #43d692, #4a86e8, #a479e2, #f691b3, \#f6c5be, #ffe6c7, #fef1d1, #b9e4d0, #c6f3de, #c9daf8, #e4d7f5, #fcdee8, \#efa093, #ffd6a2, #fce8b3, #89d3b2, #a0eac9, #a4c2f4, #d0bcf1, #fbc8d9, \#e66550, #ffbc6b, #fcda83, #44b984, #68dfa9, #6d9eeb, #b694e8, #f7a7c0, \#cc3a21, #eaa041, #f2c960, #149e60, #3dc789, #3c78d8, #8e63ce, #e07798, \#ac2b16, #cf8933, #d5ae49, #0b804b, #2a9c68, #285bac, #653e9b, #b65775, \#822111, #a46a21, #aa8831, #076239, #1a764d, #1c4587, #41236d, #83334c, \#464646, #e7e7e7, #0d3472, #b6cff5, #0d3b44, #98d7e4, #3d188e, #e3d7ff, \#711a36, #fbd3e0, #8a1c0a, #f2b2a8, #7a2e0b, #ffc8af, #7a4706, #ffdeb5, \#594c05, #fbe983, #684e07, #fdedc1, #0b4f30, #b3efd3, #04502e, #a2dcc1, \#c2c2c2, #4986e7, #2da2bb, #b99aff, #994a64, #f691b2, #ff7537, #ffad46, \#662e37, #ebdbde, #cca6ac, #094228, #42d692, #16a765, #757575, #1e53b8, \#007286, #7858c3, #c2185b, #d93025, #54240e, #633e04, #521d28, #202124, \#083018 */
+  textColor?: string;
+  /** The background color represented as hex string #RRGGBB (ex #000000). This field is required in order to set the color of a label. Only the following predefined set of color values are allowed: \#000000, #434343, #666666, #999999, #cccccc, #efefef, #f3f3f3, #ffffff, \#fb4c2f, #ffad47, #fad165, #16a766, #43d692, #4a86e8, #a479e2, #f691b3, \#f6c5be, #ffe6c7, #fef1d1, #b9e4d0, #c6f3de, #c9daf8, #e4d7f5, #fcdee8, \#efa093, #ffd6a2, #fce8b3, #89d3b2, #a0eac9, #a4c2f4, #d0bcf1, #fbc8d9, \#e66550, #ffbc6b, #fcda83, #44b984, #68dfa9, #6d9eeb, #b694e8, #f7a7c0, \#cc3a21, #eaa041, #f2c960, #149e60, #3dc789, #3c78d8, #8e63ce, #e07798, \#ac2b16, #cf8933, #d5ae49, #0b804b, #2a9c68, #285bac, #653e9b, #b65775, \#822111, #a46a21, #aa8831, #076239, #1a764d, #1c4587, #41236d, #83334c, \#464646, #e7e7e7, #0d3472, #b6cff5, #0d3b44, #98d7e4, #3d188e, #e3d7ff, \#711a36, #fbd3e0, #8a1c0a, #f2b2a8, #7a2e0b, #ffc8af, #7a4706, #ffdeb5, \#594c05, #fbe983, #684e07, #fdedc1, #0b4f30, #b3efd3, #04502e, #a2dcc1, \#c2c2c2, #4986e7, #2da2bb, #b99aff, #994a64, #f691b2, #ff7537, #ffad46, \#662e37, #ebdbde, #cca6ac, #094228, #42d692, #16a765, #757575, #1e53b8, \#007286, #7858c3, #c2185b, #d93025, #54240e, #633e04, #521d28, #202124, \#083018 */
+  backgroundColor?: string;
+}
+export const LabelColor = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    textColor: S.optional(S.String),
+    backgroundColor: S.optional(S.String),
+  }),
+).annotate({ identifier: "LabelColor" }) as any as S.Schema<LabelColor>;
 
 export type LabelLabelListVisibilityEnum =
   | "labelShow"
@@ -357,57 +367,47 @@ export type LabelLabelListVisibilityEnum =
   | "labelHide";
 export const LabelLabelListVisibilityEnum = /*@__PURE__*/ S.String;
 
-export interface LabelColor {
-  /** The background color represented as hex string #RRGGBB (ex #000000). This field is required in order to set the color of a label. Only the following predefined set of color values are allowed: \#000000, #434343, #666666, #999999, #cccccc, #efefef, #f3f3f3, #ffffff, \#fb4c2f, #ffad47, #fad165, #16a766, #43d692, #4a86e8, #a479e2, #f691b3, \#f6c5be, #ffe6c7, #fef1d1, #b9e4d0, #c6f3de, #c9daf8, #e4d7f5, #fcdee8, \#efa093, #ffd6a2, #fce8b3, #89d3b2, #a0eac9, #a4c2f4, #d0bcf1, #fbc8d9, \#e66550, #ffbc6b, #fcda83, #44b984, #68dfa9, #6d9eeb, #b694e8, #f7a7c0, \#cc3a21, #eaa041, #f2c960, #149e60, #3dc789, #3c78d8, #8e63ce, #e07798, \#ac2b16, #cf8933, #d5ae49, #0b804b, #2a9c68, #285bac, #653e9b, #b65775, \#822111, #a46a21, #aa8831, #076239, #1a764d, #1c4587, #41236d, #83334c, \#464646, #e7e7e7, #0d3472, #b6cff5, #0d3b44, #98d7e4, #3d188e, #e3d7ff, \#711a36, #fbd3e0, #8a1c0a, #f2b2a8, #7a2e0b, #ffc8af, #7a4706, #ffdeb5, \#594c05, #fbe983, #684e07, #fdedc1, #0b4f30, #b3efd3, #04502e, #a2dcc1, \#c2c2c2, #4986e7, #2da2bb, #b99aff, #994a64, #f691b2, #ff7537, #ffad46, \#662e37, #ebdbde, #cca6ac, #094228, #42d692, #16a765, #757575, #1e53b8, \#007286, #7858c3, #c2185b, #d93025, #54240e, #633e04, #521d28, #202124, \#083018 */
-  backgroundColor?: string;
-  /** The text color of the label, represented as hex string. This field is required in order to set the color of a label. Only the following predefined set of color values are allowed: \#000000, #434343, #666666, #999999, #cccccc, #efefef, #f3f3f3, #ffffff, \#fb4c2f, #ffad47, #fad165, #16a766, #43d692, #4a86e8, #a479e2, #f691b3, \#f6c5be, #ffe6c7, #fef1d1, #b9e4d0, #c6f3de, #c9daf8, #e4d7f5, #fcdee8, \#efa093, #ffd6a2, #fce8b3, #89d3b2, #a0eac9, #a4c2f4, #d0bcf1, #fbc8d9, \#e66550, #ffbc6b, #fcda83, #44b984, #68dfa9, #6d9eeb, #b694e8, #f7a7c0, \#cc3a21, #eaa041, #f2c960, #149e60, #3dc789, #3c78d8, #8e63ce, #e07798, \#ac2b16, #cf8933, #d5ae49, #0b804b, #2a9c68, #285bac, #653e9b, #b65775, \#822111, #a46a21, #aa8831, #076239, #1a764d, #1c4587, #41236d, #83334c, \#464646, #e7e7e7, #0d3472, #b6cff5, #0d3b44, #98d7e4, #3d188e, #e3d7ff, \#711a36, #fbd3e0, #8a1c0a, #f2b2a8, #7a2e0b, #ffc8af, #7a4706, #ffdeb5, \#594c05, #fbe983, #684e07, #fdedc1, #0b4f30, #b3efd3, #04502e, #a2dcc1, \#c2c2c2, #4986e7, #2da2bb, #b99aff, #994a64, #f691b2, #ff7537, #ffad46, \#662e37, #ebdbde, #cca6ac, #094228, #42d692, #16a765, #757575, #1e53b8, \#007286, #7858c3, #c2185b, #d93025, #54240e, #633e04, #521d28, #202124, \#083018 */
-  textColor?: string;
-}
-export const LabelColor = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    backgroundColor: S.optional(S.String),
-    textColor: S.optional(S.String),
-  }),
-).annotate({ identifier: "LabelColor" }) as any as S.Schema<LabelColor>;
+export type LabelMessageListVisibilityEnum = "show" | "hide";
+export const LabelMessageListVisibilityEnum = /*@__PURE__*/ S.String;
 
 export type LabelTypeEnum = "system" | "user";
 export const LabelTypeEnum = /*@__PURE__*/ S.String;
 
 /** Labels are used to categorize messages and threads within the user's mailbox. The maximum number of labels supported for a user's mailbox is 10,000. */
 export interface Label {
-  /** The visibility of messages with this label in the message list in the Gmail web interface. */
-  messageListVisibility?: LabelMessageListVisibilityEnum | (string & {});
-  /** The total number of threads with the label. */
-  threadsTotal?: number;
-  /** The total number of messages with the label. */
-  messagesTotal?: number;
-  /** The display name of the label. */
-  name?: string;
-  /** The number of unread threads with the label. */
-  threadsUnread?: number;
-  /** The immutable ID of the label. */
-  id?: string;
-  /** The visibility of the label in the label list in the Gmail web interface. */
-  labelListVisibility?: LabelLabelListVisibilityEnum | (string & {});
   /** The color to assign to the label. Color is only available for labels that have their `type` set to `user`. */
   color?: LabelColor;
   /** The number of unread messages with the label. */
   messagesUnread?: number;
+  /** The display name of the label. */
+  name?: string;
+  /** The immutable ID of the label. */
+  id?: string;
+  /** The visibility of the label in the label list in the Gmail web interface. */
+  labelListVisibility?: LabelLabelListVisibilityEnum | (string & {});
+  /** The visibility of messages with this label in the message list in the Gmail web interface. */
+  messageListVisibility?: LabelMessageListVisibilityEnum | (string & {});
+  /** The number of unread threads with the label. */
+  threadsUnread?: number;
   /** The owner type for the label. User labels are created by the user and can be modified and deleted by the user and can be applied to any message or thread. System labels are internally created and cannot be added, modified, or deleted. System labels may be able to be applied to or removed from messages and threads under some circumstances but this is not guaranteed. For example, users can apply and remove the `INBOX` and `UNREAD` labels from messages and threads, but cannot apply or remove the `DRAFTS` or `SENT` labels from messages or threads. */
   type?: LabelTypeEnum | (string & {});
+  /** The total number of messages with the label. */
+  messagesTotal?: number;
+  /** The total number of threads with the label. */
+  threadsTotal?: number;
 }
 export const Label = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    messageListVisibility: S.optional(LabelMessageListVisibilityEnum),
-    threadsTotal: S.optional(S.Number),
-    messagesTotal: S.optional(S.Number),
-    name: S.optional(S.String),
-    threadsUnread: S.optional(S.Number),
-    id: S.optional(S.String),
-    labelListVisibility: S.optional(LabelLabelListVisibilityEnum),
     color: S.optional(LabelColor),
     messagesUnread: S.optional(S.Number),
+    name: S.optional(S.String),
+    id: S.optional(S.String),
+    labelListVisibility: S.optional(LabelLabelListVisibilityEnum),
+    messageListVisibility: S.optional(LabelMessageListVisibilityEnum),
+    threadsUnread: S.optional(S.Number),
     type: S.optional(LabelTypeEnum),
+    messagesTotal: S.optional(S.Number),
+    threadsTotal: S.optional(S.Number),
   }),
 ).annotate({ identifier: "Label" }) as any as S.Schema<Label>;
 
@@ -450,18 +450,18 @@ export const SignAndEncryptKeyPairs = /*@__PURE__*/ S.suspend(() =>
 
 /** The client-side encryption (CSE) configuration for the email address of an authenticated user. Gmail uses CSE configurations to save drafts of client-side encrypted email messages, and to sign and send encrypted email messages. For administrators managing identities and keypairs for users in their organization, requests require authorization with a [service account](https://developers.google.com/identity/protocols/OAuth2ServiceAccount) that has [domain-wide delegation authority](https://developers.google.com/identity/protocols/OAuth2ServiceAccount#delegatingauthority) to impersonate users with the `https://www.googleapis.com/auth/gmail.settings.basic` scope. For users managing their own identities and keypairs, requests require [hardware key encryption](https://support.google.com/a/answer/14153163) turned on and configured. */
 export interface CseIdentity {
-  /** The email address for the sending identity. The email address must be the primary email address of the authenticated user. */
-  emailAddress?: string;
   /** If a key pair is associated, the ID of the key pair, CseKeyPair. */
   primaryKeyPairId?: string;
   /** The configuration of a CSE identity that uses different key pairs for signing and encryption. */
   signAndEncryptKeyPairs?: SignAndEncryptKeyPairs;
+  /** The email address for the sending identity. The email address must be the primary email address of the authenticated user. */
+  emailAddress?: string;
 }
 export const CseIdentity = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    emailAddress: S.optional(S.String),
     primaryKeyPairId: S.optional(S.String),
     signAndEncryptKeyPairs: S.optional(SignAndEncryptKeyPairs),
+    emailAddress: S.optional(S.String),
   }),
 ).annotate({ identifier: "CseIdentity" }) as any as S.Schema<CseIdentity>;
 
@@ -512,15 +512,15 @@ export const HardwareKeyMetadata = /*@__PURE__*/ S.suspend(() =>
 
 /** Metadata for private keys managed by an external key access control list service. For details about managing key access, see [Google Workspace CSE API Reference](https://developers.google.com/workspace/cse/reference). */
 export interface KaclsKeyMetadata {
-  /** The URI of the key access control list service that manages the private key. */
-  kaclsUri?: string;
   /** Opaque data generated and used by the key access control list service. Maximum size: 8 KiB. */
   kaclsData?: string;
+  /** The URI of the key access control list service that manages the private key. */
+  kaclsUri?: string;
 }
 export const KaclsKeyMetadata = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    kaclsUri: S.optional(S.String),
     kaclsData: S.optional(S.String),
+    kaclsUri: S.optional(S.String),
   }),
 ).annotate({
   identifier: "KaclsKeyMetadata",
@@ -530,16 +530,16 @@ export const KaclsKeyMetadata = /*@__PURE__*/ S.suspend(() =>
 export interface CsePrivateKeyMetadata {
   /** Metadata for hardware keys. */
   hardwareKeyMetadata?: HardwareKeyMetadata;
-  /** Output only. The immutable ID for the private key metadata instance. */
-  privateKeyMetadataId?: string;
   /** Metadata for a private key instance managed by an external key access control list service. */
   kaclsKeyMetadata?: KaclsKeyMetadata;
+  /** Output only. The immutable ID for the private key metadata instance. */
+  privateKeyMetadataId?: string;
 }
 export const CsePrivateKeyMetadata = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     hardwareKeyMetadata: S.optional(HardwareKeyMetadata),
-    privateKeyMetadataId: S.optional(S.String),
     kaclsKeyMetadata: S.optional(KaclsKeyMetadata),
+    privateKeyMetadataId: S.optional(S.String),
   }),
 ).annotate({
   identifier: "CsePrivateKeyMetadata",
@@ -552,30 +552,30 @@ export const CsePrivateKeyMetadataList = /*@__PURE__*/ S.Array(
 
 /** A client-side encryption S/MIME key pair, which is comprised of a public key, its certificate chain, and metadata for its paired private key. Gmail uses the key pair to complete the following tasks: - Sign outgoing client-side encrypted messages. - Save and reopen drafts of client-side encrypted messages. - Save and reopen sent messages. - Decrypt incoming or archived S/MIME messages. For administrators managing identities and keypairs for users in their organization, requests require authorization with a [service account](https://developers.google.com/identity/protocols/OAuth2ServiceAccount) that has [domain-wide delegation authority](https://developers.google.com/identity/protocols/OAuth2ServiceAccount#delegatingauthority) to impersonate users with the `https://www.googleapis.com/auth/gmail.settings.basic` scope. For users managing their own identities and keypairs, requests require [hardware key encryption](https://support.google.com/a/answer/14153163) turned on and configured. */
 export interface CseKeyPair {
-  /** Input only. The public key and its certificate chain. The chain must be in [PKCS#7](https://en.wikipedia.org/wiki/PKCS_7) format and use PEM encoding and ASCII armor. */
-  pkcs7?: string;
-  /** Output only. The current state of the key pair. */
-  enablementState?: CseKeyPairEnablementStateEnum | (string & {});
-  /** Output only. If a key pair is set to `DISABLED`, the time that the key pair's state changed from `ENABLED` to `DISABLED`. This field is present only when the key pair is in state `DISABLED`. */
-  disableTime?: string;
-  /** Metadata for instances of this key pair's private key. */
-  privateKeyMetadata?: CsePrivateKeyMetadataList;
   /** Output only. The immutable ID for the client-side encryption S/MIME key pair. */
   keyPairId?: string;
   /** Output only. The public key and its certificate chain, in [PEM](https://en.wikipedia.org/wiki/Privacy-Enhanced_Mail) format. */
   pem?: string;
+  /** Output only. If a key pair is set to `DISABLED`, the time that the key pair's state changed from `ENABLED` to `DISABLED`. This field is present only when the key pair is in state `DISABLED`. */
+  disableTime?: string;
+  /** Input only. The public key and its certificate chain. The chain must be in [PKCS#7](https://en.wikipedia.org/wiki/PKCS_7) format and use PEM encoding and ASCII armor. */
+  pkcs7?: string;
   /** Output only. The email address identities that are specified on the leaf certificate. */
   subjectEmailAddresses?: StringList;
+  /** Output only. The current state of the key pair. */
+  enablementState?: CseKeyPairEnablementStateEnum | (string & {});
+  /** Metadata for instances of this key pair's private key. */
+  privateKeyMetadata?: CsePrivateKeyMetadataList;
 }
 export const CseKeyPair = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    pkcs7: S.optional(S.String),
-    enablementState: S.optional(CseKeyPairEnablementStateEnum),
-    disableTime: S.optional(S.String),
-    privateKeyMetadata: S.optional(CsePrivateKeyMetadataList),
     keyPairId: S.optional(S.String),
     pem: S.optional(S.String),
+    disableTime: S.optional(S.String),
+    pkcs7: S.optional(S.String),
     subjectEmailAddresses: S.optional(StringList),
+    enablementState: S.optional(CseKeyPairEnablementStateEnum),
+    privateKeyMetadata: S.optional(CsePrivateKeyMetadataList),
   }),
 ).annotate({ identifier: "CseKeyPair" }) as any as S.Schema<CseKeyPair>;
 
@@ -618,15 +618,15 @@ export const DelegateVerificationStatusEnum = /*@__PURE__*/ S.String;
 
 /** Settings for a delegate. Delegates can read, send, and delete messages, as well as view and add contacts, for the delegator's account. See "Set up mail delegation" for more information about delegates. */
 export interface Delegate {
-  /** The email address of the delegate. */
-  delegateEmail?: string;
   /** Indicates whether this address has been verified and can act as a delegate for the account. Read-only. */
   verificationStatus?: DelegateVerificationStatusEnum | (string & {});
+  /** The email address of the delegate. */
+  delegateEmail?: string;
 }
 export const Delegate = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    delegateEmail: S.optional(S.String),
     verificationStatus: S.optional(DelegateVerificationStatusEnum),
+    delegateEmail: S.optional(S.String),
   }),
 ).annotate({ identifier: "Delegate" }) as any as S.Schema<Delegate>;
 
@@ -655,16 +655,16 @@ export const CreateUsersSettingsDelegatesRequest = /*@__PURE__*/ S.suspend(() =>
 export interface FilterAction {
   /** List of labels to add to the message. */
   addLabelIds?: StringList;
-  /** Email address that the message should be forwarded to. This effectively redirects the message to the address specified in this field, maintaining the original sender in the "From" field. */
-  forward?: string;
   /** List of labels to remove from the message. */
   removeLabelIds?: StringList;
+  /** Email address that the message should be forwarded to. This effectively redirects the message to the address specified in this field, maintaining the original sender in the "From" field. */
+  forward?: string;
 }
 export const FilterAction = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     addLabelIds: S.optional(StringList),
-    forward: S.optional(S.String),
     removeLabelIds: S.optional(StringList),
+    forward: S.optional(S.String),
   }),
 ).annotate({ identifier: "FilterAction" }) as any as S.Schema<FilterAction>;
 
@@ -676,53 +676,53 @@ export const FilterCriteriaSizeComparisonEnum = /*@__PURE__*/ S.String;
 
 /** Message matching criteria. */
 export interface FilterCriteria {
-  /** Case-insensitive phrase found in the message's subject. Trailing and leading whitespace are be trimmed and adjacent spaces are collapsed. */
-  subject?: string;
   /** How the message size in bytes should be in relation to the size field. */
   sizeComparison?: FilterCriteriaSizeComparisonEnum | (string & {});
+  /** The sender's display name or email address. */
+  from?: string;
+  /** Only return messages matching the specified query. Supports the same query format as the Gmail search box. For example, `"from:someuser@example.com rfc822msgid: is:unread"`. */
+  query?: string;
+  /** The size of the entire RFC822 message in bytes, including all headers and attachments. */
+  size?: number;
+  /** Whether the message has any attachment. */
+  hasAttachment?: boolean;
+  /** Case-insensitive phrase found in the message's subject. Trailing and leading whitespace are be trimmed and adjacent spaces are collapsed. */
+  subject?: string;
   /** Only return messages not matching the specified query. Supports the same query format as the Gmail search box. For example, `"from:someuser@example.com rfc822msgid: is:unread"`. */
   negatedQuery?: string;
   /** Whether the response should exclude chats. */
   excludeChats?: boolean;
-  /** The size of the entire RFC822 message in bytes, including all headers and attachments. */
-  size?: number;
   /** The recipient's display name or email address. Includes recipients in the "to", "cc", and "bcc" header fields. You can use simply the local part of the email address. For example, "example" and "example@" both match "example@gmail.com". This field is case-insensitive. */
   to?: string;
-  /** Only return messages matching the specified query. Supports the same query format as the Gmail search box. For example, `"from:someuser@example.com rfc822msgid: is:unread"`. */
-  query?: string;
-  /** The sender's display name or email address. */
-  from?: string;
-  /** Whether the message has any attachment. */
-  hasAttachment?: boolean;
 }
 export const FilterCriteria = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    subject: S.optional(S.String),
     sizeComparison: S.optional(FilterCriteriaSizeComparisonEnum),
+    from: S.optional(S.String),
+    query: S.optional(S.String),
+    size: S.optional(S.Number),
+    hasAttachment: S.optional(S.Boolean),
+    subject: S.optional(S.String),
     negatedQuery: S.optional(S.String),
     excludeChats: S.optional(S.Boolean),
-    size: S.optional(S.Number),
     to: S.optional(S.String),
-    query: S.optional(S.String),
-    from: S.optional(S.String),
-    hasAttachment: S.optional(S.Boolean),
   }),
 ).annotate({ identifier: "FilterCriteria" }) as any as S.Schema<FilterCriteria>;
 
 /** Resource definition for Gmail filters. Filters apply to specific messages instead of an entire email thread. */
 export interface Filter {
+  /** The server assigned ID of the filter. */
+  id?: string;
   /** Action that the filter performs. */
   action?: FilterAction;
   /** Matching criteria for the filter. */
   criteria?: FilterCriteria;
-  /** The server assigned ID of the filter. */
-  id?: string;
 }
 export const Filter = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    id: S.optional(S.String),
     action: S.optional(FilterAction),
     criteria: S.optional(FilterCriteria),
-    id: S.optional(S.String),
   }),
 ).annotate({ identifier: "Filter" }) as any as S.Schema<Filter>;
 
@@ -791,6 +791,12 @@ export const CreateUsersSettingsForwardingAddressesRequest =
     identifier: "CreateUsersSettingsForwardingAddressesRequest",
   }) as any as S.Schema<CreateUsersSettingsForwardingAddressesRequest>;
 
+export type SendAsVerificationStatusEnum =
+  | "verificationStatusUnspecified"
+  | "accepted"
+  | "pending";
+export const SendAsVerificationStatusEnum = /*@__PURE__*/ S.String;
+
 export type SmtpMsaSecurityModeEnum =
   | "securityModeUnspecified"
   | "none"
@@ -800,65 +806,59 @@ export const SmtpMsaSecurityModeEnum = /*@__PURE__*/ S.String;
 
 /** Configuration for communication with an SMTP service. */
 export interface SmtpMsa {
+  /** The username that will be used for authentication with the SMTP service. This is a write-only field that can be specified in requests to create or update SendAs settings; it is never populated in responses. */
+  username?: string;
   /** The protocol that will be used to secure communication with the SMTP service. Required. */
   securityMode?: SmtpMsaSecurityModeEnum | (string & {});
-  /** The port of the SMTP service. Required. */
-  port?: number;
   /** The hostname of the SMTP service. Required. */
   host?: string;
   /** The password that will be used for authentication with the SMTP service. This is a write-only field that can be specified in requests to create or update SendAs settings; it is never populated in responses. */
   password?: string;
-  /** The username that will be used for authentication with the SMTP service. This is a write-only field that can be specified in requests to create or update SendAs settings; it is never populated in responses. */
-  username?: string;
+  /** The port of the SMTP service. Required. */
+  port?: number;
 }
 export const SmtpMsa = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    username: S.optional(S.String),
     securityMode: S.optional(SmtpMsaSecurityModeEnum),
-    port: S.optional(S.Number),
     host: S.optional(S.String),
     password: S.optional(S.String),
-    username: S.optional(S.String),
+    port: S.optional(S.Number),
   }),
 ).annotate({ identifier: "SmtpMsa" }) as any as S.Schema<SmtpMsa>;
 
-export type SendAsVerificationStatusEnum =
-  | "verificationStatusUnspecified"
-  | "accepted"
-  | "pending";
-export const SendAsVerificationStatusEnum = /*@__PURE__*/ S.String;
-
 /** Settings associated with a send-as alias, which can be either the primary login address associated with the account or a custom "from" address. Send-as aliases correspond to the "Send Mail As" feature in the web interface. The send-as alias must be a valid email address. */
 export interface SendAs {
-  /** An optional HTML signature that is included in messages composed with this alias in the Gmail web UI. This signature is added to new emails only. */
-  signature?: string;
+  /** Whether Gmail should treat this address as an alias for the user's primary email address. This setting only applies to custom "from" aliases. */
+  treatAsAlias?: boolean;
+  /** Whether this address is selected as the default "From:" address in situations such as composing a new message or sending a vacation auto-reply. Every Gmail account has exactly one default send-as address, so the only legal value that clients may write to this field is `true`. Changing this from `false` to `true` for an address will result in this field becoming `false` for the other previous default address. */
+  isDefault?: boolean;
   /** A name that appears in the "From:" header for mail sent using this alias. For custom "from" addresses, when this is empty, Gmail will populate the "From:" header with the name that is used for the primary address associated with the account. If the admin has disabled the ability for users to update their name format, requests to update this field for the primary login will silently fail. */
   displayName?: string;
-  /** An optional SMTP service that will be used as an outbound relay for mail sent using this alias. If this is empty, outbound mail will be sent directly from Gmail's servers to the destination SMTP service. This setting only applies to custom "from" aliases. */
-  smtpMsa?: SmtpMsa;
+  /** An optional HTML signature that is included in messages composed with this alias in the Gmail web UI. This signature is added to new emails only. */
+  signature?: string;
+  /** Indicates whether this address has been verified for use as a send-as alias. Read-only. This setting only applies to custom "from" aliases. */
+  verificationStatus?: SendAsVerificationStatusEnum | (string & {});
   /** Whether this address is the primary address used to login to the account. Every Gmail account has exactly one primary address, and it cannot be deleted from the collection of send-as aliases. This field is read-only. */
   isPrimary?: boolean;
   /** The email address that appears in the "From:" header for mail sent using this alias. This is read-only for all operations except create. */
   sendAsEmail?: string;
   /** An optional email address that is included in a "Reply-To:" header for mail sent using this alias. If this is empty, Gmail will not generate a "Reply-To:" header. */
   replyToAddress?: string;
-  /** Whether this address is selected as the default "From:" address in situations such as composing a new message or sending a vacation auto-reply. Every Gmail account has exactly one default send-as address, so the only legal value that clients may write to this field is `true`. Changing this from `false` to `true` for an address will result in this field becoming `false` for the other previous default address. */
-  isDefault?: boolean;
-  /** Whether Gmail should treat this address as an alias for the user's primary email address. This setting only applies to custom "from" aliases. */
-  treatAsAlias?: boolean;
-  /** Indicates whether this address has been verified for use as a send-as alias. Read-only. This setting only applies to custom "from" aliases. */
-  verificationStatus?: SendAsVerificationStatusEnum | (string & {});
+  /** An optional SMTP service that will be used as an outbound relay for mail sent using this alias. If this is empty, outbound mail will be sent directly from Gmail's servers to the destination SMTP service. This setting only applies to custom "from" aliases. */
+  smtpMsa?: SmtpMsa;
 }
 export const SendAs = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    signature: S.optional(S.String),
+    treatAsAlias: S.optional(S.Boolean),
+    isDefault: S.optional(S.Boolean),
     displayName: S.optional(S.String),
-    smtpMsa: S.optional(SmtpMsa),
+    signature: S.optional(S.String),
+    verificationStatus: S.optional(SendAsVerificationStatusEnum),
     isPrimary: S.optional(S.Boolean),
     sendAsEmail: S.optional(S.String),
     replyToAddress: S.optional(S.String),
-    isDefault: S.optional(S.Boolean),
-    treatAsAlias: S.optional(S.Boolean),
-    verificationStatus: S.optional(SendAsVerificationStatusEnum),
+    smtpMsa: S.optional(SmtpMsa),
   }),
 ).annotate({ identifier: "SendAs" }) as any as S.Schema<SendAs>;
 
@@ -940,15 +940,15 @@ export const DeleteUsersLabelsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DeleteUsersLabelsResponse>;
 
 export interface DeleteUsersMessagesRequest {
-  /** The user's email address. The special value `me` can be used to indicate the authenticated user. */
-  userId: string;
   /** The ID of the message to delete. */
   id: string;
+  /** The user's email address. The special value `me` can be used to indicate the authenticated user. */
+  userId: string;
 }
 export const DeleteUsersMessagesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    userId: S.String.pipe(T.Label()),
     id: S.String.pipe(T.Label()),
+    userId: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "DELETE",
@@ -1081,15 +1081,15 @@ export const DeleteUsersSettingsForwardingAddressesResponse =
   }) as any as S.Schema<DeleteUsersSettingsForwardingAddressesResponse>;
 
 export interface DeleteUsersSettingsSendAsRequest {
-  /** The send-as alias to be deleted. */
-  sendAsEmail: string;
   /** User's email address. The special value "me" can be used to indicate the authenticated user. */
   userId: string;
+  /** The send-as alias to be deleted. */
+  sendAsEmail: string;
 }
 export const DeleteUsersSettingsSendAsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    sendAsEmail: S.String.pipe(T.Label()),
     userId: S.String.pipe(T.Label()),
+    sendAsEmail: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "DELETE",
@@ -1109,19 +1109,19 @@ export const DeleteUsersSettingsSendAsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DeleteUsersSettingsSendAsResponse>;
 
 export interface DeleteUsersSettingsSendAsSmimeInfoRequest {
-  /** The immutable ID for the SmimeInfo. */
-  id: string;
   /** The user's email address. The special value `me` can be used to indicate the authenticated user. */
   userId: string;
   /** The email address that appears in the "From:" header for mail sent using this alias. */
   sendAsEmail: string;
+  /** The immutable ID for the SmimeInfo. */
+  id: string;
 }
 export const DeleteUsersSettingsSendAsSmimeInfoRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      id: S.String.pipe(T.Label()),
       userId: S.String.pipe(T.Label()),
       sendAsEmail: S.String.pipe(T.Label()),
+      id: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
         method: "DELETE",
@@ -1140,15 +1140,15 @@ export const DeleteUsersSettingsSendAsSmimeInfoResponse =
   }) as any as S.Schema<DeleteUsersSettingsSendAsSmimeInfoResponse>;
 
 export interface DeleteUsersThreadsRequest {
-  /** The user's email address. The special value `me` can be used to indicate the authenticated user. */
-  userId: string;
   /** ID of the Thread to delete. */
   id: string;
+  /** The user's email address. The special value `me` can be used to indicate the authenticated user. */
+  userId: string;
 }
 export const DeleteUsersThreadsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    userId: S.String.pipe(T.Label()),
     id: S.String.pipe(T.Label()),
+    userId: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "DELETE",
@@ -1176,18 +1176,18 @@ export const DisableCseKeyPairRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DisableCseKeyPairRequest>;
 
 export interface DisableUsersSettingsCseKeypairsRequest {
-  /** The identifier of the key pair to turn off. */
-  keyPairId: string;
   /** The requester's primary email address. To indicate the authenticated user, you can use the special value `me`. */
   userId: string;
+  /** The identifier of the key pair to turn off. */
+  keyPairId: string;
   /** Request body */
   body?: DisableCseKeyPairRequest;
 }
 export const DisableUsersSettingsCseKeypairsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      keyPairId: S.String.pipe(T.Label()),
       userId: S.String.pipe(T.Label()),
+      keyPairId: S.String.pipe(T.Label()),
       body: S.optional(DisableCseKeyPairRequest.pipe(T.HttpBody())),
     }).pipe(
       T.Http({
@@ -1302,19 +1302,19 @@ export const ImapSettingsExpungeBehaviorEnum = /*@__PURE__*/ S.String;
 export interface ImapSettings {
   /** The action that will be executed on a message when it is marked as deleted and expunged from the last visible IMAP folder. */
   expungeBehavior?: ImapSettingsExpungeBehaviorEnum | (string & {});
-  /** An optional limit on the number of messages that an IMAP folder may contain. Legal values are 0, 1000, 2000, 5000 or 10000. A value of zero is interpreted to mean that there is no limit. */
-  maxFolderSize?: number;
   /** Whether IMAP is enabled for the account. */
   enabled?: boolean;
   /** If this value is true, Gmail will immediately expunge a message when it is marked as deleted in IMAP. Otherwise, Gmail will wait for an update from the client before expunging messages marked as deleted. */
   autoExpunge?: boolean;
+  /** An optional limit on the number of messages that an IMAP folder may contain. Legal values are 0, 1000, 2000, 5000 or 10000. A value of zero is interpreted to mean that there is no limit. */
+  maxFolderSize?: number;
 }
 export const ImapSettings = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     expungeBehavior: S.optional(ImapSettingsExpungeBehaviorEnum),
-    maxFolderSize: S.optional(S.Number),
     enabled: S.optional(S.Boolean),
     autoExpunge: S.optional(S.Boolean),
+    maxFolderSize: S.optional(S.Number),
   }),
 ).annotate({ identifier: "ImapSettings" }) as any as S.Schema<ImapSettings>;
 
@@ -1416,21 +1416,21 @@ export const GetProfileUsersRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Profile for a Gmail user. */
 export interface Profile {
-  /** The total number of messages in the mailbox. */
-  messagesTotal?: number;
   /** The total number of threads in the mailbox. */
   threadsTotal?: number;
-  /** The ID of the mailbox's current history record. */
-  historyId?: string;
+  /** The total number of messages in the mailbox. */
+  messagesTotal?: number;
   /** The user's email address. */
   emailAddress?: string;
+  /** The ID of the mailbox's current history record. */
+  historyId?: string;
 }
 export const Profile = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    messagesTotal: S.optional(S.Number),
     threadsTotal: S.optional(S.Number),
-    historyId: S.optional(S.String),
+    messagesTotal: S.optional(S.Number),
     emailAddress: S.optional(S.String),
+    historyId: S.optional(S.String),
   }),
 ).annotate({ identifier: "Profile" }) as any as S.Schema<Profile>;
 
@@ -1440,16 +1440,16 @@ export const GetUsersDraftsFormatEnum = /*@__PURE__*/ S.String;
 export interface GetUsersDraftsRequest {
   /** The ID of the draft to retrieve. */
   id: string;
-  /** The user's email address. The special value `me` can be used to indicate the authenticated user. */
-  userId: string;
   /** The format to return the draft in. */
   format?: GetUsersDraftsFormatEnum | (string & {});
+  /** The user's email address. The special value `me` can be used to indicate the authenticated user. */
+  userId: string;
 }
 export const GetUsersDraftsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String.pipe(T.Label()),
-    userId: S.String.pipe(T.Label()),
     format: S.optional(GetUsersDraftsFormatEnum.pipe(T.Query())),
+    userId: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
@@ -1492,18 +1492,18 @@ export const GetUsersMessagesFormatEnum = /*@__PURE__*/ S.String;
 export interface GetUsersMessagesRequest {
   /** The ID of the message to retrieve. This ID is usually retrieved using `messages.list`. The ID is also contained in the result when a message is inserted (`messages.insert`) or imported (`messages.import`). */
   id: string;
-  /** The user's email address. The special value `me` can be used to indicate the authenticated user. */
-  userId: string;
   /** The format to return the message in. */
   format?: GetUsersMessagesFormatEnum | (string & {});
+  /** The user's email address. The special value `me` can be used to indicate the authenticated user. */
+  userId: string;
   /** When given and format is `METADATA`, only include headers specified. */
   metadataHeaders?: StringList;
 }
 export const GetUsersMessagesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String.pipe(T.Label()),
-    userId: S.String.pipe(T.Label()),
     format: S.optional(GetUsersMessagesFormatEnum.pipe(T.Query())),
+    userId: S.String.pipe(T.Label()),
     metadataHeaders: S.optional(StringList.pipe(T.Query())),
   }).pipe(
     T.Http({
@@ -1584,15 +1584,15 @@ export const GetUsersSettingsCseKeypairsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetUsersSettingsCseKeypairsRequest>;
 
 export interface GetUsersSettingsDelegatesRequest {
-  /** User's email address. The special value "me" can be used to indicate the authenticated user. */
-  userId: string;
   /** The email address of the user whose delegate relationship is to be retrieved. */
   delegateEmail: string;
+  /** User's email address. The special value "me" can be used to indicate the authenticated user. */
+  userId: string;
 }
 export const GetUsersSettingsDelegatesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    userId: S.String.pipe(T.Label()),
     delegateEmail: S.String.pipe(T.Label()),
+    userId: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
@@ -1605,15 +1605,15 @@ export const GetUsersSettingsDelegatesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetUsersSettingsDelegatesRequest>;
 
 export interface GetUsersSettingsFiltersRequest {
-  /** User's email address. The special value "me" can be used to indicate the authenticated user. */
-  userId: string;
   /** The ID of the filter to be fetched. */
   id: string;
+  /** User's email address. The special value "me" can be used to indicate the authenticated user. */
+  userId: string;
 }
 export const GetUsersSettingsFiltersRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    userId: S.String.pipe(T.Label()),
     id: S.String.pipe(T.Label()),
+    userId: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
@@ -1626,16 +1626,16 @@ export const GetUsersSettingsFiltersRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetUsersSettingsFiltersRequest>;
 
 export interface GetUsersSettingsForwardingAddressesRequest {
-  /** The forwarding address to be retrieved. */
-  forwardingEmail: string;
   /** User's email address. The special value "me" can be used to indicate the authenticated user. */
   userId: string;
+  /** The forwarding address to be retrieved. */
+  forwardingEmail: string;
 }
 export const GetUsersSettingsForwardingAddressesRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      forwardingEmail: S.String.pipe(T.Label()),
       userId: S.String.pipe(T.Label()),
+      forwardingEmail: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
         method: "GET",
@@ -1648,15 +1648,15 @@ export const GetUsersSettingsForwardingAddressesRequest =
   }) as any as S.Schema<GetUsersSettingsForwardingAddressesRequest>;
 
 export interface GetUsersSettingsSendAsRequest {
-  /** The send-as alias to be retrieved. */
-  sendAsEmail: string;
   /** User's email address. The special value "me" can be used to indicate the authenticated user. */
   userId: string;
+  /** The send-as alias to be retrieved. */
+  sendAsEmail: string;
 }
 export const GetUsersSettingsSendAsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    sendAsEmail: S.String.pipe(T.Label()),
     userId: S.String.pipe(T.Label()),
+    sendAsEmail: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
@@ -1695,30 +1695,30 @@ export const GetUsersSettingsSendAsSmimeInfoRequest = /*@__PURE__*/ S.suspend(
 
 /** An S/MIME email config. */
 export interface SmimeInfo {
-  /** Whether this SmimeInfo is the default one for this user's send-as address. */
-  isDefault?: boolean;
-  /** When the certificate expires (in milliseconds since epoch). */
-  expiration?: string;
-  /** The S/MIME certificate issuer's common name. */
-  issuerCn?: string;
-  /** PKCS#12 format containing a single private/public key pair and certificate chain. This format is only accepted from client for creating a new SmimeInfo and is never returned, because the private key is not intended to be exported. PKCS#12 may be encrypted, in which case encryptedKeyPassword should be set appropriately. */
-  pkcs12?: string;
-  /** Encrypted key password, when key is encrypted. */
-  encryptedKeyPassword?: string;
-  /** PEM formatted X509 concatenated certificate string (standard base64 encoding). Format used for returning key, which includes public key as well as certificate chain (not private key). */
-  pem?: string;
   /** The immutable ID for the SmimeInfo. */
   id?: string;
+  /** PKCS#12 format containing a single private/public key pair and certificate chain. This format is only accepted from client for creating a new SmimeInfo and is never returned, because the private key is not intended to be exported. PKCS#12 may be encrypted, in which case encryptedKeyPassword should be set appropriately. */
+  pkcs12?: string;
+  /** Whether this SmimeInfo is the default one for this user's send-as address. */
+  isDefault?: boolean;
+  /** Encrypted key password, when key is encrypted. */
+  encryptedKeyPassword?: string;
+  /** When the certificate expires (in milliseconds since epoch). */
+  expiration?: string;
+  /** PEM formatted X509 concatenated certificate string (standard base64 encoding). Format used for returning key, which includes public key as well as certificate chain (not private key). */
+  pem?: string;
+  /** The S/MIME certificate issuer's common name. */
+  issuerCn?: string;
 }
 export const SmimeInfo = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    isDefault: S.optional(S.Boolean),
-    expiration: S.optional(S.String),
-    issuerCn: S.optional(S.String),
-    pkcs12: S.optional(S.String),
-    encryptedKeyPassword: S.optional(S.String),
-    pem: S.optional(S.String),
     id: S.optional(S.String),
+    pkcs12: S.optional(S.String),
+    isDefault: S.optional(S.Boolean),
+    encryptedKeyPassword: S.optional(S.String),
+    expiration: S.optional(S.String),
+    pem: S.optional(S.String),
+    issuerCn: S.optional(S.String),
   }),
 ).annotate({ identifier: "SmimeInfo" }) as any as S.Schema<SmimeInfo>;
 
@@ -1726,21 +1726,21 @@ export type GetUsersThreadsFormatEnum = "full" | "metadata" | "minimal";
 export const GetUsersThreadsFormatEnum = /*@__PURE__*/ S.String;
 
 export interface GetUsersThreadsRequest {
-  /** The user's email address. The special value `me` can be used to indicate the authenticated user. */
-  userId: string;
-  /** The format to return the messages in. */
-  format?: GetUsersThreadsFormatEnum | (string & {});
-  /** When given and format is METADATA, only include headers specified. */
-  metadataHeaders?: StringList;
   /** The ID of the thread to retrieve. */
   id: string;
+  /** The format to return the messages in. */
+  format?: GetUsersThreadsFormatEnum | (string & {});
+  /** The user's email address. The special value `me` can be used to indicate the authenticated user. */
+  userId: string;
+  /** When given and format is METADATA, only include headers specified. */
+  metadataHeaders?: StringList;
 }
 export const GetUsersThreadsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    userId: S.String.pipe(T.Label()),
-    format: S.optional(GetUsersThreadsFormatEnum.pipe(T.Query())),
-    metadataHeaders: S.optional(StringList.pipe(T.Query())),
     id: S.String.pipe(T.Label()),
+    format: S.optional(GetUsersThreadsFormatEnum.pipe(T.Query())),
+    userId: S.String.pipe(T.Label()),
+    metadataHeaders: S.optional(StringList.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -1759,21 +1759,21 @@ export const MessageList = /*@__PURE__*/ S.Array(
 
 /** A collection of messages representing a conversation. */
 export interface Thread {
-  /** The unique ID of the thread. */
-  id?: string;
   /** A short part of the message text. */
   snippet?: string;
-  /** The ID of the last history record that modified this thread. */
-  historyId?: string;
   /** The list of messages in the thread. */
   messages?: MessageList;
+  /** The unique ID of the thread. */
+  id?: string;
+  /** The ID of the last history record that modified this thread. */
+  historyId?: string;
 }
 export const Thread = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    id: S.optional(S.String),
     snippet: S.optional(S.String),
-    historyId: S.optional(S.String),
     messages: S.optional(MessageList),
+    id: S.optional(S.String),
+    historyId: S.optional(S.String),
   }),
 ).annotate({ identifier: "Thread" }) as any as S.Schema<Thread>;
 
@@ -1797,33 +1797,33 @@ export const GetVacationUsersSettingsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Vacation auto-reply settings for an account. These settings correspond to the "Vacation responder" feature in the web interface. */
 export interface VacationSettings {
-  /** An optional start time for sending auto-replies (epoch ms). When this is specified, Gmail will automatically reply only to messages that it receives after the start time. If both `startTime` and `endTime` are specified, `startTime` must precede `endTime`. */
-  startTime?: string;
-  /** Optional text to prepend to the subject line in vacation responses. In order to enable auto-replies, either the response subject or the response body must be nonempty. */
-  responseSubject?: string;
-  /** Flag that determines whether responses are sent to recipients who are outside of the user's domain. This feature is only available for Google Workspace users. */
-  restrictToDomain?: boolean;
-  /** An optional end time for sending auto-replies (epoch ms). When this is specified, Gmail will automatically reply only to messages that it receives before the end time. If both `startTime` and `endTime` are specified, `startTime` must precede `endTime`. */
-  endTime?: string;
-  /** Flag that determines whether responses are sent to recipients who are not in the user's list of contacts. */
-  restrictToContacts?: boolean;
-  /** Response body in plain text format. If both `response_body_plain_text` and `response_body_html` are specified, `response_body_html` will be used. */
-  responseBodyPlainText?: string;
   /** Flag that controls whether Gmail automatically replies to messages. */
   enableAutoReply?: boolean;
   /** Response body in HTML format. Gmail will sanitize the HTML before storing it. If both `response_body_plain_text` and `response_body_html` are specified, `response_body_html` will be used. */
   responseBodyHtml?: string;
+  /** Flag that determines whether responses are sent to recipients who are not in the user's list of contacts. */
+  restrictToContacts?: boolean;
+  /** Optional text to prepend to the subject line in vacation responses. In order to enable auto-replies, either the response subject or the response body must be nonempty. */
+  responseSubject?: string;
+  /** Flag that determines whether responses are sent to recipients who are outside of the user's domain. This feature is only available for Google Workspace users. */
+  restrictToDomain?: boolean;
+  /** Response body in plain text format. If both `response_body_plain_text` and `response_body_html` are specified, `response_body_html` will be used. */
+  responseBodyPlainText?: string;
+  /** An optional start time for sending auto-replies (epoch ms). When this is specified, Gmail will automatically reply only to messages that it receives after the start time. If both `startTime` and `endTime` are specified, `startTime` must precede `endTime`. */
+  startTime?: string;
+  /** An optional end time for sending auto-replies (epoch ms). When this is specified, Gmail will automatically reply only to messages that it receives before the end time. If both `startTime` and `endTime` are specified, `startTime` must precede `endTime`. */
+  endTime?: string;
 }
 export const VacationSettings = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    startTime: S.optional(S.String),
-    responseSubject: S.optional(S.String),
-    restrictToDomain: S.optional(S.Boolean),
-    endTime: S.optional(S.String),
-    restrictToContacts: S.optional(S.Boolean),
-    responseBodyPlainText: S.optional(S.String),
     enableAutoReply: S.optional(S.Boolean),
     responseBodyHtml: S.optional(S.String),
+    restrictToContacts: S.optional(S.Boolean),
+    responseSubject: S.optional(S.String),
+    restrictToDomain: S.optional(S.Boolean),
+    responseBodyPlainText: S.optional(S.String),
+    startTime: S.optional(S.String),
+    endTime: S.optional(S.String),
   }),
 ).annotate({
   identifier: "VacationSettings",
@@ -1835,30 +1835,30 @@ export type ImportUsersMessagesInternalDateSourceEnum =
 export const ImportUsersMessagesInternalDateSourceEnum = /*@__PURE__*/ S.String;
 
 export interface ImportUsersMessagesRequest {
-  /** Process calendar invites in the email and add any extracted meetings to the Google Calendar for this user. */
-  processForCalendar?: boolean;
-  /** Ignore the Gmail spam classifier decision and never mark this email as SPAM in the mailbox. */
-  neverMarkSpam?: boolean;
-  /** The user's email address. The special value `me` can be used to indicate the authenticated user. */
-  userId: string;
   /** Source for Gmail's internal date of the message. */
   internalDateSource?:
     | ImportUsersMessagesInternalDateSourceEnum
     | (string & {});
+  /** Process calendar invites in the email and add any extracted meetings to the Google Calendar for this user. */
+  processForCalendar?: boolean;
   /** Mark the email as permanently deleted (not TRASH) and only visible in Google Vault to a Vault administrator. Only used for Google Workspace accounts. */
   deleted?: boolean;
+  /** Ignore the Gmail spam classifier decision and never mark this email as SPAM in the mailbox. */
+  neverMarkSpam?: boolean;
+  /** The user's email address. The special value `me` can be used to indicate the authenticated user. */
+  userId: string;
   /** Request body */
   body?: Message;
 }
 export const ImportUsersMessagesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    processForCalendar: S.optional(S.Boolean.pipe(T.Query())),
-    neverMarkSpam: S.optional(S.Boolean.pipe(T.Query())),
-    userId: S.String.pipe(T.Label()),
     internalDateSource: S.optional(
       ImportUsersMessagesInternalDateSourceEnum.pipe(T.Query()),
     ),
+    processForCalendar: S.optional(S.Boolean.pipe(T.Query())),
     deleted: S.optional(S.Boolean.pipe(T.Query())),
+    neverMarkSpam: S.optional(S.Boolean.pipe(T.Query())),
+    userId: S.String.pipe(T.Label()),
     body: S.optional(Message.pipe(T.HttpBody())),
   }).pipe(
     T.Http({
@@ -1908,18 +1908,18 @@ export const InsertUsersMessagesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<InsertUsersMessagesRequest>;
 
 export interface InsertUsersSettingsSendAsSmimeInfoRequest {
-  /** The email address that appears in the "From:" header for mail sent using this alias. */
-  sendAsEmail: string;
   /** The user's email address. The special value `me` can be used to indicate the authenticated user. */
   userId: string;
+  /** The email address that appears in the "From:" header for mail sent using this alias. */
+  sendAsEmail: string;
   /** Request body */
   body?: SmimeInfo;
 }
 export const InsertUsersSettingsSendAsSmimeInfoRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      sendAsEmail: S.String.pipe(T.Label()),
       userId: S.String.pipe(T.Label()),
+      sendAsEmail: S.String.pipe(T.Label()),
       body: S.optional(SmimeInfo.pipe(T.HttpBody())),
     }).pipe(
       T.Http({
@@ -1933,24 +1933,24 @@ export const InsertUsersSettingsSendAsSmimeInfoRequest =
   }) as any as S.Schema<InsertUsersSettingsSendAsSmimeInfoRequest>;
 
 export interface ListUsersDraftsRequest {
-  /** Maximum number of drafts to return. This field defaults to 100. The maximum allowed value for this field is 500. */
-  maxResults?: number;
-  /** Include drafts from `SPAM` and `TRASH` in the results. */
-  includeSpamTrash?: boolean;
-  /** The user's email address. The special value `me` can be used to indicate the authenticated user. */
-  userId: string;
-  /** Page token to retrieve a specific page of results in the list. */
-  pageToken?: string;
   /** Only return draft messages matching the specified query. Supports the same query format as the Gmail search box. For example, `"from:someuser@example.com rfc822msgid: is:unread"`. */
   q?: string;
+  /** Maximum number of drafts to return. This field defaults to 100. The maximum allowed value for this field is 500. */
+  maxResults?: number;
+  /** Page token to retrieve a specific page of results in the list. */
+  pageToken?: string;
+  /** The user's email address. The special value `me` can be used to indicate the authenticated user. */
+  userId: string;
+  /** Include drafts from `SPAM` and `TRASH` in the results. */
+  includeSpamTrash?: boolean;
 }
 export const ListUsersDraftsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    maxResults: S.optional(S.Number.pipe(T.Query())),
-    includeSpamTrash: S.optional(S.Boolean.pipe(T.Query())),
-    userId: S.String.pipe(T.Label()),
-    pageToken: S.optional(S.String.pipe(T.Query())),
     q: S.optional(S.String.pipe(T.Query())),
+    maxResults: S.optional(S.Number.pipe(T.Query())),
+    pageToken: S.optional(S.String.pipe(T.Query())),
+    userId: S.String.pipe(T.Label()),
+    includeSpamTrash: S.optional(S.Boolean.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -1968,18 +1968,18 @@ export const DraftList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<DraftList>;
 
 export interface ListDraftsResponse {
-  /** Token to retrieve the next page of results in the list. */
-  nextPageToken?: string;
-  /** Estimated total number of results. */
-  resultSizeEstimate?: number;
   /** List of drafts. Note that the `Message` property in each `Draft` resource only contains an `id` and a `threadId`. The [`messages.get`](https://developers.google.com/workspace/gmail/api/v1/reference/users/messages/get) method can fetch additional message details. */
   drafts?: DraftList;
+  /** Estimated total number of results. */
+  resultSizeEstimate?: number;
+  /** Token to retrieve the next page of results in the list. */
+  nextPageToken?: string;
 }
 export const ListDraftsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    nextPageToken: S.optional(S.String),
-    resultSizeEstimate: S.optional(S.Number),
     drafts: S.optional(DraftList),
+    resultSizeEstimate: S.optional(S.Number),
+    nextPageToken: S.optional(S.String),
   }),
 ).annotate({
   identifier: "ListDraftsResponse",
@@ -2000,29 +2000,29 @@ export const ListUsersHistoryHistoryTypesEnumList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ListUsersHistoryHistoryTypesEnumList>;
 
 export interface ListUsersHistoryRequest {
-  /** Maximum number of history records to return. This field defaults to 100. The maximum allowed value for this field is 500. */
-  maxResults?: number;
-  /** Required. Returns history records after the specified `startHistoryId`. The supplied `startHistoryId` should be obtained from the `historyId` of a message, thread, or previous `list` response. History IDs increase chronologically but are not contiguous with random gaps in between valid IDs. Supplying an invalid or out of date `startHistoryId` typically returns an `HTTP 404` error code. A `historyId` is typically valid for at least a week, but in some rare circumstances may be valid for only a few hours. If you receive an `HTTP 404` error response, your application should perform a full sync. If you receive no `nextPageToken` in the response, there are no updates to retrieve and you can store the returned `historyId` for a future request. */
-  startHistoryId?: string;
-  /** History types to be returned by the function */
-  historyTypes?: ListUsersHistoryHistoryTypesEnumList;
-  /** The user's email address. The special value `me` can be used to indicate the authenticated user. */
-  userId: string;
   /** Page token to retrieve a specific page of results in the list. */
   pageToken?: string;
+  /** Required. Returns history records after the specified `startHistoryId`. The supplied `startHistoryId` should be obtained from the `historyId` of a message, thread, or previous `list` response. History IDs increase chronologically but are not contiguous with random gaps in between valid IDs. Supplying an invalid or out of date `startHistoryId` typically returns an `HTTP 404` error code. A `historyId` is typically valid for at least a week, but in some rare circumstances may be valid for only a few hours. If you receive an `HTTP 404` error response, your application should perform a full sync. If you receive no `nextPageToken` in the response, there are no updates to retrieve and you can store the returned `historyId` for a future request. */
+  startHistoryId?: string;
+  /** The user's email address. The special value `me` can be used to indicate the authenticated user. */
+  userId: string;
   /** Only return messages with a label matching the ID. */
   labelId?: string;
+  /** History types to be returned by the function */
+  historyTypes?: ListUsersHistoryHistoryTypesEnumList;
+  /** Maximum number of history records to return. This field defaults to 100. The maximum allowed value for this field is 500. */
+  maxResults?: number;
 }
 export const ListUsersHistoryRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    maxResults: S.optional(S.Number.pipe(T.Query())),
+    pageToken: S.optional(S.String.pipe(T.Query())),
     startHistoryId: S.optional(S.String.pipe(T.Query())),
+    userId: S.String.pipe(T.Label()),
+    labelId: S.optional(S.String.pipe(T.Query())),
     historyTypes: S.optional(
       ListUsersHistoryHistoryTypesEnumList.pipe(T.Query()),
     ),
-    userId: S.String.pipe(T.Label()),
-    pageToken: S.optional(S.String.pipe(T.Query())),
-    labelId: S.optional(S.String.pipe(T.Query())),
+    maxResults: S.optional(S.Number.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -2034,29 +2034,29 @@ export const ListUsersHistoryRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListUsersHistoryRequest",
 }) as any as S.Schema<ListUsersHistoryRequest>;
 
-export interface HistoryMessageAdded {
+export interface HistoryMessageDeleted {
   message?: Message;
 }
-export const HistoryMessageAdded = /*@__PURE__*/ S.suspend(() =>
+export const HistoryMessageDeleted = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     message: S.optional(Message),
   }),
 ).annotate({
-  identifier: "HistoryMessageAdded",
-}) as any as S.Schema<HistoryMessageAdded>;
+  identifier: "HistoryMessageDeleted",
+}) as any as S.Schema<HistoryMessageDeleted>;
 
-export type HistoryMessageAddedList = Array<HistoryMessageAdded>;
-export const HistoryMessageAddedList = /*@__PURE__*/ S.Array(
-  HistoryMessageAdded,
-) as any as S.Schema<HistoryMessageAddedList>;
-
-export type HistoryMessageDeleted = HistoryMessageAdded;
-export const HistoryMessageDeleted = HistoryMessageAdded;
-
-export type HistoryMessageDeletedList = Array<HistoryMessageAdded>;
+export type HistoryMessageDeletedList = Array<HistoryMessageDeleted>;
 export const HistoryMessageDeletedList = /*@__PURE__*/ S.Array(
-  HistoryMessageAdded,
+  HistoryMessageDeleted,
 ) as any as S.Schema<HistoryMessageDeletedList>;
+
+export type HistoryMessageAdded = HistoryMessageDeleted;
+export const HistoryMessageAdded = HistoryMessageDeleted;
+
+export type HistoryMessageAddedList = Array<HistoryMessageDeleted>;
+export const HistoryMessageAddedList = /*@__PURE__*/ S.Array(
+  HistoryMessageDeleted,
+) as any as S.Schema<HistoryMessageAddedList>;
 
 export interface HistoryLabelAdded {
   message?: Message;
@@ -2098,14 +2098,14 @@ export const HistoryLabelRemovedList = /*@__PURE__*/ S.Array(
 
 /** A record of a change to the user's mailbox. Each history change may affect multiple messages in multiple ways. */
 export interface History {
-  /** Messages added to the mailbox in this history record. */
-  messagesAdded?: HistoryMessageAddedList;
   /** List of messages changed in this history record. The fields for specific change types, such as `messagesAdded` may duplicate messages in this field. We recommend using the specific change-type fields instead of this. */
   messages?: MessageList;
   /** Messages deleted (not Trashed) from the mailbox in this history record. */
   messagesDeleted?: HistoryMessageDeletedList;
   /** The mailbox sequence ID. */
   id?: string;
+  /** Messages added to the mailbox in this history record. */
+  messagesAdded?: HistoryMessageAddedList;
   /** Labels added to messages in this history record. */
   labelsAdded?: HistoryLabelAddedList;
   /** Labels removed from messages in this history record. */
@@ -2113,10 +2113,10 @@ export interface History {
 }
 export const History = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    messagesAdded: S.optional(HistoryMessageAddedList),
     messages: S.optional(MessageList),
     messagesDeleted: S.optional(HistoryMessageDeletedList),
     id: S.optional(S.String),
+    messagesAdded: S.optional(HistoryMessageAddedList),
     labelsAdded: S.optional(HistoryLabelAddedList),
     labelsRemoved: S.optional(HistoryLabelRemovedList),
   }),
@@ -2128,18 +2128,18 @@ export const HistoryList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<HistoryList>;
 
 export interface ListHistoryResponse {
-  /** Page token to retrieve the next page of results in the list. */
-  nextPageToken?: string;
-  /** The ID of the mailbox's current history record. */
-  historyId?: string;
   /** List of history records. Any `messages` contained in the response will typically only have `id` and `threadId` fields populated. */
   history?: HistoryList;
+  /** The ID of the mailbox's current history record. */
+  historyId?: string;
+  /** Page token to retrieve the next page of results in the list. */
+  nextPageToken?: string;
 }
 export const ListHistoryResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    nextPageToken: S.optional(S.String),
-    historyId: S.optional(S.String),
     history: S.optional(HistoryList),
+    historyId: S.optional(S.String),
+    nextPageToken: S.optional(S.String),
   }),
 ).annotate({
   identifier: "ListHistoryResponse",
@@ -2181,26 +2181,26 @@ export const ListLabelsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListLabelsResponse>;
 
 export interface ListUsersMessagesRequest {
-  /** Only return messages matching the specified query. Supports the same query format as the Gmail search box. For example, `"from:someuser@example.com rfc822msgid: is:unread"`. Parameter cannot be used when accessing the api using the gmail.metadata scope. */
-  q?: string;
-  /** The user's email address. The special value `me` can be used to indicate the authenticated user. */
-  userId: string;
-  /** Page token to retrieve a specific page of results in the list. */
-  pageToken?: string;
-  /** Maximum number of messages to return. This field defaults to 100. The maximum allowed value for this field is 500. */
-  maxResults?: number;
   /** Only return messages with labels that match all of the specified label IDs. Messages in a thread might have labels that other messages in the same thread don't have. To learn more, see [Manage labels on messages and threads](https://developers.google.com/workspace/gmail/api/guides/labels#manage_labels_on_messages_threads). */
   labelIds?: StringList;
+  /** Only return messages matching the specified query. Supports the same query format as the Gmail search box. For example, `"from:someuser@example.com rfc822msgid: is:unread"`. Parameter cannot be used when accessing the api using the gmail.metadata scope. */
+  q?: string;
+  /** Maximum number of messages to return. This field defaults to 100. The maximum allowed value for this field is 500. */
+  maxResults?: number;
+  /** Page token to retrieve a specific page of results in the list. */
+  pageToken?: string;
+  /** The user's email address. The special value `me` can be used to indicate the authenticated user. */
+  userId: string;
   /** Include messages from `SPAM` and `TRASH` in the results. */
   includeSpamTrash?: boolean;
 }
 export const ListUsersMessagesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    q: S.optional(S.String.pipe(T.Query())),
-    userId: S.String.pipe(T.Label()),
-    pageToken: S.optional(S.String.pipe(T.Query())),
-    maxResults: S.optional(S.Number.pipe(T.Query())),
     labelIds: S.optional(StringList.pipe(T.Query())),
+    q: S.optional(S.String.pipe(T.Query())),
+    maxResults: S.optional(S.Number.pipe(T.Query())),
+    pageToken: S.optional(S.String.pipe(T.Query())),
+    userId: S.String.pipe(T.Label()),
     includeSpamTrash: S.optional(S.Boolean.pipe(T.Query())),
   }).pipe(
     T.Http({
@@ -2214,36 +2214,36 @@ export const ListUsersMessagesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListUsersMessagesRequest>;
 
 export interface ListMessagesResponse {
-  /** Token to retrieve the next page of results in the list. */
-  nextPageToken?: string;
   /** Estimated total number of results. */
   resultSizeEstimate?: number;
   /** List of messages. Note that each message resource contains only an `id` and a `threadId`. Additional message details can be fetched using the messages.get method. */
   messages?: MessageList;
+  /** Token to retrieve the next page of results in the list. */
+  nextPageToken?: string;
 }
 export const ListMessagesResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    nextPageToken: S.optional(S.String),
     resultSizeEstimate: S.optional(S.Number),
     messages: S.optional(MessageList),
+    nextPageToken: S.optional(S.String),
   }),
 ).annotate({
   identifier: "ListMessagesResponse",
 }) as any as S.Schema<ListMessagesResponse>;
 
 export interface ListUsersSettingsCseIdentitiesRequest {
-  /** The number of identities to return. If not provided, the page size will default to 20 entries. */
-  pageSize?: number;
   /** The requester's primary email address. To indicate the authenticated user, you can use the special value `me`. */
   userId: string;
+  /** The number of identities to return. If not provided, the page size will default to 20 entries. */
+  pageSize?: number;
   /** Pagination token indicating which page of identities to return. If the token is not supplied, then the API will return the first page of results. */
   pageToken?: string;
 }
 export const ListUsersSettingsCseIdentitiesRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      pageSize: S.optional(S.Number.pipe(T.Query())),
       userId: S.String.pipe(T.Label()),
+      pageSize: S.optional(S.Number.pipe(T.Query())),
       pageToken: S.optional(S.String.pipe(T.Query())),
     }).pipe(
       T.Http({
@@ -2277,18 +2277,18 @@ export const ListCseIdentitiesResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListCseIdentitiesResponse>;
 
 export interface ListUsersSettingsCseKeypairsRequest {
+  /** Pagination token indicating which page of key pairs to return. If the token is not supplied, then the API will return the first page of results. */
+  pageToken?: string;
   /** The number of key pairs to return. If not provided, the page size will default to 20 entries. */
   pageSize?: number;
   /** The requester's primary email address. To indicate the authenticated user, you can use the special value `me`. */
   userId: string;
-  /** Pagination token indicating which page of key pairs to return. If the token is not supplied, then the API will return the first page of results. */
-  pageToken?: string;
 }
 export const ListUsersSettingsCseKeypairsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    pageToken: S.optional(S.String.pipe(T.Query())),
     pageSize: S.optional(S.Number.pipe(T.Query())),
     userId: S.String.pipe(T.Label()),
-    pageToken: S.optional(S.String.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -2505,27 +2505,27 @@ export const ListSmimeInfoResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListSmimeInfoResponse>;
 
 export interface ListUsersThreadsRequest {
-  /** Only return threads matching the specified query. Supports the same query format as the Gmail search box. For example, `"from:someuser@example.com rfc822msgid: is:unread"`. Parameter cannot be used when accessing the api using the gmail.metadata scope. */
-  q?: string;
-  /** Maximum number of threads to return. This field defaults to 100. The maximum allowed value for this field is 500. */
-  maxResults?: number;
   /** Only return threads with labels that match all of the specified label IDs. */
   labelIds?: StringList;
-  /** Include threads from `SPAM` and `TRASH` in the results. */
-  includeSpamTrash?: boolean;
-  /** The user's email address. The special value `me` can be used to indicate the authenticated user. */
-  userId: string;
+  /** Maximum number of threads to return. This field defaults to 100. The maximum allowed value for this field is 500. */
+  maxResults?: number;
+  /** Only return threads matching the specified query. Supports the same query format as the Gmail search box. For example, `"from:someuser@example.com rfc822msgid: is:unread"`. Parameter cannot be used when accessing the api using the gmail.metadata scope. */
+  q?: string;
   /** Page token to retrieve a specific page of results in the list. */
   pageToken?: string;
+  /** The user's email address. The special value `me` can be used to indicate the authenticated user. */
+  userId: string;
+  /** Include threads from `SPAM` and `TRASH` in the results. */
+  includeSpamTrash?: boolean;
 }
 export const ListUsersThreadsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    q: S.optional(S.String.pipe(T.Query())),
-    maxResults: S.optional(S.Number.pipe(T.Query())),
     labelIds: S.optional(StringList.pipe(T.Query())),
-    includeSpamTrash: S.optional(S.Boolean.pipe(T.Query())),
-    userId: S.String.pipe(T.Label()),
+    maxResults: S.optional(S.Number.pipe(T.Query())),
+    q: S.optional(S.String.pipe(T.Query())),
     pageToken: S.optional(S.String.pipe(T.Query())),
+    userId: S.String.pipe(T.Label()),
+    includeSpamTrash: S.optional(S.Boolean.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -2545,37 +2545,37 @@ export const ThreadList = /*@__PURE__*/ S.Array(
 export interface ListThreadsResponse {
   /** List of threads. Note that each thread resource does not contain a list of `messages`. The list of `messages` for a given thread can be fetched using the [`threads.get`](https://developers.google.com/workspace/gmail/api/v1/reference/users/threads/get) method. */
   threads?: ThreadList;
-  /** Page token to retrieve the next page of results in the list. */
-  nextPageToken?: string;
   /** Estimated total number of results. */
   resultSizeEstimate?: number;
+  /** Page token to retrieve the next page of results in the list. */
+  nextPageToken?: string;
 }
 export const ListThreadsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     threads: S.optional(ThreadList),
-    nextPageToken: S.optional(S.String),
     resultSizeEstimate: S.optional(S.Number),
+    nextPageToken: S.optional(S.String),
   }),
 ).annotate({
   identifier: "ListThreadsResponse",
 }) as any as S.Schema<ListThreadsResponse>;
 
 export interface ModifyMessageRequest {
-  /** A list of classification label values to add. If a Classification Label with the same label ID is already applied to the message, fields with existing field IDs will be updated and fields with new field IDs will be added. There's a limit of 20 Classification Label values per request. If the message is already classified and the final total number of Classification Label values exceeds the maximum allowed number of Classification Label values per message, the modification fails. */
-  addClassificationLabels?: ClassificationLabelValueList;
-  /** A list of IDs of labels to add to this message. You can add up to 100 labels with each update. */
-  addLabelIds?: StringList;
-  /** A list of Classification Label values to remove from this message. */
-  removeClassificationLabelIds?: StringList;
   /** A list IDs of labels to remove from this message. You can remove up to 100 labels with each update. */
   removeLabelIds?: StringList;
+  /** A list of Classification Label values to remove from this message. */
+  removeClassificationLabelIds?: StringList;
+  /** A list of IDs of labels to add to this message. You can add up to 100 labels with each update. */
+  addLabelIds?: StringList;
+  /** A list of classification label values to add. If a Classification Label with the same label ID is already applied to the message, fields with existing field IDs will be updated and fields with new field IDs will be added. There's a limit of 20 Classification Label values per request. If the message is already classified and the final total number of Classification Label values exceeds the maximum allowed number of Classification Label values per message, the modification fails. */
+  addClassificationLabels?: ClassificationLabelValueList;
 }
 export const ModifyMessageRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    addClassificationLabels: S.optional(ClassificationLabelValueList),
-    addLabelIds: S.optional(StringList),
-    removeClassificationLabelIds: S.optional(StringList),
     removeLabelIds: S.optional(StringList),
+    removeClassificationLabelIds: S.optional(StringList),
+    addLabelIds: S.optional(StringList),
+    addClassificationLabels: S.optional(ClassificationLabelValueList),
   }),
 ).annotate({
   identifier: "ModifyMessageRequest",
@@ -2680,17 +2680,17 @@ export const ObliterateUsersSettingsCseKeypairsResponse =
   }) as any as S.Schema<ObliterateUsersSettingsCseKeypairsResponse>;
 
 export interface PatchUsersLabelsRequest {
-  /** The user's email address. The special value `me` can be used to indicate the authenticated user. */
-  userId: string;
   /** The ID of the label to update. */
   id: string;
+  /** The user's email address. The special value `me` can be used to indicate the authenticated user. */
+  userId: string;
   /** Request body */
   body?: Label;
 }
 export const PatchUsersLabelsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    userId: S.String.pipe(T.Label()),
     id: S.String.pipe(T.Label()),
+    userId: S.String.pipe(T.Label()),
     body: S.optional(Label.pipe(T.HttpBody())),
   }).pipe(
     T.Http({
@@ -2704,18 +2704,18 @@ export const PatchUsersLabelsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PatchUsersLabelsRequest>;
 
 export interface PatchUsersSettingsCseIdentitiesRequest {
-  /** The requester's primary email address. To indicate the authenticated user, you can use the special value `me`. */
-  userId: string;
   /** The email address of the client-side encryption identity to update. */
   emailAddress: string;
+  /** The requester's primary email address. To indicate the authenticated user, you can use the special value `me`. */
+  userId: string;
   /** Request body */
   body?: CseIdentity;
 }
 export const PatchUsersSettingsCseIdentitiesRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      userId: S.String.pipe(T.Label()),
       emailAddress: S.String.pipe(T.Label()),
+      userId: S.String.pipe(T.Label()),
       body: S.optional(CseIdentity.pipe(T.HttpBody())),
     }).pipe(
       T.Http({
@@ -2795,18 +2795,18 @@ export const SendUsersMessagesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SendUsersMessagesRequest>;
 
 export interface SetDefaultUsersSettingsSendAsSmimeInfoRequest {
-  /** The immutable ID for the SmimeInfo. */
-  id: string;
   /** The email address that appears in the "From:" header for mail sent using this alias. */
   sendAsEmail: string;
+  /** The immutable ID for the SmimeInfo. */
+  id: string;
   /** The user's email address. The special value `me` can be used to indicate the authenticated user. */
   userId: string;
 }
 export const SetDefaultUsersSettingsSendAsSmimeInfoRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      id: S.String.pipe(T.Label()),
       sendAsEmail: S.String.pipe(T.Label()),
+      id: S.String.pipe(T.Label()),
       userId: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
@@ -2851,15 +2851,15 @@ export const StopUsersResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<StopUsersResponse>;
 
 export interface TrashUsersMessagesRequest {
-  /** The user's email address. The special value `me` can be used to indicate the authenticated user. */
-  userId: string;
   /** The ID of the message to Trash. */
   id: string;
+  /** The user's email address. The special value `me` can be used to indicate the authenticated user. */
+  userId: string;
 }
 export const TrashUsersMessagesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    userId: S.String.pipe(T.Label()),
     id: S.String.pipe(T.Label()),
+    userId: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "POST",
@@ -2872,15 +2872,15 @@ export const TrashUsersMessagesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TrashUsersMessagesRequest>;
 
 export interface TrashUsersThreadsRequest {
-  /** The user's email address. The special value `me` can be used to indicate the authenticated user. */
-  userId: string;
   /** The ID of the thread to Trash. */
   id: string;
+  /** The user's email address. The special value `me` can be used to indicate the authenticated user. */
+  userId: string;
 }
 export const TrashUsersThreadsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    userId: S.String.pipe(T.Label()),
     id: S.String.pipe(T.Label()),
+    userId: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "POST",
@@ -2893,15 +2893,15 @@ export const TrashUsersThreadsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TrashUsersThreadsRequest>;
 
 export interface UntrashUsersMessagesRequest {
-  /** The user's email address. The special value `me` can be used to indicate the authenticated user. */
-  userId: string;
   /** The ID of the message to remove from Trash. */
   id: string;
+  /** The user's email address. The special value `me` can be used to indicate the authenticated user. */
+  userId: string;
 }
 export const UntrashUsersMessagesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    userId: S.String.pipe(T.Label()),
     id: S.String.pipe(T.Label()),
+    userId: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "POST",
@@ -2914,15 +2914,15 @@ export const UntrashUsersMessagesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UntrashUsersMessagesRequest>;
 
 export interface UntrashUsersThreadsRequest {
-  /** The user's email address. The special value `me` can be used to indicate the authenticated user. */
-  userId: string;
   /** The ID of the thread to remove from Trash. */
   id: string;
+  /** The user's email address. The special value `me` can be used to indicate the authenticated user. */
+  userId: string;
 }
 export const UntrashUsersThreadsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    userId: S.String.pipe(T.Label()),
     id: S.String.pipe(T.Label()),
+    userId: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "POST",
@@ -3020,17 +3020,17 @@ export const UpdatePopUsersSettingsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdatePopUsersSettingsRequest>;
 
 export interface UpdateUsersDraftsRequest {
-  /** The user's email address. The special value `me` can be used to indicate the authenticated user. */
-  userId: string;
   /** The ID of the draft to update. */
   id: string;
+  /** The user's email address. The special value `me` can be used to indicate the authenticated user. */
+  userId: string;
   /** Request body */
   body?: Draft;
 }
 export const UpdateUsersDraftsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    userId: S.String.pipe(T.Label()),
     id: S.String.pipe(T.Label()),
+    userId: S.String.pipe(T.Label()),
     body: S.optional(Draft.pipe(T.HttpBody())),
   }).pipe(
     T.Http({
@@ -3068,17 +3068,17 @@ export const UpdateUsersLabelsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateUsersLabelsRequest>;
 
 export interface UpdateUsersSettingsSendAsRequest {
-  /** User's email address. The special value "me" can be used to indicate the authenticated user. */
-  userId: string;
   /** The send-as alias to be updated. */
   sendAsEmail: string;
+  /** User's email address. The special value "me" can be used to indicate the authenticated user. */
+  userId: string;
   /** Request body */
   body?: SendAs;
 }
 export const UpdateUsersSettingsSendAsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    userId: S.String.pipe(T.Label()),
     sendAsEmail: S.String.pipe(T.Label()),
+    userId: S.String.pipe(T.Label()),
     body: S.optional(SendAs.pipe(T.HttpBody())),
   }).pipe(
     T.Http({
@@ -3113,15 +3113,15 @@ export const UpdateVacationUsersSettingsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UpdateVacationUsersSettingsRequest>;
 
 export interface VerifyUsersSettingsSendAsRequest {
-  /** User's email address. The special value "me" can be used to indicate the authenticated user. */
-  userId: string;
   /** The send-as alias to be verified. */
   sendAsEmail: string;
+  /** User's email address. The special value "me" can be used to indicate the authenticated user. */
+  userId: string;
 }
 export const VerifyUsersSettingsSendAsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    userId: S.String.pipe(T.Label()),
     sendAsEmail: S.String.pipe(T.Label()),
+    userId: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "POST",
@@ -3140,29 +3140,29 @@ export const VerifyUsersSettingsSendAsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "VerifyUsersSettingsSendAsResponse",
 }) as any as S.Schema<VerifyUsersSettingsSendAsResponse>;
 
-export type WatchRequestLabelFilterActionEnum = "include" | "exclude";
-export const WatchRequestLabelFilterActionEnum = /*@__PURE__*/ S.String;
-
 export type WatchRequestLabelFilterBehaviorEnum = "include" | "exclude";
 export const WatchRequestLabelFilterBehaviorEnum = /*@__PURE__*/ S.String;
 
+export type WatchRequestLabelFilterActionEnum = "include" | "exclude";
+export const WatchRequestLabelFilterActionEnum = /*@__PURE__*/ S.String;
+
 /** Set up or update a new push notification watch on this user's mailbox. */
 export interface WatchRequest {
-  /** Filtering behavior of `labelIds list` specified. This field is deprecated because it caused incorrect behavior in some cases; use `label_filter_behavior` instead. */
-  labelFilterAction?: WatchRequestLabelFilterActionEnum | (string & {});
-  /** Filtering behavior of `labelIds list` specified. This field replaces `label_filter_action`; if set, `label_filter_action` is ignored. */
-  labelFilterBehavior?: WatchRequestLabelFilterBehaviorEnum | (string & {});
-  /** A fully qualified Google Cloud Pub/Sub API topic name to publish the events to. This topic name **must** already exist in Cloud Pub/Sub and you **must** have already granted gmail "publish" permission on it. For example, "projects/my-project-identifier/topics/my-topic-name" (using the Cloud Pub/Sub "v1" topic naming format). Note that the "my-project-identifier" portion must exactly match your Google developer project id (the one executing this watch request). */
-  topicName?: string;
   /** List of label_ids to restrict notifications about. By default, if unspecified, all changes are pushed out. If specified then dictates which labels are required for a push notification to be generated. */
   labelIds?: StringList;
+  /** A fully qualified Google Cloud Pub/Sub API topic name to publish the events to. This topic name **must** already exist in Cloud Pub/Sub and you **must** have already granted gmail "publish" permission on it. For example, "projects/my-project-identifier/topics/my-topic-name" (using the Cloud Pub/Sub "v1" topic naming format). Note that the "my-project-identifier" portion must exactly match your Google developer project id (the one executing this watch request). */
+  topicName?: string;
+  /** Filtering behavior of `labelIds list` specified. This field replaces `label_filter_action`; if set, `label_filter_action` is ignored. */
+  labelFilterBehavior?: WatchRequestLabelFilterBehaviorEnum | (string & {});
+  /** Filtering behavior of `labelIds list` specified. This field is deprecated because it caused incorrect behavior in some cases; use `label_filter_behavior` instead. */
+  labelFilterAction?: WatchRequestLabelFilterActionEnum | (string & {});
 }
 export const WatchRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    labelFilterAction: S.optional(WatchRequestLabelFilterActionEnum),
-    labelFilterBehavior: S.optional(WatchRequestLabelFilterBehaviorEnum),
-    topicName: S.optional(S.String),
     labelIds: S.optional(StringList),
+    topicName: S.optional(S.String),
+    labelFilterBehavior: S.optional(WatchRequestLabelFilterBehaviorEnum),
+    labelFilterAction: S.optional(WatchRequestLabelFilterActionEnum),
   }),
 ).annotate({ identifier: "WatchRequest" }) as any as S.Schema<WatchRequest>;
 

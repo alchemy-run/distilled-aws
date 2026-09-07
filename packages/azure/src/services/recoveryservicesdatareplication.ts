@@ -12,134 +12,6 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
-export interface CheckNameAvailabilityPostRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the Azure region. */
-  location: string;
-  /** Gets or sets the resource name. */
-  name?: string;
-  /** Gets or sets the resource type. */
-  type?: string;
-}
-export const CheckNameAvailabilityPostRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    location: S.String.pipe(T.Label()),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.DataReplication/locations/{location}/checkNameAvailability",
-      code: 200,
-      apiVersion: "2026-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "CheckNameAvailabilityPostRequest",
-}) as any as S.Schema<CheckNameAvailabilityPostRequest>;
-
-/** Check name availability response model. */
-export interface CheckNameAvailabilityResponseModel {
-  /** Gets or sets a value indicating whether resource name is available or not. */
-  nameAvailable?: boolean;
-  /** Gets or sets the reason for resource name unavailability. */
-  reason?: string;
-  /** Gets or sets the message for resource name unavailability. */
-  message?: string;
-}
-export const CheckNameAvailabilityResponseModel = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    nameAvailable: S.optional(S.Boolean),
-    reason: S.optional(S.String),
-    message: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "CheckNameAvailabilityResponseModel",
-}) as any as S.Schema<CheckNameAvailabilityResponseModel>;
-
-/** Deployment preflight resource. */
-export interface DeploymentPreflightResource {
-  /** Gets or sets the resource name. */
-  name?: string;
-  /** Gets or sets the resource type. */
-  type?: string;
-  /** Gets or sets the location of the resource. */
-  location?: string;
-  /** Gets or sets the Api version. */
-  apiVersion?: string;
-  /** Gets or sets the properties of the resource. */
-  properties?: unknown;
-}
-export const DeploymentPreflightResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    location: S.optional(S.String),
-    apiVersion: S.optional(S.String),
-    properties: S.optional(S.Unknown),
-  }),
-).annotate({
-  identifier: "DeploymentPreflightResource",
-}) as any as S.Schema<DeploymentPreflightResource>;
-
-/** Gets or sets the list of resources. */
-export type DeploymentPreflightPostRequestResourcesList =
-  Array<DeploymentPreflightResource>;
-export const DeploymentPreflightPostRequestResourcesList =
-  /*@__PURE__*/ S.Array(
-    DeploymentPreflightResource,
-  ) as any as S.Schema<DeploymentPreflightPostRequestResourcesList>;
-
-export interface DeploymentPreflightPostRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Deployment Id. */
-  deploymentId: string;
-  /** Gets or sets the list of resources. */
-  resources?: DeploymentPreflightPostRequestResourcesList;
-}
-export const DeploymentPreflightPostRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    deploymentId: S.String.pipe(T.Label()),
-    resources: S.optional(DeploymentPreflightPostRequestResourcesList),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/deployments/{deploymentId}/preflight",
-      code: 200,
-      apiVersion: "2026-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "DeploymentPreflightPostRequest",
-}) as any as S.Schema<DeploymentPreflightPostRequest>;
-
-/** Gets or sets the list of resources. */
-export type DeploymentPreflightModelResourcesList =
-  Array<DeploymentPreflightResource>;
-export const DeploymentPreflightModelResourcesList = /*@__PURE__*/ S.Array(
-  DeploymentPreflightResource,
-) as any as S.Schema<DeploymentPreflightModelResourcesList>;
-
-/** Deployment preflight model. */
-export interface DeploymentPreflightModel {
-  /** Gets or sets the list of resources. */
-  resources?: DeploymentPreflightModelResourcesList;
-}
-export const DeploymentPreflightModel = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    resources: S.optional(DeploymentPreflightModelResourcesList),
-  }),
-).annotate({
-  identifier: "DeploymentPreflightModel",
-}) as any as S.Schema<DeploymentPreflightModel>;
-
 /** Gets or sets the custom email address for sending emails. */
 export type EmailConfigurationModelPropertiesInputCustomEmailAddressesList =
   Array<string>;
@@ -170,7 +42,7 @@ export const EmailConfigurationModelPropertiesInput = /*@__PURE__*/ S.suspend(
   identifier: "EmailConfigurationModelPropertiesInput",
 }) as any as S.Schema<EmailConfigurationModelPropertiesInput>;
 
-export interface EmailConfigurationCreateRequest {
+export interface CreateEmailConfigurationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -182,7 +54,7 @@ export interface EmailConfigurationCreateRequest {
   /** The resource-specific properties for this resource. */
   properties?: EmailConfigurationModelPropertiesInput;
 }
-export const EmailConfigurationCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateEmailConfigurationRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -198,8 +70,8 @@ export const EmailConfigurationCreateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "EmailConfigurationCreateRequest",
-}) as any as S.Schema<EmailConfigurationCreateRequest>;
+  identifier: "CreateEmailConfigurationRequest",
+}) as any as S.Schema<CreateEmailConfigurationRequest>;
 
 /** The type of identity that created the resource. */
 export type SystemDataCreatedByType =
@@ -286,7 +158,7 @@ export const EmailConfigurationModelProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "EmailConfigurationModelProperties",
 }) as any as S.Schema<EmailConfigurationModelProperties>;
 
-export interface EmailConfigurationCreateResponse {
+export interface CreateEmailConfigurationResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -298,7 +170,7 @@ export interface EmailConfigurationCreateResponse {
   /** The resource-specific properties for this resource. */
   properties?: EmailConfigurationModelProperties;
 }
-export const EmailConfigurationCreateResponse = /*@__PURE__*/ S.suspend(() =>
+export const CreateEmailConfigurationResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -307,161 +179,86 @@ export const EmailConfigurationCreateResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(EmailConfigurationModelProperties),
   }),
 ).annotate({
-  identifier: "EmailConfigurationCreateResponse",
-}) as any as S.Schema<EmailConfigurationCreateResponse>;
+  identifier: "CreateEmailConfigurationResponse",
+}) as any as S.Schema<CreateEmailConfigurationResponse>;
 
-export interface EmailConfigurationGetRequest {
+/** Resource tags. */
+export type CreateFabricRequestTagsMap = { [key: string]: string | undefined };
+export const CreateFabricRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<CreateFabricRequestTagsMap>;
+
+/** Fabric model custom properties. */
+export interface FabricModelCustomProperties {
+  /** Discriminator property for FabricModelCustomProperties. */
+  instanceType: string;
+}
+export const FabricModelCustomProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    instanceType: S.String,
+  }),
+).annotate({
+  identifier: "FabricModelCustomProperties",
+}) as any as S.Schema<FabricModelCustomProperties>;
+
+/** Fabric model properties. */
+export interface FabricModelPropertiesInput {
+  /** Fabric model custom properties. */
+  customProperties: FabricModelCustomProperties;
+}
+export const FabricModelPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    customProperties: FabricModelCustomProperties,
+  }),
+).annotate({
+  identifier: "FabricModelPropertiesInput",
+}) as any as S.Schema<FabricModelPropertiesInput>;
+
+export interface CreateFabricRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
-  /** The vault name. */
-  vaultName: string;
-  /** The email configuration name. */
-  emailConfigurationName: string;
-}
-export const EmailConfigurationGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    vaultName: S.String.pipe(T.Label()),
-    emailConfigurationName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationVaults/{vaultName}/alertSettings/{emailConfigurationName}",
-      code: 200,
-      apiVersion: "2026-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "EmailConfigurationGetRequest",
-}) as any as S.Schema<EmailConfigurationGetRequest>;
-
-export interface EmailConfigurationGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
+  /** The fabric name. */
+  fabricName: string;
+  /** Resource tags. */
+  tags?: CreateFabricRequestTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
   /** The resource-specific properties for this resource. */
-  properties?: EmailConfigurationModelProperties;
+  properties?: FabricModelPropertiesInput;
 }
-export const EmailConfigurationGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(EmailConfigurationModelProperties),
-  }),
-).annotate({
-  identifier: "EmailConfigurationGetResponse",
-}) as any as S.Schema<EmailConfigurationGetResponse>;
-
-export interface EmailConfigurationListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The vault name. */
-  vaultName: string;
-}
-export const EmailConfigurationListRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateFabricRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
-    vaultName: S.String.pipe(T.Label()),
+    fabricName: S.String.pipe(T.Label()),
+    tags: S.optional(CreateFabricRequestTagsMap),
+    location: S.String,
+    properties: S.optional(FabricModelPropertiesInput),
   }).pipe(
     T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationVaults/{vaultName}/alertSettings",
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationFabrics/{fabricName}",
       code: 200,
       apiVersion: "2026-05-01",
     }),
   ),
 ).annotate({
-  identifier: "EmailConfigurationListRequest",
-}) as any as S.Schema<EmailConfigurationListRequest>;
+  identifier: "CreateFabricRequest",
+}) as any as S.Schema<CreateFabricRequest>;
 
-/** Email configuration model. */
-export interface EmailConfigurationModel {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: EmailConfigurationModelProperties;
-}
-export const EmailConfigurationModel = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(EmailConfigurationModelProperties),
-  }),
-).annotate({
-  identifier: "EmailConfigurationModel",
-}) as any as S.Schema<EmailConfigurationModel>;
+/** Resource tags. */
+export type CreateFabricResponseTagsMap = { [key: string]: string | undefined };
+export const CreateFabricResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<CreateFabricResponseTagsMap>;
 
-/** The EmailConfigurationModel items on this page */
-export type EmailConfigurationModelListResultValueList =
-  Array<EmailConfigurationModel>;
-export const EmailConfigurationModelListResultValueList = /*@__PURE__*/ S.Array(
-  EmailConfigurationModel,
-) as any as S.Schema<EmailConfigurationModelListResultValueList>;
-
-/** The response of a EmailConfigurationModel list operation. */
-export interface EmailConfigurationModelListResult {
-  /** The EmailConfigurationModel items on this page */
-  value: EmailConfigurationModelListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const EmailConfigurationModelListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: EmailConfigurationModelListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "EmailConfigurationModelListResult",
-}) as any as S.Schema<EmailConfigurationModelListResult>;
-
-export interface EventGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The vault name. */
-  vaultName: string;
-  /** The event name. */
-  eventName: string;
-}
-export const EventGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    vaultName: S.String.pipe(T.Label()),
-    eventName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationVaults/{vaultName}/events/{eventName}",
-      code: 200,
-      apiVersion: "2026-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "EventGetRequest",
-}) as any as S.Schema<EventGetRequest>;
+/** Gets or sets the fabric health. */
+export type HealthStatus = "Normal" | "Warning" | "Critical";
+export const HealthStatus = /*@__PURE__*/ S.String;
 
 /** Gets or sets the list of affected resource correlation Ids. This can be used to uniquely identify the count of items affected by a specific category and severity as well as count of item affected by an specific issue. */
 export type HealthErrorModelAffectedResourceCorrelationIdsList = Array<string>;
@@ -573,69 +370,41 @@ export const HealthErrorModel = /*@__PURE__*/ S.suspend(() =>
   identifier: "HealthErrorModel",
 }) as any as S.Schema<HealthErrorModel>;
 
-/** Gets or sets the errors associated with this event. */
-export type EventModelPropertiesHealthErrorsList = Array<HealthErrorModel>;
-export const EventModelPropertiesHealthErrorsList = /*@__PURE__*/ S.Array(
+/** Gets or sets the list of health errors. */
+export type FabricModelPropertiesHealthErrorsList = Array<HealthErrorModel>;
+export const FabricModelPropertiesHealthErrorsList = /*@__PURE__*/ S.Array(
   HealthErrorModel,
-) as any as S.Schema<EventModelPropertiesHealthErrorsList>;
+) as any as S.Schema<FabricModelPropertiesHealthErrorsList>;
 
-/** Event model custom properties. */
-export interface EventModelCustomProperties {
-  /** Discriminator property for EventModelCustomProperties. */
-  instanceType: string;
-}
-export const EventModelCustomProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    instanceType: S.String,
-  }),
-).annotate({
-  identifier: "EventModelCustomProperties",
-}) as any as S.Schema<EventModelCustomProperties>;
-
-/** Event model properties. */
-export interface EventModelProperties {
-  /** Gets or sets the resource type. */
-  resourceType?: string;
-  /** Gets or sets the resource name. */
-  resourceName?: string;
-  /** Gets or sets the event type. */
-  eventType?: string;
-  /** Gets or sets the event name. */
-  eventName?: string;
-  /** Gets or sets the time at which the event occurred at source. */
-  timeOfOccurrence?: string;
-  /** Gets or sets the event severity. */
-  severity?: string;
-  /** Gets or sets the event description. */
-  description?: string;
-  /** Gets or sets the event correlation Id. */
-  correlationId?: string;
-  /** Gets or sets the errors associated with this event. */
-  healthErrors?: EventModelPropertiesHealthErrorsList;
-  /** Event model custom properties. */
-  customProperties: EventModelCustomProperties;
-  /** Gets or sets the provisioning state of the event. */
+/** Fabric model properties. */
+export interface FabricModelProperties {
+  /** Gets or sets the provisioning state of the fabric. */
   provisioningState?: ProvisioningState;
+  /** Gets or sets the service endpoint. */
+  serviceEndpoint?: string;
+  /** Gets or sets the service resource Id. */
+  serviceResourceId?: string;
+  /** Gets or sets the fabric health. */
+  health?: HealthStatus;
+  /** Gets or sets the list of health errors. */
+  healthErrors?: FabricModelPropertiesHealthErrorsList;
+  /** Fabric model custom properties. */
+  customProperties: FabricModelCustomProperties;
 }
-export const EventModelProperties = /*@__PURE__*/ S.suspend(() =>
+export const FabricModelProperties = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    resourceType: S.optional(S.String),
-    resourceName: S.optional(S.String),
-    eventType: S.optional(S.String),
-    eventName: S.optional(S.String),
-    timeOfOccurrence: S.optional(S.String),
-    severity: S.optional(S.String),
-    description: S.optional(S.String),
-    correlationId: S.optional(S.String),
-    healthErrors: S.optional(EventModelPropertiesHealthErrorsList),
-    customProperties: EventModelCustomProperties,
     provisioningState: S.optional(ProvisioningState),
+    serviceEndpoint: S.optional(S.String),
+    serviceResourceId: S.optional(S.String),
+    health: S.optional(HealthStatus),
+    healthErrors: S.optional(FabricModelPropertiesHealthErrorsList),
+    customProperties: FabricModelCustomProperties,
   }),
 ).annotate({
-  identifier: "EventModelProperties",
-}) as any as S.Schema<EventModelProperties>;
+  identifier: "FabricModelProperties",
+}) as any as S.Schema<FabricModelProperties>;
 
-export interface EventGetResponse {
+export interface CreateFabricResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -644,99 +413,26 @@ export interface EventGetResponse {
   type?: string;
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
+  /** Resource tags. */
+  tags?: CreateFabricResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
   /** The resource-specific properties for this resource. */
-  properties?: EventModelProperties;
+  properties?: FabricModelProperties;
 }
-export const EventGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const CreateFabricResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    properties: S.optional(EventModelProperties),
+    tags: S.optional(CreateFabricResponseTagsMap),
+    location: S.String,
+    properties: S.optional(FabricModelProperties),
   }),
 ).annotate({
-  identifier: "EventGetResponse",
-}) as any as S.Schema<EventGetResponse>;
-
-export interface EventListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The vault name. */
-  vaultName: string;
-  /** OData options. */
-  odataOptions?: string;
-  /** Continuation token. */
-  continuationToken?: string;
-  /** Page size. */
-  pageSize?: number;
-}
-export const EventListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    vaultName: S.String.pipe(T.Label()),
-    odataOptions: S.optional(S.String.pipe(T.Query())),
-    continuationToken: S.optional(S.String.pipe(T.Query())),
-    pageSize: S.optional(S.Number.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationVaults/{vaultName}/events",
-      code: 200,
-      apiVersion: "2026-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "EventListRequest",
-}) as any as S.Schema<EventListRequest>;
-
-/** Event model. */
-export interface EventModel {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: EventModelProperties;
-}
-export const EventModel = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(EventModelProperties),
-  }),
-).annotate({ identifier: "EventModel" }) as any as S.Schema<EventModel>;
-
-/** The EventModel items on this page */
-export type EventModelListResultValueList = Array<EventModel>;
-export const EventModelListResultValueList = /*@__PURE__*/ S.Array(
-  EventModel,
-) as any as S.Schema<EventModelListResultValueList>;
-
-/** The response of a EventModel list operation. */
-export interface EventModelListResult {
-  /** The EventModel items on this page */
-  value: EventModelListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const EventModelListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: EventModelListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "EventModelListResult",
-}) as any as S.Schema<EventModelListResult>;
+  identifier: "CreateFabricResponse",
+}) as any as S.Schema<CreateFabricResponse>;
 
 /** Identity model. */
 export interface IdentityModel {
@@ -799,7 +495,7 @@ export const FabricAgentModelPropertiesInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "FabricAgentModelPropertiesInput",
 }) as any as S.Schema<FabricAgentModelPropertiesInput>;
 
-export interface FabricAgentCreateRequest {
+export interface CreateFabricAgentRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -811,7 +507,7 @@ export interface FabricAgentCreateRequest {
   /** The resource-specific properties for this resource. */
   properties?: FabricAgentModelPropertiesInput;
 }
-export const FabricAgentCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateFabricAgentRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -827,8 +523,8 @@ export const FabricAgentCreateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "FabricAgentCreateRequest",
-}) as any as S.Schema<FabricAgentCreateRequest>;
+  identifier: "CreateFabricAgentRequest",
+}) as any as S.Schema<CreateFabricAgentRequest>;
 
 /** Gets or sets the list of health errors. */
 export type FabricAgentModelPropertiesHealthErrorsList =
@@ -880,7 +576,7 @@ export const FabricAgentModelProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "FabricAgentModelProperties",
 }) as any as S.Schema<FabricAgentModelProperties>;
 
-export interface FabricAgentCreateResponse {
+export interface CreateFabricAgentResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -892,7 +588,7 @@ export interface FabricAgentCreateResponse {
   /** The resource-specific properties for this resource. */
   properties?: FabricAgentModelProperties;
 }
-export const FabricAgentCreateResponse = /*@__PURE__*/ S.suspend(() =>
+export const CreateFabricAgentResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -901,281 +597,815 @@ export const FabricAgentCreateResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(FabricAgentModelProperties),
   }),
 ).annotate({
-  identifier: "FabricAgentCreateResponse",
-}) as any as S.Schema<FabricAgentCreateResponse>;
+  identifier: "CreateFabricAgentResponse",
+}) as any as S.Schema<CreateFabricAgentResponse>;
 
-export interface FabricAgentDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The fabric name. */
-  fabricName: string;
-  /** The fabric agent name. */
-  fabricAgentName: string;
-}
-export const FabricAgentDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    fabricName: S.String.pipe(T.Label()),
-    fabricAgentName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationFabrics/{fabricName}/fabricAgents/{fabricAgentName}",
-      code: 200,
-      apiVersion: "2026-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "FabricAgentDeleteRequest",
-}) as any as S.Schema<FabricAgentDeleteRequest>;
-
-export interface FabricAgentDeleteResponse {}
-export const FabricAgentDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "FabricAgentDeleteResponse",
-}) as any as S.Schema<FabricAgentDeleteResponse>;
-
-export interface FabricAgentGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The fabric name. */
-  fabricName: string;
-  /** The fabric agent name. */
-  fabricAgentName: string;
-}
-export const FabricAgentGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    fabricName: S.String.pipe(T.Label()),
-    fabricAgentName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationFabrics/{fabricName}/fabricAgents/{fabricAgentName}",
-      code: 200,
-      apiVersion: "2026-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "FabricAgentGetRequest",
-}) as any as S.Schema<FabricAgentGetRequest>;
-
-export interface FabricAgentGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: FabricAgentModelProperties;
-}
-export const FabricAgentGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(FabricAgentModelProperties),
-  }),
-).annotate({
-  identifier: "FabricAgentGetResponse",
-}) as any as S.Schema<FabricAgentGetResponse>;
-
-export interface FabricAgentListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The fabric name. */
-  fabricName: string;
-}
-export const FabricAgentListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    fabricName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationFabrics/{fabricName}/fabricAgents",
-      code: 200,
-      apiVersion: "2026-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "FabricAgentListRequest",
-}) as any as S.Schema<FabricAgentListRequest>;
-
-/** Fabric agent model. */
-export interface FabricAgentModel {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: FabricAgentModelProperties;
-}
-export const FabricAgentModel = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(FabricAgentModelProperties),
-  }),
-).annotate({
-  identifier: "FabricAgentModel",
-}) as any as S.Schema<FabricAgentModel>;
-
-/** The FabricAgentModel items on this page */
-export type FabricAgentModelListResultValueList = Array<FabricAgentModel>;
-export const FabricAgentModelListResultValueList = /*@__PURE__*/ S.Array(
-  FabricAgentModel,
-) as any as S.Schema<FabricAgentModelListResultValueList>;
-
-/** The response of a FabricAgentModel list operation. */
-export interface FabricAgentModelListResult {
-  /** The FabricAgentModel items on this page */
-  value: FabricAgentModelListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const FabricAgentModelListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: FabricAgentModelListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "FabricAgentModelListResult",
-}) as any as S.Schema<FabricAgentModelListResult>;
-
-/** Resource tags. */
-export type FabricCreateRequestTagsMap = { [key: string]: string | undefined };
-export const FabricCreateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<FabricCreateRequestTagsMap>;
-
-/** Fabric model custom properties. */
-export interface FabricModelCustomProperties {
-  /** Discriminator property for FabricModelCustomProperties. */
+/** Policy model custom properties. */
+export interface PolicyModelCustomProperties {
+  /** Discriminator property for PolicyModelCustomProperties. */
   instanceType: string;
 }
-export const FabricModelCustomProperties = /*@__PURE__*/ S.suspend(() =>
+export const PolicyModelCustomProperties = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     instanceType: S.String,
   }),
 ).annotate({
-  identifier: "FabricModelCustomProperties",
-}) as any as S.Schema<FabricModelCustomProperties>;
+  identifier: "PolicyModelCustomProperties",
+}) as any as S.Schema<PolicyModelCustomProperties>;
 
-/** Fabric model properties. */
-export interface FabricModelPropertiesInput {
-  /** Fabric model custom properties. */
-  customProperties: FabricModelCustomProperties;
+/** Policy model properties. */
+export interface PolicyModelPropertiesInput {
+  /** Policy model custom properties. */
+  customProperties: PolicyModelCustomProperties;
 }
-export const FabricModelPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+export const PolicyModelPropertiesInput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    customProperties: FabricModelCustomProperties,
+    customProperties: PolicyModelCustomProperties,
   }),
 ).annotate({
-  identifier: "FabricModelPropertiesInput",
-}) as any as S.Schema<FabricModelPropertiesInput>;
+  identifier: "PolicyModelPropertiesInput",
+}) as any as S.Schema<PolicyModelPropertiesInput>;
 
-export interface FabricCreateRequest {
+export interface CreatePolicyRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
-  /** The fabric name. */
-  fabricName: string;
-  /** Resource tags. */
-  tags?: FabricCreateRequestTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
+  /** The vault name. */
+  vaultName: string;
+  /** The policy name. */
+  policyName: string;
   /** The resource-specific properties for this resource. */
-  properties?: FabricModelPropertiesInput;
+  properties?: PolicyModelPropertiesInput;
 }
-export const FabricCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreatePolicyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
-    fabricName: S.String.pipe(T.Label()),
-    tags: S.optional(FabricCreateRequestTagsMap),
-    location: S.String,
-    properties: S.optional(FabricModelPropertiesInput),
+    vaultName: S.String.pipe(T.Label()),
+    policyName: S.String.pipe(T.Label()),
+    properties: S.optional(PolicyModelPropertiesInput),
   }).pipe(
     T.Http({
       method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationFabrics/{fabricName}",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationVaults/{vaultName}/replicationPolicies/{policyName}",
       code: 200,
       apiVersion: "2026-05-01",
     }),
   ),
 ).annotate({
-  identifier: "FabricCreateRequest",
-}) as any as S.Schema<FabricCreateRequest>;
+  identifier: "CreatePolicyRequest",
+}) as any as S.Schema<CreatePolicyRequest>;
 
-/** Resource tags. */
-export type FabricCreateResponseTagsMap = { [key: string]: string | undefined };
-export const FabricCreateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<FabricCreateResponseTagsMap>;
-
-/** Gets or sets the fabric health. */
-export type HealthStatus = "Normal" | "Warning" | "Critical";
-export const HealthStatus = /*@__PURE__*/ S.String;
-
-/** Gets or sets the list of health errors. */
-export type FabricModelPropertiesHealthErrorsList = Array<HealthErrorModel>;
-export const FabricModelPropertiesHealthErrorsList = /*@__PURE__*/ S.Array(
-  HealthErrorModel,
-) as any as S.Schema<FabricModelPropertiesHealthErrorsList>;
-
-/** Fabric model properties. */
-export interface FabricModelProperties {
-  /** Gets or sets the provisioning state of the fabric. */
+/** Policy model properties. */
+export interface PolicyModelProperties {
+  /** Gets or sets the provisioning state of the policy. */
   provisioningState?: ProvisioningState;
-  /** Gets or sets the service endpoint. */
-  serviceEndpoint?: string;
-  /** Gets or sets the service resource Id. */
-  serviceResourceId?: string;
-  /** Gets or sets the fabric health. */
-  health?: HealthStatus;
-  /** Gets or sets the list of health errors. */
-  healthErrors?: FabricModelPropertiesHealthErrorsList;
-  /** Fabric model custom properties. */
-  customProperties: FabricModelCustomProperties;
+  /** Policy model custom properties. */
+  customProperties: PolicyModelCustomProperties;
 }
-export const FabricModelProperties = /*@__PURE__*/ S.suspend(() =>
+export const PolicyModelProperties = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     provisioningState: S.optional(ProvisioningState),
-    serviceEndpoint: S.optional(S.String),
-    serviceResourceId: S.optional(S.String),
-    health: S.optional(HealthStatus),
-    healthErrors: S.optional(FabricModelPropertiesHealthErrorsList),
-    customProperties: FabricModelCustomProperties,
+    customProperties: PolicyModelCustomProperties,
   }),
 ).annotate({
-  identifier: "FabricModelProperties",
-}) as any as S.Schema<FabricModelProperties>;
+  identifier: "PolicyModelProperties",
+}) as any as S.Schema<PolicyModelProperties>;
 
-export interface FabricCreateResponse {
+export interface CreatePolicyResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: PolicyModelProperties;
+}
+export const CreatePolicyResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(PolicyModelProperties),
+  }),
+).annotate({
+  identifier: "CreatePolicyResponse",
+}) as any as S.Schema<CreatePolicyResponse>;
+
+/** Protected item model custom properties. */
+export interface ProtectedItemModelCustomProperties {
+  /** Discriminator property for ProtectedItemModelCustomProperties. */
+  instanceType: string;
+}
+export const ProtectedItemModelCustomProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    instanceType: S.String,
+  }),
+).annotate({
+  identifier: "ProtectedItemModelCustomProperties",
+}) as any as S.Schema<ProtectedItemModelCustomProperties>;
+
+/** Protected item model properties. */
+export interface ProtectedItemModelPropertiesInput {
+  /** Gets or sets the policy name. */
+  policyName: string;
+  /** Gets or sets the replication extension name. */
+  replicationExtensionName: string;
+  /** Protected item model custom properties. */
+  customProperties: ProtectedItemModelCustomProperties;
+}
+export const ProtectedItemModelPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    policyName: S.String,
+    replicationExtensionName: S.String,
+    customProperties: ProtectedItemModelCustomProperties,
+  }),
+).annotate({
+  identifier: "ProtectedItemModelPropertiesInput",
+}) as any as S.Schema<ProtectedItemModelPropertiesInput>;
+
+export interface CreateProtectedItemRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The vault name. */
+  vaultName: string;
+  /** The protected item name. */
+  protectedItemName: string;
+  /** The resource-specific properties for this resource. */
+  properties?: ProtectedItemModelPropertiesInput;
+}
+export const CreateProtectedItemRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    vaultName: S.String.pipe(T.Label()),
+    protectedItemName: S.String.pipe(T.Label()),
+    properties: S.optional(ProtectedItemModelPropertiesInput),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationVaults/{vaultName}/protectedItems/{protectedItemName}",
+      code: 200,
+      apiVersion: "2026-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "CreateProtectedItemRequest",
+}) as any as S.Schema<CreateProtectedItemRequest>;
+
+/** Gets or sets the protection state. */
+export type ProtectionState =
+  | "UnprotectedStatesBegin"
+  | "EnablingProtection"
+  | "EnablingFailed"
+  | "DisablingProtection"
+  | "MarkedForDeletion"
+  | "DisablingFailed"
+  | "UnprotectedStatesEnd"
+  | "InitialReplicationStatesBegin"
+  | "InitialReplicationInProgress"
+  | "InitialReplicationCompletedOnPrimary"
+  | "InitialReplicationCompletedOnRecovery"
+  | "InitialReplicationFailed"
+  | "InitialReplicationStatesEnd"
+  | "ProtectedStatesBegin"
+  | "Protected"
+  | "ProtectedStatesEnd"
+  | "PlannedFailoverTransitionStatesBegin"
+  | "PlannedFailoverInitiated"
+  | "PlannedFailoverCompleting"
+  | "PlannedFailoverCompleted"
+  | "PlannedFailoverFailed"
+  | "PlannedFailoverCompletionFailed"
+  | "PlannedFailoverTransitionStatesEnd"
+  | "UnplannedFailoverTransitionStatesBegin"
+  | "UnplannedFailoverInitiated"
+  | "UnplannedFailoverCompleting"
+  | "UnplannedFailoverCompleted"
+  | "UnplannedFailoverFailed"
+  | "UnplannedFailoverCompletionFailed"
+  | "UnplannedFailoverTransitionStatesEnd"
+  | "CommitFailoverStatesBegin"
+  | "CommitFailoverInProgressOnPrimary"
+  | "CommitFailoverInProgressOnRecovery"
+  | "CommitFailoverCompleted"
+  | "CommitFailoverFailedOnPrimary"
+  | "CommitFailoverFailedOnRecovery"
+  | "CommitFailoverStatesEnd"
+  | "CancelFailoverStatesBegin"
+  | "CancelFailoverInProgressOnPrimary"
+  | "CancelFailoverInProgressOnRecovery"
+  | "CancelFailoverFailedOnPrimary"
+  | "CancelFailoverFailedOnRecovery"
+  | "CancelFailoverStatesEnd"
+  | "ChangeRecoveryPointStatesBegin"
+  | "ChangeRecoveryPointInitiated"
+  | "ChangeRecoveryPointCompleted"
+  | "ChangeRecoveryPointFailed"
+  | "ChangeRecoveryPointStatesEnd"
+  | "ReprotectStatesBegin"
+  | "ReprotectInitiated"
+  | "ReprotectFailed"
+  | "ReprotectStatesEnd";
+export const ProtectionState = /*@__PURE__*/ S.String;
+
+/** Gets or sets the test failover state. */
+export type TestFailoverState =
+  | "None"
+  | "TestFailoverInitiated"
+  | "TestFailoverCompleting"
+  | "TestFailoverCompleted"
+  | "TestFailoverFailed"
+  | "TestFailoverCompletionFailed"
+  | "TestFailoverCleanupInitiated"
+  | "TestFailoverCleanupCompleting"
+  | "MarkedForDeletion";
+export const TestFailoverState = /*@__PURE__*/ S.String;
+
+/** Gets or sets the resynchronization state. */
+export type ResynchronizationState =
+  | "None"
+  | "ResynchronizationInitiated"
+  | "ResynchronizationCompleted"
+  | "ResynchronizationFailed";
+export const ResynchronizationState = /*@__PURE__*/ S.String;
+
+/** Protected item job properties. */
+export interface ProtectedItemJobProperties {
+  /** Gets or sets protection scenario name. */
+  scenarioName?: string;
+  /** Gets or sets job Id. */
+  id?: string;
+  /** Gets or sets job name. */
+  name?: string;
+  /** Gets or sets the job friendly display name. */
+  displayName?: string;
+  /** Gets or sets job state. */
+  state?: string;
+  /** Gets or sets start time of the job. */
+  startTime?: string;
+  /** Gets or sets end time of the job. */
+  endTime?: string;
+}
+export const ProtectedItemJobProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    scenarioName: S.optional(S.String),
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    displayName: S.optional(S.String),
+    state: S.optional(S.String),
+    startTime: S.optional(S.String),
+    endTime: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ProtectedItemJobProperties",
+}) as any as S.Schema<ProtectedItemJobProperties>;
+
+/** Gets or sets the allowed scenarios on the protected item. */
+export type ProtectedItemModelPropertiesAllowedJobsList = Array<string>;
+export const ProtectedItemModelPropertiesAllowedJobsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ProtectedItemModelPropertiesAllowedJobsList>;
+
+/** Gets or sets the list of health errors. */
+export type ProtectedItemModelPropertiesHealthErrorsList =
+  Array<HealthErrorModel>;
+export const ProtectedItemModelPropertiesHealthErrorsList =
+  /*@__PURE__*/ S.Array(
+    HealthErrorModel,
+  ) as any as S.Schema<ProtectedItemModelPropertiesHealthErrorsList>;
+
+/** Protected item model properties. */
+export interface ProtectedItemModelProperties {
+  /** Gets or sets the policy name. */
+  policyName: string;
+  /** Gets or sets the replication extension name. */
+  replicationExtensionName: string;
+  /** Gets or sets the protected item correlation Id. */
+  correlationId?: string;
+  /** Gets or sets the provisioning state of the fabric agent. */
+  provisioningState?: ProvisioningState;
+  /** Gets or sets the protection state. */
+  protectionState?: ProtectionState;
+  /** Gets or sets the protection state description. */
+  protectionStateDescription?: string;
+  /** Gets or sets the test failover state. */
+  testFailoverState?: TestFailoverState;
+  /** Gets or sets the Test failover state description. */
+  testFailoverStateDescription?: string;
+  /** Gets or sets the resynchronization state. */
+  resynchronizationState?: ResynchronizationState;
+  /** Gets or sets the fabric object Id. */
+  fabricObjectId?: string;
+  /** Gets or sets the fabric object name. */
+  fabricObjectName?: string;
+  /** Gets or sets the source fabric provider Id. */
+  sourceFabricProviderId?: string;
+  /** Gets or sets the target fabric provider Id. */
+  targetFabricProviderId?: string;
+  /** Gets or sets the fabric Id. */
+  fabricId?: string;
+  /** Gets or sets the target fabric Id. */
+  targetFabricId?: string;
+  /** Gets or sets the fabric agent Id. */
+  fabricAgentId?: string;
+  /** Gets or sets the target fabric agent Id. */
+  targetFabricAgentId?: string;
+  /** Gets or sets a value indicating whether resynchronization is required or not. */
+  resyncRequired?: boolean;
+  /** Gets or sets the Last successful planned failover time. */
+  lastSuccessfulPlannedFailoverTime?: string;
+  /** Gets or sets the Last successful unplanned failover time. */
+  lastSuccessfulUnplannedFailoverTime?: string;
+  /** Gets or sets the Last successful test failover time. */
+  lastSuccessfulTestFailoverTime?: string;
+  /** Gets or sets the current scenario. */
+  currentJob?: ProtectedItemJobProperties;
+  /** Gets or sets the allowed scenarios on the protected item. */
+  allowedJobs?: ProtectedItemModelPropertiesAllowedJobsList;
+  /** Gets or sets the last failed enabled protection job. */
+  lastFailedEnableProtectionJob?: ProtectedItemJobProperties;
+  /** Gets or sets the last failed planned failover job. */
+  lastFailedPlannedFailoverJob?: ProtectedItemJobProperties;
+  /** Gets or sets the last test failover job. */
+  lastTestFailoverJob?: ProtectedItemJobProperties;
+  /** Gets or sets protected item replication health. */
+  replicationHealth?: HealthStatus;
+  /** Gets or sets the list of health errors. */
+  healthErrors?: ProtectedItemModelPropertiesHealthErrorsList;
+  /** Protected item model custom properties. */
+  customProperties: ProtectedItemModelCustomProperties;
+}
+export const ProtectedItemModelProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    policyName: S.String,
+    replicationExtensionName: S.String,
+    correlationId: S.optional(S.String),
+    provisioningState: S.optional(ProvisioningState),
+    protectionState: S.optional(ProtectionState),
+    protectionStateDescription: S.optional(S.String),
+    testFailoverState: S.optional(TestFailoverState),
+    testFailoverStateDescription: S.optional(S.String),
+    resynchronizationState: S.optional(ResynchronizationState),
+    fabricObjectId: S.optional(S.String),
+    fabricObjectName: S.optional(S.String),
+    sourceFabricProviderId: S.optional(S.String),
+    targetFabricProviderId: S.optional(S.String),
+    fabricId: S.optional(S.String),
+    targetFabricId: S.optional(S.String),
+    fabricAgentId: S.optional(S.String),
+    targetFabricAgentId: S.optional(S.String),
+    resyncRequired: S.optional(S.Boolean),
+    lastSuccessfulPlannedFailoverTime: S.optional(S.String),
+    lastSuccessfulUnplannedFailoverTime: S.optional(S.String),
+    lastSuccessfulTestFailoverTime: S.optional(S.String),
+    currentJob: S.optional(ProtectedItemJobProperties),
+    allowedJobs: S.optional(ProtectedItemModelPropertiesAllowedJobsList),
+    lastFailedEnableProtectionJob: S.optional(ProtectedItemJobProperties),
+    lastFailedPlannedFailoverJob: S.optional(ProtectedItemJobProperties),
+    lastTestFailoverJob: S.optional(ProtectedItemJobProperties),
+    replicationHealth: S.optional(HealthStatus),
+    healthErrors: S.optional(ProtectedItemModelPropertiesHealthErrorsList),
+    customProperties: ProtectedItemModelCustomProperties,
+  }),
+).annotate({
+  identifier: "ProtectedItemModelProperties",
+}) as any as S.Schema<ProtectedItemModelProperties>;
+
+export interface CreateProtectedItemResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: ProtectedItemModelProperties;
+}
+export const CreateProtectedItemResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ProtectedItemModelProperties),
+  }),
+).annotate({
+  identifier: "CreateProtectedItemResponse",
+}) as any as S.Schema<CreateProtectedItemResponse>;
+
+/** Replication extension model custom properties. */
+export interface ReplicationExtensionModelCustomProperties {
+  /** Discriminator property for ReplicationExtensionModelCustomProperties. */
+  instanceType: string;
+}
+export const ReplicationExtensionModelCustomProperties =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      instanceType: S.String,
+    }),
+  ).annotate({
+    identifier: "ReplicationExtensionModelCustomProperties",
+  }) as any as S.Schema<ReplicationExtensionModelCustomProperties>;
+
+/** Replication extension model properties. */
+export interface ReplicationExtensionModelPropertiesInput {
+  /** Replication extension model custom properties. */
+  customProperties: ReplicationExtensionModelCustomProperties;
+}
+export const ReplicationExtensionModelPropertiesInput = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      customProperties: ReplicationExtensionModelCustomProperties,
+    }),
+).annotate({
+  identifier: "ReplicationExtensionModelPropertiesInput",
+}) as any as S.Schema<ReplicationExtensionModelPropertiesInput>;
+
+export interface CreateReplicationExtensionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The vault name. */
+  vaultName: string;
+  /** The replication extension name. */
+  replicationExtensionName: string;
+  /** The resource-specific properties for this resource. */
+  properties?: ReplicationExtensionModelPropertiesInput;
+}
+export const CreateReplicationExtensionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    vaultName: S.String.pipe(T.Label()),
+    replicationExtensionName: S.String.pipe(T.Label()),
+    properties: S.optional(ReplicationExtensionModelPropertiesInput),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationVaults/{vaultName}/replicationExtensions/{replicationExtensionName}",
+      code: 200,
+      apiVersion: "2026-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "CreateReplicationExtensionRequest",
+}) as any as S.Schema<CreateReplicationExtensionRequest>;
+
+/** Replication extension model properties. */
+export interface ReplicationExtensionModelProperties {
+  /** Gets or sets the provisioning state of the replication extension. */
+  provisioningState?: ProvisioningState;
+  /** Replication extension model custom properties. */
+  customProperties: ReplicationExtensionModelCustomProperties;
+}
+export const ReplicationExtensionModelProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provisioningState: S.optional(ProvisioningState),
+    customProperties: ReplicationExtensionModelCustomProperties,
+  }),
+).annotate({
+  identifier: "ReplicationExtensionModelProperties",
+}) as any as S.Schema<ReplicationExtensionModelProperties>;
+
+export interface CreateReplicationExtensionResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: ReplicationExtensionModelProperties;
+}
+export const CreateReplicationExtensionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ReplicationExtensionModelProperties),
+  }),
+).annotate({
+  identifier: "CreateReplicationExtensionResponse",
+}) as any as S.Schema<CreateReplicationExtensionResponse>;
+
+/** Resource tags. */
+export type CreateVaultRequestTagsMap = { [key: string]: string | undefined };
+export const CreateVaultRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<CreateVaultRequestTagsMap>;
+
+/** Gets or sets the type of vault. */
+export type ReplicationVaultType = "DisasterRecovery" | "Migrate";
+export const ReplicationVaultType = /*@__PURE__*/ S.String;
+
+/** Property to enable or disable resource provider inbound network traffic from public clients. */
+export type PublicNetworkAccess = "Enabled" | "Disabled";
+export const PublicNetworkAccess = /*@__PURE__*/ S.String;
+
+/** Vault properties. */
+export interface VaultModelPropertiesInput {
+  /** Gets or sets the type of vault. */
+  vaultType?: ReplicationVaultType | (string & {});
+  /** Property to enable or disable resource provider inbound network traffic from public clients. */
+  publicNetworkAccess?: PublicNetworkAccess | (string & {});
+}
+export const VaultModelPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    vaultType: S.optional(ReplicationVaultType),
+    publicNetworkAccess: S.optional(PublicNetworkAccess),
+  }),
+).annotate({
+  identifier: "VaultModelPropertiesInput",
+}) as any as S.Schema<VaultModelPropertiesInput>;
+
+/** Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed). */
+export type ManagedServiceIdentityType =
+  | "None"
+  | "SystemAssigned"
+  | "UserAssigned"
+  | "SystemAssigned,UserAssigned";
+export const ManagedServiceIdentityType = /*@__PURE__*/ S.String;
+
+/** User assigned identity properties */
+export interface UserAssignedIdentityInput {}
+export const UserAssignedIdentityInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "UserAssignedIdentityInput",
+}) as any as S.Schema<UserAssignedIdentityInput>;
+
+/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+export type CreateVaultRequestIdentityUserAssignedIdentitiesMap = {
+  [key: string]: UserAssignedIdentityInput | undefined;
+};
+export const CreateVaultRequestIdentityUserAssignedIdentitiesMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    UserAssignedIdentityInput,
+  ) as any as S.Schema<CreateVaultRequestIdentityUserAssignedIdentitiesMap>;
+
+/** Managed service identity (system assigned and/or user assigned identities) */
+export interface CreateVaultRequestIdentity {
+  type: ManagedServiceIdentityType | (string & {});
+  /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+  userAssignedIdentities?: CreateVaultRequestIdentityUserAssignedIdentitiesMap;
+}
+export const CreateVaultRequestIdentity = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: ManagedServiceIdentityType,
+    userAssignedIdentities: S.optional(
+      CreateVaultRequestIdentityUserAssignedIdentitiesMap,
+    ),
+  }),
+).annotate({
+  identifier: "CreateVaultRequestIdentity",
+}) as any as S.Schema<CreateVaultRequestIdentity>;
+
+export interface CreateVaultRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The vault name. */
+  vaultName: string;
+  /** Resource tags. */
+  tags?: CreateVaultRequestTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: VaultModelPropertiesInput;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: CreateVaultRequestIdentity;
+}
+export const CreateVaultRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    vaultName: S.String.pipe(T.Label()),
+    tags: S.optional(CreateVaultRequestTagsMap),
+    location: S.String,
+    properties: S.optional(VaultModelPropertiesInput),
+    identity: S.optional(CreateVaultRequestIdentity),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationVaults/{vaultName}",
+      code: 200,
+      apiVersion: "2026-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "CreateVaultRequest",
+}) as any as S.Schema<CreateVaultRequest>;
+
+/** Resource tags. */
+export type CreateVaultResponseTagsMap = { [key: string]: string | undefined };
+export const CreateVaultResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<CreateVaultResponseTagsMap>;
+
+/** Private endpoint state for the vault. */
+export type VaultPrivateEndpointState =
+  | "None"
+  | "InProgress"
+  | "Succeeded"
+  | "Deleting"
+  | "Failed"
+  | "Pending";
+export const VaultPrivateEndpointState = /*@__PURE__*/ S.String;
+
+/** Represent private Endpoint network resource that is linked to the Private Endpoint connection. */
+export interface PrivateEndpoint {
+  /** Gets or sets the id. */
+  id?: string;
+}
+export const PrivateEndpoint = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PrivateEndpoint",
+}) as any as S.Schema<PrivateEndpoint>;
+
+/** Gets or sets the status. */
+export type PrivateEndpointConnectionStatus =
+  | "Approved"
+  | "Disconnected"
+  | "Pending"
+  | "Rejected";
+export const PrivateEndpointConnectionStatus = /*@__PURE__*/ S.String;
+
+/** Represents Private link service connection state. */
+export interface PrivateLinkServiceConnectionState {
+  /** Gets or sets the status. */
+  status?: PrivateEndpointConnectionStatus | (string & {});
+  /** Gets or sets description. */
+  description?: string;
+  /** Gets or sets actions required. */
+  actionsRequired?: string;
+}
+export const PrivateLinkServiceConnectionState = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: S.optional(PrivateEndpointConnectionStatus),
+    description: S.optional(S.String),
+    actionsRequired: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PrivateLinkServiceConnectionState",
+}) as any as S.Schema<PrivateLinkServiceConnectionState>;
+
+/** Represents Private endpoint connection response properties. */
+export interface PrivateEndpointConnectionResponseProperties {
+  /** Gets or sets provisioning state of the private endpoint connection. */
+  provisioningState?: ProvisioningState;
+  /** Represent private Endpoint network resource that is linked to the Private Endpoint connection. */
+  privateEndpoint?: PrivateEndpoint;
+  /** Represents Private link service connection state. */
+  privateLinkServiceConnectionState?: PrivateLinkServiceConnectionState;
+}
+export const PrivateEndpointConnectionResponseProperties =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      provisioningState: S.optional(ProvisioningState),
+      privateEndpoint: S.optional(PrivateEndpoint),
+      privateLinkServiceConnectionState: S.optional(
+        PrivateLinkServiceConnectionState,
+      ),
+    }),
+  ).annotate({
+    identifier: "PrivateEndpointConnectionResponseProperties",
+  }) as any as S.Schema<PrivateEndpointConnectionResponseProperties>;
+
+/** Represents private endpoint connection. */
+export interface PrivateEndpointConnection {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: PrivateEndpointConnectionResponseProperties;
+}
+export const PrivateEndpointConnection = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(PrivateEndpointConnectionResponseProperties),
+  }),
+).annotate({
+  identifier: "PrivateEndpointConnection",
+}) as any as S.Schema<PrivateEndpointConnection>;
+
+/** List of private endpoint connection. */
+export type VaultModelPropertiesPrivateEndpointConnectionsList =
+  Array<PrivateEndpointConnection>;
+export const VaultModelPropertiesPrivateEndpointConnectionsList =
+  /*@__PURE__*/ S.Array(
+    PrivateEndpointConnection,
+  ) as any as S.Schema<VaultModelPropertiesPrivateEndpointConnectionsList>;
+
+/** Vault properties. */
+export interface VaultModelProperties {
+  /** Gets or sets the provisioning state of the vault. */
+  provisioningState?: ProvisioningState;
+  /** Gets or sets the service resource Id. */
+  serviceResourceId?: string;
+  /** Gets or sets the type of vault. */
+  vaultType?: ReplicationVaultType;
+  /** Private endpoint state for the vault. */
+  privateEndpointState?: VaultPrivateEndpointState;
+  /** Property to enable or disable resource provider inbound network traffic from public clients. */
+  publicNetworkAccess?: PublicNetworkAccess;
+  /** List of private endpoint connection. */
+  privateEndpointConnections?: VaultModelPropertiesPrivateEndpointConnectionsList;
+}
+export const VaultModelProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provisioningState: S.optional(ProvisioningState),
+    serviceResourceId: S.optional(S.String),
+    vaultType: S.optional(ReplicationVaultType),
+    privateEndpointState: S.optional(VaultPrivateEndpointState),
+    publicNetworkAccess: S.optional(PublicNetworkAccess),
+    privateEndpointConnections: S.optional(
+      VaultModelPropertiesPrivateEndpointConnectionsList,
+    ),
+  }),
+).annotate({
+  identifier: "VaultModelProperties",
+}) as any as S.Schema<VaultModelProperties>;
+
+/** User assigned identity properties */
+export interface UserAssignedIdentity {
+  /** The principal ID of the assigned identity. */
+  principalId?: string;
+  /** The client ID of the assigned identity. */
+  clientId?: string;
+}
+export const UserAssignedIdentity = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    principalId: S.optional(S.String),
+    clientId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "UserAssignedIdentity",
+}) as any as S.Schema<UserAssignedIdentity>;
+
+/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+export type CreateVaultResponseIdentityUserAssignedIdentitiesMap = {
+  [key: string]: UserAssignedIdentity | undefined;
+};
+export const CreateVaultResponseIdentityUserAssignedIdentitiesMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    UserAssignedIdentity,
+  ) as any as S.Schema<CreateVaultResponseIdentityUserAssignedIdentitiesMap>;
+
+/** Managed service identity (system assigned and/or user assigned identities) */
+export interface CreateVaultResponseIdentity {
+  /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
+  principalId?: string;
+  /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
+  tenantId?: string;
+  type: ManagedServiceIdentityType;
+  /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+  userAssignedIdentities?: CreateVaultResponseIdentityUserAssignedIdentitiesMap;
+}
+export const CreateVaultResponseIdentity = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    principalId: S.optional(S.String),
+    tenantId: S.optional(S.String),
+    type: ManagedServiceIdentityType,
+    userAssignedIdentities: S.optional(
+      CreateVaultResponseIdentityUserAssignedIdentitiesMap,
+    ),
+  }),
+).annotate({
+  identifier: "CreateVaultResponseIdentity",
+}) as any as S.Schema<CreateVaultResponseIdentity>;
+
+export interface CreateVaultResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -1185,27 +1415,30 @@ export interface FabricCreateResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: FabricCreateResponseTagsMap;
+  tags?: CreateVaultResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
-  properties?: FabricModelProperties;
+  properties?: VaultModelProperties;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: CreateVaultResponseIdentity;
 }
-export const FabricCreateResponse = /*@__PURE__*/ S.suspend(() =>
+export const CreateVaultResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(FabricCreateResponseTagsMap),
+    tags: S.optional(CreateVaultResponseTagsMap),
     location: S.String,
-    properties: S.optional(FabricModelProperties),
+    properties: S.optional(VaultModelProperties),
+    identity: S.optional(CreateVaultResponseIdentity),
   }),
 ).annotate({
-  identifier: "FabricCreateResponse",
-}) as any as S.Schema<FabricCreateResponse>;
+  identifier: "CreateVaultResponse",
+}) as any as S.Schema<CreateVaultResponse>;
 
-export interface FabricDeleteRequest {
+export interface DeleteFabricRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1213,7 +1446,7 @@ export interface FabricDeleteRequest {
   /** The fabric name. */
   fabricName: string;
 }
-export const FabricDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteFabricRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1227,17 +1460,394 @@ export const FabricDeleteRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "FabricDeleteRequest",
-}) as any as S.Schema<FabricDeleteRequest>;
+  identifier: "DeleteFabricRequest",
+}) as any as S.Schema<DeleteFabricRequest>;
 
-export interface FabricDeleteResponse {}
-export const FabricDeleteResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteFabricResponse {}
+export const DeleteFabricResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "FabricDeleteResponse",
-}) as any as S.Schema<FabricDeleteResponse>;
+  identifier: "DeleteFabricResponse",
+}) as any as S.Schema<DeleteFabricResponse>;
 
-export interface FabricGetRequest {
+export interface DeleteFabricAgentRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The fabric name. */
+  fabricName: string;
+  /** The fabric agent name. */
+  fabricAgentName: string;
+}
+export const DeleteFabricAgentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    fabricName: S.String.pipe(T.Label()),
+    fabricAgentName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationFabrics/{fabricName}/fabricAgents/{fabricAgentName}",
+      code: 200,
+      apiVersion: "2026-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteFabricAgentRequest",
+}) as any as S.Schema<DeleteFabricAgentRequest>;
+
+export interface DeleteFabricAgentResponse {}
+export const DeleteFabricAgentResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteFabricAgentResponse",
+}) as any as S.Schema<DeleteFabricAgentResponse>;
+
+export interface DeletePolicyRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The vault name. */
+  vaultName: string;
+  /** The policy name. */
+  policyName: string;
+}
+export const DeletePolicyRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    vaultName: S.String.pipe(T.Label()),
+    policyName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationVaults/{vaultName}/replicationPolicies/{policyName}",
+      code: 200,
+      apiVersion: "2026-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeletePolicyRequest",
+}) as any as S.Schema<DeletePolicyRequest>;
+
+export interface DeletePolicyResponse {}
+export const DeletePolicyResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeletePolicyResponse",
+}) as any as S.Schema<DeletePolicyResponse>;
+
+export interface DeletePrivateEndpointConnectionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The vault name. */
+  vaultName: string;
+  /** The private endpoint connection name. */
+  privateEndpointConnectionName: string;
+}
+export const DeletePrivateEndpointConnectionRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      vaultName: S.String.pipe(T.Label()),
+      privateEndpointConnectionName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationVaults/{vaultName}/privateEndpointConnections/{privateEndpointConnectionName}",
+        code: 200,
+        apiVersion: "2026-05-01",
+      }),
+    ),
+).annotate({
+  identifier: "DeletePrivateEndpointConnectionRequest",
+}) as any as S.Schema<DeletePrivateEndpointConnectionRequest>;
+
+export interface DeletePrivateEndpointConnectionResponse {}
+export const DeletePrivateEndpointConnectionResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "DeletePrivateEndpointConnectionResponse",
+}) as any as S.Schema<DeletePrivateEndpointConnectionResponse>;
+
+export interface DeleteProtectedItemRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The vault name. */
+  vaultName: string;
+  /** The protected item name. */
+  protectedItemName: string;
+  /** A flag indicating whether to do force delete or not. */
+  forceDelete?: boolean;
+}
+export const DeleteProtectedItemRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    vaultName: S.String.pipe(T.Label()),
+    protectedItemName: S.String.pipe(T.Label()),
+    forceDelete: S.optional(S.Boolean.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationVaults/{vaultName}/protectedItems/{protectedItemName}",
+      code: 200,
+      apiVersion: "2026-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteProtectedItemRequest",
+}) as any as S.Schema<DeleteProtectedItemRequest>;
+
+export interface DeleteProtectedItemResponse {}
+export const DeleteProtectedItemResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteProtectedItemResponse",
+}) as any as S.Schema<DeleteProtectedItemResponse>;
+
+export interface DeleteReplicationExtensionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The vault name. */
+  vaultName: string;
+  /** The replication extension name. */
+  replicationExtensionName: string;
+}
+export const DeleteReplicationExtensionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    vaultName: S.String.pipe(T.Label()),
+    replicationExtensionName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationVaults/{vaultName}/replicationExtensions/{replicationExtensionName}",
+      code: 200,
+      apiVersion: "2026-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteReplicationExtensionRequest",
+}) as any as S.Schema<DeleteReplicationExtensionRequest>;
+
+export interface DeleteReplicationExtensionResponse {}
+export const DeleteReplicationExtensionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteReplicationExtensionResponse",
+}) as any as S.Schema<DeleteReplicationExtensionResponse>;
+
+export interface DeleteVaultRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The vault name. */
+  vaultName: string;
+}
+export const DeleteVaultRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    vaultName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationVaults/{vaultName}",
+      code: 200,
+      apiVersion: "2026-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteVaultRequest",
+}) as any as S.Schema<DeleteVaultRequest>;
+
+export interface DeleteVaultResponse {}
+export const DeleteVaultResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteVaultResponse",
+}) as any as S.Schema<DeleteVaultResponse>;
+
+export interface GetEmailConfigurationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The vault name. */
+  vaultName: string;
+  /** The email configuration name. */
+  emailConfigurationName: string;
+}
+export const GetEmailConfigurationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    vaultName: S.String.pipe(T.Label()),
+    emailConfigurationName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationVaults/{vaultName}/alertSettings/{emailConfigurationName}",
+      code: 200,
+      apiVersion: "2026-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetEmailConfigurationRequest",
+}) as any as S.Schema<GetEmailConfigurationRequest>;
+
+export interface GetEmailConfigurationResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: EmailConfigurationModelProperties;
+}
+export const GetEmailConfigurationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(EmailConfigurationModelProperties),
+  }),
+).annotate({
+  identifier: "GetEmailConfigurationResponse",
+}) as any as S.Schema<GetEmailConfigurationResponse>;
+
+export interface GetEventRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The vault name. */
+  vaultName: string;
+  /** The event name. */
+  eventName: string;
+}
+export const GetEventRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    vaultName: S.String.pipe(T.Label()),
+    eventName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationVaults/{vaultName}/events/{eventName}",
+      code: 200,
+      apiVersion: "2026-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetEventRequest",
+}) as any as S.Schema<GetEventRequest>;
+
+/** Gets or sets the errors associated with this event. */
+export type EventModelPropertiesHealthErrorsList = Array<HealthErrorModel>;
+export const EventModelPropertiesHealthErrorsList = /*@__PURE__*/ S.Array(
+  HealthErrorModel,
+) as any as S.Schema<EventModelPropertiesHealthErrorsList>;
+
+/** Event model custom properties. */
+export interface EventModelCustomProperties {
+  /** Discriminator property for EventModelCustomProperties. */
+  instanceType: string;
+}
+export const EventModelCustomProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    instanceType: S.String,
+  }),
+).annotate({
+  identifier: "EventModelCustomProperties",
+}) as any as S.Schema<EventModelCustomProperties>;
+
+/** Event model properties. */
+export interface EventModelProperties {
+  /** Gets or sets the resource type. */
+  resourceType?: string;
+  /** Gets or sets the resource name. */
+  resourceName?: string;
+  /** Gets or sets the event type. */
+  eventType?: string;
+  /** Gets or sets the event name. */
+  eventName?: string;
+  /** Gets or sets the time at which the event occurred at source. */
+  timeOfOccurrence?: string;
+  /** Gets or sets the event severity. */
+  severity?: string;
+  /** Gets or sets the event description. */
+  description?: string;
+  /** Gets or sets the event correlation Id. */
+  correlationId?: string;
+  /** Gets or sets the errors associated with this event. */
+  healthErrors?: EventModelPropertiesHealthErrorsList;
+  /** Event model custom properties. */
+  customProperties: EventModelCustomProperties;
+  /** Gets or sets the provisioning state of the event. */
+  provisioningState?: ProvisioningState;
+}
+export const EventModelProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    resourceType: S.optional(S.String),
+    resourceName: S.optional(S.String),
+    eventType: S.optional(S.String),
+    eventName: S.optional(S.String),
+    timeOfOccurrence: S.optional(S.String),
+    severity: S.optional(S.String),
+    description: S.optional(S.String),
+    correlationId: S.optional(S.String),
+    healthErrors: S.optional(EventModelPropertiesHealthErrorsList),
+    customProperties: EventModelCustomProperties,
+    provisioningState: S.optional(ProvisioningState),
+  }),
+).annotate({
+  identifier: "EventModelProperties",
+}) as any as S.Schema<EventModelProperties>;
+
+export interface GetEventResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: EventModelProperties;
+}
+export const GetEventResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(EventModelProperties),
+  }),
+).annotate({
+  identifier: "GetEventResponse",
+}) as any as S.Schema<GetEventResponse>;
+
+export interface GetFabricRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1245,7 +1855,7 @@ export interface FabricGetRequest {
   /** The fabric name. */
   fabricName: string;
 }
-export const FabricGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetFabricRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1259,17 +1869,17 @@ export const FabricGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "FabricGetRequest",
-}) as any as S.Schema<FabricGetRequest>;
+  identifier: "GetFabricRequest",
+}) as any as S.Schema<GetFabricRequest>;
 
 /** Resource tags. */
-export type FabricGetResponseTagsMap = { [key: string]: string | undefined };
-export const FabricGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetFabricResponseTagsMap = { [key: string]: string | undefined };
+export const GetFabricResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<FabricGetResponseTagsMap>;
+) as any as S.Schema<GetFabricResponseTagsMap>;
 
-export interface FabricGetResponse {
+export interface GetFabricResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -1279,174 +1889,55 @@ export interface FabricGetResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: FabricGetResponseTagsMap;
+  tags?: GetFabricResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: FabricModelProperties;
 }
-export const FabricGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetFabricResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(FabricGetResponseTagsMap),
+    tags: S.optional(GetFabricResponseTagsMap),
     location: S.String,
     properties: S.optional(FabricModelProperties),
   }),
 ).annotate({
-  identifier: "FabricGetResponse",
-}) as any as S.Schema<FabricGetResponse>;
+  identifier: "GetFabricResponse",
+}) as any as S.Schema<GetFabricResponse>;
 
-export interface FabricListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Continuation token from the previous call. */
-  continuationToken?: string;
-}
-export const FabricListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    continuationToken: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationFabrics",
-      code: 200,
-      apiVersion: "2026-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "FabricListRequest",
-}) as any as S.Schema<FabricListRequest>;
-
-/** Resource tags. */
-export type FabricModelTagsMap = { [key: string]: string | undefined };
-export const FabricModelTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<FabricModelTagsMap>;
-
-/** Fabric model. */
-export interface FabricModel {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: FabricModelTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: FabricModelProperties;
-}
-export const FabricModel = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(FabricModelTagsMap),
-    location: S.String,
-    properties: S.optional(FabricModelProperties),
-  }),
-).annotate({ identifier: "FabricModel" }) as any as S.Schema<FabricModel>;
-
-/** The FabricModel items on this page */
-export type FabricModelListResultValueList = Array<FabricModel>;
-export const FabricModelListResultValueList = /*@__PURE__*/ S.Array(
-  FabricModel,
-) as any as S.Schema<FabricModelListResultValueList>;
-
-/** The response of a FabricModel list operation. */
-export interface FabricModelListResult {
-  /** The FabricModel items on this page */
-  value: FabricModelListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const FabricModelListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: FabricModelListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "FabricModelListResult",
-}) as any as S.Schema<FabricModelListResult>;
-
-export interface FabricListBySubscriptionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-}
-export const FabricListBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.DataReplication/replicationFabrics",
-      code: 200,
-      apiVersion: "2026-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "FabricListBySubscriptionRequest",
-}) as any as S.Schema<FabricListBySubscriptionRequest>;
-
-/** Gets or sets the resource tags. */
-export type FabricUpdateRequestTagsMap = { [key: string]: string | undefined };
-export const FabricUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<FabricUpdateRequestTagsMap>;
-
-export interface FabricUpdateRequest {
+export interface GetFabricAgentRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The fabric name. */
   fabricName: string;
-  /** Gets or sets the resource tags. */
-  tags?: FabricUpdateRequestTagsMap;
-  /** Fabric model properties. */
-  properties?: FabricModelPropertiesInput;
+  /** The fabric agent name. */
+  fabricAgentName: string;
 }
-export const FabricUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetFabricAgentRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     fabricName: S.String.pipe(T.Label()),
-    tags: S.optional(FabricUpdateRequestTagsMap),
-    properties: S.optional(FabricModelPropertiesInput),
+    fabricAgentName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationFabrics/{fabricName}",
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationFabrics/{fabricName}/fabricAgents/{fabricAgentName}",
       code: 200,
       apiVersion: "2026-05-01",
     }),
   ),
 ).annotate({
-  identifier: "FabricUpdateRequest",
-}) as any as S.Schema<FabricUpdateRequest>;
+  identifier: "GetFabricAgentRequest",
+}) as any as S.Schema<GetFabricAgentRequest>;
 
-/** Resource tags. */
-export type FabricUpdateResponseTagsMap = { [key: string]: string | undefined };
-export const FabricUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<FabricUpdateResponseTagsMap>;
-
-export interface FabricUpdateResponse {
+export interface GetFabricAgentResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -1455,28 +1946,22 @@ export interface FabricUpdateResponse {
   type?: string;
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
-  /** Resource tags. */
-  tags?: FabricUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
   /** The resource-specific properties for this resource. */
-  properties?: FabricModelProperties;
+  properties?: FabricAgentModelProperties;
 }
-export const FabricUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetFabricAgentResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(FabricUpdateResponseTagsMap),
-    location: S.String,
-    properties: S.optional(FabricModelProperties),
+    properties: S.optional(FabricAgentModelProperties),
   }),
 ).annotate({
-  identifier: "FabricUpdateResponse",
-}) as any as S.Schema<FabricUpdateResponse>;
+  identifier: "GetFabricAgentResponse",
+}) as any as S.Schema<GetFabricAgentResponse>;
 
-export interface JobGetRequest {
+export interface GetJobRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1486,7 +1971,7 @@ export interface JobGetRequest {
   /** The job name. */
   jobName: string;
 }
-export const JobGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetJobRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1500,7 +1985,7 @@ export const JobGetRequest = /*@__PURE__*/ S.suspend(() =>
       apiVersion: "2026-05-01",
     }),
   ),
-).annotate({ identifier: "JobGetRequest" }) as any as S.Schema<JobGetRequest>;
+).annotate({ identifier: "GetJobRequest" }) as any as S.Schema<GetJobRequest>;
 
 /** Gets or sets the job state. */
 export type JobState =
@@ -1752,7 +2237,7 @@ export const JobModelProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "JobModelProperties",
 }) as any as S.Schema<JobModelProperties>;
 
-export interface JobGetResponse {
+export interface GetJobResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -1764,7 +2249,7 @@ export interface JobGetResponse {
   /** The resource-specific properties for this resource. */
   properties?: JobModelProperties;
 }
-export const JobGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetJobResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -1772,63 +2257,9 @@ export const JobGetResponse = /*@__PURE__*/ S.suspend(() =>
     systemData: S.optional(SystemData),
     properties: S.optional(JobModelProperties),
   }),
-).annotate({ identifier: "JobGetResponse" }) as any as S.Schema<JobGetResponse>;
+).annotate({ identifier: "GetJobResponse" }) as any as S.Schema<GetJobResponse>;
 
-export interface JobListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The vault name. */
-  vaultName: string;
-  /** OData options. */
-  odataOptions?: string;
-  /** Continuation token. */
-  continuationToken?: string;
-  /** Page size. */
-  pageSize?: number;
-}
-export const JobListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    vaultName: S.String.pipe(T.Label()),
-    odataOptions: S.optional(S.String.pipe(T.Query())),
-    continuationToken: S.optional(S.String.pipe(T.Query())),
-    pageSize: S.optional(S.Number.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationVaults/{vaultName}/jobs",
-      code: 200,
-      apiVersion: "2026-05-01",
-    }),
-  ),
-).annotate({ identifier: "JobListRequest" }) as any as S.Schema<JobListRequest>;
-
-/** The JobModel items on this page */
-export type JobModelListResultValueList = Array<JobModel>;
-export const JobModelListResultValueList = /*@__PURE__*/ S.Array(
-  JobModel,
-) as any as S.Schema<JobModelListResultValueList>;
-
-/** The response of a JobModel list operation. */
-export interface JobModelListResult {
-  /** The JobModel items on this page */
-  value: JobModelListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const JobModelListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: JobModelListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "JobModelListResult",
-}) as any as S.Schema<JobModelListResult>;
-
-export interface LocationBasedOperationResultsGetRequest {
+export interface GetLocationBasedOperationResultRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1838,7 +2269,7 @@ export interface LocationBasedOperationResultsGetRequest {
   /** The ID of an ongoing async operation. */
   operationId: string;
 }
-export const LocationBasedOperationResultsGetRequest = /*@__PURE__*/ S.suspend(
+export const GetLocationBasedOperationResultRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -1854,8 +2285,8 @@ export const LocationBasedOperationResultsGetRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "LocationBasedOperationResultsGetRequest",
-}) as any as S.Schema<LocationBasedOperationResultsGetRequest>;
+  identifier: "GetLocationBasedOperationResultRequest",
+}) as any as S.Schema<GetLocationBasedOperationResultRequest>;
 
 /** Defines the operation status. */
 export interface OperationStatus {
@@ -1882,7 +2313,7 @@ export const OperationStatus = /*@__PURE__*/ S.suspend(() =>
   identifier: "OperationStatus",
 }) as any as S.Schema<OperationStatus>;
 
-export interface OperationResultsGetRequest {
+export interface GetOperationResultRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1890,7 +2321,7 @@ export interface OperationResultsGetRequest {
   /** The ID of an ongoing async operation. */
   operationId: string;
 }
-export const OperationResultsGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetOperationResultRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1904,11 +2335,884 @@ export const OperationResultsGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "OperationResultsGetRequest",
-}) as any as S.Schema<OperationResultsGetRequest>;
+  identifier: "GetOperationResultRequest",
+}) as any as S.Schema<GetOperationResultRequest>;
 
-export interface OperationsListRequest {}
-export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
+export interface GetPolicyRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The vault name. */
+  vaultName: string;
+  /** The policy name. */
+  policyName: string;
+}
+export const GetPolicyRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    vaultName: S.String.pipe(T.Label()),
+    policyName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationVaults/{vaultName}/replicationPolicies/{policyName}",
+      code: 200,
+      apiVersion: "2026-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetPolicyRequest",
+}) as any as S.Schema<GetPolicyRequest>;
+
+export interface GetPolicyResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: PolicyModelProperties;
+}
+export const GetPolicyResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(PolicyModelProperties),
+  }),
+).annotate({
+  identifier: "GetPolicyResponse",
+}) as any as S.Schema<GetPolicyResponse>;
+
+export interface GetPrivateEndpointConnectionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The vault name. */
+  vaultName: string;
+  /** The private endpoint connection name. */
+  privateEndpointConnectionName: string;
+}
+export const GetPrivateEndpointConnectionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    vaultName: S.String.pipe(T.Label()),
+    privateEndpointConnectionName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationVaults/{vaultName}/privateEndpointConnections/{privateEndpointConnectionName}",
+      code: 200,
+      apiVersion: "2026-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetPrivateEndpointConnectionRequest",
+}) as any as S.Schema<GetPrivateEndpointConnectionRequest>;
+
+export interface GetPrivateEndpointConnectionResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: PrivateEndpointConnectionResponseProperties;
+}
+export const GetPrivateEndpointConnectionResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(PrivateEndpointConnectionResponseProperties),
+    }),
+).annotate({
+  identifier: "GetPrivateEndpointConnectionResponse",
+}) as any as S.Schema<GetPrivateEndpointConnectionResponse>;
+
+export interface GetPrivateLinkResourceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The vault name. */
+  vaultName: string;
+  /** The private link name. */
+  privateLinkResourceName: string;
+}
+export const GetPrivateLinkResourceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    vaultName: S.String.pipe(T.Label()),
+    privateLinkResourceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationVaults/{vaultName}/privateLinkResources/{privateLinkResourceName}",
+      code: 200,
+      apiVersion: "2026-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetPrivateLinkResourceRequest",
+}) as any as S.Schema<GetPrivateLinkResourceRequest>;
+
+/** Gets or sets the required member. This translates to how many Private IPs should be created for each privately linkable resource. */
+export type PrivateLinkResourcePropertiesRequiredMembersList = Array<string>;
+export const PrivateLinkResourcePropertiesRequiredMembersList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<PrivateLinkResourcePropertiesRequiredMembersList>;
+
+/** Gets or sets the private DNS zone names. */
+export type PrivateLinkResourcePropertiesRequiredZoneNamesList = Array<string>;
+export const PrivateLinkResourcePropertiesRequiredZoneNamesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<PrivateLinkResourcePropertiesRequiredZoneNamesList>;
+
+/** Represents private link resource properties. */
+export interface PrivateLinkResourceProperties {
+  /** Gets or sets the group id. */
+  groupId?: string;
+  /** Gets or sets the required member. This translates to how many Private IPs should be created for each privately linkable resource. */
+  requiredMembers?: PrivateLinkResourcePropertiesRequiredMembersList;
+  /** Gets or sets the private DNS zone names. */
+  requiredZoneNames?: PrivateLinkResourcePropertiesRequiredZoneNamesList;
+  /** Gets or sets the provisioning state of the private link resource. */
+  provisioningState?: ProvisioningState;
+}
+export const PrivateLinkResourceProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    groupId: S.optional(S.String),
+    requiredMembers: S.optional(
+      PrivateLinkResourcePropertiesRequiredMembersList,
+    ),
+    requiredZoneNames: S.optional(
+      PrivateLinkResourcePropertiesRequiredZoneNamesList,
+    ),
+    provisioningState: S.optional(ProvisioningState),
+  }),
+).annotate({
+  identifier: "PrivateLinkResourceProperties",
+}) as any as S.Schema<PrivateLinkResourceProperties>;
+
+export interface GetPrivateLinkResourceResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: PrivateLinkResourceProperties;
+}
+export const GetPrivateLinkResourceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(PrivateLinkResourceProperties),
+  }),
+).annotate({
+  identifier: "GetPrivateLinkResourceResponse",
+}) as any as S.Schema<GetPrivateLinkResourceResponse>;
+
+export interface GetProtectedItemRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The vault name. */
+  vaultName: string;
+  /** The protected item name. */
+  protectedItemName: string;
+}
+export const GetProtectedItemRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    vaultName: S.String.pipe(T.Label()),
+    protectedItemName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationVaults/{vaultName}/protectedItems/{protectedItemName}",
+      code: 200,
+      apiVersion: "2026-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetProtectedItemRequest",
+}) as any as S.Schema<GetProtectedItemRequest>;
+
+export interface GetProtectedItemResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: ProtectedItemModelProperties;
+}
+export const GetProtectedItemResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ProtectedItemModelProperties),
+  }),
+).annotate({
+  identifier: "GetProtectedItemResponse",
+}) as any as S.Schema<GetProtectedItemResponse>;
+
+export interface GetRecoveryPointRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The vault name. */
+  vaultName: string;
+  /** The protected item name. */
+  protectedItemName: string;
+  /** The recovery point name. */
+  recoveryPointName: string;
+}
+export const GetRecoveryPointRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    vaultName: S.String.pipe(T.Label()),
+    protectedItemName: S.String.pipe(T.Label()),
+    recoveryPointName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationVaults/{vaultName}/protectedItems/{protectedItemName}/recoveryPoints/{recoveryPointName}",
+      code: 200,
+      apiVersion: "2026-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetRecoveryPointRequest",
+}) as any as S.Schema<GetRecoveryPointRequest>;
+
+/** Gets or sets the recovery point type. */
+export type RecoveryPointType = "ApplicationConsistent" | "CrashConsistent";
+export const RecoveryPointType = /*@__PURE__*/ S.String;
+
+/** Recovery point model custom properties. */
+export interface RecoveryPointModelCustomProperties {
+  /** Discriminator property for RecoveryPointModelCustomProperties. */
+  instanceType: string;
+}
+export const RecoveryPointModelCustomProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    instanceType: S.String,
+  }),
+).annotate({
+  identifier: "RecoveryPointModelCustomProperties",
+}) as any as S.Schema<RecoveryPointModelCustomProperties>;
+
+/** Recovery point model properties. */
+export interface RecoveryPointModelProperties {
+  /** Gets or sets the recovery point time. */
+  recoveryPointTime: string;
+  /** Gets or sets the recovery point type. */
+  recoveryPointType: RecoveryPointType;
+  /** Recovery point model custom properties. */
+  customProperties: RecoveryPointModelCustomProperties;
+  /** Gets or sets the provisioning state of the recovery point item. */
+  provisioningState?: ProvisioningState;
+}
+export const RecoveryPointModelProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    recoveryPointTime: S.String,
+    recoveryPointType: RecoveryPointType,
+    customProperties: RecoveryPointModelCustomProperties,
+    provisioningState: S.optional(ProvisioningState),
+  }),
+).annotate({
+  identifier: "RecoveryPointModelProperties",
+}) as any as S.Schema<RecoveryPointModelProperties>;
+
+export interface GetRecoveryPointResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: RecoveryPointModelProperties;
+}
+export const GetRecoveryPointResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(RecoveryPointModelProperties),
+  }),
+).annotate({
+  identifier: "GetRecoveryPointResponse",
+}) as any as S.Schema<GetRecoveryPointResponse>;
+
+export interface GetReplicationExtensionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The vault name. */
+  vaultName: string;
+  /** The replication extension name. */
+  replicationExtensionName: string;
+}
+export const GetReplicationExtensionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    vaultName: S.String.pipe(T.Label()),
+    replicationExtensionName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationVaults/{vaultName}/replicationExtensions/{replicationExtensionName}",
+      code: 200,
+      apiVersion: "2026-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetReplicationExtensionRequest",
+}) as any as S.Schema<GetReplicationExtensionRequest>;
+
+export interface GetReplicationExtensionResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: ReplicationExtensionModelProperties;
+}
+export const GetReplicationExtensionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ReplicationExtensionModelProperties),
+  }),
+).annotate({
+  identifier: "GetReplicationExtensionResponse",
+}) as any as S.Schema<GetReplicationExtensionResponse>;
+
+export interface GetVaultRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The vault name. */
+  vaultName: string;
+}
+export const GetVaultRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    vaultName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationVaults/{vaultName}",
+      code: 200,
+      apiVersion: "2026-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetVaultRequest",
+}) as any as S.Schema<GetVaultRequest>;
+
+/** Resource tags. */
+export type GetVaultResponseTagsMap = { [key: string]: string | undefined };
+export const GetVaultResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetVaultResponseTagsMap>;
+
+/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+export type GetVaultResponseIdentityUserAssignedIdentitiesMap = {
+  [key: string]: UserAssignedIdentity | undefined;
+};
+export const GetVaultResponseIdentityUserAssignedIdentitiesMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    UserAssignedIdentity,
+  ) as any as S.Schema<GetVaultResponseIdentityUserAssignedIdentitiesMap>;
+
+/** Managed service identity (system assigned and/or user assigned identities) */
+export interface GetVaultResponseIdentity {
+  /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
+  principalId?: string;
+  /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
+  tenantId?: string;
+  type: ManagedServiceIdentityType;
+  /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+  userAssignedIdentities?: GetVaultResponseIdentityUserAssignedIdentitiesMap;
+}
+export const GetVaultResponseIdentity = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    principalId: S.optional(S.String),
+    tenantId: S.optional(S.String),
+    type: ManagedServiceIdentityType,
+    userAssignedIdentities: S.optional(
+      GetVaultResponseIdentityUserAssignedIdentitiesMap,
+    ),
+  }),
+).annotate({
+  identifier: "GetVaultResponseIdentity",
+}) as any as S.Schema<GetVaultResponseIdentity>;
+
+export interface GetVaultResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetVaultResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: VaultModelProperties;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: GetVaultResponseIdentity;
+}
+export const GetVaultResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetVaultResponseTagsMap),
+    location: S.String,
+    properties: S.optional(VaultModelProperties),
+    identity: S.optional(GetVaultResponseIdentity),
+  }),
+).annotate({
+  identifier: "GetVaultResponse",
+}) as any as S.Schema<GetVaultResponse>;
+
+export interface ListEmailConfigurationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The vault name. */
+  vaultName: string;
+}
+export const ListEmailConfigurationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    vaultName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationVaults/{vaultName}/alertSettings",
+      code: 200,
+      apiVersion: "2026-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListEmailConfigurationRequest",
+}) as any as S.Schema<ListEmailConfigurationRequest>;
+
+/** Email configuration model. */
+export interface EmailConfigurationModel {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: EmailConfigurationModelProperties;
+}
+export const EmailConfigurationModel = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(EmailConfigurationModelProperties),
+  }),
+).annotate({
+  identifier: "EmailConfigurationModel",
+}) as any as S.Schema<EmailConfigurationModel>;
+
+/** The EmailConfigurationModel items on this page */
+export type EmailConfigurationModelListResultValueList =
+  Array<EmailConfigurationModel>;
+export const EmailConfigurationModelListResultValueList = /*@__PURE__*/ S.Array(
+  EmailConfigurationModel,
+) as any as S.Schema<EmailConfigurationModelListResultValueList>;
+
+/** The response of a EmailConfigurationModel list operation. */
+export interface EmailConfigurationModelListResult {
+  /** The EmailConfigurationModel items on this page */
+  value: EmailConfigurationModelListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const EmailConfigurationModelListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: EmailConfigurationModelListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "EmailConfigurationModelListResult",
+}) as any as S.Schema<EmailConfigurationModelListResult>;
+
+export interface ListEventRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The vault name. */
+  vaultName: string;
+  /** OData options. */
+  odataOptions?: string;
+  /** Continuation token. */
+  continuationToken?: string;
+  /** Page size. */
+  pageSize?: number;
+}
+export const ListEventRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    vaultName: S.String.pipe(T.Label()),
+    odataOptions: S.optional(S.String.pipe(T.Query())),
+    continuationToken: S.optional(S.String.pipe(T.Query())),
+    pageSize: S.optional(S.Number.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationVaults/{vaultName}/events",
+      code: 200,
+      apiVersion: "2026-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListEventRequest",
+}) as any as S.Schema<ListEventRequest>;
+
+/** Event model. */
+export interface EventModel {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: EventModelProperties;
+}
+export const EventModel = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(EventModelProperties),
+  }),
+).annotate({ identifier: "EventModel" }) as any as S.Schema<EventModel>;
+
+/** The EventModel items on this page */
+export type EventModelListResultValueList = Array<EventModel>;
+export const EventModelListResultValueList = /*@__PURE__*/ S.Array(
+  EventModel,
+) as any as S.Schema<EventModelListResultValueList>;
+
+/** The response of a EventModel list operation. */
+export interface EventModelListResult {
+  /** The EventModel items on this page */
+  value: EventModelListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const EventModelListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: EventModelListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "EventModelListResult",
+}) as any as S.Schema<EventModelListResult>;
+
+export interface ListFabricRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Continuation token from the previous call. */
+  continuationToken?: string;
+}
+export const ListFabricRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    continuationToken: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationFabrics",
+      code: 200,
+      apiVersion: "2026-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListFabricRequest",
+}) as any as S.Schema<ListFabricRequest>;
+
+/** Resource tags. */
+export type FabricModelTagsMap = { [key: string]: string | undefined };
+export const FabricModelTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<FabricModelTagsMap>;
+
+/** Fabric model. */
+export interface FabricModel {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: FabricModelTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: FabricModelProperties;
+}
+export const FabricModel = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(FabricModelTagsMap),
+    location: S.String,
+    properties: S.optional(FabricModelProperties),
+  }),
+).annotate({ identifier: "FabricModel" }) as any as S.Schema<FabricModel>;
+
+/** The FabricModel items on this page */
+export type FabricModelListResultValueList = Array<FabricModel>;
+export const FabricModelListResultValueList = /*@__PURE__*/ S.Array(
+  FabricModel,
+) as any as S.Schema<FabricModelListResultValueList>;
+
+/** The response of a FabricModel list operation. */
+export interface FabricModelListResult {
+  /** The FabricModel items on this page */
+  value: FabricModelListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const FabricModelListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: FabricModelListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "FabricModelListResult",
+}) as any as S.Schema<FabricModelListResult>;
+
+export interface ListFabricAgentRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The fabric name. */
+  fabricName: string;
+}
+export const ListFabricAgentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    fabricName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationFabrics/{fabricName}/fabricAgents",
+      code: 200,
+      apiVersion: "2026-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListFabricAgentRequest",
+}) as any as S.Schema<ListFabricAgentRequest>;
+
+/** Fabric agent model. */
+export interface FabricAgentModel {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: FabricAgentModelProperties;
+}
+export const FabricAgentModel = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(FabricAgentModelProperties),
+  }),
+).annotate({
+  identifier: "FabricAgentModel",
+}) as any as S.Schema<FabricAgentModel>;
+
+/** The FabricAgentModel items on this page */
+export type FabricAgentModelListResultValueList = Array<FabricAgentModel>;
+export const FabricAgentModelListResultValueList = /*@__PURE__*/ S.Array(
+  FabricAgentModel,
+) as any as S.Schema<FabricAgentModelListResultValueList>;
+
+/** The response of a FabricAgentModel list operation. */
+export interface FabricAgentModelListResult {
+  /** The FabricAgentModel items on this page */
+  value: FabricAgentModelListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const FabricAgentModelListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: FabricAgentModelListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "FabricAgentModelListResult",
+}) as any as S.Schema<FabricAgentModelListResult>;
+
+export interface ListFabricBySubscriptionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+}
+export const ListFabricBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.DataReplication/replicationFabrics",
+      code: 200,
+      apiVersion: "2026-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListFabricBySubscriptionRequest",
+}) as any as S.Schema<ListFabricBySubscriptionRequest>;
+
+export interface ListJobRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The vault name. */
+  vaultName: string;
+  /** OData options. */
+  odataOptions?: string;
+  /** Continuation token. */
+  continuationToken?: string;
+  /** Page size. */
+  pageSize?: number;
+}
+export const ListJobRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    vaultName: S.String.pipe(T.Label()),
+    odataOptions: S.optional(S.String.pipe(T.Query())),
+    continuationToken: S.optional(S.String.pipe(T.Query())),
+    pageSize: S.optional(S.Number.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationVaults/{vaultName}/jobs",
+      code: 200,
+      apiVersion: "2026-05-01",
+    }),
+  ),
+).annotate({ identifier: "ListJobRequest" }) as any as S.Schema<ListJobRequest>;
+
+/** The JobModel items on this page */
+export type JobModelListResultValueList = Array<JobModel>;
+export const JobModelListResultValueList = /*@__PURE__*/ S.Array(
+  JobModel,
+) as any as S.Schema<JobModelListResultValueList>;
+
+/** The response of a JobModel list operation. */
+export interface JobModelListResult {
+  /** The JobModel items on this page */
+  value: JobModelListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const JobModelListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: JobModelListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "JobModelListResult",
+}) as any as S.Schema<JobModelListResult>;
+
+export interface ListOperationsRequest {}
+export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
     T.Http({
       method: "GET",
@@ -1918,8 +3222,8 @@ export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "OperationsListRequest",
-}) as any as S.Schema<OperationsListRequest>;
+  identifier: "ListOperationsRequest",
+}) as any as S.Schema<ListOperationsRequest>;
 
 /** Localized display information for this particular operation. */
 export interface OperationDisplay {
@@ -1975,211 +3279,27 @@ export const Operation = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 /** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
   Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
+) as any as S.Schema<ListOperationsResponseValueList>;
 
-export interface OperationsListResponse {
+export interface ListOperationsResponse {
   /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
+  value?: ListOperationsResponseValueList;
   /** URL to get the next set of operation list results (if there are any). */
   nextLink?: string;
 }
-export const OperationsListResponse = /*@__PURE__*/ S.suspend(() =>
+export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(OperationsListResponseValueList),
+    value: S.optional(ListOperationsResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "OperationsListResponse",
-}) as any as S.Schema<OperationsListResponse>;
+  identifier: "ListOperationsResponse",
+}) as any as S.Schema<ListOperationsResponse>;
 
-/** Policy model custom properties. */
-export interface PolicyModelCustomProperties {
-  /** Discriminator property for PolicyModelCustomProperties. */
-  instanceType: string;
-}
-export const PolicyModelCustomProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    instanceType: S.String,
-  }),
-).annotate({
-  identifier: "PolicyModelCustomProperties",
-}) as any as S.Schema<PolicyModelCustomProperties>;
-
-/** Policy model properties. */
-export interface PolicyModelPropertiesInput {
-  /** Policy model custom properties. */
-  customProperties: PolicyModelCustomProperties;
-}
-export const PolicyModelPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    customProperties: PolicyModelCustomProperties,
-  }),
-).annotate({
-  identifier: "PolicyModelPropertiesInput",
-}) as any as S.Schema<PolicyModelPropertiesInput>;
-
-export interface PolicyCreateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The vault name. */
-  vaultName: string;
-  /** The policy name. */
-  policyName: string;
-  /** The resource-specific properties for this resource. */
-  properties?: PolicyModelPropertiesInput;
-}
-export const PolicyCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    vaultName: S.String.pipe(T.Label()),
-    policyName: S.String.pipe(T.Label()),
-    properties: S.optional(PolicyModelPropertiesInput),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationVaults/{vaultName}/replicationPolicies/{policyName}",
-      code: 200,
-      apiVersion: "2026-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "PolicyCreateRequest",
-}) as any as S.Schema<PolicyCreateRequest>;
-
-/** Policy model properties. */
-export interface PolicyModelProperties {
-  /** Gets or sets the provisioning state of the policy. */
-  provisioningState?: ProvisioningState;
-  /** Policy model custom properties. */
-  customProperties: PolicyModelCustomProperties;
-}
-export const PolicyModelProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provisioningState: S.optional(ProvisioningState),
-    customProperties: PolicyModelCustomProperties,
-  }),
-).annotate({
-  identifier: "PolicyModelProperties",
-}) as any as S.Schema<PolicyModelProperties>;
-
-export interface PolicyCreateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: PolicyModelProperties;
-}
-export const PolicyCreateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(PolicyModelProperties),
-  }),
-).annotate({
-  identifier: "PolicyCreateResponse",
-}) as any as S.Schema<PolicyCreateResponse>;
-
-export interface PolicyDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The vault name. */
-  vaultName: string;
-  /** The policy name. */
-  policyName: string;
-}
-export const PolicyDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    vaultName: S.String.pipe(T.Label()),
-    policyName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationVaults/{vaultName}/replicationPolicies/{policyName}",
-      code: 200,
-      apiVersion: "2026-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "PolicyDeleteRequest",
-}) as any as S.Schema<PolicyDeleteRequest>;
-
-export interface PolicyDeleteResponse {}
-export const PolicyDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "PolicyDeleteResponse",
-}) as any as S.Schema<PolicyDeleteResponse>;
-
-export interface PolicyGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The vault name. */
-  vaultName: string;
-  /** The policy name. */
-  policyName: string;
-}
-export const PolicyGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    vaultName: S.String.pipe(T.Label()),
-    policyName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationVaults/{vaultName}/replicationPolicies/{policyName}",
-      code: 200,
-      apiVersion: "2026-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "PolicyGetRequest",
-}) as any as S.Schema<PolicyGetRequest>;
-
-export interface PolicyGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: PolicyModelProperties;
-}
-export const PolicyGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(PolicyModelProperties),
-  }),
-).annotate({
-  identifier: "PolicyGetResponse",
-}) as any as S.Schema<PolicyGetResponse>;
-
-export interface PolicyListRequest {
+export interface ListPolicyRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2187,7 +3307,7 @@ export interface PolicyListRequest {
   /** The vault name. */
   vaultName: string;
 }
-export const PolicyListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListPolicyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -2201,8 +3321,8 @@ export const PolicyListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "PolicyListRequest",
-}) as any as S.Schema<PolicyListRequest>;
+  identifier: "ListPolicyRequest",
+}) as any as S.Schema<ListPolicyRequest>;
 
 /** Policy model. */
 export interface PolicyModel {
@@ -2249,159 +3369,7 @@ export const PolicyModelListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "PolicyModelListResult",
 }) as any as S.Schema<PolicyModelListResult>;
 
-export interface PrivateEndpointConnectionsDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The vault name. */
-  vaultName: string;
-  /** The private endpoint connection name. */
-  privateEndpointConnectionName: string;
-}
-export const PrivateEndpointConnectionsDeleteRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      vaultName: S.String.pipe(T.Label()),
-      privateEndpointConnectionName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationVaults/{vaultName}/privateEndpointConnections/{privateEndpointConnectionName}",
-        code: 200,
-        apiVersion: "2026-05-01",
-      }),
-    ),
-).annotate({
-  identifier: "PrivateEndpointConnectionsDeleteRequest",
-}) as any as S.Schema<PrivateEndpointConnectionsDeleteRequest>;
-
-export interface PrivateEndpointConnectionsDeleteResponse {}
-export const PrivateEndpointConnectionsDeleteResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "PrivateEndpointConnectionsDeleteResponse",
-}) as any as S.Schema<PrivateEndpointConnectionsDeleteResponse>;
-
-export interface PrivateEndpointConnectionsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The vault name. */
-  vaultName: string;
-  /** The private endpoint connection name. */
-  privateEndpointConnectionName: string;
-}
-export const PrivateEndpointConnectionsGetRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      vaultName: S.String.pipe(T.Label()),
-      privateEndpointConnectionName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationVaults/{vaultName}/privateEndpointConnections/{privateEndpointConnectionName}",
-        code: 200,
-        apiVersion: "2026-05-01",
-      }),
-    ),
-).annotate({
-  identifier: "PrivateEndpointConnectionsGetRequest",
-}) as any as S.Schema<PrivateEndpointConnectionsGetRequest>;
-
-/** Represent private Endpoint network resource that is linked to the Private Endpoint connection. */
-export interface PrivateEndpoint {
-  /** Gets or sets the id. */
-  id?: string;
-}
-export const PrivateEndpoint = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PrivateEndpoint",
-}) as any as S.Schema<PrivateEndpoint>;
-
-/** Gets or sets the status. */
-export type PrivateEndpointConnectionStatus =
-  | "Approved"
-  | "Disconnected"
-  | "Pending"
-  | "Rejected";
-export const PrivateEndpointConnectionStatus = /*@__PURE__*/ S.String;
-
-/** Represents Private link service connection state. */
-export interface PrivateLinkServiceConnectionState {
-  /** Gets or sets the status. */
-  status?: PrivateEndpointConnectionStatus | (string & {});
-  /** Gets or sets description. */
-  description?: string;
-  /** Gets or sets actions required. */
-  actionsRequired?: string;
-}
-export const PrivateLinkServiceConnectionState = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    status: S.optional(PrivateEndpointConnectionStatus),
-    description: S.optional(S.String),
-    actionsRequired: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PrivateLinkServiceConnectionState",
-}) as any as S.Schema<PrivateLinkServiceConnectionState>;
-
-/** Represents Private endpoint connection response properties. */
-export interface PrivateEndpointConnectionResponseProperties {
-  /** Gets or sets provisioning state of the private endpoint connection. */
-  provisioningState?: ProvisioningState;
-  /** Represent private Endpoint network resource that is linked to the Private Endpoint connection. */
-  privateEndpoint?: PrivateEndpoint;
-  /** Represents Private link service connection state. */
-  privateLinkServiceConnectionState?: PrivateLinkServiceConnectionState;
-}
-export const PrivateEndpointConnectionResponseProperties =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      provisioningState: S.optional(ProvisioningState),
-      privateEndpoint: S.optional(PrivateEndpoint),
-      privateLinkServiceConnectionState: S.optional(
-        PrivateLinkServiceConnectionState,
-      ),
-    }),
-  ).annotate({
-    identifier: "PrivateEndpointConnectionResponseProperties",
-  }) as any as S.Schema<PrivateEndpointConnectionResponseProperties>;
-
-export interface PrivateEndpointConnectionsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: PrivateEndpointConnectionResponseProperties;
-}
-export const PrivateEndpointConnectionsGetResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(PrivateEndpointConnectionResponseProperties),
-    }),
-).annotate({
-  identifier: "PrivateEndpointConnectionsGetResponse",
-}) as any as S.Schema<PrivateEndpointConnectionsGetResponse>;
-
-export interface PrivateEndpointConnectionsListRequest {
+export interface ListPrivateEndpointConnectionsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2409,7 +3377,7 @@ export interface PrivateEndpointConnectionsListRequest {
   /** The vault name. */
   vaultName: string;
 }
-export const PrivateEndpointConnectionsListRequest = /*@__PURE__*/ S.suspend(
+export const ListPrivateEndpointConnectionsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -2424,33 +3392,8 @@ export const PrivateEndpointConnectionsListRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "PrivateEndpointConnectionsListRequest",
-}) as any as S.Schema<PrivateEndpointConnectionsListRequest>;
-
-/** Represents private endpoint connection. */
-export interface PrivateEndpointConnection {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: PrivateEndpointConnectionResponseProperties;
-}
-export const PrivateEndpointConnection = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(PrivateEndpointConnectionResponseProperties),
-  }),
-).annotate({
-  identifier: "PrivateEndpointConnection",
-}) as any as S.Schema<PrivateEndpointConnection>;
+  identifier: "ListPrivateEndpointConnectionsRequest",
+}) as any as S.Schema<ListPrivateEndpointConnectionsRequest>;
 
 /** The PrivateEndpointConnection items on this page */
 export type PrivateEndpointConnectionListResultValueList =
@@ -2476,175 +3419,7 @@ export const PrivateEndpointConnectionListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "PrivateEndpointConnectionListResult",
 }) as any as S.Schema<PrivateEndpointConnectionListResult>;
 
-/** Represents Private endpoint connection response properties. */
-export interface PrivateEndpointConnectionResponsePropertiesInput {
-  /** Represent private Endpoint network resource that is linked to the Private Endpoint connection. */
-  privateEndpoint?: PrivateEndpoint;
-  /** Represents Private link service connection state. */
-  privateLinkServiceConnectionState?: PrivateLinkServiceConnectionState;
-}
-export const PrivateEndpointConnectionResponsePropertiesInput =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      privateEndpoint: S.optional(PrivateEndpoint),
-      privateLinkServiceConnectionState: S.optional(
-        PrivateLinkServiceConnectionState,
-      ),
-    }),
-  ).annotate({
-    identifier: "PrivateEndpointConnectionResponsePropertiesInput",
-  }) as any as S.Schema<PrivateEndpointConnectionResponsePropertiesInput>;
-
-export interface PrivateEndpointConnectionsUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The vault name. */
-  vaultName: string;
-  /** The private endpoint connection name. */
-  privateEndpointConnectionName: string;
-  /** The resource-specific properties for this resource. */
-  properties?: PrivateEndpointConnectionResponsePropertiesInput;
-}
-export const PrivateEndpointConnectionsUpdateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      vaultName: S.String.pipe(T.Label()),
-      privateEndpointConnectionName: S.String.pipe(T.Label()),
-      properties: S.optional(PrivateEndpointConnectionResponsePropertiesInput),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationVaults/{vaultName}/privateEndpointConnections/{privateEndpointConnectionName}",
-        code: 200,
-        apiVersion: "2026-05-01",
-      }),
-    ),
-).annotate({
-  identifier: "PrivateEndpointConnectionsUpdateRequest",
-}) as any as S.Schema<PrivateEndpointConnectionsUpdateRequest>;
-
-export interface PrivateEndpointConnectionsUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: PrivateEndpointConnectionResponseProperties;
-}
-export const PrivateEndpointConnectionsUpdateResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(PrivateEndpointConnectionResponseProperties),
-    }),
-).annotate({
-  identifier: "PrivateEndpointConnectionsUpdateResponse",
-}) as any as S.Schema<PrivateEndpointConnectionsUpdateResponse>;
-
-export interface PrivateLinkResourcesGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The vault name. */
-  vaultName: string;
-  /** The private link name. */
-  privateLinkResourceName: string;
-}
-export const PrivateLinkResourcesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    vaultName: S.String.pipe(T.Label()),
-    privateLinkResourceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationVaults/{vaultName}/privateLinkResources/{privateLinkResourceName}",
-      code: 200,
-      apiVersion: "2026-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "PrivateLinkResourcesGetRequest",
-}) as any as S.Schema<PrivateLinkResourcesGetRequest>;
-
-/** Gets or sets the required member. This translates to how many Private IPs should be created for each privately linkable resource. */
-export type PrivateLinkResourcePropertiesRequiredMembersList = Array<string>;
-export const PrivateLinkResourcePropertiesRequiredMembersList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PrivateLinkResourcePropertiesRequiredMembersList>;
-
-/** Gets or sets the private DNS zone names. */
-export type PrivateLinkResourcePropertiesRequiredZoneNamesList = Array<string>;
-export const PrivateLinkResourcePropertiesRequiredZoneNamesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PrivateLinkResourcePropertiesRequiredZoneNamesList>;
-
-/** Represents private link resource properties. */
-export interface PrivateLinkResourceProperties {
-  /** Gets or sets the group id. */
-  groupId?: string;
-  /** Gets or sets the required member. This translates to how many Private IPs should be created for each privately linkable resource. */
-  requiredMembers?: PrivateLinkResourcePropertiesRequiredMembersList;
-  /** Gets or sets the private DNS zone names. */
-  requiredZoneNames?: PrivateLinkResourcePropertiesRequiredZoneNamesList;
-  /** Gets or sets the provisioning state of the private link resource. */
-  provisioningState?: ProvisioningState;
-}
-export const PrivateLinkResourceProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    groupId: S.optional(S.String),
-    requiredMembers: S.optional(
-      PrivateLinkResourcePropertiesRequiredMembersList,
-    ),
-    requiredZoneNames: S.optional(
-      PrivateLinkResourcePropertiesRequiredZoneNamesList,
-    ),
-    provisioningState: S.optional(ProvisioningState),
-  }),
-).annotate({
-  identifier: "PrivateLinkResourceProperties",
-}) as any as S.Schema<PrivateLinkResourceProperties>;
-
-export interface PrivateLinkResourcesGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: PrivateLinkResourceProperties;
-}
-export const PrivateLinkResourcesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(PrivateLinkResourceProperties),
-  }),
-).annotate({
-  identifier: "PrivateLinkResourcesGetResponse",
-}) as any as S.Schema<PrivateLinkResourcesGetResponse>;
-
-export interface PrivateLinkResourcesListRequest {
+export interface ListPrivateLinkResourcesRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2652,7 +3427,7 @@ export interface PrivateLinkResourcesListRequest {
   /** The vault name. */
   vaultName: string;
 }
-export const PrivateLinkResourcesListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListPrivateLinkResourcesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -2666,8 +3441,8 @@ export const PrivateLinkResourcesListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "PrivateLinkResourcesListRequest",
-}) as any as S.Schema<PrivateLinkResourcesListRequest>;
+  identifier: "ListPrivateLinkResourcesRequest",
+}) as any as S.Schema<ListPrivateLinkResourcesRequest>;
 
 /** Represents private link resource. */
 export interface PrivateLinkResource {
@@ -2716,404 +3491,7 @@ export const PrivateLinkResourceListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "PrivateLinkResourceListResult",
 }) as any as S.Schema<PrivateLinkResourceListResult>;
 
-/** Protected item model custom properties. */
-export interface ProtectedItemModelCustomProperties {
-  /** Discriminator property for ProtectedItemModelCustomProperties. */
-  instanceType: string;
-}
-export const ProtectedItemModelCustomProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    instanceType: S.String,
-  }),
-).annotate({
-  identifier: "ProtectedItemModelCustomProperties",
-}) as any as S.Schema<ProtectedItemModelCustomProperties>;
-
-/** Protected item model properties. */
-export interface ProtectedItemModelPropertiesInput {
-  /** Gets or sets the policy name. */
-  policyName: string;
-  /** Gets or sets the replication extension name. */
-  replicationExtensionName: string;
-  /** Protected item model custom properties. */
-  customProperties: ProtectedItemModelCustomProperties;
-}
-export const ProtectedItemModelPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    policyName: S.String,
-    replicationExtensionName: S.String,
-    customProperties: ProtectedItemModelCustomProperties,
-  }),
-).annotate({
-  identifier: "ProtectedItemModelPropertiesInput",
-}) as any as S.Schema<ProtectedItemModelPropertiesInput>;
-
-export interface ProtectedItemCreateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The vault name. */
-  vaultName: string;
-  /** The protected item name. */
-  protectedItemName: string;
-  /** The resource-specific properties for this resource. */
-  properties?: ProtectedItemModelPropertiesInput;
-}
-export const ProtectedItemCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    vaultName: S.String.pipe(T.Label()),
-    protectedItemName: S.String.pipe(T.Label()),
-    properties: S.optional(ProtectedItemModelPropertiesInput),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationVaults/{vaultName}/protectedItems/{protectedItemName}",
-      code: 200,
-      apiVersion: "2026-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "ProtectedItemCreateRequest",
-}) as any as S.Schema<ProtectedItemCreateRequest>;
-
-/** Gets or sets the protection state. */
-export type ProtectionState =
-  | "UnprotectedStatesBegin"
-  | "EnablingProtection"
-  | "EnablingFailed"
-  | "DisablingProtection"
-  | "MarkedForDeletion"
-  | "DisablingFailed"
-  | "UnprotectedStatesEnd"
-  | "InitialReplicationStatesBegin"
-  | "InitialReplicationInProgress"
-  | "InitialReplicationCompletedOnPrimary"
-  | "InitialReplicationCompletedOnRecovery"
-  | "InitialReplicationFailed"
-  | "InitialReplicationStatesEnd"
-  | "ProtectedStatesBegin"
-  | "Protected"
-  | "ProtectedStatesEnd"
-  | "PlannedFailoverTransitionStatesBegin"
-  | "PlannedFailoverInitiated"
-  | "PlannedFailoverCompleting"
-  | "PlannedFailoverCompleted"
-  | "PlannedFailoverFailed"
-  | "PlannedFailoverCompletionFailed"
-  | "PlannedFailoverTransitionStatesEnd"
-  | "UnplannedFailoverTransitionStatesBegin"
-  | "UnplannedFailoverInitiated"
-  | "UnplannedFailoverCompleting"
-  | "UnplannedFailoverCompleted"
-  | "UnplannedFailoverFailed"
-  | "UnplannedFailoverCompletionFailed"
-  | "UnplannedFailoverTransitionStatesEnd"
-  | "CommitFailoverStatesBegin"
-  | "CommitFailoverInProgressOnPrimary"
-  | "CommitFailoverInProgressOnRecovery"
-  | "CommitFailoverCompleted"
-  | "CommitFailoverFailedOnPrimary"
-  | "CommitFailoverFailedOnRecovery"
-  | "CommitFailoverStatesEnd"
-  | "CancelFailoverStatesBegin"
-  | "CancelFailoverInProgressOnPrimary"
-  | "CancelFailoverInProgressOnRecovery"
-  | "CancelFailoverFailedOnPrimary"
-  | "CancelFailoverFailedOnRecovery"
-  | "CancelFailoverStatesEnd"
-  | "ChangeRecoveryPointStatesBegin"
-  | "ChangeRecoveryPointInitiated"
-  | "ChangeRecoveryPointCompleted"
-  | "ChangeRecoveryPointFailed"
-  | "ChangeRecoveryPointStatesEnd"
-  | "ReprotectStatesBegin"
-  | "ReprotectInitiated"
-  | "ReprotectFailed"
-  | "ReprotectStatesEnd";
-export const ProtectionState = /*@__PURE__*/ S.String;
-
-/** Gets or sets the test failover state. */
-export type TestFailoverState =
-  | "None"
-  | "TestFailoverInitiated"
-  | "TestFailoverCompleting"
-  | "TestFailoverCompleted"
-  | "TestFailoverFailed"
-  | "TestFailoverCompletionFailed"
-  | "TestFailoverCleanupInitiated"
-  | "TestFailoverCleanupCompleting"
-  | "MarkedForDeletion";
-export const TestFailoverState = /*@__PURE__*/ S.String;
-
-/** Gets or sets the resynchronization state. */
-export type ResynchronizationState =
-  | "None"
-  | "ResynchronizationInitiated"
-  | "ResynchronizationCompleted"
-  | "ResynchronizationFailed";
-export const ResynchronizationState = /*@__PURE__*/ S.String;
-
-/** Protected item job properties. */
-export interface ProtectedItemJobProperties {
-  /** Gets or sets protection scenario name. */
-  scenarioName?: string;
-  /** Gets or sets job Id. */
-  id?: string;
-  /** Gets or sets job name. */
-  name?: string;
-  /** Gets or sets the job friendly display name. */
-  displayName?: string;
-  /** Gets or sets job state. */
-  state?: string;
-  /** Gets or sets start time of the job. */
-  startTime?: string;
-  /** Gets or sets end time of the job. */
-  endTime?: string;
-}
-export const ProtectedItemJobProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    scenarioName: S.optional(S.String),
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    displayName: S.optional(S.String),
-    state: S.optional(S.String),
-    startTime: S.optional(S.String),
-    endTime: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ProtectedItemJobProperties",
-}) as any as S.Schema<ProtectedItemJobProperties>;
-
-/** Gets or sets the allowed scenarios on the protected item. */
-export type ProtectedItemModelPropertiesAllowedJobsList = Array<string>;
-export const ProtectedItemModelPropertiesAllowedJobsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ProtectedItemModelPropertiesAllowedJobsList>;
-
-/** Gets or sets the list of health errors. */
-export type ProtectedItemModelPropertiesHealthErrorsList =
-  Array<HealthErrorModel>;
-export const ProtectedItemModelPropertiesHealthErrorsList =
-  /*@__PURE__*/ S.Array(
-    HealthErrorModel,
-  ) as any as S.Schema<ProtectedItemModelPropertiesHealthErrorsList>;
-
-/** Protected item model properties. */
-export interface ProtectedItemModelProperties {
-  /** Gets or sets the policy name. */
-  policyName: string;
-  /** Gets or sets the replication extension name. */
-  replicationExtensionName: string;
-  /** Gets or sets the protected item correlation Id. */
-  correlationId?: string;
-  /** Gets or sets the provisioning state of the fabric agent. */
-  provisioningState?: ProvisioningState;
-  /** Gets or sets the protection state. */
-  protectionState?: ProtectionState;
-  /** Gets or sets the protection state description. */
-  protectionStateDescription?: string;
-  /** Gets or sets the test failover state. */
-  testFailoverState?: TestFailoverState;
-  /** Gets or sets the Test failover state description. */
-  testFailoverStateDescription?: string;
-  /** Gets or sets the resynchronization state. */
-  resynchronizationState?: ResynchronizationState;
-  /** Gets or sets the fabric object Id. */
-  fabricObjectId?: string;
-  /** Gets or sets the fabric object name. */
-  fabricObjectName?: string;
-  /** Gets or sets the source fabric provider Id. */
-  sourceFabricProviderId?: string;
-  /** Gets or sets the target fabric provider Id. */
-  targetFabricProviderId?: string;
-  /** Gets or sets the fabric Id. */
-  fabricId?: string;
-  /** Gets or sets the target fabric Id. */
-  targetFabricId?: string;
-  /** Gets or sets the fabric agent Id. */
-  fabricAgentId?: string;
-  /** Gets or sets the target fabric agent Id. */
-  targetFabricAgentId?: string;
-  /** Gets or sets a value indicating whether resynchronization is required or not. */
-  resyncRequired?: boolean;
-  /** Gets or sets the Last successful planned failover time. */
-  lastSuccessfulPlannedFailoverTime?: string;
-  /** Gets or sets the Last successful unplanned failover time. */
-  lastSuccessfulUnplannedFailoverTime?: string;
-  /** Gets or sets the Last successful test failover time. */
-  lastSuccessfulTestFailoverTime?: string;
-  /** Gets or sets the current scenario. */
-  currentJob?: ProtectedItemJobProperties;
-  /** Gets or sets the allowed scenarios on the protected item. */
-  allowedJobs?: ProtectedItemModelPropertiesAllowedJobsList;
-  /** Gets or sets the last failed enabled protection job. */
-  lastFailedEnableProtectionJob?: ProtectedItemJobProperties;
-  /** Gets or sets the last failed planned failover job. */
-  lastFailedPlannedFailoverJob?: ProtectedItemJobProperties;
-  /** Gets or sets the last test failover job. */
-  lastTestFailoverJob?: ProtectedItemJobProperties;
-  /** Gets or sets protected item replication health. */
-  replicationHealth?: HealthStatus;
-  /** Gets or sets the list of health errors. */
-  healthErrors?: ProtectedItemModelPropertiesHealthErrorsList;
-  /** Protected item model custom properties. */
-  customProperties: ProtectedItemModelCustomProperties;
-}
-export const ProtectedItemModelProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    policyName: S.String,
-    replicationExtensionName: S.String,
-    correlationId: S.optional(S.String),
-    provisioningState: S.optional(ProvisioningState),
-    protectionState: S.optional(ProtectionState),
-    protectionStateDescription: S.optional(S.String),
-    testFailoverState: S.optional(TestFailoverState),
-    testFailoverStateDescription: S.optional(S.String),
-    resynchronizationState: S.optional(ResynchronizationState),
-    fabricObjectId: S.optional(S.String),
-    fabricObjectName: S.optional(S.String),
-    sourceFabricProviderId: S.optional(S.String),
-    targetFabricProviderId: S.optional(S.String),
-    fabricId: S.optional(S.String),
-    targetFabricId: S.optional(S.String),
-    fabricAgentId: S.optional(S.String),
-    targetFabricAgentId: S.optional(S.String),
-    resyncRequired: S.optional(S.Boolean),
-    lastSuccessfulPlannedFailoverTime: S.optional(S.String),
-    lastSuccessfulUnplannedFailoverTime: S.optional(S.String),
-    lastSuccessfulTestFailoverTime: S.optional(S.String),
-    currentJob: S.optional(ProtectedItemJobProperties),
-    allowedJobs: S.optional(ProtectedItemModelPropertiesAllowedJobsList),
-    lastFailedEnableProtectionJob: S.optional(ProtectedItemJobProperties),
-    lastFailedPlannedFailoverJob: S.optional(ProtectedItemJobProperties),
-    lastTestFailoverJob: S.optional(ProtectedItemJobProperties),
-    replicationHealth: S.optional(HealthStatus),
-    healthErrors: S.optional(ProtectedItemModelPropertiesHealthErrorsList),
-    customProperties: ProtectedItemModelCustomProperties,
-  }),
-).annotate({
-  identifier: "ProtectedItemModelProperties",
-}) as any as S.Schema<ProtectedItemModelProperties>;
-
-export interface ProtectedItemCreateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: ProtectedItemModelProperties;
-}
-export const ProtectedItemCreateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ProtectedItemModelProperties),
-  }),
-).annotate({
-  identifier: "ProtectedItemCreateResponse",
-}) as any as S.Schema<ProtectedItemCreateResponse>;
-
-export interface ProtectedItemDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The vault name. */
-  vaultName: string;
-  /** The protected item name. */
-  protectedItemName: string;
-  /** A flag indicating whether to do force delete or not. */
-  forceDelete?: boolean;
-}
-export const ProtectedItemDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    vaultName: S.String.pipe(T.Label()),
-    protectedItemName: S.String.pipe(T.Label()),
-    forceDelete: S.optional(S.Boolean.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationVaults/{vaultName}/protectedItems/{protectedItemName}",
-      code: 200,
-      apiVersion: "2026-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "ProtectedItemDeleteRequest",
-}) as any as S.Schema<ProtectedItemDeleteRequest>;
-
-export interface ProtectedItemDeleteResponse {}
-export const ProtectedItemDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ProtectedItemDeleteResponse",
-}) as any as S.Schema<ProtectedItemDeleteResponse>;
-
-export interface ProtectedItemGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The vault name. */
-  vaultName: string;
-  /** The protected item name. */
-  protectedItemName: string;
-}
-export const ProtectedItemGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    vaultName: S.String.pipe(T.Label()),
-    protectedItemName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationVaults/{vaultName}/protectedItems/{protectedItemName}",
-      code: 200,
-      apiVersion: "2026-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "ProtectedItemGetRequest",
-}) as any as S.Schema<ProtectedItemGetRequest>;
-
-export interface ProtectedItemGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: ProtectedItemModelProperties;
-}
-export const ProtectedItemGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ProtectedItemModelProperties),
-  }),
-).annotate({
-  identifier: "ProtectedItemGetResponse",
-}) as any as S.Schema<ProtectedItemGetResponse>;
-
-export interface ProtectedItemListRequest {
+export interface ListProtectedItemRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -3127,7 +3505,7 @@ export interface ProtectedItemListRequest {
   /** Page size. */
   pageSize?: number;
 }
-export const ProtectedItemListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListProtectedItemRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -3144,8 +3522,8 @@ export const ProtectedItemListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ProtectedItemListRequest",
-}) as any as S.Schema<ProtectedItemListRequest>;
+  identifier: "ListProtectedItemRequest",
+}) as any as S.Schema<ListProtectedItemRequest>;
 
 /** Protected item model. */
 export interface ProtectedItemModel {
@@ -3194,254 +3572,7 @@ export const ProtectedItemModelListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "ProtectedItemModelListResult",
 }) as any as S.Schema<ProtectedItemModelListResult>;
 
-/** Planned failover model custom properties. */
-export interface PlannedFailoverModelCustomProperties {
-  /** Discriminator property for PlannedFailoverModelCustomProperties. */
-  instanceType: string;
-}
-export const PlannedFailoverModelCustomProperties = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      instanceType: S.String,
-    }),
-).annotate({
-  identifier: "PlannedFailoverModelCustomProperties",
-}) as any as S.Schema<PlannedFailoverModelCustomProperties>;
-
-/** Planned failover model properties. */
-export interface PlannedFailoverModelProperties {
-  /** Planned failover model custom properties. */
-  customProperties: PlannedFailoverModelCustomProperties;
-}
-export const PlannedFailoverModelProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    customProperties: PlannedFailoverModelCustomProperties,
-  }),
-).annotate({
-  identifier: "PlannedFailoverModelProperties",
-}) as any as S.Schema<PlannedFailoverModelProperties>;
-
-export interface ProtectedItemPlannedFailoverRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The vault name. */
-  vaultName: string;
-  /** The protected item name. */
-  protectedItemName: string;
-  /** Planned failover model properties. */
-  properties: PlannedFailoverModelProperties;
-}
-export const ProtectedItemPlannedFailoverRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    vaultName: S.String.pipe(T.Label()),
-    protectedItemName: S.String.pipe(T.Label()),
-    properties: PlannedFailoverModelProperties,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationVaults/{vaultName}/protectedItems/{protectedItemName}/plannedFailover",
-      code: 200,
-      apiVersion: "2026-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "ProtectedItemPlannedFailoverRequest",
-}) as any as S.Schema<ProtectedItemPlannedFailoverRequest>;
-
-/** Planned failover model. */
-export interface PlannedFailoverModel {
-  /** Planned failover model properties. */
-  properties: PlannedFailoverModelProperties;
-}
-export const PlannedFailoverModel = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    properties: PlannedFailoverModelProperties,
-  }),
-).annotate({
-  identifier: "PlannedFailoverModel",
-}) as any as S.Schema<PlannedFailoverModel>;
-
-/** Protected item model custom properties. */
-export interface ProtectedItemModelCustomPropertiesUpdate {
-  /** Discriminator property for ProtectedItemModelCustomPropertiesUpdate. */
-  instanceType: string;
-}
-export const ProtectedItemModelCustomPropertiesUpdate = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      instanceType: S.String,
-    }),
-).annotate({
-  identifier: "ProtectedItemModelCustomPropertiesUpdate",
-}) as any as S.Schema<ProtectedItemModelCustomPropertiesUpdate>;
-
-/** Protected item model properties update. */
-export interface ProtectedItemModelPropertiesUpdate {
-  /** Protected item model custom properties update. */
-  customProperties?: ProtectedItemModelCustomPropertiesUpdate;
-}
-export const ProtectedItemModelPropertiesUpdate = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    customProperties: S.optional(ProtectedItemModelCustomPropertiesUpdate),
-  }),
-).annotate({
-  identifier: "ProtectedItemModelPropertiesUpdate",
-}) as any as S.Schema<ProtectedItemModelPropertiesUpdate>;
-
-export interface ProtectedItemUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The vault name. */
-  vaultName: string;
-  /** The protected item name. */
-  protectedItemName: string;
-  /** Protected item model properties. */
-  properties?: ProtectedItemModelPropertiesUpdate;
-}
-export const ProtectedItemUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    vaultName: S.String.pipe(T.Label()),
-    protectedItemName: S.String.pipe(T.Label()),
-    properties: S.optional(ProtectedItemModelPropertiesUpdate),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationVaults/{vaultName}/protectedItems/{protectedItemName}",
-      code: 200,
-      apiVersion: "2026-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "ProtectedItemUpdateRequest",
-}) as any as S.Schema<ProtectedItemUpdateRequest>;
-
-export interface ProtectedItemUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: ProtectedItemModelProperties;
-}
-export const ProtectedItemUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ProtectedItemModelProperties),
-  }),
-).annotate({
-  identifier: "ProtectedItemUpdateResponse",
-}) as any as S.Schema<ProtectedItemUpdateResponse>;
-
-export interface RecoveryPointGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The vault name. */
-  vaultName: string;
-  /** The protected item name. */
-  protectedItemName: string;
-  /** The recovery point name. */
-  recoveryPointName: string;
-}
-export const RecoveryPointGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    vaultName: S.String.pipe(T.Label()),
-    protectedItemName: S.String.pipe(T.Label()),
-    recoveryPointName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationVaults/{vaultName}/protectedItems/{protectedItemName}/recoveryPoints/{recoveryPointName}",
-      code: 200,
-      apiVersion: "2026-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "RecoveryPointGetRequest",
-}) as any as S.Schema<RecoveryPointGetRequest>;
-
-/** Gets or sets the recovery point type. */
-export type RecoveryPointType = "ApplicationConsistent" | "CrashConsistent";
-export const RecoveryPointType = /*@__PURE__*/ S.String;
-
-/** Recovery point model custom properties. */
-export interface RecoveryPointModelCustomProperties {
-  /** Discriminator property for RecoveryPointModelCustomProperties. */
-  instanceType: string;
-}
-export const RecoveryPointModelCustomProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    instanceType: S.String,
-  }),
-).annotate({
-  identifier: "RecoveryPointModelCustomProperties",
-}) as any as S.Schema<RecoveryPointModelCustomProperties>;
-
-/** Recovery point model properties. */
-export interface RecoveryPointModelProperties {
-  /** Gets or sets the recovery point time. */
-  recoveryPointTime: string;
-  /** Gets or sets the recovery point type. */
-  recoveryPointType: RecoveryPointType;
-  /** Recovery point model custom properties. */
-  customProperties: RecoveryPointModelCustomProperties;
-  /** Gets or sets the provisioning state of the recovery point item. */
-  provisioningState?: ProvisioningState;
-}
-export const RecoveryPointModelProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    recoveryPointTime: S.String,
-    recoveryPointType: RecoveryPointType,
-    customProperties: RecoveryPointModelCustomProperties,
-    provisioningState: S.optional(ProvisioningState),
-  }),
-).annotate({
-  identifier: "RecoveryPointModelProperties",
-}) as any as S.Schema<RecoveryPointModelProperties>;
-
-export interface RecoveryPointGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: RecoveryPointModelProperties;
-}
-export const RecoveryPointGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(RecoveryPointModelProperties),
-  }),
-).annotate({
-  identifier: "RecoveryPointGetResponse",
-}) as any as S.Schema<RecoveryPointGetResponse>;
-
-export interface RecoveryPointListRequest {
+export interface ListRecoveryPointRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -3451,7 +3582,7 @@ export interface RecoveryPointListRequest {
   /** The protected item name. */
   protectedItemName: string;
 }
-export const RecoveryPointListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListRecoveryPointRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -3466,8 +3597,8 @@ export const RecoveryPointListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "RecoveryPointListRequest",
-}) as any as S.Schema<RecoveryPointListRequest>;
+  identifier: "ListRecoveryPointRequest",
+}) as any as S.Schema<ListRecoveryPointRequest>;
 
 /** Recovery point model. */
 export interface RecoveryPointModel {
@@ -3516,193 +3647,7 @@ export const RecoveryPointModelListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "RecoveryPointModelListResult",
 }) as any as S.Schema<RecoveryPointModelListResult>;
 
-/** Replication extension model custom properties. */
-export interface ReplicationExtensionModelCustomProperties {
-  /** Discriminator property for ReplicationExtensionModelCustomProperties. */
-  instanceType: string;
-}
-export const ReplicationExtensionModelCustomProperties =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      instanceType: S.String,
-    }),
-  ).annotate({
-    identifier: "ReplicationExtensionModelCustomProperties",
-  }) as any as S.Schema<ReplicationExtensionModelCustomProperties>;
-
-/** Replication extension model properties. */
-export interface ReplicationExtensionModelPropertiesInput {
-  /** Replication extension model custom properties. */
-  customProperties: ReplicationExtensionModelCustomProperties;
-}
-export const ReplicationExtensionModelPropertiesInput = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      customProperties: ReplicationExtensionModelCustomProperties,
-    }),
-).annotate({
-  identifier: "ReplicationExtensionModelPropertiesInput",
-}) as any as S.Schema<ReplicationExtensionModelPropertiesInput>;
-
-export interface ReplicationExtensionCreateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The vault name. */
-  vaultName: string;
-  /** The replication extension name. */
-  replicationExtensionName: string;
-  /** The resource-specific properties for this resource. */
-  properties?: ReplicationExtensionModelPropertiesInput;
-}
-export const ReplicationExtensionCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    vaultName: S.String.pipe(T.Label()),
-    replicationExtensionName: S.String.pipe(T.Label()),
-    properties: S.optional(ReplicationExtensionModelPropertiesInput),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationVaults/{vaultName}/replicationExtensions/{replicationExtensionName}",
-      code: 200,
-      apiVersion: "2026-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "ReplicationExtensionCreateRequest",
-}) as any as S.Schema<ReplicationExtensionCreateRequest>;
-
-/** Replication extension model properties. */
-export interface ReplicationExtensionModelProperties {
-  /** Gets or sets the provisioning state of the replication extension. */
-  provisioningState?: ProvisioningState;
-  /** Replication extension model custom properties. */
-  customProperties: ReplicationExtensionModelCustomProperties;
-}
-export const ReplicationExtensionModelProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provisioningState: S.optional(ProvisioningState),
-    customProperties: ReplicationExtensionModelCustomProperties,
-  }),
-).annotate({
-  identifier: "ReplicationExtensionModelProperties",
-}) as any as S.Schema<ReplicationExtensionModelProperties>;
-
-export interface ReplicationExtensionCreateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: ReplicationExtensionModelProperties;
-}
-export const ReplicationExtensionCreateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ReplicationExtensionModelProperties),
-  }),
-).annotate({
-  identifier: "ReplicationExtensionCreateResponse",
-}) as any as S.Schema<ReplicationExtensionCreateResponse>;
-
-export interface ReplicationExtensionDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The vault name. */
-  vaultName: string;
-  /** The replication extension name. */
-  replicationExtensionName: string;
-}
-export const ReplicationExtensionDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    vaultName: S.String.pipe(T.Label()),
-    replicationExtensionName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationVaults/{vaultName}/replicationExtensions/{replicationExtensionName}",
-      code: 200,
-      apiVersion: "2026-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "ReplicationExtensionDeleteRequest",
-}) as any as S.Schema<ReplicationExtensionDeleteRequest>;
-
-export interface ReplicationExtensionDeleteResponse {}
-export const ReplicationExtensionDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ReplicationExtensionDeleteResponse",
-}) as any as S.Schema<ReplicationExtensionDeleteResponse>;
-
-export interface ReplicationExtensionGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The vault name. */
-  vaultName: string;
-  /** The replication extension name. */
-  replicationExtensionName: string;
-}
-export const ReplicationExtensionGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    vaultName: S.String.pipe(T.Label()),
-    replicationExtensionName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationVaults/{vaultName}/replicationExtensions/{replicationExtensionName}",
-      code: 200,
-      apiVersion: "2026-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "ReplicationExtensionGetRequest",
-}) as any as S.Schema<ReplicationExtensionGetRequest>;
-
-export interface ReplicationExtensionGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: ReplicationExtensionModelProperties;
-}
-export const ReplicationExtensionGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ReplicationExtensionModelProperties),
-  }),
-).annotate({
-  identifier: "ReplicationExtensionGetResponse",
-}) as any as S.Schema<ReplicationExtensionGetResponse>;
-
-export interface ReplicationExtensionListRequest {
+export interface ListReplicationExtensionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -3710,7 +3655,7 @@ export interface ReplicationExtensionListRequest {
   /** The vault name. */
   vaultName: string;
 }
-export const ReplicationExtensionListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListReplicationExtensionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -3724,8 +3669,8 @@ export const ReplicationExtensionListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ReplicationExtensionListRequest",
-}) as any as S.Schema<ReplicationExtensionListRequest>;
+  identifier: "ListReplicationExtensionRequest",
+}) as any as S.Schema<ListReplicationExtensionRequest>;
 
 /** Replication extension model. */
 export interface ReplicationExtensionModel {
@@ -3776,385 +3721,7 @@ export const ReplicationExtensionModelListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "ReplicationExtensionModelListResult",
 }) as any as S.Schema<ReplicationExtensionModelListResult>;
 
-/** Resource tags. */
-export type VaultCreateRequestTagsMap = { [key: string]: string | undefined };
-export const VaultCreateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<VaultCreateRequestTagsMap>;
-
-/** Gets or sets the type of vault. */
-export type ReplicationVaultType = "DisasterRecovery" | "Migrate";
-export const ReplicationVaultType = /*@__PURE__*/ S.String;
-
-/** Property to enable or disable resource provider inbound network traffic from public clients. */
-export type PublicNetworkAccess = "Enabled" | "Disabled";
-export const PublicNetworkAccess = /*@__PURE__*/ S.String;
-
-/** Vault properties. */
-export interface VaultModelPropertiesInput {
-  /** Gets or sets the type of vault. */
-  vaultType?: ReplicationVaultType | (string & {});
-  /** Property to enable or disable resource provider inbound network traffic from public clients. */
-  publicNetworkAccess?: PublicNetworkAccess | (string & {});
-}
-export const VaultModelPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    vaultType: S.optional(ReplicationVaultType),
-    publicNetworkAccess: S.optional(PublicNetworkAccess),
-  }),
-).annotate({
-  identifier: "VaultModelPropertiesInput",
-}) as any as S.Schema<VaultModelPropertiesInput>;
-
-/** Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed). */
-export type ManagedServiceIdentityType =
-  | "None"
-  | "SystemAssigned"
-  | "UserAssigned"
-  | "SystemAssigned,UserAssigned";
-export const ManagedServiceIdentityType = /*@__PURE__*/ S.String;
-
-/** User assigned identity properties */
-export interface UserAssignedIdentityInput {}
-export const UserAssignedIdentityInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "UserAssignedIdentityInput",
-}) as any as S.Schema<UserAssignedIdentityInput>;
-
-/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-export type VaultCreateRequestIdentityUserAssignedIdentitiesMap = {
-  [key: string]: UserAssignedIdentityInput | undefined;
-};
-export const VaultCreateRequestIdentityUserAssignedIdentitiesMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    UserAssignedIdentityInput,
-  ) as any as S.Schema<VaultCreateRequestIdentityUserAssignedIdentitiesMap>;
-
-/** Managed service identity (system assigned and/or user assigned identities) */
-export interface VaultCreateRequestIdentity {
-  type: ManagedServiceIdentityType | (string & {});
-  /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-  userAssignedIdentities?: VaultCreateRequestIdentityUserAssignedIdentitiesMap;
-}
-export const VaultCreateRequestIdentity = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: ManagedServiceIdentityType,
-    userAssignedIdentities: S.optional(
-      VaultCreateRequestIdentityUserAssignedIdentitiesMap,
-    ),
-  }),
-).annotate({
-  identifier: "VaultCreateRequestIdentity",
-}) as any as S.Schema<VaultCreateRequestIdentity>;
-
-export interface VaultCreateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The vault name. */
-  vaultName: string;
-  /** Resource tags. */
-  tags?: VaultCreateRequestTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: VaultModelPropertiesInput;
-  /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: VaultCreateRequestIdentity;
-}
-export const VaultCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    vaultName: S.String.pipe(T.Label()),
-    tags: S.optional(VaultCreateRequestTagsMap),
-    location: S.String,
-    properties: S.optional(VaultModelPropertiesInput),
-    identity: S.optional(VaultCreateRequestIdentity),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationVaults/{vaultName}",
-      code: 200,
-      apiVersion: "2026-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "VaultCreateRequest",
-}) as any as S.Schema<VaultCreateRequest>;
-
-/** Resource tags. */
-export type VaultCreateResponseTagsMap = { [key: string]: string | undefined };
-export const VaultCreateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<VaultCreateResponseTagsMap>;
-
-/** Private endpoint state for the vault. */
-export type VaultPrivateEndpointState =
-  | "None"
-  | "InProgress"
-  | "Succeeded"
-  | "Deleting"
-  | "Failed"
-  | "Pending";
-export const VaultPrivateEndpointState = /*@__PURE__*/ S.String;
-
-/** List of private endpoint connection. */
-export type VaultModelPropertiesPrivateEndpointConnectionsList =
-  Array<PrivateEndpointConnection>;
-export const VaultModelPropertiesPrivateEndpointConnectionsList =
-  /*@__PURE__*/ S.Array(
-    PrivateEndpointConnection,
-  ) as any as S.Schema<VaultModelPropertiesPrivateEndpointConnectionsList>;
-
-/** Vault properties. */
-export interface VaultModelProperties {
-  /** Gets or sets the provisioning state of the vault. */
-  provisioningState?: ProvisioningState;
-  /** Gets or sets the service resource Id. */
-  serviceResourceId?: string;
-  /** Gets or sets the type of vault. */
-  vaultType?: ReplicationVaultType;
-  /** Private endpoint state for the vault. */
-  privateEndpointState?: VaultPrivateEndpointState;
-  /** Property to enable or disable resource provider inbound network traffic from public clients. */
-  publicNetworkAccess?: PublicNetworkAccess;
-  /** List of private endpoint connection. */
-  privateEndpointConnections?: VaultModelPropertiesPrivateEndpointConnectionsList;
-}
-export const VaultModelProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provisioningState: S.optional(ProvisioningState),
-    serviceResourceId: S.optional(S.String),
-    vaultType: S.optional(ReplicationVaultType),
-    privateEndpointState: S.optional(VaultPrivateEndpointState),
-    publicNetworkAccess: S.optional(PublicNetworkAccess),
-    privateEndpointConnections: S.optional(
-      VaultModelPropertiesPrivateEndpointConnectionsList,
-    ),
-  }),
-).annotate({
-  identifier: "VaultModelProperties",
-}) as any as S.Schema<VaultModelProperties>;
-
-/** User assigned identity properties */
-export interface UserAssignedIdentity {
-  /** The principal ID of the assigned identity. */
-  principalId?: string;
-  /** The client ID of the assigned identity. */
-  clientId?: string;
-}
-export const UserAssignedIdentity = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    principalId: S.optional(S.String),
-    clientId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "UserAssignedIdentity",
-}) as any as S.Schema<UserAssignedIdentity>;
-
-/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-export type VaultCreateResponseIdentityUserAssignedIdentitiesMap = {
-  [key: string]: UserAssignedIdentity | undefined;
-};
-export const VaultCreateResponseIdentityUserAssignedIdentitiesMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    UserAssignedIdentity,
-  ) as any as S.Schema<VaultCreateResponseIdentityUserAssignedIdentitiesMap>;
-
-/** Managed service identity (system assigned and/or user assigned identities) */
-export interface VaultCreateResponseIdentity {
-  /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
-  principalId?: string;
-  /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
-  tenantId?: string;
-  type: ManagedServiceIdentityType;
-  /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-  userAssignedIdentities?: VaultCreateResponseIdentityUserAssignedIdentitiesMap;
-}
-export const VaultCreateResponseIdentity = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    principalId: S.optional(S.String),
-    tenantId: S.optional(S.String),
-    type: ManagedServiceIdentityType,
-    userAssignedIdentities: S.optional(
-      VaultCreateResponseIdentityUserAssignedIdentitiesMap,
-    ),
-  }),
-).annotate({
-  identifier: "VaultCreateResponseIdentity",
-}) as any as S.Schema<VaultCreateResponseIdentity>;
-
-export interface VaultCreateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: VaultCreateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: VaultModelProperties;
-  /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: VaultCreateResponseIdentity;
-}
-export const VaultCreateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(VaultCreateResponseTagsMap),
-    location: S.String,
-    properties: S.optional(VaultModelProperties),
-    identity: S.optional(VaultCreateResponseIdentity),
-  }),
-).annotate({
-  identifier: "VaultCreateResponse",
-}) as any as S.Schema<VaultCreateResponse>;
-
-export interface VaultDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The vault name. */
-  vaultName: string;
-}
-export const VaultDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    vaultName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationVaults/{vaultName}",
-      code: 200,
-      apiVersion: "2026-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "VaultDeleteRequest",
-}) as any as S.Schema<VaultDeleteRequest>;
-
-export interface VaultDeleteResponse {}
-export const VaultDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "VaultDeleteResponse",
-}) as any as S.Schema<VaultDeleteResponse>;
-
-export interface VaultGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The vault name. */
-  vaultName: string;
-}
-export const VaultGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    vaultName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationVaults/{vaultName}",
-      code: 200,
-      apiVersion: "2026-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "VaultGetRequest",
-}) as any as S.Schema<VaultGetRequest>;
-
-/** Resource tags. */
-export type VaultGetResponseTagsMap = { [key: string]: string | undefined };
-export const VaultGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<VaultGetResponseTagsMap>;
-
-/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-export type VaultGetResponseIdentityUserAssignedIdentitiesMap = {
-  [key: string]: UserAssignedIdentity | undefined;
-};
-export const VaultGetResponseIdentityUserAssignedIdentitiesMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    UserAssignedIdentity,
-  ) as any as S.Schema<VaultGetResponseIdentityUserAssignedIdentitiesMap>;
-
-/** Managed service identity (system assigned and/or user assigned identities) */
-export interface VaultGetResponseIdentity {
-  /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
-  principalId?: string;
-  /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
-  tenantId?: string;
-  type: ManagedServiceIdentityType;
-  /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-  userAssignedIdentities?: VaultGetResponseIdentityUserAssignedIdentitiesMap;
-}
-export const VaultGetResponseIdentity = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    principalId: S.optional(S.String),
-    tenantId: S.optional(S.String),
-    type: ManagedServiceIdentityType,
-    userAssignedIdentities: S.optional(
-      VaultGetResponseIdentityUserAssignedIdentitiesMap,
-    ),
-  }),
-).annotate({
-  identifier: "VaultGetResponseIdentity",
-}) as any as S.Schema<VaultGetResponseIdentity>;
-
-export interface VaultGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: VaultGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: VaultModelProperties;
-  /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: VaultGetResponseIdentity;
-}
-export const VaultGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(VaultGetResponseTagsMap),
-    location: S.String,
-    properties: S.optional(VaultModelProperties),
-    identity: S.optional(VaultGetResponseIdentity),
-  }),
-).annotate({
-  identifier: "VaultGetResponse",
-}) as any as S.Schema<VaultGetResponse>;
-
-export interface VaultListRequest {
+export interface ListVaultRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -4162,7 +3729,7 @@ export interface VaultListRequest {
   /** Continuation token from the previous call. */
   continuationToken?: string;
 }
-export const VaultListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListVaultRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -4176,8 +3743,8 @@ export const VaultListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "VaultListRequest",
-}) as any as S.Schema<VaultListRequest>;
+  identifier: "ListVaultRequest",
+}) as any as S.Schema<ListVaultRequest>;
 
 /** Resource tags. */
 export type VaultModelTagsMap = { [key: string]: string | undefined };
@@ -4273,11 +3840,11 @@ export const VaultModelListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "VaultModelListResult",
 }) as any as S.Schema<VaultModelListResult>;
 
-export interface VaultListBySubscriptionRequest {
+export interface ListVaultBySubscriptionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
 }
-export const VaultListBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListVaultBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
   }).pipe(
@@ -4289,15 +3856,447 @@ export const VaultListBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "VaultListBySubscriptionRequest",
-}) as any as S.Schema<VaultListBySubscriptionRequest>;
+  identifier: "ListVaultBySubscriptionRequest",
+}) as any as S.Schema<ListVaultBySubscriptionRequest>;
+
+export interface PostCheckNameAvailabilityRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the Azure region. */
+  location: string;
+  /** Gets or sets the resource name. */
+  name?: string;
+  /** Gets or sets the resource type. */
+  type?: string;
+}
+export const PostCheckNameAvailabilityRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    location: S.String.pipe(T.Label()),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.DataReplication/locations/{location}/checkNameAvailability",
+      code: 200,
+      apiVersion: "2026-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "PostCheckNameAvailabilityRequest",
+}) as any as S.Schema<PostCheckNameAvailabilityRequest>;
+
+/** Check name availability response model. */
+export interface CheckNameAvailabilityResponseModel {
+  /** Gets or sets a value indicating whether resource name is available or not. */
+  nameAvailable?: boolean;
+  /** Gets or sets the reason for resource name unavailability. */
+  reason?: string;
+  /** Gets or sets the message for resource name unavailability. */
+  message?: string;
+}
+export const CheckNameAvailabilityResponseModel = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nameAvailable: S.optional(S.Boolean),
+    reason: S.optional(S.String),
+    message: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "CheckNameAvailabilityResponseModel",
+}) as any as S.Schema<CheckNameAvailabilityResponseModel>;
+
+/** Deployment preflight resource. */
+export interface DeploymentPreflightResource {
+  /** Gets or sets the resource name. */
+  name?: string;
+  /** Gets or sets the resource type. */
+  type?: string;
+  /** Gets or sets the location of the resource. */
+  location?: string;
+  /** Gets or sets the Api version. */
+  apiVersion?: string;
+  /** Gets or sets the properties of the resource. */
+  properties?: unknown;
+}
+export const DeploymentPreflightResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    location: S.optional(S.String),
+    apiVersion: S.optional(S.String),
+    properties: S.optional(S.Unknown),
+  }),
+).annotate({
+  identifier: "DeploymentPreflightResource",
+}) as any as S.Schema<DeploymentPreflightResource>;
+
+/** Gets or sets the list of resources. */
+export type PostDeploymentPreflightRequestResourcesList =
+  Array<DeploymentPreflightResource>;
+export const PostDeploymentPreflightRequestResourcesList =
+  /*@__PURE__*/ S.Array(
+    DeploymentPreflightResource,
+  ) as any as S.Schema<PostDeploymentPreflightRequestResourcesList>;
+
+export interface PostDeploymentPreflightRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Deployment Id. */
+  deploymentId: string;
+  /** Gets or sets the list of resources. */
+  resources?: PostDeploymentPreflightRequestResourcesList;
+}
+export const PostDeploymentPreflightRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    deploymentId: S.String.pipe(T.Label()),
+    resources: S.optional(PostDeploymentPreflightRequestResourcesList),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/deployments/{deploymentId}/preflight",
+      code: 200,
+      apiVersion: "2026-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "PostDeploymentPreflightRequest",
+}) as any as S.Schema<PostDeploymentPreflightRequest>;
+
+/** Gets or sets the list of resources. */
+export type DeploymentPreflightModelResourcesList =
+  Array<DeploymentPreflightResource>;
+export const DeploymentPreflightModelResourcesList = /*@__PURE__*/ S.Array(
+  DeploymentPreflightResource,
+) as any as S.Schema<DeploymentPreflightModelResourcesList>;
+
+/** Deployment preflight model. */
+export interface DeploymentPreflightModel {
+  /** Gets or sets the list of resources. */
+  resources?: DeploymentPreflightModelResourcesList;
+}
+export const DeploymentPreflightModel = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    resources: S.optional(DeploymentPreflightModelResourcesList),
+  }),
+).annotate({
+  identifier: "DeploymentPreflightModel",
+}) as any as S.Schema<DeploymentPreflightModel>;
+
+/** Planned failover model custom properties. */
+export interface PlannedFailoverModelCustomProperties {
+  /** Discriminator property for PlannedFailoverModelCustomProperties. */
+  instanceType: string;
+}
+export const PlannedFailoverModelCustomProperties = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      instanceType: S.String,
+    }),
+).annotate({
+  identifier: "PlannedFailoverModelCustomProperties",
+}) as any as S.Schema<PlannedFailoverModelCustomProperties>;
+
+/** Planned failover model properties. */
+export interface PlannedFailoverModelProperties {
+  /** Planned failover model custom properties. */
+  customProperties: PlannedFailoverModelCustomProperties;
+}
+export const PlannedFailoverModelProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    customProperties: PlannedFailoverModelCustomProperties,
+  }),
+).annotate({
+  identifier: "PlannedFailoverModelProperties",
+}) as any as S.Schema<PlannedFailoverModelProperties>;
+
+export interface ProtectedItemPlannedFailoverRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The vault name. */
+  vaultName: string;
+  /** The protected item name. */
+  protectedItemName: string;
+  /** Planned failover model properties. */
+  properties: PlannedFailoverModelProperties;
+}
+export const ProtectedItemPlannedFailoverRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    vaultName: S.String.pipe(T.Label()),
+    protectedItemName: S.String.pipe(T.Label()),
+    properties: PlannedFailoverModelProperties,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationVaults/{vaultName}/protectedItems/{protectedItemName}/plannedFailover",
+      code: 200,
+      apiVersion: "2026-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "ProtectedItemPlannedFailoverRequest",
+}) as any as S.Schema<ProtectedItemPlannedFailoverRequest>;
+
+/** Planned failover model. */
+export interface PlannedFailoverModel {
+  /** Planned failover model properties. */
+  properties: PlannedFailoverModelProperties;
+}
+export const PlannedFailoverModel = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    properties: PlannedFailoverModelProperties,
+  }),
+).annotate({
+  identifier: "PlannedFailoverModel",
+}) as any as S.Schema<PlannedFailoverModel>;
 
 /** Gets or sets the resource tags. */
-export type VaultUpdateRequestTagsMap = { [key: string]: string | undefined };
-export const VaultUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateFabricRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateFabricRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<VaultUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateFabricRequestTagsMap>;
+
+export interface UpdateFabricRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The fabric name. */
+  fabricName: string;
+  /** Gets or sets the resource tags. */
+  tags?: UpdateFabricRequestTagsMap;
+  /** Fabric model properties. */
+  properties?: FabricModelPropertiesInput;
+}
+export const UpdateFabricRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    fabricName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateFabricRequestTagsMap),
+    properties: S.optional(FabricModelPropertiesInput),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationFabrics/{fabricName}",
+      code: 200,
+      apiVersion: "2026-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateFabricRequest",
+}) as any as S.Schema<UpdateFabricRequest>;
+
+/** Resource tags. */
+export type UpdateFabricResponseTagsMap = { [key: string]: string | undefined };
+export const UpdateFabricResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateFabricResponseTagsMap>;
+
+export interface UpdateFabricResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateFabricResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: FabricModelProperties;
+}
+export const UpdateFabricResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateFabricResponseTagsMap),
+    location: S.String,
+    properties: S.optional(FabricModelProperties),
+  }),
+).annotate({
+  identifier: "UpdateFabricResponse",
+}) as any as S.Schema<UpdateFabricResponse>;
+
+/** Represents Private endpoint connection response properties. */
+export interface PrivateEndpointConnectionResponsePropertiesInput {
+  /** Represent private Endpoint network resource that is linked to the Private Endpoint connection. */
+  privateEndpoint?: PrivateEndpoint;
+  /** Represents Private link service connection state. */
+  privateLinkServiceConnectionState?: PrivateLinkServiceConnectionState;
+}
+export const PrivateEndpointConnectionResponsePropertiesInput =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      privateEndpoint: S.optional(PrivateEndpoint),
+      privateLinkServiceConnectionState: S.optional(
+        PrivateLinkServiceConnectionState,
+      ),
+    }),
+  ).annotate({
+    identifier: "PrivateEndpointConnectionResponsePropertiesInput",
+  }) as any as S.Schema<PrivateEndpointConnectionResponsePropertiesInput>;
+
+export interface UpdatePrivateEndpointConnectionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The vault name. */
+  vaultName: string;
+  /** The private endpoint connection name. */
+  privateEndpointConnectionName: string;
+  /** The resource-specific properties for this resource. */
+  properties?: PrivateEndpointConnectionResponsePropertiesInput;
+}
+export const UpdatePrivateEndpointConnectionRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      vaultName: S.String.pipe(T.Label()),
+      privateEndpointConnectionName: S.String.pipe(T.Label()),
+      properties: S.optional(PrivateEndpointConnectionResponsePropertiesInput),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationVaults/{vaultName}/privateEndpointConnections/{privateEndpointConnectionName}",
+        code: 200,
+        apiVersion: "2026-05-01",
+      }),
+    ),
+).annotate({
+  identifier: "UpdatePrivateEndpointConnectionRequest",
+}) as any as S.Schema<UpdatePrivateEndpointConnectionRequest>;
+
+export interface UpdatePrivateEndpointConnectionResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: PrivateEndpointConnectionResponseProperties;
+}
+export const UpdatePrivateEndpointConnectionResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(PrivateEndpointConnectionResponseProperties),
+    }),
+).annotate({
+  identifier: "UpdatePrivateEndpointConnectionResponse",
+}) as any as S.Schema<UpdatePrivateEndpointConnectionResponse>;
+
+/** Protected item model custom properties. */
+export interface ProtectedItemModelCustomPropertiesUpdate {
+  /** Discriminator property for ProtectedItemModelCustomPropertiesUpdate. */
+  instanceType: string;
+}
+export const ProtectedItemModelCustomPropertiesUpdate = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      instanceType: S.String,
+    }),
+).annotate({
+  identifier: "ProtectedItemModelCustomPropertiesUpdate",
+}) as any as S.Schema<ProtectedItemModelCustomPropertiesUpdate>;
+
+/** Protected item model properties update. */
+export interface ProtectedItemModelPropertiesUpdate {
+  /** Protected item model custom properties update. */
+  customProperties?: ProtectedItemModelCustomPropertiesUpdate;
+}
+export const ProtectedItemModelPropertiesUpdate = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    customProperties: S.optional(ProtectedItemModelCustomPropertiesUpdate),
+  }),
+).annotate({
+  identifier: "ProtectedItemModelPropertiesUpdate",
+}) as any as S.Schema<ProtectedItemModelPropertiesUpdate>;
+
+export interface UpdateProtectedItemRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The vault name. */
+  vaultName: string;
+  /** The protected item name. */
+  protectedItemName: string;
+  /** Protected item model properties. */
+  properties?: ProtectedItemModelPropertiesUpdate;
+}
+export const UpdateProtectedItemRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    vaultName: S.String.pipe(T.Label()),
+    protectedItemName: S.String.pipe(T.Label()),
+    properties: S.optional(ProtectedItemModelPropertiesUpdate),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataReplication/replicationVaults/{vaultName}/protectedItems/{protectedItemName}",
+      code: 200,
+      apiVersion: "2026-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateProtectedItemRequest",
+}) as any as S.Schema<UpdateProtectedItemRequest>;
+
+export interface UpdateProtectedItemResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: ProtectedItemModelProperties;
+}
+export const UpdateProtectedItemResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ProtectedItemModelProperties),
+  }),
+).annotate({
+  identifier: "UpdateProtectedItemResponse",
+}) as any as S.Schema<UpdateProtectedItemResponse>;
+
+/** Gets or sets the resource tags. */
+export type UpdateVaultRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateVaultRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateVaultRequestTagsMap>;
 
 /** Gets or sets the identityType which can be either SystemAssigned or None. */
 export type VaultIdentityType = "None" | "SystemAssigned" | "UserAssigned";
@@ -4316,7 +4315,7 @@ export const VaultIdentityModelInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "VaultIdentityModelInput",
 }) as any as S.Schema<VaultIdentityModelInput>;
 
-export interface VaultUpdateRequest {
+export interface UpdateVaultRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -4324,18 +4323,18 @@ export interface VaultUpdateRequest {
   /** The vault name. */
   vaultName: string;
   /** Gets or sets the resource tags. */
-  tags?: VaultUpdateRequestTagsMap;
+  tags?: UpdateVaultRequestTagsMap;
   /** Vault properties. */
   properties?: VaultModelPropertiesInput;
   /** Vault identity. */
   identity?: VaultIdentityModelInput;
 }
-export const VaultUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateVaultRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     vaultName: S.String.pipe(T.Label()),
-    tags: S.optional(VaultUpdateRequestTagsMap),
+    tags: S.optional(UpdateVaultRequestTagsMap),
     properties: S.optional(VaultModelPropertiesInput),
     identity: S.optional(VaultIdentityModelInput),
   }).pipe(
@@ -4347,50 +4346,50 @@ export const VaultUpdateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "VaultUpdateRequest",
-}) as any as S.Schema<VaultUpdateRequest>;
+  identifier: "UpdateVaultRequest",
+}) as any as S.Schema<UpdateVaultRequest>;
 
 /** Resource tags. */
-export type VaultUpdateResponseTagsMap = { [key: string]: string | undefined };
-export const VaultUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateVaultResponseTagsMap = { [key: string]: string | undefined };
+export const UpdateVaultResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<VaultUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateVaultResponseTagsMap>;
 
 /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-export type VaultUpdateResponseIdentityUserAssignedIdentitiesMap = {
+export type UpdateVaultResponseIdentityUserAssignedIdentitiesMap = {
   [key: string]: UserAssignedIdentity | undefined;
 };
-export const VaultUpdateResponseIdentityUserAssignedIdentitiesMap =
+export const UpdateVaultResponseIdentityUserAssignedIdentitiesMap =
   /*@__PURE__*/ S.Record(
     S.String,
     UserAssignedIdentity,
-  ) as any as S.Schema<VaultUpdateResponseIdentityUserAssignedIdentitiesMap>;
+  ) as any as S.Schema<UpdateVaultResponseIdentityUserAssignedIdentitiesMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export interface VaultUpdateResponseIdentity {
+export interface UpdateVaultResponseIdentity {
   /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   principalId?: string;
   /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   tenantId?: string;
   type: ManagedServiceIdentityType;
   /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-  userAssignedIdentities?: VaultUpdateResponseIdentityUserAssignedIdentitiesMap;
+  userAssignedIdentities?: UpdateVaultResponseIdentityUserAssignedIdentitiesMap;
 }
-export const VaultUpdateResponseIdentity = /*@__PURE__*/ S.suspend(() =>
+export const UpdateVaultResponseIdentity = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     principalId: S.optional(S.String),
     tenantId: S.optional(S.String),
     type: ManagedServiceIdentityType,
     userAssignedIdentities: S.optional(
-      VaultUpdateResponseIdentityUserAssignedIdentitiesMap,
+      UpdateVaultResponseIdentityUserAssignedIdentitiesMap,
     ),
   }),
 ).annotate({
-  identifier: "VaultUpdateResponseIdentity",
-}) as any as S.Schema<VaultUpdateResponseIdentity>;
+  identifier: "UpdateVaultResponseIdentity",
+}) as any as S.Schema<UpdateVaultResponseIdentity>;
 
-export interface VaultUpdateResponse {
+export interface UpdateVaultResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -4400,564 +4399,699 @@ export interface VaultUpdateResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: VaultUpdateResponseTagsMap;
+  tags?: UpdateVaultResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: VaultModelProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: VaultUpdateResponseIdentity;
+  identity?: UpdateVaultResponseIdentity;
 }
-export const VaultUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateVaultResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(VaultUpdateResponseTagsMap),
+    tags: S.optional(UpdateVaultResponseTagsMap),
     location: S.String,
     properties: S.optional(VaultModelProperties),
-    identity: S.optional(VaultUpdateResponseIdentity),
+    identity: S.optional(UpdateVaultResponseIdentity),
   }),
 ).annotate({
-  identifier: "VaultUpdateResponse",
-}) as any as S.Schema<VaultUpdateResponse>;
+  identifier: "UpdateVaultResponse",
+}) as any as S.Schema<UpdateVaultResponse>;
 
-export type CheckNameAvailabilityPostError = AzureOpError;
-/** Performs the resource name availability check. Checks the resource name availability. */
-export const CheckNameAvailabilityPost: API.OperationMethod<
-  CheckNameAvailabilityPostRequest,
-  CheckNameAvailabilityResponseModel,
-  CheckNameAvailabilityPostError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CheckNameAvailabilityPostRequest,
-  output: CheckNameAvailabilityResponseModel,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeploymentPreflightPostError = AzureOpError;
-/** Performs resource deployment validation. Performs resource deployment preflight validation. */
-export const DeploymentPreflightPost: API.OperationMethod<
-  DeploymentPreflightPostRequest,
-  DeploymentPreflightModel,
-  DeploymentPreflightPostError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeploymentPreflightPostRequest,
-  output: DeploymentPreflightModel,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type EmailConfigurationCreateError = AzureOpError;
+export type CreateEmailConfigurationError = AzureOpError;
 /** Creates an alert configuration setting for the given vault. */
-export const EmailConfigurationCreate: API.OperationMethod<
-  EmailConfigurationCreateRequest,
-  EmailConfigurationCreateResponse,
-  EmailConfigurationCreateError,
+export const CreateEmailConfiguration: API.OperationMethod<
+  CreateEmailConfigurationRequest,
+  CreateEmailConfigurationResponse,
+  CreateEmailConfigurationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: EmailConfigurationCreateRequest,
-  output: EmailConfigurationCreateResponse,
+  input: CreateEmailConfigurationRequest,
+  output: CreateEmailConfigurationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type EmailConfigurationGetError = AzureOpError;
+export type CreateFabricError = AzureOpError;
+/** Creates the fabric. */
+export const CreateFabric: API.OperationMethod<
+  CreateFabricRequest,
+  CreateFabricResponse,
+  CreateFabricError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateFabricRequest,
+  output: CreateFabricResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateFabricAgentError = AzureOpError;
+/** Creates the fabric agent. */
+export const CreateFabricAgent: API.OperationMethod<
+  CreateFabricAgentRequest,
+  CreateFabricAgentResponse,
+  CreateFabricAgentError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateFabricAgentRequest,
+  output: CreateFabricAgentResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreatePolicyError = AzureOpError;
+/** Creates the policy. */
+export const CreatePolicy: API.OperationMethod<
+  CreatePolicyRequest,
+  CreatePolicyResponse,
+  CreatePolicyError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreatePolicyRequest,
+  output: CreatePolicyResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateProtectedItemError = AzureOpError;
+/** Creates the protected item. */
+export const CreateProtectedItem: API.OperationMethod<
+  CreateProtectedItemRequest,
+  CreateProtectedItemResponse,
+  CreateProtectedItemError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateProtectedItemRequest,
+  output: CreateProtectedItemResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateReplicationExtensionError = AzureOpError;
+/** Creates the replication extension in the given vault. */
+export const CreateReplicationExtension: API.OperationMethod<
+  CreateReplicationExtensionRequest,
+  CreateReplicationExtensionResponse,
+  CreateReplicationExtensionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateReplicationExtensionRequest,
+  output: CreateReplicationExtensionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateVaultError = AzureOpError;
+/** Creates the vault. */
+export const CreateVault: API.OperationMethod<
+  CreateVaultRequest,
+  CreateVaultResponse,
+  CreateVaultError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateVaultRequest,
+  output: CreateVaultResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteFabricError = AzureOpError;
+/** Removes the fabric. */
+export const DeleteFabric: API.OperationMethod<
+  DeleteFabricRequest,
+  DeleteFabricResponse,
+  DeleteFabricError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteFabricRequest,
+  output: DeleteFabricResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteFabricAgentError = AzureOpError;
+/** Deletes fabric agent. */
+export const DeleteFabricAgent: API.OperationMethod<
+  DeleteFabricAgentRequest,
+  DeleteFabricAgentResponse,
+  DeleteFabricAgentError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteFabricAgentRequest,
+  output: DeleteFabricAgentResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeletePolicyError = AzureOpError;
+/** Removes the policy. */
+export const DeletePolicy: API.OperationMethod<
+  DeletePolicyRequest,
+  DeletePolicyResponse,
+  DeletePolicyError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeletePolicyRequest,
+  output: DeletePolicyResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeletePrivateEndpointConnectionError = AzureOpError;
+/** Deletes the private endpoint connection. */
+export const DeletePrivateEndpointConnection: API.OperationMethod<
+  DeletePrivateEndpointConnectionRequest,
+  DeletePrivateEndpointConnectionResponse,
+  DeletePrivateEndpointConnectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeletePrivateEndpointConnectionRequest,
+  output: DeletePrivateEndpointConnectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteProtectedItemError = AzureOpError;
+/** Removes the protected item. */
+export const DeleteProtectedItem: API.OperationMethod<
+  DeleteProtectedItemRequest,
+  DeleteProtectedItemResponse,
+  DeleteProtectedItemError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteProtectedItemRequest,
+  output: DeleteProtectedItemResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteReplicationExtensionError = AzureOpError;
+/** Deletes the replication extension in the given vault. */
+export const DeleteReplicationExtension: API.OperationMethod<
+  DeleteReplicationExtensionRequest,
+  DeleteReplicationExtensionResponse,
+  DeleteReplicationExtensionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteReplicationExtensionRequest,
+  output: DeleteReplicationExtensionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteVaultError = AzureOpError;
+/** Removes the vault. */
+export const DeleteVault: API.OperationMethod<
+  DeleteVaultRequest,
+  DeleteVaultResponse,
+  DeleteVaultError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteVaultRequest,
+  output: DeleteVaultResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetEmailConfigurationError = AzureOpError;
 /** Gets the details of the alert configuration setting. */
-export const EmailConfigurationGet: API.OperationMethod<
-  EmailConfigurationGetRequest,
-  EmailConfigurationGetResponse,
-  EmailConfigurationGetError,
+export const GetEmailConfiguration: API.OperationMethod<
+  GetEmailConfigurationRequest,
+  GetEmailConfigurationResponse,
+  GetEmailConfigurationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: EmailConfigurationGetRequest,
-  output: EmailConfigurationGetResponse,
+  input: GetEmailConfigurationRequest,
+  output: GetEmailConfigurationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type EmailConfigurationListError = AzureOpError;
-/** Gets the list of alert configuration settings for the given vault. */
-export const EmailConfigurationList: API.OperationMethod<
-  EmailConfigurationListRequest,
-  EmailConfigurationModelListResult,
-  EmailConfigurationListError,
+export type GetEventError = AzureOpError;
+/** Gets the details of the event. */
+export const GetEvent: API.OperationMethod<
+  GetEventRequest,
+  GetEventResponse,
+  GetEventError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: EmailConfigurationListRequest,
+  input: GetEventRequest,
+  output: GetEventResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetFabricError = AzureOpError;
+/** Gets the details of the fabric. */
+export const GetFabric: API.OperationMethod<
+  GetFabricRequest,
+  GetFabricResponse,
+  GetFabricError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetFabricRequest,
+  output: GetFabricResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetFabricAgentError = AzureOpError;
+/** Gets the details of the fabric agent. */
+export const GetFabricAgent: API.OperationMethod<
+  GetFabricAgentRequest,
+  GetFabricAgentResponse,
+  GetFabricAgentError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetFabricAgentRequest,
+  output: GetFabricAgentResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetJobError = AzureOpError;
+/** Gets the details of the job. */
+export const GetJob: API.OperationMethod<
+  GetJobRequest,
+  GetJobResponse,
+  GetJobError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetJobRequest,
+  output: GetJobResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetLocationBasedOperationResultError = AzureOpError;
+/** Gets the location based operation result status. Gets the location based operation result. */
+export const GetLocationBasedOperationResult: API.OperationMethod<
+  GetLocationBasedOperationResultRequest,
+  OperationStatus,
+  GetLocationBasedOperationResultError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetLocationBasedOperationResultRequest,
+  output: OperationStatus,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetOperationResultError = AzureOpError;
+/** Gets the operation result status. Gets the operations. */
+export const GetOperationResult: API.OperationMethod<
+  GetOperationResultRequest,
+  OperationStatus,
+  GetOperationResultError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetOperationResultRequest,
+  output: OperationStatus,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetPolicyError = AzureOpError;
+/** Gets the details of the policy. */
+export const GetPolicy: API.OperationMethod<
+  GetPolicyRequest,
+  GetPolicyResponse,
+  GetPolicyError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPolicyRequest,
+  output: GetPolicyResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetPrivateEndpointConnectionError = AzureOpError;
+/** Gets the private endpoint connection details. */
+export const GetPrivateEndpointConnection: API.OperationMethod<
+  GetPrivateEndpointConnectionRequest,
+  GetPrivateEndpointConnectionResponse,
+  GetPrivateEndpointConnectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPrivateEndpointConnectionRequest,
+  output: GetPrivateEndpointConnectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetPrivateLinkResourceError = AzureOpError;
+/** Gets the details of site recovery private link resource. */
+export const GetPrivateLinkResource: API.OperationMethod<
+  GetPrivateLinkResourceRequest,
+  GetPrivateLinkResourceResponse,
+  GetPrivateLinkResourceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPrivateLinkResourceRequest,
+  output: GetPrivateLinkResourceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetProtectedItemError = AzureOpError;
+/** Gets the details of the protected item. */
+export const GetProtectedItem: API.OperationMethod<
+  GetProtectedItemRequest,
+  GetProtectedItemResponse,
+  GetProtectedItemError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetProtectedItemRequest,
+  output: GetProtectedItemResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetRecoveryPointError = AzureOpError;
+/** Gets the details of the recovery point of a protected item. */
+export const GetRecoveryPoint: API.OperationMethod<
+  GetRecoveryPointRequest,
+  GetRecoveryPointResponse,
+  GetRecoveryPointError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetRecoveryPointRequest,
+  output: GetRecoveryPointResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetReplicationExtensionError = AzureOpError;
+/** Gets the details of the replication extension. */
+export const GetReplicationExtension: API.OperationMethod<
+  GetReplicationExtensionRequest,
+  GetReplicationExtensionResponse,
+  GetReplicationExtensionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetReplicationExtensionRequest,
+  output: GetReplicationExtensionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetVaultError = AzureOpError;
+/** Gets the details of the vault. */
+export const GetVault: API.OperationMethod<
+  GetVaultRequest,
+  GetVaultResponse,
+  GetVaultError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetVaultRequest,
+  output: GetVaultResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListEmailConfigurationError = AzureOpError;
+/** Gets the list of alert configuration settings for the given vault. */
+export const ListEmailConfiguration: API.OperationMethod<
+  ListEmailConfigurationRequest,
+  EmailConfigurationModelListResult,
+  ListEmailConfigurationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListEmailConfigurationRequest,
   output: EmailConfigurationModelListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type EventGetError = AzureOpError;
-/** Gets the details of the event. */
-export const EventGet: API.OperationMethod<
-  EventGetRequest,
-  EventGetResponse,
-  EventGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: EventGetRequest,
-  output: EventGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type EventListError = AzureOpError;
+export type ListEventError = AzureOpError;
 /** Gets the list of events in the given vault. */
-export const EventList: API.OperationMethod<
-  EventListRequest,
+export const ListEvent: API.OperationMethod<
+  ListEventRequest,
   EventModelListResult,
-  EventListError,
+  ListEventError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: EventListRequest,
+  input: ListEventRequest,
   output: EventModelListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type FabricAgentCreateError = AzureOpError;
-/** Creates the fabric agent. */
-export const FabricAgentCreate: API.OperationMethod<
-  FabricAgentCreateRequest,
-  FabricAgentCreateResponse,
-  FabricAgentCreateError,
+export type ListFabricError = AzureOpError;
+/** Gets the list of fabrics in the given subscription and resource group. */
+export const ListFabric: API.OperationMethod<
+  ListFabricRequest,
+  FabricModelListResult,
+  ListFabricError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FabricAgentCreateRequest,
-  output: FabricAgentCreateResponse,
+  input: ListFabricRequest,
+  output: FabricModelListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type FabricAgentDeleteError = AzureOpError;
-/** Deletes fabric agent. */
-export const FabricAgentDelete: API.OperationMethod<
-  FabricAgentDeleteRequest,
-  FabricAgentDeleteResponse,
-  FabricAgentDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FabricAgentDeleteRequest,
-  output: FabricAgentDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type FabricAgentGetError = AzureOpError;
-/** Gets the details of the fabric agent. */
-export const FabricAgentGet: API.OperationMethod<
-  FabricAgentGetRequest,
-  FabricAgentGetResponse,
-  FabricAgentGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FabricAgentGetRequest,
-  output: FabricAgentGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type FabricAgentListError = AzureOpError;
+export type ListFabricAgentError = AzureOpError;
 /** Gets the list of fabric agents in the given fabric. */
-export const FabricAgentList: API.OperationMethod<
-  FabricAgentListRequest,
+export const ListFabricAgent: API.OperationMethod<
+  ListFabricAgentRequest,
   FabricAgentModelListResult,
-  FabricAgentListError,
+  ListFabricAgentError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FabricAgentListRequest,
+  input: ListFabricAgentRequest,
   output: FabricAgentModelListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type FabricCreateError = AzureOpError;
-/** Creates the fabric. */
-export const FabricCreate: API.OperationMethod<
-  FabricCreateRequest,
-  FabricCreateResponse,
-  FabricCreateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FabricCreateRequest,
-  output: FabricCreateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type FabricDeleteError = AzureOpError;
-/** Removes the fabric. */
-export const FabricDelete: API.OperationMethod<
-  FabricDeleteRequest,
-  FabricDeleteResponse,
-  FabricDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FabricDeleteRequest,
-  output: FabricDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type FabricGetError = AzureOpError;
-/** Gets the details of the fabric. */
-export const FabricGet: API.OperationMethod<
-  FabricGetRequest,
-  FabricGetResponse,
-  FabricGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FabricGetRequest,
-  output: FabricGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type FabricListError = AzureOpError;
-/** Gets the list of fabrics in the given subscription and resource group. */
-export const FabricList: API.OperationMethod<
-  FabricListRequest,
-  FabricModelListResult,
-  FabricListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FabricListRequest,
-  output: FabricModelListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type FabricListBySubscriptionError = AzureOpError;
+export type ListFabricBySubscriptionError = AzureOpError;
 /** Gets the list of fabrics in the given subscription. */
-export const FabricListBySubscription: API.OperationMethod<
-  FabricListBySubscriptionRequest,
+export const ListFabricBySubscription: API.OperationMethod<
+  ListFabricBySubscriptionRequest,
   FabricModelListResult,
-  FabricListBySubscriptionError,
+  ListFabricBySubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FabricListBySubscriptionRequest,
+  input: ListFabricBySubscriptionRequest,
   output: FabricModelListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type FabricUpdateError = AzureOpError;
-/** Performs update on the fabric. */
-export const FabricUpdate: API.OperationMethod<
-  FabricUpdateRequest,
-  FabricUpdateResponse,
-  FabricUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FabricUpdateRequest,
-  output: FabricUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type JobGetError = AzureOpError;
-/** Gets the details of the job. */
-export const JobGet: API.OperationMethod<
-  JobGetRequest,
-  JobGetResponse,
-  JobGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: JobGetRequest,
-  output: JobGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type JobListError = AzureOpError;
+export type ListJobError = AzureOpError;
 /** Gets the list of jobs in the given vault. */
-export const JobList: API.OperationMethod<
-  JobListRequest,
+export const ListJob: API.OperationMethod<
+  ListJobRequest,
   JobModelListResult,
-  JobListError,
+  ListJobError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: JobListRequest,
+  input: ListJobRequest,
   output: JobModelListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type LocationBasedOperationResultsGetError = AzureOpError;
-/** Gets the location based operation result status. Gets the location based operation result. */
-export const LocationBasedOperationResultsGet: API.OperationMethod<
-  LocationBasedOperationResultsGetRequest,
-  OperationStatus,
-  LocationBasedOperationResultsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: LocationBasedOperationResultsGetRequest,
-  output: OperationStatus,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type OperationResultsGetError = AzureOpError;
-/** Gets the operation result status. Gets the operations. */
-export const OperationResultsGet: API.OperationMethod<
-  OperationResultsGetRequest,
-  OperationStatus,
-  OperationResultsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: OperationResultsGetRequest,
-  output: OperationStatus,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type OperationsListError = AzureOpError;
+export type ListOperationsError = AzureOpError;
 /** List the operations for the provider */
-export const OperationsList: API.OperationMethod<
-  OperationsListRequest,
-  OperationsListResponse,
-  OperationsListError,
+export const ListOperations: API.OperationMethod<
+  ListOperationsRequest,
+  ListOperationsResponse,
+  ListOperationsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OperationsListRequest,
-  output: OperationsListResponse,
+  input: ListOperationsRequest,
+  output: ListOperationsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type PolicyCreateError = AzureOpError;
-/** Creates the policy. */
-export const PolicyCreate: API.OperationMethod<
-  PolicyCreateRequest,
-  PolicyCreateResponse,
-  PolicyCreateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PolicyCreateRequest,
-  output: PolicyCreateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PolicyDeleteError = AzureOpError;
-/** Removes the policy. */
-export const PolicyDelete: API.OperationMethod<
-  PolicyDeleteRequest,
-  PolicyDeleteResponse,
-  PolicyDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PolicyDeleteRequest,
-  output: PolicyDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PolicyGetError = AzureOpError;
-/** Gets the details of the policy. */
-export const PolicyGet: API.OperationMethod<
-  PolicyGetRequest,
-  PolicyGetResponse,
-  PolicyGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PolicyGetRequest,
-  output: PolicyGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PolicyListError = AzureOpError;
+export type ListPolicyError = AzureOpError;
 /** Gets the list of policies in the given vault. */
-export const PolicyList: API.OperationMethod<
-  PolicyListRequest,
+export const ListPolicy: API.OperationMethod<
+  ListPolicyRequest,
   PolicyModelListResult,
-  PolicyListError,
+  ListPolicyError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PolicyListRequest,
+  input: ListPolicyRequest,
   output: PolicyModelListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type PrivateEndpointConnectionsDeleteError = AzureOpError;
-/** Deletes the private endpoint connection. */
-export const PrivateEndpointConnectionsDelete: API.OperationMethod<
-  PrivateEndpointConnectionsDeleteRequest,
-  PrivateEndpointConnectionsDeleteResponse,
-  PrivateEndpointConnectionsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateEndpointConnectionsDeleteRequest,
-  output: PrivateEndpointConnectionsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateEndpointConnectionsGetError = AzureOpError;
-/** Gets the private endpoint connection details. */
-export const PrivateEndpointConnectionsGet: API.OperationMethod<
-  PrivateEndpointConnectionsGetRequest,
-  PrivateEndpointConnectionsGetResponse,
-  PrivateEndpointConnectionsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateEndpointConnectionsGetRequest,
-  output: PrivateEndpointConnectionsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateEndpointConnectionsListError = AzureOpError;
+export type ListPrivateEndpointConnectionsError = AzureOpError;
 /** Gets the all private endpoint connections configured on the vault. */
-export const PrivateEndpointConnectionsList: API.OperationMethod<
-  PrivateEndpointConnectionsListRequest,
+export const ListPrivateEndpointConnections: API.OperationMethod<
+  ListPrivateEndpointConnectionsRequest,
   PrivateEndpointConnectionListResult,
-  PrivateEndpointConnectionsListError,
+  ListPrivateEndpointConnectionsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PrivateEndpointConnectionsListRequest,
+  input: ListPrivateEndpointConnectionsRequest,
   output: PrivateEndpointConnectionListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type PrivateEndpointConnectionsUpdateError = AzureOpError;
-/** Updated the private endpoint connection status (Approval/Rejected). This gets invoked by resource admin. */
-export const PrivateEndpointConnectionsUpdate: API.OperationMethod<
-  PrivateEndpointConnectionsUpdateRequest,
-  PrivateEndpointConnectionsUpdateResponse,
-  PrivateEndpointConnectionsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateEndpointConnectionsUpdateRequest,
-  output: PrivateEndpointConnectionsUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateLinkResourcesGetError = AzureOpError;
-/** Gets the details of site recovery private link resource. */
-export const PrivateLinkResourcesGet: API.OperationMethod<
-  PrivateLinkResourcesGetRequest,
-  PrivateLinkResourcesGetResponse,
-  PrivateLinkResourcesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateLinkResourcesGetRequest,
-  output: PrivateLinkResourcesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateLinkResourcesListError = AzureOpError;
+export type ListPrivateLinkResourcesError = AzureOpError;
 /** Gets the list of private link resources. */
-export const PrivateLinkResourcesList: API.OperationMethod<
-  PrivateLinkResourcesListRequest,
+export const ListPrivateLinkResources: API.OperationMethod<
+  ListPrivateLinkResourcesRequest,
   PrivateLinkResourceListResult,
-  PrivateLinkResourcesListError,
+  ListPrivateLinkResourcesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PrivateLinkResourcesListRequest,
+  input: ListPrivateLinkResourcesRequest,
   output: PrivateLinkResourceListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ProtectedItemCreateError = AzureOpError;
-/** Creates the protected item. */
-export const ProtectedItemCreate: API.OperationMethod<
-  ProtectedItemCreateRequest,
-  ProtectedItemCreateResponse,
-  ProtectedItemCreateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ProtectedItemCreateRequest,
-  output: ProtectedItemCreateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ProtectedItemDeleteError = AzureOpError;
-/** Removes the protected item. */
-export const ProtectedItemDelete: API.OperationMethod<
-  ProtectedItemDeleteRequest,
-  ProtectedItemDeleteResponse,
-  ProtectedItemDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ProtectedItemDeleteRequest,
-  output: ProtectedItemDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ProtectedItemGetError = AzureOpError;
-/** Gets the details of the protected item. */
-export const ProtectedItemGet: API.OperationMethod<
-  ProtectedItemGetRequest,
-  ProtectedItemGetResponse,
-  ProtectedItemGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ProtectedItemGetRequest,
-  output: ProtectedItemGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ProtectedItemListError = AzureOpError;
+export type ListProtectedItemError = AzureOpError;
 /** Gets the list of protected items in the given vault. */
-export const ProtectedItemList: API.OperationMethod<
-  ProtectedItemListRequest,
+export const ListProtectedItem: API.OperationMethod<
+  ListProtectedItemRequest,
   ProtectedItemModelListResult,
-  ProtectedItemListError,
+  ListProtectedItemError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ProtectedItemListRequest,
+  input: ListProtectedItemRequest,
   output: ProtectedItemModelListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListRecoveryPointError = AzureOpError;
+/** Gets the list of recovery points of the given protected item. */
+export const ListRecoveryPoint: API.OperationMethod<
+  ListRecoveryPointRequest,
+  RecoveryPointModelListResult,
+  ListRecoveryPointError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListRecoveryPointRequest,
+  output: RecoveryPointModelListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListReplicationExtensionError = AzureOpError;
+/** Gets the list of replication extensions in the given vault. */
+export const ListReplicationExtension: API.OperationMethod<
+  ListReplicationExtensionRequest,
+  ReplicationExtensionModelListResult,
+  ListReplicationExtensionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListReplicationExtensionRequest,
+  output: ReplicationExtensionModelListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListVaultError = AzureOpError;
+/** Gets the list of vaults in the given subscription and resource group. */
+export const ListVault: API.OperationMethod<
+  ListVaultRequest,
+  VaultModelListResult,
+  ListVaultError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListVaultRequest,
+  output: VaultModelListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListVaultBySubscriptionError = AzureOpError;
+/** Gets the list of vaults in the given subscription. */
+export const ListVaultBySubscription: API.OperationMethod<
+  ListVaultBySubscriptionRequest,
+  VaultModelListResult,
+  ListVaultBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListVaultBySubscriptionRequest,
+  output: VaultModelListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PostCheckNameAvailabilityError = AzureOpError;
+/** Performs the resource name availability check. Checks the resource name availability. */
+export const PostCheckNameAvailability: API.OperationMethod<
+  PostCheckNameAvailabilityRequest,
+  CheckNameAvailabilityResponseModel,
+  PostCheckNameAvailabilityError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PostCheckNameAvailabilityRequest,
+  output: CheckNameAvailabilityResponseModel,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PostDeploymentPreflightError = AzureOpError;
+/** Performs resource deployment validation. Performs resource deployment preflight validation. */
+export const PostDeploymentPreflight: API.OperationMethod<
+  PostDeploymentPreflightRequest,
+  DeploymentPreflightModel,
+  PostDeploymentPreflightError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PostDeploymentPreflightRequest,
+  output: DeploymentPreflightModel,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -4978,196 +5112,61 @@ export const ProtectedItemPlannedFailover: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ProtectedItemUpdateError = AzureOpError;
+export type UpdateFabricError = AzureOpError;
+/** Performs update on the fabric. */
+export const UpdateFabric: API.OperationMethod<
+  UpdateFabricRequest,
+  UpdateFabricResponse,
+  UpdateFabricError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateFabricRequest,
+  output: UpdateFabricResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdatePrivateEndpointConnectionError = AzureOpError;
+/** Updated the private endpoint connection status (Approval/Rejected). This gets invoked by resource admin. */
+export const UpdatePrivateEndpointConnection: API.OperationMethod<
+  UpdatePrivateEndpointConnectionRequest,
+  UpdatePrivateEndpointConnectionResponse,
+  UpdatePrivateEndpointConnectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdatePrivateEndpointConnectionRequest,
+  output: UpdatePrivateEndpointConnectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateProtectedItemError = AzureOpError;
 /** Performs update on the protected item. */
-export const ProtectedItemUpdate: API.OperationMethod<
-  ProtectedItemUpdateRequest,
-  ProtectedItemUpdateResponse,
-  ProtectedItemUpdateError,
+export const UpdateProtectedItem: API.OperationMethod<
+  UpdateProtectedItemRequest,
+  UpdateProtectedItemResponse,
+  UpdateProtectedItemError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ProtectedItemUpdateRequest,
-  output: ProtectedItemUpdateResponse,
+  input: UpdateProtectedItemRequest,
+  output: UpdateProtectedItemResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type RecoveryPointGetError = AzureOpError;
-/** Gets the details of the recovery point of a protected item. */
-export const RecoveryPointGet: API.OperationMethod<
-  RecoveryPointGetRequest,
-  RecoveryPointGetResponse,
-  RecoveryPointGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RecoveryPointGetRequest,
-  output: RecoveryPointGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RecoveryPointListError = AzureOpError;
-/** Gets the list of recovery points of the given protected item. */
-export const RecoveryPointList: API.OperationMethod<
-  RecoveryPointListRequest,
-  RecoveryPointModelListResult,
-  RecoveryPointListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RecoveryPointListRequest,
-  output: RecoveryPointModelListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ReplicationExtensionCreateError = AzureOpError;
-/** Creates the replication extension in the given vault. */
-export const ReplicationExtensionCreate: API.OperationMethod<
-  ReplicationExtensionCreateRequest,
-  ReplicationExtensionCreateResponse,
-  ReplicationExtensionCreateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ReplicationExtensionCreateRequest,
-  output: ReplicationExtensionCreateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ReplicationExtensionDeleteError = AzureOpError;
-/** Deletes the replication extension in the given vault. */
-export const ReplicationExtensionDelete: API.OperationMethod<
-  ReplicationExtensionDeleteRequest,
-  ReplicationExtensionDeleteResponse,
-  ReplicationExtensionDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ReplicationExtensionDeleteRequest,
-  output: ReplicationExtensionDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ReplicationExtensionGetError = AzureOpError;
-/** Gets the details of the replication extension. */
-export const ReplicationExtensionGet: API.OperationMethod<
-  ReplicationExtensionGetRequest,
-  ReplicationExtensionGetResponse,
-  ReplicationExtensionGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ReplicationExtensionGetRequest,
-  output: ReplicationExtensionGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ReplicationExtensionListError = AzureOpError;
-/** Gets the list of replication extensions in the given vault. */
-export const ReplicationExtensionList: API.OperationMethod<
-  ReplicationExtensionListRequest,
-  ReplicationExtensionModelListResult,
-  ReplicationExtensionListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ReplicationExtensionListRequest,
-  output: ReplicationExtensionModelListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VaultCreateError = AzureOpError;
-/** Creates the vault. */
-export const VaultCreate: API.OperationMethod<
-  VaultCreateRequest,
-  VaultCreateResponse,
-  VaultCreateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VaultCreateRequest,
-  output: VaultCreateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VaultDeleteError = AzureOpError;
-/** Removes the vault. */
-export const VaultDelete: API.OperationMethod<
-  VaultDeleteRequest,
-  VaultDeleteResponse,
-  VaultDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VaultDeleteRequest,
-  output: VaultDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VaultGetError = AzureOpError;
-/** Gets the details of the vault. */
-export const VaultGet: API.OperationMethod<
-  VaultGetRequest,
-  VaultGetResponse,
-  VaultGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VaultGetRequest,
-  output: VaultGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VaultListError = AzureOpError;
-/** Gets the list of vaults in the given subscription and resource group. */
-export const VaultList: API.OperationMethod<
-  VaultListRequest,
-  VaultModelListResult,
-  VaultListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VaultListRequest,
-  output: VaultModelListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VaultListBySubscriptionError = AzureOpError;
-/** Gets the list of vaults in the given subscription. */
-export const VaultListBySubscription: API.OperationMethod<
-  VaultListBySubscriptionRequest,
-  VaultModelListResult,
-  VaultListBySubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VaultListBySubscriptionRequest,
-  output: VaultModelListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VaultUpdateError = AzureOpError;
+export type UpdateVaultError = AzureOpError;
 /** Performs update on the vault. */
-export const VaultUpdate: API.OperationMethod<
-  VaultUpdateRequest,
-  VaultUpdateResponse,
-  VaultUpdateError,
+export const UpdateVault: API.OperationMethod<
+  UpdateVaultRequest,
+  UpdateVaultResponse,
+  UpdateVaultError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: VaultUpdateRequest,
-  output: VaultUpdateResponse,
+  input: UpdateVaultRequest,
+  output: UpdateVaultResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

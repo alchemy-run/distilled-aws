@@ -14,13 +14,14 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.datalake_store#AccountsCheckNameAvailability": {
+    "com.azure.datalake_store#CheckAccountNameAvailability": {
       "type": "operation",
       "input": {
-        "target": "com.azure.datalake_store#AccountsCheckNameAvailabilityRequest"
+        "target": "com.azure.datalake_store#CheckAccountNameAvailabilityRequest"
       },
       "output": {
         "target": "com.azure.datalake_store#NameAvailabilityInformation"
@@ -62,7 +63,7 @@
         "smithy.api#documentation": "Data Lake Store account name availability result information."
       }
     },
-    "com.azure.datalake_store#AccountsCheckNameAvailabilityRequest": {
+    "com.azure.datalake_store#CheckAccountNameAvailabilityRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -89,7 +90,7 @@
           }
         },
         "type": {
-          "target": "com.azure.datalake_store#AccountsCheckNameAvailabilityRequestType",
+          "target": "com.azure.datalake_store#CheckAccountNameAvailabilityRequestType",
           "traits": {
             "smithy.api#documentation": "The resource type. Note: This should not be set by the user, as the constant value is Microsoft.DataLakeStore/accounts",
             "smithy.api#required": {}
@@ -100,7 +101,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.datalake_store#AccountsCheckNameAvailabilityRequestType": {
+    "com.azure.datalake_store#CheckAccountNameAvailabilityRequestType": {
       "type": "enum",
       "members": {
         "MICROSOFT_DATALAKESTORE_ACCOUNTS": {
@@ -114,10 +115,10 @@
         "smithy.api#documentation": "The resource type. Note: This should not be set by the user, as the constant value is Microsoft.DataLakeStore/accounts"
       }
     },
-    "com.azure.datalake_store#LocationsGetUsage": {
+    "com.azure.datalake_store#GetLocationUsage": {
       "type": "operation",
       "input": {
-        "target": "com.azure.datalake_store#LocationsGetUsageRequest"
+        "target": "com.azure.datalake_store#GetLocationUsageRequest"
       },
       "output": {
         "target": "com.azure.datalake_store#UsageListResult"
@@ -258,7 +259,7 @@
         "smithy.api#documentation": "Gets the unit of measurement."
       }
     },
-    "com.azure.datalake_store#LocationsGetUsageRequest": {
+    "com.azure.datalake_store#GetLocationUsageRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -282,10 +283,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.datalake_store#LocationsGetCapability": {
+    "com.azure.datalake_store#GetLocationCapability": {
       "type": "operation",
       "input": {
-        "target": "com.azure.datalake_store#LocationsGetCapabilityRequest"
+        "target": "com.azure.datalake_store#GetLocationCapabilityRequest"
       },
       "output": {
         "target": "com.azure.datalake_store#CapabilityInformation"
@@ -377,7 +378,7 @@
         "smithy.api#documentation": "The subscription state."
       }
     },
-    "com.azure.datalake_store#LocationsGetCapabilityRequest": {
+    "com.azure.datalake_store#GetLocationCapabilityRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -401,7 +402,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.datalake_store#OperationsList": {
+    "com.azure.datalake_store#ListOperations": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -533,10 +534,10 @@
         "smithy.api#documentation": "The display information for a particular operation."
       }
     },
-    "com.azure.datalake_store#TrustedIdProvidersDelete": {
+    "com.azure.datalake_store#DeleteTrustedIdProvider": {
       "type": "operation",
       "input": {
-        "target": "com.azure.datalake_store#TrustedIdProvidersDeleteRequest"
+        "target": "com.azure.datalake_store#DeleteTrustedIdProviderRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -552,7 +553,7 @@
         "com.distilled.openapi#apiVersion": "2016-11-01"
       }
     },
-    "com.azure.datalake_store#TrustedIdProvidersDeleteRequest": {
+    "com.azure.datalake_store#DeleteTrustedIdProviderRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -592,13 +593,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.datalake_store#TrustedIdProvidersUpdate": {
+    "com.azure.datalake_store#UpdateTrustedIdProvider": {
       "type": "operation",
       "input": {
-        "target": "com.azure.datalake_store#TrustedIdProvidersUpdateRequest"
+        "target": "com.azure.datalake_store#UpdateTrustedIdProviderRequest"
       },
       "output": {
-        "target": "com.azure.datalake_store#TrustedIdProvidersUpdateResponse"
+        "target": "com.azure.datalake_store#UpdateTrustedIdProviderResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -611,7 +612,7 @@
         "com.distilled.openapi#apiVersion": "2016-11-01"
       }
     },
-    "com.azure.datalake_store#TrustedIdProvidersUpdateResponse": {
+    "com.azure.datalake_store#UpdateTrustedIdProviderResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -657,7 +658,7 @@
         "smithy.api#documentation": "The trusted identity provider properties."
       }
     },
-    "com.azure.datalake_store#TrustedIdProvidersUpdateRequest": {
+    "com.azure.datalake_store#UpdateTrustedIdProviderRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -830,13 +831,13 @@
         "smithy.api#documentation": "The trusted identity provider properties to use when creating a new trusted identity provider."
       }
     },
-    "com.azure.datalake_store#TrustedIdProvidersGet": {
+    "com.azure.datalake_store#GetTrustedIdProvider": {
       "type": "operation",
       "input": {
-        "target": "com.azure.datalake_store#TrustedIdProvidersGetRequest"
+        "target": "com.azure.datalake_store#GetTrustedIdProviderRequest"
       },
       "output": {
-        "target": "com.azure.datalake_store#TrustedIdProvidersGetResponse"
+        "target": "com.azure.datalake_store#GetTrustedIdProviderResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -849,7 +850,7 @@
         "com.distilled.openapi#apiVersion": "2016-11-01"
       }
     },
-    "com.azure.datalake_store#TrustedIdProvidersGetResponse": {
+    "com.azure.datalake_store#GetTrustedIdProviderResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -881,7 +882,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.datalake_store#TrustedIdProvidersGetRequest": {
+    "com.azure.datalake_store#GetTrustedIdProviderRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -921,10 +922,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.datalake_store#TrustedIdProvidersListByAccount": {
+    "com.azure.datalake_store#ListTrustedIdProviderByAccount": {
       "type": "operation",
       "input": {
-        "target": "com.azure.datalake_store#TrustedIdProvidersListByAccountRequest"
+        "target": "com.azure.datalake_store#ListTrustedIdProviderByAccountRequest"
       },
       "output": {
         "target": "com.azure.datalake_store#TrustedIdProviderListResult"
@@ -1001,7 +1002,7 @@
         "smithy.api#documentation": "Data Lake Store trusted identity provider information."
       }
     },
-    "com.azure.datalake_store#TrustedIdProvidersListByAccountRequest": {
+    "com.azure.datalake_store#ListTrustedIdProviderByAccountRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1033,10 +1034,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.datalake_store#VirtualNetworkRulesDelete": {
+    "com.azure.datalake_store#DeleteVirtualNetworkRule": {
       "type": "operation",
       "input": {
-        "target": "com.azure.datalake_store#VirtualNetworkRulesDeleteRequest"
+        "target": "com.azure.datalake_store#DeleteVirtualNetworkRuleRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1052,7 +1053,7 @@
         "com.distilled.openapi#apiVersion": "2016-11-01"
       }
     },
-    "com.azure.datalake_store#VirtualNetworkRulesDeleteRequest": {
+    "com.azure.datalake_store#DeleteVirtualNetworkRuleRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1092,13 +1093,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.datalake_store#VirtualNetworkRulesUpdate": {
+    "com.azure.datalake_store#UpdateVirtualNetworkRule": {
       "type": "operation",
       "input": {
-        "target": "com.azure.datalake_store#VirtualNetworkRulesUpdateRequest"
+        "target": "com.azure.datalake_store#UpdateVirtualNetworkRuleRequest"
       },
       "output": {
-        "target": "com.azure.datalake_store#VirtualNetworkRulesUpdateResponse"
+        "target": "com.azure.datalake_store#UpdateVirtualNetworkRuleResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1111,7 +1112,7 @@
         "com.distilled.openapi#apiVersion": "2016-11-01"
       }
     },
-    "com.azure.datalake_store#VirtualNetworkRulesUpdateResponse": {
+    "com.azure.datalake_store#UpdateVirtualNetworkRuleResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1157,7 +1158,7 @@
         "smithy.api#documentation": "The virtual network rule properties."
       }
     },
-    "com.azure.datalake_store#VirtualNetworkRulesUpdateRequest": {
+    "com.azure.datalake_store#UpdateVirtualNetworkRuleRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1330,13 +1331,13 @@
         "smithy.api#documentation": "The virtual network rule properties to use when creating a new virtual network rule."
       }
     },
-    "com.azure.datalake_store#VirtualNetworkRulesGet": {
+    "com.azure.datalake_store#GetVirtualNetworkRule": {
       "type": "operation",
       "input": {
-        "target": "com.azure.datalake_store#VirtualNetworkRulesGetRequest"
+        "target": "com.azure.datalake_store#GetVirtualNetworkRuleRequest"
       },
       "output": {
-        "target": "com.azure.datalake_store#VirtualNetworkRulesGetResponse"
+        "target": "com.azure.datalake_store#GetVirtualNetworkRuleResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1349,7 +1350,7 @@
         "com.distilled.openapi#apiVersion": "2016-11-01"
       }
     },
-    "com.azure.datalake_store#VirtualNetworkRulesGetResponse": {
+    "com.azure.datalake_store#GetVirtualNetworkRuleResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1381,7 +1382,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.datalake_store#VirtualNetworkRulesGetRequest": {
+    "com.azure.datalake_store#GetVirtualNetworkRuleRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1421,10 +1422,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.datalake_store#VirtualNetworkRulesListByAccount": {
+    "com.azure.datalake_store#ListVirtualNetworkRuleByAccount": {
       "type": "operation",
       "input": {
-        "target": "com.azure.datalake_store#VirtualNetworkRulesListByAccountRequest"
+        "target": "com.azure.datalake_store#ListVirtualNetworkRuleByAccountRequest"
       },
       "output": {
         "target": "com.azure.datalake_store#VirtualNetworkRuleListResult"
@@ -1501,7 +1502,7 @@
         "smithy.api#documentation": "Data Lake Store virtual network rule information."
       }
     },
-    "com.azure.datalake_store#VirtualNetworkRulesListByAccountRequest": {
+    "com.azure.datalake_store#ListVirtualNetworkRuleByAccountRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1533,10 +1534,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.datalake_store#FirewallRulesDelete": {
+    "com.azure.datalake_store#DeleteFirewallRule": {
       "type": "operation",
       "input": {
-        "target": "com.azure.datalake_store#FirewallRulesDeleteRequest"
+        "target": "com.azure.datalake_store#DeleteFirewallRuleRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1552,7 +1553,7 @@
         "com.distilled.openapi#apiVersion": "2016-11-01"
       }
     },
-    "com.azure.datalake_store#FirewallRulesDeleteRequest": {
+    "com.azure.datalake_store#DeleteFirewallRuleRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1592,13 +1593,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.datalake_store#FirewallRulesUpdate": {
+    "com.azure.datalake_store#UpdateFirewallRule": {
       "type": "operation",
       "input": {
-        "target": "com.azure.datalake_store#FirewallRulesUpdateRequest"
+        "target": "com.azure.datalake_store#UpdateFirewallRuleRequest"
       },
       "output": {
-        "target": "com.azure.datalake_store#FirewallRulesUpdateResponse"
+        "target": "com.azure.datalake_store#UpdateFirewallRuleResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1611,7 +1612,7 @@
         "com.distilled.openapi#apiVersion": "2016-11-01"
       }
     },
-    "com.azure.datalake_store#FirewallRulesUpdateResponse": {
+    "com.azure.datalake_store#UpdateFirewallRuleResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1663,7 +1664,7 @@
         "smithy.api#documentation": "The firewall rule properties."
       }
     },
-    "com.azure.datalake_store#FirewallRulesUpdateRequest": {
+    "com.azure.datalake_store#UpdateFirewallRuleRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1849,13 +1850,13 @@
         "smithy.api#documentation": "The firewall rule properties to use when creating a new firewall rule."
       }
     },
-    "com.azure.datalake_store#FirewallRulesGet": {
+    "com.azure.datalake_store#GetFirewallRule": {
       "type": "operation",
       "input": {
-        "target": "com.azure.datalake_store#FirewallRulesGetRequest"
+        "target": "com.azure.datalake_store#GetFirewallRuleRequest"
       },
       "output": {
-        "target": "com.azure.datalake_store#FirewallRulesGetResponse"
+        "target": "com.azure.datalake_store#GetFirewallRuleResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1868,7 +1869,7 @@
         "com.distilled.openapi#apiVersion": "2016-11-01"
       }
     },
-    "com.azure.datalake_store#FirewallRulesGetResponse": {
+    "com.azure.datalake_store#GetFirewallRuleResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1900,7 +1901,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.datalake_store#FirewallRulesGetRequest": {
+    "com.azure.datalake_store#GetFirewallRuleRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1940,10 +1941,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.datalake_store#FirewallRulesListByAccount": {
+    "com.azure.datalake_store#ListFirewallRuleByAccount": {
       "type": "operation",
       "input": {
-        "target": "com.azure.datalake_store#FirewallRulesListByAccountRequest"
+        "target": "com.azure.datalake_store#ListFirewallRuleByAccountRequest"
       },
       "output": {
         "target": "com.azure.datalake_store#FirewallRuleListResult"
@@ -2020,7 +2021,7 @@
         "smithy.api#documentation": "Data Lake Store firewall rule information."
       }
     },
-    "com.azure.datalake_store#FirewallRulesListByAccountRequest": {
+    "com.azure.datalake_store#ListFirewallRuleByAccountRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2052,10 +2053,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.datalake_store#AccountsEnableKeyVault": {
+    "com.azure.datalake_store#EnableAccountKeyVault": {
       "type": "operation",
       "input": {
-        "target": "com.azure.datalake_store#AccountsEnableKeyVaultRequest"
+        "target": "com.azure.datalake_store#EnableAccountKeyVaultRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2071,7 +2072,7 @@
         "com.distilled.openapi#apiVersion": "2016-11-01"
       }
     },
-    "com.azure.datalake_store#AccountsEnableKeyVaultRequest": {
+    "com.azure.datalake_store#EnableAccountKeyVaultRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2103,10 +2104,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.datalake_store#AccountsDelete": {
+    "com.azure.datalake_store#DeleteAccount": {
       "type": "operation",
       "input": {
-        "target": "com.azure.datalake_store#AccountsDeleteRequest"
+        "target": "com.azure.datalake_store#DeleteAccountRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2122,7 +2123,7 @@
         "com.distilled.openapi#apiVersion": "2016-11-01"
       }
     },
-    "com.azure.datalake_store#AccountsDeleteRequest": {
+    "com.azure.datalake_store#DeleteAccountRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2154,13 +2155,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.datalake_store#AccountsUpdate": {
+    "com.azure.datalake_store#UpdateAccount": {
       "type": "operation",
       "input": {
-        "target": "com.azure.datalake_store#AccountsUpdateRequest"
+        "target": "com.azure.datalake_store#UpdateAccountRequest"
       },
       "output": {
-        "target": "com.azure.datalake_store#AccountsUpdateResponse"
+        "target": "com.azure.datalake_store#UpdateAccountResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2173,7 +2174,7 @@
         "com.distilled.openapi#apiVersion": "2016-11-01"
       }
     },
-    "com.azure.datalake_store#AccountsUpdateResponse": {
+    "com.azure.datalake_store#UpdateAccountResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2201,7 +2202,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.datalake_store#AccountsUpdateResponseTagsMap",
+          "target": "com.azure.datalake_store#UpdateAccountResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags."
           }
@@ -2771,7 +2772,7 @@
         "smithy.api#documentation": "The type of encryption being used. Currently the only supported type is 'SystemAssigned'."
       }
     },
-    "com.azure.datalake_store#AccountsUpdateResponseTagsMap": {
+    "com.azure.datalake_store#UpdateAccountResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2783,7 +2784,7 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.datalake_store#AccountsUpdateRequest": {
+    "com.azure.datalake_store#UpdateAccountRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2811,7 +2812,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.datalake_store#AccountsUpdateRequestTagsMap",
+          "target": "com.azure.datalake_store#UpdateAccountRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags"
           }
@@ -3117,7 +3118,7 @@
         "smithy.api#documentation": "The Key Vault update information used for user managed key rotation."
       }
     },
-    "com.azure.datalake_store#AccountsUpdateRequestTagsMap": {
+    "com.azure.datalake_store#UpdateAccountRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3129,13 +3130,13 @@
         "smithy.api#documentation": "Resource tags"
       }
     },
-    "com.azure.datalake_store#AccountsCreate": {
+    "com.azure.datalake_store#CreateAccount": {
       "type": "operation",
       "input": {
-        "target": "com.azure.datalake_store#AccountsCreateRequest"
+        "target": "com.azure.datalake_store#CreateAccountRequest"
       },
       "output": {
-        "target": "com.azure.datalake_store#AccountsCreateResponse"
+        "target": "com.azure.datalake_store#CreateAccountResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3148,7 +3149,7 @@
         "com.distilled.openapi#apiVersion": "2016-11-01"
       }
     },
-    "com.azure.datalake_store#AccountsCreateResponse": {
+    "com.azure.datalake_store#CreateAccountResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3176,7 +3177,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.datalake_store#AccountsCreateResponseTagsMap",
+          "target": "com.azure.datalake_store#CreateAccountResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags."
           }
@@ -3198,7 +3199,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.datalake_store#AccountsCreateResponseTagsMap": {
+    "com.azure.datalake_store#CreateAccountResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3210,7 +3211,7 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.datalake_store#AccountsCreateRequest": {
+    "com.azure.datalake_store#CreateAccountRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3245,7 +3246,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.datalake_store#AccountsCreateRequestTagsMap",
+          "target": "com.azure.datalake_store#CreateAccountRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags."
           }
@@ -3585,7 +3586,7 @@
         "smithy.api#documentation": "The type of encryption being used. Currently the only supported type is 'SystemAssigned'."
       }
     },
-    "com.azure.datalake_store#AccountsCreateRequestTagsMap": {
+    "com.azure.datalake_store#CreateAccountRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3597,13 +3598,13 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.datalake_store#AccountsGet": {
+    "com.azure.datalake_store#GetAccount": {
       "type": "operation",
       "input": {
-        "target": "com.azure.datalake_store#AccountsGetRequest"
+        "target": "com.azure.datalake_store#GetAccountRequest"
       },
       "output": {
-        "target": "com.azure.datalake_store#AccountsGetResponse"
+        "target": "com.azure.datalake_store#GetAccountResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3616,7 +3617,7 @@
         "com.distilled.openapi#apiVersion": "2016-11-01"
       }
     },
-    "com.azure.datalake_store#AccountsGetResponse": {
+    "com.azure.datalake_store#GetAccountResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3644,7 +3645,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.datalake_store#AccountsGetResponseTagsMap",
+          "target": "com.azure.datalake_store#GetAccountResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags."
           }
@@ -3666,7 +3667,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.datalake_store#AccountsGetResponseTagsMap": {
+    "com.azure.datalake_store#GetAccountResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3678,7 +3679,7 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.datalake_store#AccountsGetRequest": {
+    "com.azure.datalake_store#GetAccountRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3710,10 +3711,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.datalake_store#AccountsListByResourceGroup": {
+    "com.azure.datalake_store#ListAccountByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.datalake_store#AccountsListByResourceGroupRequest"
+        "target": "com.azure.datalake_store#ListAccountByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.datalake_store#DataLakeStoreAccountListResult"
@@ -3952,7 +3953,7 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.datalake_store#AccountsListByResourceGroupRequest": {
+    "com.azure.datalake_store#ListAccountByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4018,10 +4019,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.datalake_store#AccountsList": {
+    "com.azure.datalake_store#ListAccounts": {
       "type": "operation",
       "input": {
-        "target": "com.azure.datalake_store#AccountsListRequest"
+        "target": "com.azure.datalake_store#ListAccountsRequest"
       },
       "output": {
         "target": "com.azure.datalake_store#DataLakeStoreAccountListResult"
@@ -4037,7 +4038,7 @@
         "com.distilled.openapi#apiVersion": "2016-11-01"
       }
     },
-    "com.azure.datalake_store#AccountsListRequest": {
+    "com.azure.datalake_store#ListAccountsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4100,82 +4101,82 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.datalake_store#AccountsCheckNameAvailability"
+          "target": "com.azure.datalake_store#CheckAccountNameAvailability"
         },
         {
-          "target": "com.azure.datalake_store#LocationsGetUsage"
+          "target": "com.azure.datalake_store#GetLocationUsage"
         },
         {
-          "target": "com.azure.datalake_store#LocationsGetCapability"
+          "target": "com.azure.datalake_store#GetLocationCapability"
         },
         {
-          "target": "com.azure.datalake_store#OperationsList"
+          "target": "com.azure.datalake_store#ListOperations"
         },
         {
-          "target": "com.azure.datalake_store#TrustedIdProvidersDelete"
+          "target": "com.azure.datalake_store#DeleteTrustedIdProvider"
         },
         {
-          "target": "com.azure.datalake_store#TrustedIdProvidersUpdate"
+          "target": "com.azure.datalake_store#UpdateTrustedIdProvider"
         },
         {
           "target": "com.azure.datalake_store#TrustedIdProvidersCreateOrUpdate"
         },
         {
-          "target": "com.azure.datalake_store#TrustedIdProvidersGet"
+          "target": "com.azure.datalake_store#GetTrustedIdProvider"
         },
         {
-          "target": "com.azure.datalake_store#TrustedIdProvidersListByAccount"
+          "target": "com.azure.datalake_store#ListTrustedIdProviderByAccount"
         },
         {
-          "target": "com.azure.datalake_store#VirtualNetworkRulesDelete"
+          "target": "com.azure.datalake_store#DeleteVirtualNetworkRule"
         },
         {
-          "target": "com.azure.datalake_store#VirtualNetworkRulesUpdate"
+          "target": "com.azure.datalake_store#UpdateVirtualNetworkRule"
         },
         {
           "target": "com.azure.datalake_store#VirtualNetworkRulesCreateOrUpdate"
         },
         {
-          "target": "com.azure.datalake_store#VirtualNetworkRulesGet"
+          "target": "com.azure.datalake_store#GetVirtualNetworkRule"
         },
         {
-          "target": "com.azure.datalake_store#VirtualNetworkRulesListByAccount"
+          "target": "com.azure.datalake_store#ListVirtualNetworkRuleByAccount"
         },
         {
-          "target": "com.azure.datalake_store#FirewallRulesDelete"
+          "target": "com.azure.datalake_store#DeleteFirewallRule"
         },
         {
-          "target": "com.azure.datalake_store#FirewallRulesUpdate"
+          "target": "com.azure.datalake_store#UpdateFirewallRule"
         },
         {
           "target": "com.azure.datalake_store#FirewallRulesCreateOrUpdate"
         },
         {
-          "target": "com.azure.datalake_store#FirewallRulesGet"
+          "target": "com.azure.datalake_store#GetFirewallRule"
         },
         {
-          "target": "com.azure.datalake_store#FirewallRulesListByAccount"
+          "target": "com.azure.datalake_store#ListFirewallRuleByAccount"
         },
         {
-          "target": "com.azure.datalake_store#AccountsEnableKeyVault"
+          "target": "com.azure.datalake_store#EnableAccountKeyVault"
         },
         {
-          "target": "com.azure.datalake_store#AccountsDelete"
+          "target": "com.azure.datalake_store#DeleteAccount"
         },
         {
-          "target": "com.azure.datalake_store#AccountsUpdate"
+          "target": "com.azure.datalake_store#UpdateAccount"
         },
         {
-          "target": "com.azure.datalake_store#AccountsCreate"
+          "target": "com.azure.datalake_store#CreateAccount"
         },
         {
-          "target": "com.azure.datalake_store#AccountsGet"
+          "target": "com.azure.datalake_store#GetAccount"
         },
         {
-          "target": "com.azure.datalake_store#AccountsListByResourceGroup"
+          "target": "com.azure.datalake_store#ListAccountByResourceGroup"
         },
         {
-          "target": "com.azure.datalake_store#AccountsList"
+          "target": "com.azure.datalake_store#ListAccounts"
         }
       ],
       "traits": {

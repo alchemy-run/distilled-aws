@@ -39,7 +39,7 @@ export class NotFound
     [{ status: 404 }],
   ) {}
 
-export interface FileSystemCreateRequest {
+export interface CreateFileSystemRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   path?: string;
@@ -49,7 +49,7 @@ export interface FileSystemCreateRequest {
   meta?: unknown;
   shortcut?: boolean | null;
 }
-export const FileSystemCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateFileSystemRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     path: S.optional(S.String),
@@ -66,8 +66,8 @@ export const FileSystemCreateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "FileSystemCreateRequest",
-}) as any as S.Schema<FileSystemCreateRequest>;
+  identifier: "CreateFileSystemRequest",
+}) as any as S.Schema<CreateFileSystemRequest>;
 
 export type UserBasicHedgehogConfigMap = { [key: string]: unknown | undefined };
 export const UserBasicHedgehogConfigMap = /*@__PURE__*/ S.Record(
@@ -180,109 +180,6 @@ export const FileSystemDestroyResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "FileSystemDestroyResponse",
 }) as any as S.Schema<FileSystemDestroyResponse>;
 
-export interface FileSystemListRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** Number of results to return per page. */
-  limit?: number;
-  /** The initial index from which to return the results. */
-  offset?: number;
-  /** A search term. */
-  search?: string;
-}
-export const FileSystemListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    offset: S.optional(S.Number.pipe(T.Query())),
-    search: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/file_system/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "FileSystemListRequest",
-}) as any as S.Schema<FileSystemListRequest>;
-
-export type PaginatedFileSystemListResultsList = Array<FileSystem2>;
-export const PaginatedFileSystemListResultsList = /*@__PURE__*/ S.Array(
-  FileSystem2,
-) as any as S.Schema<PaginatedFileSystemListResultsList>;
-
-export interface PaginatedFileSystemList {
-  count?: number;
-  next?: string | null;
-  previous?: string | null;
-  results?: PaginatedFileSystemListResultsList;
-}
-export const PaginatedFileSystemList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    count: S.optional(S.Number),
-    next: S.optional(S.NullOr(S.String)),
-    previous: S.optional(S.NullOr(S.String)),
-    results: S.optional(PaginatedFileSystemListResultsList),
-  }),
-).annotate({
-  identifier: "PaginatedFileSystemList",
-}) as any as S.Schema<PaginatedFileSystemList>;
-
-export interface FileSystemPartialUpdateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this file system. */
-  id: string;
-  path?: string;
-  type?: string;
-  ref?: string | null;
-  href?: string | null;
-  meta?: unknown;
-  shortcut?: boolean | null;
-}
-export const FileSystemPartialUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-    path: S.optional(S.String),
-    type: S.optional(S.String),
-    ref: S.optional(S.NullOr(S.String)),
-    href: S.optional(S.NullOr(S.String)),
-    meta: S.optional(S.Unknown),
-    shortcut: S.optional(S.NullOr(S.Boolean)),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/api/projects/{project_id}/file_system/{id}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "FileSystemPartialUpdateRequest",
-}) as any as S.Schema<FileSystemPartialUpdateRequest>;
-
-export interface FileSystemRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this file system. */
-  id: string;
-}
-export const FileSystemRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/file_system/{id}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "FileSystemRetrieveRequest",
-}) as any as S.Schema<FileSystemRetrieveRequest>;
-
 export interface FileSystemUndoDeleteCreateRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
@@ -320,7 +217,77 @@ export const FileSystemUndoDeleteCreateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "FileSystemUndoDeleteCreateResponse",
 }) as any as S.Schema<FileSystemUndoDeleteCreateResponse>;
 
-export interface FileSystemUpdateRequest {
+export interface GetFileSystemRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this file system. */
+  id: string;
+}
+export const GetFileSystemRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/file_system/{id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetFileSystemRequest",
+}) as any as S.Schema<GetFileSystemRequest>;
+
+export interface ListFileSystemRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** Number of results to return per page. */
+  limit?: number;
+  /** The initial index from which to return the results. */
+  offset?: number;
+  /** A search term. */
+  search?: string;
+}
+export const ListFileSystemRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    offset: S.optional(S.Number.pipe(T.Query())),
+    search: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/file_system/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListFileSystemRequest",
+}) as any as S.Schema<ListFileSystemRequest>;
+
+export type PaginatedFileSystemListResultsList = Array<FileSystem2>;
+export const PaginatedFileSystemListResultsList = /*@__PURE__*/ S.Array(
+  FileSystem2,
+) as any as S.Schema<PaginatedFileSystemListResultsList>;
+
+export interface PaginatedFileSystemList {
+  count?: number;
+  next?: string | null;
+  previous?: string | null;
+  results?: PaginatedFileSystemListResultsList;
+}
+export const PaginatedFileSystemList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    count: S.optional(S.Number),
+    next: S.optional(S.NullOr(S.String)),
+    previous: S.optional(S.NullOr(S.String)),
+    results: S.optional(PaginatedFileSystemListResultsList),
+  }),
+).annotate({
+  identifier: "PaginatedFileSystemList",
+}) as any as S.Schema<PaginatedFileSystemList>;
+
+export interface UpdateFileSystemRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A UUID string identifying this file system. */
@@ -332,7 +299,7 @@ export interface FileSystemUpdateRequest {
   meta?: unknown;
   shortcut?: boolean | null;
 }
-export const FileSystemUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateFileSystemRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     id: S.String.pipe(T.Label()),
@@ -350,21 +317,54 @@ export const FileSystemUpdateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "FileSystemUpdateRequest",
-}) as any as S.Schema<FileSystemUpdateRequest>;
+  identifier: "UpdateFileSystemRequest",
+}) as any as S.Schema<UpdateFileSystemRequest>;
 
-export type FileSystemCreateError =
+export interface UpdateFileSystemPartialRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this file system. */
+  id: string;
+  path?: string;
+  type?: string;
+  ref?: string | null;
+  href?: string | null;
+  meta?: unknown;
+  shortcut?: boolean | null;
+}
+export const UpdateFileSystemPartialRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+    path: S.optional(S.String),
+    type: S.optional(S.String),
+    ref: S.optional(S.NullOr(S.String)),
+    href: S.optional(S.NullOr(S.String)),
+    meta: S.optional(S.Unknown),
+    shortcut: S.optional(S.NullOr(S.Boolean)),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/api/projects/{project_id}/file_system/{id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "UpdateFileSystemPartialRequest",
+}) as any as S.Schema<UpdateFileSystemPartialRequest>;
+
+export type CreateFileSystemError =
   | BadRequest
   | Forbidden
   | NotFound
   | PosthogOpError;
-export const fileSystemCreate: API.OperationMethod<
-  FileSystemCreateRequest,
+export const createFileSystem: API.OperationMethod<
+  CreateFileSystemRequest,
   FileSystem2,
-  FileSystemCreateError,
+  CreateFileSystemError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FileSystemCreateRequest,
+  input: CreateFileSystemRequest,
   output: FileSystem2,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,
@@ -380,56 +380,6 @@ export const fileSystemDestroy: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: FileSystemDestroyRequest,
   output: FileSystemDestroyResponse,
-  errors: [Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type FileSystemListError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-export const fileSystemList: API.OperationMethod<
-  FileSystemListRequest,
-  PaginatedFileSystemList,
-  FileSystemListError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FileSystemListRequest,
-  output: PaginatedFileSystemList,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type FileSystemPartialUpdateError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-export const fileSystemPartialUpdate: API.OperationMethod<
-  FileSystemPartialUpdateRequest,
-  FileSystem2,
-  FileSystemPartialUpdateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FileSystemPartialUpdateRequest,
-  output: FileSystem2,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type FileSystemRetrieveError = Forbidden | NotFound | PosthogOpError;
-export const fileSystemRetrieve: API.OperationMethod<
-  FileSystemRetrieveRequest,
-  FileSystem2,
-  FileSystemRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FileSystemRetrieveRequest,
-  output: FileSystem2,
   errors: [Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
@@ -453,18 +403,68 @@ export const fileSystemUndoDeleteCreate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type FileSystemUpdateError =
+export type GetFileSystemError = Forbidden | NotFound | PosthogOpError;
+export const getFileSystem: API.OperationMethod<
+  GetFileSystemRequest,
+  FileSystem2,
+  GetFileSystemError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetFileSystemRequest,
+  output: FileSystem2,
+  errors: [Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListFileSystemError =
   | BadRequest
   | Forbidden
   | NotFound
   | PosthogOpError;
-export const fileSystemUpdate: API.OperationMethod<
-  FileSystemUpdateRequest,
-  FileSystem2,
-  FileSystemUpdateError,
+export const listFileSystem: API.OperationMethod<
+  ListFileSystemRequest,
+  PaginatedFileSystemList,
+  ListFileSystemError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FileSystemUpdateRequest,
+  input: ListFileSystemRequest,
+  output: PaginatedFileSystemList,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateFileSystemError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+export const updateFileSystem: API.OperationMethod<
+  UpdateFileSystemRequest,
+  FileSystem2,
+  UpdateFileSystemError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateFileSystemRequest,
+  output: FileSystem2,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateFileSystemPartialError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+export const updateFileSystemPartial: API.OperationMethod<
+  UpdateFileSystemPartialRequest,
+  FileSystem2,
+  UpdateFileSystemPartialError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateFileSystemPartialRequest,
   output: FileSystem2,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,

@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.github.pulls#ListRequestState": {
@@ -6939,7 +6940,7 @@
         "smithy.api#documentation": "Update a pull request branch\n\nUpdates the pull request branch with the latest upstream changes by merging HEAD from the base branch into the pull request branch.\nNote: If making a request on behalf of a GitHub App you must also have permissions to write the contents of the head repository."
       }
     },
-    "com.github.pulls#PullRequestStacksListRequest": {
+    "com.github.pulls#ListPullRequestStacksRequest": {
       "type": "structure",
       "members": {
         "owner": {
@@ -7131,18 +7132,18 @@
       },
       "traits": {}
     },
-    "com.github.pulls#PullRequestStacksListResponseBodyList": {
+    "com.github.pulls#ListPullRequestStacksResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.github.pulls#PullRequestStackMinimal"
       },
       "traits": {}
     },
-    "com.github.pulls#PullRequestStacksListResponse": {
+    "com.github.pulls#ListPullRequestStacksResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.github.pulls#PullRequestStacksListResponseBodyList",
+          "target": "com.github.pulls#ListPullRequestStacksResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -7153,13 +7154,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.github.pulls#PullRequestStacksList": {
+    "com.github.pulls#ListPullRequestStacks": {
       "type": "operation",
       "input": {
-        "target": "com.github.pulls#PullRequestStacksListRequest"
+        "target": "com.github.pulls#ListPullRequestStacksRequest"
       },
       "output": {
-        "target": "com.github.pulls#PullRequestStacksListResponse"
+        "target": "com.github.pulls#ListPullRequestStacksResponse"
       },
       "errors": [
         {
@@ -7178,7 +7179,7 @@
         "smithy.api#documentation": "List pull request stacks\n\nLists pull request stacks in a repository."
       }
     },
-    "com.github.pulls#PullRequestStacksCreateRequestPullRequestsList": {
+    "com.github.pulls#CreatePullRequestStackRequestPullRequestsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
@@ -7187,7 +7188,7 @@
         "smithy.api#documentation": "An ordered list of pull request numbers forming the stack from bottom to top."
       }
     },
-    "com.github.pulls#PullRequestStacksCreateRequest": {
+    "com.github.pulls#CreatePullRequestStackRequest": {
       "type": "structure",
       "members": {
         "owner": {
@@ -7207,7 +7208,7 @@
           }
         },
         "pull_requests": {
-          "target": "com.github.pulls#PullRequestStacksCreateRequestPullRequestsList",
+          "target": "com.github.pulls#CreatePullRequestStackRequestPullRequestsList",
           "traits": {
             "smithy.api#documentation": "An ordered list of pull request numbers forming the stack from bottom to top.",
             "smithy.api#required": {}
@@ -7218,7 +7219,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.github.pulls#PullRequestStacksCreateResponseBase": {
+    "com.github.pulls#CreatePullRequestStackResponseBase": {
       "type": "structure",
       "members": {
         "ref": {
@@ -7424,14 +7425,14 @@
       },
       "traits": {}
     },
-    "com.github.pulls#PullRequestStacksCreateResponsePullRequestsList": {
+    "com.github.pulls#CreatePullRequestStackResponsePullRequestsList": {
       "type": "list",
       "member": {
         "target": "com.github.pulls#PullRequestStackPullRequest"
       },
       "traits": {}
     },
-    "com.github.pulls#PullRequestStacksCreateResponse": {
+    "com.github.pulls#CreatePullRequestStackResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -7459,7 +7460,7 @@
           }
         },
         "base": {
-          "target": "com.github.pulls#PullRequestStacksCreateResponseBase",
+          "target": "com.github.pulls#CreatePullRequestStackResponseBase",
           "traits": {
             "smithy.api#required": {}
           }
@@ -7478,7 +7479,7 @@
           }
         },
         "pull_requests": {
-          "target": "com.github.pulls#PullRequestStacksCreateResponsePullRequestsList",
+          "target": "com.github.pulls#CreatePullRequestStackResponsePullRequestsList",
           "traits": {
             "smithy.api#required": {}
           }
@@ -7488,13 +7489,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.github.pulls#PullRequestStacksCreate": {
+    "com.github.pulls#CreatePullRequestStack": {
       "type": "operation",
       "input": {
-        "target": "com.github.pulls#PullRequestStacksCreateRequest"
+        "target": "com.github.pulls#CreatePullRequestStackRequest"
       },
       "output": {
-        "target": "com.github.pulls#PullRequestStacksCreateResponse"
+        "target": "com.github.pulls#CreatePullRequestStackResponse"
       },
       "errors": [
         {
@@ -7513,7 +7514,7 @@
         "smithy.api#documentation": "Create a pull request stack\n\nCreates a stack from an ordered list of pull request numbers. Provide the pull\nrequest numbers from the bottom of the stack to the top. Each pull request's\nbase ref must match the previous pull request's head ref."
       }
     },
-    "com.github.pulls#PullRequestStacksGetRequest": {
+    "com.github.pulls#GetPullRequestStackRequest": {
       "type": "structure",
       "members": {
         "owner": {
@@ -7545,7 +7546,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.github.pulls#PullRequestStacksGetResponseBase": {
+    "com.github.pulls#GetPullRequestStackResponseBase": {
       "type": "structure",
       "members": {
         "ref": {
@@ -7557,14 +7558,14 @@
       },
       "traits": {}
     },
-    "com.github.pulls#PullRequestStacksGetResponsePullRequestsList": {
+    "com.github.pulls#GetPullRequestStackResponsePullRequestsList": {
       "type": "list",
       "member": {
         "target": "com.github.pulls#PullRequestStackPullRequest"
       },
       "traits": {}
     },
-    "com.github.pulls#PullRequestStacksGetResponse": {
+    "com.github.pulls#GetPullRequestStackResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -7592,7 +7593,7 @@
           }
         },
         "base": {
-          "target": "com.github.pulls#PullRequestStacksGetResponseBase",
+          "target": "com.github.pulls#GetPullRequestStackResponseBase",
           "traits": {
             "smithy.api#required": {}
           }
@@ -7611,7 +7612,7 @@
           }
         },
         "pull_requests": {
-          "target": "com.github.pulls#PullRequestStacksGetResponsePullRequestsList",
+          "target": "com.github.pulls#GetPullRequestStackResponsePullRequestsList",
           "traits": {
             "smithy.api#required": {}
           }
@@ -7621,13 +7622,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.github.pulls#PullRequestStacksGet": {
+    "com.github.pulls#GetPullRequestStack": {
       "type": "operation",
       "input": {
-        "target": "com.github.pulls#PullRequestStacksGetRequest"
+        "target": "com.github.pulls#GetPullRequestStackRequest"
       },
       "output": {
-        "target": "com.github.pulls#PullRequestStacksGetResponse"
+        "target": "com.github.pulls#GetPullRequestStackResponse"
       },
       "errors": [
         {
@@ -7643,7 +7644,7 @@
         "smithy.api#documentation": "Get a pull request stack\n\nGets a pull request stack by providing its stack number."
       }
     },
-    "com.github.pulls#PullRequestStacksAddRequestPullRequestsList": {
+    "com.github.pulls#AddPullRequestStackRequestPullRequestsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
@@ -7652,7 +7653,7 @@
         "smithy.api#documentation": "An ordered list of pull request numbers to append to the stack, from the current top upward."
       }
     },
-    "com.github.pulls#PullRequestStacksAddRequest": {
+    "com.github.pulls#AddPullRequestStackRequest": {
       "type": "structure",
       "members": {
         "owner": {
@@ -7680,7 +7681,7 @@
           }
         },
         "pull_requests": {
-          "target": "com.github.pulls#PullRequestStacksAddRequestPullRequestsList",
+          "target": "com.github.pulls#AddPullRequestStackRequestPullRequestsList",
           "traits": {
             "smithy.api#documentation": "An ordered list of pull request numbers to append to the stack, from the current top upward.",
             "smithy.api#required": {}
@@ -7691,7 +7692,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.github.pulls#PullRequestStacksAddResponseBase": {
+    "com.github.pulls#AddPullRequestStackResponseBase": {
       "type": "structure",
       "members": {
         "ref": {
@@ -7703,14 +7704,14 @@
       },
       "traits": {}
     },
-    "com.github.pulls#PullRequestStacksAddResponsePullRequestsList": {
+    "com.github.pulls#AddPullRequestStackResponsePullRequestsList": {
       "type": "list",
       "member": {
         "target": "com.github.pulls#PullRequestStackPullRequest"
       },
       "traits": {}
     },
-    "com.github.pulls#PullRequestStacksAddResponse": {
+    "com.github.pulls#AddPullRequestStackResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -7738,7 +7739,7 @@
           }
         },
         "base": {
-          "target": "com.github.pulls#PullRequestStacksAddResponseBase",
+          "target": "com.github.pulls#AddPullRequestStackResponseBase",
           "traits": {
             "smithy.api#required": {}
           }
@@ -7757,7 +7758,7 @@
           }
         },
         "pull_requests": {
-          "target": "com.github.pulls#PullRequestStacksAddResponsePullRequestsList",
+          "target": "com.github.pulls#AddPullRequestStackResponsePullRequestsList",
           "traits": {
             "smithy.api#required": {}
           }
@@ -7767,13 +7768,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.github.pulls#PullRequestStacksAdd": {
+    "com.github.pulls#AddPullRequestStack": {
       "type": "operation",
       "input": {
-        "target": "com.github.pulls#PullRequestStacksAddRequest"
+        "target": "com.github.pulls#AddPullRequestStackRequest"
       },
       "output": {
-        "target": "com.github.pulls#PullRequestStacksAddResponse"
+        "target": "com.github.pulls#AddPullRequestStackResponse"
       },
       "errors": [
         {
@@ -8088,16 +8089,16 @@
           "target": "com.github.pulls#UpdateBranch"
         },
         {
-          "target": "com.github.pulls#PullRequestStacksList"
+          "target": "com.github.pulls#ListPullRequestStacks"
         },
         {
-          "target": "com.github.pulls#PullRequestStacksCreate"
+          "target": "com.github.pulls#CreatePullRequestStack"
         },
         {
-          "target": "com.github.pulls#PullRequestStacksGet"
+          "target": "com.github.pulls#GetPullRequestStack"
         },
         {
-          "target": "com.github.pulls#PullRequestStacksAdd"
+          "target": "com.github.pulls#AddPullRequestStack"
         },
         {
           "target": "com.github.pulls#PullRequestStacksUnstack"

@@ -13,12 +13,117 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
-/** The resource type. Note: This should not be set by the user, as the constant value is Microsoft.DataLakeAnalytics/accounts */
-export type AccountsCheckNameAvailabilityRequestType =
-  "Microsoft.DataLakeAnalytics/accounts";
-export const AccountsCheckNameAvailabilityRequestType = /*@__PURE__*/ S.String;
+/** The Data Lake Store account properties to use when adding a new Data Lake Store account. */
+export interface AddDataLakeStoreProperties {
+  /** The optional suffix for the Data Lake Store account. */
+  suffix?: string;
+}
+export const AddDataLakeStoreProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    suffix: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "AddDataLakeStoreProperties",
+}) as any as S.Schema<AddDataLakeStoreProperties>;
 
-export interface AccountsCheckNameAvailabilityRequest {
+export interface AddDataLakeStoreAccountRequest {
+  /** Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the Azure resource group. */
+  resourceGroupName: string;
+  /** The name of the Data Lake Analytics account. */
+  accountName: string;
+  /** The name of the Data Lake Store account to add. */
+  dataLakeStoreAccountName: string;
+  /** The Data Lake Store account properties to use when adding a new Data Lake Store account. */
+  properties?: AddDataLakeStoreProperties;
+}
+export const AddDataLakeStoreAccountRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    dataLakeStoreAccountName: S.String.pipe(T.Label()),
+    properties: S.optional(AddDataLakeStoreProperties),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/dataLakeStoreAccounts/{dataLakeStoreAccountName}",
+      code: 200,
+      apiVersion: "2016-11-01",
+    }),
+  ),
+).annotate({
+  identifier: "AddDataLakeStoreAccountRequest",
+}) as any as S.Schema<AddDataLakeStoreAccountRequest>;
+
+export interface AddDataLakeStoreAccountResponse {}
+export const AddDataLakeStoreAccountResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "AddDataLakeStoreAccountResponse",
+}) as any as S.Schema<AddDataLakeStoreAccountResponse>;
+
+/** The Azure Storage account properties to use when adding a new Azure Storage account. */
+export interface AddStorageAccountProperties {
+  /** The access key associated with this Azure Storage account that will be used to connect to it. */
+  accessKey: string;
+  /** The optional suffix for the storage account. */
+  suffix?: string;
+}
+export const AddStorageAccountProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    accessKey: S.String,
+    suffix: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "AddStorageAccountProperties",
+}) as any as S.Schema<AddStorageAccountProperties>;
+
+export interface AddStorageAccountRequest {
+  /** Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the Azure resource group. */
+  resourceGroupName: string;
+  /** The name of the Data Lake Analytics account. */
+  accountName: string;
+  /** The name of the Azure Storage account to add */
+  storageAccountName: string;
+  /** The Azure Storage account properties to use when adding a new Azure Storage account. */
+  properties: AddStorageAccountProperties;
+}
+export const AddStorageAccountRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    storageAccountName: S.String.pipe(T.Label()),
+    properties: AddStorageAccountProperties,
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/storageAccounts/{storageAccountName}",
+      code: 200,
+      apiVersion: "2016-11-01",
+    }),
+  ),
+).annotate({
+  identifier: "AddStorageAccountRequest",
+}) as any as S.Schema<AddStorageAccountRequest>;
+
+export interface AddStorageAccountResponse {}
+export const AddStorageAccountResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "AddStorageAccountResponse",
+}) as any as S.Schema<AddStorageAccountResponse>;
+
+/** The resource type. Note: This should not be set by the user, as the constant value is Microsoft.DataLakeAnalytics/accounts */
+export type CheckAccountNameAvailabilityRequestType =
+  "Microsoft.DataLakeAnalytics/accounts";
+export const CheckAccountNameAvailabilityRequestType = /*@__PURE__*/ S.String;
+
+export interface CheckAccountNameAvailabilityRequest {
   /** Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
   /** The resource location without whitespace. */
@@ -26,26 +131,25 @@ export interface AccountsCheckNameAvailabilityRequest {
   /** The Data Lake Analytics name to check availability for. */
   name: string;
   /** The resource type. Note: This should not be set by the user, as the constant value is Microsoft.DataLakeAnalytics/accounts */
-  type: AccountsCheckNameAvailabilityRequestType | (string & {});
+  type: CheckAccountNameAvailabilityRequestType | (string & {});
 }
-export const AccountsCheckNameAvailabilityRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      location: S.String.pipe(T.Label()),
-      name: S.String,
-      type: AccountsCheckNameAvailabilityRequestType,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.DataLakeAnalytics/locations/{location}/checkNameAvailability",
-        code: 200,
-        apiVersion: "2016-11-01",
-      }),
-    ),
+export const CheckAccountNameAvailabilityRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    location: S.String.pipe(T.Label()),
+    name: S.String,
+    type: CheckAccountNameAvailabilityRequestType,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.DataLakeAnalytics/locations/{location}/checkNameAvailability",
+      code: 200,
+      apiVersion: "2016-11-01",
+    }),
+  ),
 ).annotate({
-  identifier: "AccountsCheckNameAvailabilityRequest",
-}) as any as S.Schema<AccountsCheckNameAvailabilityRequest>;
+  identifier: "CheckAccountNameAvailabilityRequest",
+}) as any as S.Schema<CheckAccountNameAvailabilityRequest>;
 
 /** Data Lake Analytics account name availability result information. */
 export interface NameAvailabilityInformation {
@@ -65,94 +169,6 @@ export const NameAvailabilityInformation = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "NameAvailabilityInformation",
 }) as any as S.Schema<NameAvailabilityInformation>;
-
-/** The resource tags. */
-export type AccountsCreateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const AccountsCreateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<AccountsCreateRequestTagsMap>;
-
-/** The Data Lake Store account properties to use when adding a new Data Lake Store account. */
-export interface AddDataLakeStoreProperties {
-  /** The optional suffix for the Data Lake Store account. */
-  suffix?: string;
-}
-export const AddDataLakeStoreProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    suffix: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AddDataLakeStoreProperties",
-}) as any as S.Schema<AddDataLakeStoreProperties>;
-
-/** The parameters used to add a new Data Lake Store account while creating a new Data Lake Analytics account. */
-export interface AddDataLakeStoreWithAccountParameters {
-  /** The unique name of the Data Lake Store account to add. */
-  name: string;
-  /** The Data Lake Store account properties to use when adding a new Data Lake Store account. */
-  properties?: AddDataLakeStoreProperties;
-}
-export const AddDataLakeStoreWithAccountParameters = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      name: S.String,
-      properties: S.optional(AddDataLakeStoreProperties),
-    }),
-).annotate({
-  identifier: "AddDataLakeStoreWithAccountParameters",
-}) as any as S.Schema<AddDataLakeStoreWithAccountParameters>;
-
-/** The list of Data Lake Store accounts associated with this account. */
-export type CreateDataLakeAnalyticsAccountPropertiesDataLakeStoreAccountsList =
-  Array<AddDataLakeStoreWithAccountParameters>;
-export const CreateDataLakeAnalyticsAccountPropertiesDataLakeStoreAccountsList =
-  /*@__PURE__*/ S.Array(
-    AddDataLakeStoreWithAccountParameters,
-  ) as any as S.Schema<CreateDataLakeAnalyticsAccountPropertiesDataLakeStoreAccountsList>;
-
-/** The Azure Storage account properties to use when adding a new Azure Storage account. */
-export interface AddStorageAccountProperties {
-  /** The access key associated with this Azure Storage account that will be used to connect to it. */
-  accessKey: string;
-  /** The optional suffix for the storage account. */
-  suffix?: string;
-}
-export const AddStorageAccountProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    accessKey: S.String,
-    suffix: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AddStorageAccountProperties",
-}) as any as S.Schema<AddStorageAccountProperties>;
-
-/** The parameters used to add a new Azure Storage account while creating a new Data Lake Analytics account. */
-export interface AddStorageAccountWithAccountParameters {
-  /** The unique name of the Azure Storage account to add. */
-  name: string;
-  /** The Azure Storage account properties to use when adding a new Azure Storage account. */
-  properties: AddStorageAccountProperties;
-}
-export const AddStorageAccountWithAccountParameters = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      name: S.String,
-      properties: AddStorageAccountProperties,
-    }),
-).annotate({
-  identifier: "AddStorageAccountWithAccountParameters",
-}) as any as S.Schema<AddStorageAccountWithAccountParameters>;
-
-/** The list of Azure Blob Storage accounts associated with this account. */
-export type CreateDataLakeAnalyticsAccountPropertiesStorageAccountsList =
-  Array<AddStorageAccountWithAccountParameters>;
-export const CreateDataLakeAnalyticsAccountPropertiesStorageAccountsList =
-  /*@__PURE__*/ S.Array(
-    AddStorageAccountWithAccountParameters,
-  ) as any as S.Schema<CreateDataLakeAnalyticsAccountPropertiesStorageAccountsList>;
 
 /** The type of AAD object the object identifier refers to. */
 export type CreateOrUpdateComputePolicyPropertiesObjectType =
@@ -184,6 +200,146 @@ export const CreateOrUpdateComputePolicyProperties = /*@__PURE__*/ S.suspend(
 ).annotate({
   identifier: "CreateOrUpdateComputePolicyProperties",
 }) as any as S.Schema<CreateOrUpdateComputePolicyProperties>;
+
+export interface ComputePoliciesCreateOrUpdateRequest {
+  /** Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the Azure resource group. */
+  resourceGroupName: string;
+  /** The name of the Data Lake Analytics account. */
+  accountName: string;
+  /** The name of the compute policy to create or update. */
+  computePolicyName: string;
+  /** The compute policy properties to use when creating a new compute policy. */
+  properties: CreateOrUpdateComputePolicyProperties;
+}
+export const ComputePoliciesCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+      computePolicyName: S.String.pipe(T.Label()),
+      properties: CreateOrUpdateComputePolicyProperties,
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/computePolicies/{computePolicyName}",
+        code: 200,
+        apiVersion: "2016-11-01",
+      }),
+    ),
+).annotate({
+  identifier: "ComputePoliciesCreateOrUpdateRequest",
+}) as any as S.Schema<ComputePoliciesCreateOrUpdateRequest>;
+
+/** The type of AAD object the object identifier refers to. */
+export type ComputePolicyPropertiesObjectType =
+  | "User"
+  | "Group"
+  | "ServicePrincipal";
+export const ComputePolicyPropertiesObjectType = /*@__PURE__*/ S.String;
+
+/** The compute policy properties. */
+export interface ComputePolicyProperties {
+  /** The AAD object identifier for the entity to create a policy for. */
+  objectId?: string;
+  /** The type of AAD object the object identifier refers to. */
+  objectType?: ComputePolicyPropertiesObjectType;
+  /** The maximum degree of parallelism per job this user can use to submit jobs. */
+  maxDegreeOfParallelismPerJob?: number;
+  /** The minimum priority per job this user can use to submit jobs. */
+  minPriorityPerJob?: number;
+}
+export const ComputePolicyProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    objectId: S.optional(S.String),
+    objectType: S.optional(ComputePolicyPropertiesObjectType),
+    maxDegreeOfParallelismPerJob: S.optional(S.Number),
+    minPriorityPerJob: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "ComputePolicyProperties",
+}) as any as S.Schema<ComputePolicyProperties>;
+
+export interface ComputePoliciesCreateOrUpdateResponse {
+  /** The resource identifier. */
+  id?: string;
+  /** The resource name. */
+  name?: string;
+  /** The resource type. */
+  type?: string;
+  /** The compute policy properties. */
+  properties?: ComputePolicyProperties;
+}
+export const ComputePoliciesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      properties: S.optional(ComputePolicyProperties),
+    }),
+).annotate({
+  identifier: "ComputePoliciesCreateOrUpdateResponse",
+}) as any as S.Schema<ComputePoliciesCreateOrUpdateResponse>;
+
+/** The resource tags. */
+export type CreateAccountRequestTagsMap = { [key: string]: string | undefined };
+export const CreateAccountRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<CreateAccountRequestTagsMap>;
+
+/** The parameters used to add a new Data Lake Store account while creating a new Data Lake Analytics account. */
+export interface AddDataLakeStoreWithAccountParameters {
+  /** The unique name of the Data Lake Store account to add. */
+  name: string;
+  /** The Data Lake Store account properties to use when adding a new Data Lake Store account. */
+  properties?: AddDataLakeStoreProperties;
+}
+export const AddDataLakeStoreWithAccountParameters = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      name: S.String,
+      properties: S.optional(AddDataLakeStoreProperties),
+    }),
+).annotate({
+  identifier: "AddDataLakeStoreWithAccountParameters",
+}) as any as S.Schema<AddDataLakeStoreWithAccountParameters>;
+
+/** The list of Data Lake Store accounts associated with this account. */
+export type CreateDataLakeAnalyticsAccountPropertiesDataLakeStoreAccountsList =
+  Array<AddDataLakeStoreWithAccountParameters>;
+export const CreateDataLakeAnalyticsAccountPropertiesDataLakeStoreAccountsList =
+  /*@__PURE__*/ S.Array(
+    AddDataLakeStoreWithAccountParameters,
+  ) as any as S.Schema<CreateDataLakeAnalyticsAccountPropertiesDataLakeStoreAccountsList>;
+
+/** The parameters used to add a new Azure Storage account while creating a new Data Lake Analytics account. */
+export interface AddStorageAccountWithAccountParameters {
+  /** The unique name of the Azure Storage account to add. */
+  name: string;
+  /** The Azure Storage account properties to use when adding a new Azure Storage account. */
+  properties: AddStorageAccountProperties;
+}
+export const AddStorageAccountWithAccountParameters = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      name: S.String,
+      properties: AddStorageAccountProperties,
+    }),
+).annotate({
+  identifier: "AddStorageAccountWithAccountParameters",
+}) as any as S.Schema<AddStorageAccountWithAccountParameters>;
+
+/** The list of Azure Blob Storage accounts associated with this account. */
+export type CreateDataLakeAnalyticsAccountPropertiesStorageAccountsList =
+  Array<AddStorageAccountWithAccountParameters>;
+export const CreateDataLakeAnalyticsAccountPropertiesStorageAccountsList =
+  /*@__PURE__*/ S.Array(
+    AddStorageAccountWithAccountParameters,
+  ) as any as S.Schema<CreateDataLakeAnalyticsAccountPropertiesStorageAccountsList>;
 
 /** The parameters used to create a new compute policy while creating a new Data Lake Analytics account. */
 export interface CreateComputePolicyWithAccountParameters {
@@ -344,7 +500,7 @@ export const CreateDataLakeAnalyticsAccountProperties = /*@__PURE__*/ S.suspend(
   identifier: "CreateDataLakeAnalyticsAccountProperties",
 }) as any as S.Schema<CreateDataLakeAnalyticsAccountProperties>;
 
-export interface AccountsCreateRequest {
+export interface CreateAccountRequest {
   /** Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
   /** The name of the Azure resource group. */
@@ -354,17 +510,17 @@ export interface AccountsCreateRequest {
   /** The resource location. */
   location: string;
   /** The resource tags. */
-  tags?: AccountsCreateRequestTagsMap;
+  tags?: CreateAccountRequestTagsMap;
   /** The Data Lake Analytics account properties to use for creating. */
   properties: CreateDataLakeAnalyticsAccountProperties;
 }
-export const AccountsCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateAccountRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     accountName: S.String.pipe(T.Label()),
     location: S.String,
-    tags: S.optional(AccountsCreateRequestTagsMap),
+    tags: S.optional(CreateAccountRequestTagsMap),
     properties: CreateDataLakeAnalyticsAccountProperties,
   }).pipe(
     T.Http({
@@ -375,17 +531,17 @@ export const AccountsCreateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "AccountsCreateRequest",
-}) as any as S.Schema<AccountsCreateRequest>;
+  identifier: "CreateAccountRequest",
+}) as any as S.Schema<CreateAccountRequest>;
 
 /** The resource tags. */
-export type AccountsCreateResponseTagsMap = {
+export type CreateAccountResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const AccountsCreateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const CreateAccountResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AccountsCreateResponseTagsMap>;
+) as any as S.Schema<CreateAccountResponseTagsMap>;
 
 /** The provisioning status of the Data Lake Analytics account. */
 export type DataLakeAnalyticsAccountPropertiesProvisioningState =
@@ -493,35 +649,6 @@ export const DataLakeAnalyticsAccountPropertiesStorageAccountsList =
   /*@__PURE__*/ S.Array(
     StorageAccountInformation,
   ) as any as S.Schema<DataLakeAnalyticsAccountPropertiesStorageAccountsList>;
-
-/** The type of AAD object the object identifier refers to. */
-export type ComputePolicyPropertiesObjectType =
-  | "User"
-  | "Group"
-  | "ServicePrincipal";
-export const ComputePolicyPropertiesObjectType = /*@__PURE__*/ S.String;
-
-/** The compute policy properties. */
-export interface ComputePolicyProperties {
-  /** The AAD object identifier for the entity to create a policy for. */
-  objectId?: string;
-  /** The type of AAD object the object identifier refers to. */
-  objectType?: ComputePolicyPropertiesObjectType;
-  /** The maximum degree of parallelism per job this user can use to submit jobs. */
-  maxDegreeOfParallelismPerJob?: number;
-  /** The minimum priority per job this user can use to submit jobs. */
-  minPriorityPerJob?: number;
-}
-export const ComputePolicyProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    objectId: S.optional(S.String),
-    objectType: S.optional(ComputePolicyPropertiesObjectType),
-    maxDegreeOfParallelismPerJob: S.optional(S.Number),
-    minPriorityPerJob: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "ComputePolicyProperties",
-}) as any as S.Schema<ComputePolicyProperties>;
 
 /** Data Lake Analytics compute policy information. */
 export interface ComputePolicy {
@@ -878,7 +1005,7 @@ export const DataLakeAnalyticsAccountProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "DataLakeAnalyticsAccountProperties",
 }) as any as S.Schema<DataLakeAnalyticsAccountProperties>;
 
-export interface AccountsCreateResponse {
+export interface CreateAccountResponse {
   /** The resource identifier. */
   id?: string;
   /** The resource name. */
@@ -888,24 +1015,24 @@ export interface AccountsCreateResponse {
   /** The resource location. */
   location?: string;
   /** The resource tags. */
-  tags?: AccountsCreateResponseTagsMap;
+  tags?: CreateAccountResponseTagsMap;
   /** The properties defined by Data Lake Analytics all properties are specific to each resource provider. */
   properties?: DataLakeAnalyticsAccountProperties;
 }
-export const AccountsCreateResponse = /*@__PURE__*/ S.suspend(() =>
+export const CreateAccountResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(AccountsCreateResponseTagsMap),
+    tags: S.optional(CreateAccountResponseTagsMap),
     properties: S.optional(DataLakeAnalyticsAccountProperties),
   }),
 ).annotate({
-  identifier: "AccountsCreateResponse",
-}) as any as S.Schema<AccountsCreateResponse>;
+  identifier: "CreateAccountResponse",
+}) as any as S.Schema<CreateAccountResponse>;
 
-export interface AccountsDeleteRequest {
+export interface DeleteAccountRequest {
   /** Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
   /** The name of the Azure resource group. */
@@ -913,7 +1040,7 @@ export interface AccountsDeleteRequest {
   /** The name of the Data Lake Analytics account. */
   accountName: string;
 }
-export const AccountsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteAccountRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -927,17 +1054,209 @@ export const AccountsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "AccountsDeleteRequest",
-}) as any as S.Schema<AccountsDeleteRequest>;
+  identifier: "DeleteAccountRequest",
+}) as any as S.Schema<DeleteAccountRequest>;
 
-export interface AccountsDeleteResponse {}
-export const AccountsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteAccountResponse {}
+export const DeleteAccountResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "AccountsDeleteResponse",
-}) as any as S.Schema<AccountsDeleteResponse>;
+  identifier: "DeleteAccountResponse",
+}) as any as S.Schema<DeleteAccountResponse>;
 
-export interface AccountsGetRequest {
+export interface DeleteComputePolicyRequest {
+  /** Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the Azure resource group. */
+  resourceGroupName: string;
+  /** The name of the Data Lake Analytics account. */
+  accountName: string;
+  /** The name of the compute policy to delete. */
+  computePolicyName: string;
+}
+export const DeleteComputePolicyRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    computePolicyName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/computePolicies/{computePolicyName}",
+      code: 200,
+      apiVersion: "2016-11-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteComputePolicyRequest",
+}) as any as S.Schema<DeleteComputePolicyRequest>;
+
+export interface DeleteComputePolicyResponse {}
+export const DeleteComputePolicyResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteComputePolicyResponse",
+}) as any as S.Schema<DeleteComputePolicyResponse>;
+
+export interface DeleteDataLakeStoreAccountRequest {
+  /** Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the Azure resource group. */
+  resourceGroupName: string;
+  /** The name of the Data Lake Analytics account. */
+  accountName: string;
+  /** The name of the Data Lake Store account to remove */
+  dataLakeStoreAccountName: string;
+}
+export const DeleteDataLakeStoreAccountRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    dataLakeStoreAccountName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/dataLakeStoreAccounts/{dataLakeStoreAccountName}",
+      code: 200,
+      apiVersion: "2016-11-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteDataLakeStoreAccountRequest",
+}) as any as S.Schema<DeleteDataLakeStoreAccountRequest>;
+
+export interface DeleteDataLakeStoreAccountResponse {}
+export const DeleteDataLakeStoreAccountResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteDataLakeStoreAccountResponse",
+}) as any as S.Schema<DeleteDataLakeStoreAccountResponse>;
+
+export interface DeleteFirewallRuleRequest {
+  /** Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the Azure resource group. */
+  resourceGroupName: string;
+  /** The name of the Data Lake Analytics account. */
+  accountName: string;
+  /** The name of the firewall rule to delete. */
+  firewallRuleName: string;
+}
+export const DeleteFirewallRuleRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    firewallRuleName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/firewallRules/{firewallRuleName}",
+      code: 200,
+      apiVersion: "2016-11-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteFirewallRuleRequest",
+}) as any as S.Schema<DeleteFirewallRuleRequest>;
+
+export interface DeleteFirewallRuleResponse {}
+export const DeleteFirewallRuleResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteFirewallRuleResponse",
+}) as any as S.Schema<DeleteFirewallRuleResponse>;
+
+export interface DeleteStorageAccountRequest {
+  /** Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the Azure resource group. */
+  resourceGroupName: string;
+  /** The name of the Data Lake Analytics account. */
+  accountName: string;
+  /** The name of the Azure Storage account to remove */
+  storageAccountName: string;
+}
+export const DeleteStorageAccountRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    storageAccountName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/storageAccounts/{storageAccountName}",
+      code: 200,
+      apiVersion: "2016-11-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteStorageAccountRequest",
+}) as any as S.Schema<DeleteStorageAccountRequest>;
+
+export interface DeleteStorageAccountResponse {}
+export const DeleteStorageAccountResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteStorageAccountResponse",
+}) as any as S.Schema<DeleteStorageAccountResponse>;
+
+export interface FirewallRulesCreateOrUpdateRequest {
+  /** Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the Azure resource group. */
+  resourceGroupName: string;
+  /** The name of the Data Lake Analytics account. */
+  accountName: string;
+  /** The name of the firewall rule to create or update. */
+  firewallRuleName: string;
+  /** The firewall rule properties to use when creating a new firewall rule. */
+  properties: CreateOrUpdateFirewallRuleProperties;
+}
+export const FirewallRulesCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    firewallRuleName: S.String.pipe(T.Label()),
+    properties: CreateOrUpdateFirewallRuleProperties,
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/firewallRules/{firewallRuleName}",
+      code: 200,
+      apiVersion: "2016-11-01",
+    }),
+  ),
+).annotate({
+  identifier: "FirewallRulesCreateOrUpdateRequest",
+}) as any as S.Schema<FirewallRulesCreateOrUpdateRequest>;
+
+export interface FirewallRulesCreateOrUpdateResponse {
+  /** The resource identifier. */
+  id?: string;
+  /** The resource name. */
+  name?: string;
+  /** The resource type. */
+  type?: string;
+  /** The firewall rule properties. */
+  properties?: FirewallRuleProperties;
+}
+export const FirewallRulesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    properties: S.optional(FirewallRuleProperties),
+  }),
+).annotate({
+  identifier: "FirewallRulesCreateOrUpdateResponse",
+}) as any as S.Schema<FirewallRulesCreateOrUpdateResponse>;
+
+export interface GetAccountRequest {
   /** Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
   /** The name of the Azure resource group. */
@@ -945,7 +1264,7 @@ export interface AccountsGetRequest {
   /** The name of the Data Lake Analytics account. */
   accountName: string;
 }
-export const AccountsGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetAccountRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -959,17 +1278,17 @@ export const AccountsGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "AccountsGetRequest",
-}) as any as S.Schema<AccountsGetRequest>;
+  identifier: "GetAccountRequest",
+}) as any as S.Schema<GetAccountRequest>;
 
 /** The resource tags. */
-export type AccountsGetResponseTagsMap = { [key: string]: string | undefined };
-export const AccountsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetAccountResponseTagsMap = { [key: string]: string | undefined };
+export const GetAccountResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AccountsGetResponseTagsMap>;
+) as any as S.Schema<GetAccountResponseTagsMap>;
 
-export interface AccountsGetResponse {
+export interface GetAccountResponse {
   /** The resource identifier. */
   id?: string;
   /** The resource name. */
@@ -979,26 +1298,347 @@ export interface AccountsGetResponse {
   /** The resource location. */
   location?: string;
   /** The resource tags. */
-  tags?: AccountsGetResponseTagsMap;
+  tags?: GetAccountResponseTagsMap;
   /** The properties defined by Data Lake Analytics all properties are specific to each resource provider. */
   properties?: DataLakeAnalyticsAccountProperties;
 }
-export const AccountsGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetAccountResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(AccountsGetResponseTagsMap),
+    tags: S.optional(GetAccountResponseTagsMap),
     properties: S.optional(DataLakeAnalyticsAccountProperties),
   }),
 ).annotate({
-  identifier: "AccountsGetResponse",
-}) as any as S.Schema<AccountsGetResponse>;
+  identifier: "GetAccountResponse",
+}) as any as S.Schema<GetAccountResponse>;
 
-export interface AccountsListRequest {
+export interface GetComputePolicyRequest {
   /** Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
+  /** The name of the Azure resource group. */
+  resourceGroupName: string;
+  /** The name of the Data Lake Analytics account. */
+  accountName: string;
+  /** The name of the compute policy to retrieve. */
+  computePolicyName: string;
+}
+export const GetComputePolicyRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    computePolicyName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/computePolicies/{computePolicyName}",
+      code: 200,
+      apiVersion: "2016-11-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetComputePolicyRequest",
+}) as any as S.Schema<GetComputePolicyRequest>;
+
+export interface GetComputePolicyResponse {
+  /** The resource identifier. */
+  id?: string;
+  /** The resource name. */
+  name?: string;
+  /** The resource type. */
+  type?: string;
+  /** The compute policy properties. */
+  properties?: ComputePolicyProperties;
+}
+export const GetComputePolicyResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    properties: S.optional(ComputePolicyProperties),
+  }),
+).annotate({
+  identifier: "GetComputePolicyResponse",
+}) as any as S.Schema<GetComputePolicyResponse>;
+
+export interface GetDataLakeStoreAccountRequest {
+  /** Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the Azure resource group. */
+  resourceGroupName: string;
+  /** The name of the Data Lake Analytics account. */
+  accountName: string;
+  /** The name of the Data Lake Store account to retrieve */
+  dataLakeStoreAccountName: string;
+}
+export const GetDataLakeStoreAccountRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    dataLakeStoreAccountName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/dataLakeStoreAccounts/{dataLakeStoreAccountName}",
+      code: 200,
+      apiVersion: "2016-11-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetDataLakeStoreAccountRequest",
+}) as any as S.Schema<GetDataLakeStoreAccountRequest>;
+
+export interface GetDataLakeStoreAccountResponse {
+  /** The resource identifier. */
+  id?: string;
+  /** The resource name. */
+  name?: string;
+  /** The resource type. */
+  type?: string;
+  /** The Data Lake Store account properties. */
+  properties?: AddDataLakeStoreProperties;
+}
+export const GetDataLakeStoreAccountResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    properties: S.optional(AddDataLakeStoreProperties),
+  }),
+).annotate({
+  identifier: "GetDataLakeStoreAccountResponse",
+}) as any as S.Schema<GetDataLakeStoreAccountResponse>;
+
+export interface GetFirewallRuleRequest {
+  /** Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the Azure resource group. */
+  resourceGroupName: string;
+  /** The name of the Data Lake Analytics account. */
+  accountName: string;
+  /** The name of the firewall rule to retrieve. */
+  firewallRuleName: string;
+}
+export const GetFirewallRuleRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    firewallRuleName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/firewallRules/{firewallRuleName}",
+      code: 200,
+      apiVersion: "2016-11-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetFirewallRuleRequest",
+}) as any as S.Schema<GetFirewallRuleRequest>;
+
+export interface GetFirewallRuleResponse {
+  /** The resource identifier. */
+  id?: string;
+  /** The resource name. */
+  name?: string;
+  /** The resource type. */
+  type?: string;
+  /** The firewall rule properties. */
+  properties?: FirewallRuleProperties;
+}
+export const GetFirewallRuleResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    properties: S.optional(FirewallRuleProperties),
+  }),
+).annotate({
+  identifier: "GetFirewallRuleResponse",
+}) as any as S.Schema<GetFirewallRuleResponse>;
+
+export interface GetLocationCapabilityRequest {
+  /** Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The resource location without whitespace. */
+  location: string;
+}
+export const GetLocationCapabilityRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    location: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.DataLakeAnalytics/locations/{location}/capability",
+      code: 200,
+      apiVersion: "2016-11-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetLocationCapabilityRequest",
+}) as any as S.Schema<GetLocationCapabilityRequest>;
+
+/** The subscription state. */
+export type CapabilityInformationState =
+  | "Registered"
+  | "Suspended"
+  | "Deleted"
+  | "Unregistered"
+  | "Warned";
+export const CapabilityInformationState = /*@__PURE__*/ S.String;
+
+/** Subscription-level properties and limits for Data Lake Analytics. */
+export interface CapabilityInformation {
+  /** The subscription credentials that uniquely identifies the subscription. */
+  subscriptionId?: string;
+  /** The subscription state. */
+  state?: CapabilityInformationState;
+  /** The maximum supported number of accounts under this subscription. */
+  maxAccountCount?: number;
+  /** The current number of accounts under this subscription. */
+  accountCount?: number;
+  /** The Boolean value of true or false to indicate the maintenance state. */
+  migrationState?: boolean;
+}
+export const CapabilityInformation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.optional(S.String),
+    state: S.optional(CapabilityInformationState),
+    maxAccountCount: S.optional(S.Number),
+    accountCount: S.optional(S.Number),
+    migrationState: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "CapabilityInformation",
+}) as any as S.Schema<CapabilityInformation>;
+
+export interface GetStorageAccountRequest {
+  /** Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the Azure resource group. */
+  resourceGroupName: string;
+  /** The name of the Data Lake Analytics account. */
+  accountName: string;
+  /** The name of the Azure Storage account for which to retrieve the details. */
+  storageAccountName: string;
+}
+export const GetStorageAccountRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    storageAccountName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/storageAccounts/{storageAccountName}",
+      code: 200,
+      apiVersion: "2016-11-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetStorageAccountRequest",
+}) as any as S.Schema<GetStorageAccountRequest>;
+
+export interface GetStorageAccountResponse {
+  /** The resource identifier. */
+  id?: string;
+  /** The resource name. */
+  name?: string;
+  /** The resource type. */
+  type?: string;
+  /** The Azure Storage account properties. */
+  properties?: StorageAccountInformationProperties;
+}
+export const GetStorageAccountResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    properties: S.optional(StorageAccountInformationProperties),
+  }),
+).annotate({
+  identifier: "GetStorageAccountResponse",
+}) as any as S.Schema<GetStorageAccountResponse>;
+
+export interface GetStorageAccountStorageContainerRequest {
+  /** Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the Azure resource group. */
+  resourceGroupName: string;
+  /** The name of the Data Lake Analytics account. */
+  accountName: string;
+  /** The name of the Azure storage account from which to retrieve the blob container. */
+  storageAccountName: string;
+  /** The name of the Azure storage container to retrieve */
+  containerName: string;
+}
+export const GetStorageAccountStorageContainerRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+      storageAccountName: S.String.pipe(T.Label()),
+      containerName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/storageAccounts/{storageAccountName}/containers/{containerName}",
+        code: 200,
+        apiVersion: "2016-11-01",
+      }),
+    ),
+).annotate({
+  identifier: "GetStorageAccountStorageContainerRequest",
+}) as any as S.Schema<GetStorageAccountStorageContainerRequest>;
+
+/** Azure Storage blob container properties information. */
+export interface StorageContainerProperties {
+  /** The last modified time of the blob container. */
+  lastModifiedTime?: string;
+}
+export const StorageContainerProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    lastModifiedTime: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "StorageContainerProperties",
+}) as any as S.Schema<StorageContainerProperties>;
+
+export interface GetStorageAccountStorageContainerResponse {
+  /** The resource identifier. */
+  id?: string;
+  /** The resource name. */
+  name?: string;
+  /** The resource type. */
+  type?: string;
+  /** The properties of the blob container. */
+  properties?: StorageContainerProperties;
+}
+export const GetStorageAccountStorageContainerResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      properties: S.optional(StorageContainerProperties),
+    }),
+  ).annotate({
+    identifier: "GetStorageAccountStorageContainerResponse",
+  }) as any as S.Schema<GetStorageAccountStorageContainerResponse>;
+
+export interface ListAccountByResourceGroupRequest {
+  /** Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the Azure resource group. */
+  resourceGroupName: string;
   /** OData filter. Optional. */
   _filter?: string;
   /** The number of items to return. Optional. */
@@ -1012,9 +1652,10 @@ export interface AccountsListRequest {
   /** The Boolean value of true or false to request a count of the matching resources included with the resources in the response, e.g. Categories?$count=true. Optional. */
   _count?: boolean;
 }
-export const AccountsListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListAccountByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
     _filter: S.optional(S.String.pipe(T.Query("$filter"))),
     _top: S.optional(S.Number.pipe(T.Query("$top"))),
     _skip: S.optional(S.Number.pipe(T.Query("$skip"))),
@@ -1024,14 +1665,14 @@ export const AccountsListRequest = /*@__PURE__*/ S.suspend(() =>
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.DataLakeAnalytics/accounts",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts",
       code: 200,
       apiVersion: "2016-11-01",
     }),
   ),
 ).annotate({
-  identifier: "AccountsListRequest",
-}) as any as S.Schema<AccountsListRequest>;
+  identifier: "ListAccountByResourceGroupRequest",
+}) as any as S.Schema<ListAccountByResourceGroupRequest>;
 
 /** The resource tags. */
 export type DataLakeAnalyticsAccountBasicTagsMap = {
@@ -1151,11 +1792,9 @@ export const DataLakeAnalyticsAccountListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "DataLakeAnalyticsAccountListResult",
 }) as any as S.Schema<DataLakeAnalyticsAccountListResult>;
 
-export interface AccountsListByResourceGroupRequest {
+export interface ListAccountsRequest {
   /** Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
-  /** The name of the Azure resource group. */
-  resourceGroupName: string;
   /** OData filter. Optional. */
   _filter?: string;
   /** The number of items to return. Optional. */
@@ -1169,10 +1808,9 @@ export interface AccountsListByResourceGroupRequest {
   /** The Boolean value of true or false to request a count of the matching resources included with the resources in the response, e.g. Categories?$count=true. Optional. */
   _count?: boolean;
 }
-export const AccountsListByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListAccountsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
     _filter: S.optional(S.String.pipe(T.Query("$filter"))),
     _top: S.optional(S.Number.pipe(T.Query("$top"))),
     _skip: S.optional(S.Number.pipe(T.Query("$skip"))),
@@ -1182,23 +1820,590 @@ export const AccountsListByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.DataLakeAnalytics/accounts",
       code: 200,
       apiVersion: "2016-11-01",
     }),
   ),
 ).annotate({
-  identifier: "AccountsListByResourceGroupRequest",
-}) as any as S.Schema<AccountsListByResourceGroupRequest>;
+  identifier: "ListAccountsRequest",
+}) as any as S.Schema<ListAccountsRequest>;
+
+export interface ListComputePolicyByAccountRequest {
+  /** Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the Azure resource group. */
+  resourceGroupName: string;
+  /** The name of the Data Lake Analytics account. */
+  accountName: string;
+}
+export const ListComputePolicyByAccountRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/computePolicies",
+      code: 200,
+      apiVersion: "2016-11-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListComputePolicyByAccountRequest",
+}) as any as S.Schema<ListComputePolicyByAccountRequest>;
+
+/** The results of the list operation. */
+export type ComputePolicyListResultValueList = Array<ComputePolicy>;
+export const ComputePolicyListResultValueList = /*@__PURE__*/ S.Array(
+  ComputePolicy,
+) as any as S.Schema<ComputePolicyListResultValueList>;
+
+/** The list of compute policies in the account. */
+export interface ComputePolicyListResult {
+  /** The results of the list operation. */
+  value?: ComputePolicyListResultValueList;
+  /** The link (url) to the next page of results. */
+  nextLink?: string;
+}
+export const ComputePolicyListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(ComputePolicyListResultValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ComputePolicyListResult",
+}) as any as S.Schema<ComputePolicyListResult>;
+
+export interface ListDataLakeStoreAccountByAccountRequest {
+  /** Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the Azure resource group. */
+  resourceGroupName: string;
+  /** The name of the Data Lake Analytics account. */
+  accountName: string;
+  /** OData filter. Optional. */
+  _filter?: string;
+  /** The number of items to return. Optional. */
+  _top?: number;
+  /** The number of items to skip over before returning elements. Optional. */
+  _skip?: number;
+  /** OData Select statement. Limits the properties on each entry to just those requested, e.g. Categories?$select=CategoryName,Description. Optional. */
+  _select?: string;
+  /** OrderBy clause. One or more comma-separated expressions with an optional "asc" (the default) or "desc" depending on the order you'd like the values sorted, e.g. Categories?$orderby=CategoryName desc. Optional. */
+  _orderby?: string;
+  /** The Boolean value of true or false to request a count of the matching resources included with the resources in the response, e.g. Categories?$count=true. Optional. */
+  _count?: boolean;
+}
+export const ListDataLakeStoreAccountByAccountRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+      _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+      _top: S.optional(S.Number.pipe(T.Query("$top"))),
+      _skip: S.optional(S.Number.pipe(T.Query("$skip"))),
+      _select: S.optional(S.String.pipe(T.Query("$select"))),
+      _orderby: S.optional(S.String.pipe(T.Query("$orderby"))),
+      _count: S.optional(S.Boolean.pipe(T.Query("$count"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/dataLakeStoreAccounts",
+        code: 200,
+        apiVersion: "2016-11-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListDataLakeStoreAccountByAccountRequest",
+}) as any as S.Schema<ListDataLakeStoreAccountByAccountRequest>;
+
+/** The results of the list operation. */
+export type DataLakeStoreAccountInformationListResultValueList =
+  Array<DataLakeStoreAccountInformation>;
+export const DataLakeStoreAccountInformationListResultValueList =
+  /*@__PURE__*/ S.Array(
+    DataLakeStoreAccountInformation,
+  ) as any as S.Schema<DataLakeStoreAccountInformationListResultValueList>;
+
+/** Data Lake Store account list information. */
+export interface DataLakeStoreAccountInformationListResult {
+  /** The results of the list operation. */
+  value?: DataLakeStoreAccountInformationListResultValueList;
+  /** The link (url) to the next page of results. */
+  nextLink?: string;
+}
+export const DataLakeStoreAccountInformationListResult =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      value: S.optional(DataLakeStoreAccountInformationListResultValueList),
+      nextLink: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "DataLakeStoreAccountInformationListResult",
+  }) as any as S.Schema<DataLakeStoreAccountInformationListResult>;
+
+export interface ListFirewallRuleByAccountRequest {
+  /** Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the Azure resource group. */
+  resourceGroupName: string;
+  /** The name of the Data Lake Analytics account. */
+  accountName: string;
+}
+export const ListFirewallRuleByAccountRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/firewallRules",
+      code: 200,
+      apiVersion: "2016-11-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListFirewallRuleByAccountRequest",
+}) as any as S.Schema<ListFirewallRuleByAccountRequest>;
+
+/** The results of the list operation. */
+export type FirewallRuleListResultValueList = Array<FirewallRule>;
+export const FirewallRuleListResultValueList = /*@__PURE__*/ S.Array(
+  FirewallRule,
+) as any as S.Schema<FirewallRuleListResultValueList>;
+
+/** Data Lake Analytics firewall rule list information. */
+export interface FirewallRuleListResult {
+  /** The results of the list operation. */
+  value?: FirewallRuleListResultValueList;
+  /** The link (url) to the next page of results. */
+  nextLink?: string;
+}
+export const FirewallRuleListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(FirewallRuleListResultValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "FirewallRuleListResult",
+}) as any as S.Schema<FirewallRuleListResult>;
+
+export interface ListOperationsRequest {}
+export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/providers/Microsoft.DataLakeAnalytics/operations",
+      code: 200,
+      apiVersion: "2016-11-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListOperationsRequest",
+}) as any as S.Schema<ListOperationsRequest>;
+
+/** The display information for a particular operation. */
+export interface OperationDisplay {
+  /** The resource provider of the operation. */
+  provider?: string;
+  /** The resource type of the operation. */
+  resource?: string;
+  /** A friendly name of the operation. */
+  operation?: string;
+  /** A friendly description of the operation. */
+  description?: string;
+}
+export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provider: S.optional(S.String),
+    resource: S.optional(S.String),
+    operation: S.optional(S.String),
+    description: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "OperationDisplay",
+}) as any as S.Schema<OperationDisplay>;
+
+export interface OperationMetaMetricAvailabilitiesSpecification {
+  /** The timegrain for OperationMetaMetricAvailabilitiesSpecification. */
+  timeGrain?: string;
+  /** The blobDuration for OperationMetaMetricAvailabilitiesSpecification. */
+  blobDuration?: string;
+}
+export const OperationMetaMetricAvailabilitiesSpecification =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      timeGrain: S.optional(S.String),
+      blobDuration: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "OperationMetaMetricAvailabilitiesSpecification",
+  }) as any as S.Schema<OperationMetaMetricAvailabilitiesSpecification>;
+
+/** The availabilities for OperationMetaMetricSpecification. */
+export type OperationMetaMetricSpecificationAvailabilitiesList =
+  Array<OperationMetaMetricAvailabilitiesSpecification>;
+export const OperationMetaMetricSpecificationAvailabilitiesList =
+  /*@__PURE__*/ S.Array(
+    OperationMetaMetricAvailabilitiesSpecification,
+  ) as any as S.Schema<OperationMetaMetricSpecificationAvailabilitiesList>;
+
+export interface OperationMetaMetricSpecification {
+  /** The name for OperationMetaMetricSpecification. */
+  name?: string;
+  /** The displayName for OperationMetaMetricSpecification. */
+  displayDescription?: string;
+  /** The displayName for OperationMetaMetricSpecification. */
+  displayName?: string;
+  /** The unit for OperationMetaMetricSpecification. */
+  unit?: string;
+  /** The aggregationType for OperationMetaMetricSpecification. */
+  aggregationType?: string;
+  /** The availabilities for OperationMetaMetricSpecification. */
+  availabilities?: OperationMetaMetricSpecificationAvailabilitiesList;
+}
+export const OperationMetaMetricSpecification = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    displayDescription: S.optional(S.String),
+    displayName: S.optional(S.String),
+    unit: S.optional(S.String),
+    aggregationType: S.optional(S.String),
+    availabilities: S.optional(
+      OperationMetaMetricSpecificationAvailabilitiesList,
+    ),
+  }),
+).annotate({
+  identifier: "OperationMetaMetricSpecification",
+}) as any as S.Schema<OperationMetaMetricSpecification>;
+
+/** The metricSpecifications for OperationMetaServiceSpecification. */
+export type OperationMetaServiceSpecificationMetricSpecificationsList =
+  Array<OperationMetaMetricSpecification>;
+export const OperationMetaServiceSpecificationMetricSpecificationsList =
+  /*@__PURE__*/ S.Array(
+    OperationMetaMetricSpecification,
+  ) as any as S.Schema<OperationMetaServiceSpecificationMetricSpecificationsList>;
+
+export interface OperationMetaLogSpecification {
+  /** The name for OperationMetaLogSpecification. */
+  name?: string;
+  /** The displayName for OperationMetaLogSpecification. */
+  displayName?: string;
+  /** The blobDuration for OperationMetaLogSpecification. */
+  blobDuration?: string;
+}
+export const OperationMetaLogSpecification = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    displayName: S.optional(S.String),
+    blobDuration: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "OperationMetaLogSpecification",
+}) as any as S.Schema<OperationMetaLogSpecification>;
+
+/** The logSpecifications for OperationMetaServiceSpecification. */
+export type OperationMetaServiceSpecificationLogSpecificationsList =
+  Array<OperationMetaLogSpecification>;
+export const OperationMetaServiceSpecificationLogSpecificationsList =
+  /*@__PURE__*/ S.Array(
+    OperationMetaLogSpecification,
+  ) as any as S.Schema<OperationMetaServiceSpecificationLogSpecificationsList>;
+
+export interface OperationMetaServiceSpecification {
+  /** The metricSpecifications for OperationMetaServiceSpecification. */
+  metricSpecifications?: OperationMetaServiceSpecificationMetricSpecificationsList;
+  /** The logSpecifications for OperationMetaServiceSpecification. */
+  logSpecifications?: OperationMetaServiceSpecificationLogSpecificationsList;
+}
+export const OperationMetaServiceSpecification = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    metricSpecifications: S.optional(
+      OperationMetaServiceSpecificationMetricSpecificationsList,
+    ),
+    logSpecifications: S.optional(
+      OperationMetaServiceSpecificationLogSpecificationsList,
+    ),
+  }),
+).annotate({
+  identifier: "OperationMetaServiceSpecification",
+}) as any as S.Schema<OperationMetaServiceSpecification>;
+
+export interface OperationMetaPropertyInfo {
+  /** The operations OperationMetaServiceSpecification. */
+  serviceSpecification?: OperationMetaServiceSpecification;
+}
+export const OperationMetaPropertyInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceSpecification: S.optional(OperationMetaServiceSpecification),
+  }),
+).annotate({
+  identifier: "OperationMetaPropertyInfo",
+}) as any as S.Schema<OperationMetaPropertyInfo>;
+
+/** The intended executor of the operation. */
+export type OperationOrigin = "user" | "system" | "user,system";
+export const OperationOrigin = /*@__PURE__*/ S.String;
+
+/** An available operation for Data Lake Analytics. */
+export interface Operation {
+  /** The name of the operation. */
+  name?: string;
+  /** The display information for the operation. */
+  display?: OperationDisplay;
+  /** The OperationMetaPropertyInfo for the operation. */
+  properties?: OperationMetaPropertyInfo;
+  /** The intended executor of the operation. */
+  origin?: OperationOrigin;
+}
+export const Operation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    display: S.optional(OperationDisplay),
+    properties: S.optional(OperationMetaPropertyInfo),
+    origin: S.optional(OperationOrigin),
+  }),
+).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
+
+/** The results of the list operation. */
+export type OperationListResultValueList = Array<Operation>;
+export const OperationListResultValueList = /*@__PURE__*/ S.Array(
+  Operation,
+) as any as S.Schema<OperationListResultValueList>;
+
+/** The list of available operations for Data Lake Analytics. */
+export interface OperationListResult {
+  /** The results of the list operation. */
+  value?: OperationListResultValueList;
+  /** The link (url) to the next page of results. */
+  nextLink?: string;
+}
+export const OperationListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(OperationListResultValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "OperationListResult",
+}) as any as S.Schema<OperationListResult>;
+
+export interface ListStorageAccountByAccountRequest {
+  /** Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the Azure resource group. */
+  resourceGroupName: string;
+  /** The name of the Data Lake Analytics account. */
+  accountName: string;
+  /** The OData filter. Optional. */
+  _filter?: string;
+  /** The number of items to return. Optional. */
+  _top?: number;
+  /** The number of items to skip over before returning elements. Optional. */
+  _skip?: number;
+  /** OData Select statement. Limits the properties on each entry to just those requested, e.g. Categories?$select=CategoryName,Description. Optional. */
+  _select?: string;
+  /** OrderBy clause. One or more comma-separated expressions with an optional "asc" (the default) or "desc" depending on the order you'd like the values sorted, e.g. Categories?$orderby=CategoryName desc. Optional. */
+  _orderby?: string;
+  /** The Boolean value of true or false to request a count of the matching resources included with the resources in the response, e.g. Categories?$count=true. Optional. */
+  _count?: boolean;
+}
+export const ListStorageAccountByAccountRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+    _top: S.optional(S.Number.pipe(T.Query("$top"))),
+    _skip: S.optional(S.Number.pipe(T.Query("$skip"))),
+    _select: S.optional(S.String.pipe(T.Query("$select"))),
+    _orderby: S.optional(S.String.pipe(T.Query("$orderby"))),
+    _count: S.optional(S.Boolean.pipe(T.Query("$count"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/storageAccounts",
+      code: 200,
+      apiVersion: "2016-11-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListStorageAccountByAccountRequest",
+}) as any as S.Schema<ListStorageAccountByAccountRequest>;
+
+/** The results of the list operation. */
+export type StorageAccountInformationListResultValueList =
+  Array<StorageAccountInformation>;
+export const StorageAccountInformationListResultValueList =
+  /*@__PURE__*/ S.Array(
+    StorageAccountInformation,
+  ) as any as S.Schema<StorageAccountInformationListResultValueList>;
+
+/** Azure Storage account list information. */
+export interface StorageAccountInformationListResult {
+  /** The results of the list operation. */
+  value?: StorageAccountInformationListResultValueList;
+  /** The link (url) to the next page of results. */
+  nextLink?: string;
+}
+export const StorageAccountInformationListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(StorageAccountInformationListResultValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "StorageAccountInformationListResult",
+}) as any as S.Schema<StorageAccountInformationListResult>;
+
+export interface ListStorageAccountSasTokensRequest {
+  /** Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the Azure resource group. */
+  resourceGroupName: string;
+  /** The name of the Data Lake Analytics account. */
+  accountName: string;
+  /** The name of the Azure storage account for which the SAS token is being requested. */
+  storageAccountName: string;
+  /** The name of the Azure storage container for which the SAS token is being requested. */
+  containerName: string;
+}
+export const ListStorageAccountSasTokensRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    storageAccountName: S.String.pipe(T.Label()),
+    containerName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/storageAccounts/{storageAccountName}/containers/{containerName}/listSasTokens",
+      code: 200,
+      apiVersion: "2016-11-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListStorageAccountSasTokensRequest",
+}) as any as S.Schema<ListStorageAccountSasTokensRequest>;
+
+/** SAS token information. */
+export interface SasTokenInformation {
+  /** The access token for the associated Azure Storage Container. */
+  accessToken?: string | Redacted.Redacted<string>;
+}
+export const SasTokenInformation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    accessToken: S.optional(S.String.pipe(T.SensitiveValue({}))),
+  }),
+).annotate({
+  identifier: "SasTokenInformation",
+}) as any as S.Schema<SasTokenInformation>;
+
+/** The results of the list operation. */
+export type SasTokenInformationListResultValueList = Array<SasTokenInformation>;
+export const SasTokenInformationListResultValueList = /*@__PURE__*/ S.Array(
+  SasTokenInformation,
+) as any as S.Schema<SasTokenInformationListResultValueList>;
+
+/** The SAS response that contains the storage account, container and associated SAS token for connection use. */
+export interface SasTokenInformationListResult {
+  /** The results of the list operation. */
+  value?: SasTokenInformationListResultValueList;
+  /** The link (url) to the next page of results. */
+  nextLink?: string;
+}
+export const SasTokenInformationListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(SasTokenInformationListResultValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "SasTokenInformationListResult",
+}) as any as S.Schema<SasTokenInformationListResult>;
+
+export interface ListStorageAccountStorageContainersRequest {
+  /** Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the Azure resource group. */
+  resourceGroupName: string;
+  /** The name of the Data Lake Analytics account. */
+  accountName: string;
+  /** The name of the Azure storage account from which to list blob containers. */
+  storageAccountName: string;
+}
+export const ListStorageAccountStorageContainersRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+      storageAccountName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/storageAccounts/{storageAccountName}/containers",
+        code: 200,
+        apiVersion: "2016-11-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListStorageAccountStorageContainersRequest",
+  }) as any as S.Schema<ListStorageAccountStorageContainersRequest>;
+
+/** Azure Storage blob container information. */
+export interface StorageContainer {
+  /** The resource identifier. */
+  id?: string;
+  /** The resource name. */
+  name?: string;
+  /** The resource type. */
+  type?: string;
+  /** The properties of the blob container. */
+  properties?: StorageContainerProperties;
+}
+export const StorageContainer = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    properties: S.optional(StorageContainerProperties),
+  }),
+).annotate({
+  identifier: "StorageContainer",
+}) as any as S.Schema<StorageContainer>;
+
+/** The results of the list operation. */
+export type StorageContainerListResultValueList = Array<StorageContainer>;
+export const StorageContainerListResultValueList = /*@__PURE__*/ S.Array(
+  StorageContainer,
+) as any as S.Schema<StorageContainerListResultValueList>;
+
+/** The list of blob containers associated with the storage account attached to the Data Lake Analytics account. */
+export interface StorageContainerListResult {
+  /** The results of the list operation. */
+  value?: StorageContainerListResultValueList;
+  /** The link (url) to the next page of results. */
+  nextLink?: string;
+}
+export const StorageContainerListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(StorageContainerListResultValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "StorageContainerListResult",
+}) as any as S.Schema<StorageContainerListResult>;
 
 /** The resource tags. */
-export type AccountsUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const AccountsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateAccountRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateAccountRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AccountsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateAccountRequestTagsMap>;
 
 /** The Data Lake Store account properties to use when updating a Data Lake Store account. */
 export type UpdateDataLakeStoreProperties = AddDataLakeStoreProperties;
@@ -1444,7 +2649,7 @@ export const UpdateDataLakeAnalyticsAccountProperties = /*@__PURE__*/ S.suspend(
   identifier: "UpdateDataLakeAnalyticsAccountProperties",
 }) as any as S.Schema<UpdateDataLakeAnalyticsAccountProperties>;
 
-export interface AccountsUpdateRequest {
+export interface UpdateAccountRequest {
   /** Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
   /** The name of the Azure resource group. */
@@ -1452,16 +2657,16 @@ export interface AccountsUpdateRequest {
   /** The name of the Data Lake Analytics account. */
   accountName: string;
   /** The resource tags. */
-  tags?: AccountsUpdateRequestTagsMap;
+  tags?: UpdateAccountRequestTagsMap;
   /** The properties that can be updated in an existing Data Lake Analytics account. */
   properties?: UpdateDataLakeAnalyticsAccountProperties;
 }
-export const AccountsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateAccountRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     accountName: S.String.pipe(T.Label()),
-    tags: S.optional(AccountsUpdateRequestTagsMap),
+    tags: S.optional(UpdateAccountRequestTagsMap),
     properties: S.optional(UpdateDataLakeAnalyticsAccountProperties),
   }).pipe(
     T.Http({
@@ -1472,19 +2677,19 @@ export const AccountsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "AccountsUpdateRequest",
-}) as any as S.Schema<AccountsUpdateRequest>;
+  identifier: "UpdateAccountRequest",
+}) as any as S.Schema<UpdateAccountRequest>;
 
 /** The resource tags. */
-export type AccountsUpdateResponseTagsMap = {
+export type UpdateAccountResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const AccountsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateAccountResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AccountsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateAccountResponseTagsMap>;
 
-export interface AccountsUpdateResponse {
+export interface UpdateAccountResponse {
   /** The resource identifier. */
   id?: string;
   /** The resource name. */
@@ -1494,209 +2699,24 @@ export interface AccountsUpdateResponse {
   /** The resource location. */
   location?: string;
   /** The resource tags. */
-  tags?: AccountsUpdateResponseTagsMap;
+  tags?: UpdateAccountResponseTagsMap;
   /** The properties defined by Data Lake Analytics all properties are specific to each resource provider. */
   properties?: DataLakeAnalyticsAccountProperties;
 }
-export const AccountsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateAccountResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(AccountsUpdateResponseTagsMap),
+    tags: S.optional(UpdateAccountResponseTagsMap),
     properties: S.optional(DataLakeAnalyticsAccountProperties),
   }),
 ).annotate({
-  identifier: "AccountsUpdateResponse",
-}) as any as S.Schema<AccountsUpdateResponse>;
+  identifier: "UpdateAccountResponse",
+}) as any as S.Schema<UpdateAccountResponse>;
 
-export interface ComputePoliciesCreateOrUpdateRequest {
-  /** Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the Azure resource group. */
-  resourceGroupName: string;
-  /** The name of the Data Lake Analytics account. */
-  accountName: string;
-  /** The name of the compute policy to create or update. */
-  computePolicyName: string;
-  /** The compute policy properties to use when creating a new compute policy. */
-  properties: CreateOrUpdateComputePolicyProperties;
-}
-export const ComputePoliciesCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-      computePolicyName: S.String.pipe(T.Label()),
-      properties: CreateOrUpdateComputePolicyProperties,
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/computePolicies/{computePolicyName}",
-        code: 200,
-        apiVersion: "2016-11-01",
-      }),
-    ),
-).annotate({
-  identifier: "ComputePoliciesCreateOrUpdateRequest",
-}) as any as S.Schema<ComputePoliciesCreateOrUpdateRequest>;
-
-export interface ComputePoliciesCreateOrUpdateResponse {
-  /** The resource identifier. */
-  id?: string;
-  /** The resource name. */
-  name?: string;
-  /** The resource type. */
-  type?: string;
-  /** The compute policy properties. */
-  properties?: ComputePolicyProperties;
-}
-export const ComputePoliciesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      properties: S.optional(ComputePolicyProperties),
-    }),
-).annotate({
-  identifier: "ComputePoliciesCreateOrUpdateResponse",
-}) as any as S.Schema<ComputePoliciesCreateOrUpdateResponse>;
-
-export interface ComputePoliciesDeleteRequest {
-  /** Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the Azure resource group. */
-  resourceGroupName: string;
-  /** The name of the Data Lake Analytics account. */
-  accountName: string;
-  /** The name of the compute policy to delete. */
-  computePolicyName: string;
-}
-export const ComputePoliciesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    computePolicyName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/computePolicies/{computePolicyName}",
-      code: 200,
-      apiVersion: "2016-11-01",
-    }),
-  ),
-).annotate({
-  identifier: "ComputePoliciesDeleteRequest",
-}) as any as S.Schema<ComputePoliciesDeleteRequest>;
-
-export interface ComputePoliciesDeleteResponse {}
-export const ComputePoliciesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ComputePoliciesDeleteResponse",
-}) as any as S.Schema<ComputePoliciesDeleteResponse>;
-
-export interface ComputePoliciesGetRequest {
-  /** Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the Azure resource group. */
-  resourceGroupName: string;
-  /** The name of the Data Lake Analytics account. */
-  accountName: string;
-  /** The name of the compute policy to retrieve. */
-  computePolicyName: string;
-}
-export const ComputePoliciesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    computePolicyName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/computePolicies/{computePolicyName}",
-      code: 200,
-      apiVersion: "2016-11-01",
-    }),
-  ),
-).annotate({
-  identifier: "ComputePoliciesGetRequest",
-}) as any as S.Schema<ComputePoliciesGetRequest>;
-
-export interface ComputePoliciesGetResponse {
-  /** The resource identifier. */
-  id?: string;
-  /** The resource name. */
-  name?: string;
-  /** The resource type. */
-  type?: string;
-  /** The compute policy properties. */
-  properties?: ComputePolicyProperties;
-}
-export const ComputePoliciesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    properties: S.optional(ComputePolicyProperties),
-  }),
-).annotate({
-  identifier: "ComputePoliciesGetResponse",
-}) as any as S.Schema<ComputePoliciesGetResponse>;
-
-export interface ComputePoliciesListByAccountRequest {
-  /** Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the Azure resource group. */
-  resourceGroupName: string;
-  /** The name of the Data Lake Analytics account. */
-  accountName: string;
-}
-export const ComputePoliciesListByAccountRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/computePolicies",
-      code: 200,
-      apiVersion: "2016-11-01",
-    }),
-  ),
-).annotate({
-  identifier: "ComputePoliciesListByAccountRequest",
-}) as any as S.Schema<ComputePoliciesListByAccountRequest>;
-
-/** The results of the list operation. */
-export type ComputePolicyListResultValueList = Array<ComputePolicy>;
-export const ComputePolicyListResultValueList = /*@__PURE__*/ S.Array(
-  ComputePolicy,
-) as any as S.Schema<ComputePolicyListResultValueList>;
-
-/** The list of compute policies in the account. */
-export interface ComputePolicyListResult {
-  /** The results of the list operation. */
-  value?: ComputePolicyListResultValueList;
-  /** The link (url) to the next page of results. */
-  nextLink?: string;
-}
-export const ComputePolicyListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(ComputePolicyListResultValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ComputePolicyListResult",
-}) as any as S.Schema<ComputePolicyListResult>;
-
-export interface ComputePoliciesUpdateRequest {
+export interface UpdateComputePolicyRequest {
   /** Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
   /** The name of the Azure resource group. */
@@ -1708,7 +2728,7 @@ export interface ComputePoliciesUpdateRequest {
   /** The compute policy properties to use when updating a compute policy. */
   properties?: UpdateComputePolicyProperties;
 }
-export const ComputePoliciesUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateComputePolicyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1724,10 +2744,10 @@ export const ComputePoliciesUpdateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ComputePoliciesUpdateRequest",
-}) as any as S.Schema<ComputePoliciesUpdateRequest>;
+  identifier: "UpdateComputePolicyRequest",
+}) as any as S.Schema<UpdateComputePolicyRequest>;
 
-export interface ComputePoliciesUpdateResponse {
+export interface UpdateComputePolicyResponse {
   /** The resource identifier. */
   id?: string;
   /** The resource name. */
@@ -1737,7 +2757,7 @@ export interface ComputePoliciesUpdateResponse {
   /** The compute policy properties. */
   properties?: ComputePolicyProperties;
 }
-export const ComputePoliciesUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateComputePolicyResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -1745,384 +2765,10 @@ export const ComputePoliciesUpdateResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(ComputePolicyProperties),
   }),
 ).annotate({
-  identifier: "ComputePoliciesUpdateResponse",
-}) as any as S.Schema<ComputePoliciesUpdateResponse>;
+  identifier: "UpdateComputePolicyResponse",
+}) as any as S.Schema<UpdateComputePolicyResponse>;
 
-export interface DataLakeStoreAccountsAddRequest {
-  /** Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the Azure resource group. */
-  resourceGroupName: string;
-  /** The name of the Data Lake Analytics account. */
-  accountName: string;
-  /** The name of the Data Lake Store account to add. */
-  dataLakeStoreAccountName: string;
-  /** The Data Lake Store account properties to use when adding a new Data Lake Store account. */
-  properties?: AddDataLakeStoreProperties;
-}
-export const DataLakeStoreAccountsAddRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    dataLakeStoreAccountName: S.String.pipe(T.Label()),
-    properties: S.optional(AddDataLakeStoreProperties),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/dataLakeStoreAccounts/{dataLakeStoreAccountName}",
-      code: 200,
-      apiVersion: "2016-11-01",
-    }),
-  ),
-).annotate({
-  identifier: "DataLakeStoreAccountsAddRequest",
-}) as any as S.Schema<DataLakeStoreAccountsAddRequest>;
-
-export interface DataLakeStoreAccountsAddResponse {}
-export const DataLakeStoreAccountsAddResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DataLakeStoreAccountsAddResponse",
-}) as any as S.Schema<DataLakeStoreAccountsAddResponse>;
-
-export interface DataLakeStoreAccountsDeleteRequest {
-  /** Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the Azure resource group. */
-  resourceGroupName: string;
-  /** The name of the Data Lake Analytics account. */
-  accountName: string;
-  /** The name of the Data Lake Store account to remove */
-  dataLakeStoreAccountName: string;
-}
-export const DataLakeStoreAccountsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    dataLakeStoreAccountName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/dataLakeStoreAccounts/{dataLakeStoreAccountName}",
-      code: 200,
-      apiVersion: "2016-11-01",
-    }),
-  ),
-).annotate({
-  identifier: "DataLakeStoreAccountsDeleteRequest",
-}) as any as S.Schema<DataLakeStoreAccountsDeleteRequest>;
-
-export interface DataLakeStoreAccountsDeleteResponse {}
-export const DataLakeStoreAccountsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DataLakeStoreAccountsDeleteResponse",
-}) as any as S.Schema<DataLakeStoreAccountsDeleteResponse>;
-
-export interface DataLakeStoreAccountsGetRequest {
-  /** Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the Azure resource group. */
-  resourceGroupName: string;
-  /** The name of the Data Lake Analytics account. */
-  accountName: string;
-  /** The name of the Data Lake Store account to retrieve */
-  dataLakeStoreAccountName: string;
-}
-export const DataLakeStoreAccountsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    dataLakeStoreAccountName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/dataLakeStoreAccounts/{dataLakeStoreAccountName}",
-      code: 200,
-      apiVersion: "2016-11-01",
-    }),
-  ),
-).annotate({
-  identifier: "DataLakeStoreAccountsGetRequest",
-}) as any as S.Schema<DataLakeStoreAccountsGetRequest>;
-
-export interface DataLakeStoreAccountsGetResponse {
-  /** The resource identifier. */
-  id?: string;
-  /** The resource name. */
-  name?: string;
-  /** The resource type. */
-  type?: string;
-  /** The Data Lake Store account properties. */
-  properties?: AddDataLakeStoreProperties;
-}
-export const DataLakeStoreAccountsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    properties: S.optional(AddDataLakeStoreProperties),
-  }),
-).annotate({
-  identifier: "DataLakeStoreAccountsGetResponse",
-}) as any as S.Schema<DataLakeStoreAccountsGetResponse>;
-
-export interface DataLakeStoreAccountsListByAccountRequest {
-  /** Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the Azure resource group. */
-  resourceGroupName: string;
-  /** The name of the Data Lake Analytics account. */
-  accountName: string;
-  /** OData filter. Optional. */
-  _filter?: string;
-  /** The number of items to return. Optional. */
-  _top?: number;
-  /** The number of items to skip over before returning elements. Optional. */
-  _skip?: number;
-  /** OData Select statement. Limits the properties on each entry to just those requested, e.g. Categories?$select=CategoryName,Description. Optional. */
-  _select?: string;
-  /** OrderBy clause. One or more comma-separated expressions with an optional "asc" (the default) or "desc" depending on the order you'd like the values sorted, e.g. Categories?$orderby=CategoryName desc. Optional. */
-  _orderby?: string;
-  /** The Boolean value of true or false to request a count of the matching resources included with the resources in the response, e.g. Categories?$count=true. Optional. */
-  _count?: boolean;
-}
-export const DataLakeStoreAccountsListByAccountRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-      _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-      _top: S.optional(S.Number.pipe(T.Query("$top"))),
-      _skip: S.optional(S.Number.pipe(T.Query("$skip"))),
-      _select: S.optional(S.String.pipe(T.Query("$select"))),
-      _orderby: S.optional(S.String.pipe(T.Query("$orderby"))),
-      _count: S.optional(S.Boolean.pipe(T.Query("$count"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/dataLakeStoreAccounts",
-        code: 200,
-        apiVersion: "2016-11-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "DataLakeStoreAccountsListByAccountRequest",
-  }) as any as S.Schema<DataLakeStoreAccountsListByAccountRequest>;
-
-/** The results of the list operation. */
-export type DataLakeStoreAccountInformationListResultValueList =
-  Array<DataLakeStoreAccountInformation>;
-export const DataLakeStoreAccountInformationListResultValueList =
-  /*@__PURE__*/ S.Array(
-    DataLakeStoreAccountInformation,
-  ) as any as S.Schema<DataLakeStoreAccountInformationListResultValueList>;
-
-/** Data Lake Store account list information. */
-export interface DataLakeStoreAccountInformationListResult {
-  /** The results of the list operation. */
-  value?: DataLakeStoreAccountInformationListResultValueList;
-  /** The link (url) to the next page of results. */
-  nextLink?: string;
-}
-export const DataLakeStoreAccountInformationListResult =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      value: S.optional(DataLakeStoreAccountInformationListResultValueList),
-      nextLink: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "DataLakeStoreAccountInformationListResult",
-  }) as any as S.Schema<DataLakeStoreAccountInformationListResult>;
-
-export interface FirewallRulesCreateOrUpdateRequest {
-  /** Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the Azure resource group. */
-  resourceGroupName: string;
-  /** The name of the Data Lake Analytics account. */
-  accountName: string;
-  /** The name of the firewall rule to create or update. */
-  firewallRuleName: string;
-  /** The firewall rule properties to use when creating a new firewall rule. */
-  properties: CreateOrUpdateFirewallRuleProperties;
-}
-export const FirewallRulesCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    firewallRuleName: S.String.pipe(T.Label()),
-    properties: CreateOrUpdateFirewallRuleProperties,
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/firewallRules/{firewallRuleName}",
-      code: 200,
-      apiVersion: "2016-11-01",
-    }),
-  ),
-).annotate({
-  identifier: "FirewallRulesCreateOrUpdateRequest",
-}) as any as S.Schema<FirewallRulesCreateOrUpdateRequest>;
-
-export interface FirewallRulesCreateOrUpdateResponse {
-  /** The resource identifier. */
-  id?: string;
-  /** The resource name. */
-  name?: string;
-  /** The resource type. */
-  type?: string;
-  /** The firewall rule properties. */
-  properties?: FirewallRuleProperties;
-}
-export const FirewallRulesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    properties: S.optional(FirewallRuleProperties),
-  }),
-).annotate({
-  identifier: "FirewallRulesCreateOrUpdateResponse",
-}) as any as S.Schema<FirewallRulesCreateOrUpdateResponse>;
-
-export interface FirewallRulesDeleteRequest {
-  /** Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the Azure resource group. */
-  resourceGroupName: string;
-  /** The name of the Data Lake Analytics account. */
-  accountName: string;
-  /** The name of the firewall rule to delete. */
-  firewallRuleName: string;
-}
-export const FirewallRulesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    firewallRuleName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/firewallRules/{firewallRuleName}",
-      code: 200,
-      apiVersion: "2016-11-01",
-    }),
-  ),
-).annotate({
-  identifier: "FirewallRulesDeleteRequest",
-}) as any as S.Schema<FirewallRulesDeleteRequest>;
-
-export interface FirewallRulesDeleteResponse {}
-export const FirewallRulesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "FirewallRulesDeleteResponse",
-}) as any as S.Schema<FirewallRulesDeleteResponse>;
-
-export interface FirewallRulesGetRequest {
-  /** Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the Azure resource group. */
-  resourceGroupName: string;
-  /** The name of the Data Lake Analytics account. */
-  accountName: string;
-  /** The name of the firewall rule to retrieve. */
-  firewallRuleName: string;
-}
-export const FirewallRulesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    firewallRuleName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/firewallRules/{firewallRuleName}",
-      code: 200,
-      apiVersion: "2016-11-01",
-    }),
-  ),
-).annotate({
-  identifier: "FirewallRulesGetRequest",
-}) as any as S.Schema<FirewallRulesGetRequest>;
-
-export interface FirewallRulesGetResponse {
-  /** The resource identifier. */
-  id?: string;
-  /** The resource name. */
-  name?: string;
-  /** The resource type. */
-  type?: string;
-  /** The firewall rule properties. */
-  properties?: FirewallRuleProperties;
-}
-export const FirewallRulesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    properties: S.optional(FirewallRuleProperties),
-  }),
-).annotate({
-  identifier: "FirewallRulesGetResponse",
-}) as any as S.Schema<FirewallRulesGetResponse>;
-
-export interface FirewallRulesListByAccountRequest {
-  /** Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the Azure resource group. */
-  resourceGroupName: string;
-  /** The name of the Data Lake Analytics account. */
-  accountName: string;
-}
-export const FirewallRulesListByAccountRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/firewallRules",
-      code: 200,
-      apiVersion: "2016-11-01",
-    }),
-  ),
-).annotate({
-  identifier: "FirewallRulesListByAccountRequest",
-}) as any as S.Schema<FirewallRulesListByAccountRequest>;
-
-/** The results of the list operation. */
-export type FirewallRuleListResultValueList = Array<FirewallRule>;
-export const FirewallRuleListResultValueList = /*@__PURE__*/ S.Array(
-  FirewallRule,
-) as any as S.Schema<FirewallRuleListResultValueList>;
-
-/** Data Lake Analytics firewall rule list information. */
-export interface FirewallRuleListResult {
-  /** The results of the list operation. */
-  value?: FirewallRuleListResultValueList;
-  /** The link (url) to the next page of results. */
-  nextLink?: string;
-}
-export const FirewallRuleListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(FirewallRuleListResultValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "FirewallRuleListResult",
-}) as any as S.Schema<FirewallRuleListResult>;
-
-export interface FirewallRulesUpdateRequest {
+export interface UpdateFirewallRuleRequest {
   /** Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
   /** The name of the Azure resource group. */
@@ -2134,7 +2780,7 @@ export interface FirewallRulesUpdateRequest {
   /** The firewall rule properties to use when updating a firewall rule. */
   properties?: FirewallRuleProperties;
 }
-export const FirewallRulesUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateFirewallRuleRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -2150,10 +2796,10 @@ export const FirewallRulesUpdateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "FirewallRulesUpdateRequest",
-}) as any as S.Schema<FirewallRulesUpdateRequest>;
+  identifier: "UpdateFirewallRuleRequest",
+}) as any as S.Schema<UpdateFirewallRuleRequest>;
 
-export interface FirewallRulesUpdateResponse {
+export interface UpdateFirewallRuleResponse {
   /** The resource identifier. */
   id?: string;
   /** The resource name. */
@@ -2163,7 +2809,7 @@ export interface FirewallRulesUpdateResponse {
   /** The firewall rule properties. */
   properties?: FirewallRuleProperties;
 }
-export const FirewallRulesUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateFirewallRuleResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -2171,661 +2817,10 @@ export const FirewallRulesUpdateResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(FirewallRuleProperties),
   }),
 ).annotate({
-  identifier: "FirewallRulesUpdateResponse",
-}) as any as S.Schema<FirewallRulesUpdateResponse>;
+  identifier: "UpdateFirewallRuleResponse",
+}) as any as S.Schema<UpdateFirewallRuleResponse>;
 
-export interface LocationsGetCapabilityRequest {
-  /** Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The resource location without whitespace. */
-  location: string;
-}
-export const LocationsGetCapabilityRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    location: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.DataLakeAnalytics/locations/{location}/capability",
-      code: 200,
-      apiVersion: "2016-11-01",
-    }),
-  ),
-).annotate({
-  identifier: "LocationsGetCapabilityRequest",
-}) as any as S.Schema<LocationsGetCapabilityRequest>;
-
-/** The subscription state. */
-export type CapabilityInformationState =
-  | "Registered"
-  | "Suspended"
-  | "Deleted"
-  | "Unregistered"
-  | "Warned";
-export const CapabilityInformationState = /*@__PURE__*/ S.String;
-
-/** Subscription-level properties and limits for Data Lake Analytics. */
-export interface CapabilityInformation {
-  /** The subscription credentials that uniquely identifies the subscription. */
-  subscriptionId?: string;
-  /** The subscription state. */
-  state?: CapabilityInformationState;
-  /** The maximum supported number of accounts under this subscription. */
-  maxAccountCount?: number;
-  /** The current number of accounts under this subscription. */
-  accountCount?: number;
-  /** The Boolean value of true or false to indicate the maintenance state. */
-  migrationState?: boolean;
-}
-export const CapabilityInformation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.optional(S.String),
-    state: S.optional(CapabilityInformationState),
-    maxAccountCount: S.optional(S.Number),
-    accountCount: S.optional(S.Number),
-    migrationState: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "CapabilityInformation",
-}) as any as S.Schema<CapabilityInformation>;
-
-export interface OperationsListRequest {}
-export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/providers/Microsoft.DataLakeAnalytics/operations",
-      code: 200,
-      apiVersion: "2016-11-01",
-    }),
-  ),
-).annotate({
-  identifier: "OperationsListRequest",
-}) as any as S.Schema<OperationsListRequest>;
-
-/** The display information for a particular operation. */
-export interface OperationDisplay {
-  /** The resource provider of the operation. */
-  provider?: string;
-  /** The resource type of the operation. */
-  resource?: string;
-  /** A friendly name of the operation. */
-  operation?: string;
-  /** A friendly description of the operation. */
-  description?: string;
-}
-export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provider: S.optional(S.String),
-    resource: S.optional(S.String),
-    operation: S.optional(S.String),
-    description: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OperationDisplay",
-}) as any as S.Schema<OperationDisplay>;
-
-export interface OperationMetaMetricAvailabilitiesSpecification {
-  /** The timegrain for OperationMetaMetricAvailabilitiesSpecification. */
-  timeGrain?: string;
-  /** The blobDuration for OperationMetaMetricAvailabilitiesSpecification. */
-  blobDuration?: string;
-}
-export const OperationMetaMetricAvailabilitiesSpecification =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      timeGrain: S.optional(S.String),
-      blobDuration: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "OperationMetaMetricAvailabilitiesSpecification",
-  }) as any as S.Schema<OperationMetaMetricAvailabilitiesSpecification>;
-
-/** The availabilities for OperationMetaMetricSpecification. */
-export type OperationMetaMetricSpecificationAvailabilitiesList =
-  Array<OperationMetaMetricAvailabilitiesSpecification>;
-export const OperationMetaMetricSpecificationAvailabilitiesList =
-  /*@__PURE__*/ S.Array(
-    OperationMetaMetricAvailabilitiesSpecification,
-  ) as any as S.Schema<OperationMetaMetricSpecificationAvailabilitiesList>;
-
-export interface OperationMetaMetricSpecification {
-  /** The name for OperationMetaMetricSpecification. */
-  name?: string;
-  /** The displayName for OperationMetaMetricSpecification. */
-  displayDescription?: string;
-  /** The displayName for OperationMetaMetricSpecification. */
-  displayName?: string;
-  /** The unit for OperationMetaMetricSpecification. */
-  unit?: string;
-  /** The aggregationType for OperationMetaMetricSpecification. */
-  aggregationType?: string;
-  /** The availabilities for OperationMetaMetricSpecification. */
-  availabilities?: OperationMetaMetricSpecificationAvailabilitiesList;
-}
-export const OperationMetaMetricSpecification = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    displayDescription: S.optional(S.String),
-    displayName: S.optional(S.String),
-    unit: S.optional(S.String),
-    aggregationType: S.optional(S.String),
-    availabilities: S.optional(
-      OperationMetaMetricSpecificationAvailabilitiesList,
-    ),
-  }),
-).annotate({
-  identifier: "OperationMetaMetricSpecification",
-}) as any as S.Schema<OperationMetaMetricSpecification>;
-
-/** The metricSpecifications for OperationMetaServiceSpecification. */
-export type OperationMetaServiceSpecificationMetricSpecificationsList =
-  Array<OperationMetaMetricSpecification>;
-export const OperationMetaServiceSpecificationMetricSpecificationsList =
-  /*@__PURE__*/ S.Array(
-    OperationMetaMetricSpecification,
-  ) as any as S.Schema<OperationMetaServiceSpecificationMetricSpecificationsList>;
-
-export interface OperationMetaLogSpecification {
-  /** The name for OperationMetaLogSpecification. */
-  name?: string;
-  /** The displayName for OperationMetaLogSpecification. */
-  displayName?: string;
-  /** The blobDuration for OperationMetaLogSpecification. */
-  blobDuration?: string;
-}
-export const OperationMetaLogSpecification = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    displayName: S.optional(S.String),
-    blobDuration: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OperationMetaLogSpecification",
-}) as any as S.Schema<OperationMetaLogSpecification>;
-
-/** The logSpecifications for OperationMetaServiceSpecification. */
-export type OperationMetaServiceSpecificationLogSpecificationsList =
-  Array<OperationMetaLogSpecification>;
-export const OperationMetaServiceSpecificationLogSpecificationsList =
-  /*@__PURE__*/ S.Array(
-    OperationMetaLogSpecification,
-  ) as any as S.Schema<OperationMetaServiceSpecificationLogSpecificationsList>;
-
-export interface OperationMetaServiceSpecification {
-  /** The metricSpecifications for OperationMetaServiceSpecification. */
-  metricSpecifications?: OperationMetaServiceSpecificationMetricSpecificationsList;
-  /** The logSpecifications for OperationMetaServiceSpecification. */
-  logSpecifications?: OperationMetaServiceSpecificationLogSpecificationsList;
-}
-export const OperationMetaServiceSpecification = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    metricSpecifications: S.optional(
-      OperationMetaServiceSpecificationMetricSpecificationsList,
-    ),
-    logSpecifications: S.optional(
-      OperationMetaServiceSpecificationLogSpecificationsList,
-    ),
-  }),
-).annotate({
-  identifier: "OperationMetaServiceSpecification",
-}) as any as S.Schema<OperationMetaServiceSpecification>;
-
-export interface OperationMetaPropertyInfo {
-  /** The operations OperationMetaServiceSpecification. */
-  serviceSpecification?: OperationMetaServiceSpecification;
-}
-export const OperationMetaPropertyInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    serviceSpecification: S.optional(OperationMetaServiceSpecification),
-  }),
-).annotate({
-  identifier: "OperationMetaPropertyInfo",
-}) as any as S.Schema<OperationMetaPropertyInfo>;
-
-/** The intended executor of the operation. */
-export type OperationOrigin = "user" | "system" | "user,system";
-export const OperationOrigin = /*@__PURE__*/ S.String;
-
-/** An available operation for Data Lake Analytics. */
-export interface Operation {
-  /** The name of the operation. */
-  name?: string;
-  /** The display information for the operation. */
-  display?: OperationDisplay;
-  /** The OperationMetaPropertyInfo for the operation. */
-  properties?: OperationMetaPropertyInfo;
-  /** The intended executor of the operation. */
-  origin?: OperationOrigin;
-}
-export const Operation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    display: S.optional(OperationDisplay),
-    properties: S.optional(OperationMetaPropertyInfo),
-    origin: S.optional(OperationOrigin),
-  }),
-).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
-
-/** The results of the list operation. */
-export type OperationListResultValueList = Array<Operation>;
-export const OperationListResultValueList = /*@__PURE__*/ S.Array(
-  Operation,
-) as any as S.Schema<OperationListResultValueList>;
-
-/** The list of available operations for Data Lake Analytics. */
-export interface OperationListResult {
-  /** The results of the list operation. */
-  value?: OperationListResultValueList;
-  /** The link (url) to the next page of results. */
-  nextLink?: string;
-}
-export const OperationListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(OperationListResultValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OperationListResult",
-}) as any as S.Schema<OperationListResult>;
-
-export interface StorageAccountsAddRequest {
-  /** Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the Azure resource group. */
-  resourceGroupName: string;
-  /** The name of the Data Lake Analytics account. */
-  accountName: string;
-  /** The name of the Azure Storage account to add */
-  storageAccountName: string;
-  /** The Azure Storage account properties to use when adding a new Azure Storage account. */
-  properties: AddStorageAccountProperties;
-}
-export const StorageAccountsAddRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    storageAccountName: S.String.pipe(T.Label()),
-    properties: AddStorageAccountProperties,
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/storageAccounts/{storageAccountName}",
-      code: 200,
-      apiVersion: "2016-11-01",
-    }),
-  ),
-).annotate({
-  identifier: "StorageAccountsAddRequest",
-}) as any as S.Schema<StorageAccountsAddRequest>;
-
-export interface StorageAccountsAddResponse {}
-export const StorageAccountsAddResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "StorageAccountsAddResponse",
-}) as any as S.Schema<StorageAccountsAddResponse>;
-
-export interface StorageAccountsDeleteRequest {
-  /** Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the Azure resource group. */
-  resourceGroupName: string;
-  /** The name of the Data Lake Analytics account. */
-  accountName: string;
-  /** The name of the Azure Storage account to remove */
-  storageAccountName: string;
-}
-export const StorageAccountsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    storageAccountName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/storageAccounts/{storageAccountName}",
-      code: 200,
-      apiVersion: "2016-11-01",
-    }),
-  ),
-).annotate({
-  identifier: "StorageAccountsDeleteRequest",
-}) as any as S.Schema<StorageAccountsDeleteRequest>;
-
-export interface StorageAccountsDeleteResponse {}
-export const StorageAccountsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "StorageAccountsDeleteResponse",
-}) as any as S.Schema<StorageAccountsDeleteResponse>;
-
-export interface StorageAccountsGetRequest {
-  /** Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the Azure resource group. */
-  resourceGroupName: string;
-  /** The name of the Data Lake Analytics account. */
-  accountName: string;
-  /** The name of the Azure Storage account for which to retrieve the details. */
-  storageAccountName: string;
-}
-export const StorageAccountsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    storageAccountName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/storageAccounts/{storageAccountName}",
-      code: 200,
-      apiVersion: "2016-11-01",
-    }),
-  ),
-).annotate({
-  identifier: "StorageAccountsGetRequest",
-}) as any as S.Schema<StorageAccountsGetRequest>;
-
-export interface StorageAccountsGetResponse {
-  /** The resource identifier. */
-  id?: string;
-  /** The resource name. */
-  name?: string;
-  /** The resource type. */
-  type?: string;
-  /** The Azure Storage account properties. */
-  properties?: StorageAccountInformationProperties;
-}
-export const StorageAccountsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    properties: S.optional(StorageAccountInformationProperties),
-  }),
-).annotate({
-  identifier: "StorageAccountsGetResponse",
-}) as any as S.Schema<StorageAccountsGetResponse>;
-
-export interface StorageAccountsGetStorageContainerRequest {
-  /** Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the Azure resource group. */
-  resourceGroupName: string;
-  /** The name of the Data Lake Analytics account. */
-  accountName: string;
-  /** The name of the Azure storage account from which to retrieve the blob container. */
-  storageAccountName: string;
-  /** The name of the Azure storage container to retrieve */
-  containerName: string;
-}
-export const StorageAccountsGetStorageContainerRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-      storageAccountName: S.String.pipe(T.Label()),
-      containerName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/storageAccounts/{storageAccountName}/containers/{containerName}",
-        code: 200,
-        apiVersion: "2016-11-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "StorageAccountsGetStorageContainerRequest",
-  }) as any as S.Schema<StorageAccountsGetStorageContainerRequest>;
-
-/** Azure Storage blob container properties information. */
-export interface StorageContainerProperties {
-  /** The last modified time of the blob container. */
-  lastModifiedTime?: string;
-}
-export const StorageContainerProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    lastModifiedTime: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "StorageContainerProperties",
-}) as any as S.Schema<StorageContainerProperties>;
-
-export interface StorageAccountsGetStorageContainerResponse {
-  /** The resource identifier. */
-  id?: string;
-  /** The resource name. */
-  name?: string;
-  /** The resource type. */
-  type?: string;
-  /** The properties of the blob container. */
-  properties?: StorageContainerProperties;
-}
-export const StorageAccountsGetStorageContainerResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      properties: S.optional(StorageContainerProperties),
-    }),
-  ).annotate({
-    identifier: "StorageAccountsGetStorageContainerResponse",
-  }) as any as S.Schema<StorageAccountsGetStorageContainerResponse>;
-
-export interface StorageAccountsListByAccountRequest {
-  /** Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the Azure resource group. */
-  resourceGroupName: string;
-  /** The name of the Data Lake Analytics account. */
-  accountName: string;
-  /** The OData filter. Optional. */
-  _filter?: string;
-  /** The number of items to return. Optional. */
-  _top?: number;
-  /** The number of items to skip over before returning elements. Optional. */
-  _skip?: number;
-  /** OData Select statement. Limits the properties on each entry to just those requested, e.g. Categories?$select=CategoryName,Description. Optional. */
-  _select?: string;
-  /** OrderBy clause. One or more comma-separated expressions with an optional "asc" (the default) or "desc" depending on the order you'd like the values sorted, e.g. Categories?$orderby=CategoryName desc. Optional. */
-  _orderby?: string;
-  /** The Boolean value of true or false to request a count of the matching resources included with the resources in the response, e.g. Categories?$count=true. Optional. */
-  _count?: boolean;
-}
-export const StorageAccountsListByAccountRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-    _top: S.optional(S.Number.pipe(T.Query("$top"))),
-    _skip: S.optional(S.Number.pipe(T.Query("$skip"))),
-    _select: S.optional(S.String.pipe(T.Query("$select"))),
-    _orderby: S.optional(S.String.pipe(T.Query("$orderby"))),
-    _count: S.optional(S.Boolean.pipe(T.Query("$count"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/storageAccounts",
-      code: 200,
-      apiVersion: "2016-11-01",
-    }),
-  ),
-).annotate({
-  identifier: "StorageAccountsListByAccountRequest",
-}) as any as S.Schema<StorageAccountsListByAccountRequest>;
-
-/** The results of the list operation. */
-export type StorageAccountInformationListResultValueList =
-  Array<StorageAccountInformation>;
-export const StorageAccountInformationListResultValueList =
-  /*@__PURE__*/ S.Array(
-    StorageAccountInformation,
-  ) as any as S.Schema<StorageAccountInformationListResultValueList>;
-
-/** Azure Storage account list information. */
-export interface StorageAccountInformationListResult {
-  /** The results of the list operation. */
-  value?: StorageAccountInformationListResultValueList;
-  /** The link (url) to the next page of results. */
-  nextLink?: string;
-}
-export const StorageAccountInformationListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(StorageAccountInformationListResultValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "StorageAccountInformationListResult",
-}) as any as S.Schema<StorageAccountInformationListResult>;
-
-export interface StorageAccountsListSasTokensRequest {
-  /** Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the Azure resource group. */
-  resourceGroupName: string;
-  /** The name of the Data Lake Analytics account. */
-  accountName: string;
-  /** The name of the Azure storage account for which the SAS token is being requested. */
-  storageAccountName: string;
-  /** The name of the Azure storage container for which the SAS token is being requested. */
-  containerName: string;
-}
-export const StorageAccountsListSasTokensRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    storageAccountName: S.String.pipe(T.Label()),
-    containerName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/storageAccounts/{storageAccountName}/containers/{containerName}/listSasTokens",
-      code: 200,
-      apiVersion: "2016-11-01",
-    }),
-  ),
-).annotate({
-  identifier: "StorageAccountsListSasTokensRequest",
-}) as any as S.Schema<StorageAccountsListSasTokensRequest>;
-
-/** SAS token information. */
-export interface SasTokenInformation {
-  /** The access token for the associated Azure Storage Container. */
-  accessToken?: string | Redacted.Redacted<string>;
-}
-export const SasTokenInformation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    accessToken: S.optional(S.String.pipe(T.SensitiveValue({}))),
-  }),
-).annotate({
-  identifier: "SasTokenInformation",
-}) as any as S.Schema<SasTokenInformation>;
-
-/** The results of the list operation. */
-export type SasTokenInformationListResultValueList = Array<SasTokenInformation>;
-export const SasTokenInformationListResultValueList = /*@__PURE__*/ S.Array(
-  SasTokenInformation,
-) as any as S.Schema<SasTokenInformationListResultValueList>;
-
-/** The SAS response that contains the storage account, container and associated SAS token for connection use. */
-export interface SasTokenInformationListResult {
-  /** The results of the list operation. */
-  value?: SasTokenInformationListResultValueList;
-  /** The link (url) to the next page of results. */
-  nextLink?: string;
-}
-export const SasTokenInformationListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(SasTokenInformationListResultValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SasTokenInformationListResult",
-}) as any as S.Schema<SasTokenInformationListResult>;
-
-export interface StorageAccountsListStorageContainersRequest {
-  /** Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the Azure resource group. */
-  resourceGroupName: string;
-  /** The name of the Data Lake Analytics account. */
-  accountName: string;
-  /** The name of the Azure storage account from which to list blob containers. */
-  storageAccountName: string;
-}
-export const StorageAccountsListStorageContainersRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-      storageAccountName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataLakeAnalytics/accounts/{accountName}/storageAccounts/{storageAccountName}/containers",
-        code: 200,
-        apiVersion: "2016-11-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "StorageAccountsListStorageContainersRequest",
-  }) as any as S.Schema<StorageAccountsListStorageContainersRequest>;
-
-/** Azure Storage blob container information. */
-export interface StorageContainer {
-  /** The resource identifier. */
-  id?: string;
-  /** The resource name. */
-  name?: string;
-  /** The resource type. */
-  type?: string;
-  /** The properties of the blob container. */
-  properties?: StorageContainerProperties;
-}
-export const StorageContainer = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    properties: S.optional(StorageContainerProperties),
-  }),
-).annotate({
-  identifier: "StorageContainer",
-}) as any as S.Schema<StorageContainer>;
-
-/** The results of the list operation. */
-export type StorageContainerListResultValueList = Array<StorageContainer>;
-export const StorageContainerListResultValueList = /*@__PURE__*/ S.Array(
-  StorageContainer,
-) as any as S.Schema<StorageContainerListResultValueList>;
-
-/** The list of blob containers associated with the storage account attached to the Data Lake Analytics account. */
-export interface StorageContainerListResult {
-  /** The results of the list operation. */
-  value?: StorageContainerListResultValueList;
-  /** The link (url) to the next page of results. */
-  nextLink?: string;
-}
-export const StorageContainerListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(StorageContainerListResultValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "StorageContainerListResult",
-}) as any as S.Schema<StorageContainerListResult>;
-
-export interface StorageAccountsUpdateRequest {
+export interface UpdateStorageAccountRequest {
   /** Get subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
   /** The name of the Azure resource group. */
@@ -2837,7 +2832,7 @@ export interface StorageAccountsUpdateRequest {
   /** The Azure Storage account properties to use when updating an Azure Storage account. */
   properties?: UpdateStorageAccountProperties;
 }
-export const StorageAccountsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateStorageAccountRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -2853,116 +2848,56 @@ export const StorageAccountsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "StorageAccountsUpdateRequest",
-}) as any as S.Schema<StorageAccountsUpdateRequest>;
+  identifier: "UpdateStorageAccountRequest",
+}) as any as S.Schema<UpdateStorageAccountRequest>;
 
-export interface StorageAccountsUpdateResponse {}
-export const StorageAccountsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export interface UpdateStorageAccountResponse {}
+export const UpdateStorageAccountResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "StorageAccountsUpdateResponse",
-}) as any as S.Schema<StorageAccountsUpdateResponse>;
+  identifier: "UpdateStorageAccountResponse",
+}) as any as S.Schema<UpdateStorageAccountResponse>;
 
-export type AccountsCheckNameAvailabilityError = AzureOpError;
+export type AddDataLakeStoreAccountError = AzureOpError;
+/** Updates the specified Data Lake Analytics account to include the additional Data Lake Store account. */
+export const AddDataLakeStoreAccount: API.OperationMethod<
+  AddDataLakeStoreAccountRequest,
+  AddDataLakeStoreAccountResponse,
+  AddDataLakeStoreAccountError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: AddDataLakeStoreAccountRequest,
+  output: AddDataLakeStoreAccountResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type AddStorageAccountError = AzureOpError;
+/** Updates the specified Data Lake Analytics account to add an Azure Storage account. */
+export const AddStorageAccount: API.OperationMethod<
+  AddStorageAccountRequest,
+  AddStorageAccountResponse,
+  AddStorageAccountError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: AddStorageAccountRequest,
+  output: AddStorageAccountResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CheckAccountNameAvailabilityError = AzureOpError;
 /** Checks whether the specified account name is available or taken. */
-export const AccountsCheckNameAvailability: API.OperationMethod<
-  AccountsCheckNameAvailabilityRequest,
+export const CheckAccountNameAvailability: API.OperationMethod<
+  CheckAccountNameAvailabilityRequest,
   NameAvailabilityInformation,
-  AccountsCheckNameAvailabilityError,
+  CheckAccountNameAvailabilityError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AccountsCheckNameAvailabilityRequest,
+  input: CheckAccountNameAvailabilityRequest,
   output: NameAvailabilityInformation,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AccountsCreateError = AzureOpError;
-/** Creates the specified Data Lake Analytics account. This supplies the user with computation services for Data Lake Analytics workloads. */
-export const AccountsCreate: API.OperationMethod<
-  AccountsCreateRequest,
-  AccountsCreateResponse,
-  AccountsCreateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccountsCreateRequest,
-  output: AccountsCreateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AccountsDeleteError = AzureOpError;
-/** Begins the delete process for the Data Lake Analytics account object specified by the account name. */
-export const AccountsDelete: API.OperationMethod<
-  AccountsDeleteRequest,
-  AccountsDeleteResponse,
-  AccountsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccountsDeleteRequest,
-  output: AccountsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AccountsGetError = AzureOpError;
-/** Gets details of the specified Data Lake Analytics account. */
-export const AccountsGet: API.OperationMethod<
-  AccountsGetRequest,
-  AccountsGetResponse,
-  AccountsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccountsGetRequest,
-  output: AccountsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AccountsListError = AzureOpError;
-/** Gets the first page of Data Lake Analytics accounts, if any, within the current subscription. This includes a link to the next page, if any. */
-export const AccountsList: API.OperationMethod<
-  AccountsListRequest,
-  DataLakeAnalyticsAccountListResult,
-  AccountsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccountsListRequest,
-  output: DataLakeAnalyticsAccountListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AccountsListByResourceGroupError = AzureOpError;
-/** Gets the first page of Data Lake Analytics accounts, if any, within a specific resource group. This includes a link to the next page, if any. */
-export const AccountsListByResourceGroup: API.OperationMethod<
-  AccountsListByResourceGroupRequest,
-  DataLakeAnalyticsAccountListResult,
-  AccountsListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccountsListByResourceGroupRequest,
-  output: DataLakeAnalyticsAccountListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AccountsUpdateError = AzureOpError;
-/** Updates the Data Lake Analytics account object specified by the accountName with the contents of the account object. */
-export const AccountsUpdate: API.OperationMethod<
-  AccountsUpdateRequest,
-  AccountsUpdateResponse,
-  AccountsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccountsUpdateRequest,
-  output: AccountsUpdateResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -2983,121 +2918,91 @@ export const ComputePoliciesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ComputePoliciesDeleteError = AzureOpError;
+export type CreateAccountError = AzureOpError;
+/** Creates the specified Data Lake Analytics account. This supplies the user with computation services for Data Lake Analytics workloads. */
+export const CreateAccount: API.OperationMethod<
+  CreateAccountRequest,
+  CreateAccountResponse,
+  CreateAccountError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateAccountRequest,
+  output: CreateAccountResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteAccountError = AzureOpError;
+/** Begins the delete process for the Data Lake Analytics account object specified by the account name. */
+export const DeleteAccount: API.OperationMethod<
+  DeleteAccountRequest,
+  DeleteAccountResponse,
+  DeleteAccountError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteAccountRequest,
+  output: DeleteAccountResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteComputePolicyError = AzureOpError;
 /** Deletes the specified compute policy from the specified Data Lake Analytics account */
-export const ComputePoliciesDelete: API.OperationMethod<
-  ComputePoliciesDeleteRequest,
-  ComputePoliciesDeleteResponse,
-  ComputePoliciesDeleteError,
+export const DeleteComputePolicy: API.OperationMethod<
+  DeleteComputePolicyRequest,
+  DeleteComputePolicyResponse,
+  DeleteComputePolicyError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ComputePoliciesDeleteRequest,
-  output: ComputePoliciesDeleteResponse,
+  input: DeleteComputePolicyRequest,
+  output: DeleteComputePolicyResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ComputePoliciesGetError = AzureOpError;
-/** Gets the specified Data Lake Analytics compute policy. */
-export const ComputePoliciesGet: API.OperationMethod<
-  ComputePoliciesGetRequest,
-  ComputePoliciesGetResponse,
-  ComputePoliciesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ComputePoliciesGetRequest,
-  output: ComputePoliciesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ComputePoliciesListByAccountError = AzureOpError;
-/** Lists the Data Lake Analytics compute policies within the specified Data Lake Analytics account. An account supports, at most, 50 policies */
-export const ComputePoliciesListByAccount: API.OperationMethod<
-  ComputePoliciesListByAccountRequest,
-  ComputePolicyListResult,
-  ComputePoliciesListByAccountError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ComputePoliciesListByAccountRequest,
-  output: ComputePolicyListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ComputePoliciesUpdateError = AzureOpError;
-/** Updates the specified compute policy. */
-export const ComputePoliciesUpdate: API.OperationMethod<
-  ComputePoliciesUpdateRequest,
-  ComputePoliciesUpdateResponse,
-  ComputePoliciesUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ComputePoliciesUpdateRequest,
-  output: ComputePoliciesUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DataLakeStoreAccountsAddError = AzureOpError;
-/** Updates the specified Data Lake Analytics account to include the additional Data Lake Store account. */
-export const DataLakeStoreAccountsAdd: API.OperationMethod<
-  DataLakeStoreAccountsAddRequest,
-  DataLakeStoreAccountsAddResponse,
-  DataLakeStoreAccountsAddError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DataLakeStoreAccountsAddRequest,
-  output: DataLakeStoreAccountsAddResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DataLakeStoreAccountsDeleteError = AzureOpError;
+export type DeleteDataLakeStoreAccountError = AzureOpError;
 /** Updates the Data Lake Analytics account specified to remove the specified Data Lake Store account. */
-export const DataLakeStoreAccountsDelete: API.OperationMethod<
-  DataLakeStoreAccountsDeleteRequest,
-  DataLakeStoreAccountsDeleteResponse,
-  DataLakeStoreAccountsDeleteError,
+export const DeleteDataLakeStoreAccount: API.OperationMethod<
+  DeleteDataLakeStoreAccountRequest,
+  DeleteDataLakeStoreAccountResponse,
+  DeleteDataLakeStoreAccountError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DataLakeStoreAccountsDeleteRequest,
-  output: DataLakeStoreAccountsDeleteResponse,
+  input: DeleteDataLakeStoreAccountRequest,
+  output: DeleteDataLakeStoreAccountResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DataLakeStoreAccountsGetError = AzureOpError;
-/** Gets the specified Data Lake Store account details in the specified Data Lake Analytics account. */
-export const DataLakeStoreAccountsGet: API.OperationMethod<
-  DataLakeStoreAccountsGetRequest,
-  DataLakeStoreAccountsGetResponse,
-  DataLakeStoreAccountsGetError,
+export type DeleteFirewallRuleError = AzureOpError;
+/** Deletes the specified firewall rule from the specified Data Lake Analytics account */
+export const DeleteFirewallRule: API.OperationMethod<
+  DeleteFirewallRuleRequest,
+  DeleteFirewallRuleResponse,
+  DeleteFirewallRuleError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DataLakeStoreAccountsGetRequest,
-  output: DataLakeStoreAccountsGetResponse,
+  input: DeleteFirewallRuleRequest,
+  output: DeleteFirewallRuleResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DataLakeStoreAccountsListByAccountError = AzureOpError;
-/** Gets the first page of Data Lake Store accounts linked to the specified Data Lake Analytics account. The response includes a link to the next page, if any. */
-export const DataLakeStoreAccountsListByAccount: API.OperationMethod<
-  DataLakeStoreAccountsListByAccountRequest,
-  DataLakeStoreAccountInformationListResult,
-  DataLakeStoreAccountsListByAccountError,
+export type DeleteStorageAccountError = AzureOpError;
+/** Updates the specified Data Lake Analytics account to remove an Azure Storage account. */
+export const DeleteStorageAccount: API.OperationMethod<
+  DeleteStorageAccountRequest,
+  DeleteStorageAccountResponse,
+  DeleteStorageAccountError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DataLakeStoreAccountsListByAccountRequest,
-  output: DataLakeStoreAccountInformationListResult,
+  input: DeleteStorageAccountRequest,
+  output: DeleteStorageAccountResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -3118,211 +3023,301 @@ export const FirewallRulesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type FirewallRulesDeleteError = AzureOpError;
-/** Deletes the specified firewall rule from the specified Data Lake Analytics account */
-export const FirewallRulesDelete: API.OperationMethod<
-  FirewallRulesDeleteRequest,
-  FirewallRulesDeleteResponse,
-  FirewallRulesDeleteError,
+export type GetAccountError = AzureOpError;
+/** Gets details of the specified Data Lake Analytics account. */
+export const GetAccount: API.OperationMethod<
+  GetAccountRequest,
+  GetAccountResponse,
+  GetAccountError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FirewallRulesDeleteRequest,
-  output: FirewallRulesDeleteResponse,
+  input: GetAccountRequest,
+  output: GetAccountResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type FirewallRulesGetError = AzureOpError;
+export type GetComputePolicyError = AzureOpError;
+/** Gets the specified Data Lake Analytics compute policy. */
+export const GetComputePolicy: API.OperationMethod<
+  GetComputePolicyRequest,
+  GetComputePolicyResponse,
+  GetComputePolicyError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetComputePolicyRequest,
+  output: GetComputePolicyResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDataLakeStoreAccountError = AzureOpError;
+/** Gets the specified Data Lake Store account details in the specified Data Lake Analytics account. */
+export const GetDataLakeStoreAccount: API.OperationMethod<
+  GetDataLakeStoreAccountRequest,
+  GetDataLakeStoreAccountResponse,
+  GetDataLakeStoreAccountError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDataLakeStoreAccountRequest,
+  output: GetDataLakeStoreAccountResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetFirewallRuleError = AzureOpError;
 /** Gets the specified Data Lake Analytics firewall rule. */
-export const FirewallRulesGet: API.OperationMethod<
-  FirewallRulesGetRequest,
-  FirewallRulesGetResponse,
-  FirewallRulesGetError,
+export const GetFirewallRule: API.OperationMethod<
+  GetFirewallRuleRequest,
+  GetFirewallRuleResponse,
+  GetFirewallRuleError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FirewallRulesGetRequest,
-  output: FirewallRulesGetResponse,
+  input: GetFirewallRuleRequest,
+  output: GetFirewallRuleResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type FirewallRulesListByAccountError = AzureOpError;
-/** Lists the Data Lake Analytics firewall rules within the specified Data Lake Analytics account. */
-export const FirewallRulesListByAccount: API.OperationMethod<
-  FirewallRulesListByAccountRequest,
-  FirewallRuleListResult,
-  FirewallRulesListByAccountError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FirewallRulesListByAccountRequest,
-  output: FirewallRuleListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type FirewallRulesUpdateError = AzureOpError;
-/** Updates the specified firewall rule. */
-export const FirewallRulesUpdate: API.OperationMethod<
-  FirewallRulesUpdateRequest,
-  FirewallRulesUpdateResponse,
-  FirewallRulesUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FirewallRulesUpdateRequest,
-  output: FirewallRulesUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type LocationsGetCapabilityError = AzureOpError;
+export type GetLocationCapabilityError = AzureOpError;
 /** Gets subscription-level properties and limits for Data Lake Analytics specified by resource location. */
-export const LocationsGetCapability: API.OperationMethod<
-  LocationsGetCapabilityRequest,
+export const GetLocationCapability: API.OperationMethod<
+  GetLocationCapabilityRequest,
   CapabilityInformation,
-  LocationsGetCapabilityError,
+  GetLocationCapabilityError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: LocationsGetCapabilityRequest,
+  input: GetLocationCapabilityRequest,
   output: CapabilityInformation,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type OperationsListError = AzureOpError;
-/** Lists all of the available Data Lake Analytics REST API operations. */
-export const OperationsList: API.OperationMethod<
-  OperationsListRequest,
-  OperationListResult,
-  OperationsListError,
+export type GetStorageAccountError = AzureOpError;
+/** Gets the specified Azure Storage account linked to the given Data Lake Analytics account. */
+export const GetStorageAccount: API.OperationMethod<
+  GetStorageAccountRequest,
+  GetStorageAccountResponse,
+  GetStorageAccountError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OperationsListRequest,
+  input: GetStorageAccountRequest,
+  output: GetStorageAccountResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetStorageAccountStorageContainerError = AzureOpError;
+/** Gets the specified Azure Storage container associated with the given Data Lake Analytics and Azure Storage accounts. */
+export const GetStorageAccountStorageContainer: API.OperationMethod<
+  GetStorageAccountStorageContainerRequest,
+  GetStorageAccountStorageContainerResponse,
+  GetStorageAccountStorageContainerError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetStorageAccountStorageContainerRequest,
+  output: GetStorageAccountStorageContainerResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListAccountByResourceGroupError = AzureOpError;
+/** Gets the first page of Data Lake Analytics accounts, if any, within a specific resource group. This includes a link to the next page, if any. */
+export const ListAccountByResourceGroup: API.OperationMethod<
+  ListAccountByResourceGroupRequest,
+  DataLakeAnalyticsAccountListResult,
+  ListAccountByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListAccountByResourceGroupRequest,
+  output: DataLakeAnalyticsAccountListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListAccountsError = AzureOpError;
+/** Gets the first page of Data Lake Analytics accounts, if any, within the current subscription. This includes a link to the next page, if any. */
+export const ListAccounts: API.OperationMethod<
+  ListAccountsRequest,
+  DataLakeAnalyticsAccountListResult,
+  ListAccountsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListAccountsRequest,
+  output: DataLakeAnalyticsAccountListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListComputePolicyByAccountError = AzureOpError;
+/** Lists the Data Lake Analytics compute policies within the specified Data Lake Analytics account. An account supports, at most, 50 policies */
+export const ListComputePolicyByAccount: API.OperationMethod<
+  ListComputePolicyByAccountRequest,
+  ComputePolicyListResult,
+  ListComputePolicyByAccountError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListComputePolicyByAccountRequest,
+  output: ComputePolicyListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDataLakeStoreAccountByAccountError = AzureOpError;
+/** Gets the first page of Data Lake Store accounts linked to the specified Data Lake Analytics account. The response includes a link to the next page, if any. */
+export const ListDataLakeStoreAccountByAccount: API.OperationMethod<
+  ListDataLakeStoreAccountByAccountRequest,
+  DataLakeStoreAccountInformationListResult,
+  ListDataLakeStoreAccountByAccountError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDataLakeStoreAccountByAccountRequest,
+  output: DataLakeStoreAccountInformationListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListFirewallRuleByAccountError = AzureOpError;
+/** Lists the Data Lake Analytics firewall rules within the specified Data Lake Analytics account. */
+export const ListFirewallRuleByAccount: API.OperationMethod<
+  ListFirewallRuleByAccountRequest,
+  FirewallRuleListResult,
+  ListFirewallRuleByAccountError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListFirewallRuleByAccountRequest,
+  output: FirewallRuleListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListOperationsError = AzureOpError;
+/** Lists all of the available Data Lake Analytics REST API operations. */
+export const ListOperations: API.OperationMethod<
+  ListOperationsRequest,
+  OperationListResult,
+  ListOperationsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListOperationsRequest,
   output: OperationListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type StorageAccountsAddError = AzureOpError;
-/** Updates the specified Data Lake Analytics account to add an Azure Storage account. */
-export const StorageAccountsAdd: API.OperationMethod<
-  StorageAccountsAddRequest,
-  StorageAccountsAddResponse,
-  StorageAccountsAddError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: StorageAccountsAddRequest,
-  output: StorageAccountsAddResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type StorageAccountsDeleteError = AzureOpError;
-/** Updates the specified Data Lake Analytics account to remove an Azure Storage account. */
-export const StorageAccountsDelete: API.OperationMethod<
-  StorageAccountsDeleteRequest,
-  StorageAccountsDeleteResponse,
-  StorageAccountsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: StorageAccountsDeleteRequest,
-  output: StorageAccountsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type StorageAccountsGetError = AzureOpError;
-/** Gets the specified Azure Storage account linked to the given Data Lake Analytics account. */
-export const StorageAccountsGet: API.OperationMethod<
-  StorageAccountsGetRequest,
-  StorageAccountsGetResponse,
-  StorageAccountsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: StorageAccountsGetRequest,
-  output: StorageAccountsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type StorageAccountsGetStorageContainerError = AzureOpError;
-/** Gets the specified Azure Storage container associated with the given Data Lake Analytics and Azure Storage accounts. */
-export const StorageAccountsGetStorageContainer: API.OperationMethod<
-  StorageAccountsGetStorageContainerRequest,
-  StorageAccountsGetStorageContainerResponse,
-  StorageAccountsGetStorageContainerError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: StorageAccountsGetStorageContainerRequest,
-  output: StorageAccountsGetStorageContainerResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type StorageAccountsListByAccountError = AzureOpError;
+export type ListStorageAccountByAccountError = AzureOpError;
 /** Gets the first page of Azure Storage accounts, if any, linked to the specified Data Lake Analytics account. The response includes a link to the next page, if any. */
-export const StorageAccountsListByAccount: API.OperationMethod<
-  StorageAccountsListByAccountRequest,
+export const ListStorageAccountByAccount: API.OperationMethod<
+  ListStorageAccountByAccountRequest,
   StorageAccountInformationListResult,
-  StorageAccountsListByAccountError,
+  ListStorageAccountByAccountError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: StorageAccountsListByAccountRequest,
+  input: ListStorageAccountByAccountRequest,
   output: StorageAccountInformationListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type StorageAccountsListSasTokensError = AzureOpError;
+export type ListStorageAccountSasTokensError = AzureOpError;
 /** Gets the SAS token associated with the specified Data Lake Analytics and Azure Storage account and container combination. */
-export const StorageAccountsListSasTokens: API.OperationMethod<
-  StorageAccountsListSasTokensRequest,
+export const ListStorageAccountSasTokens: API.OperationMethod<
+  ListStorageAccountSasTokensRequest,
   SasTokenInformationListResult,
-  StorageAccountsListSasTokensError,
+  ListStorageAccountSasTokensError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: StorageAccountsListSasTokensRequest,
+  input: ListStorageAccountSasTokensRequest,
   output: SasTokenInformationListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type StorageAccountsListStorageContainersError = AzureOpError;
+export type ListStorageAccountStorageContainersError = AzureOpError;
 /** Lists the Azure Storage containers, if any, associated with the specified Data Lake Analytics and Azure Storage account combination. The response includes a link to the next page of results, if any. */
-export const StorageAccountsListStorageContainers: API.OperationMethod<
-  StorageAccountsListStorageContainersRequest,
+export const ListStorageAccountStorageContainers: API.OperationMethod<
+  ListStorageAccountStorageContainersRequest,
   StorageContainerListResult,
-  StorageAccountsListStorageContainersError,
+  ListStorageAccountStorageContainersError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: StorageAccountsListStorageContainersRequest,
+  input: ListStorageAccountStorageContainersRequest,
   output: StorageContainerListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type StorageAccountsUpdateError = AzureOpError;
-/** Updates the Data Lake Analytics account to replace Azure Storage blob account details, such as the access key and/or suffix. */
-export const StorageAccountsUpdate: API.OperationMethod<
-  StorageAccountsUpdateRequest,
-  StorageAccountsUpdateResponse,
-  StorageAccountsUpdateError,
+export type UpdateAccountError = AzureOpError;
+/** Updates the Data Lake Analytics account object specified by the accountName with the contents of the account object. */
+export const UpdateAccount: API.OperationMethod<
+  UpdateAccountRequest,
+  UpdateAccountResponse,
+  UpdateAccountError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: StorageAccountsUpdateRequest,
-  output: StorageAccountsUpdateResponse,
+  input: UpdateAccountRequest,
+  output: UpdateAccountResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateComputePolicyError = AzureOpError;
+/** Updates the specified compute policy. */
+export const UpdateComputePolicy: API.OperationMethod<
+  UpdateComputePolicyRequest,
+  UpdateComputePolicyResponse,
+  UpdateComputePolicyError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateComputePolicyRequest,
+  output: UpdateComputePolicyResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateFirewallRuleError = AzureOpError;
+/** Updates the specified firewall rule. */
+export const UpdateFirewallRule: API.OperationMethod<
+  UpdateFirewallRuleRequest,
+  UpdateFirewallRuleResponse,
+  UpdateFirewallRuleError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateFirewallRuleRequest,
+  output: UpdateFirewallRuleResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateStorageAccountError = AzureOpError;
+/** Updates the Data Lake Analytics account to replace Azure Storage blob account details, such as the access key and/or suffix. */
+export const UpdateStorageAccount: API.OperationMethod<
+  UpdateStorageAccountRequest,
+  UpdateStorageAccountResponse,
+  UpdateStorageAccountError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateStorageAccountRequest,
+  output: UpdateStorageAccountResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

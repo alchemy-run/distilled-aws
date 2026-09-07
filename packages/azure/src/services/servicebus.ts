@@ -12,6 +12,531 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
+export interface CheckDisasterRecoveryConfigNameAvailabilityRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+  /** The Name to check the namespace name availability and The namespace name can contain only letters, numbers, and hyphens. The namespace must start with a letter, and it must end with a letter or number. */
+  name: string;
+}
+export const CheckDisasterRecoveryConfigNameAvailabilityRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      namespaceName: S.String.pipe(T.Label()),
+      name: S.String,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/disasterRecoveryConfigs/CheckNameAvailability",
+        code: 200,
+        apiVersion: "2026-01-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "CheckDisasterRecoveryConfigNameAvailabilityRequest",
+  }) as any as S.Schema<CheckDisasterRecoveryConfigNameAvailabilityRequest>;
+
+/** Specifies the reason for the unavailability of the service. */
+export type UnavailableReason =
+  | "None"
+  | "InvalidName"
+  | "SubscriptionIsDisabled"
+  | "NameInUse"
+  | "NameInLockdown"
+  | "TooManyNamespaceInCurrentSubscription";
+export const UnavailableReason = /*@__PURE__*/ S.String;
+
+/** Description of a Check Name availability request properties. */
+export interface CheckNameAvailabilityResult {
+  /** The detailed info regarding the reason associated with the namespace. */
+  message?: string;
+  /** Value indicating namespace is availability, true if the namespace is available; otherwise, false. */
+  nameAvailable?: boolean;
+  /** The reason for unavailability of a namespace. */
+  reason?: UnavailableReason;
+}
+export const CheckNameAvailabilityResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    message: S.optional(S.String),
+    nameAvailable: S.optional(S.Boolean),
+    reason: S.optional(UnavailableReason),
+  }),
+).annotate({
+  identifier: "CheckNameAvailabilityResult",
+}) as any as S.Schema<CheckNameAvailabilityResult>;
+
+export interface CheckNamespaceNameAvailabilityRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The Name to check the namespace name availability and The namespace name can contain only letters, numbers, and hyphens. The namespace must start with a letter, and it must end with a letter or number. */
+  name: string;
+}
+export const CheckNamespaceNameAvailabilityRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      name: S.String,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ServiceBus/checkNameAvailability",
+        code: 200,
+        apiVersion: "2026-01-01",
+      }),
+    ),
+).annotate({
+  identifier: "CheckNamespaceNameAvailabilityRequest",
+}) as any as S.Schema<CheckNamespaceNameAvailabilityRequest>;
+
+export type CompleteMigrationConfigMigrationRequestConfigName = "$default";
+export const CompleteMigrationConfigMigrationRequestConfigName =
+  /*@__PURE__*/ S.String;
+
+export interface CompleteMigrationConfigMigrationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+  /** The configuration name. Should always be $default. */
+  configName: CompleteMigrationConfigMigrationRequestConfigName | (string & {});
+}
+export const CompleteMigrationConfigMigrationRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      namespaceName: S.String.pipe(T.Label()),
+      configName: CompleteMigrationConfigMigrationRequestConfigName.pipe(
+        T.Label(),
+      ),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/migrationConfigurations/{configName}/upgrade",
+        code: 200,
+        apiVersion: "2026-01-01",
+      }),
+    ),
+).annotate({
+  identifier: "CompleteMigrationConfigMigrationRequest",
+}) as any as S.Schema<CompleteMigrationConfigMigrationRequest>;
+
+export interface CompleteMigrationConfigMigrationResponse {}
+export const CompleteMigrationConfigMigrationResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "CompleteMigrationConfigMigrationResponse",
+}) as any as S.Schema<CompleteMigrationConfigMigrationResponse>;
+
+export interface DeleteDisasterRecoveryConfigRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+  /** The Disaster Recovery configuration name */
+  alias: string;
+}
+export const DeleteDisasterRecoveryConfigRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    namespaceName: S.String.pipe(T.Label()),
+    alias: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/disasterRecoveryConfigs/{alias}",
+      code: 200,
+      apiVersion: "2026-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteDisasterRecoveryConfigRequest",
+}) as any as S.Schema<DeleteDisasterRecoveryConfigRequest>;
+
+export interface DeleteDisasterRecoveryConfigResponse {}
+export const DeleteDisasterRecoveryConfigResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "DeleteDisasterRecoveryConfigResponse",
+}) as any as S.Schema<DeleteDisasterRecoveryConfigResponse>;
+
+export type DeleteMigrationConfigRequestConfigName = "$default";
+export const DeleteMigrationConfigRequestConfigName = /*@__PURE__*/ S.String;
+
+export interface DeleteMigrationConfigRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+  /** The configuration name. Should always be $default. */
+  configName: DeleteMigrationConfigRequestConfigName | (string & {});
+}
+export const DeleteMigrationConfigRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    namespaceName: S.String.pipe(T.Label()),
+    configName: DeleteMigrationConfigRequestConfigName.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/migrationConfigurations/{configName}",
+      code: 200,
+      apiVersion: "2026-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteMigrationConfigRequest",
+}) as any as S.Schema<DeleteMigrationConfigRequest>;
+
+export interface DeleteMigrationConfigResponse {}
+export const DeleteMigrationConfigResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteMigrationConfigResponse",
+}) as any as S.Schema<DeleteMigrationConfigResponse>;
+
+export interface DeleteNamespaceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+}
+export const DeleteNamespaceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    namespaceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}",
+      code: 200,
+      apiVersion: "2026-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteNamespaceRequest",
+}) as any as S.Schema<DeleteNamespaceRequest>;
+
+export interface DeleteNamespaceResponse {}
+export const DeleteNamespaceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteNamespaceResponse",
+}) as any as S.Schema<DeleteNamespaceResponse>;
+
+export interface DeleteNamespaceAuthorizationRuleRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+  /** The authorization rule name. */
+  authorizationRuleName: string;
+}
+export const DeleteNamespaceAuthorizationRuleRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      namespaceName: S.String.pipe(T.Label()),
+      authorizationRuleName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/AuthorizationRules/{authorizationRuleName}",
+        code: 200,
+        apiVersion: "2026-01-01",
+      }),
+    ),
+).annotate({
+  identifier: "DeleteNamespaceAuthorizationRuleRequest",
+}) as any as S.Schema<DeleteNamespaceAuthorizationRuleRequest>;
+
+export interface DeleteNamespaceAuthorizationRuleResponse {}
+export const DeleteNamespaceAuthorizationRuleResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "DeleteNamespaceAuthorizationRuleResponse",
+}) as any as S.Schema<DeleteNamespaceAuthorizationRuleResponse>;
+
+export interface DeletePrivateEndpointConnectionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+  /** The PrivateEndpointConnection name */
+  privateEndpointConnectionName: string;
+}
+export const DeletePrivateEndpointConnectionRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      namespaceName: S.String.pipe(T.Label()),
+      privateEndpointConnectionName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/privateEndpointConnections/{privateEndpointConnectionName}",
+        code: 200,
+        apiVersion: "2026-01-01",
+      }),
+    ),
+).annotate({
+  identifier: "DeletePrivateEndpointConnectionRequest",
+}) as any as S.Schema<DeletePrivateEndpointConnectionRequest>;
+
+export interface DeletePrivateEndpointConnectionResponse {}
+export const DeletePrivateEndpointConnectionResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "DeletePrivateEndpointConnectionResponse",
+}) as any as S.Schema<DeletePrivateEndpointConnectionResponse>;
+
+export interface DeleteQueueRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+  /** The queue name. */
+  queueName: string;
+}
+export const DeleteQueueRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    namespaceName: S.String.pipe(T.Label()),
+    queueName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/queues/{queueName}",
+      code: 200,
+      apiVersion: "2026-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteQueueRequest",
+}) as any as S.Schema<DeleteQueueRequest>;
+
+export interface DeleteQueueResponse {}
+export const DeleteQueueResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteQueueResponse",
+}) as any as S.Schema<DeleteQueueResponse>;
+
+export interface DeleteQueueAuthorizationRuleRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+  /** The queue name. */
+  queueName: string;
+  /** The authorization rule name. */
+  authorizationRuleName: string;
+}
+export const DeleteQueueAuthorizationRuleRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    namespaceName: S.String.pipe(T.Label()),
+    queueName: S.String.pipe(T.Label()),
+    authorizationRuleName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/queues/{queueName}/authorizationRules/{authorizationRuleName}",
+      code: 200,
+      apiVersion: "2026-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteQueueAuthorizationRuleRequest",
+}) as any as S.Schema<DeleteQueueAuthorizationRuleRequest>;
+
+export interface DeleteQueueAuthorizationRuleResponse {}
+export const DeleteQueueAuthorizationRuleResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "DeleteQueueAuthorizationRuleResponse",
+}) as any as S.Schema<DeleteQueueAuthorizationRuleResponse>;
+
+export interface DeleteRuleRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+  /** The topic name. */
+  topicName: string;
+  /** The subscription name. */
+  subscriptionName: string;
+  /** The rule name. */
+  ruleName: string;
+}
+export const DeleteRuleRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    namespaceName: S.String.pipe(T.Label()),
+    topicName: S.String.pipe(T.Label()),
+    subscriptionName: S.String.pipe(T.Label()),
+    ruleName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/topics/{topicName}/subscriptions/{subscriptionName}/rules/{ruleName}",
+      code: 200,
+      apiVersion: "2026-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteRuleRequest",
+}) as any as S.Schema<DeleteRuleRequest>;
+
+export interface DeleteRuleResponse {}
+export const DeleteRuleResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteRuleResponse",
+}) as any as S.Schema<DeleteRuleResponse>;
+
+export interface DeleteSubscriptionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+  /** The topic name. */
+  topicName: string;
+  /** The subscription name. */
+  subscriptionName: string;
+}
+export const DeleteSubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    namespaceName: S.String.pipe(T.Label()),
+    topicName: S.String.pipe(T.Label()),
+    subscriptionName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/topics/{topicName}/subscriptions/{subscriptionName}",
+      code: 200,
+      apiVersion: "2026-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteSubscriptionRequest",
+}) as any as S.Schema<DeleteSubscriptionRequest>;
+
+export interface DeleteSubscriptionResponse {}
+export const DeleteSubscriptionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteSubscriptionResponse",
+}) as any as S.Schema<DeleteSubscriptionResponse>;
+
+export interface DeleteTopicRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+  /** The topic name. */
+  topicName: string;
+}
+export const DeleteTopicRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    namespaceName: S.String.pipe(T.Label()),
+    topicName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/topics/{topicName}",
+      code: 200,
+      apiVersion: "2026-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteTopicRequest",
+}) as any as S.Schema<DeleteTopicRequest>;
+
+export interface DeleteTopicResponse {}
+export const DeleteTopicResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteTopicResponse",
+}) as any as S.Schema<DeleteTopicResponse>;
+
+export interface DeleteTopicAuthorizationRuleRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+  /** The topic name. */
+  topicName: string;
+  /** The authorization rule name. */
+  authorizationRuleName: string;
+}
+export const DeleteTopicAuthorizationRuleRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    namespaceName: S.String.pipe(T.Label()),
+    topicName: S.String.pipe(T.Label()),
+    authorizationRuleName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/topics/{topicName}/authorizationRules/{authorizationRuleName}",
+      code: 200,
+      apiVersion: "2026-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteTopicAuthorizationRuleRequest",
+}) as any as S.Schema<DeleteTopicAuthorizationRuleRequest>;
+
+export interface DeleteTopicAuthorizationRuleResponse {}
+export const DeleteTopicAuthorizationRuleResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "DeleteTopicAuthorizationRuleResponse",
+}) as any as S.Schema<DeleteTopicAuthorizationRuleResponse>;
+
 export interface DisasterRecoveryConfigsBreakPairingRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -46,64 +571,6 @@ export const DisasterRecoveryConfigsBreakPairingResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
     identifier: "DisasterRecoveryConfigsBreakPairingResponse",
   }) as any as S.Schema<DisasterRecoveryConfigsBreakPairingResponse>;
-
-export interface DisasterRecoveryConfigsCheckNameAvailabilityRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-  /** The Name to check the namespace name availability and The namespace name can contain only letters, numbers, and hyphens. The namespace must start with a letter, and it must end with a letter or number. */
-  name: string;
-}
-export const DisasterRecoveryConfigsCheckNameAvailabilityRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      namespaceName: S.String.pipe(T.Label()),
-      name: S.String,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/disasterRecoveryConfigs/CheckNameAvailability",
-        code: 200,
-        apiVersion: "2026-01-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "DisasterRecoveryConfigsCheckNameAvailabilityRequest",
-  }) as any as S.Schema<DisasterRecoveryConfigsCheckNameAvailabilityRequest>;
-
-/** Specifies the reason for the unavailability of the service. */
-export type UnavailableReason =
-  | "None"
-  | "InvalidName"
-  | "SubscriptionIsDisabled"
-  | "NameInUse"
-  | "NameInLockdown"
-  | "TooManyNamespaceInCurrentSubscription";
-export const UnavailableReason = /*@__PURE__*/ S.String;
-
-/** Description of a Check Name availability request properties. */
-export interface CheckNameAvailabilityResult {
-  /** The detailed info regarding the reason associated with the namespace. */
-  message?: string;
-  /** Value indicating namespace is availability, true if the namespace is available; otherwise, false. */
-  nameAvailable?: boolean;
-  /** The reason for unavailability of a namespace. */
-  reason?: UnavailableReason;
-}
-export const CheckNameAvailabilityResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    message: S.optional(S.String),
-    nameAvailable: S.optional(S.Boolean),
-    reason: S.optional(UnavailableReason),
-  }),
-).annotate({
-  identifier: "CheckNameAvailabilityResult",
-}) as any as S.Schema<CheckNameAvailabilityResult>;
 
 /** Properties required to the Create Or Update Alias(Disaster Recovery configurations) */
 export interface ArmDisasterRecoveryPropertiesInput {
@@ -259,42 +726,6 @@ export const DisasterRecoveryConfigsCreateOrUpdateResponse =
     identifier: "DisasterRecoveryConfigsCreateOrUpdateResponse",
   }) as any as S.Schema<DisasterRecoveryConfigsCreateOrUpdateResponse>;
 
-export interface DisasterRecoveryConfigsDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-  /** The Disaster Recovery configuration name */
-  alias: string;
-}
-export const DisasterRecoveryConfigsDeleteRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      namespaceName: S.String.pipe(T.Label()),
-      alias: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/disasterRecoveryConfigs/{alias}",
-        code: 200,
-        apiVersion: "2026-01-01",
-      }),
-    ),
-).annotate({
-  identifier: "DisasterRecoveryConfigsDeleteRequest",
-}) as any as S.Schema<DisasterRecoveryConfigsDeleteRequest>;
-
-export interface DisasterRecoveryConfigsDeleteResponse {}
-export const DisasterRecoveryConfigsDeleteResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "DisasterRecoveryConfigsDeleteResponse",
-}) as any as S.Schema<DisasterRecoveryConfigsDeleteResponse>;
-
 /** Safe failover is to indicate the service should wait for pending replication to finish before switching to the secondary. */
 export interface FailoverPropertiesProperties {
   /** Safe failover is to indicate the service should wait for pending replication to finish before switching to the secondary. */
@@ -347,7 +778,7 @@ export const DisasterRecoveryConfigsFailOverResponse = /*@__PURE__*/ S.suspend(
   identifier: "DisasterRecoveryConfigsFailOverResponse",
 }) as any as S.Schema<DisasterRecoveryConfigsFailOverResponse>;
 
-export interface DisasterRecoveryConfigsGetRequest {
+export interface GetDisasterRecoveryConfigRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -357,7 +788,7 @@ export interface DisasterRecoveryConfigsGetRequest {
   /** The Disaster Recovery configuration name */
   alias: string;
 }
-export const DisasterRecoveryConfigsGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetDisasterRecoveryConfigRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -372,10 +803,10 @@ export const DisasterRecoveryConfigsGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DisasterRecoveryConfigsGetRequest",
-}) as any as S.Schema<DisasterRecoveryConfigsGetRequest>;
+  identifier: "GetDisasterRecoveryConfigRequest",
+}) as any as S.Schema<GetDisasterRecoveryConfigRequest>;
 
-export interface DisasterRecoveryConfigsGetResponse {
+export interface GetDisasterRecoveryConfigResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -389,7 +820,7 @@ export interface DisasterRecoveryConfigsGetResponse {
   /** The geo-location where the resource lives */
   location?: string;
 }
-export const DisasterRecoveryConfigsGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetDisasterRecoveryConfigResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -399,10 +830,10 @@ export const DisasterRecoveryConfigsGetResponse = /*@__PURE__*/ S.suspend(() =>
     location: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "DisasterRecoveryConfigsGetResponse",
-}) as any as S.Schema<DisasterRecoveryConfigsGetResponse>;
+  identifier: "GetDisasterRecoveryConfigResponse",
+}) as any as S.Schema<GetDisasterRecoveryConfigResponse>;
 
-export interface DisasterRecoveryConfigsGetAuthorizationRuleRequest {
+export interface GetDisasterRecoveryConfigAuthorizationRuleRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -414,7 +845,7 @@ export interface DisasterRecoveryConfigsGetAuthorizationRuleRequest {
   /** The authorization rule name. */
   authorizationRuleName: string;
 }
-export const DisasterRecoveryConfigsGetAuthorizationRuleRequest =
+export const GetDisasterRecoveryConfigAuthorizationRuleRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -431,8 +862,8 @@ export const DisasterRecoveryConfigsGetAuthorizationRuleRequest =
       }),
     ),
   ).annotate({
-    identifier: "DisasterRecoveryConfigsGetAuthorizationRuleRequest",
-  }) as any as S.Schema<DisasterRecoveryConfigsGetAuthorizationRuleRequest>;
+    identifier: "GetDisasterRecoveryConfigAuthorizationRuleRequest",
+  }) as any as S.Schema<GetDisasterRecoveryConfigAuthorizationRuleRequest>;
 
 export type AccessRights = "Manage" | "Send" | "Listen";
 export const AccessRights = /*@__PURE__*/ S.String;
@@ -458,7 +889,7 @@ export const SBAuthorizationRuleProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "SBAuthorizationRuleProperties",
 }) as any as S.Schema<SBAuthorizationRuleProperties>;
 
-export interface DisasterRecoveryConfigsGetAuthorizationRuleResponse {
+export interface GetDisasterRecoveryConfigAuthorizationRuleResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -472,7 +903,7 @@ export interface DisasterRecoveryConfigsGetAuthorizationRuleResponse {
   /** The geo-location where the resource lives */
   location?: string;
 }
-export const DisasterRecoveryConfigsGetAuthorizationRuleResponse =
+export const GetDisasterRecoveryConfigAuthorizationRuleResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
@@ -483,324 +914,39 @@ export const DisasterRecoveryConfigsGetAuthorizationRuleResponse =
       location: S.optional(S.String),
     }),
   ).annotate({
-    identifier: "DisasterRecoveryConfigsGetAuthorizationRuleResponse",
-  }) as any as S.Schema<DisasterRecoveryConfigsGetAuthorizationRuleResponse>;
+    identifier: "GetDisasterRecoveryConfigAuthorizationRuleResponse",
+  }) as any as S.Schema<GetDisasterRecoveryConfigAuthorizationRuleResponse>;
 
-export interface DisasterRecoveryConfigsListRequest {
+export type GetMigrationConfigRequestConfigName = "$default";
+export const GetMigrationConfigRequestConfigName = /*@__PURE__*/ S.String;
+
+export interface GetMigrationConfigRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The namespace name */
   namespaceName: string;
+  /** The configuration name. Should always be $default. */
+  configName: GetMigrationConfigRequestConfigName | (string & {});
 }
-export const DisasterRecoveryConfigsListRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetMigrationConfigRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     namespaceName: S.String.pipe(T.Label()),
+    configName: GetMigrationConfigRequestConfigName.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/disasterRecoveryConfigs",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/migrationConfigurations/{configName}",
       code: 200,
       apiVersion: "2026-01-01",
     }),
   ),
 ).annotate({
-  identifier: "DisasterRecoveryConfigsListRequest",
-}) as any as S.Schema<DisasterRecoveryConfigsListRequest>;
-
-/** Single item in List or Get Alias(Disaster Recovery configuration) operation */
-export interface ArmDisasterRecovery {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties required to the Create Or Update Alias(Disaster Recovery configurations) */
-  properties?: ArmDisasterRecoveryProperties;
-  /** The geo-location where the resource lives */
-  location?: string;
-}
-export const ArmDisasterRecovery = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ArmDisasterRecoveryProperties),
-    location: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ArmDisasterRecovery",
-}) as any as S.Schema<ArmDisasterRecovery>;
-
-/** The ArmDisasterRecovery items on this page */
-export type ArmDisasterRecoveryListResultValueList = Array<ArmDisasterRecovery>;
-export const ArmDisasterRecoveryListResultValueList = /*@__PURE__*/ S.Array(
-  ArmDisasterRecovery,
-) as any as S.Schema<ArmDisasterRecoveryListResultValueList>;
-
-/** The response of a ArmDisasterRecovery list operation. */
-export interface ArmDisasterRecoveryListResult {
-  /** The ArmDisasterRecovery items on this page */
-  value: ArmDisasterRecoveryListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const ArmDisasterRecoveryListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: ArmDisasterRecoveryListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ArmDisasterRecoveryListResult",
-}) as any as S.Schema<ArmDisasterRecoveryListResult>;
-
-export interface DisasterRecoveryConfigsListAuthorizationRulesRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-  /** The Disaster Recovery configuration name */
-  alias: string;
-}
-export const DisasterRecoveryConfigsListAuthorizationRulesRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      namespaceName: S.String.pipe(T.Label()),
-      alias: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/disasterRecoveryConfigs/{alias}/authorizationRules",
-        code: 200,
-        apiVersion: "2026-01-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "DisasterRecoveryConfigsListAuthorizationRulesRequest",
-  }) as any as S.Schema<DisasterRecoveryConfigsListAuthorizationRulesRequest>;
-
-/** Description of a namespace authorization rule. */
-export interface SBAuthorizationRule {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** AuthorizationRule properties. */
-  properties?: SBAuthorizationRuleProperties;
-  /** The geo-location where the resource lives */
-  location?: string;
-}
-export const SBAuthorizationRule = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(SBAuthorizationRuleProperties),
-    location: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SBAuthorizationRule",
-}) as any as S.Schema<SBAuthorizationRule>;
-
-/** The SBAuthorizationRule items on this page */
-export type SBAuthorizationRuleListResultValueList = Array<SBAuthorizationRule>;
-export const SBAuthorizationRuleListResultValueList = /*@__PURE__*/ S.Array(
-  SBAuthorizationRule,
-) as any as S.Schema<SBAuthorizationRuleListResultValueList>;
-
-/** The response of a SBAuthorizationRule list operation. */
-export interface SBAuthorizationRuleListResult {
-  /** The SBAuthorizationRule items on this page */
-  value: SBAuthorizationRuleListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const SBAuthorizationRuleListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: SBAuthorizationRuleListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SBAuthorizationRuleListResult",
-}) as any as S.Schema<SBAuthorizationRuleListResult>;
-
-export interface DisasterRecoveryConfigsListKeysRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-  /** The Disaster Recovery configuration name */
-  alias: string;
-  /** The authorization rule name. */
-  authorizationRuleName: string;
-}
-export const DisasterRecoveryConfigsListKeysRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      namespaceName: S.String.pipe(T.Label()),
-      alias: S.String.pipe(T.Label()),
-      authorizationRuleName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/disasterRecoveryConfigs/{alias}/authorizationRules/{authorizationRuleName}/listKeys",
-        code: 200,
-        apiVersion: "2026-01-01",
-      }),
-    ),
-).annotate({
-  identifier: "DisasterRecoveryConfigsListKeysRequest",
-}) as any as S.Schema<DisasterRecoveryConfigsListKeysRequest>;
-
-/** Namespace/ServiceBus Connection String */
-export interface AccessKeys {
-  /** Primary connection string of the created namespace authorization rule. */
-  primaryConnectionString?: string;
-  /** Secondary connection string of the created namespace authorization rule. */
-  secondaryConnectionString?: string;
-  /** Primary connection string of the alias if GEO DR is enabled */
-  aliasPrimaryConnectionString?: string;
-  /** Secondary connection string of the alias if GEO DR is enabled */
-  aliasSecondaryConnectionString?: string;
-  /** A base64-encoded 256-bit primary key for signing and validating the SAS token. */
-  primaryKey?: string;
-  /** A base64-encoded 256-bit primary key for signing and validating the SAS token. */
-  secondaryKey?: string;
-  /** A string that describes the authorization rule. */
-  keyName?: string;
-}
-export const AccessKeys = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    primaryConnectionString: S.optional(S.String),
-    secondaryConnectionString: S.optional(S.String),
-    aliasPrimaryConnectionString: S.optional(S.String),
-    aliasSecondaryConnectionString: S.optional(S.String),
-    primaryKey: S.optional(S.String),
-    secondaryKey: S.optional(S.String),
-    keyName: S.optional(S.String),
-  }),
-).annotate({ identifier: "AccessKeys" }) as any as S.Schema<AccessKeys>;
-
-export type MigrationConfigsCompleteMigrationRequestConfigName = "$default";
-export const MigrationConfigsCompleteMigrationRequestConfigName =
-  /*@__PURE__*/ S.String;
-
-export interface MigrationConfigsCompleteMigrationRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-  /** The configuration name. Should always be $default. */
-  configName:
-    | MigrationConfigsCompleteMigrationRequestConfigName
-    | (string & {});
-}
-export const MigrationConfigsCompleteMigrationRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      namespaceName: S.String.pipe(T.Label()),
-      configName: MigrationConfigsCompleteMigrationRequestConfigName.pipe(
-        T.Label(),
-      ),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/migrationConfigurations/{configName}/upgrade",
-        code: 200,
-        apiVersion: "2026-01-01",
-      }),
-    ),
-).annotate({
-  identifier: "MigrationConfigsCompleteMigrationRequest",
-}) as any as S.Schema<MigrationConfigsCompleteMigrationRequest>;
-
-export interface MigrationConfigsCompleteMigrationResponse {}
-export const MigrationConfigsCompleteMigrationResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "MigrationConfigsCompleteMigrationResponse",
-  }) as any as S.Schema<MigrationConfigsCompleteMigrationResponse>;
-
-export type MigrationConfigsCreateAndStartMigrationRequestConfigName =
-  "$default";
-export const MigrationConfigsCreateAndStartMigrationRequestConfigName =
-  /*@__PURE__*/ S.String;
-
-/** Properties required to the Create Migration Configuration */
-export interface MigrationConfigPropertiesPropertiesInput {
-  /** Existing premium Namespace ARM Id name which has no entities, will be used for migration */
-  targetNamespace: string;
-  /** Name to access Standard Namespace after migration */
-  postMigrationName: string;
-}
-export const MigrationConfigPropertiesPropertiesInput = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      targetNamespace: S.String,
-      postMigrationName: S.String,
-    }),
-).annotate({
-  identifier: "MigrationConfigPropertiesPropertiesInput",
-}) as any as S.Schema<MigrationConfigPropertiesPropertiesInput>;
-
-export interface MigrationConfigsCreateAndStartMigrationRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-  /** The configuration name. Should always be $default. */
-  configName:
-    | MigrationConfigsCreateAndStartMigrationRequestConfigName
-    | (string & {});
-  /** Properties required to the Create Migration Configuration */
-  properties?: MigrationConfigPropertiesPropertiesInput;
-}
-export const MigrationConfigsCreateAndStartMigrationRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      namespaceName: S.String.pipe(T.Label()),
-      configName: MigrationConfigsCreateAndStartMigrationRequestConfigName.pipe(
-        T.Label(),
-      ),
-      properties: S.optional(MigrationConfigPropertiesPropertiesInput),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/migrationConfigurations/{configName}",
-        code: 200,
-        apiVersion: "2026-01-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "MigrationConfigsCreateAndStartMigrationRequest",
-  }) as any as S.Schema<MigrationConfigsCreateAndStartMigrationRequest>;
+  identifier: "GetMigrationConfigRequest",
+}) as any as S.Schema<GetMigrationConfigRequest>;
 
 /** Properties required to the Create Migration Configuration */
 export interface MigrationConfigPropertiesProperties {
@@ -827,7 +973,7 @@ export const MigrationConfigPropertiesProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "MigrationConfigPropertiesProperties",
 }) as any as S.Schema<MigrationConfigPropertiesProperties>;
 
-export interface MigrationConfigsCreateAndStartMigrationResponse {
+export interface GetMigrationConfigResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -841,104 +987,7 @@ export interface MigrationConfigsCreateAndStartMigrationResponse {
   /** The geo-location where the resource lives */
   location?: string;
 }
-export const MigrationConfigsCreateAndStartMigrationResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(MigrationConfigPropertiesProperties),
-      location: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "MigrationConfigsCreateAndStartMigrationResponse",
-  }) as any as S.Schema<MigrationConfigsCreateAndStartMigrationResponse>;
-
-export type MigrationConfigsDeleteRequestConfigName = "$default";
-export const MigrationConfigsDeleteRequestConfigName = /*@__PURE__*/ S.String;
-
-export interface MigrationConfigsDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-  /** The configuration name. Should always be $default. */
-  configName: MigrationConfigsDeleteRequestConfigName | (string & {});
-}
-export const MigrationConfigsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    namespaceName: S.String.pipe(T.Label()),
-    configName: MigrationConfigsDeleteRequestConfigName.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/migrationConfigurations/{configName}",
-      code: 200,
-      apiVersion: "2026-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "MigrationConfigsDeleteRequest",
-}) as any as S.Schema<MigrationConfigsDeleteRequest>;
-
-export interface MigrationConfigsDeleteResponse {}
-export const MigrationConfigsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "MigrationConfigsDeleteResponse",
-}) as any as S.Schema<MigrationConfigsDeleteResponse>;
-
-export type MigrationConfigsGetRequestConfigName = "$default";
-export const MigrationConfigsGetRequestConfigName = /*@__PURE__*/ S.String;
-
-export interface MigrationConfigsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-  /** The configuration name. Should always be $default. */
-  configName: MigrationConfigsGetRequestConfigName | (string & {});
-}
-export const MigrationConfigsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    namespaceName: S.String.pipe(T.Label()),
-    configName: MigrationConfigsGetRequestConfigName.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/migrationConfigurations/{configName}",
-      code: 200,
-      apiVersion: "2026-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "MigrationConfigsGetRequest",
-}) as any as S.Schema<MigrationConfigsGetRequest>;
-
-export interface MigrationConfigsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties required to the Create Migration Configuration */
-  properties?: MigrationConfigPropertiesProperties;
-  /** The geo-location where the resource lives */
-  location?: string;
-}
-export const MigrationConfigsGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetMigrationConfigResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -948,10 +997,10 @@ export const MigrationConfigsGetResponse = /*@__PURE__*/ S.suspend(() =>
     location: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "MigrationConfigsGetResponse",
-}) as any as S.Schema<MigrationConfigsGetResponse>;
+  identifier: "GetMigrationConfigResponse",
+}) as any as S.Schema<GetMigrationConfigResponse>;
 
-export interface MigrationConfigsListRequest {
+export interface GetNamespaceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -959,7 +1008,7 @@ export interface MigrationConfigsListRequest {
   /** The namespace name */
   namespaceName: string;
 }
-export const MigrationConfigsListRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetNamespaceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -967,135 +1016,21 @@ export const MigrationConfigsListRequest = /*@__PURE__*/ S.suspend(() =>
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/migrationConfigurations",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}",
       code: 200,
       apiVersion: "2026-01-01",
     }),
   ),
 ).annotate({
-  identifier: "MigrationConfigsListRequest",
-}) as any as S.Schema<MigrationConfigsListRequest>;
-
-/** Single item in List or Get Migration Config operation */
-export interface MigrationConfigProperties {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties required to the Create Migration Configuration */
-  properties?: MigrationConfigPropertiesProperties;
-  /** The geo-location where the resource lives */
-  location?: string;
-}
-export const MigrationConfigProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(MigrationConfigPropertiesProperties),
-    location: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "MigrationConfigProperties",
-}) as any as S.Schema<MigrationConfigProperties>;
-
-/** The MigrationConfigProperties items on this page */
-export type MigrationConfigListResultValueList =
-  Array<MigrationConfigProperties>;
-export const MigrationConfigListResultValueList = /*@__PURE__*/ S.Array(
-  MigrationConfigProperties,
-) as any as S.Schema<MigrationConfigListResultValueList>;
-
-/** The response of a MigrationConfigProperties list operation. */
-export interface MigrationConfigListResult {
-  /** The MigrationConfigProperties items on this page */
-  value: MigrationConfigListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const MigrationConfigListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: MigrationConfigListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "MigrationConfigListResult",
-}) as any as S.Schema<MigrationConfigListResult>;
-
-export type MigrationConfigsRevertRequestConfigName = "$default";
-export const MigrationConfigsRevertRequestConfigName = /*@__PURE__*/ S.String;
-
-export interface MigrationConfigsRevertRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-  /** The configuration name. Should always be $default. */
-  configName: MigrationConfigsRevertRequestConfigName | (string & {});
-}
-export const MigrationConfigsRevertRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    namespaceName: S.String.pipe(T.Label()),
-    configName: MigrationConfigsRevertRequestConfigName.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/migrationConfigurations/{configName}/revert",
-      code: 200,
-      apiVersion: "2026-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "MigrationConfigsRevertRequest",
-}) as any as S.Schema<MigrationConfigsRevertRequest>;
-
-export interface MigrationConfigsRevertResponse {}
-export const MigrationConfigsRevertResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "MigrationConfigsRevertResponse",
-}) as any as S.Schema<MigrationConfigsRevertResponse>;
-
-export interface NamespacesCheckNameAvailabilityRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The Name to check the namespace name availability and The namespace name can contain only letters, numbers, and hyphens. The namespace must start with a letter, and it must end with a letter or number. */
-  name: string;
-}
-export const NamespacesCheckNameAvailabilityRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      name: S.String,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ServiceBus/checkNameAvailability",
-        code: 200,
-        apiVersion: "2026-01-01",
-      }),
-    ),
-).annotate({
-  identifier: "NamespacesCheckNameAvailabilityRequest",
-}) as any as S.Schema<NamespacesCheckNameAvailabilityRequest>;
+  identifier: "GetNamespaceRequest",
+}) as any as S.Schema<GetNamespaceRequest>;
 
 /** Resource tags. */
-export type NamespacesCreateOrUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const NamespacesCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type GetNamespaceResponseTagsMap = { [key: string]: string | undefined };
+export const GetNamespaceResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<NamespacesCreateOrUpdateRequestTagsMap>;
+) as any as S.Schema<GetNamespaceResponseTagsMap>;
 
 /** The minimum TLS version for the cluster to support, e.g. '1.3' */
 export type TlsVersion = "1.0" | "1.1" | "1.2" | "1.3";
@@ -1228,33 +1163,47 @@ export const PrivateEndpointConnectionProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PrivateEndpointConnectionProperties>;
 
 /** Properties of the PrivateEndpointConnection. */
-export interface PrivateEndpointConnectionInput {
+export interface PrivateEndpointConnection {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
   /** Properties of the PrivateEndpointConnection. */
   properties?: PrivateEndpointConnectionProperties;
+  /** The geo-location where the resource lives */
+  location?: string;
 }
-export const PrivateEndpointConnectionInput = /*@__PURE__*/ S.suspend(() =>
+export const PrivateEndpointConnection = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
     properties: S.optional(PrivateEndpointConnectionProperties),
+    location: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "PrivateEndpointConnectionInput",
-}) as any as S.Schema<PrivateEndpointConnectionInput>;
+  identifier: "PrivateEndpointConnection",
+}) as any as S.Schema<PrivateEndpointConnection>;
 
 /** List of private endpoint connections. */
-export type SBNamespacePropertiesInputPrivateEndpointConnectionsList =
-  Array<PrivateEndpointConnectionInput>;
-export const SBNamespacePropertiesInputPrivateEndpointConnectionsList =
+export type SBNamespacePropertiesPrivateEndpointConnectionsList =
+  Array<PrivateEndpointConnection>;
+export const SBNamespacePropertiesPrivateEndpointConnectionsList =
   /*@__PURE__*/ S.Array(
-    PrivateEndpointConnectionInput,
-  ) as any as S.Schema<SBNamespacePropertiesInputPrivateEndpointConnectionsList>;
+    PrivateEndpointConnection,
+  ) as any as S.Schema<SBNamespacePropertiesPrivateEndpointConnectionsList>;
 
 /** This determines if traffic is allowed over public network. By default it is enabled. */
-export type SBNamespacePropertiesInputPublicNetworkAccess =
+export type SBNamespacePropertiesPublicNetworkAccess =
   | "Enabled"
   | "Disabled"
   | "SecuredByPerimeter";
-export const SBNamespacePropertiesInputPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
+export const SBNamespacePropertiesPublicNetworkAccess = /*@__PURE__*/ S.String;
 
 /** Setting to Enable or Disable Confidential Compute */
 export type Mode = "Disabled" | "Enabled";
@@ -1331,210 +1280,6 @@ export type IpAddressType = "IPv4" | "DualStack";
 export const IpAddressType = /*@__PURE__*/ S.String;
 
 /** Properties of the namespace. */
-export interface SBNamespacePropertiesInput {
-  /** The minimum TLS version for the cluster to support, e.g. '1.2' */
-  minimumTlsVersion?: TlsVersion | (string & {});
-  /** Enabling this property creates a Premium Service Bus Namespace in regions supported availability zones. */
-  zoneRedundant?: boolean;
-  /** Properties of BYOK Encryption description */
-  encryption?: Encryption;
-  /** List of private endpoint connections. */
-  privateEndpointConnections?: SBNamespacePropertiesInputPrivateEndpointConnectionsList;
-  /** This property disables SAS authentication for the Service Bus namespace. */
-  disableLocalAuth?: boolean;
-  /** Alternate name for namespace */
-  alternateName?: string;
-  /** This determines if traffic is allowed over public network. By default it is enabled. */
-  publicNetworkAccess?:
-    | SBNamespacePropertiesInputPublicNetworkAccess
-    | (string & {});
-  /** The number of partitions of a Service Bus namespace. This property is only applicable to Premium SKU namespaces. The default value is 1 and possible values are 1, 2 and 4 */
-  premiumMessagingPartitions?: number;
-  platformCapabilities?: PlatformCapabilities;
-  /** Geo Data Replication settings for the namespace */
-  geoDataReplication?: GeoDataReplicationProperties;
-  /** The IP address type for the namespace. Determines whether the namespace supports IPv4 only or both IPv4 and IPv6 (dual stack). */
-  ipAddressType?: IpAddressType | (string & {});
-}
-export const SBNamespacePropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    minimumTlsVersion: S.optional(TlsVersion),
-    zoneRedundant: S.optional(S.Boolean),
-    encryption: S.optional(Encryption),
-    privateEndpointConnections: S.optional(
-      SBNamespacePropertiesInputPrivateEndpointConnectionsList,
-    ),
-    disableLocalAuth: S.optional(S.Boolean),
-    alternateName: S.optional(S.String),
-    publicNetworkAccess: S.optional(
-      SBNamespacePropertiesInputPublicNetworkAccess,
-    ),
-    premiumMessagingPartitions: S.optional(S.Number),
-    platformCapabilities: S.optional(PlatformCapabilities),
-    geoDataReplication: S.optional(GeoDataReplicationProperties),
-    ipAddressType: S.optional(IpAddressType),
-  }),
-).annotate({
-  identifier: "SBNamespacePropertiesInput",
-}) as any as S.Schema<SBNamespacePropertiesInput>;
-
-/** Name of this SKU. */
-export type SkuName = "Basic" | "Standard" | "Premium";
-export const SkuName = /*@__PURE__*/ S.String;
-
-/** The billing tier of this particular SKU. */
-export type SkuTier = "Basic" | "Standard" | "Premium";
-export const SkuTier = /*@__PURE__*/ S.String;
-
-/** SKU of the namespace. */
-export interface SBSku {
-  /** Name of this SKU. */
-  name: SkuName | (string & {});
-  /** The billing tier of this particular SKU. */
-  tier?: SkuTier | (string & {});
-  /** Messaging units for your service bus premium namespace. Valid capacities are {1, 2, 4, 8, 16} multiples of your properties.premiumMessagingPartitions setting. For example, If properties.premiumMessagingPartitions is 1 then possible capacity values are 1, 2, 4, 8, and 16. If properties.premiumMessagingPartitions is 4 then possible capacity values are 4, 8, 16, 32 and 64 */
-  capacity?: number;
-}
-export const SBSku = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: SkuName,
-    tier: S.optional(SkuTier),
-    capacity: S.optional(S.Number),
-  }),
-).annotate({ identifier: "SBSku" }) as any as S.Schema<SBSku>;
-
-/** Type of managed service identity. */
-export type ManagedServiceIdentityType =
-  | "SystemAssigned"
-  | "UserAssigned"
-  | "SystemAssigned, UserAssigned"
-  | "None";
-export const ManagedServiceIdentityType = /*@__PURE__*/ S.String;
-
-/** Recognized Dictionary value. */
-export interface UserAssignedIdentityInput {}
-export const UserAssignedIdentityInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "UserAssignedIdentityInput",
-}) as any as S.Schema<UserAssignedIdentityInput>;
-
-/** Properties for User Assigned Identities */
-export type IdentityInputUserAssignedIdentitiesMap = {
-  [key: string]: UserAssignedIdentityInput | undefined;
-};
-export const IdentityInputUserAssignedIdentitiesMap = /*@__PURE__*/ S.Record(
-  S.String,
-  UserAssignedIdentityInput,
-) as any as S.Schema<IdentityInputUserAssignedIdentitiesMap>;
-
-/** Properties to configure User Assigned Identities for Bring your Own Keys */
-export interface IdentityInput {
-  /** Type of managed service identity. */
-  type?: ManagedServiceIdentityType | (string & {});
-  /** Properties for User Assigned Identities */
-  userAssignedIdentities?: IdentityInputUserAssignedIdentitiesMap;
-}
-export const IdentityInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: S.optional(ManagedServiceIdentityType),
-    userAssignedIdentities: S.optional(IdentityInputUserAssignedIdentitiesMap),
-  }),
-).annotate({ identifier: "IdentityInput" }) as any as S.Schema<IdentityInput>;
-
-export interface NamespacesCreateOrUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-  /** Resource tags. */
-  tags?: NamespacesCreateOrUpdateRequestTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Properties of the namespace. */
-  properties?: SBNamespacePropertiesInput;
-  /** Properties of SKU */
-  sku?: SBSku;
-  /** Properties of BYOK Identity description */
-  identity?: IdentityInput;
-}
-export const NamespacesCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    namespaceName: S.String.pipe(T.Label()),
-    tags: S.optional(NamespacesCreateOrUpdateRequestTagsMap),
-    location: S.String,
-    properties: S.optional(SBNamespacePropertiesInput),
-    sku: S.optional(SBSku),
-    identity: S.optional(IdentityInput),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}",
-      code: 200,
-      apiVersion: "2026-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "NamespacesCreateOrUpdateRequest",
-}) as any as S.Schema<NamespacesCreateOrUpdateRequest>;
-
-/** Resource tags. */
-export type NamespacesCreateOrUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const NamespacesCreateOrUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<NamespacesCreateOrUpdateResponseTagsMap>;
-
-/** Properties of the PrivateEndpointConnection. */
-export interface PrivateEndpointConnection {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of the PrivateEndpointConnection. */
-  properties?: PrivateEndpointConnectionProperties;
-  /** The geo-location where the resource lives */
-  location?: string;
-}
-export const PrivateEndpointConnection = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(PrivateEndpointConnectionProperties),
-    location: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PrivateEndpointConnection",
-}) as any as S.Schema<PrivateEndpointConnection>;
-
-/** List of private endpoint connections. */
-export type SBNamespacePropertiesPrivateEndpointConnectionsList =
-  Array<PrivateEndpointConnection>;
-export const SBNamespacePropertiesPrivateEndpointConnectionsList =
-  /*@__PURE__*/ S.Array(
-    PrivateEndpointConnection,
-  ) as any as S.Schema<SBNamespacePropertiesPrivateEndpointConnectionsList>;
-
-/** This determines if traffic is allowed over public network. By default it is enabled. */
-export type SBNamespacePropertiesPublicNetworkAccess =
-  | "Enabled"
-  | "Disabled"
-  | "SecuredByPerimeter";
-export const SBNamespacePropertiesPublicNetworkAccess = /*@__PURE__*/ S.String;
-
-/** Properties of the namespace. */
 export interface SBNamespaceProperties {
   /** The minimum TLS version for the cluster to support, e.g. '1.2' */
   minimumTlsVersion?: TlsVersion;
@@ -1596,6 +1341,39 @@ export const SBNamespaceProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "SBNamespaceProperties",
 }) as any as S.Schema<SBNamespaceProperties>;
 
+/** Name of this SKU. */
+export type SkuName = "Basic" | "Standard" | "Premium";
+export const SkuName = /*@__PURE__*/ S.String;
+
+/** The billing tier of this particular SKU. */
+export type SkuTier = "Basic" | "Standard" | "Premium";
+export const SkuTier = /*@__PURE__*/ S.String;
+
+/** SKU of the namespace. */
+export interface SBSku {
+  /** Name of this SKU. */
+  name: SkuName | (string & {});
+  /** The billing tier of this particular SKU. */
+  tier?: SkuTier | (string & {});
+  /** Messaging units for your service bus premium namespace. Valid capacities are {1, 2, 4, 8, 16} multiples of your properties.premiumMessagingPartitions setting. For example, If properties.premiumMessagingPartitions is 1 then possible capacity values are 1, 2, 4, 8, and 16. If properties.premiumMessagingPartitions is 4 then possible capacity values are 4, 8, 16, 32 and 64 */
+  capacity?: number;
+}
+export const SBSku = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: SkuName,
+    tier: S.optional(SkuTier),
+    capacity: S.optional(S.Number),
+  }),
+).annotate({ identifier: "SBSku" }) as any as S.Schema<SBSku>;
+
+/** Type of managed service identity. */
+export type ManagedServiceIdentityType =
+  | "SystemAssigned"
+  | "UserAssigned"
+  | "SystemAssigned, UserAssigned"
+  | "None";
+export const ManagedServiceIdentityType = /*@__PURE__*/ S.String;
+
 /** Recognized Dictionary value. */
 export interface UserAssignedIdentity {
   /** Principal Id of user assigned identity */
@@ -1641,7 +1419,7 @@ export const Identity = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "Identity" }) as any as S.Schema<Identity>;
 
-export interface NamespacesCreateOrUpdateResponse {
+export interface GetNamespaceResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -1651,7 +1429,7 @@ export interface NamespacesCreateOrUpdateResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: NamespacesCreateOrUpdateResponseTagsMap;
+  tags?: GetNamespaceResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties of the namespace. */
@@ -1661,23 +1439,23 @@ export interface NamespacesCreateOrUpdateResponse {
   /** Properties of BYOK Identity description */
   identity?: Identity;
 }
-export const NamespacesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetNamespaceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(NamespacesCreateOrUpdateResponseTagsMap),
+    tags: S.optional(GetNamespaceResponseTagsMap),
     location: S.String,
     properties: S.optional(SBNamespaceProperties),
     sku: S.optional(SBSku),
     identity: S.optional(Identity),
   }),
 ).annotate({
-  identifier: "NamespacesCreateOrUpdateResponse",
-}) as any as S.Schema<NamespacesCreateOrUpdateResponse>;
+  identifier: "GetNamespaceResponse",
+}) as any as S.Schema<GetNamespaceResponse>;
 
-export interface NamespacesCreateOrUpdateAuthorizationRuleRequest {
+export interface GetNamespaceAuthorizationRuleRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1686,30 +1464,27 @@ export interface NamespacesCreateOrUpdateAuthorizationRuleRequest {
   namespaceName: string;
   /** The authorization rule name. */
   authorizationRuleName: string;
-  /** AuthorizationRule properties. */
-  properties?: SBAuthorizationRuleProperties;
 }
-export const NamespacesCreateOrUpdateAuthorizationRuleRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const GetNamespaceAuthorizationRuleRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       namespaceName: S.String.pipe(T.Label()),
       authorizationRuleName: S.String.pipe(T.Label()),
-      properties: S.optional(SBAuthorizationRuleProperties),
     }).pipe(
       T.Http({
-        method: "PUT",
+        method: "GET",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/AuthorizationRules/{authorizationRuleName}",
         code: 200,
         apiVersion: "2026-01-01",
       }),
     ),
-  ).annotate({
-    identifier: "NamespacesCreateOrUpdateAuthorizationRuleRequest",
-  }) as any as S.Schema<NamespacesCreateOrUpdateAuthorizationRuleRequest>;
+).annotate({
+  identifier: "GetNamespaceAuthorizationRuleRequest",
+}) as any as S.Schema<GetNamespaceAuthorizationRuleRequest>;
 
-export interface NamespacesCreateOrUpdateAuthorizationRuleResponse {
+export interface GetNamespaceAuthorizationRuleResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -1723,8 +1498,8 @@ export interface NamespacesCreateOrUpdateAuthorizationRuleResponse {
   /** The geo-location where the resource lives */
   location?: string;
 }
-export const NamespacesCreateOrUpdateAuthorizationRuleResponse =
-  /*@__PURE__*/ S.suspend(() =>
+export const GetNamespaceAuthorizationRuleResponse = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       id: S.optional(S.String),
       name: S.optional(S.String),
@@ -1733,9 +1508,34 @@ export const NamespacesCreateOrUpdateAuthorizationRuleResponse =
       properties: S.optional(SBAuthorizationRuleProperties),
       location: S.optional(S.String),
     }),
-  ).annotate({
-    identifier: "NamespacesCreateOrUpdateAuthorizationRuleResponse",
-  }) as any as S.Schema<NamespacesCreateOrUpdateAuthorizationRuleResponse>;
+).annotate({
+  identifier: "GetNamespaceAuthorizationRuleResponse",
+}) as any as S.Schema<GetNamespaceAuthorizationRuleResponse>;
+
+export interface GetNamespaceNetworkRuleSetRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+}
+export const GetNamespaceNetworkRuleSetRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    namespaceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/networkRuleSets/default",
+      code: 200,
+      apiVersion: "2026-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetNamespaceNetworkRuleSetRequest",
+}) as any as S.Schema<GetNamespaceNetworkRuleSetRequest>;
 
 /** Default Action for Network Rule Set */
 export type DefaultAction = "Allow" | "Deny";
@@ -1840,36 +1640,7 @@ export const NetworkRuleSetProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "NetworkRuleSetProperties",
 }) as any as S.Schema<NetworkRuleSetProperties>;
 
-export interface NamespacesCreateOrUpdateNetworkRuleSetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-  /** NetworkRuleSet properties */
-  properties?: NetworkRuleSetProperties;
-}
-export const NamespacesCreateOrUpdateNetworkRuleSetRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      namespaceName: S.String.pipe(T.Label()),
-      properties: S.optional(NetworkRuleSetProperties),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/networkRuleSets/default",
-        code: 200,
-        apiVersion: "2026-01-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "NamespacesCreateOrUpdateNetworkRuleSetRequest",
-  }) as any as S.Schema<NamespacesCreateOrUpdateNetworkRuleSetRequest>;
-
-export interface NamespacesCreateOrUpdateNetworkRuleSetResponse {
+export interface GetNamespaceNetworkRuleSetResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -1883,303 +1654,7 @@ export interface NamespacesCreateOrUpdateNetworkRuleSetResponse {
   /** The geo-location where the resource lives */
   location?: string;
 }
-export const NamespacesCreateOrUpdateNetworkRuleSetResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(NetworkRuleSetProperties),
-      location: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "NamespacesCreateOrUpdateNetworkRuleSetResponse",
-  }) as any as S.Schema<NamespacesCreateOrUpdateNetworkRuleSetResponse>;
-
-export interface NamespacesDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-}
-export const NamespacesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    namespaceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}",
-      code: 200,
-      apiVersion: "2026-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "NamespacesDeleteRequest",
-}) as any as S.Schema<NamespacesDeleteRequest>;
-
-export interface NamespacesDeleteResponse {}
-export const NamespacesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "NamespacesDeleteResponse",
-}) as any as S.Schema<NamespacesDeleteResponse>;
-
-export interface NamespacesDeleteAuthorizationRuleRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-  /** The authorization rule name. */
-  authorizationRuleName: string;
-}
-export const NamespacesDeleteAuthorizationRuleRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      namespaceName: S.String.pipe(T.Label()),
-      authorizationRuleName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/AuthorizationRules/{authorizationRuleName}",
-        code: 200,
-        apiVersion: "2026-01-01",
-      }),
-    ),
-).annotate({
-  identifier: "NamespacesDeleteAuthorizationRuleRequest",
-}) as any as S.Schema<NamespacesDeleteAuthorizationRuleRequest>;
-
-export interface NamespacesDeleteAuthorizationRuleResponse {}
-export const NamespacesDeleteAuthorizationRuleResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "NamespacesDeleteAuthorizationRuleResponse",
-  }) as any as S.Schema<NamespacesDeleteAuthorizationRuleResponse>;
-
-export interface FailOverProperties {
-  /** Query parameter for the new primary location after failover. */
-  primaryLocation?: string;
-  /** If Force is false then graceful failover is attempted after ensuring no data loss. If Force flag is set to true, Forced failover is attempted with possible data loss. */
-  force?: boolean;
-}
-export const FailOverProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    primaryLocation: S.optional(S.String),
-    force: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "FailOverProperties",
-}) as any as S.Schema<FailOverProperties>;
-
-export interface NamespacesFailoverRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-  properties?: FailOverProperties;
-}
-export const NamespacesFailoverRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    namespaceName: S.String.pipe(T.Label()),
-    properties: S.optional(FailOverProperties),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/failover",
-      code: 200,
-      apiVersion: "2026-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "NamespacesFailoverRequest",
-}) as any as S.Schema<NamespacesFailoverRequest>;
-
-export interface NamespacesFailoverResponse {}
-export const NamespacesFailoverResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "NamespacesFailoverResponse",
-}) as any as S.Schema<NamespacesFailoverResponse>;
-
-export interface NamespacesGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-}
-export const NamespacesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    namespaceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}",
-      code: 200,
-      apiVersion: "2026-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "NamespacesGetRequest",
-}) as any as S.Schema<NamespacesGetRequest>;
-
-/** Resource tags. */
-export type NamespacesGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const NamespacesGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<NamespacesGetResponseTagsMap>;
-
-export interface NamespacesGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: NamespacesGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Properties of the namespace. */
-  properties?: SBNamespaceProperties;
-  /** Properties of SKU */
-  sku?: SBSku;
-  /** Properties of BYOK Identity description */
-  identity?: Identity;
-}
-export const NamespacesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(NamespacesGetResponseTagsMap),
-    location: S.String,
-    properties: S.optional(SBNamespaceProperties),
-    sku: S.optional(SBSku),
-    identity: S.optional(Identity),
-  }),
-).annotate({
-  identifier: "NamespacesGetResponse",
-}) as any as S.Schema<NamespacesGetResponse>;
-
-export interface NamespacesGetAuthorizationRuleRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-  /** The authorization rule name. */
-  authorizationRuleName: string;
-}
-export const NamespacesGetAuthorizationRuleRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      namespaceName: S.String.pipe(T.Label()),
-      authorizationRuleName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/AuthorizationRules/{authorizationRuleName}",
-        code: 200,
-        apiVersion: "2026-01-01",
-      }),
-    ),
-).annotate({
-  identifier: "NamespacesGetAuthorizationRuleRequest",
-}) as any as S.Schema<NamespacesGetAuthorizationRuleRequest>;
-
-export interface NamespacesGetAuthorizationRuleResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** AuthorizationRule properties. */
-  properties?: SBAuthorizationRuleProperties;
-  /** The geo-location where the resource lives */
-  location?: string;
-}
-export const NamespacesGetAuthorizationRuleResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(SBAuthorizationRuleProperties),
-      location: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "NamespacesGetAuthorizationRuleResponse",
-}) as any as S.Schema<NamespacesGetAuthorizationRuleResponse>;
-
-export interface NamespacesGetNetworkRuleSetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-}
-export const NamespacesGetNetworkRuleSetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    namespaceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/networkRuleSets/default",
-      code: 200,
-      apiVersion: "2026-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "NamespacesGetNetworkRuleSetRequest",
-}) as any as S.Schema<NamespacesGetNetworkRuleSetRequest>;
-
-export interface NamespacesGetNetworkRuleSetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** NetworkRuleSet properties */
-  properties?: NetworkRuleSetProperties;
-  /** The geo-location where the resource lives */
-  location?: string;
-}
-export const NamespacesGetNetworkRuleSetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetNamespaceNetworkRuleSetResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -2189,432 +1664,38 @@ export const NamespacesGetNetworkRuleSetResponse = /*@__PURE__*/ S.suspend(() =>
     location: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "NamespacesGetNetworkRuleSetResponse",
-}) as any as S.Schema<NamespacesGetNetworkRuleSetResponse>;
+  identifier: "GetNamespaceNetworkRuleSetResponse",
+}) as any as S.Schema<GetNamespaceNetworkRuleSetResponse>;
 
-export interface NamespacesListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-}
-export const NamespacesListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ServiceBus/namespaces",
-      code: 200,
-      apiVersion: "2026-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "NamespacesListRequest",
-}) as any as S.Schema<NamespacesListRequest>;
-
-/** Resource tags. */
-export type SBNamespaceTagsMap = { [key: string]: string | undefined };
-export const SBNamespaceTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<SBNamespaceTagsMap>;
-
-/** Description of a namespace resource. */
-export interface SBNamespace {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: SBNamespaceTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Properties of the namespace. */
-  properties?: SBNamespaceProperties;
-  /** Properties of SKU */
-  sku?: SBSku;
-  /** Properties of BYOK Identity description */
-  identity?: Identity;
-}
-export const SBNamespace = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(SBNamespaceTagsMap),
-    location: S.String,
-    properties: S.optional(SBNamespaceProperties),
-    sku: S.optional(SBSku),
-    identity: S.optional(Identity),
-  }),
-).annotate({ identifier: "SBNamespace" }) as any as S.Schema<SBNamespace>;
-
-/** The SBNamespace items on this page */
-export type SBNamespaceListResultValueList = Array<SBNamespace>;
-export const SBNamespaceListResultValueList = /*@__PURE__*/ S.Array(
-  SBNamespace,
-) as any as S.Schema<SBNamespaceListResultValueList>;
-
-/** The response of a SBNamespace list operation. */
-export interface SBNamespaceListResult {
-  /** The SBNamespace items on this page */
-  value: SBNamespaceListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const SBNamespaceListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: SBNamespaceListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SBNamespaceListResult",
-}) as any as S.Schema<SBNamespaceListResult>;
-
-export interface NamespacesListAuthorizationRulesRequest {
+export interface GetNetworkSecurityPerimeterConfigurationResourceAssociationNameRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The namespace name */
   namespaceName: string;
+  /** The ResourceAssociation Name */
+  resourceAssociationName: string;
 }
-export const NamespacesListAuthorizationRulesRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      namespaceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/AuthorizationRules",
-        code: 200,
-        apiVersion: "2026-01-01",
-      }),
-    ),
-).annotate({
-  identifier: "NamespacesListAuthorizationRulesRequest",
-}) as any as S.Schema<NamespacesListAuthorizationRulesRequest>;
-
-export interface NamespacesListByResourceGroupRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-}
-export const NamespacesListByResourceGroupRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces",
-        code: 200,
-        apiVersion: "2026-01-01",
-      }),
-    ),
-).annotate({
-  identifier: "NamespacesListByResourceGroupRequest",
-}) as any as S.Schema<NamespacesListByResourceGroupRequest>;
-
-export interface NamespacesListKeysRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-  /** The authorization rule name. */
-  authorizationRuleName: string;
-}
-export const NamespacesListKeysRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    namespaceName: S.String.pipe(T.Label()),
-    authorizationRuleName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/AuthorizationRules/{authorizationRuleName}/listKeys",
-      code: 200,
-      apiVersion: "2026-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "NamespacesListKeysRequest",
-}) as any as S.Schema<NamespacesListKeysRequest>;
-
-export interface NamespacesListNetworkRuleSetsRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-}
-export const NamespacesListNetworkRuleSetsRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      namespaceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/networkRuleSets",
-        code: 200,
-        apiVersion: "2026-01-01",
-      }),
-    ),
-).annotate({
-  identifier: "NamespacesListNetworkRuleSetsRequest",
-}) as any as S.Schema<NamespacesListNetworkRuleSetsRequest>;
-
-/** Description of NetworkRuleSet resource. */
-export interface NetworkRuleSet {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** NetworkRuleSet properties */
-  properties?: NetworkRuleSetProperties;
-  /** The geo-location where the resource lives */
-  location?: string;
-}
-export const NetworkRuleSet = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(NetworkRuleSetProperties),
-    location: S.optional(S.String),
-  }),
-).annotate({ identifier: "NetworkRuleSet" }) as any as S.Schema<NetworkRuleSet>;
-
-/** The NetworkRuleSet items on this page */
-export type NetworkRuleSetListResultValueList = Array<NetworkRuleSet>;
-export const NetworkRuleSetListResultValueList = /*@__PURE__*/ S.Array(
-  NetworkRuleSet,
-) as any as S.Schema<NetworkRuleSetListResultValueList>;
-
-/** The response of a NetworkRuleSet list operation. */
-export interface NetworkRuleSetListResult {
-  /** The NetworkRuleSet items on this page */
-  value: NetworkRuleSetListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const NetworkRuleSetListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: NetworkRuleSetListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "NetworkRuleSetListResult",
-}) as any as S.Schema<NetworkRuleSetListResult>;
-
-/** The access key to regenerate. */
-export type KeyType = "PrimaryKey" | "SecondaryKey";
-export const KeyType = /*@__PURE__*/ S.String;
-
-export interface NamespacesRegenerateKeysRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-  /** The authorization rule name. */
-  authorizationRuleName: string;
-  /** The access key to regenerate. */
-  keyType: KeyType | (string & {});
-  /** Optional, if the key value provided, is reset for KeyType value or autogenerate Key value set for keyType */
-  key?: string;
-}
-export const NamespacesRegenerateKeysRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    namespaceName: S.String.pipe(T.Label()),
-    authorizationRuleName: S.String.pipe(T.Label()),
-    keyType: KeyType,
-    key: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/AuthorizationRules/{authorizationRuleName}/regenerateKeys",
-      code: 200,
-      apiVersion: "2026-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "NamespacesRegenerateKeysRequest",
-}) as any as S.Schema<NamespacesRegenerateKeysRequest>;
-
-/** Resource tags */
-export type NamespacesUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const NamespacesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<NamespacesUpdateRequestTagsMap>;
-
-/** List of private endpoint connections. */
-export type SBNamespaceUpdatePropertiesInputPrivateEndpointConnectionsList =
-  Array<PrivateEndpointConnectionInput>;
-export const SBNamespaceUpdatePropertiesInputPrivateEndpointConnectionsList =
-  /*@__PURE__*/ S.Array(
-    PrivateEndpointConnectionInput,
-  ) as any as S.Schema<SBNamespaceUpdatePropertiesInputPrivateEndpointConnectionsList>;
-
-/** Properties of the namespace. */
-export interface SBNamespaceUpdatePropertiesInput {
-  /** Properties of BYOK Encryption description */
-  encryption?: Encryption;
-  /** List of private endpoint connections. */
-  privateEndpointConnections?: SBNamespaceUpdatePropertiesInputPrivateEndpointConnectionsList;
-  /** This property disables SAS authentication for the Service Bus namespace. */
-  disableLocalAuth?: boolean;
-  /** Alternate name for namespace */
-  alternateName?: string;
-}
-export const SBNamespaceUpdatePropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    encryption: S.optional(Encryption),
-    privateEndpointConnections: S.optional(
-      SBNamespaceUpdatePropertiesInputPrivateEndpointConnectionsList,
-    ),
-    disableLocalAuth: S.optional(S.Boolean),
-    alternateName: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SBNamespaceUpdatePropertiesInput",
-}) as any as S.Schema<SBNamespaceUpdatePropertiesInput>;
-
-export interface NamespacesUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-  /** Resource location */
-  location?: string;
-  /** Resource tags */
-  tags?: NamespacesUpdateRequestTagsMap;
-  /** Properties of SKU */
-  sku?: SBSku;
-  /** Properties of the namespace. */
-  properties?: SBNamespaceUpdatePropertiesInput;
-  /** Properties of BYOK Identity description */
-  identity?: IdentityInput;
-}
-export const NamespacesUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    namespaceName: S.String.pipe(T.Label()),
-    location: S.optional(S.String),
-    tags: S.optional(NamespacesUpdateRequestTagsMap),
-    sku: S.optional(SBSku),
-    properties: S.optional(SBNamespaceUpdatePropertiesInput),
-    identity: S.optional(IdentityInput),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}",
-      code: 200,
-      apiVersion: "2026-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "NamespacesUpdateRequest",
-}) as any as S.Schema<NamespacesUpdateRequest>;
-
-/** Resource tags. */
-export type NamespacesUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const NamespacesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<NamespacesUpdateResponseTagsMap>;
-
-export interface NamespacesUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: NamespacesUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Properties of the namespace. */
-  properties?: SBNamespaceProperties;
-  /** Properties of SKU */
-  sku?: SBSku;
-  /** Properties of BYOK Identity description */
-  identity?: Identity;
-}
-export const NamespacesUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(NamespacesUpdateResponseTagsMap),
-    location: S.String,
-    properties: S.optional(SBNamespaceProperties),
-    sku: S.optional(SBSku),
-    identity: S.optional(Identity),
-  }),
-).annotate({
-  identifier: "NamespacesUpdateResponse",
-}) as any as S.Schema<NamespacesUpdateResponse>;
-
-export interface NetworkSecurityPerimeterConfigurationListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-}
-export const NetworkSecurityPerimeterConfigurationListRequest =
+export const GetNetworkSecurityPerimeterConfigurationResourceAssociationNameRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       namespaceName: S.String.pipe(T.Label()),
+      resourceAssociationName: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
         method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/networkSecurityPerimeterConfigurations",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/networkSecurityPerimeterConfigurations/{resourceAssociationName}",
         code: 200,
         apiVersion: "2026-01-01",
       }),
     ),
   ).annotate({
-    identifier: "NetworkSecurityPerimeterConfigurationListRequest",
-  }) as any as S.Schema<NetworkSecurityPerimeterConfigurationListRequest>;
+    identifier:
+      "GetNetworkSecurityPerimeterConfigurationResourceAssociationNameRequest",
+  }) as any as S.Schema<GetNetworkSecurityPerimeterConfigurationResourceAssociationNameRequest>;
 
 /** Provisioning state of NetworkSecurityPerimeter configuration propagation */
 export type NetworkSecurityPerimeterConfigurationProvisioningState =
@@ -2900,8 +1981,7 @@ export const NetworkSecurityPerimeterConfigurationProperties =
     identifier: "NetworkSecurityPerimeterConfigurationProperties",
   }) as any as S.Schema<NetworkSecurityPerimeterConfigurationProperties>;
 
-/** Network Security Perimeter related configurations of a given namespace */
-export interface NetworkSecurityPerimeterConfiguration {
+export interface GetNetworkSecurityPerimeterConfigurationResourceAssociationNameResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -2915,90 +1995,7 @@ export interface NetworkSecurityPerimeterConfiguration {
   /** The geo-location where the resource lives */
   location?: string;
 }
-export const NetworkSecurityPerimeterConfiguration = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(NetworkSecurityPerimeterConfigurationProperties),
-      location: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "NetworkSecurityPerimeterConfiguration",
-}) as any as S.Schema<NetworkSecurityPerimeterConfiguration>;
-
-/** The NetworkSecurityPerimeterConfiguration items on this page */
-export type NetworkSecurityPerimeterConfigurationListValueList =
-  Array<NetworkSecurityPerimeterConfiguration>;
-export const NetworkSecurityPerimeterConfigurationListValueList =
-  /*@__PURE__*/ S.Array(
-    NetworkSecurityPerimeterConfiguration,
-  ) as any as S.Schema<NetworkSecurityPerimeterConfigurationListValueList>;
-
-/** Result of the List NetworkSecurityPerimeterConfiguration operation. */
-export interface NetworkSecurityPerimeterConfigurationList {
-  /** The NetworkSecurityPerimeterConfiguration items on this page */
-  value: NetworkSecurityPerimeterConfigurationListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const NetworkSecurityPerimeterConfigurationList =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      value: NetworkSecurityPerimeterConfigurationListValueList,
-      nextLink: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "NetworkSecurityPerimeterConfigurationList",
-  }) as any as S.Schema<NetworkSecurityPerimeterConfigurationList>;
-
-export interface NetworkSecurityPerimeterConfigurationsGetResourceAssociationNameRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-  /** The ResourceAssociation Name */
-  resourceAssociationName: string;
-}
-export const NetworkSecurityPerimeterConfigurationsGetResourceAssociationNameRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      namespaceName: S.String.pipe(T.Label()),
-      resourceAssociationName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/networkSecurityPerimeterConfigurations/{resourceAssociationName}",
-        code: 200,
-        apiVersion: "2026-01-01",
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "NetworkSecurityPerimeterConfigurationsGetResourceAssociationNameRequest",
-  }) as any as S.Schema<NetworkSecurityPerimeterConfigurationsGetResourceAssociationNameRequest>;
-
-export interface NetworkSecurityPerimeterConfigurationsGetResourceAssociationNameResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of the Network Security Perimeter Configuration */
-  properties?: NetworkSecurityPerimeterConfigurationProperties;
-  /** The geo-location where the resource lives */
-  location?: string;
-}
-export const NetworkSecurityPerimeterConfigurationsGetResourceAssociationNameResponse =
+export const GetNetworkSecurityPerimeterConfigurationResourceAssociationNameResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
@@ -3010,158 +2007,38 @@ export const NetworkSecurityPerimeterConfigurationsGetResourceAssociationNameRes
     }),
   ).annotate({
     identifier:
-      "NetworkSecurityPerimeterConfigurationsGetResourceAssociationNameResponse",
-  }) as any as S.Schema<NetworkSecurityPerimeterConfigurationsGetResourceAssociationNameResponse>;
+      "GetNetworkSecurityPerimeterConfigurationResourceAssociationNameResponse",
+  }) as any as S.Schema<GetNetworkSecurityPerimeterConfigurationResourceAssociationNameResponse>;
 
-export interface NetworkSecurityPerimeterConfigurationsReconcileRequest {
+export interface GetPrivateEndpointConnectionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The namespace name */
   namespaceName: string;
-  /** The ResourceAssociation Name */
-  resourceAssociationName: string;
+  /** The PrivateEndpointConnection name */
+  privateEndpointConnectionName: string;
 }
-export const NetworkSecurityPerimeterConfigurationsReconcileRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      namespaceName: S.String.pipe(T.Label()),
-      resourceAssociationName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/networkSecurityPerimeterConfigurations/{resourceAssociationName}/reconcile",
-        code: 200,
-        apiVersion: "2026-01-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "NetworkSecurityPerimeterConfigurationsReconcileRequest",
-  }) as any as S.Schema<NetworkSecurityPerimeterConfigurationsReconcileRequest>;
-
-export interface NetworkSecurityPerimeterConfigurationsReconcileResponse {}
-export const NetworkSecurityPerimeterConfigurationsReconcileResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "NetworkSecurityPerimeterConfigurationsReconcileResponse",
-  }) as any as S.Schema<NetworkSecurityPerimeterConfigurationsReconcileResponse>;
-
-export interface OperationsListRequest {}
-export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
+export const GetPrivateEndpointConnectionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    namespaceName: S.String.pipe(T.Label()),
+    privateEndpointConnectionName: S.String.pipe(T.Label()),
+  }).pipe(
     T.Http({
       method: "GET",
-      uri: "/providers/Microsoft.ServiceBus/operations",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/privateEndpointConnections/{privateEndpointConnectionName}",
       code: 200,
       apiVersion: "2026-01-01",
     }),
   ),
 ).annotate({
-  identifier: "OperationsListRequest",
-}) as any as S.Schema<OperationsListRequest>;
+  identifier: "GetPrivateEndpointConnectionRequest",
+}) as any as S.Schema<GetPrivateEndpointConnectionRequest>;
 
-/** Operation display payload */
-export interface OperationDisplay {
-  /** Resource provider of the operation */
-  provider?: string;
-  /** Resource of the operation */
-  resource?: string;
-  /** Localized friendly name for the operation */
-  operation?: string;
-  /** Localized friendly description for the operation */
-  description?: string;
-}
-export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provider: S.optional(S.String),
-    resource: S.optional(S.String),
-    operation: S.optional(S.String),
-    description: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OperationDisplay",
-}) as any as S.Schema<OperationDisplay>;
-
-/** A Service Bus REST API operation */
-export interface Operation {
-  /** Operation name: {provider}/{resource}/{operation} */
-  name?: string;
-  /** Indicates whether the operation is a data action */
-  isDataAction?: boolean;
-  /** Display of the operation */
-  display?: OperationDisplay;
-  /** Origin of the operation */
-  origin?: string;
-  /** Properties of the operation */
-  properties?: unknown;
-}
-export const Operation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    isDataAction: S.optional(S.Boolean),
-    display: S.optional(OperationDisplay),
-    origin: S.optional(S.String),
-    properties: S.optional(S.Unknown),
-  }),
-).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
-
-/** The list of operations. */
-export type OperationListResultValueList = Array<Operation>;
-export const OperationListResultValueList = /*@__PURE__*/ S.Array(
-  Operation,
-) as any as S.Schema<OperationListResultValueList>;
-
-/** The list of available operations. */
-export interface OperationListResult {
-  /** The list of operations. */
-  value: OperationListResultValueList;
-  /** The URL to get the next set of results, if any. */
-  nextLink?: string;
-}
-export const OperationListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: OperationListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OperationListResult",
-}) as any as S.Schema<OperationListResult>;
-
-export interface PrivateEndpointConnectionsCreateOrUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-  /** The PrivateEndpointConnection name */
-  privateEndpointConnectionName: string;
-  /** Properties of the PrivateEndpointConnection. */
-  properties?: PrivateEndpointConnectionProperties;
-}
-export const PrivateEndpointConnectionsCreateOrUpdateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      namespaceName: S.String.pipe(T.Label()),
-      privateEndpointConnectionName: S.String.pipe(T.Label()),
-      properties: S.optional(PrivateEndpointConnectionProperties),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/privateEndpointConnections/{privateEndpointConnectionName}",
-        code: 200,
-        apiVersion: "2026-01-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "PrivateEndpointConnectionsCreateOrUpdateRequest",
-  }) as any as S.Schema<PrivateEndpointConnectionsCreateOrUpdateRequest>;
-
-export interface PrivateEndpointConnectionsCreateOrUpdateResponse {
+export interface GetPrivateEndpointConnectionResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -3175,100 +2052,7 @@ export interface PrivateEndpointConnectionsCreateOrUpdateResponse {
   /** The geo-location where the resource lives */
   location?: string;
 }
-export const PrivateEndpointConnectionsCreateOrUpdateResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(PrivateEndpointConnectionProperties),
-      location: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "PrivateEndpointConnectionsCreateOrUpdateResponse",
-  }) as any as S.Schema<PrivateEndpointConnectionsCreateOrUpdateResponse>;
-
-export interface PrivateEndpointConnectionsDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-  /** The PrivateEndpointConnection name */
-  privateEndpointConnectionName: string;
-}
-export const PrivateEndpointConnectionsDeleteRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      namespaceName: S.String.pipe(T.Label()),
-      privateEndpointConnectionName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/privateEndpointConnections/{privateEndpointConnectionName}",
-        code: 200,
-        apiVersion: "2026-01-01",
-      }),
-    ),
-).annotate({
-  identifier: "PrivateEndpointConnectionsDeleteRequest",
-}) as any as S.Schema<PrivateEndpointConnectionsDeleteRequest>;
-
-export interface PrivateEndpointConnectionsDeleteResponse {}
-export const PrivateEndpointConnectionsDeleteResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "PrivateEndpointConnectionsDeleteResponse",
-}) as any as S.Schema<PrivateEndpointConnectionsDeleteResponse>;
-
-export interface PrivateEndpointConnectionsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-  /** The PrivateEndpointConnection name */
-  privateEndpointConnectionName: string;
-}
-export const PrivateEndpointConnectionsGetRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      namespaceName: S.String.pipe(T.Label()),
-      privateEndpointConnectionName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/privateEndpointConnections/{privateEndpointConnectionName}",
-        code: 200,
-        apiVersion: "2026-01-01",
-      }),
-    ),
-).annotate({
-  identifier: "PrivateEndpointConnectionsGetRequest",
-}) as any as S.Schema<PrivateEndpointConnectionsGetRequest>;
-
-export interface PrivateEndpointConnectionsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of the PrivateEndpointConnection. */
-  properties?: PrivateEndpointConnectionProperties;
-  /** The geo-location where the resource lives */
-  location?: string;
-}
-export const PrivateEndpointConnectionsGetResponse = /*@__PURE__*/ S.suspend(
+export const GetPrivateEndpointConnectionResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
@@ -3279,10 +2063,10 @@ export const PrivateEndpointConnectionsGetResponse = /*@__PURE__*/ S.suspend(
       location: S.optional(S.String),
     }),
 ).annotate({
-  identifier: "PrivateEndpointConnectionsGetResponse",
-}) as any as S.Schema<PrivateEndpointConnectionsGetResponse>;
+  identifier: "GetPrivateEndpointConnectionResponse",
+}) as any as S.Schema<GetPrivateEndpointConnectionResponse>;
 
-export interface PrivateEndpointConnectionsListRequest {
+export interface GetPrivateLinkResourceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -3290,57 +2074,7 @@ export interface PrivateEndpointConnectionsListRequest {
   /** The namespace name */
   namespaceName: string;
 }
-export const PrivateEndpointConnectionsListRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      namespaceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/privateEndpointConnections",
-        code: 200,
-        apiVersion: "2026-01-01",
-      }),
-    ),
-).annotate({
-  identifier: "PrivateEndpointConnectionsListRequest",
-}) as any as S.Schema<PrivateEndpointConnectionsListRequest>;
-
-/** The PrivateEndpointConnection items on this page */
-export type PrivateEndpointConnectionListResultValueList =
-  Array<PrivateEndpointConnection>;
-export const PrivateEndpointConnectionListResultValueList =
-  /*@__PURE__*/ S.Array(
-    PrivateEndpointConnection,
-  ) as any as S.Schema<PrivateEndpointConnectionListResultValueList>;
-
-/** The response of a PrivateEndpointConnection list operation. */
-export interface PrivateEndpointConnectionListResult {
-  /** The PrivateEndpointConnection items on this page */
-  value: PrivateEndpointConnectionListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const PrivateEndpointConnectionListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: PrivateEndpointConnectionListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PrivateEndpointConnectionListResult",
-}) as any as S.Schema<PrivateEndpointConnectionListResult>;
-
-export interface PrivateLinkResourcesGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-}
-export const PrivateLinkResourcesGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetPrivateLinkResourceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -3354,8 +2088,8 @@ export const PrivateLinkResourcesGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "PrivateLinkResourcesGetRequest",
-}) as any as S.Schema<PrivateLinkResourcesGetRequest>;
+  identifier: "GetPrivateLinkResourceRequest",
+}) as any as S.Schema<GetPrivateLinkResourceRequest>;
 
 /** Required Members */
 export type PrivateLinkResourcePropertiesRequiredMembersList = Array<string>;
@@ -3438,81 +2172,7 @@ export const PrivateLinkResourcesListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "PrivateLinkResourcesListResult",
 }) as any as S.Schema<PrivateLinkResourcesListResult>;
 
-/** Entity status. */
-export type EntityStatus =
-  | "Active"
-  | "Disabled"
-  | "Restoring"
-  | "SendDisabled"
-  | "ReceiveDisabled"
-  | "Creating"
-  | "Deleting"
-  | "Renaming"
-  | "Unknown";
-export const EntityStatus = /*@__PURE__*/ S.String;
-
-/** The Queue Properties definition. */
-export interface SBQueuePropertiesInput {
-  /** ISO 8601 timespan duration of a peek-lock; that is, the amount of time that the message is locked for other receivers. The maximum value for LockDuration is 5 minutes; the default value is 1 minute. */
-  lockDuration?: string;
-  /** The maximum size of the queue in megabytes, which is the size of memory allocated for the queue. Default is 1024. */
-  maxSizeInMegabytes?: number;
-  /** Maximum size (in KB) of the message payload that can be accepted by the queue. This property is only used in Premium today and default is 1024. */
-  maxMessageSizeInKilobytes?: number;
-  /** A value indicating if this queue requires duplicate detection. */
-  requiresDuplicateDetection?: boolean;
-  /** A value that indicates whether the queue supports the concept of sessions. */
-  requiresSession?: boolean;
-  /** ISO 8601 default message timespan to live value. This is the duration after which the message expires, starting from when the message is sent to Service Bus. This is the default value used when TimeToLive is not set on a message itself. */
-  defaultMessageTimeToLive?: string;
-  /** A value that indicates whether this queue has dead letter support when a message expires. */
-  deadLetteringOnMessageExpiration?: boolean;
-  /** ISO 8601 timeSpan structure that defines the duration of the duplicate detection history. The default value is 10 minutes. */
-  duplicateDetectionHistoryTimeWindow?: string;
-  /** The maximum delivery count. A message is automatically deadlettered after this number of deliveries. default value is 10. */
-  maxDeliveryCount?: number;
-  /** Enumerates the possible values for the status of a messaging entity. */
-  status?: EntityStatus | (string & {});
-  /** Value that indicates whether server-side batched operations are enabled. */
-  enableBatchedOperations?: boolean;
-  /** ISO 8061 timeSpan idle interval after which the queue is automatically deleted. The minimum duration is 5 minutes. */
-  autoDeleteOnIdle?: string;
-  /** A value that indicates whether the queue is to be partitioned across multiple message brokers. */
-  enablePartitioning?: boolean;
-  /** A value that indicates whether Express Entities are enabled. An express queue holds a message in memory temporarily before writing it to persistent storage. */
-  enableExpress?: boolean;
-  /** Queue/Topic name to forward the messages */
-  forwardTo?: string;
-  /** Queue/Topic name to forward the Dead Letter message */
-  forwardDeadLetteredMessagesTo?: string;
-  /** Gets and Sets Metadata of User. */
-  userMetadata?: string;
-}
-export const SBQueuePropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    lockDuration: S.optional(S.String),
-    maxSizeInMegabytes: S.optional(S.Number),
-    maxMessageSizeInKilobytes: S.optional(S.Number),
-    requiresDuplicateDetection: S.optional(S.Boolean),
-    requiresSession: S.optional(S.Boolean),
-    defaultMessageTimeToLive: S.optional(S.String),
-    deadLetteringOnMessageExpiration: S.optional(S.Boolean),
-    duplicateDetectionHistoryTimeWindow: S.optional(S.String),
-    maxDeliveryCount: S.optional(S.Number),
-    status: S.optional(EntityStatus),
-    enableBatchedOperations: S.optional(S.Boolean),
-    autoDeleteOnIdle: S.optional(S.String),
-    enablePartitioning: S.optional(S.Boolean),
-    enableExpress: S.optional(S.Boolean),
-    forwardTo: S.optional(S.String),
-    forwardDeadLetteredMessagesTo: S.optional(S.String),
-    userMetadata: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SBQueuePropertiesInput",
-}) as any as S.Schema<SBQueuePropertiesInput>;
-
-export interface QueuesCreateOrUpdateRequest {
+export interface GetQueueRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -3521,27 +2181,24 @@ export interface QueuesCreateOrUpdateRequest {
   namespaceName: string;
   /** The queue name. */
   queueName: string;
-  /** Queue Properties */
-  properties?: SBQueuePropertiesInput;
 }
-export const QueuesCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetQueueRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     namespaceName: S.String.pipe(T.Label()),
     queueName: S.String.pipe(T.Label()),
-    properties: S.optional(SBQueuePropertiesInput),
   }).pipe(
     T.Http({
-      method: "PUT",
+      method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/queues/{queueName}",
       code: 200,
       apiVersion: "2026-01-01",
     }),
   ),
 ).annotate({
-  identifier: "QueuesCreateOrUpdateRequest",
-}) as any as S.Schema<QueuesCreateOrUpdateRequest>;
+  identifier: "GetQueueRequest",
+}) as any as S.Schema<GetQueueRequest>;
 
 /** Message Count Details. */
 export interface MessageCountDetails {
@@ -3567,6 +2224,19 @@ export const MessageCountDetails = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "MessageCountDetails",
 }) as any as S.Schema<MessageCountDetails>;
+
+/** Entity status. */
+export type EntityStatus =
+  | "Active"
+  | "Disabled"
+  | "Restoring"
+  | "SendDisabled"
+  | "ReceiveDisabled"
+  | "Creating"
+  | "Deleting"
+  | "Renaming"
+  | "Unknown";
+export const EntityStatus = /*@__PURE__*/ S.String;
 
 /** The Queue Properties definition. */
 export interface SBQueueProperties {
@@ -3647,7 +2317,7 @@ export const SBQueueProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "SBQueueProperties",
 }) as any as S.Schema<SBQueueProperties>;
 
-export interface QueuesCreateOrUpdateResponse {
+export interface GetQueueResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -3661,7 +2331,7 @@ export interface QueuesCreateOrUpdateResponse {
   /** The geo-location where the resource lives */
   location?: string;
 }
-export const QueuesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetQueueResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -3671,108 +2341,10 @@ export const QueuesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
     location: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "QueuesCreateOrUpdateResponse",
-}) as any as S.Schema<QueuesCreateOrUpdateResponse>;
+  identifier: "GetQueueResponse",
+}) as any as S.Schema<GetQueueResponse>;
 
-export interface QueuesCreateOrUpdateAuthorizationRuleRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-  /** The queue name. */
-  queueName: string;
-  /** The authorization rule name. */
-  authorizationRuleName: string;
-  /** AuthorizationRule properties. */
-  properties?: SBAuthorizationRuleProperties;
-}
-export const QueuesCreateOrUpdateAuthorizationRuleRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      namespaceName: S.String.pipe(T.Label()),
-      queueName: S.String.pipe(T.Label()),
-      authorizationRuleName: S.String.pipe(T.Label()),
-      properties: S.optional(SBAuthorizationRuleProperties),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/queues/{queueName}/authorizationRules/{authorizationRuleName}",
-        code: 200,
-        apiVersion: "2026-01-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "QueuesCreateOrUpdateAuthorizationRuleRequest",
-  }) as any as S.Schema<QueuesCreateOrUpdateAuthorizationRuleRequest>;
-
-export interface QueuesCreateOrUpdateAuthorizationRuleResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** AuthorizationRule properties. */
-  properties?: SBAuthorizationRuleProperties;
-  /** The geo-location where the resource lives */
-  location?: string;
-}
-export const QueuesCreateOrUpdateAuthorizationRuleResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(SBAuthorizationRuleProperties),
-      location: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "QueuesCreateOrUpdateAuthorizationRuleResponse",
-  }) as any as S.Schema<QueuesCreateOrUpdateAuthorizationRuleResponse>;
-
-export interface QueuesDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-  /** The queue name. */
-  queueName: string;
-}
-export const QueuesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    namespaceName: S.String.pipe(T.Label()),
-    queueName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/queues/{queueName}",
-      code: 200,
-      apiVersion: "2026-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "QueuesDeleteRequest",
-}) as any as S.Schema<QueuesDeleteRequest>;
-
-export interface QueuesDeleteResponse {}
-export const QueuesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "QueuesDeleteResponse",
-}) as any as S.Schema<QueuesDeleteResponse>;
-
-export interface QueuesDeleteAuthorizationRuleRequest {
+export interface GetQueueAuthorizationRuleRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -3784,101 +2356,7 @@ export interface QueuesDeleteAuthorizationRuleRequest {
   /** The authorization rule name. */
   authorizationRuleName: string;
 }
-export const QueuesDeleteAuthorizationRuleRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      namespaceName: S.String.pipe(T.Label()),
-      queueName: S.String.pipe(T.Label()),
-      authorizationRuleName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/queues/{queueName}/authorizationRules/{authorizationRuleName}",
-        code: 200,
-        apiVersion: "2026-01-01",
-      }),
-    ),
-).annotate({
-  identifier: "QueuesDeleteAuthorizationRuleRequest",
-}) as any as S.Schema<QueuesDeleteAuthorizationRuleRequest>;
-
-export interface QueuesDeleteAuthorizationRuleResponse {}
-export const QueuesDeleteAuthorizationRuleResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "QueuesDeleteAuthorizationRuleResponse",
-}) as any as S.Schema<QueuesDeleteAuthorizationRuleResponse>;
-
-export interface QueuesGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-  /** The queue name. */
-  queueName: string;
-}
-export const QueuesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    namespaceName: S.String.pipe(T.Label()),
-    queueName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/queues/{queueName}",
-      code: 200,
-      apiVersion: "2026-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "QueuesGetRequest",
-}) as any as S.Schema<QueuesGetRequest>;
-
-export interface QueuesGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Queue Properties */
-  properties?: SBQueueProperties;
-  /** The geo-location where the resource lives */
-  location?: string;
-}
-export const QueuesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(SBQueueProperties),
-    location: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "QueuesGetResponse",
-}) as any as S.Schema<QueuesGetResponse>;
-
-export interface QueuesGetAuthorizationRuleRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-  /** The queue name. */
-  queueName: string;
-  /** The authorization rule name. */
-  authorizationRuleName: string;
-}
-export const QueuesGetAuthorizationRuleRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetQueueAuthorizationRuleRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -3894,10 +2372,10 @@ export const QueuesGetAuthorizationRuleRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "QueuesGetAuthorizationRuleRequest",
-}) as any as S.Schema<QueuesGetAuthorizationRuleRequest>;
+  identifier: "GetQueueAuthorizationRuleRequest",
+}) as any as S.Schema<GetQueueAuthorizationRuleRequest>;
 
-export interface QueuesGetAuthorizationRuleResponse {
+export interface GetQueueAuthorizationRuleResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -3911,7 +2389,7 @@ export interface QueuesGetAuthorizationRuleResponse {
   /** The geo-location where the resource lives */
   location?: string;
 }
-export const QueuesGetAuthorizationRuleResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetQueueAuthorizationRuleResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -3921,183 +2399,40 @@ export const QueuesGetAuthorizationRuleResponse = /*@__PURE__*/ S.suspend(() =>
     location: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "QueuesGetAuthorizationRuleResponse",
-}) as any as S.Schema<QueuesGetAuthorizationRuleResponse>;
+  identifier: "GetQueueAuthorizationRuleResponse",
+}) as any as S.Schema<GetQueueAuthorizationRuleResponse>;
 
-export interface QueuesListAuthorizationRulesRequest {
+export interface GetRuleRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The namespace name */
   namespaceName: string;
-  /** The queue name. */
-  queueName: string;
+  /** The topic name. */
+  topicName: string;
+  /** The subscription name. */
+  subscriptionName: string;
+  /** The rule name. */
+  ruleName: string;
 }
-export const QueuesListAuthorizationRulesRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetRuleRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     namespaceName: S.String.pipe(T.Label()),
-    queueName: S.String.pipe(T.Label()),
+    topicName: S.String.pipe(T.Label()),
+    subscriptionName: S.String.pipe(T.Label()),
+    ruleName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/queues/{queueName}/authorizationRules",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/topics/{topicName}/subscriptions/{subscriptionName}/rules/{ruleName}",
       code: 200,
       apiVersion: "2026-01-01",
     }),
   ),
-).annotate({
-  identifier: "QueuesListAuthorizationRulesRequest",
-}) as any as S.Schema<QueuesListAuthorizationRulesRequest>;
-
-export interface QueuesListByNamespaceRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-  /** Skip is only used if a previous operation returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a skip parameter that specifies a starting point to use for subsequent calls. */
-  _skip?: number;
-  /** May be used to limit the number of results to the most recent N usageDetails. */
-  _top?: number;
-}
-export const QueuesListByNamespaceRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    namespaceName: S.String.pipe(T.Label()),
-    _skip: S.optional(S.Number.pipe(T.Query("$skip"))),
-    _top: S.optional(S.Number.pipe(T.Query("$top"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/queues",
-      code: 200,
-      apiVersion: "2026-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "QueuesListByNamespaceRequest",
-}) as any as S.Schema<QueuesListByNamespaceRequest>;
-
-/** Description of queue Resource. */
-export interface SBQueue {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Queue Properties */
-  properties?: SBQueueProperties;
-  /** The geo-location where the resource lives */
-  location?: string;
-}
-export const SBQueue = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(SBQueueProperties),
-    location: S.optional(S.String),
-  }),
-).annotate({ identifier: "SBQueue" }) as any as S.Schema<SBQueue>;
-
-/** The SBQueue items on this page */
-export type SBQueueListResultValueList = Array<SBQueue>;
-export const SBQueueListResultValueList = /*@__PURE__*/ S.Array(
-  SBQueue,
-) as any as S.Schema<SBQueueListResultValueList>;
-
-/** The response of a SBQueue list operation. */
-export interface SBQueueListResult {
-  /** The SBQueue items on this page */
-  value: SBQueueListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const SBQueueListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: SBQueueListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SBQueueListResult",
-}) as any as S.Schema<SBQueueListResult>;
-
-export interface QueuesListKeysRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-  /** The queue name. */
-  queueName: string;
-  /** The authorization rule name. */
-  authorizationRuleName: string;
-}
-export const QueuesListKeysRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    namespaceName: S.String.pipe(T.Label()),
-    queueName: S.String.pipe(T.Label()),
-    authorizationRuleName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/queues/{queueName}/authorizationRules/{authorizationRuleName}/listKeys",
-      code: 200,
-      apiVersion: "2026-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "QueuesListKeysRequest",
-}) as any as S.Schema<QueuesListKeysRequest>;
-
-export interface QueuesRegenerateKeysRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-  /** The queue name. */
-  queueName: string;
-  /** The authorization rule name. */
-  authorizationRuleName: string;
-  /** The access key to regenerate. */
-  keyType: KeyType | (string & {});
-  /** Optional, if the key value provided, is reset for KeyType value or autogenerate Key value set for keyType */
-  key?: string;
-}
-export const QueuesRegenerateKeysRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    namespaceName: S.String.pipe(T.Label()),
-    queueName: S.String.pipe(T.Label()),
-    authorizationRuleName: S.String.pipe(T.Label()),
-    keyType: KeyType,
-    key: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/queues/{queueName}/authorizationRules/{authorizationRuleName}/regenerateKeys",
-      code: 200,
-      apiVersion: "2026-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "QueuesRegenerateKeysRequest",
-}) as any as S.Schema<QueuesRegenerateKeysRequest>;
+).annotate({ identifier: "GetRuleRequest" }) as any as S.Schema<GetRuleRequest>;
 
 /** Represents the filter actions which are allowed for the transformation of a message that have been matched by a filter expression. */
 export interface Action {
@@ -4206,6 +2541,2413 @@ export const Ruleproperties = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "Ruleproperties" }) as any as S.Schema<Ruleproperties>;
 
+export interface GetRuleResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of Rule resource */
+  properties?: Ruleproperties;
+  /** The geo-location where the resource lives */
+  location?: string;
+}
+export const GetRuleResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(Ruleproperties),
+    location: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetRuleResponse",
+}) as any as S.Schema<GetRuleResponse>;
+
+export interface GetSubscriptionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+  /** The topic name. */
+  topicName: string;
+  /** The subscription name. */
+  subscriptionName: string;
+}
+export const GetSubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    namespaceName: S.String.pipe(T.Label()),
+    topicName: S.String.pipe(T.Label()),
+    subscriptionName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/topics/{topicName}/subscriptions/{subscriptionName}",
+      code: 200,
+      apiVersion: "2026-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetSubscriptionRequest",
+}) as any as S.Schema<GetSubscriptionRequest>;
+
+/** Properties specific to client affine subscriptions. */
+export interface SBClientAffineProperties {
+  /** Indicates the Client ID of the application that created the client-affine subscription. */
+  clientId?: string;
+  /** For client-affine subscriptions, this value indicates whether the subscription is durable or not. */
+  isDurable?: boolean;
+  /** For client-affine subscriptions, this value indicates whether the subscription is shared or not. */
+  isShared?: boolean;
+}
+export const SBClientAffineProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    clientId: S.optional(S.String),
+    isDurable: S.optional(S.Boolean),
+    isShared: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "SBClientAffineProperties",
+}) as any as S.Schema<SBClientAffineProperties>;
+
+/** Description of Subscription Resource. */
+export interface SBSubscriptionProperties {
+  /** Number of messages. */
+  messageCount?: number;
+  /** Exact time the message was created. */
+  createdAt?: string;
+  /** Last time there was a receive request to this subscription. */
+  accessedAt?: string;
+  /** The exact time the message was updated. */
+  updatedAt?: string;
+  /** Message count details */
+  countDetails?: MessageCountDetails;
+  /** ISO 8061 lock duration timespan for the subscription. The default value is 1 minute. */
+  lockDuration?: string;
+  /** Value indicating if a subscription supports the concept of sessions. */
+  requiresSession?: boolean;
+  /** ISO 8061 Default message timespan to live value. This is the duration after which the message expires, starting from when the message is sent to Service Bus. This is the default value used when TimeToLive is not set on a message itself. */
+  defaultMessageTimeToLive?: string;
+  /** Value that indicates whether a subscription has dead letter support on filter evaluation exceptions. */
+  deadLetteringOnFilterEvaluationExceptions?: boolean;
+  /** Value that indicates whether a subscription has dead letter support when a message expires. */
+  deadLetteringOnMessageExpiration?: boolean;
+  /** ISO 8601 timeSpan structure that defines the duration of the duplicate detection history. The default value is 10 minutes. */
+  duplicateDetectionHistoryTimeWindow?: string;
+  /** Number of maximum deliveries. */
+  maxDeliveryCount?: number;
+  /** Enumerates the possible values for the status of a messaging entity. */
+  status?: EntityStatus;
+  /** Value that indicates whether server-side batched operations are enabled. */
+  enableBatchedOperations?: boolean;
+  /** ISO 8061 timeSpan idle interval after which the topic is automatically deleted. The minimum duration is 5 minutes. */
+  autoDeleteOnIdle?: string;
+  /** Queue/Topic name to forward the messages */
+  forwardTo?: string;
+  /** Queue/Topic name to forward the Dead Letter message */
+  forwardDeadLetteredMessagesTo?: string;
+  /** Value that indicates whether the subscription has an affinity to the client id. */
+  isClientAffine?: boolean;
+  /** Gets and Sets Metadata of User. */
+  userMetadata?: string;
+  /** Properties specific to client affine subscriptions. */
+  clientAffineProperties?: SBClientAffineProperties;
+}
+export const SBSubscriptionProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    messageCount: S.optional(S.Number),
+    createdAt: S.optional(S.String),
+    accessedAt: S.optional(S.String),
+    updatedAt: S.optional(S.String),
+    countDetails: S.optional(MessageCountDetails),
+    lockDuration: S.optional(S.String),
+    requiresSession: S.optional(S.Boolean),
+    defaultMessageTimeToLive: S.optional(S.String),
+    deadLetteringOnFilterEvaluationExceptions: S.optional(S.Boolean),
+    deadLetteringOnMessageExpiration: S.optional(S.Boolean),
+    duplicateDetectionHistoryTimeWindow: S.optional(S.String),
+    maxDeliveryCount: S.optional(S.Number),
+    status: S.optional(EntityStatus),
+    enableBatchedOperations: S.optional(S.Boolean),
+    autoDeleteOnIdle: S.optional(S.String),
+    forwardTo: S.optional(S.String),
+    forwardDeadLetteredMessagesTo: S.optional(S.String),
+    isClientAffine: S.optional(S.Boolean),
+    userMetadata: S.optional(S.String),
+    clientAffineProperties: S.optional(SBClientAffineProperties),
+  }),
+).annotate({
+  identifier: "SBSubscriptionProperties",
+}) as any as S.Schema<SBSubscriptionProperties>;
+
+export interface GetSubscriptionResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of subscriptions resource. */
+  properties?: SBSubscriptionProperties;
+  /** The geo-location where the resource lives */
+  location?: string;
+}
+export const GetSubscriptionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(SBSubscriptionProperties),
+    location: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetSubscriptionResponse",
+}) as any as S.Schema<GetSubscriptionResponse>;
+
+export interface GetTopicRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+  /** The topic name. */
+  topicName: string;
+}
+export const GetTopicRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    namespaceName: S.String.pipe(T.Label()),
+    topicName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/topics/{topicName}",
+      code: 200,
+      apiVersion: "2026-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetTopicRequest",
+}) as any as S.Schema<GetTopicRequest>;
+
+/** The Topic Properties definition. */
+export interface SBTopicProperties {
+  /** Size of the topic, in bytes. */
+  sizeInBytes?: number;
+  /** Exact time the message was created. */
+  createdAt?: string;
+  /** The exact time the message was updated. */
+  updatedAt?: string;
+  /** Last time the message was sent, or a request was received, for this topic. */
+  accessedAt?: string;
+  /** Number of subscriptions. */
+  subscriptionCount?: number;
+  /** Message count details */
+  countDetails?: MessageCountDetails;
+  /** ISO 8601 Default message timespan to live value. This is the duration after which the message expires, starting from when the message is sent to Service Bus. This is the default value used when TimeToLive is not set on a message itself. */
+  defaultMessageTimeToLive?: string;
+  /** Maximum size of the topic in megabytes, which is the size of the memory allocated for the topic. Default is 1024. */
+  maxSizeInMegabytes?: number;
+  /** Maximum size (in KB) of the message payload that can be accepted by the topic. This property is only used in Premium today and default is 1024. */
+  maxMessageSizeInKilobytes?: number;
+  /** Value indicating if this topic requires duplicate detection. */
+  requiresDuplicateDetection?: boolean;
+  /** ISO8601 timespan structure that defines the duration of the duplicate detection history. The default value is 10 minutes. */
+  duplicateDetectionHistoryTimeWindow?: string;
+  /** Value that indicates whether server-side batched operations are enabled. */
+  enableBatchedOperations?: boolean;
+  /** Enumerates the possible values for the status of a messaging entity. */
+  status?: EntityStatus;
+  /** Value that indicates whether the topic supports ordering. */
+  supportOrdering?: boolean;
+  /** ISO 8601 timespan idle interval after which the topic is automatically deleted. The minimum duration is 5 minutes. */
+  autoDeleteOnIdle?: string;
+  /** Value that indicates whether the topic to be partitioned across multiple message brokers is enabled. */
+  enablePartitioning?: boolean;
+  /** Value that indicates whether Express Entities are enabled. An express topic holds a message in memory temporarily before writing it to persistent storage. */
+  enableExpress?: boolean;
+  /** Gets and Sets Metadata of User. */
+  userMetadata?: string;
+}
+export const SBTopicProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    sizeInBytes: S.optional(S.Number),
+    createdAt: S.optional(S.String),
+    updatedAt: S.optional(S.String),
+    accessedAt: S.optional(S.String),
+    subscriptionCount: S.optional(S.Number),
+    countDetails: S.optional(MessageCountDetails),
+    defaultMessageTimeToLive: S.optional(S.String),
+    maxSizeInMegabytes: S.optional(S.Number),
+    maxMessageSizeInKilobytes: S.optional(S.Number),
+    requiresDuplicateDetection: S.optional(S.Boolean),
+    duplicateDetectionHistoryTimeWindow: S.optional(S.String),
+    enableBatchedOperations: S.optional(S.Boolean),
+    status: S.optional(EntityStatus),
+    supportOrdering: S.optional(S.Boolean),
+    autoDeleteOnIdle: S.optional(S.String),
+    enablePartitioning: S.optional(S.Boolean),
+    enableExpress: S.optional(S.Boolean),
+    userMetadata: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "SBTopicProperties",
+}) as any as S.Schema<SBTopicProperties>;
+
+export interface GetTopicResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of topic resource. */
+  properties?: SBTopicProperties;
+  /** The geo-location where the resource lives */
+  location?: string;
+}
+export const GetTopicResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(SBTopicProperties),
+    location: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetTopicResponse",
+}) as any as S.Schema<GetTopicResponse>;
+
+export interface GetTopicAuthorizationRuleRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+  /** The topic name. */
+  topicName: string;
+  /** The authorization rule name. */
+  authorizationRuleName: string;
+}
+export const GetTopicAuthorizationRuleRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    namespaceName: S.String.pipe(T.Label()),
+    topicName: S.String.pipe(T.Label()),
+    authorizationRuleName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/topics/{topicName}/authorizationRules/{authorizationRuleName}",
+      code: 200,
+      apiVersion: "2026-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetTopicAuthorizationRuleRequest",
+}) as any as S.Schema<GetTopicAuthorizationRuleRequest>;
+
+export interface GetTopicAuthorizationRuleResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** AuthorizationRule properties. */
+  properties?: SBAuthorizationRuleProperties;
+  /** The geo-location where the resource lives */
+  location?: string;
+}
+export const GetTopicAuthorizationRuleResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(SBAuthorizationRuleProperties),
+    location: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetTopicAuthorizationRuleResponse",
+}) as any as S.Schema<GetTopicAuthorizationRuleResponse>;
+
+export interface ListDisasterRecoveryConfigAuthorizationRulesRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+  /** The Disaster Recovery configuration name */
+  alias: string;
+}
+export const ListDisasterRecoveryConfigAuthorizationRulesRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      namespaceName: S.String.pipe(T.Label()),
+      alias: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/disasterRecoveryConfigs/{alias}/authorizationRules",
+        code: 200,
+        apiVersion: "2026-01-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListDisasterRecoveryConfigAuthorizationRulesRequest",
+  }) as any as S.Schema<ListDisasterRecoveryConfigAuthorizationRulesRequest>;
+
+/** Description of a namespace authorization rule. */
+export interface SBAuthorizationRule {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** AuthorizationRule properties. */
+  properties?: SBAuthorizationRuleProperties;
+  /** The geo-location where the resource lives */
+  location?: string;
+}
+export const SBAuthorizationRule = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(SBAuthorizationRuleProperties),
+    location: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "SBAuthorizationRule",
+}) as any as S.Schema<SBAuthorizationRule>;
+
+/** The SBAuthorizationRule items on this page */
+export type SBAuthorizationRuleListResultValueList = Array<SBAuthorizationRule>;
+export const SBAuthorizationRuleListResultValueList = /*@__PURE__*/ S.Array(
+  SBAuthorizationRule,
+) as any as S.Schema<SBAuthorizationRuleListResultValueList>;
+
+/** The response of a SBAuthorizationRule list operation. */
+export interface SBAuthorizationRuleListResult {
+  /** The SBAuthorizationRule items on this page */
+  value: SBAuthorizationRuleListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const SBAuthorizationRuleListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: SBAuthorizationRuleListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "SBAuthorizationRuleListResult",
+}) as any as S.Schema<SBAuthorizationRuleListResult>;
+
+export interface ListDisasterRecoveryConfigKeysRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+  /** The Disaster Recovery configuration name */
+  alias: string;
+  /** The authorization rule name. */
+  authorizationRuleName: string;
+}
+export const ListDisasterRecoveryConfigKeysRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      namespaceName: S.String.pipe(T.Label()),
+      alias: S.String.pipe(T.Label()),
+      authorizationRuleName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/disasterRecoveryConfigs/{alias}/authorizationRules/{authorizationRuleName}/listKeys",
+        code: 200,
+        apiVersion: "2026-01-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListDisasterRecoveryConfigKeysRequest",
+}) as any as S.Schema<ListDisasterRecoveryConfigKeysRequest>;
+
+/** Namespace/ServiceBus Connection String */
+export interface AccessKeys {
+  /** Primary connection string of the created namespace authorization rule. */
+  primaryConnectionString?: string;
+  /** Secondary connection string of the created namespace authorization rule. */
+  secondaryConnectionString?: string;
+  /** Primary connection string of the alias if GEO DR is enabled */
+  aliasPrimaryConnectionString?: string;
+  /** Secondary connection string of the alias if GEO DR is enabled */
+  aliasSecondaryConnectionString?: string;
+  /** A base64-encoded 256-bit primary key for signing and validating the SAS token. */
+  primaryKey?: string;
+  /** A base64-encoded 256-bit primary key for signing and validating the SAS token. */
+  secondaryKey?: string;
+  /** A string that describes the authorization rule. */
+  keyName?: string;
+}
+export const AccessKeys = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    primaryConnectionString: S.optional(S.String),
+    secondaryConnectionString: S.optional(S.String),
+    aliasPrimaryConnectionString: S.optional(S.String),
+    aliasSecondaryConnectionString: S.optional(S.String),
+    primaryKey: S.optional(S.String),
+    secondaryKey: S.optional(S.String),
+    keyName: S.optional(S.String),
+  }),
+).annotate({ identifier: "AccessKeys" }) as any as S.Schema<AccessKeys>;
+
+export interface ListDisasterRecoveryConfigsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+}
+export const ListDisasterRecoveryConfigsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    namespaceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/disasterRecoveryConfigs",
+      code: 200,
+      apiVersion: "2026-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListDisasterRecoveryConfigsRequest",
+}) as any as S.Schema<ListDisasterRecoveryConfigsRequest>;
+
+/** Single item in List or Get Alias(Disaster Recovery configuration) operation */
+export interface ArmDisasterRecovery {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties required to the Create Or Update Alias(Disaster Recovery configurations) */
+  properties?: ArmDisasterRecoveryProperties;
+  /** The geo-location where the resource lives */
+  location?: string;
+}
+export const ArmDisasterRecovery = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ArmDisasterRecoveryProperties),
+    location: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ArmDisasterRecovery",
+}) as any as S.Schema<ArmDisasterRecovery>;
+
+/** The ArmDisasterRecovery items on this page */
+export type ArmDisasterRecoveryListResultValueList = Array<ArmDisasterRecovery>;
+export const ArmDisasterRecoveryListResultValueList = /*@__PURE__*/ S.Array(
+  ArmDisasterRecovery,
+) as any as S.Schema<ArmDisasterRecoveryListResultValueList>;
+
+/** The response of a ArmDisasterRecovery list operation. */
+export interface ArmDisasterRecoveryListResult {
+  /** The ArmDisasterRecovery items on this page */
+  value: ArmDisasterRecoveryListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const ArmDisasterRecoveryListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: ArmDisasterRecoveryListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ArmDisasterRecoveryListResult",
+}) as any as S.Schema<ArmDisasterRecoveryListResult>;
+
+export interface ListMigrationConfigsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+}
+export const ListMigrationConfigsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    namespaceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/migrationConfigurations",
+      code: 200,
+      apiVersion: "2026-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListMigrationConfigsRequest",
+}) as any as S.Schema<ListMigrationConfigsRequest>;
+
+/** Single item in List or Get Migration Config operation */
+export interface MigrationConfigProperties {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties required to the Create Migration Configuration */
+  properties?: MigrationConfigPropertiesProperties;
+  /** The geo-location where the resource lives */
+  location?: string;
+}
+export const MigrationConfigProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(MigrationConfigPropertiesProperties),
+    location: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "MigrationConfigProperties",
+}) as any as S.Schema<MigrationConfigProperties>;
+
+/** The MigrationConfigProperties items on this page */
+export type MigrationConfigListResultValueList =
+  Array<MigrationConfigProperties>;
+export const MigrationConfigListResultValueList = /*@__PURE__*/ S.Array(
+  MigrationConfigProperties,
+) as any as S.Schema<MigrationConfigListResultValueList>;
+
+/** The response of a MigrationConfigProperties list operation. */
+export interface MigrationConfigListResult {
+  /** The MigrationConfigProperties items on this page */
+  value: MigrationConfigListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const MigrationConfigListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: MigrationConfigListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "MigrationConfigListResult",
+}) as any as S.Schema<MigrationConfigListResult>;
+
+export interface ListNamespaceAuthorizationRulesRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+}
+export const ListNamespaceAuthorizationRulesRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      namespaceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/AuthorizationRules",
+        code: 200,
+        apiVersion: "2026-01-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListNamespaceAuthorizationRulesRequest",
+}) as any as S.Schema<ListNamespaceAuthorizationRulesRequest>;
+
+export interface ListNamespaceByResourceGroupRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+}
+export const ListNamespaceByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces",
+      code: 200,
+      apiVersion: "2026-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListNamespaceByResourceGroupRequest",
+}) as any as S.Schema<ListNamespaceByResourceGroupRequest>;
+
+/** Resource tags. */
+export type SBNamespaceTagsMap = { [key: string]: string | undefined };
+export const SBNamespaceTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<SBNamespaceTagsMap>;
+
+/** Description of a namespace resource. */
+export interface SBNamespace {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: SBNamespaceTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Properties of the namespace. */
+  properties?: SBNamespaceProperties;
+  /** Properties of SKU */
+  sku?: SBSku;
+  /** Properties of BYOK Identity description */
+  identity?: Identity;
+}
+export const SBNamespace = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(SBNamespaceTagsMap),
+    location: S.String,
+    properties: S.optional(SBNamespaceProperties),
+    sku: S.optional(SBSku),
+    identity: S.optional(Identity),
+  }),
+).annotate({ identifier: "SBNamespace" }) as any as S.Schema<SBNamespace>;
+
+/** The SBNamespace items on this page */
+export type SBNamespaceListResultValueList = Array<SBNamespace>;
+export const SBNamespaceListResultValueList = /*@__PURE__*/ S.Array(
+  SBNamespace,
+) as any as S.Schema<SBNamespaceListResultValueList>;
+
+/** The response of a SBNamespace list operation. */
+export interface SBNamespaceListResult {
+  /** The SBNamespace items on this page */
+  value: SBNamespaceListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const SBNamespaceListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: SBNamespaceListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "SBNamespaceListResult",
+}) as any as S.Schema<SBNamespaceListResult>;
+
+export interface ListNamespaceKeysRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+  /** The authorization rule name. */
+  authorizationRuleName: string;
+}
+export const ListNamespaceKeysRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    namespaceName: S.String.pipe(T.Label()),
+    authorizationRuleName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/AuthorizationRules/{authorizationRuleName}/listKeys",
+      code: 200,
+      apiVersion: "2026-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListNamespaceKeysRequest",
+}) as any as S.Schema<ListNamespaceKeysRequest>;
+
+export interface ListNamespaceNetworkRuleSetsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+}
+export const ListNamespaceNetworkRuleSetsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    namespaceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/networkRuleSets",
+      code: 200,
+      apiVersion: "2026-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListNamespaceNetworkRuleSetsRequest",
+}) as any as S.Schema<ListNamespaceNetworkRuleSetsRequest>;
+
+/** Description of NetworkRuleSet resource. */
+export interface NetworkRuleSet {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** NetworkRuleSet properties */
+  properties?: NetworkRuleSetProperties;
+  /** The geo-location where the resource lives */
+  location?: string;
+}
+export const NetworkRuleSet = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(NetworkRuleSetProperties),
+    location: S.optional(S.String),
+  }),
+).annotate({ identifier: "NetworkRuleSet" }) as any as S.Schema<NetworkRuleSet>;
+
+/** The NetworkRuleSet items on this page */
+export type NetworkRuleSetListResultValueList = Array<NetworkRuleSet>;
+export const NetworkRuleSetListResultValueList = /*@__PURE__*/ S.Array(
+  NetworkRuleSet,
+) as any as S.Schema<NetworkRuleSetListResultValueList>;
+
+/** The response of a NetworkRuleSet list operation. */
+export interface NetworkRuleSetListResult {
+  /** The NetworkRuleSet items on this page */
+  value: NetworkRuleSetListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const NetworkRuleSetListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: NetworkRuleSetListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "NetworkRuleSetListResult",
+}) as any as S.Schema<NetworkRuleSetListResult>;
+
+export interface ListNamespacesRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+}
+export const ListNamespacesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ServiceBus/namespaces",
+      code: 200,
+      apiVersion: "2026-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListNamespacesRequest",
+}) as any as S.Schema<ListNamespacesRequest>;
+
+export interface ListNetworkSecurityPerimeterConfigurationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+}
+export const ListNetworkSecurityPerimeterConfigurationRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      namespaceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/networkSecurityPerimeterConfigurations",
+        code: 200,
+        apiVersion: "2026-01-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListNetworkSecurityPerimeterConfigurationRequest",
+  }) as any as S.Schema<ListNetworkSecurityPerimeterConfigurationRequest>;
+
+/** Network Security Perimeter related configurations of a given namespace */
+export interface NetworkSecurityPerimeterConfiguration {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of the Network Security Perimeter Configuration */
+  properties?: NetworkSecurityPerimeterConfigurationProperties;
+  /** The geo-location where the resource lives */
+  location?: string;
+}
+export const NetworkSecurityPerimeterConfiguration = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(NetworkSecurityPerimeterConfigurationProperties),
+      location: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "NetworkSecurityPerimeterConfiguration",
+}) as any as S.Schema<NetworkSecurityPerimeterConfiguration>;
+
+/** The NetworkSecurityPerimeterConfiguration items on this page */
+export type NetworkSecurityPerimeterConfigurationListValueList =
+  Array<NetworkSecurityPerimeterConfiguration>;
+export const NetworkSecurityPerimeterConfigurationListValueList =
+  /*@__PURE__*/ S.Array(
+    NetworkSecurityPerimeterConfiguration,
+  ) as any as S.Schema<NetworkSecurityPerimeterConfigurationListValueList>;
+
+/** Result of the List NetworkSecurityPerimeterConfiguration operation. */
+export interface NetworkSecurityPerimeterConfigurationList {
+  /** The NetworkSecurityPerimeterConfiguration items on this page */
+  value: NetworkSecurityPerimeterConfigurationListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const NetworkSecurityPerimeterConfigurationList =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      value: NetworkSecurityPerimeterConfigurationListValueList,
+      nextLink: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "NetworkSecurityPerimeterConfigurationList",
+  }) as any as S.Schema<NetworkSecurityPerimeterConfigurationList>;
+
+export interface ListOperationsRequest {}
+export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/providers/Microsoft.ServiceBus/operations",
+      code: 200,
+      apiVersion: "2026-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListOperationsRequest",
+}) as any as S.Schema<ListOperationsRequest>;
+
+/** Operation display payload */
+export interface OperationDisplay {
+  /** Resource provider of the operation */
+  provider?: string;
+  /** Resource of the operation */
+  resource?: string;
+  /** Localized friendly name for the operation */
+  operation?: string;
+  /** Localized friendly description for the operation */
+  description?: string;
+}
+export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provider: S.optional(S.String),
+    resource: S.optional(S.String),
+    operation: S.optional(S.String),
+    description: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "OperationDisplay",
+}) as any as S.Schema<OperationDisplay>;
+
+/** A Service Bus REST API operation */
+export interface Operation {
+  /** Operation name: {provider}/{resource}/{operation} */
+  name?: string;
+  /** Indicates whether the operation is a data action */
+  isDataAction?: boolean;
+  /** Display of the operation */
+  display?: OperationDisplay;
+  /** Origin of the operation */
+  origin?: string;
+  /** Properties of the operation */
+  properties?: unknown;
+}
+export const Operation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    isDataAction: S.optional(S.Boolean),
+    display: S.optional(OperationDisplay),
+    origin: S.optional(S.String),
+    properties: S.optional(S.Unknown),
+  }),
+).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
+
+/** The list of operations. */
+export type OperationListResultValueList = Array<Operation>;
+export const OperationListResultValueList = /*@__PURE__*/ S.Array(
+  Operation,
+) as any as S.Schema<OperationListResultValueList>;
+
+/** The list of available operations. */
+export interface OperationListResult {
+  /** The list of operations. */
+  value: OperationListResultValueList;
+  /** The URL to get the next set of results, if any. */
+  nextLink?: string;
+}
+export const OperationListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: OperationListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "OperationListResult",
+}) as any as S.Schema<OperationListResult>;
+
+export interface ListPrivateEndpointConnectionsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+}
+export const ListPrivateEndpointConnectionsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      namespaceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/privateEndpointConnections",
+        code: 200,
+        apiVersion: "2026-01-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListPrivateEndpointConnectionsRequest",
+}) as any as S.Schema<ListPrivateEndpointConnectionsRequest>;
+
+/** The PrivateEndpointConnection items on this page */
+export type PrivateEndpointConnectionListResultValueList =
+  Array<PrivateEndpointConnection>;
+export const PrivateEndpointConnectionListResultValueList =
+  /*@__PURE__*/ S.Array(
+    PrivateEndpointConnection,
+  ) as any as S.Schema<PrivateEndpointConnectionListResultValueList>;
+
+/** The response of a PrivateEndpointConnection list operation. */
+export interface PrivateEndpointConnectionListResult {
+  /** The PrivateEndpointConnection items on this page */
+  value: PrivateEndpointConnectionListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const PrivateEndpointConnectionListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: PrivateEndpointConnectionListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PrivateEndpointConnectionListResult",
+}) as any as S.Schema<PrivateEndpointConnectionListResult>;
+
+export interface ListQueueAuthorizationRulesRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+  /** The queue name. */
+  queueName: string;
+}
+export const ListQueueAuthorizationRulesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    namespaceName: S.String.pipe(T.Label()),
+    queueName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/queues/{queueName}/authorizationRules",
+      code: 200,
+      apiVersion: "2026-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListQueueAuthorizationRulesRequest",
+}) as any as S.Schema<ListQueueAuthorizationRulesRequest>;
+
+export interface ListQueueByNamespaceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+  /** Skip is only used if a previous operation returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a skip parameter that specifies a starting point to use for subsequent calls. */
+  _skip?: number;
+  /** May be used to limit the number of results to the most recent N usageDetails. */
+  _top?: number;
+}
+export const ListQueueByNamespaceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    namespaceName: S.String.pipe(T.Label()),
+    _skip: S.optional(S.Number.pipe(T.Query("$skip"))),
+    _top: S.optional(S.Number.pipe(T.Query("$top"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/queues",
+      code: 200,
+      apiVersion: "2026-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListQueueByNamespaceRequest",
+}) as any as S.Schema<ListQueueByNamespaceRequest>;
+
+/** Description of queue Resource. */
+export interface SBQueue {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Queue Properties */
+  properties?: SBQueueProperties;
+  /** The geo-location where the resource lives */
+  location?: string;
+}
+export const SBQueue = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(SBQueueProperties),
+    location: S.optional(S.String),
+  }),
+).annotate({ identifier: "SBQueue" }) as any as S.Schema<SBQueue>;
+
+/** The SBQueue items on this page */
+export type SBQueueListResultValueList = Array<SBQueue>;
+export const SBQueueListResultValueList = /*@__PURE__*/ S.Array(
+  SBQueue,
+) as any as S.Schema<SBQueueListResultValueList>;
+
+/** The response of a SBQueue list operation. */
+export interface SBQueueListResult {
+  /** The SBQueue items on this page */
+  value: SBQueueListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const SBQueueListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: SBQueueListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "SBQueueListResult",
+}) as any as S.Schema<SBQueueListResult>;
+
+export interface ListQueueKeysRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+  /** The queue name. */
+  queueName: string;
+  /** The authorization rule name. */
+  authorizationRuleName: string;
+}
+export const ListQueueKeysRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    namespaceName: S.String.pipe(T.Label()),
+    queueName: S.String.pipe(T.Label()),
+    authorizationRuleName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/queues/{queueName}/authorizationRules/{authorizationRuleName}/listKeys",
+      code: 200,
+      apiVersion: "2026-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListQueueKeysRequest",
+}) as any as S.Schema<ListQueueKeysRequest>;
+
+export interface ListRuleBySubscriptionsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+  /** The topic name. */
+  topicName: string;
+  /** The subscription name. */
+  subscriptionName: string;
+  /** Skip is only used if a previous operation returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a skip parameter that specifies a starting point to use for subsequent calls. */
+  _skip?: number;
+  /** May be used to limit the number of results to the most recent N usageDetails. */
+  _top?: number;
+}
+export const ListRuleBySubscriptionsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    namespaceName: S.String.pipe(T.Label()),
+    topicName: S.String.pipe(T.Label()),
+    subscriptionName: S.String.pipe(T.Label()),
+    _skip: S.optional(S.Number.pipe(T.Query("$skip"))),
+    _top: S.optional(S.Number.pipe(T.Query("$top"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/topics/{topicName}/subscriptions/{subscriptionName}/rules",
+      code: 200,
+      apiVersion: "2026-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListRuleBySubscriptionsRequest",
+}) as any as S.Schema<ListRuleBySubscriptionsRequest>;
+
+/** Description of Rule Resource. */
+export interface Rule {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of Rule resource */
+  properties?: Ruleproperties;
+  /** The geo-location where the resource lives */
+  location?: string;
+}
+export const Rule = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(Ruleproperties),
+    location: S.optional(S.String),
+  }),
+).annotate({ identifier: "Rule" }) as any as S.Schema<Rule>;
+
+/** The Rule items on this page */
+export type RuleListResultValueList = Array<Rule>;
+export const RuleListResultValueList = /*@__PURE__*/ S.Array(
+  Rule,
+) as any as S.Schema<RuleListResultValueList>;
+
+/** The response of a Rule list operation. */
+export interface RuleListResult {
+  /** The Rule items on this page */
+  value: RuleListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const RuleListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: RuleListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({ identifier: "RuleListResult" }) as any as S.Schema<RuleListResult>;
+
+export interface ListSubscriptionByTopicRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+  /** The topic name. */
+  topicName: string;
+  /** Skip is only used if a previous operation returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a skip parameter that specifies a starting point to use for subsequent calls. */
+  _skip?: number;
+  /** May be used to limit the number of results to the most recent N usageDetails. */
+  _top?: number;
+}
+export const ListSubscriptionByTopicRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    namespaceName: S.String.pipe(T.Label()),
+    topicName: S.String.pipe(T.Label()),
+    _skip: S.optional(S.Number.pipe(T.Query("$skip"))),
+    _top: S.optional(S.Number.pipe(T.Query("$top"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/topics/{topicName}/subscriptions",
+      code: 200,
+      apiVersion: "2026-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListSubscriptionByTopicRequest",
+}) as any as S.Schema<ListSubscriptionByTopicRequest>;
+
+/** Description of subscription resource. */
+export interface SBSubscription {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of subscriptions resource. */
+  properties?: SBSubscriptionProperties;
+  /** The geo-location where the resource lives */
+  location?: string;
+}
+export const SBSubscription = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(SBSubscriptionProperties),
+    location: S.optional(S.String),
+  }),
+).annotate({ identifier: "SBSubscription" }) as any as S.Schema<SBSubscription>;
+
+/** The SBSubscription items on this page */
+export type SBSubscriptionListResultValueList = Array<SBSubscription>;
+export const SBSubscriptionListResultValueList = /*@__PURE__*/ S.Array(
+  SBSubscription,
+) as any as S.Schema<SBSubscriptionListResultValueList>;
+
+/** The response of a SBSubscription list operation. */
+export interface SBSubscriptionListResult {
+  /** The SBSubscription items on this page */
+  value: SBSubscriptionListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const SBSubscriptionListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: SBSubscriptionListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "SBSubscriptionListResult",
+}) as any as S.Schema<SBSubscriptionListResult>;
+
+export interface ListTopicAuthorizationRulesRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+  /** The topic name. */
+  topicName: string;
+}
+export const ListTopicAuthorizationRulesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    namespaceName: S.String.pipe(T.Label()),
+    topicName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/topics/{topicName}/authorizationRules",
+      code: 200,
+      apiVersion: "2026-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListTopicAuthorizationRulesRequest",
+}) as any as S.Schema<ListTopicAuthorizationRulesRequest>;
+
+export interface ListTopicByNamespaceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+  /** Skip is only used if a previous operation returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a skip parameter that specifies a starting point to use for subsequent calls. */
+  _skip?: number;
+  /** May be used to limit the number of results to the most recent N usageDetails. */
+  _top?: number;
+}
+export const ListTopicByNamespaceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    namespaceName: S.String.pipe(T.Label()),
+    _skip: S.optional(S.Number.pipe(T.Query("$skip"))),
+    _top: S.optional(S.Number.pipe(T.Query("$top"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/topics",
+      code: 200,
+      apiVersion: "2026-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListTopicByNamespaceRequest",
+}) as any as S.Schema<ListTopicByNamespaceRequest>;
+
+/** Description of topic resource. */
+export interface SBTopic {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of topic resource. */
+  properties?: SBTopicProperties;
+  /** The geo-location where the resource lives */
+  location?: string;
+}
+export const SBTopic = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(SBTopicProperties),
+    location: S.optional(S.String),
+  }),
+).annotate({ identifier: "SBTopic" }) as any as S.Schema<SBTopic>;
+
+/** The SBTopic items on this page */
+export type SBTopicListResultValueList = Array<SBTopic>;
+export const SBTopicListResultValueList = /*@__PURE__*/ S.Array(
+  SBTopic,
+) as any as S.Schema<SBTopicListResultValueList>;
+
+/** The response of a SBTopic list operation. */
+export interface SBTopicListResult {
+  /** The SBTopic items on this page */
+  value: SBTopicListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const SBTopicListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: SBTopicListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "SBTopicListResult",
+}) as any as S.Schema<SBTopicListResult>;
+
+export interface ListTopicKeysRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+  /** The topic name. */
+  topicName: string;
+  /** The authorization rule name. */
+  authorizationRuleName: string;
+}
+export const ListTopicKeysRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    namespaceName: S.String.pipe(T.Label()),
+    topicName: S.String.pipe(T.Label()),
+    authorizationRuleName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/topics/{topicName}/authorizationRules/{authorizationRuleName}/listKeys",
+      code: 200,
+      apiVersion: "2026-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListTopicKeysRequest",
+}) as any as S.Schema<ListTopicKeysRequest>;
+
+export type MigrationConfigsCreateAndStartMigrationRequestConfigName =
+  "$default";
+export const MigrationConfigsCreateAndStartMigrationRequestConfigName =
+  /*@__PURE__*/ S.String;
+
+/** Properties required to the Create Migration Configuration */
+export interface MigrationConfigPropertiesPropertiesInput {
+  /** Existing premium Namespace ARM Id name which has no entities, will be used for migration */
+  targetNamespace: string;
+  /** Name to access Standard Namespace after migration */
+  postMigrationName: string;
+}
+export const MigrationConfigPropertiesPropertiesInput = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      targetNamespace: S.String,
+      postMigrationName: S.String,
+    }),
+).annotate({
+  identifier: "MigrationConfigPropertiesPropertiesInput",
+}) as any as S.Schema<MigrationConfigPropertiesPropertiesInput>;
+
+export interface MigrationConfigsCreateAndStartMigrationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+  /** The configuration name. Should always be $default. */
+  configName:
+    | MigrationConfigsCreateAndStartMigrationRequestConfigName
+    | (string & {});
+  /** Properties required to the Create Migration Configuration */
+  properties?: MigrationConfigPropertiesPropertiesInput;
+}
+export const MigrationConfigsCreateAndStartMigrationRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      namespaceName: S.String.pipe(T.Label()),
+      configName: MigrationConfigsCreateAndStartMigrationRequestConfigName.pipe(
+        T.Label(),
+      ),
+      properties: S.optional(MigrationConfigPropertiesPropertiesInput),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/migrationConfigurations/{configName}",
+        code: 200,
+        apiVersion: "2026-01-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "MigrationConfigsCreateAndStartMigrationRequest",
+  }) as any as S.Schema<MigrationConfigsCreateAndStartMigrationRequest>;
+
+export interface MigrationConfigsCreateAndStartMigrationResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties required to the Create Migration Configuration */
+  properties?: MigrationConfigPropertiesProperties;
+  /** The geo-location where the resource lives */
+  location?: string;
+}
+export const MigrationConfigsCreateAndStartMigrationResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(MigrationConfigPropertiesProperties),
+      location: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "MigrationConfigsCreateAndStartMigrationResponse",
+  }) as any as S.Schema<MigrationConfigsCreateAndStartMigrationResponse>;
+
+export type MigrationConfigsRevertRequestConfigName = "$default";
+export const MigrationConfigsRevertRequestConfigName = /*@__PURE__*/ S.String;
+
+export interface MigrationConfigsRevertRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+  /** The configuration name. Should always be $default. */
+  configName: MigrationConfigsRevertRequestConfigName | (string & {});
+}
+export const MigrationConfigsRevertRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    namespaceName: S.String.pipe(T.Label()),
+    configName: MigrationConfigsRevertRequestConfigName.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/migrationConfigurations/{configName}/revert",
+      code: 200,
+      apiVersion: "2026-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "MigrationConfigsRevertRequest",
+}) as any as S.Schema<MigrationConfigsRevertRequest>;
+
+export interface MigrationConfigsRevertResponse {}
+export const MigrationConfigsRevertResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "MigrationConfigsRevertResponse",
+}) as any as S.Schema<MigrationConfigsRevertResponse>;
+
+/** Resource tags. */
+export type NamespacesCreateOrUpdateRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const NamespacesCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<NamespacesCreateOrUpdateRequestTagsMap>;
+
+/** Properties of the PrivateEndpointConnection. */
+export interface PrivateEndpointConnectionInput {
+  /** Properties of the PrivateEndpointConnection. */
+  properties?: PrivateEndpointConnectionProperties;
+}
+export const PrivateEndpointConnectionInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    properties: S.optional(PrivateEndpointConnectionProperties),
+  }),
+).annotate({
+  identifier: "PrivateEndpointConnectionInput",
+}) as any as S.Schema<PrivateEndpointConnectionInput>;
+
+/** List of private endpoint connections. */
+export type SBNamespacePropertiesInputPrivateEndpointConnectionsList =
+  Array<PrivateEndpointConnectionInput>;
+export const SBNamespacePropertiesInputPrivateEndpointConnectionsList =
+  /*@__PURE__*/ S.Array(
+    PrivateEndpointConnectionInput,
+  ) as any as S.Schema<SBNamespacePropertiesInputPrivateEndpointConnectionsList>;
+
+/** This determines if traffic is allowed over public network. By default it is enabled. */
+export type SBNamespacePropertiesInputPublicNetworkAccess =
+  | "Enabled"
+  | "Disabled"
+  | "SecuredByPerimeter";
+export const SBNamespacePropertiesInputPublicNetworkAccess =
+  /*@__PURE__*/ S.String;
+
+/** Properties of the namespace. */
+export interface SBNamespacePropertiesInput {
+  /** The minimum TLS version for the cluster to support, e.g. '1.2' */
+  minimumTlsVersion?: TlsVersion | (string & {});
+  /** Enabling this property creates a Premium Service Bus Namespace in regions supported availability zones. */
+  zoneRedundant?: boolean;
+  /** Properties of BYOK Encryption description */
+  encryption?: Encryption;
+  /** List of private endpoint connections. */
+  privateEndpointConnections?: SBNamespacePropertiesInputPrivateEndpointConnectionsList;
+  /** This property disables SAS authentication for the Service Bus namespace. */
+  disableLocalAuth?: boolean;
+  /** Alternate name for namespace */
+  alternateName?: string;
+  /** This determines if traffic is allowed over public network. By default it is enabled. */
+  publicNetworkAccess?:
+    | SBNamespacePropertiesInputPublicNetworkAccess
+    | (string & {});
+  /** The number of partitions of a Service Bus namespace. This property is only applicable to Premium SKU namespaces. The default value is 1 and possible values are 1, 2 and 4 */
+  premiumMessagingPartitions?: number;
+  platformCapabilities?: PlatformCapabilities;
+  /** Geo Data Replication settings for the namespace */
+  geoDataReplication?: GeoDataReplicationProperties;
+  /** The IP address type for the namespace. Determines whether the namespace supports IPv4 only or both IPv4 and IPv6 (dual stack). */
+  ipAddressType?: IpAddressType | (string & {});
+}
+export const SBNamespacePropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    minimumTlsVersion: S.optional(TlsVersion),
+    zoneRedundant: S.optional(S.Boolean),
+    encryption: S.optional(Encryption),
+    privateEndpointConnections: S.optional(
+      SBNamespacePropertiesInputPrivateEndpointConnectionsList,
+    ),
+    disableLocalAuth: S.optional(S.Boolean),
+    alternateName: S.optional(S.String),
+    publicNetworkAccess: S.optional(
+      SBNamespacePropertiesInputPublicNetworkAccess,
+    ),
+    premiumMessagingPartitions: S.optional(S.Number),
+    platformCapabilities: S.optional(PlatformCapabilities),
+    geoDataReplication: S.optional(GeoDataReplicationProperties),
+    ipAddressType: S.optional(IpAddressType),
+  }),
+).annotate({
+  identifier: "SBNamespacePropertiesInput",
+}) as any as S.Schema<SBNamespacePropertiesInput>;
+
+/** Recognized Dictionary value. */
+export interface UserAssignedIdentityInput {}
+export const UserAssignedIdentityInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "UserAssignedIdentityInput",
+}) as any as S.Schema<UserAssignedIdentityInput>;
+
+/** Properties for User Assigned Identities */
+export type IdentityInputUserAssignedIdentitiesMap = {
+  [key: string]: UserAssignedIdentityInput | undefined;
+};
+export const IdentityInputUserAssignedIdentitiesMap = /*@__PURE__*/ S.Record(
+  S.String,
+  UserAssignedIdentityInput,
+) as any as S.Schema<IdentityInputUserAssignedIdentitiesMap>;
+
+/** Properties to configure User Assigned Identities for Bring your Own Keys */
+export interface IdentityInput {
+  /** Type of managed service identity. */
+  type?: ManagedServiceIdentityType | (string & {});
+  /** Properties for User Assigned Identities */
+  userAssignedIdentities?: IdentityInputUserAssignedIdentitiesMap;
+}
+export const IdentityInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: S.optional(ManagedServiceIdentityType),
+    userAssignedIdentities: S.optional(IdentityInputUserAssignedIdentitiesMap),
+  }),
+).annotate({ identifier: "IdentityInput" }) as any as S.Schema<IdentityInput>;
+
+export interface NamespacesCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+  /** Resource tags. */
+  tags?: NamespacesCreateOrUpdateRequestTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Properties of the namespace. */
+  properties?: SBNamespacePropertiesInput;
+  /** Properties of SKU */
+  sku?: SBSku;
+  /** Properties of BYOK Identity description */
+  identity?: IdentityInput;
+}
+export const NamespacesCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    namespaceName: S.String.pipe(T.Label()),
+    tags: S.optional(NamespacesCreateOrUpdateRequestTagsMap),
+    location: S.String,
+    properties: S.optional(SBNamespacePropertiesInput),
+    sku: S.optional(SBSku),
+    identity: S.optional(IdentityInput),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}",
+      code: 200,
+      apiVersion: "2026-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "NamespacesCreateOrUpdateRequest",
+}) as any as S.Schema<NamespacesCreateOrUpdateRequest>;
+
+/** Resource tags. */
+export type NamespacesCreateOrUpdateResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const NamespacesCreateOrUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<NamespacesCreateOrUpdateResponseTagsMap>;
+
+export interface NamespacesCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: NamespacesCreateOrUpdateResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Properties of the namespace. */
+  properties?: SBNamespaceProperties;
+  /** Properties of SKU */
+  sku?: SBSku;
+  /** Properties of BYOK Identity description */
+  identity?: Identity;
+}
+export const NamespacesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(NamespacesCreateOrUpdateResponseTagsMap),
+    location: S.String,
+    properties: S.optional(SBNamespaceProperties),
+    sku: S.optional(SBSku),
+    identity: S.optional(Identity),
+  }),
+).annotate({
+  identifier: "NamespacesCreateOrUpdateResponse",
+}) as any as S.Schema<NamespacesCreateOrUpdateResponse>;
+
+export interface NamespacesCreateOrUpdateAuthorizationRuleRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+  /** The authorization rule name. */
+  authorizationRuleName: string;
+  /** AuthorizationRule properties. */
+  properties?: SBAuthorizationRuleProperties;
+}
+export const NamespacesCreateOrUpdateAuthorizationRuleRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      namespaceName: S.String.pipe(T.Label()),
+      authorizationRuleName: S.String.pipe(T.Label()),
+      properties: S.optional(SBAuthorizationRuleProperties),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/AuthorizationRules/{authorizationRuleName}",
+        code: 200,
+        apiVersion: "2026-01-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "NamespacesCreateOrUpdateAuthorizationRuleRequest",
+  }) as any as S.Schema<NamespacesCreateOrUpdateAuthorizationRuleRequest>;
+
+export interface NamespacesCreateOrUpdateAuthorizationRuleResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** AuthorizationRule properties. */
+  properties?: SBAuthorizationRuleProperties;
+  /** The geo-location where the resource lives */
+  location?: string;
+}
+export const NamespacesCreateOrUpdateAuthorizationRuleResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(SBAuthorizationRuleProperties),
+      location: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "NamespacesCreateOrUpdateAuthorizationRuleResponse",
+  }) as any as S.Schema<NamespacesCreateOrUpdateAuthorizationRuleResponse>;
+
+export interface NamespacesCreateOrUpdateNetworkRuleSetRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+  /** NetworkRuleSet properties */
+  properties?: NetworkRuleSetProperties;
+}
+export const NamespacesCreateOrUpdateNetworkRuleSetRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      namespaceName: S.String.pipe(T.Label()),
+      properties: S.optional(NetworkRuleSetProperties),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/networkRuleSets/default",
+        code: 200,
+        apiVersion: "2026-01-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "NamespacesCreateOrUpdateNetworkRuleSetRequest",
+  }) as any as S.Schema<NamespacesCreateOrUpdateNetworkRuleSetRequest>;
+
+export interface NamespacesCreateOrUpdateNetworkRuleSetResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** NetworkRuleSet properties */
+  properties?: NetworkRuleSetProperties;
+  /** The geo-location where the resource lives */
+  location?: string;
+}
+export const NamespacesCreateOrUpdateNetworkRuleSetResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(NetworkRuleSetProperties),
+      location: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "NamespacesCreateOrUpdateNetworkRuleSetResponse",
+  }) as any as S.Schema<NamespacesCreateOrUpdateNetworkRuleSetResponse>;
+
+export interface FailOverProperties {
+  /** Query parameter for the new primary location after failover. */
+  primaryLocation?: string;
+  /** If Force is false then graceful failover is attempted after ensuring no data loss. If Force flag is set to true, Forced failover is attempted with possible data loss. */
+  force?: boolean;
+}
+export const FailOverProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    primaryLocation: S.optional(S.String),
+    force: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "FailOverProperties",
+}) as any as S.Schema<FailOverProperties>;
+
+export interface NamespacesFailoverRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+  properties?: FailOverProperties;
+}
+export const NamespacesFailoverRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    namespaceName: S.String.pipe(T.Label()),
+    properties: S.optional(FailOverProperties),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/failover",
+      code: 200,
+      apiVersion: "2026-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "NamespacesFailoverRequest",
+}) as any as S.Schema<NamespacesFailoverRequest>;
+
+export interface NamespacesFailoverResponse {}
+export const NamespacesFailoverResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "NamespacesFailoverResponse",
+}) as any as S.Schema<NamespacesFailoverResponse>;
+
+export interface NetworkSecurityPerimeterConfigurationsReconcileRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+  /** The ResourceAssociation Name */
+  resourceAssociationName: string;
+}
+export const NetworkSecurityPerimeterConfigurationsReconcileRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      namespaceName: S.String.pipe(T.Label()),
+      resourceAssociationName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/networkSecurityPerimeterConfigurations/{resourceAssociationName}/reconcile",
+        code: 200,
+        apiVersion: "2026-01-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "NetworkSecurityPerimeterConfigurationsReconcileRequest",
+  }) as any as S.Schema<NetworkSecurityPerimeterConfigurationsReconcileRequest>;
+
+export interface NetworkSecurityPerimeterConfigurationsReconcileResponse {}
+export const NetworkSecurityPerimeterConfigurationsReconcileResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "NetworkSecurityPerimeterConfigurationsReconcileResponse",
+  }) as any as S.Schema<NetworkSecurityPerimeterConfigurationsReconcileResponse>;
+
+export interface PrivateEndpointConnectionsCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+  /** The PrivateEndpointConnection name */
+  privateEndpointConnectionName: string;
+  /** Properties of the PrivateEndpointConnection. */
+  properties?: PrivateEndpointConnectionProperties;
+}
+export const PrivateEndpointConnectionsCreateOrUpdateRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      namespaceName: S.String.pipe(T.Label()),
+      privateEndpointConnectionName: S.String.pipe(T.Label()),
+      properties: S.optional(PrivateEndpointConnectionProperties),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/privateEndpointConnections/{privateEndpointConnectionName}",
+        code: 200,
+        apiVersion: "2026-01-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "PrivateEndpointConnectionsCreateOrUpdateRequest",
+  }) as any as S.Schema<PrivateEndpointConnectionsCreateOrUpdateRequest>;
+
+export interface PrivateEndpointConnectionsCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of the PrivateEndpointConnection. */
+  properties?: PrivateEndpointConnectionProperties;
+  /** The geo-location where the resource lives */
+  location?: string;
+}
+export const PrivateEndpointConnectionsCreateOrUpdateResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(PrivateEndpointConnectionProperties),
+      location: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "PrivateEndpointConnectionsCreateOrUpdateResponse",
+  }) as any as S.Schema<PrivateEndpointConnectionsCreateOrUpdateResponse>;
+
+/** The Queue Properties definition. */
+export interface SBQueuePropertiesInput {
+  /** ISO 8601 timespan duration of a peek-lock; that is, the amount of time that the message is locked for other receivers. The maximum value for LockDuration is 5 minutes; the default value is 1 minute. */
+  lockDuration?: string;
+  /** The maximum size of the queue in megabytes, which is the size of memory allocated for the queue. Default is 1024. */
+  maxSizeInMegabytes?: number;
+  /** Maximum size (in KB) of the message payload that can be accepted by the queue. This property is only used in Premium today and default is 1024. */
+  maxMessageSizeInKilobytes?: number;
+  /** A value indicating if this queue requires duplicate detection. */
+  requiresDuplicateDetection?: boolean;
+  /** A value that indicates whether the queue supports the concept of sessions. */
+  requiresSession?: boolean;
+  /** ISO 8601 default message timespan to live value. This is the duration after which the message expires, starting from when the message is sent to Service Bus. This is the default value used when TimeToLive is not set on a message itself. */
+  defaultMessageTimeToLive?: string;
+  /** A value that indicates whether this queue has dead letter support when a message expires. */
+  deadLetteringOnMessageExpiration?: boolean;
+  /** ISO 8601 timeSpan structure that defines the duration of the duplicate detection history. The default value is 10 minutes. */
+  duplicateDetectionHistoryTimeWindow?: string;
+  /** The maximum delivery count. A message is automatically deadlettered after this number of deliveries. default value is 10. */
+  maxDeliveryCount?: number;
+  /** Enumerates the possible values for the status of a messaging entity. */
+  status?: EntityStatus | (string & {});
+  /** Value that indicates whether server-side batched operations are enabled. */
+  enableBatchedOperations?: boolean;
+  /** ISO 8061 timeSpan idle interval after which the queue is automatically deleted. The minimum duration is 5 minutes. */
+  autoDeleteOnIdle?: string;
+  /** A value that indicates whether the queue is to be partitioned across multiple message brokers. */
+  enablePartitioning?: boolean;
+  /** A value that indicates whether Express Entities are enabled. An express queue holds a message in memory temporarily before writing it to persistent storage. */
+  enableExpress?: boolean;
+  /** Queue/Topic name to forward the messages */
+  forwardTo?: string;
+  /** Queue/Topic name to forward the Dead Letter message */
+  forwardDeadLetteredMessagesTo?: string;
+  /** Gets and Sets Metadata of User. */
+  userMetadata?: string;
+}
+export const SBQueuePropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    lockDuration: S.optional(S.String),
+    maxSizeInMegabytes: S.optional(S.Number),
+    maxMessageSizeInKilobytes: S.optional(S.Number),
+    requiresDuplicateDetection: S.optional(S.Boolean),
+    requiresSession: S.optional(S.Boolean),
+    defaultMessageTimeToLive: S.optional(S.String),
+    deadLetteringOnMessageExpiration: S.optional(S.Boolean),
+    duplicateDetectionHistoryTimeWindow: S.optional(S.String),
+    maxDeliveryCount: S.optional(S.Number),
+    status: S.optional(EntityStatus),
+    enableBatchedOperations: S.optional(S.Boolean),
+    autoDeleteOnIdle: S.optional(S.String),
+    enablePartitioning: S.optional(S.Boolean),
+    enableExpress: S.optional(S.Boolean),
+    forwardTo: S.optional(S.String),
+    forwardDeadLetteredMessagesTo: S.optional(S.String),
+    userMetadata: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "SBQueuePropertiesInput",
+}) as any as S.Schema<SBQueuePropertiesInput>;
+
+export interface QueuesCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+  /** The queue name. */
+  queueName: string;
+  /** Queue Properties */
+  properties?: SBQueuePropertiesInput;
+}
+export const QueuesCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    namespaceName: S.String.pipe(T.Label()),
+    queueName: S.String.pipe(T.Label()),
+    properties: S.optional(SBQueuePropertiesInput),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/queues/{queueName}",
+      code: 200,
+      apiVersion: "2026-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "QueuesCreateOrUpdateRequest",
+}) as any as S.Schema<QueuesCreateOrUpdateRequest>;
+
+export interface QueuesCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Queue Properties */
+  properties?: SBQueueProperties;
+  /** The geo-location where the resource lives */
+  location?: string;
+}
+export const QueuesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(SBQueueProperties),
+    location: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "QueuesCreateOrUpdateResponse",
+}) as any as S.Schema<QueuesCreateOrUpdateResponse>;
+
+export interface QueuesCreateOrUpdateAuthorizationRuleRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+  /** The queue name. */
+  queueName: string;
+  /** The authorization rule name. */
+  authorizationRuleName: string;
+  /** AuthorizationRule properties. */
+  properties?: SBAuthorizationRuleProperties;
+}
+export const QueuesCreateOrUpdateAuthorizationRuleRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      namespaceName: S.String.pipe(T.Label()),
+      queueName: S.String.pipe(T.Label()),
+      authorizationRuleName: S.String.pipe(T.Label()),
+      properties: S.optional(SBAuthorizationRuleProperties),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/queues/{queueName}/authorizationRules/{authorizationRuleName}",
+        code: 200,
+        apiVersion: "2026-01-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "QueuesCreateOrUpdateAuthorizationRuleRequest",
+  }) as any as S.Schema<QueuesCreateOrUpdateAuthorizationRuleRequest>;
+
+export interface QueuesCreateOrUpdateAuthorizationRuleResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** AuthorizationRule properties. */
+  properties?: SBAuthorizationRuleProperties;
+  /** The geo-location where the resource lives */
+  location?: string;
+}
+export const QueuesCreateOrUpdateAuthorizationRuleResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(SBAuthorizationRuleProperties),
+      location: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "QueuesCreateOrUpdateAuthorizationRuleResponse",
+  }) as any as S.Schema<QueuesCreateOrUpdateAuthorizationRuleResponse>;
+
+/** The access key to regenerate. */
+export type KeyType = "PrimaryKey" | "SecondaryKey";
+export const KeyType = /*@__PURE__*/ S.String;
+
+export interface RegenerateNamespaceKeysRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+  /** The authorization rule name. */
+  authorizationRuleName: string;
+  /** The access key to regenerate. */
+  keyType: KeyType | (string & {});
+  /** Optional, if the key value provided, is reset for KeyType value or autogenerate Key value set for keyType */
+  key?: string;
+}
+export const RegenerateNamespaceKeysRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    namespaceName: S.String.pipe(T.Label()),
+    authorizationRuleName: S.String.pipe(T.Label()),
+    keyType: KeyType,
+    key: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/AuthorizationRules/{authorizationRuleName}/regenerateKeys",
+      code: 200,
+      apiVersion: "2026-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "RegenerateNamespaceKeysRequest",
+}) as any as S.Schema<RegenerateNamespaceKeysRequest>;
+
+export interface RegenerateQueueKeysRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+  /** The queue name. */
+  queueName: string;
+  /** The authorization rule name. */
+  authorizationRuleName: string;
+  /** The access key to regenerate. */
+  keyType: KeyType | (string & {});
+  /** Optional, if the key value provided, is reset for KeyType value or autogenerate Key value set for keyType */
+  key?: string;
+}
+export const RegenerateQueueKeysRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    namespaceName: S.String.pipe(T.Label()),
+    queueName: S.String.pipe(T.Label()),
+    authorizationRuleName: S.String.pipe(T.Label()),
+    keyType: KeyType,
+    key: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/queues/{queueName}/authorizationRules/{authorizationRuleName}/regenerateKeys",
+      code: 200,
+      apiVersion: "2026-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "RegenerateQueueKeysRequest",
+}) as any as S.Schema<RegenerateQueueKeysRequest>;
+
+export interface RegenerateTopicKeysRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+  /** The topic name. */
+  topicName: string;
+  /** The authorization rule name. */
+  authorizationRuleName: string;
+  /** The access key to regenerate. */
+  keyType: KeyType | (string & {});
+  /** Optional, if the key value provided, is reset for KeyType value or autogenerate Key value set for keyType */
+  key?: string;
+}
+export const RegenerateTopicKeysRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    namespaceName: S.String.pipe(T.Label()),
+    topicName: S.String.pipe(T.Label()),
+    authorizationRuleName: S.String.pipe(T.Label()),
+    keyType: KeyType,
+    key: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/topics/{topicName}/authorizationRules/{authorizationRuleName}/regenerateKeys",
+      code: 200,
+      apiVersion: "2026-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "RegenerateTopicKeysRequest",
+}) as any as S.Schema<RegenerateTopicKeysRequest>;
+
 export interface RulesCreateOrUpdateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -4269,210 +5011,6 @@ export const RulesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "RulesCreateOrUpdateResponse",
 }) as any as S.Schema<RulesCreateOrUpdateResponse>;
-
-export interface RulesDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-  /** The topic name. */
-  topicName: string;
-  /** The subscription name. */
-  subscriptionName: string;
-  /** The rule name. */
-  ruleName: string;
-}
-export const RulesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    namespaceName: S.String.pipe(T.Label()),
-    topicName: S.String.pipe(T.Label()),
-    subscriptionName: S.String.pipe(T.Label()),
-    ruleName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/topics/{topicName}/subscriptions/{subscriptionName}/rules/{ruleName}",
-      code: 200,
-      apiVersion: "2026-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "RulesDeleteRequest",
-}) as any as S.Schema<RulesDeleteRequest>;
-
-export interface RulesDeleteResponse {}
-export const RulesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "RulesDeleteResponse",
-}) as any as S.Schema<RulesDeleteResponse>;
-
-export interface RulesGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-  /** The topic name. */
-  topicName: string;
-  /** The subscription name. */
-  subscriptionName: string;
-  /** The rule name. */
-  ruleName: string;
-}
-export const RulesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    namespaceName: S.String.pipe(T.Label()),
-    topicName: S.String.pipe(T.Label()),
-    subscriptionName: S.String.pipe(T.Label()),
-    ruleName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/topics/{topicName}/subscriptions/{subscriptionName}/rules/{ruleName}",
-      code: 200,
-      apiVersion: "2026-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "RulesGetRequest",
-}) as any as S.Schema<RulesGetRequest>;
-
-export interface RulesGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of Rule resource */
-  properties?: Ruleproperties;
-  /** The geo-location where the resource lives */
-  location?: string;
-}
-export const RulesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(Ruleproperties),
-    location: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "RulesGetResponse",
-}) as any as S.Schema<RulesGetResponse>;
-
-export interface RulesListBySubscriptionsRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-  /** The topic name. */
-  topicName: string;
-  /** The subscription name. */
-  subscriptionName: string;
-  /** Skip is only used if a previous operation returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a skip parameter that specifies a starting point to use for subsequent calls. */
-  _skip?: number;
-  /** May be used to limit the number of results to the most recent N usageDetails. */
-  _top?: number;
-}
-export const RulesListBySubscriptionsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    namespaceName: S.String.pipe(T.Label()),
-    topicName: S.String.pipe(T.Label()),
-    subscriptionName: S.String.pipe(T.Label()),
-    _skip: S.optional(S.Number.pipe(T.Query("$skip"))),
-    _top: S.optional(S.Number.pipe(T.Query("$top"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/topics/{topicName}/subscriptions/{subscriptionName}/rules",
-      code: 200,
-      apiVersion: "2026-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "RulesListBySubscriptionsRequest",
-}) as any as S.Schema<RulesListBySubscriptionsRequest>;
-
-/** Description of Rule Resource. */
-export interface Rule {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of Rule resource */
-  properties?: Ruleproperties;
-  /** The geo-location where the resource lives */
-  location?: string;
-}
-export const Rule = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(Ruleproperties),
-    location: S.optional(S.String),
-  }),
-).annotate({ identifier: "Rule" }) as any as S.Schema<Rule>;
-
-/** The Rule items on this page */
-export type RuleListResultValueList = Array<Rule>;
-export const RuleListResultValueList = /*@__PURE__*/ S.Array(
-  Rule,
-) as any as S.Schema<RuleListResultValueList>;
-
-/** The response of a Rule list operation. */
-export interface RuleListResult {
-  /** The Rule items on this page */
-  value: RuleListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const RuleListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: RuleListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({ identifier: "RuleListResult" }) as any as S.Schema<RuleListResult>;
-
-/** Properties specific to client affine subscriptions. */
-export interface SBClientAffineProperties {
-  /** Indicates the Client ID of the application that created the client-affine subscription. */
-  clientId?: string;
-  /** For client-affine subscriptions, this value indicates whether the subscription is durable or not. */
-  isDurable?: boolean;
-  /** For client-affine subscriptions, this value indicates whether the subscription is shared or not. */
-  isShared?: boolean;
-}
-export const SBClientAffineProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    clientId: S.optional(S.String),
-    isDurable: S.optional(S.Boolean),
-    isShared: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "SBClientAffineProperties",
-}) as any as S.Schema<SBClientAffineProperties>;
 
 /** Description of Subscription Resource. */
 export interface SBSubscriptionPropertiesInput {
@@ -4563,76 +5101,6 @@ export const SubscriptionsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "SubscriptionsCreateOrUpdateRequest",
 }) as any as S.Schema<SubscriptionsCreateOrUpdateRequest>;
 
-/** Description of Subscription Resource. */
-export interface SBSubscriptionProperties {
-  /** Number of messages. */
-  messageCount?: number;
-  /** Exact time the message was created. */
-  createdAt?: string;
-  /** Last time there was a receive request to this subscription. */
-  accessedAt?: string;
-  /** The exact time the message was updated. */
-  updatedAt?: string;
-  /** Message count details */
-  countDetails?: MessageCountDetails;
-  /** ISO 8061 lock duration timespan for the subscription. The default value is 1 minute. */
-  lockDuration?: string;
-  /** Value indicating if a subscription supports the concept of sessions. */
-  requiresSession?: boolean;
-  /** ISO 8061 Default message timespan to live value. This is the duration after which the message expires, starting from when the message is sent to Service Bus. This is the default value used when TimeToLive is not set on a message itself. */
-  defaultMessageTimeToLive?: string;
-  /** Value that indicates whether a subscription has dead letter support on filter evaluation exceptions. */
-  deadLetteringOnFilterEvaluationExceptions?: boolean;
-  /** Value that indicates whether a subscription has dead letter support when a message expires. */
-  deadLetteringOnMessageExpiration?: boolean;
-  /** ISO 8601 timeSpan structure that defines the duration of the duplicate detection history. The default value is 10 minutes. */
-  duplicateDetectionHistoryTimeWindow?: string;
-  /** Number of maximum deliveries. */
-  maxDeliveryCount?: number;
-  /** Enumerates the possible values for the status of a messaging entity. */
-  status?: EntityStatus;
-  /** Value that indicates whether server-side batched operations are enabled. */
-  enableBatchedOperations?: boolean;
-  /** ISO 8061 timeSpan idle interval after which the topic is automatically deleted. The minimum duration is 5 minutes. */
-  autoDeleteOnIdle?: string;
-  /** Queue/Topic name to forward the messages */
-  forwardTo?: string;
-  /** Queue/Topic name to forward the Dead Letter message */
-  forwardDeadLetteredMessagesTo?: string;
-  /** Value that indicates whether the subscription has an affinity to the client id. */
-  isClientAffine?: boolean;
-  /** Gets and Sets Metadata of User. */
-  userMetadata?: string;
-  /** Properties specific to client affine subscriptions. */
-  clientAffineProperties?: SBClientAffineProperties;
-}
-export const SBSubscriptionProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    messageCount: S.optional(S.Number),
-    createdAt: S.optional(S.String),
-    accessedAt: S.optional(S.String),
-    updatedAt: S.optional(S.String),
-    countDetails: S.optional(MessageCountDetails),
-    lockDuration: S.optional(S.String),
-    requiresSession: S.optional(S.Boolean),
-    defaultMessageTimeToLive: S.optional(S.String),
-    deadLetteringOnFilterEvaluationExceptions: S.optional(S.Boolean),
-    deadLetteringOnMessageExpiration: S.optional(S.Boolean),
-    duplicateDetectionHistoryTimeWindow: S.optional(S.String),
-    maxDeliveryCount: S.optional(S.Number),
-    status: S.optional(EntityStatus),
-    enableBatchedOperations: S.optional(S.Boolean),
-    autoDeleteOnIdle: S.optional(S.String),
-    forwardTo: S.optional(S.String),
-    forwardDeadLetteredMessagesTo: S.optional(S.String),
-    isClientAffine: S.optional(S.Boolean),
-    userMetadata: S.optional(S.String),
-    clientAffineProperties: S.optional(SBClientAffineProperties),
-  }),
-).annotate({
-  identifier: "SBSubscriptionProperties",
-}) as any as S.Schema<SBSubscriptionProperties>;
-
 export interface SubscriptionsCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
@@ -4659,184 +5127,6 @@ export const SubscriptionsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "SubscriptionsCreateOrUpdateResponse",
 }) as any as S.Schema<SubscriptionsCreateOrUpdateResponse>;
-
-export interface SubscriptionsDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-  /** The topic name. */
-  topicName: string;
-  /** The subscription name. */
-  subscriptionName: string;
-}
-export const SubscriptionsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    namespaceName: S.String.pipe(T.Label()),
-    topicName: S.String.pipe(T.Label()),
-    subscriptionName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/topics/{topicName}/subscriptions/{subscriptionName}",
-      code: 200,
-      apiVersion: "2026-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "SubscriptionsDeleteRequest",
-}) as any as S.Schema<SubscriptionsDeleteRequest>;
-
-export interface SubscriptionsDeleteResponse {}
-export const SubscriptionsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "SubscriptionsDeleteResponse",
-}) as any as S.Schema<SubscriptionsDeleteResponse>;
-
-export interface SubscriptionsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-  /** The topic name. */
-  topicName: string;
-  /** The subscription name. */
-  subscriptionName: string;
-}
-export const SubscriptionsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    namespaceName: S.String.pipe(T.Label()),
-    topicName: S.String.pipe(T.Label()),
-    subscriptionName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/topics/{topicName}/subscriptions/{subscriptionName}",
-      code: 200,
-      apiVersion: "2026-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "SubscriptionsGetRequest",
-}) as any as S.Schema<SubscriptionsGetRequest>;
-
-export interface SubscriptionsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of subscriptions resource. */
-  properties?: SBSubscriptionProperties;
-  /** The geo-location where the resource lives */
-  location?: string;
-}
-export const SubscriptionsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(SBSubscriptionProperties),
-    location: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SubscriptionsGetResponse",
-}) as any as S.Schema<SubscriptionsGetResponse>;
-
-export interface SubscriptionsListByTopicRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-  /** The topic name. */
-  topicName: string;
-  /** Skip is only used if a previous operation returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a skip parameter that specifies a starting point to use for subsequent calls. */
-  _skip?: number;
-  /** May be used to limit the number of results to the most recent N usageDetails. */
-  _top?: number;
-}
-export const SubscriptionsListByTopicRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    namespaceName: S.String.pipe(T.Label()),
-    topicName: S.String.pipe(T.Label()),
-    _skip: S.optional(S.Number.pipe(T.Query("$skip"))),
-    _top: S.optional(S.Number.pipe(T.Query("$top"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/topics/{topicName}/subscriptions",
-      code: 200,
-      apiVersion: "2026-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "SubscriptionsListByTopicRequest",
-}) as any as S.Schema<SubscriptionsListByTopicRequest>;
-
-/** Description of subscription resource. */
-export interface SBSubscription {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of subscriptions resource. */
-  properties?: SBSubscriptionProperties;
-  /** The geo-location where the resource lives */
-  location?: string;
-}
-export const SBSubscription = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(SBSubscriptionProperties),
-    location: S.optional(S.String),
-  }),
-).annotate({ identifier: "SBSubscription" }) as any as S.Schema<SBSubscription>;
-
-/** The SBSubscription items on this page */
-export type SBSubscriptionListResultValueList = Array<SBSubscription>;
-export const SBSubscriptionListResultValueList = /*@__PURE__*/ S.Array(
-  SBSubscription,
-) as any as S.Schema<SBSubscriptionListResultValueList>;
-
-/** The response of a SBSubscription list operation. */
-export interface SBSubscriptionListResult {
-  /** The SBSubscription items on this page */
-  value: SBSubscriptionListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const SBSubscriptionListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: SBSubscriptionListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SBSubscriptionListResult",
-}) as any as S.Schema<SBSubscriptionListResult>;
 
 /** The Topic Properties definition. */
 export interface SBTopicPropertiesInput {
@@ -4914,70 +5204,6 @@ export const TopicsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "TopicsCreateOrUpdateRequest",
 }) as any as S.Schema<TopicsCreateOrUpdateRequest>;
-
-/** The Topic Properties definition. */
-export interface SBTopicProperties {
-  /** Size of the topic, in bytes. */
-  sizeInBytes?: number;
-  /** Exact time the message was created. */
-  createdAt?: string;
-  /** The exact time the message was updated. */
-  updatedAt?: string;
-  /** Last time the message was sent, or a request was received, for this topic. */
-  accessedAt?: string;
-  /** Number of subscriptions. */
-  subscriptionCount?: number;
-  /** Message count details */
-  countDetails?: MessageCountDetails;
-  /** ISO 8601 Default message timespan to live value. This is the duration after which the message expires, starting from when the message is sent to Service Bus. This is the default value used when TimeToLive is not set on a message itself. */
-  defaultMessageTimeToLive?: string;
-  /** Maximum size of the topic in megabytes, which is the size of the memory allocated for the topic. Default is 1024. */
-  maxSizeInMegabytes?: number;
-  /** Maximum size (in KB) of the message payload that can be accepted by the topic. This property is only used in Premium today and default is 1024. */
-  maxMessageSizeInKilobytes?: number;
-  /** Value indicating if this topic requires duplicate detection. */
-  requiresDuplicateDetection?: boolean;
-  /** ISO8601 timespan structure that defines the duration of the duplicate detection history. The default value is 10 minutes. */
-  duplicateDetectionHistoryTimeWindow?: string;
-  /** Value that indicates whether server-side batched operations are enabled. */
-  enableBatchedOperations?: boolean;
-  /** Enumerates the possible values for the status of a messaging entity. */
-  status?: EntityStatus;
-  /** Value that indicates whether the topic supports ordering. */
-  supportOrdering?: boolean;
-  /** ISO 8601 timespan idle interval after which the topic is automatically deleted. The minimum duration is 5 minutes. */
-  autoDeleteOnIdle?: string;
-  /** Value that indicates whether the topic to be partitioned across multiple message brokers is enabled. */
-  enablePartitioning?: boolean;
-  /** Value that indicates whether Express Entities are enabled. An express topic holds a message in memory temporarily before writing it to persistent storage. */
-  enableExpress?: boolean;
-  /** Gets and Sets Metadata of User. */
-  userMetadata?: string;
-}
-export const SBTopicProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    sizeInBytes: S.optional(S.Number),
-    createdAt: S.optional(S.String),
-    updatedAt: S.optional(S.String),
-    accessedAt: S.optional(S.String),
-    subscriptionCount: S.optional(S.Number),
-    countDetails: S.optional(MessageCountDetails),
-    defaultMessageTimeToLive: S.optional(S.String),
-    maxSizeInMegabytes: S.optional(S.Number),
-    maxMessageSizeInKilobytes: S.optional(S.Number),
-    requiresDuplicateDetection: S.optional(S.Boolean),
-    duplicateDetectionHistoryTimeWindow: S.optional(S.String),
-    enableBatchedOperations: S.optional(S.Boolean),
-    status: S.optional(EntityStatus),
-    supportOrdering: S.optional(S.Boolean),
-    autoDeleteOnIdle: S.optional(S.String),
-    enablePartitioning: S.optional(S.Boolean),
-    enableExpress: S.optional(S.Boolean),
-    userMetadata: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SBTopicProperties",
-}) as any as S.Schema<SBTopicProperties>;
 
 export interface TopicsCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -5069,109 +5295,97 @@ export const TopicsCreateOrUpdateAuthorizationRuleResponse =
     identifier: "TopicsCreateOrUpdateAuthorizationRuleResponse",
   }) as any as S.Schema<TopicsCreateOrUpdateAuthorizationRuleResponse>;
 
-export interface TopicsDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-  /** The topic name. */
-  topicName: string;
+/** Resource tags */
+export type UpdateNamespaceRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateNamespaceRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateNamespaceRequestTagsMap>;
+
+/** List of private endpoint connections. */
+export type SBNamespaceUpdatePropertiesInputPrivateEndpointConnectionsList =
+  Array<PrivateEndpointConnectionInput>;
+export const SBNamespaceUpdatePropertiesInputPrivateEndpointConnectionsList =
+  /*@__PURE__*/ S.Array(
+    PrivateEndpointConnectionInput,
+  ) as any as S.Schema<SBNamespaceUpdatePropertiesInputPrivateEndpointConnectionsList>;
+
+/** Properties of the namespace. */
+export interface SBNamespaceUpdatePropertiesInput {
+  /** Properties of BYOK Encryption description */
+  encryption?: Encryption;
+  /** List of private endpoint connections. */
+  privateEndpointConnections?: SBNamespaceUpdatePropertiesInputPrivateEndpointConnectionsList;
+  /** This property disables SAS authentication for the Service Bus namespace. */
+  disableLocalAuth?: boolean;
+  /** Alternate name for namespace */
+  alternateName?: string;
 }
-export const TopicsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const SBNamespaceUpdatePropertiesInput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    namespaceName: S.String.pipe(T.Label()),
-    topicName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/topics/{topicName}",
-      code: 200,
-      apiVersion: "2026-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "TopicsDeleteRequest",
-}) as any as S.Schema<TopicsDeleteRequest>;
-
-export interface TopicsDeleteResponse {}
-export const TopicsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "TopicsDeleteResponse",
-}) as any as S.Schema<TopicsDeleteResponse>;
-
-export interface TopicsDeleteAuthorizationRuleRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-  /** The topic name. */
-  topicName: string;
-  /** The authorization rule name. */
-  authorizationRuleName: string;
-}
-export const TopicsDeleteAuthorizationRuleRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      namespaceName: S.String.pipe(T.Label()),
-      topicName: S.String.pipe(T.Label()),
-      authorizationRuleName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/topics/{topicName}/authorizationRules/{authorizationRuleName}",
-        code: 200,
-        apiVersion: "2026-01-01",
-      }),
+    encryption: S.optional(Encryption),
+    privateEndpointConnections: S.optional(
+      SBNamespaceUpdatePropertiesInputPrivateEndpointConnectionsList,
     ),
+    disableLocalAuth: S.optional(S.Boolean),
+    alternateName: S.optional(S.String),
+  }),
 ).annotate({
-  identifier: "TopicsDeleteAuthorizationRuleRequest",
-}) as any as S.Schema<TopicsDeleteAuthorizationRuleRequest>;
+  identifier: "SBNamespaceUpdatePropertiesInput",
+}) as any as S.Schema<SBNamespaceUpdatePropertiesInput>;
 
-export interface TopicsDeleteAuthorizationRuleResponse {}
-export const TopicsDeleteAuthorizationRuleResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "TopicsDeleteAuthorizationRuleResponse",
-}) as any as S.Schema<TopicsDeleteAuthorizationRuleResponse>;
-
-export interface TopicsGetRequest {
+export interface UpdateNamespaceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The namespace name */
   namespaceName: string;
-  /** The topic name. */
-  topicName: string;
+  /** Resource location */
+  location?: string;
+  /** Resource tags */
+  tags?: UpdateNamespaceRequestTagsMap;
+  /** Properties of SKU */
+  sku?: SBSku;
+  /** Properties of the namespace. */
+  properties?: SBNamespaceUpdatePropertiesInput;
+  /** Properties of BYOK Identity description */
+  identity?: IdentityInput;
 }
-export const TopicsGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateNamespaceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     namespaceName: S.String.pipe(T.Label()),
-    topicName: S.String.pipe(T.Label()),
+    location: S.optional(S.String),
+    tags: S.optional(UpdateNamespaceRequestTagsMap),
+    sku: S.optional(SBSku),
+    properties: S.optional(SBNamespaceUpdatePropertiesInput),
+    identity: S.optional(IdentityInput),
   }).pipe(
     T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/topics/{topicName}",
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}",
       code: 200,
       apiVersion: "2026-01-01",
     }),
   ),
 ).annotate({
-  identifier: "TopicsGetRequest",
-}) as any as S.Schema<TopicsGetRequest>;
+  identifier: "UpdateNamespaceRequest",
+}) as any as S.Schema<UpdateNamespaceRequest>;
 
-export interface TopicsGetResponse {
+/** Resource tags. */
+export type UpdateNamespaceResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateNamespaceResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateNamespaceResponseTagsMap>;
+
+export interface UpdateNamespaceResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -5180,256 +5394,242 @@ export interface TopicsGetResponse {
   type?: string;
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
-  /** Properties of topic resource. */
-  properties?: SBTopicProperties;
+  /** Resource tags. */
+  tags?: UpdateNamespaceResponseTagsMap;
   /** The geo-location where the resource lives */
-  location?: string;
+  location: string;
+  /** Properties of the namespace. */
+  properties?: SBNamespaceProperties;
+  /** Properties of SKU */
+  sku?: SBSku;
+  /** Properties of BYOK Identity description */
+  identity?: Identity;
 }
-export const TopicsGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateNamespaceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    properties: S.optional(SBTopicProperties),
-    location: S.optional(S.String),
+    tags: S.optional(UpdateNamespaceResponseTagsMap),
+    location: S.String,
+    properties: S.optional(SBNamespaceProperties),
+    sku: S.optional(SBSku),
+    identity: S.optional(Identity),
   }),
 ).annotate({
-  identifier: "TopicsGetResponse",
-}) as any as S.Schema<TopicsGetResponse>;
+  identifier: "UpdateNamespaceResponse",
+}) as any as S.Schema<UpdateNamespaceResponse>;
 
-export interface TopicsGetAuthorizationRuleRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-  /** The topic name. */
-  topicName: string;
-  /** The authorization rule name. */
-  authorizationRuleName: string;
-}
-export const TopicsGetAuthorizationRuleRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    namespaceName: S.String.pipe(T.Label()),
-    topicName: S.String.pipe(T.Label()),
-    authorizationRuleName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/topics/{topicName}/authorizationRules/{authorizationRuleName}",
-      code: 200,
-      apiVersion: "2026-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "TopicsGetAuthorizationRuleRequest",
-}) as any as S.Schema<TopicsGetAuthorizationRuleRequest>;
+export type CheckDisasterRecoveryConfigNameAvailabilityError = AzureOpError;
+/** Check the give namespace name availability. */
+export const CheckDisasterRecoveryConfigNameAvailability: API.OperationMethod<
+  CheckDisasterRecoveryConfigNameAvailabilityRequest,
+  CheckNameAvailabilityResult,
+  CheckDisasterRecoveryConfigNameAvailabilityError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CheckDisasterRecoveryConfigNameAvailabilityRequest,
+  output: CheckNameAvailabilityResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
-export interface TopicsGetAuthorizationRuleResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** AuthorizationRule properties. */
-  properties?: SBAuthorizationRuleProperties;
-  /** The geo-location where the resource lives */
-  location?: string;
-}
-export const TopicsGetAuthorizationRuleResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(SBAuthorizationRuleProperties),
-    location: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "TopicsGetAuthorizationRuleResponse",
-}) as any as S.Schema<TopicsGetAuthorizationRuleResponse>;
+export type CheckNamespaceNameAvailabilityError = AzureOpError;
+/** Check the give namespace name availability. */
+export const CheckNamespaceNameAvailability: API.OperationMethod<
+  CheckNamespaceNameAvailabilityRequest,
+  CheckNameAvailabilityResult,
+  CheckNamespaceNameAvailabilityError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CheckNamespaceNameAvailabilityRequest,
+  output: CheckNameAvailabilityResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
-export interface TopicsListAuthorizationRulesRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-  /** The topic name. */
-  topicName: string;
-}
-export const TopicsListAuthorizationRulesRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    namespaceName: S.String.pipe(T.Label()),
-    topicName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/topics/{topicName}/authorizationRules",
-      code: 200,
-      apiVersion: "2026-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "TopicsListAuthorizationRulesRequest",
-}) as any as S.Schema<TopicsListAuthorizationRulesRequest>;
+export type CompleteMigrationConfigMigrationError = AzureOpError;
+/** This operation Completes Migration of entities by pointing the connection strings to Premium namespace and any entities created after the operation will be under Premium Namespace. CompleteMigration operation will fail when entity migration is in-progress. */
+export const CompleteMigrationConfigMigration: API.OperationMethod<
+  CompleteMigrationConfigMigrationRequest,
+  CompleteMigrationConfigMigrationResponse,
+  CompleteMigrationConfigMigrationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CompleteMigrationConfigMigrationRequest,
+  output: CompleteMigrationConfigMigrationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
-export interface TopicsListByNamespaceRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-  /** Skip is only used if a previous operation returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a skip parameter that specifies a starting point to use for subsequent calls. */
-  _skip?: number;
-  /** May be used to limit the number of results to the most recent N usageDetails. */
-  _top?: number;
-}
-export const TopicsListByNamespaceRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    namespaceName: S.String.pipe(T.Label()),
-    _skip: S.optional(S.Number.pipe(T.Query("$skip"))),
-    _top: S.optional(S.Number.pipe(T.Query("$top"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/topics",
-      code: 200,
-      apiVersion: "2026-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "TopicsListByNamespaceRequest",
-}) as any as S.Schema<TopicsListByNamespaceRequest>;
+export type DeleteDisasterRecoveryConfigError = AzureOpError;
+/** Deletes an Alias(Disaster Recovery configuration) */
+export const DeleteDisasterRecoveryConfig: API.OperationMethod<
+  DeleteDisasterRecoveryConfigRequest,
+  DeleteDisasterRecoveryConfigResponse,
+  DeleteDisasterRecoveryConfigError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteDisasterRecoveryConfigRequest,
+  output: DeleteDisasterRecoveryConfigResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
-/** Description of topic resource. */
-export interface SBTopic {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of topic resource. */
-  properties?: SBTopicProperties;
-  /** The geo-location where the resource lives */
-  location?: string;
-}
-export const SBTopic = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(SBTopicProperties),
-    location: S.optional(S.String),
-  }),
-).annotate({ identifier: "SBTopic" }) as any as S.Schema<SBTopic>;
+export type DeleteMigrationConfigError = AzureOpError;
+/** Deletes a MigrationConfiguration */
+export const DeleteMigrationConfig: API.OperationMethod<
+  DeleteMigrationConfigRequest,
+  DeleteMigrationConfigResponse,
+  DeleteMigrationConfigError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteMigrationConfigRequest,
+  output: DeleteMigrationConfigResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
-/** The SBTopic items on this page */
-export type SBTopicListResultValueList = Array<SBTopic>;
-export const SBTopicListResultValueList = /*@__PURE__*/ S.Array(
-  SBTopic,
-) as any as S.Schema<SBTopicListResultValueList>;
+export type DeleteNamespaceError = AzureOpError;
+/** Deletes an existing namespace. This operation also removes all associated resources under the namespace. */
+export const DeleteNamespace: API.OperationMethod<
+  DeleteNamespaceRequest,
+  DeleteNamespaceResponse,
+  DeleteNamespaceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteNamespaceRequest,
+  output: DeleteNamespaceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
-/** The response of a SBTopic list operation. */
-export interface SBTopicListResult {
-  /** The SBTopic items on this page */
-  value: SBTopicListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const SBTopicListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: SBTopicListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SBTopicListResult",
-}) as any as S.Schema<SBTopicListResult>;
+export type DeleteNamespaceAuthorizationRuleError = AzureOpError;
+/** Deletes a namespace authorization rule. */
+export const DeleteNamespaceAuthorizationRule: API.OperationMethod<
+  DeleteNamespaceAuthorizationRuleRequest,
+  DeleteNamespaceAuthorizationRuleResponse,
+  DeleteNamespaceAuthorizationRuleError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteNamespaceAuthorizationRuleRequest,
+  output: DeleteNamespaceAuthorizationRuleResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
-export interface TopicsListKeysRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-  /** The topic name. */
-  topicName: string;
-  /** The authorization rule name. */
-  authorizationRuleName: string;
-}
-export const TopicsListKeysRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    namespaceName: S.String.pipe(T.Label()),
-    topicName: S.String.pipe(T.Label()),
-    authorizationRuleName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/topics/{topicName}/authorizationRules/{authorizationRuleName}/listKeys",
-      code: 200,
-      apiVersion: "2026-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "TopicsListKeysRequest",
-}) as any as S.Schema<TopicsListKeysRequest>;
+export type DeletePrivateEndpointConnectionError = AzureOpError;
+/** Deletes an existing Private Endpoint Connection. */
+export const DeletePrivateEndpointConnection: API.OperationMethod<
+  DeletePrivateEndpointConnectionRequest,
+  DeletePrivateEndpointConnectionResponse,
+  DeletePrivateEndpointConnectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeletePrivateEndpointConnectionRequest,
+  output: DeletePrivateEndpointConnectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
-export interface TopicsRegenerateKeysRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-  /** The topic name. */
-  topicName: string;
-  /** The authorization rule name. */
-  authorizationRuleName: string;
-  /** The access key to regenerate. */
-  keyType: KeyType | (string & {});
-  /** Optional, if the key value provided, is reset for KeyType value or autogenerate Key value set for keyType */
-  key?: string;
-}
-export const TopicsRegenerateKeysRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    namespaceName: S.String.pipe(T.Label()),
-    topicName: S.String.pipe(T.Label()),
-    authorizationRuleName: S.String.pipe(T.Label()),
-    keyType: KeyType,
-    key: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}/topics/{topicName}/authorizationRules/{authorizationRuleName}/regenerateKeys",
-      code: 200,
-      apiVersion: "2026-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "TopicsRegenerateKeysRequest",
-}) as any as S.Schema<TopicsRegenerateKeysRequest>;
+export type DeleteQueueError = AzureOpError;
+/** Deletes a queue from the specified namespace in a resource group. */
+export const DeleteQueue: API.OperationMethod<
+  DeleteQueueRequest,
+  DeleteQueueResponse,
+  DeleteQueueError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteQueueRequest,
+  output: DeleteQueueResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteQueueAuthorizationRuleError = AzureOpError;
+/** Deletes a queue authorization rule. */
+export const DeleteQueueAuthorizationRule: API.OperationMethod<
+  DeleteQueueAuthorizationRuleRequest,
+  DeleteQueueAuthorizationRuleResponse,
+  DeleteQueueAuthorizationRuleError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteQueueAuthorizationRuleRequest,
+  output: DeleteQueueAuthorizationRuleResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteRuleError = AzureOpError;
+/** Deletes an existing rule. */
+export const DeleteRule: API.OperationMethod<
+  DeleteRuleRequest,
+  DeleteRuleResponse,
+  DeleteRuleError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteRuleRequest,
+  output: DeleteRuleResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteSubscriptionError = AzureOpError;
+/** Deletes a subscription from the specified topic. */
+export const DeleteSubscription: API.OperationMethod<
+  DeleteSubscriptionRequest,
+  DeleteSubscriptionResponse,
+  DeleteSubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteSubscriptionRequest,
+  output: DeleteSubscriptionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteTopicError = AzureOpError;
+/** Deletes a topic from the specified namespace and resource group. */
+export const DeleteTopic: API.OperationMethod<
+  DeleteTopicRequest,
+  DeleteTopicResponse,
+  DeleteTopicError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteTopicRequest,
+  output: DeleteTopicResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteTopicAuthorizationRuleError = AzureOpError;
+/** Deletes a topic authorization rule. */
+export const DeleteTopicAuthorizationRule: API.OperationMethod<
+  DeleteTopicAuthorizationRuleRequest,
+  DeleteTopicAuthorizationRuleResponse,
+  DeleteTopicAuthorizationRuleError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteTopicAuthorizationRuleRequest,
+  output: DeleteTopicAuthorizationRuleResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
 export type DisasterRecoveryConfigsBreakPairingError = AzureOpError;
 /** This operation disables the Disaster Recovery and stops replicating changes from primary to secondary namespaces */
@@ -5441,21 +5641,6 @@ export const DisasterRecoveryConfigsBreakPairing: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: DisasterRecoveryConfigsBreakPairingRequest,
   output: DisasterRecoveryConfigsBreakPairingResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DisasterRecoveryConfigsCheckNameAvailabilityError = AzureOpError;
-/** Check the give namespace name availability. */
-export const DisasterRecoveryConfigsCheckNameAvailability: API.OperationMethod<
-  DisasterRecoveryConfigsCheckNameAvailabilityRequest,
-  CheckNameAvailabilityResult,
-  DisasterRecoveryConfigsCheckNameAvailabilityError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DisasterRecoveryConfigsCheckNameAvailabilityRequest,
-  output: CheckNameAvailabilityResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -5476,21 +5661,6 @@ export const DisasterRecoveryConfigsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DisasterRecoveryConfigsDeleteError = AzureOpError;
-/** Deletes an Alias(Disaster Recovery configuration) */
-export const DisasterRecoveryConfigsDelete: API.OperationMethod<
-  DisasterRecoveryConfigsDeleteRequest,
-  DisasterRecoveryConfigsDeleteResponse,
-  DisasterRecoveryConfigsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DisasterRecoveryConfigsDeleteRequest,
-  output: DisasterRecoveryConfigsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type DisasterRecoveryConfigsFailOverError = AzureOpError;
 /** Invokes GEO DR failover and reconfigure the alias to point to the secondary namespace */
 export const DisasterRecoveryConfigsFailOver: API.OperationMethod<
@@ -5506,91 +5676,528 @@ export const DisasterRecoveryConfigsFailOver: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DisasterRecoveryConfigsGetError = AzureOpError;
+export type GetDisasterRecoveryConfigError = AzureOpError;
 /** Retrieves Alias(Disaster Recovery configuration) for primary or secondary namespace */
-export const DisasterRecoveryConfigsGet: API.OperationMethod<
-  DisasterRecoveryConfigsGetRequest,
-  DisasterRecoveryConfigsGetResponse,
-  DisasterRecoveryConfigsGetError,
+export const GetDisasterRecoveryConfig: API.OperationMethod<
+  GetDisasterRecoveryConfigRequest,
+  GetDisasterRecoveryConfigResponse,
+  GetDisasterRecoveryConfigError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DisasterRecoveryConfigsGetRequest,
-  output: DisasterRecoveryConfigsGetResponse,
+  input: GetDisasterRecoveryConfigRequest,
+  output: GetDisasterRecoveryConfigResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DisasterRecoveryConfigsGetAuthorizationRuleError = AzureOpError;
+export type GetDisasterRecoveryConfigAuthorizationRuleError = AzureOpError;
 /** Gets an authorization rule for a namespace by rule name. */
-export const DisasterRecoveryConfigsGetAuthorizationRule: API.OperationMethod<
-  DisasterRecoveryConfigsGetAuthorizationRuleRequest,
-  DisasterRecoveryConfigsGetAuthorizationRuleResponse,
-  DisasterRecoveryConfigsGetAuthorizationRuleError,
+export const GetDisasterRecoveryConfigAuthorizationRule: API.OperationMethod<
+  GetDisasterRecoveryConfigAuthorizationRuleRequest,
+  GetDisasterRecoveryConfigAuthorizationRuleResponse,
+  GetDisasterRecoveryConfigAuthorizationRuleError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DisasterRecoveryConfigsGetAuthorizationRuleRequest,
-  output: DisasterRecoveryConfigsGetAuthorizationRuleResponse,
+  input: GetDisasterRecoveryConfigAuthorizationRuleRequest,
+  output: GetDisasterRecoveryConfigAuthorizationRuleResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DisasterRecoveryConfigsListError = AzureOpError;
-/** Gets all Alias(Disaster Recovery configurations) */
-export const DisasterRecoveryConfigsList: API.OperationMethod<
-  DisasterRecoveryConfigsListRequest,
-  ArmDisasterRecoveryListResult,
-  DisasterRecoveryConfigsListError,
+export type GetMigrationConfigError = AzureOpError;
+/** Retrieves Migration Config */
+export const GetMigrationConfig: API.OperationMethod<
+  GetMigrationConfigRequest,
+  GetMigrationConfigResponse,
+  GetMigrationConfigError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DisasterRecoveryConfigsListRequest,
-  output: ArmDisasterRecoveryListResult,
+  input: GetMigrationConfigRequest,
+  output: GetMigrationConfigResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DisasterRecoveryConfigsListAuthorizationRulesError = AzureOpError;
+export type GetNamespaceError = AzureOpError;
+/** Gets a description for the specified namespace. */
+export const GetNamespace: API.OperationMethod<
+  GetNamespaceRequest,
+  GetNamespaceResponse,
+  GetNamespaceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetNamespaceRequest,
+  output: GetNamespaceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetNamespaceAuthorizationRuleError = AzureOpError;
+/** Gets an authorization rule for a namespace by rule name. */
+export const GetNamespaceAuthorizationRule: API.OperationMethod<
+  GetNamespaceAuthorizationRuleRequest,
+  GetNamespaceAuthorizationRuleResponse,
+  GetNamespaceAuthorizationRuleError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetNamespaceAuthorizationRuleRequest,
+  output: GetNamespaceAuthorizationRuleResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetNamespaceNetworkRuleSetError = AzureOpError;
+/** Gets NetworkRuleSet for a Namespace. */
+export const GetNamespaceNetworkRuleSet: API.OperationMethod<
+  GetNamespaceNetworkRuleSetRequest,
+  GetNamespaceNetworkRuleSetResponse,
+  GetNamespaceNetworkRuleSetError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetNamespaceNetworkRuleSetRequest,
+  output: GetNamespaceNetworkRuleSetResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetNetworkSecurityPerimeterConfigurationResourceAssociationNameError =
+  AzureOpError;
+/** Return a NetworkSecurityPerimeterConfigurations resourceAssociationName */
+export const GetNetworkSecurityPerimeterConfigurationResourceAssociationName: API.OperationMethod<
+  GetNetworkSecurityPerimeterConfigurationResourceAssociationNameRequest,
+  GetNetworkSecurityPerimeterConfigurationResourceAssociationNameResponse,
+  GetNetworkSecurityPerimeterConfigurationResourceAssociationNameError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetNetworkSecurityPerimeterConfigurationResourceAssociationNameRequest,
+  output:
+    GetNetworkSecurityPerimeterConfigurationResourceAssociationNameResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetPrivateEndpointConnectionError = AzureOpError;
+/** Gets a description for the specified Private Endpoint Connection. */
+export const GetPrivateEndpointConnection: API.OperationMethod<
+  GetPrivateEndpointConnectionRequest,
+  GetPrivateEndpointConnectionResponse,
+  GetPrivateEndpointConnectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPrivateEndpointConnectionRequest,
+  output: GetPrivateEndpointConnectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetPrivateLinkResourceError = AzureOpError;
+/** Gets lists of resources that supports Privatelinks. */
+export const GetPrivateLinkResource: API.OperationMethod<
+  GetPrivateLinkResourceRequest,
+  PrivateLinkResourcesListResult,
+  GetPrivateLinkResourceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPrivateLinkResourceRequest,
+  output: PrivateLinkResourcesListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetQueueError = AzureOpError;
+/** Returns a description for the specified queue. */
+export const GetQueue: API.OperationMethod<
+  GetQueueRequest,
+  GetQueueResponse,
+  GetQueueError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetQueueRequest,
+  output: GetQueueResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetQueueAuthorizationRuleError = AzureOpError;
+/** Gets an authorization rule for a queue by rule name. */
+export const GetQueueAuthorizationRule: API.OperationMethod<
+  GetQueueAuthorizationRuleRequest,
+  GetQueueAuthorizationRuleResponse,
+  GetQueueAuthorizationRuleError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetQueueAuthorizationRuleRequest,
+  output: GetQueueAuthorizationRuleResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetRuleError = AzureOpError;
+/** Retrieves the description for the specified rule. */
+export const GetRule: API.OperationMethod<
+  GetRuleRequest,
+  GetRuleResponse,
+  GetRuleError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetRuleRequest,
+  output: GetRuleResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSubscriptionError = AzureOpError;
+/** Returns a subscription description for the specified topic. */
+export const GetSubscription: API.OperationMethod<
+  GetSubscriptionRequest,
+  GetSubscriptionResponse,
+  GetSubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSubscriptionRequest,
+  output: GetSubscriptionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetTopicError = AzureOpError;
+/** Returns a description for the specified topic. */
+export const GetTopic: API.OperationMethod<
+  GetTopicRequest,
+  GetTopicResponse,
+  GetTopicError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetTopicRequest,
+  output: GetTopicResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetTopicAuthorizationRuleError = AzureOpError;
+/** Returns the specified authorization rule. */
+export const GetTopicAuthorizationRule: API.OperationMethod<
+  GetTopicAuthorizationRuleRequest,
+  GetTopicAuthorizationRuleResponse,
+  GetTopicAuthorizationRuleError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetTopicAuthorizationRuleRequest,
+  output: GetTopicAuthorizationRuleResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDisasterRecoveryConfigAuthorizationRulesError = AzureOpError;
 /** Gets the authorization rules for a namespace. */
-export const DisasterRecoveryConfigsListAuthorizationRules: API.OperationMethod<
-  DisasterRecoveryConfigsListAuthorizationRulesRequest,
+export const ListDisasterRecoveryConfigAuthorizationRules: API.OperationMethod<
+  ListDisasterRecoveryConfigAuthorizationRulesRequest,
   SBAuthorizationRuleListResult,
-  DisasterRecoveryConfigsListAuthorizationRulesError,
+  ListDisasterRecoveryConfigAuthorizationRulesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DisasterRecoveryConfigsListAuthorizationRulesRequest,
+  input: ListDisasterRecoveryConfigAuthorizationRulesRequest,
   output: SBAuthorizationRuleListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DisasterRecoveryConfigsListKeysError = AzureOpError;
+export type ListDisasterRecoveryConfigKeysError = AzureOpError;
 /** Gets the primary and secondary connection strings for the namespace. */
-export const DisasterRecoveryConfigsListKeys: API.OperationMethod<
-  DisasterRecoveryConfigsListKeysRequest,
+export const ListDisasterRecoveryConfigKeys: API.OperationMethod<
+  ListDisasterRecoveryConfigKeysRequest,
   AccessKeys,
-  DisasterRecoveryConfigsListKeysError,
+  ListDisasterRecoveryConfigKeysError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DisasterRecoveryConfigsListKeysRequest,
+  input: ListDisasterRecoveryConfigKeysRequest,
   output: AccessKeys,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type MigrationConfigsCompleteMigrationError = AzureOpError;
-/** This operation Completes Migration of entities by pointing the connection strings to Premium namespace and any entities created after the operation will be under Premium Namespace. CompleteMigration operation will fail when entity migration is in-progress. */
-export const MigrationConfigsCompleteMigration: API.OperationMethod<
-  MigrationConfigsCompleteMigrationRequest,
-  MigrationConfigsCompleteMigrationResponse,
-  MigrationConfigsCompleteMigrationError,
+export type ListDisasterRecoveryConfigsError = AzureOpError;
+/** Gets all Alias(Disaster Recovery configurations) */
+export const ListDisasterRecoveryConfigs: API.OperationMethod<
+  ListDisasterRecoveryConfigsRequest,
+  ArmDisasterRecoveryListResult,
+  ListDisasterRecoveryConfigsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: MigrationConfigsCompleteMigrationRequest,
-  output: MigrationConfigsCompleteMigrationResponse,
+  input: ListDisasterRecoveryConfigsRequest,
+  output: ArmDisasterRecoveryListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListMigrationConfigsError = AzureOpError;
+/** Gets all migrationConfigurations */
+export const ListMigrationConfigs: API.OperationMethod<
+  ListMigrationConfigsRequest,
+  MigrationConfigListResult,
+  ListMigrationConfigsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListMigrationConfigsRequest,
+  output: MigrationConfigListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListNamespaceAuthorizationRulesError = AzureOpError;
+/** Gets the authorization rules for a namespace. */
+export const ListNamespaceAuthorizationRules: API.OperationMethod<
+  ListNamespaceAuthorizationRulesRequest,
+  SBAuthorizationRuleListResult,
+  ListNamespaceAuthorizationRulesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListNamespaceAuthorizationRulesRequest,
+  output: SBAuthorizationRuleListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListNamespaceByResourceGroupError = AzureOpError;
+/** Gets the available namespaces within a resource group. */
+export const ListNamespaceByResourceGroup: API.OperationMethod<
+  ListNamespaceByResourceGroupRequest,
+  SBNamespaceListResult,
+  ListNamespaceByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListNamespaceByResourceGroupRequest,
+  output: SBNamespaceListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListNamespaceKeysError = AzureOpError;
+/** Gets the primary and secondary connection strings for the namespace. */
+export const ListNamespaceKeys: API.OperationMethod<
+  ListNamespaceKeysRequest,
+  AccessKeys,
+  ListNamespaceKeysError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListNamespaceKeysRequest,
+  output: AccessKeys,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListNamespaceNetworkRuleSetsError = AzureOpError;
+/** Gets list of NetworkRuleSet for a Namespace. */
+export const ListNamespaceNetworkRuleSets: API.OperationMethod<
+  ListNamespaceNetworkRuleSetsRequest,
+  NetworkRuleSetListResult,
+  ListNamespaceNetworkRuleSetsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListNamespaceNetworkRuleSetsRequest,
+  output: NetworkRuleSetListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListNamespacesError = AzureOpError;
+/** Gets all the available namespaces within the subscription, irrespective of the resource groups. */
+export const ListNamespaces: API.OperationMethod<
+  ListNamespacesRequest,
+  SBNamespaceListResult,
+  ListNamespacesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListNamespacesRequest,
+  output: SBNamespaceListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListNetworkSecurityPerimeterConfigurationError = AzureOpError;
+/** Gets list of current NetworkSecurityPerimeterConfiguration for Namespace */
+export const ListNetworkSecurityPerimeterConfiguration: API.OperationMethod<
+  ListNetworkSecurityPerimeterConfigurationRequest,
+  NetworkSecurityPerimeterConfigurationList,
+  ListNetworkSecurityPerimeterConfigurationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListNetworkSecurityPerimeterConfigurationRequest,
+  output: NetworkSecurityPerimeterConfigurationList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListOperationsError = AzureOpError;
+/** List the operations for the provider */
+export const ListOperations: API.OperationMethod<
+  ListOperationsRequest,
+  OperationListResult,
+  ListOperationsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListOperationsRequest,
+  output: OperationListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListPrivateEndpointConnectionsError = AzureOpError;
+/** Gets the available PrivateEndpointConnections within a namespace. */
+export const ListPrivateEndpointConnections: API.OperationMethod<
+  ListPrivateEndpointConnectionsRequest,
+  PrivateEndpointConnectionListResult,
+  ListPrivateEndpointConnectionsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListPrivateEndpointConnectionsRequest,
+  output: PrivateEndpointConnectionListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListQueueAuthorizationRulesError = AzureOpError;
+/** Gets all authorization rules for a queue. */
+export const ListQueueAuthorizationRules: API.OperationMethod<
+  ListQueueAuthorizationRulesRequest,
+  SBAuthorizationRuleListResult,
+  ListQueueAuthorizationRulesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListQueueAuthorizationRulesRequest,
+  output: SBAuthorizationRuleListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListQueueByNamespaceError = AzureOpError;
+/** Gets the queues within a namespace. */
+export const ListQueueByNamespace: API.OperationMethod<
+  ListQueueByNamespaceRequest,
+  SBQueueListResult,
+  ListQueueByNamespaceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListQueueByNamespaceRequest,
+  output: SBQueueListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListQueueKeysError = AzureOpError;
+/** Primary and secondary connection strings to the queue. */
+export const ListQueueKeys: API.OperationMethod<
+  ListQueueKeysRequest,
+  AccessKeys,
+  ListQueueKeysError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListQueueKeysRequest,
+  output: AccessKeys,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListRuleBySubscriptionsError = AzureOpError;
+/** List all the rules within given topic-subscription */
+export const ListRuleBySubscriptions: API.OperationMethod<
+  ListRuleBySubscriptionsRequest,
+  RuleListResult,
+  ListRuleBySubscriptionsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListRuleBySubscriptionsRequest,
+  output: RuleListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSubscriptionByTopicError = AzureOpError;
+/** List all the subscriptions under a specified topic. */
+export const ListSubscriptionByTopic: API.OperationMethod<
+  ListSubscriptionByTopicRequest,
+  SBSubscriptionListResult,
+  ListSubscriptionByTopicError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSubscriptionByTopicRequest,
+  output: SBSubscriptionListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListTopicAuthorizationRulesError = AzureOpError;
+/** Gets authorization rules for a topic. */
+export const ListTopicAuthorizationRules: API.OperationMethod<
+  ListTopicAuthorizationRulesRequest,
+  SBAuthorizationRuleListResult,
+  ListTopicAuthorizationRulesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListTopicAuthorizationRulesRequest,
+  output: SBAuthorizationRuleListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListTopicByNamespaceError = AzureOpError;
+/** Gets all the topics in a namespace. */
+export const ListTopicByNamespace: API.OperationMethod<
+  ListTopicByNamespaceRequest,
+  SBTopicListResult,
+  ListTopicByNamespaceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListTopicByNamespaceRequest,
+  output: SBTopicListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListTopicKeysError = AzureOpError;
+/** Gets the primary and secondary connection strings for the topic. */
+export const ListTopicKeys: API.OperationMethod<
+  ListTopicKeysRequest,
+  AccessKeys,
+  ListTopicKeysError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListTopicKeysRequest,
+  output: AccessKeys,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -5611,51 +6218,6 @@ export const MigrationConfigsCreateAndStartMigration: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type MigrationConfigsDeleteError = AzureOpError;
-/** Deletes a MigrationConfiguration */
-export const MigrationConfigsDelete: API.OperationMethod<
-  MigrationConfigsDeleteRequest,
-  MigrationConfigsDeleteResponse,
-  MigrationConfigsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: MigrationConfigsDeleteRequest,
-  output: MigrationConfigsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type MigrationConfigsGetError = AzureOpError;
-/** Retrieves Migration Config */
-export const MigrationConfigsGet: API.OperationMethod<
-  MigrationConfigsGetRequest,
-  MigrationConfigsGetResponse,
-  MigrationConfigsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: MigrationConfigsGetRequest,
-  output: MigrationConfigsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type MigrationConfigsListError = AzureOpError;
-/** Gets all migrationConfigurations */
-export const MigrationConfigsList: API.OperationMethod<
-  MigrationConfigsListRequest,
-  MigrationConfigListResult,
-  MigrationConfigsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: MigrationConfigsListRequest,
-  output: MigrationConfigListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type MigrationConfigsRevertError = AzureOpError;
 /** This operation reverts Migration */
 export const MigrationConfigsRevert: API.OperationMethod<
@@ -5666,21 +6228,6 @@ export const MigrationConfigsRevert: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: MigrationConfigsRevertRequest,
   output: MigrationConfigsRevertResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type NamespacesCheckNameAvailabilityError = AzureOpError;
-/** Check the give namespace name availability. */
-export const NamespacesCheckNameAvailability: API.OperationMethod<
-  NamespacesCheckNameAvailabilityRequest,
-  CheckNameAvailabilityResult,
-  NamespacesCheckNameAvailabilityError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NamespacesCheckNameAvailabilityRequest,
-  output: CheckNameAvailabilityResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -5731,36 +6278,6 @@ export const NamespacesCreateOrUpdateNetworkRuleSet: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type NamespacesDeleteError = AzureOpError;
-/** Deletes an existing namespace. This operation also removes all associated resources under the namespace. */
-export const NamespacesDelete: API.OperationMethod<
-  NamespacesDeleteRequest,
-  NamespacesDeleteResponse,
-  NamespacesDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NamespacesDeleteRequest,
-  output: NamespacesDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type NamespacesDeleteAuthorizationRuleError = AzureOpError;
-/** Deletes a namespace authorization rule. */
-export const NamespacesDeleteAuthorizationRule: API.OperationMethod<
-  NamespacesDeleteAuthorizationRuleRequest,
-  NamespacesDeleteAuthorizationRuleResponse,
-  NamespacesDeleteAuthorizationRuleError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NamespacesDeleteAuthorizationRuleRequest,
-  output: NamespacesDeleteAuthorizationRuleResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type NamespacesFailoverError = AzureOpError;
 /** GeoDR Failover */
 export const NamespacesFailover: API.OperationMethod<
@@ -5771,189 +6288,6 @@ export const NamespacesFailover: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: NamespacesFailoverRequest,
   output: NamespacesFailoverResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type NamespacesGetError = AzureOpError;
-/** Gets a description for the specified namespace. */
-export const NamespacesGet: API.OperationMethod<
-  NamespacesGetRequest,
-  NamespacesGetResponse,
-  NamespacesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NamespacesGetRequest,
-  output: NamespacesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type NamespacesGetAuthorizationRuleError = AzureOpError;
-/** Gets an authorization rule for a namespace by rule name. */
-export const NamespacesGetAuthorizationRule: API.OperationMethod<
-  NamespacesGetAuthorizationRuleRequest,
-  NamespacesGetAuthorizationRuleResponse,
-  NamespacesGetAuthorizationRuleError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NamespacesGetAuthorizationRuleRequest,
-  output: NamespacesGetAuthorizationRuleResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type NamespacesGetNetworkRuleSetError = AzureOpError;
-/** Gets NetworkRuleSet for a Namespace. */
-export const NamespacesGetNetworkRuleSet: API.OperationMethod<
-  NamespacesGetNetworkRuleSetRequest,
-  NamespacesGetNetworkRuleSetResponse,
-  NamespacesGetNetworkRuleSetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NamespacesGetNetworkRuleSetRequest,
-  output: NamespacesGetNetworkRuleSetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type NamespacesListError = AzureOpError;
-/** Gets all the available namespaces within the subscription, irrespective of the resource groups. */
-export const NamespacesList: API.OperationMethod<
-  NamespacesListRequest,
-  SBNamespaceListResult,
-  NamespacesListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NamespacesListRequest,
-  output: SBNamespaceListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type NamespacesListAuthorizationRulesError = AzureOpError;
-/** Gets the authorization rules for a namespace. */
-export const NamespacesListAuthorizationRules: API.OperationMethod<
-  NamespacesListAuthorizationRulesRequest,
-  SBAuthorizationRuleListResult,
-  NamespacesListAuthorizationRulesError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NamespacesListAuthorizationRulesRequest,
-  output: SBAuthorizationRuleListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type NamespacesListByResourceGroupError = AzureOpError;
-/** Gets the available namespaces within a resource group. */
-export const NamespacesListByResourceGroup: API.OperationMethod<
-  NamespacesListByResourceGroupRequest,
-  SBNamespaceListResult,
-  NamespacesListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NamespacesListByResourceGroupRequest,
-  output: SBNamespaceListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type NamespacesListKeysError = AzureOpError;
-/** Gets the primary and secondary connection strings for the namespace. */
-export const NamespacesListKeys: API.OperationMethod<
-  NamespacesListKeysRequest,
-  AccessKeys,
-  NamespacesListKeysError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NamespacesListKeysRequest,
-  output: AccessKeys,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type NamespacesListNetworkRuleSetsError = AzureOpError;
-/** Gets list of NetworkRuleSet for a Namespace. */
-export const NamespacesListNetworkRuleSets: API.OperationMethod<
-  NamespacesListNetworkRuleSetsRequest,
-  NetworkRuleSetListResult,
-  NamespacesListNetworkRuleSetsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NamespacesListNetworkRuleSetsRequest,
-  output: NetworkRuleSetListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type NamespacesRegenerateKeysError = AzureOpError;
-/** Regenerates the primary or secondary connection strings for the namespace. */
-export const NamespacesRegenerateKeys: API.OperationMethod<
-  NamespacesRegenerateKeysRequest,
-  AccessKeys,
-  NamespacesRegenerateKeysError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NamespacesRegenerateKeysRequest,
-  output: AccessKeys,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type NamespacesUpdateError = AzureOpError;
-/** Updates a service namespace. Once created, this namespace's resource manifest is immutable. This operation is idempotent. */
-export const NamespacesUpdate: API.OperationMethod<
-  NamespacesUpdateRequest,
-  NamespacesUpdateResponse,
-  NamespacesUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NamespacesUpdateRequest,
-  output: NamespacesUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type NetworkSecurityPerimeterConfigurationList2Error = AzureOpError;
-/** Gets list of current NetworkSecurityPerimeterConfiguration for Namespace */
-export const NetworkSecurityPerimeterConfigurationList2: API.OperationMethod<
-  NetworkSecurityPerimeterConfigurationListRequest,
-  NetworkSecurityPerimeterConfigurationList,
-  NetworkSecurityPerimeterConfigurationList2Error,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NetworkSecurityPerimeterConfigurationListRequest,
-  output: NetworkSecurityPerimeterConfigurationList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type NetworkSecurityPerimeterConfigurationsGetResourceAssociationNameError =
-  AzureOpError;
-/** Return a NetworkSecurityPerimeterConfigurations resourceAssociationName */
-export const NetworkSecurityPerimeterConfigurationsGetResourceAssociationName: API.OperationMethod<
-  NetworkSecurityPerimeterConfigurationsGetResourceAssociationNameRequest,
-  NetworkSecurityPerimeterConfigurationsGetResourceAssociationNameResponse,
-  NetworkSecurityPerimeterConfigurationsGetResourceAssociationNameError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input:
-    NetworkSecurityPerimeterConfigurationsGetResourceAssociationNameRequest,
-  output:
-    NetworkSecurityPerimeterConfigurationsGetResourceAssociationNameResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -5974,21 +6308,6 @@ export const NetworkSecurityPerimeterConfigurationsReconcile: API.OperationMetho
   retry: Retry.Retry,
 }));
 
-export type OperationsListError = AzureOpError;
-/** List the operations for the provider */
-export const OperationsList: API.OperationMethod<
-  OperationsListRequest,
-  OperationListResult,
-  OperationsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: OperationsListRequest,
-  output: OperationListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type PrivateEndpointConnectionsCreateOrUpdateError = AzureOpError;
 /** Creates or updates PrivateEndpointConnections of service namespace. */
 export const PrivateEndpointConnectionsCreateOrUpdate: API.OperationMethod<
@@ -5999,66 +6318,6 @@ export const PrivateEndpointConnectionsCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: PrivateEndpointConnectionsCreateOrUpdateRequest,
   output: PrivateEndpointConnectionsCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateEndpointConnectionsDeleteError = AzureOpError;
-/** Deletes an existing Private Endpoint Connection. */
-export const PrivateEndpointConnectionsDelete: API.OperationMethod<
-  PrivateEndpointConnectionsDeleteRequest,
-  PrivateEndpointConnectionsDeleteResponse,
-  PrivateEndpointConnectionsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateEndpointConnectionsDeleteRequest,
-  output: PrivateEndpointConnectionsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateEndpointConnectionsGetError = AzureOpError;
-/** Gets a description for the specified Private Endpoint Connection. */
-export const PrivateEndpointConnectionsGet: API.OperationMethod<
-  PrivateEndpointConnectionsGetRequest,
-  PrivateEndpointConnectionsGetResponse,
-  PrivateEndpointConnectionsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateEndpointConnectionsGetRequest,
-  output: PrivateEndpointConnectionsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateEndpointConnectionsListError = AzureOpError;
-/** Gets the available PrivateEndpointConnections within a namespace. */
-export const PrivateEndpointConnectionsList: API.OperationMethod<
-  PrivateEndpointConnectionsListRequest,
-  PrivateEndpointConnectionListResult,
-  PrivateEndpointConnectionsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateEndpointConnectionsListRequest,
-  output: PrivateEndpointConnectionListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateLinkResourcesGetError = AzureOpError;
-/** Gets lists of resources that supports Privatelinks. */
-export const PrivateLinkResourcesGet: API.OperationMethod<
-  PrivateLinkResourcesGetRequest,
-  PrivateLinkResourcesListResult,
-  PrivateLinkResourcesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateLinkResourcesGetRequest,
-  output: PrivateLinkResourcesListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -6094,120 +6353,45 @@ export const QueuesCreateOrUpdateAuthorizationRule: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type QueuesDeleteError = AzureOpError;
-/** Deletes a queue from the specified namespace in a resource group. */
-export const QueuesDelete: API.OperationMethod<
-  QueuesDeleteRequest,
-  QueuesDeleteResponse,
-  QueuesDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: QueuesDeleteRequest,
-  output: QueuesDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type QueuesDeleteAuthorizationRuleError = AzureOpError;
-/** Deletes a queue authorization rule. */
-export const QueuesDeleteAuthorizationRule: API.OperationMethod<
-  QueuesDeleteAuthorizationRuleRequest,
-  QueuesDeleteAuthorizationRuleResponse,
-  QueuesDeleteAuthorizationRuleError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: QueuesDeleteAuthorizationRuleRequest,
-  output: QueuesDeleteAuthorizationRuleResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type QueuesGetError = AzureOpError;
-/** Returns a description for the specified queue. */
-export const QueuesGet: API.OperationMethod<
-  QueuesGetRequest,
-  QueuesGetResponse,
-  QueuesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: QueuesGetRequest,
-  output: QueuesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type QueuesGetAuthorizationRuleError = AzureOpError;
-/** Gets an authorization rule for a queue by rule name. */
-export const QueuesGetAuthorizationRule: API.OperationMethod<
-  QueuesGetAuthorizationRuleRequest,
-  QueuesGetAuthorizationRuleResponse,
-  QueuesGetAuthorizationRuleError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: QueuesGetAuthorizationRuleRequest,
-  output: QueuesGetAuthorizationRuleResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type QueuesListAuthorizationRulesError = AzureOpError;
-/** Gets all authorization rules for a queue. */
-export const QueuesListAuthorizationRules: API.OperationMethod<
-  QueuesListAuthorizationRulesRequest,
-  SBAuthorizationRuleListResult,
-  QueuesListAuthorizationRulesError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: QueuesListAuthorizationRulesRequest,
-  output: SBAuthorizationRuleListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type QueuesListByNamespaceError = AzureOpError;
-/** Gets the queues within a namespace. */
-export const QueuesListByNamespace: API.OperationMethod<
-  QueuesListByNamespaceRequest,
-  SBQueueListResult,
-  QueuesListByNamespaceError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: QueuesListByNamespaceRequest,
-  output: SBQueueListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type QueuesListKeysError = AzureOpError;
-/** Primary and secondary connection strings to the queue. */
-export const QueuesListKeys: API.OperationMethod<
-  QueuesListKeysRequest,
+export type RegenerateNamespaceKeysError = AzureOpError;
+/** Regenerates the primary or secondary connection strings for the namespace. */
+export const RegenerateNamespaceKeys: API.OperationMethod<
+  RegenerateNamespaceKeysRequest,
   AccessKeys,
-  QueuesListKeysError,
+  RegenerateNamespaceKeysError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: QueuesListKeysRequest,
+  input: RegenerateNamespaceKeysRequest,
   output: AccessKeys,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type QueuesRegenerateKeysError = AzureOpError;
+export type RegenerateQueueKeysError = AzureOpError;
 /** Regenerates the primary or secondary connection strings to the queue. */
-export const QueuesRegenerateKeys: API.OperationMethod<
-  QueuesRegenerateKeysRequest,
+export const RegenerateQueueKeys: API.OperationMethod<
+  RegenerateQueueKeysRequest,
   AccessKeys,
-  QueuesRegenerateKeysError,
+  RegenerateQueueKeysError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: QueuesRegenerateKeysRequest,
+  input: RegenerateQueueKeysRequest,
+  output: AccessKeys,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RegenerateTopicKeysError = AzureOpError;
+/** Regenerates primary or secondary connection strings for the topic. */
+export const RegenerateTopicKeys: API.OperationMethod<
+  RegenerateTopicKeysRequest,
+  AccessKeys,
+  RegenerateTopicKeysError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RegenerateTopicKeysRequest,
   output: AccessKeys,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -6229,51 +6413,6 @@ export const RulesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type RulesDeleteError = AzureOpError;
-/** Deletes an existing rule. */
-export const RulesDelete: API.OperationMethod<
-  RulesDeleteRequest,
-  RulesDeleteResponse,
-  RulesDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RulesDeleteRequest,
-  output: RulesDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RulesGetError = AzureOpError;
-/** Retrieves the description for the specified rule. */
-export const RulesGet: API.OperationMethod<
-  RulesGetRequest,
-  RulesGetResponse,
-  RulesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RulesGetRequest,
-  output: RulesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RulesListBySubscriptionsError = AzureOpError;
-/** List all the rules within given topic-subscription */
-export const RulesListBySubscriptions: API.OperationMethod<
-  RulesListBySubscriptionsRequest,
-  RuleListResult,
-  RulesListBySubscriptionsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RulesListBySubscriptionsRequest,
-  output: RuleListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type SubscriptionsCreateOrUpdateError = AzureOpError;
 /** Creates a topic subscription. */
 export const SubscriptionsCreateOrUpdate: API.OperationMethod<
@@ -6284,51 +6423,6 @@ export const SubscriptionsCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: SubscriptionsCreateOrUpdateRequest,
   output: SubscriptionsCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SubscriptionsDeleteError = AzureOpError;
-/** Deletes a subscription from the specified topic. */
-export const SubscriptionsDelete: API.OperationMethod<
-  SubscriptionsDeleteRequest,
-  SubscriptionsDeleteResponse,
-  SubscriptionsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SubscriptionsDeleteRequest,
-  output: SubscriptionsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SubscriptionsGetError = AzureOpError;
-/** Returns a subscription description for the specified topic. */
-export const SubscriptionsGet: API.OperationMethod<
-  SubscriptionsGetRequest,
-  SubscriptionsGetResponse,
-  SubscriptionsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SubscriptionsGetRequest,
-  output: SubscriptionsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SubscriptionsListByTopicError = AzureOpError;
-/** List all the subscriptions under a specified topic. */
-export const SubscriptionsListByTopic: API.OperationMethod<
-  SubscriptionsListByTopicRequest,
-  SBSubscriptionListResult,
-  SubscriptionsListByTopicError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SubscriptionsListByTopicRequest,
-  output: SBSubscriptionListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -6364,121 +6458,16 @@ export const TopicsCreateOrUpdateAuthorizationRule: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type TopicsDeleteError = AzureOpError;
-/** Deletes a topic from the specified namespace and resource group. */
-export const TopicsDelete: API.OperationMethod<
-  TopicsDeleteRequest,
-  TopicsDeleteResponse,
-  TopicsDeleteError,
+export type UpdateNamespaceError = AzureOpError;
+/** Updates a service namespace. Once created, this namespace's resource manifest is immutable. This operation is idempotent. */
+export const UpdateNamespace: API.OperationMethod<
+  UpdateNamespaceRequest,
+  UpdateNamespaceResponse,
+  UpdateNamespaceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: TopicsDeleteRequest,
-  output: TopicsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TopicsDeleteAuthorizationRuleError = AzureOpError;
-/** Deletes a topic authorization rule. */
-export const TopicsDeleteAuthorizationRule: API.OperationMethod<
-  TopicsDeleteAuthorizationRuleRequest,
-  TopicsDeleteAuthorizationRuleResponse,
-  TopicsDeleteAuthorizationRuleError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TopicsDeleteAuthorizationRuleRequest,
-  output: TopicsDeleteAuthorizationRuleResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TopicsGetError = AzureOpError;
-/** Returns a description for the specified topic. */
-export const TopicsGet: API.OperationMethod<
-  TopicsGetRequest,
-  TopicsGetResponse,
-  TopicsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TopicsGetRequest,
-  output: TopicsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TopicsGetAuthorizationRuleError = AzureOpError;
-/** Returns the specified authorization rule. */
-export const TopicsGetAuthorizationRule: API.OperationMethod<
-  TopicsGetAuthorizationRuleRequest,
-  TopicsGetAuthorizationRuleResponse,
-  TopicsGetAuthorizationRuleError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TopicsGetAuthorizationRuleRequest,
-  output: TopicsGetAuthorizationRuleResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TopicsListAuthorizationRulesError = AzureOpError;
-/** Gets authorization rules for a topic. */
-export const TopicsListAuthorizationRules: API.OperationMethod<
-  TopicsListAuthorizationRulesRequest,
-  SBAuthorizationRuleListResult,
-  TopicsListAuthorizationRulesError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TopicsListAuthorizationRulesRequest,
-  output: SBAuthorizationRuleListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TopicsListByNamespaceError = AzureOpError;
-/** Gets all the topics in a namespace. */
-export const TopicsListByNamespace: API.OperationMethod<
-  TopicsListByNamespaceRequest,
-  SBTopicListResult,
-  TopicsListByNamespaceError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TopicsListByNamespaceRequest,
-  output: SBTopicListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TopicsListKeysError = AzureOpError;
-/** Gets the primary and secondary connection strings for the topic. */
-export const TopicsListKeys: API.OperationMethod<
-  TopicsListKeysRequest,
-  AccessKeys,
-  TopicsListKeysError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TopicsListKeysRequest,
-  output: AccessKeys,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TopicsRegenerateKeysError = AzureOpError;
-/** Regenerates primary or secondary connection strings for the topic. */
-export const TopicsRegenerateKeys: API.OperationMethod<
-  TopicsRegenerateKeysRequest,
-  AccessKeys,
-  TopicsRegenerateKeysError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TopicsRegenerateKeysRequest,
-  output: AccessKeys,
+  input: UpdateNamespaceRequest,
+  output: UpdateNamespaceResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

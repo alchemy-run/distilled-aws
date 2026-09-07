@@ -11,13 +11,13 @@ import * as Retry from "../retry.ts";
 
 export type { PosthogOpError, PosthogOpContext };
 
-export interface DocsSearchRequest {
+export interface SearchDocRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** Natural-language description of what to find in the PostHog documentation. Inkeep performs hybrid (semantic + full-text) RAG, so phrase the query the way a user would ask the question. */
   query: string;
 }
-export const DocsSearchRequest = /*@__PURE__*/ S.suspend(() =>
+export const SearchDocRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     query: S.String,
@@ -29,8 +29,8 @@ export const DocsSearchRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DocsSearchRequest",
-}) as any as S.Schema<DocsSearchRequest>;
+  identifier: "SearchDocRequest",
+}) as any as S.Schema<SearchDocRequest>;
 
 export interface DocsSearchResponse {
   /** Markdown-formatted documentation results. Each block has a title, URL and excerpt; an empty result set returns guidance to navigate to https://posthog.com/docs. */
@@ -44,15 +44,15 @@ export const DocsSearchResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DocsSearchResponse",
 }) as any as S.Schema<DocsSearchResponse>;
 
-export type DocsSearchError = PosthogOpError;
+export type SearchDocError = PosthogOpError;
 /** Search PostHog documentation Run a hybrid (semantic + full-text) RAG search over the PostHog documentation via Inkeep. Returns a markdown body with title, URL, and excerpt for each match for the agent to cite back to the user. */
-export const docsSearch: API.OperationMethod<
-  DocsSearchRequest,
+export const searchDoc: API.OperationMethod<
+  SearchDocRequest,
   DocsSearchResponse,
-  DocsSearchError,
+  SearchDocError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DocsSearchRequest,
+  input: SearchDocRequest,
   output: DocsSearchResponse,
   errors: [],
   protocol: PosthogProtocol,

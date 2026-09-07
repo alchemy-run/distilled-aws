@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.integrations#IntegrationsListRequestKind": {
+    "com.posthog.integrations#ListIntegrationsRequestKind": {
       "type": "enum",
       "members": {
         "ANTHROPIC": {
@@ -305,7 +306,7 @@
       },
       "traits": {}
     },
-    "com.posthog.integrations#IntegrationsListRequest": {
+    "com.posthog.integrations#ListIntegrationsRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -317,7 +318,7 @@
           }
         },
         "kind": {
-          "target": "com.posthog.integrations#IntegrationsListRequestKind",
+          "target": "com.posthog.integrations#ListIntegrationsRequestKind",
           "traits": {
             "smithy.api#httpQuery": "kind",
             "smithy.api#documentation": "* `anthropic` - Anthropic\n* `apns` - Apple Push\n* `aws-redshift` - Aws Redshift\n* `aws-s3` - Aws S3\n* `azure-blob` - Azure Blob\n* `bing-ads` - Bing Ads\n* `clickup` - Clickup\n* `customerio-app` - Customerio App\n* `customerio-track` - Customerio Track\n* `customerio-webhook` - Customerio Webhook\n* `databricks` - Databricks\n* `email` - Email\n* `firebase` - Firebase\n* `github` - Github\n* `gitlab` - Gitlab\n* `google-ads` - Google Ads\n* `google-analytics` - Google Analytics\n* `google-calendar` - Google Calendar\n* `google-cloud-service-account` - Google Cloud Service Account\n* `google-cloud-storage` - Google Cloud Storage\n* `google-pubsub` - Google Pubsub\n* `google-search-console` - Google Search Console\n* `google-sheets` - Google Sheets\n* `hubspot` - Hubspot\n* `instagram` - Instagram\n* `intercom` - Intercom\n* `jira` - Jira\n* `linear` - Linear\n* `linkedin-ads` - Linkedin Ads\n* `meta-ads` - Meta Ads\n* `pardot` - Pardot\n* `pinterest-ads` - Pinterest Ads\n* `postgresql` - Postgresql\n* `posthog` - Posthog\n* `reddit-ads` - Reddit Ads\n* `resend` - Resend\n* `s3-compatible` - S3 Compatible\n* `salesforce` - Salesforce\n* `slack` - Slack\n* `slack-posthog-code` - Slack Posthog Code\n* `snapchat` - Snapchat\n* `snowflake` - Snowflake\n* `stripe` - Stripe\n* `tiktok-ads` - Tiktok Ads\n* `twilio` - Twilio\n* `vercel` - Vercel\n* `youtube-analytics` - Youtube Analytics"
@@ -392,6 +393,12 @@
         },
         "display_name": {
           "target": "smithy.api#String"
+        },
+        "files_write_requestable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Slack only: whether reconnecting can request the files:write scope."
+          }
         },
         "installation_shared": {
           "target": "smithy.api#Boolean",
@@ -870,10 +877,10 @@
       },
       "traits": {}
     },
-    "com.posthog.integrations#IntegrationsList": {
+    "com.posthog.integrations#ListIntegrations": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.integrations#IntegrationsListRequest"
+        "target": "com.posthog.integrations#ListIntegrationsRequest"
       },
       "output": {
         "target": "com.posthog.integrations#PaginatedIntegrationConfigList"
@@ -897,7 +904,7 @@
         }
       }
     },
-    "com.posthog.integrations#IntegrationsCreateRequest": {
+    "com.posthog.integrations#CreateIntegrationRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -919,10 +926,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.integrations#IntegrationsCreate": {
+    "com.posthog.integrations#CreateIntegration": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.integrations#IntegrationsCreateRequest"
+        "target": "com.posthog.integrations#CreateIntegrationRequest"
       },
       "output": {
         "target": "com.posthog.integrations#IntegrationConfig"
@@ -946,7 +953,7 @@
         }
       }
     },
-    "com.posthog.integrations#IntegrationsRetrieveRequest": {
+    "com.posthog.integrations#GetIntegrationRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -970,10 +977,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.integrations#IntegrationsRetrieve": {
+    "com.posthog.integrations#GetIntegration": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.integrations#IntegrationsRetrieveRequest"
+        "target": "com.posthog.integrations#GetIntegrationRequest"
       },
       "output": {
         "target": "com.posthog.integrations#IntegrationConfig"
@@ -1042,7 +1049,7 @@
         }
       }
     },
-    "com.posthog.integrations#IntegrationsAnthropicManagedAgentEnvsRetrieveRequest": {
+    "com.posthog.integrations#GetIntegrationsAnthropicManagedAgentEnvRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1066,10 +1073,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.integrations#IntegrationsAnthropicManagedAgentEnvsRetrieve": {
+    "com.posthog.integrations#GetIntegrationsAnthropicManagedAgentEnv": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.integrations#IntegrationsAnthropicManagedAgentEnvsRetrieveRequest"
+        "target": "com.posthog.integrations#GetIntegrationsAnthropicManagedAgentEnvRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1082,7 +1089,7 @@
         }
       }
     },
-    "com.posthog.integrations#IntegrationsAnthropicManagedAgentVaultsRetrieveRequest": {
+    "com.posthog.integrations#GetIntegrationsAnthropicManagedAgentVaultRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1106,10 +1113,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.integrations#IntegrationsAnthropicManagedAgentVaultsRetrieve": {
+    "com.posthog.integrations#GetIntegrationsAnthropicManagedAgentVault": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.integrations#IntegrationsAnthropicManagedAgentVaultsRetrieveRequest"
+        "target": "com.posthog.integrations#GetIntegrationsAnthropicManagedAgentVaultRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1122,7 +1129,7 @@
         }
       }
     },
-    "com.posthog.integrations#IntegrationsAnthropicManagedAgentsRetrieveRequest": {
+    "com.posthog.integrations#GetIntegrationsAnthropicManagedAgentRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1146,10 +1153,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.integrations#IntegrationsAnthropicManagedAgentsRetrieve": {
+    "com.posthog.integrations#GetIntegrationsAnthropicManagedAgent": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.integrations#IntegrationsAnthropicManagedAgentsRetrieveRequest"
+        "target": "com.posthog.integrations#GetIntegrationsAnthropicManagedAgentRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1162,7 +1169,7 @@
         }
       }
     },
-    "com.posthog.integrations#IntegrationsChannelsRetrieveRequest": {
+    "com.posthog.integrations#GetIntegrationsChannelRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1290,10 +1297,10 @@
         "smithy.api#documentation": "Slack channels visible to the PostHog Slack app."
       }
     },
-    "com.posthog.integrations#IntegrationsChannelsRetrieve": {
+    "com.posthog.integrations#GetIntegrationsChannel": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.integrations#IntegrationsChannelsRetrieveRequest"
+        "target": "com.posthog.integrations#GetIntegrationsChannelRequest"
       },
       "output": {
         "target": "com.posthog.integrations#SlackChannelsResponse"
@@ -1314,7 +1321,7 @@
         }
       }
     },
-    "com.posthog.integrations#IntegrationsClickupListsRetrieveRequest": {
+    "com.posthog.integrations#GetIntegrationsClickupListRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1338,10 +1345,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.integrations#IntegrationsClickupListsRetrieve": {
+    "com.posthog.integrations#GetIntegrationsClickupList": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.integrations#IntegrationsClickupListsRetrieveRequest"
+        "target": "com.posthog.integrations#GetIntegrationsClickupListRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1362,7 +1369,7 @@
         }
       }
     },
-    "com.posthog.integrations#IntegrationsClickupSpacesRetrieveRequest": {
+    "com.posthog.integrations#GetIntegrationsClickupSpaceRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1386,10 +1393,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.integrations#IntegrationsClickupSpacesRetrieve": {
+    "com.posthog.integrations#GetIntegrationsClickupSpace": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.integrations#IntegrationsClickupSpacesRetrieveRequest"
+        "target": "com.posthog.integrations#GetIntegrationsClickupSpaceRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1410,7 +1417,7 @@
         }
       }
     },
-    "com.posthog.integrations#IntegrationsClickupWorkspacesRetrieveRequest": {
+    "com.posthog.integrations#GetIntegrationsClickupWorkspaceRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1434,10 +1441,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.integrations#IntegrationsClickupWorkspacesRetrieve": {
+    "com.posthog.integrations#GetIntegrationsClickupWorkspace": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.integrations#IntegrationsClickupWorkspacesRetrieveRequest"
+        "target": "com.posthog.integrations#GetIntegrationsClickupWorkspaceRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1458,7 +1465,7 @@
         }
       }
     },
-    "com.posthog.integrations#IntegrationsEmailPartialUpdateRequest": {
+    "com.posthog.integrations#UpdateIntegrationsEmailPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1488,10 +1495,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.integrations#IntegrationsEmailPartialUpdate": {
+    "com.posthog.integrations#UpdateIntegrationsEmailPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.integrations#IntegrationsEmailPartialUpdateRequest"
+        "target": "com.posthog.integrations#UpdateIntegrationsEmailPartialRequest"
       },
       "output": {
         "target": "com.posthog.integrations#IntegrationConfig"
@@ -1572,7 +1579,7 @@
         }
       }
     },
-    "com.posthog.integrations#IntegrationsGithubBranchesRetrieveRequest": {
+    "com.posthog.integrations#GetIntegrationsGithubBranchRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1659,10 +1666,10 @@
         "smithy.api#documentation": "List of branch names"
       }
     },
-    "com.posthog.integrations#IntegrationsGithubBranchesRetrieve": {
+    "com.posthog.integrations#GetIntegrationsGithubBranch": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.integrations#IntegrationsGithubBranchesRetrieveRequest"
+        "target": "com.posthog.integrations#GetIntegrationsGithubBranchRequest"
       },
       "output": {
         "target": "com.posthog.integrations#GitHubBranchesResponse"
@@ -1686,7 +1693,7 @@
         }
       }
     },
-    "com.posthog.integrations#IntegrationsGithubReposRetrieveRequest": {
+    "com.posthog.integrations#GetIntegrationsGithubReposRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1819,10 +1826,10 @@
       },
       "traits": {}
     },
-    "com.posthog.integrations#IntegrationsGithubReposRetrieve": {
+    "com.posthog.integrations#GetIntegrationsGithubRepos": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.integrations#IntegrationsGithubReposRetrieveRequest"
+        "target": "com.posthog.integrations#GetIntegrationsGithubReposRequest"
       },
       "output": {
         "target": "com.posthog.integrations#GitHubReposResponse"
@@ -1921,7 +1928,7 @@
         }
       }
     },
-    "com.posthog.integrations#IntegrationsGithubTeamsRetrieveRequest": {
+    "com.posthog.integrations#GetIntegrationsGithubTeamRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2022,10 +2029,10 @@
         "smithy.api#documentation": "List of GitHub teams available to the installation organization."
       }
     },
-    "com.posthog.integrations#IntegrationsGithubTeamsRetrieve": {
+    "com.posthog.integrations#GetIntegrationsGithubTeam": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.integrations#IntegrationsGithubTeamsRetrieveRequest"
+        "target": "com.posthog.integrations#GetIntegrationsGithubTeamRequest"
       },
       "output": {
         "target": "com.posthog.integrations#GitHubTeamsResponse"
@@ -2038,7 +2045,7 @@
         }
       }
     },
-    "com.posthog.integrations#IntegrationsGoogleAccessibleAccountsRetrieveRequest": {
+    "com.posthog.integrations#GetIntegrationsGoogleAccessibleAccountRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2062,10 +2069,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.integrations#IntegrationsGoogleAccessibleAccountsRetrieve": {
+    "com.posthog.integrations#GetIntegrationsGoogleAccessibleAccount": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.integrations#IntegrationsGoogleAccessibleAccountsRetrieveRequest"
+        "target": "com.posthog.integrations#GetIntegrationsGoogleAccessibleAccountRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2086,7 +2093,7 @@
         }
       }
     },
-    "com.posthog.integrations#IntegrationsGoogleConversionActionsRetrieveRequest": {
+    "com.posthog.integrations#GetIntegrationsGoogleConversionActionRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2110,10 +2117,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.integrations#IntegrationsGoogleConversionActionsRetrieve": {
+    "com.posthog.integrations#GetIntegrationsGoogleConversionAction": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.integrations#IntegrationsGoogleConversionActionsRetrieveRequest"
+        "target": "com.posthog.integrations#GetIntegrationsGoogleConversionActionRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2134,7 +2141,7 @@
         }
       }
     },
-    "com.posthog.integrations#IntegrationsJiraProjectsRetrieveRequest": {
+    "com.posthog.integrations#GetIntegrationsJiraProjectRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2207,10 +2214,10 @@
         "smithy.api#documentation": "Jira projects available to this integration."
       }
     },
-    "com.posthog.integrations#IntegrationsJiraProjectsRetrieve": {
+    "com.posthog.integrations#GetIntegrationsJiraProject": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.integrations#IntegrationsJiraProjectsRetrieveRequest"
+        "target": "com.posthog.integrations#GetIntegrationsJiraProjectRequest"
       },
       "output": {
         "target": "com.posthog.integrations#JiraProjectsResponse"
@@ -2231,7 +2238,7 @@
         }
       }
     },
-    "com.posthog.integrations#IntegrationsLinearTeamsRetrieveRequest": {
+    "com.posthog.integrations#GetIntegrationsLinearTeamRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2297,10 +2304,10 @@
         "smithy.api#documentation": "Linear teams available to this integration."
       }
     },
-    "com.posthog.integrations#IntegrationsLinearTeamsRetrieve": {
+    "com.posthog.integrations#GetIntegrationsLinearTeam": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.integrations#IntegrationsLinearTeamsRetrieveRequest"
+        "target": "com.posthog.integrations#GetIntegrationsLinearTeamRequest"
       },
       "output": {
         "target": "com.posthog.integrations#LinearTeamsResponse"
@@ -2321,7 +2328,7 @@
         }
       }
     },
-    "com.posthog.integrations#IntegrationsLinkedinAdsAccountsRetrieveRequest": {
+    "com.posthog.integrations#GetIntegrationsLinkedinAdsAccountRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2345,10 +2352,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.integrations#IntegrationsLinkedinAdsAccountsRetrieve": {
+    "com.posthog.integrations#GetIntegrationsLinkedinAdsAccount": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.integrations#IntegrationsLinkedinAdsAccountsRetrieveRequest"
+        "target": "com.posthog.integrations#GetIntegrationsLinkedinAdsAccountRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2369,7 +2376,7 @@
         }
       }
     },
-    "com.posthog.integrations#IntegrationsLinkedinAdsConversionRulesRetrieveRequest": {
+    "com.posthog.integrations#GetIntegrationsLinkedinAdsConversionRuleRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2393,10 +2400,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.integrations#IntegrationsLinkedinAdsConversionRulesRetrieve": {
+    "com.posthog.integrations#GetIntegrationsLinkedinAdsConversionRule": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.integrations#IntegrationsLinkedinAdsConversionRulesRetrieveRequest"
+        "target": "com.posthog.integrations#GetIntegrationsLinkedinAdsConversionRuleRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2417,7 +2424,7 @@
         }
       }
     },
-    "com.posthog.integrations#IntegrationsTwilioPhoneNumbersRetrieveRequest": {
+    "com.posthog.integrations#GetIntegrationsTwilioPhoneNumberRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2441,10 +2448,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.integrations#IntegrationsTwilioPhoneNumbersRetrieve": {
+    "com.posthog.integrations#GetIntegrationsTwilioPhoneNumber": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.integrations#IntegrationsTwilioPhoneNumbersRetrieveRequest"
+        "target": "com.posthog.integrations#GetIntegrationsTwilioPhoneNumberRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2461,6 +2468,143 @@
         "smithy.api#http": {
           "method": "GET",
           "uri": "/api/projects/{project_id}/integrations/{id}/twilio_phone_numbers/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.integrations#GetIntegrationsUserRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique integer value identifying this integration."
+          }
+        },
+        "force_refresh": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "force_refresh",
+            "smithy.api#documentation": "Bypass the 1 hour member cache. Honored only for browser session callers; API key, OAuth, and MCP callers always read through the cache."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Maximum number of members to return per request (max 200)."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "Number of members to skip before returning results."
+          }
+        },
+        "search": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "search",
+            "smithy.api#documentation": "Optional case-insensitive member name or ID search query."
+          }
+        },
+        "user_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "user_id",
+            "smithy.api#documentation": "Look up one member directly by Slack member ID (e.g. U0123ABC). When set, `search`, `limit`, and `offset` are ignored and the response holds at most that member."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.integrations#SlackUsersResponse": {
+      "type": "structure",
+      "members": {
+        "users": {
+          "target": "com.posthog.integrations#SlackUsersResponseUsersList",
+          "traits": {
+            "smithy.api#documentation": "Human Slack workspace members the PostHog Slack app can DM.",
+            "smithy.api#required": {}
+          }
+        },
+        "lastRefreshedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ISO 8601 timestamp of the last full Slack API refresh (only set on full lists, not single-member lookups).",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "has_more": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether more members match the current search beyond this page."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.integrations#SlackUser": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Slack member ID (e.g. U0123ABC) — post to it to open a direct message.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Slack username (handle) without the leading '@'.",
+            "smithy.api#required": {}
+          }
+        },
+        "display_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name to show in pickers: the member's display name, falling back to their real name or handle.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.integrations#SlackUsersResponseUsersList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.integrations#SlackUser"
+      },
+      "traits": {
+        "smithy.api#documentation": "Human Slack workspace members the PostHog Slack app can DM."
+      }
+    },
+    "com.posthog.integrations#GetIntegrationsUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.integrations#GetIntegrationsUserRequest"
+      },
+      "output": {
+        "target": "com.posthog.integrations#SlackUsersResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/integrations/{id}/users/",
           "code": 200
         }
       }
@@ -2595,7 +2739,7 @@
         }
       }
     },
-    "com.posthog.integrations#IntegrationsGithubAvailableInstallationsRetrieveRequest": {
+    "com.posthog.integrations#GetIntegrationsGithubAvailableInstallationRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2677,10 +2821,10 @@
         "smithy.api#documentation": "GitHub installations available to link to this project: the organization's existing installations plus any the user's personal GitHub link can see but that aren't linked to any project yet."
       }
     },
-    "com.posthog.integrations#IntegrationsGithubAvailableInstallationsRetrieve": {
+    "com.posthog.integrations#GetIntegrationsGithubAvailableInstallation": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.integrations#IntegrationsGithubAvailableInstallationsRetrieveRequest"
+        "target": "com.posthog.integrations#GetIntegrationsGithubAvailableInstallationRequest"
       },
       "output": {
         "target": "com.posthog.integrations#GitHubAvailableInstallationsResponse"
@@ -2694,7 +2838,7 @@
         "smithy.api#documentation": "List GitHub installations this project can link.\n\nA GitHub App installs once per organization, so a second project links an existing\ninstallation rather than reinstalling. This backs the picker: when more than one option\nexists, the client passes the chosen installation_id to github/link_existing. The list also\nincludes installations the user's personal GitHub link can see but that aren't linked to any\nproject yet (``source_team_id: null``) — orphan installations approved on GitHub outside\nPostHog's callback, which ``github/link_existing`` can adopt."
       }
     },
-    "com.posthog.integrations#IntegrationsGithubLinkExistingCreateRequest": {
+    "com.posthog.integrations#CreateIntegrationsGithubLinkExistingRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2723,10 +2867,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.integrations#IntegrationsGithubLinkExistingCreate": {
+    "com.posthog.integrations#CreateIntegrationsGithubLinkExisting": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.integrations#IntegrationsGithubLinkExistingCreateRequest"
+        "target": "com.posthog.integrations#CreateIntegrationsGithubLinkExistingRequest"
       },
       "output": {
         "target": "com.posthog.integrations#IntegrationConfig"
@@ -2818,7 +2962,7 @@
         "smithy.api#documentation": "Mint a User OAuth URL to bootstrap a fresh `code` when the install flow returns without one."
       }
     },
-    "com.posthog.integrations#IntegrationsGithubPrepareCallbackCreateRequest": {
+    "com.posthog.integrations#CreateIntegrationsGithubPrepareCallbackRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2846,10 +2990,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.integrations#IntegrationsGithubPrepareCallbackCreate": {
+    "com.posthog.integrations#CreateIntegrationsGithubPrepareCallback": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.integrations#IntegrationsGithubPrepareCallbackCreateRequest"
+        "target": "com.posthog.integrations#CreateIntegrationsGithubPrepareCallbackRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2863,7 +3007,7 @@
         "smithy.api#documentation": "Seed GitHub setup callback state without redirecting to GitHub.\n\nUsed when the user opens an existing installation's settings on github.com (e.g. PostHog\nCode \"Update in GitHub\") so the subsequent Setup URL redirect can be validated."
       }
     },
-    "com.posthog.integrations#IntegrationsRequestAccessCreateRequest": {
+    "com.posthog.integrations#CreateIntegrationsRequestAccessRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2906,10 +3050,10 @@
       },
       "traits": {}
     },
-    "com.posthog.integrations#IntegrationsRequestAccessCreate": {
+    "com.posthog.integrations#CreateIntegrationsRequestAccess": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.integrations#IntegrationsRequestAccessCreateRequest"
+        "target": "com.posthog.integrations#CreateIntegrationsRequestAccessRequest"
       },
       "output": {
         "target": "com.posthog.integrations#IntegrationAccessRequestResponse"
@@ -2967,76 +3111,79 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.integrations#IntegrationsList"
+          "target": "com.posthog.integrations#ListIntegrations"
         },
         {
-          "target": "com.posthog.integrations#IntegrationsCreate"
+          "target": "com.posthog.integrations#CreateIntegration"
         },
         {
-          "target": "com.posthog.integrations#IntegrationsRetrieve"
+          "target": "com.posthog.integrations#GetIntegration"
         },
         {
           "target": "com.posthog.integrations#IntegrationsDestroy"
         },
         {
-          "target": "com.posthog.integrations#IntegrationsAnthropicManagedAgentEnvsRetrieve"
+          "target": "com.posthog.integrations#GetIntegrationsAnthropicManagedAgentEnv"
         },
         {
-          "target": "com.posthog.integrations#IntegrationsAnthropicManagedAgentVaultsRetrieve"
+          "target": "com.posthog.integrations#GetIntegrationsAnthropicManagedAgentVault"
         },
         {
-          "target": "com.posthog.integrations#IntegrationsAnthropicManagedAgentsRetrieve"
+          "target": "com.posthog.integrations#GetIntegrationsAnthropicManagedAgent"
         },
         {
-          "target": "com.posthog.integrations#IntegrationsChannelsRetrieve"
+          "target": "com.posthog.integrations#GetIntegrationsChannel"
         },
         {
-          "target": "com.posthog.integrations#IntegrationsClickupListsRetrieve"
+          "target": "com.posthog.integrations#GetIntegrationsClickupList"
         },
         {
-          "target": "com.posthog.integrations#IntegrationsClickupSpacesRetrieve"
+          "target": "com.posthog.integrations#GetIntegrationsClickupSpace"
         },
         {
-          "target": "com.posthog.integrations#IntegrationsClickupWorkspacesRetrieve"
+          "target": "com.posthog.integrations#GetIntegrationsClickupWorkspace"
         },
         {
-          "target": "com.posthog.integrations#IntegrationsEmailPartialUpdate"
+          "target": "com.posthog.integrations#UpdateIntegrationsEmailPartial"
         },
         {
           "target": "com.posthog.integrations#IntegrationsEmailVerifyCreate"
         },
         {
-          "target": "com.posthog.integrations#IntegrationsGithubBranchesRetrieve"
+          "target": "com.posthog.integrations#GetIntegrationsGithubBranch"
         },
         {
-          "target": "com.posthog.integrations#IntegrationsGithubReposRetrieve"
+          "target": "com.posthog.integrations#GetIntegrationsGithubRepos"
         },
         {
           "target": "com.posthog.integrations#IntegrationsGithubReposRefreshCreate"
         },
         {
-          "target": "com.posthog.integrations#IntegrationsGithubTeamsRetrieve"
+          "target": "com.posthog.integrations#GetIntegrationsGithubTeam"
         },
         {
-          "target": "com.posthog.integrations#IntegrationsGoogleAccessibleAccountsRetrieve"
+          "target": "com.posthog.integrations#GetIntegrationsGoogleAccessibleAccount"
         },
         {
-          "target": "com.posthog.integrations#IntegrationsGoogleConversionActionsRetrieve"
+          "target": "com.posthog.integrations#GetIntegrationsGoogleConversionAction"
         },
         {
-          "target": "com.posthog.integrations#IntegrationsJiraProjectsRetrieve"
+          "target": "com.posthog.integrations#GetIntegrationsJiraProject"
         },
         {
-          "target": "com.posthog.integrations#IntegrationsLinearTeamsRetrieve"
+          "target": "com.posthog.integrations#GetIntegrationsLinearTeam"
         },
         {
-          "target": "com.posthog.integrations#IntegrationsLinkedinAdsAccountsRetrieve"
+          "target": "com.posthog.integrations#GetIntegrationsLinkedinAdsAccount"
         },
         {
-          "target": "com.posthog.integrations#IntegrationsLinkedinAdsConversionRulesRetrieve"
+          "target": "com.posthog.integrations#GetIntegrationsLinkedinAdsConversionRule"
         },
         {
-          "target": "com.posthog.integrations#IntegrationsTwilioPhoneNumbersRetrieve"
+          "target": "com.posthog.integrations#GetIntegrationsTwilioPhoneNumber"
+        },
+        {
+          "target": "com.posthog.integrations#GetIntegrationsUser"
         },
         {
           "target": "com.posthog.integrations#IntegrationsAuthorizeRetrieve"
@@ -3048,19 +3195,19 @@
           "target": "com.posthog.integrations#IntegrationsDomainConnectCheckRetrieve"
         },
         {
-          "target": "com.posthog.integrations#IntegrationsGithubAvailableInstallationsRetrieve"
+          "target": "com.posthog.integrations#GetIntegrationsGithubAvailableInstallation"
         },
         {
-          "target": "com.posthog.integrations#IntegrationsGithubLinkExistingCreate"
+          "target": "com.posthog.integrations#CreateIntegrationsGithubLinkExisting"
         },
         {
           "target": "com.posthog.integrations#IntegrationsGithubOauthAuthorizeCreate"
         },
         {
-          "target": "com.posthog.integrations#IntegrationsGithubPrepareCallbackCreate"
+          "target": "com.posthog.integrations#CreateIntegrationsGithubPrepareCallback"
         },
         {
-          "target": "com.posthog.integrations#IntegrationsRequestAccessCreate"
+          "target": "com.posthog.integrations#CreateIntegrationsRequestAccess"
         }
       ],
       "traits": {

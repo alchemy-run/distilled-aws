@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.feature_flags#FeatureFlagsListRequestActive": {
+    "com.posthog.feature_flags#ListFeatureFlagsRequestActive": {
       "type": "enum",
       "members": {
         "STALE": {
@@ -41,7 +42,7 @@
       },
       "traits": {}
     },
-    "com.posthog.feature_flags#FeatureFlagsListRequestArchived": {
+    "com.posthog.feature_flags#ListFeatureFlagsRequestArchived": {
       "type": "enum",
       "members": {
         "FALSE": {
@@ -59,7 +60,7 @@
       },
       "traits": {}
     },
-    "com.posthog.feature_flags#FeatureFlagsListRequestEligibleForExperiment": {
+    "com.posthog.feature_flags#ListFeatureFlagsRequestEligibleForExperiment": {
       "type": "enum",
       "members": {
         "TRUE": {
@@ -71,7 +72,7 @@
       },
       "traits": {}
     },
-    "com.posthog.feature_flags#FeatureFlagsListRequestEvaluationRuntime": {
+    "com.posthog.feature_flags#ListFeatureFlagsRequestEvaluationRuntime": {
       "type": "enum",
       "members": {
         "ALL": {
@@ -95,7 +96,7 @@
       },
       "traits": {}
     },
-    "com.posthog.feature_flags#FeatureFlagsListRequestHasEvaluationContexts": {
+    "com.posthog.feature_flags#ListFeatureFlagsRequestHasEvaluationContexts": {
       "type": "enum",
       "members": {
         "FALSE": {
@@ -113,7 +114,7 @@
       },
       "traits": {}
     },
-    "com.posthog.feature_flags#FeatureFlagsListRequestType": {
+    "com.posthog.feature_flags#ListFeatureFlagsRequestType": {
       "type": "enum",
       "members": {
         "BOOLEAN": {
@@ -143,7 +144,7 @@
       },
       "traits": {}
     },
-    "com.posthog.feature_flags#FeatureFlagsListRequest": {
+    "com.posthog.feature_flags#ListFeatureFlagsRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -155,13 +156,13 @@
           }
         },
         "active": {
-          "target": "com.posthog.feature_flags#FeatureFlagsListRequestActive",
+          "target": "com.posthog.feature_flags#ListFeatureFlagsRequestActive",
           "traits": {
             "smithy.api#httpQuery": "active"
           }
         },
         "archived": {
-          "target": "com.posthog.feature_flags#FeatureFlagsListRequestArchived",
+          "target": "com.posthog.feature_flags#ListFeatureFlagsRequestArchived",
           "traits": {
             "smithy.api#httpQuery": "archived",
             "smithy.api#documentation": "Filter by archived state. When omitted, archived flags are excluded."
@@ -175,14 +176,14 @@
           }
         },
         "eligible_for_experiment": {
-          "target": "com.posthog.feature_flags#FeatureFlagsListRequestEligibleForExperiment",
+          "target": "com.posthog.feature_flags#ListFeatureFlagsRequestEligibleForExperiment",
           "traits": {
             "smithy.api#httpQuery": "eligible_for_experiment",
             "smithy.api#documentation": "When 'true', only return flags that can back an experiment: multivariate with 2-20 variants. Any other value is ignored."
           }
         },
         "evaluation_runtime": {
-          "target": "com.posthog.feature_flags#FeatureFlagsListRequestEvaluationRuntime",
+          "target": "com.posthog.feature_flags#ListFeatureFlagsRequestEvaluationRuntime",
           "traits": {
             "smithy.api#httpQuery": "evaluation_runtime",
             "smithy.api#documentation": "Filter feature flags by their evaluation runtime."
@@ -203,7 +204,7 @@
           }
         },
         "has_evaluation_contexts": {
-          "target": "com.posthog.feature_flags#FeatureFlagsListRequestHasEvaluationContexts",
+          "target": "com.posthog.feature_flags#ListFeatureFlagsRequestHasEvaluationContexts",
           "traits": {
             "smithy.api#httpQuery": "has_evaluation_contexts",
             "smithy.api#documentation": "Filter feature flags by presence of evaluation contexts. 'true' returns only flags with at least one evaluation context, 'false' returns only flags without."
@@ -245,7 +246,7 @@
           }
         },
         "type": {
-          "target": "com.posthog.feature_flags#FeatureFlagsListRequestType",
+          "target": "com.posthog.feature_flags#ListFeatureFlagsRequestType",
           "traits": {
             "smithy.api#httpQuery": "type"
           }
@@ -740,10 +741,10 @@
       },
       "traits": {}
     },
-    "com.posthog.feature_flags#FeatureFlagsList": {
+    "com.posthog.feature_flags#ListFeatureFlags": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.feature_flags#FeatureFlagsListRequest"
+        "target": "com.posthog.feature_flags#ListFeatureFlagsRequest"
       },
       "output": {
         "target": "com.posthog.feature_flags#PaginatedFeatureFlagListOutput"
@@ -1572,7 +1573,7 @@
         "smithy.api#documentation": "Optional payload values keyed by variant key."
       }
     },
-    "com.posthog.feature_flags#FeatureFlagsCreateRequestTagsList": {
+    "com.posthog.feature_flags#CreateFeatureFlagRequestTagsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -1581,7 +1582,7 @@
         "smithy.api#documentation": "Organizational tags for this feature flag."
       }
     },
-    "com.posthog.feature_flags#FeatureFlagsCreateRequestEvaluationContextsList": {
+    "com.posthog.feature_flags#CreateFeatureFlagRequestEvaluationContextsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -1590,7 +1591,7 @@
         "smithy.api#documentation": "Evaluation contexts that control where this flag evaluates at runtime."
       }
     },
-    "com.posthog.feature_flags#FeatureFlagsCreateRequest": {
+    "com.posthog.feature_flags#CreateFeatureFlagRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1632,13 +1633,13 @@
           }
         },
         "tags": {
-          "target": "com.posthog.feature_flags#FeatureFlagsCreateRequestTagsList",
+          "target": "com.posthog.feature_flags#CreateFeatureFlagRequestTagsList",
           "traits": {
             "smithy.api#documentation": "Organizational tags for this feature flag."
           }
         },
         "evaluation_contexts": {
-          "target": "com.posthog.feature_flags#FeatureFlagsCreateRequestEvaluationContextsList",
+          "target": "com.posthog.feature_flags#CreateFeatureFlagRequestEvaluationContextsList",
           "traits": {
             "smithy.api#documentation": "Evaluation contexts that control where this flag evaluates at runtime."
           }
@@ -1676,10 +1677,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.feature_flags#FeatureFlagsCreate": {
+    "com.posthog.feature_flags#CreateFeatureFlag": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.feature_flags#FeatureFlagsCreateRequest"
+        "target": "com.posthog.feature_flags#CreateFeatureFlagRequest"
       },
       "output": {
         "target": "com.posthog.feature_flags#FeatureFlagOutput"
@@ -1704,7 +1705,7 @@
         "smithy.api#documentation": "Create, read, update and delete feature flags. [See docs](https://posthog.com/docs/feature-flags) for more information on feature flags.\n\nIf you're looking to use feature flags on your application, you can either use our JavaScript Library or our dedicated endpoint to check if feature flags are enabled for a given user."
       }
     },
-    "com.posthog.feature_flags#FeatureFlagsRetrieveRequest": {
+    "com.posthog.feature_flags#GetFeatureFlagRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1728,10 +1729,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.feature_flags#FeatureFlagsRetrieve": {
+    "com.posthog.feature_flags#GetFeatureFlag": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.feature_flags#FeatureFlagsRetrieveRequest"
+        "target": "com.posthog.feature_flags#GetFeatureFlagRequest"
       },
       "output": {
         "target": "com.posthog.feature_flags#FeatureFlagOutput"
@@ -1753,7 +1754,7 @@
         "smithy.api#documentation": "Create, read, update and delete feature flags. [See docs](https://posthog.com/docs/feature-flags) for more information on feature flags.\n\nIf you're looking to use feature flags on your application, you can either use our JavaScript Library or our dedicated endpoint to check if feature flags are enabled for a given user."
       }
     },
-    "com.posthog.feature_flags#FeatureFlagsUpdateRequestFiltersMap": {
+    "com.posthog.feature_flags#UpdateFeatureFlagRequestFiltersMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1763,21 +1764,21 @@
       },
       "traits": {}
     },
-    "com.posthog.feature_flags#FeatureFlagsUpdateRequestTagsList": {
+    "com.posthog.feature_flags#UpdateFeatureFlagRequestTagsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
       },
       "traits": {}
     },
-    "com.posthog.feature_flags#FeatureFlagsUpdateRequestEvaluationContextsList": {
+    "com.posthog.feature_flags#UpdateFeatureFlagRequestEvaluationContextsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
       },
       "traits": {}
     },
-    "com.posthog.feature_flags#FeatureFlagsUpdateRequestAnalyticsDashboardsList": {
+    "com.posthog.feature_flags#UpdateFeatureFlagRequestAnalyticsDashboardsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
@@ -1828,7 +1829,7 @@
         "smithy.api#documentation": "* `feature_flags` - feature_flags\n* `experiments` - experiments\n* `surveys` - surveys\n* `early_access_features` - early_access_features\n* `web_experiments` - web_experiments\n* `product_tours` - product_tours"
       }
     },
-    "com.posthog.feature_flags#FeatureFlagsUpdateRequestEvaluationRuntime": {
+    "com.posthog.feature_flags#UpdateFeatureFlagRequestEvaluationRuntime": {
       "type": "union",
       "members": {
         "EvaluationRuntimeEnum": {
@@ -1842,7 +1843,7 @@
         "smithy.api#documentation": "Specifies where this feature flag should be evaluated\n\n* `server` - Server\n* `client` - Client\n* `all` - All"
       }
     },
-    "com.posthog.feature_flags#FeatureFlagsUpdateRequestBucketingIdentifier": {
+    "com.posthog.feature_flags#UpdateFeatureFlagRequestBucketingIdentifier": {
       "type": "union",
       "members": {
         "BucketingIdentifierEnum": {
@@ -1856,7 +1857,7 @@
         "smithy.api#documentation": "Identifier used for bucketing users into rollout and variants\n\n* `distinct_id` - User ID (default)\n* `device_id` - Device ID"
       }
     },
-    "com.posthog.feature_flags#FeatureFlagsUpdateRequest": {
+    "com.posthog.feature_flags#UpdateFeatureFlagRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1885,7 +1886,7 @@
           "target": "smithy.api#String"
         },
         "filters": {
-          "target": "com.posthog.feature_flags#FeatureFlagsUpdateRequestFiltersMap"
+          "target": "com.posthog.feature_flags#UpdateFeatureFlagRequestFiltersMap"
         },
         "deleted": {
           "target": "smithy.api#Boolean"
@@ -1912,13 +1913,13 @@
           }
         },
         "tags": {
-          "target": "com.posthog.feature_flags#FeatureFlagsUpdateRequestTagsList"
+          "target": "com.posthog.feature_flags#UpdateFeatureFlagRequestTagsList"
         },
         "evaluation_contexts": {
-          "target": "com.posthog.feature_flags#FeatureFlagsUpdateRequestEvaluationContextsList"
+          "target": "com.posthog.feature_flags#UpdateFeatureFlagRequestEvaluationContextsList"
         },
         "analytics_dashboards": {
-          "target": "com.posthog.feature_flags#FeatureFlagsUpdateRequestAnalyticsDashboardsList"
+          "target": "com.posthog.feature_flags#UpdateFeatureFlagRequestAnalyticsDashboardsList"
         },
         "has_enriched_analytics": {
           "target": "smithy.api#Boolean",
@@ -1945,14 +1946,14 @@
           }
         },
         "evaluation_runtime": {
-          "target": "com.posthog.feature_flags#FeatureFlagsUpdateRequestEvaluationRuntime",
+          "target": "com.posthog.feature_flags#UpdateFeatureFlagRequestEvaluationRuntime",
           "traits": {
             "smithy.api#documentation": "Specifies where this feature flag should be evaluated\n\n* `server` - Server\n* `client` - Client\n* `all` - All",
             "com.distilled.openapi#nullable": {}
           }
         },
         "bucketing_identifier": {
-          "target": "com.posthog.feature_flags#FeatureFlagsUpdateRequestBucketingIdentifier",
+          "target": "com.posthog.feature_flags#UpdateFeatureFlagRequestBucketingIdentifier",
           "traits": {
             "smithy.api#documentation": "Identifier used for bucketing users into rollout and variants\n\n* `distinct_id` - User ID (default)\n* `device_id` - Device ID",
             "com.distilled.openapi#nullable": {}
@@ -1973,10 +1974,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.feature_flags#FeatureFlagsUpdate": {
+    "com.posthog.feature_flags#UpdateFeatureFlag": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.feature_flags#FeatureFlagsUpdateRequest"
+        "target": "com.posthog.feature_flags#UpdateFeatureFlagRequest"
       },
       "output": {
         "target": "com.posthog.feature_flags#FeatureFlagOutput"
@@ -2001,7 +2002,7 @@
         "smithy.api#documentation": "Create, read, update and delete feature flags. [See docs](https://posthog.com/docs/feature-flags) for more information on feature flags.\n\nIf you're looking to use feature flags on your application, you can either use our JavaScript Library or our dedicated endpoint to check if feature flags are enabled for a given user."
       }
     },
-    "com.posthog.feature_flags#FeatureFlagsPartialUpdateRequestTagsList": {
+    "com.posthog.feature_flags#UpdateFeatureFlagsPartialRequestTagsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -2010,7 +2011,7 @@
         "smithy.api#documentation": "Organizational tags for this feature flag."
       }
     },
-    "com.posthog.feature_flags#FeatureFlagsPartialUpdateRequestEvaluationContextsList": {
+    "com.posthog.feature_flags#UpdateFeatureFlagsPartialRequestEvaluationContextsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -2019,7 +2020,7 @@
         "smithy.api#documentation": "Evaluation contexts that control where this flag evaluates at runtime."
       }
     },
-    "com.posthog.feature_flags#FeatureFlagsPartialUpdateRequest": {
+    "com.posthog.feature_flags#UpdateFeatureFlagsPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2069,13 +2070,13 @@
           }
         },
         "tags": {
-          "target": "com.posthog.feature_flags#FeatureFlagsPartialUpdateRequestTagsList",
+          "target": "com.posthog.feature_flags#UpdateFeatureFlagsPartialRequestTagsList",
           "traits": {
             "smithy.api#documentation": "Organizational tags for this feature flag."
           }
         },
         "evaluation_contexts": {
-          "target": "com.posthog.feature_flags#FeatureFlagsPartialUpdateRequestEvaluationContextsList",
+          "target": "com.posthog.feature_flags#UpdateFeatureFlagsPartialRequestEvaluationContextsList",
           "traits": {
             "smithy.api#documentation": "Evaluation contexts that control where this flag evaluates at runtime."
           }
@@ -2113,10 +2114,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.feature_flags#FeatureFlagsPartialUpdate": {
+    "com.posthog.feature_flags#UpdateFeatureFlagsPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.feature_flags#FeatureFlagsPartialUpdateRequest"
+        "target": "com.posthog.feature_flags#UpdateFeatureFlagsPartialRequest"
       },
       "output": {
         "target": "com.posthog.feature_flags#FeatureFlagOutput"
@@ -2190,7 +2191,7 @@
         "smithy.api#documentation": "Hard delete of this model is not allowed. Use a patch API call to set \"deleted\" to true"
       }
     },
-    "com.posthog.feature_flags#FeatureFlagsActivityRetrieveRequest": {
+    "com.posthog.feature_flags#GetFeatureFlagsActivityRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2395,10 +2396,10 @@
       },
       "traits": {}
     },
-    "com.posthog.feature_flags#FeatureFlagsActivityRetrieve": {
+    "com.posthog.feature_flags#GetFeatureFlagsActivity": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.feature_flags#FeatureFlagsActivityRetrieveRequest"
+        "target": "com.posthog.feature_flags#GetFeatureFlagsActivityRequest"
       },
       "output": {
         "target": "com.posthog.feature_flags#ActivityLogPaginatedResponse"
@@ -2421,6 +2422,55 @@
           "code": 200
         },
         "smithy.api#documentation": "Create, read, update and delete feature flags. [See docs](https://posthog.com/docs/feature-flags) for more information on feature flags.\n\nIf you're looking to use feature flags on your application, you can either use our JavaScript Library or our dedicated endpoint to check if feature flags are enabled for a given user."
+      }
+    },
+    "com.posthog.feature_flags#FeatureFlagsArchiveCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique integer value identifying this feature flag."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.feature_flags#FeatureFlagsArchiveCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.feature_flags#FeatureFlagsArchiveCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.feature_flags#FeatureFlagOutput"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.feature_flags#BadRequest"
+        },
+        {
+          "target": "com.posthog.feature_flags#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/feature_flags/{id}/archive/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Archive a feature flag, hiding it from the default flag list.\n\nSets `archived` to true. An archived flag must be disabled, so an enabled flag also gets\n`active` set to false in the same write. Targeting, variants and payloads are left as\nthey are, and linked experiment and survey history is preserved. Archiving an enabled\nflag is refused when other active flags depend on it. An already-archived flag is\nreturned unchanged."
       }
     },
     "com.posthog.feature_flags#FeatureFlagsCreateStaticCohortForFlagCreateRequestFiltersMap": {
@@ -2627,7 +2677,7 @@
         "smithy.api#documentation": "Create, read, update and delete feature flags. [See docs](https://posthog.com/docs/feature-flags) for more information on feature flags.\n\nIf you're looking to use feature flags on your application, you can either use our JavaScript Library or our dedicated endpoint to check if feature flags are enabled for a given user."
       }
     },
-    "com.posthog.feature_flags#FeatureFlagsDashboardCreateRequest": {
+    "com.posthog.feature_flags#CreateFeatureFlagsDashboardRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2651,10 +2701,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.feature_flags#FeatureFlagsDashboardCreate": {
+    "com.posthog.feature_flags#CreateFeatureFlagsDashboard": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.feature_flags#FeatureFlagsDashboardCreateRequest"
+        "target": "com.posthog.feature_flags#CreateFeatureFlagsDashboardRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2679,7 +2729,7 @@
         "smithy.api#documentation": "Create, read, update and delete feature flags. [See docs](https://posthog.com/docs/feature-flags) for more information on feature flags.\n\nIf you're looking to use feature flags on your application, you can either use our JavaScript Library or our dedicated endpoint to check if feature flags are enabled for a given user."
       }
     },
-    "com.posthog.feature_flags#FeatureFlagsDependentFlagsListRequest": {
+    "com.posthog.feature_flags#ListFeatureFlagsDependentFlagsRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2727,18 +2777,18 @@
       },
       "traits": {}
     },
-    "com.posthog.feature_flags#FeatureFlagsDependentFlagsListResponseBodyList": {
+    "com.posthog.feature_flags#ListFeatureFlagsDependentFlagsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.posthog.feature_flags#DependentFlag"
       },
       "traits": {}
     },
-    "com.posthog.feature_flags#FeatureFlagsDependentFlagsListResponse": {
+    "com.posthog.feature_flags#ListFeatureFlagsDependentFlagsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.posthog.feature_flags#FeatureFlagsDependentFlagsListResponseBodyList",
+          "target": "com.posthog.feature_flags#ListFeatureFlagsDependentFlagsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -2749,13 +2799,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.posthog.feature_flags#FeatureFlagsDependentFlagsList": {
+    "com.posthog.feature_flags#ListFeatureFlagsDependentFlags": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.feature_flags#FeatureFlagsDependentFlagsListRequest"
+        "target": "com.posthog.feature_flags#ListFeatureFlagsDependentFlagsRequest"
       },
       "output": {
-        "target": "com.posthog.feature_flags#FeatureFlagsDependentFlagsListResponse"
+        "target": "com.posthog.feature_flags#ListFeatureFlagsDependentFlagsResponse"
       },
       "errors": [
         {
@@ -2774,7 +2824,7 @@
         "smithy.api#documentation": "Get other active flags that depend on this flag."
       }
     },
-    "com.posthog.feature_flags#FeatureFlagsEnrichUsageDashboardCreateRequest": {
+    "com.posthog.feature_flags#FeatureFlagsDisableCreateRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2798,10 +2848,108 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.feature_flags#FeatureFlagsEnrichUsageDashboardCreate": {
+    "com.posthog.feature_flags#FeatureFlagsDisableCreate": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.feature_flags#FeatureFlagsEnrichUsageDashboardCreateRequest"
+        "target": "com.posthog.feature_flags#FeatureFlagsDisableCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.feature_flags#FeatureFlagOutput"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.feature_flags#BadRequest"
+        },
+        {
+          "target": "com.posthog.feature_flags#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/feature_flags/{id}/disable/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Disable a feature flag.\n\nSets `active` to false and changes nothing else. Targeting, variants, payloads, tags and\narchived state are left as they are. Refused when other active flags depend on this one.\nAn already-disabled flag is returned unchanged.\n\nA disabled flag stops evaluating for every consumer, including a linked experiment or a\nsession replay setting. Read the full definition first to report that impact."
+      }
+    },
+    "com.posthog.feature_flags#FeatureFlagsEnableCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique integer value identifying this feature flag."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.feature_flags#FeatureFlagsEnableCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.feature_flags#FeatureFlagsEnableCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.feature_flags#FeatureFlagOutput"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.feature_flags#BadRequest"
+        },
+        {
+          "target": "com.posthog.feature_flags#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/feature_flags/{id}/enable/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Enable a feature flag.\n\nSets `active` to true and changes nothing else. Targeting, variants, payloads, tags and\narchived state are left as they are. An archived flag is refused: unarchive it first. A\nflag whose own flag dependencies are disabled is also refused. An already-enabled flag\nis returned unchanged."
+      }
+    },
+    "com.posthog.feature_flags#CreateFeatureFlagsEnrichUsageDashboardRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique integer value identifying this feature flag."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.feature_flags#CreateFeatureFlagsEnrichUsageDashboard": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.feature_flags#CreateFeatureFlagsEnrichUsageDashboardRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2826,7 +2974,7 @@
         "smithy.api#documentation": "Create, read, update and delete feature flags. [See docs](https://posthog.com/docs/feature-flags) for more information on feature flags.\n\nIf you're looking to use feature flags on your application, you can either use our JavaScript Library or our dedicated endpoint to check if feature flags are enabled for a given user."
       }
     },
-    "com.posthog.feature_flags#FeatureFlagsRemoteConfigRetrieveRequest": {
+    "com.posthog.feature_flags#GetFeatureFlagsRemoteConfigRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2850,10 +2998,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.feature_flags#FeatureFlagsRemoteConfigRetrieve": {
+    "com.posthog.feature_flags#GetFeatureFlagsRemoteConfig": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.feature_flags#FeatureFlagsRemoteConfigRetrieveRequest"
+        "target": "com.posthog.feature_flags#GetFeatureFlagsRemoteConfigRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2875,7 +3023,7 @@
         "smithy.api#documentation": "Create, read, update and delete feature flags. [See docs](https://posthog.com/docs/feature-flags) for more information on feature flags.\n\nIf you're looking to use feature flags on your application, you can either use our JavaScript Library or our dedicated endpoint to check if feature flags are enabled for a given user."
       }
     },
-    "com.posthog.feature_flags#FeatureFlagsStatusRetrieveRequest": {
+    "com.posthog.feature_flags#GetFeatureFlagsStatusRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2914,6 +3062,12 @@
             "smithy.api#documentation": "Human-readable explanation of the status"
           }
         },
+        "reason_states_rollout": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "True when `reason` already describes the flag's rollout, which happens when the status was reached from the configuration rather than from evaluation data. A caller that narrates the rollout separately should stay quiet rather than repeat it."
+          }
+        },
         "rollout": {
           "target": "com.posthog.feature_flags#FeatureFlagRolloutSummary",
           "traits": {
@@ -2936,14 +3090,14 @@
         "has_targeting_conditions": {
           "target": "smithy.api#Boolean",
           "traits": {
-            "smithy.api#documentation": "True if any release condition has property filters, i.e. the flag is conditionally targeted rather than a blanket rollout. When true, `max_rollout_percentage` is a percentage within the targeted segment, not of the whole user base.",
+            "smithy.api#documentation": "True if any release condition has property filters, i.e. the flag is conditionally targeted rather than a blanket rollout. This says nothing about which condition produced `max_rollout_percentage`: the two fields are computed independently over the whole condition list.",
             "smithy.api#required": {}
           }
         },
         "max_rollout_percentage": {
-          "target": "smithy.api#Integer",
+          "target": "smithy.api#Double",
           "traits": {
-            "smithy.api#documentation": "Highest rollout percentage (0-100) across the flag's release conditions, treating a missing percentage as 100. Null when the flag has no release conditions. Interpret together with `has_targeting_conditions`.",
+            "smithy.api#documentation": "Highest rollout percentage (0-100) across the flag's release conditions, treating a missing percentage as 100. Null when the flag has no release conditions. The maximum can come from an untargeted condition even when `has_targeting_conditions` is true, so it cannot be attributed to a targeted condition or read as a share of a targeted segment.",
             "smithy.api#required": {},
             "com.distilled.openapi#nullable": {}
           }
@@ -2958,10 +3112,10 @@
       },
       "traits": {}
     },
-    "com.posthog.feature_flags#FeatureFlagsStatusRetrieve": {
+    "com.posthog.feature_flags#GetFeatureFlagsStatus": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.feature_flags#FeatureFlagsStatusRetrieveRequest"
+        "target": "com.posthog.feature_flags#GetFeatureFlagsStatusRequest"
       },
       "output": {
         "target": "com.posthog.feature_flags#FeatureFlagStatusResponse"
@@ -2983,7 +3137,7 @@
         "smithy.api#documentation": "Create, read, update and delete feature flags. [See docs](https://posthog.com/docs/feature-flags) for more information on feature flags.\n\nIf you're looking to use feature flags on your application, you can either use our JavaScript Library or our dedicated endpoint to check if feature flags are enabled for a given user."
       }
     },
-    "com.posthog.feature_flags#FeatureFlagsTestEvaluationCreateRequest": {
+    "com.posthog.feature_flags#CreateFeatureFlagsTestEvaluationRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -3250,10 +3404,10 @@
         "smithy.api#documentation": "Detailed analysis of each condition in the feature flag"
       }
     },
-    "com.posthog.feature_flags#FeatureFlagsTestEvaluationCreate": {
+    "com.posthog.feature_flags#CreateFeatureFlagsTestEvaluation": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.feature_flags#FeatureFlagsTestEvaluationCreateRequest"
+        "target": "com.posthog.feature_flags#CreateFeatureFlagsTestEvaluationRequest"
       },
       "output": {
         "target": "com.posthog.feature_flags#FeatureFlagTestEvaluationResponse"
@@ -3275,7 +3429,48 @@
         "smithy.api#documentation": "Test feature flag evaluation against a specific user at an optional point in time.\n\nThis endpoint allows testing how a feature flag would evaluate for a specific user,\noptionally at a historical timestamp. When a timestamp is provided, both the flag\nconditions and person properties are evaluated as they existed at that time."
       }
     },
-    "com.posthog.feature_flags#FeatureFlagsVersionsRetrieveRequest": {
+    "com.posthog.feature_flags#FeatureFlagsUnarchiveCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A unique integer value identifying this feature flag."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.feature_flags#FeatureFlagsUnarchiveCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.feature_flags#FeatureFlagsUnarchiveCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.feature_flags#FeatureFlagOutput"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/feature_flags/{id}/unarchive/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Restore an archived feature flag to the default flag list.\n\nSets `archived` to false and changes nothing else. The flag stays disabled; enable it\nwith a separate call. An already-unarchived flag is returned unchanged."
+      }
+    },
+    "com.posthog.feature_flags#GetFeatureFlagsVersionRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -3450,10 +3645,10 @@
         "smithy.api#documentation": "Identifier used for bucketing users into rollout and variants\n\n* `distinct_id` - User ID (default)\n* `device_id` - Device ID"
       }
     },
-    "com.posthog.feature_flags#FeatureFlagsVersionsRetrieve": {
+    "com.posthog.feature_flags#GetFeatureFlagsVersion": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.feature_flags#FeatureFlagsVersionsRetrieveRequest"
+        "target": "com.posthog.feature_flags#GetFeatureFlagsVersionRequest"
       },
       "output": {
         "target": "com.posthog.feature_flags#FeatureFlagVersionResponse"
@@ -3481,7 +3676,7 @@
         "smithy.api#documentation": "Create, read, update and delete feature flags. [See docs](https://posthog.com/docs/feature-flags) for more information on feature flags.\n\nIf you're looking to use feature flags on your application, you can either use our JavaScript Library or our dedicated endpoint to check if feature flags are enabled for a given user."
       }
     },
-    "com.posthog.feature_flags#FeatureFlagsAllActivityRetrieveRequest": {
+    "com.posthog.feature_flags#GetFeatureFlagsAllActivityRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -3511,10 +3706,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.feature_flags#FeatureFlagsAllActivityRetrieve": {
+    "com.posthog.feature_flags#GetFeatureFlagsAllActivity": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.feature_flags#FeatureFlagsAllActivityRetrieveRequest"
+        "target": "com.posthog.feature_flags#GetFeatureFlagsAllActivityRequest"
       },
       "output": {
         "target": "com.posthog.feature_flags#ActivityLogPaginatedResponse"
@@ -4128,14 +4323,14 @@
         "smithy.api#documentation": "Bulk update tags on multiple objects.\n\nPAT access: this action has no ``required_scopes=`` on the decorator —\ninheriting viewsets must add ``\"bulk_update_tags\"`` to their\n``scope_object_write_actions`` list to accept personal API keys.\nWithout that opt-in, ``APIScopePermission`` rejects PAT requests with\n\"This action does not support personal API key access\". Done per-viewset\nso granting ``<scope>:write`` for one resource doesn't leak access to\nsibling resources that share this mixin.\n\nAccepts:\n- {\"ids\": [...], \"action\": \"add\"|\"remove\"|\"set\", \"tags\": [\"tag1\", \"tag2\"]}\n\nActions:\n- \"add\": Add tags to existing tags on each object\n- \"remove\": Remove specific tags from each object\n- \"set\": Replace all tags on each object with the provided list"
       }
     },
-    "com.posthog.feature_flags#FeatureFlagsEvaluationReasonsRetrieveRequestFlagKeysList": {
+    "com.posthog.feature_flags#GetFeatureFlagsEvaluationReasonRequestFlagKeysList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.posthog.feature_flags#FeatureFlagsEvaluationReasonsRetrieveRequest": {
+    "com.posthog.feature_flags#GetFeatureFlagsEvaluationReasonRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -4155,7 +4350,7 @@
           }
         },
         "flag_keys": {
-          "target": "com.posthog.feature_flags#FeatureFlagsEvaluationReasonsRetrieveRequestFlagKeysList",
+          "target": "com.posthog.feature_flags#GetFeatureFlagsEvaluationReasonRequestFlagKeysList",
           "traits": {
             "smithy.api#httpQuery": "flag_keys",
             "smithy.api#documentation": "Optional list of flag keys to scope the response to. When omitted, evaluation reasons are returned for every flag in the project, which can be a very large payload on projects with many flags. Pass the specific flag(s) you are debugging to keep the response small. Accepts either repeated query params (flag_keys=a&flag_keys=b) or a JSON array string (flag_keys=[\"a\",\"b\"])."
@@ -4173,10 +4368,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.feature_flags#FeatureFlagsEvaluationReasonsRetrieve": {
+    "com.posthog.feature_flags#GetFeatureFlagsEvaluationReason": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.feature_flags#FeatureFlagsEvaluationReasonsRetrieveRequest"
+        "target": "com.posthog.feature_flags#GetFeatureFlagsEvaluationReasonRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4201,7 +4396,7 @@
         "smithy.api#documentation": "Create, read, update and delete feature flags. [See docs](https://posthog.com/docs/feature-flags) for more information on feature flags.\n\nIf you're looking to use feature flags on your application, you can either use our JavaScript Library or our dedicated endpoint to check if feature flags are enabled for a given user."
       }
     },
-    "com.posthog.feature_flags#FeatureFlagsMatchingIdsRetrieveRequest": {
+    "com.posthog.feature_flags#GetFeatureFlagsMatchingIdsRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -4217,10 +4412,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.feature_flags#FeatureFlagsMatchingIdsRetrieve": {
+    "com.posthog.feature_flags#GetFeatureFlagsMatchingIds": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.feature_flags#FeatureFlagsMatchingIdsRetrieveRequest"
+        "target": "com.posthog.feature_flags#GetFeatureFlagsMatchingIdsRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4242,14 +4437,14 @@
         "smithy.api#documentation": "Get IDs of all feature flags matching the current filters.\nUses the same filtering logic as the list endpoint.\nReturns only IDs that the user has permission to edit."
       }
     },
-    "com.posthog.feature_flags#FeatureFlagsMyFlagsRetrieveRequestFlagKeysList": {
+    "com.posthog.feature_flags#GetFeatureFlagsMyFlagRequestFlagKeysList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.posthog.feature_flags#FeatureFlagsMyFlagsRetrieveRequest": {
+    "com.posthog.feature_flags#GetFeatureFlagsMyFlagRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -4261,7 +4456,7 @@
           }
         },
         "flag_keys": {
-          "target": "com.posthog.feature_flags#FeatureFlagsMyFlagsRetrieveRequestFlagKeysList",
+          "target": "com.posthog.feature_flags#GetFeatureFlagsMyFlagRequestFlagKeysList",
           "traits": {
             "smithy.api#httpQuery": "flag_keys",
             "smithy.api#documentation": "Optional list of flag keys to scope the response to. When omitted, every flag in the project is returned with its evaluated value, which can be a very large payload on projects with many flags. Pass the specific flag(s) you want to check to keep the response small. Accepts either repeated query params (flag_keys=a&flag_keys=b) or a JSON array string (flag_keys=[\"a\",\"b\"])."
@@ -4392,18 +4587,18 @@
       },
       "traits": {}
     },
-    "com.posthog.feature_flags#FeatureFlagsMyFlagsRetrieveResponseBodyList": {
+    "com.posthog.feature_flags#GetFeatureFlagsMyFlagResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.posthog.feature_flags#MyFlagsResponse"
       },
       "traits": {}
     },
-    "com.posthog.feature_flags#FeatureFlagsMyFlagsRetrieveResponse": {
+    "com.posthog.feature_flags#GetFeatureFlagsMyFlagResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.posthog.feature_flags#FeatureFlagsMyFlagsRetrieveResponseBodyList",
+          "target": "com.posthog.feature_flags#GetFeatureFlagsMyFlagResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -4414,13 +4609,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.posthog.feature_flags#FeatureFlagsMyFlagsRetrieve": {
+    "com.posthog.feature_flags#GetFeatureFlagsMyFlag": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.feature_flags#FeatureFlagsMyFlagsRetrieveRequest"
+        "target": "com.posthog.feature_flags#GetFeatureFlagsMyFlagRequest"
       },
       "output": {
-        "target": "com.posthog.feature_flags#FeatureFlagsMyFlagsRetrieveResponse"
+        "target": "com.posthog.feature_flags#GetFeatureFlagsMyFlagResponse"
       },
       "errors": [
         {
@@ -4442,7 +4637,7 @@
         "smithy.api#documentation": "Create, read, update and delete feature flags. [See docs](https://posthog.com/docs/feature-flags) for more information on feature flags.\n\nIf you're looking to use feature flags on your application, you can either use our JavaScript Library or our dedicated endpoint to check if feature flags are enabled for a given user."
       }
     },
-    "com.posthog.feature_flags#FeatureFlagsUserBlastRadiusCreateRequestConditionMap": {
+    "com.posthog.feature_flags#CreateFeatureFlagsUserBlastRadiusRequestConditionMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4454,7 +4649,7 @@
         "smithy.api#documentation": "The release condition to evaluate"
       }
     },
-    "com.posthog.feature_flags#FeatureFlagsUserBlastRadiusCreateRequest": {
+    "com.posthog.feature_flags#CreateFeatureFlagsUserBlastRadiusRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -4466,7 +4661,7 @@
           }
         },
         "condition": {
-          "target": "com.posthog.feature_flags#FeatureFlagsUserBlastRadiusCreateRequestConditionMap",
+          "target": "com.posthog.feature_flags#CreateFeatureFlagsUserBlastRadiusRequestConditionMap",
           "traits": {
             "smithy.api#documentation": "The release condition to evaluate"
           }
@@ -4501,10 +4696,10 @@
       },
       "traits": {}
     },
-    "com.posthog.feature_flags#FeatureFlagsUserBlastRadiusCreate": {
+    "com.posthog.feature_flags#CreateFeatureFlagsUserBlastRadius": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.feature_flags#FeatureFlagsUserBlastRadiusCreateRequest"
+        "target": "com.posthog.feature_flags#CreateFeatureFlagsUserBlastRadiusRequest"
       },
       "output": {
         "target": "com.posthog.feature_flags#UserBlastRadiusResponse"
@@ -4568,6 +4763,19 @@
         ]
       }
     },
+    "com.posthog.feature_flags#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
     "com.posthog.feature_flags#UnprocessableEntity": {
       "type": "structure",
       "members": {},
@@ -4586,52 +4794,64 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.feature_flags#FeatureFlagsList"
+          "target": "com.posthog.feature_flags#ListFeatureFlags"
         },
         {
-          "target": "com.posthog.feature_flags#FeatureFlagsCreate"
+          "target": "com.posthog.feature_flags#CreateFeatureFlag"
         },
         {
-          "target": "com.posthog.feature_flags#FeatureFlagsRetrieve"
+          "target": "com.posthog.feature_flags#GetFeatureFlag"
         },
         {
-          "target": "com.posthog.feature_flags#FeatureFlagsUpdate"
+          "target": "com.posthog.feature_flags#UpdateFeatureFlag"
         },
         {
-          "target": "com.posthog.feature_flags#FeatureFlagsPartialUpdate"
+          "target": "com.posthog.feature_flags#UpdateFeatureFlagsPartial"
         },
         {
           "target": "com.posthog.feature_flags#FeatureFlagsDestroy"
         },
         {
-          "target": "com.posthog.feature_flags#FeatureFlagsActivityRetrieve"
+          "target": "com.posthog.feature_flags#GetFeatureFlagsActivity"
+        },
+        {
+          "target": "com.posthog.feature_flags#FeatureFlagsArchiveCreate"
         },
         {
           "target": "com.posthog.feature_flags#FeatureFlagsCreateStaticCohortForFlagCreate"
         },
         {
-          "target": "com.posthog.feature_flags#FeatureFlagsDashboardCreate"
+          "target": "com.posthog.feature_flags#CreateFeatureFlagsDashboard"
         },
         {
-          "target": "com.posthog.feature_flags#FeatureFlagsDependentFlagsList"
+          "target": "com.posthog.feature_flags#ListFeatureFlagsDependentFlags"
         },
         {
-          "target": "com.posthog.feature_flags#FeatureFlagsEnrichUsageDashboardCreate"
+          "target": "com.posthog.feature_flags#FeatureFlagsDisableCreate"
         },
         {
-          "target": "com.posthog.feature_flags#FeatureFlagsRemoteConfigRetrieve"
+          "target": "com.posthog.feature_flags#FeatureFlagsEnableCreate"
         },
         {
-          "target": "com.posthog.feature_flags#FeatureFlagsStatusRetrieve"
+          "target": "com.posthog.feature_flags#CreateFeatureFlagsEnrichUsageDashboard"
         },
         {
-          "target": "com.posthog.feature_flags#FeatureFlagsTestEvaluationCreate"
+          "target": "com.posthog.feature_flags#GetFeatureFlagsRemoteConfig"
         },
         {
-          "target": "com.posthog.feature_flags#FeatureFlagsVersionsRetrieve"
+          "target": "com.posthog.feature_flags#GetFeatureFlagsStatus"
         },
         {
-          "target": "com.posthog.feature_flags#FeatureFlagsAllActivityRetrieve"
+          "target": "com.posthog.feature_flags#CreateFeatureFlagsTestEvaluation"
+        },
+        {
+          "target": "com.posthog.feature_flags#FeatureFlagsUnarchiveCreate"
+        },
+        {
+          "target": "com.posthog.feature_flags#GetFeatureFlagsVersion"
+        },
+        {
+          "target": "com.posthog.feature_flags#GetFeatureFlagsAllActivity"
         },
         {
           "target": "com.posthog.feature_flags#FeatureFlagsBulkDeleteCreate"
@@ -4643,16 +4863,16 @@
           "target": "com.posthog.feature_flags#FeatureFlagsBulkUpdateTagsCreate"
         },
         {
-          "target": "com.posthog.feature_flags#FeatureFlagsEvaluationReasonsRetrieve"
+          "target": "com.posthog.feature_flags#GetFeatureFlagsEvaluationReason"
         },
         {
-          "target": "com.posthog.feature_flags#FeatureFlagsMatchingIdsRetrieve"
+          "target": "com.posthog.feature_flags#GetFeatureFlagsMatchingIds"
         },
         {
-          "target": "com.posthog.feature_flags#FeatureFlagsMyFlagsRetrieve"
+          "target": "com.posthog.feature_flags#GetFeatureFlagsMyFlag"
         },
         {
-          "target": "com.posthog.feature_flags#FeatureFlagsUserBlastRadiusCreate"
+          "target": "com.posthog.feature_flags#CreateFeatureFlagsUserBlastRadius"
         }
       ],
       "traits": {

@@ -12,10 +12,10 @@ import * as Retry from "../retry.ts";
 
 export type { ModalOpError, ModalOpContext };
 
-export interface SecretDeleteRequest {
+export interface DeleteSecretRequest {
   secretId?: string;
 }
-export const SecretDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteSecretRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     secretId: S.optional(S.String),
   }).pipe(
@@ -26,15 +26,108 @@ export const SecretDeleteRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "SecretDeleteRequest",
-}) as any as S.Schema<SecretDeleteRequest>;
+  identifier: "DeleteSecretRequest",
+}) as any as S.Schema<DeleteSecretRequest>;
 
-export interface SecretDeleteResponse {}
-export const SecretDeleteResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteSecretResponse {}
+export const DeleteSecretResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "SecretDeleteResponse",
-}) as any as S.Schema<SecretDeleteResponse>;
+  identifier: "DeleteSecretResponse",
+}) as any as S.Schema<DeleteSecretResponse>;
+
+export interface ListPagination {
+  maxObjects?: number;
+  createdBefore?: number;
+}
+export const ListPagination = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    maxObjects: S.optional(S.Number),
+    createdBefore: S.optional(S.Number),
+  }),
+).annotate({ identifier: "ListPagination" }) as any as S.Schema<ListPagination>;
+
+export interface ListSecretRequest {
+  environmentName?: string;
+  pagination?: ListPagination;
+}
+export const ListSecretRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    environmentName: S.optional(S.String),
+    pagination: S.optional(ListPagination),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/modal.client.ModalClient/SecretList",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListSecretRequest",
+}) as any as S.Schema<ListSecretRequest>;
+
+export interface CreationInfo {
+  /** This message is used in metadata for resource objects like Dict, Queue, Volume, etc. */
+  createdAt?: number;
+  /** Timestamp of resource creation */
+  createdBy?: string;
+}
+export const CreationInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    createdAt: S.optional(S.Number),
+    createdBy: S.optional(S.String),
+  }),
+).annotate({ identifier: "CreationInfo" }) as any as S.Schema<CreationInfo>;
+
+export interface SecretMetadata {
+  name?: string;
+  creationInfo?: CreationInfo;
+}
+export const SecretMetadata = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    creationInfo: S.optional(CreationInfo),
+  }),
+).annotate({ identifier: "SecretMetadata" }) as any as S.Schema<SecretMetadata>;
+
+export interface SecretListItem {
+  label?: string;
+  createdAt?: number;
+  /** Superseded by metadata, used by clients up to 1.1.2 */
+  lastUsedAt?: number;
+  environmentName?: string;
+  /** Unused by client */
+  secretId?: string;
+  metadata?: SecretMetadata;
+}
+export const SecretListItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    label: S.optional(S.String),
+    createdAt: S.optional(S.Number),
+    lastUsedAt: S.optional(S.Number),
+    environmentName: S.optional(S.String),
+    secretId: S.optional(S.String),
+    metadata: S.optional(SecretMetadata),
+  }),
+).annotate({ identifier: "SecretListItem" }) as any as S.Schema<SecretListItem>;
+
+export type SecretListItemList = Array<SecretListItem>;
+export const SecretListItemList = /*@__PURE__*/ S.Array(
+  SecretListItem,
+) as any as S.Schema<SecretListItemList>;
+
+export interface ListSecretResponse {
+  items?: SecretListItemList;
+  environmentName?: string;
+}
+export const ListSecretResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    items: S.optional(SecretListItemList),
+    environmentName: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ListSecretResponse",
+}) as any as S.Schema<ListSecretResponse>;
 
 export type ObjectCreationType =
   | "OBJECT_CREATION_TYPE_UNSPECIFIED"
@@ -86,30 +179,6 @@ export const SecretGetOrCreateRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "SecretGetOrCreateRequest",
 }) as any as S.Schema<SecretGetOrCreateRequest>;
 
-export interface CreationInfo {
-  /** This message is used in metadata for resource objects like Dict, Queue, Volume, etc. */
-  createdAt?: number;
-  /** Timestamp of resource creation */
-  createdBy?: string;
-}
-export const CreationInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    createdAt: S.optional(S.Number),
-    createdBy: S.optional(S.String),
-  }),
-).annotate({ identifier: "CreationInfo" }) as any as S.Schema<CreationInfo>;
-
-export interface SecretMetadata {
-  name?: string;
-  creationInfo?: CreationInfo;
-}
-export const SecretMetadata = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    creationInfo: S.optional(CreationInfo),
-  }),
-).annotate({ identifier: "SecretMetadata" }) as any as S.Schema<SecretMetadata>;
-
 export interface SecretGetOrCreateResponse {
   secretId?: string;
   metadata?: SecretMetadata;
@@ -123,102 +192,33 @@ export const SecretGetOrCreateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "SecretGetOrCreateResponse",
 }) as any as S.Schema<SecretGetOrCreateResponse>;
 
-export interface ListPagination {
-  maxObjects?: number;
-  createdBefore?: number;
-}
-export const ListPagination = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    maxObjects: S.optional(S.Number),
-    createdBefore: S.optional(S.Number),
-  }),
-).annotate({ identifier: "ListPagination" }) as any as S.Schema<ListPagination>;
-
-export interface SecretListRequest {
-  environmentName?: string;
-  pagination?: ListPagination;
-}
-export const SecretListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    environmentName: S.optional(S.String),
-    pagination: S.optional(ListPagination),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/modal.client.ModalClient/SecretList",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "SecretListRequest",
-}) as any as S.Schema<SecretListRequest>;
-
-export interface SecretListItem {
-  label?: string;
-  createdAt?: number;
-  /** Superseded by metadata, used by clients up to 1.1.2 */
-  lastUsedAt?: number;
-  environmentName?: string;
-  /** Unused by client */
-  secretId?: string;
-  metadata?: SecretMetadata;
-}
-export const SecretListItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    label: S.optional(S.String),
-    createdAt: S.optional(S.Number),
-    lastUsedAt: S.optional(S.Number),
-    environmentName: S.optional(S.String),
-    secretId: S.optional(S.String),
-    metadata: S.optional(SecretMetadata),
-  }),
-).annotate({ identifier: "SecretListItem" }) as any as S.Schema<SecretListItem>;
-
-export type SecretListItemList = Array<SecretListItem>;
-export const SecretListItemList = /*@__PURE__*/ S.Array(
-  SecretListItem,
-) as any as S.Schema<SecretListItemList>;
-
-export interface SecretListResponse {
-  items?: SecretListItemList;
-  environmentName?: string;
-}
-export const SecretListResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    items: S.optional(SecretListItemList),
-    environmentName: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SecretListResponse",
-}) as any as S.Schema<SecretListResponse>;
-
-export interface SecretUpdateRequestUpdate {
+export interface UpdateSecretRequestUpdate {
   key?: string;
   value?: string;
 }
-export const SecretUpdateRequestUpdate = /*@__PURE__*/ S.suspend(() =>
+export const UpdateSecretRequestUpdate = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     key: S.optional(S.String),
     value: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "SecretUpdateRequestUpdate",
-}) as any as S.Schema<SecretUpdateRequestUpdate>;
+  identifier: "UpdateSecretRequestUpdate",
+}) as any as S.Schema<UpdateSecretRequestUpdate>;
 
-export type SecretUpdateRequestUpdateList = Array<SecretUpdateRequestUpdate>;
-export const SecretUpdateRequestUpdateList = /*@__PURE__*/ S.Array(
-  SecretUpdateRequestUpdate,
-) as any as S.Schema<SecretUpdateRequestUpdateList>;
+export type UpdateSecretRequestUpdateList = Array<UpdateSecretRequestUpdate>;
+export const UpdateSecretRequestUpdateList = /*@__PURE__*/ S.Array(
+  UpdateSecretRequestUpdate,
+) as any as S.Schema<UpdateSecretRequestUpdateList>;
 
-export interface SecretUpdateRequest {
+export interface UpdateSecretRequest {
   /** If not set, the key is removed. */
   secretId?: string;
-  updates?: SecretUpdateRequestUpdateList;
+  updates?: UpdateSecretRequestUpdateList;
 }
-export const SecretUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateSecretRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     secretId: S.optional(S.String),
-    updates: S.optional(SecretUpdateRequestUpdateList),
+    updates: S.optional(UpdateSecretRequestUpdateList),
   }).pipe(
     T.Http({
       method: "POST",
@@ -227,26 +227,40 @@ export const SecretUpdateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "SecretUpdateRequest",
-}) as any as S.Schema<SecretUpdateRequest>;
+  identifier: "UpdateSecretRequest",
+}) as any as S.Schema<UpdateSecretRequest>;
 
-export interface SecretUpdateResponse {}
-export const SecretUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export interface UpdateSecretResponse {}
+export const UpdateSecretResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "SecretUpdateResponse",
-}) as any as S.Schema<SecretUpdateResponse>;
+  identifier: "UpdateSecretResponse",
+}) as any as S.Schema<UpdateSecretResponse>;
 
-export type SecretDeleteError = ModalOpError;
+export type DeleteSecretError = ModalOpError;
 /** Secrets */
-export const secretDelete: API.OperationMethod<
-  SecretDeleteRequest,
-  SecretDeleteResponse,
-  SecretDeleteError,
+export const deleteSecret: API.OperationMethod<
+  DeleteSecretRequest,
+  DeleteSecretResponse,
+  DeleteSecretError,
   ModalOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SecretDeleteRequest,
-  output: SecretDeleteResponse,
+  input: DeleteSecretRequest,
+  output: DeleteSecretResponse,
+  errors: [UnknownModalError],
+  protocol: ModalProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSecretError = ModalOpError;
+export const listSecret: API.OperationMethod<
+  ListSecretRequest,
+  ListSecretResponse,
+  ListSecretError,
+  ModalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSecretRequest,
+  output: ListSecretResponse,
   errors: [UnknownModalError],
   protocol: ModalProtocol,
   retry: Retry.Retry,
@@ -266,29 +280,15 @@ export const secretGetOrCreate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type SecretListError = ModalOpError;
-export const secretList: API.OperationMethod<
-  SecretListRequest,
-  SecretListResponse,
-  SecretListError,
+export type UpdateSecretError = ModalOpError;
+export const updateSecret: API.OperationMethod<
+  UpdateSecretRequest,
+  UpdateSecretResponse,
+  UpdateSecretError,
   ModalOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SecretListRequest,
-  output: SecretListResponse,
-  errors: [UnknownModalError],
-  protocol: ModalProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SecretUpdateError = ModalOpError;
-export const secretUpdate: API.OperationMethod<
-  SecretUpdateRequest,
-  SecretUpdateResponse,
-  SecretUpdateError,
-  ModalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SecretUpdateRequest,
-  output: SecretUpdateResponse,
+  input: UpdateSecretRequest,
+  output: UpdateSecretResponse,
   errors: [UnknownModalError],
   protocol: ModalProtocol,
   retry: Retry.Retry,

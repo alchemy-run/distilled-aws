@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.billingbenefits#MaccsWriteOff": {
@@ -1095,13 +1096,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.billingbenefits#MaccTransactionsGet": {
+    "com.azure.billingbenefits#GetMaccTransaction": {
       "type": "operation",
       "input": {
-        "target": "com.azure.billingbenefits#MaccTransactionsGetRequest"
+        "target": "com.azure.billingbenefits#GetMaccTransactionRequest"
       },
       "output": {
-        "target": "com.azure.billingbenefits#MaccTransactionsGetResponse"
+        "target": "com.azure.billingbenefits#GetMaccTransactionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1114,7 +1115,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.billingbenefits#MaccTransactionsGetResponse": {
+    "com.azure.billingbenefits#GetMaccTransactionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1298,7 +1299,7 @@
         "smithy.api#documentation": "The type of charge for a transaction."
       }
     },
-    "com.azure.billingbenefits#MaccTransactionsGetRequest": {
+    "com.azure.billingbenefits#GetMaccTransactionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1338,10 +1339,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.billingbenefits#MaccTransactionsListByParent": {
+    "com.azure.billingbenefits#ListMaccTransactionByParent": {
       "type": "operation",
       "input": {
-        "target": "com.azure.billingbenefits#MaccTransactionsListByParentRequest"
+        "target": "com.azure.billingbenefits#ListMaccTransactionByParentRequest"
       },
       "output": {
         "target": "com.azure.billingbenefits#MaccTransactionsList"
@@ -1425,7 +1426,7 @@
         "smithy.api#documentation": "Transaction resource definition for Maccs"
       }
     },
-    "com.azure.billingbenefits#MaccTransactionsListByParentRequest": {
+    "com.azure.billingbenefits#ListMaccTransactionByParentRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1457,13 +1458,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.billingbenefits#ContributorsGetFromPrimary": {
+    "com.azure.billingbenefits#GetContributorFromPrimary": {
       "type": "operation",
       "input": {
-        "target": "com.azure.billingbenefits#ContributorsGetFromPrimaryRequest"
+        "target": "com.azure.billingbenefits#GetContributorFromPrimaryRequest"
       },
       "output": {
-        "target": "com.azure.billingbenefits#ContributorsGetFromPrimaryResponse"
+        "target": "com.azure.billingbenefits#GetContributorFromPrimaryResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1476,7 +1477,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.billingbenefits#ContributorsGetFromPrimaryResponse": {
+    "com.azure.billingbenefits#GetContributorFromPrimaryResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1514,7 +1515,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.billingbenefits#ContributorsGetFromPrimaryRequest": {
+    "com.azure.billingbenefits#GetContributorFromPrimaryRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1554,10 +1555,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.billingbenefits#ContributorsListFromPrimary": {
+    "com.azure.billingbenefits#ListContributorFromPrimary": {
       "type": "operation",
       "input": {
-        "target": "com.azure.billingbenefits#ContributorsListFromPrimaryRequest"
+        "target": "com.azure.billingbenefits#ListContributorFromPrimaryRequest"
       },
       "output": {
         "target": "com.azure.billingbenefits#ContributorList"
@@ -1641,7 +1642,7 @@
         "smithy.api#documentation": "MACC contributor"
       }
     },
-    "com.azure.billingbenefits#ContributorsListFromPrimaryRequest": {
+    "com.azure.billingbenefits#ListContributorFromPrimaryRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1873,13 +1874,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.billingbenefits#MaccsCancel": {
+    "com.azure.billingbenefits#CancelMacc": {
       "type": "operation",
       "input": {
-        "target": "com.azure.billingbenefits#MaccsCancelRequest"
+        "target": "com.azure.billingbenefits#CancelMaccRequest"
       },
       "output": {
-        "target": "com.azure.billingbenefits#MaccsCancelResponse"
+        "target": "com.azure.billingbenefits#CancelMaccResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1892,7 +1893,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.billingbenefits#MaccsCancelResponse": {
+    "com.azure.billingbenefits#CancelMaccResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1920,7 +1921,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.billingbenefits#MaccsCancelResponseTagsMap",
+          "target": "com.azure.billingbenefits#CancelMaccResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1957,7 +1958,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.billingbenefits#MaccsCancelResponseIdentity",
+          "target": "com.azure.billingbenefits#CancelMaccResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -1979,7 +1980,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.billingbenefits#MaccsCancelResponseIdentity": {
+    "com.azure.billingbenefits#CancelMaccResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -2001,7 +2002,7 @@
           }
         },
         "userAssignedIdentities": {
-          "target": "com.azure.billingbenefits#MaccsCancelResponseIdentityUserAssignedIdentitiesMap",
+          "target": "com.azure.billingbenefits#CancelMaccResponseIdentityUserAssignedIdentitiesMap",
           "traits": {
             "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
           }
@@ -2011,7 +2012,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.billingbenefits#MaccsCancelResponseIdentityUserAssignedIdentitiesMap": {
+    "com.azure.billingbenefits#CancelMaccResponseIdentityUserAssignedIdentitiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2023,7 +2024,7 @@
         "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
       }
     },
-    "com.azure.billingbenefits#MaccsCancelResponseTagsMap": {
+    "com.azure.billingbenefits#CancelMaccResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2035,7 +2036,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.billingbenefits#MaccsCancelRequest": {
+    "com.azure.billingbenefits#CancelMaccRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2067,10 +2068,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.billingbenefits#MaccsDelete": {
+    "com.azure.billingbenefits#DeleteMacc": {
       "type": "operation",
       "input": {
-        "target": "com.azure.billingbenefits#MaccsDeleteRequest"
+        "target": "com.azure.billingbenefits#DeleteMaccRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2086,7 +2087,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.billingbenefits#MaccsDeleteRequest": {
+    "com.azure.billingbenefits#DeleteMaccRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2118,13 +2119,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.billingbenefits#MaccsUpdate": {
+    "com.azure.billingbenefits#UpdateMacc": {
       "type": "operation",
       "input": {
-        "target": "com.azure.billingbenefits#MaccsUpdateRequest"
+        "target": "com.azure.billingbenefits#UpdateMaccRequest"
       },
       "output": {
-        "target": "com.azure.billingbenefits#MaccsUpdateResponse"
+        "target": "com.azure.billingbenefits#UpdateMaccResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2137,7 +2138,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.billingbenefits#MaccsUpdateResponse": {
+    "com.azure.billingbenefits#UpdateMaccResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2165,7 +2166,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.billingbenefits#MaccsUpdateResponseTagsMap",
+          "target": "com.azure.billingbenefits#UpdateMaccResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2202,7 +2203,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.billingbenefits#MaccsUpdateResponseIdentity",
+          "target": "com.azure.billingbenefits#UpdateMaccResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -2224,7 +2225,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.billingbenefits#MaccsUpdateResponseIdentity": {
+    "com.azure.billingbenefits#UpdateMaccResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -2246,7 +2247,7 @@
           }
         },
         "userAssignedIdentities": {
-          "target": "com.azure.billingbenefits#MaccsUpdateResponseIdentityUserAssignedIdentitiesMap",
+          "target": "com.azure.billingbenefits#UpdateMaccResponseIdentityUserAssignedIdentitiesMap",
           "traits": {
             "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
           }
@@ -2256,7 +2257,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.billingbenefits#MaccsUpdateResponseIdentityUserAssignedIdentitiesMap": {
+    "com.azure.billingbenefits#UpdateMaccResponseIdentityUserAssignedIdentitiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2268,7 +2269,7 @@
         "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
       }
     },
-    "com.azure.billingbenefits#MaccsUpdateResponseTagsMap": {
+    "com.azure.billingbenefits#UpdateMaccResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2280,7 +2281,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.billingbenefits#MaccsUpdateRequest": {
+    "com.azure.billingbenefits#UpdateMaccRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2314,7 +2315,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.billingbenefits#MaccsUpdateRequestTagsMap",
+          "target": "com.azure.billingbenefits#UpdateMaccRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2324,7 +2325,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.billingbenefits#MaccsUpdateRequestTagsMap": {
+    "com.azure.billingbenefits#UpdateMaccRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2413,13 +2414,13 @@
         "smithy.api#documentation": "List of milestones to update or add."
       }
     },
-    "com.azure.billingbenefits#MaccsCreate": {
+    "com.azure.billingbenefits#CreateMacc": {
       "type": "operation",
       "input": {
-        "target": "com.azure.billingbenefits#MaccsCreateRequest"
+        "target": "com.azure.billingbenefits#CreateMaccRequest"
       },
       "output": {
-        "target": "com.azure.billingbenefits#MaccsCreateResponse"
+        "target": "com.azure.billingbenefits#CreateMaccResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2432,7 +2433,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.billingbenefits#MaccsCreateResponse": {
+    "com.azure.billingbenefits#CreateMaccResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2460,7 +2461,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.billingbenefits#MaccsCreateResponseTagsMap",
+          "target": "com.azure.billingbenefits#CreateMaccResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2497,7 +2498,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.billingbenefits#MaccsCreateResponseIdentity",
+          "target": "com.azure.billingbenefits#CreateMaccResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -2519,7 +2520,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.billingbenefits#MaccsCreateResponseIdentity": {
+    "com.azure.billingbenefits#CreateMaccResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -2541,7 +2542,7 @@
           }
         },
         "userAssignedIdentities": {
-          "target": "com.azure.billingbenefits#MaccsCreateResponseIdentityUserAssignedIdentitiesMap",
+          "target": "com.azure.billingbenefits#CreateMaccResponseIdentityUserAssignedIdentitiesMap",
           "traits": {
             "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
           }
@@ -2551,7 +2552,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.billingbenefits#MaccsCreateResponseIdentityUserAssignedIdentitiesMap": {
+    "com.azure.billingbenefits#CreateMaccResponseIdentityUserAssignedIdentitiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2563,7 +2564,7 @@
         "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
       }
     },
-    "com.azure.billingbenefits#MaccsCreateResponseTagsMap": {
+    "com.azure.billingbenefits#CreateMaccResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2575,7 +2576,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.billingbenefits#MaccsCreateRequest": {
+    "com.azure.billingbenefits#CreateMaccRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2603,7 +2604,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.billingbenefits#MaccsCreateRequestTagsMap",
+          "target": "com.azure.billingbenefits#CreateMaccRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2634,7 +2635,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.billingbenefits#MaccsCreateRequestIdentity",
+          "target": "com.azure.billingbenefits#CreateMaccRequestIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -2656,7 +2657,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.billingbenefits#MaccsCreateRequestIdentity": {
+    "com.azure.billingbenefits#CreateMaccRequestIdentity": {
       "type": "structure",
       "members": {
         "type": {
@@ -2666,7 +2667,7 @@
           }
         },
         "userAssignedIdentities": {
-          "target": "com.azure.billingbenefits#MaccsCreateRequestIdentityUserAssignedIdentitiesMap",
+          "target": "com.azure.billingbenefits#CreateMaccRequestIdentityUserAssignedIdentitiesMap",
           "traits": {
             "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
           }
@@ -2676,7 +2677,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.billingbenefits#MaccsCreateRequestIdentityUserAssignedIdentitiesMap": {
+    "com.azure.billingbenefits#CreateMaccRequestIdentityUserAssignedIdentitiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2827,7 +2828,7 @@
         "smithy.api#documentation": "List of milestones associated with this MACC."
       }
     },
-    "com.azure.billingbenefits#MaccsCreateRequestTagsMap": {
+    "com.azure.billingbenefits#CreateMaccRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2839,13 +2840,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.billingbenefits#MaccsGet": {
+    "com.azure.billingbenefits#GetMacc": {
       "type": "operation",
       "input": {
-        "target": "com.azure.billingbenefits#MaccsGetRequest"
+        "target": "com.azure.billingbenefits#GetMaccRequest"
       },
       "output": {
-        "target": "com.azure.billingbenefits#MaccsGetResponse"
+        "target": "com.azure.billingbenefits#GetMaccResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2858,7 +2859,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.billingbenefits#MaccsGetResponse": {
+    "com.azure.billingbenefits#GetMaccResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2886,7 +2887,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.billingbenefits#MaccsGetResponseTagsMap",
+          "target": "com.azure.billingbenefits#GetMaccResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2923,7 +2924,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.billingbenefits#MaccsGetResponseIdentity",
+          "target": "com.azure.billingbenefits#GetMaccResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -2945,7 +2946,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.billingbenefits#MaccsGetResponseIdentity": {
+    "com.azure.billingbenefits#GetMaccResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -2967,7 +2968,7 @@
           }
         },
         "userAssignedIdentities": {
-          "target": "com.azure.billingbenefits#MaccsGetResponseIdentityUserAssignedIdentitiesMap",
+          "target": "com.azure.billingbenefits#GetMaccResponseIdentityUserAssignedIdentitiesMap",
           "traits": {
             "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
           }
@@ -2977,7 +2978,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.billingbenefits#MaccsGetResponseIdentityUserAssignedIdentitiesMap": {
+    "com.azure.billingbenefits#GetMaccResponseIdentityUserAssignedIdentitiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2989,7 +2990,7 @@
         "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
       }
     },
-    "com.azure.billingbenefits#MaccsGetResponseTagsMap": {
+    "com.azure.billingbenefits#GetMaccResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3001,7 +3002,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.billingbenefits#MaccsGetRequest": {
+    "com.azure.billingbenefits#GetMaccRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3033,10 +3034,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.billingbenefits#MaccsListByResourceGroup": {
+    "com.azure.billingbenefits#ListMaccByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.billingbenefits#MaccsListByResourceGroupRequest"
+        "target": "com.azure.billingbenefits#ListMaccByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.billingbenefits#MaccList"
@@ -3225,7 +3226,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.billingbenefits#MaccsListByResourceGroupRequest": {
+    "com.azure.billingbenefits#ListMaccByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3249,10 +3250,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.billingbenefits#FreeServicesDelete": {
+    "com.azure.billingbenefits#DeleteFreeService": {
       "type": "operation",
       "input": {
-        "target": "com.azure.billingbenefits#FreeServicesDeleteRequest"
+        "target": "com.azure.billingbenefits#DeleteFreeServiceRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3268,7 +3269,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.billingbenefits#FreeServicesDeleteRequest": {
+    "com.azure.billingbenefits#DeleteFreeServiceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3300,13 +3301,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.billingbenefits#FreeServicesUpdate": {
+    "com.azure.billingbenefits#UpdateFreeService": {
       "type": "operation",
       "input": {
-        "target": "com.azure.billingbenefits#FreeServicesUpdateRequest"
+        "target": "com.azure.billingbenefits#UpdateFreeServiceRequest"
       },
       "output": {
-        "target": "com.azure.billingbenefits#FreeServicesUpdateResponse"
+        "target": "com.azure.billingbenefits#UpdateFreeServiceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3319,7 +3320,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.billingbenefits#FreeServicesUpdateResponse": {
+    "com.azure.billingbenefits#UpdateFreeServiceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3347,7 +3348,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.billingbenefits#FreeServicesUpdateResponseTagsMap",
+          "target": "com.azure.billingbenefits#UpdateFreeServiceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3384,7 +3385,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.billingbenefits#FreeServicesUpdateResponseIdentity",
+          "target": "com.azure.billingbenefits#UpdateFreeServiceResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -3406,7 +3407,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.billingbenefits#FreeServicesUpdateResponseIdentity": {
+    "com.azure.billingbenefits#UpdateFreeServiceResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -3428,7 +3429,7 @@
           }
         },
         "userAssignedIdentities": {
-          "target": "com.azure.billingbenefits#FreeServicesUpdateResponseIdentityUserAssignedIdentitiesMap",
+          "target": "com.azure.billingbenefits#UpdateFreeServiceResponseIdentityUserAssignedIdentitiesMap",
           "traits": {
             "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
           }
@@ -3438,7 +3439,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.billingbenefits#FreeServicesUpdateResponseIdentityUserAssignedIdentitiesMap": {
+    "com.azure.billingbenefits#UpdateFreeServiceResponseIdentityUserAssignedIdentitiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3568,7 +3569,7 @@
         "smithy.api#documentation": "Status of the free services"
       }
     },
-    "com.azure.billingbenefits#FreeServicesUpdateResponseTagsMap": {
+    "com.azure.billingbenefits#UpdateFreeServiceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3580,7 +3581,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.billingbenefits#FreeServicesUpdateRequest": {
+    "com.azure.billingbenefits#UpdateFreeServiceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3614,7 +3615,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.billingbenefits#FreeServicesUpdateRequestTagsMap",
+          "target": "com.azure.billingbenefits#UpdateFreeServiceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3624,7 +3625,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.billingbenefits#FreeServicesUpdateRequestTagsMap": {
+    "com.azure.billingbenefits#UpdateFreeServiceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3650,13 +3651,13 @@
         "smithy.api#documentation": "Free services patch request properties"
       }
     },
-    "com.azure.billingbenefits#FreeServicesCreate": {
+    "com.azure.billingbenefits#CreateFreeService": {
       "type": "operation",
       "input": {
-        "target": "com.azure.billingbenefits#FreeServicesCreateRequest"
+        "target": "com.azure.billingbenefits#CreateFreeServiceRequest"
       },
       "output": {
-        "target": "com.azure.billingbenefits#FreeServicesCreateResponse"
+        "target": "com.azure.billingbenefits#CreateFreeServiceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3669,7 +3670,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.billingbenefits#FreeServicesCreateResponse": {
+    "com.azure.billingbenefits#CreateFreeServiceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3697,7 +3698,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.billingbenefits#FreeServicesCreateResponseTagsMap",
+          "target": "com.azure.billingbenefits#CreateFreeServiceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3734,7 +3735,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.billingbenefits#FreeServicesCreateResponseIdentity",
+          "target": "com.azure.billingbenefits#CreateFreeServiceResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -3756,7 +3757,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.billingbenefits#FreeServicesCreateResponseIdentity": {
+    "com.azure.billingbenefits#CreateFreeServiceResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -3778,7 +3779,7 @@
           }
         },
         "userAssignedIdentities": {
-          "target": "com.azure.billingbenefits#FreeServicesCreateResponseIdentityUserAssignedIdentitiesMap",
+          "target": "com.azure.billingbenefits#CreateFreeServiceResponseIdentityUserAssignedIdentitiesMap",
           "traits": {
             "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
           }
@@ -3788,7 +3789,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.billingbenefits#FreeServicesCreateResponseIdentityUserAssignedIdentitiesMap": {
+    "com.azure.billingbenefits#CreateFreeServiceResponseIdentityUserAssignedIdentitiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3800,7 +3801,7 @@
         "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
       }
     },
-    "com.azure.billingbenefits#FreeServicesCreateResponseTagsMap": {
+    "com.azure.billingbenefits#CreateFreeServiceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3812,7 +3813,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.billingbenefits#FreeServicesCreateRequest": {
+    "com.azure.billingbenefits#CreateFreeServiceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3840,7 +3841,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.billingbenefits#FreeServicesCreateRequestTagsMap",
+          "target": "com.azure.billingbenefits#CreateFreeServiceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3871,7 +3872,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.billingbenefits#FreeServicesCreateRequestIdentity",
+          "target": "com.azure.billingbenefits#CreateFreeServiceRequestIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -3893,7 +3894,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.billingbenefits#FreeServicesCreateRequestIdentity": {
+    "com.azure.billingbenefits#CreateFreeServiceRequestIdentity": {
       "type": "structure",
       "members": {
         "type": {
@@ -3903,7 +3904,7 @@
           }
         },
         "userAssignedIdentities": {
-          "target": "com.azure.billingbenefits#FreeServicesCreateRequestIdentityUserAssignedIdentitiesMap",
+          "target": "com.azure.billingbenefits#CreateFreeServiceRequestIdentityUserAssignedIdentitiesMap",
           "traits": {
             "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
           }
@@ -3913,7 +3914,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.billingbenefits#FreeServicesCreateRequestIdentityUserAssignedIdentitiesMap": {
+    "com.azure.billingbenefits#CreateFreeServiceRequestIdentityUserAssignedIdentitiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3975,7 +3976,7 @@
         "smithy.api#documentation": "Properties of free services"
       }
     },
-    "com.azure.billingbenefits#FreeServicesCreateRequestTagsMap": {
+    "com.azure.billingbenefits#CreateFreeServiceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3987,13 +3988,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.billingbenefits#FreeServicesGet": {
+    "com.azure.billingbenefits#GetFreeService": {
       "type": "operation",
       "input": {
-        "target": "com.azure.billingbenefits#FreeServicesGetRequest"
+        "target": "com.azure.billingbenefits#GetFreeServiceRequest"
       },
       "output": {
-        "target": "com.azure.billingbenefits#FreeServicesGetResponse"
+        "target": "com.azure.billingbenefits#GetFreeServiceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4006,7 +4007,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.billingbenefits#FreeServicesGetResponse": {
+    "com.azure.billingbenefits#GetFreeServiceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -4034,7 +4035,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.billingbenefits#FreeServicesGetResponseTagsMap",
+          "target": "com.azure.billingbenefits#GetFreeServiceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4071,7 +4072,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.billingbenefits#FreeServicesGetResponseIdentity",
+          "target": "com.azure.billingbenefits#GetFreeServiceResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -4093,7 +4094,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.billingbenefits#FreeServicesGetResponseIdentity": {
+    "com.azure.billingbenefits#GetFreeServiceResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -4115,7 +4116,7 @@
           }
         },
         "userAssignedIdentities": {
-          "target": "com.azure.billingbenefits#FreeServicesGetResponseIdentityUserAssignedIdentitiesMap",
+          "target": "com.azure.billingbenefits#GetFreeServiceResponseIdentityUserAssignedIdentitiesMap",
           "traits": {
             "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
           }
@@ -4125,7 +4126,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.billingbenefits#FreeServicesGetResponseIdentityUserAssignedIdentitiesMap": {
+    "com.azure.billingbenefits#GetFreeServiceResponseIdentityUserAssignedIdentitiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4137,7 +4138,7 @@
         "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
       }
     },
-    "com.azure.billingbenefits#FreeServicesGetResponseTagsMap": {
+    "com.azure.billingbenefits#GetFreeServiceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4149,7 +4150,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.billingbenefits#FreeServicesGetRequest": {
+    "com.azure.billingbenefits#GetFreeServiceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4181,10 +4182,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.billingbenefits#FreeServicesListByResourceGroup": {
+    "com.azure.billingbenefits#ListFreeServiceByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.billingbenefits#FreeServicesListByResourceGroupRequest"
+        "target": "com.azure.billingbenefits#ListFreeServiceByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.billingbenefits#FreeServicesList"
@@ -4372,7 +4373,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.billingbenefits#FreeServicesListByResourceGroupRequest": {
+    "com.azure.billingbenefits#ListFreeServiceByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4396,13 +4397,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.billingbenefits#DiscountsCancel": {
+    "com.azure.billingbenefits#CancelDiscount": {
       "type": "operation",
       "input": {
-        "target": "com.azure.billingbenefits#DiscountsCancelRequest"
+        "target": "com.azure.billingbenefits#CancelDiscountRequest"
       },
       "output": {
-        "target": "com.azure.billingbenefits#DiscountsCancelResponse"
+        "target": "com.azure.billingbenefits#CancelDiscountResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4415,7 +4416,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.billingbenefits#DiscountsCancelResponse": {
+    "com.azure.billingbenefits#CancelDiscountResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -4443,7 +4444,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.billingbenefits#DiscountsCancelResponseTagsMap",
+          "target": "com.azure.billingbenefits#CancelDiscountResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4726,7 +4727,7 @@
         "smithy.api#documentation": "This defines whether the entity being created is primary or affiliate. Supported values: primary, affiliate. Validation: Required, must match one of the 2 values."
       }
     },
-    "com.azure.billingbenefits#DiscountsCancelResponseTagsMap": {
+    "com.azure.billingbenefits#CancelDiscountResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4738,7 +4739,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.billingbenefits#DiscountsCancelRequest": {
+    "com.azure.billingbenefits#CancelDiscountRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4770,10 +4771,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.billingbenefits#DiscountsDelete": {
+    "com.azure.billingbenefits#DeleteDiscount": {
       "type": "operation",
       "input": {
-        "target": "com.azure.billingbenefits#DiscountsDeleteRequest"
+        "target": "com.azure.billingbenefits#DeleteDiscountRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4789,7 +4790,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.billingbenefits#DiscountsDeleteRequest": {
+    "com.azure.billingbenefits#DeleteDiscountRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4821,13 +4822,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.billingbenefits#DiscountUpdate": {
+    "com.azure.billingbenefits#UpdateDiscount": {
       "type": "operation",
       "input": {
-        "target": "com.azure.billingbenefits#DiscountUpdateRequest"
+        "target": "com.azure.billingbenefits#UpdateDiscountRequest"
       },
       "output": {
-        "target": "com.azure.billingbenefits#DiscountUpdateResponse"
+        "target": "com.azure.billingbenefits#UpdateDiscountResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4840,7 +4841,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.billingbenefits#DiscountUpdateResponse": {
+    "com.azure.billingbenefits#UpdateDiscountResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -4868,7 +4869,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.billingbenefits#DiscountUpdateResponseTagsMap",
+          "target": "com.azure.billingbenefits#UpdateDiscountResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4927,7 +4928,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.billingbenefits#DiscountUpdateResponseTagsMap": {
+    "com.azure.billingbenefits#UpdateDiscountResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4939,7 +4940,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.billingbenefits#DiscountUpdateRequest": {
+    "com.azure.billingbenefits#UpdateDiscountRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4973,7 +4974,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.billingbenefits#DiscountUpdateRequestTagsMap",
+          "target": "com.azure.billingbenefits#UpdateDiscountRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4983,7 +4984,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.billingbenefits#DiscountUpdateRequestTagsMap": {
+    "com.azure.billingbenefits#UpdateDiscountRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5015,13 +5016,13 @@
         "smithy.api#documentation": "Discounts patch request properties"
       }
     },
-    "com.azure.billingbenefits#DiscountsCreate": {
+    "com.azure.billingbenefits#CreateDiscount": {
       "type": "operation",
       "input": {
-        "target": "com.azure.billingbenefits#DiscountsCreateRequest"
+        "target": "com.azure.billingbenefits#CreateDiscountRequest"
       },
       "output": {
-        "target": "com.azure.billingbenefits#DiscountsCreateResponse"
+        "target": "com.azure.billingbenefits#CreateDiscountResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5034,7 +5035,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.billingbenefits#DiscountsCreateResponse": {
+    "com.azure.billingbenefits#CreateDiscountResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -5062,7 +5063,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.billingbenefits#DiscountsCreateResponseTagsMap",
+          "target": "com.azure.billingbenefits#CreateDiscountResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -5121,7 +5122,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.billingbenefits#DiscountsCreateResponseTagsMap": {
+    "com.azure.billingbenefits#CreateDiscountResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5133,7 +5134,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.billingbenefits#DiscountsCreateRequest": {
+    "com.azure.billingbenefits#CreateDiscountRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5161,7 +5162,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.billingbenefits#DiscountsCreateRequestTagsMap",
+          "target": "com.azure.billingbenefits#CreateDiscountRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -5313,7 +5314,7 @@
         "smithy.api#documentation": "Properties belonging to discounts."
       }
     },
-    "com.azure.billingbenefits#DiscountsCreateRequestTagsMap": {
+    "com.azure.billingbenefits#CreateDiscountRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5325,13 +5326,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.billingbenefits#DiscountGet": {
+    "com.azure.billingbenefits#GetDiscount": {
       "type": "operation",
       "input": {
-        "target": "com.azure.billingbenefits#DiscountGetRequest"
+        "target": "com.azure.billingbenefits#GetDiscountRequest"
       },
       "output": {
-        "target": "com.azure.billingbenefits#DiscountGetResponse"
+        "target": "com.azure.billingbenefits#GetDiscountResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5344,7 +5345,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.billingbenefits#DiscountGetResponse": {
+    "com.azure.billingbenefits#GetDiscountResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -5372,7 +5373,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.billingbenefits#DiscountGetResponseTagsMap",
+          "target": "com.azure.billingbenefits#GetDiscountResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -5431,7 +5432,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.billingbenefits#DiscountGetResponseTagsMap": {
+    "com.azure.billingbenefits#GetDiscountResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5443,7 +5444,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.billingbenefits#DiscountGetRequest": {
+    "com.azure.billingbenefits#GetDiscountRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5475,10 +5476,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.billingbenefits#DiscountsResourceGroupList": {
+    "com.azure.billingbenefits#ListDiscountsResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.billingbenefits#DiscountsResourceGroupListRequest"
+        "target": "com.azure.billingbenefits#ListDiscountsResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.billingbenefits#DiscountList"
@@ -5623,7 +5624,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.billingbenefits#DiscountsResourceGroupListRequest": {
+    "com.azure.billingbenefits#ListDiscountsResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5647,13 +5648,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.billingbenefits#CreditTransactionsGet": {
+    "com.azure.billingbenefits#GetCreditTransaction": {
       "type": "operation",
       "input": {
-        "target": "com.azure.billingbenefits#CreditTransactionsGetRequest"
+        "target": "com.azure.billingbenefits#GetCreditTransactionRequest"
       },
       "output": {
-        "target": "com.azure.billingbenefits#CreditTransactionsGetResponse"
+        "target": "com.azure.billingbenefits#GetCreditTransactionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5666,7 +5667,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.billingbenefits#CreditTransactionsGetResponse": {
+    "com.azure.billingbenefits#GetCreditTransactionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -5704,7 +5705,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.billingbenefits#CreditTransactionsGetRequest": {
+    "com.azure.billingbenefits#GetCreditTransactionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5744,10 +5745,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.billingbenefits#CreditTransactionsListByParent": {
+    "com.azure.billingbenefits#ListCreditTransactionByParent": {
       "type": "operation",
       "input": {
-        "target": "com.azure.billingbenefits#CreditTransactionsListByParentRequest"
+        "target": "com.azure.billingbenefits#ListCreditTransactionByParentRequest"
       },
       "output": {
         "target": "com.azure.billingbenefits#TransactionsList"
@@ -5831,7 +5832,7 @@
         "smithy.api#documentation": "Transaction resource definition for Credits"
       }
     },
-    "com.azure.billingbenefits#CreditTransactionsListByParentRequest": {
+    "com.azure.billingbenefits#ListCreditTransactionByParentRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5863,10 +5864,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.billingbenefits#SourcesDelete": {
+    "com.azure.billingbenefits#DeleteSource": {
       "type": "operation",
       "input": {
-        "target": "com.azure.billingbenefits#SourcesDeleteRequest"
+        "target": "com.azure.billingbenefits#DeleteSourceRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -5882,7 +5883,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.billingbenefits#SourcesDeleteRequest": {
+    "com.azure.billingbenefits#DeleteSourceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5922,13 +5923,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.billingbenefits#SourcesUpdate": {
+    "com.azure.billingbenefits#UpdateSource": {
       "type": "operation",
       "input": {
-        "target": "com.azure.billingbenefits#SourcesUpdateRequest"
+        "target": "com.azure.billingbenefits#UpdateSourceRequest"
       },
       "output": {
-        "target": "com.azure.billingbenefits#SourcesUpdateResponse"
+        "target": "com.azure.billingbenefits#UpdateSourceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5941,7 +5942,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.billingbenefits#SourcesUpdateResponse": {
+    "com.azure.billingbenefits#UpdateSourceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -5969,7 +5970,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.billingbenefits#SourcesUpdateResponseTagsMap",
+          "target": "com.azure.billingbenefits#UpdateSourceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -6006,7 +6007,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.billingbenefits#SourcesUpdateResponseIdentity",
+          "target": "com.azure.billingbenefits#UpdateSourceResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -6028,7 +6029,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.billingbenefits#SourcesUpdateResponseIdentity": {
+    "com.azure.billingbenefits#UpdateSourceResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -6050,7 +6051,7 @@
           }
         },
         "userAssignedIdentities": {
-          "target": "com.azure.billingbenefits#SourcesUpdateResponseIdentityUserAssignedIdentitiesMap",
+          "target": "com.azure.billingbenefits#UpdateSourceResponseIdentityUserAssignedIdentitiesMap",
           "traits": {
             "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
           }
@@ -6060,7 +6061,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.billingbenefits#SourcesUpdateResponseIdentityUserAssignedIdentitiesMap": {
+    "com.azure.billingbenefits#UpdateSourceResponseIdentityUserAssignedIdentitiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6166,7 +6167,7 @@
         "smithy.api#documentation": "Status of the credit"
       }
     },
-    "com.azure.billingbenefits#SourcesUpdateResponseTagsMap": {
+    "com.azure.billingbenefits#UpdateSourceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6178,7 +6179,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.billingbenefits#SourcesUpdateRequest": {
+    "com.azure.billingbenefits#UpdateSourceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6214,7 +6215,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.billingbenefits#SourcesUpdateRequestTagsMap",
+          "target": "com.azure.billingbenefits#UpdateSourceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource Tags"
           }
@@ -6224,7 +6225,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.billingbenefits#SourcesUpdateRequestTagsMap": {
+    "com.azure.billingbenefits#UpdateSourceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6236,13 +6237,13 @@
         "smithy.api#documentation": "Resource Tags"
       }
     },
-    "com.azure.billingbenefits#SourcesCreate": {
+    "com.azure.billingbenefits#CreateSource": {
       "type": "operation",
       "input": {
-        "target": "com.azure.billingbenefits#SourcesCreateRequest"
+        "target": "com.azure.billingbenefits#CreateSourceRequest"
       },
       "output": {
-        "target": "com.azure.billingbenefits#SourcesCreateResponse"
+        "target": "com.azure.billingbenefits#CreateSourceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6255,7 +6256,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.billingbenefits#SourcesCreateResponse": {
+    "com.azure.billingbenefits#CreateSourceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -6283,7 +6284,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.billingbenefits#SourcesCreateResponseTagsMap",
+          "target": "com.azure.billingbenefits#CreateSourceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -6320,7 +6321,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.billingbenefits#SourcesCreateResponseIdentity",
+          "target": "com.azure.billingbenefits#CreateSourceResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -6342,7 +6343,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.billingbenefits#SourcesCreateResponseIdentity": {
+    "com.azure.billingbenefits#CreateSourceResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -6364,7 +6365,7 @@
           }
         },
         "userAssignedIdentities": {
-          "target": "com.azure.billingbenefits#SourcesCreateResponseIdentityUserAssignedIdentitiesMap",
+          "target": "com.azure.billingbenefits#CreateSourceResponseIdentityUserAssignedIdentitiesMap",
           "traits": {
             "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
           }
@@ -6374,7 +6375,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.billingbenefits#SourcesCreateResponseIdentityUserAssignedIdentitiesMap": {
+    "com.azure.billingbenefits#CreateSourceResponseIdentityUserAssignedIdentitiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6386,7 +6387,7 @@
         "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
       }
     },
-    "com.azure.billingbenefits#SourcesCreateResponseTagsMap": {
+    "com.azure.billingbenefits#CreateSourceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6398,7 +6399,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.billingbenefits#SourcesCreateRequest": {
+    "com.azure.billingbenefits#CreateSourceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6434,7 +6435,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.billingbenefits#SourcesCreateRequestTagsMap",
+          "target": "com.azure.billingbenefits#CreateSourceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -6465,7 +6466,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.billingbenefits#SourcesCreateRequestIdentity",
+          "target": "com.azure.billingbenefits#CreateSourceRequestIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -6487,7 +6488,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.billingbenefits#SourcesCreateRequestIdentity": {
+    "com.azure.billingbenefits#CreateSourceRequestIdentity": {
       "type": "structure",
       "members": {
         "type": {
@@ -6497,7 +6498,7 @@
           }
         },
         "userAssignedIdentities": {
-          "target": "com.azure.billingbenefits#SourcesCreateRequestIdentityUserAssignedIdentitiesMap",
+          "target": "com.azure.billingbenefits#CreateSourceRequestIdentityUserAssignedIdentitiesMap",
           "traits": {
             "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
           }
@@ -6507,7 +6508,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.billingbenefits#SourcesCreateRequestIdentityUserAssignedIdentitiesMap": {
+    "com.azure.billingbenefits#CreateSourceRequestIdentityUserAssignedIdentitiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6545,7 +6546,7 @@
         "smithy.api#documentation": "Properties of a credit source"
       }
     },
-    "com.azure.billingbenefits#SourcesCreateRequestTagsMap": {
+    "com.azure.billingbenefits#CreateSourceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6557,13 +6558,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.billingbenefits#SourcesGet": {
+    "com.azure.billingbenefits#GetSource": {
       "type": "operation",
       "input": {
-        "target": "com.azure.billingbenefits#SourcesGetRequest"
+        "target": "com.azure.billingbenefits#GetSourceRequest"
       },
       "output": {
-        "target": "com.azure.billingbenefits#SourcesGetResponse"
+        "target": "com.azure.billingbenefits#GetSourceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6576,7 +6577,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.billingbenefits#SourcesGetResponse": {
+    "com.azure.billingbenefits#GetSourceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -6604,7 +6605,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.billingbenefits#SourcesGetResponseTagsMap",
+          "target": "com.azure.billingbenefits#GetSourceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -6641,7 +6642,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.billingbenefits#SourcesGetResponseIdentity",
+          "target": "com.azure.billingbenefits#GetSourceResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -6663,7 +6664,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.billingbenefits#SourcesGetResponseIdentity": {
+    "com.azure.billingbenefits#GetSourceResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -6685,7 +6686,7 @@
           }
         },
         "userAssignedIdentities": {
-          "target": "com.azure.billingbenefits#SourcesGetResponseIdentityUserAssignedIdentitiesMap",
+          "target": "com.azure.billingbenefits#GetSourceResponseIdentityUserAssignedIdentitiesMap",
           "traits": {
             "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
           }
@@ -6695,7 +6696,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.billingbenefits#SourcesGetResponseIdentityUserAssignedIdentitiesMap": {
+    "com.azure.billingbenefits#GetSourceResponseIdentityUserAssignedIdentitiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6707,7 +6708,7 @@
         "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
       }
     },
-    "com.azure.billingbenefits#SourcesGetResponseTagsMap": {
+    "com.azure.billingbenefits#GetSourceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6719,7 +6720,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.billingbenefits#SourcesGetRequest": {
+    "com.azure.billingbenefits#GetSourceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6759,10 +6760,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.billingbenefits#SourcesListByCredit": {
+    "com.azure.billingbenefits#ListSourceByCredit": {
       "type": "operation",
       "input": {
-        "target": "com.azure.billingbenefits#SourcesListByCreditRequest"
+        "target": "com.azure.billingbenefits#ListSourceByCreditRequest"
       },
       "output": {
         "target": "com.azure.billingbenefits#CreditSourcesList"
@@ -6951,7 +6952,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.billingbenefits#SourcesListByCreditRequest": {
+    "com.azure.billingbenefits#ListSourceByCreditRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7040,13 +7041,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.billingbenefits#CreditsCancel": {
+    "com.azure.billingbenefits#CancelCredit": {
       "type": "operation",
       "input": {
-        "target": "com.azure.billingbenefits#CreditsCancelRequest"
+        "target": "com.azure.billingbenefits#CancelCreditRequest"
       },
       "output": {
-        "target": "com.azure.billingbenefits#CreditsCancelResponse"
+        "target": "com.azure.billingbenefits#CancelCreditResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7059,7 +7060,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.billingbenefits#CreditsCancelResponse": {
+    "com.azure.billingbenefits#CancelCreditResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -7087,7 +7088,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.billingbenefits#CreditsCancelResponseTagsMap",
+          "target": "com.azure.billingbenefits#CancelCreditResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -7124,7 +7125,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.billingbenefits#CreditsCancelResponseIdentity",
+          "target": "com.azure.billingbenefits#CancelCreditResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -7146,7 +7147,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.billingbenefits#CreditsCancelResponseIdentity": {
+    "com.azure.billingbenefits#CancelCreditResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -7168,7 +7169,7 @@
           }
         },
         "userAssignedIdentities": {
-          "target": "com.azure.billingbenefits#CreditsCancelResponseIdentityUserAssignedIdentitiesMap",
+          "target": "com.azure.billingbenefits#CancelCreditResponseIdentityUserAssignedIdentitiesMap",
           "traits": {
             "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
           }
@@ -7178,7 +7179,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.billingbenefits#CreditsCancelResponseIdentityUserAssignedIdentitiesMap": {
+    "com.azure.billingbenefits#CancelCreditResponseIdentityUserAssignedIdentitiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7555,7 +7556,7 @@
         "smithy.api#documentation": "The reason for the credit. Not required if not applicable."
       }
     },
-    "com.azure.billingbenefits#CreditsCancelResponseTagsMap": {
+    "com.azure.billingbenefits#CancelCreditResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7567,7 +7568,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.billingbenefits#CreditsCancelRequest": {
+    "com.azure.billingbenefits#CancelCreditRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7599,10 +7600,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.billingbenefits#CreditsDelete": {
+    "com.azure.billingbenefits#DeleteCredit": {
       "type": "operation",
       "input": {
-        "target": "com.azure.billingbenefits#CreditsDeleteRequest"
+        "target": "com.azure.billingbenefits#DeleteCreditRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -7618,7 +7619,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.billingbenefits#CreditsDeleteRequest": {
+    "com.azure.billingbenefits#DeleteCreditRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7650,13 +7651,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.billingbenefits#CreditsUpdate": {
+    "com.azure.billingbenefits#UpdateCredit": {
       "type": "operation",
       "input": {
-        "target": "com.azure.billingbenefits#CreditsUpdateRequest"
+        "target": "com.azure.billingbenefits#UpdateCreditRequest"
       },
       "output": {
-        "target": "com.azure.billingbenefits#CreditsUpdateResponse"
+        "target": "com.azure.billingbenefits#UpdateCreditResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7669,7 +7670,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.billingbenefits#CreditsUpdateResponse": {
+    "com.azure.billingbenefits#UpdateCreditResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -7697,7 +7698,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.billingbenefits#CreditsUpdateResponseTagsMap",
+          "target": "com.azure.billingbenefits#UpdateCreditResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -7734,7 +7735,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.billingbenefits#CreditsUpdateResponseIdentity",
+          "target": "com.azure.billingbenefits#UpdateCreditResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -7756,7 +7757,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.billingbenefits#CreditsUpdateResponseIdentity": {
+    "com.azure.billingbenefits#UpdateCreditResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -7778,7 +7779,7 @@
           }
         },
         "userAssignedIdentities": {
-          "target": "com.azure.billingbenefits#CreditsUpdateResponseIdentityUserAssignedIdentitiesMap",
+          "target": "com.azure.billingbenefits#UpdateCreditResponseIdentityUserAssignedIdentitiesMap",
           "traits": {
             "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
           }
@@ -7788,7 +7789,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.billingbenefits#CreditsUpdateResponseIdentityUserAssignedIdentitiesMap": {
+    "com.azure.billingbenefits#UpdateCreditResponseIdentityUserAssignedIdentitiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7800,7 +7801,7 @@
         "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
       }
     },
-    "com.azure.billingbenefits#CreditsUpdateResponseTagsMap": {
+    "com.azure.billingbenefits#UpdateCreditResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7812,7 +7813,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.billingbenefits#CreditsUpdateRequest": {
+    "com.azure.billingbenefits#UpdateCreditRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7840,7 +7841,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.billingbenefits#CreditsUpdateRequestTagsMap",
+          "target": "com.azure.billingbenefits#UpdateCreditRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags"
           }
@@ -7891,7 +7892,7 @@
         "smithy.api#documentation": "Credit line-items/milestones/no-charge services breakdown. Entire breakdown will be replaced in a PATCH operation."
       }
     },
-    "com.azure.billingbenefits#CreditsUpdateRequestTagsMap": {
+    "com.azure.billingbenefits#UpdateCreditRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7903,13 +7904,13 @@
         "smithy.api#documentation": "Resource tags"
       }
     },
-    "com.azure.billingbenefits#CreditsCreate": {
+    "com.azure.billingbenefits#CreateCredit": {
       "type": "operation",
       "input": {
-        "target": "com.azure.billingbenefits#CreditsCreateRequest"
+        "target": "com.azure.billingbenefits#CreateCreditRequest"
       },
       "output": {
-        "target": "com.azure.billingbenefits#CreditsCreateResponse"
+        "target": "com.azure.billingbenefits#CreateCreditResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7922,7 +7923,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.billingbenefits#CreditsCreateResponse": {
+    "com.azure.billingbenefits#CreateCreditResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -7950,7 +7951,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.billingbenefits#CreditsCreateResponseTagsMap",
+          "target": "com.azure.billingbenefits#CreateCreditResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -7987,7 +7988,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.billingbenefits#CreditsCreateResponseIdentity",
+          "target": "com.azure.billingbenefits#CreateCreditResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -8009,7 +8010,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.billingbenefits#CreditsCreateResponseIdentity": {
+    "com.azure.billingbenefits#CreateCreditResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -8031,7 +8032,7 @@
           }
         },
         "userAssignedIdentities": {
-          "target": "com.azure.billingbenefits#CreditsCreateResponseIdentityUserAssignedIdentitiesMap",
+          "target": "com.azure.billingbenefits#CreateCreditResponseIdentityUserAssignedIdentitiesMap",
           "traits": {
             "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
           }
@@ -8041,7 +8042,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.billingbenefits#CreditsCreateResponseIdentityUserAssignedIdentitiesMap": {
+    "com.azure.billingbenefits#CreateCreditResponseIdentityUserAssignedIdentitiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8053,7 +8054,7 @@
         "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
       }
     },
-    "com.azure.billingbenefits#CreditsCreateResponseTagsMap": {
+    "com.azure.billingbenefits#CreateCreditResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8065,7 +8066,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.billingbenefits#CreditsCreateRequest": {
+    "com.azure.billingbenefits#CreateCreditRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8093,7 +8094,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.billingbenefits#CreditsCreateRequestTagsMap",
+          "target": "com.azure.billingbenefits#CreateCreditRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -8124,7 +8125,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.billingbenefits#CreditsCreateRequestIdentity",
+          "target": "com.azure.billingbenefits#CreateCreditRequestIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -8146,7 +8147,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.billingbenefits#CreditsCreateRequestIdentity": {
+    "com.azure.billingbenefits#CreateCreditRequestIdentity": {
       "type": "structure",
       "members": {
         "type": {
@@ -8156,7 +8157,7 @@
           }
         },
         "userAssignedIdentities": {
-          "target": "com.azure.billingbenefits#CreditsCreateRequestIdentityUserAssignedIdentitiesMap",
+          "target": "com.azure.billingbenefits#CreateCreditRequestIdentityUserAssignedIdentitiesMap",
           "traits": {
             "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
           }
@@ -8166,7 +8167,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.billingbenefits#CreditsCreateRequestIdentityUserAssignedIdentitiesMap": {
+    "com.azure.billingbenefits#CreateCreditRequestIdentityUserAssignedIdentitiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8279,7 +8280,7 @@
         "smithy.api#documentation": "Credit line-items/milestones/no-charge services breakdown"
       }
     },
-    "com.azure.billingbenefits#CreditsCreateRequestTagsMap": {
+    "com.azure.billingbenefits#CreateCreditRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8291,13 +8292,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.billingbenefits#CreditsGet": {
+    "com.azure.billingbenefits#GetCredit": {
       "type": "operation",
       "input": {
-        "target": "com.azure.billingbenefits#CreditsGetRequest"
+        "target": "com.azure.billingbenefits#GetCreditRequest"
       },
       "output": {
-        "target": "com.azure.billingbenefits#CreditsGetResponse"
+        "target": "com.azure.billingbenefits#GetCreditResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -8310,7 +8311,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.billingbenefits#CreditsGetResponse": {
+    "com.azure.billingbenefits#GetCreditResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -8338,7 +8339,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.billingbenefits#CreditsGetResponseTagsMap",
+          "target": "com.azure.billingbenefits#GetCreditResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -8375,7 +8376,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.billingbenefits#CreditsGetResponseIdentity",
+          "target": "com.azure.billingbenefits#GetCreditResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -8397,7 +8398,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.billingbenefits#CreditsGetResponseIdentity": {
+    "com.azure.billingbenefits#GetCreditResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -8419,7 +8420,7 @@
           }
         },
         "userAssignedIdentities": {
-          "target": "com.azure.billingbenefits#CreditsGetResponseIdentityUserAssignedIdentitiesMap",
+          "target": "com.azure.billingbenefits#GetCreditResponseIdentityUserAssignedIdentitiesMap",
           "traits": {
             "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
           }
@@ -8429,7 +8430,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.billingbenefits#CreditsGetResponseIdentityUserAssignedIdentitiesMap": {
+    "com.azure.billingbenefits#GetCreditResponseIdentityUserAssignedIdentitiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8441,7 +8442,7 @@
         "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
       }
     },
-    "com.azure.billingbenefits#CreditsGetResponseTagsMap": {
+    "com.azure.billingbenefits#GetCreditResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8453,7 +8454,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.billingbenefits#CreditsGetRequest": {
+    "com.azure.billingbenefits#GetCreditRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8485,10 +8486,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.billingbenefits#CreditsListByResourceGroup": {
+    "com.azure.billingbenefits#ListCreditByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.billingbenefits#CreditsListByResourceGroupRequest"
+        "target": "com.azure.billingbenefits#ListCreditByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.billingbenefits#CreditsList"
@@ -8677,7 +8678,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.billingbenefits#CreditsListByResourceGroupRequest": {
+    "com.azure.billingbenefits#ListCreditByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8701,13 +8702,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.billingbenefits#ConditionalCreditTransactionsGet": {
+    "com.azure.billingbenefits#GetConditionalCreditTransaction": {
       "type": "operation",
       "input": {
-        "target": "com.azure.billingbenefits#ConditionalCreditTransactionsGetRequest"
+        "target": "com.azure.billingbenefits#GetConditionalCreditTransactionRequest"
       },
       "output": {
-        "target": "com.azure.billingbenefits#ConditionalCreditTransactionsGetResponse"
+        "target": "com.azure.billingbenefits#GetConditionalCreditTransactionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -8720,7 +8721,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.billingbenefits#ConditionalCreditTransactionsGetResponse": {
+    "com.azure.billingbenefits#GetConditionalCreditTransactionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -8758,7 +8759,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.billingbenefits#ConditionalCreditTransactionsGetRequest": {
+    "com.azure.billingbenefits#GetConditionalCreditTransactionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8798,10 +8799,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.billingbenefits#ConditionalCreditTransactionsListByParent": {
+    "com.azure.billingbenefits#ListConditionalCreditTransactionByParent": {
       "type": "operation",
       "input": {
-        "target": "com.azure.billingbenefits#ConditionalCreditTransactionsListByParentRequest"
+        "target": "com.azure.billingbenefits#ListConditionalCreditTransactionByParentRequest"
       },
       "output": {
         "target": "com.azure.billingbenefits#ConditionalCreditTransactionsList"
@@ -8885,7 +8886,7 @@
         "smithy.api#documentation": "Transaction resource definition for ConditionalCredits"
       }
     },
-    "com.azure.billingbenefits#ConditionalCreditTransactionsListByParentRequest": {
+    "com.azure.billingbenefits#ListConditionalCreditTransactionByParentRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8917,13 +8918,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.billingbenefits#ConditionalCreditContributorsGetFromPrimary": {
+    "com.azure.billingbenefits#GetConditionalCreditContributorFromPrimary": {
       "type": "operation",
       "input": {
-        "target": "com.azure.billingbenefits#ConditionalCreditContributorsGetFromPrimaryRequest"
+        "target": "com.azure.billingbenefits#GetConditionalCreditContributorFromPrimaryRequest"
       },
       "output": {
-        "target": "com.azure.billingbenefits#ConditionalCreditContributorsGetFromPrimaryResponse"
+        "target": "com.azure.billingbenefits#GetConditionalCreditContributorFromPrimaryResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -8936,7 +8937,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.billingbenefits#ConditionalCreditContributorsGetFromPrimaryResponse": {
+    "com.azure.billingbenefits#GetConditionalCreditContributorFromPrimaryResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -9376,7 +9377,7 @@
         "smithy.api#documentation": "Type of conditional credit entity"
       }
     },
-    "com.azure.billingbenefits#ConditionalCreditContributorsGetFromPrimaryRequest": {
+    "com.azure.billingbenefits#GetConditionalCreditContributorFromPrimaryRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9416,10 +9417,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.billingbenefits#ConditionalCreditContributorsListFromPrimary": {
+    "com.azure.billingbenefits#ListConditionalCreditContributorFromPrimary": {
       "type": "operation",
       "input": {
-        "target": "com.azure.billingbenefits#ConditionalCreditContributorsListFromPrimaryRequest"
+        "target": "com.azure.billingbenefits#ListConditionalCreditContributorFromPrimaryRequest"
       },
       "output": {
         "target": "com.azure.billingbenefits#ConditionalCreditContributorList"
@@ -9503,7 +9504,7 @@
         "smithy.api#documentation": "Conditional credit contributor"
       }
     },
-    "com.azure.billingbenefits#ConditionalCreditContributorsListFromPrimaryRequest": {
+    "com.azure.billingbenefits#ListConditionalCreditContributorFromPrimaryRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9535,13 +9536,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.billingbenefits#ConditionalCreditsCancel": {
+    "com.azure.billingbenefits#CancelConditionalCredit": {
       "type": "operation",
       "input": {
-        "target": "com.azure.billingbenefits#ConditionalCreditsCancelRequest"
+        "target": "com.azure.billingbenefits#CancelConditionalCreditRequest"
       },
       "output": {
-        "target": "com.azure.billingbenefits#ConditionalCreditsCancelResponse"
+        "target": "com.azure.billingbenefits#CancelConditionalCreditResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -9554,7 +9555,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.billingbenefits#ConditionalCreditsCancelResponse": {
+    "com.azure.billingbenefits#CancelConditionalCreditResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -9582,7 +9583,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.billingbenefits#ConditionalCreditsCancelResponseTagsMap",
+          "target": "com.azure.billingbenefits#CancelConditionalCreditResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -9619,7 +9620,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.billingbenefits#ConditionalCreditsCancelResponseIdentity",
+          "target": "com.azure.billingbenefits#CancelConditionalCreditResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -9641,7 +9642,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.billingbenefits#ConditionalCreditsCancelResponseIdentity": {
+    "com.azure.billingbenefits#CancelConditionalCreditResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -9663,7 +9664,7 @@
           }
         },
         "userAssignedIdentities": {
-          "target": "com.azure.billingbenefits#ConditionalCreditsCancelResponseIdentityUserAssignedIdentitiesMap",
+          "target": "com.azure.billingbenefits#CancelConditionalCreditResponseIdentityUserAssignedIdentitiesMap",
           "traits": {
             "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
           }
@@ -9673,7 +9674,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.billingbenefits#ConditionalCreditsCancelResponseIdentityUserAssignedIdentitiesMap": {
+    "com.azure.billingbenefits#CancelConditionalCreditResponseIdentityUserAssignedIdentitiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -9778,7 +9779,7 @@
         "smithy.api#documentation": "Properties belonging to conditional credits."
       }
     },
-    "com.azure.billingbenefits#ConditionalCreditsCancelResponseTagsMap": {
+    "com.azure.billingbenefits#CancelConditionalCreditResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -9790,7 +9791,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.billingbenefits#ConditionalCreditsCancelRequest": {
+    "com.azure.billingbenefits#CancelConditionalCreditRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9822,10 +9823,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.billingbenefits#ConditionalCreditsDelete": {
+    "com.azure.billingbenefits#DeleteConditionalCredit": {
       "type": "operation",
       "input": {
-        "target": "com.azure.billingbenefits#ConditionalCreditsDeleteRequest"
+        "target": "com.azure.billingbenefits#DeleteConditionalCreditRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -9841,7 +9842,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.billingbenefits#ConditionalCreditsDeleteRequest": {
+    "com.azure.billingbenefits#DeleteConditionalCreditRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9873,13 +9874,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.billingbenefits#ConditionalCreditsUpdate": {
+    "com.azure.billingbenefits#UpdateConditionalCredit": {
       "type": "operation",
       "input": {
-        "target": "com.azure.billingbenefits#ConditionalCreditsUpdateRequest"
+        "target": "com.azure.billingbenefits#UpdateConditionalCreditRequest"
       },
       "output": {
-        "target": "com.azure.billingbenefits#ConditionalCreditsUpdateResponse"
+        "target": "com.azure.billingbenefits#UpdateConditionalCreditResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -9892,7 +9893,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.billingbenefits#ConditionalCreditsUpdateResponse": {
+    "com.azure.billingbenefits#UpdateConditionalCreditResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -9920,7 +9921,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.billingbenefits#ConditionalCreditsUpdateResponseTagsMap",
+          "target": "com.azure.billingbenefits#UpdateConditionalCreditResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -9957,7 +9958,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.billingbenefits#ConditionalCreditsUpdateResponseIdentity",
+          "target": "com.azure.billingbenefits#UpdateConditionalCreditResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -9979,7 +9980,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.billingbenefits#ConditionalCreditsUpdateResponseIdentity": {
+    "com.azure.billingbenefits#UpdateConditionalCreditResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -10001,7 +10002,7 @@
           }
         },
         "userAssignedIdentities": {
-          "target": "com.azure.billingbenefits#ConditionalCreditsUpdateResponseIdentityUserAssignedIdentitiesMap",
+          "target": "com.azure.billingbenefits#UpdateConditionalCreditResponseIdentityUserAssignedIdentitiesMap",
           "traits": {
             "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
           }
@@ -10011,7 +10012,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.billingbenefits#ConditionalCreditsUpdateResponseIdentityUserAssignedIdentitiesMap": {
+    "com.azure.billingbenefits#UpdateConditionalCreditResponseIdentityUserAssignedIdentitiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -10023,7 +10024,7 @@
         "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
       }
     },
-    "com.azure.billingbenefits#ConditionalCreditsUpdateResponseTagsMap": {
+    "com.azure.billingbenefits#UpdateConditionalCreditResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -10035,7 +10036,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.billingbenefits#ConditionalCreditsUpdateRequest": {
+    "com.azure.billingbenefits#UpdateConditionalCreditRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10069,7 +10070,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.billingbenefits#ConditionalCreditsUpdateRequestTagsMap",
+          "target": "com.azure.billingbenefits#UpdateConditionalCreditRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -10079,7 +10080,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.billingbenefits#ConditionalCreditsUpdateRequestTagsMap": {
+    "com.azure.billingbenefits#UpdateConditionalCreditRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -10564,13 +10565,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.billingbenefits#ConditionalCreditsGet": {
+    "com.azure.billingbenefits#GetConditionalCredit": {
       "type": "operation",
       "input": {
-        "target": "com.azure.billingbenefits#ConditionalCreditsGetRequest"
+        "target": "com.azure.billingbenefits#GetConditionalCreditRequest"
       },
       "output": {
-        "target": "com.azure.billingbenefits#ConditionalCreditsGetResponse"
+        "target": "com.azure.billingbenefits#GetConditionalCreditResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -10583,7 +10584,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.billingbenefits#ConditionalCreditsGetResponse": {
+    "com.azure.billingbenefits#GetConditionalCreditResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -10611,7 +10612,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.billingbenefits#ConditionalCreditsGetResponseTagsMap",
+          "target": "com.azure.billingbenefits#GetConditionalCreditResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -10648,7 +10649,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.billingbenefits#ConditionalCreditsGetResponseIdentity",
+          "target": "com.azure.billingbenefits#GetConditionalCreditResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -10670,7 +10671,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.billingbenefits#ConditionalCreditsGetResponseIdentity": {
+    "com.azure.billingbenefits#GetConditionalCreditResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -10692,7 +10693,7 @@
           }
         },
         "userAssignedIdentities": {
-          "target": "com.azure.billingbenefits#ConditionalCreditsGetResponseIdentityUserAssignedIdentitiesMap",
+          "target": "com.azure.billingbenefits#GetConditionalCreditResponseIdentityUserAssignedIdentitiesMap",
           "traits": {
             "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
           }
@@ -10702,7 +10703,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.billingbenefits#ConditionalCreditsGetResponseIdentityUserAssignedIdentitiesMap": {
+    "com.azure.billingbenefits#GetConditionalCreditResponseIdentityUserAssignedIdentitiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -10714,7 +10715,7 @@
         "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
       }
     },
-    "com.azure.billingbenefits#ConditionalCreditsGetResponseTagsMap": {
+    "com.azure.billingbenefits#GetConditionalCreditResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -10726,7 +10727,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.billingbenefits#ConditionalCreditsGetRequest": {
+    "com.azure.billingbenefits#GetConditionalCreditRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10758,10 +10759,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.billingbenefits#ConditionalCreditsListByResourceGroup": {
+    "com.azure.billingbenefits#ListConditionalCreditByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.billingbenefits#ConditionalCreditsListByResourceGroupRequest"
+        "target": "com.azure.billingbenefits#ListConditionalCreditByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.billingbenefits#ConditionalCreditList"
@@ -10950,7 +10951,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.billingbenefits#ConditionalCreditsListByResourceGroupRequest": {
+    "com.azure.billingbenefits#ListConditionalCreditByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10974,10 +10975,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.billingbenefits#MaccsListBySubscription": {
+    "com.azure.billingbenefits#ListMaccBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.billingbenefits#MaccsListBySubscriptionRequest"
+        "target": "com.azure.billingbenefits#ListMaccBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.billingbenefits#MaccList"
@@ -10993,7 +10994,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.billingbenefits#MaccsListBySubscriptionRequest": {
+    "com.azure.billingbenefits#ListMaccBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11009,10 +11010,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.billingbenefits#FreeServicesListBySubscription": {
+    "com.azure.billingbenefits#ListFreeServiceBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.billingbenefits#FreeServicesListBySubscriptionRequest"
+        "target": "com.azure.billingbenefits#ListFreeServiceBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.billingbenefits#FreeServicesList"
@@ -11028,7 +11029,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.billingbenefits#FreeServicesListBySubscriptionRequest": {
+    "com.azure.billingbenefits#ListFreeServiceBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11044,10 +11045,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.billingbenefits#DiscountsSubscriptionList": {
+    "com.azure.billingbenefits#ListDiscountsSubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.billingbenefits#DiscountsSubscriptionListRequest"
+        "target": "com.azure.billingbenefits#ListDiscountsSubscriptionRequest"
       },
       "output": {
         "target": "com.azure.billingbenefits#DiscountList"
@@ -11063,7 +11064,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.billingbenefits#DiscountsSubscriptionListRequest": {
+    "com.azure.billingbenefits#ListDiscountsSubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11079,10 +11080,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.billingbenefits#CreditsListBySubscription": {
+    "com.azure.billingbenefits#ListCreditBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.billingbenefits#CreditsListBySubscriptionRequest"
+        "target": "com.azure.billingbenefits#ListCreditBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.billingbenefits#CreditsList"
@@ -11098,7 +11099,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.billingbenefits#CreditsListBySubscriptionRequest": {
+    "com.azure.billingbenefits#ListCreditBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11114,10 +11115,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.billingbenefits#ConditionalCreditsListBySubscription": {
+    "com.azure.billingbenefits#ListConditionalCreditBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.billingbenefits#ConditionalCreditsListBySubscriptionRequest"
+        "target": "com.azure.billingbenefits#ListConditionalCreditBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.billingbenefits#ConditionalCreditList"
@@ -11133,7 +11134,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.billingbenefits#ConditionalCreditsListBySubscriptionRequest": {
+    "com.azure.billingbenefits#ListConditionalCreditBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11149,13 +11150,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.billingbenefits#SubscriptionCatalogGroupsOpsGet": {
+    "com.azure.billingbenefits#GetSubscriptionCatalogGroupsOps": {
       "type": "operation",
       "input": {
-        "target": "com.azure.billingbenefits#SubscriptionCatalogGroupsOpsGetRequest"
+        "target": "com.azure.billingbenefits#GetSubscriptionCatalogGroupsOpsRequest"
       },
       "output": {
-        "target": "com.azure.billingbenefits#SubscriptionCatalogGroupsOpsGetResponse"
+        "target": "com.azure.billingbenefits#GetSubscriptionCatalogGroupsOpsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -11168,7 +11169,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.billingbenefits#SubscriptionCatalogGroupsOpsGetResponse": {
+    "com.azure.billingbenefits#GetSubscriptionCatalogGroupsOpsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -11368,7 +11369,7 @@
         "smithy.api#documentation": "The top-level ARM resource type for a billing benefit (e.g., maccs, credits, savingsPlans, reservations)."
       }
     },
-    "com.azure.billingbenefits#SubscriptionCatalogGroupsOpsGetRequest": {
+    "com.azure.billingbenefits#GetSubscriptionCatalogGroupsOpsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11392,10 +11393,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.billingbenefits#SubscriptionCatalogGroupsOpsList": {
+    "com.azure.billingbenefits#ListSubscriptionCatalogGroupsOps": {
       "type": "operation",
       "input": {
-        "target": "com.azure.billingbenefits#SubscriptionCatalogGroupsOpsListRequest"
+        "target": "com.azure.billingbenefits#ListSubscriptionCatalogGroupsOpsRequest"
       },
       "output": {
         "target": "com.azure.billingbenefits#CatalogGroupListResult"
@@ -11479,7 +11480,7 @@
         "smithy.api#documentation": "A catalog group represents a BenefitResourceType + Namespace grouping used for benefit SKU discovery."
       }
     },
-    "com.azure.billingbenefits#SubscriptionCatalogGroupsOpsListRequest": {
+    "com.azure.billingbenefits#ListSubscriptionCatalogGroupsOpsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11502,10 +11503,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.billingbenefits#ContributorsListFromApplicableMacc": {
+    "com.azure.billingbenefits#ListContributorFromApplicableMacc": {
       "type": "operation",
       "input": {
-        "target": "com.azure.billingbenefits#ContributorsListFromApplicableMaccRequest"
+        "target": "com.azure.billingbenefits#ListContributorFromApplicableMaccRequest"
       },
       "output": {
         "target": "com.azure.billingbenefits#ContributorList"
@@ -11521,7 +11522,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.billingbenefits#ContributorsListFromApplicableMaccRequest": {
+    "com.azure.billingbenefits#ListContributorFromApplicableMaccRequest": {
       "type": "structure",
       "members": {
         "billingAccountId": {
@@ -11545,10 +11546,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.billingbenefits#ApplicableMaccsList": {
+    "com.azure.billingbenefits#ListApplicableMaccs": {
       "type": "operation",
       "input": {
-        "target": "com.azure.billingbenefits#ApplicableMaccsListRequest"
+        "target": "com.azure.billingbenefits#ListApplicableMaccsRequest"
       },
       "output": {
         "target": "com.azure.billingbenefits#ApplicableMaccList"
@@ -11631,7 +11632,7 @@
         "smithy.api#documentation": "Applicable MACC."
       }
     },
-    "com.azure.billingbenefits#ApplicableMaccsListRequest": {
+    "com.azure.billingbenefits#ListApplicableMaccsRequest": {
       "type": "structure",
       "members": {
         "billingAccountId": {
@@ -11647,10 +11648,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.billingbenefits#ConditionalCreditContributorsListFromApplicableConditionalCredit": {
+    "com.azure.billingbenefits#ListConditionalCreditContributorFromApplicableConditionalCredit": {
       "type": "operation",
       "input": {
-        "target": "com.azure.billingbenefits#ConditionalCreditContributorsListFromApplicableConditionalCreditRequest"
+        "target": "com.azure.billingbenefits#ListConditionalCreditContributorFromApplicableConditionalCreditRequest"
       },
       "output": {
         "target": "com.azure.billingbenefits#ConditionalCreditContributorList"
@@ -11666,7 +11667,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.billingbenefits#ConditionalCreditContributorsListFromApplicableConditionalCreditRequest": {
+    "com.azure.billingbenefits#ListConditionalCreditContributorFromApplicableConditionalCreditRequest": {
       "type": "structure",
       "members": {
         "billingAccountId": {
@@ -11690,10 +11691,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.billingbenefits#BenefitValidate": {
+    "com.azure.billingbenefits#ValidateBenefit": {
       "type": "operation",
       "input": {
-        "target": "com.azure.billingbenefits#BenefitValidateRequest"
+        "target": "com.azure.billingbenefits#ValidateBenefitRequest"
       },
       "output": {
         "target": "com.azure.billingbenefits#BenefitValidateResponse"
@@ -11770,11 +11771,11 @@
         "smithy.api#documentation": "Benefit validate response property"
       }
     },
-    "com.azure.billingbenefits#BenefitValidateRequest": {
+    "com.azure.billingbenefits#ValidateBenefitRequest": {
       "type": "structure",
       "members": {
         "benefits": {
-          "target": "com.azure.billingbenefits#BenefitValidateRequestBenefitsList",
+          "target": "com.azure.billingbenefits#ValidateBenefitRequestBenefitsList",
           "traits": {
             "smithy.api#documentation": "Defines benefits for validation."
           }
@@ -11784,7 +11785,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.billingbenefits#BenefitValidateRequestBenefitsList": {
+    "com.azure.billingbenefits#ValidateBenefitRequestBenefitsList": {
       "type": "list",
       "member": {
         "target": "com.azure.billingbenefits#BenefitValidateModel"
@@ -11870,10 +11871,10 @@
         "smithy.api#documentation": "Represents benefit model type for validation. Includes all resource types\nplus legacy singular-form values used by the validate API."
       }
     },
-    "com.azure.billingbenefits#SavingsPlanListAll": {
+    "com.azure.billingbenefits#ListSavingsPlanAll": {
       "type": "operation",
       "input": {
-        "target": "com.azure.billingbenefits#SavingsPlanListAllRequest"
+        "target": "com.azure.billingbenefits#ListSavingsPlanAllRequest"
       },
       "output": {
         "target": "com.azure.billingbenefits#SavingsPlanModelListResult"
@@ -12538,7 +12539,7 @@
         "smithy.api#documentation": "Provisioning state"
       }
     },
-    "com.azure.billingbenefits#SavingsPlanListAllRequest": {
+    "com.azure.billingbenefits#ListSavingsPlanAllRequest": {
       "type": "structure",
       "members": {
         "_filter": {
@@ -12808,13 +12809,13 @@
       },
       "traits": {}
     },
-    "com.azure.billingbenefits#SavingsPlanUpdate": {
+    "com.azure.billingbenefits#UpdateSavingsPlan": {
       "type": "operation",
       "input": {
-        "target": "com.azure.billingbenefits#SavingsPlanUpdateRequest"
+        "target": "com.azure.billingbenefits#UpdateSavingsPlanRequest"
       },
       "output": {
-        "target": "com.azure.billingbenefits#SavingsPlanUpdateResponse"
+        "target": "com.azure.billingbenefits#UpdateSavingsPlanResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -12827,7 +12828,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.billingbenefits#SavingsPlanUpdateResponse": {
+    "com.azure.billingbenefits#UpdateSavingsPlanResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -12872,7 +12873,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.billingbenefits#SavingsPlanUpdateRequest": {
+    "com.azure.billingbenefits#UpdateSavingsPlanRequest": {
       "type": "structure",
       "members": {
         "savingsPlanOrderId": {
@@ -12902,13 +12903,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.billingbenefits#SavingsPlanGet": {
+    "com.azure.billingbenefits#GetSavingsPlan": {
       "type": "operation",
       "input": {
-        "target": "com.azure.billingbenefits#SavingsPlanGetRequest"
+        "target": "com.azure.billingbenefits#GetSavingsPlanRequest"
       },
       "output": {
-        "target": "com.azure.billingbenefits#SavingsPlanGetResponse"
+        "target": "com.azure.billingbenefits#GetSavingsPlanResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -12921,7 +12922,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.billingbenefits#SavingsPlanGetResponse": {
+    "com.azure.billingbenefits#GetSavingsPlanResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -12966,7 +12967,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.billingbenefits#SavingsPlanGetRequest": {
+    "com.azure.billingbenefits#GetSavingsPlanRequest": {
       "type": "structure",
       "members": {
         "savingsPlanOrderId": {
@@ -12997,10 +12998,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.billingbenefits#SavingsPlanList": {
+    "com.azure.billingbenefits#ListSavingsPlan": {
       "type": "operation",
       "input": {
-        "target": "com.azure.billingbenefits#SavingsPlanListRequest"
+        "target": "com.azure.billingbenefits#ListSavingsPlanRequest"
       },
       "output": {
         "target": "com.azure.billingbenefits#SavingsPlanModelList"
@@ -13046,7 +13047,7 @@
         "smithy.api#documentation": "The SavingsPlanModel items on this page"
       }
     },
-    "com.azure.billingbenefits#SavingsPlanListRequest": {
+    "com.azure.billingbenefits#ListSavingsPlanRequest": {
       "type": "structure",
       "members": {
         "savingsPlanOrderId": {
@@ -13149,13 +13150,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.billingbenefits#SavingsPlanOrderGet": {
+    "com.azure.billingbenefits#GetSavingsPlanOrder": {
       "type": "operation",
       "input": {
-        "target": "com.azure.billingbenefits#SavingsPlanOrderGetRequest"
+        "target": "com.azure.billingbenefits#GetSavingsPlanOrderRequest"
       },
       "output": {
-        "target": "com.azure.billingbenefits#SavingsPlanOrderGetResponse"
+        "target": "com.azure.billingbenefits#GetSavingsPlanOrderResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -13168,7 +13169,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.billingbenefits#SavingsPlanOrderGetResponse": {
+    "com.azure.billingbenefits#GetSavingsPlanOrderResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -13415,7 +13416,7 @@
         "smithy.api#documentation": "Describes whether the payment is completed, failed, cancelled or scheduled in the future."
       }
     },
-    "com.azure.billingbenefits#SavingsPlanOrderGetRequest": {
+    "com.azure.billingbenefits#GetSavingsPlanOrderRequest": {
       "type": "structure",
       "members": {
         "savingsPlanOrderId": {
@@ -13438,7 +13439,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.billingbenefits#SavingsPlanOrderList": {
+    "com.azure.billingbenefits#ListSavingsPlanOrder": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -13532,13 +13533,13 @@
         "smithy.api#documentation": "Savings plan order"
       }
     },
-    "com.azure.billingbenefits#SavingsPlanOrderAliasCreate": {
+    "com.azure.billingbenefits#CreateSavingsPlanOrderAlias": {
       "type": "operation",
       "input": {
-        "target": "com.azure.billingbenefits#SavingsPlanOrderAliasCreateRequest"
+        "target": "com.azure.billingbenefits#CreateSavingsPlanOrderAliasRequest"
       },
       "output": {
-        "target": "com.azure.billingbenefits#SavingsPlanOrderAliasCreateResponse"
+        "target": "com.azure.billingbenefits#CreateSavingsPlanOrderAliasResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -13551,7 +13552,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.billingbenefits#SavingsPlanOrderAliasCreateResponse": {
+    "com.azure.billingbenefits#CreateSavingsPlanOrderAliasResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -13670,7 +13671,7 @@
         "smithy.api#documentation": "Savings plan properties"
       }
     },
-    "com.azure.billingbenefits#SavingsPlanOrderAliasCreateRequest": {
+    "com.azure.billingbenefits#CreateSavingsPlanOrderAliasRequest": {
       "type": "structure",
       "members": {
         "savingsPlanOrderAliasName": {
@@ -13761,13 +13762,13 @@
         "smithy.api#documentation": "Savings plan properties"
       }
     },
-    "com.azure.billingbenefits#SavingsPlanOrderAliasGet": {
+    "com.azure.billingbenefits#GetSavingsPlanOrderAlias": {
       "type": "operation",
       "input": {
-        "target": "com.azure.billingbenefits#SavingsPlanOrderAliasGetRequest"
+        "target": "com.azure.billingbenefits#GetSavingsPlanOrderAliasRequest"
       },
       "output": {
-        "target": "com.azure.billingbenefits#SavingsPlanOrderAliasGetResponse"
+        "target": "com.azure.billingbenefits#GetSavingsPlanOrderAliasResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -13780,7 +13781,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.billingbenefits#SavingsPlanOrderAliasGetResponse": {
+    "com.azure.billingbenefits#GetSavingsPlanOrderAliasResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -13831,7 +13832,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.billingbenefits#SavingsPlanOrderAliasGetRequest": {
+    "com.azure.billingbenefits#GetSavingsPlanOrderAliasRequest": {
       "type": "structure",
       "members": {
         "savingsPlanOrderAliasName": {
@@ -13847,13 +13848,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.billingbenefits#ReservationOrderAliasCreate": {
+    "com.azure.billingbenefits#CreateReservationOrderAlias": {
       "type": "operation",
       "input": {
-        "target": "com.azure.billingbenefits#ReservationOrderAliasCreateRequest"
+        "target": "com.azure.billingbenefits#CreateReservationOrderAliasRequest"
       },
       "output": {
-        "target": "com.azure.billingbenefits#ReservationOrderAliasCreateResponse"
+        "target": "com.azure.billingbenefits#CreateReservationOrderAliasResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -13866,7 +13867,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.billingbenefits#ReservationOrderAliasCreateResponse": {
+    "com.azure.billingbenefits#CreateReservationOrderAliasResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -14219,7 +14220,7 @@
         "smithy.api#documentation": "The type of the resource that is being reserved."
       }
     },
-    "com.azure.billingbenefits#ReservationOrderAliasCreateRequest": {
+    "com.azure.billingbenefits#CreateReservationOrderAliasRequest": {
       "type": "structure",
       "members": {
         "reservationOrderAliasName": {
@@ -14354,13 +14355,13 @@
         "smithy.api#documentation": "Properties specific to each reserved resource type. Not required if not applicable."
       }
     },
-    "com.azure.billingbenefits#ReservationOrderAliasGet": {
+    "com.azure.billingbenefits#GetReservationOrderAlias": {
       "type": "operation",
       "input": {
-        "target": "com.azure.billingbenefits#ReservationOrderAliasGetRequest"
+        "target": "com.azure.billingbenefits#GetReservationOrderAliasRequest"
       },
       "output": {
-        "target": "com.azure.billingbenefits#ReservationOrderAliasGetResponse"
+        "target": "com.azure.billingbenefits#GetReservationOrderAliasResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -14373,7 +14374,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.billingbenefits#ReservationOrderAliasGetResponse": {
+    "com.azure.billingbenefits#GetReservationOrderAliasResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -14424,7 +14425,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.billingbenefits#ReservationOrderAliasGetRequest": {
+    "com.azure.billingbenefits#GetReservationOrderAliasRequest": {
       "type": "structure",
       "members": {
         "reservationOrderAliasName": {
@@ -14440,13 +14441,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.billingbenefits#OperationsList": {
+    "com.azure.billingbenefits#ListOperations": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
       },
       "output": {
-        "target": "com.azure.billingbenefits#OperationsListResponse"
+        "target": "com.azure.billingbenefits#ListOperationsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -14459,11 +14460,11 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.billingbenefits#OperationsListResponse": {
+    "com.azure.billingbenefits#ListOperationsResponse": {
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.billingbenefits#OperationsListResponseValueList",
+          "target": "com.azure.billingbenefits#ListOperationsResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of operations supported by the resource provider"
           }
@@ -14479,7 +14480,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.billingbenefits#OperationsListResponseValueList": {
+    "com.azure.billingbenefits#ListOperationsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.billingbenefits#Operation"
@@ -14598,13 +14599,13 @@
         "smithy.api#documentation": "Localized display information for this particular operation."
       }
     },
-    "com.azure.billingbenefits#SellerResourceList": {
+    "com.azure.billingbenefits#ListSellerResource": {
       "type": "operation",
       "input": {
-        "target": "com.azure.billingbenefits#SellerResourceListRequest"
+        "target": "com.azure.billingbenefits#ListSellerResourceRequest"
       },
       "output": {
-        "target": "com.azure.billingbenefits#SellerResourceListResponse"
+        "target": "com.azure.billingbenefits#ListSellerResourceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -14617,11 +14618,11 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.billingbenefits#SellerResourceListResponse": {
+    "com.azure.billingbenefits#ListSellerResourceResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.azure.billingbenefits#SellerResourceListResponseBodyList",
+          "target": "com.azure.billingbenefits#ListSellerResourceResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -14632,14 +14633,14 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.billingbenefits#SellerResourceListResponseBodyList": {
+    "com.azure.billingbenefits#ListSellerResourceResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.azure.billingbenefits#Macc"
       },
       "traits": {}
     },
-    "com.azure.billingbenefits#SellerResourceListRequest": {
+    "com.azure.billingbenefits#ListSellerResourceRequest": {
       "type": "structure",
       "members": {
         "properties": {
@@ -14693,13 +14694,13 @@
         "smithy.api#documentation": "Request properties to list maccs under a billing account"
       }
     },
-    "com.azure.billingbenefits#BillingAccountCatalogGroupsOpsGet": {
+    "com.azure.billingbenefits#GetBillingAccountCatalogGroupsOps": {
       "type": "operation",
       "input": {
-        "target": "com.azure.billingbenefits#BillingAccountCatalogGroupsOpsGetRequest"
+        "target": "com.azure.billingbenefits#GetBillingAccountCatalogGroupsOpsRequest"
       },
       "output": {
-        "target": "com.azure.billingbenefits#BillingAccountCatalogGroupsOpsGetResponse"
+        "target": "com.azure.billingbenefits#GetBillingAccountCatalogGroupsOpsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -14712,7 +14713,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.billingbenefits#BillingAccountCatalogGroupsOpsGetResponse": {
+    "com.azure.billingbenefits#GetBillingAccountCatalogGroupsOpsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -14750,7 +14751,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.billingbenefits#BillingAccountCatalogGroupsOpsGetRequest": {
+    "com.azure.billingbenefits#GetBillingAccountCatalogGroupsOpsRequest": {
       "type": "structure",
       "members": {
         "billingAccountName": {
@@ -14774,10 +14775,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.billingbenefits#BillingAccountCatalogGroupsOpsList": {
+    "com.azure.billingbenefits#ListBillingAccountCatalogGroupsOps": {
       "type": "operation",
       "input": {
-        "target": "com.azure.billingbenefits#BillingAccountCatalogGroupsOpsListRequest"
+        "target": "com.azure.billingbenefits#ListBillingAccountCatalogGroupsOpsRequest"
       },
       "output": {
         "target": "com.azure.billingbenefits#CatalogGroupListResult"
@@ -14793,7 +14794,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.billingbenefits#BillingAccountCatalogGroupsOpsListRequest": {
+    "com.azure.billingbenefits#ListBillingAccountCatalogGroupsOpsRequest": {
       "type": "structure",
       "members": {
         "billingAccountName": {
@@ -14816,13 +14817,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.billingbenefits#BillingProfileCatalogGroupsOpsGet": {
+    "com.azure.billingbenefits#GetBillingProfileCatalogGroupsOps": {
       "type": "operation",
       "input": {
-        "target": "com.azure.billingbenefits#BillingProfileCatalogGroupsOpsGetRequest"
+        "target": "com.azure.billingbenefits#GetBillingProfileCatalogGroupsOpsRequest"
       },
       "output": {
-        "target": "com.azure.billingbenefits#BillingProfileCatalogGroupsOpsGetResponse"
+        "target": "com.azure.billingbenefits#GetBillingProfileCatalogGroupsOpsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -14835,7 +14836,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.billingbenefits#BillingProfileCatalogGroupsOpsGetResponse": {
+    "com.azure.billingbenefits#GetBillingProfileCatalogGroupsOpsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -14873,7 +14874,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.billingbenefits#BillingProfileCatalogGroupsOpsGetRequest": {
+    "com.azure.billingbenefits#GetBillingProfileCatalogGroupsOpsRequest": {
       "type": "structure",
       "members": {
         "billingAccountName": {
@@ -14905,10 +14906,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.billingbenefits#BillingProfileCatalogGroupsOpsList": {
+    "com.azure.billingbenefits#ListBillingProfileCatalogGroupsOps": {
       "type": "operation",
       "input": {
-        "target": "com.azure.billingbenefits#BillingProfileCatalogGroupsOpsListRequest"
+        "target": "com.azure.billingbenefits#ListBillingProfileCatalogGroupsOpsRequest"
       },
       "output": {
         "target": "com.azure.billingbenefits#CatalogGroupListResult"
@@ -14924,7 +14925,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.billingbenefits#BillingProfileCatalogGroupsOpsListRequest": {
+    "com.azure.billingbenefits#ListBillingProfileCatalogGroupsOpsRequest": {
       "type": "structure",
       "members": {
         "billingAccountName": {
@@ -14955,10 +14956,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.billingbenefits#DiscountsScopeList": {
+    "com.azure.billingbenefits#ListDiscountsScope": {
       "type": "operation",
       "input": {
-        "target": "com.azure.billingbenefits#DiscountsScopeListRequest"
+        "target": "com.azure.billingbenefits#ListDiscountsScopeRequest"
       },
       "output": {
         "target": "com.azure.billingbenefits#DiscountList"
@@ -14974,7 +14975,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.billingbenefits#DiscountsScopeListRequest": {
+    "com.azure.billingbenefits#ListDiscountsScopeRequest": {
       "type": "structure",
       "members": {
         "scope": {
@@ -14990,10 +14991,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.billingbenefits#CreditsListApplicable": {
+    "com.azure.billingbenefits#ListCreditApplicable": {
       "type": "operation",
       "input": {
-        "target": "com.azure.billingbenefits#CreditsListApplicableRequest"
+        "target": "com.azure.billingbenefits#ListCreditApplicableRequest"
       },
       "output": {
         "target": "com.azure.billingbenefits#CreditsList"
@@ -15009,7 +15010,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.billingbenefits#CreditsListApplicableRequest": {
+    "com.azure.billingbenefits#ListCreditApplicableRequest": {
       "type": "structure",
       "members": {
         "scope": {
@@ -15025,10 +15026,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.billingbenefits#ConditionalCreditsScopeList": {
+    "com.azure.billingbenefits#ListConditionalCreditsScope": {
       "type": "operation",
       "input": {
-        "target": "com.azure.billingbenefits#ConditionalCreditsScopeListRequest"
+        "target": "com.azure.billingbenefits#ListConditionalCreditsScopeRequest"
       },
       "output": {
         "target": "com.azure.billingbenefits#ConditionalCreditList"
@@ -15044,7 +15045,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.billingbenefits#ConditionalCreditsScopeListRequest": {
+    "com.azure.billingbenefits#ListConditionalCreditsScopeRequest": {
       "type": "structure",
       "members": {
         "scope": {
@@ -15068,238 +15069,238 @@
           "target": "com.azure.billingbenefits#MaccsWriteOff"
         },
         {
-          "target": "com.azure.billingbenefits#MaccTransactionsGet"
+          "target": "com.azure.billingbenefits#GetMaccTransaction"
         },
         {
-          "target": "com.azure.billingbenefits#MaccTransactionsListByParent"
+          "target": "com.azure.billingbenefits#ListMaccTransactionByParent"
         },
         {
-          "target": "com.azure.billingbenefits#ContributorsGetFromPrimary"
+          "target": "com.azure.billingbenefits#GetContributorFromPrimary"
         },
         {
-          "target": "com.azure.billingbenefits#ContributorsListFromPrimary"
+          "target": "com.azure.billingbenefits#ListContributorFromPrimary"
         },
         {
           "target": "com.azure.billingbenefits#MaccsChargeShortfall"
         },
         {
-          "target": "com.azure.billingbenefits#MaccsCancel"
+          "target": "com.azure.billingbenefits#CancelMacc"
         },
         {
-          "target": "com.azure.billingbenefits#MaccsDelete"
+          "target": "com.azure.billingbenefits#DeleteMacc"
         },
         {
-          "target": "com.azure.billingbenefits#MaccsUpdate"
+          "target": "com.azure.billingbenefits#UpdateMacc"
         },
         {
-          "target": "com.azure.billingbenefits#MaccsCreate"
+          "target": "com.azure.billingbenefits#CreateMacc"
         },
         {
-          "target": "com.azure.billingbenefits#MaccsGet"
+          "target": "com.azure.billingbenefits#GetMacc"
         },
         {
-          "target": "com.azure.billingbenefits#MaccsListByResourceGroup"
+          "target": "com.azure.billingbenefits#ListMaccByResourceGroup"
         },
         {
-          "target": "com.azure.billingbenefits#FreeServicesDelete"
+          "target": "com.azure.billingbenefits#DeleteFreeService"
         },
         {
-          "target": "com.azure.billingbenefits#FreeServicesUpdate"
+          "target": "com.azure.billingbenefits#UpdateFreeService"
         },
         {
-          "target": "com.azure.billingbenefits#FreeServicesCreate"
+          "target": "com.azure.billingbenefits#CreateFreeService"
         },
         {
-          "target": "com.azure.billingbenefits#FreeServicesGet"
+          "target": "com.azure.billingbenefits#GetFreeService"
         },
         {
-          "target": "com.azure.billingbenefits#FreeServicesListByResourceGroup"
+          "target": "com.azure.billingbenefits#ListFreeServiceByResourceGroup"
         },
         {
-          "target": "com.azure.billingbenefits#DiscountsCancel"
+          "target": "com.azure.billingbenefits#CancelDiscount"
         },
         {
-          "target": "com.azure.billingbenefits#DiscountsDelete"
+          "target": "com.azure.billingbenefits#DeleteDiscount"
         },
         {
-          "target": "com.azure.billingbenefits#DiscountUpdate"
+          "target": "com.azure.billingbenefits#UpdateDiscount"
         },
         {
-          "target": "com.azure.billingbenefits#DiscountsCreate"
+          "target": "com.azure.billingbenefits#CreateDiscount"
         },
         {
-          "target": "com.azure.billingbenefits#DiscountGet"
+          "target": "com.azure.billingbenefits#GetDiscount"
         },
         {
-          "target": "com.azure.billingbenefits#DiscountsResourceGroupList"
+          "target": "com.azure.billingbenefits#ListDiscountsResourceGroup"
         },
         {
-          "target": "com.azure.billingbenefits#CreditTransactionsGet"
+          "target": "com.azure.billingbenefits#GetCreditTransaction"
         },
         {
-          "target": "com.azure.billingbenefits#CreditTransactionsListByParent"
+          "target": "com.azure.billingbenefits#ListCreditTransactionByParent"
         },
         {
-          "target": "com.azure.billingbenefits#SourcesDelete"
+          "target": "com.azure.billingbenefits#DeleteSource"
         },
         {
-          "target": "com.azure.billingbenefits#SourcesUpdate"
+          "target": "com.azure.billingbenefits#UpdateSource"
         },
         {
-          "target": "com.azure.billingbenefits#SourcesCreate"
+          "target": "com.azure.billingbenefits#CreateSource"
         },
         {
-          "target": "com.azure.billingbenefits#SourcesGet"
+          "target": "com.azure.billingbenefits#GetSource"
         },
         {
-          "target": "com.azure.billingbenefits#SourcesListByCredit"
+          "target": "com.azure.billingbenefits#ListSourceByCredit"
         },
         {
           "target": "com.azure.billingbenefits#CreditsChangeSponsor"
         },
         {
-          "target": "com.azure.billingbenefits#CreditsCancel"
+          "target": "com.azure.billingbenefits#CancelCredit"
         },
         {
-          "target": "com.azure.billingbenefits#CreditsDelete"
+          "target": "com.azure.billingbenefits#DeleteCredit"
         },
         {
-          "target": "com.azure.billingbenefits#CreditsUpdate"
+          "target": "com.azure.billingbenefits#UpdateCredit"
         },
         {
-          "target": "com.azure.billingbenefits#CreditsCreate"
+          "target": "com.azure.billingbenefits#CreateCredit"
         },
         {
-          "target": "com.azure.billingbenefits#CreditsGet"
+          "target": "com.azure.billingbenefits#GetCredit"
         },
         {
-          "target": "com.azure.billingbenefits#CreditsListByResourceGroup"
+          "target": "com.azure.billingbenefits#ListCreditByResourceGroup"
         },
         {
-          "target": "com.azure.billingbenefits#ConditionalCreditTransactionsGet"
+          "target": "com.azure.billingbenefits#GetConditionalCreditTransaction"
         },
         {
-          "target": "com.azure.billingbenefits#ConditionalCreditTransactionsListByParent"
+          "target": "com.azure.billingbenefits#ListConditionalCreditTransactionByParent"
         },
         {
-          "target": "com.azure.billingbenefits#ConditionalCreditContributorsGetFromPrimary"
+          "target": "com.azure.billingbenefits#GetConditionalCreditContributorFromPrimary"
         },
         {
-          "target": "com.azure.billingbenefits#ConditionalCreditContributorsListFromPrimary"
+          "target": "com.azure.billingbenefits#ListConditionalCreditContributorFromPrimary"
         },
         {
-          "target": "com.azure.billingbenefits#ConditionalCreditsCancel"
+          "target": "com.azure.billingbenefits#CancelConditionalCredit"
         },
         {
-          "target": "com.azure.billingbenefits#ConditionalCreditsDelete"
+          "target": "com.azure.billingbenefits#DeleteConditionalCredit"
         },
         {
-          "target": "com.azure.billingbenefits#ConditionalCreditsUpdate"
+          "target": "com.azure.billingbenefits#UpdateConditionalCredit"
         },
         {
           "target": "com.azure.billingbenefits#ConditionalCreditsCreateOrUpdate"
         },
         {
-          "target": "com.azure.billingbenefits#ConditionalCreditsGet"
+          "target": "com.azure.billingbenefits#GetConditionalCredit"
         },
         {
-          "target": "com.azure.billingbenefits#ConditionalCreditsListByResourceGroup"
+          "target": "com.azure.billingbenefits#ListConditionalCreditByResourceGroup"
         },
         {
-          "target": "com.azure.billingbenefits#MaccsListBySubscription"
+          "target": "com.azure.billingbenefits#ListMaccBySubscription"
         },
         {
-          "target": "com.azure.billingbenefits#FreeServicesListBySubscription"
+          "target": "com.azure.billingbenefits#ListFreeServiceBySubscription"
         },
         {
-          "target": "com.azure.billingbenefits#DiscountsSubscriptionList"
+          "target": "com.azure.billingbenefits#ListDiscountsSubscription"
         },
         {
-          "target": "com.azure.billingbenefits#CreditsListBySubscription"
+          "target": "com.azure.billingbenefits#ListCreditBySubscription"
         },
         {
-          "target": "com.azure.billingbenefits#ConditionalCreditsListBySubscription"
+          "target": "com.azure.billingbenefits#ListConditionalCreditBySubscription"
         },
         {
-          "target": "com.azure.billingbenefits#SubscriptionCatalogGroupsOpsGet"
+          "target": "com.azure.billingbenefits#GetSubscriptionCatalogGroupsOps"
         },
         {
-          "target": "com.azure.billingbenefits#SubscriptionCatalogGroupsOpsList"
+          "target": "com.azure.billingbenefits#ListSubscriptionCatalogGroupsOps"
         },
         {
-          "target": "com.azure.billingbenefits#ContributorsListFromApplicableMacc"
+          "target": "com.azure.billingbenefits#ListContributorFromApplicableMacc"
         },
         {
-          "target": "com.azure.billingbenefits#ApplicableMaccsList"
+          "target": "com.azure.billingbenefits#ListApplicableMaccs"
         },
         {
-          "target": "com.azure.billingbenefits#ConditionalCreditContributorsListFromApplicableConditionalCredit"
+          "target": "com.azure.billingbenefits#ListConditionalCreditContributorFromApplicableConditionalCredit"
         },
         {
-          "target": "com.azure.billingbenefits#BenefitValidate"
+          "target": "com.azure.billingbenefits#ValidateBenefit"
         },
         {
-          "target": "com.azure.billingbenefits#SavingsPlanListAll"
+          "target": "com.azure.billingbenefits#ListSavingsPlanAll"
         },
         {
           "target": "com.azure.billingbenefits#SavingsPlanValidateUpdate"
         },
         {
-          "target": "com.azure.billingbenefits#SavingsPlanUpdate"
+          "target": "com.azure.billingbenefits#UpdateSavingsPlan"
         },
         {
-          "target": "com.azure.billingbenefits#SavingsPlanGet"
+          "target": "com.azure.billingbenefits#GetSavingsPlan"
         },
         {
-          "target": "com.azure.billingbenefits#SavingsPlanList"
+          "target": "com.azure.billingbenefits#ListSavingsPlan"
         },
         {
           "target": "com.azure.billingbenefits#SavingsPlanOrderElevate"
         },
         {
-          "target": "com.azure.billingbenefits#SavingsPlanOrderGet"
+          "target": "com.azure.billingbenefits#GetSavingsPlanOrder"
         },
         {
-          "target": "com.azure.billingbenefits#SavingsPlanOrderList"
+          "target": "com.azure.billingbenefits#ListSavingsPlanOrder"
         },
         {
-          "target": "com.azure.billingbenefits#SavingsPlanOrderAliasCreate"
+          "target": "com.azure.billingbenefits#CreateSavingsPlanOrderAlias"
         },
         {
-          "target": "com.azure.billingbenefits#SavingsPlanOrderAliasGet"
+          "target": "com.azure.billingbenefits#GetSavingsPlanOrderAlias"
         },
         {
-          "target": "com.azure.billingbenefits#ReservationOrderAliasCreate"
+          "target": "com.azure.billingbenefits#CreateReservationOrderAlias"
         },
         {
-          "target": "com.azure.billingbenefits#ReservationOrderAliasGet"
+          "target": "com.azure.billingbenefits#GetReservationOrderAlias"
         },
         {
-          "target": "com.azure.billingbenefits#OperationsList"
+          "target": "com.azure.billingbenefits#ListOperations"
         },
         {
-          "target": "com.azure.billingbenefits#SellerResourceList"
+          "target": "com.azure.billingbenefits#ListSellerResource"
         },
         {
-          "target": "com.azure.billingbenefits#BillingAccountCatalogGroupsOpsGet"
+          "target": "com.azure.billingbenefits#GetBillingAccountCatalogGroupsOps"
         },
         {
-          "target": "com.azure.billingbenefits#BillingAccountCatalogGroupsOpsList"
+          "target": "com.azure.billingbenefits#ListBillingAccountCatalogGroupsOps"
         },
         {
-          "target": "com.azure.billingbenefits#BillingProfileCatalogGroupsOpsGet"
+          "target": "com.azure.billingbenefits#GetBillingProfileCatalogGroupsOps"
         },
         {
-          "target": "com.azure.billingbenefits#BillingProfileCatalogGroupsOpsList"
+          "target": "com.azure.billingbenefits#ListBillingProfileCatalogGroupsOps"
         },
         {
-          "target": "com.azure.billingbenefits#DiscountsScopeList"
+          "target": "com.azure.billingbenefits#ListDiscountsScope"
         },
         {
-          "target": "com.azure.billingbenefits#CreditsListApplicable"
+          "target": "com.azure.billingbenefits#ListCreditApplicable"
         },
         {
-          "target": "com.azure.billingbenefits#ConditionalCreditsScopeList"
+          "target": "com.azure.billingbenefits#ListConditionalCreditsScope"
         }
       ],
       "traits": {

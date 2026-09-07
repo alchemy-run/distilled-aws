@@ -14,16 +14,17 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.hybridcompute#PrivateLinkResourcesGet": {
+    "com.azure.hybridcompute#GetPrivateLinkResource": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hybridcompute#PrivateLinkResourcesGetRequest"
+        "target": "com.azure.hybridcompute#GetPrivateLinkResourceRequest"
       },
       "output": {
-        "target": "com.azure.hybridcompute#PrivateLinkResourcesGetResponse"
+        "target": "com.azure.hybridcompute#GetPrivateLinkResourceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -36,7 +37,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-15"
       }
     },
-    "com.azure.hybridcompute#PrivateLinkResourcesGetResponse": {
+    "com.azure.hybridcompute#GetPrivateLinkResourceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -226,7 +227,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.hybridcompute#PrivateLinkResourcesGetRequest": {
+    "com.azure.hybridcompute#GetPrivateLinkResourceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -266,10 +267,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hybridcompute#PrivateLinkResourcesListByPrivateLinkScope": {
+    "com.azure.hybridcompute#ListPrivateLinkResourceByPrivateLinkScope": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hybridcompute#PrivateLinkResourcesListByPrivateLinkScopeRequest"
+        "target": "com.azure.hybridcompute#ListPrivateLinkResourceByPrivateLinkScopeRequest"
       },
       "output": {
         "target": "com.azure.hybridcompute#PrivateLinkResourceListResult"
@@ -353,7 +354,7 @@
         "smithy.api#documentation": "A private link resource"
       }
     },
-    "com.azure.hybridcompute#PrivateLinkResourcesListByPrivateLinkScopeRequest": {
+    "com.azure.hybridcompute#ListPrivateLinkResourceByPrivateLinkScopeRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -385,10 +386,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hybridcompute#PrivateEndpointConnectionsDelete": {
+    "com.azure.hybridcompute#DeletePrivateEndpointConnection": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hybridcompute#PrivateEndpointConnectionsDeleteRequest"
+        "target": "com.azure.hybridcompute#DeletePrivateEndpointConnectionRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -404,7 +405,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-15"
       }
     },
-    "com.azure.hybridcompute#PrivateEndpointConnectionsDeleteRequest": {
+    "com.azure.hybridcompute#DeletePrivateEndpointConnectionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -672,13 +673,13 @@
         "smithy.api#documentation": "State of the private endpoint connection."
       }
     },
-    "com.azure.hybridcompute#PrivateEndpointConnectionsGet": {
+    "com.azure.hybridcompute#GetPrivateEndpointConnection": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hybridcompute#PrivateEndpointConnectionsGetRequest"
+        "target": "com.azure.hybridcompute#GetPrivateEndpointConnectionRequest"
       },
       "output": {
-        "target": "com.azure.hybridcompute#PrivateEndpointConnectionsGetResponse"
+        "target": "com.azure.hybridcompute#GetPrivateEndpointConnectionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -691,7 +692,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-15"
       }
     },
-    "com.azure.hybridcompute#PrivateEndpointConnectionsGetResponse": {
+    "com.azure.hybridcompute#GetPrivateEndpointConnectionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -729,7 +730,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.hybridcompute#PrivateEndpointConnectionsGetRequest": {
+    "com.azure.hybridcompute#GetPrivateEndpointConnectionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -769,10 +770,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hybridcompute#PrivateEndpointConnectionsListByPrivateLinkScope": {
+    "com.azure.hybridcompute#ListPrivateEndpointConnectionByPrivateLinkScope": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hybridcompute#PrivateEndpointConnectionsListByPrivateLinkScopeRequest"
+        "target": "com.azure.hybridcompute#ListPrivateEndpointConnectionByPrivateLinkScopeRequest"
       },
       "output": {
         "target": "com.azure.hybridcompute#PrivateEndpointConnectionListResult"
@@ -856,7 +857,7 @@
         "smithy.api#documentation": "A private endpoint connection"
       }
     },
-    "com.azure.hybridcompute#PrivateEndpointConnectionsListByPrivateLinkScopeRequest": {
+    "com.azure.hybridcompute#ListPrivateEndpointConnectionByPrivateLinkScopeRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -961,13 +962,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hybridcompute#NetworkSecurityPerimeterConfigurationsGetByPrivateLinkScope": {
+    "com.azure.hybridcompute#GetNetworkSecurityPerimeterConfigurationByPrivateLinkScope": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hybridcompute#NetworkSecurityPerimeterConfigurationsGetByPrivateLinkScopeRequest"
+        "target": "com.azure.hybridcompute#GetNetworkSecurityPerimeterConfigurationByPrivateLinkScopeRequest"
       },
       "output": {
-        "target": "com.azure.hybridcompute#NetworkSecurityPerimeterConfigurationsGetByPrivateLinkScopeResponse"
+        "target": "com.azure.hybridcompute#GetNetworkSecurityPerimeterConfigurationByPrivateLinkScopeResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -980,7 +981,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-15"
       }
     },
-    "com.azure.hybridcompute#NetworkSecurityPerimeterConfigurationsGetByPrivateLinkScopeResponse": {
+    "com.azure.hybridcompute#GetNetworkSecurityPerimeterConfigurationByPrivateLinkScopeResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1390,7 +1391,7 @@
         "smithy.api#documentation": "Type of provisioning issue."
       }
     },
-    "com.azure.hybridcompute#NetworkSecurityPerimeterConfigurationsGetByPrivateLinkScopeRequest": {
+    "com.azure.hybridcompute#GetNetworkSecurityPerimeterConfigurationByPrivateLinkScopeRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1430,10 +1431,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hybridcompute#NetworkSecurityPerimeterConfigurationsListByPrivateLinkScope": {
+    "com.azure.hybridcompute#ListNetworkSecurityPerimeterConfigurationByPrivateLinkScope": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hybridcompute#NetworkSecurityPerimeterConfigurationsListByPrivateLinkScopeRequest"
+        "target": "com.azure.hybridcompute#ListNetworkSecurityPerimeterConfigurationByPrivateLinkScopeRequest"
       },
       "output": {
         "target": "com.azure.hybridcompute#NetworkSecurityPerimeterConfigurationListResult"
@@ -1517,7 +1518,7 @@
         "smithy.api#documentation": "Properties that define a Network Security Perimeter resource."
       }
     },
-    "com.azure.hybridcompute#NetworkSecurityPerimeterConfigurationsListByPrivateLinkScopeRequest": {
+    "com.azure.hybridcompute#ListNetworkSecurityPerimeterConfigurationByPrivateLinkScopeRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1549,10 +1550,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hybridcompute#PrivateLinkScopesDelete": {
+    "com.azure.hybridcompute#DeletePrivateLinkScope": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hybridcompute#PrivateLinkScopesDeleteRequest"
+        "target": "com.azure.hybridcompute#DeletePrivateLinkScopeRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1568,7 +1569,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-15"
       }
     },
-    "com.azure.hybridcompute#PrivateLinkScopesDeleteRequest": {
+    "com.azure.hybridcompute#DeletePrivateLinkScopeRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1600,13 +1601,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hybridcompute#PrivateLinkScopesUpdateTags": {
+    "com.azure.hybridcompute#UpdatePrivateLinkScopeTags": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hybridcompute#PrivateLinkScopesUpdateTagsRequest"
+        "target": "com.azure.hybridcompute#UpdatePrivateLinkScopeTagsRequest"
       },
       "output": {
-        "target": "com.azure.hybridcompute#PrivateLinkScopesUpdateTagsResponse"
+        "target": "com.azure.hybridcompute#UpdatePrivateLinkScopeTagsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1619,7 +1620,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-15"
       }
     },
-    "com.azure.hybridcompute#PrivateLinkScopesUpdateTagsResponse": {
+    "com.azure.hybridcompute#UpdatePrivateLinkScopeTagsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1647,7 +1648,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hybridcompute#PrivateLinkScopesUpdateTagsResponseTagsMap",
+          "target": "com.azure.hybridcompute#UpdatePrivateLinkScopeTagsResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1818,7 +1819,7 @@
         "smithy.api#documentation": "Indicates whether machines associated with the private link scope can also use public Azure Arc service endpoints."
       }
     },
-    "com.azure.hybridcompute#PrivateLinkScopesUpdateTagsResponseTagsMap": {
+    "com.azure.hybridcompute#UpdatePrivateLinkScopeTagsResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1830,7 +1831,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.hybridcompute#PrivateLinkScopesUpdateTagsRequest": {
+    "com.azure.hybridcompute#UpdatePrivateLinkScopeTagsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1858,7 +1859,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hybridcompute#PrivateLinkScopesUpdateTagsRequestTagsMap",
+          "target": "com.azure.hybridcompute#UpdatePrivateLinkScopeTagsRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags"
           }
@@ -1868,7 +1869,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hybridcompute#PrivateLinkScopesUpdateTagsRequestTagsMap": {
+    "com.azure.hybridcompute#UpdatePrivateLinkScopeTagsRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2074,13 +2075,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.hybridcompute#PrivateLinkScopesGet": {
+    "com.azure.hybridcompute#GetPrivateLinkScope": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hybridcompute#PrivateLinkScopesGetRequest"
+        "target": "com.azure.hybridcompute#GetPrivateLinkScopeRequest"
       },
       "output": {
-        "target": "com.azure.hybridcompute#PrivateLinkScopesGetResponse"
+        "target": "com.azure.hybridcompute#GetPrivateLinkScopeResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2093,7 +2094,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-15"
       }
     },
-    "com.azure.hybridcompute#PrivateLinkScopesGetResponse": {
+    "com.azure.hybridcompute#GetPrivateLinkScopeResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2121,7 +2122,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hybridcompute#PrivateLinkScopesGetResponseTagsMap",
+          "target": "com.azure.hybridcompute#GetPrivateLinkScopeResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2144,7 +2145,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.hybridcompute#PrivateLinkScopesGetResponseTagsMap": {
+    "com.azure.hybridcompute#GetPrivateLinkScopeResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2156,7 +2157,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.hybridcompute#PrivateLinkScopesGetRequest": {
+    "com.azure.hybridcompute#GetPrivateLinkScopeRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2188,10 +2189,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hybridcompute#PrivateLinkScopesListByResourceGroup": {
+    "com.azure.hybridcompute#ListPrivateLinkScopeByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hybridcompute#PrivateLinkScopesListByResourceGroupRequest"
+        "target": "com.azure.hybridcompute#ListPrivateLinkScopeByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.hybridcompute#HybridComputePrivateLinkScopeListResult"
@@ -2300,7 +2301,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.hybridcompute#PrivateLinkScopesListByResourceGroupRequest": {
+    "com.azure.hybridcompute#ListPrivateLinkScopeByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2407,10 +2408,10 @@
         "smithy.api#documentation": "Describes the Machine Extension Target Version Properties"
       }
     },
-    "com.azure.hybridcompute#MachineRunCommandsDelete": {
+    "com.azure.hybridcompute#DeleteMachineRunCommand": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hybridcompute#MachineRunCommandsDeleteRequest"
+        "target": "com.azure.hybridcompute#DeleteMachineRunCommandRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2426,7 +2427,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-15"
       }
     },
-    "com.azure.hybridcompute#MachineRunCommandsDeleteRequest": {
+    "com.azure.hybridcompute#DeleteMachineRunCommandRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3070,13 +3071,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.hybridcompute#MachineRunCommandsGet": {
+    "com.azure.hybridcompute#GetMachineRunCommand": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hybridcompute#MachineRunCommandsGetRequest"
+        "target": "com.azure.hybridcompute#GetMachineRunCommandRequest"
       },
       "output": {
-        "target": "com.azure.hybridcompute#MachineRunCommandsGetResponse"
+        "target": "com.azure.hybridcompute#GetMachineRunCommandResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3089,7 +3090,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-15"
       }
     },
-    "com.azure.hybridcompute#MachineRunCommandsGetResponse": {
+    "com.azure.hybridcompute#GetMachineRunCommandResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3117,7 +3118,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hybridcompute#MachineRunCommandsGetResponseTagsMap",
+          "target": "com.azure.hybridcompute#GetMachineRunCommandResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3140,7 +3141,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.hybridcompute#MachineRunCommandsGetResponseTagsMap": {
+    "com.azure.hybridcompute#GetMachineRunCommandResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3152,7 +3153,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.hybridcompute#MachineRunCommandsGetRequest": {
+    "com.azure.hybridcompute#GetMachineRunCommandRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3192,10 +3193,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hybridcompute#MachineRunCommandsList": {
+    "com.azure.hybridcompute#ListMachineRunCommands": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hybridcompute#MachineRunCommandsListRequest"
+        "target": "com.azure.hybridcompute#ListMachineRunCommandsRequest"
       },
       "output": {
         "target": "com.azure.hybridcompute#MachineRunCommandsListResult"
@@ -3304,7 +3305,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.hybridcompute#MachineRunCommandsListRequest": {
+    "com.azure.hybridcompute#ListMachineRunCommandsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3343,10 +3344,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hybridcompute#PrivateLinkScopesGetValidationDetailsForMachine": {
+    "com.azure.hybridcompute#GetPrivateLinkScopeValidationDetailsForMachine": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hybridcompute#PrivateLinkScopesGetValidationDetailsForMachineRequest"
+        "target": "com.azure.hybridcompute#GetPrivateLinkScopeValidationDetailsForMachineRequest"
       },
       "output": {
         "target": "com.azure.hybridcompute#PrivateLinkScopeValidationDetails"
@@ -3451,7 +3452,7 @@
         "smithy.api#documentation": "Indicates whether machines associated with the private link scope can also use public Azure Arc service endpoints."
       }
     },
-    "com.azure.hybridcompute#PrivateLinkScopesGetValidationDetailsForMachineRequest": {
+    "com.azure.hybridcompute#GetPrivateLinkScopeValidationDetailsForMachineRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3483,10 +3484,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hybridcompute#NetworkProfileGet": {
+    "com.azure.hybridcompute#GetNetworkProfile": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hybridcompute#NetworkProfileGetRequest"
+        "target": "com.azure.hybridcompute#GetNetworkProfileRequest"
       },
       "output": {
         "target": "com.azure.hybridcompute#NetworkProfile"
@@ -3606,7 +3607,7 @@
         "smithy.api#documentation": "Describes the subnet."
       }
     },
-    "com.azure.hybridcompute#NetworkProfileGetRequest": {
+    "com.azure.hybridcompute#GetNetworkProfileRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3638,10 +3639,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hybridcompute#LicenseProfilesDelete": {
+    "com.azure.hybridcompute#DeleteLicenseProfile": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hybridcompute#LicenseProfilesDeleteRequest"
+        "target": "com.azure.hybridcompute#DeleteLicenseProfileRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3657,7 +3658,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-15"
       }
     },
-    "com.azure.hybridcompute#LicenseProfilesDeleteRequest": {
+    "com.azure.hybridcompute#DeleteLicenseProfileRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3685,7 +3686,7 @@
           }
         },
         "licenseProfileName": {
-          "target": "com.azure.hybridcompute#LicenseProfilesDeleteRequestLicenseProfileName",
+          "target": "com.azure.hybridcompute#DeleteLicenseProfileRequestLicenseProfileName",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -3697,7 +3698,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hybridcompute#LicenseProfilesDeleteRequestLicenseProfileName": {
+    "com.azure.hybridcompute#DeleteLicenseProfileRequestLicenseProfileName": {
       "type": "enum",
       "members": {
         "DEFAULT": {
@@ -3709,13 +3710,13 @@
       },
       "traits": {}
     },
-    "com.azure.hybridcompute#LicenseProfilesUpdate": {
+    "com.azure.hybridcompute#UpdateLicenseProfile": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hybridcompute#LicenseProfilesUpdateRequest"
+        "target": "com.azure.hybridcompute#UpdateLicenseProfileRequest"
       },
       "output": {
-        "target": "com.azure.hybridcompute#LicenseProfilesUpdateResponse"
+        "target": "com.azure.hybridcompute#UpdateLicenseProfileResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3728,7 +3729,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-15"
       }
     },
-    "com.azure.hybridcompute#LicenseProfilesUpdateResponse": {
+    "com.azure.hybridcompute#UpdateLicenseProfileResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3756,7 +3757,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hybridcompute#LicenseProfilesUpdateResponseTagsMap",
+          "target": "com.azure.hybridcompute#UpdateLicenseProfileResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4382,7 +4383,7 @@
       },
       "traits": {}
     },
-    "com.azure.hybridcompute#LicenseProfilesUpdateResponseTagsMap": {
+    "com.azure.hybridcompute#UpdateLicenseProfileResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4394,7 +4395,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.hybridcompute#LicenseProfilesUpdateRequest": {
+    "com.azure.hybridcompute#UpdateLicenseProfileRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4422,7 +4423,7 @@
           }
         },
         "licenseProfileName": {
-          "target": "com.azure.hybridcompute#LicenseProfilesUpdateRequestLicenseProfileName",
+          "target": "com.azure.hybridcompute#UpdateLicenseProfileRequestLicenseProfileName",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -4430,7 +4431,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hybridcompute#LicenseProfilesUpdateRequestTagsMap",
+          "target": "com.azure.hybridcompute#UpdateLicenseProfileRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags"
           }
@@ -4570,7 +4571,7 @@
       },
       "traits": {}
     },
-    "com.azure.hybridcompute#LicenseProfilesUpdateRequestTagsMap": {
+    "com.azure.hybridcompute#UpdateLicenseProfileRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4582,7 +4583,7 @@
         "smithy.api#documentation": "Resource tags"
       }
     },
-    "com.azure.hybridcompute#LicenseProfilesUpdateRequestLicenseProfileName": {
+    "com.azure.hybridcompute#UpdateLicenseProfileRequestLicenseProfileName": {
       "type": "enum",
       "members": {
         "DEFAULT": {
@@ -4877,13 +4878,13 @@
       },
       "traits": {}
     },
-    "com.azure.hybridcompute#LicenseProfilesGet": {
+    "com.azure.hybridcompute#GetLicenseProfile": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hybridcompute#LicenseProfilesGetRequest"
+        "target": "com.azure.hybridcompute#GetLicenseProfileRequest"
       },
       "output": {
-        "target": "com.azure.hybridcompute#LicenseProfilesGetResponse"
+        "target": "com.azure.hybridcompute#GetLicenseProfileResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4896,7 +4897,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-15"
       }
     },
-    "com.azure.hybridcompute#LicenseProfilesGetResponse": {
+    "com.azure.hybridcompute#GetLicenseProfileResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -4924,7 +4925,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hybridcompute#LicenseProfilesGetResponseTagsMap",
+          "target": "com.azure.hybridcompute#GetLicenseProfileResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4947,7 +4948,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.hybridcompute#LicenseProfilesGetResponseTagsMap": {
+    "com.azure.hybridcompute#GetLicenseProfileResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4959,7 +4960,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.hybridcompute#LicenseProfilesGetRequest": {
+    "com.azure.hybridcompute#GetLicenseProfileRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4987,7 +4988,7 @@
           }
         },
         "licenseProfileName": {
-          "target": "com.azure.hybridcompute#LicenseProfilesGetRequestLicenseProfileName",
+          "target": "com.azure.hybridcompute#GetLicenseProfileRequestLicenseProfileName",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -4999,7 +5000,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hybridcompute#LicenseProfilesGetRequestLicenseProfileName": {
+    "com.azure.hybridcompute#GetLicenseProfileRequestLicenseProfileName": {
       "type": "enum",
       "members": {
         "DEFAULT": {
@@ -5011,10 +5012,10 @@
       },
       "traits": {}
     },
-    "com.azure.hybridcompute#LicenseProfilesList": {
+    "com.azure.hybridcompute#ListLicenseProfiles": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hybridcompute#LicenseProfilesListRequest"
+        "target": "com.azure.hybridcompute#ListLicenseProfilesRequest"
       },
       "output": {
         "target": "com.azure.hybridcompute#LicenseProfilesListResult"
@@ -5123,7 +5124,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.hybridcompute#LicenseProfilesListRequest": {
+    "com.azure.hybridcompute#ListLicenseProfilesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5155,10 +5156,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hybridcompute#MachinesInstallPatches": {
+    "com.azure.hybridcompute#InstallMachinePatches": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hybridcompute#MachinesInstallPatchesRequest"
+        "target": "com.azure.hybridcompute#InstallMachinePatchesRequest"
       },
       "output": {
         "target": "com.azure.hybridcompute#MachineInstallPatchesResult"
@@ -5494,7 +5495,7 @@
         "smithy.api#documentation": "The overall success or failure status of the operation. It remains \"InProgress\" until the operation completes. At that point it will become \"Unknown\", \"Failed\", \"Succeeded\", or \"CompletedWithWarnings.\""
       }
     },
-    "com.azure.hybridcompute#MachinesInstallPatchesRequest": {
+    "com.azure.hybridcompute#InstallMachinePatchesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5804,10 +5805,10 @@
         "smithy.api#documentation": "Defines when it is acceptable to reboot a VM during a software update operation."
       }
     },
-    "com.azure.hybridcompute#MachineExtensionsDelete": {
+    "com.azure.hybridcompute#DeleteMachineExtension": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hybridcompute#MachineExtensionsDeleteRequest"
+        "target": "com.azure.hybridcompute#DeleteMachineExtensionRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -5823,7 +5824,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-15"
       }
     },
-    "com.azure.hybridcompute#MachineExtensionsDeleteRequest": {
+    "com.azure.hybridcompute#DeleteMachineExtensionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5863,13 +5864,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hybridcompute#MachineExtensionsUpdate": {
+    "com.azure.hybridcompute#UpdateMachineExtension": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hybridcompute#MachineExtensionsUpdateRequest"
+        "target": "com.azure.hybridcompute#UpdateMachineExtensionRequest"
       },
       "output": {
-        "target": "com.azure.hybridcompute#MachineExtensionsUpdateResponse"
+        "target": "com.azure.hybridcompute#UpdateMachineExtensionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5882,7 +5883,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-15"
       }
     },
-    "com.azure.hybridcompute#MachineExtensionsUpdateResponse": {
+    "com.azure.hybridcompute#UpdateMachineExtensionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -5910,7 +5911,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hybridcompute#MachineExtensionsUpdateResponseTagsMap",
+          "target": "com.azure.hybridcompute#UpdateMachineExtensionResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -6121,7 +6122,7 @@
         "smithy.api#documentation": "Json formatted public settings for the extension."
       }
     },
-    "com.azure.hybridcompute#MachineExtensionsUpdateResponseTagsMap": {
+    "com.azure.hybridcompute#UpdateMachineExtensionResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6133,7 +6134,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.hybridcompute#MachineExtensionsUpdateRequest": {
+    "com.azure.hybridcompute#UpdateMachineExtensionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6169,7 +6170,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hybridcompute#MachineExtensionsUpdateRequestTagsMap",
+          "target": "com.azure.hybridcompute#UpdateMachineExtensionRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags"
           }
@@ -6265,7 +6266,7 @@
         "smithy.api#documentation": "Json formatted public settings for the extension."
       }
     },
-    "com.azure.hybridcompute#MachineExtensionsUpdateRequestTagsMap": {
+    "com.azure.hybridcompute#UpdateMachineExtensionRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6516,13 +6517,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.hybridcompute#MachineExtensionsGet": {
+    "com.azure.hybridcompute#GetMachineExtension": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hybridcompute#MachineExtensionsGetRequest"
+        "target": "com.azure.hybridcompute#GetMachineExtensionRequest"
       },
       "output": {
-        "target": "com.azure.hybridcompute#MachineExtensionsGetResponse"
+        "target": "com.azure.hybridcompute#GetMachineExtensionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6535,7 +6536,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-15"
       }
     },
-    "com.azure.hybridcompute#MachineExtensionsGetResponse": {
+    "com.azure.hybridcompute#GetMachineExtensionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -6563,7 +6564,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hybridcompute#MachineExtensionsGetResponseTagsMap",
+          "target": "com.azure.hybridcompute#GetMachineExtensionResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -6586,7 +6587,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.hybridcompute#MachineExtensionsGetResponseTagsMap": {
+    "com.azure.hybridcompute#GetMachineExtensionResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6598,7 +6599,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.hybridcompute#MachineExtensionsGetRequest": {
+    "com.azure.hybridcompute#GetMachineExtensionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6638,10 +6639,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hybridcompute#MachineExtensionsList": {
+    "com.azure.hybridcompute#ListMachineExtensions": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hybridcompute#MachineExtensionsListRequest"
+        "target": "com.azure.hybridcompute#ListMachineExtensionsRequest"
       },
       "output": {
         "target": "com.azure.hybridcompute#MachineExtensionsListResult"
@@ -6750,7 +6751,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.hybridcompute#MachineExtensionsListRequest": {
+    "com.azure.hybridcompute#ListMachineExtensionsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7113,10 +7114,10 @@
         "smithy.api#documentation": "The list of extensions"
       }
     },
-    "com.azure.hybridcompute#MachinesDelete": {
+    "com.azure.hybridcompute#DeleteMachine": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hybridcompute#MachinesDeleteRequest"
+        "target": "com.azure.hybridcompute#DeleteMachineRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -7132,7 +7133,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-15"
       }
     },
-    "com.azure.hybridcompute#MachinesDeleteRequest": {
+    "com.azure.hybridcompute#DeleteMachineRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7164,13 +7165,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hybridcompute#MachinesUpdate": {
+    "com.azure.hybridcompute#UpdateMachine": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hybridcompute#MachinesUpdateRequest"
+        "target": "com.azure.hybridcompute#UpdateMachineRequest"
       },
       "output": {
-        "target": "com.azure.hybridcompute#MachinesUpdateResponse"
+        "target": "com.azure.hybridcompute#UpdateMachineResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7183,7 +7184,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-15"
       }
     },
-    "com.azure.hybridcompute#MachinesUpdateResponse": {
+    "com.azure.hybridcompute#UpdateMachineResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -7211,7 +7212,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hybridcompute#MachinesUpdateResponseTagsMap",
+          "target": "com.azure.hybridcompute#UpdateMachineResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -7230,13 +7231,13 @@
           }
         },
         "resources": {
-          "target": "com.azure.hybridcompute#MachinesUpdateResponseResourcesList",
+          "target": "com.azure.hybridcompute#UpdateMachineResponseResourcesList",
           "traits": {
             "smithy.api#documentation": "The list of extensions affiliated to the machine"
           }
         },
         "identity": {
-          "target": "com.azure.hybridcompute#MachinesUpdateResponseIdentity",
+          "target": "com.azure.hybridcompute#UpdateMachineResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -7302,7 +7303,7 @@
         "smithy.api#documentation": "Indicates which kind of Arc machine placement on-premises, such as HCI, SCVMM or VMware etc."
       }
     },
-    "com.azure.hybridcompute#MachinesUpdateResponseIdentity": {
+    "com.azure.hybridcompute#UpdateMachineResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -7324,7 +7325,7 @@
           }
         },
         "userAssignedIdentities": {
-          "target": "com.azure.hybridcompute#MachinesUpdateResponseIdentityUserAssignedIdentitiesMap",
+          "target": "com.azure.hybridcompute#UpdateMachineResponseIdentityUserAssignedIdentitiesMap",
           "traits": {
             "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
           }
@@ -7334,7 +7335,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.hybridcompute#MachinesUpdateResponseIdentityUserAssignedIdentitiesMap": {
+    "com.azure.hybridcompute#UpdateMachineResponseIdentityUserAssignedIdentitiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7398,7 +7399,7 @@
         "smithy.api#documentation": "Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed)."
       }
     },
-    "com.azure.hybridcompute#MachinesUpdateResponseResourcesList": {
+    "com.azure.hybridcompute#UpdateMachineResponseResourcesList": {
       "type": "list",
       "member": {
         "target": "com.azure.hybridcompute#MachineExtension"
@@ -8964,7 +8965,7 @@
         "smithy.api#documentation": "Metadata pertaining to the geographic location of the resource."
       }
     },
-    "com.azure.hybridcompute#MachinesUpdateResponseTagsMap": {
+    "com.azure.hybridcompute#UpdateMachineResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8976,7 +8977,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.hybridcompute#MachinesUpdateRequest": {
+    "com.azure.hybridcompute#UpdateMachineRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9004,13 +9005,13 @@
           }
         },
         "tags": {
-          "target": "com.azure.hybridcompute#MachinesUpdateRequestTagsMap",
+          "target": "com.azure.hybridcompute#UpdateMachineRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags"
           }
         },
         "identity": {
-          "target": "com.azure.hybridcompute#MachinesUpdateRequestIdentity",
+          "target": "com.azure.hybridcompute#UpdateMachineRequestIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -9228,7 +9229,7 @@
         "smithy.api#documentation": "Metadata pertaining to the geographic location of the resource."
       }
     },
-    "com.azure.hybridcompute#MachinesUpdateRequestIdentity": {
+    "com.azure.hybridcompute#UpdateMachineRequestIdentity": {
       "type": "structure",
       "members": {
         "type": {
@@ -9238,7 +9239,7 @@
           }
         },
         "userAssignedIdentities": {
-          "target": "com.azure.hybridcompute#MachinesUpdateRequestIdentityUserAssignedIdentitiesMap",
+          "target": "com.azure.hybridcompute#UpdateMachineRequestIdentityUserAssignedIdentitiesMap",
           "traits": {
             "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
           }
@@ -9248,7 +9249,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.hybridcompute#MachinesUpdateRequestIdentityUserAssignedIdentitiesMap": {
+    "com.azure.hybridcompute#UpdateMachineRequestIdentityUserAssignedIdentitiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -9267,7 +9268,7 @@
         "smithy.api#documentation": "User assigned identity properties"
       }
     },
-    "com.azure.hybridcompute#MachinesUpdateRequestTagsMap": {
+    "com.azure.hybridcompute#UpdateMachineRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -9844,13 +9845,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.hybridcompute#MachinesGet": {
+    "com.azure.hybridcompute#GetMachine": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hybridcompute#MachinesGetRequest"
+        "target": "com.azure.hybridcompute#GetMachineRequest"
       },
       "output": {
-        "target": "com.azure.hybridcompute#MachinesGetResponse"
+        "target": "com.azure.hybridcompute#GetMachineResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -9863,7 +9864,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-15"
       }
     },
-    "com.azure.hybridcompute#MachinesGetResponse": {
+    "com.azure.hybridcompute#GetMachineResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -9891,7 +9892,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hybridcompute#MachinesGetResponseTagsMap",
+          "target": "com.azure.hybridcompute#GetMachineResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -9910,13 +9911,13 @@
           }
         },
         "resources": {
-          "target": "com.azure.hybridcompute#MachinesGetResponseResourcesList",
+          "target": "com.azure.hybridcompute#GetMachineResponseResourcesList",
           "traits": {
             "smithy.api#documentation": "The list of extensions affiliated to the machine"
           }
         },
         "identity": {
-          "target": "com.azure.hybridcompute#MachinesGetResponseIdentity",
+          "target": "com.azure.hybridcompute#GetMachineResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -9932,7 +9933,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.hybridcompute#MachinesGetResponseIdentity": {
+    "com.azure.hybridcompute#GetMachineResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -9954,7 +9955,7 @@
           }
         },
         "userAssignedIdentities": {
-          "target": "com.azure.hybridcompute#MachinesGetResponseIdentityUserAssignedIdentitiesMap",
+          "target": "com.azure.hybridcompute#GetMachineResponseIdentityUserAssignedIdentitiesMap",
           "traits": {
             "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
           }
@@ -9964,7 +9965,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.hybridcompute#MachinesGetResponseIdentityUserAssignedIdentitiesMap": {
+    "com.azure.hybridcompute#GetMachineResponseIdentityUserAssignedIdentitiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -9976,7 +9977,7 @@
         "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
       }
     },
-    "com.azure.hybridcompute#MachinesGetResponseResourcesList": {
+    "com.azure.hybridcompute#GetMachineResponseResourcesList": {
       "type": "list",
       "member": {
         "target": "com.azure.hybridcompute#MachineExtension"
@@ -9985,7 +9986,7 @@
         "smithy.api#documentation": "The list of extensions affiliated to the machine"
       }
     },
-    "com.azure.hybridcompute#MachinesGetResponseTagsMap": {
+    "com.azure.hybridcompute#GetMachineResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -9997,7 +9998,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.hybridcompute#MachinesGetRequest": {
+    "com.azure.hybridcompute#GetMachineRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10025,7 +10026,7 @@
           }
         },
         "_expand": {
-          "target": "com.azure.hybridcompute#MachinesGetRequestExpand",
+          "target": "com.azure.hybridcompute#GetMachineRequestExpand",
           "traits": {
             "smithy.api#httpQuery": "$expand",
             "smithy.api#documentation": "The expand expression to apply on the operation."
@@ -10036,7 +10037,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hybridcompute#MachinesGetRequestExpand": {
+    "com.azure.hybridcompute#GetMachineRequestExpand": {
       "type": "enum",
       "members": {
         "INSTANCEVIEW": {
@@ -10048,10 +10049,10 @@
       },
       "traits": {}
     },
-    "com.azure.hybridcompute#MachinesListByResourceGroup": {
+    "com.azure.hybridcompute#ListMachineByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hybridcompute#MachinesListByResourceGroupRequest"
+        "target": "com.azure.hybridcompute#ListMachineByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.hybridcompute#MachineListResult"
@@ -10231,7 +10232,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.hybridcompute#MachinesListByResourceGroupRequest": {
+    "com.azure.hybridcompute#ListMachineByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10262,10 +10263,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hybridcompute#LicensesDelete": {
+    "com.azure.hybridcompute#DeleteLicense": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hybridcompute#LicensesDeleteRequest"
+        "target": "com.azure.hybridcompute#DeleteLicenseRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -10281,7 +10282,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-15"
       }
     },
-    "com.azure.hybridcompute#LicensesDeleteRequest": {
+    "com.azure.hybridcompute#DeleteLicenseRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10313,13 +10314,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hybridcompute#LicensesUpdate": {
+    "com.azure.hybridcompute#UpdateLicense": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hybridcompute#LicensesUpdateRequest"
+        "target": "com.azure.hybridcompute#UpdateLicenseRequest"
       },
       "output": {
-        "target": "com.azure.hybridcompute#LicensesUpdateResponse"
+        "target": "com.azure.hybridcompute#UpdateLicenseResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -10332,7 +10333,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-15"
       }
     },
-    "com.azure.hybridcompute#LicensesUpdateResponse": {
+    "com.azure.hybridcompute#UpdateLicenseResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -10360,7 +10361,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hybridcompute#LicensesUpdateResponseTagsMap",
+          "target": "com.azure.hybridcompute#UpdateLicenseResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -10383,7 +10384,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.hybridcompute#LicensesUpdateResponseTagsMap": {
+    "com.azure.hybridcompute#UpdateLicenseResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -10395,7 +10396,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.hybridcompute#LicensesUpdateRequest": {
+    "com.azure.hybridcompute#UpdateLicenseRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10423,7 +10424,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hybridcompute#LicensesUpdateRequestTagsMap",
+          "target": "com.azure.hybridcompute#UpdateLicenseRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags"
           }
@@ -10492,7 +10493,7 @@
       },
       "traits": {}
     },
-    "com.azure.hybridcompute#LicensesUpdateRequestTagsMap": {
+    "com.azure.hybridcompute#UpdateLicenseRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -10649,13 +10650,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.hybridcompute#LicensesGet": {
+    "com.azure.hybridcompute#GetLicense": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hybridcompute#LicensesGetRequest"
+        "target": "com.azure.hybridcompute#GetLicenseRequest"
       },
       "output": {
-        "target": "com.azure.hybridcompute#LicensesGetResponse"
+        "target": "com.azure.hybridcompute#GetLicenseResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -10668,7 +10669,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-15"
       }
     },
-    "com.azure.hybridcompute#LicensesGetResponse": {
+    "com.azure.hybridcompute#GetLicenseResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -10696,7 +10697,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hybridcompute#LicensesGetResponseTagsMap",
+          "target": "com.azure.hybridcompute#GetLicenseResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -10719,7 +10720,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.hybridcompute#LicensesGetResponseTagsMap": {
+    "com.azure.hybridcompute#GetLicenseResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -10731,7 +10732,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.hybridcompute#LicensesGetRequest": {
+    "com.azure.hybridcompute#GetLicenseRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10763,10 +10764,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hybridcompute#LicensesListByResourceGroup": {
+    "com.azure.hybridcompute#ListLicenseByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hybridcompute#LicensesListByResourceGroupRequest"
+        "target": "com.azure.hybridcompute#ListLicenseByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.hybridcompute#LicensesListResult"
@@ -10812,7 +10813,7 @@
         "smithy.api#documentation": "The License items on this page"
       }
     },
-    "com.azure.hybridcompute#LicensesListByResourceGroupRequest": {
+    "com.azure.hybridcompute#ListLicenseByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10836,10 +10837,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hybridcompute#GatewaysDelete": {
+    "com.azure.hybridcompute#DeleteGateways": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hybridcompute#GatewaysDeleteRequest"
+        "target": "com.azure.hybridcompute#DeleteGatewaysRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -10855,7 +10856,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-15"
       }
     },
-    "com.azure.hybridcompute#GatewaysDeleteRequest": {
+    "com.azure.hybridcompute#DeleteGatewaysRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10887,13 +10888,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hybridcompute#GatewaysUpdate": {
+    "com.azure.hybridcompute#UpdateGateways": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hybridcompute#GatewaysUpdateRequest"
+        "target": "com.azure.hybridcompute#UpdateGatewaysRequest"
       },
       "output": {
-        "target": "com.azure.hybridcompute#GatewaysUpdateResponse"
+        "target": "com.azure.hybridcompute#UpdateGatewaysResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -10906,7 +10907,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-15"
       }
     },
-    "com.azure.hybridcompute#GatewaysUpdateResponse": {
+    "com.azure.hybridcompute#UpdateGatewaysResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -10934,7 +10935,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hybridcompute#GatewaysUpdateResponseTagsMap",
+          "target": "com.azure.hybridcompute#UpdateGatewaysResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -11033,7 +11034,7 @@
         "smithy.api#documentation": "The type of the Gateway resource."
       }
     },
-    "com.azure.hybridcompute#GatewaysUpdateResponseTagsMap": {
+    "com.azure.hybridcompute#UpdateGatewaysResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -11045,7 +11046,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.hybridcompute#GatewaysUpdateRequest": {
+    "com.azure.hybridcompute#UpdateGatewaysRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11073,7 +11074,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hybridcompute#GatewaysUpdateRequestTagsMap",
+          "target": "com.azure.hybridcompute#UpdateGatewaysRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags"
           }
@@ -11127,7 +11128,7 @@
         "smithy.api#documentation": "Specifies the list of features that are enabled for this Gateway."
       }
     },
-    "com.azure.hybridcompute#GatewaysUpdateRequestTagsMap": {
+    "com.azure.hybridcompute#UpdateGatewaysRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -11328,13 +11329,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.hybridcompute#GatewaysGet": {
+    "com.azure.hybridcompute#GetGateways": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hybridcompute#GatewaysGetRequest"
+        "target": "com.azure.hybridcompute#GetGatewaysRequest"
       },
       "output": {
-        "target": "com.azure.hybridcompute#GatewaysGetResponse"
+        "target": "com.azure.hybridcompute#GetGatewaysResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -11347,7 +11348,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-15"
       }
     },
-    "com.azure.hybridcompute#GatewaysGetResponse": {
+    "com.azure.hybridcompute#GetGatewaysResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -11375,7 +11376,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hybridcompute#GatewaysGetResponseTagsMap",
+          "target": "com.azure.hybridcompute#GetGatewaysResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -11398,7 +11399,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.hybridcompute#GatewaysGetResponseTagsMap": {
+    "com.azure.hybridcompute#GetGatewaysResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -11410,7 +11411,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.hybridcompute#GatewaysGetRequest": {
+    "com.azure.hybridcompute#GetGatewaysRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11442,10 +11443,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hybridcompute#GatewaysListByResourceGroup": {
+    "com.azure.hybridcompute#ListGatewaysByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hybridcompute#GatewaysListByResourceGroupRequest"
+        "target": "com.azure.hybridcompute#ListGatewaysByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.hybridcompute#GatewaysListResult"
@@ -11554,7 +11555,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.hybridcompute#GatewaysListByResourceGroupRequest": {
+    "com.azure.hybridcompute#ListGatewaysByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11578,13 +11579,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hybridcompute#SettingsPatch": {
+    "com.azure.hybridcompute#PatchSettings2": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hybridcompute#SettingsPatchRequest"
+        "target": "com.azure.hybridcompute#PatchSettingsRequest"
       },
       "output": {
-        "target": "com.azure.hybridcompute#SettingsPatchResponse"
+        "target": "com.azure.hybridcompute#PatchSettingsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -11597,7 +11598,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-15"
       }
     },
-    "com.azure.hybridcompute#SettingsPatchResponse": {
+    "com.azure.hybridcompute#PatchSettingsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -11669,7 +11670,7 @@
         "smithy.api#documentation": "Settings Gateway properties"
       }
     },
-    "com.azure.hybridcompute#SettingsPatchRequest": {
+    "com.azure.hybridcompute#PatchSettingsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11745,13 +11746,13 @@
         "smithy.api#documentation": "Settings properties"
       }
     },
-    "com.azure.hybridcompute#SettingsUpdate": {
+    "com.azure.hybridcompute#UpdateSettings": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hybridcompute#SettingsUpdateRequest"
+        "target": "com.azure.hybridcompute#UpdateSettingsRequest"
       },
       "output": {
-        "target": "com.azure.hybridcompute#SettingsUpdateResponse"
+        "target": "com.azure.hybridcompute#UpdateSettingsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -11764,7 +11765,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-15"
       }
     },
-    "com.azure.hybridcompute#SettingsUpdateResponse": {
+    "com.azure.hybridcompute#UpdateSettingsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -11802,7 +11803,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.hybridcompute#SettingsUpdateRequest": {
+    "com.azure.hybridcompute#UpdateSettingsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11864,13 +11865,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hybridcompute#SettingsGet": {
+    "com.azure.hybridcompute#GetSettings": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hybridcompute#SettingsGetRequest"
+        "target": "com.azure.hybridcompute#GetSettingsRequest"
       },
       "output": {
-        "target": "com.azure.hybridcompute#SettingsGetResponse"
+        "target": "com.azure.hybridcompute#GetSettingsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -11883,7 +11884,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-15"
       }
     },
-    "com.azure.hybridcompute#SettingsGetResponse": {
+    "com.azure.hybridcompute#GetSettingsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -11921,7 +11922,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.hybridcompute#SettingsGetRequest": {
+    "com.azure.hybridcompute#GetSettingsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11977,13 +11978,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hybridcompute#LicensesValidateLicense": {
+    "com.azure.hybridcompute#ValidateLicenseLicense": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hybridcompute#LicensesValidateLicenseRequest"
+        "target": "com.azure.hybridcompute#ValidateLicenseLicenseRequest"
       },
       "output": {
-        "target": "com.azure.hybridcompute#LicensesValidateLicenseResponse"
+        "target": "com.azure.hybridcompute#ValidateLicenseLicenseResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -11996,7 +11997,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-15"
       }
     },
-    "com.azure.hybridcompute#LicensesValidateLicenseResponse": {
+    "com.azure.hybridcompute#ValidateLicenseLicenseResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -12024,7 +12025,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hybridcompute#LicensesValidateLicenseResponseTagsMap",
+          "target": "com.azure.hybridcompute#ValidateLicenseLicenseResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -12047,7 +12048,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.hybridcompute#LicensesValidateLicenseResponseTagsMap": {
+    "com.azure.hybridcompute#ValidateLicenseLicenseResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -12059,7 +12060,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.hybridcompute#LicensesValidateLicenseRequest": {
+    "com.azure.hybridcompute#ValidateLicenseLicenseRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -12071,7 +12072,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hybridcompute#LicensesValidateLicenseRequestTagsMap",
+          "target": "com.azure.hybridcompute#ValidateLicenseLicenseRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -12094,7 +12095,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hybridcompute#LicensesValidateLicenseRequestTagsMap": {
+    "com.azure.hybridcompute#ValidateLicenseLicenseRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -12106,10 +12107,10 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.hybridcompute#PrivateLinkScopesList": {
+    "com.azure.hybridcompute#ListPrivateLinkScopes": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hybridcompute#PrivateLinkScopesListRequest"
+        "target": "com.azure.hybridcompute#ListPrivateLinkScopesRequest"
       },
       "output": {
         "target": "com.azure.hybridcompute#HybridComputePrivateLinkScopeListResult"
@@ -12125,7 +12126,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-15"
       }
     },
-    "com.azure.hybridcompute#PrivateLinkScopesListRequest": {
+    "com.azure.hybridcompute#ListPrivateLinkScopesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -12141,10 +12142,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hybridcompute#MachinesListBySubscription": {
+    "com.azure.hybridcompute#ListMachineBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hybridcompute#MachinesListBySubscriptionRequest"
+        "target": "com.azure.hybridcompute#ListMachineBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.hybridcompute#MachineListResult"
@@ -12160,7 +12161,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-15"
       }
     },
-    "com.azure.hybridcompute#MachinesListBySubscriptionRequest": {
+    "com.azure.hybridcompute#ListMachineBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -12176,13 +12177,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hybridcompute#ExtensionMetadataGet": {
+    "com.azure.hybridcompute#GetExtensionMetadata": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hybridcompute#ExtensionMetadataGetRequest"
+        "target": "com.azure.hybridcompute#GetExtensionMetadataRequest"
       },
       "output": {
-        "target": "com.azure.hybridcompute#ExtensionMetadataGetResponse"
+        "target": "com.azure.hybridcompute#GetExtensionMetadataResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -12195,7 +12196,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-15"
       }
     },
-    "com.azure.hybridcompute#ExtensionMetadataGetResponse": {
+    "com.azure.hybridcompute#GetExtensionMetadataResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -12259,7 +12260,7 @@
         "smithy.api#documentation": "Describes Extension Metadata properties"
       }
     },
-    "com.azure.hybridcompute#ExtensionMetadataGetRequest": {
+    "com.azure.hybridcompute#GetExtensionMetadataRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -12307,10 +12308,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hybridcompute#ExtensionMetadataList": {
+    "com.azure.hybridcompute#ListExtensionMetadata": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hybridcompute#ExtensionMetadataListRequest"
+        "target": "com.azure.hybridcompute#ListExtensionMetadataRequest"
       },
       "output": {
         "target": "com.azure.hybridcompute#ExtensionValueListResult"
@@ -12393,7 +12394,7 @@
         "smithy.api#documentation": "Describes a Extension Metadata"
       }
     },
-    "com.azure.hybridcompute#ExtensionMetadataListRequest": {
+    "com.azure.hybridcompute#ListExtensionMetadataRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -12433,10 +12434,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hybridcompute#PrivateLinkScopesGetValidationDetails": {
+    "com.azure.hybridcompute#GetPrivateLinkScopeValidationDetails": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hybridcompute#PrivateLinkScopesGetValidationDetailsRequest"
+        "target": "com.azure.hybridcompute#GetPrivateLinkScopeValidationDetailsRequest"
       },
       "output": {
         "target": "com.azure.hybridcompute#PrivateLinkScopeValidationDetails"
@@ -12452,7 +12453,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-15"
       }
     },
-    "com.azure.hybridcompute#PrivateLinkScopesGetValidationDetailsRequest": {
+    "com.azure.hybridcompute#GetPrivateLinkScopeValidationDetailsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -12484,10 +12485,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hybridcompute#LicensesListBySubscription": {
+    "com.azure.hybridcompute#ListLicenseBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hybridcompute#LicensesListBySubscriptionRequest"
+        "target": "com.azure.hybridcompute#ListLicenseBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.hybridcompute#LicensesListResult"
@@ -12503,7 +12504,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-15"
       }
     },
-    "com.azure.hybridcompute#LicensesListBySubscriptionRequest": {
+    "com.azure.hybridcompute#ListLicenseBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -12519,10 +12520,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hybridcompute#GatewaysListBySubscription": {
+    "com.azure.hybridcompute#ListGatewaysBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hybridcompute#GatewaysListBySubscriptionRequest"
+        "target": "com.azure.hybridcompute#ListGatewaysBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.hybridcompute#GatewaysListResult"
@@ -12538,7 +12539,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-15"
       }
     },
-    "com.azure.hybridcompute#GatewaysListBySubscriptionRequest": {
+    "com.azure.hybridcompute#ListGatewaysBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -12554,7 +12555,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hybridcompute#OperationsList": {
+    "com.azure.hybridcompute#ListOperations": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -12666,13 +12667,13 @@
         "smithy.api#documentation": "Describes the properties of a Hybrid Compute Operation Value Display."
       }
     },
-    "com.azure.hybridcompute#ExtensionMetadataV2Get": {
+    "com.azure.hybridcompute#GetExtensionMetadataV2": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hybridcompute#ExtensionMetadataV2GetRequest"
+        "target": "com.azure.hybridcompute#GetExtensionMetadataV2Request"
       },
       "output": {
-        "target": "com.azure.hybridcompute#ExtensionMetadataV2GetResponse"
+        "target": "com.azure.hybridcompute#GetExtensionMetadataV2Response"
       },
       "traits": {
         "smithy.api#http": {
@@ -12685,7 +12686,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-15"
       }
     },
-    "com.azure.hybridcompute#ExtensionMetadataV2GetResponse": {
+    "com.azure.hybridcompute#GetExtensionMetadataV2Response": {
       "type": "structure",
       "members": {
         "id": {
@@ -12791,7 +12792,7 @@
         "smithy.api#documentation": "A list of locations where the extension packages can be found."
       }
     },
-    "com.azure.hybridcompute#ExtensionMetadataV2GetRequest": {
+    "com.azure.hybridcompute#GetExtensionMetadataV2Request": {
       "type": "structure",
       "members": {
         "location": {
@@ -12831,10 +12832,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hybridcompute#ExtensionMetadataV2List": {
+    "com.azure.hybridcompute#ListExtensionMetadataV2": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hybridcompute#ExtensionMetadataV2ListRequest"
+        "target": "com.azure.hybridcompute#ListExtensionMetadataV2Request"
       },
       "output": {
         "target": "com.azure.hybridcompute#ExtensionValueListResultV2"
@@ -12918,7 +12919,7 @@
         "smithy.api#documentation": "Describes an Extension Metadata."
       }
     },
-    "com.azure.hybridcompute#ExtensionMetadataV2ListRequest": {
+    "com.azure.hybridcompute#ListExtensionMetadataV2Request": {
       "type": "structure",
       "members": {
         "location": {
@@ -12950,10 +12951,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hybridcompute#ExtensionTypeList": {
+    "com.azure.hybridcompute#ListExtensionType": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hybridcompute#ExtensionTypeListRequest"
+        "target": "com.azure.hybridcompute#ListExtensionTypeRequest"
       },
       "output": {
         "target": "com.azure.hybridcompute#ExtensionTypeListResult"
@@ -13019,7 +13020,7 @@
         "smithy.api#documentation": "Describes an Extension Type."
       }
     },
-    "com.azure.hybridcompute#ExtensionTypeListRequest": {
+    "com.azure.hybridcompute#ListExtensionTypeRequest": {
       "type": "structure",
       "members": {
         "location": {
@@ -13043,10 +13044,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hybridcompute#ExtensionPublisherList": {
+    "com.azure.hybridcompute#ListExtensionPublisher": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hybridcompute#ExtensionPublisherListRequest"
+        "target": "com.azure.hybridcompute#ListExtensionPublisherRequest"
       },
       "output": {
         "target": "com.azure.hybridcompute#ExtensionPublisherListResult"
@@ -13112,7 +13113,7 @@
         "smithy.api#documentation": "Describes an Extension Publisher."
       }
     },
-    "com.azure.hybridcompute#ExtensionPublisherListRequest": {
+    "com.azure.hybridcompute#ListExtensionPublisherRequest": {
       "type": "structure",
       "members": {
         "location": {
@@ -13133,100 +13134,100 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.hybridcompute#PrivateLinkResourcesGet"
+          "target": "com.azure.hybridcompute#GetPrivateLinkResource"
         },
         {
-          "target": "com.azure.hybridcompute#PrivateLinkResourcesListByPrivateLinkScope"
+          "target": "com.azure.hybridcompute#ListPrivateLinkResourceByPrivateLinkScope"
         },
         {
-          "target": "com.azure.hybridcompute#PrivateEndpointConnectionsDelete"
+          "target": "com.azure.hybridcompute#DeletePrivateEndpointConnection"
         },
         {
           "target": "com.azure.hybridcompute#PrivateEndpointConnectionsCreateOrUpdate"
         },
         {
-          "target": "com.azure.hybridcompute#PrivateEndpointConnectionsGet"
+          "target": "com.azure.hybridcompute#GetPrivateEndpointConnection"
         },
         {
-          "target": "com.azure.hybridcompute#PrivateEndpointConnectionsListByPrivateLinkScope"
+          "target": "com.azure.hybridcompute#ListPrivateEndpointConnectionByPrivateLinkScope"
         },
         {
           "target": "com.azure.hybridcompute#NetworkSecurityPerimeterConfigurationsReconcileForPrivateLinkScope"
         },
         {
-          "target": "com.azure.hybridcompute#NetworkSecurityPerimeterConfigurationsGetByPrivateLinkScope"
+          "target": "com.azure.hybridcompute#GetNetworkSecurityPerimeterConfigurationByPrivateLinkScope"
         },
         {
-          "target": "com.azure.hybridcompute#NetworkSecurityPerimeterConfigurationsListByPrivateLinkScope"
+          "target": "com.azure.hybridcompute#ListNetworkSecurityPerimeterConfigurationByPrivateLinkScope"
         },
         {
-          "target": "com.azure.hybridcompute#PrivateLinkScopesDelete"
+          "target": "com.azure.hybridcompute#DeletePrivateLinkScope"
         },
         {
-          "target": "com.azure.hybridcompute#PrivateLinkScopesUpdateTags"
+          "target": "com.azure.hybridcompute#UpdatePrivateLinkScopeTags"
         },
         {
           "target": "com.azure.hybridcompute#PrivateLinkScopesCreateOrUpdate"
         },
         {
-          "target": "com.azure.hybridcompute#PrivateLinkScopesGet"
+          "target": "com.azure.hybridcompute#GetPrivateLinkScope"
         },
         {
-          "target": "com.azure.hybridcompute#PrivateLinkScopesListByResourceGroup"
+          "target": "com.azure.hybridcompute#ListPrivateLinkScopeByResourceGroup"
         },
         {
           "target": "com.azure.hybridcompute#UpgradeExtensions"
         },
         {
-          "target": "com.azure.hybridcompute#MachineRunCommandsDelete"
+          "target": "com.azure.hybridcompute#DeleteMachineRunCommand"
         },
         {
           "target": "com.azure.hybridcompute#MachineRunCommandsCreateOrUpdate"
         },
         {
-          "target": "com.azure.hybridcompute#MachineRunCommandsGet"
+          "target": "com.azure.hybridcompute#GetMachineRunCommand"
         },
         {
-          "target": "com.azure.hybridcompute#MachineRunCommandsList"
+          "target": "com.azure.hybridcompute#ListMachineRunCommands"
         },
         {
-          "target": "com.azure.hybridcompute#PrivateLinkScopesGetValidationDetailsForMachine"
+          "target": "com.azure.hybridcompute#GetPrivateLinkScopeValidationDetailsForMachine"
         },
         {
-          "target": "com.azure.hybridcompute#NetworkProfileGet"
+          "target": "com.azure.hybridcompute#GetNetworkProfile"
         },
         {
-          "target": "com.azure.hybridcompute#LicenseProfilesDelete"
+          "target": "com.azure.hybridcompute#DeleteLicenseProfile"
         },
         {
-          "target": "com.azure.hybridcompute#LicenseProfilesUpdate"
+          "target": "com.azure.hybridcompute#UpdateLicenseProfile"
         },
         {
           "target": "com.azure.hybridcompute#LicenseProfilesCreateOrUpdate"
         },
         {
-          "target": "com.azure.hybridcompute#LicenseProfilesGet"
+          "target": "com.azure.hybridcompute#GetLicenseProfile"
         },
         {
-          "target": "com.azure.hybridcompute#LicenseProfilesList"
+          "target": "com.azure.hybridcompute#ListLicenseProfiles"
         },
         {
-          "target": "com.azure.hybridcompute#MachinesInstallPatches"
+          "target": "com.azure.hybridcompute#InstallMachinePatches"
         },
         {
-          "target": "com.azure.hybridcompute#MachineExtensionsDelete"
+          "target": "com.azure.hybridcompute#DeleteMachineExtension"
         },
         {
-          "target": "com.azure.hybridcompute#MachineExtensionsUpdate"
+          "target": "com.azure.hybridcompute#UpdateMachineExtension"
         },
         {
           "target": "com.azure.hybridcompute#MachineExtensionsCreateOrUpdate"
         },
         {
-          "target": "com.azure.hybridcompute#MachineExtensionsGet"
+          "target": "com.azure.hybridcompute#GetMachineExtension"
         },
         {
-          "target": "com.azure.hybridcompute#MachineExtensionsList"
+          "target": "com.azure.hybridcompute#ListMachineExtensions"
         },
         {
           "target": "com.azure.hybridcompute#MachinesAssessPatches"
@@ -13235,97 +13236,97 @@
           "target": "com.azure.hybridcompute#SetupExtensions"
         },
         {
-          "target": "com.azure.hybridcompute#MachinesDelete"
+          "target": "com.azure.hybridcompute#DeleteMachine"
         },
         {
-          "target": "com.azure.hybridcompute#MachinesUpdate"
+          "target": "com.azure.hybridcompute#UpdateMachine"
         },
         {
           "target": "com.azure.hybridcompute#MachinesCreateOrUpdate"
         },
         {
-          "target": "com.azure.hybridcompute#MachinesGet"
+          "target": "com.azure.hybridcompute#GetMachine"
         },
         {
-          "target": "com.azure.hybridcompute#MachinesListByResourceGroup"
+          "target": "com.azure.hybridcompute#ListMachineByResourceGroup"
         },
         {
-          "target": "com.azure.hybridcompute#LicensesDelete"
+          "target": "com.azure.hybridcompute#DeleteLicense"
         },
         {
-          "target": "com.azure.hybridcompute#LicensesUpdate"
+          "target": "com.azure.hybridcompute#UpdateLicense"
         },
         {
           "target": "com.azure.hybridcompute#LicensesCreateOrUpdate"
         },
         {
-          "target": "com.azure.hybridcompute#LicensesGet"
+          "target": "com.azure.hybridcompute#GetLicense"
         },
         {
-          "target": "com.azure.hybridcompute#LicensesListByResourceGroup"
+          "target": "com.azure.hybridcompute#ListLicenseByResourceGroup"
         },
         {
-          "target": "com.azure.hybridcompute#GatewaysDelete"
+          "target": "com.azure.hybridcompute#DeleteGateways"
         },
         {
-          "target": "com.azure.hybridcompute#GatewaysUpdate"
+          "target": "com.azure.hybridcompute#UpdateGateways"
         },
         {
           "target": "com.azure.hybridcompute#GatewaysCreateOrUpdate"
         },
         {
-          "target": "com.azure.hybridcompute#GatewaysGet"
+          "target": "com.azure.hybridcompute#GetGateways"
         },
         {
-          "target": "com.azure.hybridcompute#GatewaysListByResourceGroup"
+          "target": "com.azure.hybridcompute#ListGatewaysByResourceGroup"
         },
         {
-          "target": "com.azure.hybridcompute#SettingsPatch"
+          "target": "com.azure.hybridcompute#PatchSettings2"
         },
         {
-          "target": "com.azure.hybridcompute#SettingsUpdate"
+          "target": "com.azure.hybridcompute#UpdateSettings"
         },
         {
-          "target": "com.azure.hybridcompute#SettingsGet"
+          "target": "com.azure.hybridcompute#GetSettings"
         },
         {
-          "target": "com.azure.hybridcompute#LicensesValidateLicense"
+          "target": "com.azure.hybridcompute#ValidateLicenseLicense"
         },
         {
-          "target": "com.azure.hybridcompute#PrivateLinkScopesList"
+          "target": "com.azure.hybridcompute#ListPrivateLinkScopes"
         },
         {
-          "target": "com.azure.hybridcompute#MachinesListBySubscription"
+          "target": "com.azure.hybridcompute#ListMachineBySubscription"
         },
         {
-          "target": "com.azure.hybridcompute#ExtensionMetadataGet"
+          "target": "com.azure.hybridcompute#GetExtensionMetadata"
         },
         {
-          "target": "com.azure.hybridcompute#ExtensionMetadataList"
+          "target": "com.azure.hybridcompute#ListExtensionMetadata"
         },
         {
-          "target": "com.azure.hybridcompute#PrivateLinkScopesGetValidationDetails"
+          "target": "com.azure.hybridcompute#GetPrivateLinkScopeValidationDetails"
         },
         {
-          "target": "com.azure.hybridcompute#LicensesListBySubscription"
+          "target": "com.azure.hybridcompute#ListLicenseBySubscription"
         },
         {
-          "target": "com.azure.hybridcompute#GatewaysListBySubscription"
+          "target": "com.azure.hybridcompute#ListGatewaysBySubscription"
         },
         {
-          "target": "com.azure.hybridcompute#OperationsList"
+          "target": "com.azure.hybridcompute#ListOperations"
         },
         {
-          "target": "com.azure.hybridcompute#ExtensionMetadataV2Get"
+          "target": "com.azure.hybridcompute#GetExtensionMetadataV2"
         },
         {
-          "target": "com.azure.hybridcompute#ExtensionMetadataV2List"
+          "target": "com.azure.hybridcompute#ListExtensionMetadataV2"
         },
         {
-          "target": "com.azure.hybridcompute#ExtensionTypeList"
+          "target": "com.azure.hybridcompute#ListExtensionType"
         },
         {
-          "target": "com.azure.hybridcompute#ExtensionPublisherList"
+          "target": "com.azure.hybridcompute#ListExtensionPublisher"
         }
       ],
       "traits": {

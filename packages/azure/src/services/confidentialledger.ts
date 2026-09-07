@@ -60,11 +60,11 @@ export const CheckNameAvailabilityResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CheckNameAvailabilityResponse>;
 
 /** Resource tags. */
-export type LedgerCreateRequestTagsMap = { [key: string]: string | undefined };
-export const LedgerCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type CreateLedgerRequestTagsMap = { [key: string]: string | undefined };
+export const CreateLedgerRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<LedgerCreateRequestTagsMap>;
+) as any as S.Schema<CreateLedgerRequestTagsMap>;
 
 /** Object representing RunningState for Confidential Ledger. */
 export type RunningState =
@@ -195,7 +195,7 @@ export const LedgerPropertiesInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "LedgerPropertiesInput",
 }) as any as S.Schema<LedgerPropertiesInput>;
 
-export interface LedgerCreateRequest {
+export interface CreateLedgerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -203,18 +203,18 @@ export interface LedgerCreateRequest {
   /** Name of the Confidential Ledger */
   ledgerName: string;
   /** Resource tags. */
-  tags?: LedgerCreateRequestTagsMap;
+  tags?: CreateLedgerRequestTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties of Confidential Ledger Resource. */
   properties?: LedgerPropertiesInput;
 }
-export const LedgerCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateLedgerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     ledgerName: S.String.pipe(T.Label()),
-    tags: S.optional(LedgerCreateRequestTagsMap),
+    tags: S.optional(CreateLedgerRequestTagsMap),
     location: S.String,
     properties: S.optional(LedgerPropertiesInput),
   }).pipe(
@@ -226,8 +226,8 @@ export const LedgerCreateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "LedgerCreateRequest",
-}) as any as S.Schema<LedgerCreateRequest>;
+  identifier: "CreateLedgerRequest",
+}) as any as S.Schema<CreateLedgerRequest>;
 
 /** The type of identity that created the resource. */
 export type SystemDataCreatedByType =
@@ -272,11 +272,11 @@ export const SystemData = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "SystemData" }) as any as S.Schema<SystemData>;
 
 /** Resource tags. */
-export type LedgerCreateResponseTagsMap = { [key: string]: string | undefined };
-export const LedgerCreateResponseTagsMap = /*@__PURE__*/ S.Record(
+export type CreateLedgerResponseTagsMap = { [key: string]: string | undefined };
+export const CreateLedgerResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<LedgerCreateResponseTagsMap>;
+) as any as S.Schema<CreateLedgerResponseTagsMap>;
 
 /** Object representing ProvisioningState for Confidential Ledger. */
 export type ProvisioningState =
@@ -380,7 +380,7 @@ export const LedgerProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "LedgerProperties",
 }) as any as S.Schema<LedgerProperties>;
 
-export interface LedgerCreateResponse {
+export interface CreateLedgerResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -390,27 +390,27 @@ export interface LedgerCreateResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: LedgerCreateResponseTagsMap;
+  tags?: CreateLedgerResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties of Confidential Ledger Resource. */
   properties?: LedgerProperties;
 }
-export const LedgerCreateResponse = /*@__PURE__*/ S.suspend(() =>
+export const CreateLedgerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(LedgerCreateResponseTagsMap),
+    tags: S.optional(CreateLedgerResponseTagsMap),
     location: S.String,
     properties: S.optional(LedgerProperties),
   }),
 ).annotate({
-  identifier: "LedgerCreateResponse",
-}) as any as S.Schema<LedgerCreateResponse>;
+  identifier: "CreateLedgerResponse",
+}) as any as S.Schema<CreateLedgerResponse>;
 
-export interface LedgerDeleteRequest {
+export interface DeleteLedgerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -418,7 +418,7 @@ export interface LedgerDeleteRequest {
   /** Name of the Confidential Ledger */
   ledgerName: string;
 }
-export const LedgerDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteLedgerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -432,17 +432,17 @@ export const LedgerDeleteRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "LedgerDeleteRequest",
-}) as any as S.Schema<LedgerDeleteRequest>;
+  identifier: "DeleteLedgerRequest",
+}) as any as S.Schema<DeleteLedgerRequest>;
 
-export interface LedgerDeleteResponse {}
-export const LedgerDeleteResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteLedgerResponse {}
+export const DeleteLedgerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "LedgerDeleteResponse",
-}) as any as S.Schema<LedgerDeleteResponse>;
+  identifier: "DeleteLedgerResponse",
+}) as any as S.Schema<DeleteLedgerResponse>;
 
-export interface LedgerFilesExportRequest {
+export interface ExportLedgerFileRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -454,7 +454,7 @@ export interface LedgerFilesExportRequest {
   /** SAS URI used to access the Fileshare for exporting ledger files. */
   uri: string;
 }
-export const LedgerFilesExportRequest = /*@__PURE__*/ S.suspend(() =>
+export const ExportLedgerFileRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -470,8 +470,8 @@ export const LedgerFilesExportRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "LedgerFilesExportRequest",
-}) as any as S.Schema<LedgerFilesExportRequest>;
+  identifier: "ExportLedgerFileRequest",
+}) as any as S.Schema<ExportLedgerFileRequest>;
 
 /** Object representing the files export response of a Confidential Ledger Resource. */
 export interface ConfidentialLedgerFilesExportResponse {
@@ -487,7 +487,7 @@ export const ConfidentialLedgerFilesExportResponse = /*@__PURE__*/ S.suspend(
   identifier: "ConfidentialLedgerFilesExportResponse",
 }) as any as S.Schema<ConfidentialLedgerFilesExportResponse>;
 
-export interface LedgerGetRequest {
+export interface GetLedgerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -495,7 +495,7 @@ export interface LedgerGetRequest {
   /** Name of the Confidential Ledger */
   ledgerName: string;
 }
-export const LedgerGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetLedgerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -509,17 +509,17 @@ export const LedgerGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "LedgerGetRequest",
-}) as any as S.Schema<LedgerGetRequest>;
+  identifier: "GetLedgerRequest",
+}) as any as S.Schema<GetLedgerRequest>;
 
 /** Resource tags. */
-export type LedgerGetResponseTagsMap = { [key: string]: string | undefined };
-export const LedgerGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetLedgerResponseTagsMap = { [key: string]: string | undefined };
+export const GetLedgerResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<LedgerGetResponseTagsMap>;
+) as any as S.Schema<GetLedgerResponseTagsMap>;
 
-export interface LedgerGetResponse {
+export interface GetLedgerResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -529,27 +529,27 @@ export interface LedgerGetResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: LedgerGetResponseTagsMap;
+  tags?: GetLedgerResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties of Confidential Ledger Resource. */
   properties?: LedgerProperties;
 }
-export const LedgerGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetLedgerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(LedgerGetResponseTagsMap),
+    tags: S.optional(GetLedgerResponseTagsMap),
     location: S.String,
     properties: S.optional(LedgerProperties),
   }),
 ).annotate({
-  identifier: "LedgerGetResponse",
-}) as any as S.Schema<LedgerGetResponse>;
+  identifier: "GetLedgerResponse",
+}) as any as S.Schema<GetLedgerResponse>;
 
-export interface LedgerListByResourceGroupRequest {
+export interface ListLedgerByResourceGroupRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -557,7 +557,7 @@ export interface LedgerListByResourceGroupRequest {
   /** The filter to apply on the list operation. eg. $filter=ledgerType eq 'Public' */
   _filter?: string;
 }
-export const LedgerListByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListLedgerByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -571,8 +571,8 @@ export const LedgerListByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "LedgerListByResourceGroupRequest",
-}) as any as S.Schema<LedgerListByResourceGroupRequest>;
+  identifier: "ListLedgerByResourceGroupRequest",
+}) as any as S.Schema<ListLedgerByResourceGroupRequest>;
 
 /** Resource tags. */
 export type ConfidentialLedgerTagsMap = { [key: string]: string | undefined };
@@ -634,13 +634,13 @@ export const ConfidentialLedgerList = /*@__PURE__*/ S.suspend(() =>
   identifier: "ConfidentialLedgerList",
 }) as any as S.Schema<ConfidentialLedgerList>;
 
-export interface LedgerListBySubscriptionRequest {
+export interface ListLedgerBySubscriptionRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The filter to apply on the list operation. eg. $filter=ledgerType eq 'Public' */
   _filter?: string;
 }
-export const LedgerListBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListLedgerBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     _filter: S.optional(S.String.pipe(T.Query("$filter"))),
@@ -653,89 +653,11 @@ export const LedgerListBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "LedgerListBySubscriptionRequest",
-}) as any as S.Schema<LedgerListBySubscriptionRequest>;
+  identifier: "ListLedgerBySubscriptionRequest",
+}) as any as S.Schema<ListLedgerBySubscriptionRequest>;
 
-/** Resource tags. */
-export type LedgerUpdateRequestTagsMap = { [key: string]: string | undefined };
-export const LedgerUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<LedgerUpdateRequestTagsMap>;
-
-export interface LedgerUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the Confidential Ledger */
-  ledgerName: string;
-  /** Resource tags. */
-  tags?: LedgerUpdateRequestTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Properties of Confidential Ledger Resource. */
-  properties?: LedgerPropertiesInput;
-}
-export const LedgerUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    ledgerName: S.String.pipe(T.Label()),
-    tags: S.optional(LedgerUpdateRequestTagsMap),
-    location: S.String,
-    properties: S.optional(LedgerPropertiesInput),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConfidentialLedger/ledgers/{ledgerName}",
-      code: 200,
-      apiVersion: "2026-02-23",
-    }),
-  ),
-).annotate({
-  identifier: "LedgerUpdateRequest",
-}) as any as S.Schema<LedgerUpdateRequest>;
-
-/** Resource tags. */
-export type LedgerUpdateResponseTagsMap = { [key: string]: string | undefined };
-export const LedgerUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<LedgerUpdateResponseTagsMap>;
-
-export interface LedgerUpdateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: LedgerUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Properties of Confidential Ledger Resource. */
-  properties?: LedgerProperties;
-}
-export const LedgerUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(LedgerUpdateResponseTagsMap),
-    location: S.String,
-    properties: S.optional(LedgerProperties),
-  }),
-).annotate({
-  identifier: "LedgerUpdateResponse",
-}) as any as S.Schema<LedgerUpdateResponse>;
-
-export interface OperationsListRequest {}
-export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
+export interface ListOperationsRequest {}
+export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
     T.Http({
       method: "GET",
@@ -745,8 +667,8 @@ export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "OperationsListRequest",
-}) as any as S.Schema<OperationsListRequest>;
+  identifier: "ListOperationsRequest",
+}) as any as S.Schema<ListOperationsRequest>;
 
 /** Describes the properties of the Operation. */
 export interface ResourceProviderOperationDisplay {
@@ -812,6 +734,84 @@ export const ResourceProviderOperationList = /*@__PURE__*/ S.suspend(() =>
   identifier: "ResourceProviderOperationList",
 }) as any as S.Schema<ResourceProviderOperationList>;
 
+/** Resource tags. */
+export type UpdateLedgerRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateLedgerRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateLedgerRequestTagsMap>;
+
+export interface UpdateLedgerRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the Confidential Ledger */
+  ledgerName: string;
+  /** Resource tags. */
+  tags?: UpdateLedgerRequestTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Properties of Confidential Ledger Resource. */
+  properties?: LedgerPropertiesInput;
+}
+export const UpdateLedgerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    ledgerName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateLedgerRequestTagsMap),
+    location: S.String,
+    properties: S.optional(LedgerPropertiesInput),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConfidentialLedger/ledgers/{ledgerName}",
+      code: 200,
+      apiVersion: "2026-02-23",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateLedgerRequest",
+}) as any as S.Schema<UpdateLedgerRequest>;
+
+/** Resource tags. */
+export type UpdateLedgerResponseTagsMap = { [key: string]: string | undefined };
+export const UpdateLedgerResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateLedgerResponseTagsMap>;
+
+export interface UpdateLedgerResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateLedgerResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Properties of Confidential Ledger Resource. */
+  properties?: LedgerProperties;
+}
+export const UpdateLedgerResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateLedgerResponseTagsMap),
+    location: S.String,
+    properties: S.optional(LedgerProperties),
+  }),
+).annotate({
+  identifier: "UpdateLedgerResponse",
+}) as any as S.Schema<UpdateLedgerResponse>;
+
 export type CheckNameAvailabilityError = AzureOpError;
 /** To check whether a resource name is available. */
 export const CheckNameAvailability: API.OperationMethod<
@@ -827,121 +827,121 @@ export const CheckNameAvailability: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type LedgerCreateError = AzureOpError;
+export type CreateLedgerError = AzureOpError;
 /** Creates a Confidential Ledger with the specified ledger parameters. */
-export const LedgerCreate: API.OperationMethod<
-  LedgerCreateRequest,
-  LedgerCreateResponse,
-  LedgerCreateError,
+export const CreateLedger: API.OperationMethod<
+  CreateLedgerRequest,
+  CreateLedgerResponse,
+  CreateLedgerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: LedgerCreateRequest,
-  output: LedgerCreateResponse,
+  input: CreateLedgerRequest,
+  output: CreateLedgerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type LedgerDeleteError = AzureOpError;
+export type DeleteLedgerError = AzureOpError;
 /** Deletes an existing Confidential Ledger. */
-export const LedgerDelete: API.OperationMethod<
-  LedgerDeleteRequest,
-  LedgerDeleteResponse,
-  LedgerDeleteError,
+export const DeleteLedger: API.OperationMethod<
+  DeleteLedgerRequest,
+  DeleteLedgerResponse,
+  DeleteLedgerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: LedgerDeleteRequest,
-  output: LedgerDeleteResponse,
+  input: DeleteLedgerRequest,
+  output: DeleteLedgerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type LedgerFilesExportError = AzureOpError;
+export type ExportLedgerFileError = AzureOpError;
 /** Copies the ledger files and the service certificate to a customer's storage account of choice. */
-export const LedgerFilesExport: API.OperationMethod<
-  LedgerFilesExportRequest,
+export const ExportLedgerFile: API.OperationMethod<
+  ExportLedgerFileRequest,
   ConfidentialLedgerFilesExportResponse,
-  LedgerFilesExportError,
+  ExportLedgerFileError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: LedgerFilesExportRequest,
+  input: ExportLedgerFileRequest,
   output: ConfidentialLedgerFilesExportResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type LedgerGetError = AzureOpError;
+export type GetLedgerError = AzureOpError;
 /** Retrieves the properties of a Confidential Ledger. */
-export const LedgerGet: API.OperationMethod<
-  LedgerGetRequest,
-  LedgerGetResponse,
-  LedgerGetError,
+export const GetLedger: API.OperationMethod<
+  GetLedgerRequest,
+  GetLedgerResponse,
+  GetLedgerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: LedgerGetRequest,
-  output: LedgerGetResponse,
+  input: GetLedgerRequest,
+  output: GetLedgerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type LedgerListByResourceGroupError = AzureOpError;
+export type ListLedgerByResourceGroupError = AzureOpError;
 /** Retrieves the properties of all Confidential Ledgers. */
-export const LedgerListByResourceGroup: API.OperationMethod<
-  LedgerListByResourceGroupRequest,
+export const ListLedgerByResourceGroup: API.OperationMethod<
+  ListLedgerByResourceGroupRequest,
   ConfidentialLedgerList,
-  LedgerListByResourceGroupError,
+  ListLedgerByResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: LedgerListByResourceGroupRequest,
+  input: ListLedgerByResourceGroupRequest,
   output: ConfidentialLedgerList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type LedgerListBySubscriptionError = AzureOpError;
+export type ListLedgerBySubscriptionError = AzureOpError;
 /** Retrieves the properties of all Confidential Ledgers. */
-export const LedgerListBySubscription: API.OperationMethod<
-  LedgerListBySubscriptionRequest,
+export const ListLedgerBySubscription: API.OperationMethod<
+  ListLedgerBySubscriptionRequest,
   ConfidentialLedgerList,
-  LedgerListBySubscriptionError,
+  ListLedgerBySubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: LedgerListBySubscriptionRequest,
+  input: ListLedgerBySubscriptionRequest,
   output: ConfidentialLedgerList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type LedgerUpdateError = AzureOpError;
-/** Updates properties of Confidential Ledger */
-export const LedgerUpdate: API.OperationMethod<
-  LedgerUpdateRequest,
-  LedgerUpdateResponse,
-  LedgerUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: LedgerUpdateRequest,
-  output: LedgerUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type OperationsListError = AzureOpError;
+export type ListOperationsError = AzureOpError;
 /** List the operations for the provider */
-export const OperationsList: API.OperationMethod<
-  OperationsListRequest,
+export const ListOperations: API.OperationMethod<
+  ListOperationsRequest,
   ResourceProviderOperationList,
-  OperationsListError,
+  ListOperationsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OperationsListRequest,
+  input: ListOperationsRequest,
   output: ResourceProviderOperationList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateLedgerError = AzureOpError;
+/** Updates properties of Confidential Ledger */
+export const UpdateLedger: API.OperationMethod<
+  UpdateLedgerRequest,
+  UpdateLedgerResponse,
+  UpdateLedgerError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateLedgerRequest,
+  output: UpdateLedgerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

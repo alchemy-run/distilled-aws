@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.posthog.code#SandboxComputePricing": {
@@ -89,7 +90,7 @@
         "smithy.api#documentation": "Expired sandbox compute rate cards, newest first."
       }
     },
-    "com.posthog.code#CodeSandboxPricingList": {
+    "com.posthog.code#ListCodeSandboxPricing": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -111,7 +112,7 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.code#CodeSandboxPricingList"
+          "target": "com.posthog.code#ListCodeSandboxPricing"
         }
       ],
       "traits": {

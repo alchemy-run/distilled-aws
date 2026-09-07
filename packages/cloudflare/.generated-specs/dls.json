@@ -14,335 +14,20 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "keyDictionary": {
+      "createdOn": "created_on",
+      "documentationUrl": "documentation_url",
+      "modifiedOn": "modified_on",
+      "perPage": "per_page",
+      "prefixId": "prefix_id",
+      "regionKey": "region_key",
+      "resultInfo": "result_info",
+      "versionCreatedOn": "version_created_on"
+    },
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.cloudflare.dls#RegionalServicesPrefixBindingsCreateRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier of a Cloudflare account.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "cidr": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "IP prefix in CIDR notation to bind.",
-            "smithy.api#required": {}
-          }
-        },
-        "prefix_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The ID of the parent IP prefix that contains the CIDR.",
-            "smithy.api#required": {}
-          }
-        },
-        "region_key": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Region key from managed regions (e.g., \"us\", \"eu\").",
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.dls#RegionalServicesPrefixBindingsCreateResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The ID of the binding.",
-            "smithy.api#required": {}
-          }
-        },
-        "cidr": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The CIDR that is bound.",
-            "smithy.api#required": {}
-          }
-        },
-        "prefix_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The ID of the parent prefix.",
-            "smithy.api#required": {}
-          }
-        },
-        "region_key": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The region key used for the binding.",
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.dls#RegionalServicesPrefixBindingsCreate": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.dls#RegionalServicesPrefixBindingsCreateRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.dls#RegionalServicesPrefixBindingsCreateResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "/accounts/{account_id}/dls/regional_services/prefix_bindings",
-          "code": 200
-        },
-        "smithy.api#documentation": "Create a DLS prefix binding"
-      }
-    },
-    "com.cloudflare.dls#RegionalServicesPrefixBindingsDeleteRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier of a Cloudflare account.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "binding_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Unique identifier for the prefix binding.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.dls#RegionalServicesPrefixBindingsDelete": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.dls#RegionalServicesPrefixBindingsDeleteRequest"
-      },
-      "output": {
-        "target": "smithy.api#Unit"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "/accounts/{account_id}/dls/regional_services/prefix_bindings/{binding_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Delete a DLS prefix binding",
-        "smithy.api#idempotent": {}
-      }
-    },
-    "com.cloudflare.dls#RegionalServicesPrefixBindingsEditRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier of a Cloudflare account.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "binding_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Unique identifier for the prefix binding.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "region_key": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "New region key to assign (e.g., \"us\", \"eu\", \"cfcanary\").",
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.dls#RegionalServicesPrefixBindingsEditResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The ID of the binding.",
-            "smithy.api#required": {}
-          }
-        },
-        "cidr": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The CIDR that is bound.",
-            "smithy.api#required": {}
-          }
-        },
-        "prefix_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The ID of the parent prefix.",
-            "smithy.api#required": {}
-          }
-        },
-        "region_key": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The region key used for the binding.",
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.dls#RegionalServicesPrefixBindingsEdit": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.dls#RegionalServicesPrefixBindingsEditRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.dls#RegionalServicesPrefixBindingsEditResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "PATCH",
-          "uri": "/accounts/{account_id}/dls/regional_services/prefix_bindings/{binding_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Update a DLS prefix binding"
-      }
-    },
-    "com.cloudflare.dls#RegionalServicesPrefixBindingsGetRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier of a Cloudflare account.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "binding_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Unique identifier for the prefix binding.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.dls#RegionalServicesPrefixBindingsGetResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The ID of the binding.",
-            "smithy.api#required": {}
-          }
-        },
-        "cidr": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The CIDR that is bound.",
-            "smithy.api#required": {}
-          }
-        },
-        "prefix_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The ID of the parent prefix.",
-            "smithy.api#required": {}
-          }
-        },
-        "region_key": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The region key used for the binding.",
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.dls#RegionalServicesPrefixBindingsGet": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.dls#RegionalServicesPrefixBindingsGetRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.dls#RegionalServicesPrefixBindingsGetResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/accounts/{account_id}/dls/regional_services/prefix_bindings/{binding_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Get a DLS prefix binding",
-        "smithy.api#readonly": {}
-      }
-    },
-    "com.cloudflare.dls#RegionalServicesPrefixBindingsListRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier of a Cloudflare account.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "cursor": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Opaque token for cursor-based pagination. Omit for the first page. Pass the value from a previous response to fetch the next page.",
-            "smithy.api#httpQuery": "cursor"
-          }
-        },
-        "per_page": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#httpQuery": "per_page"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.dls#RegionalServicesPrefixBindingsListResultItem": {
       "type": "structure",
       "members": {
@@ -382,132 +67,6 @@
         "target": "com.cloudflare.dls#RegionalServicesPrefixBindingsListResultItem"
       }
     },
-    "com.cloudflare.dls#RegionalServicesPrefixBindingsListResponse": {
-      "type": "structure",
-      "members": {
-        "result": {
-          "target": "com.cloudflare.dls#RegionalServicesPrefixBindingsListResultList",
-          "traits": {
-            "com.cloudflare.protocols#envelopePayload": {},
-            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.dls#RegionalServicesPrefixBindingsList": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.dls#RegionalServicesPrefixBindingsListRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.dls#RegionalServicesPrefixBindingsListResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/accounts/{account_id}/dls/regional_services/prefix_bindings",
-          "code": 200
-        },
-        "smithy.api#documentation": "List DLS prefix bindings for an account",
-        "smithy.api#readonly": {}
-      }
-    },
-    "com.cloudflare.dls#RegionsGetRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier of a Cloudflare account.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "region_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "UUID of the region (custom or managed) or region_key of a managed region.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.dls#RegionsGetResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "created_on": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "modified_on": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "region_key": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "version": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "version_created_on": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.dls#RegionsGet": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.dls#RegionsGetRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.dls#RegionsGetResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/accounts/{account_id}/dls/regions/{region_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Get a DLS region",
-        "smithy.api#readonly": {}
-      }
-    },
     "com.cloudflare.dls#RegionsListRequestType": {
       "type": "enum",
       "members": {
@@ -523,42 +82,6 @@
             "smithy.api#enumValue": "custom"
           }
         }
-      }
-    },
-    "com.cloudflare.dls#RegionsListRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier of a Cloudflare account.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "cursor": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Opaque token for cursor-based pagination. Omit for the first page. Pass the value from a previous response to fetch the next page.",
-            "smithy.api#httpQuery": "cursor"
-          }
-        },
-        "per_page": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#httpQuery": "per_page"
-          }
-        },
-        "type": {
-          "target": "com.cloudflare.dls#RegionsListRequestType",
-          "traits": {
-            "smithy.api#documentation": "Filter regions by type. Omit to return all regions.",
-            "smithy.api#httpQuery": "type"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.dls#RegionsListResultItem": {
@@ -614,7 +137,474 @@
         "target": "com.cloudflare.dls#RegionsListResultItem"
       }
     },
-    "com.cloudflare.dls#RegionsListResponse": {
+    "com.cloudflare.dls#Dls": {
+      "type": "service",
+      "version": "4.0",
+      "operations": [
+        {
+          "target": "com.cloudflare.dls#CreateRegionalServicePrefixBinding"
+        },
+        {
+          "target": "com.cloudflare.dls#DeleteRegionalServicePrefixBinding"
+        },
+        {
+          "target": "com.cloudflare.dls#GetRegion"
+        },
+        {
+          "target": "com.cloudflare.dls#GetRegionalServicePrefixBinding"
+        },
+        {
+          "target": "com.cloudflare.dls#ListRegionalServicePrefixBindings"
+        },
+        {
+          "target": "com.cloudflare.dls#ListRegions"
+        },
+        {
+          "target": "com.cloudflare.dls#PatchRegionalServicePrefixBinding"
+        }
+      ],
+      "traits": {
+        "com.cloudflare.protocols#v4Json": {},
+        "smithy.api#title": "Cloudflare Dls",
+        "smithy.api#documentation": "Cloudflare API — dls resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+      }
+    },
+    "com.cloudflare.dls#CreateRegionalServicePrefixBinding": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.dls#CreateRegionalServicePrefixBindingRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.dls#CreateRegionalServicePrefixBindingResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/dls/regional_services/prefix_bindings",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a DLS prefix binding"
+      }
+    },
+    "com.cloudflare.dls#CreateRegionalServicePrefixBindingRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier of a Cloudflare account.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "cidr": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IP prefix in CIDR notation to bind.",
+            "smithy.api#required": {}
+          }
+        },
+        "prefix_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the parent IP prefix that contains the CIDR.",
+            "smithy.api#required": {}
+          }
+        },
+        "region_key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Region key from managed regions (e.g., \"us\", \"eu\").",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.dls#CreateRegionalServicePrefixBindingResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the binding.",
+            "smithy.api#required": {}
+          }
+        },
+        "cidr": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The CIDR that is bound.",
+            "smithy.api#required": {}
+          }
+        },
+        "prefix_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the parent prefix.",
+            "smithy.api#required": {}
+          }
+        },
+        "region_key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The region key used for the binding.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.dls#DeleteRegionalServicePrefixBinding": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.dls#DeleteRegionalServicePrefixBindingRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/accounts/{account_id}/dls/regional_services/prefix_bindings/{binding_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a DLS prefix binding",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.dls#DeleteRegionalServicePrefixBindingRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier of a Cloudflare account.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "binding_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier for the prefix binding.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.dls#GetRegion": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.dls#GetRegionRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.dls#GetRegionResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/dls/regions/{region_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a DLS region",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.dls#GetRegionRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier of a Cloudflare account.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "region_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UUID of the region (custom or managed) or region_key of a managed region.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.dls#GetRegionResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "created_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "region_key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "version": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "version_created_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.dls#GetRegionalServicePrefixBinding": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.dls#GetRegionalServicePrefixBindingRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.dls#GetRegionalServicePrefixBindingResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/dls/regional_services/prefix_bindings/{binding_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a DLS prefix binding",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.dls#GetRegionalServicePrefixBindingRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier of a Cloudflare account.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "binding_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier for the prefix binding.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.dls#GetRegionalServicePrefixBindingResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the binding.",
+            "smithy.api#required": {}
+          }
+        },
+        "cidr": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The CIDR that is bound.",
+            "smithy.api#required": {}
+          }
+        },
+        "prefix_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the parent prefix.",
+            "smithy.api#required": {}
+          }
+        },
+        "region_key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The region key used for the binding.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.dls#ListRegionalServicePrefixBindings": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.dls#ListRegionalServicePrefixBindingsRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.dls#ListRegionalServicePrefixBindingsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/dls/regional_services/prefix_bindings",
+          "code": 200
+        },
+        "smithy.api#documentation": "List DLS prefix bindings for an account",
+        "smithy.api#readonly": {},
+        "smithy.api#paginated": {
+          "mode": "cursor",
+          "inputToken": "cursor",
+          "outputToken": "resultInfo.cursor",
+          "items": "result",
+          "pageSize": "perPage"
+        }
+      }
+    },
+    "com.cloudflare.dls#ListRegionalServicePrefixBindingsRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier of a Cloudflare account.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Opaque token for cursor-based pagination. Omit for the first page. Pass the value from a previous response to fetch the next page.",
+            "smithy.api#httpQuery": "cursor"
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#httpQuery": "per_page"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.dls#ListRegionalServicePrefixBindingsResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.dls#RegionalServicesPrefixBindingsListResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.dls#ListRegions": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.dls#ListRegionsRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.dls#ListRegionsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/dls/regions",
+          "code": 200
+        },
+        "smithy.api#documentation": "List DLS regions for an account",
+        "smithy.api#readonly": {},
+        "smithy.api#paginated": {
+          "mode": "cursor",
+          "inputToken": "cursor",
+          "outputToken": "resultInfo.cursor",
+          "items": "result",
+          "pageSize": "perPage"
+        }
+      }
+    },
+    "com.cloudflare.dls#ListRegionsRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier of a Cloudflare account.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Opaque token for cursor-based pagination. Omit for the first page. Pass the value from a previous response to fetch the next page.",
+            "smithy.api#httpQuery": "cursor"
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#httpQuery": "per_page"
+          }
+        },
+        "type": {
+          "target": "com.cloudflare.dls#RegionsListRequestType",
+          "traits": {
+            "smithy.api#documentation": "Filter regions by type. Omit to return all regions.",
+            "smithy.api#httpQuery": "type"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.dls#ListRegionsResponse": {
       "type": "structure",
       "members": {
         "result": {
@@ -629,54 +619,89 @@
         "smithy.api#output": {}
       }
     },
-    "com.cloudflare.dls#RegionsList": {
+    "com.cloudflare.dls#PatchRegionalServicePrefixBinding": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.dls#RegionsListRequest"
+        "target": "com.cloudflare.dls#PatchRegionalServicePrefixBindingRequest"
       },
       "output": {
-        "target": "com.cloudflare.dls#RegionsListResponse"
+        "target": "com.cloudflare.dls#PatchRegionalServicePrefixBindingResponse"
       },
       "traits": {
         "smithy.api#http": {
-          "method": "GET",
-          "uri": "/accounts/{account_id}/dls/regions",
+          "method": "PATCH",
+          "uri": "/accounts/{account_id}/dls/regional_services/prefix_bindings/{binding_id}",
           "code": 200
         },
-        "smithy.api#documentation": "List DLS regions for an account",
-        "smithy.api#readonly": {}
+        "smithy.api#documentation": "Update a DLS prefix binding"
       }
     },
-    "com.cloudflare.dls#Dls": {
-      "type": "service",
-      "version": "4.0",
-      "operations": [
-        {
-          "target": "com.cloudflare.dls#RegionalServicesPrefixBindingsCreate"
+    "com.cloudflare.dls#PatchRegionalServicePrefixBindingRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier of a Cloudflare account.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
         },
-        {
-          "target": "com.cloudflare.dls#RegionalServicesPrefixBindingsDelete"
+        "binding_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier for the prefix binding.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
         },
-        {
-          "target": "com.cloudflare.dls#RegionalServicesPrefixBindingsEdit"
-        },
-        {
-          "target": "com.cloudflare.dls#RegionalServicesPrefixBindingsGet"
-        },
-        {
-          "target": "com.cloudflare.dls#RegionalServicesPrefixBindingsList"
-        },
-        {
-          "target": "com.cloudflare.dls#RegionsGet"
-        },
-        {
-          "target": "com.cloudflare.dls#RegionsList"
+        "region_key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "New region key to assign (e.g., \"us\", \"eu\", \"cfcanary\").",
+            "smithy.api#required": {}
+          }
         }
-      ],
+      },
       "traits": {
-        "com.cloudflare.protocols#v4Json": {},
-        "smithy.api#title": "Cloudflare Dls",
-        "smithy.api#documentation": "Cloudflare API — dls resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.dls#PatchRegionalServicePrefixBindingResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the binding.",
+            "smithy.api#required": {}
+          }
+        },
+        "cidr": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The CIDR that is bound.",
+            "smithy.api#required": {}
+          }
+        },
+        "prefix_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the parent prefix.",
+            "smithy.api#required": {}
+          }
+        },
+        "region_key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The region key used for the binding.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
       }
     }
   }

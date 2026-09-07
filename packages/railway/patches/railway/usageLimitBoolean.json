@@ -3,12 +3,12 @@
   "patches": [
     {
       "op": "replace",
-      "path": "/shapes/com.railway.api#UsageLimitSetRequest/traits/com.railway.graphql#operation/query",
+      "path": "/shapes/com.railway.api#SetUsageLimitRequest/traits/com.railway.graphql#operation/query",
       "value": "mutation usageLimitSet($input: UsageLimitSetInput!) {\n  usageLimitSet(input: $input)\n}"
     },
     {
       "op": "replace",
-      "path": "/shapes/com.railway.api#UsageLimitRemoveRequest/traits/com.railway.graphql#operation/query",
+      "path": "/shapes/com.railway.api#RemoveUsageLimitRequest/traits/com.railway.graphql#operation/query",
       "value": "mutation usageLimitRemove($input: UsageLimitRemoveInput!) {\n  usageLimitRemove(input: $input)\n}"
     }
   ]

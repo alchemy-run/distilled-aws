@@ -39,13 +39,13 @@ export class NotFound
     [{ status: 404 }],
   ) {}
 
-export interface EventSchemasCreateRequest {
+export interface CreateEventSchemaRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   event_definition?: string;
   property_group_id?: string;
 }
-export const EventSchemasCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateEventSchemaRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     event_definition: S.optional(S.String),
@@ -58,23 +58,22 @@ export const EventSchemasCreateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "EventSchemasCreateRequest",
-}) as any as S.Schema<EventSchemasCreateRequest>;
+  identifier: "CreateEventSchemaRequest",
+}) as any as S.Schema<CreateEventSchemaRequest>;
 
 /** * `DateTime` - DateTime * `String` - String * `Numeric` - Numeric * `Boolean` - Boolean * `Object` - Object */
-export type SchemaPropertyGroupPropertyPropertyTypeEnum =
+export type SchemaPropertyTypeEnum =
   | "DateTime"
   | "String"
   | "Numeric"
   | "Boolean"
   | "Object";
-export const SchemaPropertyGroupPropertyPropertyTypeEnum =
-  /*@__PURE__*/ S.String;
+export const SchemaPropertyTypeEnum = /*@__PURE__*/ S.String;
 
 export interface SchemaPropertyGroupProperty {
   id?: string;
   name?: string;
-  property_type?: SchemaPropertyGroupPropertyPropertyTypeEnum;
+  property_type?: SchemaPropertyTypeEnum;
   is_required?: boolean;
   is_optional_in_types?: boolean;
   description?: string;
@@ -85,7 +84,7 @@ export const SchemaPropertyGroupProperty = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
-    property_type: S.optional(SchemaPropertyGroupPropertyPropertyTypeEnum),
+    property_type: S.optional(SchemaPropertyTypeEnum),
     is_required: S.optional(S.Boolean),
     is_optional_in_types: S.optional(S.Boolean),
     description: S.optional(S.String),
@@ -243,7 +242,7 @@ export const EventSchemasDestroyResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "EventSchemasDestroyResponse",
 }) as any as S.Schema<EventSchemasDestroyResponse>;
 
-export interface EventSchemasListRequest {
+export interface ListEventSchemasRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** Number of results to return per page. */
@@ -251,7 +250,7 @@ export interface EventSchemasListRequest {
   /** The initial index from which to return the results. */
   offset?: number;
 }
-export const EventSchemasListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListEventSchemasRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     limit: S.optional(S.Number.pipe(T.Query())),
@@ -264,8 +263,8 @@ export const EventSchemasListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "EventSchemasListRequest",
-}) as any as S.Schema<EventSchemasListRequest>;
+  identifier: "ListEventSchemasRequest",
+}) as any as S.Schema<ListEventSchemasRequest>;
 
 export type PaginatedEventSchemaListOutputResultsList =
   Array<EventSchemaOutput>;
@@ -290,7 +289,7 @@ export const PaginatedEventSchemaListOutput = /*@__PURE__*/ S.suspend(() =>
   identifier: "PaginatedEventSchemaListOutput",
 }) as any as S.Schema<PaginatedEventSchemaListOutput>;
 
-export interface EventSchemasPartialUpdateRequest {
+export interface UpdateEventSchemaRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A UUID string identifying this event schema. */
@@ -298,32 +297,7 @@ export interface EventSchemasPartialUpdateRequest {
   event_definition?: string;
   property_group_id?: string;
 }
-export const EventSchemasPartialUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-    event_definition: S.optional(S.String),
-    property_group_id: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/api/projects/{project_id}/event_schemas/{id}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "EventSchemasPartialUpdateRequest",
-}) as any as S.Schema<EventSchemasPartialUpdateRequest>;
-
-export interface EventSchemasUpdateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this event schema. */
-  id: string;
-  event_definition?: string;
-  property_group_id?: string;
-}
-export const EventSchemasUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateEventSchemaRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     id: S.String.pipe(T.Label()),
@@ -337,21 +311,46 @@ export const EventSchemasUpdateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "EventSchemasUpdateRequest",
-}) as any as S.Schema<EventSchemasUpdateRequest>;
+  identifier: "UpdateEventSchemaRequest",
+}) as any as S.Schema<UpdateEventSchemaRequest>;
 
-export type EventSchemasCreateError =
+export interface UpdateEventSchemasPartialRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this event schema. */
+  id: string;
+  event_definition?: string;
+  property_group_id?: string;
+}
+export const UpdateEventSchemasPartialRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+    event_definition: S.optional(S.String),
+    property_group_id: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/api/projects/{project_id}/event_schemas/{id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "UpdateEventSchemasPartialRequest",
+}) as any as S.Schema<UpdateEventSchemasPartialRequest>;
+
+export type CreateEventSchemaError =
   | BadRequest
   | Forbidden
   | NotFound
   | PosthogOpError;
-export const eventSchemasCreate: API.OperationMethod<
-  EventSchemasCreateRequest,
+export const createEventSchema: API.OperationMethod<
+  CreateEventSchemaRequest,
   EventSchemaOutput,
-  EventSchemasCreateError,
+  CreateEventSchemaError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: EventSchemasCreateRequest,
+  input: CreateEventSchemaRequest,
   output: EventSchemaOutput,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,
@@ -372,54 +371,54 @@ export const eventSchemasDestroy: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type EventSchemasListError =
+export type ListEventSchemasError =
   | BadRequest
   | Forbidden
   | NotFound
   | PosthogOpError;
-export const eventSchemasList: API.OperationMethod<
-  EventSchemasListRequest,
+export const listEventSchemas: API.OperationMethod<
+  ListEventSchemasRequest,
   PaginatedEventSchemaListOutput,
-  EventSchemasListError,
+  ListEventSchemasError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: EventSchemasListRequest,
+  input: ListEventSchemasRequest,
   output: PaginatedEventSchemaListOutput,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type EventSchemasPartialUpdateError =
+export type UpdateEventSchemaError =
   | BadRequest
   | Forbidden
   | NotFound
   | PosthogOpError;
-export const eventSchemasPartialUpdate: API.OperationMethod<
-  EventSchemasPartialUpdateRequest,
+export const updateEventSchema: API.OperationMethod<
+  UpdateEventSchemaRequest,
   EventSchemaOutput,
-  EventSchemasPartialUpdateError,
+  UpdateEventSchemaError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: EventSchemasPartialUpdateRequest,
+  input: UpdateEventSchemaRequest,
   output: EventSchemaOutput,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type EventSchemasUpdateError =
+export type UpdateEventSchemasPartialError =
   | BadRequest
   | Forbidden
   | NotFound
   | PosthogOpError;
-export const eventSchemasUpdate: API.OperationMethod<
-  EventSchemasUpdateRequest,
+export const updateEventSchemasPartial: API.OperationMethod<
+  UpdateEventSchemasPartialRequest,
   EventSchemaOutput,
-  EventSchemasUpdateError,
+  UpdateEventSchemasPartialError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: EventSchemasUpdateRequest,
+  input: UpdateEventSchemasPartialRequest,
   output: EventSchemaOutput,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,

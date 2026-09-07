@@ -344,6 +344,84 @@ export const DeleteOverrideAffiliateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteOverrideAffiliateResponse",
 }) as any as S.Schema<DeleteOverrideAffiliateResponse>;
 
+export interface GetAffiliateRequest {
+  /** The unique identifier of the affiliate. */
+  id: string;
+}
+export const GetAffiliateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/affiliates/{id}", code: 200 })),
+).annotate({
+  identifier: "GetAffiliateRequest",
+}) as any as S.Schema<GetAffiliateRequest>;
+
+export interface GetOverrideAffiliateRequest {
+  /** The affiliate ID. */
+  id: string;
+  /** The override ID. */
+  override_id: string;
+}
+export const GetOverrideAffiliateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+    override_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/affiliates/{id}/overrides/{override_id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetOverrideAffiliateRequest",
+}) as any as S.Schema<GetOverrideAffiliateRequest>;
+
+export interface GetOverrideAffiliateResponse {
+  /** Whether the commission applies to the first payment only or all payments (standard overrides only). */
+  applies_to_payments: AffiliateAppliesToPayments | null;
+  /** Whether this rev-share override applies to a single product or all products (rev-share only). */
+  applies_to_products: AffiliateAppliesToProducts | null;
+  /** The checkout direct link for referrals (standard overrides only). */
+  checkout_direct_link: string | null;
+  /** The type of commission (percentage or flat_fee). */
+  commission_type: AffiliatePayoutTypes;
+  /** The commission amount. A percentage (1-100) when commission_type is percentage, or a dollar amount when flat_fee. */
+  commission_value: number;
+  /** The unique identifier for the affiliate override. */
+  id: string;
+  /** The type of override (standard or rev_share). */
+  override_type: AffiliateOverrideRoles;
+  /** The plan ID (for standard overrides). */
+  plan_id: string | null;
+  /** The product page direct link for referrals (standard overrides only). */
+  product_direct_link: string | null;
+  /** The product ID (for rev-share overrides). */
+  product_id: string | null;
+  /** The revenue calculation basis (pre_fees or post_fees). */
+  revenue_basis: AffiliateRevenueBases | null;
+  /** The total earnings paid to this affiliate for referrals to this specific plan, in USD. */
+  total_referral_earnings_usd: number;
+}
+export const GetOverrideAffiliateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    applies_to_payments: S.NullOr(AffiliateAppliesToPayments),
+    applies_to_products: S.NullOr(AffiliateAppliesToProducts),
+    checkout_direct_link: S.NullOr(S.String),
+    commission_type: AffiliatePayoutTypes,
+    commission_value: S.Number,
+    id: S.String,
+    override_type: AffiliateOverrideRoles,
+    plan_id: S.NullOr(S.String),
+    product_direct_link: S.NullOr(S.String),
+    product_id: S.NullOr(S.String),
+    revenue_basis: S.NullOr(AffiliateRevenueBases),
+    total_referral_earnings_usd: S.Number,
+  }),
+).annotate({
+  identifier: "GetOverrideAffiliateResponse",
+}) as any as S.Schema<GetOverrideAffiliateResponse>;
+
 /** The direction of the sort. */
 export type Direction = "asc" | "desc";
 export const Direction = /*@__PURE__*/ S.String;
@@ -577,84 +655,6 @@ export const ListOverridesAffiliateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListOverridesAffiliateResponse",
 }) as any as S.Schema<ListOverridesAffiliateResponse>;
 
-export interface RetrieveAffiliateRequest {
-  /** The unique identifier of the affiliate. */
-  id: string;
-}
-export const RetrieveAffiliateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/affiliates/{id}", code: 200 })),
-).annotate({
-  identifier: "RetrieveAffiliateRequest",
-}) as any as S.Schema<RetrieveAffiliateRequest>;
-
-export interface RetrieveOverrideAffiliateRequest {
-  /** The affiliate ID. */
-  id: string;
-  /** The override ID. */
-  override_id: string;
-}
-export const RetrieveOverrideAffiliateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-    override_id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/affiliates/{id}/overrides/{override_id}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "RetrieveOverrideAffiliateRequest",
-}) as any as S.Schema<RetrieveOverrideAffiliateRequest>;
-
-export interface RetrieveOverrideAffiliateResponse {
-  /** Whether the commission applies to the first payment only or all payments (standard overrides only). */
-  applies_to_payments: AffiliateAppliesToPayments | null;
-  /** Whether this rev-share override applies to a single product or all products (rev-share only). */
-  applies_to_products: AffiliateAppliesToProducts | null;
-  /** The checkout direct link for referrals (standard overrides only). */
-  checkout_direct_link: string | null;
-  /** The type of commission (percentage or flat_fee). */
-  commission_type: AffiliatePayoutTypes;
-  /** The commission amount. A percentage (1-100) when commission_type is percentage, or a dollar amount when flat_fee. */
-  commission_value: number;
-  /** The unique identifier for the affiliate override. */
-  id: string;
-  /** The type of override (standard or rev_share). */
-  override_type: AffiliateOverrideRoles;
-  /** The plan ID (for standard overrides). */
-  plan_id: string | null;
-  /** The product page direct link for referrals (standard overrides only). */
-  product_direct_link: string | null;
-  /** The product ID (for rev-share overrides). */
-  product_id: string | null;
-  /** The revenue calculation basis (pre_fees or post_fees). */
-  revenue_basis: AffiliateRevenueBases | null;
-  /** The total earnings paid to this affiliate for referrals to this specific plan, in USD. */
-  total_referral_earnings_usd: number;
-}
-export const RetrieveOverrideAffiliateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    applies_to_payments: S.NullOr(AffiliateAppliesToPayments),
-    applies_to_products: S.NullOr(AffiliateAppliesToProducts),
-    checkout_direct_link: S.NullOr(S.String),
-    commission_type: AffiliatePayoutTypes,
-    commission_value: S.Number,
-    id: S.String,
-    override_type: AffiliateOverrideRoles,
-    plan_id: S.NullOr(S.String),
-    product_direct_link: S.NullOr(S.String),
-    product_id: S.NullOr(S.String),
-    revenue_basis: S.NullOr(AffiliateRevenueBases),
-    total_referral_earnings_usd: S.Number,
-  }),
-).annotate({
-  identifier: "RetrieveOverrideAffiliateResponse",
-}) as any as S.Schema<RetrieveOverrideAffiliateResponse>;
-
 export interface UnarchiveAffiliateRequest {
   /** The internal ID of the affiliate to archive. */
   id: string;
@@ -834,6 +834,46 @@ export const deleteOverrideAffiliate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetAffiliateError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | UnprocessableEntity
+  | WhopOpError;
+/** Retrieve affiliate [Legacy API — https://docs.whop.com/api-reference] Retrieves the details of an existing affiliate. Required permissions: - `affiliate:basic:read` */
+export const getAffiliate: API.OperationMethod<
+  GetAffiliateRequest,
+  Affiliate,
+  GetAffiliateError,
+  WhopOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetAffiliateRequest,
+  output: Affiliate,
+  errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
+  protocol: WhopProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetOverrideAffiliateError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | UnprocessableEntity
+  | WhopOpError;
+/** Retrieve override [Legacy API — https://docs.whop.com/api-reference] Retrieves the details of a specific affiliate override. Required permissions: - `affiliate:basic:read` */
+export const getOverrideAffiliate: API.OperationMethod<
+  GetOverrideAffiliateRequest,
+  GetOverrideAffiliateResponse,
+  GetOverrideAffiliateError,
+  WhopOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetOverrideAffiliateRequest,
+  output: GetOverrideAffiliateResponse,
+  errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
+  protocol: WhopProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListAffiliateError =
   | BadRequest
   | Forbidden
@@ -897,46 +937,6 @@ export const listOverridesAffiliate: API.PaginatedOperationMethod<
   }),
   paginateRelay,
 ) as any;
-
-export type RetrieveAffiliateError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | UnprocessableEntity
-  | WhopOpError;
-/** Retrieve affiliate [Legacy API — https://docs.whop.com/api-reference] Retrieves the details of an existing affiliate. Required permissions: - `affiliate:basic:read` */
-export const retrieveAffiliate: API.OperationMethod<
-  RetrieveAffiliateRequest,
-  Affiliate,
-  RetrieveAffiliateError,
-  WhopOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveAffiliateRequest,
-  output: Affiliate,
-  errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
-  protocol: WhopProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveOverrideAffiliateError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | UnprocessableEntity
-  | WhopOpError;
-/** Retrieve override [Legacy API — https://docs.whop.com/api-reference] Retrieves the details of a specific affiliate override. Required permissions: - `affiliate:basic:read` */
-export const retrieveOverrideAffiliate: API.OperationMethod<
-  RetrieveOverrideAffiliateRequest,
-  RetrieveOverrideAffiliateResponse,
-  RetrieveOverrideAffiliateError,
-  WhopOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveOverrideAffiliateRequest,
-  output: RetrieveOverrideAffiliateResponse,
-  errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
-  protocol: WhopProtocol,
-  retry: Retry.Retry,
-}));
 
 export type UnarchiveAffiliateError =
   | BadRequest

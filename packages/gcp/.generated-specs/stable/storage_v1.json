@@ -4,7 +4,8 @@
     "service": "storage",
     "version": "v1",
     "title": "Cloud Storage JSON API",
-    "baseUrl": "https://storage.googleapis.com/storage/v1/"
+    "baseUrl": "https://storage.googleapis.com/storage/v1/",
+    "distilled.finalized": true
   },
   "shapes": {
     "com.gcp.storage_v1#Bucket": {

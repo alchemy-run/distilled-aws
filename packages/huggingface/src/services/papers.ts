@@ -1376,24 +1376,24 @@ export const GetPaperResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetPaperResponse",
 }) as any as S.Schema<GetPaperResponse>;
 
-export interface IndexPaperRequest {
+export interface ListPaperRequest {
   /** The arXiv ID of the paper to index (e.g. 2301.00001) */
   arxivId: string;
 }
-export const IndexPaperRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListPaperRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     arxivId: S.String,
   }).pipe(T.Http({ method: "POST", uri: "/api/papers/index", code: 200 })),
 ).annotate({
-  identifier: "IndexPaperRequest",
-}) as any as S.Schema<IndexPaperRequest>;
+  identifier: "ListPaperRequest",
+}) as any as S.Schema<ListPaperRequest>;
 
-export type IndexPaperResponse = unknown;
-export const IndexPaperResponse = /*@__PURE__*/ S.suspend(() =>
+export type ListPaperResponse = unknown;
+export const ListPaperResponse = /*@__PURE__*/ S.suspend(() =>
   S.Unknown.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "IndexPaperResponse",
-}) as any as S.Schema<IndexPaperResponse>;
+  identifier: "ListPaperResponse",
+}) as any as S.Schema<ListPaperResponse>;
 
 export interface ListPapersRequest {
   cursor?: string;
@@ -1578,16 +1578,16 @@ export const getPaper: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type IndexPaperError = HuggingFaceOpError;
+export type ListPaperError = HuggingFaceOpError;
 /** Index a paper Index a paper from arXiv by its ID. If the paper is already indexed, only its authors can re-index it. */
-export const indexPaper: API.OperationMethod<
-  IndexPaperRequest,
-  IndexPaperResponse,
-  IndexPaperError,
+export const listPaper: API.OperationMethod<
+  ListPaperRequest,
+  ListPaperResponse,
+  ListPaperError,
   HuggingFaceOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: IndexPaperRequest,
-  output: IndexPaperResponse,
+  input: ListPaperRequest,
+  output: ListPaperResponse,
   errors: [],
   protocol: HuggingFaceProtocol,
   retry: Retry.Retry,

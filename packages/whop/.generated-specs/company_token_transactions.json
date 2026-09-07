@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.whop.company_token_transactions#CompanyTokenTransactionTypes": {
@@ -729,7 +730,7 @@
         "smithy.api#documentation": "Create company token transaction\n\n[Legacy API — https://docs.whop.com/api-reference]\n\nCreate a token transaction to add, subtract, or transfer tokens for a member within a company.\n\nRequired permissions:\n - `company_token_transaction:create`\n - `member:basic:read`\n - `company:basic:read`"
       }
     },
-    "com.whop.company_token_transactions#RetrieveCompanyTokenTransactionRequest": {
+    "com.whop.company_token_transactions#GetCompanyTokenTransactionRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -745,10 +746,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.whop.company_token_transactions#RetrieveCompanyTokenTransaction": {
+    "com.whop.company_token_transactions#GetCompanyTokenTransaction": {
       "type": "operation",
       "input": {
-        "target": "com.whop.company_token_transactions#RetrieveCompanyTokenTransactionRequest"
+        "target": "com.whop.company_token_transactions#GetCompanyTokenTransactionRequest"
       },
       "output": {
         "target": "com.whop.company_token_transactions#CompanyTokenTransaction"
@@ -839,7 +840,7 @@
           "target": "com.whop.company_token_transactions#CreateCompanyTokenTransaction"
         },
         {
-          "target": "com.whop.company_token_transactions#RetrieveCompanyTokenTransaction"
+          "target": "com.whop.company_token_transactions#GetCompanyTokenTransaction"
         }
       ],
       "traits": {

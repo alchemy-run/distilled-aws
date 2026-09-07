@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.workers_builds#GetAccountLimitsRequest": {
@@ -970,7 +971,7 @@
         "smithy.api#readonly": {}
       }
     },
-    "com.cloudflare.workers_builds#BuildsCancelRequest": {
+    "com.cloudflare.workers_builds#CancelBuildRequest": {
       "type": "structure",
       "members": {
         "account_id": {
@@ -994,7 +995,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.workers_builds#BuildsCancelResponseBuildOutcome": {
+    "com.cloudflare.workers_builds#CancelBuildResponseBuildOutcome": {
       "type": "enum",
       "members": {
         "SUCCESS": {
@@ -1029,11 +1030,11 @@
         }
       }
     },
-    "com.cloudflare.workers_builds#BuildsCancelResponse": {
+    "com.cloudflare.workers_builds#CancelBuildResponse": {
       "type": "structure",
       "members": {
         "build_outcome": {
-          "target": "com.cloudflare.workers_builds#BuildsCancelResponseBuildOutcome"
+          "target": "com.cloudflare.workers_builds#CancelBuildResponseBuildOutcome"
         },
         "build_uuid": {
           "target": "smithy.api#String",
@@ -1050,13 +1051,13 @@
         "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
       }
     },
-    "com.cloudflare.workers_builds#BuildsCancel": {
+    "com.cloudflare.workers_builds#CancelBuild": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.workers_builds#BuildsCancelRequest"
+        "target": "com.cloudflare.workers_builds#CancelBuildRequest"
       },
       "output": {
-        "target": "com.cloudflare.workers_builds#BuildsCancelResponse"
+        "target": "com.cloudflare.workers_builds#CancelBuildResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1068,7 +1069,7 @@
         "smithy.api#idempotent": {}
       }
     },
-    "com.cloudflare.workers_builds#BuildsGetRequest": {
+    "com.cloudflare.workers_builds#GetBuildRequest": {
       "type": "structure",
       "members": {
         "account_id": {
@@ -1092,7 +1093,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.workers_builds#BuildsGetResponseBuildOutcome": {
+    "com.cloudflare.workers_builds#GetBuildResponseBuildOutcome": {
       "type": "enum",
       "members": {
         "SUCCESS": {
@@ -1127,7 +1128,7 @@
         }
       }
     },
-    "com.cloudflare.workers_builds#BuildsGetResponseBuildTriggerMetadataBuildTriggerSource": {
+    "com.cloudflare.workers_builds#GetBuildResponseBuildTriggerMetadataBuildTriggerSource": {
       "type": "enum",
       "members": {
         "PUSH": {
@@ -1156,7 +1157,7 @@
         }
       }
     },
-    "com.cloudflare.workers_builds#BuildsGetResponseBuildTriggerMetadataEnvironmentVariablesMap": {
+    "com.cloudflare.workers_builds#GetBuildResponseBuildTriggerMetadataEnvironmentVariablesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1165,7 +1166,7 @@
         "target": "smithy.api#String"
       }
     },
-    "com.cloudflare.workers_builds#BuildsGetResponseBuildTriggerMetadataProviderType": {
+    "com.cloudflare.workers_builds#GetBuildResponseBuildTriggerMetadataProviderType": {
       "type": "enum",
       "members": {
         "GITHUB": {
@@ -1188,7 +1189,7 @@
         }
       }
     },
-    "com.cloudflare.workers_builds#BuildsGetResponseBuildTriggerMetadata": {
+    "com.cloudflare.workers_builds#GetBuildResponseBuildTriggerMetadata": {
       "type": "structure",
       "members": {
         "author": {
@@ -1213,7 +1214,7 @@
           }
         },
         "build_trigger_source": {
-          "target": "com.cloudflare.workers_builds#BuildsGetResponseBuildTriggerMetadataBuildTriggerSource"
+          "target": "com.cloudflare.workers_builds#GetBuildResponseBuildTriggerMetadataBuildTriggerSource"
         },
         "commit_hash": {
           "target": "smithy.api#String",
@@ -1228,13 +1229,13 @@
           "target": "smithy.api#String"
         },
         "environment_variables": {
-          "target": "com.cloudflare.workers_builds#BuildsGetResponseBuildTriggerMetadataEnvironmentVariablesMap"
+          "target": "com.cloudflare.workers_builds#GetBuildResponseBuildTriggerMetadataEnvironmentVariablesMap"
         },
         "provider_account_name": {
           "target": "smithy.api#String"
         },
         "provider_type": {
-          "target": "com.cloudflare.workers_builds#BuildsGetResponseBuildTriggerMetadataProviderType"
+          "target": "com.cloudflare.workers_builds#GetBuildResponseBuildTriggerMetadataProviderType"
         },
         "repo_name": {
           "target": "smithy.api#String"
@@ -1247,7 +1248,7 @@
         }
       }
     },
-    "com.cloudflare.workers_builds#BuildsGetResponsePullRequest": {
+    "com.cloudflare.workers_builds#GetBuildResponsePullRequest": {
       "type": "structure",
       "members": {
         "created_on": {
@@ -1258,7 +1259,7 @@
         }
       }
     },
-    "com.cloudflare.workers_builds#BuildsGetResponseStatus": {
+    "com.cloudflare.workers_builds#GetBuildResponseStatus": {
       "type": "enum",
       "members": {
         "QUEUED": {
@@ -1287,31 +1288,31 @@
         }
       }
     },
-    "com.cloudflare.workers_builds#BuildsGetResponseTriggerBranchExcludesList": {
+    "com.cloudflare.workers_builds#GetBuildResponseTriggerBranchExcludesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       }
     },
-    "com.cloudflare.workers_builds#BuildsGetResponseTriggerBranchIncludesList": {
+    "com.cloudflare.workers_builds#GetBuildResponseTriggerBranchIncludesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       }
     },
-    "com.cloudflare.workers_builds#BuildsGetResponseTriggerPathExcludesList": {
+    "com.cloudflare.workers_builds#GetBuildResponseTriggerPathExcludesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       }
     },
-    "com.cloudflare.workers_builds#BuildsGetResponseTriggerPathIncludesList": {
+    "com.cloudflare.workers_builds#GetBuildResponseTriggerPathIncludesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       }
     },
-    "com.cloudflare.workers_builds#BuildsGetResponseTriggerRepoConnectionProviderType": {
+    "com.cloudflare.workers_builds#GetBuildResponseTriggerRepoConnectionProviderType": {
       "type": "enum",
       "members": {
         "GITHUB": {
@@ -1334,7 +1335,7 @@
         }
       }
     },
-    "com.cloudflare.workers_builds#BuildsGetResponseTriggerRepoConnection": {
+    "com.cloudflare.workers_builds#GetBuildResponseTriggerRepoConnection": {
       "type": "structure",
       "members": {
         "created_on": {
@@ -1356,7 +1357,7 @@
           "target": "smithy.api#String"
         },
         "provider_type": {
-          "target": "com.cloudflare.workers_builds#BuildsGetResponseTriggerRepoConnectionProviderType"
+          "target": "com.cloudflare.workers_builds#GetBuildResponseTriggerRepoConnectionProviderType"
         },
         "repo_connection_uuid": {
           "target": "smithy.api#String",
@@ -1375,14 +1376,14 @@
         }
       }
     },
-    "com.cloudflare.workers_builds#BuildsGetResponseTrigger": {
+    "com.cloudflare.workers_builds#GetBuildResponseTrigger": {
       "type": "structure",
       "members": {
         "branch_excludes": {
-          "target": "com.cloudflare.workers_builds#BuildsGetResponseTriggerBranchExcludesList"
+          "target": "com.cloudflare.workers_builds#GetBuildResponseTriggerBranchExcludesList"
         },
         "branch_includes": {
-          "target": "com.cloudflare.workers_builds#BuildsGetResponseTriggerBranchIncludesList"
+          "target": "com.cloudflare.workers_builds#GetBuildResponseTriggerBranchIncludesList"
         },
         "build_caching_enabled": {
           "target": "smithy.api#Boolean"
@@ -1409,13 +1410,13 @@
           "target": "smithy.api#String"
         },
         "path_excludes": {
-          "target": "com.cloudflare.workers_builds#BuildsGetResponseTriggerPathExcludesList"
+          "target": "com.cloudflare.workers_builds#GetBuildResponseTriggerPathExcludesList"
         },
         "path_includes": {
-          "target": "com.cloudflare.workers_builds#BuildsGetResponseTriggerPathIncludesList"
+          "target": "com.cloudflare.workers_builds#GetBuildResponseTriggerPathIncludesList"
         },
         "repo_connection": {
-          "target": "com.cloudflare.workers_builds#BuildsGetResponseTriggerRepoConnection"
+          "target": "com.cloudflare.workers_builds#GetBuildResponseTriggerRepoConnection"
         },
         "root_directory": {
           "target": "smithy.api#String",
@@ -1434,14 +1435,14 @@
         }
       }
     },
-    "com.cloudflare.workers_builds#BuildsGetResponse": {
+    "com.cloudflare.workers_builds#GetBuildResponse": {
       "type": "structure",
       "members": {
         "build_outcome": {
-          "target": "com.cloudflare.workers_builds#BuildsGetResponseBuildOutcome"
+          "target": "com.cloudflare.workers_builds#GetBuildResponseBuildOutcome"
         },
         "build_trigger_metadata": {
-          "target": "com.cloudflare.workers_builds#BuildsGetResponseBuildTriggerMetadata"
+          "target": "com.cloudflare.workers_builds#GetBuildResponseBuildTriggerMetadata"
         },
         "build_uuid": {
           "target": "smithy.api#String",
@@ -1459,19 +1460,19 @@
           "target": "smithy.api#String"
         },
         "pull_request": {
-          "target": "com.cloudflare.workers_builds#BuildsGetResponsePullRequest"
+          "target": "com.cloudflare.workers_builds#GetBuildResponsePullRequest"
         },
         "running_on": {
           "target": "smithy.api#String"
         },
         "status": {
-          "target": "com.cloudflare.workers_builds#BuildsGetResponseStatus"
+          "target": "com.cloudflare.workers_builds#GetBuildResponseStatus"
         },
         "stopped_on": {
           "target": "smithy.api#String"
         },
         "trigger": {
-          "target": "com.cloudflare.workers_builds#BuildsGetResponseTrigger",
+          "target": "com.cloudflare.workers_builds#GetBuildResponseTrigger",
           "traits": {
             "smithy.api#documentation": "Trigger information without build_token_uuid"
           }
@@ -1482,13 +1483,13 @@
         "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
       }
     },
-    "com.cloudflare.workers_builds#BuildsGet": {
+    "com.cloudflare.workers_builds#GetBuild": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.workers_builds#BuildsGetRequest"
+        "target": "com.cloudflare.workers_builds#GetBuildRequest"
       },
       "output": {
-        "target": "com.cloudflare.workers_builds#BuildsGetResponse"
+        "target": "com.cloudflare.workers_builds#GetBuildResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1500,7 +1501,7 @@
         "smithy.api#readonly": {}
       }
     },
-    "com.cloudflare.workers_builds#BuildsListRequest": {
+    "com.cloudflare.workers_builds#ListBuildsRequest": {
       "type": "structure",
       "members": {
         "account_id": {
@@ -1538,7 +1539,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.workers_builds#BuildsListResultItemBuildOutcome": {
+    "com.cloudflare.workers_builds#ListBuildsResultItemBuildOutcome": {
       "type": "enum",
       "members": {
         "SUCCESS": {
@@ -1573,7 +1574,7 @@
         }
       }
     },
-    "com.cloudflare.workers_builds#BuildsListResultItemBuildTriggerMetadataBuildTriggerSource": {
+    "com.cloudflare.workers_builds#ListBuildsResultItemBuildTriggerMetadataBuildTriggerSource": {
       "type": "enum",
       "members": {
         "PUSH": {
@@ -1602,7 +1603,7 @@
         }
       }
     },
-    "com.cloudflare.workers_builds#BuildsListResultItemBuildTriggerMetadataEnvironmentVariablesMap": {
+    "com.cloudflare.workers_builds#ListBuildsResultItemBuildTriggerMetadataEnvironmentVariablesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1611,7 +1612,7 @@
         "target": "smithy.api#String"
       }
     },
-    "com.cloudflare.workers_builds#BuildsListResultItemBuildTriggerMetadataProviderType": {
+    "com.cloudflare.workers_builds#ListBuildsResultItemBuildTriggerMetadataProviderType": {
       "type": "enum",
       "members": {
         "GITHUB": {
@@ -1634,7 +1635,7 @@
         }
       }
     },
-    "com.cloudflare.workers_builds#BuildsListResultItemBuildTriggerMetadata": {
+    "com.cloudflare.workers_builds#ListBuildsResultItemBuildTriggerMetadata": {
       "type": "structure",
       "members": {
         "author": {
@@ -1659,7 +1660,7 @@
           }
         },
         "build_trigger_source": {
-          "target": "com.cloudflare.workers_builds#BuildsListResultItemBuildTriggerMetadataBuildTriggerSource"
+          "target": "com.cloudflare.workers_builds#ListBuildsResultItemBuildTriggerMetadataBuildTriggerSource"
         },
         "commit_hash": {
           "target": "smithy.api#String",
@@ -1674,13 +1675,13 @@
           "target": "smithy.api#String"
         },
         "environment_variables": {
-          "target": "com.cloudflare.workers_builds#BuildsListResultItemBuildTriggerMetadataEnvironmentVariablesMap"
+          "target": "com.cloudflare.workers_builds#ListBuildsResultItemBuildTriggerMetadataEnvironmentVariablesMap"
         },
         "provider_account_name": {
           "target": "smithy.api#String"
         },
         "provider_type": {
-          "target": "com.cloudflare.workers_builds#BuildsListResultItemBuildTriggerMetadataProviderType"
+          "target": "com.cloudflare.workers_builds#ListBuildsResultItemBuildTriggerMetadataProviderType"
         },
         "repo_name": {
           "target": "smithy.api#String"
@@ -1693,7 +1694,7 @@
         }
       }
     },
-    "com.cloudflare.workers_builds#BuildsListResultItemPullRequest": {
+    "com.cloudflare.workers_builds#ListBuildsResultItemPullRequest": {
       "type": "structure",
       "members": {
         "created_on": {
@@ -1704,7 +1705,7 @@
         }
       }
     },
-    "com.cloudflare.workers_builds#BuildsListResultItemStatus": {
+    "com.cloudflare.workers_builds#ListBuildsResultItemStatus": {
       "type": "enum",
       "members": {
         "QUEUED": {
@@ -1733,31 +1734,31 @@
         }
       }
     },
-    "com.cloudflare.workers_builds#BuildsListResultItemTriggerBranchExcludesList": {
+    "com.cloudflare.workers_builds#ListBuildsResultItemTriggerBranchExcludesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       }
     },
-    "com.cloudflare.workers_builds#BuildsListResultItemTriggerBranchIncludesList": {
+    "com.cloudflare.workers_builds#ListBuildsResultItemTriggerBranchIncludesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       }
     },
-    "com.cloudflare.workers_builds#BuildsListResultItemTriggerPathExcludesList": {
+    "com.cloudflare.workers_builds#ListBuildsResultItemTriggerPathExcludesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       }
     },
-    "com.cloudflare.workers_builds#BuildsListResultItemTriggerPathIncludesList": {
+    "com.cloudflare.workers_builds#ListBuildsResultItemTriggerPathIncludesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       }
     },
-    "com.cloudflare.workers_builds#BuildsListResultItemTriggerRepoConnectionProviderType": {
+    "com.cloudflare.workers_builds#ListBuildsResultItemTriggerRepoConnectionProviderType": {
       "type": "enum",
       "members": {
         "GITHUB": {
@@ -1780,7 +1781,7 @@
         }
       }
     },
-    "com.cloudflare.workers_builds#BuildsListResultItemTriggerRepoConnection": {
+    "com.cloudflare.workers_builds#ListBuildsResultItemTriggerRepoConnection": {
       "type": "structure",
       "members": {
         "created_on": {
@@ -1802,7 +1803,7 @@
           "target": "smithy.api#String"
         },
         "provider_type": {
-          "target": "com.cloudflare.workers_builds#BuildsListResultItemTriggerRepoConnectionProviderType"
+          "target": "com.cloudflare.workers_builds#ListBuildsResultItemTriggerRepoConnectionProviderType"
         },
         "repo_connection_uuid": {
           "target": "smithy.api#String",
@@ -1821,14 +1822,14 @@
         }
       }
     },
-    "com.cloudflare.workers_builds#BuildsListResultItemTrigger": {
+    "com.cloudflare.workers_builds#ListBuildsResultItemTrigger": {
       "type": "structure",
       "members": {
         "branch_excludes": {
-          "target": "com.cloudflare.workers_builds#BuildsListResultItemTriggerBranchExcludesList"
+          "target": "com.cloudflare.workers_builds#ListBuildsResultItemTriggerBranchExcludesList"
         },
         "branch_includes": {
-          "target": "com.cloudflare.workers_builds#BuildsListResultItemTriggerBranchIncludesList"
+          "target": "com.cloudflare.workers_builds#ListBuildsResultItemTriggerBranchIncludesList"
         },
         "build_caching_enabled": {
           "target": "smithy.api#Boolean"
@@ -1855,13 +1856,13 @@
           "target": "smithy.api#String"
         },
         "path_excludes": {
-          "target": "com.cloudflare.workers_builds#BuildsListResultItemTriggerPathExcludesList"
+          "target": "com.cloudflare.workers_builds#ListBuildsResultItemTriggerPathExcludesList"
         },
         "path_includes": {
-          "target": "com.cloudflare.workers_builds#BuildsListResultItemTriggerPathIncludesList"
+          "target": "com.cloudflare.workers_builds#ListBuildsResultItemTriggerPathIncludesList"
         },
         "repo_connection": {
-          "target": "com.cloudflare.workers_builds#BuildsListResultItemTriggerRepoConnection"
+          "target": "com.cloudflare.workers_builds#ListBuildsResultItemTriggerRepoConnection"
         },
         "root_directory": {
           "target": "smithy.api#String",
@@ -1880,14 +1881,14 @@
         }
       }
     },
-    "com.cloudflare.workers_builds#BuildsListResultItem": {
+    "com.cloudflare.workers_builds#ListBuildsResultItem": {
       "type": "structure",
       "members": {
         "build_outcome": {
-          "target": "com.cloudflare.workers_builds#BuildsListResultItemBuildOutcome"
+          "target": "com.cloudflare.workers_builds#ListBuildsResultItemBuildOutcome"
         },
         "build_trigger_metadata": {
-          "target": "com.cloudflare.workers_builds#BuildsListResultItemBuildTriggerMetadata"
+          "target": "com.cloudflare.workers_builds#ListBuildsResultItemBuildTriggerMetadata"
         },
         "build_uuid": {
           "target": "smithy.api#String",
@@ -1905,36 +1906,36 @@
           "target": "smithy.api#String"
         },
         "pull_request": {
-          "target": "com.cloudflare.workers_builds#BuildsListResultItemPullRequest"
+          "target": "com.cloudflare.workers_builds#ListBuildsResultItemPullRequest"
         },
         "running_on": {
           "target": "smithy.api#String"
         },
         "status": {
-          "target": "com.cloudflare.workers_builds#BuildsListResultItemStatus"
+          "target": "com.cloudflare.workers_builds#ListBuildsResultItemStatus"
         },
         "stopped_on": {
           "target": "smithy.api#String"
         },
         "trigger": {
-          "target": "com.cloudflare.workers_builds#BuildsListResultItemTrigger",
+          "target": "com.cloudflare.workers_builds#ListBuildsResultItemTrigger",
           "traits": {
             "smithy.api#documentation": "Trigger information without build_token_uuid"
           }
         }
       }
     },
-    "com.cloudflare.workers_builds#BuildsListResultList": {
+    "com.cloudflare.workers_builds#ListBuildsResultList": {
       "type": "list",
       "member": {
-        "target": "com.cloudflare.workers_builds#BuildsListResultItem"
+        "target": "com.cloudflare.workers_builds#ListBuildsResultItem"
       }
     },
-    "com.cloudflare.workers_builds#BuildsListResponse": {
+    "com.cloudflare.workers_builds#ListBuildsResponse": {
       "type": "structure",
       "members": {
         "result": {
-          "target": "com.cloudflare.workers_builds#BuildsListResultList",
+          "target": "com.cloudflare.workers_builds#ListBuildsResultList",
           "traits": {
             "com.cloudflare.protocols#envelopePayload": {},
             "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
@@ -1945,13 +1946,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.cloudflare.workers_builds#BuildsList": {
+    "com.cloudflare.workers_builds#ListBuilds": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.workers_builds#BuildsListRequest"
+        "target": "com.cloudflare.workers_builds#ListBuildsRequest"
       },
       "output": {
-        "target": "com.cloudflare.workers_builds#BuildsListResponse"
+        "target": "com.cloudflare.workers_builds#ListBuildsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1963,7 +1964,7 @@
         "smithy.api#readonly": {}
       }
     },
-    "com.cloudflare.workers_builds#BuildsLogsGetRequest": {
+    "com.cloudflare.workers_builds#GetBuildsLogRequest": {
       "type": "structure",
       "members": {
         "account_id": {
@@ -1994,7 +1995,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.workers_builds#BuildsLogsGetResponseLinesItem": {
+    "com.cloudflare.workers_builds#GetBuildsLogResponseLinesItem": {
       "type": "union",
       "members": {
         "String": {
@@ -2005,13 +2006,13 @@
         }
       }
     },
-    "com.cloudflare.workers_builds#BuildsLogsGetResponseLinesList": {
+    "com.cloudflare.workers_builds#GetBuildsLogResponseLinesList": {
       "type": "list",
       "member": {
-        "target": "com.cloudflare.workers_builds#BuildsLogsGetResponseLinesItem"
+        "target": "com.cloudflare.workers_builds#GetBuildsLogResponseLinesItem"
       }
     },
-    "com.cloudflare.workers_builds#BuildsLogsGetResponse": {
+    "com.cloudflare.workers_builds#GetBuildsLogResponse": {
       "type": "structure",
       "members": {
         "cursor": {
@@ -2021,7 +2022,7 @@
           }
         },
         "lines": {
-          "target": "com.cloudflare.workers_builds#BuildsLogsGetResponseLinesList"
+          "target": "com.cloudflare.workers_builds#GetBuildsLogResponseLinesList"
         },
         "truncated": {
           "target": "smithy.api#Boolean"
@@ -2032,13 +2033,13 @@
         "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
       }
     },
-    "com.cloudflare.workers_builds#BuildsLogsGet": {
+    "com.cloudflare.workers_builds#GetBuildsLog": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.workers_builds#BuildsLogsGetRequest"
+        "target": "com.cloudflare.workers_builds#GetBuildsLogRequest"
       },
       "output": {
-        "target": "com.cloudflare.workers_builds#BuildsLogsGetResponse"
+        "target": "com.cloudflare.workers_builds#GetBuildsLogResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2623,7 +2624,7 @@
         "smithy.api#idempotent": {}
       }
     },
-    "com.cloudflare.workers_builds#ReposConfigAutofillGetRequestProviderType": {
+    "com.cloudflare.workers_builds#GetReposConfigAutofillRequestProviderType": {
       "type": "enum",
       "members": {
         "GITHUB": {
@@ -2646,7 +2647,7 @@
         }
       }
     },
-    "com.cloudflare.workers_builds#ReposConfigAutofillGetRequest": {
+    "com.cloudflare.workers_builds#GetReposConfigAutofillRequest": {
       "type": "structure",
       "members": {
         "account_id": {
@@ -2658,7 +2659,7 @@
           }
         },
         "provider_type": {
-          "target": "com.cloudflare.workers_builds#ReposConfigAutofillGetRequestProviderType",
+          "target": "com.cloudflare.workers_builds#GetReposConfigAutofillRequestProviderType",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
@@ -2700,7 +2701,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.workers_builds#ReposConfigAutofillGetResponseEnvWorkerNamesMap": {
+    "com.cloudflare.workers_builds#GetReposConfigAutofillResponseEnvWorkerNamesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2709,7 +2710,7 @@
         "target": "smithy.api#String"
       }
     },
-    "com.cloudflare.workers_builds#ReposConfigAutofillGetResponsePackageManager": {
+    "com.cloudflare.workers_builds#GetReposConfigAutofillResponsePackageManager": {
       "type": "enum",
       "members": {
         "NPM": {
@@ -2744,7 +2745,7 @@
         }
       }
     },
-    "com.cloudflare.workers_builds#ReposConfigAutofillGetResponseScriptsMap": {
+    "com.cloudflare.workers_builds#GetReposConfigAutofillResponseScriptsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2753,7 +2754,7 @@
         "target": "smithy.api#String"
       }
     },
-    "com.cloudflare.workers_builds#ReposConfigAutofillGetResponse": {
+    "com.cloudflare.workers_builds#GetReposConfigAutofillResponse": {
       "type": "structure",
       "members": {
         "config_file": {
@@ -2763,13 +2764,13 @@
           "target": "smithy.api#String"
         },
         "env_worker_names": {
-          "target": "com.cloudflare.workers_builds#ReposConfigAutofillGetResponseEnvWorkerNamesMap"
+          "target": "com.cloudflare.workers_builds#GetReposConfigAutofillResponseEnvWorkerNamesMap"
         },
         "package_manager": {
-          "target": "com.cloudflare.workers_builds#ReposConfigAutofillGetResponsePackageManager"
+          "target": "com.cloudflare.workers_builds#GetReposConfigAutofillResponsePackageManager"
         },
         "scripts": {
-          "target": "com.cloudflare.workers_builds#ReposConfigAutofillGetResponseScriptsMap"
+          "target": "com.cloudflare.workers_builds#GetReposConfigAutofillResponseScriptsMap"
         }
       },
       "traits": {
@@ -2777,13 +2778,13 @@
         "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
       }
     },
-    "com.cloudflare.workers_builds#ReposConfigAutofillGet": {
+    "com.cloudflare.workers_builds#GetReposConfigAutofill": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.workers_builds#ReposConfigAutofillGetRequest"
+        "target": "com.cloudflare.workers_builds#GetReposConfigAutofillRequest"
       },
       "output": {
-        "target": "com.cloudflare.workers_builds#ReposConfigAutofillGetResponse"
+        "target": "com.cloudflare.workers_builds#GetReposConfigAutofillResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2795,7 +2796,7 @@
         "smithy.api#readonly": {}
       }
     },
-    "com.cloudflare.workers_builds#ReposConnectionsDeleteRequest": {
+    "com.cloudflare.workers_builds#DeleteReposConnectionRequest": {
       "type": "structure",
       "members": {
         "account_id": {
@@ -2819,7 +2820,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.workers_builds#ReposConnectionsDeleteResponse": {
+    "com.cloudflare.workers_builds#DeleteReposConnectionResponse": {
       "type": "structure",
       "members": {
         "result": {
@@ -2834,13 +2835,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.cloudflare.workers_builds#ReposConnectionsDelete": {
+    "com.cloudflare.workers_builds#DeleteReposConnection": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.workers_builds#ReposConnectionsDeleteRequest"
+        "target": "com.cloudflare.workers_builds#DeleteReposConnectionRequest"
       },
       "output": {
-        "target": "com.cloudflare.workers_builds#ReposConnectionsDeleteResponse"
+        "target": "com.cloudflare.workers_builds#DeleteReposConnectionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2852,7 +2853,7 @@
         "smithy.api#idempotent": {}
       }
     },
-    "com.cloudflare.workers_builds#ReposConnectionsUpsertRequestProviderType": {
+    "com.cloudflare.workers_builds#UpsertReposConnectionRequestProviderType": {
       "type": "enum",
       "members": {
         "GITHUB": {
@@ -2875,7 +2876,7 @@
         }
       }
     },
-    "com.cloudflare.workers_builds#ReposConnectionsUpsertRequest": {
+    "com.cloudflare.workers_builds#UpsertReposConnectionRequest": {
       "type": "structure",
       "members": {
         "account_id": {
@@ -2900,7 +2901,7 @@
           }
         },
         "provider_type": {
-          "target": "com.cloudflare.workers_builds#ReposConnectionsUpsertRequestProviderType",
+          "target": "com.cloudflare.workers_builds#UpsertReposConnectionRequestProviderType",
           "traits": {
             "smithy.api#required": {}
           }
@@ -2923,7 +2924,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.workers_builds#ReposConnectionsUpsertResponseProviderType": {
+    "com.cloudflare.workers_builds#UpsertReposConnectionResponseProviderType": {
       "type": "enum",
       "members": {
         "GITHUB": {
@@ -2946,7 +2947,7 @@
         }
       }
     },
-    "com.cloudflare.workers_builds#ReposConnectionsUpsertResponse": {
+    "com.cloudflare.workers_builds#UpsertReposConnectionResponse": {
       "type": "structure",
       "members": {
         "created_on": {
@@ -2968,7 +2969,7 @@
           "target": "smithy.api#String"
         },
         "provider_type": {
-          "target": "com.cloudflare.workers_builds#ReposConnectionsUpsertResponseProviderType"
+          "target": "com.cloudflare.workers_builds#UpsertReposConnectionResponseProviderType"
         },
         "repo_connection_uuid": {
           "target": "smithy.api#String",
@@ -2991,13 +2992,13 @@
         "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
       }
     },
-    "com.cloudflare.workers_builds#ReposConnectionsUpsert": {
+    "com.cloudflare.workers_builds#UpsertReposConnection": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.workers_builds#ReposConnectionsUpsertRequest"
+        "target": "com.cloudflare.workers_builds#UpsertReposConnectionRequest"
       },
       "output": {
-        "target": "com.cloudflare.workers_builds#ReposConnectionsUpsertResponse"
+        "target": "com.cloudflare.workers_builds#UpsertReposConnectionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3009,7 +3010,7 @@
         "smithy.api#idempotent": {}
       }
     },
-    "com.cloudflare.workers_builds#TokensCreateRequest": {
+    "com.cloudflare.workers_builds#CreateTokenRequest": {
       "type": "structure",
       "members": {
         "account_id": {
@@ -3043,7 +3044,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.workers_builds#TokensCreateResponse": {
+    "com.cloudflare.workers_builds#CreateTokenResponse": {
       "type": "structure",
       "members": {
         "build_token_name": {
@@ -3067,13 +3068,13 @@
         "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
       }
     },
-    "com.cloudflare.workers_builds#TokensCreate": {
+    "com.cloudflare.workers_builds#CreateToken": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.workers_builds#TokensCreateRequest"
+        "target": "com.cloudflare.workers_builds#CreateTokenRequest"
       },
       "output": {
-        "target": "com.cloudflare.workers_builds#TokensCreateResponse"
+        "target": "com.cloudflare.workers_builds#CreateTokenResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3084,7 +3085,7 @@
         "smithy.api#documentation": "Create a new build authentication token"
       }
     },
-    "com.cloudflare.workers_builds#TokensDeleteRequest": {
+    "com.cloudflare.workers_builds#DeleteTokenRequest": {
       "type": "structure",
       "members": {
         "account_id": {
@@ -3108,7 +3109,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.workers_builds#TokensDeleteResponse": {
+    "com.cloudflare.workers_builds#DeleteTokenResponse": {
       "type": "structure",
       "members": {
         "result": {
@@ -3123,13 +3124,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.cloudflare.workers_builds#TokensDelete": {
+    "com.cloudflare.workers_builds#DeleteToken": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.workers_builds#TokensDeleteRequest"
+        "target": "com.cloudflare.workers_builds#DeleteTokenRequest"
       },
       "output": {
-        "target": "com.cloudflare.workers_builds#TokensDeleteResponse"
+        "target": "com.cloudflare.workers_builds#DeleteTokenResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3141,7 +3142,7 @@
         "smithy.api#idempotent": {}
       }
     },
-    "com.cloudflare.workers_builds#TokensListRequest": {
+    "com.cloudflare.workers_builds#ListTokensRequest": {
       "type": "structure",
       "members": {
         "account_id": {
@@ -3171,7 +3172,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.workers_builds#TokensListResultItem": {
+    "com.cloudflare.workers_builds#ListTokensResultItem": {
       "type": "structure",
       "members": {
         "build_token_name": {
@@ -3191,17 +3192,17 @@
         }
       }
     },
-    "com.cloudflare.workers_builds#TokensListResultList": {
+    "com.cloudflare.workers_builds#ListTokensResultList": {
       "type": "list",
       "member": {
-        "target": "com.cloudflare.workers_builds#TokensListResultItem"
+        "target": "com.cloudflare.workers_builds#ListTokensResultItem"
       }
     },
-    "com.cloudflare.workers_builds#TokensListResponse": {
+    "com.cloudflare.workers_builds#ListTokensResponse": {
       "type": "structure",
       "members": {
         "result": {
-          "target": "com.cloudflare.workers_builds#TokensListResultList",
+          "target": "com.cloudflare.workers_builds#ListTokensResultList",
           "traits": {
             "com.cloudflare.protocols#envelopePayload": {},
             "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
@@ -3212,13 +3213,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.cloudflare.workers_builds#TokensList": {
+    "com.cloudflare.workers_builds#ListTokens": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.workers_builds#TokensListRequest"
+        "target": "com.cloudflare.workers_builds#ListTokensRequest"
       },
       "output": {
-        "target": "com.cloudflare.workers_builds#TokensListResponse"
+        "target": "com.cloudflare.workers_builds#ListTokensResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3230,31 +3231,31 @@
         "smithy.api#readonly": {}
       }
     },
-    "com.cloudflare.workers_builds#TriggersCreateRequestBranchExcludesList": {
+    "com.cloudflare.workers_builds#CreateTriggerRequestBranchExcludesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       }
     },
-    "com.cloudflare.workers_builds#TriggersCreateRequestBranchIncludesList": {
+    "com.cloudflare.workers_builds#CreateTriggerRequestBranchIncludesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       }
     },
-    "com.cloudflare.workers_builds#TriggersCreateRequestPathExcludesList": {
+    "com.cloudflare.workers_builds#CreateTriggerRequestPathExcludesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       }
     },
-    "com.cloudflare.workers_builds#TriggersCreateRequestPathIncludesList": {
+    "com.cloudflare.workers_builds#CreateTriggerRequestPathIncludesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       }
     },
-    "com.cloudflare.workers_builds#TriggersCreateRequest": {
+    "com.cloudflare.workers_builds#CreateTriggerRequest": {
       "type": "structure",
       "members": {
         "account_id": {
@@ -3266,13 +3267,13 @@
           }
         },
         "branch_excludes": {
-          "target": "com.cloudflare.workers_builds#TriggersCreateRequestBranchExcludesList",
+          "target": "com.cloudflare.workers_builds#CreateTriggerRequestBranchExcludesList",
           "traits": {
             "smithy.api#required": {}
           }
         },
         "branch_includes": {
-          "target": "com.cloudflare.workers_builds#TriggersCreateRequestBranchIncludesList",
+          "target": "com.cloudflare.workers_builds#CreateTriggerRequestBranchIncludesList",
           "traits": {
             "smithy.api#required": {}
           }
@@ -3304,13 +3305,13 @@
           }
         },
         "path_excludes": {
-          "target": "com.cloudflare.workers_builds#TriggersCreateRequestPathExcludesList",
+          "target": "com.cloudflare.workers_builds#CreateTriggerRequestPathExcludesList",
           "traits": {
             "smithy.api#required": {}
           }
         },
         "path_includes": {
-          "target": "com.cloudflare.workers_builds#TriggersCreateRequestPathIncludesList",
+          "target": "com.cloudflare.workers_builds#CreateTriggerRequestPathIncludesList",
           "traits": {
             "smithy.api#required": {}
           }
@@ -3343,31 +3344,31 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.workers_builds#TriggersCreateResponseBranchExcludesList": {
+    "com.cloudflare.workers_builds#CreateTriggerResponseBranchExcludesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       }
     },
-    "com.cloudflare.workers_builds#TriggersCreateResponseBranchIncludesList": {
+    "com.cloudflare.workers_builds#CreateTriggerResponseBranchIncludesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       }
     },
-    "com.cloudflare.workers_builds#TriggersCreateResponsePathExcludesList": {
+    "com.cloudflare.workers_builds#CreateTriggerResponsePathExcludesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       }
     },
-    "com.cloudflare.workers_builds#TriggersCreateResponsePathIncludesList": {
+    "com.cloudflare.workers_builds#CreateTriggerResponsePathIncludesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       }
     },
-    "com.cloudflare.workers_builds#TriggersCreateResponseRepoConnectionProviderType": {
+    "com.cloudflare.workers_builds#CreateTriggerResponseRepoConnectionProviderType": {
       "type": "enum",
       "members": {
         "GITHUB": {
@@ -3390,7 +3391,7 @@
         }
       }
     },
-    "com.cloudflare.workers_builds#TriggersCreateResponseRepoConnection": {
+    "com.cloudflare.workers_builds#CreateTriggerResponseRepoConnection": {
       "type": "structure",
       "members": {
         "created_on": {
@@ -3412,7 +3413,7 @@
           "target": "smithy.api#String"
         },
         "provider_type": {
-          "target": "com.cloudflare.workers_builds#TriggersCreateResponseRepoConnectionProviderType"
+          "target": "com.cloudflare.workers_builds#CreateTriggerResponseRepoConnectionProviderType"
         },
         "repo_connection_uuid": {
           "target": "smithy.api#String",
@@ -3431,14 +3432,14 @@
         }
       }
     },
-    "com.cloudflare.workers_builds#TriggersCreateResponse": {
+    "com.cloudflare.workers_builds#CreateTriggerResponse": {
       "type": "structure",
       "members": {
         "branch_excludes": {
-          "target": "com.cloudflare.workers_builds#TriggersCreateResponseBranchExcludesList"
+          "target": "com.cloudflare.workers_builds#CreateTriggerResponseBranchExcludesList"
         },
         "branch_includes": {
-          "target": "com.cloudflare.workers_builds#TriggersCreateResponseBranchIncludesList"
+          "target": "com.cloudflare.workers_builds#CreateTriggerResponseBranchIncludesList"
         },
         "build_caching_enabled": {
           "target": "smithy.api#Boolean"
@@ -3474,13 +3475,13 @@
           "target": "smithy.api#String"
         },
         "path_excludes": {
-          "target": "com.cloudflare.workers_builds#TriggersCreateResponsePathExcludesList"
+          "target": "com.cloudflare.workers_builds#CreateTriggerResponsePathExcludesList"
         },
         "path_includes": {
-          "target": "com.cloudflare.workers_builds#TriggersCreateResponsePathIncludesList"
+          "target": "com.cloudflare.workers_builds#CreateTriggerResponsePathIncludesList"
         },
         "repo_connection": {
-          "target": "com.cloudflare.workers_builds#TriggersCreateResponseRepoConnection"
+          "target": "com.cloudflare.workers_builds#CreateTriggerResponseRepoConnection"
         },
         "root_directory": {
           "target": "smithy.api#String",
@@ -3503,13 +3504,13 @@
         "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
       }
     },
-    "com.cloudflare.workers_builds#TriggersCreate": {
+    "com.cloudflare.workers_builds#CreateTrigger": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.workers_builds#TriggersCreateRequest"
+        "target": "com.cloudflare.workers_builds#CreateTriggerRequest"
       },
       "output": {
-        "target": "com.cloudflare.workers_builds#TriggersCreateResponse"
+        "target": "com.cloudflare.workers_builds#CreateTriggerResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3688,7 +3689,7 @@
         "smithy.api#documentation": "Trigger a manual build for a specific trigger"
       }
     },
-    "com.cloudflare.workers_builds#TriggersDeleteRequest": {
+    "com.cloudflare.workers_builds#DeleteTriggerRequest": {
       "type": "structure",
       "members": {
         "account_id": {
@@ -3712,7 +3713,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.workers_builds#TriggersDeleteResponse": {
+    "com.cloudflare.workers_builds#DeleteTriggerResponse": {
       "type": "structure",
       "members": {
         "result": {
@@ -3727,13 +3728,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.cloudflare.workers_builds#TriggersDelete": {
+    "com.cloudflare.workers_builds#DeleteTrigger": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.workers_builds#TriggersDeleteRequest"
+        "target": "com.cloudflare.workers_builds#DeleteTriggerRequest"
       },
       "output": {
-        "target": "com.cloudflare.workers_builds#TriggersDeleteResponse"
+        "target": "com.cloudflare.workers_builds#DeleteTriggerResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3745,7 +3746,7 @@
         "smithy.api#idempotent": {}
       }
     },
-    "com.cloudflare.workers_builds#TriggersListRequest": {
+    "com.cloudflare.workers_builds#ListTriggersRequest": {
       "type": "structure",
       "members": {
         "account_id": {
@@ -3769,31 +3770,31 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.workers_builds#TriggersListResultItemBranchExcludesList": {
+    "com.cloudflare.workers_builds#ListTriggersResultItemBranchExcludesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       }
     },
-    "com.cloudflare.workers_builds#TriggersListResultItemBranchIncludesList": {
+    "com.cloudflare.workers_builds#ListTriggersResultItemBranchIncludesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       }
     },
-    "com.cloudflare.workers_builds#TriggersListResultItemPathExcludesList": {
+    "com.cloudflare.workers_builds#ListTriggersResultItemPathExcludesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       }
     },
-    "com.cloudflare.workers_builds#TriggersListResultItemPathIncludesList": {
+    "com.cloudflare.workers_builds#ListTriggersResultItemPathIncludesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       }
     },
-    "com.cloudflare.workers_builds#TriggersListResultItemRepoConnectionProviderType": {
+    "com.cloudflare.workers_builds#ListTriggersResultItemRepoConnectionProviderType": {
       "type": "enum",
       "members": {
         "GITHUB": {
@@ -3816,7 +3817,7 @@
         }
       }
     },
-    "com.cloudflare.workers_builds#TriggersListResultItemRepoConnection": {
+    "com.cloudflare.workers_builds#ListTriggersResultItemRepoConnection": {
       "type": "structure",
       "members": {
         "created_on": {
@@ -3838,7 +3839,7 @@
           "target": "smithy.api#String"
         },
         "provider_type": {
-          "target": "com.cloudflare.workers_builds#TriggersListResultItemRepoConnectionProviderType"
+          "target": "com.cloudflare.workers_builds#ListTriggersResultItemRepoConnectionProviderType"
         },
         "repo_connection_uuid": {
           "target": "smithy.api#String",
@@ -3857,14 +3858,14 @@
         }
       }
     },
-    "com.cloudflare.workers_builds#TriggersListResultItem": {
+    "com.cloudflare.workers_builds#ListTriggersResultItem": {
       "type": "structure",
       "members": {
         "branch_excludes": {
-          "target": "com.cloudflare.workers_builds#TriggersListResultItemBranchExcludesList"
+          "target": "com.cloudflare.workers_builds#ListTriggersResultItemBranchExcludesList"
         },
         "branch_includes": {
-          "target": "com.cloudflare.workers_builds#TriggersListResultItemBranchIncludesList"
+          "target": "com.cloudflare.workers_builds#ListTriggersResultItemBranchIncludesList"
         },
         "build_caching_enabled": {
           "target": "smithy.api#Boolean"
@@ -3900,13 +3901,13 @@
           "target": "smithy.api#String"
         },
         "path_excludes": {
-          "target": "com.cloudflare.workers_builds#TriggersListResultItemPathExcludesList"
+          "target": "com.cloudflare.workers_builds#ListTriggersResultItemPathExcludesList"
         },
         "path_includes": {
-          "target": "com.cloudflare.workers_builds#TriggersListResultItemPathIncludesList"
+          "target": "com.cloudflare.workers_builds#ListTriggersResultItemPathIncludesList"
         },
         "repo_connection": {
-          "target": "com.cloudflare.workers_builds#TriggersListResultItemRepoConnection"
+          "target": "com.cloudflare.workers_builds#ListTriggersResultItemRepoConnection"
         },
         "root_directory": {
           "target": "smithy.api#String",
@@ -3925,17 +3926,17 @@
         }
       }
     },
-    "com.cloudflare.workers_builds#TriggersListResultList": {
+    "com.cloudflare.workers_builds#ListTriggersResultList": {
       "type": "list",
       "member": {
-        "target": "com.cloudflare.workers_builds#TriggersListResultItem"
+        "target": "com.cloudflare.workers_builds#ListTriggersResultItem"
       }
     },
-    "com.cloudflare.workers_builds#TriggersListResponse": {
+    "com.cloudflare.workers_builds#ListTriggersResponse": {
       "type": "structure",
       "members": {
         "result": {
-          "target": "com.cloudflare.workers_builds#TriggersListResultList",
+          "target": "com.cloudflare.workers_builds#ListTriggersResultList",
           "traits": {
             "com.cloudflare.protocols#envelopePayload": {},
             "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
@@ -3946,13 +3947,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.cloudflare.workers_builds#TriggersList": {
+    "com.cloudflare.workers_builds#ListTriggers": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.workers_builds#TriggersListRequest"
+        "target": "com.cloudflare.workers_builds#ListTriggersRequest"
       },
       "output": {
-        "target": "com.cloudflare.workers_builds#TriggersListResponse"
+        "target": "com.cloudflare.workers_builds#ListTriggersResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4020,31 +4021,31 @@
         "smithy.api#documentation": "Clear the build cache for a specific trigger"
       }
     },
-    "com.cloudflare.workers_builds#TriggersUpdateRequestBranchExcludesList": {
+    "com.cloudflare.workers_builds#UpdateTriggerRequestBranchExcludesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       }
     },
-    "com.cloudflare.workers_builds#TriggersUpdateRequestBranchIncludesList": {
+    "com.cloudflare.workers_builds#UpdateTriggerRequestBranchIncludesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       }
     },
-    "com.cloudflare.workers_builds#TriggersUpdateRequestPathExcludesList": {
+    "com.cloudflare.workers_builds#UpdateTriggerRequestPathExcludesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       }
     },
-    "com.cloudflare.workers_builds#TriggersUpdateRequestPathIncludesList": {
+    "com.cloudflare.workers_builds#UpdateTriggerRequestPathIncludesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       }
     },
-    "com.cloudflare.workers_builds#TriggersUpdateRequest": {
+    "com.cloudflare.workers_builds#UpdateTriggerRequest": {
       "type": "structure",
       "members": {
         "account_id": {
@@ -4064,10 +4065,10 @@
           }
         },
         "branch_excludes": {
-          "target": "com.cloudflare.workers_builds#TriggersUpdateRequestBranchExcludesList"
+          "target": "com.cloudflare.workers_builds#UpdateTriggerRequestBranchExcludesList"
         },
         "branch_includes": {
-          "target": "com.cloudflare.workers_builds#TriggersUpdateRequestBranchIncludesList"
+          "target": "com.cloudflare.workers_builds#UpdateTriggerRequestBranchIncludesList"
         },
         "build_caching_enabled": {
           "target": "smithy.api#Boolean"
@@ -4085,10 +4086,10 @@
           "target": "smithy.api#String"
         },
         "path_excludes": {
-          "target": "com.cloudflare.workers_builds#TriggersUpdateRequestPathExcludesList"
+          "target": "com.cloudflare.workers_builds#UpdateTriggerRequestPathExcludesList"
         },
         "path_includes": {
-          "target": "com.cloudflare.workers_builds#TriggersUpdateRequestPathIncludesList"
+          "target": "com.cloudflare.workers_builds#UpdateTriggerRequestPathIncludesList"
         },
         "root_directory": {
           "target": "smithy.api#String",
@@ -4104,31 +4105,31 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.workers_builds#TriggersUpdateResponseBranchExcludesList": {
+    "com.cloudflare.workers_builds#UpdateTriggerResponseBranchExcludesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       }
     },
-    "com.cloudflare.workers_builds#TriggersUpdateResponseBranchIncludesList": {
+    "com.cloudflare.workers_builds#UpdateTriggerResponseBranchIncludesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       }
     },
-    "com.cloudflare.workers_builds#TriggersUpdateResponsePathExcludesList": {
+    "com.cloudflare.workers_builds#UpdateTriggerResponsePathExcludesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       }
     },
-    "com.cloudflare.workers_builds#TriggersUpdateResponsePathIncludesList": {
+    "com.cloudflare.workers_builds#UpdateTriggerResponsePathIncludesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       }
     },
-    "com.cloudflare.workers_builds#TriggersUpdateResponseRepoConnectionProviderType": {
+    "com.cloudflare.workers_builds#UpdateTriggerResponseRepoConnectionProviderType": {
       "type": "enum",
       "members": {
         "GITHUB": {
@@ -4151,7 +4152,7 @@
         }
       }
     },
-    "com.cloudflare.workers_builds#TriggersUpdateResponseRepoConnection": {
+    "com.cloudflare.workers_builds#UpdateTriggerResponseRepoConnection": {
       "type": "structure",
       "members": {
         "created_on": {
@@ -4173,7 +4174,7 @@
           "target": "smithy.api#String"
         },
         "provider_type": {
-          "target": "com.cloudflare.workers_builds#TriggersUpdateResponseRepoConnectionProviderType"
+          "target": "com.cloudflare.workers_builds#UpdateTriggerResponseRepoConnectionProviderType"
         },
         "repo_connection_uuid": {
           "target": "smithy.api#String",
@@ -4192,14 +4193,14 @@
         }
       }
     },
-    "com.cloudflare.workers_builds#TriggersUpdateResponse": {
+    "com.cloudflare.workers_builds#UpdateTriggerResponse": {
       "type": "structure",
       "members": {
         "branch_excludes": {
-          "target": "com.cloudflare.workers_builds#TriggersUpdateResponseBranchExcludesList"
+          "target": "com.cloudflare.workers_builds#UpdateTriggerResponseBranchExcludesList"
         },
         "branch_includes": {
-          "target": "com.cloudflare.workers_builds#TriggersUpdateResponseBranchIncludesList"
+          "target": "com.cloudflare.workers_builds#UpdateTriggerResponseBranchIncludesList"
         },
         "build_caching_enabled": {
           "target": "smithy.api#Boolean"
@@ -4235,13 +4236,13 @@
           "target": "smithy.api#String"
         },
         "path_excludes": {
-          "target": "com.cloudflare.workers_builds#TriggersUpdateResponsePathExcludesList"
+          "target": "com.cloudflare.workers_builds#UpdateTriggerResponsePathExcludesList"
         },
         "path_includes": {
-          "target": "com.cloudflare.workers_builds#TriggersUpdateResponsePathIncludesList"
+          "target": "com.cloudflare.workers_builds#UpdateTriggerResponsePathIncludesList"
         },
         "repo_connection": {
-          "target": "com.cloudflare.workers_builds#TriggersUpdateResponseRepoConnection"
+          "target": "com.cloudflare.workers_builds#UpdateTriggerResponseRepoConnection"
         },
         "root_directory": {
           "target": "smithy.api#String",
@@ -4264,13 +4265,13 @@
         "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
       }
     },
-    "com.cloudflare.workers_builds#TriggersUpdate": {
+    "com.cloudflare.workers_builds#UpdateTrigger": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.workers_builds#TriggersUpdateRequest"
+        "target": "com.cloudflare.workers_builds#UpdateTriggerRequest"
       },
       "output": {
-        "target": "com.cloudflare.workers_builds#TriggersUpdateResponse"
+        "target": "com.cloudflare.workers_builds#UpdateTriggerResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4281,7 +4282,7 @@
         "smithy.api#documentation": "Update an existing CI/CD trigger"
       }
     },
-    "com.cloudflare.workers_builds#TriggersEnvironmentVariablesDeleteRequest": {
+    "com.cloudflare.workers_builds#DeleteTriggersEnvironmentVariableRequest": {
       "type": "structure",
       "members": {
         "account_id": {
@@ -4313,7 +4314,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.workers_builds#TriggersEnvironmentVariablesDeleteResponse": {
+    "com.cloudflare.workers_builds#DeleteTriggersEnvironmentVariableResponse": {
       "type": "structure",
       "members": {
         "result": {
@@ -4328,13 +4329,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.cloudflare.workers_builds#TriggersEnvironmentVariablesDelete": {
+    "com.cloudflare.workers_builds#DeleteTriggersEnvironmentVariable": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.workers_builds#TriggersEnvironmentVariablesDeleteRequest"
+        "target": "com.cloudflare.workers_builds#DeleteTriggersEnvironmentVariableRequest"
       },
       "output": {
-        "target": "com.cloudflare.workers_builds#TriggersEnvironmentVariablesDeleteResponse"
+        "target": "com.cloudflare.workers_builds#DeleteTriggersEnvironmentVariableResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4346,7 +4347,7 @@
         "smithy.api#idempotent": {}
       }
     },
-    "com.cloudflare.workers_builds#TriggersEnvironmentVariablesListRequest": {
+    "com.cloudflare.workers_builds#ListTriggersEnvironmentVariablesRequest": {
       "type": "structure",
       "members": {
         "account_id": {
@@ -4370,7 +4371,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.workers_builds#TriggersEnvironmentVariablesListResultValue": {
+    "com.cloudflare.workers_builds#ListTriggersEnvironmentVariablesResultValue": {
       "type": "structure",
       "members": {
         "created_on": {
@@ -4393,20 +4394,20 @@
         }
       }
     },
-    "com.cloudflare.workers_builds#TriggersEnvironmentVariablesListResultMap": {
+    "com.cloudflare.workers_builds#ListTriggersEnvironmentVariablesResultMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
       },
       "value": {
-        "target": "com.cloudflare.workers_builds#TriggersEnvironmentVariablesListResultValue"
+        "target": "com.cloudflare.workers_builds#ListTriggersEnvironmentVariablesResultValue"
       }
     },
-    "com.cloudflare.workers_builds#TriggersEnvironmentVariablesListResponse": {
+    "com.cloudflare.workers_builds#ListTriggersEnvironmentVariablesResponse": {
       "type": "structure",
       "members": {
         "result": {
-          "target": "com.cloudflare.workers_builds#TriggersEnvironmentVariablesListResultMap",
+          "target": "com.cloudflare.workers_builds#ListTriggersEnvironmentVariablesResultMap",
           "traits": {
             "com.cloudflare.protocols#envelopePayload": {},
             "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
@@ -4417,13 +4418,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.cloudflare.workers_builds#TriggersEnvironmentVariablesList": {
+    "com.cloudflare.workers_builds#ListTriggersEnvironmentVariables": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.workers_builds#TriggersEnvironmentVariablesListRequest"
+        "target": "com.cloudflare.workers_builds#ListTriggersEnvironmentVariablesRequest"
       },
       "output": {
-        "target": "com.cloudflare.workers_builds#TriggersEnvironmentVariablesListResponse"
+        "target": "com.cloudflare.workers_builds#ListTriggersEnvironmentVariablesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4435,7 +4436,7 @@
         "smithy.api#readonly": {}
       }
     },
-    "com.cloudflare.workers_builds#TriggersEnvironmentVariablesUpsertRequestBodyValue": {
+    "com.cloudflare.workers_builds#UpsertTriggersEnvironmentVariableRequestBodyValue": {
       "type": "structure",
       "members": {
         "is_secret": {
@@ -4449,16 +4450,16 @@
         }
       }
     },
-    "com.cloudflare.workers_builds#TriggersEnvironmentVariablesUpsertRequestBodyMap": {
+    "com.cloudflare.workers_builds#UpsertTriggersEnvironmentVariableRequestBodyMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
       },
       "value": {
-        "target": "com.cloudflare.workers_builds#TriggersEnvironmentVariablesUpsertRequestBodyValue"
+        "target": "com.cloudflare.workers_builds#UpsertTriggersEnvironmentVariableRequestBodyValue"
       }
     },
-    "com.cloudflare.workers_builds#TriggersEnvironmentVariablesUpsertRequest": {
+    "com.cloudflare.workers_builds#UpsertTriggersEnvironmentVariableRequest": {
       "type": "structure",
       "members": {
         "account_id": {
@@ -4478,7 +4479,7 @@
           }
         },
         "body": {
-          "target": "com.cloudflare.workers_builds#TriggersEnvironmentVariablesUpsertRequestBodyMap",
+          "target": "com.cloudflare.workers_builds#UpsertTriggersEnvironmentVariableRequestBodyMap",
           "traits": {
             "smithy.api#required": {},
             "smithy.api#httpPayload": {}
@@ -4489,7 +4490,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.workers_builds#TriggersEnvironmentVariablesUpsertResultValue": {
+    "com.cloudflare.workers_builds#UpsertTriggersEnvironmentVariableResultValue": {
       "type": "structure",
       "members": {
         "created_on": {
@@ -4512,20 +4513,20 @@
         }
       }
     },
-    "com.cloudflare.workers_builds#TriggersEnvironmentVariablesUpsertResultMap": {
+    "com.cloudflare.workers_builds#UpsertTriggersEnvironmentVariableResultMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
       },
       "value": {
-        "target": "com.cloudflare.workers_builds#TriggersEnvironmentVariablesUpsertResultValue"
+        "target": "com.cloudflare.workers_builds#UpsertTriggersEnvironmentVariableResultValue"
       }
     },
-    "com.cloudflare.workers_builds#TriggersEnvironmentVariablesUpsertResponse": {
+    "com.cloudflare.workers_builds#UpsertTriggersEnvironmentVariableResponse": {
       "type": "structure",
       "members": {
         "result": {
-          "target": "com.cloudflare.workers_builds#TriggersEnvironmentVariablesUpsertResultMap",
+          "target": "com.cloudflare.workers_builds#UpsertTriggersEnvironmentVariableResultMap",
           "traits": {
             "com.cloudflare.protocols#envelopePayload": {},
             "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
@@ -4536,13 +4537,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.cloudflare.workers_builds#TriggersEnvironmentVariablesUpsert": {
+    "com.cloudflare.workers_builds#UpsertTriggersEnvironmentVariable": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.workers_builds#TriggersEnvironmentVariablesUpsertRequest"
+        "target": "com.cloudflare.workers_builds#UpsertTriggersEnvironmentVariableRequest"
       },
       "output": {
-        "target": "com.cloudflare.workers_builds#TriggersEnvironmentVariablesUpsertResponse"
+        "target": "com.cloudflare.workers_builds#UpsertTriggersEnvironmentVariableResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4567,16 +4568,16 @@
           "target": "com.cloudflare.workers_builds#GetLatestBuilds"
         },
         {
-          "target": "com.cloudflare.workers_builds#BuildsCancel"
+          "target": "com.cloudflare.workers_builds#CancelBuild"
         },
         {
-          "target": "com.cloudflare.workers_builds#BuildsGet"
+          "target": "com.cloudflare.workers_builds#GetBuild"
         },
         {
-          "target": "com.cloudflare.workers_builds#BuildsList"
+          "target": "com.cloudflare.workers_builds#ListBuilds"
         },
         {
-          "target": "com.cloudflare.workers_builds#BuildsLogsGet"
+          "target": "com.cloudflare.workers_builds#GetBuildsLog"
         },
         {
           "target": "com.cloudflare.workers_builds#DeployHooksCreate"
@@ -4597,49 +4598,49 @@
           "target": "com.cloudflare.workers_builds#DeployHooksUpdate"
         },
         {
-          "target": "com.cloudflare.workers_builds#ReposConfigAutofillGet"
+          "target": "com.cloudflare.workers_builds#GetReposConfigAutofill"
         },
         {
-          "target": "com.cloudflare.workers_builds#ReposConnectionsDelete"
+          "target": "com.cloudflare.workers_builds#DeleteReposConnection"
         },
         {
-          "target": "com.cloudflare.workers_builds#ReposConnectionsUpsert"
+          "target": "com.cloudflare.workers_builds#UpsertReposConnection"
         },
         {
-          "target": "com.cloudflare.workers_builds#TokensCreate"
+          "target": "com.cloudflare.workers_builds#CreateToken"
         },
         {
-          "target": "com.cloudflare.workers_builds#TokensDelete"
+          "target": "com.cloudflare.workers_builds#DeleteToken"
         },
         {
-          "target": "com.cloudflare.workers_builds#TokensList"
+          "target": "com.cloudflare.workers_builds#ListTokens"
         },
         {
-          "target": "com.cloudflare.workers_builds#TriggersCreate"
+          "target": "com.cloudflare.workers_builds#CreateTrigger"
         },
         {
           "target": "com.cloudflare.workers_builds#TriggersCreateBuild"
         },
         {
-          "target": "com.cloudflare.workers_builds#TriggersDelete"
+          "target": "com.cloudflare.workers_builds#DeleteTrigger"
         },
         {
-          "target": "com.cloudflare.workers_builds#TriggersList"
+          "target": "com.cloudflare.workers_builds#ListTriggers"
         },
         {
           "target": "com.cloudflare.workers_builds#TriggersPurgeCache"
         },
         {
-          "target": "com.cloudflare.workers_builds#TriggersUpdate"
+          "target": "com.cloudflare.workers_builds#UpdateTrigger"
         },
         {
-          "target": "com.cloudflare.workers_builds#TriggersEnvironmentVariablesDelete"
+          "target": "com.cloudflare.workers_builds#DeleteTriggersEnvironmentVariable"
         },
         {
-          "target": "com.cloudflare.workers_builds#TriggersEnvironmentVariablesList"
+          "target": "com.cloudflare.workers_builds#ListTriggersEnvironmentVariables"
         },
         {
-          "target": "com.cloudflare.workers_builds#TriggersEnvironmentVariablesUpsert"
+          "target": "com.cloudflare.workers_builds#UpsertTriggersEnvironmentVariable"
         }
       ],
       "traits": {

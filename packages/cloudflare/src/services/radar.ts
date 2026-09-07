@@ -33351,6 +33351,73 @@ export const GetHttpLocationTlsVersionResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetHttpLocationTlsVersionResponse",
 }) as any as S.Schema<GetHttpLocationTlsVersionResponse>;
 
+export type GetOriginRequestSlug = "AMAZON" | "GOOGLE" | "MICROSOFT" | "ORACLE";
+export const GetOriginRequestSlug = /*@__PURE__*/ S.String;
+
+export type GetOriginRequestFormat = "JSON" | "CSV";
+export const GetOriginRequestFormat = /*@__PURE__*/ S.String;
+
+export interface GetOriginRequest {
+  /** Origin slug. */
+  slug: GetOriginRequestSlug | (string & {});
+  /** Format in which results will be returned. */
+  format?: GetOriginRequestFormat | (string & {});
+}
+export const GetOriginRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    slug: GetOriginRequestSlug.pipe(T.Label()),
+    format: S.optional(GetOriginRequestFormat.pipe(T.Query())),
+  })
+    .pipe(T.Http({ method: "GET", uri: "/radar/origins/{slug}", code: 200 }))
+    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "GetOriginRequest",
+}) as any as S.Schema<GetOriginRequest>;
+
+export interface GetOriginResponseOriginRegionsItem {
+  /** The region code. */
+  region: string;
+}
+export const GetOriginResponseOriginRegionsItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    region: S.String,
+  }),
+).annotate({
+  identifier: "GetOriginResponseOriginRegionsItem",
+}) as any as S.Schema<GetOriginResponseOriginRegionsItem>;
+
+export type GetOriginResponseOriginRegionsList =
+  Array<GetOriginResponseOriginRegionsItem>;
+export const GetOriginResponseOriginRegionsList = /*@__PURE__*/ S.Array(
+  GetOriginResponseOriginRegionsItem,
+) as any as S.Schema<GetOriginResponseOriginRegionsList>;
+
+export interface GetOriginResponseOrigin {
+  regions: GetOriginResponseOriginRegionsList;
+  /** The origin slug. */
+  slug: string;
+}
+export const GetOriginResponseOrigin = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    regions: GetOriginResponseOriginRegionsList,
+    slug: S.String,
+  }),
+).annotate({
+  identifier: "GetOriginResponseOrigin",
+}) as any as S.Schema<GetOriginResponseOrigin>;
+
+/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
+export interface GetOriginResponse {
+  origin: GetOriginResponseOrigin;
+}
+export const GetOriginResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    origin: GetOriginResponseOrigin,
+  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "GetOriginResponse",
+}) as any as S.Schema<GetOriginResponse>;
+
 export type RankingDomainGetRequestDateList = Array<string>;
 export const RankingDomainGetRequestDateList = /*@__PURE__*/ S.Array(
   S.String,
@@ -33511,6 +33578,52 @@ export const GetRankingDomainResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetRankingDomainResponse",
 }) as any as S.Schema<GetRankingDomainResponse>;
+
+export type GetTldRequestFormat = "JSON" | "CSV";
+export const GetTldRequestFormat = /*@__PURE__*/ S.String;
+
+export interface GetTldRequest {
+  /** Top-level domain. */
+  tld: string;
+  /** Format in which results will be returned. */
+  format?: GetTldRequestFormat | (string & {});
+}
+export const GetTldRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    tld: S.String.pipe(T.Label()),
+    format: S.optional(GetTldRequestFormat.pipe(T.Query())),
+  })
+    .pipe(T.Http({ method: "GET", uri: "/radar/tlds/{tld}", code: 200 }))
+    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({ identifier: "GetTldRequest" }) as any as S.Schema<GetTldRequest>;
+
+export interface GetTldResponseTld {
+  /** The organization that manages the TLD. */
+  manager: string;
+  /** The actual TLD. */
+  tld: string;
+  /** The type of TLD. */
+  type: string;
+}
+export const GetTldResponseTld = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    manager: S.String,
+    tld: S.String,
+    type: S.String,
+  }),
+).annotate({
+  identifier: "GetTldResponseTld",
+}) as any as S.Schema<GetTldResponseTld>;
+
+/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
+export interface GetTldResponse {
+  tld: GetTldResponseTld;
+}
+export const GetTldResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    tld: GetTldResponseTld,
+  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({ identifier: "GetTldResponse" }) as any as S.Schema<GetTldResponse>;
 
 export type TrafficAnomaliesGetRequestFormat = "JSON" | "CSV";
 export const TrafficAnomaliesGetRequestFormat = /*@__PURE__*/ S.String;
@@ -33728,115 +33841,6 @@ export const GetTrafficAnomalyLocationResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetTrafficAnomalyLocationResponse",
 }) as any as S.Schema<GetTrafficAnomalyLocationResponse>;
-
-export type SearchGlobalRequestExclude =
-  | "ADM1S"
-  | "ASNS"
-  | "BOTS"
-  | "CERTIFICATE_AUTHORITIES"
-  | "CERTIFICATE_LOGS"
-  | "ORIGINS"
-  | "ORIGIN_REGIONS"
-  | "INDUSTRIES"
-  | "LOCATIONS"
-  | "NOTEBOOKS"
-  | "TLDS"
-  | "VERTICALS";
-export const SearchGlobalRequestExclude = /*@__PURE__*/ S.String;
-
-export type SearchGlobalRequestExcludeList = Array<
-  SearchGlobalRequestExclude | (string & {})
->;
-export const SearchGlobalRequestExcludeList = /*@__PURE__*/ S.Array(
-  SearchGlobalRequestExclude,
-) as any as S.Schema<SearchGlobalRequestExcludeList>;
-
-export type SearchGlobalRequestFormat = "JSON" | "CSV";
-export const SearchGlobalRequestFormat = /*@__PURE__*/ S.String;
-
-export type SearchGlobalRequestInclude =
-  | "ADM1S"
-  | "ASNS"
-  | "BOTS"
-  | "CERTIFICATE_AUTHORITIES"
-  | "CERTIFICATE_LOGS"
-  | "ORIGINS"
-  | "ORIGIN_REGIONS"
-  | "INDUSTRIES"
-  | "LOCATIONS"
-  | "NOTEBOOKS"
-  | "TLDS"
-  | "VERTICALS";
-export const SearchGlobalRequestInclude = /*@__PURE__*/ S.String;
-
-export type SearchGlobalRequestIncludeList = Array<
-  SearchGlobalRequestInclude | (string & {})
->;
-export const SearchGlobalRequestIncludeList = /*@__PURE__*/ S.Array(
-  SearchGlobalRequestInclude,
-) as any as S.Schema<SearchGlobalRequestIncludeList>;
-
-export interface GlobalSearchRequest {
-  /** String used to perform the search operation. */
-  query: string;
-  /** Search types excluded from results. */
-  exclude?: SearchGlobalRequestExcludeList;
-  /** Format in which results will be returned. */
-  format?: SearchGlobalRequestFormat | (string & {});
-  /** Search types included in results. */
-  include?: SearchGlobalRequestIncludeList;
-  /** Limits the number of objects returned in the response. */
-  limit?: number;
-  /** Limits the number of objects per search category. */
-  limitPerGroup?: number;
-}
-export const GlobalSearchRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    query: S.String.pipe(T.Query()),
-    exclude: S.optional(SearchGlobalRequestExcludeList.pipe(T.Query())),
-    format: S.optional(SearchGlobalRequestFormat.pipe(T.Query())),
-    include: S.optional(SearchGlobalRequestIncludeList.pipe(T.Query())),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    limitPerGroup: S.optional(S.Number.pipe(T.Query())),
-  })
-    .pipe(T.Http({ method: "GET", uri: "/radar/search/global", code: 200 }))
-    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "GlobalSearchRequest",
-}) as any as S.Schema<GlobalSearchRequest>;
-
-export interface SearchGlobalResponseSearchItem {
-  code: string;
-  name: string;
-  type: string;
-}
-export const SearchGlobalResponseSearchItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    code: S.String,
-    name: S.String,
-    type: S.String,
-  }),
-).annotate({
-  identifier: "SearchGlobalResponseSearchItem",
-}) as any as S.Schema<SearchGlobalResponseSearchItem>;
-
-export type SearchGlobalResponseSearchList =
-  Array<SearchGlobalResponseSearchItem>;
-export const SearchGlobalResponseSearchList = /*@__PURE__*/ S.Array(
-  SearchGlobalResponseSearchItem,
-) as any as S.Schema<SearchGlobalResponseSearchList>;
-
-/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
-export interface GlobalSearchResponse {
-  search: SearchGlobalResponseSearchList;
-}
-export const GlobalSearchResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    search: SearchGlobalResponseSearchList,
-  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "GlobalSearchResponse",
-}) as any as S.Schema<GlobalSearchResponse>;
 
 export type QualitySpeedHistogramRequestAsnList = Array<string>;
 export const QualitySpeedHistogramRequestAsnList = /*@__PURE__*/ S.Array(
@@ -46955,6 +46959,132 @@ export const ListGeolocationsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListGeolocationsResponse",
 }) as any as S.Schema<ListGeolocationsResponse>;
 
+export type ListOriginsRequestFormat = "JSON" | "CSV";
+export const ListOriginsRequestFormat = /*@__PURE__*/ S.String;
+
+export interface ListOriginsRequest {
+  /** Format in which results will be returned. */
+  format?: ListOriginsRequestFormat | (string & {});
+  /** Limits the number of objects returned in the response. */
+  limit?: number;
+  /** Skips the specified number of objects before fetching the results. */
+  offset?: number;
+}
+export const ListOriginsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    format: S.optional(ListOriginsRequestFormat.pipe(T.Query())),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    offset: S.optional(S.Number.pipe(T.Query())),
+  })
+    .pipe(T.Http({ method: "GET", uri: "/radar/origins", code: 200 }))
+    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "ListOriginsRequest",
+}) as any as S.Schema<ListOriginsRequest>;
+
+export type ListOriginsResponseOriginsItemRegionsItem =
+  GetOriginResponseOriginRegionsItem;
+export const ListOriginsResponseOriginsItemRegionsItem =
+  GetOriginResponseOriginRegionsItem;
+
+export type ListOriginsResponseOriginsItemRegionsList =
+  Array<GetOriginResponseOriginRegionsItem>;
+export const ListOriginsResponseOriginsItemRegionsList = /*@__PURE__*/ S.Array(
+  GetOriginResponseOriginRegionsItem,
+) as any as S.Schema<ListOriginsResponseOriginsItemRegionsList>;
+
+export interface ListOriginsResponseOriginsItem {
+  regions: ListOriginsResponseOriginsItemRegionsList;
+  /** The origin slug. */
+  slug: string;
+}
+export const ListOriginsResponseOriginsItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    regions: ListOriginsResponseOriginsItemRegionsList,
+    slug: S.String,
+  }),
+).annotate({
+  identifier: "ListOriginsResponseOriginsItem",
+}) as any as S.Schema<ListOriginsResponseOriginsItem>;
+
+export type ListOriginsResponseOriginsList =
+  Array<ListOriginsResponseOriginsItem>;
+export const ListOriginsResponseOriginsList = /*@__PURE__*/ S.Array(
+  ListOriginsResponseOriginsItem,
+) as any as S.Schema<ListOriginsResponseOriginsList>;
+
+/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
+export interface ListOriginsResponse {
+  origins: ListOriginsResponseOriginsList;
+}
+export const ListOriginsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    origins: ListOriginsResponseOriginsList,
+  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "ListOriginsResponse",
+}) as any as S.Schema<ListOriginsResponse>;
+
+export type ListTldsRequestFormat = "JSON" | "CSV";
+export const ListTldsRequestFormat = /*@__PURE__*/ S.String;
+
+export type ListTldsRequestTldType =
+  | "GENERIC"
+  | "COUNTRY_CODE"
+  | "GENERIC_RESTRICTED"
+  | "INFRASTRUCTURE"
+  | "SPONSORED";
+export const ListTldsRequestTldType = /*@__PURE__*/ S.String;
+
+export interface ListTldsRequest {
+  /** Format in which results will be returned. */
+  format?: ListTldsRequestFormat | (string & {});
+  /** Limits the number of objects returned in the response. */
+  limit?: number;
+  /** Skips the specified number of objects before fetching the results. */
+  offset?: number;
+  /** Filters results by top-level domain. Specify a comma-separated list of TLDs. */
+  tld?: string;
+  /** Filters results by TLD manager. */
+  tldManager?: string;
+  /** Filters results by TLD type. */
+  tldType?: ListTldsRequestTldType | (string & {});
+}
+export const ListTldsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    format: S.optional(ListTldsRequestFormat.pipe(T.Query())),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    offset: S.optional(S.Number.pipe(T.Query())),
+    tld: S.optional(S.String.pipe(T.Query())),
+    tldManager: S.optional(S.String.pipe(T.Query())),
+    tldType: S.optional(ListTldsRequestTldType.pipe(T.Query())),
+  })
+    .pipe(T.Http({ method: "GET", uri: "/radar/tlds", code: 200 }))
+    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "ListTldsRequest",
+}) as any as S.Schema<ListTldsRequest>;
+
+export type ListTldsResponseTldsItem = GetTldResponseTld;
+export const ListTldsResponseTldsItem = GetTldResponseTld;
+
+export type ListTldsResponseTldsList = Array<GetTldResponseTld>;
+export const ListTldsResponseTldsList = /*@__PURE__*/ S.Array(
+  GetTldResponseTld,
+) as any as S.Schema<ListTldsResponseTldsList>;
+
+/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
+export interface ListTldsResponse {
+  tlds: ListTldsResponseTldsList;
+}
+export const ListTldsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    tlds: ListTldsResponseTldsList,
+  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "ListTldsResponse",
+}) as any as S.Schema<ListTldsResponse>;
+
 export type AnnotationsOutagesLocationsRequestFormat = "JSON" | "CSV";
 export const AnnotationsOutagesLocationsRequestFormat = /*@__PURE__*/ S.String;
 
@@ -53867,143 +53997,6 @@ export const OriginAttackLayer7TopLocationResponse = /*@__PURE__*/ S.suspend(
 ).annotate({
   identifier: "OriginAttackLayer7TopLocationResponse",
 }) as any as S.Schema<OriginAttackLayer7TopLocationResponse>;
-
-export type OriginsGetRequestSlug =
-  | "AMAZON"
-  | "GOOGLE"
-  | "MICROSOFT"
-  | "ORACLE";
-export const OriginsGetRequestSlug = /*@__PURE__*/ S.String;
-
-export type OriginsGetRequestFormat = "JSON" | "CSV";
-export const OriginsGetRequestFormat = /*@__PURE__*/ S.String;
-
-export interface OriginsGetRequest {
-  /** Origin slug. */
-  slug: OriginsGetRequestSlug | (string & {});
-  /** Format in which results will be returned. */
-  format?: OriginsGetRequestFormat | (string & {});
-}
-export const OriginsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    slug: OriginsGetRequestSlug.pipe(T.Label()),
-    format: S.optional(OriginsGetRequestFormat.pipe(T.Query())),
-  })
-    .pipe(T.Http({ method: "GET", uri: "/radar/origins/{slug}", code: 200 }))
-    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "OriginsGetRequest",
-}) as any as S.Schema<OriginsGetRequest>;
-
-export interface OriginsGetResponseOriginRegionsItem {
-  /** The region code. */
-  region: string;
-}
-export const OriginsGetResponseOriginRegionsItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    region: S.String,
-  }),
-).annotate({
-  identifier: "OriginsGetResponseOriginRegionsItem",
-}) as any as S.Schema<OriginsGetResponseOriginRegionsItem>;
-
-export type OriginsGetResponseOriginRegionsList =
-  Array<OriginsGetResponseOriginRegionsItem>;
-export const OriginsGetResponseOriginRegionsList = /*@__PURE__*/ S.Array(
-  OriginsGetResponseOriginRegionsItem,
-) as any as S.Schema<OriginsGetResponseOriginRegionsList>;
-
-export interface OriginsGetResponseOrigin {
-  regions: OriginsGetResponseOriginRegionsList;
-  /** The origin slug. */
-  slug: string;
-}
-export const OriginsGetResponseOrigin = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    regions: OriginsGetResponseOriginRegionsList,
-    slug: S.String,
-  }),
-).annotate({
-  identifier: "OriginsGetResponseOrigin",
-}) as any as S.Schema<OriginsGetResponseOrigin>;
-
-/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
-export interface OriginsGetResponse {
-  origin: OriginsGetResponseOrigin;
-}
-export const OriginsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    origin: OriginsGetResponseOrigin,
-  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "OriginsGetResponse",
-}) as any as S.Schema<OriginsGetResponse>;
-
-export type OriginsListRequestFormat = "JSON" | "CSV";
-export const OriginsListRequestFormat = /*@__PURE__*/ S.String;
-
-export interface OriginsListRequest {
-  /** Format in which results will be returned. */
-  format?: OriginsListRequestFormat | (string & {});
-  /** Limits the number of objects returned in the response. */
-  limit?: number;
-  /** Skips the specified number of objects before fetching the results. */
-  offset?: number;
-}
-export const OriginsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    format: S.optional(OriginsListRequestFormat.pipe(T.Query())),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    offset: S.optional(S.Number.pipe(T.Query())),
-  })
-    .pipe(T.Http({ method: "GET", uri: "/radar/origins", code: 200 }))
-    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "OriginsListRequest",
-}) as any as S.Schema<OriginsListRequest>;
-
-export type OriginsListResponseOriginsItemRegionsItem =
-  OriginsGetResponseOriginRegionsItem;
-export const OriginsListResponseOriginsItemRegionsItem =
-  OriginsGetResponseOriginRegionsItem;
-
-export type OriginsListResponseOriginsItemRegionsList =
-  Array<OriginsGetResponseOriginRegionsItem>;
-export const OriginsListResponseOriginsItemRegionsList = /*@__PURE__*/ S.Array(
-  OriginsGetResponseOriginRegionsItem,
-) as any as S.Schema<OriginsListResponseOriginsItemRegionsList>;
-
-export interface OriginsListResponseOriginsItem {
-  regions: OriginsListResponseOriginsItemRegionsList;
-  /** The origin slug. */
-  slug: string;
-}
-export const OriginsListResponseOriginsItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    regions: OriginsListResponseOriginsItemRegionsList,
-    slug: S.String,
-  }),
-).annotate({
-  identifier: "OriginsListResponseOriginsItem",
-}) as any as S.Schema<OriginsListResponseOriginsItem>;
-
-export type OriginsListResponseOriginsList =
-  Array<OriginsListResponseOriginsItem>;
-export const OriginsListResponseOriginsList = /*@__PURE__*/ S.Array(
-  OriginsListResponseOriginsItem,
-) as any as S.Schema<OriginsListResponseOriginsList>;
-
-/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
-export interface OriginsListResponse {
-  origins: OriginsListResponseOriginsList;
-}
-export const OriginsListResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    origins: OriginsListResponseOriginsList,
-  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "OriginsListResponse",
-}) as any as S.Schema<OriginsListResponse>;
 
 export type OriginsSummaryRequestDimension =
   | "ORIGIN"
@@ -64053,6 +64046,115 @@ export const ResponseTTLDnsTimeseriesGroupResponse = /*@__PURE__*/ S.suspend(
 ).annotate({
   identifier: "ResponseTTLDnsTimeseriesGroupResponse",
 }) as any as S.Schema<ResponseTTLDnsTimeseriesGroupResponse>;
+
+export type SearchGlobalRequestExclude =
+  | "ADM1S"
+  | "ASNS"
+  | "BOTS"
+  | "CERTIFICATE_AUTHORITIES"
+  | "CERTIFICATE_LOGS"
+  | "ORIGINS"
+  | "ORIGIN_REGIONS"
+  | "INDUSTRIES"
+  | "LOCATIONS"
+  | "NOTEBOOKS"
+  | "TLDS"
+  | "VERTICALS";
+export const SearchGlobalRequestExclude = /*@__PURE__*/ S.String;
+
+export type SearchGlobalRequestExcludeList = Array<
+  SearchGlobalRequestExclude | (string & {})
+>;
+export const SearchGlobalRequestExcludeList = /*@__PURE__*/ S.Array(
+  SearchGlobalRequestExclude,
+) as any as S.Schema<SearchGlobalRequestExcludeList>;
+
+export type SearchGlobalRequestFormat = "JSON" | "CSV";
+export const SearchGlobalRequestFormat = /*@__PURE__*/ S.String;
+
+export type SearchGlobalRequestInclude =
+  | "ADM1S"
+  | "ASNS"
+  | "BOTS"
+  | "CERTIFICATE_AUTHORITIES"
+  | "CERTIFICATE_LOGS"
+  | "ORIGINS"
+  | "ORIGIN_REGIONS"
+  | "INDUSTRIES"
+  | "LOCATIONS"
+  | "NOTEBOOKS"
+  | "TLDS"
+  | "VERTICALS";
+export const SearchGlobalRequestInclude = /*@__PURE__*/ S.String;
+
+export type SearchGlobalRequestIncludeList = Array<
+  SearchGlobalRequestInclude | (string & {})
+>;
+export const SearchGlobalRequestIncludeList = /*@__PURE__*/ S.Array(
+  SearchGlobalRequestInclude,
+) as any as S.Schema<SearchGlobalRequestIncludeList>;
+
+export interface SearchGlobalRequest {
+  /** String used to perform the search operation. */
+  query: string;
+  /** Search types excluded from results. */
+  exclude?: SearchGlobalRequestExcludeList;
+  /** Format in which results will be returned. */
+  format?: SearchGlobalRequestFormat | (string & {});
+  /** Search types included in results. */
+  include?: SearchGlobalRequestIncludeList;
+  /** Limits the number of objects returned in the response. */
+  limit?: number;
+  /** Limits the number of objects per search category. */
+  limitPerGroup?: number;
+}
+export const SearchGlobalRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    query: S.String.pipe(T.Query()),
+    exclude: S.optional(SearchGlobalRequestExcludeList.pipe(T.Query())),
+    format: S.optional(SearchGlobalRequestFormat.pipe(T.Query())),
+    include: S.optional(SearchGlobalRequestIncludeList.pipe(T.Query())),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    limitPerGroup: S.optional(S.Number.pipe(T.Query())),
+  })
+    .pipe(T.Http({ method: "GET", uri: "/radar/search/global", code: 200 }))
+    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "SearchGlobalRequest",
+}) as any as S.Schema<SearchGlobalRequest>;
+
+export interface SearchGlobalResponseSearchItem {
+  code: string;
+  name: string;
+  type: string;
+}
+export const SearchGlobalResponseSearchItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    code: S.String,
+    name: S.String,
+    type: S.String,
+  }),
+).annotate({
+  identifier: "SearchGlobalResponseSearchItem",
+}) as any as S.Schema<SearchGlobalResponseSearchItem>;
+
+export type SearchGlobalResponseSearchList =
+  Array<SearchGlobalResponseSearchItem>;
+export const SearchGlobalResponseSearchList = /*@__PURE__*/ S.Array(
+  SearchGlobalResponseSearchItem,
+) as any as S.Schema<SearchGlobalResponseSearchList>;
+
+/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
+export interface SearchGlobalResponse {
+  search: SearchGlobalResponseSearchList;
+}
+export const SearchGlobalResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    search: SearchGlobalResponseSearchList,
+  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "SearchGlobalResponse",
+}) as any as S.Schema<SearchGlobalResponse>;
 
 export type BgpRpkiAspaSnapshotRequestFormat = "JSON" | "CSV";
 export const BgpRpkiAspaSnapshotRequestFormat = /*@__PURE__*/ S.String;
@@ -89420,114 +89522,6 @@ export const TimeseriesNetflowResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "TimeseriesNetflowResponse",
 }) as any as S.Schema<TimeseriesNetflowResponse>;
 
-export type TldsGetRequestFormat = "JSON" | "CSV";
-export const TldsGetRequestFormat = /*@__PURE__*/ S.String;
-
-export interface TldsGetRequest {
-  /** Top-level domain. */
-  tld: string;
-  /** Format in which results will be returned. */
-  format?: TldsGetRequestFormat | (string & {});
-}
-export const TldsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    tld: S.String.pipe(T.Label()),
-    format: S.optional(TldsGetRequestFormat.pipe(T.Query())),
-  })
-    .pipe(T.Http({ method: "GET", uri: "/radar/tlds/{tld}", code: 200 }))
-    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({ identifier: "TldsGetRequest" }) as any as S.Schema<TldsGetRequest>;
-
-export interface TldsGetResponseTld {
-  /** The organization that manages the TLD. */
-  manager: string;
-  /** The actual TLD. */
-  tld: string;
-  /** The type of TLD. */
-  type: string;
-}
-export const TldsGetResponseTld = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    manager: S.String,
-    tld: S.String,
-    type: S.String,
-  }),
-).annotate({
-  identifier: "TldsGetResponseTld",
-}) as any as S.Schema<TldsGetResponseTld>;
-
-/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
-export interface TldsGetResponse {
-  tld: TldsGetResponseTld;
-}
-export const TldsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    tld: TldsGetResponseTld,
-  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "TldsGetResponse",
-}) as any as S.Schema<TldsGetResponse>;
-
-export type TldsListRequestFormat = "JSON" | "CSV";
-export const TldsListRequestFormat = /*@__PURE__*/ S.String;
-
-export type TldsListRequestTldType =
-  | "GENERIC"
-  | "COUNTRY_CODE"
-  | "GENERIC_RESTRICTED"
-  | "INFRASTRUCTURE"
-  | "SPONSORED";
-export const TldsListRequestTldType = /*@__PURE__*/ S.String;
-
-export interface TldsListRequest {
-  /** Format in which results will be returned. */
-  format?: TldsListRequestFormat | (string & {});
-  /** Limits the number of objects returned in the response. */
-  limit?: number;
-  /** Skips the specified number of objects before fetching the results. */
-  offset?: number;
-  /** Filters results by top-level domain. Specify a comma-separated list of TLDs. */
-  tld?: string;
-  /** Filters results by TLD manager. */
-  tldManager?: string;
-  /** Filters results by TLD type. */
-  tldType?: TldsListRequestTldType | (string & {});
-}
-export const TldsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    format: S.optional(TldsListRequestFormat.pipe(T.Query())),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    offset: S.optional(S.Number.pipe(T.Query())),
-    tld: S.optional(S.String.pipe(T.Query())),
-    tldManager: S.optional(S.String.pipe(T.Query())),
-    tldType: S.optional(TldsListRequestTldType.pipe(T.Query())),
-  })
-    .pipe(T.Http({ method: "GET", uri: "/radar/tlds", code: 200 }))
-    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "TldsListRequest",
-}) as any as S.Schema<TldsListRequest>;
-
-export type TldsListResponseTldsItem = TldsGetResponseTld;
-export const TldsListResponseTldsItem = TldsGetResponseTld;
-
-export type TldsListResponseTldsList = Array<TldsGetResponseTld>;
-export const TldsListResponseTldsList = /*@__PURE__*/ S.Array(
-  TldsGetResponseTld,
-) as any as S.Schema<TldsListResponseTldsList>;
-
-/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
-export interface TldsListResponse {
-  tlds: TldsListResponseTldsList;
-}
-export const TldsListResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    tlds: TldsListResponseTldsList,
-  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "TldsListResponse",
-}) as any as S.Schema<TldsListResponse>;
-
 export type TldsPerformanceSummaryRequestDimension =
   | "LATENCY"
   | "NAMESERVER_LATENCY"
@@ -97599,6 +97593,21 @@ export const getHttpLocationTlsVersion: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetOriginError = CloudflareOpError;
+/** Retrieves the requested origin information with its regions. */
+export const getOrigin: API.OperationMethod<
+  GetOriginRequest,
+  GetOriginResponse,
+  GetOriginError,
+  CloudflareOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetOriginRequest,
+  output: GetOriginResponse,
+  errors: [CloudflareRateLimited, CloudflareError],
+  protocol: CloudflareProtocol,
+  retry: Retry.Retry,
+}));
+
 export type GetRankingDomainError = CloudflareOpError;
 /** Retrieves domain rank details. Cloudflare provides an ordered rank for the top 100 domains, but for the remainder it only provides ranking buckets like top 200 thousand, top one million, etc.. These are available through Radar datasets endpoints. */
 export const getRankingDomain: API.OperationMethod<
@@ -97609,6 +97618,21 @@ export const getRankingDomain: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: GetRankingDomainRequest,
   output: GetRankingDomainResponse,
+  errors: [CloudflareRateLimited, CloudflareError],
+  protocol: CloudflareProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetTldError = CloudflareOpError;
+/** Retrieves the requested TLD information. */
+export const getTld: API.OperationMethod<
+  GetTldRequest,
+  GetTldResponse,
+  GetTldError,
+  CloudflareOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetTldRequest,
+  output: GetTldResponse,
   errors: [CloudflareRateLimited, CloudflareError],
   protocol: CloudflareProtocol,
   retry: Retry.Retry,
@@ -97639,21 +97663,6 @@ export const getTrafficAnomalyLocation: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: GetTrafficAnomalyLocationRequest,
   output: GetTrafficAnomalyLocationResponse,
-  errors: [CloudflareRateLimited, CloudflareError],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GlobalSearchError = CloudflareOpError;
-/** Searches for locations, autonomous systems, reports, bots, certificate logs, certificate authorities, industries and verticals. Location names can be localized by sending an `Accept-Language` HTTP header with a BCP 47 language tag (e.g., `Accept-Language: pt-PT`). The full quality-value chain is supported (e.g., `pt-PT,pt;q=0.9,en;q=0.8`). */
-export const globalSearch: API.OperationMethod<
-  GlobalSearchRequest,
-  GlobalSearchResponse,
-  GlobalSearchError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GlobalSearchRequest,
-  output: GlobalSearchResponse,
   errors: [CloudflareRateLimited, CloudflareError],
   protocol: CloudflareProtocol,
   retry: Retry.Retry,
@@ -98244,6 +98253,36 @@ export const listGeolocations: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type ListOriginsError = CloudflareOpError;
+/** Retrieves a list of origins with their regions. */
+export const listOrigins: API.OperationMethod<
+  ListOriginsRequest,
+  ListOriginsResponse,
+  ListOriginsError,
+  CloudflareOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListOriginsRequest,
+  output: ListOriginsResponse,
+  errors: [CloudflareRateLimited, CloudflareError],
+  protocol: CloudflareProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListTldsError = CloudflareOpError;
+/** Retrieves a list of TLDs. */
+export const listTlds: API.OperationMethod<
+  ListTldsRequest,
+  ListTldsResponse,
+  ListTldsError,
+  CloudflareOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListTldsRequest,
+  output: ListTldsResponse,
+  errors: [CloudflareRateLimited, CloudflareError],
+  protocol: CloudflareProtocol,
+  retry: Retry.Retry,
+}));
+
 export type LocationsAnnotationOutageError = CloudflareOpError;
 /** Retrieves the number of outages by location. */
 export const locationsAnnotationOutage: API.OperationMethod<
@@ -98525,36 +98564,6 @@ export const originAttackLayer7TopLocation: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: OriginAttackLayer7TopLocationRequest,
   output: OriginAttackLayer7TopLocationResponse,
-  errors: [CloudflareRateLimited, CloudflareError],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
-
-export type OriginsGetError = CloudflareOpError;
-/** Retrieves the requested origin information with its regions. */
-export const originsGet: API.OperationMethod<
-  OriginsGetRequest,
-  OriginsGetResponse,
-  OriginsGetError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: OriginsGetRequest,
-  output: OriginsGetResponse,
-  errors: [CloudflareRateLimited, CloudflareError],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
-
-export type OriginsListError = CloudflareOpError;
-/** Retrieves a list of origins with their regions. */
-export const originsList: API.OperationMethod<
-  OriginsListRequest,
-  OriginsListResponse,
-  OriginsListError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: OriginsListRequest,
-  output: OriginsListResponse,
   errors: [CloudflareRateLimited, CloudflareError],
   protocol: CloudflareProtocol,
   retry: Retry.Retry,
@@ -98975,6 +98984,21 @@ export const responseTTLDnsTimeseriesGroup: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ResponseTTLDnsTimeseriesGroupRequest,
   output: ResponseTTLDnsTimeseriesGroupResponse,
+  errors: [CloudflareRateLimited, CloudflareError],
+  protocol: CloudflareProtocol,
+  retry: Retry.Retry,
+}));
+
+export type SearchGlobalError = CloudflareOpError;
+/** Searches for locations, autonomous systems, reports, bots, certificate logs, certificate authorities, industries and verticals. Location names can be localized by sending an `Accept-Language` HTTP header with a BCP 47 language tag (e.g., `Accept-Language: pt-PT`). The full quality-value chain is supported (e.g., `pt-PT,pt;q=0.9,en;q=0.8`). */
+export const searchGlobal: API.OperationMethod<
+  SearchGlobalRequest,
+  SearchGlobalResponse,
+  SearchGlobalError,
+  CloudflareOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: SearchGlobalRequest,
+  output: SearchGlobalResponse,
   errors: [CloudflareRateLimited, CloudflareError],
   protocol: CloudflareProtocol,
   retry: Retry.Retry,
@@ -100040,36 +100064,6 @@ export const timeseriesNetflow: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: TimeseriesNetflowRequest,
   output: TimeseriesNetflowResponse,
-  errors: [CloudflareRateLimited, CloudflareError],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TldsGetError = CloudflareOpError;
-/** Retrieves the requested TLD information. */
-export const tldsGet: API.OperationMethod<
-  TldsGetRequest,
-  TldsGetResponse,
-  TldsGetError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TldsGetRequest,
-  output: TldsGetResponse,
-  errors: [CloudflareRateLimited, CloudflareError],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TldsListError = CloudflareOpError;
-/** Retrieves a list of TLDs. */
-export const tldsList: API.OperationMethod<
-  TldsListRequest,
-  TldsListResponse,
-  TldsListError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TldsListRequest,
-  output: TldsListResponse,
   errors: [CloudflareRateLimited, CloudflareError],
   protocol: CloudflareProtocol,
   retry: Retry.Retry,

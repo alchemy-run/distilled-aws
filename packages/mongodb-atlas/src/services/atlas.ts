@@ -28651,14 +28651,18 @@ export type ApiStreamsAzureRegionView =
   | "eastus2"
   | "westeurope"
   | "brazilsouth"
-  | "australiaeast";
+  | "australiaeast"
+  | "northeurope"
+  | "eastasia"
+  | "southeastasia";
 export const ApiStreamsAzureRegionView = /*@__PURE__*/ S.String;
 
 /** Atlas Streams GCP Regions. */
 export type ApiStreamsGCPRegionView =
   | "US_CENTRAL1"
   | "EUROPE_WEST1"
-  | "US_EAST4";
+  | "US_EAST4"
+  | "US_WEST1";
 export const ApiStreamsGCPRegionView = /*@__PURE__*/ S.String;
 
 /** Name of the cloud provider region hosting Atlas Stream Processing. */

@@ -14,13 +14,14 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.azurestack#DeploymentLicenseCreate": {
+    "com.azure.azurestack#CreateDeploymentLicense": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurestack#DeploymentLicenseCreateRequest"
+        "target": "com.azure.azurestack#CreateDeploymentLicenseRequest"
       },
       "output": {
         "target": "com.azure.azurestack#DeploymentLicenseResponse"
@@ -65,7 +66,7 @@
         "smithy.api#documentation": "A license chain that can be used to temporarily activate an Azure Stack device."
       }
     },
-    "com.azure.azurestack#DeploymentLicenseCreateRequest": {
+    "com.azure.azurestack#CreateDeploymentLicenseRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -87,13 +88,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurestack#CloudManifestFileGet": {
+    "com.azure.azurestack#GetCloudManifestFile": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurestack#CloudManifestFileGetRequest"
+        "target": "com.azure.azurestack#GetCloudManifestFileRequest"
       },
       "output": {
-        "target": "com.azure.azurestack#CloudManifestFileGetResponse"
+        "target": "com.azure.azurestack#GetCloudManifestFileResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -106,7 +107,7 @@
         "com.distilled.openapi#apiVersion": "2022-06-01"
       }
     },
-    "com.azure.azurestack#CloudManifestFileGetResponse": {
+    "com.azure.azurestack#GetCloudManifestFileResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -210,7 +211,7 @@
         "smithy.api#documentation": "Cloud specific environment endpoints for AzureStack deployment."
       }
     },
-    "com.azure.azurestack#CloudManifestFileGetRequest": {
+    "com.azure.azurestack#GetCloudManifestFileRequest": {
       "type": "structure",
       "members": {
         "verificationVersion": {
@@ -233,13 +234,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurestack#CloudManifestFileList": {
+    "com.azure.azurestack#ListCloudManifestFile": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
       },
       "output": {
-        "target": "com.azure.azurestack#CloudManifestFileListResponse"
+        "target": "com.azure.azurestack#ListCloudManifestFileResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -252,7 +253,7 @@
         "com.distilled.openapi#apiVersion": "2022-06-01"
       }
     },
-    "com.azure.azurestack#CloudManifestFileListResponse": {
+    "com.azure.azurestack#ListCloudManifestFileResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -290,7 +291,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.azurestack#OperationsList": {
+    "com.azure.azurestack#ListOperations": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -396,10 +397,10 @@
         "smithy.api#documentation": "Contains the localized display information for this particular operation or action."
       }
     },
-    "com.azure.azurestack#CustomerSubscriptionsDelete": {
+    "com.azure.azurestack#DeleteCustomerSubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurestack#CustomerSubscriptionsDeleteRequest"
+        "target": "com.azure.azurestack#DeleteCustomerSubscriptionRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -415,7 +416,7 @@
         "com.distilled.openapi#apiVersion": "2022-06-01"
       }
     },
-    "com.azure.azurestack#CustomerSubscriptionsDeleteRequest": {
+    "com.azure.azurestack#DeleteCustomerSubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -455,13 +456,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurestack#CustomerSubscriptionsCreate": {
+    "com.azure.azurestack#CreateCustomerSubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurestack#CustomerSubscriptionsCreateRequest"
+        "target": "com.azure.azurestack#CreateCustomerSubscriptionRequest"
       },
       "output": {
-        "target": "com.azure.azurestack#CustomerSubscriptionsCreateResponse"
+        "target": "com.azure.azurestack#CreateCustomerSubscriptionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -474,7 +475,7 @@
         "com.distilled.openapi#apiVersion": "2022-06-01"
       }
     },
-    "com.azure.azurestack#CustomerSubscriptionsCreateResponse": {
+    "com.azure.azurestack#CreateCustomerSubscriptionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -526,7 +527,7 @@
         "smithy.api#documentation": "Customer subscription properties."
       }
     },
-    "com.azure.azurestack#CustomerSubscriptionsCreateRequest": {
+    "com.azure.azurestack#CreateCustomerSubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -578,13 +579,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurestack#CustomerSubscriptionsGet": {
+    "com.azure.azurestack#GetCustomerSubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurestack#CustomerSubscriptionsGetRequest"
+        "target": "com.azure.azurestack#GetCustomerSubscriptionRequest"
       },
       "output": {
-        "target": "com.azure.azurestack#CustomerSubscriptionsGetResponse"
+        "target": "com.azure.azurestack#GetCustomerSubscriptionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -597,7 +598,7 @@
         "com.distilled.openapi#apiVersion": "2022-06-01"
       }
     },
-    "com.azure.azurestack#CustomerSubscriptionsGetResponse": {
+    "com.azure.azurestack#GetCustomerSubscriptionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -635,7 +636,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.azurestack#CustomerSubscriptionsGetRequest": {
+    "com.azure.azurestack#GetCustomerSubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -675,10 +676,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurestack#CustomerSubscriptionsList": {
+    "com.azure.azurestack#ListCustomerSubscriptions": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurestack#CustomerSubscriptionsListRequest"
+        "target": "com.azure.azurestack#ListCustomerSubscriptionsRequest"
       },
       "output": {
         "target": "com.azure.azurestack#CustomerSubscriptionList"
@@ -761,7 +762,7 @@
         "smithy.api#documentation": "Customer subscription."
       }
     },
-    "com.azure.azurestack#CustomerSubscriptionsListRequest": {
+    "com.azure.azurestack#ListCustomerSubscriptionsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -793,10 +794,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurestack#ProductsUploadLog": {
+    "com.azure.azurestack#UploadProductLog": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurestack#ProductsUploadLogRequest"
+        "target": "com.azure.azurestack#UploadProductLogRequest"
       },
       "output": {
         "target": "com.azure.azurestack#ProductLog"
@@ -886,7 +887,7 @@
         "smithy.api#documentation": "Product action log."
       }
     },
-    "com.azure.azurestack#ProductsUploadLogRequest": {
+    "com.azure.azurestack#UploadProductLogRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -926,13 +927,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurestack#ProductsGetProduct": {
+    "com.azure.azurestack#GetProductProduct": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurestack#ProductsGetProductRequest"
+        "target": "com.azure.azurestack#GetProductProductRequest"
       },
       "output": {
-        "target": "com.azure.azurestack#ProductsGetProductResponse"
+        "target": "com.azure.azurestack#GetProductProductResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -945,7 +946,7 @@
         "com.distilled.openapi#apiVersion": "2022-06-01"
       }
     },
-    "com.azure.azurestack#ProductsGetProductResponse": {
+    "com.azure.azurestack#GetProductProductResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1289,7 +1290,7 @@
         "smithy.api#documentation": "Links to product icons."
       }
     },
-    "com.azure.azurestack#ProductsGetProductRequest": {
+    "com.azure.azurestack#GetProductProductRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1329,10 +1330,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurestack#ProductsGetProducts": {
+    "com.azure.azurestack#GetProductProducts": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurestack#ProductsGetProductsRequest"
+        "target": "com.azure.azurestack#GetProductProductsRequest"
       },
       "output": {
         "target": "com.azure.azurestack#ProductList"
@@ -1415,7 +1416,7 @@
         "smithy.api#documentation": "Product information."
       }
     },
-    "com.azure.azurestack#ProductsGetProductsRequest": {
+    "com.azure.azurestack#GetProductProductsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1455,10 +1456,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurestack#ProductsListProducts": {
+    "com.azure.azurestack#ListProductProducts": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurestack#ProductsListProductsRequest"
+        "target": "com.azure.azurestack#ListProductProductsRequest"
       },
       "output": {
         "target": "com.azure.azurestack#ProductList"
@@ -1474,7 +1475,7 @@
         "com.distilled.openapi#apiVersion": "2022-06-01"
       }
     },
-    "com.azure.azurestack#ProductsListProductsRequest": {
+    "com.azure.azurestack#ListProductProductsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1514,10 +1515,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurestack#ProductsListDetails": {
+    "com.azure.azurestack#ListProductDetails": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurestack#ProductsListDetailsRequest"
+        "target": "com.azure.azurestack#ListProductDetailsRequest"
       },
       "output": {
         "target": "com.azure.azurestack#ExtendedProduct"
@@ -1736,7 +1737,7 @@
         "smithy.api#documentation": "Compute role type (IaaS or PaaS)."
       }
     },
-    "com.azure.azurestack#ProductsListDetailsRequest": {
+    "com.azure.azurestack#ListProductDetailsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1776,13 +1777,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurestack#ProductsGet": {
+    "com.azure.azurestack#GetProduct": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurestack#ProductsGetRequest"
+        "target": "com.azure.azurestack#GetProductRequest"
       },
       "output": {
-        "target": "com.azure.azurestack#ProductsGetResponse"
+        "target": "com.azure.azurestack#GetProductResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1795,7 +1796,7 @@
         "com.distilled.openapi#apiVersion": "2022-06-01"
       }
     },
-    "com.azure.azurestack#ProductsGetResponse": {
+    "com.azure.azurestack#GetProductResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1833,7 +1834,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.azurestack#ProductsGetRequest": {
+    "com.azure.azurestack#GetProductRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1873,10 +1874,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurestack#ProductsList": {
+    "com.azure.azurestack#ListProducts": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurestack#ProductsListRequest"
+        "target": "com.azure.azurestack#ListProductsRequest"
       },
       "output": {
         "target": "com.azure.azurestack#ProductList"
@@ -1892,7 +1893,7 @@
         "com.distilled.openapi#apiVersion": "2022-06-01"
       }
     },
-    "com.azure.azurestack#ProductsListRequest": {
+    "com.azure.azurestack#ListProductsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1924,10 +1925,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurestack#RegistrationsEnableRemoteManagement": {
+    "com.azure.azurestack#EnableRegistrationRemoteManagement": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurestack#RegistrationsEnableRemoteManagementRequest"
+        "target": "com.azure.azurestack#EnableRegistrationRemoteManagementRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1943,7 +1944,7 @@
         "com.distilled.openapi#apiVersion": "2022-06-01"
       }
     },
-    "com.azure.azurestack#RegistrationsEnableRemoteManagementRequest": {
+    "com.azure.azurestack#EnableRegistrationRemoteManagementRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1975,10 +1976,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurestack#RegistrationsGetActivationKey": {
+    "com.azure.azurestack#GetRegistrationActivationKey": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurestack#RegistrationsGetActivationKeyRequest"
+        "target": "com.azure.azurestack#GetRegistrationActivationKeyRequest"
       },
       "output": {
         "target": "com.azure.azurestack#ActivationKeyResult"
@@ -2008,7 +2009,7 @@
         "smithy.api#documentation": "The resource containing the Azure Stack activation key."
       }
     },
-    "com.azure.azurestack#RegistrationsGetActivationKeyRequest": {
+    "com.azure.azurestack#GetRegistrationActivationKeyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2040,10 +2041,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurestack#RegistrationsDelete": {
+    "com.azure.azurestack#DeleteRegistration": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurestack#RegistrationsDeleteRequest"
+        "target": "com.azure.azurestack#DeleteRegistrationRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2059,7 +2060,7 @@
         "com.distilled.openapi#apiVersion": "2022-06-01"
       }
     },
-    "com.azure.azurestack#RegistrationsDeleteRequest": {
+    "com.azure.azurestack#DeleteRegistrationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2091,13 +2092,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurestack#RegistrationsUpdate": {
+    "com.azure.azurestack#UpdateRegistration": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurestack#RegistrationsUpdateRequest"
+        "target": "com.azure.azurestack#UpdateRegistrationRequest"
       },
       "output": {
-        "target": "com.azure.azurestack#RegistrationsUpdateResponse"
+        "target": "com.azure.azurestack#UpdateRegistrationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2110,7 +2111,7 @@
         "com.distilled.openapi#apiVersion": "2022-06-01"
       }
     },
-    "com.azure.azurestack#RegistrationsUpdateResponse": {
+    "com.azure.azurestack#UpdateRegistrationResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2132,14 +2133,14 @@
           }
         },
         "location": {
-          "target": "com.azure.azurestack#RegistrationsUpdateResponseLocation",
+          "target": "com.azure.azurestack#UpdateRegistrationResponseLocation",
           "traits": {
             "smithy.api#documentation": "Location of the resource.",
             "smithy.api#required": {}
           }
         },
         "tags": {
-          "target": "com.azure.azurestack#RegistrationsUpdateResponseTagsMap",
+          "target": "com.azure.azurestack#UpdateRegistrationResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Custom tags for the resource."
           }
@@ -2187,7 +2188,7 @@
         "smithy.api#documentation": "Properties portion of the registration resource."
       }
     },
-    "com.azure.azurestack#RegistrationsUpdateResponseTagsMap": {
+    "com.azure.azurestack#UpdateRegistrationResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2199,7 +2200,7 @@
         "smithy.api#documentation": "Custom tags for the resource."
       }
     },
-    "com.azure.azurestack#RegistrationsUpdateResponseLocation": {
+    "com.azure.azurestack#UpdateRegistrationResponseLocation": {
       "type": "enum",
       "members": {
         "GLOBAL": {
@@ -2213,7 +2214,7 @@
         "smithy.api#documentation": "Location of the resource."
       }
     },
-    "com.azure.azurestack#RegistrationsUpdateRequest": {
+    "com.azure.azurestack#UpdateRegistrationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2248,7 +2249,7 @@
           }
         },
         "location": {
-          "target": "com.azure.azurestack#RegistrationsUpdateRequestLocation",
+          "target": "com.azure.azurestack#UpdateRegistrationRequestLocation",
           "traits": {
             "smithy.api#documentation": "Location of the resource.",
             "smithy.api#required": {}
@@ -2259,7 +2260,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurestack#RegistrationsUpdateRequestLocation": {
+    "com.azure.azurestack#UpdateRegistrationRequestLocation": {
       "type": "enum",
       "members": {
         "GLOBAL": {
@@ -2444,13 +2445,13 @@
         "smithy.api#documentation": "Location of the resource."
       }
     },
-    "com.azure.azurestack#RegistrationsGet": {
+    "com.azure.azurestack#GetRegistration": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurestack#RegistrationsGetRequest"
+        "target": "com.azure.azurestack#GetRegistrationRequest"
       },
       "output": {
-        "target": "com.azure.azurestack#RegistrationsGetResponse"
+        "target": "com.azure.azurestack#GetRegistrationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2463,7 +2464,7 @@
         "com.distilled.openapi#apiVersion": "2022-06-01"
       }
     },
-    "com.azure.azurestack#RegistrationsGetResponse": {
+    "com.azure.azurestack#GetRegistrationResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2485,14 +2486,14 @@
           }
         },
         "location": {
-          "target": "com.azure.azurestack#RegistrationsGetResponseLocation",
+          "target": "com.azure.azurestack#GetRegistrationResponseLocation",
           "traits": {
             "smithy.api#documentation": "Location of the resource.",
             "smithy.api#required": {}
           }
         },
         "tags": {
-          "target": "com.azure.azurestack#RegistrationsGetResponseTagsMap",
+          "target": "com.azure.azurestack#GetRegistrationResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Custom tags for the resource."
           }
@@ -2514,7 +2515,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.azurestack#RegistrationsGetResponseTagsMap": {
+    "com.azure.azurestack#GetRegistrationResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2526,7 +2527,7 @@
         "smithy.api#documentation": "Custom tags for the resource."
       }
     },
-    "com.azure.azurestack#RegistrationsGetResponseLocation": {
+    "com.azure.azurestack#GetRegistrationResponseLocation": {
       "type": "enum",
       "members": {
         "GLOBAL": {
@@ -2540,7 +2541,7 @@
         "smithy.api#documentation": "Location of the resource."
       }
     },
-    "com.azure.azurestack#RegistrationsGetRequest": {
+    "com.azure.azurestack#GetRegistrationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2572,10 +2573,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurestack#RegistrationsListBySubscription": {
+    "com.azure.azurestack#ListRegistrationBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurestack#RegistrationsListBySubscriptionRequest"
+        "target": "com.azure.azurestack#ListRegistrationBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.azurestack#RegistrationList"
@@ -2697,7 +2698,7 @@
         "smithy.api#documentation": "Location of the resource."
       }
     },
-    "com.azure.azurestack#RegistrationsListBySubscriptionRequest": {
+    "com.azure.azurestack#ListRegistrationBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2713,10 +2714,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurestack#RegistrationsList": {
+    "com.azure.azurestack#ListRegistrations": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurestack#RegistrationsListRequest"
+        "target": "com.azure.azurestack#ListRegistrationsRequest"
       },
       "output": {
         "target": "com.azure.azurestack#RegistrationList"
@@ -2732,7 +2733,7 @@
         "com.distilled.openapi#apiVersion": "2022-06-01"
       }
     },
-    "com.azure.azurestack#RegistrationsListRequest": {
+    "com.azure.azurestack#ListRegistrationsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2761,73 +2762,73 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.azurestack#DeploymentLicenseCreate"
+          "target": "com.azure.azurestack#CreateDeploymentLicense"
         },
         {
-          "target": "com.azure.azurestack#CloudManifestFileGet"
+          "target": "com.azure.azurestack#GetCloudManifestFile"
         },
         {
-          "target": "com.azure.azurestack#CloudManifestFileList"
+          "target": "com.azure.azurestack#ListCloudManifestFile"
         },
         {
-          "target": "com.azure.azurestack#OperationsList"
+          "target": "com.azure.azurestack#ListOperations"
         },
         {
-          "target": "com.azure.azurestack#CustomerSubscriptionsDelete"
+          "target": "com.azure.azurestack#DeleteCustomerSubscription"
         },
         {
-          "target": "com.azure.azurestack#CustomerSubscriptionsCreate"
+          "target": "com.azure.azurestack#CreateCustomerSubscription"
         },
         {
-          "target": "com.azure.azurestack#CustomerSubscriptionsGet"
+          "target": "com.azure.azurestack#GetCustomerSubscription"
         },
         {
-          "target": "com.azure.azurestack#CustomerSubscriptionsList"
+          "target": "com.azure.azurestack#ListCustomerSubscriptions"
         },
         {
-          "target": "com.azure.azurestack#ProductsUploadLog"
+          "target": "com.azure.azurestack#UploadProductLog"
         },
         {
-          "target": "com.azure.azurestack#ProductsGetProduct"
+          "target": "com.azure.azurestack#GetProductProduct"
         },
         {
-          "target": "com.azure.azurestack#ProductsGetProducts"
+          "target": "com.azure.azurestack#GetProductProducts"
         },
         {
-          "target": "com.azure.azurestack#ProductsListProducts"
+          "target": "com.azure.azurestack#ListProductProducts"
         },
         {
-          "target": "com.azure.azurestack#ProductsListDetails"
+          "target": "com.azure.azurestack#ListProductDetails"
         },
         {
-          "target": "com.azure.azurestack#ProductsGet"
+          "target": "com.azure.azurestack#GetProduct"
         },
         {
-          "target": "com.azure.azurestack#ProductsList"
+          "target": "com.azure.azurestack#ListProducts"
         },
         {
-          "target": "com.azure.azurestack#RegistrationsEnableRemoteManagement"
+          "target": "com.azure.azurestack#EnableRegistrationRemoteManagement"
         },
         {
-          "target": "com.azure.azurestack#RegistrationsGetActivationKey"
+          "target": "com.azure.azurestack#GetRegistrationActivationKey"
         },
         {
-          "target": "com.azure.azurestack#RegistrationsDelete"
+          "target": "com.azure.azurestack#DeleteRegistration"
         },
         {
-          "target": "com.azure.azurestack#RegistrationsUpdate"
+          "target": "com.azure.azurestack#UpdateRegistration"
         },
         {
           "target": "com.azure.azurestack#RegistrationsCreateOrUpdate"
         },
         {
-          "target": "com.azure.azurestack#RegistrationsGet"
+          "target": "com.azure.azurestack#GetRegistration"
         },
         {
-          "target": "com.azure.azurestack#RegistrationsListBySubscription"
+          "target": "com.azure.azurestack#ListRegistrationBySubscription"
         },
         {
-          "target": "com.azure.azurestack#RegistrationsList"
+          "target": "com.azure.azurestack#ListRegistrations"
         }
       ],
       "traits": {

@@ -28,6 +28,7 @@ import {
   readIntrospection,
 } from "@distilled.cloud/core/codegen/graphql";
 import { resolveSpecPath } from "@distilled.cloud/core/codegen/spec-path";
+import { finalizeConvert } from "@distilled.cloud/core/codegen/patches";
 
 const ROOT = path.resolve(import.meta.dir, "..");
 const SCHEMA_PATH = resolveSpecPath(
@@ -86,3 +87,5 @@ console.log(
   `✅ Converted ${result.converted} GraphQL operations (${result.failed} failed, ` +
     `${result.shapeCount} shapes) → ${OUT_FILE}`,
 );
+
+await finalizeConvert({ root: ROOT });

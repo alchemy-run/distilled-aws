@@ -4,128 +4,22 @@
     "service": "identitytoolkit",
     "version": "v3",
     "title": "Google Identity Toolkit API",
-    "baseUrl": "https://www.googleapis.com/identitytoolkit/v3/relyingparty/"
+    "baseUrl": "https://www.googleapis.com/identitytoolkit/v3/relyingparty/",
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.gcp.identitytoolkit_v3#ResetPasswordResponse": {
+    "com.gcp.identitytoolkit_v3#IdentitytoolkitRelyingpartySendVerificationCodeResponse": {
       "type": "structure",
       "members": {
-        "newEmail": {
+        "sessionInfo": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "If the out-of-band code is for email recovery, the user's new email."
-          }
-        },
-        "email": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The user's email. If the out-of-band code is for email recovery, the user's original email."
-          }
-        },
-        "kind": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The fixed string \"identitytoolkit#ResetPasswordResponse\"."
-          }
-        },
-        "requestType": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The request type."
+            "smithy.api#documentation": "Encrypted session information"
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Response of resetting the password."
-      }
-    },
-    "com.gcp.identitytoolkit_v3#IdentitytoolkitRelyingpartyUploadAccountRequest": {
-      "type": "structure",
-      "members": {
-        "saltSeparator": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The salt separator."
-          }
-        },
-        "targetProjectId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Specify which project (field value is actually project id) to operate. Only used when provided credential."
-          }
-        },
-        "cpuMemCost": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The following 4 fields are for standard scrypt algorithm."
-          }
-        },
-        "signerKey": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The key for to hash the password."
-          }
-        },
-        "blockSize": {
-          "target": "smithy.api#Integer"
-        },
-        "delegatedProjectNumber": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "GCP project number of the requesting delegated app. Currently only intended for Firebase V1 migration."
-          }
-        },
-        "rounds": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Rounds for hash calculation. Used by scrypt and similar algorithms."
-          }
-        },
-        "memoryCost": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Memory cost for hash calculation. Used by scrypt similar algorithms."
-          }
-        },
-        "parallelization": {
-          "target": "smithy.api#Integer"
-        },
-        "sanityCheck": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "If true, backend will do sanity check(including duplicate email and federated id) when uploading account."
-          }
-        },
-        "allowOverwrite": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether allow overwrite existing account when user local_id exists."
-          }
-        },
-        "hashAlgorithm": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The password hash algorithm."
-          }
-        },
-        "dkLen": {
-          "target": "smithy.api#Integer"
-        },
-        "users": {
-          "target": "com.gcp.identitytoolkit_v3#UserInfoList",
-          "traits": {
-            "smithy.api#documentation": "The account info to be stored."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Request to upload user account in batch."
-      }
-    },
-    "com.gcp.identitytoolkit_v3#UserInfoList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.identitytoolkit_v3#UserInfo"
+        "smithy.api#documentation": "Response for Identitytoolkit-SendVerificationCode"
       }
     },
     "com.gcp.identitytoolkit_v3#VerifyPasswordResponse": {
@@ -137,10 +31,16 @@
             "smithy.api#documentation": "The name of the user."
           }
         },
-        "oauthAccessToken": {
+        "refreshToken": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The OAuth2 access token."
+            "smithy.api#documentation": "If idToken is STS id token, then this field will be refresh token."
+          }
+        },
+        "expiresIn": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If idToken is STS id token, then this field will be expiration time of STS id token in seconds."
           }
         },
         "idToken": {
@@ -149,16 +49,22 @@
             "smithy.api#documentation": "The GITKit token for authenticated user."
           }
         },
-        "registered": {
-          "target": "smithy.api#Boolean",
+        "email": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Whether the email is registered."
+            "smithy.api#documentation": "The email returned by the IdP. NOTE: The federated login user may not own the email."
           }
         },
         "kind": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "The fixed string \"identitytoolkit#VerifyPasswordResponse\"."
+          }
+        },
+        "oauthAuthorizationCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The OAuth2 authorization code."
           }
         },
         "localId": {
@@ -173,34 +79,22 @@
             "smithy.api#documentation": "The lifetime in seconds of the OAuth2 access token."
           }
         },
+        "registered": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the email is registered."
+          }
+        },
         "photoUrl": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "The URI of the user's photo at IdP"
           }
         },
-        "expiresIn": {
+        "oauthAccessToken": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "If idToken is STS id token, then this field will be expiration time of STS id token in seconds."
-          }
-        },
-        "refreshToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "If idToken is STS id token, then this field will be refresh token."
-          }
-        },
-        "email": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The email returned by the IdP. NOTE: The federated login user may not own the email."
-          }
-        },
-        "oauthAuthorizationCode": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The OAuth2 authorization code."
+            "smithy.api#documentation": "The OAuth2 access token."
           }
         }
       },
@@ -208,91 +102,474 @@
         "smithy.api#documentation": "Request of verifying the password."
       }
     },
-    "com.gcp.identitytoolkit_v3#IdentitytoolkitRelyingpartyGetPublicKeysResponse": {
-      "type": "map",
-      "key": {
-        "target": "smithy.api#String"
-      },
-      "value": {
-        "target": "smithy.api#String"
-      },
-      "traits": {
-        "smithy.api#documentation": "Respone of getting public keys."
-      }
-    },
-    "com.gcp.identitytoolkit_v3#VerifyAssertionResponse": {
+    "com.gcp.identitytoolkit_v3#IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse": {
       "type": "structure",
       "members": {
-        "verifiedProvider": {
-          "target": "com.gcp.identitytoolkit_v3#StringList",
-          "traits": {
-            "smithy.api#documentation": "When action is 'map', contains the idps which can be used for confirmation."
-          }
+        "localId": {
+          "target": "smithy.api#String"
         },
-        "dateOfBirth": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The birth date of the IdP account."
-          }
+        "temporaryProof": {
+          "target": "smithy.api#String"
         },
-        "oauthRequestToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The user approved request token for the OpenID OAuth extension."
-          }
+        "isNewUser": {
+          "target": "smithy.api#Boolean"
         },
-        "timeZone": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The timezone of the user."
-          }
+        "phoneNumber": {
+          "target": "smithy.api#String"
         },
-        "oauthAuthorizationCode": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The OAuth2 authorization code."
-          }
+        "verificationProofExpiresIn": {
+          "target": "smithy.api#String"
         },
-        "oauthTokenSecret": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The OAuth1 access token secret."
-          }
+        "refreshToken": {
+          "target": "smithy.api#String"
+        },
+        "temporaryProofExpiresIn": {
+          "target": "smithy.api#String"
         },
         "expiresIn": {
+          "target": "smithy.api#String"
+        },
+        "verificationProof": {
+          "target": "smithy.api#String"
+        },
+        "idToken": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response for Identitytoolkit-VerifyPhoneNumber"
+      }
+    },
+    "com.gcp.identitytoolkit_v3#IdentitytoolkitRelyingpartyResetPasswordRequest": {
+      "type": "structure",
+      "members": {
+        "email": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "If idToken is STS id token, then this field will be expiration time of STS id token in seconds."
+            "smithy.api#documentation": "The email address of the user."
           }
         },
-        "kind": {
+        "newPassword": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The fixed string \"identitytoolkit#VerifyAssertionResponse\"."
+            "smithy.api#documentation": "The new password inputted by the user."
           }
         },
-        "emailRecycled": {
+        "oldPassword": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The old password inputted by the user."
+          }
+        },
+        "oobCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The confirmation code."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request to reset the password."
+      }
+    },
+    "com.gcp.identitytoolkit_v3#IdentitytoolkitRelyingpartyGetProjectConfigResponse": {
+      "type": "structure",
+      "members": {
+        "authorizedDomains": {
+          "target": "com.gcp.identitytoolkit_v3#StringList",
+          "traits": {
+            "smithy.api#documentation": "Authorized domains."
+          }
+        },
+        "idpConfig": {
+          "target": "com.gcp.identitytoolkit_v3#IdpConfigList",
+          "traits": {
+            "smithy.api#documentation": "OAuth2 provider configuration."
+          }
+        },
+        "legacyResetPasswordTemplate": {
+          "target": "com.gcp.identitytoolkit_v3#EmailTemplate",
+          "traits": {
+            "smithy.api#documentation": "Legacy reset password email template."
+          }
+        },
+        "changeEmailTemplate": {
+          "target": "com.gcp.identitytoolkit_v3#EmailTemplate",
+          "traits": {
+            "smithy.api#documentation": "Change email template."
+          }
+        },
+        "resetPasswordTemplate": {
+          "target": "com.gcp.identitytoolkit_v3#EmailTemplate",
+          "traits": {
+            "smithy.api#documentation": "Reset password email template."
+          }
+        },
+        "verifyEmailTemplate": {
+          "target": "com.gcp.identitytoolkit_v3#EmailTemplate",
+          "traits": {
+            "smithy.api#documentation": "Verify email template."
+          }
+        },
+        "apiKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Browser API key, needed when making http request to Apiary."
+          }
+        },
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Project ID of the relying party."
+          }
+        },
+        "allowPasswordUser": {
           "target": "smithy.api#Boolean",
           "traits": {
-            "smithy.api#documentation": "It's true if the email is recycled."
+            "smithy.api#documentation": "Whether to allow password user sign in or sign up."
           }
         },
-        "context": {
-          "target": "smithy.api#String",
+        "enableAnonymousUser": {
+          "target": "smithy.api#Boolean",
           "traits": {
-            "smithy.api#documentation": "The opaque value used by the client to maintain context info between the authentication request and the IDP callback."
+            "smithy.api#documentation": "Whether anonymous user is enabled."
           }
         },
-        "screenName": {
+        "useEmailSending": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to use email sending provided by Firebear."
+          }
+        },
+        "dynamicLinksDomain": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response of getting the project configuration."
+      }
+    },
+    "com.gcp.identitytoolkit_v3#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.identitytoolkit_v3#IdpConfigList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.identitytoolkit_v3#IdpConfig"
+      }
+    },
+    "com.gcp.identitytoolkit_v3#IdentitytoolkitRelyingpartySetAccountInfoRequest": {
+      "type": "structure",
+      "members": {
+        "instanceId": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The screen_name of a Twitter user or the login name at Github."
+            "smithy.api#documentation": "Instance id token of the app."
+          }
+        },
+        "photoUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The photo url of the user."
+          }
+        },
+        "deleteAttribute": {
+          "target": "com.gcp.identitytoolkit_v3#StringList",
+          "traits": {
+            "smithy.api#documentation": "The attributes users request to delete."
           }
         },
         "displayName": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The display name of the user."
+            "smithy.api#documentation": "The name of the user."
+          }
+        },
+        "validSince": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp in seconds for valid login token."
+          }
+        },
+        "idToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The GITKit token of the authenticated user."
+          }
+        },
+        "emailVerified": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Mark the email as verified or not."
+          }
+        },
+        "localId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The local ID of the user."
+          }
+        },
+        "returnSecureToken": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether return sts id token and refresh token instead of gitkit token."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp when the account is created."
+          }
+        },
+        "customAttributes": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The custom attributes to be set in the user's id token."
+          }
+        },
+        "lastLoginAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last login timestamp."
+          }
+        },
+        "password": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The new password of the user."
+          }
+        },
+        "deleteProvider": {
+          "target": "com.gcp.identitytoolkit_v3#StringList",
+          "traits": {
+            "smithy.api#documentation": "The IDPs the user request to delete."
+          }
+        },
+        "phoneNumber": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Privileged caller can update user with specified phone number."
+          }
+        },
+        "provider": {
+          "target": "com.gcp.identitytoolkit_v3#StringList",
+          "traits": {
+            "smithy.api#documentation": "The associated IDPs of the user."
+          }
+        },
+        "upgradeToFederatedLogin": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Mark the user to upgrade to federated login."
+          }
+        },
+        "delegatedProjectNumber": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "GCP project number of the requesting delegated app. Currently only intended for Firebase V1 migration."
+          }
+        },
+        "oobCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The out-of-band code of the change email request."
+          }
+        },
+        "captchaChallenge": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The captcha challenge."
+          }
+        },
+        "captchaResponse": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Response to the captcha."
+          }
+        },
+        "disableUser": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to disable the user."
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The email of the user."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request to set the account information."
+      }
+    },
+    "com.gcp.identitytoolkit_v3#IdentitytoolkitRelyingpartySetProjectConfigResponse": {
+      "type": "structure",
+      "members": {
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Project ID of the relying party."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response of setting the project configuration."
+      }
+    },
+    "com.gcp.identitytoolkit_v3#IdentitytoolkitRelyingpartyGetAccountInfoRequest": {
+      "type": "structure",
+      "members": {
+        "email": {
+          "target": "com.gcp.identitytoolkit_v3#StringList",
+          "traits": {
+            "smithy.api#documentation": "The list of emails of the users to inquiry."
+          }
+        },
+        "idToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The GITKit token of the authenticated user."
+          }
+        },
+        "localId": {
+          "target": "com.gcp.identitytoolkit_v3#StringList",
+          "traits": {
+            "smithy.api#documentation": "The list of local ID's of the users to inquiry."
+          }
+        },
+        "phoneNumber": {
+          "target": "com.gcp.identitytoolkit_v3#StringList",
+          "traits": {
+            "smithy.api#documentation": "Privileged caller can query users by specified phone number."
+          }
+        },
+        "delegatedProjectNumber": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "GCP project number of the requesting delegated app. Currently only intended for Firebase V1 migration."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request to get the account information."
+      }
+    },
+    "com.gcp.identitytoolkit_v3#IdentitytoolkitRelyingpartyVerifyAssertionRequest": {
+      "type": "structure",
+      "members": {
+        "postBody": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The post body if the request is a HTTP POST."
+          }
+        },
+        "idToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The GITKit token of the authenticated user."
+          }
+        },
+        "instanceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Instance id token of the app."
+          }
+        },
+        "autoCreate": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When it's true, automatically creates a new account if the user doesn't exist. When it's false, allows existing user to sign in normally and throws exception if the user doesn't exist."
+          }
+        },
+        "sessionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Session ID, which should match the one in previous createAuthUri request."
+          }
+        },
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "For multi-tenant use cases, in order to construct sign-in URL with the correct IDP parameters, Firebear needs to know which Tenant to retrieve IDP configs from."
+          }
+        },
+        "delegatedProjectNumber": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "GCP project number of the requesting delegated app. Currently only intended for Firebase V1 migration."
+          }
+        },
+        "returnIdpCredential": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether return 200 and IDP credential rather than throw exception when federated id is already linked."
+          }
+        },
+        "tenantProjectNumber": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Tenant project number to be used for idp discovery."
+          }
+        },
+        "returnRefreshToken": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to return refresh tokens."
+          }
+        },
+        "pendingIdToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The GITKit token for the non-trusted IDP pending to be confirmed by the user."
+          }
+        },
+        "returnSecureToken": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether return sts id token and refresh token instead of gitkit token."
+          }
+        },
+        "requestUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URI to which the IDP redirects the user back. It may contain federated login result params added by the IDP."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request to verify the IDP assertion."
+      }
+    },
+    "com.gcp.identitytoolkit_v3#VerifyAssertionResponse": {
+      "type": "structure",
+      "members": {
+        "needEmail": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether need client to supply email to complete the federated login flow."
+          }
+        },
+        "federatedId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique ID identifies the IdP account."
+          }
+        },
+        "photoUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URI of the public accessible profiel picture."
+          }
+        },
+        "lastName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The last name of the user."
           }
         },
         "originalEmail": {
@@ -301,22 +578,34 @@
             "smithy.api#documentation": "The original email stored in the mapping storage. It's returned when the federated ID is associated to a different email."
           }
         },
+        "action": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The action code."
+          }
+        },
+        "context": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The opaque value used by the client to maintain context info between the authentication request and the IDP callback."
+          }
+        },
         "appInstallationUrl": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "URL for OTA app installation."
           }
         },
-        "inputEmail": {
-          "target": "smithy.api#String",
+        "emailVerified": {
+          "target": "smithy.api#Boolean",
           "traits": {
-            "smithy.api#documentation": "It's the identifier param in the createAuthUri request if the identifier is an email. It can be used to check whether the user input email is different from the asserted email."
+            "smithy.api#documentation": "The value is true if the IDP is also the email provider. It means the user owns the email."
           }
         },
-        "nickName": {
+        "localId": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The nick name of the user."
+            "smithy.api#documentation": "The RP local ID if it's already been mapped to the IdP account identified by the federated ID."
           }
         },
         "oauthIdToken": {
@@ -331,34 +620,28 @@
             "smithy.api#documentation": "The full name of the user."
           }
         },
-        "firstName": {
+        "inputEmail": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The first name of the user."
+            "smithy.api#documentation": "It's the identifier param in the createAuthUri request if the identifier is an email. It can be used to check whether the user input email is different from the asserted email."
           }
         },
-        "localId": {
+        "nickName": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The RP local ID if it's already been mapped to the IdP account identified by the federated ID."
+            "smithy.api#documentation": "The nick name of the user."
           }
         },
-        "needConfirmation": {
+        "emailRecycled": {
           "target": "smithy.api#Boolean",
           "traits": {
-            "smithy.api#documentation": "Whether the assertion is from a non-trusted IDP and need account linking confirmation."
+            "smithy.api#documentation": "It's true if the email is recycled."
           }
         },
-        "photoUrl": {
+        "oauthTokenSecret": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The URI of the public accessible profiel picture."
-          }
-        },
-        "oauthAccessToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The OAuth2 access token."
+            "smithy.api#documentation": "The OAuth1 access token secret."
           }
         },
         "isNewUser": {
@@ -367,70 +650,22 @@
             "smithy.api#documentation": "True if it's a new user sign-in, false if it's a returning user."
           }
         },
-        "providerId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The IdP ID. For white listed IdPs it's a short domain name e.g. google.com, aol.com, live.net and yahoo.com. If the \"providerId\" param is set to OpenID OP identifer other than the whilte listed IdPs the OP identifier is returned. If the \"identifier\" param is federated ID in the createAuthUri request. The domain part of the federated ID is returned."
-          }
-        },
-        "appScheme": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The custom scheme used by mobile app."
-          }
-        },
-        "errorMessage": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Client error code."
-          }
-        },
-        "oauthScope": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The scope for the OpenID OAuth extension."
-          }
-        },
-        "emailVerified": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "The value is true if the IDP is also the email provider. It means the user owns the email."
-          }
-        },
-        "needEmail": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether need client to supply email to complete the federated login flow."
-          }
-        },
-        "oauthExpireIn": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The lifetime in seconds of the OAuth2 access token."
-          }
-        },
-        "language": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The language preference of the user."
-          }
-        },
-        "idToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The ID token."
-          }
-        },
         "email": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "The email returned by the IdP. NOTE: The federated login user may not own the email."
           }
         },
-        "lastName": {
+        "oauthAuthorizationCode": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The last name of the user."
+            "smithy.api#documentation": "The OAuth2 authorization code."
+          }
+        },
+        "oauthRequestToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The user approved request token for the OpenID OAuth extension."
           }
         },
         "rawUserInfo": {
@@ -439,16 +674,22 @@
             "smithy.api#documentation": "Raw IDP-returned user info."
           }
         },
-        "federatedId": {
+        "appScheme": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The unique ID identifies the IdP account."
+            "smithy.api#documentation": "The custom scheme used by mobile app."
           }
         },
-        "action": {
+        "language": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The action code."
+            "smithy.api#documentation": "The language preference of the user."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The display name of the user."
           }
         },
         "refreshToken": {
@@ -456,383 +697,138 @@
           "traits": {
             "smithy.api#documentation": "If idToken is STS id token, then this field will be refresh token."
           }
+        },
+        "verifiedProvider": {
+          "target": "com.gcp.identitytoolkit_v3#StringList",
+          "traits": {
+            "smithy.api#documentation": "When action is 'map', contains the idps which can be used for confirmation."
+          }
+        },
+        "expiresIn": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If idToken is STS id token, then this field will be expiration time of STS id token in seconds."
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The fixed string \"identitytoolkit#VerifyAssertionResponse\"."
+          }
+        },
+        "needConfirmation": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the assertion is from a non-trusted IDP and need account linking confirmation."
+          }
+        },
+        "idToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID token."
+          }
+        },
+        "firstName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The first name of the user."
+          }
+        },
+        "oauthExpireIn": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The lifetime in seconds of the OAuth2 access token."
+          }
+        },
+        "dateOfBirth": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The birth date of the IdP account."
+          }
+        },
+        "screenName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The screen_name of a Twitter user or the login name at Github."
+          }
+        },
+        "timeZone": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timezone of the user."
+          }
+        },
+        "errorMessage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Client error code."
+          }
+        },
+        "oauthAccessToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The OAuth2 access token."
+          }
+        },
+        "oauthScope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The scope for the OpenID OAuth extension."
+          }
+        },
+        "providerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The IdP ID. For white listed IdPs it's a short domain name e.g. google.com, aol.com, live.net and yahoo.com. If the \"providerId\" param is set to OpenID OP identifer other than the whilte listed IdPs the OP identifier is returned. If the \"identifier\" param is federated ID in the createAuthUri request. The domain part of the federated ID is returned."
+          }
         }
       },
       "traits": {
         "smithy.api#documentation": "Response of verifying the IDP assertion."
       }
     },
-    "com.gcp.identitytoolkit_v3#StringList": {
-      "type": "list",
-      "member": {
-        "target": "smithy.api#String"
-      }
-    },
-    "com.gcp.identitytoolkit_v3#GetAccountInfoResponse": {
+    "com.gcp.identitytoolkit_v3#EmailTemplate": {
       "type": "structure",
       "members": {
-        "kind": {
+        "from": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The fixed string \"identitytoolkit#GetAccountInfoResponse\"."
+            "smithy.api#documentation": "From address of the email."
           }
         },
-        "users": {
-          "target": "com.gcp.identitytoolkit_v3#UserInfoList",
+        "subject": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The info of the users."
+            "smithy.api#documentation": "Subject of the email."
+          }
+        },
+        "format": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Email body format."
+          }
+        },
+        "body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Email body."
+          }
+        },
+        "replyTo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Reply-to address."
+          }
+        },
+        "fromDisplayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "From display name."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Response of getting account information."
-      }
-    },
-    "com.gcp.identitytoolkit_v3#IdentitytoolkitRelyingpartySignOutUserResponse": {
-      "type": "structure",
-      "members": {
-        "localId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The local ID of the user."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Response of signing out user."
-      }
-    },
-    "com.gcp.identitytoolkit_v3#IdentitytoolkitRelyingpartyVerifyPhoneNumberRequest": {
-      "type": "structure",
-      "members": {
-        "operation": {
-          "target": "smithy.api#String"
-        },
-        "sessionInfo": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The session info previously returned by IdentityToolkit-SendVerificationCode."
-          }
-        },
-        "idToken": {
-          "target": "smithy.api#String"
-        },
-        "temporaryProof": {
-          "target": "smithy.api#String"
-        },
-        "code": {
-          "target": "smithy.api#String"
-        },
-        "phoneNumber": {
-          "target": "smithy.api#String"
-        },
-        "verificationProof": {
-          "target": "smithy.api#String"
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Request for Identitytoolkit-VerifyPhoneNumber"
-      }
-    },
-    "com.gcp.identitytoolkit_v3#IdentitytoolkitRelyingpartyGetAccountInfoRequest": {
-      "type": "structure",
-      "members": {
-        "delegatedProjectNumber": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "GCP project number of the requesting delegated app. Currently only intended for Firebase V1 migration."
-          }
-        },
-        "idToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The GITKit token of the authenticated user."
-          }
-        },
-        "email": {
-          "target": "com.gcp.identitytoolkit_v3#StringList",
-          "traits": {
-            "smithy.api#documentation": "The list of emails of the users to inquiry."
-          }
-        },
-        "localId": {
-          "target": "com.gcp.identitytoolkit_v3#StringList",
-          "traits": {
-            "smithy.api#documentation": "The list of local ID's of the users to inquiry."
-          }
-        },
-        "phoneNumber": {
-          "target": "com.gcp.identitytoolkit_v3#StringList",
-          "traits": {
-            "smithy.api#documentation": "Privileged caller can query users by specified phone number."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Request to get the account information."
-      }
-    },
-    "com.gcp.identitytoolkit_v3#GetOobConfirmationCodeResponse": {
-      "type": "structure",
-      "members": {
-        "email": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The email address that the email is sent to."
-          }
-        },
-        "kind": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The fixed string \"identitytoolkit#GetOobConfirmationCodeResponse\"."
-          }
-        },
-        "oobCode": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The code to be send to the user."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Response of getting a code for user confirmation (reset password, change email etc.)."
-      }
-    },
-    "com.gcp.identitytoolkit_v3#IdentitytoolkitRelyingpartyResetPasswordRequest": {
-      "type": "structure",
-      "members": {
-        "newPassword": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The new password inputted by the user."
-          }
-        },
-        "oldPassword": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The old password inputted by the user."
-          }
-        },
-        "email": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The email address of the user."
-          }
-        },
-        "oobCode": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The confirmation code."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Request to reset the password."
-      }
-    },
-    "com.gcp.identitytoolkit_v3#IdentitytoolkitRelyingpartySignupNewUserRequest": {
-      "type": "structure",
-      "members": {
-        "tenantId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "For multi-tenant use cases, in order to construct sign-in URL with the correct IDP parameters, Firebear needs to know which Tenant to retrieve IDP configs from."
-          }
-        },
-        "email": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The email of the user."
-          }
-        },
-        "phoneNumber": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Privileged caller can create user with specified phone number."
-          }
-        },
-        "idToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The GITKit token of the authenticated user."
-          }
-        },
-        "displayName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name of the user."
-          }
-        },
-        "emailVerified": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Mark the email as verified or not. Only can be used by service account."
-          }
-        },
-        "captchaResponse": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Response to the captcha."
-          }
-        },
-        "tenantProjectNumber": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Tenant project number to be used for idp discovery."
-          }
-        },
-        "captchaChallenge": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The captcha challenge."
-          }
-        },
-        "disabled": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether to disable the user. Only can be used by service account."
-          }
-        },
-        "instanceId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Instance id token of the app."
-          }
-        },
-        "password": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The new password of the user."
-          }
-        },
-        "photoUrl": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The photo url of the user."
-          }
-        },
-        "localId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Privileged caller can create user with specified user id."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Request to signup new user, create anonymous user or anonymous user reauth."
-      }
-    },
-    "com.gcp.identitytoolkit_v3#IdentitytoolkitRelyingpartyCreateAuthUriRequest": {
-      "type": "structure",
-      "members": {
-        "authFlowType": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Explicitly specify the auth flow type. Currently only support \"CODE_FLOW\" type. The field is only used for Google provider."
-          }
-        },
-        "providerId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The IdP ID. For white listed IdPs it's a short domain name e.g. google.com, aol.com, live.net and yahoo.com. For other OpenID IdPs it's the OP identifier."
-          }
-        },
-        "hostedDomain": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The hosted domain to restrict sign-in to accounts at that domain for Google Apps hosted accounts."
-          }
-        },
-        "clientId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The relying party OAuth client ID."
-          }
-        },
-        "openidRealm": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional realm for OpenID protocol. The sub string \"scheme://domain:port\" of the param \"continueUri\" is used if this is not set."
-          }
-        },
-        "oauthScope": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Additional oauth scopes, beyond the basid user profile, that the user would be prompted to grant"
-          }
-        },
-        "tenantProjectNumber": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Tenant project number to be used for idp discovery."
-          }
-        },
-        "continueUri": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The URI to which the IDP redirects the user after the federated login flow."
-          }
-        },
-        "context": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The opaque value used by the client to maintain context info between the authentication request and the IDP callback."
-          }
-        },
-        "sessionId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The session_id passed by client."
-          }
-        },
-        "oauthConsumerKey": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The developer's consumer key for OpenId OAuth Extension"
-          }
-        },
-        "appId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The app ID of the mobile app, base64(CERT_SHA1):PACKAGE_NAME for Android, BUNDLE_ID for iOS."
-          }
-        },
-        "identifier": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The email or federated ID of the user."
-          }
-        },
-        "otaApp": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The native app package for OTA installation."
-          }
-        },
-        "customParameter": {
-          "target": "com.gcp.identitytoolkit_v3#StringMap",
-          "traits": {
-            "smithy.api#documentation": "The query parameter that client can customize by themselves in auth url. The following parameters are reserved for server so that they cannot be customized by clients: client_id, response_type, scope, redirect_uri, state, oauth_token."
-          }
-        },
-        "tenantId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "For multi-tenant use cases, in order to construct sign-in URL with the correct IDP parameters, Firebear needs to know which Tenant to retrieve IDP configs from."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Request to get the IDP authentication URL."
-      }
-    },
-    "com.gcp.identitytoolkit_v3#StringMap": {
-      "type": "map",
-      "key": {
-        "target": "smithy.api#String"
-      },
-      "value": {
-        "target": "smithy.api#String"
+        "smithy.api#documentation": "Template for an email template."
       }
     },
     "com.gcp.identitytoolkit_v3#IdentitytoolkitRelyingpartyDeleteAccountRequest": {
@@ -861,1092 +857,13 @@
         "smithy.api#documentation": "Request to delete account."
       }
     },
-    "com.gcp.identitytoolkit_v3#IdentitytoolkitRelyingpartySetProjectConfigRequest": {
+    "com.gcp.identitytoolkit_v3#VerifyCustomTokenResponse": {
       "type": "structure",
       "members": {
-        "allowPasswordUser": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether to allow password user sign in or sign up."
-          }
-        },
-        "authorizedDomains": {
-          "target": "com.gcp.identitytoolkit_v3#StringList",
-          "traits": {
-            "smithy.api#documentation": "Authorized domains for widget redirect."
-          }
-        },
-        "enableAnonymousUser": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether to enable anonymous user."
-          }
-        },
-        "delegatedProjectNumber": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "GCP project number of the requesting delegated app. Currently only intended for Firebase V1 migration."
-          }
-        },
-        "verifyEmailTemplate": {
-          "target": "com.gcp.identitytoolkit_v3#EmailTemplate",
-          "traits": {
-            "smithy.api#documentation": "Verify email template."
-          }
-        },
-        "legacyResetPasswordTemplate": {
-          "target": "com.gcp.identitytoolkit_v3#EmailTemplate",
-          "traits": {
-            "smithy.api#documentation": "Legacy reset password email template."
-          }
-        },
-        "useEmailSending": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether to use email sending provided by Firebear."
-          }
-        },
-        "apiKey": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Browser API key, needed when making http request to Apiary."
-          }
-        },
-        "idpConfig": {
-          "target": "com.gcp.identitytoolkit_v3#IdpConfigList",
-          "traits": {
-            "smithy.api#documentation": "Oauth2 provider configuration."
-          }
-        },
-        "resetPasswordTemplate": {
-          "target": "com.gcp.identitytoolkit_v3#EmailTemplate",
-          "traits": {
-            "smithy.api#documentation": "Reset password email template."
-          }
-        },
-        "changeEmailTemplate": {
-          "target": "com.gcp.identitytoolkit_v3#EmailTemplate",
-          "traits": {
-            "smithy.api#documentation": "Change email template."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Request to set the project configuration."
-      }
-    },
-    "com.gcp.identitytoolkit_v3#IdpConfigList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.identitytoolkit_v3#IdpConfig"
-      }
-    },
-    "com.gcp.identitytoolkit_v3#IdentitytoolkitRelyingpartySendVerificationCodeRequest": {
-      "type": "structure",
-      "members": {
-        "iosSecret": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Secret delivered to iOS app via APNS."
-          }
-        },
-        "phoneNumber": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The phone number to send the verification code to in E.164 format."
-          }
-        },
-        "iosReceipt": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Receipt of successful app token validation with APNS."
-          }
-        },
-        "recaptchaToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Recaptcha solution."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Request for Identitytoolkit-SendVerificationCode"
-      }
-    },
-    "com.gcp.identitytoolkit_v3#EmailTemplate": {
-      "type": "structure",
-      "members": {
-        "format": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Email body format."
-          }
-        },
-        "replyTo": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Reply-to address."
-          }
-        },
-        "subject": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Subject of the email."
-          }
-        },
-        "body": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Email body."
-          }
-        },
-        "from": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "From address of the email."
-          }
-        },
-        "fromDisplayName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "From display name."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Template for an email template."
-      }
-    },
-    "com.gcp.identitytoolkit_v3#IdpConfig": {
-      "type": "structure",
-      "members": {
-        "whitelistedAudiences": {
-          "target": "com.gcp.identitytoolkit_v3#StringList",
-          "traits": {
-            "smithy.api#documentation": "Whitelisted client IDs for audience check."
-          }
-        },
-        "clientId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "OAuth2 client ID."
-          }
-        },
-        "enabled": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether this IDP is enabled."
-          }
-        },
-        "secret": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "OAuth2 client secret."
-          }
-        },
-        "experimentPercent": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Percent of users who will be prompted/redirected federated login for this IDP."
-          }
-        },
-        "provider": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "OAuth2 provider."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Template for a single idp configuration."
-      }
-    },
-    "com.gcp.identitytoolkit_v3#UserInfo": {
-      "type": "structure",
-      "members": {
-        "rawPassword": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The user's plain text password."
-          }
-        },
-        "emailVerified": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether the email has been verified."
-          }
-        },
-        "disabled": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether the user is disabled."
-          }
-        },
-        "localId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The local ID of the user."
-          }
-        },
-        "photoUrl": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The URL of the user profile photo."
-          }
-        },
-        "customAuth": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether the user is authenticated by the developer."
-          }
-        },
-        "passwordHash": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The user's hashed password."
-          }
-        },
-        "validSince": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Timestamp in seconds for valid login token."
-          }
-        },
-        "email": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The email of the user."
-          }
-        },
-        "phoneNumber": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "User's phone number."
-          }
-        },
-        "providerUserInfo": {
-          "target": "com.gcp.identitytoolkit_v3#UserInfoProviderUserInfoItemList",
-          "traits": {
-            "smithy.api#documentation": "The IDP of the user."
-          }
-        },
-        "salt": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The user's password salt."
-          }
-        },
-        "displayName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name of the user."
-          }
-        },
-        "version": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Version of the user's password."
-          }
-        },
-        "passwordUpdatedAt": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The timestamp when the password was last updated."
-          }
-        },
-        "createdAt": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "User creation timestamp."
-          }
-        },
-        "lastLoginAt": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "last login timestamp."
-          }
-        },
-        "customAttributes": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The custom attributes to be set in the user's id token."
-          }
-        },
-        "screenName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "User's screen name at Twitter or login name at Github."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Template for an individual account info."
-      }
-    },
-    "com.gcp.identitytoolkit_v3#UserInfoProviderUserInfoItem": {
-      "type": "structure",
-      "members": {
-        "email": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "User's email at IDP."
-          }
-        },
-        "phoneNumber": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "User's phone number."
-          }
-        },
-        "rawId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "User's raw identifier directly returned from IDP."
-          }
-        },
-        "screenName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "User's screen name at Twitter or login name at Github."
-          }
-        },
-        "photoUrl": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The user's photo url at the IDP."
-          }
-        },
-        "displayName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The user's display name at the IDP."
-          }
-        },
-        "federatedId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "User's identifier at IDP."
-          }
-        },
-        "providerId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The IdP ID. For white listed IdPs it's a short domain name, e.g., google.com, aol.com, live.net and yahoo.com. For other OpenID IdPs it's the OP identifier."
-          }
-        }
-      }
-    },
-    "com.gcp.identitytoolkit_v3#UserInfoProviderUserInfoItemList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.identitytoolkit_v3#UserInfoProviderUserInfoItem"
-      }
-    },
-    "com.gcp.identitytoolkit_v3#IdentitytoolkitRelyingpartySignOutUserRequest": {
-      "type": "structure",
-      "members": {
-        "instanceId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Instance id token of the app."
-          }
-        },
-        "localId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The local ID of the user."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Request to sign out user."
-      }
-    },
-    "com.gcp.identitytoolkit_v3#IdentitytoolkitRelyingpartyEmailLinkSigninRequest": {
-      "type": "structure",
-      "members": {
-        "email": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The email address of the user."
-          }
-        },
-        "oobCode": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The confirmation code."
-          }
-        },
-        "idToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Token for linking flow."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Request to sign in with email."
-      }
-    },
-    "com.gcp.identitytoolkit_v3#IdentitytoolkitRelyingpartySendVerificationCodeResponse": {
-      "type": "structure",
-      "members": {
-        "sessionInfo": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Encrypted session information"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Response for Identitytoolkit-SendVerificationCode"
-      }
-    },
-    "com.gcp.identitytoolkit_v3#IdentitytoolkitRelyingpartyVerifyPasswordRequest": {
-      "type": "structure",
-      "members": {
-        "pendingIdToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The GITKit token for the non-trusted IDP, which is to be confirmed by the user."
-          }
-        },
-        "password": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The password inputed by the user."
-          }
-        },
-        "captchaChallenge": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The captcha challenge."
-          }
-        },
-        "delegatedProjectNumber": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "GCP project number of the requesting delegated app. Currently only intended for Firebase V1 migration."
-          }
-        },
-        "idToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The GITKit token of the authenticated user."
-          }
-        },
-        "instanceId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Instance id token of the app."
-          }
-        },
-        "email": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The email of the user."
-          }
-        },
-        "returnSecureToken": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether return sts id token and refresh token instead of gitkit token."
-          }
-        },
-        "captchaResponse": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Response to the captcha."
-          }
-        },
-        "tenantId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "For multi-tenant use cases, in order to construct sign-in URL with the correct IDP parameters, Firebear needs to know which Tenant to retrieve IDP configs from."
-          }
-        },
-        "tenantProjectNumber": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Tenant project number to be used for idp discovery."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Request to verify the password."
-      }
-    },
-    "com.gcp.identitytoolkit_v3#IdentitytoolkitRelyingpartyVerifyAssertionRequest": {
-      "type": "structure",
-      "members": {
-        "pendingIdToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The GITKit token for the non-trusted IDP pending to be confirmed by the user."
-          }
-        },
-        "delegatedProjectNumber": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "GCP project number of the requesting delegated app. Currently only intended for Firebase V1 migration."
-          }
-        },
-        "idToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The GITKit token of the authenticated user."
-          }
-        },
-        "sessionId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Session ID, which should match the one in previous createAuthUri request."
-          }
-        },
-        "postBody": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The post body if the request is a HTTP POST."
-          }
-        },
-        "autoCreate": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "When it's true, automatically creates a new account if the user doesn't exist. When it's false, allows existing user to sign in normally and throws exception if the user doesn't exist."
-          }
-        },
-        "requestUri": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The URI to which the IDP redirects the user back. It may contain federated login result params added by the IDP."
-          }
-        },
-        "tenantId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "For multi-tenant use cases, in order to construct sign-in URL with the correct IDP parameters, Firebear needs to know which Tenant to retrieve IDP configs from."
-          }
-        },
-        "instanceId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Instance id token of the app."
-          }
-        },
-        "returnIdpCredential": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether return 200 and IDP credential rather than throw exception when federated id is already linked."
-          }
-        },
-        "returnRefreshToken": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether to return refresh tokens."
-          }
-        },
-        "tenantProjectNumber": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Tenant project number to be used for idp discovery."
-          }
-        },
-        "returnSecureToken": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether return sts id token and refresh token instead of gitkit token."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Request to verify the IDP assertion."
-      }
-    },
-    "com.gcp.identitytoolkit_v3#GetRecaptchaParamResponse": {
-      "type": "structure",
-      "members": {
-        "kind": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The fixed string \"identitytoolkit#GetRecaptchaParamResponse\"."
-          }
-        },
-        "recaptchaSiteKey": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Site key registered at recaptcha."
-          }
-        },
-        "recaptchaStoken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The stoken field for the recaptcha widget, used to request captcha challenge."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Response of getting recaptcha param."
-      }
-    },
-    "com.gcp.identitytoolkit_v3#DownloadAccountResponse": {
-      "type": "structure",
-      "members": {
-        "nextPageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The next page token. To be used in a subsequent request to return the next page of results."
-          }
-        },
-        "kind": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The fixed string \"identitytoolkit#DownloadAccountResponse\"."
-          }
-        },
-        "users": {
-          "target": "com.gcp.identitytoolkit_v3#UserInfoList",
-          "traits": {
-            "smithy.api#documentation": "The user accounts data."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Response of downloading accounts in batch."
-      }
-    },
-    "com.gcp.identitytoolkit_v3#EmailLinkSigninResponse": {
-      "type": "structure",
-      "members": {
-        "idToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The STS id token to login the newly signed in user."
-          }
-        },
         "isNewUser": {
           "target": "smithy.api#Boolean",
           "traits": {
-            "smithy.api#documentation": "Whether the user is new."
-          }
-        },
-        "refreshToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The refresh token for the signed in user."
-          }
-        },
-        "expiresIn": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Expiration time of STS id token in seconds."
-          }
-        },
-        "email": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The user's email."
-          }
-        },
-        "kind": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The fixed string \"identitytoolkit#EmailLinkSigninResponse\"."
-          }
-        },
-        "localId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The RP local ID of the user."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Response of email signIn."
-      }
-    },
-    "com.gcp.identitytoolkit_v3#CreateAuthUriResponse": {
-      "type": "structure",
-      "members": {
-        "authUri": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The URI used by the IDP to authenticate the user."
-          }
-        },
-        "kind": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The fixed string identitytoolkit#CreateAuthUriResponse\"."
-          }
-        },
-        "registered": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether the user is registered if the identifier is an email."
-          }
-        },
-        "providerId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The provider ID of the auth URI."
-          }
-        },
-        "forExistingProvider": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "True if the authUri is for user's existing provider."
-          }
-        },
-        "sessionId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Session ID which should be passed in the following verifyAssertion request."
-          }
-        },
-        "allProviders": {
-          "target": "com.gcp.identitytoolkit_v3#StringList",
-          "traits": {
-            "smithy.api#documentation": "all providers the user has once used to do federated login"
-          }
-        },
-        "captchaRequired": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "True if captcha is required."
-          }
-        },
-        "signinMethods": {
-          "target": "com.gcp.identitytoolkit_v3#StringList",
-          "traits": {
-            "smithy.api#documentation": "All sign-in methods this user has used."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Response of creating the IDP authentication URL."
-      }
-    },
-    "com.gcp.identitytoolkit_v3#DeleteAccountResponse": {
-      "type": "structure",
-      "members": {
-        "kind": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The fixed string \"identitytoolkit#DeleteAccountResponse\"."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Respone of deleting account."
-      }
-    },
-    "com.gcp.identitytoolkit_v3#Relyingparty": {
-      "type": "structure",
-      "members": {
-        "androidInstallApp": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "whether or not to install the android app on the device where the link is opened"
-          }
-        },
-        "canHandleCodeInApp": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "whether or not the app can handle the oob code without first going to web"
-          }
-        },
-        "idToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The user's Gitkit login token for email change."
-          }
-        },
-        "kind": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The fixed string \"identitytoolkit#relyingparty\"."
-          }
-        },
-        "requestType": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The request type."
-          }
-        },
-        "captchaResp": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The recaptcha response from the user."
-          }
-        },
-        "email": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The email of the user."
-          }
-        },
-        "iOSAppStoreId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "iOS app store id to download the app if it's not already installed"
-          }
-        },
-        "androidMinimumVersion": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "minimum version of the app. if the version on the device is lower than this version then the user is taken to the play store to upgrade the app"
-          }
-        },
-        "iOSBundleId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "the iOS bundle id of iOS app to handle the action code"
-          }
-        },
-        "userIp": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The IP address of the user."
-          }
-        },
-        "androidPackageName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "android package name of the android app to handle the action code"
-          }
-        },
-        "challenge": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The recaptcha challenge presented to the user."
-          }
-        },
-        "newEmail": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The new email if the code is for email change."
-          }
-        },
-        "continueUrl": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The url to continue to the Gitkit app"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Request of getting a code for user confirmation (reset password, change email etc.)"
-      }
-    },
-    "com.gcp.identitytoolkit_v3#IdentitytoolkitRelyingpartySetProjectConfigResponse": {
-      "type": "structure",
-      "members": {
-        "projectId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Project ID of the relying party."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Response of setting the project configuration."
-      }
-    },
-    "com.gcp.identitytoolkit_v3#IdentitytoolkitRelyingpartySetAccountInfoRequest": {
-      "type": "structure",
-      "members": {
-        "email": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The email of the user."
-          }
-        },
-        "phoneNumber": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Privileged caller can update user with specified phone number."
-          }
-        },
-        "oobCode": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The out-of-band code of the change email request."
-          }
-        },
-        "validSince": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Timestamp in seconds for valid login token."
-          }
-        },
-        "customAttributes": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The custom attributes to be set in the user's id token."
-          }
-        },
-        "upgradeToFederatedLogin": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Mark the user to upgrade to federated login."
-          }
-        },
-        "createdAt": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The timestamp when the account is created."
-          }
-        },
-        "lastLoginAt": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Last login timestamp."
-          }
-        },
-        "displayName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name of the user."
-          }
-        },
-        "delegatedProjectNumber": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "GCP project number of the requesting delegated app. Currently only intended for Firebase V1 migration."
-          }
-        },
-        "idToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The GITKit token of the authenticated user."
-          }
-        },
-        "deleteAttribute": {
-          "target": "com.gcp.identitytoolkit_v3#StringList",
-          "traits": {
-            "smithy.api#documentation": "The attributes users request to delete."
-          }
-        },
-        "disableUser": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether to disable the user."
-          }
-        },
-        "provider": {
-          "target": "com.gcp.identitytoolkit_v3#StringList",
-          "traits": {
-            "smithy.api#documentation": "The associated IDPs of the user."
-          }
-        },
-        "returnSecureToken": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether return sts id token and refresh token instead of gitkit token."
-          }
-        },
-        "captchaResponse": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Response to the captcha."
-          }
-        },
-        "emailVerified": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Mark the email as verified or not."
-          }
-        },
-        "localId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The local ID of the user."
-          }
-        },
-        "photoUrl": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The photo url of the user."
-          }
-        },
-        "password": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The new password of the user."
-          }
-        },
-        "deleteProvider": {
-          "target": "com.gcp.identitytoolkit_v3#StringList",
-          "traits": {
-            "smithy.api#documentation": "The IDPs the user request to delete."
-          }
-        },
-        "instanceId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Instance id token of the app."
-          }
-        },
-        "captchaChallenge": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The captcha challenge."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Request to set the account information."
-      }
-    },
-    "com.gcp.identitytoolkit_v3#SetAccountInfoResponse": {
-      "type": "structure",
-      "members": {
-        "photoUrl": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The photo url of the user."
-          }
-        },
-        "kind": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The fixed string \"identitytoolkit#SetAccountInfoResponse\"."
-          }
-        },
-        "localId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The local ID of the user."
-          }
-        },
-        "idToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The Gitkit id token to login the newly sign up user."
-          }
-        },
-        "displayName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name of the user."
-          }
-        },
-        "providerUserInfo": {
-          "target": "com.gcp.identitytoolkit_v3#SetAccountInfoResponseProviderUserInfoItemList",
-          "traits": {
-            "smithy.api#documentation": "The user's profiles at the associated IdPs."
-          }
-        },
-        "email": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The email of the user."
-          }
-        },
-        "emailVerified": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "If email has been verified."
+            "smithy.api#documentation": "True if it's a new user sign-in, false if it's a returning user."
           }
         },
         "refreshToken": {
@@ -1955,77 +872,107 @@
             "smithy.api#documentation": "If idToken is STS id token, then this field will be refresh token."
           }
         },
-        "passwordHash": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The user's hashed password."
-          }
-        },
-        "newEmail": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The new email the user attempts to change to."
-          }
-        },
         "expiresIn": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "If idToken is STS id token, then this field will be expiration time of STS id token in seconds."
           }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The fixed string \"identitytoolkit#VerifyCustomTokenResponse\"."
+          }
+        },
+        "idToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The GITKit token for authenticated user."
+          }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Respone of setting the account information."
+        "smithy.api#documentation": "Response from verifying a custom token"
       }
     },
-    "com.gcp.identitytoolkit_v3#SetAccountInfoResponseProviderUserInfoItem": {
+    "com.gcp.identitytoolkit_v3#IdentitytoolkitRelyingpartySignOutUserResponse": {
       "type": "structure",
       "members": {
-        "displayName": {
+        "localId": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The user's display name at the IDP."
-          }
-        },
-        "federatedId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "User's identifier at IDP."
-          }
-        },
-        "photoUrl": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The user's photo url at the IDP."
-          }
-        },
-        "providerId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The IdP ID. For whitelisted IdPs it's a short domain name, e.g., google.com, aol.com, live.net and yahoo.com. For other OpenID IdPs it's the OP identifier."
+            "smithy.api#documentation": "The local ID of the user."
           }
         }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response of signing out user."
       }
     },
-    "com.gcp.identitytoolkit_v3#SetAccountInfoResponseProviderUserInfoItemList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.identitytoolkit_v3#SetAccountInfoResponseProviderUserInfoItem"
-      }
-    },
-    "com.gcp.identitytoolkit_v3#IdentitytoolkitRelyingpartyDownloadAccountRequest": {
+    "com.gcp.identitytoolkit_v3#IdentitytoolkitRelyingpartyUploadAccountRequest": {
       "type": "structure",
       "members": {
-        "maxResults": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The max number of results to return in the response."
-          }
+        "parallelization": {
+          "target": "smithy.api#Integer"
         },
-        "nextPageToken": {
+        "signerKey": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The token for the next page. This should be taken from the previous response."
+            "smithy.api#documentation": "The key for to hash the password."
+          }
+        },
+        "blockSize": {
+          "target": "smithy.api#Integer"
+        },
+        "sanityCheck": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If true, backend will do sanity check(including duplicate email and federated id) when uploading account."
+          }
+        },
+        "delegatedProjectNumber": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "GCP project number of the requesting delegated app. Currently only intended for Firebase V1 migration."
+          }
+        },
+        "rounds": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Rounds for hash calculation. Used by scrypt and similar algorithms."
+          }
+        },
+        "users": {
+          "target": "com.gcp.identitytoolkit_v3#UserInfoList",
+          "traits": {
+            "smithy.api#documentation": "The account info to be stored."
+          }
+        },
+        "allowOverwrite": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether allow overwrite existing account when user local_id exists."
+          }
+        },
+        "cpuMemCost": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The following 4 fields are for standard scrypt algorithm."
+          }
+        },
+        "memoryCost": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Memory cost for hash calculation. Used by scrypt similar algorithms."
+          }
+        },
+        "dkLen": {
+          "target": "smithy.api#Integer"
+        },
+        "saltSeparator": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The salt separator."
           }
         },
         "targetProjectId": {
@@ -2034,15 +981,134 @@
             "smithy.api#documentation": "Specify which project (field value is actually project id) to operate. Only used when provided credential."
           }
         },
-        "delegatedProjectNumber": {
+        "hashAlgorithm": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "GCP project number of the requesting delegated app. Currently only intended for Firebase V1 migration."
+            "smithy.api#documentation": "The password hash algorithm."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Request to download user account in batch."
+        "smithy.api#documentation": "Request to upload user account in batch."
+      }
+    },
+    "com.gcp.identitytoolkit_v3#UserInfoList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.identitytoolkit_v3#UserInfo"
+      }
+    },
+    "com.gcp.identitytoolkit_v3#IdentitytoolkitRelyingpartyCreateAuthUriRequest": {
+      "type": "structure",
+      "members": {
+        "customParameter": {
+          "target": "com.gcp.identitytoolkit_v3#StringMap",
+          "traits": {
+            "smithy.api#documentation": "The query parameter that client can customize by themselves in auth url. The following parameters are reserved for server so that they cannot be customized by clients: client_id, response_type, scope, redirect_uri, state, oauth_token."
+          }
+        },
+        "sessionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The session_id passed by client."
+          }
+        },
+        "openidRealm": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional realm for OpenID protocol. The sub string \"scheme://domain:port\" of the param \"continueUri\" is used if this is not set."
+          }
+        },
+        "context": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The opaque value used by the client to maintain context info between the authentication request and the IDP callback."
+          }
+        },
+        "appId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The app ID of the mobile app, base64(CERT_SHA1):PACKAGE_NAME for Android, BUNDLE_ID for iOS."
+          }
+        },
+        "hostedDomain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The hosted domain to restrict sign-in to accounts at that domain for Google Apps hosted accounts."
+          }
+        },
+        "authFlowType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Explicitly specify the auth flow type. Currently only support \"CODE_FLOW\" type. The field is only used for Google provider."
+          }
+        },
+        "identifier": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The email or federated ID of the user."
+          }
+        },
+        "oauthConsumerKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The developer's consumer key for OpenId OAuth Extension"
+          }
+        },
+        "clientId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The relying party OAuth client ID."
+          }
+        },
+        "oauthScope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Additional oauth scopes, beyond the basid user profile, that the user would be prompted to grant"
+          }
+        },
+        "providerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The IdP ID. For white listed IdPs it's a short domain name e.g. google.com, aol.com, live.net and yahoo.com. For other OpenID IdPs it's the OP identifier."
+          }
+        },
+        "tenantProjectNumber": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Tenant project number to be used for idp discovery."
+          }
+        },
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "For multi-tenant use cases, in order to construct sign-in URL with the correct IDP parameters, Firebear needs to know which Tenant to retrieve IDP configs from."
+          }
+        },
+        "continueUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URI to which the IDP redirects the user after the federated login flow."
+          }
+        },
+        "otaApp": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The native app package for OTA installation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request to get the IDP authentication URL."
+      }
+    },
+    "com.gcp.identitytoolkit_v3#StringMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
       }
     },
     "com.gcp.identitytoolkit_v3#UploadAccountResponse": {
@@ -2088,51 +1154,283 @@
         "target": "com.gcp.identitytoolkit_v3#UploadAccountResponseErrorItem"
       }
     },
-    "com.gcp.identitytoolkit_v3#IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse": {
+    "com.gcp.identitytoolkit_v3#CreateAuthUriResponse": {
       "type": "structure",
       "members": {
-        "idToken": {
-          "target": "smithy.api#String"
+        "forExistingProvider": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "True if the authUri is for user's existing provider."
+          }
         },
-        "isNewUser": {
-          "target": "smithy.api#Boolean"
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The fixed string identitytoolkit#CreateAuthUriResponse\"."
+          }
         },
-        "localId": {
-          "target": "smithy.api#String"
+        "providerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The provider ID of the auth URI."
+          }
         },
-        "verificationProof": {
-          "target": "smithy.api#String"
+        "signinMethods": {
+          "target": "com.gcp.identitytoolkit_v3#StringList",
+          "traits": {
+            "smithy.api#documentation": "All sign-in methods this user has used."
+          }
         },
-        "expiresIn": {
-          "target": "smithy.api#String"
+        "captchaRequired": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "True if captcha is required."
+          }
         },
-        "verificationProofExpiresIn": {
-          "target": "smithy.api#String"
+        "authUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URI used by the IDP to authenticate the user."
+          }
         },
-        "refreshToken": {
-          "target": "smithy.api#String"
+        "sessionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Session ID which should be passed in the following verifyAssertion request."
+          }
         },
-        "temporaryProof": {
-          "target": "smithy.api#String"
+        "allProviders": {
+          "target": "com.gcp.identitytoolkit_v3#StringList",
+          "traits": {
+            "smithy.api#documentation": "all providers the user has once used to do federated login"
+          }
         },
-        "phoneNumber": {
-          "target": "smithy.api#String"
-        },
-        "temporaryProofExpiresIn": {
-          "target": "smithy.api#String"
+        "registered": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the user is registered if the identifier is an email."
+          }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Response for Identitytoolkit-VerifyPhoneNumber"
+        "smithy.api#documentation": "Response of creating the IDP authentication URL."
+      }
+    },
+    "com.gcp.identitytoolkit_v3#IdentitytoolkitRelyingpartySignOutUserRequest": {
+      "type": "structure",
+      "members": {
+        "instanceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Instance id token of the app."
+          }
+        },
+        "localId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The local ID of the user."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request to sign out user."
+      }
+    },
+    "com.gcp.identitytoolkit_v3#DownloadAccountResponse": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The fixed string \"identitytoolkit#DownloadAccountResponse\"."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The next page token. To be used in a subsequent request to return the next page of results."
+          }
+        },
+        "users": {
+          "target": "com.gcp.identitytoolkit_v3#UserInfoList",
+          "traits": {
+            "smithy.api#documentation": "The user accounts data."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response of downloading accounts in batch."
+      }
+    },
+    "com.gcp.identitytoolkit_v3#IdentitytoolkitRelyingpartyDownloadAccountRequest": {
+      "type": "structure",
+      "members": {
+        "delegatedProjectNumber": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "GCP project number of the requesting delegated app. Currently only intended for Firebase V1 migration."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The token for the next page. This should be taken from the previous response."
+          }
+        },
+        "maxResults": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The max number of results to return in the response."
+          }
+        },
+        "targetProjectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specify which project (field value is actually project id) to operate. Only used when provided credential."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request to download user account in batch."
+      }
+    },
+    "com.gcp.identitytoolkit_v3#IdentitytoolkitRelyingpartySendVerificationCodeRequest": {
+      "type": "structure",
+      "members": {
+        "iosReceipt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Receipt of successful app token validation with APNS."
+          }
+        },
+        "iosSecret": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Secret delivered to iOS app via APNS."
+          }
+        },
+        "recaptchaToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Recaptcha solution."
+          }
+        },
+        "phoneNumber": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The phone number to send the verification code to in E.164 format."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request for Identitytoolkit-SendVerificationCode"
+      }
+    },
+    "com.gcp.identitytoolkit_v3#Relyingparty": {
+      "type": "structure",
+      "members": {
+        "requestType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The request type."
+          }
+        },
+        "idToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The user's Gitkit login token for email change."
+          }
+        },
+        "challenge": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The recaptcha challenge presented to the user."
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The fixed string \"identitytoolkit#relyingparty\"."
+          }
+        },
+        "androidInstallApp": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "whether or not to install the android app on the device where the link is opened"
+          }
+        },
+        "canHandleCodeInApp": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "whether or not the app can handle the oob code without first going to web"
+          }
+        },
+        "iOSAppStoreId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "iOS app store id to download the app if it's not already installed"
+          }
+        },
+        "androidMinimumVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "minimum version of the app. if the version on the device is lower than this version then the user is taken to the play store to upgrade the app"
+          }
+        },
+        "androidPackageName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "android package name of the android app to handle the action code"
+          }
+        },
+        "continueUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The url to continue to the Gitkit app"
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The email of the user."
+          }
+        },
+        "captchaResp": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The recaptcha response from the user."
+          }
+        },
+        "iOSBundleId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the iOS bundle id of iOS app to handle the action code"
+          }
+        },
+        "newEmail": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The new email if the code is for email change."
+          }
+        },
+        "userIp": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The IP address of the user."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request of getting a code for user confirmation (reset password, change email etc.)"
       }
     },
     "com.gcp.identitytoolkit_v3#SignupNewUserResponse": {
       "type": "structure",
       "members": {
-        "idToken": {
+        "displayName": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The Gitkit id token to login the newly sign up user."
+            "smithy.api#documentation": "The name of the user."
           }
         },
         "refreshToken": {
@@ -2141,16 +1439,10 @@
             "smithy.api#documentation": "If idToken is STS id token, then this field will be refresh token."
           }
         },
-        "displayName": {
+        "localId": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The name of the user."
-          }
-        },
-        "expiresIn": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "If idToken is STS id token, then this field will be expiration time of STS id token in seconds."
+            "smithy.api#documentation": "The RP local ID of the user."
           }
         },
         "email": {
@@ -2165,113 +1457,10 @@
             "smithy.api#documentation": "The fixed string \"identitytoolkit#SignupNewUserResponse\"."
           }
         },
-        "localId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The RP local ID of the user."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Response of signing up new user, creating anonymous user or anonymous user reauth."
-      }
-    },
-    "com.gcp.identitytoolkit_v3#IdentitytoolkitRelyingpartyGetProjectConfigResponse": {
-      "type": "structure",
-      "members": {
-        "legacyResetPasswordTemplate": {
-          "target": "com.gcp.identitytoolkit_v3#EmailTemplate",
-          "traits": {
-            "smithy.api#documentation": "Legacy reset password email template."
-          }
-        },
-        "useEmailSending": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether to use email sending provided by Firebear."
-          }
-        },
-        "dynamicLinksDomain": {
-          "target": "smithy.api#String"
-        },
-        "changeEmailTemplate": {
-          "target": "com.gcp.identitytoolkit_v3#EmailTemplate",
-          "traits": {
-            "smithy.api#documentation": "Change email template."
-          }
-        },
-        "projectId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Project ID of the relying party."
-          }
-        },
-        "resetPasswordTemplate": {
-          "target": "com.gcp.identitytoolkit_v3#EmailTemplate",
-          "traits": {
-            "smithy.api#documentation": "Reset password email template."
-          }
-        },
-        "apiKey": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Browser API key, needed when making http request to Apiary."
-          }
-        },
-        "idpConfig": {
-          "target": "com.gcp.identitytoolkit_v3#IdpConfigList",
-          "traits": {
-            "smithy.api#documentation": "OAuth2 provider configuration."
-          }
-        },
-        "allowPasswordUser": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether to allow password user sign in or sign up."
-          }
-        },
-        "verifyEmailTemplate": {
-          "target": "com.gcp.identitytoolkit_v3#EmailTemplate",
-          "traits": {
-            "smithy.api#documentation": "Verify email template."
-          }
-        },
-        "authorizedDomains": {
-          "target": "com.gcp.identitytoolkit_v3#StringList",
-          "traits": {
-            "smithy.api#documentation": "Authorized domains."
-          }
-        },
-        "enableAnonymousUser": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether anonymous user is enabled."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Response of getting the project configuration."
-      }
-    },
-    "com.gcp.identitytoolkit_v3#VerifyCustomTokenResponse": {
-      "type": "structure",
-      "members": {
-        "refreshToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "If idToken is STS id token, then this field will be refresh token."
-          }
-        },
         "idToken": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The GITKit token for authenticated user."
-          }
-        },
-        "isNewUser": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "True if it's a new user sign-in, false if it's a returning user."
+            "smithy.api#documentation": "The Gitkit id token to login the newly sign up user."
           }
         },
         "expiresIn": {
@@ -2279,31 +1468,143 @@
           "traits": {
             "smithy.api#documentation": "If idToken is STS id token, then this field will be expiration time of STS id token in seconds."
           }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response of signing up new user, creating anonymous user or anonymous user reauth."
+      }
+    },
+    "com.gcp.identitytoolkit_v3#GetOobConfirmationCodeResponse": {
+      "type": "structure",
+      "members": {
+        "oobCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The code to be send to the user."
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The email address that the email is sent to."
+          }
         },
         "kind": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The fixed string \"identitytoolkit#VerifyCustomTokenResponse\"."
+            "smithy.api#documentation": "The fixed string \"identitytoolkit#GetOobConfirmationCodeResponse\"."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Response from verifying a custom token"
+        "smithy.api#documentation": "Response of getting a code for user confirmation (reset password, change email etc.)."
       }
     },
-    "com.gcp.identitytoolkit_v3#IdentitytoolkitRelyingpartyVerifyCustomTokenRequest": {
+    "com.gcp.identitytoolkit_v3#IdentitytoolkitRelyingpartySignupNewUserRequest": {
       "type": "structure",
       "members": {
-        "delegatedProjectNumber": {
+        "email": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "GCP project number of the requesting delegated app. Currently only intended for Firebase V1 migration."
+            "smithy.api#documentation": "The email of the user."
+          }
+        },
+        "captchaChallenge": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The captcha challenge."
+          }
+        },
+        "captchaResponse": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Response to the captcha."
+          }
+        },
+        "tenantProjectNumber": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Tenant project number to be used for idp discovery."
+          }
+        },
+        "phoneNumber": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Privileged caller can create user with specified phone number."
+          }
+        },
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "For multi-tenant use cases, in order to construct sign-in URL with the correct IDP parameters, Firebear needs to know which Tenant to retrieve IDP configs from."
+          }
+        },
+        "password": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The new password of the user."
+          }
+        },
+        "emailVerified": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Mark the email as verified or not. Only can be used by service account."
+          }
+        },
+        "localId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Privileged caller can create user with specified user id."
+          }
+        },
+        "idToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The GITKit token of the authenticated user."
+          }
+        },
+        "disabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to disable the user. Only can be used by service account."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the user."
+          }
+        },
+        "photoUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The photo url of the user."
           }
         },
         "instanceId": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Instance id token of the app."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request to signup new user, create anonymous user or anonymous user reauth."
+      }
+    },
+    "com.gcp.identitytoolkit_v3#IdentitytoolkitRelyingpartyVerifyPasswordRequest": {
+      "type": "structure",
+      "members": {
+        "password": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The password inputed by the user."
+          }
+        },
+        "pendingIdToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The GITKit token for the non-trusted IDP, which is to be confirmed by the user."
           }
         },
         "returnSecureToken": {
@@ -2312,10 +1613,464 @@
             "smithy.api#documentation": "Whether return sts id token and refresh token instead of gitkit token."
           }
         },
+        "instanceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Instance id token of the app."
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The email of the user."
+          }
+        },
+        "captchaChallenge": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The captcha challenge."
+          }
+        },
+        "captchaResponse": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Response to the captcha."
+          }
+        },
+        "idToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The GITKit token of the authenticated user."
+          }
+        },
+        "delegatedProjectNumber": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "GCP project number of the requesting delegated app. Currently only intended for Firebase V1 migration."
+          }
+        },
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "For multi-tenant use cases, in order to construct sign-in URL with the correct IDP parameters, Firebear needs to know which Tenant to retrieve IDP configs from."
+          }
+        },
+        "tenantProjectNumber": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Tenant project number to be used for idp discovery."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request to verify the password."
+      }
+    },
+    "com.gcp.identitytoolkit_v3#SetAccountInfoResponse": {
+      "type": "structure",
+      "members": {
+        "newEmail": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The new email the user attempts to change to."
+          }
+        },
+        "photoUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The photo url of the user."
+          }
+        },
+        "providerUserInfo": {
+          "target": "com.gcp.identitytoolkit_v3#SetAccountInfoResponseProviderUserInfoItemList",
+          "traits": {
+            "smithy.api#documentation": "The user's profiles at the associated IdPs."
+          }
+        },
+        "emailVerified": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If email has been verified."
+          }
+        },
+        "localId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The local ID of the user."
+          }
+        },
+        "expiresIn": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If idToken is STS id token, then this field will be expiration time of STS id token in seconds."
+          }
+        },
+        "idToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Gitkit id token to login the newly sign up user."
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The email of the user."
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The fixed string \"identitytoolkit#SetAccountInfoResponse\"."
+          }
+        },
+        "passwordHash": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The user's hashed password."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the user."
+          }
+        },
+        "refreshToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If idToken is STS id token, then this field will be refresh token."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Respone of setting the account information."
+      }
+    },
+    "com.gcp.identitytoolkit_v3#SetAccountInfoResponseProviderUserInfoItem": {
+      "type": "structure",
+      "members": {
+        "photoUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The user's photo url at the IDP."
+          }
+        },
+        "federatedId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "User's identifier at IDP."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The user's display name at the IDP."
+          }
+        },
+        "providerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The IdP ID. For whitelisted IdPs it's a short domain name, e.g., google.com, aol.com, live.net and yahoo.com. For other OpenID IdPs it's the OP identifier."
+          }
+        }
+      }
+    },
+    "com.gcp.identitytoolkit_v3#SetAccountInfoResponseProviderUserInfoItemList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.identitytoolkit_v3#SetAccountInfoResponseProviderUserInfoItem"
+      }
+    },
+    "com.gcp.identitytoolkit_v3#IdentitytoolkitRelyingpartyEmailLinkSigninRequest": {
+      "type": "structure",
+      "members": {
+        "oobCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The confirmation code."
+          }
+        },
+        "idToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Token for linking flow."
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The email address of the user."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request to sign in with email."
+      }
+    },
+    "com.gcp.identitytoolkit_v3#ResetPasswordResponse": {
+      "type": "structure",
+      "members": {
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The user's email. If the out-of-band code is for email recovery, the user's original email."
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The fixed string \"identitytoolkit#ResetPasswordResponse\"."
+          }
+        },
+        "requestType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The request type."
+          }
+        },
+        "newEmail": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If the out-of-band code is for email recovery, the user's new email."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response of resetting the password."
+      }
+    },
+    "com.gcp.identitytoolkit_v3#UserInfo": {
+      "type": "structure",
+      "members": {
+        "photoUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL of the user profile photo."
+          }
+        },
+        "disabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the user is disabled."
+          }
+        },
+        "passwordHash": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The user's hashed password."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the user."
+          }
+        },
+        "version": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Version of the user's password."
+          }
+        },
+        "validSince": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp in seconds for valid login token."
+          }
+        },
+        "customAuth": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the user is authenticated by the developer."
+          }
+        },
+        "emailVerified": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the email has been verified."
+          }
+        },
+        "localId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The local ID of the user."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "User creation timestamp."
+          }
+        },
+        "customAttributes": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The custom attributes to be set in the user's id token."
+          }
+        },
+        "screenName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "User's screen name at Twitter or login name at Github."
+          }
+        },
+        "providerUserInfo": {
+          "target": "com.gcp.identitytoolkit_v3#UserInfoProviderUserInfoItemList",
+          "traits": {
+            "smithy.api#documentation": "The IDP of the user."
+          }
+        },
+        "lastLoginAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "last login timestamp."
+          }
+        },
+        "passwordUpdatedAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The timestamp when the password was last updated."
+          }
+        },
+        "phoneNumber": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "User's phone number."
+          }
+        },
+        "rawPassword": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The user's plain text password."
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The email of the user."
+          }
+        },
+        "salt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The user's password salt."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Template for an individual account info."
+      }
+    },
+    "com.gcp.identitytoolkit_v3#UserInfoProviderUserInfoItem": {
+      "type": "structure",
+      "members": {
+        "phoneNumber": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "User's phone number."
+          }
+        },
+        "rawId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "User's raw identifier directly returned from IDP."
+          }
+        },
+        "screenName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "User's screen name at Twitter or login name at Github."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The user's display name at the IDP."
+          }
+        },
+        "federatedId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "User's identifier at IDP."
+          }
+        },
+        "photoUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The user's photo url at the IDP."
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "User's email at IDP."
+          }
+        },
+        "providerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The IdP ID. For white listed IdPs it's a short domain name, e.g., google.com, aol.com, live.net and yahoo.com. For other OpenID IdPs it's the OP identifier."
+          }
+        }
+      }
+    },
+    "com.gcp.identitytoolkit_v3#UserInfoProviderUserInfoItemList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.identitytoolkit_v3#UserInfoProviderUserInfoItem"
+      }
+    },
+    "com.gcp.identitytoolkit_v3#GetRecaptchaParamResponse": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The fixed string \"identitytoolkit#GetRecaptchaParamResponse\"."
+          }
+        },
+        "recaptchaSiteKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Site key registered at recaptcha."
+          }
+        },
+        "recaptchaStoken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The stoken field for the recaptcha widget, used to request captcha challenge."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response of getting recaptcha param."
+      }
+    },
+    "com.gcp.identitytoolkit_v3#IdentitytoolkitRelyingpartyVerifyCustomTokenRequest": {
+      "type": "structure",
+      "members": {
+        "returnSecureToken": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether return sts id token and refresh token instead of gitkit token."
+          }
+        },
+        "instanceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Instance id token of the app."
+          }
+        },
         "token": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "The custom token to verify"
+          }
+        },
+        "delegatedProjectNumber": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "GCP project number of the requesting delegated app. Currently only intended for Firebase V1 migration."
           }
         }
       },
@@ -2323,11 +2078,257 @@
         "smithy.api#documentation": "Request to verify a custom token"
       }
     },
-    "com.gcp.identitytoolkit_v3#GetAccountInfoRelyingpartyRequest": {
+    "com.gcp.identitytoolkit_v3#EmailLinkSigninResponse": {
+      "type": "structure",
+      "members": {
+        "refreshToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The refresh token for the signed in user."
+          }
+        },
+        "isNewUser": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the user is new."
+          }
+        },
+        "localId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The RP local ID of the user."
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The user's email."
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The fixed string \"identitytoolkit#EmailLinkSigninResponse\"."
+          }
+        },
+        "idToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The STS id token to login the newly signed in user."
+          }
+        },
+        "expiresIn": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Expiration time of STS id token in seconds."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response of email signIn."
+      }
+    },
+    "com.gcp.identitytoolkit_v3#IdentitytoolkitRelyingpartyVerifyPhoneNumberRequest": {
+      "type": "structure",
+      "members": {
+        "verificationProof": {
+          "target": "smithy.api#String"
+        },
+        "idToken": {
+          "target": "smithy.api#String"
+        },
+        "sessionInfo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The session info previously returned by IdentityToolkit-SendVerificationCode."
+          }
+        },
+        "temporaryProof": {
+          "target": "smithy.api#String"
+        },
+        "phoneNumber": {
+          "target": "smithy.api#String"
+        },
+        "code": {
+          "target": "smithy.api#String"
+        },
+        "operation": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request for Identitytoolkit-VerifyPhoneNumber"
+      }
+    },
+    "com.gcp.identitytoolkit_v3#GetAccountInfoResponse": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The fixed string \"identitytoolkit#GetAccountInfoResponse\"."
+          }
+        },
+        "users": {
+          "target": "com.gcp.identitytoolkit_v3#UserInfoList",
+          "traits": {
+            "smithy.api#documentation": "The info of the users."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response of getting account information."
+      }
+    },
+    "com.gcp.identitytoolkit_v3#IdpConfig": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "OAuth2 provider."
+          }
+        },
+        "whitelistedAudiences": {
+          "target": "com.gcp.identitytoolkit_v3#StringList",
+          "traits": {
+            "smithy.api#documentation": "Whitelisted client IDs for audience check."
+          }
+        },
+        "clientId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "OAuth2 client ID."
+          }
+        },
+        "experimentPercent": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Percent of users who will be prompted/redirected federated login for this IDP."
+          }
+        },
+        "secret": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "OAuth2 client secret."
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether this IDP is enabled."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Template for a single idp configuration."
+      }
+    },
+    "com.gcp.identitytoolkit_v3#IdentitytoolkitRelyingpartySetProjectConfigRequest": {
+      "type": "structure",
+      "members": {
+        "idpConfig": {
+          "target": "com.gcp.identitytoolkit_v3#IdpConfigList",
+          "traits": {
+            "smithy.api#documentation": "Oauth2 provider configuration."
+          }
+        },
+        "changeEmailTemplate": {
+          "target": "com.gcp.identitytoolkit_v3#EmailTemplate",
+          "traits": {
+            "smithy.api#documentation": "Change email template."
+          }
+        },
+        "resetPasswordTemplate": {
+          "target": "com.gcp.identitytoolkit_v3#EmailTemplate",
+          "traits": {
+            "smithy.api#documentation": "Reset password email template."
+          }
+        },
+        "verifyEmailTemplate": {
+          "target": "com.gcp.identitytoolkit_v3#EmailTemplate",
+          "traits": {
+            "smithy.api#documentation": "Verify email template."
+          }
+        },
+        "legacyResetPasswordTemplate": {
+          "target": "com.gcp.identitytoolkit_v3#EmailTemplate",
+          "traits": {
+            "smithy.api#documentation": "Legacy reset password email template."
+          }
+        },
+        "authorizedDomains": {
+          "target": "com.gcp.identitytoolkit_v3#StringList",
+          "traits": {
+            "smithy.api#documentation": "Authorized domains for widget redirect."
+          }
+        },
+        "delegatedProjectNumber": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "GCP project number of the requesting delegated app. Currently only intended for Firebase V1 migration."
+          }
+        },
+        "useEmailSending": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to use email sending provided by Firebear."
+          }
+        },
+        "allowPasswordUser": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to allow password user sign in or sign up."
+          }
+        },
+        "apiKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Browser API key, needed when making http request to Apiary."
+          }
+        },
+        "enableAnonymousUser": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to enable anonymous user."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request to set the project configuration."
+      }
+    },
+    "com.gcp.identitytoolkit_v3#DeleteAccountResponse": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The fixed string \"identitytoolkit#DeleteAccountResponse\"."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Respone of deleting account."
+      }
+    },
+    "com.gcp.identitytoolkit_v3#IdentitytoolkitRelyingpartyGetPublicKeysResponse": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Respone of getting public keys."
+      }
+    },
+    "com.gcp.identitytoolkit_v3#UploadAccountRelyingpartyRequest": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.gcp.identitytoolkit_v3#IdentitytoolkitRelyingpartyGetAccountInfoRequest",
+          "target": "com.gcp.identitytoolkit_v3#IdentitytoolkitRelyingpartyUploadAccountRequest",
           "traits": {
             "smithy.api#httpPayload": {},
             "smithy.api#documentation": "Request body"
@@ -2387,13 +2388,13 @@
         ]
       }
     },
-    "com.gcp.identitytoolkit_v3#GetAccountInfoRelyingparty": {
+    "com.gcp.identitytoolkit_v3#UploadAccountRelyingparty": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.identitytoolkit_v3#GetAccountInfoRelyingpartyRequest"
+        "target": "com.gcp.identitytoolkit_v3#UploadAccountRelyingpartyRequest"
       },
       "output": {
-        "target": "com.gcp.identitytoolkit_v3#GetAccountInfoResponse"
+        "target": "com.gcp.identitytoolkit_v3#UploadAccountResponse"
       },
       "errors": [
         {
@@ -2412,51 +2413,9 @@
       "traits": {
         "smithy.api#http": {
           "method": "POST",
-          "uri": "getAccountInfo"
+          "uri": "uploadAccount"
         },
-        "smithy.api#documentation": "Returns the account info."
-      }
-    },
-    "com.gcp.identitytoolkit_v3#VerifyPhoneNumberRelyingpartyRequest": {
-      "type": "structure",
-      "members": {
-        "body": {
-          "target": "com.gcp.identitytoolkit_v3#IdentitytoolkitRelyingpartyVerifyPhoneNumberRequest",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.identitytoolkit_v3#VerifyPhoneNumberRelyingparty": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.identitytoolkit_v3#VerifyPhoneNumberRelyingpartyRequest"
-      },
-      "output": {
-        "target": "com.gcp.identitytoolkit_v3#IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.identitytoolkit_v3#NotFound"
-        },
-        {
-          "target": "com.gcp.identitytoolkit_v3#Forbidden"
-        },
-        {
-          "target": "com.gcp.identitytoolkit_v3#BadRequest"
-        },
-        {
-          "target": "com.gcp.identitytoolkit_v3#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "verifyPhoneNumber"
-        },
-        "smithy.api#documentation": "Verifies ownership of a phone number and creates/updates the user account accordingly."
+        "smithy.api#documentation": "Batch upload existing user accounts."
       }
     },
     "com.gcp.identitytoolkit_v3#SetAccountInfoRelyingpartyRequest": {
@@ -2501,25 +2460,17 @@
         "smithy.api#documentation": "Set account info for a user."
       }
     },
-    "com.gcp.identitytoolkit_v3#UploadAccountRelyingpartyRequest": {
+    "com.gcp.identitytoolkit_v3#GetPublicKeysRelyingpartyRequest": {
       "type": "structure",
-      "members": {
-        "body": {
-          "target": "com.gcp.identitytoolkit_v3#IdentitytoolkitRelyingpartyUploadAccountRequest",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
+      "members": {}
     },
-    "com.gcp.identitytoolkit_v3#UploadAccountRelyingparty": {
+    "com.gcp.identitytoolkit_v3#GetPublicKeysRelyingparty": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.identitytoolkit_v3#UploadAccountRelyingpartyRequest"
+        "target": "com.gcp.identitytoolkit_v3#GetPublicKeysRelyingpartyRequest"
       },
       "output": {
-        "target": "com.gcp.identitytoolkit_v3#UploadAccountResponse"
+        "target": "com.gcp.identitytoolkit_v3#IdentitytoolkitRelyingpartyGetPublicKeysResponse"
       },
       "errors": [
         {
@@ -2527,20 +2478,14 @@
         },
         {
           "target": "com.gcp.identitytoolkit_v3#Forbidden"
-        },
-        {
-          "target": "com.gcp.identitytoolkit_v3#BadRequest"
-        },
-        {
-          "target": "com.gcp.identitytoolkit_v3#Conflict"
         }
       ],
       "traits": {
         "smithy.api#http": {
-          "method": "POST",
-          "uri": "uploadAccount"
+          "method": "GET",
+          "uri": "publicKeys"
         },
-        "smithy.api#documentation": "Batch upload existing user accounts."
+        "smithy.api#documentation": "Get token signing public key."
       }
     },
     "com.gcp.identitytoolkit_v3#VerifyAssertionRelyingpartyRequest": {
@@ -2585,132 +2530,6 @@
         "smithy.api#documentation": "Verifies the assertion returned by the IdP."
       }
     },
-    "com.gcp.identitytoolkit_v3#VerifyCustomTokenRelyingpartyRequest": {
-      "type": "structure",
-      "members": {
-        "body": {
-          "target": "com.gcp.identitytoolkit_v3#IdentitytoolkitRelyingpartyVerifyCustomTokenRequest",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.identitytoolkit_v3#VerifyCustomTokenRelyingparty": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.identitytoolkit_v3#VerifyCustomTokenRelyingpartyRequest"
-      },
-      "output": {
-        "target": "com.gcp.identitytoolkit_v3#VerifyCustomTokenResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.identitytoolkit_v3#NotFound"
-        },
-        {
-          "target": "com.gcp.identitytoolkit_v3#Forbidden"
-        },
-        {
-          "target": "com.gcp.identitytoolkit_v3#BadRequest"
-        },
-        {
-          "target": "com.gcp.identitytoolkit_v3#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "verifyCustomToken"
-        },
-        "smithy.api#documentation": "Verifies the developer asserted ID token."
-      }
-    },
-    "com.gcp.identitytoolkit_v3#DeleteAccountRelyingpartyRequest": {
-      "type": "structure",
-      "members": {
-        "body": {
-          "target": "com.gcp.identitytoolkit_v3#IdentitytoolkitRelyingpartyDeleteAccountRequest",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.identitytoolkit_v3#DeleteAccountRelyingparty": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.identitytoolkit_v3#DeleteAccountRelyingpartyRequest"
-      },
-      "output": {
-        "target": "com.gcp.identitytoolkit_v3#DeleteAccountResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.identitytoolkit_v3#NotFound"
-        },
-        {
-          "target": "com.gcp.identitytoolkit_v3#Forbidden"
-        },
-        {
-          "target": "com.gcp.identitytoolkit_v3#BadRequest"
-        },
-        {
-          "target": "com.gcp.identitytoolkit_v3#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "deleteAccount"
-        },
-        "smithy.api#documentation": "Delete user account."
-      }
-    },
-    "com.gcp.identitytoolkit_v3#DownloadAccountRelyingpartyRequest": {
-      "type": "structure",
-      "members": {
-        "body": {
-          "target": "com.gcp.identitytoolkit_v3#IdentitytoolkitRelyingpartyDownloadAccountRequest",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.identitytoolkit_v3#DownloadAccountRelyingparty": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.identitytoolkit_v3#DownloadAccountRelyingpartyRequest"
-      },
-      "output": {
-        "target": "com.gcp.identitytoolkit_v3#DownloadAccountResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.identitytoolkit_v3#NotFound"
-        },
-        {
-          "target": "com.gcp.identitytoolkit_v3#Forbidden"
-        },
-        {
-          "target": "com.gcp.identitytoolkit_v3#BadRequest"
-        },
-        {
-          "target": "com.gcp.identitytoolkit_v3#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "downloadAccount"
-        },
-        "smithy.api#documentation": "Batch download user accounts."
-      }
-    },
     "com.gcp.identitytoolkit_v3#SetProjectConfigRelyingpartyRequest": {
       "type": "structure",
       "members": {
@@ -2753,11 +2572,11 @@
         "smithy.api#documentation": "Set project configuration."
       }
     },
-    "com.gcp.identitytoolkit_v3#VerifyPasswordRelyingpartyRequest": {
+    "com.gcp.identitytoolkit_v3#VerifyPhoneNumberRelyingpartyRequest": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.gcp.identitytoolkit_v3#IdentitytoolkitRelyingpartyVerifyPasswordRequest",
+          "target": "com.gcp.identitytoolkit_v3#IdentitytoolkitRelyingpartyVerifyPhoneNumberRequest",
           "traits": {
             "smithy.api#httpPayload": {},
             "smithy.api#documentation": "Request body"
@@ -2765,13 +2584,13 @@
         }
       }
     },
-    "com.gcp.identitytoolkit_v3#VerifyPasswordRelyingparty": {
+    "com.gcp.identitytoolkit_v3#VerifyPhoneNumberRelyingparty": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.identitytoolkit_v3#VerifyPasswordRelyingpartyRequest"
+        "target": "com.gcp.identitytoolkit_v3#VerifyPhoneNumberRelyingpartyRequest"
       },
       "output": {
-        "target": "com.gcp.identitytoolkit_v3#VerifyPasswordResponse"
+        "target": "com.gcp.identitytoolkit_v3#IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse"
       },
       "errors": [
         {
@@ -2790,9 +2609,9 @@
       "traits": {
         "smithy.api#http": {
           "method": "POST",
-          "uri": "verifyPassword"
+          "uri": "verifyPhoneNumber"
         },
-        "smithy.api#documentation": "Verifies the user entered password."
+        "smithy.api#documentation": "Verifies ownership of a phone number and creates/updates the user account accordingly."
       }
     },
     "com.gcp.identitytoolkit_v3#SendVerificationCodeRelyingpartyRequest": {
@@ -2837,101 +2656,32 @@
         "smithy.api#documentation": "Send SMS verification code."
       }
     },
-    "com.gcp.identitytoolkit_v3#GetOobConfirmationCodeRelyingpartyRequest": {
+    "com.gcp.identitytoolkit_v3#GetProjectConfigRelyingpartyRequest": {
       "type": "structure",
       "members": {
-        "body": {
-          "target": "com.gcp.identitytoolkit_v3#Relyingparty",
+        "delegatedProjectNumber": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
+            "smithy.api#documentation": "Delegated GCP project number of the request.",
+            "smithy.api#httpQuery": "delegatedProjectNumber"
+          }
+        },
+        "projectNumber": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "GCP project number of the request.",
+            "smithy.api#httpQuery": "projectNumber"
           }
         }
       }
     },
-    "com.gcp.identitytoolkit_v3#GetOobConfirmationCodeRelyingparty": {
+    "com.gcp.identitytoolkit_v3#GetProjectConfigRelyingparty": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.identitytoolkit_v3#GetOobConfirmationCodeRelyingpartyRequest"
+        "target": "com.gcp.identitytoolkit_v3#GetProjectConfigRelyingpartyRequest"
       },
       "output": {
-        "target": "com.gcp.identitytoolkit_v3#GetOobConfirmationCodeResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.identitytoolkit_v3#NotFound"
-        },
-        {
-          "target": "com.gcp.identitytoolkit_v3#Forbidden"
-        },
-        {
-          "target": "com.gcp.identitytoolkit_v3#BadRequest"
-        },
-        {
-          "target": "com.gcp.identitytoolkit_v3#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "getOobConfirmationCode"
-        },
-        "smithy.api#documentation": "Get a code for user action confirmation."
-      }
-    },
-    "com.gcp.identitytoolkit_v3#CreateAuthUriRelyingpartyRequest": {
-      "type": "structure",
-      "members": {
-        "body": {
-          "target": "com.gcp.identitytoolkit_v3#IdentitytoolkitRelyingpartyCreateAuthUriRequest",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.identitytoolkit_v3#CreateAuthUriRelyingparty": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.identitytoolkit_v3#CreateAuthUriRelyingpartyRequest"
-      },
-      "output": {
-        "target": "com.gcp.identitytoolkit_v3#CreateAuthUriResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.identitytoolkit_v3#NotFound"
-        },
-        {
-          "target": "com.gcp.identitytoolkit_v3#Forbidden"
-        },
-        {
-          "target": "com.gcp.identitytoolkit_v3#BadRequest"
-        },
-        {
-          "target": "com.gcp.identitytoolkit_v3#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "createAuthUri"
-        },
-        "smithy.api#documentation": "Creates the URI used by the IdP to authenticate the user."
-      }
-    },
-    "com.gcp.identitytoolkit_v3#GetPublicKeysRelyingpartyRequest": {
-      "type": "structure",
-      "members": {}
-    },
-    "com.gcp.identitytoolkit_v3#GetPublicKeysRelyingparty": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.identitytoolkit_v3#GetPublicKeysRelyingpartyRequest"
-      },
-      "output": {
-        "target": "com.gcp.identitytoolkit_v3#IdentitytoolkitRelyingpartyGetPublicKeysResponse"
+        "target": "com.gcp.identitytoolkit_v3#IdentitytoolkitRelyingpartyGetProjectConfigResponse"
       },
       "errors": [
         {
@@ -2944,9 +2694,9 @@
       "traits": {
         "smithy.api#http": {
           "method": "GET",
-          "uri": "publicKeys"
+          "uri": "getProjectConfig"
         },
-        "smithy.api#documentation": "Get token signing public key."
+        "smithy.api#documentation": "Get project configuration."
       }
     },
     "com.gcp.identitytoolkit_v3#ResetPasswordRelyingpartyRequest": {
@@ -2991,11 +2741,11 @@
         "smithy.api#documentation": "Reset password for a user."
       }
     },
-    "com.gcp.identitytoolkit_v3#SignOutUserRelyingpartyRequest": {
+    "com.gcp.identitytoolkit_v3#DownloadAccountRelyingpartyRequest": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.gcp.identitytoolkit_v3#IdentitytoolkitRelyingpartySignOutUserRequest",
+          "target": "com.gcp.identitytoolkit_v3#IdentitytoolkitRelyingpartyDownloadAccountRequest",
           "traits": {
             "smithy.api#httpPayload": {},
             "smithy.api#documentation": "Request body"
@@ -3003,13 +2753,13 @@
         }
       }
     },
-    "com.gcp.identitytoolkit_v3#SignOutUserRelyingparty": {
+    "com.gcp.identitytoolkit_v3#DownloadAccountRelyingparty": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.identitytoolkit_v3#SignOutUserRelyingpartyRequest"
+        "target": "com.gcp.identitytoolkit_v3#DownloadAccountRelyingpartyRequest"
       },
       "output": {
-        "target": "com.gcp.identitytoolkit_v3#IdentitytoolkitRelyingpartySignOutUserResponse"
+        "target": "com.gcp.identitytoolkit_v3#DownloadAccountResponse"
       },
       "errors": [
         {
@@ -3028,9 +2778,9 @@
       "traits": {
         "smithy.api#http": {
           "method": "POST",
-          "uri": "signOutUser"
+          "uri": "downloadAccount"
         },
-        "smithy.api#documentation": "Sign out user."
+        "smithy.api#documentation": "Batch download user accounts."
       }
     },
     "com.gcp.identitytoolkit_v3#GetRecaptchaParamRelyingpartyRequest": {
@@ -3059,49 +2809,6 @@
           "uri": "getRecaptchaParam"
         },
         "smithy.api#documentation": "Get recaptcha secure param."
-      }
-    },
-    "com.gcp.identitytoolkit_v3#GetProjectConfigRelyingpartyRequest": {
-      "type": "structure",
-      "members": {
-        "delegatedProjectNumber": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Delegated GCP project number of the request.",
-            "smithy.api#httpQuery": "delegatedProjectNumber"
-          }
-        },
-        "projectNumber": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "GCP project number of the request.",
-            "smithy.api#httpQuery": "projectNumber"
-          }
-        }
-      }
-    },
-    "com.gcp.identitytoolkit_v3#GetProjectConfigRelyingparty": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.identitytoolkit_v3#GetProjectConfigRelyingpartyRequest"
-      },
-      "output": {
-        "target": "com.gcp.identitytoolkit_v3#IdentitytoolkitRelyingpartyGetProjectConfigResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.identitytoolkit_v3#NotFound"
-        },
-        {
-          "target": "com.gcp.identitytoolkit_v3#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "getProjectConfig"
-        },
-        "smithy.api#documentation": "Get project configuration."
       }
     },
     "com.gcp.identitytoolkit_v3#SignupNewUserRelyingpartyRequest": {
@@ -3186,6 +2893,300 @@
           "uri": "emailLinkSignin"
         },
         "smithy.api#documentation": "Reset password for a user."
+      }
+    },
+    "com.gcp.identitytoolkit_v3#DeleteAccountRelyingpartyRequest": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.gcp.identitytoolkit_v3#IdentitytoolkitRelyingpartyDeleteAccountRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.identitytoolkit_v3#DeleteAccountRelyingparty": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.identitytoolkit_v3#DeleteAccountRelyingpartyRequest"
+      },
+      "output": {
+        "target": "com.gcp.identitytoolkit_v3#DeleteAccountResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.identitytoolkit_v3#NotFound"
+        },
+        {
+          "target": "com.gcp.identitytoolkit_v3#Forbidden"
+        },
+        {
+          "target": "com.gcp.identitytoolkit_v3#BadRequest"
+        },
+        {
+          "target": "com.gcp.identitytoolkit_v3#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "deleteAccount"
+        },
+        "smithy.api#documentation": "Delete user account."
+      }
+    },
+    "com.gcp.identitytoolkit_v3#VerifyPasswordRelyingpartyRequest": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.gcp.identitytoolkit_v3#IdentitytoolkitRelyingpartyVerifyPasswordRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.identitytoolkit_v3#VerifyPasswordRelyingparty": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.identitytoolkit_v3#VerifyPasswordRelyingpartyRequest"
+      },
+      "output": {
+        "target": "com.gcp.identitytoolkit_v3#VerifyPasswordResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.identitytoolkit_v3#NotFound"
+        },
+        {
+          "target": "com.gcp.identitytoolkit_v3#Forbidden"
+        },
+        {
+          "target": "com.gcp.identitytoolkit_v3#BadRequest"
+        },
+        {
+          "target": "com.gcp.identitytoolkit_v3#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "verifyPassword"
+        },
+        "smithy.api#documentation": "Verifies the user entered password."
+      }
+    },
+    "com.gcp.identitytoolkit_v3#GetOobConfirmationCodeRelyingpartyRequest": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.gcp.identitytoolkit_v3#Relyingparty",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.identitytoolkit_v3#GetOobConfirmationCodeRelyingparty": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.identitytoolkit_v3#GetOobConfirmationCodeRelyingpartyRequest"
+      },
+      "output": {
+        "target": "com.gcp.identitytoolkit_v3#GetOobConfirmationCodeResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.identitytoolkit_v3#NotFound"
+        },
+        {
+          "target": "com.gcp.identitytoolkit_v3#Forbidden"
+        },
+        {
+          "target": "com.gcp.identitytoolkit_v3#BadRequest"
+        },
+        {
+          "target": "com.gcp.identitytoolkit_v3#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "getOobConfirmationCode"
+        },
+        "smithy.api#documentation": "Get a code for user action confirmation."
+      }
+    },
+    "com.gcp.identitytoolkit_v3#SignOutUserRelyingpartyRequest": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.gcp.identitytoolkit_v3#IdentitytoolkitRelyingpartySignOutUserRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.identitytoolkit_v3#SignOutUserRelyingparty": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.identitytoolkit_v3#SignOutUserRelyingpartyRequest"
+      },
+      "output": {
+        "target": "com.gcp.identitytoolkit_v3#IdentitytoolkitRelyingpartySignOutUserResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.identitytoolkit_v3#NotFound"
+        },
+        {
+          "target": "com.gcp.identitytoolkit_v3#Forbidden"
+        },
+        {
+          "target": "com.gcp.identitytoolkit_v3#BadRequest"
+        },
+        {
+          "target": "com.gcp.identitytoolkit_v3#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "signOutUser"
+        },
+        "smithy.api#documentation": "Sign out user."
+      }
+    },
+    "com.gcp.identitytoolkit_v3#CreateAuthUriRelyingpartyRequest": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.gcp.identitytoolkit_v3#IdentitytoolkitRelyingpartyCreateAuthUriRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.identitytoolkit_v3#CreateAuthUriRelyingparty": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.identitytoolkit_v3#CreateAuthUriRelyingpartyRequest"
+      },
+      "output": {
+        "target": "com.gcp.identitytoolkit_v3#CreateAuthUriResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.identitytoolkit_v3#NotFound"
+        },
+        {
+          "target": "com.gcp.identitytoolkit_v3#Forbidden"
+        },
+        {
+          "target": "com.gcp.identitytoolkit_v3#BadRequest"
+        },
+        {
+          "target": "com.gcp.identitytoolkit_v3#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "createAuthUri"
+        },
+        "smithy.api#documentation": "Creates the URI used by the IdP to authenticate the user."
+      }
+    },
+    "com.gcp.identitytoolkit_v3#GetAccountInfoRelyingpartyRequest": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.gcp.identitytoolkit_v3#IdentitytoolkitRelyingpartyGetAccountInfoRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.identitytoolkit_v3#GetAccountInfoRelyingparty": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.identitytoolkit_v3#GetAccountInfoRelyingpartyRequest"
+      },
+      "output": {
+        "target": "com.gcp.identitytoolkit_v3#GetAccountInfoResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.identitytoolkit_v3#NotFound"
+        },
+        {
+          "target": "com.gcp.identitytoolkit_v3#Forbidden"
+        },
+        {
+          "target": "com.gcp.identitytoolkit_v3#BadRequest"
+        },
+        {
+          "target": "com.gcp.identitytoolkit_v3#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "getAccountInfo"
+        },
+        "smithy.api#documentation": "Returns the account info."
+      }
+    },
+    "com.gcp.identitytoolkit_v3#VerifyCustomTokenRelyingpartyRequest": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.gcp.identitytoolkit_v3#IdentitytoolkitRelyingpartyVerifyCustomTokenRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.identitytoolkit_v3#VerifyCustomTokenRelyingparty": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.identitytoolkit_v3#VerifyCustomTokenRelyingpartyRequest"
+      },
+      "output": {
+        "target": "com.gcp.identitytoolkit_v3#VerifyCustomTokenResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.identitytoolkit_v3#NotFound"
+        },
+        {
+          "target": "com.gcp.identitytoolkit_v3#Forbidden"
+        },
+        {
+          "target": "com.gcp.identitytoolkit_v3#BadRequest"
+        },
+        {
+          "target": "com.gcp.identitytoolkit_v3#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "verifyCustomToken"
+        },
+        "smithy.api#documentation": "Verifies the developer asserted ID token."
       }
     }
   }

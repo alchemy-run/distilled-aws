@@ -12,59 +12,14 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
-export interface ContainerHostMappingsGetContainerHostMappingRequest {
-  /** Azure subscription ID. */
-  subscriptionId: string;
-  /** Resource group to which the resource belongs. */
-  resourceGroupName: string;
-  /** Location of the container host. */
-  location: string;
-  /** ARM ID of the Container Host resource */
-  containerHostResourceId?: string;
-}
-export const ContainerHostMappingsGetContainerHostMappingRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      location: S.String.pipe(T.Label()),
-      containerHostResourceId: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevSpaces/locations/{location}/checkContainerHostMapping",
-        code: 200,
-        apiVersion: "2019-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ContainerHostMappingsGetContainerHostMappingRequest",
-  }) as any as S.Schema<ContainerHostMappingsGetContainerHostMappingRequest>;
-
-/** Container host mapping object specifying the Container host resource ID and its associated Controller resource. */
-export interface ContainerHostMapping {
-  /** ARM ID of the Container Host resource */
-  containerHostResourceId?: string;
-  /** ARM ID of the mapped Controller resource */
-  mappedControllerResourceId?: string;
-}
-export const ContainerHostMapping = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    containerHostResourceId: S.optional(S.String),
-    mappedControllerResourceId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ContainerHostMapping",
-}) as any as S.Schema<ContainerHostMapping>;
-
 /** Tags for the Azure resource. */
-export type ControllersCreateRequestTagsMap = {
+export type CreateControllerRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const ControllersCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const CreateControllerRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ControllersCreateRequestTagsMap>;
+) as any as S.Schema<CreateControllerRequestTagsMap>;
 
 export interface ControllerPropertiesInput {
   /** Resource ID of the target container host */
@@ -103,7 +58,7 @@ export const Sku = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "Sku" }) as any as S.Schema<Sku>;
 
-export interface ControllersCreateRequest {
+export interface CreateControllerRequest {
   /** Azure subscription ID. */
   subscriptionId: string;
   /** Resource group to which the resource belongs. */
@@ -111,18 +66,18 @@ export interface ControllersCreateRequest {
   /** Name of the resource. */
   name: string;
   /** Tags for the Azure resource. */
-  tags?: ControllersCreateRequestTagsMap;
+  tags?: CreateControllerRequestTagsMap;
   /** Region where the Azure resource is located. */
   location: string;
   properties: ControllerPropertiesInput;
   sku: Sku;
 }
-export const ControllersCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateControllerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     name: S.String.pipe(T.Label()),
-    tags: S.optional(ControllersCreateRequestTagsMap),
+    tags: S.optional(CreateControllerRequestTagsMap),
     location: S.String,
     properties: ControllerPropertiesInput,
     sku: Sku,
@@ -135,17 +90,17 @@ export const ControllersCreateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ControllersCreateRequest",
-}) as any as S.Schema<ControllersCreateRequest>;
+  identifier: "CreateControllerRequest",
+}) as any as S.Schema<CreateControllerRequest>;
 
 /** Tags for the Azure resource. */
-export type ControllersCreateResponseTagsMap = {
+export type CreateControllerResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ControllersCreateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const CreateControllerResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ControllersCreateResponseTagsMap>;
+) as any as S.Schema<CreateControllerResponseTagsMap>;
 
 /** Provisioning state of the Azure Dev Spaces Controller. */
 export type ControllerPropertiesProvisioningState =
@@ -185,7 +140,7 @@ export const ControllerProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "ControllerProperties",
 }) as any as S.Schema<ControllerProperties>;
 
-export interface ControllersCreateResponse {
+export interface CreateControllerResponse {
   /** Fully qualified resource Id for the resource. */
   id?: string;
   /** The name of the resource. */
@@ -193,27 +148,27 @@ export interface ControllersCreateResponse {
   /** The type of the resource. */
   type?: string;
   /** Tags for the Azure resource. */
-  tags?: ControllersCreateResponseTagsMap;
+  tags?: CreateControllerResponseTagsMap;
   /** Region where the Azure resource is located. */
   location: string;
   properties: ControllerProperties;
   sku: Sku;
 }
-export const ControllersCreateResponse = /*@__PURE__*/ S.suspend(() =>
+export const CreateControllerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
-    tags: S.optional(ControllersCreateResponseTagsMap),
+    tags: S.optional(CreateControllerResponseTagsMap),
     location: S.String,
     properties: ControllerProperties,
     sku: Sku,
   }),
 ).annotate({
-  identifier: "ControllersCreateResponse",
-}) as any as S.Schema<ControllersCreateResponse>;
+  identifier: "CreateControllerResponse",
+}) as any as S.Schema<CreateControllerResponse>;
 
-export interface ControllersDeleteRequest {
+export interface DeleteControllerRequest {
   /** Azure subscription ID. */
   subscriptionId: string;
   /** Resource group to which the resource belongs. */
@@ -221,7 +176,7 @@ export interface ControllersDeleteRequest {
   /** Name of the resource. */
   name: string;
 }
-export const ControllersDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteControllerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -235,17 +190,62 @@ export const ControllersDeleteRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ControllersDeleteRequest",
-}) as any as S.Schema<ControllersDeleteRequest>;
+  identifier: "DeleteControllerRequest",
+}) as any as S.Schema<DeleteControllerRequest>;
 
-export interface ControllersDeleteResponse {}
-export const ControllersDeleteResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteControllerResponse {}
+export const DeleteControllerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "ControllersDeleteResponse",
-}) as any as S.Schema<ControllersDeleteResponse>;
+  identifier: "DeleteControllerResponse",
+}) as any as S.Schema<DeleteControllerResponse>;
 
-export interface ControllersGetRequest {
+export interface GetContainerHostMappingContainerHostMappingRequest {
+  /** Azure subscription ID. */
+  subscriptionId: string;
+  /** Resource group to which the resource belongs. */
+  resourceGroupName: string;
+  /** Location of the container host. */
+  location: string;
+  /** ARM ID of the Container Host resource */
+  containerHostResourceId?: string;
+}
+export const GetContainerHostMappingContainerHostMappingRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      location: S.String.pipe(T.Label()),
+      containerHostResourceId: S.optional(S.String),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevSpaces/locations/{location}/checkContainerHostMapping",
+        code: 200,
+        apiVersion: "2019-04-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "GetContainerHostMappingContainerHostMappingRequest",
+  }) as any as S.Schema<GetContainerHostMappingContainerHostMappingRequest>;
+
+/** Container host mapping object specifying the Container host resource ID and its associated Controller resource. */
+export interface ContainerHostMapping {
+  /** ARM ID of the Container Host resource */
+  containerHostResourceId?: string;
+  /** ARM ID of the mapped Controller resource */
+  mappedControllerResourceId?: string;
+}
+export const ContainerHostMapping = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    containerHostResourceId: S.optional(S.String),
+    mappedControllerResourceId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ContainerHostMapping",
+}) as any as S.Schema<ContainerHostMapping>;
+
+export interface GetControllerRequest {
   /** Azure subscription ID. */
   subscriptionId: string;
   /** Resource group to which the resource belongs. */
@@ -253,7 +253,7 @@ export interface ControllersGetRequest {
   /** Name of the resource. */
   name: string;
 }
-export const ControllersGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetControllerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -267,19 +267,19 @@ export const ControllersGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ControllersGetRequest",
-}) as any as S.Schema<ControllersGetRequest>;
+  identifier: "GetControllerRequest",
+}) as any as S.Schema<GetControllerRequest>;
 
 /** Tags for the Azure resource. */
-export type ControllersGetResponseTagsMap = {
+export type GetControllerResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ControllersGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetControllerResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ControllersGetResponseTagsMap>;
+) as any as S.Schema<GetControllerResponseTagsMap>;
 
-export interface ControllersGetResponse {
+export interface GetControllerResponse {
   /** Fully qualified resource Id for the resource. */
   id?: string;
   /** The name of the resource. */
@@ -287,44 +287,48 @@ export interface ControllersGetResponse {
   /** The type of the resource. */
   type?: string;
   /** Tags for the Azure resource. */
-  tags?: ControllersGetResponseTagsMap;
+  tags?: GetControllerResponseTagsMap;
   /** Region where the Azure resource is located. */
   location: string;
   properties: ControllerProperties;
   sku: Sku;
 }
-export const ControllersGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetControllerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
-    tags: S.optional(ControllersGetResponseTagsMap),
+    tags: S.optional(GetControllerResponseTagsMap),
     location: S.String,
     properties: ControllerProperties,
     sku: Sku,
   }),
 ).annotate({
-  identifier: "ControllersGetResponse",
-}) as any as S.Schema<ControllersGetResponse>;
+  identifier: "GetControllerResponse",
+}) as any as S.Schema<GetControllerResponse>;
 
-export interface ControllersListRequest {
+export interface ListControllerByResourceGroupRequest {
   /** Azure subscription ID. */
   subscriptionId: string;
+  /** Resource group to which the resource belongs. */
+  resourceGroupName: string;
 }
-export const ControllersListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.DevSpaces/controllers",
-      code: 200,
-      apiVersion: "2019-04-01",
-    }),
-  ),
+export const ListControllerByResourceGroupRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevSpaces/controllers",
+        code: 200,
+        apiVersion: "2019-04-01",
+      }),
+    ),
 ).annotate({
-  identifier: "ControllersListRequest",
-}) as any as S.Schema<ControllersListRequest>;
+  identifier: "ListControllerByResourceGroupRequest",
+}) as any as S.Schema<ListControllerByResourceGroupRequest>;
 
 /** Tags for the Azure resource. */
 export type ControllerTagsMap = { [key: string]: string | undefined };
@@ -378,30 +382,7 @@ export const ControllerList = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "ControllerList" }) as any as S.Schema<ControllerList>;
 
-export interface ControllersListByResourceGroupRequest {
-  /** Azure subscription ID. */
-  subscriptionId: string;
-  /** Resource group to which the resource belongs. */
-  resourceGroupName: string;
-}
-export const ControllersListByResourceGroupRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevSpaces/controllers",
-        code: 200,
-        apiVersion: "2019-04-01",
-      }),
-    ),
-).annotate({
-  identifier: "ControllersListByResourceGroupRequest",
-}) as any as S.Schema<ControllersListByResourceGroupRequest>;
-
-export interface ControllersListConnectionDetailsRequest {
+export interface ListControllerConnectionDetailsRequest {
   /** Azure subscription ID. */
   subscriptionId: string;
   /** Resource group to which the resource belongs. */
@@ -411,7 +392,7 @@ export interface ControllersListConnectionDetailsRequest {
   /** Resource ID of the target container host mapped to the Azure Dev Spaces Controller. */
   targetContainerHostResourceId: string;
 }
-export const ControllersListConnectionDetailsRequest = /*@__PURE__*/ S.suspend(
+export const ListControllerConnectionDetailsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -427,8 +408,8 @@ export const ControllersListConnectionDetailsRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "ControllersListConnectionDetailsRequest",
-}) as any as S.Schema<ControllersListConnectionDetailsRequest>;
+  identifier: "ListControllerConnectionDetailsRequest",
+}) as any as S.Schema<ListControllerConnectionDetailsRequest>;
 
 /** Base class for types that supply values used to connect to container orchestrators */
 export interface OrchestratorSpecificConnectionDetails {
@@ -479,97 +460,27 @@ export const ControllerConnectionDetailsList = /*@__PURE__*/ S.suspend(() =>
   identifier: "ControllerConnectionDetailsList",
 }) as any as S.Schema<ControllerConnectionDetailsList>;
 
-/** Tags for the Azure Dev Spaces Controller. */
-export type ControllersUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ControllersUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ControllersUpdateRequestTagsMap>;
-
-export interface ControllerUpdateParametersProperties {
-  /** Credentials of the target container host (base64). */
-  targetContainerHostCredentialsBase64?: string;
-}
-export const ControllerUpdateParametersProperties = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      targetContainerHostCredentialsBase64: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "ControllerUpdateParametersProperties",
-}) as any as S.Schema<ControllerUpdateParametersProperties>;
-
-export interface ControllersUpdateRequest {
+export interface ListControllersRequest {
   /** Azure subscription ID. */
   subscriptionId: string;
-  /** Resource group to which the resource belongs. */
-  resourceGroupName: string;
-  /** Name of the resource. */
-  name: string;
-  /** Tags for the Azure Dev Spaces Controller. */
-  tags?: ControllersUpdateRequestTagsMap;
-  properties?: ControllerUpdateParametersProperties;
 }
-export const ControllersUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListControllersRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    name: S.String.pipe(T.Label()),
-    tags: S.optional(ControllersUpdateRequestTagsMap),
-    properties: S.optional(ControllerUpdateParametersProperties),
   }).pipe(
     T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevSpaces/controllers/{name}",
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.DevSpaces/controllers",
       code: 200,
       apiVersion: "2019-04-01",
     }),
   ),
 ).annotate({
-  identifier: "ControllersUpdateRequest",
-}) as any as S.Schema<ControllersUpdateRequest>;
+  identifier: "ListControllersRequest",
+}) as any as S.Schema<ListControllersRequest>;
 
-/** Tags for the Azure resource. */
-export type ControllersUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ControllersUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ControllersUpdateResponseTagsMap>;
-
-export interface ControllersUpdateResponse {
-  /** Fully qualified resource Id for the resource. */
-  id?: string;
-  /** The name of the resource. */
-  name?: string;
-  /** The type of the resource. */
-  type?: string;
-  /** Tags for the Azure resource. */
-  tags?: ControllersUpdateResponseTagsMap;
-  /** Region where the Azure resource is located. */
-  location: string;
-  properties: ControllerProperties;
-  sku: Sku;
-}
-export const ControllersUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    tags: S.optional(ControllersUpdateResponseTagsMap),
-    location: S.String,
-    properties: ControllerProperties,
-    sku: Sku,
-  }),
-).annotate({
-  identifier: "ControllersUpdateResponse",
-}) as any as S.Schema<ControllersUpdateResponse>;
-
-export interface OperationsListRequest {}
-export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
+export interface ListOperationsRequest {}
+export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
     T.Http({
       method: "GET",
@@ -579,8 +490,8 @@ export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "OperationsListRequest",
-}) as any as S.Schema<OperationsListRequest>;
+  identifier: "ListOperationsRequest",
+}) as any as S.Schema<ListOperationsRequest>;
 
 export interface ResourceProviderOperationDisplay {
   /** Name of the resource provider. */
@@ -639,136 +550,225 @@ export const ResourceProviderOperationList = /*@__PURE__*/ S.suspend(() =>
   identifier: "ResourceProviderOperationList",
 }) as any as S.Schema<ResourceProviderOperationList>;
 
-export type ContainerHostMappingsGetContainerHostMappingError = AzureOpError;
-/** Returns container host mapping object for a container host resource ID if an associated controller exists. */
-export const ContainerHostMappingsGetContainerHostMapping: API.OperationMethod<
-  ContainerHostMappingsGetContainerHostMappingRequest,
-  ContainerHostMapping,
-  ContainerHostMappingsGetContainerHostMappingError,
+/** Tags for the Azure Dev Spaces Controller. */
+export type UpdateControllerRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateControllerRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateControllerRequestTagsMap>;
+
+export interface ControllerUpdateParametersProperties {
+  /** Credentials of the target container host (base64). */
+  targetContainerHostCredentialsBase64?: string;
+}
+export const ControllerUpdateParametersProperties = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      targetContainerHostCredentialsBase64: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "ControllerUpdateParametersProperties",
+}) as any as S.Schema<ControllerUpdateParametersProperties>;
+
+export interface UpdateControllerRequest {
+  /** Azure subscription ID. */
+  subscriptionId: string;
+  /** Resource group to which the resource belongs. */
+  resourceGroupName: string;
+  /** Name of the resource. */
+  name: string;
+  /** Tags for the Azure Dev Spaces Controller. */
+  tags?: UpdateControllerRequestTagsMap;
+  properties?: ControllerUpdateParametersProperties;
+}
+export const UpdateControllerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    name: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateControllerRequestTagsMap),
+    properties: S.optional(ControllerUpdateParametersProperties),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevSpaces/controllers/{name}",
+      code: 200,
+      apiVersion: "2019-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateControllerRequest",
+}) as any as S.Schema<UpdateControllerRequest>;
+
+/** Tags for the Azure resource. */
+export type UpdateControllerResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateControllerResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateControllerResponseTagsMap>;
+
+export interface UpdateControllerResponse {
+  /** Fully qualified resource Id for the resource. */
+  id?: string;
+  /** The name of the resource. */
+  name?: string;
+  /** The type of the resource. */
+  type?: string;
+  /** Tags for the Azure resource. */
+  tags?: UpdateControllerResponseTagsMap;
+  /** Region where the Azure resource is located. */
+  location: string;
+  properties: ControllerProperties;
+  sku: Sku;
+}
+export const UpdateControllerResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    tags: S.optional(UpdateControllerResponseTagsMap),
+    location: S.String,
+    properties: ControllerProperties,
+    sku: Sku,
+  }),
+).annotate({
+  identifier: "UpdateControllerResponse",
+}) as any as S.Schema<UpdateControllerResponse>;
+
+export type CreateControllerError = AzureOpError;
+/** Creates an Azure Dev Spaces Controller. Creates an Azure Dev Spaces Controller with the specified create parameters. */
+export const CreateController: API.OperationMethod<
+  CreateControllerRequest,
+  CreateControllerResponse,
+  CreateControllerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ContainerHostMappingsGetContainerHostMappingRequest,
+  input: CreateControllerRequest,
+  output: CreateControllerResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteControllerError = AzureOpError;
+/** Deletes an Azure Dev Spaces Controller. Deletes an existing Azure Dev Spaces Controller. */
+export const DeleteController: API.OperationMethod<
+  DeleteControllerRequest,
+  DeleteControllerResponse,
+  DeleteControllerError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteControllerRequest,
+  output: DeleteControllerResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetContainerHostMappingContainerHostMappingError = AzureOpError;
+/** Returns container host mapping object for a container host resource ID if an associated controller exists. */
+export const GetContainerHostMappingContainerHostMapping: API.OperationMethod<
+  GetContainerHostMappingContainerHostMappingRequest,
+  ContainerHostMapping,
+  GetContainerHostMappingContainerHostMappingError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetContainerHostMappingContainerHostMappingRequest,
   output: ContainerHostMapping,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ControllersCreateError = AzureOpError;
-/** Creates an Azure Dev Spaces Controller. Creates an Azure Dev Spaces Controller with the specified create parameters. */
-export const ControllersCreate: API.OperationMethod<
-  ControllersCreateRequest,
-  ControllersCreateResponse,
-  ControllersCreateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ControllersCreateRequest,
-  output: ControllersCreateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ControllersDeleteError = AzureOpError;
-/** Deletes an Azure Dev Spaces Controller. Deletes an existing Azure Dev Spaces Controller. */
-export const ControllersDelete: API.OperationMethod<
-  ControllersDeleteRequest,
-  ControllersDeleteResponse,
-  ControllersDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ControllersDeleteRequest,
-  output: ControllersDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ControllersGetError = AzureOpError;
+export type GetControllerError = AzureOpError;
 /** Gets an Azure Dev Spaces Controller. Gets the properties for an Azure Dev Spaces Controller. */
-export const ControllersGet: API.OperationMethod<
-  ControllersGetRequest,
-  ControllersGetResponse,
-  ControllersGetError,
+export const GetController: API.OperationMethod<
+  GetControllerRequest,
+  GetControllerResponse,
+  GetControllerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ControllersGetRequest,
-  output: ControllersGetResponse,
+  input: GetControllerRequest,
+  output: GetControllerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ControllersListError = AzureOpError;
-/** Lists the Azure Dev Spaces Controllers in a subscription. Lists all the Azure Dev Spaces Controllers with their properties in the subscription. */
-export const ControllersList: API.OperationMethod<
-  ControllersListRequest,
-  ControllerList,
-  ControllersListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ControllersListRequest,
-  output: ControllerList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ControllersListByResourceGroupError = AzureOpError;
+export type ListControllerByResourceGroupError = AzureOpError;
 /** Lists the Azure Dev Spaces Controllers in a resource group. Lists all the Azure Dev Spaces Controllers with their properties in the specified resource group and subscription. */
-export const ControllersListByResourceGroup: API.OperationMethod<
-  ControllersListByResourceGroupRequest,
+export const ListControllerByResourceGroup: API.OperationMethod<
+  ListControllerByResourceGroupRequest,
   ControllerList,
-  ControllersListByResourceGroupError,
+  ListControllerByResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ControllersListByResourceGroupRequest,
+  input: ListControllerByResourceGroupRequest,
   output: ControllerList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ControllersListConnectionDetailsError = AzureOpError;
+export type ListControllerConnectionDetailsError = AzureOpError;
 /** Lists connection details for an Azure Dev Spaces Controller. Lists connection details for the underlying container resources of an Azure Dev Spaces Controller. */
-export const ControllersListConnectionDetails: API.OperationMethod<
-  ControllersListConnectionDetailsRequest,
+export const ListControllerConnectionDetails: API.OperationMethod<
+  ListControllerConnectionDetailsRequest,
   ControllerConnectionDetailsList,
-  ControllersListConnectionDetailsError,
+  ListControllerConnectionDetailsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ControllersListConnectionDetailsRequest,
+  input: ListControllerConnectionDetailsRequest,
   output: ControllerConnectionDetailsList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ControllersUpdateError = AzureOpError;
-/** Updates an Azure Dev Spaces Controller. Updates the properties of an existing Azure Dev Spaces Controller with the specified update parameters. */
-export const ControllersUpdate: API.OperationMethod<
-  ControllersUpdateRequest,
-  ControllersUpdateResponse,
-  ControllersUpdateError,
+export type ListControllersError = AzureOpError;
+/** Lists the Azure Dev Spaces Controllers in a subscription. Lists all the Azure Dev Spaces Controllers with their properties in the subscription. */
+export const ListControllers: API.OperationMethod<
+  ListControllersRequest,
+  ControllerList,
+  ListControllersError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ControllersUpdateRequest,
-  output: ControllersUpdateResponse,
+  input: ListControllersRequest,
+  output: ControllerList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type OperationsListError = AzureOpError;
+export type ListOperationsError = AzureOpError;
 /** Lists operations for the resource provider. Lists all the supported operations by the Microsoft.DevSpaces resource provider along with their description. */
-export const OperationsList: API.OperationMethod<
-  OperationsListRequest,
+export const ListOperations: API.OperationMethod<
+  ListOperationsRequest,
   ResourceProviderOperationList,
-  OperationsListError,
+  ListOperationsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OperationsListRequest,
+  input: ListOperationsRequest,
   output: ResourceProviderOperationList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateControllerError = AzureOpError;
+/** Updates an Azure Dev Spaces Controller. Updates the properties of an existing Azure Dev Spaces Controller with the specified update parameters. */
+export const UpdateController: API.OperationMethod<
+  UpdateControllerRequest,
+  UpdateControllerResponse,
+  UpdateControllerError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateControllerRequest,
+  output: UpdateControllerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

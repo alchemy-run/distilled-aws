@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.posthog.product_enablement#ProductsEnum": {
@@ -43,7 +44,7 @@
         "smithy.api#documentation": "* `conversations` - conversations\n* `error_tracking` - error_tracking\n* `session_replay` - session_replay"
       }
     },
-    "com.posthog.product_enablement#ProductEnablementCreateRequestProductsList": {
+    "com.posthog.product_enablement#CreateProductEnablementRequestProductsList": {
       "type": "list",
       "member": {
         "target": "com.posthog.product_enablement#ProductsEnum"
@@ -52,7 +53,7 @@
         "smithy.api#documentation": "Products to turn on for this project, each enabled with server-owned conservative defaults."
       }
     },
-    "com.posthog.product_enablement#ProductEnablementCreateRequest": {
+    "com.posthog.product_enablement#CreateProductEnablementRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -64,7 +65,7 @@
           }
         },
         "products": {
-          "target": "com.posthog.product_enablement#ProductEnablementCreateRequestProductsList",
+          "target": "com.posthog.product_enablement#CreateProductEnablementRequestProductsList",
           "traits": {
             "smithy.api#documentation": "Products to turn on for this project, each enabled with server-owned conservative defaults.",
             "smithy.api#required": {}
@@ -100,10 +101,10 @@
         "smithy.api#documentation": "Per requested product: \"enabled\" (just turned on) or \"already_enabled\"."
       }
     },
-    "com.posthog.product_enablement#ProductEnablementCreate": {
+    "com.posthog.product_enablement#CreateProductEnablement": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.product_enablement#ProductEnablementCreateRequest"
+        "target": "com.posthog.product_enablement#CreateProductEnablementRequest"
       },
       "output": {
         "target": "com.posthog.product_enablement#ProductEnablementResult"
@@ -121,7 +122,7 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.product_enablement#ProductEnablementCreate"
+          "target": "com.posthog.product_enablement#CreateProductEnablement"
         }
       ],
       "traits": {

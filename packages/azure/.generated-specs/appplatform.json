@@ -14,13 +14,14 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.appplatform#PredefinedAcceleratorsEnable": {
+    "com.azure.appplatform#EnablePredefinedAccelerator": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#PredefinedAcceleratorsEnableRequest"
+        "target": "com.azure.appplatform#EnablePredefinedAcceleratorRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -36,7 +37,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#PredefinedAcceleratorsEnableRequest": {
+    "com.azure.appplatform#EnablePredefinedAcceleratorRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -84,10 +85,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#PredefinedAcceleratorsDisable": {
+    "com.azure.appplatform#DisablePredefinedAccelerator": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#PredefinedAcceleratorsDisableRequest"
+        "target": "com.azure.appplatform#DisablePredefinedAcceleratorRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -103,7 +104,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#PredefinedAcceleratorsDisableRequest": {
+    "com.azure.appplatform#DisablePredefinedAcceleratorRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -151,13 +152,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#PredefinedAcceleratorsGet": {
+    "com.azure.appplatform#GetPredefinedAccelerator": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#PredefinedAcceleratorsGetRequest"
+        "target": "com.azure.appplatform#GetPredefinedAcceleratorRequest"
       },
       "output": {
-        "target": "com.azure.appplatform#PredefinedAcceleratorsGetResponse"
+        "target": "com.azure.appplatform#GetPredefinedAcceleratorResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -170,7 +171,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#PredefinedAcceleratorsGetResponse": {
+    "com.azure.appplatform#GetPredefinedAcceleratorResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -439,7 +440,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.appplatform#PredefinedAcceleratorsGetRequest": {
+    "com.azure.appplatform#GetPredefinedAcceleratorRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -487,10 +488,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#PredefinedAcceleratorsList": {
+    "com.azure.appplatform#ListPredefinedAccelerators": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#PredefinedAcceleratorsListRequest"
+        "target": "com.azure.appplatform#ListPredefinedAcceleratorsRequest"
       },
       "output": {
         "target": "com.azure.appplatform#PredefinedAcceleratorResourceCollection"
@@ -563,7 +564,7 @@
         "smithy.api#documentation": "Predefined accelerator resource"
       }
     },
-    "com.azure.appplatform#PredefinedAcceleratorsListRequest": {
+    "com.azure.appplatform#ListPredefinedAcceleratorsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -603,10 +604,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#CustomizedAcceleratorsValidate": {
+    "com.azure.appplatform#ValidateCustomizedAccelerator": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#CustomizedAcceleratorsValidateRequest"
+        "target": "com.azure.appplatform#ValidateCustomizedAcceleratorRequest"
       },
       "output": {
         "target": "com.azure.appplatform#CustomizedAcceleratorValidateResult"
@@ -662,7 +663,7 @@
         "smithy.api#documentation": "State of the customized accelerator validation result"
       }
     },
-    "com.azure.appplatform#CustomizedAcceleratorsValidateRequest": {
+    "com.azure.appplatform#ValidateCustomizedAcceleratorRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -706,7 +707,7 @@
           }
         },
         "acceleratorType": {
-          "target": "com.azure.appplatform#CustomizedAcceleratorsValidateRequestAcceleratorType",
+          "target": "com.azure.appplatform#ValidateCustomizedAcceleratorRequestAcceleratorType",
           "traits": {
             "smithy.api#documentation": "Type of the customized accelerator."
           }
@@ -721,7 +722,7 @@
           "target": "smithy.api#String"
         },
         "acceleratorTags": {
-          "target": "com.azure.appplatform#CustomizedAcceleratorsValidateRequestAcceleratorTagsList"
+          "target": "com.azure.appplatform#ValidateCustomizedAcceleratorRequestAcceleratorTagsList"
         },
         "gitRepository": {
           "target": "com.azure.appplatform#AcceleratorGitRepository",
@@ -799,14 +800,14 @@
         "smithy.api#documentation": "Auth setting payload."
       }
     },
-    "com.azure.appplatform#CustomizedAcceleratorsValidateRequestAcceleratorTagsList": {
+    "com.azure.appplatform#ValidateCustomizedAcceleratorRequestAcceleratorTagsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.azure.appplatform#CustomizedAcceleratorsValidateRequestAcceleratorType": {
+    "com.azure.appplatform#ValidateCustomizedAcceleratorRequestAcceleratorType": {
       "type": "enum",
       "members": {
         "ACCELERATOR": {
@@ -826,10 +827,10 @@
         "smithy.api#documentation": "Type of the customized accelerator."
       }
     },
-    "com.azure.appplatform#CustomizedAcceleratorsDelete": {
+    "com.azure.appplatform#DeleteCustomizedAccelerator": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#CustomizedAcceleratorsDeleteRequest"
+        "target": "com.azure.appplatform#DeleteCustomizedAcceleratorRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -845,7 +846,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#CustomizedAcceleratorsDeleteRequest": {
+    "com.azure.appplatform#DeleteCustomizedAcceleratorRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1190,13 +1191,13 @@
         "smithy.api#documentation": "Type of the customized accelerator."
       }
     },
-    "com.azure.appplatform#CustomizedAcceleratorsGet": {
+    "com.azure.appplatform#GetCustomizedAccelerator": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#CustomizedAcceleratorsGetRequest"
+        "target": "com.azure.appplatform#GetCustomizedAcceleratorRequest"
       },
       "output": {
-        "target": "com.azure.appplatform#CustomizedAcceleratorsGetResponse"
+        "target": "com.azure.appplatform#GetCustomizedAcceleratorResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1209,7 +1210,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#CustomizedAcceleratorsGetResponse": {
+    "com.azure.appplatform#GetCustomizedAcceleratorResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1247,7 +1248,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.appplatform#CustomizedAcceleratorsGetRequest": {
+    "com.azure.appplatform#GetCustomizedAcceleratorRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1295,10 +1296,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#CustomizedAcceleratorsList": {
+    "com.azure.appplatform#ListCustomizedAccelerators": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#CustomizedAcceleratorsListRequest"
+        "target": "com.azure.appplatform#ListCustomizedAcceleratorsRequest"
       },
       "output": {
         "target": "com.azure.appplatform#CustomizedAcceleratorResourceCollection"
@@ -1371,7 +1372,7 @@
         "smithy.api#documentation": "Customized accelerator resource"
       }
     },
-    "com.azure.appplatform#CustomizedAcceleratorsListRequest": {
+    "com.azure.appplatform#ListCustomizedAcceleratorsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1411,10 +1412,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#ApplicationAcceleratorsDelete": {
+    "com.azure.appplatform#DeleteApplicationAccelerator": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#ApplicationAcceleratorsDeleteRequest"
+        "target": "com.azure.appplatform#DeleteApplicationAcceleratorRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1430,7 +1431,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#ApplicationAcceleratorsDeleteRequest": {
+    "com.azure.appplatform#DeleteApplicationAcceleratorRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1720,13 +1721,13 @@
         "smithy.api#documentation": "Application accelerator properties payload"
       }
     },
-    "com.azure.appplatform#ApplicationAcceleratorsGet": {
+    "com.azure.appplatform#GetApplicationAccelerator": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#ApplicationAcceleratorsGetRequest"
+        "target": "com.azure.appplatform#GetApplicationAcceleratorRequest"
       },
       "output": {
-        "target": "com.azure.appplatform#ApplicationAcceleratorsGetResponse"
+        "target": "com.azure.appplatform#GetApplicationAcceleratorResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1739,7 +1740,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#ApplicationAcceleratorsGetResponse": {
+    "com.azure.appplatform#GetApplicationAcceleratorResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1777,7 +1778,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.appplatform#ApplicationAcceleratorsGetRequest": {
+    "com.azure.appplatform#GetApplicationAcceleratorRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1817,10 +1818,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#ApplicationAcceleratorsList": {
+    "com.azure.appplatform#ListApplicationAccelerators": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#ApplicationAcceleratorsListRequest"
+        "target": "com.azure.appplatform#ListApplicationAcceleratorsRequest"
       },
       "output": {
         "target": "com.azure.appplatform#ApplicationAcceleratorResourceCollection"
@@ -1903,7 +1904,7 @@
         "smithy.api#documentation": "Application accelerator resource"
       }
     },
-    "com.azure.appplatform#ApplicationAcceleratorsListRequest": {
+    "com.azure.appplatform#ListApplicationAcceleratorsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1935,10 +1936,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#ApiPortalsValidateDomain": {
+    "com.azure.appplatform#ValidateApiPortalDomain": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#ApiPortalsValidateDomainRequest"
+        "target": "com.azure.appplatform#ValidateApiPortalDomainRequest"
       },
       "output": {
         "target": "com.azure.appplatform#CustomDomainValidateResult"
@@ -1974,7 +1975,7 @@
         "smithy.api#documentation": "Validation result for custom domain."
       }
     },
-    "com.azure.appplatform#ApiPortalsValidateDomainRequest": {
+    "com.azure.appplatform#ValidateApiPortalDomainRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2021,10 +2022,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#ApiPortalCustomDomainsList": {
+    "com.azure.appplatform#ListApiPortalCustomDomains": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#ApiPortalCustomDomainsListRequest"
+        "target": "com.azure.appplatform#ListApiPortalCustomDomainsRequest"
       },
       "output": {
         "target": "com.azure.appplatform#ApiPortalCustomDomainResourceCollection"
@@ -2115,7 +2116,7 @@
         "smithy.api#documentation": "The properties of custom domain for API portal"
       }
     },
-    "com.azure.appplatform#ApiPortalCustomDomainsListRequest": {
+    "com.azure.appplatform#ListApiPortalCustomDomainsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2155,10 +2156,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#ApiPortalCustomDomainsDelete": {
+    "com.azure.appplatform#DeleteApiPortalCustomDomain": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#ApiPortalCustomDomainsDeleteRequest"
+        "target": "com.azure.appplatform#DeleteApiPortalCustomDomainRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2174,7 +2175,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#ApiPortalCustomDomainsDeleteRequest": {
+    "com.azure.appplatform#DeleteApiPortalCustomDomainRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2324,13 +2325,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#ApiPortalCustomDomainsGet": {
+    "com.azure.appplatform#GetApiPortalCustomDomain": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#ApiPortalCustomDomainsGetRequest"
+        "target": "com.azure.appplatform#GetApiPortalCustomDomainRequest"
       },
       "output": {
-        "target": "com.azure.appplatform#ApiPortalCustomDomainsGetResponse"
+        "target": "com.azure.appplatform#GetApiPortalCustomDomainResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2343,7 +2344,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#ApiPortalCustomDomainsGetResponse": {
+    "com.azure.appplatform#GetApiPortalCustomDomainResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2375,7 +2376,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.appplatform#ApiPortalCustomDomainsGetRequest": {
+    "com.azure.appplatform#GetApiPortalCustomDomainRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2423,10 +2424,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#ApiPortalsList": {
+    "com.azure.appplatform#ListApiPortals": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#ApiPortalsListRequest"
+        "target": "com.azure.appplatform#ListApiPortalsRequest"
       },
       "output": {
         "target": "com.azure.appplatform#ApiPortalResourceCollection"
@@ -2741,7 +2742,7 @@
         "smithy.api#documentation": "State of the API portal."
       }
     },
-    "com.azure.appplatform#ApiPortalsListRequest": {
+    "com.azure.appplatform#ListApiPortalsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2773,10 +2774,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#ApiPortalsDelete": {
+    "com.azure.appplatform#DeleteApiPortal": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#ApiPortalsDeleteRequest"
+        "target": "com.azure.appplatform#DeleteApiPortalRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2792,7 +2793,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#ApiPortalsDeleteRequest": {
+    "com.azure.appplatform#DeleteApiPortalRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3017,13 +3018,13 @@
         "smithy.api#documentation": "The array of resource Ids of gateway to integrate with API portal."
       }
     },
-    "com.azure.appplatform#ApiPortalsGet": {
+    "com.azure.appplatform#GetApiPortal": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#ApiPortalsGetRequest"
+        "target": "com.azure.appplatform#GetApiPortalRequest"
       },
       "output": {
-        "target": "com.azure.appplatform#ApiPortalsGetResponse"
+        "target": "com.azure.appplatform#GetApiPortalResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3036,7 +3037,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#ApiPortalsGetResponse": {
+    "com.azure.appplatform#GetApiPortalResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3074,7 +3075,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.appplatform#ApiPortalsGetRequest": {
+    "com.azure.appplatform#GetApiPortalRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3114,10 +3115,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#GatewaysValidateDomain": {
+    "com.azure.appplatform#ValidateGatewaysDomain": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#GatewaysValidateDomainRequest"
+        "target": "com.azure.appplatform#ValidateGatewaysDomainRequest"
       },
       "output": {
         "target": "com.azure.appplatform#CustomDomainValidateResult"
@@ -3133,7 +3134,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#GatewaysValidateDomainRequest": {
+    "com.azure.appplatform#ValidateGatewaysDomainRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3180,10 +3181,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#GatewayCustomDomainsList": {
+    "com.azure.appplatform#ListGatewayCustomDomains": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#GatewayCustomDomainsListRequest"
+        "target": "com.azure.appplatform#ListGatewayCustomDomainsRequest"
       },
       "output": {
         "target": "com.azure.appplatform#GatewayCustomDomainResourceCollection"
@@ -3274,7 +3275,7 @@
         "smithy.api#documentation": "The properties of custom domain for Spring Cloud Gateway"
       }
     },
-    "com.azure.appplatform#GatewayCustomDomainsListRequest": {
+    "com.azure.appplatform#ListGatewayCustomDomainsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3314,10 +3315,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#GatewayCustomDomainsDelete": {
+    "com.azure.appplatform#DeleteGatewayCustomDomain": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#GatewayCustomDomainsDeleteRequest"
+        "target": "com.azure.appplatform#DeleteGatewayCustomDomainRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3333,7 +3334,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#GatewayCustomDomainsDeleteRequest": {
+    "com.azure.appplatform#DeleteGatewayCustomDomainRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3483,13 +3484,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#GatewayCustomDomainsGet": {
+    "com.azure.appplatform#GetGatewayCustomDomain": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#GatewayCustomDomainsGetRequest"
+        "target": "com.azure.appplatform#GetGatewayCustomDomainRequest"
       },
       "output": {
-        "target": "com.azure.appplatform#GatewayCustomDomainsGetResponse"
+        "target": "com.azure.appplatform#GetGatewayCustomDomainResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3502,7 +3503,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#GatewayCustomDomainsGetResponse": {
+    "com.azure.appplatform#GetGatewayCustomDomainResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3534,7 +3535,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.appplatform#GatewayCustomDomainsGetRequest": {
+    "com.azure.appplatform#GetGatewayCustomDomainRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3582,10 +3583,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#GatewayRouteConfigsList": {
+    "com.azure.appplatform#ListGatewayRouteConfigs": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#GatewayRouteConfigsListRequest"
+        "target": "com.azure.appplatform#ListGatewayRouteConfigsRequest"
       },
       "output": {
         "target": "com.azure.appplatform#GatewayRouteConfigResourceCollection"
@@ -3903,7 +3904,7 @@
         "smithy.api#documentation": "State of the Spring Cloud Gateway route config."
       }
     },
-    "com.azure.appplatform#GatewayRouteConfigsListRequest": {
+    "com.azure.appplatform#ListGatewayRouteConfigsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3943,10 +3944,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#GatewayRouteConfigsDelete": {
+    "com.azure.appplatform#DeleteGatewayRouteConfig": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#GatewayRouteConfigsDeleteRequest"
+        "target": "com.azure.appplatform#DeleteGatewayRouteConfigRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3962,7 +3963,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#GatewayRouteConfigsDeleteRequest": {
+    "com.azure.appplatform#DeleteGatewayRouteConfigRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4206,13 +4207,13 @@
         "smithy.api#documentation": "Protocol of routed Azure Spring Apps applications."
       }
     },
-    "com.azure.appplatform#GatewayRouteConfigsGet": {
+    "com.azure.appplatform#GetGatewayRouteConfig": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#GatewayRouteConfigsGetRequest"
+        "target": "com.azure.appplatform#GetGatewayRouteConfigRequest"
       },
       "output": {
-        "target": "com.azure.appplatform#GatewayRouteConfigsGetResponse"
+        "target": "com.azure.appplatform#GetGatewayRouteConfigResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4225,7 +4226,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#GatewayRouteConfigsGetResponse": {
+    "com.azure.appplatform#GetGatewayRouteConfigResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -4257,7 +4258,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.appplatform#GatewayRouteConfigsGetRequest": {
+    "com.azure.appplatform#GetGatewayRouteConfigRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4305,10 +4306,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#GatewaysList": {
+    "com.azure.appplatform#ListGateways": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#GatewaysListRequest"
+        "target": "com.azure.appplatform#ListGatewaysRequest"
       },
       "output": {
         "target": "com.azure.appplatform#GatewayResourceCollection"
@@ -4857,7 +4858,7 @@
         "smithy.api#documentation": "State of the Spring Cloud Gateway."
       }
     },
-    "com.azure.appplatform#GatewaysListRequest": {
+    "com.azure.appplatform#ListGatewaysRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4889,10 +4890,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#GatewaysRestart": {
+    "com.azure.appplatform#RestartGateways": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#GatewaysRestartRequest"
+        "target": "com.azure.appplatform#RestartGatewaysRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4908,7 +4909,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#GatewaysRestartRequest": {
+    "com.azure.appplatform#RestartGatewaysRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4948,13 +4949,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#GatewaysListEnvSecrets": {
+    "com.azure.appplatform#ListGatewaysEnvSecrets": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#GatewaysListEnvSecretsRequest"
+        "target": "com.azure.appplatform#ListGatewaysEnvSecretsRequest"
       },
       "output": {
-        "target": "com.azure.appplatform#GatewaysListEnvSecretsResponse"
+        "target": "com.azure.appplatform#ListGatewaysEnvSecretsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4967,7 +4968,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#GatewaysListEnvSecretsResponse": {
+    "com.azure.appplatform#ListGatewaysEnvSecretsResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -4994,7 +4995,7 @@
         "smithy.api#documentation": "Sensitive properties for Spring Cloud Gateway"
       }
     },
-    "com.azure.appplatform#GatewaysListEnvSecretsRequest": {
+    "com.azure.appplatform#ListGatewaysEnvSecretsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5034,10 +5035,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#GatewaysDelete": {
+    "com.azure.appplatform#DeleteGateways": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#GatewaysDeleteRequest"
+        "target": "com.azure.appplatform#DeleteGatewaysRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -5053,7 +5054,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#GatewaysDeleteRequest": {
+    "com.azure.appplatform#DeleteGatewaysRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5345,13 +5346,13 @@
         "smithy.api#documentation": "Collection of certificate resource Ids in Azure Spring Apps."
       }
     },
-    "com.azure.appplatform#GatewaysGet": {
+    "com.azure.appplatform#GetGateways": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#GatewaysGetRequest"
+        "target": "com.azure.appplatform#GetGatewaysRequest"
       },
       "output": {
-        "target": "com.azure.appplatform#GatewaysGetResponse"
+        "target": "com.azure.appplatform#GetGatewaysResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5364,7 +5365,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#GatewaysGetResponse": {
+    "com.azure.appplatform#GetGatewaysResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -5402,7 +5403,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.appplatform#GatewaysGetRequest": {
+    "com.azure.appplatform#GetGatewaysRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5442,10 +5443,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#ServicesListSupportedServerVersions": {
+    "com.azure.appplatform#ListServiceSupportedServerVersions": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#ServicesListSupportedServerVersionsRequest"
+        "target": "com.azure.appplatform#ListServiceSupportedServerVersionsRequest"
       },
       "output": {
         "target": "com.azure.appplatform#SupportedServerVersions"
@@ -5516,7 +5517,7 @@
         "smithy.api#documentation": "Supported server version."
       }
     },
-    "com.azure.appplatform#ServicesListSupportedServerVersionsRequest": {
+    "com.azure.appplatform#ListServiceSupportedServerVersionsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5548,10 +5549,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#SkusList": {
+    "com.azure.appplatform#ListSkus": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#SkusListRequest"
+        "target": "com.azure.appplatform#ListSkusRequest"
       },
       "output": {
         "target": "com.azure.appplatform#ResourceSkuCollection"
@@ -5951,7 +5952,7 @@
         "smithy.api#documentation": "Gets or sets the type of the scale."
       }
     },
-    "com.azure.appplatform#SkusListRequest": {
+    "com.azure.appplatform#ListSkusRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5967,7 +5968,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#RuntimeVersionsListRuntimeVersions": {
+    "com.azure.appplatform#ListRuntimeVersionRuntimeVersions": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -6085,7 +6086,7 @@
         "smithy.api#documentation": "The raw value which could be passed to deployment CRUD operations."
       }
     },
-    "com.azure.appplatform#OperationsList": {
+    "com.azure.appplatform#ListOperations": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -6428,10 +6429,10 @@
         "smithy.api#documentation": "Operation display payload"
       }
     },
-    "com.azure.appplatform#ServicesList": {
+    "com.azure.appplatform#ListServices": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#ServicesListRequest"
+        "target": "com.azure.appplatform#ListServicesRequest"
       },
       "output": {
         "target": "com.azure.appplatform#ServiceResourceList"
@@ -6924,7 +6925,7 @@
         "smithy.api#documentation": "Tags of the service which is a list of key value pairs that describe the resource."
       }
     },
-    "com.azure.appplatform#ServicesListRequest": {
+    "com.azure.appplatform#ListServicesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6948,10 +6949,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#ServicesListBySubscription": {
+    "com.azure.appplatform#ListServiceBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#ServicesListBySubscriptionRequest"
+        "target": "com.azure.appplatform#ListServiceBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.appplatform#ServiceResourceList"
@@ -6967,7 +6968,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#ServicesListBySubscriptionRequest": {
+    "com.azure.appplatform#ListServiceBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6983,10 +6984,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#DeploymentsStartJFR": {
+    "com.azure.appplatform#StartDeploymentJFR": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#DeploymentsStartJFRRequest"
+        "target": "com.azure.appplatform#StartDeploymentJFRRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -7002,7 +7003,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#DeploymentsStartJFRRequest": {
+    "com.azure.appplatform#StartDeploymentJFRRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7068,10 +7069,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#DeploymentsGenerateThreadDump": {
+    "com.azure.appplatform#GenerateDeploymentThreadDump": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#DeploymentsGenerateThreadDumpRequest"
+        "target": "com.azure.appplatform#GenerateDeploymentThreadDumpRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -7087,7 +7088,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#DeploymentsGenerateThreadDumpRequest": {
+    "com.azure.appplatform#GenerateDeploymentThreadDumpRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7153,10 +7154,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#DeploymentsGenerateHeapDump": {
+    "com.azure.appplatform#GenerateDeploymentHeapDump": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#DeploymentsGenerateHeapDumpRequest"
+        "target": "com.azure.appplatform#GenerateDeploymentHeapDumpRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -7172,7 +7173,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#DeploymentsGenerateHeapDumpRequest": {
+    "com.azure.appplatform#GenerateDeploymentHeapDumpRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7238,10 +7239,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#DeploymentsGetLogFileUrl": {
+    "com.azure.appplatform#GetDeploymentLogFileUrl": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#DeploymentsGetLogFileUrlRequest"
+        "target": "com.azure.appplatform#GetDeploymentLogFileUrlRequest"
       },
       "output": {
         "target": "com.azure.appplatform#LogFileUrlResponse"
@@ -7272,7 +7273,7 @@
         "smithy.api#documentation": "Log file URL payload"
       }
     },
-    "com.azure.appplatform#DeploymentsGetLogFileUrlRequest": {
+    "com.azure.appplatform#GetDeploymentLogFileUrlRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7320,10 +7321,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#DeploymentsGetRemoteDebuggingConfig": {
+    "com.azure.appplatform#GetDeploymentRemoteDebuggingConfig": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#DeploymentsGetRemoteDebuggingConfigRequest"
+        "target": "com.azure.appplatform#GetDeploymentRemoteDebuggingConfigRequest"
       },
       "output": {
         "target": "com.azure.appplatform#RemoteDebugging"
@@ -7359,7 +7360,7 @@
         "smithy.api#documentation": "Remote debugging config."
       }
     },
-    "com.azure.appplatform#DeploymentsGetRemoteDebuggingConfigRequest": {
+    "com.azure.appplatform#GetDeploymentRemoteDebuggingConfigRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7407,10 +7408,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#DeploymentsDisableRemoteDebugging": {
+    "com.azure.appplatform#DisableDeploymentRemoteDebugging": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#DeploymentsDisableRemoteDebuggingRequest"
+        "target": "com.azure.appplatform#DisableDeploymentRemoteDebuggingRequest"
       },
       "output": {
         "target": "com.azure.appplatform#RemoteDebugging"
@@ -7426,7 +7427,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#DeploymentsDisableRemoteDebuggingRequest": {
+    "com.azure.appplatform#DisableDeploymentRemoteDebuggingRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7474,10 +7475,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#DeploymentsEnableRemoteDebugging": {
+    "com.azure.appplatform#EnableDeploymentRemoteDebugging": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#DeploymentsEnableRemoteDebuggingRequest"
+        "target": "com.azure.appplatform#EnableDeploymentRemoteDebuggingRequest"
       },
       "output": {
         "target": "com.azure.appplatform#RemoteDebugging"
@@ -7493,7 +7494,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#DeploymentsEnableRemoteDebuggingRequest": {
+    "com.azure.appplatform#EnableDeploymentRemoteDebuggingRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7547,10 +7548,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#DeploymentsRestart": {
+    "com.azure.appplatform#RestartDeployment": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#DeploymentsRestartRequest"
+        "target": "com.azure.appplatform#RestartDeploymentRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -7566,7 +7567,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#DeploymentsRestartRequest": {
+    "com.azure.appplatform#RestartDeploymentRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7614,10 +7615,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#DeploymentsStop": {
+    "com.azure.appplatform#StopDeployment": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#DeploymentsStopRequest"
+        "target": "com.azure.appplatform#StopDeploymentRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -7633,7 +7634,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#DeploymentsStopRequest": {
+    "com.azure.appplatform#StopDeploymentRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7681,10 +7682,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#DeploymentsStart": {
+    "com.azure.appplatform#StartDeployment": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#DeploymentsStartRequest"
+        "target": "com.azure.appplatform#StartDeploymentRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -7700,7 +7701,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#DeploymentsStartRequest": {
+    "com.azure.appplatform#StartDeploymentRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7748,10 +7749,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#BuildServiceBuilderListDeployments": {
+    "com.azure.appplatform#ListBuildServiceBuilderDeployments": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#BuildServiceBuilderListDeploymentsRequest"
+        "target": "com.azure.appplatform#ListBuildServiceBuilderDeploymentsRequest"
       },
       "output": {
         "target": "com.azure.appplatform#DeploymentList"
@@ -7790,7 +7791,7 @@
         "smithy.api#documentation": "A list of deployment resource ids."
       }
     },
-    "com.azure.appplatform#BuildServiceBuilderListDeploymentsRequest": {
+    "com.azure.appplatform#ListBuildServiceBuilderDeploymentsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7838,10 +7839,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#DeploymentsListForCluster": {
+    "com.azure.appplatform#ListDeploymentForCluster": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#DeploymentsListForClusterRequest"
+        "target": "com.azure.appplatform#ListDeploymentForClusterRequest"
       },
       "output": {
         "target": "com.azure.appplatform#DeploymentResourceCollection"
@@ -8306,7 +8307,7 @@
         "smithy.api#documentation": "Source information for a deployment"
       }
     },
-    "com.azure.appplatform#DeploymentsListForClusterRequest": {
+    "com.azure.appplatform#ListDeploymentForClusterRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8334,7 +8335,7 @@
           }
         },
         "version": {
-          "target": "com.azure.appplatform#DeploymentsListForClusterRequestVersionList",
+          "target": "com.azure.appplatform#ListDeploymentForClusterRequestVersionList",
           "traits": {
             "smithy.api#httpQuery": "version",
             "smithy.api#documentation": "Version of the deployments to be listed"
@@ -8352,17 +8353,17 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#DeploymentsListForClusterRequestVersionList": {
+    "com.azure.appplatform#ListDeploymentForClusterRequestVersionList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.azure.appplatform#DeploymentsList": {
+    "com.azure.appplatform#ListDeployments": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#DeploymentsListRequest"
+        "target": "com.azure.appplatform#ListDeploymentsRequest"
       },
       "output": {
         "target": "com.azure.appplatform#DeploymentResourceCollection"
@@ -8378,7 +8379,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#DeploymentsListRequest": {
+    "com.azure.appplatform#ListDeploymentsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8414,7 +8415,7 @@
           }
         },
         "version": {
-          "target": "com.azure.appplatform#DeploymentsListRequestVersionList",
+          "target": "com.azure.appplatform#ListDeploymentsRequestVersionList",
           "traits": {
             "smithy.api#httpQuery": "version",
             "smithy.api#documentation": "Version of the deployments to be listed"
@@ -8425,17 +8426,17 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#DeploymentsListRequestVersionList": {
+    "com.azure.appplatform#ListDeploymentsRequestVersionList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.azure.appplatform#DeploymentsDelete": {
+    "com.azure.appplatform#DeleteDeployment": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#DeploymentsDeleteRequest"
+        "target": "com.azure.appplatform#DeleteDeploymentRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -8451,7 +8452,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#DeploymentsDeleteRequest": {
+    "com.azure.appplatform#DeleteDeploymentRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8499,13 +8500,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#DeploymentsUpdate": {
+    "com.azure.appplatform#UpdateDeployment": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#DeploymentsUpdateRequest"
+        "target": "com.azure.appplatform#UpdateDeploymentRequest"
       },
       "output": {
-        "target": "com.azure.appplatform#DeploymentsUpdateResponse"
+        "target": "com.azure.appplatform#UpdateDeploymentResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -8518,7 +8519,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#DeploymentsUpdateResponse": {
+    "com.azure.appplatform#UpdateDeploymentResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -8559,7 +8560,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.appplatform#DeploymentsUpdateRequest": {
+    "com.azure.appplatform#UpdateDeploymentRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8765,13 +8766,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#DeploymentsGet": {
+    "com.azure.appplatform#GetDeployment": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#DeploymentsGetRequest"
+        "target": "com.azure.appplatform#GetDeploymentRequest"
       },
       "output": {
-        "target": "com.azure.appplatform#DeploymentsGetResponse"
+        "target": "com.azure.appplatform#GetDeploymentResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -8784,7 +8785,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#DeploymentsGetResponse": {
+    "com.azure.appplatform#GetDeploymentResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -8825,7 +8826,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.appplatform#DeploymentsGetRequest": {
+    "com.azure.appplatform#GetDeploymentRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8873,10 +8874,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#AppsValidateDomain": {
+    "com.azure.appplatform#ValidateAppDomain": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#AppsValidateDomainRequest"
+        "target": "com.azure.appplatform#ValidateAppDomainRequest"
       },
       "output": {
         "target": "com.azure.appplatform#CustomDomainValidateResult"
@@ -8892,7 +8893,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#AppsValidateDomainRequest": {
+    "com.azure.appplatform#ValidateAppDomainRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8939,10 +8940,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#CustomDomainsList": {
+    "com.azure.appplatform#ListCustomDomains": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#CustomDomainsListRequest"
+        "target": "com.azure.appplatform#ListCustomDomainsRequest"
       },
       "output": {
         "target": "com.azure.appplatform#CustomDomainResourceCollection"
@@ -9092,7 +9093,7 @@
         "smithy.api#documentation": "Provisioning state of the Domain"
       }
     },
-    "com.azure.appplatform#CustomDomainsListRequest": {
+    "com.azure.appplatform#ListCustomDomainsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9132,10 +9133,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#CustomDomainsDelete": {
+    "com.azure.appplatform#DeleteCustomDomain": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#CustomDomainsDeleteRequest"
+        "target": "com.azure.appplatform#DeleteCustomDomainRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -9151,7 +9152,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#CustomDomainsDeleteRequest": {
+    "com.azure.appplatform#DeleteCustomDomainRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9199,13 +9200,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#CustomDomainsUpdate": {
+    "com.azure.appplatform#UpdateCustomDomain": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#CustomDomainsUpdateRequest"
+        "target": "com.azure.appplatform#UpdateCustomDomainRequest"
       },
       "output": {
-        "target": "com.azure.appplatform#CustomDomainsUpdateResponse"
+        "target": "com.azure.appplatform#UpdateCustomDomainResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -9218,7 +9219,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#CustomDomainsUpdateResponse": {
+    "com.azure.appplatform#UpdateCustomDomainResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -9253,7 +9254,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.appplatform#CustomDomainsUpdateRequest": {
+    "com.azure.appplatform#UpdateCustomDomainRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9435,13 +9436,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#CustomDomainsGet": {
+    "com.azure.appplatform#GetCustomDomain": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#CustomDomainsGetRequest"
+        "target": "com.azure.appplatform#GetCustomDomainRequest"
       },
       "output": {
-        "target": "com.azure.appplatform#CustomDomainsGetResponse"
+        "target": "com.azure.appplatform#GetCustomDomainResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -9454,7 +9455,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#CustomDomainsGetResponse": {
+    "com.azure.appplatform#GetCustomDomainResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -9489,7 +9490,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.appplatform#CustomDomainsGetRequest": {
+    "com.azure.appplatform#GetCustomDomainRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9537,10 +9538,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#ServicesCheckNameAvailability": {
+    "com.azure.appplatform#CheckServiceNameAvailability": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#ServicesCheckNameAvailabilityRequest"
+        "target": "com.azure.appplatform#CheckServiceNameAvailabilityRequest"
       },
       "output": {
         "target": "com.azure.appplatform#NameAvailability"
@@ -9582,7 +9583,7 @@
         "smithy.api#documentation": "Name availability result payload"
       }
     },
-    "com.azure.appplatform#ServicesCheckNameAvailabilityRequest": {
+    "com.azure.appplatform#CheckServiceNameAvailabilityRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9620,10 +9621,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#CertificatesList": {
+    "com.azure.appplatform#ListCertificates": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#CertificatesListRequest"
+        "target": "com.azure.appplatform#ListCertificatesRequest"
       },
       "output": {
         "target": "com.azure.appplatform#CertificateResourceCollection"
@@ -9813,7 +9814,7 @@
         "smithy.api#documentation": "The domain list of certificate."
       }
     },
-    "com.azure.appplatform#CertificatesListRequest": {
+    "com.azure.appplatform#ListCertificatesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9845,10 +9846,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#CertificatesDelete": {
+    "com.azure.appplatform#DeleteCertificate": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#CertificatesDeleteRequest"
+        "target": "com.azure.appplatform#DeleteCertificateRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -9864,7 +9865,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#CertificatesDeleteRequest": {
+    "com.azure.appplatform#DeleteCertificateRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10019,13 +10020,13 @@
         "smithy.api#documentation": "Certificate resource payload."
       }
     },
-    "com.azure.appplatform#CertificatesGet": {
+    "com.azure.appplatform#GetCertificate": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#CertificatesGetRequest"
+        "target": "com.azure.appplatform#GetCertificateRequest"
       },
       "output": {
-        "target": "com.azure.appplatform#CertificatesGetResponse"
+        "target": "com.azure.appplatform#GetCertificateResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -10038,7 +10039,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#CertificatesGetResponse": {
+    "com.azure.appplatform#GetCertificateResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -10073,7 +10074,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.appplatform#CertificatesGetRequest": {
+    "com.azure.appplatform#GetCertificateRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10113,10 +10114,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#StoragesList": {
+    "com.azure.appplatform#ListStorages": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#StoragesListRequest"
+        "target": "com.azure.appplatform#ListStoragesRequest"
       },
       "output": {
         "target": "com.azure.appplatform#StorageResourceCollection"
@@ -10225,7 +10226,7 @@
         "smithy.api#documentation": "The type of the storage."
       }
     },
-    "com.azure.appplatform#StoragesListRequest": {
+    "com.azure.appplatform#ListStoragesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10257,10 +10258,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#StoragesDelete": {
+    "com.azure.appplatform#DeleteStorage": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#StoragesDeleteRequest"
+        "target": "com.azure.appplatform#DeleteStorageRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -10276,7 +10277,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#StoragesDeleteRequest": {
+    "com.azure.appplatform#DeleteStorageRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10416,13 +10417,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#StoragesGet": {
+    "com.azure.appplatform#GetStorage": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#StoragesGetRequest"
+        "target": "com.azure.appplatform#GetStorageRequest"
       },
       "output": {
-        "target": "com.azure.appplatform#StoragesGetResponse"
+        "target": "com.azure.appplatform#GetStorageResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -10435,7 +10436,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#StoragesGetResponse": {
+    "com.azure.appplatform#GetStorageResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -10470,7 +10471,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.appplatform#StoragesGetRequest": {
+    "com.azure.appplatform#GetStorageRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10510,10 +10511,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#BindingsList": {
+    "com.azure.appplatform#ListBindings": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#BindingsListRequest"
+        "target": "com.azure.appplatform#ListBindingsRequest"
       },
       "output": {
         "target": "com.azure.appplatform#BindingResourceCollection"
@@ -10661,7 +10662,7 @@
         "smithy.api#documentation": "Binding parameters of the Binding resource"
       }
     },
-    "com.azure.appplatform#BindingsListRequest": {
+    "com.azure.appplatform#ListBindingsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10701,10 +10702,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#BindingsDelete": {
+    "com.azure.appplatform#DeleteBinding": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#BindingsDeleteRequest"
+        "target": "com.azure.appplatform#DeleteBindingRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -10720,7 +10721,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#BindingsDeleteRequest": {
+    "com.azure.appplatform#DeleteBindingRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10768,13 +10769,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#BindingsUpdate": {
+    "com.azure.appplatform#UpdateBinding": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#BindingsUpdateRequest"
+        "target": "com.azure.appplatform#UpdateBindingRequest"
       },
       "output": {
-        "target": "com.azure.appplatform#BindingsUpdateResponse"
+        "target": "com.azure.appplatform#UpdateBindingResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -10787,7 +10788,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#BindingsUpdateResponse": {
+    "com.azure.appplatform#UpdateBindingResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -10822,7 +10823,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.appplatform#BindingsUpdateRequest": {
+    "com.azure.appplatform#UpdateBindingRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11022,13 +11023,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#BindingsGet": {
+    "com.azure.appplatform#GetBinding": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#BindingsGetRequest"
+        "target": "com.azure.appplatform#GetBindingRequest"
       },
       "output": {
-        "target": "com.azure.appplatform#BindingsGetResponse"
+        "target": "com.azure.appplatform#GetBindingResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -11041,7 +11042,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#BindingsGetResponse": {
+    "com.azure.appplatform#GetBindingResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -11076,7 +11077,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.appplatform#BindingsGetRequest": {
+    "com.azure.appplatform#GetBindingRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11124,13 +11125,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#AppsSetActiveDeployments": {
+    "com.azure.appplatform#SetAppActiveDeployments": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#AppsSetActiveDeploymentsRequest"
+        "target": "com.azure.appplatform#SetAppActiveDeploymentsRequest"
       },
       "output": {
-        "target": "com.azure.appplatform#AppsSetActiveDeploymentsResponse"
+        "target": "com.azure.appplatform#SetAppActiveDeploymentsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -11143,7 +11144,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#AppsSetActiveDeploymentsResponse": {
+    "com.azure.appplatform#SetAppActiveDeploymentsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -11718,7 +11719,7 @@
         "smithy.api#documentation": "Collection of addons"
       }
     },
-    "com.azure.appplatform#AppsSetActiveDeploymentsRequest": {
+    "com.azure.appplatform#SetAppActiveDeploymentsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11754,7 +11755,7 @@
           }
         },
         "activeDeploymentNames": {
-          "target": "com.azure.appplatform#AppsSetActiveDeploymentsRequestActiveDeploymentNamesList",
+          "target": "com.azure.appplatform#SetAppActiveDeploymentsRequestActiveDeploymentNamesList",
           "traits": {
             "smithy.api#documentation": "Collection of Deployment name."
           }
@@ -11764,7 +11765,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#AppsSetActiveDeploymentsRequestActiveDeploymentNamesList": {
+    "com.azure.appplatform#SetAppActiveDeploymentsRequestActiveDeploymentNamesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -11852,10 +11853,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#AppsList": {
+    "com.azure.appplatform#ListApps": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#AppsListRequest"
+        "target": "com.azure.appplatform#ListAppsRequest"
       },
       "output": {
         "target": "com.azure.appplatform#AppResourceCollection"
@@ -11947,7 +11948,7 @@
         "smithy.api#documentation": "App resource payload"
       }
     },
-    "com.azure.appplatform#AppsListRequest": {
+    "com.azure.appplatform#ListAppsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11979,10 +11980,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#AppsDelete": {
+    "com.azure.appplatform#DeleteApp": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#AppsDeleteRequest"
+        "target": "com.azure.appplatform#DeleteAppRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -11998,7 +11999,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#AppsDeleteRequest": {
+    "com.azure.appplatform#DeleteAppRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -12038,13 +12039,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#AppsUpdate": {
+    "com.azure.appplatform#UpdateApp": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#AppsUpdateRequest"
+        "target": "com.azure.appplatform#UpdateAppRequest"
       },
       "output": {
-        "target": "com.azure.appplatform#AppsUpdateResponse"
+        "target": "com.azure.appplatform#UpdateAppResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -12057,7 +12058,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#AppsUpdateResponse": {
+    "com.azure.appplatform#UpdateAppResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -12104,7 +12105,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.appplatform#AppsUpdateRequest": {
+    "com.azure.appplatform#UpdateAppRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -12483,13 +12484,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#AppsGet": {
+    "com.azure.appplatform#GetApp": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#AppsGetRequest"
+        "target": "com.azure.appplatform#GetAppRequest"
       },
       "output": {
-        "target": "com.azure.appplatform#AppsGetResponse"
+        "target": "com.azure.appplatform#GetAppResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -12502,7 +12503,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#AppsGetResponse": {
+    "com.azure.appplatform#GetAppResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -12549,7 +12550,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.appplatform#AppsGetRequest": {
+    "com.azure.appplatform#GetAppRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -12935,13 +12936,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#MonitoringSettingsGet": {
+    "com.azure.appplatform#GetMonitoringSettings": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#MonitoringSettingsGetRequest"
+        "target": "com.azure.appplatform#GetMonitoringSettingsRequest"
       },
       "output": {
-        "target": "com.azure.appplatform#MonitoringSettingsGetResponse"
+        "target": "com.azure.appplatform#GetMonitoringSettingsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -12954,7 +12955,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#MonitoringSettingsGetResponse": {
+    "com.azure.appplatform#GetMonitoringSettingsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -12989,7 +12990,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.appplatform#MonitoringSettingsGetRequest": {
+    "com.azure.appplatform#GetMonitoringSettingsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -13203,13 +13204,13 @@
         "smithy.api#documentation": "Build service agent pool size properties"
       }
     },
-    "com.azure.appplatform#BuildServiceAgentPoolGet": {
+    "com.azure.appplatform#GetBuildServiceAgentPool": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#BuildServiceAgentPoolGetRequest"
+        "target": "com.azure.appplatform#GetBuildServiceAgentPoolRequest"
       },
       "output": {
-        "target": "com.azure.appplatform#BuildServiceAgentPoolGetResponse"
+        "target": "com.azure.appplatform#GetBuildServiceAgentPoolResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -13222,7 +13223,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#BuildServiceAgentPoolGetResponse": {
+    "com.azure.appplatform#GetBuildServiceAgentPoolResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -13257,7 +13258,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.appplatform#BuildServiceAgentPoolGetRequest": {
+    "com.azure.appplatform#GetBuildServiceAgentPoolRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -13305,10 +13306,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#BuildServiceAgentPoolList": {
+    "com.azure.appplatform#ListBuildServiceAgentPool": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#BuildServiceAgentPoolListRequest"
+        "target": "com.azure.appplatform#ListBuildServiceAgentPoolRequest"
       },
       "output": {
         "target": "com.azure.appplatform#BuildServiceAgentPoolResourceCollection"
@@ -13388,7 +13389,7 @@
         "smithy.api#documentation": "The build service agent pool resource"
       }
     },
-    "com.azure.appplatform#BuildServiceAgentPoolListRequest": {
+    "com.azure.appplatform#ListBuildServiceAgentPoolRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -13428,13 +13429,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#BuildServiceGetSupportedStack": {
+    "com.azure.appplatform#GetBuildServiceSupportedStack": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#BuildServiceGetSupportedStackRequest"
+        "target": "com.azure.appplatform#GetBuildServiceSupportedStackRequest"
       },
       "output": {
-        "target": "com.azure.appplatform#BuildServiceGetSupportedStackResponse"
+        "target": "com.azure.appplatform#GetBuildServiceSupportedStackResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -13447,7 +13448,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#BuildServiceGetSupportedStackResponse": {
+    "com.azure.appplatform#GetBuildServiceSupportedStackResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -13499,7 +13500,7 @@
         "smithy.api#documentation": "Supported stack resource properties"
       }
     },
-    "com.azure.appplatform#BuildServiceGetSupportedStackRequest": {
+    "com.azure.appplatform#GetBuildServiceSupportedStackRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -13547,10 +13548,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#BuildServiceListSupportedStacks": {
+    "com.azure.appplatform#ListBuildServiceSupportedStacks": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#BuildServiceListSupportedStacksRequest"
+        "target": "com.azure.appplatform#ListBuildServiceSupportedStacksRequest"
       },
       "output": {
         "target": "com.azure.appplatform#SupportedStacksCollection"
@@ -13627,7 +13628,7 @@
         "smithy.api#documentation": "Supported stack resource payload"
       }
     },
-    "com.azure.appplatform#BuildServiceListSupportedStacksRequest": {
+    "com.azure.appplatform#ListBuildServiceSupportedStacksRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -13667,13 +13668,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#BuildServiceGetSupportedBuildpack": {
+    "com.azure.appplatform#GetBuildServiceSupportedBuildpack": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#BuildServiceGetSupportedBuildpackRequest"
+        "target": "com.azure.appplatform#GetBuildServiceSupportedBuildpackRequest"
       },
       "output": {
-        "target": "com.azure.appplatform#BuildServiceGetSupportedBuildpackResponse"
+        "target": "com.azure.appplatform#GetBuildServiceSupportedBuildpackResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -13686,7 +13687,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#BuildServiceGetSupportedBuildpackResponse": {
+    "com.azure.appplatform#GetBuildServiceSupportedBuildpackResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -13732,7 +13733,7 @@
         "smithy.api#documentation": "Supported buildpack resource properties"
       }
     },
-    "com.azure.appplatform#BuildServiceGetSupportedBuildpackRequest": {
+    "com.azure.appplatform#GetBuildServiceSupportedBuildpackRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -13780,10 +13781,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#BuildServiceListSupportedBuildpacks": {
+    "com.azure.appplatform#ListBuildServiceSupportedBuildpacks": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#BuildServiceListSupportedBuildpacksRequest"
+        "target": "com.azure.appplatform#ListBuildServiceSupportedBuildpacksRequest"
       },
       "output": {
         "target": "com.azure.appplatform#SupportedBuildpacksCollection"
@@ -13860,7 +13861,7 @@
         "smithy.api#documentation": "Supported buildpack resource payload"
       }
     },
-    "com.azure.appplatform#BuildServiceListSupportedBuildpacksRequest": {
+    "com.azure.appplatform#ListBuildServiceSupportedBuildpacksRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -13959,10 +13960,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#BuildServiceBuilderList": {
+    "com.azure.appplatform#ListBuildServiceBuilder": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#BuildServiceBuilderListRequest"
+        "target": "com.azure.appplatform#ListBuildServiceBuilderRequest"
       },
       "output": {
         "target": "com.azure.appplatform#BuilderResourceCollection"
@@ -14178,7 +14179,7 @@
         "smithy.api#documentation": "Builder provision status."
       }
     },
-    "com.azure.appplatform#BuildServiceBuilderListRequest": {
+    "com.azure.appplatform#ListBuildServiceBuilderRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -14218,10 +14219,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#BuildServiceBuilderDelete": {
+    "com.azure.appplatform#DeleteBuildServiceBuilder": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#BuildServiceBuilderDeleteRequest"
+        "target": "com.azure.appplatform#DeleteBuildServiceBuilderRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -14237,7 +14238,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#BuildServiceBuilderDeleteRequest": {
+    "com.azure.appplatform#DeleteBuildServiceBuilderRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -14422,13 +14423,13 @@
         "smithy.api#documentation": "Builder buildpack groups."
       }
     },
-    "com.azure.appplatform#BuildServiceBuilderGet": {
+    "com.azure.appplatform#GetBuildServiceBuilder": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#BuildServiceBuilderGetRequest"
+        "target": "com.azure.appplatform#GetBuildServiceBuilderRequest"
       },
       "output": {
-        "target": "com.azure.appplatform#BuildServiceBuilderGetResponse"
+        "target": "com.azure.appplatform#GetBuildServiceBuilderResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -14441,7 +14442,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#BuildServiceBuilderGetResponse": {
+    "com.azure.appplatform#GetBuildServiceBuilderResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -14476,7 +14477,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.appplatform#BuildServiceBuilderGetRequest": {
+    "com.azure.appplatform#GetBuildServiceBuilderRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -14524,10 +14525,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#BuildServiceGetBuildResultLog": {
+    "com.azure.appplatform#GetBuildServiceBuildResultLog": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#BuildServiceGetBuildResultLogRequest"
+        "target": "com.azure.appplatform#GetBuildServiceBuildResultLogRequest"
       },
       "output": {
         "target": "com.azure.appplatform#BuildResultLog"
@@ -14557,7 +14558,7 @@
         "smithy.api#documentation": "Build result log resource properties payload"
       }
     },
-    "com.azure.appplatform#BuildServiceGetBuildResultLogRequest": {
+    "com.azure.appplatform#GetBuildServiceBuildResultLogRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -14613,13 +14614,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#BuildServiceGetBuildResult": {
+    "com.azure.appplatform#GetBuildServiceBuildResult": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#BuildServiceGetBuildResultRequest"
+        "target": "com.azure.appplatform#GetBuildServiceBuildResultRequest"
       },
       "output": {
-        "target": "com.azure.appplatform#BuildServiceGetBuildResultResponse"
+        "target": "com.azure.appplatform#GetBuildServiceBuildResultResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -14632,7 +14633,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#BuildServiceGetBuildResultResponse": {
+    "com.azure.appplatform#GetBuildServiceBuildResultResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -14822,7 +14823,7 @@
         "smithy.api#documentation": "Provisioning state of the KPack build result"
       }
     },
-    "com.azure.appplatform#BuildServiceGetBuildResultRequest": {
+    "com.azure.appplatform#GetBuildServiceBuildResultRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -14878,10 +14879,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#BuildServiceListBuildResults": {
+    "com.azure.appplatform#ListBuildServiceBuildResults": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#BuildServiceListBuildResultsRequest"
+        "target": "com.azure.appplatform#ListBuildServiceBuildResultsRequest"
       },
       "output": {
         "target": "com.azure.appplatform#BuildResultCollection"
@@ -14961,7 +14962,7 @@
         "smithy.api#documentation": "Build result resource payload"
       }
     },
-    "com.azure.appplatform#BuildServiceListBuildResultsRequest": {
+    "com.azure.appplatform#ListBuildServiceBuildResultsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -15009,10 +15010,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#BuildpackBindingList": {
+    "com.azure.appplatform#ListBuildpackBinding": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#BuildpackBindingListRequest"
+        "target": "com.azure.appplatform#ListBuildpackBindingRequest"
       },
       "output": {
         "target": "com.azure.appplatform#BuildpackBindingResourceCollection"
@@ -15244,7 +15245,7 @@
         "smithy.api#documentation": "Buildpack Binding Type"
       }
     },
-    "com.azure.appplatform#BuildpackBindingListRequest": {
+    "com.azure.appplatform#ListBuildpackBindingRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -15292,10 +15293,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#BuildpackBindingDelete": {
+    "com.azure.appplatform#DeleteBuildpackBinding": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#BuildpackBindingDeleteRequest"
+        "target": "com.azure.appplatform#DeleteBuildpackBindingRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -15311,7 +15312,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#BuildpackBindingDeleteRequest": {
+    "com.azure.appplatform#DeleteBuildpackBindingRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -15547,13 +15548,13 @@
         "smithy.api#documentation": "Buildpack Binding Type"
       }
     },
-    "com.azure.appplatform#BuildpackBindingGet": {
+    "com.azure.appplatform#GetBuildpackBinding": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#BuildpackBindingGetRequest"
+        "target": "com.azure.appplatform#GetBuildpackBindingRequest"
       },
       "output": {
-        "target": "com.azure.appplatform#BuildpackBindingGetResponse"
+        "target": "com.azure.appplatform#GetBuildpackBindingResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -15566,7 +15567,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#BuildpackBindingGetResponse": {
+    "com.azure.appplatform#GetBuildpackBindingResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -15601,7 +15602,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.appplatform#BuildpackBindingGetRequest": {
+    "com.azure.appplatform#GetBuildpackBindingRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -15657,10 +15658,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#BuildpackBindingListForCluster": {
+    "com.azure.appplatform#ListBuildpackBindingForCluster": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#BuildpackBindingListForClusterRequest"
+        "target": "com.azure.appplatform#ListBuildpackBindingForClusterRequest"
       },
       "output": {
         "target": "com.azure.appplatform#BuildpackBindingResourceCollection"
@@ -15676,7 +15677,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#BuildpackBindingListForClusterRequest": {
+    "com.azure.appplatform#ListBuildpackBindingForClusterRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -15708,10 +15709,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#BuildServiceDeleteBuild": {
+    "com.azure.appplatform#DeleteBuildServiceBuild": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#BuildServiceDeleteBuildRequest"
+        "target": "com.azure.appplatform#DeleteBuildServiceBuildRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -15727,7 +15728,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#BuildServiceDeleteBuildRequest": {
+    "com.azure.appplatform#DeleteBuildServiceBuildRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -16189,13 +16190,13 @@
         "smithy.api#documentation": "The environment variables for this build"
       }
     },
-    "com.azure.appplatform#BuildServiceGetBuild": {
+    "com.azure.appplatform#GetBuildServiceBuild": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#BuildServiceGetBuildRequest"
+        "target": "com.azure.appplatform#GetBuildServiceBuildRequest"
       },
       "output": {
-        "target": "com.azure.appplatform#BuildServiceGetBuildResponse"
+        "target": "com.azure.appplatform#GetBuildServiceBuildResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -16208,7 +16209,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#BuildServiceGetBuildResponse": {
+    "com.azure.appplatform#GetBuildServiceBuildResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -16243,7 +16244,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.appplatform#BuildServiceGetBuildRequest": {
+    "com.azure.appplatform#GetBuildServiceBuildRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -16291,10 +16292,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#BuildServiceListBuilds": {
+    "com.azure.appplatform#ListBuildServiceBuilds": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#BuildServiceListBuildsRequest"
+        "target": "com.azure.appplatform#ListBuildServiceBuildsRequest"
       },
       "output": {
         "target": "com.azure.appplatform#BuildCollection"
@@ -16374,7 +16375,7 @@
         "smithy.api#documentation": "Build resource payload"
       }
     },
-    "com.azure.appplatform#BuildServiceListBuildsRequest": {
+    "com.azure.appplatform#ListBuildServiceBuildsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -16631,13 +16632,13 @@
         "smithy.api#documentation": "The runtime resource configuration of this build service."
       }
     },
-    "com.azure.appplatform#BuildServiceGetBuildService": {
+    "com.azure.appplatform#GetBuildServiceBuildService": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#BuildServiceGetBuildServiceRequest"
+        "target": "com.azure.appplatform#GetBuildServiceBuildServiceRequest"
       },
       "output": {
-        "target": "com.azure.appplatform#BuildServiceGetBuildServiceResponse"
+        "target": "com.azure.appplatform#GetBuildServiceBuildServiceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -16650,7 +16651,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#BuildServiceGetBuildServiceResponse": {
+    "com.azure.appplatform#GetBuildServiceBuildServiceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -16685,7 +16686,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.appplatform#BuildServiceGetBuildServiceRequest": {
+    "com.azure.appplatform#GetBuildServiceBuildServiceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -16725,10 +16726,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#BuildServiceListBuildServices": {
+    "com.azure.appplatform#ListBuildServiceBuildServices": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#BuildServiceListBuildServicesRequest"
+        "target": "com.azure.appplatform#ListBuildServiceBuildServicesRequest"
       },
       "output": {
         "target": "com.azure.appplatform#BuildServiceCollection"
@@ -16808,7 +16809,7 @@
         "smithy.api#documentation": "Build service resource payload"
       }
     },
-    "com.azure.appplatform#BuildServiceListBuildServicesRequest": {
+    "com.azure.appplatform#ListBuildServiceBuildServicesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -16840,10 +16841,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#ContainerRegistriesValidate": {
+    "com.azure.appplatform#ValidateContainerRegistry": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#ContainerRegistriesValidateRequest"
+        "target": "com.azure.appplatform#ValidateContainerRegistryRequest"
       },
       "output": {
         "target": "com.azure.appplatform#ContainerRegistryValidateResult"
@@ -16879,7 +16880,7 @@
         "smithy.api#documentation": "Validation result for container registry properties"
       }
     },
-    "com.azure.appplatform#ContainerRegistriesValidateRequest": {
+    "com.azure.appplatform#ValidateContainerRegistryRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -16941,10 +16942,10 @@
         "smithy.api#documentation": "The credential for the container registry resource."
       }
     },
-    "com.azure.appplatform#ContainerRegistriesDelete": {
+    "com.azure.appplatform#DeleteContainerRegistry": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#ContainerRegistriesDeleteRequest"
+        "target": "com.azure.appplatform#DeleteContainerRegistryRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -16960,7 +16961,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#ContainerRegistriesDeleteRequest": {
+    "com.azure.appplatform#DeleteContainerRegistryRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -17180,13 +17181,13 @@
         "smithy.api#documentation": "Container registry resource payload."
       }
     },
-    "com.azure.appplatform#ContainerRegistriesGet": {
+    "com.azure.appplatform#GetContainerRegistry": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#ContainerRegistriesGetRequest"
+        "target": "com.azure.appplatform#GetContainerRegistryRequest"
       },
       "output": {
-        "target": "com.azure.appplatform#ContainerRegistriesGetResponse"
+        "target": "com.azure.appplatform#GetContainerRegistryResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -17199,7 +17200,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#ContainerRegistriesGetResponse": {
+    "com.azure.appplatform#GetContainerRegistryResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -17234,7 +17235,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.appplatform#ContainerRegistriesGetRequest": {
+    "com.azure.appplatform#GetContainerRegistryRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -17274,10 +17275,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#ContainerRegistriesList": {
+    "com.azure.appplatform#ListContainerRegistries": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#ContainerRegistriesListRequest"
+        "target": "com.azure.appplatform#ListContainerRegistriesRequest"
       },
       "output": {
         "target": "com.azure.appplatform#ContainerRegistryResourceCollection"
@@ -17357,7 +17358,7 @@
         "smithy.api#documentation": "Container registry resource payload."
       }
     },
-    "com.azure.appplatform#ContainerRegistriesListRequest": {
+    "com.azure.appplatform#ListContainerRegistriesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -17389,10 +17390,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#DevToolPortalsDelete": {
+    "com.azure.appplatform#DeleteDevToolPortal": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#DevToolPortalsDeleteRequest"
+        "target": "com.azure.appplatform#DeleteDevToolPortalRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -17408,7 +17409,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#DevToolPortalsDeleteRequest": {
+    "com.azure.appplatform#DeleteDevToolPortalRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -17897,13 +17898,13 @@
         "smithy.api#documentation": "State of the plugin"
       }
     },
-    "com.azure.appplatform#DevToolPortalsGet": {
+    "com.azure.appplatform#GetDevToolPortal": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#DevToolPortalsGetRequest"
+        "target": "com.azure.appplatform#GetDevToolPortalRequest"
       },
       "output": {
-        "target": "com.azure.appplatform#DevToolPortalsGetResponse"
+        "target": "com.azure.appplatform#GetDevToolPortalResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -17916,7 +17917,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#DevToolPortalsGetResponse": {
+    "com.azure.appplatform#GetDevToolPortalResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -17948,7 +17949,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.appplatform#DevToolPortalsGetRequest": {
+    "com.azure.appplatform#GetDevToolPortalRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -17988,10 +17989,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#DevToolPortalsList": {
+    "com.azure.appplatform#ListDevToolPortals": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#DevToolPortalsListRequest"
+        "target": "com.azure.appplatform#ListDevToolPortalsRequest"
       },
       "output": {
         "target": "com.azure.appplatform#DevToolPortalResourceCollection"
@@ -18068,7 +18069,7 @@
         "smithy.api#documentation": "Dev Tool Portal resource"
       }
     },
-    "com.azure.appplatform#DevToolPortalsListRequest": {
+    "com.azure.appplatform#ListDevToolPortalsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -18100,10 +18101,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#ApplicationLiveViewsDelete": {
+    "com.azure.appplatform#DeleteApplicationLiveView": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#ApplicationLiveViewsDeleteRequest"
+        "target": "com.azure.appplatform#DeleteApplicationLiveViewRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -18119,7 +18120,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#ApplicationLiveViewsDeleteRequest": {
+    "com.azure.appplatform#DeleteApplicationLiveViewRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -18414,13 +18415,13 @@
         "smithy.api#documentation": "Application Live View properties payload"
       }
     },
-    "com.azure.appplatform#ApplicationLiveViewsGet": {
+    "com.azure.appplatform#GetApplicationLiveView": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#ApplicationLiveViewsGetRequest"
+        "target": "com.azure.appplatform#GetApplicationLiveViewRequest"
       },
       "output": {
-        "target": "com.azure.appplatform#ApplicationLiveViewsGetResponse"
+        "target": "com.azure.appplatform#GetApplicationLiveViewResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -18433,7 +18434,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#ApplicationLiveViewsGetResponse": {
+    "com.azure.appplatform#GetApplicationLiveViewResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -18465,7 +18466,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.appplatform#ApplicationLiveViewsGetRequest": {
+    "com.azure.appplatform#GetApplicationLiveViewRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -18505,10 +18506,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#ApplicationLiveViewsList": {
+    "com.azure.appplatform#ListApplicationLiveViews": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#ApplicationLiveViewsListRequest"
+        "target": "com.azure.appplatform#ListApplicationLiveViewsRequest"
       },
       "output": {
         "target": "com.azure.appplatform#ApplicationLiveViewResourceCollection"
@@ -18585,7 +18586,7 @@
         "smithy.api#documentation": "Application Live View resource"
       }
     },
-    "com.azure.appplatform#ApplicationLiveViewsListRequest": {
+    "com.azure.appplatform#ListApplicationLiveViewsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -18617,10 +18618,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#ServiceRegistriesList": {
+    "com.azure.appplatform#ListServiceRegistries": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#ServiceRegistriesListRequest"
+        "target": "com.azure.appplatform#ListServiceRegistriesRequest"
       },
       "output": {
         "target": "com.azure.appplatform#ServiceRegistryResourceCollection"
@@ -18816,7 +18817,7 @@
         "smithy.api#documentation": "State of the Service Registry."
       }
     },
-    "com.azure.appplatform#ServiceRegistriesListRequest": {
+    "com.azure.appplatform#ListServiceRegistriesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -18848,10 +18849,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#ServiceRegistriesDelete": {
+    "com.azure.appplatform#DeleteServiceRegistry": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#ServiceRegistriesDeleteRequest"
+        "target": "com.azure.appplatform#DeleteServiceRegistryRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -18867,7 +18868,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#ServiceRegistriesDeleteRequest": {
+    "com.azure.appplatform#DeleteServiceRegistryRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -18998,13 +18999,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#ServiceRegistriesGet": {
+    "com.azure.appplatform#GetServiceRegistry": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#ServiceRegistriesGetRequest"
+        "target": "com.azure.appplatform#GetServiceRegistryRequest"
       },
       "output": {
-        "target": "com.azure.appplatform#ServiceRegistriesGetResponse"
+        "target": "com.azure.appplatform#GetServiceRegistryResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -19017,7 +19018,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#ServiceRegistriesGetResponse": {
+    "com.azure.appplatform#GetServiceRegistryResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -19049,7 +19050,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.appplatform#ServiceRegistriesGetRequest": {
+    "com.azure.appplatform#GetServiceRegistryRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -19089,10 +19090,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#ConfigurationServicesValidateResource": {
+    "com.azure.appplatform#ValidateConfigurationServiceResource": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#ConfigurationServicesValidateResourceRequest"
+        "target": "com.azure.appplatform#ValidateConfigurationServiceResourceRequest"
       },
       "output": {
         "target": "com.azure.appplatform#ConfigurationServiceSettingsValidateResult"
@@ -19177,7 +19178,7 @@
         "smithy.api#documentation": "Detailed validation messages."
       }
     },
-    "com.azure.appplatform#ConfigurationServicesValidateResourceRequest": {
+    "com.azure.appplatform#ValidateConfigurationServiceResourceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -19418,10 +19419,10 @@
         "smithy.api#documentation": "The generation of the Application Configuration Service."
       }
     },
-    "com.azure.appplatform#ConfigurationServicesValidate": {
+    "com.azure.appplatform#ValidateConfigurationService": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#ConfigurationServicesValidateRequest"
+        "target": "com.azure.appplatform#ValidateConfigurationServiceRequest"
       },
       "output": {
         "target": "com.azure.appplatform#ConfigurationServiceSettingsValidateResult"
@@ -19437,7 +19438,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#ConfigurationServicesValidateRequest": {
+    "com.azure.appplatform#ValidateConfigurationServiceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -19480,10 +19481,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#ConfigurationServicesList": {
+    "com.azure.appplatform#ListConfigurationServices": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#ConfigurationServicesListRequest"
+        "target": "com.azure.appplatform#ListConfigurationServicesRequest"
       },
       "output": {
         "target": "com.azure.appplatform#ConfigurationServiceResourceCollection"
@@ -19708,7 +19709,7 @@
         "smithy.api#documentation": "State of the Application Configuration Service."
       }
     },
-    "com.azure.appplatform#ConfigurationServicesListRequest": {
+    "com.azure.appplatform#ListConfigurationServicesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -19740,10 +19741,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#ConfigurationServicesDelete": {
+    "com.azure.appplatform#DeleteConfigurationService": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#ConfigurationServicesDeleteRequest"
+        "target": "com.azure.appplatform#DeleteConfigurationServiceRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -19759,7 +19760,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#ConfigurationServicesDeleteRequest": {
+    "com.azure.appplatform#DeleteConfigurationServiceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -19893,13 +19894,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#ConfigurationServicesGet": {
+    "com.azure.appplatform#GetConfigurationService": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#ConfigurationServicesGetRequest"
+        "target": "com.azure.appplatform#GetConfigurationServiceRequest"
       },
       "output": {
-        "target": "com.azure.appplatform#ConfigurationServicesGetResponse"
+        "target": "com.azure.appplatform#GetConfigurationServiceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -19912,7 +19913,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#ConfigurationServicesGetResponse": {
+    "com.azure.appplatform#GetConfigurationServiceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -19944,7 +19945,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.appplatform#ConfigurationServicesGetRequest": {
+    "com.azure.appplatform#GetConfigurationServiceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -19984,10 +19985,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#ConfigServersValidate": {
+    "com.azure.appplatform#ValidateConfigServer": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#ConfigServersValidateRequest"
+        "target": "com.azure.appplatform#ValidateConfigServerRequest"
       },
       "output": {
         "target": "com.azure.appplatform#ConfigServerSettingsValidateResult"
@@ -20067,7 +20068,7 @@
         "smithy.api#documentation": "The detail error messages of the record"
       }
     },
-    "com.azure.appplatform#ConfigServersValidateRequest": {
+    "com.azure.appplatform#ValidateConfigServerRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -20572,13 +20573,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#ConfigServersGet": {
+    "com.azure.appplatform#GetConfigServer": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#ConfigServersGetRequest"
+        "target": "com.azure.appplatform#GetConfigServerRequest"
       },
       "output": {
-        "target": "com.azure.appplatform#ConfigServersGetResponse"
+        "target": "com.azure.appplatform#GetConfigServerResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -20591,7 +20592,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#ConfigServersGetResponse": {
+    "com.azure.appplatform#GetConfigServerResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -20626,7 +20627,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.appplatform#ConfigServersGetRequest": {
+    "com.azure.appplatform#GetConfigServerRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -20658,10 +20659,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#ApmsListSecretKeys": {
+    "com.azure.appplatform#ListApmSecretKeys": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#ApmsListSecretKeysRequest"
+        "target": "com.azure.appplatform#ListApmSecretKeysRequest"
       },
       "output": {
         "target": "com.azure.appplatform#ApmSecretKeys"
@@ -20700,7 +20701,7 @@
         "smithy.api#documentation": "Collection of the keys for the APM sensitive properties"
       }
     },
-    "com.azure.appplatform#ApmsListSecretKeysRequest": {
+    "com.azure.appplatform#ListApmSecretKeysRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -20740,10 +20741,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#ApmsDelete": {
+    "com.azure.appplatform#DeleteApm": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#ApmsDeleteRequest"
+        "target": "com.azure.appplatform#DeleteApmRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -20759,7 +20760,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#ApmsDeleteRequest": {
+    "com.azure.appplatform#DeleteApmRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -21051,13 +21052,13 @@
         "smithy.api#documentation": "Non-sensitive properties for the APM"
       }
     },
-    "com.azure.appplatform#ApmsGet": {
+    "com.azure.appplatform#GetApm": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#ApmsGetRequest"
+        "target": "com.azure.appplatform#GetApmRequest"
       },
       "output": {
-        "target": "com.azure.appplatform#ApmsGetResponse"
+        "target": "com.azure.appplatform#GetApmResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -21070,7 +21071,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#ApmsGetResponse": {
+    "com.azure.appplatform#GetApmResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -21105,7 +21106,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.appplatform#ApmsGetRequest": {
+    "com.azure.appplatform#GetApmRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -21145,10 +21146,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#ApmsList": {
+    "com.azure.appplatform#ListApms": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#ApmsListRequest"
+        "target": "com.azure.appplatform#ListApmsRequest"
       },
       "output": {
         "target": "com.azure.appplatform#ApmResourceCollection"
@@ -21228,7 +21229,7 @@
         "smithy.api#documentation": "APM Resource object"
       }
     },
-    "com.azure.appplatform#ApmsListRequest": {
+    "com.azure.appplatform#ListApmsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -21260,10 +21261,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#ServicesDisableApmGlobally": {
+    "com.azure.appplatform#DisableServiceApmGlobally": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#ServicesDisableApmGloballyRequest"
+        "target": "com.azure.appplatform#DisableServiceApmGloballyRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -21279,7 +21280,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#ServicesDisableApmGloballyRequest": {
+    "com.azure.appplatform#DisableServiceApmGloballyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -21318,10 +21319,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#ServicesEnableApmGlobally": {
+    "com.azure.appplatform#EnableServiceApmGlobally": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#ServicesEnableApmGloballyRequest"
+        "target": "com.azure.appplatform#EnableServiceApmGloballyRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -21337,7 +21338,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#ServicesEnableApmGloballyRequest": {
+    "com.azure.appplatform#EnableServiceApmGloballyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -21376,10 +21377,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#ServicesListGloballyEnabledApms": {
+    "com.azure.appplatform#ListServiceGloballyEnabledApms": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#ServicesListGloballyEnabledApmsRequest"
+        "target": "com.azure.appplatform#ListServiceGloballyEnabledApmsRequest"
       },
       "output": {
         "target": "com.azure.appplatform#GloballyEnabledApms"
@@ -21418,7 +21419,7 @@
         "smithy.api#documentation": "Collection of the globally enabled APMs"
       }
     },
-    "com.azure.appplatform#ServicesListGloballyEnabledApmsRequest": {
+    "com.azure.appplatform#ListServiceGloballyEnabledApmsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -21450,10 +21451,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#ServicesListSupportedApmTypes": {
+    "com.azure.appplatform#ListServiceSupportedApmTypes": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#ServicesListSupportedApmTypesRequest"
+        "target": "com.azure.appplatform#ListServiceSupportedApmTypesRequest"
       },
       "output": {
         "target": "com.azure.appplatform#SupportedApmTypes"
@@ -21512,7 +21513,7 @@
         "smithy.api#documentation": "Supported APM type"
       }
     },
-    "com.azure.appplatform#ServicesListSupportedApmTypesRequest": {
+    "com.azure.appplatform#ListServiceSupportedApmTypesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -21544,10 +21545,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#ServicesFlushVnetDnsSetting": {
+    "com.azure.appplatform#FlushServiceVnetDnsSetting": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#ServicesFlushVnetDnsSettingRequest"
+        "target": "com.azure.appplatform#FlushServiceVnetDnsSettingRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -21563,7 +21564,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#ServicesFlushVnetDnsSettingRequest": {
+    "com.azure.appplatform#FlushServiceVnetDnsSettingRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -21595,10 +21596,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#ServicesStart": {
+    "com.azure.appplatform#StartService": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#ServicesStartRequest"
+        "target": "com.azure.appplatform#StartServiceRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -21614,7 +21615,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#ServicesStartRequest": {
+    "com.azure.appplatform#StartServiceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -21646,10 +21647,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#ServicesStop": {
+    "com.azure.appplatform#StopService": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#ServicesStopRequest"
+        "target": "com.azure.appplatform#StopServiceRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -21665,7 +21666,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#ServicesStopRequest": {
+    "com.azure.appplatform#StopServiceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -21697,10 +21698,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#ServicesEnableTestEndpoint": {
+    "com.azure.appplatform#EnableServiceTestEndpoint": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#ServicesEnableTestEndpointRequest"
+        "target": "com.azure.appplatform#EnableServiceTestEndpointRequest"
       },
       "output": {
         "target": "com.azure.appplatform#TestKeys"
@@ -21754,7 +21755,7 @@
         "smithy.api#documentation": "Test keys payload"
       }
     },
-    "com.azure.appplatform#ServicesEnableTestEndpointRequest": {
+    "com.azure.appplatform#EnableServiceTestEndpointRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -21786,10 +21787,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#ServicesDisableTestEndpoint": {
+    "com.azure.appplatform#DisableServiceTestEndpoint": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#ServicesDisableTestEndpointRequest"
+        "target": "com.azure.appplatform#DisableServiceTestEndpointRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -21805,7 +21806,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#ServicesDisableTestEndpointRequest": {
+    "com.azure.appplatform#DisableServiceTestEndpointRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -21837,10 +21838,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#ServicesRegenerateTestKey": {
+    "com.azure.appplatform#RegenerateServiceTestKey": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#ServicesRegenerateTestKeyRequest"
+        "target": "com.azure.appplatform#RegenerateServiceTestKeyRequest"
       },
       "output": {
         "target": "com.azure.appplatform#TestKeys"
@@ -21856,7 +21857,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#ServicesRegenerateTestKeyRequest": {
+    "com.azure.appplatform#RegenerateServiceTestKeyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -21884,7 +21885,7 @@
           }
         },
         "keyType": {
-          "target": "com.azure.appplatform#ServicesRegenerateTestKeyRequestKeyType",
+          "target": "com.azure.appplatform#RegenerateServiceTestKeyRequestKeyType",
           "traits": {
             "smithy.api#documentation": "Type of the test key",
             "smithy.api#required": {}
@@ -21895,7 +21896,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#ServicesRegenerateTestKeyRequestKeyType": {
+    "com.azure.appplatform#RegenerateServiceTestKeyRequestKeyType": {
       "type": "enum",
       "members": {
         "PRIMARY": {
@@ -21915,10 +21916,10 @@
         "smithy.api#documentation": "Type of the test key"
       }
     },
-    "com.azure.appplatform#ServicesListTestKeys": {
+    "com.azure.appplatform#ListServiceTestKeys": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#ServicesListTestKeysRequest"
+        "target": "com.azure.appplatform#ListServiceTestKeysRequest"
       },
       "output": {
         "target": "com.azure.appplatform#TestKeys"
@@ -21934,7 +21935,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#ServicesListTestKeysRequest": {
+    "com.azure.appplatform#ListServiceTestKeysRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -21966,10 +21967,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#ServicesDelete": {
+    "com.azure.appplatform#DeleteService": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#ServicesDeleteRequest"
+        "target": "com.azure.appplatform#DeleteServiceRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -21985,7 +21986,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#ServicesDeleteRequest": {
+    "com.azure.appplatform#DeleteServiceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -22017,13 +22018,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appplatform#ServicesUpdate": {
+    "com.azure.appplatform#UpdateService": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#ServicesUpdateRequest"
+        "target": "com.azure.appplatform#UpdateServiceRequest"
       },
       "output": {
-        "target": "com.azure.appplatform#ServicesUpdateResponse"
+        "target": "com.azure.appplatform#UpdateServiceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -22036,7 +22037,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#ServicesUpdateResponse": {
+    "com.azure.appplatform#UpdateServiceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -22067,7 +22068,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.appplatform#ServicesUpdateResponseTagsMap",
+          "target": "com.azure.appplatform#UpdateServiceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Tags of the service which is a list of key value pairs that describe the resource."
           }
@@ -22089,7 +22090,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.appplatform#ServicesUpdateResponseTagsMap": {
+    "com.azure.appplatform#UpdateServiceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -22101,7 +22102,7 @@
         "smithy.api#documentation": "Tags of the service which is a list of key value pairs that describe the resource."
       }
     },
-    "com.azure.appplatform#ServicesUpdateRequest": {
+    "com.azure.appplatform#UpdateServiceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -22135,7 +22136,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.appplatform#ServicesUpdateRequestTagsMap",
+          "target": "com.azure.appplatform#UpdateServiceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Tags of the service which is a list of key value pairs that describe the resource."
           }
@@ -22236,7 +22237,7 @@
         "smithy.api#documentation": "Service network profile payload"
       }
     },
-    "com.azure.appplatform#ServicesUpdateRequestTagsMap": {
+    "com.azure.appplatform#UpdateServiceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -22400,13 +22401,13 @@
         "smithy.api#documentation": "Tags of the service which is a list of key value pairs that describe the resource."
       }
     },
-    "com.azure.appplatform#ServicesGet": {
+    "com.azure.appplatform#GetService": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appplatform#ServicesGetRequest"
+        "target": "com.azure.appplatform#GetServiceRequest"
       },
       "output": {
-        "target": "com.azure.appplatform#ServicesGetResponse"
+        "target": "com.azure.appplatform#GetServiceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -22419,7 +22420,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.appplatform#ServicesGetResponse": {
+    "com.azure.appplatform#GetServiceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -22450,7 +22451,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.appplatform#ServicesGetResponseTagsMap",
+          "target": "com.azure.appplatform#GetServiceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Tags of the service which is a list of key value pairs that describe the resource."
           }
@@ -22472,7 +22473,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.appplatform#ServicesGetResponseTagsMap": {
+    "com.azure.appplatform#GetServiceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -22484,7 +22485,7 @@
         "smithy.api#documentation": "Tags of the service which is a list of key value pairs that describe the resource."
       }
     },
-    "com.azure.appplatform#ServicesGetRequest": {
+    "com.azure.appplatform#GetServiceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -22521,265 +22522,265 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.appplatform#PredefinedAcceleratorsEnable"
+          "target": "com.azure.appplatform#EnablePredefinedAccelerator"
         },
         {
-          "target": "com.azure.appplatform#PredefinedAcceleratorsDisable"
+          "target": "com.azure.appplatform#DisablePredefinedAccelerator"
         },
         {
-          "target": "com.azure.appplatform#PredefinedAcceleratorsGet"
+          "target": "com.azure.appplatform#GetPredefinedAccelerator"
         },
         {
-          "target": "com.azure.appplatform#PredefinedAcceleratorsList"
+          "target": "com.azure.appplatform#ListPredefinedAccelerators"
         },
         {
-          "target": "com.azure.appplatform#CustomizedAcceleratorsValidate"
+          "target": "com.azure.appplatform#ValidateCustomizedAccelerator"
         },
         {
-          "target": "com.azure.appplatform#CustomizedAcceleratorsDelete"
+          "target": "com.azure.appplatform#DeleteCustomizedAccelerator"
         },
         {
           "target": "com.azure.appplatform#CustomizedAcceleratorsCreateOrUpdate"
         },
         {
-          "target": "com.azure.appplatform#CustomizedAcceleratorsGet"
+          "target": "com.azure.appplatform#GetCustomizedAccelerator"
         },
         {
-          "target": "com.azure.appplatform#CustomizedAcceleratorsList"
+          "target": "com.azure.appplatform#ListCustomizedAccelerators"
         },
         {
-          "target": "com.azure.appplatform#ApplicationAcceleratorsDelete"
+          "target": "com.azure.appplatform#DeleteApplicationAccelerator"
         },
         {
           "target": "com.azure.appplatform#ApplicationAcceleratorsCreateOrUpdate"
         },
         {
-          "target": "com.azure.appplatform#ApplicationAcceleratorsGet"
+          "target": "com.azure.appplatform#GetApplicationAccelerator"
         },
         {
-          "target": "com.azure.appplatform#ApplicationAcceleratorsList"
+          "target": "com.azure.appplatform#ListApplicationAccelerators"
         },
         {
-          "target": "com.azure.appplatform#ApiPortalsValidateDomain"
+          "target": "com.azure.appplatform#ValidateApiPortalDomain"
         },
         {
-          "target": "com.azure.appplatform#ApiPortalCustomDomainsList"
+          "target": "com.azure.appplatform#ListApiPortalCustomDomains"
         },
         {
-          "target": "com.azure.appplatform#ApiPortalCustomDomainsDelete"
+          "target": "com.azure.appplatform#DeleteApiPortalCustomDomain"
         },
         {
           "target": "com.azure.appplatform#ApiPortalCustomDomainsCreateOrUpdate"
         },
         {
-          "target": "com.azure.appplatform#ApiPortalCustomDomainsGet"
+          "target": "com.azure.appplatform#GetApiPortalCustomDomain"
         },
         {
-          "target": "com.azure.appplatform#ApiPortalsList"
+          "target": "com.azure.appplatform#ListApiPortals"
         },
         {
-          "target": "com.azure.appplatform#ApiPortalsDelete"
+          "target": "com.azure.appplatform#DeleteApiPortal"
         },
         {
           "target": "com.azure.appplatform#ApiPortalsCreateOrUpdate"
         },
         {
-          "target": "com.azure.appplatform#ApiPortalsGet"
+          "target": "com.azure.appplatform#GetApiPortal"
         },
         {
-          "target": "com.azure.appplatform#GatewaysValidateDomain"
+          "target": "com.azure.appplatform#ValidateGatewaysDomain"
         },
         {
-          "target": "com.azure.appplatform#GatewayCustomDomainsList"
+          "target": "com.azure.appplatform#ListGatewayCustomDomains"
         },
         {
-          "target": "com.azure.appplatform#GatewayCustomDomainsDelete"
+          "target": "com.azure.appplatform#DeleteGatewayCustomDomain"
         },
         {
           "target": "com.azure.appplatform#GatewayCustomDomainsCreateOrUpdate"
         },
         {
-          "target": "com.azure.appplatform#GatewayCustomDomainsGet"
+          "target": "com.azure.appplatform#GetGatewayCustomDomain"
         },
         {
-          "target": "com.azure.appplatform#GatewayRouteConfigsList"
+          "target": "com.azure.appplatform#ListGatewayRouteConfigs"
         },
         {
-          "target": "com.azure.appplatform#GatewayRouteConfigsDelete"
+          "target": "com.azure.appplatform#DeleteGatewayRouteConfig"
         },
         {
           "target": "com.azure.appplatform#GatewayRouteConfigsCreateOrUpdate"
         },
         {
-          "target": "com.azure.appplatform#GatewayRouteConfigsGet"
+          "target": "com.azure.appplatform#GetGatewayRouteConfig"
         },
         {
-          "target": "com.azure.appplatform#GatewaysList"
+          "target": "com.azure.appplatform#ListGateways"
         },
         {
-          "target": "com.azure.appplatform#GatewaysRestart"
+          "target": "com.azure.appplatform#RestartGateways"
         },
         {
-          "target": "com.azure.appplatform#GatewaysListEnvSecrets"
+          "target": "com.azure.appplatform#ListGatewaysEnvSecrets"
         },
         {
-          "target": "com.azure.appplatform#GatewaysDelete"
+          "target": "com.azure.appplatform#DeleteGateways"
         },
         {
           "target": "com.azure.appplatform#GatewaysCreateOrUpdate"
         },
         {
-          "target": "com.azure.appplatform#GatewaysGet"
+          "target": "com.azure.appplatform#GetGateways"
         },
         {
-          "target": "com.azure.appplatform#ServicesListSupportedServerVersions"
+          "target": "com.azure.appplatform#ListServiceSupportedServerVersions"
         },
         {
-          "target": "com.azure.appplatform#SkusList"
+          "target": "com.azure.appplatform#ListSkus"
         },
         {
-          "target": "com.azure.appplatform#RuntimeVersionsListRuntimeVersions"
+          "target": "com.azure.appplatform#ListRuntimeVersionRuntimeVersions"
         },
         {
-          "target": "com.azure.appplatform#OperationsList"
+          "target": "com.azure.appplatform#ListOperations"
         },
         {
-          "target": "com.azure.appplatform#ServicesList"
+          "target": "com.azure.appplatform#ListServices"
         },
         {
-          "target": "com.azure.appplatform#ServicesListBySubscription"
+          "target": "com.azure.appplatform#ListServiceBySubscription"
         },
         {
-          "target": "com.azure.appplatform#DeploymentsStartJFR"
+          "target": "com.azure.appplatform#StartDeploymentJFR"
         },
         {
-          "target": "com.azure.appplatform#DeploymentsGenerateThreadDump"
+          "target": "com.azure.appplatform#GenerateDeploymentThreadDump"
         },
         {
-          "target": "com.azure.appplatform#DeploymentsGenerateHeapDump"
+          "target": "com.azure.appplatform#GenerateDeploymentHeapDump"
         },
         {
-          "target": "com.azure.appplatform#DeploymentsGetLogFileUrl"
+          "target": "com.azure.appplatform#GetDeploymentLogFileUrl"
         },
         {
-          "target": "com.azure.appplatform#DeploymentsGetRemoteDebuggingConfig"
+          "target": "com.azure.appplatform#GetDeploymentRemoteDebuggingConfig"
         },
         {
-          "target": "com.azure.appplatform#DeploymentsDisableRemoteDebugging"
+          "target": "com.azure.appplatform#DisableDeploymentRemoteDebugging"
         },
         {
-          "target": "com.azure.appplatform#DeploymentsEnableRemoteDebugging"
+          "target": "com.azure.appplatform#EnableDeploymentRemoteDebugging"
         },
         {
-          "target": "com.azure.appplatform#DeploymentsRestart"
+          "target": "com.azure.appplatform#RestartDeployment"
         },
         {
-          "target": "com.azure.appplatform#DeploymentsStop"
+          "target": "com.azure.appplatform#StopDeployment"
         },
         {
-          "target": "com.azure.appplatform#DeploymentsStart"
+          "target": "com.azure.appplatform#StartDeployment"
         },
         {
-          "target": "com.azure.appplatform#BuildServiceBuilderListDeployments"
+          "target": "com.azure.appplatform#ListBuildServiceBuilderDeployments"
         },
         {
-          "target": "com.azure.appplatform#DeploymentsListForCluster"
+          "target": "com.azure.appplatform#ListDeploymentForCluster"
         },
         {
-          "target": "com.azure.appplatform#DeploymentsList"
+          "target": "com.azure.appplatform#ListDeployments"
         },
         {
-          "target": "com.azure.appplatform#DeploymentsDelete"
+          "target": "com.azure.appplatform#DeleteDeployment"
         },
         {
-          "target": "com.azure.appplatform#DeploymentsUpdate"
+          "target": "com.azure.appplatform#UpdateDeployment"
         },
         {
           "target": "com.azure.appplatform#DeploymentsCreateOrUpdate"
         },
         {
-          "target": "com.azure.appplatform#DeploymentsGet"
+          "target": "com.azure.appplatform#GetDeployment"
         },
         {
-          "target": "com.azure.appplatform#AppsValidateDomain"
+          "target": "com.azure.appplatform#ValidateAppDomain"
         },
         {
-          "target": "com.azure.appplatform#CustomDomainsList"
+          "target": "com.azure.appplatform#ListCustomDomains"
         },
         {
-          "target": "com.azure.appplatform#CustomDomainsDelete"
+          "target": "com.azure.appplatform#DeleteCustomDomain"
         },
         {
-          "target": "com.azure.appplatform#CustomDomainsUpdate"
+          "target": "com.azure.appplatform#UpdateCustomDomain"
         },
         {
           "target": "com.azure.appplatform#CustomDomainsCreateOrUpdate"
         },
         {
-          "target": "com.azure.appplatform#CustomDomainsGet"
+          "target": "com.azure.appplatform#GetCustomDomain"
         },
         {
-          "target": "com.azure.appplatform#ServicesCheckNameAvailability"
+          "target": "com.azure.appplatform#CheckServiceNameAvailability"
         },
         {
-          "target": "com.azure.appplatform#CertificatesList"
+          "target": "com.azure.appplatform#ListCertificates"
         },
         {
-          "target": "com.azure.appplatform#CertificatesDelete"
+          "target": "com.azure.appplatform#DeleteCertificate"
         },
         {
           "target": "com.azure.appplatform#CertificatesCreateOrUpdate"
         },
         {
-          "target": "com.azure.appplatform#CertificatesGet"
+          "target": "com.azure.appplatform#GetCertificate"
         },
         {
-          "target": "com.azure.appplatform#StoragesList"
+          "target": "com.azure.appplatform#ListStorages"
         },
         {
-          "target": "com.azure.appplatform#StoragesDelete"
+          "target": "com.azure.appplatform#DeleteStorage"
         },
         {
           "target": "com.azure.appplatform#StoragesCreateOrUpdate"
         },
         {
-          "target": "com.azure.appplatform#StoragesGet"
+          "target": "com.azure.appplatform#GetStorage"
         },
         {
-          "target": "com.azure.appplatform#BindingsList"
+          "target": "com.azure.appplatform#ListBindings"
         },
         {
-          "target": "com.azure.appplatform#BindingsDelete"
+          "target": "com.azure.appplatform#DeleteBinding"
         },
         {
-          "target": "com.azure.appplatform#BindingsUpdate"
+          "target": "com.azure.appplatform#UpdateBinding"
         },
         {
           "target": "com.azure.appplatform#BindingsCreateOrUpdate"
         },
         {
-          "target": "com.azure.appplatform#BindingsGet"
+          "target": "com.azure.appplatform#GetBinding"
         },
         {
-          "target": "com.azure.appplatform#AppsSetActiveDeployments"
+          "target": "com.azure.appplatform#SetAppActiveDeployments"
         },
         {
           "target": "com.azure.appplatform#AppsGetResourceUploadUrl"
         },
         {
-          "target": "com.azure.appplatform#AppsList"
+          "target": "com.azure.appplatform#ListApps"
         },
         {
-          "target": "com.azure.appplatform#AppsDelete"
+          "target": "com.azure.appplatform#DeleteApp"
         },
         {
-          "target": "com.azure.appplatform#AppsUpdate"
+          "target": "com.azure.appplatform#UpdateApp"
         },
         {
           "target": "com.azure.appplatform#AppsCreateOrUpdate"
         },
         {
-          "target": "com.azure.appplatform#AppsGet"
+          "target": "com.azure.appplatform#GetApp"
         },
         {
           "target": "com.azure.appplatform#MonitoringSettingsUpdatePatch"
@@ -22788,160 +22789,160 @@
           "target": "com.azure.appplatform#MonitoringSettingsUpdatePut"
         },
         {
-          "target": "com.azure.appplatform#MonitoringSettingsGet"
+          "target": "com.azure.appplatform#GetMonitoringSettings"
         },
         {
           "target": "com.azure.appplatform#BuildServiceAgentPoolUpdatePut"
         },
         {
-          "target": "com.azure.appplatform#BuildServiceAgentPoolGet"
+          "target": "com.azure.appplatform#GetBuildServiceAgentPool"
         },
         {
-          "target": "com.azure.appplatform#BuildServiceAgentPoolList"
+          "target": "com.azure.appplatform#ListBuildServiceAgentPool"
         },
         {
-          "target": "com.azure.appplatform#BuildServiceGetSupportedStack"
+          "target": "com.azure.appplatform#GetBuildServiceSupportedStack"
         },
         {
-          "target": "com.azure.appplatform#BuildServiceListSupportedStacks"
+          "target": "com.azure.appplatform#ListBuildServiceSupportedStacks"
         },
         {
-          "target": "com.azure.appplatform#BuildServiceGetSupportedBuildpack"
+          "target": "com.azure.appplatform#GetBuildServiceSupportedBuildpack"
         },
         {
-          "target": "com.azure.appplatform#BuildServiceListSupportedBuildpacks"
+          "target": "com.azure.appplatform#ListBuildServiceSupportedBuildpacks"
         },
         {
           "target": "com.azure.appplatform#BuildServiceGetResourceUploadUrl"
         },
         {
-          "target": "com.azure.appplatform#BuildServiceBuilderList"
+          "target": "com.azure.appplatform#ListBuildServiceBuilder"
         },
         {
-          "target": "com.azure.appplatform#BuildServiceBuilderDelete"
+          "target": "com.azure.appplatform#DeleteBuildServiceBuilder"
         },
         {
           "target": "com.azure.appplatform#BuildServiceBuilderCreateOrUpdate"
         },
         {
-          "target": "com.azure.appplatform#BuildServiceBuilderGet"
+          "target": "com.azure.appplatform#GetBuildServiceBuilder"
         },
         {
-          "target": "com.azure.appplatform#BuildServiceGetBuildResultLog"
+          "target": "com.azure.appplatform#GetBuildServiceBuildResultLog"
         },
         {
-          "target": "com.azure.appplatform#BuildServiceGetBuildResult"
+          "target": "com.azure.appplatform#GetBuildServiceBuildResult"
         },
         {
-          "target": "com.azure.appplatform#BuildServiceListBuildResults"
+          "target": "com.azure.appplatform#ListBuildServiceBuildResults"
         },
         {
-          "target": "com.azure.appplatform#BuildpackBindingList"
+          "target": "com.azure.appplatform#ListBuildpackBinding"
         },
         {
-          "target": "com.azure.appplatform#BuildpackBindingDelete"
+          "target": "com.azure.appplatform#DeleteBuildpackBinding"
         },
         {
           "target": "com.azure.appplatform#BuildpackBindingCreateOrUpdate"
         },
         {
-          "target": "com.azure.appplatform#BuildpackBindingGet"
+          "target": "com.azure.appplatform#GetBuildpackBinding"
         },
         {
-          "target": "com.azure.appplatform#BuildpackBindingListForCluster"
+          "target": "com.azure.appplatform#ListBuildpackBindingForCluster"
         },
         {
-          "target": "com.azure.appplatform#BuildServiceDeleteBuild"
+          "target": "com.azure.appplatform#DeleteBuildServiceBuild"
         },
         {
           "target": "com.azure.appplatform#BuildServiceCreateOrUpdateBuild"
         },
         {
-          "target": "com.azure.appplatform#BuildServiceGetBuild"
+          "target": "com.azure.appplatform#GetBuildServiceBuild"
         },
         {
-          "target": "com.azure.appplatform#BuildServiceListBuilds"
+          "target": "com.azure.appplatform#ListBuildServiceBuilds"
         },
         {
           "target": "com.azure.appplatform#BuildServiceCreateOrUpdate"
         },
         {
-          "target": "com.azure.appplatform#BuildServiceGetBuildService"
+          "target": "com.azure.appplatform#GetBuildServiceBuildService"
         },
         {
-          "target": "com.azure.appplatform#BuildServiceListBuildServices"
+          "target": "com.azure.appplatform#ListBuildServiceBuildServices"
         },
         {
-          "target": "com.azure.appplatform#ContainerRegistriesValidate"
+          "target": "com.azure.appplatform#ValidateContainerRegistry"
         },
         {
-          "target": "com.azure.appplatform#ContainerRegistriesDelete"
+          "target": "com.azure.appplatform#DeleteContainerRegistry"
         },
         {
           "target": "com.azure.appplatform#ContainerRegistriesCreateOrUpdate"
         },
         {
-          "target": "com.azure.appplatform#ContainerRegistriesGet"
+          "target": "com.azure.appplatform#GetContainerRegistry"
         },
         {
-          "target": "com.azure.appplatform#ContainerRegistriesList"
+          "target": "com.azure.appplatform#ListContainerRegistries"
         },
         {
-          "target": "com.azure.appplatform#DevToolPortalsDelete"
+          "target": "com.azure.appplatform#DeleteDevToolPortal"
         },
         {
           "target": "com.azure.appplatform#DevToolPortalsCreateOrUpdate"
         },
         {
-          "target": "com.azure.appplatform#DevToolPortalsGet"
+          "target": "com.azure.appplatform#GetDevToolPortal"
         },
         {
-          "target": "com.azure.appplatform#DevToolPortalsList"
+          "target": "com.azure.appplatform#ListDevToolPortals"
         },
         {
-          "target": "com.azure.appplatform#ApplicationLiveViewsDelete"
+          "target": "com.azure.appplatform#DeleteApplicationLiveView"
         },
         {
           "target": "com.azure.appplatform#ApplicationLiveViewsCreateOrUpdate"
         },
         {
-          "target": "com.azure.appplatform#ApplicationLiveViewsGet"
+          "target": "com.azure.appplatform#GetApplicationLiveView"
         },
         {
-          "target": "com.azure.appplatform#ApplicationLiveViewsList"
+          "target": "com.azure.appplatform#ListApplicationLiveViews"
         },
         {
-          "target": "com.azure.appplatform#ServiceRegistriesList"
+          "target": "com.azure.appplatform#ListServiceRegistries"
         },
         {
-          "target": "com.azure.appplatform#ServiceRegistriesDelete"
+          "target": "com.azure.appplatform#DeleteServiceRegistry"
         },
         {
           "target": "com.azure.appplatform#ServiceRegistriesCreateOrUpdate"
         },
         {
-          "target": "com.azure.appplatform#ServiceRegistriesGet"
+          "target": "com.azure.appplatform#GetServiceRegistry"
         },
         {
-          "target": "com.azure.appplatform#ConfigurationServicesValidateResource"
+          "target": "com.azure.appplatform#ValidateConfigurationServiceResource"
         },
         {
-          "target": "com.azure.appplatform#ConfigurationServicesValidate"
+          "target": "com.azure.appplatform#ValidateConfigurationService"
         },
         {
-          "target": "com.azure.appplatform#ConfigurationServicesList"
+          "target": "com.azure.appplatform#ListConfigurationServices"
         },
         {
-          "target": "com.azure.appplatform#ConfigurationServicesDelete"
+          "target": "com.azure.appplatform#DeleteConfigurationService"
         },
         {
           "target": "com.azure.appplatform#ConfigurationServicesCreateOrUpdate"
         },
         {
-          "target": "com.azure.appplatform#ConfigurationServicesGet"
+          "target": "com.azure.appplatform#GetConfigurationService"
         },
         {
-          "target": "com.azure.appplatform#ConfigServersValidate"
+          "target": "com.azure.appplatform#ValidateConfigServer"
         },
         {
           "target": "com.azure.appplatform#ConfigServersUpdatePatch"
@@ -22950,67 +22951,67 @@
           "target": "com.azure.appplatform#ConfigServersUpdatePut"
         },
         {
-          "target": "com.azure.appplatform#ConfigServersGet"
+          "target": "com.azure.appplatform#GetConfigServer"
         },
         {
-          "target": "com.azure.appplatform#ApmsListSecretKeys"
+          "target": "com.azure.appplatform#ListApmSecretKeys"
         },
         {
-          "target": "com.azure.appplatform#ApmsDelete"
+          "target": "com.azure.appplatform#DeleteApm"
         },
         {
           "target": "com.azure.appplatform#ApmsCreateOrUpdate"
         },
         {
-          "target": "com.azure.appplatform#ApmsGet"
+          "target": "com.azure.appplatform#GetApm"
         },
         {
-          "target": "com.azure.appplatform#ApmsList"
+          "target": "com.azure.appplatform#ListApms"
         },
         {
-          "target": "com.azure.appplatform#ServicesDisableApmGlobally"
+          "target": "com.azure.appplatform#DisableServiceApmGlobally"
         },
         {
-          "target": "com.azure.appplatform#ServicesEnableApmGlobally"
+          "target": "com.azure.appplatform#EnableServiceApmGlobally"
         },
         {
-          "target": "com.azure.appplatform#ServicesListGloballyEnabledApms"
+          "target": "com.azure.appplatform#ListServiceGloballyEnabledApms"
         },
         {
-          "target": "com.azure.appplatform#ServicesListSupportedApmTypes"
+          "target": "com.azure.appplatform#ListServiceSupportedApmTypes"
         },
         {
-          "target": "com.azure.appplatform#ServicesFlushVnetDnsSetting"
+          "target": "com.azure.appplatform#FlushServiceVnetDnsSetting"
         },
         {
-          "target": "com.azure.appplatform#ServicesStart"
+          "target": "com.azure.appplatform#StartService"
         },
         {
-          "target": "com.azure.appplatform#ServicesStop"
+          "target": "com.azure.appplatform#StopService"
         },
         {
-          "target": "com.azure.appplatform#ServicesEnableTestEndpoint"
+          "target": "com.azure.appplatform#EnableServiceTestEndpoint"
         },
         {
-          "target": "com.azure.appplatform#ServicesDisableTestEndpoint"
+          "target": "com.azure.appplatform#DisableServiceTestEndpoint"
         },
         {
-          "target": "com.azure.appplatform#ServicesRegenerateTestKey"
+          "target": "com.azure.appplatform#RegenerateServiceTestKey"
         },
         {
-          "target": "com.azure.appplatform#ServicesListTestKeys"
+          "target": "com.azure.appplatform#ListServiceTestKeys"
         },
         {
-          "target": "com.azure.appplatform#ServicesDelete"
+          "target": "com.azure.appplatform#DeleteService"
         },
         {
-          "target": "com.azure.appplatform#ServicesUpdate"
+          "target": "com.azure.appplatform#UpdateService"
         },
         {
           "target": "com.azure.appplatform#ServicesCreateOrUpdate"
         },
         {
-          "target": "com.azure.appplatform#ServicesGet"
+          "target": "com.azure.appplatform#GetService"
         }
       ],
       "traits": {

@@ -19,12 +19,12 @@ export type EnvironmentRole =
   | "ENVIRONMENT_ROLE_NO_ACCESS";
 export const EnvironmentRole = /*@__PURE__*/ S.String;
 
-export interface UserGroupEnvironmentSetRequest {
+export interface SetUserGroupEnvironmentRequest {
   environmentId?: string;
   userGroupId?: string;
   role?: EnvironmentRole | (string & {});
 }
-export const UserGroupEnvironmentSetRequest = /*@__PURE__*/ S.suspend(() =>
+export const SetUserGroupEnvironmentRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     environmentId: S.optional(S.String),
     userGroupId: S.optional(S.String),
@@ -37,26 +37,26 @@ export const UserGroupEnvironmentSetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UserGroupEnvironmentSetRequest",
-}) as any as S.Schema<UserGroupEnvironmentSetRequest>;
+  identifier: "SetUserGroupEnvironmentRequest",
+}) as any as S.Schema<SetUserGroupEnvironmentRequest>;
 
-export interface UserGroupEnvironmentSetResponse {}
-export const UserGroupEnvironmentSetResponse = /*@__PURE__*/ S.suspend(() =>
+export interface SetUserGroupEnvironmentResponse {}
+export const SetUserGroupEnvironmentResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "UserGroupEnvironmentSetResponse",
-}) as any as S.Schema<UserGroupEnvironmentSetResponse>;
+  identifier: "SetUserGroupEnvironmentResponse",
+}) as any as S.Schema<SetUserGroupEnvironmentResponse>;
 
-export type UserGroupEnvironmentSetError = ModalOpError;
+export type SetUserGroupEnvironmentError = ModalOpError;
 /** User groups */
-export const userGroupEnvironmentSet: API.OperationMethod<
-  UserGroupEnvironmentSetRequest,
-  UserGroupEnvironmentSetResponse,
-  UserGroupEnvironmentSetError,
+export const setUserGroupEnvironment: API.OperationMethod<
+  SetUserGroupEnvironmentRequest,
+  SetUserGroupEnvironmentResponse,
+  SetUserGroupEnvironmentError,
   ModalOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UserGroupEnvironmentSetRequest,
-  output: UserGroupEnvironmentSetResponse,
+  input: SetUserGroupEnvironmentRequest,
+  output: SetUserGroupEnvironmentResponse,
   errors: [UnknownModalError],
   protocol: ModalProtocol,
   retry: Retry.Retry,

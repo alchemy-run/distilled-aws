@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.early_access_feature#EarlyAccessFeatureListRequest": {
+    "com.posthog.early_access_feature#ListEarlyAccessFeatureRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -534,10 +535,10 @@
       },
       "traits": {}
     },
-    "com.posthog.early_access_feature#EarlyAccessFeatureList": {
+    "com.posthog.early_access_feature#ListEarlyAccessFeature": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.early_access_feature#EarlyAccessFeatureListRequest"
+        "target": "com.posthog.early_access_feature#ListEarlyAccessFeatureRequest"
       },
       "output": {
         "target": "com.posthog.early_access_feature#PaginatedEarlyAccessFeatureList"
@@ -561,7 +562,7 @@
         }
       }
     },
-    "com.posthog.early_access_feature#EarlyAccessFeatureCreateRequest": {
+    "com.posthog.early_access_feature#CreateEarlyAccessFeatureRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -728,10 +729,10 @@
         "smithy.api#documentation": "The person or role responsible for this feature, e.g. {\"type\": \"user\", \"id\": 123} or {\"type\": \"role\", \"id\": \"<role uuid>\"}. Defaults to the creator. Send null to unassign."
       }
     },
-    "com.posthog.early_access_feature#EarlyAccessFeatureCreate": {
+    "com.posthog.early_access_feature#CreateEarlyAccessFeature": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.early_access_feature#EarlyAccessFeatureCreateRequest"
+        "target": "com.posthog.early_access_feature#CreateEarlyAccessFeatureRequest"
       },
       "output": {
         "target": "com.posthog.early_access_feature#EarlyAccessFeatureSerializerCreateOnlyOutput"
@@ -755,7 +756,7 @@
         }
       }
     },
-    "com.posthog.early_access_feature#EarlyAccessFeatureRetrieveRequest": {
+    "com.posthog.early_access_feature#GetEarlyAccessFeatureRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -779,10 +780,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.early_access_feature#EarlyAccessFeatureRetrieve": {
+    "com.posthog.early_access_feature#GetEarlyAccessFeature": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.early_access_feature#EarlyAccessFeatureRetrieveRequest"
+        "target": "com.posthog.early_access_feature#GetEarlyAccessFeatureRequest"
       },
       "output": {
         "target": "com.posthog.early_access_feature#EarlyAccessFeature2"
@@ -803,7 +804,7 @@
         }
       }
     },
-    "com.posthog.early_access_feature#EarlyAccessFeatureUpdateRequest": {
+    "com.posthog.early_access_feature#UpdateEarlyAccessFeatureRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -851,10 +852,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.early_access_feature#EarlyAccessFeatureUpdate": {
+    "com.posthog.early_access_feature#UpdateEarlyAccessFeature": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.early_access_feature#EarlyAccessFeatureUpdateRequest"
+        "target": "com.posthog.early_access_feature#UpdateEarlyAccessFeatureRequest"
       },
       "output": {
         "target": "com.posthog.early_access_feature#EarlyAccessFeature2"
@@ -878,7 +879,7 @@
         }
       }
     },
-    "com.posthog.early_access_feature#EarlyAccessFeaturePartialUpdateRequest": {
+    "com.posthog.early_access_feature#UpdateEarlyAccessFeaturePartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -926,10 +927,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.early_access_feature#EarlyAccessFeaturePartialUpdate": {
+    "com.posthog.early_access_feature#UpdateEarlyAccessFeaturePartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.early_access_feature#EarlyAccessFeaturePartialUpdateRequest"
+        "target": "com.posthog.early_access_feature#UpdateEarlyAccessFeaturePartialRequest"
       },
       "output": {
         "target": "com.posthog.early_access_feature#EarlyAccessFeature2"
@@ -1045,19 +1046,19 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.early_access_feature#EarlyAccessFeatureList"
+          "target": "com.posthog.early_access_feature#ListEarlyAccessFeature"
         },
         {
-          "target": "com.posthog.early_access_feature#EarlyAccessFeatureCreate"
+          "target": "com.posthog.early_access_feature#CreateEarlyAccessFeature"
         },
         {
-          "target": "com.posthog.early_access_feature#EarlyAccessFeatureRetrieve"
+          "target": "com.posthog.early_access_feature#GetEarlyAccessFeature"
         },
         {
-          "target": "com.posthog.early_access_feature#EarlyAccessFeatureUpdate"
+          "target": "com.posthog.early_access_feature#UpdateEarlyAccessFeature"
         },
         {
-          "target": "com.posthog.early_access_feature#EarlyAccessFeaturePartialUpdate"
+          "target": "com.posthog.early_access_feature#UpdateEarlyAccessFeaturePartial"
         },
         {
           "target": "com.posthog.early_access_feature#EarlyAccessFeatureDestroy"

@@ -15,7 +15,6 @@
 import { camel, lowerFirst } from "@distilled.cloud/core/codegen/naming";
 import { type SdkSpec } from "@distilled.cloud/core/codegen/generator";
 import { runGeneratorCli } from "@distilled.cloud/core/codegen/cli";
-import { dedupeScopeTwins } from "./dedupe-scope-twins.ts";
 
 const ENVELOPE_PAYLOAD_TRAIT = "com.cloudflare.protocols#envelopePayload";
 const NULLABLE_TRAIT = "com.cloudflare.protocols#nullable";
@@ -149,17 +148,8 @@ runGeneratorCli({
   root: `${import.meta.dir}/..`,
   excludeModel: (f) => f === "cloudflare.protocols.json",
   manualSpecsDir: "manual-specs",
-  // Collapse account/zone scope-twin shapes that are exact structural
-  // duplicates (post-patch, so v0-aligned names are seen) — v0 modeled
-  // these once (e.g. GetAccessRuleResponse).
-  transformModel: (model, resource) => {
-    const { families, removed } = dedupeScopeTwins(model);
-    return families
-      ? `♻️  ${resource}: collapsed ${families} scope-twin famil${families === 1 ? "y" : "ies"} (${removed} shapes)`
-      : undefined;
-  },
   // Per-service fallback key dictionary and route aliases arrive via the
-  // model's metadata (written by import-distilled-patches.ts).
+  // model's metadata (baked into .generated-specs by spec-to-smithy).
   spec: (model) =>
     makeCfSpec(model.metadata?.keyDictionary, model.metadata?.opAliases),
 });

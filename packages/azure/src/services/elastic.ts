@@ -13,117 +13,6 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
-export interface AllTrafficFiltersListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Monitor resource name */
-  monitorName: string;
-}
-export const AllTrafficFiltersListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    monitorName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Elastic/monitors/{monitorName}/listAllTrafficFilters",
-      code: 200,
-      apiVersion: "2025-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "AllTrafficFiltersListRequest",
-}) as any as S.Schema<AllTrafficFiltersListRequest>;
-
-/** Type of the elastic filter */
-export type Type = "ip" | "azure_private_endpoint";
-export const Type = /*@__PURE__*/ S.String;
-
-/** Elastic traffic filter rule object */
-export interface ElasticTrafficFilterRule {
-  /** IP of the elastic filter rule */
-  source?: string;
-  /** Description of the elastic filter rule */
-  description?: string;
-  /** Guid of Private Endpoint in the elastic filter rule */
-  azureEndpointGuid?: string;
-  /** Name of the Private Endpoint in the elastic filter rule */
-  azureEndpointName?: string;
-  /** Id of the elastic filter rule */
-  id?: string;
-}
-export const ElasticTrafficFilterRule = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    source: S.optional(S.String),
-    description: S.optional(S.String),
-    azureEndpointGuid: S.optional(S.String),
-    azureEndpointName: S.optional(S.String),
-    id: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ElasticTrafficFilterRule",
-}) as any as S.Schema<ElasticTrafficFilterRule>;
-
-/** Rules in the elastic filter */
-export type ElasticTrafficFilterRulesList = Array<ElasticTrafficFilterRule>;
-export const ElasticTrafficFilterRulesList = /*@__PURE__*/ S.Array(
-  ElasticTrafficFilterRule,
-) as any as S.Schema<ElasticTrafficFilterRulesList>;
-
-/** Elastic traffic filter object */
-export interface ElasticTrafficFilter {
-  /** Id of the elastic filter */
-  id?: string;
-  /** Name of the elastic filter */
-  name?: string;
-  /** Description of the elastic filter */
-  description?: string;
-  /** Region of the elastic filter */
-  region?: string;
-  /** Type of the elastic filter */
-  type?: Type;
-  /** IncludeByDefault for the elastic filter */
-  includeByDefault?: boolean;
-  /** Rules in the elastic filter */
-  rules?: ElasticTrafficFilterRulesList;
-}
-export const ElasticTrafficFilter = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    description: S.optional(S.String),
-    region: S.optional(S.String),
-    type: S.optional(Type),
-    includeByDefault: S.optional(S.Boolean),
-    rules: S.optional(ElasticTrafficFilterRulesList),
-  }),
-).annotate({
-  identifier: "ElasticTrafficFilter",
-}) as any as S.Schema<ElasticTrafficFilter>;
-
-/** List of elastic traffic filters in the account */
-export type ElasticTrafficFilterResponseRulesetsList =
-  Array<ElasticTrafficFilter>;
-export const ElasticTrafficFilterResponseRulesetsList = /*@__PURE__*/ S.Array(
-  ElasticTrafficFilter,
-) as any as S.Schema<ElasticTrafficFilterResponseRulesetsList>;
-
-/** List of elastic traffic filters in the account */
-export interface ElasticTrafficFilterResponse {
-  /** List of elastic traffic filters in the account */
-  rulesets?: ElasticTrafficFilterResponseRulesetsList;
-}
-export const ElasticTrafficFilterResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    rulesets: S.optional(ElasticTrafficFilterResponseRulesetsList),
-  }),
-).annotate({
-  identifier: "ElasticTrafficFilterResponse",
-}) as any as S.Schema<ElasticTrafficFilterResponse>;
-
 export interface AssociateTrafficFilterAssociateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -160,206 +49,7 @@ export const AssociateTrafficFilterAssociateResponse = /*@__PURE__*/ S.suspend(
   identifier: "AssociateTrafficFilterAssociateResponse",
 }) as any as S.Schema<AssociateTrafficFilterAssociateResponse>;
 
-export interface BillingInfoGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Monitor resource name */
-  monitorName: string;
-}
-export const BillingInfoGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    monitorName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Elastic/monitors/{monitorName}/getBillingInfo",
-      code: 200,
-      apiVersion: "2025-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "BillingInfoGetRequest",
-}) as any as S.Schema<BillingInfoGetRequest>;
-
-/** Marketplace Subscription */
-export interface MarketplaceSaaSInfoMarketplaceSubscription {
-  /** Marketplace Subscription Id. This is a GUID-formatted string. */
-  id?: string;
-  /** Publisher Id of the Marketplace offer. */
-  publisherId?: string;
-  /** Offer Id of the Marketplace offer, */
-  offerId?: string;
-}
-export const MarketplaceSaaSInfoMarketplaceSubscription =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      publisherId: S.optional(S.String),
-      offerId: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "MarketplaceSaaSInfoMarketplaceSubscription",
-  }) as any as S.Schema<MarketplaceSaaSInfoMarketplaceSubscription>;
-
-/** Marketplace SAAS Info of the resource. */
-export interface MarketplaceSaaSInfo {
-  /** Marketplace Subscription */
-  marketplaceSubscription?: MarketplaceSaaSInfoMarketplaceSubscription;
-  /** Marketplace Subscription Details: SAAS Name */
-  marketplaceName?: string;
-  /** Marketplace Subscription Details: Resource URI */
-  marketplaceResourceId?: string;
-  /** Marketplace Subscription Details: SaaS Subscription Status */
-  marketplaceStatus?: string;
-  /** The Azure Subscription ID to which the Marketplace Subscription belongs and gets billed into. */
-  billedAzureSubscriptionId?: string;
-  /** Flag specifying if the Marketplace status is subscribed or not. */
-  subscribed?: boolean;
-}
-export const MarketplaceSaaSInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    marketplaceSubscription: S.optional(
-      MarketplaceSaaSInfoMarketplaceSubscription,
-    ),
-    marketplaceName: S.optional(S.String),
-    marketplaceResourceId: S.optional(S.String),
-    marketplaceStatus: S.optional(S.String),
-    billedAzureSubscriptionId: S.optional(S.String),
-    subscribed: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "MarketplaceSaaSInfo",
-}) as any as S.Schema<MarketplaceSaaSInfo>;
-
-/** Partner Billing details associated with the resource. */
-export interface PartnerBillingEntity {
-  /** The Elastic Organization Id. */
-  id?: string;
-  /** The Elastic Organization Name. */
-  name?: string;
-  /** Link to the elastic organization page */
-  partnerEntityUri?: string;
-}
-export const PartnerBillingEntity = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    partnerEntityUri: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PartnerBillingEntity",
-}) as any as S.Schema<PartnerBillingEntity>;
-
-/** Marketplace Subscription and Organization details to which resource gets billed into. */
-export interface BillingInfoResponse {
-  /** Marketplace Subscription details */
-  marketplaceSaasInfo?: MarketplaceSaaSInfo;
-  /** Partner Billing Entity details: Organization Info */
-  partnerBillingEntity?: PartnerBillingEntity;
-}
-export const BillingInfoResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    marketplaceSaasInfo: S.optional(MarketplaceSaaSInfo),
-    partnerBillingEntity: S.optional(PartnerBillingEntity),
-  }),
-).annotate({
-  identifier: "BillingInfoResponse",
-}) as any as S.Schema<BillingInfoResponse>;
-
-export interface ConnectedPartnerResourcesListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Monitor resource name */
-  monitorName: string;
-}
-export const ConnectedPartnerResourcesListRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      monitorName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Elastic/monitors/{monitorName}/listConnectedPartnerResources",
-        code: 200,
-        apiVersion: "2025-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "ConnectedPartnerResourcesListRequest",
-}) as any as S.Schema<ConnectedPartnerResourcesListRequest>;
-
-/** Connected Partner Resource Properties */
-export interface ConnectedPartnerResourceProperties {
-  /** Elastic resource name */
-  partnerDeploymentName?: string;
-  /** URL of the resource in Elastic cloud. */
-  partnerDeploymentUri?: string;
-  /** The azure resource Id of the resource. */
-  azureResourceId?: string;
-  /** The location of the resource. */
-  location?: string;
-  /** The hosting type of the resource. */
-  type?: string;
-}
-export const ConnectedPartnerResourceProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    partnerDeploymentName: S.optional(S.String),
-    partnerDeploymentUri: S.optional(S.String),
-    azureResourceId: S.optional(S.String),
-    location: S.optional(S.String),
-    type: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ConnectedPartnerResourceProperties",
-}) as any as S.Schema<ConnectedPartnerResourceProperties>;
-
-/** Connected Partner Resources List Format */
-export interface ConnectedPartnerResourcesListFormat {
-  /** Connected Partner Resource Properties */
-  properties?: ConnectedPartnerResourceProperties;
-}
-export const ConnectedPartnerResourcesListFormat = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    properties: S.optional(ConnectedPartnerResourceProperties),
-  }),
-).annotate({
-  identifier: "ConnectedPartnerResourcesListFormat",
-}) as any as S.Schema<ConnectedPartnerResourcesListFormat>;
-
-/** The ConnectedPartnerResourcesListFormat items on this page */
-export type ConnectedPartnerResourcesListResponseValueList =
-  Array<ConnectedPartnerResourcesListFormat>;
-export const ConnectedPartnerResourcesListResponseValueList =
-  /*@__PURE__*/ S.Array(
-    ConnectedPartnerResourcesListFormat,
-  ) as any as S.Schema<ConnectedPartnerResourcesListResponseValueList>;
-
-/** List of all active elastic deployments. */
-export interface ConnectedPartnerResourcesListResponse {
-  /** The ConnectedPartnerResourcesListFormat items on this page */
-  value: ConnectedPartnerResourcesListResponseValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const ConnectedPartnerResourcesListResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      value: ConnectedPartnerResourcesListResponseValueList,
-      nextLink: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "ConnectedPartnerResourcesListResponse",
-}) as any as S.Schema<ConnectedPartnerResourcesListResponse>;
-
-export interface CreateAndAssociateIPFilterCreateRequest {
+export interface CreateCreateAndAssociateIPFilterRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -371,7 +61,7 @@ export interface CreateAndAssociateIPFilterCreateRequest {
   /** Name of the traffic filter */
   name?: string;
 }
-export const CreateAndAssociateIPFilterCreateRequest = /*@__PURE__*/ S.suspend(
+export const CreateCreateAndAssociateIPFilterRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -388,17 +78,17 @@ export const CreateAndAssociateIPFilterCreateRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "CreateAndAssociateIPFilterCreateRequest",
-}) as any as S.Schema<CreateAndAssociateIPFilterCreateRequest>;
+  identifier: "CreateCreateAndAssociateIPFilterRequest",
+}) as any as S.Schema<CreateCreateAndAssociateIPFilterRequest>;
 
-export interface CreateAndAssociateIPFilterCreateResponse {}
-export const CreateAndAssociateIPFilterCreateResponse = /*@__PURE__*/ S.suspend(
+export interface CreateCreateAndAssociateIPFilterResponse {}
+export const CreateCreateAndAssociateIPFilterResponse = /*@__PURE__*/ S.suspend(
   () => S.Struct({}),
 ).annotate({
-  identifier: "CreateAndAssociateIPFilterCreateResponse",
-}) as any as S.Schema<CreateAndAssociateIPFilterCreateResponse>;
+  identifier: "CreateCreateAndAssociateIPFilterResponse",
+}) as any as S.Schema<CreateCreateAndAssociateIPFilterResponse>;
 
-export interface CreateAndAssociatePLFilterCreateRequest {
+export interface CreateCreateAndAssociatePLFilterRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -412,7 +102,7 @@ export interface CreateAndAssociatePLFilterCreateRequest {
   /** Name of the private endpoint */
   privateEndpointName?: string;
 }
-export const CreateAndAssociatePLFilterCreateRequest = /*@__PURE__*/ S.suspend(
+export const CreateCreateAndAssociatePLFilterRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -430,838 +120,22 @@ export const CreateAndAssociatePLFilterCreateRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "CreateAndAssociatePLFilterCreateRequest",
-}) as any as S.Schema<CreateAndAssociatePLFilterCreateRequest>;
+  identifier: "CreateCreateAndAssociatePLFilterRequest",
+}) as any as S.Schema<CreateCreateAndAssociatePLFilterRequest>;
 
-export interface CreateAndAssociatePLFilterCreateResponse {}
-export const CreateAndAssociatePLFilterCreateResponse = /*@__PURE__*/ S.suspend(
+export interface CreateCreateAndAssociatePLFilterResponse {}
+export const CreateCreateAndAssociatePLFilterResponse = /*@__PURE__*/ S.suspend(
   () => S.Struct({}),
 ).annotate({
-  identifier: "CreateAndAssociatePLFilterCreateResponse",
-}) as any as S.Schema<CreateAndAssociatePLFilterCreateResponse>;
-
-export interface DeploymentInfoListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Monitor resource name */
-  monitorName: string;
-}
-export const DeploymentInfoListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    monitorName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Elastic/monitors/{monitorName}/listDeploymentInfo",
-      code: 200,
-      apiVersion: "2025-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "DeploymentInfoListRequest",
-}) as any as S.Schema<DeploymentInfoListRequest>;
-
-/** Flag specifying if the Elastic deployment status is healthy or not. */
-export type ElasticDeploymentStatus = "Healthy" | "Unhealthy";
-export const ElasticDeploymentStatus = /*@__PURE__*/ S.String;
-
-/** The properties of deployment in Elastic cloud corresponding to the Elastic monitor resource. */
-export interface DeploymentInfoResponse {
-  /** The Elastic deployment status. */
-  status?: ElasticDeploymentStatus;
-  /** Version of the elasticsearch in Elastic cloud deployment. */
-  version?: string;
-  /** RAM capacity of the elasticsearch in Elastic cloud deployment. */
-  memoryCapacity?: string;
-  /** Disk capacity of the elasticsearch in Elastic cloud deployment. */
-  diskCapacity?: string;
-  /** Elasticsearch endpoint in Elastic cloud deployment. This is either the aliased_endpoint if available, or the service_url otherwise. */
-  elasticsearchEndPoint?: string;
-  /** Deployment URL of the elasticsearch in Elastic cloud deployment. */
-  deploymentUrl?: string;
-  /** Marketplace SaaS Info of the resource. */
-  marketplaceSaasInfo?: MarketplaceSaaSInfo;
-  /** Project Type - Applicable for Serverless only. */
-  projectType?: string;
-  /** ConfigurationType Type - Applicable for Serverless only. */
-  configurationType?: string;
-}
-export const DeploymentInfoResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    status: S.optional(ElasticDeploymentStatus),
-    version: S.optional(S.String),
-    memoryCapacity: S.optional(S.String),
-    diskCapacity: S.optional(S.String),
-    elasticsearchEndPoint: S.optional(S.String),
-    deploymentUrl: S.optional(S.String),
-    marketplaceSaasInfo: S.optional(MarketplaceSaaSInfo),
-    projectType: S.optional(S.String),
-    configurationType: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DeploymentInfoResponse",
-}) as any as S.Schema<DeploymentInfoResponse>;
-
-export interface DetachAndDeleteTrafficFilterDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Monitor resource name */
-  monitorName: string;
-  /** Ruleset Id of the filter */
-  rulesetId?: string;
-}
-export const DetachAndDeleteTrafficFilterDeleteRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      monitorName: S.String.pipe(T.Label()),
-      rulesetId: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Elastic/monitors/{monitorName}/detachAndDeleteTrafficFilter",
-        code: 200,
-        apiVersion: "2025-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "DetachAndDeleteTrafficFilterDeleteRequest",
-  }) as any as S.Schema<DetachAndDeleteTrafficFilterDeleteRequest>;
-
-export interface DetachAndDeleteTrafficFilterDeleteResponse {}
-export const DetachAndDeleteTrafficFilterDeleteResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DetachAndDeleteTrafficFilterDeleteResponse",
-  }) as any as S.Schema<DetachAndDeleteTrafficFilterDeleteResponse>;
-
-export interface DetachTrafficFilterUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Monitor resource name */
-  monitorName: string;
-  /** Ruleset Id of the filter */
-  rulesetId?: string;
-}
-export const DetachTrafficFilterUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    monitorName: S.String.pipe(T.Label()),
-    rulesetId: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Elastic/monitors/{monitorName}/detachTrafficFilter",
-      code: 200,
-      apiVersion: "2025-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "DetachTrafficFilterUpdateRequest",
-}) as any as S.Schema<DetachTrafficFilterUpdateRequest>;
-
-export interface DetachTrafficFilterUpdateResponse {}
-export const DetachTrafficFilterUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DetachTrafficFilterUpdateResponse",
-}) as any as S.Schema<DetachTrafficFilterUpdateResponse>;
-
-export interface ElasticVersionsListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** Region where elastic deployment will take place. */
-  region: string;
-}
-export const ElasticVersionsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    region: S.String.pipe(T.Query()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Elastic/elasticVersions",
-      code: 200,
-      apiVersion: "2025-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "ElasticVersionsListRequest",
-}) as any as S.Schema<ElasticVersionsListRequest>;
-
-/** Elastic Version Properties */
-export interface ElasticVersionListProperties {
-  /** Available elastic version of the given region */
-  version?: string;
-}
-export const ElasticVersionListProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    version: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ElasticVersionListProperties",
-}) as any as S.Schema<ElasticVersionListProperties>;
-
-/** Elastic Version List Format */
-export interface ElasticVersionListFormat {
-  /** Elastic Version Properties */
-  properties?: ElasticVersionListProperties;
-}
-export const ElasticVersionListFormat = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    properties: S.optional(ElasticVersionListProperties),
-  }),
-).annotate({
-  identifier: "ElasticVersionListFormat",
-}) as any as S.Schema<ElasticVersionListFormat>;
-
-/** The ElasticVersionListFormat items on this page */
-export type ElasticVersionsListResponseValueList =
-  Array<ElasticVersionListFormat>;
-export const ElasticVersionsListResponseValueList = /*@__PURE__*/ S.Array(
-  ElasticVersionListFormat,
-) as any as S.Schema<ElasticVersionsListResponseValueList>;
-
-/** List of elastic versions available in a region. */
-export interface ElasticVersionsListResponse {
-  /** The ElasticVersionListFormat items on this page */
-  value: ElasticVersionsListResponseValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const ElasticVersionsListResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: ElasticVersionsListResponseValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ElasticVersionsListResponse",
-}) as any as S.Schema<ElasticVersionsListResponse>;
-
-/** Roles to be assigned for created or updated user */
-export type ExternalUserCreateOrUpdateRequestRolesList = Array<string>;
-export const ExternalUserCreateOrUpdateRequestRolesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ExternalUserCreateOrUpdateRequestRolesList>;
-
-export interface ExternalUserCreateOrUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Monitor resource name */
-  monitorName: string;
-  /** Username of the user to be created or updated */
-  userName?: string;
-  /** Full name of the user to be created or updated */
-  fullName?: string;
-  /** Password of the user to be created or updated */
-  password?: string | Redacted.Redacted<string>;
-  /** Email id of the user to be created or updated */
-  emailId?: string;
-  /** Roles to be assigned for created or updated user */
-  roles?: ExternalUserCreateOrUpdateRequestRolesList;
-}
-export const ExternalUserCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    monitorName: S.String.pipe(T.Label()),
-    userName: S.optional(S.String),
-    fullName: S.optional(S.String),
-    password: S.optional(S.String.pipe(T.SensitiveValue({}))),
-    emailId: S.optional(S.String),
-    roles: S.optional(ExternalUserCreateOrUpdateRequestRolesList),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Elastic/monitors/{monitorName}/createOrUpdateExternalUser",
-      code: 200,
-      apiVersion: "2025-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "ExternalUserCreateOrUpdateRequest",
-}) as any as S.Schema<ExternalUserCreateOrUpdateRequest>;
-
-/** The properties of the response we got from elastic while creating external user */
-export interface ExternalUserCreationResponse {
-  /** Shows if user is created or updated */
-  created?: boolean;
-}
-export const ExternalUserCreationResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    created: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "ExternalUserCreationResponse",
-}) as any as S.Schema<ExternalUserCreationResponse>;
-
-export interface ListAssociatedTrafficFiltersListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Monitor resource name */
-  monitorName: string;
-}
-export const ListAssociatedTrafficFiltersListRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      monitorName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Elastic/monitors/{monitorName}/listAssociatedTrafficFilters",
-        code: 200,
-        apiVersion: "2025-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "ListAssociatedTrafficFiltersListRequest",
-}) as any as S.Schema<ListAssociatedTrafficFiltersListRequest>;
-
-export interface MonitoredResourcesListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Monitor resource name */
-  monitorName: string;
-}
-export const MonitoredResourcesListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    monitorName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Elastic/monitors/{monitorName}/listMonitoredResources",
-      code: 200,
-      apiVersion: "2025-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "MonitoredResourcesListRequest",
-}) as any as S.Schema<MonitoredResourcesListRequest>;
-
-/** Flag indicating the status of the resource for sending logs operation to Elastic. */
-export type SendingLogs = "True" | "False";
-export const SendingLogs = /*@__PURE__*/ S.String;
-
-/** The properties of a resource currently being monitored by the Elastic monitor resource. */
-export interface MonitoredResource {
-  /** The ARM id of the resource. */
-  id?: string;
-  /** Flag indicating the status of the resource for sending logs operation to Elastic. */
-  sendingLogs?: SendingLogs;
-  /** Reason for why the resource is sending logs (or why it is not sending). */
-  reasonForLogsStatus?: string;
-}
-export const MonitoredResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    sendingLogs: S.optional(SendingLogs),
-    reasonForLogsStatus: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "MonitoredResource",
-}) as any as S.Schema<MonitoredResource>;
-
-/** The MonitoredResource items on this page */
-export type MonitoredResourceListResponseValueList = Array<MonitoredResource>;
-export const MonitoredResourceListResponseValueList = /*@__PURE__*/ S.Array(
-  MonitoredResource,
-) as any as S.Schema<MonitoredResourceListResponseValueList>;
-
-/** Response of a list operation. */
-export interface MonitoredResourceListResponse {
-  /** The MonitoredResource items on this page */
-  value: MonitoredResourceListResponseValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const MonitoredResourceListResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: MonitoredResourceListResponseValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "MonitoredResourceListResponse",
-}) as any as S.Schema<MonitoredResourceListResponse>;
-
-/** The operation for the patch on the resource. */
-export type Operation =
-  | "AddBegin"
-  | "AddComplete"
-  | "DeleteBegin"
-  | "DeleteComplete"
-  | "Active";
-export const Operation = /*@__PURE__*/ S.String;
-
-/** The state of monitoring. */
-export type Status = "InProgress" | "Active" | "Failed" | "Deleting";
-export const Status = /*@__PURE__*/ S.String;
-
-/** Provisioning state of Elastic resource. */
-export type ProvisioningState =
-  | "Accepted"
-  | "Creating"
-  | "Updating"
-  | "Deleting"
-  | "Succeeded"
-  | "Failed"
-  | "Canceled"
-  | "Deleted"
-  | "NotSpecified";
-export const ProvisioningState = /*@__PURE__*/ S.String;
-
-/** Valid actions for a filtering tag. Exclusion takes priority over inclusion. */
-export type TagAction = "Include" | "Exclude";
-export const TagAction = /*@__PURE__*/ S.String;
-
-/** The definition of a filtering tag. Filtering tags are used for capturing resources and include/exclude them from being monitored. */
-export interface FilteringTag {
-  /** The name (also known as the key) of the tag. */
-  name?: string;
-  /** The value of the tag. */
-  value?: string;
-  /** Valid actions for a filtering tag. */
-  action?: TagAction | (string & {});
-}
-export const FilteringTag = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    value: S.optional(S.String),
-    action: S.optional(TagAction),
-  }),
-).annotate({ identifier: "FilteringTag" }) as any as S.Schema<FilteringTag>;
-
-/** List of filtering tags to be used for capturing logs. This only takes effect if SendActivityLogs flag is enabled. If empty, all resources will be captured. If only Exclude action is specified, the rules will apply to the list of all available resources. If Include actions are specified, the rules will only include resources with the associated tags. */
-export type LogRulesFilteringTagsList = Array<FilteringTag>;
-export const LogRulesFilteringTagsList = /*@__PURE__*/ S.Array(
-  FilteringTag,
-) as any as S.Schema<LogRulesFilteringTagsList>;
-
-/** Set of rules for sending logs for the Monitor resource. */
-export interface LogRules {
-  /** Flag specifying if AAD logs should be sent for the Monitor resource. */
-  sendAadLogs?: boolean;
-  /** Flag specifying if subscription logs should be sent for the Monitor resource. */
-  sendSubscriptionLogs?: boolean;
-  /** Flag specifying if activity logs from Azure resources should be sent for the Monitor resource. */
-  sendActivityLogs?: boolean;
-  /** List of filtering tags to be used for capturing logs. This only takes effect if SendActivityLogs flag is enabled. If empty, all resources will be captured. If only Exclude action is specified, the rules will apply to the list of all available resources. If Include actions are specified, the rules will only include resources with the associated tags. */
-  filteringTags?: LogRulesFilteringTagsList;
-}
-export const LogRules = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    sendAadLogs: S.optional(S.Boolean),
-    sendSubscriptionLogs: S.optional(S.Boolean),
-    sendActivityLogs: S.optional(S.Boolean),
-    filteringTags: S.optional(LogRulesFilteringTagsList),
-  }),
-).annotate({ identifier: "LogRules" }) as any as S.Schema<LogRules>;
-
-/** Definition of the properties for a TagRules resource. */
-export interface MonitoringTagRulesProperties {
-  /** Provisioning state of the monitoring tag rules. */
-  provisioningState?: ProvisioningState | (string & {});
-  /** Rules for sending logs. */
-  logRules?: LogRules;
-}
-export const MonitoringTagRulesProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provisioningState: S.optional(ProvisioningState),
-    logRules: S.optional(LogRules),
-  }),
-).annotate({
-  identifier: "MonitoringTagRulesProperties",
-}) as any as S.Schema<MonitoringTagRulesProperties>;
-
-/** The list of subscriptions and it's monitoring status by current Elastic monitor. */
-export interface MonitoredSubscription {
-  /** The subscriptionId to be monitored. */
-  subscriptionId: string;
-  /** The state of monitoring. */
-  status?: Status | (string & {});
-  /** The reason of not monitoring the subscription. */
-  error?: string;
-  /** Definition of the properties for a TagRules resource. */
-  tagRules?: MonitoringTagRulesProperties;
-}
-export const MonitoredSubscription = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String,
-    status: S.optional(Status),
-    error: S.optional(S.String),
-    tagRules: S.optional(MonitoringTagRulesProperties),
-  }),
-).annotate({
-  identifier: "MonitoredSubscription",
-}) as any as S.Schema<MonitoredSubscription>;
-
-/** List of subscriptions and the state of the monitoring. */
-export type SubscriptionListMonitoredSubscriptionListList =
-  Array<MonitoredSubscription>;
-export const SubscriptionListMonitoredSubscriptionListList =
-  /*@__PURE__*/ S.Array(
-    MonitoredSubscription,
-  ) as any as S.Schema<SubscriptionListMonitoredSubscriptionListList>;
-
-/** The request to update subscriptions needed to be monitored by the Elastic monitor resource. */
-export interface SubscriptionList {
-  /** The operation for the patch on the resource. */
-  operation?: Operation | (string & {});
-  /** List of subscriptions and the state of the monitoring. */
-  monitoredSubscriptionList?: SubscriptionListMonitoredSubscriptionListList;
-  /** Provisioning State of the resource */
-  provisioningState?: ProvisioningState | (string & {});
-}
-export const SubscriptionList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    operation: S.optional(Operation),
-    monitoredSubscriptionList: S.optional(
-      SubscriptionListMonitoredSubscriptionListList,
-    ),
-    provisioningState: S.optional(ProvisioningState),
-  }),
-).annotate({
-  identifier: "SubscriptionList",
-}) as any as S.Schema<SubscriptionList>;
-
-export interface MonitoredSubscriptionsCreateorUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  monitorName: string;
-  configurationName: string;
-  /** The request to update subscriptions needed to be monitored by the Elastic monitor resource. */
-  properties?: SubscriptionList;
-}
-export const MonitoredSubscriptionsCreateorUpdateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      monitorName: S.String.pipe(T.Label()),
-      configurationName: S.String.pipe(T.Label()),
-      properties: S.optional(SubscriptionList),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Elastic/monitors/{monitorName}/monitoredSubscriptions/{configurationName}",
-        code: 200,
-        apiVersion: "2025-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "MonitoredSubscriptionsCreateorUpdateRequest",
-  }) as any as S.Schema<MonitoredSubscriptionsCreateorUpdateRequest>;
-
-/** The type of identity that created the resource. */
-export type SystemDataCreatedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
-
-/** The type of identity that last modified the resource. */
-export type SystemDataLastModifiedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
-
-/** Metadata pertaining to creation and last modification of the resource. */
-export interface SystemData {
-  /** The identity that created the resource. */
-  createdBy?: string;
-  /** The type of identity that created the resource. */
-  createdByType?: SystemDataCreatedByType;
-  /** The timestamp of resource creation (UTC). */
-  createdAt?: string;
-  /** The identity that last modified the resource. */
-  lastModifiedBy?: string;
-  /** The type of identity that last modified the resource. */
-  lastModifiedByType?: SystemDataLastModifiedByType;
-  /** The timestamp of resource last modification (UTC) */
-  lastModifiedAt?: string;
-}
-export const SystemData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    createdBy: S.optional(S.String),
-    createdByType: S.optional(SystemDataCreatedByType),
-    createdAt: S.optional(S.String),
-    lastModifiedBy: S.optional(S.String),
-    lastModifiedByType: S.optional(SystemDataLastModifiedByType),
-    lastModifiedAt: S.optional(S.String),
-  }),
-).annotate({ identifier: "SystemData" }) as any as S.Schema<SystemData>;
-
-export interface MonitoredSubscriptionsCreateorUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The request to update subscriptions needed to be monitored by the Elastic monitor resource. */
-  properties?: SubscriptionList;
-}
-export const MonitoredSubscriptionsCreateorUpdateResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(SubscriptionList),
-    }),
-  ).annotate({
-    identifier: "MonitoredSubscriptionsCreateorUpdateResponse",
-  }) as any as S.Schema<MonitoredSubscriptionsCreateorUpdateResponse>;
-
-export interface MonitoredSubscriptionsDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Monitor resource name */
-  monitorName: string;
-  /** The configuration name. Only 'default' value is supported. */
-  configurationName: string;
-}
-export const MonitoredSubscriptionsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    monitorName: S.String.pipe(T.Label()),
-    configurationName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Elastic/monitors/{monitorName}/monitoredSubscriptions/{configurationName}",
-      code: 200,
-      apiVersion: "2025-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "MonitoredSubscriptionsDeleteRequest",
-}) as any as S.Schema<MonitoredSubscriptionsDeleteRequest>;
-
-export interface MonitoredSubscriptionsDeleteResponse {}
-export const MonitoredSubscriptionsDeleteResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "MonitoredSubscriptionsDeleteResponse",
-}) as any as S.Schema<MonitoredSubscriptionsDeleteResponse>;
-
-export interface MonitoredSubscriptionsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Monitor resource name */
-  monitorName: string;
-  /** The configuration name. Only 'default' value is supported. */
-  configurationName: string;
-}
-export const MonitoredSubscriptionsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    monitorName: S.String.pipe(T.Label()),
-    configurationName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Elastic/monitors/{monitorName}/monitoredSubscriptions/{configurationName}",
-      code: 200,
-      apiVersion: "2025-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "MonitoredSubscriptionsGetRequest",
-}) as any as S.Schema<MonitoredSubscriptionsGetRequest>;
-
-export interface MonitoredSubscriptionsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The request to update subscriptions needed to be monitored by the Elastic monitor resource. */
-  properties?: SubscriptionList;
-}
-export const MonitoredSubscriptionsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(SubscriptionList),
-  }),
-).annotate({
-  identifier: "MonitoredSubscriptionsGetResponse",
-}) as any as S.Schema<MonitoredSubscriptionsGetResponse>;
-
-export interface MonitoredSubscriptionsListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Monitor resource name */
-  monitorName: string;
-}
-export const MonitoredSubscriptionsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    monitorName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Elastic/monitors/{monitorName}/monitoredSubscriptions",
-      code: 200,
-      apiVersion: "2025-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "MonitoredSubscriptionsListRequest",
-}) as any as S.Schema<MonitoredSubscriptionsListRequest>;
-
-/** The request to update subscriptions needed to be monitored by the Elastic monitor resource. */
-export interface MonitoredSubscriptionProperties {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The request to update subscriptions needed to be monitored by the Elastic monitor resource. */
-  properties?: SubscriptionList;
-}
-export const MonitoredSubscriptionProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(SubscriptionList),
-  }),
-).annotate({
-  identifier: "MonitoredSubscriptionProperties",
-}) as any as S.Schema<MonitoredSubscriptionProperties>;
-
-/** The MonitoredSubscriptionProperties items on this page */
-export type MonitoredSubscriptionPropertiesListValueList =
-  Array<MonitoredSubscriptionProperties>;
-export const MonitoredSubscriptionPropertiesListValueList =
-  /*@__PURE__*/ S.Array(
-    MonitoredSubscriptionProperties,
-  ) as any as S.Schema<MonitoredSubscriptionPropertiesListValueList>;
-
-/** Paged collection of MonitoredSubscriptionProperties items */
-export interface MonitoredSubscriptionPropertiesList {
-  /** The MonitoredSubscriptionProperties items on this page */
-  value: MonitoredSubscriptionPropertiesListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const MonitoredSubscriptionPropertiesList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: MonitoredSubscriptionPropertiesListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "MonitoredSubscriptionPropertiesList",
-}) as any as S.Schema<MonitoredSubscriptionPropertiesList>;
-
-export interface MonitoredSubscriptionsUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  monitorName: string;
-  configurationName: string;
-  /** The request to update subscriptions needed to be monitored by the Elastic monitor resource. */
-  properties?: SubscriptionList;
-}
-export const MonitoredSubscriptionsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    monitorName: S.String.pipe(T.Label()),
-    configurationName: S.String.pipe(T.Label()),
-    properties: S.optional(SubscriptionList),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Elastic/monitors/{monitorName}/monitoredSubscriptions/{configurationName}",
-      code: 200,
-      apiVersion: "2025-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "MonitoredSubscriptionsUpdateRequest",
-}) as any as S.Schema<MonitoredSubscriptionsUpdateRequest>;
-
-export interface MonitoredSubscriptionsUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The request to update subscriptions needed to be monitored by the Elastic monitor resource. */
-  properties?: SubscriptionList;
-}
-export const MonitoredSubscriptionsUpdateResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(SubscriptionList),
-    }),
-).annotate({
-  identifier: "MonitoredSubscriptionsUpdateResponse",
-}) as any as S.Schema<MonitoredSubscriptionsUpdateResponse>;
+  identifier: "CreateCreateAndAssociatePLFilterResponse",
+}) as any as S.Schema<CreateCreateAndAssociatePLFilterResponse>;
 
 /** Resource tags. */
-export type MonitorsCreateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const MonitorsCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type CreateMonitorRequestTagsMap = { [key: string]: string | undefined };
+export const CreateMonitorRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<MonitorsCreateRequestTagsMap>;
+) as any as S.Schema<CreateMonitorRequestTagsMap>;
 
 /** Flag specifying if the resource monitoring is enabled or disabled. */
 export type MonitoringStatus = "Enabled" | "Disabled";
@@ -1472,14 +346,14 @@ export const IdentityPropertiesInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "IdentityPropertiesInput",
 }) as any as S.Schema<IdentityPropertiesInput>;
 
-export interface MonitorsCreateRequest {
+export interface CreateMonitorRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   monitorName: string;
   /** Resource tags. */
-  tags?: MonitorsCreateRequestTagsMap;
+  tags?: CreateMonitorRequestTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties of the monitor resource. */
@@ -1491,12 +365,12 @@ export interface MonitorsCreateRequest {
   /** Identity properties of the monitor resource. */
   identity?: IdentityPropertiesInput;
 }
-export const MonitorsCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateMonitorRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     monitorName: S.String.pipe(T.Label()),
-    tags: S.optional(MonitorsCreateRequestTagsMap),
+    tags: S.optional(CreateMonitorRequestTagsMap),
     location: S.String,
     properties: S.optional(MonitorPropertiesInput),
     kind: S.optional(S.String),
@@ -1511,17 +385,72 @@ export const MonitorsCreateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "MonitorsCreateRequest",
-}) as any as S.Schema<MonitorsCreateRequest>;
+  identifier: "CreateMonitorRequest",
+}) as any as S.Schema<CreateMonitorRequest>;
+
+/** The type of identity that created the resource. */
+export type SystemDataCreatedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+
+/** The type of identity that last modified the resource. */
+export type SystemDataLastModifiedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+
+/** Metadata pertaining to creation and last modification of the resource. */
+export interface SystemData {
+  /** The identity that created the resource. */
+  createdBy?: string;
+  /** The type of identity that created the resource. */
+  createdByType?: SystemDataCreatedByType;
+  /** The timestamp of resource creation (UTC). */
+  createdAt?: string;
+  /** The identity that last modified the resource. */
+  lastModifiedBy?: string;
+  /** The type of identity that last modified the resource. */
+  lastModifiedByType?: SystemDataLastModifiedByType;
+  /** The timestamp of resource last modification (UTC) */
+  lastModifiedAt?: string;
+}
+export const SystemData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    createdBy: S.optional(S.String),
+    createdByType: S.optional(SystemDataCreatedByType),
+    createdAt: S.optional(S.String),
+    lastModifiedBy: S.optional(S.String),
+    lastModifiedByType: S.optional(SystemDataLastModifiedByType),
+    lastModifiedAt: S.optional(S.String),
+  }),
+).annotate({ identifier: "SystemData" }) as any as S.Schema<SystemData>;
 
 /** Resource tags. */
-export type MonitorsCreateResponseTagsMap = {
+export type CreateMonitorResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const MonitorsCreateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const CreateMonitorResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<MonitorsCreateResponseTagsMap>;
+) as any as S.Schema<CreateMonitorResponseTagsMap>;
+
+/** Provisioning state of Elastic resource. */
+export type ProvisioningState =
+  | "Accepted"
+  | "Creating"
+  | "Updating"
+  | "Deleting"
+  | "Succeeded"
+  | "Failed"
+  | "Canceled"
+  | "Deleted"
+  | "NotSpecified";
+export const ProvisioningState = /*@__PURE__*/ S.String;
 
 /** Details of the user's elastic account. */
 export interface ElasticCloudUser {
@@ -1665,7 +594,7 @@ export const IdentityProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "IdentityProperties",
 }) as any as S.Schema<IdentityProperties>;
 
-export interface MonitorsCreateResponse {
+export interface CreateMonitorResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -1675,7 +604,7 @@ export interface MonitorsCreateResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: MonitorsCreateResponseTagsMap;
+  tags?: CreateMonitorResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties of the monitor resource. */
@@ -1687,13 +616,13 @@ export interface MonitorsCreateResponse {
   /** Identity properties of the monitor resource. */
   identity?: IdentityProperties;
 }
-export const MonitorsCreateResponse = /*@__PURE__*/ S.suspend(() =>
+export const CreateMonitorResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(MonitorsCreateResponseTagsMap),
+    tags: S.optional(CreateMonitorResponseTagsMap),
     location: S.String,
     properties: S.optional(MonitorProperties),
     kind: S.optional(S.String),
@@ -1701,10 +630,45 @@ export const MonitorsCreateResponse = /*@__PURE__*/ S.suspend(() =>
     identity: S.optional(IdentityProperties),
   }),
 ).annotate({
-  identifier: "MonitorsCreateResponse",
-}) as any as S.Schema<MonitorsCreateResponse>;
+  identifier: "CreateMonitorResponse",
+}) as any as S.Schema<CreateMonitorResponse>;
 
-export interface MonitorsDeleteRequest {
+export interface DeleteDetachAndDeleteTrafficFilterRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Monitor resource name */
+  monitorName: string;
+  /** Ruleset Id of the filter */
+  rulesetId?: string;
+}
+export const DeleteDetachAndDeleteTrafficFilterRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      monitorName: S.String.pipe(T.Label()),
+      rulesetId: S.optional(S.String.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Elastic/monitors/{monitorName}/detachAndDeleteTrafficFilter",
+        code: 200,
+        apiVersion: "2025-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "DeleteDetachAndDeleteTrafficFilterRequest",
+  }) as any as S.Schema<DeleteDetachAndDeleteTrafficFilterRequest>;
+
+export interface DeleteDetachAndDeleteTrafficFilterResponse {}
+export const DeleteDetachAndDeleteTrafficFilterResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "DeleteDetachAndDeleteTrafficFilterResponse",
+  }) as any as S.Schema<DeleteDetachAndDeleteTrafficFilterResponse>;
+
+export interface DeleteMonitorRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1712,7 +676,7 @@ export interface MonitorsDeleteRequest {
   /** Monitor resource name */
   monitorName: string;
 }
-export const MonitorsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteMonitorRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1726,17 +690,216 @@ export const MonitorsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "MonitorsDeleteRequest",
-}) as any as S.Schema<MonitorsDeleteRequest>;
+  identifier: "DeleteMonitorRequest",
+}) as any as S.Schema<DeleteMonitorRequest>;
 
-export interface MonitorsDeleteResponse {}
-export const MonitorsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteMonitorResponse {}
+export const DeleteMonitorResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "MonitorsDeleteResponse",
-}) as any as S.Schema<MonitorsDeleteResponse>;
+  identifier: "DeleteMonitorResponse",
+}) as any as S.Schema<DeleteMonitorResponse>;
 
-export interface MonitorsGetRequest {
+export interface DeleteMonitoredSubscriptionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Monitor resource name */
+  monitorName: string;
+  /** The configuration name. Only 'default' value is supported. */
+  configurationName: string;
+}
+export const DeleteMonitoredSubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    monitorName: S.String.pipe(T.Label()),
+    configurationName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Elastic/monitors/{monitorName}/monitoredSubscriptions/{configurationName}",
+      code: 200,
+      apiVersion: "2025-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteMonitoredSubscriptionRequest",
+}) as any as S.Schema<DeleteMonitoredSubscriptionRequest>;
+
+export interface DeleteMonitoredSubscriptionResponse {}
+export const DeleteMonitoredSubscriptionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteMonitoredSubscriptionResponse",
+}) as any as S.Schema<DeleteMonitoredSubscriptionResponse>;
+
+export interface DeleteOpenAIRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Monitor resource name */
+  monitorName: string;
+  /** OpenAI Integration name */
+  integrationName: string;
+}
+export const DeleteOpenAIRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    monitorName: S.String.pipe(T.Label()),
+    integrationName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Elastic/monitors/{monitorName}/openAIIntegrations/{integrationName}",
+      code: 200,
+      apiVersion: "2025-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteOpenAIRequest",
+}) as any as S.Schema<DeleteOpenAIRequest>;
+
+export interface DeleteOpenAIResponse {}
+export const DeleteOpenAIResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteOpenAIResponse",
+}) as any as S.Schema<DeleteOpenAIResponse>;
+
+export interface DeleteTagRuleRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Monitor resource name */
+  monitorName: string;
+  /** Tag Rule Set resource name */
+  ruleSetName: string;
+}
+export const DeleteTagRuleRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    monitorName: S.String.pipe(T.Label()),
+    ruleSetName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Elastic/monitors/{monitorName}/tagRules/{ruleSetName}",
+      code: 200,
+      apiVersion: "2025-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteTagRuleRequest",
+}) as any as S.Schema<DeleteTagRuleRequest>;
+
+export interface DeleteTagRuleResponse {}
+export const DeleteTagRuleResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteTagRuleResponse",
+}) as any as S.Schema<DeleteTagRuleResponse>;
+
+export interface DeleteTrafficFilterRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Monitor resource name */
+  monitorName: string;
+  /** Ruleset Id of the filter */
+  rulesetId?: string;
+}
+export const DeleteTrafficFilterRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    monitorName: S.String.pipe(T.Label()),
+    rulesetId: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Elastic/monitors/{monitorName}/deleteTrafficFilter",
+      code: 200,
+      apiVersion: "2025-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteTrafficFilterRequest",
+}) as any as S.Schema<DeleteTrafficFilterRequest>;
+
+export interface DeleteTrafficFilterResponse {}
+export const DeleteTrafficFilterResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteTrafficFilterResponse",
+}) as any as S.Schema<DeleteTrafficFilterResponse>;
+
+/** Roles to be assigned for created or updated user */
+export type ExternalUserCreateOrUpdateRequestRolesList = Array<string>;
+export const ExternalUserCreateOrUpdateRequestRolesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ExternalUserCreateOrUpdateRequestRolesList>;
+
+export interface ExternalUserCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Monitor resource name */
+  monitorName: string;
+  /** Username of the user to be created or updated */
+  userName?: string;
+  /** Full name of the user to be created or updated */
+  fullName?: string;
+  /** Password of the user to be created or updated */
+  password?: string | Redacted.Redacted<string>;
+  /** Email id of the user to be created or updated */
+  emailId?: string;
+  /** Roles to be assigned for created or updated user */
+  roles?: ExternalUserCreateOrUpdateRequestRolesList;
+}
+export const ExternalUserCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    monitorName: S.String.pipe(T.Label()),
+    userName: S.optional(S.String),
+    fullName: S.optional(S.String),
+    password: S.optional(S.String.pipe(T.SensitiveValue({}))),
+    emailId: S.optional(S.String),
+    roles: S.optional(ExternalUserCreateOrUpdateRequestRolesList),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Elastic/monitors/{monitorName}/createOrUpdateExternalUser",
+      code: 200,
+      apiVersion: "2025-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ExternalUserCreateOrUpdateRequest",
+}) as any as S.Schema<ExternalUserCreateOrUpdateRequest>;
+
+/** The properties of the response we got from elastic while creating external user */
+export interface ExternalUserCreationResponse {
+  /** Shows if user is created or updated */
+  created?: boolean;
+}
+export const ExternalUserCreationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    created: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "ExternalUserCreationResponse",
+}) as any as S.Schema<ExternalUserCreationResponse>;
+
+export interface GetBillingInfoRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1744,7 +907,117 @@ export interface MonitorsGetRequest {
   /** Monitor resource name */
   monitorName: string;
 }
-export const MonitorsGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetBillingInfoRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    monitorName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Elastic/monitors/{monitorName}/getBillingInfo",
+      code: 200,
+      apiVersion: "2025-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetBillingInfoRequest",
+}) as any as S.Schema<GetBillingInfoRequest>;
+
+/** Marketplace Subscription */
+export interface MarketplaceSaaSInfoMarketplaceSubscription {
+  /** Marketplace Subscription Id. This is a GUID-formatted string. */
+  id?: string;
+  /** Publisher Id of the Marketplace offer. */
+  publisherId?: string;
+  /** Offer Id of the Marketplace offer, */
+  offerId?: string;
+}
+export const MarketplaceSaaSInfoMarketplaceSubscription =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      publisherId: S.optional(S.String),
+      offerId: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "MarketplaceSaaSInfoMarketplaceSubscription",
+  }) as any as S.Schema<MarketplaceSaaSInfoMarketplaceSubscription>;
+
+/** Marketplace SAAS Info of the resource. */
+export interface MarketplaceSaaSInfo {
+  /** Marketplace Subscription */
+  marketplaceSubscription?: MarketplaceSaaSInfoMarketplaceSubscription;
+  /** Marketplace Subscription Details: SAAS Name */
+  marketplaceName?: string;
+  /** Marketplace Subscription Details: Resource URI */
+  marketplaceResourceId?: string;
+  /** Marketplace Subscription Details: SaaS Subscription Status */
+  marketplaceStatus?: string;
+  /** The Azure Subscription ID to which the Marketplace Subscription belongs and gets billed into. */
+  billedAzureSubscriptionId?: string;
+  /** Flag specifying if the Marketplace status is subscribed or not. */
+  subscribed?: boolean;
+}
+export const MarketplaceSaaSInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    marketplaceSubscription: S.optional(
+      MarketplaceSaaSInfoMarketplaceSubscription,
+    ),
+    marketplaceName: S.optional(S.String),
+    marketplaceResourceId: S.optional(S.String),
+    marketplaceStatus: S.optional(S.String),
+    billedAzureSubscriptionId: S.optional(S.String),
+    subscribed: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "MarketplaceSaaSInfo",
+}) as any as S.Schema<MarketplaceSaaSInfo>;
+
+/** Partner Billing details associated with the resource. */
+export interface PartnerBillingEntity {
+  /** The Elastic Organization Id. */
+  id?: string;
+  /** The Elastic Organization Name. */
+  name?: string;
+  /** Link to the elastic organization page */
+  partnerEntityUri?: string;
+}
+export const PartnerBillingEntity = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    partnerEntityUri: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PartnerBillingEntity",
+}) as any as S.Schema<PartnerBillingEntity>;
+
+/** Marketplace Subscription and Organization details to which resource gets billed into. */
+export interface BillingInfoResponse {
+  /** Marketplace Subscription details */
+  marketplaceSaasInfo?: MarketplaceSaaSInfo;
+  /** Partner Billing Entity details: Organization Info */
+  partnerBillingEntity?: PartnerBillingEntity;
+}
+export const BillingInfoResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    marketplaceSaasInfo: S.optional(MarketplaceSaaSInfo),
+    partnerBillingEntity: S.optional(PartnerBillingEntity),
+  }),
+).annotate({
+  identifier: "BillingInfoResponse",
+}) as any as S.Schema<BillingInfoResponse>;
+
+export interface GetMonitorRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Monitor resource name */
+  monitorName: string;
+}
+export const GetMonitorRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1758,17 +1031,17 @@ export const MonitorsGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "MonitorsGetRequest",
-}) as any as S.Schema<MonitorsGetRequest>;
+  identifier: "GetMonitorRequest",
+}) as any as S.Schema<GetMonitorRequest>;
 
 /** Resource tags. */
-export type MonitorsGetResponseTagsMap = { [key: string]: string | undefined };
-export const MonitorsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetMonitorResponseTagsMap = { [key: string]: string | undefined };
+export const GetMonitorResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<MonitorsGetResponseTagsMap>;
+) as any as S.Schema<GetMonitorResponseTagsMap>;
 
-export interface MonitorsGetResponse {
+export interface GetMonitorResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -1778,7 +1051,7 @@ export interface MonitorsGetResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: MonitorsGetResponseTagsMap;
+  tags?: GetMonitorResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties of the monitor resource. */
@@ -1790,13 +1063,13 @@ export interface MonitorsGetResponse {
   /** Identity properties of the monitor resource. */
   identity?: IdentityProperties;
 }
-export const MonitorsGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetMonitorResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(MonitorsGetResponseTagsMap),
+    tags: S.optional(GetMonitorResponseTagsMap),
     location: S.String,
     properties: S.optional(MonitorProperties),
     kind: S.optional(S.String),
@@ -1804,27 +1077,862 @@ export const MonitorsGetResponse = /*@__PURE__*/ S.suspend(() =>
     identity: S.optional(IdentityProperties),
   }),
 ).annotate({
-  identifier: "MonitorsGetResponse",
-}) as any as S.Schema<MonitorsGetResponse>;
+  identifier: "GetMonitorResponse",
+}) as any as S.Schema<GetMonitorResponse>;
 
-export interface MonitorsListRequest {
+export interface GetMonitoredSubscriptionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Monitor resource name */
+  monitorName: string;
+  /** The configuration name. Only 'default' value is supported. */
+  configurationName: string;
 }
-export const MonitorsListRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetMonitoredSubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    monitorName: S.String.pipe(T.Label()),
+    configurationName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Elastic/monitors",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Elastic/monitors/{monitorName}/monitoredSubscriptions/{configurationName}",
       code: 200,
       apiVersion: "2025-06-01",
     }),
   ),
 ).annotate({
-  identifier: "MonitorsListRequest",
-}) as any as S.Schema<MonitorsListRequest>;
+  identifier: "GetMonitoredSubscriptionRequest",
+}) as any as S.Schema<GetMonitoredSubscriptionRequest>;
+
+/** The operation for the patch on the resource. */
+export type Operation =
+  | "AddBegin"
+  | "AddComplete"
+  | "DeleteBegin"
+  | "DeleteComplete"
+  | "Active";
+export const Operation = /*@__PURE__*/ S.String;
+
+/** The state of monitoring. */
+export type Status = "InProgress" | "Active" | "Failed" | "Deleting";
+export const Status = /*@__PURE__*/ S.String;
+
+/** Valid actions for a filtering tag. Exclusion takes priority over inclusion. */
+export type TagAction = "Include" | "Exclude";
+export const TagAction = /*@__PURE__*/ S.String;
+
+/** The definition of a filtering tag. Filtering tags are used for capturing resources and include/exclude them from being monitored. */
+export interface FilteringTag {
+  /** The name (also known as the key) of the tag. */
+  name?: string;
+  /** The value of the tag. */
+  value?: string;
+  /** Valid actions for a filtering tag. */
+  action?: TagAction | (string & {});
+}
+export const FilteringTag = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    value: S.optional(S.String),
+    action: S.optional(TagAction),
+  }),
+).annotate({ identifier: "FilteringTag" }) as any as S.Schema<FilteringTag>;
+
+/** List of filtering tags to be used for capturing logs. This only takes effect if SendActivityLogs flag is enabled. If empty, all resources will be captured. If only Exclude action is specified, the rules will apply to the list of all available resources. If Include actions are specified, the rules will only include resources with the associated tags. */
+export type LogRulesFilteringTagsList = Array<FilteringTag>;
+export const LogRulesFilteringTagsList = /*@__PURE__*/ S.Array(
+  FilteringTag,
+) as any as S.Schema<LogRulesFilteringTagsList>;
+
+/** Set of rules for sending logs for the Monitor resource. */
+export interface LogRules {
+  /** Flag specifying if AAD logs should be sent for the Monitor resource. */
+  sendAadLogs?: boolean;
+  /** Flag specifying if subscription logs should be sent for the Monitor resource. */
+  sendSubscriptionLogs?: boolean;
+  /** Flag specifying if activity logs from Azure resources should be sent for the Monitor resource. */
+  sendActivityLogs?: boolean;
+  /** List of filtering tags to be used for capturing logs. This only takes effect if SendActivityLogs flag is enabled. If empty, all resources will be captured. If only Exclude action is specified, the rules will apply to the list of all available resources. If Include actions are specified, the rules will only include resources with the associated tags. */
+  filteringTags?: LogRulesFilteringTagsList;
+}
+export const LogRules = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    sendAadLogs: S.optional(S.Boolean),
+    sendSubscriptionLogs: S.optional(S.Boolean),
+    sendActivityLogs: S.optional(S.Boolean),
+    filteringTags: S.optional(LogRulesFilteringTagsList),
+  }),
+).annotate({ identifier: "LogRules" }) as any as S.Schema<LogRules>;
+
+/** Definition of the properties for a TagRules resource. */
+export interface MonitoringTagRulesProperties {
+  /** Provisioning state of the monitoring tag rules. */
+  provisioningState?: ProvisioningState | (string & {});
+  /** Rules for sending logs. */
+  logRules?: LogRules;
+}
+export const MonitoringTagRulesProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provisioningState: S.optional(ProvisioningState),
+    logRules: S.optional(LogRules),
+  }),
+).annotate({
+  identifier: "MonitoringTagRulesProperties",
+}) as any as S.Schema<MonitoringTagRulesProperties>;
+
+/** The list of subscriptions and it's monitoring status by current Elastic monitor. */
+export interface MonitoredSubscription {
+  /** The subscriptionId to be monitored. */
+  subscriptionId: string;
+  /** The state of monitoring. */
+  status?: Status | (string & {});
+  /** The reason of not monitoring the subscription. */
+  error?: string;
+  /** Definition of the properties for a TagRules resource. */
+  tagRules?: MonitoringTagRulesProperties;
+}
+export const MonitoredSubscription = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String,
+    status: S.optional(Status),
+    error: S.optional(S.String),
+    tagRules: S.optional(MonitoringTagRulesProperties),
+  }),
+).annotate({
+  identifier: "MonitoredSubscription",
+}) as any as S.Schema<MonitoredSubscription>;
+
+/** List of subscriptions and the state of the monitoring. */
+export type SubscriptionListMonitoredSubscriptionListList =
+  Array<MonitoredSubscription>;
+export const SubscriptionListMonitoredSubscriptionListList =
+  /*@__PURE__*/ S.Array(
+    MonitoredSubscription,
+  ) as any as S.Schema<SubscriptionListMonitoredSubscriptionListList>;
+
+/** The request to update subscriptions needed to be monitored by the Elastic monitor resource. */
+export interface SubscriptionList {
+  /** The operation for the patch on the resource. */
+  operation?: Operation | (string & {});
+  /** List of subscriptions and the state of the monitoring. */
+  monitoredSubscriptionList?: SubscriptionListMonitoredSubscriptionListList;
+  /** Provisioning State of the resource */
+  provisioningState?: ProvisioningState | (string & {});
+}
+export const SubscriptionList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    operation: S.optional(Operation),
+    monitoredSubscriptionList: S.optional(
+      SubscriptionListMonitoredSubscriptionListList,
+    ),
+    provisioningState: S.optional(ProvisioningState),
+  }),
+).annotate({
+  identifier: "SubscriptionList",
+}) as any as S.Schema<SubscriptionList>;
+
+export interface GetMonitoredSubscriptionResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The request to update subscriptions needed to be monitored by the Elastic monitor resource. */
+  properties?: SubscriptionList;
+}
+export const GetMonitoredSubscriptionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(SubscriptionList),
+  }),
+).annotate({
+  identifier: "GetMonitoredSubscriptionResponse",
+}) as any as S.Schema<GetMonitoredSubscriptionResponse>;
+
+export interface GetOpenAIRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Monitor resource name */
+  monitorName: string;
+  /** OpenAI Integration name */
+  integrationName: string;
+}
+export const GetOpenAIRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    monitorName: S.String.pipe(T.Label()),
+    integrationName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Elastic/monitors/{monitorName}/openAIIntegrations/{integrationName}",
+      code: 200,
+      apiVersion: "2025-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetOpenAIRequest",
+}) as any as S.Schema<GetOpenAIRequest>;
+
+/** Open AI Integration details. */
+export interface OpenAIIntegrationProperties {
+  /** The resource name of Open AI resource */
+  openAIResourceId?: string;
+  /** The API endpoint for Open AI resource */
+  openAIResourceEndpoint?: string;
+  /** The connector id of Open AI resource */
+  openAIConnectorId?: string;
+  /** Value of API key for Open AI resource */
+  key?: string;
+  /** Last Update Timestamp for key updation */
+  lastRefreshAt?: string;
+}
+export const OpenAIIntegrationProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    openAIResourceId: S.optional(S.String),
+    openAIResourceEndpoint: S.optional(S.String),
+    openAIConnectorId: S.optional(S.String),
+    key: S.optional(S.String),
+    lastRefreshAt: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "OpenAIIntegrationProperties",
+}) as any as S.Schema<OpenAIIntegrationProperties>;
+
+export interface GetOpenAIResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Open AI Integration details. */
+  properties?: OpenAIIntegrationProperties;
+}
+export const GetOpenAIResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(OpenAIIntegrationProperties),
+  }),
+).annotate({
+  identifier: "GetOpenAIResponse",
+}) as any as S.Schema<GetOpenAIResponse>;
+
+export interface GetOpenAIStatusRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Monitor resource name */
+  monitorName: string;
+  /** OpenAI Integration name */
+  integrationName: string;
+}
+export const GetOpenAIStatusRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    monitorName: S.String.pipe(T.Label()),
+    integrationName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Elastic/monitors/{monitorName}/openAIIntegrations/{integrationName}/getStatus",
+      code: 200,
+      apiVersion: "2025-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetOpenAIStatusRequest",
+}) as any as S.Schema<GetOpenAIStatusRequest>;
+
+/** Status of the OpenAI Integration */
+export interface OpenAIIntegrationStatusResponseProperties {
+  /** Status of the OpenAI Integration */
+  status?: string;
+}
+export const OpenAIIntegrationStatusResponseProperties =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      status: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "OpenAIIntegrationStatusResponseProperties",
+  }) as any as S.Schema<OpenAIIntegrationStatusResponseProperties>;
+
+/** Status of the OpenAI Integration */
+export interface OpenAIIntegrationStatusResponse {
+  /** Status of the OpenAI Integration */
+  properties?: OpenAIIntegrationStatusResponseProperties;
+}
+export const OpenAIIntegrationStatusResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    properties: S.optional(OpenAIIntegrationStatusResponseProperties),
+  }),
+).annotate({
+  identifier: "OpenAIIntegrationStatusResponse",
+}) as any as S.Schema<OpenAIIntegrationStatusResponse>;
+
+export interface GetOrganizationApiKeyRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The User email Id */
+  emailId?: string;
+}
+export const GetOrganizationApiKeyRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    emailId: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Elastic/getOrganizationApiKey",
+      code: 200,
+      apiVersion: "2025-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetOrganizationApiKeyRequest",
+}) as any as S.Schema<GetOrganizationApiKeyRequest>;
+
+export interface UserApiKeyResponseProperties {
+  /** The User Api Key Generated based on GenerateApiKey flag. This is applicable for non-Portal clients only. */
+  apiKey?: string | Redacted.Redacted<string>;
+}
+export const UserApiKeyResponseProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    apiKey: S.optional(S.String.pipe(T.SensitiveValue({}))),
+  }),
+).annotate({
+  identifier: "UserApiKeyResponseProperties",
+}) as any as S.Schema<UserApiKeyResponseProperties>;
+
+/** The User Api Key created for the Organization associated with the User Email Id that was passed in the request */
+export interface UserApiKeyResponse {
+  properties?: UserApiKeyResponseProperties;
+}
+export const UserApiKeyResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    properties: S.optional(UserApiKeyResponseProperties),
+  }),
+).annotate({
+  identifier: "UserApiKeyResponse",
+}) as any as S.Schema<UserApiKeyResponse>;
+
+export interface GetOrganizationElasticToAzureSubscriptionMappingRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+}
+export const GetOrganizationElasticToAzureSubscriptionMappingRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Elastic/getElasticOrganizationToAzureSubscriptionMapping",
+        code: 200,
+        apiVersion: "2025-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "GetOrganizationElasticToAzureSubscriptionMappingRequest",
+  }) as any as S.Schema<GetOrganizationElasticToAzureSubscriptionMappingRequest>;
+
+/** The properties of Azure Subscription ID to which the Organization of the logged in user belongs and gets billed into. */
+export interface ElasticOrganizationToAzureSubscriptionMappingResponseProperties {
+  /** The Azure Subscription ID to which the Organization belongs and gets billed into. This is empty for a new user OR a user without an Elastic Organization. */
+  billedAzureSubscriptionId?: string;
+  /** Marketplace SaaS Info of the resource. */
+  marketplaceSaasInfo?: MarketplaceSaaSInfo;
+  /** The Elastic Organization Id. */
+  elasticOrganizationId?: string;
+  /** The Elastic Organization Name. */
+  elasticOrganizationName?: string;
+}
+export const ElasticOrganizationToAzureSubscriptionMappingResponseProperties =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      billedAzureSubscriptionId: S.optional(S.String),
+      marketplaceSaasInfo: S.optional(MarketplaceSaaSInfo),
+      elasticOrganizationId: S.optional(S.String),
+      elasticOrganizationName: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier:
+      "ElasticOrganizationToAzureSubscriptionMappingResponseProperties",
+  }) as any as S.Schema<ElasticOrganizationToAzureSubscriptionMappingResponseProperties>;
+
+/** The Azure Subscription ID to which the Organization of the logged in user belongs and gets billed into. */
+export interface ElasticOrganizationToAzureSubscriptionMappingResponse {
+  /** The properties of Azure Subscription ID to which the Organization of the logged in user belongs and gets billed into. */
+  properties?: ElasticOrganizationToAzureSubscriptionMappingResponseProperties;
+}
+export const ElasticOrganizationToAzureSubscriptionMappingResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      properties: S.optional(
+        ElasticOrganizationToAzureSubscriptionMappingResponseProperties,
+      ),
+    }),
+  ).annotate({
+    identifier: "ElasticOrganizationToAzureSubscriptionMappingResponse",
+  }) as any as S.Schema<ElasticOrganizationToAzureSubscriptionMappingResponse>;
+
+export interface GetTagRuleRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Monitor resource name */
+  monitorName: string;
+  /** Tag Rule Set resource name */
+  ruleSetName: string;
+}
+export const GetTagRuleRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    monitorName: S.String.pipe(T.Label()),
+    ruleSetName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Elastic/monitors/{monitorName}/tagRules/{ruleSetName}",
+      code: 200,
+      apiVersion: "2025-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetTagRuleRequest",
+}) as any as S.Schema<GetTagRuleRequest>;
+
+export interface GetTagRuleResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of the monitoring tag rules. */
+  properties?: MonitoringTagRulesProperties;
+}
+export const GetTagRuleResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(MonitoringTagRulesProperties),
+  }),
+).annotate({
+  identifier: "GetTagRuleResponse",
+}) as any as S.Schema<GetTagRuleResponse>;
+
+export interface ListAllTrafficFiltersRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Monitor resource name */
+  monitorName: string;
+}
+export const ListAllTrafficFiltersRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    monitorName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Elastic/monitors/{monitorName}/listAllTrafficFilters",
+      code: 200,
+      apiVersion: "2025-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListAllTrafficFiltersRequest",
+}) as any as S.Schema<ListAllTrafficFiltersRequest>;
+
+/** Type of the elastic filter */
+export type Type = "ip" | "azure_private_endpoint";
+export const Type = /*@__PURE__*/ S.String;
+
+/** Elastic traffic filter rule object */
+export interface ElasticTrafficFilterRule {
+  /** IP of the elastic filter rule */
+  source?: string;
+  /** Description of the elastic filter rule */
+  description?: string;
+  /** Guid of Private Endpoint in the elastic filter rule */
+  azureEndpointGuid?: string;
+  /** Name of the Private Endpoint in the elastic filter rule */
+  azureEndpointName?: string;
+  /** Id of the elastic filter rule */
+  id?: string;
+}
+export const ElasticTrafficFilterRule = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    source: S.optional(S.String),
+    description: S.optional(S.String),
+    azureEndpointGuid: S.optional(S.String),
+    azureEndpointName: S.optional(S.String),
+    id: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ElasticTrafficFilterRule",
+}) as any as S.Schema<ElasticTrafficFilterRule>;
+
+/** Rules in the elastic filter */
+export type ElasticTrafficFilterRulesList = Array<ElasticTrafficFilterRule>;
+export const ElasticTrafficFilterRulesList = /*@__PURE__*/ S.Array(
+  ElasticTrafficFilterRule,
+) as any as S.Schema<ElasticTrafficFilterRulesList>;
+
+/** Elastic traffic filter object */
+export interface ElasticTrafficFilter {
+  /** Id of the elastic filter */
+  id?: string;
+  /** Name of the elastic filter */
+  name?: string;
+  /** Description of the elastic filter */
+  description?: string;
+  /** Region of the elastic filter */
+  region?: string;
+  /** Type of the elastic filter */
+  type?: Type;
+  /** IncludeByDefault for the elastic filter */
+  includeByDefault?: boolean;
+  /** Rules in the elastic filter */
+  rules?: ElasticTrafficFilterRulesList;
+}
+export const ElasticTrafficFilter = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    description: S.optional(S.String),
+    region: S.optional(S.String),
+    type: S.optional(Type),
+    includeByDefault: S.optional(S.Boolean),
+    rules: S.optional(ElasticTrafficFilterRulesList),
+  }),
+).annotate({
+  identifier: "ElasticTrafficFilter",
+}) as any as S.Schema<ElasticTrafficFilter>;
+
+/** List of elastic traffic filters in the account */
+export type ElasticTrafficFilterResponseRulesetsList =
+  Array<ElasticTrafficFilter>;
+export const ElasticTrafficFilterResponseRulesetsList = /*@__PURE__*/ S.Array(
+  ElasticTrafficFilter,
+) as any as S.Schema<ElasticTrafficFilterResponseRulesetsList>;
+
+/** List of elastic traffic filters in the account */
+export interface ElasticTrafficFilterResponse {
+  /** List of elastic traffic filters in the account */
+  rulesets?: ElasticTrafficFilterResponseRulesetsList;
+}
+export const ElasticTrafficFilterResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    rulesets: S.optional(ElasticTrafficFilterResponseRulesetsList),
+  }),
+).annotate({
+  identifier: "ElasticTrafficFilterResponse",
+}) as any as S.Schema<ElasticTrafficFilterResponse>;
+
+export interface ListConnectedPartnerResourcesRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Monitor resource name */
+  monitorName: string;
+}
+export const ListConnectedPartnerResourcesRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      monitorName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Elastic/monitors/{monitorName}/listConnectedPartnerResources",
+        code: 200,
+        apiVersion: "2025-06-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListConnectedPartnerResourcesRequest",
+}) as any as S.Schema<ListConnectedPartnerResourcesRequest>;
+
+/** Connected Partner Resource Properties */
+export interface ConnectedPartnerResourceProperties {
+  /** Elastic resource name */
+  partnerDeploymentName?: string;
+  /** URL of the resource in Elastic cloud. */
+  partnerDeploymentUri?: string;
+  /** The azure resource Id of the resource. */
+  azureResourceId?: string;
+  /** The location of the resource. */
+  location?: string;
+  /** The hosting type of the resource. */
+  type?: string;
+}
+export const ConnectedPartnerResourceProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    partnerDeploymentName: S.optional(S.String),
+    partnerDeploymentUri: S.optional(S.String),
+    azureResourceId: S.optional(S.String),
+    location: S.optional(S.String),
+    type: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ConnectedPartnerResourceProperties",
+}) as any as S.Schema<ConnectedPartnerResourceProperties>;
+
+/** Connected Partner Resources List Format */
+export interface ConnectedPartnerResourcesListFormat {
+  /** Connected Partner Resource Properties */
+  properties?: ConnectedPartnerResourceProperties;
+}
+export const ConnectedPartnerResourcesListFormat = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    properties: S.optional(ConnectedPartnerResourceProperties),
+  }),
+).annotate({
+  identifier: "ConnectedPartnerResourcesListFormat",
+}) as any as S.Schema<ConnectedPartnerResourcesListFormat>;
+
+/** The ConnectedPartnerResourcesListFormat items on this page */
+export type ConnectedPartnerResourcesListResponseValueList =
+  Array<ConnectedPartnerResourcesListFormat>;
+export const ConnectedPartnerResourcesListResponseValueList =
+  /*@__PURE__*/ S.Array(
+    ConnectedPartnerResourcesListFormat,
+  ) as any as S.Schema<ConnectedPartnerResourcesListResponseValueList>;
+
+/** List of all active elastic deployments. */
+export interface ConnectedPartnerResourcesListResponse {
+  /** The ConnectedPartnerResourcesListFormat items on this page */
+  value: ConnectedPartnerResourcesListResponseValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const ConnectedPartnerResourcesListResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      value: ConnectedPartnerResourcesListResponseValueList,
+      nextLink: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "ConnectedPartnerResourcesListResponse",
+}) as any as S.Schema<ConnectedPartnerResourcesListResponse>;
+
+export interface ListDeploymentInfoRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Monitor resource name */
+  monitorName: string;
+}
+export const ListDeploymentInfoRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    monitorName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Elastic/monitors/{monitorName}/listDeploymentInfo",
+      code: 200,
+      apiVersion: "2025-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListDeploymentInfoRequest",
+}) as any as S.Schema<ListDeploymentInfoRequest>;
+
+/** Flag specifying if the Elastic deployment status is healthy or not. */
+export type ElasticDeploymentStatus = "Healthy" | "Unhealthy";
+export const ElasticDeploymentStatus = /*@__PURE__*/ S.String;
+
+/** The properties of deployment in Elastic cloud corresponding to the Elastic monitor resource. */
+export interface DeploymentInfoResponse {
+  /** The Elastic deployment status. */
+  status?: ElasticDeploymentStatus;
+  /** Version of the elasticsearch in Elastic cloud deployment. */
+  version?: string;
+  /** RAM capacity of the elasticsearch in Elastic cloud deployment. */
+  memoryCapacity?: string;
+  /** Disk capacity of the elasticsearch in Elastic cloud deployment. */
+  diskCapacity?: string;
+  /** Elasticsearch endpoint in Elastic cloud deployment. This is either the aliased_endpoint if available, or the service_url otherwise. */
+  elasticsearchEndPoint?: string;
+  /** Deployment URL of the elasticsearch in Elastic cloud deployment. */
+  deploymentUrl?: string;
+  /** Marketplace SaaS Info of the resource. */
+  marketplaceSaasInfo?: MarketplaceSaaSInfo;
+  /** Project Type - Applicable for Serverless only. */
+  projectType?: string;
+  /** ConfigurationType Type - Applicable for Serverless only. */
+  configurationType?: string;
+}
+export const DeploymentInfoResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: S.optional(ElasticDeploymentStatus),
+    version: S.optional(S.String),
+    memoryCapacity: S.optional(S.String),
+    diskCapacity: S.optional(S.String),
+    elasticsearchEndPoint: S.optional(S.String),
+    deploymentUrl: S.optional(S.String),
+    marketplaceSaasInfo: S.optional(MarketplaceSaaSInfo),
+    projectType: S.optional(S.String),
+    configurationType: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DeploymentInfoResponse",
+}) as any as S.Schema<DeploymentInfoResponse>;
+
+export interface ListElasticVersionsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** Region where elastic deployment will take place. */
+  region: string;
+}
+export const ListElasticVersionsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    region: S.String.pipe(T.Query()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Elastic/elasticVersions",
+      code: 200,
+      apiVersion: "2025-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListElasticVersionsRequest",
+}) as any as S.Schema<ListElasticVersionsRequest>;
+
+/** Elastic Version Properties */
+export interface ElasticVersionListProperties {
+  /** Available elastic version of the given region */
+  version?: string;
+}
+export const ElasticVersionListProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    version: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ElasticVersionListProperties",
+}) as any as S.Schema<ElasticVersionListProperties>;
+
+/** Elastic Version List Format */
+export interface ElasticVersionListFormat {
+  /** Elastic Version Properties */
+  properties?: ElasticVersionListProperties;
+}
+export const ElasticVersionListFormat = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    properties: S.optional(ElasticVersionListProperties),
+  }),
+).annotate({
+  identifier: "ElasticVersionListFormat",
+}) as any as S.Schema<ElasticVersionListFormat>;
+
+/** The ElasticVersionListFormat items on this page */
+export type ElasticVersionsListResponseValueList =
+  Array<ElasticVersionListFormat>;
+export const ElasticVersionsListResponseValueList = /*@__PURE__*/ S.Array(
+  ElasticVersionListFormat,
+) as any as S.Schema<ElasticVersionsListResponseValueList>;
+
+/** List of elastic versions available in a region. */
+export interface ElasticVersionsListResponse {
+  /** The ElasticVersionListFormat items on this page */
+  value: ElasticVersionsListResponseValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const ElasticVersionsListResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: ElasticVersionsListResponseValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ElasticVersionsListResponse",
+}) as any as S.Schema<ElasticVersionsListResponse>;
+
+export interface ListListAssociatedTrafficFiltersRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Monitor resource name */
+  monitorName: string;
+}
+export const ListListAssociatedTrafficFiltersRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      monitorName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Elastic/monitors/{monitorName}/listAssociatedTrafficFilters",
+        code: 200,
+        apiVersion: "2025-06-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListListAssociatedTrafficFiltersRequest",
+}) as any as S.Schema<ListListAssociatedTrafficFiltersRequest>;
+
+export interface ListMonitorByResourceGroupRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+}
+export const ListMonitorByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Elastic/monitors",
+      code: 200,
+      apiVersion: "2025-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListMonitorByResourceGroupRequest",
+}) as any as S.Schema<ListMonitorByResourceGroupRequest>;
 
 /** Resource tags. */
 export type ElasticMonitorResourceTagsMap = {
@@ -1899,74 +2007,103 @@ export const ElasticMonitorResourceListResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ElasticMonitorResourceListResponse",
 }) as any as S.Schema<ElasticMonitorResourceListResponse>;
 
-export interface MonitorsListByResourceGroupRequest {
+export interface ListMonitoredResourcesRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
-}
-export const MonitorsListByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Elastic/monitors",
-      code: 200,
-      apiVersion: "2025-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "MonitorsListByResourceGroupRequest",
-}) as any as S.Schema<MonitorsListByResourceGroupRequest>;
-
-/** elastic monitor resource tags. */
-export type MonitorsUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const MonitorsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<MonitorsUpdateRequestTagsMap>;
-
-export interface MonitorsUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
+  /** Monitor resource name */
   monitorName: string;
-  /** elastic monitor resource tags. */
-  tags?: MonitorsUpdateRequestTagsMap;
 }
-export const MonitorsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListMonitoredResourcesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     monitorName: S.String.pipe(T.Label()),
-    tags: S.optional(MonitorsUpdateRequestTagsMap),
   }).pipe(
     T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Elastic/monitors/{monitorName}",
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Elastic/monitors/{monitorName}/listMonitoredResources",
       code: 200,
       apiVersion: "2025-06-01",
     }),
   ),
 ).annotate({
-  identifier: "MonitorsUpdateRequest",
-}) as any as S.Schema<MonitorsUpdateRequest>;
+  identifier: "ListMonitoredResourcesRequest",
+}) as any as S.Schema<ListMonitoredResourcesRequest>;
 
-/** Resource tags. */
-export type MonitorsUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const MonitorsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<MonitorsUpdateResponseTagsMap>;
+/** Flag indicating the status of the resource for sending logs operation to Elastic. */
+export type SendingLogs = "True" | "False";
+export const SendingLogs = /*@__PURE__*/ S.String;
 
-export interface MonitorsUpdateResponse {
+/** The properties of a resource currently being monitored by the Elastic monitor resource. */
+export interface MonitoredResource {
+  /** The ARM id of the resource. */
+  id?: string;
+  /** Flag indicating the status of the resource for sending logs operation to Elastic. */
+  sendingLogs?: SendingLogs;
+  /** Reason for why the resource is sending logs (or why it is not sending). */
+  reasonForLogsStatus?: string;
+}
+export const MonitoredResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    sendingLogs: S.optional(SendingLogs),
+    reasonForLogsStatus: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "MonitoredResource",
+}) as any as S.Schema<MonitoredResource>;
+
+/** The MonitoredResource items on this page */
+export type MonitoredResourceListResponseValueList = Array<MonitoredResource>;
+export const MonitoredResourceListResponseValueList = /*@__PURE__*/ S.Array(
+  MonitoredResource,
+) as any as S.Schema<MonitoredResourceListResponseValueList>;
+
+/** Response of a list operation. */
+export interface MonitoredResourceListResponse {
+  /** The MonitoredResource items on this page */
+  value: MonitoredResourceListResponseValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const MonitoredResourceListResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: MonitoredResourceListResponseValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "MonitoredResourceListResponse",
+}) as any as S.Schema<MonitoredResourceListResponse>;
+
+export interface ListMonitoredSubscriptionsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Monitor resource name */
+  monitorName: string;
+}
+export const ListMonitoredSubscriptionsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    monitorName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Elastic/monitors/{monitorName}/monitoredSubscriptions",
+      code: 200,
+      apiVersion: "2025-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListMonitoredSubscriptionsRequest",
+}) as any as S.Schema<ListMonitoredSubscriptionsRequest>;
+
+/** The request to update subscriptions needed to be monitored by the Elastic monitor resource. */
+export interface MonitoredSubscriptionProperties {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -1975,35 +2112,348 @@ export interface MonitorsUpdateResponse {
   type?: string;
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
-  /** Resource tags. */
-  tags?: MonitorsUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Properties of the monitor resource. */
-  properties?: MonitorProperties;
-  /** The kind of the Elastic resource - observability, security, search etc. */
-  kind?: string;
-  /** SKU of the monitor resource. */
-  sku?: ResourceSku;
-  /** Identity properties of the monitor resource. */
-  identity?: IdentityProperties;
+  /** The request to update subscriptions needed to be monitored by the Elastic monitor resource. */
+  properties?: SubscriptionList;
 }
-export const MonitorsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const MonitoredSubscriptionProperties = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(MonitorsUpdateResponseTagsMap),
-    location: S.String,
-    properties: S.optional(MonitorProperties),
-    kind: S.optional(S.String),
-    sku: S.optional(ResourceSku),
-    identity: S.optional(IdentityProperties),
+    properties: S.optional(SubscriptionList),
   }),
 ).annotate({
-  identifier: "MonitorsUpdateResponse",
-}) as any as S.Schema<MonitorsUpdateResponse>;
+  identifier: "MonitoredSubscriptionProperties",
+}) as any as S.Schema<MonitoredSubscriptionProperties>;
+
+/** The MonitoredSubscriptionProperties items on this page */
+export type MonitoredSubscriptionPropertiesListValueList =
+  Array<MonitoredSubscriptionProperties>;
+export const MonitoredSubscriptionPropertiesListValueList =
+  /*@__PURE__*/ S.Array(
+    MonitoredSubscriptionProperties,
+  ) as any as S.Schema<MonitoredSubscriptionPropertiesListValueList>;
+
+/** Paged collection of MonitoredSubscriptionProperties items */
+export interface MonitoredSubscriptionPropertiesList {
+  /** The MonitoredSubscriptionProperties items on this page */
+  value: MonitoredSubscriptionPropertiesListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const MonitoredSubscriptionPropertiesList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: MonitoredSubscriptionPropertiesListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "MonitoredSubscriptionPropertiesList",
+}) as any as S.Schema<MonitoredSubscriptionPropertiesList>;
+
+export interface ListMonitorsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+}
+export const ListMonitorsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Elastic/monitors",
+      code: 200,
+      apiVersion: "2025-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListMonitorsRequest",
+}) as any as S.Schema<ListMonitorsRequest>;
+
+export interface ListOpenAIRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Monitor resource name */
+  monitorName: string;
+}
+export const ListOpenAIRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    monitorName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Elastic/monitors/{monitorName}/openAIIntegrations",
+      code: 200,
+      apiVersion: "2025-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListOpenAIRequest",
+}) as any as S.Schema<ListOpenAIRequest>;
+
+/** Capture properties of Open AI resource Integration. */
+export interface OpenAIIntegrationRPModel {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Open AI Integration details. */
+  properties?: OpenAIIntegrationProperties;
+}
+export const OpenAIIntegrationRPModel = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(OpenAIIntegrationProperties),
+  }),
+).annotate({
+  identifier: "OpenAIIntegrationRPModel",
+}) as any as S.Schema<OpenAIIntegrationRPModel>;
+
+/** The OpenAIIntegrationRPModel items on this page */
+export type OpenAIIntegrationRPModelListResponseValueList =
+  Array<OpenAIIntegrationRPModel>;
+export const OpenAIIntegrationRPModelListResponseValueList =
+  /*@__PURE__*/ S.Array(
+    OpenAIIntegrationRPModel,
+  ) as any as S.Schema<OpenAIIntegrationRPModelListResponseValueList>;
+
+/** Response of a list operation. */
+export interface OpenAIIntegrationRPModelListResponse {
+  /** The OpenAIIntegrationRPModel items on this page */
+  value: OpenAIIntegrationRPModelListResponseValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const OpenAIIntegrationRPModelListResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      value: OpenAIIntegrationRPModelListResponseValueList,
+      nextLink: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "OpenAIIntegrationRPModelListResponse",
+}) as any as S.Schema<OpenAIIntegrationRPModelListResponse>;
+
+export interface ListOperationsRequest {}
+export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/providers/Microsoft.Elastic/operations",
+      code: 200,
+      apiVersion: "2025-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListOperationsRequest",
+}) as any as S.Schema<ListOperationsRequest>;
+
+/** Represents the display information for an operation. */
+export interface OperationDisplay {
+  /** The service provider of the operation. */
+  provider?: string;
+  /** The resource type of the operation. */
+  resource?: string;
+  /** The name of the operation. */
+  operation?: string;
+  /** A description of the operation. */
+  description?: string;
+}
+export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provider: S.optional(S.String),
+    resource: S.optional(S.String),
+    operation: S.optional(S.String),
+    description: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "OperationDisplay",
+}) as any as S.Schema<OperationDisplay>;
+
+/** A Microsoft.Elastic REST API operation. */
+export interface OperationResult {
+  /** Operation name, i.e., {provider}/{resource}/{operation}. */
+  name?: string;
+  /** Indicates whether the operation is a data action */
+  isDataAction?: boolean;
+  /** The object that represents the operation. */
+  display?: OperationDisplay;
+  /** Origin of the operation */
+  origin?: string;
+}
+export const OperationResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    isDataAction: S.optional(S.Boolean),
+    display: S.optional(OperationDisplay),
+    origin: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "OperationResult",
+}) as any as S.Schema<OperationResult>;
+
+/** The list of operations. */
+export type OperationListResultValueList = Array<OperationResult>;
+export const OperationListResultValueList = /*@__PURE__*/ S.Array(
+  OperationResult,
+) as any as S.Schema<OperationListResultValueList>;
+
+/** Represents a paginated list of operations. */
+export interface OperationListResult {
+  /** The list of operations. */
+  value: OperationListResultValueList;
+  /** The URL to get the next set of results, if any. */
+  nextLink?: string;
+}
+export const OperationListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: OperationListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "OperationListResult",
+}) as any as S.Schema<OperationListResult>;
+
+export interface ListTagRulesRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Monitor resource name */
+  monitorName: string;
+}
+export const ListTagRulesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    monitorName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Elastic/monitors/{monitorName}/tagRules",
+      code: 200,
+      apiVersion: "2025-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListTagRulesRequest",
+}) as any as S.Schema<ListTagRulesRequest>;
+
+/** Capture logs and metrics of Azure resources based on ARM tags. */
+export interface MonitoringTagRules {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of the monitoring tag rules. */
+  properties?: MonitoringTagRulesProperties;
+}
+export const MonitoringTagRules = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(MonitoringTagRulesProperties),
+  }),
+).annotate({
+  identifier: "MonitoringTagRules",
+}) as any as S.Schema<MonitoringTagRules>;
+
+/** The MonitoringTagRules items on this page */
+export type MonitoringTagRulesListResponseValueList = Array<MonitoringTagRules>;
+export const MonitoringTagRulesListResponseValueList = /*@__PURE__*/ S.Array(
+  MonitoringTagRules,
+) as any as S.Schema<MonitoringTagRulesListResponseValueList>;
+
+/** Response of a list operation. */
+export interface MonitoringTagRulesListResponse {
+  /** The MonitoringTagRules items on this page */
+  value: MonitoringTagRulesListResponseValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const MonitoringTagRulesListResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: MonitoringTagRulesListResponseValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "MonitoringTagRulesListResponse",
+}) as any as S.Schema<MonitoringTagRulesListResponse>;
+
+export interface ListVMHostRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Monitor resource name */
+  monitorName: string;
+}
+export const ListVMHostRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    monitorName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Elastic/monitors/{monitorName}/listVMHost",
+      code: 200,
+      apiVersion: "2025-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListVMHostRequest",
+}) as any as S.Schema<ListVMHostRequest>;
+
+/** The vm resource properties that is currently being monitored by the Elastic monitor resource. */
+export interface VMResources {
+  /** The ARM id of the VM resource. */
+  vmResourceId?: string;
+}
+export const VMResources = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    vmResourceId: S.optional(S.String),
+  }),
+).annotate({ identifier: "VMResources" }) as any as S.Schema<VMResources>;
+
+/** The VMResources items on this page */
+export type VMHostListResponseValueList = Array<VMResources>;
+export const VMHostListResponseValueList = /*@__PURE__*/ S.Array(
+  VMResources,
+) as any as S.Schema<VMHostListResponseValueList>;
+
+/** Response of a list operation. */
+export interface VMHostListResponse {
+  /** The VMResources items on this page */
+  value: VMHostListResponseValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const VMHostListResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: VMHostListResponseValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "VMHostListResponse",
+}) as any as S.Schema<VMHostListResponse>;
 
 export interface MonitorUpgradeRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -2091,31 +2541,6 @@ export const OpenAICreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "OpenAICreateOrUpdateRequest",
 }) as any as S.Schema<OpenAICreateOrUpdateRequest>;
 
-/** Open AI Integration details. */
-export interface OpenAIIntegrationProperties {
-  /** The resource name of Open AI resource */
-  openAIResourceId?: string;
-  /** The API endpoint for Open AI resource */
-  openAIResourceEndpoint?: string;
-  /** The connector id of Open AI resource */
-  openAIConnectorId?: string;
-  /** Value of API key for Open AI resource */
-  key?: string;
-  /** Last Update Timestamp for key updation */
-  lastRefreshAt?: string;
-}
-export const OpenAIIntegrationProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    openAIResourceId: S.optional(S.String),
-    openAIResourceEndpoint: S.optional(S.String),
-    openAIConnectorId: S.optional(S.String),
-    key: S.optional(S.String),
-    lastRefreshAt: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OpenAIIntegrationProperties",
-}) as any as S.Schema<OpenAIIntegrationProperties>;
-
 export interface OpenAICreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
@@ -2139,409 +2564,6 @@ export const OpenAICreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "OpenAICreateOrUpdateResponse",
 }) as any as S.Schema<OpenAICreateOrUpdateResponse>;
-
-export interface OpenAIDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Monitor resource name */
-  monitorName: string;
-  /** OpenAI Integration name */
-  integrationName: string;
-}
-export const OpenAIDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    monitorName: S.String.pipe(T.Label()),
-    integrationName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Elastic/monitors/{monitorName}/openAIIntegrations/{integrationName}",
-      code: 200,
-      apiVersion: "2025-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "OpenAIDeleteRequest",
-}) as any as S.Schema<OpenAIDeleteRequest>;
-
-export interface OpenAIDeleteResponse {}
-export const OpenAIDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "OpenAIDeleteResponse",
-}) as any as S.Schema<OpenAIDeleteResponse>;
-
-export interface OpenAIGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Monitor resource name */
-  monitorName: string;
-  /** OpenAI Integration name */
-  integrationName: string;
-}
-export const OpenAIGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    monitorName: S.String.pipe(T.Label()),
-    integrationName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Elastic/monitors/{monitorName}/openAIIntegrations/{integrationName}",
-      code: 200,
-      apiVersion: "2025-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "OpenAIGetRequest",
-}) as any as S.Schema<OpenAIGetRequest>;
-
-export interface OpenAIGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Open AI Integration details. */
-  properties?: OpenAIIntegrationProperties;
-}
-export const OpenAIGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(OpenAIIntegrationProperties),
-  }),
-).annotate({
-  identifier: "OpenAIGetResponse",
-}) as any as S.Schema<OpenAIGetResponse>;
-
-export interface OpenAIGetStatusRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Monitor resource name */
-  monitorName: string;
-  /** OpenAI Integration name */
-  integrationName: string;
-}
-export const OpenAIGetStatusRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    monitorName: S.String.pipe(T.Label()),
-    integrationName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Elastic/monitors/{monitorName}/openAIIntegrations/{integrationName}/getStatus",
-      code: 200,
-      apiVersion: "2025-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "OpenAIGetStatusRequest",
-}) as any as S.Schema<OpenAIGetStatusRequest>;
-
-/** Status of the OpenAI Integration */
-export interface OpenAIIntegrationStatusResponseProperties {
-  /** Status of the OpenAI Integration */
-  status?: string;
-}
-export const OpenAIIntegrationStatusResponseProperties =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      status: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "OpenAIIntegrationStatusResponseProperties",
-  }) as any as S.Schema<OpenAIIntegrationStatusResponseProperties>;
-
-/** Status of the OpenAI Integration */
-export interface OpenAIIntegrationStatusResponse {
-  /** Status of the OpenAI Integration */
-  properties?: OpenAIIntegrationStatusResponseProperties;
-}
-export const OpenAIIntegrationStatusResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    properties: S.optional(OpenAIIntegrationStatusResponseProperties),
-  }),
-).annotate({
-  identifier: "OpenAIIntegrationStatusResponse",
-}) as any as S.Schema<OpenAIIntegrationStatusResponse>;
-
-export interface OpenAIListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Monitor resource name */
-  monitorName: string;
-}
-export const OpenAIListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    monitorName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Elastic/monitors/{monitorName}/openAIIntegrations",
-      code: 200,
-      apiVersion: "2025-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "OpenAIListRequest",
-}) as any as S.Schema<OpenAIListRequest>;
-
-/** Capture properties of Open AI resource Integration. */
-export interface OpenAIIntegrationRPModel {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Open AI Integration details. */
-  properties?: OpenAIIntegrationProperties;
-}
-export const OpenAIIntegrationRPModel = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(OpenAIIntegrationProperties),
-  }),
-).annotate({
-  identifier: "OpenAIIntegrationRPModel",
-}) as any as S.Schema<OpenAIIntegrationRPModel>;
-
-/** The OpenAIIntegrationRPModel items on this page */
-export type OpenAIIntegrationRPModelListResponseValueList =
-  Array<OpenAIIntegrationRPModel>;
-export const OpenAIIntegrationRPModelListResponseValueList =
-  /*@__PURE__*/ S.Array(
-    OpenAIIntegrationRPModel,
-  ) as any as S.Schema<OpenAIIntegrationRPModelListResponseValueList>;
-
-/** Response of a list operation. */
-export interface OpenAIIntegrationRPModelListResponse {
-  /** The OpenAIIntegrationRPModel items on this page */
-  value: OpenAIIntegrationRPModelListResponseValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const OpenAIIntegrationRPModelListResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      value: OpenAIIntegrationRPModelListResponseValueList,
-      nextLink: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "OpenAIIntegrationRPModelListResponse",
-}) as any as S.Schema<OpenAIIntegrationRPModelListResponse>;
-
-export interface OperationsListRequest {}
-export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/providers/Microsoft.Elastic/operations",
-      code: 200,
-      apiVersion: "2025-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "OperationsListRequest",
-}) as any as S.Schema<OperationsListRequest>;
-
-/** Represents the display information for an operation. */
-export interface OperationDisplay {
-  /** The service provider of the operation. */
-  provider?: string;
-  /** The resource type of the operation. */
-  resource?: string;
-  /** The name of the operation. */
-  operation?: string;
-  /** A description of the operation. */
-  description?: string;
-}
-export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provider: S.optional(S.String),
-    resource: S.optional(S.String),
-    operation: S.optional(S.String),
-    description: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OperationDisplay",
-}) as any as S.Schema<OperationDisplay>;
-
-/** A Microsoft.Elastic REST API operation. */
-export interface OperationResult {
-  /** Operation name, i.e., {provider}/{resource}/{operation}. */
-  name?: string;
-  /** Indicates whether the operation is a data action */
-  isDataAction?: boolean;
-  /** The object that represents the operation. */
-  display?: OperationDisplay;
-  /** Origin of the operation */
-  origin?: string;
-}
-export const OperationResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    isDataAction: S.optional(S.Boolean),
-    display: S.optional(OperationDisplay),
-    origin: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OperationResult",
-}) as any as S.Schema<OperationResult>;
-
-/** The list of operations. */
-export type OperationListResultValueList = Array<OperationResult>;
-export const OperationListResultValueList = /*@__PURE__*/ S.Array(
-  OperationResult,
-) as any as S.Schema<OperationListResultValueList>;
-
-/** Represents a paginated list of operations. */
-export interface OperationListResult {
-  /** The list of operations. */
-  value: OperationListResultValueList;
-  /** The URL to get the next set of results, if any. */
-  nextLink?: string;
-}
-export const OperationListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: OperationListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OperationListResult",
-}) as any as S.Schema<OperationListResult>;
-
-export interface OrganizationsGetApiKeyRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The User email Id */
-  emailId?: string;
-}
-export const OrganizationsGetApiKeyRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    emailId: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Elastic/getOrganizationApiKey",
-      code: 200,
-      apiVersion: "2025-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "OrganizationsGetApiKeyRequest",
-}) as any as S.Schema<OrganizationsGetApiKeyRequest>;
-
-export interface UserApiKeyResponseProperties {
-  /** The User Api Key Generated based on GenerateApiKey flag. This is applicable for non-Portal clients only. */
-  apiKey?: string | Redacted.Redacted<string>;
-}
-export const UserApiKeyResponseProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    apiKey: S.optional(S.String.pipe(T.SensitiveValue({}))),
-  }),
-).annotate({
-  identifier: "UserApiKeyResponseProperties",
-}) as any as S.Schema<UserApiKeyResponseProperties>;
-
-/** The User Api Key created for the Organization associated with the User Email Id that was passed in the request */
-export interface UserApiKeyResponse {
-  properties?: UserApiKeyResponseProperties;
-}
-export const UserApiKeyResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    properties: S.optional(UserApiKeyResponseProperties),
-  }),
-).annotate({
-  identifier: "UserApiKeyResponse",
-}) as any as S.Schema<UserApiKeyResponse>;
-
-export interface OrganizationsGetElasticToAzureSubscriptionMappingRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-}
-export const OrganizationsGetElasticToAzureSubscriptionMappingRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Elastic/getElasticOrganizationToAzureSubscriptionMapping",
-        code: 200,
-        apiVersion: "2025-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "OrganizationsGetElasticToAzureSubscriptionMappingRequest",
-  }) as any as S.Schema<OrganizationsGetElasticToAzureSubscriptionMappingRequest>;
-
-/** The properties of Azure Subscription ID to which the Organization of the logged in user belongs and gets billed into. */
-export interface ElasticOrganizationToAzureSubscriptionMappingResponseProperties {
-  /** The Azure Subscription ID to which the Organization belongs and gets billed into. This is empty for a new user OR a user without an Elastic Organization. */
-  billedAzureSubscriptionId?: string;
-  /** Marketplace SaaS Info of the resource. */
-  marketplaceSaasInfo?: MarketplaceSaaSInfo;
-  /** The Elastic Organization Id. */
-  elasticOrganizationId?: string;
-  /** The Elastic Organization Name. */
-  elasticOrganizationName?: string;
-}
-export const ElasticOrganizationToAzureSubscriptionMappingResponseProperties =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      billedAzureSubscriptionId: S.optional(S.String),
-      marketplaceSaasInfo: S.optional(MarketplaceSaaSInfo),
-      elasticOrganizationId: S.optional(S.String),
-      elasticOrganizationName: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier:
-      "ElasticOrganizationToAzureSubscriptionMappingResponseProperties",
-  }) as any as S.Schema<ElasticOrganizationToAzureSubscriptionMappingResponseProperties>;
-
-/** The Azure Subscription ID to which the Organization of the logged in user belongs and gets billed into. */
-export interface ElasticOrganizationToAzureSubscriptionMappingResponse {
-  /** The properties of Azure Subscription ID to which the Organization of the logged in user belongs and gets billed into. */
-  properties?: ElasticOrganizationToAzureSubscriptionMappingResponseProperties;
-}
-export const ElasticOrganizationToAzureSubscriptionMappingResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      properties: S.optional(
-        ElasticOrganizationToAzureSubscriptionMappingResponseProperties,
-      ),
-    }),
-  ).annotate({
-    identifier: "ElasticOrganizationToAzureSubscriptionMappingResponse",
-  }) as any as S.Schema<ElasticOrganizationToAzureSubscriptionMappingResponse>;
 
 export interface OrganizationsResubscribeRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -2681,166 +2703,7 @@ export const TagRulesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "TagRulesCreateOrUpdateResponse",
 }) as any as S.Schema<TagRulesCreateOrUpdateResponse>;
 
-export interface TagRulesDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Monitor resource name */
-  monitorName: string;
-  /** Tag Rule Set resource name */
-  ruleSetName: string;
-}
-export const TagRulesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    monitorName: S.String.pipe(T.Label()),
-    ruleSetName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Elastic/monitors/{monitorName}/tagRules/{ruleSetName}",
-      code: 200,
-      apiVersion: "2025-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "TagRulesDeleteRequest",
-}) as any as S.Schema<TagRulesDeleteRequest>;
-
-export interface TagRulesDeleteResponse {}
-export const TagRulesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "TagRulesDeleteResponse",
-}) as any as S.Schema<TagRulesDeleteResponse>;
-
-export interface TagRulesGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Monitor resource name */
-  monitorName: string;
-  /** Tag Rule Set resource name */
-  ruleSetName: string;
-}
-export const TagRulesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    monitorName: S.String.pipe(T.Label()),
-    ruleSetName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Elastic/monitors/{monitorName}/tagRules/{ruleSetName}",
-      code: 200,
-      apiVersion: "2025-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "TagRulesGetRequest",
-}) as any as S.Schema<TagRulesGetRequest>;
-
-export interface TagRulesGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of the monitoring tag rules. */
-  properties?: MonitoringTagRulesProperties;
-}
-export const TagRulesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(MonitoringTagRulesProperties),
-  }),
-).annotate({
-  identifier: "TagRulesGetResponse",
-}) as any as S.Schema<TagRulesGetResponse>;
-
-export interface TagRulesListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Monitor resource name */
-  monitorName: string;
-}
-export const TagRulesListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    monitorName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Elastic/monitors/{monitorName}/tagRules",
-      code: 200,
-      apiVersion: "2025-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "TagRulesListRequest",
-}) as any as S.Schema<TagRulesListRequest>;
-
-/** Capture logs and metrics of Azure resources based on ARM tags. */
-export interface MonitoringTagRules {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of the monitoring tag rules. */
-  properties?: MonitoringTagRulesProperties;
-}
-export const MonitoringTagRules = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(MonitoringTagRulesProperties),
-  }),
-).annotate({
-  identifier: "MonitoringTagRules",
-}) as any as S.Schema<MonitoringTagRules>;
-
-/** The MonitoringTagRules items on this page */
-export type MonitoringTagRulesListResponseValueList = Array<MonitoringTagRules>;
-export const MonitoringTagRulesListResponseValueList = /*@__PURE__*/ S.Array(
-  MonitoringTagRules,
-) as any as S.Schema<MonitoringTagRulesListResponseValueList>;
-
-/** Response of a list operation. */
-export interface MonitoringTagRulesListResponse {
-  /** The MonitoringTagRules items on this page */
-  value: MonitoringTagRulesListResponseValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const MonitoringTagRulesListResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: MonitoringTagRulesListResponseValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "MonitoringTagRulesListResponse",
-}) as any as S.Schema<MonitoringTagRulesListResponse>;
-
-export interface TrafficFiltersDeleteRequest {
+export interface UpdateDetachTrafficFilterRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2850,7 +2713,7 @@ export interface TrafficFiltersDeleteRequest {
   /** Ruleset Id of the filter */
   rulesetId?: string;
 }
-export const TrafficFiltersDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateDetachTrafficFilterRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -2859,21 +2722,253 @@ export const TrafficFiltersDeleteRequest = /*@__PURE__*/ S.suspend(() =>
   }).pipe(
     T.Http({
       method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Elastic/monitors/{monitorName}/deleteTrafficFilter",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Elastic/monitors/{monitorName}/detachTrafficFilter",
       code: 200,
       apiVersion: "2025-06-01",
     }),
   ),
 ).annotate({
-  identifier: "TrafficFiltersDeleteRequest",
-}) as any as S.Schema<TrafficFiltersDeleteRequest>;
+  identifier: "UpdateDetachTrafficFilterRequest",
+}) as any as S.Schema<UpdateDetachTrafficFilterRequest>;
 
-export interface TrafficFiltersDeleteResponse {}
-export const TrafficFiltersDeleteResponse = /*@__PURE__*/ S.suspend(() =>
+export interface UpdateDetachTrafficFilterResponse {}
+export const UpdateDetachTrafficFilterResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "TrafficFiltersDeleteResponse",
-}) as any as S.Schema<TrafficFiltersDeleteResponse>;
+  identifier: "UpdateDetachTrafficFilterResponse",
+}) as any as S.Schema<UpdateDetachTrafficFilterResponse>;
+
+/** elastic monitor resource tags. */
+export type UpdateMonitorRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateMonitorRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateMonitorRequestTagsMap>;
+
+export interface UpdateMonitorRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  monitorName: string;
+  /** elastic monitor resource tags. */
+  tags?: UpdateMonitorRequestTagsMap;
+}
+export const UpdateMonitorRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    monitorName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateMonitorRequestTagsMap),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Elastic/monitors/{monitorName}",
+      code: 200,
+      apiVersion: "2025-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateMonitorRequest",
+}) as any as S.Schema<UpdateMonitorRequest>;
+
+/** Resource tags. */
+export type UpdateMonitorResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateMonitorResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateMonitorResponseTagsMap>;
+
+export interface UpdateMonitorResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateMonitorResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Properties of the monitor resource. */
+  properties?: MonitorProperties;
+  /** The kind of the Elastic resource - observability, security, search etc. */
+  kind?: string;
+  /** SKU of the monitor resource. */
+  sku?: ResourceSku;
+  /** Identity properties of the monitor resource. */
+  identity?: IdentityProperties;
+}
+export const UpdateMonitorResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateMonitorResponseTagsMap),
+    location: S.String,
+    properties: S.optional(MonitorProperties),
+    kind: S.optional(S.String),
+    sku: S.optional(ResourceSku),
+    identity: S.optional(IdentityProperties),
+  }),
+).annotate({
+  identifier: "UpdateMonitorResponse",
+}) as any as S.Schema<UpdateMonitorResponse>;
+
+export interface UpdateMonitoredSubscriptionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  monitorName: string;
+  configurationName: string;
+  /** The request to update subscriptions needed to be monitored by the Elastic monitor resource. */
+  properties?: SubscriptionList;
+}
+export const UpdateMonitoredSubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    monitorName: S.String.pipe(T.Label()),
+    configurationName: S.String.pipe(T.Label()),
+    properties: S.optional(SubscriptionList),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Elastic/monitors/{monitorName}/monitoredSubscriptions/{configurationName}",
+      code: 200,
+      apiVersion: "2025-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateMonitoredSubscriptionRequest",
+}) as any as S.Schema<UpdateMonitoredSubscriptionRequest>;
+
+export interface UpdateMonitoredSubscriptionResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The request to update subscriptions needed to be monitored by the Elastic monitor resource. */
+  properties?: SubscriptionList;
+}
+export const UpdateMonitoredSubscriptionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(SubscriptionList),
+  }),
+).annotate({
+  identifier: "UpdateMonitoredSubscriptionResponse",
+}) as any as S.Schema<UpdateMonitoredSubscriptionResponse>;
+
+export interface UpdateMonitoredSubscriptionsCreateorRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  monitorName: string;
+  configurationName: string;
+  /** The request to update subscriptions needed to be monitored by the Elastic monitor resource. */
+  properties?: SubscriptionList;
+}
+export const UpdateMonitoredSubscriptionsCreateorRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      monitorName: S.String.pipe(T.Label()),
+      configurationName: S.String.pipe(T.Label()),
+      properties: S.optional(SubscriptionList),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Elastic/monitors/{monitorName}/monitoredSubscriptions/{configurationName}",
+        code: 200,
+        apiVersion: "2025-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "UpdateMonitoredSubscriptionsCreateorRequest",
+  }) as any as S.Schema<UpdateMonitoredSubscriptionsCreateorRequest>;
+
+export interface UpdateMonitoredSubscriptionsCreateorResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The request to update subscriptions needed to be monitored by the Elastic monitor resource. */
+  properties?: SubscriptionList;
+}
+export const UpdateMonitoredSubscriptionsCreateorResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(SubscriptionList),
+    }),
+  ).annotate({
+    identifier: "UpdateMonitoredSubscriptionsCreateorResponse",
+  }) as any as S.Schema<UpdateMonitoredSubscriptionsCreateorResponse>;
+
+/** Operation to be performed on the given vm resource id. */
+export type OperationName = "Add" | "Delete";
+export const OperationName = /*@__PURE__*/ S.String;
+
+export interface UpdateVMCollectionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Monitor resource name */
+  monitorName: string;
+  /** ARM id of the VM resource. */
+  vmResourceId?: string;
+  /** Operation to be performed for given VM. */
+  operationName?: OperationName | (string & {});
+}
+export const UpdateVMCollectionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    monitorName: S.String.pipe(T.Label()),
+    vmResourceId: S.optional(S.String),
+    operationName: S.optional(OperationName),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Elastic/monitors/{monitorName}/vmCollectionUpdate",
+      code: 200,
+      apiVersion: "2025-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateVMCollectionRequest",
+}) as any as S.Schema<UpdateVMCollectionRequest>;
+
+export interface UpdateVMCollectionResponse {}
+export const UpdateVMCollectionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "UpdateVMCollectionResponse",
+}) as any as S.Schema<UpdateVMCollectionResponse>;
 
 export interface UpgradableVersionsDetailsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -2925,106 +3020,6 @@ export const UpgradableVersionsList = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpgradableVersionsList",
 }) as any as S.Schema<UpgradableVersionsList>;
 
-/** Operation to be performed on the given vm resource id. */
-export type OperationName = "Add" | "Delete";
-export const OperationName = /*@__PURE__*/ S.String;
-
-export interface VMCollectionUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Monitor resource name */
-  monitorName: string;
-  /** ARM id of the VM resource. */
-  vmResourceId?: string;
-  /** Operation to be performed for given VM. */
-  operationName?: OperationName | (string & {});
-}
-export const VMCollectionUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    monitorName: S.String.pipe(T.Label()),
-    vmResourceId: S.optional(S.String),
-    operationName: S.optional(OperationName),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Elastic/monitors/{monitorName}/vmCollectionUpdate",
-      code: 200,
-      apiVersion: "2025-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "VMCollectionUpdateRequest",
-}) as any as S.Schema<VMCollectionUpdateRequest>;
-
-export interface VMCollectionUpdateResponse {}
-export const VMCollectionUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "VMCollectionUpdateResponse",
-}) as any as S.Schema<VMCollectionUpdateResponse>;
-
-export interface VMHostListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Monitor resource name */
-  monitorName: string;
-}
-export const VMHostListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    monitorName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Elastic/monitors/{monitorName}/listVMHost",
-      code: 200,
-      apiVersion: "2025-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "VMHostListRequest",
-}) as any as S.Schema<VMHostListRequest>;
-
-/** The vm resource properties that is currently being monitored by the Elastic monitor resource. */
-export interface VMResources {
-  /** The ARM id of the VM resource. */
-  vmResourceId?: string;
-}
-export const VMResources = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    vmResourceId: S.optional(S.String),
-  }),
-).annotate({ identifier: "VMResources" }) as any as S.Schema<VMResources>;
-
-/** The VMResources items on this page */
-export type VMHostListResponseValueList = Array<VMResources>;
-export const VMHostListResponseValueList = /*@__PURE__*/ S.Array(
-  VMResources,
-) as any as S.Schema<VMHostListResponseValueList>;
-
-/** Response of a list operation. */
-export interface VMHostListResponse {
-  /** The VMResources items on this page */
-  value: VMHostListResponseValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const VMHostListResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: VMHostListResponseValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "VMHostListResponse",
-}) as any as S.Schema<VMHostListResponse>;
-
 export interface VMIngestionDetailsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -3066,21 +3061,6 @@ export const VMIngestionDetailsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "VMIngestionDetailsResponse",
 }) as any as S.Schema<VMIngestionDetailsResponse>;
 
-export type AllTrafficFiltersListError = AzureOpError;
-/** List all traffic filters associated with your Elastic monitor resource, helping you manage network traffic control. */
-export const AllTrafficFiltersList: API.OperationMethod<
-  AllTrafficFiltersListRequest,
-  ElasticTrafficFilterResponse,
-  AllTrafficFiltersListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AllTrafficFiltersListRequest,
-  output: ElasticTrafficFilterResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type AssociateTrafficFilterAssociateError = AzureOpError;
 /** Associate a traffic filter with your Elastic monitor resource to control and manage network traffic. */
 export const AssociateTrafficFilterAssociate: API.OperationMethod<
@@ -3096,121 +3076,136 @@ export const AssociateTrafficFilterAssociate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type BillingInfoGetError = AzureOpError;
-/** Retrieve marketplace and organization billing information mapped to the given Elastic monitor resource. */
-export const BillingInfoGet: API.OperationMethod<
-  BillingInfoGetRequest,
-  BillingInfoResponse,
-  BillingInfoGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BillingInfoGetRequest,
-  output: BillingInfoResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ConnectedPartnerResourcesListError = AzureOpError;
-/** List all active deployments associated with the marketplace subscription linked to the given Elastic monitor resource. */
-export const ConnectedPartnerResourcesList: API.OperationMethod<
-  ConnectedPartnerResourcesListRequest,
-  ConnectedPartnerResourcesListResponse,
-  ConnectedPartnerResourcesListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ConnectedPartnerResourcesListRequest,
-  output: ConnectedPartnerResourcesListResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CreateAndAssociateIPFilterCreateError = AzureOpError;
+export type CreateCreateAndAssociateIPFilterError = AzureOpError;
 /** Create and associate an IP filter with your Elastic monitor resource to control and manage network traffic. */
-export const CreateAndAssociateIPFilterCreate: API.OperationMethod<
-  CreateAndAssociateIPFilterCreateRequest,
-  CreateAndAssociateIPFilterCreateResponse,
-  CreateAndAssociateIPFilterCreateError,
+export const CreateCreateAndAssociateIPFilter: API.OperationMethod<
+  CreateCreateAndAssociateIPFilterRequest,
+  CreateCreateAndAssociateIPFilterResponse,
+  CreateCreateAndAssociateIPFilterError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateAndAssociateIPFilterCreateRequest,
-  output: CreateAndAssociateIPFilterCreateResponse,
+  input: CreateCreateAndAssociateIPFilterRequest,
+  output: CreateCreateAndAssociateIPFilterResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type CreateAndAssociatePLFilterCreateError = AzureOpError;
+export type CreateCreateAndAssociatePLFilterError = AzureOpError;
 /** Create and associate a PL filter with your Elastic monitor resource to control and manage network traffic. */
-export const CreateAndAssociatePLFilterCreate: API.OperationMethod<
-  CreateAndAssociatePLFilterCreateRequest,
-  CreateAndAssociatePLFilterCreateResponse,
-  CreateAndAssociatePLFilterCreateError,
+export const CreateCreateAndAssociatePLFilter: API.OperationMethod<
+  CreateCreateAndAssociatePLFilterRequest,
+  CreateCreateAndAssociatePLFilterResponse,
+  CreateCreateAndAssociatePLFilterError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CreateAndAssociatePLFilterCreateRequest,
-  output: CreateAndAssociatePLFilterCreateResponse,
+  input: CreateCreateAndAssociatePLFilterRequest,
+  output: CreateCreateAndAssociatePLFilterResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeploymentInfoListError = AzureOpError;
-/** Fetch detailed information about Elastic cloud deployments corresponding to the Elastic monitor resource. */
-export const DeploymentInfoList: API.OperationMethod<
-  DeploymentInfoListRequest,
-  DeploymentInfoResponse,
-  DeploymentInfoListError,
+export type CreateMonitorError = AzureOpError;
+/** Create a new Elastic monitor resource in your Azure subscription, enabling observability and monitoring of your Azure resources through Elastic. */
+export const CreateMonitor: API.OperationMethod<
+  CreateMonitorRequest,
+  CreateMonitorResponse,
+  CreateMonitorError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeploymentInfoListRequest,
-  output: DeploymentInfoResponse,
+  input: CreateMonitorRequest,
+  output: CreateMonitorResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DetachAndDeleteTrafficFilterDeleteError = AzureOpError;
+export type DeleteDetachAndDeleteTrafficFilterError = AzureOpError;
 /** Detach and delete an existing traffic filter from your Elastic monitor resource, removing its network traffic control capabilities. */
-export const DetachAndDeleteTrafficFilterDelete: API.OperationMethod<
-  DetachAndDeleteTrafficFilterDeleteRequest,
-  DetachAndDeleteTrafficFilterDeleteResponse,
-  DetachAndDeleteTrafficFilterDeleteError,
+export const DeleteDetachAndDeleteTrafficFilter: API.OperationMethod<
+  DeleteDetachAndDeleteTrafficFilterRequest,
+  DeleteDetachAndDeleteTrafficFilterResponse,
+  DeleteDetachAndDeleteTrafficFilterError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DetachAndDeleteTrafficFilterDeleteRequest,
-  output: DetachAndDeleteTrafficFilterDeleteResponse,
+  input: DeleteDetachAndDeleteTrafficFilterRequest,
+  output: DeleteDetachAndDeleteTrafficFilterResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DetachTrafficFilterUpdateError = AzureOpError;
-/** Detach an existing traffic filter from your Elastic monitor resource, removing its network traffic control capabilities. */
-export const DetachTrafficFilterUpdate: API.OperationMethod<
-  DetachTrafficFilterUpdateRequest,
-  DetachTrafficFilterUpdateResponse,
-  DetachTrafficFilterUpdateError,
+export type DeleteMonitorError = AzureOpError;
+/** Delete an existing Elastic monitor resource from your Azure subscription, removing its observability and monitoring capabilities. */
+export const DeleteMonitor: API.OperationMethod<
+  DeleteMonitorRequest,
+  DeleteMonitorResponse,
+  DeleteMonitorError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DetachTrafficFilterUpdateRequest,
-  output: DetachTrafficFilterUpdateResponse,
+  input: DeleteMonitorRequest,
+  output: DeleteMonitorResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ElasticVersionsListError = AzureOpError;
-/** Retrieve a list of all available Elastic versions for a specified region, helping you choose the best version for your deployment. Retrieve a list of all available Elastic versions for a specified region, helping you choose the best version for your deployment. */
-export const ElasticVersionsList: API.OperationMethod<
-  ElasticVersionsListRequest,
-  ElasticVersionsListResponse,
-  ElasticVersionsListError,
+export type DeleteMonitoredSubscriptionError = AzureOpError;
+/** Delete subscriptions being monitored by the Elastic monitor resource, removing their observability and monitoring capabilities. */
+export const DeleteMonitoredSubscription: API.OperationMethod<
+  DeleteMonitoredSubscriptionRequest,
+  DeleteMonitoredSubscriptionResponse,
+  DeleteMonitoredSubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ElasticVersionsListRequest,
-  output: ElasticVersionsListResponse,
+  input: DeleteMonitoredSubscriptionRequest,
+  output: DeleteMonitoredSubscriptionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteOpenAIError = AzureOpError;
+/** Delete an OpenAI integration rule for a given Elastic monitor resource, removing AI-driven observability and monitoring capabilities. */
+export const DeleteOpenAI: API.OperationMethod<
+  DeleteOpenAIRequest,
+  DeleteOpenAIResponse,
+  DeleteOpenAIError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteOpenAIRequest,
+  output: DeleteOpenAIResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteTagRuleError = AzureOpError;
+/** Delete a tag rule set for a given Elastic monitor resource, removing fine-grained control over observability based on resource tags. */
+export const DeleteTagRule: API.OperationMethod<
+  DeleteTagRuleRequest,
+  DeleteTagRuleResponse,
+  DeleteTagRuleError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteTagRuleRequest,
+  output: DeleteTagRuleResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteTrafficFilterError = AzureOpError;
+/** Delete an existing traffic filter associated with your Elastic monitor resource, removing its network traffic control capabilities. */
+export const DeleteTrafficFilter: API.OperationMethod<
+  DeleteTrafficFilterRequest,
+  DeleteTrafficFilterResponse,
+  DeleteTrafficFilterError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteTrafficFilterRequest,
+  output: DeleteTrafficFilterResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -3231,196 +3226,317 @@ export const ExternalUserCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ListAssociatedTrafficFiltersListError = AzureOpError;
-/** List all traffic filters associated with your Elastic monitor resource, helping you manage network traffic control. */
-export const ListAssociatedTrafficFiltersList: API.OperationMethod<
-  ListAssociatedTrafficFiltersListRequest,
-  ElasticTrafficFilterResponse,
-  ListAssociatedTrafficFiltersListError,
+export type GetBillingInfoError = AzureOpError;
+/** Retrieve marketplace and organization billing information mapped to the given Elastic monitor resource. */
+export const GetBillingInfo: API.OperationMethod<
+  GetBillingInfoRequest,
+  BillingInfoResponse,
+  GetBillingInfoError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ListAssociatedTrafficFiltersListRequest,
+  input: GetBillingInfoRequest,
+  output: BillingInfoResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetMonitorError = AzureOpError;
+/** Get detailed properties of a specific Elastic monitor resource, helping you manage observability and performance. */
+export const GetMonitor: API.OperationMethod<
+  GetMonitorRequest,
+  GetMonitorResponse,
+  GetMonitorError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetMonitorRequest,
+  output: GetMonitorResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetMonitoredSubscriptionError = AzureOpError;
+/** Get detailed information about all subscriptions currently being monitored by the Elastic monitor resource. */
+export const GetMonitoredSubscription: API.OperationMethod<
+  GetMonitoredSubscriptionRequest,
+  GetMonitoredSubscriptionResponse,
+  GetMonitoredSubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetMonitoredSubscriptionRequest,
+  output: GetMonitoredSubscriptionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetOpenAIError = AzureOpError;
+/** Get detailed information about OpenAI integration rules for a given Elastic monitor resource. */
+export const GetOpenAI: API.OperationMethod<
+  GetOpenAIRequest,
+  GetOpenAIResponse,
+  GetOpenAIError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetOpenAIRequest,
+  output: GetOpenAIResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetOpenAIStatusError = AzureOpError;
+/** Get the status of OpenAI integration for a given Elastic monitor resource, ensuring optimal observability and performance. */
+export const GetOpenAIStatus: API.OperationMethod<
+  GetOpenAIStatusRequest,
+  OpenAIIntegrationStatusResponse,
+  GetOpenAIStatusError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetOpenAIStatusRequest,
+  output: OpenAIIntegrationStatusResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetOrganizationApiKeyError = AzureOpError;
+/** Fetch the User API Key from the internal database, if it was generated and stored during the creation of the Elasticsearch Organization. Fetch the User API Key from the internal database, if it was generated and stored during the creation of the Elasticsearch Organization. */
+export const GetOrganizationApiKey: API.OperationMethod<
+  GetOrganizationApiKeyRequest,
+  UserApiKeyResponse,
+  GetOrganizationApiKeyError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetOrganizationApiKeyRequest,
+  output: UserApiKeyResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetOrganizationElasticToAzureSubscriptionMappingError =
+  AzureOpError;
+/** Retrieve mapping details between the Elastic Organization and Azure Subscription for the logged-in user. >; /** Retrieve mapping details between the Elastic Organization and Azure Subscription for the logged-in user. */
+export const GetOrganizationElasticToAzureSubscriptionMapping: API.OperationMethod<
+  GetOrganizationElasticToAzureSubscriptionMappingRequest,
+  ElasticOrganizationToAzureSubscriptionMappingResponse,
+  GetOrganizationElasticToAzureSubscriptionMappingError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetOrganizationElasticToAzureSubscriptionMappingRequest,
+  output: ElasticOrganizationToAzureSubscriptionMappingResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetTagRuleError = AzureOpError;
+/** Get detailed information about a tag rule set for a given Elastic monitor resource. */
+export const GetTagRule: API.OperationMethod<
+  GetTagRuleRequest,
+  GetTagRuleResponse,
+  GetTagRuleError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetTagRuleRequest,
+  output: GetTagRuleResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListAllTrafficFiltersError = AzureOpError;
+/** List all traffic filters associated with your Elastic monitor resource, helping you manage network traffic control. */
+export const ListAllTrafficFilters: API.OperationMethod<
+  ListAllTrafficFiltersRequest,
+  ElasticTrafficFilterResponse,
+  ListAllTrafficFiltersError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListAllTrafficFiltersRequest,
   output: ElasticTrafficFilterResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type MonitoredResourcesListError = AzureOpError;
-/** List all resources currently being monitored by the Elastic monitor resource, helping you manage observability. */
-export const MonitoredResourcesList: API.OperationMethod<
-  MonitoredResourcesListRequest,
-  MonitoredResourceListResponse,
-  MonitoredResourcesListError,
+export type ListConnectedPartnerResourcesError = AzureOpError;
+/** List all active deployments associated with the marketplace subscription linked to the given Elastic monitor resource. */
+export const ListConnectedPartnerResources: API.OperationMethod<
+  ListConnectedPartnerResourcesRequest,
+  ConnectedPartnerResourcesListResponse,
+  ListConnectedPartnerResourcesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: MonitoredResourcesListRequest,
+  input: ListConnectedPartnerResourcesRequest,
+  output: ConnectedPartnerResourcesListResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDeploymentInfoError = AzureOpError;
+/** Fetch detailed information about Elastic cloud deployments corresponding to the Elastic monitor resource. */
+export const ListDeploymentInfo: API.OperationMethod<
+  ListDeploymentInfoRequest,
+  DeploymentInfoResponse,
+  ListDeploymentInfoError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDeploymentInfoRequest,
+  output: DeploymentInfoResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListElasticVersionsError = AzureOpError;
+/** Retrieve a list of all available Elastic versions for a specified region, helping you choose the best version for your deployment. Retrieve a list of all available Elastic versions for a specified region, helping you choose the best version for your deployment. */
+export const ListElasticVersions: API.OperationMethod<
+  ListElasticVersionsRequest,
+  ElasticVersionsListResponse,
+  ListElasticVersionsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListElasticVersionsRequest,
+  output: ElasticVersionsListResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListListAssociatedTrafficFiltersError = AzureOpError;
+/** List all traffic filters associated with your Elastic monitor resource, helping you manage network traffic control. */
+export const ListListAssociatedTrafficFilters: API.OperationMethod<
+  ListListAssociatedTrafficFiltersRequest,
+  ElasticTrafficFilterResponse,
+  ListListAssociatedTrafficFiltersError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListListAssociatedTrafficFiltersRequest,
+  output: ElasticTrafficFilterResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListMonitorByResourceGroupError = AzureOpError;
+/** List all Elastic monitor resources within a specified resource group of the subscription, helping you audit and manage your monitoring setup. */
+export const ListMonitorByResourceGroup: API.OperationMethod<
+  ListMonitorByResourceGroupRequest,
+  ElasticMonitorResourceListResponse,
+  ListMonitorByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListMonitorByResourceGroupRequest,
+  output: ElasticMonitorResourceListResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListMonitoredResourcesError = AzureOpError;
+/** List all resources currently being monitored by the Elastic monitor resource, helping you manage observability. */
+export const ListMonitoredResources: API.OperationMethod<
+  ListMonitoredResourcesRequest,
+  MonitoredResourceListResponse,
+  ListMonitoredResourcesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListMonitoredResourcesRequest,
   output: MonitoredResourceListResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type MonitoredSubscriptionsCreateorUpdateError = AzureOpError;
-/** Add subscriptions to be monitored by the Elastic monitor resource, enabling observability and monitoring. */
-export const MonitoredSubscriptionsCreateorUpdate: API.OperationMethod<
-  MonitoredSubscriptionsCreateorUpdateRequest,
-  MonitoredSubscriptionsCreateorUpdateResponse,
-  MonitoredSubscriptionsCreateorUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: MonitoredSubscriptionsCreateorUpdateRequest,
-  output: MonitoredSubscriptionsCreateorUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type MonitoredSubscriptionsDeleteError = AzureOpError;
-/** Delete subscriptions being monitored by the Elastic monitor resource, removing their observability and monitoring capabilities. */
-export const MonitoredSubscriptionsDelete: API.OperationMethod<
-  MonitoredSubscriptionsDeleteRequest,
-  MonitoredSubscriptionsDeleteResponse,
-  MonitoredSubscriptionsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: MonitoredSubscriptionsDeleteRequest,
-  output: MonitoredSubscriptionsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type MonitoredSubscriptionsGetError = AzureOpError;
-/** Get detailed information about all subscriptions currently being monitored by the Elastic monitor resource. */
-export const MonitoredSubscriptionsGet: API.OperationMethod<
-  MonitoredSubscriptionsGetRequest,
-  MonitoredSubscriptionsGetResponse,
-  MonitoredSubscriptionsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: MonitoredSubscriptionsGetRequest,
-  output: MonitoredSubscriptionsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type MonitoredSubscriptionsListError = AzureOpError;
+export type ListMonitoredSubscriptionsError = AzureOpError;
 /** List all subscriptions currently being monitored by the Elastic monitor resource, helping you manage observability. */
-export const MonitoredSubscriptionsList: API.OperationMethod<
-  MonitoredSubscriptionsListRequest,
+export const ListMonitoredSubscriptions: API.OperationMethod<
+  ListMonitoredSubscriptionsRequest,
   MonitoredSubscriptionPropertiesList,
-  MonitoredSubscriptionsListError,
+  ListMonitoredSubscriptionsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: MonitoredSubscriptionsListRequest,
+  input: ListMonitoredSubscriptionsRequest,
   output: MonitoredSubscriptionPropertiesList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type MonitoredSubscriptionsUpdateError = AzureOpError;
-/** Update subscriptions to be monitored by the Elastic monitor resource, ensuring optimal observability and performance. */
-export const MonitoredSubscriptionsUpdate: API.OperationMethod<
-  MonitoredSubscriptionsUpdateRequest,
-  MonitoredSubscriptionsUpdateResponse,
-  MonitoredSubscriptionsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: MonitoredSubscriptionsUpdateRequest,
-  output: MonitoredSubscriptionsUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type MonitorsCreateError = AzureOpError;
-/** Create a new Elastic monitor resource in your Azure subscription, enabling observability and monitoring of your Azure resources through Elastic. */
-export const MonitorsCreate: API.OperationMethod<
-  MonitorsCreateRequest,
-  MonitorsCreateResponse,
-  MonitorsCreateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: MonitorsCreateRequest,
-  output: MonitorsCreateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type MonitorsDeleteError = AzureOpError;
-/** Delete an existing Elastic monitor resource from your Azure subscription, removing its observability and monitoring capabilities. */
-export const MonitorsDelete: API.OperationMethod<
-  MonitorsDeleteRequest,
-  MonitorsDeleteResponse,
-  MonitorsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: MonitorsDeleteRequest,
-  output: MonitorsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type MonitorsGetError = AzureOpError;
-/** Get detailed properties of a specific Elastic monitor resource, helping you manage observability and performance. */
-export const MonitorsGet: API.OperationMethod<
-  MonitorsGetRequest,
-  MonitorsGetResponse,
-  MonitorsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: MonitorsGetRequest,
-  output: MonitorsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type MonitorsListError = AzureOpError;
+export type ListMonitorsError = AzureOpError;
 /** List all Elastic monitor resources within a specified subscription, helping you audit and manage your monitoring setup. */
-export const MonitorsList: API.OperationMethod<
-  MonitorsListRequest,
+export const ListMonitors: API.OperationMethod<
+  ListMonitorsRequest,
   ElasticMonitorResourceListResponse,
-  MonitorsListError,
+  ListMonitorsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: MonitorsListRequest,
+  input: ListMonitorsRequest,
   output: ElasticMonitorResourceListResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type MonitorsListByResourceGroupError = AzureOpError;
-/** List all Elastic monitor resources within a specified resource group of the subscription, helping you audit and manage your monitoring setup. */
-export const MonitorsListByResourceGroup: API.OperationMethod<
-  MonitorsListByResourceGroupRequest,
-  ElasticMonitorResourceListResponse,
-  MonitorsListByResourceGroupError,
+export type ListOpenAIError = AzureOpError;
+/** List all OpenAI integration rules for a given Elastic monitor resource, helping you manage AI-driven observability and monitoring. */
+export const ListOpenAI: API.OperationMethod<
+  ListOpenAIRequest,
+  OpenAIIntegrationRPModelListResponse,
+  ListOpenAIError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: MonitorsListByResourceGroupRequest,
-  output: ElasticMonitorResourceListResponse,
+  input: ListOpenAIRequest,
+  output: OpenAIIntegrationRPModelListResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type MonitorsUpdateError = AzureOpError;
-/** Update an existing Elastic monitor resource in your Azure subscription, ensuring optimal observability and performance. */
-export const MonitorsUpdate: API.OperationMethod<
-  MonitorsUpdateRequest,
-  MonitorsUpdateResponse,
-  MonitorsUpdateError,
+export type ListOperationsError = AzureOpError;
+/** List the operations for the provider */
+export const ListOperations: API.OperationMethod<
+  ListOperationsRequest,
+  OperationListResult,
+  ListOperationsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: MonitorsUpdateRequest,
-  output: MonitorsUpdateResponse,
+  input: ListOperationsRequest,
+  output: OperationListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListTagRulesError = AzureOpError;
+/** List all tag rules for a given Elastic monitor resource, helping you manage fine-grained control over observability based on resource tags. */
+export const ListTagRules: API.OperationMethod<
+  ListTagRulesRequest,
+  MonitoringTagRulesListResponse,
+  ListTagRulesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListTagRulesRequest,
+  output: MonitoringTagRulesListResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListVMHostError = AzureOpError;
+/** List all VM resources currently being monitored by the Elastic monitor resource, helping you manage observability. */
+export const ListVMHost: API.OperationMethod<
+  ListVMHostRequest,
+  VMHostListResponse,
+  ListVMHostError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListVMHostRequest,
+  output: VMHostListResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -3456,112 +3572,6 @@ export const OpenAICreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type OpenAIDeleteError = AzureOpError;
-/** Delete an OpenAI integration rule for a given Elastic monitor resource, removing AI-driven observability and monitoring capabilities. */
-export const OpenAIDelete: API.OperationMethod<
-  OpenAIDeleteRequest,
-  OpenAIDeleteResponse,
-  OpenAIDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: OpenAIDeleteRequest,
-  output: OpenAIDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type OpenAIGetError = AzureOpError;
-/** Get detailed information about OpenAI integration rules for a given Elastic monitor resource. */
-export const OpenAIGet: API.OperationMethod<
-  OpenAIGetRequest,
-  OpenAIGetResponse,
-  OpenAIGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: OpenAIGetRequest,
-  output: OpenAIGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type OpenAIGetStatusError = AzureOpError;
-/** Get the status of OpenAI integration for a given Elastic monitor resource, ensuring optimal observability and performance. */
-export const OpenAIGetStatus: API.OperationMethod<
-  OpenAIGetStatusRequest,
-  OpenAIIntegrationStatusResponse,
-  OpenAIGetStatusError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: OpenAIGetStatusRequest,
-  output: OpenAIIntegrationStatusResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type OpenAIListError = AzureOpError;
-/** List all OpenAI integration rules for a given Elastic monitor resource, helping you manage AI-driven observability and monitoring. */
-export const OpenAIList: API.OperationMethod<
-  OpenAIListRequest,
-  OpenAIIntegrationRPModelListResponse,
-  OpenAIListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: OpenAIListRequest,
-  output: OpenAIIntegrationRPModelListResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type OperationsListError = AzureOpError;
-/** List the operations for the provider */
-export const OperationsList: API.OperationMethod<
-  OperationsListRequest,
-  OperationListResult,
-  OperationsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: OperationsListRequest,
-  output: OperationListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type OrganizationsGetApiKeyError = AzureOpError;
-/** Fetch the User API Key from the internal database, if it was generated and stored during the creation of the Elasticsearch Organization. Fetch the User API Key from the internal database, if it was generated and stored during the creation of the Elasticsearch Organization. */
-export const OrganizationsGetApiKey: API.OperationMethod<
-  OrganizationsGetApiKeyRequest,
-  UserApiKeyResponse,
-  OrganizationsGetApiKeyError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: OrganizationsGetApiKeyRequest,
-  output: UserApiKeyResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type OrganizationsGetElasticToAzureSubscriptionMappingError =
-  AzureOpError;
-/** Retrieve mapping details between the Elastic Organization and Azure Subscription for the logged-in user. >; /** Retrieve mapping details between the Elastic Organization and Azure Subscription for the logged-in user. */
-export const OrganizationsGetElasticToAzureSubscriptionMapping: API.OperationMethod<
-  OrganizationsGetElasticToAzureSubscriptionMappingRequest,
-  ElasticOrganizationToAzureSubscriptionMappingResponse,
-  OrganizationsGetElasticToAzureSubscriptionMappingError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: OrganizationsGetElasticToAzureSubscriptionMappingRequest,
-  output: ElasticOrganizationToAzureSubscriptionMappingResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type OrganizationsResubscribeError = AzureOpError;
 /** Resubscribe the Elasticsearch Organization. */
 export const OrganizationsResubscribe: API.OperationMethod<
@@ -3592,61 +3602,76 @@ export const TagRulesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type TagRulesDeleteError = AzureOpError;
-/** Delete a tag rule set for a given Elastic monitor resource, removing fine-grained control over observability based on resource tags. */
-export const TagRulesDelete: API.OperationMethod<
-  TagRulesDeleteRequest,
-  TagRulesDeleteResponse,
-  TagRulesDeleteError,
+export type UpdateDetachTrafficFilterError = AzureOpError;
+/** Detach an existing traffic filter from your Elastic monitor resource, removing its network traffic control capabilities. */
+export const UpdateDetachTrafficFilter: API.OperationMethod<
+  UpdateDetachTrafficFilterRequest,
+  UpdateDetachTrafficFilterResponse,
+  UpdateDetachTrafficFilterError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: TagRulesDeleteRequest,
-  output: TagRulesDeleteResponse,
+  input: UpdateDetachTrafficFilterRequest,
+  output: UpdateDetachTrafficFilterResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type TagRulesGetError = AzureOpError;
-/** Get detailed information about a tag rule set for a given Elastic monitor resource. */
-export const TagRulesGet: API.OperationMethod<
-  TagRulesGetRequest,
-  TagRulesGetResponse,
-  TagRulesGetError,
+export type UpdateMonitorError = AzureOpError;
+/** Update an existing Elastic monitor resource in your Azure subscription, ensuring optimal observability and performance. */
+export const UpdateMonitor: API.OperationMethod<
+  UpdateMonitorRequest,
+  UpdateMonitorResponse,
+  UpdateMonitorError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: TagRulesGetRequest,
-  output: TagRulesGetResponse,
+  input: UpdateMonitorRequest,
+  output: UpdateMonitorResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type TagRulesListError = AzureOpError;
-/** List all tag rules for a given Elastic monitor resource, helping you manage fine-grained control over observability based on resource tags. */
-export const TagRulesList: API.OperationMethod<
-  TagRulesListRequest,
-  MonitoringTagRulesListResponse,
-  TagRulesListError,
+export type UpdateMonitoredSubscriptionError = AzureOpError;
+/** Update subscriptions to be monitored by the Elastic monitor resource, ensuring optimal observability and performance. */
+export const UpdateMonitoredSubscription: API.OperationMethod<
+  UpdateMonitoredSubscriptionRequest,
+  UpdateMonitoredSubscriptionResponse,
+  UpdateMonitoredSubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: TagRulesListRequest,
-  output: MonitoringTagRulesListResponse,
+  input: UpdateMonitoredSubscriptionRequest,
+  output: UpdateMonitoredSubscriptionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type TrafficFiltersDeleteError = AzureOpError;
-/** Delete an existing traffic filter associated with your Elastic monitor resource, removing its network traffic control capabilities. */
-export const TrafficFiltersDelete: API.OperationMethod<
-  TrafficFiltersDeleteRequest,
-  TrafficFiltersDeleteResponse,
-  TrafficFiltersDeleteError,
+export type UpdateMonitoredSubscriptionsCreateorError = AzureOpError;
+/** Add subscriptions to be monitored by the Elastic monitor resource, enabling observability and monitoring. */
+export const UpdateMonitoredSubscriptionsCreateor: API.OperationMethod<
+  UpdateMonitoredSubscriptionsCreateorRequest,
+  UpdateMonitoredSubscriptionsCreateorResponse,
+  UpdateMonitoredSubscriptionsCreateorError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: TrafficFiltersDeleteRequest,
-  output: TrafficFiltersDeleteResponse,
+  input: UpdateMonitoredSubscriptionsCreateorRequest,
+  output: UpdateMonitoredSubscriptionsCreateorResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateVMCollectionError = AzureOpError;
+/** Update the VM details that will be monitored by the Elastic monitor resource, ensuring optimal observability and performance. */
+export const UpdateVMCollection: API.OperationMethod<
+  UpdateVMCollectionRequest,
+  UpdateVMCollectionResponse,
+  UpdateVMCollectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateVMCollectionRequest,
+  output: UpdateVMCollectionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -3662,36 +3687,6 @@ export const UpgradableVersionsDetails: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: UpgradableVersionsDetailsRequest,
   output: UpgradableVersionsList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VMCollectionUpdateError = AzureOpError;
-/** Update the VM details that will be monitored by the Elastic monitor resource, ensuring optimal observability and performance. */
-export const VMCollectionUpdate: API.OperationMethod<
-  VMCollectionUpdateRequest,
-  VMCollectionUpdateResponse,
-  VMCollectionUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VMCollectionUpdateRequest,
-  output: VMCollectionUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VMHostListError = AzureOpError;
-/** List all VM resources currently being monitored by the Elastic monitor resource, helping you manage observability. */
-export const VMHostList: API.OperationMethod<
-  VMHostListRequest,
-  VMHostListResponse,
-  VMHostListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VMHostListRequest,
-  output: VMHostListResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

@@ -65,6 +65,20 @@ export class NotFound
     [{ status: 404 }],
   ) {}
 
+export type PermissionRoleEnum = "ROLE_UNSPECIFIED" | "OWNER" | "WRITER";
+export const PermissionRoleEnum = /*@__PURE__*/ S.String;
+
+/** Describes a single user. */
+export interface User {
+  /** The user's email. */
+  email?: string;
+}
+export const User = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    email: S.optional(S.String),
+  }),
+).annotate({ identifier: "User" }) as any as S.Schema<User>;
+
 /** Describes a single Google Family. */
 export interface Family {}
 export const Family = /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
@@ -82,60 +96,46 @@ export const Group = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "Group" }) as any as S.Schema<Group>;
 
-export type PermissionRoleEnum = "ROLE_UNSPECIFIED" | "OWNER" | "WRITER";
-export const PermissionRoleEnum = /*@__PURE__*/ S.String;
-
-/** Describes a single user. */
-export interface User {
-  /** The user's email. */
-  email?: string;
-}
-export const User = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    email: S.optional(S.String),
-  }),
-).annotate({ identifier: "User" }) as any as S.Schema<User>;
-
 /** A single permission on the note. Associates a `member` with a `role`. */
 export interface Permission {
-  /** Output only. The Google Family to which this role applies. */
-  family?: Family;
-  /** Output only. The group to which this role applies. */
-  group?: Group;
+  /** The email associated with the member. If set on create, the `email` field in the `User` or `Group` message must either be empty or match this field. On read, may be unset if the member does not have an associated email. */
+  email?: string;
+  /** Output only. Whether this member has been deleted. If the member is recovered, this value is set to false and the recovered member retains the role on the note. */
+  deleted?: boolean;
   /** Output only. The resource name. */
   name?: string;
   /** The role granted by this permission. The role determines the entity’s ability to read, write, and share notes. */
   role?: PermissionRoleEnum | (string & {});
   /** Output only. The user to whom this role applies. */
   user?: User;
-  /** Output only. Whether this member has been deleted. If the member is recovered, this value is set to false and the recovered member retains the role on the note. */
-  deleted?: boolean;
-  /** The email associated with the member. If set on create, the `email` field in the `User` or `Group` message must either be empty or match this field. On read, may be unset if the member does not have an associated email. */
-  email?: string;
+  /** Output only. The Google Family to which this role applies. */
+  family?: Family;
+  /** Output only. The group to which this role applies. */
+  group?: Group;
 }
 export const Permission = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    family: S.optional(Family),
-    group: S.optional(Group),
+    email: S.optional(S.String),
+    deleted: S.optional(S.Boolean),
     name: S.optional(S.String),
     role: S.optional(PermissionRoleEnum),
     user: S.optional(User),
-    deleted: S.optional(S.Boolean),
-    email: S.optional(S.String),
+    family: S.optional(Family),
+    group: S.optional(Group),
   }),
 ).annotate({ identifier: "Permission" }) as any as S.Schema<Permission>;
 
 /** The request to add a single permission on the note. */
 export interface CreatePermissionRequest {
-  /** Required. The parent note where this permission will be created. Format: `notes/{note}` */
-  parent?: string;
   /** Required. The permission to create. One of Permission.email, User.email or Group.email must be supplied. */
   permission?: Permission;
+  /** Required. The parent note where this permission will be created. Format: `notes/{note}` */
+  parent?: string;
 }
 export const CreatePermissionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    parent: S.optional(S.String),
     permission: S.optional(Permission),
+    parent: S.optional(S.String),
   }),
 ).annotate({
   identifier: "CreatePermissionRequest",
@@ -322,36 +322,36 @@ export const Section = /*@__PURE__*/ S.suspend(() =>
 
 /** A single note. */
 export interface Note {
-  /** Output only. When this note was created. */
-  createTime?: string;
-  /** Output only. `true` if this note has been trashed. If trashed, the note is eventually deleted. */
-  trashed?: boolean;
-  /** Output only. The attachments attached to this note. */
-  attachments?: AttachmentList;
-  /** The body of the note. */
-  body?: Section;
-  /** Output only. The list of permissions set on the note. Contains at least one entry for the note owner. */
-  permissions?: PermissionList;
-  /** Output only. When this note was last modified. */
-  updateTime?: string;
-  /** The title of the note. Length must be less than 1,000 characters. */
-  title?: string;
   /** Output only. The resource name of this note. See general note on identifiers in KeepService. */
   name?: string;
+  /** Output only. When this note was last modified. */
+  updateTime?: string;
+  /** Output only. When this note was created. */
+  createTime?: string;
+  /** The title of the note. Length must be less than 1,000 characters. */
+  title?: string;
+  /** Output only. The attachments attached to this note. */
+  attachments?: AttachmentList;
   /** Output only. When this note was trashed. If `trashed`, the note is eventually deleted. If the note is not trashed, this field is not set (and the trashed field is `false`). */
   trashTime?: string;
+  /** Output only. The list of permissions set on the note. Contains at least one entry for the note owner. */
+  permissions?: PermissionList;
+  /** Output only. `true` if this note has been trashed. If trashed, the note is eventually deleted. */
+  trashed?: boolean;
+  /** The body of the note. */
+  body?: Section;
 }
 export const Note = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    createTime: S.optional(S.String),
-    trashed: S.optional(S.Boolean),
-    attachments: S.optional(AttachmentList),
-    body: S.optional(Section),
-    permissions: S.optional(PermissionList),
-    updateTime: S.optional(S.String),
-    title: S.optional(S.String),
     name: S.optional(S.String),
+    updateTime: S.optional(S.String),
+    createTime: S.optional(S.String),
+    title: S.optional(S.String),
+    attachments: S.optional(AttachmentList),
     trashTime: S.optional(S.String),
+    permissions: S.optional(PermissionList),
+    trashed: S.optional(S.Boolean),
+    body: S.optional(Section),
   }),
 ).annotate({ identifier: "Note" }) as any as S.Schema<Note>;
 

@@ -14,7 +14,45 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "keyDictionary": {
+      "completionTokens": "completion_tokens",
+      "createdAt": "created_at",
+      "fileName": "file_name",
+      "frequencyPenalty": "frequency_penalty",
+      "ignoreEos": "ignore_eos",
+      "imageB64": "image_b64",
+      "imageUrl": "image_url",
+      "inputText": "input_text",
+      "jsonSchema": "json_schema",
+      "maxLength": "max_length",
+      "maxTokens": "max_tokens",
+      "modifiedAt": "modified_at",
+      "negativePrompt": "negative_prompt",
+      "numSteps": "num_steps",
+      "perPage": "per_page",
+      "presencePenalty": "presence_penalty",
+      "promptTokens": "prompt_tokens",
+      "repetitionPenalty": "repetition_penalty",
+      "responseFormat": "response_format",
+      "resultInfo": "result_info",
+      "sourceLang": "source_lang",
+      "targetLang": "target_lang",
+      "toolCalls": "tool_calls",
+      "topK": "top_k",
+      "topP": "top_p",
+      "totalCount": "total_count",
+      "totalTokens": "total_tokens",
+      "translatedText": "translated_text",
+      "wordCount": "word_count"
+    },
+    "opAliases": [
+      {
+        "alias": "createAiToMarkdown",
+        "target": "transformToMarkdown"
+      }
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.ai#RunRequestTextTextEmbeddingsCase1List": {
@@ -488,220 +526,6 @@
         "target": "com.cloudflare.ai#RunRequestToolsItem"
       }
     },
-    "com.cloudflare.ai#RunRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "model_name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "text": {
-          "target": "com.cloudflare.ai#RunRequestText",
-          "traits": {
-            "smithy.api#documentation": "The text that you want to classify"
-          }
-        },
-        "prompt": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A text description of the image you want to generate"
-          }
-        },
-        "guidance": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Controls how closely the generated image should adhere to the prompt; higher values make the image more aligned with the prompt"
-          }
-        },
-        "height": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The height of the generated image in pixels"
-          }
-        },
-        "image": {
-          "target": "com.cloudflare.ai#RunRequestImage",
-          "traits": {
-            "smithy.api#documentation": "For use with img2img tasks. An array of integers that represent the image data constrained to 8-bit unsigned integer values"
-          }
-        },
-        "image_b64": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "For use with img2img tasks. A base64-encoded string of the input image"
-          }
-        },
-        "mask": {
-          "target": "com.cloudflare.ai#RunRequestMaskList",
-          "traits": {
-            "smithy.api#documentation": "An array representing An array of integers that represent mask image data for inpainting constrained to 8-bit unsigned integer values"
-          }
-        },
-        "negative_prompt": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Text describing elements to avoid in the generated image"
-          }
-        },
-        "num_steps": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The number of diffusion steps; higher values can improve quality but take longer"
-          }
-        },
-        "seed": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Random seed for reproducibility of the image generation"
-          }
-        },
-        "strength": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "A value between 0 and 1 indicating how strongly to apply the transformation during img2img tasks; lower values make the output closer to the input image"
-          }
-        },
-        "width": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The width of the generated image in pixels"
-          }
-        },
-        "lang": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The speech language (e.g., 'en' for English, 'fr' for French). Defaults to 'en' if not specified"
-          }
-        },
-        "audio": {
-          "target": "com.cloudflare.ai#RunRequestAudioList",
-          "traits": {
-            "smithy.api#documentation": "An array of integers that represent the audio data constrained to 8-bit unsigned integer values"
-          }
-        },
-        "source_lang": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The language of the recorded audio"
-          }
-        },
-        "target_lang": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The language to translate the transcription into. Currently only English is supported."
-          }
-        },
-        "frequency_penalty": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Decreases the likelihood of the model repeating the same lines verbatim."
-          }
-        },
-        "lora": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Name of the LoRA (Low-Rank Adaptation) model to fine-tune the base model."
-          }
-        },
-        "max_tokens": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The maximum number of tokens to generate in the response."
-          }
-        },
-        "presence_penalty": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Increases the likelihood of the model introducing new topics."
-          }
-        },
-        "raw": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "If true, a chat template is not applied and you must adhere to the specific model's expected formatting."
-          }
-        },
-        "repetition_penalty": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Penalty for repeated tokens; higher values discourage repetition."
-          }
-        },
-        "response_format": {
-          "target": "com.cloudflare.ai#RunRequestResponseFormat"
-        },
-        "stream": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "If true, the response will be streamed back incrementally using SSE, Server Sent Events."
-          }
-        },
-        "temperature": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Controls the randomness of the output; higher values produce more random results."
-          }
-        },
-        "top_k": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Limits the AI to choose from the top 'k' most probable words. Lower values make responses more focused; higher values introduce more variety and potential surprises."
-          }
-        },
-        "top_p": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Adjusts the creativity of the AI's responses by controlling how many possible words it considers. Lower values make outputs more predictable; higher values allow for more varied and creative responses."
-          }
-        },
-        "messages": {
-          "target": "com.cloudflare.ai#RunRequestMessages",
-          "traits": {
-            "smithy.api#documentation": "An array of message objects representing the conversation history."
-          }
-        },
-        "functions": {
-          "target": "com.cloudflare.ai#RunRequestFunctionsList"
-        },
-        "tools": {
-          "target": "com.cloudflare.ai#RunRequestToolsList",
-          "traits": {
-            "smithy.api#documentation": "A list of tools available for the assistant to use."
-          }
-        },
-        "input_text": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The text that you want the model to summarize"
-          }
-        },
-        "max_length": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The maximum length of the generated summary in tokens"
-          }
-        },
-        "ignore_eos": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether to ignore the EOS token and continue generating tokens after the EOS token is generated."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.ai#RunResultTextClassificationItem": {
       "type": "structure",
       "members": {
@@ -1077,338 +901,10 @@
         }
       }
     },
-    "com.cloudflare.ai#RunResponse": {
-      "type": "structure",
-      "members": {
-        "result": {
-          "target": "com.cloudflare.ai#RunResult",
-          "traits": {
-            "com.cloudflare.protocols#envelopePayload": {},
-            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.ai#Run": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.ai#RunRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.ai#RunResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "/accounts/{account_id}/ai/run/{model_name}",
-          "code": 200
-        },
-        "smithy.api#documentation": "This endpoint provides users with the capability to run specific AI models on-demand. By submitting the required input data, users can receive real-time predictions or results generated by the chosen AI model. The endpoint supports various AI model types, ensuring flexibility and adaptability for diverse use cases. Model specific inputs available in [Cloudflare Docs](https://developers.cloudflare.com/workers-ai/models/)."
-      }
-    },
-    "com.cloudflare.ai#AuthorsListRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.ai#AuthorsListResultList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
-      }
-    },
-    "com.cloudflare.ai#AuthorsListResponse": {
-      "type": "structure",
-      "members": {
-        "result": {
-          "target": "com.cloudflare.ai#AuthorsListResultList",
-          "traits": {
-            "com.cloudflare.protocols#envelopePayload": {},
-            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.ai#AuthorsList": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.ai#AuthorsListRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.ai#AuthorsListResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/accounts/{account_id}/ai/authors/search",
-          "code": 200
-        },
-        "smithy.api#documentation": "Searches Workers AI models by author or organization name.",
-        "smithy.api#readonly": {}
-      }
-    },
-    "com.cloudflare.ai#FinetunesCreateRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "model": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "description": {
-          "target": "smithy.api#String"
-        },
-        "public": {
-          "target": "smithy.api#Boolean"
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.ai#FinetunesCreateResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "created_at": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "model": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "modified_at": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "public": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "description": {
-          "target": "smithy.api#String"
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.ai#FinetunesCreate": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.ai#FinetunesCreateRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.ai#FinetunesCreateResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "/accounts/{account_id}/ai/finetunes",
-          "code": 200
-        },
-        "smithy.api#documentation": "Creates a new fine-tuning job for a Workers AI model using custom training data."
-      }
-    },
-    "com.cloudflare.ai#FinetunesListRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.ai#FinetunesListResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "created_at": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "model": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "modified_at": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "description": {
-          "target": "smithy.api#String"
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.ai#FinetunesList": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.ai#FinetunesListRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.ai#FinetunesListResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/accounts/{account_id}/ai/finetunes",
-          "code": 200
-        },
-        "smithy.api#documentation": "Lists all fine-tuning jobs created by the account, including status and metrics.",
-        "smithy.api#readonly": {}
-      }
-    },
-    "com.cloudflare.ai#FinetunesAssetsCreateRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "finetune_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.ai#FinetunesAssetsCreate": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.ai#FinetunesAssetsCreateRequest"
-      },
-      "output": {
-        "target": "smithy.api#Unit"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "/accounts/{account_id}/ai/finetunes/{finetune_id}/finetune-assets",
-          "code": 200
-        },
-        "smithy.api#documentation": "Uploads training data assets for a Workers AI fine-tuning job."
-      }
-    },
-    "com.cloudflare.ai#FinetunesPublicListRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "limit": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Pagination Limit",
-            "smithy.api#httpQuery": "limit"
-          }
-        },
-        "offset": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Pagination Offset",
-            "smithy.api#httpQuery": "offset"
-          }
-        },
-        "orderBy": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Order By Column Name",
-            "smithy.api#httpQuery": "orderBy"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.ai#FinetunesPublicListResultItem": {
@@ -1461,7 +957,593 @@
         "target": "com.cloudflare.ai#FinetunesPublicListResultItem"
       }
     },
-    "com.cloudflare.ai#FinetunesPublicListResponse": {
+    "com.cloudflare.ai#ModelsListRequestFormat": {
+      "type": "enum",
+      "members": {
+        "OPENROUTER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "openrouter"
+          }
+        }
+      }
+    },
+    "com.cloudflare.ai#ModelsSchemaGetResponseInput": {
+      "type": "structure",
+      "members": {
+        "additionalProperties": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.cloudflare.ai#ModelsSchemaGetResponseOutput": {
+      "type": "structure",
+      "members": {
+        "additionalProperties": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.cloudflare.ai#TasksListResultList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.cloudflare.ai#ToMarkdownSupportedResultItem": {
+      "type": "structure",
+      "members": {
+        "extension": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "mimeType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.cloudflare.ai#ToMarkdownSupportedResultList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.ai#ToMarkdownSupportedResultItem"
+      }
+    },
+    "com.cloudflare.ai#ToMarkdownTransformResultItem": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "format": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "mimeType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "tokens": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.cloudflare.ai#ToMarkdownTransformResultList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.ai#ToMarkdownTransformResultItem"
+      }
+    },
+    "com.cloudflare.ai#Ai": {
+      "type": "service",
+      "version": "4.0",
+      "operations": [
+        {
+          "target": "com.cloudflare.ai#CreateFinetune"
+        },
+        {
+          "target": "com.cloudflare.ai#CreateFinetuneAsset"
+        },
+        {
+          "target": "com.cloudflare.ai#GetModelSchema"
+        },
+        {
+          "target": "com.cloudflare.ai#ListAuthors"
+        },
+        {
+          "target": "com.cloudflare.ai#ListFinetunePublics"
+        },
+        {
+          "target": "com.cloudflare.ai#ListFinetunes"
+        },
+        {
+          "target": "com.cloudflare.ai#ListModels"
+        },
+        {
+          "target": "com.cloudflare.ai#ListTasks"
+        },
+        {
+          "target": "com.cloudflare.ai#RunAi"
+        },
+        {
+          "target": "com.cloudflare.ai#SupportedToMarkdown"
+        },
+        {
+          "target": "com.cloudflare.ai#TransformToMarkdown"
+        }
+      ],
+      "traits": {
+        "com.cloudflare.protocols#v4Json": {},
+        "smithy.api#title": "Cloudflare Ai",
+        "smithy.api#documentation": "Cloudflare API — ai resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+      }
+    },
+    "com.cloudflare.ai#AccountNotFound": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "code": 7003
+          }
+        ]
+      }
+    },
+    "com.cloudflare.ai#ModelNotFound": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "code": 7003
+          },
+          {
+            "code": 7000
+          }
+        ]
+      }
+    },
+    "com.cloudflare.ai#ModelNotSupported": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "code": 1000
+          }
+        ]
+      }
+    },
+    "com.cloudflare.ai#ModelSchemaNotFound": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "code": 6002
+          }
+        ]
+      }
+    },
+    "com.cloudflare.ai#CreateFinetune": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.ai#CreateFinetuneRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.ai#CreateFinetuneResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/ai/finetunes",
+          "code": 200
+        },
+        "smithy.api#documentation": "Creates a new fine-tuning job for a Workers AI model using custom training data."
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.ai#ModelNotSupported"
+        },
+        {
+          "target": "com.cloudflare.ai#AccountNotFound"
+        }
+      ]
+    },
+    "com.cloudflare.ai#CreateFinetuneRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "model": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String"
+        },
+        "public": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.ai#CreateFinetuneResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "model": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "modified_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "public": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.ai#CreateFinetuneAsset": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.ai#CreateFinetuneAssetRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/ai/finetunes/{finetune_id}/finetune-assets",
+          "code": 200
+        },
+        "smithy.api#documentation": "Uploads training data assets for a Workers AI fine-tuning job."
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.ai#ModelNotSupported"
+        },
+        {
+          "target": "com.cloudflare.ai#AccountNotFound"
+        }
+      ]
+    },
+    "com.cloudflare.ai#CreateFinetuneAssetRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "finetune_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.ai#GetModelSchema": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.ai#GetModelSchemaRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.ai#GetModelSchemaResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/ai/models/schema",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieves the input and output JSON schema definition for a Workers AI model.",
+        "smithy.api#readonly": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.ai#ModelNotSupported"
+        },
+        {
+          "target": "com.cloudflare.ai#ModelSchemaNotFound"
+        },
+        {
+          "target": "com.cloudflare.ai#AccountNotFound"
+        }
+      ]
+    },
+    "com.cloudflare.ai#GetModelSchemaRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "model": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Model Name",
+            "smithy.api#httpQuery": "model",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.ai#GetModelSchemaResponse": {
+      "type": "structure",
+      "members": {
+        "input": {
+          "target": "com.cloudflare.ai#ModelsSchemaGetResponseInput",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "output": {
+          "target": "com.cloudflare.ai#ModelsSchemaGetResponseOutput",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.ai#ListAuthors": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.ai#ListAuthorsRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.ai#ListAuthorsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/ai/authors/search",
+          "code": 200
+        },
+        "smithy.api#documentation": "Searches Workers AI models by author or organization name.",
+        "smithy.api#readonly": {},
+        "smithy.api#paginated": {
+          "mode": "single",
+          "items": "result"
+        }
+      }
+    },
+    "com.cloudflare.ai#ListAuthorsRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.ai#ListAuthorsResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.ai#AuthorsListResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.ai#ListFinetunePublics": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.ai#ListFinetunePublicsRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.ai#ListFinetunePublicsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/ai/finetunes/public",
+          "code": 200
+        },
+        "smithy.api#documentation": "Lists publicly available fine-tuned models that can be used with Workers AI.",
+        "smithy.api#readonly": {},
+        "smithy.api#paginated": {
+          "mode": "single",
+          "items": "result"
+        }
+      }
+    },
+    "com.cloudflare.ai#ListFinetunePublicsRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Pagination Limit",
+            "smithy.api#httpQuery": "limit"
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Pagination Offset",
+            "smithy.api#httpQuery": "offset"
+          }
+        },
+        "orderBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Order By Column Name",
+            "smithy.api#httpQuery": "orderBy"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.ai#ListFinetunePublicsResponse": {
       "type": "structure",
       "members": {
         "result": {
@@ -1476,36 +1558,112 @@
         "smithy.api#output": {}
       }
     },
-    "com.cloudflare.ai#FinetunesPublicList": {
+    "com.cloudflare.ai#ListFinetunes": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.ai#FinetunesPublicListRequest"
+        "target": "com.cloudflare.ai#ListFinetunesRequest"
       },
       "output": {
-        "target": "com.cloudflare.ai#FinetunesPublicListResponse"
+        "target": "com.cloudflare.ai#ListFinetunesResponse"
       },
       "traits": {
         "smithy.api#http": {
           "method": "GET",
-          "uri": "/accounts/{account_id}/ai/finetunes/public",
+          "uri": "/accounts/{account_id}/ai/finetunes",
           "code": 200
         },
-        "smithy.api#documentation": "Lists publicly available fine-tuned models that can be used with Workers AI.",
+        "smithy.api#documentation": "Lists all fine-tuning jobs created by the account, including status and metrics.",
         "smithy.api#readonly": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.ai#AccountNotFound"
+        }
+      ]
+    },
+    "com.cloudflare.ai#ListFinetunesRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
       }
     },
-    "com.cloudflare.ai#ModelsListRequestFormat": {
-      "type": "enum",
+    "com.cloudflare.ai#ListFinetunesResponse": {
+      "type": "structure",
       "members": {
-        "OPENROUTER": {
-          "target": "smithy.api#Unit",
+        "id": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#enumValue": "openrouter"
+            "smithy.api#required": {}
           }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "model": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "modified_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.ai#ListModels": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.ai#ListModelsRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.ai#ListModelsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/ai/models/search",
+          "code": 200
+        },
+        "smithy.api#documentation": "Searches Workers AI models by name or description.",
+        "smithy.api#readonly": {},
+        "smithy.api#paginated": {
+          "mode": "page",
+          "inputToken": "page",
+          "outputToken": "resultInfo.page",
+          "items": "result",
+          "pageSize": "perPage"
         }
       }
     },
-    "com.cloudflare.ai#ModelsListRequest": {
+    "com.cloudflare.ai#ListModelsRequest": {
       "type": "structure",
       "members": {
         "account_id": {
@@ -1581,7 +1739,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.ai#ModelsListResponse": {
+    "com.cloudflare.ai#ListModelsResponse": {
       "type": "structure",
       "members": {},
       "traits": {
@@ -1589,133 +1747,29 @@
         "smithy.api#documentation": "Raw response payload (operation does not use the standard v4 result envelope)."
       }
     },
-    "com.cloudflare.ai#ModelsList": {
+    "com.cloudflare.ai#ListTasks": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.ai#ModelsListRequest"
+        "target": "com.cloudflare.ai#ListTasksRequest"
       },
       "output": {
-        "target": "com.cloudflare.ai#ModelsListResponse"
+        "target": "com.cloudflare.ai#ListTasksResponse"
       },
       "traits": {
         "smithy.api#http": {
           "method": "GET",
-          "uri": "/accounts/{account_id}/ai/models/search",
+          "uri": "/accounts/{account_id}/ai/tasks/search",
           "code": 200
         },
-        "smithy.api#documentation": "Searches Workers AI models by name or description.",
-        "smithy.api#readonly": {}
-      }
-    },
-    "com.cloudflare.ai#ModelsSchemaGetRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "model": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Model Name",
-            "smithy.api#httpQuery": "model",
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.ai#ModelsSchemaGetResponseInput": {
-      "type": "structure",
-      "members": {
-        "additionalProperties": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "description": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "type": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#required": {}
-          }
+        "smithy.api#documentation": "Searches Workers AI models by task type (e.g., text-generation, embeddings).",
+        "smithy.api#readonly": {},
+        "smithy.api#paginated": {
+          "mode": "single",
+          "items": "result"
         }
       }
     },
-    "com.cloudflare.ai#ModelsSchemaGetResponseOutput": {
-      "type": "structure",
-      "members": {
-        "additionalProperties": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "description": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "type": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.cloudflare.ai#ModelsSchemaGetResponse": {
-      "type": "structure",
-      "members": {
-        "input": {
-          "target": "com.cloudflare.ai#ModelsSchemaGetResponseInput",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "output": {
-          "target": "com.cloudflare.ai#ModelsSchemaGetResponseOutput",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.ai#ModelsSchemaGet": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.ai#ModelsSchemaGetRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.ai#ModelsSchemaGetResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/accounts/{account_id}/ai/models/schema",
-          "code": 200
-        },
-        "smithy.api#documentation": "Retrieves the input and output JSON schema definition for a Workers AI model.",
-        "smithy.api#readonly": {}
-      }
-    },
-    "com.cloudflare.ai#TasksListRequest": {
+    "com.cloudflare.ai#ListTasksRequest": {
       "type": "structure",
       "members": {
         "account_id": {
@@ -1730,13 +1784,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.ai#TasksListResultList": {
-      "type": "list",
-      "member": {
-        "target": "smithy.api#Document"
-      }
-    },
-    "com.cloudflare.ai#TasksListResponse": {
+    "com.cloudflare.ai#ListTasksResponse": {
       "type": "structure",
       "members": {
         "result": {
@@ -1751,25 +1799,280 @@
         "smithy.api#output": {}
       }
     },
-    "com.cloudflare.ai#TasksList": {
+    "com.cloudflare.ai#RunAi": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.ai#TasksListRequest"
+        "target": "com.cloudflare.ai#RunAiRequest"
       },
       "output": {
-        "target": "com.cloudflare.ai#TasksListResponse"
+        "target": "com.cloudflare.ai#RunAiResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/ai/run/{model_name}",
+          "code": 200
+        },
+        "smithy.api#documentation": "This endpoint provides users with the capability to run specific AI models on-demand. By submitting the required input data, users can receive real-time predictions or results generated by the chosen AI model. The endpoint supports various AI model types, ensuring flexibility and adaptability for diverse use cases. Model specific inputs available in [Cloudflare Docs](https://developers.cloudflare.com/workers-ai/models/)."
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.ai#ModelNotFound"
+        }
+      ]
+    },
+    "com.cloudflare.ai#RunAiRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "model_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "text": {
+          "target": "com.cloudflare.ai#RunRequestText",
+          "traits": {
+            "smithy.api#documentation": "The text that you want to classify"
+          }
+        },
+        "prompt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A text description of the image you want to generate"
+          }
+        },
+        "guidance": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Controls how closely the generated image should adhere to the prompt; higher values make the image more aligned with the prompt"
+          }
+        },
+        "height": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The height of the generated image in pixels"
+          }
+        },
+        "image": {
+          "target": "com.cloudflare.ai#RunRequestImage",
+          "traits": {
+            "smithy.api#documentation": "For use with img2img tasks. An array of integers that represent the image data constrained to 8-bit unsigned integer values"
+          }
+        },
+        "image_b64": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "For use with img2img tasks. A base64-encoded string of the input image"
+          }
+        },
+        "mask": {
+          "target": "com.cloudflare.ai#RunRequestMaskList",
+          "traits": {
+            "smithy.api#documentation": "An array representing An array of integers that represent mask image data for inpainting constrained to 8-bit unsigned integer values"
+          }
+        },
+        "negative_prompt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Text describing elements to avoid in the generated image"
+          }
+        },
+        "num_steps": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of diffusion steps; higher values can improve quality but take longer"
+          }
+        },
+        "seed": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Random seed for reproducibility of the image generation"
+          }
+        },
+        "strength": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "A value between 0 and 1 indicating how strongly to apply the transformation during img2img tasks; lower values make the output closer to the input image"
+          }
+        },
+        "width": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The width of the generated image in pixels"
+          }
+        },
+        "lang": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The speech language (e.g., 'en' for English, 'fr' for French). Defaults to 'en' if not specified"
+          }
+        },
+        "audio": {
+          "target": "com.cloudflare.ai#RunRequestAudioList",
+          "traits": {
+            "smithy.api#documentation": "An array of integers that represent the audio data constrained to 8-bit unsigned integer values"
+          }
+        },
+        "source_lang": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The language of the recorded audio"
+          }
+        },
+        "target_lang": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The language to translate the transcription into. Currently only English is supported."
+          }
+        },
+        "frequency_penalty": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Decreases the likelihood of the model repeating the same lines verbatim."
+          }
+        },
+        "lora": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the LoRA (Low-Rank Adaptation) model to fine-tune the base model."
+          }
+        },
+        "max_tokens": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of tokens to generate in the response."
+          }
+        },
+        "presence_penalty": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Increases the likelihood of the model introducing new topics."
+          }
+        },
+        "raw": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If true, a chat template is not applied and you must adhere to the specific model's expected formatting."
+          }
+        },
+        "repetition_penalty": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Penalty for repeated tokens; higher values discourage repetition."
+          }
+        },
+        "response_format": {
+          "target": "com.cloudflare.ai#RunRequestResponseFormat"
+        },
+        "stream": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If true, the response will be streamed back incrementally using SSE, Server Sent Events."
+          }
+        },
+        "temperature": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Controls the randomness of the output; higher values produce more random results."
+          }
+        },
+        "top_k": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Limits the AI to choose from the top 'k' most probable words. Lower values make responses more focused; higher values introduce more variety and potential surprises."
+          }
+        },
+        "top_p": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Adjusts the creativity of the AI's responses by controlling how many possible words it considers. Lower values make outputs more predictable; higher values allow for more varied and creative responses."
+          }
+        },
+        "messages": {
+          "target": "com.cloudflare.ai#RunRequestMessages",
+          "traits": {
+            "smithy.api#documentation": "An array of message objects representing the conversation history."
+          }
+        },
+        "functions": {
+          "target": "com.cloudflare.ai#RunRequestFunctionsList"
+        },
+        "tools": {
+          "target": "com.cloudflare.ai#RunRequestToolsList",
+          "traits": {
+            "smithy.api#documentation": "A list of tools available for the assistant to use."
+          }
+        },
+        "input_text": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The text that you want the model to summarize"
+          }
+        },
+        "max_length": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The maximum length of the generated summary in tokens"
+          }
+        },
+        "ignore_eos": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to ignore the EOS token and continue generating tokens after the EOS token is generated."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.ai#RunAiResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.ai#RunResult",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.ai#SupportedToMarkdown": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.ai#SupportedToMarkdownRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.ai#SupportedToMarkdownResponse"
       },
       "traits": {
         "smithy.api#http": {
           "method": "GET",
-          "uri": "/accounts/{account_id}/ai/tasks/search",
+          "uri": "/accounts/{account_id}/ai/tomarkdown/supported",
           "code": 200
         },
-        "smithy.api#documentation": "Searches Workers AI models by task type (e.g., text-generation, embeddings).",
-        "smithy.api#readonly": {}
+        "smithy.api#documentation": "Lists all file formats supported for conversion to Markdown.",
+        "smithy.api#readonly": {},
+        "smithy.api#paginated": {
+          "mode": "single",
+          "items": "result"
+        }
       }
     },
-    "com.cloudflare.ai#ToMarkdownSupportedRequest": {
+    "com.cloudflare.ai#SupportedToMarkdownRequest": {
       "type": "structure",
       "members": {
         "account_id": {
@@ -1784,30 +2087,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.ai#ToMarkdownSupportedResultItem": {
-      "type": "structure",
-      "members": {
-        "extension": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "mimeType": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.cloudflare.ai#ToMarkdownSupportedResultList": {
-      "type": "list",
-      "member": {
-        "target": "com.cloudflare.ai#ToMarkdownSupportedResultItem"
-      }
-    },
-    "com.cloudflare.ai#ToMarkdownSupportedResponse": {
+    "com.cloudflare.ai#SupportedToMarkdownResponse": {
       "type": "structure",
       "members": {
         "result": {
@@ -1822,25 +2102,24 @@
         "smithy.api#output": {}
       }
     },
-    "com.cloudflare.ai#ToMarkdownSupported": {
+    "com.cloudflare.ai#TransformToMarkdown": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.ai#ToMarkdownSupportedRequest"
+        "target": "com.cloudflare.ai#TransformToMarkdownRequest"
       },
       "output": {
-        "target": "com.cloudflare.ai#ToMarkdownSupportedResponse"
+        "target": "com.cloudflare.ai#TransformToMarkdownResponse"
       },
       "traits": {
         "smithy.api#http": {
-          "method": "GET",
-          "uri": "/accounts/{account_id}/ai/tomarkdown/supported",
+          "method": "POST",
+          "uri": "/accounts/{account_id}/ai/tomarkdown",
           "code": 200
         },
-        "smithy.api#documentation": "Lists all file formats supported for conversion to Markdown.",
-        "smithy.api#readonly": {}
+        "smithy.api#documentation": "Converts uploaded files into Markdown format using Workers AI."
       }
     },
-    "com.cloudflare.ai#ToMarkdownTransformRequest": {
+    "com.cloudflare.ai#TransformToMarkdownRequest": {
       "type": "structure",
       "members": {
         "account_id": {
@@ -1855,48 +2134,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.ai#ToMarkdownTransformResultItem": {
-      "type": "structure",
-      "members": {
-        "data": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "format": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "mimeType": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "tokens": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.cloudflare.ai#ToMarkdownTransformResultList": {
-      "type": "list",
-      "member": {
-        "target": "com.cloudflare.ai#ToMarkdownTransformResultItem"
-      }
-    },
-    "com.cloudflare.ai#ToMarkdownTransformResponse": {
+    "com.cloudflare.ai#TransformToMarkdownResponse": {
       "type": "structure",
       "members": {
         "result": {
@@ -1909,67 +2147,6 @@
       },
       "traits": {
         "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.ai#ToMarkdownTransform": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.ai#ToMarkdownTransformRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.ai#ToMarkdownTransformResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "/accounts/{account_id}/ai/tomarkdown",
-          "code": 200
-        },
-        "smithy.api#documentation": "Converts uploaded files into Markdown format using Workers AI."
-      }
-    },
-    "com.cloudflare.ai#Ai": {
-      "type": "service",
-      "version": "4.0",
-      "operations": [
-        {
-          "target": "com.cloudflare.ai#Run"
-        },
-        {
-          "target": "com.cloudflare.ai#AuthorsList"
-        },
-        {
-          "target": "com.cloudflare.ai#FinetunesCreate"
-        },
-        {
-          "target": "com.cloudflare.ai#FinetunesList"
-        },
-        {
-          "target": "com.cloudflare.ai#FinetunesAssetsCreate"
-        },
-        {
-          "target": "com.cloudflare.ai#FinetunesPublicList"
-        },
-        {
-          "target": "com.cloudflare.ai#ModelsList"
-        },
-        {
-          "target": "com.cloudflare.ai#ModelsSchemaGet"
-        },
-        {
-          "target": "com.cloudflare.ai#TasksList"
-        },
-        {
-          "target": "com.cloudflare.ai#ToMarkdownSupported"
-        },
-        {
-          "target": "com.cloudflare.ai#ToMarkdownTransform"
-        }
-      ],
-      "traits": {
-        "com.cloudflare.protocols#v4Json": {},
-        "smithy.api#title": "Cloudflare Ai",
-        "smithy.api#documentation": "Cloudflare API — ai resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
       }
     }
   }

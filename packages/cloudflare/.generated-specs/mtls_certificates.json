@@ -14,51 +14,17 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "keyDictionary": {
+      "expiresOn": "expires_on",
+      "privateKey": "private_key",
+      "serialNumber": "serial_number",
+      "updatedAt": "updated_at",
+      "uploadedOn": "uploaded_on"
+    },
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.cloudflare.mtls_certificates#CreateRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "ca": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Indicates whether the certificate is a CA or leaf certificate.",
-            "smithy.api#required": {}
-          }
-        },
-        "certificates": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The uploaded root CA certificate.",
-            "smithy.api#required": {}
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional unique name for the certificate. Only used for human readability."
-          }
-        },
-        "private_key": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The private key for the certificate. This field is only needed for specific use cases such as using a custom certificate with Zero Trust's block page."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.mtls_certificates#CreateResponseType": {
       "type": "enum",
       "members": {
@@ -80,122 +46,6 @@
             "smithy.api#enumValue": "access_managed"
           }
         }
-      }
-    },
-    "com.cloudflare.mtls_certificates#CreateResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier."
-          }
-        },
-        "ca": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Indicates whether the certificate is a CA or leaf certificate."
-          }
-        },
-        "certificates": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The uploaded root CA certificate."
-          }
-        },
-        "expires_on": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "When the certificate expires."
-          }
-        },
-        "issuer": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The certificate authority that issued the certificate."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional unique name for the certificate. Only used for human readability."
-          }
-        },
-        "serial_number": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The certificate serial number."
-          }
-        },
-        "signature": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The type of hash used for the certificate."
-          }
-        },
-        "type": {
-          "target": "com.cloudflare.mtls_certificates#CreateResponseType",
-          "traits": {
-            "smithy.api#documentation": "The type of the certificate, indicating how it was created and who manages it."
-          }
-        },
-        "updated_at": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "This is the time the certificate was updated."
-          }
-        },
-        "uploaded_on": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "This is the time the certificate was uploaded."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.mtls_certificates#Create": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.mtls_certificates#CreateRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.mtls_certificates#CreateResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "/accounts/{account_id}/mtls_certificates",
-          "code": 200
-        },
-        "smithy.api#documentation": "Upload a certificate that you want to use with mTLS-enabled Cloudflare services, such as Bring Your Own CA (BYO-CA) for mTLS. To create certificates issued by the Cloudflare managed CA, use the [Create Client Certificate endpoint](/api/resources/client_certificates/methods/create/)."
-      }
-    },
-    "com.cloudflare.mtls_certificates#DeleteRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "mtls_certificate_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.mtls_certificates#DeleteResponseType": {
@@ -221,117 +71,6 @@
         }
       }
     },
-    "com.cloudflare.mtls_certificates#DeleteResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier."
-          }
-        },
-        "ca": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Indicates whether the certificate is a CA or leaf certificate."
-          }
-        },
-        "certificates": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The uploaded root CA certificate."
-          }
-        },
-        "expires_on": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "When the certificate expires."
-          }
-        },
-        "issuer": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The certificate authority that issued the certificate."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional unique name for the certificate. Only used for human readability."
-          }
-        },
-        "serial_number": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The certificate serial number."
-          }
-        },
-        "signature": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The type of hash used for the certificate."
-          }
-        },
-        "type": {
-          "target": "com.cloudflare.mtls_certificates#DeleteResponseType",
-          "traits": {
-            "smithy.api#documentation": "The type of the certificate, indicating how it was created and who manages it."
-          }
-        },
-        "uploaded_on": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "This is the time the certificate was uploaded."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.mtls_certificates#Delete": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.mtls_certificates#DeleteRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.mtls_certificates#DeleteResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "/accounts/{account_id}/mtls_certificates/{mtls_certificate_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Deletes the mTLS certificate unless the certificate is in use by one or more Cloudflare services.",
-        "smithy.api#idempotent": {}
-      }
-    },
-    "com.cloudflare.mtls_certificates#GetRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "mtls_certificate_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.mtls_certificates#GetResponseType": {
       "type": "enum",
       "members": {
@@ -353,93 +92,6 @@
             "smithy.api#enumValue": "access_managed"
           }
         }
-      }
-    },
-    "com.cloudflare.mtls_certificates#GetResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier."
-          }
-        },
-        "ca": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Indicates whether the certificate is a CA or leaf certificate."
-          }
-        },
-        "certificates": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The uploaded root CA certificate."
-          }
-        },
-        "expires_on": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "When the certificate expires."
-          }
-        },
-        "issuer": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The certificate authority that issued the certificate."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional unique name for the certificate. Only used for human readability."
-          }
-        },
-        "serial_number": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The certificate serial number."
-          }
-        },
-        "signature": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The type of hash used for the certificate."
-          }
-        },
-        "type": {
-          "target": "com.cloudflare.mtls_certificates#GetResponseType",
-          "traits": {
-            "smithy.api#documentation": "The type of the certificate, indicating how it was created and who manages it."
-          }
-        },
-        "uploaded_on": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "This is the time the certificate was uploaded."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.mtls_certificates#Get": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.mtls_certificates#GetRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.mtls_certificates#GetResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/accounts/{account_id}/mtls_certificates/{mtls_certificate_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Fetches a single mTLS certificate uploaded to your account. To get a certificate issued by the Cloudflare managed CA, use the [Client Certificate Details endpoint](/api/resources/client_certificates/methods/get/).",
-        "smithy.api#readonly": {}
       }
     },
     "com.cloudflare.mtls_certificates#ListRequestType": {
@@ -469,29 +121,6 @@
       "type": "list",
       "member": {
         "target": "com.cloudflare.mtls_certificates#ListRequestType"
-      }
-    },
-    "com.cloudflare.mtls_certificates#ListRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "type": {
-          "target": "com.cloudflare.mtls_certificates#ListRequestTypeList",
-          "traits": {
-            "smithy.api#documentation": "Filters results by certificate type. Multiple types can be comma-separated.",
-            "smithy.api#httpQuery": "type"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.mtls_certificates#ListResultItemType": {
@@ -588,63 +217,6 @@
         "target": "com.cloudflare.mtls_certificates#ListResultItem"
       }
     },
-    "com.cloudflare.mtls_certificates#ListResponse": {
-      "type": "structure",
-      "members": {
-        "result": {
-          "target": "com.cloudflare.mtls_certificates#ListResultList",
-          "traits": {
-            "com.cloudflare.protocols#envelopePayload": {},
-            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.mtls_certificates#List": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.mtls_certificates#ListRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.mtls_certificates#ListResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/accounts/{account_id}/mtls_certificates",
-          "code": 200
-        },
-        "smithy.api#documentation": "Lists all mTLS certificates uploaded to your account, such as Bring Your Own CA (BYO-CA) for mTLS. To list certificates issued by the Cloudflare managed CA, use the [List Client Certificates endpoint](/api/resources/client_certificates/methods/list/).",
-        "smithy.api#readonly": {}
-      }
-    },
-    "com.cloudflare.mtls_certificates#AssociationsGetRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "mtls_certificate_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.mtls_certificates#AssociationsGetResultItem": {
       "type": "structure",
       "members": {
@@ -668,7 +240,406 @@
         "target": "com.cloudflare.mtls_certificates#AssociationsGetResultItem"
       }
     },
-    "com.cloudflare.mtls_certificates#AssociationsGetResponse": {
+    "com.cloudflare.mtls_certificates#MtlsCertificates": {
+      "type": "service",
+      "version": "4.0",
+      "operations": [
+        {
+          "target": "com.cloudflare.mtls_certificates#CreateMtlsCertificate"
+        },
+        {
+          "target": "com.cloudflare.mtls_certificates#DeleteMtlsCertificate"
+        },
+        {
+          "target": "com.cloudflare.mtls_certificates#GetAssociation"
+        },
+        {
+          "target": "com.cloudflare.mtls_certificates#GetMtlsCertificate"
+        },
+        {
+          "target": "com.cloudflare.mtls_certificates#ListMtlsCertificates"
+        }
+      ],
+      "traits": {
+        "com.cloudflare.protocols#v4Json": {},
+        "smithy.api#title": "Cloudflare MtlsCertificates",
+        "smithy.api#documentation": "Cloudflare API — mtls_certificates resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+      }
+    },
+    "com.cloudflare.mtls_certificates#CertificateAlreadyDeleted": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "status": 400,
+            "message": {
+              "includes": "already deleted"
+            }
+          }
+        ]
+      }
+    },
+    "com.cloudflare.mtls_certificates#CertificateAlreadyExists": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "code": 1471,
+            "message": {
+              "includes": "already exists"
+            }
+          }
+        ]
+      }
+    },
+    "com.cloudflare.mtls_certificates#CertificateNotFound": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "code": 1472,
+            "message": {
+              "includes": "Certificate not found"
+            }
+          },
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.cloudflare.mtls_certificates#CreateMtlsCertificate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.mtls_certificates#CreateMtlsCertificateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.mtls_certificates#CreateMtlsCertificateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/mtls_certificates",
+          "code": 200
+        },
+        "smithy.api#documentation": "Upload a certificate that you want to use with mTLS-enabled Cloudflare services, such as Bring Your Own CA (BYO-CA) for mTLS. To create certificates issued by the Cloudflare managed CA, use the [Create Client Certificate endpoint](/api/resources/client_certificates/methods/create/)."
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.mtls_certificates#CertificateAlreadyExists"
+        }
+      ]
+    },
+    "com.cloudflare.mtls_certificates#CreateMtlsCertificateRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "ca": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the certificate is a CA or leaf certificate.",
+            "smithy.api#required": {}
+          }
+        },
+        "certificates": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The uploaded root CA certificate.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional unique name for the certificate. Only used for human readability."
+          }
+        },
+        "private_key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The private key for the certificate. This field is only needed for specific use cases such as using a custom certificate with Zero Trust's block page."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.mtls_certificates#CreateMtlsCertificateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier."
+          }
+        },
+        "ca": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the certificate is a CA or leaf certificate."
+          }
+        },
+        "certificates": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The uploaded root CA certificate."
+          }
+        },
+        "expires_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the certificate expires."
+          }
+        },
+        "issuer": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The certificate authority that issued the certificate."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional unique name for the certificate. Only used for human readability."
+          }
+        },
+        "serial_number": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The certificate serial number."
+          }
+        },
+        "signature": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of hash used for the certificate."
+          }
+        },
+        "type": {
+          "target": "com.cloudflare.mtls_certificates#CreateResponseType",
+          "traits": {
+            "smithy.api#documentation": "The type of the certificate, indicating how it was created and who manages it."
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This is the time the certificate was updated."
+          }
+        },
+        "uploaded_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This is the time the certificate was uploaded."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.mtls_certificates#DeleteMtlsCertificate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.mtls_certificates#DeleteMtlsCertificateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.mtls_certificates#DeleteMtlsCertificateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/accounts/{account_id}/mtls_certificates/{mtls_certificate_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Deletes the mTLS certificate unless the certificate is in use by one or more Cloudflare services.",
+        "smithy.api#idempotent": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.mtls_certificates#CertificateNotFound"
+        },
+        {
+          "target": "com.cloudflare.mtls_certificates#CertificateAlreadyDeleted"
+        }
+      ]
+    },
+    "com.cloudflare.mtls_certificates#DeleteMtlsCertificateRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "mtls_certificate_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.mtls_certificates#DeleteMtlsCertificateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier."
+          }
+        },
+        "ca": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the certificate is a CA or leaf certificate."
+          }
+        },
+        "certificates": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The uploaded root CA certificate."
+          }
+        },
+        "expires_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the certificate expires."
+          }
+        },
+        "issuer": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The certificate authority that issued the certificate."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional unique name for the certificate. Only used for human readability."
+          }
+        },
+        "serial_number": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The certificate serial number."
+          }
+        },
+        "signature": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of hash used for the certificate."
+          }
+        },
+        "type": {
+          "target": "com.cloudflare.mtls_certificates#DeleteResponseType",
+          "traits": {
+            "smithy.api#documentation": "The type of the certificate, indicating how it was created and who manages it."
+          }
+        },
+        "uploaded_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This is the time the certificate was uploaded."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.mtls_certificates#GetAssociation": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.mtls_certificates#GetAssociationRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.mtls_certificates#GetAssociationResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/mtls_certificates/{mtls_certificate_id}/associations",
+          "code": 200
+        },
+        "smithy.api#documentation": "Lists all active associations between the certificate and Cloudflare services.",
+        "smithy.api#readonly": {},
+        "smithy.api#paginated": {
+          "mode": "single",
+          "items": "result"
+        }
+      }
+    },
+    "com.cloudflare.mtls_certificates#GetAssociationRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "mtls_certificate_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.mtls_certificates#GetAssociationResponse": {
       "type": "structure",
       "members": {
         "result": {
@@ -683,48 +654,180 @@
         "smithy.api#output": {}
       }
     },
-    "com.cloudflare.mtls_certificates#AssociationsGet": {
+    "com.cloudflare.mtls_certificates#GetMtlsCertificate": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.mtls_certificates#AssociationsGetRequest"
+        "target": "com.cloudflare.mtls_certificates#GetMtlsCertificateRequest"
       },
       "output": {
-        "target": "com.cloudflare.mtls_certificates#AssociationsGetResponse"
+        "target": "com.cloudflare.mtls_certificates#GetMtlsCertificateResponse"
       },
       "traits": {
         "smithy.api#http": {
           "method": "GET",
-          "uri": "/accounts/{account_id}/mtls_certificates/{mtls_certificate_id}/associations",
+          "uri": "/accounts/{account_id}/mtls_certificates/{mtls_certificate_id}",
           "code": 200
         },
-        "smithy.api#documentation": "Lists all active associations between the certificate and Cloudflare services.",
+        "smithy.api#documentation": "Fetches a single mTLS certificate uploaded to your account. To get a certificate issued by the Cloudflare managed CA, use the [Client Certificate Details endpoint](/api/resources/client_certificates/methods/get/).",
         "smithy.api#readonly": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.mtls_certificates#CertificateNotFound"
+        }
+      ]
+    },
+    "com.cloudflare.mtls_certificates#GetMtlsCertificateRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "mtls_certificate_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
       }
     },
-    "com.cloudflare.mtls_certificates#MtlsCertificates": {
-      "type": "service",
-      "version": "4.0",
-      "operations": [
-        {
-          "target": "com.cloudflare.mtls_certificates#Create"
+    "com.cloudflare.mtls_certificates#GetMtlsCertificateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier."
+          }
         },
-        {
-          "target": "com.cloudflare.mtls_certificates#Delete"
+        "ca": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the certificate is a CA or leaf certificate."
+          }
         },
-        {
-          "target": "com.cloudflare.mtls_certificates#Get"
+        "certificates": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The uploaded root CA certificate."
+          }
         },
-        {
-          "target": "com.cloudflare.mtls_certificates#List"
+        "expires_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the certificate expires."
+          }
         },
-        {
-          "target": "com.cloudflare.mtls_certificates#AssociationsGet"
+        "issuer": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The certificate authority that issued the certificate."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional unique name for the certificate. Only used for human readability."
+          }
+        },
+        "serial_number": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The certificate serial number."
+          }
+        },
+        "signature": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of hash used for the certificate."
+          }
+        },
+        "type": {
+          "target": "com.cloudflare.mtls_certificates#GetResponseType",
+          "traits": {
+            "smithy.api#documentation": "The type of the certificate, indicating how it was created and who manages it."
+          }
+        },
+        "uploaded_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This is the time the certificate was uploaded."
+          }
         }
-      ],
+      },
       "traits": {
-        "com.cloudflare.protocols#v4Json": {},
-        "smithy.api#title": "Cloudflare MtlsCertificates",
-        "smithy.api#documentation": "Cloudflare API — mtls_certificates resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.mtls_certificates#ListMtlsCertificates": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.mtls_certificates#ListMtlsCertificatesRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.mtls_certificates#ListMtlsCertificatesResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/mtls_certificates",
+          "code": 200
+        },
+        "smithy.api#documentation": "Lists all mTLS certificates uploaded to your account, such as Bring Your Own CA (BYO-CA) for mTLS. To list certificates issued by the Cloudflare managed CA, use the [List Client Certificates endpoint](/api/resources/client_certificates/methods/list/).",
+        "smithy.api#readonly": {},
+        "smithy.api#paginated": {
+          "mode": "single",
+          "items": "result"
+        }
+      }
+    },
+    "com.cloudflare.mtls_certificates#ListMtlsCertificatesRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.cloudflare.mtls_certificates#ListRequestTypeList",
+          "traits": {
+            "smithy.api#documentation": "Filters results by certificate type. Multiple types can be comma-separated.",
+            "smithy.api#httpQuery": "type"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.mtls_certificates#ListMtlsCertificatesResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.mtls_certificates#ListResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
       }
     }
   }

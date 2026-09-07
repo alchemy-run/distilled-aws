@@ -14,13 +14,14 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.resourceconnector#AppliancesGetUpgradeGraph": {
+    "com.azure.resourceconnector#GetApplianceUpgradeGraph": {
       "type": "operation",
       "input": {
-        "target": "com.azure.resourceconnector#AppliancesGetUpgradeGraphRequest"
+        "target": "com.azure.resourceconnector#GetApplianceUpgradeGraphRequest"
       },
       "output": {
         "target": "com.azure.resourceconnector#UpgradeGraph"
@@ -183,7 +184,7 @@
         "smithy.api#documentation": "The SupportedVersionCatalogVersionData object for appliance."
       }
     },
-    "com.azure.resourceconnector#AppliancesGetUpgradeGraphRequest": {
+    "com.azure.resourceconnector#GetApplianceUpgradeGraphRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -223,10 +224,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.resourceconnector#AppliancesListKeys": {
+    "com.azure.resourceconnector#ListApplianceKeys": {
       "type": "operation",
       "input": {
-        "target": "com.azure.resourceconnector#AppliancesListKeysRequest"
+        "target": "com.azure.resourceconnector#ListApplianceKeysRequest"
       },
       "output": {
         "target": "com.azure.resourceconnector#ApplianceListKeysResults"
@@ -394,7 +395,7 @@
         "smithy.api#documentation": "Appliance ArtifactProfile definition."
       }
     },
-    "com.azure.resourceconnector#AppliancesListKeysRequest": {
+    "com.azure.resourceconnector#ListApplianceKeysRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -433,10 +434,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.resourceconnector#AppliancesListClusterUserCredential": {
+    "com.azure.resourceconnector#ListApplianceClusterUserCredential": {
       "type": "operation",
       "input": {
-        "target": "com.azure.resourceconnector#AppliancesListClusterUserCredentialRequest"
+        "target": "com.azure.resourceconnector#ListApplianceClusterUserCredentialRequest"
       },
       "output": {
         "target": "com.azure.resourceconnector#ApplianceListCredentialResults"
@@ -513,7 +514,7 @@
         "smithy.api#documentation": "Contains the REP (rendezvous endpoint) and “Listener” access token from notification service (NS)."
       }
     },
-    "com.azure.resourceconnector#AppliancesListClusterUserCredentialRequest": {
+    "com.azure.resourceconnector#ListApplianceClusterUserCredentialRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -545,10 +546,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.resourceconnector#AppliancesDelete": {
+    "com.azure.resourceconnector#DeleteAppliance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.resourceconnector#AppliancesDeleteRequest"
+        "target": "com.azure.resourceconnector#DeleteApplianceRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -564,7 +565,7 @@
         "com.distilled.openapi#apiVersion": "2022-10-27"
       }
     },
-    "com.azure.resourceconnector#AppliancesDeleteRequest": {
+    "com.azure.resourceconnector#DeleteApplianceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -596,13 +597,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.resourceconnector#AppliancesUpdate": {
+    "com.azure.resourceconnector#UpdateAppliance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.resourceconnector#AppliancesUpdateRequest"
+        "target": "com.azure.resourceconnector#UpdateApplianceRequest"
       },
       "output": {
-        "target": "com.azure.resourceconnector#AppliancesUpdateResponse"
+        "target": "com.azure.resourceconnector#UpdateApplianceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -615,7 +616,7 @@
         "com.distilled.openapi#apiVersion": "2022-10-27"
       }
     },
-    "com.azure.resourceconnector#AppliancesUpdateResponse": {
+    "com.azure.resourceconnector#UpdateApplianceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -643,7 +644,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.resourceconnector#AppliancesUpdateResponseTagsMap",
+          "target": "com.azure.resourceconnector#UpdateApplianceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1016,7 +1017,7 @@
         "smithy.api#documentation": "Represents a supported Fabric/Infra. (AKSEdge etc...)."
       }
     },
-    "com.azure.resourceconnector#AppliancesUpdateResponseTagsMap": {
+    "com.azure.resourceconnector#UpdateApplianceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1136,7 +1137,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.resourceconnector#AppliancesUpdateRequest": {
+    "com.azure.resourceconnector#UpdateApplianceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1164,7 +1165,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.resourceconnector#AppliancesUpdateRequestTagsMap",
+          "target": "com.azure.resourceconnector#UpdateApplianceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags"
           }
@@ -1174,7 +1175,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.resourceconnector#AppliancesUpdateRequestTagsMap": {
+    "com.azure.resourceconnector#UpdateApplianceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1403,13 +1404,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.resourceconnector#AppliancesGet": {
+    "com.azure.resourceconnector#GetAppliance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.resourceconnector#AppliancesGetRequest"
+        "target": "com.azure.resourceconnector#GetApplianceRequest"
       },
       "output": {
-        "target": "com.azure.resourceconnector#AppliancesGetResponse"
+        "target": "com.azure.resourceconnector#GetApplianceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1422,7 +1423,7 @@
         "com.distilled.openapi#apiVersion": "2022-10-27"
       }
     },
-    "com.azure.resourceconnector#AppliancesGetResponse": {
+    "com.azure.resourceconnector#GetApplianceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1450,7 +1451,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.resourceconnector#AppliancesGetResponseTagsMap",
+          "target": "com.azure.resourceconnector#GetApplianceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1479,7 +1480,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.resourceconnector#AppliancesGetResponseTagsMap": {
+    "com.azure.resourceconnector#GetApplianceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1491,7 +1492,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.resourceconnector#AppliancesGetRequest": {
+    "com.azure.resourceconnector#GetApplianceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1523,10 +1524,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.resourceconnector#AppliancesListByResourceGroup": {
+    "com.azure.resourceconnector#ListApplianceByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.resourceconnector#AppliancesListByResourceGroupRequest"
+        "target": "com.azure.resourceconnector#ListApplianceByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.resourceconnector#ApplianceListResult"
@@ -1641,7 +1642,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.resourceconnector#AppliancesListByResourceGroupRequest": {
+    "com.azure.resourceconnector#ListApplianceByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1665,10 +1666,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.resourceconnector#AppliancesGetTelemetryConfig": {
+    "com.azure.resourceconnector#GetApplianceTelemetryConfig": {
       "type": "operation",
       "input": {
-        "target": "com.azure.resourceconnector#AppliancesGetTelemetryConfigRequest"
+        "target": "com.azure.resourceconnector#GetApplianceTelemetryConfigRequest"
       },
       "output": {
         "target": "com.azure.resourceconnector#ApplianceGetTelemetryConfigResult"
@@ -1698,7 +1699,7 @@
         "smithy.api#documentation": "The Get Telemetry Config Result appliance."
       }
     },
-    "com.azure.resourceconnector#AppliancesGetTelemetryConfigRequest": {
+    "com.azure.resourceconnector#GetApplianceTelemetryConfigRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1714,10 +1715,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.resourceconnector#AppliancesListBySubscription": {
+    "com.azure.resourceconnector#ListApplianceBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.resourceconnector#AppliancesListBySubscriptionRequest"
+        "target": "com.azure.resourceconnector#ListApplianceBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.resourceconnector#ApplianceListResult"
@@ -1733,7 +1734,7 @@
         "com.distilled.openapi#apiVersion": "2022-10-27"
       }
     },
-    "com.azure.resourceconnector#AppliancesListBySubscriptionRequest": {
+    "com.azure.resourceconnector#ListApplianceBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1749,7 +1750,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.resourceconnector#AppliancesListOperations": {
+    "com.azure.resourceconnector#ListApplianceOperations": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -1867,37 +1868,37 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.resourceconnector#AppliancesGetUpgradeGraph"
+          "target": "com.azure.resourceconnector#GetApplianceUpgradeGraph"
         },
         {
-          "target": "com.azure.resourceconnector#AppliancesListKeys"
+          "target": "com.azure.resourceconnector#ListApplianceKeys"
         },
         {
-          "target": "com.azure.resourceconnector#AppliancesListClusterUserCredential"
+          "target": "com.azure.resourceconnector#ListApplianceClusterUserCredential"
         },
         {
-          "target": "com.azure.resourceconnector#AppliancesDelete"
+          "target": "com.azure.resourceconnector#DeleteAppliance"
         },
         {
-          "target": "com.azure.resourceconnector#AppliancesUpdate"
+          "target": "com.azure.resourceconnector#UpdateAppliance"
         },
         {
           "target": "com.azure.resourceconnector#AppliancesCreateOrUpdate"
         },
         {
-          "target": "com.azure.resourceconnector#AppliancesGet"
+          "target": "com.azure.resourceconnector#GetAppliance"
         },
         {
-          "target": "com.azure.resourceconnector#AppliancesListByResourceGroup"
+          "target": "com.azure.resourceconnector#ListApplianceByResourceGroup"
         },
         {
-          "target": "com.azure.resourceconnector#AppliancesGetTelemetryConfig"
+          "target": "com.azure.resourceconnector#GetApplianceTelemetryConfig"
         },
         {
-          "target": "com.azure.resourceconnector#AppliancesListBySubscription"
+          "target": "com.azure.resourceconnector#ListApplianceBySubscription"
         },
         {
-          "target": "com.azure.resourceconnector#AppliancesListOperations"
+          "target": "com.azure.resourceconnector#ListApplianceOperations"
         }
       ],
       "traits": {

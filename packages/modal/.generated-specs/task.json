@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.modal.task#TaskClusterHelloRequest": {
@@ -476,7 +477,7 @@
         }
       }
     },
-    "com.modal.task#TaskListRequest": {
+    "com.modal.task#ListTaskRequest": {
       "type": "structure",
       "members": {
         "environmentName": {
@@ -516,7 +517,7 @@
         "target": "com.modal.task#TaskStats"
       }
     },
-    "com.modal.task#TaskListResponse": {
+    "com.modal.task#ListTaskResponse": {
       "type": "structure",
       "members": {
         "tasks": {
@@ -527,13 +528,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.modal.task#TaskList": {
+    "com.modal.task#ListTask": {
       "type": "operation",
       "input": {
-        "target": "com.modal.task#TaskListRequest"
+        "target": "com.modal.task#ListTaskRequest"
       },
       "output": {
-        "target": "com.modal.task#TaskListResponse"
+        "target": "com.modal.task#ListTaskResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -587,7 +588,7 @@
           "target": "com.modal.task#TaskGetInfo"
         },
         {
-          "target": "com.modal.task#TaskList"
+          "target": "com.modal.task#ListTask"
         },
         {
           "target": "com.modal.task#TaskResult"

@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.modal.endpoint#StringList": {
@@ -195,7 +196,7 @@
         }
       }
     },
-    "com.modal.endpoint#EndpointCreateRequest": {
+    "com.modal.endpoint#CreateEndpointRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -233,7 +234,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.modal.endpoint#EndpointCreateResponse": {
+    "com.modal.endpoint#CreateEndpointResponse": {
       "type": "structure",
       "members": {
         "endpointId": {
@@ -250,13 +251,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.modal.endpoint#EndpointCreate": {
+    "com.modal.endpoint#CreateEndpoint": {
       "type": "operation",
       "input": {
-        "target": "com.modal.endpoint#EndpointCreateRequest"
+        "target": "com.modal.endpoint#CreateEndpointRequest"
       },
       "output": {
-        "target": "com.modal.endpoint#EndpointCreateResponse"
+        "target": "com.modal.endpoint#CreateEndpointResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -415,7 +416,7 @@
         }
       }
     },
-    "com.modal.endpoint#EndpointListRequest": {
+    "com.modal.endpoint#ListEndpointRequest": {
       "type": "structure",
       "members": {
         "environmentName": {
@@ -628,7 +629,7 @@
         "target": "com.modal.endpoint#EndpointListItem"
       }
     },
-    "com.modal.endpoint#EndpointListResponse": {
+    "com.modal.endpoint#ListEndpointResponse": {
       "type": "structure",
       "members": {
         "items": {
@@ -642,13 +643,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.modal.endpoint#EndpointList": {
+    "com.modal.endpoint#ListEndpoint": {
       "type": "operation",
       "input": {
-        "target": "com.modal.endpoint#EndpointListRequest"
+        "target": "com.modal.endpoint#ListEndpointRequest"
       },
       "output": {
-        "target": "com.modal.endpoint#EndpointListResponse"
+        "target": "com.modal.endpoint#ListEndpointResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -681,7 +682,7 @@
         }
       }
     },
-    "com.modal.endpoint#EndpointStopRequest": {
+    "com.modal.endpoint#StopEndpointRequest": {
       "type": "structure",
       "members": {
         "endpointId": {
@@ -695,20 +696,20 @@
         "smithy.api#input": {}
       }
     },
-    "com.modal.endpoint#EndpointStopResponse": {
+    "com.modal.endpoint#StopEndpointResponse": {
       "type": "structure",
       "members": {},
       "traits": {
         "smithy.api#output": {}
       }
     },
-    "com.modal.endpoint#EndpointStop": {
+    "com.modal.endpoint#StopEndpoint": {
       "type": "operation",
       "input": {
-        "target": "com.modal.endpoint#EndpointStopRequest"
+        "target": "com.modal.endpoint#StopEndpointRequest"
       },
       "output": {
-        "target": "com.modal.endpoint#EndpointStopResponse"
+        "target": "com.modal.endpoint#StopEndpointResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -723,7 +724,7 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.modal.endpoint#EndpointCreate"
+          "target": "com.modal.endpoint#CreateEndpoint"
         },
         {
           "target": "com.modal.endpoint#EndpointGetByName"
@@ -732,10 +733,10 @@
           "target": "com.modal.endpoint#EndpointGetLifecycle"
         },
         {
-          "target": "com.modal.endpoint#EndpointList"
+          "target": "com.modal.endpoint#ListEndpoint"
         },
         {
-          "target": "com.modal.endpoint#EndpointStop"
+          "target": "com.modal.endpoint#StopEndpoint"
         }
       ],
       "traits": {

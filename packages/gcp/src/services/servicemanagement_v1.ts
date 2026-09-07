@@ -110,167 +110,305 @@ export const DocumentMapList = /*@__PURE__*/ S.Array(
 
 /** The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors). */
 export interface Status {
+  /** A list of messages that carry the error details. There is a common set of message types for APIs to use. */
+  details?: DocumentMapList;
   /** The status code, which should be an enum value of google.rpc.Code. */
   code?: number;
   /** A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client. */
   message?: string;
-  /** A list of messages that carry the error details. There is a common set of message types for APIs to use. */
-  details?: DocumentMapList;
 }
 export const Status = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    details: S.optional(DocumentMapList),
     code: S.optional(S.Number),
     message: S.optional(S.String),
-    details: S.optional(DocumentMapList),
   }),
 ).annotate({ identifier: "Status" }) as any as S.Schema<Status>;
 
 /** This resource represents a long-running operation that is the result of a network API call. */
 export interface Operation {
-  /** The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`. */
-  response?: DocumentMap;
   /** The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`. */
   name?: string;
-  /** If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available. */
-  done?: boolean;
   /** The error result of the operation in case of failure or cancellation. */
   error?: Status;
   /** Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any. */
   metadata?: DocumentMap;
+  /** The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`. */
+  response?: DocumentMap;
+  /** If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available. */
+  done?: boolean;
 }
 export const Operation = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    response: S.optional(DocumentMap),
     name: S.optional(S.String),
-    done: S.optional(S.Boolean),
     error: S.optional(Status),
     metadata: S.optional(DocumentMap),
+    response: S.optional(DocumentMap),
+    done: S.optional(S.Boolean),
   }),
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
-export type QuotaLimitTrafficSourceEnum =
-  | "TRAFFIC_SOURCE_UNSPECIFIED"
-  | "TRAFFIC_SOURCE_NONAGENTIC"
-  | "TRAFFIC_SOURCE_AGENTIC";
-export const QuotaLimitTrafficSourceEnum = /*@__PURE__*/ S.String;
+export type FieldCardinalityEnum =
+  | "CARDINALITY_UNKNOWN"
+  | "CARDINALITY_OPTIONAL"
+  | "CARDINALITY_REQUIRED"
+  | "CARDINALITY_REPEATED";
+export const FieldCardinalityEnum = /*@__PURE__*/ S.String;
 
-export type StringMap = { [key: string]: string | undefined };
-export const StringMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<StringMap>;
+export type FieldKindEnum =
+  | "TYPE_UNKNOWN"
+  | "TYPE_DOUBLE"
+  | "TYPE_FLOAT"
+  | "TYPE_INT64"
+  | "TYPE_UINT64"
+  | "TYPE_INT32"
+  | "TYPE_FIXED64"
+  | "TYPE_FIXED32"
+  | "TYPE_BOOL"
+  | "TYPE_STRING"
+  | "TYPE_GROUP"
+  | "TYPE_MESSAGE"
+  | "TYPE_BYTES"
+  | "TYPE_UINT32"
+  | "TYPE_ENUM"
+  | "TYPE_SFIXED32"
+  | "TYPE_SFIXED64"
+  | "TYPE_SINT32"
+  | "TYPE_SINT64";
+export const FieldKindEnum = /*@__PURE__*/ S.String;
 
-/** `QuotaLimit` defines a specific limit that applies over a specified duration for a limit type. There can be at most one limit for a duration and limit type combination defined within a `QuotaGroup`. */
-export interface QuotaLimit {
-  /** The name of the metric this quota limit applies to. The quota limits with the same metric will be checked together during runtime. The metric must be defined within the service config. */
-  metric?: string;
-  /** Name of the quota limit. The name must be provided, and it must be unique within the service. The name can only include alphanumeric characters as well as '-'. The maximum length of the limit name is 64 characters. */
+/** A protocol buffer option, which can be attached to a message, field, enumeration, etc. New usages of this message as an alternative to FileOptions, MessageOptions, FieldOptions, EnumOptions, EnumValueOptions, ServiceOptions, or MethodOptions are strongly discouraged. */
+export interface Option {
+  /** The option's name. For protobuf built-in options (options defined in descriptor.proto), this is the short name. For example, `"map_entry"`. For custom options, it should be the fully-qualified name. For example, `"google.api.http"`. */
   name?: string;
-  /** Free tier value displayed in the Developers Console for this limit. The free tier is the number of tokens that will be subtracted from the billed amount when billing is enabled. This field can only be set on a limit with duration "1d", in a billable group; it is invalid on any other limit. If this field is not set, it defaults to 0, indicating that there is no free tier for this service. Used by group-based quotas only. */
-  freeTier?: string;
-  /** Optional. This is only informational, the logic to allocate the quota to the correct metric (such as in `metric_rules`) should identify which quota metrics to allocate to. */
-  trafficSource?: QuotaLimitTrafficSourceEnum | (string & {});
-  /** Default number of tokens that can be consumed during the specified duration. This is the number of tokens assigned when a client application developer activates the service for his/her project. Specifying a value of 0 will block all requests. This can be used if you are provisioning quota to selected consumers and blocking others. Similarly, a value of -1 will indicate an unlimited quota. No other negative values are allowed. Used by group-based quotas only. */
-  defaultLimit?: string;
-  /** Tiered limit values. You must specify this as a key:value pair, with an integer value that is the maximum number of requests allowed for the specified unit. Currently only STANDARD is supported. */
-  values?: StringMap;
-  /** Optional. User-visible, extended description for this quota limit. Should be used only when more context is needed to understand this limit than provided by the limit's display name (see: `display_name`). */
-  description?: string;
-  /** User-visible display name for this limit. Optional. If not set, the UI will provide a default display name based on the quota configuration. This field can be used to override the default display name generated from the configuration. */
-  displayName?: string;
-  /** Maximum number of tokens that can be consumed during the specified duration. Client application developers can override the default limit up to this maximum. If specified, this value cannot be set to a value less than the default limit. If not specified, it is set to the default limit. To allow clients to apply overrides with no upper bound, set this to -1, indicating unlimited maximum quota. Used by group-based quotas only. */
-  maxLimit?: string;
-  /** Duration of this limit in textual notation. Must be "100s" or "1d". Used by group-based quotas only. */
-  duration?: string;
-  /** Specify the unit of the quota limit. It uses the same syntax as MetricDescriptor.unit. The supported unit kinds are determined by the quota backend system. Here are some examples: * "1/min/{project}" for quota per minute per project. Note: the order of unit components is insignificant. The "1" at the beginning is required to follow the metric unit syntax. */
-  unit?: string;
+  /** The option's value packed in an Any message. If the value is a primitive, the corresponding wrapper type defined in google/protobuf/wrappers.proto should be used. If the value is an enum, it should be stored as an int32 value using the google.protobuf.Int32Value type. */
+  value?: DocumentMap;
 }
-export const QuotaLimit = /*@__PURE__*/ S.suspend(() =>
+export const Option = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    metric: S.optional(S.String),
     name: S.optional(S.String),
-    freeTier: S.optional(S.String),
-    trafficSource: S.optional(QuotaLimitTrafficSourceEnum),
-    defaultLimit: S.optional(S.String),
-    values: S.optional(StringMap),
-    description: S.optional(S.String),
-    displayName: S.optional(S.String),
-    maxLimit: S.optional(S.String),
-    duration: S.optional(S.String),
-    unit: S.optional(S.String),
+    value: S.optional(DocumentMap),
   }),
-).annotate({ identifier: "QuotaLimit" }) as any as S.Schema<QuotaLimit>;
+).annotate({ identifier: "Option" }) as any as S.Schema<Option>;
 
-export type QuotaLimitList = Array<QuotaLimit>;
-export const QuotaLimitList = /*@__PURE__*/ S.Array(
-  QuotaLimit,
-) as any as S.Schema<QuotaLimitList>;
+export type OptionList = Array<Option>;
+export const OptionList = /*@__PURE__*/ S.Array(
+  Option,
+) as any as S.Schema<OptionList>;
 
-/** Bind API methods to metrics. Binding a method to a metric causes that metric's configured quota behaviors to apply to the method call. */
-export interface MetricRule {
-  /** Selects the methods to which this rule applies. Refer to selector for syntax details. */
+/** A single field of a message type. New usages of this message as an alternative to FieldDescriptorProto are strongly discouraged. This message does not reliability preserve all information necessary to model the schema and preserve semantics. Instead make use of FileDescriptorSet which preserves the necessary information. */
+export interface Field {
+  /** Whether to use alternative packed wire representation. */
+  packed?: boolean;
+  /** The field JSON name. */
+  jsonName?: string;
+  /** The index of the field type in `Type.oneofs`, for message or enumeration types. The first type has index 1; zero means the type is not in the list. */
+  oneofIndex?: number;
+  /** The string value of the default value of this field. Proto2 syntax only. */
+  defaultValue?: string;
+  /** The field type URL, without the scheme, for message or enumeration types. Example: `"type.googleapis.com/google.protobuf.Timestamp"`. */
+  typeUrl?: string;
+  /** The field name. */
+  name?: string;
+  /** The field number. */
+  number?: number;
+  /** The field cardinality. */
+  cardinality?: FieldCardinalityEnum | (string & {});
+  /** The field type. */
+  kind?: FieldKindEnum | (string & {});
+  /** The protocol buffer options. */
+  options?: OptionList;
+}
+export const Field = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    packed: S.optional(S.Boolean),
+    jsonName: S.optional(S.String),
+    oneofIndex: S.optional(S.Number),
+    defaultValue: S.optional(S.String),
+    typeUrl: S.optional(S.String),
+    name: S.optional(S.String),
+    number: S.optional(S.Number),
+    cardinality: S.optional(FieldCardinalityEnum),
+    kind: S.optional(FieldKindEnum),
+    options: S.optional(OptionList),
+  }),
+).annotate({ identifier: "Field" }) as any as S.Schema<Field>;
+
+export type FieldList = Array<Field>;
+export const FieldList = /*@__PURE__*/ S.Array(
+  Field,
+) as any as S.Schema<FieldList>;
+
+export type StringList = Array<string>;
+export const StringList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<StringList>;
+
+/** `SourceContext` represents information about the source of a protobuf element, like the file in which it is defined. */
+export interface SourceContext {
+  /** The path-qualified name of the .proto file that contained the associated protobuf element. For example: `"google/protobuf/source_context.proto"`. */
+  fileName?: string;
+}
+export const SourceContext = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    fileName: S.optional(S.String),
+  }),
+).annotate({ identifier: "SourceContext" }) as any as S.Schema<SourceContext>;
+
+export type TypeSyntaxEnum =
+  | "SYNTAX_PROTO2"
+  | "SYNTAX_PROTO3"
+  | "SYNTAX_EDITIONS";
+export const TypeSyntaxEnum = /*@__PURE__*/ S.String;
+
+/** A protocol buffer message type. New usages of this message as an alternative to DescriptorProto are strongly discouraged. This message does not reliability preserve all information necessary to model the schema and preserve semantics. Instead make use of FileDescriptorSet which preserves the necessary information. */
+export interface Type {
+  /** The list of fields. */
+  fields?: FieldList;
+  /** The list of types appearing in `oneof` definitions in this type. */
+  oneofs?: StringList;
+  /** The protocol buffer options. */
+  options?: OptionList;
+  /** The fully qualified message name. */
+  name?: string;
+  /** The source context. */
+  sourceContext?: SourceContext;
+  /** The source edition string, only valid when syntax is SYNTAX_EDITIONS. */
+  edition?: string;
+  /** The source syntax. */
+  syntax?: TypeSyntaxEnum | (string & {});
+}
+export const Type = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    fields: S.optional(FieldList),
+    oneofs: S.optional(StringList),
+    options: S.optional(OptionList),
+    name: S.optional(S.String),
+    sourceContext: S.optional(SourceContext),
+    edition: S.optional(S.String),
+    syntax: S.optional(TypeSyntaxEnum),
+  }),
+).annotate({ identifier: "Type" }) as any as S.Schema<Type>;
+
+export type TypeList = Array<Type>;
+export const TypeList = /*@__PURE__*/ S.Array(
+  Type,
+) as any as S.Schema<TypeList>;
+
+/** A custom error rule. */
+export interface CustomErrorRule {
+  /** Mark this message as possible payload in error response. Otherwise, objects of this type will be filtered when they appear in error payload. */
+  isErrorType?: boolean;
+  /** Selects messages to which this rule applies. Refer to selector for syntax details. */
   selector?: string;
-  /** Optional. Metrics to update when the selected methods are called, and the associated cost applied to each metric, iff the source of the call is not an agent. The key of the map is the metric name, and the values are the amount increased for the metric against which the quota limits are defined. The value must not be negative. */
-  nonagenticMetricCosts?: StringMap;
-  /** Metrics to update when the selected methods are called, and the associated cost applied to each metric. The key of the map is the metric name, and the values are the amount increased for the metric against which the quota limits are defined. The value must not be negative. */
-  metricCosts?: StringMap;
-  /** Optional. Metrics to update when the selected methods are called, and the associated cost applied to each metric, iff the source of the call is an agent. The key of the map is the metric name, and the values are the amount increased for the metric against which the quota limits are defined. The value must not be negative. */
-  agenticMetricCosts?: StringMap;
 }
-export const MetricRule = /*@__PURE__*/ S.suspend(() =>
+export const CustomErrorRule = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    isErrorType: S.optional(S.Boolean),
     selector: S.optional(S.String),
-    nonagenticMetricCosts: S.optional(StringMap),
-    metricCosts: S.optional(StringMap),
-    agenticMetricCosts: S.optional(StringMap),
-  }),
-).annotate({ identifier: "MetricRule" }) as any as S.Schema<MetricRule>;
-
-export type MetricRuleList = Array<MetricRule>;
-export const MetricRuleList = /*@__PURE__*/ S.Array(
-  MetricRule,
-) as any as S.Schema<MetricRuleList>;
-
-/** Quota configuration helps to achieve fairness and budgeting in service usage. The metric based quota configuration works this way: - The service configuration defines a set of metrics. - For API calls, the quota.metric_rules maps methods to metrics with corresponding costs. - The quota.limits defines limits on the metrics, which will be used for quota checks at runtime. An example quota configuration in yaml format: quota: limits: - name: apiWriteQpsPerProject metric: library.googleapis.com/write_calls unit: "1/min/{project}" # rate limit for consumer projects values: STANDARD: 10000 (The metric rules bind all methods to the read_calls metric, except for the UpdateBook and DeleteBook methods. These two methods are mapped to the write_calls metric, with the UpdateBook method consuming at twice rate as the DeleteBook method.) metric_rules: - selector: "*" metric_costs: library.googleapis.com/read_calls: 1 - selector: google.example.library.v1.LibraryService.UpdateBook metric_costs: library.googleapis.com/write_calls: 2 - selector: google.example.library.v1.LibraryService.DeleteBook metric_costs: library.googleapis.com/write_calls: 1 Corresponding Metric definition: metrics: - name: library.googleapis.com/read_calls display_name: Read requests metric_kind: DELTA value_type: INT64 - name: library.googleapis.com/write_calls display_name: Write requests metric_kind: DELTA value_type: INT64 */
-export interface Quota {
-  /** List of QuotaLimit definitions for the service. */
-  limits?: QuotaLimitList;
-  /** List of MetricRule definitions, each one mapping a selected method to one or more metrics. */
-  metricRules?: MetricRuleList;
-}
-export const Quota = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    limits: S.optional(QuotaLimitList),
-    metricRules: S.optional(MetricRuleList),
-  }),
-).annotate({ identifier: "Quota" }) as any as S.Schema<Quota>;
-
-export type LabelDescriptorValueTypeEnum = "STRING" | "BOOL" | "INT64";
-export const LabelDescriptorValueTypeEnum = /*@__PURE__*/ S.String;
-
-/** A description of a label. */
-export interface LabelDescriptor {
-  /** The label key. */
-  key?: string;
-  /** The type of data that can be assigned to the label. */
-  valueType?: LabelDescriptorValueTypeEnum | (string & {});
-  /** A human-readable description for the label. */
-  description?: string;
-}
-export const LabelDescriptor = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    key: S.optional(S.String),
-    valueType: S.optional(LabelDescriptorValueTypeEnum),
-    description: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "LabelDescriptor",
-}) as any as S.Schema<LabelDescriptor>;
+  identifier: "CustomErrorRule",
+}) as any as S.Schema<CustomErrorRule>;
 
-export type LabelDescriptorList = Array<LabelDescriptor>;
-export const LabelDescriptorList = /*@__PURE__*/ S.Array(
-  LabelDescriptor,
-) as any as S.Schema<LabelDescriptorList>;
+export type CustomErrorRuleList = Array<CustomErrorRule>;
+export const CustomErrorRuleList = /*@__PURE__*/ S.Array(
+  CustomErrorRule,
+) as any as S.Schema<CustomErrorRuleList>;
+
+/** Customize service error responses. For example, list any service specific protobuf types that can appear in error detail lists of error responses. Example: custom_error: types: - google.foo.v1.CustomError - google.foo.v1.AnotherError */
+export interface CustomError {
+  /** The list of custom error rules that apply to individual API messages. **NOTE:** All service configuration rules follow "last one wins" order. */
+  rules?: CustomErrorRuleList;
+  /** The list of custom error detail types, e.g. 'google.foo.v1.CustomError'. */
+  types?: StringList;
+}
+export const CustomError = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    rules: S.optional(CustomErrorRuleList),
+    types: S.optional(StringList),
+  }),
+).annotate({ identifier: "CustomError" }) as any as S.Schema<CustomError>;
+
+/** Source information used to create a Service Config */
+export interface SourceInfo {
+  /** All files used during config generation. */
+  sourceFiles?: DocumentMapList;
+}
+export const SourceInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    sourceFiles: S.optional(DocumentMapList),
+  }),
+).annotate({ identifier: "SourceInfo" }) as any as S.Schema<SourceInfo>;
+
+export type BackendRuleMap = { [key: string]: BackendRule | undefined };
+export const BackendRuleMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.suspend(() => BackendRule),
+) as any as S.Schema<BackendRuleMap>;
+
+export type BackendRulePathTranslationEnum =
+  | "PATH_TRANSLATION_UNSPECIFIED"
+  | "CONSTANT_ADDRESS"
+  | "APPEND_PATH_TO_ADDRESS";
+export const BackendRulePathTranslationEnum = /*@__PURE__*/ S.String;
+
+/** A backend rule provides configuration for an individual API element. */
+export interface BackendRule {
+  /** The map between request protocol and the backend address. */
+  overridesByRequestProtocol?: BackendRuleMap;
+  /** Path translation specifies how to combine the backend address with the request path in order to produce the appropriate forwarding URL for the request. See PathTranslation for more details. */
+  pathTranslation?: BackendRulePathTranslationEnum | (string & {});
+  /** The JWT audience is used when generating a JWT ID token for the backend. This ID token will be added in the HTTP "authorization" header, and sent to the backend. */
+  jwtAudience?: string;
+  /** Deprecated, do not use. */
+  minDeadline?: number;
+  /** The number of seconds to wait for a response from a request. The default varies based on the request protocol and deployment environment. */
+  deadline?: number;
+  /** The load balancing policy used for connection to the application backend. Defined as an arbitrary string to accomondate custom load balancing policies supported by the underlying channel, but suggest most users use one of the standard policies, such as the default, "RoundRobin". */
+  loadBalancingPolicy?: string;
+  /** When disable_auth is true, a JWT ID token won't be generated and the original "Authorization" HTTP header will be preserved. If the header is used to carry the original token and is expected by the backend, this field must be set to true to preserve the header. */
+  disableAuth?: boolean;
+  /** The number of seconds to wait for the completion of a long running operation. The default is no deadline. */
+  operationDeadline?: number;
+  /** Selects the methods to which this rule applies. Refer to selector for syntax details. */
+  selector?: string;
+  /** The protocol used for sending a request to the backend. The supported values are "http/1.1" and "h2". The default value is inferred from the scheme in the address field: SCHEME PROTOCOL http:// http/1.1 https:// http/1.1 grpc:// h2 grpcs:// h2 For secure HTTP backends (https://) that support HTTP/2, set this field to "h2" for improved performance. Configuring this field to non-default values is only supported for secure HTTP backends. This field will be ignored for all other backends. See https://www.iana.org/assignments/tls-extensiontype-values/tls-extensiontype-values.xhtml#alpn-protocol-ids for more details on the supported values. */
+  protocol?: string;
+  /** The address of the API backend. The scheme is used to determine the backend protocol and security. The following schemes are accepted: SCHEME PROTOCOL SECURITY http:// HTTP None https:// HTTP TLS grpc:// gRPC None grpcs:// gRPC TLS It is recommended to explicitly include a scheme. Leaving out the scheme may cause constrasting behaviors across platforms. If the port is unspecified, the default is: - 80 for schemes without TLS - 443 for schemes with TLS For HTTP backends, use protocol to specify the protocol version. */
+  address?: string;
+}
+export const BackendRule = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    overridesByRequestProtocol: S.optional(BackendRuleMap),
+    pathTranslation: S.optional(BackendRulePathTranslationEnum),
+    jwtAudience: S.optional(S.String),
+    minDeadline: S.optional(S.Number),
+    deadline: S.optional(S.Number),
+    loadBalancingPolicy: S.optional(S.String),
+    disableAuth: S.optional(S.Boolean),
+    operationDeadline: S.optional(S.Number),
+    selector: S.optional(S.String),
+    protocol: S.optional(S.String),
+    address: S.optional(S.String),
+  }),
+).annotate({ identifier: "BackendRule" }) as any as S.Schema<BackendRule>;
+
+export type BackendRuleList = Array<BackendRule>;
+export const BackendRuleList = /*@__PURE__*/ S.Array(
+  BackendRule,
+) as any as S.Schema<BackendRuleList>;
+
+/** `Backend` defines the backend configuration for a service. */
+export interface Backend {
+  /** A list of API backend rules that apply to individual API methods. **NOTE:** All service configuration rules follow "last one wins" order. */
+  rules?: BackendRuleList;
+}
+export const Backend = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    rules: S.optional(BackendRuleList),
+  }),
+).annotate({ identifier: "Backend" }) as any as S.Schema<Backend>;
 
 export type MonitoredResourceDescriptorLaunchStageEnum =
   | "LAUNCH_STAGE_UNSPECIFIED"
@@ -284,29 +422,56 @@ export type MonitoredResourceDescriptorLaunchStageEnum =
 export const MonitoredResourceDescriptorLaunchStageEnum =
   /*@__PURE__*/ S.String;
 
+export type LabelDescriptorValueTypeEnum = "STRING" | "BOOL" | "INT64";
+export const LabelDescriptorValueTypeEnum = /*@__PURE__*/ S.String;
+
+/** A description of a label. */
+export interface LabelDescriptor {
+  /** The type of data that can be assigned to the label. */
+  valueType?: LabelDescriptorValueTypeEnum | (string & {});
+  /** The label key. */
+  key?: string;
+  /** A human-readable description for the label. */
+  description?: string;
+}
+export const LabelDescriptor = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    valueType: S.optional(LabelDescriptorValueTypeEnum),
+    key: S.optional(S.String),
+    description: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "LabelDescriptor",
+}) as any as S.Schema<LabelDescriptor>;
+
+export type LabelDescriptorList = Array<LabelDescriptor>;
+export const LabelDescriptorList = /*@__PURE__*/ S.Array(
+  LabelDescriptor,
+) as any as S.Schema<LabelDescriptorList>;
+
 /** An object that describes the schema of a MonitoredResource object using a type name and a set of labels. For example, the monitored resource descriptor for Google Compute Engine VM instances has a type of `"gce_instance"` and specifies the use of the labels `"instance_id"` and `"zone"` to identify particular VM instances. Different APIs can support different monitored resource types. APIs generally provide a `list` method that returns the monitored resource descriptors used by the API. */
 export interface MonitoredResourceDescriptor {
-  /** Required. The monitored resource type. For example, the type `"cloudsql_database"` represents databases in Google Cloud SQL. For a list of types, see [Monitored resource types](https://cloud.google.com/monitoring/api/resources) and [Logging resource types](https://cloud.google.com/logging/docs/api/v2/resource-list). */
-  type?: string;
-  /** Required. A set of labels used to describe instances of this monitored resource type. For example, an individual Google Cloud SQL database is identified by values for the labels `"database_id"` and `"zone"`. */
-  labels?: LabelDescriptorList;
+  /** Optional. The launch stage of the monitored resource definition. */
+  launchStage?: MonitoredResourceDescriptorLaunchStageEnum | (string & {});
   /** Optional. A detailed description of the monitored resource type that might be used in documentation. */
   description?: string;
+  /** Required. The monitored resource type. For example, the type `"cloudsql_database"` represents databases in Google Cloud SQL. For a list of types, see [Monitored resource types](https://cloud.google.com/monitoring/api/resources) and [Logging resource types](https://cloud.google.com/logging/docs/api/v2/resource-list). */
+  type?: string;
   /** Optional. The resource name of the monitored resource descriptor: `"projects/{project_id}/monitoredResourceDescriptors/{type}"` where {type} is the value of the `type` field in this object and {project_id} is a project ID that provides API-specific context for accessing the type. APIs that do not use project information can use the resource name format `"monitoredResourceDescriptors/{type}"`. */
   name?: string;
   /** Optional. A concise name for the monitored resource type that might be displayed in user interfaces. It should be a Title Cased Noun Phrase, without any article or other determiners. For example, `"Google Cloud SQL Database"`. */
   displayName?: string;
-  /** Optional. The launch stage of the monitored resource definition. */
-  launchStage?: MonitoredResourceDescriptorLaunchStageEnum | (string & {});
+  /** Required. A set of labels used to describe instances of this monitored resource type. For example, an individual Google Cloud SQL database is identified by values for the labels `"database_id"` and `"zone"`. */
+  labels?: LabelDescriptorList;
 }
 export const MonitoredResourceDescriptor = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    type: S.optional(S.String),
-    labels: S.optional(LabelDescriptorList),
+    launchStage: S.optional(MonitoredResourceDescriptorLaunchStageEnum),
     description: S.optional(S.String),
+    type: S.optional(S.String),
     name: S.optional(S.String),
     displayName: S.optional(S.String),
-    launchStage: S.optional(MonitoredResourceDescriptorLaunchStageEnum),
+    labels: S.optional(LabelDescriptorList),
   }),
 ).annotate({
   identifier: "MonitoredResourceDescriptor",
@@ -318,683 +483,77 @@ export const MonitoredResourceDescriptorList = /*@__PURE__*/ S.Array(
   MonitoredResourceDescriptor,
 ) as any as S.Schema<MonitoredResourceDescriptorList>;
 
-/** A description of a log type. Example in YAML format: - name: library.googleapis.com/activity_history description: The history of borrowing and returning library items. display_name: Activity labels: - key: /customer_id description: Identifier of a library customer */
-export interface LogDescriptor {
-  /** The name of the log. It must be less than 512 characters long and can include the following characters: upper- and lower-case alphanumeric characters [A-Za-z0-9], and punctuation characters including slash, underscore, hyphen, period [/_-.]. */
+/** Define a parameter's name and location. The parameter may be passed as either an HTTP header or a URL query parameter, and if both are passed the behavior is implementation-dependent. */
+export interface SystemParameter {
+  /** Define the name of the parameter, such as "api_key" . It is case sensitive. */
   name?: string;
-  /** The human-readable name for this log. This information appears on the user interface and should be concise. */
-  displayName?: string;
-  /** A human-readable description of this log. This information appears in the documentation and can contain details. */
-  description?: string;
-  /** The set of labels that are available to describe a specific log entry. Runtime requests that contain labels not specified here are considered invalid. */
-  labels?: LabelDescriptorList;
+  /** Define the URL query parameter name to use for the parameter. It is case sensitive. */
+  urlQueryParameter?: string;
+  /** Define the HTTP header name to use for the parameter. It is case insensitive. */
+  httpHeader?: string;
 }
-export const LogDescriptor = /*@__PURE__*/ S.suspend(() =>
+export const SystemParameter = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     name: S.optional(S.String),
-    displayName: S.optional(S.String),
-    description: S.optional(S.String),
-    labels: S.optional(LabelDescriptorList),
-  }),
-).annotate({ identifier: "LogDescriptor" }) as any as S.Schema<LogDescriptor>;
-
-export type LogDescriptorList = Array<LogDescriptor>;
-export const LogDescriptorList = /*@__PURE__*/ S.Array(
-  LogDescriptor,
-) as any as S.Schema<LogDescriptorList>;
-
-/** Source information used to create a Service Config */
-export interface SourceInfo {
-  /** All files used during config generation. */
-  sourceFiles?: DocumentMapList;
-}
-export const SourceInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    sourceFiles: S.optional(DocumentMapList),
-  }),
-).annotate({ identifier: "SourceInfo" }) as any as S.Schema<SourceInfo>;
-
-export type StringList = Array<string>;
-export const StringList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<StringList>;
-
-/** Describes settings to use when generating API methods that use the long-running operation pattern. All default values below are from those used in the client library generators (e.g. [Java](https://github.com/googleapis/gapic-generator-java/blob/04c2faa191a9b5a10b92392fe8482279c4404803/src/main/java/com/google/api/generator/gapic/composer/common/RetrySettingsComposer.java)). */
-export interface LongRunning {
-  /** Initial delay after which the first poll request will be made. Default value: 5 seconds. */
-  initialPollDelay?: string;
-  /** Maximum time between two subsequent poll requests. Default value: 45 seconds. */
-  maxPollDelay?: string;
-  /** Total polling timeout. Default value: 5 minutes. */
-  totalPollTimeout?: string;
-  /** Multiplier to gradually increase delay between subsequent polls until it reaches max_poll_delay. Default value: 1.5. */
-  pollDelayMultiplier?: number;
-}
-export const LongRunning = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    initialPollDelay: S.optional(S.String),
-    maxPollDelay: S.optional(S.String),
-    totalPollTimeout: S.optional(S.String),
-    pollDelayMultiplier: S.optional(S.Number),
-  }),
-).annotate({ identifier: "LongRunning" }) as any as S.Schema<LongRunning>;
-
-export type BatchingSettingsProtoFlowControlLimitExceededBehaviorEnum =
-  | "UNSET_BEHAVIOR"
-  | "THROW_EXCEPTION"
-  | "BLOCK"
-  | "IGNORE";
-export const BatchingSettingsProtoFlowControlLimitExceededBehaviorEnum =
-  /*@__PURE__*/ S.String;
-
-/** `BatchingSettingsProto` specifies a set of batching thresholds, each of which acts as a trigger to send a batch of messages as a request. At least one threshold must be positive nonzero. */
-export interface BatchingSettingsProto {
-  /** The duration after which a batch should be sent, starting from the addition of the first message to that batch. */
-  delayThreshold?: string;
-  /** The maximum number of elements collected in a batch that could be accepted by server. */
-  elementCountLimit?: number;
-  /** The maximum size of the request that could be accepted by server. */
-  requestByteLimit?: number;
-  /** The maximum size of data allowed by flow control. */
-  flowControlByteLimit?: number;
-  /** The aggregated size of the batched field which, if exceeded, causes the batch to be sent. This size is computed by aggregating the sizes of the request field to be batched, not of the entire request message. */
-  requestByteThreshold?: string;
-  /** The behavior to take when the flow control limit is exceeded. */
-  flowControlLimitExceededBehavior?:
-    | BatchingSettingsProtoFlowControlLimitExceededBehaviorEnum
-    | (string & {});
-  /** The number of elements of a field collected into a batch which, if exceeded, causes the batch to be sent. */
-  elementCountThreshold?: number;
-  /** The maximum number of elements allowed by flow control. */
-  flowControlElementLimit?: number;
-}
-export const BatchingSettingsProto = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    delayThreshold: S.optional(S.String),
-    elementCountLimit: S.optional(S.Number),
-    requestByteLimit: S.optional(S.Number),
-    flowControlByteLimit: S.optional(S.Number),
-    requestByteThreshold: S.optional(S.String),
-    flowControlLimitExceededBehavior: S.optional(
-      BatchingSettingsProtoFlowControlLimitExceededBehaviorEnum,
-    ),
-    elementCountThreshold: S.optional(S.Number),
-    flowControlElementLimit: S.optional(S.Number),
+    urlQueryParameter: S.optional(S.String),
+    httpHeader: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "BatchingSettingsProto",
-}) as any as S.Schema<BatchingSettingsProto>;
+  identifier: "SystemParameter",
+}) as any as S.Schema<SystemParameter>;
 
-/** `BatchingDescriptorProto` specifies the fields of the request message to be used for batching, and, optionally, the fields of the response message to be used for demultiplexing. */
-export interface BatchingDescriptorProto {
-  /** A list of the fields in the request message. Two requests will be batched together only if the values of every field specified in `request_discriminator_fields` is equal between the two requests. */
-  discriminatorFields?: StringList;
-  /** The repeated field in the request message to be aggregated by batching. */
-  batchedField?: string;
-  /** Optional. When present, indicates the field in the response message to be used to demultiplex the response into multiple response messages, in correspondence with the multiple request messages originally batched together. */
-  subresponseField?: string;
-}
-export const BatchingDescriptorProto = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    discriminatorFields: S.optional(StringList),
-    batchedField: S.optional(S.String),
-    subresponseField: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "BatchingDescriptorProto",
-}) as any as S.Schema<BatchingDescriptorProto>;
+export type SystemParameterList = Array<SystemParameter>;
+export const SystemParameterList = /*@__PURE__*/ S.Array(
+  SystemParameter,
+) as any as S.Schema<SystemParameterList>;
 
-/** `BatchingConfigProto` defines the batching configuration for an API method. */
-export interface BatchingConfigProto {
-  /** The thresholds which trigger a batched request to be sent. */
-  thresholds?: BatchingSettingsProto;
-  /** The request and response fields used in batching. */
-  batchDescriptor?: BatchingDescriptorProto;
-}
-export const BatchingConfigProto = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    thresholds: S.optional(BatchingSettingsProto),
-    batchDescriptor: S.optional(BatchingDescriptorProto),
-  }),
-).annotate({
-  identifier: "BatchingConfigProto",
-}) as any as S.Schema<BatchingConfigProto>;
-
-/** Describes the generator configuration for a method. */
-export interface MethodSettings {
-  /** The fully qualified name of the method, for which the options below apply. This is used to find the method to apply the options. Example: publishing: method_settings: - selector: google.storage.control.v2.StorageControl.CreateFolder # method settings for CreateFolder... */
+/** Define a system parameter rule mapping system parameter definitions to methods. */
+export interface SystemParameterRule {
+  /** Define parameters. Multiple names may be defined for a parameter. For a given method call, only one of them should be used. If multiple names are used the behavior is implementation-dependent. If none of the specified names are present the behavior is parameter-dependent. */
+  parameters?: SystemParameterList;
+  /** Selects the methods to which this rule applies. Use '*' to indicate all methods in all APIs. Refer to selector for syntax details. */
   selector?: string;
-  /** Describes settings to use for long-running operations when generating API methods for RPCs. Complements RPCs that use the annotations in google/longrunning/operations.proto. Example of a YAML configuration:: publishing: method_settings: - selector: google.cloud.speech.v2.Speech.BatchRecognize long_running: initial_poll_delay: 60s # 1 minute poll_delay_multiplier: 1.5 max_poll_delay: 360s # 6 minutes total_poll_timeout: 54000s # 90 minutes */
-  longRunning?: LongRunning;
-  /** Batching configuration for an API method in client libraries. Example of a YAML configuration: publishing: method_settings: - selector: google.example.v1.ExampleService.BatchCreateExample batching: element_count_threshold: 1000 request_byte_threshold: 100000000 delay_threshold_millis: 10 */
-  batching?: BatchingConfigProto;
-  /** List of top-level fields of the request message, that should be automatically populated by the client libraries based on their (google.api.field_info).format. Currently supported format: UUID4. Example of a YAML configuration: publishing: method_settings: - selector: google.example.v1.ExampleService.CreateExample auto_populated_fields: - request_id */
-  autoPopulatedFields?: StringList;
 }
-export const MethodSettings = /*@__PURE__*/ S.suspend(() =>
+export const SystemParameterRule = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    parameters: S.optional(SystemParameterList),
     selector: S.optional(S.String),
-    longRunning: S.optional(LongRunning),
-    batching: S.optional(BatchingConfigProto),
-    autoPopulatedFields: S.optional(StringList),
-  }),
-).annotate({ identifier: "MethodSettings" }) as any as S.Schema<MethodSettings>;
-
-export type MethodSettingsList = Array<MethodSettings>;
-export const MethodSettingsList = /*@__PURE__*/ S.Array(
-  MethodSettings,
-) as any as S.Schema<MethodSettingsList>;
-
-export type PublishingOrganizationEnum =
-  | "CLIENT_LIBRARY_ORGANIZATION_UNSPECIFIED"
-  | "CLOUD"
-  | "ADS"
-  | "PHOTOS"
-  | "STREET_VIEW"
-  | "SHOPPING"
-  | "GEO"
-  | "GENERATIVE_AI"
-  | "HEALTH";
-export const PublishingOrganizationEnum = /*@__PURE__*/ S.String;
-
-/** Experimental features to be included during client library generation. These fields will be deprecated once the feature graduates and is enabled by default. */
-export interface ExperimentalFeatures {
-  /** Enables generation of asynchronous REST clients if `rest` transport is enabled. By default, asynchronous REST clients will not be generated. This feature will be enabled by default 1 month after launching the feature in preview packages. */
-  restAsyncIoEnabled?: boolean;
-  /** Disables generation of an unversioned Python package for this client library. This means that the module names will need to be versioned in import statements. For example `import google.cloud.library_v2` instead of `import google.cloud.library`. */
-  unversionedPackageDisabled?: boolean;
-  /** Enables generation of protobuf code using new types that are more Pythonic which are included in `protobuf>=5.29.x`. This feature will be enabled by default 1 month after launching the feature in preview packages. */
-  protobufPythonicTypesEnabled?: boolean;
-}
-export const ExperimentalFeatures = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    restAsyncIoEnabled: S.optional(S.Boolean),
-    unversionedPackageDisabled: S.optional(S.Boolean),
-    protobufPythonicTypesEnabled: S.optional(S.Boolean),
   }),
 ).annotate({
-  identifier: "ExperimentalFeatures",
-}) as any as S.Schema<ExperimentalFeatures>;
+  identifier: "SystemParameterRule",
+}) as any as S.Schema<SystemParameterRule>;
 
-export type CommonLanguageSettingsDestinationsItemEnum =
-  | "CLIENT_LIBRARY_DESTINATION_UNSPECIFIED"
-  | "GITHUB"
-  | "PACKAGE_MANAGER";
-export const CommonLanguageSettingsDestinationsItemEnum =
-  /*@__PURE__*/ S.String;
+export type SystemParameterRuleList = Array<SystemParameterRule>;
+export const SystemParameterRuleList = /*@__PURE__*/ S.Array(
+  SystemParameterRule,
+) as any as S.Schema<SystemParameterRuleList>;
 
-export type CommonLanguageSettingsDestinationsItemEnumList = Array<
-  CommonLanguageSettingsDestinationsItemEnum | (string & {})
->;
-export const CommonLanguageSettingsDestinationsItemEnumList =
-  /*@__PURE__*/ S.Array(
-    CommonLanguageSettingsDestinationsItemEnum,
-  ) as any as S.Schema<CommonLanguageSettingsDestinationsItemEnumList>;
-
-/** This message is used to configure the generation of a subset of the RPCs in a service for client libraries. Note: This feature should not be used in most cases. */
-export interface SelectiveGapicGeneration {
-  /** An allowlist of the fully qualified names of RPCs that should be included on public client surfaces. */
-  methods?: StringList;
-  /** Setting this to true indicates to the client generators that methods that would be excluded from the generation should instead be generated in a way that indicates these methods should not be consumed by end users. How this is expressed is up to individual language implementations to decide. Some examples may be: added annotations, obfuscated identifiers, or other language idiomatic patterns. */
-  generateOmittedAsInternal?: boolean;
+/** ### System parameter configuration A system parameter is a special kind of parameter defined by the API system, not by an individual API. It is typically mapped to an HTTP header and/or a URL query parameter. This configuration specifies which methods change the names of the system parameters. */
+export interface SystemParameters {
+  /** Define system parameters. The parameters defined here will override the default parameters implemented by the system. If this field is missing from the service config, default system parameters will be used. Default system parameters and names is implementation-dependent. Example: define api key for all methods system_parameters rules: - selector: "*" parameters: - name: api_key url_query_parameter: api_key Example: define 2 api key names for a specific method. system_parameters rules: - selector: "/ListShelves" parameters: - name: api_key http_header: Api-Key1 - name: api_key http_header: Api-Key2 **NOTE:** All service configuration rules follow "last one wins" order. */
+  rules?: SystemParameterRuleList;
 }
-export const SelectiveGapicGeneration = /*@__PURE__*/ S.suspend(() =>
+export const SystemParameters = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    methods: S.optional(StringList),
-    generateOmittedAsInternal: S.optional(S.Boolean),
+    rules: S.optional(SystemParameterRuleList),
   }),
 ).annotate({
-  identifier: "SelectiveGapicGeneration",
-}) as any as S.Schema<SelectiveGapicGeneration>;
-
-/** Required information for every language. */
-export interface CommonLanguageSettings {
-  /** The destination where API teams want this client library to be published. */
-  destinations?: CommonLanguageSettingsDestinationsItemEnumList;
-  /** Configuration for which RPCs should be generated in the GAPIC client. Note: This field should not be used in most cases. */
-  selectiveGapicGeneration?: SelectiveGapicGeneration;
-  /** Link to automatically generated reference documentation. Example: https://cloud.google.com/nodejs/docs/reference/asset/latest */
-  referenceDocsUri?: string;
-}
-export const CommonLanguageSettings = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    destinations: S.optional(CommonLanguageSettingsDestinationsItemEnumList),
-    selectiveGapicGeneration: S.optional(SelectiveGapicGeneration),
-    referenceDocsUri: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "CommonLanguageSettings",
-}) as any as S.Schema<CommonLanguageSettings>;
-
-/** Settings for Python client libraries. */
-export interface PythonSettings {
-  /** Experimental features to be included during client library generation. */
-  experimentalFeatures?: ExperimentalFeatures;
-  /** Some settings. */
-  common?: CommonLanguageSettings;
-}
-export const PythonSettings = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    experimentalFeatures: S.optional(ExperimentalFeatures),
-    common: S.optional(CommonLanguageSettings),
-  }),
-).annotate({ identifier: "PythonSettings" }) as any as S.Schema<PythonSettings>;
-
-/** Settings for C++ client libraries. */
-export interface CppSettings {
-  /** Some settings. */
-  common?: CommonLanguageSettings;
-}
-export const CppSettings = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    common: S.optional(CommonLanguageSettings),
-  }),
-).annotate({ identifier: "CppSettings" }) as any as S.Schema<CppSettings>;
-
-/** Settings for Dotnet client libraries. */
-export interface DotnetSettings {
-  /** List of full resource types to ignore during generation. This is typically used for API-specific Location resources, which should be handled by the generator as if they were actually the common Location resources. Example entry: "documentai.googleapis.com/Location" */
-  ignoredResources?: StringList;
-  /** Namespaces which must be aliased in snippets due to a known (but non-generator-predictable) naming collision */
-  forcedNamespaceAliases?: StringList;
-  /** Method signatures (in the form "service.method(signature)") which are provided separately, so shouldn't be generated. Snippets *calling* these methods are still generated, however. */
-  handwrittenSignatures?: StringList;
-  /** Map from original service names to renamed versions. This is used when the default generated types would cause a naming conflict. (Neither name is fully-qualified.) Example: Subscriber to SubscriberServiceApi. */
-  renamedServices?: StringMap;
-  /** Some settings. */
-  common?: CommonLanguageSettings;
-  /** Map from full resource types to the effective short name for the resource. This is used when otherwise resource named from different services would cause naming collisions. Example entry: "datalabeling.googleapis.com/Dataset": "DataLabelingDataset" */
-  renamedResources?: StringMap;
-}
-export const DotnetSettings = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ignoredResources: S.optional(StringList),
-    forcedNamespaceAliases: S.optional(StringList),
-    handwrittenSignatures: S.optional(StringList),
-    renamedServices: S.optional(StringMap),
-    common: S.optional(CommonLanguageSettings),
-    renamedResources: S.optional(StringMap),
-  }),
-).annotate({ identifier: "DotnetSettings" }) as any as S.Schema<DotnetSettings>;
-
-/** Settings for Go client libraries. */
-export interface GoSettings {
-  /** Some settings. */
-  common?: CommonLanguageSettings;
-  /** Map of service names to renamed services. Keys are the package relative service names and values are the name to be used for the service client and call options. Example: publishing: go_settings: renamed_services: Publisher: TopicAdmin */
-  renamedServices?: StringMap;
-}
-export const GoSettings = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    common: S.optional(CommonLanguageSettings),
-    renamedServices: S.optional(StringMap),
-  }),
-).annotate({ identifier: "GoSettings" }) as any as S.Schema<GoSettings>;
-
-/** Settings for Ruby client libraries. */
-export type RubySettings = CppSettings;
-export const RubySettings = CppSettings;
-
-/** Settings for Java client libraries. */
-export interface JavaSettings {
-  /** Configure the Java class name to use instead of the service's for its corresponding generated GAPIC client. Keys are fully-qualified service names as they appear in the protobuf (including the full the language_settings.java.interface_names" field in gapic.yaml. API teams should otherwise use the service name as it appears in the protobuf. Example of a YAML configuration:: publishing: java_settings: service_class_names: - google.pubsub.v1.Publisher: TopicAdmin - google.pubsub.v1.Subscriber: SubscriptionAdmin */
-  serviceClassNames?: StringMap;
-  /** The package name to use in Java. Clobbers the java_package option set in the protobuf. This should be used **only** by APIs who have already set the language_settings.java.package_name" field in gapic.yaml. API teams should use the protobuf java_package option where possible. Example of a YAML configuration:: publishing: library_settings: java_settings: library_package: com.google.cloud.pubsub.v1 */
-  libraryPackage?: string;
-  /** Some settings. */
-  common?: CommonLanguageSettings;
-}
-export const JavaSettings = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    serviceClassNames: S.optional(StringMap),
-    libraryPackage: S.optional(S.String),
-    common: S.optional(CommonLanguageSettings),
-  }),
-).annotate({ identifier: "JavaSettings" }) as any as S.Schema<JavaSettings>;
-
-/** Settings for Node client libraries. */
-export type NodeSettings = CppSettings;
-export const NodeSettings = CppSettings;
-
-export type ClientLibrarySettingsLaunchStageEnum =
-  | "LAUNCH_STAGE_UNSPECIFIED"
-  | "UNIMPLEMENTED"
-  | "PRELAUNCH"
-  | "EARLY_ACCESS"
-  | "ALPHA"
-  | "BETA"
-  | "GA"
-  | "DEPRECATED";
-export const ClientLibrarySettingsLaunchStageEnum = /*@__PURE__*/ S.String;
-
-/** Settings for Php client libraries. */
-export interface PhpSettings {
-  /** Some settings. */
-  common?: CommonLanguageSettings;
-  /** The package name to use in Php. Clobbers the php_namespace option set in the protobuf. This should be used **only** by APIs who have already set the language_settings.php.package_name" field in gapic.yaml. API teams should use the protobuf php_namespace option where possible. Example of a YAML configuration:: publishing: library_settings: php_settings: library_package: Google\Cloud\PubSub\V1 */
-  libraryPackage?: string;
-}
-export const PhpSettings = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    common: S.optional(CommonLanguageSettings),
-    libraryPackage: S.optional(S.String),
-  }),
-).annotate({ identifier: "PhpSettings" }) as any as S.Schema<PhpSettings>;
-
-/** Details about how and where to publish client libraries. */
-export interface ClientLibrarySettings {
-  /** Settings for Python client libraries. */
-  pythonSettings?: PythonSettings;
-  /** When using transport=rest, the client request will encode enums as numbers rather than strings. */
-  restNumericEnums?: boolean;
-  /** Settings for C++ client libraries. */
-  cppSettings?: CppSettings;
-  /** Settings for .NET client libraries. */
-  dotnetSettings?: DotnetSettings;
-  /** Version of the API to apply these settings to. This is the full protobuf package for the API, ending in the version element. Examples: "google.cloud.speech.v1" and "google.spanner.admin.database.v1". */
-  version?: string;
-  /** Settings for Go client libraries. */
-  goSettings?: GoSettings;
-  /** Settings for Ruby client libraries. */
-  rubySettings?: CppSettings;
-  /** Settings for legacy Java features, supported in the Service YAML. */
-  javaSettings?: JavaSettings;
-  /** Settings for Node client libraries. */
-  nodeSettings?: CppSettings;
-  /** Launch stage of this version of the API. */
-  launchStage?: ClientLibrarySettingsLaunchStageEnum | (string & {});
-  /** Settings for PHP client libraries. */
-  phpSettings?: PhpSettings;
-}
-export const ClientLibrarySettings = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    pythonSettings: S.optional(PythonSettings),
-    restNumericEnums: S.optional(S.Boolean),
-    cppSettings: S.optional(CppSettings),
-    dotnetSettings: S.optional(DotnetSettings),
-    version: S.optional(S.String),
-    goSettings: S.optional(GoSettings),
-    rubySettings: S.optional(CppSettings),
-    javaSettings: S.optional(JavaSettings),
-    nodeSettings: S.optional(CppSettings),
-    launchStage: S.optional(ClientLibrarySettingsLaunchStageEnum),
-    phpSettings: S.optional(PhpSettings),
-  }),
-).annotate({
-  identifier: "ClientLibrarySettings",
-}) as any as S.Schema<ClientLibrarySettings>;
-
-export type ClientLibrarySettingsList = Array<ClientLibrarySettings>;
-export const ClientLibrarySettingsList = /*@__PURE__*/ S.Array(
-  ClientLibrarySettings,
-) as any as S.Schema<ClientLibrarySettingsList>;
-
-/** This message configures the settings for publishing [Google Cloud Client libraries](https://cloud.google.com/apis/docs/cloud-client-libraries) generated from the service config. */
-export interface Publishing {
-  /** GitHub teams to be added to CODEOWNERS in the directory in GitHub containing source code for the client libraries for this API. */
-  codeownerGithubTeams?: StringList;
-  /** A list of API method settings, e.g. the behavior for methods that use the long-running operation pattern. */
-  methodSettings?: MethodSettingsList;
-  /** Used as a tracking tag when collecting data about the APIs developer relations artifacts like docs, packages delivered to package managers, etc. Example: "speech". */
-  apiShortName?: string;
-  /** GitHub label to apply to issues and pull requests opened for this API. */
-  githubLabel?: string;
-  /** A prefix used in sample code when demarking regions to be included in documentation. */
-  docTagPrefix?: string;
-  /** For whom the client library is being published. */
-  organization?: PublishingOrganizationEnum | (string & {});
-  /** Link to a *public* URI where users can report issues. Example: https://issuetracker.google.com/issues/new?component=190865&template=1161103 */
-  newIssueUri?: string;
-  /** Link to product home page. Example: https://cloud.google.com/asset-inventory/docs/overview */
-  documentationUri?: string;
-  /** Client library settings. If the same version string appears multiple times in this list, then the last one wins. Settings from earlier settings with the same version string are discarded. */
-  librarySettings?: ClientLibrarySettingsList;
-  /** Optional link to proto reference documentation. Example: https://cloud.google.com/pubsub/lite/docs/reference/rpc */
-  protoReferenceDocumentationUri?: string;
-  /** Optional link to REST reference documentation. Example: https://cloud.google.com/pubsub/lite/docs/reference/rest */
-  restReferenceDocumentationUri?: string;
-}
-export const Publishing = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    codeownerGithubTeams: S.optional(StringList),
-    methodSettings: S.optional(MethodSettingsList),
-    apiShortName: S.optional(S.String),
-    githubLabel: S.optional(S.String),
-    docTagPrefix: S.optional(S.String),
-    organization: S.optional(PublishingOrganizationEnum),
-    newIssueUri: S.optional(S.String),
-    documentationUri: S.optional(S.String),
-    librarySettings: S.optional(ClientLibrarySettingsList),
-    protoReferenceDocumentationUri: S.optional(S.String),
-    restReferenceDocumentationUri: S.optional(S.String),
-  }),
-).annotate({ identifier: "Publishing" }) as any as S.Schema<Publishing>;
-
-/** Represents a documentation page. A page can contain subpages to represent nested documentation set structure. */
-export interface Page {
-  /** The name of the page. It will be used as an identity of the page to generate URI of the page, text of the link to this page in navigation, etc. The full page name (start from the root page name to this page concatenated with `.`) can be used as reference to the page in your documentation. For example: pages: - name: Tutorial content: (== include tutorial.md ==) subpages: - name: Java content: (== include tutorial_java.md ==) You can reference `Java` page using Markdown reference link syntax: `Java`. */
-  name?: string;
-  /** The Markdown content of the page. You can use ```(== include {path} ==)``` to include content from a Markdown file. The content can be used to produce the documentation page such as HTML format page. */
-  content?: string;
-  /** Subpages of this page. The order of subpages specified here will be honored in the generated docset. */
-  subpages?: PageList;
-}
-export const Page = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    content: S.optional(S.String),
-    subpages: S.optional(S.suspend(() => PageList)),
-  }),
-).annotate({ identifier: "Page" }) as any as S.Schema<Page>;
-
-export type PageList = Array<Page>;
-export const PageList = /*@__PURE__*/ S.Array(
-  Page,
-) as any as S.Schema<PageList>;
-
-/** A documentation rule provides information about individual API elements. */
-export interface DocumentationRule {
-  /** The selector is a comma-separated list of patterns for any element such as a method, a field, an enum value. Each pattern is a qualified name of the element which may end in "*", indicating a wildcard. Wildcards are only allowed at the end and for a whole component of the qualified name, i.e. "foo.*" is ok, but not "foo.b*" or "foo.*.bar". A wildcard will match one or more components. To specify a default for all applicable elements, the whole pattern "*" is used. */
-  selector?: string;
-  /** Description of the selected proto element (e.g. a message, a method, a 'service' definition, or a field). Defaults to leading & trailing comments taken from the proto source definition of the proto element. */
-  description?: string;
-  /** String of comma or space separated case-sensitive words for which method/field name replacement will be disabled. */
-  disableReplacementWords?: string;
-  /** Deprecation description of the selected element(s). It can be provided if an element is marked as `deprecated`. */
-  deprecationDescription?: string;
-}
-export const DocumentationRule = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    selector: S.optional(S.String),
-    description: S.optional(S.String),
-    disableReplacementWords: S.optional(S.String),
-    deprecationDescription: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DocumentationRule",
-}) as any as S.Schema<DocumentationRule>;
-
-export type DocumentationRuleList = Array<DocumentationRule>;
-export const DocumentationRuleList = /*@__PURE__*/ S.Array(
-  DocumentationRule,
-) as any as S.Schema<DocumentationRuleList>;
-
-/** `Documentation` provides the information for describing a service. Example: documentation: summary: > The Google Calendar API gives access to most calendar features. pages: - name: Overview content: (== include google/foo/overview.md ==) - name: Tutorial content: (== include google/foo/tutorial.md ==) subpages: - name: Java content: (== include google/foo/tutorial_java.md ==) rules: - selector: google.calendar.Calendar.Get description: > ... - selector: google.calendar.Calendar.Put description: > ... Documentation is provided in markdown syntax. In addition to standard markdown features, definition lists, tables and fenced code blocks are supported. Section headers can be provided and are interpreted relative to the section nesting of the context where a documentation fragment is embedded. Documentation from the IDL is merged with documentation defined via the config at normalization time, where documentation provided by config rules overrides IDL provided. A number of constructs specific to the API platform are supported in documentation text. In order to reference a proto element, the following notation can be used: [fully.qualified.proto.name][] To override the display text used for the link, this can be used: [display text][fully.qualified.proto.name] Text can be excluded from doc using the following notation: (-- internal comment --) A few directives are available in documentation. Note that directives must appear on a single line to be properly identified. The `include` directive includes a markdown file from an external source: (== include path/to/file ==) The `resource_for` directive marks a message to be the resource of a collection in REST view. If it is not specified, tools attempt to infer the resource from the operations in a collection: (== resource_for v1.shelves.books ==) The directive `suppress_warning` does not directly affect documentation and is documented together with service config validation. */
-export interface Documentation {
-  /** The top level pages for the documentation set. */
-  pages?: PageList;
-  /** Specifies section and content to override the boilerplate content. Currently overrides following sections: 1. rest.service.client_libraries */
-  sectionOverrides?: PageList;
-  /** A list of documentation rules that apply to individual API elements. **NOTE:** All service configuration rules follow "last one wins" order. */
-  rules?: DocumentationRuleList;
-  /** Specifies the service root url if the default one (the service name from the yaml file) is not suitable. This can be seen in any fully specified service urls as well as sections that show a base that other urls are relative to. */
-  serviceRootUrl?: string;
-  /** A short description of what the service does. The summary must be plain text. It becomes the overview of the service displayed in Google Cloud Console. NOTE: This field is equivalent to the standard field `description`. */
-  summary?: string;
-  /** Optional information about the IAM configuration. This is typically used to link to documentation about a product's IAM roles and permissions. */
-  additionalIamInfo?: string;
-  /** The URL to the root of documentation. */
-  documentationRootUrl?: string;
-  /** Declares a single overview page. For example: documentation: summary: ... overview: (== include overview.md ==) This is a shortcut for the following declaration (using pages style): documentation: summary: ... pages: - name: Overview content: (== include overview.md ==) Note: you cannot specify both `overview` field and `pages` field. */
-  overview?: string;
-}
-export const Documentation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    pages: S.optional(PageList),
-    sectionOverrides: S.optional(PageList),
-    rules: S.optional(DocumentationRuleList),
-    serviceRootUrl: S.optional(S.String),
-    summary: S.optional(S.String),
-    additionalIamInfo: S.optional(S.String),
-    documentationRootUrl: S.optional(S.String),
-    overview: S.optional(S.String),
-  }),
-).annotate({ identifier: "Documentation" }) as any as S.Schema<Documentation>;
-
-/** Specifies a location to extract JWT from an API request. */
-export interface JwtLocation {
-  /** Specifies URL query parameter name to extract JWT token. */
-  query?: string;
-  /** Specifies HTTP header name to extract JWT token. */
-  header?: string;
-  /** Specifies cookie name to extract JWT token. */
-  cookie?: string;
-  /** The value prefix. The value format is "value_prefix{token}" Only applies to "in" header type. Must be empty for "in" query type. If not empty, the header value has to match (case sensitive) this prefix. If not matched, JWT will not be extracted. If matched, JWT will be extracted after the prefix is removed. For example, for "Authorization: Bearer {JWT}", value_prefix="Bearer " with a space at the end. */
-  valuePrefix?: string;
-}
-export const JwtLocation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    query: S.optional(S.String),
-    header: S.optional(S.String),
-    cookie: S.optional(S.String),
-    valuePrefix: S.optional(S.String),
-  }),
-).annotate({ identifier: "JwtLocation" }) as any as S.Schema<JwtLocation>;
-
-export type JwtLocationList = Array<JwtLocation>;
-export const JwtLocationList = /*@__PURE__*/ S.Array(
-  JwtLocation,
-) as any as S.Schema<JwtLocationList>;
-
-/** Configuration for an authentication provider, including support for [JSON Web Token (JWT)](https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32). */
-export interface AuthProvider {
-  /** Redirect URL if JWT token is required but not present or is expired. Implement authorizationUrl of securityDefinitions in OpenAPI spec. */
-  authorizationUrl?: string;
-  /** Defines the locations to extract the JWT. For now it is only used by the Cloud Endpoints to store the OpenAPI extension [x-google-jwt-locations] (https://cloud.google.com/endpoints/docs/openapi/openapi-extensions#x-google-jwt-locations) JWT locations can be one of HTTP headers, URL query parameters or cookies. The rule is that the first match wins. If not specified, default to use following 3 locations: 1) Authorization: Bearer 2) x-goog-iap-jwt-assertion 3) access_token query parameter Default locations can be specified as followings: jwt_locations: - header: Authorization value_prefix: "Bearer " - header: x-goog-iap-jwt-assertion - query: access_token */
-  jwtLocations?: JwtLocationList;
-  /** URL of the provider's public key set to validate signature of the JWT. See [OpenID Discovery](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata). Optional if the key set document: - can be retrieved from [OpenID Discovery](https://openid.net/specs/openid-connect-discovery-1_0.html) of the issuer. - can be inferred from the email domain of the issuer (e.g. a Google service account). Example: https://www.googleapis.com/oauth2/v1/certs */
-  jwksUri?: string;
-  /** Identifies the principal that issued the JWT. See https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32#section-4.1.1 Usually a URL or an email address. Example: https://securetoken.google.com Example: 1234567-compute@developer.gserviceaccount.com */
-  issuer?: string;
-  /** The unique identifier of the auth provider. It will be referred to by `AuthRequirement.provider_id`. Example: "bookstore_auth". */
-  id?: string;
-  /** The list of JWT [audiences](https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32#section-4.1.3). that are allowed to access. A JWT containing any of these audiences will be accepted. When this setting is absent, JWTs with audiences: - "https://[service.name]/[google.protobuf.Api.name]" - "https://[service.name]/" will be accepted. For example, if no audiences are in the setting, LibraryService API will accept JWTs with the following audiences: - https://library-example.googleapis.com/google.example.library.v1.LibraryService - https://library-example.googleapis.com/ Example: audiences: bookstore_android.apps.googleusercontent.com, bookstore_web.apps.googleusercontent.com */
-  audiences?: string;
-}
-export const AuthProvider = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    authorizationUrl: S.optional(S.String),
-    jwtLocations: S.optional(JwtLocationList),
-    jwksUri: S.optional(S.String),
-    issuer: S.optional(S.String),
-    id: S.optional(S.String),
-    audiences: S.optional(S.String),
-  }),
-).annotate({ identifier: "AuthProvider" }) as any as S.Schema<AuthProvider>;
-
-export type AuthProviderList = Array<AuthProvider>;
-export const AuthProviderList = /*@__PURE__*/ S.Array(
-  AuthProvider,
-) as any as S.Schema<AuthProviderList>;
-
-/** OAuth scopes are a way to define data and permissions on data. For example, there are scopes defined for "Read-only access to Google Calendar" and "Access to Cloud Platform". Users can consent to a scope for an application, giving it permission to access that data on their behalf. OAuth scope specifications should be fairly coarse grained; a user will need to see and understand the text description of what your scope means. In most cases: use one or at most two OAuth scopes for an entire family of products. If your product has multiple APIs, you should probably be sharing the OAuth scope across all of those APIs. When you need finer grained OAuth consent screens: talk with your product management about how developers will use them in practice. Please note that even though each of the canonical scopes is enough for a request to be accepted and passed to the backend, a request can still fail due to the backend requiring additional scopes or permissions. */
-export interface OAuthRequirements {
-  /** The list of publicly documented OAuth scopes that are allowed access. An OAuth token containing any of these scopes will be accepted. Example: canonical_scopes: https://www.googleapis.com/auth/calendar, https://www.googleapis.com/auth/calendar.read */
-  canonicalScopes?: string;
-}
-export const OAuthRequirements = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    canonicalScopes: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OAuthRequirements",
-}) as any as S.Schema<OAuthRequirements>;
-
-/** User-defined authentication requirements, including support for [JSON Web Token (JWT)](https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32). */
-export interface AuthRequirement {
-  /** id from authentication provider. Example: provider_id: bookstore_auth */
-  providerId?: string;
-  /** NOTE: This will be deprecated soon, once AuthProvider.audiences is implemented and accepted in all the runtime components. The list of JWT [audiences](https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32#section-4.1.3). that are allowed to access. A JWT containing any of these audiences will be accepted. When this setting is absent, only JWTs with audience "https://Service_name/API_name" will be accepted. For example, if no audiences are in the setting, LibraryService API will only accept JWTs with the following audience "https://library-example.googleapis.com/google.example.library.v1.LibraryService". Example: audiences: bookstore_android.apps.googleusercontent.com, bookstore_web.apps.googleusercontent.com */
-  audiences?: string;
-}
-export const AuthRequirement = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    providerId: S.optional(S.String),
-    audiences: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AuthRequirement",
-}) as any as S.Schema<AuthRequirement>;
-
-export type AuthRequirementList = Array<AuthRequirement>;
-export const AuthRequirementList = /*@__PURE__*/ S.Array(
-  AuthRequirement,
-) as any as S.Schema<AuthRequirementList>;
-
-/** Authentication rules for the service. By default, if a method has any authentication requirements, every request must include a valid credential matching one of the requirements. It's an error to include more than one kind of credential in a single request. If a method doesn't have any auth requirements, request credentials will be ignored. */
-export interface AuthenticationRule {
-  /** The requirements for OAuth credentials. */
-  oauth?: OAuthRequirements;
-  /** Selects the methods to which this rule applies. Refer to selector for syntax details. */
-  selector?: string;
-  /** Requirements for additional authentication providers. */
-  requirements?: AuthRequirementList;
-  /** If true, the service accepts API keys without any other credential. This flag only applies to HTTP and gRPC requests. */
-  allowWithoutCredential?: boolean;
-}
-export const AuthenticationRule = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    oauth: S.optional(OAuthRequirements),
-    selector: S.optional(S.String),
-    requirements: S.optional(AuthRequirementList),
-    allowWithoutCredential: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "AuthenticationRule",
-}) as any as S.Schema<AuthenticationRule>;
-
-export type AuthenticationRuleList = Array<AuthenticationRule>;
-export const AuthenticationRuleList = /*@__PURE__*/ S.Array(
-  AuthenticationRule,
-) as any as S.Schema<AuthenticationRuleList>;
-
-/** `Authentication` defines the authentication configuration for API methods provided by an API service. Example: name: calendar.googleapis.com authentication: providers: - id: google_calendar_auth jwks_uri: https://www.googleapis.com/oauth2/v1/certs issuer: https://securetoken.google.com rules: - selector: "*" requirements: provider_id: google_calendar_auth - selector: google.calendar.Delegate oauth: canonical_scopes: https://www.googleapis.com/auth/calendar.read */
-export interface Authentication {
-  /** Defines a set of authentication providers that a service supports. */
-  providers?: AuthProviderList;
-  /** A list of authentication rules that apply to individual API methods. **NOTE:** All service configuration rules follow "last one wins" order. */
-  rules?: AuthenticationRuleList;
-}
-export const Authentication = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    providers: S.optional(AuthProviderList),
-    rules: S.optional(AuthenticationRuleList),
-  }),
-).annotate({ identifier: "Authentication" }) as any as S.Schema<Authentication>;
+  identifier: "SystemParameters",
+}) as any as S.Schema<SystemParameters>;
 
 /** Usage configuration rules for the service. */
 export interface UsageRule {
-  /** Use this rule to configure unregistered calls for the service. Unregistered calls are calls that do not contain consumer project identity. (Example: calls that do not contain an API key). WARNING: By default, API methods do not allow unregistered calls, and each method call must be identified by a consumer project identity. */
-  allowUnregisteredCalls?: boolean;
   /** Selects the methods to which this rule applies. Use '*' to indicate all methods in all APIs. Refer to selector for syntax details. */
   selector?: string;
+  /** Use this rule to configure unregistered calls for the service. Unregistered calls are calls that do not contain consumer project identity. (Example: calls that do not contain an API key). WARNING: By default, API methods do not allow unregistered calls, and each method call must be identified by a consumer project identity. */
+  allowUnregisteredCalls?: boolean;
   /** If true, the selected method should skip service control and the control plane features, such as quota and billing, will not be available. This flag is used by Google Cloud Endpoints to bypass checks for internal methods, such as service health check methods. */
   skipServiceControl?: boolean;
 }
 export const UsageRule = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    allowUnregisteredCalls: S.optional(S.Boolean),
     selector: S.optional(S.String),
+    allowUnregisteredCalls: S.optional(S.Boolean),
     skipServiceControl: S.optional(S.Boolean),
   }),
 ).annotate({ identifier: "UsageRule" }) as any as S.Schema<UsageRule>;
@@ -1021,304 +580,7 @@ export const Usage = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "Usage" }) as any as S.Schema<Usage>;
 
-/** A protocol buffer option, which can be attached to a message, field, enumeration, etc. New usages of this message as an alternative to FileOptions, MessageOptions, FieldOptions, EnumOptions, EnumValueOptions, ServiceOptions, or MethodOptions are strongly discouraged. */
-export interface Option {
-  /** The option's name. For protobuf built-in options (options defined in descriptor.proto), this is the short name. For example, `"map_entry"`. For custom options, it should be the fully-qualified name. For example, `"google.api.http"`. */
-  name?: string;
-  /** The option's value packed in an Any message. If the value is a primitive, the corresponding wrapper type defined in google/protobuf/wrappers.proto should be used. If the value is an enum, it should be stored as an int32 value using the google.protobuf.Int32Value type. */
-  value?: DocumentMap;
-}
-export const Option = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    value: S.optional(DocumentMap),
-  }),
-).annotate({ identifier: "Option" }) as any as S.Schema<Option>;
-
-export type OptionList = Array<Option>;
-export const OptionList = /*@__PURE__*/ S.Array(
-  Option,
-) as any as S.Schema<OptionList>;
-
-export type FieldKindEnum =
-  | "TYPE_UNKNOWN"
-  | "TYPE_DOUBLE"
-  | "TYPE_FLOAT"
-  | "TYPE_INT64"
-  | "TYPE_UINT64"
-  | "TYPE_INT32"
-  | "TYPE_FIXED64"
-  | "TYPE_FIXED32"
-  | "TYPE_BOOL"
-  | "TYPE_STRING"
-  | "TYPE_GROUP"
-  | "TYPE_MESSAGE"
-  | "TYPE_BYTES"
-  | "TYPE_UINT32"
-  | "TYPE_ENUM"
-  | "TYPE_SFIXED32"
-  | "TYPE_SFIXED64"
-  | "TYPE_SINT32"
-  | "TYPE_SINT64";
-export const FieldKindEnum = /*@__PURE__*/ S.String;
-
-export type FieldCardinalityEnum =
-  | "CARDINALITY_UNKNOWN"
-  | "CARDINALITY_OPTIONAL"
-  | "CARDINALITY_REQUIRED"
-  | "CARDINALITY_REPEATED";
-export const FieldCardinalityEnum = /*@__PURE__*/ S.String;
-
-/** A single field of a message type. New usages of this message as an alternative to FieldDescriptorProto are strongly discouraged. This message does not reliability preserve all information necessary to model the schema and preserve semantics. Instead make use of FileDescriptorSet which preserves the necessary information. */
-export interface Field {
-  /** The field type URL, without the scheme, for message or enumeration types. Example: `"type.googleapis.com/google.protobuf.Timestamp"`. */
-  typeUrl?: string;
-  /** The protocol buffer options. */
-  options?: OptionList;
-  /** The field name. */
-  name?: string;
-  /** The field type. */
-  kind?: FieldKindEnum | (string & {});
-  /** The field cardinality. */
-  cardinality?: FieldCardinalityEnum | (string & {});
-  /** The string value of the default value of this field. Proto2 syntax only. */
-  defaultValue?: string;
-  /** The index of the field type in `Type.oneofs`, for message or enumeration types. The first type has index 1; zero means the type is not in the list. */
-  oneofIndex?: number;
-  /** The field JSON name. */
-  jsonName?: string;
-  /** Whether to use alternative packed wire representation. */
-  packed?: boolean;
-  /** The field number. */
-  number?: number;
-}
-export const Field = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    typeUrl: S.optional(S.String),
-    options: S.optional(OptionList),
-    name: S.optional(S.String),
-    kind: S.optional(FieldKindEnum),
-    cardinality: S.optional(FieldCardinalityEnum),
-    defaultValue: S.optional(S.String),
-    oneofIndex: S.optional(S.Number),
-    jsonName: S.optional(S.String),
-    packed: S.optional(S.Boolean),
-    number: S.optional(S.Number),
-  }),
-).annotate({ identifier: "Field" }) as any as S.Schema<Field>;
-
-export type FieldList = Array<Field>;
-export const FieldList = /*@__PURE__*/ S.Array(
-  Field,
-) as any as S.Schema<FieldList>;
-
-export type TypeSyntaxEnum =
-  | "SYNTAX_PROTO2"
-  | "SYNTAX_PROTO3"
-  | "SYNTAX_EDITIONS";
-export const TypeSyntaxEnum = /*@__PURE__*/ S.String;
-
-/** `SourceContext` represents information about the source of a protobuf element, like the file in which it is defined. */
-export interface SourceContext {
-  /** The path-qualified name of the .proto file that contained the associated protobuf element. For example: `"google/protobuf/source_context.proto"`. */
-  fileName?: string;
-}
-export const SourceContext = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    fileName: S.optional(S.String),
-  }),
-).annotate({ identifier: "SourceContext" }) as any as S.Schema<SourceContext>;
-
-/** A protocol buffer message type. New usages of this message as an alternative to DescriptorProto are strongly discouraged. This message does not reliability preserve all information necessary to model the schema and preserve semantics. Instead make use of FileDescriptorSet which preserves the necessary information. */
-export interface Type {
-  /** The list of types appearing in `oneof` definitions in this type. */
-  oneofs?: StringList;
-  /** The fully qualified message name. */
-  name?: string;
-  /** The list of fields. */
-  fields?: FieldList;
-  /** The protocol buffer options. */
-  options?: OptionList;
-  /** The source syntax. */
-  syntax?: TypeSyntaxEnum | (string & {});
-  /** The source context. */
-  sourceContext?: SourceContext;
-  /** The source edition string, only valid when syntax is SYNTAX_EDITIONS. */
-  edition?: string;
-}
-export const Type = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    oneofs: S.optional(StringList),
-    name: S.optional(S.String),
-    fields: S.optional(FieldList),
-    options: S.optional(OptionList),
-    syntax: S.optional(TypeSyntaxEnum),
-    sourceContext: S.optional(SourceContext),
-    edition: S.optional(S.String),
-  }),
-).annotate({ identifier: "Type" }) as any as S.Schema<Type>;
-
-export type TypeList = Array<Type>;
-export const TypeList = /*@__PURE__*/ S.Array(
-  Type,
-) as any as S.Schema<TypeList>;
-
-/** A custom error rule. */
-export interface CustomErrorRule {
-  /** Selects messages to which this rule applies. Refer to selector for syntax details. */
-  selector?: string;
-  /** Mark this message as possible payload in error response. Otherwise, objects of this type will be filtered when they appear in error payload. */
-  isErrorType?: boolean;
-}
-export const CustomErrorRule = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    selector: S.optional(S.String),
-    isErrorType: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "CustomErrorRule",
-}) as any as S.Schema<CustomErrorRule>;
-
-export type CustomErrorRuleList = Array<CustomErrorRule>;
-export const CustomErrorRuleList = /*@__PURE__*/ S.Array(
-  CustomErrorRule,
-) as any as S.Schema<CustomErrorRuleList>;
-
-/** Customize service error responses. For example, list any service specific protobuf types that can appear in error detail lists of error responses. Example: custom_error: types: - google.foo.v1.CustomError - google.foo.v1.AnotherError */
-export interface CustomError {
-  /** The list of custom error detail types, e.g. 'google.foo.v1.CustomError'. */
-  types?: StringList;
-  /** The list of custom error rules that apply to individual API messages. **NOTE:** All service configuration rules follow "last one wins" order. */
-  rules?: CustomErrorRuleList;
-}
-export const CustomError = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    types: S.optional(StringList),
-    rules: S.optional(CustomErrorRuleList),
-  }),
-).annotate({ identifier: "CustomError" }) as any as S.Schema<CustomError>;
-
-export type MethodSyntaxEnum =
-  | "SYNTAX_PROTO2"
-  | "SYNTAX_PROTO3"
-  | "SYNTAX_EDITIONS";
-export const MethodSyntaxEnum = /*@__PURE__*/ S.String;
-
-/** Method represents a method of an API interface. New usages of this message as an alternative to MethodDescriptorProto are strongly discouraged. This message does not reliability preserve all information necessary to model the schema and preserve semantics. Instead make use of FileDescriptorSet which preserves the necessary information. */
-export interface Method {
-  /** A URL of the input message type. */
-  requestTypeUrl?: string;
-  /** If true, the request is streamed. */
-  requestStreaming?: boolean;
-  /** The source edition string, only valid when syntax is SYNTAX_EDITIONS. This field should be ignored, instead the edition should be inherited from Api. This is similar to Field and EnumValue. */
-  edition?: string;
-  /** If true, the response is streamed. */
-  responseStreaming?: boolean;
-  /** The simple name of this method. */
-  name?: string;
-  /** The URL of the output message type. */
-  responseTypeUrl?: string;
-  /** Any metadata attached to the method. */
-  options?: OptionList;
-  /** The source syntax of this method. This field should be ignored, instead the syntax should be inherited from Api. This is similar to Field and EnumValue. */
-  syntax?: MethodSyntaxEnum | (string & {});
-}
-export const Method = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    requestTypeUrl: S.optional(S.String),
-    requestStreaming: S.optional(S.Boolean),
-    edition: S.optional(S.String),
-    responseStreaming: S.optional(S.Boolean),
-    name: S.optional(S.String),
-    responseTypeUrl: S.optional(S.String),
-    options: S.optional(OptionList),
-    syntax: S.optional(MethodSyntaxEnum),
-  }),
-).annotate({ identifier: "Method" }) as any as S.Schema<Method>;
-
-export type MethodList = Array<Method>;
-export const MethodList = /*@__PURE__*/ S.Array(
-  Method,
-) as any as S.Schema<MethodList>;
-
-export type ApiSyntaxEnum =
-  | "SYNTAX_PROTO2"
-  | "SYNTAX_PROTO3"
-  | "SYNTAX_EDITIONS";
-export const ApiSyntaxEnum = /*@__PURE__*/ S.String;
-
-/** Declares an API Interface to be included in this interface. The including interface must redeclare all the methods from the included interface, but documentation and options are inherited as follows: - If after comment and whitespace stripping, the documentation string of the redeclared method is empty, it will be inherited from the original method. - Each annotation belonging to the service config (http, visibility) which is not set in the redeclared method will be inherited. - If an http annotation is inherited, the path pattern will be modified as follows. Any version prefix will be replaced by the version of the including interface plus the root path if specified. Example of a simple mixin: package google.acl.v1; service AccessControl { // Get the underlying ACL object. rpc GetAcl(GetAclRequest) returns (Acl) { option (google.api.http).get = "/v1/{resource=**}:getAcl"; } } package google.storage.v2; service Storage { // rpc GetAcl(GetAclRequest) returns (Acl); // Get a data record. rpc GetData(GetDataRequest) returns (Data) { option (google.api.http).get = "/v2/{resource=**}"; } } Example of a mixin configuration: apis: - name: google.storage.v2.Storage mixins: - name: google.acl.v1.AccessControl The mixin construct implies that all methods in `AccessControl` are also declared with same name and request/response types in `Storage`. A documentation generator or annotation processor will see the effective `Storage.GetAcl` method after inheriting documentation and annotations as follows: service Storage { // Get the underlying ACL object. rpc GetAcl(GetAclRequest) returns (Acl) { option (google.api.http).get = "/v2/{resource=**}:getAcl"; } ... } Note how the version in the path pattern changed from `v1` to `v2`. If the `root` field in the mixin is specified, it should be a relative path under which inherited HTTP paths are placed. Example: apis: - name: google.storage.v2.Storage mixins: - name: google.acl.v1.AccessControl root: acls This implies the following inherited HTTP annotation: service Storage { // Get the underlying ACL object. rpc GetAcl(GetAclRequest) returns (Acl) { option (google.api.http).get = "/v2/acls/{resource=**}:getAcl"; } ... } */
-export interface Mixin {
-  /** The fully qualified name of the interface which is included. */
-  name?: string;
-  /** If non-empty specifies a path under which inherited HTTP paths are rooted. */
-  root?: string;
-}
-export const Mixin = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    root: S.optional(S.String),
-  }),
-).annotate({ identifier: "Mixin" }) as any as S.Schema<Mixin>;
-
-export type MixinList = Array<Mixin>;
-export const MixinList = /*@__PURE__*/ S.Array(
-  Mixin,
-) as any as S.Schema<MixinList>;
-
-/** Api is a light-weight descriptor for an API Interface. Interfaces are also described as "protocol buffer services" in some contexts, such as by the "service" keyword in a .proto file, but they are different from API Services, which represent a concrete implementation of an interface as opposed to simply a description of methods and bindings. They are also sometimes simply referred to as "APIs" in other contexts, such as the name of this message itself. See https://cloud.google.com/apis/design/glossary for detailed terminology. New usages of this message as an alternative to ServiceDescriptorProto are strongly discouraged. This message does not reliability preserve all information necessary to model the schema and preserve semantics. Instead make use of FileDescriptorSet which preserves the necessary information. */
-export interface Api {
-  /** The methods of this interface, in unspecified order. */
-  methods?: MethodList;
-  /** Source context for the protocol buffer service represented by this message. */
-  sourceContext?: SourceContext;
-  /** The source edition string, only valid when syntax is SYNTAX_EDITIONS. */
-  edition?: string;
-  /** Any metadata attached to the interface. */
-  options?: OptionList;
-  /** The source syntax of the service. */
-  syntax?: ApiSyntaxEnum | (string & {});
-  /** The fully qualified name of this interface, including package name followed by the interface's simple name. */
-  name?: string;
-  /** A version string for this interface. If specified, must have the form `major-version.minor-version`, as in `1.10`. If the minor version is omitted, it defaults to zero. If the entire version field is empty, the major version is derived from the package name, as outlined below. If the field is not empty, the version in the package name will be verified to be consistent with what is provided here. The versioning schema uses [semantic versioning](http://semver.org) where the major version number indicates a breaking change and the minor version an additive, non-breaking change. Both version numbers are signals to users what to expect from different versions, and should be carefully chosen based on the product plan. The major version is also reflected in the package name of the interface, which must end in `v`, as in `google.feature.v1`. For major versions 0 and 1, the suffix can be omitted. Zero major versions must only be used for experimental, non-GA interfaces. */
-  version?: string;
-  /** Included interfaces. See Mixin. */
-  mixins?: MixinList;
-}
-export const Api = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    methods: S.optional(MethodList),
-    sourceContext: S.optional(SourceContext),
-    edition: S.optional(S.String),
-    options: S.optional(OptionList),
-    syntax: S.optional(ApiSyntaxEnum),
-    name: S.optional(S.String),
-    version: S.optional(S.String),
-    mixins: S.optional(MixinList),
-  }),
-).annotate({ identifier: "Api" }) as any as S.Schema<Api>;
-
-export type ApiList = Array<Api>;
-export const ApiList = /*@__PURE__*/ S.Array(Api) as any as S.Schema<ApiList>;
-
-export type MetricDescriptorMetricKindEnum =
-  | "METRIC_KIND_UNSPECIFIED"
-  | "GAUGE"
-  | "DELTA"
-  | "CUMULATIVE";
-export const MetricDescriptorMetricKindEnum = /*@__PURE__*/ S.String;
-
-export type MetricDescriptorValueTypeEnum =
-  | "VALUE_TYPE_UNSPECIFIED"
-  | "BOOL"
-  | "INT64"
-  | "DOUBLE"
-  | "STRING"
-  | "DISTRIBUTION"
-  | "MONEY";
-export const MetricDescriptorValueTypeEnum = /*@__PURE__*/ S.String;
-
-export type MetricDescriptorLaunchStageEnum =
+export type MetricDescriptorMetadataLaunchStageEnum =
   | "LAUNCH_STAGE_UNSPECIFIED"
   | "UNIMPLEMENTED"
   | "PRELAUNCH"
@@ -1327,7 +589,7 @@ export type MetricDescriptorLaunchStageEnum =
   | "BETA"
   | "GA"
   | "DEPRECATED";
-export const MetricDescriptorLaunchStageEnum = /*@__PURE__*/ S.String;
+export const MetricDescriptorMetadataLaunchStageEnum = /*@__PURE__*/ S.String;
 
 export type MetricDescriptorMetadataTimeSeriesResourceHierarchyLevelItemEnum =
   | "TIME_SERIES_RESOURCE_HIERARCHY_LEVEL_UNSPECIFIED"
@@ -1347,7 +609,31 @@ export const MetricDescriptorMetadataTimeSeriesResourceHierarchyLevelItemEnumLis
     MetricDescriptorMetadataTimeSeriesResourceHierarchyLevelItemEnum,
   ) as any as S.Schema<MetricDescriptorMetadataTimeSeriesResourceHierarchyLevelItemEnumList>;
 
-export type MetricDescriptorMetadataLaunchStageEnum =
+/** Additional annotations that can be used to guide the usage of a metric. */
+export interface MetricDescriptorMetadata {
+  /** Deprecated. Must use the MetricDescriptor.launch_stage instead. */
+  launchStage?: MetricDescriptorMetadataLaunchStageEnum | (string & {});
+  /** The delay of data points caused by ingestion. Data points older than this age are guaranteed to be ingested and available to be read, excluding data loss due to errors. */
+  ingestDelay?: string;
+  /** The scope of the timeseries data of the metric. */
+  timeSeriesResourceHierarchyLevel?: MetricDescriptorMetadataTimeSeriesResourceHierarchyLevelItemEnumList;
+  /** The sampling period of metric data points. For metrics which are written periodically, consecutive data points are stored at this time interval, excluding data loss due to errors. Metrics with a higher granularity have a smaller sampling period. */
+  samplePeriod?: string;
+}
+export const MetricDescriptorMetadata = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    launchStage: S.optional(MetricDescriptorMetadataLaunchStageEnum),
+    ingestDelay: S.optional(S.String),
+    timeSeriesResourceHierarchyLevel: S.optional(
+      MetricDescriptorMetadataTimeSeriesResourceHierarchyLevelItemEnumList,
+    ),
+    samplePeriod: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "MetricDescriptorMetadata",
+}) as any as S.Schema<MetricDescriptorMetadata>;
+
+export type MetricDescriptorLaunchStageEnum =
   | "LAUNCH_STAGE_UNSPECIFIED"
   | "UNIMPLEMENTED"
   | "PRELAUNCH"
@@ -1356,70 +642,63 @@ export type MetricDescriptorMetadataLaunchStageEnum =
   | "BETA"
   | "GA"
   | "DEPRECATED";
-export const MetricDescriptorMetadataLaunchStageEnum = /*@__PURE__*/ S.String;
+export const MetricDescriptorLaunchStageEnum = /*@__PURE__*/ S.String;
 
-/** Additional annotations that can be used to guide the usage of a metric. */
-export interface MetricDescriptorMetadata {
-  /** The scope of the timeseries data of the metric. */
-  timeSeriesResourceHierarchyLevel?: MetricDescriptorMetadataTimeSeriesResourceHierarchyLevelItemEnumList;
-  /** The delay of data points caused by ingestion. Data points older than this age are guaranteed to be ingested and available to be read, excluding data loss due to errors. */
-  ingestDelay?: string;
-  /** Deprecated. Must use the MetricDescriptor.launch_stage instead. */
-  launchStage?: MetricDescriptorMetadataLaunchStageEnum | (string & {});
-  /** The sampling period of metric data points. For metrics which are written periodically, consecutive data points are stored at this time interval, excluding data loss due to errors. Metrics with a higher granularity have a smaller sampling period. */
-  samplePeriod?: string;
-}
-export const MetricDescriptorMetadata = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    timeSeriesResourceHierarchyLevel: S.optional(
-      MetricDescriptorMetadataTimeSeriesResourceHierarchyLevelItemEnumList,
-    ),
-    ingestDelay: S.optional(S.String),
-    launchStage: S.optional(MetricDescriptorMetadataLaunchStageEnum),
-    samplePeriod: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "MetricDescriptorMetadata",
-}) as any as S.Schema<MetricDescriptorMetadata>;
+export type MetricDescriptorValueTypeEnum =
+  | "VALUE_TYPE_UNSPECIFIED"
+  | "BOOL"
+  | "INT64"
+  | "DOUBLE"
+  | "STRING"
+  | "DISTRIBUTION"
+  | "MONEY";
+export const MetricDescriptorValueTypeEnum = /*@__PURE__*/ S.String;
+
+export type MetricDescriptorMetricKindEnum =
+  | "METRIC_KIND_UNSPECIFIED"
+  | "GAUGE"
+  | "DELTA"
+  | "CUMULATIVE";
+export const MetricDescriptorMetricKindEnum = /*@__PURE__*/ S.String;
 
 /** Defines a metric type and its schema. Once a metric descriptor is created, deleting or altering it stops data collection and makes the metric type's existing data unusable. */
 export interface MetricDescriptor {
-  /** The set of labels that can be used to describe a specific instance of this metric type. For example, the `appengine.googleapis.com/http/server/response_latencies` metric type has a label for the HTTP response code, `response_code`, so you can look at latencies for successful responses or just for responses that failed. */
-  labels?: LabelDescriptorList;
-  /** Whether the metric records instantaneous values, changes to a value, etc. Some combinations of `metric_kind` and `value_type` might not be supported. */
-  metricKind?: MetricDescriptorMetricKindEnum | (string & {});
-  /** Whether the measurement is an integer, a floating-point number, etc. Some combinations of `metric_kind` and `value_type` might not be supported. */
-  valueType?: MetricDescriptorValueTypeEnum | (string & {});
-  /** A detailed description of the metric, which can be used in documentation. */
-  description?: string;
-  /** The metric type, including its DNS name prefix. The type is not URL-encoded. All user-defined metric types have the DNS name `custom.googleapis.com` or `external.googleapis.com`. Metric types should use a natural hierarchical grouping. For example: "custom.googleapis.com/invoice/paid/amount" "external.googleapis.com/prometheus/up" "appengine.googleapis.com/http/server/response_latencies" */
-  type?: string;
-  /** The units in which the metric value is reported. It is only applicable if the `value_type` is `INT64`, `DOUBLE`, or `DISTRIBUTION`. The `unit` defines the representation of the stored metric values. Different systems might scale the values to be more easily displayed (so a value of `0.02kBy` _might_ be displayed as `20By`, and a value of `3523kBy` _might_ be displayed as `3.5MBy`). However, if the `unit` is `kBy`, then the value of the metric is always in thousands of bytes, no matter how it might be displayed. If you want a custom metric to record the exact number of CPU-seconds used by a job, you can create an `INT64 CUMULATIVE` metric whose `unit` is `s{CPU}` (or equivalently `1s{CPU}` or just `s`). If the job uses 12,005 CPU-seconds, then the value is written as `12005`. Alternatively, if you want a custom metric to record data in a more granular way, you can create a `DOUBLE CUMULATIVE` metric whose `unit` is `ks{CPU}`, and then write the value `12.005` (which is `12005/1000`), or use `Kis{CPU}` and write `11.723` (which is `12005/1024`). The supported units are a subset of [The Unified Code for Units of Measure](https://unitsofmeasure.org/ucum.html) standard: **Basic units (UNIT)** * `bit` bit * `By` byte * `s` second * `min` minute * `h` hour * `d` day * `1` dimensionless **Prefixes (PREFIX)** * `k` kilo (10^3) * `M` mega (10^6) * `G` giga (10^9) * `T` tera (10^12) * `P` peta (10^15) * `E` exa (10^18) * `Z` zetta (10^21) * `Y` yotta (10^24) * `m` milli (10^-3) * `u` micro (10^-6) * `n` nano (10^-9) * `p` pico (10^-12) * `f` femto (10^-15) * `a` atto (10^-18) * `z` zepto (10^-21) * `y` yocto (10^-24) * `Ki` kibi (2^10) * `Mi` mebi (2^20) * `Gi` gibi (2^30) * `Ti` tebi (2^40) * `Pi` pebi (2^50) **Grammar** The grammar also includes these connectors: * `/` division or ratio (as an infix operator). For examples, `kBy/{email}` or `MiBy/10ms` (although you should almost never have `/s` in a metric `unit`; rates should always be computed at query time from the underlying cumulative or delta value). * `.` multiplication or composition (as an infix operator). For examples, `GBy.d` or `k{watt}.h`. The grammar for a unit is as follows: Expression = Component { "." Component } { "/" Component } ; Component = ( [ PREFIX ] UNIT | "%" ) [ Annotation ] | Annotation | "1" ; Annotation = "{" NAME "}" ; Notes: * `Annotation` is just a comment if it follows a `UNIT`. If the annotation is used alone, then the unit is equivalent to `1`. For examples, `{request}/s == 1/s`, `By{transmitted}/s == By/s`. * `NAME` is a sequence of non-blank printable ASCII characters not containing `{` or `}`. * `1` represents a unitary [dimensionless unit](https://en.wikipedia.org/wiki/Dimensionless_quantity) of 1, such as in `1/s`. It is typically used when none of the basic units are appropriate. For example, "new users per day" can be represented as `1/d` or `{new-users}/d` (and a metric value `5` would mean "5 new users). Alternatively, "thousands of page views per day" would be represented as `1000/d` or `k1/d` or `k{page_views}/d` (and a metric value of `5.3` would mean "5300 page views per day"). * `%` represents dimensionless value of 1/100, and annotates values giving a percentage (so the metric values are typically in the range of 0..100, and a metric value `3` means "3 percent"). * `10^2.%` indicates a metric contains a ratio, typically in the range 0..1, that will be multiplied by 100 and displayed as a percentage (so a metric value `0.03` means "3 percent"). */
-  unit?: string;
-  /** Optional. The launch stage of the metric definition. */
-  launchStage?: MetricDescriptorLaunchStageEnum | (string & {});
-  /** A concise name for the metric, which can be displayed in user interfaces. Use sentence case without an ending period, for example "Request count". This field is optional but it is recommended to be set for any metrics associated with user-visible concepts, such as Quota. */
-  displayName?: string;
   /** Optional. Metadata which can be used to guide usage of the metric. */
   metadata?: MetricDescriptorMetadata;
-  /** Read-only. If present, then a time series, which is identified partially by a metric type and a MonitoredResourceDescriptor, that is associated with this metric type can only be associated with one of the monitored resource types listed here. */
-  monitoredResourceTypes?: StringList;
+  /** A concise name for the metric, which can be displayed in user interfaces. Use sentence case without an ending period, for example "Request count". This field is optional but it is recommended to be set for any metrics associated with user-visible concepts, such as Quota. */
+  displayName?: string;
   /** The resource name of the metric descriptor. */
   name?: string;
+  /** The set of labels that can be used to describe a specific instance of this metric type. For example, the `appengine.googleapis.com/http/server/response_latencies` metric type has a label for the HTTP response code, `response_code`, so you can look at latencies for successful responses or just for responses that failed. */
+  labels?: LabelDescriptorList;
+  /** The units in which the metric value is reported. It is only applicable if the `value_type` is `INT64`, `DOUBLE`, or `DISTRIBUTION`. The `unit` defines the representation of the stored metric values. Different systems might scale the values to be more easily displayed (so a value of `0.02kBy` _might_ be displayed as `20By`, and a value of `3523kBy` _might_ be displayed as `3.5MBy`). However, if the `unit` is `kBy`, then the value of the metric is always in thousands of bytes, no matter how it might be displayed. If you want a custom metric to record the exact number of CPU-seconds used by a job, you can create an `INT64 CUMULATIVE` metric whose `unit` is `s{CPU}` (or equivalently `1s{CPU}` or just `s`). If the job uses 12,005 CPU-seconds, then the value is written as `12005`. Alternatively, if you want a custom metric to record data in a more granular way, you can create a `DOUBLE CUMULATIVE` metric whose `unit` is `ks{CPU}`, and then write the value `12.005` (which is `12005/1000`), or use `Kis{CPU}` and write `11.723` (which is `12005/1024`). The supported units are a subset of [The Unified Code for Units of Measure](https://unitsofmeasure.org/ucum.html) standard: **Basic units (UNIT)** * `bit` bit * `By` byte * `s` second * `min` minute * `h` hour * `d` day * `1` dimensionless **Prefixes (PREFIX)** * `k` kilo (10^3) * `M` mega (10^6) * `G` giga (10^9) * `T` tera (10^12) * `P` peta (10^15) * `E` exa (10^18) * `Z` zetta (10^21) * `Y` yotta (10^24) * `m` milli (10^-3) * `u` micro (10^-6) * `n` nano (10^-9) * `p` pico (10^-12) * `f` femto (10^-15) * `a` atto (10^-18) * `z` zepto (10^-21) * `y` yocto (10^-24) * `Ki` kibi (2^10) * `Mi` mebi (2^20) * `Gi` gibi (2^30) * `Ti` tebi (2^40) * `Pi` pebi (2^50) **Grammar** The grammar also includes these connectors: * `/` division or ratio (as an infix operator). For examples, `kBy/{email}` or `MiBy/10ms` (although you should almost never have `/s` in a metric `unit`; rates should always be computed at query time from the underlying cumulative or delta value). * `.` multiplication or composition (as an infix operator). For examples, `GBy.d` or `k{watt}.h`. The grammar for a unit is as follows: Expression = Component { "." Component } { "/" Component } ; Component = ( [ PREFIX ] UNIT | "%" ) [ Annotation ] | Annotation | "1" ; Annotation = "{" NAME "}" ; Notes: * `Annotation` is just a comment if it follows a `UNIT`. If the annotation is used alone, then the unit is equivalent to `1`. For examples, `{request}/s == 1/s`, `By{transmitted}/s == By/s`. * `NAME` is a sequence of non-blank printable ASCII characters not containing `{` or `}`. * `1` represents a unitary [dimensionless unit](https://en.wikipedia.org/wiki/Dimensionless_quantity) of 1, such as in `1/s`. It is typically used when none of the basic units are appropriate. For example, "new users per day" can be represented as `1/d` or `{new-users}/d` (and a metric value `5` would mean "5 new users). Alternatively, "thousands of page views per day" would be represented as `1000/d` or `k1/d` or `k{page_views}/d` (and a metric value of `5.3` would mean "5300 page views per day"). * `%` represents dimensionless value of 1/100, and annotates values giving a percentage (so the metric values are typically in the range of 0..100, and a metric value `3` means "3 percent"). * `10^2.%` indicates a metric contains a ratio, typically in the range 0..1, that will be multiplied by 100 and displayed as a percentage (so a metric value `0.03` means "3 percent"). */
+  unit?: string;
+  /** A detailed description of the metric, which can be used in documentation. */
+  description?: string;
+  /** Read-only. If present, then a time series, which is identified partially by a metric type and a MonitoredResourceDescriptor, that is associated with this metric type can only be associated with one of the monitored resource types listed here. */
+  monitoredResourceTypes?: StringList;
+  /** Optional. The launch stage of the metric definition. */
+  launchStage?: MetricDescriptorLaunchStageEnum | (string & {});
+  /** The metric type, including its DNS name prefix. The type is not URL-encoded. All user-defined metric types have the DNS name `custom.googleapis.com` or `external.googleapis.com`. Metric types should use a natural hierarchical grouping. For example: "custom.googleapis.com/invoice/paid/amount" "external.googleapis.com/prometheus/up" "appengine.googleapis.com/http/server/response_latencies" */
+  type?: string;
+  /** Whether the measurement is an integer, a floating-point number, etc. Some combinations of `metric_kind` and `value_type` might not be supported. */
+  valueType?: MetricDescriptorValueTypeEnum | (string & {});
+  /** Whether the metric records instantaneous values, changes to a value, etc. Some combinations of `metric_kind` and `value_type` might not be supported. */
+  metricKind?: MetricDescriptorMetricKindEnum | (string & {});
 }
 export const MetricDescriptor = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    labels: S.optional(LabelDescriptorList),
-    metricKind: S.optional(MetricDescriptorMetricKindEnum),
-    valueType: S.optional(MetricDescriptorValueTypeEnum),
-    description: S.optional(S.String),
-    type: S.optional(S.String),
-    unit: S.optional(S.String),
-    launchStage: S.optional(MetricDescriptorLaunchStageEnum),
-    displayName: S.optional(S.String),
     metadata: S.optional(MetricDescriptorMetadata),
-    monitoredResourceTypes: S.optional(StringList),
+    displayName: S.optional(S.String),
     name: S.optional(S.String),
+    labels: S.optional(LabelDescriptorList),
+    unit: S.optional(S.String),
+    description: S.optional(S.String),
+    monitoredResourceTypes: S.optional(StringList),
+    launchStage: S.optional(MetricDescriptorLaunchStageEnum),
+    type: S.optional(S.String),
+    valueType: S.optional(MetricDescriptorValueTypeEnum),
+    metricKind: S.optional(MetricDescriptorMetricKindEnum),
   }),
 ).annotate({
   identifier: "MetricDescriptor",
@@ -1430,299 +709,422 @@ export const MetricDescriptorList = /*@__PURE__*/ S.Array(
   MetricDescriptor,
 ) as any as S.Schema<MetricDescriptorList>;
 
-export type BackendRulePathTranslationEnum =
-  | "PATH_TRANSLATION_UNSPECIFIED"
-  | "CONSTANT_ADDRESS"
-  | "APPEND_PATH_TO_ADDRESS";
-export const BackendRulePathTranslationEnum = /*@__PURE__*/ S.String;
+export type PublishingOrganizationEnum =
+  | "CLIENT_LIBRARY_ORGANIZATION_UNSPECIFIED"
+  | "CLOUD"
+  | "ADS"
+  | "PHOTOS"
+  | "STREET_VIEW"
+  | "SHOPPING"
+  | "GEO"
+  | "GENERATIVE_AI"
+  | "HEALTH";
+export const PublishingOrganizationEnum = /*@__PURE__*/ S.String;
 
-export type BackendRuleMap = { [key: string]: BackendRule | undefined };
-export const BackendRuleMap = /*@__PURE__*/ S.Record(
+export type CommonLanguageSettingsDestinationsItemEnum =
+  | "CLIENT_LIBRARY_DESTINATION_UNSPECIFIED"
+  | "GITHUB"
+  | "PACKAGE_MANAGER";
+export const CommonLanguageSettingsDestinationsItemEnum =
+  /*@__PURE__*/ S.String;
+
+export type CommonLanguageSettingsDestinationsItemEnumList = Array<
+  CommonLanguageSettingsDestinationsItemEnum | (string & {})
+>;
+export const CommonLanguageSettingsDestinationsItemEnumList =
+  /*@__PURE__*/ S.Array(
+    CommonLanguageSettingsDestinationsItemEnum,
+  ) as any as S.Schema<CommonLanguageSettingsDestinationsItemEnumList>;
+
+/** This message is used to configure the generation of a subset of the RPCs in a service for client libraries. Note: This feature should not be used in most cases. */
+export interface SelectiveGapicGeneration {
+  /** Setting this to true indicates to the client generators that methods that would be excluded from the generation should instead be generated in a way that indicates these methods should not be consumed by end users. How this is expressed is up to individual language implementations to decide. Some examples may be: added annotations, obfuscated identifiers, or other language idiomatic patterns. */
+  generateOmittedAsInternal?: boolean;
+  /** An allowlist of the fully qualified names of RPCs that should be included on public client surfaces. */
+  methods?: StringList;
+}
+export const SelectiveGapicGeneration = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    generateOmittedAsInternal: S.optional(S.Boolean),
+    methods: S.optional(StringList),
+  }),
+).annotate({
+  identifier: "SelectiveGapicGeneration",
+}) as any as S.Schema<SelectiveGapicGeneration>;
+
+/** Required information for every language. */
+export interface CommonLanguageSettings {
+  /** The destination where API teams want this client library to be published. */
+  destinations?: CommonLanguageSettingsDestinationsItemEnumList;
+  /** Configuration for which RPCs should be generated in the GAPIC client. Note: This field should not be used in most cases. */
+  selectiveGapicGeneration?: SelectiveGapicGeneration;
+  /** Link to automatically generated reference documentation. Example: https://cloud.google.com/nodejs/docs/reference/asset/latest */
+  referenceDocsUri?: string;
+}
+export const CommonLanguageSettings = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    destinations: S.optional(CommonLanguageSettingsDestinationsItemEnumList),
+    selectiveGapicGeneration: S.optional(SelectiveGapicGeneration),
+    referenceDocsUri: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "CommonLanguageSettings",
+}) as any as S.Schema<CommonLanguageSettings>;
+
+/** Settings for C++ client libraries. */
+export interface CppSettings {
+  /** Some settings. */
+  common?: CommonLanguageSettings;
+}
+export const CppSettings = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    common: S.optional(CommonLanguageSettings),
+  }),
+).annotate({ identifier: "CppSettings" }) as any as S.Schema<CppSettings>;
+
+export type StringMap = { [key: string]: string | undefined };
+export const StringMap = /*@__PURE__*/ S.Record(
   S.String,
-  S.suspend(() => BackendRule),
-) as any as S.Schema<BackendRuleMap>;
+  S.String,
+) as any as S.Schema<StringMap>;
 
-/** A backend rule provides configuration for an individual API element. */
-export interface BackendRule {
-  /** Selects the methods to which this rule applies. Refer to selector for syntax details. */
+/** Settings for Dotnet client libraries. */
+export interface DotnetSettings {
+  /** List of full resource types to ignore during generation. This is typically used for API-specific Location resources, which should be handled by the generator as if they were actually the common Location resources. Example entry: "documentai.googleapis.com/Location" */
+  ignoredResources?: StringList;
+  /** Map from original service names to renamed versions. This is used when the default generated types would cause a naming conflict. (Neither name is fully-qualified.) Example: Subscriber to SubscriberServiceApi. */
+  renamedServices?: StringMap;
+  /** Method signatures (in the form "service.method(signature)") which are provided separately, so shouldn't be generated. Snippets *calling* these methods are still generated, however. */
+  handwrittenSignatures?: StringList;
+  /** Map from full resource types to the effective short name for the resource. This is used when otherwise resource named from different services would cause naming collisions. Example entry: "datalabeling.googleapis.com/Dataset": "DataLabelingDataset" */
+  renamedResources?: StringMap;
+  /** Namespaces which must be aliased in snippets due to a known (but non-generator-predictable) naming collision */
+  forcedNamespaceAliases?: StringList;
+  /** Some settings. */
+  common?: CommonLanguageSettings;
+}
+export const DotnetSettings = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ignoredResources: S.optional(StringList),
+    renamedServices: S.optional(StringMap),
+    handwrittenSignatures: S.optional(StringList),
+    renamedResources: S.optional(StringMap),
+    forcedNamespaceAliases: S.optional(StringList),
+    common: S.optional(CommonLanguageSettings),
+  }),
+).annotate({ identifier: "DotnetSettings" }) as any as S.Schema<DotnetSettings>;
+
+/** Settings for Go client libraries. */
+export interface GoSettings {
+  /** Map of service names to renamed services. Keys are the package relative service names and values are the name to be used for the service client and call options. Example: publishing: go_settings: renamed_services: Publisher: TopicAdmin */
+  renamedServices?: StringMap;
+  /** Some settings. */
+  common?: CommonLanguageSettings;
+}
+export const GoSettings = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    renamedServices: S.optional(StringMap),
+    common: S.optional(CommonLanguageSettings),
+  }),
+).annotate({ identifier: "GoSettings" }) as any as S.Schema<GoSettings>;
+
+export type ClientLibrarySettingsLaunchStageEnum =
+  | "LAUNCH_STAGE_UNSPECIFIED"
+  | "UNIMPLEMENTED"
+  | "PRELAUNCH"
+  | "EARLY_ACCESS"
+  | "ALPHA"
+  | "BETA"
+  | "GA"
+  | "DEPRECATED";
+export const ClientLibrarySettingsLaunchStageEnum = /*@__PURE__*/ S.String;
+
+/** Settings for Node client libraries. */
+export type NodeSettings = CppSettings;
+export const NodeSettings = CppSettings;
+
+/** Settings for Ruby client libraries. */
+export type RubySettings = CppSettings;
+export const RubySettings = CppSettings;
+
+/** Settings for Php client libraries. */
+export interface PhpSettings {
+  /** The package name to use in Php. Clobbers the php_namespace option set in the protobuf. This should be used **only** by APIs who have already set the language_settings.php.package_name" field in gapic.yaml. API teams should use the protobuf php_namespace option where possible. Example of a YAML configuration:: publishing: library_settings: php_settings: library_package: Google\Cloud\PubSub\V1 */
+  libraryPackage?: string;
+  /** Some settings. */
+  common?: CommonLanguageSettings;
+}
+export const PhpSettings = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    libraryPackage: S.optional(S.String),
+    common: S.optional(CommonLanguageSettings),
+  }),
+).annotate({ identifier: "PhpSettings" }) as any as S.Schema<PhpSettings>;
+
+/** Settings for Java client libraries. */
+export interface JavaSettings {
+  /** The package name to use in Java. Clobbers the java_package option set in the protobuf. This should be used **only** by APIs who have already set the language_settings.java.package_name" field in gapic.yaml. API teams should use the protobuf java_package option where possible. Example of a YAML configuration:: publishing: library_settings: java_settings: library_package: com.google.cloud.pubsub.v1 */
+  libraryPackage?: string;
+  /** Some settings. */
+  common?: CommonLanguageSettings;
+  /** Configure the Java class name to use instead of the service's for its corresponding generated GAPIC client. Keys are fully-qualified service names as they appear in the protobuf (including the full the language_settings.java.interface_names" field in gapic.yaml. API teams should otherwise use the service name as it appears in the protobuf. Example of a YAML configuration:: publishing: java_settings: service_class_names: - google.pubsub.v1.Publisher: TopicAdmin - google.pubsub.v1.Subscriber: SubscriptionAdmin */
+  serviceClassNames?: StringMap;
+}
+export const JavaSettings = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    libraryPackage: S.optional(S.String),
+    common: S.optional(CommonLanguageSettings),
+    serviceClassNames: S.optional(StringMap),
+  }),
+).annotate({ identifier: "JavaSettings" }) as any as S.Schema<JavaSettings>;
+
+/** Experimental features to be included during client library generation. These fields will be deprecated once the feature graduates and is enabled by default. */
+export interface ExperimentalFeatures {
+  /** Enables generation of asynchronous REST clients if `rest` transport is enabled. By default, asynchronous REST clients will not be generated. This feature will be enabled by default 1 month after launching the feature in preview packages. */
+  restAsyncIoEnabled?: boolean;
+  /** Enables generation of protobuf code using new types that are more Pythonic which are included in `protobuf>=5.29.x`. This feature will be enabled by default 1 month after launching the feature in preview packages. */
+  protobufPythonicTypesEnabled?: boolean;
+  /** Disables generation of an unversioned Python package for this client library. This means that the module names will need to be versioned in import statements. For example `import google.cloud.library_v2` instead of `import google.cloud.library`. */
+  unversionedPackageDisabled?: boolean;
+}
+export const ExperimentalFeatures = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    restAsyncIoEnabled: S.optional(S.Boolean),
+    protobufPythonicTypesEnabled: S.optional(S.Boolean),
+    unversionedPackageDisabled: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "ExperimentalFeatures",
+}) as any as S.Schema<ExperimentalFeatures>;
+
+/** Settings for Python client libraries. */
+export interface PythonSettings {
+  /** Experimental features to be included during client library generation. */
+  experimentalFeatures?: ExperimentalFeatures;
+  /** Some settings. */
+  common?: CommonLanguageSettings;
+}
+export const PythonSettings = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    experimentalFeatures: S.optional(ExperimentalFeatures),
+    common: S.optional(CommonLanguageSettings),
+  }),
+).annotate({ identifier: "PythonSettings" }) as any as S.Schema<PythonSettings>;
+
+/** Details about how and where to publish client libraries. */
+export interface ClientLibrarySettings {
+  /** Settings for C++ client libraries. */
+  cppSettings?: CppSettings;
+  /** Settings for .NET client libraries. */
+  dotnetSettings?: DotnetSettings;
+  /** When using transport=rest, the client request will encode enums as numbers rather than strings. */
+  restNumericEnums?: boolean;
+  /** Settings for Go client libraries. */
+  goSettings?: GoSettings;
+  /** Launch stage of this version of the API. */
+  launchStage?: ClientLibrarySettingsLaunchStageEnum | (string & {});
+  /** Settings for Node client libraries. */
+  nodeSettings?: CppSettings;
+  /** Settings for Ruby client libraries. */
+  rubySettings?: CppSettings;
+  /** Version of the API to apply these settings to. This is the full protobuf package for the API, ending in the version element. Examples: "google.cloud.speech.v1" and "google.spanner.admin.database.v1". */
+  version?: string;
+  /** Settings for PHP client libraries. */
+  phpSettings?: PhpSettings;
+  /** Settings for legacy Java features, supported in the Service YAML. */
+  javaSettings?: JavaSettings;
+  /** Settings for Python client libraries. */
+  pythonSettings?: PythonSettings;
+}
+export const ClientLibrarySettings = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    cppSettings: S.optional(CppSettings),
+    dotnetSettings: S.optional(DotnetSettings),
+    restNumericEnums: S.optional(S.Boolean),
+    goSettings: S.optional(GoSettings),
+    launchStage: S.optional(ClientLibrarySettingsLaunchStageEnum),
+    nodeSettings: S.optional(CppSettings),
+    rubySettings: S.optional(CppSettings),
+    version: S.optional(S.String),
+    phpSettings: S.optional(PhpSettings),
+    javaSettings: S.optional(JavaSettings),
+    pythonSettings: S.optional(PythonSettings),
+  }),
+).annotate({
+  identifier: "ClientLibrarySettings",
+}) as any as S.Schema<ClientLibrarySettings>;
+
+export type ClientLibrarySettingsList = Array<ClientLibrarySettings>;
+export const ClientLibrarySettingsList = /*@__PURE__*/ S.Array(
+  ClientLibrarySettings,
+) as any as S.Schema<ClientLibrarySettingsList>;
+
+/** `BatchingDescriptorProto` specifies the fields of the request message to be used for batching, and, optionally, the fields of the response message to be used for demultiplexing. */
+export interface BatchingDescriptorProto {
+  /** A list of the fields in the request message. Two requests will be batched together only if the values of every field specified in `request_discriminator_fields` is equal between the two requests. */
+  discriminatorFields?: StringList;
+  /** Optional. When present, indicates the field in the response message to be used to demultiplex the response into multiple response messages, in correspondence with the multiple request messages originally batched together. */
+  subresponseField?: string;
+  /** The repeated field in the request message to be aggregated by batching. */
+  batchedField?: string;
+}
+export const BatchingDescriptorProto = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    discriminatorFields: S.optional(StringList),
+    subresponseField: S.optional(S.String),
+    batchedField: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "BatchingDescriptorProto",
+}) as any as S.Schema<BatchingDescriptorProto>;
+
+export type BatchingSettingsProtoFlowControlLimitExceededBehaviorEnum =
+  | "UNSET_BEHAVIOR"
+  | "THROW_EXCEPTION"
+  | "BLOCK"
+  | "IGNORE";
+export const BatchingSettingsProtoFlowControlLimitExceededBehaviorEnum =
+  /*@__PURE__*/ S.String;
+
+/** `BatchingSettingsProto` specifies a set of batching thresholds, each of which acts as a trigger to send a batch of messages as a request. At least one threshold must be positive nonzero. */
+export interface BatchingSettingsProto {
+  /** The maximum size of the request that could be accepted by server. */
+  requestByteLimit?: number;
+  /** The maximum number of elements collected in a batch that could be accepted by server. */
+  elementCountLimit?: number;
+  /** The duration after which a batch should be sent, starting from the addition of the first message to that batch. */
+  delayThreshold?: string;
+  /** The maximum number of elements allowed by flow control. */
+  flowControlElementLimit?: number;
+  /** The maximum size of data allowed by flow control. */
+  flowControlByteLimit?: number;
+  /** The number of elements of a field collected into a batch which, if exceeded, causes the batch to be sent. */
+  elementCountThreshold?: number;
+  /** The behavior to take when the flow control limit is exceeded. */
+  flowControlLimitExceededBehavior?:
+    | BatchingSettingsProtoFlowControlLimitExceededBehaviorEnum
+    | (string & {});
+  /** The aggregated size of the batched field which, if exceeded, causes the batch to be sent. This size is computed by aggregating the sizes of the request field to be batched, not of the entire request message. */
+  requestByteThreshold?: string;
+}
+export const BatchingSettingsProto = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    requestByteLimit: S.optional(S.Number),
+    elementCountLimit: S.optional(S.Number),
+    delayThreshold: S.optional(S.String),
+    flowControlElementLimit: S.optional(S.Number),
+    flowControlByteLimit: S.optional(S.Number),
+    elementCountThreshold: S.optional(S.Number),
+    flowControlLimitExceededBehavior: S.optional(
+      BatchingSettingsProtoFlowControlLimitExceededBehaviorEnum,
+    ),
+    requestByteThreshold: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "BatchingSettingsProto",
+}) as any as S.Schema<BatchingSettingsProto>;
+
+/** `BatchingConfigProto` defines the batching configuration for an API method. */
+export interface BatchingConfigProto {
+  /** The request and response fields used in batching. */
+  batchDescriptor?: BatchingDescriptorProto;
+  /** The thresholds which trigger a batched request to be sent. */
+  thresholds?: BatchingSettingsProto;
+}
+export const BatchingConfigProto = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    batchDescriptor: S.optional(BatchingDescriptorProto),
+    thresholds: S.optional(BatchingSettingsProto),
+  }),
+).annotate({
+  identifier: "BatchingConfigProto",
+}) as any as S.Schema<BatchingConfigProto>;
+
+/** Describes settings to use when generating API methods that use the long-running operation pattern. All default values below are from those used in the client library generators (e.g. [Java](https://github.com/googleapis/gapic-generator-java/blob/04c2faa191a9b5a10b92392fe8482279c4404803/src/main/java/com/google/api/generator/gapic/composer/common/RetrySettingsComposer.java)). */
+export interface LongRunning {
+  /** Maximum time between two subsequent poll requests. Default value: 45 seconds. */
+  maxPollDelay?: string;
+  /** Multiplier to gradually increase delay between subsequent polls until it reaches max_poll_delay. Default value: 1.5. */
+  pollDelayMultiplier?: number;
+  /** Initial delay after which the first poll request will be made. Default value: 5 seconds. */
+  initialPollDelay?: string;
+  /** Total polling timeout. Default value: 5 minutes. */
+  totalPollTimeout?: string;
+}
+export const LongRunning = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    maxPollDelay: S.optional(S.String),
+    pollDelayMultiplier: S.optional(S.Number),
+    initialPollDelay: S.optional(S.String),
+    totalPollTimeout: S.optional(S.String),
+  }),
+).annotate({ identifier: "LongRunning" }) as any as S.Schema<LongRunning>;
+
+/** Describes the generator configuration for a method. */
+export interface MethodSettings {
+  /** Batching configuration for an API method in client libraries. Example of a YAML configuration: publishing: method_settings: - selector: google.example.v1.ExampleService.BatchCreateExample batching: element_count_threshold: 1000 request_byte_threshold: 100000000 delay_threshold_millis: 10 */
+  batching?: BatchingConfigProto;
+  /** The fully qualified name of the method, for which the options below apply. This is used to find the method to apply the options. Example: publishing: method_settings: - selector: google.storage.control.v2.StorageControl.CreateFolder # method settings for CreateFolder... */
   selector?: string;
-  /** The protocol used for sending a request to the backend. The supported values are "http/1.1" and "h2". The default value is inferred from the scheme in the address field: SCHEME PROTOCOL http:// http/1.1 https:// http/1.1 grpc:// h2 grpcs:// h2 For secure HTTP backends (https://) that support HTTP/2, set this field to "h2" for improved performance. Configuring this field to non-default values is only supported for secure HTTP backends. This field will be ignored for all other backends. See https://www.iana.org/assignments/tls-extensiontype-values/tls-extensiontype-values.xhtml#alpn-protocol-ids for more details on the supported values. */
-  protocol?: string;
-  /** The number of seconds to wait for the completion of a long running operation. The default is no deadline. */
-  operationDeadline?: number;
-  /** The JWT audience is used when generating a JWT ID token for the backend. This ID token will be added in the HTTP "authorization" header, and sent to the backend. */
-  jwtAudience?: string;
-  /** Path translation specifies how to combine the backend address with the request path in order to produce the appropriate forwarding URL for the request. See PathTranslation for more details. */
-  pathTranslation?: BackendRulePathTranslationEnum | (string & {});
-  /** When disable_auth is true, a JWT ID token won't be generated and the original "Authorization" HTTP header will be preserved. If the header is used to carry the original token and is expected by the backend, this field must be set to true to preserve the header. */
-  disableAuth?: boolean;
-  /** The load balancing policy used for connection to the application backend. Defined as an arbitrary string to accomondate custom load balancing policies supported by the underlying channel, but suggest most users use one of the standard policies, such as the default, "RoundRobin". */
-  loadBalancingPolicy?: string;
-  /** The number of seconds to wait for a response from a request. The default varies based on the request protocol and deployment environment. */
-  deadline?: number;
-  /** Deprecated, do not use. */
-  minDeadline?: number;
-  /** The map between request protocol and the backend address. */
-  overridesByRequestProtocol?: BackendRuleMap;
-  /** The address of the API backend. The scheme is used to determine the backend protocol and security. The following schemes are accepted: SCHEME PROTOCOL SECURITY http:// HTTP None https:// HTTP TLS grpc:// gRPC None grpcs:// gRPC TLS It is recommended to explicitly include a scheme. Leaving out the scheme may cause constrasting behaviors across platforms. If the port is unspecified, the default is: - 80 for schemes without TLS - 443 for schemes with TLS For HTTP backends, use protocol to specify the protocol version. */
-  address?: string;
+  /** Describes settings to use for long-running operations when generating API methods for RPCs. Complements RPCs that use the annotations in google/longrunning/operations.proto. Example of a YAML configuration:: publishing: method_settings: - selector: google.cloud.speech.v2.Speech.BatchRecognize long_running: initial_poll_delay: 60s # 1 minute poll_delay_multiplier: 1.5 max_poll_delay: 360s # 6 minutes total_poll_timeout: 54000s # 90 minutes */
+  longRunning?: LongRunning;
+  /** List of top-level fields of the request message, that should be automatically populated by the client libraries based on their (google.api.field_info).format. Currently supported format: UUID4. Example of a YAML configuration: publishing: method_settings: - selector: google.example.v1.ExampleService.CreateExample auto_populated_fields: - request_id */
+  autoPopulatedFields?: StringList;
 }
-export const BackendRule = /*@__PURE__*/ S.suspend(() =>
+export const MethodSettings = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    batching: S.optional(BatchingConfigProto),
     selector: S.optional(S.String),
-    protocol: S.optional(S.String),
-    operationDeadline: S.optional(S.Number),
-    jwtAudience: S.optional(S.String),
-    pathTranslation: S.optional(BackendRulePathTranslationEnum),
-    disableAuth: S.optional(S.Boolean),
-    loadBalancingPolicy: S.optional(S.String),
-    deadline: S.optional(S.Number),
-    minDeadline: S.optional(S.Number),
-    overridesByRequestProtocol: S.optional(BackendRuleMap),
-    address: S.optional(S.String),
+    longRunning: S.optional(LongRunning),
+    autoPopulatedFields: S.optional(StringList),
   }),
-).annotate({ identifier: "BackendRule" }) as any as S.Schema<BackendRule>;
+).annotate({ identifier: "MethodSettings" }) as any as S.Schema<MethodSettings>;
 
-export type BackendRuleList = Array<BackendRule>;
-export const BackendRuleList = /*@__PURE__*/ S.Array(
-  BackendRule,
-) as any as S.Schema<BackendRuleList>;
+export type MethodSettingsList = Array<MethodSettings>;
+export const MethodSettingsList = /*@__PURE__*/ S.Array(
+  MethodSettings,
+) as any as S.Schema<MethodSettingsList>;
 
-/** `Backend` defines the backend configuration for a service. */
-export interface Backend {
-  /** A list of API backend rules that apply to individual API methods. **NOTE:** All service configuration rules follow "last one wins" order. */
-  rules?: BackendRuleList;
+/** This message configures the settings for publishing [Google Cloud Client libraries](https://cloud.google.com/apis/docs/cloud-client-libraries) generated from the service config. */
+export interface Publishing {
+  /** A prefix used in sample code when demarking regions to be included in documentation. */
+  docTagPrefix?: string;
+  /** For whom the client library is being published. */
+  organization?: PublishingOrganizationEnum | (string & {});
+  /** GitHub label to apply to issues and pull requests opened for this API. */
+  githubLabel?: string;
+  /** Used as a tracking tag when collecting data about the APIs developer relations artifacts like docs, packages delivered to package managers, etc. Example: "speech". */
+  apiShortName?: string;
+  /** Client library settings. If the same version string appears multiple times in this list, then the last one wins. Settings from earlier settings with the same version string are discarded. */
+  librarySettings?: ClientLibrarySettingsList;
+  /** Optional link to REST reference documentation. Example: https://cloud.google.com/pubsub/lite/docs/reference/rest */
+  restReferenceDocumentationUri?: string;
+  /** Link to product home page. Example: https://cloud.google.com/asset-inventory/docs/overview */
+  documentationUri?: string;
+  /** GitHub teams to be added to CODEOWNERS in the directory in GitHub containing source code for the client libraries for this API. */
+  codeownerGithubTeams?: StringList;
+  /** Optional link to proto reference documentation. Example: https://cloud.google.com/pubsub/lite/docs/reference/rpc */
+  protoReferenceDocumentationUri?: string;
+  /** A list of API method settings, e.g. the behavior for methods that use the long-running operation pattern. */
+  methodSettings?: MethodSettingsList;
+  /** Link to a *public* URI where users can report issues. Example: https://issuetracker.google.com/issues/new?component=190865&template=1161103 */
+  newIssueUri?: string;
 }
-export const Backend = /*@__PURE__*/ S.suspend(() =>
+export const Publishing = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    rules: S.optional(BackendRuleList),
+    docTagPrefix: S.optional(S.String),
+    organization: S.optional(PublishingOrganizationEnum),
+    githubLabel: S.optional(S.String),
+    apiShortName: S.optional(S.String),
+    librarySettings: S.optional(ClientLibrarySettingsList),
+    restReferenceDocumentationUri: S.optional(S.String),
+    documentationUri: S.optional(S.String),
+    codeownerGithubTeams: S.optional(StringList),
+    protoReferenceDocumentationUri: S.optional(S.String),
+    methodSettings: S.optional(MethodSettingsList),
+    newIssueUri: S.optional(S.String),
   }),
-).annotate({ identifier: "Backend" }) as any as S.Schema<Backend>;
-
-/** A custom pattern is used for defining custom HTTP verb. */
-export interface CustomHttpPattern {
-  /** The name of this custom HTTP verb. */
-  kind?: string;
-  /** The path matched by this custom verb. */
-  path?: string;
-}
-export const CustomHttpPattern = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    kind: S.optional(S.String),
-    path: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "CustomHttpPattern",
-}) as any as S.Schema<CustomHttpPattern>;
-
-/** gRPC Transcoding gRPC Transcoding is a feature for mapping between a gRPC method and one or more HTTP REST endpoints. It allows developers to build a single API service that supports both gRPC APIs and REST APIs. Many systems, including [Google APIs](https://github.com/googleapis/googleapis), [Cloud Endpoints](https://cloud.google.com/endpoints), [gRPC Gateway](https://github.com/grpc-ecosystem/grpc-gateway), and [Envoy](https://github.com/envoyproxy/envoy) proxy support this feature and use it for large scale production services. `HttpRule` defines the schema of the gRPC/REST mapping. The mapping specifies how different portions of the gRPC request message are mapped to the URL path, URL query parameters, and HTTP request body. It also controls how the gRPC response message is mapped to the HTTP response body. `HttpRule` is typically specified as an `google.api.http` annotation on the gRPC method. Each mapping specifies a URL path template and an HTTP method. The path template may refer to one or more fields in the gRPC request message, as long as each field is a non-repeated field with a primitive (non-message) type. The path template controls how fields of the request message are mapped to the URL path. Example: service Messaging { rpc GetMessage(GetMessageRequest) returns (Message) { option (google.api.http) = { get: "/v1/{name=messages/*}" }; } } message GetMessageRequest { string name = 1; // Mapped to URL path. } message Message { string text = 1; // The resource content. } This enables an HTTP REST to gRPC mapping as below: - HTTP: `GET /v1/messages/123456` - gRPC: `GetMessage(name: "messages/123456")` Any fields in the request message which are not bound by the path template automatically become HTTP query parameters if there is no HTTP request body. For example: service Messaging { rpc GetMessage(GetMessageRequest) returns (Message) { option (google.api.http) = { get:"/v1/messages/{message_id}" }; } } message GetMessageRequest { message SubMessage { string subfield = 1; } string message_id = 1; // Mapped to URL path. int64 revision = 2; // Mapped to URL query parameter `revision`. SubMessage sub = 3; // Mapped to URL query parameter `sub.subfield`. } This enables a HTTP JSON to RPC mapping as below: - HTTP: `GET /v1/messages/123456?revision=2&sub.subfield=foo` - gRPC: `GetMessage(message_id: "123456" revision: 2 sub: SubMessage(subfield: "foo"))` Note that fields which are mapped to URL query parameters must have a primitive type or a repeated primitive type or a non-repeated message type. In the case of a repeated type, the parameter can be repeated in the URL as `...?param=A&param=B`. In the case of a message type, each field of the message is mapped to a separate parameter, such as `...?foo.a=A&foo.b=B&foo.c=C`. For HTTP methods that allow a request body, the `body` field specifies the mapping. Consider a REST update method on the message resource collection: service Messaging { rpc UpdateMessage(UpdateMessageRequest) returns (Message) { option (google.api.http) = { patch: "/v1/messages/{message_id}" body: "message" }; } } message UpdateMessageRequest { string message_id = 1; // mapped to the URL Message message = 2; // mapped to the body } The following HTTP JSON to RPC mapping is enabled, where the representation of the JSON in the request body is determined by protos JSON encoding: - HTTP: `PATCH /v1/messages/123456 { "text": "Hi!" }` - gRPC: `UpdateMessage(message_id: "123456" message { text: "Hi!" })` The special name `*` can be used in the body mapping to define that every field not bound by the path template should be mapped to the request body. This enables the following alternative definition of the update method: service Messaging { rpc UpdateMessage(Message) returns (Message) { option (google.api.http) = { patch: "/v1/messages/{message_id}" body: "*" }; } } message Message { string message_id = 1; string text = 2; } The following HTTP JSON to RPC mapping is enabled: - HTTP: `PATCH /v1/messages/123456 { "text": "Hi!" }` - gRPC: `UpdateMessage(message_id: "123456" text: "Hi!")` Note that when using `*` in the body mapping, it is not possible to have HTTP parameters, as all fields not bound by the path end in the body. This makes this option more rarely used in practice when defining REST APIs. The common usage of `*` is in custom methods which don't use the URL at all for transferring data. It is possible to define multiple HTTP methods for one RPC by using the `additional_bindings` option. Example: service Messaging { rpc GetMessage(GetMessageRequest) returns (Message) { option (google.api.http) = { get: "/v1/messages/{message_id}" additional_bindings { get: "/v1/users/{user_id}/messages/{message_id}" } }; } } message GetMessageRequest { string message_id = 1; string user_id = 2; } This enables the following two alternative HTTP JSON to RPC mappings: - HTTP: `GET /v1/messages/123456` - gRPC: `GetMessage(message_id: "123456")` - HTTP: `GET /v1/users/me/messages/123456` - gRPC: `GetMessage(user_id: "me" message_id: "123456")` Rules for HTTP mapping 1. Leaf request fields (recursive expansion nested messages in the request message) are classified into three categories: - Fields referred by the path template. They are passed via the URL path. - Fields referred by the HttpRule.body. They are passed via the HTTP request body. - All other fields are passed via the URL query parameters, and the parameter name is the field path in the request message. A repeated field can be represented as multiple query parameters under the same name. 2. If HttpRule.body is "*", there is no URL query parameter, all fields are passed via URL path and HTTP request body. 3. If HttpRule.body is omitted, there is no HTTP request body, all fields are passed via URL path and URL query parameters. Path template syntax Template = "/" Segments [ Verb ] ; Segments = Segment { "/" Segment } ; Segment = "*" | "**" | LITERAL | Variable ; Variable = "{" FieldPath [ "=" Segments ] "}" ; FieldPath = IDENT { "." IDENT } ; Verb = ":" LITERAL ; The syntax `*` matches a single URL path segment. The syntax `**` matches zero or more URL path segments, which must be the last part of the URL path except the `Verb`. The syntax `Variable` matches part of the URL path as specified by its template. A variable template must not contain other variables. If a variable matches a single path segment, its template may be omitted, e.g. `{var}` is equivalent to `{var=*}`. The syntax `LITERAL` matches literal text in the URL path. If the `LITERAL` contains any reserved character, such characters should be percent-encoded before the matching. If a variable contains exactly one path segment, such as `"{var}"` or `"{var=*}"`, when such a variable is expanded into a URL path on the client side, all characters except `[-_.~0-9a-zA-Z]` are percent-encoded. The server side does the reverse decoding. Such variables show up in the [Discovery Document](https://developers.google.com/discovery/v1/reference/apis) as `{var}`. If a variable contains multiple path segments, such as `"{var=foo/*}"` or `"{var=**}"`, when such a variable is expanded into a URL path on the client side, all characters except `[-_.~/0-9a-zA-Z]` are percent-encoded. The server side does the reverse decoding, except "%2F" and "%2f" are left unchanged. Such variables show up in the [Discovery Document](https://developers.google.com/discovery/v1/reference/apis) as `{+var}`. Using gRPC API Service Configuration gRPC API Service Configuration (service config) is a configuration language for configuring a gRPC service to become a user-facing product. The service config is simply the YAML representation of the `google.api.Service` proto message. As an alternative to annotating your proto file, you can configure gRPC transcoding in your service config YAML files. You do this by specifying a `HttpRule` that maps the gRPC method to a REST endpoint, achieving the same effect as the proto annotation. This can be particularly useful if you have a proto that is reused in multiple services. Note that any transcoding specified in the service config will override any matching transcoding configuration in the proto. The following example selects a gRPC method and applies an `HttpRule` to it: http: rules: - selector: example.v1.Messaging.GetMessage get: /v1/messages/{message_id}/{sub.subfield} Special notes When gRPC Transcoding is used to map a gRPC to JSON REST endpoints, the proto to JSON conversion must follow the [proto3 specification](https://developers.google.com/protocol-buffers/docs/proto3#json). While the single segment variable follows the semantics of [RFC 6570](https://tools.ietf.org/html/rfc6570) Section 3.2.2 Simple String Expansion, the multi segment variable **does not** follow RFC 6570 Section 3.2.3 Reserved Expansion. The reason is that the Reserved Expansion does not expand special characters like `?` and `#`, which would lead to invalid URLs. As the result, gRPC Transcoding uses a custom encoding for multi segment variables. The path variables **must not** refer to any repeated or mapped field, because client libraries are not capable of handling such variable expansion. The path variables **must not** capture the leading "/" character. The reason is that the most common use case "{var}" does not capture the leading "/" character. For consistency, all path variables must share the same behavior. Repeated message fields must not be mapped to URL query parameters, because no client library can support such complicated mapping. If an API needs to use a JSON array for request or response body, it can map the request or response body to a repeated field. However, some gRPC Transcoding implementations may not support this feature. */
-export interface HttpRule {
-  /** Maps to HTTP GET. Used for listing and getting information about resources. */
-  get?: string;
-  /** The name of the request field whose value is mapped to the HTTP request body, or `*` for mapping all request fields not captured by the path pattern to the HTTP body, or omitted for not having any HTTP request body. NOTE: the referred field must be present at the top-level of the request message type. */
-  body?: string;
-  /** Additional HTTP bindings for the selector. Nested bindings must not contain an `additional_bindings` field themselves (that is, the nesting may only be one level deep). */
-  additionalBindings?: HttpRuleList;
-  /** Maps to HTTP POST. Used for creating a resource or performing an action. */
-  post?: string;
-  /** Maps to HTTP DELETE. Used for deleting a resource. */
-  delete?: string;
-  /** Optional. The name of the response field whose value is mapped to the HTTP response body. When omitted, the entire response message will be used as the HTTP response body. NOTE: The referred field must be present at the top-level of the response message type. */
-  responseBody?: string;
-  /** Selects a method to which this rule applies. Refer to selector for syntax details. */
-  selector?: string;
-  /** The custom pattern is used for specifying an HTTP method that is not included in the `pattern` field, such as HEAD, or "*" to leave the HTTP method unspecified for this rule. The wild-card rule is useful for services that provide content to Web (HTML) clients. */
-  custom?: CustomHttpPattern;
-  /** Maps to HTTP PUT. Used for replacing a resource. */
-  put?: string;
-  /** Maps to HTTP PATCH. Used for updating a resource. */
-  patch?: string;
-}
-export const HttpRule = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    get: S.optional(S.String),
-    body: S.optional(S.String),
-    additionalBindings: S.optional(S.suspend(() => HttpRuleList)),
-    post: S.optional(S.String),
-    delete: S.optional(S.String),
-    responseBody: S.optional(S.String),
-    selector: S.optional(S.String),
-    custom: S.optional(CustomHttpPattern),
-    put: S.optional(S.String),
-    patch: S.optional(S.String),
-  }),
-).annotate({ identifier: "HttpRule" }) as any as S.Schema<HttpRule>;
-
-export type HttpRuleList = Array<HttpRule>;
-export const HttpRuleList = /*@__PURE__*/ S.Array(
-  HttpRule,
-) as any as S.Schema<HttpRuleList>;
-
-/** Defines the HTTP configuration for an API service. It contains a list of HttpRule, each specifying the mapping of an RPC method to one or more HTTP REST API methods. */
-export interface Http {
-  /** When set to true, URL path parameters will be fully URI-decoded except in cases of single segment matches in reserved expansion, where "%2F" will be left encoded. The default behavior is to not decode RFC 6570 reserved characters in multi segment matches. */
-  fullyDecodeReservedExpansion?: boolean;
-  /** A list of HTTP configuration rules that apply to individual API methods. **NOTE:** All service configuration rules follow "last one wins" order. */
-  rules?: HttpRuleList;
-}
-export const Http = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    fullyDecodeReservedExpansion: S.optional(S.Boolean),
-    rules: S.optional(HttpRuleList),
-  }),
-).annotate({ identifier: "Http" }) as any as S.Schema<Http>;
-
-/** Define a parameter's name and location. The parameter may be passed as either an HTTP header or a URL query parameter, and if both are passed the behavior is implementation-dependent. */
-export interface SystemParameter {
-  /** Define the HTTP header name to use for the parameter. It is case insensitive. */
-  httpHeader?: string;
-  /** Define the URL query parameter name to use for the parameter. It is case sensitive. */
-  urlQueryParameter?: string;
-  /** Define the name of the parameter, such as "api_key" . It is case sensitive. */
-  name?: string;
-}
-export const SystemParameter = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    httpHeader: S.optional(S.String),
-    urlQueryParameter: S.optional(S.String),
-    name: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SystemParameter",
-}) as any as S.Schema<SystemParameter>;
-
-export type SystemParameterList = Array<SystemParameter>;
-export const SystemParameterList = /*@__PURE__*/ S.Array(
-  SystemParameter,
-) as any as S.Schema<SystemParameterList>;
-
-/** Define a system parameter rule mapping system parameter definitions to methods. */
-export interface SystemParameterRule {
-  /** Selects the methods to which this rule applies. Use '*' to indicate all methods in all APIs. Refer to selector for syntax details. */
-  selector?: string;
-  /** Define parameters. Multiple names may be defined for a parameter. For a given method call, only one of them should be used. If multiple names are used the behavior is implementation-dependent. If none of the specified names are present the behavior is parameter-dependent. */
-  parameters?: SystemParameterList;
-}
-export const SystemParameterRule = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    selector: S.optional(S.String),
-    parameters: S.optional(SystemParameterList),
-  }),
-).annotate({
-  identifier: "SystemParameterRule",
-}) as any as S.Schema<SystemParameterRule>;
-
-export type SystemParameterRuleList = Array<SystemParameterRule>;
-export const SystemParameterRuleList = /*@__PURE__*/ S.Array(
-  SystemParameterRule,
-) as any as S.Schema<SystemParameterRuleList>;
-
-/** ### System parameter configuration A system parameter is a special kind of parameter defined by the API system, not by an individual API. It is typically mapped to an HTTP header and/or a URL query parameter. This configuration specifies which methods change the names of the system parameters. */
-export interface SystemParameters {
-  /** Define system parameters. The parameters defined here will override the default parameters implemented by the system. If this field is missing from the service config, default system parameters will be used. Default system parameters and names is implementation-dependent. Example: define api key for all methods system_parameters rules: - selector: "*" parameters: - name: api_key url_query_parameter: api_key Example: define 2 api key names for a specific method. system_parameters rules: - selector: "/ListShelves" parameters: - name: api_key http_header: Api-Key1 - name: api_key http_header: Api-Key2 **NOTE:** All service configuration rules follow "last one wins" order. */
-  rules?: SystemParameterRuleList;
-}
-export const SystemParameters = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    rules: S.optional(SystemParameterRuleList),
-  }),
-).annotate({
-  identifier: "SystemParameters",
-}) as any as S.Schema<SystemParameters>;
-
-/** Enum value definition. New usages of this message as an alternative to EnumValueDescriptorProto are strongly discouraged. This message does not reliability preserve all information necessary to model the schema and preserve semantics. Instead make use of FileDescriptorSet which preserves the necessary information. */
-export interface EnumValue {
-  /** Enum value name. */
-  name?: string;
-  /** Enum value number. */
-  number?: number;
-  /** Protocol buffer options. */
-  options?: OptionList;
-}
-export const EnumValue = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    number: S.optional(S.Number),
-    options: S.optional(OptionList),
-  }),
-).annotate({ identifier: "EnumValue" }) as any as S.Schema<EnumValue>;
-
-export type EnumValueList = Array<EnumValue>;
-export const EnumValueList = /*@__PURE__*/ S.Array(
-  EnumValue,
-) as any as S.Schema<EnumValueList>;
-
-export type EnumSyntaxEnum =
-  | "SYNTAX_PROTO2"
-  | "SYNTAX_PROTO3"
-  | "SYNTAX_EDITIONS";
-export const EnumSyntaxEnum = /*@__PURE__*/ S.String;
-
-/** Enum type definition. New usages of this message as an alternative to EnumDescriptorProto are strongly discouraged. This message does not reliability preserve all information necessary to model the schema and preserve semantics. Instead make use of FileDescriptorSet which preserves the necessary information. */
-export interface Enum {
-  /** Enum type name. */
-  name?: string;
-  /** Enum value definitions. */
-  enumvalue?: EnumValueList;
-  /** Protocol buffer options. */
-  options?: OptionList;
-  /** The source syntax. */
-  syntax?: EnumSyntaxEnum | (string & {});
-  /** The source context. */
-  sourceContext?: SourceContext;
-  /** The source edition string, only valid when syntax is SYNTAX_EDITIONS. */
-  edition?: string;
-}
-export const Enum = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    enumvalue: S.optional(EnumValueList),
-    options: S.optional(OptionList),
-    syntax: S.optional(EnumSyntaxEnum),
-    sourceContext: S.optional(SourceContext),
-    edition: S.optional(S.String),
-  }),
-).annotate({ identifier: "Enum" }) as any as S.Schema<Enum>;
-
-export type EnumList = Array<Enum>;
-export const EnumList = /*@__PURE__*/ S.Array(
-  Enum,
-) as any as S.Schema<EnumList>;
-
-/** Configuration of a specific monitoring destination (the producer project or the consumer project). */
-export interface MonitoringDestination {
-  /** The monitored resource type. The type must be defined in Service.monitored_resources section. */
-  monitoredResource?: string;
-  /** Types of the metrics to report to this monitoring destination. Each type must be defined in Service.metrics section. */
-  metrics?: StringList;
-}
-export const MonitoringDestination = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    monitoredResource: S.optional(S.String),
-    metrics: S.optional(StringList),
-  }),
-).annotate({
-  identifier: "MonitoringDestination",
-}) as any as S.Schema<MonitoringDestination>;
-
-export type MonitoringDestinationList = Array<MonitoringDestination>;
-export const MonitoringDestinationList = /*@__PURE__*/ S.Array(
-  MonitoringDestination,
-) as any as S.Schema<MonitoringDestinationList>;
-
-/** Monitoring configuration of the service. The example below shows how to configure monitored resources and metrics for monitoring. In the example, a monitored resource and two metrics are defined. The `library.googleapis.com/book/returned_count` metric is sent to both producer and consumer projects, whereas the `library.googleapis.com/book/num_overdue` metric is only sent to the consumer project. monitored_resources: - type: library.googleapis.com/Branch display_name: "Library Branch" description: "A branch of a library." launch_stage: GA labels: - key: resource_container description: "The Cloud container (ie. project id) for the Branch." - key: location description: "The location of the library branch." - key: branch_id description: "The id of the branch." metrics: - name: library.googleapis.com/book/returned_count display_name: "Books Returned" description: "The count of books that have been returned." launch_stage: GA metric_kind: DELTA value_type: INT64 unit: "1" labels: - key: customer_id description: "The id of the customer." - name: library.googleapis.com/book/num_overdue display_name: "Books Overdue" description: "The current number of overdue books." launch_stage: GA metric_kind: GAUGE value_type: INT64 unit: "1" labels: - key: customer_id description: "The id of the customer." monitoring: producer_destinations: - monitored_resource: library.googleapis.com/Branch metrics: - library.googleapis.com/book/returned_count consumer_destinations: - monitored_resource: library.googleapis.com/Branch metrics: - library.googleapis.com/book/returned_count - library.googleapis.com/book/num_overdue */
-export interface Monitoring {
-  /** Monitoring configurations for sending metrics to the producer project. There can be multiple producer destinations. A monitored resource type may appear in multiple monitoring destinations if different aggregations are needed for different sets of metrics associated with that monitored resource type. A monitored resource and metric pair may only be used once in the Monitoring configuration. */
-  producerDestinations?: MonitoringDestinationList;
-  /** Monitoring configurations for sending metrics to the consumer project. There can be multiple consumer destinations. A monitored resource type may appear in multiple monitoring destinations if different aggregations are needed for different sets of metrics associated with that monitored resource type. A monitored resource and metric pair may only be used once in the Monitoring configuration. */
-  consumerDestinations?: MonitoringDestinationList;
-}
-export const Monitoring = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    producerDestinations: S.optional(MonitoringDestinationList),
-    consumerDestinations: S.optional(MonitoringDestinationList),
-  }),
-).annotate({ identifier: "Monitoring" }) as any as S.Schema<Monitoring>;
+).annotate({ identifier: "Publishing" }) as any as S.Schema<Publishing>;
 
 /** Configuration of a specific billing destination (Currently only support bill against consumer project). */
 export interface BillingDestination {
@@ -1756,17 +1158,108 @@ export const Billing = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "Billing" }) as any as S.Schema<Billing>;
 
+export type QuotaLimitTrafficSourceEnum =
+  | "TRAFFIC_SOURCE_UNSPECIFIED"
+  | "TRAFFIC_SOURCE_NONAGENTIC"
+  | "TRAFFIC_SOURCE_AGENTIC";
+export const QuotaLimitTrafficSourceEnum = /*@__PURE__*/ S.String;
+
+/** `QuotaLimit` defines a specific limit that applies over a specified duration for a limit type. There can be at most one limit for a duration and limit type combination defined within a `QuotaGroup`. */
+export interface QuotaLimit {
+  /** User-visible display name for this limit. Optional. If not set, the UI will provide a default display name based on the quota configuration. This field can be used to override the default display name generated from the configuration. */
+  displayName?: string;
+  /** The name of the metric this quota limit applies to. The quota limits with the same metric will be checked together during runtime. The metric must be defined within the service config. */
+  metric?: string;
+  /** Tiered limit values. You must specify this as a key:value pair, with an integer value that is the maximum number of requests allowed for the specified unit. Currently only STANDARD is supported. */
+  values?: StringMap;
+  /** Optional. This is only informational, the logic to allocate the quota to the correct metric (such as in `metric_rules`) should identify which quota metrics to allocate to. */
+  trafficSource?: QuotaLimitTrafficSourceEnum | (string & {});
+  /** Maximum number of tokens that can be consumed during the specified duration. Client application developers can override the default limit up to this maximum. If specified, this value cannot be set to a value less than the default limit. If not specified, it is set to the default limit. To allow clients to apply overrides with no upper bound, set this to -1, indicating unlimited maximum quota. Used by group-based quotas only. */
+  maxLimit?: string;
+  /** Specify the unit of the quota limit. It uses the same syntax as MetricDescriptor.unit. The supported unit kinds are determined by the quota backend system. Here are some examples: * "1/min/{project}" for quota per minute per project. Note: the order of unit components is insignificant. The "1" at the beginning is required to follow the metric unit syntax. */
+  unit?: string;
+  /** Free tier value displayed in the Developers Console for this limit. The free tier is the number of tokens that will be subtracted from the billed amount when billing is enabled. This field can only be set on a limit with duration "1d", in a billable group; it is invalid on any other limit. If this field is not set, it defaults to 0, indicating that there is no free tier for this service. Used by group-based quotas only. */
+  freeTier?: string;
+  /** Name of the quota limit. The name must be provided, and it must be unique within the service. The name can only include alphanumeric characters as well as '-'. The maximum length of the limit name is 64 characters. */
+  name?: string;
+  /** Optional. User-visible, extended description for this quota limit. Should be used only when more context is needed to understand this limit than provided by the limit's display name (see: `display_name`). */
+  description?: string;
+  /** Duration of this limit in textual notation. Must be "100s" or "1d". Used by group-based quotas only. */
+  duration?: string;
+  /** Default number of tokens that can be consumed during the specified duration. This is the number of tokens assigned when a client application developer activates the service for his/her project. Specifying a value of 0 will block all requests. This can be used if you are provisioning quota to selected consumers and blocking others. Similarly, a value of -1 will indicate an unlimited quota. No other negative values are allowed. Used by group-based quotas only. */
+  defaultLimit?: string;
+}
+export const QuotaLimit = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    displayName: S.optional(S.String),
+    metric: S.optional(S.String),
+    values: S.optional(StringMap),
+    trafficSource: S.optional(QuotaLimitTrafficSourceEnum),
+    maxLimit: S.optional(S.String),
+    unit: S.optional(S.String),
+    freeTier: S.optional(S.String),
+    name: S.optional(S.String),
+    description: S.optional(S.String),
+    duration: S.optional(S.String),
+    defaultLimit: S.optional(S.String),
+  }),
+).annotate({ identifier: "QuotaLimit" }) as any as S.Schema<QuotaLimit>;
+
+export type QuotaLimitList = Array<QuotaLimit>;
+export const QuotaLimitList = /*@__PURE__*/ S.Array(
+  QuotaLimit,
+) as any as S.Schema<QuotaLimitList>;
+
+/** Bind API methods to metrics. Binding a method to a metric causes that metric's configured quota behaviors to apply to the method call. */
+export interface MetricRule {
+  /** Optional. Metrics to update when the selected methods are called, and the associated cost applied to each metric, iff the source of the call is not an agent. The key of the map is the metric name, and the values are the amount increased for the metric against which the quota limits are defined. The value must not be negative. */
+  nonagenticMetricCosts?: StringMap;
+  /** Optional. Metrics to update when the selected methods are called, and the associated cost applied to each metric, iff the source of the call is an agent. The key of the map is the metric name, and the values are the amount increased for the metric against which the quota limits are defined. The value must not be negative. */
+  agenticMetricCosts?: StringMap;
+  /** Selects the methods to which this rule applies. Refer to selector for syntax details. */
+  selector?: string;
+  /** Metrics to update when the selected methods are called, and the associated cost applied to each metric. The key of the map is the metric name, and the values are the amount increased for the metric against which the quota limits are defined. The value must not be negative. */
+  metricCosts?: StringMap;
+}
+export const MetricRule = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nonagenticMetricCosts: S.optional(StringMap),
+    agenticMetricCosts: S.optional(StringMap),
+    selector: S.optional(S.String),
+    metricCosts: S.optional(StringMap),
+  }),
+).annotate({ identifier: "MetricRule" }) as any as S.Schema<MetricRule>;
+
+export type MetricRuleList = Array<MetricRule>;
+export const MetricRuleList = /*@__PURE__*/ S.Array(
+  MetricRule,
+) as any as S.Schema<MetricRuleList>;
+
+/** Quota configuration helps to achieve fairness and budgeting in service usage. The metric based quota configuration works this way: - The service configuration defines a set of metrics. - For API calls, the quota.metric_rules maps methods to metrics with corresponding costs. - The quota.limits defines limits on the metrics, which will be used for quota checks at runtime. An example quota configuration in yaml format: quota: limits: - name: apiWriteQpsPerProject metric: library.googleapis.com/write_calls unit: "1/min/{project}" # rate limit for consumer projects values: STANDARD: 10000 (The metric rules bind all methods to the read_calls metric, except for the UpdateBook and DeleteBook methods. These two methods are mapped to the write_calls metric, with the UpdateBook method consuming at twice rate as the DeleteBook method.) metric_rules: - selector: "*" metric_costs: library.googleapis.com/read_calls: 1 - selector: google.example.library.v1.LibraryService.UpdateBook metric_costs: library.googleapis.com/write_calls: 2 - selector: google.example.library.v1.LibraryService.DeleteBook metric_costs: library.googleapis.com/write_calls: 1 Corresponding Metric definition: metrics: - name: library.googleapis.com/read_calls display_name: Read requests metric_kind: DELTA value_type: INT64 - name: library.googleapis.com/write_calls display_name: Write requests metric_kind: DELTA value_type: INT64 */
+export interface Quota {
+  /** List of QuotaLimit definitions for the service. */
+  limits?: QuotaLimitList;
+  /** List of MetricRule definitions, each one mapping a selected method to one or more metrics. */
+  metricRules?: MetricRuleList;
+}
+export const Quota = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    limits: S.optional(QuotaLimitList),
+    metricRules: S.optional(MetricRuleList),
+  }),
+).annotate({ identifier: "Quota" }) as any as S.Schema<Quota>;
+
 /** Configuration of a specific logging destination (the producer project or the consumer project). */
 export interface LoggingDestination {
-  /** The monitored resource type. The type must be defined in the Service.monitored_resources section. */
-  monitoredResource?: string;
   /** Names of the logs to be sent to this destination. Each name must be defined in the Service.logs section. If the log name is not a domain scoped name, it will be automatically prefixed with the service name followed by "/". */
   logs?: StringList;
+  /** The monitored resource type. The type must be defined in the Service.monitored_resources section. */
+  monitoredResource?: string;
 }
 export const LoggingDestination = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    monitoredResource: S.optional(S.String),
     logs: S.optional(StringList),
+    monitoredResource: S.optional(S.String),
   }),
 ).annotate({
   identifier: "LoggingDestination",
@@ -1791,125 +1284,386 @@ export const Logging = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "Logging" }) as any as S.Schema<Logging>;
 
-/** Rule-based configuration for an aspect. */
-export interface AspectRule {
-  /** Required. Selects the RPC methods to which this rule applies. Refer to selector for syntax details. */
-  selector?: string;
-  /** Required. Rules of the configuration. The underlying schema should be defined by Aspect owners as protobuf message under `google/api/configaspects/proto`. */
-  config?: DocumentMap;
-}
-export const AspectRule = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    selector: S.optional(S.String),
-    config: S.optional(DocumentMap),
-  }),
-).annotate({ identifier: "AspectRule" }) as any as S.Schema<AspectRule>;
-
-export type AspectRuleList = Array<AspectRule>;
-export const AspectRuleList = /*@__PURE__*/ S.Array(
-  AspectRule,
-) as any as S.Schema<AspectRuleList>;
-
-/** Aspect represents Generic aspect. It is used to configure an aspect without making direct changes to service.proto */
-export interface Aspect {
-  /** The type of this aspect configuration. */
+/** A custom pattern is used for defining custom HTTP verb. */
+export interface CustomHttpPattern {
+  /** The name of this custom HTTP verb. */
   kind?: string;
-  /** Content of the configuration. The underlying schema should be defined by Aspect owners as protobuf message under `google/api/configaspects/proto`. */
-  spec?: DocumentMap;
-  /** Optional. Rules of the Configuration. */
-  rules?: AspectRuleList;
+  /** The path matched by this custom verb. */
+  path?: string;
 }
-export const Aspect = /*@__PURE__*/ S.suspend(() =>
+export const CustomHttpPattern = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     kind: S.optional(S.String),
-    spec: S.optional(DocumentMap),
-    rules: S.optional(AspectRuleList),
+    path: S.optional(S.String),
   }),
-).annotate({ identifier: "Aspect" }) as any as S.Schema<Aspect>;
+).annotate({
+  identifier: "CustomHttpPattern",
+}) as any as S.Schema<CustomHttpPattern>;
 
-export type AspectList = Array<Aspect>;
-export const AspectList = /*@__PURE__*/ S.Array(
-  Aspect,
-) as any as S.Schema<AspectList>;
+/** gRPC Transcoding gRPC Transcoding is a feature for mapping between a gRPC method and one or more HTTP REST endpoints. It allows developers to build a single API service that supports both gRPC APIs and REST APIs. Many systems, including [Google APIs](https://github.com/googleapis/googleapis), [Cloud Endpoints](https://cloud.google.com/endpoints), [gRPC Gateway](https://github.com/grpc-ecosystem/grpc-gateway), and [Envoy](https://github.com/envoyproxy/envoy) proxy support this feature and use it for large scale production services. `HttpRule` defines the schema of the gRPC/REST mapping. The mapping specifies how different portions of the gRPC request message are mapped to the URL path, URL query parameters, and HTTP request body. It also controls how the gRPC response message is mapped to the HTTP response body. `HttpRule` is typically specified as an `google.api.http` annotation on the gRPC method. Each mapping specifies a URL path template and an HTTP method. The path template may refer to one or more fields in the gRPC request message, as long as each field is a non-repeated field with a primitive (non-message) type. The path template controls how fields of the request message are mapped to the URL path. Example: service Messaging { rpc GetMessage(GetMessageRequest) returns (Message) { option (google.api.http) = { get: "/v1/{name=messages/*}" }; } } message GetMessageRequest { string name = 1; // Mapped to URL path. } message Message { string text = 1; // The resource content. } This enables an HTTP REST to gRPC mapping as below: - HTTP: `GET /v1/messages/123456` - gRPC: `GetMessage(name: "messages/123456")` Any fields in the request message which are not bound by the path template automatically become HTTP query parameters if there is no HTTP request body. For example: service Messaging { rpc GetMessage(GetMessageRequest) returns (Message) { option (google.api.http) = { get:"/v1/messages/{message_id}" }; } } message GetMessageRequest { message SubMessage { string subfield = 1; } string message_id = 1; // Mapped to URL path. int64 revision = 2; // Mapped to URL query parameter `revision`. SubMessage sub = 3; // Mapped to URL query parameter `sub.subfield`. } This enables a HTTP JSON to RPC mapping as below: - HTTP: `GET /v1/messages/123456?revision=2&sub.subfield=foo` - gRPC: `GetMessage(message_id: "123456" revision: 2 sub: SubMessage(subfield: "foo"))` Note that fields which are mapped to URL query parameters must have a primitive type or a repeated primitive type or a non-repeated message type. In the case of a repeated type, the parameter can be repeated in the URL as `...?param=A&param=B`. In the case of a message type, each field of the message is mapped to a separate parameter, such as `...?foo.a=A&foo.b=B&foo.c=C`. For HTTP methods that allow a request body, the `body` field specifies the mapping. Consider a REST update method on the message resource collection: service Messaging { rpc UpdateMessage(UpdateMessageRequest) returns (Message) { option (google.api.http) = { patch: "/v1/messages/{message_id}" body: "message" }; } } message UpdateMessageRequest { string message_id = 1; // mapped to the URL Message message = 2; // mapped to the body } The following HTTP JSON to RPC mapping is enabled, where the representation of the JSON in the request body is determined by protos JSON encoding: - HTTP: `PATCH /v1/messages/123456 { "text": "Hi!" }` - gRPC: `UpdateMessage(message_id: "123456" message { text: "Hi!" })` The special name `*` can be used in the body mapping to define that every field not bound by the path template should be mapped to the request body. This enables the following alternative definition of the update method: service Messaging { rpc UpdateMessage(Message) returns (Message) { option (google.api.http) = { patch: "/v1/messages/{message_id}" body: "*" }; } } message Message { string message_id = 1; string text = 2; } The following HTTP JSON to RPC mapping is enabled: - HTTP: `PATCH /v1/messages/123456 { "text": "Hi!" }` - gRPC: `UpdateMessage(message_id: "123456" text: "Hi!")` Note that when using `*` in the body mapping, it is not possible to have HTTP parameters, as all fields not bound by the path end in the body. This makes this option more rarely used in practice when defining REST APIs. The common usage of `*` is in custom methods which don't use the URL at all for transferring data. It is possible to define multiple HTTP methods for one RPC by using the `additional_bindings` option. Example: service Messaging { rpc GetMessage(GetMessageRequest) returns (Message) { option (google.api.http) = { get: "/v1/messages/{message_id}" additional_bindings { get: "/v1/users/{user_id}/messages/{message_id}" } }; } } message GetMessageRequest { string message_id = 1; string user_id = 2; } This enables the following two alternative HTTP JSON to RPC mappings: - HTTP: `GET /v1/messages/123456` - gRPC: `GetMessage(message_id: "123456")` - HTTP: `GET /v1/users/me/messages/123456` - gRPC: `GetMessage(user_id: "me" message_id: "123456")` Rules for HTTP mapping 1. Leaf request fields (recursive expansion nested messages in the request message) are classified into three categories: - Fields referred by the path template. They are passed via the URL path. - Fields referred by the HttpRule.body. They are passed via the HTTP request body. - All other fields are passed via the URL query parameters, and the parameter name is the field path in the request message. A repeated field can be represented as multiple query parameters under the same name. 2. If HttpRule.body is "*", there is no URL query parameter, all fields are passed via URL path and HTTP request body. 3. If HttpRule.body is omitted, there is no HTTP request body, all fields are passed via URL path and URL query parameters. Path template syntax Template = "/" Segments [ Verb ] ; Segments = Segment { "/" Segment } ; Segment = "*" | "**" | LITERAL | Variable ; Variable = "{" FieldPath [ "=" Segments ] "}" ; FieldPath = IDENT { "." IDENT } ; Verb = ":" LITERAL ; The syntax `*` matches a single URL path segment. The syntax `**` matches zero or more URL path segments, which must be the last part of the URL path except the `Verb`. The syntax `Variable` matches part of the URL path as specified by its template. A variable template must not contain other variables. If a variable matches a single path segment, its template may be omitted, e.g. `{var}` is equivalent to `{var=*}`. The syntax `LITERAL` matches literal text in the URL path. If the `LITERAL` contains any reserved character, such characters should be percent-encoded before the matching. If a variable contains exactly one path segment, such as `"{var}"` or `"{var=*}"`, when such a variable is expanded into a URL path on the client side, all characters except `[-_.~0-9a-zA-Z]` are percent-encoded. The server side does the reverse decoding. Such variables show up in the [Discovery Document](https://developers.google.com/discovery/v1/reference/apis) as `{var}`. If a variable contains multiple path segments, such as `"{var=foo/*}"` or `"{var=**}"`, when such a variable is expanded into a URL path on the client side, all characters except `[-_.~/0-9a-zA-Z]` are percent-encoded. The server side does the reverse decoding, except "%2F" and "%2f" are left unchanged. Such variables show up in the [Discovery Document](https://developers.google.com/discovery/v1/reference/apis) as `{+var}`. Using gRPC API Service Configuration gRPC API Service Configuration (service config) is a configuration language for configuring a gRPC service to become a user-facing product. The service config is simply the YAML representation of the `google.api.Service` proto message. As an alternative to annotating your proto file, you can configure gRPC transcoding in your service config YAML files. You do this by specifying a `HttpRule` that maps the gRPC method to a REST endpoint, achieving the same effect as the proto annotation. This can be particularly useful if you have a proto that is reused in multiple services. Note that any transcoding specified in the service config will override any matching transcoding configuration in the proto. The following example selects a gRPC method and applies an `HttpRule` to it: http: rules: - selector: example.v1.Messaging.GetMessage get: /v1/messages/{message_id}/{sub.subfield} Special notes When gRPC Transcoding is used to map a gRPC to JSON REST endpoints, the proto to JSON conversion must follow the [proto3 specification](https://developers.google.com/protocol-buffers/docs/proto3#json). While the single segment variable follows the semantics of [RFC 6570](https://tools.ietf.org/html/rfc6570) Section 3.2.2 Simple String Expansion, the multi segment variable **does not** follow RFC 6570 Section 3.2.3 Reserved Expansion. The reason is that the Reserved Expansion does not expand special characters like `?` and `#`, which would lead to invalid URLs. As the result, gRPC Transcoding uses a custom encoding for multi segment variables. The path variables **must not** refer to any repeated or mapped field, because client libraries are not capable of handling such variable expansion. The path variables **must not** capture the leading "/" character. The reason is that the most common use case "{var}" does not capture the leading "/" character. For consistency, all path variables must share the same behavior. Repeated message fields must not be mapped to URL query parameters, because no client library can support such complicated mapping. If an API needs to use a JSON array for request or response body, it can map the request or response body to a repeated field. However, some gRPC Transcoding implementations may not support this feature. */
+export interface HttpRule {
+  /** Maps to HTTP GET. Used for listing and getting information about resources. */
+  get?: string;
+  /** The custom pattern is used for specifying an HTTP method that is not included in the `pattern` field, such as HEAD, or "*" to leave the HTTP method unspecified for this rule. The wild-card rule is useful for services that provide content to Web (HTML) clients. */
+  custom?: CustomHttpPattern;
+  /** Maps to HTTP PUT. Used for replacing a resource. */
+  put?: string;
+  /** Maps to HTTP DELETE. Used for deleting a resource. */
+  delete?: string;
+  /** The name of the request field whose value is mapped to the HTTP request body, or `*` for mapping all request fields not captured by the path pattern to the HTTP body, or omitted for not having any HTTP request body. NOTE: the referred field must be present at the top-level of the request message type. */
+  body?: string;
+  /** Additional HTTP bindings for the selector. Nested bindings must not contain an `additional_bindings` field themselves (that is, the nesting may only be one level deep). */
+  additionalBindings?: HttpRuleList;
+  /** Maps to HTTP PATCH. Used for updating a resource. */
+  patch?: string;
+  /** Optional. The name of the response field whose value is mapped to the HTTP response body. When omitted, the entire response message will be used as the HTTP response body. NOTE: The referred field must be present at the top-level of the response message type. */
+  responseBody?: string;
+  /** Selects a method to which this rule applies. Refer to selector for syntax details. */
+  selector?: string;
+  /** Maps to HTTP POST. Used for creating a resource or performing an action. */
+  post?: string;
+}
+export const HttpRule = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    get: S.optional(S.String),
+    custom: S.optional(CustomHttpPattern),
+    put: S.optional(S.String),
+    delete: S.optional(S.String),
+    body: S.optional(S.String),
+    additionalBindings: S.optional(S.suspend(() => HttpRuleList)),
+    patch: S.optional(S.String),
+    responseBody: S.optional(S.String),
+    selector: S.optional(S.String),
+    post: S.optional(S.String),
+  }),
+).annotate({ identifier: "HttpRule" }) as any as S.Schema<HttpRule>;
 
-/** A context rule provides information about the context for an individual API element. */
-export interface ContextRule {
+export type HttpRuleList = Array<HttpRule>;
+export const HttpRuleList = /*@__PURE__*/ S.Array(
+  HttpRule,
+) as any as S.Schema<HttpRuleList>;
+
+/** Defines the HTTP configuration for an API service. It contains a list of HttpRule, each specifying the mapping of an RPC method to one or more HTTP REST API methods. */
+export interface Http {
+  /** When set to true, URL path parameters will be fully URI-decoded except in cases of single segment matches in reserved expansion, where "%2F" will be left encoded. The default behavior is to not decode RFC 6570 reserved characters in multi segment matches. */
+  fullyDecodeReservedExpansion?: boolean;
+  /** A list of HTTP configuration rules that apply to individual API methods. **NOTE:** All service configuration rules follow "last one wins" order. */
+  rules?: HttpRuleList;
+}
+export const Http = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    fullyDecodeReservedExpansion: S.optional(S.Boolean),
+    rules: S.optional(HttpRuleList),
+  }),
+).annotate({ identifier: "Http" }) as any as S.Schema<Http>;
+
+/** Enum value definition. New usages of this message as an alternative to EnumValueDescriptorProto are strongly discouraged. This message does not reliability preserve all information necessary to model the schema and preserve semantics. Instead make use of FileDescriptorSet which preserves the necessary information. */
+export interface EnumValue {
+  /** Enum value number. */
+  number?: number;
+  /** Protocol buffer options. */
+  options?: OptionList;
+  /** Enum value name. */
+  name?: string;
+}
+export const EnumValue = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    number: S.optional(S.Number),
+    options: S.optional(OptionList),
+    name: S.optional(S.String),
+  }),
+).annotate({ identifier: "EnumValue" }) as any as S.Schema<EnumValue>;
+
+export type EnumValueList = Array<EnumValue>;
+export const EnumValueList = /*@__PURE__*/ S.Array(
+  EnumValue,
+) as any as S.Schema<EnumValueList>;
+
+export type EnumSyntaxEnum =
+  | "SYNTAX_PROTO2"
+  | "SYNTAX_PROTO3"
+  | "SYNTAX_EDITIONS";
+export const EnumSyntaxEnum = /*@__PURE__*/ S.String;
+
+/** Enum type definition. New usages of this message as an alternative to EnumDescriptorProto are strongly discouraged. This message does not reliability preserve all information necessary to model the schema and preserve semantics. Instead make use of FileDescriptorSet which preserves the necessary information. */
+export interface Enum {
+  /** The source edition string, only valid when syntax is SYNTAX_EDITIONS. */
+  edition?: string;
+  /** Enum value definitions. */
+  enumvalue?: EnumValueList;
+  /** Protocol buffer options. */
+  options?: OptionList;
+  /** The source context. */
+  sourceContext?: SourceContext;
+  /** The source syntax. */
+  syntax?: EnumSyntaxEnum | (string & {});
+  /** Enum type name. */
+  name?: string;
+}
+export const Enum = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    edition: S.optional(S.String),
+    enumvalue: S.optional(EnumValueList),
+    options: S.optional(OptionList),
+    sourceContext: S.optional(SourceContext),
+    syntax: S.optional(EnumSyntaxEnum),
+    name: S.optional(S.String),
+  }),
+).annotate({ identifier: "Enum" }) as any as S.Schema<Enum>;
+
+export type EnumList = Array<Enum>;
+export const EnumList = /*@__PURE__*/ S.Array(
+  Enum,
+) as any as S.Schema<EnumList>;
+
+/** Specifies a location to extract JWT from an API request. */
+export interface JwtLocation {
+  /** Specifies HTTP header name to extract JWT token. */
+  header?: string;
+  /** The value prefix. The value format is "value_prefix{token}" Only applies to "in" header type. Must be empty for "in" query type. If not empty, the header value has to match (case sensitive) this prefix. If not matched, JWT will not be extracted. If matched, JWT will be extracted after the prefix is removed. For example, for "Authorization: Bearer {JWT}", value_prefix="Bearer " with a space at the end. */
+  valuePrefix?: string;
+  /** Specifies URL query parameter name to extract JWT token. */
+  query?: string;
+  /** Specifies cookie name to extract JWT token. */
+  cookie?: string;
+}
+export const JwtLocation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    header: S.optional(S.String),
+    valuePrefix: S.optional(S.String),
+    query: S.optional(S.String),
+    cookie: S.optional(S.String),
+  }),
+).annotate({ identifier: "JwtLocation" }) as any as S.Schema<JwtLocation>;
+
+export type JwtLocationList = Array<JwtLocation>;
+export const JwtLocationList = /*@__PURE__*/ S.Array(
+  JwtLocation,
+) as any as S.Schema<JwtLocationList>;
+
+/** Configuration for an authentication provider, including support for [JSON Web Token (JWT)](https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32). */
+export interface AuthProvider {
+  /** The unique identifier of the auth provider. It will be referred to by `AuthRequirement.provider_id`. Example: "bookstore_auth". */
+  id?: string;
+  /** Defines the locations to extract the JWT. For now it is only used by the Cloud Endpoints to store the OpenAPI extension [x-google-jwt-locations] (https://cloud.google.com/endpoints/docs/openapi/openapi-extensions#x-google-jwt-locations) JWT locations can be one of HTTP headers, URL query parameters or cookies. The rule is that the first match wins. If not specified, default to use following 3 locations: 1) Authorization: Bearer 2) x-goog-iap-jwt-assertion 3) access_token query parameter Default locations can be specified as followings: jwt_locations: - header: Authorization value_prefix: "Bearer " - header: x-goog-iap-jwt-assertion - query: access_token */
+  jwtLocations?: JwtLocationList;
+  /** The list of JWT [audiences](https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32#section-4.1.3). that are allowed to access. A JWT containing any of these audiences will be accepted. When this setting is absent, JWTs with audiences: - "https://[service.name]/[google.protobuf.Api.name]" - "https://[service.name]/" will be accepted. For example, if no audiences are in the setting, LibraryService API will accept JWTs with the following audiences: - https://library-example.googleapis.com/google.example.library.v1.LibraryService - https://library-example.googleapis.com/ Example: audiences: bookstore_android.apps.googleusercontent.com, bookstore_web.apps.googleusercontent.com */
+  audiences?: string;
+  /** Identifies the principal that issued the JWT. See https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32#section-4.1.1 Usually a URL or an email address. Example: https://securetoken.google.com Example: 1234567-compute@developer.gserviceaccount.com */
+  issuer?: string;
+  /** Redirect URL if JWT token is required but not present or is expired. Implement authorizationUrl of securityDefinitions in OpenAPI spec. */
+  authorizationUrl?: string;
+  /** URL of the provider's public key set to validate signature of the JWT. See [OpenID Discovery](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderMetadata). Optional if the key set document: - can be retrieved from [OpenID Discovery](https://openid.net/specs/openid-connect-discovery-1_0.html) of the issuer. - can be inferred from the email domain of the issuer (e.g. a Google service account). Example: https://www.googleapis.com/oauth2/v1/certs */
+  jwksUri?: string;
+}
+export const AuthProvider = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    jwtLocations: S.optional(JwtLocationList),
+    audiences: S.optional(S.String),
+    issuer: S.optional(S.String),
+    authorizationUrl: S.optional(S.String),
+    jwksUri: S.optional(S.String),
+  }),
+).annotate({ identifier: "AuthProvider" }) as any as S.Schema<AuthProvider>;
+
+export type AuthProviderList = Array<AuthProvider>;
+export const AuthProviderList = /*@__PURE__*/ S.Array(
+  AuthProvider,
+) as any as S.Schema<AuthProviderList>;
+
+/** User-defined authentication requirements, including support for [JSON Web Token (JWT)](https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32). */
+export interface AuthRequirement {
+  /** id from authentication provider. Example: provider_id: bookstore_auth */
+  providerId?: string;
+  /** NOTE: This will be deprecated soon, once AuthProvider.audiences is implemented and accepted in all the runtime components. The list of JWT [audiences](https://tools.ietf.org/html/draft-ietf-oauth-json-web-token-32#section-4.1.3). that are allowed to access. A JWT containing any of these audiences will be accepted. When this setting is absent, only JWTs with audience "https://Service_name/API_name" will be accepted. For example, if no audiences are in the setting, LibraryService API will only accept JWTs with the following audience "https://library-example.googleapis.com/google.example.library.v1.LibraryService". Example: audiences: bookstore_android.apps.googleusercontent.com, bookstore_web.apps.googleusercontent.com */
+  audiences?: string;
+}
+export const AuthRequirement = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    providerId: S.optional(S.String),
+    audiences: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "AuthRequirement",
+}) as any as S.Schema<AuthRequirement>;
+
+export type AuthRequirementList = Array<AuthRequirement>;
+export const AuthRequirementList = /*@__PURE__*/ S.Array(
+  AuthRequirement,
+) as any as S.Schema<AuthRequirementList>;
+
+/** OAuth scopes are a way to define data and permissions on data. For example, there are scopes defined for "Read-only access to Google Calendar" and "Access to Cloud Platform". Users can consent to a scope for an application, giving it permission to access that data on their behalf. OAuth scope specifications should be fairly coarse grained; a user will need to see and understand the text description of what your scope means. In most cases: use one or at most two OAuth scopes for an entire family of products. If your product has multiple APIs, you should probably be sharing the OAuth scope across all of those APIs. When you need finer grained OAuth consent screens: talk with your product management about how developers will use them in practice. Please note that even though each of the canonical scopes is enough for a request to be accepted and passed to the backend, a request can still fail due to the backend requiring additional scopes or permissions. */
+export interface OAuthRequirements {
+  /** The list of publicly documented OAuth scopes that are allowed access. An OAuth token containing any of these scopes will be accepted. Example: canonical_scopes: https://www.googleapis.com/auth/calendar, https://www.googleapis.com/auth/calendar.read */
+  canonicalScopes?: string;
+}
+export const OAuthRequirements = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    canonicalScopes: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "OAuthRequirements",
+}) as any as S.Schema<OAuthRequirements>;
+
+/** Authentication rules for the service. By default, if a method has any authentication requirements, every request must include a valid credential matching one of the requirements. It's an error to include more than one kind of credential in a single request. If a method doesn't have any auth requirements, request credentials will be ignored. */
+export interface AuthenticationRule {
+  /** Requirements for additional authentication providers. */
+  requirements?: AuthRequirementList;
+  /** If true, the service accepts API keys without any other credential. This flag only applies to HTTP and gRPC requests. */
+  allowWithoutCredential?: boolean;
   /** Selects the methods to which this rule applies. Refer to selector for syntax details. */
   selector?: string;
-  /** A list of full type names or extension IDs of extensions allowed in grpc side channel from client to backend. */
-  allowedRequestExtensions?: StringList;
-  /** A list of full type names or extension IDs of extensions allowed in grpc side channel from backend to client. */
-  allowedResponseExtensions?: StringList;
-  /** A list of full type names of requested contexts, only the requested context will be made available to the backend. */
-  requested?: StringList;
-  /** A list of full type names of provided contexts. It is used to support propagating HTTP headers and ETags from the response extension. */
-  provided?: StringList;
+  /** The requirements for OAuth credentials. */
+  oauth?: OAuthRequirements;
 }
-export const ContextRule = /*@__PURE__*/ S.suspend(() =>
+export const AuthenticationRule = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    requirements: S.optional(AuthRequirementList),
+    allowWithoutCredential: S.optional(S.Boolean),
     selector: S.optional(S.String),
-    allowedRequestExtensions: S.optional(StringList),
-    allowedResponseExtensions: S.optional(StringList),
-    requested: S.optional(StringList),
-    provided: S.optional(StringList),
+    oauth: S.optional(OAuthRequirements),
   }),
-).annotate({ identifier: "ContextRule" }) as any as S.Schema<ContextRule>;
+).annotate({
+  identifier: "AuthenticationRule",
+}) as any as S.Schema<AuthenticationRule>;
 
-export type ContextRuleList = Array<ContextRule>;
-export const ContextRuleList = /*@__PURE__*/ S.Array(
-  ContextRule,
-) as any as S.Schema<ContextRuleList>;
+export type AuthenticationRuleList = Array<AuthenticationRule>;
+export const AuthenticationRuleList = /*@__PURE__*/ S.Array(
+  AuthenticationRule,
+) as any as S.Schema<AuthenticationRuleList>;
 
-/** `Context` defines which contexts an API requests. Example: context: rules: - selector: "*" requested: - google.rpc.context.ProjectContext - google.rpc.context.OriginContext The above specifies that all methods in the API request `google.rpc.context.ProjectContext` and `google.rpc.context.OriginContext`. Available context types are defined in package `google.rpc.context`. This also provides mechanism to allowlist any protobuf message extension that can be sent in grpc metadata using “x-goog-ext--bin” and “x-goog-ext--jspb” format. For example, list any service specific protobuf types that can appear in grpc metadata as follows in your yaml file: Example: context: rules: - selector: "google.example.library.v1.LibraryService.CreateBook" allowed_request_extensions: - google.foo.v1.NewExtension allowed_response_extensions: - google.foo.v1.NewExtension You can also specify extension ID instead of fully qualified extension name here. */
-export interface Context {
-  /** A list of RPC context rules that apply to individual API methods. **NOTE:** All service configuration rules follow "last one wins" order. */
-  rules?: ContextRuleList;
+/** `Authentication` defines the authentication configuration for API methods provided by an API service. Example: name: calendar.googleapis.com authentication: providers: - id: google_calendar_auth jwks_uri: https://www.googleapis.com/oauth2/v1/certs issuer: https://securetoken.google.com rules: - selector: "*" requirements: provider_id: google_calendar_auth - selector: google.calendar.Delegate oauth: canonical_scopes: https://www.googleapis.com/auth/calendar.read */
+export interface Authentication {
+  /** Defines a set of authentication providers that a service supports. */
+  providers?: AuthProviderList;
+  /** A list of authentication rules that apply to individual API methods. **NOTE:** All service configuration rules follow "last one wins" order. */
+  rules?: AuthenticationRuleList;
 }
-export const Context = /*@__PURE__*/ S.suspend(() =>
+export const Authentication = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    rules: S.optional(ContextRuleList),
+    providers: S.optional(AuthProviderList),
+    rules: S.optional(AuthenticationRuleList),
   }),
-).annotate({ identifier: "Context" }) as any as S.Schema<Context>;
+).annotate({ identifier: "Authentication" }) as any as S.Schema<Authentication>;
 
-/** `Endpoint` describes a network address of a service that serves a set of APIs. It is commonly known as a service endpoint. A service may expose any number of service endpoints, and all service endpoints share the same service definition, such as quota limits and monitoring metrics. Example: type: google.api.Service name: library-example.googleapis.com endpoints: # Declares network address `https://library-example.googleapis.com` # for service `library-example.googleapis.com`. The `https` scheme # is implicit for all service endpoints. Other schemes may be # supported in the future. - name: library-example.googleapis.com allow_cors: false - name: content-staging-library-example.googleapis.com # Allows HTTP OPTIONS calls to be passed to the API frontend, for it # to decide whether the subsequent cross-origin request is allowed # to proceed. allow_cors: true */
-export interface Endpoint {
-  /** The canonical name of this endpoint. */
+/** Declares an API Interface to be included in this interface. The including interface must redeclare all the methods from the included interface, but documentation and options are inherited as follows: - If after comment and whitespace stripping, the documentation string of the redeclared method is empty, it will be inherited from the original method. - Each annotation belonging to the service config (http, visibility) which is not set in the redeclared method will be inherited. - If an http annotation is inherited, the path pattern will be modified as follows. Any version prefix will be replaced by the version of the including interface plus the root path if specified. Example of a simple mixin: package google.acl.v1; service AccessControl { // Get the underlying ACL object. rpc GetAcl(GetAclRequest) returns (Acl) { option (google.api.http).get = "/v1/{resource=**}:getAcl"; } } package google.storage.v2; service Storage { // rpc GetAcl(GetAclRequest) returns (Acl); // Get a data record. rpc GetData(GetDataRequest) returns (Data) { option (google.api.http).get = "/v2/{resource=**}"; } } Example of a mixin configuration: apis: - name: google.storage.v2.Storage mixins: - name: google.acl.v1.AccessControl The mixin construct implies that all methods in `AccessControl` are also declared with same name and request/response types in `Storage`. A documentation generator or annotation processor will see the effective `Storage.GetAcl` method after inheriting documentation and annotations as follows: service Storage { // Get the underlying ACL object. rpc GetAcl(GetAclRequest) returns (Acl) { option (google.api.http).get = "/v2/{resource=**}:getAcl"; } ... } Note how the version in the path pattern changed from `v1` to `v2`. If the `root` field in the mixin is specified, it should be a relative path under which inherited HTTP paths are placed. Example: apis: - name: google.storage.v2.Storage mixins: - name: google.acl.v1.AccessControl root: acls This implies the following inherited HTTP annotation: service Storage { // Get the underlying ACL object. rpc GetAcl(GetAclRequest) returns (Acl) { option (google.api.http).get = "/v2/acls/{resource=**}:getAcl"; } ... } */
+export interface Mixin {
+  /** If non-empty specifies a path under which inherited HTTP paths are rooted. */
+  root?: string;
+  /** The fully qualified name of the interface which is included. */
   name?: string;
-  /** Allowing [CORS](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing), aka cross-domain traffic, would allow the backends served from this endpoint to receive and respond to HTTP OPTIONS requests. The response will be used by the browser to determine whether the subsequent cross-origin request is allowed to proceed. */
-  allowCors?: boolean;
-  /** Aliases for this endpoint, these will be served by the same UrlMap as the parent endpoint, and will be provisioned in the GCP stack for the Regional Endpoints. */
-  aliases?: StringList;
-  /** The specification of an Internet routable address of API frontend that will handle requests to this [API Endpoint](https://cloud.google.com/apis/design/glossary). It should be either a valid IPv4 address or a fully-qualified domain name. For example, "8.8.8.8" or "myservice.appspot.com". */
-  target?: string;
 }
-export const Endpoint = /*@__PURE__*/ S.suspend(() =>
+export const Mixin = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    root: S.optional(S.String),
     name: S.optional(S.String),
-    allowCors: S.optional(S.Boolean),
-    aliases: S.optional(StringList),
-    target: S.optional(S.String),
   }),
-).annotate({ identifier: "Endpoint" }) as any as S.Schema<Endpoint>;
+).annotate({ identifier: "Mixin" }) as any as S.Schema<Mixin>;
 
-export type EndpointList = Array<Endpoint>;
-export const EndpointList = /*@__PURE__*/ S.Array(
-  Endpoint,
-) as any as S.Schema<EndpointList>;
+export type MixinList = Array<Mixin>;
+export const MixinList = /*@__PURE__*/ S.Array(
+  Mixin,
+) as any as S.Schema<MixinList>;
+
+export type ApiSyntaxEnum =
+  | "SYNTAX_PROTO2"
+  | "SYNTAX_PROTO3"
+  | "SYNTAX_EDITIONS";
+export const ApiSyntaxEnum = /*@__PURE__*/ S.String;
+
+export type MethodSyntaxEnum =
+  | "SYNTAX_PROTO2"
+  | "SYNTAX_PROTO3"
+  | "SYNTAX_EDITIONS";
+export const MethodSyntaxEnum = /*@__PURE__*/ S.String;
+
+/** Method represents a method of an API interface. New usages of this message as an alternative to MethodDescriptorProto are strongly discouraged. This message does not reliability preserve all information necessary to model the schema and preserve semantics. Instead make use of FileDescriptorSet which preserves the necessary information. */
+export interface Method {
+  /** The source edition string, only valid when syntax is SYNTAX_EDITIONS. This field should be ignored, instead the edition should be inherited from Api. This is similar to Field and EnumValue. */
+  edition?: string;
+  /** If true, the request is streamed. */
+  requestStreaming?: boolean;
+  /** A URL of the input message type. */
+  requestTypeUrl?: string;
+  /** If true, the response is streamed. */
+  responseStreaming?: boolean;
+  /** The URL of the output message type. */
+  responseTypeUrl?: string;
+  /** Any metadata attached to the method. */
+  options?: OptionList;
+  /** The source syntax of this method. This field should be ignored, instead the syntax should be inherited from Api. This is similar to Field and EnumValue. */
+  syntax?: MethodSyntaxEnum | (string & {});
+  /** The simple name of this method. */
+  name?: string;
+}
+export const Method = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    edition: S.optional(S.String),
+    requestStreaming: S.optional(S.Boolean),
+    requestTypeUrl: S.optional(S.String),
+    responseStreaming: S.optional(S.Boolean),
+    responseTypeUrl: S.optional(S.String),
+    options: S.optional(OptionList),
+    syntax: S.optional(MethodSyntaxEnum),
+    name: S.optional(S.String),
+  }),
+).annotate({ identifier: "Method" }) as any as S.Schema<Method>;
+
+export type MethodList = Array<Method>;
+export const MethodList = /*@__PURE__*/ S.Array(
+  Method,
+) as any as S.Schema<MethodList>;
+
+/** Api is a light-weight descriptor for an API Interface. Interfaces are also described as "protocol buffer services" in some contexts, such as by the "service" keyword in a .proto file, but they are different from API Services, which represent a concrete implementation of an interface as opposed to simply a description of methods and bindings. They are also sometimes simply referred to as "APIs" in other contexts, such as the name of this message itself. See https://cloud.google.com/apis/design/glossary for detailed terminology. New usages of this message as an alternative to ServiceDescriptorProto are strongly discouraged. This message does not reliability preserve all information necessary to model the schema and preserve semantics. Instead make use of FileDescriptorSet which preserves the necessary information. */
+export interface Api {
+  /** A version string for this interface. If specified, must have the form `major-version.minor-version`, as in `1.10`. If the minor version is omitted, it defaults to zero. If the entire version field is empty, the major version is derived from the package name, as outlined below. If the field is not empty, the version in the package name will be verified to be consistent with what is provided here. The versioning schema uses [semantic versioning](http://semver.org) where the major version number indicates a breaking change and the minor version an additive, non-breaking change. Both version numbers are signals to users what to expect from different versions, and should be carefully chosen based on the product plan. The major version is also reflected in the package name of the interface, which must end in `v`, as in `google.feature.v1`. For major versions 0 and 1, the suffix can be omitted. Zero major versions must only be used for experimental, non-GA interfaces. */
+  version?: string;
+  /** The source edition string, only valid when syntax is SYNTAX_EDITIONS. */
+  edition?: string;
+  /** Included interfaces. See Mixin. */
+  mixins?: MixinList;
+  /** The source syntax of the service. */
+  syntax?: ApiSyntaxEnum | (string & {});
+  /** Any metadata attached to the interface. */
+  options?: OptionList;
+  /** Source context for the protocol buffer service represented by this message. */
+  sourceContext?: SourceContext;
+  /** The fully qualified name of this interface, including package name followed by the interface's simple name. */
+  name?: string;
+  /** The methods of this interface, in unspecified order. */
+  methods?: MethodList;
+}
+export const Api = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    version: S.optional(S.String),
+    edition: S.optional(S.String),
+    mixins: S.optional(MixinList),
+    syntax: S.optional(ApiSyntaxEnum),
+    options: S.optional(OptionList),
+    sourceContext: S.optional(SourceContext),
+    name: S.optional(S.String),
+    methods: S.optional(MethodList),
+  }),
+).annotate({ identifier: "Api" }) as any as S.Schema<Api>;
+
+export type ApiList = Array<Api>;
+export const ApiList = /*@__PURE__*/ S.Array(Api) as any as S.Schema<ApiList>;
 
 /** Google API Policy Annotation This message defines a simple API policy annotation that can be used to annotate API request and response message fields with applicable policies. One field may have multiple applicable policies that must all be satisfied before a request can be processed. This policy annotation is used to generate the overall policy that will be used for automatic runtime policy enforcement and documentation generation. */
 export interface FieldPolicy {
-  /** Selects one or more request or response message fields to apply this `FieldPolicy`. When a `FieldPolicy` is used in proto annotation, the selector must be left as empty. The service config generator will automatically fill the correct value. When a `FieldPolicy` is used in service config, the selector must be a comma-separated string with valid request or response field paths, such as "foo.bar" or "foo.bar,foo.baz". */
-  selector?: string;
-  /** Specifies the resource type for the resource referred to by the field. */
-  resourceType?: string;
   /** Specifies the required permission(s) for the resource referred to by the field. It requires the field contains a valid resource reference, and the request must pass the permission checks to proceed. For example, "resourcemanager.projects.get". */
   resourcePermission?: string;
+  /** Specifies the resource type for the resource referred to by the field. */
+  resourceType?: string;
+  /** Selects one or more request or response message fields to apply this `FieldPolicy`. When a `FieldPolicy` is used in proto annotation, the selector must be left as empty. The service config generator will automatically fill the correct value. When a `FieldPolicy` is used in service config, the selector must be a comma-separated string with valid request or response field paths, such as "foo.bar" or "foo.bar,foo.baz". */
+  selector?: string;
 }
 export const FieldPolicy = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    selector: S.optional(S.String),
-    resourceType: S.optional(S.String),
     resourcePermission: S.optional(S.String),
+    resourceType: S.optional(S.String),
+    selector: S.optional(S.String),
   }),
 ).annotate({ identifier: "FieldPolicy" }) as any as S.Schema<FieldPolicy>;
 
@@ -1951,98 +1705,344 @@ export const Control = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "Control" }) as any as S.Schema<Control>;
 
+/** Configuration of a specific monitoring destination (the producer project or the consumer project). */
+export interface MonitoringDestination {
+  /** Types of the metrics to report to this monitoring destination. Each type must be defined in Service.metrics section. */
+  metrics?: StringList;
+  /** The monitored resource type. The type must be defined in Service.monitored_resources section. */
+  monitoredResource?: string;
+}
+export const MonitoringDestination = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    metrics: S.optional(StringList),
+    monitoredResource: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "MonitoringDestination",
+}) as any as S.Schema<MonitoringDestination>;
+
+export type MonitoringDestinationList = Array<MonitoringDestination>;
+export const MonitoringDestinationList = /*@__PURE__*/ S.Array(
+  MonitoringDestination,
+) as any as S.Schema<MonitoringDestinationList>;
+
+/** Monitoring configuration of the service. The example below shows how to configure monitored resources and metrics for monitoring. In the example, a monitored resource and two metrics are defined. The `library.googleapis.com/book/returned_count` metric is sent to both producer and consumer projects, whereas the `library.googleapis.com/book/num_overdue` metric is only sent to the consumer project. monitored_resources: - type: library.googleapis.com/Branch display_name: "Library Branch" description: "A branch of a library." launch_stage: GA labels: - key: resource_container description: "The Cloud container (ie. project id) for the Branch." - key: location description: "The location of the library branch." - key: branch_id description: "The id of the branch." metrics: - name: library.googleapis.com/book/returned_count display_name: "Books Returned" description: "The count of books that have been returned." launch_stage: GA metric_kind: DELTA value_type: INT64 unit: "1" labels: - key: customer_id description: "The id of the customer." - name: library.googleapis.com/book/num_overdue display_name: "Books Overdue" description: "The current number of overdue books." launch_stage: GA metric_kind: GAUGE value_type: INT64 unit: "1" labels: - key: customer_id description: "The id of the customer." monitoring: producer_destinations: - monitored_resource: library.googleapis.com/Branch metrics: - library.googleapis.com/book/returned_count consumer_destinations: - monitored_resource: library.googleapis.com/Branch metrics: - library.googleapis.com/book/returned_count - library.googleapis.com/book/num_overdue */
+export interface Monitoring {
+  /** Monitoring configurations for sending metrics to the consumer project. There can be multiple consumer destinations. A monitored resource type may appear in multiple monitoring destinations if different aggregations are needed for different sets of metrics associated with that monitored resource type. A monitored resource and metric pair may only be used once in the Monitoring configuration. */
+  consumerDestinations?: MonitoringDestinationList;
+  /** Monitoring configurations for sending metrics to the producer project. There can be multiple producer destinations. A monitored resource type may appear in multiple monitoring destinations if different aggregations are needed for different sets of metrics associated with that monitored resource type. A monitored resource and metric pair may only be used once in the Monitoring configuration. */
+  producerDestinations?: MonitoringDestinationList;
+}
+export const Monitoring = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    consumerDestinations: S.optional(MonitoringDestinationList),
+    producerDestinations: S.optional(MonitoringDestinationList),
+  }),
+).annotate({ identifier: "Monitoring" }) as any as S.Schema<Monitoring>;
+
+/** A description of a log type. Example in YAML format: - name: library.googleapis.com/activity_history description: The history of borrowing and returning library items. display_name: Activity labels: - key: /customer_id description: Identifier of a library customer */
+export interface LogDescriptor {
+  /** The name of the log. It must be less than 512 characters long and can include the following characters: upper- and lower-case alphanumeric characters [A-Za-z0-9], and punctuation characters including slash, underscore, hyphen, period [/_-.]. */
+  name?: string;
+  /** A human-readable description of this log. This information appears in the documentation and can contain details. */
+  description?: string;
+  /** The set of labels that are available to describe a specific log entry. Runtime requests that contain labels not specified here are considered invalid. */
+  labels?: LabelDescriptorList;
+  /** The human-readable name for this log. This information appears on the user interface and should be concise. */
+  displayName?: string;
+}
+export const LogDescriptor = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    description: S.optional(S.String),
+    labels: S.optional(LabelDescriptorList),
+    displayName: S.optional(S.String),
+  }),
+).annotate({ identifier: "LogDescriptor" }) as any as S.Schema<LogDescriptor>;
+
+export type LogDescriptorList = Array<LogDescriptor>;
+export const LogDescriptorList = /*@__PURE__*/ S.Array(
+  LogDescriptor,
+) as any as S.Schema<LogDescriptorList>;
+
+/** A context rule provides information about the context for an individual API element. */
+export interface ContextRule {
+  /** A list of full type names or extension IDs of extensions allowed in grpc side channel from backend to client. */
+  allowedResponseExtensions?: StringList;
+  /** A list of full type names of provided contexts. It is used to support propagating HTTP headers and ETags from the response extension. */
+  provided?: StringList;
+  /** A list of full type names of requested contexts, only the requested context will be made available to the backend. */
+  requested?: StringList;
+  /** A list of full type names or extension IDs of extensions allowed in grpc side channel from client to backend. */
+  allowedRequestExtensions?: StringList;
+  /** Selects the methods to which this rule applies. Refer to selector for syntax details. */
+  selector?: string;
+}
+export const ContextRule = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    allowedResponseExtensions: S.optional(StringList),
+    provided: S.optional(StringList),
+    requested: S.optional(StringList),
+    allowedRequestExtensions: S.optional(StringList),
+    selector: S.optional(S.String),
+  }),
+).annotate({ identifier: "ContextRule" }) as any as S.Schema<ContextRule>;
+
+export type ContextRuleList = Array<ContextRule>;
+export const ContextRuleList = /*@__PURE__*/ S.Array(
+  ContextRule,
+) as any as S.Schema<ContextRuleList>;
+
+/** `Context` defines which contexts an API requests. Example: context: rules: - selector: "*" requested: - google.rpc.context.ProjectContext - google.rpc.context.OriginContext The above specifies that all methods in the API request `google.rpc.context.ProjectContext` and `google.rpc.context.OriginContext`. Available context types are defined in package `google.rpc.context`. This also provides mechanism to allowlist any protobuf message extension that can be sent in grpc metadata using “x-goog-ext--bin” and “x-goog-ext--jspb” format. For example, list any service specific protobuf types that can appear in grpc metadata as follows in your yaml file: Example: context: rules: - selector: "google.example.library.v1.LibraryService.CreateBook" allowed_request_extensions: - google.foo.v1.NewExtension allowed_response_extensions: - google.foo.v1.NewExtension You can also specify extension ID instead of fully qualified extension name here. */
+export interface Context {
+  /** A list of RPC context rules that apply to individual API methods. **NOTE:** All service configuration rules follow "last one wins" order. */
+  rules?: ContextRuleList;
+}
+export const Context = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    rules: S.optional(ContextRuleList),
+  }),
+).annotate({ identifier: "Context" }) as any as S.Schema<Context>;
+
+/** Represents a documentation page. A page can contain subpages to represent nested documentation set structure. */
+export interface Page {
+  /** Subpages of this page. The order of subpages specified here will be honored in the generated docset. */
+  subpages?: PageList;
+  /** The name of the page. It will be used as an identity of the page to generate URI of the page, text of the link to this page in navigation, etc. The full page name (start from the root page name to this page concatenated with `.`) can be used as reference to the page in your documentation. For example: pages: - name: Tutorial content: (== include tutorial.md ==) subpages: - name: Java content: (== include tutorial_java.md ==) You can reference `Java` page using Markdown reference link syntax: `Java`. */
+  name?: string;
+  /** The Markdown content of the page. You can use ```(== include {path} ==)``` to include content from a Markdown file. The content can be used to produce the documentation page such as HTML format page. */
+  content?: string;
+}
+export const Page = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subpages: S.optional(S.suspend(() => PageList)),
+    name: S.optional(S.String),
+    content: S.optional(S.String),
+  }),
+).annotate({ identifier: "Page" }) as any as S.Schema<Page>;
+
+export type PageList = Array<Page>;
+export const PageList = /*@__PURE__*/ S.Array(
+  Page,
+) as any as S.Schema<PageList>;
+
+/** A documentation rule provides information about individual API elements. */
+export interface DocumentationRule {
+  /** The selector is a comma-separated list of patterns for any element such as a method, a field, an enum value. Each pattern is a qualified name of the element which may end in "*", indicating a wildcard. Wildcards are only allowed at the end and for a whole component of the qualified name, i.e. "foo.*" is ok, but not "foo.b*" or "foo.*.bar". A wildcard will match one or more components. To specify a default for all applicable elements, the whole pattern "*" is used. */
+  selector?: string;
+  /** Description of the selected proto element (e.g. a message, a method, a 'service' definition, or a field). Defaults to leading & trailing comments taken from the proto source definition of the proto element. */
+  description?: string;
+  /** String of comma or space separated case-sensitive words for which method/field name replacement will be disabled. */
+  disableReplacementWords?: string;
+  /** Deprecation description of the selected element(s). It can be provided if an element is marked as `deprecated`. */
+  deprecationDescription?: string;
+}
+export const DocumentationRule = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    selector: S.optional(S.String),
+    description: S.optional(S.String),
+    disableReplacementWords: S.optional(S.String),
+    deprecationDescription: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DocumentationRule",
+}) as any as S.Schema<DocumentationRule>;
+
+export type DocumentationRuleList = Array<DocumentationRule>;
+export const DocumentationRuleList = /*@__PURE__*/ S.Array(
+  DocumentationRule,
+) as any as S.Schema<DocumentationRuleList>;
+
+/** `Documentation` provides the information for describing a service. Example: documentation: summary: > The Google Calendar API gives access to most calendar features. pages: - name: Overview content: (== include google/foo/overview.md ==) - name: Tutorial content: (== include google/foo/tutorial.md ==) subpages: - name: Java content: (== include google/foo/tutorial_java.md ==) rules: - selector: google.calendar.Calendar.Get description: > ... - selector: google.calendar.Calendar.Put description: > ... Documentation is provided in markdown syntax. In addition to standard markdown features, definition lists, tables and fenced code blocks are supported. Section headers can be provided and are interpreted relative to the section nesting of the context where a documentation fragment is embedded. Documentation from the IDL is merged with documentation defined via the config at normalization time, where documentation provided by config rules overrides IDL provided. A number of constructs specific to the API platform are supported in documentation text. In order to reference a proto element, the following notation can be used: [fully.qualified.proto.name][] To override the display text used for the link, this can be used: [display text][fully.qualified.proto.name] Text can be excluded from doc using the following notation: (-- internal comment --) A few directives are available in documentation. Note that directives must appear on a single line to be properly identified. The `include` directive includes a markdown file from an external source: (== include path/to/file ==) The `resource_for` directive marks a message to be the resource of a collection in REST view. If it is not specified, tools attempt to infer the resource from the operations in a collection: (== resource_for v1.shelves.books ==) The directive `suppress_warning` does not directly affect documentation and is documented together with service config validation. */
+export interface Documentation {
+  /** The top level pages for the documentation set. */
+  pages?: PageList;
+  /** The URL to the root of documentation. */
+  documentationRootUrl?: string;
+  /** Optional information about the IAM configuration. This is typically used to link to documentation about a product's IAM roles and permissions. */
+  additionalIamInfo?: string;
+  /** Specifies section and content to override the boilerplate content. Currently overrides following sections: 1. rest.service.client_libraries */
+  sectionOverrides?: PageList;
+  /** A short description of what the service does. The summary must be plain text. It becomes the overview of the service displayed in Google Cloud Console. NOTE: This field is equivalent to the standard field `description`. */
+  summary?: string;
+  /** Specifies the service root url if the default one (the service name from the yaml file) is not suitable. This can be seen in any fully specified service urls as well as sections that show a base that other urls are relative to. */
+  serviceRootUrl?: string;
+  /** Declares a single overview page. For example: documentation: summary: ... overview: (== include overview.md ==) This is a shortcut for the following declaration (using pages style): documentation: summary: ... pages: - name: Overview content: (== include overview.md ==) Note: you cannot specify both `overview` field and `pages` field. */
+  overview?: string;
+  /** A list of documentation rules that apply to individual API elements. **NOTE:** All service configuration rules follow "last one wins" order. */
+  rules?: DocumentationRuleList;
+}
+export const Documentation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    pages: S.optional(PageList),
+    documentationRootUrl: S.optional(S.String),
+    additionalIamInfo: S.optional(S.String),
+    sectionOverrides: S.optional(PageList),
+    summary: S.optional(S.String),
+    serviceRootUrl: S.optional(S.String),
+    overview: S.optional(S.String),
+    rules: S.optional(DocumentationRuleList),
+  }),
+).annotate({ identifier: "Documentation" }) as any as S.Schema<Documentation>;
+
+/** Rule-based configuration for an aspect. */
+export interface AspectRule {
+  /** Required. Selects the RPC methods to which this rule applies. Refer to selector for syntax details. */
+  selector?: string;
+  /** Required. Rules of the configuration. The underlying schema should be defined by Aspect owners as protobuf message under `google/api/configaspects/proto`. */
+  config?: DocumentMap;
+}
+export const AspectRule = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    selector: S.optional(S.String),
+    config: S.optional(DocumentMap),
+  }),
+).annotate({ identifier: "AspectRule" }) as any as S.Schema<AspectRule>;
+
+export type AspectRuleList = Array<AspectRule>;
+export const AspectRuleList = /*@__PURE__*/ S.Array(
+  AspectRule,
+) as any as S.Schema<AspectRuleList>;
+
+/** Aspect represents Generic aspect. It is used to configure an aspect without making direct changes to service.proto */
+export interface Aspect {
+  /** Content of the configuration. The underlying schema should be defined by Aspect owners as protobuf message under `google/api/configaspects/proto`. */
+  spec?: DocumentMap;
+  /** The type of this aspect configuration. */
+  kind?: string;
+  /** Optional. Rules of the Configuration. */
+  rules?: AspectRuleList;
+}
+export const Aspect = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    spec: S.optional(DocumentMap),
+    kind: S.optional(S.String),
+    rules: S.optional(AspectRuleList),
+  }),
+).annotate({ identifier: "Aspect" }) as any as S.Schema<Aspect>;
+
+export type AspectList = Array<Aspect>;
+export const AspectList = /*@__PURE__*/ S.Array(
+  Aspect,
+) as any as S.Schema<AspectList>;
+
+/** `Endpoint` describes a network address of a service that serves a set of APIs. It is commonly known as a service endpoint. A service may expose any number of service endpoints, and all service endpoints share the same service definition, such as quota limits and monitoring metrics. Example: type: google.api.Service name: library-example.googleapis.com endpoints: # Declares network address `https://library-example.googleapis.com` # for service `library-example.googleapis.com`. The `https` scheme # is implicit for all service endpoints. Other schemes may be # supported in the future. - name: library-example.googleapis.com allow_cors: false - name: content-staging-library-example.googleapis.com # Allows HTTP OPTIONS calls to be passed to the API frontend, for it # to decide whether the subsequent cross-origin request is allowed # to proceed. allow_cors: true */
+export interface Endpoint {
+  /** The canonical name of this endpoint. */
+  name?: string;
+  /** Aliases for this endpoint, these will be served by the same UrlMap as the parent endpoint, and will be provisioned in the GCP stack for the Regional Endpoints. */
+  aliases?: StringList;
+  /** Allowing [CORS](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing), aka cross-domain traffic, would allow the backends served from this endpoint to receive and respond to HTTP OPTIONS requests. The response will be used by the browser to determine whether the subsequent cross-origin request is allowed to proceed. */
+  allowCors?: boolean;
+  /** The specification of an Internet routable address of API frontend that will handle requests to this [API Endpoint](https://cloud.google.com/apis/design/glossary). It should be either a valid IPv4 address or a fully-qualified domain name. For example, "8.8.8.8" or "myservice.appspot.com". */
+  target?: string;
+}
+export const Endpoint = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    aliases: S.optional(StringList),
+    allowCors: S.optional(S.Boolean),
+    target: S.optional(S.String),
+  }),
+).annotate({ identifier: "Endpoint" }) as any as S.Schema<Endpoint>;
+
+export type EndpointList = Array<Endpoint>;
+export const EndpointList = /*@__PURE__*/ S.Array(
+  Endpoint,
+) as any as S.Schema<EndpointList>;
+
 /** `Service` is the root object of Google API service configuration (service config). It describes the basic information about a logical service, such as the service name and the user-facing title, and delegates other aspects to sub-sections. Each sub-section is either a proto message or a repeated proto message that configures a specific aspect, such as auth. For more information, see each proto message definition. Example: type: google.api.Service name: calendar.googleapis.com title: Google Calendar API apis: - name: google.calendar.v3.Calendar visibility: rules: - selector: "google.calendar.v3.*" restriction: PREVIEW backend: rules: - selector: "google.calendar.v3.*" address: calendar.example.com authentication: providers: - id: google_calendar_auth jwks_uri: https://www.googleapis.com/oauth2/v1/certs issuer: https://securetoken.google.com rules: - selector: "*" requirements: provider_id: google_calendar_auth */
 export interface Service {
-  /** Quota configuration. */
-  quota?: Quota;
-  /** The Google project that owns this service. */
-  producerProjectId?: string;
-  /** Defines the monitored resources used by this service. This is required by the `Service.monitoring` and `Service.logging` configurations. */
-  monitoredResources?: MonitoredResourceDescriptorList;
-  /** Defines the logs used by this service. */
-  logs?: LogDescriptorList;
-  /** Output only. The source information for this configuration if available. */
-  sourceInfo?: SourceInfo;
-  /** Settings for [Google Cloud Client libraries](https://cloud.google.com/apis/docs/cloud-client-libraries) generated from APIs defined as protocol buffers. */
-  publishing?: Publishing;
-  /** Additional API documentation. */
-  documentation?: Documentation;
-  /** Auth configuration. */
-  authentication?: Authentication;
-  /** The product title for this service, it is the name displayed in Google Cloud Console. */
-  title?: string;
-  /** Configuration controlling usage of this service. */
-  usage?: Usage;
-  /** A list of all proto message types included in this API service. Types referenced directly or indirectly by the `apis` are automatically included. Messages which are not referenced but shall be included, such as types used by the `google.protobuf.Any` type, should be listed here by name by the configuration author. Example: types: - name: google.protobuf.Int32 */
-  types?: TypeList;
-  /** A unique ID for a specific instance of this message, typically assigned by the client for tracking purpose. Must be no longer than 63 characters and only lower case letters, digits, '.', '_' and '-' are allowed. If empty, the server may choose to generate one instead. */
-  id?: string;
   /** A list of all proto message types included in this API service. It serves similar purpose as [google.api.Service.types], except that these types are not needed by user-defined APIs. Therefore, they will not show up in the generated discovery doc. This field should only be used to define system APIs in ESF. */
   systemTypes?: TypeList;
   /** Custom error configuration. */
   customError?: CustomError;
-  /** The service name, which is a DNS-like logical identifier for the service, such as `calendar.googleapis.com`. The service name typically goes through DNS verification to make sure the owner of the service also owns the DNS name. */
-  name?: string;
-  /** A list of API interfaces exported by this service. Only the `name` field of the google.protobuf.Api needs to be provided by the configuration author, as the remaining fields will be derived from the IDL during the normalization process. It is an error to specify an API interface here which cannot be resolved against the associated IDL files. */
-  apis?: ApiList;
-  /** Defines the metrics used by this service. */
-  metrics?: MetricDescriptorList;
+  /** Output only. The source information for this configuration if available. */
+  sourceInfo?: SourceInfo;
   /** API backend configuration. */
   backend?: Backend;
-  /** HTTP configuration. */
-  http?: Http;
+  /** Defines the monitored resources used by this service. This is required by the `Service.monitoring` and `Service.logging` configurations. */
+  monitoredResources?: MonitoredResourceDescriptorList;
+  /** The Google project that owns this service. */
+  producerProjectId?: string;
   /** System parameter configuration. */
   systemParameters?: SystemParameters;
-  /** Obsolete. Do not use. This field has no semantic meaning. The service config compiler always sets this field to `3`. */
-  configVersion?: number;
-  /** A list of all enum types included in this API service. Enums referenced directly or indirectly by the `apis` are automatically included. Enums which are not referenced but shall be included should be listed here by name by the configuration author. Example: enums: - name: google.someapi.v1.SomeEnum */
-  enums?: EnumList;
-  /** Monitoring configuration. */
-  monitoring?: Monitoring;
+  /** A unique ID for a specific instance of this message, typically assigned by the client for tracking purpose. Must be no longer than 63 characters and only lower case letters, digits, '.', '_' and '-' are allowed. If empty, the server may choose to generate one instead. */
+  id?: string;
+  /** A list of all proto message types included in this API service. Types referenced directly or indirectly by the `apis` are automatically included. Messages which are not referenced but shall be included, such as types used by the `google.protobuf.Any` type, should be listed here by name by the configuration author. Example: types: - name: google.protobuf.Int32 */
+  types?: TypeList;
+  /** Configuration controlling usage of this service. */
+  usage?: Usage;
+  /** Defines the metrics used by this service. */
+  metrics?: MetricDescriptorList;
+  /** Settings for [Google Cloud Client libraries](https://cloud.google.com/apis/docs/cloud-client-libraries) generated from APIs defined as protocol buffers. */
+  publishing?: Publishing;
   /** Billing configuration. */
   billing?: Billing;
+  /** Quota configuration. */
+  quota?: Quota;
   /** Logging configuration. */
   logging?: Logging;
-  /** Configuration aspects. This is a repeated field to allow multiple aspects to be configured. The kind field in each ConfigAspect specifies the type of aspect. The spec field contains the configuration for that aspect. The schema for the spec field is defined by the backend service owners. */
-  aspects?: AspectList;
-  /** Context configuration. */
-  context?: Context;
-  /** Configuration for network endpoints. If this is empty, then an endpoint with the same name as the service is automatically generated to service all defined APIs. */
-  endpoints?: EndpointList;
+  /** HTTP configuration. */
+  http?: Http;
+  /** A list of all enum types included in this API service. Enums referenced directly or indirectly by the `apis` are automatically included. Enums which are not referenced but shall be included should be listed here by name by the configuration author. Example: enums: - name: google.someapi.v1.SomeEnum */
+  enums?: EnumList;
+  /** Auth configuration. */
+  authentication?: Authentication;
+  /** The product title for this service, it is the name displayed in Google Cloud Console. */
+  title?: string;
+  /** A list of API interfaces exported by this service. Only the `name` field of the google.protobuf.Api needs to be provided by the configuration author, as the remaining fields will be derived from the IDL during the normalization process. It is an error to specify an API interface here which cannot be resolved against the associated IDL files. */
+  apis?: ApiList;
   /** Configuration for the service control plane. */
   control?: Control;
+  /** Monitoring configuration. */
+  monitoring?: Monitoring;
+  /** Defines the logs used by this service. */
+  logs?: LogDescriptorList;
+  /** Context configuration. */
+  context?: Context;
+  /** Additional API documentation. */
+  documentation?: Documentation;
+  /** Obsolete. Do not use. This field has no semantic meaning. The service config compiler always sets this field to `3`. */
+  configVersion?: number;
+  /** Configuration aspects. This is a repeated field to allow multiple aspects to be configured. The kind field in each ConfigAspect specifies the type of aspect. The spec field contains the configuration for that aspect. The schema for the spec field is defined by the backend service owners. */
+  aspects?: AspectList;
+  /** Configuration for network endpoints. If this is empty, then an endpoint with the same name as the service is automatically generated to service all defined APIs. */
+  endpoints?: EndpointList;
+  /** The service name, which is a DNS-like logical identifier for the service, such as `calendar.googleapis.com`. The service name typically goes through DNS verification to make sure the owner of the service also owns the DNS name. */
+  name?: string;
 }
 export const Service = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    quota: S.optional(Quota),
-    producerProjectId: S.optional(S.String),
-    monitoredResources: S.optional(MonitoredResourceDescriptorList),
-    logs: S.optional(LogDescriptorList),
-    sourceInfo: S.optional(SourceInfo),
-    publishing: S.optional(Publishing),
-    documentation: S.optional(Documentation),
-    authentication: S.optional(Authentication),
-    title: S.optional(S.String),
-    usage: S.optional(Usage),
-    types: S.optional(TypeList),
-    id: S.optional(S.String),
     systemTypes: S.optional(TypeList),
     customError: S.optional(CustomError),
-    name: S.optional(S.String),
-    apis: S.optional(ApiList),
-    metrics: S.optional(MetricDescriptorList),
+    sourceInfo: S.optional(SourceInfo),
     backend: S.optional(Backend),
-    http: S.optional(Http),
+    monitoredResources: S.optional(MonitoredResourceDescriptorList),
+    producerProjectId: S.optional(S.String),
     systemParameters: S.optional(SystemParameters),
-    configVersion: S.optional(S.Number),
-    enums: S.optional(EnumList),
-    monitoring: S.optional(Monitoring),
+    id: S.optional(S.String),
+    types: S.optional(TypeList),
+    usage: S.optional(Usage),
+    metrics: S.optional(MetricDescriptorList),
+    publishing: S.optional(Publishing),
     billing: S.optional(Billing),
+    quota: S.optional(Quota),
     logging: S.optional(Logging),
-    aspects: S.optional(AspectList),
-    context: S.optional(Context),
-    endpoints: S.optional(EndpointList),
+    http: S.optional(Http),
+    enums: S.optional(EnumList),
+    authentication: S.optional(Authentication),
+    title: S.optional(S.String),
+    apis: S.optional(ApiList),
     control: S.optional(Control),
+    monitoring: S.optional(Monitoring),
+    logs: S.optional(LogDescriptorList),
+    context: S.optional(Context),
+    documentation: S.optional(Documentation),
+    configVersion: S.optional(S.Number),
+    aspects: S.optional(AspectList),
+    endpoints: S.optional(EndpointList),
+    name: S.optional(S.String),
   }),
 ).annotate({ identifier: "Service" }) as any as S.Schema<Service>;
 
@@ -2106,30 +2106,30 @@ export const DeleteServiceStrategy = /*@__PURE__*/ S.suspend(() =>
 
 /** A rollout resource that defines how service configuration versions are pushed to control plane systems. Typically, you create a new version of the service config, and then create a Rollout to push the service config. */
 export interface Rollout {
-  /** Optional. Unique identifier of this Rollout. Must be no longer than 63 characters and only lower case letters, digits, '.', '_' and '-' are allowed. If not specified by client, the server will generate one. The generated id will have the form of , where "date" is the create date in ISO 8601 format. "revision number" is a monotonically increasing positive number that is reset every day for each service. An example of the generated rollout_id is '2016-02-16r1' */
-  rolloutId?: string;
-  /** The status of this rollout. Readonly. In case of a failed rollout, the system will automatically rollback to the current Rollout version. Readonly. */
-  status?: RolloutStatusEnum | (string & {});
-  /** Google Service Control selects service configurations based on traffic percentage. */
-  trafficPercentStrategy?: TrafficPercentStrategy;
   /** The user who created the Rollout. Readonly. */
   createdBy?: string;
-  /** The strategy associated with a rollout to delete a `ManagedService`. Readonly. */
-  deleteServiceStrategy?: DeleteServiceStrategy;
-  /** Creation time of the rollout. Readonly. */
-  createTime?: string;
   /** The name of the service associated with this Rollout. */
   serviceName?: string;
+  /** The status of this rollout. Readonly. In case of a failed rollout, the system will automatically rollback to the current Rollout version. Readonly. */
+  status?: RolloutStatusEnum | (string & {});
+  /** Creation time of the rollout. Readonly. */
+  createTime?: string;
+  /** Google Service Control selects service configurations based on traffic percentage. */
+  trafficPercentStrategy?: TrafficPercentStrategy;
+  /** Optional. Unique identifier of this Rollout. Must be no longer than 63 characters and only lower case letters, digits, '.', '_' and '-' are allowed. If not specified by client, the server will generate one. The generated id will have the form of , where "date" is the create date in ISO 8601 format. "revision number" is a monotonically increasing positive number that is reset every day for each service. An example of the generated rollout_id is '2016-02-16r1' */
+  rolloutId?: string;
+  /** The strategy associated with a rollout to delete a `ManagedService`. Readonly. */
+  deleteServiceStrategy?: DeleteServiceStrategy;
 }
 export const Rollout = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    rolloutId: S.optional(S.String),
-    status: S.optional(RolloutStatusEnum),
-    trafficPercentStrategy: S.optional(TrafficPercentStrategy),
     createdBy: S.optional(S.String),
-    deleteServiceStrategy: S.optional(DeleteServiceStrategy),
-    createTime: S.optional(S.String),
     serviceName: S.optional(S.String),
+    status: S.optional(RolloutStatusEnum),
+    createTime: S.optional(S.String),
+    trafficPercentStrategy: S.optional(TrafficPercentStrategy),
+    rolloutId: S.optional(S.String),
+    deleteServiceStrategy: S.optional(DeleteServiceStrategy),
   }),
 ).annotate({ identifier: "Rollout" }) as any as S.Schema<Rollout>;
 
@@ -2213,16 +2213,16 @@ export const DiagnosticKindEnum = /*@__PURE__*/ S.String;
 export interface Diagnostic {
   /** File name and line number of the error or warning. */
   location?: string;
-  /** Message describing the error or warning. */
-  message?: string;
   /** The kind of diagnostic information provided. */
   kind?: DiagnosticKindEnum;
+  /** Message describing the error or warning. */
+  message?: string;
 }
 export const Diagnostic = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     location: S.optional(S.String),
-    message: S.optional(S.String),
     kind: S.optional(DiagnosticKindEnum),
+    message: S.optional(S.String),
   }),
 ).annotate({ identifier: "Diagnostic" }) as any as S.Schema<Diagnostic>;
 
@@ -2230,6 +2230,13 @@ export type DiagnosticList = Array<Diagnostic>;
 export const DiagnosticList = /*@__PURE__*/ S.Array(
   Diagnostic,
 ) as any as S.Schema<DiagnosticList>;
+
+export type ConfigChangeChangeTypeEnum =
+  | "CHANGE_TYPE_UNSPECIFIED"
+  | "ADDED"
+  | "REMOVED"
+  | "MODIFIED";
+export const ConfigChangeChangeTypeEnum = /*@__PURE__*/ S.String;
 
 /** Generated advice about this change, used for providing more information about how a change will affect the existing service. */
 export interface Advice {
@@ -2247,33 +2254,26 @@ export const AdviceList = /*@__PURE__*/ S.Array(
   Advice,
 ) as any as S.Schema<AdviceList>;
 
-export type ConfigChangeChangeTypeEnum =
-  | "CHANGE_TYPE_UNSPECIFIED"
-  | "ADDED"
-  | "REMOVED"
-  | "MODIFIED";
-export const ConfigChangeChangeTypeEnum = /*@__PURE__*/ S.String;
-
 /** Output generated from semantically comparing two versions of a service configuration. Includes detailed information about a field that have changed with applicable advice about potential consequences for the change, such as backwards-incompatibility. */
 export interface ConfigChange {
-  /** Value of the changed object in the new Service configuration, in JSON format. This field will not be populated if ChangeType == REMOVED. */
-  newValue?: string;
-  /** Collection of advice provided for this change, useful for determining the possible impact of this change. */
-  advices?: AdviceList;
-  /** The type for this change, either ADDED, REMOVED, or MODIFIED. */
-  changeType?: ConfigChangeChangeTypeEnum;
   /** Object hierarchy path to the change, with levels separated by a '.' character. For repeated fields, an applicable unique identifier field is used for the index (usually selector, name, or id). For maps, the term 'key' is used. If the field has no unique identifier, the numeric index is used. Examples: - visibility.rules[selector=="google.LibraryService.ListBooks"].restriction - quota.metric_rules[selector=="google"].metric_costs[key=="reads"].value - logging.producer_destinations[0] */
   element?: string;
+  /** The type for this change, either ADDED, REMOVED, or MODIFIED. */
+  changeType?: ConfigChangeChangeTypeEnum;
   /** Value of the changed object in the old Service configuration, in JSON format. This field will not be populated if ChangeType == ADDED. */
   oldValue?: string;
+  /** Collection of advice provided for this change, useful for determining the possible impact of this change. */
+  advices?: AdviceList;
+  /** Value of the changed object in the new Service configuration, in JSON format. This field will not be populated if ChangeType == REMOVED. */
+  newValue?: string;
 }
 export const ConfigChange = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    newValue: S.optional(S.String),
-    advices: S.optional(AdviceList),
-    changeType: S.optional(ConfigChangeChangeTypeEnum),
     element: S.optional(S.String),
+    changeType: S.optional(ConfigChangeChangeTypeEnum),
     oldValue: S.optional(S.String),
+    advices: S.optional(AdviceList),
+    newValue: S.optional(S.String),
   }),
 ).annotate({ identifier: "ConfigChange" }) as any as S.Schema<ConfigChange>;
 
@@ -2300,21 +2300,21 @@ export const ChangeReportList = /*@__PURE__*/ S.Array(
 
 /** Response message for GenerateConfigReport method. */
 export interface GenerateConfigReportResponse {
-  /** Errors / Linter warnings associated with the service definition this report belongs to. */
-  diagnostics?: DiagnosticList;
-  /** ID of the service configuration this report belongs to. */
-  id?: string;
   /** Name of the service this report belongs to. */
   serviceName?: string;
+  /** Errors / Linter warnings associated with the service definition this report belongs to. */
+  diagnostics?: DiagnosticList;
   /** list of ChangeReport, each corresponding to comparison between two service configurations. */
   changeReports?: ChangeReportList;
+  /** ID of the service configuration this report belongs to. */
+  id?: string;
 }
 export const GenerateConfigReportResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    diagnostics: S.optional(DiagnosticList),
-    id: S.optional(S.String),
     serviceName: S.optional(S.String),
+    diagnostics: S.optional(DiagnosticList),
     changeReports: S.optional(ChangeReportList),
+    id: S.optional(S.String),
   }),
 ).annotate({
   identifier: "GenerateConfigReportResponse",
@@ -2326,16 +2326,16 @@ export const GetConfigServicesViewEnum = /*@__PURE__*/ S.String;
 export interface GetConfigServicesRequest {
   /** Required. The id of the service configuration resource. This field must be specified for the server to return all fields, including `SourceInfo`. */
   configId?: string;
-  /** Specifies which parts of the Service Config should be returned in the response. */
-  view?: GetConfigServicesViewEnum | (string & {});
   /** Required. The name of the service. See the [overview](https://cloud.google.com/service-management/overview) for naming requirements. For example: `example.googleapis.com`. */
   serviceName: string;
+  /** Specifies which parts of the Service Config should be returned in the response. */
+  view?: GetConfigServicesViewEnum | (string & {});
 }
 export const GetConfigServicesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     configId: S.optional(S.String.pipe(T.Query())),
-    view: S.optional(GetConfigServicesViewEnum.pipe(T.Query())),
     serviceName: S.String.pipe(T.Label()),
+    view: S.optional(GetConfigServicesViewEnum.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -2394,48 +2394,6 @@ export const GetIamPolicyServicesRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetIamPolicyServicesRequest",
 }) as any as S.Schema<GetIamPolicyServicesRequest>;
 
-/** Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information. */
-export interface Expr {
-  /** Optional. String indicating the location of the expression for error reporting, e.g. a file name and a position in the file. */
-  location?: string;
-  /** Optional. Description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI. */
-  description?: string;
-  /** Textual representation of an expression in Common Expression Language syntax. */
-  expression?: string;
-  /** Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression. */
-  title?: string;
-}
-export const Expr = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    location: S.optional(S.String),
-    description: S.optional(S.String),
-    expression: S.optional(S.String),
-    title: S.optional(S.String),
-  }),
-).annotate({ identifier: "Expr" }) as any as S.Schema<Expr>;
-
-/** Associates `members`, or principals, with a `role`. */
-export interface Binding {
-  /** Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles). */
-  role?: string;
-  /** The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the principals in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). */
-  condition?: Expr;
-  /** Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. * `principal://iam.googleapis.com/locations/global/workforcePools/{pool_id}/subject/{subject_attribute_value}`: A single identity in a workforce identity pool. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/group/{group_id}`: All workforce identities in a group. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/attribute.{attribute_name}/{attribute_value}`: All workforce identities with a specific attribute value. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/*`: All identities in a workforce identity pool. * `principal://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/subject/{subject_attribute_value}`: A single identity in a workload identity pool. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/group/{group_id}`: A workload identity pool group. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/attribute.{attribute_name}/{attribute_value}`: All identities in a workload identity pool with a certain attribute. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/*`: All identities in a workload identity pool. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `deleted:principal://iam.googleapis.com/locations/global/workforcePools/{pool_id}/subject/{subject_attribute_value}`: Deleted single identity in a workforce identity pool. For example, `deleted:principal://iam.googleapis.com/locations/global/workforcePools/my-pool-id/subject/my-subject-attribute-value`. */
-  members?: StringList;
-}
-export const Binding = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    role: S.optional(S.String),
-    condition: S.optional(Expr),
-    members: S.optional(StringList),
-  }),
-).annotate({ identifier: "Binding" }) as any as S.Schema<Binding>;
-
-export type BindingList = Array<Binding>;
-export const BindingList = /*@__PURE__*/ S.Array(
-  Binding,
-) as any as S.Schema<BindingList>;
-
 export type AuditLogConfigLogTypeEnum =
   | "LOG_TYPE_UNSPECIFIED"
   | "ADMIN_READ"
@@ -2481,23 +2439,65 @@ export const AuditConfigList = /*@__PURE__*/ S.Array(
   AuditConfig,
 ) as any as S.Schema<AuditConfigList>;
 
+/** Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information. */
+export interface Expr {
+  /** Optional. String indicating the location of the expression for error reporting, e.g. a file name and a position in the file. */
+  location?: string;
+  /** Optional. Description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI. */
+  description?: string;
+  /** Textual representation of an expression in Common Expression Language syntax. */
+  expression?: string;
+  /** Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression. */
+  title?: string;
+}
+export const Expr = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    location: S.optional(S.String),
+    description: S.optional(S.String),
+    expression: S.optional(S.String),
+    title: S.optional(S.String),
+  }),
+).annotate({ identifier: "Expr" }) as any as S.Schema<Expr>;
+
+/** Associates `members`, or principals, with a `role`. */
+export interface Binding {
+  /** Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. * `principal://iam.googleapis.com/locations/global/workforcePools/{pool_id}/subject/{subject_attribute_value}`: A single identity in a workforce identity pool. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/group/{group_id}`: All workforce identities in a group. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/attribute.{attribute_name}/{attribute_value}`: All workforce identities with a specific attribute value. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/*`: All identities in a workforce identity pool. * `principal://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/subject/{subject_attribute_value}`: A single identity in a workload identity pool. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/group/{group_id}`: A workload identity pool group. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/attribute.{attribute_name}/{attribute_value}`: All identities in a workload identity pool with a certain attribute. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/*`: All identities in a workload identity pool. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `deleted:principal://iam.googleapis.com/locations/global/workforcePools/{pool_id}/subject/{subject_attribute_value}`: Deleted single identity in a workforce identity pool. For example, `deleted:principal://iam.googleapis.com/locations/global/workforcePools/my-pool-id/subject/my-subject-attribute-value`. */
+  members?: StringList;
+  /** Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles). */
+  role?: string;
+  /** The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the principals in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). */
+  condition?: Expr;
+}
+export const Binding = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    members: S.optional(StringList),
+    role: S.optional(S.String),
+    condition: S.optional(Expr),
+  }),
+).annotate({ identifier: "Binding" }) as any as S.Schema<Binding>;
+
+export type BindingList = Array<Binding>;
+export const BindingList = /*@__PURE__*/ S.Array(
+  Binding,
+) as any as S.Schema<BindingList>;
+
 /** An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] }, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", } } ], "etag": "BwWWja0YfJA=", "version": 3 } ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/). */
 export interface Policy {
-  /** Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). */
-  version?: number;
+  /** Specifies cloud audit logging configuration for this policy. */
+  auditConfigs?: AuditConfigList;
   /** `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy. **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. */
   etag?: string;
   /** Associates a list of `members`, or principals, with a `role`. Optionally, may specify a `condition` that determines how and when the `bindings` are applied. Each of the `bindings` must contain at least one principal. The `bindings` in a `Policy` can refer to up to 1,500 principals; up to 250 of these principals can be Google groups. Each occurrence of a principal counts towards these limits. For example, if the `bindings` grant 50 different roles to `user:alice@example.com`, and not to any other principal, then you can add another 1,450 principals to the `bindings` in the `Policy`. */
   bindings?: BindingList;
-  /** Specifies cloud audit logging configuration for this policy. */
-  auditConfigs?: AuditConfigList;
+  /** Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). */
+  version?: number;
 }
 export const Policy = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    version: S.optional(S.Number),
+    auditConfigs: S.optional(AuditConfigList),
     etag: S.optional(S.String),
     bindings: S.optional(BindingList),
-    auditConfigs: S.optional(AuditConfigList),
+    version: S.optional(S.Number),
   }),
 ).annotate({ identifier: "Policy" }) as any as S.Schema<Policy>;
 
@@ -2563,17 +2563,17 @@ export type GetServicesConfigsViewEnum = "BASIC" | "FULL";
 export const GetServicesConfigsViewEnum = /*@__PURE__*/ S.String;
 
 export interface GetServicesConfigsRequest {
-  /** Required. The id of the service configuration resource. This field must be specified for the server to return all fields, including `SourceInfo`. */
-  configId: string;
   /** Specifies which parts of the Service Config should be returned in the response. */
   view?: GetServicesConfigsViewEnum | (string & {});
+  /** Required. The id of the service configuration resource. This field must be specified for the server to return all fields, including `SourceInfo`. */
+  configId: string;
   /** Required. The name of the service. See the [overview](https://cloud.google.com/service-management/overview) for naming requirements. For example: `example.googleapis.com`. */
   serviceName: string;
 }
 export const GetServicesConfigsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    configId: S.String.pipe(T.Label()),
     view: S.optional(GetServicesConfigsViewEnum.pipe(T.Query())),
+    configId: S.String.pipe(T.Label()),
     serviceName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
@@ -2587,15 +2587,15 @@ export const GetServicesConfigsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetServicesConfigsRequest>;
 
 export interface GetServicesRolloutsRequest {
-  /** Required. The name of the service. See the [overview](https://cloud.google.com/service-management/overview) for naming requirements. For example: `example.googleapis.com`. */
-  serviceName: string;
   /** Required. The id of the rollout resource. */
   rolloutId: string;
+  /** Required. The name of the service. See the [overview](https://cloud.google.com/service-management/overview) for naming requirements. For example: `example.googleapis.com`. */
+  serviceName: string;
 }
 export const GetServicesRolloutsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    serviceName: S.String.pipe(T.Label()),
     rolloutId: S.String.pipe(T.Label()),
+    serviceName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
@@ -2608,24 +2608,24 @@ export const GetServicesRolloutsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetServicesRolloutsRequest>;
 
 export interface ListOperationsRequest {
-  /** The standard list page token. */
-  pageToken?: string;
-  /** Not used. */
-  name?: string;
   /** When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation. */
   returnPartialSuccess?: boolean;
-  /** A string for filtering Operations. The following filter fields are supported: * serviceName: Required. Only `=` operator is allowed. * startTime: The time this job was started, in ISO 8601 format. Allowed operators are `>=`, `>`, `<=`, and `<`. * status: Can be `done`, `in_progress`, or `failed`. Allowed operators are `=`, and `!=`. Filter expression supports conjunction (AND) and disjunction (OR) logical operators. However, the serviceName restriction must be at the top-level and can only be combined with other restrictions via the AND logical operator. Examples: * `serviceName={some-service}.googleapis.com` * `serviceName={some-service}.googleapis.com AND startTime>="2017-02-01"` * `serviceName={some-service}.googleapis.com AND status=done` * `serviceName={some-service}.googleapis.com AND (status=done OR startTime>="2017-02-01")` */
-  filter?: string;
   /** The maximum number of operations to return. If unspecified, defaults to 50. The maximum value is 100. */
   pageSize?: number;
+  /** The standard list page token. */
+  pageToken?: string;
+  /** A string for filtering Operations. The following filter fields are supported: * serviceName: Required. Only `=` operator is allowed. * startTime: The time this job was started, in ISO 8601 format. Allowed operators are `>=`, `>`, `<=`, and `<`. * status: Can be `done`, `in_progress`, or `failed`. Allowed operators are `=`, and `!=`. Filter expression supports conjunction (AND) and disjunction (OR) logical operators. However, the serviceName restriction must be at the top-level and can only be combined with other restrictions via the AND logical operator. Examples: * `serviceName={some-service}.googleapis.com` * `serviceName={some-service}.googleapis.com AND startTime>="2017-02-01"` * `serviceName={some-service}.googleapis.com AND status=done` * `serviceName={some-service}.googleapis.com AND (status=done OR startTime>="2017-02-01")` */
+  filter?: string;
+  /** Not used. */
+  name?: string;
 }
 export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    pageToken: S.optional(S.String.pipe(T.Query())),
-    name: S.optional(S.String.pipe(T.Query())),
     returnPartialSuccess: S.optional(S.Boolean.pipe(T.Query())),
-    filter: S.optional(S.String.pipe(T.Query())),
     pageSize: S.optional(S.Number.pipe(T.Query())),
+    pageToken: S.optional(S.String.pipe(T.Query())),
+    filter: S.optional(S.String.pipe(T.Query())),
+    name: S.optional(S.String.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -2644,18 +2644,18 @@ export const OperationList = /*@__PURE__*/ S.Array(
 
 /** The response message for Operations.ListOperations. */
 export interface ListOperationsResponse {
-  /** The standard List next-page token. */
-  nextPageToken?: string;
-  /** A list of operations that matches the specified filter in the request. */
-  operations?: OperationList;
   /** Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations. */
   unreachable?: StringList;
+  /** A list of operations that matches the specified filter in the request. */
+  operations?: OperationList;
+  /** The standard List next-page token. */
+  nextPageToken?: string;
 }
 export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    nextPageToken: S.optional(S.String),
-    operations: S.optional(OperationList),
     unreachable: S.optional(StringList),
+    operations: S.optional(OperationList),
+    nextPageToken: S.optional(S.String),
   }),
 ).annotate({
   identifier: "ListOperationsResponse",
@@ -2664,18 +2664,18 @@ export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
 export interface ListServicesRequest {
   /** Token identifying which result to start with; returned by a previous list call. */
   pageToken?: string;
-  /** Include services produced by the specified project. */
-  producerProjectId?: string;
   /** The max number of items to include in the response list. Page size is 50 if not specified. Maximum value is 500. */
   pageSize?: number;
+  /** Include services produced by the specified project. */
+  producerProjectId?: string;
   /** Include services consumed by the specified consumer. The Google Service Management implementation accepts the following forms: - project: */
   consumerId?: string;
 }
 export const ListServicesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     pageToken: S.optional(S.String.pipe(T.Query())),
-    producerProjectId: S.optional(S.String.pipe(T.Query())),
     pageSize: S.optional(S.Number.pipe(T.Query())),
+    producerProjectId: S.optional(S.String.pipe(T.Query())),
     consumerId: S.optional(S.String.pipe(T.Query())),
   }).pipe(
     T.Http({
@@ -2695,15 +2695,15 @@ export const ManagedServiceList = /*@__PURE__*/ S.Array(
 
 /** Response message for `ListServices` method. */
 export interface ListServicesResponse {
-  /** The returned services will only have the name field set. */
-  services?: ManagedServiceList;
   /** Token that can be passed to `ListServices` to resume a paginated query. */
   nextPageToken?: string;
+  /** The returned services will only have the name field set. */
+  services?: ManagedServiceList;
 }
 export const ListServicesResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    services: S.optional(ManagedServiceList),
     nextPageToken: S.optional(S.String),
+    services: S.optional(ManagedServiceList),
   }),
 ).annotate({
   identifier: "ListServicesResponse",
@@ -2740,15 +2740,15 @@ export const ServiceList = /*@__PURE__*/ S.Array(
 
 /** Response message for ListServiceConfigs method. */
 export interface ListServiceConfigsResponse {
-  /** The list of service configuration resources. */
-  serviceConfigs?: ServiceList;
   /** The token of the next page of results. */
   nextPageToken?: string;
+  /** The list of service configuration resources. */
+  serviceConfigs?: ServiceList;
 }
 export const ListServiceConfigsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    serviceConfigs: S.optional(ServiceList),
     nextPageToken: S.optional(S.String),
+    serviceConfigs: S.optional(ServiceList),
   }),
 ).annotate({
   identifier: "ListServiceConfigsResponse",
@@ -2757,19 +2757,19 @@ export const ListServiceConfigsResponse = /*@__PURE__*/ S.suspend(() =>
 export interface ListServicesRolloutsRequest {
   /** Required. The name of the service. See the [overview](https://cloud.google.com/service-management/overview) for naming requirements. For example: `example.googleapis.com`. */
   serviceName: string;
-  /** The max number of items to include in the response list. Page size is 50 if not specified. Maximum value is 100. */
-  pageSize?: number;
-  /** The token of the page to retrieve. */
-  pageToken?: string;
   /** Required. Use `filter` to return subset of rollouts. The following filters are supported: -- By status. For example, `filter='status=SUCCESS'` -- By strategy. For example, `filter='strategy=TrafficPercentStrategy'` */
   filter?: string;
+  /** The token of the page to retrieve. */
+  pageToken?: string;
+  /** The max number of items to include in the response list. Page size is 50 if not specified. Maximum value is 100. */
+  pageSize?: number;
 }
 export const ListServicesRolloutsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     serviceName: S.String.pipe(T.Label()),
-    pageSize: S.optional(S.Number.pipe(T.Query())),
-    pageToken: S.optional(S.String.pipe(T.Query())),
     filter: S.optional(S.String.pipe(T.Query())),
+    pageToken: S.optional(S.String.pipe(T.Query())),
+    pageSize: S.optional(S.Number.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -2804,15 +2804,15 @@ export const ListServiceRolloutsResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Request message for `SetIamPolicy` method. */
 export interface SetIamPolicyRequest {
-  /** REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Google Cloud services (such as Projects) might reject them. */
-  policy?: Policy;
   /** OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: `paths: "bindings, etag"` */
   updateMask?: string;
+  /** REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Google Cloud services (such as Projects) might reject them. */
+  policy?: Policy;
 }
 export const SetIamPolicyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    policy: S.optional(Policy),
     updateMask: S.optional(S.String),
+    policy: S.optional(Policy),
   }),
 ).annotate({
   identifier: "SetIamPolicyRequest",
@@ -2874,16 +2874,16 @@ export const ConfigFileFileTypeEnum = /*@__PURE__*/ S.String;
 export interface ConfigFile {
   /** The bytes that constitute the file. */
   fileContents?: string;
-  /** The type of configuration file this represents. */
-  fileType?: ConfigFileFileTypeEnum | (string & {});
   /** The file name of the configuration file (full or relative path). */
   filePath?: string;
+  /** The type of configuration file this represents. */
+  fileType?: ConfigFileFileTypeEnum | (string & {});
 }
 export const ConfigFile = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     fileContents: S.optional(S.String),
-    fileType: S.optional(ConfigFileFileTypeEnum),
     filePath: S.optional(S.String),
+    fileType: S.optional(ConfigFileFileTypeEnum),
   }),
 ).annotate({ identifier: "ConfigFile" }) as any as S.Schema<ConfigFile>;
 
@@ -2894,29 +2894,29 @@ export const ConfigFileList = /*@__PURE__*/ S.Array(
 
 /** Represents a source file which is used to generate the service configuration defined by `google.api.Service`. */
 export interface ConfigSource {
-  /** Set of source configuration files that are used to generate a service configuration (`google.api.Service`). */
-  files?: ConfigFileList;
   /** A unique ID for a specific instance of this message, typically assigned by the client for tracking purpose. If empty, the server may choose to generate one instead. */
   id?: string;
+  /** Set of source configuration files that are used to generate a service configuration (`google.api.Service`). */
+  files?: ConfigFileList;
 }
 export const ConfigSource = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    files: S.optional(ConfigFileList),
     id: S.optional(S.String),
+    files: S.optional(ConfigFileList),
   }),
 ).annotate({ identifier: "ConfigSource" }) as any as S.Schema<ConfigSource>;
 
 /** Request message for SubmitConfigSource method. */
 export interface SubmitConfigSourceRequest {
-  /** Optional. If set, this will result in the generation of a `google.api.Service` configuration based on the `ConfigSource` provided, but the generated config and the sources will NOT be persisted. */
-  validateOnly?: boolean;
   /** Required. The source configuration for the service. */
   configSource?: ConfigSource;
+  /** Optional. If set, this will result in the generation of a `google.api.Service` configuration based on the `ConfigSource` provided, but the generated config and the sources will NOT be persisted. */
+  validateOnly?: boolean;
 }
 export const SubmitConfigSourceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    validateOnly: S.optional(S.Boolean),
     configSource: S.optional(ConfigSource),
+    validateOnly: S.optional(S.Boolean),
   }),
 ).annotate({
   identifier: "SubmitConfigSourceRequest",

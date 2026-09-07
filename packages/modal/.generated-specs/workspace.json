@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.modal.workspace#WorkspaceBillingRatesRequest": {
@@ -135,7 +136,7 @@
         }
       }
     },
-    "com.modal.workspace#WorkspaceDashboardUrlGetRequest": {
+    "com.modal.workspace#GetWorkspaceDashboardUrlRequest": {
       "type": "structure",
       "members": {
         "environmentName": {
@@ -146,7 +147,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.modal.workspace#WorkspaceDashboardUrlGetResponse": {
+    "com.modal.workspace#GetWorkspaceDashboardUrlResponse": {
       "type": "structure",
       "members": {
         "url": {
@@ -157,13 +158,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.modal.workspace#WorkspaceDashboardUrlGet": {
+    "com.modal.workspace#GetWorkspaceDashboardUrl": {
       "type": "operation",
       "input": {
-        "target": "com.modal.workspace#WorkspaceDashboardUrlGetRequest"
+        "target": "com.modal.workspace#GetWorkspaceDashboardUrlRequest"
       },
       "output": {
-        "target": "com.modal.workspace#WorkspaceDashboardUrlGetResponse"
+        "target": "com.modal.workspace#GetWorkspaceDashboardUrlResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -275,7 +276,7 @@
         "target": "com.modal.workspace#WorkspaceMembersListItem"
       }
     },
-    "com.modal.workspace#WorkspaceMembersListResponse": {
+    "com.modal.workspace#ListWorkspaceMembersResponse": {
       "type": "structure",
       "members": {
         "members": {
@@ -286,13 +287,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.modal.workspace#WorkspaceMembersList": {
+    "com.modal.workspace#ListWorkspaceMembers": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
       },
       "output": {
-        "target": "com.modal.workspace#WorkspaceMembersListResponse"
+        "target": "com.modal.workspace#ListWorkspaceMembersResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -302,7 +303,7 @@
         }
       }
     },
-    "com.modal.workspace#WorkspaceNameLookupResponse": {
+    "com.modal.workspace#LookupWorkspaceNameResponse": {
       "type": "structure",
       "members": {
         "workspaceName": {
@@ -319,13 +320,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.modal.workspace#WorkspaceNameLookup": {
+    "com.modal.workspace#LookupWorkspaceName": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
       },
       "output": {
-        "target": "com.modal.workspace#WorkspaceNameLookupResponse"
+        "target": "com.modal.workspace#LookupWorkspaceNameResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -441,13 +442,13 @@
           "target": "com.modal.workspace#WorkspaceBillingSummary"
         },
         {
-          "target": "com.modal.workspace#WorkspaceDashboardUrlGet"
+          "target": "com.modal.workspace#GetWorkspaceDashboardUrl"
         },
         {
-          "target": "com.modal.workspace#WorkspaceMembersList"
+          "target": "com.modal.workspace#ListWorkspaceMembers"
         },
         {
-          "target": "com.modal.workspace#WorkspaceNameLookup"
+          "target": "com.modal.workspace#LookupWorkspaceName"
         },
         {
           "target": "com.modal.workspace#WorkspaceSetDefaultEnvironment"

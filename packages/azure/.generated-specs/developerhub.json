@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.developerhub#GeneratePreviewArtifacts": {
@@ -299,10 +300,10 @@
         "smithy.api#documentation": "The programming language used."
       }
     },
-    "com.azure.developerhub#WorkflowDelete": {
+    "com.azure.developerhub#DeleteWorkflow": {
       "type": "operation",
       "input": {
-        "target": "com.azure.developerhub#WorkflowDeleteRequest"
+        "target": "com.azure.developerhub#DeleteWorkflowRequest"
       },
       "output": {
         "target": "com.azure.developerhub#DeleteWorkflowResponse"
@@ -332,7 +333,7 @@
         "smithy.api#documentation": "delete response if content must be provided on delete operation"
       }
     },
-    "com.azure.developerhub#WorkflowDeleteRequest": {
+    "com.azure.developerhub#DeleteWorkflowRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -364,13 +365,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.developerhub#WorkflowUpdateTags": {
+    "com.azure.developerhub#UpdateWorkflowTags": {
       "type": "operation",
       "input": {
-        "target": "com.azure.developerhub#WorkflowUpdateTagsRequest"
+        "target": "com.azure.developerhub#UpdateWorkflowTagsRequest"
       },
       "output": {
-        "target": "com.azure.developerhub#WorkflowUpdateTagsResponse"
+        "target": "com.azure.developerhub#UpdateWorkflowTagsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -383,7 +384,7 @@
         "com.distilled.openapi#apiVersion": "2023-08-01"
       }
     },
-    "com.azure.developerhub#WorkflowUpdateTagsResponse": {
+    "com.azure.developerhub#UpdateWorkflowTagsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -411,7 +412,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.developerhub#WorkflowUpdateTagsResponseTagsMap",
+          "target": "com.azure.developerhub#UpdateWorkflowTagsResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -849,7 +850,7 @@
         "smithy.api#documentation": "Determines the type of manifests within the repository."
       }
     },
-    "com.azure.developerhub#WorkflowUpdateTagsResponseTagsMap": {
+    "com.azure.developerhub#UpdateWorkflowTagsResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -969,7 +970,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.developerhub#WorkflowUpdateTagsRequest": {
+    "com.azure.developerhub#UpdateWorkflowTagsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -997,14 +998,14 @@
           }
         },
         "tags": {
-          "target": "com.azure.developerhub#WorkflowUpdateTagsRequestTagsMap"
+          "target": "com.azure.developerhub#UpdateWorkflowTagsRequestTagsMap"
         }
       },
       "traits": {
         "smithy.api#input": {}
       }
     },
-    "com.azure.developerhub#WorkflowUpdateTagsRequestTagsMap": {
+    "com.azure.developerhub#UpdateWorkflowTagsRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1273,13 +1274,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.developerhub#WorkflowGet": {
+    "com.azure.developerhub#GetWorkflow": {
       "type": "operation",
       "input": {
-        "target": "com.azure.developerhub#WorkflowGetRequest"
+        "target": "com.azure.developerhub#GetWorkflowRequest"
       },
       "output": {
-        "target": "com.azure.developerhub#WorkflowGetResponse"
+        "target": "com.azure.developerhub#GetWorkflowResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1292,7 +1293,7 @@
         "com.distilled.openapi#apiVersion": "2023-08-01"
       }
     },
-    "com.azure.developerhub#WorkflowGetResponse": {
+    "com.azure.developerhub#GetWorkflowResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1320,7 +1321,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.developerhub#WorkflowGetResponseTagsMap",
+          "target": "com.azure.developerhub#GetWorkflowResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1343,7 +1344,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.developerhub#WorkflowGetResponseTagsMap": {
+    "com.azure.developerhub#GetWorkflowResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1355,7 +1356,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.developerhub#WorkflowGetRequest": {
+    "com.azure.developerhub#GetWorkflowRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1387,10 +1388,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.developerhub#WorkflowListByResourceGroup": {
+    "com.azure.developerhub#ListWorkflowByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.developerhub#WorkflowListByResourceGroupRequest"
+        "target": "com.azure.developerhub#ListWorkflowByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.developerhub#WorkflowListResult"
@@ -1498,7 +1499,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.developerhub#WorkflowListByResourceGroupRequest": {
+    "com.azure.developerhub#ListWorkflowByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1529,10 +1530,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.developerhub#WorkflowList": {
+    "com.azure.developerhub#ListWorkflow": {
       "type": "operation",
       "input": {
-        "target": "com.azure.developerhub#WorkflowListRequest"
+        "target": "com.azure.developerhub#ListWorkflowRequest"
       },
       "output": {
         "target": "com.azure.developerhub#WorkflowListResult"
@@ -1548,7 +1549,7 @@
         "com.distilled.openapi#apiVersion": "2023-08-01"
       }
     },
-    "com.azure.developerhub#WorkflowListRequest": {
+    "com.azure.developerhub#ListWorkflowRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1848,13 +1849,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.developerhub#OperationsList": {
+    "com.azure.developerhub#ListOperations": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
       },
       "output": {
-        "target": "com.azure.developerhub#OperationsListResponse"
+        "target": "com.azure.developerhub#ListOperationsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1867,11 +1868,11 @@
         "com.distilled.openapi#apiVersion": "2023-08-01"
       }
     },
-    "com.azure.developerhub#OperationsListResponse": {
+    "com.azure.developerhub#ListOperationsResponse": {
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.developerhub#OperationsListResponseValueList",
+          "target": "com.azure.developerhub#ListOperationsResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of operations supported by the resource provider"
           }
@@ -1887,7 +1888,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.developerhub#OperationsListResponseValueList": {
+    "com.azure.developerhub#ListOperationsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.developerhub#Operation"
@@ -2014,22 +2015,22 @@
           "target": "com.azure.developerhub#GeneratePreviewArtifacts"
         },
         {
-          "target": "com.azure.developerhub#WorkflowDelete"
+          "target": "com.azure.developerhub#DeleteWorkflow"
         },
         {
-          "target": "com.azure.developerhub#WorkflowUpdateTags"
+          "target": "com.azure.developerhub#UpdateWorkflowTags"
         },
         {
           "target": "com.azure.developerhub#WorkflowCreateOrUpdate"
         },
         {
-          "target": "com.azure.developerhub#WorkflowGet"
+          "target": "com.azure.developerhub#GetWorkflow"
         },
         {
-          "target": "com.azure.developerhub#WorkflowListByResourceGroup"
+          "target": "com.azure.developerhub#ListWorkflowByResourceGroup"
         },
         {
-          "target": "com.azure.developerhub#WorkflowList"
+          "target": "com.azure.developerhub#ListWorkflow"
         },
         {
           "target": "com.azure.developerhub#ListGitHubOAuth"
@@ -2041,7 +2042,7 @@
           "target": "com.azure.developerhub#GitHubOAuth"
         },
         {
-          "target": "com.azure.developerhub#OperationsList"
+          "target": "com.azure.developerhub#ListOperations"
         }
       ],
       "traits": {

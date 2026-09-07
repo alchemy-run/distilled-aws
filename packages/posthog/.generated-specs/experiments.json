@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.experiments#ExperimentsListRequestStatus": {
+    "com.posthog.experiments#ListExperimentsRequestStatus": {
       "type": "enum",
       "members": {
         "ALL": {
@@ -65,7 +66,7 @@
       },
       "traits": {}
     },
-    "com.posthog.experiments#ExperimentsListRequest": {
+    "com.posthog.experiments#ListExperimentsRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -140,7 +141,7 @@
           }
         },
         "status": {
-          "target": "com.posthog.experiments#ExperimentsListRequestStatus",
+          "target": "com.posthog.experiments#ListExperimentsRequestStatus",
           "traits": {
             "smithy.api#httpQuery": "status",
             "smithy.api#documentation": "Filter by experiment status. \"running\", \"paused\", and \"exposure_frozen\" are mutually exclusive: \"running\" returns launched experiments with an active feature flag, \"paused\" returns launched experiments whose feature flag is deactivated, and \"exposure_frozen\" returns launched experiments whose exposure was frozen to the already-enrolled cohort while metrics keep flowing. \"complete\" is an alias for \"stopped\". \"all\" disables status filtering."
@@ -1630,10 +1631,10 @@
       },
       "traits": {}
     },
-    "com.posthog.experiments#ExperimentsList": {
+    "com.posthog.experiments#ListExperiments": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.experiments#ExperimentsListRequest"
+        "target": "com.posthog.experiments#ListExperimentsRequest"
       },
       "output": {
         "target": "com.posthog.experiments#PaginatedExperimentBasicList"
@@ -1816,7 +1817,7 @@
         "smithy.api#documentation": "Optional payload values keyed by variant key."
       }
     },
-    "com.posthog.experiments#ExperimentsCreateRequestExcludedVariantsList": {
+    "com.posthog.experiments#CreateExperimentRequestExcludedVariantsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -1825,7 +1826,7 @@
         "smithy.api#documentation": "Variant keys to exclude from metric result calculations. Excluded variants are still served to users but omitted from statistical analysis. The baseline variant and holdout pseudo-variants cannot be excluded. Canonical home for what historically lived in `parameters.excluded_variants`."
       }
     },
-    "com.posthog.experiments#ExperimentsCreateRequestSavedMetricsIdsList": {
+    "com.posthog.experiments#CreateExperimentRequestSavedMetricsIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
@@ -4519,7 +4520,7 @@
       },
       "traits": {}
     },
-    "com.posthog.experiments#ExperimentsCreateRequestOriginalExperimentMap": {
+    "com.posthog.experiments#CreateExperimentRequestOriginalExperimentMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4531,7 +4532,7 @@
         "smithy.api#documentation": "The experiment state as the client last read it, used together with `version` to resolve concurrent edits: metric collections merge per metric uuid, and any other field the update carries merges per field against its base value here (only a same-field double edit fails). Relevant keys are metrics, metrics_secondary, saved_metrics_ids, plus the last-read values of whichever scalar fields the update writes; unknown keys are ignored. Changed fields without a base value — and, without this object, any version mismatch — fail with HTTP 409."
       }
     },
-    "com.posthog.experiments#ExperimentsCreateRequest": {
+    "com.posthog.experiments#CreateExperimentRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -4603,7 +4604,7 @@
           }
         },
         "excluded_variants": {
-          "target": "com.posthog.experiments#ExperimentsCreateRequestExcludedVariantsList",
+          "target": "com.posthog.experiments#CreateExperimentRequestExcludedVariantsList",
           "traits": {
             "smithy.api#documentation": "Variant keys to exclude from metric result calculations. Excluded variants are still served to users but omitted from statistical analysis. The baseline variant and holdout pseudo-variants cannot be excluded. Canonical home for what historically lived in `parameters.excluded_variants`.",
             "com.distilled.openapi#nullable": {}
@@ -4613,7 +4614,7 @@
           "target": "smithy.api#Document"
         },
         "saved_metrics_ids": {
-          "target": "com.posthog.experiments#ExperimentsCreateRequestSavedMetricsIdsList",
+          "target": "com.posthog.experiments#CreateExperimentRequestSavedMetricsIdsList",
           "traits": {
             "smithy.api#documentation": "IDs of shared saved metrics to attach to this experiment. Each item has 'id' (saved metric ID) and 'metadata' with 'type' (primary or secondary).",
             "com.distilled.openapi#nullable": {}
@@ -4721,7 +4722,7 @@
           }
         },
         "original_experiment": {
-          "target": "com.posthog.experiments#ExperimentsCreateRequestOriginalExperimentMap",
+          "target": "com.posthog.experiments#CreateExperimentRequestOriginalExperimentMap",
           "traits": {
             "smithy.api#documentation": "The experiment state as the client last read it, used together with `version` to resolve concurrent edits: metric collections merge per metric uuid, and any other field the update carries merges per field against its base value here (only a same-field double edit fails). Relevant keys are metrics, metrics_secondary, saved_metrics_ids, plus the last-read values of whichever scalar fields the update writes; unknown keys are ignored. Changed fields without a base value — and, without this object, any version mismatch — fail with HTTP 409.",
             "com.distilled.openapi#nullable": {}
@@ -5015,10 +5016,10 @@
         "smithy.api#documentation": "IDs of shared saved metrics to attach to this experiment. Each item has 'id' (saved metric ID) and 'metadata' with 'type' (primary or secondary)."
       }
     },
-    "com.posthog.experiments#ExperimentsCreate": {
+    "com.posthog.experiments#CreateExperiment": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.experiments#ExperimentsCreateRequest"
+        "target": "com.posthog.experiments#CreateExperimentRequest"
       },
       "output": {
         "target": "com.posthog.experiments#ExperimentOutput"
@@ -5043,7 +5044,7 @@
         "smithy.api#documentation": "Create a new experiment in draft status with optional metrics."
       }
     },
-    "com.posthog.experiments#ExperimentsRetrieveRequest": {
+    "com.posthog.experiments#GetExperimentRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -5067,10 +5068,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.experiments#ExperimentsRetrieve": {
+    "com.posthog.experiments#GetExperiment": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.experiments#ExperimentsRetrieveRequest"
+        "target": "com.posthog.experiments#GetExperimentRequest"
       },
       "output": {
         "target": "com.posthog.experiments#ExperimentOutput"
@@ -5092,7 +5093,7 @@
         "smithy.api#documentation": "Retrieve a single experiment by ID, including its current status, metrics, feature flag, and results metadata."
       }
     },
-    "com.posthog.experiments#ExperimentsUpdateRequestExcludedVariantsList": {
+    "com.posthog.experiments#UpdateExperimentRequestExcludedVariantsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -5101,7 +5102,7 @@
         "smithy.api#documentation": "Variant keys to exclude from metric result calculations. Excluded variants are still served to users but omitted from statistical analysis. The baseline variant and holdout pseudo-variants cannot be excluded. Canonical home for what historically lived in `parameters.excluded_variants`."
       }
     },
-    "com.posthog.experiments#ExperimentsUpdateRequestSavedMetricsIdsList": {
+    "com.posthog.experiments#UpdateExperimentRequestSavedMetricsIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
@@ -5110,7 +5111,7 @@
         "smithy.api#documentation": "IDs of shared saved metrics to attach to this experiment. Each item has 'id' (saved metric ID) and 'metadata' with 'type' (primary or secondary)."
       }
     },
-    "com.posthog.experiments#ExperimentsUpdateRequestOriginalExperimentMap": {
+    "com.posthog.experiments#UpdateExperimentRequestOriginalExperimentMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5122,7 +5123,7 @@
         "smithy.api#documentation": "The experiment state as the client last read it, used together with `version` to resolve concurrent edits: metric collections merge per metric uuid, and any other field the update carries merges per field against its base value here (only a same-field double edit fails). Relevant keys are metrics, metrics_secondary, saved_metrics_ids, plus the last-read values of whichever scalar fields the update writes; unknown keys are ignored. Changed fields without a base value — and, without this object, any version mismatch — fail with HTTP 409."
       }
     },
-    "com.posthog.experiments#ExperimentsUpdateRequest": {
+    "com.posthog.experiments#UpdateExperimentRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -5202,7 +5203,7 @@
           }
         },
         "excluded_variants": {
-          "target": "com.posthog.experiments#ExperimentsUpdateRequestExcludedVariantsList",
+          "target": "com.posthog.experiments#UpdateExperimentRequestExcludedVariantsList",
           "traits": {
             "smithy.api#documentation": "Variant keys to exclude from metric result calculations. Excluded variants are still served to users but omitted from statistical analysis. The baseline variant and holdout pseudo-variants cannot be excluded. Canonical home for what historically lived in `parameters.excluded_variants`.",
             "com.distilled.openapi#nullable": {}
@@ -5212,7 +5213,7 @@
           "target": "smithy.api#Document"
         },
         "saved_metrics_ids": {
-          "target": "com.posthog.experiments#ExperimentsUpdateRequestSavedMetricsIdsList",
+          "target": "com.posthog.experiments#UpdateExperimentRequestSavedMetricsIdsList",
           "traits": {
             "smithy.api#documentation": "IDs of shared saved metrics to attach to this experiment. Each item has 'id' (saved metric ID) and 'metadata' with 'type' (primary or secondary).",
             "com.distilled.openapi#nullable": {}
@@ -5320,7 +5321,7 @@
           }
         },
         "original_experiment": {
-          "target": "com.posthog.experiments#ExperimentsUpdateRequestOriginalExperimentMap",
+          "target": "com.posthog.experiments#UpdateExperimentRequestOriginalExperimentMap",
           "traits": {
             "smithy.api#documentation": "The experiment state as the client last read it, used together with `version` to resolve concurrent edits: metric collections merge per metric uuid, and any other field the update carries merges per field against its base value here (only a same-field double edit fails). Relevant keys are metrics, metrics_secondary, saved_metrics_ids, plus the last-read values of whichever scalar fields the update writes; unknown keys are ignored. Changed fields without a base value — and, without this object, any version mismatch — fail with HTTP 409.",
             "com.distilled.openapi#nullable": {}
@@ -5331,10 +5332,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.experiments#ExperimentsUpdate": {
+    "com.posthog.experiments#UpdateExperiment": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.experiments#ExperimentsUpdateRequest"
+        "target": "com.posthog.experiments#UpdateExperimentRequest"
       },
       "output": {
         "target": "com.posthog.experiments#ExperimentOutput"
@@ -5359,7 +5360,7 @@
         "smithy.api#documentation": "Mixin for ViewSets to handle approval-gate exceptions raised from decorated serializers.\n\nIntercepts ApprovalRequired (409) and PolicyConflict (400) raised by the @approval_gate\ndecorator on serializer methods and converts them into the same responses the viewset path\nproduces (see decorators._result_to_response), so both paths share one contract."
       }
     },
-    "com.posthog.experiments#ExperimentsPartialUpdateRequestExcludedVariantsList": {
+    "com.posthog.experiments#UpdateExperimentsPartialRequestExcludedVariantsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -5368,7 +5369,7 @@
         "smithy.api#documentation": "Variant keys to exclude from metric result calculations. Excluded variants are still served to users but omitted from statistical analysis. The baseline variant and holdout pseudo-variants cannot be excluded. Canonical home for what historically lived in `parameters.excluded_variants`."
       }
     },
-    "com.posthog.experiments#ExperimentsPartialUpdateRequestSavedMetricsIdsList": {
+    "com.posthog.experiments#UpdateExperimentsPartialRequestSavedMetricsIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
@@ -5377,7 +5378,7 @@
         "smithy.api#documentation": "IDs of shared saved metrics to attach to this experiment. Each item has 'id' (saved metric ID) and 'metadata' with 'type' (primary or secondary)."
       }
     },
-    "com.posthog.experiments#ExperimentsPartialUpdateRequestOriginalExperimentMap": {
+    "com.posthog.experiments#UpdateExperimentsPartialRequestOriginalExperimentMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5389,7 +5390,7 @@
         "smithy.api#documentation": "The experiment state as the client last read it, used together with `version` to resolve concurrent edits: metric collections merge per metric uuid, and any other field the update carries merges per field against its base value here (only a same-field double edit fails). Relevant keys are metrics, metrics_secondary, saved_metrics_ids, plus the last-read values of whichever scalar fields the update writes; unknown keys are ignored. Changed fields without a base value — and, without this object, any version mismatch — fail with HTTP 409."
       }
     },
-    "com.posthog.experiments#ExperimentsPartialUpdateRequest": {
+    "com.posthog.experiments#UpdateExperimentsPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -5467,7 +5468,7 @@
           }
         },
         "excluded_variants": {
-          "target": "com.posthog.experiments#ExperimentsPartialUpdateRequestExcludedVariantsList",
+          "target": "com.posthog.experiments#UpdateExperimentsPartialRequestExcludedVariantsList",
           "traits": {
             "smithy.api#documentation": "Variant keys to exclude from metric result calculations. Excluded variants are still served to users but omitted from statistical analysis. The baseline variant and holdout pseudo-variants cannot be excluded. Canonical home for what historically lived in `parameters.excluded_variants`.",
             "com.distilled.openapi#nullable": {}
@@ -5477,7 +5478,7 @@
           "target": "smithy.api#Document"
         },
         "saved_metrics_ids": {
-          "target": "com.posthog.experiments#ExperimentsPartialUpdateRequestSavedMetricsIdsList",
+          "target": "com.posthog.experiments#UpdateExperimentsPartialRequestSavedMetricsIdsList",
           "traits": {
             "smithy.api#documentation": "IDs of shared saved metrics to attach to this experiment. Each item has 'id' (saved metric ID) and 'metadata' with 'type' (primary or secondary).",
             "com.distilled.openapi#nullable": {}
@@ -5585,7 +5586,7 @@
           }
         },
         "original_experiment": {
-          "target": "com.posthog.experiments#ExperimentsPartialUpdateRequestOriginalExperimentMap",
+          "target": "com.posthog.experiments#UpdateExperimentsPartialRequestOriginalExperimentMap",
           "traits": {
             "smithy.api#documentation": "The experiment state as the client last read it, used together with `version` to resolve concurrent edits: metric collections merge per metric uuid, and any other field the update carries merges per field against its base value here (only a same-field double edit fails). Relevant keys are metrics, metrics_secondary, saved_metrics_ids, plus the last-read values of whichever scalar fields the update writes; unknown keys are ignored. Changed fields without a base value — and, without this object, any version mismatch — fail with HTTP 409.",
             "com.distilled.openapi#nullable": {}
@@ -5596,10 +5597,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.experiments#ExperimentsPartialUpdate": {
+    "com.posthog.experiments#UpdateExperimentsPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.experiments#ExperimentsPartialUpdateRequest"
+        "target": "com.posthog.experiments#UpdateExperimentsPartialRequest"
       },
       "output": {
         "target": "com.posthog.experiments#ExperimentOutput"
@@ -5673,7 +5674,7 @@
         "smithy.api#documentation": "Hard delete of this model is not allowed. Use a patch API call to set \"deleted\" to true"
       }
     },
-    "com.posthog.experiments#ExperimentsActivityRetrieveRequest": {
+    "com.posthog.experiments#GetExperimentsActivityRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -5878,10 +5879,10 @@
       },
       "traits": {}
     },
-    "com.posthog.experiments#ExperimentsActivityRetrieve": {
+    "com.posthog.experiments#GetExperimentsActivity": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.experiments#ExperimentsActivityRetrieveRequest"
+        "target": "com.posthog.experiments#GetExperimentsActivityRequest"
       },
       "output": {
         "target": "com.posthog.experiments#ActivityLogPaginatedResponse"
@@ -6543,7 +6544,7 @@
         "smithy.api#documentation": "Mixin for ViewSets to handle approval-gate exceptions raised from decorated serializers.\n\nIntercepts ApprovalRequired (409) and PolicyConflict (400) raised by the @approval_gate\ndecorator on serializer methods and converts them into the same responses the viewset path\nproduces (see decorators._result_to_response), so both paths share one contract."
       }
     },
-    "com.posthog.experiments#ExperimentsEndCreateRequest": {
+    "com.posthog.experiments#CreateExperimentsEndRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -6600,10 +6601,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.experiments#ExperimentsEndCreate": {
+    "com.posthog.experiments#CreateExperimentsEnd": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.experiments#ExperimentsEndCreateRequest"
+        "target": "com.posthog.experiments#CreateExperimentsEndRequest"
       },
       "output": {
         "target": "com.posthog.experiments#ExperimentOutput"
@@ -6628,7 +6629,7 @@
         "smithy.api#documentation": "End a running experiment without shipping a variant.\n\nSets end_date to now and marks the experiment as stopped. The feature\nflag is NOT modified — users continue to see their assigned variants\nand exposure events ($feature_flag_called) continue to be recorded.\nHowever, only data up to end_date is included in experiment results.\n\nUse this when:\n\n- You want to freeze the results window without changing which variant\n  users see.\n- A variant was already shipped manually via the feature flag UI and\n  the experiment just needs to be marked complete.\n\nThe end_date can be adjusted after ending via PATCH if it needs to be\nbackdated (e.g. to match when the flag was actually paused).\n\nOther options:\n- Use ship_variant to end the experiment AND roll out a single variant to 100%% of users.\n- Use pause to deactivate the flag without ending the experiment (stops variant assignment but does not freeze results).\n\nReturns 400 if the experiment is not running."
       }
     },
-    "com.posthog.experiments#ExperimentsFlagCleanupTargetRetrieveRequest": {
+    "com.posthog.experiments#GetExperimentsFlagCleanupTargetRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -6727,10 +6728,10 @@
         "smithy.api#documentation": "Repositories connected to the team's GitHub integration, to choose a target from."
       }
     },
-    "com.posthog.experiments#ExperimentsFlagCleanupTargetRetrieve": {
+    "com.posthog.experiments#GetExperimentsFlagCleanupTarget": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.experiments#ExperimentsFlagCleanupTargetRetrieveRequest"
+        "target": "com.posthog.experiments#GetExperimentsFlagCleanupTargetRequest"
       },
       "output": {
         "target": "com.posthog.experiments#ExperimentFlagCleanupTarget"
@@ -6744,7 +6745,7 @@
         "smithy.api#documentation": "Repository a flag-cleanup pull request for this experiment would be opened in.\n\nResolution order: the experiment's saved repository, else the environment's default\ncleanup repository, else the team's only connected GitHub repository. When the team\nhas several repositories and none is saved (source=ambiguous), pass one via\n`repository` on end/ship_variant."
       }
     },
-    "com.posthog.experiments#ExperimentsFlagCleanupTaskRetrieveRequest": {
+    "com.posthog.experiments#GetExperimentsFlagCleanupTaskRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -6854,10 +6855,10 @@
         "smithy.api#documentation": "* `not_started` - not_started\n* `queued` - queued\n* `in_progress` - in_progress\n* `completed` - completed\n* `failed` - failed\n* `cancelled` - cancelled"
       }
     },
-    "com.posthog.experiments#ExperimentsFlagCleanupTaskRetrieve": {
+    "com.posthog.experiments#GetExperimentsFlagCleanupTask": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.experiments#ExperimentsFlagCleanupTaskRetrieveRequest"
+        "target": "com.posthog.experiments#GetExperimentsFlagCleanupTaskRequest"
       },
       "output": {
         "target": "com.posthog.experiments#ExperimentFlagCleanupTask"
@@ -6871,7 +6872,7 @@
         "smithy.api#documentation": "Status of the flag-cleanup Desktop task opened for this experiment.\n\nWhen an experiment was ended or shipped with open_cleanup_pr=true, a Desktop task\nremoves the experiment's feature-flag code and opens a draft pull request. This\nreturns that task's latest run status and the PR URL once one is opened. Poll\nuntil is_terminal is true. Returns 404 when no cleanup task was opened."
       }
     },
-    "com.posthog.experiments#ExperimentsFreezeExposureCreateRequest": {
+    "com.posthog.experiments#CreateExperimentsFreezeExposureRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -6895,10 +6896,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.experiments#ExperimentsFreezeExposureCreate": {
+    "com.posthog.experiments#CreateExperimentsFreezeExposure": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.experiments#ExperimentsFreezeExposureCreateRequest"
+        "target": "com.posthog.experiments#CreateExperimentsFreezeExposureRequest"
       },
       "output": {
         "target": "com.posthog.experiments#ExperimentOutput"
@@ -6912,7 +6913,7 @@
         "smithy.api#documentation": "Freeze exposure on a running experiment while metrics keep flowing.\n\nSnapshots the already-exposed users into a static cohort and narrows the\nlinked feature flag so only those users keep matching — new users can no\nlonger enter the experiment. ``end_date`` is left null so long-term metrics\n(revenue/LTV/renewals/retention) keep accumulating. Enrolled users keep\ntheir assigned variant. The serialized status becomes 'exposure_frozen'.\n\nReturns 400 if the experiment is not running, exposure is already frozen,\nthe experiment is group-aggregated (group flags cannot be frozen with a\nperson cohort), or the exposed set is too large to snapshot synchronously."
       }
     },
-    "com.posthog.experiments#ExperimentsLaunchCreateRequest": {
+    "com.posthog.experiments#CreateExperimentsLaunchRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -6936,10 +6937,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.experiments#ExperimentsLaunchCreate": {
+    "com.posthog.experiments#CreateExperimentsLaunch": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.experiments#ExperimentsLaunchCreateRequest"
+        "target": "com.posthog.experiments#CreateExperimentsLaunchRequest"
       },
       "output": {
         "target": "com.posthog.experiments#ExperimentOutput"
@@ -6961,7 +6962,7 @@
         "smithy.api#documentation": "Launch a draft experiment.\n\nValidates the experiment is in draft state, activates its linked feature flag,\nsets start_date to the current server time, and transitions the experiment to running.\nReturns 400 if the experiment has already been launched or if the feature flag\nconfiguration is invalid (e.g. fewer than 2 variants)."
       }
     },
-    "com.posthog.experiments#TriggerEnum": {
+    "com.posthog.experiments#ExperimentMetricsRecalculationTriggerEnum": {
       "type": "enum",
       "members": {
         "MANUAL": {
@@ -7035,7 +7036,7 @@
         "smithy.api#documentation": "* `manual` - Manual\n* `agent_mcp` - Agent (MCP)\n* `cold_run` - Cold Run\n* `stale_refresh` - Stale Refresh\n* `auto_refresh` - Auto Refresh\n* `experiment_config_change` - Experiment Config Change\n* `metric_config_change` - Metric Config Change\n* `config_change` - Config Change\n* `experiment_launch` - Experiment Launch\n* `experiment_stop` - Experiment Stop\n* `experiment_update` - Experiment Update"
       }
     },
-    "com.posthog.experiments#ExperimentsMetricsRecalculationCreateRequest": {
+    "com.posthog.experiments#CreateExperimentsMetricsRecalculationRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -7055,7 +7056,7 @@
           }
         },
         "trigger": {
-          "target": "com.posthog.experiments#TriggerEnum",
+          "target": "com.posthog.experiments#ExperimentMetricsRecalculationTriggerEnum",
           "traits": {
             "smithy.api#documentation": "What triggered this recalculation (manual is the default for user-initiated runs)\n\n* `manual` - Manual\n* `agent_mcp` - Agent (MCP)\n* `cold_run` - Cold Run\n* `stale_refresh` - Stale Refresh\n* `auto_refresh` - Auto Refresh\n* `experiment_config_change` - Experiment Config Change\n* `metric_config_change` - Metric Config Change\n* `config_change` - Config Change\n* `experiment_launch` - Experiment Launch\n* `experiment_stop` - Experiment Stop\n* `experiment_update` - Experiment Update"
           }
@@ -7125,7 +7126,7 @@
           }
         },
         "trigger": {
-          "target": "com.posthog.experiments#TriggerEnum",
+          "target": "com.posthog.experiments#ExperimentMetricsRecalculationTriggerEnum",
           "traits": {
             "smithy.api#documentation": "What triggered this recalculation\n\n* `manual` - Manual\n* `agent_mcp` - Agent (MCP)\n* `cold_run` - Cold Run\n* `stale_refresh` - Stale Refresh\n* `auto_refresh` - Auto Refresh\n* `experiment_config_change` - Experiment Config Change\n* `metric_config_change` - Metric Config Change\n* `config_change` - Config Change\n* `experiment_launch` - Experiment Launch\n* `experiment_stop` - Experiment Stop\n* `experiment_update` - Experiment Update",
             "smithy.api#required": {}
@@ -7356,10 +7357,10 @@
         "smithy.api#documentation": "Per-metric results computed by this run, scoped by the run's recalc fingerprint"
       }
     },
-    "com.posthog.experiments#ExperimentsMetricsRecalculationCreate": {
+    "com.posthog.experiments#CreateExperimentsMetricsRecalculation": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.experiments#ExperimentsMetricsRecalculationCreateRequest"
+        "target": "com.posthog.experiments#CreateExperimentsMetricsRecalculationRequest"
       },
       "output": {
         "target": "com.posthog.experiments#ExperimentMetricsRecalculation"
@@ -7373,7 +7374,7 @@
         "smithy.api#documentation": "Trigger a batch recalculation of all metrics for this experiment.\n\nReturns 201 with the new pending recalculation, or 200 with the active one if a recalculation is\nalready pending or in progress for this experiment. The response payload intentionally does not\ninclude the `results` array — at POST time the workflow has just been queued and no per-metric\nresults exist yet. Clients should poll `GET metrics_recalculation/{id}/` for results as the workflow\nprogresses."
       }
     },
-    "com.posthog.experiments#ExperimentsMetricsRecalculationRetrieveRequest": {
+    "com.posthog.experiments#GetExperimentsMetricsRecalculationRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -7405,10 +7406,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.experiments#ExperimentsMetricsRecalculationRetrieve": {
+    "com.posthog.experiments#GetExperimentsMetricsRecalculation": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.experiments#ExperimentsMetricsRecalculationRetrieveRequest"
+        "target": "com.posthog.experiments#GetExperimentsMetricsRecalculationRequest"
       },
       "output": {
         "target": "com.posthog.experiments#ExperimentMetricsRecalculation"
@@ -7427,7 +7428,7 @@
         "smithy.api#documentation": "Mixin for ViewSets to handle approval-gate exceptions raised from decorated serializers.\n\nIntercepts ApprovalRequired (409) and PolicyConflict (400) raised by the @approval_gate\ndecorator on serializer methods and converts them into the same responses the viewset path\nproduces (see decorators._result_to_response), so both paths share one contract."
       }
     },
-    "com.posthog.experiments#ExperimentsMetricsRecalculationLatestRetrieveRequest": {
+    "com.posthog.experiments#GetExperimentsMetricsRecalculationLatestRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -7451,10 +7452,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.experiments#ExperimentsMetricsRecalculationLatestRetrieve": {
+    "com.posthog.experiments#GetExperimentsMetricsRecalculationLatest": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.experiments#ExperimentsMetricsRecalculationLatestRetrieveRequest"
+        "target": "com.posthog.experiments#GetExperimentsMetricsRecalculationLatestRequest"
       },
       "output": {
         "target": "com.posthog.experiments#ExperimentMetricsRecalculation"
@@ -7473,7 +7474,7 @@
         "smithy.api#documentation": "Mixin for ViewSets to handle approval-gate exceptions raised from decorated serializers.\n\nIntercepts ApprovalRequired (409) and PolicyConflict (400) raised by the @approval_gate\ndecorator on serializer methods and converts them into the same responses the viewset path\nproduces (see decorators._result_to_response), so both paths share one contract."
       }
     },
-    "com.posthog.experiments#ExperimentsPauseCreateRequest": {
+    "com.posthog.experiments#CreateExperimentsPauseRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -7497,10 +7498,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.experiments#ExperimentsPauseCreate": {
+    "com.posthog.experiments#CreateExperimentsPause": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.experiments#ExperimentsPauseCreateRequest"
+        "target": "com.posthog.experiments#CreateExperimentsPauseRequest"
       },
       "output": {
         "target": "com.posthog.experiments#ExperimentOutput"
@@ -7522,7 +7523,7 @@
         "smithy.api#documentation": "Pause a running experiment.\n\nDeactivates the linked feature flag so it is no longer returned by the\n/decide endpoint. Users fall back to the application default (typically\nthe control experience), and no new exposure events are recorded (i.e.\n$feature_flag_called is not fired).\nReturns 400 if the experiment is not running or is already paused."
       }
     },
-    "com.posthog.experiments#ExperimentsRecalculateTimeseriesCreateRequestExcludedVariantsList": {
+    "com.posthog.experiments#CreateExperimentsRecalculateTimeseriesRequestExcludedVariantsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -7531,7 +7532,7 @@
         "smithy.api#documentation": "Variant keys to exclude from metric result calculations. Excluded variants are still served to users but omitted from statistical analysis. The baseline variant and holdout pseudo-variants cannot be excluded. Canonical home for what historically lived in `parameters.excluded_variants`."
       }
     },
-    "com.posthog.experiments#ExperimentsRecalculateTimeseriesCreateRequestSavedMetricsIdsList": {
+    "com.posthog.experiments#CreateExperimentsRecalculateTimeseriesRequestSavedMetricsIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
@@ -7540,7 +7541,7 @@
         "smithy.api#documentation": "IDs of shared saved metrics to attach to this experiment. Each item has 'id' (saved metric ID) and 'metadata' with 'type' (primary or secondary)."
       }
     },
-    "com.posthog.experiments#ExperimentsRecalculateTimeseriesCreateRequestOriginalExperimentMap": {
+    "com.posthog.experiments#CreateExperimentsRecalculateTimeseriesRequestOriginalExperimentMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7552,7 +7553,7 @@
         "smithy.api#documentation": "The experiment state as the client last read it, used together with `version` to resolve concurrent edits: metric collections merge per metric uuid, and any other field the update carries merges per field against its base value here (only a same-field double edit fails). Relevant keys are metrics, metrics_secondary, saved_metrics_ids, plus the last-read values of whichever scalar fields the update writes; unknown keys are ignored. Changed fields without a base value — and, without this object, any version mismatch — fail with HTTP 409."
       }
     },
-    "com.posthog.experiments#ExperimentsRecalculateTimeseriesCreateRequest": {
+    "com.posthog.experiments#CreateExperimentsRecalculateTimeseriesRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -7624,7 +7625,7 @@
           }
         },
         "excluded_variants": {
-          "target": "com.posthog.experiments#ExperimentsRecalculateTimeseriesCreateRequestExcludedVariantsList",
+          "target": "com.posthog.experiments#CreateExperimentsRecalculateTimeseriesRequestExcludedVariantsList",
           "traits": {
             "smithy.api#documentation": "Variant keys to exclude from metric result calculations. Excluded variants are still served to users but omitted from statistical analysis. The baseline variant and holdout pseudo-variants cannot be excluded. Canonical home for what historically lived in `parameters.excluded_variants`.",
             "com.distilled.openapi#nullable": {}
@@ -7634,7 +7635,7 @@
           "target": "smithy.api#Document"
         },
         "saved_metrics_ids": {
-          "target": "com.posthog.experiments#ExperimentsRecalculateTimeseriesCreateRequestSavedMetricsIdsList",
+          "target": "com.posthog.experiments#CreateExperimentsRecalculateTimeseriesRequestSavedMetricsIdsList",
           "traits": {
             "smithy.api#documentation": "IDs of shared saved metrics to attach to this experiment. Each item has 'id' (saved metric ID) and 'metadata' with 'type' (primary or secondary).",
             "com.distilled.openapi#nullable": {}
@@ -7742,7 +7743,7 @@
           }
         },
         "original_experiment": {
-          "target": "com.posthog.experiments#ExperimentsRecalculateTimeseriesCreateRequestOriginalExperimentMap",
+          "target": "com.posthog.experiments#CreateExperimentsRecalculateTimeseriesRequestOriginalExperimentMap",
           "traits": {
             "smithy.api#documentation": "The experiment state as the client last read it, used together with `version` to resolve concurrent edits: metric collections merge per metric uuid, and any other field the update carries merges per field against its base value here (only a same-field double edit fails). Relevant keys are metrics, metrics_secondary, saved_metrics_ids, plus the last-read values of whichever scalar fields the update writes; unknown keys are ignored. Changed fields without a base value — and, without this object, any version mismatch — fail with HTTP 409.",
             "com.distilled.openapi#nullable": {}
@@ -7753,10 +7754,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.experiments#ExperimentsRecalculateTimeseriesCreate": {
+    "com.posthog.experiments#CreateExperimentsRecalculateTimeseries": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.experiments#ExperimentsRecalculateTimeseriesCreateRequest"
+        "target": "com.posthog.experiments#CreateExperimentsRecalculateTimeseriesRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -7905,7 +7906,7 @@
         "smithy.api#documentation": "* `fired_any` - fired_any\n* `no_metric_activity` - no_metric_activity\n* `funnel_dropoff` - funnel_dropoff"
       }
     },
-    "com.posthog.experiments#ExperimentsSessionBucketsCreateRequestMetricUuidsList": {
+    "com.posthog.experiments#CreateExperimentsSessionBucketRequestMetricUuidsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -7914,7 +7915,7 @@
         "smithy.api#documentation": "Metrics the bucket is computed over. Exactly one funnel metric for 'funnel_dropoff'. Omit for the other buckets to use every metric of the experiment that can be matched to recordings."
       }
     },
-    "com.posthog.experiments#ExperimentsSessionBucketsCreateRequest": {
+    "com.posthog.experiments#CreateExperimentsSessionBucketRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -7941,7 +7942,7 @@
           }
         },
         "metric_uuids": {
-          "target": "com.posthog.experiments#ExperimentsSessionBucketsCreateRequestMetricUuidsList",
+          "target": "com.posthog.experiments#CreateExperimentsSessionBucketRequestMetricUuidsList",
           "traits": {
             "smithy.api#documentation": "Metrics the bucket is computed over. Exactly one funnel metric for 'funnel_dropoff'. Omit for the other buckets to use every metric of the experiment that can be matched to recordings."
           }
@@ -8106,10 +8107,10 @@
         "smithy.api#documentation": "Requested metrics left out of the bucket because they can never match a recording, with the reason. They are reported rather than silently producing an empty result."
       }
     },
-    "com.posthog.experiments#ExperimentsSessionBucketsCreate": {
+    "com.posthog.experiments#CreateExperimentsSessionBucket": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.experiments#ExperimentsSessionBucketsCreateRequest"
+        "target": "com.posthog.experiments#CreateExperimentsSessionBucketRequest"
       },
       "output": {
         "target": "com.posthog.experiments#ExperimentSessionBucketResponse"
@@ -8123,7 +8124,7 @@
         "smithy.api#documentation": "Session recordings of this experiment matching a bucket.\n\nAnswers the questions a recordings query can't express on its own — \"fired any of these\nmetrics\", \"fired none of them\", \"was exposed but never completed the funnel in this\nsession\" — by returning a bounded, most-recent-first list of session IDs to pass back as\na recordings query's session_ids. POST because the metric list doesn't fit a query\nstring; the endpoint only reads.\n\nSession-scoped and goal-free: the set describes what happened in each session, while the\nexperiment analysis counts per person over the whole run window. A session can be in the\ndrop-off bucket while the same person converts in a later one."
       }
     },
-    "com.posthog.experiments#ExperimentsSessionEventDeltasCreateRequest": {
+    "com.posthog.experiments#CreateExperimentsSessionEventDeltasRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -8153,12 +8154,12 @@
         "cards": {
           "target": "com.posthog.experiments#ExperimentSessionEventDeltaResponseCardsList",
           "traits": {
-            "smithy.api#documentation": "The shelf, strongest comparison first, then the variant's own rendering, then metric shortcuts. Events the variants can't be told apart on get no card at all rather than a weak one, so an empty shelf means no difference was big enough to be sure of, not that nothing was measured. Group by kind before presenting: a 'variant_only' card outranks every real difference by construction, and reading the shelf in order would report it as the headline.",
+            "smithy.api#documentation": "The shelf, strongest comparison first, then the variant's own rendering, then metric shortcuts. Events the variants can't be told apart on get no card at all rather than a weak one, so an empty shelf means no difference was big enough to be sure of, not that nothing was measured. Empty also takes the metric shortcuts with it: a shelf of shortcuts and no finding restates what the experiment's results already answer while reading as a finding, so it is withheld. Read empty_reason and say what it reports instead of presenting an empty shelf. Group by kind before presenting: a 'variant_only' card outranks every real difference by construction, and reading the shelf in order would report it as the headline.",
             "smithy.api#required": {}
           }
         },
-        "arms": {
-          "target": "com.posthog.experiments#ExperimentSessionEventDeltaResponseArmsList",
+        "variants": {
+          "target": "com.posthog.experiments#ExperimentSessionEventDeltaResponseVariantsList",
           "traits": {
             "smithy.api#documentation": "Every variant's compared population, in the flag's variant order.",
             "smithy.api#required": {}
@@ -8227,7 +8228,7 @@
             "smithy.api#required": {}
           }
         },
-        "min_arm_persons": {
+        "min_variant_persons": {
           "target": "smithy.api#Integer",
           "traits": {
             "smithy.api#documentation": "How many exposed people a variant needs before it can be compared at all. Below it a variant's cards would be noise whatever the evidence bar allows.",
@@ -8251,8 +8252,16 @@
         "too_early": {
           "target": "smithy.api#Boolean",
           "traits": {
-            "smithy.api#documentation": "True when fewer than two variants have min_arm_persons exposed people, so no comparison exists and cards is empty. Say 'too early to compare' and show the arms' counts; an empty shelf presented without this would read as 'the variants behaved identically'.",
+            "smithy.api#documentation": "True when fewer than two variants have min_variant_persons exposed people, so no comparison exists and cards is empty. Show the variants' counts alongside it: an empty shelf presented without them would read as 'the variants behaved identically'. Read empty_reason before telling anyone to check back: this is also true when the variants are empty because no exposure in the window carried a session, which empty_reason reports as 'no_session_linked_exposures' and which more time does not fix on its own.",
             "smithy.api#required": {}
+          }
+        },
+        "empty_reason": {
+          "target": "com.posthog.experiments#ExperimentWatchEmptyReasonEnum",
+          "traits": {
+            "smithy.api#documentation": "Why cards is empty, and null whenever cards is not empty. Report which of the four happened rather than reporting an empty shelf, because they ask different things of the reader. 'too_early': fewer than two variants have min_variant_persons exposed people, so nothing was compared yet and the answer can still change. 'no_separation': the variants were compared and no event told them apart, which is a result rather than a failure. 'no_recordings': events did tell the variants apart, but no recording behind them can be opened, so the project's session replay sampling and retention are what decide whether this surface can ever show anything. 'no_session_linked_exposures': people were exposed between date_from and date_to, and not one exposure carried a session id, so there was nothing to compare. Only that window was checked, so say so. It is how exposure is captured rather than a wait: exposures captured from a client-side SDK carry a session and exposures captured server-side do not, so more of the same capture yields more of the same. Point at capturing exposure from a client-side SDK before telling anyone to check back. Never fill an empty shelf with the experiment's metrics: shortcut cards to those metrics' events are withheld here for exactly that reason.\n\n* `too_early` - too_early\n* `no_separation` - no_separation\n* `no_recordings` - no_recordings\n* `no_session_linked_exposures` - no_session_linked_exposures",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
           }
         }
       },
@@ -8436,10 +8445,10 @@
         "target": "com.posthog.experiments#ExperimentWatchCard"
       },
       "traits": {
-        "smithy.api#documentation": "The shelf, strongest comparison first, then the variant's own rendering, then metric shortcuts. Events the variants can't be told apart on get no card at all rather than a weak one, so an empty shelf means no difference was big enough to be sure of, not that nothing was measured. Group by kind before presenting: a 'variant_only' card outranks every real difference by construction, and reading the shelf in order would report it as the headline."
+        "smithy.api#documentation": "The shelf, strongest comparison first, then the variant's own rendering, then metric shortcuts. Events the variants can't be told apart on get no card at all rather than a weak one, so an empty shelf means no difference was big enough to be sure of, not that nothing was measured. Empty also takes the metric shortcuts with it: a shelf of shortcuts and no finding restates what the experiment's results already answer while reading as a finding, so it is withheld. Read empty_reason and say what it reports instead of presenting an empty shelf. Group by kind before presenting: a 'variant_only' card outranks every real difference by construction, and reading the shelf in order would report it as the headline."
       }
     },
-    "com.posthog.experiments#ExperimentWatchArm": {
+    "com.posthog.experiments#ExperimentWatchVariant": {
       "type": "structure",
       "members": {
         "key": {
@@ -8468,10 +8477,10 @@
         "smithy.api#documentation": "One variant's compared population."
       }
     },
-    "com.posthog.experiments#ExperimentSessionEventDeltaResponseArmsList": {
+    "com.posthog.experiments#ExperimentSessionEventDeltaResponseVariantsList": {
       "type": "list",
       "member": {
-        "target": "com.posthog.experiments#ExperimentWatchArm"
+        "target": "com.posthog.experiments#ExperimentWatchVariant"
       },
       "traits": {
         "smithy.api#documentation": "Every variant's compared population, in the flag's variant order."
@@ -8506,10 +8515,42 @@
         "smithy.api#documentation": "The events the experiment's own metrics count. A card on one of these carries metric_name and must be read as pointing at the experiment's results, which measure the same event over the whole run window with the statistics that go with a result. Cards state no magnitude for exactly this reason, so never turn one into a claim about how the metric moved."
       }
     },
-    "com.posthog.experiments#ExperimentsSessionEventDeltasCreate": {
+    "com.posthog.experiments#ExperimentWatchEmptyReasonEnum": {
+      "type": "enum",
+      "members": {
+        "TOO_EARLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "too_early"
+          }
+        },
+        "NO_SEPARATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "no_separation"
+          }
+        },
+        "NO_RECORDINGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "no_recordings"
+          }
+        },
+        "NO_SESSION_LINKED_EXPOSURES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "no_session_linked_exposures"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `too_early` - too_early\n* `no_separation` - no_separation\n* `no_recordings` - no_recordings\n* `no_session_linked_exposures` - no_session_linked_exposures"
+      }
+    },
+    "com.posthog.experiments#CreateExperimentsSessionEventDeltas": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.experiments#ExperimentsSessionEventDeltasCreateRequest"
+        "target": "com.posthog.experiments#CreateExperimentsSessionEventDeltasRequest"
       },
       "output": {
         "target": "com.posthog.experiments#ExperimentSessionEventDeltaResponse"
@@ -8523,7 +8564,7 @@
         "smithy.api#documentation": "The recordings worth watching for this experiment, grouped into cards.\n\nEach card is one sentence and the recordings that back it: an event one variant did clearly\nmore than the others, an error signal concentrated in one variant, or a shortcut to a\nmetric event happening on screen. Every card's count is a count of recordings that actually\nexist, so handing its session ids to the recordings list can't come back empty. POST to\ntake the same throttle and cache posture as the other reads in this family rather than\nbecause it carries a body: it takes no parameters, and it only reads.\n\nIt reports no effect size. Cards carry a direction and a band rather than a rate, a ratio\nor a person count: the experiment's results already state magnitudes, computed per person\nover the whole run window, and this reads one session per person over a clamped one. Two\nnumbers for the same event would read as a contradiction, so this surface states none. That\nis what lets a card sit on one of the experiment's own metric events, which it names, so a\nreader is sent to the results rather than given a second answer."
       }
     },
-    "com.posthog.experiments#ExperimentsShipVariantCreateRequest": {
+    "com.posthog.experiments#CreateExperimentsShipVariantRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -8592,10 +8633,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.experiments#ExperimentsShipVariantCreate": {
+    "com.posthog.experiments#CreateExperimentsShipVariant": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.experiments#ExperimentsShipVariantCreateRequest"
+        "target": "com.posthog.experiments#CreateExperimentsShipVariantRequest"
       },
       "output": {
         "target": "com.posthog.experiments#ExperimentOutput"
@@ -8620,7 +8661,7 @@
         "smithy.api#documentation": "Ship a variant and (optionally) end the experiment.\n\nUpdates the feature flag so the selected variant gets 100% of the variant\ndistribution. By default, existing release conditions on the flag are preserved\nuntouched — the variant is served only to users who already match them. Pass\n``release_to_everyone: true`` to also prepend a catch-all release condition\nthat rolls the variant out to 100% of users (overrides any existing release\nconditions on the flag).\n\nCan be called on both running and stopped experiments. If the experiment is\nstill running, it will also be ended (end_date set and status marked as stopped).\nIf the experiment has already ended, only the flag is rewritten - this supports\nthe \"end first, ship later\" workflow.\n\nIf an approval policy requires review before changes on the flag take effect,\nthe API returns 409 with a change_request_id. The experiment is NOT ended until\nthe change request is approved and the user retries.\n\nReturns 400 if the experiment is in draft state, the variant_key is not found\non the flag, or the experiment has no linked feature flag."
       }
     },
-    "com.posthog.experiments#ExperimentsTimeseriesResultsRetrieveRequest": {
+    "com.posthog.experiments#GetExperimentsTimeseriesResultRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -8660,10 +8701,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.experiments#ExperimentsTimeseriesResultsRetrieve": {
+    "com.posthog.experiments#GetExperimentsTimeseriesResult": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.experiments#ExperimentsTimeseriesResultsRetrieveRequest"
+        "target": "com.posthog.experiments#GetExperimentsTimeseriesResultRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -8729,7 +8770,7 @@
         "smithy.api#documentation": "Unarchive an archived experiment.\n\nRestores the experiment to the default list view. Returns 400 if the\nexperiment is not currently archived."
       }
     },
-    "com.posthog.experiments#ExperimentsUnfreezeExposureCreateRequest": {
+    "com.posthog.experiments#CreateExperimentsUnfreezeExposureRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -8753,10 +8794,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.experiments#ExperimentsUnfreezeExposureCreate": {
+    "com.posthog.experiments#CreateExperimentsUnfreezeExposure": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.experiments#ExperimentsUnfreezeExposureCreateRequest"
+        "target": "com.posthog.experiments#CreateExperimentsUnfreezeExposureRequest"
       },
       "output": {
         "target": "com.posthog.experiments#ExperimentOutput"
@@ -8872,7 +8913,7 @@
         "smithy.api#documentation": "Per-step counts for funnel metrics; the last entry is the final-step count."
       }
     },
-    "com.posthog.experiments#ExperimentsCalculateRunningTimeCreateRequest": {
+    "com.posthog.experiments#CreateExperimentsCalculateRunningTimeRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -8976,10 +9017,10 @@
         "smithy.api#documentation": "Estimated sample size and running time for the given inputs."
       }
     },
-    "com.posthog.experiments#ExperimentsCalculateRunningTimeCreate": {
+    "com.posthog.experiments#CreateExperimentsCalculateRunningTime": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.experiments#ExperimentsCalculateRunningTimeCreateRequest"
+        "target": "com.posthog.experiments#CreateExperimentsCalculateRunningTimeRequest"
       },
       "output": {
         "target": "com.posthog.experiments#RunningTimeCalculationResult"
@@ -9109,7 +9150,7 @@
         "smithy.api#documentation": "Create an experiment that compares N versions of an LLM prompt using a metric template.\n\nThe user picks 2+ versions of an existing LLMPrompt and 1+ metric templates\n(cost / latency / eval_pass_rate). The endpoint builds the matching variants\n(control + test-N, each named after its prompt version) and attaches one\nmetric per selected template, each scoped to the prompt's $ai_prompt_name.\nResulting experiment is in draft state."
       }
     },
-    "com.posthog.experiments#ExperimentsPromptTemplatesRetrieveRequest": {
+    "com.posthog.experiments#GetExperimentsPromptTemplateRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -9125,7 +9166,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.experiments#ExperimentsPromptTemplatesRetrieveResponseBodyItem": {
+    "com.posthog.experiments#GetExperimentsPromptTemplateResponseBodyItem": {
       "type": "structure",
       "members": {
         "key": {
@@ -9149,18 +9190,18 @@
       },
       "traits": {}
     },
-    "com.posthog.experiments#ExperimentsPromptTemplatesRetrieveResponseBodyList": {
+    "com.posthog.experiments#GetExperimentsPromptTemplateResponseBodyList": {
       "type": "list",
       "member": {
-        "target": "com.posthog.experiments#ExperimentsPromptTemplatesRetrieveResponseBodyItem"
+        "target": "com.posthog.experiments#GetExperimentsPromptTemplateResponseBodyItem"
       },
       "traits": {}
     },
-    "com.posthog.experiments#ExperimentsPromptTemplatesRetrieveResponse": {
+    "com.posthog.experiments#GetExperimentsPromptTemplateResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.posthog.experiments#ExperimentsPromptTemplatesRetrieveResponseBodyList",
+          "target": "com.posthog.experiments#GetExperimentsPromptTemplateResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -9171,13 +9212,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.posthog.experiments#ExperimentsPromptTemplatesRetrieve": {
+    "com.posthog.experiments#GetExperimentsPromptTemplate": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.experiments#ExperimentsPromptTemplatesRetrieveRequest"
+        "target": "com.posthog.experiments#GetExperimentsPromptTemplateRequest"
       },
       "output": {
-        "target": "com.posthog.experiments#ExperimentsPromptTemplatesRetrieveResponse"
+        "target": "com.posthog.experiments#GetExperimentsPromptTemplateResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -9188,7 +9229,7 @@
         "smithy.api#documentation": "List the LLM metric templates that can be passed to `create_from_prompt`."
       }
     },
-    "com.posthog.experiments#ExperimentsSessionContextRetrieveRequest": {
+    "com.posthog.experiments#GetExperimentsSessionContextRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -9520,10 +9561,10 @@
         "smithy.api#documentation": "Experiments (and variants) the session saw, sorted by experiment name. Empty when no launched experiment's run window overlaps the recording or no flag data was observed in the session."
       }
     },
-    "com.posthog.experiments#ExperimentsSessionContextRetrieve": {
+    "com.posthog.experiments#GetExperimentsSessionContext": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.experiments#ExperimentsSessionContextRetrieveRequest"
+        "target": "com.posthog.experiments#GetExperimentsSessionContextRequest"
       },
       "output": {
         "target": "com.posthog.experiments#ExperimentSessionContextResponse"
@@ -9537,7 +9578,7 @@
         "smithy.api#documentation": "Resolve which experiments (and variants) a session recording saw. Variants come from the session's $feature_flag_called events and stamped $feature/<key> event properties — flag evaluation, which may differ from an experiment's exposure criteria."
       }
     },
-    "com.posthog.experiments#ExperimentsSessionContextsCreateRequestSessionIdsList": {
+    "com.posthog.experiments#CreateExperimentsSessionContextRequestSessionIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -9546,7 +9587,7 @@
         "smithy.api#documentation": "IDs of the session recordings to resolve experiment context for, at most 20 per request. Duplicates are ignored."
       }
     },
-    "com.posthog.experiments#ExperimentsSessionContextsCreateRequest": {
+    "com.posthog.experiments#CreateExperimentsSessionContextRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -9558,7 +9599,7 @@
           }
         },
         "session_ids": {
-          "target": "com.posthog.experiments#ExperimentsSessionContextsCreateRequestSessionIdsList",
+          "target": "com.posthog.experiments#CreateExperimentsSessionContextRequestSessionIdsList",
           "traits": {
             "smithy.api#documentation": "IDs of the session recordings to resolve experiment context for, at most 20 per request. Duplicates are ignored.",
             "smithy.api#required": {}
@@ -9593,10 +9634,10 @@
         "smithy.api#documentation": "Per-session experiment context, in the order the session IDs were requested. Sessions whose recording metadata doesn't exist yet (still ingesting, or unknown to this project) are omitted, as are recordings you don't have access to and sessions beyond the batch's recording-day budget (only the most recent days are computed). Fetch omitted sessions individually via the single-session endpoint."
       }
     },
-    "com.posthog.experiments#ExperimentsSessionContextsCreate": {
+    "com.posthog.experiments#CreateExperimentsSessionContext": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.experiments#ExperimentsSessionContextsCreateRequest"
+        "target": "com.posthog.experiments#CreateExperimentsSessionContextRequest"
       },
       "output": {
         "target": "com.posthog.experiments#ExperimentSessionContextsResponse"
@@ -9610,7 +9651,7 @@
         "smithy.api#documentation": "Resolve experiment context for a batch of session recordings.\n\nBatch variant of `session_context`, used to prefetch the replay player's experiments\nbox for a whole recordings list in one request. POST because the id list doesn't fit a\nquery string; the endpoint only reads. Already-computed sessions are served from (and\ncold ones written to) the same short-lived per-viewer cache the single-session endpoint\nuses, so opening any prefetched recording renders its context instantly. Sessions whose\nrecording metadata doesn't exist yet are omitted from the response, as are recordings\nthe caller can't access and sessions beyond the batch's recording-day budget (each\ndistinct recording day costs its own set of ClickHouse scans, so only the most recent\ndays are computed per request)."
       }
     },
-    "com.posthog.experiments#ExperimentsStatsRetrieveRequest": {
+    "com.posthog.experiments#GetExperimentsStatRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -9626,10 +9667,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.experiments#ExperimentsStatsRetrieve": {
+    "com.posthog.experiments#GetExperimentsStat": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.experiments#ExperimentsStatsRetrieveRequest"
+        "target": "com.posthog.experiments#GetExperimentsStatRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -9695,25 +9736,25 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.experiments#ExperimentsList"
+          "target": "com.posthog.experiments#ListExperiments"
         },
         {
-          "target": "com.posthog.experiments#ExperimentsCreate"
+          "target": "com.posthog.experiments#CreateExperiment"
         },
         {
-          "target": "com.posthog.experiments#ExperimentsRetrieve"
+          "target": "com.posthog.experiments#GetExperiment"
         },
         {
-          "target": "com.posthog.experiments#ExperimentsUpdate"
+          "target": "com.posthog.experiments#UpdateExperiment"
         },
         {
-          "target": "com.posthog.experiments#ExperimentsPartialUpdate"
+          "target": "com.posthog.experiments#UpdateExperimentsPartial"
         },
         {
           "target": "com.posthog.experiments#ExperimentsDestroy"
         },
         {
-          "target": "com.posthog.experiments#ExperimentsActivityRetrieve"
+          "target": "com.posthog.experiments#GetExperimentsActivity"
         },
         {
           "target": "com.posthog.experiments#ExperimentsArchiveCreate"
@@ -9728,34 +9769,34 @@
           "target": "com.posthog.experiments#ExperimentsDuplicateCreate"
         },
         {
-          "target": "com.posthog.experiments#ExperimentsEndCreate"
+          "target": "com.posthog.experiments#CreateExperimentsEnd"
         },
         {
-          "target": "com.posthog.experiments#ExperimentsFlagCleanupTargetRetrieve"
+          "target": "com.posthog.experiments#GetExperimentsFlagCleanupTarget"
         },
         {
-          "target": "com.posthog.experiments#ExperimentsFlagCleanupTaskRetrieve"
+          "target": "com.posthog.experiments#GetExperimentsFlagCleanupTask"
         },
         {
-          "target": "com.posthog.experiments#ExperimentsFreezeExposureCreate"
+          "target": "com.posthog.experiments#CreateExperimentsFreezeExposure"
         },
         {
-          "target": "com.posthog.experiments#ExperimentsLaunchCreate"
+          "target": "com.posthog.experiments#CreateExperimentsLaunch"
         },
         {
-          "target": "com.posthog.experiments#ExperimentsMetricsRecalculationCreate"
+          "target": "com.posthog.experiments#CreateExperimentsMetricsRecalculation"
         },
         {
-          "target": "com.posthog.experiments#ExperimentsMetricsRecalculationRetrieve"
+          "target": "com.posthog.experiments#GetExperimentsMetricsRecalculation"
         },
         {
-          "target": "com.posthog.experiments#ExperimentsMetricsRecalculationLatestRetrieve"
+          "target": "com.posthog.experiments#GetExperimentsMetricsRecalculationLatest"
         },
         {
-          "target": "com.posthog.experiments#ExperimentsPauseCreate"
+          "target": "com.posthog.experiments#CreateExperimentsPause"
         },
         {
-          "target": "com.posthog.experiments#ExperimentsRecalculateTimeseriesCreate"
+          "target": "com.posthog.experiments#CreateExperimentsRecalculateTimeseries"
         },
         {
           "target": "com.posthog.experiments#ExperimentsResetCreate"
@@ -9764,40 +9805,40 @@
           "target": "com.posthog.experiments#ExperimentsResumeCreate"
         },
         {
-          "target": "com.posthog.experiments#ExperimentsSessionBucketsCreate"
+          "target": "com.posthog.experiments#CreateExperimentsSessionBucket"
         },
         {
-          "target": "com.posthog.experiments#ExperimentsSessionEventDeltasCreate"
+          "target": "com.posthog.experiments#CreateExperimentsSessionEventDeltas"
         },
         {
-          "target": "com.posthog.experiments#ExperimentsShipVariantCreate"
+          "target": "com.posthog.experiments#CreateExperimentsShipVariant"
         },
         {
-          "target": "com.posthog.experiments#ExperimentsTimeseriesResultsRetrieve"
+          "target": "com.posthog.experiments#GetExperimentsTimeseriesResult"
         },
         {
           "target": "com.posthog.experiments#ExperimentsUnarchiveCreate"
         },
         {
-          "target": "com.posthog.experiments#ExperimentsUnfreezeExposureCreate"
+          "target": "com.posthog.experiments#CreateExperimentsUnfreezeExposure"
         },
         {
-          "target": "com.posthog.experiments#ExperimentsCalculateRunningTimeCreate"
+          "target": "com.posthog.experiments#CreateExperimentsCalculateRunningTime"
         },
         {
           "target": "com.posthog.experiments#ExperimentsCreateFromPromptCreate"
         },
         {
-          "target": "com.posthog.experiments#ExperimentsPromptTemplatesRetrieve"
+          "target": "com.posthog.experiments#GetExperimentsPromptTemplate"
         },
         {
-          "target": "com.posthog.experiments#ExperimentsSessionContextRetrieve"
+          "target": "com.posthog.experiments#GetExperimentsSessionContext"
         },
         {
-          "target": "com.posthog.experiments#ExperimentsSessionContextsCreate"
+          "target": "com.posthog.experiments#CreateExperimentsSessionContext"
         },
         {
-          "target": "com.posthog.experiments#ExperimentsStatsRetrieve"
+          "target": "com.posthog.experiments#GetExperimentsStat"
         }
       ],
       "traits": {

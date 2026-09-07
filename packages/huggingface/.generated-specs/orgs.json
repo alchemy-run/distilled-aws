@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.huggingface.orgs#ListMemberAccessTokensRequest": {
@@ -1738,6 +1739,18 @@
           "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "org.token_approval.authorization_request.denied"
+          }
+        },
+        "ORG_AUDIT_LOG_EXPORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "org.audit_log.export"
+          }
+        },
+        "ORG_REPO_ANALYTICS_EXPORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "org.repo_analytics.export"
           }
         },
         "REPO_ADD_SECRETS": {

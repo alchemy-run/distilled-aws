@@ -1,39 +1,9 @@
 {
-  "description": "Fix ClusterSizeSkuSerializer: make many fields nullable (storage, provider, rates, etc.)",
+  "description": "Fix ClusterSizeSku: storage, provider and default_vtgate_rate are x-nullable upstream but still listed as required",
   "patches": [
     {
-      "op": "add",
-      "path": "/definitions/ClusterSizeSkuSerializer/properties/storage/x-nullable",
-      "value": true
-    },
-    {
-      "op": "add",
-      "path": "/definitions/ClusterSizeSkuSerializer/properties/provider/x-nullable",
-      "value": true
-    },
-    {
-      "op": "add",
-      "path": "/definitions/ClusterSizeSkuSerializer/properties/default_vtgate_rate/x-nullable",
-      "value": true
-    },
-    {
-      "op": "add",
-      "path": "/definitions/ClusterSizeSkuSerializer/properties/architecture/x-nullable",
-      "value": true
-    },
-    {
-      "op": "add",
-      "path": "/definitions/ClusterSizeSkuSerializer/properties/rate/x-nullable",
-      "value": true
-    },
-    {
-      "op": "add",
-      "path": "/definitions/ClusterSizeSkuSerializer/properties/replica_rate/x-nullable",
-      "value": true
-    },
-    {
       "op": "replace",
-      "path": "/definitions/ClusterSizeSkuSerializer/required",
+      "path": "/definitions/ClusterSizeSku/required",
       "value": [
         "name",
         "display_name",

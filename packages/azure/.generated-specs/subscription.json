@@ -14,13 +14,14 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.subscription#BillingAccountGetPolicy": {
+    "com.azure.subscription#GetBillingAccountPolicy": {
       "type": "operation",
       "input": {
-        "target": "com.azure.subscription#BillingAccountGetPolicyRequest"
+        "target": "com.azure.subscription#GetBillingAccountPolicyRequest"
       },
       "output": {
         "target": "com.azure.subscription#BillingAccountPoliciesResponse"
@@ -231,7 +232,7 @@
         "smithy.api#documentation": "Billing account service tenant."
       }
     },
-    "com.azure.subscription#BillingAccountGetPolicyRequest": {
+    "com.azure.subscription#GetBillingAccountPolicyRequest": {
       "type": "structure",
       "members": {
         "billingAccountId": {
@@ -247,7 +248,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.subscription#SubscriptionPolicyListPolicyForTenant": {
+    "com.azure.subscription#ListSubscriptionPolicyPolicyForTenant": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -536,7 +537,7 @@
         "smithy.api#documentation": "List of user objectIds that are exempted from the set subscription tenant policies for the user's tenant."
       }
     },
-    "com.azure.subscription#SubscriptionPolicyGetPolicyForTenant": {
+    "com.azure.subscription#GetSubscriptionPolicyPolicyForTenant": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -555,10 +556,10 @@
         "com.distilled.openapi#apiVersion": "2021-10-01"
       }
     },
-    "com.azure.subscription#SubscriptionAcceptOwnershipStatus": {
+    "com.azure.subscription#AcceptSubscriptionOwnershipStatus": {
       "type": "operation",
       "input": {
-        "target": "com.azure.subscription#SubscriptionAcceptOwnershipStatusRequest"
+        "target": "com.azure.subscription#AcceptSubscriptionOwnershipStatusRequest"
       },
       "output": {
         "target": "com.azure.subscription#AcceptOwnershipStatusResponse"
@@ -682,7 +683,7 @@
         "smithy.api#documentation": "The accept ownership state of the resource."
       }
     },
-    "com.azure.subscription#SubscriptionAcceptOwnershipStatusRequest": {
+    "com.azure.subscription#AcceptSubscriptionOwnershipStatusRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -698,10 +699,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.subscription#SubscriptionAcceptOwnership": {
+    "com.azure.subscription#AcceptSubscriptionOwnership": {
       "type": "operation",
       "input": {
-        "target": "com.azure.subscription#SubscriptionAcceptOwnershipRequest"
+        "target": "com.azure.subscription#AcceptSubscriptionOwnershipRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -717,7 +718,7 @@
         "com.distilled.openapi#apiVersion": "2021-10-01"
       }
     },
-    "com.azure.subscription#SubscriptionAcceptOwnershipRequest": {
+    "com.azure.subscription#AcceptSubscriptionOwnershipRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -778,7 +779,7 @@
         "smithy.api#documentation": "Tags for the subscription"
       }
     },
-    "com.azure.subscription#AliasList": {
+    "com.azure.subscription#ListAlias": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -1101,10 +1102,10 @@
         "smithy.api#documentation": "The provisioning state of the resource."
       }
     },
-    "com.azure.subscription#AliasDelete": {
+    "com.azure.subscription#DeleteAlias": {
       "type": "operation",
       "input": {
-        "target": "com.azure.subscription#AliasDeleteRequest"
+        "target": "com.azure.subscription#DeleteAliasRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1120,7 +1121,7 @@
         "com.distilled.openapi#apiVersion": "2021-10-01"
       }
     },
-    "com.azure.subscription#AliasDeleteRequest": {
+    "com.azure.subscription#DeleteAliasRequest": {
       "type": "structure",
       "members": {
         "aliasName": {
@@ -1136,10 +1137,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.subscription#AliasCreate": {
+    "com.azure.subscription#CreateAlias": {
       "type": "operation",
       "input": {
-        "target": "com.azure.subscription#AliasCreateRequest"
+        "target": "com.azure.subscription#CreateAliasRequest"
       },
       "output": {
         "target": "com.azure.subscription#SubscriptionAliasResponse"
@@ -1155,7 +1156,7 @@
         "com.distilled.openapi#apiVersion": "2021-10-01"
       }
     },
-    "com.azure.subscription#AliasCreateRequest": {
+    "com.azure.subscription#CreateAliasRequest": {
       "type": "structure",
       "members": {
         "aliasName": {
@@ -1259,10 +1260,10 @@
         "smithy.api#documentation": "Tags for the subscription"
       }
     },
-    "com.azure.subscription#AliasGet": {
+    "com.azure.subscription#GetAlias": {
       "type": "operation",
       "input": {
-        "target": "com.azure.subscription#AliasGetRequest"
+        "target": "com.azure.subscription#GetAliasRequest"
       },
       "output": {
         "target": "com.azure.subscription#SubscriptionAliasResponse"
@@ -1278,7 +1279,7 @@
         "com.distilled.openapi#apiVersion": "2021-10-01"
       }
     },
-    "com.azure.subscription#AliasGetRequest": {
+    "com.azure.subscription#GetAliasRequest": {
       "type": "structure",
       "members": {
         "aliasName": {
@@ -1294,7 +1295,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.subscription#OperationsList": {
+    "com.azure.subscription#ListOperations": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -1400,10 +1401,10 @@
         "smithy.api#documentation": "The object that represents the operation."
       }
     },
-    "com.azure.subscription#SubscriptionOperationGet": {
+    "com.azure.subscription#GetSubscriptionOperation": {
       "type": "operation",
       "input": {
-        "target": "com.azure.subscription#SubscriptionOperationGetRequest"
+        "target": "com.azure.subscription#GetSubscriptionOperationRequest"
       },
       "output": {
         "target": "com.azure.subscription#SubscriptionCreationResult"
@@ -1433,7 +1434,7 @@
         "smithy.api#documentation": "The created subscription object."
       }
     },
-    "com.azure.subscription#SubscriptionOperationGetRequest": {
+    "com.azure.subscription#GetSubscriptionOperationRequest": {
       "type": "structure",
       "members": {
         "operationId": {
@@ -1449,10 +1450,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.subscription#SubscriptionEnable": {
+    "com.azure.subscription#EnableSubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.subscription#SubscriptionEnableRequest"
+        "target": "com.azure.subscription#EnableSubscriptionRequest"
       },
       "output": {
         "target": "com.azure.subscription#EnabledSubscriptionId"
@@ -1482,7 +1483,7 @@
         "smithy.api#documentation": "The ID of the subscriptions that is being enabled"
       }
     },
-    "com.azure.subscription#SubscriptionEnableRequest": {
+    "com.azure.subscription#EnableSubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1498,10 +1499,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.subscription#SubscriptionRename": {
+    "com.azure.subscription#RenameSubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.subscription#SubscriptionRenameRequest"
+        "target": "com.azure.subscription#RenameSubscriptionRequest"
       },
       "output": {
         "target": "com.azure.subscription#RenamedSubscriptionId"
@@ -1531,7 +1532,7 @@
         "smithy.api#documentation": "The ID of the subscriptions that is being renamed"
       }
     },
-    "com.azure.subscription#SubscriptionRenameRequest": {
+    "com.azure.subscription#RenameSubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1553,10 +1554,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.subscription#SubscriptionCancel": {
+    "com.azure.subscription#CancelSubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.subscription#SubscriptionCancelRequest"
+        "target": "com.azure.subscription#CancelSubscriptionRequest"
       },
       "output": {
         "target": "com.azure.subscription#CanceledSubscriptionId"
@@ -1586,7 +1587,7 @@
         "smithy.api#documentation": "The ID of the canceled subscription"
       }
     },
-    "com.azure.subscription#SubscriptionCancelRequest": {
+    "com.azure.subscription#CancelSubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1607,49 +1608,49 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.subscription#BillingAccountGetPolicy"
+          "target": "com.azure.subscription#GetBillingAccountPolicy"
         },
         {
-          "target": "com.azure.subscription#SubscriptionPolicyListPolicyForTenant"
+          "target": "com.azure.subscription#ListSubscriptionPolicyPolicyForTenant"
         },
         {
           "target": "com.azure.subscription#SubscriptionPolicyAddUpdatePolicyForTenant"
         },
         {
-          "target": "com.azure.subscription#SubscriptionPolicyGetPolicyForTenant"
+          "target": "com.azure.subscription#GetSubscriptionPolicyPolicyForTenant"
         },
         {
-          "target": "com.azure.subscription#SubscriptionAcceptOwnershipStatus"
+          "target": "com.azure.subscription#AcceptSubscriptionOwnershipStatus"
         },
         {
-          "target": "com.azure.subscription#SubscriptionAcceptOwnership"
+          "target": "com.azure.subscription#AcceptSubscriptionOwnership"
         },
         {
-          "target": "com.azure.subscription#AliasList"
+          "target": "com.azure.subscription#ListAlias"
         },
         {
-          "target": "com.azure.subscription#AliasDelete"
+          "target": "com.azure.subscription#DeleteAlias"
         },
         {
-          "target": "com.azure.subscription#AliasCreate"
+          "target": "com.azure.subscription#CreateAlias"
         },
         {
-          "target": "com.azure.subscription#AliasGet"
+          "target": "com.azure.subscription#GetAlias"
         },
         {
-          "target": "com.azure.subscription#OperationsList"
+          "target": "com.azure.subscription#ListOperations"
         },
         {
-          "target": "com.azure.subscription#SubscriptionOperationGet"
+          "target": "com.azure.subscription#GetSubscriptionOperation"
         },
         {
-          "target": "com.azure.subscription#SubscriptionEnable"
+          "target": "com.azure.subscription#EnableSubscription"
         },
         {
-          "target": "com.azure.subscription#SubscriptionRename"
+          "target": "com.azure.subscription#RenameSubscription"
         },
         {
-          "target": "com.azure.subscription#SubscriptionCancel"
+          "target": "com.azure.subscription#CancelSubscription"
         }
       ],
       "traits": {

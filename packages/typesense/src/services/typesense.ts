@@ -1464,1504 +1464,14 @@ export const CollectionAliasesResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CollectionAliasesResponse",
 }) as any as S.Schema<CollectionAliasesResponse>;
 
-export interface GetAnalyticsEventsRequest {
-  user_id: string;
-  /** Analytics rule name */
-  name: string;
-  /** Number of events to return (max 1000) */
-  n: number;
-}
-export const GetAnalyticsEventsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    user_id: S.String.pipe(T.Query()),
-    name: S.String.pipe(T.Query()),
-    n: S.Number.pipe(T.Query()),
-  }).pipe(T.Http({ method: "GET", uri: "/analytics/events", code: 200 })),
-).annotate({
-  identifier: "GetAnalyticsEventsRequest",
-}) as any as S.Schema<GetAnalyticsEventsRequest>;
-
-export type AnalyticsEventsResponseEventsItemDocIdsList = Array<string>;
-export const AnalyticsEventsResponseEventsItemDocIdsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<AnalyticsEventsResponseEventsItemDocIdsList>;
-
-export interface AnalyticsEventsResponseEventsItem {
-  name?: string;
-  event_type?: string;
-  collection?: string;
-  timestamp?: number;
-  user_id?: string;
-  doc_id?: string;
-  doc_ids?: AnalyticsEventsResponseEventsItemDocIdsList;
-  query?: string;
-}
-export const AnalyticsEventsResponseEventsItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    event_type: S.optional(S.String),
-    collection: S.optional(S.String),
-    timestamp: S.optional(S.Number),
-    user_id: S.optional(S.String),
-    doc_id: S.optional(S.String),
-    doc_ids: S.optional(AnalyticsEventsResponseEventsItemDocIdsList),
-    query: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AnalyticsEventsResponseEventsItem",
-}) as any as S.Schema<AnalyticsEventsResponseEventsItem>;
-
-export type AnalyticsEventsResponseEventsList =
-  Array<AnalyticsEventsResponseEventsItem>;
-export const AnalyticsEventsResponseEventsList = /*@__PURE__*/ S.Array(
-  AnalyticsEventsResponseEventsItem,
-) as any as S.Schema<AnalyticsEventsResponseEventsList>;
-
-export interface AnalyticsEventsResponse {
-  events: AnalyticsEventsResponseEventsList;
-}
-export const AnalyticsEventsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    events: AnalyticsEventsResponseEventsList,
-  }),
-).annotate({
-  identifier: "AnalyticsEventsResponse",
-}) as any as S.Schema<AnalyticsEventsResponse>;
-
-export interface GetAnalyticsStatusRequest {}
-export const GetAnalyticsStatusRequest = /*@__PURE__*/ S.suspend(() =>
+export interface GetAllConversationModelsRequest {}
+export const GetAllConversationModelsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
-    T.Http({ method: "GET", uri: "/analytics/status", code: 200 }),
+    T.Http({ method: "GET", uri: "/conversations/models", code: 200 }),
   ),
 ).annotate({
-  identifier: "GetAnalyticsStatusRequest",
-}) as any as S.Schema<GetAnalyticsStatusRequest>;
-
-export interface AnalyticsStatus {
-  popular_prefix_queries?: number;
-  nohits_prefix_queries?: number;
-  log_prefix_queries?: number;
-  query_log_events?: number;
-  query_counter_events?: number;
-  doc_log_events?: number;
-  doc_counter_events?: number;
-}
-export const AnalyticsStatus = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    popular_prefix_queries: S.optional(S.Number),
-    nohits_prefix_queries: S.optional(S.Number),
-    log_prefix_queries: S.optional(S.Number),
-    query_log_events: S.optional(S.Number),
-    query_counter_events: S.optional(S.Number),
-    doc_log_events: S.optional(S.Number),
-    doc_counter_events: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "AnalyticsStatus",
-}) as any as S.Schema<AnalyticsStatus>;
-
-export interface GetCollectionRequest {
-  /** The name of the collection to retrieve */
-  collectionName: string;
-}
-export const GetCollectionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    collectionName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/collections/{collectionName}", code: 200 }),
-  ),
-).annotate({
-  identifier: "GetCollectionRequest",
-}) as any as S.Schema<GetCollectionRequest>;
-
-/** A list of fields for querying, filtering and faceting */
-export type GetCollectionResponseFieldsList = Array<Field>;
-export const GetCollectionResponseFieldsList = /*@__PURE__*/ S.Array(
-  Field,
-) as any as S.Schema<GetCollectionResponseFieldsList>;
-
-/** List of symbols or special characters to be used for splitting the text into individual words in addition to space and new-line characters. */
-export type GetCollectionResponseTokenSeparatorsList = Array<string>;
-export const GetCollectionResponseTokenSeparatorsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<GetCollectionResponseTokenSeparatorsList>;
-
-/** List of synonym set names to associate with this collection */
-export type GetCollectionResponseSynonymSetsList = Array<string>;
-export const GetCollectionResponseSynonymSetsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<GetCollectionResponseSynonymSetsList>;
-
-/** List of symbols or special characters to be indexed. */
-export type GetCollectionResponseSymbolsToIndexList = Array<string>;
-export const GetCollectionResponseSymbolsToIndexList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<GetCollectionResponseSymbolsToIndexList>;
-
-export interface GetCollectionResponse {
-  /** Name of the collection */
-  name: string;
-  /** A list of fields for querying, filtering and faceting */
-  fields: GetCollectionResponseFieldsList;
-  /** The name of an int32 / float field that determines the order in which the search results are ranked when a sort_by clause is not provided during searching. This field must indicate some kind of popularity. */
-  default_sorting_field?: string;
-  /** List of symbols or special characters to be used for splitting the text into individual words in addition to space and new-line characters. */
-  token_separators?: GetCollectionResponseTokenSeparatorsList;
-  /** List of synonym set names to associate with this collection */
-  synonym_sets?: GetCollectionResponseSynonymSetsList;
-  /** Enables experimental support at a collection level for nested object or object array fields. This field is only available if the Typesense server is version `0.24.0.rcn34` or later. */
-  enable_nested_fields?: boolean;
-  /** List of symbols or special characters to be indexed. */
-  symbols_to_index?: GetCollectionResponseSymbolsToIndexList;
-  voice_query_model?: VoiceQueryModelCollectionConfig;
-  /** Optional details about the collection, e.g., when it was created, who created it etc. */
-  metadata?: unknown;
-  /** Number of documents in the collection */
-  num_documents: number;
-  /** Timestamp of when the collection was created (Unix epoch in seconds) */
-  created_at: number;
-}
-export const GetCollectionResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String,
-    fields: GetCollectionResponseFieldsList,
-    default_sorting_field: S.optional(S.String),
-    token_separators: S.optional(GetCollectionResponseTokenSeparatorsList),
-    synonym_sets: S.optional(GetCollectionResponseSynonymSetsList),
-    enable_nested_fields: S.optional(S.Boolean),
-    symbols_to_index: S.optional(GetCollectionResponseSymbolsToIndexList),
-    voice_query_model: S.optional(VoiceQueryModelCollectionConfig),
-    metadata: S.optional(S.Unknown),
-    num_documents: S.Number,
-    created_at: S.Number,
-  }),
-).annotate({
-  identifier: "GetCollectionResponse",
-}) as any as S.Schema<GetCollectionResponse>;
-
-export interface GetCollectionsRequestGetCollectionsParameters {
-  /** Comma-separated list of fields from the collection to exclude from the response */
-  exclude_fields?: string;
-  /** Number of collections to fetch. Default: returns all collections. */
-  limit?: number;
-  /** Identifies the starting point to return collections when paginating. */
-  offset?: number;
-}
-export const GetCollectionsRequestGetCollectionsParameters =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      exclude_fields: S.optional(S.String),
-      limit: S.optional(S.Number),
-      offset: S.optional(S.Number),
-    }),
-  ).annotate({
-    identifier: "GetCollectionsRequestGetCollectionsParameters",
-  }) as any as S.Schema<GetCollectionsRequestGetCollectionsParameters>;
-
-export interface GetCollectionsRequest {
-  getCollectionsParameters?: GetCollectionsRequestGetCollectionsParameters;
-}
-export const GetCollectionsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    getCollectionsParameters: S.optional(
-      GetCollectionsRequestGetCollectionsParameters.pipe(T.Query()),
-    ),
-  }).pipe(T.Http({ method: "GET", uri: "/collections", code: 200 })),
-).annotate({
-  identifier: "GetCollectionsRequest",
-}) as any as S.Schema<GetCollectionsRequest>;
-
-/** A list of fields for querying, filtering and faceting */
-export type CollectionResponseFieldsList = Array<Field>;
-export const CollectionResponseFieldsList = /*@__PURE__*/ S.Array(
-  Field,
-) as any as S.Schema<CollectionResponseFieldsList>;
-
-/** List of symbols or special characters to be used for splitting the text into individual words in addition to space and new-line characters. */
-export type CollectionResponseTokenSeparatorsList = Array<string>;
-export const CollectionResponseTokenSeparatorsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<CollectionResponseTokenSeparatorsList>;
-
-/** List of synonym set names to associate with this collection */
-export type CollectionResponseSynonymSetsList = Array<string>;
-export const CollectionResponseSynonymSetsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<CollectionResponseSynonymSetsList>;
-
-/** List of symbols or special characters to be indexed. */
-export type CollectionResponseSymbolsToIndexList = Array<string>;
-export const CollectionResponseSymbolsToIndexList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<CollectionResponseSymbolsToIndexList>;
-
-export interface CollectionResponse {
-  /** Name of the collection */
-  name: string;
-  /** A list of fields for querying, filtering and faceting */
-  fields: CollectionResponseFieldsList;
-  /** The name of an int32 / float field that determines the order in which the search results are ranked when a sort_by clause is not provided during searching. This field must indicate some kind of popularity. */
-  default_sorting_field?: string;
-  /** List of symbols or special characters to be used for splitting the text into individual words in addition to space and new-line characters. */
-  token_separators?: CollectionResponseTokenSeparatorsList;
-  /** List of synonym set names to associate with this collection */
-  synonym_sets?: CollectionResponseSynonymSetsList;
-  /** Enables experimental support at a collection level for nested object or object array fields. This field is only available if the Typesense server is version `0.24.0.rcn34` or later. */
-  enable_nested_fields?: boolean;
-  /** List of symbols or special characters to be indexed. */
-  symbols_to_index?: CollectionResponseSymbolsToIndexList;
-  voice_query_model?: VoiceQueryModelCollectionConfig;
-  /** Optional details about the collection, e.g., when it was created, who created it etc. */
-  metadata?: unknown;
-  /** Number of documents in the collection */
-  num_documents: number;
-  /** Timestamp of when the collection was created (Unix epoch in seconds) */
-  created_at: number;
-}
-export const CollectionResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String,
-    fields: CollectionResponseFieldsList,
-    default_sorting_field: S.optional(S.String),
-    token_separators: S.optional(CollectionResponseTokenSeparatorsList),
-    synonym_sets: S.optional(CollectionResponseSynonymSetsList),
-    enable_nested_fields: S.optional(S.Boolean),
-    symbols_to_index: S.optional(CollectionResponseSymbolsToIndexList),
-    voice_query_model: S.optional(VoiceQueryModelCollectionConfig),
-    metadata: S.optional(S.Unknown),
-    num_documents: S.Number,
-    created_at: S.Number,
-  }),
-).annotate({
-  identifier: "CollectionResponse",
-}) as any as S.Schema<CollectionResponse>;
-
-export type GetCollectionsResponseBodyList = Array<CollectionResponse>;
-export const GetCollectionsResponseBodyList = /*@__PURE__*/ S.Array(
-  CollectionResponse,
-) as any as S.Schema<GetCollectionsResponseBodyList>;
-
-export type GetCollectionsResponse = GetCollectionsResponseBodyList;
-export const GetCollectionsResponse = /*@__PURE__*/ S.suspend(() =>
-  GetCollectionsResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "GetCollectionsResponse",
-}) as any as S.Schema<GetCollectionsResponse>;
-
-export interface GetDocumentRequest {
-  /** The name of the collection to search for the document under */
-  collectionName: string;
-  /** The Document ID */
-  documentId: string;
-}
-export const GetDocumentRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    collectionName: S.String.pipe(T.Label()),
-    documentId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/collections/{collectionName}/documents/{documentId}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "GetDocumentRequest",
-}) as any as S.Schema<GetDocumentRequest>;
-
-export type GetDocumentResponse = unknown;
-export const GetDocumentResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Unknown.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "GetDocumentResponse",
-}) as any as S.Schema<GetDocumentResponse>;
-
-export interface GetKeyRequest {
-  /** The ID of the key to retrieve */
-  keyId: number;
-}
-export const GetKeyRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    keyId: S.Number.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/keys/{keyId}", code: 200 })),
-).annotate({ identifier: "GetKeyRequest" }) as any as S.Schema<GetKeyRequest>;
-
-export type GetKeyResponseActionsList = Array<string>;
-export const GetKeyResponseActionsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<GetKeyResponseActionsList>;
-
-export type GetKeyResponseCollectionsList = Array<string>;
-export const GetKeyResponseCollectionsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<GetKeyResponseCollectionsList>;
-
-export interface GetKeyResponse {
-  value?: string;
-  description: string;
-  actions: GetKeyResponseActionsList;
-  collections: GetKeyResponseCollectionsList;
-  expires_at?: number;
-  id?: number;
-  value_prefix?: string;
-}
-export const GetKeyResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(S.String),
-    description: S.String,
-    actions: GetKeyResponseActionsList,
-    collections: GetKeyResponseCollectionsList,
-    expires_at: S.optional(S.Number),
-    id: S.optional(S.Number),
-    value_prefix: S.optional(S.String),
-  }),
-).annotate({ identifier: "GetKeyResponse" }) as any as S.Schema<GetKeyResponse>;
-
-export interface GetKeysRequest {}
-export const GetKeysRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(T.Http({ method: "GET", uri: "/keys", code: 200 })),
-).annotate({ identifier: "GetKeysRequest" }) as any as S.Schema<GetKeysRequest>;
-
-export type ApiKeyActionsList = Array<string>;
-export const ApiKeyActionsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ApiKeyActionsList>;
-
-export type ApiKeyCollectionsList = Array<string>;
-export const ApiKeyCollectionsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ApiKeyCollectionsList>;
-
-export interface ApiKey {
-  value?: string;
-  description: string;
-  actions: ApiKeyActionsList;
-  collections: ApiKeyCollectionsList;
-  expires_at?: number;
-  id?: number;
-  value_prefix?: string;
-}
-export const ApiKey = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(S.String),
-    description: S.String,
-    actions: ApiKeyActionsList,
-    collections: ApiKeyCollectionsList,
-    expires_at: S.optional(S.Number),
-    id: S.optional(S.Number),
-    value_prefix: S.optional(S.String),
-  }),
-).annotate({ identifier: "ApiKey" }) as any as S.Schema<ApiKey>;
-
-export type ApiKeysResponseKeysList = Array<ApiKey>;
-export const ApiKeysResponseKeysList = /*@__PURE__*/ S.Array(
-  ApiKey,
-) as any as S.Schema<ApiKeysResponseKeysList>;
-
-export interface ApiKeysResponse {
-  keys: ApiKeysResponseKeysList;
-}
-export const ApiKeysResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    keys: ApiKeysResponseKeysList,
-  }),
-).annotate({
-  identifier: "ApiKeysResponse",
-}) as any as S.Schema<ApiKeysResponse>;
-
-export interface GetSchemaChangesRequest {}
-export const GetSchemaChangesRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
-    T.Http({ method: "GET", uri: "/operations/schema_changes", code: 200 }),
-  ),
-).annotate({
-  identifier: "GetSchemaChangesRequest",
-}) as any as S.Schema<GetSchemaChangesRequest>;
-
-export interface SchemaChangeStatus {
-  /** Name of the collection being modified */
-  collection?: string;
-  /** Number of documents that have been validated */
-  validated_docs?: number;
-  /** Number of documents that have been altered */
-  altered_docs?: number;
-}
-export const SchemaChangeStatus = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    collection: S.optional(S.String),
-    validated_docs: S.optional(S.Number),
-    altered_docs: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "SchemaChangeStatus",
-}) as any as S.Schema<SchemaChangeStatus>;
-
-export type GetSchemaChangesResponseBodyList = Array<SchemaChangeStatus>;
-export const GetSchemaChangesResponseBodyList = /*@__PURE__*/ S.Array(
-  SchemaChangeStatus,
-) as any as S.Schema<GetSchemaChangesResponseBodyList>;
-
-export type GetSchemaChangesResponse = GetSchemaChangesResponseBodyList;
-export const GetSchemaChangesResponse = /*@__PURE__*/ S.suspend(() =>
-  GetSchemaChangesResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "GetSchemaChangesResponse",
-}) as any as S.Schema<GetSchemaChangesResponse>;
-
-export interface GetStemmingDictionaryRequest {
-  /** The ID of the dictionary to retrieve */
-  dictionaryId: string;
-}
-export const GetStemmingDictionaryRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    dictionaryId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/stemming/dictionaries/{dictionaryId}",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "GetStemmingDictionaryRequest",
-}) as any as S.Schema<GetStemmingDictionaryRequest>;
-
-export interface StemmingDictionaryWordsItem {
-  /** The word form to be stemmed */
-  word: string;
-  /** The root form of the word */
-  root: string;
-}
-export const StemmingDictionaryWordsItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    word: S.String,
-    root: S.String,
-  }),
-).annotate({
-  identifier: "StemmingDictionaryWordsItem",
-}) as any as S.Schema<StemmingDictionaryWordsItem>;
-
-/** List of word mappings in the dictionary */
-export type StemmingDictionaryWordsList = Array<StemmingDictionaryWordsItem>;
-export const StemmingDictionaryWordsList = /*@__PURE__*/ S.Array(
-  StemmingDictionaryWordsItem,
-) as any as S.Schema<StemmingDictionaryWordsList>;
-
-export interface StemmingDictionary {
-  /** Unique identifier for the dictionary */
-  id: string;
-  /** List of word mappings in the dictionary */
-  words: StemmingDictionaryWordsList;
-}
-export const StemmingDictionary = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    words: StemmingDictionaryWordsList,
-  }),
-).annotate({
-  identifier: "StemmingDictionary",
-}) as any as S.Schema<StemmingDictionary>;
-
-export interface HealthRequest {}
-export const HealthRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(T.Http({ method: "GET", uri: "/health", code: 200 })),
-).annotate({ identifier: "HealthRequest" }) as any as S.Schema<HealthRequest>;
-
-export interface HealthStatus {
-  ok: boolean;
-}
-export const HealthStatus = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ok: S.Boolean,
-  }),
-).annotate({ identifier: "HealthStatus" }) as any as S.Schema<HealthStatus>;
-
-export type IndexAction = "create" | "update" | "upsert" | "emplace";
-export const IndexAction = /*@__PURE__*/ S.String;
-
-export type DirtyValues =
-  | "coerce_or_reject"
-  | "coerce_or_drop"
-  | "drop"
-  | "reject";
-export const DirtyValues = /*@__PURE__*/ S.String;
-
-export interface ImportDocumentsRequestImportDocumentsParameters {
-  batch_size?: number;
-  /** Returning the id of the imported documents. If you want the import response to return the ingested document's id in the response, you can use the return_id parameter. */
-  return_id?: boolean;
-  remote_embedding_batch_size?: number;
-  return_doc?: boolean;
-  action?: IndexAction | (string & {});
-  dirty_values?: DirtyValues | (string & {});
-}
-export const ImportDocumentsRequestImportDocumentsParameters =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      batch_size: S.optional(S.Number),
-      return_id: S.optional(S.Boolean),
-      remote_embedding_batch_size: S.optional(S.Number),
-      return_doc: S.optional(S.Boolean),
-      action: S.optional(IndexAction),
-      dirty_values: S.optional(DirtyValues),
-    }),
-  ).annotate({
-    identifier: "ImportDocumentsRequestImportDocumentsParameters",
-  }) as any as S.Schema<ImportDocumentsRequestImportDocumentsParameters>;
-
-export interface ImportDocumentsRequest {
-  /** The name of the collection */
-  collectionName: string;
-  importDocumentsParameters?: ImportDocumentsRequestImportDocumentsParameters;
-}
-export const ImportDocumentsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    collectionName: S.String.pipe(T.Label()),
-    importDocumentsParameters: S.optional(
-      ImportDocumentsRequestImportDocumentsParameters.pipe(T.Query()),
-    ),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/collections/{collectionName}/documents/import",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ImportDocumentsRequest",
-}) as any as S.Schema<ImportDocumentsRequest>;
-
-export interface ImportDocumentsResponse {}
-export const ImportDocumentsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ImportDocumentsResponse",
-}) as any as S.Schema<ImportDocumentsResponse>;
-
-export interface ImportStemmingDictionaryRequest {
-  /** The ID to assign to the dictionary */
-  id: string;
-  body: string;
-}
-export const ImportStemmingDictionaryRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Query()),
-    body: S.String.pipe(T.HttpBody()),
-  }).pipe(
-    T.Http({ method: "POST", uri: "/stemming/dictionaries/import", code: 200 }),
-  ),
-).annotate({
-  identifier: "ImportStemmingDictionaryRequest",
-}) as any as S.Schema<ImportStemmingDictionaryRequest>;
-
-export interface ImportStemmingDictionaryResponse {}
-export const ImportStemmingDictionaryResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ImportStemmingDictionaryResponse",
-}) as any as S.Schema<ImportStemmingDictionaryResponse>;
-
-export interface IndexDocumentRequest {
-  /** The name of the collection to add the document to */
-  collectionName: string;
-  /** Additional action to perform */
-  action?: IndexAction | (string & {});
-  /** Dealing with Dirty Data */
-  dirty_values?: DirtyValues | (string & {});
-}
-export const IndexDocumentRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    collectionName: S.String.pipe(T.Label()),
-    action: S.optional(IndexAction.pipe(T.Query())),
-    dirty_values: S.optional(DirtyValues.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/collections/{collectionName}/documents",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "IndexDocumentRequest",
-}) as any as S.Schema<IndexDocumentRequest>;
-
-export type IndexDocumentResponse = unknown;
-export const IndexDocumentResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Unknown.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "IndexDocumentResponse",
-}) as any as S.Schema<IndexDocumentResponse>;
-
-export interface ListStemmingDictionariesRequest {}
-export const ListStemmingDictionariesRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
-    T.Http({ method: "GET", uri: "/stemming/dictionaries", code: 200 }),
-  ),
-).annotate({
-  identifier: "ListStemmingDictionariesRequest",
-}) as any as S.Schema<ListStemmingDictionariesRequest>;
-
-export type ListStemmingDictionariesResponseDictionariesList = Array<string>;
-export const ListStemmingDictionariesResponseDictionariesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ListStemmingDictionariesResponseDictionariesList>;
-
-export interface ListStemmingDictionariesResponse {
-  dictionaries?: ListStemmingDictionariesResponseDictionariesList;
-}
-export const ListStemmingDictionariesResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    dictionaries: S.optional(ListStemmingDictionariesResponseDictionariesList),
-  }),
-).annotate({
-  identifier: "ListStemmingDictionariesResponse",
-}) as any as S.Schema<ListStemmingDictionariesResponse>;
-
-/** Dictates the direction in which the words in the query must be dropped when the original words in the query do not appear in any document. Values: right_to_left (default), left_to_right, both_sides:3 A note on both_sides:3 - for queries up to 3 tokens (words) in length, this mode will drop tokens from both sides and exhaustively rank all matching results. If query length is greater than 3 words, Typesense will just fallback to default behavior of right_to_left */
-export type DropTokensMode = "right_to_left" | "left_to_right" | "both_sides:3";
-export const DropTokensMode = /*@__PURE__*/ S.String;
-
-/** Parameters for the multi search API. */
-export interface MultiSearchParameters {
-  /** The query text to search for in the collection. Use * as the search string to return all documents. This is typically useful when used in conjunction with filter_by. */
-  q?: string;
-  /** A list of `string` fields that should be queried against. Multiple fields are separated with a comma. */
-  query_by?: string;
-  /** The relative weight to give each `query_by` field when ranking results. This can be used to boost fields in priority, when looking for matches. Multiple fields are separated with a comma. */
-  query_by_weights?: string;
-  /** In a multi-field matching context, this parameter determines how the representative text match score of a record is calculated. Possible values are max_score (default) or max_weight. */
-  text_match_type?: string;
-  /** Boolean field to indicate that the last word in the query should be treated as a prefix, and not as a whole word. This is used for building autocomplete and instant search interfaces. Defaults to true. */
-  prefix?: string;
-  /** If infix index is enabled for this field, infix searching can be done on a per-field basis by sending a comma separated string parameter called infix to the search query. This parameter can have 3 values; `off` infix search is disabled, which is default `always` infix search is performed along with regular search `fallback` infix search is performed if regular search does not produce results */
-  infix?: string;
-  /** There are also 2 parameters that allow you to control the extent of infix searching max_extra_prefix and max_extra_suffix which specify the maximum number of symbols before or after the query that can be present in the token. For example query "K2100" has 2 extra symbols in "6PK2100". By default, any number of prefixes/suffixes can be present for a match. */
-  max_extra_prefix?: number;
-  /** There are also 2 parameters that allow you to control the extent of infix searching max_extra_prefix and max_extra_suffix which specify the maximum number of symbols before or after the query that can be present in the token. For example query "K2100" has 2 extra symbols in "6PK2100". By default, any number of prefixes/suffixes can be present for a match. */
-  max_extra_suffix?: number;
-  /** Filter conditions for refining youropen api validator search results. Separate multiple conditions with &&. */
-  filter_by?: string;
-  /** A list of numerical fields and their corresponding sort orders that will be used for ordering your results. Up to 3 sort fields can be specified. The text similarity score is exposed as a special `_text_match` field that you can use in the list of sorting fields. If no `sort_by` parameter is specified, results are sorted by `_text_match:desc,default_sorting_field:desc` */
-  sort_by?: string;
-  /** A list of fields that will be used for faceting your results on. Separate multiple fields with a comma. */
-  facet_by?: string;
-  /** Maximum number of facet values to be returned. */
-  max_facet_values?: number;
-  /** Facet values that are returned can now be filtered via this parameter. The matching facet text is also highlighted. For example, when faceting by `category`, you can set `facet_query=category:shoe` to return only facet values that contain the prefix "shoe". */
-  facet_query?: string;
-  /** The number of typographical errors (1 or 2) that would be tolerated. Default: 2 */
-  num_typos?: string;
-  /** Results from this specific page number would be fetched. */
-  page?: number;
-  /** Number of results to fetch per page. Default: 10 */
-  per_page?: number;
-  /** Number of hits to fetch. Can be used as an alternative to the per_page parameter. Default: 10. */
-  limit?: number;
-  /** Identifies the starting point to return hits from a result set. Can be used as an alternative to the page parameter. */
-  offset?: number;
-  /** You can aggregate search results into groups or buckets by specify one or more `group_by` fields. Separate multiple fields with a comma. To group on a particular field, it must be a faceted field. */
-  group_by?: string;
-  /** Maximum number of hits to be returned for every group. If the `group_limit` is set as `K` then only the top K hits in each group are returned in the response. Default: 3 */
-  group_limit?: number;
-  /** Setting this parameter to true will place all documents that have a null value in the group_by field, into a single group. Setting this parameter to false, will cause each document with a null value in the group_by field to not be grouped with other documents. Default: true */
-  group_missing_values?: boolean;
-  /** List of fields from the document to include in the search result */
-  include_fields?: string;
-  /** List of fields from the document to exclude in the search result */
-  exclude_fields?: string;
-  /** List of fields which should be highlighted fully without snippeting */
-  highlight_full_fields?: string;
-  /** The number of tokens that should surround the highlighted text on each side. Default: 4 */
-  highlight_affix_num_tokens?: number;
-  /** The start tag used for the highlighted snippets. Default: `<mark>` */
-  highlight_start_tag?: string;
-  /** The end tag used for the highlighted snippets. Default: `</mark>` */
-  highlight_end_tag?: string;
-  /** Field values under this length will be fully highlighted, instead of showing a snippet of relevant portion. Default: 30 */
-  snippet_threshold?: number;
-  /** If the number of results found for a specific query is less than this number, Typesense will attempt to drop the tokens in the query until enough results are found. Tokens that have the least individual hits are dropped first. Set to 0 to disable. Default: 10 */
-  drop_tokens_threshold?: number;
-  drop_tokens_mode?: DropTokensMode | (string & {});
-  /** If the number of results found for a specific query is less than this number, Typesense will attempt to look for tokens with more typos until enough results are found. Default: 100 */
-  typo_tokens_threshold?: number;
-  /** Set this parameter to false to disable typos on alphanumerical query tokens. Default: true. */
-  enable_typos_for_alpha_numerical_tokens?: boolean;
-  /** Whether the filter_by condition of the search query should be applicable to curated results (curation definitions, pinned hits, hidden hits, etc.). Default: false */
-  filter_curated_hits?: boolean;
-  /** If you have some synonyms defined but want to disable all of them for a particular search query, set enable_synonyms to false. Default: true */
-  enable_synonyms?: boolean;
-  /** Flag for enabling/disabling analytics aggregation for specific search queries (for e.g. those originating from a test script). */
-  enable_analytics?: boolean;
-  /** Allow synonym resolution on word prefixes in the query. Default: false */
-  synonym_prefix?: boolean;
-  /** Allow synonym resolution on typo-corrected words in the query. Default: 0 */
-  synonym_num_typos?: number;
-  /** A list of records to unconditionally include in the search results at specific positions. An example use case would be to feature or promote certain items on the top of search results. A list of `record_id:hit_position`. Eg: to include a record with ID 123 at Position 1 and another record with ID 456 at Position 5, you'd specify `123:1,456:5`. You could also use the Curation feature to override search results based on rules. Curations are applied first, followed by `pinned_hits` and finally `hidden_hits`. */
-  pinned_hits?: string;
-  /** A list of records to unconditionally hide from search results. A list of `record_id`s to hide. Eg: to hide records with IDs 123 and 456, you'd specify `123,456`. You could also use the Curation feature to override search results based on rules. Curations are applied first, followed by `pinned_hits` and finally `hidden_hits`. */
-  hidden_hits?: string;
-  /** Comma separated list of tags to trigger the curations rules that match the tags. */
-  curation_tags?: string;
-  /** A list of custom fields that must be highlighted even if you don't query for them */
-  highlight_fields?: string;
-  /** You can index content from any logographic language into Typesense if you are able to segment / split the text into space-separated words yourself before indexing and querying. Set this parameter to true to do the same */
-  pre_segmented_query?: boolean;
-  /** Search using a bunch of search parameters by setting this parameter to the name of the existing Preset. */
-  preset?: string;
-  /** If you have some curation sets defined but want to disable all of them during query time, you can do that by setting this parameter to false */
-  enable_curations?: boolean;
-  /** Set this parameter to true to ensure that an exact match is ranked above the others */
-  prioritize_exact_match?: boolean;
-  /** Make Typesense prioritize documents where the query words appear earlier in the text. */
-  prioritize_token_position?: boolean;
-  /** Make Typesense prioritize documents where the query words appear in more number of fields. */
-  prioritize_num_matching_fields?: boolean;
-  /** Make Typesense disable typos for numerical tokens. */
-  enable_typos_for_numerical_tokens?: boolean;
-  /** Setting this to true will make Typesense consider all prefixes and typo corrections of the words in the query without stopping early when enough results are found (drop_tokens_threshold and typo_tokens_threshold configurations are ignored). */
-  exhaustive_search?: boolean;
-  /** Typesense will attempt to return results early if the cutoff time has elapsed. This is not a strict guarantee and facet computation is not bound by this parameter. */
-  search_cutoff_ms?: number;
-  /** Enable server side caching of search query results. By default, caching is disabled. */
-  use_cache?: boolean;
-  /** The duration (in seconds) that determines how long the search query is cached. This value can be set on a per-query basis. Default: 60. */
-  cache_ttl?: number;
-  /** Minimum word length for 1-typo correction to be applied. The value of num_typos is still treated as the maximum allowed typos. */
-  min_len_1typo?: number;
-  /** Minimum word length for 2-typo correction to be applied. The value of num_typos is still treated as the maximum allowed typos. */
-  min_len_2typo?: number;
-  /** Vector query expression for fetching documents "closest" to a given query/document vector. */
-  vector_query?: string;
-  /** Timeout (in milliseconds) for fetching remote embeddings. */
-  remote_embedding_timeout_ms?: number;
-  /** Number of times to retry fetching remote embeddings. */
-  remote_embedding_num_tries?: number;
-  /** Choose the underlying faceting strategy used. Comma separated string of allows values: exhaustive, top_values or automatic (default). */
-  facet_strategy?: string;
-  /** Name of the stopwords set to apply for this search, the keywords present in the set will be removed from the search query. */
-  stopwords?: string;
-  /** Comma separated string of nested facet fields whose parent object should be returned in facet response. */
-  facet_return_parent?: string;
-  /** The base64 encoded audio file in 16 khz 16-bit WAV format. */
-  voice_query?: string;
-  /** Enable conversational search. */
-  conversation?: boolean;
-  /** The Id of Conversation Model to be used. */
-  conversation_model_id?: string;
-  /** The Id of a previous conversation to continue, this tells Typesense to include prior context when communicating with the LLM. */
-  conversation_id?: string;
-  /** Controls whether Typesense should validate if the fields exist in the schema. When set to false, Typesense will not throw an error if a field is missing. This is useful for programmatic grouping where not all fields may exist. */
-  validate_field_names?: boolean;
-}
-export const MultiSearchParameters = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    q: S.optional(S.String),
-    query_by: S.optional(S.String),
-    query_by_weights: S.optional(S.String),
-    text_match_type: S.optional(S.String),
-    prefix: S.optional(S.String),
-    infix: S.optional(S.String),
-    max_extra_prefix: S.optional(S.Number),
-    max_extra_suffix: S.optional(S.Number),
-    filter_by: S.optional(S.String),
-    sort_by: S.optional(S.String),
-    facet_by: S.optional(S.String),
-    max_facet_values: S.optional(S.Number),
-    facet_query: S.optional(S.String),
-    num_typos: S.optional(S.String),
-    page: S.optional(S.Number),
-    per_page: S.optional(S.Number),
-    limit: S.optional(S.Number),
-    offset: S.optional(S.Number),
-    group_by: S.optional(S.String),
-    group_limit: S.optional(S.Number),
-    group_missing_values: S.optional(S.Boolean),
-    include_fields: S.optional(S.String),
-    exclude_fields: S.optional(S.String),
-    highlight_full_fields: S.optional(S.String),
-    highlight_affix_num_tokens: S.optional(S.Number),
-    highlight_start_tag: S.optional(S.String),
-    highlight_end_tag: S.optional(S.String),
-    snippet_threshold: S.optional(S.Number),
-    drop_tokens_threshold: S.optional(S.Number),
-    drop_tokens_mode: S.optional(DropTokensMode),
-    typo_tokens_threshold: S.optional(S.Number),
-    enable_typos_for_alpha_numerical_tokens: S.optional(S.Boolean),
-    filter_curated_hits: S.optional(S.Boolean),
-    enable_synonyms: S.optional(S.Boolean),
-    enable_analytics: S.optional(S.Boolean),
-    synonym_prefix: S.optional(S.Boolean),
-    synonym_num_typos: S.optional(S.Number),
-    pinned_hits: S.optional(S.String),
-    hidden_hits: S.optional(S.String),
-    curation_tags: S.optional(S.String),
-    highlight_fields: S.optional(S.String),
-    pre_segmented_query: S.optional(S.Boolean),
-    preset: S.optional(S.String),
-    enable_curations: S.optional(S.Boolean),
-    prioritize_exact_match: S.optional(S.Boolean),
-    prioritize_token_position: S.optional(S.Boolean),
-    prioritize_num_matching_fields: S.optional(S.Boolean),
-    enable_typos_for_numerical_tokens: S.optional(S.Boolean),
-    exhaustive_search: S.optional(S.Boolean),
-    search_cutoff_ms: S.optional(S.Number),
-    use_cache: S.optional(S.Boolean),
-    cache_ttl: S.optional(S.Number),
-    min_len_1typo: S.optional(S.Number),
-    min_len_2typo: S.optional(S.Number),
-    vector_query: S.optional(S.String),
-    remote_embedding_timeout_ms: S.optional(S.Number),
-    remote_embedding_num_tries: S.optional(S.Number),
-    facet_strategy: S.optional(S.String),
-    stopwords: S.optional(S.String),
-    facet_return_parent: S.optional(S.String),
-    voice_query: S.optional(S.String),
-    conversation: S.optional(S.Boolean),
-    conversation_model_id: S.optional(S.String),
-    conversation_id: S.optional(S.String),
-    validate_field_names: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "MultiSearchParameters",
-}) as any as S.Schema<MultiSearchParameters>;
-
-export interface MultiSearchCollectionParameters {
-  /** The query text to search for in the collection. Use * as the search string to return all documents. This is typically useful when used in conjunction with filter_by. */
-  q?: string;
-  /** A list of `string` fields that should be queried against. Multiple fields are separated with a comma. */
-  query_by?: string;
-  /** The relative weight to give each `query_by` field when ranking results. This can be used to boost fields in priority, when looking for matches. Multiple fields are separated with a comma. */
-  query_by_weights?: string;
-  /** In a multi-field matching context, this parameter determines how the representative text match score of a record is calculated. Possible values are max_score (default) or max_weight. */
-  text_match_type?: string;
-  /** Boolean field to indicate that the last word in the query should be treated as a prefix, and not as a whole word. This is used for building autocomplete and instant search interfaces. Defaults to true. */
-  prefix?: string;
-  /** If infix index is enabled for this field, infix searching can be done on a per-field basis by sending a comma separated string parameter called infix to the search query. This parameter can have 3 values; `off` infix search is disabled, which is default `always` infix search is performed along with regular search `fallback` infix search is performed if regular search does not produce results */
-  infix?: string;
-  /** There are also 2 parameters that allow you to control the extent of infix searching max_extra_prefix and max_extra_suffix which specify the maximum number of symbols before or after the query that can be present in the token. For example query "K2100" has 2 extra symbols in "6PK2100". By default, any number of prefixes/suffixes can be present for a match. */
-  max_extra_prefix?: number;
-  /** There are also 2 parameters that allow you to control the extent of infix searching max_extra_prefix and max_extra_suffix which specify the maximum number of symbols before or after the query that can be present in the token. For example query "K2100" has 2 extra symbols in "6PK2100". By default, any number of prefixes/suffixes can be present for a match. */
-  max_extra_suffix?: number;
-  /** Filter conditions for refining youropen api validator search results. Separate multiple conditions with &&. */
-  filter_by?: string;
-  /** A list of numerical fields and their corresponding sort orders that will be used for ordering your results. Up to 3 sort fields can be specified. The text similarity score is exposed as a special `_text_match` field that you can use in the list of sorting fields. If no `sort_by` parameter is specified, results are sorted by `_text_match:desc,default_sorting_field:desc` */
-  sort_by?: string;
-  /** A list of fields that will be used for faceting your results on. Separate multiple fields with a comma. */
-  facet_by?: string;
-  /** Maximum number of facet values to be returned. */
-  max_facet_values?: number;
-  /** Facet values that are returned can now be filtered via this parameter. The matching facet text is also highlighted. For example, when faceting by `category`, you can set `facet_query=category:shoe` to return only facet values that contain the prefix "shoe". */
-  facet_query?: string;
-  /** The number of typographical errors (1 or 2) that would be tolerated. Default: 2 */
-  num_typos?: string;
-  /** Results from this specific page number would be fetched. */
-  page?: number;
-  /** Number of results to fetch per page. Default: 10 */
-  per_page?: number;
-  /** Number of hits to fetch. Can be used as an alternative to the per_page parameter. Default: 10. */
-  limit?: number;
-  /** Identifies the starting point to return hits from a result set. Can be used as an alternative to the page parameter. */
-  offset?: number;
-  /** You can aggregate search results into groups or buckets by specify one or more `group_by` fields. Separate multiple fields with a comma. To group on a particular field, it must be a faceted field. */
-  group_by?: string;
-  /** Maximum number of hits to be returned for every group. If the `group_limit` is set as `K` then only the top K hits in each group are returned in the response. Default: 3 */
-  group_limit?: number;
-  /** Setting this parameter to true will place all documents that have a null value in the group_by field, into a single group. Setting this parameter to false, will cause each document with a null value in the group_by field to not be grouped with other documents. Default: true */
-  group_missing_values?: boolean;
-  /** List of fields from the document to include in the search result */
-  include_fields?: string;
-  /** List of fields from the document to exclude in the search result */
-  exclude_fields?: string;
-  /** List of fields which should be highlighted fully without snippeting */
-  highlight_full_fields?: string;
-  /** The number of tokens that should surround the highlighted text on each side. Default: 4 */
-  highlight_affix_num_tokens?: number;
-  /** The start tag used for the highlighted snippets. Default: `<mark>` */
-  highlight_start_tag?: string;
-  /** The end tag used for the highlighted snippets. Default: `</mark>` */
-  highlight_end_tag?: string;
-  /** Field values under this length will be fully highlighted, instead of showing a snippet of relevant portion. Default: 30 */
-  snippet_threshold?: number;
-  /** If the number of results found for a specific query is less than this number, Typesense will attempt to drop the tokens in the query until enough results are found. Tokens that have the least individual hits are dropped first. Set to 0 to disable. Default: 10 */
-  drop_tokens_threshold?: number;
-  drop_tokens_mode?: DropTokensMode | (string & {});
-  /** If the number of results found for a specific query is less than this number, Typesense will attempt to look for tokens with more typos until enough results are found. Default: 100 */
-  typo_tokens_threshold?: number;
-  /** Set this parameter to false to disable typos on alphanumerical query tokens. Default: true. */
-  enable_typos_for_alpha_numerical_tokens?: boolean;
-  /** Whether the filter_by condition of the search query should be applicable to curated results (curation definitions, pinned hits, hidden hits, etc.). Default: false */
-  filter_curated_hits?: boolean;
-  /** If you have some synonyms defined but want to disable all of them for a particular search query, set enable_synonyms to false. Default: true */
-  enable_synonyms?: boolean;
-  /** Flag for enabling/disabling analytics aggregation for specific search queries (for e.g. those originating from a test script). */
-  enable_analytics?: boolean;
-  /** Allow synonym resolution on word prefixes in the query. Default: false */
-  synonym_prefix?: boolean;
-  /** Allow synonym resolution on typo-corrected words in the query. Default: 0 */
-  synonym_num_typos?: number;
-  /** A list of records to unconditionally include in the search results at specific positions. An example use case would be to feature or promote certain items on the top of search results. A list of `record_id:hit_position`. Eg: to include a record with ID 123 at Position 1 and another record with ID 456 at Position 5, you'd specify `123:1,456:5`. You could also use the Curation feature to override search results based on rules. Curations are applied first, followed by `pinned_hits` and finally `hidden_hits`. */
-  pinned_hits?: string;
-  /** A list of records to unconditionally hide from search results. A list of `record_id`s to hide. Eg: to hide records with IDs 123 and 456, you'd specify `123,456`. You could also use the Curation feature to override search results based on rules. Curations are applied first, followed by `pinned_hits` and finally `hidden_hits`. */
-  hidden_hits?: string;
-  /** Comma separated list of tags to trigger the curations rules that match the tags. */
-  curation_tags?: string;
-  /** A list of custom fields that must be highlighted even if you don't query for them */
-  highlight_fields?: string;
-  /** You can index content from any logographic language into Typesense if you are able to segment / split the text into space-separated words yourself before indexing and querying. Set this parameter to true to do the same */
-  pre_segmented_query?: boolean;
-  /** Search using a bunch of search parameters by setting this parameter to the name of the existing Preset. */
-  preset?: string;
-  /** If you have some curation sets defined but want to disable all of them during query time, you can do that by setting this parameter to false */
-  enable_curations?: boolean;
-  /** Set this parameter to true to ensure that an exact match is ranked above the others */
-  prioritize_exact_match?: boolean;
-  /** Make Typesense prioritize documents where the query words appear earlier in the text. */
-  prioritize_token_position?: boolean;
-  /** Make Typesense prioritize documents where the query words appear in more number of fields. */
-  prioritize_num_matching_fields?: boolean;
-  /** Make Typesense disable typos for numerical tokens. */
-  enable_typos_for_numerical_tokens?: boolean;
-  /** Setting this to true will make Typesense consider all prefixes and typo corrections of the words in the query without stopping early when enough results are found (drop_tokens_threshold and typo_tokens_threshold configurations are ignored). */
-  exhaustive_search?: boolean;
-  /** Typesense will attempt to return results early if the cutoff time has elapsed. This is not a strict guarantee and facet computation is not bound by this parameter. */
-  search_cutoff_ms?: number;
-  /** Enable server side caching of search query results. By default, caching is disabled. */
-  use_cache?: boolean;
-  /** The duration (in seconds) that determines how long the search query is cached. This value can be set on a per-query basis. Default: 60. */
-  cache_ttl?: number;
-  /** Minimum word length for 1-typo correction to be applied. The value of num_typos is still treated as the maximum allowed typos. */
-  min_len_1typo?: number;
-  /** Minimum word length for 2-typo correction to be applied. The value of num_typos is still treated as the maximum allowed typos. */
-  min_len_2typo?: number;
-  /** Vector query expression for fetching documents "closest" to a given query/document vector. */
-  vector_query?: string;
-  /** Timeout (in milliseconds) for fetching remote embeddings. */
-  remote_embedding_timeout_ms?: number;
-  /** Number of times to retry fetching remote embeddings. */
-  remote_embedding_num_tries?: number;
-  /** Choose the underlying faceting strategy used. Comma separated string of allows values: exhaustive, top_values or automatic (default). */
-  facet_strategy?: string;
-  /** Name of the stopwords set to apply for this search, the keywords present in the set will be removed from the search query. */
-  stopwords?: string;
-  /** Comma separated string of nested facet fields whose parent object should be returned in facet response. */
-  facet_return_parent?: string;
-  /** The base64 encoded audio file in 16 khz 16-bit WAV format. */
-  voice_query?: string;
-  /** Enable conversational search. */
-  conversation?: boolean;
-  /** The Id of Conversation Model to be used. */
-  conversation_model_id?: string;
-  /** The Id of a previous conversation to continue, this tells Typesense to include prior context when communicating with the LLM. */
-  conversation_id?: string;
-  /** Controls whether Typesense should validate if the fields exist in the schema. When set to false, Typesense will not throw an error if a field is missing. This is useful for programmatic grouping where not all fields may exist. */
-  validate_field_names?: boolean;
-  /** The collection to search in. */
-  collection?: string;
-  /** A separate search API key for each search within a multi_search request */
-  x_typesense_api_key?: string;
-  /** When true, computes both text match and vector distance scores for all matches in hybrid search. Documents found only through keyword search will get a vector distance score, and documents found only through vector search will get a text match score. */
-  rerank_hybrid_matches?: boolean;
-}
-export const MultiSearchCollectionParameters = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    q: S.optional(S.String),
-    query_by: S.optional(S.String),
-    query_by_weights: S.optional(S.String),
-    text_match_type: S.optional(S.String),
-    prefix: S.optional(S.String),
-    infix: S.optional(S.String),
-    max_extra_prefix: S.optional(S.Number),
-    max_extra_suffix: S.optional(S.Number),
-    filter_by: S.optional(S.String),
-    sort_by: S.optional(S.String),
-    facet_by: S.optional(S.String),
-    max_facet_values: S.optional(S.Number),
-    facet_query: S.optional(S.String),
-    num_typos: S.optional(S.String),
-    page: S.optional(S.Number),
-    per_page: S.optional(S.Number),
-    limit: S.optional(S.Number),
-    offset: S.optional(S.Number),
-    group_by: S.optional(S.String),
-    group_limit: S.optional(S.Number),
-    group_missing_values: S.optional(S.Boolean),
-    include_fields: S.optional(S.String),
-    exclude_fields: S.optional(S.String),
-    highlight_full_fields: S.optional(S.String),
-    highlight_affix_num_tokens: S.optional(S.Number),
-    highlight_start_tag: S.optional(S.String),
-    highlight_end_tag: S.optional(S.String),
-    snippet_threshold: S.optional(S.Number),
-    drop_tokens_threshold: S.optional(S.Number),
-    drop_tokens_mode: S.optional(DropTokensMode),
-    typo_tokens_threshold: S.optional(S.Number),
-    enable_typos_for_alpha_numerical_tokens: S.optional(S.Boolean),
-    filter_curated_hits: S.optional(S.Boolean),
-    enable_synonyms: S.optional(S.Boolean),
-    enable_analytics: S.optional(S.Boolean),
-    synonym_prefix: S.optional(S.Boolean),
-    synonym_num_typos: S.optional(S.Number),
-    pinned_hits: S.optional(S.String),
-    hidden_hits: S.optional(S.String),
-    curation_tags: S.optional(S.String),
-    highlight_fields: S.optional(S.String),
-    pre_segmented_query: S.optional(S.Boolean),
-    preset: S.optional(S.String),
-    enable_curations: S.optional(S.Boolean),
-    prioritize_exact_match: S.optional(S.Boolean),
-    prioritize_token_position: S.optional(S.Boolean),
-    prioritize_num_matching_fields: S.optional(S.Boolean),
-    enable_typos_for_numerical_tokens: S.optional(S.Boolean),
-    exhaustive_search: S.optional(S.Boolean),
-    search_cutoff_ms: S.optional(S.Number),
-    use_cache: S.optional(S.Boolean),
-    cache_ttl: S.optional(S.Number),
-    min_len_1typo: S.optional(S.Number),
-    min_len_2typo: S.optional(S.Number),
-    vector_query: S.optional(S.String),
-    remote_embedding_timeout_ms: S.optional(S.Number),
-    remote_embedding_num_tries: S.optional(S.Number),
-    facet_strategy: S.optional(S.String),
-    stopwords: S.optional(S.String),
-    facet_return_parent: S.optional(S.String),
-    voice_query: S.optional(S.String),
-    conversation: S.optional(S.Boolean),
-    conversation_model_id: S.optional(S.String),
-    conversation_id: S.optional(S.String),
-    validate_field_names: S.optional(S.Boolean),
-    collection: S.optional(S.String),
-    x_typesense_api_key: S.optional(
-      S.String.pipe(T.Body("x-typesense-api-key")),
-    ),
-    rerank_hybrid_matches: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "MultiSearchCollectionParameters",
-}) as any as S.Schema<MultiSearchCollectionParameters>;
-
-export type MultiSearchRequestSearchesList =
-  Array<MultiSearchCollectionParameters>;
-export const MultiSearchRequestSearchesList = /*@__PURE__*/ S.Array(
-  MultiSearchCollectionParameters,
-) as any as S.Schema<MultiSearchRequestSearchesList>;
-
-export interface MultiSearchRequest {
-  multiSearchParameters: MultiSearchParameters;
-  /** When true, merges the search results from each search query into a single ordered set of hits. */
-  union?: boolean;
-  searches: MultiSearchRequestSearchesList;
-}
-export const MultiSearchRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    multiSearchParameters: MultiSearchParameters.pipe(T.Query()),
-    union: S.optional(S.Boolean),
-    searches: MultiSearchRequestSearchesList,
-  }).pipe(T.Http({ method: "POST", uri: "/multi_search", code: 200 })),
-).annotate({
-  identifier: "MultiSearchRequest",
-}) as any as S.Schema<MultiSearchRequest>;
-
-export interface FacetCountsCountsItem {
-  count?: number;
-  highlighted?: string;
-  value?: string;
-  parent?: unknown;
-}
-export const FacetCountsCountsItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    count: S.optional(S.Number),
-    highlighted: S.optional(S.String),
-    value: S.optional(S.String),
-    parent: S.optional(S.Unknown),
-  }),
-).annotate({
-  identifier: "FacetCountsCountsItem",
-}) as any as S.Schema<FacetCountsCountsItem>;
-
-export type FacetCountsCountsList = Array<FacetCountsCountsItem>;
-export const FacetCountsCountsList = /*@__PURE__*/ S.Array(
-  FacetCountsCountsItem,
-) as any as S.Schema<FacetCountsCountsList>;
-
-export interface FacetCountsStats {
-  max?: number;
-  min?: number;
-  sum?: number;
-  total_values?: number;
-  avg?: number;
-}
-export const FacetCountsStats = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    max: S.optional(S.Number),
-    min: S.optional(S.Number),
-    sum: S.optional(S.Number),
-    total_values: S.optional(S.Number),
-    avg: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "FacetCountsStats",
-}) as any as S.Schema<FacetCountsStats>;
-
-export interface FacetCounts {
-  counts?: FacetCountsCountsList;
-  field_name?: string;
-  sampled?: boolean;
-  stats?: FacetCountsStats;
-}
-export const FacetCounts = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    counts: S.optional(FacetCountsCountsList),
-    field_name: S.optional(S.String),
-    sampled: S.optional(S.Boolean),
-    stats: S.optional(FacetCountsStats),
-  }),
-).annotate({ identifier: "FacetCounts" }) as any as S.Schema<FacetCounts>;
-
-export type MultiSearchResultItemFacetCountsList = Array<FacetCounts>;
-export const MultiSearchResultItemFacetCountsList = /*@__PURE__*/ S.Array(
-  FacetCounts,
-) as any as S.Schema<MultiSearchResultItemFacetCountsList>;
-
-export type SearchGroupedHitGroupKeyList = Array<unknown>;
-export const SearchGroupedHitGroupKeyList = /*@__PURE__*/ S.Array(
-  S.Unknown,
-) as any as S.Schema<SearchGroupedHitGroupKeyList>;
-
-/** Present only for (array) string[] fields */
-export type SearchHighlightSnippetsList = Array<string>;
-export const SearchHighlightSnippetsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<SearchHighlightSnippetsList>;
-
-/** Full field value with highlighting, present only for (array) string[] fields */
-export type SearchHighlightValuesList = Array<string>;
-export const SearchHighlightValuesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<SearchHighlightValuesList>;
-
-/** The indices property will be present only for string[] fields and will contain the corresponding indices of the snippets in the search field */
-export type SearchHighlightIndicesList = Array<number>;
-export const SearchHighlightIndicesList = /*@__PURE__*/ S.Array(
-  S.Number,
-) as any as S.Schema<SearchHighlightIndicesList>;
-
-export type SearchHighlightMatchedTokensList = Array<unknown>;
-export const SearchHighlightMatchedTokensList = /*@__PURE__*/ S.Array(
-  S.Unknown,
-) as any as S.Schema<SearchHighlightMatchedTokensList>;
-
-export interface SearchHighlight {
-  field?: string;
-  /** Present only for (non-array) string fields */
-  snippet?: string;
-  /** Present only for (array) string[] fields */
-  snippets?: SearchHighlightSnippetsList;
-  /** Full field value with highlighting, present only for (non-array) string fields */
-  value?: string;
-  /** Full field value with highlighting, present only for (array) string[] fields */
-  values?: SearchHighlightValuesList;
-  /** The indices property will be present only for string[] fields and will contain the corresponding indices of the snippets in the search field */
-  indices?: SearchHighlightIndicesList;
-  matched_tokens?: SearchHighlightMatchedTokensList;
-}
-export const SearchHighlight = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    field: S.optional(S.String),
-    snippet: S.optional(S.String),
-    snippets: S.optional(SearchHighlightSnippetsList),
-    value: S.optional(S.String),
-    values: S.optional(SearchHighlightValuesList),
-    indices: S.optional(SearchHighlightIndicesList),
-    matched_tokens: S.optional(SearchHighlightMatchedTokensList),
-  }),
-).annotate({
-  identifier: "SearchHighlight",
-}) as any as S.Schema<SearchHighlight>;
-
-/** (Deprecated) Contains highlighted portions of the search fields */
-export type SearchResultHitHighlightsList = Array<SearchHighlight>;
-export const SearchResultHitHighlightsList = /*@__PURE__*/ S.Array(
-  SearchHighlight,
-) as any as S.Schema<SearchResultHitHighlightsList>;
-
-/** Highlighted version of the matching document */
-export type SearchResultHitHighlightMap = {
-  [key: string]: unknown | undefined;
-};
-export const SearchResultHitHighlightMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<SearchResultHitHighlightMap>;
-
-/** Can be any key-value pair */
-export type SearchResultHitDocumentMap = { [key: string]: unknown | undefined };
-export const SearchResultHitDocumentMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<SearchResultHitDocumentMap>;
-
-export interface SearchResultHitTextMatchInfo {
-  best_field_score?: string;
-  best_field_weight?: number;
-  fields_matched?: number;
-  num_tokens_dropped?: number;
-  score?: string;
-  tokens_matched?: number;
-  typo_prefix_score?: number;
-}
-export const SearchResultHitTextMatchInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    best_field_score: S.optional(S.String),
-    best_field_weight: S.optional(S.Number),
-    fields_matched: S.optional(S.Number),
-    num_tokens_dropped: S.optional(S.Number),
-    score: S.optional(S.String),
-    tokens_matched: S.optional(S.Number),
-    typo_prefix_score: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "SearchResultHitTextMatchInfo",
-}) as any as S.Schema<SearchResultHitTextMatchInfo>;
-
-/** Can be any key-value pair */
-export type SearchResultHitGeoDistanceMetersMap = {
-  [key: string]: number | undefined;
-};
-export const SearchResultHitGeoDistanceMetersMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Number,
-) as any as S.Schema<SearchResultHitGeoDistanceMetersMap>;
-
-/** Information about hybrid search scoring */
-export interface SearchResultHitHybridSearchInfo {
-  /** Combined score from rank fusion of text and vector search */
-  rank_fusion_score?: number;
-}
-export const SearchResultHitHybridSearchInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    rank_fusion_score: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "SearchResultHitHybridSearchInfo",
-}) as any as S.Schema<SearchResultHitHybridSearchInfo>;
-
-export interface SearchResultHit {
-  /** (Deprecated) Contains highlighted portions of the search fields */
-  highlights?: SearchResultHitHighlightsList;
-  /** Highlighted version of the matching document */
-  highlight?: SearchResultHitHighlightMap;
-  /** Can be any key-value pair */
-  document?: SearchResultHitDocumentMap;
-  text_match?: number;
-  text_match_info?: SearchResultHitTextMatchInfo;
-  /** Can be any key-value pair */
-  geo_distance_meters?: SearchResultHitGeoDistanceMetersMap;
-  /** Distance between the query vector and matching document's vector value */
-  vector_distance?: number;
-  /** Information about hybrid search scoring */
-  hybrid_search_info?: SearchResultHitHybridSearchInfo;
-  /** Returned only for union query response. Indicates the index of the query which this document matched to. */
-  search_index?: number;
-}
-export const SearchResultHit = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    highlights: S.optional(SearchResultHitHighlightsList),
-    highlight: S.optional(SearchResultHitHighlightMap),
-    document: S.optional(SearchResultHitDocumentMap),
-    text_match: S.optional(S.Number),
-    text_match_info: S.optional(SearchResultHitTextMatchInfo),
-    geo_distance_meters: S.optional(SearchResultHitGeoDistanceMetersMap),
-    vector_distance: S.optional(S.Number),
-    hybrid_search_info: S.optional(SearchResultHitHybridSearchInfo),
-    search_index: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "SearchResultHit",
-}) as any as S.Schema<SearchResultHit>;
-
-/** The documents that matched the search query */
-export type SearchGroupedHitHitsList = Array<SearchResultHit>;
-export const SearchGroupedHitHitsList = /*@__PURE__*/ S.Array(
-  SearchResultHit,
-) as any as S.Schema<SearchGroupedHitHitsList>;
-
-export interface SearchGroupedHit {
-  found?: number;
-  group_key: SearchGroupedHitGroupKeyList;
-  /** The documents that matched the search query */
-  hits: SearchGroupedHitHitsList;
-}
-export const SearchGroupedHit = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    found: S.optional(S.Number),
-    group_key: SearchGroupedHitGroupKeyList,
-    hits: SearchGroupedHitHitsList,
-  }),
-).annotate({
-  identifier: "SearchGroupedHit",
-}) as any as S.Schema<SearchGroupedHit>;
-
-export type MultiSearchResultItemGroupedHitsList = Array<SearchGroupedHit>;
-export const MultiSearchResultItemGroupedHitsList = /*@__PURE__*/ S.Array(
-  SearchGroupedHit,
-) as any as S.Schema<MultiSearchResultItemGroupedHitsList>;
-
-/** The documents that matched the search query */
-export type MultiSearchResultItemHitsList = Array<SearchResultHit>;
-export const MultiSearchResultItemHitsList = /*@__PURE__*/ S.Array(
-  SearchResultHit,
-) as any as S.Schema<MultiSearchResultItemHitsList>;
-
-export interface SearchRequestParamsVoiceQuery {
-  transcribed_query?: string;
-}
-export const SearchRequestParamsVoiceQuery = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    transcribed_query: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SearchRequestParamsVoiceQuery",
-}) as any as S.Schema<SearchRequestParamsVoiceQuery>;
-
-export interface SearchRequestParams {
-  collection_name: string;
-  first_q?: string;
-  q: string;
-  per_page: number;
-  voice_query?: SearchRequestParamsVoiceQuery;
-}
-export const SearchRequestParams = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    collection_name: S.String,
-    first_q: S.optional(S.String),
-    q: S.String,
-    per_page: S.Number,
-    voice_query: S.optional(SearchRequestParamsVoiceQuery),
-  }),
-).annotate({
-  identifier: "SearchRequestParams",
-}) as any as S.Schema<SearchRequestParams>;
-
-export type SearchResultConversationConversationHistoryList = Array<unknown>;
-export const SearchResultConversationConversationHistoryList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<SearchResultConversationConversationHistoryList>;
-
-export interface SearchResultConversation {
-  answer: string;
-  conversation_history: SearchResultConversationConversationHistoryList;
-  conversation_id: string;
-  query: string;
-}
-export const SearchResultConversation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    answer: S.String,
-    conversation_history: SearchResultConversationConversationHistoryList,
-    conversation_id: S.String,
-    query: S.String,
-  }),
-).annotate({
-  identifier: "SearchResultConversation",
-}) as any as S.Schema<SearchResultConversation>;
-
-/** Returned only for union query response. */
-export type MultiSearchResultItemUnionRequestParamsList =
-  Array<SearchRequestParams>;
-export const MultiSearchResultItemUnionRequestParamsList =
-  /*@__PURE__*/ S.Array(
-    SearchRequestParams,
-  ) as any as S.Schema<MultiSearchResultItemUnionRequestParamsList>;
-
-/** Custom JSON object that can be returned in the search response */
-export type MultiSearchResultItemMetadataMap = {
-  [key: string]: unknown | undefined;
-};
-export const MultiSearchResultItemMetadataMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<MultiSearchResultItemMetadataMap>;
-
-export interface MultiSearchResultItem {
-  facet_counts?: MultiSearchResultItemFacetCountsList;
-  /** The number of documents found */
-  found?: number;
-  found_docs?: number;
-  /** The number of milliseconds the search took */
-  search_time_ms?: number;
-  /** The total number of documents in the collection */
-  out_of?: number;
-  /** Whether the search was cut off */
-  search_cutoff?: boolean;
-  /** The search result page number */
-  page?: number;
-  grouped_hits?: MultiSearchResultItemGroupedHitsList;
-  /** The documents that matched the search query */
-  hits?: MultiSearchResultItemHitsList;
-  request_params?: SearchRequestParams;
-  conversation?: SearchResultConversation;
-  /** Returned only for union query response. */
-  union_request_params?: MultiSearchResultItemUnionRequestParamsList;
-  /** Custom JSON object that can be returned in the search response */
-  metadata?: MultiSearchResultItemMetadataMap;
-  /** HTTP error code */
-  code?: number;
-  /** Error description */
-  error?: string;
-}
-export const MultiSearchResultItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    facet_counts: S.optional(MultiSearchResultItemFacetCountsList),
-    found: S.optional(S.Number),
-    found_docs: S.optional(S.Number),
-    search_time_ms: S.optional(S.Number),
-    out_of: S.optional(S.Number),
-    search_cutoff: S.optional(S.Boolean),
-    page: S.optional(S.Number),
-    grouped_hits: S.optional(MultiSearchResultItemGroupedHitsList),
-    hits: S.optional(MultiSearchResultItemHitsList),
-    request_params: S.optional(SearchRequestParams),
-    conversation: S.optional(SearchResultConversation),
-    union_request_params: S.optional(
-      MultiSearchResultItemUnionRequestParamsList,
-    ),
-    metadata: S.optional(MultiSearchResultItemMetadataMap),
-    code: S.optional(S.Number),
-    error: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "MultiSearchResultItem",
-}) as any as S.Schema<MultiSearchResultItem>;
-
-export type MultiSearchResultResultsList = Array<MultiSearchResultItem>;
-export const MultiSearchResultResultsList = /*@__PURE__*/ S.Array(
-  MultiSearchResultItem,
-) as any as S.Schema<MultiSearchResultResultsList>;
-
-export interface MultiSearchResult {
-  results: MultiSearchResultResultsList;
-  conversation?: SearchResultConversation;
-}
-export const MultiSearchResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    results: MultiSearchResultResultsList,
-    conversation: S.optional(SearchResultConversation),
-  }),
-).annotate({
-  identifier: "MultiSearchResult",
-}) as any as S.Schema<MultiSearchResult>;
-
-export interface RetrieveAllConversationModelsRequest {}
-export const RetrieveAllConversationModelsRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({}).pipe(
-      T.Http({ method: "GET", uri: "/conversations/models", code: 200 }),
-    ),
-).annotate({
-  identifier: "RetrieveAllConversationModelsRequest",
-}) as any as S.Schema<RetrieveAllConversationModelsRequest>;
+  identifier: "GetAllConversationModelsRequest",
+}) as any as S.Schema<GetAllConversationModelsRequest>;
 
 export interface ConversationModelSchema {
   /** An explicit id for the model, otherwise the API will return a response with an auto-generated conversation model id. */
@@ -2999,29 +1509,28 @@ export const ConversationModelSchema = /*@__PURE__*/ S.suspend(() =>
   identifier: "ConversationModelSchema",
 }) as any as S.Schema<ConversationModelSchema>;
 
-export type RetrieveAllConversationModelsResponseBodyList =
+export type GetAllConversationModelsResponseBodyList =
   Array<ConversationModelSchema>;
-export const RetrieveAllConversationModelsResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    ConversationModelSchema,
-  ) as any as S.Schema<RetrieveAllConversationModelsResponseBodyList>;
+export const GetAllConversationModelsResponseBodyList = /*@__PURE__*/ S.Array(
+  ConversationModelSchema,
+) as any as S.Schema<GetAllConversationModelsResponseBodyList>;
 
-export type RetrieveAllConversationModelsResponse =
-  RetrieveAllConversationModelsResponseBodyList;
-export const RetrieveAllConversationModelsResponse = /*@__PURE__*/ S.suspend(
-  () => RetrieveAllConversationModelsResponseBodyList.pipe(T.RawResponseRoot()),
+export type GetAllConversationModelsResponse =
+  GetAllConversationModelsResponseBodyList;
+export const GetAllConversationModelsResponse = /*@__PURE__*/ S.suspend(() =>
+  GetAllConversationModelsResponseBodyList.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "RetrieveAllConversationModelsResponse",
-}) as any as S.Schema<RetrieveAllConversationModelsResponse>;
+  identifier: "GetAllConversationModelsResponse",
+}) as any as S.Schema<GetAllConversationModelsResponse>;
 
-export interface RetrieveAllNLSearchModelsRequest {}
-export const RetrieveAllNLSearchModelsRequest = /*@__PURE__*/ S.suspend(() =>
+export interface GetAllNLSearchModelsRequest {}
+export const GetAllNLSearchModelsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
     T.Http({ method: "GET", uri: "/nl_search_models", code: 200 }),
   ),
 ).annotate({
-  identifier: "RetrieveAllNLSearchModelsRequest",
-}) as any as S.Schema<RetrieveAllNLSearchModelsRequest>;
+  identifier: "GetAllNLSearchModelsRequest",
+}) as any as S.Schema<GetAllNLSearchModelsRequest>;
 
 /** Stop sequences for the NL model (Google-specific) */
 export type NLSearchModelSchemaStopSequencesList = Array<string>;
@@ -3095,26 +1604,28 @@ export const NLSearchModelSchema = /*@__PURE__*/ S.suspend(() =>
   identifier: "NLSearchModelSchema",
 }) as any as S.Schema<NLSearchModelSchema>;
 
-export type RetrieveAllNLSearchModelsResponseBodyList =
-  Array<NLSearchModelSchema>;
-export const RetrieveAllNLSearchModelsResponseBodyList = /*@__PURE__*/ S.Array(
+export type GetAllNLSearchModelsResponseBodyList = Array<NLSearchModelSchema>;
+export const GetAllNLSearchModelsResponseBodyList = /*@__PURE__*/ S.Array(
   NLSearchModelSchema,
-) as any as S.Schema<RetrieveAllNLSearchModelsResponseBodyList>;
+) as any as S.Schema<GetAllNLSearchModelsResponseBodyList>;
 
-export type RetrieveAllNLSearchModelsResponse =
-  RetrieveAllNLSearchModelsResponseBodyList;
-export const RetrieveAllNLSearchModelsResponse = /*@__PURE__*/ S.suspend(() =>
-  RetrieveAllNLSearchModelsResponseBodyList.pipe(T.RawResponseRoot()),
+export type GetAllNLSearchModelsResponse = GetAllNLSearchModelsResponseBodyList;
+export const GetAllNLSearchModelsResponse = /*@__PURE__*/ S.suspend(() =>
+  GetAllNLSearchModelsResponseBodyList.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "RetrieveAllNLSearchModelsResponse",
-}) as any as S.Schema<RetrieveAllNLSearchModelsResponse>;
+  identifier: "GetAllNLSearchModelsResponse",
+}) as any as S.Schema<GetAllNLSearchModelsResponse>;
 
-export interface RetrieveAllPresetsRequest {}
-export const RetrieveAllPresetsRequest = /*@__PURE__*/ S.suspend(() =>
+export interface GetAllPresetsRequest {}
+export const GetAllPresetsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(T.Http({ method: "GET", uri: "/presets", code: 200 })),
 ).annotate({
-  identifier: "RetrieveAllPresetsRequest",
-}) as any as S.Schema<RetrieveAllPresetsRequest>;
+  identifier: "GetAllPresetsRequest",
+}) as any as S.Schema<GetAllPresetsRequest>;
+
+/** Dictates the direction in which the words in the query must be dropped when the original words in the query do not appear in any document. Values: right_to_left (default), left_to_right, both_sides:3 A note on both_sides:3 - for queries up to 3 tokens (words) in length, this mode will drop tokens from both sides and exhaustively rank all matching results. If query length is greater than 3 words, Typesense will just fallback to default behavior of right_to_left */
+export type DropTokensMode = "right_to_left" | "left_to_right" | "both_sides:3";
+export const DropTokensMode = /*@__PURE__*/ S.String;
 
 export interface SearchParameters {
   /** The query text to search for in the collection. Use * as the search string to return all documents. This is typically useful when used in conjunction with filter_by. */
@@ -3340,6 +1851,220 @@ export const SearchParameters = /*@__PURE__*/ S.suspend(() =>
   identifier: "SearchParameters",
 }) as any as S.Schema<SearchParameters>;
 
+export interface MultiSearchCollectionParameters {
+  /** The query text to search for in the collection. Use * as the search string to return all documents. This is typically useful when used in conjunction with filter_by. */
+  q?: string;
+  /** A list of `string` fields that should be queried against. Multiple fields are separated with a comma. */
+  query_by?: string;
+  /** The relative weight to give each `query_by` field when ranking results. This can be used to boost fields in priority, when looking for matches. Multiple fields are separated with a comma. */
+  query_by_weights?: string;
+  /** In a multi-field matching context, this parameter determines how the representative text match score of a record is calculated. Possible values are max_score (default) or max_weight. */
+  text_match_type?: string;
+  /** Boolean field to indicate that the last word in the query should be treated as a prefix, and not as a whole word. This is used for building autocomplete and instant search interfaces. Defaults to true. */
+  prefix?: string;
+  /** If infix index is enabled for this field, infix searching can be done on a per-field basis by sending a comma separated string parameter called infix to the search query. This parameter can have 3 values; `off` infix search is disabled, which is default `always` infix search is performed along with regular search `fallback` infix search is performed if regular search does not produce results */
+  infix?: string;
+  /** There are also 2 parameters that allow you to control the extent of infix searching max_extra_prefix and max_extra_suffix which specify the maximum number of symbols before or after the query that can be present in the token. For example query "K2100" has 2 extra symbols in "6PK2100". By default, any number of prefixes/suffixes can be present for a match. */
+  max_extra_prefix?: number;
+  /** There are also 2 parameters that allow you to control the extent of infix searching max_extra_prefix and max_extra_suffix which specify the maximum number of symbols before or after the query that can be present in the token. For example query "K2100" has 2 extra symbols in "6PK2100". By default, any number of prefixes/suffixes can be present for a match. */
+  max_extra_suffix?: number;
+  /** Filter conditions for refining youropen api validator search results. Separate multiple conditions with &&. */
+  filter_by?: string;
+  /** A list of numerical fields and their corresponding sort orders that will be used for ordering your results. Up to 3 sort fields can be specified. The text similarity score is exposed as a special `_text_match` field that you can use in the list of sorting fields. If no `sort_by` parameter is specified, results are sorted by `_text_match:desc,default_sorting_field:desc` */
+  sort_by?: string;
+  /** A list of fields that will be used for faceting your results on. Separate multiple fields with a comma. */
+  facet_by?: string;
+  /** Maximum number of facet values to be returned. */
+  max_facet_values?: number;
+  /** Facet values that are returned can now be filtered via this parameter. The matching facet text is also highlighted. For example, when faceting by `category`, you can set `facet_query=category:shoe` to return only facet values that contain the prefix "shoe". */
+  facet_query?: string;
+  /** The number of typographical errors (1 or 2) that would be tolerated. Default: 2 */
+  num_typos?: string;
+  /** Results from this specific page number would be fetched. */
+  page?: number;
+  /** Number of results to fetch per page. Default: 10 */
+  per_page?: number;
+  /** Number of hits to fetch. Can be used as an alternative to the per_page parameter. Default: 10. */
+  limit?: number;
+  /** Identifies the starting point to return hits from a result set. Can be used as an alternative to the page parameter. */
+  offset?: number;
+  /** You can aggregate search results into groups or buckets by specify one or more `group_by` fields. Separate multiple fields with a comma. To group on a particular field, it must be a faceted field. */
+  group_by?: string;
+  /** Maximum number of hits to be returned for every group. If the `group_limit` is set as `K` then only the top K hits in each group are returned in the response. Default: 3 */
+  group_limit?: number;
+  /** Setting this parameter to true will place all documents that have a null value in the group_by field, into a single group. Setting this parameter to false, will cause each document with a null value in the group_by field to not be grouped with other documents. Default: true */
+  group_missing_values?: boolean;
+  /** List of fields from the document to include in the search result */
+  include_fields?: string;
+  /** List of fields from the document to exclude in the search result */
+  exclude_fields?: string;
+  /** List of fields which should be highlighted fully without snippeting */
+  highlight_full_fields?: string;
+  /** The number of tokens that should surround the highlighted text on each side. Default: 4 */
+  highlight_affix_num_tokens?: number;
+  /** The start tag used for the highlighted snippets. Default: `<mark>` */
+  highlight_start_tag?: string;
+  /** The end tag used for the highlighted snippets. Default: `</mark>` */
+  highlight_end_tag?: string;
+  /** Field values under this length will be fully highlighted, instead of showing a snippet of relevant portion. Default: 30 */
+  snippet_threshold?: number;
+  /** If the number of results found for a specific query is less than this number, Typesense will attempt to drop the tokens in the query until enough results are found. Tokens that have the least individual hits are dropped first. Set to 0 to disable. Default: 10 */
+  drop_tokens_threshold?: number;
+  drop_tokens_mode?: DropTokensMode | (string & {});
+  /** If the number of results found for a specific query is less than this number, Typesense will attempt to look for tokens with more typos until enough results are found. Default: 100 */
+  typo_tokens_threshold?: number;
+  /** Set this parameter to false to disable typos on alphanumerical query tokens. Default: true. */
+  enable_typos_for_alpha_numerical_tokens?: boolean;
+  /** Whether the filter_by condition of the search query should be applicable to curated results (curation definitions, pinned hits, hidden hits, etc.). Default: false */
+  filter_curated_hits?: boolean;
+  /** If you have some synonyms defined but want to disable all of them for a particular search query, set enable_synonyms to false. Default: true */
+  enable_synonyms?: boolean;
+  /** Flag for enabling/disabling analytics aggregation for specific search queries (for e.g. those originating from a test script). */
+  enable_analytics?: boolean;
+  /** Allow synonym resolution on word prefixes in the query. Default: false */
+  synonym_prefix?: boolean;
+  /** Allow synonym resolution on typo-corrected words in the query. Default: 0 */
+  synonym_num_typos?: number;
+  /** A list of records to unconditionally include in the search results at specific positions. An example use case would be to feature or promote certain items on the top of search results. A list of `record_id:hit_position`. Eg: to include a record with ID 123 at Position 1 and another record with ID 456 at Position 5, you'd specify `123:1,456:5`. You could also use the Curation feature to override search results based on rules. Curations are applied first, followed by `pinned_hits` and finally `hidden_hits`. */
+  pinned_hits?: string;
+  /** A list of records to unconditionally hide from search results. A list of `record_id`s to hide. Eg: to hide records with IDs 123 and 456, you'd specify `123,456`. You could also use the Curation feature to override search results based on rules. Curations are applied first, followed by `pinned_hits` and finally `hidden_hits`. */
+  hidden_hits?: string;
+  /** Comma separated list of tags to trigger the curations rules that match the tags. */
+  curation_tags?: string;
+  /** A list of custom fields that must be highlighted even if you don't query for them */
+  highlight_fields?: string;
+  /** You can index content from any logographic language into Typesense if you are able to segment / split the text into space-separated words yourself before indexing and querying. Set this parameter to true to do the same */
+  pre_segmented_query?: boolean;
+  /** Search using a bunch of search parameters by setting this parameter to the name of the existing Preset. */
+  preset?: string;
+  /** If you have some curation sets defined but want to disable all of them during query time, you can do that by setting this parameter to false */
+  enable_curations?: boolean;
+  /** Set this parameter to true to ensure that an exact match is ranked above the others */
+  prioritize_exact_match?: boolean;
+  /** Make Typesense prioritize documents where the query words appear earlier in the text. */
+  prioritize_token_position?: boolean;
+  /** Make Typesense prioritize documents where the query words appear in more number of fields. */
+  prioritize_num_matching_fields?: boolean;
+  /** Make Typesense disable typos for numerical tokens. */
+  enable_typos_for_numerical_tokens?: boolean;
+  /** Setting this to true will make Typesense consider all prefixes and typo corrections of the words in the query without stopping early when enough results are found (drop_tokens_threshold and typo_tokens_threshold configurations are ignored). */
+  exhaustive_search?: boolean;
+  /** Typesense will attempt to return results early if the cutoff time has elapsed. This is not a strict guarantee and facet computation is not bound by this parameter. */
+  search_cutoff_ms?: number;
+  /** Enable server side caching of search query results. By default, caching is disabled. */
+  use_cache?: boolean;
+  /** The duration (in seconds) that determines how long the search query is cached. This value can be set on a per-query basis. Default: 60. */
+  cache_ttl?: number;
+  /** Minimum word length for 1-typo correction to be applied. The value of num_typos is still treated as the maximum allowed typos. */
+  min_len_1typo?: number;
+  /** Minimum word length for 2-typo correction to be applied. The value of num_typos is still treated as the maximum allowed typos. */
+  min_len_2typo?: number;
+  /** Vector query expression for fetching documents "closest" to a given query/document vector. */
+  vector_query?: string;
+  /** Timeout (in milliseconds) for fetching remote embeddings. */
+  remote_embedding_timeout_ms?: number;
+  /** Number of times to retry fetching remote embeddings. */
+  remote_embedding_num_tries?: number;
+  /** Choose the underlying faceting strategy used. Comma separated string of allows values: exhaustive, top_values or automatic (default). */
+  facet_strategy?: string;
+  /** Name of the stopwords set to apply for this search, the keywords present in the set will be removed from the search query. */
+  stopwords?: string;
+  /** Comma separated string of nested facet fields whose parent object should be returned in facet response. */
+  facet_return_parent?: string;
+  /** The base64 encoded audio file in 16 khz 16-bit WAV format. */
+  voice_query?: string;
+  /** Enable conversational search. */
+  conversation?: boolean;
+  /** The Id of Conversation Model to be used. */
+  conversation_model_id?: string;
+  /** The Id of a previous conversation to continue, this tells Typesense to include prior context when communicating with the LLM. */
+  conversation_id?: string;
+  /** Controls whether Typesense should validate if the fields exist in the schema. When set to false, Typesense will not throw an error if a field is missing. This is useful for programmatic grouping where not all fields may exist. */
+  validate_field_names?: boolean;
+  /** The collection to search in. */
+  collection?: string;
+  /** A separate search API key for each search within a multi_search request */
+  x_typesense_api_key?: string;
+  /** When true, computes both text match and vector distance scores for all matches in hybrid search. Documents found only through keyword search will get a vector distance score, and documents found only through vector search will get a text match score. */
+  rerank_hybrid_matches?: boolean;
+}
+export const MultiSearchCollectionParameters = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    q: S.optional(S.String),
+    query_by: S.optional(S.String),
+    query_by_weights: S.optional(S.String),
+    text_match_type: S.optional(S.String),
+    prefix: S.optional(S.String),
+    infix: S.optional(S.String),
+    max_extra_prefix: S.optional(S.Number),
+    max_extra_suffix: S.optional(S.Number),
+    filter_by: S.optional(S.String),
+    sort_by: S.optional(S.String),
+    facet_by: S.optional(S.String),
+    max_facet_values: S.optional(S.Number),
+    facet_query: S.optional(S.String),
+    num_typos: S.optional(S.String),
+    page: S.optional(S.Number),
+    per_page: S.optional(S.Number),
+    limit: S.optional(S.Number),
+    offset: S.optional(S.Number),
+    group_by: S.optional(S.String),
+    group_limit: S.optional(S.Number),
+    group_missing_values: S.optional(S.Boolean),
+    include_fields: S.optional(S.String),
+    exclude_fields: S.optional(S.String),
+    highlight_full_fields: S.optional(S.String),
+    highlight_affix_num_tokens: S.optional(S.Number),
+    highlight_start_tag: S.optional(S.String),
+    highlight_end_tag: S.optional(S.String),
+    snippet_threshold: S.optional(S.Number),
+    drop_tokens_threshold: S.optional(S.Number),
+    drop_tokens_mode: S.optional(DropTokensMode),
+    typo_tokens_threshold: S.optional(S.Number),
+    enable_typos_for_alpha_numerical_tokens: S.optional(S.Boolean),
+    filter_curated_hits: S.optional(S.Boolean),
+    enable_synonyms: S.optional(S.Boolean),
+    enable_analytics: S.optional(S.Boolean),
+    synonym_prefix: S.optional(S.Boolean),
+    synonym_num_typos: S.optional(S.Number),
+    pinned_hits: S.optional(S.String),
+    hidden_hits: S.optional(S.String),
+    curation_tags: S.optional(S.String),
+    highlight_fields: S.optional(S.String),
+    pre_segmented_query: S.optional(S.Boolean),
+    preset: S.optional(S.String),
+    enable_curations: S.optional(S.Boolean),
+    prioritize_exact_match: S.optional(S.Boolean),
+    prioritize_token_position: S.optional(S.Boolean),
+    prioritize_num_matching_fields: S.optional(S.Boolean),
+    enable_typos_for_numerical_tokens: S.optional(S.Boolean),
+    exhaustive_search: S.optional(S.Boolean),
+    search_cutoff_ms: S.optional(S.Number),
+    use_cache: S.optional(S.Boolean),
+    cache_ttl: S.optional(S.Number),
+    min_len_1typo: S.optional(S.Number),
+    min_len_2typo: S.optional(S.Number),
+    vector_query: S.optional(S.String),
+    remote_embedding_timeout_ms: S.optional(S.Number),
+    remote_embedding_num_tries: S.optional(S.Number),
+    facet_strategy: S.optional(S.String),
+    stopwords: S.optional(S.String),
+    facet_return_parent: S.optional(S.String),
+    voice_query: S.optional(S.String),
+    conversation: S.optional(S.Boolean),
+    conversation_model_id: S.optional(S.String),
+    conversation_id: S.optional(S.String),
+    validate_field_names: S.optional(S.Boolean),
+    collection: S.optional(S.String),
+    x_typesense_api_key: S.optional(
+      S.String.pipe(T.Body("x-typesense-api-key")),
+    ),
+    rerank_hybrid_matches: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "MultiSearchCollectionParameters",
+}) as any as S.Schema<MultiSearchCollectionParameters>;
+
 export type MultiSearchSearchesParameterSearchesList =
   Array<MultiSearchCollectionParameters>;
 export const MultiSearchSearchesParameterSearchesList = /*@__PURE__*/ S.Array(
@@ -3468,101 +2193,197 @@ export const PresetsRetrieveSchema = /*@__PURE__*/ S.suspend(() =>
   identifier: "PresetsRetrieveSchema",
 }) as any as S.Schema<PresetsRetrieveSchema>;
 
-export interface RetrieveAnalyticsRuleRequest {
+export interface GetAnalyticsEventsRequest {
+  user_id: string;
+  /** Analytics rule name */
+  name: string;
+  /** Number of events to return (max 1000) */
+  n: number;
+}
+export const GetAnalyticsEventsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    user_id: S.String.pipe(T.Query()),
+    name: S.String.pipe(T.Query()),
+    n: S.Number.pipe(T.Query()),
+  }).pipe(T.Http({ method: "GET", uri: "/analytics/events", code: 200 })),
+).annotate({
+  identifier: "GetAnalyticsEventsRequest",
+}) as any as S.Schema<GetAnalyticsEventsRequest>;
+
+export type AnalyticsEventsResponseEventsItemDocIdsList = Array<string>;
+export const AnalyticsEventsResponseEventsItemDocIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<AnalyticsEventsResponseEventsItemDocIdsList>;
+
+export interface AnalyticsEventsResponseEventsItem {
+  name?: string;
+  event_type?: string;
+  collection?: string;
+  timestamp?: number;
+  user_id?: string;
+  doc_id?: string;
+  doc_ids?: AnalyticsEventsResponseEventsItemDocIdsList;
+  query?: string;
+}
+export const AnalyticsEventsResponseEventsItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    event_type: S.optional(S.String),
+    collection: S.optional(S.String),
+    timestamp: S.optional(S.Number),
+    user_id: S.optional(S.String),
+    doc_id: S.optional(S.String),
+    doc_ids: S.optional(AnalyticsEventsResponseEventsItemDocIdsList),
+    query: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "AnalyticsEventsResponseEventsItem",
+}) as any as S.Schema<AnalyticsEventsResponseEventsItem>;
+
+export type AnalyticsEventsResponseEventsList =
+  Array<AnalyticsEventsResponseEventsItem>;
+export const AnalyticsEventsResponseEventsList = /*@__PURE__*/ S.Array(
+  AnalyticsEventsResponseEventsItem,
+) as any as S.Schema<AnalyticsEventsResponseEventsList>;
+
+export interface AnalyticsEventsResponse {
+  events: AnalyticsEventsResponseEventsList;
+}
+export const AnalyticsEventsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    events: AnalyticsEventsResponseEventsList,
+  }),
+).annotate({
+  identifier: "AnalyticsEventsResponse",
+}) as any as S.Schema<AnalyticsEventsResponse>;
+
+export interface GetAnalyticsRuleRequest {
   /** The name of the analytics rule to retrieve */
   ruleName: string;
 }
-export const RetrieveAnalyticsRuleRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetAnalyticsRuleRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ruleName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({ method: "GET", uri: "/analytics/rules/{ruleName}", code: 200 }),
   ),
 ).annotate({
-  identifier: "RetrieveAnalyticsRuleRequest",
-}) as any as S.Schema<RetrieveAnalyticsRuleRequest>;
+  identifier: "GetAnalyticsRuleRequest",
+}) as any as S.Schema<GetAnalyticsRuleRequest>;
 
-export type RetrieveAnalyticsRuleResponseParamsMetaFieldsList = Array<string>;
-export const RetrieveAnalyticsRuleResponseParamsMetaFieldsList =
+export type GetAnalyticsRuleResponseParamsMetaFieldsList = Array<string>;
+export const GetAnalyticsRuleResponseParamsMetaFieldsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<RetrieveAnalyticsRuleResponseParamsMetaFieldsList>;
+  ) as any as S.Schema<GetAnalyticsRuleResponseParamsMetaFieldsList>;
 
-export interface RetrieveAnalyticsRuleResponseParams {
+export interface GetAnalyticsRuleResponseParams {
   destination_collection?: string;
   limit?: number;
   capture_search_requests?: boolean;
-  meta_fields?: RetrieveAnalyticsRuleResponseParamsMetaFieldsList;
+  meta_fields?: GetAnalyticsRuleResponseParamsMetaFieldsList;
   expand_query?: boolean;
   counter_field?: string;
   weight?: number;
 }
-export const RetrieveAnalyticsRuleResponseParams = /*@__PURE__*/ S.suspend(() =>
+export const GetAnalyticsRuleResponseParams = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     destination_collection: S.optional(S.String),
     limit: S.optional(S.Number),
     capture_search_requests: S.optional(S.Boolean),
-    meta_fields: S.optional(RetrieveAnalyticsRuleResponseParamsMetaFieldsList),
+    meta_fields: S.optional(GetAnalyticsRuleResponseParamsMetaFieldsList),
     expand_query: S.optional(S.Boolean),
     counter_field: S.optional(S.String),
     weight: S.optional(S.Number),
   }),
 ).annotate({
-  identifier: "RetrieveAnalyticsRuleResponseParams",
-}) as any as S.Schema<RetrieveAnalyticsRuleResponseParams>;
+  identifier: "GetAnalyticsRuleResponseParams",
+}) as any as S.Schema<GetAnalyticsRuleResponseParams>;
 
-export interface RetrieveAnalyticsRuleResponse {
+export interface GetAnalyticsRuleResponse {
   name: string;
   type: AnalyticsRuleType;
   collection: string;
   event_type: string;
   rule_tag?: string;
-  params?: RetrieveAnalyticsRuleResponseParams;
+  params?: GetAnalyticsRuleResponseParams;
 }
-export const RetrieveAnalyticsRuleResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetAnalyticsRuleResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     name: S.String,
     type: AnalyticsRuleType,
     collection: S.String,
     event_type: S.String,
     rule_tag: S.optional(S.String),
-    params: S.optional(RetrieveAnalyticsRuleResponseParams),
+    params: S.optional(GetAnalyticsRuleResponseParams),
   }),
 ).annotate({
-  identifier: "RetrieveAnalyticsRuleResponse",
-}) as any as S.Schema<RetrieveAnalyticsRuleResponse>;
+  identifier: "GetAnalyticsRuleResponse",
+}) as any as S.Schema<GetAnalyticsRuleResponse>;
 
-export interface RetrieveAnalyticsRulesRequest {
+export interface GetAnalyticsRulesRequest {
   /** Filter rules by rule_tag */
   rule_tag?: string;
 }
-export const RetrieveAnalyticsRulesRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetAnalyticsRulesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     rule_tag: S.optional(S.String.pipe(T.Query())),
   }).pipe(T.Http({ method: "GET", uri: "/analytics/rules", code: 200 })),
 ).annotate({
-  identifier: "RetrieveAnalyticsRulesRequest",
-}) as any as S.Schema<RetrieveAnalyticsRulesRequest>;
+  identifier: "GetAnalyticsRulesRequest",
+}) as any as S.Schema<GetAnalyticsRulesRequest>;
 
-export type RetrieveAnalyticsRulesResponseBodyList = Array<AnalyticsRule>;
-export const RetrieveAnalyticsRulesResponseBodyList = /*@__PURE__*/ S.Array(
+export type GetAnalyticsRulesResponseBodyList = Array<AnalyticsRule>;
+export const GetAnalyticsRulesResponseBodyList = /*@__PURE__*/ S.Array(
   AnalyticsRule,
-) as any as S.Schema<RetrieveAnalyticsRulesResponseBodyList>;
+) as any as S.Schema<GetAnalyticsRulesResponseBodyList>;
 
-export type RetrieveAnalyticsRulesResponse =
-  RetrieveAnalyticsRulesResponseBodyList;
-export const RetrieveAnalyticsRulesResponse = /*@__PURE__*/ S.suspend(() =>
-  RetrieveAnalyticsRulesResponseBodyList.pipe(T.RawResponseRoot()),
+export type GetAnalyticsRulesResponse = GetAnalyticsRulesResponseBodyList;
+export const GetAnalyticsRulesResponse = /*@__PURE__*/ S.suspend(() =>
+  GetAnalyticsRulesResponseBodyList.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "RetrieveAnalyticsRulesResponse",
-}) as any as S.Schema<RetrieveAnalyticsRulesResponse>;
+  identifier: "GetAnalyticsRulesResponse",
+}) as any as S.Schema<GetAnalyticsRulesResponse>;
 
-export interface RetrieveAPIStatsRequest {}
-export const RetrieveAPIStatsRequest = /*@__PURE__*/ S.suspend(() =>
+export interface GetAnalyticsStatusRequest {}
+export const GetAnalyticsStatusRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
+    T.Http({ method: "GET", uri: "/analytics/status", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetAnalyticsStatusRequest",
+}) as any as S.Schema<GetAnalyticsStatusRequest>;
+
+export interface AnalyticsStatus {
+  popular_prefix_queries?: number;
+  nohits_prefix_queries?: number;
+  log_prefix_queries?: number;
+  query_log_events?: number;
+  query_counter_events?: number;
+  doc_log_events?: number;
+  doc_counter_events?: number;
+}
+export const AnalyticsStatus = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    popular_prefix_queries: S.optional(S.Number),
+    nohits_prefix_queries: S.optional(S.Number),
+    log_prefix_queries: S.optional(S.Number),
+    query_log_events: S.optional(S.Number),
+    query_counter_events: S.optional(S.Number),
+    doc_log_events: S.optional(S.Number),
+    doc_counter_events: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "AnalyticsStatus",
+}) as any as S.Schema<AnalyticsStatus>;
+
+export interface GetAPIStatsRequest {}
+export const GetAPIStatsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(T.Http({ method: "GET", uri: "/stats.json", code: 200 })),
 ).annotate({
-  identifier: "RetrieveAPIStatsRequest",
-}) as any as S.Schema<RetrieveAPIStatsRequest>;
+  identifier: "GetAPIStatsRequest",
+}) as any as S.Schema<GetAPIStatsRequest>;
 
 export interface APIStatsResponse {
   delete_latency_ms?: number;
@@ -3599,11 +2420,199 @@ export const APIStatsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "APIStatsResponse",
 }) as any as S.Schema<APIStatsResponse>;
 
-export interface RetrieveConversationModelRequest {
+export interface GetCollectionRequest {
+  /** The name of the collection to retrieve */
+  collectionName: string;
+}
+export const GetCollectionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    collectionName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/collections/{collectionName}", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetCollectionRequest",
+}) as any as S.Schema<GetCollectionRequest>;
+
+/** A list of fields for querying, filtering and faceting */
+export type GetCollectionResponseFieldsList = Array<Field>;
+export const GetCollectionResponseFieldsList = /*@__PURE__*/ S.Array(
+  Field,
+) as any as S.Schema<GetCollectionResponseFieldsList>;
+
+/** List of symbols or special characters to be used for splitting the text into individual words in addition to space and new-line characters. */
+export type GetCollectionResponseTokenSeparatorsList = Array<string>;
+export const GetCollectionResponseTokenSeparatorsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<GetCollectionResponseTokenSeparatorsList>;
+
+/** List of synonym set names to associate with this collection */
+export type GetCollectionResponseSynonymSetsList = Array<string>;
+export const GetCollectionResponseSynonymSetsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<GetCollectionResponseSynonymSetsList>;
+
+/** List of symbols or special characters to be indexed. */
+export type GetCollectionResponseSymbolsToIndexList = Array<string>;
+export const GetCollectionResponseSymbolsToIndexList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<GetCollectionResponseSymbolsToIndexList>;
+
+export interface GetCollectionResponse {
+  /** Name of the collection */
+  name: string;
+  /** A list of fields for querying, filtering and faceting */
+  fields: GetCollectionResponseFieldsList;
+  /** The name of an int32 / float field that determines the order in which the search results are ranked when a sort_by clause is not provided during searching. This field must indicate some kind of popularity. */
+  default_sorting_field?: string;
+  /** List of symbols or special characters to be used for splitting the text into individual words in addition to space and new-line characters. */
+  token_separators?: GetCollectionResponseTokenSeparatorsList;
+  /** List of synonym set names to associate with this collection */
+  synonym_sets?: GetCollectionResponseSynonymSetsList;
+  /** Enables experimental support at a collection level for nested object or object array fields. This field is only available if the Typesense server is version `0.24.0.rcn34` or later. */
+  enable_nested_fields?: boolean;
+  /** List of symbols or special characters to be indexed. */
+  symbols_to_index?: GetCollectionResponseSymbolsToIndexList;
+  voice_query_model?: VoiceQueryModelCollectionConfig;
+  /** Optional details about the collection, e.g., when it was created, who created it etc. */
+  metadata?: unknown;
+  /** Number of documents in the collection */
+  num_documents: number;
+  /** Timestamp of when the collection was created (Unix epoch in seconds) */
+  created_at: number;
+}
+export const GetCollectionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String,
+    fields: GetCollectionResponseFieldsList,
+    default_sorting_field: S.optional(S.String),
+    token_separators: S.optional(GetCollectionResponseTokenSeparatorsList),
+    synonym_sets: S.optional(GetCollectionResponseSynonymSetsList),
+    enable_nested_fields: S.optional(S.Boolean),
+    symbols_to_index: S.optional(GetCollectionResponseSymbolsToIndexList),
+    voice_query_model: S.optional(VoiceQueryModelCollectionConfig),
+    metadata: S.optional(S.Unknown),
+    num_documents: S.Number,
+    created_at: S.Number,
+  }),
+).annotate({
+  identifier: "GetCollectionResponse",
+}) as any as S.Schema<GetCollectionResponse>;
+
+export interface GetCollectionsRequestGetCollectionsParameters {
+  /** Comma-separated list of fields from the collection to exclude from the response */
+  exclude_fields?: string;
+  /** Number of collections to fetch. Default: returns all collections. */
+  limit?: number;
+  /** Identifies the starting point to return collections when paginating. */
+  offset?: number;
+}
+export const GetCollectionsRequestGetCollectionsParameters =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      exclude_fields: S.optional(S.String),
+      limit: S.optional(S.Number),
+      offset: S.optional(S.Number),
+    }),
+  ).annotate({
+    identifier: "GetCollectionsRequestGetCollectionsParameters",
+  }) as any as S.Schema<GetCollectionsRequestGetCollectionsParameters>;
+
+export interface GetCollectionsRequest {
+  getCollectionsParameters?: GetCollectionsRequestGetCollectionsParameters;
+}
+export const GetCollectionsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    getCollectionsParameters: S.optional(
+      GetCollectionsRequestGetCollectionsParameters.pipe(T.Query()),
+    ),
+  }).pipe(T.Http({ method: "GET", uri: "/collections", code: 200 })),
+).annotate({
+  identifier: "GetCollectionsRequest",
+}) as any as S.Schema<GetCollectionsRequest>;
+
+/** A list of fields for querying, filtering and faceting */
+export type CollectionResponseFieldsList = Array<Field>;
+export const CollectionResponseFieldsList = /*@__PURE__*/ S.Array(
+  Field,
+) as any as S.Schema<CollectionResponseFieldsList>;
+
+/** List of symbols or special characters to be used for splitting the text into individual words in addition to space and new-line characters. */
+export type CollectionResponseTokenSeparatorsList = Array<string>;
+export const CollectionResponseTokenSeparatorsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CollectionResponseTokenSeparatorsList>;
+
+/** List of synonym set names to associate with this collection */
+export type CollectionResponseSynonymSetsList = Array<string>;
+export const CollectionResponseSynonymSetsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CollectionResponseSynonymSetsList>;
+
+/** List of symbols or special characters to be indexed. */
+export type CollectionResponseSymbolsToIndexList = Array<string>;
+export const CollectionResponseSymbolsToIndexList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CollectionResponseSymbolsToIndexList>;
+
+export interface CollectionResponse {
+  /** Name of the collection */
+  name: string;
+  /** A list of fields for querying, filtering and faceting */
+  fields: CollectionResponseFieldsList;
+  /** The name of an int32 / float field that determines the order in which the search results are ranked when a sort_by clause is not provided during searching. This field must indicate some kind of popularity. */
+  default_sorting_field?: string;
+  /** List of symbols or special characters to be used for splitting the text into individual words in addition to space and new-line characters. */
+  token_separators?: CollectionResponseTokenSeparatorsList;
+  /** List of synonym set names to associate with this collection */
+  synonym_sets?: CollectionResponseSynonymSetsList;
+  /** Enables experimental support at a collection level for nested object or object array fields. This field is only available if the Typesense server is version `0.24.0.rcn34` or later. */
+  enable_nested_fields?: boolean;
+  /** List of symbols or special characters to be indexed. */
+  symbols_to_index?: CollectionResponseSymbolsToIndexList;
+  voice_query_model?: VoiceQueryModelCollectionConfig;
+  /** Optional details about the collection, e.g., when it was created, who created it etc. */
+  metadata?: unknown;
+  /** Number of documents in the collection */
+  num_documents: number;
+  /** Timestamp of when the collection was created (Unix epoch in seconds) */
+  created_at: number;
+}
+export const CollectionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String,
+    fields: CollectionResponseFieldsList,
+    default_sorting_field: S.optional(S.String),
+    token_separators: S.optional(CollectionResponseTokenSeparatorsList),
+    synonym_sets: S.optional(CollectionResponseSynonymSetsList),
+    enable_nested_fields: S.optional(S.Boolean),
+    symbols_to_index: S.optional(CollectionResponseSymbolsToIndexList),
+    voice_query_model: S.optional(VoiceQueryModelCollectionConfig),
+    metadata: S.optional(S.Unknown),
+    num_documents: S.Number,
+    created_at: S.Number,
+  }),
+).annotate({
+  identifier: "CollectionResponse",
+}) as any as S.Schema<CollectionResponse>;
+
+export type GetCollectionsResponseBodyList = Array<CollectionResponse>;
+export const GetCollectionsResponseBodyList = /*@__PURE__*/ S.Array(
+  CollectionResponse,
+) as any as S.Schema<GetCollectionsResponseBodyList>;
+
+export type GetCollectionsResponse = GetCollectionsResponseBodyList;
+export const GetCollectionsResponse = /*@__PURE__*/ S.suspend(() =>
+  GetCollectionsResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "GetCollectionsResponse",
+}) as any as S.Schema<GetCollectionsResponse>;
+
+export interface GetConversationModelRequest {
   /** The id of the conversation model to retrieve */
   modelId: string;
 }
-export const RetrieveConversationModelRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetConversationModelRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     modelId: S.String.pipe(T.Label()),
   }).pipe(
@@ -3614,10 +2623,10 @@ export const RetrieveConversationModelRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "RetrieveConversationModelRequest",
-}) as any as S.Schema<RetrieveConversationModelRequest>;
+  identifier: "GetConversationModelRequest",
+}) as any as S.Schema<GetConversationModelRequest>;
 
-export interface RetrieveConversationModelResponse {
+export interface GetConversationModelResponse {
   /** An explicit id for the model, otherwise the API will return a response with an auto-generated conversation model id. */
   id: string;
   /** Name of the LLM model offered by OpenAI, Cloudflare or vLLM */
@@ -3637,7 +2646,7 @@ export interface RetrieveConversationModelResponse {
   /** URL of vLLM service */
   vllm_url?: string;
 }
-export const RetrieveConversationModelResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetConversationModelResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String,
     model_name: S.String,
@@ -3650,14 +2659,14 @@ export const RetrieveConversationModelResponse = /*@__PURE__*/ S.suspend(() =>
     vllm_url: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "RetrieveConversationModelResponse",
-}) as any as S.Schema<RetrieveConversationModelResponse>;
+  identifier: "GetConversationModelResponse",
+}) as any as S.Schema<GetConversationModelResponse>;
 
-export interface RetrieveCurationSetRequest {
+export interface GetCurationSetRequest {
   /** The name of the curation set to retrieve */
   curationSetName: string;
 }
-export const RetrieveCurationSetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetCurationSetRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     curationSetName: S.String.pipe(T.Label()),
   }).pipe(
@@ -3668,8 +2677,8 @@ export const RetrieveCurationSetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "RetrieveCurationSetRequest",
-}) as any as S.Schema<RetrieveCurationSetRequest>;
+  identifier: "GetCurationSetRequest",
+}) as any as S.Schema<GetCurationSetRequest>;
 
 /** List of tag values to associate with this curation rule. */
 export type CurationRuleTagsList = Array<string>;
@@ -3787,36 +2796,35 @@ export const CurationItemCreateSchema = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CurationItemCreateSchema>;
 
 /** Array of curation items */
-export type RetrieveCurationSetResponseItemsList =
-  Array<CurationItemCreateSchema>;
-export const RetrieveCurationSetResponseItemsList = /*@__PURE__*/ S.Array(
+export type GetCurationSetResponseItemsList = Array<CurationItemCreateSchema>;
+export const GetCurationSetResponseItemsList = /*@__PURE__*/ S.Array(
   CurationItemCreateSchema,
-) as any as S.Schema<RetrieveCurationSetResponseItemsList>;
+) as any as S.Schema<GetCurationSetResponseItemsList>;
 
-export interface RetrieveCurationSetResponse {
+export interface GetCurationSetResponse {
   /** Array of curation items */
-  items: RetrieveCurationSetResponseItemsList;
+  items: GetCurationSetResponseItemsList;
   /** Optional description for the curation set */
   description?: string;
   name: string;
 }
-export const RetrieveCurationSetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetCurationSetResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    items: RetrieveCurationSetResponseItemsList,
+    items: GetCurationSetResponseItemsList,
     description: S.optional(S.String),
     name: S.String,
   }),
 ).annotate({
-  identifier: "RetrieveCurationSetResponse",
-}) as any as S.Schema<RetrieveCurationSetResponse>;
+  identifier: "GetCurationSetResponse",
+}) as any as S.Schema<GetCurationSetResponse>;
 
-export interface RetrieveCurationSetItemRequest {
+export interface GetCurationSetItemRequest {
   /** The name of the curation set */
   curationSetName: string;
   /** The id of the curation item to retrieve */
   itemId: string;
 }
-export const RetrieveCurationSetItemRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetCurationSetItemRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     curationSetName: S.String.pipe(T.Label()),
     itemId: S.String.pipe(T.Label()),
@@ -3828,31 +2836,27 @@ export const RetrieveCurationSetItemRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "RetrieveCurationSetItemRequest",
-}) as any as S.Schema<RetrieveCurationSetItemRequest>;
+  identifier: "GetCurationSetItemRequest",
+}) as any as S.Schema<GetCurationSetItemRequest>;
 
 /** List of document `id`s that should be included in the search results with their corresponding `position`s. */
-export type RetrieveCurationSetItemResponseIncludesList =
-  Array<CurationInclude>;
-export const RetrieveCurationSetItemResponseIncludesList =
-  /*@__PURE__*/ S.Array(
-    CurationInclude,
-  ) as any as S.Schema<RetrieveCurationSetItemResponseIncludesList>;
+export type GetCurationSetItemResponseIncludesList = Array<CurationInclude>;
+export const GetCurationSetItemResponseIncludesList = /*@__PURE__*/ S.Array(
+  CurationInclude,
+) as any as S.Schema<GetCurationSetItemResponseIncludesList>;
 
 /** List of document `id`s that should be excluded from the search results. */
-export type RetrieveCurationSetItemResponseExcludesList =
-  Array<CurationExclude>;
-export const RetrieveCurationSetItemResponseExcludesList =
-  /*@__PURE__*/ S.Array(
-    CurationExclude,
-  ) as any as S.Schema<RetrieveCurationSetItemResponseExcludesList>;
+export type GetCurationSetItemResponseExcludesList = Array<CurationExclude>;
+export const GetCurationSetItemResponseExcludesList = /*@__PURE__*/ S.Array(
+  CurationExclude,
+) as any as S.Schema<GetCurationSetItemResponseExcludesList>;
 
-export interface RetrieveCurationSetItemResponse {
+export interface GetCurationSetItemResponse {
   rule: CurationRule;
   /** List of document `id`s that should be included in the search results with their corresponding `position`s. */
-  includes?: RetrieveCurationSetItemResponseIncludesList;
+  includes?: GetCurationSetItemResponseIncludesList;
   /** List of document `id`s that should be excluded from the search results. */
-  excludes?: RetrieveCurationSetItemResponseExcludesList;
+  excludes?: GetCurationSetItemResponseExcludesList;
   /** A filter by clause that is applied to any search query that matches the curation rule. */
   filter_by?: string;
   /** Indicates whether search query tokens that exist in the curation's rule should be removed from the search query. */
@@ -3874,11 +2878,11 @@ export interface RetrieveCurationSetItemResponse {
   /** ID of the curation item */
   id: string;
 }
-export const RetrieveCurationSetItemResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetCurationSetItemResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     rule: CurationRule,
-    includes: S.optional(RetrieveCurationSetItemResponseIncludesList),
-    excludes: S.optional(RetrieveCurationSetItemResponseExcludesList),
+    includes: S.optional(GetCurationSetItemResponseIncludesList),
+    excludes: S.optional(GetCurationSetItemResponseExcludesList),
     filter_by: S.optional(S.String),
     remove_matched_tokens: S.optional(S.Boolean),
     metadata: S.optional(S.Unknown),
@@ -3891,14 +2895,14 @@ export const RetrieveCurationSetItemResponse = /*@__PURE__*/ S.suspend(() =>
     id: S.String,
   }),
 ).annotate({
-  identifier: "RetrieveCurationSetItemResponse",
-}) as any as S.Schema<RetrieveCurationSetItemResponse>;
+  identifier: "GetCurationSetItemResponse",
+}) as any as S.Schema<GetCurationSetItemResponse>;
 
-export interface RetrieveCurationSetItemsRequest {
+export interface GetCurationSetItemsRequest {
   /** The name of the curation set to retrieve items for */
   curationSetName: string;
 }
-export const RetrieveCurationSetItemsRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetCurationSetItemsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     curationSetName: S.String.pipe(T.Label()),
   }).pipe(
@@ -3909,8 +2913,8 @@ export const RetrieveCurationSetItemsRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "RetrieveCurationSetItemsRequest",
-}) as any as S.Schema<RetrieveCurationSetItemsRequest>;
+  identifier: "GetCurationSetItemsRequest",
+}) as any as S.Schema<GetCurationSetItemsRequest>;
 
 /** List of document `id`s that should be included in the search results with their corresponding `position`s. */
 export type CurationItemSchemaIncludesList = Array<CurationInclude>;
@@ -3971,28 +2975,26 @@ export const CurationItemSchema = /*@__PURE__*/ S.suspend(() =>
   identifier: "CurationItemSchema",
 }) as any as S.Schema<CurationItemSchema>;
 
-export type RetrieveCurationSetItemsResponseBodyList =
-  Array<CurationItemSchema>;
-export const RetrieveCurationSetItemsResponseBodyList = /*@__PURE__*/ S.Array(
+export type GetCurationSetItemsResponseBodyList = Array<CurationItemSchema>;
+export const GetCurationSetItemsResponseBodyList = /*@__PURE__*/ S.Array(
   CurationItemSchema,
-) as any as S.Schema<RetrieveCurationSetItemsResponseBodyList>;
+) as any as S.Schema<GetCurationSetItemsResponseBodyList>;
 
-export type RetrieveCurationSetItemsResponse =
-  RetrieveCurationSetItemsResponseBodyList;
-export const RetrieveCurationSetItemsResponse = /*@__PURE__*/ S.suspend(() =>
-  RetrieveCurationSetItemsResponseBodyList.pipe(T.RawResponseRoot()),
+export type GetCurationSetItemsResponse = GetCurationSetItemsResponseBodyList;
+export const GetCurationSetItemsResponse = /*@__PURE__*/ S.suspend(() =>
+  GetCurationSetItemsResponseBodyList.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "RetrieveCurationSetItemsResponse",
-}) as any as S.Schema<RetrieveCurationSetItemsResponse>;
+  identifier: "GetCurationSetItemsResponse",
+}) as any as S.Schema<GetCurationSetItemsResponse>;
 
-export interface RetrieveCurationSetsRequest {}
-export const RetrieveCurationSetsRequest = /*@__PURE__*/ S.suspend(() =>
+export interface GetCurationSetsRequest {}
+export const GetCurationSetsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
     T.Http({ method: "GET", uri: "/curation_sets", code: 200 }),
   ),
 ).annotate({
-  identifier: "RetrieveCurationSetsRequest",
-}) as any as S.Schema<RetrieveCurationSetsRequest>;
+  identifier: "GetCurationSetsRequest",
+}) as any as S.Schema<GetCurationSetsRequest>;
 
 /** Array of curation items */
 export type CurationSetSchemaItemsList = Array<CurationItemCreateSchema>;
@@ -4017,54 +3019,174 @@ export const CurationSetSchema = /*@__PURE__*/ S.suspend(() =>
   identifier: "CurationSetSchema",
 }) as any as S.Schema<CurationSetSchema>;
 
-export type RetrieveCurationSetsResponseBodyList = Array<CurationSetSchema>;
-export const RetrieveCurationSetsResponseBodyList = /*@__PURE__*/ S.Array(
+export type GetCurationSetsResponseBodyList = Array<CurationSetSchema>;
+export const GetCurationSetsResponseBodyList = /*@__PURE__*/ S.Array(
   CurationSetSchema,
-) as any as S.Schema<RetrieveCurationSetsResponseBodyList>;
+) as any as S.Schema<GetCurationSetsResponseBodyList>;
 
-export type RetrieveCurationSetsResponse = RetrieveCurationSetsResponseBodyList;
-export const RetrieveCurationSetsResponse = /*@__PURE__*/ S.suspend(() =>
-  RetrieveCurationSetsResponseBodyList.pipe(T.RawResponseRoot()),
+export type GetCurationSetsResponse = GetCurationSetsResponseBodyList;
+export const GetCurationSetsResponse = /*@__PURE__*/ S.suspend(() =>
+  GetCurationSetsResponseBodyList.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "RetrieveCurationSetsResponse",
-}) as any as S.Schema<RetrieveCurationSetsResponse>;
+  identifier: "GetCurationSetsResponse",
+}) as any as S.Schema<GetCurationSetsResponse>;
 
-export interface RetrieveMetricsRequest {}
-export const RetrieveMetricsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(T.Http({ method: "GET", uri: "/metrics.json", code: 200 })),
+export interface GetDocumentRequest {
+  /** The name of the collection to search for the document under */
+  collectionName: string;
+  /** The Document ID */
+  documentId: string;
+}
+export const GetDocumentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    collectionName: S.String.pipe(T.Label()),
+    documentId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/collections/{collectionName}/documents/{documentId}",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "RetrieveMetricsRequest",
-}) as any as S.Schema<RetrieveMetricsRequest>;
+  identifier: "GetDocumentRequest",
+}) as any as S.Schema<GetDocumentRequest>;
 
-export type RetrieveMetricsResponse = unknown;
-export const RetrieveMetricsResponse = /*@__PURE__*/ S.suspend(() =>
+export type GetDocumentResponse = unknown;
+export const GetDocumentResponse = /*@__PURE__*/ S.suspend(() =>
   S.Unknown.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "RetrieveMetricsResponse",
-}) as any as S.Schema<RetrieveMetricsResponse>;
+  identifier: "GetDocumentResponse",
+}) as any as S.Schema<GetDocumentResponse>;
 
-export interface RetrieveNLSearchModelRequest {
+export interface GetKeyRequest {
+  /** The ID of the key to retrieve */
+  keyId: number;
+}
+export const GetKeyRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    keyId: S.Number.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/keys/{keyId}", code: 200 })),
+).annotate({ identifier: "GetKeyRequest" }) as any as S.Schema<GetKeyRequest>;
+
+export type GetKeyResponseActionsList = Array<string>;
+export const GetKeyResponseActionsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<GetKeyResponseActionsList>;
+
+export type GetKeyResponseCollectionsList = Array<string>;
+export const GetKeyResponseCollectionsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<GetKeyResponseCollectionsList>;
+
+export interface GetKeyResponse {
+  value?: string;
+  description: string;
+  actions: GetKeyResponseActionsList;
+  collections: GetKeyResponseCollectionsList;
+  expires_at?: number;
+  id?: number;
+  value_prefix?: string;
+}
+export const GetKeyResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(S.String),
+    description: S.String,
+    actions: GetKeyResponseActionsList,
+    collections: GetKeyResponseCollectionsList,
+    expires_at: S.optional(S.Number),
+    id: S.optional(S.Number),
+    value_prefix: S.optional(S.String),
+  }),
+).annotate({ identifier: "GetKeyResponse" }) as any as S.Schema<GetKeyResponse>;
+
+export interface GetKeysRequest {}
+export const GetKeysRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(T.Http({ method: "GET", uri: "/keys", code: 200 })),
+).annotate({ identifier: "GetKeysRequest" }) as any as S.Schema<GetKeysRequest>;
+
+export type ApiKeyActionsList = Array<string>;
+export const ApiKeyActionsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ApiKeyActionsList>;
+
+export type ApiKeyCollectionsList = Array<string>;
+export const ApiKeyCollectionsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ApiKeyCollectionsList>;
+
+export interface ApiKey {
+  value?: string;
+  description: string;
+  actions: ApiKeyActionsList;
+  collections: ApiKeyCollectionsList;
+  expires_at?: number;
+  id?: number;
+  value_prefix?: string;
+}
+export const ApiKey = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(S.String),
+    description: S.String,
+    actions: ApiKeyActionsList,
+    collections: ApiKeyCollectionsList,
+    expires_at: S.optional(S.Number),
+    id: S.optional(S.Number),
+    value_prefix: S.optional(S.String),
+  }),
+).annotate({ identifier: "ApiKey" }) as any as S.Schema<ApiKey>;
+
+export type ApiKeysResponseKeysList = Array<ApiKey>;
+export const ApiKeysResponseKeysList = /*@__PURE__*/ S.Array(
+  ApiKey,
+) as any as S.Schema<ApiKeysResponseKeysList>;
+
+export interface ApiKeysResponse {
+  keys: ApiKeysResponseKeysList;
+}
+export const ApiKeysResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    keys: ApiKeysResponseKeysList,
+  }),
+).annotate({
+  identifier: "ApiKeysResponse",
+}) as any as S.Schema<ApiKeysResponse>;
+
+export interface GetMetricsRequest {}
+export const GetMetricsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(T.Http({ method: "GET", uri: "/metrics.json", code: 200 })),
+).annotate({
+  identifier: "GetMetricsRequest",
+}) as any as S.Schema<GetMetricsRequest>;
+
+export type GetMetricsResponse = unknown;
+export const GetMetricsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Unknown.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "GetMetricsResponse",
+}) as any as S.Schema<GetMetricsResponse>;
+
+export interface GetNLSearchModelRequest {
   /** The ID of the NL search model to retrieve */
   modelId: string;
 }
-export const RetrieveNLSearchModelRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetNLSearchModelRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     modelId: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({ method: "GET", uri: "/nl_search_models/{modelId}", code: 200 }),
   ),
 ).annotate({
-  identifier: "RetrieveNLSearchModelRequest",
-}) as any as S.Schema<RetrieveNLSearchModelRequest>;
+  identifier: "GetNLSearchModelRequest",
+}) as any as S.Schema<GetNLSearchModelRequest>;
 
 /** Stop sequences for the NL model (Google-specific) */
-export type RetrieveNLSearchModelResponseStopSequencesList = Array<string>;
-export const RetrieveNLSearchModelResponseStopSequencesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<RetrieveNLSearchModelResponseStopSequencesList>;
+export type GetNLSearchModelResponseStopSequencesList = Array<string>;
+export const GetNLSearchModelResponseStopSequencesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<GetNLSearchModelResponseStopSequencesList>;
 
-export interface RetrieveNLSearchModelResponse {
+export interface GetNLSearchModelResponse {
   /** Name of the NL model to use */
   model_name?: string;
   /** API key for the NL model service */
@@ -4082,7 +3204,7 @@ export interface RetrieveNLSearchModelResponse {
   /** Top-k parameter for the NL model (Google-specific) */
   top_k?: number;
   /** Stop sequences for the NL model (Google-specific) */
-  stop_sequences?: RetrieveNLSearchModelResponseStopSequencesList;
+  stop_sequences?: GetNLSearchModelResponseStopSequencesList;
   /** API version for the NL model service */
   api_version?: string;
   /** Project ID for GCP Vertex AI */
@@ -4104,7 +3226,7 @@ export interface RetrieveNLSearchModelResponse {
   /** Optional ID for the NL search model */
   id: string;
 }
-export const RetrieveNLSearchModelResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetNLSearchModelResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     model_name: S.optional(S.String),
     api_key: S.optional(S.String.pipe(T.SensitiveValue({}))),
@@ -4114,7 +3236,7 @@ export const RetrieveNLSearchModelResponse = /*@__PURE__*/ S.suspend(() =>
     system_prompt: S.optional(S.String),
     top_p: S.optional(S.Number),
     top_k: S.optional(S.Number),
-    stop_sequences: S.optional(RetrieveNLSearchModelResponseStopSequencesList),
+    stop_sequences: S.optional(GetNLSearchModelResponseStopSequencesList),
     api_version: S.optional(S.String),
     project_id: S.optional(S.String),
     access_token: S.optional(S.String.pipe(T.SensitiveValue({}))),
@@ -4127,25 +3249,25 @@ export const RetrieveNLSearchModelResponse = /*@__PURE__*/ S.suspend(() =>
     id: S.String,
   }),
 ).annotate({
-  identifier: "RetrieveNLSearchModelResponse",
-}) as any as S.Schema<RetrieveNLSearchModelResponse>;
+  identifier: "GetNLSearchModelResponse",
+}) as any as S.Schema<GetNLSearchModelResponse>;
 
-export interface RetrievePresetRequest {
+export interface GetPresetRequest {
   /** The ID of the preset to retrieve. */
   presetId: string;
 }
-export const RetrievePresetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetPresetRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     presetId: S.String.pipe(T.Label()),
   }).pipe(T.Http({ method: "GET", uri: "/presets/{presetId}", code: 200 })),
 ).annotate({
-  identifier: "RetrievePresetRequest",
-}) as any as S.Schema<RetrievePresetRequest>;
+  identifier: "GetPresetRequest",
+}) as any as S.Schema<GetPresetRequest>;
 
-export type RetrievePresetResponseValue =
+export type GetPresetResponseValue =
   | SearchParameters
   | MultiSearchSearchesParameter;
-export const RetrievePresetResponseValue = /*@__PURE__*/ S.Unknown.pipe(
+export const GetPresetResponseValue = /*@__PURE__*/ S.Unknown.pipe(
   T.UnionCases([
     [
       "q",
@@ -4225,30 +3347,123 @@ export const RetrievePresetResponseValue = /*@__PURE__*/ S.Unknown.pipe(
   ]),
 );
 
-export interface RetrievePresetResponse {
-  value: RetrievePresetResponseValue;
+export interface GetPresetResponse {
+  value: GetPresetResponseValue;
   name: string;
 }
-export const RetrievePresetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetPresetResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: RetrievePresetResponseValue,
+    value: GetPresetResponseValue,
     name: S.String,
   }),
 ).annotate({
-  identifier: "RetrievePresetResponse",
-}) as any as S.Schema<RetrievePresetResponse>;
+  identifier: "GetPresetResponse",
+}) as any as S.Schema<GetPresetResponse>;
 
-export interface RetrieveStopwordsSetRequest {
+export interface GetSchemaChangesRequest {}
+export const GetSchemaChangesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
+    T.Http({ method: "GET", uri: "/operations/schema_changes", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetSchemaChangesRequest",
+}) as any as S.Schema<GetSchemaChangesRequest>;
+
+export interface SchemaChangeStatus {
+  /** Name of the collection being modified */
+  collection?: string;
+  /** Number of documents that have been validated */
+  validated_docs?: number;
+  /** Number of documents that have been altered */
+  altered_docs?: number;
+}
+export const SchemaChangeStatus = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    collection: S.optional(S.String),
+    validated_docs: S.optional(S.Number),
+    altered_docs: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "SchemaChangeStatus",
+}) as any as S.Schema<SchemaChangeStatus>;
+
+export type GetSchemaChangesResponseBodyList = Array<SchemaChangeStatus>;
+export const GetSchemaChangesResponseBodyList = /*@__PURE__*/ S.Array(
+  SchemaChangeStatus,
+) as any as S.Schema<GetSchemaChangesResponseBodyList>;
+
+export type GetSchemaChangesResponse = GetSchemaChangesResponseBodyList;
+export const GetSchemaChangesResponse = /*@__PURE__*/ S.suspend(() =>
+  GetSchemaChangesResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "GetSchemaChangesResponse",
+}) as any as S.Schema<GetSchemaChangesResponse>;
+
+export interface GetStemmingDictionaryRequest {
+  /** The ID of the dictionary to retrieve */
+  dictionaryId: string;
+}
+export const GetStemmingDictionaryRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    dictionaryId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/stemming/dictionaries/{dictionaryId}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetStemmingDictionaryRequest",
+}) as any as S.Schema<GetStemmingDictionaryRequest>;
+
+export interface StemmingDictionaryWordsItem {
+  /** The word form to be stemmed */
+  word: string;
+  /** The root form of the word */
+  root: string;
+}
+export const StemmingDictionaryWordsItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    word: S.String,
+    root: S.String,
+  }),
+).annotate({
+  identifier: "StemmingDictionaryWordsItem",
+}) as any as S.Schema<StemmingDictionaryWordsItem>;
+
+/** List of word mappings in the dictionary */
+export type StemmingDictionaryWordsList = Array<StemmingDictionaryWordsItem>;
+export const StemmingDictionaryWordsList = /*@__PURE__*/ S.Array(
+  StemmingDictionaryWordsItem,
+) as any as S.Schema<StemmingDictionaryWordsList>;
+
+export interface StemmingDictionary {
+  /** Unique identifier for the dictionary */
+  id: string;
+  /** List of word mappings in the dictionary */
+  words: StemmingDictionaryWordsList;
+}
+export const StemmingDictionary = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    words: StemmingDictionaryWordsList,
+  }),
+).annotate({
+  identifier: "StemmingDictionary",
+}) as any as S.Schema<StemmingDictionary>;
+
+export interface GetStopwordsSetRequest {
   /** The ID of the stopwords set to retrieve. */
   setId: string;
 }
-export const RetrieveStopwordsSetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetStopwordsSetRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     setId: S.String.pipe(T.Label()),
   }).pipe(T.Http({ method: "GET", uri: "/stopwords/{setId}", code: 200 })),
 ).annotate({
-  identifier: "RetrieveStopwordsSetRequest",
-}) as any as S.Schema<RetrieveStopwordsSetRequest>;
+  identifier: "GetStopwordsSetRequest",
+}) as any as S.Schema<GetStopwordsSetRequest>;
 
 export type StopwordsSetSchemaStopwordsList = Array<string>;
 export const StopwordsSetSchemaStopwordsList = /*@__PURE__*/ S.Array(
@@ -4281,12 +3496,12 @@ export const StopwordsSetRetrieveSchema = /*@__PURE__*/ S.suspend(() =>
   identifier: "StopwordsSetRetrieveSchema",
 }) as any as S.Schema<StopwordsSetRetrieveSchema>;
 
-export interface RetrieveStopwordsSetsRequest {}
-export const RetrieveStopwordsSetsRequest = /*@__PURE__*/ S.suspend(() =>
+export interface GetStopwordsSetsRequest {}
+export const GetStopwordsSetsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(T.Http({ method: "GET", uri: "/stopwords", code: 200 })),
 ).annotate({
-  identifier: "RetrieveStopwordsSetsRequest",
-}) as any as S.Schema<RetrieveStopwordsSetsRequest>;
+  identifier: "GetStopwordsSetsRequest",
+}) as any as S.Schema<GetStopwordsSetsRequest>;
 
 export type StopwordsSetsRetrieveAllSchemaStopwordsList =
   Array<StopwordsSetSchema>;
@@ -4306,19 +3521,19 @@ export const StopwordsSetsRetrieveAllSchema = /*@__PURE__*/ S.suspend(() =>
   identifier: "StopwordsSetsRetrieveAllSchema",
 }) as any as S.Schema<StopwordsSetsRetrieveAllSchema>;
 
-export interface RetrieveSynonymSetRequest {
+export interface GetSynonymSetRequest {
   /** The name of the synonym set to retrieve */
   synonymSetName: string;
 }
-export const RetrieveSynonymSetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetSynonymSetRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     synonymSetName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({ method: "GET", uri: "/synonym_sets/{synonymSetName}", code: 200 }),
   ),
 ).annotate({
-  identifier: "RetrieveSynonymSetRequest",
-}) as any as S.Schema<RetrieveSynonymSetRequest>;
+  identifier: "GetSynonymSetRequest",
+}) as any as S.Schema<GetSynonymSetRequest>;
 
 /** Array of words that should be considered as synonyms */
 export type SynonymItemSchemaSynonymsList = Array<string>;
@@ -4357,33 +3572,33 @@ export const SynonymItemSchema = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SynonymItemSchema>;
 
 /** Array of synonym items */
-export type RetrieveSynonymSetResponseItemsList = Array<SynonymItemSchema>;
-export const RetrieveSynonymSetResponseItemsList = /*@__PURE__*/ S.Array(
+export type GetSynonymSetResponseItemsList = Array<SynonymItemSchema>;
+export const GetSynonymSetResponseItemsList = /*@__PURE__*/ S.Array(
   SynonymItemSchema,
-) as any as S.Schema<RetrieveSynonymSetResponseItemsList>;
+) as any as S.Schema<GetSynonymSetResponseItemsList>;
 
-export interface RetrieveSynonymSetResponse {
+export interface GetSynonymSetResponse {
   /** Array of synonym items */
-  items: RetrieveSynonymSetResponseItemsList;
+  items: GetSynonymSetResponseItemsList;
   /** Name of the synonym set */
   name: string;
 }
-export const RetrieveSynonymSetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetSynonymSetResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    items: RetrieveSynonymSetResponseItemsList,
+    items: GetSynonymSetResponseItemsList,
     name: S.String,
   }),
 ).annotate({
-  identifier: "RetrieveSynonymSetResponse",
-}) as any as S.Schema<RetrieveSynonymSetResponse>;
+  identifier: "GetSynonymSetResponse",
+}) as any as S.Schema<GetSynonymSetResponse>;
 
-export interface RetrieveSynonymSetItemRequest {
+export interface GetSynonymSetItemRequest {
   /** The name of the synonym set */
   synonymSetName: string;
   /** The id of the synonym item to retrieve */
   itemId: string;
 }
-export const RetrieveSynonymSetItemRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetSynonymSetItemRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     synonymSetName: S.String.pipe(T.Label()),
     itemId: S.String.pipe(T.Label()),
@@ -4395,53 +3610,51 @@ export const RetrieveSynonymSetItemRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "RetrieveSynonymSetItemRequest",
-}) as any as S.Schema<RetrieveSynonymSetItemRequest>;
+  identifier: "GetSynonymSetItemRequest",
+}) as any as S.Schema<GetSynonymSetItemRequest>;
 
 /** Array of words that should be considered as synonyms */
-export type RetrieveSynonymSetItemResponseSynonymsList = Array<string>;
-export const RetrieveSynonymSetItemResponseSynonymsList = /*@__PURE__*/ S.Array(
+export type GetSynonymSetItemResponseSynonymsList = Array<string>;
+export const GetSynonymSetItemResponseSynonymsList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<RetrieveSynonymSetItemResponseSynonymsList>;
+) as any as S.Schema<GetSynonymSetItemResponseSynonymsList>;
 
 /** By default, special characters are dropped from synonyms. Use this attribute to specify which special characters should be indexed as is */
-export type RetrieveSynonymSetItemResponseSymbolsToIndexList = Array<string>;
-export const RetrieveSynonymSetItemResponseSymbolsToIndexList =
+export type GetSynonymSetItemResponseSymbolsToIndexList = Array<string>;
+export const GetSynonymSetItemResponseSymbolsToIndexList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<RetrieveSynonymSetItemResponseSymbolsToIndexList>;
+  ) as any as S.Schema<GetSynonymSetItemResponseSymbolsToIndexList>;
 
-export interface RetrieveSynonymSetItemResponse {
+export interface GetSynonymSetItemResponse {
   /** Unique identifier for the synonym item */
   id: string;
   /** Array of words that should be considered as synonyms */
-  synonyms: RetrieveSynonymSetItemResponseSynonymsList;
+  synonyms: GetSynonymSetItemResponseSynonymsList;
   /** For 1-way synonyms, indicates the root word that words in the synonyms parameter map to */
   root?: string;
   /** Locale for the synonym, leave blank to use the standard tokenizer */
   locale?: string;
   /** By default, special characters are dropped from synonyms. Use this attribute to specify which special characters should be indexed as is */
-  symbols_to_index?: RetrieveSynonymSetItemResponseSymbolsToIndexList;
+  symbols_to_index?: GetSynonymSetItemResponseSymbolsToIndexList;
 }
-export const RetrieveSynonymSetItemResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetSynonymSetItemResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String,
-    synonyms: RetrieveSynonymSetItemResponseSynonymsList,
+    synonyms: GetSynonymSetItemResponseSynonymsList,
     root: S.optional(S.String),
     locale: S.optional(S.String),
-    symbols_to_index: S.optional(
-      RetrieveSynonymSetItemResponseSymbolsToIndexList,
-    ),
+    symbols_to_index: S.optional(GetSynonymSetItemResponseSymbolsToIndexList),
   }),
 ).annotate({
-  identifier: "RetrieveSynonymSetItemResponse",
-}) as any as S.Schema<RetrieveSynonymSetItemResponse>;
+  identifier: "GetSynonymSetItemResponse",
+}) as any as S.Schema<GetSynonymSetItemResponse>;
 
-export interface RetrieveSynonymSetItemsRequest {
+export interface GetSynonymSetItemsRequest {
   /** The name of the synonym set to retrieve items for */
   synonymSetName: string;
 }
-export const RetrieveSynonymSetItemsRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetSynonymSetItemsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     synonymSetName: S.String.pipe(T.Label()),
   }).pipe(
@@ -4452,28 +3665,27 @@ export const RetrieveSynonymSetItemsRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "RetrieveSynonymSetItemsRequest",
-}) as any as S.Schema<RetrieveSynonymSetItemsRequest>;
+  identifier: "GetSynonymSetItemsRequest",
+}) as any as S.Schema<GetSynonymSetItemsRequest>;
 
-export type RetrieveSynonymSetItemsResponseBodyList = Array<SynonymItemSchema>;
-export const RetrieveSynonymSetItemsResponseBodyList = /*@__PURE__*/ S.Array(
+export type GetSynonymSetItemsResponseBodyList = Array<SynonymItemSchema>;
+export const GetSynonymSetItemsResponseBodyList = /*@__PURE__*/ S.Array(
   SynonymItemSchema,
-) as any as S.Schema<RetrieveSynonymSetItemsResponseBodyList>;
+) as any as S.Schema<GetSynonymSetItemsResponseBodyList>;
 
-export type RetrieveSynonymSetItemsResponse =
-  RetrieveSynonymSetItemsResponseBodyList;
-export const RetrieveSynonymSetItemsResponse = /*@__PURE__*/ S.suspend(() =>
-  RetrieveSynonymSetItemsResponseBodyList.pipe(T.RawResponseRoot()),
+export type GetSynonymSetItemsResponse = GetSynonymSetItemsResponseBodyList;
+export const GetSynonymSetItemsResponse = /*@__PURE__*/ S.suspend(() =>
+  GetSynonymSetItemsResponseBodyList.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "RetrieveSynonymSetItemsResponse",
-}) as any as S.Schema<RetrieveSynonymSetItemsResponse>;
+  identifier: "GetSynonymSetItemsResponse",
+}) as any as S.Schema<GetSynonymSetItemsResponse>;
 
-export interface RetrieveSynonymSetsRequest {}
-export const RetrieveSynonymSetsRequest = /*@__PURE__*/ S.suspend(() =>
+export interface GetSynonymSetsRequest {}
+export const GetSynonymSetsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(T.Http({ method: "GET", uri: "/synonym_sets", code: 200 })),
 ).annotate({
-  identifier: "RetrieveSynonymSetsRequest",
-}) as any as S.Schema<RetrieveSynonymSetsRequest>;
+  identifier: "GetSynonymSetsRequest",
+}) as any as S.Schema<GetSynonymSetsRequest>;
 
 /** Array of synonym items */
 export type SynonymSetSchemaItemsList = Array<SynonymItemSchema>;
@@ -4496,17 +3708,173 @@ export const SynonymSetSchema = /*@__PURE__*/ S.suspend(() =>
   identifier: "SynonymSetSchema",
 }) as any as S.Schema<SynonymSetSchema>;
 
-export type RetrieveSynonymSetsResponseBodyList = Array<SynonymSetSchema>;
-export const RetrieveSynonymSetsResponseBodyList = /*@__PURE__*/ S.Array(
+export type GetSynonymSetsResponseBodyList = Array<SynonymSetSchema>;
+export const GetSynonymSetsResponseBodyList = /*@__PURE__*/ S.Array(
   SynonymSetSchema,
-) as any as S.Schema<RetrieveSynonymSetsResponseBodyList>;
+) as any as S.Schema<GetSynonymSetsResponseBodyList>;
 
-export type RetrieveSynonymSetsResponse = RetrieveSynonymSetsResponseBodyList;
-export const RetrieveSynonymSetsResponse = /*@__PURE__*/ S.suspend(() =>
-  RetrieveSynonymSetsResponseBodyList.pipe(T.RawResponseRoot()),
+export type GetSynonymSetsResponse = GetSynonymSetsResponseBodyList;
+export const GetSynonymSetsResponse = /*@__PURE__*/ S.suspend(() =>
+  GetSynonymSetsResponseBodyList.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "RetrieveSynonymSetsResponse",
-}) as any as S.Schema<RetrieveSynonymSetsResponse>;
+  identifier: "GetSynonymSetsResponse",
+}) as any as S.Schema<GetSynonymSetsResponse>;
+
+export interface HealthRequest {}
+export const HealthRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(T.Http({ method: "GET", uri: "/health", code: 200 })),
+).annotate({ identifier: "HealthRequest" }) as any as S.Schema<HealthRequest>;
+
+export interface HealthStatus {
+  ok: boolean;
+}
+export const HealthStatus = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ok: S.Boolean,
+  }),
+).annotate({ identifier: "HealthStatus" }) as any as S.Schema<HealthStatus>;
+
+export type IndexAction = "create" | "update" | "upsert" | "emplace";
+export const IndexAction = /*@__PURE__*/ S.String;
+
+export type DirtyValues =
+  | "coerce_or_reject"
+  | "coerce_or_drop"
+  | "drop"
+  | "reject";
+export const DirtyValues = /*@__PURE__*/ S.String;
+
+export interface ImportDocumentsRequestImportDocumentsParameters {
+  batch_size?: number;
+  /** Returning the id of the imported documents. If you want the import response to return the ingested document's id in the response, you can use the return_id parameter. */
+  return_id?: boolean;
+  remote_embedding_batch_size?: number;
+  return_doc?: boolean;
+  action?: IndexAction | (string & {});
+  dirty_values?: DirtyValues | (string & {});
+}
+export const ImportDocumentsRequestImportDocumentsParameters =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      batch_size: S.optional(S.Number),
+      return_id: S.optional(S.Boolean),
+      remote_embedding_batch_size: S.optional(S.Number),
+      return_doc: S.optional(S.Boolean),
+      action: S.optional(IndexAction),
+      dirty_values: S.optional(DirtyValues),
+    }),
+  ).annotate({
+    identifier: "ImportDocumentsRequestImportDocumentsParameters",
+  }) as any as S.Schema<ImportDocumentsRequestImportDocumentsParameters>;
+
+export interface ImportDocumentsRequest {
+  /** The name of the collection */
+  collectionName: string;
+  importDocumentsParameters?: ImportDocumentsRequestImportDocumentsParameters;
+}
+export const ImportDocumentsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    collectionName: S.String.pipe(T.Label()),
+    importDocumentsParameters: S.optional(
+      ImportDocumentsRequestImportDocumentsParameters.pipe(T.Query()),
+    ),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/collections/{collectionName}/documents/import",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ImportDocumentsRequest",
+}) as any as S.Schema<ImportDocumentsRequest>;
+
+export interface ImportDocumentsResponse {}
+export const ImportDocumentsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "ImportDocumentsResponse",
+}) as any as S.Schema<ImportDocumentsResponse>;
+
+export interface ImportStemmingDictionaryRequest {
+  /** The ID to assign to the dictionary */
+  id: string;
+  body: string;
+}
+export const ImportStemmingDictionaryRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Query()),
+    body: S.String.pipe(T.HttpBody()),
+  }).pipe(
+    T.Http({ method: "POST", uri: "/stemming/dictionaries/import", code: 200 }),
+  ),
+).annotate({
+  identifier: "ImportStemmingDictionaryRequest",
+}) as any as S.Schema<ImportStemmingDictionaryRequest>;
+
+export interface ImportStemmingDictionaryResponse {}
+export const ImportStemmingDictionaryResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "ImportStemmingDictionaryResponse",
+}) as any as S.Schema<ImportStemmingDictionaryResponse>;
+
+export interface ListDocumentRequest {
+  /** The name of the collection to add the document to */
+  collectionName: string;
+  /** Additional action to perform */
+  action?: IndexAction | (string & {});
+  /** Dealing with Dirty Data */
+  dirty_values?: DirtyValues | (string & {});
+}
+export const ListDocumentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    collectionName: S.String.pipe(T.Label()),
+    action: S.optional(IndexAction.pipe(T.Query())),
+    dirty_values: S.optional(DirtyValues.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/collections/{collectionName}/documents",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListDocumentRequest",
+}) as any as S.Schema<ListDocumentRequest>;
+
+export type ListDocumentResponse = unknown;
+export const ListDocumentResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Unknown.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListDocumentResponse",
+}) as any as S.Schema<ListDocumentResponse>;
+
+export interface ListStemmingDictionariesRequest {}
+export const ListStemmingDictionariesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
+    T.Http({ method: "GET", uri: "/stemming/dictionaries", code: 200 }),
+  ),
+).annotate({
+  identifier: "ListStemmingDictionariesRequest",
+}) as any as S.Schema<ListStemmingDictionariesRequest>;
+
+export type ListStemmingDictionariesResponseDictionariesList = Array<string>;
+export const ListStemmingDictionariesResponseDictionariesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ListStemmingDictionariesResponseDictionariesList>;
+
+export interface ListStemmingDictionariesResponse {
+  dictionaries?: ListStemmingDictionariesResponseDictionariesList;
+}
+export const ListStemmingDictionariesResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    dictionaries: S.optional(ListStemmingDictionariesResponseDictionariesList),
+  }),
+).annotate({
+  identifier: "ListStemmingDictionariesResponse",
+}) as any as S.Schema<ListStemmingDictionariesResponse>;
 
 export interface SearchCollectionRequest {
   /** The name of the collection to search for the document under */
@@ -4528,10 +3896,245 @@ export const SearchCollectionRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "SearchCollectionRequest",
 }) as any as S.Schema<SearchCollectionRequest>;
 
+export interface FacetCountsCountsItem {
+  count?: number;
+  highlighted?: string;
+  value?: string;
+  parent?: unknown;
+}
+export const FacetCountsCountsItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    count: S.optional(S.Number),
+    highlighted: S.optional(S.String),
+    value: S.optional(S.String),
+    parent: S.optional(S.Unknown),
+  }),
+).annotate({
+  identifier: "FacetCountsCountsItem",
+}) as any as S.Schema<FacetCountsCountsItem>;
+
+export type FacetCountsCountsList = Array<FacetCountsCountsItem>;
+export const FacetCountsCountsList = /*@__PURE__*/ S.Array(
+  FacetCountsCountsItem,
+) as any as S.Schema<FacetCountsCountsList>;
+
+export interface FacetCountsStats {
+  max?: number;
+  min?: number;
+  sum?: number;
+  total_values?: number;
+  avg?: number;
+}
+export const FacetCountsStats = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    max: S.optional(S.Number),
+    min: S.optional(S.Number),
+    sum: S.optional(S.Number),
+    total_values: S.optional(S.Number),
+    avg: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "FacetCountsStats",
+}) as any as S.Schema<FacetCountsStats>;
+
+export interface FacetCounts {
+  counts?: FacetCountsCountsList;
+  field_name?: string;
+  sampled?: boolean;
+  stats?: FacetCountsStats;
+}
+export const FacetCounts = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    counts: S.optional(FacetCountsCountsList),
+    field_name: S.optional(S.String),
+    sampled: S.optional(S.Boolean),
+    stats: S.optional(FacetCountsStats),
+  }),
+).annotate({ identifier: "FacetCounts" }) as any as S.Schema<FacetCounts>;
+
 export type SearchResultFacetCountsList = Array<FacetCounts>;
 export const SearchResultFacetCountsList = /*@__PURE__*/ S.Array(
   FacetCounts,
 ) as any as S.Schema<SearchResultFacetCountsList>;
+
+export type SearchGroupedHitGroupKeyList = Array<unknown>;
+export const SearchGroupedHitGroupKeyList = /*@__PURE__*/ S.Array(
+  S.Unknown,
+) as any as S.Schema<SearchGroupedHitGroupKeyList>;
+
+/** Present only for (array) string[] fields */
+export type SearchHighlightSnippetsList = Array<string>;
+export const SearchHighlightSnippetsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<SearchHighlightSnippetsList>;
+
+/** Full field value with highlighting, present only for (array) string[] fields */
+export type SearchHighlightValuesList = Array<string>;
+export const SearchHighlightValuesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<SearchHighlightValuesList>;
+
+/** The indices property will be present only for string[] fields and will contain the corresponding indices of the snippets in the search field */
+export type SearchHighlightIndicesList = Array<number>;
+export const SearchHighlightIndicesList = /*@__PURE__*/ S.Array(
+  S.Number,
+) as any as S.Schema<SearchHighlightIndicesList>;
+
+export type SearchHighlightMatchedTokensList = Array<unknown>;
+export const SearchHighlightMatchedTokensList = /*@__PURE__*/ S.Array(
+  S.Unknown,
+) as any as S.Schema<SearchHighlightMatchedTokensList>;
+
+export interface SearchHighlight {
+  field?: string;
+  /** Present only for (non-array) string fields */
+  snippet?: string;
+  /** Present only for (array) string[] fields */
+  snippets?: SearchHighlightSnippetsList;
+  /** Full field value with highlighting, present only for (non-array) string fields */
+  value?: string;
+  /** Full field value with highlighting, present only for (array) string[] fields */
+  values?: SearchHighlightValuesList;
+  /** The indices property will be present only for string[] fields and will contain the corresponding indices of the snippets in the search field */
+  indices?: SearchHighlightIndicesList;
+  matched_tokens?: SearchHighlightMatchedTokensList;
+}
+export const SearchHighlight = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    field: S.optional(S.String),
+    snippet: S.optional(S.String),
+    snippets: S.optional(SearchHighlightSnippetsList),
+    value: S.optional(S.String),
+    values: S.optional(SearchHighlightValuesList),
+    indices: S.optional(SearchHighlightIndicesList),
+    matched_tokens: S.optional(SearchHighlightMatchedTokensList),
+  }),
+).annotate({
+  identifier: "SearchHighlight",
+}) as any as S.Schema<SearchHighlight>;
+
+/** (Deprecated) Contains highlighted portions of the search fields */
+export type SearchResultHitHighlightsList = Array<SearchHighlight>;
+export const SearchResultHitHighlightsList = /*@__PURE__*/ S.Array(
+  SearchHighlight,
+) as any as S.Schema<SearchResultHitHighlightsList>;
+
+/** Highlighted version of the matching document */
+export type SearchResultHitHighlightMap = {
+  [key: string]: unknown | undefined;
+};
+export const SearchResultHitHighlightMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<SearchResultHitHighlightMap>;
+
+/** Can be any key-value pair */
+export type SearchResultHitDocumentMap = { [key: string]: unknown | undefined };
+export const SearchResultHitDocumentMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<SearchResultHitDocumentMap>;
+
+export interface SearchResultHitTextMatchInfo {
+  best_field_score?: string;
+  best_field_weight?: number;
+  fields_matched?: number;
+  num_tokens_dropped?: number;
+  score?: string;
+  tokens_matched?: number;
+  typo_prefix_score?: number;
+}
+export const SearchResultHitTextMatchInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    best_field_score: S.optional(S.String),
+    best_field_weight: S.optional(S.Number),
+    fields_matched: S.optional(S.Number),
+    num_tokens_dropped: S.optional(S.Number),
+    score: S.optional(S.String),
+    tokens_matched: S.optional(S.Number),
+    typo_prefix_score: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "SearchResultHitTextMatchInfo",
+}) as any as S.Schema<SearchResultHitTextMatchInfo>;
+
+/** Can be any key-value pair */
+export type SearchResultHitGeoDistanceMetersMap = {
+  [key: string]: number | undefined;
+};
+export const SearchResultHitGeoDistanceMetersMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Number,
+) as any as S.Schema<SearchResultHitGeoDistanceMetersMap>;
+
+/** Information about hybrid search scoring */
+export interface SearchResultHitHybridSearchInfo {
+  /** Combined score from rank fusion of text and vector search */
+  rank_fusion_score?: number;
+}
+export const SearchResultHitHybridSearchInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    rank_fusion_score: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "SearchResultHitHybridSearchInfo",
+}) as any as S.Schema<SearchResultHitHybridSearchInfo>;
+
+export interface SearchResultHit {
+  /** (Deprecated) Contains highlighted portions of the search fields */
+  highlights?: SearchResultHitHighlightsList;
+  /** Highlighted version of the matching document */
+  highlight?: SearchResultHitHighlightMap;
+  /** Can be any key-value pair */
+  document?: SearchResultHitDocumentMap;
+  text_match?: number;
+  text_match_info?: SearchResultHitTextMatchInfo;
+  /** Can be any key-value pair */
+  geo_distance_meters?: SearchResultHitGeoDistanceMetersMap;
+  /** Distance between the query vector and matching document's vector value */
+  vector_distance?: number;
+  /** Information about hybrid search scoring */
+  hybrid_search_info?: SearchResultHitHybridSearchInfo;
+  /** Returned only for union query response. Indicates the index of the query which this document matched to. */
+  search_index?: number;
+}
+export const SearchResultHit = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    highlights: S.optional(SearchResultHitHighlightsList),
+    highlight: S.optional(SearchResultHitHighlightMap),
+    document: S.optional(SearchResultHitDocumentMap),
+    text_match: S.optional(S.Number),
+    text_match_info: S.optional(SearchResultHitTextMatchInfo),
+    geo_distance_meters: S.optional(SearchResultHitGeoDistanceMetersMap),
+    vector_distance: S.optional(S.Number),
+    hybrid_search_info: S.optional(SearchResultHitHybridSearchInfo),
+    search_index: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "SearchResultHit",
+}) as any as S.Schema<SearchResultHit>;
+
+/** The documents that matched the search query */
+export type SearchGroupedHitHitsList = Array<SearchResultHit>;
+export const SearchGroupedHitHitsList = /*@__PURE__*/ S.Array(
+  SearchResultHit,
+) as any as S.Schema<SearchGroupedHitHitsList>;
+
+export interface SearchGroupedHit {
+  found?: number;
+  group_key: SearchGroupedHitGroupKeyList;
+  /** The documents that matched the search query */
+  hits: SearchGroupedHitHitsList;
+}
+export const SearchGroupedHit = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    found: S.optional(S.Number),
+    group_key: SearchGroupedHitGroupKeyList,
+    hits: SearchGroupedHitHitsList,
+  }),
+).annotate({
+  identifier: "SearchGroupedHit",
+}) as any as S.Schema<SearchGroupedHit>;
 
 export type SearchResultGroupedHitsList = Array<SearchGroupedHit>;
 export const SearchResultGroupedHitsList = /*@__PURE__*/ S.Array(
@@ -4543,6 +4146,59 @@ export type SearchResultHitsList = Array<SearchResultHit>;
 export const SearchResultHitsList = /*@__PURE__*/ S.Array(
   SearchResultHit,
 ) as any as S.Schema<SearchResultHitsList>;
+
+export interface SearchRequestParamsVoiceQuery {
+  transcribed_query?: string;
+}
+export const SearchRequestParamsVoiceQuery = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    transcribed_query: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "SearchRequestParamsVoiceQuery",
+}) as any as S.Schema<SearchRequestParamsVoiceQuery>;
+
+export interface SearchRequestParams {
+  collection_name: string;
+  first_q?: string;
+  q: string;
+  per_page: number;
+  voice_query?: SearchRequestParamsVoiceQuery;
+}
+export const SearchRequestParams = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    collection_name: S.String,
+    first_q: S.optional(S.String),
+    q: S.String,
+    per_page: S.Number,
+    voice_query: S.optional(SearchRequestParamsVoiceQuery),
+  }),
+).annotate({
+  identifier: "SearchRequestParams",
+}) as any as S.Schema<SearchRequestParams>;
+
+export type SearchResultConversationConversationHistoryList = Array<unknown>;
+export const SearchResultConversationConversationHistoryList =
+  /*@__PURE__*/ S.Array(
+    S.Unknown,
+  ) as any as S.Schema<SearchResultConversationConversationHistoryList>;
+
+export interface SearchResultConversation {
+  answer: string;
+  conversation_history: SearchResultConversationConversationHistoryList;
+  conversation_id: string;
+  query: string;
+}
+export const SearchResultConversation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    answer: S.String,
+    conversation_history: SearchResultConversationConversationHistoryList,
+    conversation_id: S.String,
+    query: S.String,
+  }),
+).annotate({
+  identifier: "SearchResultConversation",
+}) as any as S.Schema<SearchResultConversation>;
 
 /** Returned only for union query response. */
 export type SearchResultUnionRequestParamsList = Array<SearchRequestParams>;
@@ -4597,6 +4253,334 @@ export const SearchResult = /*@__PURE__*/ S.suspend(() =>
     metadata: S.optional(SearchResultMetadataMap),
   }),
 ).annotate({ identifier: "SearchResult" }) as any as S.Schema<SearchResult>;
+
+/** Parameters for the multi search API. */
+export interface MultiSearchParameters {
+  /** The query text to search for in the collection. Use * as the search string to return all documents. This is typically useful when used in conjunction with filter_by. */
+  q?: string;
+  /** A list of `string` fields that should be queried against. Multiple fields are separated with a comma. */
+  query_by?: string;
+  /** The relative weight to give each `query_by` field when ranking results. This can be used to boost fields in priority, when looking for matches. Multiple fields are separated with a comma. */
+  query_by_weights?: string;
+  /** In a multi-field matching context, this parameter determines how the representative text match score of a record is calculated. Possible values are max_score (default) or max_weight. */
+  text_match_type?: string;
+  /** Boolean field to indicate that the last word in the query should be treated as a prefix, and not as a whole word. This is used for building autocomplete and instant search interfaces. Defaults to true. */
+  prefix?: string;
+  /** If infix index is enabled for this field, infix searching can be done on a per-field basis by sending a comma separated string parameter called infix to the search query. This parameter can have 3 values; `off` infix search is disabled, which is default `always` infix search is performed along with regular search `fallback` infix search is performed if regular search does not produce results */
+  infix?: string;
+  /** There are also 2 parameters that allow you to control the extent of infix searching max_extra_prefix and max_extra_suffix which specify the maximum number of symbols before or after the query that can be present in the token. For example query "K2100" has 2 extra symbols in "6PK2100". By default, any number of prefixes/suffixes can be present for a match. */
+  max_extra_prefix?: number;
+  /** There are also 2 parameters that allow you to control the extent of infix searching max_extra_prefix and max_extra_suffix which specify the maximum number of symbols before or after the query that can be present in the token. For example query "K2100" has 2 extra symbols in "6PK2100". By default, any number of prefixes/suffixes can be present for a match. */
+  max_extra_suffix?: number;
+  /** Filter conditions for refining youropen api validator search results. Separate multiple conditions with &&. */
+  filter_by?: string;
+  /** A list of numerical fields and their corresponding sort orders that will be used for ordering your results. Up to 3 sort fields can be specified. The text similarity score is exposed as a special `_text_match` field that you can use in the list of sorting fields. If no `sort_by` parameter is specified, results are sorted by `_text_match:desc,default_sorting_field:desc` */
+  sort_by?: string;
+  /** A list of fields that will be used for faceting your results on. Separate multiple fields with a comma. */
+  facet_by?: string;
+  /** Maximum number of facet values to be returned. */
+  max_facet_values?: number;
+  /** Facet values that are returned can now be filtered via this parameter. The matching facet text is also highlighted. For example, when faceting by `category`, you can set `facet_query=category:shoe` to return only facet values that contain the prefix "shoe". */
+  facet_query?: string;
+  /** The number of typographical errors (1 or 2) that would be tolerated. Default: 2 */
+  num_typos?: string;
+  /** Results from this specific page number would be fetched. */
+  page?: number;
+  /** Number of results to fetch per page. Default: 10 */
+  per_page?: number;
+  /** Number of hits to fetch. Can be used as an alternative to the per_page parameter. Default: 10. */
+  limit?: number;
+  /** Identifies the starting point to return hits from a result set. Can be used as an alternative to the page parameter. */
+  offset?: number;
+  /** You can aggregate search results into groups or buckets by specify one or more `group_by` fields. Separate multiple fields with a comma. To group on a particular field, it must be a faceted field. */
+  group_by?: string;
+  /** Maximum number of hits to be returned for every group. If the `group_limit` is set as `K` then only the top K hits in each group are returned in the response. Default: 3 */
+  group_limit?: number;
+  /** Setting this parameter to true will place all documents that have a null value in the group_by field, into a single group. Setting this parameter to false, will cause each document with a null value in the group_by field to not be grouped with other documents. Default: true */
+  group_missing_values?: boolean;
+  /** List of fields from the document to include in the search result */
+  include_fields?: string;
+  /** List of fields from the document to exclude in the search result */
+  exclude_fields?: string;
+  /** List of fields which should be highlighted fully without snippeting */
+  highlight_full_fields?: string;
+  /** The number of tokens that should surround the highlighted text on each side. Default: 4 */
+  highlight_affix_num_tokens?: number;
+  /** The start tag used for the highlighted snippets. Default: `<mark>` */
+  highlight_start_tag?: string;
+  /** The end tag used for the highlighted snippets. Default: `</mark>` */
+  highlight_end_tag?: string;
+  /** Field values under this length will be fully highlighted, instead of showing a snippet of relevant portion. Default: 30 */
+  snippet_threshold?: number;
+  /** If the number of results found for a specific query is less than this number, Typesense will attempt to drop the tokens in the query until enough results are found. Tokens that have the least individual hits are dropped first. Set to 0 to disable. Default: 10 */
+  drop_tokens_threshold?: number;
+  drop_tokens_mode?: DropTokensMode | (string & {});
+  /** If the number of results found for a specific query is less than this number, Typesense will attempt to look for tokens with more typos until enough results are found. Default: 100 */
+  typo_tokens_threshold?: number;
+  /** Set this parameter to false to disable typos on alphanumerical query tokens. Default: true. */
+  enable_typos_for_alpha_numerical_tokens?: boolean;
+  /** Whether the filter_by condition of the search query should be applicable to curated results (curation definitions, pinned hits, hidden hits, etc.). Default: false */
+  filter_curated_hits?: boolean;
+  /** If you have some synonyms defined but want to disable all of them for a particular search query, set enable_synonyms to false. Default: true */
+  enable_synonyms?: boolean;
+  /** Flag for enabling/disabling analytics aggregation for specific search queries (for e.g. those originating from a test script). */
+  enable_analytics?: boolean;
+  /** Allow synonym resolution on word prefixes in the query. Default: false */
+  synonym_prefix?: boolean;
+  /** Allow synonym resolution on typo-corrected words in the query. Default: 0 */
+  synonym_num_typos?: number;
+  /** A list of records to unconditionally include in the search results at specific positions. An example use case would be to feature or promote certain items on the top of search results. A list of `record_id:hit_position`. Eg: to include a record with ID 123 at Position 1 and another record with ID 456 at Position 5, you'd specify `123:1,456:5`. You could also use the Curation feature to override search results based on rules. Curations are applied first, followed by `pinned_hits` and finally `hidden_hits`. */
+  pinned_hits?: string;
+  /** A list of records to unconditionally hide from search results. A list of `record_id`s to hide. Eg: to hide records with IDs 123 and 456, you'd specify `123,456`. You could also use the Curation feature to override search results based on rules. Curations are applied first, followed by `pinned_hits` and finally `hidden_hits`. */
+  hidden_hits?: string;
+  /** Comma separated list of tags to trigger the curations rules that match the tags. */
+  curation_tags?: string;
+  /** A list of custom fields that must be highlighted even if you don't query for them */
+  highlight_fields?: string;
+  /** You can index content from any logographic language into Typesense if you are able to segment / split the text into space-separated words yourself before indexing and querying. Set this parameter to true to do the same */
+  pre_segmented_query?: boolean;
+  /** Search using a bunch of search parameters by setting this parameter to the name of the existing Preset. */
+  preset?: string;
+  /** If you have some curation sets defined but want to disable all of them during query time, you can do that by setting this parameter to false */
+  enable_curations?: boolean;
+  /** Set this parameter to true to ensure that an exact match is ranked above the others */
+  prioritize_exact_match?: boolean;
+  /** Make Typesense prioritize documents where the query words appear earlier in the text. */
+  prioritize_token_position?: boolean;
+  /** Make Typesense prioritize documents where the query words appear in more number of fields. */
+  prioritize_num_matching_fields?: boolean;
+  /** Make Typesense disable typos for numerical tokens. */
+  enable_typos_for_numerical_tokens?: boolean;
+  /** Setting this to true will make Typesense consider all prefixes and typo corrections of the words in the query without stopping early when enough results are found (drop_tokens_threshold and typo_tokens_threshold configurations are ignored). */
+  exhaustive_search?: boolean;
+  /** Typesense will attempt to return results early if the cutoff time has elapsed. This is not a strict guarantee and facet computation is not bound by this parameter. */
+  search_cutoff_ms?: number;
+  /** Enable server side caching of search query results. By default, caching is disabled. */
+  use_cache?: boolean;
+  /** The duration (in seconds) that determines how long the search query is cached. This value can be set on a per-query basis. Default: 60. */
+  cache_ttl?: number;
+  /** Minimum word length for 1-typo correction to be applied. The value of num_typos is still treated as the maximum allowed typos. */
+  min_len_1typo?: number;
+  /** Minimum word length for 2-typo correction to be applied. The value of num_typos is still treated as the maximum allowed typos. */
+  min_len_2typo?: number;
+  /** Vector query expression for fetching documents "closest" to a given query/document vector. */
+  vector_query?: string;
+  /** Timeout (in milliseconds) for fetching remote embeddings. */
+  remote_embedding_timeout_ms?: number;
+  /** Number of times to retry fetching remote embeddings. */
+  remote_embedding_num_tries?: number;
+  /** Choose the underlying faceting strategy used. Comma separated string of allows values: exhaustive, top_values or automatic (default). */
+  facet_strategy?: string;
+  /** Name of the stopwords set to apply for this search, the keywords present in the set will be removed from the search query. */
+  stopwords?: string;
+  /** Comma separated string of nested facet fields whose parent object should be returned in facet response. */
+  facet_return_parent?: string;
+  /** The base64 encoded audio file in 16 khz 16-bit WAV format. */
+  voice_query?: string;
+  /** Enable conversational search. */
+  conversation?: boolean;
+  /** The Id of Conversation Model to be used. */
+  conversation_model_id?: string;
+  /** The Id of a previous conversation to continue, this tells Typesense to include prior context when communicating with the LLM. */
+  conversation_id?: string;
+  /** Controls whether Typesense should validate if the fields exist in the schema. When set to false, Typesense will not throw an error if a field is missing. This is useful for programmatic grouping where not all fields may exist. */
+  validate_field_names?: boolean;
+}
+export const MultiSearchParameters = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    q: S.optional(S.String),
+    query_by: S.optional(S.String),
+    query_by_weights: S.optional(S.String),
+    text_match_type: S.optional(S.String),
+    prefix: S.optional(S.String),
+    infix: S.optional(S.String),
+    max_extra_prefix: S.optional(S.Number),
+    max_extra_suffix: S.optional(S.Number),
+    filter_by: S.optional(S.String),
+    sort_by: S.optional(S.String),
+    facet_by: S.optional(S.String),
+    max_facet_values: S.optional(S.Number),
+    facet_query: S.optional(S.String),
+    num_typos: S.optional(S.String),
+    page: S.optional(S.Number),
+    per_page: S.optional(S.Number),
+    limit: S.optional(S.Number),
+    offset: S.optional(S.Number),
+    group_by: S.optional(S.String),
+    group_limit: S.optional(S.Number),
+    group_missing_values: S.optional(S.Boolean),
+    include_fields: S.optional(S.String),
+    exclude_fields: S.optional(S.String),
+    highlight_full_fields: S.optional(S.String),
+    highlight_affix_num_tokens: S.optional(S.Number),
+    highlight_start_tag: S.optional(S.String),
+    highlight_end_tag: S.optional(S.String),
+    snippet_threshold: S.optional(S.Number),
+    drop_tokens_threshold: S.optional(S.Number),
+    drop_tokens_mode: S.optional(DropTokensMode),
+    typo_tokens_threshold: S.optional(S.Number),
+    enable_typos_for_alpha_numerical_tokens: S.optional(S.Boolean),
+    filter_curated_hits: S.optional(S.Boolean),
+    enable_synonyms: S.optional(S.Boolean),
+    enable_analytics: S.optional(S.Boolean),
+    synonym_prefix: S.optional(S.Boolean),
+    synonym_num_typos: S.optional(S.Number),
+    pinned_hits: S.optional(S.String),
+    hidden_hits: S.optional(S.String),
+    curation_tags: S.optional(S.String),
+    highlight_fields: S.optional(S.String),
+    pre_segmented_query: S.optional(S.Boolean),
+    preset: S.optional(S.String),
+    enable_curations: S.optional(S.Boolean),
+    prioritize_exact_match: S.optional(S.Boolean),
+    prioritize_token_position: S.optional(S.Boolean),
+    prioritize_num_matching_fields: S.optional(S.Boolean),
+    enable_typos_for_numerical_tokens: S.optional(S.Boolean),
+    exhaustive_search: S.optional(S.Boolean),
+    search_cutoff_ms: S.optional(S.Number),
+    use_cache: S.optional(S.Boolean),
+    cache_ttl: S.optional(S.Number),
+    min_len_1typo: S.optional(S.Number),
+    min_len_2typo: S.optional(S.Number),
+    vector_query: S.optional(S.String),
+    remote_embedding_timeout_ms: S.optional(S.Number),
+    remote_embedding_num_tries: S.optional(S.Number),
+    facet_strategy: S.optional(S.String),
+    stopwords: S.optional(S.String),
+    facet_return_parent: S.optional(S.String),
+    voice_query: S.optional(S.String),
+    conversation: S.optional(S.Boolean),
+    conversation_model_id: S.optional(S.String),
+    conversation_id: S.optional(S.String),
+    validate_field_names: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "MultiSearchParameters",
+}) as any as S.Schema<MultiSearchParameters>;
+
+export type SearchMultiRequestSearchesList =
+  Array<MultiSearchCollectionParameters>;
+export const SearchMultiRequestSearchesList = /*@__PURE__*/ S.Array(
+  MultiSearchCollectionParameters,
+) as any as S.Schema<SearchMultiRequestSearchesList>;
+
+export interface SearchMultiRequest {
+  multiSearchParameters: MultiSearchParameters;
+  /** When true, merges the search results from each search query into a single ordered set of hits. */
+  union?: boolean;
+  searches: SearchMultiRequestSearchesList;
+}
+export const SearchMultiRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    multiSearchParameters: MultiSearchParameters.pipe(T.Query()),
+    union: S.optional(S.Boolean),
+    searches: SearchMultiRequestSearchesList,
+  }).pipe(T.Http({ method: "POST", uri: "/multi_search", code: 200 })),
+).annotate({
+  identifier: "SearchMultiRequest",
+}) as any as S.Schema<SearchMultiRequest>;
+
+export type MultiSearchResultItemFacetCountsList = Array<FacetCounts>;
+export const MultiSearchResultItemFacetCountsList = /*@__PURE__*/ S.Array(
+  FacetCounts,
+) as any as S.Schema<MultiSearchResultItemFacetCountsList>;
+
+export type MultiSearchResultItemGroupedHitsList = Array<SearchGroupedHit>;
+export const MultiSearchResultItemGroupedHitsList = /*@__PURE__*/ S.Array(
+  SearchGroupedHit,
+) as any as S.Schema<MultiSearchResultItemGroupedHitsList>;
+
+/** The documents that matched the search query */
+export type MultiSearchResultItemHitsList = Array<SearchResultHit>;
+export const MultiSearchResultItemHitsList = /*@__PURE__*/ S.Array(
+  SearchResultHit,
+) as any as S.Schema<MultiSearchResultItemHitsList>;
+
+/** Returned only for union query response. */
+export type MultiSearchResultItemUnionRequestParamsList =
+  Array<SearchRequestParams>;
+export const MultiSearchResultItemUnionRequestParamsList =
+  /*@__PURE__*/ S.Array(
+    SearchRequestParams,
+  ) as any as S.Schema<MultiSearchResultItemUnionRequestParamsList>;
+
+/** Custom JSON object that can be returned in the search response */
+export type MultiSearchResultItemMetadataMap = {
+  [key: string]: unknown | undefined;
+};
+export const MultiSearchResultItemMetadataMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<MultiSearchResultItemMetadataMap>;
+
+export interface MultiSearchResultItem {
+  facet_counts?: MultiSearchResultItemFacetCountsList;
+  /** The number of documents found */
+  found?: number;
+  found_docs?: number;
+  /** The number of milliseconds the search took */
+  search_time_ms?: number;
+  /** The total number of documents in the collection */
+  out_of?: number;
+  /** Whether the search was cut off */
+  search_cutoff?: boolean;
+  /** The search result page number */
+  page?: number;
+  grouped_hits?: MultiSearchResultItemGroupedHitsList;
+  /** The documents that matched the search query */
+  hits?: MultiSearchResultItemHitsList;
+  request_params?: SearchRequestParams;
+  conversation?: SearchResultConversation;
+  /** Returned only for union query response. */
+  union_request_params?: MultiSearchResultItemUnionRequestParamsList;
+  /** Custom JSON object that can be returned in the search response */
+  metadata?: MultiSearchResultItemMetadataMap;
+  /** HTTP error code */
+  code?: number;
+  /** Error description */
+  error?: string;
+}
+export const MultiSearchResultItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    facet_counts: S.optional(MultiSearchResultItemFacetCountsList),
+    found: S.optional(S.Number),
+    found_docs: S.optional(S.Number),
+    search_time_ms: S.optional(S.Number),
+    out_of: S.optional(S.Number),
+    search_cutoff: S.optional(S.Boolean),
+    page: S.optional(S.Number),
+    grouped_hits: S.optional(MultiSearchResultItemGroupedHitsList),
+    hits: S.optional(MultiSearchResultItemHitsList),
+    request_params: S.optional(SearchRequestParams),
+    conversation: S.optional(SearchResultConversation),
+    union_request_params: S.optional(
+      MultiSearchResultItemUnionRequestParamsList,
+    ),
+    metadata: S.optional(MultiSearchResultItemMetadataMap),
+    code: S.optional(S.Number),
+    error: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "MultiSearchResultItem",
+}) as any as S.Schema<MultiSearchResultItem>;
+
+export type MultiSearchResultResultsList = Array<MultiSearchResultItem>;
+export const MultiSearchResultResultsList = /*@__PURE__*/ S.Array(
+  MultiSearchResultItem,
+) as any as S.Schema<MultiSearchResultResultsList>;
+
+export interface MultiSearchResult {
+  results: MultiSearchResultResultsList;
+  conversation?: SearchResultConversation;
+}
+export const MultiSearchResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    results: MultiSearchResultResultsList,
+    conversation: S.optional(SearchResultConversation),
+  }),
+).annotate({
+  identifier: "MultiSearchResult",
+}) as any as S.Schema<MultiSearchResult>;
 
 export interface TakeSnapshotRequest {
   /** The directory on the server where the snapshot should be saved. */
@@ -6054,6 +6038,51 @@ export const getAliases: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetAllConversationModelsError = TypesenseOpError;
+/** List all conversation models Retrieve all conversation models */
+export const getAllConversationModels: API.OperationMethod<
+  GetAllConversationModelsRequest,
+  GetAllConversationModelsResponse,
+  GetAllConversationModelsError,
+  TypesenseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetAllConversationModelsRequest,
+  output: GetAllConversationModelsResponse,
+  errors: [],
+  protocol: TypesenseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetAllNLSearchModelsError = TypesenseOpError;
+/** List all NL search models Retrieve all NL search models. */
+export const getAllNLSearchModels: API.OperationMethod<
+  GetAllNLSearchModelsRequest,
+  GetAllNLSearchModelsResponse,
+  GetAllNLSearchModelsError,
+  TypesenseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetAllNLSearchModelsRequest,
+  output: GetAllNLSearchModelsResponse,
+  errors: [],
+  protocol: TypesenseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetAllPresetsError = TypesenseOpError;
+/** Retrieves all presets. Retrieve the details of all presets */
+export const getAllPresets: API.OperationMethod<
+  GetAllPresetsRequest,
+  PresetsRetrieveSchema,
+  GetAllPresetsError,
+  TypesenseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetAllPresetsRequest,
+  output: PresetsRetrieveSchema,
+  errors: [],
+  protocol: TypesenseProtocol,
+  retry: Retry.Retry,
+}));
+
 export type GetAnalyticsEventsError = BadRequest | TypesenseOpError;
 /** Retrieve analytics events Retrieve the most recent events for a user and rule. */
 export const getAnalyticsEvents: API.OperationMethod<
@@ -6069,6 +6098,36 @@ export const getAnalyticsEvents: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetAnalyticsRuleError = NotFound | TypesenseOpError;
+/** Retrieves an analytics rule Retrieve the details of an analytics rule, given it's name */
+export const getAnalyticsRule: API.OperationMethod<
+  GetAnalyticsRuleRequest,
+  GetAnalyticsRuleResponse,
+  GetAnalyticsRuleError,
+  TypesenseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetAnalyticsRuleRequest,
+  output: GetAnalyticsRuleResponse,
+  errors: [NotFound],
+  protocol: TypesenseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetAnalyticsRulesError = TypesenseOpError;
+/** Retrieve analytics rules Retrieve all analytics rules. Use the optional rule_tag filter to narrow down results. */
+export const getAnalyticsRules: API.OperationMethod<
+  GetAnalyticsRulesRequest,
+  GetAnalyticsRulesResponse,
+  GetAnalyticsRulesError,
+  TypesenseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetAnalyticsRulesRequest,
+  output: GetAnalyticsRulesResponse,
+  errors: [],
+  protocol: TypesenseProtocol,
+  retry: Retry.Retry,
+}));
+
 export type GetAnalyticsStatusError = TypesenseOpError;
 /** Get analytics subsystem status Returns sizes of internal analytics buffers and queues. */
 export const getAnalyticsStatus: API.OperationMethod<
@@ -6079,6 +6138,21 @@ export const getAnalyticsStatus: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: GetAnalyticsStatusRequest,
   output: AnalyticsStatus,
+  errors: [],
+  protocol: TypesenseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetAPIStatsError = TypesenseOpError;
+/** Get stats about API endpoints. Retrieve the stats about API endpoints. */
+export const getAPIStats: API.OperationMethod<
+  GetAPIStatsRequest,
+  APIStatsResponse,
+  GetAPIStatsError,
+  TypesenseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetAPIStatsRequest,
+  output: APIStatsResponse,
   errors: [],
   protocol: TypesenseProtocol,
   retry: Retry.Retry,
@@ -6109,6 +6183,81 @@ export const getCollections: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: GetCollectionsRequest,
   output: GetCollectionsResponse,
+  errors: [],
+  protocol: TypesenseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetConversationModelError = NotFound | TypesenseOpError;
+/** Retrieve a conversation model Retrieve a conversation model */
+export const getConversationModel: API.OperationMethod<
+  GetConversationModelRequest,
+  GetConversationModelResponse,
+  GetConversationModelError,
+  TypesenseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetConversationModelRequest,
+  output: GetConversationModelResponse,
+  errors: [NotFound],
+  protocol: TypesenseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetCurationSetError = NotFound | TypesenseOpError;
+/** Retrieve a curation set Retrieve a specific curation set by its name */
+export const getCurationSet: API.OperationMethod<
+  GetCurationSetRequest,
+  GetCurationSetResponse,
+  GetCurationSetError,
+  TypesenseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCurationSetRequest,
+  output: GetCurationSetResponse,
+  errors: [NotFound],
+  protocol: TypesenseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetCurationSetItemError = NotFound | TypesenseOpError;
+/** Retrieve a curation set item Retrieve a specific curation item by its id */
+export const getCurationSetItem: API.OperationMethod<
+  GetCurationSetItemRequest,
+  GetCurationSetItemResponse,
+  GetCurationSetItemError,
+  TypesenseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCurationSetItemRequest,
+  output: GetCurationSetItemResponse,
+  errors: [NotFound],
+  protocol: TypesenseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetCurationSetItemsError = NotFound | TypesenseOpError;
+/** List items in a curation set Retrieve all curation items in a set */
+export const getCurationSetItems: API.OperationMethod<
+  GetCurationSetItemsRequest,
+  GetCurationSetItemsResponse,
+  GetCurationSetItemsError,
+  TypesenseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCurationSetItemsRequest,
+  output: GetCurationSetItemsResponse,
+  errors: [NotFound],
+  protocol: TypesenseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetCurationSetsError = TypesenseOpError;
+/** List all curation sets Retrieve all curation sets */
+export const getCurationSets: API.OperationMethod<
+  GetCurationSetsRequest,
+  GetCurationSetsResponse,
+  GetCurationSetsError,
+  TypesenseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCurationSetsRequest,
+  output: GetCurationSetsResponse,
   errors: [],
   protocol: TypesenseProtocol,
   retry: Retry.Retry,
@@ -6159,6 +6308,51 @@ export const getKeys: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetMetricsError = TypesenseOpError;
+/** Get current RAM, CPU, Disk & Network usage metrics. Retrieve the metrics. */
+export const getMetrics: API.OperationMethod<
+  GetMetricsRequest,
+  GetMetricsResponse,
+  GetMetricsError,
+  TypesenseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetMetricsRequest,
+  output: GetMetricsResponse,
+  errors: [],
+  protocol: TypesenseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetNLSearchModelError = NotFound | TypesenseOpError;
+/** Retrieve a NL search model Retrieve a specific NL search model by its ID. */
+export const getNLSearchModel: API.OperationMethod<
+  GetNLSearchModelRequest,
+  GetNLSearchModelResponse,
+  GetNLSearchModelError,
+  TypesenseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetNLSearchModelRequest,
+  output: GetNLSearchModelResponse,
+  errors: [NotFound],
+  protocol: TypesenseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetPresetError = NotFound | TypesenseOpError;
+/** Retrieves a preset. Retrieve the details of a preset, given it's name. */
+export const getPreset: API.OperationMethod<
+  GetPresetRequest,
+  GetPresetResponse,
+  GetPresetError,
+  TypesenseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPresetRequest,
+  output: GetPresetResponse,
+  errors: [NotFound],
+  protocol: TypesenseProtocol,
+  retry: Retry.Retry,
+}));
+
 export type GetSchemaChangesError = TypesenseOpError;
 /** Get the status of in-progress schema change operations Returns the status of any ongoing schema change operations. If no schema changes are in progress, returns an empty response. */
 export const getSchemaChanges: API.OperationMethod<
@@ -6185,6 +6379,96 @@ export const getStemmingDictionary: API.OperationMethod<
   input: GetStemmingDictionaryRequest,
   output: StemmingDictionary,
   errors: [NotFound],
+  protocol: TypesenseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetStopwordsSetError = NotFound | TypesenseOpError;
+/** Retrieves a stopwords set. Retrieve the details of a stopwords set, given it's name. */
+export const getStopwordsSet: API.OperationMethod<
+  GetStopwordsSetRequest,
+  StopwordsSetRetrieveSchema,
+  GetStopwordsSetError,
+  TypesenseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetStopwordsSetRequest,
+  output: StopwordsSetRetrieveSchema,
+  errors: [NotFound],
+  protocol: TypesenseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetStopwordsSetsError = TypesenseOpError;
+/** Retrieves all stopwords sets. Retrieve the details of all stopwords sets */
+export const getStopwordsSets: API.OperationMethod<
+  GetStopwordsSetsRequest,
+  StopwordsSetsRetrieveAllSchema,
+  GetStopwordsSetsError,
+  TypesenseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetStopwordsSetsRequest,
+  output: StopwordsSetsRetrieveAllSchema,
+  errors: [],
+  protocol: TypesenseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSynonymSetError = NotFound | TypesenseOpError;
+/** Retrieve a synonym set Retrieve a specific synonym set by its name */
+export const getSynonymSet: API.OperationMethod<
+  GetSynonymSetRequest,
+  GetSynonymSetResponse,
+  GetSynonymSetError,
+  TypesenseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSynonymSetRequest,
+  output: GetSynonymSetResponse,
+  errors: [NotFound],
+  protocol: TypesenseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSynonymSetItemError = NotFound | TypesenseOpError;
+/** Retrieve a synonym set item Retrieve a specific synonym item by its id */
+export const getSynonymSetItem: API.OperationMethod<
+  GetSynonymSetItemRequest,
+  GetSynonymSetItemResponse,
+  GetSynonymSetItemError,
+  TypesenseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSynonymSetItemRequest,
+  output: GetSynonymSetItemResponse,
+  errors: [NotFound],
+  protocol: TypesenseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSynonymSetItemsError = NotFound | TypesenseOpError;
+/** List items in a synonym set Retrieve all synonym items in a set */
+export const getSynonymSetItems: API.OperationMethod<
+  GetSynonymSetItemsRequest,
+  GetSynonymSetItemsResponse,
+  GetSynonymSetItemsError,
+  TypesenseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSynonymSetItemsRequest,
+  output: GetSynonymSetItemsResponse,
+  errors: [NotFound],
+  protocol: TypesenseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSynonymSetsError = TypesenseOpError;
+/** List all synonym sets Retrieve all synonym sets */
+export const getSynonymSets: API.OperationMethod<
+  GetSynonymSetsRequest,
+  GetSynonymSetsResponse,
+  GetSynonymSetsError,
+  TypesenseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSynonymSetsRequest,
+  output: GetSynonymSetsResponse,
+  errors: [],
   protocol: TypesenseProtocol,
   retry: Retry.Retry,
 }));
@@ -6234,16 +6518,16 @@ export const importStemmingDictionary: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type IndexDocumentError = NotFound | TypesenseOpError;
+export type ListDocumentError = NotFound | TypesenseOpError;
 /** Index a document A document to be indexed in a given collection must conform to the schema of the collection. */
-export const indexDocument: API.OperationMethod<
-  IndexDocumentRequest,
-  IndexDocumentResponse,
-  IndexDocumentError,
+export const listDocument: API.OperationMethod<
+  ListDocumentRequest,
+  ListDocumentResponse,
+  ListDocumentError,
   TypesenseOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: IndexDocumentRequest,
-  output: IndexDocumentResponse,
+  input: ListDocumentRequest,
+  output: ListDocumentResponse,
   errors: [NotFound],
   protocol: TypesenseProtocol,
   retry: Retry.Retry,
@@ -6264,321 +6548,6 @@ export const listStemmingDictionaries: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type MultiSearchError = BadRequest | TypesenseOpError;
-/** send multiple search requests in a single HTTP request This is especially useful to avoid round-trip network latencies incurred otherwise if each of these requests are sent in separate HTTP requests. You can also use this feature to do a federated search across multiple collections in a single HTTP request. */
-export const multiSearch: API.OperationMethod<
-  MultiSearchRequest,
-  MultiSearchResult,
-  MultiSearchError,
-  TypesenseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: MultiSearchRequest,
-  output: MultiSearchResult,
-  errors: [BadRequest],
-  protocol: TypesenseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveAllConversationModelsError = TypesenseOpError;
-/** List all conversation models Retrieve all conversation models */
-export const retrieveAllConversationModels: API.OperationMethod<
-  RetrieveAllConversationModelsRequest,
-  RetrieveAllConversationModelsResponse,
-  RetrieveAllConversationModelsError,
-  TypesenseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveAllConversationModelsRequest,
-  output: RetrieveAllConversationModelsResponse,
-  errors: [],
-  protocol: TypesenseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveAllNLSearchModelsError = TypesenseOpError;
-/** List all NL search models Retrieve all NL search models. */
-export const retrieveAllNLSearchModels: API.OperationMethod<
-  RetrieveAllNLSearchModelsRequest,
-  RetrieveAllNLSearchModelsResponse,
-  RetrieveAllNLSearchModelsError,
-  TypesenseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveAllNLSearchModelsRequest,
-  output: RetrieveAllNLSearchModelsResponse,
-  errors: [],
-  protocol: TypesenseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveAllPresetsError = TypesenseOpError;
-/** Retrieves all presets. Retrieve the details of all presets */
-export const retrieveAllPresets: API.OperationMethod<
-  RetrieveAllPresetsRequest,
-  PresetsRetrieveSchema,
-  RetrieveAllPresetsError,
-  TypesenseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveAllPresetsRequest,
-  output: PresetsRetrieveSchema,
-  errors: [],
-  protocol: TypesenseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveAnalyticsRuleError = NotFound | TypesenseOpError;
-/** Retrieves an analytics rule Retrieve the details of an analytics rule, given it's name */
-export const retrieveAnalyticsRule: API.OperationMethod<
-  RetrieveAnalyticsRuleRequest,
-  RetrieveAnalyticsRuleResponse,
-  RetrieveAnalyticsRuleError,
-  TypesenseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveAnalyticsRuleRequest,
-  output: RetrieveAnalyticsRuleResponse,
-  errors: [NotFound],
-  protocol: TypesenseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveAnalyticsRulesError = TypesenseOpError;
-/** Retrieve analytics rules Retrieve all analytics rules. Use the optional rule_tag filter to narrow down results. */
-export const retrieveAnalyticsRules: API.OperationMethod<
-  RetrieveAnalyticsRulesRequest,
-  RetrieveAnalyticsRulesResponse,
-  RetrieveAnalyticsRulesError,
-  TypesenseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveAnalyticsRulesRequest,
-  output: RetrieveAnalyticsRulesResponse,
-  errors: [],
-  protocol: TypesenseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveAPIStatsError = TypesenseOpError;
-/** Get stats about API endpoints. Retrieve the stats about API endpoints. */
-export const retrieveAPIStats: API.OperationMethod<
-  RetrieveAPIStatsRequest,
-  APIStatsResponse,
-  RetrieveAPIStatsError,
-  TypesenseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveAPIStatsRequest,
-  output: APIStatsResponse,
-  errors: [],
-  protocol: TypesenseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveConversationModelError = NotFound | TypesenseOpError;
-/** Retrieve a conversation model Retrieve a conversation model */
-export const retrieveConversationModel: API.OperationMethod<
-  RetrieveConversationModelRequest,
-  RetrieveConversationModelResponse,
-  RetrieveConversationModelError,
-  TypesenseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveConversationModelRequest,
-  output: RetrieveConversationModelResponse,
-  errors: [NotFound],
-  protocol: TypesenseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveCurationSetError = NotFound | TypesenseOpError;
-/** Retrieve a curation set Retrieve a specific curation set by its name */
-export const retrieveCurationSet: API.OperationMethod<
-  RetrieveCurationSetRequest,
-  RetrieveCurationSetResponse,
-  RetrieveCurationSetError,
-  TypesenseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveCurationSetRequest,
-  output: RetrieveCurationSetResponse,
-  errors: [NotFound],
-  protocol: TypesenseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveCurationSetItemError = NotFound | TypesenseOpError;
-/** Retrieve a curation set item Retrieve a specific curation item by its id */
-export const retrieveCurationSetItem: API.OperationMethod<
-  RetrieveCurationSetItemRequest,
-  RetrieveCurationSetItemResponse,
-  RetrieveCurationSetItemError,
-  TypesenseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveCurationSetItemRequest,
-  output: RetrieveCurationSetItemResponse,
-  errors: [NotFound],
-  protocol: TypesenseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveCurationSetItemsError = NotFound | TypesenseOpError;
-/** List items in a curation set Retrieve all curation items in a set */
-export const retrieveCurationSetItems: API.OperationMethod<
-  RetrieveCurationSetItemsRequest,
-  RetrieveCurationSetItemsResponse,
-  RetrieveCurationSetItemsError,
-  TypesenseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveCurationSetItemsRequest,
-  output: RetrieveCurationSetItemsResponse,
-  errors: [NotFound],
-  protocol: TypesenseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveCurationSetsError = TypesenseOpError;
-/** List all curation sets Retrieve all curation sets */
-export const retrieveCurationSets: API.OperationMethod<
-  RetrieveCurationSetsRequest,
-  RetrieveCurationSetsResponse,
-  RetrieveCurationSetsError,
-  TypesenseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveCurationSetsRequest,
-  output: RetrieveCurationSetsResponse,
-  errors: [],
-  protocol: TypesenseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveMetricsError = TypesenseOpError;
-/** Get current RAM, CPU, Disk & Network usage metrics. Retrieve the metrics. */
-export const retrieveMetrics: API.OperationMethod<
-  RetrieveMetricsRequest,
-  RetrieveMetricsResponse,
-  RetrieveMetricsError,
-  TypesenseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveMetricsRequest,
-  output: RetrieveMetricsResponse,
-  errors: [],
-  protocol: TypesenseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveNLSearchModelError = NotFound | TypesenseOpError;
-/** Retrieve a NL search model Retrieve a specific NL search model by its ID. */
-export const retrieveNLSearchModel: API.OperationMethod<
-  RetrieveNLSearchModelRequest,
-  RetrieveNLSearchModelResponse,
-  RetrieveNLSearchModelError,
-  TypesenseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveNLSearchModelRequest,
-  output: RetrieveNLSearchModelResponse,
-  errors: [NotFound],
-  protocol: TypesenseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrievePresetError = NotFound | TypesenseOpError;
-/** Retrieves a preset. Retrieve the details of a preset, given it's name. */
-export const retrievePreset: API.OperationMethod<
-  RetrievePresetRequest,
-  RetrievePresetResponse,
-  RetrievePresetError,
-  TypesenseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrievePresetRequest,
-  output: RetrievePresetResponse,
-  errors: [NotFound],
-  protocol: TypesenseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveStopwordsSetError = NotFound | TypesenseOpError;
-/** Retrieves a stopwords set. Retrieve the details of a stopwords set, given it's name. */
-export const retrieveStopwordsSet: API.OperationMethod<
-  RetrieveStopwordsSetRequest,
-  StopwordsSetRetrieveSchema,
-  RetrieveStopwordsSetError,
-  TypesenseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveStopwordsSetRequest,
-  output: StopwordsSetRetrieveSchema,
-  errors: [NotFound],
-  protocol: TypesenseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveStopwordsSetsError = TypesenseOpError;
-/** Retrieves all stopwords sets. Retrieve the details of all stopwords sets */
-export const retrieveStopwordsSets: API.OperationMethod<
-  RetrieveStopwordsSetsRequest,
-  StopwordsSetsRetrieveAllSchema,
-  RetrieveStopwordsSetsError,
-  TypesenseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveStopwordsSetsRequest,
-  output: StopwordsSetsRetrieveAllSchema,
-  errors: [],
-  protocol: TypesenseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveSynonymSetError = NotFound | TypesenseOpError;
-/** Retrieve a synonym set Retrieve a specific synonym set by its name */
-export const retrieveSynonymSet: API.OperationMethod<
-  RetrieveSynonymSetRequest,
-  RetrieveSynonymSetResponse,
-  RetrieveSynonymSetError,
-  TypesenseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveSynonymSetRequest,
-  output: RetrieveSynonymSetResponse,
-  errors: [NotFound],
-  protocol: TypesenseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveSynonymSetItemError = NotFound | TypesenseOpError;
-/** Retrieve a synonym set item Retrieve a specific synonym item by its id */
-export const retrieveSynonymSetItem: API.OperationMethod<
-  RetrieveSynonymSetItemRequest,
-  RetrieveSynonymSetItemResponse,
-  RetrieveSynonymSetItemError,
-  TypesenseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveSynonymSetItemRequest,
-  output: RetrieveSynonymSetItemResponse,
-  errors: [NotFound],
-  protocol: TypesenseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveSynonymSetItemsError = NotFound | TypesenseOpError;
-/** List items in a synonym set Retrieve all synonym items in a set */
-export const retrieveSynonymSetItems: API.OperationMethod<
-  RetrieveSynonymSetItemsRequest,
-  RetrieveSynonymSetItemsResponse,
-  RetrieveSynonymSetItemsError,
-  TypesenseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveSynonymSetItemsRequest,
-  output: RetrieveSynonymSetItemsResponse,
-  errors: [NotFound],
-  protocol: TypesenseProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveSynonymSetsError = TypesenseOpError;
-/** List all synonym sets Retrieve all synonym sets */
-export const retrieveSynonymSets: API.OperationMethod<
-  RetrieveSynonymSetsRequest,
-  RetrieveSynonymSetsResponse,
-  RetrieveSynonymSetsError,
-  TypesenseOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveSynonymSetsRequest,
-  output: RetrieveSynonymSetsResponse,
-  errors: [],
-  protocol: TypesenseProtocol,
-  retry: Retry.Retry,
-}));
-
 export type SearchCollectionError = BadRequest | NotFound | TypesenseOpError;
 /** Search for documents in a collection Search for documents in a collection that match the search criteria. */
 export const searchCollection: API.OperationMethod<
@@ -6590,6 +6559,21 @@ export const searchCollection: API.OperationMethod<
   input: SearchCollectionRequest,
   output: SearchResult,
   errors: [BadRequest, NotFound],
+  protocol: TypesenseProtocol,
+  retry: Retry.Retry,
+}));
+
+export type SearchMultiError = BadRequest | TypesenseOpError;
+/** send multiple search requests in a single HTTP request This is especially useful to avoid round-trip network latencies incurred otherwise if each of these requests are sent in separate HTTP requests. You can also use this feature to do a federated search across multiple collections in a single HTTP request. */
+export const searchMulti: API.OperationMethod<
+  SearchMultiRequest,
+  MultiSearchResult,
+  SearchMultiError,
+  TypesenseOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: SearchMultiRequest,
+  output: MultiSearchResult,
+  errors: [BadRequest],
   protocol: TypesenseProtocol,
   retry: Retry.Retry,
 }));

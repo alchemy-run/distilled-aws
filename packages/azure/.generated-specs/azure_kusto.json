@@ -14,13 +14,14 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.azure_kusto#ClustersStop": {
+    "com.azure.azure_kusto#StopCluster": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azure_kusto#ClustersStopRequest"
+        "target": "com.azure.azure_kusto#StopClusterRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -36,7 +37,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-14"
       }
     },
-    "com.azure.azure_kusto#ClustersStopRequest": {
+    "com.azure.azure_kusto#StopClusterRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -68,10 +69,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azure_kusto#ClustersStart": {
+    "com.azure.azure_kusto#StartCluster": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azure_kusto#ClustersStartRequest"
+        "target": "com.azure.azure_kusto#StartClusterRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -87,7 +88,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-14"
       }
     },
-    "com.azure.azure_kusto#ClustersStartRequest": {
+    "com.azure.azure_kusto#StartClusterRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -119,10 +120,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azure_kusto#ClustersListSkusByResource": {
+    "com.azure.azure_kusto#ListClusterSkusByResource": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azure_kusto#ClustersListSkusByResourceRequest"
+        "target": "com.azure.azure_kusto#ListClusterSkusByResourceRequest"
       },
       "output": {
         "target": "com.azure.azure_kusto#ListResourceSkusResult"
@@ -695,7 +696,7 @@
         "smithy.api#documentation": "SKU name."
       }
     },
-    "com.azure.azure_kusto#ClustersListSkusByResourceRequest": {
+    "com.azure.azure_kusto#ListClusterSkusByResourceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -727,10 +728,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azure_kusto#SandboxCustomImagesCheckNameAvailability": {
+    "com.azure.azure_kusto#CheckSandboxCustomImageNameAvailability": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azure_kusto#SandboxCustomImagesCheckNameAvailabilityRequest"
+        "target": "com.azure.azure_kusto#CheckSandboxCustomImageNameAvailabilityRequest"
       },
       "output": {
         "target": "com.azure.azure_kusto#CheckNameResult"
@@ -798,7 +799,7 @@
         "smithy.api#documentation": "Message providing the reason why the given name is invalid."
       }
     },
-    "com.azure.azure_kusto#SandboxCustomImagesCheckNameAvailabilityRequest": {
+    "com.azure.azure_kusto#CheckSandboxCustomImageNameAvailabilityRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -833,7 +834,7 @@
           }
         },
         "type": {
-          "target": "com.azure.azure_kusto#SandboxCustomImagesCheckNameAvailabilityRequestType",
+          "target": "com.azure.azure_kusto#CheckSandboxCustomImageNameAvailabilityRequestType",
           "traits": {
             "smithy.api#documentation": "The type of resource, for instance Microsoft.Kusto/clusters/sandboxCustomImages.",
             "smithy.api#required": {}
@@ -844,7 +845,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azure_kusto#SandboxCustomImagesCheckNameAvailabilityRequestType": {
+    "com.azure.azure_kusto#CheckSandboxCustomImageNameAvailabilityRequestType": {
       "type": "enum",
       "members": {
         "MICROSOFT_KUSTO_CLUSTERS_SANDBOXCUSTOMIMAGES": {
@@ -858,10 +859,10 @@
         "smithy.api#documentation": "The type of resource, for instance Microsoft.Kusto/clusters/sandboxCustomImages."
       }
     },
-    "com.azure.azure_kusto#SandboxCustomImagesDelete": {
+    "com.azure.azure_kusto#DeleteSandboxCustomImage": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azure_kusto#SandboxCustomImagesDeleteRequest"
+        "target": "com.azure.azure_kusto#DeleteSandboxCustomImageRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -877,7 +878,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-14"
       }
     },
-    "com.azure.azure_kusto#SandboxCustomImagesDeleteRequest": {
+    "com.azure.azure_kusto#DeleteSandboxCustomImageRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -917,13 +918,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azure_kusto#SandboxCustomImagesUpdate": {
+    "com.azure.azure_kusto#UpdateSandboxCustomImage": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azure_kusto#SandboxCustomImagesUpdateRequest"
+        "target": "com.azure.azure_kusto#UpdateSandboxCustomImageRequest"
       },
       "output": {
-        "target": "com.azure.azure_kusto#SandboxCustomImagesUpdateResponse"
+        "target": "com.azure.azure_kusto#UpdateSandboxCustomImageResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -936,7 +937,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-14"
       }
     },
-    "com.azure.azure_kusto#SandboxCustomImagesUpdateResponse": {
+    "com.azure.azure_kusto#UpdateSandboxCustomImageResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1185,7 +1186,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.azure_kusto#SandboxCustomImagesUpdateRequest": {
+    "com.azure.azure_kusto#UpdateSandboxCustomImageRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1334,13 +1335,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azure_kusto#SandboxCustomImagesGet": {
+    "com.azure.azure_kusto#GetSandboxCustomImage": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azure_kusto#SandboxCustomImagesGetRequest"
+        "target": "com.azure.azure_kusto#GetSandboxCustomImageRequest"
       },
       "output": {
-        "target": "com.azure.azure_kusto#SandboxCustomImagesGetResponse"
+        "target": "com.azure.azure_kusto#GetSandboxCustomImageResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1353,7 +1354,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-14"
       }
     },
-    "com.azure.azure_kusto#SandboxCustomImagesGetResponse": {
+    "com.azure.azure_kusto#GetSandboxCustomImageResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1391,7 +1392,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.azure_kusto#SandboxCustomImagesGetRequest": {
+    "com.azure.azure_kusto#GetSandboxCustomImageRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1431,10 +1432,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azure_kusto#SandboxCustomImagesListByCluster": {
+    "com.azure.azure_kusto#ListSandboxCustomImageByCluster": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azure_kusto#SandboxCustomImagesListByClusterRequest"
+        "target": "com.azure.azure_kusto#ListSandboxCustomImageByClusterRequest"
       },
       "output": {
         "target": "com.azure.azure_kusto#SandboxCustomImagesListResult"
@@ -1518,7 +1519,7 @@
         "smithy.api#documentation": "Class representing a Kusto sandbox custom image."
       }
     },
-    "com.azure.azure_kusto#SandboxCustomImagesListByClusterRequest": {
+    "com.azure.azure_kusto#ListSandboxCustomImageByClusterRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1550,10 +1551,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azure_kusto#ClustersRemoveLanguageExtensions": {
+    "com.azure.azure_kusto#RemoveClusterLanguageExtensions": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azure_kusto#ClustersRemoveLanguageExtensionsRequest"
+        "target": "com.azure.azure_kusto#RemoveClusterLanguageExtensionsRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1569,7 +1570,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-14"
       }
     },
-    "com.azure.azure_kusto#ClustersRemoveLanguageExtensionsRequest": {
+    "com.azure.azure_kusto#RemoveClusterLanguageExtensionsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1597,7 +1598,7 @@
           }
         },
         "value": {
-          "target": "com.azure.azure_kusto#ClustersRemoveLanguageExtensionsRequestValueList",
+          "target": "com.azure.azure_kusto#RemoveClusterLanguageExtensionsRequestValueList",
           "traits": {
             "smithy.api#documentation": "The list of language extensions."
           }
@@ -1613,7 +1614,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azure_kusto#ClustersRemoveLanguageExtensionsRequestValueList": {
+    "com.azure.azure_kusto#RemoveClusterLanguageExtensionsRequestValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.azure_kusto#LanguageExtension"
@@ -1718,10 +1719,10 @@
         "smithy.api#documentation": "Language extension that can run within KQL query."
       }
     },
-    "com.azure.azure_kusto#ClustersRemoveCalloutPolicy": {
+    "com.azure.azure_kusto#RemoveClusterCalloutPolicy": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azure_kusto#ClustersRemoveCalloutPolicyRequest"
+        "target": "com.azure.azure_kusto#RemoveClusterCalloutPolicyRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1737,7 +1738,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-14"
       }
     },
-    "com.azure.azure_kusto#ClustersRemoveCalloutPolicyRequest": {
+    "com.azure.azure_kusto#RemoveClusterCalloutPolicyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1775,13 +1776,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azure_kusto#PrivateLinkResourcesGet": {
+    "com.azure.azure_kusto#GetPrivateLinkResource": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azure_kusto#PrivateLinkResourcesGetRequest"
+        "target": "com.azure.azure_kusto#GetPrivateLinkResourceRequest"
       },
       "output": {
-        "target": "com.azure.azure_kusto#PrivateLinkResourcesGetResponse"
+        "target": "com.azure.azure_kusto#GetPrivateLinkResourceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1794,7 +1795,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-14"
       }
     },
-    "com.azure.azure_kusto#PrivateLinkResourcesGetResponse": {
+    "com.azure.azure_kusto#GetPrivateLinkResourceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1876,7 +1877,7 @@
         "smithy.api#documentation": "The private link resource required member names."
       }
     },
-    "com.azure.azure_kusto#PrivateLinkResourcesGetRequest": {
+    "com.azure.azure_kusto#GetPrivateLinkResourceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1916,10 +1917,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azure_kusto#PrivateLinkResourcesList": {
+    "com.azure.azure_kusto#ListPrivateLinkResources": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azure_kusto#PrivateLinkResourcesListRequest"
+        "target": "com.azure.azure_kusto#ListPrivateLinkResourcesRequest"
       },
       "output": {
         "target": "com.azure.azure_kusto#PrivateLinkResourceListResult"
@@ -2002,7 +2003,7 @@
         "smithy.api#documentation": "A private link resource"
       }
     },
-    "com.azure.azure_kusto#PrivateLinkResourcesListRequest": {
+    "com.azure.azure_kusto#ListPrivateLinkResourcesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2034,10 +2035,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azure_kusto#PrivateEndpointConnectionsDelete": {
+    "com.azure.azure_kusto#DeletePrivateEndpointConnection": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azure_kusto#PrivateEndpointConnectionsDeleteRequest"
+        "target": "com.azure.azure_kusto#DeletePrivateEndpointConnectionRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2053,7 +2054,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-14"
       }
     },
-    "com.azure.azure_kusto#PrivateEndpointConnectionsDeleteRequest": {
+    "com.azure.azure_kusto#DeletePrivateEndpointConnectionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2304,13 +2305,13 @@
         "smithy.api#documentation": "Connection State of the Private Endpoint Connection."
       }
     },
-    "com.azure.azure_kusto#PrivateEndpointConnectionsGet": {
+    "com.azure.azure_kusto#GetPrivateEndpointConnection": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azure_kusto#PrivateEndpointConnectionsGetRequest"
+        "target": "com.azure.azure_kusto#GetPrivateEndpointConnectionRequest"
       },
       "output": {
-        "target": "com.azure.azure_kusto#PrivateEndpointConnectionsGetResponse"
+        "target": "com.azure.azure_kusto#GetPrivateEndpointConnectionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2323,7 +2324,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-14"
       }
     },
-    "com.azure.azure_kusto#PrivateEndpointConnectionsGetResponse": {
+    "com.azure.azure_kusto#GetPrivateEndpointConnectionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2361,7 +2362,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.azure_kusto#PrivateEndpointConnectionsGetRequest": {
+    "com.azure.azure_kusto#GetPrivateEndpointConnectionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2401,10 +2402,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azure_kusto#PrivateEndpointConnectionsList": {
+    "com.azure.azure_kusto#ListPrivateEndpointConnections": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azure_kusto#PrivateEndpointConnectionsListRequest"
+        "target": "com.azure.azure_kusto#ListPrivateEndpointConnectionsRequest"
       },
       "output": {
         "target": "com.azure.azure_kusto#PrivateEndpointConnectionListResult"
@@ -2487,7 +2488,7 @@
         "smithy.api#documentation": "A private endpoint connection"
       }
     },
-    "com.azure.azure_kusto#PrivateEndpointConnectionsListRequest": {
+    "com.azure.azure_kusto#ListPrivateEndpointConnectionsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2519,10 +2520,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azure_kusto#ClusterPrincipalAssignmentsDelete": {
+    "com.azure.azure_kusto#DeleteClusterPrincipalAssignment": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azure_kusto#ClusterPrincipalAssignmentsDeleteRequest"
+        "target": "com.azure.azure_kusto#DeleteClusterPrincipalAssignmentRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2538,7 +2539,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-14"
       }
     },
-    "com.azure.azure_kusto#ClusterPrincipalAssignmentsDeleteRequest": {
+    "com.azure.azure_kusto#DeleteClusterPrincipalAssignmentRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2827,13 +2828,13 @@
         "smithy.api#documentation": "A class representing cluster principal property."
       }
     },
-    "com.azure.azure_kusto#ClusterPrincipalAssignmentsGet": {
+    "com.azure.azure_kusto#GetClusterPrincipalAssignment": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azure_kusto#ClusterPrincipalAssignmentsGetRequest"
+        "target": "com.azure.azure_kusto#GetClusterPrincipalAssignmentRequest"
       },
       "output": {
-        "target": "com.azure.azure_kusto#ClusterPrincipalAssignmentsGetResponse"
+        "target": "com.azure.azure_kusto#GetClusterPrincipalAssignmentResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2846,7 +2847,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-14"
       }
     },
-    "com.azure.azure_kusto#ClusterPrincipalAssignmentsGetResponse": {
+    "com.azure.azure_kusto#GetClusterPrincipalAssignmentResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2884,7 +2885,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.azure_kusto#ClusterPrincipalAssignmentsGetRequest": {
+    "com.azure.azure_kusto#GetClusterPrincipalAssignmentRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2924,10 +2925,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azure_kusto#ClusterPrincipalAssignmentsList": {
+    "com.azure.azure_kusto#ListClusterPrincipalAssignments": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azure_kusto#ClusterPrincipalAssignmentsListRequest"
+        "target": "com.azure.azure_kusto#ListClusterPrincipalAssignmentsRequest"
       },
       "output": {
         "target": "com.azure.azure_kusto#ClusterPrincipalAssignmentListResult"
@@ -3010,7 +3011,7 @@
         "smithy.api#documentation": "Class representing a cluster principal assignment."
       }
     },
-    "com.azure.azure_kusto#ClusterPrincipalAssignmentsListRequest": {
+    "com.azure.azure_kusto#ListClusterPrincipalAssignmentsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3042,10 +3043,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azure_kusto#ClustersListOutboundNetworkDependenciesEndpoints": {
+    "com.azure.azure_kusto#ListClusterOutboundNetworkDependenciesEndpoints": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azure_kusto#ClustersListOutboundNetworkDependenciesEndpointsRequest"
+        "target": "com.azure.azure_kusto#ListClusterOutboundNetworkDependenciesEndpointsRequest"
       },
       "output": {
         "target": "com.azure.azure_kusto#OutboundNetworkDependenciesEndpointListResult"
@@ -3219,7 +3220,7 @@
         "smithy.api#documentation": "Current TCP connectivity information from the Kusto cluster to a single endpoint."
       }
     },
-    "com.azure.azure_kusto#ClustersListOutboundNetworkDependenciesEndpointsRequest": {
+    "com.azure.azure_kusto#ListClusterOutboundNetworkDependenciesEndpointsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3251,10 +3252,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azure_kusto#ClustersMigrate": {
+    "com.azure.azure_kusto#MigrateCluster": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azure_kusto#ClustersMigrateRequest"
+        "target": "com.azure.azure_kusto#MigrateClusterRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3270,7 +3271,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-14"
       }
     },
-    "com.azure.azure_kusto#ClustersMigrateRequest": {
+    "com.azure.azure_kusto#MigrateClusterRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3309,10 +3310,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azure_kusto#ManagedPrivateEndpointsCheckNameAvailability": {
+    "com.azure.azure_kusto#CheckManagedPrivateEndpointNameAvailability": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azure_kusto#ManagedPrivateEndpointsCheckNameAvailabilityRequest"
+        "target": "com.azure.azure_kusto#CheckManagedPrivateEndpointNameAvailabilityRequest"
       },
       "output": {
         "target": "com.azure.azure_kusto#CheckNameResult"
@@ -3328,7 +3329,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-14"
       }
     },
-    "com.azure.azure_kusto#ManagedPrivateEndpointsCheckNameAvailabilityRequest": {
+    "com.azure.azure_kusto#CheckManagedPrivateEndpointNameAvailabilityRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3363,7 +3364,7 @@
           }
         },
         "type": {
-          "target": "com.azure.azure_kusto#ManagedPrivateEndpointsCheckNameAvailabilityRequestType",
+          "target": "com.azure.azure_kusto#CheckManagedPrivateEndpointNameAvailabilityRequestType",
           "traits": {
             "smithy.api#documentation": "The type of resource, for instance Microsoft.Kusto/clusters/managedPrivateEndpoints.",
             "smithy.api#required": {}
@@ -3374,7 +3375,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azure_kusto#ManagedPrivateEndpointsCheckNameAvailabilityRequestType": {
+    "com.azure.azure_kusto#CheckManagedPrivateEndpointNameAvailabilityRequestType": {
       "type": "enum",
       "members": {
         "MICROSOFT_KUSTO_CLUSTERS_MANAGEDPRIVATEENDPOINTS": {
@@ -3388,10 +3389,10 @@
         "smithy.api#documentation": "The type of resource, for instance Microsoft.Kusto/clusters/managedPrivateEndpoints."
       }
     },
-    "com.azure.azure_kusto#ManagedPrivateEndpointsDelete": {
+    "com.azure.azure_kusto#DeleteManagedPrivateEndpoint": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azure_kusto#ManagedPrivateEndpointsDeleteRequest"
+        "target": "com.azure.azure_kusto#DeleteManagedPrivateEndpointRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3407,7 +3408,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-14"
       }
     },
-    "com.azure.azure_kusto#ManagedPrivateEndpointsDeleteRequest": {
+    "com.azure.azure_kusto#DeleteManagedPrivateEndpointRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3447,13 +3448,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azure_kusto#ManagedPrivateEndpointsUpdate": {
+    "com.azure.azure_kusto#UpdateManagedPrivateEndpoint": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azure_kusto#ManagedPrivateEndpointsUpdateRequest"
+        "target": "com.azure.azure_kusto#UpdateManagedPrivateEndpointRequest"
       },
       "output": {
-        "target": "com.azure.azure_kusto#ManagedPrivateEndpointsUpdateResponse"
+        "target": "com.azure.azure_kusto#UpdateManagedPrivateEndpointResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3466,7 +3467,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-14"
       }
     },
-    "com.azure.azure_kusto#ManagedPrivateEndpointsUpdateResponse": {
+    "com.azure.azure_kusto#UpdateManagedPrivateEndpointResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3544,7 +3545,7 @@
         "smithy.api#documentation": "A class representing the properties of a managed private endpoint object."
       }
     },
-    "com.azure.azure_kusto#ManagedPrivateEndpointsUpdateRequest": {
+    "com.azure.azure_kusto#UpdateManagedPrivateEndpointRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3693,13 +3694,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azure_kusto#ManagedPrivateEndpointsGet": {
+    "com.azure.azure_kusto#GetManagedPrivateEndpoint": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azure_kusto#ManagedPrivateEndpointsGetRequest"
+        "target": "com.azure.azure_kusto#GetManagedPrivateEndpointRequest"
       },
       "output": {
-        "target": "com.azure.azure_kusto#ManagedPrivateEndpointsGetResponse"
+        "target": "com.azure.azure_kusto#GetManagedPrivateEndpointResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3712,7 +3713,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-14"
       }
     },
-    "com.azure.azure_kusto#ManagedPrivateEndpointsGetResponse": {
+    "com.azure.azure_kusto#GetManagedPrivateEndpointResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3750,7 +3751,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.azure_kusto#ManagedPrivateEndpointsGetRequest": {
+    "com.azure.azure_kusto#GetManagedPrivateEndpointRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3790,10 +3791,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azure_kusto#ManagedPrivateEndpointsList": {
+    "com.azure.azure_kusto#ListManagedPrivateEndpoints": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azure_kusto#ManagedPrivateEndpointsListRequest"
+        "target": "com.azure.azure_kusto#ListManagedPrivateEndpointsRequest"
       },
       "output": {
         "target": "com.azure.azure_kusto#ManagedPrivateEndpointListResult"
@@ -3876,7 +3877,7 @@
         "smithy.api#documentation": "Class representing a managed private endpoint."
       }
     },
-    "com.azure.azure_kusto#ManagedPrivateEndpointsListRequest": {
+    "com.azure.azure_kusto#ListManagedPrivateEndpointsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3908,10 +3909,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azure_kusto#ClustersListLanguageExtensions": {
+    "com.azure.azure_kusto#ListClusterLanguageExtensions": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azure_kusto#ClustersListLanguageExtensionsRequest"
+        "target": "com.azure.azure_kusto#ListClusterLanguageExtensionsRequest"
       },
       "output": {
         "target": "com.azure.azure_kusto#LanguageExtensionsList"
@@ -3956,7 +3957,7 @@
         "smithy.api#documentation": "The list of language extensions."
       }
     },
-    "com.azure.azure_kusto#ClustersListLanguageExtensionsRequest": {
+    "com.azure.azure_kusto#ListClusterLanguageExtensionsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3988,10 +3989,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azure_kusto#ClustersListFollowerDatabases": {
+    "com.azure.azure_kusto#ListClusterFollowerDatabases": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azure_kusto#ClustersListFollowerDatabasesRequest"
+        "target": "com.azure.azure_kusto#ListClusterFollowerDatabasesRequest"
       },
       "output": {
         "target": "com.azure.azure_kusto#FollowerDatabaseListResult"
@@ -4230,7 +4231,7 @@
         "smithy.api#documentation": "List of tables to include in the follower database"
       }
     },
-    "com.azure.azure_kusto#ClustersListFollowerDatabasesRequest": {
+    "com.azure.azure_kusto#ListClusterFollowerDatabasesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4397,10 +4398,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azure_kusto#ClustersListCalloutPolicies": {
+    "com.azure.azure_kusto#ListClusterCalloutPolicies": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azure_kusto#ClustersListCalloutPoliciesRequest"
+        "target": "com.azure.azure_kusto#ListClusterCalloutPoliciesRequest"
       },
       "output": {
         "target": "com.azure.azure_kusto#CalloutPoliciesList"
@@ -4572,7 +4573,7 @@
         "smithy.api#documentation": "Type of the callout service, specifying the kind of external resource or service being accessed."
       }
     },
-    "com.azure.azure_kusto#ClustersListCalloutPoliciesRequest": {
+    "com.azure.azure_kusto#ListClusterCalloutPoliciesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4676,10 +4677,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azure_kusto#ClustersDetachFollowerDatabases": {
+    "com.azure.azure_kusto#DetachClusterFollowerDatabases": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azure_kusto#ClustersDetachFollowerDatabasesRequest"
+        "target": "com.azure.azure_kusto#DetachClusterFollowerDatabasesRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4695,7 +4696,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-14"
       }
     },
-    "com.azure.azure_kusto#ClustersDetachFollowerDatabasesRequest": {
+    "com.azure.azure_kusto#DetachClusterFollowerDatabasesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4741,10 +4742,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azure_kusto#ScriptsCheckNameAvailability": {
+    "com.azure.azure_kusto#CheckScriptNameAvailability": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azure_kusto#ScriptsCheckNameAvailabilityRequest"
+        "target": "com.azure.azure_kusto#CheckScriptNameAvailabilityRequest"
       },
       "output": {
         "target": "com.azure.azure_kusto#CheckNameResult"
@@ -4760,7 +4761,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-14"
       }
     },
-    "com.azure.azure_kusto#ScriptsCheckNameAvailabilityRequest": {
+    "com.azure.azure_kusto#CheckScriptNameAvailabilityRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4803,7 +4804,7 @@
           }
         },
         "type": {
-          "target": "com.azure.azure_kusto#ScriptsCheckNameAvailabilityRequestType",
+          "target": "com.azure.azure_kusto#CheckScriptNameAvailabilityRequestType",
           "traits": {
             "smithy.api#documentation": "The type of resource, Microsoft.Kusto/clusters/databases/scripts.",
             "smithy.api#required": {}
@@ -4814,7 +4815,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azure_kusto#ScriptsCheckNameAvailabilityRequestType": {
+    "com.azure.azure_kusto#CheckScriptNameAvailabilityRequestType": {
       "type": "enum",
       "members": {
         "MICROSOFT_KUSTO_CLUSTERS_DATABASES_SCRIPTS": {
@@ -4828,10 +4829,10 @@
         "smithy.api#documentation": "The type of resource, Microsoft.Kusto/clusters/databases/scripts."
       }
     },
-    "com.azure.azure_kusto#ScriptsDelete": {
+    "com.azure.azure_kusto#DeleteScript": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azure_kusto#ScriptsDeleteRequest"
+        "target": "com.azure.azure_kusto#DeleteScriptRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4847,7 +4848,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-14"
       }
     },
-    "com.azure.azure_kusto#ScriptsDeleteRequest": {
+    "com.azure.azure_kusto#DeleteScriptRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4895,13 +4896,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azure_kusto#ScriptsUpdate": {
+    "com.azure.azure_kusto#UpdateScript": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azure_kusto#ScriptsUpdateRequest"
+        "target": "com.azure.azure_kusto#UpdateScriptRequest"
       },
       "output": {
-        "target": "com.azure.azure_kusto#ScriptsUpdateResponse"
+        "target": "com.azure.azure_kusto#UpdateScriptResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4914,7 +4915,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-14"
       }
     },
-    "com.azure.azure_kusto#ScriptsUpdateResponse": {
+    "com.azure.azure_kusto#UpdateScriptResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -5054,7 +5055,7 @@
         "smithy.api#documentation": "Differentiates between the type of script commands included - Database or Cluster. The default is Database."
       }
     },
-    "com.azure.azure_kusto#ScriptsUpdateRequest": {
+    "com.azure.azure_kusto#UpdateScriptRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5219,13 +5220,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azure_kusto#ScriptsGet": {
+    "com.azure.azure_kusto#GetScript": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azure_kusto#ScriptsGetRequest"
+        "target": "com.azure.azure_kusto#GetScriptRequest"
       },
       "output": {
-        "target": "com.azure.azure_kusto#ScriptsGetResponse"
+        "target": "com.azure.azure_kusto#GetScriptResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5238,7 +5239,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-14"
       }
     },
-    "com.azure.azure_kusto#ScriptsGetResponse": {
+    "com.azure.azure_kusto#GetScriptResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -5276,7 +5277,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.azure_kusto#ScriptsGetRequest": {
+    "com.azure.azure_kusto#GetScriptRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5324,10 +5325,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azure_kusto#ScriptsListByDatabase": {
+    "com.azure.azure_kusto#ListScriptByDatabase": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azure_kusto#ScriptsListByDatabaseRequest"
+        "target": "com.azure.azure_kusto#ListScriptByDatabaseRequest"
       },
       "output": {
         "target": "com.azure.azure_kusto#ScriptListResult"
@@ -5410,7 +5411,7 @@
         "smithy.api#documentation": "Class representing a database script."
       }
     },
-    "com.azure.azure_kusto#ScriptsListByDatabaseRequest": {
+    "com.azure.azure_kusto#ListScriptByDatabaseRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5450,10 +5451,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azure_kusto#DatabasesRemovePrincipals": {
+    "com.azure.azure_kusto#RemoveDatabasePrincipals": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azure_kusto#DatabasesRemovePrincipalsRequest"
+        "target": "com.azure.azure_kusto#RemoveDatabasePrincipalsRequest"
       },
       "output": {
         "target": "com.azure.azure_kusto#DatabasePrincipalListResult"
@@ -5621,7 +5622,7 @@
         "smithy.api#documentation": "Database principal role."
       }
     },
-    "com.azure.azure_kusto#DatabasesRemovePrincipalsRequest": {
+    "com.azure.azure_kusto#RemoveDatabasePrincipalsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5657,7 +5658,7 @@
           }
         },
         "value": {
-          "target": "com.azure.azure_kusto#DatabasesRemovePrincipalsRequestValueList",
+          "target": "com.azure.azure_kusto#RemoveDatabasePrincipalsRequestValueList",
           "traits": {
             "smithy.api#documentation": "The list of Kusto database principals."
           }
@@ -5667,7 +5668,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azure_kusto#DatabasesRemovePrincipalsRequestValueList": {
+    "com.azure.azure_kusto#RemoveDatabasePrincipalsRequestValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.azure_kusto#DatabasePrincipalInput"
@@ -5723,10 +5724,10 @@
         "smithy.api#documentation": "A class representing database principal entity."
       }
     },
-    "com.azure.azure_kusto#DatabasePrincipalAssignmentsDelete": {
+    "com.azure.azure_kusto#DeleteDatabasePrincipalAssignment": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azure_kusto#DatabasePrincipalAssignmentsDeleteRequest"
+        "target": "com.azure.azure_kusto#DeleteDatabasePrincipalAssignmentRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -5742,7 +5743,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-14"
       }
     },
-    "com.azure.azure_kusto#DatabasePrincipalAssignmentsDeleteRequest": {
+    "com.azure.azure_kusto#DeleteDatabasePrincipalAssignmentRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5995,13 +5996,13 @@
         "smithy.api#documentation": "A class representing database principal property."
       }
     },
-    "com.azure.azure_kusto#DatabasePrincipalAssignmentsGet": {
+    "com.azure.azure_kusto#GetDatabasePrincipalAssignment": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azure_kusto#DatabasePrincipalAssignmentsGetRequest"
+        "target": "com.azure.azure_kusto#GetDatabasePrincipalAssignmentRequest"
       },
       "output": {
-        "target": "com.azure.azure_kusto#DatabasePrincipalAssignmentsGetResponse"
+        "target": "com.azure.azure_kusto#GetDatabasePrincipalAssignmentResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6014,7 +6015,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-14"
       }
     },
-    "com.azure.azure_kusto#DatabasePrincipalAssignmentsGetResponse": {
+    "com.azure.azure_kusto#GetDatabasePrincipalAssignmentResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -6052,7 +6053,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.azure_kusto#DatabasePrincipalAssignmentsGetRequest": {
+    "com.azure.azure_kusto#GetDatabasePrincipalAssignmentRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6100,10 +6101,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azure_kusto#DatabasePrincipalAssignmentsList": {
+    "com.azure.azure_kusto#ListDatabasePrincipalAssignments": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azure_kusto#DatabasePrincipalAssignmentsListRequest"
+        "target": "com.azure.azure_kusto#ListDatabasePrincipalAssignmentsRequest"
       },
       "output": {
         "target": "com.azure.azure_kusto#DatabasePrincipalAssignmentListResult"
@@ -6186,7 +6187,7 @@
         "smithy.api#documentation": "Class representing a database principal assignment."
       }
     },
-    "com.azure.azure_kusto#DatabasePrincipalAssignmentsListRequest": {
+    "com.azure.azure_kusto#ListDatabasePrincipalAssignmentsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6226,10 +6227,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azure_kusto#DatabasesListPrincipals": {
+    "com.azure.azure_kusto#ListDatabasePrincipals": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azure_kusto#DatabasesListPrincipalsRequest"
+        "target": "com.azure.azure_kusto#ListDatabasePrincipalsRequest"
       },
       "output": {
         "target": "com.azure.azure_kusto#DatabasePrincipalListResult"
@@ -6245,7 +6246,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-14"
       }
     },
-    "com.azure.azure_kusto#DatabasesListPrincipalsRequest": {
+    "com.azure.azure_kusto#ListDatabasePrincipalsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6285,10 +6286,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azure_kusto#DatabaseInviteFollower": {
+    "com.azure.azure_kusto#InviteDatabaseFollower": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azure_kusto#DatabaseInviteFollowerRequest"
+        "target": "com.azure.azure_kusto#InviteDatabaseFollowerRequest"
       },
       "output": {
         "target": "com.azure.azure_kusto#DatabaseInviteFollowerResult"
@@ -6318,7 +6319,7 @@
         "smithy.api#documentation": "The result returned from a follower invitation generation request."
       }
     },
-    "com.azure.azure_kusto#DatabaseInviteFollowerRequest": {
+    "com.azure.azure_kusto#InviteDatabaseFollowerRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6371,10 +6372,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azure_kusto#DataConnectionsDelete": {
+    "com.azure.azure_kusto#DeleteDataConnection": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azure_kusto#DataConnectionsDeleteRequest"
+        "target": "com.azure.azure_kusto#DeleteDataConnectionRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -6390,7 +6391,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-14"
       }
     },
-    "com.azure.azure_kusto#DataConnectionsDeleteRequest": {
+    "com.azure.azure_kusto#DeleteDataConnectionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6438,13 +6439,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azure_kusto#DataConnectionsUpdate": {
+    "com.azure.azure_kusto#UpdateDataConnection": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azure_kusto#DataConnectionsUpdateRequest"
+        "target": "com.azure.azure_kusto#UpdateDataConnectionRequest"
       },
       "output": {
-        "target": "com.azure.azure_kusto#DataConnectionsUpdateResponse"
+        "target": "com.azure.azure_kusto#UpdateDataConnectionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6457,7 +6458,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-14"
       }
     },
-    "com.azure.azure_kusto#DataConnectionsUpdateResponse": {
+    "com.azure.azure_kusto#UpdateDataConnectionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -6546,7 +6547,7 @@
         "smithy.api#documentation": "Kind of the endpoint for the data connection"
       }
     },
-    "com.azure.azure_kusto#DataConnectionsUpdateRequest": {
+    "com.azure.azure_kusto#UpdateDataConnectionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6732,13 +6733,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azure_kusto#DataConnectionsGet": {
+    "com.azure.azure_kusto#GetDataConnection": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azure_kusto#DataConnectionsGetRequest"
+        "target": "com.azure.azure_kusto#GetDataConnectionRequest"
       },
       "output": {
-        "target": "com.azure.azure_kusto#DataConnectionsGetResponse"
+        "target": "com.azure.azure_kusto#GetDataConnectionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6751,7 +6752,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-14"
       }
     },
-    "com.azure.azure_kusto#DataConnectionsGetResponse": {
+    "com.azure.azure_kusto#GetDataConnectionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -6796,7 +6797,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.azure_kusto#DataConnectionsGetRequest": {
+    "com.azure.azure_kusto#GetDataConnectionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6844,10 +6845,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azure_kusto#DataConnectionsListByDatabase": {
+    "com.azure.azure_kusto#ListDataConnectionByDatabase": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azure_kusto#DataConnectionsListByDatabaseRequest"
+        "target": "com.azure.azure_kusto#ListDataConnectionByDatabaseRequest"
       },
       "output": {
         "target": "com.azure.azure_kusto#DataConnectionListResult"
@@ -6937,7 +6938,7 @@
         "smithy.api#documentation": "Class representing an data connection."
       }
     },
-    "com.azure.azure_kusto#DataConnectionsListByDatabaseRequest": {
+    "com.azure.azure_kusto#ListDataConnectionByDatabaseRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7106,10 +7107,10 @@
         "smithy.api#documentation": "Class representing an data connection."
       }
     },
-    "com.azure.azure_kusto#DatabasePrincipalAssignmentsCheckNameAvailability": {
+    "com.azure.azure_kusto#CheckDatabasePrincipalAssignmentNameAvailability": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azure_kusto#DatabasePrincipalAssignmentsCheckNameAvailabilityRequest"
+        "target": "com.azure.azure_kusto#CheckDatabasePrincipalAssignmentNameAvailabilityRequest"
       },
       "output": {
         "target": "com.azure.azure_kusto#CheckNameResult"
@@ -7125,7 +7126,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-14"
       }
     },
-    "com.azure.azure_kusto#DatabasePrincipalAssignmentsCheckNameAvailabilityRequest": {
+    "com.azure.azure_kusto#CheckDatabasePrincipalAssignmentNameAvailabilityRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7168,7 +7169,7 @@
           }
         },
         "type": {
-          "target": "com.azure.azure_kusto#DatabasePrincipalAssignmentsCheckNameAvailabilityRequestType",
+          "target": "com.azure.azure_kusto#CheckDatabasePrincipalAssignmentNameAvailabilityRequestType",
           "traits": {
             "smithy.api#documentation": "The type of resource, Microsoft.Kusto/clusters/databases/principalAssignments.",
             "smithy.api#required": {}
@@ -7179,7 +7180,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azure_kusto#DatabasePrincipalAssignmentsCheckNameAvailabilityRequestType": {
+    "com.azure.azure_kusto#CheckDatabasePrincipalAssignmentNameAvailabilityRequestType": {
       "type": "enum",
       "members": {
         "MICROSOFT_KUSTO_CLUSTERS_DATABASES_PRINCIPALASSIGNMENTS": {
@@ -7193,10 +7194,10 @@
         "smithy.api#documentation": "The type of resource, Microsoft.Kusto/clusters/databases/principalAssignments."
       }
     },
-    "com.azure.azure_kusto#DataConnectionsCheckNameAvailability": {
+    "com.azure.azure_kusto#CheckDataConnectionNameAvailability": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azure_kusto#DataConnectionsCheckNameAvailabilityRequest"
+        "target": "com.azure.azure_kusto#CheckDataConnectionNameAvailabilityRequest"
       },
       "output": {
         "target": "com.azure.azure_kusto#CheckNameResult"
@@ -7212,7 +7213,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-14"
       }
     },
-    "com.azure.azure_kusto#DataConnectionsCheckNameAvailabilityRequest": {
+    "com.azure.azure_kusto#CheckDataConnectionNameAvailabilityRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7255,7 +7256,7 @@
           }
         },
         "type": {
-          "target": "com.azure.azure_kusto#DataConnectionsCheckNameAvailabilityRequestType",
+          "target": "com.azure.azure_kusto#CheckDataConnectionNameAvailabilityRequestType",
           "traits": {
             "smithy.api#documentation": "The type of resource, Microsoft.Kusto/clusters/databases/dataConnections.",
             "smithy.api#required": {}
@@ -7266,7 +7267,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azure_kusto#DataConnectionsCheckNameAvailabilityRequestType": {
+    "com.azure.azure_kusto#CheckDataConnectionNameAvailabilityRequestType": {
       "type": "enum",
       "members": {
         "MICROSOFT_KUSTO_CLUSTERS_DATABASES_DATACONNECTIONS": {
@@ -7280,10 +7281,10 @@
         "smithy.api#documentation": "The type of resource, Microsoft.Kusto/clusters/databases/dataConnections."
       }
     },
-    "com.azure.azure_kusto#DatabasesAddPrincipals": {
+    "com.azure.azure_kusto#AddDatabasePrincipals": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azure_kusto#DatabasesAddPrincipalsRequest"
+        "target": "com.azure.azure_kusto#AddDatabasePrincipalsRequest"
       },
       "output": {
         "target": "com.azure.azure_kusto#DatabasePrincipalListResult"
@@ -7299,7 +7300,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-14"
       }
     },
-    "com.azure.azure_kusto#DatabasesAddPrincipalsRequest": {
+    "com.azure.azure_kusto#AddDatabasePrincipalsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7335,7 +7336,7 @@
           }
         },
         "value": {
-          "target": "com.azure.azure_kusto#DatabasesAddPrincipalsRequestValueList",
+          "target": "com.azure.azure_kusto#AddDatabasePrincipalsRequestValueList",
           "traits": {
             "smithy.api#documentation": "The list of Kusto database principals."
           }
@@ -7345,7 +7346,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azure_kusto#DatabasesAddPrincipalsRequestValueList": {
+    "com.azure.azure_kusto#AddDatabasePrincipalsRequestValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.azure_kusto#DatabasePrincipalInput"
@@ -7354,10 +7355,10 @@
         "smithy.api#documentation": "The list of Kusto database principals."
       }
     },
-    "com.azure.azure_kusto#DatabasesDelete": {
+    "com.azure.azure_kusto#DeleteDatabase": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azure_kusto#DatabasesDeleteRequest"
+        "target": "com.azure.azure_kusto#DeleteDatabaseRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -7373,7 +7374,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-14"
       }
     },
-    "com.azure.azure_kusto#DatabasesDeleteRequest": {
+    "com.azure.azure_kusto#DeleteDatabaseRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7413,13 +7414,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azure_kusto#DatabasesUpdate": {
+    "com.azure.azure_kusto#UpdateDatabase": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azure_kusto#DatabasesUpdateRequest"
+        "target": "com.azure.azure_kusto#UpdateDatabaseRequest"
       },
       "output": {
-        "target": "com.azure.azure_kusto#DatabasesUpdateResponse"
+        "target": "com.azure.azure_kusto#UpdateDatabaseResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7432,7 +7433,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-14"
       }
     },
-    "com.azure.azure_kusto#DatabasesUpdateResponse": {
+    "com.azure.azure_kusto#UpdateDatabaseResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -7497,7 +7498,7 @@
         "smithy.api#documentation": "Kind of the database"
       }
     },
-    "com.azure.azure_kusto#DatabasesUpdateRequest": {
+    "com.azure.azure_kusto#UpdateDatabaseRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7533,7 +7534,7 @@
           }
         },
         "callerRole": {
-          "target": "com.azure.azure_kusto#DatabasesUpdateRequestCallerRole",
+          "target": "com.azure.azure_kusto#UpdateDatabaseRequestCallerRole",
           "traits": {
             "smithy.api#httpQuery": "callerRole",
             "smithy.api#documentation": "By default, any user who run operation on a database become an Admin on it. This property allows the caller to exclude the caller from Admins list."
@@ -7557,7 +7558,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azure_kusto#DatabasesUpdateRequestCallerRole": {
+    "com.azure.azure_kusto#UpdateDatabaseRequestCallerRole": {
       "type": "enum",
       "members": {
         "ADMIN": {
@@ -7717,13 +7718,13 @@
       },
       "traits": {}
     },
-    "com.azure.azure_kusto#DatabasesGet": {
+    "com.azure.azure_kusto#GetDatabase": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azure_kusto#DatabasesGetRequest"
+        "target": "com.azure.azure_kusto#GetDatabaseRequest"
       },
       "output": {
-        "target": "com.azure.azure_kusto#DatabasesGetResponse"
+        "target": "com.azure.azure_kusto#GetDatabaseResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7736,7 +7737,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-14"
       }
     },
-    "com.azure.azure_kusto#DatabasesGetResponse": {
+    "com.azure.azure_kusto#GetDatabaseResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -7781,7 +7782,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.azure_kusto#DatabasesGetRequest": {
+    "com.azure.azure_kusto#GetDatabaseRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7821,10 +7822,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azure_kusto#DatabasesListByCluster": {
+    "com.azure.azure_kusto#ListDatabaseByCluster": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azure_kusto#DatabasesListByClusterRequest"
+        "target": "com.azure.azure_kusto#ListDatabaseByClusterRequest"
       },
       "output": {
         "target": "com.azure.azure_kusto#DatabaseListResult"
@@ -7915,7 +7916,7 @@
         "smithy.api#documentation": "Class representing a Kusto database."
       }
     },
-    "com.azure.azure_kusto#DatabasesListByClusterRequest": {
+    "com.azure.azure_kusto#ListDatabaseByClusterRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7961,10 +7962,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azure_kusto#ClusterPrincipalAssignmentsCheckNameAvailability": {
+    "com.azure.azure_kusto#CheckClusterPrincipalAssignmentNameAvailability": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azure_kusto#ClusterPrincipalAssignmentsCheckNameAvailabilityRequest"
+        "target": "com.azure.azure_kusto#CheckClusterPrincipalAssignmentNameAvailabilityRequest"
       },
       "output": {
         "target": "com.azure.azure_kusto#CheckNameResult"
@@ -7980,7 +7981,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-14"
       }
     },
-    "com.azure.azure_kusto#ClusterPrincipalAssignmentsCheckNameAvailabilityRequest": {
+    "com.azure.azure_kusto#CheckClusterPrincipalAssignmentNameAvailabilityRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8015,7 +8016,7 @@
           }
         },
         "type": {
-          "target": "com.azure.azure_kusto#ClusterPrincipalAssignmentsCheckNameAvailabilityRequestType",
+          "target": "com.azure.azure_kusto#CheckClusterPrincipalAssignmentNameAvailabilityRequestType",
           "traits": {
             "smithy.api#documentation": "The type of resource, Microsoft.Kusto/clusters/principalAssignments.",
             "smithy.api#required": {}
@@ -8026,7 +8027,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azure_kusto#ClusterPrincipalAssignmentsCheckNameAvailabilityRequestType": {
+    "com.azure.azure_kusto#CheckClusterPrincipalAssignmentNameAvailabilityRequestType": {
       "type": "enum",
       "members": {
         "MICROSOFT_KUSTO_CLUSTERS_PRINCIPALASSIGNMENTS": {
@@ -8040,10 +8041,10 @@
         "smithy.api#documentation": "The type of resource, Microsoft.Kusto/clusters/principalAssignments."
       }
     },
-    "com.azure.azure_kusto#DatabasesCheckNameAvailability": {
+    "com.azure.azure_kusto#CheckDatabaseNameAvailability": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azure_kusto#DatabasesCheckNameAvailabilityRequest"
+        "target": "com.azure.azure_kusto#CheckDatabaseNameAvailabilityRequest"
       },
       "output": {
         "target": "com.azure.azure_kusto#CheckNameResult"
@@ -8059,7 +8060,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-14"
       }
     },
-    "com.azure.azure_kusto#DatabasesCheckNameAvailabilityRequest": {
+    "com.azure.azure_kusto#CheckDatabaseNameAvailabilityRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8125,10 +8126,10 @@
         "smithy.api#documentation": "The type of resource, for instance Microsoft.Kusto/clusters/databases."
       }
     },
-    "com.azure.azure_kusto#AttachedDatabaseConfigurationsDelete": {
+    "com.azure.azure_kusto#DeleteAttachedDatabaseConfiguration": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azure_kusto#AttachedDatabaseConfigurationsDeleteRequest"
+        "target": "com.azure.azure_kusto#DeleteAttachedDatabaseConfigurationRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -8144,7 +8145,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-14"
       }
     },
-    "com.azure.azure_kusto#AttachedDatabaseConfigurationsDeleteRequest": {
+    "com.azure.azure_kusto#DeleteAttachedDatabaseConfigurationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8440,13 +8441,13 @@
         "smithy.api#documentation": "Class representing the an attached database configuration properties of kind specific."
       }
     },
-    "com.azure.azure_kusto#AttachedDatabaseConfigurationsGet": {
+    "com.azure.azure_kusto#GetAttachedDatabaseConfiguration": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azure_kusto#AttachedDatabaseConfigurationsGetRequest"
+        "target": "com.azure.azure_kusto#GetAttachedDatabaseConfigurationRequest"
       },
       "output": {
-        "target": "com.azure.azure_kusto#AttachedDatabaseConfigurationsGetResponse"
+        "target": "com.azure.azure_kusto#GetAttachedDatabaseConfigurationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -8459,7 +8460,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-14"
       }
     },
-    "com.azure.azure_kusto#AttachedDatabaseConfigurationsGetResponse": {
+    "com.azure.azure_kusto#GetAttachedDatabaseConfigurationResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -8503,7 +8504,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.azure_kusto#AttachedDatabaseConfigurationsGetRequest": {
+    "com.azure.azure_kusto#GetAttachedDatabaseConfigurationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8543,10 +8544,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azure_kusto#AttachedDatabaseConfigurationsListByCluster": {
+    "com.azure.azure_kusto#ListAttachedDatabaseConfigurationByCluster": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azure_kusto#AttachedDatabaseConfigurationsListByClusterRequest"
+        "target": "com.azure.azure_kusto#ListAttachedDatabaseConfigurationByClusterRequest"
       },
       "output": {
         "target": "com.azure.azure_kusto#AttachedDatabaseConfigurationListResult"
@@ -8635,7 +8636,7 @@
         "smithy.api#documentation": "Class representing an attached database configuration."
       }
     },
-    "com.azure.azure_kusto#AttachedDatabaseConfigurationsListByClusterRequest": {
+    "com.azure.azure_kusto#ListAttachedDatabaseConfigurationByClusterRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8667,10 +8668,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azure_kusto#AttachedDatabaseConfigurationsCheckNameAvailability": {
+    "com.azure.azure_kusto#CheckAttachedDatabaseConfigurationNameAvailability": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azure_kusto#AttachedDatabaseConfigurationsCheckNameAvailabilityRequest"
+        "target": "com.azure.azure_kusto#CheckAttachedDatabaseConfigurationNameAvailabilityRequest"
       },
       "output": {
         "target": "com.azure.azure_kusto#CheckNameResult"
@@ -8686,7 +8687,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-14"
       }
     },
-    "com.azure.azure_kusto#AttachedDatabaseConfigurationsCheckNameAvailabilityRequest": {
+    "com.azure.azure_kusto#CheckAttachedDatabaseConfigurationNameAvailabilityRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8721,7 +8722,7 @@
           }
         },
         "type": {
-          "target": "com.azure.azure_kusto#AttachedDatabaseConfigurationsCheckNameAvailabilityRequestType",
+          "target": "com.azure.azure_kusto#CheckAttachedDatabaseConfigurationNameAvailabilityRequestType",
           "traits": {
             "smithy.api#documentation": "The type of resource, for instance Microsoft.Kusto/clusters/attachedDatabaseConfigurations.",
             "smithy.api#required": {}
@@ -8732,7 +8733,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azure_kusto#AttachedDatabaseConfigurationsCheckNameAvailabilityRequestType": {
+    "com.azure.azure_kusto#CheckAttachedDatabaseConfigurationNameAvailabilityRequestType": {
       "type": "enum",
       "members": {
         "MICROSOFT_KUSTO_CLUSTERS_ATTACHEDDATABASECONFIGURATIONS": {
@@ -8746,10 +8747,10 @@
         "smithy.api#documentation": "The type of resource, for instance Microsoft.Kusto/clusters/attachedDatabaseConfigurations."
       }
     },
-    "com.azure.azure_kusto#ClustersAddLanguageExtensions": {
+    "com.azure.azure_kusto#AddClusterLanguageExtensions": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azure_kusto#ClustersAddLanguageExtensionsRequest"
+        "target": "com.azure.azure_kusto#AddClusterLanguageExtensionsRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -8765,7 +8766,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-14"
       }
     },
-    "com.azure.azure_kusto#ClustersAddLanguageExtensionsRequest": {
+    "com.azure.azure_kusto#AddClusterLanguageExtensionsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8793,7 +8794,7 @@
           }
         },
         "value": {
-          "target": "com.azure.azure_kusto#ClustersAddLanguageExtensionsRequestValueList",
+          "target": "com.azure.azure_kusto#AddClusterLanguageExtensionsRequestValueList",
           "traits": {
             "smithy.api#documentation": "The list of language extensions."
           }
@@ -8809,7 +8810,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azure_kusto#ClustersAddLanguageExtensionsRequestValueList": {
+    "com.azure.azure_kusto#AddClusterLanguageExtensionsRequestValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.azure_kusto#LanguageExtension"
@@ -8818,10 +8819,10 @@
         "smithy.api#documentation": "The list of language extensions."
       }
     },
-    "com.azure.azure_kusto#ClustersAddCalloutPolicies": {
+    "com.azure.azure_kusto#AddClusterCalloutPolicies": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azure_kusto#ClustersAddCalloutPoliciesRequest"
+        "target": "com.azure.azure_kusto#AddClusterCalloutPoliciesRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -8837,7 +8838,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-14"
       }
     },
-    "com.azure.azure_kusto#ClustersAddCalloutPoliciesRequest": {
+    "com.azure.azure_kusto#AddClusterCalloutPoliciesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8865,7 +8866,7 @@
           }
         },
         "value": {
-          "target": "com.azure.azure_kusto#ClustersAddCalloutPoliciesRequestValueList",
+          "target": "com.azure.azure_kusto#AddClusterCalloutPoliciesRequestValueList",
           "traits": {
             "smithy.api#documentation": "The CalloutPolicy items on this page",
             "smithy.api#required": {}
@@ -8882,7 +8883,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azure_kusto#ClustersAddCalloutPoliciesRequestValueList": {
+    "com.azure.azure_kusto#AddClusterCalloutPoliciesRequestValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.azure_kusto#CalloutPolicyInput"
@@ -8917,10 +8918,10 @@
         "smithy.api#documentation": "Configuration for external callout policies, including URI patterns, access types, and service types."
       }
     },
-    "com.azure.azure_kusto#ClustersDelete": {
+    "com.azure.azure_kusto#DeleteCluster": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azure_kusto#ClustersDeleteRequest"
+        "target": "com.azure.azure_kusto#DeleteClusterRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -8936,7 +8937,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-14"
       }
     },
-    "com.azure.azure_kusto#ClustersDeleteRequest": {
+    "com.azure.azure_kusto#DeleteClusterRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8968,13 +8969,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azure_kusto#ClustersUpdate": {
+    "com.azure.azure_kusto#UpdateCluster": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azure_kusto#ClustersUpdateRequest"
+        "target": "com.azure.azure_kusto#UpdateClusterRequest"
       },
       "output": {
-        "target": "com.azure.azure_kusto#ClustersUpdateResponse"
+        "target": "com.azure.azure_kusto#UpdateClusterResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -8987,7 +8988,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-14"
       }
     },
-    "com.azure.azure_kusto#ClustersUpdateResponse": {
+    "com.azure.azure_kusto#UpdateClusterResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -9015,7 +9016,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.azure_kusto#ClustersUpdateResponseTagsMap",
+          "target": "com.azure.azure_kusto#UpdateClusterResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -9041,7 +9042,7 @@
           }
         },
         "zones": {
-          "target": "com.azure.azure_kusto#ClustersUpdateResponseZonesList",
+          "target": "com.azure.azure_kusto#UpdateClusterResponseZonesList",
           "traits": {
             "smithy.api#documentation": "The availability zones."
           }
@@ -9158,7 +9159,7 @@
         "smithy.api#documentation": "The type of managed identity used. The type 'SystemAssigned, UserAssigned' includes both an implicitly created identity and a set of user-assigned identities. The type 'None' will remove all identities."
       }
     },
-    "com.azure.azure_kusto#ClustersUpdateResponseZonesList": {
+    "com.azure.azure_kusto#UpdateClusterResponseZonesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -9780,7 +9781,7 @@
         "smithy.api#documentation": "The state of the resource."
       }
     },
-    "com.azure.azure_kusto#ClustersUpdateResponseTagsMap": {
+    "com.azure.azure_kusto#UpdateClusterResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -9792,7 +9793,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.azure_kusto#ClustersUpdateRequest": {
+    "com.azure.azure_kusto#UpdateClusterRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9820,7 +9821,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.azure_kusto#ClustersUpdateRequestTagsMap",
+          "target": "com.azure.azure_kusto#UpdateClusterRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -9838,7 +9839,7 @@
           }
         },
         "zones": {
-          "target": "com.azure.azure_kusto#ClustersUpdateRequestZonesList",
+          "target": "com.azure.azure_kusto#UpdateClusterRequestZonesList",
           "traits": {
             "smithy.api#documentation": "The availability zones of the cluster."
           }
@@ -10151,7 +10152,7 @@
       "members": {},
       "traits": {}
     },
-    "com.azure.azure_kusto#ClustersUpdateRequestZonesList": {
+    "com.azure.azure_kusto#UpdateClusterRequestZonesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -10160,7 +10161,7 @@
         "smithy.api#documentation": "The availability zones of the cluster."
       }
     },
-    "com.azure.azure_kusto#ClustersUpdateRequestTagsMap": {
+    "com.azure.azure_kusto#UpdateClusterRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -10379,13 +10380,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.azure_kusto#ClustersGet": {
+    "com.azure.azure_kusto#GetCluster": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azure_kusto#ClustersGetRequest"
+        "target": "com.azure.azure_kusto#GetClusterRequest"
       },
       "output": {
-        "target": "com.azure.azure_kusto#ClustersGetResponse"
+        "target": "com.azure.azure_kusto#GetClusterResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -10398,7 +10399,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-14"
       }
     },
-    "com.azure.azure_kusto#ClustersGetResponse": {
+    "com.azure.azure_kusto#GetClusterResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -10426,7 +10427,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.azure_kusto#ClustersGetResponseTagsMap",
+          "target": "com.azure.azure_kusto#GetClusterResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -10452,7 +10453,7 @@
           }
         },
         "zones": {
-          "target": "com.azure.azure_kusto#ClustersGetResponseZonesList",
+          "target": "com.azure.azure_kusto#GetClusterResponseZonesList",
           "traits": {
             "smithy.api#documentation": "The availability zones."
           }
@@ -10474,7 +10475,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.azure_kusto#ClustersGetResponseZonesList": {
+    "com.azure.azure_kusto#GetClusterResponseZonesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -10483,7 +10484,7 @@
         "smithy.api#documentation": "The availability zones."
       }
     },
-    "com.azure.azure_kusto#ClustersGetResponseTagsMap": {
+    "com.azure.azure_kusto#GetClusterResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -10495,7 +10496,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.azure_kusto#ClustersGetRequest": {
+    "com.azure.azure_kusto#GetClusterRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10527,10 +10528,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azure_kusto#ClustersListByResourceGroup": {
+    "com.azure.azure_kusto#ListClusterByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azure_kusto#ClustersListByResourceGroupRequest"
+        "target": "com.azure.azure_kusto#ListClusterByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.azure_kusto#ClusterListResult"
@@ -10672,7 +10673,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.azure_kusto#ClustersListByResourceGroupRequest": {
+    "com.azure.azure_kusto#ListClusterByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10696,10 +10697,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azure_kusto#ClustersListSkus": {
+    "com.azure.azure_kusto#ListClusterSkus": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azure_kusto#ClustersListSkusRequest"
+        "target": "com.azure.azure_kusto#ListClusterSkusRequest"
       },
       "output": {
         "target": "com.azure.azure_kusto#SkuDescriptionList"
@@ -10918,7 +10919,7 @@
         "smithy.api#documentation": "The set of locations that the SKU is available"
       }
     },
-    "com.azure.azure_kusto#ClustersListSkusRequest": {
+    "com.azure.azure_kusto#ListClusterSkusRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10934,10 +10935,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azure_kusto#SkusList": {
+    "com.azure.azure_kusto#ListSkus": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azure_kusto#SkusListRequest"
+        "target": "com.azure.azure_kusto#ListSkusRequest"
       },
       "output": {
         "target": "com.azure.azure_kusto#SkuDescriptionList"
@@ -10953,7 +10954,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-14"
       }
     },
-    "com.azure.azure_kusto#SkusListRequest": {
+    "com.azure.azure_kusto#ListSkusRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10977,10 +10978,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azure_kusto#OperationsResultsGet": {
+    "com.azure.azure_kusto#GetOperationsResult": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azure_kusto#OperationsResultsGetRequest"
+        "target": "com.azure.azure_kusto#GetOperationsResultRequest"
       },
       "output": {
         "target": "com.azure.azure_kusto#OperationResult"
@@ -11130,7 +11131,7 @@
         "smithy.api#documentation": "The status of operation."
       }
     },
-    "com.azure.azure_kusto#OperationsResultsGetRequest": {
+    "com.azure.azure_kusto#GetOperationsResultRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11162,10 +11163,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azure_kusto#ClustersCheckNameAvailability": {
+    "com.azure.azure_kusto#CheckClusterNameAvailability": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azure_kusto#ClustersCheckNameAvailabilityRequest"
+        "target": "com.azure.azure_kusto#CheckClusterNameAvailabilityRequest"
       },
       "output": {
         "target": "com.azure.azure_kusto#CheckNameResult"
@@ -11181,7 +11182,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-14"
       }
     },
-    "com.azure.azure_kusto#ClustersCheckNameAvailabilityRequest": {
+    "com.azure.azure_kusto#CheckClusterNameAvailabilityRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11208,7 +11209,7 @@
           }
         },
         "type": {
-          "target": "com.azure.azure_kusto#ClustersCheckNameAvailabilityRequestType",
+          "target": "com.azure.azure_kusto#CheckClusterNameAvailabilityRequestType",
           "traits": {
             "smithy.api#documentation": "The type of resource, Microsoft.Kusto/clusters.",
             "smithy.api#required": {}
@@ -11219,7 +11220,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azure_kusto#ClustersCheckNameAvailabilityRequestType": {
+    "com.azure.azure_kusto#CheckClusterNameAvailabilityRequestType": {
       "type": "enum",
       "members": {
         "MICROSOFT_KUSTO_CLUSTERS": {
@@ -11233,10 +11234,10 @@
         "smithy.api#documentation": "The type of resource, Microsoft.Kusto/clusters."
       }
     },
-    "com.azure.azure_kusto#ClustersList": {
+    "com.azure.azure_kusto#ListClusters": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azure_kusto#ClustersListRequest"
+        "target": "com.azure.azure_kusto#ListClustersRequest"
       },
       "output": {
         "target": "com.azure.azure_kusto#ClusterListResult"
@@ -11252,7 +11253,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-14"
       }
     },
-    "com.azure.azure_kusto#ClustersListRequest": {
+    "com.azure.azure_kusto#ListClustersRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11268,7 +11269,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azure_kusto#OperationsList": {
+    "com.azure.azure_kusto#ListOperations": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -11385,250 +11386,250 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.azure_kusto#ClustersStop"
+          "target": "com.azure.azure_kusto#StopCluster"
         },
         {
-          "target": "com.azure.azure_kusto#ClustersStart"
+          "target": "com.azure.azure_kusto#StartCluster"
         },
         {
-          "target": "com.azure.azure_kusto#ClustersListSkusByResource"
+          "target": "com.azure.azure_kusto#ListClusterSkusByResource"
         },
         {
-          "target": "com.azure.azure_kusto#SandboxCustomImagesCheckNameAvailability"
+          "target": "com.azure.azure_kusto#CheckSandboxCustomImageNameAvailability"
         },
         {
-          "target": "com.azure.azure_kusto#SandboxCustomImagesDelete"
+          "target": "com.azure.azure_kusto#DeleteSandboxCustomImage"
         },
         {
-          "target": "com.azure.azure_kusto#SandboxCustomImagesUpdate"
+          "target": "com.azure.azure_kusto#UpdateSandboxCustomImage"
         },
         {
           "target": "com.azure.azure_kusto#SandboxCustomImagesCreateOrUpdate"
         },
         {
-          "target": "com.azure.azure_kusto#SandboxCustomImagesGet"
+          "target": "com.azure.azure_kusto#GetSandboxCustomImage"
         },
         {
-          "target": "com.azure.azure_kusto#SandboxCustomImagesListByCluster"
+          "target": "com.azure.azure_kusto#ListSandboxCustomImageByCluster"
         },
         {
-          "target": "com.azure.azure_kusto#ClustersRemoveLanguageExtensions"
+          "target": "com.azure.azure_kusto#RemoveClusterLanguageExtensions"
         },
         {
-          "target": "com.azure.azure_kusto#ClustersRemoveCalloutPolicy"
+          "target": "com.azure.azure_kusto#RemoveClusterCalloutPolicy"
         },
         {
-          "target": "com.azure.azure_kusto#PrivateLinkResourcesGet"
+          "target": "com.azure.azure_kusto#GetPrivateLinkResource"
         },
         {
-          "target": "com.azure.azure_kusto#PrivateLinkResourcesList"
+          "target": "com.azure.azure_kusto#ListPrivateLinkResources"
         },
         {
-          "target": "com.azure.azure_kusto#PrivateEndpointConnectionsDelete"
+          "target": "com.azure.azure_kusto#DeletePrivateEndpointConnection"
         },
         {
           "target": "com.azure.azure_kusto#PrivateEndpointConnectionsCreateOrUpdate"
         },
         {
-          "target": "com.azure.azure_kusto#PrivateEndpointConnectionsGet"
+          "target": "com.azure.azure_kusto#GetPrivateEndpointConnection"
         },
         {
-          "target": "com.azure.azure_kusto#PrivateEndpointConnectionsList"
+          "target": "com.azure.azure_kusto#ListPrivateEndpointConnections"
         },
         {
-          "target": "com.azure.azure_kusto#ClusterPrincipalAssignmentsDelete"
+          "target": "com.azure.azure_kusto#DeleteClusterPrincipalAssignment"
         },
         {
           "target": "com.azure.azure_kusto#ClusterPrincipalAssignmentsCreateOrUpdate"
         },
         {
-          "target": "com.azure.azure_kusto#ClusterPrincipalAssignmentsGet"
+          "target": "com.azure.azure_kusto#GetClusterPrincipalAssignment"
         },
         {
-          "target": "com.azure.azure_kusto#ClusterPrincipalAssignmentsList"
+          "target": "com.azure.azure_kusto#ListClusterPrincipalAssignments"
         },
         {
-          "target": "com.azure.azure_kusto#ClustersListOutboundNetworkDependenciesEndpoints"
+          "target": "com.azure.azure_kusto#ListClusterOutboundNetworkDependenciesEndpoints"
         },
         {
-          "target": "com.azure.azure_kusto#ClustersMigrate"
+          "target": "com.azure.azure_kusto#MigrateCluster"
         },
         {
-          "target": "com.azure.azure_kusto#ManagedPrivateEndpointsCheckNameAvailability"
+          "target": "com.azure.azure_kusto#CheckManagedPrivateEndpointNameAvailability"
         },
         {
-          "target": "com.azure.azure_kusto#ManagedPrivateEndpointsDelete"
+          "target": "com.azure.azure_kusto#DeleteManagedPrivateEndpoint"
         },
         {
-          "target": "com.azure.azure_kusto#ManagedPrivateEndpointsUpdate"
+          "target": "com.azure.azure_kusto#UpdateManagedPrivateEndpoint"
         },
         {
           "target": "com.azure.azure_kusto#ManagedPrivateEndpointsCreateOrUpdate"
         },
         {
-          "target": "com.azure.azure_kusto#ManagedPrivateEndpointsGet"
+          "target": "com.azure.azure_kusto#GetManagedPrivateEndpoint"
         },
         {
-          "target": "com.azure.azure_kusto#ManagedPrivateEndpointsList"
+          "target": "com.azure.azure_kusto#ListManagedPrivateEndpoints"
         },
         {
-          "target": "com.azure.azure_kusto#ClustersListLanguageExtensions"
+          "target": "com.azure.azure_kusto#ListClusterLanguageExtensions"
         },
         {
-          "target": "com.azure.azure_kusto#ClustersListFollowerDatabases"
+          "target": "com.azure.azure_kusto#ListClusterFollowerDatabases"
         },
         {
           "target": "com.azure.azure_kusto#ClustersListFollowerDatabasesGet"
         },
         {
-          "target": "com.azure.azure_kusto#ClustersListCalloutPolicies"
+          "target": "com.azure.azure_kusto#ListClusterCalloutPolicies"
         },
         {
           "target": "com.azure.azure_kusto#ClustersDiagnoseVirtualNetwork"
         },
         {
-          "target": "com.azure.azure_kusto#ClustersDetachFollowerDatabases"
+          "target": "com.azure.azure_kusto#DetachClusterFollowerDatabases"
         },
         {
-          "target": "com.azure.azure_kusto#ScriptsCheckNameAvailability"
+          "target": "com.azure.azure_kusto#CheckScriptNameAvailability"
         },
         {
-          "target": "com.azure.azure_kusto#ScriptsDelete"
+          "target": "com.azure.azure_kusto#DeleteScript"
         },
         {
-          "target": "com.azure.azure_kusto#ScriptsUpdate"
+          "target": "com.azure.azure_kusto#UpdateScript"
         },
         {
           "target": "com.azure.azure_kusto#ScriptsCreateOrUpdate"
         },
         {
-          "target": "com.azure.azure_kusto#ScriptsGet"
+          "target": "com.azure.azure_kusto#GetScript"
         },
         {
-          "target": "com.azure.azure_kusto#ScriptsListByDatabase"
+          "target": "com.azure.azure_kusto#ListScriptByDatabase"
         },
         {
-          "target": "com.azure.azure_kusto#DatabasesRemovePrincipals"
+          "target": "com.azure.azure_kusto#RemoveDatabasePrincipals"
         },
         {
-          "target": "com.azure.azure_kusto#DatabasePrincipalAssignmentsDelete"
+          "target": "com.azure.azure_kusto#DeleteDatabasePrincipalAssignment"
         },
         {
           "target": "com.azure.azure_kusto#DatabasePrincipalAssignmentsCreateOrUpdate"
         },
         {
-          "target": "com.azure.azure_kusto#DatabasePrincipalAssignmentsGet"
+          "target": "com.azure.azure_kusto#GetDatabasePrincipalAssignment"
         },
         {
-          "target": "com.azure.azure_kusto#DatabasePrincipalAssignmentsList"
+          "target": "com.azure.azure_kusto#ListDatabasePrincipalAssignments"
         },
         {
-          "target": "com.azure.azure_kusto#DatabasesListPrincipals"
+          "target": "com.azure.azure_kusto#ListDatabasePrincipals"
         },
         {
-          "target": "com.azure.azure_kusto#DatabaseInviteFollower"
+          "target": "com.azure.azure_kusto#InviteDatabaseFollower"
         },
         {
-          "target": "com.azure.azure_kusto#DataConnectionsDelete"
+          "target": "com.azure.azure_kusto#DeleteDataConnection"
         },
         {
-          "target": "com.azure.azure_kusto#DataConnectionsUpdate"
+          "target": "com.azure.azure_kusto#UpdateDataConnection"
         },
         {
           "target": "com.azure.azure_kusto#DataConnectionsCreateOrUpdate"
         },
         {
-          "target": "com.azure.azure_kusto#DataConnectionsGet"
+          "target": "com.azure.azure_kusto#GetDataConnection"
         },
         {
-          "target": "com.azure.azure_kusto#DataConnectionsListByDatabase"
+          "target": "com.azure.azure_kusto#ListDataConnectionByDatabase"
         },
         {
           "target": "com.azure.azure_kusto#DataConnectionsDataConnectionValidation"
         },
         {
-          "target": "com.azure.azure_kusto#DatabasePrincipalAssignmentsCheckNameAvailability"
+          "target": "com.azure.azure_kusto#CheckDatabasePrincipalAssignmentNameAvailability"
         },
         {
-          "target": "com.azure.azure_kusto#DataConnectionsCheckNameAvailability"
+          "target": "com.azure.azure_kusto#CheckDataConnectionNameAvailability"
         },
         {
-          "target": "com.azure.azure_kusto#DatabasesAddPrincipals"
+          "target": "com.azure.azure_kusto#AddDatabasePrincipals"
         },
         {
-          "target": "com.azure.azure_kusto#DatabasesDelete"
+          "target": "com.azure.azure_kusto#DeleteDatabase"
         },
         {
-          "target": "com.azure.azure_kusto#DatabasesUpdate"
+          "target": "com.azure.azure_kusto#UpdateDatabase"
         },
         {
           "target": "com.azure.azure_kusto#DatabasesCreateOrUpdate"
         },
         {
-          "target": "com.azure.azure_kusto#DatabasesGet"
+          "target": "com.azure.azure_kusto#GetDatabase"
         },
         {
-          "target": "com.azure.azure_kusto#DatabasesListByCluster"
+          "target": "com.azure.azure_kusto#ListDatabaseByCluster"
         },
         {
-          "target": "com.azure.azure_kusto#ClusterPrincipalAssignmentsCheckNameAvailability"
+          "target": "com.azure.azure_kusto#CheckClusterPrincipalAssignmentNameAvailability"
         },
         {
-          "target": "com.azure.azure_kusto#DatabasesCheckNameAvailability"
+          "target": "com.azure.azure_kusto#CheckDatabaseNameAvailability"
         },
         {
-          "target": "com.azure.azure_kusto#AttachedDatabaseConfigurationsDelete"
+          "target": "com.azure.azure_kusto#DeleteAttachedDatabaseConfiguration"
         },
         {
           "target": "com.azure.azure_kusto#AttachedDatabaseConfigurationsCreateOrUpdate"
         },
         {
-          "target": "com.azure.azure_kusto#AttachedDatabaseConfigurationsGet"
+          "target": "com.azure.azure_kusto#GetAttachedDatabaseConfiguration"
         },
         {
-          "target": "com.azure.azure_kusto#AttachedDatabaseConfigurationsListByCluster"
+          "target": "com.azure.azure_kusto#ListAttachedDatabaseConfigurationByCluster"
         },
         {
-          "target": "com.azure.azure_kusto#AttachedDatabaseConfigurationsCheckNameAvailability"
+          "target": "com.azure.azure_kusto#CheckAttachedDatabaseConfigurationNameAvailability"
         },
         {
-          "target": "com.azure.azure_kusto#ClustersAddLanguageExtensions"
+          "target": "com.azure.azure_kusto#AddClusterLanguageExtensions"
         },
         {
-          "target": "com.azure.azure_kusto#ClustersAddCalloutPolicies"
+          "target": "com.azure.azure_kusto#AddClusterCalloutPolicies"
         },
         {
-          "target": "com.azure.azure_kusto#ClustersDelete"
+          "target": "com.azure.azure_kusto#DeleteCluster"
         },
         {
-          "target": "com.azure.azure_kusto#ClustersUpdate"
+          "target": "com.azure.azure_kusto#UpdateCluster"
         },
         {
           "target": "com.azure.azure_kusto#ClustersCreateOrUpdate"
         },
         {
-          "target": "com.azure.azure_kusto#ClustersGet"
+          "target": "com.azure.azure_kusto#GetCluster"
         },
         {
-          "target": "com.azure.azure_kusto#ClustersListByResourceGroup"
+          "target": "com.azure.azure_kusto#ListClusterByResourceGroup"
         },
         {
-          "target": "com.azure.azure_kusto#ClustersListSkus"
+          "target": "com.azure.azure_kusto#ListClusterSkus"
         },
         {
-          "target": "com.azure.azure_kusto#SkusList"
+          "target": "com.azure.azure_kusto#ListSkus"
         },
         {
-          "target": "com.azure.azure_kusto#OperationsResultsGet"
+          "target": "com.azure.azure_kusto#GetOperationsResult"
         },
         {
-          "target": "com.azure.azure_kusto#ClustersCheckNameAvailability"
+          "target": "com.azure.azure_kusto#CheckClusterNameAvailability"
         },
         {
-          "target": "com.azure.azure_kusto#ClustersList"
+          "target": "com.azure.azure_kusto#ListClusters"
         },
         {
-          "target": "com.azure.azure_kusto#OperationsList"
+          "target": "com.azure.azure_kusto#ListOperations"
         }
       ],
       "traits": {

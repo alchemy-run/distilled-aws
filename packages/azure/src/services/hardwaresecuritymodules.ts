@@ -12,34 +12,36 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
-export interface CloudHsmClusterBackupStatusGetRequest {
+export interface CloudHsmClustersBackupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM Cluster names must be between 3 and 23 characters in length. */
   cloudHsmClusterName: string;
-  /** Identifier for the backup operation */
-  jobId: string;
+  /** The Azure blob storage container Uri which contains the backup */
+  azureStorageBlobContainerUri: string;
+  /** The SAS token pointing to an Azure blob storage container. This property is reserved for Azure Backup Service. */
+  token?: string;
 }
-export const CloudHsmClusterBackupStatusGetRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      cloudHsmClusterName: S.String.pipe(T.Label()),
-      jobId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HardwareSecurityModules/cloudHsmClusters/{cloudHsmClusterName}/backupOperationStatus/{jobId}",
-        code: 200,
-        apiVersion: "2025-03-31",
-      }),
-    ),
+export const CloudHsmClustersBackupRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    cloudHsmClusterName: S.String.pipe(T.Label()),
+    azureStorageBlobContainerUri: S.String,
+    token: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HardwareSecurityModules/cloudHsmClusters/{cloudHsmClusterName}/backup",
+      code: 200,
+      apiVersion: "2025-03-31",
+    }),
+  ),
 ).annotate({
-  identifier: "CloudHsmClusterBackupStatusGetRequest",
-}) as any as S.Schema<CloudHsmClusterBackupStatusGetRequest>;
+  identifier: "CloudHsmClustersBackupRequest",
+}) as any as S.Schema<CloudHsmClustersBackupRequest>;
 
 /** Status of the backup/restore operation */
 export type BackupRestoreOperationStatus =
@@ -184,596 +186,6 @@ export const BackupResult = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "BackupResult" }) as any as S.Schema<BackupResult>;
 
-/** The private endpoint resource. */
-export interface PrivateEndpointConnectionPropertiesInputPrivateEndpoint {}
-export const PrivateEndpointConnectionPropertiesInputPrivateEndpoint =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "PrivateEndpointConnectionPropertiesInputPrivateEndpoint",
-  }) as any as S.Schema<PrivateEndpointConnectionPropertiesInputPrivateEndpoint>;
-
-/** The private endpoint connection status. */
-export type PrivateEndpointServiceConnectionStatus =
-  | "Pending"
-  | "Approved"
-  | "Rejected";
-export const PrivateEndpointServiceConnectionStatus = /*@__PURE__*/ S.String;
-
-/** A collection of information about the state of the connection between service consumer and provider. */
-export interface PrivateEndpointConnectionPropertiesInputPrivateLinkServiceConnectionState {
-  /** Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service. */
-  status?: PrivateEndpointServiceConnectionStatus | (string & {});
-  /** The reason for approval/rejection of the connection. */
-  description?: string;
-  /** A message indicating if changes on the service provider require any updates on the consumer. */
-  actionsRequired?: string;
-}
-export const PrivateEndpointConnectionPropertiesInputPrivateLinkServiceConnectionState =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      status: S.optional(PrivateEndpointServiceConnectionStatus),
-      description: S.optional(S.String),
-      actionsRequired: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier:
-      "PrivateEndpointConnectionPropertiesInputPrivateLinkServiceConnectionState",
-  }) as any as S.Schema<PrivateEndpointConnectionPropertiesInputPrivateLinkServiceConnectionState>;
-
-/** Properties of the private endpoint connection. */
-export interface PrivateEndpointConnectionPropertiesInput {
-  /** The private endpoint resource. */
-  privateEndpoint?: PrivateEndpointConnectionPropertiesInputPrivateEndpoint;
-  /** A collection of information about the state of the connection between service consumer and provider. */
-  privateLinkServiceConnectionState: PrivateEndpointConnectionPropertiesInputPrivateLinkServiceConnectionState;
-}
-export const PrivateEndpointConnectionPropertiesInput = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      privateEndpoint: S.optional(
-        PrivateEndpointConnectionPropertiesInputPrivateEndpoint,
-      ),
-      privateLinkServiceConnectionState:
-        PrivateEndpointConnectionPropertiesInputPrivateLinkServiceConnectionState,
-    }),
-).annotate({
-  identifier: "PrivateEndpointConnectionPropertiesInput",
-}) as any as S.Schema<PrivateEndpointConnectionPropertiesInput>;
-
-export interface CloudHsmClusterPrivateEndpointConnectionsCreateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM Cluster names must be between 3 and 23 characters in length. */
-  cloudHsmClusterName: string;
-  /** Name of the private endpoint connection associated with the Cloud HSM Cluster. */
-  peConnectionName: string;
-  /** Resource properties. */
-  properties?: PrivateEndpointConnectionPropertiesInput;
-  /** Modified whenever there is a change in the state of private endpoint connection. */
-  etag?: string;
-}
-export const CloudHsmClusterPrivateEndpointConnectionsCreateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      cloudHsmClusterName: S.String.pipe(T.Label()),
-      peConnectionName: S.String.pipe(T.Label()),
-      properties: S.optional(PrivateEndpointConnectionPropertiesInput),
-      etag: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HardwareSecurityModules/cloudHsmClusters/{cloudHsmClusterName}/privateEndpointConnections/{peConnectionName}",
-        code: 200,
-        apiVersion: "2025-03-31",
-      }),
-    ),
-  ).annotate({
-    identifier: "CloudHsmClusterPrivateEndpointConnectionsCreateRequest",
-  }) as any as S.Schema<CloudHsmClusterPrivateEndpointConnectionsCreateRequest>;
-
-/** The type of identity that created the resource. */
-export type SystemDataCreatedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
-
-/** The type of identity that last modified the resource. */
-export type SystemDataLastModifiedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
-
-/** Metadata pertaining to creation and last modification of the resource. */
-export interface SystemData {
-  /** The identity that created the resource. */
-  createdBy?: string;
-  /** The type of identity that created the resource. */
-  createdByType?: SystemDataCreatedByType;
-  /** The timestamp of resource creation (UTC). */
-  createdAt?: string;
-  /** The identity that last modified the resource. */
-  lastModifiedBy?: string;
-  /** The type of identity that last modified the resource. */
-  lastModifiedByType?: SystemDataLastModifiedByType;
-  /** The timestamp of resource last modification (UTC) */
-  lastModifiedAt?: string;
-}
-export const SystemData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    createdBy: S.optional(S.String),
-    createdByType: S.optional(SystemDataCreatedByType),
-    createdAt: S.optional(S.String),
-    lastModifiedBy: S.optional(S.String),
-    lastModifiedByType: S.optional(SystemDataLastModifiedByType),
-    lastModifiedAt: S.optional(S.String),
-  }),
-).annotate({ identifier: "SystemData" }) as any as S.Schema<SystemData>;
-
-/** The private endpoint resource. */
-export interface PrivateEndpointConnectionPropertiesPrivateEndpoint {
-  /** The ARM identifier for private endpoint. */
-  id?: string;
-}
-export const PrivateEndpointConnectionPropertiesPrivateEndpoint =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "PrivateEndpointConnectionPropertiesPrivateEndpoint",
-  }) as any as S.Schema<PrivateEndpointConnectionPropertiesPrivateEndpoint>;
-
-/** A collection of information about the state of the connection between service consumer and provider. */
-export interface PrivateEndpointConnectionPropertiesPrivateLinkServiceConnectionState {
-  /** Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service. */
-  status?: PrivateEndpointServiceConnectionStatus;
-  /** The reason for approval/rejection of the connection. */
-  description?: string;
-  /** A message indicating if changes on the service provider require any updates on the consumer. */
-  actionsRequired?: string;
-}
-export const PrivateEndpointConnectionPropertiesPrivateLinkServiceConnectionState =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      status: S.optional(PrivateEndpointServiceConnectionStatus),
-      description: S.optional(S.String),
-      actionsRequired: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier:
-      "PrivateEndpointConnectionPropertiesPrivateLinkServiceConnectionState",
-  }) as any as S.Schema<PrivateEndpointConnectionPropertiesPrivateLinkServiceConnectionState>;
-
-/** The current provisioning state. */
-export type PrivateEndpointConnectionProvisioningState =
-  | "Succeeded"
-  | "Creating"
-  | "Deleting"
-  | "Failed"
-  | "Updating"
-  | "InternalError"
-  | "Canceled";
-export const PrivateEndpointConnectionProvisioningState =
-  /*@__PURE__*/ S.String;
-
-/** The group ids for the private endpoint resource. */
-export type PrivateEndpointConnectionPropertiesGroupIdsList = Array<string>;
-export const PrivateEndpointConnectionPropertiesGroupIdsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PrivateEndpointConnectionPropertiesGroupIdsList>;
-
-/** Properties of the private endpoint connection. */
-export interface PrivateEndpointConnectionProperties {
-  /** The private endpoint resource. */
-  privateEndpoint?: PrivateEndpointConnectionPropertiesPrivateEndpoint;
-  /** A collection of information about the state of the connection between service consumer and provider. */
-  privateLinkServiceConnectionState: PrivateEndpointConnectionPropertiesPrivateLinkServiceConnectionState;
-  /** The provisioning state of the private endpoint connection resource. */
-  provisioningState?: PrivateEndpointConnectionProvisioningState;
-  /** The group ids for the private endpoint resource. */
-  groupIds?: PrivateEndpointConnectionPropertiesGroupIdsList;
-}
-export const PrivateEndpointConnectionProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    privateEndpoint: S.optional(
-      PrivateEndpointConnectionPropertiesPrivateEndpoint,
-    ),
-    privateLinkServiceConnectionState:
-      PrivateEndpointConnectionPropertiesPrivateLinkServiceConnectionState,
-    provisioningState: S.optional(PrivateEndpointConnectionProvisioningState),
-    groupIds: S.optional(PrivateEndpointConnectionPropertiesGroupIdsList),
-  }),
-).annotate({
-  identifier: "PrivateEndpointConnectionProperties",
-}) as any as S.Schema<PrivateEndpointConnectionProperties>;
-
-export interface CloudHsmClusterPrivateEndpointConnectionsCreateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource properties. */
-  properties?: PrivateEndpointConnectionProperties;
-  /** Modified whenever there is a change in the state of private endpoint connection. */
-  etag?: string;
-}
-export const CloudHsmClusterPrivateEndpointConnectionsCreateResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(PrivateEndpointConnectionProperties),
-      etag: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "CloudHsmClusterPrivateEndpointConnectionsCreateResponse",
-  }) as any as S.Schema<CloudHsmClusterPrivateEndpointConnectionsCreateResponse>;
-
-export interface CloudHsmClusterPrivateEndpointConnectionsDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM Cluster names must be between 3 and 23 characters in length. */
-  cloudHsmClusterName: string;
-  /** Name of the private endpoint connection associated with the Cloud HSM Cluster. */
-  peConnectionName: string;
-}
-export const CloudHsmClusterPrivateEndpointConnectionsDeleteRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      cloudHsmClusterName: S.String.pipe(T.Label()),
-      peConnectionName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HardwareSecurityModules/cloudHsmClusters/{cloudHsmClusterName}/privateEndpointConnections/{peConnectionName}",
-        code: 200,
-        apiVersion: "2025-03-31",
-      }),
-    ),
-  ).annotate({
-    identifier: "CloudHsmClusterPrivateEndpointConnectionsDeleteRequest",
-  }) as any as S.Schema<CloudHsmClusterPrivateEndpointConnectionsDeleteRequest>;
-
-export interface CloudHsmClusterPrivateEndpointConnectionsDeleteResponse {}
-export const CloudHsmClusterPrivateEndpointConnectionsDeleteResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "CloudHsmClusterPrivateEndpointConnectionsDeleteResponse",
-  }) as any as S.Schema<CloudHsmClusterPrivateEndpointConnectionsDeleteResponse>;
-
-export interface CloudHsmClusterPrivateEndpointConnectionsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM Cluster names must be between 3 and 23 characters in length. */
-  cloudHsmClusterName: string;
-  /** Name of the private endpoint connection associated with the Cloud HSM Cluster. */
-  peConnectionName: string;
-}
-export const CloudHsmClusterPrivateEndpointConnectionsGetRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      cloudHsmClusterName: S.String.pipe(T.Label()),
-      peConnectionName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HardwareSecurityModules/cloudHsmClusters/{cloudHsmClusterName}/privateEndpointConnections/{peConnectionName}",
-        code: 200,
-        apiVersion: "2025-03-31",
-      }),
-    ),
-  ).annotate({
-    identifier: "CloudHsmClusterPrivateEndpointConnectionsGetRequest",
-  }) as any as S.Schema<CloudHsmClusterPrivateEndpointConnectionsGetRequest>;
-
-export interface CloudHsmClusterPrivateEndpointConnectionsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource properties. */
-  properties?: PrivateEndpointConnectionProperties;
-  /** Modified whenever there is a change in the state of private endpoint connection. */
-  etag?: string;
-}
-export const CloudHsmClusterPrivateEndpointConnectionsGetResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(PrivateEndpointConnectionProperties),
-      etag: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "CloudHsmClusterPrivateEndpointConnectionsGetResponse",
-  }) as any as S.Schema<CloudHsmClusterPrivateEndpointConnectionsGetResponse>;
-
-export interface CloudHsmClusterPrivateLinkResourcesListByCloudHsmClusterRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM Cluster names must be between 3 and 23 characters in length. */
-  cloudHsmClusterName: string;
-}
-export const CloudHsmClusterPrivateLinkResourcesListByCloudHsmClusterRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      cloudHsmClusterName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HardwareSecurityModules/cloudHsmClusters/{cloudHsmClusterName}/privateLinkResources",
-        code: 200,
-        apiVersion: "2025-03-31",
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "CloudHsmClusterPrivateLinkResourcesListByCloudHsmClusterRequest",
-  }) as any as S.Schema<CloudHsmClusterPrivateLinkResourcesListByCloudHsmClusterRequest>;
-
-/** The private link resource required member names. */
-export type PrivateLinkResourcePropertiesRequiredMembersList = Array<string>;
-export const PrivateLinkResourcePropertiesRequiredMembersList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PrivateLinkResourcePropertiesRequiredMembersList>;
-
-/** The private link resource private link DNS zone name. */
-export type PrivateLinkResourcePropertiesRequiredZoneNamesList = Array<string>;
-export const PrivateLinkResourcePropertiesRequiredZoneNamesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PrivateLinkResourcePropertiesRequiredZoneNamesList>;
-
-/** Properties of a private link resource. */
-export interface PrivateLinkResourceProperties {
-  /** The private link resource group id. */
-  groupId?: string;
-  /** The private link resource required member names. */
-  requiredMembers?: PrivateLinkResourcePropertiesRequiredMembersList;
-  /** The private link resource private link DNS zone name. */
-  requiredZoneNames?: PrivateLinkResourcePropertiesRequiredZoneNamesList;
-}
-export const PrivateLinkResourceProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    groupId: S.optional(S.String),
-    requiredMembers: S.optional(
-      PrivateLinkResourcePropertiesRequiredMembersList,
-    ),
-    requiredZoneNames: S.optional(
-      PrivateLinkResourcePropertiesRequiredZoneNamesList,
-    ),
-  }),
-).annotate({
-  identifier: "PrivateLinkResourceProperties",
-}) as any as S.Schema<PrivateLinkResourceProperties>;
-
-/** A private link resource. */
-export interface PrivateLinkResource {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource properties. */
-  properties?: PrivateLinkResourceProperties;
-}
-export const PrivateLinkResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(PrivateLinkResourceProperties),
-  }),
-).annotate({
-  identifier: "PrivateLinkResource",
-}) as any as S.Schema<PrivateLinkResource>;
-
-/** Array of private link resources */
-export type CloudHsmClusterPrivateLinkResourcesListByCloudHsmClusterResponseValueList =
-  Array<PrivateLinkResource>;
-export const CloudHsmClusterPrivateLinkResourcesListByCloudHsmClusterResponseValueList =
-  /*@__PURE__*/ S.Array(
-    PrivateLinkResource,
-  ) as any as S.Schema<CloudHsmClusterPrivateLinkResourcesListByCloudHsmClusterResponseValueList>;
-
-export interface CloudHsmClusterPrivateLinkResourcesListByCloudHsmClusterResponse {
-  /** Array of private link resources */
-  value?: CloudHsmClusterPrivateLinkResourcesListByCloudHsmClusterResponseValueList;
-  /** URL to get the next set of operation list results (if there are any). */
-  nextLink?: string;
-}
-export const CloudHsmClusterPrivateLinkResourcesListByCloudHsmClusterResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      value: S.optional(
-        CloudHsmClusterPrivateLinkResourcesListByCloudHsmClusterResponseValueList,
-      ),
-      nextLink: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier:
-      "CloudHsmClusterPrivateLinkResourcesListByCloudHsmClusterResponse",
-  }) as any as S.Schema<CloudHsmClusterPrivateLinkResourcesListByCloudHsmClusterResponse>;
-
-export interface CloudHsmClusterRestoreStatusGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM Cluster names must be between 3 and 23 characters in length. */
-  cloudHsmClusterName: string;
-  /** Identifier for the restore operation */
-  jobId: string;
-}
-export const CloudHsmClusterRestoreStatusGetRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      cloudHsmClusterName: S.String.pipe(T.Label()),
-      jobId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HardwareSecurityModules/cloudHsmClusters/{cloudHsmClusterName}/restoreOperationStatus/{jobId}",
-        code: 200,
-        apiVersion: "2025-03-31",
-      }),
-    ),
-).annotate({
-  identifier: "CloudHsmClusterRestoreStatusGetRequest",
-}) as any as S.Schema<CloudHsmClusterRestoreStatusGetRequest>;
-
-/** The error details. */
-export type BackupRestoreBaseResultPropertiesErrorDetailsList =
-  Array<ErrorDetail>;
-export const BackupRestoreBaseResultPropertiesErrorDetailsList =
-  /*@__PURE__*/ S.Array(
-    ErrorDetail,
-  ) as any as S.Schema<BackupRestoreBaseResultPropertiesErrorDetailsList>;
-
-/** The error additional info. */
-export type BackupRestoreBaseResultPropertiesErrorAdditionalInfoList =
-  Array<ErrorAdditionalInfo>;
-export const BackupRestoreBaseResultPropertiesErrorAdditionalInfoList =
-  /*@__PURE__*/ S.Array(
-    ErrorAdditionalInfo,
-  ) as any as S.Schema<BackupRestoreBaseResultPropertiesErrorAdditionalInfoList>;
-
-/** The error detail. */
-export interface BackupRestoreBaseResultPropertiesError {
-  /** The error code. */
-  code?: string;
-  /** The error message. */
-  message?: string;
-  /** The error target. */
-  target?: string;
-  /** The error details. */
-  details?: BackupRestoreBaseResultPropertiesErrorDetailsList;
-  /** The error additional info. */
-  additionalInfo?: BackupRestoreBaseResultPropertiesErrorAdditionalInfoList;
-}
-export const BackupRestoreBaseResultPropertiesError = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      code: S.optional(S.String),
-      message: S.optional(S.String),
-      target: S.optional(S.String),
-      details: S.optional(BackupRestoreBaseResultPropertiesErrorDetailsList),
-      additionalInfo: S.optional(
-        BackupRestoreBaseResultPropertiesErrorAdditionalInfoList,
-      ),
-    }),
-).annotate({
-  identifier: "BackupRestoreBaseResultPropertiesError",
-}) as any as S.Schema<BackupRestoreBaseResultPropertiesError>;
-
-/** Backup and Restore operation common properties */
-export interface BackupRestoreBaseResultProperties {
-  /** Status of the backup/restore operation */
-  status?: BackupRestoreOperationStatus;
-  /** The status details of backup/restore operation */
-  statusDetails?: string;
-  /** The error detail. */
-  error?: BackupRestoreBaseResultPropertiesError;
-  /** The start time of the backup/restore operation in UTC */
-  startTime?: string;
-  /** The end time of the backup/restore operation in UTC */
-  endTime?: string | null;
-  /** Identifier for the backup/restore operation. */
-  jobId?: string;
-}
-export const BackupRestoreBaseResultProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    status: S.optional(BackupRestoreOperationStatus),
-    statusDetails: S.optional(S.String),
-    error: S.optional(BackupRestoreBaseResultPropertiesError),
-    startTime: S.optional(S.String),
-    endTime: S.optional(S.NullOr(S.String)),
-    jobId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "BackupRestoreBaseResultProperties",
-}) as any as S.Schema<BackupRestoreBaseResultProperties>;
-
-/** Restore operation properties */
-export interface RestoreResult {
-  /** Backup and Restore operation common properties */
-  properties?: BackupRestoreBaseResultProperties;
-}
-export const RestoreResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    properties: S.optional(BackupRestoreBaseResultProperties),
-  }),
-).annotate({ identifier: "RestoreResult" }) as any as S.Schema<RestoreResult>;
-
-export interface CloudHsmClustersBackupRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM Cluster names must be between 3 and 23 characters in length. */
-  cloudHsmClusterName: string;
-  /** The Azure blob storage container Uri which contains the backup */
-  azureStorageBlobContainerUri: string;
-  /** The SAS token pointing to an Azure blob storage container. This property is reserved for Azure Backup Service. */
-  token?: string;
-}
-export const CloudHsmClustersBackupRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    cloudHsmClusterName: S.String.pipe(T.Label()),
-    azureStorageBlobContainerUri: S.String,
-    token: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HardwareSecurityModules/cloudHsmClusters/{cloudHsmClusterName}/backup",
-      code: 200,
-      apiVersion: "2025-03-31",
-    }),
-  ),
-).annotate({
-  identifier: "CloudHsmClustersBackupRequest",
-}) as any as S.Schema<CloudHsmClustersBackupRequest>;
-
 /** Resource tags. */
 export type CloudHsmClustersCreateOrUpdateRequestTagsMap = {
   [key: string]: string | undefined;
@@ -825,22 +237,20 @@ export type ManagedServiceIdentityType =
 export const ManagedServiceIdentityType = /*@__PURE__*/ S.String;
 
 /** User assigned identity properties */
-export type UserAssignedIdentityInput =
-  PrivateEndpointConnectionPropertiesInputPrivateEndpoint;
-export const UserAssignedIdentityInput =
-  PrivateEndpointConnectionPropertiesInputPrivateEndpoint;
+export interface UserAssignedIdentityInput {}
+export const UserAssignedIdentityInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "UserAssignedIdentityInput",
+}) as any as S.Schema<UserAssignedIdentityInput>;
 
 /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
 export type CloudHsmClustersCreateOrUpdateRequestIdentityUserAssignedIdentitiesMap =
-  {
-    [key: string]:
-      | PrivateEndpointConnectionPropertiesInputPrivateEndpoint
-      | undefined;
-  };
+  { [key: string]: UserAssignedIdentityInput | undefined };
 export const CloudHsmClustersCreateOrUpdateRequestIdentityUserAssignedIdentitiesMap =
   /*@__PURE__*/ S.Record(
     S.String,
-    PrivateEndpointConnectionPropertiesInputPrivateEndpoint,
+    UserAssignedIdentityInput,
   ) as any as S.Schema<CloudHsmClustersCreateOrUpdateRequestIdentityUserAssignedIdentitiesMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
@@ -929,6 +339,48 @@ export const CloudHsmClustersCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
   identifier: "CloudHsmClustersCreateOrUpdateRequest",
 }) as any as S.Schema<CloudHsmClustersCreateOrUpdateRequest>;
 
+/** The type of identity that created the resource. */
+export type SystemDataCreatedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+
+/** The type of identity that last modified the resource. */
+export type SystemDataLastModifiedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+
+/** Metadata pertaining to creation and last modification of the resource. */
+export interface SystemData {
+  /** The identity that created the resource. */
+  createdBy?: string;
+  /** The type of identity that created the resource. */
+  createdByType?: SystemDataCreatedByType;
+  /** The timestamp of resource creation (UTC). */
+  createdAt?: string;
+  /** The identity that last modified the resource. */
+  lastModifiedBy?: string;
+  /** The type of identity that last modified the resource. */
+  lastModifiedByType?: SystemDataLastModifiedByType;
+  /** The timestamp of resource last modification (UTC) */
+  lastModifiedAt?: string;
+}
+export const SystemData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    createdBy: S.optional(S.String),
+    createdByType: S.optional(SystemDataCreatedByType),
+    createdAt: S.optional(S.String),
+    lastModifiedBy: S.optional(S.String),
+    lastModifiedByType: S.optional(SystemDataLastModifiedByType),
+    lastModifiedAt: S.optional(S.String),
+  }),
+).annotate({ identifier: "SystemData" }) as any as S.Schema<SystemData>;
+
 /** Resource tags. */
 export type CloudHsmClustersCreateOrUpdateResponseTagsMap = {
   [key: string]: string | undefined;
@@ -972,6 +424,92 @@ export type CloudHsmClusterPropertiesHsmsList = Array<CloudHsmProperties>;
 export const CloudHsmClusterPropertiesHsmsList = /*@__PURE__*/ S.Array(
   CloudHsmProperties,
 ) as any as S.Schema<CloudHsmClusterPropertiesHsmsList>;
+
+/** The private endpoint resource. */
+export interface PrivateEndpointConnectionPropertiesPrivateEndpoint {
+  /** The ARM identifier for private endpoint. */
+  id?: string;
+}
+export const PrivateEndpointConnectionPropertiesPrivateEndpoint =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "PrivateEndpointConnectionPropertiesPrivateEndpoint",
+  }) as any as S.Schema<PrivateEndpointConnectionPropertiesPrivateEndpoint>;
+
+/** The private endpoint connection status. */
+export type PrivateEndpointServiceConnectionStatus =
+  | "Pending"
+  | "Approved"
+  | "Rejected";
+export const PrivateEndpointServiceConnectionStatus = /*@__PURE__*/ S.String;
+
+/** A collection of information about the state of the connection between service consumer and provider. */
+export interface PrivateEndpointConnectionPropertiesPrivateLinkServiceConnectionState {
+  /** Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service. */
+  status?: PrivateEndpointServiceConnectionStatus;
+  /** The reason for approval/rejection of the connection. */
+  description?: string;
+  /** A message indicating if changes on the service provider require any updates on the consumer. */
+  actionsRequired?: string;
+}
+export const PrivateEndpointConnectionPropertiesPrivateLinkServiceConnectionState =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      status: S.optional(PrivateEndpointServiceConnectionStatus),
+      description: S.optional(S.String),
+      actionsRequired: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier:
+      "PrivateEndpointConnectionPropertiesPrivateLinkServiceConnectionState",
+  }) as any as S.Schema<PrivateEndpointConnectionPropertiesPrivateLinkServiceConnectionState>;
+
+/** The current provisioning state. */
+export type PrivateEndpointConnectionProvisioningState =
+  | "Succeeded"
+  | "Creating"
+  | "Deleting"
+  | "Failed"
+  | "Updating"
+  | "InternalError"
+  | "Canceled";
+export const PrivateEndpointConnectionProvisioningState =
+  /*@__PURE__*/ S.String;
+
+/** The group ids for the private endpoint resource. */
+export type PrivateEndpointConnectionPropertiesGroupIdsList = Array<string>;
+export const PrivateEndpointConnectionPropertiesGroupIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<PrivateEndpointConnectionPropertiesGroupIdsList>;
+
+/** Properties of the private endpoint connection. */
+export interface PrivateEndpointConnectionProperties {
+  /** The private endpoint resource. */
+  privateEndpoint?: PrivateEndpointConnectionPropertiesPrivateEndpoint;
+  /** A collection of information about the state of the connection between service consumer and provider. */
+  privateLinkServiceConnectionState: PrivateEndpointConnectionPropertiesPrivateLinkServiceConnectionState;
+  /** The provisioning state of the private endpoint connection resource. */
+  provisioningState?: PrivateEndpointConnectionProvisioningState;
+  /** The group ids for the private endpoint resource. */
+  groupIds?: PrivateEndpointConnectionPropertiesGroupIdsList;
+}
+export const PrivateEndpointConnectionProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    privateEndpoint: S.optional(
+      PrivateEndpointConnectionPropertiesPrivateEndpoint,
+    ),
+    privateLinkServiceConnectionState:
+      PrivateEndpointConnectionPropertiesPrivateLinkServiceConnectionState,
+    provisioningState: S.optional(PrivateEndpointConnectionProvisioningState),
+    groupIds: S.optional(PrivateEndpointConnectionPropertiesGroupIdsList),
+  }),
+).annotate({
+  identifier: "PrivateEndpointConnectionProperties",
+}) as any as S.Schema<PrivateEndpointConnectionProperties>;
 
 /** The private endpoint connection resource. */
 export interface PrivateEndpointConnection {
@@ -1140,504 +678,6 @@ export const CloudHsmClustersCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
   identifier: "CloudHsmClustersCreateOrUpdateResponse",
 }) as any as S.Schema<CloudHsmClustersCreateOrUpdateResponse>;
 
-export interface CloudHsmClustersDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM Cluster names must be between 3 and 23 characters in length. */
-  cloudHsmClusterName: string;
-}
-export const CloudHsmClustersDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    cloudHsmClusterName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HardwareSecurityModules/cloudHsmClusters/{cloudHsmClusterName}",
-      code: 200,
-      apiVersion: "2025-03-31",
-    }),
-  ),
-).annotate({
-  identifier: "CloudHsmClustersDeleteRequest",
-}) as any as S.Schema<CloudHsmClustersDeleteRequest>;
-
-export interface CloudHsmClustersDeleteResponse {}
-export const CloudHsmClustersDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "CloudHsmClustersDeleteResponse",
-}) as any as S.Schema<CloudHsmClustersDeleteResponse>;
-
-export interface CloudHsmClustersGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM Cluster names must be between 3 and 23 characters in length. */
-  cloudHsmClusterName: string;
-}
-export const CloudHsmClustersGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    cloudHsmClusterName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HardwareSecurityModules/cloudHsmClusters/{cloudHsmClusterName}",
-      code: 200,
-      apiVersion: "2025-03-31",
-    }),
-  ),
-).annotate({
-  identifier: "CloudHsmClustersGetRequest",
-}) as any as S.Schema<CloudHsmClustersGetRequest>;
-
-/** Resource tags. */
-export type CloudHsmClustersGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const CloudHsmClustersGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<CloudHsmClustersGetResponseTagsMap>;
-
-/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-export type CloudHsmClustersGetResponseIdentityUserAssignedIdentitiesMap = {
-  [key: string]: UserAssignedIdentity | undefined;
-};
-export const CloudHsmClustersGetResponseIdentityUserAssignedIdentitiesMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    UserAssignedIdentity,
-  ) as any as S.Schema<CloudHsmClustersGetResponseIdentityUserAssignedIdentitiesMap>;
-
-/** Managed service identity (system assigned and/or user assigned identities) */
-export interface CloudHsmClustersGetResponseIdentity {
-  /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
-  principalId?: string;
-  /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
-  tenantId?: string;
-  type: ManagedServiceIdentityType;
-  /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-  userAssignedIdentities?: CloudHsmClustersGetResponseIdentityUserAssignedIdentitiesMap;
-}
-export const CloudHsmClustersGetResponseIdentity = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    principalId: S.optional(S.String),
-    tenantId: S.optional(S.String),
-    type: ManagedServiceIdentityType,
-    userAssignedIdentities: S.optional(
-      CloudHsmClustersGetResponseIdentityUserAssignedIdentitiesMap,
-    ),
-  }),
-).annotate({
-  identifier: "CloudHsmClustersGetResponseIdentity",
-}) as any as S.Schema<CloudHsmClustersGetResponseIdentity>;
-
-export interface CloudHsmClustersGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: CloudHsmClustersGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Properties of the Cloud HSM Cluster */
-  properties?: CloudHsmClusterProperties;
-  /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: CloudHsmClustersGetResponseIdentity;
-  /** SKU details */
-  sku?: CloudHsmClusterSku;
-}
-export const CloudHsmClustersGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(CloudHsmClustersGetResponseTagsMap),
-    location: S.String,
-    properties: S.optional(CloudHsmClusterProperties),
-    identity: S.optional(CloudHsmClustersGetResponseIdentity),
-    sku: S.optional(CloudHsmClusterSku),
-  }),
-).annotate({
-  identifier: "CloudHsmClustersGetResponse",
-}) as any as S.Schema<CloudHsmClustersGetResponse>;
-
-export interface CloudHsmClustersListByResourceGroupRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The page-continuation token to use with a paged version of this API */
-  _skiptoken?: string;
-}
-export const CloudHsmClustersListByResourceGroupRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      _skiptoken: S.optional(S.String.pipe(T.Query("$skiptoken"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HardwareSecurityModules/cloudHsmClusters",
-        code: 200,
-        apiVersion: "2025-03-31",
-      }),
-    ),
-  ).annotate({
-    identifier: "CloudHsmClustersListByResourceGroupRequest",
-  }) as any as S.Schema<CloudHsmClustersListByResourceGroupRequest>;
-
-/** Resource tags. */
-export type CloudHsmClusterTagsMap = { [key: string]: string | undefined };
-export const CloudHsmClusterTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<CloudHsmClusterTagsMap>;
-
-/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-export type CloudHsmClusterIdentityUserAssignedIdentitiesMap = {
-  [key: string]: UserAssignedIdentity | undefined;
-};
-export const CloudHsmClusterIdentityUserAssignedIdentitiesMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    UserAssignedIdentity,
-  ) as any as S.Schema<CloudHsmClusterIdentityUserAssignedIdentitiesMap>;
-
-/** Managed service identity (system assigned and/or user assigned identities) */
-export interface CloudHsmClusterIdentity {
-  /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
-  principalId?: string;
-  /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
-  tenantId?: string;
-  type: ManagedServiceIdentityType;
-  /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-  userAssignedIdentities?: CloudHsmClusterIdentityUserAssignedIdentitiesMap;
-}
-export const CloudHsmClusterIdentity = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    principalId: S.optional(S.String),
-    tenantId: S.optional(S.String),
-    type: ManagedServiceIdentityType,
-    userAssignedIdentities: S.optional(
-      CloudHsmClusterIdentityUserAssignedIdentitiesMap,
-    ),
-  }),
-).annotate({
-  identifier: "CloudHsmClusterIdentity",
-}) as any as S.Schema<CloudHsmClusterIdentity>;
-
-/** Resource information with extended details. */
-export interface CloudHsmCluster {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: CloudHsmClusterTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Properties of the Cloud HSM Cluster */
-  properties?: CloudHsmClusterProperties;
-  /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: CloudHsmClusterIdentity;
-  /** SKU details */
-  sku?: CloudHsmClusterSku;
-}
-export const CloudHsmCluster = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(CloudHsmClusterTagsMap),
-    location: S.String,
-    properties: S.optional(CloudHsmClusterProperties),
-    identity: S.optional(CloudHsmClusterIdentity),
-    sku: S.optional(CloudHsmClusterSku),
-  }),
-).annotate({
-  identifier: "CloudHsmCluster",
-}) as any as S.Schema<CloudHsmCluster>;
-
-/** The CloudHsmCluster items on this page */
-export type CloudHsmClusterListResultValueList = Array<CloudHsmCluster>;
-export const CloudHsmClusterListResultValueList = /*@__PURE__*/ S.Array(
-  CloudHsmCluster,
-) as any as S.Schema<CloudHsmClusterListResultValueList>;
-
-/** The response of a CloudHsmCluster list operation. */
-export interface CloudHsmClusterListResult {
-  /** The CloudHsmCluster items on this page */
-  value: CloudHsmClusterListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const CloudHsmClusterListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: CloudHsmClusterListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "CloudHsmClusterListResult",
-}) as any as S.Schema<CloudHsmClusterListResult>;
-
-export interface CloudHsmClustersListBySubscriptionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The page-continuation token to use with a paged version of this API */
-  _skiptoken?: string;
-}
-export const CloudHsmClustersListBySubscriptionRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      _skiptoken: S.optional(S.String.pipe(T.Query("$skiptoken"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.HardwareSecurityModules/cloudHsmClusters",
-        code: 200,
-        apiVersion: "2025-03-31",
-      }),
-    ),
-  ).annotate({
-    identifier: "CloudHsmClustersListBySubscriptionRequest",
-  }) as any as S.Schema<CloudHsmClustersListBySubscriptionRequest>;
-
-export interface CloudHsmClustersRestoreRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM Cluster names must be between 3 and 23 characters in length. */
-  cloudHsmClusterName: string;
-  /** The Azure blob storage container Uri which contains the backup */
-  azureStorageBlobContainerUri: string;
-  /** The SAS token pointing to an Azure blob storage container. This property is reserved for Azure Backup Service. */
-  token?: string;
-  /** An autogenerated unique string ID for labeling the backup. It contains both a UUID and a date timestamp. */
-  backupId: string;
-}
-export const CloudHsmClustersRestoreRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    cloudHsmClusterName: S.String.pipe(T.Label()),
-    azureStorageBlobContainerUri: S.String,
-    token: S.optional(S.String),
-    backupId: S.String,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HardwareSecurityModules/cloudHsmClusters/{cloudHsmClusterName}/restore",
-      code: 200,
-      apiVersion: "2025-03-31",
-    }),
-  ),
-).annotate({
-  identifier: "CloudHsmClustersRestoreRequest",
-}) as any as S.Schema<CloudHsmClustersRestoreRequest>;
-
-/** The Cloud HSM Cluster's tags */
-export type CloudHsmClustersUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const CloudHsmClustersUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<CloudHsmClustersUpdateRequestTagsMap>;
-
-/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-export type CloudHsmClustersUpdateRequestIdentityUserAssignedIdentitiesMap = {
-  [key: string]:
-    | PrivateEndpointConnectionPropertiesInputPrivateEndpoint
-    | undefined;
-};
-export const CloudHsmClustersUpdateRequestIdentityUserAssignedIdentitiesMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    PrivateEndpointConnectionPropertiesInputPrivateEndpoint,
-  ) as any as S.Schema<CloudHsmClustersUpdateRequestIdentityUserAssignedIdentitiesMap>;
-
-/** Managed service identity (system assigned and/or user assigned identities) */
-export interface CloudHsmClustersUpdateRequestIdentity {
-  type: ManagedServiceIdentityType | (string & {});
-  /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-  userAssignedIdentities?: CloudHsmClustersUpdateRequestIdentityUserAssignedIdentitiesMap;
-}
-export const CloudHsmClustersUpdateRequestIdentity = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      type: ManagedServiceIdentityType,
-      userAssignedIdentities: S.optional(
-        CloudHsmClustersUpdateRequestIdentityUserAssignedIdentitiesMap,
-      ),
-    }),
-).annotate({
-  identifier: "CloudHsmClustersUpdateRequestIdentity",
-}) as any as S.Schema<CloudHsmClustersUpdateRequestIdentity>;
-
-export interface CloudHsmClustersUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM Cluster names must be between 3 and 23 characters in length. */
-  cloudHsmClusterName: string;
-  /** The Cloud HSM Cluster's tags */
-  tags?: CloudHsmClustersUpdateRequestTagsMap;
-  /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: CloudHsmClustersUpdateRequestIdentity;
-}
-export const CloudHsmClustersUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    cloudHsmClusterName: S.String.pipe(T.Label()),
-    tags: S.optional(CloudHsmClustersUpdateRequestTagsMap),
-    identity: S.optional(CloudHsmClustersUpdateRequestIdentity),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HardwareSecurityModules/cloudHsmClusters/{cloudHsmClusterName}",
-      code: 200,
-      apiVersion: "2025-03-31",
-    }),
-  ),
-).annotate({
-  identifier: "CloudHsmClustersUpdateRequest",
-}) as any as S.Schema<CloudHsmClustersUpdateRequest>;
-
-/** Resource tags. */
-export type CloudHsmClustersUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const CloudHsmClustersUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<CloudHsmClustersUpdateResponseTagsMap>;
-
-/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-export type CloudHsmClustersUpdateResponseIdentityUserAssignedIdentitiesMap = {
-  [key: string]: UserAssignedIdentity | undefined;
-};
-export const CloudHsmClustersUpdateResponseIdentityUserAssignedIdentitiesMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    UserAssignedIdentity,
-  ) as any as S.Schema<CloudHsmClustersUpdateResponseIdentityUserAssignedIdentitiesMap>;
-
-/** Managed service identity (system assigned and/or user assigned identities) */
-export interface CloudHsmClustersUpdateResponseIdentity {
-  /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
-  principalId?: string;
-  /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
-  tenantId?: string;
-  type: ManagedServiceIdentityType;
-  /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-  userAssignedIdentities?: CloudHsmClustersUpdateResponseIdentityUserAssignedIdentitiesMap;
-}
-export const CloudHsmClustersUpdateResponseIdentity = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      principalId: S.optional(S.String),
-      tenantId: S.optional(S.String),
-      type: ManagedServiceIdentityType,
-      userAssignedIdentities: S.optional(
-        CloudHsmClustersUpdateResponseIdentityUserAssignedIdentitiesMap,
-      ),
-    }),
-).annotate({
-  identifier: "CloudHsmClustersUpdateResponseIdentity",
-}) as any as S.Schema<CloudHsmClustersUpdateResponseIdentity>;
-
-export interface CloudHsmClustersUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: CloudHsmClustersUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Properties of the Cloud HSM Cluster */
-  properties?: CloudHsmClusterProperties;
-  /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: CloudHsmClustersUpdateResponseIdentity;
-  /** SKU details */
-  sku?: CloudHsmClusterSku;
-}
-export const CloudHsmClustersUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(CloudHsmClustersUpdateResponseTagsMap),
-    location: S.String,
-    properties: S.optional(CloudHsmClusterProperties),
-    identity: S.optional(CloudHsmClustersUpdateResponseIdentity),
-    sku: S.optional(CloudHsmClusterSku),
-  }),
-).annotate({
-  identifier: "CloudHsmClustersUpdateResponse",
-}) as any as S.Schema<CloudHsmClustersUpdateResponse>;
-
-export interface CloudHsmClustersValidateBackupPropertiesRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM Cluster names must be between 3 and 23 characters in length. */
-  cloudHsmClusterName: string;
-  /** The Azure blob storage container Uri which contains the backup */
-  azureStorageBlobContainerUri: string;
-  /** The SAS token pointing to an Azure blob storage container. This property is reserved for Azure Backup Service. */
-  token?: string;
-}
-export const CloudHsmClustersValidateBackupPropertiesRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      cloudHsmClusterName: S.String.pipe(T.Label()),
-      azureStorageBlobContainerUri: S.String,
-      token: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HardwareSecurityModules/cloudHsmClusters/{cloudHsmClusterName}/validateBackupProperties",
-        code: 200,
-        apiVersion: "2025-03-31",
-      }),
-    ),
-  ).annotate({
-    identifier: "CloudHsmClustersValidateBackupPropertiesRequest",
-  }) as any as S.Schema<CloudHsmClustersValidateBackupPropertiesRequest>;
-
 export interface CloudHsmClustersValidateRestorePropertiesRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -1672,6 +712,197 @@ export const CloudHsmClustersValidateRestorePropertiesRequest =
   ).annotate({
     identifier: "CloudHsmClustersValidateRestorePropertiesRequest",
   }) as any as S.Schema<CloudHsmClustersValidateRestorePropertiesRequest>;
+
+/** The error details. */
+export type BackupRestoreBaseResultPropertiesErrorDetailsList =
+  Array<ErrorDetail>;
+export const BackupRestoreBaseResultPropertiesErrorDetailsList =
+  /*@__PURE__*/ S.Array(
+    ErrorDetail,
+  ) as any as S.Schema<BackupRestoreBaseResultPropertiesErrorDetailsList>;
+
+/** The error additional info. */
+export type BackupRestoreBaseResultPropertiesErrorAdditionalInfoList =
+  Array<ErrorAdditionalInfo>;
+export const BackupRestoreBaseResultPropertiesErrorAdditionalInfoList =
+  /*@__PURE__*/ S.Array(
+    ErrorAdditionalInfo,
+  ) as any as S.Schema<BackupRestoreBaseResultPropertiesErrorAdditionalInfoList>;
+
+/** The error detail. */
+export interface BackupRestoreBaseResultPropertiesError {
+  /** The error code. */
+  code?: string;
+  /** The error message. */
+  message?: string;
+  /** The error target. */
+  target?: string;
+  /** The error details. */
+  details?: BackupRestoreBaseResultPropertiesErrorDetailsList;
+  /** The error additional info. */
+  additionalInfo?: BackupRestoreBaseResultPropertiesErrorAdditionalInfoList;
+}
+export const BackupRestoreBaseResultPropertiesError = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      code: S.optional(S.String),
+      message: S.optional(S.String),
+      target: S.optional(S.String),
+      details: S.optional(BackupRestoreBaseResultPropertiesErrorDetailsList),
+      additionalInfo: S.optional(
+        BackupRestoreBaseResultPropertiesErrorAdditionalInfoList,
+      ),
+    }),
+).annotate({
+  identifier: "BackupRestoreBaseResultPropertiesError",
+}) as any as S.Schema<BackupRestoreBaseResultPropertiesError>;
+
+/** Backup and Restore operation common properties */
+export interface BackupRestoreBaseResultProperties {
+  /** Status of the backup/restore operation */
+  status?: BackupRestoreOperationStatus;
+  /** The status details of backup/restore operation */
+  statusDetails?: string;
+  /** The error detail. */
+  error?: BackupRestoreBaseResultPropertiesError;
+  /** The start time of the backup/restore operation in UTC */
+  startTime?: string;
+  /** The end time of the backup/restore operation in UTC */
+  endTime?: string | null;
+  /** Identifier for the backup/restore operation. */
+  jobId?: string;
+}
+export const BackupRestoreBaseResultProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: S.optional(BackupRestoreOperationStatus),
+    statusDetails: S.optional(S.String),
+    error: S.optional(BackupRestoreBaseResultPropertiesError),
+    startTime: S.optional(S.String),
+    endTime: S.optional(S.NullOr(S.String)),
+    jobId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "BackupRestoreBaseResultProperties",
+}) as any as S.Schema<BackupRestoreBaseResultProperties>;
+
+/** Restore operation properties */
+export interface RestoreResult {
+  /** Backup and Restore operation common properties */
+  properties?: BackupRestoreBaseResultProperties;
+}
+export const RestoreResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    properties: S.optional(BackupRestoreBaseResultProperties),
+  }),
+).annotate({ identifier: "RestoreResult" }) as any as S.Schema<RestoreResult>;
+
+/** The private endpoint resource. */
+export type PrivateEndpointConnectionPropertiesInputPrivateEndpoint =
+  UserAssignedIdentityInput;
+export const PrivateEndpointConnectionPropertiesInputPrivateEndpoint =
+  UserAssignedIdentityInput;
+
+/** A collection of information about the state of the connection between service consumer and provider. */
+export interface PrivateEndpointConnectionPropertiesInputPrivateLinkServiceConnectionState {
+  /** Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service. */
+  status?: PrivateEndpointServiceConnectionStatus | (string & {});
+  /** The reason for approval/rejection of the connection. */
+  description?: string;
+  /** A message indicating if changes on the service provider require any updates on the consumer. */
+  actionsRequired?: string;
+}
+export const PrivateEndpointConnectionPropertiesInputPrivateLinkServiceConnectionState =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      status: S.optional(PrivateEndpointServiceConnectionStatus),
+      description: S.optional(S.String),
+      actionsRequired: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier:
+      "PrivateEndpointConnectionPropertiesInputPrivateLinkServiceConnectionState",
+  }) as any as S.Schema<PrivateEndpointConnectionPropertiesInputPrivateLinkServiceConnectionState>;
+
+/** Properties of the private endpoint connection. */
+export interface PrivateEndpointConnectionPropertiesInput {
+  /** The private endpoint resource. */
+  privateEndpoint?: UserAssignedIdentityInput;
+  /** A collection of information about the state of the connection between service consumer and provider. */
+  privateLinkServiceConnectionState: PrivateEndpointConnectionPropertiesInputPrivateLinkServiceConnectionState;
+}
+export const PrivateEndpointConnectionPropertiesInput = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      privateEndpoint: S.optional(UserAssignedIdentityInput),
+      privateLinkServiceConnectionState:
+        PrivateEndpointConnectionPropertiesInputPrivateLinkServiceConnectionState,
+    }),
+).annotate({
+  identifier: "PrivateEndpointConnectionPropertiesInput",
+}) as any as S.Schema<PrivateEndpointConnectionPropertiesInput>;
+
+export interface CreateCloudHsmClusterPrivateEndpointConnectionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM Cluster names must be between 3 and 23 characters in length. */
+  cloudHsmClusterName: string;
+  /** Name of the private endpoint connection associated with the Cloud HSM Cluster. */
+  peConnectionName: string;
+  /** Resource properties. */
+  properties?: PrivateEndpointConnectionPropertiesInput;
+  /** Modified whenever there is a change in the state of private endpoint connection. */
+  etag?: string;
+}
+export const CreateCloudHsmClusterPrivateEndpointConnectionRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      cloudHsmClusterName: S.String.pipe(T.Label()),
+      peConnectionName: S.String.pipe(T.Label()),
+      properties: S.optional(PrivateEndpointConnectionPropertiesInput),
+      etag: S.optional(S.String),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HardwareSecurityModules/cloudHsmClusters/{cloudHsmClusterName}/privateEndpointConnections/{peConnectionName}",
+        code: 200,
+        apiVersion: "2025-03-31",
+      }),
+    ),
+  ).annotate({
+    identifier: "CreateCloudHsmClusterPrivateEndpointConnectionRequest",
+  }) as any as S.Schema<CreateCloudHsmClusterPrivateEndpointConnectionRequest>;
+
+export interface CreateCloudHsmClusterPrivateEndpointConnectionResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource properties. */
+  properties?: PrivateEndpointConnectionProperties;
+  /** Modified whenever there is a change in the state of private endpoint connection. */
+  etag?: string;
+}
+export const CreateCloudHsmClusterPrivateEndpointConnectionResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(PrivateEndpointConnectionProperties),
+      etag: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "CreateCloudHsmClusterPrivateEndpointConnectionResponse",
+  }) as any as S.Schema<CreateCloudHsmClusterPrivateEndpointConnectionResponse>;
 
 /** Resource tags. */
 export type DedicatedHsmCreateOrUpdateRequestTagsMap = {
@@ -1942,7 +1173,74 @@ export const DedicatedHsmCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DedicatedHsmCreateOrUpdateResponse",
 }) as any as S.Schema<DedicatedHsmCreateOrUpdateResponse>;
 
-export interface DedicatedHsmDeleteRequest {
+export interface DeleteCloudHsmClusterRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM Cluster names must be between 3 and 23 characters in length. */
+  cloudHsmClusterName: string;
+}
+export const DeleteCloudHsmClusterRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    cloudHsmClusterName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HardwareSecurityModules/cloudHsmClusters/{cloudHsmClusterName}",
+      code: 200,
+      apiVersion: "2025-03-31",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteCloudHsmClusterRequest",
+}) as any as S.Schema<DeleteCloudHsmClusterRequest>;
+
+export interface DeleteCloudHsmClusterResponse {}
+export const DeleteCloudHsmClusterResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteCloudHsmClusterResponse",
+}) as any as S.Schema<DeleteCloudHsmClusterResponse>;
+
+export interface DeleteCloudHsmClusterPrivateEndpointConnectionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM Cluster names must be between 3 and 23 characters in length. */
+  cloudHsmClusterName: string;
+  /** Name of the private endpoint connection associated with the Cloud HSM Cluster. */
+  peConnectionName: string;
+}
+export const DeleteCloudHsmClusterPrivateEndpointConnectionRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      cloudHsmClusterName: S.String.pipe(T.Label()),
+      peConnectionName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HardwareSecurityModules/cloudHsmClusters/{cloudHsmClusterName}/privateEndpointConnections/{peConnectionName}",
+        code: 200,
+        apiVersion: "2025-03-31",
+      }),
+    ),
+  ).annotate({
+    identifier: "DeleteCloudHsmClusterPrivateEndpointConnectionRequest",
+  }) as any as S.Schema<DeleteCloudHsmClusterPrivateEndpointConnectionRequest>;
+
+export interface DeleteCloudHsmClusterPrivateEndpointConnectionResponse {}
+export const DeleteCloudHsmClusterPrivateEndpointConnectionResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "DeleteCloudHsmClusterPrivateEndpointConnectionResponse",
+  }) as any as S.Schema<DeleteCloudHsmClusterPrivateEndpointConnectionResponse>;
+
+export interface DeleteDedicatedHsmRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1950,7 +1248,7 @@ export interface DedicatedHsmDeleteRequest {
   /** Name of the dedicated Hsm */
   name: string;
 }
-export const DedicatedHsmDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteDedicatedHsmRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1964,17 +1262,235 @@ export const DedicatedHsmDeleteRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DedicatedHsmDeleteRequest",
-}) as any as S.Schema<DedicatedHsmDeleteRequest>;
+  identifier: "DeleteDedicatedHsmRequest",
+}) as any as S.Schema<DeleteDedicatedHsmRequest>;
 
-export interface DedicatedHsmDeleteResponse {}
-export const DedicatedHsmDeleteResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteDedicatedHsmResponse {}
+export const DeleteDedicatedHsmResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DedicatedHsmDeleteResponse",
-}) as any as S.Schema<DedicatedHsmDeleteResponse>;
+  identifier: "DeleteDedicatedHsmResponse",
+}) as any as S.Schema<DeleteDedicatedHsmResponse>;
 
-export interface DedicatedHsmGetRequest {
+export interface GetCloudHsmClusterRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM Cluster names must be between 3 and 23 characters in length. */
+  cloudHsmClusterName: string;
+}
+export const GetCloudHsmClusterRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    cloudHsmClusterName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HardwareSecurityModules/cloudHsmClusters/{cloudHsmClusterName}",
+      code: 200,
+      apiVersion: "2025-03-31",
+    }),
+  ),
+).annotate({
+  identifier: "GetCloudHsmClusterRequest",
+}) as any as S.Schema<GetCloudHsmClusterRequest>;
+
+/** Resource tags. */
+export type GetCloudHsmClusterResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetCloudHsmClusterResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetCloudHsmClusterResponseTagsMap>;
+
+/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+export type GetCloudHsmClusterResponseIdentityUserAssignedIdentitiesMap = {
+  [key: string]: UserAssignedIdentity | undefined;
+};
+export const GetCloudHsmClusterResponseIdentityUserAssignedIdentitiesMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    UserAssignedIdentity,
+  ) as any as S.Schema<GetCloudHsmClusterResponseIdentityUserAssignedIdentitiesMap>;
+
+/** Managed service identity (system assigned and/or user assigned identities) */
+export interface GetCloudHsmClusterResponseIdentity {
+  /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
+  principalId?: string;
+  /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
+  tenantId?: string;
+  type: ManagedServiceIdentityType;
+  /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+  userAssignedIdentities?: GetCloudHsmClusterResponseIdentityUserAssignedIdentitiesMap;
+}
+export const GetCloudHsmClusterResponseIdentity = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    principalId: S.optional(S.String),
+    tenantId: S.optional(S.String),
+    type: ManagedServiceIdentityType,
+    userAssignedIdentities: S.optional(
+      GetCloudHsmClusterResponseIdentityUserAssignedIdentitiesMap,
+    ),
+  }),
+).annotate({
+  identifier: "GetCloudHsmClusterResponseIdentity",
+}) as any as S.Schema<GetCloudHsmClusterResponseIdentity>;
+
+export interface GetCloudHsmClusterResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetCloudHsmClusterResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Properties of the Cloud HSM Cluster */
+  properties?: CloudHsmClusterProperties;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: GetCloudHsmClusterResponseIdentity;
+  /** SKU details */
+  sku?: CloudHsmClusterSku;
+}
+export const GetCloudHsmClusterResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetCloudHsmClusterResponseTagsMap),
+    location: S.String,
+    properties: S.optional(CloudHsmClusterProperties),
+    identity: S.optional(GetCloudHsmClusterResponseIdentity),
+    sku: S.optional(CloudHsmClusterSku),
+  }),
+).annotate({
+  identifier: "GetCloudHsmClusterResponse",
+}) as any as S.Schema<GetCloudHsmClusterResponse>;
+
+export interface GetCloudHsmClusterBackupStatusRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM Cluster names must be between 3 and 23 characters in length. */
+  cloudHsmClusterName: string;
+  /** Identifier for the backup operation */
+  jobId: string;
+}
+export const GetCloudHsmClusterBackupStatusRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      cloudHsmClusterName: S.String.pipe(T.Label()),
+      jobId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HardwareSecurityModules/cloudHsmClusters/{cloudHsmClusterName}/backupOperationStatus/{jobId}",
+        code: 200,
+        apiVersion: "2025-03-31",
+      }),
+    ),
+).annotate({
+  identifier: "GetCloudHsmClusterBackupStatusRequest",
+}) as any as S.Schema<GetCloudHsmClusterBackupStatusRequest>;
+
+export interface GetCloudHsmClusterPrivateEndpointConnectionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM Cluster names must be between 3 and 23 characters in length. */
+  cloudHsmClusterName: string;
+  /** Name of the private endpoint connection associated with the Cloud HSM Cluster. */
+  peConnectionName: string;
+}
+export const GetCloudHsmClusterPrivateEndpointConnectionRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      cloudHsmClusterName: S.String.pipe(T.Label()),
+      peConnectionName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HardwareSecurityModules/cloudHsmClusters/{cloudHsmClusterName}/privateEndpointConnections/{peConnectionName}",
+        code: 200,
+        apiVersion: "2025-03-31",
+      }),
+    ),
+  ).annotate({
+    identifier: "GetCloudHsmClusterPrivateEndpointConnectionRequest",
+  }) as any as S.Schema<GetCloudHsmClusterPrivateEndpointConnectionRequest>;
+
+export interface GetCloudHsmClusterPrivateEndpointConnectionResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource properties. */
+  properties?: PrivateEndpointConnectionProperties;
+  /** Modified whenever there is a change in the state of private endpoint connection. */
+  etag?: string;
+}
+export const GetCloudHsmClusterPrivateEndpointConnectionResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(PrivateEndpointConnectionProperties),
+      etag: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "GetCloudHsmClusterPrivateEndpointConnectionResponse",
+  }) as any as S.Schema<GetCloudHsmClusterPrivateEndpointConnectionResponse>;
+
+export interface GetCloudHsmClusterRestoreStatusRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM Cluster names must be between 3 and 23 characters in length. */
+  cloudHsmClusterName: string;
+  /** Identifier for the restore operation */
+  jobId: string;
+}
+export const GetCloudHsmClusterRestoreStatusRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      cloudHsmClusterName: S.String.pipe(T.Label()),
+      jobId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HardwareSecurityModules/cloudHsmClusters/{cloudHsmClusterName}/restoreOperationStatus/{jobId}",
+        code: 200,
+        apiVersion: "2025-03-31",
+      }),
+    ),
+).annotate({
+  identifier: "GetCloudHsmClusterRestoreStatusRequest",
+}) as any as S.Schema<GetCloudHsmClusterRestoreStatusRequest>;
+
+export interface GetDedicatedHsmRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1982,7 +1498,7 @@ export interface DedicatedHsmGetRequest {
   /** Name of the dedicated Hsm */
   name: string;
 }
-export const DedicatedHsmGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetDedicatedHsmRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1996,25 +1512,25 @@ export const DedicatedHsmGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DedicatedHsmGetRequest",
-}) as any as S.Schema<DedicatedHsmGetRequest>;
+  identifier: "GetDedicatedHsmRequest",
+}) as any as S.Schema<GetDedicatedHsmRequest>;
 
 /** Resource tags. */
-export type DedicatedHsmGetResponseTagsMap = {
+export type GetDedicatedHsmResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const DedicatedHsmGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetDedicatedHsmResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<DedicatedHsmGetResponseTagsMap>;
+) as any as S.Schema<GetDedicatedHsmResponseTagsMap>;
 
 /** The availability zones. */
-export type DedicatedHsmGetResponseZonesList = Array<string>;
-export const DedicatedHsmGetResponseZonesList = /*@__PURE__*/ S.Array(
+export type GetDedicatedHsmResponseZonesList = Array<string>;
+export const GetDedicatedHsmResponseZonesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<DedicatedHsmGetResponseZonesList>;
+) as any as S.Schema<GetDedicatedHsmResponseZonesList>;
 
-export interface DedicatedHsmGetResponse {
+export interface GetDedicatedHsmResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -2024,7 +1540,7 @@ export interface DedicatedHsmGetResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: DedicatedHsmGetResponseTagsMap;
+  tags?: GetDedicatedHsmResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties of the dedicated HSM */
@@ -2032,25 +1548,289 @@ export interface DedicatedHsmGetResponse {
   /** SKU details */
   sku: Sku;
   /** The availability zones. */
-  zones?: DedicatedHsmGetResponseZonesList;
+  zones?: GetDedicatedHsmResponseZonesList;
 }
-export const DedicatedHsmGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetDedicatedHsmResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(DedicatedHsmGetResponseTagsMap),
+    tags: S.optional(GetDedicatedHsmResponseTagsMap),
     location: S.String,
     properties: DedicatedHsmProperties,
     sku: Sku,
-    zones: S.optional(DedicatedHsmGetResponseZonesList),
+    zones: S.optional(GetDedicatedHsmResponseZonesList),
   }),
 ).annotate({
-  identifier: "DedicatedHsmGetResponse",
-}) as any as S.Schema<DedicatedHsmGetResponse>;
+  identifier: "GetDedicatedHsmResponse",
+}) as any as S.Schema<GetDedicatedHsmResponse>;
 
-export interface DedicatedHsmListByResourceGroupRequest {
+export interface ListCloudHsmClusterByResourceGroupRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The page-continuation token to use with a paged version of this API */
+  _skiptoken?: string;
+}
+export const ListCloudHsmClusterByResourceGroupRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      _skiptoken: S.optional(S.String.pipe(T.Query("$skiptoken"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HardwareSecurityModules/cloudHsmClusters",
+        code: 200,
+        apiVersion: "2025-03-31",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListCloudHsmClusterByResourceGroupRequest",
+  }) as any as S.Schema<ListCloudHsmClusterByResourceGroupRequest>;
+
+/** Resource tags. */
+export type CloudHsmClusterTagsMap = { [key: string]: string | undefined };
+export const CloudHsmClusterTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<CloudHsmClusterTagsMap>;
+
+/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+export type CloudHsmClusterIdentityUserAssignedIdentitiesMap = {
+  [key: string]: UserAssignedIdentity | undefined;
+};
+export const CloudHsmClusterIdentityUserAssignedIdentitiesMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    UserAssignedIdentity,
+  ) as any as S.Schema<CloudHsmClusterIdentityUserAssignedIdentitiesMap>;
+
+/** Managed service identity (system assigned and/or user assigned identities) */
+export interface CloudHsmClusterIdentity {
+  /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
+  principalId?: string;
+  /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
+  tenantId?: string;
+  type: ManagedServiceIdentityType;
+  /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+  userAssignedIdentities?: CloudHsmClusterIdentityUserAssignedIdentitiesMap;
+}
+export const CloudHsmClusterIdentity = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    principalId: S.optional(S.String),
+    tenantId: S.optional(S.String),
+    type: ManagedServiceIdentityType,
+    userAssignedIdentities: S.optional(
+      CloudHsmClusterIdentityUserAssignedIdentitiesMap,
+    ),
+  }),
+).annotate({
+  identifier: "CloudHsmClusterIdentity",
+}) as any as S.Schema<CloudHsmClusterIdentity>;
+
+/** Resource information with extended details. */
+export interface CloudHsmCluster {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: CloudHsmClusterTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Properties of the Cloud HSM Cluster */
+  properties?: CloudHsmClusterProperties;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: CloudHsmClusterIdentity;
+  /** SKU details */
+  sku?: CloudHsmClusterSku;
+}
+export const CloudHsmCluster = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(CloudHsmClusterTagsMap),
+    location: S.String,
+    properties: S.optional(CloudHsmClusterProperties),
+    identity: S.optional(CloudHsmClusterIdentity),
+    sku: S.optional(CloudHsmClusterSku),
+  }),
+).annotate({
+  identifier: "CloudHsmCluster",
+}) as any as S.Schema<CloudHsmCluster>;
+
+/** The CloudHsmCluster items on this page */
+export type CloudHsmClusterListResultValueList = Array<CloudHsmCluster>;
+export const CloudHsmClusterListResultValueList = /*@__PURE__*/ S.Array(
+  CloudHsmCluster,
+) as any as S.Schema<CloudHsmClusterListResultValueList>;
+
+/** The response of a CloudHsmCluster list operation. */
+export interface CloudHsmClusterListResult {
+  /** The CloudHsmCluster items on this page */
+  value: CloudHsmClusterListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const CloudHsmClusterListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: CloudHsmClusterListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "CloudHsmClusterListResult",
+}) as any as S.Schema<CloudHsmClusterListResult>;
+
+export interface ListCloudHsmClusterBySubscriptionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The page-continuation token to use with a paged version of this API */
+  _skiptoken?: string;
+}
+export const ListCloudHsmClusterBySubscriptionRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      _skiptoken: S.optional(S.String.pipe(T.Query("$skiptoken"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.HardwareSecurityModules/cloudHsmClusters",
+        code: 200,
+        apiVersion: "2025-03-31",
+      }),
+    ),
+).annotate({
+  identifier: "ListCloudHsmClusterBySubscriptionRequest",
+}) as any as S.Schema<ListCloudHsmClusterBySubscriptionRequest>;
+
+export interface ListCloudHsmClusterPrivateLinkResourceByCloudHsmClusterRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM Cluster names must be between 3 and 23 characters in length. */
+  cloudHsmClusterName: string;
+}
+export const ListCloudHsmClusterPrivateLinkResourceByCloudHsmClusterRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      cloudHsmClusterName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HardwareSecurityModules/cloudHsmClusters/{cloudHsmClusterName}/privateLinkResources",
+        code: 200,
+        apiVersion: "2025-03-31",
+      }),
+    ),
+  ).annotate({
+    identifier:
+      "ListCloudHsmClusterPrivateLinkResourceByCloudHsmClusterRequest",
+  }) as any as S.Schema<ListCloudHsmClusterPrivateLinkResourceByCloudHsmClusterRequest>;
+
+/** The private link resource required member names. */
+export type PrivateLinkResourcePropertiesRequiredMembersList = Array<string>;
+export const PrivateLinkResourcePropertiesRequiredMembersList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<PrivateLinkResourcePropertiesRequiredMembersList>;
+
+/** The private link resource private link DNS zone name. */
+export type PrivateLinkResourcePropertiesRequiredZoneNamesList = Array<string>;
+export const PrivateLinkResourcePropertiesRequiredZoneNamesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<PrivateLinkResourcePropertiesRequiredZoneNamesList>;
+
+/** Properties of a private link resource. */
+export interface PrivateLinkResourceProperties {
+  /** The private link resource group id. */
+  groupId?: string;
+  /** The private link resource required member names. */
+  requiredMembers?: PrivateLinkResourcePropertiesRequiredMembersList;
+  /** The private link resource private link DNS zone name. */
+  requiredZoneNames?: PrivateLinkResourcePropertiesRequiredZoneNamesList;
+}
+export const PrivateLinkResourceProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    groupId: S.optional(S.String),
+    requiredMembers: S.optional(
+      PrivateLinkResourcePropertiesRequiredMembersList,
+    ),
+    requiredZoneNames: S.optional(
+      PrivateLinkResourcePropertiesRequiredZoneNamesList,
+    ),
+  }),
+).annotate({
+  identifier: "PrivateLinkResourceProperties",
+}) as any as S.Schema<PrivateLinkResourceProperties>;
+
+/** A private link resource. */
+export interface PrivateLinkResource {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource properties. */
+  properties?: PrivateLinkResourceProperties;
+}
+export const PrivateLinkResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(PrivateLinkResourceProperties),
+  }),
+).annotate({
+  identifier: "PrivateLinkResource",
+}) as any as S.Schema<PrivateLinkResource>;
+
+/** Array of private link resources */
+export type ListCloudHsmClusterPrivateLinkResourceByCloudHsmClusterResponseValueList =
+  Array<PrivateLinkResource>;
+export const ListCloudHsmClusterPrivateLinkResourceByCloudHsmClusterResponseValueList =
+  /*@__PURE__*/ S.Array(
+    PrivateLinkResource,
+  ) as any as S.Schema<ListCloudHsmClusterPrivateLinkResourceByCloudHsmClusterResponseValueList>;
+
+export interface ListCloudHsmClusterPrivateLinkResourceByCloudHsmClusterResponse {
+  /** Array of private link resources */
+  value?: ListCloudHsmClusterPrivateLinkResourceByCloudHsmClusterResponseValueList;
+  /** URL to get the next set of operation list results (if there are any). */
+  nextLink?: string;
+}
+export const ListCloudHsmClusterPrivateLinkResourceByCloudHsmClusterResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      value: S.optional(
+        ListCloudHsmClusterPrivateLinkResourceByCloudHsmClusterResponseValueList,
+      ),
+      nextLink: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier:
+      "ListCloudHsmClusterPrivateLinkResourceByCloudHsmClusterResponse",
+  }) as any as S.Schema<ListCloudHsmClusterPrivateLinkResourceByCloudHsmClusterResponse>;
+
+export interface ListDedicatedHsmByResourceGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2058,7 +1838,7 @@ export interface DedicatedHsmListByResourceGroupRequest {
   /** Maximum number of results to return. */
   _top?: number;
 }
-export const DedicatedHsmListByResourceGroupRequest = /*@__PURE__*/ S.suspend(
+export const ListDedicatedHsmByResourceGroupRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -2073,8 +1853,8 @@ export const DedicatedHsmListByResourceGroupRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "DedicatedHsmListByResourceGroupRequest",
-}) as any as S.Schema<DedicatedHsmListByResourceGroupRequest>;
+  identifier: "ListDedicatedHsmByResourceGroupRequest",
+}) as any as S.Schema<ListDedicatedHsmByResourceGroupRequest>;
 
 /** Resource tags. */
 export type DedicatedHsmTagsMap = { [key: string]: string | undefined };
@@ -2146,13 +1926,13 @@ export const DedicatedHsmListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "DedicatedHsmListResult",
 }) as any as S.Schema<DedicatedHsmListResult>;
 
-export interface DedicatedHsmListBySubscriptionRequest {
+export interface ListDedicatedHsmBySubscriptionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** Maximum number of results to return. */
   _top?: number;
 }
-export const DedicatedHsmListBySubscriptionRequest = /*@__PURE__*/ S.suspend(
+export const ListDedicatedHsmBySubscriptionRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -2166,10 +1946,10 @@ export const DedicatedHsmListBySubscriptionRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "DedicatedHsmListBySubscriptionRequest",
-}) as any as S.Schema<DedicatedHsmListBySubscriptionRequest>;
+  identifier: "ListDedicatedHsmBySubscriptionRequest",
+}) as any as S.Schema<ListDedicatedHsmBySubscriptionRequest>;
 
-export interface DedicatedHsmListOutboundNetworkDependenciesEndpointsRequest {
+export interface ListDedicatedHsmOutboundNetworkDependenciesEndpointsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2177,7 +1957,7 @@ export interface DedicatedHsmListOutboundNetworkDependenciesEndpointsRequest {
   /** Name of the dedicated Hsm */
   name: string;
 }
-export const DedicatedHsmListOutboundNetworkDependenciesEndpointsRequest =
+export const ListDedicatedHsmOutboundNetworkDependenciesEndpointsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -2192,8 +1972,8 @@ export const DedicatedHsmListOutboundNetworkDependenciesEndpointsRequest =
       }),
     ),
   ).annotate({
-    identifier: "DedicatedHsmListOutboundNetworkDependenciesEndpointsRequest",
-  }) as any as S.Schema<DedicatedHsmListOutboundNetworkDependenciesEndpointsRequest>;
+    identifier: "ListDedicatedHsmOutboundNetworkDependenciesEndpointsRequest",
+  }) as any as S.Schema<ListDedicatedHsmOutboundNetworkDependenciesEndpointsRequest>;
 
 /** Connect information from the dedicated hsm service to a single endpoint. */
 export interface EndpointDetail {
@@ -2285,96 +2065,8 @@ export const OutboundEnvironmentEndpointCollection = /*@__PURE__*/ S.suspend(
   identifier: "OutboundEnvironmentEndpointCollection",
 }) as any as S.Schema<OutboundEnvironmentEndpointCollection>;
 
-/** Resource tags */
-export type DedicatedHsmUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const DedicatedHsmUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<DedicatedHsmUpdateRequestTagsMap>;
-
-export interface DedicatedHsmUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the dedicated Hsm */
-  name: string;
-  /** Resource tags */
-  tags?: DedicatedHsmUpdateRequestTagsMap;
-}
-export const DedicatedHsmUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    name: S.String.pipe(T.Label()),
-    tags: S.optional(DedicatedHsmUpdateRequestTagsMap),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HardwareSecurityModules/dedicatedHSMs/{name}",
-      code: 200,
-      apiVersion: "2025-03-31",
-    }),
-  ),
-).annotate({
-  identifier: "DedicatedHsmUpdateRequest",
-}) as any as S.Schema<DedicatedHsmUpdateRequest>;
-
-/** Resource tags. */
-export type DedicatedHsmUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const DedicatedHsmUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<DedicatedHsmUpdateResponseTagsMap>;
-
-/** The availability zones. */
-export type DedicatedHsmUpdateResponseZonesList = Array<string>;
-export const DedicatedHsmUpdateResponseZonesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<DedicatedHsmUpdateResponseZonesList>;
-
-export interface DedicatedHsmUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: DedicatedHsmUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Properties of the dedicated HSM */
-  properties: DedicatedHsmProperties;
-  /** SKU details */
-  sku: Sku;
-  /** The availability zones. */
-  zones?: DedicatedHsmUpdateResponseZonesList;
-}
-export const DedicatedHsmUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(DedicatedHsmUpdateResponseTagsMap),
-    location: S.String,
-    properties: DedicatedHsmProperties,
-    sku: Sku,
-    zones: S.optional(DedicatedHsmUpdateResponseZonesList),
-  }),
-).annotate({
-  identifier: "DedicatedHsmUpdateResponse",
-}) as any as S.Schema<DedicatedHsmUpdateResponse>;
-
-export interface OperationsListRequest {}
-export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
+export interface ListOperationsRequest {}
+export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
     T.Http({
       method: "GET",
@@ -2384,8 +2076,8 @@ export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "OperationsListRequest",
-}) as any as S.Schema<OperationsListRequest>;
+  identifier: "ListOperationsRequest",
+}) as any as S.Schema<ListOperationsRequest>;
 
 /** Localized display information for this particular operation. */
 export interface OperationDisplay {
@@ -2441,27 +2133,27 @@ export const Operation = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 /** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
   Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
+) as any as S.Schema<ListOperationsResponseValueList>;
 
-export interface OperationsListResponse {
+export interface ListOperationsResponse {
   /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
+  value?: ListOperationsResponseValueList;
   /** URL to get the next set of operation list results (if there are any). */
   nextLink?: string;
 }
-export const OperationsListResponse = /*@__PURE__*/ S.suspend(() =>
+export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(OperationsListResponseValueList),
+    value: S.optional(ListOperationsResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "OperationsListResponse",
-}) as any as S.Schema<OperationsListResponse>;
+  identifier: "ListOperationsResponse",
+}) as any as S.Schema<ListOperationsResponse>;
 
-export interface PrivateEndpointConnectionsListByCloudHsmClusterRequest {
+export interface ListPrivateEndpointConnectionByCloudHsmClusterRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2469,7 +2161,7 @@ export interface PrivateEndpointConnectionsListByCloudHsmClusterRequest {
   /** The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM Cluster names must be between 3 and 23 characters in length. */
   cloudHsmClusterName: string;
 }
-export const PrivateEndpointConnectionsListByCloudHsmClusterRequest =
+export const ListPrivateEndpointConnectionByCloudHsmClusterRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -2484,8 +2176,8 @@ export const PrivateEndpointConnectionsListByCloudHsmClusterRequest =
       }),
     ),
   ).annotate({
-    identifier: "PrivateEndpointConnectionsListByCloudHsmClusterRequest",
-  }) as any as S.Schema<PrivateEndpointConnectionsListByCloudHsmClusterRequest>;
+    identifier: "ListPrivateEndpointConnectionByCloudHsmClusterRequest",
+  }) as any as S.Schema<ListPrivateEndpointConnectionByCloudHsmClusterRequest>;
 
 /** The PrivateEndpointConnection items on this page */
 export type PrivateEndpointConnectionListResultValueList =
@@ -2511,96 +2203,306 @@ export const PrivateEndpointConnectionListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "PrivateEndpointConnectionListResult",
 }) as any as S.Schema<PrivateEndpointConnectionListResult>;
 
-export type CloudHsmClusterBackupStatusGetError = AzureOpError;
-/** Gets the backup operation status of the specified Cloud HSM Cluster */
-export const CloudHsmClusterBackupStatusGet: API.OperationMethod<
-  CloudHsmClusterBackupStatusGetRequest,
-  BackupResult,
-  CloudHsmClusterBackupStatusGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CloudHsmClusterBackupStatusGetRequest,
-  output: BackupResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
+export interface RestoreCloudHsmClusterRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM Cluster names must be between 3 and 23 characters in length. */
+  cloudHsmClusterName: string;
+  /** The Azure blob storage container Uri which contains the backup */
+  azureStorageBlobContainerUri: string;
+  /** The SAS token pointing to an Azure blob storage container. This property is reserved for Azure Backup Service. */
+  token?: string;
+  /** An autogenerated unique string ID for labeling the backup. It contains both a UUID and a date timestamp. */
+  backupId: string;
+}
+export const RestoreCloudHsmClusterRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    cloudHsmClusterName: S.String.pipe(T.Label()),
+    azureStorageBlobContainerUri: S.String,
+    token: S.optional(S.String),
+    backupId: S.String,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HardwareSecurityModules/cloudHsmClusters/{cloudHsmClusterName}/restore",
+      code: 200,
+      apiVersion: "2025-03-31",
+    }),
+  ),
+).annotate({
+  identifier: "RestoreCloudHsmClusterRequest",
+}) as any as S.Schema<RestoreCloudHsmClusterRequest>;
 
-export type CloudHsmClusterPrivateEndpointConnectionsCreateError = AzureOpError;
-/** Creates or updates the private endpoint connection for the Cloud Hsm Cluster. */
-export const CloudHsmClusterPrivateEndpointConnectionsCreate: API.OperationMethod<
-  CloudHsmClusterPrivateEndpointConnectionsCreateRequest,
-  CloudHsmClusterPrivateEndpointConnectionsCreateResponse,
-  CloudHsmClusterPrivateEndpointConnectionsCreateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CloudHsmClusterPrivateEndpointConnectionsCreateRequest,
-  output: CloudHsmClusterPrivateEndpointConnectionsCreateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
+/** The Cloud HSM Cluster's tags */
+export type UpdateCloudHsmClusterRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateCloudHsmClusterRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateCloudHsmClusterRequestTagsMap>;
 
-export type CloudHsmClusterPrivateEndpointConnectionsDeleteError = AzureOpError;
-/** Deletes the private endpoint connection for the Cloud Hsm Cluster. */
-export const CloudHsmClusterPrivateEndpointConnectionsDelete: API.OperationMethod<
-  CloudHsmClusterPrivateEndpointConnectionsDeleteRequest,
-  CloudHsmClusterPrivateEndpointConnectionsDeleteResponse,
-  CloudHsmClusterPrivateEndpointConnectionsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CloudHsmClusterPrivateEndpointConnectionsDeleteRequest,
-  output: CloudHsmClusterPrivateEndpointConnectionsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
+/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+export type UpdateCloudHsmClusterRequestIdentityUserAssignedIdentitiesMap = {
+  [key: string]: UserAssignedIdentityInput | undefined;
+};
+export const UpdateCloudHsmClusterRequestIdentityUserAssignedIdentitiesMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    UserAssignedIdentityInput,
+  ) as any as S.Schema<UpdateCloudHsmClusterRequestIdentityUserAssignedIdentitiesMap>;
 
-export type CloudHsmClusterPrivateEndpointConnectionsGetError = AzureOpError;
-/** Gets the private endpoint connection for the Cloud Hsm Cluster. */
-export const CloudHsmClusterPrivateEndpointConnectionsGet: API.OperationMethod<
-  CloudHsmClusterPrivateEndpointConnectionsGetRequest,
-  CloudHsmClusterPrivateEndpointConnectionsGetResponse,
-  CloudHsmClusterPrivateEndpointConnectionsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CloudHsmClusterPrivateEndpointConnectionsGetRequest,
-  output: CloudHsmClusterPrivateEndpointConnectionsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
+/** Managed service identity (system assigned and/or user assigned identities) */
+export interface UpdateCloudHsmClusterRequestIdentity {
+  type: ManagedServiceIdentityType | (string & {});
+  /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+  userAssignedIdentities?: UpdateCloudHsmClusterRequestIdentityUserAssignedIdentitiesMap;
+}
+export const UpdateCloudHsmClusterRequestIdentity = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      type: ManagedServiceIdentityType,
+      userAssignedIdentities: S.optional(
+        UpdateCloudHsmClusterRequestIdentityUserAssignedIdentitiesMap,
+      ),
+    }),
+).annotate({
+  identifier: "UpdateCloudHsmClusterRequestIdentity",
+}) as any as S.Schema<UpdateCloudHsmClusterRequestIdentity>;
 
-export type CloudHsmClusterPrivateLinkResourcesListByCloudHsmClusterError =
-  AzureOpError;
-/** Gets the private link resources supported for the Cloud Hsm Cluster. */
-export const CloudHsmClusterPrivateLinkResourcesListByCloudHsmCluster: API.OperationMethod<
-  CloudHsmClusterPrivateLinkResourcesListByCloudHsmClusterRequest,
-  CloudHsmClusterPrivateLinkResourcesListByCloudHsmClusterResponse,
-  CloudHsmClusterPrivateLinkResourcesListByCloudHsmClusterError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CloudHsmClusterPrivateLinkResourcesListByCloudHsmClusterRequest,
-  output: CloudHsmClusterPrivateLinkResourcesListByCloudHsmClusterResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
+export interface UpdateCloudHsmClusterRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM Cluster names must be between 3 and 23 characters in length. */
+  cloudHsmClusterName: string;
+  /** The Cloud HSM Cluster's tags */
+  tags?: UpdateCloudHsmClusterRequestTagsMap;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: UpdateCloudHsmClusterRequestIdentity;
+}
+export const UpdateCloudHsmClusterRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    cloudHsmClusterName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateCloudHsmClusterRequestTagsMap),
+    identity: S.optional(UpdateCloudHsmClusterRequestIdentity),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HardwareSecurityModules/cloudHsmClusters/{cloudHsmClusterName}",
+      code: 200,
+      apiVersion: "2025-03-31",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateCloudHsmClusterRequest",
+}) as any as S.Schema<UpdateCloudHsmClusterRequest>;
 
-export type CloudHsmClusterRestoreStatusGetError = AzureOpError;
-/** Gets the restore operation status of the specified Cloud HSM Cluster */
-export const CloudHsmClusterRestoreStatusGet: API.OperationMethod<
-  CloudHsmClusterRestoreStatusGetRequest,
-  RestoreResult,
-  CloudHsmClusterRestoreStatusGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CloudHsmClusterRestoreStatusGetRequest,
-  output: RestoreResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
+/** Resource tags. */
+export type UpdateCloudHsmClusterResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateCloudHsmClusterResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateCloudHsmClusterResponseTagsMap>;
+
+/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+export type UpdateCloudHsmClusterResponseIdentityUserAssignedIdentitiesMap = {
+  [key: string]: UserAssignedIdentity | undefined;
+};
+export const UpdateCloudHsmClusterResponseIdentityUserAssignedIdentitiesMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    UserAssignedIdentity,
+  ) as any as S.Schema<UpdateCloudHsmClusterResponseIdentityUserAssignedIdentitiesMap>;
+
+/** Managed service identity (system assigned and/or user assigned identities) */
+export interface UpdateCloudHsmClusterResponseIdentity {
+  /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
+  principalId?: string;
+  /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
+  tenantId?: string;
+  type: ManagedServiceIdentityType;
+  /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+  userAssignedIdentities?: UpdateCloudHsmClusterResponseIdentityUserAssignedIdentitiesMap;
+}
+export const UpdateCloudHsmClusterResponseIdentity = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      principalId: S.optional(S.String),
+      tenantId: S.optional(S.String),
+      type: ManagedServiceIdentityType,
+      userAssignedIdentities: S.optional(
+        UpdateCloudHsmClusterResponseIdentityUserAssignedIdentitiesMap,
+      ),
+    }),
+).annotate({
+  identifier: "UpdateCloudHsmClusterResponseIdentity",
+}) as any as S.Schema<UpdateCloudHsmClusterResponseIdentity>;
+
+export interface UpdateCloudHsmClusterResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateCloudHsmClusterResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Properties of the Cloud HSM Cluster */
+  properties?: CloudHsmClusterProperties;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: UpdateCloudHsmClusterResponseIdentity;
+  /** SKU details */
+  sku?: CloudHsmClusterSku;
+}
+export const UpdateCloudHsmClusterResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateCloudHsmClusterResponseTagsMap),
+    location: S.String,
+    properties: S.optional(CloudHsmClusterProperties),
+    identity: S.optional(UpdateCloudHsmClusterResponseIdentity),
+    sku: S.optional(CloudHsmClusterSku),
+  }),
+).annotate({
+  identifier: "UpdateCloudHsmClusterResponse",
+}) as any as S.Schema<UpdateCloudHsmClusterResponse>;
+
+/** Resource tags */
+export type UpdateDedicatedHsmRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateDedicatedHsmRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateDedicatedHsmRequestTagsMap>;
+
+export interface UpdateDedicatedHsmRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the dedicated Hsm */
+  name: string;
+  /** Resource tags */
+  tags?: UpdateDedicatedHsmRequestTagsMap;
+}
+export const UpdateDedicatedHsmRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    name: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateDedicatedHsmRequestTagsMap),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HardwareSecurityModules/dedicatedHSMs/{name}",
+      code: 200,
+      apiVersion: "2025-03-31",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateDedicatedHsmRequest",
+}) as any as S.Schema<UpdateDedicatedHsmRequest>;
+
+/** Resource tags. */
+export type UpdateDedicatedHsmResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateDedicatedHsmResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateDedicatedHsmResponseTagsMap>;
+
+/** The availability zones. */
+export type UpdateDedicatedHsmResponseZonesList = Array<string>;
+export const UpdateDedicatedHsmResponseZonesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<UpdateDedicatedHsmResponseZonesList>;
+
+export interface UpdateDedicatedHsmResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateDedicatedHsmResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Properties of the dedicated HSM */
+  properties: DedicatedHsmProperties;
+  /** SKU details */
+  sku: Sku;
+  /** The availability zones. */
+  zones?: UpdateDedicatedHsmResponseZonesList;
+}
+export const UpdateDedicatedHsmResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateDedicatedHsmResponseTagsMap),
+    location: S.String,
+    properties: DedicatedHsmProperties,
+    sku: Sku,
+    zones: S.optional(UpdateDedicatedHsmResponseZonesList),
+  }),
+).annotate({
+  identifier: "UpdateDedicatedHsmResponse",
+}) as any as S.Schema<UpdateDedicatedHsmResponse>;
+
+export interface ValidateCloudHsmClusterBackupPropertiesRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM Cluster names must be between 3 and 23 characters in length. */
+  cloudHsmClusterName: string;
+  /** The Azure blob storage container Uri which contains the backup */
+  azureStorageBlobContainerUri: string;
+  /** The SAS token pointing to an Azure blob storage container. This property is reserved for Azure Backup Service. */
+  token?: string;
+}
+export const ValidateCloudHsmClusterBackupPropertiesRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      cloudHsmClusterName: S.String.pipe(T.Label()),
+      azureStorageBlobContainerUri: S.String,
+      token: S.optional(S.String),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HardwareSecurityModules/cloudHsmClusters/{cloudHsmClusterName}/validateBackupProperties",
+        code: 200,
+        apiVersion: "2025-03-31",
+      }),
+    ),
+  ).annotate({
+    identifier: "ValidateCloudHsmClusterBackupPropertiesRequest",
+  }) as any as S.Schema<ValidateCloudHsmClusterBackupPropertiesRequest>;
 
 export type CloudHsmClustersBackupError = AzureOpError;
 /** Create a backup of the Cloud HSM Cluster in the specified subscription */
@@ -2632,111 +2534,6 @@ export const CloudHsmClustersCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CloudHsmClustersDeleteError = AzureOpError;
-/** Deletes the specified Cloud HSM Cluster */
-export const CloudHsmClustersDelete: API.OperationMethod<
-  CloudHsmClustersDeleteRequest,
-  CloudHsmClustersDeleteResponse,
-  CloudHsmClustersDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CloudHsmClustersDeleteRequest,
-  output: CloudHsmClustersDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CloudHsmClustersGetError = AzureOpError;
-/** Gets the specified Cloud HSM Cluster */
-export const CloudHsmClustersGet: API.OperationMethod<
-  CloudHsmClustersGetRequest,
-  CloudHsmClustersGetResponse,
-  CloudHsmClustersGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CloudHsmClustersGetRequest,
-  output: CloudHsmClustersGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CloudHsmClustersListByResourceGroupError = AzureOpError;
-/** The List operation gets information about the Cloud HSM Clusters associated with the subscription and within the specified resource group. */
-export const CloudHsmClustersListByResourceGroup: API.OperationMethod<
-  CloudHsmClustersListByResourceGroupRequest,
-  CloudHsmClusterListResult,
-  CloudHsmClustersListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CloudHsmClustersListByResourceGroupRequest,
-  output: CloudHsmClusterListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CloudHsmClustersListBySubscriptionError = AzureOpError;
-/** The List operation gets information about the Cloud HSM Clusters associated with the subscription. */
-export const CloudHsmClustersListBySubscription: API.OperationMethod<
-  CloudHsmClustersListBySubscriptionRequest,
-  CloudHsmClusterListResult,
-  CloudHsmClustersListBySubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CloudHsmClustersListBySubscriptionRequest,
-  output: CloudHsmClusterListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CloudHsmClustersRestoreError = AzureOpError;
-/** Restores all key materials of a specified Cloud HSM Cluster */
-export const CloudHsmClustersRestore: API.OperationMethod<
-  CloudHsmClustersRestoreRequest,
-  RestoreResult,
-  CloudHsmClustersRestoreError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CloudHsmClustersRestoreRequest,
-  output: RestoreResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CloudHsmClustersUpdateError = AzureOpError;
-/** Update a Cloud HSM Cluster in the specified subscription. */
-export const CloudHsmClustersUpdate: API.OperationMethod<
-  CloudHsmClustersUpdateRequest,
-  CloudHsmClustersUpdateResponse,
-  CloudHsmClustersUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CloudHsmClustersUpdateRequest,
-  output: CloudHsmClustersUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CloudHsmClustersValidateBackupPropertiesError = AzureOpError;
-/** Pre Backup operation to validate whether the customer can perform a backup on the Cloud HSM Cluster resource in the specified subscription. */
-export const CloudHsmClustersValidateBackupProperties: API.OperationMethod<
-  CloudHsmClustersValidateBackupPropertiesRequest,
-  BackupResult,
-  CloudHsmClustersValidateBackupPropertiesError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CloudHsmClustersValidateBackupPropertiesRequest,
-  output: BackupResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type CloudHsmClustersValidateRestorePropertiesError = AzureOpError;
 /** Queued validating pre restore operation */
 export const CloudHsmClustersValidateRestoreProperties: API.OperationMethod<
@@ -2747,6 +2544,21 @@ export const CloudHsmClustersValidateRestoreProperties: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: CloudHsmClustersValidateRestorePropertiesRequest,
   output: RestoreResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateCloudHsmClusterPrivateEndpointConnectionError = AzureOpError;
+/** Creates or updates the private endpoint connection for the Cloud Hsm Cluster. */
+export const CreateCloudHsmClusterPrivateEndpointConnection: API.OperationMethod<
+  CreateCloudHsmClusterPrivateEndpointConnectionRequest,
+  CreateCloudHsmClusterPrivateEndpointConnectionResponse,
+  CreateCloudHsmClusterPrivateEndpointConnectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateCloudHsmClusterPrivateEndpointConnectionRequest,
+  output: CreateCloudHsmClusterPrivateEndpointConnectionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -2767,122 +2579,303 @@ export const DedicatedHsmCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DedicatedHsmDeleteError = AzureOpError;
+export type DeleteCloudHsmClusterError = AzureOpError;
+/** Deletes the specified Cloud HSM Cluster */
+export const DeleteCloudHsmCluster: API.OperationMethod<
+  DeleteCloudHsmClusterRequest,
+  DeleteCloudHsmClusterResponse,
+  DeleteCloudHsmClusterError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteCloudHsmClusterRequest,
+  output: DeleteCloudHsmClusterResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteCloudHsmClusterPrivateEndpointConnectionError = AzureOpError;
+/** Deletes the private endpoint connection for the Cloud Hsm Cluster. */
+export const DeleteCloudHsmClusterPrivateEndpointConnection: API.OperationMethod<
+  DeleteCloudHsmClusterPrivateEndpointConnectionRequest,
+  DeleteCloudHsmClusterPrivateEndpointConnectionResponse,
+  DeleteCloudHsmClusterPrivateEndpointConnectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteCloudHsmClusterPrivateEndpointConnectionRequest,
+  output: DeleteCloudHsmClusterPrivateEndpointConnectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteDedicatedHsmError = AzureOpError;
 /** Deletes the specified Azure Dedicated HSM. */
-export const DedicatedHsmDelete: API.OperationMethod<
-  DedicatedHsmDeleteRequest,
-  DedicatedHsmDeleteResponse,
-  DedicatedHsmDeleteError,
+export const DeleteDedicatedHsm: API.OperationMethod<
+  DeleteDedicatedHsmRequest,
+  DeleteDedicatedHsmResponse,
+  DeleteDedicatedHsmError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DedicatedHsmDeleteRequest,
-  output: DedicatedHsmDeleteResponse,
+  input: DeleteDedicatedHsmRequest,
+  output: DeleteDedicatedHsmResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DedicatedHsmGetError = AzureOpError;
+export type GetCloudHsmClusterError = AzureOpError;
+/** Gets the specified Cloud HSM Cluster */
+export const GetCloudHsmCluster: API.OperationMethod<
+  GetCloudHsmClusterRequest,
+  GetCloudHsmClusterResponse,
+  GetCloudHsmClusterError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCloudHsmClusterRequest,
+  output: GetCloudHsmClusterResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetCloudHsmClusterBackupStatusError = AzureOpError;
+/** Gets the backup operation status of the specified Cloud HSM Cluster */
+export const GetCloudHsmClusterBackupStatus: API.OperationMethod<
+  GetCloudHsmClusterBackupStatusRequest,
+  BackupResult,
+  GetCloudHsmClusterBackupStatusError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCloudHsmClusterBackupStatusRequest,
+  output: BackupResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetCloudHsmClusterPrivateEndpointConnectionError = AzureOpError;
+/** Gets the private endpoint connection for the Cloud Hsm Cluster. */
+export const GetCloudHsmClusterPrivateEndpointConnection: API.OperationMethod<
+  GetCloudHsmClusterPrivateEndpointConnectionRequest,
+  GetCloudHsmClusterPrivateEndpointConnectionResponse,
+  GetCloudHsmClusterPrivateEndpointConnectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCloudHsmClusterPrivateEndpointConnectionRequest,
+  output: GetCloudHsmClusterPrivateEndpointConnectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetCloudHsmClusterRestoreStatusError = AzureOpError;
+/** Gets the restore operation status of the specified Cloud HSM Cluster */
+export const GetCloudHsmClusterRestoreStatus: API.OperationMethod<
+  GetCloudHsmClusterRestoreStatusRequest,
+  RestoreResult,
+  GetCloudHsmClusterRestoreStatusError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCloudHsmClusterRestoreStatusRequest,
+  output: RestoreResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDedicatedHsmError = AzureOpError;
 /** Gets the specified Azure dedicated HSM. */
-export const DedicatedHsmGet: API.OperationMethod<
-  DedicatedHsmGetRequest,
-  DedicatedHsmGetResponse,
-  DedicatedHsmGetError,
+export const GetDedicatedHsm: API.OperationMethod<
+  GetDedicatedHsmRequest,
+  GetDedicatedHsmResponse,
+  GetDedicatedHsmError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DedicatedHsmGetRequest,
-  output: DedicatedHsmGetResponse,
+  input: GetDedicatedHsmRequest,
+  output: GetDedicatedHsmResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DedicatedHsmListByResourceGroupError = AzureOpError;
+export type ListCloudHsmClusterByResourceGroupError = AzureOpError;
+/** The List operation gets information about the Cloud HSM Clusters associated with the subscription and within the specified resource group. */
+export const ListCloudHsmClusterByResourceGroup: API.OperationMethod<
+  ListCloudHsmClusterByResourceGroupRequest,
+  CloudHsmClusterListResult,
+  ListCloudHsmClusterByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListCloudHsmClusterByResourceGroupRequest,
+  output: CloudHsmClusterListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListCloudHsmClusterBySubscriptionError = AzureOpError;
+/** The List operation gets information about the Cloud HSM Clusters associated with the subscription. */
+export const ListCloudHsmClusterBySubscription: API.OperationMethod<
+  ListCloudHsmClusterBySubscriptionRequest,
+  CloudHsmClusterListResult,
+  ListCloudHsmClusterBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListCloudHsmClusterBySubscriptionRequest,
+  output: CloudHsmClusterListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListCloudHsmClusterPrivateLinkResourceByCloudHsmClusterError =
+  AzureOpError;
+/** Gets the private link resources supported for the Cloud Hsm Cluster. */
+export const ListCloudHsmClusterPrivateLinkResourceByCloudHsmCluster: API.OperationMethod<
+  ListCloudHsmClusterPrivateLinkResourceByCloudHsmClusterRequest,
+  ListCloudHsmClusterPrivateLinkResourceByCloudHsmClusterResponse,
+  ListCloudHsmClusterPrivateLinkResourceByCloudHsmClusterError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListCloudHsmClusterPrivateLinkResourceByCloudHsmClusterRequest,
+  output: ListCloudHsmClusterPrivateLinkResourceByCloudHsmClusterResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDedicatedHsmByResourceGroupError = AzureOpError;
 /** The List operation gets information about the dedicated HSMs associated with the subscription and within the specified resource group. */
-export const DedicatedHsmListByResourceGroup: API.OperationMethod<
-  DedicatedHsmListByResourceGroupRequest,
+export const ListDedicatedHsmByResourceGroup: API.OperationMethod<
+  ListDedicatedHsmByResourceGroupRequest,
   DedicatedHsmListResult,
-  DedicatedHsmListByResourceGroupError,
+  ListDedicatedHsmByResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DedicatedHsmListByResourceGroupRequest,
+  input: ListDedicatedHsmByResourceGroupRequest,
   output: DedicatedHsmListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DedicatedHsmListBySubscriptionError = AzureOpError;
+export type ListDedicatedHsmBySubscriptionError = AzureOpError;
 /** The List operation gets information about the dedicated HSMs associated with the subscription. */
-export const DedicatedHsmListBySubscription: API.OperationMethod<
-  DedicatedHsmListBySubscriptionRequest,
+export const ListDedicatedHsmBySubscription: API.OperationMethod<
+  ListDedicatedHsmBySubscriptionRequest,
   DedicatedHsmListResult,
-  DedicatedHsmListBySubscriptionError,
+  ListDedicatedHsmBySubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DedicatedHsmListBySubscriptionRequest,
+  input: ListDedicatedHsmBySubscriptionRequest,
   output: DedicatedHsmListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DedicatedHsmListOutboundNetworkDependenciesEndpointsError =
+export type ListDedicatedHsmOutboundNetworkDependenciesEndpointsError =
   AzureOpError;
 /** Gets a list of egress endpoints (network endpoints of all outbound dependencies) in the specified dedicated hsm resource. The operation returns properties of each egress endpoint. */
-export const DedicatedHsmListOutboundNetworkDependenciesEndpoints: API.OperationMethod<
-  DedicatedHsmListOutboundNetworkDependenciesEndpointsRequest,
+export const ListDedicatedHsmOutboundNetworkDependenciesEndpoints: API.OperationMethod<
+  ListDedicatedHsmOutboundNetworkDependenciesEndpointsRequest,
   OutboundEnvironmentEndpointCollection,
-  DedicatedHsmListOutboundNetworkDependenciesEndpointsError,
+  ListDedicatedHsmOutboundNetworkDependenciesEndpointsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DedicatedHsmListOutboundNetworkDependenciesEndpointsRequest,
+  input: ListDedicatedHsmOutboundNetworkDependenciesEndpointsRequest,
   output: OutboundEnvironmentEndpointCollection,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DedicatedHsmUpdateError = AzureOpError;
-/** Update a dedicated HSM in the specified subscription. */
-export const DedicatedHsmUpdate: API.OperationMethod<
-  DedicatedHsmUpdateRequest,
-  DedicatedHsmUpdateResponse,
-  DedicatedHsmUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DedicatedHsmUpdateRequest,
-  output: DedicatedHsmUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type OperationsListError = AzureOpError;
+export type ListOperationsError = AzureOpError;
 /** List the operations for the provider */
-export const OperationsList: API.OperationMethod<
-  OperationsListRequest,
-  OperationsListResponse,
-  OperationsListError,
+export const ListOperations: API.OperationMethod<
+  ListOperationsRequest,
+  ListOperationsResponse,
+  ListOperationsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OperationsListRequest,
-  output: OperationsListResponse,
+  input: ListOperationsRequest,
+  output: ListOperationsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type PrivateEndpointConnectionsListByCloudHsmClusterError = AzureOpError;
+export type ListPrivateEndpointConnectionByCloudHsmClusterError = AzureOpError;
 /** The List operation gets information about the private endpoint connections associated with the Cloud HSM Cluster */
-export const PrivateEndpointConnectionsListByCloudHsmCluster: API.OperationMethod<
-  PrivateEndpointConnectionsListByCloudHsmClusterRequest,
+export const ListPrivateEndpointConnectionByCloudHsmCluster: API.OperationMethod<
+  ListPrivateEndpointConnectionByCloudHsmClusterRequest,
   PrivateEndpointConnectionListResult,
-  PrivateEndpointConnectionsListByCloudHsmClusterError,
+  ListPrivateEndpointConnectionByCloudHsmClusterError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PrivateEndpointConnectionsListByCloudHsmClusterRequest,
+  input: ListPrivateEndpointConnectionByCloudHsmClusterRequest,
   output: PrivateEndpointConnectionListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RestoreCloudHsmClusterError = AzureOpError;
+/** Restores all key materials of a specified Cloud HSM Cluster */
+export const RestoreCloudHsmCluster: API.OperationMethod<
+  RestoreCloudHsmClusterRequest,
+  RestoreResult,
+  RestoreCloudHsmClusterError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RestoreCloudHsmClusterRequest,
+  output: RestoreResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateCloudHsmClusterError = AzureOpError;
+/** Update a Cloud HSM Cluster in the specified subscription. */
+export const UpdateCloudHsmCluster: API.OperationMethod<
+  UpdateCloudHsmClusterRequest,
+  UpdateCloudHsmClusterResponse,
+  UpdateCloudHsmClusterError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateCloudHsmClusterRequest,
+  output: UpdateCloudHsmClusterResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateDedicatedHsmError = AzureOpError;
+/** Update a dedicated HSM in the specified subscription. */
+export const UpdateDedicatedHsm: API.OperationMethod<
+  UpdateDedicatedHsmRequest,
+  UpdateDedicatedHsmResponse,
+  UpdateDedicatedHsmError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateDedicatedHsmRequest,
+  output: UpdateDedicatedHsmResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ValidateCloudHsmClusterBackupPropertiesError = AzureOpError;
+/** Pre Backup operation to validate whether the customer can perform a backup on the Cloud HSM Cluster resource in the specified subscription. */
+export const ValidateCloudHsmClusterBackupProperties: API.OperationMethod<
+  ValidateCloudHsmClusterBackupPropertiesRequest,
+  BackupResult,
+  ValidateCloudHsmClusterBackupPropertiesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ValidateCloudHsmClusterBackupPropertiesRequest,
+  output: BackupResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

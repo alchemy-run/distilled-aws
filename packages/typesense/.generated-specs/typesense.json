@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.typesense.api#GetCollectionsRequestGetCollectionsParameters": {
@@ -1117,7 +1118,7 @@
       },
       "traits": {}
     },
-    "com.typesense.api#IndexDocumentRequest": {
+    "com.typesense.api#ListDocumentRequest": {
       "type": "structure",
       "members": {
         "collectionName": {
@@ -1147,7 +1148,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.typesense.api#IndexDocumentResponse": {
+    "com.typesense.api#ListDocumentResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -1162,13 +1163,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.typesense.api#IndexDocument": {
+    "com.typesense.api#ListDocument": {
       "type": "operation",
       "input": {
-        "target": "com.typesense.api#IndexDocumentRequest"
+        "target": "com.typesense.api#ListDocumentRequest"
       },
       "output": {
-        "target": "com.typesense.api#IndexDocumentResponse"
+        "target": "com.typesense.api#ListDocumentResponse"
       },
       "errors": [
         {
@@ -2441,18 +2442,18 @@
         "smithy.api#documentation": "Array of synonym items"
       }
     },
-    "com.typesense.api#RetrieveSynonymSetsResponseBodyList": {
+    "com.typesense.api#GetSynonymSetsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.typesense.api#SynonymSetSchema"
       },
       "traits": {}
     },
-    "com.typesense.api#RetrieveSynonymSetsResponse": {
+    "com.typesense.api#GetSynonymSetsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.typesense.api#RetrieveSynonymSetsResponseBodyList",
+          "target": "com.typesense.api#GetSynonymSetsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -2463,13 +2464,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.typesense.api#RetrieveSynonymSets": {
+    "com.typesense.api#GetSynonymSets": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
       },
       "output": {
-        "target": "com.typesense.api#RetrieveSynonymSetsResponse"
+        "target": "com.typesense.api#GetSynonymSetsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2480,7 +2481,7 @@
         "smithy.api#documentation": "List all synonym sets\n\nRetrieve all synonym sets"
       }
     },
-    "com.typesense.api#RetrieveSynonymSetRequest": {
+    "com.typesense.api#GetSynonymSetRequest": {
       "type": "structure",
       "members": {
         "synonymSetName": {
@@ -2496,7 +2497,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.typesense.api#RetrieveSynonymSetResponseItemsList": {
+    "com.typesense.api#GetSynonymSetResponseItemsList": {
       "type": "list",
       "member": {
         "target": "com.typesense.api#SynonymItemSchema"
@@ -2505,11 +2506,11 @@
         "smithy.api#documentation": "Array of synonym items"
       }
     },
-    "com.typesense.api#RetrieveSynonymSetResponse": {
+    "com.typesense.api#GetSynonymSetResponse": {
       "type": "structure",
       "members": {
         "items": {
-          "target": "com.typesense.api#RetrieveSynonymSetResponseItemsList",
+          "target": "com.typesense.api#GetSynonymSetResponseItemsList",
           "traits": {
             "smithy.api#documentation": "Array of synonym items",
             "smithy.api#required": {}
@@ -2527,13 +2528,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.typesense.api#RetrieveSynonymSet": {
+    "com.typesense.api#GetSynonymSet": {
       "type": "operation",
       "input": {
-        "target": "com.typesense.api#RetrieveSynonymSetRequest"
+        "target": "com.typesense.api#GetSynonymSetRequest"
       },
       "output": {
-        "target": "com.typesense.api#RetrieveSynonymSetResponse"
+        "target": "com.typesense.api#GetSynonymSetResponse"
       },
       "errors": [
         {
@@ -2685,7 +2686,7 @@
         "smithy.api#documentation": "Delete a synonym set\n\nDelete a specific synonym set by its name"
       }
     },
-    "com.typesense.api#RetrieveSynonymSetItemsRequest": {
+    "com.typesense.api#GetSynonymSetItemsRequest": {
       "type": "structure",
       "members": {
         "synonymSetName": {
@@ -2701,18 +2702,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.typesense.api#RetrieveSynonymSetItemsResponseBodyList": {
+    "com.typesense.api#GetSynonymSetItemsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.typesense.api#SynonymItemSchema"
       },
       "traits": {}
     },
-    "com.typesense.api#RetrieveSynonymSetItemsResponse": {
+    "com.typesense.api#GetSynonymSetItemsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.typesense.api#RetrieveSynonymSetItemsResponseBodyList",
+          "target": "com.typesense.api#GetSynonymSetItemsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -2723,13 +2724,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.typesense.api#RetrieveSynonymSetItems": {
+    "com.typesense.api#GetSynonymSetItems": {
       "type": "operation",
       "input": {
-        "target": "com.typesense.api#RetrieveSynonymSetItemsRequest"
+        "target": "com.typesense.api#GetSynonymSetItemsRequest"
       },
       "output": {
-        "target": "com.typesense.api#RetrieveSynonymSetItemsResponse"
+        "target": "com.typesense.api#GetSynonymSetItemsResponse"
       },
       "errors": [
         {
@@ -2745,7 +2746,7 @@
         "smithy.api#documentation": "List items in a synonym set\n\nRetrieve all synonym items in a set"
       }
     },
-    "com.typesense.api#RetrieveSynonymSetItemRequest": {
+    "com.typesense.api#GetSynonymSetItemRequest": {
       "type": "structure",
       "members": {
         "synonymSetName": {
@@ -2769,7 +2770,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.typesense.api#RetrieveSynonymSetItemResponseSynonymsList": {
+    "com.typesense.api#GetSynonymSetItemResponseSynonymsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -2778,7 +2779,7 @@
         "smithy.api#documentation": "Array of words that should be considered as synonyms"
       }
     },
-    "com.typesense.api#RetrieveSynonymSetItemResponseSymbolsToIndexList": {
+    "com.typesense.api#GetSynonymSetItemResponseSymbolsToIndexList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -2787,7 +2788,7 @@
         "smithy.api#documentation": "By default, special characters are dropped from synonyms. Use this attribute to specify which special characters should be indexed as is"
       }
     },
-    "com.typesense.api#RetrieveSynonymSetItemResponse": {
+    "com.typesense.api#GetSynonymSetItemResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2798,7 +2799,7 @@
           }
         },
         "synonyms": {
-          "target": "com.typesense.api#RetrieveSynonymSetItemResponseSynonymsList",
+          "target": "com.typesense.api#GetSynonymSetItemResponseSynonymsList",
           "traits": {
             "smithy.api#documentation": "Array of words that should be considered as synonyms",
             "smithy.api#required": {}
@@ -2817,7 +2818,7 @@
           }
         },
         "symbols_to_index": {
-          "target": "com.typesense.api#RetrieveSynonymSetItemResponseSymbolsToIndexList",
+          "target": "com.typesense.api#GetSynonymSetItemResponseSymbolsToIndexList",
           "traits": {
             "smithy.api#documentation": "By default, special characters are dropped from synonyms. Use this attribute to specify which special characters should be indexed as is"
           }
@@ -2827,13 +2828,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.typesense.api#RetrieveSynonymSetItem": {
+    "com.typesense.api#GetSynonymSetItem": {
       "type": "operation",
       "input": {
-        "target": "com.typesense.api#RetrieveSynonymSetItemRequest"
+        "target": "com.typesense.api#GetSynonymSetItemRequest"
       },
       "output": {
-        "target": "com.typesense.api#RetrieveSynonymSetItemResponse"
+        "target": "com.typesense.api#GetSynonymSetItemResponse"
       },
       "errors": [
         {
@@ -3283,18 +3284,18 @@
         "smithy.api#documentation": "Array of curation items"
       }
     },
-    "com.typesense.api#RetrieveCurationSetsResponseBodyList": {
+    "com.typesense.api#GetCurationSetsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.typesense.api#CurationSetSchema"
       },
       "traits": {}
     },
-    "com.typesense.api#RetrieveCurationSetsResponse": {
+    "com.typesense.api#GetCurationSetsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.typesense.api#RetrieveCurationSetsResponseBodyList",
+          "target": "com.typesense.api#GetCurationSetsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -3305,13 +3306,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.typesense.api#RetrieveCurationSets": {
+    "com.typesense.api#GetCurationSets": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
       },
       "output": {
-        "target": "com.typesense.api#RetrieveCurationSetsResponse"
+        "target": "com.typesense.api#GetCurationSetsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3322,7 +3323,7 @@
         "smithy.api#documentation": "List all curation sets\n\nRetrieve all curation sets"
       }
     },
-    "com.typesense.api#RetrieveCurationSetRequest": {
+    "com.typesense.api#GetCurationSetRequest": {
       "type": "structure",
       "members": {
         "curationSetName": {
@@ -3338,7 +3339,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.typesense.api#RetrieveCurationSetResponseItemsList": {
+    "com.typesense.api#GetCurationSetResponseItemsList": {
       "type": "list",
       "member": {
         "target": "com.typesense.api#CurationItemCreateSchema"
@@ -3347,11 +3348,11 @@
         "smithy.api#documentation": "Array of curation items"
       }
     },
-    "com.typesense.api#RetrieveCurationSetResponse": {
+    "com.typesense.api#GetCurationSetResponse": {
       "type": "structure",
       "members": {
         "items": {
-          "target": "com.typesense.api#RetrieveCurationSetResponseItemsList",
+          "target": "com.typesense.api#GetCurationSetResponseItemsList",
           "traits": {
             "smithy.api#documentation": "Array of curation items",
             "smithy.api#required": {}
@@ -3374,13 +3375,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.typesense.api#RetrieveCurationSet": {
+    "com.typesense.api#GetCurationSet": {
       "type": "operation",
       "input": {
-        "target": "com.typesense.api#RetrieveCurationSetRequest"
+        "target": "com.typesense.api#GetCurationSetRequest"
       },
       "output": {
-        "target": "com.typesense.api#RetrieveCurationSetResponse"
+        "target": "com.typesense.api#GetCurationSetResponse"
       },
       "errors": [
         {
@@ -3543,7 +3544,7 @@
         "smithy.api#documentation": "Delete a curation set\n\nDelete a specific curation set by its name"
       }
     },
-    "com.typesense.api#RetrieveCurationSetItemsRequest": {
+    "com.typesense.api#GetCurationSetItemsRequest": {
       "type": "structure",
       "members": {
         "curationSetName": {
@@ -3662,18 +3663,18 @@
         "smithy.api#documentation": "List of document `id`s that should be excluded from the search results."
       }
     },
-    "com.typesense.api#RetrieveCurationSetItemsResponseBodyList": {
+    "com.typesense.api#GetCurationSetItemsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.typesense.api#CurationItemSchema"
       },
       "traits": {}
     },
-    "com.typesense.api#RetrieveCurationSetItemsResponse": {
+    "com.typesense.api#GetCurationSetItemsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.typesense.api#RetrieveCurationSetItemsResponseBodyList",
+          "target": "com.typesense.api#GetCurationSetItemsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -3684,13 +3685,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.typesense.api#RetrieveCurationSetItems": {
+    "com.typesense.api#GetCurationSetItems": {
       "type": "operation",
       "input": {
-        "target": "com.typesense.api#RetrieveCurationSetItemsRequest"
+        "target": "com.typesense.api#GetCurationSetItemsRequest"
       },
       "output": {
-        "target": "com.typesense.api#RetrieveCurationSetItemsResponse"
+        "target": "com.typesense.api#GetCurationSetItemsResponse"
       },
       "errors": [
         {
@@ -3706,7 +3707,7 @@
         "smithy.api#documentation": "List items in a curation set\n\nRetrieve all curation items in a set"
       }
     },
-    "com.typesense.api#RetrieveCurationSetItemRequest": {
+    "com.typesense.api#GetCurationSetItemRequest": {
       "type": "structure",
       "members": {
         "curationSetName": {
@@ -3730,7 +3731,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.typesense.api#RetrieveCurationSetItemResponseIncludesList": {
+    "com.typesense.api#GetCurationSetItemResponseIncludesList": {
       "type": "list",
       "member": {
         "target": "com.typesense.api#CurationInclude"
@@ -3739,7 +3740,7 @@
         "smithy.api#documentation": "List of document `id`s that should be included in the search results with their corresponding `position`s."
       }
     },
-    "com.typesense.api#RetrieveCurationSetItemResponseExcludesList": {
+    "com.typesense.api#GetCurationSetItemResponseExcludesList": {
       "type": "list",
       "member": {
         "target": "com.typesense.api#CurationExclude"
@@ -3748,7 +3749,7 @@
         "smithy.api#documentation": "List of document `id`s that should be excluded from the search results."
       }
     },
-    "com.typesense.api#RetrieveCurationSetItemResponse": {
+    "com.typesense.api#GetCurationSetItemResponse": {
       "type": "structure",
       "members": {
         "rule": {
@@ -3758,13 +3759,13 @@
           }
         },
         "includes": {
-          "target": "com.typesense.api#RetrieveCurationSetItemResponseIncludesList",
+          "target": "com.typesense.api#GetCurationSetItemResponseIncludesList",
           "traits": {
             "smithy.api#documentation": "List of document `id`s that should be included in the search results with their corresponding `position`s."
           }
         },
         "excludes": {
-          "target": "com.typesense.api#RetrieveCurationSetItemResponseExcludesList",
+          "target": "com.typesense.api#GetCurationSetItemResponseExcludesList",
           "traits": {
             "smithy.api#documentation": "List of document `id`s that should be excluded from the search results."
           }
@@ -3835,13 +3836,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.typesense.api#RetrieveCurationSetItem": {
+    "com.typesense.api#GetCurationSetItem": {
       "type": "operation",
       "input": {
-        "target": "com.typesense.api#RetrieveCurationSetItemRequest"
+        "target": "com.typesense.api#GetCurationSetItemRequest"
       },
       "output": {
-        "target": "com.typesense.api#RetrieveCurationSetItemResponse"
+        "target": "com.typesense.api#GetCurationSetItemResponse"
       },
       "errors": [
         {
@@ -4560,18 +4561,18 @@
       },
       "traits": {}
     },
-    "com.typesense.api#RetrieveAllConversationModelsResponseBodyList": {
+    "com.typesense.api#GetAllConversationModelsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.typesense.api#ConversationModelSchema"
       },
       "traits": {}
     },
-    "com.typesense.api#RetrieveAllConversationModelsResponse": {
+    "com.typesense.api#GetAllConversationModelsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.typesense.api#RetrieveAllConversationModelsResponseBodyList",
+          "target": "com.typesense.api#GetAllConversationModelsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -4582,13 +4583,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.typesense.api#RetrieveAllConversationModels": {
+    "com.typesense.api#GetAllConversationModels": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
       },
       "output": {
-        "target": "com.typesense.api#RetrieveAllConversationModelsResponse"
+        "target": "com.typesense.api#GetAllConversationModelsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4754,7 +4755,7 @@
         "smithy.api#documentation": "Create a conversation model\n\nCreate a Conversation Model"
       }
     },
-    "com.typesense.api#RetrieveConversationModelRequest": {
+    "com.typesense.api#GetConversationModelRequest": {
       "type": "structure",
       "members": {
         "modelId": {
@@ -4770,7 +4771,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.typesense.api#RetrieveConversationModelResponse": {
+    "com.typesense.api#GetConversationModelResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -4837,13 +4838,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.typesense.api#RetrieveConversationModel": {
+    "com.typesense.api#GetConversationModel": {
       "type": "operation",
       "input": {
-        "target": "com.typesense.api#RetrieveConversationModelRequest"
+        "target": "com.typesense.api#GetConversationModelRequest"
       },
       "output": {
-        "target": "com.typesense.api#RetrieveConversationModelResponse"
+        "target": "com.typesense.api#GetConversationModelResponse"
       },
       "errors": [
         {
@@ -6715,14 +6716,14 @@
       },
       "traits": {}
     },
-    "com.typesense.api#MultiSearchRequestSearchesList": {
+    "com.typesense.api#SearchMultiRequestSearchesList": {
       "type": "list",
       "member": {
         "target": "com.typesense.api#MultiSearchCollectionParameters"
       },
       "traits": {}
     },
-    "com.typesense.api#MultiSearchRequest": {
+    "com.typesense.api#SearchMultiRequest": {
       "type": "structure",
       "members": {
         "multiSearchParameters": {
@@ -6739,7 +6740,7 @@
           }
         },
         "searches": {
-          "target": "com.typesense.api#MultiSearchRequestSearchesList",
+          "target": "com.typesense.api#SearchMultiRequestSearchesList",
           "traits": {
             "smithy.api#required": {}
           }
@@ -6896,10 +6897,10 @@
       },
       "traits": {}
     },
-    "com.typesense.api#MultiSearch": {
+    "com.typesense.api#SearchMulti": {
       "type": "operation",
       "input": {
-        "target": "com.typesense.api#MultiSearchRequest"
+        "target": "com.typesense.api#SearchMultiRequest"
       },
       "output": {
         "target": "com.typesense.api#MultiSearchResult"
@@ -7181,7 +7182,7 @@
         "smithy.api#documentation": "Get analytics subsystem status\n\nReturns sizes of internal analytics buffers and queues."
       }
     },
-    "com.typesense.api#RetrieveAnalyticsRulesRequest": {
+    "com.typesense.api#GetAnalyticsRulesRequest": {
       "type": "structure",
       "members": {
         "rule_tag": {
@@ -7296,18 +7297,18 @@
       },
       "traits": {}
     },
-    "com.typesense.api#RetrieveAnalyticsRulesResponseBodyList": {
+    "com.typesense.api#GetAnalyticsRulesResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.typesense.api#AnalyticsRule"
       },
       "traits": {}
     },
-    "com.typesense.api#RetrieveAnalyticsRulesResponse": {
+    "com.typesense.api#GetAnalyticsRulesResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.typesense.api#RetrieveAnalyticsRulesResponseBodyList",
+          "target": "com.typesense.api#GetAnalyticsRulesResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -7318,13 +7319,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.typesense.api#RetrieveAnalyticsRules": {
+    "com.typesense.api#GetAnalyticsRules": {
       "type": "operation",
       "input": {
-        "target": "com.typesense.api#RetrieveAnalyticsRulesRequest"
+        "target": "com.typesense.api#GetAnalyticsRulesRequest"
       },
       "output": {
-        "target": "com.typesense.api#RetrieveAnalyticsRulesResponse"
+        "target": "com.typesense.api#GetAnalyticsRulesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7516,7 +7517,7 @@
         "smithy.api#documentation": "Create analytics rule(s)\n\nCreate one or more analytics rules. You can send a single rule object or an array of rule objects."
       }
     },
-    "com.typesense.api#RetrieveAnalyticsRuleRequest": {
+    "com.typesense.api#GetAnalyticsRuleRequest": {
       "type": "structure",
       "members": {
         "ruleName": {
@@ -7532,14 +7533,14 @@
         "smithy.api#input": {}
       }
     },
-    "com.typesense.api#RetrieveAnalyticsRuleResponseParamsMetaFieldsList": {
+    "com.typesense.api#GetAnalyticsRuleResponseParamsMetaFieldsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.typesense.api#RetrieveAnalyticsRuleResponseParams": {
+    "com.typesense.api#GetAnalyticsRuleResponseParams": {
       "type": "structure",
       "members": {
         "destination_collection": {
@@ -7552,7 +7553,7 @@
           "target": "smithy.api#Boolean"
         },
         "meta_fields": {
-          "target": "com.typesense.api#RetrieveAnalyticsRuleResponseParamsMetaFieldsList"
+          "target": "com.typesense.api#GetAnalyticsRuleResponseParamsMetaFieldsList"
         },
         "expand_query": {
           "target": "smithy.api#Boolean"
@@ -7566,7 +7567,7 @@
       },
       "traits": {}
     },
-    "com.typesense.api#RetrieveAnalyticsRuleResponse": {
+    "com.typesense.api#GetAnalyticsRuleResponse": {
       "type": "structure",
       "members": {
         "name": {
@@ -7597,20 +7598,20 @@
           "target": "smithy.api#String"
         },
         "params": {
-          "target": "com.typesense.api#RetrieveAnalyticsRuleResponseParams"
+          "target": "com.typesense.api#GetAnalyticsRuleResponseParams"
         }
       },
       "traits": {
         "smithy.api#output": {}
       }
     },
-    "com.typesense.api#RetrieveAnalyticsRule": {
+    "com.typesense.api#GetAnalyticsRule": {
       "type": "operation",
       "input": {
-        "target": "com.typesense.api#RetrieveAnalyticsRuleRequest"
+        "target": "com.typesense.api#GetAnalyticsRuleRequest"
       },
       "output": {
-        "target": "com.typesense.api#RetrieveAnalyticsRuleResponse"
+        "target": "com.typesense.api#GetAnalyticsRuleResponse"
       },
       "errors": [
         {
@@ -7889,7 +7890,7 @@
         "smithy.api#documentation": "Delete an analytics rule\n\nPermanently deletes an analytics rule, given it's name"
       }
     },
-    "com.typesense.api#RetrieveMetricsResponse": {
+    "com.typesense.api#GetMetricsResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -7904,13 +7905,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.typesense.api#RetrieveMetrics": {
+    "com.typesense.api#GetMetrics": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
       },
       "output": {
-        "target": "com.typesense.api#RetrieveMetricsResponse"
+        "target": "com.typesense.api#GetMetricsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7966,7 +7967,7 @@
       },
       "traits": {}
     },
-    "com.typesense.api#RetrieveAPIStats": {
+    "com.typesense.api#GetAPIStats": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -8030,7 +8031,7 @@
       },
       "traits": {}
     },
-    "com.typesense.api#RetrieveStopwordsSets": {
+    "com.typesense.api#GetStopwordsSets": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -8047,7 +8048,7 @@
         "smithy.api#documentation": "Retrieves all stopwords sets.\n\nRetrieve the details of all stopwords sets"
       }
     },
-    "com.typesense.api#RetrieveStopwordsSetRequest": {
+    "com.typesense.api#GetStopwordsSetRequest": {
       "type": "structure",
       "members": {
         "setId": {
@@ -8075,10 +8076,10 @@
       },
       "traits": {}
     },
-    "com.typesense.api#RetrieveStopwordsSet": {
+    "com.typesense.api#GetStopwordsSet": {
       "type": "operation",
       "input": {
-        "target": "com.typesense.api#RetrieveStopwordsSetRequest"
+        "target": "com.typesense.api#GetStopwordsSetRequest"
       },
       "output": {
         "target": "com.typesense.api#StopwordsSetRetrieveSchema"
@@ -8277,7 +8278,7 @@
       },
       "traits": {}
     },
-    "com.typesense.api#RetrieveAllPresets": {
+    "com.typesense.api#GetAllPresets": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -8294,7 +8295,7 @@
         "smithy.api#documentation": "Retrieves all presets.\n\nRetrieve the details of all presets"
       }
     },
-    "com.typesense.api#RetrievePresetRequest": {
+    "com.typesense.api#GetPresetRequest": {
       "type": "structure",
       "members": {
         "presetId": {
@@ -8310,7 +8311,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.typesense.api#RetrievePresetResponseValue": {
+    "com.typesense.api#GetPresetResponseValue": {
       "type": "union",
       "members": {
         "SearchParameters": {
@@ -8322,11 +8323,11 @@
       },
       "traits": {}
     },
-    "com.typesense.api#RetrievePresetResponse": {
+    "com.typesense.api#GetPresetResponse": {
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.typesense.api#RetrievePresetResponseValue",
+          "target": "com.typesense.api#GetPresetResponseValue",
           "traits": {
             "smithy.api#required": {}
           }
@@ -8342,13 +8343,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.typesense.api#RetrievePreset": {
+    "com.typesense.api#GetPreset": {
       "type": "operation",
       "input": {
-        "target": "com.typesense.api#RetrievePresetRequest"
+        "target": "com.typesense.api#GetPresetRequest"
       },
       "output": {
-        "target": "com.typesense.api#RetrievePresetResponse"
+        "target": "com.typesense.api#GetPresetResponse"
       },
       "errors": [
         {
@@ -8803,18 +8804,18 @@
         "smithy.api#documentation": "Stop sequences for the NL model (Google-specific)"
       }
     },
-    "com.typesense.api#RetrieveAllNLSearchModelsResponseBodyList": {
+    "com.typesense.api#GetAllNLSearchModelsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.typesense.api#NLSearchModelSchema"
       },
       "traits": {}
     },
-    "com.typesense.api#RetrieveAllNLSearchModelsResponse": {
+    "com.typesense.api#GetAllNLSearchModelsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.typesense.api#RetrieveAllNLSearchModelsResponseBodyList",
+          "target": "com.typesense.api#GetAllNLSearchModelsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -8825,13 +8826,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.typesense.api#RetrieveAllNLSearchModels": {
+    "com.typesense.api#GetAllNLSearchModels": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
       },
       "output": {
-        "target": "com.typesense.api#RetrieveAllNLSearchModelsResponse"
+        "target": "com.typesense.api#GetAllNLSearchModelsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -9135,7 +9136,7 @@
         "smithy.api#documentation": "Create a NL search model\n\nCreate a new NL search model."
       }
     },
-    "com.typesense.api#RetrieveNLSearchModelRequest": {
+    "com.typesense.api#GetNLSearchModelRequest": {
       "type": "structure",
       "members": {
         "modelId": {
@@ -9151,7 +9152,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.typesense.api#RetrieveNLSearchModelResponseStopSequencesList": {
+    "com.typesense.api#GetNLSearchModelResponseStopSequencesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -9160,7 +9161,7 @@
         "smithy.api#documentation": "Stop sequences for the NL model (Google-specific)"
       }
     },
-    "com.typesense.api#RetrieveNLSearchModelResponse": {
+    "com.typesense.api#GetNLSearchModelResponse": {
       "type": "structure",
       "members": {
         "model_name": {
@@ -9213,7 +9214,7 @@
           }
         },
         "stop_sequences": {
-          "target": "com.typesense.api#RetrieveNLSearchModelResponseStopSequencesList",
+          "target": "com.typesense.api#GetNLSearchModelResponseStopSequencesList",
           "traits": {
             "smithy.api#documentation": "Stop sequences for the NL model (Google-specific)"
           }
@@ -9287,13 +9288,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.typesense.api#RetrieveNLSearchModel": {
+    "com.typesense.api#GetNLSearchModel": {
       "type": "operation",
       "input": {
-        "target": "com.typesense.api#RetrieveNLSearchModelRequest"
+        "target": "com.typesense.api#GetNLSearchModelRequest"
       },
       "output": {
-        "target": "com.typesense.api#RetrieveNLSearchModelResponse"
+        "target": "com.typesense.api#GetNLSearchModelResponse"
       },
       "errors": [
         {
@@ -9723,7 +9724,7 @@
           "target": "com.typesense.api#DeleteCollection"
         },
         {
-          "target": "com.typesense.api#IndexDocument"
+          "target": "com.typesense.api#ListDocument"
         },
         {
           "target": "com.typesense.api#UpdateDocuments"
@@ -9735,10 +9736,10 @@
           "target": "com.typesense.api#SearchCollection"
         },
         {
-          "target": "com.typesense.api#RetrieveSynonymSets"
+          "target": "com.typesense.api#GetSynonymSets"
         },
         {
-          "target": "com.typesense.api#RetrieveSynonymSet"
+          "target": "com.typesense.api#GetSynonymSet"
         },
         {
           "target": "com.typesense.api#UpsertSynonymSet"
@@ -9747,10 +9748,10 @@
           "target": "com.typesense.api#DeleteSynonymSet"
         },
         {
-          "target": "com.typesense.api#RetrieveSynonymSetItems"
+          "target": "com.typesense.api#GetSynonymSetItems"
         },
         {
-          "target": "com.typesense.api#RetrieveSynonymSetItem"
+          "target": "com.typesense.api#GetSynonymSetItem"
         },
         {
           "target": "com.typesense.api#UpsertSynonymSetItem"
@@ -9759,10 +9760,10 @@
           "target": "com.typesense.api#DeleteSynonymSetItem"
         },
         {
-          "target": "com.typesense.api#RetrieveCurationSets"
+          "target": "com.typesense.api#GetCurationSets"
         },
         {
-          "target": "com.typesense.api#RetrieveCurationSet"
+          "target": "com.typesense.api#GetCurationSet"
         },
         {
           "target": "com.typesense.api#UpsertCurationSet"
@@ -9771,10 +9772,10 @@
           "target": "com.typesense.api#DeleteCurationSet"
         },
         {
-          "target": "com.typesense.api#RetrieveCurationSetItems"
+          "target": "com.typesense.api#GetCurationSetItems"
         },
         {
-          "target": "com.typesense.api#RetrieveCurationSetItem"
+          "target": "com.typesense.api#GetCurationSetItem"
         },
         {
           "target": "com.typesense.api#UpsertCurationSetItem"
@@ -9798,13 +9799,13 @@
           "target": "com.typesense.api#DeleteDocument"
         },
         {
-          "target": "com.typesense.api#RetrieveAllConversationModels"
+          "target": "com.typesense.api#GetAllConversationModels"
         },
         {
           "target": "com.typesense.api#CreateConversationModel"
         },
         {
-          "target": "com.typesense.api#RetrieveConversationModel"
+          "target": "com.typesense.api#GetConversationModel"
         },
         {
           "target": "com.typesense.api#UpdateConversationModel"
@@ -9861,7 +9862,7 @@
           "target": "com.typesense.api#ToggleSlowRequestLog"
         },
         {
-          "target": "com.typesense.api#MultiSearch"
+          "target": "com.typesense.api#SearchMulti"
         },
         {
           "target": "com.typesense.api#GetAnalyticsEvents"
@@ -9876,13 +9877,13 @@
           "target": "com.typesense.api#GetAnalyticsStatus"
         },
         {
-          "target": "com.typesense.api#RetrieveAnalyticsRules"
+          "target": "com.typesense.api#GetAnalyticsRules"
         },
         {
           "target": "com.typesense.api#CreateAnalyticsRule"
         },
         {
-          "target": "com.typesense.api#RetrieveAnalyticsRule"
+          "target": "com.typesense.api#GetAnalyticsRule"
         },
         {
           "target": "com.typesense.api#UpsertAnalyticsRule"
@@ -9891,16 +9892,16 @@
           "target": "com.typesense.api#DeleteAnalyticsRule"
         },
         {
-          "target": "com.typesense.api#RetrieveMetrics"
+          "target": "com.typesense.api#GetMetrics"
         },
         {
-          "target": "com.typesense.api#RetrieveAPIStats"
+          "target": "com.typesense.api#GetAPIStats"
         },
         {
-          "target": "com.typesense.api#RetrieveStopwordsSets"
+          "target": "com.typesense.api#GetStopwordsSets"
         },
         {
-          "target": "com.typesense.api#RetrieveStopwordsSet"
+          "target": "com.typesense.api#GetStopwordsSet"
         },
         {
           "target": "com.typesense.api#UpsertStopwordsSet"
@@ -9909,10 +9910,10 @@
           "target": "com.typesense.api#DeleteStopwordsSet"
         },
         {
-          "target": "com.typesense.api#RetrieveAllPresets"
+          "target": "com.typesense.api#GetAllPresets"
         },
         {
-          "target": "com.typesense.api#RetrievePreset"
+          "target": "com.typesense.api#GetPreset"
         },
         {
           "target": "com.typesense.api#UpsertPreset"
@@ -9930,13 +9931,13 @@
           "target": "com.typesense.api#ImportStemmingDictionary"
         },
         {
-          "target": "com.typesense.api#RetrieveAllNLSearchModels"
+          "target": "com.typesense.api#GetAllNLSearchModels"
         },
         {
           "target": "com.typesense.api#CreateNLSearchModel"
         },
         {
-          "target": "com.typesense.api#RetrieveNLSearchModel"
+          "target": "com.typesense.api#GetNLSearchModel"
         },
         {
           "target": "com.typesense.api#UpdateNLSearchModel"

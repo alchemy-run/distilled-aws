@@ -622,172 +622,17 @@ export const CreateSetupIntentResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateSetupIntentResponse",
 }) as any as S.Schema<CreateSetupIntentResponse>;
 
-/** The direction of the sort. */
-export type Direction = "asc" | "desc";
-export const Direction = /*@__PURE__*/ S.String;
-
-export interface ListSetupIntentRequest {
-  after?: string;
-  before?: string;
-  first?: number;
-  last?: number;
-  company_id: string;
-  direction?: Direction | (string & {});
-  created_before?: string;
-  created_after?: string;
-}
-export const ListSetupIntentRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    after: S.optional(S.String.pipe(T.Query())),
-    before: S.optional(S.String.pipe(T.Query())),
-    first: S.optional(S.Number.pipe(T.Query())),
-    last: S.optional(S.Number.pipe(T.Query())),
-    company_id: S.String.pipe(T.Query()),
-    direction: S.optional(Direction.pipe(T.Query())),
-    created_before: S.optional(S.String.pipe(T.Query())),
-    created_after: S.optional(S.String.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/setup_intents", code: 200 })),
-).annotate({
-  identifier: "ListSetupIntentRequest",
-}) as any as S.Schema<ListSetupIntentRequest>;
-
-/** The checkout session configuration associated with this setup intent. Null if no checkout session was used. */
-export type SetupIntentListItemCheckoutConfiguration =
-  CreateSetupIntentResponseCheckoutConfiguration;
-export const SetupIntentListItemCheckoutConfiguration =
-  CreateSetupIntentResponseCheckoutConfiguration;
-
-/** The company that initiated this setup intent. Null if the company has been deleted. */
-export type SetupIntentListItemCompany = CreateSetupIntentResponseCompany;
-export const SetupIntentListItemCompany = CreateSetupIntentResponseCompany;
-
-/** The user for this member, if any. */
-export type SetupIntentListItemMemberUser = CreateSetupIntentResponseMemberUser;
-export const SetupIntentListItemMemberUser =
-  CreateSetupIntentResponseMemberUser;
-
-/** The company member associated with this setup intent. Null if the user is not a member. */
-export type SetupIntentListItemMember = CreateSetupIntentResponseMember;
-export const SetupIntentListItemMember = CreateSetupIntentResponseMember;
-
-/** Custom key-value pairs attached to this setup intent. Null if no metadata was provided. */
-export type SetupIntentListItemMetadataMap = {
-  [key: string]: unknown | undefined;
-};
-export const SetupIntentListItemMetadataMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<SetupIntentListItemMetadataMap>;
-
-/** The card data associated with the payment method, if its a debit or credit card. */
-export type SetupIntentListItemPaymentMethodCard =
-  CreateSetupIntentResponsePaymentMethodCard;
-export const SetupIntentListItemPaymentMethodCard =
-  CreateSetupIntentResponsePaymentMethodCard;
-
-/** The mailing address associated with the payment method's user */
-export type SetupIntentListItemPaymentMethodMailingAddress =
-  CreateSetupIntentResponsePaymentMethodMailingAddress;
-export const SetupIntentListItemPaymentMethodMailingAddress =
-  CreateSetupIntentResponsePaymentMethodMailingAddress;
-
-/** The saved payment method created by this setup intent. Null if the setup has not completed successfully. */
-export type SetupIntentListItemPaymentMethod =
-  CreateSetupIntentResponsePaymentMethod;
-export const SetupIntentListItemPaymentMethod =
-  CreateSetupIntentResponsePaymentMethod;
-
-/** A setup intent allows a user to save a payment method for future use without making an immediate purchase. */
-export interface SetupIntentListItem {
-  /** The checkout session configuration associated with this setup intent. Null if no checkout session was used. */
-  checkout_configuration: CreateSetupIntentResponseCheckoutConfiguration | null;
-  /** The company that initiated this setup intent. Null if the company has been deleted. */
-  company: CreateSetupIntentResponseCompany | null;
-  /** The datetime the setup intent was created. */
-  created_at: string;
-  /** A human-readable error message explaining why the setup intent failed. Null if no error occurred. */
-  error_message: string | null;
-  /** The unique identifier for the setup intent. */
-  id: string;
-  /** The company member associated with this setup intent. Null if the user is not a member. */
-  member: CreateSetupIntentResponseMember | null;
-  /** Custom key-value pairs attached to this setup intent. Null if no metadata was provided. */
-  metadata: SetupIntentListItemMetadataMap | null;
-  /** The saved payment method created by this setup intent. Null if the setup has not completed successfully. */
-  payment_method: CreateSetupIntentResponsePaymentMethod | null;
-  /** The current status of the setup intent. */
-  status: SetupIntentStatuses;
-}
-export const SetupIntentListItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    checkout_configuration: S.NullOr(
-      CreateSetupIntentResponseCheckoutConfiguration,
-    ),
-    company: S.NullOr(CreateSetupIntentResponseCompany),
-    created_at: S.String,
-    error_message: S.NullOr(S.String),
-    id: S.String,
-    member: S.NullOr(CreateSetupIntentResponseMember),
-    metadata: S.NullOr(SetupIntentListItemMetadataMap),
-    payment_method: S.NullOr(CreateSetupIntentResponsePaymentMethod),
-    status: SetupIntentStatuses,
-  }),
-).annotate({
-  identifier: "SetupIntentListItem",
-}) as any as S.Schema<SetupIntentListItem>;
-
-/** A list of nodes. */
-export type ListSetupIntentResponseDataList = Array<SetupIntentListItem>;
-export const ListSetupIntentResponseDataList = /*@__PURE__*/ S.Array(
-  SetupIntentListItem,
-) as any as S.Schema<ListSetupIntentResponseDataList>;
-
-/** Information about pagination in a connection. */
-export interface PageInfo {
-  /** When paginating forwards, the cursor to continue. */
-  end_cursor: string | null;
-  /** When paginating forwards, are there more items? */
-  has_next_page: boolean;
-  /** When paginating backwards, are there more items? */
-  has_previous_page: boolean;
-  /** When paginating backwards, the cursor to continue. */
-  start_cursor: string | null;
-}
-export const PageInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    end_cursor: S.NullOr(S.String),
-    has_next_page: S.Boolean,
-    has_previous_page: S.Boolean,
-    start_cursor: S.NullOr(S.String),
-  }),
-).annotate({ identifier: "PageInfo" }) as any as S.Schema<PageInfo>;
-
-export interface ListSetupIntentResponse {
-  /** A list of nodes. */
-  data: ListSetupIntentResponseDataList;
-  /** Information to aid in pagination. */
-  page_info: PageInfo;
-}
-export const ListSetupIntentResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    data: ListSetupIntentResponseDataList,
-    page_info: PageInfo,
-  }),
-).annotate({
-  identifier: "ListSetupIntentResponse",
-}) as any as S.Schema<ListSetupIntentResponse>;
-
-export interface RetrieveSetupIntentRequest {
+export interface GetSetupIntentRequest {
   /** The unique identifier of the setup intent. */
   id: string;
 }
-export const RetrieveSetupIntentRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetSetupIntentRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String.pipe(T.Label()),
   }).pipe(T.Http({ method: "GET", uri: "/setup_intents/{id}", code: 200 })),
 ).annotate({
-  identifier: "RetrieveSetupIntentRequest",
-}) as any as S.Schema<RetrieveSetupIntentRequest>;
+  identifier: "GetSetupIntentRequest",
+}) as any as S.Schema<GetSetupIntentRequest>;
 
 /** The checkout session configuration associated with this setup intent. Null if no checkout session was used. */
 export type SetupIntentCheckoutConfiguration =
@@ -870,11 +715,11 @@ export const SetupIntent = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "SetupIntent" }) as any as S.Schema<SetupIntent>;
 
-export interface RetrieveStatusSetupIntentRequest {
+export interface GetStatusSetupIntentRequest {
   /** The unique identifier of the setup intent. */
   setup_intent_id: string;
 }
-export const RetrieveStatusSetupIntentRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetStatusSetupIntentRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     setup_intent_id: S.String.pipe(T.Label()),
   }).pipe(
@@ -885,8 +730,8 @@ export const RetrieveStatusSetupIntentRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "RetrieveStatusSetupIntentRequest",
-}) as any as S.Schema<RetrieveStatusSetupIntentRequest>;
+  identifier: "GetStatusSetupIntentRequest",
+}) as any as S.Schema<GetStatusSetupIntentRequest>;
 
 export interface SetupLastSetupError {
   /** A machine-readable classification of the failure, e.g. `enrollment_declined`. Absent when the buyer simply abandoned the setup. */
@@ -1280,6 +1125,161 @@ export const SetupStatus = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "SetupStatus" }) as any as S.Schema<SetupStatus>;
 
+/** The direction of the sort. */
+export type Direction = "asc" | "desc";
+export const Direction = /*@__PURE__*/ S.String;
+
+export interface ListSetupIntentRequest {
+  after?: string;
+  before?: string;
+  first?: number;
+  last?: number;
+  company_id: string;
+  direction?: Direction | (string & {});
+  created_before?: string;
+  created_after?: string;
+}
+export const ListSetupIntentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    after: S.optional(S.String.pipe(T.Query())),
+    before: S.optional(S.String.pipe(T.Query())),
+    first: S.optional(S.Number.pipe(T.Query())),
+    last: S.optional(S.Number.pipe(T.Query())),
+    company_id: S.String.pipe(T.Query()),
+    direction: S.optional(Direction.pipe(T.Query())),
+    created_before: S.optional(S.String.pipe(T.Query())),
+    created_after: S.optional(S.String.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/setup_intents", code: 200 })),
+).annotate({
+  identifier: "ListSetupIntentRequest",
+}) as any as S.Schema<ListSetupIntentRequest>;
+
+/** The checkout session configuration associated with this setup intent. Null if no checkout session was used. */
+export type SetupIntentListItemCheckoutConfiguration =
+  CreateSetupIntentResponseCheckoutConfiguration;
+export const SetupIntentListItemCheckoutConfiguration =
+  CreateSetupIntentResponseCheckoutConfiguration;
+
+/** The company that initiated this setup intent. Null if the company has been deleted. */
+export type SetupIntentListItemCompany = CreateSetupIntentResponseCompany;
+export const SetupIntentListItemCompany = CreateSetupIntentResponseCompany;
+
+/** The user for this member, if any. */
+export type SetupIntentListItemMemberUser = CreateSetupIntentResponseMemberUser;
+export const SetupIntentListItemMemberUser =
+  CreateSetupIntentResponseMemberUser;
+
+/** The company member associated with this setup intent. Null if the user is not a member. */
+export type SetupIntentListItemMember = CreateSetupIntentResponseMember;
+export const SetupIntentListItemMember = CreateSetupIntentResponseMember;
+
+/** Custom key-value pairs attached to this setup intent. Null if no metadata was provided. */
+export type SetupIntentListItemMetadataMap = {
+  [key: string]: unknown | undefined;
+};
+export const SetupIntentListItemMetadataMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<SetupIntentListItemMetadataMap>;
+
+/** The card data associated with the payment method, if its a debit or credit card. */
+export type SetupIntentListItemPaymentMethodCard =
+  CreateSetupIntentResponsePaymentMethodCard;
+export const SetupIntentListItemPaymentMethodCard =
+  CreateSetupIntentResponsePaymentMethodCard;
+
+/** The mailing address associated with the payment method's user */
+export type SetupIntentListItemPaymentMethodMailingAddress =
+  CreateSetupIntentResponsePaymentMethodMailingAddress;
+export const SetupIntentListItemPaymentMethodMailingAddress =
+  CreateSetupIntentResponsePaymentMethodMailingAddress;
+
+/** The saved payment method created by this setup intent. Null if the setup has not completed successfully. */
+export type SetupIntentListItemPaymentMethod =
+  CreateSetupIntentResponsePaymentMethod;
+export const SetupIntentListItemPaymentMethod =
+  CreateSetupIntentResponsePaymentMethod;
+
+/** A setup intent allows a user to save a payment method for future use without making an immediate purchase. */
+export interface SetupIntentListItem {
+  /** The checkout session configuration associated with this setup intent. Null if no checkout session was used. */
+  checkout_configuration: CreateSetupIntentResponseCheckoutConfiguration | null;
+  /** The company that initiated this setup intent. Null if the company has been deleted. */
+  company: CreateSetupIntentResponseCompany | null;
+  /** The datetime the setup intent was created. */
+  created_at: string;
+  /** A human-readable error message explaining why the setup intent failed. Null if no error occurred. */
+  error_message: string | null;
+  /** The unique identifier for the setup intent. */
+  id: string;
+  /** The company member associated with this setup intent. Null if the user is not a member. */
+  member: CreateSetupIntentResponseMember | null;
+  /** Custom key-value pairs attached to this setup intent. Null if no metadata was provided. */
+  metadata: SetupIntentListItemMetadataMap | null;
+  /** The saved payment method created by this setup intent. Null if the setup has not completed successfully. */
+  payment_method: CreateSetupIntentResponsePaymentMethod | null;
+  /** The current status of the setup intent. */
+  status: SetupIntentStatuses;
+}
+export const SetupIntentListItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    checkout_configuration: S.NullOr(
+      CreateSetupIntentResponseCheckoutConfiguration,
+    ),
+    company: S.NullOr(CreateSetupIntentResponseCompany),
+    created_at: S.String,
+    error_message: S.NullOr(S.String),
+    id: S.String,
+    member: S.NullOr(CreateSetupIntentResponseMember),
+    metadata: S.NullOr(SetupIntentListItemMetadataMap),
+    payment_method: S.NullOr(CreateSetupIntentResponsePaymentMethod),
+    status: SetupIntentStatuses,
+  }),
+).annotate({
+  identifier: "SetupIntentListItem",
+}) as any as S.Schema<SetupIntentListItem>;
+
+/** A list of nodes. */
+export type ListSetupIntentResponseDataList = Array<SetupIntentListItem>;
+export const ListSetupIntentResponseDataList = /*@__PURE__*/ S.Array(
+  SetupIntentListItem,
+) as any as S.Schema<ListSetupIntentResponseDataList>;
+
+/** Information about pagination in a connection. */
+export interface PageInfo {
+  /** When paginating forwards, the cursor to continue. */
+  end_cursor: string | null;
+  /** When paginating forwards, are there more items? */
+  has_next_page: boolean;
+  /** When paginating backwards, are there more items? */
+  has_previous_page: boolean;
+  /** When paginating backwards, the cursor to continue. */
+  start_cursor: string | null;
+}
+export const PageInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    end_cursor: S.NullOr(S.String),
+    has_next_page: S.Boolean,
+    has_previous_page: S.Boolean,
+    start_cursor: S.NullOr(S.String),
+  }),
+).annotate({ identifier: "PageInfo" }) as any as S.Schema<PageInfo>;
+
+export interface ListSetupIntentResponse {
+  /** A list of nodes. */
+  data: ListSetupIntentResponseDataList;
+  /** Information to aid in pagination. */
+  page_info: PageInfo;
+}
+export const ListSetupIntentResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: ListSetupIntentResponseDataList,
+    page_info: PageInfo,
+  }),
+).annotate({
+  identifier: "ListSetupIntentResponse",
+}) as any as S.Schema<ListSetupIntentResponse>;
+
 export interface UpdateReturnUrlSetupIntentRequest {
   /** The unique identifier of the setup intent. */
   setup_intent_id: string;
@@ -1321,6 +1321,41 @@ export const createSetupIntent: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetSetupIntentError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | UnprocessableEntity
+  | WhopOpError;
+/** Retrieve setup intent [Legacy API — https://docs.whop.com/api-reference] Retrieves the details of an existing setup intent. Required permissions: - `payment:setup_intent:read` - `member:basic:read` - `member:email:read` */
+export const getSetupIntent: API.OperationMethod<
+  GetSetupIntentRequest,
+  SetupIntent,
+  GetSetupIntentError,
+  WhopOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSetupIntentRequest,
+  output: SetupIntent,
+  errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
+  protocol: WhopProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetStatusSetupIntentError = Forbidden | NotFound | WhopOpError;
+/** Retrieve setup status Retrieves how far a setup has got and what the buyer must do next, if anything. Collection runs in the background, so poll this rather than reading the create response. Accepts either a secret key or the setup's own `client_secret`, so the surface collecting the payment method can poll it directly. */
+export const getStatusSetupIntent: API.OperationMethod<
+  GetStatusSetupIntentRequest,
+  SetupStatus,
+  GetStatusSetupIntentError,
+  WhopOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetStatusSetupIntentRequest,
+  output: SetupStatus,
+  errors: [Forbidden, NotFound],
+  protocol: WhopProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListSetupIntentError =
   | BadRequest
   | Forbidden
@@ -1352,41 +1387,6 @@ export const listSetupIntent: API.PaginatedOperationMethod<
   }),
   paginateRelay,
 ) as any;
-
-export type RetrieveSetupIntentError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | UnprocessableEntity
-  | WhopOpError;
-/** Retrieve setup intent [Legacy API — https://docs.whop.com/api-reference] Retrieves the details of an existing setup intent. Required permissions: - `payment:setup_intent:read` - `member:basic:read` - `member:email:read` */
-export const retrieveSetupIntent: API.OperationMethod<
-  RetrieveSetupIntentRequest,
-  SetupIntent,
-  RetrieveSetupIntentError,
-  WhopOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveSetupIntentRequest,
-  output: SetupIntent,
-  errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
-  protocol: WhopProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveStatusSetupIntentError = Forbidden | NotFound | WhopOpError;
-/** Retrieve setup status Retrieves how far a setup has got and what the buyer must do next, if anything. Collection runs in the background, so poll this rather than reading the create response. Accepts either a secret key or the setup's own `client_secret`, so the surface collecting the payment method can poll it directly. */
-export const retrieveStatusSetupIntent: API.OperationMethod<
-  RetrieveStatusSetupIntentRequest,
-  SetupStatus,
-  RetrieveStatusSetupIntentError,
-  WhopOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveStatusSetupIntentRequest,
-  output: SetupStatus,
-  errors: [Forbidden, NotFound],
-  protocol: WhopProtocol,
-  retry: Retry.Retry,
-}));
 
 export type UpdateReturnUrlSetupIntentError =
   | BadRequest

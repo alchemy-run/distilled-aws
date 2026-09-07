@@ -525,6 +525,7 @@ export type CreateSecurityFirewallConfigByConfigVersionActivateResponseRulesItem
   | "server_action"
   | "shared_condition"
   | "target_path"
+  | "traffic_source"
   | "trusted_source"
   | "user_agent";
 export const CreateSecurityFirewallConfigByConfigVersionActivateResponseRulesItemCase0ConditionGroupItemConditionsItemType =
@@ -813,6 +814,7 @@ export type CreateSecurityFirewallConfigByConfigVersionActivateResponseRulesItem
   | "server_action"
   | "shared_condition"
   | "target_path"
+  | "traffic_source"
   | "trusted_source"
   | "user_agent";
 export const CreateSecurityFirewallConfigByConfigVersionActivateResponseRulesItemCase1ConditionGroupItemConditionsItemType =
@@ -1149,6 +1151,7 @@ export type CreateSecurityFirewallConfigByConfigVersionActivateResponseRulesetsC
   | "server_action"
   | "shared_condition"
   | "target_path"
+  | "traffic_source"
   | "trusted_source"
   | "user_agent";
 export const CreateSecurityFirewallConfigByConfigVersionActivateResponseRulesetsCase0ItemConditionGroupItemConditionsItemType =
@@ -1563,6 +1566,7 @@ export type CreateSecurityFirewallConfigByConfigVersionActivateResponseCondition
   | "server_action"
   | "shared_condition"
   | "target_path"
+  | "traffic_source"
   | "trusted_source"
   | "user_agent";
 export const CreateSecurityFirewallConfigByConfigVersionActivateResponseConditionsItemConditionGroupItemConditionsItemType =
@@ -2725,6 +2729,7 @@ export type GetFirewallConfigResponseRulesItemCase0ConditionGroupItemConditionsI
   | "server_action"
   | "shared_condition"
   | "target_path"
+  | "traffic_source"
   | "trusted_source"
   | "user_agent";
 export const GetFirewallConfigResponseRulesItemCase0ConditionGroupItemConditionsItemType =
@@ -2996,6 +3001,7 @@ export type GetFirewallConfigResponseRulesItemCase1ConditionGroupItemConditionsI
   | "server_action"
   | "shared_condition"
   | "target_path"
+  | "traffic_source"
   | "trusted_source"
   | "user_agent";
 export const GetFirewallConfigResponseRulesItemCase1ConditionGroupItemConditionsItemType =
@@ -3319,6 +3325,7 @@ export type GetFirewallConfigResponseRulesetsCase0ItemConditionGroupItemConditio
   | "server_action"
   | "shared_condition"
   | "target_path"
+  | "traffic_source"
   | "trusted_source"
   | "user_agent";
 export const GetFirewallConfigResponseRulesetsCase0ItemConditionGroupItemConditionsItemType =
@@ -3713,6 +3720,7 @@ export type GetFirewallConfigResponseConditionsItemConditionGroupItemConditionsI
   | "server_action"
   | "shared_condition"
   | "target_path"
+  | "traffic_source"
   | "trusted_source"
   | "user_agent";
 export const GetFirewallConfigResponseConditionsItemConditionGroupItemConditionsItemType =
@@ -4340,6 +4348,7 @@ export type GetSecurityFirewallConfigResponseActiveRulesItemCase0ConditionGroupI
   | "server_action"
   | "shared_condition"
   | "target_path"
+  | "traffic_source"
   | "trusted_source"
   | "user_agent";
 export const GetSecurityFirewallConfigResponseActiveRulesItemCase0ConditionGroupItemConditionsItemType =
@@ -4615,6 +4624,7 @@ export type GetSecurityFirewallConfigResponseActiveRulesItemCase1ConditionGroupI
   | "server_action"
   | "shared_condition"
   | "target_path"
+  | "traffic_source"
   | "trusted_source"
   | "user_agent";
 export const GetSecurityFirewallConfigResponseActiveRulesItemCase1ConditionGroupItemConditionsItemType =
@@ -4946,6 +4956,7 @@ export type GetSecurityFirewallConfigResponseActiveRulesetsCase0ItemConditionGro
   | "server_action"
   | "shared_condition"
   | "target_path"
+  | "traffic_source"
   | "trusted_source"
   | "user_agent";
 export const GetSecurityFirewallConfigResponseActiveRulesetsCase0ItemConditionGroupItemConditionsItemType =
@@ -5356,6 +5367,7 @@ export type GetSecurityFirewallConfigResponseActiveConditionsItemConditionGroupI
   | "server_action"
   | "shared_condition"
   | "target_path"
+  | "traffic_source"
   | "trusted_source"
   | "user_agent";
 export const GetSecurityFirewallConfigResponseActiveConditionsItemConditionGroupItemConditionsItemType =
@@ -5983,6 +5995,7 @@ export type GetSecurityFirewallConfigResponseDraftRulesItemCase0ConditionGroupIt
   | "server_action"
   | "shared_condition"
   | "target_path"
+  | "traffic_source"
   | "trusted_source"
   | "user_agent";
 export const GetSecurityFirewallConfigResponseDraftRulesItemCase0ConditionGroupItemConditionsItemType =
@@ -6258,6 +6271,7 @@ export type GetSecurityFirewallConfigResponseDraftRulesItemCase1ConditionGroupIt
   | "server_action"
   | "shared_condition"
   | "target_path"
+  | "traffic_source"
   | "trusted_source"
   | "user_agent";
 export const GetSecurityFirewallConfigResponseDraftRulesItemCase1ConditionGroupItemConditionsItemType =
@@ -6589,6 +6603,7 @@ export type GetSecurityFirewallConfigResponseDraftRulesetsCase0ItemConditionGrou
   | "server_action"
   | "shared_condition"
   | "target_path"
+  | "traffic_source"
   | "trusted_source"
   | "user_agent";
 export const GetSecurityFirewallConfigResponseDraftRulesetsCase0ItemConditionGroupItemConditionsItemType =
@@ -6998,6 +7013,7 @@ export type GetSecurityFirewallConfigResponseDraftConditionsItemConditionGroupIt
   | "server_action"
   | "shared_condition"
   | "target_path"
+  | "traffic_source"
   | "trusted_source"
   | "user_agent";
 export const GetSecurityFirewallConfigResponseDraftConditionsItemConditionGroupItemConditionsItemType =
@@ -7643,6 +7659,7 @@ export type GetSecurityFirewallConfigResponseVersionsItemRulesItemCase0Condition
   | "server_action"
   | "shared_condition"
   | "target_path"
+  | "traffic_source"
   | "trusted_source"
   | "user_agent";
 export const GetSecurityFirewallConfigResponseVersionsItemRulesItemCase0ConditionGroupItemConditionsItemType =
@@ -7919,6 +7936,7 @@ export type GetSecurityFirewallConfigResponseVersionsItemRulesItemCase1Condition
   | "server_action"
   | "shared_condition"
   | "target_path"
+  | "traffic_source"
   | "trusted_source"
   | "user_agent";
 export const GetSecurityFirewallConfigResponseVersionsItemRulesItemCase1ConditionGroupItemConditionsItemType =
@@ -8251,6 +8269,7 @@ export type GetSecurityFirewallConfigResponseVersionsItemRulesetsCase0ItemCondit
   | "server_action"
   | "shared_condition"
   | "target_path"
+  | "traffic_source"
   | "trusted_source"
   | "user_agent";
 export const GetSecurityFirewallConfigResponseVersionsItemRulesetsCase0ItemConditionGroupItemConditionsItemType =
@@ -8664,6 +8683,7 @@ export type GetSecurityFirewallConfigResponseVersionsItemConditionsItemCondition
   | "server_action"
   | "shared_condition"
   | "target_path"
+  | "traffic_source"
   | "trusted_source"
   | "user_agent";
 export const GetSecurityFirewallConfigResponseVersionsItemConditionsItemConditionGroupItemConditionsItemType =
@@ -9390,6 +9410,7 @@ export type PutFirewallConfigRequestRulesItemConditionGroupItemConditionsItemTyp
   | "bot_status"
   | "bot_protection"
   | "shared_condition"
+  | "traffic_source"
   | "ruleset";
 export const PutFirewallConfigRequestRulesItemConditionGroupItemConditionsItemType =
   /*@__PURE__*/ S.String;
@@ -9692,6 +9713,7 @@ export type PutFirewallConfigRequestRulesetsCase0ItemConditionGroupItemCondition
   | "bot_status"
   | "bot_protection"
   | "shared_condition"
+  | "traffic_source"
   | "ruleset";
 export const PutFirewallConfigRequestRulesetsCase0ItemConditionGroupItemConditionsItemType =
   /*@__PURE__*/ S.String;
@@ -10263,6 +10285,7 @@ export type PutFirewallConfigResponseActiveRulesItemCase0ConditionGroupItemCondi
   | "server_action"
   | "shared_condition"
   | "target_path"
+  | "traffic_source"
   | "trusted_source"
   | "user_agent";
 export const PutFirewallConfigResponseActiveRulesItemCase0ConditionGroupItemConditionsItemType =
@@ -10536,6 +10559,7 @@ export type PutFirewallConfigResponseActiveRulesItemCase1ConditionGroupItemCondi
   | "server_action"
   | "shared_condition"
   | "target_path"
+  | "traffic_source"
   | "trusted_source"
   | "user_agent";
 export const PutFirewallConfigResponseActiveRulesItemCase1ConditionGroupItemConditionsItemType =
@@ -10863,6 +10887,7 @@ export type PutFirewallConfigResponseActiveRulesetsCase0ItemConditionGroupItemCo
   | "server_action"
   | "shared_condition"
   | "target_path"
+  | "traffic_source"
   | "trusted_source"
   | "user_agent";
 export const PutFirewallConfigResponseActiveRulesetsCase0ItemConditionGroupItemConditionsItemType =
@@ -11267,6 +11292,7 @@ export type PutFirewallConfigResponseActiveConditionsItemConditionGroupItemCondi
   | "server_action"
   | "shared_condition"
   | "target_path"
+  | "traffic_source"
   | "trusted_source"
   | "user_agent";
 export const PutFirewallConfigResponseActiveConditionsItemConditionGroupItemConditionsItemType =
@@ -11774,6 +11800,7 @@ export type UpdateFirewallConfigRequestBodyCase0ValueConditionGroupItemCondition
   | "bot_status"
   | "bot_protection"
   | "shared_condition"
+  | "traffic_source"
   | "ruleset";
 export const UpdateFirewallConfigRequestBodyCase0ValueConditionGroupItemConditionsItemType =
   /*@__PURE__*/ S.String;
@@ -11992,6 +12019,7 @@ export type UpdateFirewallConfigRequestBodyCase1ValueConditionGroupItemCondition
   | "bot_status"
   | "bot_protection"
   | "shared_condition"
+  | "traffic_source"
   | "ruleset";
 export const UpdateFirewallConfigRequestBodyCase1ValueConditionGroupItemConditionsItemType =
   /*@__PURE__*/ S.String;
@@ -12252,6 +12280,7 @@ export type UpdateFirewallConfigRequestBodyCase4ValueConditionGroupItemCondition
   | "bot_status"
   | "bot_protection"
   | "shared_condition"
+  | "traffic_source"
   | "ruleset";
 export const UpdateFirewallConfigRequestBodyCase4ValueConditionGroupItemConditionsItemType =
   /*@__PURE__*/ S.String;
@@ -12433,6 +12462,7 @@ export type UpdateFirewallConfigRequestBodyCase5ValueConditionGroupItemCondition
   | "bot_status"
   | "bot_protection"
   | "shared_condition"
+  | "traffic_source"
   | "ruleset";
 export const UpdateFirewallConfigRequestBodyCase5ValueConditionGroupItemConditionsItemType =
   /*@__PURE__*/ S.String;
@@ -12718,6 +12748,7 @@ export type UpdateFirewallConfigRequestBodyCase10ValueConditionGroupItemConditio
   | "bot_status"
   | "bot_protection"
   | "shared_condition"
+  | "traffic_source"
   | "ruleset";
 export const UpdateFirewallConfigRequestBodyCase10ValueConditionGroupItemConditionsItemType =
   /*@__PURE__*/ S.String;
@@ -13033,6 +13064,7 @@ export type UpdateFirewallConfigRequestBodyCase11ValueConditionGroupItemConditio
   | "bot_status"
   | "bot_protection"
   | "shared_condition"
+  | "traffic_source"
   | "ruleset";
 export const UpdateFirewallConfigRequestBodyCase11ValueConditionGroupItemConditionsItemType =
   /*@__PURE__*/ S.String;
@@ -13717,6 +13749,7 @@ export const UpdateFirewallConfigResponse = /*@__PURE__*/ S.suspend(() =>
 
 export type AddBypassIpError =
   | BadRequest
+  | PaymentRequired
   | Forbidden
   | NotFound
   | VercelOpError;
@@ -13729,7 +13762,7 @@ export const addBypassIp: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: AddBypassIpRequest,
   output: AddBypassIpResponse,
-  errors: [BadRequest, Forbidden, NotFound],
+  errors: [BadRequest, PaymentRequired, Forbidden, NotFound],
   protocol: VercelProtocol,
   retry: Retry.Retry,
 }));
@@ -13813,6 +13846,7 @@ export const getActiveAttackStatus: API.OperationMethod<
 
 export type GetBypassIpError =
   | BadRequest
+  | PaymentRequired
   | Forbidden
   | NotFound
   | VercelOpError;
@@ -13825,7 +13859,7 @@ export const getBypassIp: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: GetBypassIpRequest,
   output: GetBypassIpResponse,
-  errors: [BadRequest, Forbidden, NotFound],
+  errors: [BadRequest, PaymentRequired, Forbidden, NotFound],
   protocol: VercelProtocol,
   retry: Retry.Retry,
 }));
@@ -13909,6 +13943,7 @@ export const putFirewallConfig: API.OperationMethod<
 
 export type RemoveBypassIpError =
   | BadRequest
+  | PaymentRequired
   | Forbidden
   | NotFound
   | VercelOpError;
@@ -13921,7 +13956,7 @@ export const removeBypassIp: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: RemoveBypassIpRequest,
   output: RemoveBypassIpResponse,
-  errors: [BadRequest, Forbidden, NotFound],
+  errors: [BadRequest, PaymentRequired, Forbidden, NotFound],
   protocol: VercelProtocol,
   retry: Retry.Retry,
 }));

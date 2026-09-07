@@ -20,31 +20,31 @@ export type FieldNoteStatusEnum =
 export const FieldNoteStatusEnum = /*@__PURE__*/ S.String;
 
 /** Structured element metadata (inferred selectors, attributes, component hints). */
-export type FieldNotesCreateRequestElementContextMap = {
+export type CreateFieldNoteRequestElementContextMap = {
   [key: string]: unknown | undefined;
 };
-export const FieldNotesCreateRequestElementContextMap = /*@__PURE__*/ S.Record(
+export const CreateFieldNoteRequestElementContextMap = /*@__PURE__*/ S.Record(
   S.String,
   S.Unknown,
-) as any as S.Schema<FieldNotesCreateRequestElementContextMap>;
+) as any as S.Schema<CreateFieldNoteRequestElementContextMap>;
 
 /** Viewport size when the field note was made, as {width, height}. */
-export interface FieldNotesCreateRequestViewport {
+export interface CreateFieldNoteRequestViewport {
   /** Viewport width in pixels. */
   width?: number;
   /** Viewport height in pixels. */
   height?: number;
 }
-export const FieldNotesCreateRequestViewport = /*@__PURE__*/ S.suspend(() =>
+export const CreateFieldNoteRequestViewport = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     width: S.optional(S.Number),
     height: S.optional(S.Number),
   }),
 ).annotate({
-  identifier: "FieldNotesCreateRequestViewport",
-}) as any as S.Schema<FieldNotesCreateRequestViewport>;
+  identifier: "CreateFieldNoteRequestViewport",
+}) as any as S.Schema<CreateFieldNoteRequestViewport>;
 
-export interface FieldNotesCreateRequest {
+export interface CreateFieldNoteRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** The note the user wrote about the element. */
@@ -66,13 +66,13 @@ export interface FieldNotesCreateRequest {
   /** Serialized autocapture-style element chain from the element up to the document root. */
   element_chain?: string | null;
   /** Structured element metadata (inferred selectors, attributes, component hints). */
-  element_context?: FieldNotesCreateRequestElementContextMap;
+  element_context?: CreateFieldNoteRequestElementContextMap;
   /** Viewport size when the field note was made, as {width, height}. */
-  viewport?: FieldNotesCreateRequestViewport | null;
+  viewport?: CreateFieldNoteRequestViewport | null;
   /** URL of an uploaded screenshot captured with the field_note. */
   screenshot_url?: string | null;
 }
-export const FieldNotesCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateFieldNoteRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     comment: S.String,
@@ -84,8 +84,8 @@ export const FieldNotesCreateRequest = /*@__PURE__*/ S.suspend(() =>
     selector: S.String,
     element_text: S.optional(S.NullOr(S.String)),
     element_chain: S.optional(S.NullOr(S.String)),
-    element_context: S.optional(FieldNotesCreateRequestElementContextMap),
-    viewport: S.optional(S.NullOr(FieldNotesCreateRequestViewport)),
+    element_context: S.optional(CreateFieldNoteRequestElementContextMap),
+    viewport: S.optional(S.NullOr(CreateFieldNoteRequestViewport)),
     screenshot_url: S.optional(S.NullOr(S.String)),
   }).pipe(
     T.Http({
@@ -95,8 +95,8 @@ export const FieldNotesCreateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "FieldNotesCreateRequest",
-}) as any as S.Schema<FieldNotesCreateRequest>;
+  identifier: "CreateFieldNoteRequest",
+}) as any as S.Schema<CreateFieldNoteRequest>;
 
 /** Structured element metadata (inferred selectors, attributes, component hints). */
 export type FieldNoteElementContextMap = { [key: string]: unknown | undefined };
@@ -106,8 +106,8 @@ export const FieldNoteElementContextMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<FieldNoteElementContextMap>;
 
 /** Viewport size when the field note was made, as {width, height}. */
-export type FieldNoteViewport = FieldNotesCreateRequestViewport;
-export const FieldNoteViewport = FieldNotesCreateRequestViewport;
+export type FieldNoteViewport = CreateFieldNoteRequestViewport;
+export const FieldNoteViewport = CreateFieldNoteRequestViewport;
 
 export type UserBasicHedgehogConfigMap = { [key: string]: unknown | undefined };
 export const UserBasicHedgehogConfigMap = /*@__PURE__*/ S.Record(
@@ -183,7 +183,7 @@ export interface FieldNote {
   /** Structured element metadata (inferred selectors, attributes, component hints). */
   element_context?: FieldNoteElementContextMap;
   /** Viewport size when the field note was made, as {width, height}. */
-  viewport?: FieldNotesCreateRequestViewport | null;
+  viewport?: CreateFieldNoteRequestViewport | null;
   /** URL of an uploaded screenshot captured with the field_note. */
   screenshot_url?: string | null;
   created_at: string;
@@ -203,7 +203,7 @@ export const FieldNote = /*@__PURE__*/ S.suspend(() =>
     element_text: S.optional(S.NullOr(S.String)),
     element_chain: S.optional(S.NullOr(S.String)),
     element_context: S.optional(FieldNoteElementContextMap),
-    viewport: S.optional(S.NullOr(FieldNotesCreateRequestViewport)),
+    viewport: S.optional(S.NullOr(CreateFieldNoteRequestViewport)),
     screenshot_url: S.optional(S.NullOr(S.String)),
     created_at: S.String,
     updated_at: S.NullOr(S.String),
@@ -239,18 +239,39 @@ export const FieldNotesDestroyResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "FieldNotesDestroyResponse",
 }) as any as S.Schema<FieldNotesDestroyResponse>;
 
-export type FieldNotesListRequestFieldNoteStatus =
+export interface GetFieldNoteRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this field note. */
+  id: string;
+}
+export const GetFieldNoteRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/field_notes/{id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetFieldNoteRequest",
+}) as any as S.Schema<GetFieldNoteRequest>;
+
+export type ListFieldNotesRequestFieldNoteStatus =
   | "acknowledged"
   | "dismissed"
   | "pending"
   | "resolved";
-export const FieldNotesListRequestFieldNoteStatus = /*@__PURE__*/ S.String;
+export const ListFieldNotesRequestFieldNoteStatus = /*@__PURE__*/ S.String;
 
-export interface FieldNotesListRequest {
+export interface ListFieldNotesRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** Filter to field notes in this lifecycle state (e.g. `pending` for unaddressed feedback). */
-  field_note_status?: FieldNotesListRequestFieldNoteStatus | (string & {});
+  field_note_status?: ListFieldNotesRequestFieldNoteStatus | (string & {});
   /** Filter to field notes made on this hostname (e.g. `app.example.com`). */
   host?: string;
   /** Number of results to return per page. */
@@ -258,11 +279,11 @@ export interface FieldNotesListRequest {
   /** The initial index from which to return the results. */
   offset?: number;
 }
-export const FieldNotesListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListFieldNotesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     field_note_status: S.optional(
-      FieldNotesListRequestFieldNoteStatus.pipe(T.Query()),
+      ListFieldNotesRequestFieldNoteStatus.pipe(T.Query()),
     ),
     host: S.optional(S.String.pipe(T.Query())),
     limit: S.optional(S.Number.pipe(T.Query())),
@@ -275,8 +296,8 @@ export const FieldNotesListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "FieldNotesListRequest",
-}) as any as S.Schema<FieldNotesListRequest>;
+  identifier: "ListFieldNotesRequest",
+}) as any as S.Schema<ListFieldNotesRequest>;
 
 export type PaginatedFieldNoteListResultsList = Array<FieldNote>;
 export const PaginatedFieldNoteListResultsList = /*@__PURE__*/ S.Array(
@@ -301,115 +322,19 @@ export const PaginatedFieldNoteList = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PaginatedFieldNoteList>;
 
 /** Structured element metadata (inferred selectors, attributes, component hints). */
-export type FieldNotesPartialUpdateRequestElementContextMap = {
+export type UpdateFieldNoteRequestElementContextMap = {
   [key: string]: unknown | undefined;
 };
-export const FieldNotesPartialUpdateRequestElementContextMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.Unknown,
-  ) as any as S.Schema<FieldNotesPartialUpdateRequestElementContextMap>;
-
-/** Viewport size when the field note was made, as {width, height}. */
-export type FieldNotesPartialUpdateRequestViewport =
-  FieldNotesCreateRequestViewport;
-export const FieldNotesPartialUpdateRequestViewport =
-  FieldNotesCreateRequestViewport;
-
-export interface FieldNotesPartialUpdateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this field note. */
-  id: string;
-  /** The note the user wrote about the element. */
-  comment?: string;
-  /** Lifecycle of the field note: pending, acknowledged, resolved, or dismissed. Ignored on create. * `pending` - Pending * `acknowledged` - Acknowledged * `resolved` - Resolved * `dismissed` - Dismissed */
-  field_note_status?: FieldNoteStatusEnum | (string & {});
-  /** Optional note left by the agent when acknowledging, resolving, or dismissing the field note. */
-  resolution?: string | null;
-  /** Full URL of the page the field note was made on. */
-  url?: string;
-  /** Hostname of the page, used to scope field notes to a site. */
-  host?: string;
-  /** Path portion of the URL. */
-  pathname?: string | null;
-  /** CSS selector that locates the element on the page. */
-  selector?: string;
-  /** Visible text of the element, if any. */
-  element_text?: string | null;
-  /** Serialized autocapture-style element chain from the element up to the document root. */
-  element_chain?: string | null;
-  /** Structured element metadata (inferred selectors, attributes, component hints). */
-  element_context?: FieldNotesPartialUpdateRequestElementContextMap;
-  /** Viewport size when the field note was made, as {width, height}. */
-  viewport?: FieldNotesCreateRequestViewport | null;
-  /** URL of an uploaded screenshot captured with the field_note. */
-  screenshot_url?: string | null;
-}
-export const FieldNotesPartialUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-    comment: S.optional(S.String),
-    field_note_status: S.optional(FieldNoteStatusEnum),
-    resolution: S.optional(S.NullOr(S.String)),
-    url: S.optional(S.String),
-    host: S.optional(S.String),
-    pathname: S.optional(S.NullOr(S.String)),
-    selector: S.optional(S.String),
-    element_text: S.optional(S.NullOr(S.String)),
-    element_chain: S.optional(S.NullOr(S.String)),
-    element_context: S.optional(
-      FieldNotesPartialUpdateRequestElementContextMap,
-    ),
-    viewport: S.optional(S.NullOr(FieldNotesCreateRequestViewport)),
-    screenshot_url: S.optional(S.NullOr(S.String)),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/api/projects/{project_id}/field_notes/{id}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "FieldNotesPartialUpdateRequest",
-}) as any as S.Schema<FieldNotesPartialUpdateRequest>;
-
-export interface FieldNotesRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this field note. */
-  id: string;
-}
-export const FieldNotesRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/field_notes/{id}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "FieldNotesRetrieveRequest",
-}) as any as S.Schema<FieldNotesRetrieveRequest>;
-
-/** Structured element metadata (inferred selectors, attributes, component hints). */
-export type FieldNotesUpdateRequestElementContextMap = {
-  [key: string]: unknown | undefined;
-};
-export const FieldNotesUpdateRequestElementContextMap = /*@__PURE__*/ S.Record(
+export const UpdateFieldNoteRequestElementContextMap = /*@__PURE__*/ S.Record(
   S.String,
   S.Unknown,
-) as any as S.Schema<FieldNotesUpdateRequestElementContextMap>;
+) as any as S.Schema<UpdateFieldNoteRequestElementContextMap>;
 
 /** Viewport size when the field note was made, as {width, height}. */
-export type FieldNotesUpdateRequestViewport = FieldNotesCreateRequestViewport;
-export const FieldNotesUpdateRequestViewport = FieldNotesCreateRequestViewport;
+export type UpdateFieldNoteRequestViewport = CreateFieldNoteRequestViewport;
+export const UpdateFieldNoteRequestViewport = CreateFieldNoteRequestViewport;
 
-export interface FieldNotesUpdateRequest {
+export interface UpdateFieldNoteRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A UUID string identifying this field note. */
@@ -433,13 +358,13 @@ export interface FieldNotesUpdateRequest {
   /** Serialized autocapture-style element chain from the element up to the document root. */
   element_chain?: string | null;
   /** Structured element metadata (inferred selectors, attributes, component hints). */
-  element_context?: FieldNotesUpdateRequestElementContextMap;
+  element_context?: UpdateFieldNoteRequestElementContextMap;
   /** Viewport size when the field note was made, as {width, height}. */
-  viewport?: FieldNotesCreateRequestViewport | null;
+  viewport?: CreateFieldNoteRequestViewport | null;
   /** URL of an uploaded screenshot captured with the field_note. */
   screenshot_url?: string | null;
 }
-export const FieldNotesUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateFieldNoteRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     id: S.String.pipe(T.Label()),
@@ -452,8 +377,8 @@ export const FieldNotesUpdateRequest = /*@__PURE__*/ S.suspend(() =>
     selector: S.String,
     element_text: S.optional(S.NullOr(S.String)),
     element_chain: S.optional(S.NullOr(S.String)),
-    element_context: S.optional(FieldNotesUpdateRequestElementContextMap),
-    viewport: S.optional(S.NullOr(FieldNotesCreateRequestViewport)),
+    element_context: S.optional(UpdateFieldNoteRequestElementContextMap),
+    viewport: S.optional(S.NullOr(CreateFieldNoteRequestViewport)),
     screenshot_url: S.optional(S.NullOr(S.String)),
   }).pipe(
     T.Http({
@@ -463,18 +388,93 @@ export const FieldNotesUpdateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "FieldNotesUpdateRequest",
-}) as any as S.Schema<FieldNotesUpdateRequest>;
+  identifier: "UpdateFieldNoteRequest",
+}) as any as S.Schema<UpdateFieldNoteRequest>;
 
-export type FieldNotesCreateError = PosthogOpError;
+/** Structured element metadata (inferred selectors, attributes, component hints). */
+export type UpdateFieldNotesPartialRequestElementContextMap = {
+  [key: string]: unknown | undefined;
+};
+export const UpdateFieldNotesPartialRequestElementContextMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.Unknown,
+  ) as any as S.Schema<UpdateFieldNotesPartialRequestElementContextMap>;
+
+/** Viewport size when the field note was made, as {width, height}. */
+export type UpdateFieldNotesPartialRequestViewport =
+  CreateFieldNoteRequestViewport;
+export const UpdateFieldNotesPartialRequestViewport =
+  CreateFieldNoteRequestViewport;
+
+export interface UpdateFieldNotesPartialRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this field note. */
+  id: string;
+  /** The note the user wrote about the element. */
+  comment?: string;
+  /** Lifecycle of the field note: pending, acknowledged, resolved, or dismissed. Ignored on create. * `pending` - Pending * `acknowledged` - Acknowledged * `resolved` - Resolved * `dismissed` - Dismissed */
+  field_note_status?: FieldNoteStatusEnum | (string & {});
+  /** Optional note left by the agent when acknowledging, resolving, or dismissing the field note. */
+  resolution?: string | null;
+  /** Full URL of the page the field note was made on. */
+  url?: string;
+  /** Hostname of the page, used to scope field notes to a site. */
+  host?: string;
+  /** Path portion of the URL. */
+  pathname?: string | null;
+  /** CSS selector that locates the element on the page. */
+  selector?: string;
+  /** Visible text of the element, if any. */
+  element_text?: string | null;
+  /** Serialized autocapture-style element chain from the element up to the document root. */
+  element_chain?: string | null;
+  /** Structured element metadata (inferred selectors, attributes, component hints). */
+  element_context?: UpdateFieldNotesPartialRequestElementContextMap;
+  /** Viewport size when the field note was made, as {width, height}. */
+  viewport?: CreateFieldNoteRequestViewport | null;
+  /** URL of an uploaded screenshot captured with the field_note. */
+  screenshot_url?: string | null;
+}
+export const UpdateFieldNotesPartialRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+    comment: S.optional(S.String),
+    field_note_status: S.optional(FieldNoteStatusEnum),
+    resolution: S.optional(S.NullOr(S.String)),
+    url: S.optional(S.String),
+    host: S.optional(S.String),
+    pathname: S.optional(S.NullOr(S.String)),
+    selector: S.optional(S.String),
+    element_text: S.optional(S.NullOr(S.String)),
+    element_chain: S.optional(S.NullOr(S.String)),
+    element_context: S.optional(
+      UpdateFieldNotesPartialRequestElementContextMap,
+    ),
+    viewport: S.optional(S.NullOr(CreateFieldNoteRequestViewport)),
+    screenshot_url: S.optional(S.NullOr(S.String)),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/api/projects/{project_id}/field_notes/{id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "UpdateFieldNotesPartialRequest",
+}) as any as S.Schema<UpdateFieldNotesPartialRequest>;
+
+export type CreateFieldNoteError = PosthogOpError;
 /** Create, read, update, and resolve toolbar field notes — UI feedback a user points at on their own site, surfaced to coding agents over MCP. */
-export const fieldNotesCreate: API.OperationMethod<
-  FieldNotesCreateRequest,
+export const createFieldNote: API.OperationMethod<
+  CreateFieldNoteRequest,
   FieldNote,
-  FieldNotesCreateError,
+  CreateFieldNoteError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FieldNotesCreateRequest,
+  input: CreateFieldNoteRequest,
   output: FieldNote,
   errors: [],
   protocol: PosthogProtocol,
@@ -496,60 +496,60 @@ export const fieldNotesDestroy: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type FieldNotesListError = PosthogOpError;
+export type GetFieldNoteError = PosthogOpError;
 /** Create, read, update, and resolve toolbar field notes — UI feedback a user points at on their own site, surfaced to coding agents over MCP. */
-export const fieldNotesList: API.OperationMethod<
-  FieldNotesListRequest,
-  PaginatedFieldNoteList,
-  FieldNotesListError,
+export const getFieldNote: API.OperationMethod<
+  GetFieldNoteRequest,
+  FieldNote,
+  GetFieldNoteError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FieldNotesListRequest,
+  input: GetFieldNoteRequest,
+  output: FieldNote,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListFieldNotesError = PosthogOpError;
+/** Create, read, update, and resolve toolbar field notes — UI feedback a user points at on their own site, surfaced to coding agents over MCP. */
+export const listFieldNotes: API.OperationMethod<
+  ListFieldNotesRequest,
+  PaginatedFieldNoteList,
+  ListFieldNotesError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListFieldNotesRequest,
   output: PaginatedFieldNoteList,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type FieldNotesPartialUpdateError = PosthogOpError;
+export type UpdateFieldNoteError = PosthogOpError;
 /** Create, read, update, and resolve toolbar field notes — UI feedback a user points at on their own site, surfaced to coding agents over MCP. */
-export const fieldNotesPartialUpdate: API.OperationMethod<
-  FieldNotesPartialUpdateRequest,
+export const updateFieldNote: API.OperationMethod<
+  UpdateFieldNoteRequest,
   FieldNote,
-  FieldNotesPartialUpdateError,
+  UpdateFieldNoteError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FieldNotesPartialUpdateRequest,
+  input: UpdateFieldNoteRequest,
   output: FieldNote,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type FieldNotesRetrieveError = PosthogOpError;
+export type UpdateFieldNotesPartialError = PosthogOpError;
 /** Create, read, update, and resolve toolbar field notes — UI feedback a user points at on their own site, surfaced to coding agents over MCP. */
-export const fieldNotesRetrieve: API.OperationMethod<
-  FieldNotesRetrieveRequest,
+export const updateFieldNotesPartial: API.OperationMethod<
+  UpdateFieldNotesPartialRequest,
   FieldNote,
-  FieldNotesRetrieveError,
+  UpdateFieldNotesPartialError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FieldNotesRetrieveRequest,
-  output: FieldNote,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type FieldNotesUpdateError = PosthogOpError;
-/** Create, read, update, and resolve toolbar field notes — UI feedback a user points at on their own site, surfaced to coding agents over MCP. */
-export const fieldNotesUpdate: API.OperationMethod<
-  FieldNotesUpdateRequest,
-  FieldNote,
-  FieldNotesUpdateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FieldNotesUpdateRequest,
+  input: UpdateFieldNotesPartialRequest,
   output: FieldNote,
   errors: [],
   protocol: PosthogProtocol,

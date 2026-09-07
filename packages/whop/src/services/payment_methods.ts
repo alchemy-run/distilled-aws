@@ -74,13 +74,94 @@ export const DeletePaymentMethodResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeletePaymentMethodResponse",
 }) as any as S.Schema<DeletePaymentMethodResponse>;
 
-/** The direction of the sort. */
-export type Direction = "asc" | "desc";
-export const Direction = /*@__PURE__*/ S.String;
+export interface GetPaymentMethodRequest {
+  /** The unique identifier of the payment method. */
+  id: string;
+  company_id?: string;
+  member_id?: string;
+}
+export const GetPaymentMethodRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+    company_id: S.optional(S.String.pipe(T.Query())),
+    member_id: S.optional(S.String.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/payment_methods/{id}", code: 200 })),
+).annotate({
+  identifier: "GetPaymentMethodRequest",
+}) as any as S.Schema<GetPaymentMethodRequest>;
 
-/** How a payment method will be charged after the buyer leaves — the same vocabulary as a confirmation token's setup_future_usage. */
-export type FutureUsageTypes = "off_session" | "on_session";
-export const FutureUsageTypes = /*@__PURE__*/ S.String;
+/** The colorway for dark surfaces. */
+export interface PaymentMethodCase0IconsCardDark {
+  /** Raster fallback at the shape's native size. */
+  png_1x: string;
+  /** Raster fallback at double density. */
+  png_2x: string;
+  /** Raster fallback at quadruple density. */
+  png_4x: string;
+  /** The vector file. Prefer this everywhere SVG renders. */
+  svg: string;
+}
+export const PaymentMethodCase0IconsCardDark = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    png_1x: S.String,
+    png_2x: S.String,
+    png_4x: S.String,
+    svg: S.String,
+  }),
+).annotate({
+  identifier: "PaymentMethodCase0IconsCardDark",
+}) as any as S.Schema<PaymentMethodCase0IconsCardDark>;
+
+/** The colorway for light surfaces. */
+export type PaymentMethodCase0IconsCardLight = PaymentMethodCase0IconsCardDark;
+export const PaymentMethodCase0IconsCardLight = PaymentMethodCase0IconsCardDark;
+
+/** The credit-card-proportioned tile (48x30). */
+export interface PaymentMethodCase0IconsCard {
+  /** The colorway for dark surfaces. */
+  dark: PaymentMethodCase0IconsCardDark;
+  /** The colorway for light surfaces. */
+  light: PaymentMethodCase0IconsCardDark;
+}
+export const PaymentMethodCase0IconsCard = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    dark: PaymentMethodCase0IconsCardDark,
+    light: PaymentMethodCase0IconsCardDark,
+  }),
+).annotate({
+  identifier: "PaymentMethodCase0IconsCard",
+}) as any as S.Schema<PaymentMethodCase0IconsCard>;
+
+/** The colorway for dark surfaces. */
+export type PaymentMethodCase0IconsSquareDark = PaymentMethodCase0IconsCardDark;
+export const PaymentMethodCase0IconsSquareDark =
+  PaymentMethodCase0IconsCardDark;
+
+/** The colorway for light surfaces. */
+export type PaymentMethodCase0IconsSquareLight =
+  PaymentMethodCase0IconsCardDark;
+export const PaymentMethodCase0IconsSquareLight =
+  PaymentMethodCase0IconsCardDark;
+
+/** The square tile (32x32). */
+export type PaymentMethodCase0IconsSquare = PaymentMethodCase0IconsCard;
+export const PaymentMethodCase0IconsSquare = PaymentMethodCase0IconsCard;
+
+/** Every rendition of the icon to display this payment method with. A saved card carries its brand's icon (Visa, Mastercard, ...) rather than the generic card art. */
+export interface PaymentMethodCase0Icons {
+  /** The credit-card-proportioned tile (48x30). */
+  card: PaymentMethodCase0IconsCard;
+  /** The square tile (32x32). */
+  square: PaymentMethodCase0IconsCard;
+}
+export const PaymentMethodCase0Icons = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    card: PaymentMethodCase0IconsCard,
+    square: PaymentMethodCase0IconsCard,
+  }),
+).annotate({
+  identifier: "PaymentMethodCase0Icons",
+}) as any as S.Schema<PaymentMethodCase0Icons>;
 
 /** The different types of payment methods that can be used. */
 export type PaymentMethodTypes =
@@ -203,14 +284,30 @@ export type PaymentMethodTypes =
   | "unknown";
 export const PaymentMethodTypes = /*@__PURE__*/ S.String;
 
-/** Only return payment methods of these types. Pass the eligible `type` values from the payment method types catalogue so the list holds nothing the purchase cannot take. An empty list returns no payment methods. */
-export type ListPaymentMethodRequestPaymentMethodTypesList = Array<
-  PaymentMethodTypes | (string & {})
->;
-export const ListPaymentMethodRequestPaymentMethodTypesList =
-  /*@__PURE__*/ S.Array(
-    PaymentMethodTypes,
-  ) as any as S.Schema<ListPaymentMethodRequestPaymentMethodTypesList>;
+/** A saved payment method with no type-specific details available. */
+export interface PaymentMethodCase0 {
+  /** The time of the event in ISO 8601 UTC format with millisecond precision */
+  created_at: string;
+  /** Every rendition of the icon to display this payment method with. A saved card carries its brand's icon (Visa, Mastercard, ...) rather than the generic card art. */
+  icons: PaymentMethodCase0Icons;
+  /** Represents a unique identifier that is Base64 obfuscated. It is often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`) input value will be accepted as an ID. */
+  id: string;
+  /** The type of payment instrument stored on file (e.g., card, us_bank_account, cashapp, ideal, sepa_debit). */
+  payment_method_type: PaymentMethodTypes;
+  /** The typename of this object */
+  typename: string;
+}
+export const PaymentMethodCase0 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    created_at: S.String,
+    icons: PaymentMethodCase0Icons,
+    id: S.String,
+    payment_method_type: PaymentMethodTypes,
+    typename: S.String,
+  }),
+).annotate({
+  identifier: "PaymentMethodCase0",
+}) as any as S.Schema<PaymentMethodCase0>;
 
 /** Possible card brands that a payment token can have */
 export type CardBrands =
@@ -262,6 +359,449 @@ export type CardBrands =
   | "unknown";
 export const CardBrands = /*@__PURE__*/ S.String;
 
+/** The funding types of a card */
+export type CardFundingTypes = "credit" | "debit" | "prepaid";
+export const CardFundingTypes = /*@__PURE__*/ S.String;
+
+/** The card-specific details for this payment method, including brand, last four digits, and expiration. */
+export interface PaymentMethodCase1Card {
+  /** The card network (e.g., visa, mastercard, amex). Null if the brand could not be determined. */
+  brand: CardBrands | null;
+  /** The two-digit expiration month of the card (1-12). Null if not available. */
+  exp_month: number | null;
+  /** The two-digit expiration year of the card (e.g., 27 for 2027). Null if not available. */
+  exp_year: number | null;
+  /** Whether the card is past its expiration month. An expired card cannot take a new charge. */
+  expired: boolean;
+  /** A stable identifier for the underlying card. Two payment methods with the same fingerprint are the same card. Null if not available. */
+  fingerprint: string | null;
+  /** How the card is funded by the issuer. Null if the funding type could not be determined. */
+  funding_type: CardFundingTypes | null;
+  /** The last four digits of the card number. Null if not available. */
+  last4: string | null;
+  /** Whether this card was verified with 3D Secure, either when it was saved or on a payment that used it. */
+  three_ds_verified: boolean;
+}
+export const PaymentMethodCase1Card = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    brand: S.NullOr(CardBrands),
+    exp_month: S.NullOr(S.Number),
+    exp_year: S.NullOr(S.Number),
+    expired: S.Boolean,
+    fingerprint: S.NullOr(S.String),
+    funding_type: S.NullOr(CardFundingTypes),
+    last4: S.NullOr(S.String),
+    three_ds_verified: S.Boolean,
+  }),
+).annotate({
+  identifier: "PaymentMethodCase1Card",
+}) as any as S.Schema<PaymentMethodCase1Card>;
+
+/** The colorway for dark surfaces. */
+export type PaymentMethodCase1IconsCardDark = PaymentMethodCase0IconsCardDark;
+export const PaymentMethodCase1IconsCardDark = PaymentMethodCase0IconsCardDark;
+
+/** The colorway for light surfaces. */
+export type PaymentMethodCase1IconsCardLight = PaymentMethodCase0IconsCardDark;
+export const PaymentMethodCase1IconsCardLight = PaymentMethodCase0IconsCardDark;
+
+/** The credit-card-proportioned tile (48x30). */
+export type PaymentMethodCase1IconsCard = PaymentMethodCase0IconsCard;
+export const PaymentMethodCase1IconsCard = PaymentMethodCase0IconsCard;
+
+/** The colorway for dark surfaces. */
+export type PaymentMethodCase1IconsSquareDark = PaymentMethodCase0IconsCardDark;
+export const PaymentMethodCase1IconsSquareDark =
+  PaymentMethodCase0IconsCardDark;
+
+/** The colorway for light surfaces. */
+export type PaymentMethodCase1IconsSquareLight =
+  PaymentMethodCase0IconsCardDark;
+export const PaymentMethodCase1IconsSquareLight =
+  PaymentMethodCase0IconsCardDark;
+
+/** The square tile (32x32). */
+export type PaymentMethodCase1IconsSquare = PaymentMethodCase0IconsCard;
+export const PaymentMethodCase1IconsSquare = PaymentMethodCase0IconsCard;
+
+/** Every rendition of the icon to display this payment method with. A saved card carries its brand's icon (Visa, Mastercard, ...) rather than the generic card art. */
+export type PaymentMethodCase1Icons = PaymentMethodCase0Icons;
+export const PaymentMethodCase1Icons = PaymentMethodCase0Icons;
+
+/** A saved card payment method, including brand, last four digits, and expiration details. */
+export interface PaymentMethodCase1 {
+  /** The card-specific details for this payment method, including brand, last four digits, and expiration. */
+  card: PaymentMethodCase1Card;
+  /** The time of the event in ISO 8601 UTC format with millisecond precision */
+  created_at: string;
+  /** Whether this card has the payer identity document required by its payment provider. */
+  has_payer_document: boolean;
+  /** Every rendition of the icon to display this payment method with. A saved card carries its brand's icon (Visa, Mastercard, ...) rather than the generic card art. */
+  icons: PaymentMethodCase0Icons;
+  /** Represents a unique identifier that is Base64 obfuscated. It is often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`) input value will be accepted as an ID. */
+  id: string;
+  /** The type of payment instrument stored on file (e.g., card, us_bank_account, cashapp, ideal, sepa_debit). */
+  payment_method_type: PaymentMethodTypes;
+  /** The typename of this object */
+  typename: string;
+}
+export const PaymentMethodCase1 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    card: PaymentMethodCase1Card,
+    created_at: S.String,
+    has_payer_document: S.Boolean,
+    icons: PaymentMethodCase0Icons,
+    id: S.String,
+    payment_method_type: PaymentMethodTypes,
+    typename: S.String,
+  }),
+).annotate({
+  identifier: "PaymentMethodCase1",
+}) as any as S.Schema<PaymentMethodCase1>;
+
+/** The colorway for dark surfaces. */
+export type PaymentMethodCase2IconsCardDark = PaymentMethodCase0IconsCardDark;
+export const PaymentMethodCase2IconsCardDark = PaymentMethodCase0IconsCardDark;
+
+/** The colorway for light surfaces. */
+export type PaymentMethodCase2IconsCardLight = PaymentMethodCase0IconsCardDark;
+export const PaymentMethodCase2IconsCardLight = PaymentMethodCase0IconsCardDark;
+
+/** The credit-card-proportioned tile (48x30). */
+export type PaymentMethodCase2IconsCard = PaymentMethodCase0IconsCard;
+export const PaymentMethodCase2IconsCard = PaymentMethodCase0IconsCard;
+
+/** The colorway for dark surfaces. */
+export type PaymentMethodCase2IconsSquareDark = PaymentMethodCase0IconsCardDark;
+export const PaymentMethodCase2IconsSquareDark =
+  PaymentMethodCase0IconsCardDark;
+
+/** The colorway for light surfaces. */
+export type PaymentMethodCase2IconsSquareLight =
+  PaymentMethodCase0IconsCardDark;
+export const PaymentMethodCase2IconsSquareLight =
+  PaymentMethodCase0IconsCardDark;
+
+/** The square tile (32x32). */
+export type PaymentMethodCase2IconsSquare = PaymentMethodCase0IconsCard;
+export const PaymentMethodCase2IconsSquare = PaymentMethodCase0IconsCard;
+
+/** Every rendition of the icon to display this payment method with. A saved card carries its brand's icon (Visa, Mastercard, ...) rather than the generic card art. */
+export type PaymentMethodCase2Icons = PaymentMethodCase0Icons;
+export const PaymentMethodCase2Icons = PaymentMethodCase0Icons;
+
+/** The bank account-specific details for this payment method, including bank name and last four digits. */
+export interface PaymentMethodCase2UsBankAccount {
+  /** The type of bank account (e.g., checking, savings). */
+  account_type: string;
+  /** The name of the financial institution holding the account. */
+  bank_name: string;
+  /** The last four digits of the bank account number. */
+  last4: string;
+}
+export const PaymentMethodCase2UsBankAccount = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    account_type: S.String,
+    bank_name: S.String,
+    last4: S.String,
+  }),
+).annotate({
+  identifier: "PaymentMethodCase2UsBankAccount",
+}) as any as S.Schema<PaymentMethodCase2UsBankAccount>;
+
+/** A saved US bank account payment method, including bank name, last four digits, and account type. */
+export interface PaymentMethodCase2 {
+  /** The time of the event in ISO 8601 UTC format with millisecond precision */
+  created_at: string;
+  /** Every rendition of the icon to display this payment method with. A saved card carries its brand's icon (Visa, Mastercard, ...) rather than the generic card art. */
+  icons: PaymentMethodCase0Icons;
+  /** Represents a unique identifier that is Base64 obfuscated. It is often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`) input value will be accepted as an ID. */
+  id: string;
+  /** The type of payment instrument stored on file (e.g., card, us_bank_account, cashapp, ideal, sepa_debit). */
+  payment_method_type: PaymentMethodTypes;
+  /** The typename of this object */
+  typename: string;
+  /** The bank account-specific details for this payment method, including bank name and last four digits. */
+  us_bank_account: PaymentMethodCase2UsBankAccount;
+}
+export const PaymentMethodCase2 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    created_at: S.String,
+    icons: PaymentMethodCase0Icons,
+    id: S.String,
+    payment_method_type: PaymentMethodTypes,
+    typename: S.String,
+    us_bank_account: PaymentMethodCase2UsBankAccount,
+  }),
+).annotate({
+  identifier: "PaymentMethodCase2",
+}) as any as S.Schema<PaymentMethodCase2>;
+
+/** The Cash App-specific details for this payment method, including cashtag and buyer ID. */
+export interface PaymentMethodCase3Cashapp {
+  /** The unique and immutable identifier assigned by Cash App to the buyer. Null if not available. */
+  buyer_id: string | null;
+  /** The public cashtag handle of the buyer on Cash App. Null if not available. */
+  cashtag: string | null;
+}
+export const PaymentMethodCase3Cashapp = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    buyer_id: S.NullOr(S.String),
+    cashtag: S.NullOr(S.String),
+  }),
+).annotate({
+  identifier: "PaymentMethodCase3Cashapp",
+}) as any as S.Schema<PaymentMethodCase3Cashapp>;
+
+/** The colorway for dark surfaces. */
+export type PaymentMethodCase3IconsCardDark = PaymentMethodCase0IconsCardDark;
+export const PaymentMethodCase3IconsCardDark = PaymentMethodCase0IconsCardDark;
+
+/** The colorway for light surfaces. */
+export type PaymentMethodCase3IconsCardLight = PaymentMethodCase0IconsCardDark;
+export const PaymentMethodCase3IconsCardLight = PaymentMethodCase0IconsCardDark;
+
+/** The credit-card-proportioned tile (48x30). */
+export type PaymentMethodCase3IconsCard = PaymentMethodCase0IconsCard;
+export const PaymentMethodCase3IconsCard = PaymentMethodCase0IconsCard;
+
+/** The colorway for dark surfaces. */
+export type PaymentMethodCase3IconsSquareDark = PaymentMethodCase0IconsCardDark;
+export const PaymentMethodCase3IconsSquareDark =
+  PaymentMethodCase0IconsCardDark;
+
+/** The colorway for light surfaces. */
+export type PaymentMethodCase3IconsSquareLight =
+  PaymentMethodCase0IconsCardDark;
+export const PaymentMethodCase3IconsSquareLight =
+  PaymentMethodCase0IconsCardDark;
+
+/** The square tile (32x32). */
+export type PaymentMethodCase3IconsSquare = PaymentMethodCase0IconsCard;
+export const PaymentMethodCase3IconsSquare = PaymentMethodCase0IconsCard;
+
+/** Every rendition of the icon to display this payment method with. A saved card carries its brand's icon (Visa, Mastercard, ...) rather than the generic card art. */
+export type PaymentMethodCase3Icons = PaymentMethodCase0Icons;
+export const PaymentMethodCase3Icons = PaymentMethodCase0Icons;
+
+/** A saved Cash App payment method, including the buyer's cashtag and unique identifier. */
+export interface PaymentMethodCase3 {
+  /** The Cash App-specific details for this payment method, including cashtag and buyer ID. */
+  cashapp: PaymentMethodCase3Cashapp;
+  /** The time of the event in ISO 8601 UTC format with millisecond precision */
+  created_at: string;
+  /** Every rendition of the icon to display this payment method with. A saved card carries its brand's icon (Visa, Mastercard, ...) rather than the generic card art. */
+  icons: PaymentMethodCase0Icons;
+  /** Represents a unique identifier that is Base64 obfuscated. It is often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`) input value will be accepted as an ID. */
+  id: string;
+  /** The type of payment instrument stored on file (e.g., card, us_bank_account, cashapp, ideal, sepa_debit). */
+  payment_method_type: PaymentMethodTypes;
+  /** The typename of this object */
+  typename: string;
+}
+export const PaymentMethodCase3 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    cashapp: PaymentMethodCase3Cashapp,
+    created_at: S.String,
+    icons: PaymentMethodCase0Icons,
+    id: S.String,
+    payment_method_type: PaymentMethodTypes,
+    typename: S.String,
+  }),
+).annotate({
+  identifier: "PaymentMethodCase3",
+}) as any as S.Schema<PaymentMethodCase3>;
+
+/** The colorway for dark surfaces. */
+export type PaymentMethodCase4IconsCardDark = PaymentMethodCase0IconsCardDark;
+export const PaymentMethodCase4IconsCardDark = PaymentMethodCase0IconsCardDark;
+
+/** The colorway for light surfaces. */
+export type PaymentMethodCase4IconsCardLight = PaymentMethodCase0IconsCardDark;
+export const PaymentMethodCase4IconsCardLight = PaymentMethodCase0IconsCardDark;
+
+/** The credit-card-proportioned tile (48x30). */
+export type PaymentMethodCase4IconsCard = PaymentMethodCase0IconsCard;
+export const PaymentMethodCase4IconsCard = PaymentMethodCase0IconsCard;
+
+/** The colorway for dark surfaces. */
+export type PaymentMethodCase4IconsSquareDark = PaymentMethodCase0IconsCardDark;
+export const PaymentMethodCase4IconsSquareDark =
+  PaymentMethodCase0IconsCardDark;
+
+/** The colorway for light surfaces. */
+export type PaymentMethodCase4IconsSquareLight =
+  PaymentMethodCase0IconsCardDark;
+export const PaymentMethodCase4IconsSquareLight =
+  PaymentMethodCase0IconsCardDark;
+
+/** The square tile (32x32). */
+export type PaymentMethodCase4IconsSquare = PaymentMethodCase0IconsCard;
+export const PaymentMethodCase4IconsSquare = PaymentMethodCase0IconsCard;
+
+/** Every rendition of the icon to display this payment method with. A saved card carries its brand's icon (Visa, Mastercard, ...) rather than the generic card art. */
+export type PaymentMethodCase4Icons = PaymentMethodCase0Icons;
+export const PaymentMethodCase4Icons = PaymentMethodCase0Icons;
+
+/** The iDEAL-specific details for this payment method, including bank name and BIC. */
+export interface PaymentMethodCase4Ideal {
+  /** The name of the customer's bank used for the iDEAL transaction. Null if not available. */
+  bank: string | null;
+  /** The Bank Identifier Code (BIC/SWIFT) of the customer's bank. Null if not available. */
+  bic: string | null;
+}
+export const PaymentMethodCase4Ideal = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    bank: S.NullOr(S.String),
+    bic: S.NullOr(S.String),
+  }),
+).annotate({
+  identifier: "PaymentMethodCase4Ideal",
+}) as any as S.Schema<PaymentMethodCase4Ideal>;
+
+/** A saved iDEAL payment method, including the customer's bank name and BIC code. */
+export interface PaymentMethodCase4 {
+  /** The time of the event in ISO 8601 UTC format with millisecond precision */
+  created_at: string;
+  /** Every rendition of the icon to display this payment method with. A saved card carries its brand's icon (Visa, Mastercard, ...) rather than the generic card art. */
+  icons: PaymentMethodCase0Icons;
+  /** Represents a unique identifier that is Base64 obfuscated. It is often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`) input value will be accepted as an ID. */
+  id: string;
+  /** The iDEAL-specific details for this payment method, including bank name and BIC. */
+  ideal: PaymentMethodCase4Ideal;
+  /** The type of payment instrument stored on file (e.g., card, us_bank_account, cashapp, ideal, sepa_debit). */
+  payment_method_type: PaymentMethodTypes;
+  /** The typename of this object */
+  typename: string;
+}
+export const PaymentMethodCase4 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    created_at: S.String,
+    icons: PaymentMethodCase0Icons,
+    id: S.String,
+    ideal: PaymentMethodCase4Ideal,
+    payment_method_type: PaymentMethodTypes,
+    typename: S.String,
+  }),
+).annotate({
+  identifier: "PaymentMethodCase4",
+}) as any as S.Schema<PaymentMethodCase4>;
+
+/** The colorway for dark surfaces. */
+export type PaymentMethodCase5IconsCardDark = PaymentMethodCase0IconsCardDark;
+export const PaymentMethodCase5IconsCardDark = PaymentMethodCase0IconsCardDark;
+
+/** The colorway for light surfaces. */
+export type PaymentMethodCase5IconsCardLight = PaymentMethodCase0IconsCardDark;
+export const PaymentMethodCase5IconsCardLight = PaymentMethodCase0IconsCardDark;
+
+/** The credit-card-proportioned tile (48x30). */
+export type PaymentMethodCase5IconsCard = PaymentMethodCase0IconsCard;
+export const PaymentMethodCase5IconsCard = PaymentMethodCase0IconsCard;
+
+/** The colorway for dark surfaces. */
+export type PaymentMethodCase5IconsSquareDark = PaymentMethodCase0IconsCardDark;
+export const PaymentMethodCase5IconsSquareDark =
+  PaymentMethodCase0IconsCardDark;
+
+/** The colorway for light surfaces. */
+export type PaymentMethodCase5IconsSquareLight =
+  PaymentMethodCase0IconsCardDark;
+export const PaymentMethodCase5IconsSquareLight =
+  PaymentMethodCase0IconsCardDark;
+
+/** The square tile (32x32). */
+export type PaymentMethodCase5IconsSquare = PaymentMethodCase0IconsCard;
+export const PaymentMethodCase5IconsSquare = PaymentMethodCase0IconsCard;
+
+/** Every rendition of the icon to display this payment method with. A saved card carries its brand's icon (Visa, Mastercard, ...) rather than the generic card art. */
+export type PaymentMethodCase5Icons = PaymentMethodCase0Icons;
+export const PaymentMethodCase5Icons = PaymentMethodCase0Icons;
+
+/** The SEPA Direct Debit-specific details for this payment method, including bank code and last four IBAN digits. */
+export interface PaymentMethodCase5SepaDebit {
+  /** The bank code of the financial institution associated with this SEPA account. Null if not available. */
+  bank_code: string | null;
+  /** The branch code of the financial institution associated with this SEPA account. Null if not available. */
+  branch_code: string | null;
+  /** The two-letter ISO country code where the bank account is located. Null if not available. */
+  country: string | null;
+  /** The last four digits of the IBAN associated with this SEPA account. Null if not available. */
+  last4: string | null;
+}
+export const PaymentMethodCase5SepaDebit = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    bank_code: S.NullOr(S.String),
+    branch_code: S.NullOr(S.String),
+    country: S.NullOr(S.String),
+    last4: S.NullOr(S.String),
+  }),
+).annotate({
+  identifier: "PaymentMethodCase5SepaDebit",
+}) as any as S.Schema<PaymentMethodCase5SepaDebit>;
+
+/** A saved SEPA Direct Debit payment method, including the bank code, country, and last four IBAN digits. */
+export interface PaymentMethodCase5 {
+  /** The time of the event in ISO 8601 UTC format with millisecond precision */
+  created_at: string;
+  /** Every rendition of the icon to display this payment method with. A saved card carries its brand's icon (Visa, Mastercard, ...) rather than the generic card art. */
+  icons: PaymentMethodCase0Icons;
+  /** Represents a unique identifier that is Base64 obfuscated. It is often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`) input value will be accepted as an ID. */
+  id: string;
+  /** The type of payment instrument stored on file (e.g., card, us_bank_account, cashapp, ideal, sepa_debit). */
+  payment_method_type: PaymentMethodTypes;
+  /** The SEPA Direct Debit-specific details for this payment method, including bank code and last four IBAN digits. */
+  sepa_debit: PaymentMethodCase5SepaDebit;
+  /** The typename of this object */
+  typename: string;
+}
+export const PaymentMethodCase5 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    created_at: S.String,
+    icons: PaymentMethodCase0Icons,
+    id: S.String,
+    payment_method_type: PaymentMethodTypes,
+    sepa_debit: PaymentMethodCase5SepaDebit,
+    typename: S.String,
+  }),
+).annotate({
+  identifier: "PaymentMethodCase5",
+}) as any as S.Schema<PaymentMethodCase5>;
+
+export type PaymentMethod =
+  | PaymentMethodCase0
+  | PaymentMethodCase1
+  | PaymentMethodCase2
+  | PaymentMethodCase3
+  | PaymentMethodCase4
+  | PaymentMethodCase5;
+export const PaymentMethod =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<PaymentMethod>;
+
+export type GetPaymentMethodResponse = PaymentMethod;
+export const GetPaymentMethodResponse = /*@__PURE__*/ S.suspend(() =>
+  PaymentMethod.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "GetPaymentMethodResponse",
+}) as any as S.Schema<GetPaymentMethodResponse>;
+
+/** The direction of the sort. */
+export type Direction = "asc" | "desc";
+export const Direction = /*@__PURE__*/ S.String;
+
+/** How a payment method will be charged after the buyer leaves — the same vocabulary as a confirmation token's setup_future_usage. */
+export type FutureUsageTypes = "off_session" | "on_session";
+export const FutureUsageTypes = /*@__PURE__*/ S.String;
+
+/** Only return payment methods of these types. Pass the eligible `type` values from the payment method types catalogue so the list holds nothing the purchase cannot take. An empty list returns no payment methods. */
+export type ListPaymentMethodRequestPaymentMethodTypesList = Array<
+  PaymentMethodTypes | (string & {})
+>;
+export const ListPaymentMethodRequestPaymentMethodTypesList =
+  /*@__PURE__*/ S.Array(
+    PaymentMethodTypes,
+  ) as any as S.Schema<ListPaymentMethodRequestPaymentMethodTypesList>;
+
 /** Only return cards on these networks, such as the networks the seller accepts. Payment methods that are not cards are unaffected. */
 export type ListPaymentMethodRequestCardBrandsList = Array<
   CardBrands | (string & {})
@@ -269,10 +809,6 @@ export type ListPaymentMethodRequestCardBrandsList = Array<
 export const ListPaymentMethodRequestCardBrandsList = /*@__PURE__*/ S.Array(
   CardBrands,
 ) as any as S.Schema<ListPaymentMethodRequestCardBrandsList>;
-
-/** The funding types of a card */
-export type CardFundingTypes = "credit" | "debit" | "prepaid";
-export const CardFundingTypes = /*@__PURE__*/ S.String;
 
 /** Only return cards funded this way. A card whose funding could not be determined is excluded, and payment methods that are not cards are unaffected. */
 export type ListPaymentMethodRequestCardFundingTypesList = Array<
@@ -331,567 +867,280 @@ export const ListPaymentMethodRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListPaymentMethodRequest>;
 
 /** The colorway for dark surfaces. */
-export interface PaymentMethodListItemCase0IconsCardDark {
-  /** Raster fallback at the shape's native size. */
-  png_1x: string;
-  /** Raster fallback at double density. */
-  png_2x: string;
-  /** Raster fallback at quadruple density. */
-  png_4x: string;
-  /** The vector file. Prefer this everywhere SVG renders. */
-  svg: string;
-}
-export const PaymentMethodListItemCase0IconsCardDark = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      png_1x: S.String,
-      png_2x: S.String,
-      png_4x: S.String,
-      svg: S.String,
-    }),
-).annotate({
-  identifier: "PaymentMethodListItemCase0IconsCardDark",
-}) as any as S.Schema<PaymentMethodListItemCase0IconsCardDark>;
+export type PaymentMethodListItemCase0IconsCardDark =
+  PaymentMethodCase0IconsCardDark;
+export const PaymentMethodListItemCase0IconsCardDark =
+  PaymentMethodCase0IconsCardDark;
 
 /** The colorway for light surfaces. */
 export type PaymentMethodListItemCase0IconsCardLight =
-  PaymentMethodListItemCase0IconsCardDark;
+  PaymentMethodCase0IconsCardDark;
 export const PaymentMethodListItemCase0IconsCardLight =
-  PaymentMethodListItemCase0IconsCardDark;
+  PaymentMethodCase0IconsCardDark;
 
 /** The credit-card-proportioned tile (48x30). */
-export interface PaymentMethodListItemCase0IconsCard {
-  /** The colorway for dark surfaces. */
-  dark: PaymentMethodListItemCase0IconsCardDark;
-  /** The colorway for light surfaces. */
-  light: PaymentMethodListItemCase0IconsCardDark;
-}
-export const PaymentMethodListItemCase0IconsCard = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    dark: PaymentMethodListItemCase0IconsCardDark,
-    light: PaymentMethodListItemCase0IconsCardDark,
-  }),
-).annotate({
-  identifier: "PaymentMethodListItemCase0IconsCard",
-}) as any as S.Schema<PaymentMethodListItemCase0IconsCard>;
+export type PaymentMethodListItemCase0IconsCard = PaymentMethodCase0IconsCard;
+export const PaymentMethodListItemCase0IconsCard = PaymentMethodCase0IconsCard;
 
 /** The colorway for dark surfaces. */
 export type PaymentMethodListItemCase0IconsSquareDark =
-  PaymentMethodListItemCase0IconsCardDark;
+  PaymentMethodCase0IconsCardDark;
 export const PaymentMethodListItemCase0IconsSquareDark =
-  PaymentMethodListItemCase0IconsCardDark;
+  PaymentMethodCase0IconsCardDark;
 
 /** The colorway for light surfaces. */
 export type PaymentMethodListItemCase0IconsSquareLight =
-  PaymentMethodListItemCase0IconsCardDark;
+  PaymentMethodCase0IconsCardDark;
 export const PaymentMethodListItemCase0IconsSquareLight =
-  PaymentMethodListItemCase0IconsCardDark;
+  PaymentMethodCase0IconsCardDark;
 
 /** The square tile (32x32). */
-export type PaymentMethodListItemCase0IconsSquare =
-  PaymentMethodListItemCase0IconsCard;
+export type PaymentMethodListItemCase0IconsSquare = PaymentMethodCase0IconsCard;
 export const PaymentMethodListItemCase0IconsSquare =
-  PaymentMethodListItemCase0IconsCard;
+  PaymentMethodCase0IconsCard;
 
 /** Every rendition of the icon to display this payment method with. A saved card carries its brand's icon (Visa, Mastercard, ...) rather than the generic card art. */
-export interface PaymentMethodListItemCase0Icons {
-  /** The credit-card-proportioned tile (48x30). */
-  card: PaymentMethodListItemCase0IconsCard;
-  /** The square tile (32x32). */
-  square: PaymentMethodListItemCase0IconsCard;
-}
-export const PaymentMethodListItemCase0Icons = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    card: PaymentMethodListItemCase0IconsCard,
-    square: PaymentMethodListItemCase0IconsCard,
-  }),
-).annotate({
-  identifier: "PaymentMethodListItemCase0Icons",
-}) as any as S.Schema<PaymentMethodListItemCase0Icons>;
+export type PaymentMethodListItemCase0Icons = PaymentMethodCase0Icons;
+export const PaymentMethodListItemCase0Icons = PaymentMethodCase0Icons;
 
 /** A saved payment method with no type-specific details available. */
-export interface PaymentMethodListItemCase0 {
-  /** The time of the event in ISO 8601 UTC format with millisecond precision */
-  created_at: string;
-  /** Every rendition of the icon to display this payment method with. A saved card carries its brand's icon (Visa, Mastercard, ...) rather than the generic card art. */
-  icons: PaymentMethodListItemCase0Icons;
-  /** Represents a unique identifier that is Base64 obfuscated. It is often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`) input value will be accepted as an ID. */
-  id: string;
-  /** The type of payment instrument stored on file (e.g., card, us_bank_account, cashapp, ideal, sepa_debit). */
-  payment_method_type: PaymentMethodTypes;
-  /** The typename of this object */
-  typename: string;
-}
-export const PaymentMethodListItemCase0 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    created_at: S.String,
-    icons: PaymentMethodListItemCase0Icons,
-    id: S.String,
-    payment_method_type: PaymentMethodTypes,
-    typename: S.String,
-  }),
-).annotate({
-  identifier: "PaymentMethodListItemCase0",
-}) as any as S.Schema<PaymentMethodListItemCase0>;
+export type PaymentMethodListItemCase0 = PaymentMethodCase0;
+export const PaymentMethodListItemCase0 = PaymentMethodCase0;
 
 /** The card-specific details for this payment method, including brand, last four digits, and expiration. */
-export interface PaymentMethodListItemCase1Card {
-  /** The card network (e.g., visa, mastercard, amex). Null if the brand could not be determined. */
-  brand: CardBrands | null;
-  /** The two-digit expiration month of the card (1-12). Null if not available. */
-  exp_month: number | null;
-  /** The two-digit expiration year of the card (e.g., 27 for 2027). Null if not available. */
-  exp_year: number | null;
-  /** Whether the card is past its expiration month. An expired card cannot take a new charge. */
-  expired: boolean;
-  /** A stable identifier for the underlying card. Two payment methods with the same fingerprint are the same card. Null if not available. */
-  fingerprint: string | null;
-  /** How the card is funded by the issuer. Null if the funding type could not be determined. */
-  funding_type: CardFundingTypes | null;
-  /** The last four digits of the card number. Null if not available. */
-  last4: string | null;
-  /** Whether this card was verified with 3D Secure, either when it was saved or on a payment that used it. */
-  three_ds_verified: boolean;
-}
-export const PaymentMethodListItemCase1Card = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    brand: S.NullOr(CardBrands),
-    exp_month: S.NullOr(S.Number),
-    exp_year: S.NullOr(S.Number),
-    expired: S.Boolean,
-    fingerprint: S.NullOr(S.String),
-    funding_type: S.NullOr(CardFundingTypes),
-    last4: S.NullOr(S.String),
-    three_ds_verified: S.Boolean,
-  }),
-).annotate({
-  identifier: "PaymentMethodListItemCase1Card",
-}) as any as S.Schema<PaymentMethodListItemCase1Card>;
+export type PaymentMethodListItemCase1Card = PaymentMethodCase1Card;
+export const PaymentMethodListItemCase1Card = PaymentMethodCase1Card;
 
 /** The colorway for dark surfaces. */
 export type PaymentMethodListItemCase1IconsCardDark =
-  PaymentMethodListItemCase0IconsCardDark;
+  PaymentMethodCase0IconsCardDark;
 export const PaymentMethodListItemCase1IconsCardDark =
-  PaymentMethodListItemCase0IconsCardDark;
+  PaymentMethodCase0IconsCardDark;
 
 /** The colorway for light surfaces. */
 export type PaymentMethodListItemCase1IconsCardLight =
-  PaymentMethodListItemCase0IconsCardDark;
+  PaymentMethodCase0IconsCardDark;
 export const PaymentMethodListItemCase1IconsCardLight =
-  PaymentMethodListItemCase0IconsCardDark;
+  PaymentMethodCase0IconsCardDark;
 
 /** The credit-card-proportioned tile (48x30). */
-export type PaymentMethodListItemCase1IconsCard =
-  PaymentMethodListItemCase0IconsCard;
-export const PaymentMethodListItemCase1IconsCard =
-  PaymentMethodListItemCase0IconsCard;
+export type PaymentMethodListItemCase1IconsCard = PaymentMethodCase0IconsCard;
+export const PaymentMethodListItemCase1IconsCard = PaymentMethodCase0IconsCard;
 
 /** The colorway for dark surfaces. */
 export type PaymentMethodListItemCase1IconsSquareDark =
-  PaymentMethodListItemCase0IconsCardDark;
+  PaymentMethodCase0IconsCardDark;
 export const PaymentMethodListItemCase1IconsSquareDark =
-  PaymentMethodListItemCase0IconsCardDark;
+  PaymentMethodCase0IconsCardDark;
 
 /** The colorway for light surfaces. */
 export type PaymentMethodListItemCase1IconsSquareLight =
-  PaymentMethodListItemCase0IconsCardDark;
+  PaymentMethodCase0IconsCardDark;
 export const PaymentMethodListItemCase1IconsSquareLight =
-  PaymentMethodListItemCase0IconsCardDark;
+  PaymentMethodCase0IconsCardDark;
 
 /** The square tile (32x32). */
-export type PaymentMethodListItemCase1IconsSquare =
-  PaymentMethodListItemCase0IconsCard;
+export type PaymentMethodListItemCase1IconsSquare = PaymentMethodCase0IconsCard;
 export const PaymentMethodListItemCase1IconsSquare =
-  PaymentMethodListItemCase0IconsCard;
+  PaymentMethodCase0IconsCard;
 
 /** Every rendition of the icon to display this payment method with. A saved card carries its brand's icon (Visa, Mastercard, ...) rather than the generic card art. */
-export type PaymentMethodListItemCase1Icons = PaymentMethodListItemCase0Icons;
-export const PaymentMethodListItemCase1Icons = PaymentMethodListItemCase0Icons;
+export type PaymentMethodListItemCase1Icons = PaymentMethodCase0Icons;
+export const PaymentMethodListItemCase1Icons = PaymentMethodCase0Icons;
 
 /** A saved card payment method, including brand, last four digits, and expiration details. */
-export interface PaymentMethodListItemCase1 {
-  /** The card-specific details for this payment method, including brand, last four digits, and expiration. */
-  card: PaymentMethodListItemCase1Card;
-  /** The time of the event in ISO 8601 UTC format with millisecond precision */
-  created_at: string;
-  /** Whether this card has the payer identity document required by its payment provider. */
-  has_payer_document: boolean;
-  /** Every rendition of the icon to display this payment method with. A saved card carries its brand's icon (Visa, Mastercard, ...) rather than the generic card art. */
-  icons: PaymentMethodListItemCase0Icons;
-  /** Represents a unique identifier that is Base64 obfuscated. It is often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`) input value will be accepted as an ID. */
-  id: string;
-  /** The type of payment instrument stored on file (e.g., card, us_bank_account, cashapp, ideal, sepa_debit). */
-  payment_method_type: PaymentMethodTypes;
-  /** The typename of this object */
-  typename: string;
-}
-export const PaymentMethodListItemCase1 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    card: PaymentMethodListItemCase1Card,
-    created_at: S.String,
-    has_payer_document: S.Boolean,
-    icons: PaymentMethodListItemCase0Icons,
-    id: S.String,
-    payment_method_type: PaymentMethodTypes,
-    typename: S.String,
-  }),
-).annotate({
-  identifier: "PaymentMethodListItemCase1",
-}) as any as S.Schema<PaymentMethodListItemCase1>;
+export type PaymentMethodListItemCase1 = PaymentMethodCase1;
+export const PaymentMethodListItemCase1 = PaymentMethodCase1;
 
 /** The colorway for dark surfaces. */
 export type PaymentMethodListItemCase2IconsCardDark =
-  PaymentMethodListItemCase0IconsCardDark;
+  PaymentMethodCase0IconsCardDark;
 export const PaymentMethodListItemCase2IconsCardDark =
-  PaymentMethodListItemCase0IconsCardDark;
+  PaymentMethodCase0IconsCardDark;
 
 /** The colorway for light surfaces. */
 export type PaymentMethodListItemCase2IconsCardLight =
-  PaymentMethodListItemCase0IconsCardDark;
+  PaymentMethodCase0IconsCardDark;
 export const PaymentMethodListItemCase2IconsCardLight =
-  PaymentMethodListItemCase0IconsCardDark;
+  PaymentMethodCase0IconsCardDark;
 
 /** The credit-card-proportioned tile (48x30). */
-export type PaymentMethodListItemCase2IconsCard =
-  PaymentMethodListItemCase0IconsCard;
-export const PaymentMethodListItemCase2IconsCard =
-  PaymentMethodListItemCase0IconsCard;
+export type PaymentMethodListItemCase2IconsCard = PaymentMethodCase0IconsCard;
+export const PaymentMethodListItemCase2IconsCard = PaymentMethodCase0IconsCard;
 
 /** The colorway for dark surfaces. */
 export type PaymentMethodListItemCase2IconsSquareDark =
-  PaymentMethodListItemCase0IconsCardDark;
+  PaymentMethodCase0IconsCardDark;
 export const PaymentMethodListItemCase2IconsSquareDark =
-  PaymentMethodListItemCase0IconsCardDark;
+  PaymentMethodCase0IconsCardDark;
 
 /** The colorway for light surfaces. */
 export type PaymentMethodListItemCase2IconsSquareLight =
-  PaymentMethodListItemCase0IconsCardDark;
+  PaymentMethodCase0IconsCardDark;
 export const PaymentMethodListItemCase2IconsSquareLight =
-  PaymentMethodListItemCase0IconsCardDark;
+  PaymentMethodCase0IconsCardDark;
 
 /** The square tile (32x32). */
-export type PaymentMethodListItemCase2IconsSquare =
-  PaymentMethodListItemCase0IconsCard;
+export type PaymentMethodListItemCase2IconsSquare = PaymentMethodCase0IconsCard;
 export const PaymentMethodListItemCase2IconsSquare =
-  PaymentMethodListItemCase0IconsCard;
+  PaymentMethodCase0IconsCard;
 
 /** Every rendition of the icon to display this payment method with. A saved card carries its brand's icon (Visa, Mastercard, ...) rather than the generic card art. */
-export type PaymentMethodListItemCase2Icons = PaymentMethodListItemCase0Icons;
-export const PaymentMethodListItemCase2Icons = PaymentMethodListItemCase0Icons;
+export type PaymentMethodListItemCase2Icons = PaymentMethodCase0Icons;
+export const PaymentMethodListItemCase2Icons = PaymentMethodCase0Icons;
 
 /** The bank account-specific details for this payment method, including bank name and last four digits. */
-export interface PaymentMethodListItemCase2UsBankAccount {
-  /** The type of bank account (e.g., checking, savings). */
-  account_type: string;
-  /** The name of the financial institution holding the account. */
-  bank_name: string;
-  /** The last four digits of the bank account number. */
-  last4: string;
-}
-export const PaymentMethodListItemCase2UsBankAccount = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      account_type: S.String,
-      bank_name: S.String,
-      last4: S.String,
-    }),
-).annotate({
-  identifier: "PaymentMethodListItemCase2UsBankAccount",
-}) as any as S.Schema<PaymentMethodListItemCase2UsBankAccount>;
+export type PaymentMethodListItemCase2UsBankAccount =
+  PaymentMethodCase2UsBankAccount;
+export const PaymentMethodListItemCase2UsBankAccount =
+  PaymentMethodCase2UsBankAccount;
 
 /** A saved US bank account payment method, including bank name, last four digits, and account type. */
-export interface PaymentMethodListItemCase2 {
-  /** The time of the event in ISO 8601 UTC format with millisecond precision */
-  created_at: string;
-  /** Every rendition of the icon to display this payment method with. A saved card carries its brand's icon (Visa, Mastercard, ...) rather than the generic card art. */
-  icons: PaymentMethodListItemCase0Icons;
-  /** Represents a unique identifier that is Base64 obfuscated. It is often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`) input value will be accepted as an ID. */
-  id: string;
-  /** The type of payment instrument stored on file (e.g., card, us_bank_account, cashapp, ideal, sepa_debit). */
-  payment_method_type: PaymentMethodTypes;
-  /** The typename of this object */
-  typename: string;
-  /** The bank account-specific details for this payment method, including bank name and last four digits. */
-  us_bank_account: PaymentMethodListItemCase2UsBankAccount;
-}
-export const PaymentMethodListItemCase2 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    created_at: S.String,
-    icons: PaymentMethodListItemCase0Icons,
-    id: S.String,
-    payment_method_type: PaymentMethodTypes,
-    typename: S.String,
-    us_bank_account: PaymentMethodListItemCase2UsBankAccount,
-  }),
-).annotate({
-  identifier: "PaymentMethodListItemCase2",
-}) as any as S.Schema<PaymentMethodListItemCase2>;
+export type PaymentMethodListItemCase2 = PaymentMethodCase2;
+export const PaymentMethodListItemCase2 = PaymentMethodCase2;
 
 /** The Cash App-specific details for this payment method, including cashtag and buyer ID. */
-export interface PaymentMethodListItemCase3Cashapp {
-  /** The unique and immutable identifier assigned by Cash App to the buyer. Null if not available. */
-  buyer_id: string | null;
-  /** The public cashtag handle of the buyer on Cash App. Null if not available. */
-  cashtag: string | null;
-}
-export const PaymentMethodListItemCase3Cashapp = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    buyer_id: S.NullOr(S.String),
-    cashtag: S.NullOr(S.String),
-  }),
-).annotate({
-  identifier: "PaymentMethodListItemCase3Cashapp",
-}) as any as S.Schema<PaymentMethodListItemCase3Cashapp>;
+export type PaymentMethodListItemCase3Cashapp = PaymentMethodCase3Cashapp;
+export const PaymentMethodListItemCase3Cashapp = PaymentMethodCase3Cashapp;
 
 /** The colorway for dark surfaces. */
 export type PaymentMethodListItemCase3IconsCardDark =
-  PaymentMethodListItemCase0IconsCardDark;
+  PaymentMethodCase0IconsCardDark;
 export const PaymentMethodListItemCase3IconsCardDark =
-  PaymentMethodListItemCase0IconsCardDark;
+  PaymentMethodCase0IconsCardDark;
 
 /** The colorway for light surfaces. */
 export type PaymentMethodListItemCase3IconsCardLight =
-  PaymentMethodListItemCase0IconsCardDark;
+  PaymentMethodCase0IconsCardDark;
 export const PaymentMethodListItemCase3IconsCardLight =
-  PaymentMethodListItemCase0IconsCardDark;
+  PaymentMethodCase0IconsCardDark;
 
 /** The credit-card-proportioned tile (48x30). */
-export type PaymentMethodListItemCase3IconsCard =
-  PaymentMethodListItemCase0IconsCard;
-export const PaymentMethodListItemCase3IconsCard =
-  PaymentMethodListItemCase0IconsCard;
+export type PaymentMethodListItemCase3IconsCard = PaymentMethodCase0IconsCard;
+export const PaymentMethodListItemCase3IconsCard = PaymentMethodCase0IconsCard;
 
 /** The colorway for dark surfaces. */
 export type PaymentMethodListItemCase3IconsSquareDark =
-  PaymentMethodListItemCase0IconsCardDark;
+  PaymentMethodCase0IconsCardDark;
 export const PaymentMethodListItemCase3IconsSquareDark =
-  PaymentMethodListItemCase0IconsCardDark;
+  PaymentMethodCase0IconsCardDark;
 
 /** The colorway for light surfaces. */
 export type PaymentMethodListItemCase3IconsSquareLight =
-  PaymentMethodListItemCase0IconsCardDark;
+  PaymentMethodCase0IconsCardDark;
 export const PaymentMethodListItemCase3IconsSquareLight =
-  PaymentMethodListItemCase0IconsCardDark;
+  PaymentMethodCase0IconsCardDark;
 
 /** The square tile (32x32). */
-export type PaymentMethodListItemCase3IconsSquare =
-  PaymentMethodListItemCase0IconsCard;
+export type PaymentMethodListItemCase3IconsSquare = PaymentMethodCase0IconsCard;
 export const PaymentMethodListItemCase3IconsSquare =
-  PaymentMethodListItemCase0IconsCard;
+  PaymentMethodCase0IconsCard;
 
 /** Every rendition of the icon to display this payment method with. A saved card carries its brand's icon (Visa, Mastercard, ...) rather than the generic card art. */
-export type PaymentMethodListItemCase3Icons = PaymentMethodListItemCase0Icons;
-export const PaymentMethodListItemCase3Icons = PaymentMethodListItemCase0Icons;
+export type PaymentMethodListItemCase3Icons = PaymentMethodCase0Icons;
+export const PaymentMethodListItemCase3Icons = PaymentMethodCase0Icons;
 
 /** A saved Cash App payment method, including the buyer's cashtag and unique identifier. */
-export interface PaymentMethodListItemCase3 {
-  /** The Cash App-specific details for this payment method, including cashtag and buyer ID. */
-  cashapp: PaymentMethodListItemCase3Cashapp;
-  /** The time of the event in ISO 8601 UTC format with millisecond precision */
-  created_at: string;
-  /** Every rendition of the icon to display this payment method with. A saved card carries its brand's icon (Visa, Mastercard, ...) rather than the generic card art. */
-  icons: PaymentMethodListItemCase0Icons;
-  /** Represents a unique identifier that is Base64 obfuscated. It is often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`) input value will be accepted as an ID. */
-  id: string;
-  /** The type of payment instrument stored on file (e.g., card, us_bank_account, cashapp, ideal, sepa_debit). */
-  payment_method_type: PaymentMethodTypes;
-  /** The typename of this object */
-  typename: string;
-}
-export const PaymentMethodListItemCase3 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    cashapp: PaymentMethodListItemCase3Cashapp,
-    created_at: S.String,
-    icons: PaymentMethodListItemCase0Icons,
-    id: S.String,
-    payment_method_type: PaymentMethodTypes,
-    typename: S.String,
-  }),
-).annotate({
-  identifier: "PaymentMethodListItemCase3",
-}) as any as S.Schema<PaymentMethodListItemCase3>;
+export type PaymentMethodListItemCase3 = PaymentMethodCase3;
+export const PaymentMethodListItemCase3 = PaymentMethodCase3;
 
 /** The colorway for dark surfaces. */
 export type PaymentMethodListItemCase4IconsCardDark =
-  PaymentMethodListItemCase0IconsCardDark;
+  PaymentMethodCase0IconsCardDark;
 export const PaymentMethodListItemCase4IconsCardDark =
-  PaymentMethodListItemCase0IconsCardDark;
+  PaymentMethodCase0IconsCardDark;
 
 /** The colorway for light surfaces. */
 export type PaymentMethodListItemCase4IconsCardLight =
-  PaymentMethodListItemCase0IconsCardDark;
+  PaymentMethodCase0IconsCardDark;
 export const PaymentMethodListItemCase4IconsCardLight =
-  PaymentMethodListItemCase0IconsCardDark;
+  PaymentMethodCase0IconsCardDark;
 
 /** The credit-card-proportioned tile (48x30). */
-export type PaymentMethodListItemCase4IconsCard =
-  PaymentMethodListItemCase0IconsCard;
-export const PaymentMethodListItemCase4IconsCard =
-  PaymentMethodListItemCase0IconsCard;
+export type PaymentMethodListItemCase4IconsCard = PaymentMethodCase0IconsCard;
+export const PaymentMethodListItemCase4IconsCard = PaymentMethodCase0IconsCard;
 
 /** The colorway for dark surfaces. */
 export type PaymentMethodListItemCase4IconsSquareDark =
-  PaymentMethodListItemCase0IconsCardDark;
+  PaymentMethodCase0IconsCardDark;
 export const PaymentMethodListItemCase4IconsSquareDark =
-  PaymentMethodListItemCase0IconsCardDark;
+  PaymentMethodCase0IconsCardDark;
 
 /** The colorway for light surfaces. */
 export type PaymentMethodListItemCase4IconsSquareLight =
-  PaymentMethodListItemCase0IconsCardDark;
+  PaymentMethodCase0IconsCardDark;
 export const PaymentMethodListItemCase4IconsSquareLight =
-  PaymentMethodListItemCase0IconsCardDark;
+  PaymentMethodCase0IconsCardDark;
 
 /** The square tile (32x32). */
-export type PaymentMethodListItemCase4IconsSquare =
-  PaymentMethodListItemCase0IconsCard;
+export type PaymentMethodListItemCase4IconsSquare = PaymentMethodCase0IconsCard;
 export const PaymentMethodListItemCase4IconsSquare =
-  PaymentMethodListItemCase0IconsCard;
+  PaymentMethodCase0IconsCard;
 
 /** Every rendition of the icon to display this payment method with. A saved card carries its brand's icon (Visa, Mastercard, ...) rather than the generic card art. */
-export type PaymentMethodListItemCase4Icons = PaymentMethodListItemCase0Icons;
-export const PaymentMethodListItemCase4Icons = PaymentMethodListItemCase0Icons;
+export type PaymentMethodListItemCase4Icons = PaymentMethodCase0Icons;
+export const PaymentMethodListItemCase4Icons = PaymentMethodCase0Icons;
 
 /** The iDEAL-specific details for this payment method, including bank name and BIC. */
-export interface PaymentMethodListItemCase4Ideal {
-  /** The name of the customer's bank used for the iDEAL transaction. Null if not available. */
-  bank: string | null;
-  /** The Bank Identifier Code (BIC/SWIFT) of the customer's bank. Null if not available. */
-  bic: string | null;
-}
-export const PaymentMethodListItemCase4Ideal = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    bank: S.NullOr(S.String),
-    bic: S.NullOr(S.String),
-  }),
-).annotate({
-  identifier: "PaymentMethodListItemCase4Ideal",
-}) as any as S.Schema<PaymentMethodListItemCase4Ideal>;
+export type PaymentMethodListItemCase4Ideal = PaymentMethodCase4Ideal;
+export const PaymentMethodListItemCase4Ideal = PaymentMethodCase4Ideal;
 
 /** A saved iDEAL payment method, including the customer's bank name and BIC code. */
-export interface PaymentMethodListItemCase4 {
-  /** The time of the event in ISO 8601 UTC format with millisecond precision */
-  created_at: string;
-  /** Every rendition of the icon to display this payment method with. A saved card carries its brand's icon (Visa, Mastercard, ...) rather than the generic card art. */
-  icons: PaymentMethodListItemCase0Icons;
-  /** Represents a unique identifier that is Base64 obfuscated. It is often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`) input value will be accepted as an ID. */
-  id: string;
-  /** The iDEAL-specific details for this payment method, including bank name and BIC. */
-  ideal: PaymentMethodListItemCase4Ideal;
-  /** The type of payment instrument stored on file (e.g., card, us_bank_account, cashapp, ideal, sepa_debit). */
-  payment_method_type: PaymentMethodTypes;
-  /** The typename of this object */
-  typename: string;
-}
-export const PaymentMethodListItemCase4 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    created_at: S.String,
-    icons: PaymentMethodListItemCase0Icons,
-    id: S.String,
-    ideal: PaymentMethodListItemCase4Ideal,
-    payment_method_type: PaymentMethodTypes,
-    typename: S.String,
-  }),
-).annotate({
-  identifier: "PaymentMethodListItemCase4",
-}) as any as S.Schema<PaymentMethodListItemCase4>;
+export type PaymentMethodListItemCase4 = PaymentMethodCase4;
+export const PaymentMethodListItemCase4 = PaymentMethodCase4;
 
 /** The colorway for dark surfaces. */
 export type PaymentMethodListItemCase5IconsCardDark =
-  PaymentMethodListItemCase0IconsCardDark;
+  PaymentMethodCase0IconsCardDark;
 export const PaymentMethodListItemCase5IconsCardDark =
-  PaymentMethodListItemCase0IconsCardDark;
+  PaymentMethodCase0IconsCardDark;
 
 /** The colorway for light surfaces. */
 export type PaymentMethodListItemCase5IconsCardLight =
-  PaymentMethodListItemCase0IconsCardDark;
+  PaymentMethodCase0IconsCardDark;
 export const PaymentMethodListItemCase5IconsCardLight =
-  PaymentMethodListItemCase0IconsCardDark;
+  PaymentMethodCase0IconsCardDark;
 
 /** The credit-card-proportioned tile (48x30). */
-export type PaymentMethodListItemCase5IconsCard =
-  PaymentMethodListItemCase0IconsCard;
-export const PaymentMethodListItemCase5IconsCard =
-  PaymentMethodListItemCase0IconsCard;
+export type PaymentMethodListItemCase5IconsCard = PaymentMethodCase0IconsCard;
+export const PaymentMethodListItemCase5IconsCard = PaymentMethodCase0IconsCard;
 
 /** The colorway for dark surfaces. */
 export type PaymentMethodListItemCase5IconsSquareDark =
-  PaymentMethodListItemCase0IconsCardDark;
+  PaymentMethodCase0IconsCardDark;
 export const PaymentMethodListItemCase5IconsSquareDark =
-  PaymentMethodListItemCase0IconsCardDark;
+  PaymentMethodCase0IconsCardDark;
 
 /** The colorway for light surfaces. */
 export type PaymentMethodListItemCase5IconsSquareLight =
-  PaymentMethodListItemCase0IconsCardDark;
+  PaymentMethodCase0IconsCardDark;
 export const PaymentMethodListItemCase5IconsSquareLight =
-  PaymentMethodListItemCase0IconsCardDark;
+  PaymentMethodCase0IconsCardDark;
 
 /** The square tile (32x32). */
-export type PaymentMethodListItemCase5IconsSquare =
-  PaymentMethodListItemCase0IconsCard;
+export type PaymentMethodListItemCase5IconsSquare = PaymentMethodCase0IconsCard;
 export const PaymentMethodListItemCase5IconsSquare =
-  PaymentMethodListItemCase0IconsCard;
+  PaymentMethodCase0IconsCard;
 
 /** Every rendition of the icon to display this payment method with. A saved card carries its brand's icon (Visa, Mastercard, ...) rather than the generic card art. */
-export type PaymentMethodListItemCase5Icons = PaymentMethodListItemCase0Icons;
-export const PaymentMethodListItemCase5Icons = PaymentMethodListItemCase0Icons;
+export type PaymentMethodListItemCase5Icons = PaymentMethodCase0Icons;
+export const PaymentMethodListItemCase5Icons = PaymentMethodCase0Icons;
 
 /** The SEPA Direct Debit-specific details for this payment method, including bank code and last four IBAN digits. */
-export interface PaymentMethodListItemCase5SepaDebit {
-  /** The bank code of the financial institution associated with this SEPA account. Null if not available. */
-  bank_code: string | null;
-  /** The branch code of the financial institution associated with this SEPA account. Null if not available. */
-  branch_code: string | null;
-  /** The two-letter ISO country code where the bank account is located. Null if not available. */
-  country: string | null;
-  /** The last four digits of the IBAN associated with this SEPA account. Null if not available. */
-  last4: string | null;
-}
-export const PaymentMethodListItemCase5SepaDebit = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    bank_code: S.NullOr(S.String),
-    branch_code: S.NullOr(S.String),
-    country: S.NullOr(S.String),
-    last4: S.NullOr(S.String),
-  }),
-).annotate({
-  identifier: "PaymentMethodListItemCase5SepaDebit",
-}) as any as S.Schema<PaymentMethodListItemCase5SepaDebit>;
+export type PaymentMethodListItemCase5SepaDebit = PaymentMethodCase5SepaDebit;
+export const PaymentMethodListItemCase5SepaDebit = PaymentMethodCase5SepaDebit;
 
 /** A saved SEPA Direct Debit payment method, including the bank code, country, and last four IBAN digits. */
-export interface PaymentMethodListItemCase5 {
-  /** The time of the event in ISO 8601 UTC format with millisecond precision */
-  created_at: string;
-  /** Every rendition of the icon to display this payment method with. A saved card carries its brand's icon (Visa, Mastercard, ...) rather than the generic card art. */
-  icons: PaymentMethodListItemCase0Icons;
-  /** Represents a unique identifier that is Base64 obfuscated. It is often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"VXNlci0xMA=="`) or integer (such as `4`) input value will be accepted as an ID. */
-  id: string;
-  /** The type of payment instrument stored on file (e.g., card, us_bank_account, cashapp, ideal, sepa_debit). */
-  payment_method_type: PaymentMethodTypes;
-  /** The SEPA Direct Debit-specific details for this payment method, including bank code and last four IBAN digits. */
-  sepa_debit: PaymentMethodListItemCase5SepaDebit;
-  /** The typename of this object */
-  typename: string;
-}
-export const PaymentMethodListItemCase5 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    created_at: S.String,
-    icons: PaymentMethodListItemCase0Icons,
-    id: S.String,
-    payment_method_type: PaymentMethodTypes,
-    sepa_debit: PaymentMethodListItemCase5SepaDebit,
-    typename: S.String,
-  }),
-).annotate({
-  identifier: "PaymentMethodListItemCase5",
-}) as any as S.Schema<PaymentMethodListItemCase5>;
+export type PaymentMethodListItemCase5 = PaymentMethodCase5;
+export const PaymentMethodListItemCase5 = PaymentMethodCase5;
 
 export type PaymentMethodListItem =
-  | PaymentMethodListItemCase0
-  | PaymentMethodListItemCase1
-  | PaymentMethodListItemCase2
-  | PaymentMethodListItemCase3
-  | PaymentMethodListItemCase4
-  | PaymentMethodListItemCase5;
+  | PaymentMethodCase0
+  | PaymentMethodCase1
+  | PaymentMethodCase2
+  | PaymentMethodCase3
+  | PaymentMethodCase4
+  | PaymentMethodCase5;
 export const PaymentMethodListItem =
   /*@__PURE__*/ S.Unknown as any as S.Schema<PaymentMethodListItem>;
 
@@ -936,307 +1185,6 @@ export const ListPaymentMethodResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListPaymentMethodResponse",
 }) as any as S.Schema<ListPaymentMethodResponse>;
 
-export interface RetrievePaymentMethodRequest {
-  /** The unique identifier of the payment method. */
-  id: string;
-  company_id?: string;
-  member_id?: string;
-}
-export const RetrievePaymentMethodRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-    company_id: S.optional(S.String.pipe(T.Query())),
-    member_id: S.optional(S.String.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/payment_methods/{id}", code: 200 })),
-).annotate({
-  identifier: "RetrievePaymentMethodRequest",
-}) as any as S.Schema<RetrievePaymentMethodRequest>;
-
-/** The colorway for dark surfaces. */
-export type PaymentMethodCase0IconsCardDark =
-  PaymentMethodListItemCase0IconsCardDark;
-export const PaymentMethodCase0IconsCardDark =
-  PaymentMethodListItemCase0IconsCardDark;
-
-/** The colorway for light surfaces. */
-export type PaymentMethodCase0IconsCardLight =
-  PaymentMethodListItemCase0IconsCardDark;
-export const PaymentMethodCase0IconsCardLight =
-  PaymentMethodListItemCase0IconsCardDark;
-
-/** The credit-card-proportioned tile (48x30). */
-export type PaymentMethodCase0IconsCard = PaymentMethodListItemCase0IconsCard;
-export const PaymentMethodCase0IconsCard = PaymentMethodListItemCase0IconsCard;
-
-/** The colorway for dark surfaces. */
-export type PaymentMethodCase0IconsSquareDark =
-  PaymentMethodListItemCase0IconsCardDark;
-export const PaymentMethodCase0IconsSquareDark =
-  PaymentMethodListItemCase0IconsCardDark;
-
-/** The colorway for light surfaces. */
-export type PaymentMethodCase0IconsSquareLight =
-  PaymentMethodListItemCase0IconsCardDark;
-export const PaymentMethodCase0IconsSquareLight =
-  PaymentMethodListItemCase0IconsCardDark;
-
-/** The square tile (32x32). */
-export type PaymentMethodCase0IconsSquare = PaymentMethodListItemCase0IconsCard;
-export const PaymentMethodCase0IconsSquare =
-  PaymentMethodListItemCase0IconsCard;
-
-/** Every rendition of the icon to display this payment method with. A saved card carries its brand's icon (Visa, Mastercard, ...) rather than the generic card art. */
-export type PaymentMethodCase0Icons = PaymentMethodListItemCase0Icons;
-export const PaymentMethodCase0Icons = PaymentMethodListItemCase0Icons;
-
-/** A saved payment method with no type-specific details available. */
-export type PaymentMethodCase0 = PaymentMethodListItemCase0;
-export const PaymentMethodCase0 = PaymentMethodListItemCase0;
-
-/** The card-specific details for this payment method, including brand, last four digits, and expiration. */
-export type PaymentMethodCase1Card = PaymentMethodListItemCase1Card;
-export const PaymentMethodCase1Card = PaymentMethodListItemCase1Card;
-
-/** The colorway for dark surfaces. */
-export type PaymentMethodCase1IconsCardDark =
-  PaymentMethodListItemCase0IconsCardDark;
-export const PaymentMethodCase1IconsCardDark =
-  PaymentMethodListItemCase0IconsCardDark;
-
-/** The colorway for light surfaces. */
-export type PaymentMethodCase1IconsCardLight =
-  PaymentMethodListItemCase0IconsCardDark;
-export const PaymentMethodCase1IconsCardLight =
-  PaymentMethodListItemCase0IconsCardDark;
-
-/** The credit-card-proportioned tile (48x30). */
-export type PaymentMethodCase1IconsCard = PaymentMethodListItemCase0IconsCard;
-export const PaymentMethodCase1IconsCard = PaymentMethodListItemCase0IconsCard;
-
-/** The colorway for dark surfaces. */
-export type PaymentMethodCase1IconsSquareDark =
-  PaymentMethodListItemCase0IconsCardDark;
-export const PaymentMethodCase1IconsSquareDark =
-  PaymentMethodListItemCase0IconsCardDark;
-
-/** The colorway for light surfaces. */
-export type PaymentMethodCase1IconsSquareLight =
-  PaymentMethodListItemCase0IconsCardDark;
-export const PaymentMethodCase1IconsSquareLight =
-  PaymentMethodListItemCase0IconsCardDark;
-
-/** The square tile (32x32). */
-export type PaymentMethodCase1IconsSquare = PaymentMethodListItemCase0IconsCard;
-export const PaymentMethodCase1IconsSquare =
-  PaymentMethodListItemCase0IconsCard;
-
-/** Every rendition of the icon to display this payment method with. A saved card carries its brand's icon (Visa, Mastercard, ...) rather than the generic card art. */
-export type PaymentMethodCase1Icons = PaymentMethodListItemCase0Icons;
-export const PaymentMethodCase1Icons = PaymentMethodListItemCase0Icons;
-
-/** A saved card payment method, including brand, last four digits, and expiration details. */
-export type PaymentMethodCase1 = PaymentMethodListItemCase1;
-export const PaymentMethodCase1 = PaymentMethodListItemCase1;
-
-/** The colorway for dark surfaces. */
-export type PaymentMethodCase2IconsCardDark =
-  PaymentMethodListItemCase0IconsCardDark;
-export const PaymentMethodCase2IconsCardDark =
-  PaymentMethodListItemCase0IconsCardDark;
-
-/** The colorway for light surfaces. */
-export type PaymentMethodCase2IconsCardLight =
-  PaymentMethodListItemCase0IconsCardDark;
-export const PaymentMethodCase2IconsCardLight =
-  PaymentMethodListItemCase0IconsCardDark;
-
-/** The credit-card-proportioned tile (48x30). */
-export type PaymentMethodCase2IconsCard = PaymentMethodListItemCase0IconsCard;
-export const PaymentMethodCase2IconsCard = PaymentMethodListItemCase0IconsCard;
-
-/** The colorway for dark surfaces. */
-export type PaymentMethodCase2IconsSquareDark =
-  PaymentMethodListItemCase0IconsCardDark;
-export const PaymentMethodCase2IconsSquareDark =
-  PaymentMethodListItemCase0IconsCardDark;
-
-/** The colorway for light surfaces. */
-export type PaymentMethodCase2IconsSquareLight =
-  PaymentMethodListItemCase0IconsCardDark;
-export const PaymentMethodCase2IconsSquareLight =
-  PaymentMethodListItemCase0IconsCardDark;
-
-/** The square tile (32x32). */
-export type PaymentMethodCase2IconsSquare = PaymentMethodListItemCase0IconsCard;
-export const PaymentMethodCase2IconsSquare =
-  PaymentMethodListItemCase0IconsCard;
-
-/** Every rendition of the icon to display this payment method with. A saved card carries its brand's icon (Visa, Mastercard, ...) rather than the generic card art. */
-export type PaymentMethodCase2Icons = PaymentMethodListItemCase0Icons;
-export const PaymentMethodCase2Icons = PaymentMethodListItemCase0Icons;
-
-/** The bank account-specific details for this payment method, including bank name and last four digits. */
-export type PaymentMethodCase2UsBankAccount =
-  PaymentMethodListItemCase2UsBankAccount;
-export const PaymentMethodCase2UsBankAccount =
-  PaymentMethodListItemCase2UsBankAccount;
-
-/** A saved US bank account payment method, including bank name, last four digits, and account type. */
-export type PaymentMethodCase2 = PaymentMethodListItemCase2;
-export const PaymentMethodCase2 = PaymentMethodListItemCase2;
-
-/** The Cash App-specific details for this payment method, including cashtag and buyer ID. */
-export type PaymentMethodCase3Cashapp = PaymentMethodListItemCase3Cashapp;
-export const PaymentMethodCase3Cashapp = PaymentMethodListItemCase3Cashapp;
-
-/** The colorway for dark surfaces. */
-export type PaymentMethodCase3IconsCardDark =
-  PaymentMethodListItemCase0IconsCardDark;
-export const PaymentMethodCase3IconsCardDark =
-  PaymentMethodListItemCase0IconsCardDark;
-
-/** The colorway for light surfaces. */
-export type PaymentMethodCase3IconsCardLight =
-  PaymentMethodListItemCase0IconsCardDark;
-export const PaymentMethodCase3IconsCardLight =
-  PaymentMethodListItemCase0IconsCardDark;
-
-/** The credit-card-proportioned tile (48x30). */
-export type PaymentMethodCase3IconsCard = PaymentMethodListItemCase0IconsCard;
-export const PaymentMethodCase3IconsCard = PaymentMethodListItemCase0IconsCard;
-
-/** The colorway for dark surfaces. */
-export type PaymentMethodCase3IconsSquareDark =
-  PaymentMethodListItemCase0IconsCardDark;
-export const PaymentMethodCase3IconsSquareDark =
-  PaymentMethodListItemCase0IconsCardDark;
-
-/** The colorway for light surfaces. */
-export type PaymentMethodCase3IconsSquareLight =
-  PaymentMethodListItemCase0IconsCardDark;
-export const PaymentMethodCase3IconsSquareLight =
-  PaymentMethodListItemCase0IconsCardDark;
-
-/** The square tile (32x32). */
-export type PaymentMethodCase3IconsSquare = PaymentMethodListItemCase0IconsCard;
-export const PaymentMethodCase3IconsSquare =
-  PaymentMethodListItemCase0IconsCard;
-
-/** Every rendition of the icon to display this payment method with. A saved card carries its brand's icon (Visa, Mastercard, ...) rather than the generic card art. */
-export type PaymentMethodCase3Icons = PaymentMethodListItemCase0Icons;
-export const PaymentMethodCase3Icons = PaymentMethodListItemCase0Icons;
-
-/** A saved Cash App payment method, including the buyer's cashtag and unique identifier. */
-export type PaymentMethodCase3 = PaymentMethodListItemCase3;
-export const PaymentMethodCase3 = PaymentMethodListItemCase3;
-
-/** The colorway for dark surfaces. */
-export type PaymentMethodCase4IconsCardDark =
-  PaymentMethodListItemCase0IconsCardDark;
-export const PaymentMethodCase4IconsCardDark =
-  PaymentMethodListItemCase0IconsCardDark;
-
-/** The colorway for light surfaces. */
-export type PaymentMethodCase4IconsCardLight =
-  PaymentMethodListItemCase0IconsCardDark;
-export const PaymentMethodCase4IconsCardLight =
-  PaymentMethodListItemCase0IconsCardDark;
-
-/** The credit-card-proportioned tile (48x30). */
-export type PaymentMethodCase4IconsCard = PaymentMethodListItemCase0IconsCard;
-export const PaymentMethodCase4IconsCard = PaymentMethodListItemCase0IconsCard;
-
-/** The colorway for dark surfaces. */
-export type PaymentMethodCase4IconsSquareDark =
-  PaymentMethodListItemCase0IconsCardDark;
-export const PaymentMethodCase4IconsSquareDark =
-  PaymentMethodListItemCase0IconsCardDark;
-
-/** The colorway for light surfaces. */
-export type PaymentMethodCase4IconsSquareLight =
-  PaymentMethodListItemCase0IconsCardDark;
-export const PaymentMethodCase4IconsSquareLight =
-  PaymentMethodListItemCase0IconsCardDark;
-
-/** The square tile (32x32). */
-export type PaymentMethodCase4IconsSquare = PaymentMethodListItemCase0IconsCard;
-export const PaymentMethodCase4IconsSquare =
-  PaymentMethodListItemCase0IconsCard;
-
-/** Every rendition of the icon to display this payment method with. A saved card carries its brand's icon (Visa, Mastercard, ...) rather than the generic card art. */
-export type PaymentMethodCase4Icons = PaymentMethodListItemCase0Icons;
-export const PaymentMethodCase4Icons = PaymentMethodListItemCase0Icons;
-
-/** The iDEAL-specific details for this payment method, including bank name and BIC. */
-export type PaymentMethodCase4Ideal = PaymentMethodListItemCase4Ideal;
-export const PaymentMethodCase4Ideal = PaymentMethodListItemCase4Ideal;
-
-/** A saved iDEAL payment method, including the customer's bank name and BIC code. */
-export type PaymentMethodCase4 = PaymentMethodListItemCase4;
-export const PaymentMethodCase4 = PaymentMethodListItemCase4;
-
-/** The colorway for dark surfaces. */
-export type PaymentMethodCase5IconsCardDark =
-  PaymentMethodListItemCase0IconsCardDark;
-export const PaymentMethodCase5IconsCardDark =
-  PaymentMethodListItemCase0IconsCardDark;
-
-/** The colorway for light surfaces. */
-export type PaymentMethodCase5IconsCardLight =
-  PaymentMethodListItemCase0IconsCardDark;
-export const PaymentMethodCase5IconsCardLight =
-  PaymentMethodListItemCase0IconsCardDark;
-
-/** The credit-card-proportioned tile (48x30). */
-export type PaymentMethodCase5IconsCard = PaymentMethodListItemCase0IconsCard;
-export const PaymentMethodCase5IconsCard = PaymentMethodListItemCase0IconsCard;
-
-/** The colorway for dark surfaces. */
-export type PaymentMethodCase5IconsSquareDark =
-  PaymentMethodListItemCase0IconsCardDark;
-export const PaymentMethodCase5IconsSquareDark =
-  PaymentMethodListItemCase0IconsCardDark;
-
-/** The colorway for light surfaces. */
-export type PaymentMethodCase5IconsSquareLight =
-  PaymentMethodListItemCase0IconsCardDark;
-export const PaymentMethodCase5IconsSquareLight =
-  PaymentMethodListItemCase0IconsCardDark;
-
-/** The square tile (32x32). */
-export type PaymentMethodCase5IconsSquare = PaymentMethodListItemCase0IconsCard;
-export const PaymentMethodCase5IconsSquare =
-  PaymentMethodListItemCase0IconsCard;
-
-/** Every rendition of the icon to display this payment method with. A saved card carries its brand's icon (Visa, Mastercard, ...) rather than the generic card art. */
-export type PaymentMethodCase5Icons = PaymentMethodListItemCase0Icons;
-export const PaymentMethodCase5Icons = PaymentMethodListItemCase0Icons;
-
-/** The SEPA Direct Debit-specific details for this payment method, including bank code and last four IBAN digits. */
-export type PaymentMethodCase5SepaDebit = PaymentMethodListItemCase5SepaDebit;
-export const PaymentMethodCase5SepaDebit = PaymentMethodListItemCase5SepaDebit;
-
-/** A saved SEPA Direct Debit payment method, including the bank code, country, and last four IBAN digits. */
-export type PaymentMethodCase5 = PaymentMethodListItemCase5;
-export const PaymentMethodCase5 = PaymentMethodListItemCase5;
-
-export type PaymentMethod =
-  | PaymentMethodListItemCase0
-  | PaymentMethodListItemCase1
-  | PaymentMethodListItemCase2
-  | PaymentMethodListItemCase3
-  | PaymentMethodListItemCase4
-  | PaymentMethodListItemCase5;
-export const PaymentMethod =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<PaymentMethod>;
-
-export type RetrievePaymentMethodResponse = PaymentMethod;
-export const RetrievePaymentMethodResponse = /*@__PURE__*/ S.suspend(() =>
-  PaymentMethod.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "RetrievePaymentMethodResponse",
-}) as any as S.Schema<RetrievePaymentMethodResponse>;
-
 export type DeletePaymentMethodError =
   | BadRequest
   | Forbidden
@@ -1252,6 +1200,26 @@ export const deletePaymentMethod: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: DeletePaymentMethodRequest,
   output: DeletePaymentMethodResponse,
+  errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
+  protocol: WhopProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetPaymentMethodError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | UnprocessableEntity
+  | WhopOpError;
+/** Retrieve payment method [Legacy API — https://docs.whop.com/api-reference] Retrieves the details of an existing payment method. Addresses a member's wallet when member_id or company_id is given, otherwise your own. Required permissions: - `member:payment_methods:read` */
+export const getPaymentMethod: API.OperationMethod<
+  GetPaymentMethodRequest,
+  GetPaymentMethodResponse,
+  GetPaymentMethodError,
+  WhopOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPaymentMethodRequest,
+  output: GetPaymentMethodResponse,
   errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
   protocol: WhopProtocol,
   retry: Retry.Retry,
@@ -1288,23 +1256,3 @@ export const listPaymentMethod: API.PaginatedOperationMethod<
   }),
   paginateRelay,
 ) as any;
-
-export type RetrievePaymentMethodError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | UnprocessableEntity
-  | WhopOpError;
-/** Retrieve payment method [Legacy API — https://docs.whop.com/api-reference] Retrieves the details of an existing payment method. Addresses a member's wallet when member_id or company_id is given, otherwise your own. Required permissions: - `member:payment_methods:read` */
-export const retrievePaymentMethod: API.OperationMethod<
-  RetrievePaymentMethodRequest,
-  RetrievePaymentMethodResponse,
-  RetrievePaymentMethodError,
-  WhopOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrievePaymentMethodRequest,
-  output: RetrievePaymentMethodResponse,
-  errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
-  protocol: WhopProtocol,
-  retry: Retry.Retry,
-}));

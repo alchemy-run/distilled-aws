@@ -12,172 +12,42 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
-/** Gets or sets the tags. */
-export type JobCollectionsCreateOrUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const JobCollectionsCreateOrUpdateRequestTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<JobCollectionsCreateOrUpdateRequestTagsMap>;
-
-/** Gets or set the SKU. */
-export type SkuName = "Standard" | "Free" | "P10Premium" | "P20Premium";
-export const SkuName = /*@__PURE__*/ S.String;
-
-export interface Sku {
-  /** Gets or set the SKU. */
-  name?: SkuName | (string & {});
-}
-export const Sku = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(SkuName),
-  }),
-).annotate({ identifier: "Sku" }) as any as S.Schema<Sku>;
-
-/** Gets or sets the state. */
-export type JobCollectionPropertiesState =
-  | "Enabled"
-  | "Disabled"
-  | "Suspended"
-  | "Deleted";
-export const JobCollectionPropertiesState = /*@__PURE__*/ S.String;
-
-/** Gets or sets the frequency of recurrence (second, minute, hour, day, week, month). */
-export type JobMaxRecurrenceFrequency =
-  | "Minute"
-  | "Hour"
-  | "Day"
-  | "Week"
-  | "Month";
-export const JobMaxRecurrenceFrequency = /*@__PURE__*/ S.String;
-
-export interface JobMaxRecurrence {
-  /** Gets or sets the frequency of recurrence (second, minute, hour, day, week, month). */
-  frequency?: JobMaxRecurrenceFrequency | (string & {});
-  /** Gets or sets the interval between retries. */
-  interval?: number;
-}
-export const JobMaxRecurrence = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    frequency: S.optional(JobMaxRecurrenceFrequency),
-    interval: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "JobMaxRecurrence",
-}) as any as S.Schema<JobMaxRecurrence>;
-
-export interface JobCollectionQuota {
-  /** Gets or set the maximum job count. */
-  maxJobCount?: number;
-  /** Gets or sets the maximum job occurrence. */
-  maxJobOccurrence?: number;
-  /** Gets or set the maximum recurrence. */
-  maxRecurrence?: JobMaxRecurrence;
-}
-export const JobCollectionQuota = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    maxJobCount: S.optional(S.Number),
-    maxJobOccurrence: S.optional(S.Number),
-    maxRecurrence: S.optional(JobMaxRecurrence),
-  }),
-).annotate({
-  identifier: "JobCollectionQuota",
-}) as any as S.Schema<JobCollectionQuota>;
-
-export interface JobCollectionProperties {
-  /** Gets or sets the SKU. */
-  sku?: Sku;
-  /** Gets or sets the state. */
-  state?: JobCollectionPropertiesState | (string & {});
-  /** Gets or sets the job collection quota. */
-  quota?: JobCollectionQuota;
-}
-export const JobCollectionProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    sku: S.optional(Sku),
-    state: S.optional(JobCollectionPropertiesState),
-    quota: S.optional(JobCollectionQuota),
-  }),
-).annotate({
-  identifier: "JobCollectionProperties",
-}) as any as S.Schema<JobCollectionProperties>;
-
-export interface JobCollectionsCreateOrUpdateRequest {
+export interface DeleteJobRequest {
   /** The subscription id. */
   subscriptionId: string;
   /** The resource group name. */
   resourceGroupName: string;
   /** The job collection name. */
   jobCollectionName: string;
-  /** Gets or sets the job collection resource name. */
-  name?: string;
-  /** Gets or sets the storage account location. */
-  location?: string;
-  /** Gets or sets the tags. */
-  tags?: JobCollectionsCreateOrUpdateRequestTagsMap;
-  /** Gets or sets the job collection properties. */
-  properties?: JobCollectionProperties;
+  /** The job name. */
+  jobName: string;
 }
-export const JobCollectionsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteJobRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     jobCollectionName: S.String.pipe(T.Label()),
-    name: S.optional(S.String),
-    location: S.optional(S.String),
-    tags: S.optional(JobCollectionsCreateOrUpdateRequestTagsMap),
-    properties: S.optional(JobCollectionProperties),
+    jobName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Scheduler/jobCollections/{jobCollectionName}",
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Scheduler/jobCollections/{jobCollectionName}/jobs/{jobName}",
       code: 200,
       apiVersion: "2016-03-01",
     }),
   ),
 ).annotate({
-  identifier: "JobCollectionsCreateOrUpdateRequest",
-}) as any as S.Schema<JobCollectionsCreateOrUpdateRequest>;
+  identifier: "DeleteJobRequest",
+}) as any as S.Schema<DeleteJobRequest>;
 
-/** Gets or sets the tags. */
-export type JobCollectionDefinitionTagsMap = {
-  [key: string]: string | undefined;
-};
-export const JobCollectionDefinitionTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<JobCollectionDefinitionTagsMap>;
-
-export interface JobCollectionDefinition {
-  /** Gets the job collection resource identifier. */
-  id?: string;
-  /** Gets the job collection resource type. */
-  type?: string;
-  /** Gets or sets the job collection resource name. */
-  name?: string;
-  /** Gets or sets the storage account location. */
-  location?: string;
-  /** Gets or sets the tags. */
-  tags?: JobCollectionDefinitionTagsMap;
-  /** Gets or sets the job collection properties. */
-  properties?: JobCollectionProperties;
-}
-export const JobCollectionDefinition = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    type: S.optional(S.String),
-    name: S.optional(S.String),
-    location: S.optional(S.String),
-    tags: S.optional(JobCollectionDefinitionTagsMap),
-    properties: S.optional(JobCollectionProperties),
-  }),
+export interface DeleteJobResponse {}
+export const DeleteJobResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
 ).annotate({
-  identifier: "JobCollectionDefinition",
-}) as any as S.Schema<JobCollectionDefinition>;
+  identifier: "DeleteJobResponse",
+}) as any as S.Schema<DeleteJobResponse>;
 
-export interface JobCollectionsDeleteRequest {
+export interface DeleteJobCollectionRequest {
   /** The subscription id. */
   subscriptionId: string;
   /** The resource group name. */
@@ -185,7 +55,7 @@ export interface JobCollectionsDeleteRequest {
   /** The job collection name. */
   jobCollectionName: string;
 }
-export const JobCollectionsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteJobCollectionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -199,17 +69,17 @@ export const JobCollectionsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "JobCollectionsDeleteRequest",
-}) as any as S.Schema<JobCollectionsDeleteRequest>;
+  identifier: "DeleteJobCollectionRequest",
+}) as any as S.Schema<DeleteJobCollectionRequest>;
 
-export interface JobCollectionsDeleteResponse {}
-export const JobCollectionsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteJobCollectionResponse {}
+export const DeleteJobCollectionResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "JobCollectionsDeleteResponse",
-}) as any as S.Schema<JobCollectionsDeleteResponse>;
+  identifier: "DeleteJobCollectionResponse",
+}) as any as S.Schema<DeleteJobCollectionResponse>;
 
-export interface JobCollectionsDisableRequest {
+export interface DisableJobCollectionRequest {
   /** The subscription id. */
   subscriptionId: string;
   /** The resource group name. */
@@ -217,7 +87,7 @@ export interface JobCollectionsDisableRequest {
   /** The job collection name. */
   jobCollectionName: string;
 }
-export const JobCollectionsDisableRequest = /*@__PURE__*/ S.suspend(() =>
+export const DisableJobCollectionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -231,17 +101,17 @@ export const JobCollectionsDisableRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "JobCollectionsDisableRequest",
-}) as any as S.Schema<JobCollectionsDisableRequest>;
+  identifier: "DisableJobCollectionRequest",
+}) as any as S.Schema<DisableJobCollectionRequest>;
 
-export interface JobCollectionsDisableResponse {}
-export const JobCollectionsDisableResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DisableJobCollectionResponse {}
+export const DisableJobCollectionResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "JobCollectionsDisableResponse",
-}) as any as S.Schema<JobCollectionsDisableResponse>;
+  identifier: "DisableJobCollectionResponse",
+}) as any as S.Schema<DisableJobCollectionResponse>;
 
-export interface JobCollectionsEnableRequest {
+export interface EnableJobCollectionRequest {
   /** The subscription id. */
   subscriptionId: string;
   /** The resource group name. */
@@ -249,7 +119,7 @@ export interface JobCollectionsEnableRequest {
   /** The job collection name. */
   jobCollectionName: string;
 }
-export const JobCollectionsEnableRequest = /*@__PURE__*/ S.suspend(() =>
+export const EnableJobCollectionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -263,150 +133,41 @@ export const JobCollectionsEnableRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "JobCollectionsEnableRequest",
-}) as any as S.Schema<JobCollectionsEnableRequest>;
+  identifier: "EnableJobCollectionRequest",
+}) as any as S.Schema<EnableJobCollectionRequest>;
 
-export interface JobCollectionsEnableResponse {}
-export const JobCollectionsEnableResponse = /*@__PURE__*/ S.suspend(() =>
+export interface EnableJobCollectionResponse {}
+export const EnableJobCollectionResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "JobCollectionsEnableResponse",
-}) as any as S.Schema<JobCollectionsEnableResponse>;
+  identifier: "EnableJobCollectionResponse",
+}) as any as S.Schema<EnableJobCollectionResponse>;
 
-export interface JobCollectionsGetRequest {
+export interface GetJobRequest {
   /** The subscription id. */
   subscriptionId: string;
   /** The resource group name. */
   resourceGroupName: string;
   /** The job collection name. */
   jobCollectionName: string;
+  /** The job name. */
+  jobName: string;
 }
-export const JobCollectionsGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetJobRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     jobCollectionName: S.String.pipe(T.Label()),
+    jobName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Scheduler/jobCollections/{jobCollectionName}",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Scheduler/jobCollections/{jobCollectionName}/jobs/{jobName}",
       code: 200,
       apiVersion: "2016-03-01",
     }),
   ),
-).annotate({
-  identifier: "JobCollectionsGetRequest",
-}) as any as S.Schema<JobCollectionsGetRequest>;
-
-export interface JobCollectionsListByResourceGroupRequest {
-  /** The subscription id. */
-  subscriptionId: string;
-  /** The resource group name. */
-  resourceGroupName: string;
-}
-export const JobCollectionsListByResourceGroupRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Scheduler/jobCollections",
-        code: 200,
-        apiVersion: "2016-03-01",
-      }),
-    ),
-).annotate({
-  identifier: "JobCollectionsListByResourceGroupRequest",
-}) as any as S.Schema<JobCollectionsListByResourceGroupRequest>;
-
-/** Gets the job collections. */
-export type JobCollectionListResultValueList = Array<JobCollectionDefinition>;
-export const JobCollectionListResultValueList = /*@__PURE__*/ S.Array(
-  JobCollectionDefinition,
-) as any as S.Schema<JobCollectionListResultValueList>;
-
-export interface JobCollectionListResult {
-  /** Gets the job collections. */
-  value?: JobCollectionListResultValueList;
-  /** Gets or sets the URL to get the next set of job collections. */
-  nextLink?: string;
-}
-export const JobCollectionListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(JobCollectionListResultValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "JobCollectionListResult",
-}) as any as S.Schema<JobCollectionListResult>;
-
-export interface JobCollectionsListBySubscriptionRequest {
-  /** The subscription id. */
-  subscriptionId: string;
-}
-export const JobCollectionsListBySubscriptionRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Scheduler/jobCollections",
-        code: 200,
-        apiVersion: "2016-03-01",
-      }),
-    ),
-).annotate({
-  identifier: "JobCollectionsListBySubscriptionRequest",
-}) as any as S.Schema<JobCollectionsListBySubscriptionRequest>;
-
-/** Gets or sets the tags. */
-export type JobCollectionsPatchRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const JobCollectionsPatchRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<JobCollectionsPatchRequestTagsMap>;
-
-export interface JobCollectionsPatchRequest {
-  /** The subscription id. */
-  subscriptionId: string;
-  /** The resource group name. */
-  resourceGroupName: string;
-  /** The job collection name. */
-  jobCollectionName: string;
-  /** Gets or sets the job collection resource name. */
-  name?: string;
-  /** Gets or sets the storage account location. */
-  location?: string;
-  /** Gets or sets the tags. */
-  tags?: JobCollectionsPatchRequestTagsMap;
-  /** Gets or sets the job collection properties. */
-  properties?: JobCollectionProperties;
-}
-export const JobCollectionsPatchRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    jobCollectionName: S.String.pipe(T.Label()),
-    name: S.optional(S.String),
-    location: S.optional(S.String),
-    tags: S.optional(JobCollectionsPatchRequestTagsMap),
-    properties: S.optional(JobCollectionProperties),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Scheduler/jobCollections/{jobCollectionName}",
-      code: 200,
-      apiVersion: "2016-03-01",
-    }),
-  ),
-).annotate({
-  identifier: "JobCollectionsPatchRequest",
-}) as any as S.Schema<JobCollectionsPatchRequest>;
+).annotate({ identifier: "GetJobRequest" }) as any as S.Schema<GetJobRequest>;
 
 /** Gets or sets the job action type. */
 export type JobActionType =
@@ -866,58 +627,6 @@ export const JobRecurrence = /*@__PURE__*/ S.suspend(() =>
 export type JobState = "Enabled" | "Disabled" | "Faulted" | "Completed";
 export const JobState = /*@__PURE__*/ S.String;
 
-export interface JobPropertiesInput {
-  /** Gets or sets the job start time. */
-  startTime?: string;
-  /** Gets or sets the job action. */
-  action?: JobAction;
-  /** Gets or sets the job recurrence. */
-  recurrence?: JobRecurrence;
-  /** Gets or set the job state. */
-  state?: JobState | (string & {});
-}
-export const JobPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    startTime: S.optional(S.String),
-    action: S.optional(JobAction),
-    recurrence: S.optional(JobRecurrence),
-    state: S.optional(JobState),
-  }),
-).annotate({
-  identifier: "JobPropertiesInput",
-}) as any as S.Schema<JobPropertiesInput>;
-
-export interface JobsCreateOrUpdateRequest {
-  /** The subscription id. */
-  subscriptionId: string;
-  /** The resource group name. */
-  resourceGroupName: string;
-  /** The job collection name. */
-  jobCollectionName: string;
-  /** The job name. */
-  jobName: string;
-  /** Gets or sets the job properties. */
-  properties?: JobPropertiesInput;
-}
-export const JobsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    jobCollectionName: S.String.pipe(T.Label()),
-    jobName: S.String.pipe(T.Label()),
-    properties: S.optional(JobPropertiesInput),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Scheduler/jobCollections/{jobCollectionName}/jobs/{jobName}",
-      code: 200,
-      apiVersion: "2016-03-01",
-    }),
-  ),
-).annotate({
-  identifier: "JobsCreateOrUpdateRequest",
-}) as any as S.Schema<JobsCreateOrUpdateRequest>;
-
 export interface JobStatus {
   /** Gets the number of times this job has executed. */
   executionCount?: number;
@@ -981,7 +690,218 @@ export const JobDefinition = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "JobDefinition" }) as any as S.Schema<JobDefinition>;
 
-export interface JobsDeleteRequest {
+export interface GetJobCollectionRequest {
+  /** The subscription id. */
+  subscriptionId: string;
+  /** The resource group name. */
+  resourceGroupName: string;
+  /** The job collection name. */
+  jobCollectionName: string;
+}
+export const GetJobCollectionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    jobCollectionName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Scheduler/jobCollections/{jobCollectionName}",
+      code: 200,
+      apiVersion: "2016-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetJobCollectionRequest",
+}) as any as S.Schema<GetJobCollectionRequest>;
+
+/** Gets or sets the tags. */
+export type JobCollectionDefinitionTagsMap = {
+  [key: string]: string | undefined;
+};
+export const JobCollectionDefinitionTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<JobCollectionDefinitionTagsMap>;
+
+/** Gets or set the SKU. */
+export type SkuName = "Standard" | "Free" | "P10Premium" | "P20Premium";
+export const SkuName = /*@__PURE__*/ S.String;
+
+export interface Sku {
+  /** Gets or set the SKU. */
+  name?: SkuName | (string & {});
+}
+export const Sku = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(SkuName),
+  }),
+).annotate({ identifier: "Sku" }) as any as S.Schema<Sku>;
+
+/** Gets or sets the state. */
+export type JobCollectionPropertiesState =
+  | "Enabled"
+  | "Disabled"
+  | "Suspended"
+  | "Deleted";
+export const JobCollectionPropertiesState = /*@__PURE__*/ S.String;
+
+/** Gets or sets the frequency of recurrence (second, minute, hour, day, week, month). */
+export type JobMaxRecurrenceFrequency =
+  | "Minute"
+  | "Hour"
+  | "Day"
+  | "Week"
+  | "Month";
+export const JobMaxRecurrenceFrequency = /*@__PURE__*/ S.String;
+
+export interface JobMaxRecurrence {
+  /** Gets or sets the frequency of recurrence (second, minute, hour, day, week, month). */
+  frequency?: JobMaxRecurrenceFrequency | (string & {});
+  /** Gets or sets the interval between retries. */
+  interval?: number;
+}
+export const JobMaxRecurrence = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    frequency: S.optional(JobMaxRecurrenceFrequency),
+    interval: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "JobMaxRecurrence",
+}) as any as S.Schema<JobMaxRecurrence>;
+
+export interface JobCollectionQuota {
+  /** Gets or set the maximum job count. */
+  maxJobCount?: number;
+  /** Gets or sets the maximum job occurrence. */
+  maxJobOccurrence?: number;
+  /** Gets or set the maximum recurrence. */
+  maxRecurrence?: JobMaxRecurrence;
+}
+export const JobCollectionQuota = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    maxJobCount: S.optional(S.Number),
+    maxJobOccurrence: S.optional(S.Number),
+    maxRecurrence: S.optional(JobMaxRecurrence),
+  }),
+).annotate({
+  identifier: "JobCollectionQuota",
+}) as any as S.Schema<JobCollectionQuota>;
+
+export interface JobCollectionProperties {
+  /** Gets or sets the SKU. */
+  sku?: Sku;
+  /** Gets or sets the state. */
+  state?: JobCollectionPropertiesState | (string & {});
+  /** Gets or sets the job collection quota. */
+  quota?: JobCollectionQuota;
+}
+export const JobCollectionProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    sku: S.optional(Sku),
+    state: S.optional(JobCollectionPropertiesState),
+    quota: S.optional(JobCollectionQuota),
+  }),
+).annotate({
+  identifier: "JobCollectionProperties",
+}) as any as S.Schema<JobCollectionProperties>;
+
+export interface JobCollectionDefinition {
+  /** Gets the job collection resource identifier. */
+  id?: string;
+  /** Gets the job collection resource type. */
+  type?: string;
+  /** Gets or sets the job collection resource name. */
+  name?: string;
+  /** Gets or sets the storage account location. */
+  location?: string;
+  /** Gets or sets the tags. */
+  tags?: JobCollectionDefinitionTagsMap;
+  /** Gets or sets the job collection properties. */
+  properties?: JobCollectionProperties;
+}
+export const JobCollectionDefinition = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    type: S.optional(S.String),
+    name: S.optional(S.String),
+    location: S.optional(S.String),
+    tags: S.optional(JobCollectionDefinitionTagsMap),
+    properties: S.optional(JobCollectionProperties),
+  }),
+).annotate({
+  identifier: "JobCollectionDefinition",
+}) as any as S.Schema<JobCollectionDefinition>;
+
+/** Gets or sets the tags. */
+export type JobCollectionsCreateOrUpdateRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const JobCollectionsCreateOrUpdateRequestTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<JobCollectionsCreateOrUpdateRequestTagsMap>;
+
+export interface JobCollectionsCreateOrUpdateRequest {
+  /** The subscription id. */
+  subscriptionId: string;
+  /** The resource group name. */
+  resourceGroupName: string;
+  /** The job collection name. */
+  jobCollectionName: string;
+  /** Gets or sets the job collection resource name. */
+  name?: string;
+  /** Gets or sets the storage account location. */
+  location?: string;
+  /** Gets or sets the tags. */
+  tags?: JobCollectionsCreateOrUpdateRequestTagsMap;
+  /** Gets or sets the job collection properties. */
+  properties?: JobCollectionProperties;
+}
+export const JobCollectionsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    jobCollectionName: S.String.pipe(T.Label()),
+    name: S.optional(S.String),
+    location: S.optional(S.String),
+    tags: S.optional(JobCollectionsCreateOrUpdateRequestTagsMap),
+    properties: S.optional(JobCollectionProperties),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Scheduler/jobCollections/{jobCollectionName}",
+      code: 200,
+      apiVersion: "2016-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "JobCollectionsCreateOrUpdateRequest",
+}) as any as S.Schema<JobCollectionsCreateOrUpdateRequest>;
+
+export interface JobPropertiesInput {
+  /** Gets or sets the job start time. */
+  startTime?: string;
+  /** Gets or sets the job action. */
+  action?: JobAction;
+  /** Gets or sets the job recurrence. */
+  recurrence?: JobRecurrence;
+  /** Gets or set the job state. */
+  state?: JobState | (string & {});
+}
+export const JobPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    startTime: S.optional(S.String),
+    action: S.optional(JobAction),
+    recurrence: S.optional(JobRecurrence),
+    state: S.optional(JobState),
+  }),
+).annotate({
+  identifier: "JobPropertiesInput",
+}) as any as S.Schema<JobPropertiesInput>;
+
+export interface JobsCreateOrUpdateRequest {
   /** The subscription id. */
   subscriptionId: string;
   /** The resource group name. */
@@ -990,112 +910,93 @@ export interface JobsDeleteRequest {
   jobCollectionName: string;
   /** The job name. */
   jobName: string;
+  /** Gets or sets the job properties. */
+  properties?: JobPropertiesInput;
 }
-export const JobsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const JobsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     jobCollectionName: S.String.pipe(T.Label()),
     jobName: S.String.pipe(T.Label()),
+    properties: S.optional(JobPropertiesInput),
   }).pipe(
     T.Http({
-      method: "DELETE",
+      method: "PUT",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Scheduler/jobCollections/{jobCollectionName}/jobs/{jobName}",
       code: 200,
       apiVersion: "2016-03-01",
     }),
   ),
 ).annotate({
-  identifier: "JobsDeleteRequest",
-}) as any as S.Schema<JobsDeleteRequest>;
+  identifier: "JobsCreateOrUpdateRequest",
+}) as any as S.Schema<JobsCreateOrUpdateRequest>;
 
-export interface JobsDeleteResponse {}
-export const JobsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "JobsDeleteResponse",
-}) as any as S.Schema<JobsDeleteResponse>;
-
-export interface JobsGetRequest {
+export interface ListJobCollectionByResourceGroupRequest {
   /** The subscription id. */
   subscriptionId: string;
   /** The resource group name. */
   resourceGroupName: string;
-  /** The job collection name. */
-  jobCollectionName: string;
-  /** The job name. */
-  jobName: string;
 }
-export const JobsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    jobCollectionName: S.String.pipe(T.Label()),
-    jobName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Scheduler/jobCollections/{jobCollectionName}/jobs/{jobName}",
-      code: 200,
-      apiVersion: "2016-03-01",
-    }),
-  ),
-).annotate({ identifier: "JobsGetRequest" }) as any as S.Schema<JobsGetRequest>;
-
-export interface JobsListRequest {
-  /** The subscription id. */
-  subscriptionId: string;
-  /** The resource group name. */
-  resourceGroupName: string;
-  /** The job collection name. */
-  jobCollectionName: string;
-  /** The number of jobs to request, in the of range of [1..100]. */
-  _top?: number;
-  /** The (0-based) index of the job history list from which to begin requesting entries. */
-  _skip?: number;
-  /** The filter to apply on the job state. */
-  _filter?: string;
-}
-export const JobsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    jobCollectionName: S.String.pipe(T.Label()),
-    _top: S.optional(S.Number.pipe(T.Query("$top"))),
-    _skip: S.optional(S.Number.pipe(T.Query("$skip"))),
-    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Scheduler/jobCollections/{jobCollectionName}/jobs",
-      code: 200,
-      apiVersion: "2016-03-01",
-    }),
-  ),
+export const ListJobCollectionByResourceGroupRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Scheduler/jobCollections",
+        code: 200,
+        apiVersion: "2016-03-01",
+      }),
+    ),
 ).annotate({
-  identifier: "JobsListRequest",
-}) as any as S.Schema<JobsListRequest>;
+  identifier: "ListJobCollectionByResourceGroupRequest",
+}) as any as S.Schema<ListJobCollectionByResourceGroupRequest>;
 
-/** Gets or sets all jobs under job collection. */
-export type JobListResultValueList = Array<JobDefinition>;
-export const JobListResultValueList = /*@__PURE__*/ S.Array(
-  JobDefinition,
-) as any as S.Schema<JobListResultValueList>;
+/** Gets the job collections. */
+export type JobCollectionListResultValueList = Array<JobCollectionDefinition>;
+export const JobCollectionListResultValueList = /*@__PURE__*/ S.Array(
+  JobCollectionDefinition,
+) as any as S.Schema<JobCollectionListResultValueList>;
 
-export interface JobListResult {
-  /** Gets or sets all jobs under job collection. */
-  value?: JobListResultValueList;
-  /** Gets or sets the URL to get the next set of jobs. */
+export interface JobCollectionListResult {
+  /** Gets the job collections. */
+  value?: JobCollectionListResultValueList;
+  /** Gets or sets the URL to get the next set of job collections. */
   nextLink?: string;
 }
-export const JobListResult = /*@__PURE__*/ S.suspend(() =>
+export const JobCollectionListResult = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(JobListResultValueList),
+    value: S.optional(JobCollectionListResultValueList),
     nextLink: S.optional(S.String),
   }),
-).annotate({ identifier: "JobListResult" }) as any as S.Schema<JobListResult>;
+).annotate({
+  identifier: "JobCollectionListResult",
+}) as any as S.Schema<JobCollectionListResult>;
 
-export interface JobsListJobHistoryRequest {
+export interface ListJobCollectionBySubscriptionRequest {
+  /** The subscription id. */
+  subscriptionId: string;
+}
+export const ListJobCollectionBySubscriptionRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Scheduler/jobCollections",
+        code: 200,
+        apiVersion: "2016-03-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListJobCollectionBySubscriptionRequest",
+}) as any as S.Schema<ListJobCollectionBySubscriptionRequest>;
+
+export interface ListJobJobHistoryRequest {
   /** The subscription id. */
   subscriptionId: string;
   /** The resource group name. */
@@ -1111,7 +1012,7 @@ export interface JobsListJobHistoryRequest {
   /** The filter to apply on the job state. */
   _filter?: string;
 }
-export const JobsListJobHistoryRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListJobJobHistoryRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1129,8 +1030,8 @@ export const JobsListJobHistoryRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "JobsListJobHistoryRequest",
-}) as any as S.Schema<JobsListJobHistoryRequest>;
+  identifier: "ListJobJobHistoryRequest",
+}) as any as S.Schema<ListJobJobHistoryRequest>;
 
 /** Gets the job history action name. */
 export type JobHistoryDefinitionPropertiesActionName =
@@ -1217,7 +1118,60 @@ export const JobHistoryListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "JobHistoryListResult",
 }) as any as S.Schema<JobHistoryListResult>;
 
-export interface JobsPatchRequest {
+export interface ListJobsRequest {
+  /** The subscription id. */
+  subscriptionId: string;
+  /** The resource group name. */
+  resourceGroupName: string;
+  /** The job collection name. */
+  jobCollectionName: string;
+  /** The number of jobs to request, in the of range of [1..100]. */
+  _top?: number;
+  /** The (0-based) index of the job history list from which to begin requesting entries. */
+  _skip?: number;
+  /** The filter to apply on the job state. */
+  _filter?: string;
+}
+export const ListJobsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    jobCollectionName: S.String.pipe(T.Label()),
+    _top: S.optional(S.Number.pipe(T.Query("$top"))),
+    _skip: S.optional(S.Number.pipe(T.Query("$skip"))),
+    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Scheduler/jobCollections/{jobCollectionName}/jobs",
+      code: 200,
+      apiVersion: "2016-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListJobsRequest",
+}) as any as S.Schema<ListJobsRequest>;
+
+/** Gets or sets all jobs under job collection. */
+export type JobListResultValueList = Array<JobDefinition>;
+export const JobListResultValueList = /*@__PURE__*/ S.Array(
+  JobDefinition,
+) as any as S.Schema<JobListResultValueList>;
+
+export interface JobListResult {
+  /** Gets or sets all jobs under job collection. */
+  value?: JobListResultValueList;
+  /** Gets or sets the URL to get the next set of jobs. */
+  nextLink?: string;
+}
+export const JobListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(JobListResultValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({ identifier: "JobListResult" }) as any as S.Schema<JobListResult>;
+
+export interface PatchJobRequest {
   /** The subscription id. */
   subscriptionId: string;
   /** The resource group name. */
@@ -1229,7 +1183,7 @@ export interface JobsPatchRequest {
   /** Gets or sets the job properties. */
   properties?: JobPropertiesInput;
 }
-export const JobsPatchRequest = /*@__PURE__*/ S.suspend(() =>
+export const PatchJobRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1245,10 +1199,56 @@ export const JobsPatchRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "JobsPatchRequest",
-}) as any as S.Schema<JobsPatchRequest>;
+  identifier: "PatchJobRequest",
+}) as any as S.Schema<PatchJobRequest>;
 
-export interface JobsRunRequest {
+/** Gets or sets the tags. */
+export type PatchJobCollectionRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const PatchJobCollectionRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<PatchJobCollectionRequestTagsMap>;
+
+export interface PatchJobCollectionRequest {
+  /** The subscription id. */
+  subscriptionId: string;
+  /** The resource group name. */
+  resourceGroupName: string;
+  /** The job collection name. */
+  jobCollectionName: string;
+  /** Gets or sets the job collection resource name. */
+  name?: string;
+  /** Gets or sets the storage account location. */
+  location?: string;
+  /** Gets or sets the tags. */
+  tags?: PatchJobCollectionRequestTagsMap;
+  /** Gets or sets the job collection properties. */
+  properties?: JobCollectionProperties;
+}
+export const PatchJobCollectionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    jobCollectionName: S.String.pipe(T.Label()),
+    name: S.optional(S.String),
+    location: S.optional(S.String),
+    tags: S.optional(PatchJobCollectionRequestTagsMap),
+    properties: S.optional(JobCollectionProperties),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Scheduler/jobCollections/{jobCollectionName}",
+      code: 200,
+      apiVersion: "2016-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "PatchJobCollectionRequest",
+}) as any as S.Schema<PatchJobCollectionRequest>;
+
+export interface RunJobRequest {
   /** The subscription id. */
   subscriptionId: string;
   /** The resource group name. */
@@ -1258,7 +1258,7 @@ export interface JobsRunRequest {
   /** The job name. */
   jobName: string;
 }
-export const JobsRunRequest = /*@__PURE__*/ S.suspend(() =>
+export const RunJobRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1272,14 +1272,102 @@ export const JobsRunRequest = /*@__PURE__*/ S.suspend(() =>
       apiVersion: "2016-03-01",
     }),
   ),
-).annotate({ identifier: "JobsRunRequest" }) as any as S.Schema<JobsRunRequest>;
+).annotate({ identifier: "RunJobRequest" }) as any as S.Schema<RunJobRequest>;
 
-export interface JobsRunResponse {}
-export const JobsRunResponse = /*@__PURE__*/ S.suspend(() =>
+export interface RunJobResponse {}
+export const RunJobResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
-).annotate({
-  identifier: "JobsRunResponse",
-}) as any as S.Schema<JobsRunResponse>;
+).annotate({ identifier: "RunJobResponse" }) as any as S.Schema<RunJobResponse>;
+
+export type DeleteJobError = AzureOpError;
+/** Deletes a job. */
+export const DeleteJob: API.OperationMethod<
+  DeleteJobRequest,
+  DeleteJobResponse,
+  DeleteJobError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteJobRequest,
+  output: DeleteJobResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteJobCollectionError = AzureOpError;
+/** Deletes a job collection. */
+export const DeleteJobCollection: API.OperationMethod<
+  DeleteJobCollectionRequest,
+  DeleteJobCollectionResponse,
+  DeleteJobCollectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteJobCollectionRequest,
+  output: DeleteJobCollectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DisableJobCollectionError = AzureOpError;
+/** Disables all of the jobs in the job collection. */
+export const DisableJobCollection: API.OperationMethod<
+  DisableJobCollectionRequest,
+  DisableJobCollectionResponse,
+  DisableJobCollectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DisableJobCollectionRequest,
+  output: DisableJobCollectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type EnableJobCollectionError = AzureOpError;
+/** Enables all of the jobs in the job collection. */
+export const EnableJobCollection: API.OperationMethod<
+  EnableJobCollectionRequest,
+  EnableJobCollectionResponse,
+  EnableJobCollectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: EnableJobCollectionRequest,
+  output: EnableJobCollectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetJobError = AzureOpError;
+/** Gets a job. */
+export const GetJob: API.OperationMethod<
+  GetJobRequest,
+  JobDefinition,
+  GetJobError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetJobRequest,
+  output: JobDefinition,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetJobCollectionError = AzureOpError;
+/** Gets a job collection. */
+export const GetJobCollection: API.OperationMethod<
+  GetJobCollectionRequest,
+  JobCollectionDefinition,
+  GetJobCollectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetJobCollectionRequest,
+  output: JobCollectionDefinition,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
 export type JobCollectionsCreateOrUpdateError = AzureOpError;
 /** Provisions a new job collection or updates an existing job collection. */
@@ -1290,111 +1378,6 @@ export const JobCollectionsCreateOrUpdate: API.OperationMethod<
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: JobCollectionsCreateOrUpdateRequest,
-  output: JobCollectionDefinition,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type JobCollectionsDeleteError = AzureOpError;
-/** Deletes a job collection. */
-export const JobCollectionsDelete: API.OperationMethod<
-  JobCollectionsDeleteRequest,
-  JobCollectionsDeleteResponse,
-  JobCollectionsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: JobCollectionsDeleteRequest,
-  output: JobCollectionsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type JobCollectionsDisableError = AzureOpError;
-/** Disables all of the jobs in the job collection. */
-export const JobCollectionsDisable: API.OperationMethod<
-  JobCollectionsDisableRequest,
-  JobCollectionsDisableResponse,
-  JobCollectionsDisableError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: JobCollectionsDisableRequest,
-  output: JobCollectionsDisableResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type JobCollectionsEnableError = AzureOpError;
-/** Enables all of the jobs in the job collection. */
-export const JobCollectionsEnable: API.OperationMethod<
-  JobCollectionsEnableRequest,
-  JobCollectionsEnableResponse,
-  JobCollectionsEnableError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: JobCollectionsEnableRequest,
-  output: JobCollectionsEnableResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type JobCollectionsGetError = AzureOpError;
-/** Gets a job collection. */
-export const JobCollectionsGet: API.OperationMethod<
-  JobCollectionsGetRequest,
-  JobCollectionDefinition,
-  JobCollectionsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: JobCollectionsGetRequest,
-  output: JobCollectionDefinition,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type JobCollectionsListByResourceGroupError = AzureOpError;
-/** Gets all job collections under specified resource group. */
-export const JobCollectionsListByResourceGroup: API.OperationMethod<
-  JobCollectionsListByResourceGroupRequest,
-  JobCollectionListResult,
-  JobCollectionsListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: JobCollectionsListByResourceGroupRequest,
-  output: JobCollectionListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type JobCollectionsListBySubscriptionError = AzureOpError;
-/** Gets all job collections under specified subscription. */
-export const JobCollectionsListBySubscription: API.OperationMethod<
-  JobCollectionsListBySubscriptionRequest,
-  JobCollectionListResult,
-  JobCollectionsListBySubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: JobCollectionsListBySubscriptionRequest,
-  output: JobCollectionListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type JobCollectionsPatchError = AzureOpError;
-/** Patches an existing job collection. */
-export const JobCollectionsPatch: API.OperationMethod<
-  JobCollectionsPatchRequest,
-  JobCollectionDefinition,
-  JobCollectionsPatchError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: JobCollectionsPatchRequest,
   output: JobCollectionDefinition,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -1416,91 +1399,106 @@ export const JobsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type JobsDeleteError = AzureOpError;
-/** Deletes a job. */
-export const JobsDelete: API.OperationMethod<
-  JobsDeleteRequest,
-  JobsDeleteResponse,
-  JobsDeleteError,
+export type ListJobCollectionByResourceGroupError = AzureOpError;
+/** Gets all job collections under specified resource group. */
+export const ListJobCollectionByResourceGroup: API.OperationMethod<
+  ListJobCollectionByResourceGroupRequest,
+  JobCollectionListResult,
+  ListJobCollectionByResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: JobsDeleteRequest,
-  output: JobsDeleteResponse,
+  input: ListJobCollectionByResourceGroupRequest,
+  output: JobCollectionListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type JobsGetError = AzureOpError;
-/** Gets a job. */
-export const JobsGet: API.OperationMethod<
-  JobsGetRequest,
-  JobDefinition,
-  JobsGetError,
+export type ListJobCollectionBySubscriptionError = AzureOpError;
+/** Gets all job collections under specified subscription. */
+export const ListJobCollectionBySubscription: API.OperationMethod<
+  ListJobCollectionBySubscriptionRequest,
+  JobCollectionListResult,
+  ListJobCollectionBySubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: JobsGetRequest,
-  output: JobDefinition,
+  input: ListJobCollectionBySubscriptionRequest,
+  output: JobCollectionListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type JobsListError = AzureOpError;
-/** Lists all jobs under the specified job collection. */
-export const JobsList: API.OperationMethod<
-  JobsListRequest,
-  JobListResult,
-  JobsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: JobsListRequest,
-  output: JobListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type JobsListJobHistoryError = AzureOpError;
+export type ListJobJobHistoryError = AzureOpError;
 /** Lists job history. */
-export const JobsListJobHistory: API.OperationMethod<
-  JobsListJobHistoryRequest,
+export const ListJobJobHistory: API.OperationMethod<
+  ListJobJobHistoryRequest,
   JobHistoryListResult,
-  JobsListJobHistoryError,
+  ListJobJobHistoryError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: JobsListJobHistoryRequest,
+  input: ListJobJobHistoryRequest,
   output: JobHistoryListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type JobsPatchError = AzureOpError;
-/** Patches an existing job. */
-export const JobsPatch: API.OperationMethod<
-  JobsPatchRequest,
-  JobDefinition,
-  JobsPatchError,
+export type ListJobsError = AzureOpError;
+/** Lists all jobs under the specified job collection. */
+export const ListJobs: API.OperationMethod<
+  ListJobsRequest,
+  JobListResult,
+  ListJobsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: JobsPatchRequest,
+  input: ListJobsRequest,
+  output: JobListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PatchJobError = AzureOpError;
+/** Patches an existing job. */
+export const PatchJob: API.OperationMethod<
+  PatchJobRequest,
+  JobDefinition,
+  PatchJobError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PatchJobRequest,
   output: JobDefinition,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type JobsRunError = AzureOpError;
-/** Runs a job. */
-export const JobsRun: API.OperationMethod<
-  JobsRunRequest,
-  JobsRunResponse,
-  JobsRunError,
+export type PatchJobCollectionError = AzureOpError;
+/** Patches an existing job collection. */
+export const PatchJobCollection: API.OperationMethod<
+  PatchJobCollectionRequest,
+  JobCollectionDefinition,
+  PatchJobCollectionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: JobsRunRequest,
-  output: JobsRunResponse,
+  input: PatchJobCollectionRequest,
+  output: JobCollectionDefinition,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RunJobError = AzureOpError;
+/** Runs a job. */
+export const RunJob: API.OperationMethod<
+  RunJobRequest,
+  RunJobResponse,
+  RunJobError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RunJobRequest,
+  output: RunJobResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

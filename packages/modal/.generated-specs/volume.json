@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.modal.volume#VolumeCommitRequest": {
+    "com.modal.volume#CommitVolumeRequest": {
       "type": "structure",
       "members": {
         "volumeId": {
@@ -37,7 +38,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.modal.volume#VolumeCommitResponse": {
+    "com.modal.volume#CommitVolumeResponse": {
       "type": "structure",
       "members": {
         "skipReload": {
@@ -48,13 +49,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.modal.volume#VolumeCommit": {
+    "com.modal.volume#CommitVolume": {
       "type": "operation",
       "input": {
-        "target": "com.modal.volume#VolumeCommitRequest"
+        "target": "com.modal.volume#CommitVolumeRequest"
       },
       "output": {
-        "target": "com.modal.volume#VolumeCommitResponse"
+        "target": "com.modal.volume#CommitVolumeResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -143,7 +144,7 @@
         }
       }
     },
-    "com.modal.volume#VolumeDeleteRequest": {
+    "com.modal.volume#DeleteVolumeRequest": {
       "type": "structure",
       "members": {
         "volumeId": {
@@ -160,10 +161,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.modal.volume#VolumeDelete": {
+    "com.modal.volume#DeleteVolume": {
       "type": "operation",
       "input": {
-        "target": "com.modal.volume#VolumeDeleteRequest"
+        "target": "com.modal.volume#DeleteVolumeRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -567,7 +568,7 @@
         }
       }
     },
-    "com.modal.volume#VolumeListRequest": {
+    "com.modal.volume#ListVolumeRequest": {
       "type": "structure",
       "members": {
         "environmentName": {
@@ -610,7 +611,7 @@
         "target": "com.modal.volume#VolumeListItem"
       }
     },
-    "com.modal.volume#VolumeListResponse": {
+    "com.modal.volume#ListVolumeResponse": {
       "type": "structure",
       "members": {
         "items": {
@@ -624,13 +625,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.modal.volume#VolumeList": {
+    "com.modal.volume#ListVolume": {
       "type": "operation",
       "input": {
-        "target": "com.modal.volume#VolumeListRequest"
+        "target": "com.modal.volume#ListVolumeRequest"
       },
       "output": {
-        "target": "com.modal.volume#VolumeListResponse"
+        "target": "com.modal.volume#ListVolumeResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -947,7 +948,7 @@
         }
       }
     },
-    "com.modal.volume#VolumeRenameRequest": {
+    "com.modal.volume#RenameVolumeRequest": {
       "type": "structure",
       "members": {
         "volumeId": {
@@ -961,10 +962,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.modal.volume#VolumeRename": {
+    "com.modal.volume#RenameVolume": {
       "type": "operation",
       "input": {
-        "target": "com.modal.volume#VolumeRenameRequest"
+        "target": "com.modal.volume#RenameVolumeRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -982,7 +983,7 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.modal.volume#VolumeCommit"
+          "target": "com.modal.volume#CommitVolume"
         },
         {
           "target": "com.modal.volume#VolumeCopyFiles"
@@ -991,7 +992,7 @@
           "target": "com.modal.volume#VolumeCopyFiles2"
         },
         {
-          "target": "com.modal.volume#VolumeDelete"
+          "target": "com.modal.volume#DeleteVolume"
         },
         {
           "target": "com.modal.volume#VolumeGetById"
@@ -1009,7 +1010,7 @@
           "target": "com.modal.volume#VolumeHeartbeat"
         },
         {
-          "target": "com.modal.volume#VolumeList"
+          "target": "com.modal.volume#ListVolume"
         },
         {
           "target": "com.modal.volume#VolumePutFiles"
@@ -1027,7 +1028,7 @@
           "target": "com.modal.volume#VolumeRemoveFile2"
         },
         {
-          "target": "com.modal.volume#VolumeRename"
+          "target": "com.modal.volume#RenameVolume"
         }
       ],
       "traits": {

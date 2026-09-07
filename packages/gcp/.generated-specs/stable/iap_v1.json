@@ -4,112 +4,419 @@
     "service": "iap",
     "version": "v1",
     "title": "Cloud Identity-Aware Proxy API",
-    "baseUrl": "https://iap.googleapis.com/"
+    "baseUrl": "https://iap.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.gcp.iap_v1#IdentityAwareProxyClient": {
+    "com.gcp.iap_v1#TestIamPermissionsResponse": {
       "type": "structure",
       "members": {
-        "secret": {
+        "permissions": {
+          "target": "com.gcp.iap_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "A subset of `TestPermissionsRequest.permissions` that the caller is allowed."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for `TestIamPermissions` method."
+      }
+    },
+    "com.gcp.iap_v1#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.iap_v1#PolicyDelegationSettings": {
+      "type": "structure",
+      "members": {
+        "iamPermission": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Output only. Client secret of the OAuth client."
+            "smithy.api#documentation": "Permission to check in IAM."
+          }
+        },
+        "resource": {
+          "target": "com.gcp.iap_v1#Resource",
+          "traits": {
+            "smithy.api#documentation": "IAM resource to check permission on"
+          }
+        },
+        "policyName": {
+          "target": "com.gcp.iap_v1#PolicyName",
+          "traits": {
+            "smithy.api#documentation": "Policy name to be checked"
+          }
+        },
+        "iamServiceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The DNS name of the service (e.g. \"resourcemanager.googleapis.com\"). This should be the domain name part of the full resource names (see https://aip.dev/122#full-resource-names), which is usually the same as IamServiceSpec.service of the service where the resource type is defined."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "PolicyDelegationConfig allows google-internal teams to use IAP for apps hosted in a tenant project. Using these settings, the app can delegate permission check to happen against the linked customer project. This is only ever supposed to be used by google internal teams, hence the restriction on the proto."
+      }
+    },
+    "com.gcp.iap_v1#ListTunnelDestGroupsResponse": {
+      "type": "structure",
+      "members": {
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A token that you can send as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages."
+          }
+        },
+        "tunnelDestGroups": {
+          "target": "com.gcp.iap_v1#TunnelDestGroupList",
+          "traits": {
+            "smithy.api#documentation": "TunnelDestGroup existing in the project."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response from ListTunnelDestGroups."
+      }
+    },
+    "com.gcp.iap_v1#TunnelDestGroupList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.iap_v1#TunnelDestGroup"
+      }
+    },
+    "com.gcp.iap_v1#TestIamPermissionsRequest": {
+      "type": "structure",
+      "members": {
+        "permissions": {
+          "target": "com.gcp.iap_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "The set of permissions to check for the `resource`. Permissions with wildcards (such as `*` or `storage.*`) are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request message for `TestIamPermissions` method."
+      }
+    },
+    "com.gcp.iap_v1#IapSettings": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name of the IAP protected resource."
+          }
+        },
+        "applicationSettings": {
+          "target": "com.gcp.iap_v1#ApplicationSettings",
+          "traits": {
+            "smithy.api#documentation": "Optional. Top level wrapper for all application related settings in IAP"
+          }
+        },
+        "accessSettings": {
+          "target": "com.gcp.iap_v1#AccessSettings",
+          "traits": {
+            "smithy.api#documentation": "Optional. Top level wrapper for all access related setting in IAP"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The IAP configurable settings."
+      }
+    },
+    "com.gcp.iap_v1#ValidateIapAttributeExpressionResponse": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "IAP Expression Linter endpoint returns empty response body."
+      }
+    },
+    "com.gcp.iap_v1#SetIamPolicyRequest": {
+      "type": "structure",
+      "members": {
+        "policy": {
+          "target": "com.gcp.iap_v1#Policy",
+          "traits": {
+            "smithy.api#documentation": "REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Google Cloud services (such as Projects) might reject them."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request message for `SetIamPolicy` method."
+      }
+    },
+    "com.gcp.iap_v1#CorsSettings": {
+      "type": "structure",
+      "members": {
+        "allowHttpOptions": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Configuration to allow HTTP `OPTIONS` calls to skip authentication and authorization. If undefined, IAP will not apply any special logic to `OPTIONS` requests."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Allows customers to configure HTTP request paths that'll allow HTTP `OPTIONS` call to bypass authentication and authorization."
+      }
+    },
+    "com.gcp.iap_v1#TunnelDestGroup": {
+      "type": "structure",
+      "members": {
+        "cidrs": {
+          "target": "com.gcp.iap_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Unordered list. List of CIDRs that this group applies to."
           }
         },
         "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Output only. Unique identifier of the OAuth client."
+            "smithy.api#documentation": "Identifier. Identifier for the TunnelDestGroup. Must be unique within the project and contain only lower case letters (a-z) and dashes (-)."
           }
         },
-        "displayName": {
-          "target": "smithy.api#String",
+        "fqdns": {
+          "target": "com.gcp.iap_v1#StringList",
           "traits": {
-            "smithy.api#documentation": "Human-friendly name given to the OAuth client."
+            "smithy.api#documentation": "Optional. Unordered list. List of FQDNs that this group applies to."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Contains the data that describes an Identity Aware Proxy owned client."
+        "smithy.api#documentation": "A TunnelDestGroup."
       }
     },
-    "com.gcp.iap_v1#AccessSettings": {
+    "com.gcp.iap_v1#ListBrandsResponse": {
       "type": "structure",
       "members": {
-        "gcipSettings": {
-          "target": "com.gcp.iap_v1#GcipSettings",
+        "brands": {
+          "target": "com.gcp.iap_v1#BrandList",
           "traits": {
-            "smithy.api#documentation": "Optional. GCIP claims and endpoint configurations for 3p identity providers."
-          }
-        },
-        "reauthSettings": {
-          "target": "com.gcp.iap_v1#ReauthSettings",
-          "traits": {
-            "smithy.api#documentation": "Optional. Settings to configure reauthentication policies in IAP."
-          }
-        },
-        "corsSettings": {
-          "target": "com.gcp.iap_v1#CorsSettings",
-          "traits": {
-            "smithy.api#documentation": "Optional. Configuration to allow cross-origin requests via IAP."
-          }
-        },
-        "identitySources": {
-          "target": "com.gcp.iap_v1#AccessSettingsIdentitySourcesItemEnumList",
-          "traits": {
-            "smithy.api#documentation": "Optional. Identity sources that IAP can use to authenticate the end user. Only one identity source can be configured."
-          }
-        },
-        "allowedDomainsSettings": {
-          "target": "com.gcp.iap_v1#AllowedDomainsSettings",
-          "traits": {
-            "smithy.api#documentation": "Optional. Settings to configure and enable allowed domains."
-          }
-        },
-        "workforceIdentitySettings": {
-          "target": "com.gcp.iap_v1#WorkforceIdentitySettings",
-          "traits": {
-            "smithy.api#documentation": "Optional. Settings to configure the workforce identity federation, including workforce pools and OAuth 2.0 settings."
-          }
-        },
-        "oauthSettings": {
-          "target": "com.gcp.iap_v1#OAuthSettings",
-          "traits": {
-            "smithy.api#documentation": "Optional. Settings to configure IAP's OAuth behavior."
-          }
-        },
-        "policyDelegationSettings": {
-          "target": "com.gcp.iap_v1#PolicyDelegationSettings",
-          "traits": {
-            "smithy.api#documentation": "Optional. Settings to allow google-internal teams to use IAP for apps hosted in a tenant project."
+            "smithy.api#documentation": "Brands existing in the project."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Access related settings for IAP protected apps."
+        "smithy.api#documentation": "Response message for ListBrands."
       }
     },
-    "com.gcp.iap_v1#AccessSettingsIdentitySourcesItemEnum": {
-      "type": "enum",
+    "com.gcp.iap_v1#BrandList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.iap_v1#Brand"
+      }
+    },
+    "com.gcp.iap_v1#AttributePropagationSettings": {
+      "type": "structure",
       "members": {
-        "IDENTITY_SOURCE_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
+        "expression": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#enumValue": "IDENTITY_SOURCE_UNSPECIFIED"
+            "smithy.api#documentation": "Optional. Raw string CEL expression. Must return a list of attributes. A maximum of 45 attributes can be selected. Expressions can select different attribute types from `attributes`: `attributes.saml_attributes`, `attributes.iap_attributes`. The following functions are supported: - filter `.filter(, )`: Returns a subset of `` where `` is true for every item. - in ` in `: Returns true if `` contains ``. - selectByName `.selectByName()`: Returns the attribute in `` with the given `` name, otherwise returns empty. - emitAs `.emitAs()`: Sets the `` name field to the given `` for propagation in selected output credentials. - strict `.strict()`: Ignores the `x-goog-iap-attr-` prefix for the provided `` when propagating with the `HEADER` output credential, such as request headers. - append `.append()` OR `.append()`: Appends the provided `` or `` to the end of ``. Example expression: `attributes.saml_attributes.filter(x, x.name in ['test']).append(attributes.iap_attributes.selectByName('exact').emitAs('custom').strict())`"
           }
         },
-        "WORKFORCE_IDENTITY_FEDERATION": {
+        "enable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Whether the provided attribute propagation settings should be evaluated on user requests. If set to true, attributes returned from the expression will be propagated in the set output credentials."
+          }
+        },
+        "outputCredentials": {
+          "target": "com.gcp.iap_v1#AttributePropagationSettingsOutputCredentialsItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Which output credentials attributes selected by the CEL expression should be propagated in. All attributes will be fully duplicated in each selected output credential."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration for propagating attributes to applications protected by IAP."
+      }
+    },
+    "com.gcp.iap_v1#AttributePropagationSettingsOutputCredentialsItemEnum": {
+      "type": "enum",
+      "members": {
+        "OUTPUT_CREDENTIALS_UNSPECIFIED": {
           "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#enumValue": "WORKFORCE_IDENTITY_FEDERATION"
+            "smithy.api#enumValue": "OUTPUT_CREDENTIALS_UNSPECIFIED"
+          }
+        },
+        "HEADER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HEADER"
+          }
+        },
+        "JWT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "JWT"
+          }
+        },
+        "RCTOKEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RCTOKEN"
           }
         }
       }
     },
-    "com.gcp.iap_v1#AccessSettingsIdentitySourcesItemEnumList": {
+    "com.gcp.iap_v1#AttributePropagationSettingsOutputCredentialsItemEnumList": {
       "type": "list",
       "member": {
-        "target": "com.gcp.iap_v1#AccessSettingsIdentitySourcesItemEnum"
+        "target": "com.gcp.iap_v1#AttributePropagationSettingsOutputCredentialsItemEnum"
+      }
+    },
+    "com.gcp.iap_v1#Resource": {
+      "type": "structure",
+      "members": {
+        "nextStateOfTags": {
+          "target": "com.gcp.iap_v1#NextStateOfTags",
+          "traits": {
+            "smithy.api#documentation": "Used for calculating the next state of tags on the resource being passed for Custom Org Policy enforcement. NOTE: Only one of the tags representations (i.e. numeric or namespaced) should be populated. The input tags will be converted to the same representation before the calculation. This behavior intentionally may differ from other tags related fields in CheckPolicy request, which may require both formats to be passed in. IMPORTANT: If tags are unchanged, this field should not be set."
+          }
+        },
+        "locations": {
+          "target": "com.gcp.iap_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "The locations of the resource. This field is used to determine whether the request is compliant with Trust Boundaries. Usage: - Must not be empty for services in-scope for Trust Boundaries. Once Trust Boundaries is GA, empty values will cause the request to be rejected if customers enforce Trust Boundaries on the parent CRM nodes. - For global resources: use a single value of \"global\". - For regional/multi-regional resources: use name of the GCP region(s) where the resource exists (e.g., [\"us-east1\", \"us-west1\"]). For multi-regional resources specify the name of each GCP region in the resource's multi-region. NOTE: Only GCP cloud region names are supported - go/cloud-region-names. - Constraints: - Individual location strings must be less than 1000 bytes. - The cumulative size of all locations must be less than 16KB. "
+          }
+        },
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the service this resource belongs to. It is configured using the official_service_name of the Service as defined in service configurations under //configs/cloud/resourcetypes. For example, the official_service_name of cloud resource manager service is set as 'cloudresourcemanager.googleapis.com' according to //configs/cloud/resourcetypes/google/cloud/resourcemanager/prod.yaml This field is **required** for services integrated with resource-attribute-based IAM conditions and/or CustomOrgPolicy. This field requires special handling for parents-only permissions such as `create` and `list`. See the document linked below for further details. See go/iam-conditions-sig-g3#populate-resource-attributes for specific details on populating this field."
+          }
+        },
+        "labels": {
+          "target": "com.gcp.iap_v1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "The service defined labels of the resource on which the conditions will be evaluated. The semantics - including the key names - are vague to IAM. If the effective condition has a reference to a `resource.labels[foo]` construct, IAM consults with this map to retrieve the values associated with `foo` key for Conditions evaluation. If the provided key is not found in the labels map, the condition would evaluate to false. This field is in limited use. If your intended use case is not expected to express resource.labels attribute in IAM Conditions, leave this field empty. Before planning on using this attribute please: * Read go/iam-conditions-labels-comm and ensure your service can meet the data availability and management requirements. * Talk to iam-conditions-eng@ about your use case."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The **relative** name of the resource, which is the URI path of the resource without the leading \"/\". See https://cloud.google.com/iam/docs/conditions-resource-attributes#resource-name for examples used by other GCP Services. This field is **required** for services integrated with resource-attribute-based IAM conditions and/or CustomOrgPolicy. This field requires special handling for parents-only permissions such as `create` and `list`. See the document linked below for further details. See go/iam-conditions-sig-g3#populate-resource-attributes for specific details on populating this field."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The public resource type name of the resource. It is configured using the official_name of the ResourceType as defined in service configurations under //configs/cloud/resourcetypes. For example, the official_name for GCP projects is set as 'cloudresourcemanager.googleapis.com/Project' according to //configs/cloud/resourcetypes/google/cloud/resourcemanager/prod.yaml This field is **required** for services integrated with resource-attribute-based IAM conditions and/or CustomOrgPolicy. This field requires special handling for parents-only permissions such as `create` and `list`. See the document linked below for further details. See go/iam-conditions-sig-g3#populate-resource-attributes for specific details on populating this field."
+          }
+        },
+        "expectedNextState": {
+          "target": "com.gcp.iap_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "The proto or JSON formatted expected next state of the resource, wrapped in a google.protobuf.Any proto, against which the policy rules are evaluated. Services not integrated with custom org policy can omit this field. Services integrated with custom org policy must populate this field for all requests where the API call changes the state of the resource. Custom org policy backend uses these attributes to enforce custom org policies. For create operations, GCP service is expected to pass resource from customer request as is. For update/patch operations, GCP service is expected to compute the next state with the patch provided by the user. See go/federated-custom-org-policy-integration-guide for additional details."
+          }
+        }
+      }
+    },
+    "com.gcp.iap_v1#StringMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.iap_v1#DocumentMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.gcp.iap_v1#Policy": {
+      "type": "structure",
+      "members": {
+        "version": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
+          }
+        },
+        "bindings": {
+          "target": "com.gcp.iap_v1#BindingList",
+          "traits": {
+            "smithy.api#documentation": "Associates a list of `members`, or principals, with a `role`. Optionally, may specify a `condition` that determines how and when the `bindings` are applied. Each of the `bindings` must contain at least one principal. The `bindings` in a `Policy` can refer to up to 1,500 principals; up to 250 of these principals can be Google groups. Each occurrence of a principal counts towards these limits. For example, if the `bindings` grant 50 different roles to `user:alice@example.com`, and not to any other principal, then you can add another 1,450 principals to the `bindings` in the `Policy`."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "`etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy. **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/)."
+      }
+    },
+    "com.gcp.iap_v1#BindingList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.iap_v1#Binding"
+      }
+    },
+    "com.gcp.iap_v1#TagsPartialState": {
+      "type": "structure",
+      "members": {
+        "tagKeysToRemove": {
+          "target": "com.gcp.iap_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Keys of the tags that should be removed for evaluation purposes. IMPORTANT: Currently only numeric references are supported. Once support for namespace references is added, both the tag references (numeric and namespace) will be removed."
+          }
+        },
+        "tagsToUpsert": {
+          "target": "com.gcp.iap_v1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Tags that’ll be updated or added to the current state of tags for evaluation purposes. If a key exists in both \"tags_to_upsert\" and \"tag_keys_to_remove\", the one in \"tag_keys_to_remove\" is ignored. Only one type of tags reference (numeric or namespace) is required to be passed."
+          }
+        }
+      }
+    },
+    "com.gcp.iap_v1#AccessDeniedPageSettings": {
+      "type": "structure",
+      "members": {
+        "generateTroubleshootingUri": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to generate a troubleshooting URL on access denied events to this application."
+          }
+        },
+        "remediationTokenGenerationEnabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to generate remediation token on access denied events to this application."
+          }
+        },
+        "accessDeniedPageUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URI to be redirected to when access is denied."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Custom content configuration for access denied page. IAP allows customers to define a custom URI to use as the error page when access is denied to users. If IAP prevents access to this page, the default IAP error page will be displayed instead."
+      }
+    },
+    "com.gcp.iap_v1#TagsFullStateForChildResource": {
+      "type": "structure",
+      "members": {
+        "tags": {
+          "target": "com.gcp.iap_v1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "If TagsFullStateForChildResource is initialized, the values in this field represent all the tags in the next state for the child resource. Only one type of tags reference (numeric or namespace) is required to be passed. IMPORTANT: This field should only be used when the target resource IAM policy name is UNKNOWN and the resource's parent IAM policy name is being passed in the request."
+          }
+        }
       }
     },
     "com.gcp.iap_v1#ReauthSettings": {
@@ -196,183 +503,6 @@
         }
       }
     },
-    "com.gcp.iap_v1#ListBrandsResponse": {
-      "type": "structure",
-      "members": {
-        "brands": {
-          "target": "com.gcp.iap_v1#BrandList",
-          "traits": {
-            "smithy.api#documentation": "Brands existing in the project."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Response message for ListBrands."
-      }
-    },
-    "com.gcp.iap_v1#BrandList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.iap_v1#Brand"
-      }
-    },
-    "com.gcp.iap_v1#Empty": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
-      }
-    },
-    "com.gcp.iap_v1#WorkforceIdentitySettings": {
-      "type": "structure",
-      "members": {
-        "oauth2": {
-          "target": "com.gcp.iap_v1#OAuth2",
-          "traits": {
-            "smithy.api#documentation": "OAuth 2.0 settings for IAP to perform OIDC flow with workforce identity federation services."
-          }
-        },
-        "workforcePools": {
-          "target": "com.gcp.iap_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "The workforce pool resources. Only one workforce pool is accepted."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "WorkforceIdentitySettings allows customers to configure workforce pools and OAuth 2.0 settings to gate their applications using a third-party IdP with access control."
-      }
-    },
-    "com.gcp.iap_v1#StringList": {
-      "type": "list",
-      "member": {
-        "target": "smithy.api#String"
-      }
-    },
-    "com.gcp.iap_v1#Brand": {
-      "type": "structure",
-      "members": {
-        "applicationTitle": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Application name displayed on OAuth consent screen."
-          }
-        },
-        "orgInternalOnly": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Output only. Whether the brand is only intended for usage inside the G Suite organization only."
-          }
-        },
-        "supportEmail": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Support email displayed on the OAuth consent screen."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Identifier of the brand. NOTE: GCP project number achieves the same brand identification purpose as only one brand per project can be created."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "OAuth brand data. NOTE: Only contains a portion of the data that describes a brand."
-      }
-    },
-    "com.gcp.iap_v1#AllowedDomainsSettings": {
-      "type": "structure",
-      "members": {
-        "domains": {
-          "target": "com.gcp.iap_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "Optional. List of trusted domains."
-          }
-        },
-        "enable": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Optional. Configuration for customers to opt in for the feature."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Configuration for IAP allowed domains. Lets you to restrict access to an app and allow access to only the domains that you list."
-      }
-    },
-    "com.gcp.iap_v1#Binding": {
-      "type": "structure",
-      "members": {
-        "role": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles)."
-          }
-        },
-        "condition": {
-          "target": "com.gcp.iap_v1#Expr",
-          "traits": {
-            "smithy.api#documentation": "The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the principals in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
-          }
-        },
-        "members": {
-          "target": "com.gcp.iap_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. * `principal://iam.googleapis.com/locations/global/workforcePools/{pool_id}/subject/{subject_attribute_value}`: A single identity in a workforce identity pool. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/group/{group_id}`: All workforce identities in a group. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/attribute.{attribute_name}/{attribute_value}`: All workforce identities with a specific attribute value. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/*`: All identities in a workforce identity pool. * `principal://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/subject/{subject_attribute_value}`: A single identity in a workload identity pool. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/group/{group_id}`: A workload identity pool group. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/attribute.{attribute_name}/{attribute_value}`: All identities in a workload identity pool with a certain attribute. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/*`: All identities in a workload identity pool. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `deleted:principal://iam.googleapis.com/locations/global/workforcePools/{pool_id}/subject/{subject_attribute_value}`: Deleted single identity in a workforce identity pool. For example, `deleted:principal://iam.googleapis.com/locations/global/workforcePools/my-pool-id/subject/my-subject-attribute-value`."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Associates `members`, or principals, with a `role`."
-      }
-    },
-    "com.gcp.iap_v1#TagsFullState": {
-      "type": "structure",
-      "members": {
-        "tags": {
-          "target": "com.gcp.iap_v1#StringMap",
-          "traits": {
-            "smithy.api#documentation": "If TagsFullState is initialized, the values in this field fully represent all the tags in the next state (the current tag values are not used). If tags.size() == 0, the next state of tags would be no tags for evaluation purposes. Only one type of tags reference (numeric or namespace) is required to be passed."
-          }
-        }
-      }
-    },
-    "com.gcp.iap_v1#StringMap": {
-      "type": "map",
-      "key": {
-        "target": "smithy.api#String"
-      },
-      "value": {
-        "target": "smithy.api#String"
-      }
-    },
-    "com.gcp.iap_v1#AccessDeniedPageSettings": {
-      "type": "structure",
-      "members": {
-        "generateTroubleshootingUri": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether to generate a troubleshooting URL on access denied events to this application."
-          }
-        },
-        "accessDeniedPageUri": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The URI to be redirected to when access is denied."
-          }
-        },
-        "remediationTokenGenerationEnabled": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether to generate remediation token on access denied events to this application."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Custom content configuration for access denied page. IAP allows customers to define a custom URI to use as the error page when access is denied to users. If IAP prevents access to this page, the default IAP error page will be displayed instead."
-      }
-    },
     "com.gcp.iap_v1#GetPolicyOptions": {
       "type": "structure",
       "members": {
@@ -385,162 +515,6 @@
       },
       "traits": {
         "smithy.api#documentation": "Encapsulates settings provided to GetIamPolicy."
-      }
-    },
-    "com.gcp.iap_v1#SetIamPolicyRequest": {
-      "type": "structure",
-      "members": {
-        "policy": {
-          "target": "com.gcp.iap_v1#Policy",
-          "traits": {
-            "smithy.api#documentation": "REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Google Cloud services (such as Projects) might reject them."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Request message for `SetIamPolicy` method."
-      }
-    },
-    "com.gcp.iap_v1#OAuthSettings": {
-      "type": "structure",
-      "members": {
-        "loginHint": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Domain hint to send as hd=? parameter in OAuth request flow. Enables redirect to primary IDP by skipping Google's login screen. https://developers.google.com/identity/protocols/OpenIDConnect#hd-param Note: IAP does not verify that the id token's hd claim matches this value since access behavior is managed by IAM policies."
-          }
-        },
-        "clientId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. OAuth 2.0 client ID used in the OAuth flow. This allows for client sharing. The risks of client sharing are outlined here: https://cloud.google.com/iap/docs/sharing-oauth-clients#risks."
-          }
-        },
-        "clientSecretSha256": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. OAuth secret SHA256 paired with client ID."
-          }
-        },
-        "programmaticClients": {
-          "target": "com.gcp.iap_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "Optional. List of client ids allowed to use IAP programmatically."
-          }
-        },
-        "clientSecret": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Input only. OAuth secret paired with client ID."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Configuration for OAuth login&consent flow behavior as well as for OAuth Credentials."
-      }
-    },
-    "com.gcp.iap_v1#Policy": {
-      "type": "structure",
-      "members": {
-        "version": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
-          }
-        },
-        "etag": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "`etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy. **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost."
-          }
-        },
-        "bindings": {
-          "target": "com.gcp.iap_v1#BindingList",
-          "traits": {
-            "smithy.api#documentation": "Associates a list of `members`, or principals, with a `role`. Optionally, may specify a `condition` that determines how and when the `bindings` are applied. Each of the `bindings` must contain at least one principal. The `bindings` in a `Policy` can refer to up to 1,500 principals; up to 250 of these principals can be Google groups. Each occurrence of a principal counts towards these limits. For example, if the `bindings` grant 50 different roles to `user:alice@example.com`, and not to any other principal, then you can add another 1,450 principals to the `bindings` in the `Policy`."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/)."
-      }
-    },
-    "com.gcp.iap_v1#BindingList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.iap_v1#Binding"
-      }
-    },
-    "com.gcp.iap_v1#OAuth2": {
-      "type": "structure",
-      "members": {
-        "clientId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The OAuth 2.0 client ID registered in the workforce identity federation OAuth 2.0 Server."
-          }
-        },
-        "clientSecretSha256": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. SHA256 hash value for the client secret. This field is returned by IAP when the settings are retrieved."
-          }
-        },
-        "clientSecret": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Input only. The OAuth 2.0 client secret created while registering the client ID."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The OAuth 2.0 Settings"
-      }
-    },
-    "com.gcp.iap_v1#CsmSettings": {
-      "type": "structure",
-      "members": {
-        "rctokenAud": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Audience claim set in the generated RCToken. This value is not validated by IAP."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Configuration for RCToken generated for service mesh workloads protected by IAP. RCToken are IAP generated JWTs that can be verified at the application. The RCToken is primarily used for service mesh deployments, and can be scoped to a single mesh by configuring the audience field accordingly."
-      }
-    },
-    "com.gcp.iap_v1#Expr": {
-      "type": "structure",
-      "members": {
-        "expression": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Textual representation of an expression in Common Expression Language syntax."
-          }
-        },
-        "description": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI."
-          }
-        },
-        "location": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. String indicating the location of the expression for error reporting, e.g. a file name and a position in the file."
-          }
-        },
-        "title": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: \"Summary size limit\" description: \"Determines if a summary is less than 100 chars\" expression: \"document.summary.size() < 100\" Example (Equality): title: \"Requestor is owner\" description: \"Determines if requestor is the document owner\" expression: \"document.owner == request.auth.claims.email\" Example (Logic): title: \"Public documents\" description: \"Determine whether the document should be publicly visible\" expression: \"document.type != 'private' && document.type != 'internal'\" Example (Data Manipulation): title: \"Notification string\" description: \"Create a notification string with a timestamp.\" expression: \"'New message received at ' + string(document.create_time)\" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information."
       }
     },
     "com.gcp.iap_v1#ListIdentityAwareProxyClientsResponse": {
@@ -569,178 +543,65 @@
         "target": "com.gcp.iap_v1#IdentityAwareProxyClient"
       }
     },
-    "com.gcp.iap_v1#GetIamPolicyRequest": {
+    "com.gcp.iap_v1#IdentityAwareProxyClient": {
       "type": "structure",
       "members": {
-        "options": {
-          "target": "com.gcp.iap_v1#GetPolicyOptions",
-          "traits": {
-            "smithy.api#documentation": "OPTIONAL: A `GetPolicyOptions` object for specifying options to `GetIamPolicy`."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Request message for `GetIamPolicy` method."
-      }
-    },
-    "com.gcp.iap_v1#ResetIdentityAwareProxyClientSecretRequest": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#documentation": "The request sent to ResetIdentityAwareProxyClientSecret."
-      }
-    },
-    "com.gcp.iap_v1#NextStateOfTags": {
-      "type": "structure",
-      "members": {
-        "tagsFullState": {
-          "target": "com.gcp.iap_v1#TagsFullState"
-        },
-        "tagsPartialState": {
-          "target": "com.gcp.iap_v1#TagsPartialState"
-        },
-        "tagsFullStateForChildResource": {
-          "target": "com.gcp.iap_v1#TagsFullStateForChildResource"
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Used for calculating the next state of tags on the resource being passed for the CheckCustomConstraints RPC call. The detail evaluation of each field is described in go/op-create-update-time-tags and go/tags-in-orgpolicy-requests."
-      }
-    },
-    "com.gcp.iap_v1#TagsFullStateForChildResource": {
-      "type": "structure",
-      "members": {
-        "tags": {
-          "target": "com.gcp.iap_v1#StringMap",
-          "traits": {
-            "smithy.api#documentation": "If TagsFullStateForChildResource is initialized, the values in this field represent all the tags in the next state for the child resource. Only one type of tags reference (numeric or namespace) is required to be passed. IMPORTANT: This field should only be used when the target resource IAM policy name is UNKNOWN and the resource's parent IAM policy name is being passed in the request."
-          }
-        }
-      }
-    },
-    "com.gcp.iap_v1#TagsPartialState": {
-      "type": "structure",
-      "members": {
-        "tagsToUpsert": {
-          "target": "com.gcp.iap_v1#StringMap",
-          "traits": {
-            "smithy.api#documentation": "Tags that’ll be updated or added to the current state of tags for evaluation purposes. If a key exists in both \"tags_to_upsert\" and \"tag_keys_to_remove\", the one in \"tag_keys_to_remove\" is ignored. Only one type of tags reference (numeric or namespace) is required to be passed."
-          }
-        },
-        "tagKeysToRemove": {
-          "target": "com.gcp.iap_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "Keys of the tags that should be removed for evaluation purposes. IMPORTANT: Currently only numeric references are supported. Once support for namespace references is added, both the tag references (numeric and namespace) will be removed."
-          }
-        }
-      }
-    },
-    "com.gcp.iap_v1#PolicyDelegationSettings": {
-      "type": "structure",
-      "members": {
-        "policyName": {
-          "target": "com.gcp.iap_v1#PolicyName",
-          "traits": {
-            "smithy.api#documentation": "Policy name to be checked"
-          }
-        },
-        "resource": {
-          "target": "com.gcp.iap_v1#Resource",
-          "traits": {
-            "smithy.api#documentation": "IAM resource to check permission on"
-          }
-        },
-        "iamServiceName": {
+        "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The DNS name of the service (e.g. \"resourcemanager.googleapis.com\"). This should be the domain name part of the full resource names (see https://aip.dev/122#full-resource-names), which is usually the same as IamServiceSpec.service of the service where the resource type is defined."
+            "smithy.api#documentation": "Output only. Unique identifier of the OAuth client."
           }
         },
-        "iamPermission": {
+        "secret": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Permission to check in IAM."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "PolicyDelegationConfig allows google-internal teams to use IAP for apps hosted in a tenant project. Using these settings, the app can delegate permission check to happen against the linked customer project. This is only ever supposed to be used by google internal teams, hence the restriction on the proto."
-      }
-    },
-    "com.gcp.iap_v1#ListTunnelDestGroupsResponse": {
-      "type": "structure",
-      "members": {
-        "nextPageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A token that you can send as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages."
+            "smithy.api#documentation": "Output only. Client secret of the OAuth client."
           }
         },
-        "tunnelDestGroups": {
-          "target": "com.gcp.iap_v1#TunnelDestGroupList",
+        "displayName": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "TunnelDestGroup existing in the project."
+            "smithy.api#documentation": "Human-friendly name given to the OAuth client."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "The response from ListTunnelDestGroups."
+        "smithy.api#documentation": "Contains the data that describes an Identity Aware Proxy owned client."
       }
     },
-    "com.gcp.iap_v1#TunnelDestGroupList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.iap_v1#TunnelDestGroup"
-      }
-    },
-    "com.gcp.iap_v1#TestIamPermissionsResponse": {
+    "com.gcp.iap_v1#AllowedDomainsSettings": {
       "type": "structure",
       "members": {
-        "permissions": {
+        "domains": {
           "target": "com.gcp.iap_v1#StringList",
           "traits": {
-            "smithy.api#documentation": "A subset of `TestPermissionsRequest.permissions` that the caller is allowed."
+            "smithy.api#documentation": "Optional. List of trusted domains."
+          }
+        },
+        "enable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Configuration for customers to opt in for the feature."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Response message for `TestIamPermissions` method."
-      }
-    },
-    "com.gcp.iap_v1#TestIamPermissionsRequest": {
-      "type": "structure",
-      "members": {
-        "permissions": {
-          "target": "com.gcp.iap_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "The set of permissions to check for the `resource`. Permissions with wildcards (such as `*` or `storage.*`) are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions)."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Request message for `TestIamPermissions` method."
-      }
-    },
-    "com.gcp.iap_v1#ValidateIapAttributeExpressionResponse": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#documentation": "IAP Expression Linter endpoint returns empty response body."
+        "smithy.api#documentation": "Configuration for IAP allowed domains. Lets you to restrict access to an app and allow access to only the domains that you list."
       }
     },
     "com.gcp.iap_v1#GcipSettings": {
       "type": "structure",
       "members": {
-        "loginPageUri": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Login page URI associated with the GCIP tenants. Typically, all resources within the same project share the same login page, though it could be overridden at the sub resource level."
-          }
-        },
         "tenantIds": {
           "target": "com.gcp.iap_v1#StringList",
           "traits": {
             "smithy.api#documentation": "Optional. GCIP tenant IDs that are linked to the IAP resource. `tenant_ids` could be a string beginning with a number character to indicate authenticating with GCIP tenant flow, or in the format of `_` to indicate authenticating with GCIP agent flow. If agent flow is used, `tenant_ids` should only contain one single element, while for tenant flow, `tenant_ids` can contain multiple elements."
+          }
+        },
+        "loginPageUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Login page URI associated with the GCIP tenants. Typically, all resources within the same project share the same login page, though it could be overridden at the sub resource level."
           }
         }
       },
@@ -748,158 +609,111 @@
         "smithy.api#documentation": "Allows customers to configure tenant IDs for a Cloud Identity Platform (GCIP) instance for each application."
       }
     },
-    "com.gcp.iap_v1#ApplicationSettings": {
+    "com.gcp.iap_v1#TagsFullState": {
       "type": "structure",
       "members": {
-        "csmSettings": {
-          "target": "com.gcp.iap_v1#CsmSettings",
-          "traits": {
-            "smithy.api#documentation": "Optional. Settings to configure IAP's behavior for a service mesh."
-          }
-        },
-        "attributePropagationSettings": {
-          "target": "com.gcp.iap_v1#AttributePropagationSettings",
-          "traits": {
-            "smithy.api#documentation": "Optional. Settings to configure attribute propagation."
-          }
-        },
-        "cookieDomain": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The Domain value to set for cookies generated by IAP. This value is not validated by the API, but will be ignored at runtime if invalid."
-          }
-        },
-        "accessDeniedPageSettings": {
-          "target": "com.gcp.iap_v1#AccessDeniedPageSettings",
-          "traits": {
-            "smithy.api#documentation": "Optional. Customization for Access Denied page."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Wrapper over application specific settings for IAP."
-      }
-    },
-    "com.gcp.iap_v1#TunnelDestGroup": {
-      "type": "structure",
-      "members": {
-        "cidrs": {
-          "target": "com.gcp.iap_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "Optional. Unordered list. List of CIDRs that this group applies to."
-          }
-        },
-        "fqdns": {
-          "target": "com.gcp.iap_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "Optional. Unordered list. List of FQDNs that this group applies to."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier. Identifier for the TunnelDestGroup. Must be unique within the project and contain only lower case letters (a-z) and dashes (-)."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A TunnelDestGroup."
-      }
-    },
-    "com.gcp.iap_v1#Resource": {
-      "type": "structure",
-      "members": {
-        "nextStateOfTags": {
-          "target": "com.gcp.iap_v1#NextStateOfTags",
-          "traits": {
-            "smithy.api#documentation": "Used for calculating the next state of tags on the resource being passed for Custom Org Policy enforcement. NOTE: Only one of the tags representations (i.e. numeric or namespaced) should be populated. The input tags will be converted to the same representation before the calculation. This behavior intentionally may differ from other tags related fields in CheckPolicy request, which may require both formats to be passed in. IMPORTANT: If tags are unchanged, this field should not be set."
-          }
-        },
-        "locations": {
-          "target": "com.gcp.iap_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "The locations of the resource. This field is used to determine whether the request is compliant with Trust Boundaries. Usage: - Must not be empty for services in-scope for Trust Boundaries. Once Trust Boundaries is GA, empty values will cause the request to be rejected if customers enforce Trust Boundaries on the parent CRM nodes. - For global resources: use a single value of \"global\". - For regional/multi-regional resources: use name of the GCP region(s) where the resource exists (e.g., [\"us-east1\", \"us-west1\"]). For multi-regional resources specify the name of each GCP region in the resource's multi-region. NOTE: Only GCP cloud region names are supported - go/cloud-region-names. - Constraints: - Individual location strings must be less than 1000 bytes. - The cumulative size of all locations must be less than 16KB. "
-          }
-        },
-        "labels": {
+        "tags": {
           "target": "com.gcp.iap_v1#StringMap",
           "traits": {
-            "smithy.api#documentation": "The service defined labels of the resource on which the conditions will be evaluated. The semantics - including the key names - are vague to IAM. If the effective condition has a reference to a `resource.labels[foo]` construct, IAM consults with this map to retrieve the values associated with `foo` key for Conditions evaluation. If the provided key is not found in the labels map, the condition would evaluate to false. This field is in limited use. If your intended use case is not expected to express resource.labels attribute in IAM Conditions, leave this field empty. Before planning on using this attribute please: * Read go/iam-conditions-labels-comm and ensure your service can meet the data availability and management requirements. * Talk to iam-conditions-eng@ about your use case."
-          }
-        },
-        "service": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name of the service this resource belongs to. It is configured using the official_service_name of the Service as defined in service configurations under //configs/cloud/resourcetypes. For example, the official_service_name of cloud resource manager service is set as 'cloudresourcemanager.googleapis.com' according to //configs/cloud/resourcetypes/google/cloud/resourcemanager/prod.yaml This field is **required** for services integrated with resource-attribute-based IAM conditions and/or CustomOrgPolicy. This field requires special handling for parents-only permissions such as `create` and `list`. See the document linked below for further details. See go/iam-conditions-sig-g3#populate-resource-attributes for specific details on populating this field."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The **relative** name of the resource, which is the URI path of the resource without the leading \"/\". See https://cloud.google.com/iam/docs/conditions-resource-attributes#resource-name for examples used by other GCP Services. This field is **required** for services integrated with resource-attribute-based IAM conditions and/or CustomOrgPolicy. This field requires special handling for parents-only permissions such as `create` and `list`. See the document linked below for further details. See go/iam-conditions-sig-g3#populate-resource-attributes for specific details on populating this field."
-          }
-        },
-        "type": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The public resource type name of the resource. It is configured using the official_name of the ResourceType as defined in service configurations under //configs/cloud/resourcetypes. For example, the official_name for GCP projects is set as 'cloudresourcemanager.googleapis.com/Project' according to //configs/cloud/resourcetypes/google/cloud/resourcemanager/prod.yaml This field is **required** for services integrated with resource-attribute-based IAM conditions and/or CustomOrgPolicy. This field requires special handling for parents-only permissions such as `create` and `list`. See the document linked below for further details. See go/iam-conditions-sig-g3#populate-resource-attributes for specific details on populating this field."
-          }
-        },
-        "expectedNextState": {
-          "target": "com.gcp.iap_v1#DocumentMap",
-          "traits": {
-            "smithy.api#documentation": "The proto or JSON formatted expected next state of the resource, wrapped in a google.protobuf.Any proto, against which the policy rules are evaluated. Services not integrated with custom org policy can omit this field. Services integrated with custom org policy must populate this field for all requests where the API call changes the state of the resource. Custom org policy backend uses these attributes to enforce custom org policies. For create operations, GCP service is expected to pass resource from customer request as is. For update/patch operations, GCP service is expected to compute the next state with the patch provided by the user. See go/federated-custom-org-policy-integration-guide for additional details."
+            "smithy.api#documentation": "If TagsFullState is initialized, the values in this field fully represent all the tags in the next state (the current tag values are not used). If tags.size() == 0, the next state of tags would be no tags for evaluation purposes. Only one type of tags reference (numeric or namespace) is required to be passed."
           }
         }
       }
     },
-    "com.gcp.iap_v1#DocumentMap": {
-      "type": "map",
-      "key": {
-        "target": "smithy.api#String"
-      },
-      "value": {
-        "target": "smithy.api#Document"
-      }
-    },
-    "com.gcp.iap_v1#IapSettings": {
+    "com.gcp.iap_v1#AccessSettings": {
       "type": "structure",
       "members": {
-        "accessSettings": {
-          "target": "com.gcp.iap_v1#AccessSettings",
+        "corsSettings": {
+          "target": "com.gcp.iap_v1#CorsSettings",
           "traits": {
-            "smithy.api#documentation": "Optional. Top level wrapper for all access related setting in IAP"
+            "smithy.api#documentation": "Optional. Configuration to allow cross-origin requests via IAP."
           }
         },
-        "name": {
-          "target": "smithy.api#String",
+        "identitySources": {
+          "target": "com.gcp.iap_v1#AccessSettingsIdentitySourcesItemEnumList",
           "traits": {
-            "smithy.api#documentation": "Required. The resource name of the IAP protected resource."
+            "smithy.api#documentation": "Optional. Identity sources that IAP can use to authenticate the end user. Only one identity source can be configured."
           }
         },
-        "applicationSettings": {
-          "target": "com.gcp.iap_v1#ApplicationSettings",
+        "policyDelegationSettings": {
+          "target": "com.gcp.iap_v1#PolicyDelegationSettings",
           "traits": {
-            "smithy.api#documentation": "Optional. Top level wrapper for all application related settings in IAP"
+            "smithy.api#documentation": "Optional. Settings to allow google-internal teams to use IAP for apps hosted in a tenant project."
+          }
+        },
+        "reauthSettings": {
+          "target": "com.gcp.iap_v1#ReauthSettings",
+          "traits": {
+            "smithy.api#documentation": "Optional. Settings to configure reauthentication policies in IAP."
+          }
+        },
+        "oauthSettings": {
+          "target": "com.gcp.iap_v1#OAuthSettings",
+          "traits": {
+            "smithy.api#documentation": "Optional. Settings to configure IAP's OAuth behavior."
+          }
+        },
+        "allowedDomainsSettings": {
+          "target": "com.gcp.iap_v1#AllowedDomainsSettings",
+          "traits": {
+            "smithy.api#documentation": "Optional. Settings to configure and enable allowed domains."
+          }
+        },
+        "gcipSettings": {
+          "target": "com.gcp.iap_v1#GcipSettings",
+          "traits": {
+            "smithy.api#documentation": "Optional. GCIP claims and endpoint configurations for 3p identity providers."
+          }
+        },
+        "workforceIdentitySettings": {
+          "target": "com.gcp.iap_v1#WorkforceIdentitySettings",
+          "traits": {
+            "smithy.api#documentation": "Optional. Settings to configure the workforce identity federation, including workforce pools and OAuth 2.0 settings."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "The IAP configurable settings."
+        "smithy.api#documentation": "Access related settings for IAP protected apps."
       }
     },
-    "com.gcp.iap_v1#CorsSettings": {
+    "com.gcp.iap_v1#AccessSettingsIdentitySourcesItemEnum": {
+      "type": "enum",
+      "members": {
+        "IDENTITY_SOURCE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IDENTITY_SOURCE_UNSPECIFIED"
+          }
+        },
+        "WORKFORCE_IDENTITY_FEDERATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WORKFORCE_IDENTITY_FEDERATION"
+          }
+        }
+      }
+    },
+    "com.gcp.iap_v1#AccessSettingsIdentitySourcesItemEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.iap_v1#AccessSettingsIdentitySourcesItemEnum"
+      }
+    },
+    "com.gcp.iap_v1#NextStateOfTags": {
       "type": "structure",
       "members": {
-        "allowHttpOptions": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Configuration to allow HTTP `OPTIONS` calls to skip authentication and authorization. If undefined, IAP will not apply any special logic to `OPTIONS` requests."
-          }
+        "tagsFullStateForChildResource": {
+          "target": "com.gcp.iap_v1#TagsFullStateForChildResource"
+        },
+        "tagsPartialState": {
+          "target": "com.gcp.iap_v1#TagsPartialState"
+        },
+        "tagsFullState": {
+          "target": "com.gcp.iap_v1#TagsFullState"
         }
       },
       "traits": {
-        "smithy.api#documentation": "Allows customers to configure HTTP request paths that'll allow HTTP `OPTIONS` call to bypass authentication and authorization."
+        "smithy.api#documentation": "Used for calculating the next state of tags on the resource being passed for the CheckCustomConstraints RPC call. The detail evaluation of each field is described in go/op-create-update-time-tags and go/tags-in-orgpolicy-requests."
       }
     },
     "com.gcp.iap_v1#PolicyName": {
@@ -928,83 +742,263 @@
         "smithy.api#documentation": "An internal name for an IAM policy, based on the resource to which the policy applies. Not to be confused with a resource's external full resource name. For more information on this distinction, see go/iam-full-resource-names."
       }
     },
-    "com.gcp.iap_v1#AttributePropagationSettings": {
+    "com.gcp.iap_v1#ApplicationSettings": {
       "type": "structure",
       "members": {
-        "expression": {
+        "accessDeniedPageSettings": {
+          "target": "com.gcp.iap_v1#AccessDeniedPageSettings",
+          "traits": {
+            "smithy.api#documentation": "Optional. Customization for Access Denied page."
+          }
+        },
+        "cookieDomain": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Optional. Raw string CEL expression. Must return a list of attributes. A maximum of 45 attributes can be selected. Expressions can select different attribute types from `attributes`: `attributes.saml_attributes`, `attributes.iap_attributes`. The following functions are supported: - filter `.filter(, )`: Returns a subset of `` where `` is true for every item. - in ` in `: Returns true if `` contains ``. - selectByName `.selectByName()`: Returns the attribute in `` with the given `` name, otherwise returns empty. - emitAs `.emitAs()`: Sets the `` name field to the given `` for propagation in selected output credentials. - strict `.strict()`: Ignores the `x-goog-iap-attr-` prefix for the provided `` when propagating with the `HEADER` output credential, such as request headers. - append `.append()` OR `.append()`: Appends the provided `` or `` to the end of ``. Example expression: `attributes.saml_attributes.filter(x, x.name in ['test']).append(attributes.iap_attributes.selectByName('exact').emitAs('custom').strict())`"
+            "smithy.api#documentation": "The Domain value to set for cookies generated by IAP. This value is not validated by the API, but will be ignored at runtime if invalid."
           }
         },
-        "enable": {
-          "target": "smithy.api#Boolean",
+        "attributePropagationSettings": {
+          "target": "com.gcp.iap_v1#AttributePropagationSettings",
           "traits": {
-            "smithy.api#documentation": "Optional. Whether the provided attribute propagation settings should be evaluated on user requests. If set to true, attributes returned from the expression will be propagated in the set output credentials."
+            "smithy.api#documentation": "Optional. Settings to configure attribute propagation."
           }
         },
-        "outputCredentials": {
-          "target": "com.gcp.iap_v1#AttributePropagationSettingsOutputCredentialsItemEnumList",
+        "csmSettings": {
+          "target": "com.gcp.iap_v1#CsmSettings",
           "traits": {
-            "smithy.api#documentation": "Optional. Which output credentials attributes selected by the CEL expression should be propagated in. All attributes will be fully duplicated in each selected output credential."
+            "smithy.api#documentation": "Optional. Settings to configure IAP's behavior for a service mesh."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Configuration for propagating attributes to applications protected by IAP."
+        "smithy.api#documentation": "Wrapper over application specific settings for IAP."
       }
     },
-    "com.gcp.iap_v1#AttributePropagationSettingsOutputCredentialsItemEnum": {
-      "type": "enum",
-      "members": {
-        "OUTPUT_CREDENTIALS_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "OUTPUT_CREDENTIALS_UNSPECIFIED"
-          }
-        },
-        "HEADER": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "HEADER"
-          }
-        },
-        "JWT": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "JWT"
-          }
-        },
-        "RCTOKEN": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "RCTOKEN"
-          }
-        }
-      }
-    },
-    "com.gcp.iap_v1#AttributePropagationSettingsOutputCredentialsItemEnumList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.iap_v1#AttributePropagationSettingsOutputCredentialsItemEnum"
-      }
-    },
-    "com.gcp.iap_v1#ValidateAttributeExpressionV1Request": {
+    "com.gcp.iap_v1#Brand": {
       "type": "structure",
       "members": {
+        "applicationTitle": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Application name displayed on OAuth consent screen."
+          }
+        },
+        "orgInternalOnly": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Whether the brand is only intended for usage inside the G Suite organization only."
+          }
+        },
         "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Required. The resource name of the IAP protected resource.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
+            "smithy.api#documentation": "Output only. Identifier of the brand. NOTE: GCP project number achieves the same brand identification purpose as only one brand per project can be created."
+          }
+        },
+        "supportEmail": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Support email displayed on the OAuth consent screen."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "OAuth brand data. NOTE: Only contains a portion of the data that describes a brand."
+      }
+    },
+    "com.gcp.iap_v1#CsmSettings": {
+      "type": "structure",
+      "members": {
+        "rctokenAud": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Audience claim set in the generated RCToken. This value is not validated by IAP."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration for RCToken generated for service mesh workloads protected by IAP. RCToken are IAP generated JWTs that can be verified at the application. The RCToken is primarily used for service mesh deployments, and can be scoped to a single mesh by configuring the audience field accordingly."
+      }
+    },
+    "com.gcp.iap_v1#GetIamPolicyRequest": {
+      "type": "structure",
+      "members": {
+        "options": {
+          "target": "com.gcp.iap_v1#GetPolicyOptions",
+          "traits": {
+            "smithy.api#documentation": "OPTIONAL: A `GetPolicyOptions` object for specifying options to `GetIamPolicy`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request message for `GetIamPolicy` method."
+      }
+    },
+    "com.gcp.iap_v1#WorkforceIdentitySettings": {
+      "type": "structure",
+      "members": {
+        "workforcePools": {
+          "target": "com.gcp.iap_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "The workforce pool resources. Only one workforce pool is accepted."
+          }
+        },
+        "oauth2": {
+          "target": "com.gcp.iap_v1#OAuth2",
+          "traits": {
+            "smithy.api#documentation": "OAuth 2.0 settings for IAP to perform OIDC flow with workforce identity federation services."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "WorkforceIdentitySettings allows customers to configure workforce pools and OAuth 2.0 settings to gate their applications using a third-party IdP with access control."
+      }
+    },
+    "com.gcp.iap_v1#OAuthSettings": {
+      "type": "structure",
+      "members": {
+        "programmaticClients": {
+          "target": "com.gcp.iap_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. List of client ids allowed to use IAP programmatically."
+          }
+        },
+        "clientSecretSha256": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. OAuth secret SHA256 paired with client ID."
+          }
+        },
+        "clientId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. OAuth 2.0 client ID used in the OAuth flow. This allows for client sharing. The risks of client sharing are outlined here: https://cloud.google.com/iap/docs/sharing-oauth-clients#risks."
+          }
+        },
+        "loginHint": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Domain hint to send as hd=? parameter in OAuth request flow. Enables redirect to primary IDP by skipping Google's login screen. https://developers.google.com/identity/protocols/OpenIDConnect#hd-param Note: IAP does not verify that the id token's hd claim matches this value since access behavior is managed by IAM policies."
+          }
+        },
+        "clientSecret": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Input only. OAuth secret paired with client ID."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration for OAuth login&consent flow behavior as well as for OAuth Credentials."
+      }
+    },
+    "com.gcp.iap_v1#Empty": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+      }
+    },
+    "com.gcp.iap_v1#OAuth2": {
+      "type": "structure",
+      "members": {
+        "clientSecretSha256": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. SHA256 hash value for the client secret. This field is returned by IAP when the settings are retrieved."
+          }
+        },
+        "clientId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The OAuth 2.0 client ID registered in the workforce identity federation OAuth 2.0 Server."
+          }
+        },
+        "clientSecret": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Input only. The OAuth 2.0 client secret created while registering the client ID."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The OAuth 2.0 Settings"
+      }
+    },
+    "com.gcp.iap_v1#Binding": {
+      "type": "structure",
+      "members": {
+        "condition": {
+          "target": "com.gcp.iap_v1#Expr",
+          "traits": {
+            "smithy.api#documentation": "The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the principals in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
+          }
+        },
+        "members": {
+          "target": "com.gcp.iap_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. * `principal://iam.googleapis.com/locations/global/workforcePools/{pool_id}/subject/{subject_attribute_value}`: A single identity in a workforce identity pool. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/group/{group_id}`: All workforce identities in a group. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/attribute.{attribute_name}/{attribute_value}`: All workforce identities with a specific attribute value. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/*`: All identities in a workforce identity pool. * `principal://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/subject/{subject_attribute_value}`: A single identity in a workload identity pool. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/group/{group_id}`: A workload identity pool group. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/attribute.{attribute_name}/{attribute_value}`: All identities in a workload identity pool with a certain attribute. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/*`: All identities in a workload identity pool. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `deleted:principal://iam.googleapis.com/locations/global/workforcePools/{pool_id}/subject/{subject_attribute_value}`: Deleted single identity in a workforce identity pool. For example, `deleted:principal://iam.googleapis.com/locations/global/workforcePools/my-pool-id/subject/my-subject-attribute-value`."
+          }
+        },
+        "role": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Associates `members`, or principals, with a `role`."
+      }
+    },
+    "com.gcp.iap_v1#ResetIdentityAwareProxyClientSecretRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "The request sent to ResetIdentityAwareProxyClientSecret."
+      }
+    },
+    "com.gcp.iap_v1#Expr": {
+      "type": "structure",
+      "members": {
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. String indicating the location of the expression for error reporting, e.g. a file name and a position in the file."
           }
         },
         "expression": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Required. User input string expression. Should be of the form `attributes.saml_attributes.filter(attribute, attribute.name in ['{attribute_name}', '{attribute_name}'])`",
-            "smithy.api#httpQuery": "expression"
+            "smithy.api#documentation": "Textual representation of an expression in Common Expression Language syntax."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: \"Summary size limit\" description: \"Determines if a summary is less than 100 chars\" expression: \"document.summary.size() < 100\" Example (Equality): title: \"Requestor is owner\" description: \"Determines if requestor is the document owner\" expression: \"document.owner == request.auth.claims.email\" Example (Logic): title: \"Public documents\" description: \"Determine whether the document should be publicly visible\" expression: \"document.type != 'private' && document.type != 'internal'\" Example (Data Manipulation): title: \"Notification string\" description: \"Create a notification string with a timestamp.\" expression: \"'New message received at ' + string(document.create_time)\" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information."
+      }
+    },
+    "com.gcp.iap_v1#ListProjectsBrandsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. GCP Project number/id. In the following format: projects/{project_number/id}.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
           }
         }
       }
@@ -1035,6 +1029,87 @@
         ]
       }
     },
+    "com.gcp.iap_v1#ListProjectsBrands": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.iap_v1#ListProjectsBrandsRequest"
+      },
+      "output": {
+        "target": "com.gcp.iap_v1#ListBrandsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.iap_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.iap_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/brands"
+        },
+        "smithy.api#documentation": "Lists the existing brands for the project."
+      }
+    },
+    "com.gcp.iap_v1#GetProjectsBrandsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the brand to be fetched. In the following format: projects/{project_number/id}/brands/{brand}.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.iap_v1#GetProjectsBrands": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.iap_v1#GetProjectsBrandsRequest"
+      },
+      "output": {
+        "target": "com.gcp.iap_v1#Brand"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.iap_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.iap_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Retrieves the OAuth brand of the project."
+      }
+    },
+    "com.gcp.iap_v1#CreateProjectsBrandsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. GCP Project number/id under which the brand is to be created. In the following format: projects/{project_number/id}.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.iap_v1#Brand",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
     "com.gcp.iap_v1#BadRequest": {
       "type": "structure",
       "members": {},
@@ -1061,13 +1136,13 @@
         ]
       }
     },
-    "com.gcp.iap_v1#ValidateAttributeExpressionV1": {
+    "com.gcp.iap_v1#CreateProjectsBrands": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.iap_v1#ValidateAttributeExpressionV1Request"
+        "target": "com.gcp.iap_v1#CreateProjectsBrandsRequest"
       },
       "output": {
-        "target": "com.gcp.iap_v1#ValidateIapAttributeExpressionResponse"
+        "target": "com.gcp.iap_v1#Brand"
       },
       "errors": [
         {
@@ -1086,31 +1161,24 @@
       "traits": {
         "smithy.api#http": {
           "method": "POST",
-          "uri": "v1/{+name}:validateAttributeExpression"
+          "uri": "v1/{+parent}/brands"
         },
-        "smithy.api#documentation": "Validates that a given CEL expression conforms to IAP restrictions."
+        "smithy.api#documentation": "Constructs a new OAuth brand for the project if one does not exist. The created brand is \"internal only\", meaning that OAuth clients created under it only accept requests from users who belong to the same Google Workspace organization as the project. The brand is created in an un-reviewed status. NOTE: The \"internal only\" status can be manually changed in the Google Cloud Console. Requires that a brand does not already exist for the project, and that the specified support email is owned by the caller."
       }
     },
-    "com.gcp.iap_v1#UpdateIapSettingsV1Request": {
+    "com.gcp.iap_v1#CreateProjectsBrandsIdentityAwareProxyClientsRequest": {
       "type": "structure",
       "members": {
-        "updateMask": {
+        "parent": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The field mask specifying which IAP settings should be updated. If omitted, then all of the settings are updated. See https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask. Note: All IAP reauth settings must always be set together, using the field mask: `iapSettings.accessSettings.reauthSettings`.",
-            "smithy.api#httpQuery": "updateMask"
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The resource name of the IAP protected resource.",
+            "smithy.api#documentation": "Required. Path to create the client in. In the following format: projects/{project_number/id}/brands/{brand}. The project must belong to a G Suite account.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
           }
         },
         "body": {
-          "target": "com.gcp.iap_v1#IapSettings",
+          "target": "com.gcp.iap_v1#IdentityAwareProxyClient",
           "traits": {
             "smithy.api#httpPayload": {},
             "smithy.api#documentation": "Request body"
@@ -1118,13 +1186,255 @@
         }
       }
     },
-    "com.gcp.iap_v1#UpdateIapSettingsV1": {
+    "com.gcp.iap_v1#CreateProjectsBrandsIdentityAwareProxyClients": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.iap_v1#UpdateIapSettingsV1Request"
+        "target": "com.gcp.iap_v1#CreateProjectsBrandsIdentityAwareProxyClientsRequest"
       },
       "output": {
-        "target": "com.gcp.iap_v1#IapSettings"
+        "target": "com.gcp.iap_v1#IdentityAwareProxyClient"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.iap_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.iap_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.iap_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.iap_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+parent}/identityAwareProxyClients"
+        },
+        "smithy.api#documentation": "Creates an Identity Aware Proxy (IAP) OAuth client. The client is owned by IAP. Requires that the brand for the project exists and that it is set for internal-only use."
+      }
+    },
+    "com.gcp.iap_v1#DeleteProjectsBrandsIdentityAwareProxyClientsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the Identity Aware Proxy client to be deleted. In the following format: projects/{project_number/id}/brands/{brand}/identityAwareProxyClients/{client_id}.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.iap_v1#DeleteProjectsBrandsIdentityAwareProxyClients": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.iap_v1#DeleteProjectsBrandsIdentityAwareProxyClientsRequest"
+      },
+      "output": {
+        "target": "com.gcp.iap_v1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.iap_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.iap_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.iap_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.iap_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Deletes an Identity Aware Proxy (IAP) OAuth client. Useful for removing obsolete clients, managing the number of clients in a given project, and cleaning up after tests. Requires that the client is owned by IAP."
+      }
+    },
+    "com.gcp.iap_v1#ResetSecretProjectsBrandsIdentityAwareProxyClientsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the Identity Aware Proxy client to that will have its secret reset. In the following format: projects/{project_number/id}/brands/{brand}/identityAwareProxyClients/{client_id}.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.iap_v1#ResetIdentityAwareProxyClientSecretRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.iap_v1#ResetSecretProjectsBrandsIdentityAwareProxyClients": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.iap_v1#ResetSecretProjectsBrandsIdentityAwareProxyClientsRequest"
+      },
+      "output": {
+        "target": "com.gcp.iap_v1#IdentityAwareProxyClient"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.iap_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.iap_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.iap_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.iap_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+name}:resetSecret"
+        },
+        "smithy.api#documentation": "Resets an Identity Aware Proxy (IAP) OAuth client secret. Useful if the secret was compromised. Requires that the client is owned by IAP."
+      }
+    },
+    "com.gcp.iap_v1#ListProjectsBrandsIdentityAwareProxyClientsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Full brand path. In the following format: projects/{project_number/id}/brands/{brand}.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of clients to return. The service may return fewer than this value. If unspecified, at most 100 clients will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A page token, received from a previous `ListIdentityAwareProxyClients` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListIdentityAwareProxyClients` must match the call that provided the page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.iap_v1#ListProjectsBrandsIdentityAwareProxyClients": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.iap_v1#ListProjectsBrandsIdentityAwareProxyClientsRequest"
+      },
+      "output": {
+        "target": "com.gcp.iap_v1#ListIdentityAwareProxyClientsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.iap_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.iap_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/identityAwareProxyClients"
+        },
+        "smithy.api#documentation": "Lists the existing clients for the brand.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.iap_v1#GetProjectsBrandsIdentityAwareProxyClientsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the Identity Aware Proxy client to be fetched. In the following format: projects/{project_number/id}/brands/{brand}/identityAwareProxyClients/{client_id}.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.iap_v1#GetProjectsBrandsIdentityAwareProxyClients": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.iap_v1#GetProjectsBrandsIdentityAwareProxyClientsRequest"
+      },
+      "output": {
+        "target": "com.gcp.iap_v1#IdentityAwareProxyClient"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.iap_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.iap_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Retrieves an Identity Aware Proxy (IAP) OAuth client. Requires that the client is owned by IAP."
+      }
+    },
+    "com.gcp.iap_v1#PatchProjectsIap_tunnelLocationsDestGroupsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. Identifier for the TunnelDestGroup. Must be unique within the project and contain only lower case letters (a-z) and dashes (-).",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A field mask that specifies which IAP settings to update. If omitted, then all of the settings are updated. See https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "body": {
+          "target": "com.gcp.iap_v1#TunnelDestGroup",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.iap_v1#PatchProjectsIap_tunnelLocationsDestGroups": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.iap_v1#PatchProjectsIap_tunnelLocationsDestGroupsRequest"
+      },
+      "output": {
+        "target": "com.gcp.iap_v1#TunnelDestGroup"
       },
       "errors": [
         {
@@ -1143,251 +1453,9 @@
       "traits": {
         "smithy.api#http": {
           "method": "PATCH",
-          "uri": "v1/{+name}:iapSettings"
+          "uri": "v1/{+name}"
         },
-        "smithy.api#documentation": "Updates the IAP settings on a particular IAP protected resource. It replaces all fields unless the `update_mask` is set."
-      }
-    },
-    "com.gcp.iap_v1#SetIamPolicyV1Request": {
-      "type": "structure",
-      "members": {
-        "resource": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.iap_v1#SetIamPolicyRequest",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.iap_v1#SetIamPolicyV1": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.iap_v1#SetIamPolicyV1Request"
-      },
-      "output": {
-        "target": "com.gcp.iap_v1#Policy"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.iap_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.iap_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.iap_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.iap_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1/{+resource}:setIamPolicy"
-        },
-        "smithy.api#documentation": "Sets the access control policy for an Identity-Aware Proxy protected resource. Replaces any existing policy. More information about managing access via IAP can be found at: https://cloud.google.com/iap/docs/managing-access#managing_access_via_the_api"
-      }
-    },
-    "com.gcp.iap_v1#GetIapSettingsV1Request": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The resource name for which to retrieve the settings. Authorization: Requires the `getSettings` permission for the associated resource.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.iap_v1#GetIapSettingsV1": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.iap_v1#GetIapSettingsV1Request"
-      },
-      "output": {
-        "target": "com.gcp.iap_v1#IapSettings"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.iap_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.iap_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+name}:iapSettings"
-        },
-        "smithy.api#documentation": "Gets the IAP settings on a particular IAP protected resource."
-      }
-    },
-    "com.gcp.iap_v1#TestIamPermissionsV1Request": {
-      "type": "structure",
-      "members": {
-        "resource": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.iap_v1#TestIamPermissionsRequest",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.iap_v1#TestIamPermissionsV1": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.iap_v1#TestIamPermissionsV1Request"
-      },
-      "output": {
-        "target": "com.gcp.iap_v1#TestIamPermissionsResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.iap_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.iap_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.iap_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.iap_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1/{+resource}:testIamPermissions"
-        },
-        "smithy.api#documentation": "Returns permissions that a caller has on the Identity-Aware Proxy protected resource. More information about managing access via IAP can be found at: https://cloud.google.com/iap/docs/managing-access#managing_access_via_the_api"
-      }
-    },
-    "com.gcp.iap_v1#GetIamPolicyV1Request": {
-      "type": "structure",
-      "members": {
-        "resource": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.iap_v1#GetIamPolicyRequest",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.iap_v1#GetIamPolicyV1": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.iap_v1#GetIamPolicyV1Request"
-      },
-      "output": {
-        "target": "com.gcp.iap_v1#Policy"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.iap_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.iap_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.iap_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.iap_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1/{+resource}:getIamPolicy"
-        },
-        "smithy.api#documentation": "Gets the access control policy for an Identity-Aware Proxy protected resource. More information about managing access via IAP can be found at: https://cloud.google.com/iap/docs/managing-access#managing_access_via_the_api"
-      }
-    },
-    "com.gcp.iap_v1#ListProjectsIap_tunnelLocationsDestGroupsRequest": {
-      "type": "structure",
-      "members": {
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The maximum number of groups to return. The service might return fewer than this value. If unspecified, at most 100 groups are returned. The maximum value is 1000; values above 1000 are coerced to 1000.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        },
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Google Cloud Project ID and location. In the following format: `projects/{project_number/id}/iap_tunnel/locations/{location}`. A `-` can be used for the location to group across all locations.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A page token, received from a previous `ListTunnelDestGroups` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListTunnelDestGroups` must match the call that provided the page token.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        }
-      }
-    },
-    "com.gcp.iap_v1#ListProjectsIap_tunnelLocationsDestGroups": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.iap_v1#ListProjectsIap_tunnelLocationsDestGroupsRequest"
-      },
-      "output": {
-        "target": "com.gcp.iap_v1#ListTunnelDestGroupsResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.iap_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.iap_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+parent}/destGroups"
-        },
-        "smithy.api#documentation": "Lists the existing TunnelDestGroups. To group across all locations, use a `-` as the location ID. For example: `/v1/projects/123/iap_tunnel/locations/-/destGroups`",
-        "smithy.api#paginated": {
-          "inputToken": "pageToken",
-          "outputToken": "nextPageToken"
-        }
+        "smithy.api#documentation": "Updates a TunnelDestGroup."
       }
     },
     "com.gcp.iap_v1#CreateProjectsIap_tunnelLocationsDestGroupsRequest": {
@@ -1490,63 +1558,6 @@
         "smithy.api#documentation": "Deletes a TunnelDestGroup."
       }
     },
-    "com.gcp.iap_v1#PatchProjectsIap_tunnelLocationsDestGroupsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier. Identifier for the TunnelDestGroup. Must be unique within the project and contain only lower case letters (a-z) and dashes (-).",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "updateMask": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A field mask that specifies which IAP settings to update. If omitted, then all of the settings are updated. See https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask",
-            "smithy.api#httpQuery": "updateMask"
-          }
-        },
-        "body": {
-          "target": "com.gcp.iap_v1#TunnelDestGroup",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.iap_v1#PatchProjectsIap_tunnelLocationsDestGroups": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.iap_v1#PatchProjectsIap_tunnelLocationsDestGroupsRequest"
-      },
-      "output": {
-        "target": "com.gcp.iap_v1#TunnelDestGroup"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.iap_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.iap_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.iap_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.iap_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "PATCH",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Updates a TunnelDestGroup."
-      }
-    },
     "com.gcp.iap_v1#GetProjectsIap_tunnelLocationsDestGroupsRequest": {
       "type": "structure",
       "members": {
@@ -1584,344 +1595,40 @@
         "smithy.api#documentation": "Retrieves an existing TunnelDestGroup."
       }
     },
-    "com.gcp.iap_v1#ListProjectsBrandsRequest": {
-      "type": "structure",
-      "members": {
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. GCP Project number/id. In the following format: projects/{project_number/id}.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.iap_v1#ListProjectsBrands": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.iap_v1#ListProjectsBrandsRequest"
-      },
-      "output": {
-        "target": "com.gcp.iap_v1#ListBrandsResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.iap_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.iap_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+parent}/brands"
-        },
-        "smithy.api#documentation": "Lists the existing brands for the project."
-      }
-    },
-    "com.gcp.iap_v1#GetProjectsBrandsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Name of the brand to be fetched. In the following format: projects/{project_number/id}/brands/{brand}.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.iap_v1#GetProjectsBrands": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.iap_v1#GetProjectsBrandsRequest"
-      },
-      "output": {
-        "target": "com.gcp.iap_v1#Brand"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.iap_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.iap_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Retrieves the OAuth brand of the project."
-      }
-    },
-    "com.gcp.iap_v1#CreateProjectsBrandsRequest": {
-      "type": "structure",
-      "members": {
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. GCP Project number/id under which the brand is to be created. In the following format: projects/{project_number/id}.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.iap_v1#Brand",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.iap_v1#CreateProjectsBrands": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.iap_v1#CreateProjectsBrandsRequest"
-      },
-      "output": {
-        "target": "com.gcp.iap_v1#Brand"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.iap_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.iap_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.iap_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.iap_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1/{+parent}/brands"
-        },
-        "smithy.api#documentation": "Constructs a new OAuth brand for the project if one does not exist. The created brand is \"internal only\", meaning that OAuth clients created under it only accept requests from users who belong to the same Google Workspace organization as the project. The brand is created in an un-reviewed status. NOTE: The \"internal only\" status can be manually changed in the Google Cloud Console. Requires that a brand does not already exist for the project, and that the specified support email is owned by the caller."
-      }
-    },
-    "com.gcp.iap_v1#DeleteProjectsBrandsIdentityAwareProxyClientsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Name of the Identity Aware Proxy client to be deleted. In the following format: projects/{project_number/id}/brands/{brand}/identityAwareProxyClients/{client_id}.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.iap_v1#DeleteProjectsBrandsIdentityAwareProxyClients": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.iap_v1#DeleteProjectsBrandsIdentityAwareProxyClientsRequest"
-      },
-      "output": {
-        "target": "com.gcp.iap_v1#Empty"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.iap_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.iap_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.iap_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.iap_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Deletes an Identity Aware Proxy (IAP) OAuth client. Useful for removing obsolete clients, managing the number of clients in a given project, and cleaning up after tests. Requires that the client is owned by IAP."
-      }
-    },
-    "com.gcp.iap_v1#GetProjectsBrandsIdentityAwareProxyClientsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Name of the Identity Aware Proxy client to be fetched. In the following format: projects/{project_number/id}/brands/{brand}/identityAwareProxyClients/{client_id}.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.iap_v1#GetProjectsBrandsIdentityAwareProxyClients": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.iap_v1#GetProjectsBrandsIdentityAwareProxyClientsRequest"
-      },
-      "output": {
-        "target": "com.gcp.iap_v1#IdentityAwareProxyClient"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.iap_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.iap_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Retrieves an Identity Aware Proxy (IAP) OAuth client. Requires that the client is owned by IAP."
-      }
-    },
-    "com.gcp.iap_v1#CreateProjectsBrandsIdentityAwareProxyClientsRequest": {
-      "type": "structure",
-      "members": {
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Path to create the client in. In the following format: projects/{project_number/id}/brands/{brand}. The project must belong to a G Suite account.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.iap_v1#IdentityAwareProxyClient",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.iap_v1#CreateProjectsBrandsIdentityAwareProxyClients": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.iap_v1#CreateProjectsBrandsIdentityAwareProxyClientsRequest"
-      },
-      "output": {
-        "target": "com.gcp.iap_v1#IdentityAwareProxyClient"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.iap_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.iap_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.iap_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.iap_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1/{+parent}/identityAwareProxyClients"
-        },
-        "smithy.api#documentation": "Creates an Identity Aware Proxy (IAP) OAuth client. The client is owned by IAP. Requires that the brand for the project exists and that it is set for internal-only use."
-      }
-    },
-    "com.gcp.iap_v1#ResetSecretProjectsBrandsIdentityAwareProxyClientsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Name of the Identity Aware Proxy client to that will have its secret reset. In the following format: projects/{project_number/id}/brands/{brand}/identityAwareProxyClients/{client_id}.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.iap_v1#ResetIdentityAwareProxyClientSecretRequest",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.iap_v1#ResetSecretProjectsBrandsIdentityAwareProxyClients": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.iap_v1#ResetSecretProjectsBrandsIdentityAwareProxyClientsRequest"
-      },
-      "output": {
-        "target": "com.gcp.iap_v1#IdentityAwareProxyClient"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.iap_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.iap_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.iap_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.iap_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1/{+name}:resetSecret"
-        },
-        "smithy.api#documentation": "Resets an Identity Aware Proxy (IAP) OAuth client secret. Useful if the secret was compromised. Requires that the client is owned by IAP."
-      }
-    },
-    "com.gcp.iap_v1#ListProjectsBrandsIdentityAwareProxyClientsRequest": {
+    "com.gcp.iap_v1#ListProjectsIap_tunnelLocationsDestGroupsRequest": {
       "type": "structure",
       "members": {
         "pageSize": {
           "target": "smithy.api#Integer",
           "traits": {
-            "smithy.api#documentation": "The maximum number of clients to return. The service may return fewer than this value. If unspecified, at most 100 clients will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+            "smithy.api#documentation": "The maximum number of groups to return. The service might return fewer than this value. If unspecified, at most 100 groups are returned. The maximum value is 1000; values above 1000 are coerced to 1000.",
             "smithy.api#httpQuery": "pageSize"
           }
         },
         "pageToken": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "A page token, received from a previous `ListIdentityAwareProxyClients` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListIdentityAwareProxyClients` must match the call that provided the page token.",
+            "smithy.api#documentation": "A page token, received from a previous `ListTunnelDestGroups` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListTunnelDestGroups` must match the call that provided the page token.",
             "smithy.api#httpQuery": "pageToken"
           }
         },
         "parent": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Required. Full brand path. In the following format: projects/{project_number/id}/brands/{brand}.",
+            "smithy.api#documentation": "Required. Google Cloud Project ID and location. In the following format: `projects/{project_number/id}/iap_tunnel/locations/{location}`. A `-` can be used for the location to group across all locations.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
           }
         }
       }
     },
-    "com.gcp.iap_v1#ListProjectsBrandsIdentityAwareProxyClients": {
+    "com.gcp.iap_v1#ListProjectsIap_tunnelLocationsDestGroups": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.iap_v1#ListProjectsBrandsIdentityAwareProxyClientsRequest"
+        "target": "com.gcp.iap_v1#ListProjectsIap_tunnelLocationsDestGroupsRequest"
       },
       "output": {
-        "target": "com.gcp.iap_v1#ListIdentityAwareProxyClientsResponse"
+        "target": "com.gcp.iap_v1#ListTunnelDestGroupsResponse"
       },
       "errors": [
         {
@@ -1934,13 +1641,307 @@
       "traits": {
         "smithy.api#http": {
           "method": "GET",
-          "uri": "v1/{+parent}/identityAwareProxyClients"
+          "uri": "v1/{+parent}/destGroups"
         },
-        "smithy.api#documentation": "Lists the existing clients for the brand.",
+        "smithy.api#documentation": "Lists the existing TunnelDestGroups. To group across all locations, use a `-` as the location ID. For example: `/v1/projects/123/iap_tunnel/locations/-/destGroups`",
         "smithy.api#paginated": {
           "inputToken": "pageToken",
           "outputToken": "nextPageToken"
         }
+      }
+    },
+    "com.gcp.iap_v1#TestIamPermissionsV1Request": {
+      "type": "structure",
+      "members": {
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.iap_v1#TestIamPermissionsRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.iap_v1#TestIamPermissionsV1": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.iap_v1#TestIamPermissionsV1Request"
+      },
+      "output": {
+        "target": "com.gcp.iap_v1#TestIamPermissionsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.iap_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.iap_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.iap_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.iap_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+resource}:testIamPermissions"
+        },
+        "smithy.api#documentation": "Returns permissions that a caller has on the Identity-Aware Proxy protected resource. More information about managing access via IAP can be found at: https://cloud.google.com/iap/docs/managing-access#managing_access_via_the_api"
+      }
+    },
+    "com.gcp.iap_v1#UpdateIapSettingsV1Request": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name of the IAP protected resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The field mask specifying which IAP settings should be updated. If omitted, then all of the settings are updated. See https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask. Note: All IAP reauth settings must always be set together, using the field mask: `iapSettings.accessSettings.reauthSettings`.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "body": {
+          "target": "com.gcp.iap_v1#IapSettings",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.iap_v1#UpdateIapSettingsV1": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.iap_v1#UpdateIapSettingsV1Request"
+      },
+      "output": {
+        "target": "com.gcp.iap_v1#IapSettings"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.iap_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.iap_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.iap_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.iap_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1/{+name}:iapSettings"
+        },
+        "smithy.api#documentation": "Updates the IAP settings on a particular IAP protected resource. It replaces all fields unless the `update_mask` is set."
+      }
+    },
+    "com.gcp.iap_v1#GetIamPolicyV1Request": {
+      "type": "structure",
+      "members": {
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.iap_v1#GetIamPolicyRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.iap_v1#GetIamPolicyV1": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.iap_v1#GetIamPolicyV1Request"
+      },
+      "output": {
+        "target": "com.gcp.iap_v1#Policy"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.iap_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.iap_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.iap_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.iap_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+resource}:getIamPolicy"
+        },
+        "smithy.api#documentation": "Gets the access control policy for an Identity-Aware Proxy protected resource. More information about managing access via IAP can be found at: https://cloud.google.com/iap/docs/managing-access#managing_access_via_the_api"
+      }
+    },
+    "com.gcp.iap_v1#SetIamPolicyV1Request": {
+      "type": "structure",
+      "members": {
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.iap_v1#SetIamPolicyRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.iap_v1#SetIamPolicyV1": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.iap_v1#SetIamPolicyV1Request"
+      },
+      "output": {
+        "target": "com.gcp.iap_v1#Policy"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.iap_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.iap_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.iap_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.iap_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+resource}:setIamPolicy"
+        },
+        "smithy.api#documentation": "Sets the access control policy for an Identity-Aware Proxy protected resource. Replaces any existing policy. More information about managing access via IAP can be found at: https://cloud.google.com/iap/docs/managing-access#managing_access_via_the_api"
+      }
+    },
+    "com.gcp.iap_v1#ValidateAttributeExpressionV1Request": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name of the IAP protected resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "expression": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. User input string expression. Should be of the form `attributes.saml_attributes.filter(attribute, attribute.name in ['{attribute_name}', '{attribute_name}'])`",
+            "smithy.api#httpQuery": "expression"
+          }
+        }
+      }
+    },
+    "com.gcp.iap_v1#ValidateAttributeExpressionV1": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.iap_v1#ValidateAttributeExpressionV1Request"
+      },
+      "output": {
+        "target": "com.gcp.iap_v1#ValidateIapAttributeExpressionResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.iap_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.iap_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.iap_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.iap_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+name}:validateAttributeExpression"
+        },
+        "smithy.api#documentation": "Validates that a given CEL expression conforms to IAP restrictions."
+      }
+    },
+    "com.gcp.iap_v1#GetIapSettingsV1Request": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name for which to retrieve the settings. Authorization: Requires the `getSettings` permission for the associated resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.iap_v1#GetIapSettingsV1": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.iap_v1#GetIapSettingsV1Request"
+      },
+      "output": {
+        "target": "com.gcp.iap_v1#IapSettings"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.iap_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.iap_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}:iapSettings"
+        },
+        "smithy.api#documentation": "Gets the IAP settings on a particular IAP protected resource."
       }
     }
   }

@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.whop.accounts#ListAccountsRequestOrder": {
@@ -16509,7 +16510,7 @@
         "smithy.api#documentation": "Create Account\n\nCreates an account. User tokens create business accounts; Account API keys create connected accounts. Tax fields (`tax_remitted_by`, `tax_type`, `product_tax_code_id`, `business_address`, `tax_identifiers`) are configured with Update Account, not at creation."
       }
     },
-    "com.whop.accounts#RetrieveAccountPreferencesRequest": {
+    "com.whop.accounts#GetAccountPreferencesRequest": {
       "type": "structure",
       "members": {
         "account_id": {
@@ -16525,7 +16526,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.whop.accounts#RetrieveAccountPreferencesResponseAdsAgreementStatus": {
+    "com.whop.accounts#GetAccountPreferencesResponseAdsAgreementStatus": {
       "type": "enum",
       "members": {
         "NOT_REQUIRED": {
@@ -16551,7 +16552,7 @@
         "smithy.api#documentation": "Where the account's ads services agreement stands."
       }
     },
-    "com.whop.accounts#RetrieveAccountPreferencesResponseAdsAgreement": {
+    "com.whop.accounts#GetAccountPreferencesResponseAdsAgreement": {
       "type": "structure",
       "members": {
         "accepted_at": {
@@ -16579,7 +16580,7 @@
           }
         },
         "status": {
-          "target": "com.whop.accounts#RetrieveAccountPreferencesResponseAdsAgreementStatus",
+          "target": "com.whop.accounts#GetAccountPreferencesResponseAdsAgreementStatus",
           "traits": {
             "smithy.api#documentation": "Where the account's ads services agreement stands.",
             "smithy.api#required": {}
@@ -16590,7 +16591,7 @@
         "smithy.api#documentation": "The account's Whop Ads services and payment authorization agreement. While `pending_signature`, campaign launch is blocked; sign by answering `requested_information` via `PATCH /verifications/{id}`."
       }
     },
-    "com.whop.accounts#RetrieveAccountPreferencesResponseAdsPaymentMethodsBackupType": {
+    "com.whop.accounts#GetAccountPreferencesResponseAdsPaymentMethodsBackupType": {
       "type": "enum",
       "members": {
         "PLATFORM_BALANCE": {
@@ -16610,7 +16611,7 @@
         "smithy.api#documentation": "The funding source kind: a Whop balance or a saved card."
       }
     },
-    "com.whop.accounts#RetrieveAccountPreferencesResponseAdsPaymentMethodsBackup": {
+    "com.whop.accounts#GetAccountPreferencesResponseAdsPaymentMethodsBackup": {
       "type": "structure",
       "members": {
         "card_brand": {
@@ -16663,7 +16664,7 @@
           }
         },
         "type": {
-          "target": "com.whop.accounts#RetrieveAccountPreferencesResponseAdsPaymentMethodsBackupType",
+          "target": "com.whop.accounts#GetAccountPreferencesResponseAdsPaymentMethodsBackupType",
           "traits": {
             "smithy.api#documentation": "The funding source kind: a Whop balance or a saved card.",
             "smithy.api#required": {}
@@ -16672,7 +16673,7 @@
       },
       "traits": {}
     },
-    "com.whop.accounts#RetrieveAccountPreferencesResponseAdsPaymentMethodsPrimaryType": {
+    "com.whop.accounts#GetAccountPreferencesResponseAdsPaymentMethodsPrimaryType": {
       "type": "enum",
       "members": {
         "PLATFORM_BALANCE": {
@@ -16692,7 +16693,7 @@
         "smithy.api#documentation": "The funding source kind: a Whop balance or a saved card."
       }
     },
-    "com.whop.accounts#RetrieveAccountPreferencesResponseAdsPaymentMethodsPrimary": {
+    "com.whop.accounts#GetAccountPreferencesResponseAdsPaymentMethodsPrimary": {
       "type": "structure",
       "members": {
         "card_brand": {
@@ -16745,7 +16746,7 @@
           }
         },
         "type": {
-          "target": "com.whop.accounts#RetrieveAccountPreferencesResponseAdsPaymentMethodsPrimaryType",
+          "target": "com.whop.accounts#GetAccountPreferencesResponseAdsPaymentMethodsPrimaryType",
           "traits": {
             "smithy.api#documentation": "The funding source kind: a Whop balance or a saved card.",
             "smithy.api#required": {}
@@ -16754,18 +16755,18 @@
       },
       "traits": {}
     },
-    "com.whop.accounts#RetrieveAccountPreferencesResponseAdsPaymentMethods": {
+    "com.whop.accounts#GetAccountPreferencesResponseAdsPaymentMethods": {
       "type": "structure",
       "members": {
         "backup": {
-          "target": "com.whop.accounts#RetrieveAccountPreferencesResponseAdsPaymentMethodsBackup",
+          "target": "com.whop.accounts#GetAccountPreferencesResponseAdsPaymentMethodsBackup",
           "traits": {
             "smithy.api#required": {},
             "com.distilled.openapi#nullable": {}
           }
         },
         "primary": {
-          "target": "com.whop.accounts#RetrieveAccountPreferencesResponseAdsPaymentMethodsPrimary",
+          "target": "com.whop.accounts#GetAccountPreferencesResponseAdsPaymentMethodsPrimary",
           "traits": {
             "smithy.api#required": {},
             "com.distilled.openapi#nullable": {}
@@ -16776,7 +16777,7 @@
         "smithy.api#documentation": "How the account pays for Whop Ads spend. `primary` is charged first; `backup` covers the charge when the primary fails. `null` until ads billing has been configured."
       }
     },
-    "com.whop.accounts#RetrieveAccountPreferencesResponseAdsTripleWhaleIntegrationStatus": {
+    "com.whop.accounts#GetAccountPreferencesResponseAdsTripleWhaleIntegrationStatus": {
       "type": "enum",
       "members": {
         "CONNECTED": {
@@ -16802,7 +16803,7 @@
         "smithy.api#documentation": "Where the integration stands. `requires_shopify_store` means no Shopify store is connected — Triple Whale keys records by Shopify shop, so no spend is reported until one is."
       }
     },
-    "com.whop.accounts#RetrieveAccountPreferencesResponseAdsTripleWhaleIntegration": {
+    "com.whop.accounts#GetAccountPreferencesResponseAdsTripleWhaleIntegration": {
       "type": "structure",
       "members": {
         "masked_api_key": {
@@ -16822,7 +16823,7 @@
           }
         },
         "status": {
-          "target": "com.whop.accounts#RetrieveAccountPreferencesResponseAdsTripleWhaleIntegrationStatus",
+          "target": "com.whop.accounts#GetAccountPreferencesResponseAdsTripleWhaleIntegrationStatus",
           "traits": {
             "smithy.api#documentation": "Where the integration stands. `requires_shopify_store` means no Shopify store is connected — Triple Whale keys records by Shopify shop, so no spend is reported until one is.",
             "smithy.api#required": {}
@@ -16833,18 +16834,18 @@
         "smithy.api#documentation": "The account's Triple Whale integration, which pushes Whop ad spend to Triple Whale's Data-In API so it reports as a `whop` channel."
       }
     },
-    "com.whop.accounts#RetrieveAccountPreferencesResponse": {
+    "com.whop.accounts#GetAccountPreferencesResponse": {
       "type": "structure",
       "members": {
         "ads_agreement": {
-          "target": "com.whop.accounts#RetrieveAccountPreferencesResponseAdsAgreement",
+          "target": "com.whop.accounts#GetAccountPreferencesResponseAdsAgreement",
           "traits": {
             "smithy.api#documentation": "The account's Whop Ads services and payment authorization agreement. While `pending_signature`, campaign launch is blocked; sign by answering `requested_information` via `PATCH /verifications/{id}`.",
             "smithy.api#required": {}
           }
         },
         "ads_payment_methods": {
-          "target": "com.whop.accounts#RetrieveAccountPreferencesResponseAdsPaymentMethods",
+          "target": "com.whop.accounts#GetAccountPreferencesResponseAdsPaymentMethods",
           "traits": {
             "smithy.api#documentation": "How the account pays for Whop Ads spend. `primary` is charged first; `backup` covers the charge when the primary fails. `null` until ads billing has been configured.",
             "smithy.api#required": {},
@@ -16866,7 +16867,7 @@
           }
         },
         "ads_triple_whale_integration": {
-          "target": "com.whop.accounts#RetrieveAccountPreferencesResponseAdsTripleWhaleIntegration",
+          "target": "com.whop.accounts#GetAccountPreferencesResponseAdsTripleWhaleIntegration",
           "traits": {
             "smithy.api#documentation": "The account's Triple Whale integration, which pushes Whop ad spend to Triple Whale's Data-In API so it reports as a `whop` channel.",
             "smithy.api#required": {}
@@ -16891,13 +16892,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.whop.accounts#RetrieveAccountPreferences": {
+    "com.whop.accounts#GetAccountPreferences": {
       "type": "operation",
       "input": {
-        "target": "com.whop.accounts#RetrieveAccountPreferencesRequest"
+        "target": "com.whop.accounts#GetAccountPreferencesRequest"
       },
       "output": {
-        "target": "com.whop.accounts#RetrieveAccountPreferencesResponse"
+        "target": "com.whop.accounts#GetAccountPreferencesResponse"
       },
       "errors": [
         {
@@ -17675,7 +17676,7 @@
         "smithy.api#documentation": "List Account Reserves\n\nLists what the account's held balance is made of, one entry per currency: the total held, why each part is held, and the days it unlocks."
       }
     },
-    "com.whop.accounts#RetrieveAccountRequest": {
+    "com.whop.accounts#GetAccountRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -17691,10 +17692,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.whop.accounts#RetrieveAccount": {
+    "com.whop.accounts#GetAccount": {
       "type": "operation",
       "input": {
-        "target": "com.whop.accounts#RetrieveAccountRequest"
+        "target": "com.whop.accounts#GetAccountRequest"
       },
       "output": {
         "target": "com.whop.accounts#Account"
@@ -33262,7 +33263,7 @@
           "target": "com.whop.accounts#CreateAccount"
         },
         {
-          "target": "com.whop.accounts#RetrieveAccountPreferences"
+          "target": "com.whop.accounts#GetAccountPreferences"
         },
         {
           "target": "com.whop.accounts#UpdateAccountPreferences"
@@ -33271,7 +33272,7 @@
           "target": "com.whop.accounts#ListAccountReserves"
         },
         {
-          "target": "com.whop.accounts#RetrieveAccount"
+          "target": "com.whop.accounts#GetAccount"
         },
         {
           "target": "com.whop.accounts#UpdateAccount"

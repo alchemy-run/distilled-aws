@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.whop.messages#Direction": {
@@ -901,7 +902,7 @@
         "smithy.api#documentation": "Create message\n\n[Legacy API — https://docs.whop.com/api-reference]\n\nSend a new message in an experience chat, DM, or group chat channel. Supports text content, attachments, polls, and replies.\n\nRequired permissions (one of):\n - `chat:message:create`\n - `dms:message:manage`\n - `livestream:chat:write`\n - `support_chat:message:create`"
       }
     },
-    "com.whop.messages#RetrieveMessageRequest": {
+    "com.whop.messages#GetMessageRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -917,10 +918,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.whop.messages#RetrieveMessage": {
+    "com.whop.messages#GetMessage": {
       "type": "operation",
       "input": {
-        "target": "com.whop.messages#RetrieveMessageRequest"
+        "target": "com.whop.messages#GetMessageRequest"
       },
       "output": {
         "target": "com.whop.messages#Message"
@@ -1165,7 +1166,7 @@
           "target": "com.whop.messages#CreateMessage"
         },
         {
-          "target": "com.whop.messages#RetrieveMessage"
+          "target": "com.whop.messages#GetMessage"
         },
         {
           "target": "com.whop.messages#UpdateMessage"

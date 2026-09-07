@@ -49,6 +49,137 @@ export class UnprocessableEntity
     [{ status: 422 }],
   ) {}
 
+export interface GetCourseLessonInteractionRequest {
+  /** The unique identifier of the lesson interaction to retrieve. */
+  id: string;
+}
+export const GetCourseLessonInteractionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/course_lesson_interactions/{id}",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetCourseLessonInteractionRequest",
+}) as any as S.Schema<GetCourseLessonInteractionRequest>;
+
+/** The parent experience that this course belongs to. */
+export interface CourseLessonInteractionCourseExperience {
+  /** The unique identifier for the experience. */
+  id: string;
+}
+export const CourseLessonInteractionCourseExperience = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.String,
+    }),
+).annotate({
+  identifier: "CourseLessonInteractionCourseExperience",
+}) as any as S.Schema<CourseLessonInteractionCourseExperience>;
+
+/** The course that contains the tracked lesson. */
+export interface CourseLessonInteractionCourse {
+  /** The parent experience that this course belongs to. */
+  experience: CourseLessonInteractionCourseExperience;
+  /** The unique identifier for the course. */
+  id: string;
+  /** The display name of the course shown to students. Null if no title has been set. */
+  title: string | null;
+}
+export const CourseLessonInteractionCourse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    experience: CourseLessonInteractionCourseExperience,
+    id: S.String,
+    title: S.NullOr(S.String),
+  }),
+).annotate({
+  identifier: "CourseLessonInteractionCourse",
+}) as any as S.Schema<CourseLessonInteractionCourse>;
+
+/** The parent chapter that contains this lesson. */
+export interface CourseLessonInteractionLessonChapter {
+  /** The unique identifier for the chapter. */
+  id: string;
+}
+export const CourseLessonInteractionLessonChapter = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.String,
+    }),
+).annotate({
+  identifier: "CourseLessonInteractionLessonChapter",
+}) as any as S.Schema<CourseLessonInteractionLessonChapter>;
+
+/** The lesson that this progress record belongs to. */
+export interface CourseLessonInteractionLesson {
+  /** The parent chapter that contains this lesson. */
+  chapter: CourseLessonInteractionLessonChapter;
+  /** The unique identifier for the lesson. */
+  id: string;
+  /** The display name of the lesson shown to students. Maximum 120 characters. */
+  title: string;
+}
+export const CourseLessonInteractionLesson = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    chapter: CourseLessonInteractionLessonChapter,
+    id: S.String,
+    title: S.String,
+  }),
+).annotate({
+  identifier: "CourseLessonInteractionLesson",
+}) as any as S.Schema<CourseLessonInteractionLesson>;
+
+/** The user whose progress is being tracked. */
+export interface CourseLessonInteractionUser {
+  /** The unique identifier for the user. */
+  id: string;
+  /** The user's display name shown on their public profile. */
+  name: string | null;
+  /** The user's unique username shown on their public profile. */
+  username: string;
+}
+export const CourseLessonInteractionUser = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    name: S.NullOr(S.String),
+    username: S.String,
+  }),
+).annotate({
+  identifier: "CourseLessonInteractionUser",
+}) as any as S.Schema<CourseLessonInteractionUser>;
+
+/** A record of a user's progress on a specific lesson, tracking whether they have completed it. */
+export interface CourseLessonInteraction {
+  /** Whether the user has finished this lesson. */
+  completed: boolean;
+  /** The course that contains the tracked lesson. */
+  course: CourseLessonInteractionCourse;
+  /** The datetime the lesson interaction was created. */
+  created_at: string;
+  /** The unique identifier for the lesson interaction. */
+  id: string;
+  /** The lesson that this progress record belongs to. */
+  lesson: CourseLessonInteractionLesson;
+  /** The user whose progress is being tracked. */
+  user: CourseLessonInteractionUser;
+}
+export const CourseLessonInteraction = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    completed: S.Boolean,
+    course: CourseLessonInteractionCourse,
+    created_at: S.String,
+    id: S.String,
+    lesson: CourseLessonInteractionLesson,
+    user: CourseLessonInteractionUser,
+  }),
+).annotate({
+  identifier: "CourseLessonInteraction",
+}) as any as S.Schema<CourseLessonInteraction>;
+
 export interface ListCourseLessonInteractionRequest {
   after?: string;
   before?: string;
@@ -77,57 +208,20 @@ export const ListCourseLessonInteractionRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListCourseLessonInteractionRequest>;
 
 /** The parent chapter that contains this lesson. */
-export interface CourseLessonInteractionListItemLessonChapter {
-  /** The unique identifier for the chapter. */
-  id: string;
-}
+export type CourseLessonInteractionListItemLessonChapter =
+  CourseLessonInteractionLessonChapter;
 export const CourseLessonInteractionListItemLessonChapter =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.String,
-    }),
-  ).annotate({
-    identifier: "CourseLessonInteractionListItemLessonChapter",
-  }) as any as S.Schema<CourseLessonInteractionListItemLessonChapter>;
+  CourseLessonInteractionLessonChapter;
 
 /** The lesson that this progress record belongs to. */
-export interface CourseLessonInteractionListItemLesson {
-  /** The parent chapter that contains this lesson. */
-  chapter: CourseLessonInteractionListItemLessonChapter;
-  /** The unique identifier for the lesson. */
-  id: string;
-  /** The display name of the lesson shown to students. Maximum 120 characters. */
-  title: string;
-}
-export const CourseLessonInteractionListItemLesson = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      chapter: CourseLessonInteractionListItemLessonChapter,
-      id: S.String,
-      title: S.String,
-    }),
-).annotate({
-  identifier: "CourseLessonInteractionListItemLesson",
-}) as any as S.Schema<CourseLessonInteractionListItemLesson>;
+export type CourseLessonInteractionListItemLesson =
+  CourseLessonInteractionLesson;
+export const CourseLessonInteractionListItemLesson =
+  CourseLessonInteractionLesson;
 
 /** The user whose progress is being tracked. */
-export interface CourseLessonInteractionListItemUser {
-  /** The unique identifier for the user. */
-  id: string;
-  /** The user's display name shown on their public profile. */
-  name: string | null;
-  /** The user's unique username shown on their public profile. */
-  username: string;
-}
-export const CourseLessonInteractionListItemUser = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    name: S.NullOr(S.String),
-    username: S.String,
-  }),
-).annotate({
-  identifier: "CourseLessonInteractionListItemUser",
-}) as any as S.Schema<CourseLessonInteractionListItemUser>;
+export type CourseLessonInteractionListItemUser = CourseLessonInteractionUser;
+export const CourseLessonInteractionListItemUser = CourseLessonInteractionUser;
 
 /** A record of a user's progress on a specific lesson, tracking whether they have completed it. */
 export interface CourseLessonInteractionListItem {
@@ -138,17 +232,17 @@ export interface CourseLessonInteractionListItem {
   /** The unique identifier for the lesson interaction. */
   id: string;
   /** The lesson that this progress record belongs to. */
-  lesson: CourseLessonInteractionListItemLesson;
+  lesson: CourseLessonInteractionLesson;
   /** The user whose progress is being tracked. */
-  user: CourseLessonInteractionListItemUser;
+  user: CourseLessonInteractionUser;
 }
 export const CourseLessonInteractionListItem = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     completed: S.Boolean,
     created_at: S.String,
     id: S.String,
-    lesson: CourseLessonInteractionListItemLesson,
-    user: CourseLessonInteractionListItemUser,
+    lesson: CourseLessonInteractionLesson,
+    user: CourseLessonInteractionUser,
   }),
 ).annotate({
   identifier: "CourseLessonInteractionListItem",
@@ -197,101 +291,25 @@ export const ListCourseLessonInteractionResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListCourseLessonInteractionResponse",
 }) as any as S.Schema<ListCourseLessonInteractionResponse>;
 
-export interface RetrieveCourseLessonInteractionRequest {
-  /** The unique identifier of the lesson interaction to retrieve. */
-  id: string;
-}
-export const RetrieveCourseLessonInteractionRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/course_lesson_interactions/{id}",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "RetrieveCourseLessonInteractionRequest",
-}) as any as S.Schema<RetrieveCourseLessonInteractionRequest>;
-
-/** The parent experience that this course belongs to. */
-export interface CourseLessonInteractionCourseExperience {
-  /** The unique identifier for the experience. */
-  id: string;
-}
-export const CourseLessonInteractionCourseExperience = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.String,
-    }),
-).annotate({
-  identifier: "CourseLessonInteractionCourseExperience",
-}) as any as S.Schema<CourseLessonInteractionCourseExperience>;
-
-/** The course that contains the tracked lesson. */
-export interface CourseLessonInteractionCourse {
-  /** The parent experience that this course belongs to. */
-  experience: CourseLessonInteractionCourseExperience;
-  /** The unique identifier for the course. */
-  id: string;
-  /** The display name of the course shown to students. Null if no title has been set. */
-  title: string | null;
-}
-export const CourseLessonInteractionCourse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    experience: CourseLessonInteractionCourseExperience,
-    id: S.String,
-    title: S.NullOr(S.String),
-  }),
-).annotate({
-  identifier: "CourseLessonInteractionCourse",
-}) as any as S.Schema<CourseLessonInteractionCourse>;
-
-/** The parent chapter that contains this lesson. */
-export type CourseLessonInteractionLessonChapter =
-  CourseLessonInteractionListItemLessonChapter;
-export const CourseLessonInteractionLessonChapter =
-  CourseLessonInteractionListItemLessonChapter;
-
-/** The lesson that this progress record belongs to. */
-export type CourseLessonInteractionLesson =
-  CourseLessonInteractionListItemLesson;
-export const CourseLessonInteractionLesson =
-  CourseLessonInteractionListItemLesson;
-
-/** The user whose progress is being tracked. */
-export type CourseLessonInteractionUser = CourseLessonInteractionListItemUser;
-export const CourseLessonInteractionUser = CourseLessonInteractionListItemUser;
-
-/** A record of a user's progress on a specific lesson, tracking whether they have completed it. */
-export interface CourseLessonInteraction {
-  /** Whether the user has finished this lesson. */
-  completed: boolean;
-  /** The course that contains the tracked lesson. */
-  course: CourseLessonInteractionCourse;
-  /** The datetime the lesson interaction was created. */
-  created_at: string;
-  /** The unique identifier for the lesson interaction. */
-  id: string;
-  /** The lesson that this progress record belongs to. */
-  lesson: CourseLessonInteractionListItemLesson;
-  /** The user whose progress is being tracked. */
-  user: CourseLessonInteractionListItemUser;
-}
-export const CourseLessonInteraction = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    completed: S.Boolean,
-    course: CourseLessonInteractionCourse,
-    created_at: S.String,
-    id: S.String,
-    lesson: CourseLessonInteractionListItemLesson,
-    user: CourseLessonInteractionListItemUser,
-  }),
-).annotate({
-  identifier: "CourseLessonInteraction",
-}) as any as S.Schema<CourseLessonInteraction>;
+export type GetCourseLessonInteractionError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | UnprocessableEntity
+  | WhopOpError;
+/** Retrieve course lesson interaction [Legacy API — https://docs.whop.com/api-reference] Retrieves the details of an existing course lesson interaction. Required permissions: - `courses:read` - `course_analytics:read` */
+export const getCourseLessonInteraction: API.OperationMethod<
+  GetCourseLessonInteractionRequest,
+  CourseLessonInteraction,
+  GetCourseLessonInteractionError,
+  WhopOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCourseLessonInteractionRequest,
+  output: CourseLessonInteraction,
+  errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
+  protocol: WhopProtocol,
+  retry: Retry.Retry,
+}));
 
 export type ListCourseLessonInteractionError =
   | BadRequest
@@ -324,23 +342,3 @@ export const listCourseLessonInteraction: API.PaginatedOperationMethod<
   }),
   paginateRelay,
 ) as any;
-
-export type RetrieveCourseLessonInteractionError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | UnprocessableEntity
-  | WhopOpError;
-/** Retrieve course lesson interaction [Legacy API — https://docs.whop.com/api-reference] Retrieves the details of an existing course lesson interaction. Required permissions: - `courses:read` - `course_analytics:read` */
-export const retrieveCourseLessonInteraction: API.OperationMethod<
-  RetrieveCourseLessonInteractionRequest,
-  CourseLessonInteraction,
-  RetrieveCourseLessonInteractionError,
-  WhopOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveCourseLessonInteractionRequest,
-  output: CourseLessonInteraction,
-  errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
-  protocol: WhopProtocol,
-  retry: Retry.Retry,
-}));

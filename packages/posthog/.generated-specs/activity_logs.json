@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.activity_logs#ActivityLogListRequestOrdering": {
+    "com.posthog.activity_logs#ListActivityLogRequestOrdering": {
       "type": "enum",
       "members": {
         "CREATED_AT": {
@@ -35,7 +36,7 @@
       },
       "traits": {}
     },
-    "com.posthog.activity_logs#ActivityLogListRequestScope": {
+    "com.posthog.activity_logs#ListActivityLogRequestScope": {
       "type": "enum",
       "members": {
         "COHORT": {
@@ -516,12 +517,18 @@
           "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "Loop"
+          }
+        },
+        "STAMPHOGREPOCONFIG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "StamphogRepoConfig"
           }
         }
       },
       "traits": {}
     },
-    "com.posthog.activity_logs#ActivityLogListRequestScopesItem": {
+    "com.posthog.activity_logs#ListActivityLogRequestScopesItem": {
       "type": "enum",
       "members": {
         "COHORT": {
@@ -1002,21 +1009,27 @@
           "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "Loop"
+          }
+        },
+        "STAMPHOGREPOCONFIG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "StamphogRepoConfig"
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "* `Cohort` - Cohort\n* `FeatureFlag` - FeatureFlag\n* `Person` - Person\n* `Group` - Group\n* `Insight` - Insight\n* `Plugin` - Plugin\n* `PluginConfig` - PluginConfig\n* `HogFunction` - HogFunction\n* `HogFlow` - HogFlow\n* `DataManagement` - DataManagement\n* `EventDefinition` - EventDefinition\n* `PropertyDefinition` - PropertyDefinition\n* `Notebook` - Notebook\n* `Canvas` - Canvas\n* `Endpoint` - Endpoint\n* `EndpointVersion` - EndpointVersion\n* `Dashboard` - Dashboard\n* `Replay` - Replay\n* `Experiment` - Experiment\n* `ExperimentHoldout` - ExperimentHoldout\n* `ExperimentSavedMetric` - ExperimentSavedMetric\n* `Survey` - Survey\n* `EarlyAccessFeature` - EarlyAccessFeature\n* `SessionRecordingPlaylist` - SessionRecordingPlaylist\n* `Comment` - Comment\n* `Team` - Team\n* `Project` - Project\n* `ErrorTrackingIssue` - ErrorTrackingIssue\n* `DataWarehouseExpression` - DataWarehouseExpression\n* `DataWarehouseSavedQuery` - DataWarehouseSavedQuery\n* `LegalDocument` - LegalDocument\n* `Organization` - Organization\n* `OrganizationDomain` - OrganizationDomain\n* `IdentityProviderConfig` - IdentityProviderConfig\n* `OrganizationMembership` - OrganizationMembership\n* `Role` - Role\n* `UserGroup` - UserGroup\n* `BatchExport` - BatchExport\n* `BatchImport` - BatchImport\n* `ExportedAsset` - ExportedAsset\n* `Integration` - Integration\n* `Annotation` - Annotation\n* `Tag` - Tag\n* `TaggedItem` - TaggedItem\n* `Subscription` - Subscription\n* `PersonalAPIKey` - PersonalAPIKey\n* `ProjectSecretAPIKey` - ProjectSecretAPIKey\n* `OAuthApplication` - OAuthApplication\n* `User` - User\n* `Action` - Action\n* `AlertConfiguration` - AlertConfiguration\n* `Threshold` - Threshold\n* `AlertSubscription` - AlertSubscription\n* `ExternalDataSource` - ExternalDataSource\n* `ExternalDataSchema` - ExternalDataSchema\n* `Evaluation` - Evaluation\n* `EvaluationDirectory` - EvaluationDirectory\n* `LLMPrompt` - LLMPrompt\n* `LLMPromptLabel` - LLMPromptLabel\n* `LLMTrace` - LLMTrace\n* `AIGatewayCredit` - AIGatewayCredit\n* `WebAnalyticsFilterPreset` - WebAnalyticsFilterPreset\n* `CustomerProfileConfig` - CustomerProfileConfig\n* `Log` - Log\n* `LogsAlertConfiguration` - LogsAlertConfiguration\n* `LogsExclusionRule` - LogsExclusionRule\n* `LogsRetentionRule` - LogsRetentionRule\n* `DashboardWidget` - DashboardWidget\n* `ProductTour` - ProductTour\n* `Ticket` - Ticket\n* `InstanceSetting` - InstanceSetting\n* `SignalReport` - SignalReport\n* `SignalScoutConfig` - SignalScoutConfig\n* `SignalTeamConfig` - SignalTeamConfig\n* `StreamlitApp` - StreamlitApp\n* `Metric` - Metric\n* `TableCertification` - TableCertification\n* `DataQualityCheck` - DataQualityCheck\n* `Billing` - Billing\n* `Loop` - Loop"
+        "smithy.api#documentation": "* `Cohort` - Cohort\n* `FeatureFlag` - FeatureFlag\n* `Person` - Person\n* `Group` - Group\n* `Insight` - Insight\n* `Plugin` - Plugin\n* `PluginConfig` - PluginConfig\n* `HogFunction` - HogFunction\n* `HogFlow` - HogFlow\n* `DataManagement` - DataManagement\n* `EventDefinition` - EventDefinition\n* `PropertyDefinition` - PropertyDefinition\n* `Notebook` - Notebook\n* `Canvas` - Canvas\n* `Endpoint` - Endpoint\n* `EndpointVersion` - EndpointVersion\n* `Dashboard` - Dashboard\n* `Replay` - Replay\n* `Experiment` - Experiment\n* `ExperimentHoldout` - ExperimentHoldout\n* `ExperimentSavedMetric` - ExperimentSavedMetric\n* `Survey` - Survey\n* `EarlyAccessFeature` - EarlyAccessFeature\n* `SessionRecordingPlaylist` - SessionRecordingPlaylist\n* `Comment` - Comment\n* `Team` - Team\n* `Project` - Project\n* `ErrorTrackingIssue` - ErrorTrackingIssue\n* `DataWarehouseExpression` - DataWarehouseExpression\n* `DataWarehouseSavedQuery` - DataWarehouseSavedQuery\n* `LegalDocument` - LegalDocument\n* `Organization` - Organization\n* `OrganizationDomain` - OrganizationDomain\n* `IdentityProviderConfig` - IdentityProviderConfig\n* `OrganizationMembership` - OrganizationMembership\n* `Role` - Role\n* `UserGroup` - UserGroup\n* `BatchExport` - BatchExport\n* `BatchImport` - BatchImport\n* `ExportedAsset` - ExportedAsset\n* `Integration` - Integration\n* `Annotation` - Annotation\n* `Tag` - Tag\n* `TaggedItem` - TaggedItem\n* `Subscription` - Subscription\n* `PersonalAPIKey` - PersonalAPIKey\n* `ProjectSecretAPIKey` - ProjectSecretAPIKey\n* `OAuthApplication` - OAuthApplication\n* `User` - User\n* `Action` - Action\n* `AlertConfiguration` - AlertConfiguration\n* `Threshold` - Threshold\n* `AlertSubscription` - AlertSubscription\n* `ExternalDataSource` - ExternalDataSource\n* `ExternalDataSchema` - ExternalDataSchema\n* `Evaluation` - Evaluation\n* `EvaluationDirectory` - EvaluationDirectory\n* `LLMPrompt` - LLMPrompt\n* `LLMPromptLabel` - LLMPromptLabel\n* `LLMTrace` - LLMTrace\n* `AIGatewayCredit` - AIGatewayCredit\n* `WebAnalyticsFilterPreset` - WebAnalyticsFilterPreset\n* `CustomerProfileConfig` - CustomerProfileConfig\n* `Log` - Log\n* `LogsAlertConfiguration` - LogsAlertConfiguration\n* `LogsExclusionRule` - LogsExclusionRule\n* `LogsRetentionRule` - LogsRetentionRule\n* `DashboardWidget` - DashboardWidget\n* `ProductTour` - ProductTour\n* `Ticket` - Ticket\n* `InstanceSetting` - InstanceSetting\n* `SignalReport` - SignalReport\n* `SignalScoutConfig` - SignalScoutConfig\n* `SignalTeamConfig` - SignalTeamConfig\n* `StreamlitApp` - StreamlitApp\n* `Metric` - Metric\n* `TableCertification` - TableCertification\n* `DataQualityCheck` - DataQualityCheck\n* `Billing` - Billing\n* `Loop` - Loop\n* `StamphogRepoConfig` - StamphogRepoConfig"
       }
     },
-    "com.posthog.activity_logs#ActivityLogListRequestScopesList": {
+    "com.posthog.activity_logs#ListActivityLogRequestScopesList": {
       "type": "list",
       "member": {
-        "target": "com.posthog.activity_logs#ActivityLogListRequestScopesItem"
+        "target": "com.posthog.activity_logs#ListActivityLogRequestScopesItem"
       },
       "traits": {}
     },
-    "com.posthog.activity_logs#ActivityLogListRequest": {
+    "com.posthog.activity_logs#ListActivityLogRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1035,7 +1048,7 @@
           }
         },
         "ordering": {
-          "target": "com.posthog.activity_logs#ActivityLogListRequestOrdering",
+          "target": "com.posthog.activity_logs#ListActivityLogRequestOrdering",
           "traits": {
             "smithy.api#httpQuery": "ordering",
             "smithy.api#documentation": "Sort by when the entry was created. Defaults to newest first. Use created_at for oldest first when polling for new entries, so a saved cursor picks up where the last request stopped.\n\n* `-created_at` - -created_at\n* `created_at` - created_at"
@@ -1056,14 +1069,14 @@
           }
         },
         "scope": {
-          "target": "com.posthog.activity_logs#ActivityLogListRequestScope",
+          "target": "com.posthog.activity_logs#ListActivityLogRequestScope",
           "traits": {
             "smithy.api#httpQuery": "scope",
-            "smithy.api#documentation": "Filter by a single activity scope, e.g. \"FeatureFlag\", \"Insight\", \"Dashboard\", \"Experiment\".\n\n* `Cohort` - Cohort\n* `FeatureFlag` - FeatureFlag\n* `Person` - Person\n* `Group` - Group\n* `Insight` - Insight\n* `Plugin` - Plugin\n* `PluginConfig` - PluginConfig\n* `HogFunction` - HogFunction\n* `HogFlow` - HogFlow\n* `DataManagement` - DataManagement\n* `EventDefinition` - EventDefinition\n* `PropertyDefinition` - PropertyDefinition\n* `Notebook` - Notebook\n* `Canvas` - Canvas\n* `Endpoint` - Endpoint\n* `EndpointVersion` - EndpointVersion\n* `Dashboard` - Dashboard\n* `Replay` - Replay\n* `Experiment` - Experiment\n* `ExperimentHoldout` - ExperimentHoldout\n* `ExperimentSavedMetric` - ExperimentSavedMetric\n* `Survey` - Survey\n* `EarlyAccessFeature` - EarlyAccessFeature\n* `SessionRecordingPlaylist` - SessionRecordingPlaylist\n* `Comment` - Comment\n* `Team` - Team\n* `Project` - Project\n* `ErrorTrackingIssue` - ErrorTrackingIssue\n* `DataWarehouseExpression` - DataWarehouseExpression\n* `DataWarehouseSavedQuery` - DataWarehouseSavedQuery\n* `LegalDocument` - LegalDocument\n* `Organization` - Organization\n* `OrganizationDomain` - OrganizationDomain\n* `IdentityProviderConfig` - IdentityProviderConfig\n* `OrganizationMembership` - OrganizationMembership\n* `Role` - Role\n* `UserGroup` - UserGroup\n* `BatchExport` - BatchExport\n* `BatchImport` - BatchImport\n* `ExportedAsset` - ExportedAsset\n* `Integration` - Integration\n* `Annotation` - Annotation\n* `Tag` - Tag\n* `TaggedItem` - TaggedItem\n* `Subscription` - Subscription\n* `PersonalAPIKey` - PersonalAPIKey\n* `ProjectSecretAPIKey` - ProjectSecretAPIKey\n* `OAuthApplication` - OAuthApplication\n* `User` - User\n* `Action` - Action\n* `AlertConfiguration` - AlertConfiguration\n* `Threshold` - Threshold\n* `AlertSubscription` - AlertSubscription\n* `ExternalDataSource` - ExternalDataSource\n* `ExternalDataSchema` - ExternalDataSchema\n* `Evaluation` - Evaluation\n* `EvaluationDirectory` - EvaluationDirectory\n* `LLMPrompt` - LLMPrompt\n* `LLMPromptLabel` - LLMPromptLabel\n* `LLMTrace` - LLMTrace\n* `AIGatewayCredit` - AIGatewayCredit\n* `WebAnalyticsFilterPreset` - WebAnalyticsFilterPreset\n* `CustomerProfileConfig` - CustomerProfileConfig\n* `Log` - Log\n* `LogsAlertConfiguration` - LogsAlertConfiguration\n* `LogsExclusionRule` - LogsExclusionRule\n* `LogsRetentionRule` - LogsRetentionRule\n* `DashboardWidget` - DashboardWidget\n* `ProductTour` - ProductTour\n* `Ticket` - Ticket\n* `InstanceSetting` - InstanceSetting\n* `SignalReport` - SignalReport\n* `SignalScoutConfig` - SignalScoutConfig\n* `SignalTeamConfig` - SignalTeamConfig\n* `StreamlitApp` - StreamlitApp\n* `Metric` - Metric\n* `TableCertification` - TableCertification\n* `DataQualityCheck` - DataQualityCheck\n* `Billing` - Billing\n* `Loop` - Loop"
+            "smithy.api#documentation": "Filter by a single activity scope, e.g. \"FeatureFlag\", \"Insight\", \"Dashboard\", \"Experiment\".\n\n* `Cohort` - Cohort\n* `FeatureFlag` - FeatureFlag\n* `Person` - Person\n* `Group` - Group\n* `Insight` - Insight\n* `Plugin` - Plugin\n* `PluginConfig` - PluginConfig\n* `HogFunction` - HogFunction\n* `HogFlow` - HogFlow\n* `DataManagement` - DataManagement\n* `EventDefinition` - EventDefinition\n* `PropertyDefinition` - PropertyDefinition\n* `Notebook` - Notebook\n* `Canvas` - Canvas\n* `Endpoint` - Endpoint\n* `EndpointVersion` - EndpointVersion\n* `Dashboard` - Dashboard\n* `Replay` - Replay\n* `Experiment` - Experiment\n* `ExperimentHoldout` - ExperimentHoldout\n* `ExperimentSavedMetric` - ExperimentSavedMetric\n* `Survey` - Survey\n* `EarlyAccessFeature` - EarlyAccessFeature\n* `SessionRecordingPlaylist` - SessionRecordingPlaylist\n* `Comment` - Comment\n* `Team` - Team\n* `Project` - Project\n* `ErrorTrackingIssue` - ErrorTrackingIssue\n* `DataWarehouseExpression` - DataWarehouseExpression\n* `DataWarehouseSavedQuery` - DataWarehouseSavedQuery\n* `LegalDocument` - LegalDocument\n* `Organization` - Organization\n* `OrganizationDomain` - OrganizationDomain\n* `IdentityProviderConfig` - IdentityProviderConfig\n* `OrganizationMembership` - OrganizationMembership\n* `Role` - Role\n* `UserGroup` - UserGroup\n* `BatchExport` - BatchExport\n* `BatchImport` - BatchImport\n* `ExportedAsset` - ExportedAsset\n* `Integration` - Integration\n* `Annotation` - Annotation\n* `Tag` - Tag\n* `TaggedItem` - TaggedItem\n* `Subscription` - Subscription\n* `PersonalAPIKey` - PersonalAPIKey\n* `ProjectSecretAPIKey` - ProjectSecretAPIKey\n* `OAuthApplication` - OAuthApplication\n* `User` - User\n* `Action` - Action\n* `AlertConfiguration` - AlertConfiguration\n* `Threshold` - Threshold\n* `AlertSubscription` - AlertSubscription\n* `ExternalDataSource` - ExternalDataSource\n* `ExternalDataSchema` - ExternalDataSchema\n* `Evaluation` - Evaluation\n* `EvaluationDirectory` - EvaluationDirectory\n* `LLMPrompt` - LLMPrompt\n* `LLMPromptLabel` - LLMPromptLabel\n* `LLMTrace` - LLMTrace\n* `AIGatewayCredit` - AIGatewayCredit\n* `WebAnalyticsFilterPreset` - WebAnalyticsFilterPreset\n* `CustomerProfileConfig` - CustomerProfileConfig\n* `Log` - Log\n* `LogsAlertConfiguration` - LogsAlertConfiguration\n* `LogsExclusionRule` - LogsExclusionRule\n* `LogsRetentionRule` - LogsRetentionRule\n* `DashboardWidget` - DashboardWidget\n* `ProductTour` - ProductTour\n* `Ticket` - Ticket\n* `InstanceSetting` - InstanceSetting\n* `SignalReport` - SignalReport\n* `SignalScoutConfig` - SignalScoutConfig\n* `SignalTeamConfig` - SignalTeamConfig\n* `StreamlitApp` - StreamlitApp\n* `Metric` - Metric\n* `TableCertification` - TableCertification\n* `DataQualityCheck` - DataQualityCheck\n* `Billing` - Billing\n* `Loop` - Loop\n* `StamphogRepoConfig` - StamphogRepoConfig"
           }
         },
         "scopes": {
-          "target": "com.posthog.activity_logs#ActivityLogListRequestScopesList",
+          "target": "com.posthog.activity_logs#ListActivityLogRequestScopesList",
           "traits": {
             "smithy.api#httpQuery": "scopes",
             "smithy.api#documentation": "Filter by multiple activity scopes, comma-separated. Values must be valid ActivityScope enum values. E.g. \"FeatureFlag,Insight\"."
@@ -1328,10 +1341,10 @@
       },
       "traits": {}
     },
-    "com.posthog.activity_logs#ActivityLogList": {
+    "com.posthog.activity_logs#ListActivityLog": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.activity_logs#ActivityLogListRequest"
+        "target": "com.posthog.activity_logs#ListActivityLogRequest"
       },
       "output": {
         "target": "com.posthog.activity_logs#PaginatedActivityLogList"
@@ -1399,7 +1412,7 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.activity_logs#ActivityLogList"
+          "target": "com.posthog.activity_logs#ListActivityLog"
         }
       ],
       "traits": {

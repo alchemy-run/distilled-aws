@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.insights#InsightsListRequestFormat": {
+    "com.posthog.insights#ListInsightsRequestFormat": {
       "type": "enum",
       "members": {
         "CSV": {
@@ -35,7 +36,7 @@
       },
       "traits": {}
     },
-    "com.posthog.insights#InsightsListRequestInsight": {
+    "com.posthog.insights#ListInsightsRequestInsight": {
       "type": "enum",
       "members": {
         "FUNNELS": {
@@ -95,7 +96,7 @@
       },
       "traits": {}
     },
-    "com.posthog.insights#InsightsListRequestRefresh": {
+    "com.posthog.insights#ListInsightsRequestRefresh": {
       "type": "enum",
       "members": {
         "ASYNC": {
@@ -143,7 +144,7 @@
       },
       "traits": {}
     },
-    "com.posthog.insights#InsightsListRequest": {
+    "com.posthog.insights#ListInsightsRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -211,7 +212,7 @@
           }
         },
         "format": {
-          "target": "com.posthog.insights#InsightsListRequestFormat",
+          "target": "com.posthog.insights#ListInsightsRequestFormat",
           "traits": {
             "smithy.api#httpQuery": "format"
           }
@@ -224,7 +225,7 @@
           }
         },
         "insight": {
-          "target": "com.posthog.insights#InsightsListRequestInsight",
+          "target": "com.posthog.insights#ListInsightsRequestInsight",
           "traits": {
             "smithy.api#httpQuery": "insight",
             "smithy.api#documentation": "Restrict to a single insight type. `JSON` matches non-wrapper query insights; `SQL` matches HogQL queries."
@@ -259,7 +260,7 @@
           }
         },
         "refresh": {
-          "target": "com.posthog.insights#InsightsListRequestRefresh",
+          "target": "com.posthog.insights#ListInsightsRequestRefresh",
           "traits": {
             "smithy.api#httpQuery": "refresh",
             "smithy.api#documentation": "\nWhether to refresh the retrieved insights, how aggressively, and if sync or async:\n- `'force_cache'` - return cached data or a cache miss; always completes immediately as it never calculates\n- `'blocking'` - calculate synchronously (returning only when the query is done), UNLESS there are very fresh results in the cache\n- `'async'` - kick off background calculation (returning immediately with a query status), UNLESS there are very fresh results in the cache\n- `'lazy_async'` - kick off background calculation, UNLESS there are somewhat fresh results in the cache\n- `'force_blocking'` - calculate synchronously, even if fresh results are already cached\n- `'force_async'` - kick off background calculation, even if fresh results are already cached\nBackground calculation can be tracked using the `query_status` response field."
@@ -452,10 +453,10 @@
           "target": "smithy.api#Boolean"
         },
         "effective_restriction_level": {
-          "target": "com.posthog.insights#EffectivePrivilegeLevelEnum"
+          "target": "com.posthog.insights#RestrictionLevelEnum"
         },
         "effective_privilege_level": {
-          "target": "com.posthog.insights#EffectivePrivilegeLevelEnum"
+          "target": "com.posthog.insights#PrivilegeLevelEnum"
         },
         "user_access_level": {
           "target": "smithy.api#String",
@@ -1282,6 +1283,12 @@
             "com.distilled.openapi#nullable": {}
           }
         },
+        "customBotDefinitions": {
+          "target": "com.posthog.insights#HogQLQueryModifiersCustomBotDefinitionsList",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
         "customChannelTypeRules": {
           "target": "com.posthog.insights#HogQLQueryModifiersCustomChannelTypeRulesList",
           "traits": {
@@ -1494,6 +1501,125 @@
             "smithy.api#enumValue": "uniq_page_screen_autocaptures"
           }
         }
+      },
+      "traits": {}
+    },
+    "com.posthog.insights#CustomBotDefinition": {
+      "type": "structure",
+      "members": {
+        "category": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Reported by `$virt_traffic_category`. Defaults to `custom`.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "key": {
+          "target": "com.posthog.insights#CustomBotField",
+          "traits": {
+            "smithy.api#documentation": "The event property this rule reads.",
+            "smithy.api#required": {}
+          }
+        },
+        "matcher": {
+          "target": "com.posthog.insights#CustomBotMatcher",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Reported by `$virt_bot_name` and `$virt_bot_operator` when the rule matches.",
+            "smithy.api#required": {}
+          }
+        },
+        "pattern": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Matched against the property named by `key`.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.insights#CustomBotField": {
+      "type": "enum",
+      "members": {
+        "RAW_USER_AGENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "$raw_user_agent"
+          }
+        },
+        "IP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "$ip"
+          }
+        },
+        "LIB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "$lib"
+          }
+        },
+        "HOST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "$host"
+          }
+        },
+        "PATHNAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "$pathname"
+          }
+        },
+        "CURRENT_URL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "$current_url"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.insights#CustomBotMatcher": {
+      "type": "enum",
+      "members": {
+        "CONTAINS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "contains"
+          }
+        },
+        "REGEX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "regex"
+          }
+        },
+        "CIDR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cidr"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.insights#HogQLQueryModifiersCustomBotDefinitionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.insights#CustomBotDefinition"
       },
       "traits": {}
     },
@@ -13963,6 +14089,13 @@
             "com.distilled.openapi#nullable": {}
           }
         },
+        "preComputeIneligibleReason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Why a live response skipped precompute: the eligibility-gate reason that refused it. Unset when the query was eligible.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
         "preComputeStale": {
           "target": "smithy.api#Boolean",
           "traits": {
@@ -14363,6 +14496,13 @@
           "target": "com.posthog.insights#HogQLQueryModifiers",
           "traits": {
             "smithy.api#documentation": "Modifiers used when performing the query",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "preComputeIneligibleReason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Why a live response skipped precompute: the eligibility-gate reason that refused it. Unset when the query was eligible.",
             "com.distilled.openapi#nullable": {}
           }
         },
@@ -15987,6 +16127,13 @@
             "com.distilled.openapi#nullable": {}
           }
         },
+        "preComputeIneligibleReason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Why a live response skipped precompute: the eligibility-gate reason that refused it. Unset when the query was eligible.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
         "preComputeStrategy": {
           "target": "com.posthog.insights#WebAnalyticsPreComputeStrategy",
           "traits": {
@@ -16132,6 +16279,13 @@
         "offset": {
           "target": "smithy.api#Integer",
           "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "preComputeIneligibleReason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Why a live response skipped precompute: the eligibility-gate reason that refused it. Unset when the query was eligible.",
             "com.distilled.openapi#nullable": {}
           }
         },
@@ -16631,6 +16785,13 @@
             "com.distilled.openapi#nullable": {}
           }
         },
+        "preComputeIneligibleReason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Why a live response skipped precompute: the eligibility-gate reason that refused it. Unset when the query was eligible.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
         "preComputeStrategy": {
           "target": "com.posthog.insights#WebAnalyticsPreComputeStrategy",
           "traits": {
@@ -16772,6 +16933,13 @@
           "target": "com.posthog.insights#HogQLQueryModifiers",
           "traits": {
             "smithy.api#documentation": "Modifiers used when performing the query",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "preComputeIneligibleReason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Why a live response skipped precompute: the eligibility-gate reason that refused it. Unset when the query was eligible.",
             "com.distilled.openapi#nullable": {}
           }
         },
@@ -18309,6 +18477,12 @@
           "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "aws-s3"
+          }
+        },
+        "AWS_REDSHIFT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "aws-redshift"
           }
         },
         "S3_COMPATIBLE": {
@@ -20569,6 +20743,12 @@
           "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "account_fields"
+          }
+        },
+        "ACCOUNT_RELATIONSHIPS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "account_relationships"
           }
         },
         "ACCOUNT_CUSTOM_PROPERTIES": {
@@ -26728,6 +26908,13 @@
             "com.distilled.openapi#nullable": {}
           }
         },
+        "preComputeIneligibleReason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Why a live response skipped precompute: the eligibility-gate reason that refused it. Unset when the query was eligible.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
         "preComputeStrategy": {
           "target": "com.posthog.insights#WebAnalyticsPreComputeStrategy",
           "traits": {
@@ -27327,6 +27514,13 @@
           "target": "com.posthog.insights#HogQLQueryModifiers",
           "traits": {
             "smithy.api#documentation": "Modifiers used when performing the query",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "preComputeIneligibleReason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Why a live response skipped precompute: the eligibility-gate reason that refused it. Unset when the query was eligible.",
             "com.distilled.openapi#nullable": {}
           }
         },
@@ -33541,12 +33735,85 @@
         "smithy.api#documentation": "Match accounts where any listed user actively holds any relationship."
       }
     },
+    "com.posthog.insights#AccountsTableAssignedFilter": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
     "com.posthog.insights#AccountsTableUnassignedFilter": {
       "type": "structure",
       "members": {
         "kind": {
           "target": "smithy.api#String"
         }
+      },
+      "traits": {}
+    },
+    "com.posthog.insights#AccountsTableRelationshipFilter": {
+      "type": "structure",
+      "members": {
+        "definitionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String"
+        },
+        "operator": {
+          "target": "com.posthog.insights#AccountsTableRelationshipOperator",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "userIds": {
+          "target": "com.posthog.insights#AccountsTableRelationshipFilterUserIdsList",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.insights#AccountsTableRelationshipOperator": {
+      "type": "enum",
+      "members": {
+        "EXACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "exact"
+          }
+        },
+        "IS_NOT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "is_not"
+          }
+        },
+        "IS_SET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "is_set"
+          }
+        },
+        "IS_NOT_SET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "is_not_set"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.insights#AccountsTableRelationshipFilterUserIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
       },
       "traits": {}
     },
@@ -33817,8 +34084,14 @@
         "AccountsTableAssignedToFilter": {
           "target": "com.posthog.insights#AccountsTableAssignedToFilter"
         },
+        "AccountsTableAssignedFilter": {
+          "target": "com.posthog.insights#AccountsTableAssignedFilter"
+        },
         "AccountsTableUnassignedFilter": {
           "target": "com.posthog.insights#AccountsTableUnassignedFilter"
+        },
+        "AccountsTableRelationshipFilter": {
+          "target": "com.posthog.insights#AccountsTableRelationshipFilter"
         },
         "AccountsTableAccountIdFilter": {
           "target": "com.posthog.insights#AccountsTableAccountIdFilter"
@@ -34372,6 +34645,13 @@
         "leftYAxisSettings": {
           "target": "com.posthog.insights#YAxisSettings",
           "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "legendPosition": {
+          "target": "com.posthog.insights#LegendPosition",
+          "traits": {
+            "smithy.api#documentation": "Where the legend sits relative to the chart. Unset falls back per chart type: right for pie, top for the rest.",
             "com.distilled.openapi#nullable": {}
           }
         },
@@ -35437,7 +35717,7 @@
       },
       "traits": {}
     },
-    "com.posthog.insights#EffectivePrivilegeLevelEnum": {
+    "com.posthog.insights#RestrictionLevelEnum": {
       "type": "intEnum",
       "members": {
         "_21": {
@@ -35453,7 +35733,29 @@
           }
         }
       },
-      "traits": {}
+      "traits": {
+        "smithy.api#documentation": "* `21` - Everyone in the project can edit\n* `37` - Only those invited to this dashboard can edit"
+      }
+    },
+    "com.posthog.insights#PrivilegeLevelEnum": {
+      "type": "intEnum",
+      "members": {
+        "_21": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": 21
+          }
+        },
+        "_37": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": 37
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `21` - Can view dashboard\n* `37` - Can edit dashboard"
+      }
     },
     "com.posthog.insights#InsightOutputTypesList": {
       "type": "list",
@@ -35808,10 +36110,10 @@
       },
       "traits": {}
     },
-    "com.posthog.insights#InsightsList": {
+    "com.posthog.insights#ListInsights": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.insights#InsightsListRequest"
+        "target": "com.posthog.insights#ListInsightsRequest"
       },
       "output": {
         "target": "com.posthog.insights#PaginatedInsightListOutput"
@@ -35836,7 +36138,7 @@
         "smithy.api#documentation": "DRF ViewSet mixin that gates coalesced responses behind permission checks.\n\nThe QueryCoalescingMiddleware attaches cached response data to\nrequest.META[\"_coalesced_response\"] for followers. This mixin runs DRF's\ninitial() (auth + permissions + throttling) before returning the\ncached response, ensuring the request is authorized."
       }
     },
-    "com.posthog.insights#InsightsCreateRequestFormat": {
+    "com.posthog.insights#CreateInsightRequestFormat": {
       "type": "enum",
       "members": {
         "CSV": {
@@ -35854,7 +36156,7 @@
       },
       "traits": {}
     },
-    "com.posthog.insights#InsightsCreateRequestDashboardsList": {
+    "com.posthog.insights#CreateInsightRequestDashboardsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
@@ -35863,14 +36165,14 @@
         "smithy.api#documentation": "\n        DEPRECATED. Will be removed in a future release. Use dashboard_tiles instead.\n        A dashboard ID for each of the dashboards that this insight is displayed on.\n        This field is omitted from session-authenticated responses unless `include_dashboards=true`\n        is passed. Once opt-in enforcement is enabled, API-token callers (personal API keys, OAuth)\n        must opt in the same way. Do not rely on it being present.\n        "
       }
     },
-    "com.posthog.insights#InsightsCreateRequestTagsList": {
+    "com.posthog.insights#CreateInsightRequestTagsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
       },
       "traits": {}
     },
-    "com.posthog.insights#InsightsCreateRequest": {
+    "com.posthog.insights#CreateInsightRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -35882,7 +36184,7 @@
           }
         },
         "format": {
-          "target": "com.posthog.insights#InsightsCreateRequestFormat",
+          "target": "com.posthog.insights#CreateInsightRequestFormat",
           "traits": {
             "smithy.api#httpQuery": "format"
           }
@@ -35922,7 +36224,7 @@
           "target": "smithy.api#Boolean"
         },
         "dashboards": {
-          "target": "com.posthog.insights#InsightsCreateRequestDashboardsList",
+          "target": "com.posthog.insights#CreateInsightRequestDashboardsList",
           "traits": {
             "smithy.api#documentation": "\n        DEPRECATED. Will be removed in a future release. Use dashboard_tiles instead.\n        A dashboard ID for each of the dashboards that this insight is displayed on.\n        This field is omitted from session-authenticated responses unless `include_dashboards=true`\n        is passed. Once opt-in enforcement is enabled, API-token callers (personal API keys, OAuth)\n        must opt in the same way. Do not rely on it being present.\n        "
           }
@@ -35934,7 +36236,7 @@
           }
         },
         "tags": {
-          "target": "com.posthog.insights#InsightsCreateRequestTagsList"
+          "target": "com.posthog.insights#CreateInsightRequestTagsList"
         },
         "favorited": {
           "target": "smithy.api#Boolean"
@@ -35947,10 +36249,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.insights#InsightsCreate": {
+    "com.posthog.insights#CreateInsight": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.insights#InsightsCreateRequest"
+        "target": "com.posthog.insights#CreateInsightRequest"
       },
       "output": {
         "target": "com.posthog.insights#InsightOutput"
@@ -35975,7 +36277,7 @@
         "smithy.api#documentation": "DRF ViewSet mixin that gates coalesced responses behind permission checks.\n\nThe QueryCoalescingMiddleware attaches cached response data to\nrequest.META[\"_coalesced_response\"] for followers. This mixin runs DRF's\ninitial() (auth + permissions + throttling) before returning the\ncached response, ensuring the request is authorized."
       }
     },
-    "com.posthog.insights#InsightsSharingListRequest": {
+    "com.posthog.insights#ListInsightsSharingRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -36066,18 +36368,18 @@
       },
       "traits": {}
     },
-    "com.posthog.insights#InsightsSharingListResponseBodyList": {
+    "com.posthog.insights#ListInsightsSharingResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.posthog.insights#SharingConfiguration"
       },
       "traits": {}
     },
-    "com.posthog.insights#InsightsSharingListResponse": {
+    "com.posthog.insights#ListInsightsSharingResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.posthog.insights#InsightsSharingListResponseBodyList",
+          "target": "com.posthog.insights#ListInsightsSharingResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -36088,13 +36390,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.posthog.insights#InsightsSharingList": {
+    "com.posthog.insights#ListInsightsSharing": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.insights#InsightsSharingListRequest"
+        "target": "com.posthog.insights#ListInsightsSharingRequest"
       },
       "output": {
-        "target": "com.posthog.insights#InsightsSharingListResponse"
+        "target": "com.posthog.insights#ListInsightsSharingResponse"
       },
       "errors": [
         {
@@ -36112,7 +36414,7 @@
         }
       }
     },
-    "com.posthog.insights#InsightsSharingPasswordsCreateRequest": {
+    "com.posthog.insights#CreateInsightsSharingPasswordRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -36144,10 +36446,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.insights#InsightsSharingPasswordsCreate": {
+    "com.posthog.insights#CreateInsightsSharingPassword": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.insights#InsightsSharingPasswordsCreateRequest"
+        "target": "com.posthog.insights#CreateInsightsSharingPasswordRequest"
       },
       "output": {
         "target": "com.posthog.insights#SharingConfiguration"
@@ -36286,7 +36588,7 @@
         }
       }
     },
-    "com.posthog.insights#InsightsThresholdsListRequest": {
+    "com.posthog.insights#ListInsightsThresholdsRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -36581,13 +36883,13 @@
         "investigation_agent_enabled": {
           "target": "smithy.api#Boolean",
           "traits": {
-            "smithy.api#documentation": "When enabled, an investigation agent runs on the state transition to firing and writes findings to a Notebook linked from the alert check. Only effective for detector-based (anomaly) alerts."
+            "smithy.api#documentation": "When enabled, an investigation agent runs on each check where the alert fires, up to three times per firing episode, and writes findings to a Notebook linked from the alert check. An episode is the run of consecutive firing checks since the last check that did not fire. A later investigation of the same episode that reaches a different verdict sends one follow-up notification, unless investigation_inconclusive_action suppresses it. Only effective for detector-based (anomaly) alerts."
           }
         },
         "investigation_gates_notifications": {
           "target": "smithy.api#Boolean",
           "traits": {
-            "smithy.api#documentation": "When enabled (and investigation_agent_enabled is on), notification dispatch is held until the investigation agent produces a verdict. Notifications are suppressed when the verdict is false_positive (and optionally when inconclusive). A safety-net task force-fires after a few minutes if the investigation stalls."
+            "smithy.api#documentation": "When enabled (and investigation_agent_enabled is on), the first fire of an episode is held until the investigation agent produces a verdict, and that notification is suppressed when the verdict is false_positive (and optionally when inconclusive). Later fires of the same episode notify without waiting. A safety-net task force-fires after a few minutes if the investigation stalls."
           }
         },
         "investigation_inconclusive_action": {
@@ -37814,10 +38116,10 @@
       },
       "traits": {}
     },
-    "com.posthog.insights#InsightsThresholdsList": {
+    "com.posthog.insights#ListInsightsThresholds": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.insights#InsightsThresholdsListRequest"
+        "target": "com.posthog.insights#ListInsightsThresholdsRequest"
       },
       "output": {
         "target": "com.posthog.insights#PaginatedThresholdWithAlertList"
@@ -37841,7 +38143,7 @@
         }
       }
     },
-    "com.posthog.insights#InsightsThresholdsRetrieveRequest": {
+    "com.posthog.insights#GetInsightsThresholdRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -37872,10 +38174,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.insights#InsightsThresholdsRetrieve": {
+    "com.posthog.insights#GetInsightsThreshold": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.insights#InsightsThresholdsRetrieveRequest"
+        "target": "com.posthog.insights#GetInsightsThresholdRequest"
       },
       "output": {
         "target": "com.posthog.insights#ThresholdWithAlert"
@@ -37896,7 +38198,7 @@
         }
       }
     },
-    "com.posthog.insights#InsightsRetrieveRequestFormat": {
+    "com.posthog.insights#GetInsightRequestFormat": {
       "type": "enum",
       "members": {
         "CSV": {
@@ -37914,7 +38216,7 @@
       },
       "traits": {}
     },
-    "com.posthog.insights#InsightsRetrieveRequestRefresh": {
+    "com.posthog.insights#GetInsightRequestRefresh": {
       "type": "enum",
       "members": {
         "ASYNC": {
@@ -37962,7 +38264,7 @@
       },
       "traits": {}
     },
-    "com.posthog.insights#InsightsRetrieveRequest": {
+    "com.posthog.insights#GetInsightRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -37989,7 +38291,7 @@
           }
         },
         "format": {
-          "target": "com.posthog.insights#InsightsRetrieveRequestFormat",
+          "target": "com.posthog.insights#GetInsightRequestFormat",
           "traits": {
             "smithy.api#httpQuery": "format"
           }
@@ -38009,7 +38311,7 @@
           }
         },
         "refresh": {
-          "target": "com.posthog.insights#InsightsRetrieveRequestRefresh",
+          "target": "com.posthog.insights#GetInsightRequestRefresh",
           "traits": {
             "smithy.api#httpQuery": "refresh",
             "smithy.api#documentation": "\nWhether to refresh the insight, how aggresively, and if sync or async:\n- `'force_cache'` - return cached data or a cache miss; always completes immediately as it never calculates\n- `'blocking'` - calculate synchronously (returning only when the query is done), UNLESS there are very fresh results in the cache\n- `'async'` - kick off background calculation (returning immediately with a query status), UNLESS there are very fresh results in the cache\n- `'lazy_async'` - kick off background calculation, UNLESS there are somewhat fresh results in the cache\n- `'force_blocking'` - calculate synchronously, even if fresh results are already cached\n- `'force_async'` - kick off background calculation, even if fresh results are already cached\nBackground calculation can be tracked using the `query_status` response field."
@@ -38027,10 +38329,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.insights#InsightsRetrieve": {
+    "com.posthog.insights#GetInsight": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.insights#InsightsRetrieveRequest"
+        "target": "com.posthog.insights#GetInsightRequest"
       },
       "output": {
         "target": "com.posthog.insights#InsightOutput"
@@ -38055,7 +38357,7 @@
         "smithy.api#documentation": "DRF ViewSet mixin that gates coalesced responses behind permission checks.\n\nThe QueryCoalescingMiddleware attaches cached response data to\nrequest.META[\"_coalesced_response\"] for followers. This mixin runs DRF's\ninitial() (auth + permissions + throttling) before returning the\ncached response, ensuring the request is authorized."
       }
     },
-    "com.posthog.insights#InsightsUpdateRequestFormat": {
+    "com.posthog.insights#UpdateInsightRequestFormat": {
       "type": "enum",
       "members": {
         "CSV": {
@@ -38073,7 +38375,7 @@
       },
       "traits": {}
     },
-    "com.posthog.insights#InsightsUpdateRequestDashboardsList": {
+    "com.posthog.insights#UpdateInsightRequestDashboardsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
@@ -38082,14 +38384,14 @@
         "smithy.api#documentation": "\n        DEPRECATED. Will be removed in a future release. Use dashboard_tiles instead.\n        A dashboard ID for each of the dashboards that this insight is displayed on.\n        This field is omitted from session-authenticated responses unless `include_dashboards=true`\n        is passed. Once opt-in enforcement is enabled, API-token callers (personal API keys, OAuth)\n        must opt in the same way. Do not rely on it being present.\n        "
       }
     },
-    "com.posthog.insights#InsightsUpdateRequestTagsList": {
+    "com.posthog.insights#UpdateInsightRequestTagsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
       },
       "traits": {}
     },
-    "com.posthog.insights#InsightsUpdateRequest": {
+    "com.posthog.insights#UpdateInsightRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -38109,7 +38411,7 @@
           }
         },
         "format": {
-          "target": "com.posthog.insights#InsightsUpdateRequestFormat",
+          "target": "com.posthog.insights#UpdateInsightRequestFormat",
           "traits": {
             "smithy.api#httpQuery": "format"
           }
@@ -38149,7 +38451,7 @@
           "target": "smithy.api#Boolean"
         },
         "dashboards": {
-          "target": "com.posthog.insights#InsightsUpdateRequestDashboardsList",
+          "target": "com.posthog.insights#UpdateInsightRequestDashboardsList",
           "traits": {
             "smithy.api#documentation": "\n        DEPRECATED. Will be removed in a future release. Use dashboard_tiles instead.\n        A dashboard ID for each of the dashboards that this insight is displayed on.\n        This field is omitted from session-authenticated responses unless `include_dashboards=true`\n        is passed. Once opt-in enforcement is enabled, API-token callers (personal API keys, OAuth)\n        must opt in the same way. Do not rely on it being present.\n        "
           }
@@ -38161,7 +38463,7 @@
           }
         },
         "tags": {
-          "target": "com.posthog.insights#InsightsUpdateRequestTagsList"
+          "target": "com.posthog.insights#UpdateInsightRequestTagsList"
         },
         "favorited": {
           "target": "smithy.api#Boolean"
@@ -38174,10 +38476,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.insights#InsightsUpdate": {
+    "com.posthog.insights#UpdateInsight": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.insights#InsightsUpdateRequest"
+        "target": "com.posthog.insights#UpdateInsightRequest"
       },
       "output": {
         "target": "com.posthog.insights#InsightOutput"
@@ -38202,7 +38504,7 @@
         "smithy.api#documentation": "DRF ViewSet mixin that gates coalesced responses behind permission checks.\n\nThe QueryCoalescingMiddleware attaches cached response data to\nrequest.META[\"_coalesced_response\"] for followers. This mixin runs DRF's\ninitial() (auth + permissions + throttling) before returning the\ncached response, ensuring the request is authorized."
       }
     },
-    "com.posthog.insights#InsightsPartialUpdateRequestFormat": {
+    "com.posthog.insights#UpdateInsightsPartialRequestFormat": {
       "type": "enum",
       "members": {
         "CSV": {
@@ -38220,7 +38522,7 @@
       },
       "traits": {}
     },
-    "com.posthog.insights#InsightsPartialUpdateRequestDashboardsList": {
+    "com.posthog.insights#UpdateInsightsPartialRequestDashboardsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
@@ -38229,14 +38531,14 @@
         "smithy.api#documentation": "\n        DEPRECATED. Will be removed in a future release. Use dashboard_tiles instead.\n        A dashboard ID for each of the dashboards that this insight is displayed on.\n        This field is omitted from session-authenticated responses unless `include_dashboards=true`\n        is passed. Once opt-in enforcement is enabled, API-token callers (personal API keys, OAuth)\n        must opt in the same way. Do not rely on it being present.\n        "
       }
     },
-    "com.posthog.insights#InsightsPartialUpdateRequestTagsList": {
+    "com.posthog.insights#UpdateInsightsPartialRequestTagsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
       },
       "traits": {}
     },
-    "com.posthog.insights#InsightsPartialUpdateRequest": {
+    "com.posthog.insights#UpdateInsightsPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -38256,7 +38558,7 @@
           }
         },
         "format": {
-          "target": "com.posthog.insights#InsightsPartialUpdateRequestFormat",
+          "target": "com.posthog.insights#UpdateInsightsPartialRequestFormat",
           "traits": {
             "smithy.api#httpQuery": "format"
           }
@@ -38296,7 +38598,7 @@
           "target": "smithy.api#Boolean"
         },
         "dashboards": {
-          "target": "com.posthog.insights#InsightsPartialUpdateRequestDashboardsList",
+          "target": "com.posthog.insights#UpdateInsightsPartialRequestDashboardsList",
           "traits": {
             "smithy.api#documentation": "\n        DEPRECATED. Will be removed in a future release. Use dashboard_tiles instead.\n        A dashboard ID for each of the dashboards that this insight is displayed on.\n        This field is omitted from session-authenticated responses unless `include_dashboards=true`\n        is passed. Once opt-in enforcement is enabled, API-token callers (personal API keys, OAuth)\n        must opt in the same way. Do not rely on it being present.\n        "
           }
@@ -38308,7 +38610,7 @@
           }
         },
         "tags": {
-          "target": "com.posthog.insights#InsightsPartialUpdateRequestTagsList"
+          "target": "com.posthog.insights#UpdateInsightsPartialRequestTagsList"
         },
         "favorited": {
           "target": "smithy.api#Boolean"
@@ -38321,10 +38623,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.insights#InsightsPartialUpdate": {
+    "com.posthog.insights#UpdateInsightsPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.insights#InsightsPartialUpdateRequest"
+        "target": "com.posthog.insights#UpdateInsightsPartialRequest"
       },
       "output": {
         "target": "com.posthog.insights#InsightOutput"
@@ -38425,7 +38727,7 @@
         "smithy.api#documentation": "Hard delete of this model is not allowed. Use a patch API call to set \"deleted\" to true"
       }
     },
-    "com.posthog.insights#InsightsActivityRetrieveRequestFormat": {
+    "com.posthog.insights#GetInsightsActivityRequestFormat": {
       "type": "enum",
       "members": {
         "CSV": {
@@ -38443,7 +38745,7 @@
       },
       "traits": {}
     },
-    "com.posthog.insights#InsightsActivityRetrieveRequest": {
+    "com.posthog.insights#GetInsightsActivityRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -38463,7 +38765,7 @@
           }
         },
         "format": {
-          "target": "com.posthog.insights#InsightsActivityRetrieveRequestFormat",
+          "target": "com.posthog.insights#GetInsightsActivityRequestFormat",
           "traits": {
             "smithy.api#httpQuery": "format"
           }
@@ -38654,10 +38956,10 @@
       },
       "traits": {}
     },
-    "com.posthog.insights#InsightsActivityRetrieve": {
+    "com.posthog.insights#GetInsightsActivity": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.insights#InsightsActivityRetrieveRequest"
+        "target": "com.posthog.insights#GetInsightsActivityRequest"
       },
       "output": {
         "target": "com.posthog.insights#ActivityLogPaginatedResponse"
@@ -38682,7 +38984,7 @@
         "smithy.api#documentation": "Audit trail for a single insight — every change made to it, by whom, and when. Use this when you want the change history of a specific insight; use the project-wide activity endpoint for a broader view."
       }
     },
-    "com.posthog.insights#InsightsAnalyzeRetrieveRequestFormat": {
+    "com.posthog.insights#GetInsightsAnalyzeRequestFormat": {
       "type": "enum",
       "members": {
         "CSV": {
@@ -38700,7 +39002,7 @@
       },
       "traits": {}
     },
-    "com.posthog.insights#InsightsAnalyzeRetrieveRequest": {
+    "com.posthog.insights#GetInsightsAnalyzeRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -38720,7 +39022,7 @@
           }
         },
         "format": {
-          "target": "com.posthog.insights#InsightsAnalyzeRetrieveRequestFormat",
+          "target": "com.posthog.insights#GetInsightsAnalyzeRequestFormat",
           "traits": {
             "smithy.api#httpQuery": "format"
           }
@@ -38730,10 +39032,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.insights#InsightsAnalyzeRetrieve": {
+    "com.posthog.insights#GetInsightsAnalyze": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.insights#InsightsAnalyzeRetrieveRequest"
+        "target": "com.posthog.insights#GetInsightsAnalyzeRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -38758,7 +39060,7 @@
         "smithy.api#documentation": "DRF ViewSet mixin that gates coalesced responses behind permission checks.\n\nThe QueryCoalescingMiddleware attaches cached response data to\nrequest.META[\"_coalesced_response\"] for followers. This mixin runs DRF's\ninitial() (auth + permissions + throttling) before returning the\ncached response, ensuring the request is authorized."
       }
     },
-    "com.posthog.insights#InsightsSuggestionsRetrieveRequestFormat": {
+    "com.posthog.insights#GetInsightsSuggestionRequestFormat": {
       "type": "enum",
       "members": {
         "CSV": {
@@ -38776,7 +39078,7 @@
       },
       "traits": {}
     },
-    "com.posthog.insights#InsightsSuggestionsRetrieveRequest": {
+    "com.posthog.insights#GetInsightsSuggestionRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -38796,7 +39098,7 @@
           }
         },
         "format": {
-          "target": "com.posthog.insights#InsightsSuggestionsRetrieveRequestFormat",
+          "target": "com.posthog.insights#GetInsightsSuggestionRequestFormat",
           "traits": {
             "smithy.api#httpQuery": "format"
           }
@@ -38806,10 +39108,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.insights#InsightsSuggestionsRetrieve": {
+    "com.posthog.insights#GetInsightsSuggestion": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.insights#InsightsSuggestionsRetrieveRequest"
+        "target": "com.posthog.insights#GetInsightsSuggestionRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -38834,7 +39136,7 @@
         "smithy.api#documentation": "DRF ViewSet mixin that gates coalesced responses behind permission checks.\n\nThe QueryCoalescingMiddleware attaches cached response data to\nrequest.META[\"_coalesced_response\"] for followers. This mixin runs DRF's\ninitial() (auth + permissions + throttling) before returning the\ncached response, ensuring the request is authorized."
       }
     },
-    "com.posthog.insights#InsightsSuggestionsCreateRequestFormat": {
+    "com.posthog.insights#CreateInsightsSuggestionRequestFormat": {
       "type": "enum",
       "members": {
         "CSV": {
@@ -38852,7 +39154,7 @@
       },
       "traits": {}
     },
-    "com.posthog.insights#InsightsSuggestionsCreateRequestDashboardsList": {
+    "com.posthog.insights#CreateInsightsSuggestionRequestDashboardsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
@@ -38861,14 +39163,14 @@
         "smithy.api#documentation": "\n        DEPRECATED. Will be removed in a future release. Use dashboard_tiles instead.\n        A dashboard ID for each of the dashboards that this insight is displayed on.\n        This field is omitted from session-authenticated responses unless `include_dashboards=true`\n        is passed. Once opt-in enforcement is enabled, API-token callers (personal API keys, OAuth)\n        must opt in the same way. Do not rely on it being present.\n        "
       }
     },
-    "com.posthog.insights#InsightsSuggestionsCreateRequestTagsList": {
+    "com.posthog.insights#CreateInsightsSuggestionRequestTagsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
       },
       "traits": {}
     },
-    "com.posthog.insights#InsightsSuggestionsCreateRequest": {
+    "com.posthog.insights#CreateInsightsSuggestionRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -38888,7 +39190,7 @@
           }
         },
         "format": {
-          "target": "com.posthog.insights#InsightsSuggestionsCreateRequestFormat",
+          "target": "com.posthog.insights#CreateInsightsSuggestionRequestFormat",
           "traits": {
             "smithy.api#httpQuery": "format"
           }
@@ -38921,7 +39223,7 @@
           "target": "smithy.api#Boolean"
         },
         "dashboards": {
-          "target": "com.posthog.insights#InsightsSuggestionsCreateRequestDashboardsList",
+          "target": "com.posthog.insights#CreateInsightsSuggestionRequestDashboardsList",
           "traits": {
             "smithy.api#documentation": "\n        DEPRECATED. Will be removed in a future release. Use dashboard_tiles instead.\n        A dashboard ID for each of the dashboards that this insight is displayed on.\n        This field is omitted from session-authenticated responses unless `include_dashboards=true`\n        is passed. Once opt-in enforcement is enabled, API-token callers (personal API keys, OAuth)\n        must opt in the same way. Do not rely on it being present.\n        "
           }
@@ -38933,7 +39235,7 @@
           }
         },
         "tags": {
-          "target": "com.posthog.insights#InsightsSuggestionsCreateRequestTagsList"
+          "target": "com.posthog.insights#CreateInsightsSuggestionRequestTagsList"
         },
         "favorited": {
           "target": "smithy.api#Boolean"
@@ -38946,10 +39248,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.insights#InsightsSuggestionsCreate": {
+    "com.posthog.insights#CreateInsightsSuggestion": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.insights#InsightsSuggestionsCreateRequest"
+        "target": "com.posthog.insights#CreateInsightsSuggestionRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -38974,7 +39276,7 @@
         "smithy.api#documentation": "DRF ViewSet mixin that gates coalesced responses behind permission checks.\n\nThe QueryCoalescingMiddleware attaches cached response data to\nrequest.META[\"_coalesced_response\"] for followers. This mixin runs DRF's\ninitial() (auth + permissions + throttling) before returning the\ncached response, ensuring the request is authorized."
       }
     },
-    "com.posthog.insights#InsightsAllActivityRetrieveRequestFormat": {
+    "com.posthog.insights#GetInsightsAllActivityRequestFormat": {
       "type": "enum",
       "members": {
         "CSV": {
@@ -38992,7 +39294,7 @@
       },
       "traits": {}
     },
-    "com.posthog.insights#InsightsAllActivityRetrieveRequest": {
+    "com.posthog.insights#GetInsightsAllActivityRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -39004,7 +39306,7 @@
           }
         },
         "format": {
-          "target": "com.posthog.insights#InsightsAllActivityRetrieveRequestFormat",
+          "target": "com.posthog.insights#GetInsightsAllActivityRequestFormat",
           "traits": {
             "smithy.api#httpQuery": "format"
           }
@@ -39028,10 +39330,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.insights#InsightsAllActivityRetrieve": {
+    "com.posthog.insights#GetInsightsAllActivity": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.insights#InsightsAllActivityRetrieveRequest"
+        "target": "com.posthog.insights#GetInsightsAllActivityRequest"
       },
       "output": {
         "target": "com.posthog.insights#ActivityLogPaginatedResponse"
@@ -39875,7 +40177,7 @@
         "smithy.api#documentation": "Generate an AI-suggested name and description for an insight based on its query configuration."
       }
     },
-    "com.posthog.insights#InsightsMyLastViewedRetrieveRequestFormat": {
+    "com.posthog.insights#GetInsightsMyLastViewedRequestFormat": {
       "type": "enum",
       "members": {
         "CSV": {
@@ -39893,7 +40195,7 @@
       },
       "traits": {}
     },
-    "com.posthog.insights#InsightsMyLastViewedRetrieveRequest": {
+    "com.posthog.insights#GetInsightsMyLastViewedRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -39905,7 +40207,7 @@
           }
         },
         "format": {
-          "target": "com.posthog.insights#InsightsMyLastViewedRetrieveRequestFormat",
+          "target": "com.posthog.insights#GetInsightsMyLastViewedRequestFormat",
           "traits": {
             "smithy.api#httpQuery": "format"
           }
@@ -39915,10 +40217,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.insights#InsightsMyLastViewedRetrieve": {
+    "com.posthog.insights#GetInsightsMyLastViewed": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.insights#InsightsMyLastViewedRetrieveRequest"
+        "target": "com.posthog.insights#GetInsightsMyLastViewedRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -39943,7 +40245,7 @@
         "smithy.api#documentation": "Returns basic details about the last 5 insights viewed by this user. Most recently viewed first."
       }
     },
-    "com.posthog.insights#InsightsTrendingRetrieveRequestFormat": {
+    "com.posthog.insights#GetInsightsTrendingRequestFormat": {
       "type": "enum",
       "members": {
         "CSV": {
@@ -39961,7 +40263,7 @@
       },
       "traits": {}
     },
-    "com.posthog.insights#InsightsTrendingRetrieveRequest": {
+    "com.posthog.insights#GetInsightsTrendingRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -39980,7 +40282,7 @@
           }
         },
         "format": {
-          "target": "com.posthog.insights#InsightsTrendingRetrieveRequestFormat",
+          "target": "com.posthog.insights#GetInsightsTrendingRequestFormat",
           "traits": {
             "smithy.api#httpQuery": "format"
           }
@@ -40213,10 +40515,10 @@
       },
       "traits": {}
     },
-    "com.posthog.insights#InsightsTrendingRetrieve": {
+    "com.posthog.insights#GetInsightsTrending": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.insights#InsightsTrendingRetrieveRequest"
+        "target": "com.posthog.insights#GetInsightsTrendingRequest"
       },
       "output": {
         "target": "com.posthog.insights#PaginatedTrendingInsightList"
@@ -40241,7 +40543,7 @@
         "smithy.api#documentation": "Returns insights ranked by view count over the last N days (default 7), highest first. Each result includes the same metadata as the standard insights list, plus a `view_count` and up to 3 recent `viewers`. Useful for surfacing the most-used insights in a project."
       }
     },
-    "com.posthog.insights#InsightsViewedCreateRequestFormat": {
+    "com.posthog.insights#CreateInsightsViewedRequestFormat": {
       "type": "enum",
       "members": {
         "CSV": {
@@ -40259,7 +40561,7 @@
       },
       "traits": {}
     },
-    "com.posthog.insights#InsightsViewedCreateRequestInsightIdsList": {
+    "com.posthog.insights#CreateInsightsViewedRequestInsightIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
@@ -40268,7 +40570,7 @@
         "smithy.api#documentation": "Insight IDs that were just viewed by the current user. At most 2500 ids per request."
       }
     },
-    "com.posthog.insights#InsightsViewedCreateRequest": {
+    "com.posthog.insights#CreateInsightsViewedRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -40280,13 +40582,13 @@
           }
         },
         "format": {
-          "target": "com.posthog.insights#InsightsViewedCreateRequestFormat",
+          "target": "com.posthog.insights#CreateInsightsViewedRequestFormat",
           "traits": {
             "smithy.api#httpQuery": "format"
           }
         },
         "insight_ids": {
-          "target": "com.posthog.insights#InsightsViewedCreateRequestInsightIdsList",
+          "target": "com.posthog.insights#CreateInsightsViewedRequestInsightIdsList",
           "traits": {
             "smithy.api#documentation": "Insight IDs that were just viewed by the current user. At most 2500 ids per request.",
             "smithy.api#required": {}
@@ -40297,10 +40599,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.insights#InsightsViewedCreate": {
+    "com.posthog.insights#CreateInsightsViewed": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.insights#InsightsViewedCreateRequest"
+        "target": "com.posthog.insights#CreateInsightsViewedRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -40369,16 +40671,16 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.insights#InsightsList"
+          "target": "com.posthog.insights#ListInsights"
         },
         {
-          "target": "com.posthog.insights#InsightsCreate"
+          "target": "com.posthog.insights#CreateInsight"
         },
         {
-          "target": "com.posthog.insights#InsightsSharingList"
+          "target": "com.posthog.insights#ListInsightsSharing"
         },
         {
-          "target": "com.posthog.insights#InsightsSharingPasswordsCreate"
+          "target": "com.posthog.insights#CreateInsightsSharingPassword"
         },
         {
           "target": "com.posthog.insights#InsightsSharingPasswordsDestroy"
@@ -40387,37 +40689,37 @@
           "target": "com.posthog.insights#InsightsSharingRefreshCreate"
         },
         {
-          "target": "com.posthog.insights#InsightsThresholdsList"
+          "target": "com.posthog.insights#ListInsightsThresholds"
         },
         {
-          "target": "com.posthog.insights#InsightsThresholdsRetrieve"
+          "target": "com.posthog.insights#GetInsightsThreshold"
         },
         {
-          "target": "com.posthog.insights#InsightsRetrieve"
+          "target": "com.posthog.insights#GetInsight"
         },
         {
-          "target": "com.posthog.insights#InsightsUpdate"
+          "target": "com.posthog.insights#UpdateInsight"
         },
         {
-          "target": "com.posthog.insights#InsightsPartialUpdate"
+          "target": "com.posthog.insights#UpdateInsightsPartial"
         },
         {
           "target": "com.posthog.insights#InsightsDestroy"
         },
         {
-          "target": "com.posthog.insights#InsightsActivityRetrieve"
+          "target": "com.posthog.insights#GetInsightsActivity"
         },
         {
-          "target": "com.posthog.insights#InsightsAnalyzeRetrieve"
+          "target": "com.posthog.insights#GetInsightsAnalyze"
         },
         {
-          "target": "com.posthog.insights#InsightsSuggestionsRetrieve"
+          "target": "com.posthog.insights#GetInsightsSuggestion"
         },
         {
-          "target": "com.posthog.insights#InsightsSuggestionsCreate"
+          "target": "com.posthog.insights#CreateInsightsSuggestion"
         },
         {
-          "target": "com.posthog.insights#InsightsAllActivityRetrieve"
+          "target": "com.posthog.insights#GetInsightsAllActivity"
         },
         {
           "target": "com.posthog.insights#InsightsBulkDeleteCreate"
@@ -40438,13 +40740,13 @@
           "target": "com.posthog.insights#InsightsGenerateMetadataCreate"
         },
         {
-          "target": "com.posthog.insights#InsightsMyLastViewedRetrieve"
+          "target": "com.posthog.insights#GetInsightsMyLastViewed"
         },
         {
-          "target": "com.posthog.insights#InsightsTrendingRetrieve"
+          "target": "com.posthog.insights#GetInsightsTrending"
         },
         {
-          "target": "com.posthog.insights#InsightsViewedCreate"
+          "target": "com.posthog.insights#CreateInsightsViewed"
         }
       ],
       "traits": {

@@ -39,120 +39,6 @@ export class NotFound
     [{ status: 404 }],
   ) {}
 
-export interface AdvancedActivityLogsAvailableFiltersRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-}
-export const AdvancedActivityLogsAvailableFiltersRetrieveRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/advanced_activity_logs/available_filters/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "AdvancedActivityLogsAvailableFiltersRetrieveRequest",
-  }) as any as S.Schema<AdvancedActivityLogsAvailableFiltersRetrieveRequest>;
-
-export type StaticFiltersUsersItemMap = { [key: string]: unknown | undefined };
-export const StaticFiltersUsersItemMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<StaticFiltersUsersItemMap>;
-
-/** Users who have logged activity. */
-export type StaticFiltersUsersList = Array<StaticFiltersUsersItemMap>;
-export const StaticFiltersUsersList = /*@__PURE__*/ S.Array(
-  StaticFiltersUsersItemMap,
-) as any as S.Schema<StaticFiltersUsersList>;
-
-export type StaticFiltersScopesItemMap = { [key: string]: unknown | undefined };
-export const StaticFiltersScopesItemMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<StaticFiltersScopesItemMap>;
-
-/** Available activity scopes. */
-export type StaticFiltersScopesList = Array<StaticFiltersScopesItemMap>;
-export const StaticFiltersScopesList = /*@__PURE__*/ S.Array(
-  StaticFiltersScopesItemMap,
-) as any as S.Schema<StaticFiltersScopesList>;
-
-export type StaticFiltersActivitiesItemMap = {
-  [key: string]: unknown | undefined;
-};
-export const StaticFiltersActivitiesItemMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<StaticFiltersActivitiesItemMap>;
-
-/** Available activity types. */
-export type StaticFiltersActivitiesList = Array<StaticFiltersActivitiesItemMap>;
-export const StaticFiltersActivitiesList = /*@__PURE__*/ S.Array(
-  StaticFiltersActivitiesItemMap,
-) as any as S.Schema<StaticFiltersActivitiesList>;
-
-export type StaticFiltersClientsItemMap = {
-  [key: string]: unknown | undefined;
-};
-export const StaticFiltersClientsItemMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<StaticFiltersClientsItemMap>;
-
-/** API clients that have generated activity (from x-posthog-client header). */
-export type StaticFiltersClientsList = Array<StaticFiltersClientsItemMap>;
-export const StaticFiltersClientsList = /*@__PURE__*/ S.Array(
-  StaticFiltersClientsItemMap,
-) as any as S.Schema<StaticFiltersClientsList>;
-
-export interface StaticFilters {
-  /** Users who have logged activity. */
-  users?: StaticFiltersUsersList;
-  /** Available activity scopes. */
-  scopes?: StaticFiltersScopesList;
-  /** Available activity types. */
-  activities?: StaticFiltersActivitiesList;
-  /** API clients that have generated activity (from x-posthog-client header). */
-  clients?: StaticFiltersClientsList;
-}
-export const StaticFilters = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    users: S.optional(StaticFiltersUsersList),
-    scopes: S.optional(StaticFiltersScopesList),
-    activities: S.optional(StaticFiltersActivitiesList),
-    clients: S.optional(StaticFiltersClientsList),
-  }),
-).annotate({ identifier: "StaticFilters" }) as any as S.Schema<StaticFilters>;
-
-/** Discovered detail fields and their value distributions. */
-export type AvailableFiltersResponseDetailFieldsMap = {
-  [key: string]: unknown | undefined;
-};
-export const AvailableFiltersResponseDetailFieldsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<AvailableFiltersResponseDetailFieldsMap>;
-
-export interface AvailableFiltersResponse {
-  /** Pre-computed filter options for scopes, activities, and users. */
-  static_filters?: StaticFilters;
-  /** Discovered detail fields and their value distributions. */
-  detail_fields?: AvailableFiltersResponseDetailFieldsMap;
-}
-export const AvailableFiltersResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    static_filters: S.optional(StaticFilters),
-    detail_fields: S.optional(AvailableFiltersResponseDetailFieldsMap),
-  }),
-).annotate({
-  identifier: "AvailableFiltersResponse",
-}) as any as S.Schema<AvailableFiltersResponse>;
-
 /** * `engineering` - Engineering * `data` - Data * `product` - Product Management * `founder` - Founder * `leadership` - Leadership * `marketing` - Marketing * `sales` - Sales / Success * `student` - Student * `other` - Other */
 export type RoleAtOrganizationEnum =
   | "engineering"
@@ -310,58 +196,172 @@ export const ActivityLog = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "ActivityLog" }) as any as S.Schema<ActivityLog>;
 
-export type AdvancedActivityLogsListRequestActivitiesList = Array<string>;
-export const AdvancedActivityLogsListRequestActivitiesList =
+export interface GetAdvancedActivityLogsAvailableFilterRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+}
+export const GetAdvancedActivityLogsAvailableFilterRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/projects/{project_id}/advanced_activity_logs/available_filters/",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "GetAdvancedActivityLogsAvailableFilterRequest",
+  }) as any as S.Schema<GetAdvancedActivityLogsAvailableFilterRequest>;
+
+export type StaticFiltersUsersItemMap = { [key: string]: unknown | undefined };
+export const StaticFiltersUsersItemMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<StaticFiltersUsersItemMap>;
+
+/** Users who have logged activity. */
+export type StaticFiltersUsersList = Array<StaticFiltersUsersItemMap>;
+export const StaticFiltersUsersList = /*@__PURE__*/ S.Array(
+  StaticFiltersUsersItemMap,
+) as any as S.Schema<StaticFiltersUsersList>;
+
+export type StaticFiltersScopesItemMap = { [key: string]: unknown | undefined };
+export const StaticFiltersScopesItemMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<StaticFiltersScopesItemMap>;
+
+/** Available activity scopes. */
+export type StaticFiltersScopesList = Array<StaticFiltersScopesItemMap>;
+export const StaticFiltersScopesList = /*@__PURE__*/ S.Array(
+  StaticFiltersScopesItemMap,
+) as any as S.Schema<StaticFiltersScopesList>;
+
+export type StaticFiltersActivitiesItemMap = {
+  [key: string]: unknown | undefined;
+};
+export const StaticFiltersActivitiesItemMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<StaticFiltersActivitiesItemMap>;
+
+/** Available activity types. */
+export type StaticFiltersActivitiesList = Array<StaticFiltersActivitiesItemMap>;
+export const StaticFiltersActivitiesList = /*@__PURE__*/ S.Array(
+  StaticFiltersActivitiesItemMap,
+) as any as S.Schema<StaticFiltersActivitiesList>;
+
+export type StaticFiltersClientsItemMap = {
+  [key: string]: unknown | undefined;
+};
+export const StaticFiltersClientsItemMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<StaticFiltersClientsItemMap>;
+
+/** API clients that have generated activity (from x-posthog-client header). */
+export type StaticFiltersClientsList = Array<StaticFiltersClientsItemMap>;
+export const StaticFiltersClientsList = /*@__PURE__*/ S.Array(
+  StaticFiltersClientsItemMap,
+) as any as S.Schema<StaticFiltersClientsList>;
+
+export interface StaticFilters {
+  /** Users who have logged activity. */
+  users?: StaticFiltersUsersList;
+  /** Available activity scopes. */
+  scopes?: StaticFiltersScopesList;
+  /** Available activity types. */
+  activities?: StaticFiltersActivitiesList;
+  /** API clients that have generated activity (from x-posthog-client header). */
+  clients?: StaticFiltersClientsList;
+}
+export const StaticFilters = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    users: S.optional(StaticFiltersUsersList),
+    scopes: S.optional(StaticFiltersScopesList),
+    activities: S.optional(StaticFiltersActivitiesList),
+    clients: S.optional(StaticFiltersClientsList),
+  }),
+).annotate({ identifier: "StaticFilters" }) as any as S.Schema<StaticFilters>;
+
+/** Discovered detail fields and their value distributions. */
+export type AvailableFiltersResponseDetailFieldsMap = {
+  [key: string]: unknown | undefined;
+};
+export const AvailableFiltersResponseDetailFieldsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<AvailableFiltersResponseDetailFieldsMap>;
+
+export interface AvailableFiltersResponse {
+  /** Pre-computed filter options for scopes, activities, and users. */
+  static_filters?: StaticFilters;
+  /** Discovered detail fields and their value distributions. */
+  detail_fields?: AvailableFiltersResponseDetailFieldsMap;
+}
+export const AvailableFiltersResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    static_filters: S.optional(StaticFilters),
+    detail_fields: S.optional(AvailableFiltersResponseDetailFieldsMap),
+  }),
+).annotate({
+  identifier: "AvailableFiltersResponse",
+}) as any as S.Schema<AvailableFiltersResponse>;
+
+export type ListAdvancedActivityLogsRequestActivitiesList = Array<string>;
+export const ListAdvancedActivityLogsRequestActivitiesList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<AdvancedActivityLogsListRequestActivitiesList>;
+  ) as any as S.Schema<ListAdvancedActivityLogsRequestActivitiesList>;
 
-export type AdvancedActivityLogsListRequestClientsList = Array<string>;
-export const AdvancedActivityLogsListRequestClientsList = /*@__PURE__*/ S.Array(
+export type ListAdvancedActivityLogsRequestClientsList = Array<string>;
+export const ListAdvancedActivityLogsRequestClientsList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<AdvancedActivityLogsListRequestClientsList>;
+) as any as S.Schema<ListAdvancedActivityLogsRequestClientsList>;
 
-export type AdvancedActivityLogsListRequestIpAddressesList = Array<string>;
-export const AdvancedActivityLogsListRequestIpAddressesList =
+export type ListAdvancedActivityLogsRequestIpAddressesList = Array<string>;
+export const ListAdvancedActivityLogsRequestIpAddressesList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<AdvancedActivityLogsListRequestIpAddressesList>;
+  ) as any as S.Schema<ListAdvancedActivityLogsRequestIpAddressesList>;
 
-export type AdvancedActivityLogsListRequestItemIdsList = Array<string>;
-export const AdvancedActivityLogsListRequestItemIdsList = /*@__PURE__*/ S.Array(
+export type ListAdvancedActivityLogsRequestItemIdsList = Array<string>;
+export const ListAdvancedActivityLogsRequestItemIdsList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<AdvancedActivityLogsListRequestItemIdsList>;
+) as any as S.Schema<ListAdvancedActivityLogsRequestItemIdsList>;
 
-export type AdvancedActivityLogsListRequestOrdering =
+export type ListAdvancedActivityLogsRequestOrdering =
   | "-created_at"
   | "created_at";
-export const AdvancedActivityLogsListRequestOrdering = /*@__PURE__*/ S.String;
+export const ListAdvancedActivityLogsRequestOrdering = /*@__PURE__*/ S.String;
 
-export type AdvancedActivityLogsListRequestSchema = "ocsf";
-export const AdvancedActivityLogsListRequestSchema = /*@__PURE__*/ S.String;
+export type ListAdvancedActivityLogsRequestSchema = "ocsf";
+export const ListAdvancedActivityLogsRequestSchema = /*@__PURE__*/ S.String;
 
-export type AdvancedActivityLogsListRequestScopesList = Array<string>;
-export const AdvancedActivityLogsListRequestScopesList = /*@__PURE__*/ S.Array(
+export type ListAdvancedActivityLogsRequestScopesList = Array<string>;
+export const ListAdvancedActivityLogsRequestScopesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<AdvancedActivityLogsListRequestScopesList>;
+) as any as S.Schema<ListAdvancedActivityLogsRequestScopesList>;
 
-export type AdvancedActivityLogsListRequestTeamIdsList = Array<number>;
-export const AdvancedActivityLogsListRequestTeamIdsList = /*@__PURE__*/ S.Array(
+export type ListAdvancedActivityLogsRequestTeamIdsList = Array<number>;
+export const ListAdvancedActivityLogsRequestTeamIdsList = /*@__PURE__*/ S.Array(
   S.Number,
-) as any as S.Schema<AdvancedActivityLogsListRequestTeamIdsList>;
+) as any as S.Schema<ListAdvancedActivityLogsRequestTeamIdsList>;
 
-export type AdvancedActivityLogsListRequestUsersList = Array<string>;
-export const AdvancedActivityLogsListRequestUsersList = /*@__PURE__*/ S.Array(
+export type ListAdvancedActivityLogsRequestUsersList = Array<string>;
+export const ListAdvancedActivityLogsRequestUsersList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<AdvancedActivityLogsListRequestUsersList>;
+) as any as S.Schema<ListAdvancedActivityLogsRequestUsersList>;
 
-export interface AdvancedActivityLogsListRequest {
+export interface ListAdvancedActivityLogsRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** Filter by activity types (e.g. "created", "updated", "deleted"). */
-  activities?: AdvancedActivityLogsListRequestActivitiesList;
+  activities?: ListAdvancedActivityLogsRequestActivitiesList;
   /** Filter by API clients that generated the activity (from x-posthog-client header). */
-  clients?: AdvancedActivityLogsListRequestClientsList;
+  clients?: ListAdvancedActivityLogsRequestClientsList;
   /** JSON-encoded map of `detail` field paths to {operation, value} filters. Allowed operations: exact, contains, in. */
   detail_filters?: string;
   /** Upper bound on `created_at` (inclusive), ISO-8601. */
@@ -373,40 +373,40 @@ export interface AdvancedActivityLogsListRequest {
   /** Include the previous and new values of changed fields. Only applies when schema is ocsf. Values can contain the content of the changed object, which makes responses larger and sends that content to your security tool. */
   include_values?: boolean;
   /** Filter by client IP addresses. Accepts exact IPv4/IPv6 values or wildcard patterns using `*` (e.g. `203.0.113.*`). Multiple entries are OR-combined. */
-  ip_addresses?: AdvancedActivityLogsListRequestIpAddressesList;
+  ip_addresses?: ListAdvancedActivityLogsRequestIpAddressesList;
   /** When set, filters rows authored by the system (no user). */
   is_system?: boolean;
   /** Filter by the `item_id` of the affected resource(s). */
-  item_ids?: AdvancedActivityLogsListRequestItemIdsList;
+  item_ids?: ListAdvancedActivityLogsRequestItemIdsList;
   /** Sort by when the entry was created. Defaults to newest first. Use created_at for oldest first when polling for new entries, so a saved cursor picks up where the last request stopped. * `-created_at` - -created_at * `created_at` - created_at */
-  ordering?: AdvancedActivityLogsListRequestOrdering | (string & {});
+  ordering?: ListAdvancedActivityLogsRequestOrdering | (string & {});
   /** Page number for pagination. When provided, uses page-based pagination ordered by most recent first. */
   page?: number;
   /** Number of results per page (default: 100, max: 1000). */
   page_size?: number;
   /** Response format. Set to ocsf to return Open Cybersecurity Schema Framework events for ingestion into a security tool. Omit for the default PostHog format. * `ocsf` - ocsf */
-  schema?: AdvancedActivityLogsListRequestSchema | (string & {});
+  schema?: ListAdvancedActivityLogsRequestSchema | (string & {});
   /** Filter by activity scopes (e.g. "FeatureFlag", "Insight"). */
-  scopes?: AdvancedActivityLogsListRequestScopesList;
+  scopes?: ListAdvancedActivityLogsRequestScopesList;
   /** Free-text search across the `detail` JSON column. */
   search_text?: string;
   /** Lower bound on `created_at` (inclusive), ISO-8601. */
   start_date?: string;
   /** Filter by project (team) IDs. Only honored on the organization-scoped endpoint; ignored on the project-scoped endpoint. */
-  team_ids?: AdvancedActivityLogsListRequestTeamIdsList;
+  team_ids?: ListAdvancedActivityLogsRequestTeamIdsList;
   /** Filter by users who performed the activity (user UUIDs). */
-  users?: AdvancedActivityLogsListRequestUsersList;
+  users?: ListAdvancedActivityLogsRequestUsersList;
   /** When set, filters rows where the actor was impersonating another user. */
   was_impersonated?: boolean;
 }
-export const AdvancedActivityLogsListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListAdvancedActivityLogsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     activities: S.optional(
-      AdvancedActivityLogsListRequestActivitiesList.pipe(T.Query()),
+      ListAdvancedActivityLogsRequestActivitiesList.pipe(T.Query()),
     ),
     clients: S.optional(
-      AdvancedActivityLogsListRequestClientsList.pipe(T.Query()),
+      ListAdvancedActivityLogsRequestClientsList.pipe(T.Query()),
     ),
     detail_filters: S.optional(S.String.pipe(T.Query())),
     end_date: S.optional(S.String.pipe(T.Query())),
@@ -414,27 +414,27 @@ export const AdvancedActivityLogsListRequest = /*@__PURE__*/ S.suspend(() =>
     hogql_filter: S.optional(S.String.pipe(T.Query())),
     include_values: S.optional(S.Boolean.pipe(T.Query())),
     ip_addresses: S.optional(
-      AdvancedActivityLogsListRequestIpAddressesList.pipe(T.Query()),
+      ListAdvancedActivityLogsRequestIpAddressesList.pipe(T.Query()),
     ),
     is_system: S.optional(S.Boolean.pipe(T.Query())),
     item_ids: S.optional(
-      AdvancedActivityLogsListRequestItemIdsList.pipe(T.Query()),
+      ListAdvancedActivityLogsRequestItemIdsList.pipe(T.Query()),
     ),
     ordering: S.optional(
-      AdvancedActivityLogsListRequestOrdering.pipe(T.Query()),
+      ListAdvancedActivityLogsRequestOrdering.pipe(T.Query()),
     ),
     page: S.optional(S.Number.pipe(T.Query())),
     page_size: S.optional(S.Number.pipe(T.Query())),
-    schema: S.optional(AdvancedActivityLogsListRequestSchema.pipe(T.Query())),
+    schema: S.optional(ListAdvancedActivityLogsRequestSchema.pipe(T.Query())),
     scopes: S.optional(
-      AdvancedActivityLogsListRequestScopesList.pipe(T.Query()),
+      ListAdvancedActivityLogsRequestScopesList.pipe(T.Query()),
     ),
     search_text: S.optional(S.String.pipe(T.Query())),
     start_date: S.optional(S.String.pipe(T.Query())),
     team_ids: S.optional(
-      AdvancedActivityLogsListRequestTeamIdsList.pipe(T.Query()),
+      ListAdvancedActivityLogsRequestTeamIdsList.pipe(T.Query()),
     ),
-    users: S.optional(AdvancedActivityLogsListRequestUsersList.pipe(T.Query())),
+    users: S.optional(ListAdvancedActivityLogsRequestUsersList.pipe(T.Query())),
     was_impersonated: S.optional(S.Boolean.pipe(T.Query())),
   }).pipe(
     T.Http({
@@ -444,8 +444,8 @@ export const AdvancedActivityLogsListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "AdvancedActivityLogsListRequest",
-}) as any as S.Schema<AdvancedActivityLogsListRequest>;
+  identifier: "ListAdvancedActivityLogsRequest",
+}) as any as S.Schema<ListAdvancedActivityLogsRequest>;
 
 export type PaginatedActivityLogListResultsList = Array<ActivityLog>;
 export const PaginatedActivityLogListResultsList = /*@__PURE__*/ S.Array(
@@ -469,23 +469,6 @@ export const PaginatedActivityLogList = /*@__PURE__*/ S.suspend(() =>
   identifier: "PaginatedActivityLogList",
 }) as any as S.Schema<PaginatedActivityLogList>;
 
-export type AdvancedActivityLogsAvailableFiltersRetrieveError =
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-export const advancedActivityLogsAvailableFiltersRetrieve: API.OperationMethod<
-  AdvancedActivityLogsAvailableFiltersRetrieveRequest,
-  AvailableFiltersResponse,
-  AdvancedActivityLogsAvailableFiltersRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AdvancedActivityLogsAvailableFiltersRetrieveRequest,
-  output: AvailableFiltersResponse,
-  errors: [Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
 export type AdvancedActivityLogsExportCreateError =
   | BadRequest
   | Forbidden
@@ -504,18 +487,35 @@ export const advancedActivityLogsExportCreate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type AdvancedActivityLogsListError =
+export type GetAdvancedActivityLogsAvailableFilterError =
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+export const getAdvancedActivityLogsAvailableFilter: API.OperationMethod<
+  GetAdvancedActivityLogsAvailableFilterRequest,
+  AvailableFiltersResponse,
+  GetAdvancedActivityLogsAvailableFilterError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetAdvancedActivityLogsAvailableFilterRequest,
+  output: AvailableFiltersResponse,
+  errors: [Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListAdvancedActivityLogsError =
   | BadRequest
   | Forbidden
   | NotFound
   | PosthogOpError;
-export const advancedActivityLogsList: API.OperationMethod<
-  AdvancedActivityLogsListRequest,
+export const listAdvancedActivityLogs: API.OperationMethod<
+  ListAdvancedActivityLogsRequest,
   PaginatedActivityLogList,
-  AdvancedActivityLogsListError,
+  ListAdvancedActivityLogsError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AdvancedActivityLogsListRequest,
+  input: ListAdvancedActivityLogsRequest,
   output: PaginatedActivityLogList,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,

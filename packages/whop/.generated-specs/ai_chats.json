@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.whop.ai_chats#ListAiChatRequest": {
@@ -490,7 +491,7 @@
         "smithy.api#documentation": "Create ai chat\n\n[Legacy API — https://docs.whop.com/api-reference]\n\nCreate a new AI chat thread and send the first message to the AI agent.\n\nRequired permissions:\n - `ai_chat:create`"
       }
     },
-    "com.whop.ai_chats#RetrieveAiChatRequest": {
+    "com.whop.ai_chats#GetAiChatRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -506,10 +507,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.whop.ai_chats#RetrieveAiChat": {
+    "com.whop.ai_chats#GetAiChat": {
       "type": "operation",
       "input": {
-        "target": "com.whop.ai_chats#RetrieveAiChatRequest"
+        "target": "com.whop.ai_chats#GetAiChatRequest"
       },
       "output": {
         "target": "com.whop.ai_chats#AiChat"
@@ -730,7 +731,7 @@
           "target": "com.whop.ai_chats#CreateAiChat"
         },
         {
-          "target": "com.whop.ai_chats#RetrieveAiChat"
+          "target": "com.whop.ai_chats#GetAiChat"
         },
         {
           "target": "com.whop.ai_chats#UpdateAiChat"

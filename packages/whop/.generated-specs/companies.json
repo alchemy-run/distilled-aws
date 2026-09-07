@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.whop.companies#Direction": {
@@ -2264,7 +2265,7 @@
         "smithy.api#documentation": "Create company\n\n[Legacy API — https://docs.whop.com/api-reference]\n\nCreate a new company. Pass parent_company_id to create a connected account under a platform, or omit it to create a company for the current user.\n\nRequired permissions:\n - `company:create`\n - `company:basic:read`"
       }
     },
-    "com.whop.companies#RetrieveCompanyRequest": {
+    "com.whop.companies#GetCompanyRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -2280,10 +2281,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.whop.companies#RetrieveCompany": {
+    "com.whop.companies#GetCompany": {
       "type": "operation",
       "input": {
-        "target": "com.whop.companies#RetrieveCompanyRequest"
+        "target": "com.whop.companies#GetCompanyRequest"
       },
       "output": {
         "target": "com.whop.companies#Company"
@@ -2802,7 +2803,7 @@
           "target": "com.whop.companies#CreateCompany"
         },
         {
-          "target": "com.whop.companies#RetrieveCompany"
+          "target": "com.whop.companies#GetCompany"
         },
         {
           "target": "com.whop.companies#UpdateCompany"

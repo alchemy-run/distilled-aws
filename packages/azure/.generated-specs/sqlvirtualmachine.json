@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.sqlvirtualmachine#SqlVirtualMachineTroubleshootTroubleshoot": {
@@ -186,10 +187,10 @@
         "smithy.api#documentation": "SQL VM troubleshooting scenario."
       }
     },
-    "com.azure.sqlvirtualmachine#SqlVirtualMachinesStartAssessment": {
+    "com.azure.sqlvirtualmachine#StartSqlVirtualMachineAssessment": {
       "type": "operation",
       "input": {
-        "target": "com.azure.sqlvirtualmachine#SqlVirtualMachinesStartAssessmentRequest"
+        "target": "com.azure.sqlvirtualmachine#StartSqlVirtualMachineAssessmentRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -205,7 +206,7 @@
         "com.distilled.openapi#apiVersion": "2023-10-01"
       }
     },
-    "com.azure.sqlvirtualmachine#SqlVirtualMachinesStartAssessmentRequest": {
+    "com.azure.sqlvirtualmachine#StartSqlVirtualMachineAssessmentRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -237,10 +238,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.sqlvirtualmachine#SqlVirtualMachinesRedeploy": {
+    "com.azure.sqlvirtualmachine#RedeploySqlVirtualMachine": {
       "type": "operation",
       "input": {
-        "target": "com.azure.sqlvirtualmachine#SqlVirtualMachinesRedeployRequest"
+        "target": "com.azure.sqlvirtualmachine#RedeploySqlVirtualMachineRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -256,7 +257,7 @@
         "com.distilled.openapi#apiVersion": "2023-10-01"
       }
     },
-    "com.azure.sqlvirtualmachine#SqlVirtualMachinesRedeployRequest": {
+    "com.azure.sqlvirtualmachine#RedeploySqlVirtualMachineRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -288,10 +289,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.sqlvirtualmachine#SqlVirtualMachinesFetchDCAssessment": {
+    "com.azure.sqlvirtualmachine#FetchSqlVirtualMachineDCAssessment": {
       "type": "operation",
       "input": {
-        "target": "com.azure.sqlvirtualmachine#SqlVirtualMachinesFetchDCAssessmentRequest"
+        "target": "com.azure.sqlvirtualmachine#FetchSqlVirtualMachineDCAssessmentRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -307,7 +308,7 @@
         "com.distilled.openapi#apiVersion": "2023-10-01"
       }
     },
-    "com.azure.sqlvirtualmachine#SqlVirtualMachinesFetchDCAssessmentRequest": {
+    "com.azure.sqlvirtualmachine#FetchSqlVirtualMachineDCAssessmentRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -345,10 +346,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.sqlvirtualmachine#SqlVirtualMachinesDelete": {
+    "com.azure.sqlvirtualmachine#DeleteSqlVirtualMachine": {
       "type": "operation",
       "input": {
-        "target": "com.azure.sqlvirtualmachine#SqlVirtualMachinesDeleteRequest"
+        "target": "com.azure.sqlvirtualmachine#DeleteSqlVirtualMachineRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -364,7 +365,7 @@
         "com.distilled.openapi#apiVersion": "2023-10-01"
       }
     },
-    "com.azure.sqlvirtualmachine#SqlVirtualMachinesDeleteRequest": {
+    "com.azure.sqlvirtualmachine#DeleteSqlVirtualMachineRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -396,13 +397,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.sqlvirtualmachine#SqlVirtualMachinesUpdate": {
+    "com.azure.sqlvirtualmachine#UpdateSqlVirtualMachine": {
       "type": "operation",
       "input": {
-        "target": "com.azure.sqlvirtualmachine#SqlVirtualMachinesUpdateRequest"
+        "target": "com.azure.sqlvirtualmachine#UpdateSqlVirtualMachineRequest"
       },
       "output": {
-        "target": "com.azure.sqlvirtualmachine#SqlVirtualMachinesUpdateResponse"
+        "target": "com.azure.sqlvirtualmachine#UpdateSqlVirtualMachineResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -415,7 +416,7 @@
         "com.distilled.openapi#apiVersion": "2023-10-01"
       }
     },
-    "com.azure.sqlvirtualmachine#SqlVirtualMachinesUpdateResponse": {
+    "com.azure.sqlvirtualmachine#UpdateSqlVirtualMachineResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -443,7 +444,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.sqlvirtualmachine#SqlVirtualMachinesUpdateResponseTagsMap",
+          "target": "com.azure.sqlvirtualmachine#UpdateSqlVirtualMachineResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1870,7 +1871,7 @@
         "smithy.api#documentation": "SQL Server license type."
       }
     },
-    "com.azure.sqlvirtualmachine#SqlVirtualMachinesUpdateResponseTagsMap": {
+    "com.azure.sqlvirtualmachine#UpdateSqlVirtualMachineResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1990,7 +1991,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.sqlvirtualmachine#SqlVirtualMachinesUpdateRequest": {
+    "com.azure.sqlvirtualmachine#UpdateSqlVirtualMachineRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2018,7 +2019,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.sqlvirtualmachine#SqlVirtualMachinesUpdateRequestTagsMap",
+          "target": "com.azure.sqlvirtualmachine#UpdateSqlVirtualMachineRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2028,7 +2029,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.sqlvirtualmachine#SqlVirtualMachinesUpdateRequestTagsMap": {
+    "com.azure.sqlvirtualmachine#UpdateSqlVirtualMachineRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2341,13 +2342,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.sqlvirtualmachine#SqlVirtualMachinesGet": {
+    "com.azure.sqlvirtualmachine#GetSqlVirtualMachine": {
       "type": "operation",
       "input": {
-        "target": "com.azure.sqlvirtualmachine#SqlVirtualMachinesGetRequest"
+        "target": "com.azure.sqlvirtualmachine#GetSqlVirtualMachineRequest"
       },
       "output": {
-        "target": "com.azure.sqlvirtualmachine#SqlVirtualMachinesGetResponse"
+        "target": "com.azure.sqlvirtualmachine#GetSqlVirtualMachineResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2360,7 +2361,7 @@
         "com.distilled.openapi#apiVersion": "2023-10-01"
       }
     },
-    "com.azure.sqlvirtualmachine#SqlVirtualMachinesGetResponse": {
+    "com.azure.sqlvirtualmachine#GetSqlVirtualMachineResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2388,7 +2389,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.sqlvirtualmachine#SqlVirtualMachinesGetResponseTagsMap",
+          "target": "com.azure.sqlvirtualmachine#GetSqlVirtualMachineResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2417,7 +2418,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.sqlvirtualmachine#SqlVirtualMachinesGetResponseTagsMap": {
+    "com.azure.sqlvirtualmachine#GetSqlVirtualMachineResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2429,7 +2430,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.sqlvirtualmachine#SqlVirtualMachinesGetRequest": {
+    "com.azure.sqlvirtualmachine#GetSqlVirtualMachineRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2468,10 +2469,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.sqlvirtualmachine#SqlVirtualMachinesListByResourceGroup": {
+    "com.azure.sqlvirtualmachine#ListSqlVirtualMachineByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.sqlvirtualmachine#SqlVirtualMachinesListByResourceGroupRequest"
+        "target": "com.azure.sqlvirtualmachine#ListSqlVirtualMachineByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.sqlvirtualmachine#SqlVirtualMachineListResult"
@@ -2586,7 +2587,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.sqlvirtualmachine#SqlVirtualMachinesListByResourceGroupRequest": {
+    "com.azure.sqlvirtualmachine#ListSqlVirtualMachineByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2610,10 +2611,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.sqlvirtualmachine#SqlVirtualMachinesListBySqlVmGroup": {
+    "com.azure.sqlvirtualmachine#ListSqlVirtualMachineBySqlVmGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.sqlvirtualmachine#SqlVirtualMachinesListBySqlVmGroupRequest"
+        "target": "com.azure.sqlvirtualmachine#ListSqlVirtualMachineBySqlVmGroupRequest"
       },
       "output": {
         "target": "com.azure.sqlvirtualmachine#SqlVirtualMachineListResult"
@@ -2629,7 +2630,7 @@
         "com.distilled.openapi#apiVersion": "2023-10-01"
       }
     },
-    "com.azure.sqlvirtualmachine#SqlVirtualMachinesListBySqlVmGroupRequest": {
+    "com.azure.sqlvirtualmachine#ListSqlVirtualMachineBySqlVmGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2661,10 +2662,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.sqlvirtualmachine#AvailabilityGroupListenersDelete": {
+    "com.azure.sqlvirtualmachine#DeleteAvailabilityGroupListener": {
       "type": "operation",
       "input": {
-        "target": "com.azure.sqlvirtualmachine#AvailabilityGroupListenersDeleteRequest"
+        "target": "com.azure.sqlvirtualmachine#DeleteAvailabilityGroupListenerRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2680,7 +2681,7 @@
         "com.distilled.openapi#apiVersion": "2023-10-01"
       }
     },
-    "com.azure.sqlvirtualmachine#AvailabilityGroupListenersDeleteRequest": {
+    "com.azure.sqlvirtualmachine#DeleteAvailabilityGroupListenerRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3189,13 +3190,13 @@
         "smithy.api#documentation": "List of load balancer configurations for an availability group listener."
       }
     },
-    "com.azure.sqlvirtualmachine#AvailabilityGroupListenersGet": {
+    "com.azure.sqlvirtualmachine#GetAvailabilityGroupListener": {
       "type": "operation",
       "input": {
-        "target": "com.azure.sqlvirtualmachine#AvailabilityGroupListenersGetRequest"
+        "target": "com.azure.sqlvirtualmachine#GetAvailabilityGroupListenerRequest"
       },
       "output": {
-        "target": "com.azure.sqlvirtualmachine#AvailabilityGroupListenersGetResponse"
+        "target": "com.azure.sqlvirtualmachine#GetAvailabilityGroupListenerResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3208,7 +3209,7 @@
         "com.distilled.openapi#apiVersion": "2023-10-01"
       }
     },
-    "com.azure.sqlvirtualmachine#AvailabilityGroupListenersGetResponse": {
+    "com.azure.sqlvirtualmachine#GetAvailabilityGroupListenerResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3246,7 +3247,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.sqlvirtualmachine#AvailabilityGroupListenersGetRequest": {
+    "com.azure.sqlvirtualmachine#GetAvailabilityGroupListenerRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3293,10 +3294,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.sqlvirtualmachine#AvailabilityGroupListenersListByGroup": {
+    "com.azure.sqlvirtualmachine#ListAvailabilityGroupListenerByGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.sqlvirtualmachine#AvailabilityGroupListenersListByGroupRequest"
+        "target": "com.azure.sqlvirtualmachine#ListAvailabilityGroupListenerByGroupRequest"
       },
       "output": {
         "target": "com.azure.sqlvirtualmachine#AvailabilityGroupListenerListResult"
@@ -3380,7 +3381,7 @@
         "smithy.api#documentation": "A SQL Server availability group listener."
       }
     },
-    "com.azure.sqlvirtualmachine#AvailabilityGroupListenersListByGroupRequest": {
+    "com.azure.sqlvirtualmachine#ListAvailabilityGroupListenerByGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3412,10 +3413,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.sqlvirtualmachine#SqlVirtualMachineGroupsDelete": {
+    "com.azure.sqlvirtualmachine#DeleteSqlVirtualMachineGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.sqlvirtualmachine#SqlVirtualMachineGroupsDeleteRequest"
+        "target": "com.azure.sqlvirtualmachine#DeleteSqlVirtualMachineGroupRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3431,7 +3432,7 @@
         "com.distilled.openapi#apiVersion": "2023-10-01"
       }
     },
-    "com.azure.sqlvirtualmachine#SqlVirtualMachineGroupsDeleteRequest": {
+    "com.azure.sqlvirtualmachine#DeleteSqlVirtualMachineGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3463,13 +3464,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.sqlvirtualmachine#SqlVirtualMachineGroupsUpdate": {
+    "com.azure.sqlvirtualmachine#UpdateSqlVirtualMachineGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.sqlvirtualmachine#SqlVirtualMachineGroupsUpdateRequest"
+        "target": "com.azure.sqlvirtualmachine#UpdateSqlVirtualMachineGroupRequest"
       },
       "output": {
-        "target": "com.azure.sqlvirtualmachine#SqlVirtualMachineGroupsUpdateResponse"
+        "target": "com.azure.sqlvirtualmachine#UpdateSqlVirtualMachineGroupResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3482,7 +3483,7 @@
         "com.distilled.openapi#apiVersion": "2023-10-01"
       }
     },
-    "com.azure.sqlvirtualmachine#SqlVirtualMachineGroupsUpdateResponse": {
+    "com.azure.sqlvirtualmachine#UpdateSqlVirtualMachineGroupResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3510,7 +3511,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.sqlvirtualmachine#SqlVirtualMachineGroupsUpdateResponseTagsMap",
+          "target": "com.azure.sqlvirtualmachine#UpdateSqlVirtualMachineGroupResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3733,7 +3734,7 @@
         "smithy.api#documentation": "SQL image sku."
       }
     },
-    "com.azure.sqlvirtualmachine#SqlVirtualMachineGroupsUpdateResponseTagsMap": {
+    "com.azure.sqlvirtualmachine#UpdateSqlVirtualMachineGroupResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3745,7 +3746,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.sqlvirtualmachine#SqlVirtualMachineGroupsUpdateRequest": {
+    "com.azure.sqlvirtualmachine#UpdateSqlVirtualMachineGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3773,7 +3774,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.sqlvirtualmachine#SqlVirtualMachineGroupsUpdateRequestTagsMap",
+          "target": "com.azure.sqlvirtualmachine#UpdateSqlVirtualMachineGroupRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3783,7 +3784,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.sqlvirtualmachine#SqlVirtualMachineGroupsUpdateRequestTagsMap": {
+    "com.azure.sqlvirtualmachine#UpdateSqlVirtualMachineGroupRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3966,13 +3967,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.sqlvirtualmachine#SqlVirtualMachineGroupsGet": {
+    "com.azure.sqlvirtualmachine#GetSqlVirtualMachineGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.sqlvirtualmachine#SqlVirtualMachineGroupsGetRequest"
+        "target": "com.azure.sqlvirtualmachine#GetSqlVirtualMachineGroupRequest"
       },
       "output": {
-        "target": "com.azure.sqlvirtualmachine#SqlVirtualMachineGroupsGetResponse"
+        "target": "com.azure.sqlvirtualmachine#GetSqlVirtualMachineGroupResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3985,7 +3986,7 @@
         "com.distilled.openapi#apiVersion": "2023-10-01"
       }
     },
-    "com.azure.sqlvirtualmachine#SqlVirtualMachineGroupsGetResponse": {
+    "com.azure.sqlvirtualmachine#GetSqlVirtualMachineGroupResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -4013,7 +4014,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.sqlvirtualmachine#SqlVirtualMachineGroupsGetResponseTagsMap",
+          "target": "com.azure.sqlvirtualmachine#GetSqlVirtualMachineGroupResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4036,7 +4037,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.sqlvirtualmachine#SqlVirtualMachineGroupsGetResponseTagsMap": {
+    "com.azure.sqlvirtualmachine#GetSqlVirtualMachineGroupResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4048,7 +4049,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.sqlvirtualmachine#SqlVirtualMachineGroupsGetRequest": {
+    "com.azure.sqlvirtualmachine#GetSqlVirtualMachineGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4080,10 +4081,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.sqlvirtualmachine#SqlVirtualMachineGroupsListByResourceGroup": {
+    "com.azure.sqlvirtualmachine#ListSqlVirtualMachineGroupByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.sqlvirtualmachine#SqlVirtualMachineGroupsListByResourceGroupRequest"
+        "target": "com.azure.sqlvirtualmachine#ListSqlVirtualMachineGroupByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.sqlvirtualmachine#SqlVirtualMachineGroupListResult"
@@ -4192,7 +4193,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.sqlvirtualmachine#SqlVirtualMachineGroupsListByResourceGroupRequest": {
+    "com.azure.sqlvirtualmachine#ListSqlVirtualMachineGroupByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4216,10 +4217,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.sqlvirtualmachine#SqlVirtualMachinesList": {
+    "com.azure.sqlvirtualmachine#ListSqlVirtualMachines": {
       "type": "operation",
       "input": {
-        "target": "com.azure.sqlvirtualmachine#SqlVirtualMachinesListRequest"
+        "target": "com.azure.sqlvirtualmachine#ListSqlVirtualMachinesRequest"
       },
       "output": {
         "target": "com.azure.sqlvirtualmachine#SqlVirtualMachineListResult"
@@ -4235,7 +4236,7 @@
         "com.distilled.openapi#apiVersion": "2023-10-01"
       }
     },
-    "com.azure.sqlvirtualmachine#SqlVirtualMachinesListRequest": {
+    "com.azure.sqlvirtualmachine#ListSqlVirtualMachinesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4251,10 +4252,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.sqlvirtualmachine#SqlVirtualMachineGroupsList": {
+    "com.azure.sqlvirtualmachine#ListSqlVirtualMachineGroups": {
       "type": "operation",
       "input": {
-        "target": "com.azure.sqlvirtualmachine#SqlVirtualMachineGroupsListRequest"
+        "target": "com.azure.sqlvirtualmachine#ListSqlVirtualMachineGroupsRequest"
       },
       "output": {
         "target": "com.azure.sqlvirtualmachine#SqlVirtualMachineGroupListResult"
@@ -4270,7 +4271,7 @@
         "com.distilled.openapi#apiVersion": "2023-10-01"
       }
     },
-    "com.azure.sqlvirtualmachine#SqlVirtualMachineGroupsListRequest": {
+    "com.azure.sqlvirtualmachine#ListSqlVirtualMachineGroupsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4286,7 +4287,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.sqlvirtualmachine#OperationsList": {
+    "com.azure.sqlvirtualmachine#ListOperations": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -4439,67 +4440,67 @@
           "target": "com.azure.sqlvirtualmachine#SqlVirtualMachineTroubleshootTroubleshoot"
         },
         {
-          "target": "com.azure.sqlvirtualmachine#SqlVirtualMachinesStartAssessment"
+          "target": "com.azure.sqlvirtualmachine#StartSqlVirtualMachineAssessment"
         },
         {
-          "target": "com.azure.sqlvirtualmachine#SqlVirtualMachinesRedeploy"
+          "target": "com.azure.sqlvirtualmachine#RedeploySqlVirtualMachine"
         },
         {
-          "target": "com.azure.sqlvirtualmachine#SqlVirtualMachinesFetchDCAssessment"
+          "target": "com.azure.sqlvirtualmachine#FetchSqlVirtualMachineDCAssessment"
         },
         {
-          "target": "com.azure.sqlvirtualmachine#SqlVirtualMachinesDelete"
+          "target": "com.azure.sqlvirtualmachine#DeleteSqlVirtualMachine"
         },
         {
-          "target": "com.azure.sqlvirtualmachine#SqlVirtualMachinesUpdate"
+          "target": "com.azure.sqlvirtualmachine#UpdateSqlVirtualMachine"
         },
         {
           "target": "com.azure.sqlvirtualmachine#SqlVirtualMachinesCreateOrUpdate"
         },
         {
-          "target": "com.azure.sqlvirtualmachine#SqlVirtualMachinesGet"
+          "target": "com.azure.sqlvirtualmachine#GetSqlVirtualMachine"
         },
         {
-          "target": "com.azure.sqlvirtualmachine#SqlVirtualMachinesListByResourceGroup"
+          "target": "com.azure.sqlvirtualmachine#ListSqlVirtualMachineByResourceGroup"
         },
         {
-          "target": "com.azure.sqlvirtualmachine#SqlVirtualMachinesListBySqlVmGroup"
+          "target": "com.azure.sqlvirtualmachine#ListSqlVirtualMachineBySqlVmGroup"
         },
         {
-          "target": "com.azure.sqlvirtualmachine#AvailabilityGroupListenersDelete"
+          "target": "com.azure.sqlvirtualmachine#DeleteAvailabilityGroupListener"
         },
         {
           "target": "com.azure.sqlvirtualmachine#AvailabilityGroupListenersCreateOrUpdate"
         },
         {
-          "target": "com.azure.sqlvirtualmachine#AvailabilityGroupListenersGet"
+          "target": "com.azure.sqlvirtualmachine#GetAvailabilityGroupListener"
         },
         {
-          "target": "com.azure.sqlvirtualmachine#AvailabilityGroupListenersListByGroup"
+          "target": "com.azure.sqlvirtualmachine#ListAvailabilityGroupListenerByGroup"
         },
         {
-          "target": "com.azure.sqlvirtualmachine#SqlVirtualMachineGroupsDelete"
+          "target": "com.azure.sqlvirtualmachine#DeleteSqlVirtualMachineGroup"
         },
         {
-          "target": "com.azure.sqlvirtualmachine#SqlVirtualMachineGroupsUpdate"
+          "target": "com.azure.sqlvirtualmachine#UpdateSqlVirtualMachineGroup"
         },
         {
           "target": "com.azure.sqlvirtualmachine#SqlVirtualMachineGroupsCreateOrUpdate"
         },
         {
-          "target": "com.azure.sqlvirtualmachine#SqlVirtualMachineGroupsGet"
+          "target": "com.azure.sqlvirtualmachine#GetSqlVirtualMachineGroup"
         },
         {
-          "target": "com.azure.sqlvirtualmachine#SqlVirtualMachineGroupsListByResourceGroup"
+          "target": "com.azure.sqlvirtualmachine#ListSqlVirtualMachineGroupByResourceGroup"
         },
         {
-          "target": "com.azure.sqlvirtualmachine#SqlVirtualMachinesList"
+          "target": "com.azure.sqlvirtualmachine#ListSqlVirtualMachines"
         },
         {
-          "target": "com.azure.sqlvirtualmachine#SqlVirtualMachineGroupsList"
+          "target": "com.azure.sqlvirtualmachine#ListSqlVirtualMachineGroups"
         },
         {
-          "target": "com.azure.sqlvirtualmachine#OperationsList"
+          "target": "com.azure.sqlvirtualmachine#ListOperations"
         }
       ],
       "traits": {

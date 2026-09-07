@@ -97,7 +97,6 @@ export * as contactcenteraiplatform_v1alpha1 from "./contactcenteraiplatform_v1a
 export * as contactcenterinsights_v1 from "./contactcenterinsights_v1.ts";
 export * as container_v1 from "./container_v1.ts";
 export * as containeranalysis_v1 from "./containeranalysis_v1.ts";
-export * as content_v2_1 from "./content_v2_1.ts";
 export * as contentwarehouse_v1 from "./contentwarehouse_v1.ts";
 export * as css_v1 from "./css_v1.ts";
 export * as curationpartners_v1 from "./curationpartners_v1.ts";
@@ -113,7 +112,6 @@ export * as datamigration_v1 from "./datamigration_v1.ts";
 export * as datapipelines_v1 from "./datapipelines_v1.ts";
 export * as dataplex_v1 from "./dataplex_v1.ts";
 export * as dataportability_v1 from "./dataportability_v1.ts";
-export * as dataproc_v1 from "./dataproc_v1.ts";
 export * as datastore_v1 from "./datastore_v1.ts";
 export * as datastream_v1 from "./datastream_v1.ts";
 export * as deploymentmanager_v2 from "./deploymentmanager_v2.ts";

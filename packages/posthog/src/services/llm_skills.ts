@@ -11,60 +11,26 @@ import * as Retry from "../retry.ts";
 
 export type { PosthogOpError, PosthogOpContext };
 
-export type LlmSkillsBundleRetrieveRequestContent = "stub" | "full";
-export const LlmSkillsBundleRetrieveRequestContent = /*@__PURE__*/ S.String;
-
-export interface LlmSkillsBundleRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** What each skill directory in the zip contains. 'stub' (default) writes a SKILL.md with the name, description and instructions to fetch the skill over the PostHog MCP when it is invoked. 'full' writes the rendered SKILL.md, every bundled file and the Codex sidecar. * `stub` - stub * `full` - full */
-  content?: LlmSkillsBundleRetrieveRequestContent | (string & {});
-  /** Maximum number of skills in the zip, newest first; default 20, at most 100. Every skill in the zip costs the agent prompt context on each turn, so pick what the harness can usefully carry. Skills past the limit are reported in X-Skills-Dropped. */
-  limit?: number;
-}
-export const LlmSkillsBundleRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    content: S.optional(LlmSkillsBundleRetrieveRequestContent.pipe(T.Query())),
-    limit: S.optional(S.Number.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/llm_skills/bundle/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "LlmSkillsBundleRetrieveRequest",
-}) as any as S.Schema<LlmSkillsBundleRetrieveRequest>;
-
-export interface LlmSkillsBundleRetrieveResponse {}
-export const LlmSkillsBundleRetrieveResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "LlmSkillsBundleRetrieveResponse",
-}) as any as S.Schema<LlmSkillsBundleRetrieveResponse>;
-
 /** List of pre-approved tools the skill may use. Tool names cannot contain whitespace. */
-export type LlmSkillsCreateRequestAllowedToolsList = Array<string>;
-export const LlmSkillsCreateRequestAllowedToolsList = /*@__PURE__*/ S.Array(
+export type CreateLlmSkillRequestAllowedToolsList = Array<string>;
+export const CreateLlmSkillRequestAllowedToolsList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<LlmSkillsCreateRequestAllowedToolsList>;
+) as any as S.Schema<CreateLlmSkillRequestAllowedToolsList>;
 
 /** Arbitrary key-value metadata. */
-export type LlmSkillsCreateRequestMetadataMap = {
+export type CreateLlmSkillRequestMetadataMap = {
   [key: string]: unknown | undefined;
 };
-export const LlmSkillsCreateRequestMetadataMap = /*@__PURE__*/ S.Record(
+export const CreateLlmSkillRequestMetadataMap = /*@__PURE__*/ S.Record(
   S.String,
   S.Unknown,
-) as any as S.Schema<LlmSkillsCreateRequestMetadataMap>;
+) as any as S.Schema<CreateLlmSkillRequestMetadataMap>;
 
 /** User UUIDs to set as the skill's owners. Each must be a member of this project. Defaults to the creating user when omitted; pass an empty list to create with no owners. */
-export type LlmSkillsCreateRequestOwnersList = Array<string>;
-export const LlmSkillsCreateRequestOwnersList = /*@__PURE__*/ S.Array(
+export type CreateLlmSkillRequestOwnersList = Array<string>;
+export const CreateLlmSkillRequestOwnersList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<LlmSkillsCreateRequestOwnersList>;
+) as any as S.Schema<CreateLlmSkillRequestOwnersList>;
 
 export interface LLMSkillFileInput {
   /** File path relative to skill root, e.g. 'scripts/setup.sh' or 'references/guide.md'. */
@@ -85,12 +51,12 @@ export const LLMSkillFileInput = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<LLMSkillFileInput>;
 
 /** Bundled files to include with the initial version (scripts, references, assets). */
-export type LlmSkillsCreateRequestFilesList = Array<LLMSkillFileInput>;
-export const LlmSkillsCreateRequestFilesList = /*@__PURE__*/ S.Array(
+export type CreateLlmSkillRequestFilesList = Array<LLMSkillFileInput>;
+export const CreateLlmSkillRequestFilesList = /*@__PURE__*/ S.Array(
   LLMSkillFileInput,
-) as any as S.Schema<LlmSkillsCreateRequestFilesList>;
+) as any as S.Schema<CreateLlmSkillRequestFilesList>;
 
-export interface LlmSkillsCreateRequest {
+export interface CreateLlmSkillRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** Unique skill name. Lowercase letters, numbers, and hyphens only. Max 64 characters. */
@@ -104,15 +70,15 @@ export interface LlmSkillsCreateRequest {
   /** Environment requirements (intended product, system packages, network access, etc.). */
   compatibility?: string;
   /** List of pre-approved tools the skill may use. Tool names cannot contain whitespace. */
-  allowed_tools?: LlmSkillsCreateRequestAllowedToolsList;
+  allowed_tools?: CreateLlmSkillRequestAllowedToolsList;
   /** Arbitrary key-value metadata. */
-  metadata?: LlmSkillsCreateRequestMetadataMap;
+  metadata?: CreateLlmSkillRequestMetadataMap;
   /** User UUIDs to set as the skill's owners. Each must be a member of this project. Defaults to the creating user when omitted; pass an empty list to create with no owners. */
-  owners?: LlmSkillsCreateRequestOwnersList;
+  owners?: CreateLlmSkillRequestOwnersList;
   /** Bundled files to include with the initial version (scripts, references, assets). */
-  files?: LlmSkillsCreateRequestFilesList;
+  files?: CreateLlmSkillRequestFilesList;
 }
-export const LlmSkillsCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateLlmSkillRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     name: S.optional(S.String),
@@ -120,10 +86,10 @@ export const LlmSkillsCreateRequest = /*@__PURE__*/ S.suspend(() =>
     body: S.optional(S.String),
     license: S.optional(S.String),
     compatibility: S.optional(S.String),
-    allowed_tools: S.optional(LlmSkillsCreateRequestAllowedToolsList),
-    metadata: S.optional(LlmSkillsCreateRequestMetadataMap),
-    owners: S.optional(LlmSkillsCreateRequestOwnersList),
-    files: S.optional(LlmSkillsCreateRequestFilesList),
+    allowed_tools: S.optional(CreateLlmSkillRequestAllowedToolsList),
+    metadata: S.optional(CreateLlmSkillRequestMetadataMap),
+    owners: S.optional(CreateLlmSkillRequestOwnersList),
+    files: S.optional(CreateLlmSkillRequestFilesList),
   }).pipe(
     T.Http({
       method: "POST",
@@ -132,8 +98,8 @@ export const LlmSkillsCreateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "LlmSkillsCreateRequest",
-}) as any as S.Schema<LlmSkillsCreateRequest>;
+  identifier: "CreateLlmSkillRequest",
+}) as any as S.Schema<CreateLlmSkillRequest>;
 
 /** List of pre-approved tools the skill may use. Tool names cannot contain whitespace. */
 export type LLMSkillAllowedToolsList = Array<string>;
@@ -314,29 +280,216 @@ export const LLMSkill = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "LLMSkill" }) as any as S.Schema<LLMSkill>;
 
-export interface LlmSkillsImportCreateRequest {
+export interface CreateLlmSkillsNameFileRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
-  /** A spec-compliant skill .zip (a SKILL.md plus optional bundled files under scripts/, references/, assets/). */
-  file: string;
+  skill_name: string;
+  /** File path relative to skill root, e.g. 'scripts/setup.sh' or 'references/guide.md'. */
+  path?: string;
+  /** Text content of the file. */
+  content?: string;
+  /** MIME type of the file content. */
+  content_type?: string;
+  /** Latest version you are editing from. If provided, the request fails with 409 when another write has landed in the meantime. */
+  base_version?: number;
 }
-export const LlmSkillsImportCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateLlmSkillsNameFileRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
-    file: S.String,
+    skill_name: S.String.pipe(T.Label()),
+    path: S.optional(S.String),
+    content: S.optional(S.String),
+    content_type: S.optional(S.String),
+    base_version: S.optional(S.Number),
   }).pipe(
     T.Http({
       method: "POST",
-      uri: "/api/projects/{project_id}/llm_skills/import/",
+      uri: "/api/projects/{project_id}/llm_skills/name/{skill_name}/files/",
       code: 200,
-      contentType: "form-urlencoded",
     }),
   ),
 ).annotate({
-  identifier: "LlmSkillsImportCreateRequest",
-}) as any as S.Schema<LlmSkillsImportCreateRequest>;
+  identifier: "CreateLlmSkillsNameFileRequest",
+}) as any as S.Schema<CreateLlmSkillsNameFileRequest>;
 
-export interface LlmSkillsListRequest {
+export type GetLlmSkillsBundleRequestContent = "stub" | "full";
+export const GetLlmSkillsBundleRequestContent = /*@__PURE__*/ S.String;
+
+export interface GetLlmSkillsBundleRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** What each skill directory in the zip contains. 'stub' (default) writes a SKILL.md with the name, description and instructions to fetch the skill over the PostHog MCP when it is invoked. 'full' writes the rendered SKILL.md, every bundled file and the Codex sidecar. * `stub` - stub * `full` - full */
+  content?: GetLlmSkillsBundleRequestContent | (string & {});
+  /** Maximum number of skills in the zip, newest first; default 20, at most 100. Every skill in the zip costs the agent prompt context on each turn, so pick what the harness can usefully carry. Skills past the limit are reported in X-Skills-Dropped. */
+  limit?: number;
+}
+export const GetLlmSkillsBundleRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    content: S.optional(GetLlmSkillsBundleRequestContent.pipe(T.Query())),
+    limit: S.optional(S.Number.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/llm_skills/bundle/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetLlmSkillsBundleRequest",
+}) as any as S.Schema<GetLlmSkillsBundleRequest>;
+
+export interface GetLlmSkillsBundleResponse {}
+export const GetLlmSkillsBundleResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "GetLlmSkillsBundleResponse",
+}) as any as S.Schema<GetLlmSkillsBundleResponse>;
+
+export interface GetLlmSkillsNameRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  skill_name: string;
+  /** Maximum number of characters of the body to return starting at body_offset. Omit to return the whole body from the offset onwards. When the slice stops before the end, body_next_offset is the offset to request next. */
+  body_length?: number;
+  /** Zero-based character offset to start the returned body from. Use with body_length to page through a large body that a client would otherwise truncate. Compare the returned body length against body_total_length to detect truncation, then re-fetch from body_next_offset. Defaults to 0 (start of body). */
+  body_offset?: number;
+  /** Specific skill version to fetch. If omitted, the latest version is returned. */
+  version?: number;
+}
+export const GetLlmSkillsNameRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    skill_name: S.String.pipe(T.Label()),
+    body_length: S.optional(S.Number.pipe(T.Query())),
+    body_offset: S.optional(S.Number.pipe(T.Query())),
+    version: S.optional(S.Number.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/llm_skills/name/{skill_name}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetLlmSkillsNameRequest",
+}) as any as S.Schema<GetLlmSkillsNameRequest>;
+
+export interface GetLlmSkillsNameFileRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  skill_name: string;
+  file_path: string;
+  /** Specific skill version to fetch. If omitted, the latest version is returned. */
+  version?: number;
+}
+export const GetLlmSkillsNameFileRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    skill_name: S.String.pipe(T.Label()),
+    file_path: S.String.pipe(T.Label()),
+    version: S.optional(S.Number.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/llm_skills/name/{skill_name}/files/{file_path}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetLlmSkillsNameFileRequest",
+}) as any as S.Schema<GetLlmSkillsNameFileRequest>;
+
+export interface LLMSkillFile {
+  path?: string;
+  content?: string;
+  content_type?: string;
+}
+export const LLMSkillFile = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    path: S.optional(S.String),
+    content: S.optional(S.String),
+    content_type: S.optional(S.String),
+  }),
+).annotate({ identifier: "LLMSkillFile" }) as any as S.Schema<LLMSkillFile>;
+
+export interface GetLlmSkillsResolveNameRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  skill_name: string;
+  /** Return versions older than this version number. Mutually exclusive with offset. */
+  before_version?: number;
+  /** Maximum number of versions to return per page (1-100). */
+  limit?: number;
+  /** Zero-based offset into version history for pagination. Mutually exclusive with before_version. */
+  offset?: number;
+  /** Specific skill version to fetch. If omitted, the latest version is returned. */
+  version?: number;
+  /** Exact skill version UUID to resolve. */
+  version_id?: string;
+}
+export const GetLlmSkillsResolveNameRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    skill_name: S.String.pipe(T.Label()),
+    before_version: S.optional(S.Number.pipe(T.Query())),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    offset: S.optional(S.Number.pipe(T.Query())),
+    version: S.optional(S.Number.pipe(T.Query())),
+    version_id: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/llm_skills/resolve/name/{skill_name}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetLlmSkillsResolveNameRequest",
+}) as any as S.Schema<GetLlmSkillsResolveNameRequest>;
+
+export interface LLMSkillVersionSummary {
+  id?: string;
+  version?: number;
+  version_description?: string | null;
+  created_by?: UserBasic | null;
+  created_at?: string;
+  is_latest?: boolean;
+}
+export const LLMSkillVersionSummary = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    version: S.optional(S.Number),
+    version_description: S.optional(S.NullOr(S.String)),
+    created_by: S.optional(S.NullOr(UserBasic)),
+    created_at: S.optional(S.String),
+    is_latest: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "LLMSkillVersionSummary",
+}) as any as S.Schema<LLMSkillVersionSummary>;
+
+export type LLMSkillResolveResponseVersionsList = Array<LLMSkillVersionSummary>;
+export const LLMSkillResolveResponseVersionsList = /*@__PURE__*/ S.Array(
+  LLMSkillVersionSummary,
+) as any as S.Schema<LLMSkillResolveResponseVersionsList>;
+
+export interface LLMSkillResolveResponse {
+  skill?: LLMSkill;
+  versions?: LLMSkillResolveResponseVersionsList;
+  has_more?: boolean;
+}
+export const LLMSkillResolveResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    skill: S.optional(LLMSkill),
+    versions: S.optional(LLMSkillResolveResponseVersionsList),
+    has_more: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "LLMSkillResolveResponse",
+}) as any as S.Schema<LLMSkillResolveResponse>;
+
+export interface ListLlmSkillsRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** Filter skills to this exact category. Pass "scout" for Signals scouts, or an empty string to return only uncategorized skills. Omit the parameter entirely to return skills of every category. */
@@ -352,7 +505,7 @@ export interface LlmSkillsListRequest {
   /** Optional substring filter applied to skill names and descriptions. */
   search?: string;
 }
-export const LlmSkillsListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListLlmSkillsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     category: S.optional(S.String.pipe(T.Query())),
@@ -369,8 +522,8 @@ export const LlmSkillsListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "LlmSkillsListRequest",
-}) as any as S.Schema<LlmSkillsListRequest>;
+  identifier: "ListLlmSkillsRequest",
+}) as any as S.Schema<ListLlmSkillsRequest>;
 
 /** List of pre-approved tools the skill may use. Tool names cannot contain whitespace. */
 export type LLMSkillListAllowedToolsList = Array<string>;
@@ -476,6 +629,28 @@ export const PaginatedLLMSkillListList = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "PaginatedLLMSkillListList",
 }) as any as S.Schema<PaginatedLLMSkillListList>;
+
+export interface LlmSkillsImportCreateRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A spec-compliant skill .zip (a SKILL.md plus optional bundled files under scripts/, references/, assets/). */
+  file: string;
+}
+export const LlmSkillsImportCreateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    file: S.String,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/api/projects/{project_id}/llm_skills/import/",
+      code: 200,
+      contentType: "form-urlencoded",
+    }),
+  ),
+).annotate({
+  identifier: "LlmSkillsImportCreateRequest",
+}) as any as S.Schema<LlmSkillsImportCreateRequest>;
 
 export interface LlmSkillsMarketplaceInstallCommandCreateRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -657,38 +832,6 @@ export const LlmSkillsNameExportRetrieveResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "LlmSkillsNameExportRetrieveResponse",
 }) as any as S.Schema<LlmSkillsNameExportRetrieveResponse>;
 
-export interface LlmSkillsNameFilesCreateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  skill_name: string;
-  /** File path relative to skill root, e.g. 'scripts/setup.sh' or 'references/guide.md'. */
-  path?: string;
-  /** Text content of the file. */
-  content?: string;
-  /** MIME type of the file content. */
-  content_type?: string;
-  /** Latest version you are editing from. If provided, the request fails with 409 when another write has landed in the meantime. */
-  base_version?: number;
-}
-export const LlmSkillsNameFilesCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    skill_name: S.String.pipe(T.Label()),
-    path: S.optional(S.String),
-    content: S.optional(S.String),
-    content_type: S.optional(S.String),
-    base_version: S.optional(S.Number),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/api/projects/{project_id}/llm_skills/name/{skill_name}/files/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "LlmSkillsNameFilesCreateRequest",
-}) as any as S.Schema<LlmSkillsNameFilesCreateRequest>;
-
 export interface LlmSkillsNameFilesDestroyRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
@@ -743,184 +886,6 @@ export const LlmSkillsNameFilesRenameCreateRequest = /*@__PURE__*/ S.suspend(
 ).annotate({
   identifier: "LlmSkillsNameFilesRenameCreateRequest",
 }) as any as S.Schema<LlmSkillsNameFilesRenameCreateRequest>;
-
-export interface LlmSkillsNameFilesRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  skill_name: string;
-  file_path: string;
-  /** Specific skill version to fetch. If omitted, the latest version is returned. */
-  version?: number;
-}
-export const LlmSkillsNameFilesRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    skill_name: S.String.pipe(T.Label()),
-    file_path: S.String.pipe(T.Label()),
-    version: S.optional(S.Number.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/llm_skills/name/{skill_name}/files/{file_path}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "LlmSkillsNameFilesRetrieveRequest",
-}) as any as S.Schema<LlmSkillsNameFilesRetrieveRequest>;
-
-export interface LLMSkillFile {
-  path?: string;
-  content?: string;
-  content_type?: string;
-}
-export const LLMSkillFile = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    path: S.optional(S.String),
-    content: S.optional(S.String),
-    content_type: S.optional(S.String),
-  }),
-).annotate({ identifier: "LLMSkillFile" }) as any as S.Schema<LLMSkillFile>;
-
-export interface LLMSkillEditOperation {
-  /** Text to find in the target content. Must match exactly once. */
-  old?: string;
-  /** Replacement text. */
-  new?: string;
-}
-export const LLMSkillEditOperation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    old: S.optional(S.String),
-    new: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "LLMSkillEditOperation",
-}) as any as S.Schema<LLMSkillEditOperation>;
-
-/** List of find/replace operations to apply to the current skill body. Each edit's 'old' text must match exactly once. Edits are applied sequentially. Mutually exclusive with body. */
-export type LlmSkillsNamePartialUpdateRequestEditsList =
-  Array<LLMSkillEditOperation>;
-export const LlmSkillsNamePartialUpdateRequestEditsList = /*@__PURE__*/ S.Array(
-  LLMSkillEditOperation,
-) as any as S.Schema<LlmSkillsNamePartialUpdateRequestEditsList>;
-
-/** List of pre-approved tools the skill may use. Tool names cannot contain whitespace. */
-export type LlmSkillsNamePartialUpdateRequestAllowedToolsList = Array<string>;
-export const LlmSkillsNamePartialUpdateRequestAllowedToolsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<LlmSkillsNamePartialUpdateRequestAllowedToolsList>;
-
-/** Arbitrary key-value metadata. */
-export type LlmSkillsNamePartialUpdateRequestMetadataMap = {
-  [key: string]: unknown | undefined;
-};
-export const LlmSkillsNamePartialUpdateRequestMetadataMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.Unknown,
-  ) as any as S.Schema<LlmSkillsNamePartialUpdateRequestMetadataMap>;
-
-/** Bundled files to include with this version. Replaces all files from the previous version. Mutually exclusive with file_edits. */
-export type LlmSkillsNamePartialUpdateRequestFilesList =
-  Array<LLMSkillFileInput>;
-export const LlmSkillsNamePartialUpdateRequestFilesList = /*@__PURE__*/ S.Array(
-  LLMSkillFileInput,
-) as any as S.Schema<LlmSkillsNamePartialUpdateRequestFilesList>;
-
-/** Sequential find/replace operations to apply to this file's content. */
-export type LLMSkillFileEditEditsList = Array<LLMSkillEditOperation>;
-export const LLMSkillFileEditEditsList = /*@__PURE__*/ S.Array(
-  LLMSkillEditOperation,
-) as any as S.Schema<LLMSkillFileEditEditsList>;
-
-export interface LLMSkillFileEdit {
-  /** Path of the bundled file to edit. Must match an existing file on the current skill version. */
-  path?: string;
-  /** Sequential find/replace operations to apply to this file's content. */
-  edits?: LLMSkillFileEditEditsList;
-}
-export const LLMSkillFileEdit = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    path: S.optional(S.String),
-    edits: S.optional(LLMSkillFileEditEditsList),
-  }),
-).annotate({
-  identifier: "LLMSkillFileEdit",
-}) as any as S.Schema<LLMSkillFileEdit>;
-
-/** Per-file find/replace updates. Each entry targets one existing file by path and applies sequential edits to its content. Non-targeted files carry forward unchanged. Cannot add, remove, or rename files — use 'files' for that. Mutually exclusive with files. */
-export type LlmSkillsNamePartialUpdateRequestFileEditsList =
-  Array<LLMSkillFileEdit>;
-export const LlmSkillsNamePartialUpdateRequestFileEditsList =
-  /*@__PURE__*/ S.Array(
-    LLMSkillFileEdit,
-  ) as any as S.Schema<LlmSkillsNamePartialUpdateRequestFileEditsList>;
-
-/** Replace the skill's owners with these user UUIDs (each a member of this project). Omit to leave owners unchanged; pass an empty list to clear them. Owners are keyed on the logical skill, so setting them is independent of the version being published — a body edit alone never changes ownership. */
-export type LlmSkillsNamePartialUpdateRequestOwnersList = Array<string>;
-export const LlmSkillsNamePartialUpdateRequestOwnersList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<LlmSkillsNamePartialUpdateRequestOwnersList>;
-
-export interface LlmSkillsNamePartialUpdateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  skill_name: string;
-  /** Full skill body (SKILL.md instruction content) to publish as a new version. Mutually exclusive with edits. */
-  body?: string;
-  /** List of find/replace operations to apply to the current skill body. Each edit's 'old' text must match exactly once. Edits are applied sequentially. Mutually exclusive with body. */
-  edits?: LlmSkillsNamePartialUpdateRequestEditsList;
-  /** Updated description for the new version. */
-  description?: string;
-  /** License name or reference. */
-  license?: string;
-  /** Environment requirements. */
-  compatibility?: string;
-  /** List of pre-approved tools the skill may use. Tool names cannot contain whitespace. */
-  allowed_tools?: LlmSkillsNamePartialUpdateRequestAllowedToolsList;
-  /** Arbitrary key-value metadata. */
-  metadata?: LlmSkillsNamePartialUpdateRequestMetadataMap;
-  /** Bundled files to include with this version. Replaces all files from the previous version. Mutually exclusive with file_edits. */
-  files?: LlmSkillsNamePartialUpdateRequestFilesList;
-  /** Per-file find/replace updates. Each entry targets one existing file by path and applies sequential edits to its content. Non-targeted files carry forward unchanged. Cannot add, remove, or rename files — use 'files' for that. Mutually exclusive with files. */
-  file_edits?: LlmSkillsNamePartialUpdateRequestFileEditsList;
-  /** Replace the skill's owners with these user UUIDs (each a member of this project). Omit to leave owners unchanged; pass an empty list to clear them. Owners are keyed on the logical skill, so setting them is independent of the version being published — a body edit alone never changes ownership. */
-  owners?: LlmSkillsNamePartialUpdateRequestOwnersList;
-  /** Latest version you are editing from. Used for optimistic concurrency checks. Required when publishing content changes; optional for an owner-only update (when omitted, owners are replaced without a concurrency check). */
-  base_version?: number;
-  /** Optional note describing what changed in this version. Shown in the version history. */
-  version_description?: string;
-}
-export const LlmSkillsNamePartialUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    skill_name: S.String.pipe(T.Label()),
-    body: S.optional(S.String),
-    edits: S.optional(LlmSkillsNamePartialUpdateRequestEditsList),
-    description: S.optional(S.String),
-    license: S.optional(S.String),
-    compatibility: S.optional(S.String),
-    allowed_tools: S.optional(
-      LlmSkillsNamePartialUpdateRequestAllowedToolsList,
-    ),
-    metadata: S.optional(LlmSkillsNamePartialUpdateRequestMetadataMap),
-    files: S.optional(LlmSkillsNamePartialUpdateRequestFilesList),
-    file_edits: S.optional(LlmSkillsNamePartialUpdateRequestFileEditsList),
-    owners: S.optional(LlmSkillsNamePartialUpdateRequestOwnersList),
-    base_version: S.optional(S.Number),
-    version_description: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/api/projects/{project_id}/llm_skills/name/{skill_name}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "LlmSkillsNamePartialUpdateRequest",
-}) as any as S.Schema<LlmSkillsNamePartialUpdateRequest>;
 
 /** Tags used for filtering and discovery in the marketplace, e.g. ['web-analytics', 'triage']. */
 export type LlmSkillsNamePublishCommunityCreateRequestTagsList = Array<string>;
@@ -977,135 +942,240 @@ export const CommunitySkillPublishResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "CommunitySkillPublishResult",
 }) as any as S.Schema<CommunitySkillPublishResult>;
 
-export interface LlmSkillsNameRetrieveRequest {
+export interface LLMSkillEditOperation {
+  /** Text to find in the target content. Must match exactly once. */
+  old?: string;
+  /** Replacement text. */
+  new?: string;
+}
+export const LLMSkillEditOperation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    old: S.optional(S.String),
+    new: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "LLMSkillEditOperation",
+}) as any as S.Schema<LLMSkillEditOperation>;
+
+/** List of find/replace operations to apply to the current skill body. Each edit's 'old' text must match exactly once. Edits are applied sequentially. Mutually exclusive with body. */
+export type UpdateLlmSkillsNamePartialRequestEditsList =
+  Array<LLMSkillEditOperation>;
+export const UpdateLlmSkillsNamePartialRequestEditsList = /*@__PURE__*/ S.Array(
+  LLMSkillEditOperation,
+) as any as S.Schema<UpdateLlmSkillsNamePartialRequestEditsList>;
+
+/** List of pre-approved tools the skill may use. Tool names cannot contain whitespace. */
+export type UpdateLlmSkillsNamePartialRequestAllowedToolsList = Array<string>;
+export const UpdateLlmSkillsNamePartialRequestAllowedToolsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<UpdateLlmSkillsNamePartialRequestAllowedToolsList>;
+
+/** Arbitrary key-value metadata. */
+export type UpdateLlmSkillsNamePartialRequestMetadataMap = {
+  [key: string]: unknown | undefined;
+};
+export const UpdateLlmSkillsNamePartialRequestMetadataMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.Unknown,
+  ) as any as S.Schema<UpdateLlmSkillsNamePartialRequestMetadataMap>;
+
+/** Bundled files to include with this version. Replaces all files from the previous version. Mutually exclusive with file_edits. */
+export type UpdateLlmSkillsNamePartialRequestFilesList =
+  Array<LLMSkillFileInput>;
+export const UpdateLlmSkillsNamePartialRequestFilesList = /*@__PURE__*/ S.Array(
+  LLMSkillFileInput,
+) as any as S.Schema<UpdateLlmSkillsNamePartialRequestFilesList>;
+
+/** Sequential find/replace operations to apply to this file's content. */
+export type LLMSkillFileEditEditsList = Array<LLMSkillEditOperation>;
+export const LLMSkillFileEditEditsList = /*@__PURE__*/ S.Array(
+  LLMSkillEditOperation,
+) as any as S.Schema<LLMSkillFileEditEditsList>;
+
+export interface LLMSkillFileEdit {
+  /** Path of the bundled file to edit. Must match an existing file on the current skill version. */
+  path?: string;
+  /** Sequential find/replace operations to apply to this file's content. */
+  edits?: LLMSkillFileEditEditsList;
+}
+export const LLMSkillFileEdit = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    path: S.optional(S.String),
+    edits: S.optional(LLMSkillFileEditEditsList),
+  }),
+).annotate({
+  identifier: "LLMSkillFileEdit",
+}) as any as S.Schema<LLMSkillFileEdit>;
+
+/** Per-file find/replace updates. Each entry targets one existing file by path and applies sequential edits to its content. Non-targeted files carry forward unchanged. Cannot add, remove, or rename files — use 'files' for that. Mutually exclusive with files. */
+export type UpdateLlmSkillsNamePartialRequestFileEditsList =
+  Array<LLMSkillFileEdit>;
+export const UpdateLlmSkillsNamePartialRequestFileEditsList =
+  /*@__PURE__*/ S.Array(
+    LLMSkillFileEdit,
+  ) as any as S.Schema<UpdateLlmSkillsNamePartialRequestFileEditsList>;
+
+/** Replace the skill's owners with these user UUIDs (each a member of this project). Omit to leave owners unchanged; pass an empty list to clear them. Owners are keyed on the logical skill, so setting them is independent of the version being published — a body edit alone never changes ownership. */
+export type UpdateLlmSkillsNamePartialRequestOwnersList = Array<string>;
+export const UpdateLlmSkillsNamePartialRequestOwnersList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<UpdateLlmSkillsNamePartialRequestOwnersList>;
+
+export interface UpdateLlmSkillsNamePartialRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   skill_name: string;
-  /** Maximum number of characters of the body to return starting at body_offset. Omit to return the whole body from the offset onwards. When the slice stops before the end, body_next_offset is the offset to request next. */
-  body_length?: number;
-  /** Zero-based character offset to start the returned body from. Use with body_length to page through a large body that a client would otherwise truncate. Compare the returned body length against body_total_length to detect truncation, then re-fetch from body_next_offset. Defaults to 0 (start of body). */
-  body_offset?: number;
-  /** Specific skill version to fetch. If omitted, the latest version is returned. */
-  version?: number;
+  /** Full skill body (SKILL.md instruction content) to publish as a new version. Mutually exclusive with edits. */
+  body?: string;
+  /** List of find/replace operations to apply to the current skill body. Each edit's 'old' text must match exactly once. Edits are applied sequentially. Mutually exclusive with body. */
+  edits?: UpdateLlmSkillsNamePartialRequestEditsList;
+  /** Updated description for the new version. */
+  description?: string;
+  /** License name or reference. */
+  license?: string;
+  /** Environment requirements. */
+  compatibility?: string;
+  /** List of pre-approved tools the skill may use. Tool names cannot contain whitespace. */
+  allowed_tools?: UpdateLlmSkillsNamePartialRequestAllowedToolsList;
+  /** Arbitrary key-value metadata. */
+  metadata?: UpdateLlmSkillsNamePartialRequestMetadataMap;
+  /** Bundled files to include with this version. Replaces all files from the previous version. Mutually exclusive with file_edits. */
+  files?: UpdateLlmSkillsNamePartialRequestFilesList;
+  /** Per-file find/replace updates. Each entry targets one existing file by path and applies sequential edits to its content. Non-targeted files carry forward unchanged. Cannot add, remove, or rename files — use 'files' for that. Mutually exclusive with files. */
+  file_edits?: UpdateLlmSkillsNamePartialRequestFileEditsList;
+  /** Replace the skill's owners with these user UUIDs (each a member of this project). Omit to leave owners unchanged; pass an empty list to clear them. Owners are keyed on the logical skill, so setting them is independent of the version being published — a body edit alone never changes ownership. */
+  owners?: UpdateLlmSkillsNamePartialRequestOwnersList;
+  /** Latest version you are editing from. Used for optimistic concurrency checks. Required when publishing content changes; optional for an owner-only update (when omitted, owners are replaced without a concurrency check). */
+  base_version?: number;
+  /** Optional note describing what changed in this version. Shown in the version history. */
+  version_description?: string;
 }
-export const LlmSkillsNameRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateLlmSkillsNamePartialRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     skill_name: S.String.pipe(T.Label()),
-    body_length: S.optional(S.Number.pipe(T.Query())),
-    body_offset: S.optional(S.Number.pipe(T.Query())),
-    version: S.optional(S.Number.pipe(T.Query())),
+    body: S.optional(S.String),
+    edits: S.optional(UpdateLlmSkillsNamePartialRequestEditsList),
+    description: S.optional(S.String),
+    license: S.optional(S.String),
+    compatibility: S.optional(S.String),
+    allowed_tools: S.optional(
+      UpdateLlmSkillsNamePartialRequestAllowedToolsList,
+    ),
+    metadata: S.optional(UpdateLlmSkillsNamePartialRequestMetadataMap),
+    files: S.optional(UpdateLlmSkillsNamePartialRequestFilesList),
+    file_edits: S.optional(UpdateLlmSkillsNamePartialRequestFileEditsList),
+    owners: S.optional(UpdateLlmSkillsNamePartialRequestOwnersList),
+    base_version: S.optional(S.Number),
+    version_description: S.optional(S.String),
   }).pipe(
     T.Http({
-      method: "GET",
+      method: "PATCH",
       uri: "/api/projects/{project_id}/llm_skills/name/{skill_name}/",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "LlmSkillsNameRetrieveRequest",
-}) as any as S.Schema<LlmSkillsNameRetrieveRequest>;
+  identifier: "UpdateLlmSkillsNamePartialRequest",
+}) as any as S.Schema<UpdateLlmSkillsNamePartialRequest>;
 
-export interface LlmSkillsResolveNameRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  skill_name: string;
-  /** Return versions older than this version number. Mutually exclusive with offset. */
-  before_version?: number;
-  /** Maximum number of versions to return per page (1-100). */
-  limit?: number;
-  /** Zero-based offset into version history for pagination. Mutually exclusive with before_version. */
-  offset?: number;
-  /** Specific skill version to fetch. If omitted, the latest version is returned. */
-  version?: number;
-  /** Exact skill version UUID to resolve. */
-  version_id?: string;
-}
-export const LlmSkillsResolveNameRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    skill_name: S.String.pipe(T.Label()),
-    before_version: S.optional(S.Number.pipe(T.Query())),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    offset: S.optional(S.Number.pipe(T.Query())),
-    version: S.optional(S.Number.pipe(T.Query())),
-    version_id: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/llm_skills/resolve/name/{skill_name}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "LlmSkillsResolveNameRetrieveRequest",
-}) as any as S.Schema<LlmSkillsResolveNameRetrieveRequest>;
-
-export interface LLMSkillVersionSummary {
-  id?: string;
-  version?: number;
-  version_description?: string | null;
-  created_by?: UserBasic | null;
-  created_at?: string;
-  is_latest?: boolean;
-}
-export const LLMSkillVersionSummary = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    version: S.optional(S.Number),
-    version_description: S.optional(S.NullOr(S.String)),
-    created_by: S.optional(S.NullOr(UserBasic)),
-    created_at: S.optional(S.String),
-    is_latest: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "LLMSkillVersionSummary",
-}) as any as S.Schema<LLMSkillVersionSummary>;
-
-export type LLMSkillResolveResponseVersionsList = Array<LLMSkillVersionSummary>;
-export const LLMSkillResolveResponseVersionsList = /*@__PURE__*/ S.Array(
-  LLMSkillVersionSummary,
-) as any as S.Schema<LLMSkillResolveResponseVersionsList>;
-
-export interface LLMSkillResolveResponse {
-  skill?: LLMSkill;
-  versions?: LLMSkillResolveResponseVersionsList;
-  has_more?: boolean;
-}
-export const LLMSkillResolveResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    skill: S.optional(LLMSkill),
-    versions: S.optional(LLMSkillResolveResponseVersionsList),
-    has_more: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "LLMSkillResolveResponse",
-}) as any as S.Schema<LLMSkillResolveResponse>;
-
-export type LlmSkillsBundleRetrieveError = PosthogOpError;
-/** One zip of the requesting user's store skills, for unpacking into a skills directory. */
-export const llmSkillsBundleRetrieve: API.OperationMethod<
-  LlmSkillsBundleRetrieveRequest,
-  LlmSkillsBundleRetrieveResponse,
-  LlmSkillsBundleRetrieveError,
+export type CreateLlmSkillError = PosthogOpError;
+export const createLlmSkill: API.OperationMethod<
+  CreateLlmSkillRequest,
+  LLMSkill,
+  CreateLlmSkillError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: LlmSkillsBundleRetrieveRequest,
-  output: LlmSkillsBundleRetrieveResponse,
+  input: CreateLlmSkillRequest,
+  output: LLMSkill,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type LlmSkillsCreateError = PosthogOpError;
-export const llmSkillsCreate: API.OperationMethod<
-  LlmSkillsCreateRequest,
+export type CreateLlmSkillsNameFileError = PosthogOpError;
+export const createLlmSkillsNameFile: API.OperationMethod<
+  CreateLlmSkillsNameFileRequest,
   LLMSkill,
-  LlmSkillsCreateError,
+  CreateLlmSkillsNameFileError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: LlmSkillsCreateRequest,
+  input: CreateLlmSkillsNameFileRequest,
   output: LLMSkill,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetLlmSkillsBundleError = PosthogOpError;
+/** One zip of the requesting user's store skills, for unpacking into a skills directory. */
+export const getLlmSkillsBundle: API.OperationMethod<
+  GetLlmSkillsBundleRequest,
+  GetLlmSkillsBundleResponse,
+  GetLlmSkillsBundleError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetLlmSkillsBundleRequest,
+  output: GetLlmSkillsBundleResponse,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetLlmSkillsNameError = PosthogOpError;
+export const getLlmSkillsName: API.OperationMethod<
+  GetLlmSkillsNameRequest,
+  LLMSkill,
+  GetLlmSkillsNameError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetLlmSkillsNameRequest,
+  output: LLMSkill,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetLlmSkillsNameFileError = PosthogOpError;
+export const getLlmSkillsNameFile: API.OperationMethod<
+  GetLlmSkillsNameFileRequest,
+  LLMSkillFile,
+  GetLlmSkillsNameFileError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetLlmSkillsNameFileRequest,
+  output: LLMSkillFile,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetLlmSkillsResolveNameError = PosthogOpError;
+export const getLlmSkillsResolveName: API.OperationMethod<
+  GetLlmSkillsResolveNameRequest,
+  LLMSkillResolveResponse,
+  GetLlmSkillsResolveNameError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetLlmSkillsResolveNameRequest,
+  output: LLMSkillResolveResponse,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListLlmSkillsError = PosthogOpError;
+export const listLlmSkills: API.OperationMethod<
+  ListLlmSkillsRequest,
+  PaginatedLLMSkillListList,
+  ListLlmSkillsError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListLlmSkillsRequest,
+  output: PaginatedLLMSkillListList,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
@@ -1120,20 +1190,6 @@ export const llmSkillsImportCreate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: LlmSkillsImportCreateRequest,
   output: LLMSkill,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type LlmSkillsListError = PosthogOpError;
-export const llmSkillsList: API.OperationMethod<
-  LlmSkillsListRequest,
-  PaginatedLLMSkillListList,
-  LlmSkillsListError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: LlmSkillsListRequest,
-  output: PaginatedLLMSkillListList,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
@@ -1211,20 +1267,6 @@ export const llmSkillsNameExportRetrieve: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type LlmSkillsNameFilesCreateError = PosthogOpError;
-export const llmSkillsNameFilesCreate: API.OperationMethod<
-  LlmSkillsNameFilesCreateRequest,
-  LLMSkill,
-  LlmSkillsNameFilesCreateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: LlmSkillsNameFilesCreateRequest,
-  output: LLMSkill,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
 export type LlmSkillsNameFilesDestroyError = PosthogOpError;
 export const llmSkillsNameFilesDestroy: API.OperationMethod<
   LlmSkillsNameFilesDestroyRequest,
@@ -1253,34 +1295,6 @@ export const llmSkillsNameFilesRenameCreate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type LlmSkillsNameFilesRetrieveError = PosthogOpError;
-export const llmSkillsNameFilesRetrieve: API.OperationMethod<
-  LlmSkillsNameFilesRetrieveRequest,
-  LLMSkillFile,
-  LlmSkillsNameFilesRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: LlmSkillsNameFilesRetrieveRequest,
-  output: LLMSkillFile,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type LlmSkillsNamePartialUpdateError = PosthogOpError;
-export const llmSkillsNamePartialUpdate: API.OperationMethod<
-  LlmSkillsNamePartialUpdateRequest,
-  LLMSkill,
-  LlmSkillsNamePartialUpdateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: LlmSkillsNamePartialUpdateRequest,
-  output: LLMSkill,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
 export type LlmSkillsNamePublishCommunityCreateError = PosthogOpError;
 export const llmSkillsNamePublishCommunityCreate: API.OperationMethod<
   LlmSkillsNamePublishCommunityCreateRequest,
@@ -1295,29 +1309,15 @@ export const llmSkillsNamePublishCommunityCreate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type LlmSkillsNameRetrieveError = PosthogOpError;
-export const llmSkillsNameRetrieve: API.OperationMethod<
-  LlmSkillsNameRetrieveRequest,
+export type UpdateLlmSkillsNamePartialError = PosthogOpError;
+export const updateLlmSkillsNamePartial: API.OperationMethod<
+  UpdateLlmSkillsNamePartialRequest,
   LLMSkill,
-  LlmSkillsNameRetrieveError,
+  UpdateLlmSkillsNamePartialError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: LlmSkillsNameRetrieveRequest,
+  input: UpdateLlmSkillsNamePartialRequest,
   output: LLMSkill,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type LlmSkillsResolveNameRetrieveError = PosthogOpError;
-export const llmSkillsResolveNameRetrieve: API.OperationMethod<
-  LlmSkillsResolveNameRetrieveRequest,
-  LLMSkillResolveResponse,
-  LlmSkillsResolveNameRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: LlmSkillsResolveNameRetrieveRequest,
-  output: LLMSkillResolveResponse,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,

@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.posthog.messaging_suppressions#MessagingSuppressionsAddSuppressionCreateRequest": {
@@ -58,7 +59,7 @@
           }
         },
         "source": {
-          "target": "com.posthog.messaging_suppressions#MessageSuppressionSourceEnum",
+          "target": "com.posthog.messaging_suppressions#SuppressionSourceEnum",
           "traits": {
             "smithy.api#documentation": "How the entry landed on the list: `BOUNCE` for automatic (bounce-driven), `COMPLAINT` for automatic (the recipient reported a message as spam), `MANUAL` for user-added via the UI/API.\n\n* `BOUNCE` - Bounce\n* `MANUAL` - Manual\n* `COMPLAINT` - Complaint",
             "smithy.api#required": {}
@@ -127,7 +128,7 @@
       },
       "traits": {}
     },
-    "com.posthog.messaging_suppressions#MessageSuppressionSourceEnum": {
+    "com.posthog.messaging_suppressions#SuppressionSourceEnum": {
       "type": "enum",
       "members": {
         "BOUNCE": {
@@ -210,7 +211,7 @@
         "smithy.api#documentation": "Remove an email address from the suppression list\n\nRemove an address from the suppression list so it can receive messages again."
       }
     },
-    "com.posthog.messaging_suppressions#MessagingSuppressionsSuppressionsRetrieveRequest": {
+    "com.posthog.messaging_suppressions#GetMessagingSuppressionsSuppressionRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -289,10 +290,10 @@
       },
       "traits": {}
     },
-    "com.posthog.messaging_suppressions#MessagingSuppressionsSuppressionsRetrieve": {
+    "com.posthog.messaging_suppressions#GetMessagingSuppressionsSuppression": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.messaging_suppressions#MessagingSuppressionsSuppressionsRetrieveRequest"
+        "target": "com.posthog.messaging_suppressions#GetMessagingSuppressionsSuppressionRequest"
       },
       "output": {
         "target": "com.posthog.messaging_suppressions#PaginatedMessageSuppression"
@@ -317,7 +318,7 @@
           "target": "com.posthog.messaging_suppressions#MessagingSuppressionsRemoveSuppressionCreate"
         },
         {
-          "target": "com.posthog.messaging_suppressions#MessagingSuppressionsSuppressionsRetrieve"
+          "target": "com.posthog.messaging_suppressions#GetMessagingSuppressionsSuppression"
         }
       ],
       "traits": {

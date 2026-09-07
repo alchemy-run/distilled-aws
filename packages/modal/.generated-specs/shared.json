@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.modal.shared#SharedVolumeDeleteRequest": {
+    "com.modal.shared#DeleteSharedVolumeRequest": {
       "type": "structure",
       "members": {
         "sharedVolumeId": {
@@ -28,10 +29,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.modal.shared#SharedVolumeDelete": {
+    "com.modal.shared#DeleteSharedVolume": {
       "type": "operation",
       "input": {
-        "target": "com.modal.shared#SharedVolumeDeleteRequest"
+        "target": "com.modal.shared#DeleteSharedVolumeRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -209,7 +210,7 @@
         }
       }
     },
-    "com.modal.shared#SharedVolumeListRequest": {
+    "com.modal.shared#ListSharedVolumeRequest": {
       "type": "structure",
       "members": {
         "environmentName": {
@@ -284,7 +285,7 @@
         "target": "com.modal.shared#SharedVolumeListItem"
       }
     },
-    "com.modal.shared#SharedVolumeListResponse": {
+    "com.modal.shared#ListSharedVolumeResponse": {
       "type": "structure",
       "members": {
         "items": {
@@ -298,13 +299,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.modal.shared#SharedVolumeList": {
+    "com.modal.shared#ListSharedVolume": {
       "type": "operation",
       "input": {
-        "target": "com.modal.shared#SharedVolumeListRequest"
+        "target": "com.modal.shared#ListSharedVolumeRequest"
       },
       "output": {
-        "target": "com.modal.shared#SharedVolumeListResponse"
+        "target": "com.modal.shared#ListSharedVolumeResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -513,7 +514,7 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.modal.shared#SharedVolumeDelete"
+          "target": "com.modal.shared#DeleteSharedVolume"
         },
         {
           "target": "com.modal.shared#SharedVolumeGetFile"
@@ -525,7 +526,7 @@
           "target": "com.modal.shared#SharedVolumeHeartbeat"
         },
         {
-          "target": "com.modal.shared#SharedVolumeList"
+          "target": "com.modal.shared#ListSharedVolume"
         },
         {
           "target": "com.modal.shared#SharedVolumeListFiles"

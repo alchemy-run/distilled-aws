@@ -658,6 +658,8 @@ export type ReadAccessGroupResponseTeamPermissionsItem =
   | "AiGatewayBudgetManager"
   | "AiGatewayCredits"
   | "AiGatewaySettings"
+  | "AiGatewayTranscriptsManager"
+  | "AiGatewayTranscriptsViewer"
   | "ConnectorManager"
   | "CreateProject"
   | "EnvVariableManager"

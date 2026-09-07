@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.modal.tunnel#TunnelType": {
@@ -34,7 +35,7 @@
         }
       }
     },
-    "com.modal.tunnel#TunnelStartRequest": {
+    "com.modal.tunnel#StartTunnelRequest": {
       "type": "structure",
       "members": {
         "port": {
@@ -51,7 +52,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.modal.tunnel#TunnelStartResponse": {
+    "com.modal.tunnel#StartTunnelResponse": {
       "type": "structure",
       "members": {
         "host": {
@@ -71,13 +72,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.modal.tunnel#TunnelStart": {
+    "com.modal.tunnel#StartTunnel": {
       "type": "operation",
       "input": {
-        "target": "com.modal.tunnel#TunnelStartRequest"
+        "target": "com.modal.tunnel#StartTunnelRequest"
       },
       "output": {
-        "target": "com.modal.tunnel#TunnelStartResponse"
+        "target": "com.modal.tunnel#StartTunnelResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -88,7 +89,7 @@
         "smithy.api#documentation": "Tunnels"
       }
     },
-    "com.modal.tunnel#TunnelStopRequest": {
+    "com.modal.tunnel#StopTunnelRequest": {
       "type": "structure",
       "members": {
         "port": {
@@ -99,7 +100,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.modal.tunnel#TunnelStopResponse": {
+    "com.modal.tunnel#StopTunnelResponse": {
       "type": "structure",
       "members": {
         "exists": {
@@ -110,13 +111,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.modal.tunnel#TunnelStop": {
+    "com.modal.tunnel#StopTunnel": {
       "type": "operation",
       "input": {
-        "target": "com.modal.tunnel#TunnelStopRequest"
+        "target": "com.modal.tunnel#StopTunnelRequest"
       },
       "output": {
-        "target": "com.modal.tunnel#TunnelStopResponse"
+        "target": "com.modal.tunnel#StopTunnelResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -131,10 +132,10 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.modal.tunnel#TunnelStart"
+          "target": "com.modal.tunnel#StartTunnel"
         },
         {
-          "target": "com.modal.tunnel#TunnelStop"
+          "target": "com.modal.tunnel#StopTunnel"
         }
       ],
       "traits": {

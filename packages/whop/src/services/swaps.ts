@@ -303,6 +303,59 @@ export const CreateSwapQuoteResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateSwapQuoteResponse",
 }) as any as S.Schema<CreateSwapQuoteResponse>;
 
+export interface GetSwapRequest {
+  /** Swap ID returned from POST /swaps. */
+  id: string;
+}
+export const GetSwapRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/swaps/{id}", code: 200 })),
+).annotate({ identifier: "GetSwapRequest" }) as any as S.Schema<GetSwapRequest>;
+
+export type GetSwapResponseObject = "swap";
+export const GetSwapResponseObject = /*@__PURE__*/ S.String;
+
+/** Current swap status. `complete` and `failed` are terminal. */
+export type GetSwapResponseStatus =
+  | "queued"
+  | "working"
+  | "complete"
+  | "failed";
+export const GetSwapResponseStatus = /*@__PURE__*/ S.String;
+
+/** On-chain transaction hashes produced by the swap. */
+export type GetSwapResponseTxHashesList = Array<string>;
+export const GetSwapResponseTxHashesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<GetSwapResponseTxHashesList>;
+
+export interface GetSwapResponse {
+  /** Account ID that owns the wallet used for the swap. */
+  account_id: string;
+  /** Latest error returned for a failed swap. */
+  error?: string | null;
+  /** Swap ID. */
+  id: string;
+  object: GetSwapResponseObject;
+  /** Current swap status. `complete` and `failed` are terminal. */
+  status: GetSwapResponseStatus;
+  /** On-chain transaction hashes produced by the swap. */
+  tx_hashes: GetSwapResponseTxHashesList;
+}
+export const GetSwapResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    account_id: S.String,
+    error: S.optional(S.NullOr(S.String)),
+    id: S.String,
+    object: GetSwapResponseObject,
+    status: GetSwapResponseStatus,
+    tx_hashes: GetSwapResponseTxHashesList,
+  }),
+).annotate({
+  identifier: "GetSwapResponse",
+}) as any as S.Schema<GetSwapResponse>;
+
 export interface ListSwapsRequest {
   /** Business or user account ID (biz_* / user_*). */
   account_id: string;
@@ -376,61 +429,6 @@ export const ListSwapsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListSwapsResponse",
 }) as any as S.Schema<ListSwapsResponse>;
 
-export interface RetrieveSwapRequest {
-  /** Swap ID returned from POST /swaps. */
-  id: string;
-}
-export const RetrieveSwapRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/swaps/{id}", code: 200 })),
-).annotate({
-  identifier: "RetrieveSwapRequest",
-}) as any as S.Schema<RetrieveSwapRequest>;
-
-export type RetrieveSwapResponseObject = "swap";
-export const RetrieveSwapResponseObject = /*@__PURE__*/ S.String;
-
-/** Current swap status. `complete` and `failed` are terminal. */
-export type RetrieveSwapResponseStatus =
-  | "queued"
-  | "working"
-  | "complete"
-  | "failed";
-export const RetrieveSwapResponseStatus = /*@__PURE__*/ S.String;
-
-/** On-chain transaction hashes produced by the swap. */
-export type RetrieveSwapResponseTxHashesList = Array<string>;
-export const RetrieveSwapResponseTxHashesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<RetrieveSwapResponseTxHashesList>;
-
-export interface RetrieveSwapResponse {
-  /** Account ID that owns the wallet used for the swap. */
-  account_id: string;
-  /** Latest error returned for a failed swap. */
-  error?: string | null;
-  /** Swap ID. */
-  id: string;
-  object: RetrieveSwapResponseObject;
-  /** Current swap status. `complete` and `failed` are terminal. */
-  status: RetrieveSwapResponseStatus;
-  /** On-chain transaction hashes produced by the swap. */
-  tx_hashes: RetrieveSwapResponseTxHashesList;
-}
-export const RetrieveSwapResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    account_id: S.String,
-    error: S.optional(S.NullOr(S.String)),
-    id: S.String,
-    object: RetrieveSwapResponseObject,
-    status: RetrieveSwapResponseStatus,
-    tx_hashes: RetrieveSwapResponseTxHashesList,
-  }),
-).annotate({
-  identifier: "RetrieveSwapResponse",
-}) as any as S.Schema<RetrieveSwapResponse>;
-
 export type CreateSwapError = BadRequest | Forbidden | Conflict | WhopOpError;
 /** Create Swap Swaps one token for another from the account's wallet, or converts between fiat currencies in the account's ledger at the mid-market rate. Crypto swaps finish in the background — check the swap for its status. */
 export const createSwap: API.OperationMethod<
@@ -461,6 +459,21 @@ export const createSwapQuote: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetSwapError = BadRequest | Forbidden | NotFound | WhopOpError;
+/** Retrieve Swap Retrieves a single swap and its status. */
+export const getSwap: API.OperationMethod<
+  GetSwapRequest,
+  GetSwapResponse,
+  GetSwapError,
+  WhopOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSwapRequest,
+  output: GetSwapResponse,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: WhopProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListSwapsError = Forbidden | WhopOpError;
 /** List Swaps Retrieve the account's completed or pending swaps — currently just the latest one. */
 export const listSwaps: API.OperationMethod<
@@ -472,21 +485,6 @@ export const listSwaps: API.OperationMethod<
   input: ListSwapsRequest,
   output: ListSwapsResponse,
   errors: [Forbidden],
-  protocol: WhopProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveSwapError = BadRequest | Forbidden | NotFound | WhopOpError;
-/** Retrieve Swap Retrieves a single swap and its status. */
-export const retrieveSwap: API.OperationMethod<
-  RetrieveSwapRequest,
-  RetrieveSwapResponse,
-  RetrieveSwapError,
-  WhopOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveSwapRequest,
-  output: RetrieveSwapResponse,
-  errors: [BadRequest, Forbidden, NotFound],
   protocol: WhopProtocol,
   retry: Retry.Retry,
 }));

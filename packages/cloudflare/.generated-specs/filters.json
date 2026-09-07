@@ -14,36 +14,19 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "keyDictionary": {
+      "perPage": "per_page",
+      "resultInfo": "result_info",
+      "totalCount": "total_count"
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.filters#BulkDeleteRequestIdList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
-      }
-    },
-    "com.cloudflare.filters#BulkDeleteRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Defines an identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "id": {
-          "target": "com.cloudflare.filters#BulkDeleteRequestIdList",
-          "traits": {
-            "smithy.api#httpQuery": "id",
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.filters#BulkDeleteResultItem": {
@@ -61,39 +44,6 @@
       "type": "list",
       "member": {
         "target": "com.cloudflare.filters#BulkDeleteResultItem"
-      }
-    },
-    "com.cloudflare.filters#BulkDeleteResponse": {
-      "type": "structure",
-      "members": {
-        "result": {
-          "target": "com.cloudflare.filters#BulkDeleteResultList",
-          "traits": {
-            "com.cloudflare.protocols#envelopePayload": {},
-            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.filters#BulkDelete": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.filters#BulkDeleteRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.filters#BulkDeleteResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "/zones/{zone_id}/filters",
-          "code": 200
-        },
-        "smithy.api#documentation": "Deletes one or more existing filters.",
-        "smithy.api#idempotent": {}
       }
     },
     "com.cloudflare.filters#BulkUpdateRequestBodyItem": {
@@ -137,29 +87,6 @@
         "target": "com.cloudflare.filters#BulkUpdateRequestBodyItem"
       }
     },
-    "com.cloudflare.filters#BulkUpdateRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Defines an identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.cloudflare.filters#BulkUpdateRequestBodyList",
-          "traits": {
-            "smithy.api#required": {},
-            "smithy.api#httpPayload": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.filters#BulkUpdateResultItem": {
       "type": "structure",
       "members": {
@@ -199,39 +126,6 @@
       "type": "list",
       "member": {
         "target": "com.cloudflare.filters#BulkUpdateResultItem"
-      }
-    },
-    "com.cloudflare.filters#BulkUpdateResponse": {
-      "type": "structure",
-      "members": {
-        "result": {
-          "target": "com.cloudflare.filters#BulkUpdateResultList",
-          "traits": {
-            "com.cloudflare.protocols#envelopePayload": {},
-            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.filters#BulkUpdate": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.filters#BulkUpdateRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.filters#BulkUpdateResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "PUT",
-          "uri": "/zones/{zone_id}/filters",
-          "code": 200
-        },
-        "smithy.api#documentation": "Updates one or more existing filters.",
-        "smithy.api#idempotent": {}
       }
     },
     "com.cloudflare.filters#CreateRequestBodyItem": {
@@ -275,29 +169,6 @@
         "target": "com.cloudflare.filters#CreateRequestBodyItem"
       }
     },
-    "com.cloudflare.filters#CreateRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Defines an identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.cloudflare.filters#CreateRequestBodyList",
-          "traits": {
-            "smithy.api#required": {},
-            "smithy.api#httpPayload": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.filters#CreateResultItem": {
       "type": "structure",
       "members": {
@@ -339,7 +210,240 @@
         "target": "com.cloudflare.filters#CreateResultItem"
       }
     },
-    "com.cloudflare.filters#CreateResponse": {
+    "com.cloudflare.filters#ListResultItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the filter."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An informative summary of the filter."
+          }
+        },
+        "expression": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The filter expression. For more information, refer to [Expressions](https://developers.cloudflare.com/ruleset-engine/rules-language/expressions/)."
+          }
+        },
+        "paused": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When true, indicates that the filter is currently paused."
+          }
+        },
+        "ref": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A short reference tag. Allows you to select related filters."
+          }
+        }
+      }
+    },
+    "com.cloudflare.filters#ListResultList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.filters#ListResultItem"
+      }
+    },
+    "com.cloudflare.filters#Filters": {
+      "type": "service",
+      "version": "4.0",
+      "operations": [
+        {
+          "target": "com.cloudflare.filters#BulkDeleteFilters"
+        },
+        {
+          "target": "com.cloudflare.filters#BulkPutFilters"
+        },
+        {
+          "target": "com.cloudflare.filters#CreateFilter"
+        },
+        {
+          "target": "com.cloudflare.filters#DeleteFilter"
+        },
+        {
+          "target": "com.cloudflare.filters#GetFilter"
+        },
+        {
+          "target": "com.cloudflare.filters#ListFilters"
+        },
+        {
+          "target": "com.cloudflare.filters#UpdateFilter"
+        }
+      ],
+      "traits": {
+        "com.cloudflare.protocols#v4Json": {},
+        "smithy.api#title": "Cloudflare Filters",
+        "smithy.api#documentation": "Cloudflare API — filters resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+      }
+    },
+    "com.cloudflare.filters#BulkDeleteFilters": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.filters#BulkDeleteFiltersRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.filters#BulkDeleteFiltersResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/zones/{zone_id}/filters",
+          "code": 200
+        },
+        "smithy.api#documentation": "Deletes one or more existing filters.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.filters#BulkDeleteFiltersRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Defines an identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "com.cloudflare.filters#BulkDeleteRequestIdList",
+          "traits": {
+            "smithy.api#httpQuery": "id",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.filters#BulkDeleteFiltersResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.filters#BulkDeleteResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.filters#BulkPutFilters": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.filters#BulkPutFiltersRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.filters#BulkPutFiltersResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/zones/{zone_id}/filters",
+          "code": 200
+        },
+        "smithy.api#documentation": "Updates one or more existing filters.",
+        "smithy.api#idempotent": {},
+        "smithy.api#paginated": {
+          "mode": "single",
+          "items": "result"
+        }
+      }
+    },
+    "com.cloudflare.filters#BulkPutFiltersRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Defines an identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.cloudflare.filters#BulkUpdateRequestBodyList",
+          "traits": {
+            "smithy.api#required": {},
+            "smithy.api#httpPayload": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.filters#BulkPutFiltersResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.filters#BulkUpdateResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.filters#CreateFilter": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.filters#CreateFilterRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.filters#CreateFilterResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/zones/{zone_id}/filters",
+          "code": 200
+        },
+        "smithy.api#documentation": "Creates one or more filters.",
+        "smithy.api#paginated": {
+          "mode": "single",
+          "items": "result"
+        }
+      }
+    },
+    "com.cloudflare.filters#CreateFilterRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Defines an identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.cloudflare.filters#CreateRequestBodyList",
+          "traits": {
+            "smithy.api#required": {},
+            "smithy.api#httpPayload": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.filters#CreateFilterResponse": {
       "type": "structure",
       "members": {
         "result": {
@@ -354,24 +458,25 @@
         "smithy.api#output": {}
       }
     },
-    "com.cloudflare.filters#Create": {
+    "com.cloudflare.filters#DeleteFilter": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.filters#CreateRequest"
+        "target": "com.cloudflare.filters#DeleteFilterRequest"
       },
       "output": {
-        "target": "com.cloudflare.filters#CreateResponse"
+        "target": "com.cloudflare.filters#DeleteFilterResponse"
       },
       "traits": {
         "smithy.api#http": {
-          "method": "POST",
-          "uri": "/zones/{zone_id}/filters",
+          "method": "DELETE",
+          "uri": "/zones/{zone_id}/filters/{filter_id}",
           "code": 200
         },
-        "smithy.api#documentation": "Creates one or more filters."
+        "smithy.api#documentation": "Deletes an existing filter.",
+        "smithy.api#idempotent": {}
       }
     },
-    "com.cloudflare.filters#DeleteRequest": {
+    "com.cloudflare.filters#DeleteFilterRequest": {
       "type": "structure",
       "members": {
         "zone_id": {
@@ -395,7 +500,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.filters#DeleteResponse": {
+    "com.cloudflare.filters#DeleteFilterResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -411,25 +516,25 @@
         "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
       }
     },
-    "com.cloudflare.filters#Delete": {
+    "com.cloudflare.filters#GetFilter": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.filters#DeleteRequest"
+        "target": "com.cloudflare.filters#GetFilterRequest"
       },
       "output": {
-        "target": "com.cloudflare.filters#DeleteResponse"
+        "target": "com.cloudflare.filters#GetFilterResponse"
       },
       "traits": {
         "smithy.api#http": {
-          "method": "DELETE",
+          "method": "GET",
           "uri": "/zones/{zone_id}/filters/{filter_id}",
           "code": 200
         },
-        "smithy.api#documentation": "Deletes an existing filter.",
-        "smithy.api#idempotent": {}
+        "smithy.api#documentation": "Fetches the details of a filter.",
+        "smithy.api#readonly": {}
       }
     },
-    "com.cloudflare.filters#GetRequest": {
+    "com.cloudflare.filters#GetFilterRequest": {
       "type": "structure",
       "members": {
         "zone_id": {
@@ -453,7 +558,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.filters#GetResponse": {
+    "com.cloudflare.filters#GetFilterResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -492,25 +597,32 @@
         "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
       }
     },
-    "com.cloudflare.filters#Get": {
+    "com.cloudflare.filters#ListFilters": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.filters#GetRequest"
+        "target": "com.cloudflare.filters#ListFiltersRequest"
       },
       "output": {
-        "target": "com.cloudflare.filters#GetResponse"
+        "target": "com.cloudflare.filters#ListFiltersResponse"
       },
       "traits": {
         "smithy.api#http": {
           "method": "GET",
-          "uri": "/zones/{zone_id}/filters/{filter_id}",
+          "uri": "/zones/{zone_id}/filters",
           "code": 200
         },
-        "smithy.api#documentation": "Fetches the details of a filter.",
-        "smithy.api#readonly": {}
+        "smithy.api#documentation": "Fetches filters in a zone. You can filter the results using several optional parameters.",
+        "smithy.api#readonly": {},
+        "smithy.api#paginated": {
+          "mode": "page",
+          "inputToken": "page",
+          "outputToken": "resultInfo.page",
+          "items": "result",
+          "pageSize": "perPage"
+        }
       }
     },
-    "com.cloudflare.filters#ListRequest": {
+    "com.cloudflare.filters#ListFiltersRequest": {
       "type": "structure",
       "members": {
         "zone_id": {
@@ -575,48 +687,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.filters#ListResultItem": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The unique identifier of the filter."
-          }
-        },
-        "description": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "An informative summary of the filter."
-          }
-        },
-        "expression": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The filter expression. For more information, refer to [Expressions](https://developers.cloudflare.com/ruleset-engine/rules-language/expressions/)."
-          }
-        },
-        "paused": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "When true, indicates that the filter is currently paused."
-          }
-        },
-        "ref": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A short reference tag. Allows you to select related filters."
-          }
-        }
-      }
-    },
-    "com.cloudflare.filters#ListResultList": {
-      "type": "list",
-      "member": {
-        "target": "com.cloudflare.filters#ListResultItem"
-      }
-    },
-    "com.cloudflare.filters#ListResponse": {
+    "com.cloudflare.filters#ListFiltersResponse": {
       "type": "structure",
       "members": {
         "result": {
@@ -631,25 +702,25 @@
         "smithy.api#output": {}
       }
     },
-    "com.cloudflare.filters#List": {
+    "com.cloudflare.filters#UpdateFilter": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.filters#ListRequest"
+        "target": "com.cloudflare.filters#UpdateFilterRequest"
       },
       "output": {
-        "target": "com.cloudflare.filters#ListResponse"
+        "target": "com.cloudflare.filters#UpdateFilterResponse"
       },
       "traits": {
         "smithy.api#http": {
-          "method": "GET",
-          "uri": "/zones/{zone_id}/filters",
+          "method": "PUT",
+          "uri": "/zones/{zone_id}/filters/{filter_id}",
           "code": 200
         },
-        "smithy.api#documentation": "Fetches filters in a zone. You can filter the results using several optional parameters.",
-        "smithy.api#readonly": {}
+        "smithy.api#documentation": "Updates an existing filter.",
+        "smithy.api#idempotent": {}
       }
     },
-    "com.cloudflare.filters#UpdateRequest": {
+    "com.cloudflare.filters#UpdateFilterRequest": {
       "type": "structure",
       "members": {
         "zone_id": {
@@ -697,7 +768,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.filters#UpdateResponse": {
+    "com.cloudflare.filters#UpdateFilterResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -734,56 +805,6 @@
       "traits": {
         "smithy.api#output": {},
         "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.filters#Update": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.filters#UpdateRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.filters#UpdateResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "PUT",
-          "uri": "/zones/{zone_id}/filters/{filter_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Updates an existing filter.",
-        "smithy.api#idempotent": {}
-      }
-    },
-    "com.cloudflare.filters#Filters": {
-      "type": "service",
-      "version": "4.0",
-      "operations": [
-        {
-          "target": "com.cloudflare.filters#BulkDelete"
-        },
-        {
-          "target": "com.cloudflare.filters#BulkUpdate"
-        },
-        {
-          "target": "com.cloudflare.filters#Create"
-        },
-        {
-          "target": "com.cloudflare.filters#Delete"
-        },
-        {
-          "target": "com.cloudflare.filters#Get"
-        },
-        {
-          "target": "com.cloudflare.filters#List"
-        },
-        {
-          "target": "com.cloudflare.filters#Update"
-        }
-      ],
-      "traits": {
-        "com.cloudflare.protocols#v4Json": {},
-        "smithy.api#title": "Cloudflare Filters",
-        "smithy.api#documentation": "Cloudflare API — filters resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
       }
     }
   }

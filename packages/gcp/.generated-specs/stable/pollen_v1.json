@@ -4,145 +4,139 @@
     "service": "pollen",
     "version": "v1",
     "title": "Pollen API",
-    "baseUrl": "https://pollen.googleapis.com/"
+    "baseUrl": "https://pollen.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.gcp.pollen_v1#PollenTypeInfo": {
+    "com.gcp.pollen_v1#LookupForecastResponse": {
       "type": "structure",
       "members": {
-        "healthRecommendations": {
-          "target": "com.gcp.pollen_v1#StringList",
+        "dailyInfo": {
+          "target": "com.gcp.pollen_v1#DayInfoList",
           "traits": {
-            "smithy.api#documentation": "Textual list of explanations, related to health insights based on the current pollen levels."
+            "smithy.api#documentation": "Required. This object contains the daily forecast information for each day requested."
           }
         },
-        "indexInfo": {
-          "target": "com.gcp.pollen_v1#IndexInfo",
+        "nextPageToken": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Contains the Universal Pollen Index (UPI) data for the pollen type."
+            "smithy.api#documentation": "Optional. The token to retrieve the next page."
+          }
+        },
+        "regionCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ISO_3166-1 alpha-2 code of the country/region corresponding to the location provided in the request. This field might be omitted from the response if the location provided in the request resides in a disputed territory."
+          }
+        }
+      }
+    },
+    "com.gcp.pollen_v1#DayInfoList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.pollen_v1#DayInfo"
+      }
+    },
+    "com.gcp.pollen_v1#IndexInfo": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The index's numeric score. Numeric range is between 0 and 5."
           }
         },
         "displayName": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "A human readable representation of the pollen type name. Example: \"Grass\""
+            "smithy.api#documentation": "A human readable representation of the index name. Example: \"Universal Pollen Index\"."
           }
         },
-        "inSeason": {
-          "target": "smithy.api#Boolean",
+        "color": {
+          "target": "com.gcp.pollen_v1#Color",
           "traits": {
-            "smithy.api#documentation": "Indication whether the plant is in season or not."
+            "smithy.api#documentation": "The color used to represent the Pollen Index numeric score."
+          }
+        },
+        "indexDescription": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Textual explanation of current index level."
           }
         },
         "code": {
-          "target": "com.gcp.pollen_v1#PollenTypeInfoCodeEnum",
+          "target": "com.gcp.pollen_v1#IndexInfoCodeEnum",
           "traits": {
-            "smithy.api#documentation": "The pollen type's code name. For example: \"GRASS\""
+            "smithy.api#documentation": "The index's code. This field represents the index for programming purposes by using snake cases instead of spaces. Example: \"UPI\"."
+          }
+        },
+        "category": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Text classification of index numerical score interpretation. The index consists of six categories: * 0: \"None\" * 1: \"Very low\" * 2: \"Low\" * 3: \"Moderate\" * 4: \"High\" * 5: \"Very high"
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "This object contains the pollen type index and health recommendation information on specific pollen type."
+        "smithy.api#documentation": "This object contains data representing specific pollen index value, category and description."
       }
     },
-    "com.gcp.pollen_v1#StringList": {
-      "type": "list",
-      "member": {
-        "target": "smithy.api#String"
-      }
-    },
-    "com.gcp.pollen_v1#PollenTypeInfoCodeEnum": {
+    "com.gcp.pollen_v1#IndexInfoCodeEnum": {
       "type": "enum",
       "members": {
-        "POLLEN_TYPE_UNSPECIFIED": {
+        "INDEX_UNSPECIFIED": {
           "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#enumValue": "POLLEN_TYPE_UNSPECIFIED"
+            "smithy.api#enumValue": "INDEX_UNSPECIFIED"
           }
         },
-        "GRASS": {
+        "UPI": {
           "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#enumValue": "GRASS"
-          }
-        },
-        "TREE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "TREE"
-          }
-        },
-        "WEED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "WEED"
+            "smithy.api#enumValue": "UPI"
           }
         }
       }
     },
-    "com.gcp.pollen_v1#DayInfo": {
+    "com.gcp.pollen_v1#Color": {
       "type": "structure",
       "members": {
-        "pollenTypeInfo": {
-          "target": "com.gcp.pollen_v1#PollenTypeInfoList",
+        "green": {
+          "target": "smithy.api#Double",
           "traits": {
-            "smithy.api#documentation": "This list will include up to three pollen types (GRASS, WEED, TREE) affecting the location specified in the request."
+            "smithy.api#documentation": "The amount of green in the color as a value in the interval [0, 1]."
           }
         },
-        "plantInfo": {
-          "target": "com.gcp.pollen_v1#PlantInfoList",
+        "blue": {
+          "target": "smithy.api#Double",
           "traits": {
-            "smithy.api#documentation": "This list will include up to 15 pollen species affecting the location specified in the request."
+            "smithy.api#documentation": "The amount of blue in the color as a value in the interval [0, 1]."
           }
         },
-        "date": {
-          "target": "com.gcp.pollen_v1#Pollen_Date",
+        "alpha": {
+          "target": "smithy.api#Double",
           "traits": {
-            "smithy.api#documentation": "The date in UTC at which the pollen forecast data is represented."
+            "smithy.api#documentation": "The fraction of this color that should be applied to the pixel. That is, the final pixel color is defined by the equation: `pixel color = alpha * (this color) + (1.0 - alpha) * (background color)` This means that a value of 1.0 corresponds to a solid color, whereas a value of 0.0 corresponds to a completely transparent color. This uses a wrapper message rather than a simple float scalar so that it is possible to distinguish between a default value and the value being unset. If omitted, this color object is rendered as a solid color (as if the alpha value had been explicitly given a value of 1.0)."
+          }
+        },
+        "red": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The amount of red in the color as a value in the interval [0, 1]."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "This object contains the daily forecast information for each day requested."
-      }
-    },
-    "com.gcp.pollen_v1#PollenTypeInfoList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.pollen_v1#PollenTypeInfo"
-      }
-    },
-    "com.gcp.pollen_v1#PlantInfoList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.pollen_v1#PlantInfo"
+        "smithy.api#documentation": "Represents a color in the RGBA color space. This representation is designed for simplicity of conversion to and from color representations in various languages over compactness. For example, the fields of this representation can be trivially provided to the constructor of `java.awt.Color` in Java; it can also be trivially provided to UIColor's `+colorWithRed:green:blue:alpha` method in iOS; and, with just a little work, it can be easily formatted into a CSS `rgba()` string in JavaScript. This reference page doesn't have information about the absolute color space that should be used to interpret the RGB value—for example, sRGB, Adobe RGB, DCI-P3, and BT.2020. By default, applications should assume the sRGB color space. When color equality needs to be decided, implementations, unless documented otherwise, treat two colors as equal if all their red, green, blue, and alpha values each differ by at most `1e-5`. Example (Java): import com.google.type.Color; // ... public static java.awt.Color fromProto(Color protocolor) { float alpha = protocolor.hasAlpha() ? protocolor.getAlpha().getValue() : 1.0; return new java.awt.Color( protocolor.getRed(), protocolor.getGreen(), protocolor.getBlue(), alpha); } public static Color toProto(java.awt.Color color) { float red = (float) color.getRed(); float green = (float) color.getGreen(); float blue = (float) color.getBlue(); float denominator = 255.0; Color.Builder resultBuilder = Color .newBuilder() .setRed(red / denominator) .setGreen(green / denominator) .setBlue(blue / denominator); int alpha = color.getAlpha(); if (alpha != 255) { result.setAlpha( FloatValue .newBuilder() .setValue(((float) alpha) / denominator) .build()); } return resultBuilder.build(); } // ... Example (iOS / Obj-C): // ... static UIColor* fromProto(Color* protocolor) { float red = [protocolor red]; float green = [protocolor green]; float blue = [protocolor blue]; FloatValue* alpha_wrapper = [protocolor alpha]; float alpha = 1.0; if (alpha_wrapper != nil) { alpha = [alpha_wrapper value]; } return [UIColor colorWithRed:red green:green blue:blue alpha:alpha]; } static Color* toProto(UIColor* color) { CGFloat red, green, blue, alpha; if (![color getRed:&red green:&green blue:&blue alpha:&alpha]) { return nil; } Color* result = [[Color alloc] init]; [result setRed:red]; [result setGreen:green]; [result setBlue:blue]; if (alpha <= 0.9999) { [result setAlpha:floatWrapperWithValue(alpha)]; } [result autorelease]; return result; } // ... Example (JavaScript): // ... var protoToCssColor = function(rgb_color) { var redFrac = rgb_color.red || 0.0; var greenFrac = rgb_color.green || 0.0; var blueFrac = rgb_color.blue || 0.0; var red = Math.floor(redFrac * 255); var green = Math.floor(greenFrac * 255); var blue = Math.floor(blueFrac * 255); if (!('alpha' in rgb_color)) { return rgbToCssColor(red, green, blue); } var alphaFrac = rgb_color.alpha.value || 0.0; var rgbParams = [red, green, blue].join(','); return ['rgba(', rgbParams, ',', alphaFrac, ')'].join(''); }; var rgbToCssColor = function(red, green, blue) { var rgbNumber = new Number((red << 16) | (green << 8) | blue); var hexString = rgbNumber.toString(16); var missingZeros = 6 - hexString.length; var resultBuilder = ['#']; for (var i = 0; i < missingZeros; i++) { resultBuilder.push('0'); } resultBuilder.push(hexString); return resultBuilder.join(''); }; // ..."
       }
     },
     "com.gcp.pollen_v1#PlantDescription": {
       "type": "structure",
       "members": {
-        "family": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A human readable representation of the plant family name. Example: \"Betulaceae (the Birch family)\"."
-          }
-        },
-        "specialColors": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Textual description of the plants' colors of leaves, bark, flowers or seeds that helps identify the plant."
-          }
-        },
         "specialShapes": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Textual description of the plants' shapes of leaves, bark, flowers or seeds that helps identify the plant."
-          }
-        },
-        "crossReaction": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Textual description of pollen cross reaction plants. Example: Alder, Hazel, Hornbeam, Beech, Willow, and Oak pollen."
           }
         },
         "type": {
@@ -157,16 +151,34 @@
             "smithy.api#documentation": "Link to a closeup picture of the plant."
           }
         },
-        "picture": {
+        "crossReaction": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Link to the picture of the plant."
+            "smithy.api#documentation": "Textual description of pollen cross reaction plants. Example: Alder, Hazel, Hornbeam, Beech, Willow, and Oak pollen."
+          }
+        },
+        "family": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A human readable representation of the plant family name. Example: \"Betulaceae (the Birch family)\"."
           }
         },
         "season": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Textual list of explanations of seasons where the pollen is active. Example: \"Late winter, spring\"."
+          }
+        },
+        "specialColors": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Textual description of the plants' colors of leaves, bark, flowers or seeds that helps identify the plant."
+          }
+        },
+        "picture": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Link to the picture of the plant."
           }
         }
       },
@@ -203,115 +215,124 @@
         }
       }
     },
-    "com.gcp.pollen_v1#IndexInfo": {
+    "com.gcp.pollen_v1#HttpBody": {
       "type": "structure",
       "members": {
-        "color": {
-          "target": "com.gcp.pollen_v1#Color",
+        "extensions": {
+          "target": "com.gcp.pollen_v1#DocumentMapList",
           "traits": {
-            "smithy.api#documentation": "The color used to represent the Pollen Index numeric score."
+            "smithy.api#documentation": "Application specific response metadata. Must be set in the first response for streaming APIs."
           }
         },
-        "displayName": {
+        "contentType": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "A human readable representation of the index name. Example: \"Universal Pollen Index\"."
+            "smithy.api#documentation": "The HTTP Content-Type header value specifying the content type of the body."
           }
         },
-        "value": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The index's numeric score. Numeric range is between 0 and 5."
-          }
-        },
-        "code": {
-          "target": "com.gcp.pollen_v1#IndexInfoCodeEnum",
-          "traits": {
-            "smithy.api#documentation": "The index's code. This field represents the index for programming purposes by using snake cases instead of spaces. Example: \"UPI\"."
-          }
-        },
-        "indexDescription": {
+        "data": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Textual explanation of current index level."
-          }
-        },
-        "category": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Text classification of index numerical score interpretation. The index consists of six categories: * 0: \"None\" * 1: \"Very low\" * 2: \"Low\" * 3: \"Moderate\" * 4: \"High\" * 5: \"Very high"
+            "smithy.api#documentation": "The HTTP request/response body as raw binary."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "This object contains data representing specific pollen index value, category and description."
+        "smithy.api#documentation": "Message that represents an arbitrary HTTP body. It should only be used for payload formats that can't be represented as JSON, such as raw binary or an HTML page. This message can be used both in streaming and non-streaming API methods in the request as well as the response. It can be used as a top-level request field, which is convenient if one wants to extract parameters from either the URL or HTTP template into the request fields and also want access to the raw HTTP body. Example: message GetResourceRequest { // A unique request id. string request_id = 1; // The raw HTTP body is bound to this field. google.api.HttpBody http_body = 2; } service ResourceService { rpc GetResource(GetResourceRequest) returns (google.api.HttpBody); rpc UpdateResource(google.api.HttpBody) returns (google.protobuf.Empty); } Example with streaming methods: service CaldavService { rpc GetCalendar(stream google.api.HttpBody) returns (stream google.api.HttpBody); rpc UpdateCalendar(stream google.api.HttpBody) returns (stream google.api.HttpBody); } Use of this type only changes how the request and response bodies are handled, all other features will continue to work unchanged."
       }
     },
-    "com.gcp.pollen_v1#IndexInfoCodeEnum": {
-      "type": "enum",
-      "members": {
-        "INDEX_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "INDEX_UNSPECIFIED"
-          }
-        },
-        "UPI": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "UPI"
-          }
-        }
+    "com.gcp.pollen_v1#DocumentMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
       }
     },
-    "com.gcp.pollen_v1#LookupForecastResponse": {
-      "type": "structure",
-      "members": {
-        "dailyInfo": {
-          "target": "com.gcp.pollen_v1#DayInfoList",
-          "traits": {
-            "smithy.api#documentation": "Required. This object contains the daily forecast information for each day requested."
-          }
-        },
-        "nextPageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The token to retrieve the next page."
-          }
-        },
-        "regionCode": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The ISO_3166-1 alpha-2 code of the country/region corresponding to the location provided in the request. This field might be omitted from the response if the location provided in the request resides in a disputed territory."
-          }
-        }
-      }
-    },
-    "com.gcp.pollen_v1#DayInfoList": {
+    "com.gcp.pollen_v1#DocumentMapList": {
       "type": "list",
       "member": {
-        "target": "com.gcp.pollen_v1#DayInfo"
+        "target": "com.gcp.pollen_v1#DocumentMap"
+      }
+    },
+    "com.gcp.pollen_v1#DayInfo": {
+      "type": "structure",
+      "members": {
+        "date": {
+          "target": "com.gcp.pollen_v1#Pollen_Date",
+          "traits": {
+            "smithy.api#documentation": "The date in UTC at which the pollen forecast data is represented."
+          }
+        },
+        "pollenTypeInfo": {
+          "target": "com.gcp.pollen_v1#PollenTypeInfoList",
+          "traits": {
+            "smithy.api#documentation": "This list will include up to three pollen types (GRASS, WEED, TREE) affecting the location specified in the request."
+          }
+        },
+        "plantInfo": {
+          "target": "com.gcp.pollen_v1#PlantInfoList",
+          "traits": {
+            "smithy.api#documentation": "This list will include up to 15 pollen species affecting the location specified in the request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "This object contains the daily forecast information for each day requested."
+      }
+    },
+    "com.gcp.pollen_v1#PollenTypeInfoList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.pollen_v1#PollenTypeInfo"
+      }
+    },
+    "com.gcp.pollen_v1#PlantInfoList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.pollen_v1#PlantInfo"
+      }
+    },
+    "com.gcp.pollen_v1#Pollen_Date": {
+      "type": "structure",
+      "members": {
+        "year": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year."
+          }
+        },
+        "day": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant."
+          }
+        },
+        "month": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp"
       }
     },
     "com.gcp.pollen_v1#PlantInfo": {
       "type": "structure",
       "members": {
-        "indexInfo": {
-          "target": "com.gcp.pollen_v1#IndexInfo",
-          "traits": {
-            "smithy.api#documentation": "This object contains data representing specific pollen index value, category and description."
-          }
-        },
         "inSeason": {
           "target": "smithy.api#Boolean",
           "traits": {
             "smithy.api#documentation": "Indication of either the plant is in season or not."
           }
         },
-        "displayName": {
-          "target": "smithy.api#String",
+        "plantDescription": {
+          "target": "com.gcp.pollen_v1#PlantDescription",
           "traits": {
-            "smithy.api#documentation": "A human readable representation of the plant name. Example: “Cottonwood\"."
+            "smithy.api#documentation": "Contains general information about plants, including details on their seasonality, special shapes and colors, information about allergic cross-reactions, and plant photos."
           }
         },
         "code": {
@@ -320,10 +341,16 @@
             "smithy.api#documentation": "The plant code name. For example: \"COTTONWOOD\". A list of all available codes could be found here."
           }
         },
-        "plantDescription": {
-          "target": "com.gcp.pollen_v1#PlantDescription",
+        "indexInfo": {
+          "target": "com.gcp.pollen_v1#IndexInfo",
           "traits": {
-            "smithy.api#documentation": "Contains general information about plants, including details on their seasonality, special shapes and colors, information about allergic cross-reactions, and plant photos."
+            "smithy.api#documentation": "This object contains data representing specific pollen index value, category and description."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A human readable representation of the plant name. Example: “Cottonwood\"."
           }
         }
       },
@@ -444,103 +471,185 @@
         }
       }
     },
-    "com.gcp.pollen_v1#Pollen_Date": {
+    "com.gcp.pollen_v1#PollenTypeInfo": {
       "type": "structure",
       "members": {
-        "day": {
-          "target": "smithy.api#Integer",
+        "displayName": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant."
+            "smithy.api#documentation": "A human readable representation of the pollen type name. Example: \"Grass\""
           }
         },
-        "year": {
-          "target": "smithy.api#Integer",
+        "code": {
+          "target": "com.gcp.pollen_v1#PollenTypeInfoCodeEnum",
           "traits": {
-            "smithy.api#documentation": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year."
+            "smithy.api#documentation": "The pollen type's code name. For example: \"GRASS\""
           }
         },
-        "month": {
-          "target": "smithy.api#Integer",
+        "indexInfo": {
+          "target": "com.gcp.pollen_v1#IndexInfo",
           "traits": {
-            "smithy.api#documentation": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day."
+            "smithy.api#documentation": "Contains the Universal Pollen Index (UPI) data for the pollen type."
+          }
+        },
+        "inSeason": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indication whether the plant is in season or not."
+          }
+        },
+        "healthRecommendations": {
+          "target": "com.gcp.pollen_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Textual list of explanations, related to health insights based on the current pollen levels."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp"
+        "smithy.api#documentation": "This object contains the pollen type index and health recommendation information on specific pollen type."
       }
     },
-    "com.gcp.pollen_v1#HttpBody": {
-      "type": "structure",
+    "com.gcp.pollen_v1#PollenTypeInfoCodeEnum": {
+      "type": "enum",
       "members": {
-        "data": {
-          "target": "smithy.api#String",
+        "POLLEN_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#documentation": "The HTTP request/response body as raw binary."
+            "smithy.api#enumValue": "POLLEN_TYPE_UNSPECIFIED"
           }
         },
-        "extensions": {
-          "target": "com.gcp.pollen_v1#DocumentMapList",
+        "GRASS": {
+          "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#documentation": "Application specific response metadata. Must be set in the first response for streaming APIs."
+            "smithy.api#enumValue": "GRASS"
           }
         },
-        "contentType": {
-          "target": "smithy.api#String",
+        "TREE": {
+          "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#documentation": "The HTTP Content-Type header value specifying the content type of the body."
+            "smithy.api#enumValue": "TREE"
+          }
+        },
+        "WEED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WEED"
           }
         }
-      },
-      "traits": {
-        "smithy.api#documentation": "Message that represents an arbitrary HTTP body. It should only be used for payload formats that can't be represented as JSON, such as raw binary or an HTML page. This message can be used both in streaming and non-streaming API methods in the request as well as the response. It can be used as a top-level request field, which is convenient if one wants to extract parameters from either the URL or HTTP template into the request fields and also want access to the raw HTTP body. Example: message GetResourceRequest { // A unique request id. string request_id = 1; // The raw HTTP body is bound to this field. google.api.HttpBody http_body = 2; } service ResourceService { rpc GetResource(GetResourceRequest) returns (google.api.HttpBody); rpc UpdateResource(google.api.HttpBody) returns (google.protobuf.Empty); } Example with streaming methods: service CaldavService { rpc GetCalendar(stream google.api.HttpBody) returns (stream google.api.HttpBody); rpc UpdateCalendar(stream google.api.HttpBody) returns (stream google.api.HttpBody); } Use of this type only changes how the request and response bodies are handled, all other features will continue to work unchanged."
       }
     },
-    "com.gcp.pollen_v1#DocumentMap": {
-      "type": "map",
-      "key": {
-        "target": "smithy.api#String"
-      },
-      "value": {
-        "target": "smithy.api#Document"
-      }
-    },
-    "com.gcp.pollen_v1#DocumentMapList": {
+    "com.gcp.pollen_v1#StringList": {
       "type": "list",
       "member": {
-        "target": "com.gcp.pollen_v1#DocumentMap"
+        "target": "smithy.api#String"
       }
     },
-    "com.gcp.pollen_v1#Color": {
+    "com.gcp.pollen_v1#LookupForecastRequest": {
       "type": "structure",
       "members": {
-        "green": {
-          "target": "smithy.api#Double",
+        "plantsDescription": {
+          "target": "smithy.api#Boolean",
           "traits": {
-            "smithy.api#documentation": "The amount of green in the color as a value in the interval [0, 1]."
+            "smithy.api#documentation": "Optional. Contains general information about plants, including details on their seasonality, special shapes and colors, information about allergic cross-reactions, and plant photos. The default value is \"true\".",
+            "smithy.api#httpQuery": "plantsDescription"
           }
         },
-        "red": {
+        "location.latitude": {
           "target": "smithy.api#Double",
           "traits": {
-            "smithy.api#documentation": "The amount of red in the color as a value in the interval [0, 1]."
+            "smithy.api#documentation": "The latitude in degrees. It must be in the range [-90.0, +90.0].",
+            "smithy.api#httpQuery": "location.latitude"
           }
         },
-        "alpha": {
-          "target": "smithy.api#Double",
+        "pageToken": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The fraction of this color that should be applied to the pixel. That is, the final pixel color is defined by the equation: `pixel color = alpha * (this color) + (1.0 - alpha) * (background color)` This means that a value of 1.0 corresponds to a solid color, whereas a value of 0.0 corresponds to a completely transparent color. This uses a wrapper message rather than a simple float scalar so that it is possible to distinguish between a default value and the value being unset. If omitted, this color object is rendered as a solid color (as if the alpha value had been explicitly given a value of 1.0)."
+            "smithy.api#documentation": "Optional. A page token received from a previous daily call. It is used to retrieve the subsequent page. Note that when providing a value for the page token, all other request parameters provided must match the previous call that provided the page token.",
+            "smithy.api#httpQuery": "pageToken"
           }
         },
-        "blue": {
+        "days": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Required. A number that indicates how many forecast days to request (minimum value 1, maximum value is 5).",
+            "smithy.api#httpQuery": "days"
+          }
+        },
+        "location.longitude": {
           "target": "smithy.api#Double",
           "traits": {
-            "smithy.api#documentation": "The amount of blue in the color as a value in the interval [0, 1]."
+            "smithy.api#documentation": "The longitude in degrees. It must be in the range [-180.0, +180.0].",
+            "smithy.api#httpQuery": "location.longitude"
+          }
+        },
+        "languageCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Allows the client to choose the language for the response. If data cannot be provided for that language, the API uses the closest match. Allowed values rely on the IETF BCP-47 standard. The default value is \"en\".",
+            "smithy.api#httpQuery": "languageCode"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum number of daily info records to return per page. The default and max value is 5, indicating 5 days of data.",
+            "smithy.api#httpQuery": "pageSize"
           }
         }
-      },
+      }
+    },
+    "com.gcp.pollen_v1#NotFound": {
+      "type": "structure",
+      "members": {},
       "traits": {
-        "smithy.api#documentation": "Represents a color in the RGBA color space. This representation is designed for simplicity of conversion to and from color representations in various languages over compactness. For example, the fields of this representation can be trivially provided to the constructor of `java.awt.Color` in Java; it can also be trivially provided to UIColor's `+colorWithRed:green:blue:alpha` method in iOS; and, with just a little work, it can be easily formatted into a CSS `rgba()` string in JavaScript. This reference page doesn't have information about the absolute color space that should be used to interpret the RGB value—for example, sRGB, Adobe RGB, DCI-P3, and BT.2020. By default, applications should assume the sRGB color space. When color equality needs to be decided, implementations, unless documented otherwise, treat two colors as equal if all their red, green, blue, and alpha values each differ by at most `1e-5`. Example (Java): import com.google.type.Color; // ... public static java.awt.Color fromProto(Color protocolor) { float alpha = protocolor.hasAlpha() ? protocolor.getAlpha().getValue() : 1.0; return new java.awt.Color( protocolor.getRed(), protocolor.getGreen(), protocolor.getBlue(), alpha); } public static Color toProto(java.awt.Color color) { float red = (float) color.getRed(); float green = (float) color.getGreen(); float blue = (float) color.getBlue(); float denominator = 255.0; Color.Builder resultBuilder = Color .newBuilder() .setRed(red / denominator) .setGreen(green / denominator) .setBlue(blue / denominator); int alpha = color.getAlpha(); if (alpha != 255) { result.setAlpha( FloatValue .newBuilder() .setValue(((float) alpha) / denominator) .build()); } return resultBuilder.build(); } // ... Example (iOS / Obj-C): // ... static UIColor* fromProto(Color* protocolor) { float red = [protocolor red]; float green = [protocolor green]; float blue = [protocolor blue]; FloatValue* alpha_wrapper = [protocolor alpha]; float alpha = 1.0; if (alpha_wrapper != nil) { alpha = [alpha_wrapper value]; } return [UIColor colorWithRed:red green:green blue:blue alpha:alpha]; } static Color* toProto(UIColor* color) { CGFloat red, green, blue, alpha; if (![color getRed:&red green:&green blue:&blue alpha:&alpha]) { return nil; } Color* result = [[Color alloc] init]; [result setRed:red]; [result setGreen:green]; [result setBlue:blue]; if (alpha <= 0.9999) { [result setAlpha:floatWrapperWithValue(alpha)]; } [result autorelease]; return result; } // ... Example (JavaScript): // ... var protoToCssColor = function(rgb_color) { var redFrac = rgb_color.red || 0.0; var greenFrac = rgb_color.green || 0.0; var blueFrac = rgb_color.blue || 0.0; var red = Math.floor(redFrac * 255); var green = Math.floor(greenFrac * 255); var blue = Math.floor(blueFrac * 255); if (!('alpha' in rgb_color)) { return rgbToCssColor(red, green, blue); } var alphaFrac = rgb_color.alpha.value || 0.0; var rgbParams = [red, green, blue].join(','); return ['rgba(', rgbParams, ',', alphaFrac, ')'].join(''); }; var rgbToCssColor = function(red, green, blue) { var rgbNumber = new Number((red << 16) | (green << 8) | blue); var hexString = rgbNumber.toString(16); var missingZeros = 6 - hexString.length; var resultBuilder = ['#']; for (var i = 0; i < missingZeros; i++) { resultBuilder.push('0'); } resultBuilder.push(hexString); return resultBuilder.join(''); }; // ..."
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.gcp.pollen_v1#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.gcp.pollen_v1#LookupForecast": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.pollen_v1#LookupForecastRequest"
+      },
+      "output": {
+        "target": "com.gcp.pollen_v1#LookupForecastResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.pollen_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.pollen_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/forecast:lookup"
+        },
+        "smithy.api#documentation": "Returns up to 5 days of daily pollen information in more than 65 countries, up to 1km resolution.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
       }
     },
     "com.gcp.pollen_v1#LookupHeatmapTileMapTypesHeatmapTilesMapTypeEnum": {
@@ -575,18 +684,18 @@
     "com.gcp.pollen_v1#LookupHeatmapTileMapTypesHeatmapTilesRequest": {
       "type": "structure",
       "members": {
-        "mapType": {
-          "target": "com.gcp.pollen_v1#LookupHeatmapTileMapTypesHeatmapTilesMapTypeEnum",
-          "traits": {
-            "smithy.api#documentation": "Required. The type of the pollen heatmap. Defines the combination of pollen type and index that the map will graphically represent.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
         "zoom": {
           "target": "smithy.api#Integer",
           "traits": {
             "smithy.api#documentation": "Required. The map's zoom level. Defines how large or small the contents of a map appear in a map view. * Zoom level 0 is the entire world in a single tile. * Zoom level 1 is the entire world in 4 tiles. * Zoom level 2 is the entire world in 16 tiles. * Zoom level 16 is the entire world in 65,536 tiles. Allowed values: 0-16",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "mapType": {
+          "target": "com.gcp.pollen_v1#LookupHeatmapTileMapTypesHeatmapTilesMapTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. The type of the pollen heatmap. Defines the combination of pollen type and index that the map will graphically represent.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
           }
@@ -607,32 +716,6 @@
             "smithy.api#required": {}
           }
         }
-      }
-    },
-    "com.gcp.pollen_v1#NotFound": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#error": "client",
-        "smithy.api#httpError": 404,
-        "com.gcp.protocols#errorMatchers": [
-          {
-            "status": 404
-          }
-        ]
-      }
-    },
-    "com.gcp.pollen_v1#Forbidden": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#error": "client",
-        "smithy.api#httpError": 403,
-        "com.gcp.protocols#errorMatchers": [
-          {
-            "status": 403
-          }
-        ]
       }
     },
     "com.gcp.pollen_v1#LookupHeatmapTileMapTypesHeatmapTiles": {
@@ -657,88 +740,6 @@
           "uri": "v1/mapTypes/{mapType}/heatmapTiles/{zoom}/{x}/{y}"
         },
         "smithy.api#documentation": "Returns a byte array containing the data of the tile PNG image."
-      }
-    },
-    "com.gcp.pollen_v1#LookupForecastRequest": {
-      "type": "structure",
-      "members": {
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. A page token received from a previous daily call. It is used to retrieve the subsequent page. Note that when providing a value for the page token, all other request parameters provided must match the previous call that provided the page token.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        },
-        "location.longitude": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The longitude in degrees. It must be in the range [-180.0, +180.0].",
-            "smithy.api#httpQuery": "location.longitude"
-          }
-        },
-        "plantsDescription": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Optional. Contains general information about plants, including details on their seasonality, special shapes and colors, information about allergic cross-reactions, and plant photos. The default value is \"true\".",
-            "smithy.api#httpQuery": "plantsDescription"
-          }
-        },
-        "days": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Required. A number that indicates how many forecast days to request (minimum value 1, maximum value is 5).",
-            "smithy.api#httpQuery": "days"
-          }
-        },
-        "location.latitude": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The latitude in degrees. It must be in the range [-90.0, +90.0].",
-            "smithy.api#httpQuery": "location.latitude"
-          }
-        },
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Optional. The maximum number of daily info records to return per page. The default and max value is 5, indicating 5 days of data.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        },
-        "languageCode": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Allows the client to choose the language for the response. If data cannot be provided for that language, the API uses the closest match. Allowed values rely on the IETF BCP-47 standard. The default value is \"en\".",
-            "smithy.api#httpQuery": "languageCode"
-          }
-        }
-      }
-    },
-    "com.gcp.pollen_v1#LookupForecast": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.pollen_v1#LookupForecastRequest"
-      },
-      "output": {
-        "target": "com.gcp.pollen_v1#LookupForecastResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.pollen_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.pollen_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/forecast:lookup"
-        },
-        "smithy.api#documentation": "Returns up to 5 days of daily pollen information in more than 65 countries, up to 1km resolution.",
-        "smithy.api#paginated": {
-          "inputToken": "pageToken",
-          "outputToken": "nextPageToken"
-        }
       }
     }
   }

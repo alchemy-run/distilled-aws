@@ -298,7 +298,8 @@ export type GetKernelResponseSupportedDriverFamiliesItem =
   | "rocm"
   | "metal"
   | "xpu"
-  | "cpu";
+  | "cpu"
+  | "webgpu";
 export const GetKernelResponseSupportedDriverFamiliesItem =
   /*@__PURE__*/ S.String;
 
@@ -530,7 +531,8 @@ export type GetKernelRevisionResponseSupportedDriverFamiliesItem =
   | "rocm"
   | "metal"
   | "xpu"
-  | "cpu";
+  | "cpu"
+  | "webgpu";
 export const GetKernelRevisionResponseSupportedDriverFamiliesItem =
   /*@__PURE__*/ S.String;
 
@@ -823,7 +825,8 @@ export type ListKernelsResponseBodyItemBuildMetadataBackendsItemType =
   | "rocm"
   | "metal"
   | "xpu"
-  | "cpu";
+  | "cpu"
+  | "webgpu";
 export const ListKernelsResponseBodyItemBuildMetadataBackendsItemType =
   /*@__PURE__*/ S.String;
 
@@ -964,7 +967,8 @@ export type ListKernelsResponseBodyItemSupportedDriverFamiliesItem =
   | "rocm"
   | "metal"
   | "xpu"
-  | "cpu";
+  | "cpu"
+  | "webgpu";
 export const ListKernelsResponseBodyItemSupportedDriverFamiliesItem =
   /*@__PURE__*/ S.String;
 

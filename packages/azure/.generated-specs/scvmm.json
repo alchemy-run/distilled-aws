@@ -14,13 +14,14 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.scvmm#InventoryItemsDelete": {
+    "com.azure.scvmm#DeleteInventoryItem": {
       "type": "operation",
       "input": {
-        "target": "com.azure.scvmm#InventoryItemsDeleteRequest"
+        "target": "com.azure.scvmm#DeleteInventoryItemRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -36,7 +37,7 @@
         "com.distilled.openapi#apiVersion": "2025-03-13"
       }
     },
-    "com.azure.scvmm#InventoryItemsDeleteRequest": {
+    "com.azure.scvmm#DeleteInventoryItemRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -76,13 +77,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.scvmm#InventoryItemsCreate": {
+    "com.azure.scvmm#CreateInventoryItem": {
       "type": "operation",
       "input": {
-        "target": "com.azure.scvmm#InventoryItemsCreateRequest"
+        "target": "com.azure.scvmm#CreateInventoryItemRequest"
       },
       "output": {
-        "target": "com.azure.scvmm#InventoryItemsCreateResponse"
+        "target": "com.azure.scvmm#CreateInventoryItemResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -95,7 +96,7 @@
         "com.distilled.openapi#apiVersion": "2025-03-13"
       }
     },
-    "com.azure.scvmm#InventoryItemsCreateResponse": {
+    "com.azure.scvmm#CreateInventoryItemResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -374,7 +375,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.scvmm#InventoryItemsCreateRequest": {
+    "com.azure.scvmm#CreateInventoryItemRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -441,13 +442,13 @@
         "smithy.api#documentation": "Defines the resource properties."
       }
     },
-    "com.azure.scvmm#InventoryItemsGet": {
+    "com.azure.scvmm#GetInventoryItem": {
       "type": "operation",
       "input": {
-        "target": "com.azure.scvmm#InventoryItemsGetRequest"
+        "target": "com.azure.scvmm#GetInventoryItemRequest"
       },
       "output": {
-        "target": "com.azure.scvmm#InventoryItemsGetResponse"
+        "target": "com.azure.scvmm#GetInventoryItemResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -460,7 +461,7 @@
         "com.distilled.openapi#apiVersion": "2025-03-13"
       }
     },
-    "com.azure.scvmm#InventoryItemsGetResponse": {
+    "com.azure.scvmm#GetInventoryItemResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -504,7 +505,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.scvmm#InventoryItemsGetRequest": {
+    "com.azure.scvmm#GetInventoryItemRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -544,10 +545,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.scvmm#InventoryItemsListByVmmServer": {
+    "com.azure.scvmm#ListInventoryItemByVmmServer": {
       "type": "operation",
       "input": {
-        "target": "com.azure.scvmm#InventoryItemsListByVmmServerRequest"
+        "target": "com.azure.scvmm#ListInventoryItemByVmmServerRequest"
       },
       "output": {
         "target": "com.azure.scvmm#InventoryItemListResult"
@@ -637,7 +638,7 @@
         "smithy.api#documentation": "Defines the inventory item."
       }
     },
-    "com.azure.scvmm#InventoryItemsListByVmmServerRequest": {
+    "com.azure.scvmm#ListInventoryItemByVmmServerRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -669,10 +670,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.scvmm#VmmServersDelete": {
+    "com.azure.scvmm#DeleteVmmServer": {
       "type": "operation",
       "input": {
-        "target": "com.azure.scvmm#VmmServersDeleteRequest"
+        "target": "com.azure.scvmm#DeleteVmmServerRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -688,7 +689,7 @@
         "com.distilled.openapi#apiVersion": "2025-03-13"
       }
     },
-    "com.azure.scvmm#VmmServersDeleteRequest": {
+    "com.azure.scvmm#DeleteVmmServerRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -716,7 +717,7 @@
           }
         },
         "force": {
-          "target": "com.azure.scvmm#VmmServersDeleteRequestForce",
+          "target": "com.azure.scvmm#DeleteVmmServerRequestForce",
           "traits": {
             "smithy.api#httpQuery": "force",
             "smithy.api#documentation": "Forces the resource to be deleted."
@@ -727,7 +728,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.scvmm#VmmServersDeleteRequestForce": {
+    "com.azure.scvmm#DeleteVmmServerRequestForce": {
       "type": "enum",
       "members": {
         "TRUE": {
@@ -745,13 +746,13 @@
       },
       "traits": {}
     },
-    "com.azure.scvmm#VmmServersUpdate": {
+    "com.azure.scvmm#UpdateVmmServer": {
       "type": "operation",
       "input": {
-        "target": "com.azure.scvmm#VmmServersUpdateRequest"
+        "target": "com.azure.scvmm#UpdateVmmServerRequest"
       },
       "output": {
-        "target": "com.azure.scvmm#VmmServersUpdateResponse"
+        "target": "com.azure.scvmm#UpdateVmmServerResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -764,7 +765,7 @@
         "com.distilled.openapi#apiVersion": "2025-03-13"
       }
     },
-    "com.azure.scvmm#VmmServersUpdateResponse": {
+    "com.azure.scvmm#UpdateVmmServerResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -792,7 +793,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.scvmm#VmmServersUpdateResponseTagsMap",
+          "target": "com.azure.scvmm#UpdateVmmServerResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -920,7 +921,7 @@
         "smithy.api#documentation": "Credentials to connect to VmmServer."
       }
     },
-    "com.azure.scvmm#VmmServersUpdateResponseTagsMap": {
+    "com.azure.scvmm#UpdateVmmServerResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -932,7 +933,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.scvmm#VmmServersUpdateRequest": {
+    "com.azure.scvmm#UpdateVmmServerRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -960,7 +961,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.scvmm#VmmServersUpdateRequestTagsMap",
+          "target": "com.azure.scvmm#UpdateVmmServerRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -970,7 +971,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.scvmm#VmmServersUpdateRequestTagsMap": {
+    "com.azure.scvmm#UpdateVmmServerRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1168,13 +1169,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.scvmm#VmmServersGet": {
+    "com.azure.scvmm#GetVmmServer": {
       "type": "operation",
       "input": {
-        "target": "com.azure.scvmm#VmmServersGetRequest"
+        "target": "com.azure.scvmm#GetVmmServerRequest"
       },
       "output": {
-        "target": "com.azure.scvmm#VmmServersGetResponse"
+        "target": "com.azure.scvmm#GetVmmServerResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1187,7 +1188,7 @@
         "com.distilled.openapi#apiVersion": "2025-03-13"
       }
     },
-    "com.azure.scvmm#VmmServersGetResponse": {
+    "com.azure.scvmm#GetVmmServerResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1215,7 +1216,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.scvmm#VmmServersGetResponseTagsMap",
+          "target": "com.azure.scvmm#GetVmmServerResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1245,7 +1246,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.scvmm#VmmServersGetResponseTagsMap": {
+    "com.azure.scvmm#GetVmmServerResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1257,7 +1258,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.scvmm#VmmServersGetRequest": {
+    "com.azure.scvmm#GetVmmServerRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1289,10 +1290,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.scvmm#VmmServersListByResourceGroup": {
+    "com.azure.scvmm#ListVmmServerByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.scvmm#VmmServersListByResourceGroupRequest"
+        "target": "com.azure.scvmm#ListVmmServerByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.scvmm#VmmServerListResult"
@@ -1408,7 +1409,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.scvmm#VmmServersListByResourceGroupRequest": {
+    "com.azure.scvmm#ListVmmServerByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1432,10 +1433,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.scvmm#VirtualNetworksDelete": {
+    "com.azure.scvmm#DeleteVirtualNetwork": {
       "type": "operation",
       "input": {
-        "target": "com.azure.scvmm#VirtualNetworksDeleteRequest"
+        "target": "com.azure.scvmm#DeleteVirtualNetworkRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1451,7 +1452,7 @@
         "com.distilled.openapi#apiVersion": "2025-03-13"
       }
     },
-    "com.azure.scvmm#VirtualNetworksDeleteRequest": {
+    "com.azure.scvmm#DeleteVirtualNetworkRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1479,7 +1480,7 @@
           }
         },
         "force": {
-          "target": "com.azure.scvmm#VirtualNetworksDeleteRequestForce",
+          "target": "com.azure.scvmm#DeleteVirtualNetworkRequestForce",
           "traits": {
             "smithy.api#httpQuery": "force",
             "smithy.api#documentation": "Forces the resource to be deleted."
@@ -1490,7 +1491,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.scvmm#VirtualNetworksDeleteRequestForce": {
+    "com.azure.scvmm#DeleteVirtualNetworkRequestForce": {
       "type": "enum",
       "members": {
         "TRUE": {
@@ -1508,13 +1509,13 @@
       },
       "traits": {}
     },
-    "com.azure.scvmm#VirtualNetworksUpdate": {
+    "com.azure.scvmm#UpdateVirtualNetwork": {
       "type": "operation",
       "input": {
-        "target": "com.azure.scvmm#VirtualNetworksUpdateRequest"
+        "target": "com.azure.scvmm#UpdateVirtualNetworkRequest"
       },
       "output": {
-        "target": "com.azure.scvmm#VirtualNetworksUpdateResponse"
+        "target": "com.azure.scvmm#UpdateVirtualNetworkResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1527,7 +1528,7 @@
         "com.distilled.openapi#apiVersion": "2025-03-13"
       }
     },
-    "com.azure.scvmm#VirtualNetworksUpdateResponse": {
+    "com.azure.scvmm#UpdateVirtualNetworkResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1555,7 +1556,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.scvmm#VirtualNetworksUpdateResponseTagsMap",
+          "target": "com.azure.scvmm#UpdateVirtualNetworkResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1623,7 +1624,7 @@
         "smithy.api#documentation": "Defines the resource properties."
       }
     },
-    "com.azure.scvmm#VirtualNetworksUpdateResponseTagsMap": {
+    "com.azure.scvmm#UpdateVirtualNetworkResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1635,7 +1636,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.scvmm#VirtualNetworksUpdateRequest": {
+    "com.azure.scvmm#UpdateVirtualNetworkRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1663,7 +1664,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.scvmm#VirtualNetworksUpdateRequestTagsMap",
+          "target": "com.azure.scvmm#UpdateVirtualNetworkRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1673,7 +1674,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.scvmm#VirtualNetworksUpdateRequestTagsMap": {
+    "com.azure.scvmm#UpdateVirtualNetworkRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1870,13 +1871,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.scvmm#VirtualNetworksGet": {
+    "com.azure.scvmm#GetVirtualNetwork": {
       "type": "operation",
       "input": {
-        "target": "com.azure.scvmm#VirtualNetworksGetRequest"
+        "target": "com.azure.scvmm#GetVirtualNetworkRequest"
       },
       "output": {
-        "target": "com.azure.scvmm#VirtualNetworksGetResponse"
+        "target": "com.azure.scvmm#GetVirtualNetworkResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1889,7 +1890,7 @@
         "com.distilled.openapi#apiVersion": "2025-03-13"
       }
     },
-    "com.azure.scvmm#VirtualNetworksGetResponse": {
+    "com.azure.scvmm#GetVirtualNetworkResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1917,7 +1918,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.scvmm#VirtualNetworksGetResponseTagsMap",
+          "target": "com.azure.scvmm#GetVirtualNetworkResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1947,7 +1948,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.scvmm#VirtualNetworksGetResponseTagsMap": {
+    "com.azure.scvmm#GetVirtualNetworkResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1959,7 +1960,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.scvmm#VirtualNetworksGetRequest": {
+    "com.azure.scvmm#GetVirtualNetworkRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1991,10 +1992,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.scvmm#VirtualNetworksListByResourceGroup": {
+    "com.azure.scvmm#ListVirtualNetworkByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.scvmm#VirtualNetworksListByResourceGroupRequest"
+        "target": "com.azure.scvmm#ListVirtualNetworkByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.scvmm#VirtualNetworkListResult"
@@ -2110,7 +2111,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.scvmm#VirtualNetworksListByResourceGroupRequest": {
+    "com.azure.scvmm#ListVirtualNetworkByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2134,10 +2135,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.scvmm#VirtualMachineTemplatesDelete": {
+    "com.azure.scvmm#DeleteVirtualMachineTemplate": {
       "type": "operation",
       "input": {
-        "target": "com.azure.scvmm#VirtualMachineTemplatesDeleteRequest"
+        "target": "com.azure.scvmm#DeleteVirtualMachineTemplateRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2153,7 +2154,7 @@
         "com.distilled.openapi#apiVersion": "2025-03-13"
       }
     },
-    "com.azure.scvmm#VirtualMachineTemplatesDeleteRequest": {
+    "com.azure.scvmm#DeleteVirtualMachineTemplateRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2181,7 +2182,7 @@
           }
         },
         "force": {
-          "target": "com.azure.scvmm#VirtualMachineTemplatesDeleteRequestForce",
+          "target": "com.azure.scvmm#DeleteVirtualMachineTemplateRequestForce",
           "traits": {
             "smithy.api#httpQuery": "force",
             "smithy.api#documentation": "Forces the resource to be deleted."
@@ -2192,7 +2193,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.scvmm#VirtualMachineTemplatesDeleteRequestForce": {
+    "com.azure.scvmm#DeleteVirtualMachineTemplateRequestForce": {
       "type": "enum",
       "members": {
         "TRUE": {
@@ -2210,13 +2211,13 @@
       },
       "traits": {}
     },
-    "com.azure.scvmm#VirtualMachineTemplatesUpdate": {
+    "com.azure.scvmm#UpdateVirtualMachineTemplate": {
       "type": "operation",
       "input": {
-        "target": "com.azure.scvmm#VirtualMachineTemplatesUpdateRequest"
+        "target": "com.azure.scvmm#UpdateVirtualMachineTemplateRequest"
       },
       "output": {
-        "target": "com.azure.scvmm#VirtualMachineTemplatesUpdateResponse"
+        "target": "com.azure.scvmm#UpdateVirtualMachineTemplateResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2229,7 +2230,7 @@
         "com.distilled.openapi#apiVersion": "2025-03-13"
       }
     },
-    "com.azure.scvmm#VirtualMachineTemplatesUpdateResponse": {
+    "com.azure.scvmm#UpdateVirtualMachineTemplateResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2257,7 +2258,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.scvmm#VirtualMachineTemplatesUpdateResponseTagsMap",
+          "target": "com.azure.scvmm#UpdateVirtualMachineTemplateResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2771,7 +2772,7 @@
         "smithy.api#documentation": "Virtual machine operating system type."
       }
     },
-    "com.azure.scvmm#VirtualMachineTemplatesUpdateResponseTagsMap": {
+    "com.azure.scvmm#UpdateVirtualMachineTemplateResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2783,7 +2784,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.scvmm#VirtualMachineTemplatesUpdateRequest": {
+    "com.azure.scvmm#UpdateVirtualMachineTemplateRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2811,7 +2812,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.scvmm#VirtualMachineTemplatesUpdateRequestTagsMap",
+          "target": "com.azure.scvmm#UpdateVirtualMachineTemplateRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2821,7 +2822,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.scvmm#VirtualMachineTemplatesUpdateRequestTagsMap": {
+    "com.azure.scvmm#UpdateVirtualMachineTemplateRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3018,13 +3019,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.scvmm#VirtualMachineTemplatesGet": {
+    "com.azure.scvmm#GetVirtualMachineTemplate": {
       "type": "operation",
       "input": {
-        "target": "com.azure.scvmm#VirtualMachineTemplatesGetRequest"
+        "target": "com.azure.scvmm#GetVirtualMachineTemplateRequest"
       },
       "output": {
-        "target": "com.azure.scvmm#VirtualMachineTemplatesGetResponse"
+        "target": "com.azure.scvmm#GetVirtualMachineTemplateResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3037,7 +3038,7 @@
         "com.distilled.openapi#apiVersion": "2025-03-13"
       }
     },
-    "com.azure.scvmm#VirtualMachineTemplatesGetResponse": {
+    "com.azure.scvmm#GetVirtualMachineTemplateResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3065,7 +3066,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.scvmm#VirtualMachineTemplatesGetResponseTagsMap",
+          "target": "com.azure.scvmm#GetVirtualMachineTemplateResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3095,7 +3096,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.scvmm#VirtualMachineTemplatesGetResponseTagsMap": {
+    "com.azure.scvmm#GetVirtualMachineTemplateResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3107,7 +3108,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.scvmm#VirtualMachineTemplatesGetRequest": {
+    "com.azure.scvmm#GetVirtualMachineTemplateRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3139,10 +3140,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.scvmm#VirtualMachineTemplatesListByResourceGroup": {
+    "com.azure.scvmm#ListVirtualMachineTemplateByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.scvmm#VirtualMachineTemplatesListByResourceGroupRequest"
+        "target": "com.azure.scvmm#ListVirtualMachineTemplateByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.scvmm#VirtualMachineTemplateListResult"
@@ -3258,7 +3259,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.scvmm#VirtualMachineTemplatesListByResourceGroupRequest": {
+    "com.azure.scvmm#ListVirtualMachineTemplateByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3282,10 +3283,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.scvmm#CloudsDelete": {
+    "com.azure.scvmm#DeleteCloud": {
       "type": "operation",
       "input": {
-        "target": "com.azure.scvmm#CloudsDeleteRequest"
+        "target": "com.azure.scvmm#DeleteCloudRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3301,7 +3302,7 @@
         "com.distilled.openapi#apiVersion": "2025-03-13"
       }
     },
-    "com.azure.scvmm#CloudsDeleteRequest": {
+    "com.azure.scvmm#DeleteCloudRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3329,7 +3330,7 @@
           }
         },
         "force": {
-          "target": "com.azure.scvmm#CloudsDeleteRequestForce",
+          "target": "com.azure.scvmm#DeleteCloudRequestForce",
           "traits": {
             "smithy.api#httpQuery": "force",
             "smithy.api#documentation": "Forces the resource to be deleted."
@@ -3340,7 +3341,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.scvmm#CloudsDeleteRequestForce": {
+    "com.azure.scvmm#DeleteCloudRequestForce": {
       "type": "enum",
       "members": {
         "TRUE": {
@@ -3358,13 +3359,13 @@
       },
       "traits": {}
     },
-    "com.azure.scvmm#CloudsUpdate": {
+    "com.azure.scvmm#UpdateCloud": {
       "type": "operation",
       "input": {
-        "target": "com.azure.scvmm#CloudsUpdateRequest"
+        "target": "com.azure.scvmm#UpdateCloudRequest"
       },
       "output": {
-        "target": "com.azure.scvmm#CloudsUpdateResponse"
+        "target": "com.azure.scvmm#UpdateCloudResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3377,7 +3378,7 @@
         "com.distilled.openapi#apiVersion": "2025-03-13"
       }
     },
-    "com.azure.scvmm#CloudsUpdateResponse": {
+    "com.azure.scvmm#UpdateCloudResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3405,7 +3406,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.scvmm#CloudsUpdateResponseTagsMap",
+          "target": "com.azure.scvmm#UpdateCloudResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3570,7 +3571,7 @@
         "smithy.api#documentation": "Cloud Capacity model"
       }
     },
-    "com.azure.scvmm#CloudsUpdateResponseTagsMap": {
+    "com.azure.scvmm#UpdateCloudResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3582,7 +3583,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.scvmm#CloudsUpdateRequest": {
+    "com.azure.scvmm#UpdateCloudRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3610,7 +3611,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.scvmm#CloudsUpdateRequestTagsMap",
+          "target": "com.azure.scvmm#UpdateCloudRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3620,7 +3621,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.scvmm#CloudsUpdateRequestTagsMap": {
+    "com.azure.scvmm#UpdateCloudRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3817,13 +3818,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.scvmm#CloudsGet": {
+    "com.azure.scvmm#GetCloud": {
       "type": "operation",
       "input": {
-        "target": "com.azure.scvmm#CloudsGetRequest"
+        "target": "com.azure.scvmm#GetCloudRequest"
       },
       "output": {
-        "target": "com.azure.scvmm#CloudsGetResponse"
+        "target": "com.azure.scvmm#GetCloudResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3836,7 +3837,7 @@
         "com.distilled.openapi#apiVersion": "2025-03-13"
       }
     },
-    "com.azure.scvmm#CloudsGetResponse": {
+    "com.azure.scvmm#GetCloudResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3864,7 +3865,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.scvmm#CloudsGetResponseTagsMap",
+          "target": "com.azure.scvmm#GetCloudResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3894,7 +3895,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.scvmm#CloudsGetResponseTagsMap": {
+    "com.azure.scvmm#GetCloudResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3906,7 +3907,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.scvmm#CloudsGetRequest": {
+    "com.azure.scvmm#GetCloudRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3938,10 +3939,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.scvmm#CloudsListByResourceGroup": {
+    "com.azure.scvmm#ListCloudByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.scvmm#CloudsListByResourceGroupRequest"
+        "target": "com.azure.scvmm#ListCloudByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.scvmm#CloudListResult"
@@ -4057,7 +4058,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.scvmm#CloudsListByResourceGroupRequest": {
+    "com.azure.scvmm#ListCloudByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4081,10 +4082,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.scvmm#AvailabilitySetsDelete": {
+    "com.azure.scvmm#DeleteAvailabilitySet": {
       "type": "operation",
       "input": {
-        "target": "com.azure.scvmm#AvailabilitySetsDeleteRequest"
+        "target": "com.azure.scvmm#DeleteAvailabilitySetRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4100,7 +4101,7 @@
         "com.distilled.openapi#apiVersion": "2025-03-13"
       }
     },
-    "com.azure.scvmm#AvailabilitySetsDeleteRequest": {
+    "com.azure.scvmm#DeleteAvailabilitySetRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4128,7 +4129,7 @@
           }
         },
         "force": {
-          "target": "com.azure.scvmm#AvailabilitySetsDeleteRequestForce",
+          "target": "com.azure.scvmm#DeleteAvailabilitySetRequestForce",
           "traits": {
             "smithy.api#httpQuery": "force",
             "smithy.api#documentation": "Forces the resource to be deleted."
@@ -4139,7 +4140,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.scvmm#AvailabilitySetsDeleteRequestForce": {
+    "com.azure.scvmm#DeleteAvailabilitySetRequestForce": {
       "type": "enum",
       "members": {
         "TRUE": {
@@ -4157,13 +4158,13 @@
       },
       "traits": {}
     },
-    "com.azure.scvmm#AvailabilitySetsUpdate": {
+    "com.azure.scvmm#UpdateAvailabilitySet": {
       "type": "operation",
       "input": {
-        "target": "com.azure.scvmm#AvailabilitySetsUpdateRequest"
+        "target": "com.azure.scvmm#UpdateAvailabilitySetRequest"
       },
       "output": {
-        "target": "com.azure.scvmm#AvailabilitySetsUpdateResponse"
+        "target": "com.azure.scvmm#UpdateAvailabilitySetResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4176,7 +4177,7 @@
         "com.distilled.openapi#apiVersion": "2025-03-13"
       }
     },
-    "com.azure.scvmm#AvailabilitySetsUpdateResponse": {
+    "com.azure.scvmm#UpdateAvailabilitySetResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -4204,7 +4205,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.scvmm#AvailabilitySetsUpdateResponseTagsMap",
+          "target": "com.azure.scvmm#UpdateAvailabilitySetResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4260,7 +4261,7 @@
         "smithy.api#documentation": "Defines the resource properties."
       }
     },
-    "com.azure.scvmm#AvailabilitySetsUpdateResponseTagsMap": {
+    "com.azure.scvmm#UpdateAvailabilitySetResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4272,7 +4273,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.scvmm#AvailabilitySetsUpdateRequest": {
+    "com.azure.scvmm#UpdateAvailabilitySetRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4300,7 +4301,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.scvmm#AvailabilitySetsUpdateRequestTagsMap",
+          "target": "com.azure.scvmm#UpdateAvailabilitySetRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4310,7 +4311,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.scvmm#AvailabilitySetsUpdateRequestTagsMap": {
+    "com.azure.scvmm#UpdateAvailabilitySetRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4501,13 +4502,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.scvmm#AvailabilitySetsGet": {
+    "com.azure.scvmm#GetAvailabilitySet": {
       "type": "operation",
       "input": {
-        "target": "com.azure.scvmm#AvailabilitySetsGetRequest"
+        "target": "com.azure.scvmm#GetAvailabilitySetRequest"
       },
       "output": {
-        "target": "com.azure.scvmm#AvailabilitySetsGetResponse"
+        "target": "com.azure.scvmm#GetAvailabilitySetResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4520,7 +4521,7 @@
         "com.distilled.openapi#apiVersion": "2025-03-13"
       }
     },
-    "com.azure.scvmm#AvailabilitySetsGetResponse": {
+    "com.azure.scvmm#GetAvailabilitySetResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -4548,7 +4549,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.scvmm#AvailabilitySetsGetResponseTagsMap",
+          "target": "com.azure.scvmm#GetAvailabilitySetResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4578,7 +4579,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.scvmm#AvailabilitySetsGetResponseTagsMap": {
+    "com.azure.scvmm#GetAvailabilitySetResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4590,7 +4591,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.scvmm#AvailabilitySetsGetRequest": {
+    "com.azure.scvmm#GetAvailabilitySetRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4622,10 +4623,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.scvmm#AvailabilitySetsListByResourceGroup": {
+    "com.azure.scvmm#ListAvailabilitySetByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.scvmm#AvailabilitySetsListByResourceGroupRequest"
+        "target": "com.azure.scvmm#ListAvailabilitySetByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.scvmm#AvailabilitySetListResult"
@@ -4741,7 +4742,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.scvmm#AvailabilitySetsListByResourceGroupRequest": {
+    "com.azure.scvmm#ListAvailabilitySetByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4765,10 +4766,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.scvmm#VmmServersListBySubscription": {
+    "com.azure.scvmm#ListVmmServerBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.scvmm#VmmServersListBySubscriptionRequest"
+        "target": "com.azure.scvmm#ListVmmServerBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.scvmm#VmmServerListResult"
@@ -4784,7 +4785,7 @@
         "com.distilled.openapi#apiVersion": "2025-03-13"
       }
     },
-    "com.azure.scvmm#VmmServersListBySubscriptionRequest": {
+    "com.azure.scvmm#ListVmmServerBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4800,10 +4801,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.scvmm#VirtualNetworksListBySubscription": {
+    "com.azure.scvmm#ListVirtualNetworkBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.scvmm#VirtualNetworksListBySubscriptionRequest"
+        "target": "com.azure.scvmm#ListVirtualNetworkBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.scvmm#VirtualNetworkListResult"
@@ -4819,7 +4820,7 @@
         "com.distilled.openapi#apiVersion": "2025-03-13"
       }
     },
-    "com.azure.scvmm#VirtualNetworksListBySubscriptionRequest": {
+    "com.azure.scvmm#ListVirtualNetworkBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4835,10 +4836,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.scvmm#VirtualMachineTemplatesListBySubscription": {
+    "com.azure.scvmm#ListVirtualMachineTemplateBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.scvmm#VirtualMachineTemplatesListBySubscriptionRequest"
+        "target": "com.azure.scvmm#ListVirtualMachineTemplateBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.scvmm#VirtualMachineTemplateListResult"
@@ -4854,7 +4855,7 @@
         "com.distilled.openapi#apiVersion": "2025-03-13"
       }
     },
-    "com.azure.scvmm#VirtualMachineTemplatesListBySubscriptionRequest": {
+    "com.azure.scvmm#ListVirtualMachineTemplateBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4870,10 +4871,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.scvmm#CloudsListBySubscription": {
+    "com.azure.scvmm#ListCloudBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.scvmm#CloudsListBySubscriptionRequest"
+        "target": "com.azure.scvmm#ListCloudBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.scvmm#CloudListResult"
@@ -4889,7 +4890,7 @@
         "com.distilled.openapi#apiVersion": "2025-03-13"
       }
     },
-    "com.azure.scvmm#CloudsListBySubscriptionRequest": {
+    "com.azure.scvmm#ListCloudBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4905,10 +4906,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.scvmm#AvailabilitySetsListBySubscription": {
+    "com.azure.scvmm#ListAvailabilitySetBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.scvmm#AvailabilitySetsListBySubscriptionRequest"
+        "target": "com.azure.scvmm#ListAvailabilitySetBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.scvmm#AvailabilitySetListResult"
@@ -4924,7 +4925,7 @@
         "com.distilled.openapi#apiVersion": "2025-03-13"
       }
     },
-    "com.azure.scvmm#AvailabilitySetsListBySubscriptionRequest": {
+    "com.azure.scvmm#ListAvailabilitySetBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4940,13 +4941,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.scvmm#OperationsList": {
+    "com.azure.scvmm#ListOperations": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
       },
       "output": {
-        "target": "com.azure.scvmm#OperationsListResponse"
+        "target": "com.azure.scvmm#ListOperationsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4959,11 +4960,11 @@
         "com.distilled.openapi#apiVersion": "2025-03-13"
       }
     },
-    "com.azure.scvmm#OperationsListResponse": {
+    "com.azure.scvmm#ListOperationsResponse": {
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.scvmm#OperationsListResponseValueList",
+          "target": "com.azure.scvmm#ListOperationsResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of operations supported by the resource provider"
           }
@@ -4979,7 +4980,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.scvmm#OperationsListResponseValueList": {
+    "com.azure.scvmm#ListOperationsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.scvmm#Operation"
@@ -5098,10 +5099,10 @@
         "smithy.api#documentation": "Localized display information for this particular operation."
       }
     },
-    "com.azure.scvmm#VirtualMachineInstancesStop": {
+    "com.azure.scvmm#StopVirtualMachineInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.scvmm#VirtualMachineInstancesStopRequest"
+        "target": "com.azure.scvmm#StopVirtualMachineInstanceRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -5117,7 +5118,7 @@
         "com.distilled.openapi#apiVersion": "2025-03-13"
       }
     },
-    "com.azure.scvmm#VirtualMachineInstancesStopRequest": {
+    "com.azure.scvmm#StopVirtualMachineInstanceRequest": {
       "type": "structure",
       "members": {
         "resourceUri": {
@@ -5129,7 +5130,7 @@
           }
         },
         "skipShutdown": {
-          "target": "com.azure.scvmm#VirtualMachineInstancesStopRequestSkipShutdown",
+          "target": "com.azure.scvmm#StopVirtualMachineInstanceRequestSkipShutdown",
           "traits": {
             "smithy.api#documentation": "Gets or sets a value indicating whether to request non-graceful VM shutdown. True value for this flag indicates non-graceful shutdown whereas false indicates otherwise. Defaults to false."
           }
@@ -5139,7 +5140,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.scvmm#VirtualMachineInstancesStopRequestSkipShutdown": {
+    "com.azure.scvmm#StopVirtualMachineInstanceRequestSkipShutdown": {
       "type": "enum",
       "members": {
         "TRUE": {
@@ -5159,10 +5160,10 @@
         "smithy.api#documentation": "Gets or sets a value indicating whether to request non-graceful VM shutdown. True value for this flag indicates non-graceful shutdown whereas false indicates otherwise. Defaults to false."
       }
     },
-    "com.azure.scvmm#VirtualMachineInstancesStart": {
+    "com.azure.scvmm#StartVirtualMachineInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.scvmm#VirtualMachineInstancesStartRequest"
+        "target": "com.azure.scvmm#StartVirtualMachineInstanceRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -5178,7 +5179,7 @@
         "com.distilled.openapi#apiVersion": "2025-03-13"
       }
     },
-    "com.azure.scvmm#VirtualMachineInstancesStartRequest": {
+    "com.azure.scvmm#StartVirtualMachineInstanceRequest": {
       "type": "structure",
       "members": {
         "resourceUri": {
@@ -5194,10 +5195,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.scvmm#VirtualMachineInstancesRestoreCheckpoint": {
+    "com.azure.scvmm#RestoreVirtualMachineInstanceCheckpoint": {
       "type": "operation",
       "input": {
-        "target": "com.azure.scvmm#VirtualMachineInstancesRestoreCheckpointRequest"
+        "target": "com.azure.scvmm#RestoreVirtualMachineInstanceCheckpointRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -5213,7 +5214,7 @@
         "com.distilled.openapi#apiVersion": "2025-03-13"
       }
     },
-    "com.azure.scvmm#VirtualMachineInstancesRestoreCheckpointRequest": {
+    "com.azure.scvmm#RestoreVirtualMachineInstanceCheckpointRequest": {
       "type": "structure",
       "members": {
         "resourceUri": {
@@ -5235,10 +5236,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.scvmm#VirtualMachineInstancesRestart": {
+    "com.azure.scvmm#RestartVirtualMachineInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.scvmm#VirtualMachineInstancesRestartRequest"
+        "target": "com.azure.scvmm#RestartVirtualMachineInstanceRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -5254,7 +5255,7 @@
         "com.distilled.openapi#apiVersion": "2025-03-13"
       }
     },
-    "com.azure.scvmm#VirtualMachineInstancesRestartRequest": {
+    "com.azure.scvmm#RestartVirtualMachineInstanceRequest": {
       "type": "structure",
       "members": {
         "resourceUri": {
@@ -5270,13 +5271,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.scvmm#VmInstanceHybridIdentityMetadatasGet": {
+    "com.azure.scvmm#GetVmInstanceHybridIdentityMetadatas": {
       "type": "operation",
       "input": {
-        "target": "com.azure.scvmm#VmInstanceHybridIdentityMetadatasGetRequest"
+        "target": "com.azure.scvmm#GetVmInstanceHybridIdentityMetadatasRequest"
       },
       "output": {
-        "target": "com.azure.scvmm#VmInstanceHybridIdentityMetadatasGetResponse"
+        "target": "com.azure.scvmm#GetVmInstanceHybridIdentityMetadatasResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5289,7 +5290,7 @@
         "com.distilled.openapi#apiVersion": "2025-03-13"
       }
     },
-    "com.azure.scvmm#VmInstanceHybridIdentityMetadatasGetResponse": {
+    "com.azure.scvmm#GetVmInstanceHybridIdentityMetadatasResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -5353,7 +5354,7 @@
         "smithy.api#documentation": "Describes the properties of Hybrid Identity Metadata for a Virtual Machine."
       }
     },
-    "com.azure.scvmm#VmInstanceHybridIdentityMetadatasGetRequest": {
+    "com.azure.scvmm#GetVmInstanceHybridIdentityMetadatasRequest": {
       "type": "structure",
       "members": {
         "resourceUri": {
@@ -5369,10 +5370,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.scvmm#VmInstanceHybridIdentityMetadatasListByVirtualMachineInstance": {
+    "com.azure.scvmm#ListVmInstanceHybridIdentityMetadatasByVirtualMachineInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.scvmm#VmInstanceHybridIdentityMetadatasListByVirtualMachineInstanceRequest"
+        "target": "com.azure.scvmm#ListVmInstanceHybridIdentityMetadatasByVirtualMachineInstanceRequest"
       },
       "output": {
         "target": "com.azure.scvmm#VmInstanceHybridIdentityMetadataListResult"
@@ -5456,7 +5457,7 @@
         "smithy.api#documentation": "Defines the HybridIdentityMetadata."
       }
     },
-    "com.azure.scvmm#VmInstanceHybridIdentityMetadatasListByVirtualMachineInstanceRequest": {
+    "com.azure.scvmm#ListVmInstanceHybridIdentityMetadatasByVirtualMachineInstanceRequest": {
       "type": "structure",
       "members": {
         "resourceUri": {
@@ -5472,10 +5473,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.scvmm#GuestAgentsDelete": {
+    "com.azure.scvmm#DeleteGuestAgent": {
       "type": "operation",
       "input": {
-        "target": "com.azure.scvmm#GuestAgentsDeleteRequest"
+        "target": "com.azure.scvmm#DeleteGuestAgentRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -5491,7 +5492,7 @@
         "com.distilled.openapi#apiVersion": "2025-03-13"
       }
     },
-    "com.azure.scvmm#GuestAgentsDeleteRequest": {
+    "com.azure.scvmm#DeleteGuestAgentRequest": {
       "type": "structure",
       "members": {
         "resourceUri": {
@@ -5507,13 +5508,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.scvmm#GuestAgentsCreate": {
+    "com.azure.scvmm#CreateGuestAgent": {
       "type": "operation",
       "input": {
-        "target": "com.azure.scvmm#GuestAgentsCreateRequest"
+        "target": "com.azure.scvmm#CreateGuestAgentRequest"
       },
       "output": {
-        "target": "com.azure.scvmm#GuestAgentsCreateResponse"
+        "target": "com.azure.scvmm#CreateGuestAgentResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5526,7 +5527,7 @@
         "com.distilled.openapi#apiVersion": "2025-03-13"
       }
     },
-    "com.azure.scvmm#GuestAgentsCreateResponse": {
+    "com.azure.scvmm#CreateGuestAgentResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -5683,7 +5684,7 @@
         "smithy.api#documentation": "Username / Password Credentials to connect to guest."
       }
     },
-    "com.azure.scvmm#GuestAgentsCreateRequest": {
+    "com.azure.scvmm#CreateGuestAgentRequest": {
       "type": "structure",
       "members": {
         "resourceUri": {
@@ -5737,13 +5738,13 @@
         "smithy.api#documentation": "Defines the resource properties."
       }
     },
-    "com.azure.scvmm#GuestAgentsGet": {
+    "com.azure.scvmm#GetGuestAgent": {
       "type": "operation",
       "input": {
-        "target": "com.azure.scvmm#GuestAgentsGetRequest"
+        "target": "com.azure.scvmm#GetGuestAgentRequest"
       },
       "output": {
-        "target": "com.azure.scvmm#GuestAgentsGetResponse"
+        "target": "com.azure.scvmm#GetGuestAgentResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5756,7 +5757,7 @@
         "com.distilled.openapi#apiVersion": "2025-03-13"
       }
     },
-    "com.azure.scvmm#GuestAgentsGetResponse": {
+    "com.azure.scvmm#GetGuestAgentResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -5794,7 +5795,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.scvmm#GuestAgentsGetRequest": {
+    "com.azure.scvmm#GetGuestAgentRequest": {
       "type": "structure",
       "members": {
         "resourceUri": {
@@ -5810,10 +5811,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.scvmm#GuestAgentsListByVirtualMachineInstance": {
+    "com.azure.scvmm#ListGuestAgentByVirtualMachineInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.scvmm#GuestAgentsListByVirtualMachineInstanceRequest"
+        "target": "com.azure.scvmm#ListGuestAgentByVirtualMachineInstanceRequest"
       },
       "output": {
         "target": "com.azure.scvmm#GuestAgentListResult"
@@ -5897,7 +5898,7 @@
         "smithy.api#documentation": "Defines the GuestAgent."
       }
     },
-    "com.azure.scvmm#GuestAgentsListByVirtualMachineInstanceRequest": {
+    "com.azure.scvmm#ListGuestAgentByVirtualMachineInstanceRequest": {
       "type": "structure",
       "members": {
         "resourceUri": {
@@ -5913,10 +5914,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.scvmm#VirtualMachineInstancesDeleteCheckpoint": {
+    "com.azure.scvmm#DeleteVirtualMachineInstanceCheckpoint": {
       "type": "operation",
       "input": {
-        "target": "com.azure.scvmm#VirtualMachineInstancesDeleteCheckpointRequest"
+        "target": "com.azure.scvmm#DeleteVirtualMachineInstanceCheckpointRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -5932,7 +5933,7 @@
         "com.distilled.openapi#apiVersion": "2025-03-13"
       }
     },
-    "com.azure.scvmm#VirtualMachineInstancesDeleteCheckpointRequest": {
+    "com.azure.scvmm#DeleteVirtualMachineInstanceCheckpointRequest": {
       "type": "structure",
       "members": {
         "resourceUri": {
@@ -5954,10 +5955,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.scvmm#VirtualMachineInstancesCreateCheckpoint": {
+    "com.azure.scvmm#CreateVirtualMachineInstanceCheckpoint": {
       "type": "operation",
       "input": {
-        "target": "com.azure.scvmm#VirtualMachineInstancesCreateCheckpointRequest"
+        "target": "com.azure.scvmm#CreateVirtualMachineInstanceCheckpointRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -5973,7 +5974,7 @@
         "com.distilled.openapi#apiVersion": "2025-03-13"
       }
     },
-    "com.azure.scvmm#VirtualMachineInstancesCreateCheckpointRequest": {
+    "com.azure.scvmm#CreateVirtualMachineInstanceCheckpointRequest": {
       "type": "structure",
       "members": {
         "resourceUri": {
@@ -6001,10 +6002,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.scvmm#VirtualMachineInstancesDelete": {
+    "com.azure.scvmm#DeleteVirtualMachineInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.scvmm#VirtualMachineInstancesDeleteRequest"
+        "target": "com.azure.scvmm#DeleteVirtualMachineInstanceRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -6020,7 +6021,7 @@
         "com.distilled.openapi#apiVersion": "2025-03-13"
       }
     },
-    "com.azure.scvmm#VirtualMachineInstancesDeleteRequest": {
+    "com.azure.scvmm#DeleteVirtualMachineInstanceRequest": {
       "type": "structure",
       "members": {
         "resourceUri": {
@@ -6032,14 +6033,14 @@
           }
         },
         "force": {
-          "target": "com.azure.scvmm#VirtualMachineInstancesDeleteRequestForce",
+          "target": "com.azure.scvmm#DeleteVirtualMachineInstanceRequestForce",
           "traits": {
             "smithy.api#httpQuery": "force",
             "smithy.api#documentation": "Forces the resource to be deleted."
           }
         },
         "deleteFromHost": {
-          "target": "com.azure.scvmm#VirtualMachineInstancesDeleteRequestDeleteFromHost",
+          "target": "com.azure.scvmm#DeleteVirtualMachineInstanceRequestDeleteFromHost",
           "traits": {
             "smithy.api#httpQuery": "deleteFromHost",
             "smithy.api#documentation": "Whether to disable the VM from azure and also delete it from Vmm."
@@ -6050,7 +6051,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.scvmm#VirtualMachineInstancesDeleteRequestDeleteFromHost": {
+    "com.azure.scvmm#DeleteVirtualMachineInstanceRequestDeleteFromHost": {
       "type": "enum",
       "members": {
         "TRUE": {
@@ -6068,7 +6069,7 @@
       },
       "traits": {}
     },
-    "com.azure.scvmm#VirtualMachineInstancesDeleteRequestForce": {
+    "com.azure.scvmm#DeleteVirtualMachineInstanceRequestForce": {
       "type": "enum",
       "members": {
         "TRUE": {
@@ -6086,13 +6087,13 @@
       },
       "traits": {}
     },
-    "com.azure.scvmm#VirtualMachineInstancesUpdate": {
+    "com.azure.scvmm#UpdateVirtualMachineInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.scvmm#VirtualMachineInstancesUpdateRequest"
+        "target": "com.azure.scvmm#UpdateVirtualMachineInstanceRequest"
       },
       "output": {
-        "target": "com.azure.scvmm#VirtualMachineInstancesUpdateResponse"
+        "target": "com.azure.scvmm#UpdateVirtualMachineInstanceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6105,7 +6106,7 @@
         "com.distilled.openapi#apiVersion": "2025-03-13"
       }
     },
-    "com.azure.scvmm#VirtualMachineInstancesUpdateResponse": {
+    "com.azure.scvmm#UpdateVirtualMachineInstanceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -6534,7 +6535,7 @@
         "smithy.api#documentation": "Availability Set model"
       }
     },
-    "com.azure.scvmm#VirtualMachineInstancesUpdateRequest": {
+    "com.azure.scvmm#UpdateVirtualMachineInstanceRequest": {
       "type": "structure",
       "members": {
         "resourceUri": {
@@ -7255,13 +7256,13 @@
         "smithy.api#documentation": "Availability Sets in vm."
       }
     },
-    "com.azure.scvmm#VirtualMachineInstancesGet": {
+    "com.azure.scvmm#GetVirtualMachineInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.scvmm#VirtualMachineInstancesGetRequest"
+        "target": "com.azure.scvmm#GetVirtualMachineInstanceRequest"
       },
       "output": {
-        "target": "com.azure.scvmm#VirtualMachineInstancesGetResponse"
+        "target": "com.azure.scvmm#GetVirtualMachineInstanceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7274,7 +7275,7 @@
         "com.distilled.openapi#apiVersion": "2025-03-13"
       }
     },
-    "com.azure.scvmm#VirtualMachineInstancesGetResponse": {
+    "com.azure.scvmm#GetVirtualMachineInstanceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -7319,7 +7320,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.scvmm#VirtualMachineInstancesGetRequest": {
+    "com.azure.scvmm#GetVirtualMachineInstanceRequest": {
       "type": "structure",
       "members": {
         "resourceUri": {
@@ -7335,10 +7336,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.scvmm#VirtualMachineInstancesList": {
+    "com.azure.scvmm#ListVirtualMachineInstances": {
       "type": "operation",
       "input": {
-        "target": "com.azure.scvmm#VirtualMachineInstancesListRequest"
+        "target": "com.azure.scvmm#ListVirtualMachineInstancesRequest"
       },
       "output": {
         "target": "com.azure.scvmm#VirtualMachineInstanceListResult"
@@ -7429,7 +7430,7 @@
         "smithy.api#documentation": "Define the virtualMachineInstance."
       }
     },
-    "com.azure.scvmm#VirtualMachineInstancesListRequest": {
+    "com.azure.scvmm#ListVirtualMachineInstancesRequest": {
       "type": "structure",
       "members": {
         "resourceUri": {
@@ -7450,160 +7451,160 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.scvmm#InventoryItemsDelete"
+          "target": "com.azure.scvmm#DeleteInventoryItem"
         },
         {
-          "target": "com.azure.scvmm#InventoryItemsCreate"
+          "target": "com.azure.scvmm#CreateInventoryItem"
         },
         {
-          "target": "com.azure.scvmm#InventoryItemsGet"
+          "target": "com.azure.scvmm#GetInventoryItem"
         },
         {
-          "target": "com.azure.scvmm#InventoryItemsListByVmmServer"
+          "target": "com.azure.scvmm#ListInventoryItemByVmmServer"
         },
         {
-          "target": "com.azure.scvmm#VmmServersDelete"
+          "target": "com.azure.scvmm#DeleteVmmServer"
         },
         {
-          "target": "com.azure.scvmm#VmmServersUpdate"
+          "target": "com.azure.scvmm#UpdateVmmServer"
         },
         {
           "target": "com.azure.scvmm#VmmServersCreateOrUpdate"
         },
         {
-          "target": "com.azure.scvmm#VmmServersGet"
+          "target": "com.azure.scvmm#GetVmmServer"
         },
         {
-          "target": "com.azure.scvmm#VmmServersListByResourceGroup"
+          "target": "com.azure.scvmm#ListVmmServerByResourceGroup"
         },
         {
-          "target": "com.azure.scvmm#VirtualNetworksDelete"
+          "target": "com.azure.scvmm#DeleteVirtualNetwork"
         },
         {
-          "target": "com.azure.scvmm#VirtualNetworksUpdate"
+          "target": "com.azure.scvmm#UpdateVirtualNetwork"
         },
         {
           "target": "com.azure.scvmm#VirtualNetworksCreateOrUpdate"
         },
         {
-          "target": "com.azure.scvmm#VirtualNetworksGet"
+          "target": "com.azure.scvmm#GetVirtualNetwork"
         },
         {
-          "target": "com.azure.scvmm#VirtualNetworksListByResourceGroup"
+          "target": "com.azure.scvmm#ListVirtualNetworkByResourceGroup"
         },
         {
-          "target": "com.azure.scvmm#VirtualMachineTemplatesDelete"
+          "target": "com.azure.scvmm#DeleteVirtualMachineTemplate"
         },
         {
-          "target": "com.azure.scvmm#VirtualMachineTemplatesUpdate"
+          "target": "com.azure.scvmm#UpdateVirtualMachineTemplate"
         },
         {
           "target": "com.azure.scvmm#VirtualMachineTemplatesCreateOrUpdate"
         },
         {
-          "target": "com.azure.scvmm#VirtualMachineTemplatesGet"
+          "target": "com.azure.scvmm#GetVirtualMachineTemplate"
         },
         {
-          "target": "com.azure.scvmm#VirtualMachineTemplatesListByResourceGroup"
+          "target": "com.azure.scvmm#ListVirtualMachineTemplateByResourceGroup"
         },
         {
-          "target": "com.azure.scvmm#CloudsDelete"
+          "target": "com.azure.scvmm#DeleteCloud"
         },
         {
-          "target": "com.azure.scvmm#CloudsUpdate"
+          "target": "com.azure.scvmm#UpdateCloud"
         },
         {
           "target": "com.azure.scvmm#CloudsCreateOrUpdate"
         },
         {
-          "target": "com.azure.scvmm#CloudsGet"
+          "target": "com.azure.scvmm#GetCloud"
         },
         {
-          "target": "com.azure.scvmm#CloudsListByResourceGroup"
+          "target": "com.azure.scvmm#ListCloudByResourceGroup"
         },
         {
-          "target": "com.azure.scvmm#AvailabilitySetsDelete"
+          "target": "com.azure.scvmm#DeleteAvailabilitySet"
         },
         {
-          "target": "com.azure.scvmm#AvailabilitySetsUpdate"
+          "target": "com.azure.scvmm#UpdateAvailabilitySet"
         },
         {
           "target": "com.azure.scvmm#AvailabilitySetsCreateOrUpdate"
         },
         {
-          "target": "com.azure.scvmm#AvailabilitySetsGet"
+          "target": "com.azure.scvmm#GetAvailabilitySet"
         },
         {
-          "target": "com.azure.scvmm#AvailabilitySetsListByResourceGroup"
+          "target": "com.azure.scvmm#ListAvailabilitySetByResourceGroup"
         },
         {
-          "target": "com.azure.scvmm#VmmServersListBySubscription"
+          "target": "com.azure.scvmm#ListVmmServerBySubscription"
         },
         {
-          "target": "com.azure.scvmm#VirtualNetworksListBySubscription"
+          "target": "com.azure.scvmm#ListVirtualNetworkBySubscription"
         },
         {
-          "target": "com.azure.scvmm#VirtualMachineTemplatesListBySubscription"
+          "target": "com.azure.scvmm#ListVirtualMachineTemplateBySubscription"
         },
         {
-          "target": "com.azure.scvmm#CloudsListBySubscription"
+          "target": "com.azure.scvmm#ListCloudBySubscription"
         },
         {
-          "target": "com.azure.scvmm#AvailabilitySetsListBySubscription"
+          "target": "com.azure.scvmm#ListAvailabilitySetBySubscription"
         },
         {
-          "target": "com.azure.scvmm#OperationsList"
+          "target": "com.azure.scvmm#ListOperations"
         },
         {
-          "target": "com.azure.scvmm#VirtualMachineInstancesStop"
+          "target": "com.azure.scvmm#StopVirtualMachineInstance"
         },
         {
-          "target": "com.azure.scvmm#VirtualMachineInstancesStart"
+          "target": "com.azure.scvmm#StartVirtualMachineInstance"
         },
         {
-          "target": "com.azure.scvmm#VirtualMachineInstancesRestoreCheckpoint"
+          "target": "com.azure.scvmm#RestoreVirtualMachineInstanceCheckpoint"
         },
         {
-          "target": "com.azure.scvmm#VirtualMachineInstancesRestart"
+          "target": "com.azure.scvmm#RestartVirtualMachineInstance"
         },
         {
-          "target": "com.azure.scvmm#VmInstanceHybridIdentityMetadatasGet"
+          "target": "com.azure.scvmm#GetVmInstanceHybridIdentityMetadatas"
         },
         {
-          "target": "com.azure.scvmm#VmInstanceHybridIdentityMetadatasListByVirtualMachineInstance"
+          "target": "com.azure.scvmm#ListVmInstanceHybridIdentityMetadatasByVirtualMachineInstance"
         },
         {
-          "target": "com.azure.scvmm#GuestAgentsDelete"
+          "target": "com.azure.scvmm#DeleteGuestAgent"
         },
         {
-          "target": "com.azure.scvmm#GuestAgentsCreate"
+          "target": "com.azure.scvmm#CreateGuestAgent"
         },
         {
-          "target": "com.azure.scvmm#GuestAgentsGet"
+          "target": "com.azure.scvmm#GetGuestAgent"
         },
         {
-          "target": "com.azure.scvmm#GuestAgentsListByVirtualMachineInstance"
+          "target": "com.azure.scvmm#ListGuestAgentByVirtualMachineInstance"
         },
         {
-          "target": "com.azure.scvmm#VirtualMachineInstancesDeleteCheckpoint"
+          "target": "com.azure.scvmm#DeleteVirtualMachineInstanceCheckpoint"
         },
         {
-          "target": "com.azure.scvmm#VirtualMachineInstancesCreateCheckpoint"
+          "target": "com.azure.scvmm#CreateVirtualMachineInstanceCheckpoint"
         },
         {
-          "target": "com.azure.scvmm#VirtualMachineInstancesDelete"
+          "target": "com.azure.scvmm#DeleteVirtualMachineInstance"
         },
         {
-          "target": "com.azure.scvmm#VirtualMachineInstancesUpdate"
+          "target": "com.azure.scvmm#UpdateVirtualMachineInstance"
         },
         {
           "target": "com.azure.scvmm#VirtualMachineInstancesCreateOrUpdate"
         },
         {
-          "target": "com.azure.scvmm#VirtualMachineInstancesGet"
+          "target": "com.azure.scvmm#GetVirtualMachineInstance"
         },
         {
-          "target": "com.azure.scvmm#VirtualMachineInstancesList"
+          "target": "com.azure.scvmm#ListVirtualMachineInstances"
         }
       ],
       "traits": {

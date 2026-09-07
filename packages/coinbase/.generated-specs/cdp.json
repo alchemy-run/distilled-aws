@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.coinbase.cdp#ListFoundationAccountsRequestOwnerList": {
@@ -742,7 +743,7 @@
         "target": "com.coinbase.cdp#Requirement"
       },
       "traits": {
-        "smithy.api#documentation": "Map of requirements to be submitted. Each key is the field name\n(e.g., \"ssnLast4\"), with values to describe its state. Requirements\nare only shown for requested capabilities. When a requirement is\nverified, it disappears from this map.\n\nWhen comparing deadlines across keys, note that `requirements.tos.deadline`\nis an aggregate: the earliest deadline among unaccepted required Terms of\nService versions listed in `requirements.tos.tosVersions[]` (not a separate\nclock from those version rows).\n"
+        "smithy.api#documentation": "Map of requirements to be submitted. Each key is the field name\n(e.g., \"ssnLast4\"), with values to describe its state. Requirements\nare only shown for requested capabilities. When a requirement is\nverified, it disappears from this map.\n\nFor the `tos` key, each entry in `tosVersions[]` has its own optional\ndeadline. The requirement-level `deadline` is an aggregate of those rows:\nthe earliest set deadline among unaccepted versions, not a separate clock.\nA version with no deadline requires immediate acceptance but keeps the\naggregate status `due`. A future deadline is also `due` and represents\nnon-blocking grace. The aggregate status is `past_due` only when at least\none unaccepted version has a deadline set in the past. Do not infer status\nor blocking behavior from omission of the aggregate deadline.\n"
       }
     },
     "com.coinbase.cdp#Requirement": {
@@ -757,19 +758,19 @@
         "deadline": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Optional deadline by which this requirement must be satisfied.\n\nFor the `tos` requirement, when present, `deadline` is the earliest\ndeadline among the unaccepted required Terms of Service versions.\n"
+            "smithy.api#documentation": "Optional aggregate deadline by which this requirement must be satisfied.\n\nFor the `tos` requirement, this is the earliest set deadline among the\nunaccepted required Terms of Service versions listed in `tosVersions`.\nIt is omitted only when none of the unaccepted versions has a deadline.\nDo not infer `past_due` or whether the requirement blocks from this\naggregate field alone; inspect each version's deadline.\n"
           }
         },
         "impact": {
           "target": "com.coinbase.cdp#RequirementImpactList",
           "traits": {
-            "smithy.api#documentation": "List of capabilities affected by this requirement, sorted alphabetically.\nOnly present for `due`, `pending`, or `rejected` statuses.\n"
+            "smithy.api#documentation": "List of capabilities affected by this requirement, sorted alphabetically.\nOnly present for `due`, `past_due`, `pending`, or `rejected` statuses.\n"
           }
         },
         "tosVersions": {
           "target": "com.coinbase.cdp#RequirementTosVersionsList",
           "traits": {
-            "smithy.api#documentation": "Required Terms of Service versions the Customer has not yet\naccepted, with the metadata needed to render an acceptance UI\n(each entry carries a stable `versionId`, the BCP 47\n`languages` the version is published in, and a\nlanguage-agnostic `url`). This field appears only under the\nrequirement key `tos`; do not infer meaning from `tosVersions`\non other requirement keys. Only populated for the `tos`\nrequirement; omitted on every other requirement key. Submit each\n`versionId` back via `tosAcceptances[].versionId` on `Update Customer` (or\n`Create Customer`) together with `language` and `acceptedAt` to clear the requirement.\n"
+            "smithy.api#documentation": "Required Terms of Service versions the Customer has not yet\naccepted, with the metadata needed to render an acceptance UI\n(each entry carries a stable `versionId`, the BCP 47\n`languages` the version is published in, an optional per-version\n`deadline`, and a language-agnostic `url`). A missing deadline means\nacceptance is required immediately while the requirement status remains\n`due`; only a set deadline in the past produces `past_due`. This field\nappears only under the requirement key `tos`; do not infer meaning from\n`tosVersions` on other requirement keys. Only populated for the `tos`\nrequirement; omitted on every other requirement key. Submit each\n`versionId` back via `tosAcceptances[].versionId` on `Update Customer`\n(or `Create Customer`) together with `language` and `acceptedAt` to\nclear the requirement.\n"
           }
         },
         "taxForms": {
@@ -792,6 +793,12 @@
             "smithy.api#enumValue": "due"
           }
         },
+        "PAST_DUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "past_due"
+          }
+        },
         "PENDING": {
           "target": "smithy.api#Unit",
           "traits": {
@@ -806,7 +813,7 @@
         }
       },
       "traits": {
-        "smithy.api#documentation": "The current status of a requirement:\n- `due`: Must be submitted\n- `pending`: Submitted, awaiting verification\n- `rejected`: Verification failed - customer must resubmit\n\nWhen verification passes, the requirement disappears from the response entirely.\n"
+        "smithy.api#documentation": "The current status of a requirement:\n- `due`: Must be submitted and no set deadline has passed\n- `past_due`: Must be submitted and a set deadline has passed\n- `pending`: Submitted, awaiting verification\n- `rejected`: Verification failed - customer must resubmit\n\nFor a Terms of Service requirement, `past_due` applies if any unaccepted\nversion has a deadline set in the past. Otherwise the status is `due`,\nincluding when a version has no deadline and requires immediate acceptance,\nor when every set deadline is in the future and acceptance is in grace.\n\nWhen verification passes, the requirement disappears from the response entirely.\n"
       }
     },
     "com.coinbase.cdp#CapabilityName": {
@@ -871,7 +878,7 @@
         "target": "com.coinbase.cdp#CapabilityName"
       },
       "traits": {
-        "smithy.api#documentation": "List of capabilities affected by this requirement, sorted alphabetically.\nOnly present for `due`, `pending`, or `rejected` statuses.\n"
+        "smithy.api#documentation": "List of capabilities affected by this requirement, sorted alphabetically.\nOnly present for `due`, `past_due`, `pending`, or `rejected` statuses.\n"
       }
     },
     "com.coinbase.cdp#TermsOfService": {
@@ -882,6 +889,12 @@
           "traits": {
             "smithy.api#documentation": "Stable identifier for this Terms of Service document. Submit this\nvalue as `versionId` on a `TosAcceptance` to record acceptance.\n",
             "smithy.api#required": {}
+          }
+        },
+        "deadline": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional deadline by which the Customer must accept this Terms of\nService version, in ISO 8601 / RFC 3339 format. A future deadline is\nnon-blocking grace with requirement status `due`; an elapsed deadline\nproduces `past_due`. When omitted, acceptance is required immediately\nand the requirement status remains `due`.\n"
           }
         },
         "languages": {
@@ -900,7 +913,7 @@
         }
       },
       "traits": {
-        "smithy.api#documentation": "Metadata for one Terms of Service document a Customer may need to\naccept. Each entry represents one logical document (identified by\n`versionId`) that may be published in multiple languages —\n`languages` lists the BCP 47 language tags the document is available\nto view and accept in. `url` is the canonical, language-agnostic\ndocument URL; partners append `?lang=<tag>` (where `<tag>` is one of\n`languages`) to retrieve a specific translation, and omit the\nparameter to let the documentation site choose a default. This API\ndoes not serve Terms of Service body content; this schema describes\nmetadata only.\n"
+        "smithy.api#documentation": "Metadata for one Terms of Service document a Customer may need to\naccept. Each entry represents one logical document (identified by\n`versionId`) that may be published in multiple languages —\n`languages` lists the BCP 47 language tags the document is available\nto view and accept in. An optional `deadline` records the end of a grace\nperiod: a future deadline is non-blocking `due`, an elapsed deadline is\n`past_due`, and no deadline means acceptance is required immediately with\nstatus `due`. `url` is the canonical, language-agnostic document URL;\npartners append `?lang=<tag>` (where `<tag>` is one of `languages`) to\nretrieve a specific translation, and omit the parameter to let the\ndocumentation site choose a default. This API does not serve Terms of\nService body content; this schema describes metadata only.\n"
       }
     },
     "com.coinbase.cdp#TermsOfServiceLanguagesList": {
@@ -918,7 +931,7 @@
         "target": "com.coinbase.cdp#TermsOfService"
       },
       "traits": {
-        "smithy.api#documentation": "Required Terms of Service versions the Customer has not yet\naccepted, with the metadata needed to render an acceptance UI\n(each entry carries a stable `versionId`, the BCP 47\n`languages` the version is published in, and a\nlanguage-agnostic `url`). This field appears only under the\nrequirement key `tos`; do not infer meaning from `tosVersions`\non other requirement keys. Only populated for the `tos`\nrequirement; omitted on every other requirement key. Submit each\n`versionId` back via `tosAcceptances[].versionId` on `Update Customer` (or\n`Create Customer`) together with `language` and `acceptedAt` to clear the requirement.\n"
+        "smithy.api#documentation": "Required Terms of Service versions the Customer has not yet\naccepted, with the metadata needed to render an acceptance UI\n(each entry carries a stable `versionId`, the BCP 47\n`languages` the version is published in, an optional per-version\n`deadline`, and a language-agnostic `url`). A missing deadline means\nacceptance is required immediately while the requirement status remains\n`due`; only a set deadline in the past produces `past_due`. This field\nappears only under the requirement key `tos`; do not infer meaning from\n`tosVersions` on other requirement keys. Only populated for the `tos`\nrequirement; omitted on every other requirement key. Submit each\n`versionId` back via `tosAcceptances[].versionId` on `Update Customer`\n(or `Create Customer`) together with `language` and `acceptedAt` to\nclear the requirement.\n"
       }
     },
     "com.coinbase.cdp#TaxForm": {
@@ -2471,6 +2484,12 @@
           "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "avacchain"
+          }
+        },
+        "TEMPO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "tempo"
           }
         }
       },
@@ -4668,6 +4687,12 @@
             "smithy.api#enumValue": "arbitrum-sepolia"
           }
         },
+        "AVALANCHE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "avalanche"
+          }
+        },
         "BASE": {
           "target": "smithy.api#Unit",
           "traits": {
@@ -6322,7 +6347,7 @@
           "uri": "/v2/payment-sessions/{paymentSessionId}/authorizations/wallet",
           "code": 200
         },
-        "smithy.api#documentation": "Authorize a payment session with a wallet\n\nAuthorizes a payment session using the payer's wallet. The session must be in `created` status.\n\nThe `optionId` must match one of the options returned by the **Get Wallet Authorization Options** endpoint. Include the signed payloads for the selected option.\n\nOn authorization, a hold is placed on the payer's funds. The authorization is returned in `pending` status and transitions asynchronously to `succeeded` or `failed`.\n\nIf `autoCapture` is enabled on the session, a capture is automatically created after a successful authorization."
+        "smithy.api#documentation": "Authorize a payment session with a wallet\n\n**Customer-initiated.** Authorizes a payment session using the payer's wallet. The payer signs the payloads themselves, so this call is unauthenticated. The session must be in `created` status.\n\nThe `optionId` must match one of the options returned by the **Get Wallet Authorization Options** endpoint. Include the signed payloads for the selected option.\n\nOn authorization, a hold is placed on the payer's funds. The authorization is returned in `pending` status and transitions asynchronously to `succeeded` or `failed`.\n\nIf `autoCapture` is enabled on the session, a capture is automatically created after a successful authorization."
       }
     },
     "com.coinbase.cdp#AuthorizeX402PaymentSessionRequest": {
@@ -6355,7 +6380,7 @@
           "uri": "/v2/payment-sessions/{paymentSessionId}/authorizations/x402",
           "code": 200
         },
-        "smithy.api#documentation": "Authorize a payment session with x402\n\nAuthorizes a payment session using x402. The session must be in `created` status.\n\nThe client sends no request body. You may supply the base64-encoded x402-compliant payment payload in the optional **`PAYMENT-SIGNATURE`** header.\n\nOn authorization, a hold is placed on the payer's funds. The authorization is returned in `pending` status and transitions asynchronously to `succeeded` or `failed`.\n\n**402 Payment Required** may be returned when payment must be supplied before authorization can proceed. The **402** response uses the standard CDP **`Error`** JSON body and may include a **`PAYMENT-REQUIRED`** header (see the **402** response) describing accepted networks, assets, and amounts.\n\nIf `autoCapture` is enabled on the session, a capture is automatically created after a successful authorization."
+        "smithy.api#documentation": "Authorize a payment session with x402\n\n**Customer-initiated.** Authorizes a payment session using x402. The payer supplies the payment payload, so this call is unauthenticated. The session must be in `created` status.\n\nThe client sends no request body. You may supply the base64-encoded x402-compliant payment payload in the optional **`PAYMENT-SIGNATURE`** header.\n\nOn authorization, a hold is placed on the payer's funds. The authorization is returned in `pending` status and transitions asynchronously to `succeeded` or `failed`.\n\n**402 Payment Required** may be returned when payment must be supplied before authorization can proceed. The **402** response uses the standard CDP **`Error`** JSON body and may include a **`PAYMENT-REQUIRED`** header (see the **402** response) describing accepted networks, assets, and amounts.\n\nIf `autoCapture` is enabled on the session, a capture is automatically created after a successful authorization."
       }
     },
     "com.coinbase.cdp#AuthorizeCoinbasePaymentSessionRequest": {
@@ -6403,7 +6428,7 @@
           "uri": "/v2/payment-sessions/{paymentSessionId}/authorizations/coinbase",
           "code": 200
         },
-        "smithy.api#documentation": "Authorize a payment session with a Coinbase account\n\nAuthorizes a payment session using the payer's Coinbase account authenticated via OAuth. The session must be in `created` status.\n\n**Authentication:** Requires a Coinbase OAuth Bearer token with the `coinbase:stablecoins:payment-create` scope.\n\nOn authorization, a hold is placed on the payer's funds. The authorization is returned in `pending` status and transitions asynchronously to `succeeded` or `failed`.\n\nIf `autoCapture` is enabled on the session, a capture is automatically created after a successful authorization."
+        "smithy.api#documentation": "Authorize a payment session with a Coinbase account\n\n**Merchant-initiated.** The merchant charges the payer's Coinbase account using an OAuth grant the payer authorized earlier, so the payer does not need to be present at payment time. The session must be in `created` status.\n\n**Authentication:** Requires a Coinbase OAuth Bearer token with the `coinbase:stablecoins:payment-create` scope.\n\nOn authorization, a hold is placed on the payer's funds. The authorization is returned in `pending` status and transitions asynchronously to `succeeded` or `failed`.\n\nIf `autoCapture` is enabled on the session, a capture is automatically created after a successful authorization."
       }
     },
     "com.coinbase.cdp#ListPaymentSessionAuthorizationsRequest": {
@@ -21277,6 +21302,36 @@
           "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "acceptance.disbursement.failed"
+          }
+        },
+        "HEALTH_STATUS_UPDATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "health.status.updated"
+          }
+        },
+        "HEALTH_MAINTENANCE_SCHEDULED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "health.maintenance.scheduled"
+          }
+        },
+        "HEALTH_MAINTENANCE_STARTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "health.maintenance.started"
+          }
+        },
+        "HEALTH_MAINTENANCE_COMPLETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "health.maintenance.completed"
+          }
+        },
+        "HEALTH_MAINTENANCE_CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "health.maintenance.canceled"
           }
         },
         "CUSTOMERS_CAPABILITY_CHANGED": {

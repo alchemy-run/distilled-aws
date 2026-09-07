@@ -3783,6 +3783,45 @@ export const PullMessageResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "PullMessageResponse",
 }) as any as S.Schema<PullMessageResponse>;
 
+export interface PurgeStatusRequest {
+  /** A Resource identifier. */
+  accountId: string;
+  /** A Resource identifier. */
+  queueId: string;
+}
+export const PurgeStatusRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    accountId: S.String.pipe(T.Label("account_id")),
+    queueId: S.String.pipe(T.Label("queue_id")),
+  })
+    .pipe(
+      T.Http({
+        method: "GET",
+        uri: "/accounts/{account_id}/queues/{queue_id}/purge",
+        code: 200,
+      }),
+    )
+    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "PurgeStatusRequest",
+}) as any as S.Schema<PurgeStatusRequest>;
+
+/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
+export interface PurgeStatusResponse {
+  /** Indicates if the last purge operation completed successfully. */
+  completed?: string | null;
+  /** Timestamp when the last purge operation started. */
+  startedAt?: string | null;
+}
+export const PurgeStatusResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    completed: S.optional(S.NullOr(S.String)),
+    startedAt: S.optional(S.NullOr(S.String).pipe(T.Body("started_at"))),
+  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "PurgeStatusResponse",
+}) as any as S.Schema<PurgeStatusResponse>;
+
 export type MessagesPushRequestContentType = "text" | "json";
 export const MessagesPushRequestContentType = /*@__PURE__*/ S.String;
 
@@ -4059,45 +4098,6 @@ export const StartPurgeResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "StartPurgeResponse",
 }) as any as S.Schema<StartPurgeResponse>;
-
-export interface StatusPurgeRequest {
-  /** A Resource identifier. */
-  accountId: string;
-  /** A Resource identifier. */
-  queueId: string;
-}
-export const StatusPurgeRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    accountId: S.String.pipe(T.Label("account_id")),
-    queueId: S.String.pipe(T.Label("queue_id")),
-  })
-    .pipe(
-      T.Http({
-        method: "GET",
-        uri: "/accounts/{account_id}/queues/{queue_id}/purge",
-        code: 200,
-      }),
-    )
-    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "StatusPurgeRequest",
-}) as any as S.Schema<StatusPurgeRequest>;
-
-/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
-export interface StatusPurgeResponse {
-  /** Indicates if the last purge operation completed successfully. */
-  completed?: string | null;
-  /** Timestamp when the last purge operation started. */
-  startedAt?: string | null;
-}
-export const StatusPurgeResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    completed: S.optional(S.NullOr(S.String)),
-    startedAt: S.optional(S.NullOr(S.String).pipe(T.Body("started_at"))),
-  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "StatusPurgeResponse",
-}) as any as S.Schema<StatusPurgeResponse>;
 
 export type ConsumersUpdateRequestType = "worker" | "http_pull";
 export const ConsumersUpdateRequestType = /*@__PURE__*/ S.String;
@@ -4919,6 +4919,29 @@ export const pullMessage: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type PurgeStatusError =
+  | InvalidQueueId
+  | InvalidRoute
+  | CloudflareOpError;
+/** Get details about a Queue's purge status. */
+export const purgeStatus: API.OperationMethod<
+  PurgeStatusRequest,
+  PurgeStatusResponse,
+  PurgeStatusError,
+  CloudflareOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PurgeStatusRequest,
+  output: PurgeStatusResponse,
+  errors: [
+    InvalidQueueId,
+    InvalidRoute,
+    CloudflareRateLimited,
+    CloudflareError,
+  ],
+  protocol: CloudflareProtocol,
+  retry: Retry.Retry,
+}));
+
 export type PushMessageError =
   | InvalidMessageBody
   | InvalidQueueId
@@ -4954,29 +4977,6 @@ export const startPurge: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: StartPurgeRequest,
   output: StartPurgeResponse,
-  errors: [
-    InvalidQueueId,
-    InvalidRoute,
-    CloudflareRateLimited,
-    CloudflareError,
-  ],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
-
-export type StatusPurgeError =
-  | InvalidQueueId
-  | InvalidRoute
-  | CloudflareOpError;
-/** Get details about a Queue's purge status. */
-export const statusPurge: API.OperationMethod<
-  StatusPurgeRequest,
-  StatusPurgeResponse,
-  StatusPurgeError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: StatusPurgeRequest,
-  output: StatusPurgeResponse,
   errors: [
     InvalidQueueId,
     InvalidRoute,

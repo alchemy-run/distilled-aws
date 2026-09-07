@@ -14,7 +14,13 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "keyDictionary": {
+      "perPage": "per_page",
+      "resultInfo": "result_info",
+      "totalCount": "total_count"
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.audit_logs#ListRequestAction": {
@@ -71,96 +77,6 @@
             "smithy.api#documentation": "Filters by the name of the zone associated to the change."
           }
         }
-      }
-    },
-    "com.cloudflare.audit_logs#ListRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Finds a specific log by its ID.",
-            "smithy.api#httpQuery": "id"
-          }
-        },
-        "action": {
-          "target": "com.cloudflare.audit_logs#ListRequestAction",
-          "traits": {
-            "com.cloudflare.protocols#deepQuery": "action"
-          }
-        },
-        "actor": {
-          "target": "com.cloudflare.audit_logs#ListRequestActor",
-          "traits": {
-            "com.cloudflare.protocols#deepQuery": "actor"
-          }
-        },
-        "before": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Limits the returned results to logs older than the specified date. A `full-date` that conforms to RFC3339.",
-            "smithy.api#httpQuery": "before"
-          }
-        },
-        "direction": {
-          "target": "com.cloudflare.audit_logs#ListRequestDirection",
-          "traits": {
-            "smithy.api#documentation": "Changes the direction of the chronological sorting.",
-            "smithy.api#httpQuery": "direction"
-          }
-        },
-        "export": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Indicates that this request is an export of logs in CSV format.",
-            "smithy.api#httpQuery": "export"
-          }
-        },
-        "hide_user_logs": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Indicates whether or not to hide user level audit logs.",
-            "smithy.api#httpQuery": "hide_user_logs"
-          }
-        },
-        "page": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Defines which page of results to return.",
-            "smithy.api#httpQuery": "page"
-          }
-        },
-        "per_page": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Sets the number of results to return per page.",
-            "smithy.api#httpQuery": "per_page"
-          }
-        },
-        "since": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Limits the returned results to logs newer than the specified date. A `full-date` that conforms to RFC3339.",
-            "smithy.api#httpQuery": "since"
-          }
-        },
-        "zone": {
-          "target": "com.cloudflare.audit_logs#ListRequestZone",
-          "traits": {
-            "com.cloudflare.protocols#deepQuery": "zone"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.audit_logs#ListResultItemAction": {
@@ -319,7 +235,136 @@
         "target": "com.cloudflare.audit_logs#ListResultItem"
       }
     },
-    "com.cloudflare.audit_logs#ListResponse": {
+    "com.cloudflare.audit_logs#AuditLogs": {
+      "type": "service",
+      "version": "4.0",
+      "operations": [
+        {
+          "target": "com.cloudflare.audit_logs#ListAuditLogs"
+        }
+      ],
+      "traits": {
+        "com.cloudflare.protocols#v4Json": {},
+        "smithy.api#title": "Cloudflare AuditLogs",
+        "smithy.api#documentation": "Cloudflare API — audit_logs resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+      }
+    },
+    "com.cloudflare.audit_logs#ListAuditLogs": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.audit_logs#ListAuditLogsRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.audit_logs#ListAuditLogsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/audit_logs",
+          "code": 200
+        },
+        "smithy.api#documentation": "Gets a list of audit logs for an account. Can be filtered by who made the change, on which zone, and the timeframe of the change.",
+        "smithy.api#readonly": {},
+        "smithy.api#paginated": {
+          "mode": "page",
+          "inputToken": "page",
+          "outputToken": "resultInfo.page",
+          "items": "result",
+          "pageSize": "perPage"
+        }
+      }
+    },
+    "com.cloudflare.audit_logs#ListAuditLogsRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Finds a specific log by its ID.",
+            "smithy.api#httpQuery": "id"
+          }
+        },
+        "action": {
+          "target": "com.cloudflare.audit_logs#ListRequestAction",
+          "traits": {
+            "com.cloudflare.protocols#deepQuery": "action"
+          }
+        },
+        "actor": {
+          "target": "com.cloudflare.audit_logs#ListRequestActor",
+          "traits": {
+            "com.cloudflare.protocols#deepQuery": "actor"
+          }
+        },
+        "before": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Limits the returned results to logs older than the specified date. A `full-date` that conforms to RFC3339.",
+            "smithy.api#httpQuery": "before"
+          }
+        },
+        "direction": {
+          "target": "com.cloudflare.audit_logs#ListRequestDirection",
+          "traits": {
+            "smithy.api#documentation": "Changes the direction of the chronological sorting.",
+            "smithy.api#httpQuery": "direction"
+          }
+        },
+        "export": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates that this request is an export of logs in CSV format.",
+            "smithy.api#httpQuery": "export"
+          }
+        },
+        "hide_user_logs": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether or not to hide user level audit logs.",
+            "smithy.api#httpQuery": "hide_user_logs"
+          }
+        },
+        "page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Defines which page of results to return.",
+            "smithy.api#httpQuery": "page"
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Sets the number of results to return per page.",
+            "smithy.api#httpQuery": "per_page"
+          }
+        },
+        "since": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Limits the returned results to logs newer than the specified date. A `full-date` that conforms to RFC3339.",
+            "smithy.api#httpQuery": "since"
+          }
+        },
+        "zone": {
+          "target": "com.cloudflare.audit_logs#ListRequestZone",
+          "traits": {
+            "com.cloudflare.protocols#deepQuery": "zone"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.audit_logs#ListAuditLogsResponse": {
       "type": "structure",
       "members": {
         "result": {
@@ -332,38 +377,6 @@
       },
       "traits": {
         "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.audit_logs#List": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.audit_logs#ListRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.audit_logs#ListResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/accounts/{account_id}/audit_logs",
-          "code": 200
-        },
-        "smithy.api#documentation": "Gets a list of audit logs for an account. Can be filtered by who made the change, on which zone, and the timeframe of the change.",
-        "smithy.api#readonly": {}
-      }
-    },
-    "com.cloudflare.audit_logs#AuditLogs": {
-      "type": "service",
-      "version": "4.0",
-      "operations": [
-        {
-          "target": "com.cloudflare.audit_logs#List"
-        }
-      ],
-      "traits": {
-        "com.cloudflare.protocols#v4Json": {},
-        "smithy.api#title": "Cloudflare AuditLogs",
-        "smithy.api#documentation": "Cloudflare API — audit_logs resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
       }
     }
   }

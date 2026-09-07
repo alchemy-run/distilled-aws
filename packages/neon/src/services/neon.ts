@@ -560,7 +560,7 @@ export const NeonAuthCreateNewUserResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "NeonAuthCreateNewUserResponse",
 }) as any as S.Schema<NeonAuthCreateNewUserResponse>;
 
-/** A single capability a credential may exercise. A credential is granted a set of these; it may only perform actions explicitly listed in its scopes. */
+/** A single capability you may request when issuing a credential. A credential is granted a set of these; it may only perform actions explicitly listed in its scopes. This is the *requestable* set. Responses describing an existing credential use `GrantedCredentialScope`, which is deliberately wider: a credential may have been granted a scope that this endpoint does not offer, and a response must be able to report it. */
 export type CredentialScope =
   | "storage:read"
   | "storage:write"
@@ -608,9 +608,18 @@ export const CreateCredentialRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateCredentialRequest",
 }) as any as S.Schema<CreateCredentialRequest>;
 
-export type CreateCredentialResponseScopesList = Array<CredentialScope>;
+/** A single capability a credential actually carries, as reported by responses that describe an existing credential. This set is a superset of `CredentialScope` (the requestable set) because a credential's scopes are not limited to what this API offers: the platform accepts additional scopes for customer-managed (`user`) credentials, so one may exist on your branch that was not issued through this endpoint. Responses must be able to report such a credential rather than fail to describe it — a client that rejected the value would, on rotate, discard the replacement secret after the rotation had already committed. Treat unknown values as opaque. */
+export type GrantedCredentialScope =
+  | "storage:read"
+  | "storage:write"
+  | "ai_gateway:invoke"
+  | "telemetry:write"
+  | "functions:invoke";
+export const GrantedCredentialScope = /*@__PURE__*/ S.String;
+
+export type CreateCredentialResponseScopesList = Array<GrantedCredentialScope>;
 export const CreateCredentialResponseScopesList = /*@__PURE__*/ S.Array(
-  CredentialScope,
+  GrantedCredentialScope,
 ) as any as S.Schema<CreateCredentialResponseScopesList>;
 
 export interface CreateCredentialResponse {
@@ -2948,6 +2957,38 @@ export const BucketObjectsDeletePrefixResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "BucketObjectsDeletePrefixResponse",
 }) as any as S.Schema<BucketObjectsDeletePrefixResponse>;
+
+export interface DeleteProjectBranchCustomDomainRequest {
+  /** The Neon project ID */
+  project_id: string;
+  /** The Neon branch ID */
+  branch_id: string;
+  /** The registered custom domain (case-insensitive). */
+  domain: string;
+}
+export const DeleteProjectBranchCustomDomainRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      branch_id: S.String.pipe(T.Label()),
+      domain: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/projects/{project_id}/branches/{branch_id}/custom-domains/{domain}",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "DeleteProjectBranchCustomDomainRequest",
+}) as any as S.Schema<DeleteProjectBranchCustomDomainRequest>;
+
+export interface DeleteProjectBranchCustomDomainResponse {}
+export const DeleteProjectBranchCustomDomainResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "DeleteProjectBranchCustomDomainResponse",
+}) as any as S.Schema<DeleteProjectBranchCustomDomainResponse>;
 
 export interface DeleteProjectBranchDataAPIRequest {
   /** The Neon project ID */
@@ -6218,9 +6259,9 @@ export const ListCredentialsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListCredentialsRequest",
 }) as any as S.Schema<ListCredentialsRequest>;
 
-export type CredentialMetaScopesList = Array<CredentialScope>;
+export type CredentialMetaScopesList = Array<GrantedCredentialScope>;
 export const CredentialMetaScopesList = /*@__PURE__*/ S.Array(
-  CredentialScope,
+  GrantedCredentialScope,
 ) as any as S.Schema<CredentialMetaScopesList>;
 
 export interface CredentialMeta {
@@ -6567,6 +6608,86 @@ export const BucketsListResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "BucketsListResponse",
 }) as any as S.Schema<BucketsListResponse>;
+
+export interface ListProjectBranchCustomDomainsRequest {
+  /** The Neon project ID */
+  project_id: string;
+  /** The Neon branch ID */
+  branch_id: string;
+  /** A cursor to use in pagination. A cursor defines your place in the data list. Include `response.pagination.next` in subsequent API calls to fetch next page of the list. */
+  cursor?: string;
+  /** Specify a value from 1 to 1000 to limit number of domains in the response */
+  limit?: number;
+}
+export const ListProjectBranchCustomDomainsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      branch_id: S.String.pipe(T.Label()),
+      cursor: S.optional(S.String.pipe(T.Query())),
+      limit: S.optional(S.Number.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/projects/{project_id}/branches/{branch_id}/custom-domains",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "ListProjectBranchCustomDomainsRequest",
+}) as any as S.Schema<ListProjectBranchCustomDomainsRequest>;
+
+export interface CustomDomain {
+  /** The registered custom domain (normalized, lowercase). */
+  domain: string;
+  /** The kind of branch entity the domain targets. Possible values: `function` (v1 supports only `function`). Not an `enum`: new values may ship in later spec versions — treat any undocumented value as unknown. */
+  entity_type: string;
+  /** The target entity's identifier within the branch. For `function` this is the function slug. */
+  entity_id: string;
+  /** The hostname the customer must point their custom domain at with a CNAME record. Empty when the serving region has no custom-domains front door configured. This is the activation input: point DNS here and the domain goes live (see `status`) once a certificate is issued on the first request. */
+  cname_target: string;
+  /** The domain's current validity, computed by a background check: `pending` (still converging — point your CNAME at `cname_target` and wait), `active` (live: DNS resolves to the edge, the CA is authorized, and routing is published), or `error` (a fixable problem — see `status_reason`). Not an `enum`: treat any undocumented value as unknown. May be absent briefly right after registration. */
+  status?: string;
+  /** The DNS + CAA portion of the check: `pending` (no records yet), `ok` (resolves to our edge and the CA is authorized), `misconfigured` (your CNAME does not resolve to our edge), or `caa_blocked` (your CAA records forbid Let's Encrypt). Not an `enum`. */
+  dns_status?: string;
+  /** Whether Neon's internal routing for the domain is published: `pending`, `present`, or `missing`. `missing` is an internal fault surfaced for support. Not an `enum`. */
+  binding_status?: string;
+  /** A short, stable machine-readable reason for a non-active `status` (e.g. `cname-not-pointing-at-edge`, `caa-blocks-lets-encrypt`, `binding-missing`), suitable for keying an actionable hint. Empty when active or pending. */
+  status_reason?: string;
+}
+export const CustomDomain = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    domain: S.String,
+    entity_type: S.String,
+    entity_id: S.String,
+    cname_target: S.String,
+    status: S.optional(S.String),
+    dns_status: S.optional(S.String),
+    binding_status: S.optional(S.String),
+    status_reason: S.optional(S.String),
+  }),
+).annotate({ identifier: "CustomDomain" }) as any as S.Schema<CustomDomain>;
+
+export type ListProjectBranchCustomDomainsResponseCustomDomainsList =
+  Array<CustomDomain>;
+export const ListProjectBranchCustomDomainsResponseCustomDomainsList =
+  /*@__PURE__*/ S.Array(
+    CustomDomain,
+  ) as any as S.Schema<ListProjectBranchCustomDomainsResponseCustomDomainsList>;
+
+export interface ListProjectBranchCustomDomainsResponse {
+  custom_domains: ListProjectBranchCustomDomainsResponseCustomDomainsList;
+  pagination?: CursorPagination;
+}
+export const ListProjectBranchCustomDomainsResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      custom_domains: ListProjectBranchCustomDomainsResponseCustomDomainsList,
+      pagination: S.optional(CursorPagination),
+    }),
+).annotate({
+  identifier: "ListProjectBranchCustomDomainsResponse",
+}) as any as S.Schema<ListProjectBranchCustomDomainsResponse>;
 
 export interface ListProjectBranchDatabasesRequest {
   /** The Neon project ID */
@@ -7646,6 +7767,37 @@ export const RecoverProjectResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "RecoverProjectResponse",
 }) as any as S.Schema<RecoverProjectResponse>;
 
+export interface RegisterProjectBranchCustomDomainRequest {
+  /** The Neon project ID */
+  project_id: string;
+  /** The Neon branch ID */
+  branch_id: string;
+  /** The custom domain to register (for example `dashboard.acme.com`). Case-insensitive; normalized to lowercase (a trailing root dot is stripped, so the 254-char bound admits a fully-qualified name whose normalized form is 253 chars). Neon-managed and internal hostnames are rejected. */
+  domain: string;
+  /** The kind of branch entity to point the domain at. v1 supports only `function`; any other value is rejected with `invalid_entity_type`. */
+  entity_type: string;
+  /** The target entity's identifier within the branch. For `function` this is the function slug (which must already exist on the branch). */
+  entity_id: string;
+}
+export const RegisterProjectBranchCustomDomainRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      branch_id: S.String.pipe(T.Label()),
+      domain: S.String,
+      entity_type: S.String,
+      entity_id: S.String,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/projects/{project_id}/branches/{branch_id}/custom-domains",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "RegisterProjectBranchCustomDomainRequest",
+}) as any as S.Schema<RegisterProjectBranchCustomDomainRequest>;
+
 export interface RemoveOrganizationMemberRequest {
   /** The Neon organization ID */
   org_id: string;
@@ -7931,6 +8083,49 @@ export const RestoreSnapshotResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "RestoreSnapshotResponse",
 }) as any as S.Schema<RestoreSnapshotResponse>;
 
+export interface RevealCredentialRequest {
+  /** The Neon project ID */
+  project_id: string;
+  /** The Neon branch ID */
+  branch_id: string;
+  /** The opaque credential id (e.g. nak_live_<32hex>). */
+  token_id: string;
+}
+export const RevealCredentialRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    branch_id: S.String.pipe(T.Label()),
+    token_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/projects/{project_id}/branches/{branch_id}/credentials/{token_id}/reveal",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "RevealCredentialRequest",
+}) as any as S.Schema<RevealCredentialRequest>;
+
+/** The live secrets of an existing credential, recovered on demand by the reveal endpoint. `api_token` and `s3_secret_access_key` are the same values handed back once at issuance. The field set is deliberately narrower than `CreateCredentialResponse`: it carries only what reveal can actually recover. `token_id_short`, `scopes`, `principal_type`, `created_at` and `expires_at` are metadata, not secrets — read them from the list endpoint instead. No `branch_id` is returned. Reveal is scoped by `(project_id, token_id)`, so the branch in the request path authorizes the call but is not proven to be the branch the credential was issued on. Echoing it back would assert an anchor this endpoint never verified. For a credential's true anchor branch, read `branch_id` from the list endpoint, which is branch-exact. */
+export interface CredentialSecret {
+  /** Opaque credential id (e.g. nak_live_<32hex>). */
+  token_id: string;
+  /** Bearer token. */
+  api_token: string | Redacted.Redacted<string>;
+  /** nsk_live_<64 hex>; the AWS_SECRET_ACCESS_KEY. */
+  s3_secret_access_key: string;
+}
+export const CredentialSecret = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    token_id: S.String,
+    api_token: S.String.pipe(T.SensitiveValue({})),
+    s3_secret_access_key: S.String,
+  }),
+).annotate({
+  identifier: "CredentialSecret",
+}) as any as S.Schema<CredentialSecret>;
+
 export interface RevokeApiKeyRequest {
   /** The API key ID */
   key_id: number;
@@ -8076,6 +8271,77 @@ export const RevokePermissionFromProjectRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "RevokePermissionFromProjectRequest",
 }) as any as S.Schema<RevokePermissionFromProjectRequest>;
+
+export interface RotateCredentialRequest {
+  /** The Neon project ID */
+  project_id: string;
+  /** The Neon branch ID */
+  branch_id: string;
+  /** The opaque credential id (e.g. nak_live_<32hex>). */
+  token_id: string;
+}
+export const RotateCredentialRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    branch_id: S.String.pipe(T.Label()),
+    token_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/projects/{project_id}/branches/{branch_id}/credentials/{token_id}/rotate",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "RotateCredentialRequest",
+}) as any as S.Schema<RotateCredentialRequest>;
+
+export type RotateCredentialResponseScopesList = Array<GrantedCredentialScope>;
+export const RotateCredentialResponseScopesList = /*@__PURE__*/ S.Array(
+  GrantedCredentialScope,
+) as any as S.Schema<RotateCredentialResponseScopesList>;
+
+/** Always `user`: only customer-managed credentials are rotatable through this endpoint. */
+export type RotateCredentialResponsePrincipalType = "user";
+export const RotateCredentialResponsePrincipalType = /*@__PURE__*/ S.String;
+
+/** The replacement secret material for an existing credential, returned exactly once. `token_id`, `scopes`, `branch_id` and `created_at` are unchanged by the rotation — only `api_token` and `s3_secret_access_key` are new. */
+export interface RotateCredentialResponse {
+  /** Opaque credential id (e.g. nak_live_<32hex>), unchanged by the rotation. Doubles as the `AWS_ACCESS_KEY_ID` for SigV4. */
+  token_id: string;
+  /** First 12 hex chars of token_id; safe to log. */
+  token_id_short: string;
+  /** Customer-supplied label carried on the credential. Absent when none was set at issuance. */
+  name?: string;
+  /** The new Bearer token; returned exactly once. */
+  api_token: string | Redacted.Redacted<string>;
+  /** The new nsk_live_<64 hex> AWS_SECRET_ACCESS_KEY; returned exactly once. */
+  s3_secret_access_key: string;
+  scopes: RotateCredentialResponseScopesList;
+  branch_id: string;
+  /** Always `user`: only customer-managed credentials are rotatable through this endpoint. */
+  principal_type: RotateCredentialResponsePrincipalType;
+  /** When the credential was originally issued. Rotation replaces the secrets in place and does not reset this. */
+  created_at: string;
+  /** When the credential expires; absent means never expires. Rotation does not extend it. */
+  expires_at?: string;
+}
+export const RotateCredentialResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    token_id: S.String,
+    token_id_short: S.String,
+    name: S.optional(S.String),
+    api_token: S.String.pipe(T.SensitiveValue({})),
+    s3_secret_access_key: S.String,
+    scopes: RotateCredentialResponseScopesList,
+    branch_id: S.String,
+    principal_type: RotateCredentialResponsePrincipalType,
+    created_at: S.String,
+    expires_at: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "RotateCredentialResponse",
+}) as any as S.Schema<RotateCredentialResponse>;
 
 export interface SendNeonAuthEmailProviderTestRequest {
   /** The Neon project ID */
@@ -9805,6 +10071,21 @@ export const deleteProjectBranchBucketObjectsByPrefix: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type DeleteProjectBranchCustomDomainError = NeonOpError;
+/** Delete a custom domain from a branch Removes a custom domain registered on the branch and stops routing it. **Note**: This endpoint is currently in Beta. */
+export const deleteProjectBranchCustomDomain: API.OperationMethod<
+  DeleteProjectBranchCustomDomainRequest,
+  DeleteProjectBranchCustomDomainResponse,
+  DeleteProjectBranchCustomDomainError,
+  NeonOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteProjectBranchCustomDomainRequest,
+  output: DeleteProjectBranchCustomDomainResponse,
+  errors: [UnknownNeonError],
+  protocol: NeonProtocol,
+  retry: Retry.Retry,
+}));
+
 export type DeleteProjectBranchDataAPIError = NeonOpError;
 /** Delete Neon Data API Deletes the Neon Data API for the specified branch. Existing connections using the Data API endpoint will fail after deletion. */
 export const deleteProjectBranchDataAPI: API.OperationMethod<
@@ -10772,6 +11053,31 @@ export const listProjectBranchBuckets: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type ListProjectBranchCustomDomainsError = NeonOpError;
+/** List the custom domains on a branch Lists all custom domains registered on the branch, across every target entity. **Note**: This endpoint is currently in Beta. */
+export const listProjectBranchCustomDomains: API.PaginatedOperationMethod<
+  ListProjectBranchCustomDomainsRequest,
+  ListProjectBranchCustomDomainsResponse,
+  ListProjectBranchCustomDomainsError,
+  NeonOpContext,
+  CustomDomain
+> = /*@__PURE__*/ API.makePaginated(
+  () => ({
+    input: ListProjectBranchCustomDomainsRequest,
+    output: ListProjectBranchCustomDomainsResponse,
+    errors: [UnknownNeonError],
+    protocol: NeonProtocol,
+    retry: Retry.Retry,
+    pagination: {
+      mode: "cursor",
+      inputToken: "cursor",
+      outputToken: "pagination.next",
+      items: "custom_domains",
+    } as const,
+  }),
+  paginateCursor,
+) as any;
+
 export type ListProjectBranchDatabasesError = NotFound | NeonOpError;
 /** List databases Retrieves a list of databases for the specified branch. A branch can have multiple databases. For related information, see [Manage databases](https://neon.com/docs/manage/databases/). */
 export const listProjectBranchDatabases: API.OperationMethod<
@@ -11105,6 +11411,21 @@ export const recoverProject: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type RegisterProjectBranchCustomDomainError = NeonOpError;
+/** Register a custom domain on a branch Registers a customer-owned domain (for example `dashboard.acme.com`) on the branch and points it at a target entity, chosen by `entity_type` + `entity_id`. In v1 only `entity_type: function` is supported (an unsupported type is rejected with `400`), where `entity_id` is the function slug and the function must already exist on the branch (else `404`). The response includes the `cname_target` the customer must point their domain at with a CNAME record; the domain goes live only once that DNS resolves and a certificate is issued on the first request. A domain already registered to another resource is rejected with `409` and no detail about the owner. Re-registering the same domain for the same entity is idempotent. **Note**: This endpoint is currently in Beta. */
+export const registerProjectBranchCustomDomain: API.OperationMethod<
+  RegisterProjectBranchCustomDomainRequest,
+  CustomDomain,
+  RegisterProjectBranchCustomDomainError,
+  NeonOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RegisterProjectBranchCustomDomainRequest,
+  output: CustomDomain,
+  errors: [UnknownNeonError],
+  protocol: NeonProtocol,
+  retry: Retry.Retry,
+}));
+
 export type RemoveOrganizationMemberError = NeonOpError;
 /** Remove organization member Removes the specified member from the organization. Only organization admins can perform this action. The last admin in an organization cannot be removed. */
 export const removeOrganizationMember: API.OperationMethod<
@@ -11195,6 +11516,21 @@ export const restoreSnapshot: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type RevealCredentialError = NotFound | Conflict | NeonOpError;
+/** Reveal a credential's secrets Returns the live `api_token` and `s3_secret_access_key` of an existing credential, so a credential whose issuance response was lost can be recovered without minting a new one. This is a POST with an explicit `/reveal` verb so the secrets never ride a GET, where they would land in access logs, browser history and proxy caches. Revoked and expired credentials return 404, as does a `token_id` that does not belong to this project. A credential issued before secret retrieval was supported has no recoverable secret and returns 409 — rotate it to obtain one. **Note**: This endpoint is currently in Beta. */
+export const revealCredential: API.OperationMethod<
+  RevealCredentialRequest,
+  CredentialSecret,
+  RevealCredentialError,
+  NeonOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RevealCredentialRequest,
+  output: CredentialSecret,
+  errors: [NotFound, Conflict, UnknownNeonError],
+  protocol: NeonProtocol,
+  retry: Retry.Retry,
+}));
+
 export type RevokeApiKeyError = NotFound | NeonOpError;
 /** Revoke API key Revokes the specified API key. An API key that is no longer needed can be revoked. This action cannot be reversed. API keys can also be managed in the Neon Console. See [Manage API keys](https://neon.com/docs/manage/api-keys/). */
 export const revokeApiKey: API.OperationMethod<
@@ -11250,6 +11586,21 @@ export const revokePermissionFromProject: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: RevokePermissionFromProjectRequest,
   output: ProjectPermission,
+  errors: [UnknownNeonError],
+  protocol: NeonProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RotateCredentialError = NeonOpError;
+/** Rotate a credential's secrets Replaces the secret material on an existing scoped credential in place. `token_id` is preserved — it is the `AWS_ACCESS_KEY_ID` for S3-compatible clients, so the access key id your application already holds keeps working and only the secret changes. This is the analog of resetting a Postgres password, not of issuing a second credential. The response carries the new `api_token` and `s3_secret_access_key` exactly once. Rotation is **not** idempotent: retrying after an ambiguous timeout mints another secret and supersedes the previous replacement, so a retry does not recover a lost response — it only invalidates the secret you did not receive. If you lose the response, issue a replacement credential and revoke this one. The old secret stops authenticating as soon as the rotation commits. Where a region caches credentials on its data-plane verifiers, a replica may briefly keep accepting the old secret — and rejecting the new one — until its cache entry expires; where it does not, the cutover is immediate apart from requests already in flight. Either way the changeover is not atomic across replicas, so retry an unexpected authentication failure right after rotating rather than treating the new secret as bad. `last_used_at` continues to report the logical credential's prior usage and says nothing about whether the new secret has been used yet. Only a live, unexpired, unrevoked customer-managed (`user`) credential on a live project and live branch is eligible. Anything else — including the platform-internal `function` and `system` credentials — is reported as not found, indistinguishable from an unknown `token_id`. **Note**: This endpoint is currently in Beta. */
+export const rotateCredential: API.OperationMethod<
+  RotateCredentialRequest,
+  RotateCredentialResponse,
+  RotateCredentialError,
+  NeonOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RotateCredentialRequest,
+  output: RotateCredentialResponse,
   errors: [UnknownNeonError],
   protocol: NeonProtocol,
   retry: Retry.Retry,

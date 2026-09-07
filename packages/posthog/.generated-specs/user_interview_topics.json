@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.user_interview_topics#UserInterviewTopicsListRequest": {
+    "com.posthog.user_interview_topics#ListUserInterviewTopicsRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -326,10 +327,10 @@
       },
       "traits": {}
     },
-    "com.posthog.user_interview_topics#UserInterviewTopicsList": {
+    "com.posthog.user_interview_topics#ListUserInterviewTopics": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.user_interview_topics#UserInterviewTopicsListRequest"
+        "target": "com.posthog.user_interview_topics#ListUserInterviewTopicsRequest"
       },
       "output": {
         "target": "com.posthog.user_interview_topics#PaginatedUserInterviewTopicList"
@@ -343,7 +344,7 @@
         "smithy.api#documentation": "Planned user interview topics: who we want to target and what we want to ask about."
       }
     },
-    "com.posthog.user_interview_topics#UserInterviewTopicsCreateRequestIntervieweeEmailsList": {
+    "com.posthog.user_interview_topics#CreateUserInterviewTopicRequestIntervieweeEmailsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -352,7 +353,7 @@
         "smithy.api#documentation": "Email addresses of people to interview. May be combined with interviewee_distinct_ids."
       }
     },
-    "com.posthog.user_interview_topics#UserInterviewTopicsCreateRequestIntervieweeDistinctIdsList": {
+    "com.posthog.user_interview_topics#CreateUserInterviewTopicRequestIntervieweeDistinctIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -361,7 +362,7 @@
         "smithy.api#documentation": "PostHog distinct IDs of people to interview. May be combined with interviewee_emails."
       }
     },
-    "com.posthog.user_interview_topics#UserInterviewTopicsCreateRequestQuestionsList": {
+    "com.posthog.user_interview_topics#CreateUserInterviewTopicRequestQuestionsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -370,7 +371,7 @@
         "smithy.api#documentation": "Ordered list of questions the voice agent should work through during the interview."
       }
     },
-    "com.posthog.user_interview_topics#UserInterviewTopicsCreateRequest": {
+    "com.posthog.user_interview_topics#CreateUserInterviewTopicRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -382,13 +383,13 @@
           }
         },
         "interviewee_emails": {
-          "target": "com.posthog.user_interview_topics#UserInterviewTopicsCreateRequestIntervieweeEmailsList",
+          "target": "com.posthog.user_interview_topics#CreateUserInterviewTopicRequestIntervieweeEmailsList",
           "traits": {
             "smithy.api#documentation": "Email addresses of people to interview. May be combined with interviewee_distinct_ids."
           }
         },
         "interviewee_distinct_ids": {
-          "target": "com.posthog.user_interview_topics#UserInterviewTopicsCreateRequestIntervieweeDistinctIdsList",
+          "target": "com.posthog.user_interview_topics#CreateUserInterviewTopicRequestIntervieweeDistinctIdsList",
           "traits": {
             "smithy.api#documentation": "PostHog distinct IDs of people to interview. May be combined with interviewee_emails."
           }
@@ -407,7 +408,7 @@
           }
         },
         "questions": {
-          "target": "com.posthog.user_interview_topics#UserInterviewTopicsCreateRequestQuestionsList",
+          "target": "com.posthog.user_interview_topics#CreateUserInterviewTopicRequestQuestionsList",
           "traits": {
             "smithy.api#documentation": "Ordered list of questions the voice agent should work through during the interview."
           }
@@ -429,10 +430,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.user_interview_topics#UserInterviewTopicsCreate": {
+    "com.posthog.user_interview_topics#CreateUserInterviewTopic": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.user_interview_topics#UserInterviewTopicsCreateRequest"
+        "target": "com.posthog.user_interview_topics#CreateUserInterviewTopicRequest"
       },
       "output": {
         "target": "com.posthog.user_interview_topics#UserInterviewTopic"
@@ -446,7 +447,7 @@
         "smithy.api#documentation": "Planned user interview topics: who we want to target and what we want to ask about."
       }
     },
-    "com.posthog.user_interview_topics#UserInterviewTopicsRetrieveRequest": {
+    "com.posthog.user_interview_topics#GetUserInterviewTopicRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -470,10 +471,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.user_interview_topics#UserInterviewTopicsRetrieve": {
+    "com.posthog.user_interview_topics#GetUserInterviewTopic": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.user_interview_topics#UserInterviewTopicsRetrieveRequest"
+        "target": "com.posthog.user_interview_topics#GetUserInterviewTopicRequest"
       },
       "output": {
         "target": "com.posthog.user_interview_topics#UserInterviewTopic"
@@ -487,7 +488,7 @@
         "smithy.api#documentation": "Planned user interview topics: who we want to target and what we want to ask about."
       }
     },
-    "com.posthog.user_interview_topics#UserInterviewTopicsUpdateRequestIntervieweeEmailsList": {
+    "com.posthog.user_interview_topics#UpdateUserInterviewTopicRequestIntervieweeEmailsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -496,7 +497,7 @@
         "smithy.api#documentation": "Email addresses of people to interview. May be combined with interviewee_distinct_ids."
       }
     },
-    "com.posthog.user_interview_topics#UserInterviewTopicsUpdateRequestIntervieweeDistinctIdsList": {
+    "com.posthog.user_interview_topics#UpdateUserInterviewTopicRequestIntervieweeDistinctIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -505,7 +506,7 @@
         "smithy.api#documentation": "PostHog distinct IDs of people to interview. May be combined with interviewee_emails."
       }
     },
-    "com.posthog.user_interview_topics#UserInterviewTopicsUpdateRequestQuestionsList": {
+    "com.posthog.user_interview_topics#UpdateUserInterviewTopicRequestQuestionsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -514,7 +515,7 @@
         "smithy.api#documentation": "Ordered list of questions the voice agent should work through during the interview."
       }
     },
-    "com.posthog.user_interview_topics#UserInterviewTopicsUpdateRequest": {
+    "com.posthog.user_interview_topics#UpdateUserInterviewTopicRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -534,13 +535,13 @@
           }
         },
         "interviewee_emails": {
-          "target": "com.posthog.user_interview_topics#UserInterviewTopicsUpdateRequestIntervieweeEmailsList",
+          "target": "com.posthog.user_interview_topics#UpdateUserInterviewTopicRequestIntervieweeEmailsList",
           "traits": {
             "smithy.api#documentation": "Email addresses of people to interview. May be combined with interviewee_distinct_ids."
           }
         },
         "interviewee_distinct_ids": {
-          "target": "com.posthog.user_interview_topics#UserInterviewTopicsUpdateRequestIntervieweeDistinctIdsList",
+          "target": "com.posthog.user_interview_topics#UpdateUserInterviewTopicRequestIntervieweeDistinctIdsList",
           "traits": {
             "smithy.api#documentation": "PostHog distinct IDs of people to interview. May be combined with interviewee_emails."
           }
@@ -559,7 +560,7 @@
           }
         },
         "questions": {
-          "target": "com.posthog.user_interview_topics#UserInterviewTopicsUpdateRequestQuestionsList",
+          "target": "com.posthog.user_interview_topics#UpdateUserInterviewTopicRequestQuestionsList",
           "traits": {
             "smithy.api#documentation": "Ordered list of questions the voice agent should work through during the interview."
           }
@@ -581,10 +582,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.user_interview_topics#UserInterviewTopicsUpdate": {
+    "com.posthog.user_interview_topics#UpdateUserInterviewTopic": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.user_interview_topics#UserInterviewTopicsUpdateRequest"
+        "target": "com.posthog.user_interview_topics#UpdateUserInterviewTopicRequest"
       },
       "output": {
         "target": "com.posthog.user_interview_topics#UserInterviewTopic"
@@ -598,7 +599,7 @@
         "smithy.api#documentation": "Planned user interview topics: who we want to target and what we want to ask about."
       }
     },
-    "com.posthog.user_interview_topics#UserInterviewTopicsPartialUpdateRequestIntervieweeEmailsList": {
+    "com.posthog.user_interview_topics#UpdateUserInterviewTopicsPartialRequestIntervieweeEmailsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -607,7 +608,7 @@
         "smithy.api#documentation": "Email addresses of people to interview. May be combined with interviewee_distinct_ids."
       }
     },
-    "com.posthog.user_interview_topics#UserInterviewTopicsPartialUpdateRequestIntervieweeDistinctIdsList": {
+    "com.posthog.user_interview_topics#UpdateUserInterviewTopicsPartialRequestIntervieweeDistinctIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -616,7 +617,7 @@
         "smithy.api#documentation": "PostHog distinct IDs of people to interview. May be combined with interviewee_emails."
       }
     },
-    "com.posthog.user_interview_topics#UserInterviewTopicsPartialUpdateRequestQuestionsList": {
+    "com.posthog.user_interview_topics#UpdateUserInterviewTopicsPartialRequestQuestionsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -625,7 +626,7 @@
         "smithy.api#documentation": "Ordered list of questions the voice agent should work through during the interview."
       }
     },
-    "com.posthog.user_interview_topics#UserInterviewTopicsPartialUpdateRequest": {
+    "com.posthog.user_interview_topics#UpdateUserInterviewTopicsPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -645,13 +646,13 @@
           }
         },
         "interviewee_emails": {
-          "target": "com.posthog.user_interview_topics#UserInterviewTopicsPartialUpdateRequestIntervieweeEmailsList",
+          "target": "com.posthog.user_interview_topics#UpdateUserInterviewTopicsPartialRequestIntervieweeEmailsList",
           "traits": {
             "smithy.api#documentation": "Email addresses of people to interview. May be combined with interviewee_distinct_ids."
           }
         },
         "interviewee_distinct_ids": {
-          "target": "com.posthog.user_interview_topics#UserInterviewTopicsPartialUpdateRequestIntervieweeDistinctIdsList",
+          "target": "com.posthog.user_interview_topics#UpdateUserInterviewTopicsPartialRequestIntervieweeDistinctIdsList",
           "traits": {
             "smithy.api#documentation": "PostHog distinct IDs of people to interview. May be combined with interviewee_emails."
           }
@@ -669,7 +670,7 @@
           }
         },
         "questions": {
-          "target": "com.posthog.user_interview_topics#UserInterviewTopicsPartialUpdateRequestQuestionsList",
+          "target": "com.posthog.user_interview_topics#UpdateUserInterviewTopicsPartialRequestQuestionsList",
           "traits": {
             "smithy.api#documentation": "Ordered list of questions the voice agent should work through during the interview."
           }
@@ -691,10 +692,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.user_interview_topics#UserInterviewTopicsPartialUpdate": {
+    "com.posthog.user_interview_topics#UpdateUserInterviewTopicsPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.user_interview_topics#UserInterviewTopicsPartialUpdateRequest"
+        "target": "com.posthog.user_interview_topics#UpdateUserInterviewTopicsPartialRequest"
       },
       "output": {
         "target": "com.posthog.user_interview_topics#UserInterviewTopic"
@@ -909,7 +910,7 @@
         "smithy.api#documentation": "Generate one public interview link per targeted interviewee. Materializes an IntervieweeContext row for every identifier on the topic (without overwriting existing per-person context), and an enabled SharingConfiguration with a unique access token. The URL resolves to the public interview viewer with no PostHog auth required."
       }
     },
-    "com.posthog.user_interview_topics#UserInterviewTopicsLinksCsvCreateRequest": {
+    "com.posthog.user_interview_topics#CreateUserInterviewTopicsLinksCsvRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -933,10 +934,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.user_interview_topics#UserInterviewTopicsLinksCsvCreate": {
+    "com.posthog.user_interview_topics#CreateUserInterviewTopicsLinksCsv": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.user_interview_topics#UserInterviewTopicsLinksCsvCreateRequest"
+        "target": "com.posthog.user_interview_topics#CreateUserInterviewTopicsLinksCsvRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -950,7 +951,7 @@
         "smithy.api#documentation": "Same materialization as generate_links, returned as a downloadable CSV. Intended for users who want to mail-merge the per-person interview links into their own email tooling."
       }
     },
-    "com.posthog.user_interview_topics#UserInterviewTopicsPreviewInviteCreateRequest": {
+    "com.posthog.user_interview_topics#CreateUserInterviewTopicsPreviewInviteRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1043,10 +1044,10 @@
       },
       "traits": {}
     },
-    "com.posthog.user_interview_topics#UserInterviewTopicsPreviewInviteCreate": {
+    "com.posthog.user_interview_topics#CreateUserInterviewTopicsPreviewInvite": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.user_interview_topics#UserInterviewTopicsPreviewInviteCreateRequest"
+        "target": "com.posthog.user_interview_topics#CreateUserInterviewTopicsPreviewInviteRequest"
       },
       "output": {
         "target": "com.posthog.user_interview_topics#PreviewInviteResult"
@@ -1244,7 +1245,7 @@
         "smithy.api#documentation": "Generate (if needed) and email a personalized public interview link to every targeted interviewee on this topic whose identifier is an email address. Distinct-ID-only interviewees are skipped and surfaced in the response. Each invite is keyed on the underlying SharingConfiguration so re-runs after token rotation produce a fresh send."
       }
     },
-    "com.posthog.user_interview_topics#UserInterviewTopicsSharedLinkCreateRequest": {
+    "com.posthog.user_interview_topics#CreateUserInterviewTopicsSharedLinkRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1281,10 +1282,10 @@
       },
       "traits": {}
     },
-    "com.posthog.user_interview_topics#UserInterviewTopicsSharedLinkCreate": {
+    "com.posthog.user_interview_topics#CreateUserInterviewTopicsSharedLink": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.user_interview_topics#UserInterviewTopicsSharedLinkCreateRequest"
+        "target": "com.posthog.user_interview_topics#CreateUserInterviewTopicsSharedLinkRequest"
       },
       "output": {
         "target": "com.posthog.user_interview_topics#SharedInterviewLink"
@@ -1339,7 +1340,7 @@
         "smithy.api#documentation": "Revoke this topic's shared (non-personalised) interview link so an already-distributed URL can no longer start interviews. Idempotent — a no-op when no active shared link exists. A subsequent shared_link POST mints a fresh link (rotation)."
       }
     },
-    "com.posthog.user_interview_topics#UserInterviewTopicsTestLinkRetrieveRequest": {
+    "com.posthog.user_interview_topics#GetUserInterviewTopicsTestLinkRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1411,10 +1412,10 @@
       },
       "traits": {}
     },
-    "com.posthog.user_interview_topics#UserInterviewTopicsTestLinkRetrieve": {
+    "com.posthog.user_interview_topics#GetUserInterviewTopicsTestLink": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.user_interview_topics#UserInterviewTopicsTestLinkRetrieveRequest"
+        "target": "com.posthog.user_interview_topics#GetUserInterviewTopicsTestLinkRequest"
       },
       "output": {
         "target": "com.posthog.user_interview_topics#TestInterviewLink"
@@ -1428,7 +1429,7 @@
         "smithy.api#documentation": "Return the calling user's personal dogfood interview link for this topic, plus the latest test interview they have recorded against it. Lazily get-or-creates a per-caller IntervieweeContext + enabled SharingConfiguration the first time it's called, then returns the same stable URL on subsequent calls. The caller's identifier is intentionally not added to the topic's targeting arrays — each user dogfoods under their own row, so test calls never mint a public share token on someone else's behalf."
       }
     },
-    "com.posthog.user_interview_topics#UserInterviewTopicsIntervieweesListRequest": {
+    "com.posthog.user_interview_topics#ListUserInterviewTopicsIntervieweesRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1540,10 +1541,10 @@
       },
       "traits": {}
     },
-    "com.posthog.user_interview_topics#UserInterviewTopicsIntervieweesList": {
+    "com.posthog.user_interview_topics#ListUserInterviewTopicsInterviewees": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.user_interview_topics#UserInterviewTopicsIntervieweesListRequest"
+        "target": "com.posthog.user_interview_topics#ListUserInterviewTopicsIntervieweesRequest"
       },
       "output": {
         "target": "com.posthog.user_interview_topics#PaginatedIntervieweeContextList"
@@ -1557,7 +1558,7 @@
         "smithy.api#documentation": "Per-interviewee extra context for a user interview topic. At most one row per (topic, interviewee_identifier)."
       }
     },
-    "com.posthog.user_interview_topics#UserInterviewTopicsIntervieweesCreateRequest": {
+    "com.posthog.user_interview_topics#CreateUserInterviewTopicsIntervieweeRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1594,10 +1595,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.user_interview_topics#UserInterviewTopicsIntervieweesCreate": {
+    "com.posthog.user_interview_topics#CreateUserInterviewTopicsInterviewee": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.user_interview_topics#UserInterviewTopicsIntervieweesCreateRequest"
+        "target": "com.posthog.user_interview_topics#CreateUserInterviewTopicsIntervieweeRequest"
       },
       "output": {
         "target": "com.posthog.user_interview_topics#IntervieweeContext"
@@ -1611,7 +1612,7 @@
         "smithy.api#documentation": "Per-interviewee extra context for a user interview topic. At most one row per (topic, interviewee_identifier)."
       }
     },
-    "com.posthog.user_interview_topics#UserInterviewTopicsIntervieweesRetrieveRequest": {
+    "com.posthog.user_interview_topics#GetUserInterviewTopicsIntervieweeRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1642,10 +1643,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.user_interview_topics#UserInterviewTopicsIntervieweesRetrieve": {
+    "com.posthog.user_interview_topics#GetUserInterviewTopicsInterviewee": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.user_interview_topics#UserInterviewTopicsIntervieweesRetrieveRequest"
+        "target": "com.posthog.user_interview_topics#GetUserInterviewTopicsIntervieweeRequest"
       },
       "output": {
         "target": "com.posthog.user_interview_topics#IntervieweeContext"
@@ -1659,7 +1660,7 @@
         "smithy.api#documentation": "Per-interviewee extra context for a user interview topic. At most one row per (topic, interviewee_identifier)."
       }
     },
-    "com.posthog.user_interview_topics#UserInterviewTopicsIntervieweesUpdateRequest": {
+    "com.posthog.user_interview_topics#UpdateUserInterviewTopicsIntervieweeRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1704,10 +1705,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.user_interview_topics#UserInterviewTopicsIntervieweesUpdate": {
+    "com.posthog.user_interview_topics#UpdateUserInterviewTopicsInterviewee": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.user_interview_topics#UserInterviewTopicsIntervieweesUpdateRequest"
+        "target": "com.posthog.user_interview_topics#UpdateUserInterviewTopicsIntervieweeRequest"
       },
       "output": {
         "target": "com.posthog.user_interview_topics#IntervieweeContext"
@@ -1721,7 +1722,7 @@
         "smithy.api#documentation": "Per-interviewee extra context for a user interview topic. At most one row per (topic, interviewee_identifier)."
       }
     },
-    "com.posthog.user_interview_topics#UserInterviewTopicsIntervieweesPartialUpdateRequest": {
+    "com.posthog.user_interview_topics#UpdateUserInterviewTopicsIntervieweesPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1764,10 +1765,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.user_interview_topics#UserInterviewTopicsIntervieweesPartialUpdate": {
+    "com.posthog.user_interview_topics#UpdateUserInterviewTopicsIntervieweesPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.user_interview_topics#UserInterviewTopicsIntervieweesPartialUpdateRequest"
+        "target": "com.posthog.user_interview_topics#UpdateUserInterviewTopicsIntervieweesPartialRequest"
       },
       "output": {
         "target": "com.posthog.user_interview_topics#IntervieweeContext"
@@ -1946,19 +1947,19 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.user_interview_topics#UserInterviewTopicsList"
+          "target": "com.posthog.user_interview_topics#ListUserInterviewTopics"
         },
         {
-          "target": "com.posthog.user_interview_topics#UserInterviewTopicsCreate"
+          "target": "com.posthog.user_interview_topics#CreateUserInterviewTopic"
         },
         {
-          "target": "com.posthog.user_interview_topics#UserInterviewTopicsRetrieve"
+          "target": "com.posthog.user_interview_topics#GetUserInterviewTopic"
         },
         {
-          "target": "com.posthog.user_interview_topics#UserInterviewTopicsUpdate"
+          "target": "com.posthog.user_interview_topics#UpdateUserInterviewTopic"
         },
         {
-          "target": "com.posthog.user_interview_topics#UserInterviewTopicsPartialUpdate"
+          "target": "com.posthog.user_interview_topics#UpdateUserInterviewTopicsPartial"
         },
         {
           "target": "com.posthog.user_interview_topics#UserInterviewTopicsDestroy"
@@ -1970,10 +1971,10 @@
           "target": "com.posthog.user_interview_topics#UserInterviewTopicsGenerateLinksCreate"
         },
         {
-          "target": "com.posthog.user_interview_topics#UserInterviewTopicsLinksCsvCreate"
+          "target": "com.posthog.user_interview_topics#CreateUserInterviewTopicsLinksCsv"
         },
         {
-          "target": "com.posthog.user_interview_topics#UserInterviewTopicsPreviewInviteCreate"
+          "target": "com.posthog.user_interview_topics#CreateUserInterviewTopicsPreviewInvite"
         },
         {
           "target": "com.posthog.user_interview_topics#UserInterviewTopicsRemoveIntervieweeCreate"
@@ -1982,28 +1983,28 @@
           "target": "com.posthog.user_interview_topics#UserInterviewTopicsSendInvitesCreate"
         },
         {
-          "target": "com.posthog.user_interview_topics#UserInterviewTopicsSharedLinkCreate"
+          "target": "com.posthog.user_interview_topics#CreateUserInterviewTopicsSharedLink"
         },
         {
           "target": "com.posthog.user_interview_topics#UserInterviewTopicsSharedLinkDestroy"
         },
         {
-          "target": "com.posthog.user_interview_topics#UserInterviewTopicsTestLinkRetrieve"
+          "target": "com.posthog.user_interview_topics#GetUserInterviewTopicsTestLink"
         },
         {
-          "target": "com.posthog.user_interview_topics#UserInterviewTopicsIntervieweesList"
+          "target": "com.posthog.user_interview_topics#ListUserInterviewTopicsInterviewees"
         },
         {
-          "target": "com.posthog.user_interview_topics#UserInterviewTopicsIntervieweesCreate"
+          "target": "com.posthog.user_interview_topics#CreateUserInterviewTopicsInterviewee"
         },
         {
-          "target": "com.posthog.user_interview_topics#UserInterviewTopicsIntervieweesRetrieve"
+          "target": "com.posthog.user_interview_topics#GetUserInterviewTopicsInterviewee"
         },
         {
-          "target": "com.posthog.user_interview_topics#UserInterviewTopicsIntervieweesUpdate"
+          "target": "com.posthog.user_interview_topics#UpdateUserInterviewTopicsInterviewee"
         },
         {
-          "target": "com.posthog.user_interview_topics#UserInterviewTopicsIntervieweesPartialUpdate"
+          "target": "com.posthog.user_interview_topics#UpdateUserInterviewTopicsIntervieweesPartial"
         },
         {
           "target": "com.posthog.user_interview_topics#UserInterviewTopicsIntervieweesDestroy"

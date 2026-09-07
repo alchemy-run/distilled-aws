@@ -15,12 +15,12 @@ export type { ModalOpError, ModalOpContext };
 export type TunnelType = "TUNNEL_TYPE_UNSPECIFIED" | "TUNNEL_TYPE_H2";
 export const TunnelType = /*@__PURE__*/ S.String;
 
-export interface TunnelStartRequest {
+export interface StartTunnelRequest {
   port?: number;
   unencrypted?: boolean;
   tunnelType?: TunnelType | (string & {});
 }
-export const TunnelStartRequest = /*@__PURE__*/ S.suspend(() =>
+export const StartTunnelRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     port: S.optional(S.Number),
     unencrypted: S.optional(S.Boolean),
@@ -33,16 +33,16 @@ export const TunnelStartRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "TunnelStartRequest",
-}) as any as S.Schema<TunnelStartRequest>;
+  identifier: "StartTunnelRequest",
+}) as any as S.Schema<StartTunnelRequest>;
 
-export interface TunnelStartResponse {
+export interface StartTunnelResponse {
   host?: string;
   port?: number;
   unencryptedHost?: string;
   unencryptedPort?: number;
 }
-export const TunnelStartResponse = /*@__PURE__*/ S.suspend(() =>
+export const StartTunnelResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     host: S.optional(S.String),
     port: S.optional(S.Number),
@@ -50,13 +50,13 @@ export const TunnelStartResponse = /*@__PURE__*/ S.suspend(() =>
     unencryptedPort: S.optional(S.Number),
   }),
 ).annotate({
-  identifier: "TunnelStartResponse",
-}) as any as S.Schema<TunnelStartResponse>;
+  identifier: "StartTunnelResponse",
+}) as any as S.Schema<StartTunnelResponse>;
 
-export interface TunnelStopRequest {
+export interface StopTunnelRequest {
   port?: number;
 }
-export const TunnelStopRequest = /*@__PURE__*/ S.suspend(() =>
+export const StopTunnelRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     port: S.optional(S.Number),
   }).pipe(
@@ -67,44 +67,44 @@ export const TunnelStopRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "TunnelStopRequest",
-}) as any as S.Schema<TunnelStopRequest>;
+  identifier: "StopTunnelRequest",
+}) as any as S.Schema<StopTunnelRequest>;
 
-export interface TunnelStopResponse {
+export interface StopTunnelResponse {
   exists?: boolean;
 }
-export const TunnelStopResponse = /*@__PURE__*/ S.suspend(() =>
+export const StopTunnelResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     exists: S.optional(S.Boolean),
   }),
 ).annotate({
-  identifier: "TunnelStopResponse",
-}) as any as S.Schema<TunnelStopResponse>;
+  identifier: "StopTunnelResponse",
+}) as any as S.Schema<StopTunnelResponse>;
 
-export type TunnelStartError = ModalOpError;
+export type StartTunnelError = ModalOpError;
 /** Tunnels */
-export const tunnelStart: API.OperationMethod<
-  TunnelStartRequest,
-  TunnelStartResponse,
-  TunnelStartError,
+export const startTunnel: API.OperationMethod<
+  StartTunnelRequest,
+  StartTunnelResponse,
+  StartTunnelError,
   ModalOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: TunnelStartRequest,
-  output: TunnelStartResponse,
+  input: StartTunnelRequest,
+  output: StartTunnelResponse,
   errors: [UnknownModalError],
   protocol: ModalProtocol,
   retry: Retry.Retry,
 }));
 
-export type TunnelStopError = ModalOpError;
-export const tunnelStop: API.OperationMethod<
-  TunnelStopRequest,
-  TunnelStopResponse,
-  TunnelStopError,
+export type StopTunnelError = ModalOpError;
+export const stopTunnel: API.OperationMethod<
+  StopTunnelRequest,
+  StopTunnelResponse,
+  StopTunnelError,
   ModalOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: TunnelStopRequest,
-  output: TunnelStopResponse,
+  input: StopTunnelRequest,
+  output: StopTunnelResponse,
   errors: [UnknownModalError],
   protocol: ModalProtocol,
   retry: Retry.Retry,

@@ -48,17 +48,17 @@ export class UnprocessableEntity
     [{ status: 422 }],
   ) {}
 
-export interface RetrievePayoutAccountRequest {
+export interface GetPayoutAccountRequest {
   /** The unique identifier of the payout account to retrieve. */
   id: string;
 }
-export const RetrievePayoutAccountRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetPayoutAccountRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String.pipe(T.Label()),
   }).pipe(T.Http({ method: "GET", uri: "/payout_accounts/{id}", code: 200 })),
 ).annotate({
-  identifier: "RetrievePayoutAccountRequest",
-}) as any as S.Schema<RetrievePayoutAccountRequest>;
+  identifier: "GetPayoutAccountRequest",
+}) as any as S.Schema<GetPayoutAccountRequest>;
 
 /** The physical address associated with this payout account */
 export interface PayoutAccountAddress {
@@ -219,20 +219,20 @@ export const PayoutAccount = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "PayoutAccount" }) as any as S.Schema<PayoutAccount>;
 
-export type RetrievePayoutAccountError =
+export type GetPayoutAccountError =
   | BadRequest
   | Forbidden
   | NotFound
   | UnprocessableEntity
   | WhopOpError;
 /** Retrieve payout account [Legacy API — https://docs.whop.com/api-reference] Retrieves the details of an existing payout account. Required permissions: - `payout:account:read` */
-export const retrievePayoutAccount: API.OperationMethod<
-  RetrievePayoutAccountRequest,
+export const getPayoutAccount: API.OperationMethod<
+  GetPayoutAccountRequest,
   PayoutAccount,
-  RetrievePayoutAccountError,
+  GetPayoutAccountError,
   WhopOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: RetrievePayoutAccountRequest,
+  input: GetPayoutAccountRequest,
   output: PayoutAccount,
   errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
   protocol: WhopProtocol,

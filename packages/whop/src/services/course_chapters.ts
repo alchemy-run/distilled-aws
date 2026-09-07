@@ -130,6 +130,18 @@ export const DeleteCourseChapterResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteCourseChapterResponse",
 }) as any as S.Schema<DeleteCourseChapterResponse>;
 
+export interface GetCourseChapterRequest {
+  /** The unique identifier of the chapter to retrieve. */
+  id: string;
+}
+export const GetCourseChapterRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/course_chapters/{id}", code: 200 })),
+).annotate({
+  identifier: "GetCourseChapterRequest",
+}) as any as S.Schema<GetCourseChapterRequest>;
+
 export interface ListCourseChapterRequest {
   after?: string;
   before?: string;
@@ -209,18 +221,6 @@ export const ListCourseChapterResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListCourseChapterResponse",
 }) as any as S.Schema<ListCourseChapterResponse>;
 
-export interface RetrieveCourseChapterRequest {
-  /** The unique identifier of the chapter to retrieve. */
-  id: string;
-}
-export const RetrieveCourseChapterRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/course_chapters/{id}", code: 200 })),
-).annotate({
-  identifier: "RetrieveCourseChapterRequest",
-}) as any as S.Schema<RetrieveCourseChapterRequest>;
-
 export interface UpdateCourseChapterRequest {
   /** The unique identifier of the chapter to update (e.g., "chap_XXXXX"). */
   id: string;
@@ -276,6 +276,26 @@ export const deleteCourseChapter: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetCourseChapterError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | UnprocessableEntity
+  | WhopOpError;
+/** Retrieve course chapter [Legacy API — https://docs.whop.com/api-reference] Retrieves the details of an existing course chapter. Required permissions: - `courses:read` */
+export const getCourseChapter: API.OperationMethod<
+  GetCourseChapterRequest,
+  CourseChapter,
+  GetCourseChapterError,
+  WhopOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCourseChapterRequest,
+  output: CourseChapter,
+  errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
+  protocol: WhopProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListCourseChapterError =
   | BadRequest
   | Forbidden
@@ -307,26 +327,6 @@ export const listCourseChapter: API.PaginatedOperationMethod<
   }),
   paginateRelay,
 ) as any;
-
-export type RetrieveCourseChapterError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | UnprocessableEntity
-  | WhopOpError;
-/** Retrieve course chapter [Legacy API — https://docs.whop.com/api-reference] Retrieves the details of an existing course chapter. Required permissions: - `courses:read` */
-export const retrieveCourseChapter: API.OperationMethod<
-  RetrieveCourseChapterRequest,
-  CourseChapter,
-  RetrieveCourseChapterError,
-  WhopOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveCourseChapterRequest,
-  output: CourseChapter,
-  errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
-  protocol: WhopProtocol,
-  retry: Retry.Retry,
-}));
 
 export type UpdateCourseChapterError =
   | BadRequest

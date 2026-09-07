@@ -14,13 +14,14 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.storagepool#IscsiTargetsDelete": {
+    "com.azure.storagepool#DeleteIscsiTarget": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storagepool#IscsiTargetsDeleteRequest"
+        "target": "com.azure.storagepool#DeleteIscsiTargetRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -36,7 +37,7 @@
         "com.distilled.openapi#apiVersion": "2021-08-01"
       }
     },
-    "com.azure.storagepool#IscsiTargetsDeleteRequest": {
+    "com.azure.storagepool#DeleteIscsiTargetRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -76,13 +77,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storagepool#IscsiTargetsUpdate": {
+    "com.azure.storagepool#UpdateIscsiTarget": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storagepool#IscsiTargetsUpdateRequest"
+        "target": "com.azure.storagepool#UpdateIscsiTargetRequest"
       },
       "output": {
-        "target": "com.azure.storagepool#IscsiTargetsUpdateResponse"
+        "target": "com.azure.storagepool#UpdateIscsiTargetResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -95,7 +96,7 @@
         "com.distilled.openapi#apiVersion": "2021-08-01"
       }
     },
-    "com.azure.storagepool#IscsiTargetsUpdateResponse": {
+    "com.azure.storagepool#UpdateIscsiTargetResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -556,7 +557,7 @@
         "smithy.api#documentation": "ACL mode for iSCSI Target."
       }
     },
-    "com.azure.storagepool#IscsiTargetsUpdateRequest": {
+    "com.azure.storagepool#UpdateIscsiTargetRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -855,13 +856,13 @@
         "smithy.api#documentation": "Access Control List (ACL) for an iSCSI Target; defines LUN masking policy"
       }
     },
-    "com.azure.storagepool#IscsiTargetsGet": {
+    "com.azure.storagepool#GetIscsiTarget": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storagepool#IscsiTargetsGetRequest"
+        "target": "com.azure.storagepool#GetIscsiTargetRequest"
       },
       "output": {
-        "target": "com.azure.storagepool#IscsiTargetsGetResponse"
+        "target": "com.azure.storagepool#GetIscsiTargetResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -874,7 +875,7 @@
         "com.distilled.openapi#apiVersion": "2021-08-01"
       }
     },
-    "com.azure.storagepool#IscsiTargetsGetResponse": {
+    "com.azure.storagepool#GetIscsiTargetResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -925,7 +926,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.storagepool#IscsiTargetsGetRequest": {
+    "com.azure.storagepool#GetIscsiTargetRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -965,10 +966,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storagepool#IscsiTargetsListByDiskPool": {
+    "com.azure.storagepool#ListIscsiTargetByDiskPool": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storagepool#IscsiTargetsListByDiskPoolRequest"
+        "target": "com.azure.storagepool#ListIscsiTargetByDiskPoolRequest"
       },
       "output": {
         "target": "com.azure.storagepool#IscsiTargetList"
@@ -1065,7 +1066,7 @@
         "smithy.api#documentation": "Response for iSCSI Target requests."
       }
     },
-    "com.azure.storagepool#IscsiTargetsListByDiskPoolRequest": {
+    "com.azure.storagepool#ListIscsiTargetByDiskPoolRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1199,10 +1200,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storagepool#DiskPoolsStart": {
+    "com.azure.storagepool#StartDiskPool": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storagepool#DiskPoolsStartRequest"
+        "target": "com.azure.storagepool#StartDiskPoolRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1218,7 +1219,7 @@
         "com.distilled.openapi#apiVersion": "2021-08-01"
       }
     },
-    "com.azure.storagepool#DiskPoolsStartRequest": {
+    "com.azure.storagepool#StartDiskPoolRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1250,10 +1251,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storagepool#DiskPoolsListOutboundNetworkDependenciesEndpoints": {
+    "com.azure.storagepool#ListDiskPoolOutboundNetworkDependenciesEndpoints": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storagepool#DiskPoolsListOutboundNetworkDependenciesEndpointsRequest"
+        "target": "com.azure.storagepool#ListDiskPoolOutboundNetworkDependenciesEndpointsRequest"
       },
       "output": {
         "target": "com.azure.storagepool#OutboundEnvironmentEndpointList"
@@ -1389,7 +1390,7 @@
         "smithy.api#documentation": "Current TCP connectivity information from the App Service Environment to a single endpoint."
       }
     },
-    "com.azure.storagepool#DiskPoolsListOutboundNetworkDependenciesEndpointsRequest": {
+    "com.azure.storagepool#ListDiskPoolOutboundNetworkDependenciesEndpointsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1421,10 +1422,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storagepool#ResourceSkusList": {
+    "com.azure.storagepool#ListResourceSkus": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storagepool#ResourceSkusListRequest"
+        "target": "com.azure.storagepool#ListResourceSkusRequest"
       },
       "output": {
         "target": "com.azure.storagepool#ResourceSkuListResult"
@@ -1758,7 +1759,7 @@
         "smithy.api#documentation": "List of additional capabilities for StoragePool resource."
       }
     },
-    "com.azure.storagepool#ResourceSkusListRequest": {
+    "com.azure.storagepool#ListResourceSkusRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1782,10 +1783,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storagepool#DiskPoolZonesList": {
+    "com.azure.storagepool#ListDiskPoolZones": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storagepool#DiskPoolZonesListRequest"
+        "target": "com.azure.storagepool#ListDiskPoolZonesRequest"
       },
       "output": {
         "target": "com.azure.storagepool#DiskPoolZoneListResult"
@@ -1895,7 +1896,7 @@
         "smithy.api#documentation": "Logical zone for Disk Pool resource; example: [\"1\"]."
       }
     },
-    "com.azure.storagepool#DiskPoolZonesListRequest": {
+    "com.azure.storagepool#ListDiskPoolZonesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1919,10 +1920,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storagepool#DiskPoolsDelete": {
+    "com.azure.storagepool#DeleteDiskPool": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storagepool#DiskPoolsDeleteRequest"
+        "target": "com.azure.storagepool#DeleteDiskPoolRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1938,7 +1939,7 @@
         "com.distilled.openapi#apiVersion": "2021-08-01"
       }
     },
-    "com.azure.storagepool#DiskPoolsDeleteRequest": {
+    "com.azure.storagepool#DeleteDiskPoolRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1970,13 +1971,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storagepool#DiskPoolsUpdate": {
+    "com.azure.storagepool#UpdateDiskPool": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storagepool#DiskPoolsUpdateRequest"
+        "target": "com.azure.storagepool#UpdateDiskPoolRequest"
       },
       "output": {
-        "target": "com.azure.storagepool#DiskPoolsUpdateResponse"
+        "target": "com.azure.storagepool#UpdateDiskPoolResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1989,7 +1990,7 @@
         "com.distilled.openapi#apiVersion": "2021-08-01"
       }
     },
-    "com.azure.storagepool#DiskPoolsUpdateResponse": {
+    "com.azure.storagepool#UpdateDiskPoolResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2011,7 +2012,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.storagepool#DiskPoolsUpdateResponseTagsMap",
+          "target": "com.azure.storagepool#UpdateDiskPoolResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2149,7 +2150,7 @@
         "smithy.api#documentation": "Logical zone for Disk Pool resource; example: [\"1\"]."
       }
     },
-    "com.azure.storagepool#DiskPoolsUpdateResponseTagsMap": {
+    "com.azure.storagepool#UpdateDiskPoolResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2161,7 +2162,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.storagepool#DiskPoolsUpdateRequest": {
+    "com.azure.storagepool#UpdateDiskPoolRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2214,7 +2215,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.storagepool#DiskPoolsUpdateRequestTagsMap",
+          "target": "com.azure.storagepool#UpdateDiskPoolRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2224,7 +2225,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storagepool#DiskPoolsUpdateRequestTagsMap": {
+    "com.azure.storagepool#UpdateDiskPoolRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2503,13 +2504,13 @@
         "smithy.api#documentation": "Logical zone for Disk Pool resource; example: [\"1\"]."
       }
     },
-    "com.azure.storagepool#DiskPoolsGet": {
+    "com.azure.storagepool#GetDiskPool": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storagepool#DiskPoolsGetRequest"
+        "target": "com.azure.storagepool#GetDiskPoolRequest"
       },
       "output": {
-        "target": "com.azure.storagepool#DiskPoolsGetResponse"
+        "target": "com.azure.storagepool#GetDiskPoolResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2522,7 +2523,7 @@
         "com.distilled.openapi#apiVersion": "2021-08-01"
       }
     },
-    "com.azure.storagepool#DiskPoolsGetResponse": {
+    "com.azure.storagepool#GetDiskPoolResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2544,7 +2545,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.storagepool#DiskPoolsGetResponseTagsMap",
+          "target": "com.azure.storagepool#GetDiskPoolResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2592,7 +2593,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.storagepool#DiskPoolsGetResponseTagsMap": {
+    "com.azure.storagepool#GetDiskPoolResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2604,7 +2605,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.storagepool#DiskPoolsGetRequest": {
+    "com.azure.storagepool#GetDiskPoolRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2636,10 +2637,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storagepool#DiskPoolsListByResourceGroup": {
+    "com.azure.storagepool#ListDiskPoolByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storagepool#DiskPoolsListByResourceGroupRequest"
+        "target": "com.azure.storagepool#ListDiskPoolByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.storagepool#DiskPoolListResult"
@@ -2767,7 +2768,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.storagepool#DiskPoolsListByResourceGroupRequest": {
+    "com.azure.storagepool#ListDiskPoolByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2791,10 +2792,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storagepool#DiskPoolsListBySubscription": {
+    "com.azure.storagepool#ListDiskPoolBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storagepool#DiskPoolsListBySubscriptionRequest"
+        "target": "com.azure.storagepool#ListDiskPoolBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.storagepool#DiskPoolListResult"
@@ -2810,7 +2811,7 @@
         "com.distilled.openapi#apiVersion": "2021-08-01"
       }
     },
-    "com.azure.storagepool#DiskPoolsListBySubscriptionRequest": {
+    "com.azure.storagepool#ListDiskPoolBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2826,7 +2827,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storagepool#OperationsList": {
+    "com.azure.storagepool#ListOperations": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -2957,19 +2958,19 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.storagepool#IscsiTargetsDelete"
+          "target": "com.azure.storagepool#DeleteIscsiTarget"
         },
         {
-          "target": "com.azure.storagepool#IscsiTargetsUpdate"
+          "target": "com.azure.storagepool#UpdateIscsiTarget"
         },
         {
           "target": "com.azure.storagepool#IscsiTargetsCreateOrUpdate"
         },
         {
-          "target": "com.azure.storagepool#IscsiTargetsGet"
+          "target": "com.azure.storagepool#GetIscsiTarget"
         },
         {
-          "target": "com.azure.storagepool#IscsiTargetsListByDiskPool"
+          "target": "com.azure.storagepool#ListIscsiTargetByDiskPool"
         },
         {
           "target": "com.azure.storagepool#DiskPoolsUpgrade"
@@ -2978,37 +2979,37 @@
           "target": "com.azure.storagepool#DiskPoolsDeallocate"
         },
         {
-          "target": "com.azure.storagepool#DiskPoolsStart"
+          "target": "com.azure.storagepool#StartDiskPool"
         },
         {
-          "target": "com.azure.storagepool#DiskPoolsListOutboundNetworkDependenciesEndpoints"
+          "target": "com.azure.storagepool#ListDiskPoolOutboundNetworkDependenciesEndpoints"
         },
         {
-          "target": "com.azure.storagepool#ResourceSkusList"
+          "target": "com.azure.storagepool#ListResourceSkus"
         },
         {
-          "target": "com.azure.storagepool#DiskPoolZonesList"
+          "target": "com.azure.storagepool#ListDiskPoolZones"
         },
         {
-          "target": "com.azure.storagepool#DiskPoolsDelete"
+          "target": "com.azure.storagepool#DeleteDiskPool"
         },
         {
-          "target": "com.azure.storagepool#DiskPoolsUpdate"
+          "target": "com.azure.storagepool#UpdateDiskPool"
         },
         {
           "target": "com.azure.storagepool#DiskPoolsCreateOrUpdate"
         },
         {
-          "target": "com.azure.storagepool#DiskPoolsGet"
+          "target": "com.azure.storagepool#GetDiskPool"
         },
         {
-          "target": "com.azure.storagepool#DiskPoolsListByResourceGroup"
+          "target": "com.azure.storagepool#ListDiskPoolByResourceGroup"
         },
         {
-          "target": "com.azure.storagepool#DiskPoolsListBySubscription"
+          "target": "com.azure.storagepool#ListDiskPoolBySubscription"
         },
         {
-          "target": "com.azure.storagepool#OperationsList"
+          "target": "com.azure.storagepool#ListOperations"
         }
       ],
       "traits": {

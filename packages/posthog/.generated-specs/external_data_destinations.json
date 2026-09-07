@@ -1,0 +1,531 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ],
+    "distilled.finalized": true
+  },
+  "shapes": {
+    "com.posthog.external_data_destinations#ListExternalDataDestinationsRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.external_data_destinations#PaginatedExternalDataDestinationList": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.external_data_destinations#PaginatedExternalDataDestinationListResultsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.external_data_destinations#ExternalDataDestination": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.posthog.external_data_destinations#ExternalDataDestinationTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Where synced rows are written. The PostHog warehouse is managed for you, so you cannot create one here.\n\n* `PostHogWarehouse` - PostHog warehouse\n* `Redshift` - Redshift\n* `Snowflake` - Snowflake\n* `BigQuery` - BigQuery\n* `Postgres` - Postgres\n* `Databricks` - Databricks\n* `AzureBlob` - Azure Blob\n* `S3` - S3",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable name shown when picking destinations for a source or table.",
+            "smithy.api#required": {}
+          }
+        },
+        "config": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Settings for this destination: target database, schema or dataset, bucket and prefix, file format. Credentials are not stored here. They live on the linked integration."
+          }
+        },
+        "integration": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Integration holding this destination's credentials. Required for every type except the PostHog warehouse.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "is_posthog_warehouse": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether this is the managed PostHog warehouse destination.",
+            "smithy.api#required": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "created_by": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.external_data_destinations#ExternalDataDestinationTypeEnum": {
+      "type": "enum",
+      "members": {
+        "POSTHOGWAREHOUSE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PostHogWarehouse"
+          }
+        },
+        "REDSHIFT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Redshift"
+          }
+        },
+        "SNOWFLAKE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Snowflake"
+          }
+        },
+        "BIGQUERY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BigQuery"
+          }
+        },
+        "POSTGRES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Postgres"
+          }
+        },
+        "DATABRICKS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Databricks"
+          }
+        },
+        "AZUREBLOB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AzureBlob"
+          }
+        },
+        "S3": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S3"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `PostHogWarehouse` - PostHog warehouse\n* `Redshift` - Redshift\n* `Snowflake` - Snowflake\n* `BigQuery` - BigQuery\n* `Postgres` - Postgres\n* `Databricks` - Databricks\n* `AzureBlob` - Azure Blob\n* `S3` - S3"
+      }
+    },
+    "com.posthog.external_data_destinations#PaginatedExternalDataDestinationListResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.external_data_destinations#ExternalDataDestination"
+      },
+      "traits": {}
+    },
+    "com.posthog.external_data_destinations#ListExternalDataDestinations": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.external_data_destinations#ListExternalDataDestinationsRequest"
+      },
+      "output": {
+        "target": "com.posthog.external_data_destinations#PaginatedExternalDataDestinationList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/external_data_destinations/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Manage where warehouse sources write their synced rows.\n\nA destination can be attached to several sources, or to a single table on a source.\nCredentials come from an integration, so one connection can be reused across syncs."
+      }
+    },
+    "com.posthog.external_data_destinations#CreateExternalDataDestinationRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "type": {
+          "target": "com.posthog.external_data_destinations#ExternalDataDestinationTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Where synced rows are written. The PostHog warehouse is managed for you, so you cannot create one here.\n\n* `PostHogWarehouse` - PostHog warehouse\n* `Redshift` - Redshift\n* `Snowflake` - Snowflake\n* `BigQuery` - BigQuery\n* `Postgres` - Postgres\n* `Databricks` - Databricks\n* `AzureBlob` - Azure Blob\n* `S3` - S3",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable name shown when picking destinations for a source or table.",
+            "smithy.api#required": {}
+          }
+        },
+        "config": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Settings for this destination: target database, schema or dataset, bucket and prefix, file format. Credentials are not stored here. They live on the linked integration."
+          }
+        },
+        "integration": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Integration holding this destination's credentials. Required for every type except the PostHog warehouse.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.external_data_destinations#CreateExternalDataDestination": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.external_data_destinations#CreateExternalDataDestinationRequest"
+      },
+      "output": {
+        "target": "com.posthog.external_data_destinations#ExternalDataDestination"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/external_data_destinations/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Manage where warehouse sources write their synced rows.\n\nA destination can be attached to several sources, or to a single table on a source.\nCredentials come from an integration, so one connection can be reused across syncs."
+      }
+    },
+    "com.posthog.external_data_destinations#GetExternalDataDestinationRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this external data destination."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.external_data_destinations#GetExternalDataDestination": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.external_data_destinations#GetExternalDataDestinationRequest"
+      },
+      "output": {
+        "target": "com.posthog.external_data_destinations#ExternalDataDestination"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/external_data_destinations/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Manage where warehouse sources write their synced rows.\n\nA destination can be attached to several sources, or to a single table on a source.\nCredentials come from an integration, so one connection can be reused across syncs."
+      }
+    },
+    "com.posthog.external_data_destinations#UpdateExternalDataDestinationRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this external data destination."
+          }
+        },
+        "type": {
+          "target": "com.posthog.external_data_destinations#ExternalDataDestinationTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Where synced rows are written. The PostHog warehouse is managed for you, so you cannot create one here.\n\n* `PostHogWarehouse` - PostHog warehouse\n* `Redshift` - Redshift\n* `Snowflake` - Snowflake\n* `BigQuery` - BigQuery\n* `Postgres` - Postgres\n* `Databricks` - Databricks\n* `AzureBlob` - Azure Blob\n* `S3` - S3",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable name shown when picking destinations for a source or table.",
+            "smithy.api#required": {}
+          }
+        },
+        "config": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Settings for this destination: target database, schema or dataset, bucket and prefix, file format. Credentials are not stored here. They live on the linked integration."
+          }
+        },
+        "integration": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Integration holding this destination's credentials. Required for every type except the PostHog warehouse.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.external_data_destinations#UpdateExternalDataDestination": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.external_data_destinations#UpdateExternalDataDestinationRequest"
+      },
+      "output": {
+        "target": "com.posthog.external_data_destinations#ExternalDataDestination"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/api/projects/{project_id}/external_data_destinations/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Manage where warehouse sources write their synced rows.\n\nA destination can be attached to several sources, or to a single table on a source.\nCredentials come from an integration, so one connection can be reused across syncs."
+      }
+    },
+    "com.posthog.external_data_destinations#UpdateExternalDataDestinationsPartialRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this external data destination."
+          }
+        },
+        "type": {
+          "target": "com.posthog.external_data_destinations#ExternalDataDestinationTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Where synced rows are written. The PostHog warehouse is managed for you, so you cannot create one here.\n\n* `PostHogWarehouse` - PostHog warehouse\n* `Redshift` - Redshift\n* `Snowflake` - Snowflake\n* `BigQuery` - BigQuery\n* `Postgres` - Postgres\n* `Databricks` - Databricks\n* `AzureBlob` - Azure Blob\n* `S3` - S3"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable name shown when picking destinations for a source or table."
+          }
+        },
+        "config": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Settings for this destination: target database, schema or dataset, bucket and prefix, file format. Credentials are not stored here. They live on the linked integration."
+          }
+        },
+        "integration": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Integration holding this destination's credentials. Required for every type except the PostHog warehouse.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.external_data_destinations#UpdateExternalDataDestinationsPartial": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.external_data_destinations#UpdateExternalDataDestinationsPartialRequest"
+      },
+      "output": {
+        "target": "com.posthog.external_data_destinations#ExternalDataDestination"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/projects/{project_id}/external_data_destinations/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Manage where warehouse sources write their synced rows.\n\nA destination can be attached to several sources, or to a single table on a source.\nCredentials come from an integration, so one connection can be reused across syncs."
+      }
+    },
+    "com.posthog.external_data_destinations#ExternalDataDestinationsDestroyRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this external data destination."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.external_data_destinations#ExternalDataDestinationsDestroy": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.external_data_destinations#ExternalDataDestinationsDestroyRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/projects/{project_id}/external_data_destinations/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Soft-delete, and detach it from everything that syncs to it.\n\nRuns already in flight keep their own snapshot of the destination, so deleting one\nnever strands a run part-way through. The next run of each affected table resolves\nwithout it."
+      }
+    },
+    "com.posthog.external_data_destinations#ExternalDataDestinations": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.external_data_destinations#ListExternalDataDestinations"
+        },
+        {
+          "target": "com.posthog.external_data_destinations#CreateExternalDataDestination"
+        },
+        {
+          "target": "com.posthog.external_data_destinations#GetExternalDataDestination"
+        },
+        {
+          "target": "com.posthog.external_data_destinations#UpdateExternalDataDestination"
+        },
+        {
+          "target": "com.posthog.external_data_destinations#UpdateExternalDataDestinationsPartial"
+        },
+        {
+          "target": "com.posthog.external_data_destinations#ExternalDataDestinationsDestroy"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

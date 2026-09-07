@@ -4,40 +4,53 @@
     "service": "blockchainnodeengine",
     "version": "v1",
     "title": "Blockchain Node Engine API",
-    "baseUrl": "https://blockchainnodeengine.googleapis.com/"
+    "baseUrl": "https://blockchainnodeengine.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.gcp.blockchainnodeengine_v1#GoogleProtobufEmpty": {
+    "com.gcp.blockchainnodeengine_v1#CancelOperationRequest": {
       "type": "structure",
       "members": {},
       "traits": {
-        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+        "smithy.api#documentation": "The request message for Operations.CancelOperation."
       }
     },
-    "com.gcp.blockchainnodeengine_v1#EthereumEndpoints": {
+    "com.gcp.blockchainnodeengine_v1#ListBlockchainNodesResponse": {
       "type": "structure",
       "members": {
-        "executionClientPrometheusMetricsApiEndpoint": {
-          "target": "smithy.api#String",
+        "unreachable": {
+          "target": "com.gcp.blockchainnodeengine_v1#StringList",
           "traits": {
-            "smithy.api#documentation": "Output only. The assigned URL for the node's execution client's Prometheus metrics endpoint."
+            "smithy.api#documentation": "Locations that could not be reached."
           }
         },
-        "beaconApiEndpoint": {
+        "nextPageToken": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Output only. The assigned URL for the node's Beacon API endpoint."
+            "smithy.api#documentation": "A token identifying a page of results the server should return."
           }
         },
-        "beaconPrometheusMetricsApiEndpoint": {
-          "target": "smithy.api#String",
+        "blockchainNodes": {
+          "target": "com.gcp.blockchainnodeengine_v1#BlockchainNodeList",
           "traits": {
-            "smithy.api#documentation": "Output only. The assigned URL for the node's Beacon Prometheus metrics endpoint. See [Prometheus Metrics](https://lighthouse-book.sigmaprime.io/advanced_metrics.html) for more details."
+            "smithy.api#documentation": "The list of nodes"
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Contains endpoint information specific to Ethereum nodes."
+        "smithy.api#documentation": "Message for response to listing blockchain nodes."
+      }
+    },
+    "com.gcp.blockchainnodeengine_v1#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.blockchainnodeengine_v1#BlockchainNodeList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.blockchainnodeengine_v1#BlockchainNode"
       }
     },
     "com.gcp.blockchainnodeengine_v1#ListOperationsResponse": {
@@ -66,6 +79,43 @@
         "target": "com.gcp.blockchainnodeengine_v1#Operation"
       }
     },
+    "com.gcp.blockchainnodeengine_v1#GethDetails": {
+      "type": "structure",
+      "members": {
+        "garbageCollectionMode": {
+          "target": "com.gcp.blockchainnodeengine_v1#GethDetailsGarbageCollectionModeEnum",
+          "traits": {
+            "smithy.api#documentation": "Immutable. Blockchain garbage collection mode."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Options for the Geth execution client. See [Command-line Options](https://geth.ethereum.org/docs/fundamentals/command-line-options) for more details."
+      }
+    },
+    "com.gcp.blockchainnodeengine_v1#GethDetailsGarbageCollectionModeEnum": {
+      "type": "enum",
+      "members": {
+        "GARBAGE_COLLECTION_MODE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GARBAGE_COLLECTION_MODE_UNSPECIFIED"
+          }
+        },
+        "FULL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FULL"
+          }
+        },
+        "ARCHIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ARCHIVE"
+          }
+        }
+      }
+    },
     "com.gcp.blockchainnodeengine_v1#ValidatorConfig": {
       "type": "structure",
       "members": {
@@ -92,10 +142,24 @@
         "smithy.api#documentation": "Configuration for validator-related parameters on the beacon client, and for any GCP-managed validator client."
       }
     },
-    "com.gcp.blockchainnodeengine_v1#StringList": {
-      "type": "list",
-      "member": {
-        "target": "smithy.api#String"
+    "com.gcp.blockchainnodeengine_v1#EndpointInfo": {
+      "type": "structure",
+      "members": {
+        "jsonRpcApiEndpoint": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The assigned URL for the node JSON-RPC API endpoint."
+          }
+        },
+        "websocketsApiEndpoint": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The assigned URL for the node WebSockets API endpoint."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Contains endpoint information through which to interact with a blockchain node."
       }
     },
     "com.gcp.blockchainnodeengine_v1#Status": {
@@ -139,21 +203,309 @@
         "target": "com.gcp.blockchainnodeengine_v1#DocumentMap"
       }
     },
+    "com.gcp.blockchainnodeengine_v1#Operation": {
+      "type": "structure",
+      "members": {
+        "done": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
+          }
+        },
+        "error": {
+          "target": "com.gcp.blockchainnodeengine_v1#Status",
+          "traits": {
+            "smithy.api#documentation": "The error result of the operation in case of failure or cancellation."
+          }
+        },
+        "metadata": {
+          "target": "com.gcp.blockchainnodeengine_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any."
+          }
+        },
+        "response": {
+          "target": "com.gcp.blockchainnodeengine_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "This resource represents a long-running operation that is the result of a network API call."
+      }
+    },
+    "com.gcp.blockchainnodeengine_v1#OperationMetadata": {
+      "type": "structure",
+      "members": {
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time the operation was created."
+          }
+        },
+        "apiVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. API version used to start the operation."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time the operation finished running."
+          }
+        },
+        "requestedCancellation": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have been cancelled successfully have `Operation.error` value with a `google.rpc.Status.code` of `1`, corresponding to `Code.CANCELLED`."
+          }
+        },
+        "verb": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Name of the verb executed by the operation."
+          }
+        },
+        "target": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Server-defined resource path for the target of the operation."
+          }
+        },
+        "statusMessage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Human-readable status of the operation, if any."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents the metadata of the long-running operation."
+      }
+    },
+    "com.gcp.blockchainnodeengine_v1#ConnectionInfo": {
+      "type": "structure",
+      "members": {
+        "serviceAttachment": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. A service attachment that exposes a node, and has the following format: projects/{project}/regions/{region}/serviceAttachments/{service_attachment_name}"
+          }
+        },
+        "endpointInfo": {
+          "target": "com.gcp.blockchainnodeengine_v1#EndpointInfo",
+          "traits": {
+            "smithy.api#documentation": "Output only. The endpoint information through which to interact with a blockchain node."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The connection information through which to interact with a blockchain node."
+      }
+    },
+    "com.gcp.blockchainnodeengine_v1#Location": {
+      "type": "structure",
+      "members": {
+        "locationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The canonical id for this location. For example: `\"us-east1\"`."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The friendly name for this location, typically a nearby city name. For example, \"Tokyo\"."
+          }
+        },
+        "labels": {
+          "target": "com.gcp.blockchainnodeengine_v1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Cross-service attributes for the location. For example {\"cloud.googleapis.com/region\": \"us-east1\"}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name for the location, which may vary between implementations. For example: `\"projects/example-project/locations/us-east1\"`"
+          }
+        },
+        "metadata": {
+          "target": "com.gcp.blockchainnodeengine_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Service-specific metadata. For example the available capacity at the given location."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A resource that represents a Google Cloud location."
+      }
+    },
+    "com.gcp.blockchainnodeengine_v1#StringMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.blockchainnodeengine_v1#BlockchainNode": {
+      "type": "structure",
+      "members": {
+        "labels": {
+          "target": "com.gcp.blockchainnodeengine_v1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "User-provided key-value pairs."
+          }
+        },
+        "updateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The timestamp at which the blockchain node was last updated."
+          }
+        },
+        "privateServiceConnectEnabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. When true, the node is only accessible via Private Service Connect; no public endpoints are exposed. Otherwise, the node is only accessible via public endpoints. Warning: These nodes are deprecated, please use public endpoints instead."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The timestamp at which the blockchain node was first created."
+          }
+        },
+        "connectionInfo": {
+          "target": "com.gcp.blockchainnodeengine_v1#ConnectionInfo",
+          "traits": {
+            "smithy.api#documentation": "Output only. The connection information used to interact with a blockchain node."
+          }
+        },
+        "blockchainType": {
+          "target": "com.gcp.blockchainnodeengine_v1#BlockchainNodeBlockchainTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Immutable. The blockchain type of the node."
+          }
+        },
+        "ethereumDetails": {
+          "target": "com.gcp.blockchainnodeengine_v1#EthereumDetails",
+          "traits": {
+            "smithy.api#documentation": "Ethereum-specific blockchain node details."
+          }
+        },
+        "state": {
+          "target": "com.gcp.blockchainnodeengine_v1#BlockchainNodeStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. A status representing the state of the node."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The fully qualified name of the blockchain node. e.g. `projects/my-project/locations/us-central1/blockchainNodes/my-node`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A representation of a blockchain node."
+      }
+    },
+    "com.gcp.blockchainnodeengine_v1#BlockchainNodeBlockchainTypeEnum": {
+      "type": "enum",
+      "members": {
+        "BLOCKCHAIN_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BLOCKCHAIN_TYPE_UNSPECIFIED"
+          }
+        },
+        "ETHEREUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ETHEREUM"
+          }
+        }
+      }
+    },
+    "com.gcp.blockchainnodeengine_v1#BlockchainNodeStateEnum": {
+      "type": "enum",
+      "members": {
+        "STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_UNSPECIFIED"
+          }
+        },
+        "CREATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CREATING"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELETING"
+          }
+        },
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RUNNING"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ERROR"
+          }
+        },
+        "UPDATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UPDATING"
+          }
+        },
+        "REPAIRING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REPAIRING"
+          }
+        },
+        "RECONCILING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RECONCILING"
+          }
+        },
+        "SYNCING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SYNCING"
+          }
+        }
+      }
+    },
+    "com.gcp.blockchainnodeengine_v1#GoogleProtobufEmpty": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+      }
+    },
     "com.gcp.blockchainnodeengine_v1#EthereumDetails": {
       "type": "structure",
       "members": {
-        "consensusClient": {
-          "target": "com.gcp.blockchainnodeengine_v1#EthereumDetailsConsensusClientEnum",
-          "traits": {
-            "smithy.api#documentation": "Immutable. The consensus client."
-          }
-        },
-        "apiEnableAdmin": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Immutable. Enables JSON-RPC access to functions in the `admin` namespace. Defaults to `false`."
-          }
-        },
         "apiEnableDebug": {
           "target": "smithy.api#Boolean",
           "traits": {
@@ -172,16 +524,16 @@
             "smithy.api#documentation": "Immutable. The type of Ethereum node."
           }
         },
+        "consensusClient": {
+          "target": "com.gcp.blockchainnodeengine_v1#EthereumDetailsConsensusClientEnum",
+          "traits": {
+            "smithy.api#documentation": "Immutable. The consensus client."
+          }
+        },
         "validatorConfig": {
           "target": "com.gcp.blockchainnodeengine_v1#ValidatorConfig",
           "traits": {
             "smithy.api#documentation": "Configuration for validator-related parameters on the beacon client, and for any GCP-managed validator client."
-          }
-        },
-        "executionClient": {
-          "target": "com.gcp.blockchainnodeengine_v1#EthereumDetailsExecutionClientEnum",
-          "traits": {
-            "smithy.api#documentation": "Immutable. The execution client"
           }
         },
         "additionalEndpoints": {
@@ -190,38 +542,27 @@
             "smithy.api#documentation": "Output only. Ethereum-specific endpoint information."
           }
         },
+        "apiEnableAdmin": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Immutable. Enables JSON-RPC access to functions in the `admin` namespace. Defaults to `false`."
+          }
+        },
         "gethDetails": {
           "target": "com.gcp.blockchainnodeengine_v1#GethDetails",
           "traits": {
             "smithy.api#documentation": "Details for the Geth execution client."
           }
+        },
+        "executionClient": {
+          "target": "com.gcp.blockchainnodeengine_v1#EthereumDetailsExecutionClientEnum",
+          "traits": {
+            "smithy.api#documentation": "Immutable. The execution client"
+          }
         }
       },
       "traits": {
         "smithy.api#documentation": "Ethereum-specific blockchain node details."
-      }
-    },
-    "com.gcp.blockchainnodeengine_v1#EthereumDetailsConsensusClientEnum": {
-      "type": "enum",
-      "members": {
-        "CONSENSUS_CLIENT_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "CONSENSUS_CLIENT_UNSPECIFIED"
-          }
-        },
-        "LIGHTHOUSE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "LIGHTHOUSE"
-          }
-        },
-        "ERIGON_EMBEDDED_CONSENSUS_LAYER": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "ERIGON_EMBEDDED_CONSENSUS_LAYER"
-          }
-        }
       }
     },
     "com.gcp.blockchainnodeengine_v1#EthereumDetailsNetworkEnum": {
@@ -288,6 +629,29 @@
         }
       }
     },
+    "com.gcp.blockchainnodeengine_v1#EthereumDetailsConsensusClientEnum": {
+      "type": "enum",
+      "members": {
+        "CONSENSUS_CLIENT_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONSENSUS_CLIENT_UNSPECIFIED"
+          }
+        },
+        "LIGHTHOUSE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LIGHTHOUSE"
+          }
+        },
+        "ERIGON_EMBEDDED_CONSENSUS_LAYER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ERIGON_EMBEDDED_CONSENSUS_LAYER"
+          }
+        }
+      }
+    },
     "com.gcp.blockchainnodeengine_v1#EthereumDetailsExecutionClientEnum": {
       "type": "enum",
       "members": {
@@ -311,166 +675,19 @@
         }
       }
     },
-    "com.gcp.blockchainnodeengine_v1#BlockchainNode": {
-      "type": "structure",
-      "members": {
-        "blockchainType": {
-          "target": "com.gcp.blockchainnodeengine_v1#BlockchainNodeBlockchainTypeEnum",
-          "traits": {
-            "smithy.api#documentation": "Immutable. The blockchain type of the node."
-          }
-        },
-        "updateTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The timestamp at which the blockchain node was last updated."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The fully qualified name of the blockchain node. e.g. `projects/my-project/locations/us-central1/blockchainNodes/my-node`."
-          }
-        },
-        "ethereumDetails": {
-          "target": "com.gcp.blockchainnodeengine_v1#EthereumDetails",
-          "traits": {
-            "smithy.api#documentation": "Ethereum-specific blockchain node details."
-          }
-        },
-        "labels": {
-          "target": "com.gcp.blockchainnodeengine_v1#StringMap",
-          "traits": {
-            "smithy.api#documentation": "User-provided key-value pairs."
-          }
-        },
-        "state": {
-          "target": "com.gcp.blockchainnodeengine_v1#BlockchainNodeStateEnum",
-          "traits": {
-            "smithy.api#documentation": "Output only. A status representing the state of the node."
-          }
-        },
-        "privateServiceConnectEnabled": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Optional. When true, the node is only accessible via Private Service Connect; no public endpoints are exposed. Otherwise, the node is only accessible via public endpoints. Warning: These nodes are deprecated, please use public endpoints instead."
-          }
-        },
-        "createTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The timestamp at which the blockchain node was first created."
-          }
-        },
-        "connectionInfo": {
-          "target": "com.gcp.blockchainnodeengine_v1#ConnectionInfo",
-          "traits": {
-            "smithy.api#documentation": "Output only. The connection information used to interact with a blockchain node."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A representation of a blockchain node."
-      }
-    },
-    "com.gcp.blockchainnodeengine_v1#BlockchainNodeBlockchainTypeEnum": {
-      "type": "enum",
-      "members": {
-        "BLOCKCHAIN_TYPE_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "BLOCKCHAIN_TYPE_UNSPECIFIED"
-          }
-        },
-        "ETHEREUM": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "ETHEREUM"
-          }
-        }
-      }
-    },
-    "com.gcp.blockchainnodeengine_v1#StringMap": {
-      "type": "map",
-      "key": {
-        "target": "smithy.api#String"
-      },
-      "value": {
-        "target": "smithy.api#String"
-      }
-    },
-    "com.gcp.blockchainnodeengine_v1#BlockchainNodeStateEnum": {
-      "type": "enum",
-      "members": {
-        "STATE_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "STATE_UNSPECIFIED"
-          }
-        },
-        "CREATING": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "CREATING"
-          }
-        },
-        "DELETING": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "DELETING"
-          }
-        },
-        "RUNNING": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "RUNNING"
-          }
-        },
-        "ERROR": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "ERROR"
-          }
-        },
-        "UPDATING": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "UPDATING"
-          }
-        },
-        "REPAIRING": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "REPAIRING"
-          }
-        },
-        "RECONCILING": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "RECONCILING"
-          }
-        },
-        "SYNCING": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "SYNCING"
-          }
-        }
-      }
-    },
     "com.gcp.blockchainnodeengine_v1#ListLocationsResponse": {
       "type": "structure",
       "members": {
-        "locations": {
-          "target": "com.gcp.blockchainnodeengine_v1#LocationList",
-          "traits": {
-            "smithy.api#documentation": "A list of locations that matches the specified filter in the request."
-          }
-        },
         "nextPageToken": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "The standard List next-page token."
+          }
+        },
+        "locations": {
+          "target": "com.gcp.blockchainnodeengine_v1#LocationList",
+          "traits": {
+            "smithy.api#documentation": "A list of locations that matches the specified filter in the request."
           }
         }
       },
@@ -484,257 +701,69 @@
         "target": "com.gcp.blockchainnodeengine_v1#Location"
       }
     },
-    "com.gcp.blockchainnodeengine_v1#ConnectionInfo": {
+    "com.gcp.blockchainnodeengine_v1#EthereumEndpoints": {
       "type": "structure",
       "members": {
-        "endpointInfo": {
-          "target": "com.gcp.blockchainnodeengine_v1#EndpointInfo",
-          "traits": {
-            "smithy.api#documentation": "Output only. The endpoint information through which to interact with a blockchain node."
-          }
-        },
-        "serviceAttachment": {
+        "beaconPrometheusMetricsApiEndpoint": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Output only. A service attachment that exposes a node, and has the following format: projects/{project}/regions/{region}/serviceAttachments/{service_attachment_name}"
+            "smithy.api#documentation": "Output only. The assigned URL for the node's Beacon Prometheus metrics endpoint. See [Prometheus Metrics](https://lighthouse-book.sigmaprime.io/advanced_metrics.html) for more details."
+          }
+        },
+        "beaconApiEndpoint": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The assigned URL for the node's Beacon API endpoint."
+          }
+        },
+        "executionClientPrometheusMetricsApiEndpoint": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The assigned URL for the node's execution client's Prometheus metrics endpoint."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "The connection information through which to interact with a blockchain node."
+        "smithy.api#documentation": "Contains endpoint information specific to Ethereum nodes."
       }
     },
-    "com.gcp.blockchainnodeengine_v1#OperationMetadata": {
-      "type": "structure",
-      "members": {
-        "endTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The time the operation finished running."
-          }
-        },
-        "createTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The time the operation was created."
-          }
-        },
-        "apiVersion": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. API version used to start the operation."
-          }
-        },
-        "verb": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Name of the verb executed by the operation."
-          }
-        },
-        "requestedCancellation": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have been cancelled successfully have `Operation.error` value with a `google.rpc.Status.code` of `1`, corresponding to `Code.CANCELLED`."
-          }
-        },
-        "target": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Server-defined resource path for the target of the operation."
-          }
-        },
-        "statusMessage": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Human-readable status of the operation, if any."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Represents the metadata of the long-running operation."
-      }
-    },
-    "com.gcp.blockchainnodeengine_v1#Location": {
-      "type": "structure",
-      "members": {
-        "displayName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The friendly name for this location, typically a nearby city name. For example, \"Tokyo\"."
-          }
-        },
-        "locationId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The canonical id for this location. For example: `\"us-east1\"`."
-          }
-        },
-        "labels": {
-          "target": "com.gcp.blockchainnodeengine_v1#StringMap",
-          "traits": {
-            "smithy.api#documentation": "Cross-service attributes for the location. For example {\"cloud.googleapis.com/region\": \"us-east1\"}"
-          }
-        },
-        "metadata": {
-          "target": "com.gcp.blockchainnodeengine_v1#DocumentMap",
-          "traits": {
-            "smithy.api#documentation": "Service-specific metadata. For example the available capacity at the given location."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Resource name for the location, which may vary between implementations. For example: `\"projects/example-project/locations/us-east1\"`"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A resource that represents a Google Cloud location."
-      }
-    },
-    "com.gcp.blockchainnodeengine_v1#CancelOperationRequest": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#documentation": "The request message for Operations.CancelOperation."
-      }
-    },
-    "com.gcp.blockchainnodeengine_v1#GethDetails": {
-      "type": "structure",
-      "members": {
-        "garbageCollectionMode": {
-          "target": "com.gcp.blockchainnodeengine_v1#GethDetailsGarbageCollectionModeEnum",
-          "traits": {
-            "smithy.api#documentation": "Immutable. Blockchain garbage collection mode."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Options for the Geth execution client. See [Command-line Options](https://geth.ethereum.org/docs/fundamentals/command-line-options) for more details."
-      }
-    },
-    "com.gcp.blockchainnodeengine_v1#GethDetailsGarbageCollectionModeEnum": {
-      "type": "enum",
-      "members": {
-        "GARBAGE_COLLECTION_MODE_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "GARBAGE_COLLECTION_MODE_UNSPECIFIED"
-          }
-        },
-        "FULL": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "FULL"
-          }
-        },
-        "ARCHIVE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "ARCHIVE"
-          }
-        }
-      }
-    },
-    "com.gcp.blockchainnodeengine_v1#ListBlockchainNodesResponse": {
-      "type": "structure",
-      "members": {
-        "unreachable": {
-          "target": "com.gcp.blockchainnodeengine_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "Locations that could not be reached."
-          }
-        },
-        "blockchainNodes": {
-          "target": "com.gcp.blockchainnodeengine_v1#BlockchainNodeList",
-          "traits": {
-            "smithy.api#documentation": "The list of nodes"
-          }
-        },
-        "nextPageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A token identifying a page of results the server should return."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Message for response to listing blockchain nodes."
-      }
-    },
-    "com.gcp.blockchainnodeengine_v1#BlockchainNodeList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.blockchainnodeengine_v1#BlockchainNode"
-      }
-    },
-    "com.gcp.blockchainnodeengine_v1#Operation": {
+    "com.gcp.blockchainnodeengine_v1#ListProjectsLocationsRequest": {
       "type": "structure",
       "members": {
         "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
-          }
-        },
-        "metadata": {
-          "target": "com.gcp.blockchainnodeengine_v1#DocumentMap",
-          "traits": {
-            "smithy.api#documentation": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any."
-          }
-        },
-        "response": {
-          "target": "com.gcp.blockchainnodeengine_v1#DocumentMap",
-          "traits": {
-            "smithy.api#documentation": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`."
-          }
-        },
-        "done": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
-          }
-        },
-        "error": {
-          "target": "com.gcp.blockchainnodeengine_v1#Status",
-          "traits": {
-            "smithy.api#documentation": "The error result of the operation in case of failure or cancellation."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "This resource represents a long-running operation that is the result of a network API call."
-      }
-    },
-    "com.gcp.blockchainnodeengine_v1#EndpointInfo": {
-      "type": "structure",
-      "members": {
-        "websocketsApiEndpoint": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The assigned URL for the node WebSockets API endpoint."
-          }
-        },
-        "jsonRpcApiEndpoint": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The assigned URL for the node JSON-RPC API endpoint."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Contains endpoint information through which to interact with a blockchain node."
-      }
-    },
-    "com.gcp.blockchainnodeengine_v1#GetProjectsLocationsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Resource name for the location.",
+            "smithy.api#documentation": "The resource that owns the locations collection, if applicable.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
+          }
+        },
+        "extraLocationTypes": {
+          "target": "com.gcp.blockchainnodeengine_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+            "smithy.api#httpQuery": "extraLocationTypes"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of results to return. If not set, the service selects a default.",
+            "smithy.api#httpQuery": "pageSize"
           }
         }
       }
@@ -765,71 +794,6 @@
         ]
       }
     },
-    "com.gcp.blockchainnodeengine_v1#GetProjectsLocations": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.blockchainnodeengine_v1#GetProjectsLocationsRequest"
-      },
-      "output": {
-        "target": "com.gcp.blockchainnodeengine_v1#Location"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.blockchainnodeengine_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.blockchainnodeengine_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Gets information about a location."
-      }
-    },
-    "com.gcp.blockchainnodeengine_v1#ListProjectsLocationsRequest": {
-      "type": "structure",
-      "members": {
-        "extraLocationTypes": {
-          "target": "com.gcp.blockchainnodeengine_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
-            "smithy.api#httpQuery": "extraLocationTypes"
-          }
-        },
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        },
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The maximum number of results to return. If not set, the service selects a default.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The resource that owns the locations collection, if applicable.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "filter": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
-            "smithy.api#httpQuery": "filter"
-          }
-        }
-      }
-    },
     "com.gcp.blockchainnodeengine_v1#ListProjectsLocations": {
       "type": "operation",
       "input": {
@@ -858,19 +822,70 @@
         }
       }
     },
-    "com.gcp.blockchainnodeengine_v1#CancelProjectsLocationsOperationsRequest": {
+    "com.gcp.blockchainnodeengine_v1#GetProjectsLocationsRequest": {
       "type": "structure",
       "members": {
         "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The name of the operation resource to be cancelled.",
+            "smithy.api#documentation": "Resource name for the location.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.blockchainnodeengine_v1#GetProjectsLocations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.blockchainnodeengine_v1#GetProjectsLocationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.blockchainnodeengine_v1#Location"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.blockchainnodeengine_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.blockchainnodeengine_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Gets information about a location."
+      }
+    },
+    "com.gcp.blockchainnodeengine_v1#CreateProjectsLocationsBlockchainNodesRequest": {
+      "type": "structure",
+      "members": {
+        "blockchainNodeId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. ID of the requesting object.",
+            "smithy.api#httpQuery": "blockchainNodeId"
+          }
+        },
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+            "smithy.api#httpQuery": "requestId"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Value for parent.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
           }
         },
         "body": {
-          "target": "com.gcp.blockchainnodeengine_v1#CancelOperationRequest",
+          "target": "com.gcp.blockchainnodeengine_v1#BlockchainNode",
           "traits": {
             "smithy.api#httpPayload": {},
             "smithy.api#documentation": "Request body"
@@ -902,212 +917,6 @@
             "status": 409
           }
         ]
-      }
-    },
-    "com.gcp.blockchainnodeengine_v1#CancelProjectsLocationsOperations": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.blockchainnodeengine_v1#CancelProjectsLocationsOperationsRequest"
-      },
-      "output": {
-        "target": "com.gcp.blockchainnodeengine_v1#GoogleProtobufEmpty"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.blockchainnodeengine_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.blockchainnodeengine_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.blockchainnodeengine_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.blockchainnodeengine_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1/{+name}:cancel"
-        },
-        "smithy.api#documentation": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`."
-      }
-    },
-    "com.gcp.blockchainnodeengine_v1#ListProjectsLocationsOperationsRequest": {
-      "type": "structure",
-      "members": {
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The standard list page token.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name of the operation's parent resource.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "filter": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The standard list filter.",
-            "smithy.api#httpQuery": "filter"
-          }
-        },
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The standard list page size.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        }
-      }
-    },
-    "com.gcp.blockchainnodeengine_v1#ListProjectsLocationsOperations": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.blockchainnodeengine_v1#ListProjectsLocationsOperationsRequest"
-      },
-      "output": {
-        "target": "com.gcp.blockchainnodeengine_v1#ListOperationsResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.blockchainnodeengine_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.blockchainnodeengine_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+name}/operations"
-        },
-        "smithy.api#documentation": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
-        "smithy.api#paginated": {
-          "inputToken": "pageToken",
-          "outputToken": "nextPageToken"
-        }
-      }
-    },
-    "com.gcp.blockchainnodeengine_v1#DeleteProjectsLocationsOperationsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name of the operation resource to be deleted.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.blockchainnodeengine_v1#DeleteProjectsLocationsOperations": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.blockchainnodeengine_v1#DeleteProjectsLocationsOperationsRequest"
-      },
-      "output": {
-        "target": "com.gcp.blockchainnodeengine_v1#GoogleProtobufEmpty"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.blockchainnodeengine_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.blockchainnodeengine_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.blockchainnodeengine_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.blockchainnodeengine_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`."
-      }
-    },
-    "com.gcp.blockchainnodeengine_v1#GetProjectsLocationsOperationsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name of the operation resource.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.blockchainnodeengine_v1#GetProjectsLocationsOperations": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.blockchainnodeengine_v1#GetProjectsLocationsOperationsRequest"
-      },
-      "output": {
-        "target": "com.gcp.blockchainnodeengine_v1#Operation"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.blockchainnodeengine_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.blockchainnodeengine_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service."
-      }
-    },
-    "com.gcp.blockchainnodeengine_v1#CreateProjectsLocationsBlockchainNodesRequest": {
-      "type": "structure",
-      "members": {
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Value for parent.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "requestId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
-            "smithy.api#httpQuery": "requestId"
-          }
-        },
-        "blockchainNodeId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. ID of the requesting object.",
-            "smithy.api#httpQuery": "blockchainNodeId"
-          }
-        },
-        "body": {
-          "target": "com.gcp.blockchainnodeengine_v1#BlockchainNode",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
       }
     },
     "com.gcp.blockchainnodeengine_v1#CreateProjectsLocationsBlockchainNodes": {
@@ -1143,19 +952,19 @@
     "com.gcp.blockchainnodeengine_v1#DeleteProjectsLocationsBlockchainNodesRequest": {
       "type": "structure",
       "members": {
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+            "smithy.api#httpQuery": "requestId"
+          }
+        },
         "name": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Required. The fully qualified name of the blockchain node to delete. e.g. `projects/my-project/locations/us-central1/blockchainNodes/my-node`.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
-          }
-        },
-        "requestId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
-            "smithy.api#httpQuery": "requestId"
           }
         }
       }
@@ -1188,43 +997,6 @@
           "uri": "v1/{+name}"
         },
         "smithy.api#documentation": "Deletes a single blockchain node."
-      }
-    },
-    "com.gcp.blockchainnodeengine_v1#GetProjectsLocationsBlockchainNodesRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The fully qualified name of the blockchain node to fetch. e.g. `projects/my-project/locations/us-central1/blockchainNodes/my-node`.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.blockchainnodeengine_v1#GetProjectsLocationsBlockchainNodes": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.blockchainnodeengine_v1#GetProjectsLocationsBlockchainNodesRequest"
-      },
-      "output": {
-        "target": "com.gcp.blockchainnodeengine_v1#BlockchainNode"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.blockchainnodeengine_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.blockchainnodeengine_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Gets details of a single blockchain node."
       }
     },
     "com.gcp.blockchainnodeengine_v1#PatchProjectsLocationsBlockchainNodesRequest": {
@@ -1291,14 +1063,51 @@
         "smithy.api#documentation": "Updates the parameters of a single blockchain node."
       }
     },
+    "com.gcp.blockchainnodeengine_v1#GetProjectsLocationsBlockchainNodesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The fully qualified name of the blockchain node to fetch. e.g. `projects/my-project/locations/us-central1/blockchainNodes/my-node`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.blockchainnodeengine_v1#GetProjectsLocationsBlockchainNodes": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.blockchainnodeengine_v1#GetProjectsLocationsBlockchainNodesRequest"
+      },
+      "output": {
+        "target": "com.gcp.blockchainnodeengine_v1#BlockchainNode"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.blockchainnodeengine_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.blockchainnodeengine_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Gets details of a single blockchain node."
+      }
+    },
     "com.gcp.blockchainnodeengine_v1#ListProjectsLocationsBlockchainNodesRequest": {
       "type": "structure",
       "members": {
-        "pageToken": {
+        "filter": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "A token identifying a page of results the server should return.",
-            "smithy.api#httpQuery": "pageToken"
+            "smithy.api#documentation": "Filtering results.",
+            "smithy.api#httpQuery": "filter"
           }
         },
         "orderBy": {
@@ -1308,26 +1117,26 @@
             "smithy.api#httpQuery": "orderBy"
           }
         },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A token identifying a page of results the server should return.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
         "parent": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Required. Parent value for `ListNodesRequest`.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
-          }
-        },
-        "filter": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Filtering results.",
-            "smithy.api#httpQuery": "filter"
-          }
-        },
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
-            "smithy.api#httpQuery": "pageSize"
           }
         }
       }
@@ -1358,6 +1167,198 @@
           "inputToken": "pageToken",
           "outputToken": "nextPageToken"
         }
+      }
+    },
+    "com.gcp.blockchainnodeengine_v1#DeleteProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource to be deleted.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.blockchainnodeengine_v1#DeleteProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.blockchainnodeengine_v1#DeleteProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.blockchainnodeengine_v1#GoogleProtobufEmpty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.blockchainnodeengine_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.blockchainnodeengine_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.blockchainnodeengine_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.blockchainnodeengine_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`."
+      }
+    },
+    "com.gcp.blockchainnodeengine_v1#CancelProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource to be cancelled.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.blockchainnodeengine_v1#CancelOperationRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.blockchainnodeengine_v1#CancelProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.blockchainnodeengine_v1#CancelProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.blockchainnodeengine_v1#GoogleProtobufEmpty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.blockchainnodeengine_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.blockchainnodeengine_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.blockchainnodeengine_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.blockchainnodeengine_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+name}:cancel"
+        },
+        "smithy.api#documentation": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`."
+      }
+    },
+    "com.gcp.blockchainnodeengine_v1#ListProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The standard list page size.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard list page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard list filter.",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation's parent resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.blockchainnodeengine_v1#ListProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.blockchainnodeengine_v1#ListProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.blockchainnodeengine_v1#ListOperationsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.blockchainnodeengine_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.blockchainnodeengine_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}/operations"
+        },
+        "smithy.api#documentation": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.blockchainnodeengine_v1#GetProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.blockchainnodeengine_v1#GetProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.blockchainnodeengine_v1#GetProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.blockchainnodeengine_v1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.blockchainnodeengine_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.blockchainnodeengine_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service."
       }
     }
   }

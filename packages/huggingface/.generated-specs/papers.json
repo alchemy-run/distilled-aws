@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.huggingface.papers#ClaimPaperAuthorshipRequest": {
@@ -857,7 +858,7 @@
         "smithy.api#documentation": "Search papers\n\nPerform a hybrid semantic / full-text-search on papers"
       }
     },
-    "com.huggingface.papers#IndexPaperRequest": {
+    "com.huggingface.papers#ListPaperRequest": {
       "type": "structure",
       "members": {
         "arxivId": {
@@ -872,7 +873,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.huggingface.papers#IndexPaperResponse": {
+    "com.huggingface.papers#ListPaperResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -887,13 +888,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.huggingface.papers#IndexPaper": {
+    "com.huggingface.papers#ListPaper": {
       "type": "operation",
       "input": {
-        "target": "com.huggingface.papers#IndexPaperRequest"
+        "target": "com.huggingface.papers#ListPaperRequest"
       },
       "output": {
-        "target": "com.huggingface.papers#IndexPaperResponse"
+        "target": "com.huggingface.papers#ListPaperResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3767,7 +3768,7 @@
           "target": "com.huggingface.papers#SearchPapers"
         },
         {
-          "target": "com.huggingface.papers#IndexPaper"
+          "target": "com.huggingface.papers#ListPaper"
         },
         {
           "target": "com.huggingface.papers#GetPaper"

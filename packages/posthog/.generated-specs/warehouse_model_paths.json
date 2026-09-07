@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.warehouse_model_paths#WarehouseModelPathsListRequest": {
+    "com.posthog.warehouse_model_paths#ListWarehouseModelPathsRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -287,10 +288,10 @@
       },
       "traits": {}
     },
-    "com.posthog.warehouse_model_paths#WarehouseModelPathsList": {
+    "com.posthog.warehouse_model_paths#ListWarehouseModelPaths": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.warehouse_model_paths#WarehouseModelPathsListRequest"
+        "target": "com.posthog.warehouse_model_paths#ListWarehouseModelPathsRequest"
       },
       "output": {
         "target": "com.posthog.warehouse_model_paths#PaginatedDataWarehouseModelPathList"
@@ -303,7 +304,7 @@
         }
       }
     },
-    "com.posthog.warehouse_model_paths#WarehouseModelPathsRetrieveRequest": {
+    "com.posthog.warehouse_model_paths#GetWarehouseModelPathRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -327,10 +328,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.warehouse_model_paths#WarehouseModelPathsRetrieve": {
+    "com.posthog.warehouse_model_paths#GetWarehouseModelPath": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.warehouse_model_paths#WarehouseModelPathsRetrieveRequest"
+        "target": "com.posthog.warehouse_model_paths#GetWarehouseModelPathRequest"
       },
       "output": {
         "target": "com.posthog.warehouse_model_paths#DataWarehouseModelPath"
@@ -348,10 +349,10 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.warehouse_model_paths#WarehouseModelPathsList"
+          "target": "com.posthog.warehouse_model_paths#ListWarehouseModelPaths"
         },
         {
-          "target": "com.posthog.warehouse_model_paths#WarehouseModelPathsRetrieve"
+          "target": "com.posthog.warehouse_model_paths#GetWarehouseModelPath"
         }
       ],
       "traits": {

@@ -1056,7 +1056,7 @@ export interface IoK8sApiAdmissionregistrationV1beta1ParamRef {
   /** namespace is the namespace of the referenced resource. Allows limiting the search for params to a specific namespace. Applies to both `name` and `selector` fields. A per-namespace parameter may be used by specifying a namespace-scoped `paramKind` in the policy and leaving this field empty. - If `paramKind` is cluster-scoped, this field MUST be unset. Setting this field results in a configuration error. - If `paramKind` is namespace-scoped, the namespace of the object being evaluated for admission will be used when this field is left unset. Take care that if this is left empty the binding must not match any cluster-scoped resources, which will result in an error. */
   namespace?: string;
   /** parameterNotFoundAction controls the behavior of the binding when the resource exists, and name or selector is valid, but there are no parameters matched by the binding. If the value is set to `Allow`, then no matched parameters will be treated as successful validation by the binding. If set to `Deny`, then no matched parameters will be subject to the `failurePolicy` of the policy. Allowed values are `Allow` or `Deny` Required */
-  parameterNotFoundAction?: string;
+  parameterNotFoundAction: string;
   /** selector can be used to match multiple param objects based on their labels. Supply selector: {} to match all resources of the ParamKind. If multiple params are found, they are all evaluated with the policy expressions and the results are ANDed together. One of `name` or `selector` must be set, but `name` and `selector` are mutually exclusive properties. If one is set, the other must be unset. */
   selector?: IoK8sApimachineryPkgApisMetaV1LabelSelector;
 }
@@ -1065,7 +1065,7 @@ export const IoK8sApiAdmissionregistrationV1beta1ParamRef =
     S.Struct({
       name: S.optional(S.String),
       namespace: S.optional(S.String),
-      parameterNotFoundAction: S.optional(S.String),
+      parameterNotFoundAction: S.String,
       selector: S.optional(IoK8sApimachineryPkgApisMetaV1LabelSelector),
     }),
   ).annotate({
@@ -1943,7 +1943,7 @@ export interface IoK8sApimachineryPkgApisMetaV1Condition {
   /** lastTransitionTime is the last time the condition transitioned from one status to another. This should be when the underlying condition changed. If that is not known, then using the time when the API field changed is acceptable. */
   lastTransitionTime: string;
   /** message is a human readable message indicating details about the transition. This may be an empty string. */
-  message: string;
+  message?: string;
   /** observedGeneration represents the .metadata.generation that the condition was set based upon. For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date with respect to the current state of the instance. */
   observedGeneration?: number;
   /** reason contains a programmatic identifier indicating the reason for the condition's last transition. Producers of specific condition types may define expected values and meanings for this field, and whether the values are considered a guaranteed API. The value should be a CamelCase string. This field may not be empty. */
@@ -1957,7 +1957,7 @@ export const IoK8sApimachineryPkgApisMetaV1Condition = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       lastTransitionTime: S.String,
-      message: S.String,
+      message: S.optional(S.String),
       observedGeneration: S.optional(S.Number),
       reason: S.String,
       status: S.String,

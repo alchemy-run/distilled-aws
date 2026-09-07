@@ -12,13 +12,13 @@ import * as Retry from "../retry.ts";
 
 export type { ModalOpError, ModalOpContext };
 
-export interface BlobCreateRequest {
+export interface CreateBlobRequest {
   /** TODO(erikbern): how are these garbage collected? Shouldn't they belong to an app? */
   contentMd5?: string;
   contentSha256Base64?: string;
   contentLength?: string;
 }
-export const BlobCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateBlobRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     contentMd5: S.optional(S.String),
     contentSha256Base64: S.optional(S.String),
@@ -31,8 +31,8 @@ export const BlobCreateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "BlobCreateRequest",
-}) as any as S.Schema<BlobCreateRequest>;
+  identifier: "CreateBlobRequest",
+}) as any as S.Schema<CreateBlobRequest>;
 
 export type StringList = Array<string>;
 export const StringList = /*@__PURE__*/ S.Array(
@@ -80,7 +80,7 @@ export const MultiPartUploadList = /*@__PURE__*/ S.suspend(() =>
   identifier: "MultiPartUploadList",
 }) as any as S.Schema<MultiPartUploadList>;
 
-export interface BlobCreateResponse {
+export interface CreateBlobResponse {
   blobId?: string;
   uploadUrl?: string;
   multipart?: MultiPartUpload;
@@ -88,7 +88,7 @@ export interface BlobCreateResponse {
   uploadUrls?: UploadUrlList;
   multiparts?: MultiPartUploadList;
 }
-export const BlobCreateResponse = /*@__PURE__*/ S.suspend(() =>
+export const CreateBlobResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     blobId: S.optional(S.String),
     uploadUrl: S.optional(S.String),
@@ -98,13 +98,13 @@ export const BlobCreateResponse = /*@__PURE__*/ S.suspend(() =>
     multiparts: S.optional(MultiPartUploadList),
   }),
 ).annotate({
-  identifier: "BlobCreateResponse",
-}) as any as S.Schema<BlobCreateResponse>;
+  identifier: "CreateBlobResponse",
+}) as any as S.Schema<CreateBlobResponse>;
 
-export interface BlobGetRequest {
+export interface GetBlobRequest {
   blobId?: string;
 }
-export const BlobGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetBlobRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     blobId: S.optional(S.String),
   }).pipe(
@@ -114,43 +114,43 @@ export const BlobGetRequest = /*@__PURE__*/ S.suspend(() =>
       code: 200,
     }),
   ),
-).annotate({ identifier: "BlobGetRequest" }) as any as S.Schema<BlobGetRequest>;
+).annotate({ identifier: "GetBlobRequest" }) as any as S.Schema<GetBlobRequest>;
 
-export interface BlobGetResponse {
+export interface GetBlobResponse {
   downloadUrl?: string;
 }
-export const BlobGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetBlobResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     downloadUrl: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "BlobGetResponse",
-}) as any as S.Schema<BlobGetResponse>;
+  identifier: "GetBlobResponse",
+}) as any as S.Schema<GetBlobResponse>;
 
-export type BlobCreateError = ModalOpError;
+export type CreateBlobError = ModalOpError;
 /** Blobs */
-export const blobCreate: API.OperationMethod<
-  BlobCreateRequest,
-  BlobCreateResponse,
-  BlobCreateError,
+export const createBlob: API.OperationMethod<
+  CreateBlobRequest,
+  CreateBlobResponse,
+  CreateBlobError,
   ModalOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: BlobCreateRequest,
-  output: BlobCreateResponse,
+  input: CreateBlobRequest,
+  output: CreateBlobResponse,
   errors: [UnknownModalError],
   protocol: ModalProtocol,
   retry: Retry.Retry,
 }));
 
-export type BlobGetError = ModalOpError;
-export const blobGet: API.OperationMethod<
-  BlobGetRequest,
-  BlobGetResponse,
-  BlobGetError,
+export type GetBlobError = ModalOpError;
+export const getBlob: API.OperationMethod<
+  GetBlobRequest,
+  GetBlobResponse,
+  GetBlobError,
   ModalOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: BlobGetRequest,
-  output: BlobGetResponse,
+  input: GetBlobRequest,
+  output: GetBlobResponse,
   errors: [UnknownModalError],
   protocol: ModalProtocol,
   retry: Retry.Retry,

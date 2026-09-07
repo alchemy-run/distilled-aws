@@ -14,13 +14,14 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.resourcehealth#AvailabilityStatusesListByResourceGroup": {
+    "com.azure.resourcehealth#ListAvailabilityStatusByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.resourcehealth#AvailabilityStatusesListByResourceGroupRequest"
+        "target": "com.azure.resourcehealth#ListAvailabilityStatusByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.resourcehealth#AvailabilityStatusListResult"
@@ -442,7 +443,7 @@
         "smithy.api#documentation": "Impacted resource status of the resource."
       }
     },
-    "com.azure.resourcehealth#AvailabilityStatusesListByResourceGroupRequest": {
+    "com.azure.resourcehealth#ListAvailabilityStatusByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -767,13 +768,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.resourcehealth#ImpactedResourcesGet": {
+    "com.azure.resourcehealth#GetImpactedResource": {
       "type": "operation",
       "input": {
-        "target": "com.azure.resourcehealth#ImpactedResourcesGetRequest"
+        "target": "com.azure.resourcehealth#GetImpactedResourceRequest"
       },
       "output": {
-        "target": "com.azure.resourcehealth#ImpactedResourcesGetResponse"
+        "target": "com.azure.resourcehealth#GetImpactedResourceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -786,7 +787,7 @@
         "com.distilled.openapi#apiVersion": "2025-05-01"
       }
     },
-    "com.azure.resourcehealth#ImpactedResourcesGetResponse": {
+    "com.azure.resourcehealth#GetImpactedResourceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -824,7 +825,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.resourcehealth#ImpactedResourcesGetRequest": {
+    "com.azure.resourcehealth#GetImpactedResourceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1955,10 +1956,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.resourcehealth#EventsListBySubscriptionId": {
+    "com.azure.resourcehealth#ListEventBySubscriptionId": {
       "type": "operation",
       "input": {
-        "target": "com.azure.resourcehealth#EventsListBySubscriptionIdRequest"
+        "target": "com.azure.resourcehealth#ListEventBySubscriptionIdRequest"
       },
       "output": {
         "target": "com.azure.resourcehealth#Events"
@@ -2042,7 +2043,7 @@
         "smithy.api#documentation": "Service health event"
       }
     },
-    "com.azure.resourcehealth#EventsListBySubscriptionIdRequest": {
+    "com.azure.resourcehealth#ListEventBySubscriptionIdRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2072,10 +2073,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.resourcehealth#AvailabilityStatusesListBySubscriptionId": {
+    "com.azure.resourcehealth#ListAvailabilityStatusBySubscriptionId": {
       "type": "operation",
       "input": {
-        "target": "com.azure.resourcehealth#AvailabilityStatusesListBySubscriptionIdRequest"
+        "target": "com.azure.resourcehealth#ListAvailabilityStatusBySubscriptionIdRequest"
       },
       "output": {
         "target": "com.azure.resourcehealth#AvailabilityStatusListResult"
@@ -2091,7 +2092,7 @@
         "com.distilled.openapi#apiVersion": "2025-05-01"
       }
     },
-    "com.azure.resourcehealth#AvailabilityStatusesListBySubscriptionIdRequest": {
+    "com.azure.resourcehealth#ListAvailabilityStatusBySubscriptionIdRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2121,7 +2122,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.resourcehealth#OperationsList": {
+    "com.azure.resourcehealth#ListOperations": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -2216,13 +2217,13 @@
         "smithy.api#documentation": "Properties of the operation."
       }
     },
-    "com.azure.resourcehealth#MetadataGetEntity": {
+    "com.azure.resourcehealth#GetMetadataEntity": {
       "type": "operation",
       "input": {
-        "target": "com.azure.resourcehealth#MetadataGetEntityRequest"
+        "target": "com.azure.resourcehealth#GetMetadataEntityRequest"
       },
       "output": {
-        "target": "com.azure.resourcehealth#MetadataGetEntityResponse"
+        "target": "com.azure.resourcehealth#GetMetadataEntityResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2235,7 +2236,7 @@
         "com.distilled.openapi#apiVersion": "2025-05-01"
       }
     },
-    "com.azure.resourcehealth#MetadataGetEntityResponse": {
+    "com.azure.resourcehealth#GetMetadataEntityResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2397,7 +2398,7 @@
         "smithy.api#documentation": "The list of keys on which this entity depends on."
       }
     },
-    "com.azure.resourcehealth#MetadataGetEntityRequest": {
+    "com.azure.resourcehealth#GetMetadataEntityRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -2413,7 +2414,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.resourcehealth#MetadataList": {
+    "com.azure.resourcehealth#ListMetadata": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -2541,13 +2542,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.resourcehealth#ImpactedResourcesGetByTenantId": {
+    "com.azure.resourcehealth#GetImpactedResourceByTenantId": {
       "type": "operation",
       "input": {
-        "target": "com.azure.resourcehealth#ImpactedResourcesGetByTenantIdRequest"
+        "target": "com.azure.resourcehealth#GetImpactedResourceByTenantIdRequest"
       },
       "output": {
-        "target": "com.azure.resourcehealth#ImpactedResourcesGetByTenantIdResponse"
+        "target": "com.azure.resourcehealth#GetImpactedResourceByTenantIdResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2560,7 +2561,7 @@
         "com.distilled.openapi#apiVersion": "2025-05-01"
       }
     },
-    "com.azure.resourcehealth#ImpactedResourcesGetByTenantIdResponse": {
+    "com.azure.resourcehealth#GetImpactedResourceByTenantIdResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2598,7 +2599,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.resourcehealth#ImpactedResourcesGetByTenantIdRequest": {
+    "com.azure.resourcehealth#GetImpactedResourceByTenantIdRequest": {
       "type": "structure",
       "members": {
         "eventTrackingId": {
@@ -2824,10 +2825,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.resourcehealth#EventsListByTenantId": {
+    "com.azure.resourcehealth#ListEventByTenantId": {
       "type": "operation",
       "input": {
-        "target": "com.azure.resourcehealth#EventsListByTenantIdRequest"
+        "target": "com.azure.resourcehealth#ListEventByTenantIdRequest"
       },
       "output": {
         "target": "com.azure.resourcehealth#Events"
@@ -2843,7 +2844,7 @@
         "com.distilled.openapi#apiVersion": "2025-05-01"
       }
     },
-    "com.azure.resourcehealth#EventsListByTenantIdRequest": {
+    "com.azure.resourcehealth#ListEventByTenantIdRequest": {
       "type": "structure",
       "members": {
         "_filter": {
@@ -2865,13 +2866,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.resourcehealth#EmergingIssuesGet": {
+    "com.azure.resourcehealth#GetEmergingIssue": {
       "type": "operation",
       "input": {
-        "target": "com.azure.resourcehealth#EmergingIssuesGetRequest"
+        "target": "com.azure.resourcehealth#GetEmergingIssueRequest"
       },
       "output": {
-        "target": "com.azure.resourcehealth#EmergingIssuesGetResponse"
+        "target": "com.azure.resourcehealth#GetEmergingIssueResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2884,7 +2885,7 @@
         "com.distilled.openapi#apiVersion": "2025-05-01"
       }
     },
-    "com.azure.resourcehealth#EmergingIssuesGetResponse": {
+    "com.azure.resourcehealth#GetEmergingIssueResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3182,11 +3183,11 @@
         "smithy.api#documentation": "Banner type of emerging issue."
       }
     },
-    "com.azure.resourcehealth#EmergingIssuesGetRequest": {
+    "com.azure.resourcehealth#GetEmergingIssueRequest": {
       "type": "structure",
       "members": {
         "issueName": {
-          "target": "com.azure.resourcehealth#EmergingIssuesGetRequestIssueName",
+          "target": "com.azure.resourcehealth#GetEmergingIssueRequestIssueName",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -3198,7 +3199,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.resourcehealth#EmergingIssuesGetRequestIssueName": {
+    "com.azure.resourcehealth#GetEmergingIssueRequestIssueName": {
       "type": "enum",
       "members": {
         "DEFAULT": {
@@ -3210,7 +3211,7 @@
       },
       "traits": {}
     },
-    "com.azure.resourcehealth#EmergingIssuesList": {
+    "com.azure.resourcehealth#ListEmergingIssues": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -3296,10 +3297,10 @@
         "smithy.api#documentation": "The Get EmergingIssues operation response."
       }
     },
-    "com.azure.resourcehealth#EventsListBySingleResource": {
+    "com.azure.resourcehealth#ListEventBySingleResource": {
       "type": "operation",
       "input": {
-        "target": "com.azure.resourcehealth#EventsListBySingleResourceRequest"
+        "target": "com.azure.resourcehealth#ListEventBySingleResourceRequest"
       },
       "output": {
         "target": "com.azure.resourcehealth#Events"
@@ -3315,7 +3316,7 @@
         "com.distilled.openapi#apiVersion": "2025-05-01"
       }
     },
-    "com.azure.resourcehealth#EventsListBySingleResourceRequest": {
+    "com.azure.resourcehealth#ListEventBySingleResourceRequest": {
       "type": "structure",
       "members": {
         "resourceUri": {
@@ -3338,10 +3339,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.resourcehealth#ChildResourcesList": {
+    "com.azure.resourcehealth#ListChildResources": {
       "type": "operation",
       "input": {
-        "target": "com.azure.resourcehealth#ChildResourcesListRequest"
+        "target": "com.azure.resourcehealth#ListChildResourcesRequest"
       },
       "output": {
         "target": "com.azure.resourcehealth#AvailabilityStatusListResult"
@@ -3357,7 +3358,7 @@
         "com.distilled.openapi#apiVersion": "2025-05-01"
       }
     },
-    "com.azure.resourcehealth#ChildResourcesListRequest": {
+    "com.azure.resourcehealth#ListChildResourcesRequest": {
       "type": "structure",
       "members": {
         "resourceUri": {
@@ -3387,13 +3388,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.resourcehealth#ChildAvailabilityStatusesGetByResource": {
+    "com.azure.resourcehealth#GetChildAvailabilityStatusByResource": {
       "type": "operation",
       "input": {
-        "target": "com.azure.resourcehealth#ChildAvailabilityStatusesGetByResourceRequest"
+        "target": "com.azure.resourcehealth#GetChildAvailabilityStatusByResourceRequest"
       },
       "output": {
-        "target": "com.azure.resourcehealth#ChildAvailabilityStatusesGetByResourceResponse"
+        "target": "com.azure.resourcehealth#GetChildAvailabilityStatusByResourceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3406,7 +3407,7 @@
         "com.distilled.openapi#apiVersion": "2025-05-01"
       }
     },
-    "com.azure.resourcehealth#ChildAvailabilityStatusesGetByResourceResponse": {
+    "com.azure.resourcehealth#GetChildAvailabilityStatusByResourceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3441,7 +3442,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.resourcehealth#ChildAvailabilityStatusesGetByResourceRequest": {
+    "com.azure.resourcehealth#GetChildAvailabilityStatusByResourceRequest": {
       "type": "structure",
       "members": {
         "resourceUri": {
@@ -3471,10 +3472,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.resourcehealth#ChildAvailabilityStatusesList": {
+    "com.azure.resourcehealth#ListChildAvailabilityStatuses": {
       "type": "operation",
       "input": {
-        "target": "com.azure.resourcehealth#ChildAvailabilityStatusesListRequest"
+        "target": "com.azure.resourcehealth#ListChildAvailabilityStatusesRequest"
       },
       "output": {
         "target": "com.azure.resourcehealth#AvailabilityStatusListResult"
@@ -3490,7 +3491,7 @@
         "com.distilled.openapi#apiVersion": "2025-05-01"
       }
     },
-    "com.azure.resourcehealth#ChildAvailabilityStatusesListRequest": {
+    "com.azure.resourcehealth#ListChildAvailabilityStatusesRequest": {
       "type": "structure",
       "members": {
         "resourceUri": {
@@ -3520,13 +3521,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.resourcehealth#AvailabilityStatusesGetByResource": {
+    "com.azure.resourcehealth#GetAvailabilityStatusByResource": {
       "type": "operation",
       "input": {
-        "target": "com.azure.resourcehealth#AvailabilityStatusesGetByResourceRequest"
+        "target": "com.azure.resourcehealth#GetAvailabilityStatusByResourceRequest"
       },
       "output": {
-        "target": "com.azure.resourcehealth#AvailabilityStatusesGetByResourceResponse"
+        "target": "com.azure.resourcehealth#GetAvailabilityStatusByResourceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3539,7 +3540,7 @@
         "com.distilled.openapi#apiVersion": "2025-05-01"
       }
     },
-    "com.azure.resourcehealth#AvailabilityStatusesGetByResourceResponse": {
+    "com.azure.resourcehealth#GetAvailabilityStatusByResourceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3574,7 +3575,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.resourcehealth#AvailabilityStatusesGetByResourceRequest": {
+    "com.azure.resourcehealth#GetAvailabilityStatusByResourceRequest": {
       "type": "structure",
       "members": {
         "resourceUri": {
@@ -3604,10 +3605,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.resourcehealth#AvailabilityStatusesList": {
+    "com.azure.resourcehealth#ListAvailabilityStatuses": {
       "type": "operation",
       "input": {
-        "target": "com.azure.resourcehealth#AvailabilityStatusesListRequest"
+        "target": "com.azure.resourcehealth#ListAvailabilityStatusesRequest"
       },
       "output": {
         "target": "com.azure.resourcehealth#AvailabilityStatusListResult"
@@ -3623,7 +3624,7 @@
         "com.distilled.openapi#apiVersion": "2025-05-01"
       }
     },
-    "com.azure.resourcehealth#AvailabilityStatusesListRequest": {
+    "com.azure.resourcehealth#ListAvailabilityStatusesRequest": {
       "type": "structure",
       "members": {
         "resourceUri": {
@@ -3658,13 +3659,13 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.resourcehealth#AvailabilityStatusesListByResourceGroup"
+          "target": "com.azure.resourcehealth#ListAvailabilityStatusByResourceGroup"
         },
         {
           "target": "com.azure.resourcehealth#SecurityAdvisoryImpactedResourcesListBySubscriptionIdAndEventId"
         },
         {
-          "target": "com.azure.resourcehealth#ImpactedResourcesGet"
+          "target": "com.azure.resourcehealth#GetImpactedResource"
         },
         {
           "target": "com.azure.resourcehealth#ImpactedResourcesListBySubscriptionIdAndEventId"
@@ -3679,25 +3680,25 @@
           "target": "com.azure.resourcehealth#EventGetBySubscriptionIdAndTrackingId"
         },
         {
-          "target": "com.azure.resourcehealth#EventsListBySubscriptionId"
+          "target": "com.azure.resourcehealth#ListEventBySubscriptionId"
         },
         {
-          "target": "com.azure.resourcehealth#AvailabilityStatusesListBySubscriptionId"
+          "target": "com.azure.resourcehealth#ListAvailabilityStatusBySubscriptionId"
         },
         {
-          "target": "com.azure.resourcehealth#OperationsList"
+          "target": "com.azure.resourcehealth#ListOperations"
         },
         {
-          "target": "com.azure.resourcehealth#MetadataGetEntity"
+          "target": "com.azure.resourcehealth#GetMetadataEntity"
         },
         {
-          "target": "com.azure.resourcehealth#MetadataList"
+          "target": "com.azure.resourcehealth#ListMetadata"
         },
         {
           "target": "com.azure.resourcehealth#SecurityAdvisoryImpactedResourcesListByTenantIdAndEventId"
         },
         {
-          "target": "com.azure.resourcehealth#ImpactedResourcesGetByTenantId"
+          "target": "com.azure.resourcehealth#GetImpactedResourceByTenantId"
         },
         {
           "target": "com.azure.resourcehealth#ImpactedResourcesListByTenantIdAndEventId"
@@ -3709,31 +3710,31 @@
           "target": "com.azure.resourcehealth#EventGetByTenantIdAndTrackingId"
         },
         {
-          "target": "com.azure.resourcehealth#EventsListByTenantId"
+          "target": "com.azure.resourcehealth#ListEventByTenantId"
         },
         {
-          "target": "com.azure.resourcehealth#EmergingIssuesGet"
+          "target": "com.azure.resourcehealth#GetEmergingIssue"
         },
         {
-          "target": "com.azure.resourcehealth#EmergingIssuesList"
+          "target": "com.azure.resourcehealth#ListEmergingIssues"
         },
         {
-          "target": "com.azure.resourcehealth#EventsListBySingleResource"
+          "target": "com.azure.resourcehealth#ListEventBySingleResource"
         },
         {
-          "target": "com.azure.resourcehealth#ChildResourcesList"
+          "target": "com.azure.resourcehealth#ListChildResources"
         },
         {
-          "target": "com.azure.resourcehealth#ChildAvailabilityStatusesGetByResource"
+          "target": "com.azure.resourcehealth#GetChildAvailabilityStatusByResource"
         },
         {
-          "target": "com.azure.resourcehealth#ChildAvailabilityStatusesList"
+          "target": "com.azure.resourcehealth#ListChildAvailabilityStatuses"
         },
         {
-          "target": "com.azure.resourcehealth#AvailabilityStatusesGetByResource"
+          "target": "com.azure.resourcehealth#GetAvailabilityStatusByResource"
         },
         {
-          "target": "com.azure.resourcehealth#AvailabilityStatusesList"
+          "target": "com.azure.resourcehealth#ListAvailabilityStatuses"
         }
       ],
       "traits": {

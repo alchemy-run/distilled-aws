@@ -49,38 +49,17 @@ export class UnprocessableEntity
     [{ status: 422 }],
   ) {}
 
-/** The direction of the sort. */
-export type Direction = "asc" | "desc";
-export const Direction = /*@__PURE__*/ S.String;
-
-export interface ListRefundRequest {
-  after?: string;
-  before?: string;
-  first?: number;
-  last?: number;
-  payment_id?: string;
-  company_id?: string;
-  user_id?: string;
-  direction?: Direction | (string & {});
-  created_before?: string;
-  created_after?: string;
+export interface GetRefundRequest {
+  /** The unique identifier of the refund. */
+  id: string;
 }
-export const ListRefundRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetRefundRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    after: S.optional(S.String.pipe(T.Query())),
-    before: S.optional(S.String.pipe(T.Query())),
-    first: S.optional(S.Number.pipe(T.Query())),
-    last: S.optional(S.Number.pipe(T.Query())),
-    payment_id: S.optional(S.String.pipe(T.Query())),
-    company_id: S.optional(S.String.pipe(T.Query())),
-    user_id: S.optional(S.String.pipe(T.Query())),
-    direction: S.optional(Direction.pipe(T.Query())),
-    created_before: S.optional(S.String.pipe(T.Query())),
-    created_after: S.optional(S.String.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/refunds", code: 200 })),
+    id: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/refunds/{id}", code: 200 })),
 ).annotate({
-  identifier: "ListRefundRequest",
-}) as any as S.Schema<ListRefundRequest>;
+  identifier: "GetRefundRequest",
+}) as any as S.Schema<GetRefundRequest>;
 
 /** The available currencies on the platform */
 export type Currencies =
@@ -175,154 +154,6 @@ export type Currencies =
   | "whop_usd"
   | "xau";
 export const Currencies = /*@__PURE__*/ S.String;
-
-/** The original payment that this refund was issued against. Null if the payment is no longer available. */
-export interface RefundListItemPayment {
-  /** The unique identifier for the payment. */
-  id: string;
-}
-export const RefundListItemPayment = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-  }),
-).annotate({
-  identifier: "RefundListItemPayment",
-}) as any as S.Schema<RefundListItemPayment>;
-
-/** The different payment providers. */
-export type PaymentProviders =
-  | "stripe"
-  | "coinbase"
-  | "paypal"
-  | "apple"
-  | "sezzle"
-  | "splitit"
-  | "platform_balance"
-  | "multi_psp"
-  | "adyen"
-  | "claritypay"
-  | "checkout_dot_com"
-  | "airwallex"
-  | "coinflow"
-  | "sequra"
-  | "dlocal"
-  | "masspay"
-  | "braintree";
-export const PaymentProviders = /*@__PURE__*/ S.String;
-
-/** The status of the refund reference. */
-export type RefundReferenceStatuses = "available" | "pending" | "unavailable";
-export const RefundReferenceStatuses = /*@__PURE__*/ S.String;
-
-/** The type of refund reference that was made available by the payment provider. */
-export type RefundReferenceTypes =
-  | "acquirer_reference_number"
-  | "retrieval_reference_number"
-  | "system_trace_audit_number";
-export const RefundReferenceTypes = /*@__PURE__*/ S.String;
-
-/** The different statuses for a Refund object */
-export type RefundStatuses =
-  | "pending"
-  | "requires_action"
-  | "succeeded"
-  | "failed"
-  | "canceled";
-export const RefundStatuses = /*@__PURE__*/ S.String;
-
-/** A refund represents a full or partial reversal of a payment, including the amount, status, and payment provider. */
-export interface RefundListItem {
-  /** The refunded amount as a decimal in the specified currency, such as 10.43 for $10.43 USD. */
-  amount: number;
-  /** The datetime the refund was created. */
-  created_at: string;
-  /** The three-letter ISO currency code for the refunded amount. */
-  currency: Currencies;
-  /** The unique identifier for the refund. */
-  id: string;
-  /** The original payment that this refund was issued against. Null if the payment is no longer available. */
-  payment: RefundListItemPayment | null;
-  /** The payment provider that processed the refund. */
-  provider: PaymentProviders;
-  /** The timestamp when the refund was created in the payment provider's system. Null if not available from the provider. */
-  provider_created_at: string | null;
-  /** The availability status of the refund tracking reference from the payment processor. Null if no reference was provided. */
-  reference_status: RefundReferenceStatuses | null;
-  /** The type of tracking reference provided by the payment processor, such as an acquirer reference number. Null if no reference was provided. */
-  reference_type: RefundReferenceTypes | null;
-  /** The tracking reference value from the payment processor, used to trace the refund through banking networks. Null if no reference was provided. */
-  reference_value: string | null;
-  /** The current processing status of the refund, such as pending, succeeded, or failed. */
-  status: RefundStatuses;
-}
-export const RefundListItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    amount: S.Number,
-    created_at: S.String,
-    currency: Currencies,
-    id: S.String,
-    payment: S.NullOr(RefundListItemPayment),
-    provider: PaymentProviders,
-    provider_created_at: S.NullOr(S.String),
-    reference_status: S.NullOr(RefundReferenceStatuses),
-    reference_type: S.NullOr(RefundReferenceTypes),
-    reference_value: S.NullOr(S.String),
-    status: RefundStatuses,
-  }),
-).annotate({ identifier: "RefundListItem" }) as any as S.Schema<RefundListItem>;
-
-/** A list of nodes. */
-export type ListRefundResponseDataList = Array<RefundListItem>;
-export const ListRefundResponseDataList = /*@__PURE__*/ S.Array(
-  RefundListItem,
-) as any as S.Schema<ListRefundResponseDataList>;
-
-/** Information about pagination in a connection. */
-export interface PageInfo {
-  /** When paginating forwards, the cursor to continue. */
-  end_cursor: string | null;
-  /** When paginating forwards, are there more items? */
-  has_next_page: boolean;
-  /** When paginating backwards, are there more items? */
-  has_previous_page: boolean;
-  /** When paginating backwards, the cursor to continue. */
-  start_cursor: string | null;
-}
-export const PageInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    end_cursor: S.NullOr(S.String),
-    has_next_page: S.Boolean,
-    has_previous_page: S.Boolean,
-    start_cursor: S.NullOr(S.String),
-  }),
-).annotate({ identifier: "PageInfo" }) as any as S.Schema<PageInfo>;
-
-export interface ListRefundResponse {
-  /** A list of nodes. */
-  data: ListRefundResponseDataList;
-  /** Information to aid in pagination. */
-  page_info: PageInfo;
-}
-export const ListRefundResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    data: ListRefundResponseDataList,
-    page_info: PageInfo,
-  }),
-).annotate({
-  identifier: "ListRefundResponse",
-}) as any as S.Schema<ListRefundResponse>;
-
-export interface RetrieveRefundRequest {
-  /** The unique identifier of the refund. */
-  id: string;
-}
-export const RetrieveRefundRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/refunds/{id}", code: 200 })),
-).annotate({
-  identifier: "RetrieveRefundRequest",
-}) as any as S.Schema<RetrieveRefundRequest>;
 
 /** The reason why a specific payment was billed */
 export type BillingReasons =
@@ -708,6 +539,47 @@ export const RefundPayment = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "RefundPayment" }) as any as S.Schema<RefundPayment>;
 
+/** The different payment providers. */
+export type PaymentProviders =
+  | "stripe"
+  | "coinbase"
+  | "paypal"
+  | "apple"
+  | "sezzle"
+  | "splitit"
+  | "platform_balance"
+  | "multi_psp"
+  | "adyen"
+  | "claritypay"
+  | "checkout_dot_com"
+  | "airwallex"
+  | "coinflow"
+  | "sequra"
+  | "dlocal"
+  | "masspay"
+  | "braintree";
+export const PaymentProviders = /*@__PURE__*/ S.String;
+
+/** The status of the refund reference. */
+export type RefundReferenceStatuses = "available" | "pending" | "unavailable";
+export const RefundReferenceStatuses = /*@__PURE__*/ S.String;
+
+/** The type of refund reference that was made available by the payment provider. */
+export type RefundReferenceTypes =
+  | "acquirer_reference_number"
+  | "retrieval_reference_number"
+  | "system_trace_audit_number";
+export const RefundReferenceTypes = /*@__PURE__*/ S.String;
+
+/** The different statuses for a Refund object */
+export type RefundStatuses =
+  | "pending"
+  | "requires_action"
+  | "succeeded"
+  | "failed"
+  | "canceled";
+export const RefundStatuses = /*@__PURE__*/ S.String;
+
 /** A refund represents a full or partial reversal of a payment, including the amount, status, and payment provider. */
 export interface Refund {
   /** The refunded amount as a decimal in the specified currency, such as 10.43 for $10.43 USD. */
@@ -749,6 +621,154 @@ export const Refund = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "Refund" }) as any as S.Schema<Refund>;
 
+/** The direction of the sort. */
+export type Direction = "asc" | "desc";
+export const Direction = /*@__PURE__*/ S.String;
+
+export interface ListRefundRequest {
+  after?: string;
+  before?: string;
+  first?: number;
+  last?: number;
+  payment_id?: string;
+  company_id?: string;
+  user_id?: string;
+  direction?: Direction | (string & {});
+  created_before?: string;
+  created_after?: string;
+}
+export const ListRefundRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    after: S.optional(S.String.pipe(T.Query())),
+    before: S.optional(S.String.pipe(T.Query())),
+    first: S.optional(S.Number.pipe(T.Query())),
+    last: S.optional(S.Number.pipe(T.Query())),
+    payment_id: S.optional(S.String.pipe(T.Query())),
+    company_id: S.optional(S.String.pipe(T.Query())),
+    user_id: S.optional(S.String.pipe(T.Query())),
+    direction: S.optional(Direction.pipe(T.Query())),
+    created_before: S.optional(S.String.pipe(T.Query())),
+    created_after: S.optional(S.String.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/refunds", code: 200 })),
+).annotate({
+  identifier: "ListRefundRequest",
+}) as any as S.Schema<ListRefundRequest>;
+
+/** The original payment that this refund was issued against. Null if the payment is no longer available. */
+export interface RefundListItemPayment {
+  /** The unique identifier for the payment. */
+  id: string;
+}
+export const RefundListItemPayment = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+  }),
+).annotate({
+  identifier: "RefundListItemPayment",
+}) as any as S.Schema<RefundListItemPayment>;
+
+/** A refund represents a full or partial reversal of a payment, including the amount, status, and payment provider. */
+export interface RefundListItem {
+  /** The refunded amount as a decimal in the specified currency, such as 10.43 for $10.43 USD. */
+  amount: number;
+  /** The datetime the refund was created. */
+  created_at: string;
+  /** The three-letter ISO currency code for the refunded amount. */
+  currency: Currencies;
+  /** The unique identifier for the refund. */
+  id: string;
+  /** The original payment that this refund was issued against. Null if the payment is no longer available. */
+  payment: RefundListItemPayment | null;
+  /** The payment provider that processed the refund. */
+  provider: PaymentProviders;
+  /** The timestamp when the refund was created in the payment provider's system. Null if not available from the provider. */
+  provider_created_at: string | null;
+  /** The availability status of the refund tracking reference from the payment processor. Null if no reference was provided. */
+  reference_status: RefundReferenceStatuses | null;
+  /** The type of tracking reference provided by the payment processor, such as an acquirer reference number. Null if no reference was provided. */
+  reference_type: RefundReferenceTypes | null;
+  /** The tracking reference value from the payment processor, used to trace the refund through banking networks. Null if no reference was provided. */
+  reference_value: string | null;
+  /** The current processing status of the refund, such as pending, succeeded, or failed. */
+  status: RefundStatuses;
+}
+export const RefundListItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    amount: S.Number,
+    created_at: S.String,
+    currency: Currencies,
+    id: S.String,
+    payment: S.NullOr(RefundListItemPayment),
+    provider: PaymentProviders,
+    provider_created_at: S.NullOr(S.String),
+    reference_status: S.NullOr(RefundReferenceStatuses),
+    reference_type: S.NullOr(RefundReferenceTypes),
+    reference_value: S.NullOr(S.String),
+    status: RefundStatuses,
+  }),
+).annotate({ identifier: "RefundListItem" }) as any as S.Schema<RefundListItem>;
+
+/** A list of nodes. */
+export type ListRefundResponseDataList = Array<RefundListItem>;
+export const ListRefundResponseDataList = /*@__PURE__*/ S.Array(
+  RefundListItem,
+) as any as S.Schema<ListRefundResponseDataList>;
+
+/** Information about pagination in a connection. */
+export interface PageInfo {
+  /** When paginating forwards, the cursor to continue. */
+  end_cursor: string | null;
+  /** When paginating forwards, are there more items? */
+  has_next_page: boolean;
+  /** When paginating backwards, are there more items? */
+  has_previous_page: boolean;
+  /** When paginating backwards, the cursor to continue. */
+  start_cursor: string | null;
+}
+export const PageInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    end_cursor: S.NullOr(S.String),
+    has_next_page: S.Boolean,
+    has_previous_page: S.Boolean,
+    start_cursor: S.NullOr(S.String),
+  }),
+).annotate({ identifier: "PageInfo" }) as any as S.Schema<PageInfo>;
+
+export interface ListRefundResponse {
+  /** A list of nodes. */
+  data: ListRefundResponseDataList;
+  /** Information to aid in pagination. */
+  page_info: PageInfo;
+}
+export const ListRefundResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: ListRefundResponseDataList,
+    page_info: PageInfo,
+  }),
+).annotate({
+  identifier: "ListRefundResponse",
+}) as any as S.Schema<ListRefundResponse>;
+
+export type GetRefundError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | UnprocessableEntity
+  | WhopOpError;
+/** Retrieve refund [Legacy API — https://docs.whop.com/api-reference] Retrieves the details of an existing refund. Required permissions: - `payment:basic:read` - `plan:basic:read` - `access_pass:basic:read` - `member:email:read` - `member:basic:read` - `member:phone:read` */
+export const getRefund: API.OperationMethod<
+  GetRefundRequest,
+  Refund,
+  GetRefundError,
+  WhopOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetRefundRequest,
+  output: Refund,
+  errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
+  protocol: WhopProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListRefundError =
   | BadRequest
   | Forbidden
@@ -780,23 +800,3 @@ export const listRefund: API.PaginatedOperationMethod<
   }),
   paginateRelay,
 ) as any;
-
-export type RetrieveRefundError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | UnprocessableEntity
-  | WhopOpError;
-/** Retrieve refund [Legacy API — https://docs.whop.com/api-reference] Retrieves the details of an existing refund. Required permissions: - `payment:basic:read` - `plan:basic:read` - `access_pass:basic:read` - `member:email:read` - `member:basic:read` - `member:phone:read` */
-export const retrieveRefund: API.OperationMethod<
-  RetrieveRefundRequest,
-  Refund,
-  RetrieveRefundError,
-  WhopOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveRefundRequest,
-  output: Refund,
-  errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
-  protocol: WhopProtocol,
-  retry: Retry.Retry,
-}));

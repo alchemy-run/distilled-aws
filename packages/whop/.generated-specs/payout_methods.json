@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.whop.payout_methods#ListPayoutMethodRequest": {
@@ -328,7 +329,7 @@
         }
       }
     },
-    "com.whop.payout_methods#RetrievePayoutMethodRequest": {
+    "com.whop.payout_methods#GetPayoutMethodRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -464,10 +465,10 @@
         "smithy.api#documentation": "The payout destination configuration linked to this token. Null if not yet configured."
       }
     },
-    "com.whop.payout_methods#RetrievePayoutMethod": {
+    "com.whop.payout_methods#GetPayoutMethod": {
       "type": "operation",
       "input": {
-        "target": "com.whop.payout_methods#RetrievePayoutMethodRequest"
+        "target": "com.whop.payout_methods#GetPayoutMethodRequest"
       },
       "output": {
         "target": "com.whop.payout_methods#PayoutMethod"
@@ -555,7 +556,7 @@
           "target": "com.whop.payout_methods#ListPayoutMethod"
         },
         {
-          "target": "com.whop.payout_methods#RetrievePayoutMethod"
+          "target": "com.whop.payout_methods#GetPayoutMethod"
         }
       ],
       "traits": {

@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.discord.api#PrivateApplicationResponse": {
@@ -58,10 +59,25 @@
         "primary_sku_id": {
           "target": "smithy.api#String"
         },
+        "flags": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "flags_new": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
         "bot": {
           "target": "com.discord.api#UserResponse"
         },
         "slug": {
+          "target": "smithy.api#String"
+        },
+        "vibegrations_project_id": {
           "target": "smithy.api#String"
         },
         "guild_id": {
@@ -92,18 +108,6 @@
           "target": "com.discord.api#PrivateApplicationResponseIntegrationTypesConfigMap"
         },
         "verify_key": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "flags": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "flags_new": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#required": {}
@@ -1888,7 +1892,7 @@
         }
       }
     },
-    "com.discord.api#ApplicationsGetActivityInstanceRequest": {
+    "com.discord.api#GetApplicationActivityInstanceRequest": {
       "type": "structure",
       "members": {
         "application_id": {
@@ -2043,10 +2047,10 @@
       },
       "traits": {}
     },
-    "com.discord.api#ApplicationsGetActivityInstance": {
+    "com.discord.api#GetApplicationActivityInstance": {
       "type": "operation",
       "input": {
-        "target": "com.discord.api#ApplicationsGetActivityInstanceRequest"
+        "target": "com.discord.api#GetApplicationActivityInstanceRequest"
       },
       "output": {
         "target": "com.discord.api#EmbeddedActivityInstance"
@@ -2070,9 +2074,10 @@
           }
         },
         "file": {
-          "target": "smithy.api#String",
+          "target": "smithy.api#Document",
           "traits": {
-            "smithy.api#required": {}
+            "smithy.api#required": {},
+            "com.distilled.discord#formDataFile": {}
           }
         }
       },
@@ -2214,10 +2219,25 @@
         "primary_sku_id": {
           "target": "smithy.api#String"
         },
+        "flags": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "flags_new": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
         "bot": {
           "target": "com.discord.api#UserResponse"
         },
         "slug": {
+          "target": "smithy.api#String"
+        },
+        "vibegrations_project_id": {
           "target": "smithy.api#String"
         },
         "guild_id": {
@@ -2248,18 +2268,6 @@
           "target": "com.discord.api#ApplicationResponseIntegrationTypesConfigMap"
         },
         "verify_key": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "flags": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "flags_new": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#required": {}
@@ -9398,10 +9406,25 @@
         "primary_sku_id": {
           "target": "smithy.api#String"
         },
+        "flags": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "flags_new": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
         "bot": {
           "target": "com.discord.api#UserResponse"
         },
         "slug": {
+          "target": "smithy.api#String"
+        },
+        "vibegrations_project_id": {
           "target": "smithy.api#String"
         },
         "guild_id": {
@@ -9432,18 +9455,6 @@
           "target": "com.discord.api#InviteApplicationResponseIntegrationTypesConfigMap"
         },
         "verify_key": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "flags": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "flags_new": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#required": {}
@@ -12701,6 +12712,18 @@
         },
         "primary_sku_id": {
           "target": "smithy.api#String"
+        },
+        "flags": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "flags_new": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
         },
         "bot": {
           "target": "com.discord.api#UserResponse"
@@ -16950,7 +16973,7 @@
         }
       }
     },
-    "com.discord.api#DeprecatedListPinsRequest": {
+    "com.discord.api#ListDeprecatedPinsRequest": {
       "type": "structure",
       "members": {
         "channel_id": {
@@ -16965,18 +16988,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.discord.api#DeprecatedListPinsResponseBodyList": {
+    "com.discord.api#ListDeprecatedPinsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.discord.api#MessageResponse"
       },
       "traits": {}
     },
-    "com.discord.api#DeprecatedListPinsResponse": {
+    "com.discord.api#ListDeprecatedPinsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.discord.api#DeprecatedListPinsResponseBodyList",
+          "target": "com.discord.api#ListDeprecatedPinsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {},
@@ -16988,13 +17011,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.discord.api#DeprecatedListPins": {
+    "com.discord.api#ListDeprecatedPins": {
       "type": "operation",
       "input": {
-        "target": "com.discord.api#DeprecatedListPinsRequest"
+        "target": "com.discord.api#ListDeprecatedPinsRequest"
       },
       "output": {
-        "target": "com.discord.api#DeprecatedListPinsResponse"
+        "target": "com.discord.api#ListDeprecatedPinsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -17004,7 +17027,7 @@
         }
       }
     },
-    "com.discord.api#DeprecatedCreatePinRequest": {
+    "com.discord.api#CreateDeprecatedPinRequest": {
       "type": "structure",
       "members": {
         "channel_id": {
@@ -17026,10 +17049,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.discord.api#DeprecatedCreatePin": {
+    "com.discord.api#CreateDeprecatedPin": {
       "type": "operation",
       "input": {
-        "target": "com.discord.api#DeprecatedCreatePinRequest"
+        "target": "com.discord.api#CreateDeprecatedPinRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -17042,7 +17065,7 @@
         }
       }
     },
-    "com.discord.api#DeprecatedDeletePinRequest": {
+    "com.discord.api#DeleteDeprecatedPinRequest": {
       "type": "structure",
       "members": {
         "channel_id": {
@@ -17064,10 +17087,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.discord.api#DeprecatedDeletePin": {
+    "com.discord.api#DeleteDeprecatedPin": {
       "type": "operation",
       "input": {
-        "target": "com.discord.api#DeprecatedDeletePinRequest"
+        "target": "com.discord.api#DeleteDeprecatedPinRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -18102,21 +18125,21 @@
         }
       }
     },
-    "com.discord.api#ThreadSearchRequestTagCase1List": {
+    "com.discord.api#SearchThreadRequestTagCase1List": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.discord.api#ThreadSearchRequestTag": {
+    "com.discord.api#SearchThreadRequestTag": {
       "type": "union",
       "members": {
         "Case0": {
           "target": "smithy.api#String"
         },
         "Case1": {
-          "target": "com.discord.api#ThreadSearchRequestTagCase1List"
+          "target": "com.discord.api#SearchThreadRequestTagCase1List"
         }
       },
       "traits": {}
@@ -18169,7 +18192,7 @@
       },
       "traits": {}
     },
-    "com.discord.api#ThreadSearchRequest": {
+    "com.discord.api#SearchThreadRequest": {
       "type": "structure",
       "members": {
         "channel_id": {
@@ -18204,7 +18227,7 @@
           }
         },
         "tag": {
-          "target": "com.discord.api#ThreadSearchRequestTag",
+          "target": "com.discord.api#SearchThreadRequestTag",
           "traits": {
             "smithy.api#httpQuery": "tag"
           }
@@ -18304,10 +18327,10 @@
       },
       "traits": {}
     },
-    "com.discord.api#ThreadSearch": {
+    "com.discord.api#SearchThread": {
       "type": "operation",
       "input": {
-        "target": "com.discord.api#ThreadSearchRequest"
+        "target": "com.discord.api#SearchThreadRequest"
       },
       "output": {
         "target": "com.discord.api#ThreadSearchResponse"
@@ -25386,6 +25409,18 @@
         "primary_sku_id": {
           "target": "smithy.api#String"
         },
+        "flags": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "flags_new": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
         "bot": {
           "target": "com.discord.api#UserResponse"
         }
@@ -26381,7 +26416,7 @@
       },
       "traits": {}
     },
-    "com.discord.api#GuildSearchRequestAuthorIdList": {
+    "com.discord.api#SearchGuildRequestAuthorIdList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -26430,35 +26465,35 @@
       },
       "traits": {}
     },
-    "com.discord.api#GuildSearchRequestAuthorTypeList": {
+    "com.discord.api#SearchGuildRequestAuthorTypeList": {
       "type": "list",
       "member": {
         "target": "com.discord.api#AuthorType"
       },
       "traits": {}
     },
-    "com.discord.api#GuildSearchRequestMentionsList": {
+    "com.discord.api#SearchGuildRequestMentionsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.discord.api#GuildSearchRequestMentionsRoleIdList": {
+    "com.discord.api#SearchGuildRequestMentionsRoleIdList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.discord.api#GuildSearchRequestRepliedToUserIdList": {
+    "com.discord.api#SearchGuildRequestRepliedToUserIdList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.discord.api#GuildSearchRequestRepliedToMessageIdList": {
+    "com.discord.api#SearchGuildRequestRepliedToMessageIdList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -26579,21 +26614,21 @@
       },
       "traits": {}
     },
-    "com.discord.api#GuildSearchRequestHasList": {
+    "com.discord.api#SearchGuildRequestHasList": {
       "type": "list",
       "member": {
         "target": "com.discord.api#HasOption"
       },
       "traits": {}
     },
-    "com.discord.api#GuildSearchRequestLinkHostnameList": {
+    "com.discord.api#SearchGuildRequestLinkHostnameList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.discord.api#GuildSearchRequestEmbedProviderList": {
+    "com.discord.api#SearchGuildRequestEmbedProviderList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -26636,35 +26671,35 @@
       },
       "traits": {}
     },
-    "com.discord.api#GuildSearchRequestEmbedTypeList": {
+    "com.discord.api#SearchGuildRequestEmbedTypeList": {
       "type": "list",
       "member": {
         "target": "com.discord.api#SearchableEmbedType"
       },
       "traits": {}
     },
-    "com.discord.api#GuildSearchRequestAttachmentExtensionList": {
+    "com.discord.api#SearchGuildRequestAttachmentExtensionList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.discord.api#GuildSearchRequestAttachmentFilenameList": {
+    "com.discord.api#SearchGuildRequestAttachmentFilenameList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.discord.api#GuildSearchRequestChannelIdList": {
+    "com.discord.api#SearchGuildRequestChannelIdList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.discord.api#GuildSearchRequest": {
+    "com.discord.api#SearchGuildRequest": {
       "type": "structure",
       "members": {
         "guild_id": {
@@ -26699,37 +26734,37 @@
           }
         },
         "author_id": {
-          "target": "com.discord.api#GuildSearchRequestAuthorIdList",
+          "target": "com.discord.api#SearchGuildRequestAuthorIdList",
           "traits": {
             "smithy.api#httpQuery": "author_id"
           }
         },
         "author_type": {
-          "target": "com.discord.api#GuildSearchRequestAuthorTypeList",
+          "target": "com.discord.api#SearchGuildRequestAuthorTypeList",
           "traits": {
             "smithy.api#httpQuery": "author_type"
           }
         },
         "mentions": {
-          "target": "com.discord.api#GuildSearchRequestMentionsList",
+          "target": "com.discord.api#SearchGuildRequestMentionsList",
           "traits": {
             "smithy.api#httpQuery": "mentions"
           }
         },
         "mentions_role_id": {
-          "target": "com.discord.api#GuildSearchRequestMentionsRoleIdList",
+          "target": "com.discord.api#SearchGuildRequestMentionsRoleIdList",
           "traits": {
             "smithy.api#httpQuery": "mentions_role_id"
           }
         },
         "replied_to_user_id": {
-          "target": "com.discord.api#GuildSearchRequestRepliedToUserIdList",
+          "target": "com.discord.api#SearchGuildRequestRepliedToUserIdList",
           "traits": {
             "smithy.api#httpQuery": "replied_to_user_id"
           }
         },
         "replied_to_message_id": {
-          "target": "com.discord.api#GuildSearchRequestRepliedToMessageIdList",
+          "target": "com.discord.api#SearchGuildRequestRepliedToMessageIdList",
           "traits": {
             "smithy.api#httpQuery": "replied_to_message_id"
           }
@@ -26765,37 +26800,37 @@
           }
         },
         "has": {
-          "target": "com.discord.api#GuildSearchRequestHasList",
+          "target": "com.discord.api#SearchGuildRequestHasList",
           "traits": {
             "smithy.api#httpQuery": "has"
           }
         },
         "link_hostname": {
-          "target": "com.discord.api#GuildSearchRequestLinkHostnameList",
+          "target": "com.discord.api#SearchGuildRequestLinkHostnameList",
           "traits": {
             "smithy.api#httpQuery": "link_hostname"
           }
         },
         "embed_provider": {
-          "target": "com.discord.api#GuildSearchRequestEmbedProviderList",
+          "target": "com.discord.api#SearchGuildRequestEmbedProviderList",
           "traits": {
             "smithy.api#httpQuery": "embed_provider"
           }
         },
         "embed_type": {
-          "target": "com.discord.api#GuildSearchRequestEmbedTypeList",
+          "target": "com.discord.api#SearchGuildRequestEmbedTypeList",
           "traits": {
             "smithy.api#httpQuery": "embed_type"
           }
         },
         "attachment_extension": {
-          "target": "com.discord.api#GuildSearchRequestAttachmentExtensionList",
+          "target": "com.discord.api#SearchGuildRequestAttachmentExtensionList",
           "traits": {
             "smithy.api#httpQuery": "attachment_extension"
           }
         },
         "attachment_filename": {
-          "target": "com.discord.api#GuildSearchRequestAttachmentFilenameList",
+          "target": "com.discord.api#SearchGuildRequestAttachmentFilenameList",
           "traits": {
             "smithy.api#httpQuery": "attachment_filename"
           }
@@ -26813,7 +26848,7 @@
           }
         },
         "channel_id": {
-          "target": "com.discord.api#GuildSearchRequestChannelIdList",
+          "target": "com.discord.api#SearchGuildRequestChannelIdList",
           "traits": {
             "smithy.api#httpQuery": "channel_id"
           }
@@ -27213,10 +27248,10 @@
       },
       "traits": {}
     },
-    "com.discord.api#GuildSearch": {
+    "com.discord.api#SearchGuild": {
       "type": "operation",
       "input": {
-        "target": "com.discord.api#GuildSearchRequest"
+        "target": "com.discord.api#SearchGuildRequest"
       },
       "output": {
         "target": "com.discord.api#GuildSearchResponse"
@@ -28705,7 +28740,7 @@
         "smithy.api#documentation": "List join requests for guild, optionally filtered by application status"
       }
     },
-    "com.discord.api#ActionGuildJoinRequestRequest": {
+    "com.discord.api#JoinActionGuildRequestRequest": {
       "type": "structure",
       "members": {
         "guild_id": {
@@ -28740,10 +28775,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.discord.api#ActionGuildJoinRequest": {
+    "com.discord.api#JoinActionGuildRequest": {
       "type": "operation",
       "input": {
-        "target": "com.discord.api#ActionGuildJoinRequestRequest"
+        "target": "com.discord.api#JoinActionGuildRequestRequest"
       },
       "output": {
         "target": "com.discord.api#GuildJoinRequestResponse"
@@ -30939,9 +30974,10 @@
           }
         },
         "file": {
-          "target": "smithy.api#String",
+          "target": "smithy.api#Document",
           "traits": {
-            "smithy.api#required": {}
+            "smithy.api#required": {},
+            "com.distilled.discord#formDataFile": {}
           }
         }
       },
@@ -33907,7 +33943,7 @@
         }
       }
     },
-    "com.discord.api#InviteRevokeRequest": {
+    "com.discord.api#RevokeInviteRequest": {
       "type": "structure",
       "members": {
         "code": {
@@ -33922,7 +33958,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.discord.api#InviteRevokeResponseBody": {
+    "com.discord.api#RevokeInviteResponseBody": {
       "type": "union",
       "members": {
         "FriendInviteResponse": {
@@ -33937,11 +33973,11 @@
       },
       "traits": {}
     },
-    "com.discord.api#InviteRevokeResponse": {
+    "com.discord.api#RevokeInviteResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.discord.api#InviteRevokeResponseBody",
+          "target": "com.discord.api#RevokeInviteResponseBody",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -33952,13 +33988,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.discord.api#InviteRevoke": {
+    "com.discord.api#RevokeInvite": {
       "type": "operation",
       "input": {
-        "target": "com.discord.api#InviteRevokeRequest"
+        "target": "com.discord.api#RevokeInviteRequest"
       },
       "output": {
-        "target": "com.discord.api#InviteRevokeResponse"
+        "target": "com.discord.api#RevokeInviteResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -34011,9 +34047,10 @@
           }
         },
         "target_users_file": {
-          "target": "smithy.api#String",
+          "target": "smithy.api#Document",
           "traits": {
-            "smithy.api#required": {}
+            "smithy.api#required": {},
+            "com.distilled.discord#formDataFile": {}
           }
         }
       },
@@ -39737,7 +39774,7 @@
           "target": "com.discord.api#UpdateApplication"
         },
         {
-          "target": "com.discord.api#ApplicationsGetActivityInstance"
+          "target": "com.discord.api#GetApplicationActivityInstance"
         },
         {
           "target": "com.discord.api#UploadApplicationAttachment"
@@ -39899,13 +39936,13 @@
           "target": "com.discord.api#DeleteChannelPermissionOverwrite"
         },
         {
-          "target": "com.discord.api#DeprecatedListPins"
+          "target": "com.discord.api#ListDeprecatedPins"
         },
         {
-          "target": "com.discord.api#DeprecatedCreatePin"
+          "target": "com.discord.api#CreateDeprecatedPin"
         },
         {
-          "target": "com.discord.api#DeprecatedDeletePin"
+          "target": "com.discord.api#DeleteDeprecatedPin"
         },
         {
           "target": "com.discord.api#GetAnswerVoters"
@@ -39950,7 +39987,7 @@
           "target": "com.discord.api#ListPublicArchivedThreads"
         },
         {
-          "target": "com.discord.api#ThreadSearch"
+          "target": "com.discord.api#SearchThread"
         },
         {
           "target": "com.discord.api#TriggerTypingIndicator"
@@ -40079,7 +40116,7 @@
           "target": "com.discord.api#DeleteGuildMemberRole"
         },
         {
-          "target": "com.discord.api#GuildSearch"
+          "target": "com.discord.api#SearchGuild"
         },
         {
           "target": "com.discord.api#GetGuildNewMemberWelcome"
@@ -40106,7 +40143,7 @@
           "target": "com.discord.api#GetGuildJoinRequests"
         },
         {
-          "target": "com.discord.api#ActionGuildJoinRequest"
+          "target": "com.discord.api#JoinActionGuildRequest"
         },
         {
           "target": "com.discord.api#ListGuildRoles"
@@ -40253,7 +40290,7 @@
           "target": "com.discord.api#InviteResolve"
         },
         {
-          "target": "com.discord.api#InviteRevoke"
+          "target": "com.discord.api#RevokeInvite"
         },
         {
           "target": "com.discord.api#GetInviteTargetUsers"

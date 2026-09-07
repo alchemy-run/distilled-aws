@@ -176,6 +176,285 @@ export const CheckRegistrarResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CheckRegistrarResponse",
 }) as any as S.Schema<CheckRegistrarResponse>;
 
+export interface CreateRegistrationRequestContactsRegistrantPostalInfoAddress {
+  /** City or locality name. */
+  city: string;
+  /** Two-letter country code per ISO 3166-1 alpha-2 (e.g., `US`, `GB`, `CA`, `DE`). */
+  countryCode: string;
+  /** Postal or ZIP code. */
+  postalCode: string;
+  /** State, province, or region. Use the standard abbreviation where applicable (e.g., `TX` for Texas, `ON` for Ontario). */
+  state: string;
+  /** Street address including building/suite number. */
+  street: string;
+}
+export const CreateRegistrationRequestContactsRegistrantPostalInfoAddress =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      city: S.String,
+      countryCode: S.String.pipe(T.Body("country_code")),
+      postalCode: S.String.pipe(T.Body("postal_code")),
+      state: S.String,
+      street: S.String,
+    }),
+  ).annotate({
+    identifier: "CreateRegistrationRequestContactsRegistrantPostalInfoAddress",
+  }) as any as S.Schema<CreateRegistrationRequestContactsRegistrantPostalInfoAddress>;
+
+export interface CreateRegistrationRequestContactsRegistrantPostalInfo {
+  /** Physical mailing address for the registrant contact. */
+  address: CreateRegistrationRequestContactsRegistrantPostalInfoAddress;
+  /** Full legal name of the registrant (individual or authorized representative). */
+  name: string;
+  /** Organization or company name. Optional for individual registrants. */
+  organization?: string;
+}
+export const CreateRegistrationRequestContactsRegistrantPostalInfo =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      address: CreateRegistrationRequestContactsRegistrantPostalInfoAddress,
+      name: S.String,
+      organization: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "CreateRegistrationRequestContactsRegistrantPostalInfo",
+  }) as any as S.Schema<CreateRegistrationRequestContactsRegistrantPostalInfo>;
+
+export interface CreateRegistrationRequestContactsRegistrant {
+  /** Email address for the registrant. Used for domain-related */
+  email: string;
+  /** Phone number in E.164 format: `+{country_code}.{number}` with no */
+  phone: string;
+  /** Postal/mailing information for the registrant contact. */
+  postalInfo: CreateRegistrationRequestContactsRegistrantPostalInfo;
+  /** Fax number in E.164 format (e.g., `+1.5555555555`). Optional. */
+  fax?: string;
+}
+export const CreateRegistrationRequestContactsRegistrant =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      email: S.String,
+      phone: S.String,
+      postalInfo: CreateRegistrationRequestContactsRegistrantPostalInfo.pipe(
+        T.Body("postal_info"),
+      ),
+      fax: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "CreateRegistrationRequestContactsRegistrant",
+  }) as any as S.Schema<CreateRegistrationRequestContactsRegistrant>;
+
+export interface CreateRegistrationRequestContacts {
+  /** Registrant contact data for the domain registration. This information */
+  registrant?: CreateRegistrationRequestContactsRegistrant;
+}
+export const CreateRegistrationRequestContacts = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    registrant: S.optional(CreateRegistrationRequestContactsRegistrant),
+  }),
+).annotate({
+  identifier: "CreateRegistrationRequestContacts",
+}) as any as S.Schema<CreateRegistrationRequestContacts>;
+
+export type CreateRegistrationRequestPrivacyMode = "redaction";
+export const CreateRegistrationRequestPrivacyMode = /*@__PURE__*/ S.String;
+
+export interface CreateRegistrationRequest {
+  /** Identifier */
+  accountId: string;
+  prefer?: string;
+  /** Fully qualified domain name (FQDN) including the extension */
+  domainName: string;
+  /** Enable or disable automatic renewal. Defaults to `false` if omitted. */
+  autoRenew?: boolean;
+  /** Contact data for the registration request. */
+  contacts?: CreateRegistrationRequestContacts;
+  /** WHOIS privacy mode for the registration. Defaults to `redaction`. */
+  privacyMode?: CreateRegistrationRequestPrivacyMode | (string & {});
+  /** Number of years to register (1–10). If omitted, defaults to the */
+  years?: number;
+}
+export const CreateRegistrationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    accountId: S.String.pipe(T.Label("account_id")),
+    prefer: S.optional(S.String.pipe(T.Header("Prefer"))),
+    domainName: S.String.pipe(T.Body("domain_name")),
+    autoRenew: S.optional(S.Boolean.pipe(T.Body("auto_renew"))),
+    contacts: S.optional(CreateRegistrationRequestContacts),
+    privacyMode: S.optional(
+      CreateRegistrationRequestPrivacyMode.pipe(T.Body("privacy_mode")),
+    ),
+    years: S.optional(S.Number),
+  })
+    .pipe(
+      T.Http({
+        method: "POST",
+        uri: "/accounts/{account_id}/registrar/registrations",
+        code: 200,
+      }),
+    )
+    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "CreateRegistrationRequest",
+}) as any as S.Schema<CreateRegistrationRequest>;
+
+export interface CreateRegistrationResponseLinks {
+  /** URL to this status resource. */
+  self: string;
+  /** URL to the domain resource. */
+  resource?: string | null;
+}
+export const CreateRegistrationResponseLinks = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    self: S.String,
+    resource: S.optional(S.NullOr(S.String)),
+  }),
+).annotate({
+  identifier: "CreateRegistrationResponseLinks",
+}) as any as S.Schema<CreateRegistrationResponseLinks>;
+
+export type CreateRegistrationResponseState =
+  | "pending"
+  | "in_progress"
+  | "action_required"
+  | "blocked"
+  | "succeeded"
+  | "failed";
+export const CreateRegistrationResponseState = /*@__PURE__*/ S.String;
+
+export type CreateRegistrationResponseContextMap = {
+  [key: string]: unknown | undefined;
+};
+export const CreateRegistrationResponseContextMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<CreateRegistrationResponseContextMap>;
+
+export interface CreateRegistrationResponseError {
+  /** Machine-readable error code identifying the failure reason. */
+  code: string;
+  /** Human-readable explanation of the failure. May include registry-specific details. */
+  message: string;
+}
+export const CreateRegistrationResponseError = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    code: S.String,
+    message: S.String,
+  }),
+).annotate({
+  identifier: "CreateRegistrationResponseError",
+}) as any as S.Schema<CreateRegistrationResponseError>;
+
+/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
+export interface CreateRegistrationResponse {
+  /** Whether the workflow has reached a terminal state. `true` when */
+  completed: boolean;
+  createdAt: string;
+  links: CreateRegistrationResponseLinks;
+  /** Workflow lifecycle state. */
+  state: CreateRegistrationResponseState;
+  updatedAt: string;
+  /** Workflow-specific data for this workflow. */
+  context?: CreateRegistrationResponseContextMap | null;
+  /** Error details when a workflow reaches the `failed` state. The specific */
+  error?: CreateRegistrationResponseError | null;
+}
+export const CreateRegistrationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    completed: S.Boolean,
+    createdAt: S.String.pipe(T.Body("created_at")),
+    links: CreateRegistrationResponseLinks,
+    state: CreateRegistrationResponseState,
+    updatedAt: S.String.pipe(T.Body("updated_at")),
+    context: S.optional(S.NullOr(CreateRegistrationResponseContextMap)),
+    error: S.optional(S.NullOr(CreateRegistrationResponseError)),
+  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "CreateRegistrationResponse",
+}) as any as S.Schema<CreateRegistrationResponse>;
+
+export type EditRegistrationRequestPrefer = "respond-async";
+export const EditRegistrationRequestPrefer = /*@__PURE__*/ S.String;
+
+export interface EditRegistrationRequest {
+  /** Identifier */
+  accountId: string;
+  /** Fully qualified domain name (FQDN) including the extension */
+  domainName: string;
+  prefer?: EditRegistrationRequestPrefer | (string & {});
+  /** Enable or disable automatic renewal. */
+  autoRenew?: boolean;
+}
+export const EditRegistrationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    accountId: S.String.pipe(T.Label("account_id")),
+    domainName: S.String.pipe(T.Label("domain_name")),
+    prefer: S.optional(EditRegistrationRequestPrefer.pipe(T.Header("Prefer"))),
+    autoRenew: S.optional(S.Boolean.pipe(T.Body("auto_renew"))),
+  })
+    .pipe(
+      T.Http({
+        method: "PATCH",
+        uri: "/accounts/{account_id}/registrar/registrations/{domain_name}",
+        code: 200,
+      }),
+    )
+    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "EditRegistrationRequest",
+}) as any as S.Schema<EditRegistrationRequest>;
+
+export type EditRegistrationResponseLinks = CreateRegistrationResponseLinks;
+export const EditRegistrationResponseLinks = CreateRegistrationResponseLinks;
+
+export type EditRegistrationResponseState =
+  | "pending"
+  | "in_progress"
+  | "action_required"
+  | "blocked"
+  | "succeeded"
+  | "failed";
+export const EditRegistrationResponseState = /*@__PURE__*/ S.String;
+
+export type EditRegistrationResponseContextMap = {
+  [key: string]: unknown | undefined;
+};
+export const EditRegistrationResponseContextMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<EditRegistrationResponseContextMap>;
+
+export type EditRegistrationResponseError = CreateRegistrationResponseError;
+export const EditRegistrationResponseError = CreateRegistrationResponseError;
+
+/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
+export interface EditRegistrationResponse {
+  /** Whether the workflow has reached a terminal state. `true` when */
+  completed: boolean;
+  createdAt: string;
+  links: CreateRegistrationResponseLinks;
+  /** Workflow lifecycle state. */
+  state: EditRegistrationResponseState;
+  updatedAt: string;
+  /** Workflow-specific data for this workflow. */
+  context?: EditRegistrationResponseContextMap | null;
+  /** Error details when a workflow reaches the `failed` state. The specific */
+  error?: CreateRegistrationResponseError | null;
+}
+export const EditRegistrationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    completed: S.Boolean,
+    createdAt: S.String.pipe(T.Body("created_at")),
+    links: CreateRegistrationResponseLinks,
+    state: EditRegistrationResponseState,
+    updatedAt: S.String.pipe(T.Body("updated_at")),
+    context: S.optional(S.NullOr(EditRegistrationResponseContextMap)),
+    error: S.optional(S.NullOr(CreateRegistrationResponseError)),
+  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "EditRegistrationResponse",
+}) as any as S.Schema<EditRegistrationResponse>;
+
 export interface GetDomainRequest {
   /** Identifier */
   accountId: string;
@@ -206,6 +485,74 @@ export const GetDomainResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetDomainResponse",
 }) as any as S.Schema<GetDomainResponse>;
 
+export interface GetRegistrationRequest {
+  /** Identifier */
+  accountId: string;
+  /** Fully qualified domain name (FQDN) including the extension */
+  domainName: string;
+}
+export const GetRegistrationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    accountId: S.String.pipe(T.Label("account_id")),
+    domainName: S.String.pipe(T.Label("domain_name")),
+  })
+    .pipe(
+      T.Http({
+        method: "GET",
+        uri: "/accounts/{account_id}/registrar/registrations/{domain_name}",
+        code: 200,
+      }),
+    )
+    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "GetRegistrationRequest",
+}) as any as S.Schema<GetRegistrationRequest>;
+
+export type GetRegistrationResponsePrivacyMode = "redaction";
+export const GetRegistrationResponsePrivacyMode = /*@__PURE__*/ S.String;
+
+export type GetRegistrationResponseStatus =
+  | "active"
+  | "registration_pending"
+  | "expired"
+  | "suspended"
+  | "redemption_period"
+  | "pending_delete";
+export const GetRegistrationResponseStatus = /*@__PURE__*/ S.String;
+
+/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
+export interface GetRegistrationResponse {
+  /** Whether the domain will be automatically renewed before expiration. */
+  autoRenew: boolean;
+  /** When the domain was registered. Present when the registration resource exists. */
+  createdAt: string;
+  /** Fully qualified domain name (FQDN) including the extension */
+  domainName: string;
+  /** When the domain registration expires. Present when the registration is ready; may be null only while `status` is `registration_pending`. */
+  expiresAt: string;
+  /** Whether the domain is locked for transfer. */
+  locked: boolean;
+  /** Current WHOIS privacy mode for the registration. */
+  privacyMode: GetRegistrationResponsePrivacyMode;
+  /** Current registration status. */
+  status: GetRegistrationResponseStatus;
+}
+export const GetRegistrationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    autoRenew: S.Boolean.pipe(T.Body("auto_renew")),
+    createdAt: S.String.pipe(T.Body("created_at")),
+    domainName: S.String.pipe(T.Body("domain_name")),
+    expiresAt: S.String.pipe(T.Body("expires_at")),
+    locked: S.Boolean,
+    privacyMode: GetRegistrationResponsePrivacyMode.pipe(
+      T.Body("privacy_mode"),
+    ),
+    status: GetRegistrationResponseStatus,
+  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "GetRegistrationResponse",
+}) as any as S.Schema<GetRegistrationResponse>;
+
 export interface GetRegistrationStatusRequest {
   /** Identifier */
   accountId: string;
@@ -229,20 +576,10 @@ export const GetRegistrationStatusRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetRegistrationStatusRequest",
 }) as any as S.Schema<GetRegistrationStatusRequest>;
 
-export interface RegistrationStatusGetResponseLinks {
-  /** URL to this status resource. */
-  self: string;
-  /** URL to the domain resource. */
-  resource?: string | null;
-}
-export const RegistrationStatusGetResponseLinks = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    self: S.String,
-    resource: S.optional(S.NullOr(S.String)),
-  }),
-).annotate({
-  identifier: "RegistrationStatusGetResponseLinks",
-}) as any as S.Schema<RegistrationStatusGetResponseLinks>;
+export type RegistrationStatusGetResponseLinks =
+  CreateRegistrationResponseLinks;
+export const RegistrationStatusGetResponseLinks =
+  CreateRegistrationResponseLinks;
 
 export type RegistrationStatusGetResponseState =
   | "pending"
@@ -261,44 +598,34 @@ export const RegistrationStatusGetResponseContextMap = /*@__PURE__*/ S.Record(
   S.Unknown,
 ) as any as S.Schema<RegistrationStatusGetResponseContextMap>;
 
-export interface RegistrationStatusGetResponseError {
-  /** Machine-readable error code identifying the failure reason. */
-  code: string;
-  /** Human-readable explanation of the failure. May include registry-specific details. */
-  message: string;
-}
-export const RegistrationStatusGetResponseError = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    code: S.String,
-    message: S.String,
-  }),
-).annotate({
-  identifier: "RegistrationStatusGetResponseError",
-}) as any as S.Schema<RegistrationStatusGetResponseError>;
+export type RegistrationStatusGetResponseError =
+  CreateRegistrationResponseError;
+export const RegistrationStatusGetResponseError =
+  CreateRegistrationResponseError;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetRegistrationStatusResponse {
   /** Whether the workflow has reached a terminal state. `true` when */
   completed: boolean;
   createdAt: string;
-  links: RegistrationStatusGetResponseLinks;
+  links: CreateRegistrationResponseLinks;
   /** Workflow lifecycle state. */
   state: RegistrationStatusGetResponseState;
   updatedAt: string;
   /** Workflow-specific data for this workflow. */
   context?: RegistrationStatusGetResponseContextMap | null;
   /** Error details when a workflow reaches the `failed` state. The specific */
-  error?: RegistrationStatusGetResponseError | null;
+  error?: CreateRegistrationResponseError | null;
 }
 export const GetRegistrationStatusResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     completed: S.Boolean,
     createdAt: S.String.pipe(T.Body("created_at")),
-    links: RegistrationStatusGetResponseLinks,
+    links: CreateRegistrationResponseLinks,
     state: RegistrationStatusGetResponseState,
     updatedAt: S.String.pipe(T.Body("updated_at")),
     context: S.optional(S.NullOr(RegistrationStatusGetResponseContextMap)),
-    error: S.optional(S.NullOr(RegistrationStatusGetResponseError)),
+    error: S.optional(S.NullOr(CreateRegistrationResponseError)),
   }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
 ).annotate({
   identifier: "GetRegistrationStatusResponse",
@@ -327,8 +654,8 @@ export const GetUpdateStatusRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetUpdateStatusRequest",
 }) as any as S.Schema<GetUpdateStatusRequest>;
 
-export type UpdateStatusGetResponseLinks = RegistrationStatusGetResponseLinks;
-export const UpdateStatusGetResponseLinks = RegistrationStatusGetResponseLinks;
+export type UpdateStatusGetResponseLinks = CreateRegistrationResponseLinks;
+export const UpdateStatusGetResponseLinks = CreateRegistrationResponseLinks;
 
 export type UpdateStatusGetResponseState =
   | "pending"
@@ -347,32 +674,32 @@ export const UpdateStatusGetResponseContextMap = /*@__PURE__*/ S.Record(
   S.Unknown,
 ) as any as S.Schema<UpdateStatusGetResponseContextMap>;
 
-export type UpdateStatusGetResponseError = RegistrationStatusGetResponseError;
-export const UpdateStatusGetResponseError = RegistrationStatusGetResponseError;
+export type UpdateStatusGetResponseError = CreateRegistrationResponseError;
+export const UpdateStatusGetResponseError = CreateRegistrationResponseError;
 
 /** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
 export interface GetUpdateStatusResponse {
   /** Whether the workflow has reached a terminal state. `true` when */
   completed: boolean;
   createdAt: string;
-  links: RegistrationStatusGetResponseLinks;
+  links: CreateRegistrationResponseLinks;
   /** Workflow lifecycle state. */
   state: UpdateStatusGetResponseState;
   updatedAt: string;
   /** Workflow-specific data for this workflow. */
   context?: UpdateStatusGetResponseContextMap | null;
   /** Error details when a workflow reaches the `failed` state. The specific */
-  error?: RegistrationStatusGetResponseError | null;
+  error?: CreateRegistrationResponseError | null;
 }
 export const GetUpdateStatusResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     completed: S.Boolean,
     createdAt: S.String.pipe(T.Body("created_at")),
-    links: RegistrationStatusGetResponseLinks,
+    links: CreateRegistrationResponseLinks,
     state: UpdateStatusGetResponseState,
     updatedAt: S.String.pipe(T.Body("updated_at")),
     context: S.optional(S.NullOr(UpdateStatusGetResponseContextMap)),
-    error: S.optional(S.NullOr(RegistrationStatusGetResponseError)),
+    error: S.optional(S.NullOr(CreateRegistrationResponseError)),
   }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
 ).annotate({
   identifier: "GetUpdateStatusResponse",
@@ -618,6 +945,106 @@ export const ListDomainsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListDomainsResponse",
 }) as any as S.Schema<ListDomainsResponse>;
 
+export type ListRegistrationsRequestDirection = "asc" | "desc";
+export const ListRegistrationsRequestDirection = /*@__PURE__*/ S.String;
+
+export type ListRegistrationsRequestSortBy =
+  | "registry_created_at"
+  | "registry_expires_at"
+  | "name";
+export const ListRegistrationsRequestSortBy = /*@__PURE__*/ S.String;
+
+export interface ListRegistrationsRequest {
+  /** Identifier */
+  accountId: string;
+  /** Opaque token from a previous response's `result_info.cursor`. */
+  cursor?: string;
+  /** Sort direction for results. Defaults to ascending order. */
+  direction?: ListRegistrationsRequestDirection | (string & {});
+  /** Number of items to return per page. */
+  perPage?: number;
+  /** Column to sort results by. Defaults to registration date */
+  sortBy?: ListRegistrationsRequestSortBy | (string & {});
+}
+export const ListRegistrationsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    accountId: S.String.pipe(T.Label("account_id")),
+    cursor: S.optional(S.String.pipe(T.Query())),
+    direction: S.optional(ListRegistrationsRequestDirection.pipe(T.Query())),
+    perPage: S.optional(S.Number.pipe(T.Query("per_page"))),
+    sortBy: S.optional(ListRegistrationsRequestSortBy.pipe(T.Query("sort_by"))),
+  })
+    .pipe(
+      T.Http({
+        method: "GET",
+        uri: "/accounts/{account_id}/registrar/registrations",
+        code: 200,
+      }),
+    )
+    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "ListRegistrationsRequest",
+}) as any as S.Schema<ListRegistrationsRequest>;
+
+export type ListRegistrationsResultItemPrivacyMode = "redaction";
+export const ListRegistrationsResultItemPrivacyMode = /*@__PURE__*/ S.String;
+
+export type ListRegistrationsResultItemStatus =
+  | "active"
+  | "registration_pending"
+  | "expired"
+  | "suspended"
+  | "redemption_period"
+  | "pending_delete";
+export const ListRegistrationsResultItemStatus = /*@__PURE__*/ S.String;
+
+export interface ListRegistrationsResultItem {
+  /** Whether the domain will be automatically renewed before expiration. */
+  autoRenew: boolean;
+  /** When the domain was registered. Present when the registration resource exists. */
+  createdAt: string;
+  /** Fully qualified domain name (FQDN) including the extension */
+  domainName: string;
+  /** When the domain registration expires. Present when the registration is ready; may be null only while `status` is `registration_pending`. */
+  expiresAt: string;
+  /** Whether the domain is locked for transfer. */
+  locked: boolean;
+  /** Current WHOIS privacy mode for the registration. */
+  privacyMode: ListRegistrationsResultItemPrivacyMode;
+  /** Current registration status. */
+  status: ListRegistrationsResultItemStatus;
+}
+export const ListRegistrationsResultItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    autoRenew: S.Boolean.pipe(T.Body("auto_renew")),
+    createdAt: S.String.pipe(T.Body("created_at")),
+    domainName: S.String.pipe(T.Body("domain_name")),
+    expiresAt: S.String.pipe(T.Body("expires_at")),
+    locked: S.Boolean,
+    privacyMode: ListRegistrationsResultItemPrivacyMode.pipe(
+      T.Body("privacy_mode"),
+    ),
+    status: ListRegistrationsResultItemStatus,
+  }),
+).annotate({
+  identifier: "ListRegistrationsResultItem",
+}) as any as S.Schema<ListRegistrationsResultItem>;
+
+export type ListRegistrationsResultList = Array<ListRegistrationsResultItem>;
+export const ListRegistrationsResultList = /*@__PURE__*/ S.Array(
+  ListRegistrationsResultItem,
+) as any as S.Schema<ListRegistrationsResultList>;
+
+export type ListRegistrationsResponse = ListRegistrationsResultList;
+export const ListRegistrationsResponse = /*@__PURE__*/ S.suspend(() =>
+  ListRegistrationsResultList.pipe(
+    T.EnvelopePayloadRoot(),
+    T.KeyDictionary(KEY_DICTIONARY),
+  ),
+).annotate({
+  identifier: "ListRegistrationsResponse",
+}) as any as S.Schema<ListRegistrationsResponse>;
+
 export interface PutDomainRequest {
   /** Identifier */
   accountId: string;
@@ -656,435 +1083,6 @@ export const PutDomainResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "PutDomainResponse",
 }) as any as S.Schema<PutDomainResponse>;
-
-export interface RegistrationsCreateRequestContactsRegistrantPostalInfoAddress {
-  /** City or locality name. */
-  city: string;
-  /** Two-letter country code per ISO 3166-1 alpha-2 (e.g., `US`, `GB`, `CA`, `DE`). */
-  countryCode: string;
-  /** Postal or ZIP code. */
-  postalCode: string;
-  /** State, province, or region. Use the standard abbreviation where applicable (e.g., `TX` for Texas, `ON` for Ontario). */
-  state: string;
-  /** Street address including building/suite number. */
-  street: string;
-}
-export const RegistrationsCreateRequestContactsRegistrantPostalInfoAddress =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      city: S.String,
-      countryCode: S.String.pipe(T.Body("country_code")),
-      postalCode: S.String.pipe(T.Body("postal_code")),
-      state: S.String,
-      street: S.String,
-    }),
-  ).annotate({
-    identifier: "RegistrationsCreateRequestContactsRegistrantPostalInfoAddress",
-  }) as any as S.Schema<RegistrationsCreateRequestContactsRegistrantPostalInfoAddress>;
-
-export interface RegistrationsCreateRequestContactsRegistrantPostalInfo {
-  /** Physical mailing address for the registrant contact. */
-  address: RegistrationsCreateRequestContactsRegistrantPostalInfoAddress;
-  /** Full legal name of the registrant (individual or authorized representative). */
-  name: string;
-  /** Organization or company name. Optional for individual registrants. */
-  organization?: string;
-}
-export const RegistrationsCreateRequestContactsRegistrantPostalInfo =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      address: RegistrationsCreateRequestContactsRegistrantPostalInfoAddress,
-      name: S.String,
-      organization: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "RegistrationsCreateRequestContactsRegistrantPostalInfo",
-  }) as any as S.Schema<RegistrationsCreateRequestContactsRegistrantPostalInfo>;
-
-export interface RegistrationsCreateRequestContactsRegistrant {
-  /** Email address for the registrant. Used for domain-related */
-  email: string;
-  /** Phone number in E.164 format: `+{country_code}.{number}` with no */
-  phone: string;
-  /** Postal/mailing information for the registrant contact. */
-  postalInfo: RegistrationsCreateRequestContactsRegistrantPostalInfo;
-  /** Fax number in E.164 format (e.g., `+1.5555555555`). Optional. */
-  fax?: string;
-}
-export const RegistrationsCreateRequestContactsRegistrant =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      email: S.String,
-      phone: S.String,
-      postalInfo: RegistrationsCreateRequestContactsRegistrantPostalInfo.pipe(
-        T.Body("postal_info"),
-      ),
-      fax: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "RegistrationsCreateRequestContactsRegistrant",
-  }) as any as S.Schema<RegistrationsCreateRequestContactsRegistrant>;
-
-export interface RegistrationsCreateRequestContacts {
-  /** Registrant contact data for the domain registration. This information */
-  registrant?: RegistrationsCreateRequestContactsRegistrant;
-}
-export const RegistrationsCreateRequestContacts = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    registrant: S.optional(RegistrationsCreateRequestContactsRegistrant),
-  }),
-).annotate({
-  identifier: "RegistrationsCreateRequestContacts",
-}) as any as S.Schema<RegistrationsCreateRequestContacts>;
-
-export type RegistrationsCreateRequestPrivacyMode = "redaction";
-export const RegistrationsCreateRequestPrivacyMode = /*@__PURE__*/ S.String;
-
-export interface RegistrationsCreateRequest {
-  /** Identifier */
-  accountId: string;
-  prefer?: string;
-  /** Fully qualified domain name (FQDN) including the extension */
-  domainName: string;
-  /** Enable or disable automatic renewal. Defaults to `false` if omitted. */
-  autoRenew?: boolean;
-  /** Contact data for the registration request. */
-  contacts?: RegistrationsCreateRequestContacts;
-  /** WHOIS privacy mode for the registration. Defaults to `redaction`. */
-  privacyMode?: RegistrationsCreateRequestPrivacyMode | (string & {});
-  /** Number of years to register (1–10). If omitted, defaults to the */
-  years?: number;
-}
-export const RegistrationsCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    accountId: S.String.pipe(T.Label("account_id")),
-    prefer: S.optional(S.String.pipe(T.Header("Prefer"))),
-    domainName: S.String.pipe(T.Body("domain_name")),
-    autoRenew: S.optional(S.Boolean.pipe(T.Body("auto_renew"))),
-    contacts: S.optional(RegistrationsCreateRequestContacts),
-    privacyMode: S.optional(
-      RegistrationsCreateRequestPrivacyMode.pipe(T.Body("privacy_mode")),
-    ),
-    years: S.optional(S.Number),
-  })
-    .pipe(
-      T.Http({
-        method: "POST",
-        uri: "/accounts/{account_id}/registrar/registrations",
-        code: 200,
-      }),
-    )
-    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "RegistrationsCreateRequest",
-}) as any as S.Schema<RegistrationsCreateRequest>;
-
-export type RegistrationsCreateResponseLinks =
-  RegistrationStatusGetResponseLinks;
-export const RegistrationsCreateResponseLinks =
-  RegistrationStatusGetResponseLinks;
-
-export type RegistrationsCreateResponseState =
-  | "pending"
-  | "in_progress"
-  | "action_required"
-  | "blocked"
-  | "succeeded"
-  | "failed";
-export const RegistrationsCreateResponseState = /*@__PURE__*/ S.String;
-
-export type RegistrationsCreateResponseContextMap = {
-  [key: string]: unknown | undefined;
-};
-export const RegistrationsCreateResponseContextMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<RegistrationsCreateResponseContextMap>;
-
-export type RegistrationsCreateResponseError =
-  RegistrationStatusGetResponseError;
-export const RegistrationsCreateResponseError =
-  RegistrationStatusGetResponseError;
-
-/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
-export interface RegistrationsCreateResponse {
-  /** Whether the workflow has reached a terminal state. `true` when */
-  completed: boolean;
-  createdAt: string;
-  links: RegistrationStatusGetResponseLinks;
-  /** Workflow lifecycle state. */
-  state: RegistrationsCreateResponseState;
-  updatedAt: string;
-  /** Workflow-specific data for this workflow. */
-  context?: RegistrationsCreateResponseContextMap | null;
-  /** Error details when a workflow reaches the `failed` state. The specific */
-  error?: RegistrationStatusGetResponseError | null;
-}
-export const RegistrationsCreateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    completed: S.Boolean,
-    createdAt: S.String.pipe(T.Body("created_at")),
-    links: RegistrationStatusGetResponseLinks,
-    state: RegistrationsCreateResponseState,
-    updatedAt: S.String.pipe(T.Body("updated_at")),
-    context: S.optional(S.NullOr(RegistrationsCreateResponseContextMap)),
-    error: S.optional(S.NullOr(RegistrationStatusGetResponseError)),
-  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "RegistrationsCreateResponse",
-}) as any as S.Schema<RegistrationsCreateResponse>;
-
-export type RegistrationsEditRequestPrefer = "respond-async";
-export const RegistrationsEditRequestPrefer = /*@__PURE__*/ S.String;
-
-export interface RegistrationsEditRequest {
-  /** Identifier */
-  accountId: string;
-  /** Fully qualified domain name (FQDN) including the extension */
-  domainName: string;
-  prefer?: RegistrationsEditRequestPrefer | (string & {});
-  /** Enable or disable automatic renewal. */
-  autoRenew?: boolean;
-}
-export const RegistrationsEditRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    accountId: S.String.pipe(T.Label("account_id")),
-    domainName: S.String.pipe(T.Label("domain_name")),
-    prefer: S.optional(RegistrationsEditRequestPrefer.pipe(T.Header("Prefer"))),
-    autoRenew: S.optional(S.Boolean.pipe(T.Body("auto_renew"))),
-  })
-    .pipe(
-      T.Http({
-        method: "PATCH",
-        uri: "/accounts/{account_id}/registrar/registrations/{domain_name}",
-        code: 200,
-      }),
-    )
-    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "RegistrationsEditRequest",
-}) as any as S.Schema<RegistrationsEditRequest>;
-
-export type RegistrationsEditResponseLinks = RegistrationStatusGetResponseLinks;
-export const RegistrationsEditResponseLinks =
-  RegistrationStatusGetResponseLinks;
-
-export type RegistrationsEditResponseState =
-  | "pending"
-  | "in_progress"
-  | "action_required"
-  | "blocked"
-  | "succeeded"
-  | "failed";
-export const RegistrationsEditResponseState = /*@__PURE__*/ S.String;
-
-export type RegistrationsEditResponseContextMap = {
-  [key: string]: unknown | undefined;
-};
-export const RegistrationsEditResponseContextMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<RegistrationsEditResponseContextMap>;
-
-export type RegistrationsEditResponseError = RegistrationStatusGetResponseError;
-export const RegistrationsEditResponseError =
-  RegistrationStatusGetResponseError;
-
-/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
-export interface RegistrationsEditResponse {
-  /** Whether the workflow has reached a terminal state. `true` when */
-  completed: boolean;
-  createdAt: string;
-  links: RegistrationStatusGetResponseLinks;
-  /** Workflow lifecycle state. */
-  state: RegistrationsEditResponseState;
-  updatedAt: string;
-  /** Workflow-specific data for this workflow. */
-  context?: RegistrationsEditResponseContextMap | null;
-  /** Error details when a workflow reaches the `failed` state. The specific */
-  error?: RegistrationStatusGetResponseError | null;
-}
-export const RegistrationsEditResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    completed: S.Boolean,
-    createdAt: S.String.pipe(T.Body("created_at")),
-    links: RegistrationStatusGetResponseLinks,
-    state: RegistrationsEditResponseState,
-    updatedAt: S.String.pipe(T.Body("updated_at")),
-    context: S.optional(S.NullOr(RegistrationsEditResponseContextMap)),
-    error: S.optional(S.NullOr(RegistrationStatusGetResponseError)),
-  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "RegistrationsEditResponse",
-}) as any as S.Schema<RegistrationsEditResponse>;
-
-export interface RegistrationsGetRequest {
-  /** Identifier */
-  accountId: string;
-  /** Fully qualified domain name (FQDN) including the extension */
-  domainName: string;
-}
-export const RegistrationsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    accountId: S.String.pipe(T.Label("account_id")),
-    domainName: S.String.pipe(T.Label("domain_name")),
-  })
-    .pipe(
-      T.Http({
-        method: "GET",
-        uri: "/accounts/{account_id}/registrar/registrations/{domain_name}",
-        code: 200,
-      }),
-    )
-    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "RegistrationsGetRequest",
-}) as any as S.Schema<RegistrationsGetRequest>;
-
-export type RegistrationsGetResponsePrivacyMode = "redaction";
-export const RegistrationsGetResponsePrivacyMode = /*@__PURE__*/ S.String;
-
-export type RegistrationsGetResponseStatus =
-  | "active"
-  | "registration_pending"
-  | "expired"
-  | "suspended"
-  | "redemption_period"
-  | "pending_delete";
-export const RegistrationsGetResponseStatus = /*@__PURE__*/ S.String;
-
-/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
-export interface RegistrationsGetResponse {
-  /** Whether the domain will be automatically renewed before expiration. */
-  autoRenew: boolean;
-  /** When the domain was registered. Present when the registration resource exists. */
-  createdAt: string;
-  /** Fully qualified domain name (FQDN) including the extension */
-  domainName: string;
-  /** When the domain registration expires. Present when the registration is ready; may be null only while `status` is `registration_pending`. */
-  expiresAt: string;
-  /** Whether the domain is locked for transfer. */
-  locked: boolean;
-  /** Current WHOIS privacy mode for the registration. */
-  privacyMode: RegistrationsGetResponsePrivacyMode;
-  /** Current registration status. */
-  status: RegistrationsGetResponseStatus;
-}
-export const RegistrationsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    autoRenew: S.Boolean.pipe(T.Body("auto_renew")),
-    createdAt: S.String.pipe(T.Body("created_at")),
-    domainName: S.String.pipe(T.Body("domain_name")),
-    expiresAt: S.String.pipe(T.Body("expires_at")),
-    locked: S.Boolean,
-    privacyMode: RegistrationsGetResponsePrivacyMode.pipe(
-      T.Body("privacy_mode"),
-    ),
-    status: RegistrationsGetResponseStatus,
-  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "RegistrationsGetResponse",
-}) as any as S.Schema<RegistrationsGetResponse>;
-
-export type RegistrationsListRequestDirection = "asc" | "desc";
-export const RegistrationsListRequestDirection = /*@__PURE__*/ S.String;
-
-export type RegistrationsListRequestSortBy =
-  | "registry_created_at"
-  | "registry_expires_at"
-  | "name";
-export const RegistrationsListRequestSortBy = /*@__PURE__*/ S.String;
-
-export interface RegistrationsListRequest {
-  /** Identifier */
-  accountId: string;
-  /** Opaque token from a previous response's `result_info.cursor`. */
-  cursor?: string;
-  /** Sort direction for results. Defaults to ascending order. */
-  direction?: RegistrationsListRequestDirection | (string & {});
-  /** Number of items to return per page. */
-  perPage?: number;
-  /** Column to sort results by. Defaults to registration date */
-  sortBy?: RegistrationsListRequestSortBy | (string & {});
-}
-export const RegistrationsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    accountId: S.String.pipe(T.Label("account_id")),
-    cursor: S.optional(S.String.pipe(T.Query())),
-    direction: S.optional(RegistrationsListRequestDirection.pipe(T.Query())),
-    perPage: S.optional(S.Number.pipe(T.Query("per_page"))),
-    sortBy: S.optional(RegistrationsListRequestSortBy.pipe(T.Query("sort_by"))),
-  })
-    .pipe(
-      T.Http({
-        method: "GET",
-        uri: "/accounts/{account_id}/registrar/registrations",
-        code: 200,
-      }),
-    )
-    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "RegistrationsListRequest",
-}) as any as S.Schema<RegistrationsListRequest>;
-
-export type RegistrationsListResultItemPrivacyMode = "redaction";
-export const RegistrationsListResultItemPrivacyMode = /*@__PURE__*/ S.String;
-
-export type RegistrationsListResultItemStatus =
-  | "active"
-  | "registration_pending"
-  | "expired"
-  | "suspended"
-  | "redemption_period"
-  | "pending_delete";
-export const RegistrationsListResultItemStatus = /*@__PURE__*/ S.String;
-
-export interface RegistrationsListResultItem {
-  /** Whether the domain will be automatically renewed before expiration. */
-  autoRenew: boolean;
-  /** When the domain was registered. Present when the registration resource exists. */
-  createdAt: string;
-  /** Fully qualified domain name (FQDN) including the extension */
-  domainName: string;
-  /** When the domain registration expires. Present when the registration is ready; may be null only while `status` is `registration_pending`. */
-  expiresAt: string;
-  /** Whether the domain is locked for transfer. */
-  locked: boolean;
-  /** Current WHOIS privacy mode for the registration. */
-  privacyMode: RegistrationsListResultItemPrivacyMode;
-  /** Current registration status. */
-  status: RegistrationsListResultItemStatus;
-}
-export const RegistrationsListResultItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    autoRenew: S.Boolean.pipe(T.Body("auto_renew")),
-    createdAt: S.String.pipe(T.Body("created_at")),
-    domainName: S.String.pipe(T.Body("domain_name")),
-    expiresAt: S.String.pipe(T.Body("expires_at")),
-    locked: S.Boolean,
-    privacyMode: RegistrationsListResultItemPrivacyMode.pipe(
-      T.Body("privacy_mode"),
-    ),
-    status: RegistrationsListResultItemStatus,
-  }),
-).annotate({
-  identifier: "RegistrationsListResultItem",
-}) as any as S.Schema<RegistrationsListResultItem>;
-
-export type RegistrationsListResultList = Array<RegistrationsListResultItem>;
-export const RegistrationsListResultList = /*@__PURE__*/ S.Array(
-  RegistrationsListResultItem,
-) as any as S.Schema<RegistrationsListResultList>;
-
-export type RegistrationsListResponse = RegistrationsListResultList;
-export const RegistrationsListResponse = /*@__PURE__*/ S.suspend(() =>
-  RegistrationsListResultList.pipe(
-    T.EnvelopePayloadRoot(),
-    T.KeyDictionary(KEY_DICTIONARY),
-  ),
-).annotate({
-  identifier: "RegistrationsListResponse",
-}) as any as S.Schema<RegistrationsListResponse>;
 
 export type SearchRequestExtensionsList = Array<string>;
 export const SearchRequestExtensionsList = /*@__PURE__*/ S.Array(
@@ -1191,6 +1189,36 @@ export const checkRegistrar: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type CreateRegistrationError = CloudflareOpError;
+/** Starts a domain registration workflow. This is a billable operation — successful registration charges the account's default payment method. All successful domain registrations are non-refundable — once the workflow completes with `state: succeeded`, the charge cannot be reversed. */
+export const createRegistration: API.OperationMethod<
+  CreateRegistrationRequest,
+  CreateRegistrationResponse,
+  CreateRegistrationError,
+  CloudflareOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateRegistrationRequest,
+  output: CreateRegistrationResponse,
+  errors: [CloudflareRateLimited, CloudflareError],
+  protocol: CloudflareProtocol,
+  retry: Retry.Retry,
+}));
+
+export type EditRegistrationError = CloudflareOpError;
+/** Updates an existing domain registration. By default, the server holds the connection for a bounded, server-defined amount of time while the update completes. Most updates finish within this window and return `200 OK` with a completed workflow status. If the update is still processing after this synchronous wait window, the server returns `202 Accepted`. Poll the URL in `links.self` to track progress. To skip the wait and receive an immediate `202`, send `Prefer: respond-async`. This endpoint currently supports updating `auto_renew` only. */
+export const editRegistration: API.OperationMethod<
+  EditRegistrationRequest,
+  EditRegistrationResponse,
+  EditRegistrationError,
+  CloudflareOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: EditRegistrationRequest,
+  output: EditRegistrationResponse,
+  errors: [CloudflareRateLimited, CloudflareError],
+  protocol: CloudflareProtocol,
+  retry: Retry.Retry,
+}));
+
 export type GetDomainError = Forbidden | CloudflareOpError;
 /** Show individual domain. */
 export const getDomain: API.OperationMethod<
@@ -1202,6 +1230,21 @@ export const getDomain: API.OperationMethod<
   input: GetDomainRequest,
   output: GetDomainResponse,
   errors: [Forbidden, CloudflareRateLimited, CloudflareError],
+  protocol: CloudflareProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetRegistrationError = CloudflareOpError;
+/** Returns the current state of a domain registration. This is the canonical read endpoint for a domain you own. It returns the full registration resource including current settings and expiration. When the registration resource is ready, both `created_at` and `expires_at` are present in the response. */
+export const getRegistration: API.OperationMethod<
+  GetRegistrationRequest,
+  GetRegistrationResponse,
+  GetRegistrationError,
+  CloudflareOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetRegistrationRequest,
+  output: GetRegistrationResponse,
+  errors: [CloudflareRateLimited, CloudflareError],
   protocol: CloudflareProtocol,
   retry: Retry.Retry,
 }));
@@ -1256,6 +1299,21 @@ export const listDomains: API.PaginatedOperationMethod<
   cloudflarePaginate,
 ) as any;
 
+export type ListRegistrationsError = CloudflareOpError;
+/** Returns a paginated list of domain registrations owned by the account. This endpoint uses cursor-based pagination. Results are ordered by registration date by default. To fetch the next page, pass the `cursor` value from the `result_info` object in the response as the `cursor` query parameter in your next request. An empty `cursor` string indicates there are no more pages. */
+export const listRegistrations: API.OperationMethod<
+  ListRegistrationsRequest,
+  ListRegistrationsResponse,
+  ListRegistrationsError,
+  CloudflareOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListRegistrationsRequest,
+  output: ListRegistrationsResponse,
+  errors: [CloudflareRateLimited, CloudflareError],
+  protocol: CloudflareProtocol,
+  retry: Retry.Retry,
+}));
+
 export type PutDomainError =
   | RegistrarDomainNotOwned
   | RegistrarUpdateNotAllowed
@@ -1277,66 +1335,6 @@ export const putDomain: API.OperationMethod<
     CloudflareRateLimited,
     CloudflareError,
   ],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RegistrationsCreateError = CloudflareOpError;
-/** Starts a domain registration workflow. This is a billable operation — successful registration charges the account's default payment method. All successful domain registrations are non-refundable — once the workflow completes with `state: succeeded`, the charge cannot be reversed. */
-export const registrationsCreate: API.OperationMethod<
-  RegistrationsCreateRequest,
-  RegistrationsCreateResponse,
-  RegistrationsCreateError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RegistrationsCreateRequest,
-  output: RegistrationsCreateResponse,
-  errors: [CloudflareRateLimited, CloudflareError],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RegistrationsEditError = CloudflareOpError;
-/** Updates an existing domain registration. By default, the server holds the connection for a bounded, server-defined amount of time while the update completes. Most updates finish within this window and return `200 OK` with a completed workflow status. If the update is still processing after this synchronous wait window, the server returns `202 Accepted`. Poll the URL in `links.self` to track progress. To skip the wait and receive an immediate `202`, send `Prefer: respond-async`. This endpoint currently supports updating `auto_renew` only. */
-export const registrationsEdit: API.OperationMethod<
-  RegistrationsEditRequest,
-  RegistrationsEditResponse,
-  RegistrationsEditError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RegistrationsEditRequest,
-  output: RegistrationsEditResponse,
-  errors: [CloudflareRateLimited, CloudflareError],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RegistrationsGetError = CloudflareOpError;
-/** Returns the current state of a domain registration. This is the canonical read endpoint for a domain you own. It returns the full registration resource including current settings and expiration. When the registration resource is ready, both `created_at` and `expires_at` are present in the response. */
-export const registrationsGet: API.OperationMethod<
-  RegistrationsGetRequest,
-  RegistrationsGetResponse,
-  RegistrationsGetError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RegistrationsGetRequest,
-  output: RegistrationsGetResponse,
-  errors: [CloudflareRateLimited, CloudflareError],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RegistrationsListError = CloudflareOpError;
-/** Returns a paginated list of domain registrations owned by the account. This endpoint uses cursor-based pagination. Results are ordered by registration date by default. To fetch the next page, pass the `cursor` value from the `result_info` object in the response as the `cursor` query parameter in your next request. An empty `cursor` string indicates there are no more pages. */
-export const registrationsList: API.OperationMethod<
-  RegistrationsListRequest,
-  RegistrationsListResponse,
-  RegistrationsListError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RegistrationsListRequest,
-  output: RegistrationsListResponse,
-  errors: [CloudflareRateLimited, CloudflareError],
   protocol: CloudflareProtocol,
   retry: Retry.Retry,
 }));

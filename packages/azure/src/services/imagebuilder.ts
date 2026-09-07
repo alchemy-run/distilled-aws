@@ -12,101 +12,39 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
-export interface OperationsListRequest {}
-export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/providers/Microsoft.VirtualMachineImages/operations",
-      code: 200,
-      apiVersion: "2025-10-01",
-    }),
-  ),
-).annotate({
-  identifier: "OperationsListRequest",
-}) as any as S.Schema<OperationsListRequest>;
-
-/** The object that describes the operation. */
-export interface OperationDisplay {
-  /** Friendly name of the resource provider. */
-  provider?: string;
-  /** For example: read, write, delete, or listKeys/action */
-  operation?: string;
-  /** The resource type on which the operation is performed. */
-  resource?: string;
-  /** The friendly name of the operation */
-  description?: string;
+export interface CancelVirtualMachineImageTemplateRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the image Template */
+  imageTemplateName: string;
 }
-export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provider: S.optional(S.String),
-    operation: S.optional(S.String),
-    resource: S.optional(S.String),
-    description: S.optional(S.String),
-  }),
+export const CancelVirtualMachineImageTemplateRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      imageTemplateName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VirtualMachineImages/imageTemplates/{imageTemplateName}/cancel",
+        code: 200,
+        apiVersion: "2025-10-01",
+      }),
+    ),
 ).annotate({
-  identifier: "OperationDisplay",
-}) as any as S.Schema<OperationDisplay>;
+  identifier: "CancelVirtualMachineImageTemplateRequest",
+}) as any as S.Schema<CancelVirtualMachineImageTemplateRequest>;
 
-/** A REST API operation */
-export interface Operation {
-  /** This is of the format {provider}/{resource}/{operation} */
-  name?: string;
-  /** The object that describes the operation. */
-  display?: OperationDisplay;
-  /** The intended executor of the operation. */
-  origin?: string;
-  /** Properties of the operation. */
-  properties?: unknown;
-  /** The flag that indicates whether the operation applies to data plane. */
-  isDataAction?: boolean;
-}
-export const Operation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    display: S.optional(OperationDisplay),
-    origin: S.optional(S.String),
-    properties: S.optional(S.Unknown),
-    isDataAction: S.optional(S.Boolean),
-  }),
-).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
+export interface CancelVirtualMachineImageTemplateResponse {}
+export const CancelVirtualMachineImageTemplateResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "CancelVirtualMachineImageTemplateResponse",
+  }) as any as S.Schema<CancelVirtualMachineImageTemplateResponse>;
 
-/** The list of operations supported by the resource provider. */
-export type OperationListResultValueList = Array<Operation>;
-export const OperationListResultValueList = /*@__PURE__*/ S.Array(
-  Operation,
-) as any as S.Schema<OperationListResultValueList>;
-
-/** Result of the request to list REST API operations. It contains a list of operations and a URL nextLink to get the next set of results. */
-export interface OperationListResult {
-  /** The list of operations supported by the resource provider. */
-  value: OperationListResultValueList;
-  /** The URL to get the next set of operation list results if there are any. */
-  nextLink?: string;
-}
-export const OperationListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: OperationListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OperationListResult",
-}) as any as S.Schema<OperationListResult>;
-
-/** Describes the properties of a trigger */
-export interface TriggerPropertiesInput {
-  /** The kind of trigger. */
-  kind: string;
-}
-export const TriggerPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    kind: S.String,
-  }),
-).annotate({
-  identifier: "TriggerPropertiesInput",
-}) as any as S.Schema<TriggerPropertiesInput>;
-
-export interface TriggersCreateOrUpdateRequest {
+export interface DeleteTriggerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -115,27 +53,91 @@ export interface TriggersCreateOrUpdateRequest {
   imageTemplateName: string;
   /** The name of the trigger */
   triggerName: string;
-  /** The properties of a trigger */
-  properties?: TriggerPropertiesInput;
 }
-export const TriggersCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteTriggerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     imageTemplateName: S.String.pipe(T.Label()),
     triggerName: S.String.pipe(T.Label()),
-    properties: S.optional(TriggerPropertiesInput),
   }).pipe(
     T.Http({
-      method: "PUT",
+      method: "DELETE",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VirtualMachineImages/imageTemplates/{imageTemplateName}/triggers/{triggerName}",
       code: 200,
       apiVersion: "2025-10-01",
     }),
   ),
 ).annotate({
-  identifier: "TriggersCreateOrUpdateRequest",
-}) as any as S.Schema<TriggersCreateOrUpdateRequest>;
+  identifier: "DeleteTriggerRequest",
+}) as any as S.Schema<DeleteTriggerRequest>;
+
+export interface DeleteTriggerResponse {}
+export const DeleteTriggerResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteTriggerResponse",
+}) as any as S.Schema<DeleteTriggerResponse>;
+
+export interface DeleteVirtualMachineImageTemplateRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the image Template */
+  imageTemplateName: string;
+}
+export const DeleteVirtualMachineImageTemplateRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      imageTemplateName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VirtualMachineImages/imageTemplates/{imageTemplateName}",
+        code: 200,
+        apiVersion: "2025-10-01",
+      }),
+    ),
+).annotate({
+  identifier: "DeleteVirtualMachineImageTemplateRequest",
+}) as any as S.Schema<DeleteVirtualMachineImageTemplateRequest>;
+
+export interface DeleteVirtualMachineImageTemplateResponse {}
+export const DeleteVirtualMachineImageTemplateResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "DeleteVirtualMachineImageTemplateResponse",
+  }) as any as S.Schema<DeleteVirtualMachineImageTemplateResponse>;
+
+export interface GetTriggerRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the image Template */
+  imageTemplateName: string;
+  /** The name of the trigger */
+  triggerName: string;
+}
+export const GetTriggerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    imageTemplateName: S.String.pipe(T.Label()),
+    triggerName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VirtualMachineImages/imageTemplates/{imageTemplateName}/triggers/{triggerName}",
+      code: 200,
+      apiVersion: "2025-10-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetTriggerRequest",
+}) as any as S.Schema<GetTriggerRequest>;
 
 /** The type of identity that created the resource. */
 export type SystemDataCreatedByType =
@@ -225,7 +227,7 @@ export const TriggerProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "TriggerProperties",
 }) as any as S.Schema<TriggerProperties>;
 
-export interface TriggersCreateOrUpdateResponse {
+export interface GetTriggerResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -237,7 +239,7 @@ export interface TriggersCreateOrUpdateResponse {
   /** The properties of a trigger */
   properties?: TriggerProperties;
 }
-export const TriggersCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetTriggerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -246,97 +248,10 @@ export const TriggersCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(TriggerProperties),
   }),
 ).annotate({
-  identifier: "TriggersCreateOrUpdateResponse",
-}) as any as S.Schema<TriggersCreateOrUpdateResponse>;
+  identifier: "GetTriggerResponse",
+}) as any as S.Schema<GetTriggerResponse>;
 
-export interface TriggersDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the image Template */
-  imageTemplateName: string;
-  /** The name of the trigger */
-  triggerName: string;
-}
-export const TriggersDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    imageTemplateName: S.String.pipe(T.Label()),
-    triggerName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VirtualMachineImages/imageTemplates/{imageTemplateName}/triggers/{triggerName}",
-      code: 200,
-      apiVersion: "2025-10-01",
-    }),
-  ),
-).annotate({
-  identifier: "TriggersDeleteRequest",
-}) as any as S.Schema<TriggersDeleteRequest>;
-
-export interface TriggersDeleteResponse {}
-export const TriggersDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "TriggersDeleteResponse",
-}) as any as S.Schema<TriggersDeleteResponse>;
-
-export interface TriggersGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the image Template */
-  imageTemplateName: string;
-  /** The name of the trigger */
-  triggerName: string;
-}
-export const TriggersGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    imageTemplateName: S.String.pipe(T.Label()),
-    triggerName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VirtualMachineImages/imageTemplates/{imageTemplateName}/triggers/{triggerName}",
-      code: 200,
-      apiVersion: "2025-10-01",
-    }),
-  ),
-).annotate({
-  identifier: "TriggersGetRequest",
-}) as any as S.Schema<TriggersGetRequest>;
-
-export interface TriggersGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties of a trigger */
-  properties?: TriggerProperties;
-}
-export const TriggersGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(TriggerProperties),
-  }),
-).annotate({
-  identifier: "TriggersGetResponse",
-}) as any as S.Schema<TriggersGetResponse>;
-
-export interface TriggersListByImageTemplateRequest {
+export interface GetVirtualMachineImageTemplateRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -344,109 +259,33 @@ export interface TriggersListByImageTemplateRequest {
   /** The name of the image Template */
   imageTemplateName: string;
 }
-export const TriggersListByImageTemplateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    imageTemplateName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VirtualMachineImages/imageTemplates/{imageTemplateName}/triggers",
-      code: 200,
-      apiVersion: "2025-10-01",
-    }),
-  ),
-).annotate({
-  identifier: "TriggersListByImageTemplateRequest",
-}) as any as S.Schema<TriggersListByImageTemplateRequest>;
-
-/** Represents a trigger that can invoke an image template build. */
-export interface Trigger {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties of a trigger */
-  properties?: TriggerProperties;
-}
-export const Trigger = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(TriggerProperties),
-  }),
-).annotate({ identifier: "Trigger" }) as any as S.Schema<Trigger>;
-
-/** The Trigger items on this page */
-export type TriggerCollectionValueList = Array<Trigger>;
-export const TriggerCollectionValueList = /*@__PURE__*/ S.Array(
-  Trigger,
-) as any as S.Schema<TriggerCollectionValueList>;
-
-/** The result of List triggers operation */
-export interface TriggerCollection {
-  /** The Trigger items on this page */
-  value: TriggerCollectionValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const TriggerCollection = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: TriggerCollectionValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "TriggerCollection",
-}) as any as S.Schema<TriggerCollection>;
-
-export interface VirtualMachineImageTemplatesCancelRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the image Template */
-  imageTemplateName: string;
-}
-export const VirtualMachineImageTemplatesCancelRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const GetVirtualMachineImageTemplateRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       imageTemplateName: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VirtualMachineImages/imageTemplates/{imageTemplateName}/cancel",
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VirtualMachineImages/imageTemplates/{imageTemplateName}",
         code: 200,
         apiVersion: "2025-10-01",
       }),
     ),
-  ).annotate({
-    identifier: "VirtualMachineImageTemplatesCancelRequest",
-  }) as any as S.Schema<VirtualMachineImageTemplatesCancelRequest>;
-
-export interface VirtualMachineImageTemplatesCancelResponse {}
-export const VirtualMachineImageTemplatesCancelResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "VirtualMachineImageTemplatesCancelResponse",
-  }) as any as S.Schema<VirtualMachineImageTemplatesCancelResponse>;
+).annotate({
+  identifier: "GetVirtualMachineImageTemplateRequest",
+}) as any as S.Schema<GetVirtualMachineImageTemplateRequest>;
 
 /** Resource tags. */
-export type VirtualMachineImageTemplatesCreateOrUpdateRequestTagsMap = {
+export type GetVirtualMachineImageTemplateResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const VirtualMachineImageTemplatesCreateOrUpdateRequestTagsMap =
+export const GetVirtualMachineImageTemplateResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<VirtualMachineImageTemplatesCreateOrUpdateRequestTagsMap>;
+  ) as any as S.Schema<GetVirtualMachineImageTemplateResponseTagsMap>;
 
 /** Describes a virtual machine image source for building, customizing and distributing */
 export interface ImageTemplateSource {
@@ -478,11 +317,11 @@ export const ImageTemplateCustomizer = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ImageTemplateCustomizer>;
 
 /** Specifies the properties used to describe the customization steps of the image, like Image source etc */
-export type ImageTemplatePropertiesInputCustomizeList =
+export type ImageTemplatePropertiesCustomizeList =
   Array<ImageTemplateCustomizer>;
-export const ImageTemplatePropertiesInputCustomizeList = /*@__PURE__*/ S.Array(
+export const ImageTemplatePropertiesCustomizeList = /*@__PURE__*/ S.Array(
   ImageTemplateCustomizer,
-) as any as S.Schema<ImageTemplatePropertiesInputCustomizeList>;
+) as any as S.Schema<ImageTemplatePropertiesCustomizeList>;
 
 /** Enabling this field will improve VM boot time by optimizing the final customized image output. */
 export type VMBootOptimizationState = "Enabled" | "Disabled";
@@ -616,11 +455,11 @@ export const ImageTemplateDistributor = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ImageTemplateDistributor>;
 
 /** The distribution targets where the image output needs to go to. */
-export type ImageTemplatePropertiesInputDistributeList =
+export type ImageTemplatePropertiesDistributeList =
   Array<ImageTemplateDistributor>;
-export const ImageTemplatePropertiesInputDistributeList = /*@__PURE__*/ S.Array(
+export const ImageTemplatePropertiesDistributeList = /*@__PURE__*/ S.Array(
   ImageTemplateDistributor,
-) as any as S.Schema<ImageTemplatePropertiesInputDistributeList>;
+) as any as S.Schema<ImageTemplatePropertiesDistributeList>;
 
 /** If there is a customizer error and this field is set to 'cleanup', the build VM and associated network resources will be cleaned up. This is the default behavior. If there is a customizer error and this field is set to 'abort', the build VM will be preserved. */
 export type ImageTemplatePropertiesErrorHandlingOnCustomizerError =
@@ -660,256 +499,6 @@ export const ImageTemplatePropertiesErrorHandling = /*@__PURE__*/ S.suspend(
 ).annotate({
   identifier: "ImageTemplatePropertiesErrorHandling",
 }) as any as S.Schema<ImageTemplatePropertiesErrorHandling>;
-
-/** Optional array of resource IDs of user assigned managed identities to be configured on the build VM and validation VM. This may include the identity of the image template. */
-export type ImageTemplateVmProfileUserAssignedIdentitiesList = Array<string>;
-export const ImageTemplateVmProfileUserAssignedIdentitiesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ImageTemplateVmProfileUserAssignedIdentitiesList>;
-
-/** Virtual Network configuration. */
-export interface VirtualNetworkConfig {
-  /** Resource id of a pre-existing subnet on which the build VM and validation VM will be deployed */
-  subnetId?: string;
-  /** Resource id of a pre-existing subnet on which Azure Container Instance will be deployed for Isolated Builds. This field may be specified only if `subnetId` is also specified and must be on the same Virtual Network as the subnet specified in `subnetId`. */
-  containerInstanceSubnetId?: string;
-  /** Size of the proxy virtual machine used to pass traffic to the build VM and validation VM. This must not be specified if `containerInstanceSubnetId` is specified because no proxy virtual machine is deployed in that case. Omit or specify empty string to use the default (Standard_A1_v2). */
-  proxyVmSize?: string;
-}
-export const VirtualNetworkConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subnetId: S.optional(S.String),
-    containerInstanceSubnetId: S.optional(S.String),
-    proxyVmSize: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "VirtualNetworkConfig",
-}) as any as S.Schema<VirtualNetworkConfig>;
-
-/** Describes the virtual machines used to build and validate images */
-export interface ImageTemplateVmProfile {
-  /** Size of the virtual machine used to build, customize and capture images. Omit or specify empty string to use the default (Standard_D1_v2 for Gen1 images and Standard_D2ds_v4 for Gen2 images). */
-  vmSize?: string;
-  /** Size of the OS disk in GB. Omit or specify 0 to use Azure's default OS disk size. */
-  osDiskSizeGB?: number;
-  /** Optional array of resource IDs of user assigned managed identities to be configured on the build VM and validation VM. This may include the identity of the image template. */
-  userAssignedIdentities?: ImageTemplateVmProfileUserAssignedIdentitiesList;
-  /** Optional configuration of the virtual network to use to deploy the build VM and validation VM in. Omit if no specific virtual network needs to be used. */
-  vnetConfig?: VirtualNetworkConfig;
-}
-export const ImageTemplateVmProfile = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    vmSize: S.optional(S.String),
-    osDiskSizeGB: S.optional(S.Number),
-    userAssignedIdentities: S.optional(
-      ImageTemplateVmProfileUserAssignedIdentitiesList,
-    ),
-    vnetConfig: S.optional(VirtualNetworkConfig),
-  }),
-).annotate({
-  identifier: "ImageTemplateVmProfile",
-}) as any as S.Schema<ImageTemplateVmProfile>;
-
-/** Data disk properties. */
-export interface DataDisk {
-  /** Size of the data disk in GB. */
-  sizeGB?: number;
-}
-export const DataDisk = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    sizeGB: S.optional(S.Number),
-  }),
-).annotate({ identifier: "DataDisk" }) as any as S.Schema<DataDisk>;
-
-/** Optional array of additional data disks to be added to the image. */
-export type ImageTemplatePropertiesInputAdditionalDataDisksList =
-  Array<DataDisk>;
-export const ImageTemplatePropertiesInputAdditionalDataDisksList =
-  /*@__PURE__*/ S.Array(
-    DataDisk,
-  ) as any as S.Schema<ImageTemplatePropertiesInputAdditionalDataDisksList>;
-
-/** Enabling this field will trigger an automatic build on image template creation or update. */
-export type AutoRunState = "Enabled" | "Disabled";
-export const AutoRunState = /*@__PURE__*/ S.String;
-
-/** Indicates if the image template needs to be built on create/update */
-export interface ImageTemplateAutoRun {
-  /** Enabling this field will trigger an automatic build on image template creation or update. */
-  state?: AutoRunState | (string & {});
-}
-export const ImageTemplateAutoRun = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    state: S.optional(AutoRunState),
-  }),
-).annotate({
-  identifier: "ImageTemplateAutoRun",
-}) as any as S.Schema<ImageTemplateAutoRun>;
-
-/** Tags that will be applied to the resource group and/or resources created by the service. */
-export type ImageTemplatePropertiesInputManagedResourceTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ImageTemplatePropertiesInputManagedResourceTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<ImageTemplatePropertiesInputManagedResourceTagsMap>;
-
-/** Describes the properties of an image template */
-export interface ImageTemplatePropertiesInput {
-  /** Specifies the properties used to describe the source image. */
-  source: ImageTemplateSource;
-  /** Specifies the properties used to describe the customization steps of the image, like Image source etc */
-  customize?: ImageTemplatePropertiesInputCustomizeList;
-  /** Specifies optimization to be performed on image. */
-  optimize?: ImageTemplatePropertiesOptimize;
-  /** Configuration options and list of validations to be performed on the resulting image. */
-  validate?: ImageTemplatePropertiesValidate;
-  /** The distribution targets where the image output needs to go to. */
-  distribute: ImageTemplatePropertiesInputDistributeList;
-  /** Error handling options upon a build failure */
-  errorHandling?: ImageTemplatePropertiesErrorHandling;
-  /** Maximum duration to wait while building the image template (includes all customizations, optimization, validations, and distributions). Omit or specify 0 to use the default (4 hours). */
-  buildTimeoutInMinutes?: number;
-  /** Describes how virtual machine is set up to build images */
-  vmProfile?: ImageTemplateVmProfile;
-  /** Optional array of additional data disks to be added to the image. */
-  additionalDataDisks?: ImageTemplatePropertiesInputAdditionalDataDisksList;
-  /** The staging resource group id in the same subscription as the image template that will be used to build the image. If this field is empty, a resource group with a random name will be created. If the resource group specified in this field doesn't exist, it will be created with the same name. If the resource group specified exists, it must be empty and in the same region as the image template. The resource group created will be deleted during template deletion if this field is empty or the resource group specified doesn't exist, but if the resource group specified exists the resources created in the resource group will be deleted during template deletion and the resource group itself will remain. */
-  stagingResourceGroup?: string;
-  /** Indicates whether or not to automatically run the image template build on template creation or update. */
-  autoRun?: ImageTemplateAutoRun;
-  /** Tags that will be applied to the resource group and/or resources created by the service. */
-  managedResourceTags?: ImageTemplatePropertiesInputManagedResourceTagsMap;
-}
-export const ImageTemplatePropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    source: ImageTemplateSource,
-    customize: S.optional(ImageTemplatePropertiesInputCustomizeList),
-    optimize: S.optional(ImageTemplatePropertiesOptimize),
-    validate: S.optional(ImageTemplatePropertiesValidate),
-    distribute: ImageTemplatePropertiesInputDistributeList,
-    errorHandling: S.optional(ImageTemplatePropertiesErrorHandling),
-    buildTimeoutInMinutes: S.optional(S.Number),
-    vmProfile: S.optional(ImageTemplateVmProfile),
-    additionalDataDisks: S.optional(
-      ImageTemplatePropertiesInputAdditionalDataDisksList,
-    ),
-    stagingResourceGroup: S.optional(S.String),
-    autoRun: S.optional(ImageTemplateAutoRun),
-    managedResourceTags: S.optional(
-      ImageTemplatePropertiesInputManagedResourceTagsMap,
-    ),
-  }),
-).annotate({
-  identifier: "ImageTemplatePropertiesInput",
-}) as any as S.Schema<ImageTemplatePropertiesInput>;
-
-/** The type of identity used for the image template. The type 'None' will remove any identities from the image template. */
-export type ResourceIdentityType = "UserAssigned" | "None";
-export const ResourceIdentityType = /*@__PURE__*/ S.String;
-
-/** User assigned identity properties */
-export interface UserAssignedIdentityInput {}
-export const UserAssignedIdentityInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "UserAssignedIdentityInput",
-}) as any as S.Schema<UserAssignedIdentityInput>;
-
-/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-export type ImageTemplateIdentityInputUserAssignedIdentitiesMap = {
-  [key: string]: UserAssignedIdentityInput | undefined;
-};
-export const ImageTemplateIdentityInputUserAssignedIdentitiesMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    UserAssignedIdentityInput,
-  ) as any as S.Schema<ImageTemplateIdentityInputUserAssignedIdentitiesMap>;
-
-/** Identity for the image template. */
-export interface ImageTemplateIdentityInput {
-  /** The type of identity used for the image template. The type 'None' will remove any identities from the image template. */
-  type?: ResourceIdentityType | (string & {});
-  /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-  userAssignedIdentities?: ImageTemplateIdentityInputUserAssignedIdentitiesMap;
-}
-export const ImageTemplateIdentityInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: S.optional(ResourceIdentityType),
-    userAssignedIdentities: S.optional(
-      ImageTemplateIdentityInputUserAssignedIdentitiesMap,
-    ),
-  }),
-).annotate({
-  identifier: "ImageTemplateIdentityInput",
-}) as any as S.Schema<ImageTemplateIdentityInput>;
-
-export interface VirtualMachineImageTemplatesCreateOrUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the image Template */
-  imageTemplateName: string;
-  /** Resource tags. */
-  tags?: VirtualMachineImageTemplatesCreateOrUpdateRequestTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The properties of the image template */
-  properties?: ImageTemplatePropertiesInput;
-  /** The identity of the image template, if configured. */
-  identity: ImageTemplateIdentityInput;
-}
-export const VirtualMachineImageTemplatesCreateOrUpdateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      imageTemplateName: S.String.pipe(T.Label()),
-      tags: S.optional(
-        VirtualMachineImageTemplatesCreateOrUpdateRequestTagsMap,
-      ),
-      location: S.String,
-      properties: S.optional(ImageTemplatePropertiesInput),
-      identity: ImageTemplateIdentityInput,
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VirtualMachineImages/imageTemplates/{imageTemplateName}",
-        code: 200,
-        apiVersion: "2025-10-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "VirtualMachineImageTemplatesCreateOrUpdateRequest",
-  }) as any as S.Schema<VirtualMachineImageTemplatesCreateOrUpdateRequest>;
-
-/** Resource tags. */
-export type VirtualMachineImageTemplatesCreateOrUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const VirtualMachineImageTemplatesCreateOrUpdateResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<VirtualMachineImageTemplatesCreateOrUpdateResponseTagsMap>;
-
-/** Specifies the properties used to describe the customization steps of the image, like Image source etc */
-export type ImageTemplatePropertiesCustomizeList =
-  Array<ImageTemplateCustomizer>;
-export const ImageTemplatePropertiesCustomizeList = /*@__PURE__*/ S.Array(
-  ImageTemplateCustomizer,
-) as any as S.Schema<ImageTemplatePropertiesCustomizeList>;
-
-/** The distribution targets where the image output needs to go to. */
-export type ImageTemplatePropertiesDistributeList =
-  Array<ImageTemplateDistributor>;
-export const ImageTemplatePropertiesDistributeList = /*@__PURE__*/ S.Array(
-  ImageTemplateDistributor,
-) as any as S.Schema<ImageTemplatePropertiesDistributeList>;
 
 /** Error code of the provisioning failure */
 export type ProvisioningErrorCode =
@@ -991,12 +580,90 @@ export const ImageTemplateLastRunStatus = /*@__PURE__*/ S.suspend(() =>
   identifier: "ImageTemplateLastRunStatus",
 }) as any as S.Schema<ImageTemplateLastRunStatus>;
 
+/** Optional array of resource IDs of user assigned managed identities to be configured on the build VM and validation VM. This may include the identity of the image template. */
+export type ImageTemplateVmProfileUserAssignedIdentitiesList = Array<string>;
+export const ImageTemplateVmProfileUserAssignedIdentitiesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ImageTemplateVmProfileUserAssignedIdentitiesList>;
+
+/** Virtual Network configuration. */
+export interface VirtualNetworkConfig {
+  /** Resource id of a pre-existing subnet on which the build VM and validation VM will be deployed */
+  subnetId?: string;
+  /** Resource id of a pre-existing subnet on which Azure Container Instance will be deployed for Isolated Builds. This field may be specified only if `subnetId` is also specified and must be on the same Virtual Network as the subnet specified in `subnetId`. */
+  containerInstanceSubnetId?: string;
+  /** Size of the proxy virtual machine used to pass traffic to the build VM and validation VM. This must not be specified if `containerInstanceSubnetId` is specified because no proxy virtual machine is deployed in that case. Omit or specify empty string to use the default (Standard_A1_v2). */
+  proxyVmSize?: string;
+}
+export const VirtualNetworkConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subnetId: S.optional(S.String),
+    containerInstanceSubnetId: S.optional(S.String),
+    proxyVmSize: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "VirtualNetworkConfig",
+}) as any as S.Schema<VirtualNetworkConfig>;
+
+/** Describes the virtual machines used to build and validate images */
+export interface ImageTemplateVmProfile {
+  /** Size of the virtual machine used to build, customize and capture images. Omit or specify empty string to use the default (Standard_D1_v2 for Gen1 images and Standard_D2ds_v4 for Gen2 images). */
+  vmSize?: string;
+  /** Size of the OS disk in GB. Omit or specify 0 to use Azure's default OS disk size. */
+  osDiskSizeGB?: number;
+  /** Optional array of resource IDs of user assigned managed identities to be configured on the build VM and validation VM. This may include the identity of the image template. */
+  userAssignedIdentities?: ImageTemplateVmProfileUserAssignedIdentitiesList;
+  /** Optional configuration of the virtual network to use to deploy the build VM and validation VM in. Omit if no specific virtual network needs to be used. */
+  vnetConfig?: VirtualNetworkConfig;
+}
+export const ImageTemplateVmProfile = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    vmSize: S.optional(S.String),
+    osDiskSizeGB: S.optional(S.Number),
+    userAssignedIdentities: S.optional(
+      ImageTemplateVmProfileUserAssignedIdentitiesList,
+    ),
+    vnetConfig: S.optional(VirtualNetworkConfig),
+  }),
+).annotate({
+  identifier: "ImageTemplateVmProfile",
+}) as any as S.Schema<ImageTemplateVmProfile>;
+
+/** Data disk properties. */
+export interface DataDisk {
+  /** Size of the data disk in GB. */
+  sizeGB?: number;
+}
+export const DataDisk = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    sizeGB: S.optional(S.Number),
+  }),
+).annotate({ identifier: "DataDisk" }) as any as S.Schema<DataDisk>;
+
 /** Optional array of additional data disks to be added to the image. */
 export type ImageTemplatePropertiesAdditionalDataDisksList = Array<DataDisk>;
 export const ImageTemplatePropertiesAdditionalDataDisksList =
   /*@__PURE__*/ S.Array(
     DataDisk,
   ) as any as S.Schema<ImageTemplatePropertiesAdditionalDataDisksList>;
+
+/** Enabling this field will trigger an automatic build on image template creation or update. */
+export type AutoRunState = "Enabled" | "Disabled";
+export const AutoRunState = /*@__PURE__*/ S.String;
+
+/** Indicates if the image template needs to be built on create/update */
+export interface ImageTemplateAutoRun {
+  /** Enabling this field will trigger an automatic build on image template creation or update. */
+  state?: AutoRunState | (string & {});
+}
+export const ImageTemplateAutoRun = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    state: S.optional(AutoRunState),
+  }),
+).annotate({
+  identifier: "ImageTemplateAutoRun",
+}) as any as S.Schema<ImageTemplateAutoRun>;
 
 /** Tags that will be applied to the resource group and/or resources created by the service. */
 export type ImageTemplatePropertiesManagedResourceTagsMap = {
@@ -1070,6 +737,10 @@ export const ImageTemplateProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "ImageTemplateProperties",
 }) as any as S.Schema<ImageTemplateProperties>;
 
+/** The type of identity used for the image template. The type 'None' will remove any identities from the image template. */
+export type ResourceIdentityType = "UserAssigned" | "None";
+export const ResourceIdentityType = /*@__PURE__*/ S.String;
+
 /** User assigned identity properties */
 export interface UserAssignedIdentity {
   /** The principal ID of the assigned identity. */
@@ -1114,7 +785,7 @@ export const ImageTemplateIdentity = /*@__PURE__*/ S.suspend(() =>
   identifier: "ImageTemplateIdentity",
 }) as any as S.Schema<ImageTemplateIdentity>;
 
-export interface VirtualMachineImageTemplatesCreateOrUpdateResponse {
+export interface GetVirtualMachineImageTemplateResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -1124,7 +795,7 @@ export interface VirtualMachineImageTemplatesCreateOrUpdateResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: VirtualMachineImageTemplatesCreateOrUpdateResponseTagsMap;
+  tags?: GetVirtualMachineImageTemplateResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The properties of the image template */
@@ -1132,127 +803,23 @@ export interface VirtualMachineImageTemplatesCreateOrUpdateResponse {
   /** The identity of the image template, if configured. */
   identity: ImageTemplateIdentity;
 }
-export const VirtualMachineImageTemplatesCreateOrUpdateResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      tags: S.optional(
-        VirtualMachineImageTemplatesCreateOrUpdateResponseTagsMap,
-      ),
-      location: S.String,
-      properties: S.optional(ImageTemplateProperties),
-      identity: ImageTemplateIdentity,
-    }),
-  ).annotate({
-    identifier: "VirtualMachineImageTemplatesCreateOrUpdateResponse",
-  }) as any as S.Schema<VirtualMachineImageTemplatesCreateOrUpdateResponse>;
-
-export interface VirtualMachineImageTemplatesDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the image Template */
-  imageTemplateName: string;
-}
-export const VirtualMachineImageTemplatesDeleteRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      imageTemplateName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VirtualMachineImages/imageTemplates/{imageTemplateName}",
-        code: 200,
-        apiVersion: "2025-10-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "VirtualMachineImageTemplatesDeleteRequest",
-  }) as any as S.Schema<VirtualMachineImageTemplatesDeleteRequest>;
-
-export interface VirtualMachineImageTemplatesDeleteResponse {}
-export const VirtualMachineImageTemplatesDeleteResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "VirtualMachineImageTemplatesDeleteResponse",
-  }) as any as S.Schema<VirtualMachineImageTemplatesDeleteResponse>;
-
-export interface VirtualMachineImageTemplatesGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the image Template */
-  imageTemplateName: string;
-}
-export const VirtualMachineImageTemplatesGetRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      imageTemplateName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VirtualMachineImages/imageTemplates/{imageTemplateName}",
-        code: 200,
-        apiVersion: "2025-10-01",
-      }),
-    ),
-).annotate({
-  identifier: "VirtualMachineImageTemplatesGetRequest",
-}) as any as S.Schema<VirtualMachineImageTemplatesGetRequest>;
-
-/** Resource tags. */
-export type VirtualMachineImageTemplatesGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const VirtualMachineImageTemplatesGetResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<VirtualMachineImageTemplatesGetResponseTagsMap>;
-
-export interface VirtualMachineImageTemplatesGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: VirtualMachineImageTemplatesGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The properties of the image template */
-  properties?: ImageTemplateProperties;
-  /** The identity of the image template, if configured. */
-  identity: ImageTemplateIdentity;
-}
-export const VirtualMachineImageTemplatesGetResponse = /*@__PURE__*/ S.suspend(
+export const GetVirtualMachineImageTemplateResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
-      tags: S.optional(VirtualMachineImageTemplatesGetResponseTagsMap),
+      tags: S.optional(GetVirtualMachineImageTemplateResponseTagsMap),
       location: S.String,
       properties: S.optional(ImageTemplateProperties),
       identity: ImageTemplateIdentity,
     }),
 ).annotate({
-  identifier: "VirtualMachineImageTemplatesGetResponse",
-}) as any as S.Schema<VirtualMachineImageTemplatesGetResponse>;
+  identifier: "GetVirtualMachineImageTemplateResponse",
+}) as any as S.Schema<GetVirtualMachineImageTemplateResponse>;
 
-export interface VirtualMachineImageTemplatesGetRunOutputRequest {
+export interface GetVirtualMachineImageTemplateRunOutputRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1262,7 +829,7 @@ export interface VirtualMachineImageTemplatesGetRunOutputRequest {
   /** The name of the run output */
   runOutputName: string;
 }
-export const VirtualMachineImageTemplatesGetRunOutputRequest =
+export const GetVirtualMachineImageTemplateRunOutputRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -1278,8 +845,8 @@ export const VirtualMachineImageTemplatesGetRunOutputRequest =
       }),
     ),
   ).annotate({
-    identifier: "VirtualMachineImageTemplatesGetRunOutputRequest",
-  }) as any as S.Schema<VirtualMachineImageTemplatesGetRunOutputRequest>;
+    identifier: "GetVirtualMachineImageTemplateRunOutputRequest",
+  }) as any as S.Schema<GetVirtualMachineImageTemplateRunOutputRequest>;
 
 /** Describes the properties of a run output */
 export interface RunOutputProperties {
@@ -1300,7 +867,7 @@ export const RunOutputProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "RunOutputProperties",
 }) as any as S.Schema<RunOutputProperties>;
 
-export interface VirtualMachineImageTemplatesGetRunOutputResponse {
+export interface GetVirtualMachineImageTemplateRunOutputResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -1312,7 +879,7 @@ export interface VirtualMachineImageTemplatesGetRunOutputResponse {
   /** The properties of the run output */
   properties?: RunOutputProperties;
 }
-export const VirtualMachineImageTemplatesGetRunOutputResponse =
+export const GetVirtualMachineImageTemplateRunOutputResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
@@ -1322,28 +889,182 @@ export const VirtualMachineImageTemplatesGetRunOutputResponse =
       properties: S.optional(RunOutputProperties),
     }),
   ).annotate({
-    identifier: "VirtualMachineImageTemplatesGetRunOutputResponse",
-  }) as any as S.Schema<VirtualMachineImageTemplatesGetRunOutputResponse>;
+    identifier: "GetVirtualMachineImageTemplateRunOutputResponse",
+  }) as any as S.Schema<GetVirtualMachineImageTemplateRunOutputResponse>;
 
-export interface VirtualMachineImageTemplatesListRequest {
+export interface ListOperationsRequest {}
+export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/providers/Microsoft.VirtualMachineImages/operations",
+      code: 200,
+      apiVersion: "2025-10-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListOperationsRequest",
+}) as any as S.Schema<ListOperationsRequest>;
+
+/** The object that describes the operation. */
+export interface OperationDisplay {
+  /** Friendly name of the resource provider. */
+  provider?: string;
+  /** For example: read, write, delete, or listKeys/action */
+  operation?: string;
+  /** The resource type on which the operation is performed. */
+  resource?: string;
+  /** The friendly name of the operation */
+  description?: string;
+}
+export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provider: S.optional(S.String),
+    operation: S.optional(S.String),
+    resource: S.optional(S.String),
+    description: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "OperationDisplay",
+}) as any as S.Schema<OperationDisplay>;
+
+/** A REST API operation */
+export interface Operation {
+  /** This is of the format {provider}/{resource}/{operation} */
+  name?: string;
+  /** The object that describes the operation. */
+  display?: OperationDisplay;
+  /** The intended executor of the operation. */
+  origin?: string;
+  /** Properties of the operation. */
+  properties?: unknown;
+  /** The flag that indicates whether the operation applies to data plane. */
+  isDataAction?: boolean;
+}
+export const Operation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    display: S.optional(OperationDisplay),
+    origin: S.optional(S.String),
+    properties: S.optional(S.Unknown),
+    isDataAction: S.optional(S.Boolean),
+  }),
+).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
+
+/** The list of operations supported by the resource provider. */
+export type OperationListResultValueList = Array<Operation>;
+export const OperationListResultValueList = /*@__PURE__*/ S.Array(
+  Operation,
+) as any as S.Schema<OperationListResultValueList>;
+
+/** Result of the request to list REST API operations. It contains a list of operations and a URL nextLink to get the next set of results. */
+export interface OperationListResult {
+  /** The list of operations supported by the resource provider. */
+  value: OperationListResultValueList;
+  /** The URL to get the next set of operation list results if there are any. */
+  nextLink?: string;
+}
+export const OperationListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: OperationListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "OperationListResult",
+}) as any as S.Schema<OperationListResult>;
+
+export interface ListTriggerByImageTemplateRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the image Template */
+  imageTemplateName: string;
 }
-export const VirtualMachineImageTemplatesListRequest = /*@__PURE__*/ S.suspend(
-  () =>
+export const ListTriggerByImageTemplateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    imageTemplateName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VirtualMachineImages/imageTemplates/{imageTemplateName}/triggers",
+      code: 200,
+      apiVersion: "2025-10-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListTriggerByImageTemplateRequest",
+}) as any as S.Schema<ListTriggerByImageTemplateRequest>;
+
+/** Represents a trigger that can invoke an image template build. */
+export interface Trigger {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of a trigger */
+  properties?: TriggerProperties;
+}
+export const Trigger = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(TriggerProperties),
+  }),
+).annotate({ identifier: "Trigger" }) as any as S.Schema<Trigger>;
+
+/** The Trigger items on this page */
+export type TriggerCollectionValueList = Array<Trigger>;
+export const TriggerCollectionValueList = /*@__PURE__*/ S.Array(
+  Trigger,
+) as any as S.Schema<TriggerCollectionValueList>;
+
+/** The result of List triggers operation */
+export interface TriggerCollection {
+  /** The Trigger items on this page */
+  value: TriggerCollectionValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const TriggerCollection = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: TriggerCollectionValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "TriggerCollection",
+}) as any as S.Schema<TriggerCollection>;
+
+export interface ListVirtualMachineImageTemplateByResourceGroupRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+}
+export const ListVirtualMachineImageTemplateByResourceGroupRequest =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
         method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.VirtualMachineImages/imageTemplates",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VirtualMachineImages/imageTemplates",
         code: 200,
         apiVersion: "2025-10-01",
       }),
     ),
-).annotate({
-  identifier: "VirtualMachineImageTemplatesListRequest",
-}) as any as S.Schema<VirtualMachineImageTemplatesListRequest>;
+  ).annotate({
+    identifier: "ListVirtualMachineImageTemplateByResourceGroupRequest",
+  }) as any as S.Schema<ListVirtualMachineImageTemplateByResourceGroupRequest>;
 
 /** Resource tags. */
 export type ImageTemplateTagsMap = { [key: string]: string | undefined };
@@ -1406,30 +1127,7 @@ export const ImageTemplateListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "ImageTemplateListResult",
 }) as any as S.Schema<ImageTemplateListResult>;
 
-export interface VirtualMachineImageTemplatesListByResourceGroupRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-}
-export const VirtualMachineImageTemplatesListByResourceGroupRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VirtualMachineImages/imageTemplates",
-        code: 200,
-        apiVersion: "2025-10-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "VirtualMachineImageTemplatesListByResourceGroupRequest",
-  }) as any as S.Schema<VirtualMachineImageTemplatesListByResourceGroupRequest>;
-
-export interface VirtualMachineImageTemplatesListRunOutputsRequest {
+export interface ListVirtualMachineImageTemplateRunOutputsRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1437,7 +1135,7 @@ export interface VirtualMachineImageTemplatesListRunOutputsRequest {
   /** The name of the image Template */
   imageTemplateName: string;
 }
-export const VirtualMachineImageTemplatesListRunOutputsRequest =
+export const ListVirtualMachineImageTemplateRunOutputsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -1452,8 +1150,8 @@ export const VirtualMachineImageTemplatesListRunOutputsRequest =
       }),
     ),
   ).annotate({
-    identifier: "VirtualMachineImageTemplatesListRunOutputsRequest",
-  }) as any as S.Schema<VirtualMachineImageTemplatesListRunOutputsRequest>;
+    identifier: "ListVirtualMachineImageTemplateRunOutputsRequest",
+  }) as any as S.Schema<ListVirtualMachineImageTemplateRunOutputsRequest>;
 
 /** Represents an output that was created by running an image template. */
 export interface RunOutput {
@@ -1500,7 +1198,27 @@ export const RunOutputCollection = /*@__PURE__*/ S.suspend(() =>
   identifier: "RunOutputCollection",
 }) as any as S.Schema<RunOutputCollection>;
 
-export interface VirtualMachineImageTemplatesRunRequest {
+export interface ListVirtualMachineImageTemplatesRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+}
+export const ListVirtualMachineImageTemplatesRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.VirtualMachineImages/imageTemplates",
+        code: 200,
+        apiVersion: "2025-10-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListVirtualMachineImageTemplatesRequest",
+}) as any as S.Schema<ListVirtualMachineImageTemplatesRequest>;
+
+export interface RunVirtualMachineImageTemplateRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1508,7 +1226,7 @@ export interface VirtualMachineImageTemplatesRunRequest {
   /** The name of the image Template */
   imageTemplateName: string;
 }
-export const VirtualMachineImageTemplatesRunRequest = /*@__PURE__*/ S.suspend(
+export const RunVirtualMachineImageTemplateRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -1523,25 +1241,129 @@ export const VirtualMachineImageTemplatesRunRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "VirtualMachineImageTemplatesRunRequest",
-}) as any as S.Schema<VirtualMachineImageTemplatesRunRequest>;
+  identifier: "RunVirtualMachineImageTemplateRequest",
+}) as any as S.Schema<RunVirtualMachineImageTemplateRequest>;
 
-export interface VirtualMachineImageTemplatesRunResponse {}
-export const VirtualMachineImageTemplatesRunResponse = /*@__PURE__*/ S.suspend(
+export interface RunVirtualMachineImageTemplateResponse {}
+export const RunVirtualMachineImageTemplateResponse = /*@__PURE__*/ S.suspend(
   () => S.Struct({}),
 ).annotate({
-  identifier: "VirtualMachineImageTemplatesRunResponse",
-}) as any as S.Schema<VirtualMachineImageTemplatesRunResponse>;
+  identifier: "RunVirtualMachineImageTemplateResponse",
+}) as any as S.Schema<RunVirtualMachineImageTemplateResponse>;
+
+/** Describes the properties of a trigger */
+export interface TriggerPropertiesInput {
+  /** The kind of trigger. */
+  kind: string;
+}
+export const TriggerPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    kind: S.String,
+  }),
+).annotate({
+  identifier: "TriggerPropertiesInput",
+}) as any as S.Schema<TriggerPropertiesInput>;
+
+export interface TriggersCreateOrUpdateRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the image Template */
+  imageTemplateName: string;
+  /** The name of the trigger */
+  triggerName: string;
+  /** The properties of a trigger */
+  properties?: TriggerPropertiesInput;
+}
+export const TriggersCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    imageTemplateName: S.String.pipe(T.Label()),
+    triggerName: S.String.pipe(T.Label()),
+    properties: S.optional(TriggerPropertiesInput),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VirtualMachineImages/imageTemplates/{imageTemplateName}/triggers/{triggerName}",
+      code: 200,
+      apiVersion: "2025-10-01",
+    }),
+  ),
+).annotate({
+  identifier: "TriggersCreateOrUpdateRequest",
+}) as any as S.Schema<TriggersCreateOrUpdateRequest>;
+
+export interface TriggersCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of a trigger */
+  properties?: TriggerProperties;
+}
+export const TriggersCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(TriggerProperties),
+  }),
+).annotate({
+  identifier: "TriggersCreateOrUpdateResponse",
+}) as any as S.Schema<TriggersCreateOrUpdateResponse>;
+
+/** User assigned identity properties */
+export interface UserAssignedIdentityInput {}
+export const UserAssignedIdentityInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "UserAssignedIdentityInput",
+}) as any as S.Schema<UserAssignedIdentityInput>;
+
+/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+export type ImageTemplateIdentityInputUserAssignedIdentitiesMap = {
+  [key: string]: UserAssignedIdentityInput | undefined;
+};
+export const ImageTemplateIdentityInputUserAssignedIdentitiesMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    UserAssignedIdentityInput,
+  ) as any as S.Schema<ImageTemplateIdentityInputUserAssignedIdentitiesMap>;
+
+/** Identity for the image template. */
+export interface ImageTemplateIdentityInput {
+  /** The type of identity used for the image template. The type 'None' will remove any identities from the image template. */
+  type?: ResourceIdentityType | (string & {});
+  /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+  userAssignedIdentities?: ImageTemplateIdentityInputUserAssignedIdentitiesMap;
+}
+export const ImageTemplateIdentityInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: S.optional(ResourceIdentityType),
+    userAssignedIdentities: S.optional(
+      ImageTemplateIdentityInputUserAssignedIdentitiesMap,
+    ),
+  }),
+).annotate({
+  identifier: "ImageTemplateIdentityInput",
+}) as any as S.Schema<ImageTemplateIdentityInput>;
 
 /** The user-specified tags associated with the image template. */
-export type VirtualMachineImageTemplatesUpdateRequestTagsMap = {
+export type UpdateVirtualMachineImageTemplateRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const VirtualMachineImageTemplatesUpdateRequestTagsMap =
+export const UpdateVirtualMachineImageTemplateRequestTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<VirtualMachineImageTemplatesUpdateRequestTagsMap>;
+  ) as any as S.Schema<UpdateVirtualMachineImageTemplateRequestTagsMap>;
 
 /** The distribution targets where the image output needs to go to. */
 export type ImageTemplateUpdateParametersPropertiesDistributeList =
@@ -1570,7 +1392,7 @@ export const ImageTemplateUpdateParametersProperties = /*@__PURE__*/ S.suspend(
   identifier: "ImageTemplateUpdateParametersProperties",
 }) as any as S.Schema<ImageTemplateUpdateParametersProperties>;
 
-export interface VirtualMachineImageTemplatesUpdateRequest {
+export interface UpdateVirtualMachineImageTemplateRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1580,18 +1402,18 @@ export interface VirtualMachineImageTemplatesUpdateRequest {
   /** The identity of the image template, if configured. */
   identity?: ImageTemplateIdentityInput;
   /** The user-specified tags associated with the image template. */
-  tags?: VirtualMachineImageTemplatesUpdateRequestTagsMap;
+  tags?: UpdateVirtualMachineImageTemplateRequestTagsMap;
   /** Parameters for updating an image template. */
   properties?: ImageTemplateUpdateParametersProperties;
 }
-export const VirtualMachineImageTemplatesUpdateRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const UpdateVirtualMachineImageTemplateRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       imageTemplateName: S.String.pipe(T.Label()),
       identity: S.optional(ImageTemplateIdentityInput),
-      tags: S.optional(VirtualMachineImageTemplatesUpdateRequestTagsMap),
+      tags: S.optional(UpdateVirtualMachineImageTemplateRequestTagsMap),
       properties: S.optional(ImageTemplateUpdateParametersProperties),
     }).pipe(
       T.Http({
@@ -1601,21 +1423,21 @@ export const VirtualMachineImageTemplatesUpdateRequest =
         apiVersion: "2025-10-01",
       }),
     ),
-  ).annotate({
-    identifier: "VirtualMachineImageTemplatesUpdateRequest",
-  }) as any as S.Schema<VirtualMachineImageTemplatesUpdateRequest>;
+).annotate({
+  identifier: "UpdateVirtualMachineImageTemplateRequest",
+}) as any as S.Schema<UpdateVirtualMachineImageTemplateRequest>;
 
 /** Resource tags. */
-export type VirtualMachineImageTemplatesUpdateResponseTagsMap = {
+export type UpdateVirtualMachineImageTemplateResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const VirtualMachineImageTemplatesUpdateResponseTagsMap =
+export const UpdateVirtualMachineImageTemplateResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<VirtualMachineImageTemplatesUpdateResponseTagsMap>;
+  ) as any as S.Schema<UpdateVirtualMachineImageTemplateResponseTagsMap>;
 
-export interface VirtualMachineImageTemplatesUpdateResponse {
+export interface UpdateVirtualMachineImageTemplateResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -1625,7 +1447,7 @@ export interface VirtualMachineImageTemplatesUpdateResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: VirtualMachineImageTemplatesUpdateResponseTagsMap;
+  tags?: UpdateVirtualMachineImageTemplateResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The properties of the image template */
@@ -1633,32 +1455,375 @@ export interface VirtualMachineImageTemplatesUpdateResponse {
   /** The identity of the image template, if configured. */
   identity: ImageTemplateIdentity;
 }
-export const VirtualMachineImageTemplatesUpdateResponse =
+export const UpdateVirtualMachineImageTemplateResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
-      tags: S.optional(VirtualMachineImageTemplatesUpdateResponseTagsMap),
+      tags: S.optional(UpdateVirtualMachineImageTemplateResponseTagsMap),
       location: S.String,
       properties: S.optional(ImageTemplateProperties),
       identity: ImageTemplateIdentity,
     }),
   ).annotate({
-    identifier: "VirtualMachineImageTemplatesUpdateResponse",
-  }) as any as S.Schema<VirtualMachineImageTemplatesUpdateResponse>;
+    identifier: "UpdateVirtualMachineImageTemplateResponse",
+  }) as any as S.Schema<UpdateVirtualMachineImageTemplateResponse>;
 
-export type OperationsListError = AzureOpError;
-/** Lists available operations for the Microsoft.VirtualMachineImages provider */
-export const OperationsList: API.OperationMethod<
-  OperationsListRequest,
-  OperationListResult,
-  OperationsListError,
+/** Resource tags. */
+export type VirtualMachineImageTemplatesCreateOrUpdateRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const VirtualMachineImageTemplatesCreateOrUpdateRequestTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<VirtualMachineImageTemplatesCreateOrUpdateRequestTagsMap>;
+
+/** Specifies the properties used to describe the customization steps of the image, like Image source etc */
+export type ImageTemplatePropertiesInputCustomizeList =
+  Array<ImageTemplateCustomizer>;
+export const ImageTemplatePropertiesInputCustomizeList = /*@__PURE__*/ S.Array(
+  ImageTemplateCustomizer,
+) as any as S.Schema<ImageTemplatePropertiesInputCustomizeList>;
+
+/** The distribution targets where the image output needs to go to. */
+export type ImageTemplatePropertiesInputDistributeList =
+  Array<ImageTemplateDistributor>;
+export const ImageTemplatePropertiesInputDistributeList = /*@__PURE__*/ S.Array(
+  ImageTemplateDistributor,
+) as any as S.Schema<ImageTemplatePropertiesInputDistributeList>;
+
+/** Optional array of additional data disks to be added to the image. */
+export type ImageTemplatePropertiesInputAdditionalDataDisksList =
+  Array<DataDisk>;
+export const ImageTemplatePropertiesInputAdditionalDataDisksList =
+  /*@__PURE__*/ S.Array(
+    DataDisk,
+  ) as any as S.Schema<ImageTemplatePropertiesInputAdditionalDataDisksList>;
+
+/** Tags that will be applied to the resource group and/or resources created by the service. */
+export type ImageTemplatePropertiesInputManagedResourceTagsMap = {
+  [key: string]: string | undefined;
+};
+export const ImageTemplatePropertiesInputManagedResourceTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<ImageTemplatePropertiesInputManagedResourceTagsMap>;
+
+/** Describes the properties of an image template */
+export interface ImageTemplatePropertiesInput {
+  /** Specifies the properties used to describe the source image. */
+  source: ImageTemplateSource;
+  /** Specifies the properties used to describe the customization steps of the image, like Image source etc */
+  customize?: ImageTemplatePropertiesInputCustomizeList;
+  /** Specifies optimization to be performed on image. */
+  optimize?: ImageTemplatePropertiesOptimize;
+  /** Configuration options and list of validations to be performed on the resulting image. */
+  validate?: ImageTemplatePropertiesValidate;
+  /** The distribution targets where the image output needs to go to. */
+  distribute: ImageTemplatePropertiesInputDistributeList;
+  /** Error handling options upon a build failure */
+  errorHandling?: ImageTemplatePropertiesErrorHandling;
+  /** Maximum duration to wait while building the image template (includes all customizations, optimization, validations, and distributions). Omit or specify 0 to use the default (4 hours). */
+  buildTimeoutInMinutes?: number;
+  /** Describes how virtual machine is set up to build images */
+  vmProfile?: ImageTemplateVmProfile;
+  /** Optional array of additional data disks to be added to the image. */
+  additionalDataDisks?: ImageTemplatePropertiesInputAdditionalDataDisksList;
+  /** The staging resource group id in the same subscription as the image template that will be used to build the image. If this field is empty, a resource group with a random name will be created. If the resource group specified in this field doesn't exist, it will be created with the same name. If the resource group specified exists, it must be empty and in the same region as the image template. The resource group created will be deleted during template deletion if this field is empty or the resource group specified doesn't exist, but if the resource group specified exists the resources created in the resource group will be deleted during template deletion and the resource group itself will remain. */
+  stagingResourceGroup?: string;
+  /** Indicates whether or not to automatically run the image template build on template creation or update. */
+  autoRun?: ImageTemplateAutoRun;
+  /** Tags that will be applied to the resource group and/or resources created by the service. */
+  managedResourceTags?: ImageTemplatePropertiesInputManagedResourceTagsMap;
+}
+export const ImageTemplatePropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    source: ImageTemplateSource,
+    customize: S.optional(ImageTemplatePropertiesInputCustomizeList),
+    optimize: S.optional(ImageTemplatePropertiesOptimize),
+    validate: S.optional(ImageTemplatePropertiesValidate),
+    distribute: ImageTemplatePropertiesInputDistributeList,
+    errorHandling: S.optional(ImageTemplatePropertiesErrorHandling),
+    buildTimeoutInMinutes: S.optional(S.Number),
+    vmProfile: S.optional(ImageTemplateVmProfile),
+    additionalDataDisks: S.optional(
+      ImageTemplatePropertiesInputAdditionalDataDisksList,
+    ),
+    stagingResourceGroup: S.optional(S.String),
+    autoRun: S.optional(ImageTemplateAutoRun),
+    managedResourceTags: S.optional(
+      ImageTemplatePropertiesInputManagedResourceTagsMap,
+    ),
+  }),
+).annotate({
+  identifier: "ImageTemplatePropertiesInput",
+}) as any as S.Schema<ImageTemplatePropertiesInput>;
+
+export interface VirtualMachineImageTemplatesCreateOrUpdateRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the image Template */
+  imageTemplateName: string;
+  /** Resource tags. */
+  tags?: VirtualMachineImageTemplatesCreateOrUpdateRequestTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The properties of the image template */
+  properties?: ImageTemplatePropertiesInput;
+  /** The identity of the image template, if configured. */
+  identity: ImageTemplateIdentityInput;
+}
+export const VirtualMachineImageTemplatesCreateOrUpdateRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      imageTemplateName: S.String.pipe(T.Label()),
+      tags: S.optional(
+        VirtualMachineImageTemplatesCreateOrUpdateRequestTagsMap,
+      ),
+      location: S.String,
+      properties: S.optional(ImageTemplatePropertiesInput),
+      identity: ImageTemplateIdentityInput,
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VirtualMachineImages/imageTemplates/{imageTemplateName}",
+        code: 200,
+        apiVersion: "2025-10-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "VirtualMachineImageTemplatesCreateOrUpdateRequest",
+  }) as any as S.Schema<VirtualMachineImageTemplatesCreateOrUpdateRequest>;
+
+/** Resource tags. */
+export type VirtualMachineImageTemplatesCreateOrUpdateResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const VirtualMachineImageTemplatesCreateOrUpdateResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<VirtualMachineImageTemplatesCreateOrUpdateResponseTagsMap>;
+
+export interface VirtualMachineImageTemplatesCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: VirtualMachineImageTemplatesCreateOrUpdateResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The properties of the image template */
+  properties?: ImageTemplateProperties;
+  /** The identity of the image template, if configured. */
+  identity: ImageTemplateIdentity;
+}
+export const VirtualMachineImageTemplatesCreateOrUpdateResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      tags: S.optional(
+        VirtualMachineImageTemplatesCreateOrUpdateResponseTagsMap,
+      ),
+      location: S.String,
+      properties: S.optional(ImageTemplateProperties),
+      identity: ImageTemplateIdentity,
+    }),
+  ).annotate({
+    identifier: "VirtualMachineImageTemplatesCreateOrUpdateResponse",
+  }) as any as S.Schema<VirtualMachineImageTemplatesCreateOrUpdateResponse>;
+
+export type CancelVirtualMachineImageTemplateError = AzureOpError;
+/** Cancel the long running image build based on the image template */
+export const CancelVirtualMachineImageTemplate: API.OperationMethod<
+  CancelVirtualMachineImageTemplateRequest,
+  CancelVirtualMachineImageTemplateResponse,
+  CancelVirtualMachineImageTemplateError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OperationsListRequest,
+  input: CancelVirtualMachineImageTemplateRequest,
+  output: CancelVirtualMachineImageTemplateResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteTriggerError = AzureOpError;
+/** Delete a trigger for the specified virtual machine image template */
+export const DeleteTrigger: API.OperationMethod<
+  DeleteTriggerRequest,
+  DeleteTriggerResponse,
+  DeleteTriggerError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteTriggerRequest,
+  output: DeleteTriggerResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteVirtualMachineImageTemplateError = AzureOpError;
+/** Delete a virtual machine image template */
+export const DeleteVirtualMachineImageTemplate: API.OperationMethod<
+  DeleteVirtualMachineImageTemplateRequest,
+  DeleteVirtualMachineImageTemplateResponse,
+  DeleteVirtualMachineImageTemplateError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteVirtualMachineImageTemplateRequest,
+  output: DeleteVirtualMachineImageTemplateResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetTriggerError = AzureOpError;
+/** Get the specified trigger for the specified image template resource */
+export const GetTrigger: API.OperationMethod<
+  GetTriggerRequest,
+  GetTriggerResponse,
+  GetTriggerError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetTriggerRequest,
+  output: GetTriggerResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetVirtualMachineImageTemplateError = AzureOpError;
+/** Get information about a virtual machine image template */
+export const GetVirtualMachineImageTemplate: API.OperationMethod<
+  GetVirtualMachineImageTemplateRequest,
+  GetVirtualMachineImageTemplateResponse,
+  GetVirtualMachineImageTemplateError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetVirtualMachineImageTemplateRequest,
+  output: GetVirtualMachineImageTemplateResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetVirtualMachineImageTemplateRunOutputError = AzureOpError;
+/** Get the specified run output for the specified image template resource */
+export const GetVirtualMachineImageTemplateRunOutput: API.OperationMethod<
+  GetVirtualMachineImageTemplateRunOutputRequest,
+  GetVirtualMachineImageTemplateRunOutputResponse,
+  GetVirtualMachineImageTemplateRunOutputError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetVirtualMachineImageTemplateRunOutputRequest,
+  output: GetVirtualMachineImageTemplateRunOutputResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListOperationsError = AzureOpError;
+/** Lists available operations for the Microsoft.VirtualMachineImages provider */
+export const ListOperations: API.OperationMethod<
+  ListOperationsRequest,
+  OperationListResult,
+  ListOperationsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListOperationsRequest,
   output: OperationListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListTriggerByImageTemplateError = AzureOpError;
+/** List all triggers for the specified Image Template resource */
+export const ListTriggerByImageTemplate: API.OperationMethod<
+  ListTriggerByImageTemplateRequest,
+  TriggerCollection,
+  ListTriggerByImageTemplateError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListTriggerByImageTemplateRequest,
+  output: TriggerCollection,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListVirtualMachineImageTemplateByResourceGroupError = AzureOpError;
+/** Gets information about the VM image templates associated with the specified resource group. */
+export const ListVirtualMachineImageTemplateByResourceGroup: API.OperationMethod<
+  ListVirtualMachineImageTemplateByResourceGroupRequest,
+  ImageTemplateListResult,
+  ListVirtualMachineImageTemplateByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListVirtualMachineImageTemplateByResourceGroupRequest,
+  output: ImageTemplateListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListVirtualMachineImageTemplateRunOutputsError = AzureOpError;
+/** List all run outputs for the specified Image Template resource */
+export const ListVirtualMachineImageTemplateRunOutputs: API.OperationMethod<
+  ListVirtualMachineImageTemplateRunOutputsRequest,
+  RunOutputCollection,
+  ListVirtualMachineImageTemplateRunOutputsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListVirtualMachineImageTemplateRunOutputsRequest,
+  output: RunOutputCollection,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListVirtualMachineImageTemplatesError = AzureOpError;
+/** Gets information about the VM image templates associated with the subscription. */
+export const ListVirtualMachineImageTemplates: API.OperationMethod<
+  ListVirtualMachineImageTemplatesRequest,
+  ImageTemplateListResult,
+  ListVirtualMachineImageTemplatesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListVirtualMachineImageTemplatesRequest,
+  output: ImageTemplateListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RunVirtualMachineImageTemplateError = AzureOpError;
+/** Create artifacts from a existing image template */
+export const RunVirtualMachineImageTemplate: API.OperationMethod<
+  RunVirtualMachineImageTemplateRequest,
+  RunVirtualMachineImageTemplateResponse,
+  RunVirtualMachineImageTemplateError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RunVirtualMachineImageTemplateRequest,
+  output: RunVirtualMachineImageTemplateResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -1679,61 +1844,16 @@ export const TriggersCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type TriggersDeleteError = AzureOpError;
-/** Delete a trigger for the specified virtual machine image template */
-export const TriggersDelete: API.OperationMethod<
-  TriggersDeleteRequest,
-  TriggersDeleteResponse,
-  TriggersDeleteError,
+export type UpdateVirtualMachineImageTemplateError = AzureOpError;
+/** Update the tags for this Virtual Machine Image Template */
+export const UpdateVirtualMachineImageTemplate: API.OperationMethod<
+  UpdateVirtualMachineImageTemplateRequest,
+  UpdateVirtualMachineImageTemplateResponse,
+  UpdateVirtualMachineImageTemplateError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: TriggersDeleteRequest,
-  output: TriggersDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TriggersGetError = AzureOpError;
-/** Get the specified trigger for the specified image template resource */
-export const TriggersGet: API.OperationMethod<
-  TriggersGetRequest,
-  TriggersGetResponse,
-  TriggersGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TriggersGetRequest,
-  output: TriggersGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TriggersListByImageTemplateError = AzureOpError;
-/** List all triggers for the specified Image Template resource */
-export const TriggersListByImageTemplate: API.OperationMethod<
-  TriggersListByImageTemplateRequest,
-  TriggerCollection,
-  TriggersListByImageTemplateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TriggersListByImageTemplateRequest,
-  output: TriggerCollection,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualMachineImageTemplatesCancelError = AzureOpError;
-/** Cancel the long running image build based on the image template */
-export const VirtualMachineImageTemplatesCancel: API.OperationMethod<
-  VirtualMachineImageTemplatesCancelRequest,
-  VirtualMachineImageTemplatesCancelResponse,
-  VirtualMachineImageTemplatesCancelError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachineImageTemplatesCancelRequest,
-  output: VirtualMachineImageTemplatesCancelResponse,
+  input: UpdateVirtualMachineImageTemplateRequest,
+  output: UpdateVirtualMachineImageTemplateResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -1749,126 +1869,6 @@ export const VirtualMachineImageTemplatesCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: VirtualMachineImageTemplatesCreateOrUpdateRequest,
   output: VirtualMachineImageTemplatesCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualMachineImageTemplatesDeleteError = AzureOpError;
-/** Delete a virtual machine image template */
-export const VirtualMachineImageTemplatesDelete: API.OperationMethod<
-  VirtualMachineImageTemplatesDeleteRequest,
-  VirtualMachineImageTemplatesDeleteResponse,
-  VirtualMachineImageTemplatesDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachineImageTemplatesDeleteRequest,
-  output: VirtualMachineImageTemplatesDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualMachineImageTemplatesGetError = AzureOpError;
-/** Get information about a virtual machine image template */
-export const VirtualMachineImageTemplatesGet: API.OperationMethod<
-  VirtualMachineImageTemplatesGetRequest,
-  VirtualMachineImageTemplatesGetResponse,
-  VirtualMachineImageTemplatesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachineImageTemplatesGetRequest,
-  output: VirtualMachineImageTemplatesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualMachineImageTemplatesGetRunOutputError = AzureOpError;
-/** Get the specified run output for the specified image template resource */
-export const VirtualMachineImageTemplatesGetRunOutput: API.OperationMethod<
-  VirtualMachineImageTemplatesGetRunOutputRequest,
-  VirtualMachineImageTemplatesGetRunOutputResponse,
-  VirtualMachineImageTemplatesGetRunOutputError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachineImageTemplatesGetRunOutputRequest,
-  output: VirtualMachineImageTemplatesGetRunOutputResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualMachineImageTemplatesListError = AzureOpError;
-/** Gets information about the VM image templates associated with the subscription. */
-export const VirtualMachineImageTemplatesList: API.OperationMethod<
-  VirtualMachineImageTemplatesListRequest,
-  ImageTemplateListResult,
-  VirtualMachineImageTemplatesListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachineImageTemplatesListRequest,
-  output: ImageTemplateListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualMachineImageTemplatesListByResourceGroupError = AzureOpError;
-/** Gets information about the VM image templates associated with the specified resource group. */
-export const VirtualMachineImageTemplatesListByResourceGroup: API.OperationMethod<
-  VirtualMachineImageTemplatesListByResourceGroupRequest,
-  ImageTemplateListResult,
-  VirtualMachineImageTemplatesListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachineImageTemplatesListByResourceGroupRequest,
-  output: ImageTemplateListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualMachineImageTemplatesListRunOutputsError = AzureOpError;
-/** List all run outputs for the specified Image Template resource */
-export const VirtualMachineImageTemplatesListRunOutputs: API.OperationMethod<
-  VirtualMachineImageTemplatesListRunOutputsRequest,
-  RunOutputCollection,
-  VirtualMachineImageTemplatesListRunOutputsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachineImageTemplatesListRunOutputsRequest,
-  output: RunOutputCollection,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualMachineImageTemplatesRunError = AzureOpError;
-/** Create artifacts from a existing image template */
-export const VirtualMachineImageTemplatesRun: API.OperationMethod<
-  VirtualMachineImageTemplatesRunRequest,
-  VirtualMachineImageTemplatesRunResponse,
-  VirtualMachineImageTemplatesRunError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachineImageTemplatesRunRequest,
-  output: VirtualMachineImageTemplatesRunResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualMachineImageTemplatesUpdateError = AzureOpError;
-/** Update the tags for this Virtual Machine Image Template */
-export const VirtualMachineImageTemplatesUpdate: API.OperationMethod<
-  VirtualMachineImageTemplatesUpdateRequest,
-  VirtualMachineImageTemplatesUpdateResponse,
-  VirtualMachineImageTemplatesUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachineImageTemplatesUpdateRequest,
-  output: VirtualMachineImageTemplatesUpdateResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

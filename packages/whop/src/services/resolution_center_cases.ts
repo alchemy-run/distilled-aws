@@ -394,6 +394,224 @@ export const DenyResolutionCenterCaseRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "DenyResolutionCenterCaseRequest",
 }) as any as S.Schema<DenyResolutionCenterCaseRequest>;
 
+export interface GetResolutionCenterCaseRequest {
+  /** The resolution center case ID (`reso_` tag). */
+  id: string;
+}
+export const GetResolutionCenterCaseRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/resolution_center_cases/{id}", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetResolutionCenterCaseRequest",
+}) as any as S.Schema<GetResolutionCenterCaseRequest>;
+
+export type GetResolutionCenterCaseSummaryRequestGroupsItem =
+  | "status"
+  | "reason"
+  | "outcome";
+export const GetResolutionCenterCaseSummaryRequestGroupsItem =
+  /*@__PURE__*/ S.String;
+
+export type GetResolutionCenterCaseSummaryRequestGroupsList = Array<
+  GetResolutionCenterCaseSummaryRequestGroupsItem | (string & {})
+>;
+export const GetResolutionCenterCaseSummaryRequestGroupsList =
+  /*@__PURE__*/ S.Array(
+    GetResolutionCenterCaseSummaryRequestGroupsItem,
+  ) as any as S.Schema<GetResolutionCenterCaseSummaryRequestGroupsList>;
+
+export type GetResolutionCenterCaseSummaryRequestStatusItem =
+  | "awaiting_merchant"
+  | "awaiting_customer"
+  | "under_review"
+  | "closed";
+export const GetResolutionCenterCaseSummaryRequestStatusItem =
+  /*@__PURE__*/ S.String;
+
+export type GetResolutionCenterCaseSummaryRequestStatusList = Array<
+  GetResolutionCenterCaseSummaryRequestStatusItem | (string & {})
+>;
+export const GetResolutionCenterCaseSummaryRequestStatusList =
+  /*@__PURE__*/ S.Array(
+    GetResolutionCenterCaseSummaryRequestStatusItem,
+  ) as any as S.Schema<GetResolutionCenterCaseSummaryRequestStatusList>;
+
+export type GetResolutionCenterCaseSummaryRequestReasonItem =
+  | "fraudulent"
+  | "product_not_received"
+  | "not_as_described"
+  | "product_unacceptable"
+  | "subscription_canceled";
+export const GetResolutionCenterCaseSummaryRequestReasonItem =
+  /*@__PURE__*/ S.String;
+
+export type GetResolutionCenterCaseSummaryRequestReasonList = Array<
+  GetResolutionCenterCaseSummaryRequestReasonItem | (string & {})
+>;
+export const GetResolutionCenterCaseSummaryRequestReasonList =
+  /*@__PURE__*/ S.Array(
+    GetResolutionCenterCaseSummaryRequestReasonItem,
+  ) as any as S.Schema<GetResolutionCenterCaseSummaryRequestReasonList>;
+
+export type GetResolutionCenterCaseSummaryRequestOutcomeItem =
+  | "customer_won"
+  | "merchant_won"
+  | "withdrawn";
+export const GetResolutionCenterCaseSummaryRequestOutcomeItem =
+  /*@__PURE__*/ S.String;
+
+export type GetResolutionCenterCaseSummaryRequestOutcomeList = Array<
+  GetResolutionCenterCaseSummaryRequestOutcomeItem | (string & {})
+>;
+export const GetResolutionCenterCaseSummaryRequestOutcomeList =
+  /*@__PURE__*/ S.Array(
+    GetResolutionCenterCaseSummaryRequestOutcomeItem,
+  ) as any as S.Schema<GetResolutionCenterCaseSummaryRequestOutcomeList>;
+
+export interface GetResolutionCenterCaseSummaryRequest {
+  /** Which breakdowns to return, keyed by these names under `groups`. Repeat the parameter to ask for several; omit it for all of them. */
+  groups?: GetResolutionCenterCaseSummaryRequestGroupsList;
+  /** The account to summarize cases for (`biz_` tag). */
+  account_id?: string;
+  /** Only cases opened by this customer — a `user_` tag, or `me` for the calling user. */
+  user_id?: string;
+  /** Only cases in these statuses. */
+  status?: GetResolutionCenterCaseSummaryRequestStatusList;
+  /** Only cases opened for these reasons. */
+  reason?: GetResolutionCenterCaseSummaryRequestReasonList;
+  /** Only closed cases that ended these ways. */
+  outcome?: GetResolutionCenterCaseSummaryRequestOutcomeList;
+  /** Only count cases created before this ISO 8601 timestamp. */
+  created_before?: string;
+  /** Only count cases created after this ISO 8601 timestamp. */
+  created_after?: string;
+}
+export const GetResolutionCenterCaseSummaryRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      groups: S.optional(
+        GetResolutionCenterCaseSummaryRequestGroupsList.pipe(T.Query()),
+      ),
+      account_id: S.optional(S.String.pipe(T.Query())),
+      user_id: S.optional(S.String.pipe(T.Query())),
+      status: S.optional(
+        GetResolutionCenterCaseSummaryRequestStatusList.pipe(T.Query()),
+      ),
+      reason: S.optional(
+        GetResolutionCenterCaseSummaryRequestReasonList.pipe(T.Query()),
+      ),
+      outcome: S.optional(
+        GetResolutionCenterCaseSummaryRequestOutcomeList.pipe(T.Query()),
+      ),
+      created_before: S.optional(S.String.pipe(T.Query())),
+      created_after: S.optional(S.String.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/resolution_center_cases/summary",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "GetResolutionCenterCaseSummaryRequest",
+}) as any as S.Schema<GetResolutionCenterCaseSummaryRequest>;
+
+/** How many of the matching cases ended each way. Every outcome is present, including those with a count of zero; open cases are counted in none of them. */
+export interface GetResolutionCenterCaseSummaryResponseGroupsOutcome {
+  customer_won: number;
+  merchant_won: number;
+  withdrawn: number;
+}
+export const GetResolutionCenterCaseSummaryResponseGroupsOutcome =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      customer_won: S.Number,
+      merchant_won: S.Number,
+      withdrawn: S.Number,
+    }),
+  ).annotate({
+    identifier: "GetResolutionCenterCaseSummaryResponseGroupsOutcome",
+  }) as any as S.Schema<GetResolutionCenterCaseSummaryResponseGroupsOutcome>;
+
+/** How many of the matching cases were opened for each reason. Every reason is present, including those with a count of zero. */
+export interface GetResolutionCenterCaseSummaryResponseGroupsReason {
+  fraudulent: number;
+  not_as_described: number;
+  product_not_received: number;
+  product_unacceptable: number;
+  subscription_canceled: number;
+}
+export const GetResolutionCenterCaseSummaryResponseGroupsReason =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      fraudulent: S.Number,
+      not_as_described: S.Number,
+      product_not_received: S.Number,
+      product_unacceptable: S.Number,
+      subscription_canceled: S.Number,
+    }),
+  ).annotate({
+    identifier: "GetResolutionCenterCaseSummaryResponseGroupsReason",
+  }) as any as S.Schema<GetResolutionCenterCaseSummaryResponseGroupsReason>;
+
+/** How many of the matching cases are in each status. Every status is present, including those with a count of zero. */
+export interface GetResolutionCenterCaseSummaryResponseGroupsStatus {
+  awaiting_customer: number;
+  awaiting_merchant: number;
+  closed: number;
+  under_review: number;
+}
+export const GetResolutionCenterCaseSummaryResponseGroupsStatus =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      awaiting_customer: S.Number,
+      awaiting_merchant: S.Number,
+      closed: S.Number,
+      under_review: S.Number,
+    }),
+  ).annotate({
+    identifier: "GetResolutionCenterCaseSummaryResponseGroupsStatus",
+  }) as any as S.Schema<GetResolutionCenterCaseSummaryResponseGroupsStatus>;
+
+/** One entry per requested breakdown, keyed by the field it groups on. A field you did not ask for is absent. */
+export interface GetResolutionCenterCaseSummaryResponseGroups {
+  /** How many of the matching cases ended each way. Every outcome is present, including those with a count of zero; open cases are counted in none of them. */
+  outcome?: GetResolutionCenterCaseSummaryResponseGroupsOutcome;
+  /** How many of the matching cases were opened for each reason. Every reason is present, including those with a count of zero. */
+  reason?: GetResolutionCenterCaseSummaryResponseGroupsReason;
+  /** How many of the matching cases are in each status. Every status is present, including those with a count of zero. */
+  status?: GetResolutionCenterCaseSummaryResponseGroupsStatus;
+}
+export const GetResolutionCenterCaseSummaryResponseGroups =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      outcome: S.optional(GetResolutionCenterCaseSummaryResponseGroupsOutcome),
+      reason: S.optional(GetResolutionCenterCaseSummaryResponseGroupsReason),
+      status: S.optional(GetResolutionCenterCaseSummaryResponseGroupsStatus),
+    }),
+  ).annotate({
+    identifier: "GetResolutionCenterCaseSummaryResponseGroups",
+  }) as any as S.Schema<GetResolutionCenterCaseSummaryResponseGroups>;
+
+export interface GetResolutionCenterCaseSummaryResponse {
+  /** One entry per requested breakdown, keyed by the field it groups on. A field you did not ask for is absent. */
+  groups: GetResolutionCenterCaseSummaryResponseGroups;
+  /** How many cases match the filters. */
+  total: number;
+}
+export const GetResolutionCenterCaseSummaryResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      groups: GetResolutionCenterCaseSummaryResponseGroups,
+      total: S.Number,
+    }),
+).annotate({
+  identifier: "GetResolutionCenterCaseSummaryResponse",
+}) as any as S.Schema<GetResolutionCenterCaseSummaryResponse>;
+
 export interface ListResolutionCenterCaseEventsRequest {
   /** The resolution center case ID (`reso_` tag). */
   id: string;
@@ -764,230 +982,6 @@ export const RequestResolutionCenterCaseInfoRequest = /*@__PURE__*/ S.suspend(
   identifier: "RequestResolutionCenterCaseInfoRequest",
 }) as any as S.Schema<RequestResolutionCenterCaseInfoRequest>;
 
-export interface RetrieveResolutionCenterCaseRequest {
-  /** The resolution center case ID (`reso_` tag). */
-  id: string;
-}
-export const RetrieveResolutionCenterCaseRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/resolution_center_cases/{id}", code: 200 }),
-  ),
-).annotate({
-  identifier: "RetrieveResolutionCenterCaseRequest",
-}) as any as S.Schema<RetrieveResolutionCenterCaseRequest>;
-
-export type RetrieveResolutionCenterCaseSummaryRequestGroupsItem =
-  | "status"
-  | "reason"
-  | "outcome";
-export const RetrieveResolutionCenterCaseSummaryRequestGroupsItem =
-  /*@__PURE__*/ S.String;
-
-export type RetrieveResolutionCenterCaseSummaryRequestGroupsList = Array<
-  RetrieveResolutionCenterCaseSummaryRequestGroupsItem | (string & {})
->;
-export const RetrieveResolutionCenterCaseSummaryRequestGroupsList =
-  /*@__PURE__*/ S.Array(
-    RetrieveResolutionCenterCaseSummaryRequestGroupsItem,
-  ) as any as S.Schema<RetrieveResolutionCenterCaseSummaryRequestGroupsList>;
-
-export type RetrieveResolutionCenterCaseSummaryRequestStatusItem =
-  | "awaiting_merchant"
-  | "awaiting_customer"
-  | "under_review"
-  | "closed";
-export const RetrieveResolutionCenterCaseSummaryRequestStatusItem =
-  /*@__PURE__*/ S.String;
-
-export type RetrieveResolutionCenterCaseSummaryRequestStatusList = Array<
-  RetrieveResolutionCenterCaseSummaryRequestStatusItem | (string & {})
->;
-export const RetrieveResolutionCenterCaseSummaryRequestStatusList =
-  /*@__PURE__*/ S.Array(
-    RetrieveResolutionCenterCaseSummaryRequestStatusItem,
-  ) as any as S.Schema<RetrieveResolutionCenterCaseSummaryRequestStatusList>;
-
-export type RetrieveResolutionCenterCaseSummaryRequestReasonItem =
-  | "fraudulent"
-  | "product_not_received"
-  | "not_as_described"
-  | "product_unacceptable"
-  | "subscription_canceled";
-export const RetrieveResolutionCenterCaseSummaryRequestReasonItem =
-  /*@__PURE__*/ S.String;
-
-export type RetrieveResolutionCenterCaseSummaryRequestReasonList = Array<
-  RetrieveResolutionCenterCaseSummaryRequestReasonItem | (string & {})
->;
-export const RetrieveResolutionCenterCaseSummaryRequestReasonList =
-  /*@__PURE__*/ S.Array(
-    RetrieveResolutionCenterCaseSummaryRequestReasonItem,
-  ) as any as S.Schema<RetrieveResolutionCenterCaseSummaryRequestReasonList>;
-
-export type RetrieveResolutionCenterCaseSummaryRequestOutcomeItem =
-  | "customer_won"
-  | "merchant_won"
-  | "withdrawn";
-export const RetrieveResolutionCenterCaseSummaryRequestOutcomeItem =
-  /*@__PURE__*/ S.String;
-
-export type RetrieveResolutionCenterCaseSummaryRequestOutcomeList = Array<
-  RetrieveResolutionCenterCaseSummaryRequestOutcomeItem | (string & {})
->;
-export const RetrieveResolutionCenterCaseSummaryRequestOutcomeList =
-  /*@__PURE__*/ S.Array(
-    RetrieveResolutionCenterCaseSummaryRequestOutcomeItem,
-  ) as any as S.Schema<RetrieveResolutionCenterCaseSummaryRequestOutcomeList>;
-
-export interface RetrieveResolutionCenterCaseSummaryRequest {
-  /** Which breakdowns to return, keyed by these names under `groups`. Repeat the parameter to ask for several; omit it for all of them. */
-  groups?: RetrieveResolutionCenterCaseSummaryRequestGroupsList;
-  /** The account to summarize cases for (`biz_` tag). */
-  account_id?: string;
-  /** Only cases opened by this customer — a `user_` tag, or `me` for the calling user. */
-  user_id?: string;
-  /** Only cases in these statuses. */
-  status?: RetrieveResolutionCenterCaseSummaryRequestStatusList;
-  /** Only cases opened for these reasons. */
-  reason?: RetrieveResolutionCenterCaseSummaryRequestReasonList;
-  /** Only closed cases that ended these ways. */
-  outcome?: RetrieveResolutionCenterCaseSummaryRequestOutcomeList;
-  /** Only count cases created before this ISO 8601 timestamp. */
-  created_before?: string;
-  /** Only count cases created after this ISO 8601 timestamp. */
-  created_after?: string;
-}
-export const RetrieveResolutionCenterCaseSummaryRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      groups: S.optional(
-        RetrieveResolutionCenterCaseSummaryRequestGroupsList.pipe(T.Query()),
-      ),
-      account_id: S.optional(S.String.pipe(T.Query())),
-      user_id: S.optional(S.String.pipe(T.Query())),
-      status: S.optional(
-        RetrieveResolutionCenterCaseSummaryRequestStatusList.pipe(T.Query()),
-      ),
-      reason: S.optional(
-        RetrieveResolutionCenterCaseSummaryRequestReasonList.pipe(T.Query()),
-      ),
-      outcome: S.optional(
-        RetrieveResolutionCenterCaseSummaryRequestOutcomeList.pipe(T.Query()),
-      ),
-      created_before: S.optional(S.String.pipe(T.Query())),
-      created_after: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/resolution_center_cases/summary",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "RetrieveResolutionCenterCaseSummaryRequest",
-  }) as any as S.Schema<RetrieveResolutionCenterCaseSummaryRequest>;
-
-/** How many of the matching cases ended each way. Every outcome is present, including those with a count of zero; open cases are counted in none of them. */
-export interface RetrieveResolutionCenterCaseSummaryResponseGroupsOutcome {
-  customer_won: number;
-  merchant_won: number;
-  withdrawn: number;
-}
-export const RetrieveResolutionCenterCaseSummaryResponseGroupsOutcome =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      customer_won: S.Number,
-      merchant_won: S.Number,
-      withdrawn: S.Number,
-    }),
-  ).annotate({
-    identifier: "RetrieveResolutionCenterCaseSummaryResponseGroupsOutcome",
-  }) as any as S.Schema<RetrieveResolutionCenterCaseSummaryResponseGroupsOutcome>;
-
-/** How many of the matching cases were opened for each reason. Every reason is present, including those with a count of zero. */
-export interface RetrieveResolutionCenterCaseSummaryResponseGroupsReason {
-  fraudulent: number;
-  not_as_described: number;
-  product_not_received: number;
-  product_unacceptable: number;
-  subscription_canceled: number;
-}
-export const RetrieveResolutionCenterCaseSummaryResponseGroupsReason =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      fraudulent: S.Number,
-      not_as_described: S.Number,
-      product_not_received: S.Number,
-      product_unacceptable: S.Number,
-      subscription_canceled: S.Number,
-    }),
-  ).annotate({
-    identifier: "RetrieveResolutionCenterCaseSummaryResponseGroupsReason",
-  }) as any as S.Schema<RetrieveResolutionCenterCaseSummaryResponseGroupsReason>;
-
-/** How many of the matching cases are in each status. Every status is present, including those with a count of zero. */
-export interface RetrieveResolutionCenterCaseSummaryResponseGroupsStatus {
-  awaiting_customer: number;
-  awaiting_merchant: number;
-  closed: number;
-  under_review: number;
-}
-export const RetrieveResolutionCenterCaseSummaryResponseGroupsStatus =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      awaiting_customer: S.Number,
-      awaiting_merchant: S.Number,
-      closed: S.Number,
-      under_review: S.Number,
-    }),
-  ).annotate({
-    identifier: "RetrieveResolutionCenterCaseSummaryResponseGroupsStatus",
-  }) as any as S.Schema<RetrieveResolutionCenterCaseSummaryResponseGroupsStatus>;
-
-/** One entry per requested breakdown, keyed by the field it groups on. A field you did not ask for is absent. */
-export interface RetrieveResolutionCenterCaseSummaryResponseGroups {
-  /** How many of the matching cases ended each way. Every outcome is present, including those with a count of zero; open cases are counted in none of them. */
-  outcome?: RetrieveResolutionCenterCaseSummaryResponseGroupsOutcome;
-  /** How many of the matching cases were opened for each reason. Every reason is present, including those with a count of zero. */
-  reason?: RetrieveResolutionCenterCaseSummaryResponseGroupsReason;
-  /** How many of the matching cases are in each status. Every status is present, including those with a count of zero. */
-  status?: RetrieveResolutionCenterCaseSummaryResponseGroupsStatus;
-}
-export const RetrieveResolutionCenterCaseSummaryResponseGroups =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      outcome: S.optional(
-        RetrieveResolutionCenterCaseSummaryResponseGroupsOutcome,
-      ),
-      reason: S.optional(
-        RetrieveResolutionCenterCaseSummaryResponseGroupsReason,
-      ),
-      status: S.optional(
-        RetrieveResolutionCenterCaseSummaryResponseGroupsStatus,
-      ),
-    }),
-  ).annotate({
-    identifier: "RetrieveResolutionCenterCaseSummaryResponseGroups",
-  }) as any as S.Schema<RetrieveResolutionCenterCaseSummaryResponseGroups>;
-
-export interface RetrieveResolutionCenterCaseSummaryResponse {
-  /** One entry per requested breakdown, keyed by the field it groups on. A field you did not ask for is absent. */
-  groups: RetrieveResolutionCenterCaseSummaryResponseGroups;
-  /** How many cases match the filters. */
-  total: number;
-}
-export const RetrieveResolutionCenterCaseSummaryResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      groups: RetrieveResolutionCenterCaseSummaryResponseGroups,
-      total: S.Number,
-    }),
-  ).annotate({
-    identifier: "RetrieveResolutionCenterCaseSummaryResponse",
-  }) as any as S.Schema<RetrieveResolutionCenterCaseSummaryResponse>;
-
 export interface WithdrawResolutionCenterCaseRequest {
   /** The resolution center case ID (`reso_` tag). */
   id: string;
@@ -1072,6 +1066,36 @@ export const denyResolutionCenterCase: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetResolutionCenterCaseError = NotFound | WhopOpError;
+/** Retrieve Resolution Center Case Retrieves a single resolution center case with its full event timeline. */
+export const getResolutionCenterCase: API.OperationMethod<
+  GetResolutionCenterCaseRequest,
+  ResolutionCenterCase,
+  GetResolutionCenterCaseError,
+  WhopOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetResolutionCenterCaseRequest,
+  output: ResolutionCenterCase,
+  errors: [NotFound],
+  protocol: WhopProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetResolutionCenterCaseSummaryError = BadRequest | WhopOpError;
+/** Retrieve Resolution Center Case Summary Aggregates the same cases `GET /resolution_center_cases` lists, using the same filters. Use it to build status tabs and issue filters without paging the whole list. */
+export const getResolutionCenterCaseSummary: API.OperationMethod<
+  GetResolutionCenterCaseSummaryRequest,
+  GetResolutionCenterCaseSummaryResponse,
+  GetResolutionCenterCaseSummaryError,
+  WhopOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetResolutionCenterCaseSummaryRequest,
+  output: GetResolutionCenterCaseSummaryResponse,
+  errors: [BadRequest],
+  protocol: WhopProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListResolutionCenterCaseEventsError = NotFound | WhopOpError;
 /** List Resolution Center Case Events Lists the case timeline, newest first. Events the viewer is not allowed to see are omitted — a customer reads the customer-visible timeline, the merchant reads the full one. */
 export const listResolutionCenterCaseEvents: API.PaginatedOperationMethod<
@@ -1152,36 +1176,6 @@ export const requestResolutionCenterCaseInfo: API.OperationMethod<
   input: RequestResolutionCenterCaseInfoRequest,
   output: ResolutionCenterCase,
   errors: [Conflict],
-  protocol: WhopProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveResolutionCenterCaseError = NotFound | WhopOpError;
-/** Retrieve Resolution Center Case Retrieves a single resolution center case with its full event timeline. */
-export const retrieveResolutionCenterCase: API.OperationMethod<
-  RetrieveResolutionCenterCaseRequest,
-  ResolutionCenterCase,
-  RetrieveResolutionCenterCaseError,
-  WhopOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveResolutionCenterCaseRequest,
-  output: ResolutionCenterCase,
-  errors: [NotFound],
-  protocol: WhopProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveResolutionCenterCaseSummaryError = BadRequest | WhopOpError;
-/** Retrieve Resolution Center Case Summary Aggregates the same cases `GET /resolution_center_cases` lists, using the same filters. Use it to build status tabs and issue filters without paging the whole list. */
-export const retrieveResolutionCenterCaseSummary: API.OperationMethod<
-  RetrieveResolutionCenterCaseSummaryRequest,
-  RetrieveResolutionCenterCaseSummaryResponse,
-  RetrieveResolutionCenterCaseSummaryError,
-  WhopOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveResolutionCenterCaseSummaryRequest,
-  output: RetrieveResolutionCenterCaseSummaryResponse,
-  errors: [BadRequest],
   protocol: WhopProtocol,
   retry: Retry.Retry,
 }));

@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.modal.service#ServiceUser": {
@@ -49,7 +50,7 @@
         "target": "com.modal.service#ServiceUser"
       }
     },
-    "com.modal.service#ServiceUserListResponse": {
+    "com.modal.service#ListServiceUserResponse": {
       "type": "structure",
       "members": {
         "serviceUsers": {
@@ -60,13 +61,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.modal.service#ServiceUserList": {
+    "com.modal.service#ListServiceUser": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
       },
       "output": {
-        "target": "com.modal.service#ServiceUserListResponse"
+        "target": "com.modal.service#ListServiceUserResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -82,7 +83,7 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.modal.service#ServiceUserList"
+          "target": "com.modal.service#ListServiceUser"
         }
       ],
       "traits": {

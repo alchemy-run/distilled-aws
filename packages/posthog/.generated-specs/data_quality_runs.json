@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.data_quality_runs#DataQualityRunsListRequest": {
+    "com.posthog.data_quality_runs#ListDataQualityRunsRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -183,10 +184,10 @@
       },
       "traits": {}
     },
-    "com.posthog.data_quality_runs#DataQualityRunsList": {
+    "com.posthog.data_quality_runs#ListDataQualityRuns": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.data_quality_runs#DataQualityRunsListRequest"
+        "target": "com.posthog.data_quality_runs#ListDataQualityRunsRequest"
       },
       "output": {
         "target": "com.posthog.data_quality_runs#PaginatedDataQualitySuiteRunList"
@@ -200,7 +201,7 @@
         "smithy.api#documentation": "Project-wide check runs: start one over a selection, and read every run the project has had.\n\nThe per-subject surfaces only serve runs scoped to their own subject, so this is where a sweep\nacross several subjects -- a manual project-wide run, a materialization, a source sync -- is\nreadable. Scoped to `warehouse_objects` because it spans tables and views at once."
       }
     },
-    "com.posthog.data_quality_runs#DataQualityRunsCreateRequestCheckIdsList": {
+    "com.posthog.data_quality_runs#CreateDataQualityRunRequestCheckIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -209,7 +210,7 @@
         "smithy.api#documentation": "Ids of the checks to run. Omit to run every enabled check in the project."
       }
     },
-    "com.posthog.data_quality_runs#DataQualityRunsCreateRequest": {
+    "com.posthog.data_quality_runs#CreateDataQualityRunRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -221,7 +222,7 @@
           }
         },
         "check_ids": {
-          "target": "com.posthog.data_quality_runs#DataQualityRunsCreateRequestCheckIdsList",
+          "target": "com.posthog.data_quality_runs#CreateDataQualityRunRequestCheckIdsList",
           "traits": {
             "smithy.api#documentation": "Ids of the checks to run. Omit to run every enabled check in the project."
           }
@@ -231,10 +232,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.data_quality_runs#DataQualityRunsCreate": {
+    "com.posthog.data_quality_runs#CreateDataQualityRun": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.data_quality_runs#DataQualityRunsCreateRequest"
+        "target": "com.posthog.data_quality_runs#CreateDataQualityRunRequest"
       },
       "output": {
         "target": "com.posthog.data_quality_runs#DataQualitySuiteRun"
@@ -248,7 +249,7 @@
         "smithy.api#documentation": "Run the named checks now, or every enabled check in the project when none are named. Returns the suite run to poll for the report."
       }
     },
-    "com.posthog.data_quality_runs#DataQualityRunsRetrieveRequest": {
+    "com.posthog.data_quality_runs#GetDataQualityRunRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -272,10 +273,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.data_quality_runs#DataQualityRunsRetrieve": {
+    "com.posthog.data_quality_runs#GetDataQualityRun": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.data_quality_runs#DataQualityRunsRetrieveRequest"
+        "target": "com.posthog.data_quality_runs#GetDataQualityRunRequest"
       },
       "output": {
         "target": "com.posthog.data_quality_runs#DataQualitySuiteRun"
@@ -294,13 +295,13 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.data_quality_runs#DataQualityRunsList"
+          "target": "com.posthog.data_quality_runs#ListDataQualityRuns"
         },
         {
-          "target": "com.posthog.data_quality_runs#DataQualityRunsCreate"
+          "target": "com.posthog.data_quality_runs#CreateDataQualityRun"
         },
         {
-          "target": "com.posthog.data_quality_runs#DataQualityRunsRetrieve"
+          "target": "com.posthog.data_quality_runs#GetDataQualityRun"
         }
       ],
       "traits": {

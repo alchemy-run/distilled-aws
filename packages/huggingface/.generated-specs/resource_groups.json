@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.huggingface.resource_groups#GetResourceGroupRequest": {
@@ -1128,7 +1129,7 @@
         "smithy.api#documentation": "Delete resource group\n\nDelete a resource group from the organization.\n\nRequires the org to have a Team plan or higher."
       }
     },
-    "com.huggingface.resource_groups#ConfigureAutoJoinRequestAutoJoinCase0Role": {
+    "com.huggingface.resource_groups#JoinConfigureAutoRequestAutoJoinCase0Role": {
       "type": "enum",
       "members": {
         "ADMIN": {
@@ -1164,7 +1165,7 @@
       },
       "traits": {}
     },
-    "com.huggingface.resource_groups#ConfigureAutoJoinRequestAutoJoinCase0Scope": {
+    "com.huggingface.resource_groups#JoinConfigureAutoRequestAutoJoinCase0Scope": {
       "type": "enum",
       "members": {
         "ALL": {
@@ -1182,7 +1183,7 @@
       },
       "traits": {}
     },
-    "com.huggingface.resource_groups#ConfigureAutoJoinRequestAutoJoinCase0": {
+    "com.huggingface.resource_groups#JoinConfigureAutoRequestAutoJoinCase0": {
       "type": "structure",
       "members": {
         "enabled": {
@@ -1192,18 +1193,18 @@
           }
         },
         "role": {
-          "target": "com.huggingface.resource_groups#ConfigureAutoJoinRequestAutoJoinCase0Role",
+          "target": "com.huggingface.resource_groups#JoinConfigureAutoRequestAutoJoinCase0Role",
           "traits": {
             "smithy.api#required": {}
           }
         },
         "scope": {
-          "target": "com.huggingface.resource_groups#ConfigureAutoJoinRequestAutoJoinCase0Scope"
+          "target": "com.huggingface.resource_groups#JoinConfigureAutoRequestAutoJoinCase0Scope"
         }
       },
       "traits": {}
     },
-    "com.huggingface.resource_groups#ConfigureAutoJoinRequestAutoJoinCase1": {
+    "com.huggingface.resource_groups#JoinConfigureAutoRequestAutoJoinCase1": {
       "type": "structure",
       "members": {
         "enabled": {
@@ -1215,19 +1216,19 @@
       },
       "traits": {}
     },
-    "com.huggingface.resource_groups#ConfigureAutoJoinRequestAutoJoin": {
+    "com.huggingface.resource_groups#JoinConfigureAutoRequestAutoJoin": {
       "type": "union",
       "members": {
         "Case0": {
-          "target": "com.huggingface.resource_groups#ConfigureAutoJoinRequestAutoJoinCase0"
+          "target": "com.huggingface.resource_groups#JoinConfigureAutoRequestAutoJoinCase0"
         },
         "Case1": {
-          "target": "com.huggingface.resource_groups#ConfigureAutoJoinRequestAutoJoinCase1"
+          "target": "com.huggingface.resource_groups#JoinConfigureAutoRequestAutoJoinCase1"
         }
       },
       "traits": {}
     },
-    "com.huggingface.resource_groups#ConfigureAutoJoinRequest": {
+    "com.huggingface.resource_groups#JoinConfigureAutoRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -1245,14 +1246,14 @@
           }
         },
         "autoJoin": {
-          "target": "com.huggingface.resource_groups#ConfigureAutoJoinRequestAutoJoin"
+          "target": "com.huggingface.resource_groups#JoinConfigureAutoRequestAutoJoin"
         }
       },
       "traits": {
         "smithy.api#input": {}
       }
     },
-    "com.huggingface.resource_groups#ConfigureAutoJoinResponseAutoJoinCase0Role": {
+    "com.huggingface.resource_groups#JoinConfigureAutoResponseAutoJoinCase0Role": {
       "type": "enum",
       "members": {
         "ADMIN": {
@@ -1288,7 +1289,7 @@
       },
       "traits": {}
     },
-    "com.huggingface.resource_groups#ConfigureAutoJoinResponseAutoJoinCase0Scope": {
+    "com.huggingface.resource_groups#JoinConfigureAutoResponseAutoJoinCase0Scope": {
       "type": "enum",
       "members": {
         "ALL": {
@@ -1306,7 +1307,7 @@
       },
       "traits": {}
     },
-    "com.huggingface.resource_groups#ConfigureAutoJoinResponseAutoJoinCase0": {
+    "com.huggingface.resource_groups#JoinConfigureAutoResponseAutoJoinCase0": {
       "type": "structure",
       "members": {
         "enabled": {
@@ -1316,18 +1317,18 @@
           }
         },
         "role": {
-          "target": "com.huggingface.resource_groups#ConfigureAutoJoinResponseAutoJoinCase0Role",
+          "target": "com.huggingface.resource_groups#JoinConfigureAutoResponseAutoJoinCase0Role",
           "traits": {
             "smithy.api#required": {}
           }
         },
         "scope": {
-          "target": "com.huggingface.resource_groups#ConfigureAutoJoinResponseAutoJoinCase0Scope"
+          "target": "com.huggingface.resource_groups#JoinConfigureAutoResponseAutoJoinCase0Scope"
         }
       },
       "traits": {}
     },
-    "com.huggingface.resource_groups#ConfigureAutoJoinResponseAutoJoinCase1": {
+    "com.huggingface.resource_groups#JoinConfigureAutoResponseAutoJoinCase1": {
       "type": "structure",
       "members": {
         "enabled": {
@@ -1339,19 +1340,19 @@
       },
       "traits": {}
     },
-    "com.huggingface.resource_groups#ConfigureAutoJoinResponseAutoJoin": {
+    "com.huggingface.resource_groups#JoinConfigureAutoResponseAutoJoin": {
       "type": "union",
       "members": {
         "Case0": {
-          "target": "com.huggingface.resource_groups#ConfigureAutoJoinResponseAutoJoinCase0"
+          "target": "com.huggingface.resource_groups#JoinConfigureAutoResponseAutoJoinCase0"
         },
         "Case1": {
-          "target": "com.huggingface.resource_groups#ConfigureAutoJoinResponseAutoJoinCase1"
+          "target": "com.huggingface.resource_groups#JoinConfigureAutoResponseAutoJoinCase1"
         }
       },
       "traits": {}
     },
-    "com.huggingface.resource_groups#ConfigureAutoJoinResponseSpendLimits": {
+    "com.huggingface.resource_groups#JoinConfigureAutoResponseSpendLimits": {
       "type": "structure",
       "members": {
         "total": {
@@ -1372,7 +1373,7 @@
       },
       "traits": {}
     },
-    "com.huggingface.resource_groups#ConfigureAutoJoinResponseUsersItemRole": {
+    "com.huggingface.resource_groups#JoinConfigureAutoResponseUsersItemRole": {
       "type": "enum",
       "members": {
         "ADMIN": {
@@ -1408,7 +1409,7 @@
       },
       "traits": {}
     },
-    "com.huggingface.resource_groups#ConfigureAutoJoinResponseUsersItem": {
+    "com.huggingface.resource_groups#JoinConfigureAutoResponseUsersItem": {
       "type": "structure",
       "members": {
         "type": {
@@ -1442,7 +1443,7 @@
           }
         },
         "role": {
-          "target": "com.huggingface.resource_groups#ConfigureAutoJoinResponseUsersItemRole",
+          "target": "com.huggingface.resource_groups#JoinConfigureAutoResponseUsersItemRole",
           "traits": {
             "smithy.api#required": {}
           }
@@ -1453,14 +1454,14 @@
       },
       "traits": {}
     },
-    "com.huggingface.resource_groups#ConfigureAutoJoinResponseUsersList": {
+    "com.huggingface.resource_groups#JoinConfigureAutoResponseUsersList": {
       "type": "list",
       "member": {
-        "target": "com.huggingface.resource_groups#ConfigureAutoJoinResponseUsersItem"
+        "target": "com.huggingface.resource_groups#JoinConfigureAutoResponseUsersItem"
       },
       "traits": {}
     },
-    "com.huggingface.resource_groups#ConfigureAutoJoinResponseResourcesItemCase0Type": {
+    "com.huggingface.resource_groups#JoinConfigureAutoResponseResourcesItemCase0Type": {
       "type": "enum",
       "members": {
         "DATASET": {
@@ -1496,11 +1497,11 @@
       },
       "traits": {}
     },
-    "com.huggingface.resource_groups#ConfigureAutoJoinResponseResourcesItemCase0": {
+    "com.huggingface.resource_groups#JoinConfigureAutoResponseResourcesItemCase0": {
       "type": "structure",
       "members": {
         "type": {
-          "target": "com.huggingface.resource_groups#ConfigureAutoJoinResponseResourcesItemCase0Type",
+          "target": "com.huggingface.resource_groups#JoinConfigureAutoResponseResourcesItemCase0Type",
           "traits": {
             "smithy.api#required": {}
           }
@@ -1523,7 +1524,7 @@
       },
       "traits": {}
     },
-    "com.huggingface.resource_groups#ConfigureAutoJoinResponseResourcesItemCase1": {
+    "com.huggingface.resource_groups#JoinConfigureAutoResponseResourcesItemCase1": {
       "type": "structure",
       "members": {
         "type": {
@@ -1562,7 +1563,7 @@
       },
       "traits": {}
     },
-    "com.huggingface.resource_groups#ConfigureAutoJoinResponseResourcesItemCase2": {
+    "com.huggingface.resource_groups#JoinConfigureAutoResponseResourcesItemCase2": {
       "type": "structure",
       "members": {
         "type": {
@@ -1601,7 +1602,7 @@
       },
       "traits": {}
     },
-    "com.huggingface.resource_groups#ConfigureAutoJoinResponseResourcesItemCase3": {
+    "com.huggingface.resource_groups#JoinConfigureAutoResponseResourcesItemCase3": {
       "type": "structure",
       "members": {
         "type": {
@@ -1625,7 +1626,7 @@
       },
       "traits": {}
     },
-    "com.huggingface.resource_groups#ConfigureAutoJoinResponseResourcesItemCase4": {
+    "com.huggingface.resource_groups#JoinConfigureAutoResponseResourcesItemCase4": {
       "type": "structure",
       "members": {
         "type": {
@@ -1649,35 +1650,35 @@
       },
       "traits": {}
     },
-    "com.huggingface.resource_groups#ConfigureAutoJoinResponseResourcesItem": {
+    "com.huggingface.resource_groups#JoinConfigureAutoResponseResourcesItem": {
       "type": "union",
       "members": {
         "Case0": {
-          "target": "com.huggingface.resource_groups#ConfigureAutoJoinResponseResourcesItemCase0"
+          "target": "com.huggingface.resource_groups#JoinConfigureAutoResponseResourcesItemCase0"
         },
         "Case1": {
-          "target": "com.huggingface.resource_groups#ConfigureAutoJoinResponseResourcesItemCase1"
+          "target": "com.huggingface.resource_groups#JoinConfigureAutoResponseResourcesItemCase1"
         },
         "Case2": {
-          "target": "com.huggingface.resource_groups#ConfigureAutoJoinResponseResourcesItemCase2"
+          "target": "com.huggingface.resource_groups#JoinConfigureAutoResponseResourcesItemCase2"
         },
         "Case3": {
-          "target": "com.huggingface.resource_groups#ConfigureAutoJoinResponseResourcesItemCase3"
+          "target": "com.huggingface.resource_groups#JoinConfigureAutoResponseResourcesItemCase3"
         },
         "Case4": {
-          "target": "com.huggingface.resource_groups#ConfigureAutoJoinResponseResourcesItemCase4"
+          "target": "com.huggingface.resource_groups#JoinConfigureAutoResponseResourcesItemCase4"
         }
       },
       "traits": {}
     },
-    "com.huggingface.resource_groups#ConfigureAutoJoinResponseResourcesList": {
+    "com.huggingface.resource_groups#JoinConfigureAutoResponseResourcesList": {
       "type": "list",
       "member": {
-        "target": "com.huggingface.resource_groups#ConfigureAutoJoinResponseResourcesItem"
+        "target": "com.huggingface.resource_groups#JoinConfigureAutoResponseResourcesItem"
       },
       "traits": {}
     },
-    "com.huggingface.resource_groups#ConfigureAutoJoinResponse": {
+    "com.huggingface.resource_groups#JoinConfigureAutoResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1699,19 +1700,19 @@
           }
         },
         "autoJoin": {
-          "target": "com.huggingface.resource_groups#ConfigureAutoJoinResponseAutoJoin"
+          "target": "com.huggingface.resource_groups#JoinConfigureAutoResponseAutoJoin"
         },
         "spendLimits": {
-          "target": "com.huggingface.resource_groups#ConfigureAutoJoinResponseSpendLimits"
+          "target": "com.huggingface.resource_groups#JoinConfigureAutoResponseSpendLimits"
         },
         "users": {
-          "target": "com.huggingface.resource_groups#ConfigureAutoJoinResponseUsersList",
+          "target": "com.huggingface.resource_groups#JoinConfigureAutoResponseUsersList",
           "traits": {
             "smithy.api#required": {}
           }
         },
         "resources": {
-          "target": "com.huggingface.resource_groups#ConfigureAutoJoinResponseResourcesList",
+          "target": "com.huggingface.resource_groups#JoinConfigureAutoResponseResourcesList",
           "traits": {
             "smithy.api#required": {}
           }
@@ -1721,13 +1722,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.huggingface.resource_groups#ConfigureAutoJoin": {
+    "com.huggingface.resource_groups#JoinConfigureAuto": {
       "type": "operation",
       "input": {
-        "target": "com.huggingface.resource_groups#ConfigureAutoJoinRequest"
+        "target": "com.huggingface.resource_groups#JoinConfigureAutoRequest"
       },
       "output": {
-        "target": "com.huggingface.resource_groups#ConfigureAutoJoinResponse"
+        "target": "com.huggingface.resource_groups#JoinConfigureAutoResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4720,7 +4721,7 @@
           "target": "com.huggingface.resource_groups#DeleteResourceGroup"
         },
         {
-          "target": "com.huggingface.resource_groups#ConfigureAutoJoin"
+          "target": "com.huggingface.resource_groups#JoinConfigureAuto"
         },
         {
           "target": "com.huggingface.resource_groups#AddUsers"

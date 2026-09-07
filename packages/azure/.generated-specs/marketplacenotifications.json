@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.marketplacenotifications#NotificationGetOperations": {
+    "com.azure.marketplacenotifications#GetNotificationOperations": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -134,13 +135,13 @@
         "smithy.api#documentation": "Operation display payload"
       }
     },
-    "com.azure.marketplacenotifications#NotificationGet": {
+    "com.azure.marketplacenotifications#GetNotification": {
       "type": "operation",
       "input": {
-        "target": "com.azure.marketplacenotifications#NotificationGetRequest"
+        "target": "com.azure.marketplacenotifications#GetNotificationRequest"
       },
       "output": {
-        "target": "com.azure.marketplacenotifications#NotificationGetResponse"
+        "target": "com.azure.marketplacenotifications#GetNotificationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -152,7 +153,7 @@
         "com.distilled.openapi#apiVersion": "2021-03-03"
       }
     },
-    "com.azure.marketplacenotifications#NotificationGetResponse": {
+    "com.azure.marketplacenotifications#GetNotificationResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -174,7 +175,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.marketplacenotifications#NotificationGetResponseSystemData",
+          "target": "com.azure.marketplacenotifications#GetNotificationResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -220,7 +221,7 @@
       },
       "traits": {}
     },
-    "com.azure.marketplacenotifications#NotificationGetResponseSystemData": {
+    "com.azure.marketplacenotifications#GetNotificationResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -230,7 +231,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.marketplacenotifications#NotificationGetResponseSystemDataCreatedByType",
+          "target": "com.azure.marketplacenotifications#GetNotificationResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -248,7 +249,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.marketplacenotifications#NotificationGetResponseSystemDataLastModifiedByType",
+          "target": "com.azure.marketplacenotifications#GetNotificationResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -264,7 +265,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.marketplacenotifications#NotificationGetResponseSystemDataLastModifiedByType": {
+    "com.azure.marketplacenotifications#GetNotificationResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -296,7 +297,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.marketplacenotifications#NotificationGetResponseSystemDataCreatedByType": {
+    "com.azure.marketplacenotifications#GetNotificationResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -328,7 +329,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.marketplacenotifications#NotificationGetRequest": {
+    "com.azure.marketplacenotifications#GetNotificationRequest": {
       "type": "structure",
       "members": {
         "subscription": {
@@ -360,10 +361,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.marketplacenotifications#NotificationsList": {
+    "com.azure.marketplacenotifications#ListNotifications": {
       "type": "operation",
       "input": {
-        "target": "com.azure.marketplacenotifications#NotificationsListRequest"
+        "target": "com.azure.marketplacenotifications#ListNotificationsRequest"
       },
       "output": {
         "target": "com.azure.marketplacenotifications#NotificationList"
@@ -548,7 +549,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.marketplacenotifications#NotificationsListRequest": {
+    "com.azure.marketplacenotifications#ListNotificationsRequest": {
       "type": "structure",
       "members": {
         "subscription": {
@@ -577,13 +578,13 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.marketplacenotifications#NotificationGetOperations"
+          "target": "com.azure.marketplacenotifications#GetNotificationOperations"
         },
         {
-          "target": "com.azure.marketplacenotifications#NotificationGet"
+          "target": "com.azure.marketplacenotifications#GetNotification"
         },
         {
-          "target": "com.azure.marketplacenotifications#NotificationsList"
+          "target": "com.azure.marketplacenotifications#ListNotifications"
         }
       ],
       "traits": {

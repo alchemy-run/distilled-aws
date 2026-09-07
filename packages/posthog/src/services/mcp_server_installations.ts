@@ -31,60 +31,257 @@ export class NotFound
     [{ status: 404 }],
   ) {}
 
-export type McpServerInstallationsAuthorizeRetrieveRequestInstallSource =
-  | "posthog"
-  | "posthog-code";
-export const McpServerInstallationsAuthorizeRetrieveRequestInstallSource =
-  /*@__PURE__*/ S.String;
+/** * `api_key` - API Key * `oauth` - OAuth */
+export type MCPAuthTypeEnum = "api_key" | "oauth";
+export const MCPAuthTypeEnum = /*@__PURE__*/ S.String;
 
-export interface McpServerInstallationsAuthorizeRetrieveRequest {
+export interface CreateMcpServerInstallationRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
-  /** * `posthog` - posthog * `posthog-code` - posthog-code */
-  install_source?:
-    | McpServerInstallationsAuthorizeRetrieveRequestInstallSource
-    | (string & {});
-  installation_id?: string;
-  posthog_code_callback_url?: string;
-  /** In-app path to land back on after the OAuth round-trip. Must be a same-app relative path. */
-  return_path?: string;
-  template_id?: string;
+  display_name?: string;
+  url?: string;
+  auth_type?: MCPAuthTypeEnum | (string & {});
+  is_enabled?: boolean;
 }
-export const McpServerInstallationsAuthorizeRetrieveRequest =
+export const CreateMcpServerInstallationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    display_name: S.optional(S.String),
+    url: S.optional(S.String),
+    auth_type: S.optional(MCPAuthTypeEnum),
+    is_enabled: S.optional(S.Boolean),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/api/projects/{project_id}/mcp_server_installations/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateMcpServerInstallationRequest",
+}) as any as S.Schema<CreateMcpServerInstallationRequest>;
+
+/** * `personal` - Personal * `shared` - Shared */
+export type MCPServerInstallationScopeEnum = "personal" | "shared";
+export const MCPServerInstallationScopeEnum = /*@__PURE__*/ S.String;
+
+export interface MCPServerInstallation {
+  id?: string;
+  template_id?: string | null;
+  name?: string;
+  /** Deprecated: use icon_domain instead. Lowercase key from the linked template for clients that still render bundled icon assets. Empty if custom install (no template). */
+  icon_key?: string;
+  /** Brand domain from the linked template, rendered via the logo.dev icon proxy. Empty if custom install (no template). */
+  icon_domain?: string;
+  display_name?: string;
+  url?: string;
+  /** Installation description, falling back to the linked template description. */
+  description?: string;
+  auth_type?: MCPAuthTypeEnum;
+  is_enabled?: boolean;
+  scope?: MCPServerInstallationScopeEnum;
+  /** True when the requesting user owns this installation. Lets clients gate owner-only controls instead of surfacing 403s. */
+  is_owner?: boolean;
+  needs_reauth?: boolean;
+  pending_oauth?: boolean;
+  proxy_url?: string;
+  /** Number of live (non-removed) tools exposed by this installation. */
+  tool_count?: number;
+  created_at?: string;
+  updated_at?: string | null;
+}
+export const MCPServerInstallation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    template_id: S.optional(S.NullOr(S.String)),
+    name: S.optional(S.String),
+    icon_key: S.optional(S.String),
+    icon_domain: S.optional(S.String),
+    display_name: S.optional(S.String),
+    url: S.optional(S.String),
+    description: S.optional(S.String),
+    auth_type: S.optional(MCPAuthTypeEnum),
+    is_enabled: S.optional(S.Boolean),
+    scope: S.optional(MCPServerInstallationScopeEnum),
+    is_owner: S.optional(S.Boolean),
+    needs_reauth: S.optional(S.Boolean),
+    pending_oauth: S.optional(S.Boolean),
+    proxy_url: S.optional(S.String),
+    tool_count: S.optional(S.Number),
+    created_at: S.optional(S.String),
+    updated_at: S.optional(S.NullOr(S.String)),
+  }),
+).annotate({
+  identifier: "MCPServerInstallation",
+}) as any as S.Schema<MCPServerInstallation>;
+
+/** Arguments object passed straight to the tool, matching its input schema. */
+export type CreateMcpServerInstallationsCallToolRequestArgumentsMap = {
+  [key: string]: unknown | undefined;
+};
+export const CreateMcpServerInstallationsCallToolRequestArgumentsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.Unknown,
+  ) as any as S.Schema<CreateMcpServerInstallationsCallToolRequestArgumentsMap>;
+
+export interface CreateMcpServerInstallationsCallToolRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this mcp server installation. */
+  id: string;
+  /** Name of the tool to invoke, exactly as the upstream server reports it. */
+  tool_name: string;
+  /** Arguments object passed straight to the tool, matching its input schema. */
+  arguments?: CreateMcpServerInstallationsCallToolRequestArgumentsMap;
+}
+export const CreateMcpServerInstallationsCallToolRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
-      install_source: S.optional(
-        McpServerInstallationsAuthorizeRetrieveRequestInstallSource.pipe(
-          T.Query(),
-        ),
+      id: S.String.pipe(T.Label()),
+      tool_name: S.String,
+      arguments: S.optional(
+        CreateMcpServerInstallationsCallToolRequestArgumentsMap,
       ),
-      installation_id: S.optional(S.String.pipe(T.Query())),
-      posthog_code_callback_url: S.optional(S.String.pipe(T.Query())),
-      return_path: S.optional(S.String.pipe(T.Query())),
-      template_id: S.optional(S.String.pipe(T.Query())),
     }).pipe(
       T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/mcp_server_installations/authorize/",
+        method: "POST",
+        uri: "/api/projects/{project_id}/mcp_server_installations/{id}/call_tool/",
         code: 200,
       }),
     ),
   ).annotate({
-    identifier: "McpServerInstallationsAuthorizeRetrieveRequest",
-  }) as any as S.Schema<McpServerInstallationsAuthorizeRetrieveRequest>;
+    identifier: "CreateMcpServerInstallationsCallToolRequest",
+  }) as any as S.Schema<CreateMcpServerInstallationsCallToolRequest>;
 
-export interface McpServerInstallationsAuthorizeRetrieveResponse {}
-export const McpServerInstallationsAuthorizeRetrieveResponse =
+export type CallToolResponseContentItemMap = {
+  [key: string]: unknown | undefined;
+};
+export const CallToolResponseContentItemMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<CallToolResponseContentItemMap>;
+
+/** MCP content blocks the tool returned, in upstream order. */
+export type CallToolResponseContentList = Array<CallToolResponseContentItemMap>;
+export const CallToolResponseContentList = /*@__PURE__*/ S.Array(
+  CallToolResponseContentItemMap,
+) as any as S.Schema<CallToolResponseContentList>;
+
+/** Structured result the tool returned alongside `content`, when it provides one. */
+export type CallToolResponseStructuredContentMap = {
+  [key: string]: unknown | undefined;
+};
+export const CallToolResponseStructuredContentMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<CallToolResponseStructuredContentMap>;
+
+export interface CallToolResponse {
+  /** MCP content blocks the tool returned, in upstream order. */
+  content: CallToolResponseContentList;
+  /** True when the tool itself reported failure (for example bad arguments). The call reached the server; read `content` for the reason. */
+  is_error: boolean;
+  /** Structured result the tool returned alongside `content`, when it provides one. */
+  structured_content?: CallToolResponseStructuredContentMap | null;
+}
+export const CallToolResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    content: CallToolResponseContentList,
+    is_error: S.Boolean,
+    structured_content: S.optional(
+      S.NullOr(CallToolResponseStructuredContentMap),
+    ),
+  }),
+).annotate({
+  identifier: "CallToolResponse",
+}) as any as S.Schema<CallToolResponse>;
+
+export interface CreateMcpServerInstallationsProxyRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this mcp server installation. */
+  id: string;
+  display_name?: string;
+  url?: string;
+  auth_type?: MCPAuthTypeEnum | (string & {});
+  is_enabled?: boolean;
+}
+export const CreateMcpServerInstallationsProxyRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      id: S.String.pipe(T.Label()),
+      display_name: S.optional(S.String),
+      url: S.optional(S.String),
+      auth_type: S.optional(MCPAuthTypeEnum),
+      is_enabled: S.optional(S.Boolean),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/projects/{project_id}/mcp_server_installations/{id}/proxy/",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "CreateMcpServerInstallationsProxyRequest",
+}) as any as S.Schema<CreateMcpServerInstallationsProxyRequest>;
+
+export interface CreateMcpServerInstallationsProxyResponse {}
+export const CreateMcpServerInstallationsProxyResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "McpServerInstallationsAuthorizeRetrieveResponse",
-  }) as any as S.Schema<McpServerInstallationsAuthorizeRetrieveResponse>;
+    identifier: "CreateMcpServerInstallationsProxyResponse",
+  }) as any as S.Schema<CreateMcpServerInstallationsProxyResponse>;
 
-export interface McpServerInstallationsAvailableToolsRetrieveRequest {
+export interface CreateMcpServerInstallationsShareRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this mcp server installation. */
+  id: string;
+}
+export const CreateMcpServerInstallationsShareRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      id: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/projects/{project_id}/mcp_server_installations/{id}/share/",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "CreateMcpServerInstallationsShareRequest",
+}) as any as S.Schema<CreateMcpServerInstallationsShareRequest>;
+
+export interface GetMcpServerInstallationRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this mcp server installation. */
+  id: string;
+}
+export const GetMcpServerInstallationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/mcp_server_installations/{id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetMcpServerInstallationRequest",
+}) as any as S.Schema<GetMcpServerInstallationRequest>;
+
+export interface GetMcpServerInstallationsAvailableToolRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
 }
-export const McpServerInstallationsAvailableToolsRetrieveRequest =
+export const GetMcpServerInstallationsAvailableToolRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
@@ -96,8 +293,8 @@ export const McpServerInstallationsAvailableToolsRetrieveRequest =
       }),
     ),
   ).annotate({
-    identifier: "McpServerInstallationsAvailableToolsRetrieveRequest",
-  }) as any as S.Schema<McpServerInstallationsAvailableToolsRetrieveRequest>;
+    identifier: "GetMcpServerInstallationsAvailableToolRequest",
+  }) as any as S.Schema<GetMcpServerInstallationsAvailableToolRequest>;
 
 /** JSON Schema for the tool's arguments. */
 export type AvailableToolInputSchemaMap = {
@@ -191,172 +388,188 @@ export const AvailableToolsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "AvailableToolsResponse",
 }) as any as S.Schema<AvailableToolsResponse>;
 
-/** Arguments object passed straight to the tool, matching its input schema. */
-export type McpServerInstallationsCallToolCreateRequestArgumentsMap = {
-  [key: string]: unknown | undefined;
-};
-export const McpServerInstallationsCallToolCreateRequestArgumentsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.Unknown,
-  ) as any as S.Schema<McpServerInstallationsCallToolCreateRequestArgumentsMap>;
-
-export interface McpServerInstallationsCallToolCreateRequest {
+export interface GetMcpServerInstallationsToolRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A UUID string identifying this mcp server installation. */
   id: string;
-  /** Name of the tool to invoke, exactly as the upstream server reports it. */
-  tool_name: string;
-  /** Arguments object passed straight to the tool, matching its input schema. */
-  arguments?: McpServerInstallationsCallToolCreateRequestArgumentsMap;
 }
-export const McpServerInstallationsCallToolCreateRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const GetMcpServerInstallationsToolRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
       id: S.String.pipe(T.Label()),
-      tool_name: S.String,
-      arguments: S.optional(
-        McpServerInstallationsCallToolCreateRequestArgumentsMap,
-      ),
     }).pipe(
       T.Http({
-        method: "POST",
-        uri: "/api/projects/{project_id}/mcp_server_installations/{id}/call_tool/",
+        method: "GET",
+        uri: "/api/projects/{project_id}/mcp_server_installations/{id}/tools/",
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "McpServerInstallationsCallToolCreateRequest",
-  }) as any as S.Schema<McpServerInstallationsCallToolCreateRequest>;
+).annotate({
+  identifier: "GetMcpServerInstallationsToolRequest",
+}) as any as S.Schema<GetMcpServerInstallationsToolRequest>;
 
-export type CallToolResponseContentItemMap = {
-  [key: string]: unknown | undefined;
-};
-export const CallToolResponseContentItemMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<CallToolResponseContentItemMap>;
-
-/** MCP content blocks the tool returned, in upstream order. */
-export type CallToolResponseContentList = Array<CallToolResponseContentItemMap>;
-export const CallToolResponseContentList = /*@__PURE__*/ S.Array(
-  CallToolResponseContentItemMap,
-) as any as S.Schema<CallToolResponseContentList>;
-
-/** Structured result the tool returned alongside `content`, when it provides one. */
-export type CallToolResponseStructuredContentMap = {
-  [key: string]: unknown | undefined;
-};
-export const CallToolResponseStructuredContentMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<CallToolResponseStructuredContentMap>;
-
-export interface CallToolResponse {
-  /** MCP content blocks the tool returned, in upstream order. */
-  content: CallToolResponseContentList;
-  /** True when the tool itself reported failure (for example bad arguments). The call reached the server; read `content` for the reason. */
-  is_error: boolean;
-  /** Structured result the tool returned alongside `content`, when it provides one. */
-  structured_content?: CallToolResponseStructuredContentMap | null;
+export interface MCPServerInstallationTool {
+  id?: string;
+  tool_name?: string;
+  display_name?: string;
+  description?: string;
+  input_schema?: unknown;
+  /** Effective state after applying the team ceiling. */
+  approval_state?: MCPToolApprovalStateEnum;
+  /** Team-admin ceiling for this tool. Null when the team imposes no ceiling. */
+  team_state?: MCPToolApprovalStateEnum | null;
+  /** True when a rule or Blocked team ceiling leaves no editable state. */
+  locked?: boolean;
+  /** Policy layer that decided the effective state. */
+  decided_by?: string;
+  last_seen_at?: string;
+  removed_at?: string | null;
+  created_at?: string;
+  updated_at?: string | null;
 }
-export const CallToolResponse = /*@__PURE__*/ S.suspend(() =>
+export const MCPServerInstallationTool = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    content: CallToolResponseContentList,
-    is_error: S.Boolean,
-    structured_content: S.optional(
-      S.NullOr(CallToolResponseStructuredContentMap),
-    ),
+    id: S.optional(S.String),
+    tool_name: S.optional(S.String),
+    display_name: S.optional(S.String),
+    description: S.optional(S.String),
+    input_schema: S.optional(S.Unknown),
+    approval_state: S.optional(MCPToolApprovalStateEnum),
+    team_state: S.optional(S.NullOr(MCPToolApprovalStateEnum)),
+    locked: S.optional(S.Boolean),
+    decided_by: S.optional(S.String),
+    last_seen_at: S.optional(S.String),
+    removed_at: S.optional(S.NullOr(S.String)),
+    created_at: S.optional(S.String),
+    updated_at: S.optional(S.NullOr(S.String)),
   }),
 ).annotate({
-  identifier: "CallToolResponse",
-}) as any as S.Schema<CallToolResponse>;
+  identifier: "MCPServerInstallationTool",
+}) as any as S.Schema<MCPServerInstallationTool>;
 
-/** * `api_key` - API Key * `oauth` - OAuth */
-export type MCPAuthTypeEnum = "api_key" | "oauth";
-export const MCPAuthTypeEnum = /*@__PURE__*/ S.String;
+export type PaginatedMCPServerInstallationToolListResultsList =
+  Array<MCPServerInstallationTool>;
+export const PaginatedMCPServerInstallationToolListResultsList =
+  /*@__PURE__*/ S.Array(
+    MCPServerInstallationTool,
+  ) as any as S.Schema<PaginatedMCPServerInstallationToolListResultsList>;
 
-export interface McpServerInstallationsCreateRequest {
+export interface PaginatedMCPServerInstallationToolList {
+  count?: number;
+  next?: string | null;
+  previous?: string | null;
+  results?: PaginatedMCPServerInstallationToolListResultsList;
+}
+export const PaginatedMCPServerInstallationToolList = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      count: S.optional(S.Number),
+      next: S.optional(S.NullOr(S.String)),
+      previous: S.optional(S.NullOr(S.String)),
+      results: S.optional(PaginatedMCPServerInstallationToolListResultsList),
+    }),
+).annotate({
+  identifier: "PaginatedMCPServerInstallationToolList",
+}) as any as S.Schema<PaginatedMCPServerInstallationToolList>;
+
+export interface ListMcpServerInstallationsRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
-  display_name?: string;
-  url?: string;
-  auth_type?: MCPAuthTypeEnum | (string & {});
-  is_enabled?: boolean;
+  /** Number of results to return per page. */
+  limit?: number;
+  /** The initial index from which to return the results. */
+  offset?: number;
 }
-export const McpServerInstallationsCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListMcpServerInstallationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
-    display_name: S.optional(S.String),
-    url: S.optional(S.String),
-    auth_type: S.optional(MCPAuthTypeEnum),
-    is_enabled: S.optional(S.Boolean),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    offset: S.optional(S.Number.pipe(T.Query())),
   }).pipe(
     T.Http({
-      method: "POST",
+      method: "GET",
       uri: "/api/projects/{project_id}/mcp_server_installations/",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "McpServerInstallationsCreateRequest",
-}) as any as S.Schema<McpServerInstallationsCreateRequest>;
+  identifier: "ListMcpServerInstallationsRequest",
+}) as any as S.Schema<ListMcpServerInstallationsRequest>;
 
-/** * `personal` - Personal * `shared` - Shared */
-export type MCPServerInstallationScopeEnum = "personal" | "shared";
-export const MCPServerInstallationScopeEnum = /*@__PURE__*/ S.String;
+export type PaginatedMCPServerInstallationListResultsList =
+  Array<MCPServerInstallation>;
+export const PaginatedMCPServerInstallationListResultsList =
+  /*@__PURE__*/ S.Array(
+    MCPServerInstallation,
+  ) as any as S.Schema<PaginatedMCPServerInstallationListResultsList>;
 
-export interface MCPServerInstallation {
-  id?: string;
-  template_id?: string | null;
-  name?: string;
-  /** Deprecated: use icon_domain instead. Lowercase key from the linked template for clients that still render bundled icon assets. Empty if custom install (no template). */
-  icon_key?: string;
-  /** Brand domain from the linked template, rendered via the logo.dev icon proxy. Empty if custom install (no template). */
-  icon_domain?: string;
-  display_name?: string;
-  url?: string;
-  /** Installation description, falling back to the linked template description. */
-  description?: string;
-  auth_type?: MCPAuthTypeEnum;
-  is_enabled?: boolean;
-  scope?: MCPServerInstallationScopeEnum;
-  /** True when the requesting user owns this installation. Lets clients gate owner-only controls instead of surfacing 403s. */
-  is_owner?: boolean;
-  needs_reauth?: boolean;
-  pending_oauth?: boolean;
-  proxy_url?: string;
-  /** Number of live (non-removed) tools exposed by this installation. */
-  tool_count?: number;
-  created_at?: string;
-  updated_at?: string | null;
+export interface PaginatedMCPServerInstallationList {
+  count?: number;
+  next?: string | null;
+  previous?: string | null;
+  results?: PaginatedMCPServerInstallationListResultsList;
 }
-export const MCPServerInstallation = /*@__PURE__*/ S.suspend(() =>
+export const PaginatedMCPServerInstallationList = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    id: S.optional(S.String),
-    template_id: S.optional(S.NullOr(S.String)),
-    name: S.optional(S.String),
-    icon_key: S.optional(S.String),
-    icon_domain: S.optional(S.String),
-    display_name: S.optional(S.String),
-    url: S.optional(S.String),
-    description: S.optional(S.String),
-    auth_type: S.optional(MCPAuthTypeEnum),
-    is_enabled: S.optional(S.Boolean),
-    scope: S.optional(MCPServerInstallationScopeEnum),
-    is_owner: S.optional(S.Boolean),
-    needs_reauth: S.optional(S.Boolean),
-    pending_oauth: S.optional(S.Boolean),
-    proxy_url: S.optional(S.String),
-    tool_count: S.optional(S.Number),
-    created_at: S.optional(S.String),
-    updated_at: S.optional(S.NullOr(S.String)),
+    count: S.optional(S.Number),
+    next: S.optional(S.NullOr(S.String)),
+    previous: S.optional(S.NullOr(S.String)),
+    results: S.optional(PaginatedMCPServerInstallationListResultsList),
   }),
 ).annotate({
-  identifier: "MCPServerInstallation",
-}) as any as S.Schema<MCPServerInstallation>;
+  identifier: "PaginatedMCPServerInstallationList",
+}) as any as S.Schema<PaginatedMCPServerInstallationList>;
+
+export type McpServerInstallationsAuthorizeRetrieveRequestInstallSource =
+  | "posthog"
+  | "posthog-code";
+export const McpServerInstallationsAuthorizeRetrieveRequestInstallSource =
+  /*@__PURE__*/ S.String;
+
+export interface McpServerInstallationsAuthorizeRetrieveRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** * `posthog` - posthog * `posthog-code` - posthog-code */
+  install_source?:
+    | McpServerInstallationsAuthorizeRetrieveRequestInstallSource
+    | (string & {});
+  installation_id?: string;
+  posthog_code_callback_url?: string;
+  /** In-app path to land back on after the OAuth round-trip. Must be a same-app relative path. */
+  return_path?: string;
+  template_id?: string;
+}
+export const McpServerInstallationsAuthorizeRetrieveRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      install_source: S.optional(
+        McpServerInstallationsAuthorizeRetrieveRequestInstallSource.pipe(
+          T.Query(),
+        ),
+      ),
+      installation_id: S.optional(S.String.pipe(T.Query())),
+      posthog_code_callback_url: S.optional(S.String.pipe(T.Query())),
+      return_path: S.optional(S.String.pipe(T.Query())),
+      template_id: S.optional(S.String.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/projects/{project_id}/mcp_server_installations/authorize/",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "McpServerInstallationsAuthorizeRetrieveRequest",
+  }) as any as S.Schema<McpServerInstallationsAuthorizeRetrieveRequest>;
+
+export interface McpServerInstallationsAuthorizeRetrieveResponse {}
+export const McpServerInstallationsAuthorizeRetrieveResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "McpServerInstallationsAuthorizeRetrieveResponse",
+  }) as any as S.Schema<McpServerInstallationsAuthorizeRetrieveResponse>;
 
 export interface McpServerInstallationsDestroyRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -502,234 +715,6 @@ export const McpServerInstallationsInstallTemplateCreateRequest =
     identifier: "McpServerInstallationsInstallTemplateCreateRequest",
   }) as any as S.Schema<McpServerInstallationsInstallTemplateCreateRequest>;
 
-export interface McpServerInstallationsListRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** Number of results to return per page. */
-  limit?: number;
-  /** The initial index from which to return the results. */
-  offset?: number;
-}
-export const McpServerInstallationsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    offset: S.optional(S.Number.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/mcp_server_installations/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "McpServerInstallationsListRequest",
-}) as any as S.Schema<McpServerInstallationsListRequest>;
-
-export type PaginatedMCPServerInstallationListResultsList =
-  Array<MCPServerInstallation>;
-export const PaginatedMCPServerInstallationListResultsList =
-  /*@__PURE__*/ S.Array(
-    MCPServerInstallation,
-  ) as any as S.Schema<PaginatedMCPServerInstallationListResultsList>;
-
-export interface PaginatedMCPServerInstallationList {
-  count?: number;
-  next?: string | null;
-  previous?: string | null;
-  results?: PaginatedMCPServerInstallationListResultsList;
-}
-export const PaginatedMCPServerInstallationList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    count: S.optional(S.Number),
-    next: S.optional(S.NullOr(S.String)),
-    previous: S.optional(S.NullOr(S.String)),
-    results: S.optional(PaginatedMCPServerInstallationListResultsList),
-  }),
-).annotate({
-  identifier: "PaginatedMCPServerInstallationList",
-}) as any as S.Schema<PaginatedMCPServerInstallationList>;
-
-export interface McpServerInstallationsPartialUpdateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this mcp server installation. */
-  id: string;
-  display_name?: string;
-  description?: string;
-  is_enabled?: boolean;
-}
-export const McpServerInstallationsPartialUpdateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-      display_name: S.optional(S.String),
-      description: S.optional(S.String),
-      is_enabled: S.optional(S.Boolean),
-    }).pipe(
-      T.Http({
-        method: "PATCH",
-        uri: "/api/projects/{project_id}/mcp_server_installations/{id}/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "McpServerInstallationsPartialUpdateRequest",
-  }) as any as S.Schema<McpServerInstallationsPartialUpdateRequest>;
-
-export interface McpServerInstallationsProxyCreateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this mcp server installation. */
-  id: string;
-  display_name?: string;
-  url?: string;
-  auth_type?: MCPAuthTypeEnum | (string & {});
-  is_enabled?: boolean;
-}
-export const McpServerInstallationsProxyCreateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-      display_name: S.optional(S.String),
-      url: S.optional(S.String),
-      auth_type: S.optional(MCPAuthTypeEnum),
-      is_enabled: S.optional(S.Boolean),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/api/projects/{project_id}/mcp_server_installations/{id}/proxy/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "McpServerInstallationsProxyCreateRequest",
-}) as any as S.Schema<McpServerInstallationsProxyCreateRequest>;
-
-export interface McpServerInstallationsProxyCreateResponse {}
-export const McpServerInstallationsProxyCreateResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "McpServerInstallationsProxyCreateResponse",
-  }) as any as S.Schema<McpServerInstallationsProxyCreateResponse>;
-
-export interface McpServerInstallationsRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this mcp server installation. */
-  id: string;
-}
-export const McpServerInstallationsRetrieveRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/mcp_server_installations/{id}/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "McpServerInstallationsRetrieveRequest",
-}) as any as S.Schema<McpServerInstallationsRetrieveRequest>;
-
-export interface McpServerInstallationsShareCreateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this mcp server installation. */
-  id: string;
-}
-export const McpServerInstallationsShareCreateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/api/projects/{project_id}/mcp_server_installations/{id}/share/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "McpServerInstallationsShareCreateRequest",
-}) as any as S.Schema<McpServerInstallationsShareCreateRequest>;
-
-/** * `approved` - approved * `needs_approval` - needs_approval * `do_not_use` - do_not_use */
-export type ToolApprovalUpdateApprovalStateEnum =
-  | "approved"
-  | "needs_approval"
-  | "do_not_use";
-export const ToolApprovalUpdateApprovalStateEnum = /*@__PURE__*/ S.String;
-
-export interface McpServerInstallationsToolsPartialUpdateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this mcp server installation. */
-  id: string;
-  tool_name: string;
-  approval_state?: ToolApprovalUpdateApprovalStateEnum | (string & {});
-}
-export const McpServerInstallationsToolsPartialUpdateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-      tool_name: S.String.pipe(T.Label()),
-      approval_state: S.optional(ToolApprovalUpdateApprovalStateEnum),
-    }).pipe(
-      T.Http({
-        method: "PATCH",
-        uri: "/api/projects/{project_id}/mcp_server_installations/{id}/tools/{tool_name}/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "McpServerInstallationsToolsPartialUpdateRequest",
-  }) as any as S.Schema<McpServerInstallationsToolsPartialUpdateRequest>;
-
-export interface MCPServerInstallationTool {
-  id?: string;
-  tool_name?: string;
-  display_name?: string;
-  description?: string;
-  input_schema?: unknown;
-  /** Effective state after applying the team ceiling. */
-  approval_state?: MCPToolApprovalStateEnum;
-  /** Team-admin ceiling for this tool. Null when the team imposes no ceiling. */
-  team_state?: MCPToolApprovalStateEnum | null;
-  /** True when a rule or Blocked team ceiling leaves no editable state. */
-  locked?: boolean;
-  /** Policy layer that decided the effective state. */
-  decided_by?: string;
-  last_seen_at?: string;
-  removed_at?: string | null;
-  created_at?: string;
-  updated_at?: string | null;
-}
-export const MCPServerInstallationTool = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    tool_name: S.optional(S.String),
-    display_name: S.optional(S.String),
-    description: S.optional(S.String),
-    input_schema: S.optional(S.Unknown),
-    approval_state: S.optional(MCPToolApprovalStateEnum),
-    team_state: S.optional(S.NullOr(MCPToolApprovalStateEnum)),
-    locked: S.optional(S.Boolean),
-    decided_by: S.optional(S.String),
-    last_seen_at: S.optional(S.String),
-    removed_at: S.optional(S.NullOr(S.String)),
-    created_at: S.optional(S.String),
-    updated_at: S.optional(S.NullOr(S.String)),
-  }),
-).annotate({
-  identifier: "MCPServerInstallationTool",
-}) as any as S.Schema<MCPServerInstallationTool>;
-
 export interface McpServerInstallationsToolsRefreshCreateRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
@@ -760,53 +745,6 @@ export const McpServerInstallationsToolsRefreshCreateRequest =
     identifier: "McpServerInstallationsToolsRefreshCreateRequest",
   }) as any as S.Schema<McpServerInstallationsToolsRefreshCreateRequest>;
 
-export type PaginatedMCPServerInstallationToolListResultsList =
-  Array<MCPServerInstallationTool>;
-export const PaginatedMCPServerInstallationToolListResultsList =
-  /*@__PURE__*/ S.Array(
-    MCPServerInstallationTool,
-  ) as any as S.Schema<PaginatedMCPServerInstallationToolListResultsList>;
-
-export interface PaginatedMCPServerInstallationToolList {
-  count?: number;
-  next?: string | null;
-  previous?: string | null;
-  results?: PaginatedMCPServerInstallationToolListResultsList;
-}
-export const PaginatedMCPServerInstallationToolList = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      count: S.optional(S.Number),
-      next: S.optional(S.NullOr(S.String)),
-      previous: S.optional(S.NullOr(S.String)),
-      results: S.optional(PaginatedMCPServerInstallationToolListResultsList),
-    }),
-).annotate({
-  identifier: "PaginatedMCPServerInstallationToolList",
-}) as any as S.Schema<PaginatedMCPServerInstallationToolList>;
-
-export interface McpServerInstallationsToolsRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this mcp server installation. */
-  id: string;
-}
-export const McpServerInstallationsToolsRetrieveRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/mcp_server_installations/{id}/tools/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "McpServerInstallationsToolsRetrieveRequest",
-  }) as any as S.Schema<McpServerInstallationsToolsRetrieveRequest>;
-
 export interface McpServerInstallationsUnshareCreateRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
@@ -829,7 +767,7 @@ export const McpServerInstallationsUnshareCreateRequest =
     identifier: "McpServerInstallationsUnshareCreateRequest",
   }) as any as S.Schema<McpServerInstallationsUnshareCreateRequest>;
 
-export interface McpServerInstallationsUpdateRequest {
+export interface UpdateMcpServerInstallationRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A UUID string identifying this mcp server installation. */
@@ -839,7 +777,7 @@ export interface McpServerInstallationsUpdateRequest {
   auth_type?: MCPAuthTypeEnum | (string & {});
   is_enabled?: boolean;
 }
-export const McpServerInstallationsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateMcpServerInstallationRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     id: S.String.pipe(T.Label()),
@@ -855,8 +793,187 @@ export const McpServerInstallationsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "McpServerInstallationsUpdateRequest",
-}) as any as S.Schema<McpServerInstallationsUpdateRequest>;
+  identifier: "UpdateMcpServerInstallationRequest",
+}) as any as S.Schema<UpdateMcpServerInstallationRequest>;
+
+export interface UpdateMcpServerInstallationsPartialRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this mcp server installation. */
+  id: string;
+  display_name?: string;
+  description?: string;
+  is_enabled?: boolean;
+}
+export const UpdateMcpServerInstallationsPartialRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      id: S.String.pipe(T.Label()),
+      display_name: S.optional(S.String),
+      description: S.optional(S.String),
+      is_enabled: S.optional(S.Boolean),
+    }).pipe(
+      T.Http({
+        method: "PATCH",
+        uri: "/api/projects/{project_id}/mcp_server_installations/{id}/",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "UpdateMcpServerInstallationsPartialRequest",
+  }) as any as S.Schema<UpdateMcpServerInstallationsPartialRequest>;
+
+/** * `approved` - approved * `needs_approval` - needs_approval * `do_not_use` - do_not_use */
+export type ToolApprovalUpdateApprovalStateEnum =
+  | "approved"
+  | "needs_approval"
+  | "do_not_use";
+export const ToolApprovalUpdateApprovalStateEnum = /*@__PURE__*/ S.String;
+
+export interface UpdateMcpServerInstallationsToolsPartialRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this mcp server installation. */
+  id: string;
+  tool_name: string;
+  approval_state?: ToolApprovalUpdateApprovalStateEnum | (string & {});
+}
+export const UpdateMcpServerInstallationsToolsPartialRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      id: S.String.pipe(T.Label()),
+      tool_name: S.String.pipe(T.Label()),
+      approval_state: S.optional(ToolApprovalUpdateApprovalStateEnum),
+    }).pipe(
+      T.Http({
+        method: "PATCH",
+        uri: "/api/projects/{project_id}/mcp_server_installations/{id}/tools/{tool_name}/",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "UpdateMcpServerInstallationsToolsPartialRequest",
+  }) as any as S.Schema<UpdateMcpServerInstallationsToolsPartialRequest>;
+
+export type CreateMcpServerInstallationError = PosthogOpError;
+export const createMcpServerInstallation: API.OperationMethod<
+  CreateMcpServerInstallationRequest,
+  MCPServerInstallation,
+  CreateMcpServerInstallationError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateMcpServerInstallationRequest,
+  output: MCPServerInstallation,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateMcpServerInstallationsCallToolError =
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+/** Invoke one tool on a connected MCP server. The request/response shape is plain REST rather than the JSON-RPC envelope `proxy` speaks, because the caller here is an agent surface (the PostHog MCP's `exec`) that wants one tool result, not an MCP transport of its own. */
+export const createMcpServerInstallationsCallTool: API.OperationMethod<
+  CreateMcpServerInstallationsCallToolRequest,
+  CallToolResponse,
+  CreateMcpServerInstallationsCallToolError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateMcpServerInstallationsCallToolRequest,
+  output: CallToolResponse,
+  errors: [Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateMcpServerInstallationsProxyError = PosthogOpError;
+export const createMcpServerInstallationsProxy: API.OperationMethod<
+  CreateMcpServerInstallationsProxyRequest,
+  CreateMcpServerInstallationsProxyResponse,
+  CreateMcpServerInstallationsProxyError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateMcpServerInstallationsProxyRequest,
+  output: CreateMcpServerInstallationsProxyResponse,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateMcpServerInstallationsShareError = PosthogOpError;
+/** Escalate a personal installation to a team-wide shared one. Owner-only AND admin-only: sharing exposes the owner's credential to project members, so it carries the same gate as creating a shared install outright. Agents require separate explicit grants. */
+export const createMcpServerInstallationsShare: API.OperationMethod<
+  CreateMcpServerInstallationsShareRequest,
+  MCPServerInstallation,
+  CreateMcpServerInstallationsShareError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateMcpServerInstallationsShareRequest,
+  output: MCPServerInstallation,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetMcpServerInstallationError = PosthogOpError;
+export const getMcpServerInstallation: API.OperationMethod<
+  GetMcpServerInstallationRequest,
+  MCPServerInstallation,
+  GetMcpServerInstallationError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetMcpServerInstallationRequest,
+  output: MCPServerInstallation,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetMcpServerInstallationsAvailableToolError = PosthogOpError;
+/** Every tool the caller can currently reach, across all their connections. One request instead of one per connection: an agent surface resolving its tool list on each session cannot afford a fan-out. `do_not_use` and removed tools are omitted — an agent should not see what it cannot call — while `needs_approval` tools are listed with their state so the caller can explain the block rather than report the capability as missing. */
+export const getMcpServerInstallationsAvailableTool: API.OperationMethod<
+  GetMcpServerInstallationsAvailableToolRequest,
+  AvailableToolsResponse,
+  GetMcpServerInstallationsAvailableToolError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetMcpServerInstallationsAvailableToolRequest,
+  output: AvailableToolsResponse,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetMcpServerInstallationsToolError = PosthogOpError;
+export const getMcpServerInstallationsTool: API.OperationMethod<
+  GetMcpServerInstallationsToolRequest,
+  PaginatedMCPServerInstallationToolList,
+  GetMcpServerInstallationsToolError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetMcpServerInstallationsToolRequest,
+  output: PaginatedMCPServerInstallationToolList,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListMcpServerInstallationsError = PosthogOpError;
+export const listMcpServerInstallations: API.OperationMethod<
+  ListMcpServerInstallationsRequest,
+  PaginatedMCPServerInstallationList,
+  ListMcpServerInstallationsError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListMcpServerInstallationsRequest,
+  output: PaginatedMCPServerInstallationList,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
 
 export type McpServerInstallationsAuthorizeRetrieveError = PosthogOpError;
 /** Start (or re-start) an OAuth flow. Pass ``template_id`` to (re)connect a catalog template, or ``installation_id`` to reconnect an existing custom install using its cached metadata and per-user DCR creds. */
@@ -868,53 +985,6 @@ export const mcpServerInstallationsAuthorizeRetrieve: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: McpServerInstallationsAuthorizeRetrieveRequest,
   output: McpServerInstallationsAuthorizeRetrieveResponse,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type McpServerInstallationsAvailableToolsRetrieveError = PosthogOpError;
-/** Every tool the caller can currently reach, across all their connections. One request instead of one per connection: an agent surface resolving its tool list on each session cannot afford a fan-out. `do_not_use` and removed tools are omitted — an agent should not see what it cannot call — while `needs_approval` tools are listed with their state so the caller can explain the block rather than report the capability as missing. */
-export const mcpServerInstallationsAvailableToolsRetrieve: API.OperationMethod<
-  McpServerInstallationsAvailableToolsRetrieveRequest,
-  AvailableToolsResponse,
-  McpServerInstallationsAvailableToolsRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: McpServerInstallationsAvailableToolsRetrieveRequest,
-  output: AvailableToolsResponse,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type McpServerInstallationsCallToolCreateError =
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** Invoke one tool on a connected MCP server. The request/response shape is plain REST rather than the JSON-RPC envelope `proxy` speaks, because the caller here is an agent surface (the PostHog MCP's `exec`) that wants one tool result, not an MCP transport of its own. */
-export const mcpServerInstallationsCallToolCreate: API.OperationMethod<
-  McpServerInstallationsCallToolCreateRequest,
-  CallToolResponse,
-  McpServerInstallationsCallToolCreateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: McpServerInstallationsCallToolCreateRequest,
-  output: CallToolResponse,
-  errors: [Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type McpServerInstallationsCreateError = PosthogOpError;
-export const mcpServerInstallationsCreate: API.OperationMethod<
-  McpServerInstallationsCreateRequest,
-  MCPServerInstallation,
-  McpServerInstallationsCreateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: McpServerInstallationsCreateRequest,
-  output: MCPServerInstallation,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
@@ -962,91 +1032,6 @@ export const mcpServerInstallationsInstallTemplateCreate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type McpServerInstallationsListError = PosthogOpError;
-export const mcpServerInstallationsList: API.OperationMethod<
-  McpServerInstallationsListRequest,
-  PaginatedMCPServerInstallationList,
-  McpServerInstallationsListError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: McpServerInstallationsListRequest,
-  output: PaginatedMCPServerInstallationList,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type McpServerInstallationsPartialUpdateError = PosthogOpError;
-export const mcpServerInstallationsPartialUpdate: API.OperationMethod<
-  McpServerInstallationsPartialUpdateRequest,
-  MCPServerInstallation,
-  McpServerInstallationsPartialUpdateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: McpServerInstallationsPartialUpdateRequest,
-  output: MCPServerInstallation,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type McpServerInstallationsProxyCreateError = PosthogOpError;
-export const mcpServerInstallationsProxyCreate: API.OperationMethod<
-  McpServerInstallationsProxyCreateRequest,
-  McpServerInstallationsProxyCreateResponse,
-  McpServerInstallationsProxyCreateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: McpServerInstallationsProxyCreateRequest,
-  output: McpServerInstallationsProxyCreateResponse,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type McpServerInstallationsRetrieveError = PosthogOpError;
-export const mcpServerInstallationsRetrieve: API.OperationMethod<
-  McpServerInstallationsRetrieveRequest,
-  MCPServerInstallation,
-  McpServerInstallationsRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: McpServerInstallationsRetrieveRequest,
-  output: MCPServerInstallation,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type McpServerInstallationsShareCreateError = PosthogOpError;
-/** Escalate a personal installation to a team-wide shared one. Owner-only AND admin-only: sharing exposes the owner's credential to project members, so it carries the same gate as creating a shared install outright. Agents require separate explicit grants. */
-export const mcpServerInstallationsShareCreate: API.OperationMethod<
-  McpServerInstallationsShareCreateRequest,
-  MCPServerInstallation,
-  McpServerInstallationsShareCreateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: McpServerInstallationsShareCreateRequest,
-  output: MCPServerInstallation,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type McpServerInstallationsToolsPartialUpdateError = PosthogOpError;
-export const mcpServerInstallationsToolsPartialUpdate: API.OperationMethod<
-  McpServerInstallationsToolsPartialUpdateRequest,
-  MCPServerInstallationTool,
-  McpServerInstallationsToolsPartialUpdateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: McpServerInstallationsToolsPartialUpdateRequest,
-  output: MCPServerInstallationTool,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
 export type McpServerInstallationsToolsRefreshCreateError = PosthogOpError;
 export const mcpServerInstallationsToolsRefreshCreate: API.OperationMethod<
   McpServerInstallationsToolsRefreshCreateRequest,
@@ -1055,20 +1040,6 @@ export const mcpServerInstallationsToolsRefreshCreate: API.OperationMethod<
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: McpServerInstallationsToolsRefreshCreateRequest,
-  output: PaginatedMCPServerInstallationToolList,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type McpServerInstallationsToolsRetrieveError = PosthogOpError;
-export const mcpServerInstallationsToolsRetrieve: API.OperationMethod<
-  McpServerInstallationsToolsRetrieveRequest,
-  PaginatedMCPServerInstallationToolList,
-  McpServerInstallationsToolsRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: McpServerInstallationsToolsRetrieveRequest,
   output: PaginatedMCPServerInstallationToolList,
   errors: [],
   protocol: PosthogProtocol,
@@ -1090,15 +1061,43 @@ export const mcpServerInstallationsUnshareCreate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type McpServerInstallationsUpdateError = PosthogOpError;
-export const mcpServerInstallationsUpdate: API.OperationMethod<
-  McpServerInstallationsUpdateRequest,
+export type UpdateMcpServerInstallationError = PosthogOpError;
+export const updateMcpServerInstallation: API.OperationMethod<
+  UpdateMcpServerInstallationRequest,
   MCPServerInstallation,
-  McpServerInstallationsUpdateError,
+  UpdateMcpServerInstallationError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: McpServerInstallationsUpdateRequest,
+  input: UpdateMcpServerInstallationRequest,
   output: MCPServerInstallation,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateMcpServerInstallationsPartialError = PosthogOpError;
+export const updateMcpServerInstallationsPartial: API.OperationMethod<
+  UpdateMcpServerInstallationsPartialRequest,
+  MCPServerInstallation,
+  UpdateMcpServerInstallationsPartialError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateMcpServerInstallationsPartialRequest,
+  output: MCPServerInstallation,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateMcpServerInstallationsToolsPartialError = PosthogOpError;
+export const updateMcpServerInstallationsToolsPartial: API.OperationMethod<
+  UpdateMcpServerInstallationsToolsPartialRequest,
+  MCPServerInstallationTool,
+  UpdateMcpServerInstallationsToolsPartialError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateMcpServerInstallationsToolsPartialRequest,
+  output: MCPServerInstallationTool,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,

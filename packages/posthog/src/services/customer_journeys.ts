@@ -11,14 +11,14 @@ import * as Retry from "../retry.ts";
 
 export type { PosthogOpError, PosthogOpContext };
 
-export interface CustomerJourneysCreateRequest {
+export interface CreateCustomerJourneysRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   insight?: number;
   name?: string;
   description?: string | null;
 }
-export const CustomerJourneysCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateCustomerJourneysRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     insight: S.optional(S.Number),
@@ -32,8 +32,8 @@ export const CustomerJourneysCreateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "CustomerJourneysCreateRequest",
-}) as any as S.Schema<CustomerJourneysCreateRequest>;
+  identifier: "CreateCustomerJourneysRequest",
+}) as any as S.Schema<CreateCustomerJourneysRequest>;
 
 export interface CustomerJourney {
   id?: string;
@@ -85,7 +85,27 @@ export const CustomerJourneysDestroyResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CustomerJourneysDestroyResponse",
 }) as any as S.Schema<CustomerJourneysDestroyResponse>;
 
-export interface CustomerJourneysListRequest {
+export interface GetCustomerJourneysRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  id: string;
+}
+export const GetCustomerJourneysRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/customer_journeys/{id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetCustomerJourneysRequest",
+}) as any as S.Schema<GetCustomerJourneysRequest>;
+
+export interface ListCustomerJourneysRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** Number of results to return per page. */
@@ -93,7 +113,7 @@ export interface CustomerJourneysListRequest {
   /** The initial index from which to return the results. */
   offset?: number;
 }
-export const CustomerJourneysListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListCustomerJourneysRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     limit: S.optional(S.Number.pipe(T.Query())),
@@ -106,8 +126,8 @@ export const CustomerJourneysListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "CustomerJourneysListRequest",
-}) as any as S.Schema<CustomerJourneysListRequest>;
+  identifier: "ListCustomerJourneysRequest",
+}) as any as S.Schema<ListCustomerJourneysRequest>;
 
 export type PaginatedCustomerJourneyListResultsList = Array<CustomerJourney>;
 export const PaginatedCustomerJourneyListResultsList = /*@__PURE__*/ S.Array(
@@ -131,7 +151,7 @@ export const PaginatedCustomerJourneyList = /*@__PURE__*/ S.suspend(() =>
   identifier: "PaginatedCustomerJourneyList",
 }) as any as S.Schema<PaginatedCustomerJourneyList>;
 
-export interface CustomerJourneysPartialUpdateRequest {
+export interface UpdateCustomerJourneysRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   id: string;
@@ -139,7 +159,33 @@ export interface CustomerJourneysPartialUpdateRequest {
   name?: string;
   description?: string | null;
 }
-export const CustomerJourneysPartialUpdateRequest = /*@__PURE__*/ S.suspend(
+export const UpdateCustomerJourneysRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+    insight: S.optional(S.Number),
+    name: S.optional(S.String),
+    description: S.optional(S.NullOr(S.String)),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/api/projects/{project_id}/customer_journeys/{id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "UpdateCustomerJourneysRequest",
+}) as any as S.Schema<UpdateCustomerJourneysRequest>;
+
+export interface UpdateCustomerJourneysPartialRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  id: string;
+  insight?: number;
+  name?: string;
+  description?: string | null;
+}
+export const UpdateCustomerJourneysPartialRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
@@ -155,63 +201,17 @@ export const CustomerJourneysPartialUpdateRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "CustomerJourneysPartialUpdateRequest",
-}) as any as S.Schema<CustomerJourneysPartialUpdateRequest>;
+  identifier: "UpdateCustomerJourneysPartialRequest",
+}) as any as S.Schema<UpdateCustomerJourneysPartialRequest>;
 
-export interface CustomerJourneysRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  id: string;
-}
-export const CustomerJourneysRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/customer_journeys/{id}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "CustomerJourneysRetrieveRequest",
-}) as any as S.Schema<CustomerJourneysRetrieveRequest>;
-
-export interface CustomerJourneysUpdateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  id: string;
-  insight?: number;
-  name?: string;
-  description?: string | null;
-}
-export const CustomerJourneysUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-    insight: S.optional(S.Number),
-    name: S.optional(S.String),
-    description: S.optional(S.NullOr(S.String)),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/api/projects/{project_id}/customer_journeys/{id}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "CustomerJourneysUpdateRequest",
-}) as any as S.Schema<CustomerJourneysUpdateRequest>;
-
-export type CustomerJourneysCreateError = PosthogOpError;
-export const customerJourneysCreate: API.OperationMethod<
-  CustomerJourneysCreateRequest,
+export type CreateCustomerJourneysError = PosthogOpError;
+export const createCustomerJourneys: API.OperationMethod<
+  CreateCustomerJourneysRequest,
   CustomerJourney,
-  CustomerJourneysCreateError,
+  CreateCustomerJourneysError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CustomerJourneysCreateRequest,
+  input: CreateCustomerJourneysRequest,
   output: CustomerJourney,
   errors: [],
   protocol: PosthogProtocol,
@@ -232,56 +232,56 @@ export const customerJourneysDestroy: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CustomerJourneysListError = PosthogOpError;
-export const customerJourneysList: API.OperationMethod<
-  CustomerJourneysListRequest,
-  PaginatedCustomerJourneyList,
-  CustomerJourneysListError,
+export type GetCustomerJourneysError = PosthogOpError;
+export const getCustomerJourneys: API.OperationMethod<
+  GetCustomerJourneysRequest,
+  CustomerJourney,
+  GetCustomerJourneysError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CustomerJourneysListRequest,
+  input: GetCustomerJourneysRequest,
+  output: CustomerJourney,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListCustomerJourneysError = PosthogOpError;
+export const listCustomerJourneys: API.OperationMethod<
+  ListCustomerJourneysRequest,
+  PaginatedCustomerJourneyList,
+  ListCustomerJourneysError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListCustomerJourneysRequest,
   output: PaginatedCustomerJourneyList,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type CustomerJourneysPartialUpdateError = PosthogOpError;
-export const customerJourneysPartialUpdate: API.OperationMethod<
-  CustomerJourneysPartialUpdateRequest,
+export type UpdateCustomerJourneysError = PosthogOpError;
+export const updateCustomerJourneys: API.OperationMethod<
+  UpdateCustomerJourneysRequest,
   CustomerJourney,
-  CustomerJourneysPartialUpdateError,
+  UpdateCustomerJourneysError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CustomerJourneysPartialUpdateRequest,
+  input: UpdateCustomerJourneysRequest,
   output: CustomerJourney,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type CustomerJourneysRetrieveError = PosthogOpError;
-export const customerJourneysRetrieve: API.OperationMethod<
-  CustomerJourneysRetrieveRequest,
+export type UpdateCustomerJourneysPartialError = PosthogOpError;
+export const updateCustomerJourneysPartial: API.OperationMethod<
+  UpdateCustomerJourneysPartialRequest,
   CustomerJourney,
-  CustomerJourneysRetrieveError,
+  UpdateCustomerJourneysPartialError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CustomerJourneysRetrieveRequest,
-  output: CustomerJourney,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CustomerJourneysUpdateError = PosthogOpError;
-export const customerJourneysUpdate: API.OperationMethod<
-  CustomerJourneysUpdateRequest,
-  CustomerJourney,
-  CustomerJourneysUpdateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CustomerJourneysUpdateRequest,
+  input: UpdateCustomerJourneysPartialRequest,
   output: CustomerJourney,
   errors: [],
   protocol: PosthogProtocol,

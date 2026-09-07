@@ -166,6 +166,16 @@ export const Lead = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "Lead" }) as any as S.Schema<Lead>;
 
+export interface GetLeadRequest {
+  /** The unique identifier of the lead to retrieve. */
+  id: string;
+}
+export const GetLeadRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/leads/{id}", code: 200 })),
+).annotate({ identifier: "GetLeadRequest" }) as any as S.Schema<GetLeadRequest>;
+
 /** Filter leads to only those associated with these specific product identifiers. */
 export type ListLeadRequestProductIdsList = Array<string>;
 export const ListLeadRequestProductIdsList = /*@__PURE__*/ S.Array(
@@ -289,18 +299,6 @@ export const ListLeadResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListLeadResponse",
 }) as any as S.Schema<ListLeadResponse>;
 
-export interface RetrieveLeadRequest {
-  /** The unique identifier of the lead to retrieve. */
-  id: string;
-}
-export const RetrieveLeadRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/leads/{id}", code: 200 })),
-).annotate({
-  identifier: "RetrieveLeadRequest",
-}) as any as S.Schema<RetrieveLeadRequest>;
-
 /** A JSON object of custom metadata to set on the lead, replacing any existing metadata. */
 export type UpdateLeadRequestMetadataMap = {
   [key: string]: unknown | undefined;
@@ -348,6 +346,26 @@ export const createLead: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetLeadError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | UnprocessableEntity
+  | WhopOpError;
+/** Retrieve lead [Legacy API — https://docs.whop.com/api-reference] Retrieves the details of an existing lead. Required permissions: - `lead:basic:read` - `member:email:read` - `access_pass:basic:read` - `member:basic:read` */
+export const getLead: API.OperationMethod<
+  GetLeadRequest,
+  Lead,
+  GetLeadError,
+  WhopOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetLeadRequest,
+  output: Lead,
+  errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
+  protocol: WhopProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListLeadError =
   | BadRequest
   | Forbidden
@@ -379,26 +397,6 @@ export const listLead: API.PaginatedOperationMethod<
   }),
   paginateRelay,
 ) as any;
-
-export type RetrieveLeadError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | UnprocessableEntity
-  | WhopOpError;
-/** Retrieve lead [Legacy API — https://docs.whop.com/api-reference] Retrieves the details of an existing lead. Required permissions: - `lead:basic:read` - `member:email:read` - `access_pass:basic:read` - `member:basic:read` */
-export const retrieveLead: API.OperationMethod<
-  RetrieveLeadRequest,
-  Lead,
-  RetrieveLeadError,
-  WhopOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveLeadRequest,
-  output: Lead,
-  errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
-  protocol: WhopProtocol,
-  retry: Retry.Retry,
-}));
 
 export type UpdateLeadError =
   | BadRequest

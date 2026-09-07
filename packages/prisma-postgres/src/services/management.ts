@@ -1650,7 +1650,6 @@ export const GetV1DatabasesByDatabaseIdBackupsRequest = /*@__PURE__*/ S.suspend(
   identifier: "GetV1DatabasesByDatabaseIdBackupsRequest",
 }) as any as S.Schema<GetV1DatabasesByDatabaseIdBackupsRequest>;
 
-/** Type of backup */
 export type GetV1DatabasesByDatabaseIdBackupsResponseDataItemBackupType =
   | "full"
   | "incremental"
@@ -1658,7 +1657,6 @@ export type GetV1DatabasesByDatabaseIdBackupsResponseDataItemBackupType =
 export const GetV1DatabasesByDatabaseIdBackupsResponseDataItemBackupType =
   /*@__PURE__*/ S.String;
 
-/** Status of backup instance */
 export type GetV1DatabasesByDatabaseIdBackupsResponseDataItemStatus =
   | "running"
   | "completed"
@@ -1668,15 +1666,10 @@ export const GetV1DatabasesByDatabaseIdBackupsResponseDataItemStatus =
   /*@__PURE__*/ S.String;
 
 export interface GetV1DatabasesByDatabaseIdBackupsResponseDataItem {
-  /** The unique identifier for this backup */
   id: string;
-  /** Type of backup */
   backupType: GetV1DatabasesByDatabaseIdBackupsResponseDataItemBackupType;
-  /** Timestamp when the backup was created */
   createdAt: string;
-  /** Total file size (in MiB) of gzipped backup files */
   size?: number;
-  /** Status of backup instance */
   status: GetV1DatabasesByDatabaseIdBackupsResponseDataItemStatus;
   type?: string;
 }
@@ -6874,7 +6867,6 @@ export const PostV1ProjectsByProjectIdDatabasesRequestRegion =
 /** Deprecated: use `source` instead. */
 export interface PostV1ProjectsByProjectIdDatabasesRequestFromDatabase {
   id: string;
-  /** The unique identifier for this backup */
   backupId?: string;
 }
 export const PostV1ProjectsByProjectIdDatabasesRequestFromDatabase =

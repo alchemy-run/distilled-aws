@@ -388,6 +388,18 @@ export const DeleteProductResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteProductResponse",
 }) as any as S.Schema<DeleteProductResponse>;
 
+export interface GetProductRequest {
+  /** The unique identifier of the product. */
+  id: string;
+}
+export const GetProductRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/products/{id}", code: 200 })),
+).annotate({
+  identifier: "GetProductRequest",
+}) as any as S.Schema<GetProductRequest>;
+
 export type ListProductsRequestPlanTypesItem = "renewal" | "one_time";
 export const ListProductsRequestPlanTypesItem = /*@__PURE__*/ S.String;
 
@@ -598,18 +610,6 @@ export const PublishProductRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "PublishProductRequest",
 }) as any as S.Schema<PublishProductRequest>;
 
-export interface RetrieveProductRequest {
-  /** The unique identifier of the product. */
-  id: string;
-}
-export const RetrieveProductRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/products/{id}", code: 200 })),
-).annotate({
-  identifier: "RetrieveProductRequest",
-}) as any as S.Schema<RetrieveProductRequest>;
-
 export interface UnpublishProductRequest {
   /** The unique identifier of the product, prefixed `prod_`. */
   id: string;
@@ -718,6 +718,21 @@ export const deleteProduct: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetProductError = NotFound | WhopOpError;
+/** Retrieve Product Retrieves a product. Public — no credentials. */
+export const getProduct: API.OperationMethod<
+  GetProductRequest,
+  Product,
+  GetProductError,
+  WhopOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetProductRequest,
+  output: Product,
+  errors: [NotFound],
+  protocol: WhopProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListProductsError = BadRequest | WhopOpError;
 /** List Products Returns a paginated list of products. Omit `account_id` to search the public marketplace. */
 export const listProducts: API.PaginatedOperationMethod<
@@ -756,21 +771,6 @@ export const publishProduct: API.OperationMethod<
   input: PublishProductRequest,
   output: Product,
   errors: [NotFound, Conflict],
-  protocol: WhopProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveProductError = NotFound | WhopOpError;
-/** Retrieve Product Retrieves a product. Public — no credentials. */
-export const retrieveProduct: API.OperationMethod<
-  RetrieveProductRequest,
-  Product,
-  RetrieveProductError,
-  WhopOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveProductRequest,
-  output: Product,
-  errors: [NotFound],
   protocol: WhopProtocol,
   retry: Retry.Retry,
 }));

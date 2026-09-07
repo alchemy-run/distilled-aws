@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.review_hog#ReviewHogBlindSpotsListRequest": {
+    "com.posthog.review_hog#ListReviewHogBlindSpotsRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -67,18 +68,18 @@
       },
       "traits": {}
     },
-    "com.posthog.review_hog#ReviewHogBlindSpotsListResponseBodyList": {
+    "com.posthog.review_hog#ListReviewHogBlindSpotsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.posthog.review_hog#ReviewBlindSpotsConfig"
       },
       "traits": {}
     },
-    "com.posthog.review_hog#ReviewHogBlindSpotsListResponse": {
+    "com.posthog.review_hog#ListReviewHogBlindSpotsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.posthog.review_hog#ReviewHogBlindSpotsListResponseBodyList",
+          "target": "com.posthog.review_hog#ListReviewHogBlindSpotsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -89,13 +90,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.posthog.review_hog#ReviewHogBlindSpotsList": {
+    "com.posthog.review_hog#ListReviewHogBlindSpots": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.review_hog#ReviewHogBlindSpotsListRequest"
+        "target": "com.posthog.review_hog#ListReviewHogBlindSpotsRequest"
       },
       "output": {
-        "target": "com.posthog.review_hog#ReviewHogBlindSpotsListResponse"
+        "target": "com.posthog.review_hog#ListReviewHogBlindSpotsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -106,7 +107,7 @@
         "smithy.api#documentation": "List blind-spots skills and which one is active\n\nList the `review-hog-blind-spots-*` skills visible to the requesting user — the canonical skill plus the customs they authored — flagging the one active for them. The canonical skill is auto-seeded active on the first read; a custom skill the user has not selected shows as inactive."
       }
     },
-    "com.posthog.review_hog#ReviewHogBlindSpotsPartialUpdateRequest": {
+    "com.posthog.review_hog#UpdateReviewHogBlindSpotsPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -135,10 +136,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.review_hog#ReviewHogBlindSpotsPartialUpdate": {
+    "com.posthog.review_hog#UpdateReviewHogBlindSpotsPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.review_hog#ReviewHogBlindSpotsPartialUpdateRequest"
+        "target": "com.posthog.review_hog#UpdateReviewHogBlindSpotsPartialRequest"
       },
       "output": {
         "target": "com.posthog.review_hog#ReviewBlindSpotsConfig"
@@ -160,7 +161,7 @@
         "smithy.api#documentation": "Select the active blind-spots skill\n\nMake a `review-hog-blind-spots-*` skill the single sweep that runs on the requesting user's PR reviews, switching the user's other blind-spots skills off in the same call. Only skills visible to the user — the canonical plus the customs they authored — can be selected; anything else 404s. Upserts the per-user config row, so selecting a freshly authored custom skill works in one call."
       }
     },
-    "com.posthog.review_hog#ReviewHogPerspectivesListRequest": {
+    "com.posthog.review_hog#ListReviewHogPerspectivesRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -210,18 +211,18 @@
       },
       "traits": {}
     },
-    "com.posthog.review_hog#ReviewHogPerspectivesListResponseBodyList": {
+    "com.posthog.review_hog#ListReviewHogPerspectivesResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.posthog.review_hog#ReviewPerspectiveConfig"
       },
       "traits": {}
     },
-    "com.posthog.review_hog#ReviewHogPerspectivesListResponse": {
+    "com.posthog.review_hog#ListReviewHogPerspectivesResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.posthog.review_hog#ReviewHogPerspectivesListResponseBodyList",
+          "target": "com.posthog.review_hog#ListReviewHogPerspectivesResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -232,13 +233,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.posthog.review_hog#ReviewHogPerspectivesList": {
+    "com.posthog.review_hog#ListReviewHogPerspectives": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.review_hog#ReviewHogPerspectivesListRequest"
+        "target": "com.posthog.review_hog#ListReviewHogPerspectivesRequest"
       },
       "output": {
-        "target": "com.posthog.review_hog#ReviewHogPerspectivesListResponse"
+        "target": "com.posthog.review_hog#ListReviewHogPerspectivesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -249,7 +250,7 @@
         "smithy.api#documentation": "List review perspectives and their enablement\n\nList the `review-hog-perspective-*` skills visible to the requesting user — the canonical perspectives plus the customs they authored — joined with their enable state. The 3 canonical perspectives are auto-seeded enabled on the first read; a custom perspective the user has not switched on shows as disabled."
       }
     },
-    "com.posthog.review_hog#ReviewHogPerspectivesPartialUpdateRequest": {
+    "com.posthog.review_hog#UpdateReviewHogPerspectivesPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -278,10 +279,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.review_hog#ReviewHogPerspectivesPartialUpdate": {
+    "com.posthog.review_hog#UpdateReviewHogPerspectivesPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.review_hog#ReviewHogPerspectivesPartialUpdateRequest"
+        "target": "com.posthog.review_hog#UpdateReviewHogPerspectivesPartialRequest"
       },
       "output": {
         "target": "com.posthog.review_hog#ReviewPerspectiveConfig"
@@ -303,7 +304,7 @@
         "smithy.api#documentation": "Enable or disable a review perspective\n\nToggle whether a `review-hog-perspective-*` skill runs on the requesting user's PR reviews. Only skills visible to the user — the canonicals plus the customs they authored — can be toggled; anything else 404s. Upserts the per-user config row, so enabling a freshly authored custom perspective works in one call. Rejected if it would leave the user with no enabled perspective."
       }
     },
-    "com.posthog.review_hog#ReviewHogResolutionListRequest": {
+    "com.posthog.review_hog#ListReviewHogResolutionRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -353,18 +354,18 @@
       },
       "traits": {}
     },
-    "com.posthog.review_hog#ReviewHogResolutionListResponseBodyList": {
+    "com.posthog.review_hog#ListReviewHogResolutionResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.posthog.review_hog#ReviewResolutionConfig"
       },
       "traits": {}
     },
-    "com.posthog.review_hog#ReviewHogResolutionListResponse": {
+    "com.posthog.review_hog#ListReviewHogResolutionResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.posthog.review_hog#ReviewHogResolutionListResponseBodyList",
+          "target": "com.posthog.review_hog#ListReviewHogResolutionResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -375,13 +376,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.posthog.review_hog#ReviewHogResolutionList": {
+    "com.posthog.review_hog#ListReviewHogResolution": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.review_hog#ReviewHogResolutionListRequest"
+        "target": "com.posthog.review_hog#ListReviewHogResolutionRequest"
       },
       "output": {
-        "target": "com.posthog.review_hog#ReviewHogResolutionListResponse"
+        "target": "com.posthog.review_hog#ListReviewHogResolutionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -392,7 +393,7 @@
         "smithy.api#documentation": "List resolution criteria and which one is active\n\nList the `review-hog-resolution-*` skills visible to the requesting user — the canonical criteria plus the customs they authored — flagging the one active for them. The canonical skill is auto-seeded active on the first read; a custom skill the user has not selected shows as inactive."
       }
     },
-    "com.posthog.review_hog#ReviewHogResolutionPartialUpdateRequest": {
+    "com.posthog.review_hog#UpdateReviewHogResolutionPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -421,10 +422,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.review_hog#ReviewHogResolutionPartialUpdate": {
+    "com.posthog.review_hog#UpdateReviewHogResolutionPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.review_hog#ReviewHogResolutionPartialUpdateRequest"
+        "target": "com.posthog.review_hog#UpdateReviewHogResolutionPartialRequest"
       },
       "output": {
         "target": "com.posthog.review_hog#ReviewResolutionConfig"
@@ -446,7 +447,7 @@
         "smithy.api#documentation": "Select the active resolution criteria\n\nMake a `review-hog-resolution-*` skill the single criteria the resolution stage applies on the requesting user's PRs, switching the user's other resolution skills off in the same call. Only skills visible to the user — the canonical plus the customs they authored — can be selected; anything else 404s. Upserts the per-user config row, so selecting a freshly authored custom skill works in one call."
       }
     },
-    "com.posthog.review_hog#ReviewHogReviewsListRequestScope": {
+    "com.posthog.review_hog#ListReviewHogReviewsRequestScope": {
       "type": "enum",
       "members": {
         "MINE": {
@@ -464,7 +465,7 @@
       },
       "traits": {}
     },
-    "com.posthog.review_hog#ReviewHogReviewsListRequest": {
+    "com.posthog.review_hog#ListReviewHogReviewsRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -483,7 +484,7 @@
           }
         },
         "scope": {
-          "target": "com.posthog.review_hog#ReviewHogReviewsListRequestScope",
+          "target": "com.posthog.review_hog#ListReviewHogReviewsRequestScope",
           "traits": {
             "smithy.api#httpQuery": "scope",
             "smithy.api#documentation": "Whose reviews to list: `mine` (the default) for reviews the requesting user ran plus reviews of pull requests they authored (matched via their linked GitHub login), `everyone` for every review on this project.\n\n* `mine` - mine\n* `everyone` - everyone"
@@ -865,10 +866,10 @@
         "smithy.api#documentation": "The scoped reviews: in-progress runs first, then completed newest first."
       }
     },
-    "com.posthog.review_hog#ReviewHogReviewsList": {
+    "com.posthog.review_hog#ListReviewHogReviews": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.review_hog#ReviewHogReviewsListRequest"
+        "target": "com.posthog.review_hog#ListReviewHogReviewsRequest"
       },
       "output": {
         "target": "com.posthog.review_hog#ReviewRecentReviewsPage"
@@ -882,7 +883,7 @@
         "smithy.api#documentation": "List recent reviews\n\nRecent ReviewHog reviews on this project: actively running reviews first (with the in-flight turn's stage), then the most recent completed ones — at most `limit` rows (default 5), plus `has_more` for whether a larger `limit` would reveal more. By default only the requesting user's reviews; `scope=everyone` lists every review on the project."
       }
     },
-    "com.posthog.review_hog#ReviewHogReviewsRetrieveRequest": {
+    "com.posthog.review_hog#GetReviewHogReviewRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1481,10 +1482,10 @@
         "smithy.api#documentation": "The latest turn's findings the validator dismissed, with its reasoning."
       }
     },
-    "com.posthog.review_hog#ReviewHogReviewsRetrieve": {
+    "com.posthog.review_hog#GetReviewHogReview": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.review_hog#ReviewHogReviewsRetrieveRequest"
+        "target": "com.posthog.review_hog#GetReviewHogReviewRequest"
       },
       "output": {
         "target": "com.posthog.review_hog#ReviewDetail"
@@ -1503,7 +1504,7 @@
         "smithy.api#documentation": "Retrieve one review's detail\n\nOne completed ReviewHog review on this project, with the latest turn's validated findings, the findings the validator dismissed (and why), and the review body published to GitHub. Project-wide, so reviews listed under `scope=everyone` can be opened too."
       }
     },
-    "com.posthog.review_hog#ReviewHogReviewsPerspectiveStatsRetrieveRequestScope": {
+    "com.posthog.review_hog#GetReviewHogReviewsPerspectiveStatRequestScope": {
       "type": "enum",
       "members": {
         "MINE": {
@@ -1521,7 +1522,7 @@
       },
       "traits": {}
     },
-    "com.posthog.review_hog#ReviewHogReviewsPerspectiveStatsRetrieveRequest": {
+    "com.posthog.review_hog#GetReviewHogReviewsPerspectiveStatRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1533,7 +1534,7 @@
           }
         },
         "scope": {
-          "target": "com.posthog.review_hog#ReviewHogReviewsPerspectiveStatsRetrieveRequestScope",
+          "target": "com.posthog.review_hog#GetReviewHogReviewsPerspectiveStatRequestScope",
           "traits": {
             "smithy.api#httpQuery": "scope",
             "smithy.api#documentation": "Whose reviews to aggregate: `mine` (the default) for reviews the requesting user ran plus reviews of pull requests they authored (matched via their linked GitHub login), `everyone` for every review on this project.\n\n* `mine` - mine\n* `everyone` - everyone"
@@ -1607,10 +1608,10 @@
         "smithy.api#documentation": "Per-skill effectiveness across those reviews, most kept findings first."
       }
     },
-    "com.posthog.review_hog#ReviewHogReviewsPerspectiveStatsRetrieve": {
+    "com.posthog.review_hog#GetReviewHogReviewsPerspectiveStat": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.review_hog#ReviewHogReviewsPerspectiveStatsRetrieveRequest"
+        "target": "com.posthog.review_hog#GetReviewHogReviewsPerspectiveStatRequest"
       },
       "output": {
         "target": "com.posthog.review_hog#ReviewPerspectiveStats"
@@ -1692,7 +1693,7 @@
         "status": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Run lifecycle marker: 'started' when the review was queued, 'already_reviewed' when the pull request's current commit already has a published review (no new run starts).",
+            "smithy.api#documentation": "Run lifecycle marker: 'started' when the review was queued, 'already_reviewed' when the pull request's current commit already has a published review (no new run starts), 'joined_running_review' when a review was already in flight (no new run starts; a report in a cheaper tier is lifted to human strength for the rest of that review and every later one).",
             "smithy.api#required": {}
           }
         }
@@ -1727,7 +1728,7 @@
         "smithy.api#documentation": "Start a review of a pull request\n\nStart a ReviewHog review of any pull request the project's GitHub App installation can access, and publish it back to the PR. The requesting user is the review's acting user: their enabled perspectives, blind-spot check, validator, urgency threshold, and resolution criteria drive the run, and it appears under their recent reviews. `run_mode` picks the variant: a review (which chains the resolution stage per the user's resolve_comments setting), a review without resolving, or resolution only. Nonexistent, closed, and fork PRs are rejected synchronously; a PR whose current commit already has a published review returns 'already_reviewed' without starting a run (resolve_only skips that check — settling threads on a reviewed head is its whole point), and triggering a PR whose run is currently in flight joins that run. Otherwise non-blocking: returns the Temporal workflow id immediately while the run executes in the worker."
       }
     },
-    "com.posthog.review_hog#ReviewHogValidatorsListRequest": {
+    "com.posthog.review_hog#ListReviewHogValidatorsRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1777,18 +1778,18 @@
       },
       "traits": {}
     },
-    "com.posthog.review_hog#ReviewHogValidatorsListResponseBodyList": {
+    "com.posthog.review_hog#ListReviewHogValidatorsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.posthog.review_hog#ReviewValidatorConfig"
       },
       "traits": {}
     },
-    "com.posthog.review_hog#ReviewHogValidatorsListResponse": {
+    "com.posthog.review_hog#ListReviewHogValidatorsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.posthog.review_hog#ReviewHogValidatorsListResponseBodyList",
+          "target": "com.posthog.review_hog#ListReviewHogValidatorsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -1799,13 +1800,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.posthog.review_hog#ReviewHogValidatorsList": {
+    "com.posthog.review_hog#ListReviewHogValidators": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.review_hog#ReviewHogValidatorsListRequest"
+        "target": "com.posthog.review_hog#ListReviewHogValidatorsRequest"
       },
       "output": {
-        "target": "com.posthog.review_hog#ReviewHogValidatorsListResponse"
+        "target": "com.posthog.review_hog#ListReviewHogValidatorsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1816,7 +1817,7 @@
         "smithy.api#documentation": "List review validators and which one is active\n\nList the `review-hog-validation-*` skills visible to the requesting user — the canonical validator plus the customs they authored — flagging the one active for them. The canonical validator is auto-seeded active on the first read; a custom validator the user has not selected shows as inactive."
       }
     },
-    "com.posthog.review_hog#ReviewHogValidatorsPartialUpdateRequest": {
+    "com.posthog.review_hog#UpdateReviewHogValidatorsPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1845,10 +1846,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.review_hog#ReviewHogValidatorsPartialUpdate": {
+    "com.posthog.review_hog#UpdateReviewHogValidatorsPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.review_hog#ReviewHogValidatorsPartialUpdateRequest"
+        "target": "com.posthog.review_hog#UpdateReviewHogValidatorsPartialRequest"
       },
       "output": {
         "target": "com.posthog.review_hog#ReviewValidatorConfig"
@@ -1927,40 +1928,40 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.review_hog#ReviewHogBlindSpotsList"
+          "target": "com.posthog.review_hog#ListReviewHogBlindSpots"
         },
         {
-          "target": "com.posthog.review_hog#ReviewHogBlindSpotsPartialUpdate"
+          "target": "com.posthog.review_hog#UpdateReviewHogBlindSpotsPartial"
         },
         {
-          "target": "com.posthog.review_hog#ReviewHogPerspectivesList"
+          "target": "com.posthog.review_hog#ListReviewHogPerspectives"
         },
         {
-          "target": "com.posthog.review_hog#ReviewHogPerspectivesPartialUpdate"
+          "target": "com.posthog.review_hog#UpdateReviewHogPerspectivesPartial"
         },
         {
-          "target": "com.posthog.review_hog#ReviewHogResolutionList"
+          "target": "com.posthog.review_hog#ListReviewHogResolution"
         },
         {
-          "target": "com.posthog.review_hog#ReviewHogResolutionPartialUpdate"
+          "target": "com.posthog.review_hog#UpdateReviewHogResolutionPartial"
         },
         {
-          "target": "com.posthog.review_hog#ReviewHogReviewsList"
+          "target": "com.posthog.review_hog#ListReviewHogReviews"
         },
         {
-          "target": "com.posthog.review_hog#ReviewHogReviewsRetrieve"
+          "target": "com.posthog.review_hog#GetReviewHogReview"
         },
         {
-          "target": "com.posthog.review_hog#ReviewHogReviewsPerspectiveStatsRetrieve"
+          "target": "com.posthog.review_hog#GetReviewHogReviewsPerspectiveStat"
         },
         {
           "target": "com.posthog.review_hog#ReviewHogReviewsTriggerCreate"
         },
         {
-          "target": "com.posthog.review_hog#ReviewHogValidatorsList"
+          "target": "com.posthog.review_hog#ListReviewHogValidators"
         },
         {
-          "target": "com.posthog.review_hog#ReviewHogValidatorsPartialUpdate"
+          "target": "com.posthog.review_hog#UpdateReviewHogValidatorsPartial"
         }
       ],
       "traits": {

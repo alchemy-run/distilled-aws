@@ -150,176 +150,6 @@ export const ActionsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ActionsCreateOrUpdateResponse",
 }) as any as S.Schema<ActionsCreateOrUpdateResponse>;
 
-export interface ActionsDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the monitor workspace. */
-  workspaceName: string;
-  /** Alert rule ID */
-  ruleId: string;
-  /** Action ID */
-  actionId: string;
-}
-export const ActionsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    ruleId: S.String.pipe(T.Label()),
-    actionId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/alertRules/{ruleId}/actions/{actionId}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "ActionsDeleteRequest",
-}) as any as S.Schema<ActionsDeleteRequest>;
-
-export interface ActionsDeleteResponse {}
-export const ActionsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ActionsDeleteResponse",
-}) as any as S.Schema<ActionsDeleteResponse>;
-
-export interface ActionsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the monitor workspace. */
-  workspaceName: string;
-  /** Alert rule ID */
-  ruleId: string;
-  /** Action ID */
-  actionId: string;
-}
-export const ActionsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    ruleId: S.String.pipe(T.Label()),
-    actionId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/alertRules/{ruleId}/actions/{actionId}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "ActionsGetRequest",
-}) as any as S.Schema<ActionsGetRequest>;
-
-export interface ActionsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Action properties for get request */
-  properties?: ActionResponseProperties;
-  /** Etag of the action. */
-  etag?: string;
-}
-export const ActionsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ActionResponseProperties),
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ActionsGetResponse",
-}) as any as S.Schema<ActionsGetResponse>;
-
-export interface ActionsListByAlertRuleRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the monitor workspace. */
-  workspaceName: string;
-  /** Alert rule ID */
-  ruleId: string;
-}
-export const ActionsListByAlertRuleRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    ruleId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/alertRules/{ruleId}/actions",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "ActionsListByAlertRuleRequest",
-}) as any as S.Schema<ActionsListByAlertRuleRequest>;
-
-/** Action for alert rule. */
-export interface ActionResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Action properties for get request */
-  properties?: ActionResponseProperties;
-  /** Etag of the action. */
-  etag?: string;
-}
-export const ActionResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ActionResponseProperties),
-    etag: S.optional(S.String),
-  }),
-).annotate({ identifier: "ActionResponse" }) as any as S.Schema<ActionResponse>;
-
-/** The ActionResponse items on this page */
-export type ActionsListValueList = Array<ActionResponse>;
-export const ActionsListValueList = /*@__PURE__*/ S.Array(
-  ActionResponse,
-) as any as S.Schema<ActionsListValueList>;
-
-/** List all the actions. */
-export interface ActionsList {
-  /** The ActionResponse items on this page */
-  value: ActionsListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const ActionsList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: ActionsListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({ identifier: "ActionsList" }) as any as S.Schema<ActionsList>;
-
 /** The kind of the alert rule */
 export type AlertRuleKind =
   | "Scheduled"
@@ -387,291 +217,6 @@ export const AlertRulesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "AlertRulesCreateOrUpdateResponse",
 }) as any as S.Schema<AlertRulesCreateOrUpdateResponse>;
-
-export interface AlertRulesDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the monitor workspace. */
-  workspaceName: string;
-  /** Alert rule ID */
-  ruleId: string;
-}
-export const AlertRulesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    ruleId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/alertRules/{ruleId}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "AlertRulesDeleteRequest",
-}) as any as S.Schema<AlertRulesDeleteRequest>;
-
-export interface AlertRulesDeleteResponse {}
-export const AlertRulesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "AlertRulesDeleteResponse",
-}) as any as S.Schema<AlertRulesDeleteResponse>;
-
-export interface AlertRulesGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the monitor workspace. */
-  workspaceName: string;
-  /** Alert rule ID */
-  ruleId: string;
-}
-export const AlertRulesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    ruleId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/alertRules/{ruleId}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "AlertRulesGetRequest",
-}) as any as S.Schema<AlertRulesGetRequest>;
-
-export interface AlertRulesGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must validate and persist this value. */
-  kind: AlertRuleKind;
-  /** Etag of the azure resource */
-  etag?: string;
-}
-export const AlertRulesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    kind: AlertRuleKind,
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AlertRulesGetResponse",
-}) as any as S.Schema<AlertRulesGetResponse>;
-
-export interface AlertRulesListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the monitor workspace. */
-  workspaceName: string;
-}
-export const AlertRulesListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/alertRules",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "AlertRulesListRequest",
-}) as any as S.Schema<AlertRulesListRequest>;
-
-/** Alert rule. */
-export interface AlertRule {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must validate and persist this value. */
-  kind: AlertRuleKind;
-  /** Etag of the azure resource */
-  etag?: string;
-}
-export const AlertRule = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    kind: AlertRuleKind,
-    etag: S.optional(S.String),
-  }),
-).annotate({ identifier: "AlertRule" }) as any as S.Schema<AlertRule>;
-
-/** The AlertRule items on this page */
-export type AlertRulesListValueList = Array<AlertRule>;
-export const AlertRulesListValueList = /*@__PURE__*/ S.Array(
-  AlertRule,
-) as any as S.Schema<AlertRulesListValueList>;
-
-/** List all the alert rules. */
-export interface AlertRulesList {
-  /** The AlertRule items on this page */
-  value: AlertRulesListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const AlertRulesList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: AlertRulesListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({ identifier: "AlertRulesList" }) as any as S.Schema<AlertRulesList>;
-
-export interface AlertRuleTemplatesGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the monitor workspace. */
-  workspaceName: string;
-  /** Alert rule template ID */
-  alertRuleTemplateId: string;
-}
-export const AlertRuleTemplatesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    alertRuleTemplateId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/alertRuleTemplates/{alertRuleTemplateId}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "AlertRuleTemplatesGetRequest",
-}) as any as S.Schema<AlertRuleTemplatesGetRequest>;
-
-export interface AlertRuleTemplatesGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must validate and persist this value. */
-  kind: AlertRuleKind;
-}
-export const AlertRuleTemplatesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    kind: AlertRuleKind,
-  }),
-).annotate({
-  identifier: "AlertRuleTemplatesGetResponse",
-}) as any as S.Schema<AlertRuleTemplatesGetResponse>;
-
-export interface AlertRuleTemplatesListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the monitor workspace. */
-  workspaceName: string;
-}
-export const AlertRuleTemplatesListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/alertRuleTemplates",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "AlertRuleTemplatesListRequest",
-}) as any as S.Schema<AlertRuleTemplatesListRequest>;
-
-/** Alert rule template. */
-export interface AlertRuleTemplate {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must validate and persist this value. */
-  kind: AlertRuleKind;
-}
-export const AlertRuleTemplate = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    kind: AlertRuleKind,
-  }),
-).annotate({
-  identifier: "AlertRuleTemplate",
-}) as any as S.Schema<AlertRuleTemplate>;
-
-/** The AlertRuleTemplate items on this page */
-export type AlertRuleTemplatesListValueList = Array<AlertRuleTemplate>;
-export const AlertRuleTemplatesListValueList = /*@__PURE__*/ S.Array(
-  AlertRuleTemplate,
-) as any as S.Schema<AlertRuleTemplatesListValueList>;
-
-/** List all the alert rule templates. */
-export interface AlertRuleTemplatesList {
-  /** The AlertRuleTemplate items on this page */
-  value: AlertRuleTemplatesListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const AlertRuleTemplatesList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: AlertRuleTemplatesListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AlertRuleTemplatesList",
-}) as any as S.Schema<AlertRuleTemplatesList>;
 
 export type TriggersOn = "Incidents" | "Alerts";
 export const TriggersOn = /*@__PURE__*/ S.String;
@@ -901,168 +446,6 @@ export const AutomationRulesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
   identifier: "AutomationRulesCreateOrUpdateResponse",
 }) as any as S.Schema<AutomationRulesCreateOrUpdateResponse>;
 
-export interface AutomationRulesDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the monitor workspace. */
-  workspaceName: string;
-  /** Automation rule ID */
-  automationRuleId: string;
-}
-export const AutomationRulesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    automationRuleId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/automationRules/{automationRuleId}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "AutomationRulesDeleteRequest",
-}) as any as S.Schema<AutomationRulesDeleteRequest>;
-
-export type AutomationRulesDeleteResponse = unknown;
-export const AutomationRulesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Unknown.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "AutomationRulesDeleteResponse",
-}) as any as S.Schema<AutomationRulesDeleteResponse>;
-
-export interface AutomationRulesGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the monitor workspace. */
-  workspaceName: string;
-  /** Automation rule ID */
-  automationRuleId: string;
-}
-export const AutomationRulesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    automationRuleId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/automationRules/{automationRuleId}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "AutomationRulesGetRequest",
-}) as any as S.Schema<AutomationRulesGetRequest>;
-
-export interface AutomationRulesGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Automation rule properties */
-  properties: AutomationRuleProperties;
-  /** Etag of the azure resource */
-  etag?: string;
-}
-export const AutomationRulesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: AutomationRuleProperties,
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AutomationRulesGetResponse",
-}) as any as S.Schema<AutomationRulesGetResponse>;
-
-export interface AutomationRulesListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the monitor workspace. */
-  workspaceName: string;
-}
-export const AutomationRulesListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/automationRules",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "AutomationRulesListRequest",
-}) as any as S.Schema<AutomationRulesListRequest>;
-
-/** Concrete proxy resource types can be created by aliasing this type using a specific property type. */
-export interface AutomationRule {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Automation rule properties */
-  properties: AutomationRuleProperties;
-  /** Etag of the azure resource */
-  etag?: string;
-}
-export const AutomationRule = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: AutomationRuleProperties,
-    etag: S.optional(S.String),
-  }),
-).annotate({ identifier: "AutomationRule" }) as any as S.Schema<AutomationRule>;
-
-/** List of automation rules. */
-export type AutomationRulesListValueList = Array<AutomationRule>;
-export const AutomationRulesListValueList = /*@__PURE__*/ S.Array(
-  AutomationRule,
-) as any as S.Schema<AutomationRulesListValueList>;
-
-export interface AutomationRulesList {
-  /** List of automation rules. */
-  value?: AutomationRulesListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const AutomationRulesList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(AutomationRulesListValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AutomationRulesList",
-}) as any as S.Schema<AutomationRulesList>;
-
 /** User information that made some action */
 export interface UserInfoInput {
   /** The object id of the user. */
@@ -1286,175 +669,6 @@ export const BookmarksCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "BookmarksCreateOrUpdateResponse",
 }) as any as S.Schema<BookmarksCreateOrUpdateResponse>;
 
-export interface BookmarksDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the monitor workspace. */
-  workspaceName: string;
-  /** Bookmark ID */
-  bookmarkId: string;
-}
-export const BookmarksDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    bookmarkId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/bookmarks/{bookmarkId}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "BookmarksDeleteRequest",
-}) as any as S.Schema<BookmarksDeleteRequest>;
-
-export interface BookmarksDeleteResponse {}
-export const BookmarksDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "BookmarksDeleteResponse",
-}) as any as S.Schema<BookmarksDeleteResponse>;
-
-export interface BookmarksGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the monitor workspace. */
-  workspaceName: string;
-  /** Bookmark ID */
-  bookmarkId: string;
-}
-export const BookmarksGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    bookmarkId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/bookmarks/{bookmarkId}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "BookmarksGetRequest",
-}) as any as S.Schema<BookmarksGetRequest>;
-
-export interface BookmarksGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Bookmark properties */
-  properties?: BookmarkProperties;
-  /** Etag of the azure resource */
-  etag?: string;
-}
-export const BookmarksGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(BookmarkProperties),
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "BookmarksGetResponse",
-}) as any as S.Schema<BookmarksGetResponse>;
-
-export interface BookmarksListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the monitor workspace. */
-  workspaceName: string;
-}
-export const BookmarksListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/bookmarks",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "BookmarksListRequest",
-}) as any as S.Schema<BookmarksListRequest>;
-
-/** Represents a bookmark in Azure Security Insights. */
-export interface Bookmark {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Bookmark properties */
-  properties?: BookmarkProperties;
-  /** Etag of the azure resource */
-  etag?: string;
-}
-export const Bookmark = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(BookmarkProperties),
-    etag: S.optional(S.String),
-  }),
-).annotate({ identifier: "Bookmark" }) as any as S.Schema<Bookmark>;
-
-/** The Bookmark items on this page */
-export type BookmarkListValueList = Array<Bookmark>;
-export const BookmarkListValueList = /*@__PURE__*/ S.Array(
-  Bookmark,
-) as any as S.Schema<BookmarkListValueList>;
-
-/** List all the bookmarks. */
-export interface BookmarkList {
-  /** The Bookmark items on this page */
-  value: BookmarkListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const BookmarkList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: BookmarkListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({ identifier: "BookmarkList" }) as any as S.Schema<BookmarkList>;
-
-/** The package kind */
-export type PackageKind = "Solution" | "Standalone";
-export const PackageKind = /*@__PURE__*/ S.String;
-
-/** The boolean value the metadata is for. */
-export type Flag = "true" | "false";
-export const Flag = /*@__PURE__*/ S.String;
-
 /** Source type of the content */
 export type SourceKind =
   | "LocalWorkspace"
@@ -1586,12 +800,6 @@ export const MetadataDependencies = /*@__PURE__*/ S.suspend(() =>
   identifier: "MetadataDependencies",
 }) as any as S.Schema<MetadataDependencies>;
 
-/** Providers for the package item */
-export type PackageBasePropertiesProvidersList = Array<string>;
-export const PackageBasePropertiesProvidersList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<PackageBasePropertiesProvidersList>;
-
 /** domain for the solution content item */
 export type MetadataCategoriesDomainsList = Array<string>;
 export const MetadataCategoriesDomainsList = /*@__PURE__*/ S.Array(
@@ -1619,3292 +827,6 @@ export const MetadataCategories = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "MetadataCategories",
 }) as any as S.Schema<MetadataCategories>;
-
-/** the tactics the resource covers */
-export type PackageBasePropertiesThreatAnalysisTacticsList = Array<string>;
-export const PackageBasePropertiesThreatAnalysisTacticsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PackageBasePropertiesThreatAnalysisTacticsList>;
-
-/** the techniques the resource covers, these have to be aligned with the tactics being used */
-export type PackageBasePropertiesThreatAnalysisTechniquesList = Array<string>;
-export const PackageBasePropertiesThreatAnalysisTechniquesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PackageBasePropertiesThreatAnalysisTechniquesList>;
-
-/** Describes package properties */
-export interface PackageBaseProperties {
-  /** The content id of the package */
-  contentId?: string;
-  /** Unique ID for the content. It should be generated based on the contentId, contentKind and the contentVersion of the package */
-  contentProductId?: string;
-  /** The package kind */
-  contentKind?: PackageKind | (string & {});
-  /** The version of the content schema. */
-  contentSchemaVersion?: string;
-  /** Flag indicates if this is a newly published package. */
-  isNew?: Flag | (string & {});
-  /** Flag indicates if this package is in preview. */
-  isPreview?: Flag | (string & {});
-  /** Flag indicates if this package is among the featured list. */
-  isFeatured?: Flag | (string & {});
-  /** Flag indicates if this template is deprecated */
-  isDeprecated?: Flag | (string & {});
-  /** the latest version number of the package */
-  version?: string;
-  /** The display name of the package */
-  displayName?: string;
-  /** The description of the package */
-  description?: string;
-  /** The publisher display name of the package */
-  publisherDisplayName?: string;
-  /** The source of the package */
-  source?: MetadataSource;
-  /** The author of the package */
-  author?: MetadataAuthor;
-  /** The support tier of the package */
-  support?: MetadataSupport;
-  /** The support tier of the package */
-  dependencies?: MetadataDependencies;
-  /** Providers for the package item */
-  providers?: PackageBasePropertiesProvidersList;
-  /** first publish date package item */
-  firstPublishDate?: string;
-  /** last publish date for the package item */
-  lastPublishDate?: string;
-  /** The categories of the package */
-  categories?: MetadataCategories;
-  /** the tactics the resource covers */
-  threatAnalysisTactics?: PackageBasePropertiesThreatAnalysisTacticsList;
-  /** the techniques the resource covers, these have to be aligned with the tactics being used */
-  threatAnalysisTechniques?: PackageBasePropertiesThreatAnalysisTechniquesList;
-  /** the icon identifier. this id can later be fetched from the content metadata */
-  icon?: string;
-}
-export const PackageBaseProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    contentId: S.optional(S.String),
-    contentProductId: S.optional(S.String),
-    contentKind: S.optional(PackageKind),
-    contentSchemaVersion: S.optional(S.String),
-    isNew: S.optional(Flag),
-    isPreview: S.optional(Flag),
-    isFeatured: S.optional(Flag),
-    isDeprecated: S.optional(Flag),
-    version: S.optional(S.String),
-    displayName: S.optional(S.String),
-    description: S.optional(S.String),
-    publisherDisplayName: S.optional(S.String),
-    source: S.optional(MetadataSource),
-    author: S.optional(MetadataAuthor),
-    support: S.optional(MetadataSupport),
-    dependencies: S.optional(MetadataDependencies),
-    providers: S.optional(PackageBasePropertiesProvidersList),
-    firstPublishDate: S.optional(S.String),
-    lastPublishDate: S.optional(S.String),
-    categories: S.optional(MetadataCategories),
-    threatAnalysisTactics: S.optional(
-      PackageBasePropertiesThreatAnalysisTacticsList,
-    ),
-    threatAnalysisTechniques: S.optional(
-      PackageBasePropertiesThreatAnalysisTechniquesList,
-    ),
-    icon: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PackageBaseProperties",
-}) as any as S.Schema<PackageBaseProperties>;
-
-export interface ContentPackageInstallRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the monitor workspace. */
-  workspaceName: string;
-  /** package Id */
-  packageId: string;
-  /** package properties */
-  properties?: PackageBaseProperties;
-  /** Etag of the azure resource */
-  etag?: string;
-}
-export const ContentPackageInstallRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    packageId: S.String.pipe(T.Label()),
-    properties: S.optional(PackageBaseProperties),
-    etag: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/contentPackages/{packageId}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "ContentPackageInstallRequest",
-}) as any as S.Schema<ContentPackageInstallRequest>;
-
-export interface ContentPackageInstallResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** package properties */
-  properties?: PackageBaseProperties;
-  /** Etag of the azure resource */
-  etag?: string;
-}
-export const ContentPackageInstallResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(PackageBaseProperties),
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ContentPackageInstallResponse",
-}) as any as S.Schema<ContentPackageInstallResponse>;
-
-export interface ContentPackagesGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the monitor workspace. */
-  workspaceName: string;
-  /** package Id */
-  packageId: string;
-}
-export const ContentPackagesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    packageId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/contentPackages/{packageId}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "ContentPackagesGetRequest",
-}) as any as S.Schema<ContentPackagesGetRequest>;
-
-export interface ContentPackagesGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** package properties */
-  properties?: PackageBaseProperties;
-  /** Etag of the azure resource */
-  etag?: string;
-}
-export const ContentPackagesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(PackageBaseProperties),
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ContentPackagesGetResponse",
-}) as any as S.Schema<ContentPackagesGetResponse>;
-
-export interface ContentPackagesListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the monitor workspace. */
-  workspaceName: string;
-  /** Filters the results, based on a Boolean condition. Optional. */
-  _filter?: string;
-  /** Sorts the results. Optional. */
-  _orderby?: string;
-  /** Searches for a substring in the response. Optional. */
-  _search?: string;
-  /** Instructs the server to return only object count without actual body. Optional. */
-  _count?: boolean;
-  /** Returns only the first n results. Optional. */
-  _top?: number;
-  /** Used to skip n elements in the OData query (offset). Returns a nextLink to the next page of results if there are any left. */
-  _skip?: number;
-  /** Skiptoken is only used if a previous operation returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a skiptoken parameter that specifies a starting point to use for subsequent calls. Optional. */
-  _skipToken?: string;
-}
-export const ContentPackagesListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-    _orderby: S.optional(S.String.pipe(T.Query("$orderby"))),
-    _search: S.optional(S.String.pipe(T.Query("$search"))),
-    _count: S.optional(S.Boolean.pipe(T.Query("$count"))),
-    _top: S.optional(S.Number.pipe(T.Query("$top"))),
-    _skip: S.optional(S.Number.pipe(T.Query("$skip"))),
-    _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/contentPackages",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "ContentPackagesListRequest",
-}) as any as S.Schema<ContentPackagesListRequest>;
-
-/** Represents a Package in Azure Security Insights. */
-export interface PackageModel {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** package properties */
-  properties?: PackageBaseProperties;
-  /** Etag of the azure resource */
-  etag?: string;
-}
-export const PackageModel = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(PackageBaseProperties),
-    etag: S.optional(S.String),
-  }),
-).annotate({ identifier: "PackageModel" }) as any as S.Schema<PackageModel>;
-
-/** The PackageModel items on this page */
-export type PackageListValueList = Array<PackageModel>;
-export const PackageListValueList = /*@__PURE__*/ S.Array(
-  PackageModel,
-) as any as S.Schema<PackageListValueList>;
-
-/** List available packages. */
-export interface PackageList {
-  /** The PackageModel items on this page */
-  value: PackageListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const PackageList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: PackageListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({ identifier: "PackageList" }) as any as S.Schema<PackageList>;
-
-export interface ContentPackageUninstallRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the monitor workspace. */
-  workspaceName: string;
-  /** package Id */
-  packageId: string;
-}
-export const ContentPackageUninstallRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    packageId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/contentPackages/{packageId}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "ContentPackageUninstallRequest",
-}) as any as S.Schema<ContentPackageUninstallRequest>;
-
-export interface ContentPackageUninstallResponse {}
-export const ContentPackageUninstallResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ContentPackageUninstallResponse",
-}) as any as S.Schema<ContentPackageUninstallResponse>;
-
-export interface ContentTemplateDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the monitor workspace. */
-  workspaceName: string;
-  /** template Id */
-  templateId: string;
-}
-export const ContentTemplateDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    templateId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/contentTemplates/{templateId}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "ContentTemplateDeleteRequest",
-}) as any as S.Schema<ContentTemplateDeleteRequest>;
-
-export interface ContentTemplateDeleteResponse {}
-export const ContentTemplateDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ContentTemplateDeleteResponse",
-}) as any as S.Schema<ContentTemplateDeleteResponse>;
-
-export interface ContentTemplateGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the monitor workspace. */
-  workspaceName: string;
-  /** template Id */
-  templateId: string;
-}
-export const ContentTemplateGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    templateId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/contentTemplates/{templateId}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "ContentTemplateGetRequest",
-}) as any as S.Schema<ContentTemplateGetRequest>;
-
-/** Providers for the content item */
-export type TemplatePropertiesProvidersList = Array<string>;
-export const TemplatePropertiesProvidersList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<TemplatePropertiesProvidersList>;
-
-/** the tactics the resource covers */
-export type TemplatePropertiesThreatAnalysisTacticsList = Array<string>;
-export const TemplatePropertiesThreatAnalysisTacticsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<TemplatePropertiesThreatAnalysisTacticsList>;
-
-/** the techniques the resource covers, these have to be aligned with the tactics being used */
-export type TemplatePropertiesThreatAnalysisTechniquesList = Array<string>;
-export const TemplatePropertiesThreatAnalysisTechniquesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<TemplatePropertiesThreatAnalysisTechniquesList>;
-
-/** preview image file names. These will be taken from the solution artifacts */
-export type TemplatePropertiesPreviewImagesList = Array<string>;
-export const TemplatePropertiesPreviewImagesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<TemplatePropertiesPreviewImagesList>;
-
-/** preview image file names. These will be taken from the solution artifacts. used for dark theme support */
-export type TemplatePropertiesPreviewImagesDarkList = Array<string>;
-export const TemplatePropertiesPreviewImagesDarkList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<TemplatePropertiesPreviewImagesDarkList>;
-
-/** Dependant templates. Expandable. */
-export type TemplatePropertiesDependantTemplatesList =
-  Array<TemplateProperties>;
-export const TemplatePropertiesDependantTemplatesList = /*@__PURE__*/ S.Array(
-  S.suspend(() => TemplateProperties),
-) as any as S.Schema<TemplatePropertiesDependantTemplatesList>;
-
-/** Template property bag. */
-export interface TemplateProperties {
-  /** Static ID for the content. Used to identify dependencies and content from solutions or community. Hard-coded/static for out of the box content and solutions. Dynamic for user-created. This is the resource name */
-  contentId?: string;
-  /** Unique ID for the content. It should be generated based on the contentId of the package, contentId of the template, contentKind of the template and the contentVersion of the template */
-  contentProductId?: string;
-  /** Version of the package. Default and recommended format is numeric (e.g. 1, 1.0, 1.0.0, 1.0.0.0), following ARM metadata best practices. Can also be any string, but then we cannot guarantee any version checks */
-  packageVersion?: string;
-  /** Version of the content. Default and recommended format is numeric (e.g. 1, 1.0, 1.0.0, 1.0.0.0), following ARM metadata best practices. Can also be any string, but then we cannot guarantee any version checks */
-  version?: string;
-  /** The display name of the template */
-  displayName?: string;
-  /** The kind of content the template is for. */
-  contentKind?: Kind;
-  /** Source of the content. This is where/how it was created. */
-  source?: MetadataSource;
-  /** The creator of the content item. */
-  author?: MetadataAuthor;
-  /** Support information for the template - type, name, contact information */
-  support?: MetadataSupport;
-  /** Dependencies for the content item, what other content items it requires to work. Can describe more complex dependencies using a recursive/nested structure. For a single dependency an id/kind/version can be supplied or operator/criteria for complex formats. */
-  dependencies?: MetadataDependencies;
-  /** Categories for the item */
-  categories?: MetadataCategories;
-  /** Providers for the content item */
-  providers?: TemplatePropertiesProvidersList;
-  /** first publish date content item */
-  firstPublishDate?: string;
-  /** last publish date for the content item */
-  lastPublishDate?: string;
-  /** The custom version of the content. A optional free text */
-  customVersion?: string;
-  /** Schema version of the content. Can be used to distinguish between different flow based on the schema version */
-  contentSchemaVersion?: string;
-  /** the icon identifier. this id can later be fetched from the content metadata */
-  icon?: string;
-  /** the tactics the resource covers */
-  threatAnalysisTactics?: TemplatePropertiesThreatAnalysisTacticsList;
-  /** the techniques the resource covers, these have to be aligned with the tactics being used */
-  threatAnalysisTechniques?: TemplatePropertiesThreatAnalysisTechniquesList;
-  /** preview image file names. These will be taken from the solution artifacts */
-  previewImages?: TemplatePropertiesPreviewImagesList;
-  /** preview image file names. These will be taken from the solution artifacts. used for dark theme support */
-  previewImagesDark?: TemplatePropertiesPreviewImagesDarkList;
-  /** the package Id contains this template */
-  packageId?: string;
-  /** the packageKind of the package contains this template */
-  packageKind?: PackageKind;
-  /** the name of the package contains this template */
-  packageName?: string;
-  /** Flag indicates if this template is deprecated */
-  isDeprecated?: Flag;
-  /** The JSON of the ARM template to deploy active content. Expandable. */
-  mainTemplate?: unknown;
-  /** Dependant templates. Expandable. */
-  dependantTemplates?: TemplatePropertiesDependantTemplatesList;
-}
-export const TemplateProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    contentId: S.optional(S.String),
-    contentProductId: S.optional(S.String),
-    packageVersion: S.optional(S.String),
-    version: S.optional(S.String),
-    displayName: S.optional(S.String),
-    contentKind: S.optional(Kind),
-    source: S.optional(MetadataSource),
-    author: S.optional(MetadataAuthor),
-    support: S.optional(MetadataSupport),
-    dependencies: S.optional(MetadataDependencies),
-    categories: S.optional(MetadataCategories),
-    providers: S.optional(TemplatePropertiesProvidersList),
-    firstPublishDate: S.optional(S.String),
-    lastPublishDate: S.optional(S.String),
-    customVersion: S.optional(S.String),
-    contentSchemaVersion: S.optional(S.String),
-    icon: S.optional(S.String),
-    threatAnalysisTactics: S.optional(
-      TemplatePropertiesThreatAnalysisTacticsList,
-    ),
-    threatAnalysisTechniques: S.optional(
-      TemplatePropertiesThreatAnalysisTechniquesList,
-    ),
-    previewImages: S.optional(TemplatePropertiesPreviewImagesList),
-    previewImagesDark: S.optional(TemplatePropertiesPreviewImagesDarkList),
-    packageId: S.optional(S.String),
-    packageKind: S.optional(PackageKind),
-    packageName: S.optional(S.String),
-    isDeprecated: S.optional(Flag),
-    mainTemplate: S.optional(S.Unknown),
-    dependantTemplates: S.optional(TemplatePropertiesDependantTemplatesList),
-  }),
-).annotate({
-  identifier: "TemplateProperties",
-}) as any as S.Schema<TemplateProperties>;
-
-export interface ContentTemplateGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** template properties */
-  properties?: TemplateProperties;
-  /** Etag of the azure resource */
-  etag?: string;
-}
-export const ContentTemplateGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(TemplateProperties),
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ContentTemplateGetResponse",
-}) as any as S.Schema<ContentTemplateGetResponse>;
-
-/** Providers for the content item */
-export type TemplatePropertiesInputProvidersList = Array<string>;
-export const TemplatePropertiesInputProvidersList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<TemplatePropertiesInputProvidersList>;
-
-/** the tactics the resource covers */
-export type TemplatePropertiesInputThreatAnalysisTacticsList = Array<string>;
-export const TemplatePropertiesInputThreatAnalysisTacticsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<TemplatePropertiesInputThreatAnalysisTacticsList>;
-
-/** the techniques the resource covers, these have to be aligned with the tactics being used */
-export type TemplatePropertiesInputThreatAnalysisTechniquesList = Array<string>;
-export const TemplatePropertiesInputThreatAnalysisTechniquesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<TemplatePropertiesInputThreatAnalysisTechniquesList>;
-
-/** preview image file names. These will be taken from the solution artifacts */
-export type TemplatePropertiesInputPreviewImagesList = Array<string>;
-export const TemplatePropertiesInputPreviewImagesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<TemplatePropertiesInputPreviewImagesList>;
-
-/** preview image file names. These will be taken from the solution artifacts. used for dark theme support */
-export type TemplatePropertiesInputPreviewImagesDarkList = Array<string>;
-export const TemplatePropertiesInputPreviewImagesDarkList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<TemplatePropertiesInputPreviewImagesDarkList>;
-
-/** Template property bag. */
-export interface TemplatePropertiesInput {
-  /** Static ID for the content. Used to identify dependencies and content from solutions or community. Hard-coded/static for out of the box content and solutions. Dynamic for user-created. This is the resource name */
-  contentId?: string;
-  /** Unique ID for the content. It should be generated based on the contentId of the package, contentId of the template, contentKind of the template and the contentVersion of the template */
-  contentProductId?: string;
-  /** Version of the package. Default and recommended format is numeric (e.g. 1, 1.0, 1.0.0, 1.0.0.0), following ARM metadata best practices. Can also be any string, but then we cannot guarantee any version checks */
-  packageVersion?: string;
-  /** Version of the content. Default and recommended format is numeric (e.g. 1, 1.0, 1.0.0, 1.0.0.0), following ARM metadata best practices. Can also be any string, but then we cannot guarantee any version checks */
-  version?: string;
-  /** The display name of the template */
-  displayName?: string;
-  /** The kind of content the template is for. */
-  contentKind?: Kind | (string & {});
-  /** Source of the content. This is where/how it was created. */
-  source?: MetadataSource;
-  /** The creator of the content item. */
-  author?: MetadataAuthor;
-  /** Support information for the template - type, name, contact information */
-  support?: MetadataSupport;
-  /** Dependencies for the content item, what other content items it requires to work. Can describe more complex dependencies using a recursive/nested structure. For a single dependency an id/kind/version can be supplied or operator/criteria for complex formats. */
-  dependencies?: MetadataDependencies;
-  /** Categories for the item */
-  categories?: MetadataCategories;
-  /** Providers for the content item */
-  providers?: TemplatePropertiesInputProvidersList;
-  /** first publish date content item */
-  firstPublishDate?: string;
-  /** last publish date for the content item */
-  lastPublishDate?: string;
-  /** The custom version of the content. A optional free text */
-  customVersion?: string;
-  /** Schema version of the content. Can be used to distinguish between different flow based on the schema version */
-  contentSchemaVersion?: string;
-  /** the icon identifier. this id can later be fetched from the content metadata */
-  icon?: string;
-  /** the tactics the resource covers */
-  threatAnalysisTactics?: TemplatePropertiesInputThreatAnalysisTacticsList;
-  /** the techniques the resource covers, these have to be aligned with the tactics being used */
-  threatAnalysisTechniques?: TemplatePropertiesInputThreatAnalysisTechniquesList;
-  /** preview image file names. These will be taken from the solution artifacts */
-  previewImages?: TemplatePropertiesInputPreviewImagesList;
-  /** preview image file names. These will be taken from the solution artifacts. used for dark theme support */
-  previewImagesDark?: TemplatePropertiesInputPreviewImagesDarkList;
-  /** the package Id contains this template */
-  packageId?: string;
-  /** the packageKind of the package contains this template */
-  packageKind?: PackageKind | (string & {});
-  /** the name of the package contains this template */
-  packageName?: string;
-  /** The JSON of the ARM template to deploy active content. Expandable. */
-  mainTemplate?: unknown;
-}
-export const TemplatePropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    contentId: S.optional(S.String),
-    contentProductId: S.optional(S.String),
-    packageVersion: S.optional(S.String),
-    version: S.optional(S.String),
-    displayName: S.optional(S.String),
-    contentKind: S.optional(Kind),
-    source: S.optional(MetadataSource),
-    author: S.optional(MetadataAuthor),
-    support: S.optional(MetadataSupport),
-    dependencies: S.optional(MetadataDependencies),
-    categories: S.optional(MetadataCategories),
-    providers: S.optional(TemplatePropertiesInputProvidersList),
-    firstPublishDate: S.optional(S.String),
-    lastPublishDate: S.optional(S.String),
-    customVersion: S.optional(S.String),
-    contentSchemaVersion: S.optional(S.String),
-    icon: S.optional(S.String),
-    threatAnalysisTactics: S.optional(
-      TemplatePropertiesInputThreatAnalysisTacticsList,
-    ),
-    threatAnalysisTechniques: S.optional(
-      TemplatePropertiesInputThreatAnalysisTechniquesList,
-    ),
-    previewImages: S.optional(TemplatePropertiesInputPreviewImagesList),
-    previewImagesDark: S.optional(TemplatePropertiesInputPreviewImagesDarkList),
-    packageId: S.optional(S.String),
-    packageKind: S.optional(PackageKind),
-    packageName: S.optional(S.String),
-    mainTemplate: S.optional(S.Unknown),
-  }),
-).annotate({
-  identifier: "TemplatePropertiesInput",
-}) as any as S.Schema<TemplatePropertiesInput>;
-
-export interface ContentTemplateInstallRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the monitor workspace. */
-  workspaceName: string;
-  /** template Id */
-  templateId: string;
-  /** template properties */
-  properties?: TemplatePropertiesInput;
-  /** Etag of the azure resource */
-  etag?: string;
-}
-export const ContentTemplateInstallRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    templateId: S.String.pipe(T.Label()),
-    properties: S.optional(TemplatePropertiesInput),
-    etag: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/contentTemplates/{templateId}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "ContentTemplateInstallRequest",
-}) as any as S.Schema<ContentTemplateInstallRequest>;
-
-export interface ContentTemplateInstallResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** template properties */
-  properties?: TemplateProperties;
-  /** Etag of the azure resource */
-  etag?: string;
-}
-export const ContentTemplateInstallResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(TemplateProperties),
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ContentTemplateInstallResponse",
-}) as any as S.Schema<ContentTemplateInstallResponse>;
-
-export interface ContentTemplatesListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the monitor workspace. */
-  workspaceName: string;
-  /** Filters the results, based on a Boolean condition. Optional. */
-  _filter?: string;
-  /** Sorts the results. Optional. */
-  _orderby?: string;
-  /** Expands the object with optional fiends that are not included by default. Optional. */
-  _expand?: string;
-  /** Searches for a substring in the response. Optional. */
-  _search?: string;
-  /** Instructs the server to return only object count without actual body. Optional. */
-  _count?: boolean;
-  /** Returns only the first n results. Optional. */
-  _top?: number;
-  /** Used to skip n elements in the OData query (offset). Returns a nextLink to the next page of results if there are any left. */
-  _skip?: number;
-  /** Skiptoken is only used if a previous operation returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a skiptoken parameter that specifies a starting point to use for subsequent calls. Optional. */
-  _skipToken?: string;
-}
-export const ContentTemplatesListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-    _orderby: S.optional(S.String.pipe(T.Query("$orderby"))),
-    _expand: S.optional(S.String.pipe(T.Query("$expand"))),
-    _search: S.optional(S.String.pipe(T.Query("$search"))),
-    _count: S.optional(S.Boolean.pipe(T.Query("$count"))),
-    _top: S.optional(S.Number.pipe(T.Query("$top"))),
-    _skip: S.optional(S.Number.pipe(T.Query("$skip"))),
-    _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/contentTemplates",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "ContentTemplatesListRequest",
-}) as any as S.Schema<ContentTemplatesListRequest>;
-
-/** Template resource definition. */
-export interface TemplateModel {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** template properties */
-  properties?: TemplateProperties;
-  /** Etag of the azure resource */
-  etag?: string;
-}
-export const TemplateModel = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(TemplateProperties),
-    etag: S.optional(S.String),
-  }),
-).annotate({ identifier: "TemplateModel" }) as any as S.Schema<TemplateModel>;
-
-/** The TemplateModel items on this page */
-export type TemplateListValueList = Array<TemplateModel>;
-export const TemplateListValueList = /*@__PURE__*/ S.Array(
-  TemplateModel,
-) as any as S.Schema<TemplateListValueList>;
-
-/** List of all the template. */
-export interface TemplateList {
-  /** The TemplateModel items on this page */
-  value: TemplateListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const TemplateList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: TemplateListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({ identifier: "TemplateList" }) as any as S.Schema<TemplateList>;
-
-/** The kind of the data connector definitions */
-export type DataConnectorDefinitionKind = "Customizable";
-export const DataConnectorDefinitionKind = /*@__PURE__*/ S.String;
-
-export interface DataConnectorDefinitionsCreateOrUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the monitor workspace. */
-  workspaceName: string;
-  /** The data connector definition name. */
-  dataConnectorDefinitionName: string;
-  /** Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must validate and persist this value. */
-  kind: DataConnectorDefinitionKind | (string & {});
-  /** Etag of the azure resource */
-  etag?: string;
-}
-export const DataConnectorDefinitionsCreateOrUpdateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      workspaceName: S.String.pipe(T.Label()),
-      dataConnectorDefinitionName: S.String.pipe(T.Label()),
-      kind: DataConnectorDefinitionKind,
-      etag: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/dataConnectorDefinitions/{dataConnectorDefinitionName}",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "DataConnectorDefinitionsCreateOrUpdateRequest",
-  }) as any as S.Schema<DataConnectorDefinitionsCreateOrUpdateRequest>;
-
-export interface DataConnectorDefinitionsCreateOrUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must validate and persist this value. */
-  kind: DataConnectorDefinitionKind;
-  /** Etag of the azure resource */
-  etag?: string;
-}
-export const DataConnectorDefinitionsCreateOrUpdateResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      kind: DataConnectorDefinitionKind,
-      etag: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "DataConnectorDefinitionsCreateOrUpdateResponse",
-  }) as any as S.Schema<DataConnectorDefinitionsCreateOrUpdateResponse>;
-
-export interface DataConnectorDefinitionsDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the monitor workspace. */
-  workspaceName: string;
-  /** The data connector definition name. */
-  dataConnectorDefinitionName: string;
-}
-export const DataConnectorDefinitionsDeleteRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      workspaceName: S.String.pipe(T.Label()),
-      dataConnectorDefinitionName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/dataConnectorDefinitions/{dataConnectorDefinitionName}",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
-).annotate({
-  identifier: "DataConnectorDefinitionsDeleteRequest",
-}) as any as S.Schema<DataConnectorDefinitionsDeleteRequest>;
-
-export interface DataConnectorDefinitionsDeleteResponse {}
-export const DataConnectorDefinitionsDeleteResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "DataConnectorDefinitionsDeleteResponse",
-}) as any as S.Schema<DataConnectorDefinitionsDeleteResponse>;
-
-export interface DataConnectorDefinitionsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the monitor workspace. */
-  workspaceName: string;
-  /** The data connector definition name. */
-  dataConnectorDefinitionName: string;
-}
-export const DataConnectorDefinitionsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    dataConnectorDefinitionName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/dataConnectorDefinitions/{dataConnectorDefinitionName}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "DataConnectorDefinitionsGetRequest",
-}) as any as S.Schema<DataConnectorDefinitionsGetRequest>;
-
-export interface DataConnectorDefinitionsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must validate and persist this value. */
-  kind: DataConnectorDefinitionKind;
-  /** Etag of the azure resource */
-  etag?: string;
-}
-export const DataConnectorDefinitionsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    kind: DataConnectorDefinitionKind,
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DataConnectorDefinitionsGetResponse",
-}) as any as S.Schema<DataConnectorDefinitionsGetResponse>;
-
-export interface DataConnectorDefinitionsListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the monitor workspace. */
-  workspaceName: string;
-}
-export const DataConnectorDefinitionsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/dataConnectorDefinitions",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "DataConnectorDefinitionsListRequest",
-}) as any as S.Schema<DataConnectorDefinitionsListRequest>;
-
-/** An Azure resource, which encapsulate the entire info requires to display a data connector page in Azure portal, and the info required to define data connections. */
-export interface DataConnectorDefinition {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must validate and persist this value. */
-  kind: DataConnectorDefinitionKind;
-  /** Etag of the azure resource */
-  etag?: string;
-}
-export const DataConnectorDefinition = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    kind: DataConnectorDefinitionKind,
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DataConnectorDefinition",
-}) as any as S.Schema<DataConnectorDefinition>;
-
-/** List of data connector definitions. */
-export type DataConnectorDefinitionArmCollectionWrapperValueList =
-  Array<DataConnectorDefinition>;
-export const DataConnectorDefinitionArmCollectionWrapperValueList =
-  /*@__PURE__*/ S.Array(
-    DataConnectorDefinition,
-  ) as any as S.Schema<DataConnectorDefinitionArmCollectionWrapperValueList>;
-
-/** Encapsulate the data connector definition object */
-export interface DataConnectorDefinitionArmCollectionWrapper {
-  /** List of data connector definitions. */
-  value?: DataConnectorDefinitionArmCollectionWrapperValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const DataConnectorDefinitionArmCollectionWrapper =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      value: S.optional(DataConnectorDefinitionArmCollectionWrapperValueList),
-      nextLink: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "DataConnectorDefinitionArmCollectionWrapper",
-  }) as any as S.Schema<DataConnectorDefinitionArmCollectionWrapper>;
-
-/** The kind of the data connector */
-export type DataConnectorKind =
-  | "AzureActiveDirectory"
-  | "AzureSecurityCenter"
-  | "MicrosoftCloudAppSecurity"
-  | "ThreatIntelligence"
-  | "Office365"
-  | "AmazonWebServicesCloudTrail"
-  | "AzureAdvancedThreatProtection"
-  | "MicrosoftDefenderAdvancedThreatProtection"
-  | "MicrosoftThreatIntelligence"
-  | "PremiumMicrosoftDefenderForThreatIntelligence"
-  | "RestApiPoller";
-export const DataConnectorKind = /*@__PURE__*/ S.String;
-
-export interface DataConnectorsCreateOrUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the monitor workspace. */
-  workspaceName: string;
-  /** Connector ID */
-  dataConnectorId: string;
-  /** Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must validate and persist this value. */
-  kind: DataConnectorKind | (string & {});
-  /** Etag of the azure resource */
-  etag?: string;
-}
-export const DataConnectorsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    dataConnectorId: S.String.pipe(T.Label()),
-    kind: DataConnectorKind,
-    etag: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/dataConnectors/{dataConnectorId}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "DataConnectorsCreateOrUpdateRequest",
-}) as any as S.Schema<DataConnectorsCreateOrUpdateRequest>;
-
-export interface DataConnectorsCreateOrUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must validate and persist this value. */
-  kind: DataConnectorKind;
-  /** Etag of the azure resource */
-  etag?: string;
-}
-export const DataConnectorsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      kind: DataConnectorKind,
-      etag: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "DataConnectorsCreateOrUpdateResponse",
-}) as any as S.Schema<DataConnectorsCreateOrUpdateResponse>;
-
-export interface DataConnectorsDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the monitor workspace. */
-  workspaceName: string;
-  /** Connector ID */
-  dataConnectorId: string;
-}
-export const DataConnectorsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    dataConnectorId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/dataConnectors/{dataConnectorId}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "DataConnectorsDeleteRequest",
-}) as any as S.Schema<DataConnectorsDeleteRequest>;
-
-export interface DataConnectorsDeleteResponse {}
-export const DataConnectorsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DataConnectorsDeleteResponse",
-}) as any as S.Schema<DataConnectorsDeleteResponse>;
-
-export interface DataConnectorsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the monitor workspace. */
-  workspaceName: string;
-  /** Connector ID */
-  dataConnectorId: string;
-}
-export const DataConnectorsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    dataConnectorId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/dataConnectors/{dataConnectorId}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "DataConnectorsGetRequest",
-}) as any as S.Schema<DataConnectorsGetRequest>;
-
-export interface DataConnectorsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must validate and persist this value. */
-  kind: DataConnectorKind;
-  /** Etag of the azure resource */
-  etag?: string;
-}
-export const DataConnectorsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    kind: DataConnectorKind,
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DataConnectorsGetResponse",
-}) as any as S.Schema<DataConnectorsGetResponse>;
-
-export interface DataConnectorsListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the monitor workspace. */
-  workspaceName: string;
-}
-export const DataConnectorsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/dataConnectors",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "DataConnectorsListRequest",
-}) as any as S.Schema<DataConnectorsListRequest>;
-
-/** Data connector */
-export interface DataConnector {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must validate and persist this value. */
-  kind: DataConnectorKind;
-  /** Etag of the azure resource */
-  etag?: string;
-}
-export const DataConnector = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    kind: DataConnectorKind,
-    etag: S.optional(S.String),
-  }),
-).annotate({ identifier: "DataConnector" }) as any as S.Schema<DataConnector>;
-
-/** The DataConnector items on this page */
-export type DataConnectorListValueList = Array<DataConnector>;
-export const DataConnectorListValueList = /*@__PURE__*/ S.Array(
-  DataConnector,
-) as any as S.Schema<DataConnectorListValueList>;
-
-/** List all the data connectors. */
-export interface DataConnectorList {
-  /** The DataConnector items on this page */
-  value: DataConnectorListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const DataConnectorList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: DataConnectorListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DataConnectorList",
-}) as any as S.Schema<DataConnectorList>;
-
-export interface EntitiesRunPlaybookRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the workspace. */
-  workspaceName: string;
-  /** entity ID */
-  entityIdentifier: string;
-  /** Incident ARM id. */
-  incidentArmId?: string;
-  /** The tenant id of the playbook resource. */
-  tenantId?: string;
-  /** The resource id of the playbook resource. */
-  logicAppsResourceId: string;
-}
-export const EntitiesRunPlaybookRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    entityIdentifier: S.String.pipe(T.Label()),
-    incidentArmId: S.optional(S.String),
-    tenantId: S.optional(S.String),
-    logicAppsResourceId: S.String,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/entities/{entityIdentifier}/runPlaybook",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "EntitiesRunPlaybookRequest",
-}) as any as S.Schema<EntitiesRunPlaybookRequest>;
-
-export interface EntitiesRunPlaybookResponse {}
-export const EntitiesRunPlaybookResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "EntitiesRunPlaybookResponse",
-}) as any as S.Schema<EntitiesRunPlaybookResponse>;
-
-/** Incident comment property bag. */
-export interface IncidentCommentPropertiesInput {
-  /** The comment message */
-  message: string;
-}
-export const IncidentCommentPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    message: S.String,
-  }),
-).annotate({
-  identifier: "IncidentCommentPropertiesInput",
-}) as any as S.Schema<IncidentCommentPropertiesInput>;
-
-export interface IncidentCommentsCreateOrUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the monitor workspace. */
-  workspaceName: string;
-  /** Incident ID */
-  incidentId: string;
-  /** Incident comment ID */
-  incidentCommentId: string;
-  /** Incident comment properties */
-  properties?: IncidentCommentPropertiesInput;
-  /** Etag of the azure resource */
-  etag?: string;
-}
-export const IncidentCommentsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      workspaceName: S.String.pipe(T.Label()),
-      incidentId: S.String.pipe(T.Label()),
-      incidentCommentId: S.String.pipe(T.Label()),
-      properties: S.optional(IncidentCommentPropertiesInput),
-      etag: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/incidents/{incidentId}/comments/{incidentCommentId}",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
-).annotate({
-  identifier: "IncidentCommentsCreateOrUpdateRequest",
-}) as any as S.Schema<IncidentCommentsCreateOrUpdateRequest>;
-
-/** Incident comment property bag. */
-export interface IncidentCommentProperties {
-  /** The comment message */
-  message: string;
-  /** The time the comment was created */
-  createdTimeUtc?: string;
-  /** The time the comment was updated */
-  lastModifiedTimeUtc?: string;
-  /** Describes the client that created the comment */
-  author?: ClientInfo;
-}
-export const IncidentCommentProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    message: S.String,
-    createdTimeUtc: S.optional(S.String),
-    lastModifiedTimeUtc: S.optional(S.String),
-    author: S.optional(ClientInfo),
-  }),
-).annotate({
-  identifier: "IncidentCommentProperties",
-}) as any as S.Schema<IncidentCommentProperties>;
-
-export interface IncidentCommentsCreateOrUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Incident comment properties */
-  properties?: IncidentCommentProperties;
-  /** Etag of the azure resource */
-  etag?: string;
-}
-export const IncidentCommentsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(IncidentCommentProperties),
-      etag: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "IncidentCommentsCreateOrUpdateResponse",
-}) as any as S.Schema<IncidentCommentsCreateOrUpdateResponse>;
-
-export interface IncidentCommentsDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the monitor workspace. */
-  workspaceName: string;
-  /** Incident ID */
-  incidentId: string;
-  /** Incident comment ID */
-  incidentCommentId: string;
-}
-export const IncidentCommentsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    incidentId: S.String.pipe(T.Label()),
-    incidentCommentId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/incidents/{incidentId}/comments/{incidentCommentId}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "IncidentCommentsDeleteRequest",
-}) as any as S.Schema<IncidentCommentsDeleteRequest>;
-
-export interface IncidentCommentsDeleteResponse {}
-export const IncidentCommentsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "IncidentCommentsDeleteResponse",
-}) as any as S.Schema<IncidentCommentsDeleteResponse>;
-
-export interface IncidentCommentsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the monitor workspace. */
-  workspaceName: string;
-  /** Incident ID */
-  incidentId: string;
-  /** Incident comment ID */
-  incidentCommentId: string;
-}
-export const IncidentCommentsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    incidentId: S.String.pipe(T.Label()),
-    incidentCommentId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/incidents/{incidentId}/comments/{incidentCommentId}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "IncidentCommentsGetRequest",
-}) as any as S.Schema<IncidentCommentsGetRequest>;
-
-export interface IncidentCommentsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Incident comment properties */
-  properties?: IncidentCommentProperties;
-  /** Etag of the azure resource */
-  etag?: string;
-}
-export const IncidentCommentsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(IncidentCommentProperties),
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "IncidentCommentsGetResponse",
-}) as any as S.Schema<IncidentCommentsGetResponse>;
-
-export interface IncidentCommentsListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the monitor workspace. */
-  workspaceName: string;
-  /** Incident ID */
-  incidentId: string;
-  /** Filters the results, based on a Boolean condition. Optional. */
-  _filter?: string;
-  /** Sorts the results. Optional. */
-  _orderby?: string;
-  /** Returns only the first n results. Optional. */
-  _top?: number;
-  /** Skiptoken is only used if a previous operation returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a skiptoken parameter that specifies a starting point to use for subsequent calls. Optional. */
-  _skipToken?: string;
-}
-export const IncidentCommentsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    incidentId: S.String.pipe(T.Label()),
-    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-    _orderby: S.optional(S.String.pipe(T.Query("$orderby"))),
-    _top: S.optional(S.Number.pipe(T.Query("$top"))),
-    _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/incidents/{incidentId}/comments",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "IncidentCommentsListRequest",
-}) as any as S.Schema<IncidentCommentsListRequest>;
-
-/** Represents an incident comment */
-export interface IncidentComment {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Incident comment properties */
-  properties?: IncidentCommentProperties;
-  /** Etag of the azure resource */
-  etag?: string;
-}
-export const IncidentComment = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(IncidentCommentProperties),
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "IncidentComment",
-}) as any as S.Schema<IncidentComment>;
-
-/** The IncidentComment items on this page */
-export type IncidentCommentListValueList = Array<IncidentComment>;
-export const IncidentCommentListValueList = /*@__PURE__*/ S.Array(
-  IncidentComment,
-) as any as S.Schema<IncidentCommentListValueList>;
-
-/** List of incident comments. */
-export interface IncidentCommentList {
-  /** The IncidentComment items on this page */
-  value: IncidentCommentListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const IncidentCommentList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: IncidentCommentListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "IncidentCommentList",
-}) as any as S.Schema<IncidentCommentList>;
-
-/** Relation property bag. */
-export interface RelationPropertiesInput {
-  /** The resource ID of the related resource */
-  relatedResourceId: string;
-}
-export const RelationPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    relatedResourceId: S.String,
-  }),
-).annotate({
-  identifier: "RelationPropertiesInput",
-}) as any as S.Schema<RelationPropertiesInput>;
-
-export interface IncidentRelationsCreateOrUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the monitor workspace. */
-  workspaceName: string;
-  /** Incident ID */
-  incidentId: string;
-  /** Relation Name */
-  relationName: string;
-  /** Relation properties */
-  properties?: RelationPropertiesInput;
-  /** Etag of the azure resource */
-  etag?: string;
-}
-export const IncidentRelationsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      workspaceName: S.String.pipe(T.Label()),
-      incidentId: S.String.pipe(T.Label()),
-      relationName: S.String.pipe(T.Label()),
-      properties: S.optional(RelationPropertiesInput),
-      etag: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/incidents/{incidentId}/relations/{relationName}",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
-).annotate({
-  identifier: "IncidentRelationsCreateOrUpdateRequest",
-}) as any as S.Schema<IncidentRelationsCreateOrUpdateRequest>;
-
-/** Relation property bag. */
-export interface RelationProperties {
-  /** The resource ID of the related resource */
-  relatedResourceId: string;
-  /** The name of the related resource */
-  relatedResourceName?: string;
-  /** The resource type of the related resource */
-  relatedResourceType?: string;
-  /** The resource kind of the related resource */
-  relatedResourceKind?: string;
-}
-export const RelationProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    relatedResourceId: S.String,
-    relatedResourceName: S.optional(S.String),
-    relatedResourceType: S.optional(S.String),
-    relatedResourceKind: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "RelationProperties",
-}) as any as S.Schema<RelationProperties>;
-
-export interface IncidentRelationsCreateOrUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Relation properties */
-  properties?: RelationProperties;
-  /** Etag of the azure resource */
-  etag?: string;
-}
-export const IncidentRelationsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(RelationProperties),
-      etag: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "IncidentRelationsCreateOrUpdateResponse",
-}) as any as S.Schema<IncidentRelationsCreateOrUpdateResponse>;
-
-export interface IncidentRelationsDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the monitor workspace. */
-  workspaceName: string;
-  /** Incident ID */
-  incidentId: string;
-  /** Relation Name */
-  relationName: string;
-}
-export const IncidentRelationsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    incidentId: S.String.pipe(T.Label()),
-    relationName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/incidents/{incidentId}/relations/{relationName}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "IncidentRelationsDeleteRequest",
-}) as any as S.Schema<IncidentRelationsDeleteRequest>;
-
-export interface IncidentRelationsDeleteResponse {}
-export const IncidentRelationsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "IncidentRelationsDeleteResponse",
-}) as any as S.Schema<IncidentRelationsDeleteResponse>;
-
-export interface IncidentRelationsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the monitor workspace. */
-  workspaceName: string;
-  /** Incident ID */
-  incidentId: string;
-  /** Relation Name */
-  relationName: string;
-}
-export const IncidentRelationsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    incidentId: S.String.pipe(T.Label()),
-    relationName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/incidents/{incidentId}/relations/{relationName}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "IncidentRelationsGetRequest",
-}) as any as S.Schema<IncidentRelationsGetRequest>;
-
-export interface IncidentRelationsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Relation properties */
-  properties?: RelationProperties;
-  /** Etag of the azure resource */
-  etag?: string;
-}
-export const IncidentRelationsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(RelationProperties),
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "IncidentRelationsGetResponse",
-}) as any as S.Schema<IncidentRelationsGetResponse>;
-
-export interface IncidentRelationsListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the monitor workspace. */
-  workspaceName: string;
-  /** Incident ID */
-  incidentId: string;
-  /** Filters the results, based on a Boolean condition. Optional. */
-  _filter?: string;
-  /** Sorts the results. Optional. */
-  _orderby?: string;
-  /** Returns only the first n results. Optional. */
-  _top?: number;
-  /** Skiptoken is only used if a previous operation returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a skiptoken parameter that specifies a starting point to use for subsequent calls. Optional. */
-  _skipToken?: string;
-}
-export const IncidentRelationsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    incidentId: S.String.pipe(T.Label()),
-    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-    _orderby: S.optional(S.String.pipe(T.Query("$orderby"))),
-    _top: S.optional(S.Number.pipe(T.Query("$top"))),
-    _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/incidents/{incidentId}/relations",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "IncidentRelationsListRequest",
-}) as any as S.Schema<IncidentRelationsListRequest>;
-
-/** Represents a relation between two resources */
-export interface Relation {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Relation properties */
-  properties?: RelationProperties;
-  /** Etag of the azure resource */
-  etag?: string;
-}
-export const Relation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(RelationProperties),
-    etag: S.optional(S.String),
-  }),
-).annotate({ identifier: "Relation" }) as any as S.Schema<Relation>;
-
-/** The Relation items on this page */
-export type RelationListValueList = Array<Relation>;
-export const RelationListValueList = /*@__PURE__*/ S.Array(
-  Relation,
-) as any as S.Schema<RelationListValueList>;
-
-/** List of relations. */
-export interface RelationList {
-  /** The Relation items on this page */
-  value: RelationListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const RelationList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: RelationListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({ identifier: "RelationList" }) as any as S.Schema<RelationList>;
-
-/** The status of the incident */
-export type IncidentStatus = "New" | "Active" | "Closed";
-export const IncidentStatus = /*@__PURE__*/ S.String;
-
-/** The reason the incident was closed */
-export type IncidentClassification =
-  | "Undetermined"
-  | "TruePositive"
-  | "BenignPositive"
-  | "FalsePositive";
-export const IncidentClassification = /*@__PURE__*/ S.String;
-
-/** The classification reason the incident was closed with */
-export type IncidentClassificationReason =
-  | "SuspiciousActivity"
-  | "SuspiciousButExpected"
-  | "IncorrectAlertLogic"
-  | "InaccurateData";
-export const IncidentClassificationReason = /*@__PURE__*/ S.String;
-
-/** The type of the owner the hunt is assigned to. */
-export type OwnerType = "Unknown" | "User" | "Group";
-export const OwnerType = /*@__PURE__*/ S.String;
-
-/** Information on the user an incident is assigned to */
-export interface IncidentOwnerInfo {
-  /** The email of the user the incident is assigned to. */
-  email?: string;
-  /** The name of the user the incident is assigned to. */
-  assignedTo?: string;
-  /** The object id of the user the incident is assigned to. */
-  objectId?: string;
-  /** The user principal name of the user the incident is assigned to. */
-  userPrincipalName?: string;
-  /** The type of the owner the incident is assigned to. */
-  ownerType?: OwnerType | (string & {});
-}
-export const IncidentOwnerInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    email: S.optional(S.String),
-    assignedTo: S.optional(S.String),
-    objectId: S.optional(S.String),
-    userPrincipalName: S.optional(S.String),
-    ownerType: S.optional(OwnerType),
-  }),
-).annotate({
-  identifier: "IncidentOwnerInfo",
-}) as any as S.Schema<IncidentOwnerInfo>;
-
-/** The type of the label */
-export type IncidentLabelType = "User" | "AutoAssigned";
-export const IncidentLabelType = /*@__PURE__*/ S.String;
-
-/** Represents an incident label */
-export interface IncidentLabel {
-  /** The name of the label */
-  labelName: string;
-  /** The type of the label */
-  labelType?: IncidentLabelType | (string & {});
-}
-export const IncidentLabel = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    labelName: S.String,
-    labelType: S.optional(IncidentLabelType),
-  }),
-).annotate({ identifier: "IncidentLabel" }) as any as S.Schema<IncidentLabel>;
-
-/** List of labels relevant to this incident */
-export type IncidentPropertiesInputLabelsList = Array<IncidentLabel>;
-export const IncidentPropertiesInputLabelsList = /*@__PURE__*/ S.Array(
-  IncidentLabel,
-) as any as S.Schema<IncidentPropertiesInputLabelsList>;
-
-/** Describes incident properties */
-export interface IncidentPropertiesInput {
-  /** The title of the incident */
-  title: string;
-  /** The description of the incident */
-  description?: string;
-  /** The severity of the incident */
-  severity: IncidentSeverity | (string & {});
-  /** The status of the incident */
-  status: IncidentStatus | (string & {});
-  /** The reason the incident was closed */
-  classification?: IncidentClassification | (string & {});
-  /** The classification reason the incident was closed with */
-  classificationReason?: IncidentClassificationReason | (string & {});
-  /** Describes the reason the incident was closed */
-  classificationComment?: string;
-  /** Describes a user that the incident is assigned to */
-  owner?: IncidentOwnerInfo;
-  /** List of labels relevant to this incident */
-  labels?: IncidentPropertiesInputLabelsList;
-  /** The time of the first activity in the incident */
-  firstActivityTimeUtc?: string;
-  /** The time of the last activity in the incident */
-  lastActivityTimeUtc?: string;
-}
-export const IncidentPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    title: S.String,
-    description: S.optional(S.String),
-    severity: IncidentSeverity,
-    status: IncidentStatus,
-    classification: S.optional(IncidentClassification),
-    classificationReason: S.optional(IncidentClassificationReason),
-    classificationComment: S.optional(S.String),
-    owner: S.optional(IncidentOwnerInfo),
-    labels: S.optional(IncidentPropertiesInputLabelsList),
-    firstActivityTimeUtc: S.optional(S.String),
-    lastActivityTimeUtc: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "IncidentPropertiesInput",
-}) as any as S.Schema<IncidentPropertiesInput>;
-
-export interface IncidentsCreateOrUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the monitor workspace. */
-  workspaceName: string;
-  /** Incident ID */
-  incidentId: string;
-  /** Incident properties */
-  properties?: IncidentPropertiesInput;
-  /** Etag of the azure resource */
-  etag?: string;
-}
-export const IncidentsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    incidentId: S.String.pipe(T.Label()),
-    properties: S.optional(IncidentPropertiesInput),
-    etag: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/incidents/{incidentId}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "IncidentsCreateOrUpdateRequest",
-}) as any as S.Schema<IncidentsCreateOrUpdateRequest>;
-
-/** List of labels relevant to this incident */
-export type IncidentPropertiesLabelsList = Array<IncidentLabel>;
-export const IncidentPropertiesLabelsList = /*@__PURE__*/ S.Array(
-  IncidentLabel,
-) as any as S.Schema<IncidentPropertiesLabelsList>;
-
-/** List of product names of alerts in the incident */
-export type IncidentAdditionalDataAlertProductNamesList = Array<string>;
-export const IncidentAdditionalDataAlertProductNamesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<IncidentAdditionalDataAlertProductNamesList>;
-
-/** The severity for alerts created by this alert rule. */
-export type AttackTactic =
-  | "Reconnaissance"
-  | "ResourceDevelopment"
-  | "InitialAccess"
-  | "Execution"
-  | "Persistence"
-  | "PrivilegeEscalation"
-  | "DefenseEvasion"
-  | "CredentialAccess"
-  | "Discovery"
-  | "LateralMovement"
-  | "Collection"
-  | "Exfiltration"
-  | "CommandAndControl"
-  | "Impact"
-  | "PreAttack"
-  | "ImpairProcessControl"
-  | "InhibitResponseFunction";
-export const AttackTactic = /*@__PURE__*/ S.String;
-
-/** The tactics associated with incident */
-export type IncidentAdditionalDataTacticsList = Array<AttackTactic>;
-export const IncidentAdditionalDataTacticsList = /*@__PURE__*/ S.Array(
-  AttackTactic,
-) as any as S.Schema<IncidentAdditionalDataTacticsList>;
-
-/** Incident additional data property bag. */
-export interface IncidentAdditionalData {
-  /** The number of alerts in the incident */
-  alertsCount?: number;
-  /** The number of bookmarks in the incident */
-  bookmarksCount?: number;
-  /** The number of comments in the incident */
-  commentsCount?: number;
-  /** List of product names of alerts in the incident */
-  alertProductNames?: IncidentAdditionalDataAlertProductNamesList;
-  /** The tactics associated with incident */
-  tactics?: IncidentAdditionalDataTacticsList;
-  /** The provider incident url to the incident in Microsoft 365 Defender portal */
-  providerIncidentUrl?: string;
-}
-export const IncidentAdditionalData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    alertsCount: S.optional(S.Number),
-    bookmarksCount: S.optional(S.Number),
-    commentsCount: S.optional(S.Number),
-    alertProductNames: S.optional(IncidentAdditionalDataAlertProductNamesList),
-    tactics: S.optional(IncidentAdditionalDataTacticsList),
-    providerIncidentUrl: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "IncidentAdditionalData",
-}) as any as S.Schema<IncidentAdditionalData>;
-
-/** List of resource ids of Analytic rules related to the incident */
-export type IncidentPropertiesRelatedAnalyticRuleIdsList = Array<string>;
-export const IncidentPropertiesRelatedAnalyticRuleIdsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<IncidentPropertiesRelatedAnalyticRuleIdsList>;
-
-/** Describes incident properties */
-export interface IncidentProperties {
-  /** The title of the incident */
-  title: string;
-  /** The description of the incident */
-  description?: string;
-  /** The severity of the incident */
-  severity: IncidentSeverity;
-  /** The status of the incident */
-  status: IncidentStatus;
-  /** The reason the incident was closed */
-  classification?: IncidentClassification;
-  /** The classification reason the incident was closed with */
-  classificationReason?: IncidentClassificationReason;
-  /** Describes the reason the incident was closed */
-  classificationComment?: string;
-  /** Describes a user that the incident is assigned to */
-  owner?: IncidentOwnerInfo;
-  /** List of labels relevant to this incident */
-  labels?: IncidentPropertiesLabelsList;
-  /** The time of the first activity in the incident */
-  firstActivityTimeUtc?: string;
-  /** The time of the last activity in the incident */
-  lastActivityTimeUtc?: string;
-  /** The last time the incident was updated */
-  lastModifiedTimeUtc?: string;
-  /** The time the incident was created */
-  createdTimeUtc?: string;
-  /** A sequential number */
-  incidentNumber?: number;
-  /** Additional data on the incident */
-  additionalData?: IncidentAdditionalData;
-  /** List of resource ids of Analytic rules related to the incident */
-  relatedAnalyticRuleIds?: IncidentPropertiesRelatedAnalyticRuleIdsList;
-  /** The deep-link url to the incident in Azure portal */
-  incidentUrl?: string;
-  /** The name of the source provider that generated the incident */
-  providerName?: string;
-  /** The incident ID assigned by the incident provider */
-  providerIncidentId?: string;
-}
-export const IncidentProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    title: S.String,
-    description: S.optional(S.String),
-    severity: IncidentSeverity,
-    status: IncidentStatus,
-    classification: S.optional(IncidentClassification),
-    classificationReason: S.optional(IncidentClassificationReason),
-    classificationComment: S.optional(S.String),
-    owner: S.optional(IncidentOwnerInfo),
-    labels: S.optional(IncidentPropertiesLabelsList),
-    firstActivityTimeUtc: S.optional(S.String),
-    lastActivityTimeUtc: S.optional(S.String),
-    lastModifiedTimeUtc: S.optional(S.String),
-    createdTimeUtc: S.optional(S.String),
-    incidentNumber: S.optional(S.Number),
-    additionalData: S.optional(IncidentAdditionalData),
-    relatedAnalyticRuleIds: S.optional(
-      IncidentPropertiesRelatedAnalyticRuleIdsList,
-    ),
-    incidentUrl: S.optional(S.String),
-    providerName: S.optional(S.String),
-    providerIncidentId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "IncidentProperties",
-}) as any as S.Schema<IncidentProperties>;
-
-export interface IncidentsCreateOrUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Incident properties */
-  properties?: IncidentProperties;
-  /** Etag of the azure resource */
-  etag?: string;
-}
-export const IncidentsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(IncidentProperties),
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "IncidentsCreateOrUpdateResponse",
-}) as any as S.Schema<IncidentsCreateOrUpdateResponse>;
-
-export interface IncidentsDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the monitor workspace. */
-  workspaceName: string;
-  /** Incident ID */
-  incidentId: string;
-}
-export const IncidentsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    incidentId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/incidents/{incidentId}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "IncidentsDeleteRequest",
-}) as any as S.Schema<IncidentsDeleteRequest>;
-
-export interface IncidentsDeleteResponse {}
-export const IncidentsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "IncidentsDeleteResponse",
-}) as any as S.Schema<IncidentsDeleteResponse>;
-
-export interface IncidentsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the monitor workspace. */
-  workspaceName: string;
-  /** Incident ID */
-  incidentId: string;
-}
-export const IncidentsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    incidentId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/incidents/{incidentId}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "IncidentsGetRequest",
-}) as any as S.Schema<IncidentsGetRequest>;
-
-export interface IncidentsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Incident properties */
-  properties?: IncidentProperties;
-  /** Etag of the azure resource */
-  etag?: string;
-}
-export const IncidentsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(IncidentProperties),
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "IncidentsGetResponse",
-}) as any as S.Schema<IncidentsGetResponse>;
-
-export interface IncidentsListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the monitor workspace. */
-  workspaceName: string;
-  /** Filters the results, based on a Boolean condition. Optional. */
-  _filter?: string;
-  /** Sorts the results. Optional. */
-  _orderby?: string;
-  /** Returns only the first n results. Optional. */
-  _top?: number;
-  /** Skiptoken is only used if a previous operation returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a skiptoken parameter that specifies a starting point to use for subsequent calls. Optional. */
-  _skipToken?: string;
-}
-export const IncidentsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-    _orderby: S.optional(S.String.pipe(T.Query("$orderby"))),
-    _top: S.optional(S.Number.pipe(T.Query("$top"))),
-    _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/incidents",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "IncidentsListRequest",
-}) as any as S.Schema<IncidentsListRequest>;
-
-/** Represents an incident in Azure Security Insights. */
-export interface Incident {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Incident properties */
-  properties?: IncidentProperties;
-  /** Etag of the azure resource */
-  etag?: string;
-}
-export const Incident = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(IncidentProperties),
-    etag: S.optional(S.String),
-  }),
-).annotate({ identifier: "Incident" }) as any as S.Schema<Incident>;
-
-/** The Incident items on this page */
-export type IncidentListValueList = Array<Incident>;
-export const IncidentListValueList = /*@__PURE__*/ S.Array(
-  Incident,
-) as any as S.Schema<IncidentListValueList>;
-
-/** List all the incidents. */
-export interface IncidentList {
-  /** The Incident items on this page */
-  value: IncidentListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const IncidentList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: IncidentListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({ identifier: "IncidentList" }) as any as S.Schema<IncidentList>;
-
-export interface IncidentsListAlertsRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the monitor workspace. */
-  workspaceName: string;
-  /** Incident ID */
-  incidentId: string;
-}
-export const IncidentsListAlertsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    incidentId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/incidents/{incidentId}/alerts",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "IncidentsListAlertsRequest",
-}) as any as S.Schema<IncidentsListAlertsRequest>;
-
-/** The kind of the entity */
-export type EntityKindEnum =
-  | "Account"
-  | "Host"
-  | "File"
-  | "AzureResource"
-  | "CloudApplication"
-  | "DnsResolution"
-  | "FileHash"
-  | "Ip"
-  | "Malware"
-  | "Process"
-  | "RegistryKey"
-  | "RegistryValue"
-  | "SecurityGroup"
-  | "Url"
-  | "IoTDevice"
-  | "SecurityAlert"
-  | "Bookmark"
-  | "MailCluster"
-  | "MailMessage"
-  | "Mailbox"
-  | "SubmissionMail";
-export const EntityKindEnum = /*@__PURE__*/ S.String;
-
-/** A bag of custom fields that should be part of the entity and will be presented to the user. */
-export type SecurityAlertPropertiesAdditionalDataMap = {
-  [key: string]: unknown | undefined;
-};
-export const SecurityAlertPropertiesAdditionalDataMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<SecurityAlertPropertiesAdditionalDataMap>;
-
-/** The confidence level of this alert. */
-export type ConfidenceLevel = "Unknown" | "Low" | "High";
-export const ConfidenceLevel = /*@__PURE__*/ S.String;
-
-/** confidence reason item */
-export interface SecurityAlertPropertiesConfidenceReasonsItem {
-  /** The reason's description */
-  reason?: string;
-  /** The type (category) of the reason */
-  reasonType?: string;
-}
-export const SecurityAlertPropertiesConfidenceReasonsItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      reason: S.optional(S.String),
-      reasonType: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "SecurityAlertPropertiesConfidenceReasonsItem",
-  }) as any as S.Schema<SecurityAlertPropertiesConfidenceReasonsItem>;
-
-/** The confidence reasons */
-export type SecurityAlertPropertiesConfidenceReasonsList =
-  Array<SecurityAlertPropertiesConfidenceReasonsItem>;
-export const SecurityAlertPropertiesConfidenceReasonsList =
-  /*@__PURE__*/ S.Array(
-    SecurityAlertPropertiesConfidenceReasonsItem,
-  ) as any as S.Schema<SecurityAlertPropertiesConfidenceReasonsList>;
-
-/** The confidence score calculation status, i.e. indicating if score calculation is pending for this alert, not applicable or final. */
-export type ConfidenceScoreStatus =
-  | "NotApplicable"
-  | "InProcess"
-  | "NotFinal"
-  | "Final";
-export const ConfidenceScoreStatus = /*@__PURE__*/ S.String;
-
-/** The intent of the alert. */
-export type KillChainIntent =
-  | "Unknown"
-  | "Probing"
-  | "Exploitation"
-  | "Persistence"
-  | "PrivilegeEscalation"
-  | "DefenseEvasion"
-  | "CredentialAccess"
-  | "Discovery"
-  | "LateralMovement"
-  | "Execution"
-  | "Collection"
-  | "Exfiltration"
-  | "CommandAndControl"
-  | "Impact";
-export const KillChainIntent = /*@__PURE__*/ S.String;
-
-/** Manual action items to take to remediate the alert. */
-export type SecurityAlertPropertiesRemediationStepsList = Array<string>;
-export const SecurityAlertPropertiesRemediationStepsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<SecurityAlertPropertiesRemediationStepsList>;
-
-/** The severity of the alert */
-export type AlertSeverity = "High" | "Medium" | "Low" | "Informational";
-export const AlertSeverity = /*@__PURE__*/ S.String;
-
-/** The lifecycle status of the alert. */
-export type AlertStatus =
-  | "Unknown"
-  | "New"
-  | "Resolved"
-  | "Dismissed"
-  | "InProgress";
-export const AlertStatus = /*@__PURE__*/ S.String;
-
-/** The tactics of the alert */
-export type SecurityAlertPropertiesTacticsList = Array<AttackTactic>;
-export const SecurityAlertPropertiesTacticsList = /*@__PURE__*/ S.Array(
-  AttackTactic,
-) as any as S.Schema<SecurityAlertPropertiesTacticsList>;
-
-/** The list of resource identifiers of the alert. */
-export type SecurityAlertPropertiesResourceIdentifiersList = Array<unknown>;
-export const SecurityAlertPropertiesResourceIdentifiersList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<SecurityAlertPropertiesResourceIdentifiersList>;
-
-/** SecurityAlert entity property bag. */
-export interface SecurityAlertProperties {
-  /** A bag of custom fields that should be part of the entity and will be presented to the user. */
-  additionalData?: SecurityAlertPropertiesAdditionalDataMap;
-  /** The graph item display name which is a short humanly readable description of the graph item instance. This property is optional and might be system generated. */
-  friendlyName?: string;
-  /** The display name of the alert. */
-  alertDisplayName?: string;
-  /** The type name of the alert. */
-  alertType?: string;
-  /** Display name of the main entity being reported on. */
-  compromisedEntity?: string;
-  /** The confidence level of this alert. */
-  confidenceLevel?: ConfidenceLevel;
-  /** The confidence reasons */
-  confidenceReasons?: SecurityAlertPropertiesConfidenceReasonsList;
-  /** The confidence score of the alert. */
-  confidenceScore?: number;
-  /** The confidence score calculation status, i.e. indicating if score calculation is pending for this alert, not applicable or final. */
-  confidenceScoreStatus?: ConfidenceScoreStatus;
-  /** Alert description. */
-  description?: string;
-  /** The impact end time of the alert (the time of the last event contributing to the alert). */
-  endTimeUtc?: string;
-  /** Holds the alert intent stage(s) mapping for this alert. */
-  intent?: KillChainIntent;
-  /** The identifier of the alert inside the product which generated the alert. */
-  providerAlertId?: string;
-  /** The time the alert was made available for consumption. */
-  processingEndTime?: string;
-  /** The name of a component inside the product which generated the alert. */
-  productComponentName?: string;
-  /** The name of the product which published this alert. */
-  productName?: string;
-  /** The version of the product generating the alert. */
-  productVersion?: string;
-  /** Manual action items to take to remediate the alert. */
-  remediationSteps?: SecurityAlertPropertiesRemediationStepsList;
-  /** The severity of the alert */
-  severity?: AlertSeverity;
-  /** The impact start time of the alert (the time of the first event contributing to the alert). */
-  startTimeUtc?: string;
-  /** The lifecycle status of the alert. */
-  status?: AlertStatus;
-  /** Holds the product identifier of the alert for the product. */
-  systemAlertId?: string;
-  /** The tactics of the alert */
-  tactics?: SecurityAlertPropertiesTacticsList;
-  /** The time the alert was generated. */
-  timeGenerated?: string;
-  /** The name of the vendor that raise the alert. */
-  vendorName?: string;
-  /** The uri link of the alert. */
-  alertLink?: string;
-  /** The list of resource identifiers of the alert. */
-  resourceIdentifiers?: SecurityAlertPropertiesResourceIdentifiersList;
-}
-export const SecurityAlertProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    additionalData: S.optional(SecurityAlertPropertiesAdditionalDataMap),
-    friendlyName: S.optional(S.String),
-    alertDisplayName: S.optional(S.String),
-    alertType: S.optional(S.String),
-    compromisedEntity: S.optional(S.String),
-    confidenceLevel: S.optional(ConfidenceLevel),
-    confidenceReasons: S.optional(SecurityAlertPropertiesConfidenceReasonsList),
-    confidenceScore: S.optional(S.Number),
-    confidenceScoreStatus: S.optional(ConfidenceScoreStatus),
-    description: S.optional(S.String),
-    endTimeUtc: S.optional(S.String),
-    intent: S.optional(KillChainIntent),
-    providerAlertId: S.optional(S.String),
-    processingEndTime: S.optional(S.String),
-    productComponentName: S.optional(S.String),
-    productName: S.optional(S.String),
-    productVersion: S.optional(S.String),
-    remediationSteps: S.optional(SecurityAlertPropertiesRemediationStepsList),
-    severity: S.optional(AlertSeverity),
-    startTimeUtc: S.optional(S.String),
-    status: S.optional(AlertStatus),
-    systemAlertId: S.optional(S.String),
-    tactics: S.optional(SecurityAlertPropertiesTacticsList),
-    timeGenerated: S.optional(S.String),
-    vendorName: S.optional(S.String),
-    alertLink: S.optional(S.String),
-    resourceIdentifiers: S.optional(
-      SecurityAlertPropertiesResourceIdentifiersList,
-    ),
-  }),
-).annotate({
-  identifier: "SecurityAlertProperties",
-}) as any as S.Schema<SecurityAlertProperties>;
-
-/** Represents a security alert entity. */
-export interface SecurityAlert {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must validate and persist this value. */
-  kind: EntityKindEnum;
-  /** SecurityAlert entity properties */
-  properties?: SecurityAlertProperties;
-}
-export const SecurityAlert = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    kind: EntityKindEnum,
-    properties: S.optional(SecurityAlertProperties),
-  }),
-).annotate({ identifier: "SecurityAlert" }) as any as S.Schema<SecurityAlert>;
-
-/** Array of incident alerts. */
-export type IncidentAlertListValueList = Array<SecurityAlert>;
-export const IncidentAlertListValueList = /*@__PURE__*/ S.Array(
-  SecurityAlert,
-) as any as S.Schema<IncidentAlertListValueList>;
-
-/** List of incident alerts. */
-export interface IncidentAlertList {
-  /** Array of incident alerts. */
-  value: IncidentAlertListValueList;
-}
-export const IncidentAlertList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: IncidentAlertListValueList,
-  }),
-).annotate({
-  identifier: "IncidentAlertList",
-}) as any as S.Schema<IncidentAlertList>;
-
-export interface IncidentsListBookmarksRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the monitor workspace. */
-  workspaceName: string;
-  /** Incident ID */
-  incidentId: string;
-}
-export const IncidentsListBookmarksRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    incidentId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/incidents/{incidentId}/bookmarks",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "IncidentsListBookmarksRequest",
-}) as any as S.Schema<IncidentsListBookmarksRequest>;
-
-/** A bag of custom fields that should be part of the entity and will be presented to the user. */
-export type HuntingBookmarkPropertiesAdditionalDataMap = {
-  [key: string]: unknown | undefined;
-};
-export const HuntingBookmarkPropertiesAdditionalDataMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.Unknown,
-  ) as any as S.Schema<HuntingBookmarkPropertiesAdditionalDataMap>;
-
-/** List of labels relevant to this bookmark */
-export type HuntingBookmarkPropertiesLabelsList = Array<string>;
-export const HuntingBookmarkPropertiesLabelsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<HuntingBookmarkPropertiesLabelsList>;
-
-/** Describes bookmark properties */
-export interface HuntingBookmarkProperties {
-  /** A bag of custom fields that should be part of the entity and will be presented to the user. */
-  additionalData?: HuntingBookmarkPropertiesAdditionalDataMap;
-  /** The graph item display name which is a short humanly readable description of the graph item instance. This property is optional and might be system generated. */
-  friendlyName?: string;
-  /** The time the bookmark was created */
-  created?: string;
-  /** Describes a user that created the bookmark */
-  createdBy?: UserInfo;
-  /** The display name of the bookmark */
-  displayName: string;
-  /** The time of the event */
-  eventTime?: string;
-  /** List of labels relevant to this bookmark */
-  labels?: HuntingBookmarkPropertiesLabelsList;
-  /** The notes of the bookmark */
-  notes?: string;
-  /** The query of the bookmark. */
-  query: string;
-  /** The query result of the bookmark. */
-  queryResult?: string;
-  /** The last time the bookmark was updated */
-  updated?: string;
-  /** Describes a user that updated the bookmark */
-  updatedBy?: UserInfo;
-  /** Describes an incident that relates to bookmark */
-  incidentInfo?: IncidentInfo;
-}
-export const HuntingBookmarkProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    additionalData: S.optional(HuntingBookmarkPropertiesAdditionalDataMap),
-    friendlyName: S.optional(S.String),
-    created: S.optional(S.String),
-    createdBy: S.optional(UserInfo),
-    displayName: S.String,
-    eventTime: S.optional(S.String),
-    labels: S.optional(HuntingBookmarkPropertiesLabelsList),
-    notes: S.optional(S.String),
-    query: S.String,
-    queryResult: S.optional(S.String),
-    updated: S.optional(S.String),
-    updatedBy: S.optional(UserInfo),
-    incidentInfo: S.optional(IncidentInfo),
-  }),
-).annotate({
-  identifier: "HuntingBookmarkProperties",
-}) as any as S.Schema<HuntingBookmarkProperties>;
-
-/** Represents a Hunting bookmark entity. */
-export interface HuntingBookmark {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must validate and persist this value. */
-  kind: EntityKindEnum;
-  /** HuntingBookmark entity properties */
-  properties?: HuntingBookmarkProperties;
-}
-export const HuntingBookmark = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    kind: EntityKindEnum,
-    properties: S.optional(HuntingBookmarkProperties),
-  }),
-).annotate({
-  identifier: "HuntingBookmark",
-}) as any as S.Schema<HuntingBookmark>;
-
-/** Array of incident bookmarks. */
-export type IncidentBookmarkListValueList = Array<HuntingBookmark>;
-export const IncidentBookmarkListValueList = /*@__PURE__*/ S.Array(
-  HuntingBookmark,
-) as any as S.Schema<IncidentBookmarkListValueList>;
-
-/** List of incident bookmarks. */
-export interface IncidentBookmarkList {
-  /** Array of incident bookmarks. */
-  value: IncidentBookmarkListValueList;
-}
-export const IncidentBookmarkList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: IncidentBookmarkListValueList,
-  }),
-).annotate({
-  identifier: "IncidentBookmarkList",
-}) as any as S.Schema<IncidentBookmarkList>;
-
-export interface IncidentsListEntitiesRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the monitor workspace. */
-  workspaceName: string;
-  /** Incident ID */
-  incidentId: string;
-}
-export const IncidentsListEntitiesRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    incidentId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/incidents/{incidentId}/entities",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "IncidentsListEntitiesRequest",
-}) as any as S.Schema<IncidentsListEntitiesRequest>;
-
-/** Specific entity. */
-export interface Entity {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must validate and persist this value. */
-  kind: EntityKindEnum;
-}
-export const Entity = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    kind: EntityKindEnum,
-  }),
-).annotate({ identifier: "Entity" }) as any as S.Schema<Entity>;
-
-/** Array of the incident related entities. */
-export type IncidentEntitiesResponseEntitiesList = Array<Entity>;
-export const IncidentEntitiesResponseEntitiesList = /*@__PURE__*/ S.Array(
-  Entity,
-) as any as S.Schema<IncidentEntitiesResponseEntitiesList>;
-
-/** Information of a specific aggregation in the incident related entities result. */
-export interface IncidentEntitiesResultsMetadata {
-  /** The kind of the aggregated entity. */
-  entityKind: EntityKindEnum;
-  /** Total number of aggregations of the given kind in the incident related entities result. */
-  count: number;
-}
-export const IncidentEntitiesResultsMetadata = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    entityKind: EntityKindEnum,
-    count: S.Number,
-  }),
-).annotate({
-  identifier: "IncidentEntitiesResultsMetadata",
-}) as any as S.Schema<IncidentEntitiesResultsMetadata>;
-
-/** The metadata from the incident related entities results. */
-export type IncidentEntitiesResponseMetaDataList =
-  Array<IncidentEntitiesResultsMetadata>;
-export const IncidentEntitiesResponseMetaDataList = /*@__PURE__*/ S.Array(
-  IncidentEntitiesResultsMetadata,
-) as any as S.Schema<IncidentEntitiesResponseMetaDataList>;
-
-/** The incident related entities response. */
-export interface IncidentEntitiesResponse {
-  /** Array of the incident related entities. */
-  entities?: IncidentEntitiesResponseEntitiesList;
-  /** The metadata from the incident related entities results. */
-  metaData?: IncidentEntitiesResponseMetaDataList;
-}
-export const IncidentEntitiesResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    entities: S.optional(IncidentEntitiesResponseEntitiesList),
-    metaData: S.optional(IncidentEntitiesResponseMetaDataList),
-  }),
-).annotate({
-  identifier: "IncidentEntitiesResponse",
-}) as any as S.Schema<IncidentEntitiesResponse>;
-
-export interface IncidentsRunPlaybookRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the workspace. */
-  workspaceName: string;
-  /** The incident identifier. */
-  incidentIdentifier: string;
-  tenantId?: string;
-  /** Related Analytic rule resource id */
-  logicAppsResourceId: string;
-}
-export const IncidentsRunPlaybookRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    incidentIdentifier: S.String.pipe(T.Label()),
-    tenantId: S.optional(S.String),
-    logicAppsResourceId: S.String,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/incidents/{incidentIdentifier}/runPlaybook",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "IncidentsRunPlaybookRequest",
-}) as any as S.Schema<IncidentsRunPlaybookRequest>;
-
-export interface IncidentsRunPlaybookResponse {}
-export const IncidentsRunPlaybookResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "IncidentsRunPlaybookResponse",
-}) as any as S.Schema<IncidentsRunPlaybookResponse>;
-
-/** The status of the task */
-export type IncidentTaskStatus = "New" | "Completed";
-export const IncidentTaskStatus = /*@__PURE__*/ S.String;
-
-/** Describes the properties of an incident task */
-export interface IncidentTaskPropertiesInput {
-  /** The title of the task */
-  title: string;
-  /** The description of the task */
-  description?: string;
-  /** The status of the task */
-  status: IncidentTaskStatus | (string & {});
-  /** Information on the client (user or application) that made some action */
-  createdBy?: ClientInfo;
-  /** Information on the client (user or application) that made some action */
-  lastModifiedBy?: ClientInfo;
-}
-export const IncidentTaskPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    title: S.String,
-    description: S.optional(S.String),
-    status: IncidentTaskStatus,
-    createdBy: S.optional(ClientInfo),
-    lastModifiedBy: S.optional(ClientInfo),
-  }),
-).annotate({
-  identifier: "IncidentTaskPropertiesInput",
-}) as any as S.Schema<IncidentTaskPropertiesInput>;
-
-export interface IncidentTasksCreateOrUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the monitor workspace. */
-  workspaceName: string;
-  /** Incident ID */
-  incidentId: string;
-  /** Incident task ID */
-  incidentTaskId: string;
-  /** Describes the properties of an incident task */
-  properties: IncidentTaskPropertiesInput;
-  /** Etag of the azure resource */
-  etag?: string;
-}
-export const IncidentTasksCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    incidentId: S.String.pipe(T.Label()),
-    incidentTaskId: S.String.pipe(T.Label()),
-    properties: IncidentTaskPropertiesInput,
-    etag: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/incidents/{incidentId}/tasks/{incidentTaskId}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "IncidentTasksCreateOrUpdateRequest",
-}) as any as S.Schema<IncidentTasksCreateOrUpdateRequest>;
-
-/** Describes the properties of an incident task */
-export interface IncidentTaskProperties {
-  /** The title of the task */
-  title: string;
-  /** The description of the task */
-  description?: string;
-  /** The status of the task */
-  status: IncidentTaskStatus;
-  /** The time the task was created */
-  createdTimeUtc?: string;
-  /** The last time the task was updated */
-  lastModifiedTimeUtc?: string;
-  /** Information on the client (user or application) that made some action */
-  createdBy?: ClientInfo;
-  /** Information on the client (user or application) that made some action */
-  lastModifiedBy?: ClientInfo;
-}
-export const IncidentTaskProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    title: S.String,
-    description: S.optional(S.String),
-    status: IncidentTaskStatus,
-    createdTimeUtc: S.optional(S.String),
-    lastModifiedTimeUtc: S.optional(S.String),
-    createdBy: S.optional(ClientInfo),
-    lastModifiedBy: S.optional(ClientInfo),
-  }),
-).annotate({
-  identifier: "IncidentTaskProperties",
-}) as any as S.Schema<IncidentTaskProperties>;
-
-export interface IncidentTasksCreateOrUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Describes the properties of an incident task */
-  properties: IncidentTaskProperties;
-  /** Etag of the azure resource */
-  etag?: string;
-}
-export const IncidentTasksCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: IncidentTaskProperties,
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "IncidentTasksCreateOrUpdateResponse",
-}) as any as S.Schema<IncidentTasksCreateOrUpdateResponse>;
-
-export interface IncidentTasksDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the monitor workspace. */
-  workspaceName: string;
-  /** Incident ID */
-  incidentId: string;
-  /** Incident task ID */
-  incidentTaskId: string;
-}
-export const IncidentTasksDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    incidentId: S.String.pipe(T.Label()),
-    incidentTaskId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/incidents/{incidentId}/tasks/{incidentTaskId}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "IncidentTasksDeleteRequest",
-}) as any as S.Schema<IncidentTasksDeleteRequest>;
-
-export interface IncidentTasksDeleteResponse {}
-export const IncidentTasksDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "IncidentTasksDeleteResponse",
-}) as any as S.Schema<IncidentTasksDeleteResponse>;
-
-export interface IncidentTasksGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the monitor workspace. */
-  workspaceName: string;
-  /** Incident ID */
-  incidentId: string;
-  /** Incident task ID */
-  incidentTaskId: string;
-}
-export const IncidentTasksGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    incidentId: S.String.pipe(T.Label()),
-    incidentTaskId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/incidents/{incidentId}/tasks/{incidentTaskId}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "IncidentTasksGetRequest",
-}) as any as S.Schema<IncidentTasksGetRequest>;
-
-export interface IncidentTasksGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Describes the properties of an incident task */
-  properties: IncidentTaskProperties;
-  /** Etag of the azure resource */
-  etag?: string;
-}
-export const IncidentTasksGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: IncidentTaskProperties,
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "IncidentTasksGetResponse",
-}) as any as S.Schema<IncidentTasksGetResponse>;
-
-export interface IncidentTasksListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the monitor workspace. */
-  workspaceName: string;
-  /** Incident ID */
-  incidentId: string;
-}
-export const IncidentTasksListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    incidentId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/incidents/{incidentId}/tasks",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "IncidentTasksListRequest",
-}) as any as S.Schema<IncidentTasksListRequest>;
-
-/** Describes incident task properties */
-export interface IncidentTask {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Describes the properties of an incident task */
-  properties: IncidentTaskProperties;
-  /** Etag of the azure resource */
-  etag?: string;
-}
-export const IncidentTask = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: IncidentTaskProperties,
-    etag: S.optional(S.String),
-  }),
-).annotate({ identifier: "IncidentTask" }) as any as S.Schema<IncidentTask>;
-
-/** List of incident tasks. */
-export type IncidentTaskListValueList = Array<IncidentTask>;
-export const IncidentTaskListValueList = /*@__PURE__*/ S.Array(
-  IncidentTask,
-) as any as S.Schema<IncidentTaskListValueList>;
-
-/** List of incident tasks */
-export interface IncidentTaskList {
-  /** List of incident tasks. */
-  value?: IncidentTaskListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const IncidentTaskList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(IncidentTaskListValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "IncidentTaskList",
-}) as any as S.Schema<IncidentTaskList>;
 
 /** Providers for the solution content item */
 export type MetadataPropertiesProvidersList = Array<string>;
@@ -5009,7 +931,7 @@ export const MetadataProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "MetadataProperties",
 }) as any as S.Schema<MetadataProperties>;
 
-export interface MetadataCreateRequest {
+export interface CreateMetadataRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -5023,7 +945,7 @@ export interface MetadataCreateRequest {
   /** Etag of the azure resource */
   etag?: string;
 }
-export const MetadataCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateMetadataRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -5040,10 +962,10 @@ export const MetadataCreateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "MetadataCreateRequest",
-}) as any as S.Schema<MetadataCreateRequest>;
+  identifier: "CreateMetadataRequest",
+}) as any as S.Schema<CreateMetadataRequest>;
 
-export interface MetadataCreateResponse {
+export interface CreateMetadataResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -5057,7 +979,7 @@ export interface MetadataCreateResponse {
   /** Etag of the azure resource */
   etag?: string;
 }
-export const MetadataCreateResponse = /*@__PURE__*/ S.suspend(() =>
+export const CreateMetadataResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -5067,1195 +989,8 @@ export const MetadataCreateResponse = /*@__PURE__*/ S.suspend(() =>
     etag: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "MetadataCreateResponse",
-}) as any as S.Schema<MetadataCreateResponse>;
-
-export interface MetadataDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the monitor workspace. */
-  workspaceName: string;
-  /** The Metadata name. */
-  metadataName: string;
-}
-export const MetadataDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    metadataName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/metadata/{metadataName}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "MetadataDeleteRequest",
-}) as any as S.Schema<MetadataDeleteRequest>;
-
-export interface MetadataDeleteResponse {}
-export const MetadataDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "MetadataDeleteResponse",
-}) as any as S.Schema<MetadataDeleteResponse>;
-
-export interface MetadataGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the monitor workspace. */
-  workspaceName: string;
-  /** The Metadata name. */
-  metadataName: string;
-}
-export const MetadataGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    metadataName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/metadata/{metadataName}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "MetadataGetRequest",
-}) as any as S.Schema<MetadataGetRequest>;
-
-export interface MetadataGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Metadata properties */
-  properties?: MetadataProperties;
-  /** Etag of the azure resource */
-  etag?: string;
-}
-export const MetadataGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(MetadataProperties),
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "MetadataGetResponse",
-}) as any as S.Schema<MetadataGetResponse>;
-
-export interface MetadataListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the monitor workspace. */
-  workspaceName: string;
-  /** Filters the results, based on a Boolean condition. Optional. */
-  _filter?: string;
-  /** Sorts the results. Optional. */
-  _orderby?: string;
-  /** Returns only the first n results. Optional. */
-  _top?: number;
-  /** Used to skip n elements in the OData query (offset). Returns a nextLink to the next page of results if there are any left. */
-  _skip?: number;
-}
-export const MetadataListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-    _orderby: S.optional(S.String.pipe(T.Query("$orderby"))),
-    _top: S.optional(S.Number.pipe(T.Query("$top"))),
-    _skip: S.optional(S.Number.pipe(T.Query("$skip"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/metadata",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "MetadataListRequest",
-}) as any as S.Schema<MetadataListRequest>;
-
-/** Metadata resource definition. */
-export interface MetadataModel {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Metadata properties */
-  properties?: MetadataProperties;
-  /** Etag of the azure resource */
-  etag?: string;
-}
-export const MetadataModel = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(MetadataProperties),
-    etag: S.optional(S.String),
-  }),
-).annotate({ identifier: "MetadataModel" }) as any as S.Schema<MetadataModel>;
-
-/** The MetadataModel items on this page */
-export type MetadataListValueList = Array<MetadataModel>;
-export const MetadataListValueList = /*@__PURE__*/ S.Array(
-  MetadataModel,
-) as any as S.Schema<MetadataListValueList>;
-
-/** List of all the metadata. */
-export interface MetadataList {
-  /** The MetadataModel items on this page */
-  value: MetadataListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const MetadataList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: MetadataListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({ identifier: "MetadataList" }) as any as S.Schema<MetadataList>;
-
-/** Providers for the solution content item */
-export type MetadataPropertiesPatchProvidersList = Array<string>;
-export const MetadataPropertiesPatchProvidersList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<MetadataPropertiesPatchProvidersList>;
-
-/** the tactics the resource covers */
-export type MetadataPropertiesPatchThreatAnalysisTacticsList = Array<string>;
-export const MetadataPropertiesPatchThreatAnalysisTacticsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<MetadataPropertiesPatchThreatAnalysisTacticsList>;
-
-/** the techniques the resource covers, these have to be aligned with the tactics being used */
-export type MetadataPropertiesPatchThreatAnalysisTechniquesList = Array<string>;
-export const MetadataPropertiesPatchThreatAnalysisTechniquesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<MetadataPropertiesPatchThreatAnalysisTechniquesList>;
-
-/** preview image file names. These will be taken from the solution artifacts */
-export type MetadataPropertiesPatchPreviewImagesList = Array<string>;
-export const MetadataPropertiesPatchPreviewImagesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<MetadataPropertiesPatchPreviewImagesList>;
-
-/** preview image file names. These will be taken from the solution artifacts. used for dark theme support */
-export type MetadataPropertiesPatchPreviewImagesDarkList = Array<string>;
-export const MetadataPropertiesPatchPreviewImagesDarkList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<MetadataPropertiesPatchPreviewImagesDarkList>;
-
-/** Metadata property bag for patch requests. This is the same as the MetadataProperties, but with nothing required */
-export interface MetadataPropertiesPatch {
-  /** Static ID for the content. Used to identify dependencies and content from solutions or community. Hard-coded/static for out of the box content and solutions. Can be optionally set for user created content to define dependencies. If an active content item is made from a template, both will have the same contentId. */
-  contentId?: string;
-  /** Full parent resource ID of the content item the metadata is for. This is the full resource ID including the scope (subscription and resource group) */
-  parentId?: string;
-  /** Version of the content. Default and recommended format is numeric (e.g. 1, 1.0, 1.0.0, 1.0.0.0), following ARM template best practices. Can also be any string, but then we cannot guarantee any version checks */
-  version?: string;
-  /** The kind of content the metadata is for. */
-  kind?: string;
-  /** Source of the content. This is where/how it was created. */
-  source?: MetadataSource;
-  /** The creator of the content item. */
-  author?: MetadataAuthor;
-  /** Support information for the metadata - type, name, contact information */
-  support?: MetadataSupport;
-  /** Dependencies for the content item, what other content items it requires to work. Can describe more complex dependencies using a recursive/nested structure. For a single dependency an id/kind/version can be supplied or operator/criteria for complex formats. */
-  dependencies?: MetadataDependencies;
-  /** Categories for the solution content item */
-  categories?: MetadataCategories;
-  /** Providers for the solution content item */
-  providers?: MetadataPropertiesPatchProvidersList;
-  /** first publish date of solution content item */
-  firstPublishDate?: string;
-  /** last publish date of solution content item */
-  lastPublishDate?: string;
-  /** The custom version of the content. A optional free text */
-  customVersion?: string;
-  /** Schema version of the content. Can be used to distinguish between different flow based on the schema version */
-  contentSchemaVersion?: string;
-  /** the icon identifier. this id can later be fetched from the solution template */
-  icon?: string;
-  /** the tactics the resource covers */
-  threatAnalysisTactics?: MetadataPropertiesPatchThreatAnalysisTacticsList;
-  /** the techniques the resource covers, these have to be aligned with the tactics being used */
-  threatAnalysisTechniques?: MetadataPropertiesPatchThreatAnalysisTechniquesList;
-  /** preview image file names. These will be taken from the solution artifacts */
-  previewImages?: MetadataPropertiesPatchPreviewImagesList;
-  /** preview image file names. These will be taken from the solution artifacts. used for dark theme support */
-  previewImagesDark?: MetadataPropertiesPatchPreviewImagesDarkList;
-}
-export const MetadataPropertiesPatch = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    contentId: S.optional(S.String),
-    parentId: S.optional(S.String),
-    version: S.optional(S.String),
-    kind: S.optional(S.String),
-    source: S.optional(MetadataSource),
-    author: S.optional(MetadataAuthor),
-    support: S.optional(MetadataSupport),
-    dependencies: S.optional(MetadataDependencies),
-    categories: S.optional(MetadataCategories),
-    providers: S.optional(MetadataPropertiesPatchProvidersList),
-    firstPublishDate: S.optional(S.String),
-    lastPublishDate: S.optional(S.String),
-    customVersion: S.optional(S.String),
-    contentSchemaVersion: S.optional(S.String),
-    icon: S.optional(S.String),
-    threatAnalysisTactics: S.optional(
-      MetadataPropertiesPatchThreatAnalysisTacticsList,
-    ),
-    threatAnalysisTechniques: S.optional(
-      MetadataPropertiesPatchThreatAnalysisTechniquesList,
-    ),
-    previewImages: S.optional(MetadataPropertiesPatchPreviewImagesList),
-    previewImagesDark: S.optional(MetadataPropertiesPatchPreviewImagesDarkList),
-  }),
-).annotate({
-  identifier: "MetadataPropertiesPatch",
-}) as any as S.Schema<MetadataPropertiesPatch>;
-
-export interface MetadataUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the monitor workspace. */
-  workspaceName: string;
-  /** The Metadata name. */
-  metadataName: string;
-  /** Etag of the azure resource */
-  etag?: string;
-  /** Metadata patch request body */
-  properties?: MetadataPropertiesPatch;
-}
-export const MetadataUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    metadataName: S.String.pipe(T.Label()),
-    etag: S.optional(S.String),
-    properties: S.optional(MetadataPropertiesPatch),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/metadata/{metadataName}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "MetadataUpdateRequest",
-}) as any as S.Schema<MetadataUpdateRequest>;
-
-export interface MetadataUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Metadata properties */
-  properties?: MetadataProperties;
-  /** Etag of the azure resource */
-  etag?: string;
-}
-export const MetadataUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(MetadataProperties),
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "MetadataUpdateResponse",
-}) as any as S.Schema<MetadataUpdateResponse>;
-
-export interface OperationsList2Request {}
-export const OperationsList2Request = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/providers/Microsoft.SecurityInsights/operations",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "OperationsList2Request",
-}) as any as S.Schema<OperationsList2Request>;
-
-/** Properties of the operation */
-export interface OperationDisplay {
-  /** Description of the operation */
-  description?: string;
-  /** Operation name */
-  operation?: string;
-  /** Provider name */
-  provider?: string;
-  /** Resource name */
-  resource?: string;
-}
-export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    description: S.optional(S.String),
-    operation: S.optional(S.String),
-    provider: S.optional(S.String),
-    resource: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OperationDisplay",
-}) as any as S.Schema<OperationDisplay>;
-
-/** Operation provided by provider */
-export interface Operation {
-  /** Properties of the operation */
-  display?: OperationDisplay;
-  /** Name of the operation */
-  name?: string;
-  /** The origin of the operation */
-  origin?: string;
-  /** Indicates whether the operation is a data action */
-  isDataAction?: boolean;
-}
-export const Operation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    display: S.optional(OperationDisplay),
-    name: S.optional(S.String),
-    origin: S.optional(S.String),
-    isDataAction: S.optional(S.Boolean),
-  }),
-).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
-
-/** Array of operations */
-export type OperationsListValueList = Array<Operation>;
-export const OperationsListValueList = /*@__PURE__*/ S.Array(
-  Operation,
-) as any as S.Schema<OperationsListValueList>;
-
-/** Lists the operations available in the SecurityInsights RP. */
-export interface OperationsList {
-  /** URL to fetch the next set of operations. */
-  nextLink?: string;
-  /** Array of operations */
-  value: OperationsListValueList;
-}
-export const OperationsList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    nextLink: S.optional(S.String),
-    value: OperationsListValueList,
-  }),
-).annotate({ identifier: "OperationsList" }) as any as S.Schema<OperationsList>;
-
-export interface ProductPackageGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the monitor workspace. */
-  workspaceName: string;
-  /** package Id */
-  packageId: string;
-}
-export const ProductPackageGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    packageId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/contentProductPackages/{packageId}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "ProductPackageGetRequest",
-}) as any as S.Schema<ProductPackageGetRequest>;
-
-/** Providers for the package item */
-export type ProductPackagePropertiesProvidersList = Array<string>;
-export const ProductPackagePropertiesProvidersList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ProductPackagePropertiesProvidersList>;
-
-/** the tactics the resource covers */
-export type ProductPackagePropertiesThreatAnalysisTacticsList = Array<string>;
-export const ProductPackagePropertiesThreatAnalysisTacticsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ProductPackagePropertiesThreatAnalysisTacticsList>;
-
-/** the techniques the resource covers, these have to be aligned with the tactics being used */
-export type ProductPackagePropertiesThreatAnalysisTechniquesList =
-  Array<string>;
-export const ProductPackagePropertiesThreatAnalysisTechniquesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ProductPackagePropertiesThreatAnalysisTechniquesList>;
-
-/** Describes package properties */
-export interface ProductPackageProperties {
-  /** The content id of the package */
-  contentId?: string;
-  /** Unique ID for the content. It should be generated based on the contentId, contentKind and the contentVersion of the package */
-  contentProductId?: string;
-  /** The package kind */
-  contentKind?: PackageKind;
-  /** The version of the content schema. */
-  contentSchemaVersion?: string;
-  /** Flag indicates if this is a newly published package. */
-  isNew?: Flag;
-  /** Flag indicates if this package is in preview. */
-  isPreview?: Flag;
-  /** Flag indicates if this package is among the featured list. */
-  isFeatured?: Flag;
-  /** Flag indicates if this template is deprecated */
-  isDeprecated?: Flag;
-  /** the latest version number of the package */
-  version?: string;
-  /** The display name of the package */
-  displayName?: string;
-  /** The description of the package */
-  description?: string;
-  /** The publisher display name of the package */
-  publisherDisplayName?: string;
-  /** The source of the package */
-  source?: MetadataSource;
-  /** The author of the package */
-  author?: MetadataAuthor;
-  /** The support tier of the package */
-  support?: MetadataSupport;
-  /** The support tier of the package */
-  dependencies?: MetadataDependencies;
-  /** Providers for the package item */
-  providers?: ProductPackagePropertiesProvidersList;
-  /** first publish date package item */
-  firstPublishDate?: string;
-  /** last publish date for the package item */
-  lastPublishDate?: string;
-  /** The categories of the package */
-  categories?: MetadataCategories;
-  /** the tactics the resource covers */
-  threatAnalysisTactics?: ProductPackagePropertiesThreatAnalysisTacticsList;
-  /** the techniques the resource covers, these have to be aligned with the tactics being used */
-  threatAnalysisTechniques?: ProductPackagePropertiesThreatAnalysisTechniquesList;
-  /** the icon identifier. this id can later be fetched from the content metadata */
-  icon?: string;
-  /** The version of the installed package, null or absent means not installed. */
-  installedVersion?: string;
-  /** The metadata resource id. */
-  metadataResourceId?: string;
-  /** The json of the ARM template to deploy. Expandable. */
-  packagedContent?: unknown;
-}
-export const ProductPackageProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    contentId: S.optional(S.String),
-    contentProductId: S.optional(S.String),
-    contentKind: S.optional(PackageKind),
-    contentSchemaVersion: S.optional(S.String),
-    isNew: S.optional(Flag),
-    isPreview: S.optional(Flag),
-    isFeatured: S.optional(Flag),
-    isDeprecated: S.optional(Flag),
-    version: S.optional(S.String),
-    displayName: S.optional(S.String),
-    description: S.optional(S.String),
-    publisherDisplayName: S.optional(S.String),
-    source: S.optional(MetadataSource),
-    author: S.optional(MetadataAuthor),
-    support: S.optional(MetadataSupport),
-    dependencies: S.optional(MetadataDependencies),
-    providers: S.optional(ProductPackagePropertiesProvidersList),
-    firstPublishDate: S.optional(S.String),
-    lastPublishDate: S.optional(S.String),
-    categories: S.optional(MetadataCategories),
-    threatAnalysisTactics: S.optional(
-      ProductPackagePropertiesThreatAnalysisTacticsList,
-    ),
-    threatAnalysisTechniques: S.optional(
-      ProductPackagePropertiesThreatAnalysisTechniquesList,
-    ),
-    icon: S.optional(S.String),
-    installedVersion: S.optional(S.String),
-    metadataResourceId: S.optional(S.String),
-    packagedContent: S.optional(S.Unknown),
-  }),
-).annotate({
-  identifier: "ProductPackageProperties",
-}) as any as S.Schema<ProductPackageProperties>;
-
-export interface ProductPackageGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** package properties */
-  properties?: ProductPackageProperties;
-  /** Etag of the azure resource */
-  etag?: string;
-}
-export const ProductPackageGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ProductPackageProperties),
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ProductPackageGetResponse",
-}) as any as S.Schema<ProductPackageGetResponse>;
-
-export interface ProductPackagesListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the monitor workspace. */
-  workspaceName: string;
-  /** Filters the results, based on a Boolean condition. Optional. */
-  _filter?: string;
-  /** Sorts the results. Optional. */
-  _orderby?: string;
-  /** Returns only the first n results. Optional. */
-  _top?: number;
-  /** Skiptoken is only used if a previous operation returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a skiptoken parameter that specifies a starting point to use for subsequent calls. Optional. */
-  _skipToken?: string;
-  /** Searches for a substring in the response. Optional. */
-  _search?: string;
-}
-export const ProductPackagesListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-    _orderby: S.optional(S.String.pipe(T.Query("$orderby"))),
-    _top: S.optional(S.Number.pipe(T.Query("$top"))),
-    _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
-    _search: S.optional(S.String.pipe(T.Query("$search"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/contentProductPackages",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "ProductPackagesListRequest",
-}) as any as S.Schema<ProductPackagesListRequest>;
-
-/** Represents a Package in Azure Security Insights. */
-export interface ProductPackageModel {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** package properties */
-  properties?: ProductPackageProperties;
-  /** Etag of the azure resource */
-  etag?: string;
-}
-export const ProductPackageModel = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ProductPackageProperties),
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ProductPackageModel",
-}) as any as S.Schema<ProductPackageModel>;
-
-/** The ProductPackageModel items on this page */
-export type ProductPackageListValueList = Array<ProductPackageModel>;
-export const ProductPackageListValueList = /*@__PURE__*/ S.Array(
-  ProductPackageModel,
-) as any as S.Schema<ProductPackageListValueList>;
-
-/** List available packages. */
-export interface ProductPackageList {
-  /** The ProductPackageModel items on this page */
-  value: ProductPackageListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const ProductPackageList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: ProductPackageListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ProductPackageList",
-}) as any as S.Schema<ProductPackageList>;
-
-export interface ProductTemplateGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the workspace. */
-  workspaceName: string;
-  /** template Id */
-  templateId: string;
-}
-export const ProductTemplateGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    templateId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/contentproducttemplates/{templateId}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "ProductTemplateGetRequest",
-}) as any as S.Schema<ProductTemplateGetRequest>;
-
-/** Providers for the content item */
-export type ProductTemplatePropertiesProvidersList = Array<string>;
-export const ProductTemplatePropertiesProvidersList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ProductTemplatePropertiesProvidersList>;
-
-/** the tactics the resource covers */
-export type ProductTemplatePropertiesThreatAnalysisTacticsList = Array<string>;
-export const ProductTemplatePropertiesThreatAnalysisTacticsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ProductTemplatePropertiesThreatAnalysisTacticsList>;
-
-/** the techniques the resource covers, these have to be aligned with the tactics being used */
-export type ProductTemplatePropertiesThreatAnalysisTechniquesList =
-  Array<string>;
-export const ProductTemplatePropertiesThreatAnalysisTechniquesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ProductTemplatePropertiesThreatAnalysisTechniquesList>;
-
-/** preview image file names. These will be taken from the solution artifacts */
-export type ProductTemplatePropertiesPreviewImagesList = Array<string>;
-export const ProductTemplatePropertiesPreviewImagesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ProductTemplatePropertiesPreviewImagesList>;
-
-/** preview image file names. These will be taken from the solution artifacts. used for dark theme support */
-export type ProductTemplatePropertiesPreviewImagesDarkList = Array<string>;
-export const ProductTemplatePropertiesPreviewImagesDarkList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ProductTemplatePropertiesPreviewImagesDarkList>;
-
-/** Template property bag. */
-export interface ProductTemplateProperties {
-  /** Static ID for the content. Used to identify dependencies and content from solutions or community. Hard-coded/static for out of the box content and solutions. Dynamic for user-created. This is the resource name */
-  contentId?: string;
-  /** Unique ID for the content. It should be generated based on the contentId of the package, contentId of the template, contentKind of the template and the contentVersion of the template */
-  contentProductId?: string;
-  /** Version of the package. Default and recommended format is numeric (e.g. 1, 1.0, 1.0.0, 1.0.0.0), following ARM metadata best practices. Can also be any string, but then we cannot guarantee any version checks */
-  packageVersion?: string;
-  /** Version of the content. Default and recommended format is numeric (e.g. 1, 1.0, 1.0.0, 1.0.0.0), following ARM metadata best practices. Can also be any string, but then we cannot guarantee any version checks */
-  version?: string;
-  /** The display name of the template */
-  displayName?: string;
-  /** The kind of content the template is for. */
-  contentKind?: Kind;
-  /** Source of the content. This is where/how it was created. */
-  source?: MetadataSource;
-  /** The creator of the content item. */
-  author?: MetadataAuthor;
-  /** Support information for the template - type, name, contact information */
-  support?: MetadataSupport;
-  /** Dependencies for the content item, what other content items it requires to work. Can describe more complex dependencies using a recursive/nested structure. For a single dependency an id/kind/version can be supplied or operator/criteria for complex formats. */
-  dependencies?: MetadataDependencies;
-  /** Categories for the item */
-  categories?: MetadataCategories;
-  /** Providers for the content item */
-  providers?: ProductTemplatePropertiesProvidersList;
-  /** first publish date content item */
-  firstPublishDate?: string;
-  /** last publish date for the content item */
-  lastPublishDate?: string;
-  /** The custom version of the content. A optional free text */
-  customVersion?: string;
-  /** Schema version of the content. Can be used to distinguish between different flow based on the schema version */
-  contentSchemaVersion?: string;
-  /** the icon identifier. this id can later be fetched from the content metadata */
-  icon?: string;
-  /** the tactics the resource covers */
-  threatAnalysisTactics?: ProductTemplatePropertiesThreatAnalysisTacticsList;
-  /** the techniques the resource covers, these have to be aligned with the tactics being used */
-  threatAnalysisTechniques?: ProductTemplatePropertiesThreatAnalysisTechniquesList;
-  /** preview image file names. These will be taken from the solution artifacts */
-  previewImages?: ProductTemplatePropertiesPreviewImagesList;
-  /** preview image file names. These will be taken from the solution artifacts. used for dark theme support */
-  previewImagesDark?: ProductTemplatePropertiesPreviewImagesDarkList;
-  /** the package Id contains this template */
-  packageId?: string;
-  /** the packageKind of the package contains this template */
-  packageKind?: PackageKind;
-  /** the name of the package contains this template */
-  packageName?: string;
-  /** Flag indicates if this template is deprecated */
-  isDeprecated?: Flag;
-  /** The json of the ARM template to deploy */
-  packagedContent?: unknown;
-}
-export const ProductTemplateProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    contentId: S.optional(S.String),
-    contentProductId: S.optional(S.String),
-    packageVersion: S.optional(S.String),
-    version: S.optional(S.String),
-    displayName: S.optional(S.String),
-    contentKind: S.optional(Kind),
-    source: S.optional(MetadataSource),
-    author: S.optional(MetadataAuthor),
-    support: S.optional(MetadataSupport),
-    dependencies: S.optional(MetadataDependencies),
-    categories: S.optional(MetadataCategories),
-    providers: S.optional(ProductTemplatePropertiesProvidersList),
-    firstPublishDate: S.optional(S.String),
-    lastPublishDate: S.optional(S.String),
-    customVersion: S.optional(S.String),
-    contentSchemaVersion: S.optional(S.String),
-    icon: S.optional(S.String),
-    threatAnalysisTactics: S.optional(
-      ProductTemplatePropertiesThreatAnalysisTacticsList,
-    ),
-    threatAnalysisTechniques: S.optional(
-      ProductTemplatePropertiesThreatAnalysisTechniquesList,
-    ),
-    previewImages: S.optional(ProductTemplatePropertiesPreviewImagesList),
-    previewImagesDark: S.optional(
-      ProductTemplatePropertiesPreviewImagesDarkList,
-    ),
-    packageId: S.optional(S.String),
-    packageKind: S.optional(PackageKind),
-    packageName: S.optional(S.String),
-    isDeprecated: S.optional(Flag),
-    packagedContent: S.optional(S.Unknown),
-  }),
-).annotate({
-  identifier: "ProductTemplateProperties",
-}) as any as S.Schema<ProductTemplateProperties>;
-
-export interface ProductTemplateGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** template properties */
-  properties?: ProductTemplateProperties;
-  /** Etag of the azure resource */
-  etag?: string;
-}
-export const ProductTemplateGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ProductTemplateProperties),
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ProductTemplateGetResponse",
-}) as any as S.Schema<ProductTemplateGetResponse>;
-
-export interface ProductTemplatesListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the monitor workspace. */
-  workspaceName: string;
-  /** Filters the results, based on a Boolean condition. Optional. */
-  _filter?: string;
-  /** Sorts the results. Optional. */
-  _orderby?: string;
-  /** Searches for a substring in the response. Optional. */
-  _search?: string;
-  /** Instructs the server to return only object count without actual body. Optional. */
-  _count?: boolean;
-  /** Returns only the first n results. Optional. */
-  _top?: number;
-  /** Used to skip n elements in the OData query (offset). Returns a nextLink to the next page of results if there are any left. */
-  _skip?: number;
-  /** Skiptoken is only used if a previous operation returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a skiptoken parameter that specifies a starting point to use for subsequent calls. Optional. */
-  _skipToken?: string;
-}
-export const ProductTemplatesListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-    _orderby: S.optional(S.String.pipe(T.Query("$orderby"))),
-    _search: S.optional(S.String.pipe(T.Query("$search"))),
-    _count: S.optional(S.Boolean.pipe(T.Query("$count"))),
-    _top: S.optional(S.Number.pipe(T.Query("$top"))),
-    _skip: S.optional(S.Number.pipe(T.Query("$skip"))),
-    _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/contentProductTemplates",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "ProductTemplatesListRequest",
-}) as any as S.Schema<ProductTemplatesListRequest>;
-
-/** Template resource definition. */
-export interface ProductTemplateModel {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** template properties */
-  properties?: ProductTemplateProperties;
-  /** Etag of the azure resource */
-  etag?: string;
-}
-export const ProductTemplateModel = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ProductTemplateProperties),
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ProductTemplateModel",
-}) as any as S.Schema<ProductTemplateModel>;
-
-/** The ProductTemplateModel items on this page */
-export type ProductTemplateListValueList = Array<ProductTemplateModel>;
-export const ProductTemplateListValueList = /*@__PURE__*/ S.Array(
-  ProductTemplateModel,
-) as any as S.Schema<ProductTemplateListValueList>;
-
-/** List of all the template. */
-export interface ProductTemplateList {
-  /** The ProductTemplateModel items on this page */
-  value: ProductTemplateListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const ProductTemplateList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: ProductTemplateListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ProductTemplateList",
-}) as any as S.Schema<ProductTemplateList>;
-
-/** The kind of security ML analytics settings */
-export type SecurityMLAnalyticsSettingsKind = "Anomaly";
-export const SecurityMLAnalyticsSettingsKind = /*@__PURE__*/ S.String;
-
-export interface SecurityMLAnalyticsSettingsCreateOrUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the monitor workspace. */
-  workspaceName: string;
-  /** Security ML Analytics Settings resource name */
-  settingsResourceName: string;
-  /** Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must validate and persist this value. */
-  kind: SecurityMLAnalyticsSettingsKind | (string & {});
-  /** Etag of the azure resource */
-  etag?: string;
-}
-export const SecurityMLAnalyticsSettingsCreateOrUpdateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      workspaceName: S.String.pipe(T.Label()),
-      settingsResourceName: S.String.pipe(T.Label()),
-      kind: SecurityMLAnalyticsSettingsKind,
-      etag: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/securityMLAnalyticsSettings/{settingsResourceName}",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "SecurityMLAnalyticsSettingsCreateOrUpdateRequest",
-  }) as any as S.Schema<SecurityMLAnalyticsSettingsCreateOrUpdateRequest>;
-
-export interface SecurityMLAnalyticsSettingsCreateOrUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must validate and persist this value. */
-  kind: SecurityMLAnalyticsSettingsKind;
-  /** Etag of the azure resource */
-  etag?: string;
-}
-export const SecurityMLAnalyticsSettingsCreateOrUpdateResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      kind: SecurityMLAnalyticsSettingsKind,
-      etag: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "SecurityMLAnalyticsSettingsCreateOrUpdateResponse",
-  }) as any as S.Schema<SecurityMLAnalyticsSettingsCreateOrUpdateResponse>;
-
-export interface SecurityMLAnalyticsSettingsDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the monitor workspace. */
-  workspaceName: string;
-  /** Security ML Analytics Settings resource name */
-  settingsResourceName: string;
-}
-export const SecurityMLAnalyticsSettingsDeleteRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      workspaceName: S.String.pipe(T.Label()),
-      settingsResourceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/securityMLAnalyticsSettings/{settingsResourceName}",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
-).annotate({
-  identifier: "SecurityMLAnalyticsSettingsDeleteRequest",
-}) as any as S.Schema<SecurityMLAnalyticsSettingsDeleteRequest>;
-
-export interface SecurityMLAnalyticsSettingsDeleteResponse {}
-export const SecurityMLAnalyticsSettingsDeleteResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "SecurityMLAnalyticsSettingsDeleteResponse",
-  }) as any as S.Schema<SecurityMLAnalyticsSettingsDeleteResponse>;
-
-export interface SecurityMLAnalyticsSettingsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the monitor workspace. */
-  workspaceName: string;
-  /** Security ML Analytics Settings resource name */
-  settingsResourceName: string;
-}
-export const SecurityMLAnalyticsSettingsGetRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      workspaceName: S.String.pipe(T.Label()),
-      settingsResourceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/securityMLAnalyticsSettings/{settingsResourceName}",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
-).annotate({
-  identifier: "SecurityMLAnalyticsSettingsGetRequest",
-}) as any as S.Schema<SecurityMLAnalyticsSettingsGetRequest>;
-
-export interface SecurityMLAnalyticsSettingsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must validate and persist this value. */
-  kind: SecurityMLAnalyticsSettingsKind;
-  /** Etag of the azure resource */
-  etag?: string;
-}
-export const SecurityMLAnalyticsSettingsGetResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      kind: SecurityMLAnalyticsSettingsKind,
-      etag: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "SecurityMLAnalyticsSettingsGetResponse",
-}) as any as S.Schema<SecurityMLAnalyticsSettingsGetResponse>;
-
-export interface SecurityMLAnalyticsSettingsListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the monitor workspace. */
-  workspaceName: string;
-}
-export const SecurityMLAnalyticsSettingsListRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      workspaceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/securityMLAnalyticsSettings",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
-).annotate({
-  identifier: "SecurityMLAnalyticsSettingsListRequest",
-}) as any as S.Schema<SecurityMLAnalyticsSettingsListRequest>;
-
-/** Security ML Analytics Setting */
-export interface SecurityMLAnalyticsSetting {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must validate and persist this value. */
-  kind: SecurityMLAnalyticsSettingsKind;
-  /** Etag of the azure resource */
-  etag?: string;
-}
-export const SecurityMLAnalyticsSetting = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    kind: SecurityMLAnalyticsSettingsKind,
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SecurityMLAnalyticsSetting",
-}) as any as S.Schema<SecurityMLAnalyticsSetting>;
-
-/** The SecurityMLAnalyticsSetting items on this page */
-export type SecurityMLAnalyticsSettingsListValueList =
-  Array<SecurityMLAnalyticsSetting>;
-export const SecurityMLAnalyticsSettingsListValueList = /*@__PURE__*/ S.Array(
-  SecurityMLAnalyticsSetting,
-) as any as S.Schema<SecurityMLAnalyticsSettingsListValueList>;
-
-/** List all the SecurityMLAnalyticsSettings */
-export interface SecurityMLAnalyticsSettingsList {
-  /** The SecurityMLAnalyticsSetting items on this page */
-  value: SecurityMLAnalyticsSettingsListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const SecurityMLAnalyticsSettingsList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: SecurityMLAnalyticsSettingsListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SecurityMLAnalyticsSettingsList",
-}) as any as S.Schema<SecurityMLAnalyticsSettingsList>;
+  identifier: "CreateMetadataResponse",
+}) as any as S.Schema<CreateMetadataResponse>;
 
 /** The Sentinel onboarding state properties */
 export interface SentinelOnboardingStateProperties {
@@ -6270,7 +1005,7 @@ export const SentinelOnboardingStateProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "SentinelOnboardingStateProperties",
 }) as any as S.Schema<SentinelOnboardingStateProperties>;
 
-export interface SentinelOnboardingStatesCreateRequest {
+export interface CreateSentinelOnboardingStateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -6284,7 +1019,7 @@ export interface SentinelOnboardingStatesCreateRequest {
   /** Etag of the azure resource */
   etag?: string;
 }
-export const SentinelOnboardingStatesCreateRequest = /*@__PURE__*/ S.suspend(
+export const CreateSentinelOnboardingStateRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -6302,10 +1037,10 @@ export const SentinelOnboardingStatesCreateRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "SentinelOnboardingStatesCreateRequest",
-}) as any as S.Schema<SentinelOnboardingStatesCreateRequest>;
+  identifier: "CreateSentinelOnboardingStateRequest",
+}) as any as S.Schema<CreateSentinelOnboardingStateRequest>;
 
-export interface SentinelOnboardingStatesCreateResponse {
+export interface CreateSentinelOnboardingStateResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -6319,7 +1054,7 @@ export interface SentinelOnboardingStatesCreateResponse {
   /** Etag of the azure resource */
   etag?: string;
 }
-export const SentinelOnboardingStatesCreateResponse = /*@__PURE__*/ S.suspend(
+export const CreateSentinelOnboardingStateResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
@@ -6330,292 +1065,8 @@ export const SentinelOnboardingStatesCreateResponse = /*@__PURE__*/ S.suspend(
       etag: S.optional(S.String),
     }),
 ).annotate({
-  identifier: "SentinelOnboardingStatesCreateResponse",
-}) as any as S.Schema<SentinelOnboardingStatesCreateResponse>;
-
-export interface SentinelOnboardingStatesDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the monitor workspace. */
-  workspaceName: string;
-  /** The Sentinel onboarding state name. Supports - default */
-  sentinelOnboardingStateName: string;
-}
-export const SentinelOnboardingStatesDeleteRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      workspaceName: S.String.pipe(T.Label()),
-      sentinelOnboardingStateName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/onboardingStates/{sentinelOnboardingStateName}",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
-).annotate({
-  identifier: "SentinelOnboardingStatesDeleteRequest",
-}) as any as S.Schema<SentinelOnboardingStatesDeleteRequest>;
-
-export interface SentinelOnboardingStatesDeleteResponse {}
-export const SentinelOnboardingStatesDeleteResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "SentinelOnboardingStatesDeleteResponse",
-}) as any as S.Schema<SentinelOnboardingStatesDeleteResponse>;
-
-export interface SentinelOnboardingStatesGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the monitor workspace. */
-  workspaceName: string;
-  /** The Sentinel onboarding state name. Supports - default */
-  sentinelOnboardingStateName: string;
-}
-export const SentinelOnboardingStatesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    sentinelOnboardingStateName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/onboardingStates/{sentinelOnboardingStateName}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "SentinelOnboardingStatesGetRequest",
-}) as any as S.Schema<SentinelOnboardingStatesGetRequest>;
-
-export interface SentinelOnboardingStatesGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The Sentinel onboarding state object */
-  properties?: SentinelOnboardingStateProperties;
-  /** Etag of the azure resource */
-  etag?: string;
-}
-export const SentinelOnboardingStatesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(SentinelOnboardingStateProperties),
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SentinelOnboardingStatesGetResponse",
-}) as any as S.Schema<SentinelOnboardingStatesGetResponse>;
-
-export interface SentinelOnboardingStatesListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the workspace. */
-  workspaceName: string;
-}
-export const SentinelOnboardingStatesListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/onboardingStates",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "SentinelOnboardingStatesListRequest",
-}) as any as S.Schema<SentinelOnboardingStatesListRequest>;
-
-/** Sentinel onboarding state */
-export interface SentinelOnboardingState {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The Sentinel onboarding state object */
-  properties?: SentinelOnboardingStateProperties;
-  /** Etag of the azure resource */
-  etag?: string;
-}
-export const SentinelOnboardingState = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(SentinelOnboardingStateProperties),
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SentinelOnboardingState",
-}) as any as S.Schema<SentinelOnboardingState>;
-
-/** Array of Sentinel onboarding states */
-export type SentinelOnboardingStatesListValueList =
-  Array<SentinelOnboardingState>;
-export const SentinelOnboardingStatesListValueList = /*@__PURE__*/ S.Array(
-  SentinelOnboardingState,
-) as any as S.Schema<SentinelOnboardingStatesListValueList>;
-
-/** List of the Sentinel onboarding states */
-export interface SentinelOnboardingStatesList {
-  /** Array of Sentinel onboarding states */
-  value: SentinelOnboardingStatesListValueList;
-}
-export const SentinelOnboardingStatesList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: SentinelOnboardingStatesListValueList,
-  }),
-).annotate({
-  identifier: "SentinelOnboardingStatesList",
-}) as any as S.Schema<SentinelOnboardingStatesList>;
-
-/** The kind of repository access credentials */
-export type RepositoryAccessKind = "OAuth" | "PAT" | "App";
-export const RepositoryAccessKind = /*@__PURE__*/ S.String;
-
-/** Credentials to access repository. */
-export interface RepositoryAccess {
-  /** The kind of repository access credentials */
-  kind: RepositoryAccessKind | (string & {});
-  /** OAuth Code. Required when `kind` is `OAuth` */
-  code?: string;
-  /** OAuth State. Required when `kind` is `OAuth` */
-  state?: string;
-  /** OAuth ClientId. Required when `kind` is `OAuth` */
-  clientId?: string;
-  /** Personal Access Token. Required when `kind` is `PAT` */
-  token?: string;
-  /** Application installation ID. Required when `kind` is `App`. Supported by `GitHub` only. */
-  installationId?: string;
-}
-export const RepositoryAccess = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    kind: RepositoryAccessKind,
-    code: S.optional(S.String),
-    state: S.optional(S.String),
-    clientId: S.optional(S.String),
-    token: S.optional(S.String),
-    installationId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "RepositoryAccess",
-}) as any as S.Schema<RepositoryAccess>;
-
-/** Credentials to access repository. */
-export interface RepositoryAccessObject {
-  /** RepositoryAccess properties */
-  repositoryAccess: RepositoryAccess;
-}
-export const RepositoryAccessObject = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    repositoryAccess: RepositoryAccess,
-  }),
-).annotate({
-  identifier: "RepositoryAccessObject",
-}) as any as S.Schema<RepositoryAccessObject>;
-
-export interface SourceControlListRepositoriesRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the workspace. */
-  workspaceName: string;
-  /** RepositoryAccess properties */
-  properties: RepositoryAccessObject;
-}
-export const SourceControlListRepositoriesRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      workspaceName: S.String.pipe(T.Label()),
-      properties: RepositoryAccessObject,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/listRepositories",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
-).annotate({
-  identifier: "SourceControlListRepositoriesRequest",
-}) as any as S.Schema<SourceControlListRepositoriesRequest>;
-
-/** Array of branches. */
-export type RepoBranchesList = Array<string>;
-export const RepoBranchesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<RepoBranchesList>;
-
-/** Represents a repository. */
-export interface Repo {
-  /** The url to access the repository. */
-  url?: string;
-  /** The name of the repository. */
-  fullName?: string;
-  /** The installation id of the repository. */
-  installationId?: number;
-  /** Array of branches. */
-  branches?: RepoBranchesList;
-}
-export const Repo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    url: S.optional(S.String),
-    fullName: S.optional(S.String),
-    installationId: S.optional(S.Number),
-    branches: S.optional(RepoBranchesList),
-  }),
-).annotate({ identifier: "Repo" }) as any as S.Schema<Repo>;
-
-/** The Repo items on this page */
-export type RepoListValueList = Array<Repo>;
-export const RepoListValueList = /*@__PURE__*/ S.Array(
-  Repo,
-) as any as S.Schema<RepoListValueList>;
-
-/** List all the source controls. */
-export interface RepoList {
-  /** The Repo items on this page */
-  value: RepoListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const RepoList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: RepoListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({ identifier: "RepoList" }) as any as S.Schema<RepoList>;
+  identifier: "CreateSentinelOnboardingStateResponse",
+}) as any as S.Schema<CreateSentinelOnboardingStateResponse>;
 
 /** The type of repository. */
 export type RepoType = "Github" | "AzureDevOps";
@@ -6671,6 +1122,38 @@ export const ServicePrincipalInput = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ServicePrincipalInput",
 }) as any as S.Schema<ServicePrincipalInput>;
+
+/** The kind of repository access credentials */
+export type RepositoryAccessKind = "OAuth" | "PAT" | "App";
+export const RepositoryAccessKind = /*@__PURE__*/ S.String;
+
+/** Credentials to access repository. */
+export interface RepositoryAccess {
+  /** The kind of repository access credentials */
+  kind: RepositoryAccessKind | (string & {});
+  /** OAuth Code. Required when `kind` is `OAuth` */
+  code?: string;
+  /** OAuth State. Required when `kind` is `OAuth` */
+  state?: string;
+  /** OAuth ClientId. Required when `kind` is `OAuth` */
+  clientId?: string;
+  /** Personal Access Token. Required when `kind` is `PAT` */
+  token?: string;
+  /** Application installation ID. Required when `kind` is `App`. Supported by `GitHub` only. */
+  installationId?: string;
+}
+export const RepositoryAccess = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    kind: RepositoryAccessKind,
+    code: S.optional(S.String),
+    state: S.optional(S.String),
+    clientId: S.optional(S.String),
+    token: S.optional(S.String),
+    installationId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "RepositoryAccess",
+}) as any as S.Schema<RepositoryAccess>;
 
 /** Detail about the webhook object. */
 export interface WebhookInput {
@@ -6730,7 +1213,7 @@ export const SourceControlPropertiesInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "SourceControlPropertiesInput",
 }) as any as S.Schema<SourceControlPropertiesInput>;
 
-export interface SourceControlsCreateRequest {
+export interface CreateSourceControlRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -6744,7 +1227,7 @@ export interface SourceControlsCreateRequest {
   /** Etag of the azure resource */
   etag?: string;
 }
-export const SourceControlsCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateSourceControlRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -6761,8 +1244,8 @@ export const SourceControlsCreateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "SourceControlsCreateRequest",
-}) as any as S.Schema<SourceControlsCreateRequest>;
+  identifier: "CreateSourceControlRequest",
+}) as any as S.Schema<CreateSourceControlRequest>;
 
 /** The version of the source control. */
 export type Version = "V1" | "V2";
@@ -7032,7 +1515,7 @@ export const SourceControlProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "SourceControlProperties",
 }) as any as S.Schema<SourceControlProperties>;
 
-export interface SourceControlsCreateResponse {
+export interface CreateSourceControlResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -7046,7 +1529,7 @@ export interface SourceControlsCreateResponse {
   /** Etag of the azure resource */
   etag?: string;
 }
-export const SourceControlsCreateResponse = /*@__PURE__*/ S.suspend(() =>
+export const CreateSourceControlResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -7056,256 +1539,8 @@ export const SourceControlsCreateResponse = /*@__PURE__*/ S.suspend(() =>
     etag: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "SourceControlsCreateResponse",
-}) as any as S.Schema<SourceControlsCreateResponse>;
-
-export interface SourceControlsDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the monitor workspace. */
-  workspaceName: string;
-  /** Source control Id */
-  sourceControlId: string;
-  /** RepositoryAccess properties */
-  properties: RepositoryAccessObject;
-}
-export const SourceControlsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    sourceControlId: S.String.pipe(T.Label()),
-    properties: RepositoryAccessObject,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/sourcecontrols/{sourceControlId}/delete",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "SourceControlsDeleteRequest",
-}) as any as S.Schema<SourceControlsDeleteRequest>;
-
-/** The type of repository. */
-export type WarningCode =
-  | "SourceControlWarning_DeleteServicePrincipal"
-  | "SourceControlWarning_DeletePipelineFromAzureDevOps"
-  | "SourceControlWarning_DeleteWorkflowAndSecretFromGitHub"
-  | "SourceControlWarning_DeleteRoleAssignment"
-  | "SourceControl_DeletedWithWarnings";
-export const WarningCode = /*@__PURE__*/ S.String;
-
-export type WarningBodyDetailsList = Array<WarningBody>;
-export const WarningBodyDetailsList = /*@__PURE__*/ S.Array(
-  S.suspend(() => WarningBody),
-) as any as S.Schema<WarningBodyDetailsList>;
-
-/** Warning details. */
-export interface WarningBody {
-  /** An identifier for the warning. Codes are invariant and are intended to be consumed programmatically. */
-  code?: WarningCode;
-  /** A message describing the warning, intended to be suitable for display in a user interface. */
-  message?: string;
-  details?: WarningBodyDetailsList;
-}
-export const WarningBody = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    code: S.optional(WarningCode),
-    message: S.optional(S.String),
-    details: S.optional(WarningBodyDetailsList),
-  }),
-).annotate({ identifier: "WarningBody" }) as any as S.Schema<WarningBody>;
-
-/** Warning response structure. */
-export interface Warning {
-  /** Warning data. */
-  warning?: WarningBody;
-}
-export const Warning = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    warning: S.optional(WarningBody),
-  }),
-).annotate({ identifier: "Warning" }) as any as S.Schema<Warning>;
-
-export interface SourceControlsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the monitor workspace. */
-  workspaceName: string;
-  /** Source control Id */
-  sourceControlId: string;
-}
-export const SourceControlsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    sourceControlId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/sourcecontrols/{sourceControlId}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "SourceControlsGetRequest",
-}) as any as S.Schema<SourceControlsGetRequest>;
-
-export interface SourceControlsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** source control properties */
-  properties: SourceControlProperties;
-  /** Etag of the azure resource */
-  etag?: string;
-}
-export const SourceControlsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: SourceControlProperties,
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SourceControlsGetResponse",
-}) as any as S.Schema<SourceControlsGetResponse>;
-
-export interface SourceControlsListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the monitor workspace. */
-  workspaceName: string;
-}
-export const SourceControlsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/sourcecontrols",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "SourceControlsListRequest",
-}) as any as S.Schema<SourceControlsListRequest>;
-
-/** Represents a SourceControl in Azure Security Insights. */
-export interface SourceControl {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** source control properties */
-  properties: SourceControlProperties;
-  /** Etag of the azure resource */
-  etag?: string;
-}
-export const SourceControl = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: SourceControlProperties,
-    etag: S.optional(S.String),
-  }),
-).annotate({ identifier: "SourceControl" }) as any as S.Schema<SourceControl>;
-
-/** The SourceControl items on this page */
-export type SourceControlListValueList = Array<SourceControl>;
-export const SourceControlListValueList = /*@__PURE__*/ S.Array(
-  SourceControl,
-) as any as S.Schema<SourceControlListValueList>;
-
-/** List all the source controls. */
-export interface SourceControlList {
-  /** The SourceControl items on this page */
-  value: SourceControlListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const SourceControlList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: SourceControlListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SourceControlList",
-}) as any as S.Schema<SourceControlList>;
-
-/** List of tags to be appended. */
-export type ThreatIntelligenceIndicatorAppendTagsRequestThreatIntelligenceTagsList =
-  Array<string>;
-export const ThreatIntelligenceIndicatorAppendTagsRequestThreatIntelligenceTagsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ThreatIntelligenceIndicatorAppendTagsRequestThreatIntelligenceTagsList>;
-
-export interface ThreatIntelligenceIndicatorAppendTagsRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the monitor workspace. */
-  workspaceName: string;
-  /** Threat intelligence indicator name field. */
-  name: string;
-  /** List of tags to be appended. */
-  threatIntelligenceTags?: ThreatIntelligenceIndicatorAppendTagsRequestThreatIntelligenceTagsList;
-}
-export const ThreatIntelligenceIndicatorAppendTagsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      workspaceName: S.String.pipe(T.Label()),
-      name: S.String.pipe(T.Label()),
-      threatIntelligenceTags: S.optional(
-        ThreatIntelligenceIndicatorAppendTagsRequestThreatIntelligenceTagsList,
-      ),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/threatIntelligence/main/indicators/{name}/appendTags",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ThreatIntelligenceIndicatorAppendTagsRequest",
-  }) as any as S.Schema<ThreatIntelligenceIndicatorAppendTagsRequest>;
-
-export interface ThreatIntelligenceIndicatorAppendTagsResponse {}
-export const ThreatIntelligenceIndicatorAppendTagsResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "ThreatIntelligenceIndicatorAppendTagsResponse",
-  }) as any as S.Schema<ThreatIntelligenceIndicatorAppendTagsResponse>;
+  identifier: "CreateSourceControlResponse",
+}) as any as S.Schema<CreateSourceControlResponse>;
 
 /** The kind of the threat intelligence entity */
 export type ThreatIntelligenceResourceInnerKind = "indicator";
@@ -7629,7 +1864,7 @@ export const ThreatIntelligenceIndicatorPropertiesInput =
     identifier: "ThreatIntelligenceIndicatorPropertiesInput",
   }) as any as S.Schema<ThreatIntelligenceIndicatorPropertiesInput>;
 
-export interface ThreatIntelligenceIndicatorCreateRequest {
+export interface CreateThreatIntelligenceIndicatorRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -7645,7 +1880,7 @@ export interface ThreatIntelligenceIndicatorCreateRequest {
   /** Threat Intelligence Entity properties */
   properties?: ThreatIntelligenceIndicatorPropertiesInput;
 }
-export const ThreatIntelligenceIndicatorCreateRequest = /*@__PURE__*/ S.suspend(
+export const CreateThreatIntelligenceIndicatorRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -7664,10 +1899,10 @@ export const ThreatIntelligenceIndicatorCreateRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "ThreatIntelligenceIndicatorCreateRequest",
-}) as any as S.Schema<ThreatIntelligenceIndicatorCreateRequest>;
+  identifier: "CreateThreatIntelligenceIndicatorRequest",
+}) as any as S.Schema<CreateThreatIntelligenceIndicatorRequest>;
 
-export interface ThreatIntelligenceIndicatorCreateResponse {
+export interface CreateThreatIntelligenceIndicatorResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -7681,7 +1916,7 @@ export interface ThreatIntelligenceIndicatorCreateResponse {
   /** Etag of the azure resource */
   etag?: string;
 }
-export const ThreatIntelligenceIndicatorCreateResponse =
+export const CreateThreatIntelligenceIndicatorResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
@@ -7692,10 +1927,10 @@ export const ThreatIntelligenceIndicatorCreateResponse =
       etag: S.optional(S.String),
     }),
   ).annotate({
-    identifier: "ThreatIntelligenceIndicatorCreateResponse",
-  }) as any as S.Schema<ThreatIntelligenceIndicatorCreateResponse>;
+    identifier: "CreateThreatIntelligenceIndicatorResponse",
+  }) as any as S.Schema<CreateThreatIntelligenceIndicatorResponse>;
 
-export interface ThreatIntelligenceIndicatorCreateIndicatorRequest {
+export interface CreateThreatIntelligenceIndicatorIndicatorRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -7709,7 +1944,7 @@ export interface ThreatIntelligenceIndicatorCreateIndicatorRequest {
   /** Threat Intelligence Entity properties */
   properties?: ThreatIntelligenceIndicatorPropertiesInput;
 }
-export const ThreatIntelligenceIndicatorCreateIndicatorRequest =
+export const CreateThreatIntelligenceIndicatorIndicatorRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -7727,10 +1962,10 @@ export const ThreatIntelligenceIndicatorCreateIndicatorRequest =
       }),
     ),
   ).annotate({
-    identifier: "ThreatIntelligenceIndicatorCreateIndicatorRequest",
-  }) as any as S.Schema<ThreatIntelligenceIndicatorCreateIndicatorRequest>;
+    identifier: "CreateThreatIntelligenceIndicatorIndicatorRequest",
+  }) as any as S.Schema<CreateThreatIntelligenceIndicatorIndicatorRequest>;
 
-export interface ThreatIntelligenceIndicatorCreateIndicatorResponse {
+export interface CreateThreatIntelligenceIndicatorIndicatorResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -7744,7 +1979,7 @@ export interface ThreatIntelligenceIndicatorCreateIndicatorResponse {
   /** Etag of the azure resource */
   etag?: string;
 }
-export const ThreatIntelligenceIndicatorCreateIndicatorResponse =
+export const CreateThreatIntelligenceIndicatorIndicatorResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
@@ -7755,10 +1990,743 @@ export const ThreatIntelligenceIndicatorCreateIndicatorResponse =
       etag: S.optional(S.String),
     }),
   ).annotate({
-    identifier: "ThreatIntelligenceIndicatorCreateIndicatorResponse",
-  }) as any as S.Schema<ThreatIntelligenceIndicatorCreateIndicatorResponse>;
+    identifier: "CreateThreatIntelligenceIndicatorIndicatorResponse",
+  }) as any as S.Schema<CreateThreatIntelligenceIndicatorIndicatorResponse>;
 
-export interface ThreatIntelligenceIndicatorDeleteRequest {
+/** The kind of the data connector definitions */
+export type DataConnectorDefinitionKind = "Customizable";
+export const DataConnectorDefinitionKind = /*@__PURE__*/ S.String;
+
+export interface DataConnectorDefinitionsCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the monitor workspace. */
+  workspaceName: string;
+  /** The data connector definition name. */
+  dataConnectorDefinitionName: string;
+  /** Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must validate and persist this value. */
+  kind: DataConnectorDefinitionKind | (string & {});
+  /** Etag of the azure resource */
+  etag?: string;
+}
+export const DataConnectorDefinitionsCreateOrUpdateRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      workspaceName: S.String.pipe(T.Label()),
+      dataConnectorDefinitionName: S.String.pipe(T.Label()),
+      kind: DataConnectorDefinitionKind,
+      etag: S.optional(S.String),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/dataConnectorDefinitions/{dataConnectorDefinitionName}",
+        code: 200,
+        apiVersion: "2025-09-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "DataConnectorDefinitionsCreateOrUpdateRequest",
+  }) as any as S.Schema<DataConnectorDefinitionsCreateOrUpdateRequest>;
+
+export interface DataConnectorDefinitionsCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must validate and persist this value. */
+  kind: DataConnectorDefinitionKind;
+  /** Etag of the azure resource */
+  etag?: string;
+}
+export const DataConnectorDefinitionsCreateOrUpdateResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      kind: DataConnectorDefinitionKind,
+      etag: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "DataConnectorDefinitionsCreateOrUpdateResponse",
+  }) as any as S.Schema<DataConnectorDefinitionsCreateOrUpdateResponse>;
+
+/** The kind of the data connector */
+export type DataConnectorKind =
+  | "AzureActiveDirectory"
+  | "AzureSecurityCenter"
+  | "MicrosoftCloudAppSecurity"
+  | "ThreatIntelligence"
+  | "Office365"
+  | "AmazonWebServicesCloudTrail"
+  | "AzureAdvancedThreatProtection"
+  | "MicrosoftDefenderAdvancedThreatProtection"
+  | "MicrosoftThreatIntelligence"
+  | "PremiumMicrosoftDefenderForThreatIntelligence"
+  | "RestApiPoller";
+export const DataConnectorKind = /*@__PURE__*/ S.String;
+
+export interface DataConnectorsCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the monitor workspace. */
+  workspaceName: string;
+  /** Connector ID */
+  dataConnectorId: string;
+  /** Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must validate and persist this value. */
+  kind: DataConnectorKind | (string & {});
+  /** Etag of the azure resource */
+  etag?: string;
+}
+export const DataConnectorsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    dataConnectorId: S.String.pipe(T.Label()),
+    kind: DataConnectorKind,
+    etag: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/dataConnectors/{dataConnectorId}",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "DataConnectorsCreateOrUpdateRequest",
+}) as any as S.Schema<DataConnectorsCreateOrUpdateRequest>;
+
+export interface DataConnectorsCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must validate and persist this value. */
+  kind: DataConnectorKind;
+  /** Etag of the azure resource */
+  etag?: string;
+}
+export const DataConnectorsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      kind: DataConnectorKind,
+      etag: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "DataConnectorsCreateOrUpdateResponse",
+}) as any as S.Schema<DataConnectorsCreateOrUpdateResponse>;
+
+export interface DeleteActionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the monitor workspace. */
+  workspaceName: string;
+  /** Alert rule ID */
+  ruleId: string;
+  /** Action ID */
+  actionId: string;
+}
+export const DeleteActionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    ruleId: S.String.pipe(T.Label()),
+    actionId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/alertRules/{ruleId}/actions/{actionId}",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteActionRequest",
+}) as any as S.Schema<DeleteActionRequest>;
+
+export interface DeleteActionResponse {}
+export const DeleteActionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteActionResponse",
+}) as any as S.Schema<DeleteActionResponse>;
+
+export interface DeleteAlertRuleRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the monitor workspace. */
+  workspaceName: string;
+  /** Alert rule ID */
+  ruleId: string;
+}
+export const DeleteAlertRuleRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    ruleId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/alertRules/{ruleId}",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteAlertRuleRequest",
+}) as any as S.Schema<DeleteAlertRuleRequest>;
+
+export interface DeleteAlertRuleResponse {}
+export const DeleteAlertRuleResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteAlertRuleResponse",
+}) as any as S.Schema<DeleteAlertRuleResponse>;
+
+export interface DeleteAutomationRuleRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the monitor workspace. */
+  workspaceName: string;
+  /** Automation rule ID */
+  automationRuleId: string;
+}
+export const DeleteAutomationRuleRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    automationRuleId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/automationRules/{automationRuleId}",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteAutomationRuleRequest",
+}) as any as S.Schema<DeleteAutomationRuleRequest>;
+
+export type DeleteAutomationRuleResponse = unknown;
+export const DeleteAutomationRuleResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Unknown.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "DeleteAutomationRuleResponse",
+}) as any as S.Schema<DeleteAutomationRuleResponse>;
+
+export interface DeleteBookmarkRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the monitor workspace. */
+  workspaceName: string;
+  /** Bookmark ID */
+  bookmarkId: string;
+}
+export const DeleteBookmarkRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    bookmarkId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/bookmarks/{bookmarkId}",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteBookmarkRequest",
+}) as any as S.Schema<DeleteBookmarkRequest>;
+
+export interface DeleteBookmarkResponse {}
+export const DeleteBookmarkResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteBookmarkResponse",
+}) as any as S.Schema<DeleteBookmarkResponse>;
+
+export interface DeleteContentTemplateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the monitor workspace. */
+  workspaceName: string;
+  /** template Id */
+  templateId: string;
+}
+export const DeleteContentTemplateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    templateId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/contentTemplates/{templateId}",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteContentTemplateRequest",
+}) as any as S.Schema<DeleteContentTemplateRequest>;
+
+export interface DeleteContentTemplateResponse {}
+export const DeleteContentTemplateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteContentTemplateResponse",
+}) as any as S.Schema<DeleteContentTemplateResponse>;
+
+export interface DeleteDataConnectorRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the monitor workspace. */
+  workspaceName: string;
+  /** Connector ID */
+  dataConnectorId: string;
+}
+export const DeleteDataConnectorRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    dataConnectorId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/dataConnectors/{dataConnectorId}",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteDataConnectorRequest",
+}) as any as S.Schema<DeleteDataConnectorRequest>;
+
+export interface DeleteDataConnectorResponse {}
+export const DeleteDataConnectorResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteDataConnectorResponse",
+}) as any as S.Schema<DeleteDataConnectorResponse>;
+
+export interface DeleteDataConnectorDefinitionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the monitor workspace. */
+  workspaceName: string;
+  /** The data connector definition name. */
+  dataConnectorDefinitionName: string;
+}
+export const DeleteDataConnectorDefinitionRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      workspaceName: S.String.pipe(T.Label()),
+      dataConnectorDefinitionName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/dataConnectorDefinitions/{dataConnectorDefinitionName}",
+        code: 200,
+        apiVersion: "2025-09-01",
+      }),
+    ),
+).annotate({
+  identifier: "DeleteDataConnectorDefinitionRequest",
+}) as any as S.Schema<DeleteDataConnectorDefinitionRequest>;
+
+export interface DeleteDataConnectorDefinitionResponse {}
+export const DeleteDataConnectorDefinitionResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "DeleteDataConnectorDefinitionResponse",
+}) as any as S.Schema<DeleteDataConnectorDefinitionResponse>;
+
+export interface DeleteIncidentRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the monitor workspace. */
+  workspaceName: string;
+  /** Incident ID */
+  incidentId: string;
+}
+export const DeleteIncidentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    incidentId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/incidents/{incidentId}",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteIncidentRequest",
+}) as any as S.Schema<DeleteIncidentRequest>;
+
+export interface DeleteIncidentResponse {}
+export const DeleteIncidentResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteIncidentResponse",
+}) as any as S.Schema<DeleteIncidentResponse>;
+
+export interface DeleteIncidentCommentRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the monitor workspace. */
+  workspaceName: string;
+  /** Incident ID */
+  incidentId: string;
+  /** Incident comment ID */
+  incidentCommentId: string;
+}
+export const DeleteIncidentCommentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    incidentId: S.String.pipe(T.Label()),
+    incidentCommentId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/incidents/{incidentId}/comments/{incidentCommentId}",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteIncidentCommentRequest",
+}) as any as S.Schema<DeleteIncidentCommentRequest>;
+
+export interface DeleteIncidentCommentResponse {}
+export const DeleteIncidentCommentResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteIncidentCommentResponse",
+}) as any as S.Schema<DeleteIncidentCommentResponse>;
+
+export interface DeleteIncidentRelationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the monitor workspace. */
+  workspaceName: string;
+  /** Incident ID */
+  incidentId: string;
+  /** Relation Name */
+  relationName: string;
+}
+export const DeleteIncidentRelationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    incidentId: S.String.pipe(T.Label()),
+    relationName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/incidents/{incidentId}/relations/{relationName}",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteIncidentRelationRequest",
+}) as any as S.Schema<DeleteIncidentRelationRequest>;
+
+export interface DeleteIncidentRelationResponse {}
+export const DeleteIncidentRelationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteIncidentRelationResponse",
+}) as any as S.Schema<DeleteIncidentRelationResponse>;
+
+export interface DeleteIncidentTaskRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the monitor workspace. */
+  workspaceName: string;
+  /** Incident ID */
+  incidentId: string;
+  /** Incident task ID */
+  incidentTaskId: string;
+}
+export const DeleteIncidentTaskRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    incidentId: S.String.pipe(T.Label()),
+    incidentTaskId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/incidents/{incidentId}/tasks/{incidentTaskId}",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteIncidentTaskRequest",
+}) as any as S.Schema<DeleteIncidentTaskRequest>;
+
+export interface DeleteIncidentTaskResponse {}
+export const DeleteIncidentTaskResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteIncidentTaskResponse",
+}) as any as S.Schema<DeleteIncidentTaskResponse>;
+
+export interface DeleteMetadataRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the monitor workspace. */
+  workspaceName: string;
+  /** The Metadata name. */
+  metadataName: string;
+}
+export const DeleteMetadataRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    metadataName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/metadata/{metadataName}",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteMetadataRequest",
+}) as any as S.Schema<DeleteMetadataRequest>;
+
+export interface DeleteMetadataResponse {}
+export const DeleteMetadataResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteMetadataResponse",
+}) as any as S.Schema<DeleteMetadataResponse>;
+
+export interface DeleteSecurityMLAnalyticsSettingsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the monitor workspace. */
+  workspaceName: string;
+  /** Security ML Analytics Settings resource name */
+  settingsResourceName: string;
+}
+export const DeleteSecurityMLAnalyticsSettingsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      workspaceName: S.String.pipe(T.Label()),
+      settingsResourceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/securityMLAnalyticsSettings/{settingsResourceName}",
+        code: 200,
+        apiVersion: "2025-09-01",
+      }),
+    ),
+).annotate({
+  identifier: "DeleteSecurityMLAnalyticsSettingsRequest",
+}) as any as S.Schema<DeleteSecurityMLAnalyticsSettingsRequest>;
+
+export interface DeleteSecurityMLAnalyticsSettingsResponse {}
+export const DeleteSecurityMLAnalyticsSettingsResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "DeleteSecurityMLAnalyticsSettingsResponse",
+  }) as any as S.Schema<DeleteSecurityMLAnalyticsSettingsResponse>;
+
+export interface DeleteSentinelOnboardingStateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the monitor workspace. */
+  workspaceName: string;
+  /** The Sentinel onboarding state name. Supports - default */
+  sentinelOnboardingStateName: string;
+}
+export const DeleteSentinelOnboardingStateRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      workspaceName: S.String.pipe(T.Label()),
+      sentinelOnboardingStateName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/onboardingStates/{sentinelOnboardingStateName}",
+        code: 200,
+        apiVersion: "2025-09-01",
+      }),
+    ),
+).annotate({
+  identifier: "DeleteSentinelOnboardingStateRequest",
+}) as any as S.Schema<DeleteSentinelOnboardingStateRequest>;
+
+export interface DeleteSentinelOnboardingStateResponse {}
+export const DeleteSentinelOnboardingStateResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "DeleteSentinelOnboardingStateResponse",
+}) as any as S.Schema<DeleteSentinelOnboardingStateResponse>;
+
+/** Credentials to access repository. */
+export interface RepositoryAccessObject {
+  /** RepositoryAccess properties */
+  repositoryAccess: RepositoryAccess;
+}
+export const RepositoryAccessObject = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    repositoryAccess: RepositoryAccess,
+  }),
+).annotate({
+  identifier: "RepositoryAccessObject",
+}) as any as S.Schema<RepositoryAccessObject>;
+
+export interface DeleteSourceControlRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the monitor workspace. */
+  workspaceName: string;
+  /** Source control Id */
+  sourceControlId: string;
+  /** RepositoryAccess properties */
+  properties: RepositoryAccessObject;
+}
+export const DeleteSourceControlRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    sourceControlId: S.String.pipe(T.Label()),
+    properties: RepositoryAccessObject,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/sourcecontrols/{sourceControlId}/delete",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteSourceControlRequest",
+}) as any as S.Schema<DeleteSourceControlRequest>;
+
+/** The type of repository. */
+export type WarningCode =
+  | "SourceControlWarning_DeleteServicePrincipal"
+  | "SourceControlWarning_DeletePipelineFromAzureDevOps"
+  | "SourceControlWarning_DeleteWorkflowAndSecretFromGitHub"
+  | "SourceControlWarning_DeleteRoleAssignment"
+  | "SourceControl_DeletedWithWarnings";
+export const WarningCode = /*@__PURE__*/ S.String;
+
+export type WarningBodyDetailsList = Array<WarningBody>;
+export const WarningBodyDetailsList = /*@__PURE__*/ S.Array(
+  S.suspend(() => WarningBody),
+) as any as S.Schema<WarningBodyDetailsList>;
+
+/** Warning details. */
+export interface WarningBody {
+  /** An identifier for the warning. Codes are invariant and are intended to be consumed programmatically. */
+  code?: WarningCode;
+  /** A message describing the warning, intended to be suitable for display in a user interface. */
+  message?: string;
+  details?: WarningBodyDetailsList;
+}
+export const WarningBody = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    code: S.optional(WarningCode),
+    message: S.optional(S.String),
+    details: S.optional(WarningBodyDetailsList),
+  }),
+).annotate({ identifier: "WarningBody" }) as any as S.Schema<WarningBody>;
+
+/** Warning response structure. */
+export interface Warning {
+  /** Warning data. */
+  warning?: WarningBody;
+}
+export const Warning = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    warning: S.optional(WarningBody),
+  }),
+).annotate({ identifier: "Warning" }) as any as S.Schema<Warning>;
+
+export interface DeleteThreatIntelligenceIndicatorRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -7768,7 +2736,7 @@ export interface ThreatIntelligenceIndicatorDeleteRequest {
   /** Threat intelligence indicator name field. */
   name: string;
 }
-export const ThreatIntelligenceIndicatorDeleteRequest = /*@__PURE__*/ S.suspend(
+export const DeleteThreatIntelligenceIndicatorRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -7784,16 +2752,1925 @@ export const ThreatIntelligenceIndicatorDeleteRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "ThreatIntelligenceIndicatorDeleteRequest",
-}) as any as S.Schema<ThreatIntelligenceIndicatorDeleteRequest>;
+  identifier: "DeleteThreatIntelligenceIndicatorRequest",
+}) as any as S.Schema<DeleteThreatIntelligenceIndicatorRequest>;
 
-export interface ThreatIntelligenceIndicatorDeleteResponse {}
-export const ThreatIntelligenceIndicatorDeleteResponse =
+export interface DeleteThreatIntelligenceIndicatorResponse {}
+export const DeleteThreatIntelligenceIndicatorResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "ThreatIntelligenceIndicatorDeleteResponse",
-  }) as any as S.Schema<ThreatIntelligenceIndicatorDeleteResponse>;
+    identifier: "DeleteThreatIntelligenceIndicatorResponse",
+  }) as any as S.Schema<DeleteThreatIntelligenceIndicatorResponse>;
 
-export interface ThreatIntelligenceIndicatorGetRequest {
+export interface DeleteWatchlistRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the monitor workspace. */
+  workspaceName: string;
+  /** The watchlist alias */
+  watchlistAlias: string;
+}
+export const DeleteWatchlistRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    watchlistAlias: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/watchlists/{watchlistAlias}",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteWatchlistRequest",
+}) as any as S.Schema<DeleteWatchlistRequest>;
+
+export interface DeleteWatchlistResponse {}
+export const DeleteWatchlistResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteWatchlistResponse",
+}) as any as S.Schema<DeleteWatchlistResponse>;
+
+export interface DeleteWatchlistItemRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the monitor workspace. */
+  workspaceName: string;
+  /** The watchlist alias */
+  watchlistAlias: string;
+  /** The watchlist item id (GUID) */
+  watchlistItemId: string;
+}
+export const DeleteWatchlistItemRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    watchlistAlias: S.String.pipe(T.Label()),
+    watchlistItemId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/watchlists/{watchlistAlias}/watchlistItems/{watchlistItemId}",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteWatchlistItemRequest",
+}) as any as S.Schema<DeleteWatchlistItemRequest>;
+
+export interface DeleteWatchlistItemResponse {}
+export const DeleteWatchlistItemResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteWatchlistItemResponse",
+}) as any as S.Schema<DeleteWatchlistItemResponse>;
+
+export interface GetActionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the monitor workspace. */
+  workspaceName: string;
+  /** Alert rule ID */
+  ruleId: string;
+  /** Action ID */
+  actionId: string;
+}
+export const GetActionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    ruleId: S.String.pipe(T.Label()),
+    actionId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/alertRules/{ruleId}/actions/{actionId}",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetActionRequest",
+}) as any as S.Schema<GetActionRequest>;
+
+export interface GetActionResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Action properties for get request */
+  properties?: ActionResponseProperties;
+  /** Etag of the action. */
+  etag?: string;
+}
+export const GetActionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ActionResponseProperties),
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetActionResponse",
+}) as any as S.Schema<GetActionResponse>;
+
+export interface GetAlertRuleRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the monitor workspace. */
+  workspaceName: string;
+  /** Alert rule ID */
+  ruleId: string;
+}
+export const GetAlertRuleRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    ruleId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/alertRules/{ruleId}",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetAlertRuleRequest",
+}) as any as S.Schema<GetAlertRuleRequest>;
+
+export interface GetAlertRuleResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must validate and persist this value. */
+  kind: AlertRuleKind;
+  /** Etag of the azure resource */
+  etag?: string;
+}
+export const GetAlertRuleResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    kind: AlertRuleKind,
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetAlertRuleResponse",
+}) as any as S.Schema<GetAlertRuleResponse>;
+
+export interface GetAlertRuleTemplateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the monitor workspace. */
+  workspaceName: string;
+  /** Alert rule template ID */
+  alertRuleTemplateId: string;
+}
+export const GetAlertRuleTemplateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    alertRuleTemplateId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/alertRuleTemplates/{alertRuleTemplateId}",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetAlertRuleTemplateRequest",
+}) as any as S.Schema<GetAlertRuleTemplateRequest>;
+
+export interface GetAlertRuleTemplateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must validate and persist this value. */
+  kind: AlertRuleKind;
+}
+export const GetAlertRuleTemplateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    kind: AlertRuleKind,
+  }),
+).annotate({
+  identifier: "GetAlertRuleTemplateResponse",
+}) as any as S.Schema<GetAlertRuleTemplateResponse>;
+
+export interface GetAutomationRuleRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the monitor workspace. */
+  workspaceName: string;
+  /** Automation rule ID */
+  automationRuleId: string;
+}
+export const GetAutomationRuleRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    automationRuleId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/automationRules/{automationRuleId}",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetAutomationRuleRequest",
+}) as any as S.Schema<GetAutomationRuleRequest>;
+
+export interface GetAutomationRuleResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Automation rule properties */
+  properties: AutomationRuleProperties;
+  /** Etag of the azure resource */
+  etag?: string;
+}
+export const GetAutomationRuleResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: AutomationRuleProperties,
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetAutomationRuleResponse",
+}) as any as S.Schema<GetAutomationRuleResponse>;
+
+export interface GetBookmarkRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the monitor workspace. */
+  workspaceName: string;
+  /** Bookmark ID */
+  bookmarkId: string;
+}
+export const GetBookmarkRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    bookmarkId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/bookmarks/{bookmarkId}",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetBookmarkRequest",
+}) as any as S.Schema<GetBookmarkRequest>;
+
+export interface GetBookmarkResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Bookmark properties */
+  properties?: BookmarkProperties;
+  /** Etag of the azure resource */
+  etag?: string;
+}
+export const GetBookmarkResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(BookmarkProperties),
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetBookmarkResponse",
+}) as any as S.Schema<GetBookmarkResponse>;
+
+export interface GetContentPackageRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the monitor workspace. */
+  workspaceName: string;
+  /** package Id */
+  packageId: string;
+}
+export const GetContentPackageRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    packageId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/contentPackages/{packageId}",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetContentPackageRequest",
+}) as any as S.Schema<GetContentPackageRequest>;
+
+/** The package kind */
+export type PackageKind = "Solution" | "Standalone";
+export const PackageKind = /*@__PURE__*/ S.String;
+
+/** The boolean value the metadata is for. */
+export type Flag = "true" | "false";
+export const Flag = /*@__PURE__*/ S.String;
+
+/** Providers for the package item */
+export type PackageBasePropertiesProvidersList = Array<string>;
+export const PackageBasePropertiesProvidersList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<PackageBasePropertiesProvidersList>;
+
+/** the tactics the resource covers */
+export type PackageBasePropertiesThreatAnalysisTacticsList = Array<string>;
+export const PackageBasePropertiesThreatAnalysisTacticsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<PackageBasePropertiesThreatAnalysisTacticsList>;
+
+/** the techniques the resource covers, these have to be aligned with the tactics being used */
+export type PackageBasePropertiesThreatAnalysisTechniquesList = Array<string>;
+export const PackageBasePropertiesThreatAnalysisTechniquesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<PackageBasePropertiesThreatAnalysisTechniquesList>;
+
+/** Describes package properties */
+export interface PackageBaseProperties {
+  /** The content id of the package */
+  contentId?: string;
+  /** Unique ID for the content. It should be generated based on the contentId, contentKind and the contentVersion of the package */
+  contentProductId?: string;
+  /** The package kind */
+  contentKind?: PackageKind | (string & {});
+  /** The version of the content schema. */
+  contentSchemaVersion?: string;
+  /** Flag indicates if this is a newly published package. */
+  isNew?: Flag | (string & {});
+  /** Flag indicates if this package is in preview. */
+  isPreview?: Flag | (string & {});
+  /** Flag indicates if this package is among the featured list. */
+  isFeatured?: Flag | (string & {});
+  /** Flag indicates if this template is deprecated */
+  isDeprecated?: Flag | (string & {});
+  /** the latest version number of the package */
+  version?: string;
+  /** The display name of the package */
+  displayName?: string;
+  /** The description of the package */
+  description?: string;
+  /** The publisher display name of the package */
+  publisherDisplayName?: string;
+  /** The source of the package */
+  source?: MetadataSource;
+  /** The author of the package */
+  author?: MetadataAuthor;
+  /** The support tier of the package */
+  support?: MetadataSupport;
+  /** The support tier of the package */
+  dependencies?: MetadataDependencies;
+  /** Providers for the package item */
+  providers?: PackageBasePropertiesProvidersList;
+  /** first publish date package item */
+  firstPublishDate?: string;
+  /** last publish date for the package item */
+  lastPublishDate?: string;
+  /** The categories of the package */
+  categories?: MetadataCategories;
+  /** the tactics the resource covers */
+  threatAnalysisTactics?: PackageBasePropertiesThreatAnalysisTacticsList;
+  /** the techniques the resource covers, these have to be aligned with the tactics being used */
+  threatAnalysisTechniques?: PackageBasePropertiesThreatAnalysisTechniquesList;
+  /** the icon identifier. this id can later be fetched from the content metadata */
+  icon?: string;
+}
+export const PackageBaseProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    contentId: S.optional(S.String),
+    contentProductId: S.optional(S.String),
+    contentKind: S.optional(PackageKind),
+    contentSchemaVersion: S.optional(S.String),
+    isNew: S.optional(Flag),
+    isPreview: S.optional(Flag),
+    isFeatured: S.optional(Flag),
+    isDeprecated: S.optional(Flag),
+    version: S.optional(S.String),
+    displayName: S.optional(S.String),
+    description: S.optional(S.String),
+    publisherDisplayName: S.optional(S.String),
+    source: S.optional(MetadataSource),
+    author: S.optional(MetadataAuthor),
+    support: S.optional(MetadataSupport),
+    dependencies: S.optional(MetadataDependencies),
+    providers: S.optional(PackageBasePropertiesProvidersList),
+    firstPublishDate: S.optional(S.String),
+    lastPublishDate: S.optional(S.String),
+    categories: S.optional(MetadataCategories),
+    threatAnalysisTactics: S.optional(
+      PackageBasePropertiesThreatAnalysisTacticsList,
+    ),
+    threatAnalysisTechniques: S.optional(
+      PackageBasePropertiesThreatAnalysisTechniquesList,
+    ),
+    icon: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PackageBaseProperties",
+}) as any as S.Schema<PackageBaseProperties>;
+
+export interface GetContentPackageResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** package properties */
+  properties?: PackageBaseProperties;
+  /** Etag of the azure resource */
+  etag?: string;
+}
+export const GetContentPackageResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(PackageBaseProperties),
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetContentPackageResponse",
+}) as any as S.Schema<GetContentPackageResponse>;
+
+export interface GetContentTemplateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the monitor workspace. */
+  workspaceName: string;
+  /** template Id */
+  templateId: string;
+}
+export const GetContentTemplateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    templateId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/contentTemplates/{templateId}",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetContentTemplateRequest",
+}) as any as S.Schema<GetContentTemplateRequest>;
+
+/** Providers for the content item */
+export type TemplatePropertiesProvidersList = Array<string>;
+export const TemplatePropertiesProvidersList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<TemplatePropertiesProvidersList>;
+
+/** the tactics the resource covers */
+export type TemplatePropertiesThreatAnalysisTacticsList = Array<string>;
+export const TemplatePropertiesThreatAnalysisTacticsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<TemplatePropertiesThreatAnalysisTacticsList>;
+
+/** the techniques the resource covers, these have to be aligned with the tactics being used */
+export type TemplatePropertiesThreatAnalysisTechniquesList = Array<string>;
+export const TemplatePropertiesThreatAnalysisTechniquesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<TemplatePropertiesThreatAnalysisTechniquesList>;
+
+/** preview image file names. These will be taken from the solution artifacts */
+export type TemplatePropertiesPreviewImagesList = Array<string>;
+export const TemplatePropertiesPreviewImagesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<TemplatePropertiesPreviewImagesList>;
+
+/** preview image file names. These will be taken from the solution artifacts. used for dark theme support */
+export type TemplatePropertiesPreviewImagesDarkList = Array<string>;
+export const TemplatePropertiesPreviewImagesDarkList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<TemplatePropertiesPreviewImagesDarkList>;
+
+/** Dependant templates. Expandable. */
+export type TemplatePropertiesDependantTemplatesList =
+  Array<TemplateProperties>;
+export const TemplatePropertiesDependantTemplatesList = /*@__PURE__*/ S.Array(
+  S.suspend(() => TemplateProperties),
+) as any as S.Schema<TemplatePropertiesDependantTemplatesList>;
+
+/** Template property bag. */
+export interface TemplateProperties {
+  /** Static ID for the content. Used to identify dependencies and content from solutions or community. Hard-coded/static for out of the box content and solutions. Dynamic for user-created. This is the resource name */
+  contentId?: string;
+  /** Unique ID for the content. It should be generated based on the contentId of the package, contentId of the template, contentKind of the template and the contentVersion of the template */
+  contentProductId?: string;
+  /** Version of the package. Default and recommended format is numeric (e.g. 1, 1.0, 1.0.0, 1.0.0.0), following ARM metadata best practices. Can also be any string, but then we cannot guarantee any version checks */
+  packageVersion?: string;
+  /** Version of the content. Default and recommended format is numeric (e.g. 1, 1.0, 1.0.0, 1.0.0.0), following ARM metadata best practices. Can also be any string, but then we cannot guarantee any version checks */
+  version?: string;
+  /** The display name of the template */
+  displayName?: string;
+  /** The kind of content the template is for. */
+  contentKind?: Kind;
+  /** Source of the content. This is where/how it was created. */
+  source?: MetadataSource;
+  /** The creator of the content item. */
+  author?: MetadataAuthor;
+  /** Support information for the template - type, name, contact information */
+  support?: MetadataSupport;
+  /** Dependencies for the content item, what other content items it requires to work. Can describe more complex dependencies using a recursive/nested structure. For a single dependency an id/kind/version can be supplied or operator/criteria for complex formats. */
+  dependencies?: MetadataDependencies;
+  /** Categories for the item */
+  categories?: MetadataCategories;
+  /** Providers for the content item */
+  providers?: TemplatePropertiesProvidersList;
+  /** first publish date content item */
+  firstPublishDate?: string;
+  /** last publish date for the content item */
+  lastPublishDate?: string;
+  /** The custom version of the content. A optional free text */
+  customVersion?: string;
+  /** Schema version of the content. Can be used to distinguish between different flow based on the schema version */
+  contentSchemaVersion?: string;
+  /** the icon identifier. this id can later be fetched from the content metadata */
+  icon?: string;
+  /** the tactics the resource covers */
+  threatAnalysisTactics?: TemplatePropertiesThreatAnalysisTacticsList;
+  /** the techniques the resource covers, these have to be aligned with the tactics being used */
+  threatAnalysisTechniques?: TemplatePropertiesThreatAnalysisTechniquesList;
+  /** preview image file names. These will be taken from the solution artifacts */
+  previewImages?: TemplatePropertiesPreviewImagesList;
+  /** preview image file names. These will be taken from the solution artifacts. used for dark theme support */
+  previewImagesDark?: TemplatePropertiesPreviewImagesDarkList;
+  /** the package Id contains this template */
+  packageId?: string;
+  /** the packageKind of the package contains this template */
+  packageKind?: PackageKind;
+  /** the name of the package contains this template */
+  packageName?: string;
+  /** Flag indicates if this template is deprecated */
+  isDeprecated?: Flag;
+  /** The JSON of the ARM template to deploy active content. Expandable. */
+  mainTemplate?: unknown;
+  /** Dependant templates. Expandable. */
+  dependantTemplates?: TemplatePropertiesDependantTemplatesList;
+}
+export const TemplateProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    contentId: S.optional(S.String),
+    contentProductId: S.optional(S.String),
+    packageVersion: S.optional(S.String),
+    version: S.optional(S.String),
+    displayName: S.optional(S.String),
+    contentKind: S.optional(Kind),
+    source: S.optional(MetadataSource),
+    author: S.optional(MetadataAuthor),
+    support: S.optional(MetadataSupport),
+    dependencies: S.optional(MetadataDependencies),
+    categories: S.optional(MetadataCategories),
+    providers: S.optional(TemplatePropertiesProvidersList),
+    firstPublishDate: S.optional(S.String),
+    lastPublishDate: S.optional(S.String),
+    customVersion: S.optional(S.String),
+    contentSchemaVersion: S.optional(S.String),
+    icon: S.optional(S.String),
+    threatAnalysisTactics: S.optional(
+      TemplatePropertiesThreatAnalysisTacticsList,
+    ),
+    threatAnalysisTechniques: S.optional(
+      TemplatePropertiesThreatAnalysisTechniquesList,
+    ),
+    previewImages: S.optional(TemplatePropertiesPreviewImagesList),
+    previewImagesDark: S.optional(TemplatePropertiesPreviewImagesDarkList),
+    packageId: S.optional(S.String),
+    packageKind: S.optional(PackageKind),
+    packageName: S.optional(S.String),
+    isDeprecated: S.optional(Flag),
+    mainTemplate: S.optional(S.Unknown),
+    dependantTemplates: S.optional(TemplatePropertiesDependantTemplatesList),
+  }),
+).annotate({
+  identifier: "TemplateProperties",
+}) as any as S.Schema<TemplateProperties>;
+
+export interface GetContentTemplateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** template properties */
+  properties?: TemplateProperties;
+  /** Etag of the azure resource */
+  etag?: string;
+}
+export const GetContentTemplateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(TemplateProperties),
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetContentTemplateResponse",
+}) as any as S.Schema<GetContentTemplateResponse>;
+
+export interface GetDataConnectorRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the monitor workspace. */
+  workspaceName: string;
+  /** Connector ID */
+  dataConnectorId: string;
+}
+export const GetDataConnectorRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    dataConnectorId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/dataConnectors/{dataConnectorId}",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetDataConnectorRequest",
+}) as any as S.Schema<GetDataConnectorRequest>;
+
+export interface GetDataConnectorResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must validate and persist this value. */
+  kind: DataConnectorKind;
+  /** Etag of the azure resource */
+  etag?: string;
+}
+export const GetDataConnectorResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    kind: DataConnectorKind,
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetDataConnectorResponse",
+}) as any as S.Schema<GetDataConnectorResponse>;
+
+export interface GetDataConnectorDefinitionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the monitor workspace. */
+  workspaceName: string;
+  /** The data connector definition name. */
+  dataConnectorDefinitionName: string;
+}
+export const GetDataConnectorDefinitionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    dataConnectorDefinitionName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/dataConnectorDefinitions/{dataConnectorDefinitionName}",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetDataConnectorDefinitionRequest",
+}) as any as S.Schema<GetDataConnectorDefinitionRequest>;
+
+export interface GetDataConnectorDefinitionResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must validate and persist this value. */
+  kind: DataConnectorDefinitionKind;
+  /** Etag of the azure resource */
+  etag?: string;
+}
+export const GetDataConnectorDefinitionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    kind: DataConnectorDefinitionKind,
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetDataConnectorDefinitionResponse",
+}) as any as S.Schema<GetDataConnectorDefinitionResponse>;
+
+export interface GetIncidentRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the monitor workspace. */
+  workspaceName: string;
+  /** Incident ID */
+  incidentId: string;
+}
+export const GetIncidentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    incidentId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/incidents/{incidentId}",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetIncidentRequest",
+}) as any as S.Schema<GetIncidentRequest>;
+
+/** The status of the incident */
+export type IncidentStatus = "New" | "Active" | "Closed";
+export const IncidentStatus = /*@__PURE__*/ S.String;
+
+/** The reason the incident was closed */
+export type IncidentClassification =
+  | "Undetermined"
+  | "TruePositive"
+  | "BenignPositive"
+  | "FalsePositive";
+export const IncidentClassification = /*@__PURE__*/ S.String;
+
+/** The classification reason the incident was closed with */
+export type IncidentClassificationReason =
+  | "SuspiciousActivity"
+  | "SuspiciousButExpected"
+  | "IncorrectAlertLogic"
+  | "InaccurateData";
+export const IncidentClassificationReason = /*@__PURE__*/ S.String;
+
+/** The type of the owner the hunt is assigned to. */
+export type OwnerType = "Unknown" | "User" | "Group";
+export const OwnerType = /*@__PURE__*/ S.String;
+
+/** Information on the user an incident is assigned to */
+export interface IncidentOwnerInfo {
+  /** The email of the user the incident is assigned to. */
+  email?: string;
+  /** The name of the user the incident is assigned to. */
+  assignedTo?: string;
+  /** The object id of the user the incident is assigned to. */
+  objectId?: string;
+  /** The user principal name of the user the incident is assigned to. */
+  userPrincipalName?: string;
+  /** The type of the owner the incident is assigned to. */
+  ownerType?: OwnerType | (string & {});
+}
+export const IncidentOwnerInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    email: S.optional(S.String),
+    assignedTo: S.optional(S.String),
+    objectId: S.optional(S.String),
+    userPrincipalName: S.optional(S.String),
+    ownerType: S.optional(OwnerType),
+  }),
+).annotate({
+  identifier: "IncidentOwnerInfo",
+}) as any as S.Schema<IncidentOwnerInfo>;
+
+/** The type of the label */
+export type IncidentLabelType = "User" | "AutoAssigned";
+export const IncidentLabelType = /*@__PURE__*/ S.String;
+
+/** Represents an incident label */
+export interface IncidentLabel {
+  /** The name of the label */
+  labelName: string;
+  /** The type of the label */
+  labelType?: IncidentLabelType | (string & {});
+}
+export const IncidentLabel = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    labelName: S.String,
+    labelType: S.optional(IncidentLabelType),
+  }),
+).annotate({ identifier: "IncidentLabel" }) as any as S.Schema<IncidentLabel>;
+
+/** List of labels relevant to this incident */
+export type IncidentPropertiesLabelsList = Array<IncidentLabel>;
+export const IncidentPropertiesLabelsList = /*@__PURE__*/ S.Array(
+  IncidentLabel,
+) as any as S.Schema<IncidentPropertiesLabelsList>;
+
+/** List of product names of alerts in the incident */
+export type IncidentAdditionalDataAlertProductNamesList = Array<string>;
+export const IncidentAdditionalDataAlertProductNamesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<IncidentAdditionalDataAlertProductNamesList>;
+
+/** The severity for alerts created by this alert rule. */
+export type AttackTactic =
+  | "Reconnaissance"
+  | "ResourceDevelopment"
+  | "InitialAccess"
+  | "Execution"
+  | "Persistence"
+  | "PrivilegeEscalation"
+  | "DefenseEvasion"
+  | "CredentialAccess"
+  | "Discovery"
+  | "LateralMovement"
+  | "Collection"
+  | "Exfiltration"
+  | "CommandAndControl"
+  | "Impact"
+  | "PreAttack"
+  | "ImpairProcessControl"
+  | "InhibitResponseFunction";
+export const AttackTactic = /*@__PURE__*/ S.String;
+
+/** The tactics associated with incident */
+export type IncidentAdditionalDataTacticsList = Array<AttackTactic>;
+export const IncidentAdditionalDataTacticsList = /*@__PURE__*/ S.Array(
+  AttackTactic,
+) as any as S.Schema<IncidentAdditionalDataTacticsList>;
+
+/** Incident additional data property bag. */
+export interface IncidentAdditionalData {
+  /** The number of alerts in the incident */
+  alertsCount?: number;
+  /** The number of bookmarks in the incident */
+  bookmarksCount?: number;
+  /** The number of comments in the incident */
+  commentsCount?: number;
+  /** List of product names of alerts in the incident */
+  alertProductNames?: IncidentAdditionalDataAlertProductNamesList;
+  /** The tactics associated with incident */
+  tactics?: IncidentAdditionalDataTacticsList;
+  /** The provider incident url to the incident in Microsoft 365 Defender portal */
+  providerIncidentUrl?: string;
+}
+export const IncidentAdditionalData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    alertsCount: S.optional(S.Number),
+    bookmarksCount: S.optional(S.Number),
+    commentsCount: S.optional(S.Number),
+    alertProductNames: S.optional(IncidentAdditionalDataAlertProductNamesList),
+    tactics: S.optional(IncidentAdditionalDataTacticsList),
+    providerIncidentUrl: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "IncidentAdditionalData",
+}) as any as S.Schema<IncidentAdditionalData>;
+
+/** List of resource ids of Analytic rules related to the incident */
+export type IncidentPropertiesRelatedAnalyticRuleIdsList = Array<string>;
+export const IncidentPropertiesRelatedAnalyticRuleIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<IncidentPropertiesRelatedAnalyticRuleIdsList>;
+
+/** Describes incident properties */
+export interface IncidentProperties {
+  /** The title of the incident */
+  title: string;
+  /** The description of the incident */
+  description?: string;
+  /** The severity of the incident */
+  severity: IncidentSeverity;
+  /** The status of the incident */
+  status: IncidentStatus;
+  /** The reason the incident was closed */
+  classification?: IncidentClassification;
+  /** The classification reason the incident was closed with */
+  classificationReason?: IncidentClassificationReason;
+  /** Describes the reason the incident was closed */
+  classificationComment?: string;
+  /** Describes a user that the incident is assigned to */
+  owner?: IncidentOwnerInfo;
+  /** List of labels relevant to this incident */
+  labels?: IncidentPropertiesLabelsList;
+  /** The time of the first activity in the incident */
+  firstActivityTimeUtc?: string;
+  /** The time of the last activity in the incident */
+  lastActivityTimeUtc?: string;
+  /** The last time the incident was updated */
+  lastModifiedTimeUtc?: string;
+  /** The time the incident was created */
+  createdTimeUtc?: string;
+  /** A sequential number */
+  incidentNumber?: number;
+  /** Additional data on the incident */
+  additionalData?: IncidentAdditionalData;
+  /** List of resource ids of Analytic rules related to the incident */
+  relatedAnalyticRuleIds?: IncidentPropertiesRelatedAnalyticRuleIdsList;
+  /** The deep-link url to the incident in Azure portal */
+  incidentUrl?: string;
+  /** The name of the source provider that generated the incident */
+  providerName?: string;
+  /** The incident ID assigned by the incident provider */
+  providerIncidentId?: string;
+}
+export const IncidentProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    title: S.String,
+    description: S.optional(S.String),
+    severity: IncidentSeverity,
+    status: IncidentStatus,
+    classification: S.optional(IncidentClassification),
+    classificationReason: S.optional(IncidentClassificationReason),
+    classificationComment: S.optional(S.String),
+    owner: S.optional(IncidentOwnerInfo),
+    labels: S.optional(IncidentPropertiesLabelsList),
+    firstActivityTimeUtc: S.optional(S.String),
+    lastActivityTimeUtc: S.optional(S.String),
+    lastModifiedTimeUtc: S.optional(S.String),
+    createdTimeUtc: S.optional(S.String),
+    incidentNumber: S.optional(S.Number),
+    additionalData: S.optional(IncidentAdditionalData),
+    relatedAnalyticRuleIds: S.optional(
+      IncidentPropertiesRelatedAnalyticRuleIdsList,
+    ),
+    incidentUrl: S.optional(S.String),
+    providerName: S.optional(S.String),
+    providerIncidentId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "IncidentProperties",
+}) as any as S.Schema<IncidentProperties>;
+
+export interface GetIncidentResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Incident properties */
+  properties?: IncidentProperties;
+  /** Etag of the azure resource */
+  etag?: string;
+}
+export const GetIncidentResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(IncidentProperties),
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetIncidentResponse",
+}) as any as S.Schema<GetIncidentResponse>;
+
+export interface GetIncidentCommentRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the monitor workspace. */
+  workspaceName: string;
+  /** Incident ID */
+  incidentId: string;
+  /** Incident comment ID */
+  incidentCommentId: string;
+}
+export const GetIncidentCommentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    incidentId: S.String.pipe(T.Label()),
+    incidentCommentId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/incidents/{incidentId}/comments/{incidentCommentId}",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetIncidentCommentRequest",
+}) as any as S.Schema<GetIncidentCommentRequest>;
+
+/** Incident comment property bag. */
+export interface IncidentCommentProperties {
+  /** The comment message */
+  message: string;
+  /** The time the comment was created */
+  createdTimeUtc?: string;
+  /** The time the comment was updated */
+  lastModifiedTimeUtc?: string;
+  /** Describes the client that created the comment */
+  author?: ClientInfo;
+}
+export const IncidentCommentProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    message: S.String,
+    createdTimeUtc: S.optional(S.String),
+    lastModifiedTimeUtc: S.optional(S.String),
+    author: S.optional(ClientInfo),
+  }),
+).annotate({
+  identifier: "IncidentCommentProperties",
+}) as any as S.Schema<IncidentCommentProperties>;
+
+export interface GetIncidentCommentResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Incident comment properties */
+  properties?: IncidentCommentProperties;
+  /** Etag of the azure resource */
+  etag?: string;
+}
+export const GetIncidentCommentResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(IncidentCommentProperties),
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetIncidentCommentResponse",
+}) as any as S.Schema<GetIncidentCommentResponse>;
+
+export interface GetIncidentRelationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the monitor workspace. */
+  workspaceName: string;
+  /** Incident ID */
+  incidentId: string;
+  /** Relation Name */
+  relationName: string;
+}
+export const GetIncidentRelationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    incidentId: S.String.pipe(T.Label()),
+    relationName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/incidents/{incidentId}/relations/{relationName}",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetIncidentRelationRequest",
+}) as any as S.Schema<GetIncidentRelationRequest>;
+
+/** Relation property bag. */
+export interface RelationProperties {
+  /** The resource ID of the related resource */
+  relatedResourceId: string;
+  /** The name of the related resource */
+  relatedResourceName?: string;
+  /** The resource type of the related resource */
+  relatedResourceType?: string;
+  /** The resource kind of the related resource */
+  relatedResourceKind?: string;
+}
+export const RelationProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    relatedResourceId: S.String,
+    relatedResourceName: S.optional(S.String),
+    relatedResourceType: S.optional(S.String),
+    relatedResourceKind: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "RelationProperties",
+}) as any as S.Schema<RelationProperties>;
+
+export interface GetIncidentRelationResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Relation properties */
+  properties?: RelationProperties;
+  /** Etag of the azure resource */
+  etag?: string;
+}
+export const GetIncidentRelationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(RelationProperties),
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetIncidentRelationResponse",
+}) as any as S.Schema<GetIncidentRelationResponse>;
+
+export interface GetIncidentTaskRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the monitor workspace. */
+  workspaceName: string;
+  /** Incident ID */
+  incidentId: string;
+  /** Incident task ID */
+  incidentTaskId: string;
+}
+export const GetIncidentTaskRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    incidentId: S.String.pipe(T.Label()),
+    incidentTaskId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/incidents/{incidentId}/tasks/{incidentTaskId}",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetIncidentTaskRequest",
+}) as any as S.Schema<GetIncidentTaskRequest>;
+
+/** The status of the task */
+export type IncidentTaskStatus = "New" | "Completed";
+export const IncidentTaskStatus = /*@__PURE__*/ S.String;
+
+/** Describes the properties of an incident task */
+export interface IncidentTaskProperties {
+  /** The title of the task */
+  title: string;
+  /** The description of the task */
+  description?: string;
+  /** The status of the task */
+  status: IncidentTaskStatus;
+  /** The time the task was created */
+  createdTimeUtc?: string;
+  /** The last time the task was updated */
+  lastModifiedTimeUtc?: string;
+  /** Information on the client (user or application) that made some action */
+  createdBy?: ClientInfo;
+  /** Information on the client (user or application) that made some action */
+  lastModifiedBy?: ClientInfo;
+}
+export const IncidentTaskProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    title: S.String,
+    description: S.optional(S.String),
+    status: IncidentTaskStatus,
+    createdTimeUtc: S.optional(S.String),
+    lastModifiedTimeUtc: S.optional(S.String),
+    createdBy: S.optional(ClientInfo),
+    lastModifiedBy: S.optional(ClientInfo),
+  }),
+).annotate({
+  identifier: "IncidentTaskProperties",
+}) as any as S.Schema<IncidentTaskProperties>;
+
+export interface GetIncidentTaskResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Describes the properties of an incident task */
+  properties: IncidentTaskProperties;
+  /** Etag of the azure resource */
+  etag?: string;
+}
+export const GetIncidentTaskResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: IncidentTaskProperties,
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetIncidentTaskResponse",
+}) as any as S.Schema<GetIncidentTaskResponse>;
+
+export interface GetMetadataRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the monitor workspace. */
+  workspaceName: string;
+  /** The Metadata name. */
+  metadataName: string;
+}
+export const GetMetadataRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    metadataName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/metadata/{metadataName}",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetMetadataRequest",
+}) as any as S.Schema<GetMetadataRequest>;
+
+export interface GetMetadataResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Metadata properties */
+  properties?: MetadataProperties;
+  /** Etag of the azure resource */
+  etag?: string;
+}
+export const GetMetadataResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(MetadataProperties),
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetMetadataResponse",
+}) as any as S.Schema<GetMetadataResponse>;
+
+export interface GetProductPackageRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the monitor workspace. */
+  workspaceName: string;
+  /** package Id */
+  packageId: string;
+}
+export const GetProductPackageRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    packageId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/contentProductPackages/{packageId}",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetProductPackageRequest",
+}) as any as S.Schema<GetProductPackageRequest>;
+
+/** Providers for the package item */
+export type ProductPackagePropertiesProvidersList = Array<string>;
+export const ProductPackagePropertiesProvidersList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ProductPackagePropertiesProvidersList>;
+
+/** the tactics the resource covers */
+export type ProductPackagePropertiesThreatAnalysisTacticsList = Array<string>;
+export const ProductPackagePropertiesThreatAnalysisTacticsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ProductPackagePropertiesThreatAnalysisTacticsList>;
+
+/** the techniques the resource covers, these have to be aligned with the tactics being used */
+export type ProductPackagePropertiesThreatAnalysisTechniquesList =
+  Array<string>;
+export const ProductPackagePropertiesThreatAnalysisTechniquesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ProductPackagePropertiesThreatAnalysisTechniquesList>;
+
+/** Describes package properties */
+export interface ProductPackageProperties {
+  /** The content id of the package */
+  contentId?: string;
+  /** Unique ID for the content. It should be generated based on the contentId, contentKind and the contentVersion of the package */
+  contentProductId?: string;
+  /** The package kind */
+  contentKind?: PackageKind;
+  /** The version of the content schema. */
+  contentSchemaVersion?: string;
+  /** Flag indicates if this is a newly published package. */
+  isNew?: Flag;
+  /** Flag indicates if this package is in preview. */
+  isPreview?: Flag;
+  /** Flag indicates if this package is among the featured list. */
+  isFeatured?: Flag;
+  /** Flag indicates if this template is deprecated */
+  isDeprecated?: Flag;
+  /** the latest version number of the package */
+  version?: string;
+  /** The display name of the package */
+  displayName?: string;
+  /** The description of the package */
+  description?: string;
+  /** The publisher display name of the package */
+  publisherDisplayName?: string;
+  /** The source of the package */
+  source?: MetadataSource;
+  /** The author of the package */
+  author?: MetadataAuthor;
+  /** The support tier of the package */
+  support?: MetadataSupport;
+  /** The support tier of the package */
+  dependencies?: MetadataDependencies;
+  /** Providers for the package item */
+  providers?: ProductPackagePropertiesProvidersList;
+  /** first publish date package item */
+  firstPublishDate?: string;
+  /** last publish date for the package item */
+  lastPublishDate?: string;
+  /** The categories of the package */
+  categories?: MetadataCategories;
+  /** the tactics the resource covers */
+  threatAnalysisTactics?: ProductPackagePropertiesThreatAnalysisTacticsList;
+  /** the techniques the resource covers, these have to be aligned with the tactics being used */
+  threatAnalysisTechniques?: ProductPackagePropertiesThreatAnalysisTechniquesList;
+  /** the icon identifier. this id can later be fetched from the content metadata */
+  icon?: string;
+  /** The version of the installed package, null or absent means not installed. */
+  installedVersion?: string;
+  /** The metadata resource id. */
+  metadataResourceId?: string;
+  /** The json of the ARM template to deploy. Expandable. */
+  packagedContent?: unknown;
+}
+export const ProductPackageProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    contentId: S.optional(S.String),
+    contentProductId: S.optional(S.String),
+    contentKind: S.optional(PackageKind),
+    contentSchemaVersion: S.optional(S.String),
+    isNew: S.optional(Flag),
+    isPreview: S.optional(Flag),
+    isFeatured: S.optional(Flag),
+    isDeprecated: S.optional(Flag),
+    version: S.optional(S.String),
+    displayName: S.optional(S.String),
+    description: S.optional(S.String),
+    publisherDisplayName: S.optional(S.String),
+    source: S.optional(MetadataSource),
+    author: S.optional(MetadataAuthor),
+    support: S.optional(MetadataSupport),
+    dependencies: S.optional(MetadataDependencies),
+    providers: S.optional(ProductPackagePropertiesProvidersList),
+    firstPublishDate: S.optional(S.String),
+    lastPublishDate: S.optional(S.String),
+    categories: S.optional(MetadataCategories),
+    threatAnalysisTactics: S.optional(
+      ProductPackagePropertiesThreatAnalysisTacticsList,
+    ),
+    threatAnalysisTechniques: S.optional(
+      ProductPackagePropertiesThreatAnalysisTechniquesList,
+    ),
+    icon: S.optional(S.String),
+    installedVersion: S.optional(S.String),
+    metadataResourceId: S.optional(S.String),
+    packagedContent: S.optional(S.Unknown),
+  }),
+).annotate({
+  identifier: "ProductPackageProperties",
+}) as any as S.Schema<ProductPackageProperties>;
+
+export interface GetProductPackageResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** package properties */
+  properties?: ProductPackageProperties;
+  /** Etag of the azure resource */
+  etag?: string;
+}
+export const GetProductPackageResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ProductPackageProperties),
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetProductPackageResponse",
+}) as any as S.Schema<GetProductPackageResponse>;
+
+export interface GetProductTemplateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the workspace. */
+  workspaceName: string;
+  /** template Id */
+  templateId: string;
+}
+export const GetProductTemplateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    templateId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/contentproducttemplates/{templateId}",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetProductTemplateRequest",
+}) as any as S.Schema<GetProductTemplateRequest>;
+
+/** Providers for the content item */
+export type ProductTemplatePropertiesProvidersList = Array<string>;
+export const ProductTemplatePropertiesProvidersList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ProductTemplatePropertiesProvidersList>;
+
+/** the tactics the resource covers */
+export type ProductTemplatePropertiesThreatAnalysisTacticsList = Array<string>;
+export const ProductTemplatePropertiesThreatAnalysisTacticsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ProductTemplatePropertiesThreatAnalysisTacticsList>;
+
+/** the techniques the resource covers, these have to be aligned with the tactics being used */
+export type ProductTemplatePropertiesThreatAnalysisTechniquesList =
+  Array<string>;
+export const ProductTemplatePropertiesThreatAnalysisTechniquesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ProductTemplatePropertiesThreatAnalysisTechniquesList>;
+
+/** preview image file names. These will be taken from the solution artifacts */
+export type ProductTemplatePropertiesPreviewImagesList = Array<string>;
+export const ProductTemplatePropertiesPreviewImagesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ProductTemplatePropertiesPreviewImagesList>;
+
+/** preview image file names. These will be taken from the solution artifacts. used for dark theme support */
+export type ProductTemplatePropertiesPreviewImagesDarkList = Array<string>;
+export const ProductTemplatePropertiesPreviewImagesDarkList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ProductTemplatePropertiesPreviewImagesDarkList>;
+
+/** Template property bag. */
+export interface ProductTemplateProperties {
+  /** Static ID for the content. Used to identify dependencies and content from solutions or community. Hard-coded/static for out of the box content and solutions. Dynamic for user-created. This is the resource name */
+  contentId?: string;
+  /** Unique ID for the content. It should be generated based on the contentId of the package, contentId of the template, contentKind of the template and the contentVersion of the template */
+  contentProductId?: string;
+  /** Version of the package. Default and recommended format is numeric (e.g. 1, 1.0, 1.0.0, 1.0.0.0), following ARM metadata best practices. Can also be any string, but then we cannot guarantee any version checks */
+  packageVersion?: string;
+  /** Version of the content. Default and recommended format is numeric (e.g. 1, 1.0, 1.0.0, 1.0.0.0), following ARM metadata best practices. Can also be any string, but then we cannot guarantee any version checks */
+  version?: string;
+  /** The display name of the template */
+  displayName?: string;
+  /** The kind of content the template is for. */
+  contentKind?: Kind;
+  /** Source of the content. This is where/how it was created. */
+  source?: MetadataSource;
+  /** The creator of the content item. */
+  author?: MetadataAuthor;
+  /** Support information for the template - type, name, contact information */
+  support?: MetadataSupport;
+  /** Dependencies for the content item, what other content items it requires to work. Can describe more complex dependencies using a recursive/nested structure. For a single dependency an id/kind/version can be supplied or operator/criteria for complex formats. */
+  dependencies?: MetadataDependencies;
+  /** Categories for the item */
+  categories?: MetadataCategories;
+  /** Providers for the content item */
+  providers?: ProductTemplatePropertiesProvidersList;
+  /** first publish date content item */
+  firstPublishDate?: string;
+  /** last publish date for the content item */
+  lastPublishDate?: string;
+  /** The custom version of the content. A optional free text */
+  customVersion?: string;
+  /** Schema version of the content. Can be used to distinguish between different flow based on the schema version */
+  contentSchemaVersion?: string;
+  /** the icon identifier. this id can later be fetched from the content metadata */
+  icon?: string;
+  /** the tactics the resource covers */
+  threatAnalysisTactics?: ProductTemplatePropertiesThreatAnalysisTacticsList;
+  /** the techniques the resource covers, these have to be aligned with the tactics being used */
+  threatAnalysisTechniques?: ProductTemplatePropertiesThreatAnalysisTechniquesList;
+  /** preview image file names. These will be taken from the solution artifacts */
+  previewImages?: ProductTemplatePropertiesPreviewImagesList;
+  /** preview image file names. These will be taken from the solution artifacts. used for dark theme support */
+  previewImagesDark?: ProductTemplatePropertiesPreviewImagesDarkList;
+  /** the package Id contains this template */
+  packageId?: string;
+  /** the packageKind of the package contains this template */
+  packageKind?: PackageKind;
+  /** the name of the package contains this template */
+  packageName?: string;
+  /** Flag indicates if this template is deprecated */
+  isDeprecated?: Flag;
+  /** The json of the ARM template to deploy */
+  packagedContent?: unknown;
+}
+export const ProductTemplateProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    contentId: S.optional(S.String),
+    contentProductId: S.optional(S.String),
+    packageVersion: S.optional(S.String),
+    version: S.optional(S.String),
+    displayName: S.optional(S.String),
+    contentKind: S.optional(Kind),
+    source: S.optional(MetadataSource),
+    author: S.optional(MetadataAuthor),
+    support: S.optional(MetadataSupport),
+    dependencies: S.optional(MetadataDependencies),
+    categories: S.optional(MetadataCategories),
+    providers: S.optional(ProductTemplatePropertiesProvidersList),
+    firstPublishDate: S.optional(S.String),
+    lastPublishDate: S.optional(S.String),
+    customVersion: S.optional(S.String),
+    contentSchemaVersion: S.optional(S.String),
+    icon: S.optional(S.String),
+    threatAnalysisTactics: S.optional(
+      ProductTemplatePropertiesThreatAnalysisTacticsList,
+    ),
+    threatAnalysisTechniques: S.optional(
+      ProductTemplatePropertiesThreatAnalysisTechniquesList,
+    ),
+    previewImages: S.optional(ProductTemplatePropertiesPreviewImagesList),
+    previewImagesDark: S.optional(
+      ProductTemplatePropertiesPreviewImagesDarkList,
+    ),
+    packageId: S.optional(S.String),
+    packageKind: S.optional(PackageKind),
+    packageName: S.optional(S.String),
+    isDeprecated: S.optional(Flag),
+    packagedContent: S.optional(S.Unknown),
+  }),
+).annotate({
+  identifier: "ProductTemplateProperties",
+}) as any as S.Schema<ProductTemplateProperties>;
+
+export interface GetProductTemplateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** template properties */
+  properties?: ProductTemplateProperties;
+  /** Etag of the azure resource */
+  etag?: string;
+}
+export const GetProductTemplateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ProductTemplateProperties),
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetProductTemplateResponse",
+}) as any as S.Schema<GetProductTemplateResponse>;
+
+export interface GetSecurityMLAnalyticsSettingsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the monitor workspace. */
+  workspaceName: string;
+  /** Security ML Analytics Settings resource name */
+  settingsResourceName: string;
+}
+export const GetSecurityMLAnalyticsSettingsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      workspaceName: S.String.pipe(T.Label()),
+      settingsResourceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/securityMLAnalyticsSettings/{settingsResourceName}",
+        code: 200,
+        apiVersion: "2025-09-01",
+      }),
+    ),
+).annotate({
+  identifier: "GetSecurityMLAnalyticsSettingsRequest",
+}) as any as S.Schema<GetSecurityMLAnalyticsSettingsRequest>;
+
+/** The kind of security ML analytics settings */
+export type SecurityMLAnalyticsSettingsKind = "Anomaly";
+export const SecurityMLAnalyticsSettingsKind = /*@__PURE__*/ S.String;
+
+export interface GetSecurityMLAnalyticsSettingsResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must validate and persist this value. */
+  kind: SecurityMLAnalyticsSettingsKind;
+  /** Etag of the azure resource */
+  etag?: string;
+}
+export const GetSecurityMLAnalyticsSettingsResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      kind: SecurityMLAnalyticsSettingsKind,
+      etag: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "GetSecurityMLAnalyticsSettingsResponse",
+}) as any as S.Schema<GetSecurityMLAnalyticsSettingsResponse>;
+
+export interface GetSentinelOnboardingStateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the monitor workspace. */
+  workspaceName: string;
+  /** The Sentinel onboarding state name. Supports - default */
+  sentinelOnboardingStateName: string;
+}
+export const GetSentinelOnboardingStateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    sentinelOnboardingStateName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/onboardingStates/{sentinelOnboardingStateName}",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetSentinelOnboardingStateRequest",
+}) as any as S.Schema<GetSentinelOnboardingStateRequest>;
+
+export interface GetSentinelOnboardingStateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The Sentinel onboarding state object */
+  properties?: SentinelOnboardingStateProperties;
+  /** Etag of the azure resource */
+  etag?: string;
+}
+export const GetSentinelOnboardingStateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(SentinelOnboardingStateProperties),
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetSentinelOnboardingStateResponse",
+}) as any as S.Schema<GetSentinelOnboardingStateResponse>;
+
+export interface GetSourceControlRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the monitor workspace. */
+  workspaceName: string;
+  /** Source control Id */
+  sourceControlId: string;
+}
+export const GetSourceControlRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    sourceControlId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/sourcecontrols/{sourceControlId}",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetSourceControlRequest",
+}) as any as S.Schema<GetSourceControlRequest>;
+
+export interface GetSourceControlResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** source control properties */
+  properties: SourceControlProperties;
+  /** Etag of the azure resource */
+  etag?: string;
+}
+export const GetSourceControlResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: SourceControlProperties,
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetSourceControlResponse",
+}) as any as S.Schema<GetSourceControlResponse>;
+
+export interface GetThreatIntelligenceIndicatorRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -7803,7 +4680,7 @@ export interface ThreatIntelligenceIndicatorGetRequest {
   /** Threat intelligence indicator name field. */
   name: string;
 }
-export const ThreatIntelligenceIndicatorGetRequest = /*@__PURE__*/ S.suspend(
+export const GetThreatIntelligenceIndicatorRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -7819,10 +4696,10 @@ export const ThreatIntelligenceIndicatorGetRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "ThreatIntelligenceIndicatorGetRequest",
-}) as any as S.Schema<ThreatIntelligenceIndicatorGetRequest>;
+  identifier: "GetThreatIntelligenceIndicatorRequest",
+}) as any as S.Schema<GetThreatIntelligenceIndicatorRequest>;
 
-export interface ThreatIntelligenceIndicatorGetResponse {
+export interface GetThreatIntelligenceIndicatorResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -7836,7 +4713,7 @@ export interface ThreatIntelligenceIndicatorGetResponse {
   /** Etag of the azure resource */
   etag?: string;
 }
-export const ThreatIntelligenceIndicatorGetResponse = /*@__PURE__*/ S.suspend(
+export const GetThreatIntelligenceIndicatorResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
@@ -7847,10 +4724,935 @@ export const ThreatIntelligenceIndicatorGetResponse = /*@__PURE__*/ S.suspend(
       etag: S.optional(S.String),
     }),
 ).annotate({
-  identifier: "ThreatIntelligenceIndicatorGetResponse",
-}) as any as S.Schema<ThreatIntelligenceIndicatorGetResponse>;
+  identifier: "GetThreatIntelligenceIndicatorResponse",
+}) as any as S.Schema<GetThreatIntelligenceIndicatorResponse>;
 
-export interface ThreatIntelligenceIndicatorMetricsListRequest {
+export interface GetWatchlistRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the monitor workspace. */
+  workspaceName: string;
+  /** The watchlist alias */
+  watchlistAlias: string;
+}
+export const GetWatchlistRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    watchlistAlias: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/watchlists/{watchlistAlias}",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetWatchlistRequest",
+}) as any as S.Schema<GetWatchlistRequest>;
+
+/** The sourceType of the watchlist */
+export type SourceType = "Local" | "AzureStorage";
+export const SourceType = /*@__PURE__*/ S.String;
+
+/** List of labels relevant to this watchlist */
+export type WatchlistPropertiesLabelsList = Array<string>;
+export const WatchlistPropertiesLabelsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<WatchlistPropertiesLabelsList>;
+
+/** The provisioning state of the watchlist */
+export type WatchlistProvisioningState =
+  | "New"
+  | "InProgress"
+  | "Uploading"
+  | "Deleting"
+  | "Succeeded"
+  | "Failed"
+  | "Canceled";
+export const WatchlistProvisioningState = /*@__PURE__*/ S.String;
+
+/** Describes watchlist properties */
+export interface WatchlistProperties {
+  /** The id (a Guid) of the watchlist */
+  watchlistId?: string;
+  /** The display name of the watchlist */
+  displayName: string;
+  /** The provider of the watchlist */
+  provider: string;
+  /** The filename of the watchlist, called 'source' */
+  source?: string;
+  /** The sourceType of the watchlist */
+  sourceType?: SourceType;
+  /** The time the watchlist was created */
+  created?: string;
+  /** The last time the watchlist was updated */
+  updated?: string;
+  /** Describes a user that created the watchlist */
+  createdBy?: UserInfo;
+  /** Describes a user that updated the watchlist */
+  updatedBy?: UserInfo;
+  /** A description of the watchlist */
+  description?: string;
+  /** The type of the watchlist */
+  watchlistType?: string;
+  /** The alias of the watchlist */
+  watchlistAlias?: string;
+  /** A flag that indicates if the watchlist is deleted or not */
+  isDeleted?: boolean;
+  /** List of labels relevant to this watchlist */
+  labels?: WatchlistPropertiesLabelsList;
+  /** The default duration of a watchlist (in ISO 8601 duration format) */
+  defaultDuration?: string;
+  /** The tenantId where the watchlist belongs to */
+  tenantId?: string;
+  /** The number of lines in a csv/tsv content to skip before the header */
+  numberOfLinesToSkip?: number;
+  /** The raw content that represents to watchlist items to create. In case of csv/tsv content type, it's the content of the file that will parsed by the endpoint */
+  rawContent?: string;
+  /** The search key is used to optimize query performance when using watchlists for joins with other data. For example, enable a column with IP addresses to be the designated SearchKey field, then use this field as the key field when joining to other event data by IP address. */
+  itemsSearchKey: string;
+  /** The content type of the raw content. Example : text/csv or text/tsv */
+  contentType?: string;
+  /** The status of the Watchlist upload : New, InProgress or Complete. **Note** : When a Watchlist upload status is InProgress, the Watchlist cannot be deleted */
+  uploadStatus?: string;
+  /** Describes provisioning state */
+  provisioningState?: WatchlistProvisioningState;
+}
+export const WatchlistProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    watchlistId: S.optional(S.String),
+    displayName: S.String,
+    provider: S.String,
+    source: S.optional(S.String),
+    sourceType: S.optional(SourceType),
+    created: S.optional(S.String),
+    updated: S.optional(S.String),
+    createdBy: S.optional(UserInfo),
+    updatedBy: S.optional(UserInfo),
+    description: S.optional(S.String),
+    watchlistType: S.optional(S.String),
+    watchlistAlias: S.optional(S.String),
+    isDeleted: S.optional(S.Boolean),
+    labels: S.optional(WatchlistPropertiesLabelsList),
+    defaultDuration: S.optional(S.String),
+    tenantId: S.optional(S.String),
+    numberOfLinesToSkip: S.optional(S.Number),
+    rawContent: S.optional(S.String),
+    itemsSearchKey: S.String,
+    contentType: S.optional(S.String),
+    uploadStatus: S.optional(S.String),
+    provisioningState: S.optional(WatchlistProvisioningState),
+  }),
+).annotate({
+  identifier: "WatchlistProperties",
+}) as any as S.Schema<WatchlistProperties>;
+
+export interface GetWatchlistResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Watchlist properties */
+  properties?: WatchlistProperties;
+  /** Etag of the azure resource */
+  etag?: string;
+}
+export const GetWatchlistResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(WatchlistProperties),
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetWatchlistResponse",
+}) as any as S.Schema<GetWatchlistResponse>;
+
+export interface GetWatchlistItemRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the monitor workspace. */
+  workspaceName: string;
+  /** The watchlist alias */
+  watchlistAlias: string;
+  /** The watchlist item id (GUID) */
+  watchlistItemId: string;
+}
+export const GetWatchlistItemRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    watchlistAlias: S.String.pipe(T.Label()),
+    watchlistItemId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/watchlists/{watchlistAlias}/watchlistItems/{watchlistItemId}",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetWatchlistItemRequest",
+}) as any as S.Schema<GetWatchlistItemRequest>;
+
+/** Describes watchlist item properties */
+export interface WatchlistItemProperties {
+  /** The type of the watchlist item */
+  watchlistItemType?: string;
+  /** The id (a Guid) of the watchlist item */
+  watchlistItemId?: string;
+  /** The tenantId to which the watchlist item belongs to */
+  tenantId?: string;
+  /** A flag that indicates if the watchlist item is deleted or not */
+  isDeleted?: boolean;
+  /** The time the watchlist item was created */
+  created?: string;
+  /** The last time the watchlist item was updated */
+  updated?: string;
+  /** Describes a user that created the watchlist item */
+  createdBy?: UserInfo;
+  /** Describes a user that updated the watchlist item */
+  updatedBy?: UserInfo;
+  /** key-value pairs for a watchlist item */
+  itemsKeyValue: unknown;
+  /** key-value pairs for a watchlist item entity mapping */
+  entityMapping?: unknown;
+}
+export const WatchlistItemProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    watchlistItemType: S.optional(S.String),
+    watchlistItemId: S.optional(S.String),
+    tenantId: S.optional(S.String),
+    isDeleted: S.optional(S.Boolean),
+    created: S.optional(S.String),
+    updated: S.optional(S.String),
+    createdBy: S.optional(UserInfo),
+    updatedBy: S.optional(UserInfo),
+    itemsKeyValue: S.Unknown,
+    entityMapping: S.optional(S.Unknown),
+  }),
+).annotate({
+  identifier: "WatchlistItemProperties",
+}) as any as S.Schema<WatchlistItemProperties>;
+
+export interface GetWatchlistItemResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Watchlist Item properties */
+  properties?: WatchlistItemProperties;
+  /** Etag of the azure resource */
+  etag?: string;
+}
+export const GetWatchlistItemResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(WatchlistItemProperties),
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetWatchlistItemResponse",
+}) as any as S.Schema<GetWatchlistItemResponse>;
+
+/** Incident comment property bag. */
+export interface IncidentCommentPropertiesInput {
+  /** The comment message */
+  message: string;
+}
+export const IncidentCommentPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    message: S.String,
+  }),
+).annotate({
+  identifier: "IncidentCommentPropertiesInput",
+}) as any as S.Schema<IncidentCommentPropertiesInput>;
+
+export interface IncidentCommentsCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the monitor workspace. */
+  workspaceName: string;
+  /** Incident ID */
+  incidentId: string;
+  /** Incident comment ID */
+  incidentCommentId: string;
+  /** Incident comment properties */
+  properties?: IncidentCommentPropertiesInput;
+  /** Etag of the azure resource */
+  etag?: string;
+}
+export const IncidentCommentsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      workspaceName: S.String.pipe(T.Label()),
+      incidentId: S.String.pipe(T.Label()),
+      incidentCommentId: S.String.pipe(T.Label()),
+      properties: S.optional(IncidentCommentPropertiesInput),
+      etag: S.optional(S.String),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/incidents/{incidentId}/comments/{incidentCommentId}",
+        code: 200,
+        apiVersion: "2025-09-01",
+      }),
+    ),
+).annotate({
+  identifier: "IncidentCommentsCreateOrUpdateRequest",
+}) as any as S.Schema<IncidentCommentsCreateOrUpdateRequest>;
+
+export interface IncidentCommentsCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Incident comment properties */
+  properties?: IncidentCommentProperties;
+  /** Etag of the azure resource */
+  etag?: string;
+}
+export const IncidentCommentsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(IncidentCommentProperties),
+      etag: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "IncidentCommentsCreateOrUpdateResponse",
+}) as any as S.Schema<IncidentCommentsCreateOrUpdateResponse>;
+
+/** Relation property bag. */
+export interface RelationPropertiesInput {
+  /** The resource ID of the related resource */
+  relatedResourceId: string;
+}
+export const RelationPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    relatedResourceId: S.String,
+  }),
+).annotate({
+  identifier: "RelationPropertiesInput",
+}) as any as S.Schema<RelationPropertiesInput>;
+
+export interface IncidentRelationsCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the monitor workspace. */
+  workspaceName: string;
+  /** Incident ID */
+  incidentId: string;
+  /** Relation Name */
+  relationName: string;
+  /** Relation properties */
+  properties?: RelationPropertiesInput;
+  /** Etag of the azure resource */
+  etag?: string;
+}
+export const IncidentRelationsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      workspaceName: S.String.pipe(T.Label()),
+      incidentId: S.String.pipe(T.Label()),
+      relationName: S.String.pipe(T.Label()),
+      properties: S.optional(RelationPropertiesInput),
+      etag: S.optional(S.String),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/incidents/{incidentId}/relations/{relationName}",
+        code: 200,
+        apiVersion: "2025-09-01",
+      }),
+    ),
+).annotate({
+  identifier: "IncidentRelationsCreateOrUpdateRequest",
+}) as any as S.Schema<IncidentRelationsCreateOrUpdateRequest>;
+
+export interface IncidentRelationsCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Relation properties */
+  properties?: RelationProperties;
+  /** Etag of the azure resource */
+  etag?: string;
+}
+export const IncidentRelationsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(RelationProperties),
+      etag: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "IncidentRelationsCreateOrUpdateResponse",
+}) as any as S.Schema<IncidentRelationsCreateOrUpdateResponse>;
+
+/** List of labels relevant to this incident */
+export type IncidentPropertiesInputLabelsList = Array<IncidentLabel>;
+export const IncidentPropertiesInputLabelsList = /*@__PURE__*/ S.Array(
+  IncidentLabel,
+) as any as S.Schema<IncidentPropertiesInputLabelsList>;
+
+/** Describes incident properties */
+export interface IncidentPropertiesInput {
+  /** The title of the incident */
+  title: string;
+  /** The description of the incident */
+  description?: string;
+  /** The severity of the incident */
+  severity: IncidentSeverity | (string & {});
+  /** The status of the incident */
+  status: IncidentStatus | (string & {});
+  /** The reason the incident was closed */
+  classification?: IncidentClassification | (string & {});
+  /** The classification reason the incident was closed with */
+  classificationReason?: IncidentClassificationReason | (string & {});
+  /** Describes the reason the incident was closed */
+  classificationComment?: string;
+  /** Describes a user that the incident is assigned to */
+  owner?: IncidentOwnerInfo;
+  /** List of labels relevant to this incident */
+  labels?: IncidentPropertiesInputLabelsList;
+  /** The time of the first activity in the incident */
+  firstActivityTimeUtc?: string;
+  /** The time of the last activity in the incident */
+  lastActivityTimeUtc?: string;
+}
+export const IncidentPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    title: S.String,
+    description: S.optional(S.String),
+    severity: IncidentSeverity,
+    status: IncidentStatus,
+    classification: S.optional(IncidentClassification),
+    classificationReason: S.optional(IncidentClassificationReason),
+    classificationComment: S.optional(S.String),
+    owner: S.optional(IncidentOwnerInfo),
+    labels: S.optional(IncidentPropertiesInputLabelsList),
+    firstActivityTimeUtc: S.optional(S.String),
+    lastActivityTimeUtc: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "IncidentPropertiesInput",
+}) as any as S.Schema<IncidentPropertiesInput>;
+
+export interface IncidentsCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the monitor workspace. */
+  workspaceName: string;
+  /** Incident ID */
+  incidentId: string;
+  /** Incident properties */
+  properties?: IncidentPropertiesInput;
+  /** Etag of the azure resource */
+  etag?: string;
+}
+export const IncidentsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    incidentId: S.String.pipe(T.Label()),
+    properties: S.optional(IncidentPropertiesInput),
+    etag: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/incidents/{incidentId}",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "IncidentsCreateOrUpdateRequest",
+}) as any as S.Schema<IncidentsCreateOrUpdateRequest>;
+
+export interface IncidentsCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Incident properties */
+  properties?: IncidentProperties;
+  /** Etag of the azure resource */
+  etag?: string;
+}
+export const IncidentsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(IncidentProperties),
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "IncidentsCreateOrUpdateResponse",
+}) as any as S.Schema<IncidentsCreateOrUpdateResponse>;
+
+/** Describes the properties of an incident task */
+export interface IncidentTaskPropertiesInput {
+  /** The title of the task */
+  title: string;
+  /** The description of the task */
+  description?: string;
+  /** The status of the task */
+  status: IncidentTaskStatus | (string & {});
+  /** Information on the client (user or application) that made some action */
+  createdBy?: ClientInfo;
+  /** Information on the client (user or application) that made some action */
+  lastModifiedBy?: ClientInfo;
+}
+export const IncidentTaskPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    title: S.String,
+    description: S.optional(S.String),
+    status: IncidentTaskStatus,
+    createdBy: S.optional(ClientInfo),
+    lastModifiedBy: S.optional(ClientInfo),
+  }),
+).annotate({
+  identifier: "IncidentTaskPropertiesInput",
+}) as any as S.Schema<IncidentTaskPropertiesInput>;
+
+export interface IncidentTasksCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the monitor workspace. */
+  workspaceName: string;
+  /** Incident ID */
+  incidentId: string;
+  /** Incident task ID */
+  incidentTaskId: string;
+  /** Describes the properties of an incident task */
+  properties: IncidentTaskPropertiesInput;
+  /** Etag of the azure resource */
+  etag?: string;
+}
+export const IncidentTasksCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    incidentId: S.String.pipe(T.Label()),
+    incidentTaskId: S.String.pipe(T.Label()),
+    properties: IncidentTaskPropertiesInput,
+    etag: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/incidents/{incidentId}/tasks/{incidentTaskId}",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "IncidentTasksCreateOrUpdateRequest",
+}) as any as S.Schema<IncidentTasksCreateOrUpdateRequest>;
+
+export interface IncidentTasksCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Describes the properties of an incident task */
+  properties: IncidentTaskProperties;
+  /** Etag of the azure resource */
+  etag?: string;
+}
+export const IncidentTasksCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: IncidentTaskProperties,
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "IncidentTasksCreateOrUpdateResponse",
+}) as any as S.Schema<IncidentTasksCreateOrUpdateResponse>;
+
+export interface InstallContentPackageRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the monitor workspace. */
+  workspaceName: string;
+  /** package Id */
+  packageId: string;
+  /** package properties */
+  properties?: PackageBaseProperties;
+  /** Etag of the azure resource */
+  etag?: string;
+}
+export const InstallContentPackageRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    packageId: S.String.pipe(T.Label()),
+    properties: S.optional(PackageBaseProperties),
+    etag: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/contentPackages/{packageId}",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "InstallContentPackageRequest",
+}) as any as S.Schema<InstallContentPackageRequest>;
+
+export interface InstallContentPackageResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** package properties */
+  properties?: PackageBaseProperties;
+  /** Etag of the azure resource */
+  etag?: string;
+}
+export const InstallContentPackageResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(PackageBaseProperties),
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "InstallContentPackageResponse",
+}) as any as S.Schema<InstallContentPackageResponse>;
+
+/** Providers for the content item */
+export type TemplatePropertiesInputProvidersList = Array<string>;
+export const TemplatePropertiesInputProvidersList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<TemplatePropertiesInputProvidersList>;
+
+/** the tactics the resource covers */
+export type TemplatePropertiesInputThreatAnalysisTacticsList = Array<string>;
+export const TemplatePropertiesInputThreatAnalysisTacticsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<TemplatePropertiesInputThreatAnalysisTacticsList>;
+
+/** the techniques the resource covers, these have to be aligned with the tactics being used */
+export type TemplatePropertiesInputThreatAnalysisTechniquesList = Array<string>;
+export const TemplatePropertiesInputThreatAnalysisTechniquesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<TemplatePropertiesInputThreatAnalysisTechniquesList>;
+
+/** preview image file names. These will be taken from the solution artifacts */
+export type TemplatePropertiesInputPreviewImagesList = Array<string>;
+export const TemplatePropertiesInputPreviewImagesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<TemplatePropertiesInputPreviewImagesList>;
+
+/** preview image file names. These will be taken from the solution artifacts. used for dark theme support */
+export type TemplatePropertiesInputPreviewImagesDarkList = Array<string>;
+export const TemplatePropertiesInputPreviewImagesDarkList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<TemplatePropertiesInputPreviewImagesDarkList>;
+
+/** Template property bag. */
+export interface TemplatePropertiesInput {
+  /** Static ID for the content. Used to identify dependencies and content from solutions or community. Hard-coded/static for out of the box content and solutions. Dynamic for user-created. This is the resource name */
+  contentId?: string;
+  /** Unique ID for the content. It should be generated based on the contentId of the package, contentId of the template, contentKind of the template and the contentVersion of the template */
+  contentProductId?: string;
+  /** Version of the package. Default and recommended format is numeric (e.g. 1, 1.0, 1.0.0, 1.0.0.0), following ARM metadata best practices. Can also be any string, but then we cannot guarantee any version checks */
+  packageVersion?: string;
+  /** Version of the content. Default and recommended format is numeric (e.g. 1, 1.0, 1.0.0, 1.0.0.0), following ARM metadata best practices. Can also be any string, but then we cannot guarantee any version checks */
+  version?: string;
+  /** The display name of the template */
+  displayName?: string;
+  /** The kind of content the template is for. */
+  contentKind?: Kind | (string & {});
+  /** Source of the content. This is where/how it was created. */
+  source?: MetadataSource;
+  /** The creator of the content item. */
+  author?: MetadataAuthor;
+  /** Support information for the template - type, name, contact information */
+  support?: MetadataSupport;
+  /** Dependencies for the content item, what other content items it requires to work. Can describe more complex dependencies using a recursive/nested structure. For a single dependency an id/kind/version can be supplied or operator/criteria for complex formats. */
+  dependencies?: MetadataDependencies;
+  /** Categories for the item */
+  categories?: MetadataCategories;
+  /** Providers for the content item */
+  providers?: TemplatePropertiesInputProvidersList;
+  /** first publish date content item */
+  firstPublishDate?: string;
+  /** last publish date for the content item */
+  lastPublishDate?: string;
+  /** The custom version of the content. A optional free text */
+  customVersion?: string;
+  /** Schema version of the content. Can be used to distinguish between different flow based on the schema version */
+  contentSchemaVersion?: string;
+  /** the icon identifier. this id can later be fetched from the content metadata */
+  icon?: string;
+  /** the tactics the resource covers */
+  threatAnalysisTactics?: TemplatePropertiesInputThreatAnalysisTacticsList;
+  /** the techniques the resource covers, these have to be aligned with the tactics being used */
+  threatAnalysisTechniques?: TemplatePropertiesInputThreatAnalysisTechniquesList;
+  /** preview image file names. These will be taken from the solution artifacts */
+  previewImages?: TemplatePropertiesInputPreviewImagesList;
+  /** preview image file names. These will be taken from the solution artifacts. used for dark theme support */
+  previewImagesDark?: TemplatePropertiesInputPreviewImagesDarkList;
+  /** the package Id contains this template */
+  packageId?: string;
+  /** the packageKind of the package contains this template */
+  packageKind?: PackageKind | (string & {});
+  /** the name of the package contains this template */
+  packageName?: string;
+  /** The JSON of the ARM template to deploy active content. Expandable. */
+  mainTemplate?: unknown;
+}
+export const TemplatePropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    contentId: S.optional(S.String),
+    contentProductId: S.optional(S.String),
+    packageVersion: S.optional(S.String),
+    version: S.optional(S.String),
+    displayName: S.optional(S.String),
+    contentKind: S.optional(Kind),
+    source: S.optional(MetadataSource),
+    author: S.optional(MetadataAuthor),
+    support: S.optional(MetadataSupport),
+    dependencies: S.optional(MetadataDependencies),
+    categories: S.optional(MetadataCategories),
+    providers: S.optional(TemplatePropertiesInputProvidersList),
+    firstPublishDate: S.optional(S.String),
+    lastPublishDate: S.optional(S.String),
+    customVersion: S.optional(S.String),
+    contentSchemaVersion: S.optional(S.String),
+    icon: S.optional(S.String),
+    threatAnalysisTactics: S.optional(
+      TemplatePropertiesInputThreatAnalysisTacticsList,
+    ),
+    threatAnalysisTechniques: S.optional(
+      TemplatePropertiesInputThreatAnalysisTechniquesList,
+    ),
+    previewImages: S.optional(TemplatePropertiesInputPreviewImagesList),
+    previewImagesDark: S.optional(TemplatePropertiesInputPreviewImagesDarkList),
+    packageId: S.optional(S.String),
+    packageKind: S.optional(PackageKind),
+    packageName: S.optional(S.String),
+    mainTemplate: S.optional(S.Unknown),
+  }),
+).annotate({
+  identifier: "TemplatePropertiesInput",
+}) as any as S.Schema<TemplatePropertiesInput>;
+
+export interface InstallContentTemplateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the monitor workspace. */
+  workspaceName: string;
+  /** template Id */
+  templateId: string;
+  /** template properties */
+  properties?: TemplatePropertiesInput;
+  /** Etag of the azure resource */
+  etag?: string;
+}
+export const InstallContentTemplateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    templateId: S.String.pipe(T.Label()),
+    properties: S.optional(TemplatePropertiesInput),
+    etag: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/contentTemplates/{templateId}",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "InstallContentTemplateRequest",
+}) as any as S.Schema<InstallContentTemplateRequest>;
+
+export interface InstallContentTemplateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** template properties */
+  properties?: TemplateProperties;
+  /** Etag of the azure resource */
+  etag?: string;
+}
+export const InstallContentTemplateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(TemplateProperties),
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "InstallContentTemplateResponse",
+}) as any as S.Schema<InstallContentTemplateResponse>;
+
+export interface ListActionByAlertRuleRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the monitor workspace. */
+  workspaceName: string;
+  /** Alert rule ID */
+  ruleId: string;
+}
+export const ListActionByAlertRuleRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    ruleId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/alertRules/{ruleId}/actions",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListActionByAlertRuleRequest",
+}) as any as S.Schema<ListActionByAlertRuleRequest>;
+
+/** Action for alert rule. */
+export interface ActionResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Action properties for get request */
+  properties?: ActionResponseProperties;
+  /** Etag of the action. */
+  etag?: string;
+}
+export const ActionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ActionResponseProperties),
+    etag: S.optional(S.String),
+  }),
+).annotate({ identifier: "ActionResponse" }) as any as S.Schema<ActionResponse>;
+
+/** The ActionResponse items on this page */
+export type ActionsListValueList = Array<ActionResponse>;
+export const ActionsListValueList = /*@__PURE__*/ S.Array(
+  ActionResponse,
+) as any as S.Schema<ActionsListValueList>;
+
+/** List all the actions. */
+export interface ActionsList {
+  /** The ActionResponse items on this page */
+  value: ActionsListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const ActionsList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: ActionsListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({ identifier: "ActionsList" }) as any as S.Schema<ActionsList>;
+
+export interface ListAlertRulesRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -7858,7 +5660,2133 @@ export interface ThreatIntelligenceIndicatorMetricsListRequest {
   /** The name of the monitor workspace. */
   workspaceName: string;
 }
-export const ThreatIntelligenceIndicatorMetricsListRequest =
+export const ListAlertRulesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/alertRules",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListAlertRulesRequest",
+}) as any as S.Schema<ListAlertRulesRequest>;
+
+/** Alert rule. */
+export interface AlertRule {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must validate and persist this value. */
+  kind: AlertRuleKind;
+  /** Etag of the azure resource */
+  etag?: string;
+}
+export const AlertRule = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    kind: AlertRuleKind,
+    etag: S.optional(S.String),
+  }),
+).annotate({ identifier: "AlertRule" }) as any as S.Schema<AlertRule>;
+
+/** The AlertRule items on this page */
+export type AlertRulesListValueList = Array<AlertRule>;
+export const AlertRulesListValueList = /*@__PURE__*/ S.Array(
+  AlertRule,
+) as any as S.Schema<AlertRulesListValueList>;
+
+/** List all the alert rules. */
+export interface AlertRulesList {
+  /** The AlertRule items on this page */
+  value: AlertRulesListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const AlertRulesList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: AlertRulesListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({ identifier: "AlertRulesList" }) as any as S.Schema<AlertRulesList>;
+
+export interface ListAlertRuleTemplatesRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the monitor workspace. */
+  workspaceName: string;
+}
+export const ListAlertRuleTemplatesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/alertRuleTemplates",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListAlertRuleTemplatesRequest",
+}) as any as S.Schema<ListAlertRuleTemplatesRequest>;
+
+/** Alert rule template. */
+export interface AlertRuleTemplate {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must validate and persist this value. */
+  kind: AlertRuleKind;
+}
+export const AlertRuleTemplate = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    kind: AlertRuleKind,
+  }),
+).annotate({
+  identifier: "AlertRuleTemplate",
+}) as any as S.Schema<AlertRuleTemplate>;
+
+/** The AlertRuleTemplate items on this page */
+export type AlertRuleTemplatesListValueList = Array<AlertRuleTemplate>;
+export const AlertRuleTemplatesListValueList = /*@__PURE__*/ S.Array(
+  AlertRuleTemplate,
+) as any as S.Schema<AlertRuleTemplatesListValueList>;
+
+/** List all the alert rule templates. */
+export interface AlertRuleTemplatesList {
+  /** The AlertRuleTemplate items on this page */
+  value: AlertRuleTemplatesListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const AlertRuleTemplatesList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: AlertRuleTemplatesListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "AlertRuleTemplatesList",
+}) as any as S.Schema<AlertRuleTemplatesList>;
+
+export interface ListAutomationRulesRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the monitor workspace. */
+  workspaceName: string;
+}
+export const ListAutomationRulesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/automationRules",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListAutomationRulesRequest",
+}) as any as S.Schema<ListAutomationRulesRequest>;
+
+/** Concrete proxy resource types can be created by aliasing this type using a specific property type. */
+export interface AutomationRule {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Automation rule properties */
+  properties: AutomationRuleProperties;
+  /** Etag of the azure resource */
+  etag?: string;
+}
+export const AutomationRule = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: AutomationRuleProperties,
+    etag: S.optional(S.String),
+  }),
+).annotate({ identifier: "AutomationRule" }) as any as S.Schema<AutomationRule>;
+
+/** List of automation rules. */
+export type AutomationRulesListValueList = Array<AutomationRule>;
+export const AutomationRulesListValueList = /*@__PURE__*/ S.Array(
+  AutomationRule,
+) as any as S.Schema<AutomationRulesListValueList>;
+
+export interface AutomationRulesList {
+  /** List of automation rules. */
+  value?: AutomationRulesListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const AutomationRulesList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(AutomationRulesListValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "AutomationRulesList",
+}) as any as S.Schema<AutomationRulesList>;
+
+export interface ListBookmarksRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the monitor workspace. */
+  workspaceName: string;
+}
+export const ListBookmarksRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/bookmarks",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListBookmarksRequest",
+}) as any as S.Schema<ListBookmarksRequest>;
+
+/** Represents a bookmark in Azure Security Insights. */
+export interface Bookmark {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Bookmark properties */
+  properties?: BookmarkProperties;
+  /** Etag of the azure resource */
+  etag?: string;
+}
+export const Bookmark = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(BookmarkProperties),
+    etag: S.optional(S.String),
+  }),
+).annotate({ identifier: "Bookmark" }) as any as S.Schema<Bookmark>;
+
+/** The Bookmark items on this page */
+export type BookmarkListValueList = Array<Bookmark>;
+export const BookmarkListValueList = /*@__PURE__*/ S.Array(
+  Bookmark,
+) as any as S.Schema<BookmarkListValueList>;
+
+/** List all the bookmarks. */
+export interface BookmarkList {
+  /** The Bookmark items on this page */
+  value: BookmarkListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const BookmarkList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: BookmarkListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({ identifier: "BookmarkList" }) as any as S.Schema<BookmarkList>;
+
+export interface ListContentPackagesRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the monitor workspace. */
+  workspaceName: string;
+  /** Filters the results, based on a Boolean condition. Optional. */
+  _filter?: string;
+  /** Sorts the results. Optional. */
+  _orderby?: string;
+  /** Searches for a substring in the response. Optional. */
+  _search?: string;
+  /** Instructs the server to return only object count without actual body. Optional. */
+  _count?: boolean;
+  /** Returns only the first n results. Optional. */
+  _top?: number;
+  /** Used to skip n elements in the OData query (offset). Returns a nextLink to the next page of results if there are any left. */
+  _skip?: number;
+  /** Skiptoken is only used if a previous operation returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a skiptoken parameter that specifies a starting point to use for subsequent calls. Optional. */
+  _skipToken?: string;
+}
+export const ListContentPackagesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+    _orderby: S.optional(S.String.pipe(T.Query("$orderby"))),
+    _search: S.optional(S.String.pipe(T.Query("$search"))),
+    _count: S.optional(S.Boolean.pipe(T.Query("$count"))),
+    _top: S.optional(S.Number.pipe(T.Query("$top"))),
+    _skip: S.optional(S.Number.pipe(T.Query("$skip"))),
+    _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/contentPackages",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListContentPackagesRequest",
+}) as any as S.Schema<ListContentPackagesRequest>;
+
+/** Represents a Package in Azure Security Insights. */
+export interface PackageModel {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** package properties */
+  properties?: PackageBaseProperties;
+  /** Etag of the azure resource */
+  etag?: string;
+}
+export const PackageModel = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(PackageBaseProperties),
+    etag: S.optional(S.String),
+  }),
+).annotate({ identifier: "PackageModel" }) as any as S.Schema<PackageModel>;
+
+/** The PackageModel items on this page */
+export type PackageListValueList = Array<PackageModel>;
+export const PackageListValueList = /*@__PURE__*/ S.Array(
+  PackageModel,
+) as any as S.Schema<PackageListValueList>;
+
+/** List available packages. */
+export interface PackageList {
+  /** The PackageModel items on this page */
+  value: PackageListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const PackageList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: PackageListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({ identifier: "PackageList" }) as any as S.Schema<PackageList>;
+
+export interface ListContentTemplatesRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the monitor workspace. */
+  workspaceName: string;
+  /** Filters the results, based on a Boolean condition. Optional. */
+  _filter?: string;
+  /** Sorts the results. Optional. */
+  _orderby?: string;
+  /** Expands the object with optional fiends that are not included by default. Optional. */
+  _expand?: string;
+  /** Searches for a substring in the response. Optional. */
+  _search?: string;
+  /** Instructs the server to return only object count without actual body. Optional. */
+  _count?: boolean;
+  /** Returns only the first n results. Optional. */
+  _top?: number;
+  /** Used to skip n elements in the OData query (offset). Returns a nextLink to the next page of results if there are any left. */
+  _skip?: number;
+  /** Skiptoken is only used if a previous operation returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a skiptoken parameter that specifies a starting point to use for subsequent calls. Optional. */
+  _skipToken?: string;
+}
+export const ListContentTemplatesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+    _orderby: S.optional(S.String.pipe(T.Query("$orderby"))),
+    _expand: S.optional(S.String.pipe(T.Query("$expand"))),
+    _search: S.optional(S.String.pipe(T.Query("$search"))),
+    _count: S.optional(S.Boolean.pipe(T.Query("$count"))),
+    _top: S.optional(S.Number.pipe(T.Query("$top"))),
+    _skip: S.optional(S.Number.pipe(T.Query("$skip"))),
+    _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/contentTemplates",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListContentTemplatesRequest",
+}) as any as S.Schema<ListContentTemplatesRequest>;
+
+/** Template resource definition. */
+export interface TemplateModel {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** template properties */
+  properties?: TemplateProperties;
+  /** Etag of the azure resource */
+  etag?: string;
+}
+export const TemplateModel = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(TemplateProperties),
+    etag: S.optional(S.String),
+  }),
+).annotate({ identifier: "TemplateModel" }) as any as S.Schema<TemplateModel>;
+
+/** The TemplateModel items on this page */
+export type TemplateListValueList = Array<TemplateModel>;
+export const TemplateListValueList = /*@__PURE__*/ S.Array(
+  TemplateModel,
+) as any as S.Schema<TemplateListValueList>;
+
+/** List of all the template. */
+export interface TemplateList {
+  /** The TemplateModel items on this page */
+  value: TemplateListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const TemplateList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: TemplateListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({ identifier: "TemplateList" }) as any as S.Schema<TemplateList>;
+
+export interface ListDataConnectorDefinitionsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the monitor workspace. */
+  workspaceName: string;
+}
+export const ListDataConnectorDefinitionsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/dataConnectorDefinitions",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListDataConnectorDefinitionsRequest",
+}) as any as S.Schema<ListDataConnectorDefinitionsRequest>;
+
+/** An Azure resource, which encapsulate the entire info requires to display a data connector page in Azure portal, and the info required to define data connections. */
+export interface DataConnectorDefinition {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must validate and persist this value. */
+  kind: DataConnectorDefinitionKind;
+  /** Etag of the azure resource */
+  etag?: string;
+}
+export const DataConnectorDefinition = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    kind: DataConnectorDefinitionKind,
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DataConnectorDefinition",
+}) as any as S.Schema<DataConnectorDefinition>;
+
+/** List of data connector definitions. */
+export type DataConnectorDefinitionArmCollectionWrapperValueList =
+  Array<DataConnectorDefinition>;
+export const DataConnectorDefinitionArmCollectionWrapperValueList =
+  /*@__PURE__*/ S.Array(
+    DataConnectorDefinition,
+  ) as any as S.Schema<DataConnectorDefinitionArmCollectionWrapperValueList>;
+
+/** Encapsulate the data connector definition object */
+export interface DataConnectorDefinitionArmCollectionWrapper {
+  /** List of data connector definitions. */
+  value?: DataConnectorDefinitionArmCollectionWrapperValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const DataConnectorDefinitionArmCollectionWrapper =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      value: S.optional(DataConnectorDefinitionArmCollectionWrapperValueList),
+      nextLink: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "DataConnectorDefinitionArmCollectionWrapper",
+  }) as any as S.Schema<DataConnectorDefinitionArmCollectionWrapper>;
+
+export interface ListDataConnectorsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the monitor workspace. */
+  workspaceName: string;
+}
+export const ListDataConnectorsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/dataConnectors",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListDataConnectorsRequest",
+}) as any as S.Schema<ListDataConnectorsRequest>;
+
+/** Data connector */
+export interface DataConnector {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must validate and persist this value. */
+  kind: DataConnectorKind;
+  /** Etag of the azure resource */
+  etag?: string;
+}
+export const DataConnector = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    kind: DataConnectorKind,
+    etag: S.optional(S.String),
+  }),
+).annotate({ identifier: "DataConnector" }) as any as S.Schema<DataConnector>;
+
+/** The DataConnector items on this page */
+export type DataConnectorListValueList = Array<DataConnector>;
+export const DataConnectorListValueList = /*@__PURE__*/ S.Array(
+  DataConnector,
+) as any as S.Schema<DataConnectorListValueList>;
+
+/** List all the data connectors. */
+export interface DataConnectorList {
+  /** The DataConnector items on this page */
+  value: DataConnectorListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const DataConnectorList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: DataConnectorListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DataConnectorList",
+}) as any as S.Schema<DataConnectorList>;
+
+export interface ListIncidentAlertsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the monitor workspace. */
+  workspaceName: string;
+  /** Incident ID */
+  incidentId: string;
+}
+export const ListIncidentAlertsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    incidentId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/incidents/{incidentId}/alerts",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListIncidentAlertsRequest",
+}) as any as S.Schema<ListIncidentAlertsRequest>;
+
+/** The kind of the entity */
+export type EntityKindEnum =
+  | "Account"
+  | "Host"
+  | "File"
+  | "AzureResource"
+  | "CloudApplication"
+  | "DnsResolution"
+  | "FileHash"
+  | "Ip"
+  | "Malware"
+  | "Process"
+  | "RegistryKey"
+  | "RegistryValue"
+  | "SecurityGroup"
+  | "Url"
+  | "IoTDevice"
+  | "SecurityAlert"
+  | "Bookmark"
+  | "MailCluster"
+  | "MailMessage"
+  | "Mailbox"
+  | "SubmissionMail";
+export const EntityKindEnum = /*@__PURE__*/ S.String;
+
+/** A bag of custom fields that should be part of the entity and will be presented to the user. */
+export type SecurityAlertPropertiesAdditionalDataMap = {
+  [key: string]: unknown | undefined;
+};
+export const SecurityAlertPropertiesAdditionalDataMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<SecurityAlertPropertiesAdditionalDataMap>;
+
+/** The confidence level of this alert. */
+export type ConfidenceLevel = "Unknown" | "Low" | "High";
+export const ConfidenceLevel = /*@__PURE__*/ S.String;
+
+/** confidence reason item */
+export interface SecurityAlertPropertiesConfidenceReasonsItem {
+  /** The reason's description */
+  reason?: string;
+  /** The type (category) of the reason */
+  reasonType?: string;
+}
+export const SecurityAlertPropertiesConfidenceReasonsItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      reason: S.optional(S.String),
+      reasonType: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "SecurityAlertPropertiesConfidenceReasonsItem",
+  }) as any as S.Schema<SecurityAlertPropertiesConfidenceReasonsItem>;
+
+/** The confidence reasons */
+export type SecurityAlertPropertiesConfidenceReasonsList =
+  Array<SecurityAlertPropertiesConfidenceReasonsItem>;
+export const SecurityAlertPropertiesConfidenceReasonsList =
+  /*@__PURE__*/ S.Array(
+    SecurityAlertPropertiesConfidenceReasonsItem,
+  ) as any as S.Schema<SecurityAlertPropertiesConfidenceReasonsList>;
+
+/** The confidence score calculation status, i.e. indicating if score calculation is pending for this alert, not applicable or final. */
+export type ConfidenceScoreStatus =
+  | "NotApplicable"
+  | "InProcess"
+  | "NotFinal"
+  | "Final";
+export const ConfidenceScoreStatus = /*@__PURE__*/ S.String;
+
+/** The intent of the alert. */
+export type KillChainIntent =
+  | "Unknown"
+  | "Probing"
+  | "Exploitation"
+  | "Persistence"
+  | "PrivilegeEscalation"
+  | "DefenseEvasion"
+  | "CredentialAccess"
+  | "Discovery"
+  | "LateralMovement"
+  | "Execution"
+  | "Collection"
+  | "Exfiltration"
+  | "CommandAndControl"
+  | "Impact";
+export const KillChainIntent = /*@__PURE__*/ S.String;
+
+/** Manual action items to take to remediate the alert. */
+export type SecurityAlertPropertiesRemediationStepsList = Array<string>;
+export const SecurityAlertPropertiesRemediationStepsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<SecurityAlertPropertiesRemediationStepsList>;
+
+/** The severity of the alert */
+export type AlertSeverity = "High" | "Medium" | "Low" | "Informational";
+export const AlertSeverity = /*@__PURE__*/ S.String;
+
+/** The lifecycle status of the alert. */
+export type AlertStatus =
+  | "Unknown"
+  | "New"
+  | "Resolved"
+  | "Dismissed"
+  | "InProgress";
+export const AlertStatus = /*@__PURE__*/ S.String;
+
+/** The tactics of the alert */
+export type SecurityAlertPropertiesTacticsList = Array<AttackTactic>;
+export const SecurityAlertPropertiesTacticsList = /*@__PURE__*/ S.Array(
+  AttackTactic,
+) as any as S.Schema<SecurityAlertPropertiesTacticsList>;
+
+/** The list of resource identifiers of the alert. */
+export type SecurityAlertPropertiesResourceIdentifiersList = Array<unknown>;
+export const SecurityAlertPropertiesResourceIdentifiersList =
+  /*@__PURE__*/ S.Array(
+    S.Unknown,
+  ) as any as S.Schema<SecurityAlertPropertiesResourceIdentifiersList>;
+
+/** SecurityAlert entity property bag. */
+export interface SecurityAlertProperties {
+  /** A bag of custom fields that should be part of the entity and will be presented to the user. */
+  additionalData?: SecurityAlertPropertiesAdditionalDataMap;
+  /** The graph item display name which is a short humanly readable description of the graph item instance. This property is optional and might be system generated. */
+  friendlyName?: string;
+  /** The display name of the alert. */
+  alertDisplayName?: string;
+  /** The type name of the alert. */
+  alertType?: string;
+  /** Display name of the main entity being reported on. */
+  compromisedEntity?: string;
+  /** The confidence level of this alert. */
+  confidenceLevel?: ConfidenceLevel;
+  /** The confidence reasons */
+  confidenceReasons?: SecurityAlertPropertiesConfidenceReasonsList;
+  /** The confidence score of the alert. */
+  confidenceScore?: number;
+  /** The confidence score calculation status, i.e. indicating if score calculation is pending for this alert, not applicable or final. */
+  confidenceScoreStatus?: ConfidenceScoreStatus;
+  /** Alert description. */
+  description?: string;
+  /** The impact end time of the alert (the time of the last event contributing to the alert). */
+  endTimeUtc?: string;
+  /** Holds the alert intent stage(s) mapping for this alert. */
+  intent?: KillChainIntent;
+  /** The identifier of the alert inside the product which generated the alert. */
+  providerAlertId?: string;
+  /** The time the alert was made available for consumption. */
+  processingEndTime?: string;
+  /** The name of a component inside the product which generated the alert. */
+  productComponentName?: string;
+  /** The name of the product which published this alert. */
+  productName?: string;
+  /** The version of the product generating the alert. */
+  productVersion?: string;
+  /** Manual action items to take to remediate the alert. */
+  remediationSteps?: SecurityAlertPropertiesRemediationStepsList;
+  /** The severity of the alert */
+  severity?: AlertSeverity;
+  /** The impact start time of the alert (the time of the first event contributing to the alert). */
+  startTimeUtc?: string;
+  /** The lifecycle status of the alert. */
+  status?: AlertStatus;
+  /** Holds the product identifier of the alert for the product. */
+  systemAlertId?: string;
+  /** The tactics of the alert */
+  tactics?: SecurityAlertPropertiesTacticsList;
+  /** The time the alert was generated. */
+  timeGenerated?: string;
+  /** The name of the vendor that raise the alert. */
+  vendorName?: string;
+  /** The uri link of the alert. */
+  alertLink?: string;
+  /** The list of resource identifiers of the alert. */
+  resourceIdentifiers?: SecurityAlertPropertiesResourceIdentifiersList;
+}
+export const SecurityAlertProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    additionalData: S.optional(SecurityAlertPropertiesAdditionalDataMap),
+    friendlyName: S.optional(S.String),
+    alertDisplayName: S.optional(S.String),
+    alertType: S.optional(S.String),
+    compromisedEntity: S.optional(S.String),
+    confidenceLevel: S.optional(ConfidenceLevel),
+    confidenceReasons: S.optional(SecurityAlertPropertiesConfidenceReasonsList),
+    confidenceScore: S.optional(S.Number),
+    confidenceScoreStatus: S.optional(ConfidenceScoreStatus),
+    description: S.optional(S.String),
+    endTimeUtc: S.optional(S.String),
+    intent: S.optional(KillChainIntent),
+    providerAlertId: S.optional(S.String),
+    processingEndTime: S.optional(S.String),
+    productComponentName: S.optional(S.String),
+    productName: S.optional(S.String),
+    productVersion: S.optional(S.String),
+    remediationSteps: S.optional(SecurityAlertPropertiesRemediationStepsList),
+    severity: S.optional(AlertSeverity),
+    startTimeUtc: S.optional(S.String),
+    status: S.optional(AlertStatus),
+    systemAlertId: S.optional(S.String),
+    tactics: S.optional(SecurityAlertPropertiesTacticsList),
+    timeGenerated: S.optional(S.String),
+    vendorName: S.optional(S.String),
+    alertLink: S.optional(S.String),
+    resourceIdentifiers: S.optional(
+      SecurityAlertPropertiesResourceIdentifiersList,
+    ),
+  }),
+).annotate({
+  identifier: "SecurityAlertProperties",
+}) as any as S.Schema<SecurityAlertProperties>;
+
+/** Represents a security alert entity. */
+export interface SecurityAlert {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must validate and persist this value. */
+  kind: EntityKindEnum;
+  /** SecurityAlert entity properties */
+  properties?: SecurityAlertProperties;
+}
+export const SecurityAlert = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    kind: EntityKindEnum,
+    properties: S.optional(SecurityAlertProperties),
+  }),
+).annotate({ identifier: "SecurityAlert" }) as any as S.Schema<SecurityAlert>;
+
+/** Array of incident alerts. */
+export type IncidentAlertListValueList = Array<SecurityAlert>;
+export const IncidentAlertListValueList = /*@__PURE__*/ S.Array(
+  SecurityAlert,
+) as any as S.Schema<IncidentAlertListValueList>;
+
+/** List of incident alerts. */
+export interface IncidentAlertList {
+  /** Array of incident alerts. */
+  value: IncidentAlertListValueList;
+}
+export const IncidentAlertList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: IncidentAlertListValueList,
+  }),
+).annotate({
+  identifier: "IncidentAlertList",
+}) as any as S.Schema<IncidentAlertList>;
+
+export interface ListIncidentBookmarksRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the monitor workspace. */
+  workspaceName: string;
+  /** Incident ID */
+  incidentId: string;
+}
+export const ListIncidentBookmarksRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    incidentId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/incidents/{incidentId}/bookmarks",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListIncidentBookmarksRequest",
+}) as any as S.Schema<ListIncidentBookmarksRequest>;
+
+/** A bag of custom fields that should be part of the entity and will be presented to the user. */
+export type HuntingBookmarkPropertiesAdditionalDataMap = {
+  [key: string]: unknown | undefined;
+};
+export const HuntingBookmarkPropertiesAdditionalDataMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.Unknown,
+  ) as any as S.Schema<HuntingBookmarkPropertiesAdditionalDataMap>;
+
+/** List of labels relevant to this bookmark */
+export type HuntingBookmarkPropertiesLabelsList = Array<string>;
+export const HuntingBookmarkPropertiesLabelsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<HuntingBookmarkPropertiesLabelsList>;
+
+/** Describes bookmark properties */
+export interface HuntingBookmarkProperties {
+  /** A bag of custom fields that should be part of the entity and will be presented to the user. */
+  additionalData?: HuntingBookmarkPropertiesAdditionalDataMap;
+  /** The graph item display name which is a short humanly readable description of the graph item instance. This property is optional and might be system generated. */
+  friendlyName?: string;
+  /** The time the bookmark was created */
+  created?: string;
+  /** Describes a user that created the bookmark */
+  createdBy?: UserInfo;
+  /** The display name of the bookmark */
+  displayName: string;
+  /** The time of the event */
+  eventTime?: string;
+  /** List of labels relevant to this bookmark */
+  labels?: HuntingBookmarkPropertiesLabelsList;
+  /** The notes of the bookmark */
+  notes?: string;
+  /** The query of the bookmark. */
+  query: string;
+  /** The query result of the bookmark. */
+  queryResult?: string;
+  /** The last time the bookmark was updated */
+  updated?: string;
+  /** Describes a user that updated the bookmark */
+  updatedBy?: UserInfo;
+  /** Describes an incident that relates to bookmark */
+  incidentInfo?: IncidentInfo;
+}
+export const HuntingBookmarkProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    additionalData: S.optional(HuntingBookmarkPropertiesAdditionalDataMap),
+    friendlyName: S.optional(S.String),
+    created: S.optional(S.String),
+    createdBy: S.optional(UserInfo),
+    displayName: S.String,
+    eventTime: S.optional(S.String),
+    labels: S.optional(HuntingBookmarkPropertiesLabelsList),
+    notes: S.optional(S.String),
+    query: S.String,
+    queryResult: S.optional(S.String),
+    updated: S.optional(S.String),
+    updatedBy: S.optional(UserInfo),
+    incidentInfo: S.optional(IncidentInfo),
+  }),
+).annotate({
+  identifier: "HuntingBookmarkProperties",
+}) as any as S.Schema<HuntingBookmarkProperties>;
+
+/** Represents a Hunting bookmark entity. */
+export interface HuntingBookmark {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must validate and persist this value. */
+  kind: EntityKindEnum;
+  /** HuntingBookmark entity properties */
+  properties?: HuntingBookmarkProperties;
+}
+export const HuntingBookmark = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    kind: EntityKindEnum,
+    properties: S.optional(HuntingBookmarkProperties),
+  }),
+).annotate({
+  identifier: "HuntingBookmark",
+}) as any as S.Schema<HuntingBookmark>;
+
+/** Array of incident bookmarks. */
+export type IncidentBookmarkListValueList = Array<HuntingBookmark>;
+export const IncidentBookmarkListValueList = /*@__PURE__*/ S.Array(
+  HuntingBookmark,
+) as any as S.Schema<IncidentBookmarkListValueList>;
+
+/** List of incident bookmarks. */
+export interface IncidentBookmarkList {
+  /** Array of incident bookmarks. */
+  value: IncidentBookmarkListValueList;
+}
+export const IncidentBookmarkList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: IncidentBookmarkListValueList,
+  }),
+).annotate({
+  identifier: "IncidentBookmarkList",
+}) as any as S.Schema<IncidentBookmarkList>;
+
+export interface ListIncidentCommentsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the monitor workspace. */
+  workspaceName: string;
+  /** Incident ID */
+  incidentId: string;
+  /** Filters the results, based on a Boolean condition. Optional. */
+  _filter?: string;
+  /** Sorts the results. Optional. */
+  _orderby?: string;
+  /** Returns only the first n results. Optional. */
+  _top?: number;
+  /** Skiptoken is only used if a previous operation returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a skiptoken parameter that specifies a starting point to use for subsequent calls. Optional. */
+  _skipToken?: string;
+}
+export const ListIncidentCommentsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    incidentId: S.String.pipe(T.Label()),
+    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+    _orderby: S.optional(S.String.pipe(T.Query("$orderby"))),
+    _top: S.optional(S.Number.pipe(T.Query("$top"))),
+    _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/incidents/{incidentId}/comments",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListIncidentCommentsRequest",
+}) as any as S.Schema<ListIncidentCommentsRequest>;
+
+/** Represents an incident comment */
+export interface IncidentComment {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Incident comment properties */
+  properties?: IncidentCommentProperties;
+  /** Etag of the azure resource */
+  etag?: string;
+}
+export const IncidentComment = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(IncidentCommentProperties),
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "IncidentComment",
+}) as any as S.Schema<IncidentComment>;
+
+/** The IncidentComment items on this page */
+export type IncidentCommentListValueList = Array<IncidentComment>;
+export const IncidentCommentListValueList = /*@__PURE__*/ S.Array(
+  IncidentComment,
+) as any as S.Schema<IncidentCommentListValueList>;
+
+/** List of incident comments. */
+export interface IncidentCommentList {
+  /** The IncidentComment items on this page */
+  value: IncidentCommentListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const IncidentCommentList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: IncidentCommentListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "IncidentCommentList",
+}) as any as S.Schema<IncidentCommentList>;
+
+export interface ListIncidentEntitiesRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the monitor workspace. */
+  workspaceName: string;
+  /** Incident ID */
+  incidentId: string;
+}
+export const ListIncidentEntitiesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    incidentId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/incidents/{incidentId}/entities",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListIncidentEntitiesRequest",
+}) as any as S.Schema<ListIncidentEntitiesRequest>;
+
+/** Specific entity. */
+export interface Entity {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must validate and persist this value. */
+  kind: EntityKindEnum;
+}
+export const Entity = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    kind: EntityKindEnum,
+  }),
+).annotate({ identifier: "Entity" }) as any as S.Schema<Entity>;
+
+/** Array of the incident related entities. */
+export type IncidentEntitiesResponseEntitiesList = Array<Entity>;
+export const IncidentEntitiesResponseEntitiesList = /*@__PURE__*/ S.Array(
+  Entity,
+) as any as S.Schema<IncidentEntitiesResponseEntitiesList>;
+
+/** Information of a specific aggregation in the incident related entities result. */
+export interface IncidentEntitiesResultsMetadata {
+  /** The kind of the aggregated entity. */
+  entityKind: EntityKindEnum;
+  /** Total number of aggregations of the given kind in the incident related entities result. */
+  count: number;
+}
+export const IncidentEntitiesResultsMetadata = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    entityKind: EntityKindEnum,
+    count: S.Number,
+  }),
+).annotate({
+  identifier: "IncidentEntitiesResultsMetadata",
+}) as any as S.Schema<IncidentEntitiesResultsMetadata>;
+
+/** The metadata from the incident related entities results. */
+export type IncidentEntitiesResponseMetaDataList =
+  Array<IncidentEntitiesResultsMetadata>;
+export const IncidentEntitiesResponseMetaDataList = /*@__PURE__*/ S.Array(
+  IncidentEntitiesResultsMetadata,
+) as any as S.Schema<IncidentEntitiesResponseMetaDataList>;
+
+/** The incident related entities response. */
+export interface IncidentEntitiesResponse {
+  /** Array of the incident related entities. */
+  entities?: IncidentEntitiesResponseEntitiesList;
+  /** The metadata from the incident related entities results. */
+  metaData?: IncidentEntitiesResponseMetaDataList;
+}
+export const IncidentEntitiesResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    entities: S.optional(IncidentEntitiesResponseEntitiesList),
+    metaData: S.optional(IncidentEntitiesResponseMetaDataList),
+  }),
+).annotate({
+  identifier: "IncidentEntitiesResponse",
+}) as any as S.Schema<IncidentEntitiesResponse>;
+
+export interface ListIncidentRelationsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the monitor workspace. */
+  workspaceName: string;
+  /** Incident ID */
+  incidentId: string;
+  /** Filters the results, based on a Boolean condition. Optional. */
+  _filter?: string;
+  /** Sorts the results. Optional. */
+  _orderby?: string;
+  /** Returns only the first n results. Optional. */
+  _top?: number;
+  /** Skiptoken is only used if a previous operation returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a skiptoken parameter that specifies a starting point to use for subsequent calls. Optional. */
+  _skipToken?: string;
+}
+export const ListIncidentRelationsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    incidentId: S.String.pipe(T.Label()),
+    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+    _orderby: S.optional(S.String.pipe(T.Query("$orderby"))),
+    _top: S.optional(S.Number.pipe(T.Query("$top"))),
+    _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/incidents/{incidentId}/relations",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListIncidentRelationsRequest",
+}) as any as S.Schema<ListIncidentRelationsRequest>;
+
+/** Represents a relation between two resources */
+export interface Relation {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Relation properties */
+  properties?: RelationProperties;
+  /** Etag of the azure resource */
+  etag?: string;
+}
+export const Relation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(RelationProperties),
+    etag: S.optional(S.String),
+  }),
+).annotate({ identifier: "Relation" }) as any as S.Schema<Relation>;
+
+/** The Relation items on this page */
+export type RelationListValueList = Array<Relation>;
+export const RelationListValueList = /*@__PURE__*/ S.Array(
+  Relation,
+) as any as S.Schema<RelationListValueList>;
+
+/** List of relations. */
+export interface RelationList {
+  /** The Relation items on this page */
+  value: RelationListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const RelationList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: RelationListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({ identifier: "RelationList" }) as any as S.Schema<RelationList>;
+
+export interface ListIncidentsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the monitor workspace. */
+  workspaceName: string;
+  /** Filters the results, based on a Boolean condition. Optional. */
+  _filter?: string;
+  /** Sorts the results. Optional. */
+  _orderby?: string;
+  /** Returns only the first n results. Optional. */
+  _top?: number;
+  /** Skiptoken is only used if a previous operation returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a skiptoken parameter that specifies a starting point to use for subsequent calls. Optional. */
+  _skipToken?: string;
+}
+export const ListIncidentsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+    _orderby: S.optional(S.String.pipe(T.Query("$orderby"))),
+    _top: S.optional(S.Number.pipe(T.Query("$top"))),
+    _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/incidents",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListIncidentsRequest",
+}) as any as S.Schema<ListIncidentsRequest>;
+
+/** Represents an incident in Azure Security Insights. */
+export interface Incident {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Incident properties */
+  properties?: IncidentProperties;
+  /** Etag of the azure resource */
+  etag?: string;
+}
+export const Incident = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(IncidentProperties),
+    etag: S.optional(S.String),
+  }),
+).annotate({ identifier: "Incident" }) as any as S.Schema<Incident>;
+
+/** The Incident items on this page */
+export type IncidentListValueList = Array<Incident>;
+export const IncidentListValueList = /*@__PURE__*/ S.Array(
+  Incident,
+) as any as S.Schema<IncidentListValueList>;
+
+/** List all the incidents. */
+export interface IncidentList {
+  /** The Incident items on this page */
+  value: IncidentListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const IncidentList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: IncidentListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({ identifier: "IncidentList" }) as any as S.Schema<IncidentList>;
+
+export interface ListIncidentTasksRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the monitor workspace. */
+  workspaceName: string;
+  /** Incident ID */
+  incidentId: string;
+}
+export const ListIncidentTasksRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    incidentId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/incidents/{incidentId}/tasks",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListIncidentTasksRequest",
+}) as any as S.Schema<ListIncidentTasksRequest>;
+
+/** Describes incident task properties */
+export interface IncidentTask {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Describes the properties of an incident task */
+  properties: IncidentTaskProperties;
+  /** Etag of the azure resource */
+  etag?: string;
+}
+export const IncidentTask = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: IncidentTaskProperties,
+    etag: S.optional(S.String),
+  }),
+).annotate({ identifier: "IncidentTask" }) as any as S.Schema<IncidentTask>;
+
+/** List of incident tasks. */
+export type IncidentTaskListValueList = Array<IncidentTask>;
+export const IncidentTaskListValueList = /*@__PURE__*/ S.Array(
+  IncidentTask,
+) as any as S.Schema<IncidentTaskListValueList>;
+
+/** List of incident tasks */
+export interface IncidentTaskList {
+  /** List of incident tasks. */
+  value?: IncidentTaskListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const IncidentTaskList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(IncidentTaskListValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "IncidentTaskList",
+}) as any as S.Schema<IncidentTaskList>;
+
+export interface ListMetadataRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the monitor workspace. */
+  workspaceName: string;
+  /** Filters the results, based on a Boolean condition. Optional. */
+  _filter?: string;
+  /** Sorts the results. Optional. */
+  _orderby?: string;
+  /** Returns only the first n results. Optional. */
+  _top?: number;
+  /** Used to skip n elements in the OData query (offset). Returns a nextLink to the next page of results if there are any left. */
+  _skip?: number;
+}
+export const ListMetadataRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+    _orderby: S.optional(S.String.pipe(T.Query("$orderby"))),
+    _top: S.optional(S.Number.pipe(T.Query("$top"))),
+    _skip: S.optional(S.Number.pipe(T.Query("$skip"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/metadata",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListMetadataRequest",
+}) as any as S.Schema<ListMetadataRequest>;
+
+/** Metadata resource definition. */
+export interface MetadataModel {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Metadata properties */
+  properties?: MetadataProperties;
+  /** Etag of the azure resource */
+  etag?: string;
+}
+export const MetadataModel = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(MetadataProperties),
+    etag: S.optional(S.String),
+  }),
+).annotate({ identifier: "MetadataModel" }) as any as S.Schema<MetadataModel>;
+
+/** The MetadataModel items on this page */
+export type MetadataListValueList = Array<MetadataModel>;
+export const MetadataListValueList = /*@__PURE__*/ S.Array(
+  MetadataModel,
+) as any as S.Schema<MetadataListValueList>;
+
+/** List of all the metadata. */
+export interface MetadataList {
+  /** The MetadataModel items on this page */
+  value: MetadataListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const MetadataList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: MetadataListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({ identifier: "MetadataList" }) as any as S.Schema<MetadataList>;
+
+export interface ListOperationsRequest {}
+export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/providers/Microsoft.SecurityInsights/operations",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListOperationsRequest",
+}) as any as S.Schema<ListOperationsRequest>;
+
+/** Properties of the operation */
+export interface OperationDisplay {
+  /** Description of the operation */
+  description?: string;
+  /** Operation name */
+  operation?: string;
+  /** Provider name */
+  provider?: string;
+  /** Resource name */
+  resource?: string;
+}
+export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    description: S.optional(S.String),
+    operation: S.optional(S.String),
+    provider: S.optional(S.String),
+    resource: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "OperationDisplay",
+}) as any as S.Schema<OperationDisplay>;
+
+/** Operation provided by provider */
+export interface Operation {
+  /** Properties of the operation */
+  display?: OperationDisplay;
+  /** Name of the operation */
+  name?: string;
+  /** The origin of the operation */
+  origin?: string;
+  /** Indicates whether the operation is a data action */
+  isDataAction?: boolean;
+}
+export const Operation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    display: S.optional(OperationDisplay),
+    name: S.optional(S.String),
+    origin: S.optional(S.String),
+    isDataAction: S.optional(S.Boolean),
+  }),
+).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
+
+/** Array of operations */
+export type OperationsListValueList = Array<Operation>;
+export const OperationsListValueList = /*@__PURE__*/ S.Array(
+  Operation,
+) as any as S.Schema<OperationsListValueList>;
+
+/** Lists the operations available in the SecurityInsights RP. */
+export interface OperationsList {
+  /** URL to fetch the next set of operations. */
+  nextLink?: string;
+  /** Array of operations */
+  value: OperationsListValueList;
+}
+export const OperationsList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nextLink: S.optional(S.String),
+    value: OperationsListValueList,
+  }),
+).annotate({ identifier: "OperationsList" }) as any as S.Schema<OperationsList>;
+
+export interface ListProductPackagesRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the monitor workspace. */
+  workspaceName: string;
+  /** Filters the results, based on a Boolean condition. Optional. */
+  _filter?: string;
+  /** Sorts the results. Optional. */
+  _orderby?: string;
+  /** Returns only the first n results. Optional. */
+  _top?: number;
+  /** Skiptoken is only used if a previous operation returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a skiptoken parameter that specifies a starting point to use for subsequent calls. Optional. */
+  _skipToken?: string;
+  /** Searches for a substring in the response. Optional. */
+  _search?: string;
+}
+export const ListProductPackagesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+    _orderby: S.optional(S.String.pipe(T.Query("$orderby"))),
+    _top: S.optional(S.Number.pipe(T.Query("$top"))),
+    _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
+    _search: S.optional(S.String.pipe(T.Query("$search"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/contentProductPackages",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListProductPackagesRequest",
+}) as any as S.Schema<ListProductPackagesRequest>;
+
+/** Represents a Package in Azure Security Insights. */
+export interface ProductPackageModel {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** package properties */
+  properties?: ProductPackageProperties;
+  /** Etag of the azure resource */
+  etag?: string;
+}
+export const ProductPackageModel = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ProductPackageProperties),
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ProductPackageModel",
+}) as any as S.Schema<ProductPackageModel>;
+
+/** The ProductPackageModel items on this page */
+export type ProductPackageListValueList = Array<ProductPackageModel>;
+export const ProductPackageListValueList = /*@__PURE__*/ S.Array(
+  ProductPackageModel,
+) as any as S.Schema<ProductPackageListValueList>;
+
+/** List available packages. */
+export interface ProductPackageList {
+  /** The ProductPackageModel items on this page */
+  value: ProductPackageListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const ProductPackageList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: ProductPackageListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ProductPackageList",
+}) as any as S.Schema<ProductPackageList>;
+
+export interface ListProductTemplatesRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the monitor workspace. */
+  workspaceName: string;
+  /** Filters the results, based on a Boolean condition. Optional. */
+  _filter?: string;
+  /** Sorts the results. Optional. */
+  _orderby?: string;
+  /** Searches for a substring in the response. Optional. */
+  _search?: string;
+  /** Instructs the server to return only object count without actual body. Optional. */
+  _count?: boolean;
+  /** Returns only the first n results. Optional. */
+  _top?: number;
+  /** Used to skip n elements in the OData query (offset). Returns a nextLink to the next page of results if there are any left. */
+  _skip?: number;
+  /** Skiptoken is only used if a previous operation returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a skiptoken parameter that specifies a starting point to use for subsequent calls. Optional. */
+  _skipToken?: string;
+}
+export const ListProductTemplatesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+    _orderby: S.optional(S.String.pipe(T.Query("$orderby"))),
+    _search: S.optional(S.String.pipe(T.Query("$search"))),
+    _count: S.optional(S.Boolean.pipe(T.Query("$count"))),
+    _top: S.optional(S.Number.pipe(T.Query("$top"))),
+    _skip: S.optional(S.Number.pipe(T.Query("$skip"))),
+    _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/contentProductTemplates",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListProductTemplatesRequest",
+}) as any as S.Schema<ListProductTemplatesRequest>;
+
+/** Template resource definition. */
+export interface ProductTemplateModel {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** template properties */
+  properties?: ProductTemplateProperties;
+  /** Etag of the azure resource */
+  etag?: string;
+}
+export const ProductTemplateModel = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ProductTemplateProperties),
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ProductTemplateModel",
+}) as any as S.Schema<ProductTemplateModel>;
+
+/** The ProductTemplateModel items on this page */
+export type ProductTemplateListValueList = Array<ProductTemplateModel>;
+export const ProductTemplateListValueList = /*@__PURE__*/ S.Array(
+  ProductTemplateModel,
+) as any as S.Schema<ProductTemplateListValueList>;
+
+/** List of all the template. */
+export interface ProductTemplateList {
+  /** The ProductTemplateModel items on this page */
+  value: ProductTemplateListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const ProductTemplateList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: ProductTemplateListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ProductTemplateList",
+}) as any as S.Schema<ProductTemplateList>;
+
+export interface ListSecurityMLAnalyticsSettingsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the monitor workspace. */
+  workspaceName: string;
+}
+export const ListSecurityMLAnalyticsSettingsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      workspaceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/securityMLAnalyticsSettings",
+        code: 200,
+        apiVersion: "2025-09-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListSecurityMLAnalyticsSettingsRequest",
+}) as any as S.Schema<ListSecurityMLAnalyticsSettingsRequest>;
+
+/** Security ML Analytics Setting */
+export interface SecurityMLAnalyticsSetting {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must validate and persist this value. */
+  kind: SecurityMLAnalyticsSettingsKind;
+  /** Etag of the azure resource */
+  etag?: string;
+}
+export const SecurityMLAnalyticsSetting = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    kind: SecurityMLAnalyticsSettingsKind,
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "SecurityMLAnalyticsSetting",
+}) as any as S.Schema<SecurityMLAnalyticsSetting>;
+
+/** The SecurityMLAnalyticsSetting items on this page */
+export type SecurityMLAnalyticsSettingsListValueList =
+  Array<SecurityMLAnalyticsSetting>;
+export const SecurityMLAnalyticsSettingsListValueList = /*@__PURE__*/ S.Array(
+  SecurityMLAnalyticsSetting,
+) as any as S.Schema<SecurityMLAnalyticsSettingsListValueList>;
+
+/** List all the SecurityMLAnalyticsSettings */
+export interface SecurityMLAnalyticsSettingsList {
+  /** The SecurityMLAnalyticsSetting items on this page */
+  value: SecurityMLAnalyticsSettingsListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const SecurityMLAnalyticsSettingsList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: SecurityMLAnalyticsSettingsListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "SecurityMLAnalyticsSettingsList",
+}) as any as S.Schema<SecurityMLAnalyticsSettingsList>;
+
+export interface ListSentinelOnboardingStatesRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the workspace. */
+  workspaceName: string;
+}
+export const ListSentinelOnboardingStatesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/onboardingStates",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListSentinelOnboardingStatesRequest",
+}) as any as S.Schema<ListSentinelOnboardingStatesRequest>;
+
+/** Sentinel onboarding state */
+export interface SentinelOnboardingState {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The Sentinel onboarding state object */
+  properties?: SentinelOnboardingStateProperties;
+  /** Etag of the azure resource */
+  etag?: string;
+}
+export const SentinelOnboardingState = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(SentinelOnboardingStateProperties),
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "SentinelOnboardingState",
+}) as any as S.Schema<SentinelOnboardingState>;
+
+/** Array of Sentinel onboarding states */
+export type SentinelOnboardingStatesListValueList =
+  Array<SentinelOnboardingState>;
+export const SentinelOnboardingStatesListValueList = /*@__PURE__*/ S.Array(
+  SentinelOnboardingState,
+) as any as S.Schema<SentinelOnboardingStatesListValueList>;
+
+/** List of the Sentinel onboarding states */
+export interface SentinelOnboardingStatesList {
+  /** Array of Sentinel onboarding states */
+  value: SentinelOnboardingStatesListValueList;
+}
+export const SentinelOnboardingStatesList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: SentinelOnboardingStatesListValueList,
+  }),
+).annotate({
+  identifier: "SentinelOnboardingStatesList",
+}) as any as S.Schema<SentinelOnboardingStatesList>;
+
+export interface ListSourceControlRepositoriesRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the workspace. */
+  workspaceName: string;
+  /** RepositoryAccess properties */
+  properties: RepositoryAccessObject;
+}
+export const ListSourceControlRepositoriesRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      workspaceName: S.String.pipe(T.Label()),
+      properties: RepositoryAccessObject,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/listRepositories",
+        code: 200,
+        apiVersion: "2025-09-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListSourceControlRepositoriesRequest",
+}) as any as S.Schema<ListSourceControlRepositoriesRequest>;
+
+/** Array of branches. */
+export type RepoBranchesList = Array<string>;
+export const RepoBranchesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<RepoBranchesList>;
+
+/** Represents a repository. */
+export interface Repo {
+  /** The url to access the repository. */
+  url?: string;
+  /** The name of the repository. */
+  fullName?: string;
+  /** The installation id of the repository. */
+  installationId?: number;
+  /** Array of branches. */
+  branches?: RepoBranchesList;
+}
+export const Repo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    url: S.optional(S.String),
+    fullName: S.optional(S.String),
+    installationId: S.optional(S.Number),
+    branches: S.optional(RepoBranchesList),
+  }),
+).annotate({ identifier: "Repo" }) as any as S.Schema<Repo>;
+
+/** The Repo items on this page */
+export type RepoListValueList = Array<Repo>;
+export const RepoListValueList = /*@__PURE__*/ S.Array(
+  Repo,
+) as any as S.Schema<RepoListValueList>;
+
+/** List all the source controls. */
+export interface RepoList {
+  /** The Repo items on this page */
+  value: RepoListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const RepoList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: RepoListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({ identifier: "RepoList" }) as any as S.Schema<RepoList>;
+
+export interface ListSourceControlsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the monitor workspace. */
+  workspaceName: string;
+}
+export const ListSourceControlsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/sourcecontrols",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListSourceControlsRequest",
+}) as any as S.Schema<ListSourceControlsRequest>;
+
+/** Represents a SourceControl in Azure Security Insights. */
+export interface SourceControl {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** source control properties */
+  properties: SourceControlProperties;
+  /** Etag of the azure resource */
+  etag?: string;
+}
+export const SourceControl = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: SourceControlProperties,
+    etag: S.optional(S.String),
+  }),
+).annotate({ identifier: "SourceControl" }) as any as S.Schema<SourceControl>;
+
+/** The SourceControl items on this page */
+export type SourceControlListValueList = Array<SourceControl>;
+export const SourceControlListValueList = /*@__PURE__*/ S.Array(
+  SourceControl,
+) as any as S.Schema<SourceControlListValueList>;
+
+/** List all the source controls. */
+export interface SourceControlList {
+  /** The SourceControl items on this page */
+  value: SourceControlListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const SourceControlList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: SourceControlListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "SourceControlList",
+}) as any as S.Schema<SourceControlList>;
+
+export interface ListThreatIntelligenceIndicatorMetricsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the monitor workspace. */
+  workspaceName: string;
+}
+export const ListThreatIntelligenceIndicatorMetricsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -7873,8 +7801,8 @@ export const ThreatIntelligenceIndicatorMetricsListRequest =
       }),
     ),
   ).annotate({
-    identifier: "ThreatIntelligenceIndicatorMetricsListRequest",
-  }) as any as S.Schema<ThreatIntelligenceIndicatorMetricsListRequest>;
+    identifier: "ListThreatIntelligenceIndicatorMetricsRequest",
+  }) as any as S.Schema<ListThreatIntelligenceIndicatorMetricsRequest>;
 
 /** Describes threat intelligence metric entity */
 export interface ThreatIntelligenceMetricEntity {
@@ -7973,6 +7901,509 @@ export const ThreatIntelligenceMetricsList = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ThreatIntelligenceMetricsList",
 }) as any as S.Schema<ThreatIntelligenceMetricsList>;
+
+export interface ListThreatIntelligenceIndicatorsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the monitor workspace. */
+  workspaceName: string;
+  /** Filters the results, based on a Boolean condition. Optional. */
+  _filter?: string;
+  /** Returns only the first n results. Optional. */
+  _top?: number;
+  /** Skiptoken is only used if a previous operation returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a skiptoken parameter that specifies a starting point to use for subsequent calls. Optional. */
+  _skipToken?: string;
+  /** Sorts the results. Optional. */
+  _orderby?: string;
+}
+export const ListThreatIntelligenceIndicatorsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      workspaceName: S.String.pipe(T.Label()),
+      _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+      _top: S.optional(S.Number.pipe(T.Query("$top"))),
+      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
+      _orderby: S.optional(S.String.pipe(T.Query("$orderby"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/threatIntelligence/main/indicators",
+        code: 200,
+        apiVersion: "2025-09-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListThreatIntelligenceIndicatorsRequest",
+}) as any as S.Schema<ListThreatIntelligenceIndicatorsRequest>;
+
+/** Threat intelligence information object. */
+export interface ThreatIntelligenceInformation {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must validate and persist this value. */
+  kind: ThreatIntelligenceResourceInnerKind;
+  /** Etag of the azure resource */
+  etag?: string;
+}
+export const ThreatIntelligenceInformation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    kind: ThreatIntelligenceResourceInnerKind,
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ThreatIntelligenceInformation",
+}) as any as S.Schema<ThreatIntelligenceInformation>;
+
+/** The ThreatIntelligenceInformation items on this page */
+export type ThreatIntelligenceInformationListValueList =
+  Array<ThreatIntelligenceInformation>;
+export const ThreatIntelligenceInformationListValueList = /*@__PURE__*/ S.Array(
+  ThreatIntelligenceInformation,
+) as any as S.Schema<ThreatIntelligenceInformationListValueList>;
+
+/** List of all the threat intelligence information objects. */
+export interface ThreatIntelligenceInformationList {
+  /** The ThreatIntelligenceInformation items on this page */
+  value: ThreatIntelligenceInformationListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const ThreatIntelligenceInformationList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: ThreatIntelligenceInformationListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ThreatIntelligenceInformationList",
+}) as any as S.Schema<ThreatIntelligenceInformationList>;
+
+export interface ListWatchlistItemsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the monitor workspace. */
+  workspaceName: string;
+  /** The watchlist alias */
+  watchlistAlias: string;
+  /** Skiptoken is only used if a previous operation returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a skiptoken parameter that specifies a starting point to use for subsequent calls. Optional. */
+  _skipToken?: string;
+}
+export const ListWatchlistItemsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    watchlistAlias: S.String.pipe(T.Label()),
+    _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/watchlists/{watchlistAlias}/watchlistItems",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListWatchlistItemsRequest",
+}) as any as S.Schema<ListWatchlistItemsRequest>;
+
+/** Represents a Watchlist Item in Azure Security Insights. */
+export interface WatchlistItem {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Watchlist Item properties */
+  properties?: WatchlistItemProperties;
+  /** Etag of the azure resource */
+  etag?: string;
+}
+export const WatchlistItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(WatchlistItemProperties),
+    etag: S.optional(S.String),
+  }),
+).annotate({ identifier: "WatchlistItem" }) as any as S.Schema<WatchlistItem>;
+
+/** The WatchlistItem items on this page */
+export type WatchlistItemListValueList = Array<WatchlistItem>;
+export const WatchlistItemListValueList = /*@__PURE__*/ S.Array(
+  WatchlistItem,
+) as any as S.Schema<WatchlistItemListValueList>;
+
+/** List all the watchlist items. */
+export interface WatchlistItemList {
+  /** The WatchlistItem items on this page */
+  value: WatchlistItemListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const WatchlistItemList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: WatchlistItemListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "WatchlistItemList",
+}) as any as S.Schema<WatchlistItemList>;
+
+export interface ListWatchlistsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the monitor workspace. */
+  workspaceName: string;
+  /** Skiptoken is only used if a previous operation returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a skiptoken parameter that specifies a starting point to use for subsequent calls. Optional. */
+  _skipToken?: string;
+}
+export const ListWatchlistsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/watchlists",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListWatchlistsRequest",
+}) as any as S.Schema<ListWatchlistsRequest>;
+
+/** Represents a Watchlist in Azure Security Insights. */
+export interface Watchlist {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Watchlist properties */
+  properties?: WatchlistProperties;
+  /** Etag of the azure resource */
+  etag?: string;
+}
+export const Watchlist = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(WatchlistProperties),
+    etag: S.optional(S.String),
+  }),
+).annotate({ identifier: "Watchlist" }) as any as S.Schema<Watchlist>;
+
+/** The Watchlist items on this page */
+export type WatchlistListValueList = Array<Watchlist>;
+export const WatchlistListValueList = /*@__PURE__*/ S.Array(
+  Watchlist,
+) as any as S.Schema<WatchlistListValueList>;
+
+/** List all the watchlists. */
+export interface WatchlistList {
+  /** The Watchlist items on this page */
+  value: WatchlistListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const WatchlistList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: WatchlistListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({ identifier: "WatchlistList" }) as any as S.Schema<WatchlistList>;
+
+export interface ReplaceThreatIntelligenceIndicatorTagsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the monitor workspace. */
+  workspaceName: string;
+  /** Threat intelligence indicator name field. */
+  name: string;
+  /** Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must validate and persist this value. */
+  kind: ThreatIntelligenceResourceInnerKind | (string & {});
+  /** Etag of the azure resource */
+  etag?: string;
+  /** Threat Intelligence Entity properties */
+  properties?: ThreatIntelligenceIndicatorPropertiesInput;
+}
+export const ReplaceThreatIntelligenceIndicatorTagsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      workspaceName: S.String.pipe(T.Label()),
+      name: S.String.pipe(T.Label()),
+      kind: ThreatIntelligenceResourceInnerKind,
+      etag: S.optional(S.String),
+      properties: S.optional(ThreatIntelligenceIndicatorPropertiesInput),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/threatIntelligence/main/indicators/{name}/replaceTags",
+        code: 200,
+        apiVersion: "2025-09-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ReplaceThreatIntelligenceIndicatorTagsRequest",
+  }) as any as S.Schema<ReplaceThreatIntelligenceIndicatorTagsRequest>;
+
+export interface ReplaceThreatIntelligenceIndicatorTagsResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must validate and persist this value. */
+  kind: ThreatIntelligenceResourceInnerKind;
+  /** Etag of the azure resource */
+  etag?: string;
+}
+export const ReplaceThreatIntelligenceIndicatorTagsResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      kind: ThreatIntelligenceResourceInnerKind,
+      etag: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "ReplaceThreatIntelligenceIndicatorTagsResponse",
+  }) as any as S.Schema<ReplaceThreatIntelligenceIndicatorTagsResponse>;
+
+export interface RunEntityPlaybookRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the workspace. */
+  workspaceName: string;
+  /** entity ID */
+  entityIdentifier: string;
+  /** Incident ARM id. */
+  incidentArmId?: string;
+  /** The tenant id of the playbook resource. */
+  tenantId?: string;
+  /** The resource id of the playbook resource. */
+  logicAppsResourceId: string;
+}
+export const RunEntityPlaybookRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    entityIdentifier: S.String.pipe(T.Label()),
+    incidentArmId: S.optional(S.String),
+    tenantId: S.optional(S.String),
+    logicAppsResourceId: S.String,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/entities/{entityIdentifier}/runPlaybook",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "RunEntityPlaybookRequest",
+}) as any as S.Schema<RunEntityPlaybookRequest>;
+
+export interface RunEntityPlaybookResponse {}
+export const RunEntityPlaybookResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "RunEntityPlaybookResponse",
+}) as any as S.Schema<RunEntityPlaybookResponse>;
+
+export interface RunIncidentPlaybookRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the workspace. */
+  workspaceName: string;
+  /** The incident identifier. */
+  incidentIdentifier: string;
+  tenantId?: string;
+  /** Related Analytic rule resource id */
+  logicAppsResourceId: string;
+}
+export const RunIncidentPlaybookRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    incidentIdentifier: S.String.pipe(T.Label()),
+    tenantId: S.optional(S.String),
+    logicAppsResourceId: S.String,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/incidents/{incidentIdentifier}/runPlaybook",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "RunIncidentPlaybookRequest",
+}) as any as S.Schema<RunIncidentPlaybookRequest>;
+
+export interface RunIncidentPlaybookResponse {}
+export const RunIncidentPlaybookResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "RunIncidentPlaybookResponse",
+}) as any as S.Schema<RunIncidentPlaybookResponse>;
+
+export interface SecurityMLAnalyticsSettingsCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the monitor workspace. */
+  workspaceName: string;
+  /** Security ML Analytics Settings resource name */
+  settingsResourceName: string;
+  /** Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must validate and persist this value. */
+  kind: SecurityMLAnalyticsSettingsKind | (string & {});
+  /** Etag of the azure resource */
+  etag?: string;
+}
+export const SecurityMLAnalyticsSettingsCreateOrUpdateRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      workspaceName: S.String.pipe(T.Label()),
+      settingsResourceName: S.String.pipe(T.Label()),
+      kind: SecurityMLAnalyticsSettingsKind,
+      etag: S.optional(S.String),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/securityMLAnalyticsSettings/{settingsResourceName}",
+        code: 200,
+        apiVersion: "2025-09-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "SecurityMLAnalyticsSettingsCreateOrUpdateRequest",
+  }) as any as S.Schema<SecurityMLAnalyticsSettingsCreateOrUpdateRequest>;
+
+export interface SecurityMLAnalyticsSettingsCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must validate and persist this value. */
+  kind: SecurityMLAnalyticsSettingsKind;
+  /** Etag of the azure resource */
+  etag?: string;
+}
+export const SecurityMLAnalyticsSettingsCreateOrUpdateResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      kind: SecurityMLAnalyticsSettingsKind,
+      etag: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "SecurityMLAnalyticsSettingsCreateOrUpdateResponse",
+  }) as any as S.Schema<SecurityMLAnalyticsSettingsCreateOrUpdateResponse>;
+
+/** List of tags to be appended. */
+export type ThreatIntelligenceIndicatorAppendTagsRequestThreatIntelligenceTagsList =
+  Array<string>;
+export const ThreatIntelligenceIndicatorAppendTagsRequestThreatIntelligenceTagsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ThreatIntelligenceIndicatorAppendTagsRequestThreatIntelligenceTagsList>;
+
+export interface ThreatIntelligenceIndicatorAppendTagsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the monitor workspace. */
+  workspaceName: string;
+  /** Threat intelligence indicator name field. */
+  name: string;
+  /** List of tags to be appended. */
+  threatIntelligenceTags?: ThreatIntelligenceIndicatorAppendTagsRequestThreatIntelligenceTagsList;
+}
+export const ThreatIntelligenceIndicatorAppendTagsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      workspaceName: S.String.pipe(T.Label()),
+      name: S.String.pipe(T.Label()),
+      threatIntelligenceTags: S.optional(
+        ThreatIntelligenceIndicatorAppendTagsRequestThreatIntelligenceTagsList,
+      ),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/threatIntelligence/main/indicators/{name}/appendTags",
+        code: 200,
+        apiVersion: "2025-09-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ThreatIntelligenceIndicatorAppendTagsRequest",
+  }) as any as S.Schema<ThreatIntelligenceIndicatorAppendTagsRequest>;
+
+export interface ThreatIntelligenceIndicatorAppendTagsResponse {}
+export const ThreatIntelligenceIndicatorAppendTagsResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "ThreatIntelligenceIndicatorAppendTagsResponse",
+  }) as any as S.Schema<ThreatIntelligenceIndicatorAppendTagsResponse>;
 
 /** Sorting order (ascending/descending/unsorted). */
 export type ThreatIntelligenceSortingOrder =
@@ -8120,8 +8551,180 @@ export const ThreatIntelligenceIndicatorQueryIndicatorsRequest =
     identifier: "ThreatIntelligenceIndicatorQueryIndicatorsRequest",
   }) as any as S.Schema<ThreatIntelligenceIndicatorQueryIndicatorsRequest>;
 
-/** Threat intelligence information object. */
-export interface ThreatIntelligenceInformation {
+export interface UninstallContentPackageRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the monitor workspace. */
+  workspaceName: string;
+  /** package Id */
+  packageId: string;
+}
+export const UninstallContentPackageRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    packageId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/contentPackages/{packageId}",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "UninstallContentPackageRequest",
+}) as any as S.Schema<UninstallContentPackageRequest>;
+
+export interface UninstallContentPackageResponse {}
+export const UninstallContentPackageResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "UninstallContentPackageResponse",
+}) as any as S.Schema<UninstallContentPackageResponse>;
+
+/** Providers for the solution content item */
+export type MetadataPropertiesPatchProvidersList = Array<string>;
+export const MetadataPropertiesPatchProvidersList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<MetadataPropertiesPatchProvidersList>;
+
+/** the tactics the resource covers */
+export type MetadataPropertiesPatchThreatAnalysisTacticsList = Array<string>;
+export const MetadataPropertiesPatchThreatAnalysisTacticsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<MetadataPropertiesPatchThreatAnalysisTacticsList>;
+
+/** the techniques the resource covers, these have to be aligned with the tactics being used */
+export type MetadataPropertiesPatchThreatAnalysisTechniquesList = Array<string>;
+export const MetadataPropertiesPatchThreatAnalysisTechniquesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<MetadataPropertiesPatchThreatAnalysisTechniquesList>;
+
+/** preview image file names. These will be taken from the solution artifacts */
+export type MetadataPropertiesPatchPreviewImagesList = Array<string>;
+export const MetadataPropertiesPatchPreviewImagesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<MetadataPropertiesPatchPreviewImagesList>;
+
+/** preview image file names. These will be taken from the solution artifacts. used for dark theme support */
+export type MetadataPropertiesPatchPreviewImagesDarkList = Array<string>;
+export const MetadataPropertiesPatchPreviewImagesDarkList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<MetadataPropertiesPatchPreviewImagesDarkList>;
+
+/** Metadata property bag for patch requests. This is the same as the MetadataProperties, but with nothing required */
+export interface MetadataPropertiesPatch {
+  /** Static ID for the content. Used to identify dependencies and content from solutions or community. Hard-coded/static for out of the box content and solutions. Can be optionally set for user created content to define dependencies. If an active content item is made from a template, both will have the same contentId. */
+  contentId?: string;
+  /** Full parent resource ID of the content item the metadata is for. This is the full resource ID including the scope (subscription and resource group) */
+  parentId?: string;
+  /** Version of the content. Default and recommended format is numeric (e.g. 1, 1.0, 1.0.0, 1.0.0.0), following ARM template best practices. Can also be any string, but then we cannot guarantee any version checks */
+  version?: string;
+  /** The kind of content the metadata is for. */
+  kind?: string;
+  /** Source of the content. This is where/how it was created. */
+  source?: MetadataSource;
+  /** The creator of the content item. */
+  author?: MetadataAuthor;
+  /** Support information for the metadata - type, name, contact information */
+  support?: MetadataSupport;
+  /** Dependencies for the content item, what other content items it requires to work. Can describe more complex dependencies using a recursive/nested structure. For a single dependency an id/kind/version can be supplied or operator/criteria for complex formats. */
+  dependencies?: MetadataDependencies;
+  /** Categories for the solution content item */
+  categories?: MetadataCategories;
+  /** Providers for the solution content item */
+  providers?: MetadataPropertiesPatchProvidersList;
+  /** first publish date of solution content item */
+  firstPublishDate?: string;
+  /** last publish date of solution content item */
+  lastPublishDate?: string;
+  /** The custom version of the content. A optional free text */
+  customVersion?: string;
+  /** Schema version of the content. Can be used to distinguish between different flow based on the schema version */
+  contentSchemaVersion?: string;
+  /** the icon identifier. this id can later be fetched from the solution template */
+  icon?: string;
+  /** the tactics the resource covers */
+  threatAnalysisTactics?: MetadataPropertiesPatchThreatAnalysisTacticsList;
+  /** the techniques the resource covers, these have to be aligned with the tactics being used */
+  threatAnalysisTechniques?: MetadataPropertiesPatchThreatAnalysisTechniquesList;
+  /** preview image file names. These will be taken from the solution artifacts */
+  previewImages?: MetadataPropertiesPatchPreviewImagesList;
+  /** preview image file names. These will be taken from the solution artifacts. used for dark theme support */
+  previewImagesDark?: MetadataPropertiesPatchPreviewImagesDarkList;
+}
+export const MetadataPropertiesPatch = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    contentId: S.optional(S.String),
+    parentId: S.optional(S.String),
+    version: S.optional(S.String),
+    kind: S.optional(S.String),
+    source: S.optional(MetadataSource),
+    author: S.optional(MetadataAuthor),
+    support: S.optional(MetadataSupport),
+    dependencies: S.optional(MetadataDependencies),
+    categories: S.optional(MetadataCategories),
+    providers: S.optional(MetadataPropertiesPatchProvidersList),
+    firstPublishDate: S.optional(S.String),
+    lastPublishDate: S.optional(S.String),
+    customVersion: S.optional(S.String),
+    contentSchemaVersion: S.optional(S.String),
+    icon: S.optional(S.String),
+    threatAnalysisTactics: S.optional(
+      MetadataPropertiesPatchThreatAnalysisTacticsList,
+    ),
+    threatAnalysisTechniques: S.optional(
+      MetadataPropertiesPatchThreatAnalysisTechniquesList,
+    ),
+    previewImages: S.optional(MetadataPropertiesPatchPreviewImagesList),
+    previewImagesDark: S.optional(MetadataPropertiesPatchPreviewImagesDarkList),
+  }),
+).annotate({
+  identifier: "MetadataPropertiesPatch",
+}) as any as S.Schema<MetadataPropertiesPatch>;
+
+export interface UpdateMetadataRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the monitor workspace. */
+  workspaceName: string;
+  /** The Metadata name. */
+  metadataName: string;
+  /** Etag of the azure resource */
+  etag?: string;
+  /** Metadata patch request body */
+  properties?: MetadataPropertiesPatch;
+}
+export const UpdateMetadataRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    metadataName: S.String.pipe(T.Label()),
+    etag: S.optional(S.String),
+    properties: S.optional(MetadataPropertiesPatch),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/metadata/{metadataName}",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateMetadataRequest",
+}) as any as S.Schema<UpdateMetadataRequest>;
+
+export interface UpdateMetadataResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -8130,150 +8733,23 @@ export interface ThreatIntelligenceInformation {
   type?: string;
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
-  /** Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must validate and persist this value. */
-  kind: ThreatIntelligenceResourceInnerKind;
+  /** Metadata properties */
+  properties?: MetadataProperties;
   /** Etag of the azure resource */
   etag?: string;
 }
-export const ThreatIntelligenceInformation = /*@__PURE__*/ S.suspend(() =>
+export const UpdateMetadataResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    kind: ThreatIntelligenceResourceInnerKind,
+    properties: S.optional(MetadataProperties),
     etag: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ThreatIntelligenceInformation",
-}) as any as S.Schema<ThreatIntelligenceInformation>;
-
-/** The ThreatIntelligenceInformation items on this page */
-export type ThreatIntelligenceInformationListValueList =
-  Array<ThreatIntelligenceInformation>;
-export const ThreatIntelligenceInformationListValueList = /*@__PURE__*/ S.Array(
-  ThreatIntelligenceInformation,
-) as any as S.Schema<ThreatIntelligenceInformationListValueList>;
-
-/** List of all the threat intelligence information objects. */
-export interface ThreatIntelligenceInformationList {
-  /** The ThreatIntelligenceInformation items on this page */
-  value: ThreatIntelligenceInformationListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const ThreatIntelligenceInformationList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: ThreatIntelligenceInformationListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ThreatIntelligenceInformationList",
-}) as any as S.Schema<ThreatIntelligenceInformationList>;
-
-export interface ThreatIntelligenceIndicatorReplaceTagsRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the monitor workspace. */
-  workspaceName: string;
-  /** Threat intelligence indicator name field. */
-  name: string;
-  /** Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must validate and persist this value. */
-  kind: ThreatIntelligenceResourceInnerKind | (string & {});
-  /** Etag of the azure resource */
-  etag?: string;
-  /** Threat Intelligence Entity properties */
-  properties?: ThreatIntelligenceIndicatorPropertiesInput;
-}
-export const ThreatIntelligenceIndicatorReplaceTagsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      workspaceName: S.String.pipe(T.Label()),
-      name: S.String.pipe(T.Label()),
-      kind: ThreatIntelligenceResourceInnerKind,
-      etag: S.optional(S.String),
-      properties: S.optional(ThreatIntelligenceIndicatorPropertiesInput),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/threatIntelligence/main/indicators/{name}/replaceTags",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ThreatIntelligenceIndicatorReplaceTagsRequest",
-  }) as any as S.Schema<ThreatIntelligenceIndicatorReplaceTagsRequest>;
-
-export interface ThreatIntelligenceIndicatorReplaceTagsResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type. If supported, the resource provider must validate and persist this value. */
-  kind: ThreatIntelligenceResourceInnerKind;
-  /** Etag of the azure resource */
-  etag?: string;
-}
-export const ThreatIntelligenceIndicatorReplaceTagsResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      kind: ThreatIntelligenceResourceInnerKind,
-      etag: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "ThreatIntelligenceIndicatorReplaceTagsResponse",
-  }) as any as S.Schema<ThreatIntelligenceIndicatorReplaceTagsResponse>;
-
-export interface ThreatIntelligenceIndicatorsListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the monitor workspace. */
-  workspaceName: string;
-  /** Filters the results, based on a Boolean condition. Optional. */
-  _filter?: string;
-  /** Returns only the first n results. Optional. */
-  _top?: number;
-  /** Skiptoken is only used if a previous operation returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a skiptoken parameter that specifies a starting point to use for subsequent calls. Optional. */
-  _skipToken?: string;
-  /** Sorts the results. Optional. */
-  _orderby?: string;
-}
-export const ThreatIntelligenceIndicatorsListRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      workspaceName: S.String.pipe(T.Label()),
-      _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-      _top: S.optional(S.Number.pipe(T.Query("$top"))),
-      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
-      _orderby: S.optional(S.String.pipe(T.Query("$orderby"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/threatIntelligence/main/indicators",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
-).annotate({
-  identifier: "ThreatIntelligenceIndicatorsListRequest",
-}) as any as S.Schema<ThreatIntelligenceIndicatorsListRequest>;
+  identifier: "UpdateMetadataResponse",
+}) as any as S.Schema<UpdateMetadataResponse>;
 
 /** Describes watchlist item properties */
 export interface WatchlistItemPropertiesInput {
@@ -8352,46 +8828,6 @@ export const WatchlistItemsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "WatchlistItemsCreateOrUpdateRequest",
 }) as any as S.Schema<WatchlistItemsCreateOrUpdateRequest>;
 
-/** Describes watchlist item properties */
-export interface WatchlistItemProperties {
-  /** The type of the watchlist item */
-  watchlistItemType?: string;
-  /** The id (a Guid) of the watchlist item */
-  watchlistItemId?: string;
-  /** The tenantId to which the watchlist item belongs to */
-  tenantId?: string;
-  /** A flag that indicates if the watchlist item is deleted or not */
-  isDeleted?: boolean;
-  /** The time the watchlist item was created */
-  created?: string;
-  /** The last time the watchlist item was updated */
-  updated?: string;
-  /** Describes a user that created the watchlist item */
-  createdBy?: UserInfo;
-  /** Describes a user that updated the watchlist item */
-  updatedBy?: UserInfo;
-  /** key-value pairs for a watchlist item */
-  itemsKeyValue: unknown;
-  /** key-value pairs for a watchlist item entity mapping */
-  entityMapping?: unknown;
-}
-export const WatchlistItemProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    watchlistItemType: S.optional(S.String),
-    watchlistItemId: S.optional(S.String),
-    tenantId: S.optional(S.String),
-    isDeleted: S.optional(S.Boolean),
-    created: S.optional(S.String),
-    updated: S.optional(S.String),
-    createdBy: S.optional(UserInfo),
-    updatedBy: S.optional(UserInfo),
-    itemsKeyValue: S.Unknown,
-    entityMapping: S.optional(S.Unknown),
-  }),
-).annotate({
-  identifier: "WatchlistItemProperties",
-}) as any as S.Schema<WatchlistItemProperties>;
-
 export interface WatchlistItemsCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
@@ -8419,185 +8855,6 @@ export const WatchlistItemsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
 ).annotate({
   identifier: "WatchlistItemsCreateOrUpdateResponse",
 }) as any as S.Schema<WatchlistItemsCreateOrUpdateResponse>;
-
-export interface WatchlistItemsDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the monitor workspace. */
-  workspaceName: string;
-  /** The watchlist alias */
-  watchlistAlias: string;
-  /** The watchlist item id (GUID) */
-  watchlistItemId: string;
-}
-export const WatchlistItemsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    watchlistAlias: S.String.pipe(T.Label()),
-    watchlistItemId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/watchlists/{watchlistAlias}/watchlistItems/{watchlistItemId}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "WatchlistItemsDeleteRequest",
-}) as any as S.Schema<WatchlistItemsDeleteRequest>;
-
-export interface WatchlistItemsDeleteResponse {}
-export const WatchlistItemsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "WatchlistItemsDeleteResponse",
-}) as any as S.Schema<WatchlistItemsDeleteResponse>;
-
-export interface WatchlistItemsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the monitor workspace. */
-  workspaceName: string;
-  /** The watchlist alias */
-  watchlistAlias: string;
-  /** The watchlist item id (GUID) */
-  watchlistItemId: string;
-}
-export const WatchlistItemsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    watchlistAlias: S.String.pipe(T.Label()),
-    watchlistItemId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/watchlists/{watchlistAlias}/watchlistItems/{watchlistItemId}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "WatchlistItemsGetRequest",
-}) as any as S.Schema<WatchlistItemsGetRequest>;
-
-export interface WatchlistItemsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Watchlist Item properties */
-  properties?: WatchlistItemProperties;
-  /** Etag of the azure resource */
-  etag?: string;
-}
-export const WatchlistItemsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(WatchlistItemProperties),
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "WatchlistItemsGetResponse",
-}) as any as S.Schema<WatchlistItemsGetResponse>;
-
-export interface WatchlistItemsListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the monitor workspace. */
-  workspaceName: string;
-  /** The watchlist alias */
-  watchlistAlias: string;
-  /** Skiptoken is only used if a previous operation returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a skiptoken parameter that specifies a starting point to use for subsequent calls. Optional. */
-  _skipToken?: string;
-}
-export const WatchlistItemsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    watchlistAlias: S.String.pipe(T.Label()),
-    _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/watchlists/{watchlistAlias}/watchlistItems",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "WatchlistItemsListRequest",
-}) as any as S.Schema<WatchlistItemsListRequest>;
-
-/** Represents a Watchlist Item in Azure Security Insights. */
-export interface WatchlistItem {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Watchlist Item properties */
-  properties?: WatchlistItemProperties;
-  /** Etag of the azure resource */
-  etag?: string;
-}
-export const WatchlistItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(WatchlistItemProperties),
-    etag: S.optional(S.String),
-  }),
-).annotate({ identifier: "WatchlistItem" }) as any as S.Schema<WatchlistItem>;
-
-/** The WatchlistItem items on this page */
-export type WatchlistItemListValueList = Array<WatchlistItem>;
-export const WatchlistItemListValueList = /*@__PURE__*/ S.Array(
-  WatchlistItem,
-) as any as S.Schema<WatchlistItemListValueList>;
-
-/** List all the watchlist items. */
-export interface WatchlistItemList {
-  /** The WatchlistItem items on this page */
-  value: WatchlistItemListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const WatchlistItemList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: WatchlistItemListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "WatchlistItemList",
-}) as any as S.Schema<WatchlistItemList>;
-
-/** The sourceType of the watchlist */
-export type SourceType = "Local" | "AzureStorage";
-export const SourceType = /*@__PURE__*/ S.String;
 
 /** List of labels relevant to this watchlist */
 export type WatchlistPropertiesInputLabelsList = Array<string>;
@@ -8712,99 +8969,6 @@ export const WatchlistsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "WatchlistsCreateOrUpdateRequest",
 }) as any as S.Schema<WatchlistsCreateOrUpdateRequest>;
 
-/** List of labels relevant to this watchlist */
-export type WatchlistPropertiesLabelsList = Array<string>;
-export const WatchlistPropertiesLabelsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<WatchlistPropertiesLabelsList>;
-
-/** The provisioning state of the watchlist */
-export type WatchlistProvisioningState =
-  | "New"
-  | "InProgress"
-  | "Uploading"
-  | "Deleting"
-  | "Succeeded"
-  | "Failed"
-  | "Canceled";
-export const WatchlistProvisioningState = /*@__PURE__*/ S.String;
-
-/** Describes watchlist properties */
-export interface WatchlistProperties {
-  /** The id (a Guid) of the watchlist */
-  watchlistId?: string;
-  /** The display name of the watchlist */
-  displayName: string;
-  /** The provider of the watchlist */
-  provider: string;
-  /** The filename of the watchlist, called 'source' */
-  source?: string;
-  /** The sourceType of the watchlist */
-  sourceType?: SourceType;
-  /** The time the watchlist was created */
-  created?: string;
-  /** The last time the watchlist was updated */
-  updated?: string;
-  /** Describes a user that created the watchlist */
-  createdBy?: UserInfo;
-  /** Describes a user that updated the watchlist */
-  updatedBy?: UserInfo;
-  /** A description of the watchlist */
-  description?: string;
-  /** The type of the watchlist */
-  watchlistType?: string;
-  /** The alias of the watchlist */
-  watchlistAlias?: string;
-  /** A flag that indicates if the watchlist is deleted or not */
-  isDeleted?: boolean;
-  /** List of labels relevant to this watchlist */
-  labels?: WatchlistPropertiesLabelsList;
-  /** The default duration of a watchlist (in ISO 8601 duration format) */
-  defaultDuration?: string;
-  /** The tenantId where the watchlist belongs to */
-  tenantId?: string;
-  /** The number of lines in a csv/tsv content to skip before the header */
-  numberOfLinesToSkip?: number;
-  /** The raw content that represents to watchlist items to create. In case of csv/tsv content type, it's the content of the file that will parsed by the endpoint */
-  rawContent?: string;
-  /** The search key is used to optimize query performance when using watchlists for joins with other data. For example, enable a column with IP addresses to be the designated SearchKey field, then use this field as the key field when joining to other event data by IP address. */
-  itemsSearchKey: string;
-  /** The content type of the raw content. Example : text/csv or text/tsv */
-  contentType?: string;
-  /** The status of the Watchlist upload : New, InProgress or Complete. **Note** : When a Watchlist upload status is InProgress, the Watchlist cannot be deleted */
-  uploadStatus?: string;
-  /** Describes provisioning state */
-  provisioningState?: WatchlistProvisioningState;
-}
-export const WatchlistProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    watchlistId: S.optional(S.String),
-    displayName: S.String,
-    provider: S.String,
-    source: S.optional(S.String),
-    sourceType: S.optional(SourceType),
-    created: S.optional(S.String),
-    updated: S.optional(S.String),
-    createdBy: S.optional(UserInfo),
-    updatedBy: S.optional(UserInfo),
-    description: S.optional(S.String),
-    watchlistType: S.optional(S.String),
-    watchlistAlias: S.optional(S.String),
-    isDeleted: S.optional(S.Boolean),
-    labels: S.optional(WatchlistPropertiesLabelsList),
-    defaultDuration: S.optional(S.String),
-    tenantId: S.optional(S.String),
-    numberOfLinesToSkip: S.optional(S.Number),
-    rawContent: S.optional(S.String),
-    itemsSearchKey: S.String,
-    contentType: S.optional(S.String),
-    uploadStatus: S.optional(S.String),
-    provisioningState: S.optional(WatchlistProvisioningState),
-  }),
-).annotate({
-  identifier: "WatchlistProperties",
-}) as any as S.Schema<WatchlistProperties>;
-
 export interface WatchlistsCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
@@ -8832,170 +8996,6 @@ export const WatchlistsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "WatchlistsCreateOrUpdateResponse",
 }) as any as S.Schema<WatchlistsCreateOrUpdateResponse>;
 
-export interface WatchlistsDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the monitor workspace. */
-  workspaceName: string;
-  /** The watchlist alias */
-  watchlistAlias: string;
-}
-export const WatchlistsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    watchlistAlias: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/watchlists/{watchlistAlias}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "WatchlistsDeleteRequest",
-}) as any as S.Schema<WatchlistsDeleteRequest>;
-
-export interface WatchlistsDeleteResponse {}
-export const WatchlistsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "WatchlistsDeleteResponse",
-}) as any as S.Schema<WatchlistsDeleteResponse>;
-
-export interface WatchlistsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the monitor workspace. */
-  workspaceName: string;
-  /** The watchlist alias */
-  watchlistAlias: string;
-}
-export const WatchlistsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    watchlistAlias: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/watchlists/{watchlistAlias}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "WatchlistsGetRequest",
-}) as any as S.Schema<WatchlistsGetRequest>;
-
-export interface WatchlistsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Watchlist properties */
-  properties?: WatchlistProperties;
-  /** Etag of the azure resource */
-  etag?: string;
-}
-export const WatchlistsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(WatchlistProperties),
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "WatchlistsGetResponse",
-}) as any as S.Schema<WatchlistsGetResponse>;
-
-export interface WatchlistsListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the monitor workspace. */
-  workspaceName: string;
-  /** Skiptoken is only used if a previous operation returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a skiptoken parameter that specifies a starting point to use for subsequent calls. Optional. */
-  _skipToken?: string;
-}
-export const WatchlistsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/providers/Microsoft.SecurityInsights/watchlists",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "WatchlistsListRequest",
-}) as any as S.Schema<WatchlistsListRequest>;
-
-/** Represents a Watchlist in Azure Security Insights. */
-export interface Watchlist {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Watchlist properties */
-  properties?: WatchlistProperties;
-  /** Etag of the azure resource */
-  etag?: string;
-}
-export const Watchlist = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(WatchlistProperties),
-    etag: S.optional(S.String),
-  }),
-).annotate({ identifier: "Watchlist" }) as any as S.Schema<Watchlist>;
-
-/** The Watchlist items on this page */
-export type WatchlistListValueList = Array<Watchlist>;
-export const WatchlistListValueList = /*@__PURE__*/ S.Array(
-  Watchlist,
-) as any as S.Schema<WatchlistListValueList>;
-
-/** List all the watchlists. */
-export interface WatchlistList {
-  /** The Watchlist items on this page */
-  value: WatchlistListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const WatchlistList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: WatchlistListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({ identifier: "WatchlistList" }) as any as S.Schema<WatchlistList>;
-
 export type ActionsCreateOrUpdateError = AzureOpError;
 /** Creates or updates the action of alert rule. */
 export const ActionsCreateOrUpdate: API.OperationMethod<
@@ -9006,51 +9006,6 @@ export const ActionsCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ActionsCreateOrUpdateRequest,
   output: ActionsCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ActionsDeleteError = AzureOpError;
-/** Delete the action of alert rule. */
-export const ActionsDelete: API.OperationMethod<
-  ActionsDeleteRequest,
-  ActionsDeleteResponse,
-  ActionsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ActionsDeleteRequest,
-  output: ActionsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ActionsGetError = AzureOpError;
-/** Gets the action of alert rule. */
-export const ActionsGet: API.OperationMethod<
-  ActionsGetRequest,
-  ActionsGetResponse,
-  ActionsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ActionsGetRequest,
-  output: ActionsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ActionsListByAlertRuleError = AzureOpError;
-/** Gets all actions of alert rule. */
-export const ActionsListByAlertRule: API.OperationMethod<
-  ActionsListByAlertRuleRequest,
-  ActionsList,
-  ActionsListByAlertRuleError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ActionsListByAlertRuleRequest,
-  output: ActionsList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -9071,81 +9026,6 @@ export const AlertRulesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type AlertRulesDeleteError = AzureOpError;
-/** Delete the alert rule. */
-export const AlertRulesDelete: API.OperationMethod<
-  AlertRulesDeleteRequest,
-  AlertRulesDeleteResponse,
-  AlertRulesDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AlertRulesDeleteRequest,
-  output: AlertRulesDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AlertRulesGetError = AzureOpError;
-/** Gets the alert rule. */
-export const AlertRulesGet: API.OperationMethod<
-  AlertRulesGetRequest,
-  AlertRulesGetResponse,
-  AlertRulesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AlertRulesGetRequest,
-  output: AlertRulesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AlertRulesList2Error = AzureOpError;
-/** Gets all alert rules. */
-export const AlertRulesList2: API.OperationMethod<
-  AlertRulesListRequest,
-  AlertRulesList,
-  AlertRulesList2Error,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AlertRulesListRequest,
-  output: AlertRulesList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AlertRuleTemplatesGetError = AzureOpError;
-/** Gets the alert rule template. */
-export const AlertRuleTemplatesGet: API.OperationMethod<
-  AlertRuleTemplatesGetRequest,
-  AlertRuleTemplatesGetResponse,
-  AlertRuleTemplatesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AlertRuleTemplatesGetRequest,
-  output: AlertRuleTemplatesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AlertRuleTemplatesList2Error = AzureOpError;
-/** Gets all alert rule templates. */
-export const AlertRuleTemplatesList2: API.OperationMethod<
-  AlertRuleTemplatesListRequest,
-  AlertRuleTemplatesList,
-  AlertRuleTemplatesList2Error,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AlertRuleTemplatesListRequest,
-  output: AlertRuleTemplatesList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type AutomationRulesCreateOrUpdateError = AzureOpError;
 /** Creates or updates the automation rule. */
 export const AutomationRulesCreateOrUpdate: API.OperationMethod<
@@ -9156,51 +9036,6 @@ export const AutomationRulesCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: AutomationRulesCreateOrUpdateRequest,
   output: AutomationRulesCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AutomationRulesDeleteError = AzureOpError;
-/** Delete the automation rule. */
-export const AutomationRulesDelete: API.OperationMethod<
-  AutomationRulesDeleteRequest,
-  AutomationRulesDeleteResponse,
-  AutomationRulesDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AutomationRulesDeleteRequest,
-  output: AutomationRulesDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AutomationRulesGetError = AzureOpError;
-/** Gets the automation rule. */
-export const AutomationRulesGet: API.OperationMethod<
-  AutomationRulesGetRequest,
-  AutomationRulesGetResponse,
-  AutomationRulesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AutomationRulesGetRequest,
-  output: AutomationRulesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AutomationRulesList2Error = AzureOpError;
-/** Gets all automation rules. */
-export const AutomationRulesList2: API.OperationMethod<
-  AutomationRulesListRequest,
-  AutomationRulesList,
-  AutomationRulesList2Error,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AutomationRulesListRequest,
-  output: AutomationRulesList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -9221,166 +9056,76 @@ export const BookmarksCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type BookmarksDeleteError = AzureOpError;
-/** Delete the bookmark. */
-export const BookmarksDelete: API.OperationMethod<
-  BookmarksDeleteRequest,
-  BookmarksDeleteResponse,
-  BookmarksDeleteError,
+export type CreateMetadataError = AzureOpError;
+/** Create a Metadata. */
+export const CreateMetadata: API.OperationMethod<
+  CreateMetadataRequest,
+  CreateMetadataResponse,
+  CreateMetadataError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: BookmarksDeleteRequest,
-  output: BookmarksDeleteResponse,
+  input: CreateMetadataRequest,
+  output: CreateMetadataResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type BookmarksGetError = AzureOpError;
-/** Gets a bookmark. */
-export const BookmarksGet: API.OperationMethod<
-  BookmarksGetRequest,
-  BookmarksGetResponse,
-  BookmarksGetError,
+export type CreateSentinelOnboardingStateError = AzureOpError;
+/** Create Sentinel onboarding state */
+export const CreateSentinelOnboardingState: API.OperationMethod<
+  CreateSentinelOnboardingStateRequest,
+  CreateSentinelOnboardingStateResponse,
+  CreateSentinelOnboardingStateError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: BookmarksGetRequest,
-  output: BookmarksGetResponse,
+  input: CreateSentinelOnboardingStateRequest,
+  output: CreateSentinelOnboardingStateResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type BookmarksListError = AzureOpError;
-/** Gets all bookmarks. */
-export const BookmarksList: API.OperationMethod<
-  BookmarksListRequest,
-  BookmarkList,
-  BookmarksListError,
+export type CreateSourceControlError = AzureOpError;
+/** Creates a source control. */
+export const CreateSourceControl: API.OperationMethod<
+  CreateSourceControlRequest,
+  CreateSourceControlResponse,
+  CreateSourceControlError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: BookmarksListRequest,
-  output: BookmarkList,
+  input: CreateSourceControlRequest,
+  output: CreateSourceControlResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ContentPackageInstallError = AzureOpError;
-/** Install a package to the workspace. */
-export const ContentPackageInstall: API.OperationMethod<
-  ContentPackageInstallRequest,
-  ContentPackageInstallResponse,
-  ContentPackageInstallError,
+export type CreateThreatIntelligenceIndicatorError = AzureOpError;
+/** Update a threat Intelligence indicator. */
+export const CreateThreatIntelligenceIndicator: API.OperationMethod<
+  CreateThreatIntelligenceIndicatorRequest,
+  CreateThreatIntelligenceIndicatorResponse,
+  CreateThreatIntelligenceIndicatorError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ContentPackageInstallRequest,
-  output: ContentPackageInstallResponse,
+  input: CreateThreatIntelligenceIndicatorRequest,
+  output: CreateThreatIntelligenceIndicatorResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ContentPackagesGetError = AzureOpError;
-/** Gets an installed packages by its id. */
-export const ContentPackagesGet: API.OperationMethod<
-  ContentPackagesGetRequest,
-  ContentPackagesGetResponse,
-  ContentPackagesGetError,
+export type CreateThreatIntelligenceIndicatorIndicatorError = AzureOpError;
+/** Create a new threat intelligence indicator. */
+export const CreateThreatIntelligenceIndicatorIndicator: API.OperationMethod<
+  CreateThreatIntelligenceIndicatorIndicatorRequest,
+  CreateThreatIntelligenceIndicatorIndicatorResponse,
+  CreateThreatIntelligenceIndicatorIndicatorError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ContentPackagesGetRequest,
-  output: ContentPackagesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ContentPackagesListError = AzureOpError;
-/** Gets all installed packages. */
-export const ContentPackagesList: API.OperationMethod<
-  ContentPackagesListRequest,
-  PackageList,
-  ContentPackagesListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ContentPackagesListRequest,
-  output: PackageList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ContentPackageUninstallError = AzureOpError;
-/** Uninstall a package from the workspace. */
-export const ContentPackageUninstall: API.OperationMethod<
-  ContentPackageUninstallRequest,
-  ContentPackageUninstallResponse,
-  ContentPackageUninstallError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ContentPackageUninstallRequest,
-  output: ContentPackageUninstallResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ContentTemplateDeleteError = AzureOpError;
-/** Delete an installed template. */
-export const ContentTemplateDelete: API.OperationMethod<
-  ContentTemplateDeleteRequest,
-  ContentTemplateDeleteResponse,
-  ContentTemplateDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ContentTemplateDeleteRequest,
-  output: ContentTemplateDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ContentTemplateGetError = AzureOpError;
-/** Gets a template byt its identifier. Expandable properties: - properties/mainTemplate - properties/dependantTemplates */
-export const ContentTemplateGet: API.OperationMethod<
-  ContentTemplateGetRequest,
-  ContentTemplateGetResponse,
-  ContentTemplateGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ContentTemplateGetRequest,
-  output: ContentTemplateGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ContentTemplateInstallError = AzureOpError;
-/** Install a template. */
-export const ContentTemplateInstall: API.OperationMethod<
-  ContentTemplateInstallRequest,
-  ContentTemplateInstallResponse,
-  ContentTemplateInstallError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ContentTemplateInstallRequest,
-  output: ContentTemplateInstallResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ContentTemplatesListError = AzureOpError;
-/** Gets all installed templates. Expandable properties: - properties/mainTemplate - properties/dependantTemplates */
-export const ContentTemplatesList: API.OperationMethod<
-  ContentTemplatesListRequest,
-  TemplateList,
-  ContentTemplatesListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ContentTemplatesListRequest,
-  output: TemplateList,
+  input: CreateThreatIntelligenceIndicatorIndicatorRequest,
+  output: CreateThreatIntelligenceIndicatorIndicatorResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -9401,51 +9146,6 @@ export const DataConnectorDefinitionsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DataConnectorDefinitionsDeleteError = AzureOpError;
-/** Delete the data connector definition. */
-export const DataConnectorDefinitionsDelete: API.OperationMethod<
-  DataConnectorDefinitionsDeleteRequest,
-  DataConnectorDefinitionsDeleteResponse,
-  DataConnectorDefinitionsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DataConnectorDefinitionsDeleteRequest,
-  output: DataConnectorDefinitionsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DataConnectorDefinitionsGetError = AzureOpError;
-/** Gets a data connector definition. */
-export const DataConnectorDefinitionsGet: API.OperationMethod<
-  DataConnectorDefinitionsGetRequest,
-  DataConnectorDefinitionsGetResponse,
-  DataConnectorDefinitionsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DataConnectorDefinitionsGetRequest,
-  output: DataConnectorDefinitionsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DataConnectorDefinitionsListError = AzureOpError;
-/** Gets all data connector definitions. */
-export const DataConnectorDefinitionsList: API.OperationMethod<
-  DataConnectorDefinitionsListRequest,
-  DataConnectorDefinitionArmCollectionWrapper,
-  DataConnectorDefinitionsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DataConnectorDefinitionsListRequest,
-  output: DataConnectorDefinitionArmCollectionWrapper,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type DataConnectorsCreateOrUpdateError = AzureOpError;
 /** Creates or updates the data connector. */
 export const DataConnectorsCreateOrUpdate: API.OperationMethod<
@@ -9461,61 +9161,601 @@ export const DataConnectorsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DataConnectorsDeleteError = AzureOpError;
+export type DeleteActionError = AzureOpError;
+/** Delete the action of alert rule. */
+export const DeleteAction: API.OperationMethod<
+  DeleteActionRequest,
+  DeleteActionResponse,
+  DeleteActionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteActionRequest,
+  output: DeleteActionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteAlertRuleError = AzureOpError;
+/** Delete the alert rule. */
+export const DeleteAlertRule: API.OperationMethod<
+  DeleteAlertRuleRequest,
+  DeleteAlertRuleResponse,
+  DeleteAlertRuleError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteAlertRuleRequest,
+  output: DeleteAlertRuleResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteAutomationRuleError = AzureOpError;
+/** Delete the automation rule. */
+export const DeleteAutomationRule: API.OperationMethod<
+  DeleteAutomationRuleRequest,
+  DeleteAutomationRuleResponse,
+  DeleteAutomationRuleError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteAutomationRuleRequest,
+  output: DeleteAutomationRuleResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteBookmarkError = AzureOpError;
+/** Delete the bookmark. */
+export const DeleteBookmark: API.OperationMethod<
+  DeleteBookmarkRequest,
+  DeleteBookmarkResponse,
+  DeleteBookmarkError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteBookmarkRequest,
+  output: DeleteBookmarkResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteContentTemplateError = AzureOpError;
+/** Delete an installed template. */
+export const DeleteContentTemplate: API.OperationMethod<
+  DeleteContentTemplateRequest,
+  DeleteContentTemplateResponse,
+  DeleteContentTemplateError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteContentTemplateRequest,
+  output: DeleteContentTemplateResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteDataConnectorError = AzureOpError;
 /** Delete the data connector. */
-export const DataConnectorsDelete: API.OperationMethod<
-  DataConnectorsDeleteRequest,
-  DataConnectorsDeleteResponse,
-  DataConnectorsDeleteError,
+export const DeleteDataConnector: API.OperationMethod<
+  DeleteDataConnectorRequest,
+  DeleteDataConnectorResponse,
+  DeleteDataConnectorError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DataConnectorsDeleteRequest,
-  output: DataConnectorsDeleteResponse,
+  input: DeleteDataConnectorRequest,
+  output: DeleteDataConnectorResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DataConnectorsGetError = AzureOpError;
+export type DeleteDataConnectorDefinitionError = AzureOpError;
+/** Delete the data connector definition. */
+export const DeleteDataConnectorDefinition: API.OperationMethod<
+  DeleteDataConnectorDefinitionRequest,
+  DeleteDataConnectorDefinitionResponse,
+  DeleteDataConnectorDefinitionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteDataConnectorDefinitionRequest,
+  output: DeleteDataConnectorDefinitionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteIncidentError = AzureOpError;
+/** Deletes a given incident. */
+export const DeleteIncident: API.OperationMethod<
+  DeleteIncidentRequest,
+  DeleteIncidentResponse,
+  DeleteIncidentError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteIncidentRequest,
+  output: DeleteIncidentResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteIncidentCommentError = AzureOpError;
+/** Deletes a comment for a given incident. */
+export const DeleteIncidentComment: API.OperationMethod<
+  DeleteIncidentCommentRequest,
+  DeleteIncidentCommentResponse,
+  DeleteIncidentCommentError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteIncidentCommentRequest,
+  output: DeleteIncidentCommentResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteIncidentRelationError = AzureOpError;
+/** Deletes a relation for a given incident. */
+export const DeleteIncidentRelation: API.OperationMethod<
+  DeleteIncidentRelationRequest,
+  DeleteIncidentRelationResponse,
+  DeleteIncidentRelationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteIncidentRelationRequest,
+  output: DeleteIncidentRelationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteIncidentTaskError = AzureOpError;
+/** Delete the incident task. */
+export const DeleteIncidentTask: API.OperationMethod<
+  DeleteIncidentTaskRequest,
+  DeleteIncidentTaskResponse,
+  DeleteIncidentTaskError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteIncidentTaskRequest,
+  output: DeleteIncidentTaskResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteMetadataError = AzureOpError;
+/** Delete a Metadata. */
+export const DeleteMetadata: API.OperationMethod<
+  DeleteMetadataRequest,
+  DeleteMetadataResponse,
+  DeleteMetadataError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteMetadataRequest,
+  output: DeleteMetadataResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteSecurityMLAnalyticsSettingsError = AzureOpError;
+/** Delete the Security ML Analytics Settings. */
+export const DeleteSecurityMLAnalyticsSettings: API.OperationMethod<
+  DeleteSecurityMLAnalyticsSettingsRequest,
+  DeleteSecurityMLAnalyticsSettingsResponse,
+  DeleteSecurityMLAnalyticsSettingsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteSecurityMLAnalyticsSettingsRequest,
+  output: DeleteSecurityMLAnalyticsSettingsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteSentinelOnboardingStateError = AzureOpError;
+/** Delete Sentinel onboarding state */
+export const DeleteSentinelOnboardingState: API.OperationMethod<
+  DeleteSentinelOnboardingStateRequest,
+  DeleteSentinelOnboardingStateResponse,
+  DeleteSentinelOnboardingStateError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteSentinelOnboardingStateRequest,
+  output: DeleteSentinelOnboardingStateResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteSourceControlError = AzureOpError;
+/** Delete a source control. */
+export const DeleteSourceControl: API.OperationMethod<
+  DeleteSourceControlRequest,
+  Warning,
+  DeleteSourceControlError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteSourceControlRequest,
+  output: Warning,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteThreatIntelligenceIndicatorError = AzureOpError;
+/** Delete a threat intelligence indicator. */
+export const DeleteThreatIntelligenceIndicator: API.OperationMethod<
+  DeleteThreatIntelligenceIndicatorRequest,
+  DeleteThreatIntelligenceIndicatorResponse,
+  DeleteThreatIntelligenceIndicatorError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteThreatIntelligenceIndicatorRequest,
+  output: DeleteThreatIntelligenceIndicatorResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteWatchlistError = AzureOpError;
+/** Delete a watchlist. */
+export const DeleteWatchlist: API.OperationMethod<
+  DeleteWatchlistRequest,
+  DeleteWatchlistResponse,
+  DeleteWatchlistError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteWatchlistRequest,
+  output: DeleteWatchlistResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteWatchlistItemError = AzureOpError;
+/** Delete a watchlist item. */
+export const DeleteWatchlistItem: API.OperationMethod<
+  DeleteWatchlistItemRequest,
+  DeleteWatchlistItemResponse,
+  DeleteWatchlistItemError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteWatchlistItemRequest,
+  output: DeleteWatchlistItemResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetActionError = AzureOpError;
+/** Gets the action of alert rule. */
+export const GetAction: API.OperationMethod<
+  GetActionRequest,
+  GetActionResponse,
+  GetActionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetActionRequest,
+  output: GetActionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetAlertRuleError = AzureOpError;
+/** Gets the alert rule. */
+export const GetAlertRule: API.OperationMethod<
+  GetAlertRuleRequest,
+  GetAlertRuleResponse,
+  GetAlertRuleError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetAlertRuleRequest,
+  output: GetAlertRuleResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetAlertRuleTemplateError = AzureOpError;
+/** Gets the alert rule template. */
+export const GetAlertRuleTemplate: API.OperationMethod<
+  GetAlertRuleTemplateRequest,
+  GetAlertRuleTemplateResponse,
+  GetAlertRuleTemplateError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetAlertRuleTemplateRequest,
+  output: GetAlertRuleTemplateResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetAutomationRuleError = AzureOpError;
+/** Gets the automation rule. */
+export const GetAutomationRule: API.OperationMethod<
+  GetAutomationRuleRequest,
+  GetAutomationRuleResponse,
+  GetAutomationRuleError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetAutomationRuleRequest,
+  output: GetAutomationRuleResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetBookmarkError = AzureOpError;
+/** Gets a bookmark. */
+export const GetBookmark: API.OperationMethod<
+  GetBookmarkRequest,
+  GetBookmarkResponse,
+  GetBookmarkError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetBookmarkRequest,
+  output: GetBookmarkResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetContentPackageError = AzureOpError;
+/** Gets an installed packages by its id. */
+export const GetContentPackage: API.OperationMethod<
+  GetContentPackageRequest,
+  GetContentPackageResponse,
+  GetContentPackageError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetContentPackageRequest,
+  output: GetContentPackageResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetContentTemplateError = AzureOpError;
+/** Gets a template byt its identifier. Expandable properties: - properties/mainTemplate - properties/dependantTemplates */
+export const GetContentTemplate: API.OperationMethod<
+  GetContentTemplateRequest,
+  GetContentTemplateResponse,
+  GetContentTemplateError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetContentTemplateRequest,
+  output: GetContentTemplateResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDataConnectorError = AzureOpError;
 /** Gets a data connector. */
-export const DataConnectorsGet: API.OperationMethod<
-  DataConnectorsGetRequest,
-  DataConnectorsGetResponse,
-  DataConnectorsGetError,
+export const GetDataConnector: API.OperationMethod<
+  GetDataConnectorRequest,
+  GetDataConnectorResponse,
+  GetDataConnectorError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DataConnectorsGetRequest,
-  output: DataConnectorsGetResponse,
+  input: GetDataConnectorRequest,
+  output: GetDataConnectorResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DataConnectorsListError = AzureOpError;
-/** Gets all data connectors. */
-export const DataConnectorsList: API.OperationMethod<
-  DataConnectorsListRequest,
-  DataConnectorList,
-  DataConnectorsListError,
+export type GetDataConnectorDefinitionError = AzureOpError;
+/** Gets a data connector definition. */
+export const GetDataConnectorDefinition: API.OperationMethod<
+  GetDataConnectorDefinitionRequest,
+  GetDataConnectorDefinitionResponse,
+  GetDataConnectorDefinitionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DataConnectorsListRequest,
-  output: DataConnectorList,
+  input: GetDataConnectorDefinitionRequest,
+  output: GetDataConnectorDefinitionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type EntitiesRunPlaybookError = AzureOpError;
-/** Triggers playbook on a specific entity. */
-export const EntitiesRunPlaybook: API.OperationMethod<
-  EntitiesRunPlaybookRequest,
-  EntitiesRunPlaybookResponse,
-  EntitiesRunPlaybookError,
+export type GetIncidentError = AzureOpError;
+/** Gets a given incident. */
+export const GetIncident: API.OperationMethod<
+  GetIncidentRequest,
+  GetIncidentResponse,
+  GetIncidentError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: EntitiesRunPlaybookRequest,
-  output: EntitiesRunPlaybookResponse,
+  input: GetIncidentRequest,
+  output: GetIncidentResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetIncidentCommentError = AzureOpError;
+/** Gets an incident comment. */
+export const GetIncidentComment: API.OperationMethod<
+  GetIncidentCommentRequest,
+  GetIncidentCommentResponse,
+  GetIncidentCommentError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetIncidentCommentRequest,
+  output: GetIncidentCommentResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetIncidentRelationError = AzureOpError;
+/** Gets a relation for a given incident. */
+export const GetIncidentRelation: API.OperationMethod<
+  GetIncidentRelationRequest,
+  GetIncidentRelationResponse,
+  GetIncidentRelationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetIncidentRelationRequest,
+  output: GetIncidentRelationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetIncidentTaskError = AzureOpError;
+/** Gets an incident task. */
+export const GetIncidentTask: API.OperationMethod<
+  GetIncidentTaskRequest,
+  GetIncidentTaskResponse,
+  GetIncidentTaskError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetIncidentTaskRequest,
+  output: GetIncidentTaskResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetMetadataError = AzureOpError;
+/** Get a Metadata. */
+export const GetMetadata: API.OperationMethod<
+  GetMetadataRequest,
+  GetMetadataResponse,
+  GetMetadataError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetMetadataRequest,
+  output: GetMetadataResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetProductPackageError = AzureOpError;
+/** Gets a package by its identifier from the catalog. */
+export const GetProductPackage: API.OperationMethod<
+  GetProductPackageRequest,
+  GetProductPackageResponse,
+  GetProductPackageError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetProductPackageRequest,
+  output: GetProductPackageResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetProductTemplateError = AzureOpError;
+/** Gets a template by its identifier. */
+export const GetProductTemplate: API.OperationMethod<
+  GetProductTemplateRequest,
+  GetProductTemplateResponse,
+  GetProductTemplateError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetProductTemplateRequest,
+  output: GetProductTemplateResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSecurityMLAnalyticsSettingsError = AzureOpError;
+/** Gets the Security ML Analytics Settings. */
+export const GetSecurityMLAnalyticsSettings: API.OperationMethod<
+  GetSecurityMLAnalyticsSettingsRequest,
+  GetSecurityMLAnalyticsSettingsResponse,
+  GetSecurityMLAnalyticsSettingsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSecurityMLAnalyticsSettingsRequest,
+  output: GetSecurityMLAnalyticsSettingsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSentinelOnboardingStateError = AzureOpError;
+/** Get Sentinel onboarding state */
+export const GetSentinelOnboardingState: API.OperationMethod<
+  GetSentinelOnboardingStateRequest,
+  GetSentinelOnboardingStateResponse,
+  GetSentinelOnboardingStateError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSentinelOnboardingStateRequest,
+  output: GetSentinelOnboardingStateResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSourceControlError = AzureOpError;
+/** Gets a source control byt its identifier. */
+export const GetSourceControl: API.OperationMethod<
+  GetSourceControlRequest,
+  GetSourceControlResponse,
+  GetSourceControlError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSourceControlRequest,
+  output: GetSourceControlResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetThreatIntelligenceIndicatorError = AzureOpError;
+/** View a threat intelligence indicator by name. */
+export const GetThreatIntelligenceIndicator: API.OperationMethod<
+  GetThreatIntelligenceIndicatorRequest,
+  GetThreatIntelligenceIndicatorResponse,
+  GetThreatIntelligenceIndicatorError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetThreatIntelligenceIndicatorRequest,
+  output: GetThreatIntelligenceIndicatorResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetWatchlistError = AzureOpError;
+/** Get a watchlist, without its watchlist items. */
+export const GetWatchlist: API.OperationMethod<
+  GetWatchlistRequest,
+  GetWatchlistResponse,
+  GetWatchlistError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetWatchlistRequest,
+  output: GetWatchlistResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetWatchlistItemError = AzureOpError;
+/** Get a watchlist item. */
+export const GetWatchlistItem: API.OperationMethod<
+  GetWatchlistItemRequest,
+  GetWatchlistItemResponse,
+  GetWatchlistItemError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetWatchlistItemRequest,
+  output: GetWatchlistItemResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -9536,51 +9776,6 @@ export const IncidentCommentsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type IncidentCommentsDeleteError = AzureOpError;
-/** Deletes a comment for a given incident. */
-export const IncidentCommentsDelete: API.OperationMethod<
-  IncidentCommentsDeleteRequest,
-  IncidentCommentsDeleteResponse,
-  IncidentCommentsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IncidentCommentsDeleteRequest,
-  output: IncidentCommentsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IncidentCommentsGetError = AzureOpError;
-/** Gets an incident comment. */
-export const IncidentCommentsGet: API.OperationMethod<
-  IncidentCommentsGetRequest,
-  IncidentCommentsGetResponse,
-  IncidentCommentsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IncidentCommentsGetRequest,
-  output: IncidentCommentsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IncidentCommentsListError = AzureOpError;
-/** Gets all comments for a given incident. */
-export const IncidentCommentsList: API.OperationMethod<
-  IncidentCommentsListRequest,
-  IncidentCommentList,
-  IncidentCommentsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IncidentCommentsListRequest,
-  output: IncidentCommentList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type IncidentRelationsCreateOrUpdateError = AzureOpError;
 /** Creates or updates the incident relation. */
 export const IncidentRelationsCreateOrUpdate: API.OperationMethod<
@@ -9591,51 +9786,6 @@ export const IncidentRelationsCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: IncidentRelationsCreateOrUpdateRequest,
   output: IncidentRelationsCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IncidentRelationsDeleteError = AzureOpError;
-/** Deletes a relation for a given incident. */
-export const IncidentRelationsDelete: API.OperationMethod<
-  IncidentRelationsDeleteRequest,
-  IncidentRelationsDeleteResponse,
-  IncidentRelationsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IncidentRelationsDeleteRequest,
-  output: IncidentRelationsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IncidentRelationsGetError = AzureOpError;
-/** Gets a relation for a given incident. */
-export const IncidentRelationsGet: API.OperationMethod<
-  IncidentRelationsGetRequest,
-  IncidentRelationsGetResponse,
-  IncidentRelationsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IncidentRelationsGetRequest,
-  output: IncidentRelationsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IncidentRelationsListError = AzureOpError;
-/** Gets all relations for a given incident. */
-export const IncidentRelationsList: API.OperationMethod<
-  IncidentRelationsListRequest,
-  RelationList,
-  IncidentRelationsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IncidentRelationsListRequest,
-  output: RelationList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -9656,111 +9806,6 @@ export const IncidentsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type IncidentsDeleteError = AzureOpError;
-/** Deletes a given incident. */
-export const IncidentsDelete: API.OperationMethod<
-  IncidentsDeleteRequest,
-  IncidentsDeleteResponse,
-  IncidentsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IncidentsDeleteRequest,
-  output: IncidentsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IncidentsGetError = AzureOpError;
-/** Gets a given incident. */
-export const IncidentsGet: API.OperationMethod<
-  IncidentsGetRequest,
-  IncidentsGetResponse,
-  IncidentsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IncidentsGetRequest,
-  output: IncidentsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IncidentsListError = AzureOpError;
-/** Gets all incidents. */
-export const IncidentsList: API.OperationMethod<
-  IncidentsListRequest,
-  IncidentList,
-  IncidentsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IncidentsListRequest,
-  output: IncidentList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IncidentsListAlertsError = AzureOpError;
-/** Gets all alerts for an incident. */
-export const IncidentsListAlerts: API.OperationMethod<
-  IncidentsListAlertsRequest,
-  IncidentAlertList,
-  IncidentsListAlertsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IncidentsListAlertsRequest,
-  output: IncidentAlertList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IncidentsListBookmarksError = AzureOpError;
-/** Gets all bookmarks for an incident. */
-export const IncidentsListBookmarks: API.OperationMethod<
-  IncidentsListBookmarksRequest,
-  IncidentBookmarkList,
-  IncidentsListBookmarksError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IncidentsListBookmarksRequest,
-  output: IncidentBookmarkList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IncidentsListEntitiesError = AzureOpError;
-/** Gets all entities for an incident. */
-export const IncidentsListEntities: API.OperationMethod<
-  IncidentsListEntitiesRequest,
-  IncidentEntitiesResponse,
-  IncidentsListEntitiesError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IncidentsListEntitiesRequest,
-  output: IncidentEntitiesResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IncidentsRunPlaybookError = AzureOpError;
-/** Triggers playbook on a specific incident */
-export const IncidentsRunPlaybook: API.OperationMethod<
-  IncidentsRunPlaybookRequest,
-  IncidentsRunPlaybookResponse,
-  IncidentsRunPlaybookError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IncidentsRunPlaybookRequest,
-  output: IncidentsRunPlaybookResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type IncidentTasksCreateOrUpdateError = AzureOpError;
 /** Creates or updates the incident task. */
 export const IncidentTasksCreateOrUpdate: API.OperationMethod<
@@ -9776,196 +9821,496 @@ export const IncidentTasksCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type IncidentTasksDeleteError = AzureOpError;
-/** Delete the incident task. */
-export const IncidentTasksDelete: API.OperationMethod<
-  IncidentTasksDeleteRequest,
-  IncidentTasksDeleteResponse,
-  IncidentTasksDeleteError,
+export type InstallContentPackageError = AzureOpError;
+/** Install a package to the workspace. */
+export const InstallContentPackage: API.OperationMethod<
+  InstallContentPackageRequest,
+  InstallContentPackageResponse,
+  InstallContentPackageError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: IncidentTasksDeleteRequest,
-  output: IncidentTasksDeleteResponse,
+  input: InstallContentPackageRequest,
+  output: InstallContentPackageResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type IncidentTasksGetError = AzureOpError;
-/** Gets an incident task. */
-export const IncidentTasksGet: API.OperationMethod<
-  IncidentTasksGetRequest,
-  IncidentTasksGetResponse,
-  IncidentTasksGetError,
+export type InstallContentTemplateError = AzureOpError;
+/** Install a template. */
+export const InstallContentTemplate: API.OperationMethod<
+  InstallContentTemplateRequest,
+  InstallContentTemplateResponse,
+  InstallContentTemplateError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: IncidentTasksGetRequest,
-  output: IncidentTasksGetResponse,
+  input: InstallContentTemplateRequest,
+  output: InstallContentTemplateResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type IncidentTasksListError = AzureOpError;
+export type ListActionByAlertRuleError = AzureOpError;
+/** Gets all actions of alert rule. */
+export const ListActionByAlertRule: API.OperationMethod<
+  ListActionByAlertRuleRequest,
+  ActionsList,
+  ListActionByAlertRuleError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListActionByAlertRuleRequest,
+  output: ActionsList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListAlertRulesError = AzureOpError;
+/** Gets all alert rules. */
+export const ListAlertRules: API.OperationMethod<
+  ListAlertRulesRequest,
+  AlertRulesList,
+  ListAlertRulesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListAlertRulesRequest,
+  output: AlertRulesList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListAlertRuleTemplatesError = AzureOpError;
+/** Gets all alert rule templates. */
+export const ListAlertRuleTemplates: API.OperationMethod<
+  ListAlertRuleTemplatesRequest,
+  AlertRuleTemplatesList,
+  ListAlertRuleTemplatesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListAlertRuleTemplatesRequest,
+  output: AlertRuleTemplatesList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListAutomationRulesError = AzureOpError;
+/** Gets all automation rules. */
+export const ListAutomationRules: API.OperationMethod<
+  ListAutomationRulesRequest,
+  AutomationRulesList,
+  ListAutomationRulesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListAutomationRulesRequest,
+  output: AutomationRulesList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListBookmarksError = AzureOpError;
+/** Gets all bookmarks. */
+export const ListBookmarks: API.OperationMethod<
+  ListBookmarksRequest,
+  BookmarkList,
+  ListBookmarksError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListBookmarksRequest,
+  output: BookmarkList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListContentPackagesError = AzureOpError;
+/** Gets all installed packages. */
+export const ListContentPackages: API.OperationMethod<
+  ListContentPackagesRequest,
+  PackageList,
+  ListContentPackagesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListContentPackagesRequest,
+  output: PackageList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListContentTemplatesError = AzureOpError;
+/** Gets all installed templates. Expandable properties: - properties/mainTemplate - properties/dependantTemplates */
+export const ListContentTemplates: API.OperationMethod<
+  ListContentTemplatesRequest,
+  TemplateList,
+  ListContentTemplatesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListContentTemplatesRequest,
+  output: TemplateList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDataConnectorDefinitionsError = AzureOpError;
+/** Gets all data connector definitions. */
+export const ListDataConnectorDefinitions: API.OperationMethod<
+  ListDataConnectorDefinitionsRequest,
+  DataConnectorDefinitionArmCollectionWrapper,
+  ListDataConnectorDefinitionsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDataConnectorDefinitionsRequest,
+  output: DataConnectorDefinitionArmCollectionWrapper,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDataConnectorsError = AzureOpError;
+/** Gets all data connectors. */
+export const ListDataConnectors: API.OperationMethod<
+  ListDataConnectorsRequest,
+  DataConnectorList,
+  ListDataConnectorsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDataConnectorsRequest,
+  output: DataConnectorList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListIncidentAlertsError = AzureOpError;
+/** Gets all alerts for an incident. */
+export const ListIncidentAlerts: API.OperationMethod<
+  ListIncidentAlertsRequest,
+  IncidentAlertList,
+  ListIncidentAlertsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListIncidentAlertsRequest,
+  output: IncidentAlertList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListIncidentBookmarksError = AzureOpError;
+/** Gets all bookmarks for an incident. */
+export const ListIncidentBookmarks: API.OperationMethod<
+  ListIncidentBookmarksRequest,
+  IncidentBookmarkList,
+  ListIncidentBookmarksError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListIncidentBookmarksRequest,
+  output: IncidentBookmarkList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListIncidentCommentsError = AzureOpError;
+/** Gets all comments for a given incident. */
+export const ListIncidentComments: API.OperationMethod<
+  ListIncidentCommentsRequest,
+  IncidentCommentList,
+  ListIncidentCommentsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListIncidentCommentsRequest,
+  output: IncidentCommentList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListIncidentEntitiesError = AzureOpError;
+/** Gets all entities for an incident. */
+export const ListIncidentEntities: API.OperationMethod<
+  ListIncidentEntitiesRequest,
+  IncidentEntitiesResponse,
+  ListIncidentEntitiesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListIncidentEntitiesRequest,
+  output: IncidentEntitiesResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListIncidentRelationsError = AzureOpError;
+/** Gets all relations for a given incident. */
+export const ListIncidentRelations: API.OperationMethod<
+  ListIncidentRelationsRequest,
+  RelationList,
+  ListIncidentRelationsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListIncidentRelationsRequest,
+  output: RelationList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListIncidentsError = AzureOpError;
+/** Gets all incidents. */
+export const ListIncidents: API.OperationMethod<
+  ListIncidentsRequest,
+  IncidentList,
+  ListIncidentsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListIncidentsRequest,
+  output: IncidentList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListIncidentTasksError = AzureOpError;
 /** Gets all incident tasks. */
-export const IncidentTasksList: API.OperationMethod<
-  IncidentTasksListRequest,
+export const ListIncidentTasks: API.OperationMethod<
+  ListIncidentTasksRequest,
   IncidentTaskList,
-  IncidentTasksListError,
+  ListIncidentTasksError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: IncidentTasksListRequest,
+  input: ListIncidentTasksRequest,
   output: IncidentTaskList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type MetadataCreateError = AzureOpError;
-/** Create a Metadata. */
-export const MetadataCreate: API.OperationMethod<
-  MetadataCreateRequest,
-  MetadataCreateResponse,
-  MetadataCreateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: MetadataCreateRequest,
-  output: MetadataCreateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type MetadataDeleteError = AzureOpError;
-/** Delete a Metadata. */
-export const MetadataDelete: API.OperationMethod<
-  MetadataDeleteRequest,
-  MetadataDeleteResponse,
-  MetadataDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: MetadataDeleteRequest,
-  output: MetadataDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type MetadataGetError = AzureOpError;
-/** Get a Metadata. */
-export const MetadataGet: API.OperationMethod<
-  MetadataGetRequest,
-  MetadataGetResponse,
-  MetadataGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: MetadataGetRequest,
-  output: MetadataGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type MetadataList2Error = AzureOpError;
+export type ListMetadataError = AzureOpError;
 /** List of all metadata */
-export const MetadataList2: API.OperationMethod<
-  MetadataListRequest,
+export const ListMetadata: API.OperationMethod<
+  ListMetadataRequest,
   MetadataList,
-  MetadataList2Error,
+  ListMetadataError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: MetadataListRequest,
+  input: ListMetadataRequest,
   output: MetadataList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type MetadataUpdateError = AzureOpError;
-/** Update an existing Metadata. */
-export const MetadataUpdate: API.OperationMethod<
-  MetadataUpdateRequest,
-  MetadataUpdateResponse,
-  MetadataUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: MetadataUpdateRequest,
-  output: MetadataUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type OperationsList2Error = AzureOpError;
+export type ListOperationsError = AzureOpError;
 /** Lists all operations available Azure Security Insights Resource Provider. */
-export const OperationsList2: API.OperationMethod<
-  OperationsList2Request,
+export const ListOperations: API.OperationMethod<
+  ListOperationsRequest,
   OperationsList,
-  OperationsList2Error,
+  ListOperationsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OperationsList2Request,
+  input: ListOperationsRequest,
   output: OperationsList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ProductPackageGetError = AzureOpError;
-/** Gets a package by its identifier from the catalog. */
-export const ProductPackageGet: API.OperationMethod<
-  ProductPackageGetRequest,
-  ProductPackageGetResponse,
-  ProductPackageGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ProductPackageGetRequest,
-  output: ProductPackageGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ProductPackagesListError = AzureOpError;
+export type ListProductPackagesError = AzureOpError;
 /** Gets all packages from the catalog. Expandable properties: - properties/installed - properties/packagedContent */
-export const ProductPackagesList: API.OperationMethod<
-  ProductPackagesListRequest,
+export const ListProductPackages: API.OperationMethod<
+  ListProductPackagesRequest,
   ProductPackageList,
-  ProductPackagesListError,
+  ListProductPackagesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ProductPackagesListRequest,
+  input: ListProductPackagesRequest,
   output: ProductPackageList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ProductTemplateGetError = AzureOpError;
-/** Gets a template by its identifier. */
-export const ProductTemplateGet: API.OperationMethod<
-  ProductTemplateGetRequest,
-  ProductTemplateGetResponse,
-  ProductTemplateGetError,
+export type ListProductTemplatesError = AzureOpError;
+/** Gets all templates in the catalog. */
+export const ListProductTemplates: API.OperationMethod<
+  ListProductTemplatesRequest,
+  ProductTemplateList,
+  ListProductTemplatesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ProductTemplateGetRequest,
-  output: ProductTemplateGetResponse,
+  input: ListProductTemplatesRequest,
+  output: ProductTemplateList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ProductTemplatesListError = AzureOpError;
-/** Gets all templates in the catalog. */
-export const ProductTemplatesList: API.OperationMethod<
-  ProductTemplatesListRequest,
-  ProductTemplateList,
-  ProductTemplatesListError,
+export type ListSecurityMLAnalyticsSettingsError = AzureOpError;
+/** Gets all Security ML Analytics Settings. */
+export const ListSecurityMLAnalyticsSettings: API.OperationMethod<
+  ListSecurityMLAnalyticsSettingsRequest,
+  SecurityMLAnalyticsSettingsList,
+  ListSecurityMLAnalyticsSettingsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ProductTemplatesListRequest,
-  output: ProductTemplateList,
+  input: ListSecurityMLAnalyticsSettingsRequest,
+  output: SecurityMLAnalyticsSettingsList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSentinelOnboardingStatesError = AzureOpError;
+/** Gets all Sentinel onboarding states */
+export const ListSentinelOnboardingStates: API.OperationMethod<
+  ListSentinelOnboardingStatesRequest,
+  SentinelOnboardingStatesList,
+  ListSentinelOnboardingStatesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSentinelOnboardingStatesRequest,
+  output: SentinelOnboardingStatesList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSourceControlRepositoriesError = AzureOpError;
+/** Gets a list of repositories metadata. */
+export const ListSourceControlRepositories: API.OperationMethod<
+  ListSourceControlRepositoriesRequest,
+  RepoList,
+  ListSourceControlRepositoriesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSourceControlRepositoriesRequest,
+  output: RepoList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSourceControlsError = AzureOpError;
+/** Gets all source controls, without source control items. */
+export const ListSourceControls: API.OperationMethod<
+  ListSourceControlsRequest,
+  SourceControlList,
+  ListSourceControlsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSourceControlsRequest,
+  output: SourceControlList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListThreatIntelligenceIndicatorMetricsError = AzureOpError;
+/** Get threat intelligence indicators metrics (Indicators counts by Type, Threat Type, Source). */
+export const ListThreatIntelligenceIndicatorMetrics: API.OperationMethod<
+  ListThreatIntelligenceIndicatorMetricsRequest,
+  ThreatIntelligenceMetricsList,
+  ListThreatIntelligenceIndicatorMetricsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListThreatIntelligenceIndicatorMetricsRequest,
+  output: ThreatIntelligenceMetricsList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListThreatIntelligenceIndicatorsError = AzureOpError;
+/** Get all threat intelligence indicators. */
+export const ListThreatIntelligenceIndicators: API.OperationMethod<
+  ListThreatIntelligenceIndicatorsRequest,
+  ThreatIntelligenceInformationList,
+  ListThreatIntelligenceIndicatorsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListThreatIntelligenceIndicatorsRequest,
+  output: ThreatIntelligenceInformationList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListWatchlistItemsError = AzureOpError;
+/** Get all watchlist Items. */
+export const ListWatchlistItems: API.OperationMethod<
+  ListWatchlistItemsRequest,
+  WatchlistItemList,
+  ListWatchlistItemsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListWatchlistItemsRequest,
+  output: WatchlistItemList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListWatchlistsError = AzureOpError;
+/** Get all watchlists, without watchlist items. */
+export const ListWatchlists: API.OperationMethod<
+  ListWatchlistsRequest,
+  WatchlistList,
+  ListWatchlistsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListWatchlistsRequest,
+  output: WatchlistList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ReplaceThreatIntelligenceIndicatorTagsError = AzureOpError;
+/** Replace tags added to a threat intelligence indicator. */
+export const ReplaceThreatIntelligenceIndicatorTags: API.OperationMethod<
+  ReplaceThreatIntelligenceIndicatorTagsRequest,
+  ReplaceThreatIntelligenceIndicatorTagsResponse,
+  ReplaceThreatIntelligenceIndicatorTagsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ReplaceThreatIntelligenceIndicatorTagsRequest,
+  output: ReplaceThreatIntelligenceIndicatorTagsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RunEntityPlaybookError = AzureOpError;
+/** Triggers playbook on a specific entity. */
+export const RunEntityPlaybook: API.OperationMethod<
+  RunEntityPlaybookRequest,
+  RunEntityPlaybookResponse,
+  RunEntityPlaybookError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RunEntityPlaybookRequest,
+  output: RunEntityPlaybookResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RunIncidentPlaybookError = AzureOpError;
+/** Triggers playbook on a specific incident */
+export const RunIncidentPlaybook: API.OperationMethod<
+  RunIncidentPlaybookRequest,
+  RunIncidentPlaybookResponse,
+  RunIncidentPlaybookError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RunIncidentPlaybookRequest,
+  output: RunIncidentPlaybookResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -9986,186 +10331,6 @@ export const SecurityMLAnalyticsSettingsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type SecurityMLAnalyticsSettingsDeleteError = AzureOpError;
-/** Delete the Security ML Analytics Settings. */
-export const SecurityMLAnalyticsSettingsDelete: API.OperationMethod<
-  SecurityMLAnalyticsSettingsDeleteRequest,
-  SecurityMLAnalyticsSettingsDeleteResponse,
-  SecurityMLAnalyticsSettingsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SecurityMLAnalyticsSettingsDeleteRequest,
-  output: SecurityMLAnalyticsSettingsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SecurityMLAnalyticsSettingsGetError = AzureOpError;
-/** Gets the Security ML Analytics Settings. */
-export const SecurityMLAnalyticsSettingsGet: API.OperationMethod<
-  SecurityMLAnalyticsSettingsGetRequest,
-  SecurityMLAnalyticsSettingsGetResponse,
-  SecurityMLAnalyticsSettingsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SecurityMLAnalyticsSettingsGetRequest,
-  output: SecurityMLAnalyticsSettingsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SecurityMLAnalyticsSettingsList2Error = AzureOpError;
-/** Gets all Security ML Analytics Settings. */
-export const SecurityMLAnalyticsSettingsList2: API.OperationMethod<
-  SecurityMLAnalyticsSettingsListRequest,
-  SecurityMLAnalyticsSettingsList,
-  SecurityMLAnalyticsSettingsList2Error,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SecurityMLAnalyticsSettingsListRequest,
-  output: SecurityMLAnalyticsSettingsList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SentinelOnboardingStatesCreateError = AzureOpError;
-/** Create Sentinel onboarding state */
-export const SentinelOnboardingStatesCreate: API.OperationMethod<
-  SentinelOnboardingStatesCreateRequest,
-  SentinelOnboardingStatesCreateResponse,
-  SentinelOnboardingStatesCreateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SentinelOnboardingStatesCreateRequest,
-  output: SentinelOnboardingStatesCreateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SentinelOnboardingStatesDeleteError = AzureOpError;
-/** Delete Sentinel onboarding state */
-export const SentinelOnboardingStatesDelete: API.OperationMethod<
-  SentinelOnboardingStatesDeleteRequest,
-  SentinelOnboardingStatesDeleteResponse,
-  SentinelOnboardingStatesDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SentinelOnboardingStatesDeleteRequest,
-  output: SentinelOnboardingStatesDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SentinelOnboardingStatesGetError = AzureOpError;
-/** Get Sentinel onboarding state */
-export const SentinelOnboardingStatesGet: API.OperationMethod<
-  SentinelOnboardingStatesGetRequest,
-  SentinelOnboardingStatesGetResponse,
-  SentinelOnboardingStatesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SentinelOnboardingStatesGetRequest,
-  output: SentinelOnboardingStatesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SentinelOnboardingStatesList2Error = AzureOpError;
-/** Gets all Sentinel onboarding states */
-export const SentinelOnboardingStatesList2: API.OperationMethod<
-  SentinelOnboardingStatesListRequest,
-  SentinelOnboardingStatesList,
-  SentinelOnboardingStatesList2Error,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SentinelOnboardingStatesListRequest,
-  output: SentinelOnboardingStatesList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SourceControlListRepositoriesError = AzureOpError;
-/** Gets a list of repositories metadata. */
-export const SourceControlListRepositories: API.OperationMethod<
-  SourceControlListRepositoriesRequest,
-  RepoList,
-  SourceControlListRepositoriesError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SourceControlListRepositoriesRequest,
-  output: RepoList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SourceControlsCreateError = AzureOpError;
-/** Creates a source control. */
-export const SourceControlsCreate: API.OperationMethod<
-  SourceControlsCreateRequest,
-  SourceControlsCreateResponse,
-  SourceControlsCreateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SourceControlsCreateRequest,
-  output: SourceControlsCreateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SourceControlsDeleteError = AzureOpError;
-/** Delete a source control. */
-export const SourceControlsDelete: API.OperationMethod<
-  SourceControlsDeleteRequest,
-  Warning,
-  SourceControlsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SourceControlsDeleteRequest,
-  output: Warning,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SourceControlsGetError = AzureOpError;
-/** Gets a source control byt its identifier. */
-export const SourceControlsGet: API.OperationMethod<
-  SourceControlsGetRequest,
-  SourceControlsGetResponse,
-  SourceControlsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SourceControlsGetRequest,
-  output: SourceControlsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SourceControlsListError = AzureOpError;
-/** Gets all source controls, without source control items. */
-export const SourceControlsList: API.OperationMethod<
-  SourceControlsListRequest,
-  SourceControlList,
-  SourceControlsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SourceControlsListRequest,
-  output: SourceControlList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ThreatIntelligenceIndicatorAppendTagsError = AzureOpError;
 /** Append tags to a threat intelligence indicator. */
 export const ThreatIntelligenceIndicatorAppendTags: API.OperationMethod<
@@ -10176,81 +10341,6 @@ export const ThreatIntelligenceIndicatorAppendTags: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ThreatIntelligenceIndicatorAppendTagsRequest,
   output: ThreatIntelligenceIndicatorAppendTagsResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ThreatIntelligenceIndicatorCreateError = AzureOpError;
-/** Update a threat Intelligence indicator. */
-export const ThreatIntelligenceIndicatorCreate: API.OperationMethod<
-  ThreatIntelligenceIndicatorCreateRequest,
-  ThreatIntelligenceIndicatorCreateResponse,
-  ThreatIntelligenceIndicatorCreateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ThreatIntelligenceIndicatorCreateRequest,
-  output: ThreatIntelligenceIndicatorCreateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ThreatIntelligenceIndicatorCreateIndicatorError = AzureOpError;
-/** Create a new threat intelligence indicator. */
-export const ThreatIntelligenceIndicatorCreateIndicator: API.OperationMethod<
-  ThreatIntelligenceIndicatorCreateIndicatorRequest,
-  ThreatIntelligenceIndicatorCreateIndicatorResponse,
-  ThreatIntelligenceIndicatorCreateIndicatorError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ThreatIntelligenceIndicatorCreateIndicatorRequest,
-  output: ThreatIntelligenceIndicatorCreateIndicatorResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ThreatIntelligenceIndicatorDeleteError = AzureOpError;
-/** Delete a threat intelligence indicator. */
-export const ThreatIntelligenceIndicatorDelete: API.OperationMethod<
-  ThreatIntelligenceIndicatorDeleteRequest,
-  ThreatIntelligenceIndicatorDeleteResponse,
-  ThreatIntelligenceIndicatorDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ThreatIntelligenceIndicatorDeleteRequest,
-  output: ThreatIntelligenceIndicatorDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ThreatIntelligenceIndicatorGetError = AzureOpError;
-/** View a threat intelligence indicator by name. */
-export const ThreatIntelligenceIndicatorGet: API.OperationMethod<
-  ThreatIntelligenceIndicatorGetRequest,
-  ThreatIntelligenceIndicatorGetResponse,
-  ThreatIntelligenceIndicatorGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ThreatIntelligenceIndicatorGetRequest,
-  output: ThreatIntelligenceIndicatorGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ThreatIntelligenceIndicatorMetricsListError = AzureOpError;
-/** Get threat intelligence indicators metrics (Indicators counts by Type, Threat Type, Source). */
-export const ThreatIntelligenceIndicatorMetricsList: API.OperationMethod<
-  ThreatIntelligenceIndicatorMetricsListRequest,
-  ThreatIntelligenceMetricsList,
-  ThreatIntelligenceIndicatorMetricsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ThreatIntelligenceIndicatorMetricsListRequest,
-  output: ThreatIntelligenceMetricsList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -10271,31 +10361,31 @@ export const ThreatIntelligenceIndicatorQueryIndicators: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ThreatIntelligenceIndicatorReplaceTagsError = AzureOpError;
-/** Replace tags added to a threat intelligence indicator. */
-export const ThreatIntelligenceIndicatorReplaceTags: API.OperationMethod<
-  ThreatIntelligenceIndicatorReplaceTagsRequest,
-  ThreatIntelligenceIndicatorReplaceTagsResponse,
-  ThreatIntelligenceIndicatorReplaceTagsError,
+export type UninstallContentPackageError = AzureOpError;
+/** Uninstall a package from the workspace. */
+export const UninstallContentPackage: API.OperationMethod<
+  UninstallContentPackageRequest,
+  UninstallContentPackageResponse,
+  UninstallContentPackageError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ThreatIntelligenceIndicatorReplaceTagsRequest,
-  output: ThreatIntelligenceIndicatorReplaceTagsResponse,
+  input: UninstallContentPackageRequest,
+  output: UninstallContentPackageResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ThreatIntelligenceIndicatorsListError = AzureOpError;
-/** Get all threat intelligence indicators. */
-export const ThreatIntelligenceIndicatorsList: API.OperationMethod<
-  ThreatIntelligenceIndicatorsListRequest,
-  ThreatIntelligenceInformationList,
-  ThreatIntelligenceIndicatorsListError,
+export type UpdateMetadataError = AzureOpError;
+/** Update an existing Metadata. */
+export const UpdateMetadata: API.OperationMethod<
+  UpdateMetadataRequest,
+  UpdateMetadataResponse,
+  UpdateMetadataError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ThreatIntelligenceIndicatorsListRequest,
-  output: ThreatIntelligenceInformationList,
+  input: UpdateMetadataRequest,
+  output: UpdateMetadataResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -10316,51 +10406,6 @@ export const WatchlistItemsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type WatchlistItemsDeleteError = AzureOpError;
-/** Delete a watchlist item. */
-export const WatchlistItemsDelete: API.OperationMethod<
-  WatchlistItemsDeleteRequest,
-  WatchlistItemsDeleteResponse,
-  WatchlistItemsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WatchlistItemsDeleteRequest,
-  output: WatchlistItemsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WatchlistItemsGetError = AzureOpError;
-/** Get a watchlist item. */
-export const WatchlistItemsGet: API.OperationMethod<
-  WatchlistItemsGetRequest,
-  WatchlistItemsGetResponse,
-  WatchlistItemsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WatchlistItemsGetRequest,
-  output: WatchlistItemsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WatchlistItemsListError = AzureOpError;
-/** Get all watchlist Items. */
-export const WatchlistItemsList: API.OperationMethod<
-  WatchlistItemsListRequest,
-  WatchlistItemList,
-  WatchlistItemsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WatchlistItemsListRequest,
-  output: WatchlistItemList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type WatchlistsCreateOrUpdateError = AzureOpError;
 /** Create or update a Watchlist and its Watchlist Items (bulk creation, e.g. through text/csv content type). To create a Watchlist and its Items, we should call this endpoint with rawContent and contentType properties. */
 export const WatchlistsCreateOrUpdate: API.OperationMethod<
@@ -10371,51 +10416,6 @@ export const WatchlistsCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: WatchlistsCreateOrUpdateRequest,
   output: WatchlistsCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WatchlistsDeleteError = AzureOpError;
-/** Delete a watchlist. */
-export const WatchlistsDelete: API.OperationMethod<
-  WatchlistsDeleteRequest,
-  WatchlistsDeleteResponse,
-  WatchlistsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WatchlistsDeleteRequest,
-  output: WatchlistsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WatchlistsGetError = AzureOpError;
-/** Get a watchlist, without its watchlist items. */
-export const WatchlistsGet: API.OperationMethod<
-  WatchlistsGetRequest,
-  WatchlistsGetResponse,
-  WatchlistsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WatchlistsGetRequest,
-  output: WatchlistsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WatchlistsListError = AzureOpError;
-/** Get all watchlists, without watchlist items. */
-export const WatchlistsList: API.OperationMethod<
-  WatchlistsListRequest,
-  WatchlistList,
-  WatchlistsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WatchlistsListRequest,
-  output: WatchlistList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

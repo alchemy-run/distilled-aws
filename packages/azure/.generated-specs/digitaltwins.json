@@ -14,16 +14,17 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.digitaltwins#TimeSeriesDatabaseConnectionsDelete": {
+    "com.azure.digitaltwins#DeleteTimeSeriesDatabaseConnection": {
       "type": "operation",
       "input": {
-        "target": "com.azure.digitaltwins#TimeSeriesDatabaseConnectionsDeleteRequest"
+        "target": "com.azure.digitaltwins#DeleteTimeSeriesDatabaseConnectionRequest"
       },
       "output": {
-        "target": "com.azure.digitaltwins#TimeSeriesDatabaseConnectionsDeleteResponse"
+        "target": "com.azure.digitaltwins#DeleteTimeSeriesDatabaseConnectionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -36,7 +37,7 @@
         "com.distilled.openapi#apiVersion": "2023-01-31"
       }
     },
-    "com.azure.digitaltwins#TimeSeriesDatabaseConnectionsDeleteResponse": {
+    "com.azure.digitaltwins#DeleteTimeSeriesDatabaseConnectionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -351,7 +352,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.digitaltwins#TimeSeriesDatabaseConnectionsDeleteRequest": {
+    "com.azure.digitaltwins#DeleteTimeSeriesDatabaseConnectionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -387,7 +388,7 @@
           }
         },
         "cleanupConnectionArtifacts": {
-          "target": "com.azure.digitaltwins#TimeSeriesDatabaseConnectionsDeleteRequestCleanupConnectionArtifacts",
+          "target": "com.azure.digitaltwins#DeleteTimeSeriesDatabaseConnectionRequestCleanupConnectionArtifacts",
           "traits": {
             "smithy.api#httpQuery": "cleanupConnectionArtifacts",
             "smithy.api#documentation": "Specifies whether or not to attempt to clean up artifacts that were created in order to establish a connection to the time series database. This is a best-effort attempt that will fail if appropriate permissions are not in place. Setting this to 'true' does not delete any recorded data."
@@ -398,7 +399,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.digitaltwins#TimeSeriesDatabaseConnectionsDeleteRequestCleanupConnectionArtifacts": {
+    "com.azure.digitaltwins#DeleteTimeSeriesDatabaseConnectionRequestCleanupConnectionArtifacts": {
       "type": "enum",
       "members": {
         "TRUE": {
@@ -555,13 +556,13 @@
         "smithy.api#documentation": "The type of time series connection resource."
       }
     },
-    "com.azure.digitaltwins#TimeSeriesDatabaseConnectionsGet": {
+    "com.azure.digitaltwins#GetTimeSeriesDatabaseConnection": {
       "type": "operation",
       "input": {
-        "target": "com.azure.digitaltwins#TimeSeriesDatabaseConnectionsGetRequest"
+        "target": "com.azure.digitaltwins#GetTimeSeriesDatabaseConnectionRequest"
       },
       "output": {
-        "target": "com.azure.digitaltwins#TimeSeriesDatabaseConnectionsGetResponse"
+        "target": "com.azure.digitaltwins#GetTimeSeriesDatabaseConnectionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -574,7 +575,7 @@
         "com.distilled.openapi#apiVersion": "2023-01-31"
       }
     },
-    "com.azure.digitaltwins#TimeSeriesDatabaseConnectionsGetResponse": {
+    "com.azure.digitaltwins#GetTimeSeriesDatabaseConnectionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -612,7 +613,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.digitaltwins#TimeSeriesDatabaseConnectionsGetRequest": {
+    "com.azure.digitaltwins#GetTimeSeriesDatabaseConnectionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -652,10 +653,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.digitaltwins#TimeSeriesDatabaseConnectionsList": {
+    "com.azure.digitaltwins#ListTimeSeriesDatabaseConnections": {
       "type": "operation",
       "input": {
-        "target": "com.azure.digitaltwins#TimeSeriesDatabaseConnectionsListRequest"
+        "target": "com.azure.digitaltwins#ListTimeSeriesDatabaseConnectionsRequest"
       },
       "output": {
         "target": "com.azure.digitaltwins#TimeSeriesDatabaseConnectionListResult"
@@ -739,7 +740,7 @@
         "smithy.api#documentation": "Describes a time series database connection resource."
       }
     },
-    "com.azure.digitaltwins#TimeSeriesDatabaseConnectionsListRequest": {
+    "com.azure.digitaltwins#ListTimeSeriesDatabaseConnectionsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -771,10 +772,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.digitaltwins#PrivateEndpointConnectionsDelete": {
+    "com.azure.digitaltwins#DeletePrivateEndpointConnection": {
       "type": "operation",
       "input": {
-        "target": "com.azure.digitaltwins#PrivateEndpointConnectionsDeleteRequest"
+        "target": "com.azure.digitaltwins#DeletePrivateEndpointConnectionRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -790,7 +791,7 @@
         "com.distilled.openapi#apiVersion": "2023-01-31"
       }
     },
-    "com.azure.digitaltwins#PrivateEndpointConnectionsDeleteRequest": {
+    "com.azure.digitaltwins#DeletePrivateEndpointConnectionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1126,10 +1127,10 @@
         "smithy.api#documentation": "The private endpoint property of a private endpoint connection."
       }
     },
-    "com.azure.digitaltwins#PrivateEndpointConnectionsGet": {
+    "com.azure.digitaltwins#GetPrivateEndpointConnection": {
       "type": "operation",
       "input": {
-        "target": "com.azure.digitaltwins#PrivateEndpointConnectionsGetRequest"
+        "target": "com.azure.digitaltwins#GetPrivateEndpointConnectionRequest"
       },
       "output": {
         "target": "com.azure.digitaltwins#PrivateEndpointConnection"
@@ -1145,7 +1146,7 @@
         "com.distilled.openapi#apiVersion": "2023-01-31"
       }
     },
-    "com.azure.digitaltwins#PrivateEndpointConnectionsGetRequest": {
+    "com.azure.digitaltwins#GetPrivateEndpointConnectionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1185,10 +1186,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.digitaltwins#PrivateEndpointConnectionsList": {
+    "com.azure.digitaltwins#ListPrivateEndpointConnections": {
       "type": "operation",
       "input": {
-        "target": "com.azure.digitaltwins#PrivateEndpointConnectionsListRequest"
+        "target": "com.azure.digitaltwins#ListPrivateEndpointConnectionsRequest"
       },
       "output": {
         "target": "com.azure.digitaltwins#PrivateEndpointConnectionsResponse"
@@ -1227,7 +1228,7 @@
         "smithy.api#documentation": "The list of available private link connections for a Digital Twin."
       }
     },
-    "com.azure.digitaltwins#PrivateEndpointConnectionsListRequest": {
+    "com.azure.digitaltwins#ListPrivateEndpointConnectionsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1259,10 +1260,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.digitaltwins#PrivateLinkResourcesGet": {
+    "com.azure.digitaltwins#GetPrivateLinkResource": {
       "type": "operation",
       "input": {
-        "target": "com.azure.digitaltwins#PrivateLinkResourcesGetRequest"
+        "target": "com.azure.digitaltwins#GetPrivateLinkResourceRequest"
       },
       "output": {
         "target": "com.azure.digitaltwins#GroupIdInformation"
@@ -1355,7 +1356,7 @@
         "smithy.api#documentation": "The required members for a specific group id."
       }
     },
-    "com.azure.digitaltwins#PrivateLinkResourcesGetRequest": {
+    "com.azure.digitaltwins#GetPrivateLinkResourceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1395,10 +1396,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.digitaltwins#PrivateLinkResourcesList": {
+    "com.azure.digitaltwins#ListPrivateLinkResources": {
       "type": "operation",
       "input": {
-        "target": "com.azure.digitaltwins#PrivateLinkResourcesListRequest"
+        "target": "com.azure.digitaltwins#ListPrivateLinkResourcesRequest"
       },
       "output": {
         "target": "com.azure.digitaltwins#GroupIdInformationResponse"
@@ -1437,7 +1438,7 @@
         "smithy.api#documentation": "The list of available private link resources for a Digital Twin."
       }
     },
-    "com.azure.digitaltwins#PrivateLinkResourcesListRequest": {
+    "com.azure.digitaltwins#ListPrivateLinkResourcesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1469,10 +1470,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.digitaltwins#DigitalTwinsCheckNameAvailability": {
+    "com.azure.digitaltwins#CheckDigitalTwinNameAvailability": {
       "type": "operation",
       "input": {
-        "target": "com.azure.digitaltwins#DigitalTwinsCheckNameAvailabilityRequest"
+        "target": "com.azure.digitaltwins#CheckDigitalTwinNameAvailabilityRequest"
       },
       "output": {
         "target": "com.azure.digitaltwins#CheckNameResult"
@@ -1536,7 +1537,7 @@
         "smithy.api#documentation": "Message providing the reason why the given name is invalid."
       }
     },
-    "com.azure.digitaltwins#DigitalTwinsCheckNameAvailabilityRequest": {
+    "com.azure.digitaltwins#CheckDigitalTwinNameAvailabilityRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1563,7 +1564,7 @@
           }
         },
         "type": {
-          "target": "com.azure.digitaltwins#DigitalTwinsCheckNameAvailabilityRequestType",
+          "target": "com.azure.digitaltwins#CheckDigitalTwinNameAvailabilityRequestType",
           "traits": {
             "smithy.api#documentation": "The type of resource, for instance Microsoft.DigitalTwins/digitalTwinsInstances.",
             "smithy.api#required": {}
@@ -1574,7 +1575,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.digitaltwins#DigitalTwinsCheckNameAvailabilityRequestType": {
+    "com.azure.digitaltwins#CheckDigitalTwinNameAvailabilityRequestType": {
       "type": "enum",
       "members": {
         "MICROSOFT_DIGITALTWINS_DIGITALTWINSINSTANCES": {
@@ -1588,7 +1589,7 @@
         "smithy.api#documentation": "The type of resource, for instance Microsoft.DigitalTwins/digitalTwinsInstances."
       }
     },
-    "com.azure.digitaltwins#OperationsList": {
+    "com.azure.digitaltwins#ListOperations": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -1721,10 +1722,10 @@
         "smithy.api#documentation": "The object that represents the operation."
       }
     },
-    "com.azure.digitaltwins#DigitalTwinsListByResourceGroup": {
+    "com.azure.digitaltwins#ListDigitalTwinByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.digitaltwins#DigitalTwinsListByResourceGroupRequest"
+        "target": "com.azure.digitaltwins#ListDigitalTwinByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.digitaltwins#DigitalTwinsDescriptionListResult"
@@ -2090,7 +2091,7 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.digitaltwins#DigitalTwinsListByResourceGroupRequest": {
+    "com.azure.digitaltwins#ListDigitalTwinByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2114,10 +2115,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.digitaltwins#DigitalTwinsList": {
+    "com.azure.digitaltwins#ListDigitalTwins": {
       "type": "operation",
       "input": {
-        "target": "com.azure.digitaltwins#DigitalTwinsListRequest"
+        "target": "com.azure.digitaltwins#ListDigitalTwinsRequest"
       },
       "output": {
         "target": "com.azure.digitaltwins#DigitalTwinsDescriptionListResult"
@@ -2133,7 +2134,7 @@
         "com.distilled.openapi#apiVersion": "2023-01-31"
       }
     },
-    "com.azure.digitaltwins#DigitalTwinsListRequest": {
+    "com.azure.digitaltwins#ListDigitalTwinsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2149,13 +2150,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.digitaltwins#DigitalTwinsEndpointDelete": {
+    "com.azure.digitaltwins#DeleteDigitalTwinsEndpoint": {
       "type": "operation",
       "input": {
-        "target": "com.azure.digitaltwins#DigitalTwinsEndpointDeleteRequest"
+        "target": "com.azure.digitaltwins#DeleteDigitalTwinsEndpointRequest"
       },
       "output": {
-        "target": "com.azure.digitaltwins#DigitalTwinsEndpointDeleteResponse"
+        "target": "com.azure.digitaltwins#DeleteDigitalTwinsEndpointResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2168,7 +2169,7 @@
         "com.distilled.openapi#apiVersion": "2023-01-31"
       }
     },
-    "com.azure.digitaltwins#DigitalTwinsEndpointDeleteResponse": {
+    "com.azure.digitaltwins#DeleteDigitalTwinsEndpointResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2389,7 +2390,7 @@
         "smithy.api#documentation": "The type of Digital Twins endpoint"
       }
     },
-    "com.azure.digitaltwins#DigitalTwinsEndpointDeleteRequest": {
+    "com.azure.digitaltwins#DeleteDigitalTwinsEndpointRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2622,13 +2623,13 @@
         "smithy.api#documentation": "The type of Digital Twins endpoint"
       }
     },
-    "com.azure.digitaltwins#DigitalTwinsEndpointGet": {
+    "com.azure.digitaltwins#GetDigitalTwinsEndpoint": {
       "type": "operation",
       "input": {
-        "target": "com.azure.digitaltwins#DigitalTwinsEndpointGetRequest"
+        "target": "com.azure.digitaltwins#GetDigitalTwinsEndpointRequest"
       },
       "output": {
-        "target": "com.azure.digitaltwins#DigitalTwinsEndpointGetResponse"
+        "target": "com.azure.digitaltwins#GetDigitalTwinsEndpointResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2641,7 +2642,7 @@
         "com.distilled.openapi#apiVersion": "2023-01-31"
       }
     },
-    "com.azure.digitaltwins#DigitalTwinsEndpointGetResponse": {
+    "com.azure.digitaltwins#GetDigitalTwinsEndpointResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2680,7 +2681,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.digitaltwins#DigitalTwinsEndpointGetRequest": {
+    "com.azure.digitaltwins#GetDigitalTwinsEndpointRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2720,10 +2721,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.digitaltwins#DigitalTwinsEndpointList": {
+    "com.azure.digitaltwins#ListDigitalTwinsEndpoint": {
       "type": "operation",
       "input": {
-        "target": "com.azure.digitaltwins#DigitalTwinsEndpointListRequest"
+        "target": "com.azure.digitaltwins#ListDigitalTwinsEndpointRequest"
       },
       "output": {
         "target": "com.azure.digitaltwins#DigitalTwinsEndpointResourceListResult"
@@ -2808,7 +2809,7 @@
         "smithy.api#documentation": "DigitalTwinsInstance endpoint resource."
       }
     },
-    "com.azure.digitaltwins#DigitalTwinsEndpointListRequest": {
+    "com.azure.digitaltwins#ListDigitalTwinsEndpointRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2840,13 +2841,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.digitaltwins#DigitalTwinsDelete": {
+    "com.azure.digitaltwins#DeleteDigitalTwin": {
       "type": "operation",
       "input": {
-        "target": "com.azure.digitaltwins#DigitalTwinsDeleteRequest"
+        "target": "com.azure.digitaltwins#DeleteDigitalTwinRequest"
       },
       "output": {
-        "target": "com.azure.digitaltwins#DigitalTwinsDeleteResponse"
+        "target": "com.azure.digitaltwins#DeleteDigitalTwinResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2859,7 +2860,7 @@
         "com.distilled.openapi#apiVersion": "2023-01-31"
       }
     },
-    "com.azure.digitaltwins#DigitalTwinsDeleteResponse": {
+    "com.azure.digitaltwins#DeleteDigitalTwinResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2888,7 +2889,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.digitaltwins#DigitalTwinsDeleteResponseTagsMap",
+          "target": "com.azure.digitaltwins#DeleteDigitalTwinResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags.",
             "com.distilled.openapi#nullable": {}
@@ -2918,7 +2919,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.digitaltwins#DigitalTwinsDeleteResponseTagsMap": {
+    "com.azure.digitaltwins#DeleteDigitalTwinResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2930,7 +2931,7 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.digitaltwins#DigitalTwinsDeleteRequest": {
+    "com.azure.digitaltwins#DeleteDigitalTwinRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2962,13 +2963,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.digitaltwins#DigitalTwinsUpdate": {
+    "com.azure.digitaltwins#UpdateDigitalTwin": {
       "type": "operation",
       "input": {
-        "target": "com.azure.digitaltwins#DigitalTwinsUpdateRequest"
+        "target": "com.azure.digitaltwins#UpdateDigitalTwinRequest"
       },
       "output": {
-        "target": "com.azure.digitaltwins#DigitalTwinsUpdateResponse"
+        "target": "com.azure.digitaltwins#UpdateDigitalTwinResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2981,7 +2982,7 @@
         "com.distilled.openapi#apiVersion": "2023-01-31"
       }
     },
-    "com.azure.digitaltwins#DigitalTwinsUpdateResponse": {
+    "com.azure.digitaltwins#UpdateDigitalTwinResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3010,7 +3011,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.digitaltwins#DigitalTwinsUpdateResponseTagsMap",
+          "target": "com.azure.digitaltwins#UpdateDigitalTwinResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags.",
             "com.distilled.openapi#nullable": {}
@@ -3040,7 +3041,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.digitaltwins#DigitalTwinsUpdateResponseTagsMap": {
+    "com.azure.digitaltwins#UpdateDigitalTwinResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3052,7 +3053,7 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.digitaltwins#DigitalTwinsUpdateRequest": {
+    "com.azure.digitaltwins#UpdateDigitalTwinRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3080,7 +3081,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.digitaltwins#DigitalTwinsUpdateRequestTagsMap",
+          "target": "com.azure.digitaltwins#UpdateDigitalTwinRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Instance patch properties",
             "com.distilled.openapi#nullable": {}
@@ -3212,7 +3213,7 @@
         "smithy.api#documentation": "The type of Managed Identity used by the DigitalTwinsInstance."
       }
     },
-    "com.azure.digitaltwins#DigitalTwinsUpdateRequestTagsMap": {
+    "com.azure.digitaltwins#UpdateDigitalTwinRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3451,13 +3452,13 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.digitaltwins#DigitalTwinsGet": {
+    "com.azure.digitaltwins#GetDigitalTwin": {
       "type": "operation",
       "input": {
-        "target": "com.azure.digitaltwins#DigitalTwinsGetRequest"
+        "target": "com.azure.digitaltwins#GetDigitalTwinRequest"
       },
       "output": {
-        "target": "com.azure.digitaltwins#DigitalTwinsGetResponse"
+        "target": "com.azure.digitaltwins#GetDigitalTwinResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3470,7 +3471,7 @@
         "com.distilled.openapi#apiVersion": "2023-01-31"
       }
     },
-    "com.azure.digitaltwins#DigitalTwinsGetResponse": {
+    "com.azure.digitaltwins#GetDigitalTwinResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3499,7 +3500,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.digitaltwins#DigitalTwinsGetResponseTagsMap",
+          "target": "com.azure.digitaltwins#GetDigitalTwinResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags.",
             "com.distilled.openapi#nullable": {}
@@ -3529,7 +3530,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.digitaltwins#DigitalTwinsGetResponseTagsMap": {
+    "com.azure.digitaltwins#GetDigitalTwinResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3541,7 +3542,7 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.digitaltwins#DigitalTwinsGetRequest": {
+    "com.azure.digitaltwins#GetDigitalTwinRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3578,70 +3579,70 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.digitaltwins#TimeSeriesDatabaseConnectionsDelete"
+          "target": "com.azure.digitaltwins#DeleteTimeSeriesDatabaseConnection"
         },
         {
           "target": "com.azure.digitaltwins#TimeSeriesDatabaseConnectionsCreateOrUpdate"
         },
         {
-          "target": "com.azure.digitaltwins#TimeSeriesDatabaseConnectionsGet"
+          "target": "com.azure.digitaltwins#GetTimeSeriesDatabaseConnection"
         },
         {
-          "target": "com.azure.digitaltwins#TimeSeriesDatabaseConnectionsList"
+          "target": "com.azure.digitaltwins#ListTimeSeriesDatabaseConnections"
         },
         {
-          "target": "com.azure.digitaltwins#PrivateEndpointConnectionsDelete"
+          "target": "com.azure.digitaltwins#DeletePrivateEndpointConnection"
         },
         {
           "target": "com.azure.digitaltwins#PrivateEndpointConnectionsCreateOrUpdate"
         },
         {
-          "target": "com.azure.digitaltwins#PrivateEndpointConnectionsGet"
+          "target": "com.azure.digitaltwins#GetPrivateEndpointConnection"
         },
         {
-          "target": "com.azure.digitaltwins#PrivateEndpointConnectionsList"
+          "target": "com.azure.digitaltwins#ListPrivateEndpointConnections"
         },
         {
-          "target": "com.azure.digitaltwins#PrivateLinkResourcesGet"
+          "target": "com.azure.digitaltwins#GetPrivateLinkResource"
         },
         {
-          "target": "com.azure.digitaltwins#PrivateLinkResourcesList"
+          "target": "com.azure.digitaltwins#ListPrivateLinkResources"
         },
         {
-          "target": "com.azure.digitaltwins#DigitalTwinsCheckNameAvailability"
+          "target": "com.azure.digitaltwins#CheckDigitalTwinNameAvailability"
         },
         {
-          "target": "com.azure.digitaltwins#OperationsList"
+          "target": "com.azure.digitaltwins#ListOperations"
         },
         {
-          "target": "com.azure.digitaltwins#DigitalTwinsListByResourceGroup"
+          "target": "com.azure.digitaltwins#ListDigitalTwinByResourceGroup"
         },
         {
-          "target": "com.azure.digitaltwins#DigitalTwinsList"
+          "target": "com.azure.digitaltwins#ListDigitalTwins"
         },
         {
-          "target": "com.azure.digitaltwins#DigitalTwinsEndpointDelete"
+          "target": "com.azure.digitaltwins#DeleteDigitalTwinsEndpoint"
         },
         {
           "target": "com.azure.digitaltwins#DigitalTwinsEndpointCreateOrUpdate"
         },
         {
-          "target": "com.azure.digitaltwins#DigitalTwinsEndpointGet"
+          "target": "com.azure.digitaltwins#GetDigitalTwinsEndpoint"
         },
         {
-          "target": "com.azure.digitaltwins#DigitalTwinsEndpointList"
+          "target": "com.azure.digitaltwins#ListDigitalTwinsEndpoint"
         },
         {
-          "target": "com.azure.digitaltwins#DigitalTwinsDelete"
+          "target": "com.azure.digitaltwins#DeleteDigitalTwin"
         },
         {
-          "target": "com.azure.digitaltwins#DigitalTwinsUpdate"
+          "target": "com.azure.digitaltwins#UpdateDigitalTwin"
         },
         {
           "target": "com.azure.digitaltwins#DigitalTwinsCreateOrUpdate"
         },
         {
-          "target": "com.azure.digitaltwins#DigitalTwinsGet"
+          "target": "com.azure.digitaltwins#GetDigitalTwin"
         }
       ],
       "traits": {

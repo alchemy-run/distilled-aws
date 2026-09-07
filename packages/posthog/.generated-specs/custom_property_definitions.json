@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.custom_property_definitions#CustomPropertyDefinitionsListRequest": {
+    "com.posthog.custom_property_definitions#ListCustomPropertyDefinitionsRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -171,7 +172,14 @@
         "references": {
           "target": "com.posthog.custom_property_definitions#CustomPropertyDefinitionReferencesList",
           "traits": {
-            "smithy.api#documentation": "Workflows that use this property, resolved by definition id.",
+            "smithy.api#documentation": "Workflows that use this property, resolved by definition id when the caller can view workflows.",
+            "smithy.api#required": {}
+          }
+        },
+        "has_workflow_reference": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether a workflow updates this property. Always returned, even when workflow details are hidden.",
             "smithy.api#required": {}
           }
         }
@@ -550,7 +558,7 @@
           }
         },
         "account_segment": {
-          "target": "com.posthog.custom_property_definitions#AccountSegmentEnum",
+          "target": "com.posthog.custom_property_definitions#SyncSegmentEnum",
           "traits": {
             "smithy.api#documentation": "Account segment processed by this run. Person and group property runs return null.\n\n* `tracked` - tracked\n* `ignored` - ignored",
             "smithy.api#required": {},
@@ -682,7 +690,7 @@
         "smithy.api#documentation": "One warehouse-backed custom property sync run."
       }
     },
-    "com.posthog.custom_property_definitions#AccountSegmentEnum": {
+    "com.posthog.custom_property_definitions#SyncSegmentEnum": {
       "type": "enum",
       "members": {
         "TRACKED": {
@@ -776,7 +784,7 @@
         "target": "com.posthog.custom_property_definitions#CustomPropertyReference"
       },
       "traits": {
-        "smithy.api#documentation": "Workflows that use this property, resolved by definition id."
+        "smithy.api#documentation": "Workflows that use this property, resolved by definition id when the caller can view workflows."
       }
     },
     "com.posthog.custom_property_definitions#PaginatedCustomPropertyDefinitionListResultsList": {
@@ -786,10 +794,10 @@
       },
       "traits": {}
     },
-    "com.posthog.custom_property_definitions#CustomPropertyDefinitionsList": {
+    "com.posthog.custom_property_definitions#ListCustomPropertyDefinitions": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.custom_property_definitions#CustomPropertyDefinitionsListRequest"
+        "target": "com.posthog.custom_property_definitions#ListCustomPropertyDefinitionsRequest"
       },
       "output": {
         "target": "com.posthog.custom_property_definitions#PaginatedCustomPropertyDefinitionList"
@@ -802,7 +810,7 @@
         }
       }
     },
-    "com.posthog.custom_property_definitions#CustomPropertyDefinitionsCreateRequestOptionsList": {
+    "com.posthog.custom_property_definitions#CreateCustomPropertyDefinitionRequestOptionsList": {
       "type": "list",
       "member": {
         "target": "com.posthog.custom_property_definitions#CustomPropertyOption"
@@ -811,7 +819,7 @@
         "smithy.api#documentation": "For select properties: the allowed options. Required (non-empty) when display_type is 'select'; cleared server-side for other types."
       }
     },
-    "com.posthog.custom_property_definitions#CustomPropertyDefinitionsCreateRequest": {
+    "com.posthog.custom_property_definitions#CreateCustomPropertyDefinitionRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -863,7 +871,7 @@
           }
         },
         "options": {
-          "target": "com.posthog.custom_property_definitions#CustomPropertyDefinitionsCreateRequestOptionsList",
+          "target": "com.posthog.custom_property_definitions#CreateCustomPropertyDefinitionRequestOptionsList",
           "traits": {
             "smithy.api#documentation": "For select properties: the allowed options. Required (non-empty) when display_type is 'select'; cleared server-side for other types.",
             "com.distilled.openapi#nullable": {}
@@ -874,10 +882,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.custom_property_definitions#CustomPropertyDefinitionsCreate": {
+    "com.posthog.custom_property_definitions#CreateCustomPropertyDefinition": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.custom_property_definitions#CustomPropertyDefinitionsCreateRequest"
+        "target": "com.posthog.custom_property_definitions#CreateCustomPropertyDefinitionRequest"
       },
       "output": {
         "target": "com.posthog.custom_property_definitions#CustomPropertyDefinition"
@@ -890,7 +898,7 @@
         }
       }
     },
-    "com.posthog.custom_property_definitions#CustomPropertyDefinitionsRetrieveRequest": {
+    "com.posthog.custom_property_definitions#GetCustomPropertyDefinitionRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -913,10 +921,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.custom_property_definitions#CustomPropertyDefinitionsRetrieve": {
+    "com.posthog.custom_property_definitions#GetCustomPropertyDefinition": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.custom_property_definitions#CustomPropertyDefinitionsRetrieveRequest"
+        "target": "com.posthog.custom_property_definitions#GetCustomPropertyDefinitionRequest"
       },
       "output": {
         "target": "com.posthog.custom_property_definitions#CustomPropertyDefinition"
@@ -929,7 +937,7 @@
         }
       }
     },
-    "com.posthog.custom_property_definitions#CustomPropertyDefinitionsUpdateRequestOptionsList": {
+    "com.posthog.custom_property_definitions#UpdateCustomPropertyDefinitionRequestOptionsList": {
       "type": "list",
       "member": {
         "target": "com.posthog.custom_property_definitions#CustomPropertyOption"
@@ -938,7 +946,7 @@
         "smithy.api#documentation": "For select properties: the allowed options. Required (non-empty) when display_type is 'select'; cleared server-side for other types."
       }
     },
-    "com.posthog.custom_property_definitions#CustomPropertyDefinitionsUpdateRequest": {
+    "com.posthog.custom_property_definitions#UpdateCustomPropertyDefinitionRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -997,7 +1005,7 @@
           }
         },
         "options": {
-          "target": "com.posthog.custom_property_definitions#CustomPropertyDefinitionsUpdateRequestOptionsList",
+          "target": "com.posthog.custom_property_definitions#UpdateCustomPropertyDefinitionRequestOptionsList",
           "traits": {
             "smithy.api#documentation": "For select properties: the allowed options. Required (non-empty) when display_type is 'select'; cleared server-side for other types.",
             "com.distilled.openapi#nullable": {}
@@ -1008,10 +1016,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.custom_property_definitions#CustomPropertyDefinitionsUpdate": {
+    "com.posthog.custom_property_definitions#UpdateCustomPropertyDefinition": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.custom_property_definitions#CustomPropertyDefinitionsUpdateRequest"
+        "target": "com.posthog.custom_property_definitions#UpdateCustomPropertyDefinitionRequest"
       },
       "output": {
         "target": "com.posthog.custom_property_definitions#CustomPropertyDefinition"
@@ -1024,7 +1032,7 @@
         }
       }
     },
-    "com.posthog.custom_property_definitions#CustomPropertyDefinitionsPartialUpdateRequestOptionsList": {
+    "com.posthog.custom_property_definitions#UpdateCustomPropertyDefinitionsPartialRequestOptionsList": {
       "type": "list",
       "member": {
         "target": "com.posthog.custom_property_definitions#CustomPropertyOption"
@@ -1033,7 +1041,7 @@
         "smithy.api#documentation": "For select properties: the allowed options. Required (non-empty) when display_type is 'select'; cleared server-side for other types."
       }
     },
-    "com.posthog.custom_property_definitions#CustomPropertyDefinitionsPartialUpdateRequest": {
+    "com.posthog.custom_property_definitions#UpdateCustomPropertyDefinitionsPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1090,7 +1098,7 @@
           }
         },
         "options": {
-          "target": "com.posthog.custom_property_definitions#CustomPropertyDefinitionsPartialUpdateRequestOptionsList",
+          "target": "com.posthog.custom_property_definitions#UpdateCustomPropertyDefinitionsPartialRequestOptionsList",
           "traits": {
             "smithy.api#documentation": "For select properties: the allowed options. Required (non-empty) when display_type is 'select'; cleared server-side for other types.",
             "com.distilled.openapi#nullable": {}
@@ -1101,10 +1109,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.custom_property_definitions#CustomPropertyDefinitionsPartialUpdate": {
+    "com.posthog.custom_property_definitions#UpdateCustomPropertyDefinitionsPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.custom_property_definitions#CustomPropertyDefinitionsPartialUpdateRequest"
+        "target": "com.posthog.custom_property_definitions#UpdateCustomPropertyDefinitionsPartialRequest"
       },
       "output": {
         "target": "com.posthog.custom_property_definitions#CustomPropertyDefinition"
@@ -1156,7 +1164,7 @@
         }
       }
     },
-    "com.posthog.custom_property_definitions#CustomPropertyDefinitionsValuesRetrieveRequest": {
+    "com.posthog.custom_property_definitions#GetCustomPropertyDefinitionsValueRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1233,10 +1241,10 @@
         "smithy.api#documentation": "Suggested values matching the search input."
       }
     },
-    "com.posthog.custom_property_definitions#CustomPropertyDefinitionsValuesRetrieve": {
+    "com.posthog.custom_property_definitions#GetCustomPropertyDefinitionsValue": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.custom_property_definitions#CustomPropertyDefinitionsValuesRetrieveRequest"
+        "target": "com.posthog.custom_property_definitions#GetCustomPropertyDefinitionsValueRequest"
       },
       "output": {
         "target": "com.posthog.custom_property_definitions#CustomPropertyValueSuggestionsResponse"
@@ -1254,25 +1262,25 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.custom_property_definitions#CustomPropertyDefinitionsList"
+          "target": "com.posthog.custom_property_definitions#ListCustomPropertyDefinitions"
         },
         {
-          "target": "com.posthog.custom_property_definitions#CustomPropertyDefinitionsCreate"
+          "target": "com.posthog.custom_property_definitions#CreateCustomPropertyDefinition"
         },
         {
-          "target": "com.posthog.custom_property_definitions#CustomPropertyDefinitionsRetrieve"
+          "target": "com.posthog.custom_property_definitions#GetCustomPropertyDefinition"
         },
         {
-          "target": "com.posthog.custom_property_definitions#CustomPropertyDefinitionsUpdate"
+          "target": "com.posthog.custom_property_definitions#UpdateCustomPropertyDefinition"
         },
         {
-          "target": "com.posthog.custom_property_definitions#CustomPropertyDefinitionsPartialUpdate"
+          "target": "com.posthog.custom_property_definitions#UpdateCustomPropertyDefinitionsPartial"
         },
         {
           "target": "com.posthog.custom_property_definitions#CustomPropertyDefinitionsDestroy"
         },
         {
-          "target": "com.posthog.custom_property_definitions#CustomPropertyDefinitionsValuesRetrieve"
+          "target": "com.posthog.custom_property_definitions#GetCustomPropertyDefinitionsValue"
         }
       ],
       "traits": {

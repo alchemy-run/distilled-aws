@@ -226,487 +226,6 @@ export const AccessConnectorsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
   identifier: "AccessConnectorsCreateOrUpdateResponse",
 }) as any as S.Schema<AccessConnectorsCreateOrUpdateResponse>;
 
-export interface AccessConnectorsDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Azure Databricks Access Connector. */
-  connectorName: string;
-}
-export const AccessConnectorsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    connectorName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Databricks/accessConnectors/{connectorName}",
-      code: 200,
-      apiVersion: "2026-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "AccessConnectorsDeleteRequest",
-}) as any as S.Schema<AccessConnectorsDeleteRequest>;
-
-export interface AccessConnectorsDeleteResponse {}
-export const AccessConnectorsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "AccessConnectorsDeleteResponse",
-}) as any as S.Schema<AccessConnectorsDeleteResponse>;
-
-export interface AccessConnectorsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Azure Databricks Access Connector. */
-  connectorName: string;
-}
-export const AccessConnectorsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    connectorName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Databricks/accessConnectors/{connectorName}",
-      code: 200,
-      apiVersion: "2026-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "AccessConnectorsGetRequest",
-}) as any as S.Schema<AccessConnectorsGetRequest>;
-
-/** Resource tags. */
-export type AccessConnectorsGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const AccessConnectorsGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<AccessConnectorsGetResponseTagsMap>;
-
-/** Managed service identity (system assigned and/or user assigned identities) */
-export type AccessConnectorsGetResponseIdentity =
-  AccessConnectorsCreateOrUpdateResponseIdentity;
-export const AccessConnectorsGetResponseIdentity =
-  AccessConnectorsCreateOrUpdateResponseIdentity;
-
-export interface AccessConnectorsGetResponse {
-  /** Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts. */
-  type?: string;
-  /** Resource tags. */
-  tags?: AccessConnectorsGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Azure Databricks Access Connector properties */
-  properties?: AccessConnectorProperties;
-  /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: AccessConnectorsCreateOrUpdateResponseIdentity;
-}
-export const AccessConnectorsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    tags: S.optional(AccessConnectorsGetResponseTagsMap),
-    location: S.String,
-    properties: S.optional(AccessConnectorProperties),
-    identity: S.optional(AccessConnectorsCreateOrUpdateResponseIdentity),
-  }),
-).annotate({
-  identifier: "AccessConnectorsGetResponse",
-}) as any as S.Schema<AccessConnectorsGetResponse>;
-
-export interface AccessConnectorsListByResourceGroupRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-}
-export const AccessConnectorsListByResourceGroupRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Databricks/accessConnectors",
-        code: 200,
-        apiVersion: "2026-01-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "AccessConnectorsListByResourceGroupRequest",
-  }) as any as S.Schema<AccessConnectorsListByResourceGroupRequest>;
-
-/** Resource tags. */
-export type AccessConnectorTagsMap = { [key: string]: string | undefined };
-export const AccessConnectorTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<AccessConnectorTagsMap>;
-
-/** Managed service identity (system assigned and/or user assigned identities) */
-export type AccessConnectorIdentity =
-  AccessConnectorsCreateOrUpdateResponseIdentity;
-export const AccessConnectorIdentity =
-  AccessConnectorsCreateOrUpdateResponseIdentity;
-
-/** Information about Azure Databricks Access Connector. */
-export interface AccessConnector {
-  /** Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts. */
-  type?: string;
-  /** Resource tags. */
-  tags?: AccessConnectorTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Azure Databricks Access Connector properties */
-  properties?: AccessConnectorProperties;
-  /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: AccessConnectorsCreateOrUpdateResponseIdentity;
-}
-export const AccessConnector = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    tags: S.optional(AccessConnectorTagsMap),
-    location: S.String,
-    properties: S.optional(AccessConnectorProperties),
-    identity: S.optional(AccessConnectorsCreateOrUpdateResponseIdentity),
-  }),
-).annotate({
-  identifier: "AccessConnector",
-}) as any as S.Schema<AccessConnector>;
-
-/** The AccessConnector items on this page */
-export type AccessConnectorListResultValueList = Array<AccessConnector>;
-export const AccessConnectorListResultValueList = /*@__PURE__*/ S.Array(
-  AccessConnector,
-) as any as S.Schema<AccessConnectorListResultValueList>;
-
-/** The response of a AccessConnector list operation. */
-export interface AccessConnectorListResult {
-  /** The AccessConnector items on this page */
-  value: AccessConnectorListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const AccessConnectorListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: AccessConnectorListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AccessConnectorListResult",
-}) as any as S.Schema<AccessConnectorListResult>;
-
-export interface AccessConnectorsListBySubscriptionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-}
-export const AccessConnectorsListBySubscriptionRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Databricks/accessConnectors",
-        code: 200,
-        apiVersion: "2026-01-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "AccessConnectorsListBySubscriptionRequest",
-  }) as any as S.Schema<AccessConnectorsListBySubscriptionRequest>;
-
-/** Resource tags. */
-export type AccessConnectorsUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const AccessConnectorsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<AccessConnectorsUpdateRequestTagsMap>;
-
-/** Managed service identity (system assigned and/or user assigned identities) */
-export type AccessConnectorsUpdateRequestIdentity =
-  AccessConnectorsCreateOrUpdateRequestIdentity;
-export const AccessConnectorsUpdateRequestIdentity =
-  AccessConnectorsCreateOrUpdateRequestIdentity;
-
-export interface AccessConnectorsUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Azure Databricks Access Connector. */
-  connectorName: string;
-  /** Resource tags. */
-  tags?: AccessConnectorsUpdateRequestTagsMap;
-  /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: AccessConnectorsCreateOrUpdateRequestIdentity;
-}
-export const AccessConnectorsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    connectorName: S.String.pipe(T.Label()),
-    tags: S.optional(AccessConnectorsUpdateRequestTagsMap),
-    identity: S.optional(AccessConnectorsCreateOrUpdateRequestIdentity),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Databricks/accessConnectors/{connectorName}",
-      code: 200,
-      apiVersion: "2026-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "AccessConnectorsUpdateRequest",
-}) as any as S.Schema<AccessConnectorsUpdateRequest>;
-
-/** Resource tags. */
-export type AccessConnectorsUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const AccessConnectorsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<AccessConnectorsUpdateResponseTagsMap>;
-
-/** Managed service identity (system assigned and/or user assigned identities) */
-export type AccessConnectorsUpdateResponseIdentity =
-  AccessConnectorsCreateOrUpdateResponseIdentity;
-export const AccessConnectorsUpdateResponseIdentity =
-  AccessConnectorsCreateOrUpdateResponseIdentity;
-
-export interface AccessConnectorsUpdateResponse {
-  /** Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts. */
-  type?: string;
-  /** Resource tags. */
-  tags?: AccessConnectorsUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Azure Databricks Access Connector properties */
-  properties?: AccessConnectorProperties;
-  /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: AccessConnectorsCreateOrUpdateResponseIdentity;
-}
-export const AccessConnectorsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    tags: S.optional(AccessConnectorsUpdateResponseTagsMap),
-    location: S.String,
-    properties: S.optional(AccessConnectorProperties),
-    identity: S.optional(AccessConnectorsCreateOrUpdateResponseIdentity),
-  }),
-).annotate({
-  identifier: "AccessConnectorsUpdateResponse",
-}) as any as S.Schema<AccessConnectorsUpdateResponse>;
-
-export interface OperationsListRequest {}
-export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/providers/Microsoft.Databricks/operations",
-      code: 200,
-      apiVersion: "2026-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "OperationsListRequest",
-}) as any as S.Schema<OperationsListRequest>;
-
-/** The object that represents the operation. */
-export interface OperationDisplay {
-  /** Service provider: ex Microsoft.Databricks */
-  provider?: string;
-  /** Resource on which the operation is performed. */
-  resource?: string;
-  /** Operation type: Read, write, delete, etc. */
-  operation?: string;
-  /** Description for the resource operation. */
-  description?: string;
-}
-export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provider: S.optional(S.String),
-    resource: S.optional(S.String),
-    operation: S.optional(S.String),
-    description: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OperationDisplay",
-}) as any as S.Schema<OperationDisplay>;
-
-/** REST API operation */
-export interface Operation {
-  /** Operation name: {provider}/{resource}/{operation} */
-  name?: string;
-  /** The object that represents the operation. */
-  display?: OperationDisplay;
-}
-export const Operation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    display: S.optional(OperationDisplay),
-  }),
-).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
-
-/** List of Resource Provider operations supported by the Resource Provider resource provider. */
-export type OperationListResultValueList = Array<Operation>;
-export const OperationListResultValueList = /*@__PURE__*/ S.Array(
-  Operation,
-) as any as S.Schema<OperationListResultValueList>;
-
-/** Result of the request to list Resource Provider operations. It contains a list of operations and a URL link to get the next set of results. */
-export interface OperationListResult {
-  /** List of Resource Provider operations supported by the Resource Provider resource provider. */
-  value?: OperationListResultValueList;
-  /** URL to get the next set of operation list results if there are any. */
-  nextLink?: string;
-}
-export const OperationListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(OperationListResultValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OperationListResult",
-}) as any as S.Schema<OperationListResult>;
-
-export interface OutboundNetworkDependenciesEndpointsListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the workspace. */
-  workspaceName: string;
-}
-export const OutboundNetworkDependenciesEndpointsListRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      workspaceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Databricks/workspaces/{workspaceName}/outboundNetworkDependenciesEndpoints",
-        code: 200,
-        apiVersion: "2026-01-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "OutboundNetworkDependenciesEndpointsListRequest",
-  }) as any as S.Schema<OutboundNetworkDependenciesEndpointsListRequest>;
-
-/** Connect information from the Workspace to a single endpoint. */
-export interface EndpointDetail {
-  /** An IP Address that Domain Name currently resolves to. */
-  ipAddress?: string;
-  /** The port an endpoint is connected to. */
-  port?: number;
-  /** The time in milliseconds it takes for the connection to be created from the Workspace to this IpAddress at this Port. */
-  latency?: number;
-  /** Whether it is possible to create a connection from the Workspace to this IpAddress at this Port. */
-  isAccessible?: boolean;
-}
-export const EndpointDetail = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ipAddress: S.optional(S.String),
-    port: S.optional(S.Number),
-    latency: S.optional(S.Number),
-    isAccessible: S.optional(S.Boolean),
-  }),
-).annotate({ identifier: "EndpointDetail" }) as any as S.Schema<EndpointDetail>;
-
-/** The Ports used when connecting to domainName. */
-export type EndpointDependencyEndpointDetailsList = Array<EndpointDetail>;
-export const EndpointDependencyEndpointDetailsList = /*@__PURE__*/ S.Array(
-  EndpointDetail,
-) as any as S.Schema<EndpointDependencyEndpointDetailsList>;
-
-/** A domain name or IP address the Workspace is reaching at. */
-export interface EndpointDependency {
-  /** The domain name of the dependency. */
-  domainName?: string;
-  /** The Ports used when connecting to domainName. */
-  endpointDetails?: EndpointDependencyEndpointDetailsList;
-}
-export const EndpointDependency = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    domainName: S.optional(S.String),
-    endpointDetails: S.optional(EndpointDependencyEndpointDetailsList),
-  }),
-).annotate({
-  identifier: "EndpointDependency",
-}) as any as S.Schema<EndpointDependency>;
-
-/** The endpoints that Workspace connect to */
-export type OutboundEnvironmentEndpointEndpointsList =
-  Array<EndpointDependency>;
-export const OutboundEnvironmentEndpointEndpointsList = /*@__PURE__*/ S.Array(
-  EndpointDependency,
-) as any as S.Schema<OutboundEnvironmentEndpointEndpointsList>;
-
-/** Egress endpoints which Workspace connects to for common purposes. */
-export interface OutboundEnvironmentEndpoint {
-  /** The category of endpoints accessed by the Workspace, e.g. azure-storage, azure-mysql, etc. */
-  category?: string;
-  /** The endpoints that Workspace connect to */
-  endpoints?: OutboundEnvironmentEndpointEndpointsList;
-}
-export const OutboundEnvironmentEndpoint = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    category: S.optional(S.String),
-    endpoints: S.optional(OutboundEnvironmentEndpointEndpointsList),
-  }),
-).annotate({
-  identifier: "OutboundEnvironmentEndpoint",
-}) as any as S.Schema<OutboundEnvironmentEndpoint>;
-
-/** Collection of outbound network dependency endpoints */
-export type OutboundEnvironmentEndpointCollection =
-  Array<OutboundEnvironmentEndpoint>;
-export const OutboundEnvironmentEndpointCollection = /*@__PURE__*/ S.Array(
-  OutboundEnvironmentEndpoint,
-) as any as S.Schema<OutboundEnvironmentEndpointCollection>;
-
-export type OutboundNetworkDependenciesEndpointsListResponse =
-  OutboundEnvironmentEndpointCollection;
-export const OutboundNetworkDependenciesEndpointsListResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    OutboundEnvironmentEndpointCollection.pipe(T.RawResponseRoot()),
-  ).annotate({
-    identifier: "OutboundNetworkDependenciesEndpointsListResponse",
-  }) as any as S.Schema<OutboundNetworkDependenciesEndpointsListResponse>;
-
 /** The private endpoint property of a private endpoint connection. */
 export type PrivateEndpointInput = AccessConnectorPropertiesInput;
 export const PrivateEndpointInput = AccessConnectorPropertiesInput;
@@ -768,7 +287,7 @@ export const PrivateEndpointConnectionPropertiesInput = /*@__PURE__*/ S.suspend(
   identifier: "PrivateEndpointConnectionPropertiesInput",
 }) as any as S.Schema<PrivateEndpointConnectionPropertiesInput>;
 
-export interface PrivateEndpointConnectionsCreateRequest {
+export interface CreatePrivateEndpointConnectionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -780,7 +299,7 @@ export interface PrivateEndpointConnectionsCreateRequest {
   /** The private endpoint connection properties. */
   properties: PrivateEndpointConnectionPropertiesInput;
 }
-export const PrivateEndpointConnectionsCreateRequest = /*@__PURE__*/ S.suspend(
+export const CreatePrivateEndpointConnectionRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -797,8 +316,8 @@ export const PrivateEndpointConnectionsCreateRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "PrivateEndpointConnectionsCreateRequest",
-}) as any as S.Schema<PrivateEndpointConnectionsCreateRequest>;
+  identifier: "CreatePrivateEndpointConnectionRequest",
+}) as any as S.Schema<CreatePrivateEndpointConnectionRequest>;
 
 /** The private endpoint property of a private endpoint connection. */
 export interface PrivateEndpoint {
@@ -852,7 +371,7 @@ export const PrivateEndpointConnectionProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "PrivateEndpointConnectionProperties",
 }) as any as S.Schema<PrivateEndpointConnectionProperties>;
 
-export interface PrivateEndpointConnectionsCreateResponse {
+export interface CreatePrivateEndpointConnectionResponse {
   /** Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -862,7 +381,7 @@ export interface PrivateEndpointConnectionsCreateResponse {
   /** The private endpoint connection properties. */
   properties: PrivateEndpointConnectionProperties;
 }
-export const PrivateEndpointConnectionsCreateResponse = /*@__PURE__*/ S.suspend(
+export const CreatePrivateEndpointConnectionResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
@@ -871,10 +390,42 @@ export const PrivateEndpointConnectionsCreateResponse = /*@__PURE__*/ S.suspend(
       properties: PrivateEndpointConnectionProperties,
     }),
 ).annotate({
-  identifier: "PrivateEndpointConnectionsCreateResponse",
-}) as any as S.Schema<PrivateEndpointConnectionsCreateResponse>;
+  identifier: "CreatePrivateEndpointConnectionResponse",
+}) as any as S.Schema<CreatePrivateEndpointConnectionResponse>;
 
-export interface PrivateEndpointConnectionsDeleteRequest {
+export interface DeleteAccessConnectorRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Azure Databricks Access Connector. */
+  connectorName: string;
+}
+export const DeleteAccessConnectorRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    connectorName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Databricks/accessConnectors/{connectorName}",
+      code: 200,
+      apiVersion: "2026-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteAccessConnectorRequest",
+}) as any as S.Schema<DeleteAccessConnectorRequest>;
+
+export interface DeleteAccessConnectorResponse {}
+export const DeleteAccessConnectorResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteAccessConnectorResponse",
+}) as any as S.Schema<DeleteAccessConnectorResponse>;
+
+export interface DeletePrivateEndpointConnectionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -884,7 +435,7 @@ export interface PrivateEndpointConnectionsDeleteRequest {
   /** The name of the private endpoint connection */
   privateEndpointConnectionName: string;
 }
-export const PrivateEndpointConnectionsDeleteRequest = /*@__PURE__*/ S.suspend(
+export const DeletePrivateEndpointConnectionRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -900,17 +451,157 @@ export const PrivateEndpointConnectionsDeleteRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "PrivateEndpointConnectionsDeleteRequest",
-}) as any as S.Schema<PrivateEndpointConnectionsDeleteRequest>;
+  identifier: "DeletePrivateEndpointConnectionRequest",
+}) as any as S.Schema<DeletePrivateEndpointConnectionRequest>;
 
-export interface PrivateEndpointConnectionsDeleteResponse {}
-export const PrivateEndpointConnectionsDeleteResponse = /*@__PURE__*/ S.suspend(
+export interface DeletePrivateEndpointConnectionResponse {}
+export const DeletePrivateEndpointConnectionResponse = /*@__PURE__*/ S.suspend(
   () => S.Struct({}),
 ).annotate({
-  identifier: "PrivateEndpointConnectionsDeleteResponse",
-}) as any as S.Schema<PrivateEndpointConnectionsDeleteResponse>;
+  identifier: "DeletePrivateEndpointConnectionResponse",
+}) as any as S.Schema<DeletePrivateEndpointConnectionResponse>;
 
-export interface PrivateEndpointConnectionsGetRequest {
+export interface DeleteVNetPeeringRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the workspace. */
+  workspaceName: string;
+  /** The name of the workspace vNet peering. */
+  peeringName: string;
+}
+export const DeleteVNetPeeringRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    peeringName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Databricks/workspaces/{workspaceName}/virtualNetworkPeerings/{peeringName}",
+      code: 200,
+      apiVersion: "2026-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteVNetPeeringRequest",
+}) as any as S.Schema<DeleteVNetPeeringRequest>;
+
+export interface DeleteVNetPeeringResponse {}
+export const DeleteVNetPeeringResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteVNetPeeringResponse",
+}) as any as S.Schema<DeleteVNetPeeringResponse>;
+
+export interface DeleteWorkspaceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the workspace. */
+  workspaceName: string;
+  /** Optional parameter to retain default unity catalog data. By default the data will retained if Uc is enabled on the workspace. */
+  forceDeletion?: boolean;
+}
+export const DeleteWorkspaceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    forceDeletion: S.optional(S.Boolean.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Databricks/workspaces/{workspaceName}",
+      code: 200,
+      apiVersion: "2026-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteWorkspaceRequest",
+}) as any as S.Schema<DeleteWorkspaceRequest>;
+
+export interface DeleteWorkspaceResponse {}
+export const DeleteWorkspaceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteWorkspaceResponse",
+}) as any as S.Schema<DeleteWorkspaceResponse>;
+
+export interface GetAccessConnectorRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Azure Databricks Access Connector. */
+  connectorName: string;
+}
+export const GetAccessConnectorRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    connectorName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Databricks/accessConnectors/{connectorName}",
+      code: 200,
+      apiVersion: "2026-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetAccessConnectorRequest",
+}) as any as S.Schema<GetAccessConnectorRequest>;
+
+/** Resource tags. */
+export type GetAccessConnectorResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetAccessConnectorResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetAccessConnectorResponseTagsMap>;
+
+/** Managed service identity (system assigned and/or user assigned identities) */
+export type GetAccessConnectorResponseIdentity =
+  AccessConnectorsCreateOrUpdateResponseIdentity;
+export const GetAccessConnectorResponseIdentity =
+  AccessConnectorsCreateOrUpdateResponseIdentity;
+
+export interface GetAccessConnectorResponse {
+  /** Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts. */
+  type?: string;
+  /** Resource tags. */
+  tags?: GetAccessConnectorResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Azure Databricks Access Connector properties */
+  properties?: AccessConnectorProperties;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: AccessConnectorsCreateOrUpdateResponseIdentity;
+}
+export const GetAccessConnectorResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    tags: S.optional(GetAccessConnectorResponseTagsMap),
+    location: S.String,
+    properties: S.optional(AccessConnectorProperties),
+    identity: S.optional(AccessConnectorsCreateOrUpdateResponseIdentity),
+  }),
+).annotate({
+  identifier: "GetAccessConnectorResponse",
+}) as any as S.Schema<GetAccessConnectorResponse>;
+
+export interface GetPrivateEndpointConnectionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -920,26 +611,25 @@ export interface PrivateEndpointConnectionsGetRequest {
   /** The name of the private endpoint connection */
   privateEndpointConnectionName: string;
 }
-export const PrivateEndpointConnectionsGetRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      workspaceName: S.String.pipe(T.Label()),
-      privateEndpointConnectionName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Databricks/workspaces/{workspaceName}/privateEndpointConnections/{privateEndpointConnectionName}",
-        code: 200,
-        apiVersion: "2026-01-01",
-      }),
-    ),
+export const GetPrivateEndpointConnectionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    privateEndpointConnectionName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Databricks/workspaces/{workspaceName}/privateEndpointConnections/{privateEndpointConnectionName}",
+      code: 200,
+      apiVersion: "2026-01-01",
+    }),
+  ),
 ).annotate({
-  identifier: "PrivateEndpointConnectionsGetRequest",
-}) as any as S.Schema<PrivateEndpointConnectionsGetRequest>;
+  identifier: "GetPrivateEndpointConnectionRequest",
+}) as any as S.Schema<GetPrivateEndpointConnectionRequest>;
 
-export interface PrivateEndpointConnectionsGetResponse {
+export interface GetPrivateEndpointConnectionResponse {
   /** Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -949,7 +639,7 @@ export interface PrivateEndpointConnectionsGetResponse {
   /** The private endpoint connection properties. */
   properties: PrivateEndpointConnectionProperties;
 }
-export const PrivateEndpointConnectionsGetResponse = /*@__PURE__*/ S.suspend(
+export const GetPrivateEndpointConnectionResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
@@ -958,81 +648,10 @@ export const PrivateEndpointConnectionsGetResponse = /*@__PURE__*/ S.suspend(
       properties: PrivateEndpointConnectionProperties,
     }),
 ).annotate({
-  identifier: "PrivateEndpointConnectionsGetResponse",
-}) as any as S.Schema<PrivateEndpointConnectionsGetResponse>;
+  identifier: "GetPrivateEndpointConnectionResponse",
+}) as any as S.Schema<GetPrivateEndpointConnectionResponse>;
 
-export interface PrivateEndpointConnectionsListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the workspace. */
-  workspaceName: string;
-}
-export const PrivateEndpointConnectionsListRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      workspaceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Databricks/workspaces/{workspaceName}/privateEndpointConnections",
-        code: 200,
-        apiVersion: "2026-01-01",
-      }),
-    ),
-).annotate({
-  identifier: "PrivateEndpointConnectionsListRequest",
-}) as any as S.Schema<PrivateEndpointConnectionsListRequest>;
-
-/** The private endpoint connection of a workspace. */
-export interface PrivateEndpointConnection {
-  /** Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts. */
-  type?: string;
-  /** The private endpoint connection properties. */
-  properties: PrivateEndpointConnectionProperties;
-}
-export const PrivateEndpointConnection = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    properties: PrivateEndpointConnectionProperties,
-  }),
-).annotate({
-  identifier: "PrivateEndpointConnection",
-}) as any as S.Schema<PrivateEndpointConnection>;
-
-/** The PrivateEndpointConnection items on this page */
-export type PrivateEndpointConnectionsListValueList =
-  Array<PrivateEndpointConnection>;
-export const PrivateEndpointConnectionsListValueList = /*@__PURE__*/ S.Array(
-  PrivateEndpointConnection,
-) as any as S.Schema<PrivateEndpointConnectionsListValueList>;
-
-/** List of private link connections. */
-export interface PrivateEndpointConnectionsList {
-  /** The PrivateEndpointConnection items on this page */
-  value: PrivateEndpointConnectionsListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const PrivateEndpointConnectionsList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: PrivateEndpointConnectionsListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PrivateEndpointConnectionsList",
-}) as any as S.Schema<PrivateEndpointConnectionsList>;
-
-export interface PrivateLinkResourcesGetRequest {
+export interface GetPrivateLinkResourceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1042,7 +661,7 @@ export interface PrivateLinkResourcesGetRequest {
   /** The name of the private link resource */
   groupId: string;
 }
-export const PrivateLinkResourcesGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetPrivateLinkResourceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1057,8 +676,8 @@ export const PrivateLinkResourcesGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "PrivateLinkResourcesGetRequest",
-}) as any as S.Schema<PrivateLinkResourcesGetRequest>;
+  identifier: "GetPrivateLinkResourceRequest",
+}) as any as S.Schema<GetPrivateLinkResourceRequest>;
 
 /** The required members for a specific group id */
 export type GroupIdInformationPropertiesRequiredMembersList = Array<string>;
@@ -1097,7 +716,7 @@ export const GroupIdInformationProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "GroupIdInformationProperties",
 }) as any as S.Schema<GroupIdInformationProperties>;
 
-export interface PrivateLinkResourcesGetResponse {
+export interface GetPrivateLinkResourceResponse {
   /** Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -1107,7 +726,7 @@ export interface PrivateLinkResourcesGetResponse {
   /** The group id properties. */
   properties: GroupIdInformationProperties;
 }
-export const PrivateLinkResourcesGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetPrivateLinkResourceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -1115,77 +734,36 @@ export const PrivateLinkResourcesGetResponse = /*@__PURE__*/ S.suspend(() =>
     properties: GroupIdInformationProperties,
   }),
 ).annotate({
-  identifier: "PrivateLinkResourcesGetResponse",
-}) as any as S.Schema<PrivateLinkResourcesGetResponse>;
+  identifier: "GetPrivateLinkResourceResponse",
+}) as any as S.Schema<GetPrivateLinkResourceResponse>;
 
-export interface PrivateLinkResourcesListRequest {
+export interface GetVNetPeeringRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of the workspace. */
   workspaceName: string;
+  /** The name of the workspace vNet peering. */
+  peeringName: string;
 }
-export const PrivateLinkResourcesListRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetVNetPeeringRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     workspaceName: S.String.pipe(T.Label()),
+    peeringName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Databricks/workspaces/{workspaceName}/privateLinkResources",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Databricks/workspaces/{workspaceName}/virtualNetworkPeerings/{peeringName}",
       code: 200,
       apiVersion: "2026-01-01",
     }),
   ),
 ).annotate({
-  identifier: "PrivateLinkResourcesListRequest",
-}) as any as S.Schema<PrivateLinkResourcesListRequest>;
-
-/** The group information for creating a private endpoint on a workspace */
-export interface GroupIdInformation {
-  /** Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts. */
-  type?: string;
-  /** The group id properties. */
-  properties: GroupIdInformationProperties;
-}
-export const GroupIdInformation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    properties: GroupIdInformationProperties,
-  }),
-).annotate({
-  identifier: "GroupIdInformation",
-}) as any as S.Schema<GroupIdInformation>;
-
-/** The GroupIdInformation items on this page */
-export type PrivateLinkResourcesListValueList = Array<GroupIdInformation>;
-export const PrivateLinkResourcesListValueList = /*@__PURE__*/ S.Array(
-  GroupIdInformation,
-) as any as S.Schema<PrivateLinkResourcesListValueList>;
-
-/** The available private link resources for a workspace */
-export interface PrivateLinkResourcesList {
-  /** The GroupIdInformation items on this page */
-  value: PrivateLinkResourcesListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const PrivateLinkResourcesList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: PrivateLinkResourcesListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PrivateLinkResourcesList",
-}) as any as S.Schema<PrivateLinkResourcesList>;
+  identifier: "GetVNetPeeringRequest",
+}) as any as S.Schema<GetVNetPeeringRequest>;
 
 /** The remote virtual network should be in the same region. See here to learn more (https://docs.microsoft.com/en-us/azure/databricks/administration-guide/cloud-configurations/azure/vnet-peering). */
 export interface VirtualNetworkPeeringPropertiesFormatDatabricksVirtualNetwork {
@@ -1288,38 +866,7 @@ export const VirtualNetworkPeeringPropertiesFormat = /*@__PURE__*/ S.suspend(
   identifier: "VirtualNetworkPeeringPropertiesFormat",
 }) as any as S.Schema<VirtualNetworkPeeringPropertiesFormat>;
 
-export interface VNetPeeringCreateOrUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the workspace. */
-  workspaceName: string;
-  /** The name of the workspace vNet peering. */
-  peeringName: string;
-  /** List of properties for vNet Peering */
-  properties: VirtualNetworkPeeringPropertiesFormat;
-}
-export const VNetPeeringCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    peeringName: S.String.pipe(T.Label()),
-    properties: VirtualNetworkPeeringPropertiesFormat,
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Databricks/workspaces/{workspaceName}/virtualNetworkPeerings/{peeringName}",
-      code: 200,
-      apiVersion: "2026-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "VNetPeeringCreateOrUpdateRequest",
-}) as any as S.Schema<VNetPeeringCreateOrUpdateRequest>;
-
-export interface VNetPeeringCreateOrUpdateResponse {
+export interface GetVNetPeeringResponse {
   /** Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -1329,7 +876,7 @@ export interface VNetPeeringCreateOrUpdateResponse {
   /** List of properties for vNet Peering */
   properties: VirtualNetworkPeeringPropertiesFormat;
 }
-export const VNetPeeringCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetVNetPeeringResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -1337,94 +884,10 @@ export const VNetPeeringCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
     properties: VirtualNetworkPeeringPropertiesFormat,
   }),
 ).annotate({
-  identifier: "VNetPeeringCreateOrUpdateResponse",
-}) as any as S.Schema<VNetPeeringCreateOrUpdateResponse>;
+  identifier: "GetVNetPeeringResponse",
+}) as any as S.Schema<GetVNetPeeringResponse>;
 
-export interface VNetPeeringDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the workspace. */
-  workspaceName: string;
-  /** The name of the workspace vNet peering. */
-  peeringName: string;
-}
-export const VNetPeeringDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    peeringName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Databricks/workspaces/{workspaceName}/virtualNetworkPeerings/{peeringName}",
-      code: 200,
-      apiVersion: "2026-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "VNetPeeringDeleteRequest",
-}) as any as S.Schema<VNetPeeringDeleteRequest>;
-
-export interface VNetPeeringDeleteResponse {}
-export const VNetPeeringDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "VNetPeeringDeleteResponse",
-}) as any as S.Schema<VNetPeeringDeleteResponse>;
-
-export interface VNetPeeringGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the workspace. */
-  workspaceName: string;
-  /** The name of the workspace vNet peering. */
-  peeringName: string;
-}
-export const VNetPeeringGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    peeringName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Databricks/workspaces/{workspaceName}/virtualNetworkPeerings/{peeringName}",
-      code: 200,
-      apiVersion: "2026-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "VNetPeeringGetRequest",
-}) as any as S.Schema<VNetPeeringGetRequest>;
-
-export interface VNetPeeringGetResponse {
-  /** Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts. */
-  type?: string;
-  /** List of properties for vNet Peering */
-  properties: VirtualNetworkPeeringPropertiesFormat;
-}
-export const VNetPeeringGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    properties: VirtualNetworkPeeringPropertiesFormat,
-  }),
-).annotate({
-  identifier: "VNetPeeringGetResponse",
-}) as any as S.Schema<VNetPeeringGetResponse>;
-
-export interface VNetPeeringListByWorkspaceRequest {
+export interface GetWorkspaceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1432,7 +895,7 @@ export interface VNetPeeringListByWorkspaceRequest {
   /** The name of the workspace. */
   workspaceName: string;
 }
-export const VNetPeeringListByWorkspaceRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetWorkspaceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1440,67 +903,21 @@ export const VNetPeeringListByWorkspaceRequest = /*@__PURE__*/ S.suspend(() =>
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Databricks/workspaces/{workspaceName}/virtualNetworkPeerings",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Databricks/workspaces/{workspaceName}",
       code: 200,
       apiVersion: "2026-01-01",
     }),
   ),
 ).annotate({
-  identifier: "VNetPeeringListByWorkspaceRequest",
-}) as any as S.Schema<VNetPeeringListByWorkspaceRequest>;
-
-/** Peerings in a VirtualNetwork resource */
-export interface VirtualNetworkPeering {
-  /** Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts. */
-  type?: string;
-  /** List of properties for vNet Peering */
-  properties: VirtualNetworkPeeringPropertiesFormat;
-}
-export const VirtualNetworkPeering = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    properties: VirtualNetworkPeeringPropertiesFormat,
-  }),
-).annotate({
-  identifier: "VirtualNetworkPeering",
-}) as any as S.Schema<VirtualNetworkPeering>;
-
-/** The VirtualNetworkPeering items on this page */
-export type VirtualNetworkPeeringListValueList = Array<VirtualNetworkPeering>;
-export const VirtualNetworkPeeringListValueList = /*@__PURE__*/ S.Array(
-  VirtualNetworkPeering,
-) as any as S.Schema<VirtualNetworkPeeringListValueList>;
-
-/** Gets all virtual network peerings under a workspace. */
-export interface VirtualNetworkPeeringList {
-  /** The VirtualNetworkPeering items on this page */
-  value: VirtualNetworkPeeringListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const VirtualNetworkPeeringList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: VirtualNetworkPeeringListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "VirtualNetworkPeeringList",
-}) as any as S.Schema<VirtualNetworkPeeringList>;
+  identifier: "GetWorkspaceRequest",
+}) as any as S.Schema<GetWorkspaceRequest>;
 
 /** Resource tags. */
-export type WorkspacesCreateOrUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const WorkspacesCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type GetWorkspaceResponseTagsMap = { [key: string]: string | undefined };
+export const GetWorkspaceResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<WorkspacesCreateOrUpdateRequestTagsMap>;
+) as any as S.Schema<GetWorkspaceResponseTagsMap>;
 
 /** The workspace compute mode. Required on create, cannot be changed. Possible values include: 'Serverless', 'Hybrid' */
 export type ComputeMode = "Serverless" | "Hybrid";
@@ -1681,19 +1098,47 @@ export const WorkspaceProviderAuthorization = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<WorkspaceProviderAuthorization>;
 
 /** The workspace provider authorizations. */
-export type WorkspacePropertiesInputAuthorizationsList =
+export type WorkspacePropertiesAuthorizationsList =
   Array<WorkspaceProviderAuthorization>;
-export const WorkspacePropertiesInputAuthorizationsList = /*@__PURE__*/ S.Array(
+export const WorkspacePropertiesAuthorizationsList = /*@__PURE__*/ S.Array(
   WorkspaceProviderAuthorization,
-) as any as S.Schema<WorkspacePropertiesInputAuthorizationsList>;
+) as any as S.Schema<WorkspacePropertiesAuthorizationsList>;
 
 /** Provides details of the entity that created/updated the workspace. */
-export type CreatedByInput = AccessConnectorPropertiesInput;
-export const CreatedByInput = AccessConnectorPropertiesInput;
+export interface CreatedBy {
+  /** The Object ID that created the workspace. */
+  oid?: string;
+  /** The Personal Object ID corresponding to the object ID above */
+  puid?: string;
+  /** The application ID of the application that initiated the creation of the workspace. For example, Azure Portal. */
+  applicationId?: string;
+}
+export const CreatedBy = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    oid: S.optional(S.String),
+    puid: S.optional(S.String),
+    applicationId: S.optional(S.String),
+  }),
+).annotate({ identifier: "CreatedBy" }) as any as S.Schema<CreatedBy>;
 
 /** The Managed Identity details for storage account. */
-export type ManagedIdentityConfigurationInput = AccessConnectorPropertiesInput;
-export const ManagedIdentityConfigurationInput = AccessConnectorPropertiesInput;
+export interface ManagedIdentityConfiguration {
+  /** The objectId of the Managed Identity that is linked to the Managed Storage account. */
+  principalId?: string;
+  /** The tenant Id where the Managed Identity is created. */
+  tenantId?: string;
+  /** The type of Identity created. It can be either SystemAssigned or UserAssigned. */
+  type?: string;
+}
+export const ManagedIdentityConfiguration = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    principalId: S.optional(S.String),
+    tenantId: S.optional(S.String),
+    type: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ManagedIdentityConfiguration",
+}) as any as S.Schema<ManagedIdentityConfiguration>;
 
 /** The encryption keySource (provider). Possible values (case-insensitive): Microsoft.Keyvault */
 export type EncryptionKeySource2 = "Microsoft.Keyvault";
@@ -1883,6 +1328,36 @@ export const EnhancedSecurityComplianceDefinition = /*@__PURE__*/ S.suspend(
   identifier: "EnhancedSecurityComplianceDefinition",
 }) as any as S.Schema<EnhancedSecurityComplianceDefinition>;
 
+/** The private endpoint connection of a workspace. */
+export interface PrivateEndpointConnection {
+  /** Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts. */
+  type?: string;
+  /** The private endpoint connection properties. */
+  properties: PrivateEndpointConnectionProperties;
+}
+export const PrivateEndpointConnection = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    properties: PrivateEndpointConnectionProperties,
+  }),
+).annotate({
+  identifier: "PrivateEndpointConnection",
+}) as any as S.Schema<PrivateEndpointConnection>;
+
+/** Private endpoint connections created on the workspace. Supported in both Serverless and Hybrid ComputeMode workspace. */
+export type WorkspacePropertiesPrivateEndpointConnectionsList =
+  Array<PrivateEndpointConnection>;
+export const WorkspacePropertiesPrivateEndpointConnectionsList =
+  /*@__PURE__*/ S.Array(
+    PrivateEndpointConnection,
+  ) as any as S.Schema<WorkspacePropertiesPrivateEndpointConnectionsList>;
+
 /** The network access type for accessing workspace. Set value to disabled to access workspace only via private link. Used to configure front-end only private link for Serverless ComputeMode workspace. */
 export type PublicNetworkAccess = "Enabled" | "Disabled";
 export const PublicNetworkAccess = /*@__PURE__*/ S.String;
@@ -1942,177 +1417,6 @@ export const WorkspacePropertiesAccessConnector = /*@__PURE__*/ S.suspend(() =>
 /** Gets or Sets Default Storage Firewall configuration information. Not allowed in Serverless ComputeMode workspace. */
 export type DefaultStorageFirewall = "Disabled" | "Enabled";
 export const DefaultStorageFirewall = /*@__PURE__*/ S.String;
-
-/** The workspace properties. */
-export interface WorkspacePropertiesInput {
-  /** The workspace compute mode. Required on create, cannot be changed. Possible values include: 'Serverless', 'Hybrid' */
-  computeMode: ComputeMode | (string & {});
-  /** The managed resource group Id. Required in Hybrid ComputeMode workspace. Not allowed in Serverless ComputeMode workspace. */
-  managedResourceGroupId?: string;
-  /** The workspace's custom parameters. */
-  parameters?: WorkspaceCustomParameters;
-  /** The blob URI where the UI definition file is located. */
-  uiDefinitionUri?: string;
-  /** The workspace provider authorizations. */
-  authorizations?: WorkspacePropertiesInputAuthorizationsList;
-  /** Indicates the Object ID, PUID and Application ID of entity that created the workspace. */
-  createdBy?: AccessConnectorPropertiesInput;
-  /** Indicates the Object ID, PUID and Application ID of entity that last updated the workspace. */
-  updatedBy?: AccessConnectorPropertiesInput;
-  /** The details of Managed Identity of Storage Account. Only returned in Hybrid ComputeMode workspace. */
-  storageAccountIdentity?: AccessConnectorPropertiesInput;
-  /** The details of Managed Identity of Disk Encryption Set used for Managed Disk Encryption. Only returned in Hybrid ComputeMode workspace. */
-  managedDiskIdentity?: AccessConnectorPropertiesInput;
-  /** Encryption properties for databricks workspace. Supported in both Serverless and Hybrid ComputeMode workspace. */
-  encryption?: WorkspacePropertiesEncryption;
-  /** Contains settings related to the Enhanced Security and Compliance Add-On. Supported in both Serverless and Hybrid ComputeMode workspace. */
-  enhancedSecurityCompliance?: EnhancedSecurityComplianceDefinition;
-  /** The network access type for accessing workspace. Set value to disabled to access workspace only via private link. Used to configure front-end only private link for Serverless ComputeMode workspace. */
-  publicNetworkAccess?: PublicNetworkAccess | (string & {});
-  /** Gets or sets a value indicating whether data plane (clusters) to control plane communication happen over private endpoint. Supported values are 'AllRules' and 'NoAzureDatabricksRules'. 'NoAzureServiceRules' value is for internal use only. Not allowed in Serverless ComputeMode workspace. */
-  requiredNsgRules?: RequiredNsgRules | (string & {});
-  /** Properties for Default Catalog configuration during workspace creation. Not allowed in Serverless ComputeMode workspace. */
-  defaultCatalog?: DefaultCatalogProperties;
-  /** Access Connector Resource that is going to be associated with Databricks Workspace. Not allowed in Serverless ComputeMode workspace. */
-  accessConnector?: WorkspacePropertiesAccessConnector;
-  /** Gets or Sets Default Storage Firewall configuration information. Not allowed in Serverless ComputeMode workspace. */
-  defaultStorageFirewall?: DefaultStorageFirewall | (string & {});
-}
-export const WorkspacePropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    computeMode: ComputeMode,
-    managedResourceGroupId: S.optional(S.String),
-    parameters: S.optional(WorkspaceCustomParameters),
-    uiDefinitionUri: S.optional(S.String),
-    authorizations: S.optional(WorkspacePropertiesInputAuthorizationsList),
-    createdBy: S.optional(AccessConnectorPropertiesInput),
-    updatedBy: S.optional(AccessConnectorPropertiesInput),
-    storageAccountIdentity: S.optional(AccessConnectorPropertiesInput),
-    managedDiskIdentity: S.optional(AccessConnectorPropertiesInput),
-    encryption: S.optional(WorkspacePropertiesEncryption),
-    enhancedSecurityCompliance: S.optional(
-      EnhancedSecurityComplianceDefinition,
-    ),
-    publicNetworkAccess: S.optional(PublicNetworkAccess),
-    requiredNsgRules: S.optional(RequiredNsgRules),
-    defaultCatalog: S.optional(DefaultCatalogProperties),
-    accessConnector: S.optional(WorkspacePropertiesAccessConnector),
-    defaultStorageFirewall: S.optional(DefaultStorageFirewall),
-  }),
-).annotate({
-  identifier: "WorkspacePropertiesInput",
-}) as any as S.Schema<WorkspacePropertiesInput>;
-
-/** SKU for the resource. */
-export interface Sku {
-  /** The SKU name. */
-  name: string;
-  /** The SKU tier. */
-  tier?: string;
-}
-export const Sku = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String,
-    tier: S.optional(S.String),
-  }),
-).annotate({ identifier: "Sku" }) as any as S.Schema<Sku>;
-
-export interface WorkspacesCreateOrUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the workspace. */
-  workspaceName: string;
-  /** Resource tags. */
-  tags?: WorkspacesCreateOrUpdateRequestTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The workspace properties. */
-  properties: WorkspacePropertiesInput;
-  /** The SKU of the resource. */
-  sku?: Sku;
-}
-export const WorkspacesCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    tags: S.optional(WorkspacesCreateOrUpdateRequestTagsMap),
-    location: S.String,
-    properties: WorkspacePropertiesInput,
-    sku: S.optional(Sku),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Databricks/workspaces/{workspaceName}",
-      code: 200,
-      apiVersion: "2026-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "WorkspacesCreateOrUpdateRequest",
-}) as any as S.Schema<WorkspacesCreateOrUpdateRequest>;
-
-/** Resource tags. */
-export type WorkspacesCreateOrUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const WorkspacesCreateOrUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<WorkspacesCreateOrUpdateResponseTagsMap>;
-
-/** The workspace provider authorizations. */
-export type WorkspacePropertiesAuthorizationsList =
-  Array<WorkspaceProviderAuthorization>;
-export const WorkspacePropertiesAuthorizationsList = /*@__PURE__*/ S.Array(
-  WorkspaceProviderAuthorization,
-) as any as S.Schema<WorkspacePropertiesAuthorizationsList>;
-
-/** Provides details of the entity that created/updated the workspace. */
-export interface CreatedBy {
-  /** The Object ID that created the workspace. */
-  oid?: string;
-  /** The Personal Object ID corresponding to the object ID above */
-  puid?: string;
-  /** The application ID of the application that initiated the creation of the workspace. For example, Azure Portal. */
-  applicationId?: string;
-}
-export const CreatedBy = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    oid: S.optional(S.String),
-    puid: S.optional(S.String),
-    applicationId: S.optional(S.String),
-  }),
-).annotate({ identifier: "CreatedBy" }) as any as S.Schema<CreatedBy>;
-
-/** The Managed Identity details for storage account. */
-export interface ManagedIdentityConfiguration {
-  /** The objectId of the Managed Identity that is linked to the Managed Storage account. */
-  principalId?: string;
-  /** The tenant Id where the Managed Identity is created. */
-  tenantId?: string;
-  /** The type of Identity created. It can be either SystemAssigned or UserAssigned. */
-  type?: string;
-}
-export const ManagedIdentityConfiguration = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    principalId: S.optional(S.String),
-    tenantId: S.optional(S.String),
-    type: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ManagedIdentityConfiguration",
-}) as any as S.Schema<ManagedIdentityConfiguration>;
-
-/** Private endpoint connections created on the workspace. Supported in both Serverless and Hybrid ComputeMode workspace. */
-export type WorkspacePropertiesPrivateEndpointConnectionsList =
-  Array<PrivateEndpointConnection>;
-export const WorkspacePropertiesPrivateEndpointConnectionsList =
-  /*@__PURE__*/ S.Array(
-    PrivateEndpointConnection,
-  ) as any as S.Schema<WorkspacePropertiesPrivateEndpointConnectionsList>;
 
 /** The workspace properties. */
 export interface WorkspaceProperties {
@@ -2197,7 +1501,21 @@ export const WorkspaceProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "WorkspaceProperties",
 }) as any as S.Schema<WorkspaceProperties>;
 
-export interface WorkspacesCreateOrUpdateResponse {
+/** SKU for the resource. */
+export interface Sku {
+  /** The SKU name. */
+  name: string;
+  /** The SKU tier. */
+  tier?: string;
+}
+export const Sku = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String,
+    tier: S.optional(S.String),
+  }),
+).annotate({ identifier: "Sku" }) as any as S.Schema<Sku>;
+
+export interface GetWorkspaceResponse {
   /** Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -2205,7 +1523,7 @@ export interface WorkspacesCreateOrUpdateResponse {
   /** The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts. */
   type?: string;
   /** Resource tags. */
-  tags?: WorkspacesCreateOrUpdateResponseTagsMap;
+  tags?: GetWorkspaceResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The workspace properties. */
@@ -2213,56 +1531,202 @@ export interface WorkspacesCreateOrUpdateResponse {
   /** The SKU of the resource. */
   sku?: Sku;
 }
-export const WorkspacesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetWorkspaceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
-    tags: S.optional(WorkspacesCreateOrUpdateResponseTagsMap),
+    tags: S.optional(GetWorkspaceResponseTagsMap),
     location: S.String,
     properties: WorkspaceProperties,
     sku: S.optional(Sku),
   }),
 ).annotate({
-  identifier: "WorkspacesCreateOrUpdateResponse",
-}) as any as S.Schema<WorkspacesCreateOrUpdateResponse>;
+  identifier: "GetWorkspaceResponse",
+}) as any as S.Schema<GetWorkspaceResponse>;
 
-export interface WorkspacesDeleteRequest {
+export interface ListAccessConnectorByResourceGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
-  /** The name of the workspace. */
-  workspaceName: string;
-  /** Optional parameter to retain default unity catalog data. By default the data will retained if Uc is enabled on the workspace. */
-  forceDeletion?: boolean;
 }
-export const WorkspacesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListAccessConnectorByResourceGroupRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Databricks/accessConnectors",
+        code: 200,
+        apiVersion: "2026-01-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListAccessConnectorByResourceGroupRequest",
+  }) as any as S.Schema<ListAccessConnectorByResourceGroupRequest>;
+
+/** Resource tags. */
+export type AccessConnectorTagsMap = { [key: string]: string | undefined };
+export const AccessConnectorTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<AccessConnectorTagsMap>;
+
+/** Managed service identity (system assigned and/or user assigned identities) */
+export type AccessConnectorIdentity =
+  AccessConnectorsCreateOrUpdateResponseIdentity;
+export const AccessConnectorIdentity =
+  AccessConnectorsCreateOrUpdateResponseIdentity;
+
+/** Information about Azure Databricks Access Connector. */
+export interface AccessConnector {
+  /** Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts. */
+  type?: string;
+  /** Resource tags. */
+  tags?: AccessConnectorTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Azure Databricks Access Connector properties */
+  properties?: AccessConnectorProperties;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: AccessConnectorsCreateOrUpdateResponseIdentity;
+}
+export const AccessConnector = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    forceDeletion: S.optional(S.Boolean.pipe(T.Query())),
-  }).pipe(
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    tags: S.optional(AccessConnectorTagsMap),
+    location: S.String,
+    properties: S.optional(AccessConnectorProperties),
+    identity: S.optional(AccessConnectorsCreateOrUpdateResponseIdentity),
+  }),
+).annotate({
+  identifier: "AccessConnector",
+}) as any as S.Schema<AccessConnector>;
+
+/** The AccessConnector items on this page */
+export type AccessConnectorListResultValueList = Array<AccessConnector>;
+export const AccessConnectorListResultValueList = /*@__PURE__*/ S.Array(
+  AccessConnector,
+) as any as S.Schema<AccessConnectorListResultValueList>;
+
+/** The response of a AccessConnector list operation. */
+export interface AccessConnectorListResult {
+  /** The AccessConnector items on this page */
+  value: AccessConnectorListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const AccessConnectorListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: AccessConnectorListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "AccessConnectorListResult",
+}) as any as S.Schema<AccessConnectorListResult>;
+
+export interface ListAccessConnectorBySubscriptionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+}
+export const ListAccessConnectorBySubscriptionRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Databricks/accessConnectors",
+        code: 200,
+        apiVersion: "2026-01-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListAccessConnectorBySubscriptionRequest",
+}) as any as S.Schema<ListAccessConnectorBySubscriptionRequest>;
+
+export interface ListOperationsRequest {}
+export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
     T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Databricks/workspaces/{workspaceName}",
+      method: "GET",
+      uri: "/providers/Microsoft.Databricks/operations",
       code: 200,
       apiVersion: "2026-01-01",
     }),
   ),
 ).annotate({
-  identifier: "WorkspacesDeleteRequest",
-}) as any as S.Schema<WorkspacesDeleteRequest>;
+  identifier: "ListOperationsRequest",
+}) as any as S.Schema<ListOperationsRequest>;
 
-export interface WorkspacesDeleteResponse {}
-export const WorkspacesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
+/** The object that represents the operation. */
+export interface OperationDisplay {
+  /** Service provider: ex Microsoft.Databricks */
+  provider?: string;
+  /** Resource on which the operation is performed. */
+  resource?: string;
+  /** Operation type: Read, write, delete, etc. */
+  operation?: string;
+  /** Description for the resource operation. */
+  description?: string;
+}
+export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provider: S.optional(S.String),
+    resource: S.optional(S.String),
+    operation: S.optional(S.String),
+    description: S.optional(S.String),
+  }),
 ).annotate({
-  identifier: "WorkspacesDeleteResponse",
-}) as any as S.Schema<WorkspacesDeleteResponse>;
+  identifier: "OperationDisplay",
+}) as any as S.Schema<OperationDisplay>;
 
-export interface WorkspacesGetRequest {
+/** REST API operation */
+export interface Operation {
+  /** Operation name: {provider}/{resource}/{operation} */
+  name?: string;
+  /** The object that represents the operation. */
+  display?: OperationDisplay;
+}
+export const Operation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    display: S.optional(OperationDisplay),
+  }),
+).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
+
+/** List of Resource Provider operations supported by the Resource Provider resource provider. */
+export type OperationListResultValueList = Array<Operation>;
+export const OperationListResultValueList = /*@__PURE__*/ S.Array(
+  Operation,
+) as any as S.Schema<OperationListResultValueList>;
+
+/** Result of the request to list Resource Provider operations. It contains a list of operations and a URL link to get the next set of results. */
+export interface OperationListResult {
+  /** List of Resource Provider operations supported by the Resource Provider resource provider. */
+  value?: OperationListResultValueList;
+  /** URL to get the next set of operation list results if there are any. */
+  nextLink?: string;
+}
+export const OperationListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(OperationListResultValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "OperationListResult",
+}) as any as S.Schema<OperationListResult>;
+
+export interface ListOutboundNetworkDependenciesEndpointsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2270,7 +1734,163 @@ export interface WorkspacesGetRequest {
   /** The name of the workspace. */
   workspaceName: string;
 }
-export const WorkspacesGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListOutboundNetworkDependenciesEndpointsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      workspaceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Databricks/workspaces/{workspaceName}/outboundNetworkDependenciesEndpoints",
+        code: 200,
+        apiVersion: "2026-01-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListOutboundNetworkDependenciesEndpointsRequest",
+  }) as any as S.Schema<ListOutboundNetworkDependenciesEndpointsRequest>;
+
+/** Connect information from the Workspace to a single endpoint. */
+export interface EndpointDetail {
+  /** An IP Address that Domain Name currently resolves to. */
+  ipAddress?: string;
+  /** The port an endpoint is connected to. */
+  port?: number;
+  /** The time in milliseconds it takes for the connection to be created from the Workspace to this IpAddress at this Port. */
+  latency?: number;
+  /** Whether it is possible to create a connection from the Workspace to this IpAddress at this Port. */
+  isAccessible?: boolean;
+}
+export const EndpointDetail = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ipAddress: S.optional(S.String),
+    port: S.optional(S.Number),
+    latency: S.optional(S.Number),
+    isAccessible: S.optional(S.Boolean),
+  }),
+).annotate({ identifier: "EndpointDetail" }) as any as S.Schema<EndpointDetail>;
+
+/** The Ports used when connecting to domainName. */
+export type EndpointDependencyEndpointDetailsList = Array<EndpointDetail>;
+export const EndpointDependencyEndpointDetailsList = /*@__PURE__*/ S.Array(
+  EndpointDetail,
+) as any as S.Schema<EndpointDependencyEndpointDetailsList>;
+
+/** A domain name or IP address the Workspace is reaching at. */
+export interface EndpointDependency {
+  /** The domain name of the dependency. */
+  domainName?: string;
+  /** The Ports used when connecting to domainName. */
+  endpointDetails?: EndpointDependencyEndpointDetailsList;
+}
+export const EndpointDependency = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    domainName: S.optional(S.String),
+    endpointDetails: S.optional(EndpointDependencyEndpointDetailsList),
+  }),
+).annotate({
+  identifier: "EndpointDependency",
+}) as any as S.Schema<EndpointDependency>;
+
+/** The endpoints that Workspace connect to */
+export type OutboundEnvironmentEndpointEndpointsList =
+  Array<EndpointDependency>;
+export const OutboundEnvironmentEndpointEndpointsList = /*@__PURE__*/ S.Array(
+  EndpointDependency,
+) as any as S.Schema<OutboundEnvironmentEndpointEndpointsList>;
+
+/** Egress endpoints which Workspace connects to for common purposes. */
+export interface OutboundEnvironmentEndpoint {
+  /** The category of endpoints accessed by the Workspace, e.g. azure-storage, azure-mysql, etc. */
+  category?: string;
+  /** The endpoints that Workspace connect to */
+  endpoints?: OutboundEnvironmentEndpointEndpointsList;
+}
+export const OutboundEnvironmentEndpoint = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    category: S.optional(S.String),
+    endpoints: S.optional(OutboundEnvironmentEndpointEndpointsList),
+  }),
+).annotate({
+  identifier: "OutboundEnvironmentEndpoint",
+}) as any as S.Schema<OutboundEnvironmentEndpoint>;
+
+/** Collection of outbound network dependency endpoints */
+export type OutboundEnvironmentEndpointCollection =
+  Array<OutboundEnvironmentEndpoint>;
+export const OutboundEnvironmentEndpointCollection = /*@__PURE__*/ S.Array(
+  OutboundEnvironmentEndpoint,
+) as any as S.Schema<OutboundEnvironmentEndpointCollection>;
+
+export type ListOutboundNetworkDependenciesEndpointsResponse =
+  OutboundEnvironmentEndpointCollection;
+export const ListOutboundNetworkDependenciesEndpointsResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    OutboundEnvironmentEndpointCollection.pipe(T.RawResponseRoot()),
+  ).annotate({
+    identifier: "ListOutboundNetworkDependenciesEndpointsResponse",
+  }) as any as S.Schema<ListOutboundNetworkDependenciesEndpointsResponse>;
+
+export interface ListPrivateEndpointConnectionsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the workspace. */
+  workspaceName: string;
+}
+export const ListPrivateEndpointConnectionsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      workspaceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Databricks/workspaces/{workspaceName}/privateEndpointConnections",
+        code: 200,
+        apiVersion: "2026-01-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListPrivateEndpointConnectionsRequest",
+}) as any as S.Schema<ListPrivateEndpointConnectionsRequest>;
+
+/** The PrivateEndpointConnection items on this page */
+export type PrivateEndpointConnectionsListValueList =
+  Array<PrivateEndpointConnection>;
+export const PrivateEndpointConnectionsListValueList = /*@__PURE__*/ S.Array(
+  PrivateEndpointConnection,
+) as any as S.Schema<PrivateEndpointConnectionsListValueList>;
+
+/** List of private link connections. */
+export interface PrivateEndpointConnectionsList {
+  /** The PrivateEndpointConnection items on this page */
+  value: PrivateEndpointConnectionsListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const PrivateEndpointConnectionsList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: PrivateEndpointConnectionsListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PrivateEndpointConnectionsList",
+}) as any as S.Schema<PrivateEndpointConnectionsList>;
+
+export interface ListPrivateLinkResourcesRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the workspace. */
+  workspaceName: string;
+}
+export const ListPrivateLinkResourcesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -2278,76 +1898,149 @@ export const WorkspacesGetRequest = /*@__PURE__*/ S.suspend(() =>
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Databricks/workspaces/{workspaceName}",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Databricks/workspaces/{workspaceName}/privateLinkResources",
       code: 200,
       apiVersion: "2026-01-01",
     }),
   ),
 ).annotate({
-  identifier: "WorkspacesGetRequest",
-}) as any as S.Schema<WorkspacesGetRequest>;
+  identifier: "ListPrivateLinkResourcesRequest",
+}) as any as S.Schema<ListPrivateLinkResourcesRequest>;
 
-/** Resource tags. */
-export type WorkspacesGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const WorkspacesGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<WorkspacesGetResponseTagsMap>;
-
-export interface WorkspacesGetResponse {
+/** The group information for creating a private endpoint on a workspace */
+export interface GroupIdInformation {
   /** Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
   name?: string;
   /** The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts. */
   type?: string;
-  /** Resource tags. */
-  tags?: WorkspacesGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The workspace properties. */
-  properties: WorkspaceProperties;
-  /** The SKU of the resource. */
-  sku?: Sku;
+  /** The group id properties. */
+  properties: GroupIdInformationProperties;
 }
-export const WorkspacesGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GroupIdInformation = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
-    tags: S.optional(WorkspacesGetResponseTagsMap),
-    location: S.String,
-    properties: WorkspaceProperties,
-    sku: S.optional(Sku),
+    properties: GroupIdInformationProperties,
   }),
 ).annotate({
-  identifier: "WorkspacesGetResponse",
-}) as any as S.Schema<WorkspacesGetResponse>;
+  identifier: "GroupIdInformation",
+}) as any as S.Schema<GroupIdInformation>;
 
-export interface WorkspacesListByResourceGroupRequest {
+/** The GroupIdInformation items on this page */
+export type PrivateLinkResourcesListValueList = Array<GroupIdInformation>;
+export const PrivateLinkResourcesListValueList = /*@__PURE__*/ S.Array(
+  GroupIdInformation,
+) as any as S.Schema<PrivateLinkResourcesListValueList>;
+
+/** The available private link resources for a workspace */
+export interface PrivateLinkResourcesList {
+  /** The GroupIdInformation items on this page */
+  value: PrivateLinkResourcesListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const PrivateLinkResourcesList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: PrivateLinkResourcesListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PrivateLinkResourcesList",
+}) as any as S.Schema<PrivateLinkResourcesList>;
+
+export interface ListVNetPeeringByWorkspaceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the workspace. */
+  workspaceName: string;
+}
+export const ListVNetPeeringByWorkspaceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Databricks/workspaces/{workspaceName}/virtualNetworkPeerings",
+      code: 200,
+      apiVersion: "2026-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListVNetPeeringByWorkspaceRequest",
+}) as any as S.Schema<ListVNetPeeringByWorkspaceRequest>;
+
+/** Peerings in a VirtualNetwork resource */
+export interface VirtualNetworkPeering {
+  /** Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts. */
+  type?: string;
+  /** List of properties for vNet Peering */
+  properties: VirtualNetworkPeeringPropertiesFormat;
+}
+export const VirtualNetworkPeering = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    properties: VirtualNetworkPeeringPropertiesFormat,
+  }),
+).annotate({
+  identifier: "VirtualNetworkPeering",
+}) as any as S.Schema<VirtualNetworkPeering>;
+
+/** The VirtualNetworkPeering items on this page */
+export type VirtualNetworkPeeringListValueList = Array<VirtualNetworkPeering>;
+export const VirtualNetworkPeeringListValueList = /*@__PURE__*/ S.Array(
+  VirtualNetworkPeering,
+) as any as S.Schema<VirtualNetworkPeeringListValueList>;
+
+/** Gets all virtual network peerings under a workspace. */
+export interface VirtualNetworkPeeringList {
+  /** The VirtualNetworkPeering items on this page */
+  value: VirtualNetworkPeeringListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const VirtualNetworkPeeringList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: VirtualNetworkPeeringListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "VirtualNetworkPeeringList",
+}) as any as S.Schema<VirtualNetworkPeeringList>;
+
+export interface ListWorkspaceByResourceGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
 }
-export const WorkspacesListByResourceGroupRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Databricks/workspaces",
-        code: 200,
-        apiVersion: "2026-01-01",
-      }),
-    ),
+export const ListWorkspaceByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Databricks/workspaces",
+      code: 200,
+      apiVersion: "2026-01-01",
+    }),
+  ),
 ).annotate({
-  identifier: "WorkspacesListByResourceGroupRequest",
-}) as any as S.Schema<WorkspacesListByResourceGroupRequest>;
+  identifier: "ListWorkspaceByResourceGroupRequest",
+}) as any as S.Schema<ListWorkspaceByResourceGroupRequest>;
 
 /** Resource tags. */
 export type WorkspaceTagsMap = { [key: string]: string | undefined };
@@ -2407,11 +2100,11 @@ export const WorkspaceListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "WorkspaceListResult",
 }) as any as S.Schema<WorkspaceListResult>;
 
-export interface WorkspacesListBySubscriptionRequest {
+export interface ListWorkspaceBySubscriptionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
 }
-export const WorkspacesListBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListWorkspaceBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
   }).pipe(
@@ -2423,19 +2116,110 @@ export const WorkspacesListBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "WorkspacesListBySubscriptionRequest",
-}) as any as S.Schema<WorkspacesListBySubscriptionRequest>;
+  identifier: "ListWorkspaceBySubscriptionRequest",
+}) as any as S.Schema<ListWorkspaceBySubscriptionRequest>;
 
 /** Resource tags. */
-export type WorkspacesUpdateRequestTagsMap = {
+export type UpdateAccessConnectorRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const WorkspacesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateAccessConnectorRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<WorkspacesUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateAccessConnectorRequestTagsMap>;
 
-export interface WorkspacesUpdateRequest {
+/** Managed service identity (system assigned and/or user assigned identities) */
+export type UpdateAccessConnectorRequestIdentity =
+  AccessConnectorsCreateOrUpdateRequestIdentity;
+export const UpdateAccessConnectorRequestIdentity =
+  AccessConnectorsCreateOrUpdateRequestIdentity;
+
+export interface UpdateAccessConnectorRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Azure Databricks Access Connector. */
+  connectorName: string;
+  /** Resource tags. */
+  tags?: UpdateAccessConnectorRequestTagsMap;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: AccessConnectorsCreateOrUpdateRequestIdentity;
+}
+export const UpdateAccessConnectorRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    connectorName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateAccessConnectorRequestTagsMap),
+    identity: S.optional(AccessConnectorsCreateOrUpdateRequestIdentity),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Databricks/accessConnectors/{connectorName}",
+      code: 200,
+      apiVersion: "2026-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateAccessConnectorRequest",
+}) as any as S.Schema<UpdateAccessConnectorRequest>;
+
+/** Resource tags. */
+export type UpdateAccessConnectorResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateAccessConnectorResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateAccessConnectorResponseTagsMap>;
+
+/** Managed service identity (system assigned and/or user assigned identities) */
+export type UpdateAccessConnectorResponseIdentity =
+  AccessConnectorsCreateOrUpdateResponseIdentity;
+export const UpdateAccessConnectorResponseIdentity =
+  AccessConnectorsCreateOrUpdateResponseIdentity;
+
+export interface UpdateAccessConnectorResponse {
+  /** Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts. */
+  type?: string;
+  /** Resource tags. */
+  tags?: UpdateAccessConnectorResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Azure Databricks Access Connector properties */
+  properties?: AccessConnectorProperties;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: AccessConnectorsCreateOrUpdateResponseIdentity;
+}
+export const UpdateAccessConnectorResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    tags: S.optional(UpdateAccessConnectorResponseTagsMap),
+    location: S.String,
+    properties: S.optional(AccessConnectorProperties),
+    identity: S.optional(AccessConnectorsCreateOrUpdateResponseIdentity),
+  }),
+).annotate({
+  identifier: "UpdateAccessConnectorResponse",
+}) as any as S.Schema<UpdateAccessConnectorResponse>;
+
+/** Resource tags. */
+export type UpdateWorkspaceRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateWorkspaceRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateWorkspaceRequestTagsMap>;
+
+export interface UpdateWorkspaceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2443,14 +2227,14 @@ export interface WorkspacesUpdateRequest {
   /** The name of the workspace. */
   workspaceName: string;
   /** Resource tags. */
-  tags?: WorkspacesUpdateRequestTagsMap;
+  tags?: UpdateWorkspaceRequestTagsMap;
 }
-export const WorkspacesUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateWorkspaceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     workspaceName: S.String.pipe(T.Label()),
-    tags: S.optional(WorkspacesUpdateRequestTagsMap),
+    tags: S.optional(UpdateWorkspaceRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -2460,19 +2244,19 @@ export const WorkspacesUpdateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "WorkspacesUpdateRequest",
-}) as any as S.Schema<WorkspacesUpdateRequest>;
+  identifier: "UpdateWorkspaceRequest",
+}) as any as S.Schema<UpdateWorkspaceRequest>;
 
 /** Resource tags. */
-export type WorkspacesUpdateResponseTagsMap = {
+export type UpdateWorkspaceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const WorkspacesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateWorkspaceResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<WorkspacesUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateWorkspaceResponseTagsMap>;
 
-export interface WorkspacesUpdateResponse {
+export interface UpdateWorkspaceResponse {
   /** Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -2480,7 +2264,7 @@ export interface WorkspacesUpdateResponse {
   /** The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts. */
   type?: string;
   /** Resource tags. */
-  tags?: WorkspacesUpdateResponseTagsMap;
+  tags?: UpdateWorkspaceResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The workspace properties. */
@@ -2488,19 +2272,231 @@ export interface WorkspacesUpdateResponse {
   /** The SKU of the resource. */
   sku?: Sku;
 }
-export const WorkspacesUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateWorkspaceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
-    tags: S.optional(WorkspacesUpdateResponseTagsMap),
+    tags: S.optional(UpdateWorkspaceResponseTagsMap),
     location: S.String,
     properties: WorkspaceProperties,
     sku: S.optional(Sku),
   }),
 ).annotate({
-  identifier: "WorkspacesUpdateResponse",
-}) as any as S.Schema<WorkspacesUpdateResponse>;
+  identifier: "UpdateWorkspaceResponse",
+}) as any as S.Schema<UpdateWorkspaceResponse>;
+
+export interface VNetPeeringCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the workspace. */
+  workspaceName: string;
+  /** The name of the workspace vNet peering. */
+  peeringName: string;
+  /** List of properties for vNet Peering */
+  properties: VirtualNetworkPeeringPropertiesFormat;
+}
+export const VNetPeeringCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    peeringName: S.String.pipe(T.Label()),
+    properties: VirtualNetworkPeeringPropertiesFormat,
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Databricks/workspaces/{workspaceName}/virtualNetworkPeerings/{peeringName}",
+      code: 200,
+      apiVersion: "2026-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "VNetPeeringCreateOrUpdateRequest",
+}) as any as S.Schema<VNetPeeringCreateOrUpdateRequest>;
+
+export interface VNetPeeringCreateOrUpdateResponse {
+  /** Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts. */
+  type?: string;
+  /** List of properties for vNet Peering */
+  properties: VirtualNetworkPeeringPropertiesFormat;
+}
+export const VNetPeeringCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    properties: VirtualNetworkPeeringPropertiesFormat,
+  }),
+).annotate({
+  identifier: "VNetPeeringCreateOrUpdateResponse",
+}) as any as S.Schema<VNetPeeringCreateOrUpdateResponse>;
+
+/** Resource tags. */
+export type WorkspacesCreateOrUpdateRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const WorkspacesCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<WorkspacesCreateOrUpdateRequestTagsMap>;
+
+/** The workspace provider authorizations. */
+export type WorkspacePropertiesInputAuthorizationsList =
+  Array<WorkspaceProviderAuthorization>;
+export const WorkspacePropertiesInputAuthorizationsList = /*@__PURE__*/ S.Array(
+  WorkspaceProviderAuthorization,
+) as any as S.Schema<WorkspacePropertiesInputAuthorizationsList>;
+
+/** Provides details of the entity that created/updated the workspace. */
+export type CreatedByInput = AccessConnectorPropertiesInput;
+export const CreatedByInput = AccessConnectorPropertiesInput;
+
+/** The Managed Identity details for storage account. */
+export type ManagedIdentityConfigurationInput = AccessConnectorPropertiesInput;
+export const ManagedIdentityConfigurationInput = AccessConnectorPropertiesInput;
+
+/** The workspace properties. */
+export interface WorkspacePropertiesInput {
+  /** The workspace compute mode. Required on create, cannot be changed. Possible values include: 'Serverless', 'Hybrid' */
+  computeMode: ComputeMode | (string & {});
+  /** The managed resource group Id. Required in Hybrid ComputeMode workspace. Not allowed in Serverless ComputeMode workspace. */
+  managedResourceGroupId?: string;
+  /** The workspace's custom parameters. */
+  parameters?: WorkspaceCustomParameters;
+  /** The blob URI where the UI definition file is located. */
+  uiDefinitionUri?: string;
+  /** The workspace provider authorizations. */
+  authorizations?: WorkspacePropertiesInputAuthorizationsList;
+  /** Indicates the Object ID, PUID and Application ID of entity that created the workspace. */
+  createdBy?: AccessConnectorPropertiesInput;
+  /** Indicates the Object ID, PUID and Application ID of entity that last updated the workspace. */
+  updatedBy?: AccessConnectorPropertiesInput;
+  /** The details of Managed Identity of Storage Account. Only returned in Hybrid ComputeMode workspace. */
+  storageAccountIdentity?: AccessConnectorPropertiesInput;
+  /** The details of Managed Identity of Disk Encryption Set used for Managed Disk Encryption. Only returned in Hybrid ComputeMode workspace. */
+  managedDiskIdentity?: AccessConnectorPropertiesInput;
+  /** Encryption properties for databricks workspace. Supported in both Serverless and Hybrid ComputeMode workspace. */
+  encryption?: WorkspacePropertiesEncryption;
+  /** Contains settings related to the Enhanced Security and Compliance Add-On. Supported in both Serverless and Hybrid ComputeMode workspace. */
+  enhancedSecurityCompliance?: EnhancedSecurityComplianceDefinition;
+  /** The network access type for accessing workspace. Set value to disabled to access workspace only via private link. Used to configure front-end only private link for Serverless ComputeMode workspace. */
+  publicNetworkAccess?: PublicNetworkAccess | (string & {});
+  /** Gets or sets a value indicating whether data plane (clusters) to control plane communication happen over private endpoint. Supported values are 'AllRules' and 'NoAzureDatabricksRules'. 'NoAzureServiceRules' value is for internal use only. Not allowed in Serverless ComputeMode workspace. */
+  requiredNsgRules?: RequiredNsgRules | (string & {});
+  /** Properties for Default Catalog configuration during workspace creation. Not allowed in Serverless ComputeMode workspace. */
+  defaultCatalog?: DefaultCatalogProperties;
+  /** Access Connector Resource that is going to be associated with Databricks Workspace. Not allowed in Serverless ComputeMode workspace. */
+  accessConnector?: WorkspacePropertiesAccessConnector;
+  /** Gets or Sets Default Storage Firewall configuration information. Not allowed in Serverless ComputeMode workspace. */
+  defaultStorageFirewall?: DefaultStorageFirewall | (string & {});
+}
+export const WorkspacePropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    computeMode: ComputeMode,
+    managedResourceGroupId: S.optional(S.String),
+    parameters: S.optional(WorkspaceCustomParameters),
+    uiDefinitionUri: S.optional(S.String),
+    authorizations: S.optional(WorkspacePropertiesInputAuthorizationsList),
+    createdBy: S.optional(AccessConnectorPropertiesInput),
+    updatedBy: S.optional(AccessConnectorPropertiesInput),
+    storageAccountIdentity: S.optional(AccessConnectorPropertiesInput),
+    managedDiskIdentity: S.optional(AccessConnectorPropertiesInput),
+    encryption: S.optional(WorkspacePropertiesEncryption),
+    enhancedSecurityCompliance: S.optional(
+      EnhancedSecurityComplianceDefinition,
+    ),
+    publicNetworkAccess: S.optional(PublicNetworkAccess),
+    requiredNsgRules: S.optional(RequiredNsgRules),
+    defaultCatalog: S.optional(DefaultCatalogProperties),
+    accessConnector: S.optional(WorkspacePropertiesAccessConnector),
+    defaultStorageFirewall: S.optional(DefaultStorageFirewall),
+  }),
+).annotate({
+  identifier: "WorkspacePropertiesInput",
+}) as any as S.Schema<WorkspacePropertiesInput>;
+
+export interface WorkspacesCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the workspace. */
+  workspaceName: string;
+  /** Resource tags. */
+  tags?: WorkspacesCreateOrUpdateRequestTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The workspace properties. */
+  properties: WorkspacePropertiesInput;
+  /** The SKU of the resource. */
+  sku?: Sku;
+}
+export const WorkspacesCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    tags: S.optional(WorkspacesCreateOrUpdateRequestTagsMap),
+    location: S.String,
+    properties: WorkspacePropertiesInput,
+    sku: S.optional(Sku),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Databricks/workspaces/{workspaceName}",
+      code: 200,
+      apiVersion: "2026-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "WorkspacesCreateOrUpdateRequest",
+}) as any as S.Schema<WorkspacesCreateOrUpdateRequest>;
+
+/** Resource tags. */
+export type WorkspacesCreateOrUpdateResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const WorkspacesCreateOrUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<WorkspacesCreateOrUpdateResponseTagsMap>;
+
+export interface WorkspacesCreateOrUpdateResponse {
+  /** Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts. */
+  type?: string;
+  /** Resource tags. */
+  tags?: WorkspacesCreateOrUpdateResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The workspace properties. */
+  properties: WorkspaceProperties;
+  /** The SKU of the resource. */
+  sku?: Sku;
+}
+export const WorkspacesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    tags: S.optional(WorkspacesCreateOrUpdateResponseTagsMap),
+    location: S.String,
+    properties: WorkspaceProperties,
+    sku: S.optional(Sku),
+  }),
+).annotate({
+  identifier: "WorkspacesCreateOrUpdateResponse",
+}) as any as S.Schema<WorkspacesCreateOrUpdateResponse>;
 
 export type AccessConnectorsCreateOrUpdateError = AzureOpError;
 /** Creates or updates Azure Databricks Access Connector. */
@@ -2517,196 +2513,316 @@ export const AccessConnectorsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type AccessConnectorsDeleteError = AzureOpError;
+export type CreatePrivateEndpointConnectionError = AzureOpError;
+/** Update private endpoint connection status Update the status of a private endpoint connection with the specified name */
+export const CreatePrivateEndpointConnection: API.OperationMethod<
+  CreatePrivateEndpointConnectionRequest,
+  CreatePrivateEndpointConnectionResponse,
+  CreatePrivateEndpointConnectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreatePrivateEndpointConnectionRequest,
+  output: CreatePrivateEndpointConnectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteAccessConnectorError = AzureOpError;
 /** Deletes the Azure Databricks Access Connector. */
-export const AccessConnectorsDelete: API.OperationMethod<
-  AccessConnectorsDeleteRequest,
-  AccessConnectorsDeleteResponse,
-  AccessConnectorsDeleteError,
+export const DeleteAccessConnector: API.OperationMethod<
+  DeleteAccessConnectorRequest,
+  DeleteAccessConnectorResponse,
+  DeleteAccessConnectorError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AccessConnectorsDeleteRequest,
-  output: AccessConnectorsDeleteResponse,
+  input: DeleteAccessConnectorRequest,
+  output: DeleteAccessConnectorResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type AccessConnectorsGetError = AzureOpError;
+export type DeletePrivateEndpointConnectionError = AzureOpError;
+/** Remove private endpoint connection Remove private endpoint connection with the specified name */
+export const DeletePrivateEndpointConnection: API.OperationMethod<
+  DeletePrivateEndpointConnectionRequest,
+  DeletePrivateEndpointConnectionResponse,
+  DeletePrivateEndpointConnectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeletePrivateEndpointConnectionRequest,
+  output: DeletePrivateEndpointConnectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteVNetPeeringError = AzureOpError;
+/** Deletes the workspace vNetPeering. */
+export const DeleteVNetPeering: API.OperationMethod<
+  DeleteVNetPeeringRequest,
+  DeleteVNetPeeringResponse,
+  DeleteVNetPeeringError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteVNetPeeringRequest,
+  output: DeleteVNetPeeringResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteWorkspaceError = AzureOpError;
+/** Deletes the workspace. */
+export const DeleteWorkspace: API.OperationMethod<
+  DeleteWorkspaceRequest,
+  DeleteWorkspaceResponse,
+  DeleteWorkspaceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteWorkspaceRequest,
+  output: DeleteWorkspaceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetAccessConnectorError = AzureOpError;
 /** Gets an Azure Databricks Access Connector. */
-export const AccessConnectorsGet: API.OperationMethod<
-  AccessConnectorsGetRequest,
-  AccessConnectorsGetResponse,
-  AccessConnectorsGetError,
+export const GetAccessConnector: API.OperationMethod<
+  GetAccessConnectorRequest,
+  GetAccessConnectorResponse,
+  GetAccessConnectorError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AccessConnectorsGetRequest,
-  output: AccessConnectorsGetResponse,
+  input: GetAccessConnectorRequest,
+  output: GetAccessConnectorResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type AccessConnectorsListByResourceGroupError = AzureOpError;
+export type GetPrivateEndpointConnectionError = AzureOpError;
+/** Get private endpoint connection Get a private endpoint connection properties for a workspace */
+export const GetPrivateEndpointConnection: API.OperationMethod<
+  GetPrivateEndpointConnectionRequest,
+  GetPrivateEndpointConnectionResponse,
+  GetPrivateEndpointConnectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPrivateEndpointConnectionRequest,
+  output: GetPrivateEndpointConnectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetPrivateLinkResourceError = AzureOpError;
+/** Get the specified private link resource Get the specified private link resource for the given group id (sub-resource) */
+export const GetPrivateLinkResource: API.OperationMethod<
+  GetPrivateLinkResourceRequest,
+  GetPrivateLinkResourceResponse,
+  GetPrivateLinkResourceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPrivateLinkResourceRequest,
+  output: GetPrivateLinkResourceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetVNetPeeringError = AzureOpError;
+/** Gets the workspace vNet Peering. */
+export const GetVNetPeering: API.OperationMethod<
+  GetVNetPeeringRequest,
+  GetVNetPeeringResponse,
+  GetVNetPeeringError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetVNetPeeringRequest,
+  output: GetVNetPeeringResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetWorkspaceError = AzureOpError;
+/** Gets the workspace. */
+export const GetWorkspace: API.OperationMethod<
+  GetWorkspaceRequest,
+  GetWorkspaceResponse,
+  GetWorkspaceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetWorkspaceRequest,
+  output: GetWorkspaceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListAccessConnectorByResourceGroupError = AzureOpError;
 /** Gets all the Azure Databricks Access Connectors within a resource group. */
-export const AccessConnectorsListByResourceGroup: API.OperationMethod<
-  AccessConnectorsListByResourceGroupRequest,
+export const ListAccessConnectorByResourceGroup: API.OperationMethod<
+  ListAccessConnectorByResourceGroupRequest,
   AccessConnectorListResult,
-  AccessConnectorsListByResourceGroupError,
+  ListAccessConnectorByResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AccessConnectorsListByResourceGroupRequest,
+  input: ListAccessConnectorByResourceGroupRequest,
   output: AccessConnectorListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type AccessConnectorsListBySubscriptionError = AzureOpError;
+export type ListAccessConnectorBySubscriptionError = AzureOpError;
 /** Gets all the Azure Databricks Access Connectors within a subscription. */
-export const AccessConnectorsListBySubscription: API.OperationMethod<
-  AccessConnectorsListBySubscriptionRequest,
+export const ListAccessConnectorBySubscription: API.OperationMethod<
+  ListAccessConnectorBySubscriptionRequest,
   AccessConnectorListResult,
-  AccessConnectorsListBySubscriptionError,
+  ListAccessConnectorBySubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AccessConnectorsListBySubscriptionRequest,
+  input: ListAccessConnectorBySubscriptionRequest,
   output: AccessConnectorListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type AccessConnectorsUpdateError = AzureOpError;
-/** Updates an Azure Databricks Access Connector. */
-export const AccessConnectorsUpdate: API.OperationMethod<
-  AccessConnectorsUpdateRequest,
-  AccessConnectorsUpdateResponse,
-  AccessConnectorsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccessConnectorsUpdateRequest,
-  output: AccessConnectorsUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type OperationsListError = AzureOpError;
+export type ListOperationsError = AzureOpError;
 /** List the operations for the provider */
-export const OperationsList: API.OperationMethod<
-  OperationsListRequest,
+export const ListOperations: API.OperationMethod<
+  ListOperationsRequest,
   OperationListResult,
-  OperationsListError,
+  ListOperationsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OperationsListRequest,
+  input: ListOperationsRequest,
   output: OperationListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type OutboundNetworkDependenciesEndpointsListError = AzureOpError;
+export type ListOutboundNetworkDependenciesEndpointsError = AzureOpError;
 /** Gets a list of egress endpoints (network endpoints of all outbound dependencies) in the specified Workspace. Gets the list of endpoints that VNET Injected Workspace calls Azure Databricks Control Plane. You must configure outbound access with these endpoints. For more information, see https://docs.microsoft.com/en-us/azure/databricks/administration-guide/cloud-configurations/azure/udr */
-export const OutboundNetworkDependenciesEndpointsList: API.OperationMethod<
-  OutboundNetworkDependenciesEndpointsListRequest,
-  OutboundNetworkDependenciesEndpointsListResponse,
-  OutboundNetworkDependenciesEndpointsListError,
+export const ListOutboundNetworkDependenciesEndpoints: API.OperationMethod<
+  ListOutboundNetworkDependenciesEndpointsRequest,
+  ListOutboundNetworkDependenciesEndpointsResponse,
+  ListOutboundNetworkDependenciesEndpointsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OutboundNetworkDependenciesEndpointsListRequest,
-  output: OutboundNetworkDependenciesEndpointsListResponse,
+  input: ListOutboundNetworkDependenciesEndpointsRequest,
+  output: ListOutboundNetworkDependenciesEndpointsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type PrivateEndpointConnectionsCreateError = AzureOpError;
-/** Update private endpoint connection status Update the status of a private endpoint connection with the specified name */
-export const PrivateEndpointConnectionsCreate: API.OperationMethod<
-  PrivateEndpointConnectionsCreateRequest,
-  PrivateEndpointConnectionsCreateResponse,
-  PrivateEndpointConnectionsCreateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateEndpointConnectionsCreateRequest,
-  output: PrivateEndpointConnectionsCreateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateEndpointConnectionsDeleteError = AzureOpError;
-/** Remove private endpoint connection Remove private endpoint connection with the specified name */
-export const PrivateEndpointConnectionsDelete: API.OperationMethod<
-  PrivateEndpointConnectionsDeleteRequest,
-  PrivateEndpointConnectionsDeleteResponse,
-  PrivateEndpointConnectionsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateEndpointConnectionsDeleteRequest,
-  output: PrivateEndpointConnectionsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateEndpointConnectionsGetError = AzureOpError;
-/** Get private endpoint connection Get a private endpoint connection properties for a workspace */
-export const PrivateEndpointConnectionsGet: API.OperationMethod<
-  PrivateEndpointConnectionsGetRequest,
-  PrivateEndpointConnectionsGetResponse,
-  PrivateEndpointConnectionsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateEndpointConnectionsGetRequest,
-  output: PrivateEndpointConnectionsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateEndpointConnectionsList2Error = AzureOpError;
+export type ListPrivateEndpointConnectionsError = AzureOpError;
 /** List private endpoint connections List private endpoint connections of the workspace */
-export const PrivateEndpointConnectionsList2: API.OperationMethod<
-  PrivateEndpointConnectionsListRequest,
+export const ListPrivateEndpointConnections: API.OperationMethod<
+  ListPrivateEndpointConnectionsRequest,
   PrivateEndpointConnectionsList,
-  PrivateEndpointConnectionsList2Error,
+  ListPrivateEndpointConnectionsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PrivateEndpointConnectionsListRequest,
+  input: ListPrivateEndpointConnectionsRequest,
   output: PrivateEndpointConnectionsList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type PrivateLinkResourcesGetError = AzureOpError;
-/** Get the specified private link resource Get the specified private link resource for the given group id (sub-resource) */
-export const PrivateLinkResourcesGet: API.OperationMethod<
-  PrivateLinkResourcesGetRequest,
-  PrivateLinkResourcesGetResponse,
-  PrivateLinkResourcesGetError,
+export type ListPrivateLinkResourcesError = AzureOpError;
+/** List private link resources List private link resources for a given workspace */
+export const ListPrivateLinkResources: API.OperationMethod<
+  ListPrivateLinkResourcesRequest,
+  PrivateLinkResourcesList,
+  ListPrivateLinkResourcesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PrivateLinkResourcesGetRequest,
-  output: PrivateLinkResourcesGetResponse,
+  input: ListPrivateLinkResourcesRequest,
+  output: PrivateLinkResourcesList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type PrivateLinkResourcesList2Error = AzureOpError;
-/** List private link resources List private link resources for a given workspace */
-export const PrivateLinkResourcesList2: API.OperationMethod<
-  PrivateLinkResourcesListRequest,
-  PrivateLinkResourcesList,
-  PrivateLinkResourcesList2Error,
+export type ListVNetPeeringByWorkspaceError = AzureOpError;
+/** Lists the workspace vNet Peerings. */
+export const ListVNetPeeringByWorkspace: API.OperationMethod<
+  ListVNetPeeringByWorkspaceRequest,
+  VirtualNetworkPeeringList,
+  ListVNetPeeringByWorkspaceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PrivateLinkResourcesListRequest,
-  output: PrivateLinkResourcesList,
+  input: ListVNetPeeringByWorkspaceRequest,
+  output: VirtualNetworkPeeringList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListWorkspaceByResourceGroupError = AzureOpError;
+/** Gets all the workspaces within a resource group. */
+export const ListWorkspaceByResourceGroup: API.OperationMethod<
+  ListWorkspaceByResourceGroupRequest,
+  WorkspaceListResult,
+  ListWorkspaceByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListWorkspaceByResourceGroupRequest,
+  output: WorkspaceListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListWorkspaceBySubscriptionError = AzureOpError;
+/** Gets all the workspaces within a subscription. */
+export const ListWorkspaceBySubscription: API.OperationMethod<
+  ListWorkspaceBySubscriptionRequest,
+  WorkspaceListResult,
+  ListWorkspaceBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListWorkspaceBySubscriptionRequest,
+  output: WorkspaceListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateAccessConnectorError = AzureOpError;
+/** Updates an Azure Databricks Access Connector. */
+export const UpdateAccessConnector: API.OperationMethod<
+  UpdateAccessConnectorRequest,
+  UpdateAccessConnectorResponse,
+  UpdateAccessConnectorError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateAccessConnectorRequest,
+  output: UpdateAccessConnectorResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateWorkspaceError = AzureOpError;
+/** Updates a workspace. */
+export const UpdateWorkspace: API.OperationMethod<
+  UpdateWorkspaceRequest,
+  UpdateWorkspaceResponse,
+  UpdateWorkspaceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateWorkspaceRequest,
+  output: UpdateWorkspaceResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -2727,51 +2843,6 @@ export const VNetPeeringCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type VNetPeeringDeleteError = AzureOpError;
-/** Deletes the workspace vNetPeering. */
-export const VNetPeeringDelete: API.OperationMethod<
-  VNetPeeringDeleteRequest,
-  VNetPeeringDeleteResponse,
-  VNetPeeringDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VNetPeeringDeleteRequest,
-  output: VNetPeeringDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VNetPeeringGetError = AzureOpError;
-/** Gets the workspace vNet Peering. */
-export const VNetPeeringGet: API.OperationMethod<
-  VNetPeeringGetRequest,
-  VNetPeeringGetResponse,
-  VNetPeeringGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VNetPeeringGetRequest,
-  output: VNetPeeringGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VNetPeeringListByWorkspaceError = AzureOpError;
-/** Lists the workspace vNet Peerings. */
-export const VNetPeeringListByWorkspace: API.OperationMethod<
-  VNetPeeringListByWorkspaceRequest,
-  VirtualNetworkPeeringList,
-  VNetPeeringListByWorkspaceError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VNetPeeringListByWorkspaceRequest,
-  output: VirtualNetworkPeeringList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type WorkspacesCreateOrUpdateError = AzureOpError;
 /** Creates a new workspace. */
 export const WorkspacesCreateOrUpdate: API.OperationMethod<
@@ -2782,81 +2853,6 @@ export const WorkspacesCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: WorkspacesCreateOrUpdateRequest,
   output: WorkspacesCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkspacesDeleteError = AzureOpError;
-/** Deletes the workspace. */
-export const WorkspacesDelete: API.OperationMethod<
-  WorkspacesDeleteRequest,
-  WorkspacesDeleteResponse,
-  WorkspacesDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkspacesDeleteRequest,
-  output: WorkspacesDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkspacesGetError = AzureOpError;
-/** Gets the workspace. */
-export const WorkspacesGet: API.OperationMethod<
-  WorkspacesGetRequest,
-  WorkspacesGetResponse,
-  WorkspacesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkspacesGetRequest,
-  output: WorkspacesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkspacesListByResourceGroupError = AzureOpError;
-/** Gets all the workspaces within a resource group. */
-export const WorkspacesListByResourceGroup: API.OperationMethod<
-  WorkspacesListByResourceGroupRequest,
-  WorkspaceListResult,
-  WorkspacesListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkspacesListByResourceGroupRequest,
-  output: WorkspaceListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkspacesListBySubscriptionError = AzureOpError;
-/** Gets all the workspaces within a subscription. */
-export const WorkspacesListBySubscription: API.OperationMethod<
-  WorkspacesListBySubscriptionRequest,
-  WorkspaceListResult,
-  WorkspacesListBySubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkspacesListBySubscriptionRequest,
-  output: WorkspaceListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkspacesUpdateError = AzureOpError;
-/** Updates a workspace. */
-export const WorkspacesUpdate: API.OperationMethod<
-  WorkspacesUpdateRequest,
-  WorkspacesUpdateResponse,
-  WorkspacesUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkspacesUpdateRequest,
-  output: WorkspacesUpdateResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

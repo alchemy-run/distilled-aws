@@ -4,9 +4,77 @@
     "service": "cloudprofiler",
     "version": "v2",
     "title": "Cloud Profiler API",
-    "baseUrl": "https://cloudprofiler.googleapis.com/"
+    "baseUrl": "https://cloudprofiler.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
+    "com.gcp.cloudprofiler_v2#ListProfilesResponse": {
+      "type": "structure",
+      "members": {
+        "profiles": {
+          "target": "com.gcp.cloudprofiler_v2#ProfileList",
+          "traits": {
+            "smithy.api#documentation": "List of profiles fetched."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Token to receive the next page of results. This field maybe empty if there are no more profiles to fetch."
+          }
+        },
+        "skippedProfiles": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of profiles that were skipped in the current page since they were not able to be fetched successfully. This should typically be zero. A non-zero value may indicate a transient failure, in which case if the number is too high for your use case, the call may be retried."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "ListProfileResponse contains the list of collected profiles for deployments in projects which the user has permissions to view."
+      }
+    },
+    "com.gcp.cloudprofiler_v2#ProfileList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.cloudprofiler_v2#Profile"
+      }
+    },
+    "com.gcp.cloudprofiler_v2#Deployment": {
+      "type": "structure",
+      "members": {
+        "target": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Target is the service name used to group related deployments: * Service name for App Engine Flex / Standard. * Cluster and container name for GKE. * User-specified string for direct Compute Engine profiling (e.g. Java). * Job name for Dataflow. Validation regex: `^[a-z0-9]([-a-z0-9_.]{0,253}[a-z0-9])?$`."
+          }
+        },
+        "labels": {
+          "target": "com.gcp.cloudprofiler_v2#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Labels identify the deployment within the user universe and same target. Validation regex for label names: `^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?$`. Value for an individual label must be <= 512 bytes, the total size of all label names and values must be <= 1024 bytes. Label named \"language\" can be used to record the programming language of the profiled deployment. The standard choices for the value include \"java\", \"go\", \"python\", \"ruby\", \"nodejs\", \"php\", \"dotnet\". For deployments running on Google Cloud Platform, \"zone\" or \"region\" label should be present describing the deployment location. An example of a zone is \"us-central1-a\", an example of a region is \"us-central1\" or \"us-central\"."
+          }
+        },
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Project ID is the ID of a cloud project. Validation regex: `^a-z{4,61}[a-z0-9]$`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Deployment contains the deployment identification information."
+      }
+    },
+    "com.gcp.cloudprofiler_v2#StringMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      }
+    },
     "com.gcp.cloudprofiler_v2#CreateProfileRequest": {
       "type": "structure",
       "members": {
@@ -89,16 +157,10 @@
     "com.gcp.cloudprofiler_v2#Profile": {
       "type": "structure",
       "members": {
-        "startTime": {
+        "profileBytes": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Output only. Start time for the profile. This output is only present in response from the ListProfiles method."
-          }
-        },
-        "labels": {
-          "target": "com.gcp.cloudprofiler_v2#StringMap",
-          "traits": {
-            "smithy.api#documentation": "Input only. Labels associated to this specific profile. These labels will get merged with the deployment labels for the final data set. See documentation on deployment labels for validation rules and limits."
+            "smithy.api#documentation": "Input only. Profile bytes, as a gzip compressed serialized proto, the format is https://github.com/google/pprof/blob/master/proto/profile.proto."
           }
         },
         "duration": {
@@ -107,10 +169,16 @@
             "smithy.api#documentation": "Duration of the profiling session. Input (for the offline mode) or output (for the online mode). The field represents requested profiling duration. It may slightly differ from the effective profiling duration, which is recorded in the profile data, in case the profiling can't be stopped immediately (e.g. in case stopping the profiling is handled asynchronously)."
           }
         },
-        "name": {
+        "labels": {
+          "target": "com.gcp.cloudprofiler_v2#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Input only. Labels associated to this specific profile. These labels will get merged with the deployment labels for the final data set. See documentation on deployment labels for validation rules and limits."
+          }
+        },
+        "startTime": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Output only. Opaque, server-assigned, unique ID for this profile."
+            "smithy.api#documentation": "Output only. Start time for the profile. This output is only present in response from the ListProfiles method."
           }
         },
         "profileType": {
@@ -119,10 +187,10 @@
             "smithy.api#documentation": "Type of profile. For offline mode, this must be specified when creating the profile. For online mode it is assigned and returned by the server."
           }
         },
-        "profileBytes": {
+        "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Input only. Profile bytes, as a gzip compressed serialized proto, the format is https://github.com/google/pprof/blob/master/proto/profile.proto."
+            "smithy.api#documentation": "Output only. Opaque, server-assigned, unique ID for this profile."
           }
         },
         "deployment": {
@@ -134,15 +202,6 @@
       },
       "traits": {
         "smithy.api#documentation": "Profile resource."
-      }
-    },
-    "com.gcp.cloudprofiler_v2#StringMap": {
-      "type": "map",
-      "key": {
-        "target": "smithy.api#String"
-      },
-      "value": {
-        "target": "smithy.api#String"
       }
     },
     "com.gcp.cloudprofiler_v2#ProfileProfileTypeEnum": {
@@ -198,80 +257,29 @@
         }
       }
     },
-    "com.gcp.cloudprofiler_v2#Deployment": {
-      "type": "structure",
-      "members": {
-        "projectId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Project ID is the ID of a cloud project. Validation regex: `^a-z{4,61}[a-z0-9]$`."
-          }
-        },
-        "target": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Target is the service name used to group related deployments: * Service name for App Engine Flex / Standard. * Cluster and container name for GKE. * User-specified string for direct Compute Engine profiling (e.g. Java). * Job name for Dataflow. Validation regex: `^[a-z0-9]([-a-z0-9_.]{0,253}[a-z0-9])?$`."
-          }
-        },
-        "labels": {
-          "target": "com.gcp.cloudprofiler_v2#StringMap",
-          "traits": {
-            "smithy.api#documentation": "Labels identify the deployment within the user universe and same target. Validation regex for label names: `^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?$`. Value for an individual label must be <= 512 bytes, the total size of all label names and values must be <= 1024 bytes. Label named \"language\" can be used to record the programming language of the profiled deployment. The standard choices for the value include \"java\", \"go\", \"python\", \"ruby\", \"nodejs\", \"php\", \"dotnet\". For deployments running on Google Cloud Platform, \"zone\" or \"region\" label should be present describing the deployment location. An example of a zone is \"us-central1-a\", an example of a region is \"us-central1\" or \"us-central\"."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Deployment contains the deployment identification information."
-      }
-    },
-    "com.gcp.cloudprofiler_v2#ListProfilesResponse": {
-      "type": "structure",
-      "members": {
-        "skippedProfiles": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Number of profiles that were skipped in the current page since they were not able to be fetched successfully. This should typically be zero. A non-zero value may indicate a transient failure, in which case if the number is too high for your use case, the call may be retried."
-          }
-        },
-        "nextPageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Token to receive the next page of results. This field maybe empty if there are no more profiles to fetch."
-          }
-        },
-        "profiles": {
-          "target": "com.gcp.cloudprofiler_v2#ProfileList",
-          "traits": {
-            "smithy.api#documentation": "List of profiles fetched."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "ListProfileResponse contains the list of collected profiles for deployments in projects which the user has permissions to view."
-      }
-    },
-    "com.gcp.cloudprofiler_v2#ProfileList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.cloudprofiler_v2#Profile"
-      }
-    },
-    "com.gcp.cloudprofiler_v2#CreateProjectsProfilesRequest": {
+    "com.gcp.cloudprofiler_v2#ListProjectsProfilesRequest": {
       "type": "structure",
       "members": {
         "parent": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Parent project to create the profile in.",
+            "smithy.api#documentation": "Required. The parent, which owns this collection of profiles. Format: projects/{user_project_id}",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
           }
         },
-        "body": {
-          "target": "com.gcp.cloudprofiler_v2#CreateProfileRequest",
+        "pageToken": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
+            "smithy.api#documentation": "Optional. The token to continue pagination and get profiles from a particular page. When paginating, all other parameters provided to `ListProfiles` must match the call that provided the page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum number of items to return. Default page_size is 1000. Max limit is 1000.",
+            "smithy.api#httpQuery": "pageSize"
           }
         }
       }
@@ -302,89 +310,6 @@
         ]
       }
     },
-    "com.gcp.cloudprofiler_v2#BadRequest": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#error": "client",
-        "smithy.api#httpError": 400,
-        "com.gcp.protocols#errorMatchers": [
-          {
-            "status": 400
-          }
-        ]
-      }
-    },
-    "com.gcp.cloudprofiler_v2#Conflict": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#error": "client",
-        "smithy.api#httpError": 409,
-        "com.gcp.protocols#errorMatchers": [
-          {
-            "status": 409
-          }
-        ]
-      }
-    },
-    "com.gcp.cloudprofiler_v2#CreateProjectsProfiles": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.cloudprofiler_v2#CreateProjectsProfilesRequest"
-      },
-      "output": {
-        "target": "com.gcp.cloudprofiler_v2#Profile"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.cloudprofiler_v2#NotFound"
-        },
-        {
-          "target": "com.gcp.cloudprofiler_v2#Forbidden"
-        },
-        {
-          "target": "com.gcp.cloudprofiler_v2#BadRequest"
-        },
-        {
-          "target": "com.gcp.cloudprofiler_v2#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v2/{+parent}/profiles"
-        },
-        "smithy.api#documentation": "CreateProfile creates a new profile resource in the online mode. _Direct use of this API is discouraged, please use a [supported profiler agent](https://cloud.google.com/profiler/docs/about-profiler#profiling_agent) instead for profile collection._ The server ensures that the new profiles are created at a constant rate per deployment, so the creation request may hang for some time until the next profile session is available. The request may fail with ABORTED error if the creation is not available within ~1m, the response will indicate the duration of the backoff the client should take before attempting creating a profile again. The backoff duration is returned in google.rpc.RetryInfo extension on the response status. To a gRPC client, the extension will be return as a binary-serialized proto in the trailing metadata item named \"google.rpc.retryinfo-bin\". "
-      }
-    },
-    "com.gcp.cloudprofiler_v2#ListProjectsProfilesRequest": {
-      "type": "structure",
-      "members": {
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The parent, which owns this collection of profiles. Format: projects/{user_project_id}",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The token to continue pagination and get profiles from a particular page. When paginating, all other parameters provided to `ListProfiles` must match the call that provided the page token.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        },
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Optional. The maximum number of items to return. Default page_size is 1000. Max limit is 1000.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        }
-      }
-    },
     "com.gcp.cloudprofiler_v2#ListProjectsProfiles": {
       "type": "operation",
       "input": {
@@ -411,6 +336,89 @@
           "inputToken": "pageToken",
           "outputToken": "nextPageToken"
         }
+      }
+    },
+    "com.gcp.cloudprofiler_v2#PatchProjectsProfilesRequest": {
+      "type": "structure",
+      "members": {
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Field mask used to specify the fields to be overwritten. Currently only profile_bytes and labels fields are supported by UpdateProfile, so only those fields can be specified in the mask. When no mask is provided, all fields are overwritten.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Opaque, server-assigned, unique ID for this profile.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.cloudprofiler_v2#Profile",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.cloudprofiler_v2#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.gcp.cloudprofiler_v2#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.gcp.cloudprofiler_v2#PatchProjectsProfiles": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.cloudprofiler_v2#PatchProjectsProfilesRequest"
+      },
+      "output": {
+        "target": "com.gcp.cloudprofiler_v2#Profile"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.cloudprofiler_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.cloudprofiler_v2#Forbidden"
+        },
+        {
+          "target": "com.gcp.cloudprofiler_v2#BadRequest"
+        },
+        {
+          "target": "com.gcp.cloudprofiler_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v2/{+name}"
+        },
+        "smithy.api#documentation": "UpdateProfile updates the profile bytes and labels on the profile resource created in the online mode. Updating the bytes for profiles created in the offline mode is currently not supported: the profile content must be provided at the time of the profile creation. _Direct use of this API is discouraged, please use a [supported profiler agent](https://cloud.google.com/profiler/docs/about-profiler#profiling_agent) instead for profile collection._"
       }
     },
     "com.gcp.cloudprofiler_v2#CreateOfflineProjectsProfilesRequest": {
@@ -463,26 +471,19 @@
         "smithy.api#documentation": "CreateOfflineProfile creates a new profile resource in the offline mode. The client provides the profile to create along with the profile bytes, the server records it. _Direct use of this API is discouraged, please use a [supported profiler agent](https://cloud.google.com/profiler/docs/about-profiler#profiling_agent) instead for profile collection._"
       }
     },
-    "com.gcp.cloudprofiler_v2#PatchProjectsProfilesRequest": {
+    "com.gcp.cloudprofiler_v2#CreateProjectsProfilesRequest": {
       "type": "structure",
       "members": {
-        "name": {
+        "parent": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Output only. Opaque, server-assigned, unique ID for this profile.",
+            "smithy.api#documentation": "Parent project to create the profile in.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
           }
         },
-        "updateMask": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Field mask used to specify the fields to be overwritten. Currently only profile_bytes and labels fields are supported by UpdateProfile, so only those fields can be specified in the mask. When no mask is provided, all fields are overwritten.",
-            "smithy.api#httpQuery": "updateMask"
-          }
-        },
         "body": {
-          "target": "com.gcp.cloudprofiler_v2#Profile",
+          "target": "com.gcp.cloudprofiler_v2#CreateProfileRequest",
           "traits": {
             "smithy.api#httpPayload": {},
             "smithy.api#documentation": "Request body"
@@ -490,10 +491,10 @@
         }
       }
     },
-    "com.gcp.cloudprofiler_v2#PatchProjectsProfiles": {
+    "com.gcp.cloudprofiler_v2#CreateProjectsProfiles": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.cloudprofiler_v2#PatchProjectsProfilesRequest"
+        "target": "com.gcp.cloudprofiler_v2#CreateProjectsProfilesRequest"
       },
       "output": {
         "target": "com.gcp.cloudprofiler_v2#Profile"
@@ -514,10 +515,10 @@
       ],
       "traits": {
         "smithy.api#http": {
-          "method": "PATCH",
-          "uri": "v2/{+name}"
+          "method": "POST",
+          "uri": "v2/{+parent}/profiles"
         },
-        "smithy.api#documentation": "UpdateProfile updates the profile bytes and labels on the profile resource created in the online mode. Updating the bytes for profiles created in the offline mode is currently not supported: the profile content must be provided at the time of the profile creation. _Direct use of this API is discouraged, please use a [supported profiler agent](https://cloud.google.com/profiler/docs/about-profiler#profiling_agent) instead for profile collection._"
+        "smithy.api#documentation": "CreateProfile creates a new profile resource in the online mode. _Direct use of this API is discouraged, please use a [supported profiler agent](https://cloud.google.com/profiler/docs/about-profiler#profiling_agent) instead for profile collection._ The server ensures that the new profiles are created at a constant rate per deployment, so the creation request may hang for some time until the next profile session is available. The request may fail with ABORTED error if the creation is not available within ~1m, the response will indicate the duration of the backoff the client should take before attempting creating a profile again. The backoff duration is returned in google.rpc.RetryInfo extension on the response status. To a gRPC client, the extension will be return as a binary-serialized proto in the trailing metadata item named \"google.rpc.retryinfo-bin\". "
       }
     }
   }

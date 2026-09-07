@@ -12,288 +12,63 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
-/** Resource tags. */
-export type ManufacturingDataServicesCreateOrUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ManufacturingDataServicesCreateOrUpdateRequestTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<ManufacturingDataServicesCreateOrUpdateRequestTagsMap>;
-
-/** The properties related to OpenAI Resource */
-export interface OpenAIProfileInput {
-  /** GPT Model Name */
-  gptModelName?: string;
-  /** GPT Model Version */
-  gptModelVersion?: string;
-  /** GPT Model Capacity */
-  gptModelCapacity?: number;
-  /** GPT Model SKU Name */
-  gptModelSkuName?: string;
-  /** Embedding Model Name */
-  embeddingModelName?: string;
-  /** Embedding Model Version */
-  embeddingModelVersion?: string;
-  /** Embedding Model SKU Name */
-  embeddingModelSkuName?: string;
-  /** Embedding Model Capacity */
-  embeddingModelCapacity?: number;
-}
-export const OpenAIProfileInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    gptModelName: S.optional(S.String),
-    gptModelVersion: S.optional(S.String),
-    gptModelCapacity: S.optional(S.Number),
-    gptModelSkuName: S.optional(S.String),
-    embeddingModelName: S.optional(S.String),
-    embeddingModelVersion: S.optional(S.String),
-    embeddingModelSkuName: S.optional(S.String),
-    embeddingModelCapacity: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "OpenAIProfileInput",
-}) as any as S.Schema<OpenAIProfileInput>;
-
-/** The properties related to CMK */
-export interface CmkProfile {
-  /** URI of Key in AKV */
-  keyUri: string;
-}
-export const CmkProfile = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    keyUri: S.String,
-  }),
-).annotate({ identifier: "CmkProfile" }) as any as S.Schema<CmkProfile>;
-
-/** The properties related to Fabric */
-export interface FabricProfile {
-  /** Azure Key Vault Uri */
-  keyUri: string;
-  /** URI of One Lake */
-  oneLakeUri: string;
-  /** One Lake Path */
-  oneLakePath: string;
-}
-export const FabricProfile = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    keyUri: S.String,
-    oneLakeUri: S.String,
-    oneLakePath: S.String,
-  }),
-).annotate({ identifier: "FabricProfile" }) as any as S.Schema<FabricProfile>;
-
-/** The properties related to User Managed OpenAI Resource */
-export interface UserManagedOpenAIProfileInput {
-  /** Resource Id of OpenAI Resource */
-  id: string;
-  /** GPT Model Deployment Name */
-  gptModelDeploymentName: string;
-  /** Embedding Model Deployment Name */
-  embeddingModelDeploymentName: string;
-}
-export const UserManagedOpenAIProfileInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    gptModelDeploymentName: S.String,
-    embeddingModelDeploymentName: S.String,
-  }),
-).annotate({
-  identifier: "UserManagedOpenAIProfileInput",
-}) as any as S.Schema<UserManagedOpenAIProfileInput>;
-
-/** The properties related to Deny Assignment Exclusions */
-export interface DenyAssignmentExclusion {
-  /** Object Id of Identity */
-  id: string;
-  /** Type of Identity */
-  type: string;
-}
-export const DenyAssignmentExclusion = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    type: S.String,
-  }),
-).annotate({
-  identifier: "DenyAssignmentExclusion",
-}) as any as S.Schema<DenyAssignmentExclusion>;
-
-/** Deny Assignments exclusion list. */
-export type MdsResourcePropertiesInputDenyAssignmentExclusionsList =
-  Array<DenyAssignmentExclusion>;
-export const MdsResourcePropertiesInputDenyAssignmentExclusionsList =
-  /*@__PURE__*/ S.Array(
-    DenyAssignmentExclusion,
-  ) as any as S.Schema<MdsResourcePropertiesInputDenyAssignmentExclusionsList>;
-
-/** The current state of the resource */
-export type ResourceState = "Active" | "Inactive";
-export const ResourceState = /*@__PURE__*/ S.String;
-
-/** The redundancy state of the resource */
-export type RedundancyState = "Zonal" | "None";
-export const RedundancyState = /*@__PURE__*/ S.String;
-
-/** Details of the ManufacturingPlatform MdsResource. */
-export interface MdsResourcePropertiesInput {
-  /** Mds Resource Version. */
-  version?: string;
-  /** Enable Copilot. */
-  enableCopilot?: boolean;
-  /** Enable Diagnostic Settings. */
-  enableDiagnosticSettings?: boolean;
-  /** AAD Application Id. */
-  aadApplicationId: string;
-  /** AKS Admin Group Id. */
-  aksAdminGroupId?: string;
-  /** Profile of OpenAI Resource. */
-  openAIProfile?: OpenAIProfileInput;
-  /** Profile of CMK Settings. */
-  cmkProfile?: CmkProfile;
-  /** Profile of Fabric resources. */
-  fabricProfile?: FabricProfile;
-  /** Profile of User Managed OpenAI Resource. */
-  userManagedOpenAIProfile?: UserManagedOpenAIProfileInput;
-  /** Deny Assignments exclusion list. */
-  denyAssignmentExclusions?: MdsResourcePropertiesInputDenyAssignmentExclusionsList;
-  /** State of the resource */
-  resourceState?: ResourceState | (string & {});
-  /** Zone redundancy state for resources */
-  redundancyState?: RedundancyState | (string & {});
-}
-export const MdsResourcePropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    version: S.optional(S.String),
-    enableCopilot: S.optional(S.Boolean),
-    enableDiagnosticSettings: S.optional(S.Boolean),
-    aadApplicationId: S.String,
-    aksAdminGroupId: S.optional(S.String),
-    openAIProfile: S.optional(OpenAIProfileInput),
-    cmkProfile: S.optional(CmkProfile),
-    fabricProfile: S.optional(FabricProfile),
-    userManagedOpenAIProfile: S.optional(UserManagedOpenAIProfileInput),
-    denyAssignmentExclusions: S.optional(
-      MdsResourcePropertiesInputDenyAssignmentExclusionsList,
-    ),
-    resourceState: S.optional(ResourceState),
-    redundancyState: S.optional(RedundancyState),
-  }),
-).annotate({
-  identifier: "MdsResourcePropertiesInput",
-}) as any as S.Schema<MdsResourcePropertiesInput>;
-
-/** Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed). */
-export type ManagedServiceIdentityType =
-  | "None"
-  | "SystemAssigned"
-  | "UserAssigned"
-  | "SystemAssigned,UserAssigned";
-export const ManagedServiceIdentityType = /*@__PURE__*/ S.String;
-
-/** User assigned identity properties */
-export interface UserAssignedIdentityInput {}
-export const UserAssignedIdentityInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "UserAssignedIdentityInput",
-}) as any as S.Schema<UserAssignedIdentityInput>;
-
-/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-export type UserAssignedIdentitiesInput = {
-  [key: string]: UserAssignedIdentityInput | undefined;
-};
-export const UserAssignedIdentitiesInput = /*@__PURE__*/ S.Record(
-  S.String,
-  UserAssignedIdentityInput,
-) as any as S.Schema<UserAssignedIdentitiesInput>;
-
-/** Managed service identity (system assigned and/or user assigned identities) */
-export interface ManufacturingDataServicesCreateOrUpdateRequestIdentity {
-  type: ManagedServiceIdentityType | (string & {});
-  userAssignedIdentities?: UserAssignedIdentitiesInput;
-}
-export const ManufacturingDataServicesCreateOrUpdateRequestIdentity =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      type: ManagedServiceIdentityType,
-      userAssignedIdentities: S.optional(UserAssignedIdentitiesInput),
-    }),
-  ).annotate({
-    identifier: "ManufacturingDataServicesCreateOrUpdateRequestIdentity",
-  }) as any as S.Schema<ManufacturingDataServicesCreateOrUpdateRequestIdentity>;
-
-/** This field is required to be implemented by the Resource Provider if the service has more than one tier, but is not required on a PUT. */
-export type SkuTier = "Free" | "Basic" | "Standard" | "Premium";
-export const SkuTier = /*@__PURE__*/ S.String;
-
-/** The resource model definition representing SKU */
-export interface ManufacturingDataServicesCreateOrUpdateRequestSku {
-  /** The name of the SKU. E.g. P3. It is typically a letter+number code */
-  name: string;
-  tier?: SkuTier | (string & {});
-  /** The SKU size. When the name field is the combination of tier and some other value, this would be the standalone code. */
-  size?: string;
-  /** If the service has different generations of hardware, for the same SKU, then that can be captured here. */
-  family?: string;
-  /** If the SKU supports scale out/in then the capacity integer should be included. If scale out/in is not possible for the resource this may be omitted. */
-  capacity?: number;
-}
-export const ManufacturingDataServicesCreateOrUpdateRequestSku =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      name: S.String,
-      tier: S.optional(SkuTier),
-      size: S.optional(S.String),
-      family: S.optional(S.String),
-      capacity: S.optional(S.Number),
-    }),
-  ).annotate({
-    identifier: "ManufacturingDataServicesCreateOrUpdateRequestSku",
-  }) as any as S.Schema<ManufacturingDataServicesCreateOrUpdateRequestSku>;
-
-export interface ManufacturingDataServicesCreateOrUpdateRequest {
+export interface DeleteManufacturingDataServiceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** Name. */
   mdsResourceName: string;
-  /** Resource tags. */
-  tags?: ManufacturingDataServicesCreateOrUpdateRequestTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: MdsResourcePropertiesInput;
-  /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: ManufacturingDataServicesCreateOrUpdateRequestIdentity;
-  /** The resource model definition representing SKU */
-  sku?: ManufacturingDataServicesCreateOrUpdateRequestSku;
 }
-export const ManufacturingDataServicesCreateOrUpdateRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const DeleteManufacturingDataServiceRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       mdsResourceName: S.String.pipe(T.Label()),
-      tags: S.optional(ManufacturingDataServicesCreateOrUpdateRequestTagsMap),
-      location: S.String,
-      properties: S.optional(MdsResourcePropertiesInput),
-      identity: S.optional(
-        ManufacturingDataServicesCreateOrUpdateRequestIdentity,
-      ),
-      sku: S.optional(ManufacturingDataServicesCreateOrUpdateRequestSku),
     }).pipe(
       T.Http({
-        method: "PUT",
+        method: "DELETE",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManufacturingPlatform/manufacturingDataServices/{mdsResourceName}",
         code: 200,
         apiVersion: "2025-03-01",
       }),
     ),
-  ).annotate({
-    identifier: "ManufacturingDataServicesCreateOrUpdateRequest",
-  }) as any as S.Schema<ManufacturingDataServicesCreateOrUpdateRequest>;
+).annotate({
+  identifier: "DeleteManufacturingDataServiceRequest",
+}) as any as S.Schema<DeleteManufacturingDataServiceRequest>;
+
+export interface DeleteManufacturingDataServiceResponse {}
+export const DeleteManufacturingDataServiceResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "DeleteManufacturingDataServiceResponse",
+}) as any as S.Schema<DeleteManufacturingDataServiceResponse>;
+
+export interface GetManufacturingDataServiceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name. */
+  mdsResourceName: string;
+}
+export const GetManufacturingDataServiceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    mdsResourceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManufacturingPlatform/manufacturingDataServices/{mdsResourceName}",
+      code: 200,
+      apiVersion: "2025-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetManufacturingDataServiceRequest",
+}) as any as S.Schema<GetManufacturingDataServiceRequest>;
 
 /** The type of identity that created the resource. */
 export type SystemDataCreatedByType =
@@ -338,14 +113,14 @@ export const SystemData = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "SystemData" }) as any as S.Schema<SystemData>;
 
 /** Resource tags. */
-export type ManufacturingDataServicesCreateOrUpdateResponseTagsMap = {
+export type GetManufacturingDataServiceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ManufacturingDataServicesCreateOrUpdateResponseTagsMap =
+export const GetManufacturingDataServiceResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<ManufacturingDataServicesCreateOrUpdateResponseTagsMap>;
+  ) as any as S.Schema<GetManufacturingDataServiceResponseTagsMap>;
 
 /** The status of the current operation. */
 export type ProvisioningState =
@@ -548,6 +323,34 @@ export const ManagedOnBehalfOfConfiguration = /*@__PURE__*/ S.suspend(() =>
   identifier: "ManagedOnBehalfOfConfiguration",
 }) as any as S.Schema<ManagedOnBehalfOfConfiguration>;
 
+/** The properties related to CMK */
+export interface CmkProfile {
+  /** URI of Key in AKV */
+  keyUri: string;
+}
+export const CmkProfile = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    keyUri: S.String,
+  }),
+).annotate({ identifier: "CmkProfile" }) as any as S.Schema<CmkProfile>;
+
+/** The properties related to Fabric */
+export interface FabricProfile {
+  /** Azure Key Vault Uri */
+  keyUri: string;
+  /** URI of One Lake */
+  oneLakeUri: string;
+  /** One Lake Path */
+  oneLakePath: string;
+}
+export const FabricProfile = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    keyUri: S.String,
+    oneLakeUri: S.String,
+    oneLakePath: S.String,
+  }),
+).annotate({ identifier: "FabricProfile" }) as any as S.Schema<FabricProfile>;
+
 /** The properties related to User Managed OpenAI Resource */
 export interface UserManagedOpenAIProfile {
   /** Resource Id of OpenAI Resource */
@@ -570,6 +373,22 @@ export const UserManagedOpenAIProfile = /*@__PURE__*/ S.suspend(() =>
   identifier: "UserManagedOpenAIProfile",
 }) as any as S.Schema<UserManagedOpenAIProfile>;
 
+/** The properties related to Deny Assignment Exclusions */
+export interface DenyAssignmentExclusion {
+  /** Object Id of Identity */
+  id: string;
+  /** Type of Identity */
+  type: string;
+}
+export const DenyAssignmentExclusion = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    type: S.String,
+  }),
+).annotate({
+  identifier: "DenyAssignmentExclusion",
+}) as any as S.Schema<DenyAssignmentExclusion>;
+
 /** Deny Assignments exclusion list. */
 export type MdsResourcePropertiesDenyAssignmentExclusionsList =
   Array<DenyAssignmentExclusion>;
@@ -577,6 +396,14 @@ export const MdsResourcePropertiesDenyAssignmentExclusionsList =
   /*@__PURE__*/ S.Array(
     DenyAssignmentExclusion,
   ) as any as S.Schema<MdsResourcePropertiesDenyAssignmentExclusionsList>;
+
+/** The current state of the resource */
+export type ResourceState = "Active" | "Inactive";
+export const ResourceState = /*@__PURE__*/ S.String;
+
+/** The redundancy state of the resource */
+export type RedundancyState = "Zonal" | "None";
+export const RedundancyState = /*@__PURE__*/ S.String;
 
 /** Details of the ManufacturingPlatform MdsResource. */
 export interface MdsResourceProperties {
@@ -664,6 +491,14 @@ export const MdsResourceProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "MdsResourceProperties",
 }) as any as S.Schema<MdsResourceProperties>;
 
+/** Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed). */
+export type ManagedServiceIdentityType =
+  | "None"
+  | "SystemAssigned"
+  | "UserAssigned"
+  | "SystemAssigned,UserAssigned";
+export const ManagedServiceIdentityType = /*@__PURE__*/ S.String;
+
 /** User assigned identity properties */
 export interface UserAssignedIdentity {
   /** The principal ID of the assigned identity. */
@@ -690,7 +525,7 @@ export const UserAssignedIdentities = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<UserAssignedIdentities>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export interface ManufacturingDataServicesCreateOrUpdateResponseIdentity {
+export interface GetManufacturingDataServiceResponseIdentity {
   /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   principalId?: string;
   /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
@@ -698,7 +533,7 @@ export interface ManufacturingDataServicesCreateOrUpdateResponseIdentity {
   type: ManagedServiceIdentityType;
   userAssignedIdentities?: UserAssignedIdentities;
 }
-export const ManufacturingDataServicesCreateOrUpdateResponseIdentity =
+export const GetManufacturingDataServiceResponseIdentity =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       principalId: S.optional(S.String),
@@ -707,11 +542,15 @@ export const ManufacturingDataServicesCreateOrUpdateResponseIdentity =
       userAssignedIdentities: S.optional(UserAssignedIdentities),
     }),
   ).annotate({
-    identifier: "ManufacturingDataServicesCreateOrUpdateResponseIdentity",
-  }) as any as S.Schema<ManufacturingDataServicesCreateOrUpdateResponseIdentity>;
+    identifier: "GetManufacturingDataServiceResponseIdentity",
+  }) as any as S.Schema<GetManufacturingDataServiceResponseIdentity>;
+
+/** This field is required to be implemented by the Resource Provider if the service has more than one tier, but is not required on a PUT. */
+export type SkuTier = "Free" | "Basic" | "Standard" | "Premium";
+export const SkuTier = /*@__PURE__*/ S.String;
 
 /** The resource model definition representing SKU */
-export interface ManufacturingDataServicesCreateOrUpdateResponseSku {
+export interface GetManufacturingDataServiceResponseSku {
   /** The name of the SKU. E.g. P3. It is typically a letter+number code */
   name: string;
   tier?: SkuTier;
@@ -722,8 +561,8 @@ export interface ManufacturingDataServicesCreateOrUpdateResponseSku {
   /** If the SKU supports scale out/in then the capacity integer should be included. If scale out/in is not possible for the resource this may be omitted. */
   capacity?: number;
 }
-export const ManufacturingDataServicesCreateOrUpdateResponseSku =
-  /*@__PURE__*/ S.suspend(() =>
+export const GetManufacturingDataServiceResponseSku = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       name: S.String,
       tier: S.optional(SkuTier),
@@ -731,11 +570,11 @@ export const ManufacturingDataServicesCreateOrUpdateResponseSku =
       family: S.optional(S.String),
       capacity: S.optional(S.Number),
     }),
-  ).annotate({
-    identifier: "ManufacturingDataServicesCreateOrUpdateResponseSku",
-  }) as any as S.Schema<ManufacturingDataServicesCreateOrUpdateResponseSku>;
+).annotate({
+  identifier: "GetManufacturingDataServiceResponseSku",
+}) as any as S.Schema<GetManufacturingDataServiceResponseSku>;
 
-export interface ManufacturingDataServicesCreateOrUpdateResponse {
+export interface GetManufacturingDataServiceResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -745,155 +584,33 @@ export interface ManufacturingDataServicesCreateOrUpdateResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ManufacturingDataServicesCreateOrUpdateResponseTagsMap;
+  tags?: GetManufacturingDataServiceResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: MdsResourceProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: ManufacturingDataServicesCreateOrUpdateResponseIdentity;
+  identity?: GetManufacturingDataServiceResponseIdentity;
   /** The resource model definition representing SKU */
-  sku?: ManufacturingDataServicesCreateOrUpdateResponseSku;
+  sku?: GetManufacturingDataServiceResponseSku;
 }
-export const ManufacturingDataServicesCreateOrUpdateResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      tags: S.optional(ManufacturingDataServicesCreateOrUpdateResponseTagsMap),
-      location: S.String,
-      properties: S.optional(MdsResourceProperties),
-      identity: S.optional(
-        ManufacturingDataServicesCreateOrUpdateResponseIdentity,
-      ),
-      sku: S.optional(ManufacturingDataServicesCreateOrUpdateResponseSku),
-    }),
-  ).annotate({
-    identifier: "ManufacturingDataServicesCreateOrUpdateResponse",
-  }) as any as S.Schema<ManufacturingDataServicesCreateOrUpdateResponse>;
-
-export interface ManufacturingDataServicesDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name. */
-  mdsResourceName: string;
-}
-export const ManufacturingDataServicesDeleteRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      mdsResourceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManufacturingPlatform/manufacturingDataServices/{mdsResourceName}",
-        code: 200,
-        apiVersion: "2025-03-01",
-      }),
-    ),
-).annotate({
-  identifier: "ManufacturingDataServicesDeleteRequest",
-}) as any as S.Schema<ManufacturingDataServicesDeleteRequest>;
-
-export interface ManufacturingDataServicesDeleteResponse {}
-export const ManufacturingDataServicesDeleteResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "ManufacturingDataServicesDeleteResponse",
-}) as any as S.Schema<ManufacturingDataServicesDeleteResponse>;
-
-export interface ManufacturingDataServicesGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name. */
-  mdsResourceName: string;
-}
-export const ManufacturingDataServicesGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetManufacturingDataServiceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    mdsResourceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManufacturingPlatform/manufacturingDataServices/{mdsResourceName}",
-      code: 200,
-      apiVersion: "2025-03-01",
-    }),
-  ),
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetManufacturingDataServiceResponseTagsMap),
+    location: S.String,
+    properties: S.optional(MdsResourceProperties),
+    identity: S.optional(GetManufacturingDataServiceResponseIdentity),
+    sku: S.optional(GetManufacturingDataServiceResponseSku),
+  }),
 ).annotate({
-  identifier: "ManufacturingDataServicesGetRequest",
-}) as any as S.Schema<ManufacturingDataServicesGetRequest>;
+  identifier: "GetManufacturingDataServiceResponse",
+}) as any as S.Schema<GetManufacturingDataServiceResponse>;
 
-/** Resource tags. */
-export type ManufacturingDataServicesGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ManufacturingDataServicesGetResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<ManufacturingDataServicesGetResponseTagsMap>;
-
-/** Managed service identity (system assigned and/or user assigned identities) */
-export type ManufacturingDataServicesGetResponseIdentity =
-  ManufacturingDataServicesCreateOrUpdateResponseIdentity;
-export const ManufacturingDataServicesGetResponseIdentity =
-  ManufacturingDataServicesCreateOrUpdateResponseIdentity;
-
-/** The resource model definition representing SKU */
-export type ManufacturingDataServicesGetResponseSku =
-  ManufacturingDataServicesCreateOrUpdateResponseSku;
-export const ManufacturingDataServicesGetResponseSku =
-  ManufacturingDataServicesCreateOrUpdateResponseSku;
-
-export interface ManufacturingDataServicesGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: ManufacturingDataServicesGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: MdsResourceProperties;
-  /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: ManufacturingDataServicesCreateOrUpdateResponseIdentity;
-  /** The resource model definition representing SKU */
-  sku?: ManufacturingDataServicesCreateOrUpdateResponseSku;
-}
-export const ManufacturingDataServicesGetResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      tags: S.optional(ManufacturingDataServicesGetResponseTagsMap),
-      location: S.String,
-      properties: S.optional(MdsResourceProperties),
-      identity: S.optional(
-        ManufacturingDataServicesCreateOrUpdateResponseIdentity,
-      ),
-      sku: S.optional(ManufacturingDataServicesCreateOrUpdateResponseSku),
-    }),
-).annotate({
-  identifier: "ManufacturingDataServicesGetResponse",
-}) as any as S.Schema<ManufacturingDataServicesGetResponse>;
-
-export interface ManufacturingDataServicesListAvailableVersionsRequest {
+export interface ListManufacturingDataServiceAvailableVersionsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -901,7 +618,7 @@ export interface ManufacturingDataServicesListAvailableVersionsRequest {
   /** Name. */
   mdsResourceName: string;
 }
-export const ManufacturingDataServicesListAvailableVersionsRequest =
+export const ListManufacturingDataServiceAvailableVersionsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -916,8 +633,8 @@ export const ManufacturingDataServicesListAvailableVersionsRequest =
       }),
     ),
   ).annotate({
-    identifier: "ManufacturingDataServicesListAvailableVersionsRequest",
-  }) as any as S.Schema<ManufacturingDataServicesListAvailableVersionsRequest>;
+    identifier: "ListManufacturingDataServiceAvailableVersionsRequest",
+  }) as any as S.Schema<ListManufacturingDataServiceAvailableVersionsRequest>;
 
 /** Information about application versions */
 export interface ApplicationVersion {
@@ -960,13 +677,13 @@ export const AvailableVersionListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "AvailableVersionListResult",
 }) as any as S.Schema<AvailableVersionListResult>;
 
-export interface ManufacturingDataServicesListByResourceGroupRequest {
+export interface ListManufacturingDataServiceByResourceGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
 }
-export const ManufacturingDataServicesListByResourceGroupRequest =
+export const ListManufacturingDataServiceByResourceGroupRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -980,8 +697,8 @@ export const ManufacturingDataServicesListByResourceGroupRequest =
       }),
     ),
   ).annotate({
-    identifier: "ManufacturingDataServicesListByResourceGroupRequest",
-  }) as any as S.Schema<ManufacturingDataServicesListByResourceGroupRequest>;
+    identifier: "ListManufacturingDataServiceByResourceGroupRequest",
+  }) as any as S.Schema<ListManufacturingDataServiceByResourceGroupRequest>;
 
 /** Resource tags. */
 export type MdsResourceTagsMap = { [key: string]: string | undefined };
@@ -991,15 +708,12 @@ export const MdsResourceTagsMap = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<MdsResourceTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type MdsResourceIdentity =
-  ManufacturingDataServicesCreateOrUpdateResponseIdentity;
-export const MdsResourceIdentity =
-  ManufacturingDataServicesCreateOrUpdateResponseIdentity;
+export type MdsResourceIdentity = GetManufacturingDataServiceResponseIdentity;
+export const MdsResourceIdentity = GetManufacturingDataServiceResponseIdentity;
 
 /** The resource model definition representing SKU */
-export type MdsResourceSku = ManufacturingDataServicesCreateOrUpdateResponseSku;
-export const MdsResourceSku =
-  ManufacturingDataServicesCreateOrUpdateResponseSku;
+export type MdsResourceSku = GetManufacturingDataServiceResponseSku;
+export const MdsResourceSku = GetManufacturingDataServiceResponseSku;
 
 /** A ManufacturingPlatformProviderHub resource */
 export interface MdsResource {
@@ -1018,9 +732,9 @@ export interface MdsResource {
   /** The resource-specific properties for this resource. */
   properties?: MdsResourceProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: ManufacturingDataServicesCreateOrUpdateResponseIdentity;
+  identity?: GetManufacturingDataServiceResponseIdentity;
   /** The resource model definition representing SKU */
-  sku?: ManufacturingDataServicesCreateOrUpdateResponseSku;
+  sku?: GetManufacturingDataServiceResponseSku;
 }
 export const MdsResource = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -1031,10 +745,8 @@ export const MdsResource = /*@__PURE__*/ S.suspend(() =>
     tags: S.optional(MdsResourceTagsMap),
     location: S.String,
     properties: S.optional(MdsResourceProperties),
-    identity: S.optional(
-      ManufacturingDataServicesCreateOrUpdateResponseIdentity,
-    ),
-    sku: S.optional(ManufacturingDataServicesCreateOrUpdateResponseSku),
+    identity: S.optional(GetManufacturingDataServiceResponseIdentity),
+    sku: S.optional(GetManufacturingDataServiceResponseSku),
   }),
 ).annotate({ identifier: "MdsResource" }) as any as S.Schema<MdsResource>;
 
@@ -1060,11 +772,11 @@ export const MdsResourceListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "MdsResourceListResult",
 }) as any as S.Schema<MdsResourceListResult>;
 
-export interface ManufacturingDataServicesListBySubscriptionRequest {
+export interface ListManufacturingDataServiceBySubscriptionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
 }
-export const ManufacturingDataServicesListBySubscriptionRequest =
+export const ListManufacturingDataServiceBySubscriptionRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -1077,8 +789,374 @@ export const ManufacturingDataServicesListBySubscriptionRequest =
       }),
     ),
   ).annotate({
-    identifier: "ManufacturingDataServicesListBySubscriptionRequest",
-  }) as any as S.Schema<ManufacturingDataServicesListBySubscriptionRequest>;
+    identifier: "ListManufacturingDataServiceBySubscriptionRequest",
+  }) as any as S.Schema<ListManufacturingDataServiceBySubscriptionRequest>;
+
+export interface ListOperationsRequest {}
+export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/providers/Microsoft.ManufacturingPlatform/operations",
+      code: 200,
+      apiVersion: "2025-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListOperationsRequest",
+}) as any as S.Schema<ListOperationsRequest>;
+
+/** Localized display information for this particular operation. */
+export interface OperationDisplay {
+  /** The localized friendly form of the resource provider name, e.g. "Microsoft Monitoring Insights" or "Microsoft Compute". */
+  provider?: string;
+  /** The localized friendly name of the resource type related to this operation. E.g. "Virtual Machines" or "Job Schedule Collections". */
+  resource?: string;
+  /** The concise, localized friendly name for the operation; suitable for dropdowns. E.g. "Create or Update Virtual Machine", "Restart Virtual Machine". */
+  operation?: string;
+  /** The short, localized friendly description of the operation; suitable for tool tips and detailed views. */
+  description?: string;
+}
+export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provider: S.optional(S.String),
+    resource: S.optional(S.String),
+    operation: S.optional(S.String),
+    description: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "OperationDisplay",
+}) as any as S.Schema<OperationDisplay>;
+
+/** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
+export type OperationOrigin = "user" | "system" | "user,system";
+export const OperationOrigin = /*@__PURE__*/ S.String;
+
+/** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
+export type OperationActionType = "Internal";
+export const OperationActionType = /*@__PURE__*/ S.String;
+
+/** Details of a REST API operation, returned from the Resource Provider Operations API */
+export interface Operation {
+  /** The name of the operation, as per Resource-Based Access Control (RBAC). Examples: "Microsoft.Compute/virtualMachines/write", "Microsoft.Compute/virtualMachines/capture/action" */
+  name?: string;
+  /** Whether the operation applies to data-plane. This is "true" for data-plane operations and "false" for ARM/control-plane operations. */
+  isDataAction?: boolean;
+  /** Localized display information for this particular operation. */
+  display?: OperationDisplay;
+  /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
+  origin?: OperationOrigin;
+  /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
+  actionType?: OperationActionType;
+}
+export const Operation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    isDataAction: S.optional(S.Boolean),
+    display: S.optional(OperationDisplay),
+    origin: S.optional(OperationOrigin),
+    actionType: S.optional(OperationActionType),
+  }),
+).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
+
+/** List of operations supported by the resource provider */
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
+  Operation,
+) as any as S.Schema<ListOperationsResponseValueList>;
+
+export interface ListOperationsResponse {
+  /** List of operations supported by the resource provider */
+  value?: ListOperationsResponseValueList;
+  /** URL to get the next set of operation list results (if there are any). */
+  nextLink?: string;
+}
+export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(ListOperationsResponseValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ListOperationsResponse",
+}) as any as S.Schema<ListOperationsResponse>;
+
+/** Resource tags. */
+export type ManufacturingDataServicesCreateOrUpdateRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const ManufacturingDataServicesCreateOrUpdateRequestTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<ManufacturingDataServicesCreateOrUpdateRequestTagsMap>;
+
+/** The properties related to OpenAI Resource */
+export interface OpenAIProfileInput {
+  /** GPT Model Name */
+  gptModelName?: string;
+  /** GPT Model Version */
+  gptModelVersion?: string;
+  /** GPT Model Capacity */
+  gptModelCapacity?: number;
+  /** GPT Model SKU Name */
+  gptModelSkuName?: string;
+  /** Embedding Model Name */
+  embeddingModelName?: string;
+  /** Embedding Model Version */
+  embeddingModelVersion?: string;
+  /** Embedding Model SKU Name */
+  embeddingModelSkuName?: string;
+  /** Embedding Model Capacity */
+  embeddingModelCapacity?: number;
+}
+export const OpenAIProfileInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    gptModelName: S.optional(S.String),
+    gptModelVersion: S.optional(S.String),
+    gptModelCapacity: S.optional(S.Number),
+    gptModelSkuName: S.optional(S.String),
+    embeddingModelName: S.optional(S.String),
+    embeddingModelVersion: S.optional(S.String),
+    embeddingModelSkuName: S.optional(S.String),
+    embeddingModelCapacity: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "OpenAIProfileInput",
+}) as any as S.Schema<OpenAIProfileInput>;
+
+/** The properties related to User Managed OpenAI Resource */
+export interface UserManagedOpenAIProfileInput {
+  /** Resource Id of OpenAI Resource */
+  id: string;
+  /** GPT Model Deployment Name */
+  gptModelDeploymentName: string;
+  /** Embedding Model Deployment Name */
+  embeddingModelDeploymentName: string;
+}
+export const UserManagedOpenAIProfileInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    gptModelDeploymentName: S.String,
+    embeddingModelDeploymentName: S.String,
+  }),
+).annotate({
+  identifier: "UserManagedOpenAIProfileInput",
+}) as any as S.Schema<UserManagedOpenAIProfileInput>;
+
+/** Deny Assignments exclusion list. */
+export type MdsResourcePropertiesInputDenyAssignmentExclusionsList =
+  Array<DenyAssignmentExclusion>;
+export const MdsResourcePropertiesInputDenyAssignmentExclusionsList =
+  /*@__PURE__*/ S.Array(
+    DenyAssignmentExclusion,
+  ) as any as S.Schema<MdsResourcePropertiesInputDenyAssignmentExclusionsList>;
+
+/** Details of the ManufacturingPlatform MdsResource. */
+export interface MdsResourcePropertiesInput {
+  /** Mds Resource Version. */
+  version?: string;
+  /** Enable Copilot. */
+  enableCopilot?: boolean;
+  /** Enable Diagnostic Settings. */
+  enableDiagnosticSettings?: boolean;
+  /** AAD Application Id. */
+  aadApplicationId: string;
+  /** AKS Admin Group Id. */
+  aksAdminGroupId?: string;
+  /** Profile of OpenAI Resource. */
+  openAIProfile?: OpenAIProfileInput;
+  /** Profile of CMK Settings. */
+  cmkProfile?: CmkProfile;
+  /** Profile of Fabric resources. */
+  fabricProfile?: FabricProfile;
+  /** Profile of User Managed OpenAI Resource. */
+  userManagedOpenAIProfile?: UserManagedOpenAIProfileInput;
+  /** Deny Assignments exclusion list. */
+  denyAssignmentExclusions?: MdsResourcePropertiesInputDenyAssignmentExclusionsList;
+  /** State of the resource */
+  resourceState?: ResourceState | (string & {});
+  /** Zone redundancy state for resources */
+  redundancyState?: RedundancyState | (string & {});
+}
+export const MdsResourcePropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    version: S.optional(S.String),
+    enableCopilot: S.optional(S.Boolean),
+    enableDiagnosticSettings: S.optional(S.Boolean),
+    aadApplicationId: S.String,
+    aksAdminGroupId: S.optional(S.String),
+    openAIProfile: S.optional(OpenAIProfileInput),
+    cmkProfile: S.optional(CmkProfile),
+    fabricProfile: S.optional(FabricProfile),
+    userManagedOpenAIProfile: S.optional(UserManagedOpenAIProfileInput),
+    denyAssignmentExclusions: S.optional(
+      MdsResourcePropertiesInputDenyAssignmentExclusionsList,
+    ),
+    resourceState: S.optional(ResourceState),
+    redundancyState: S.optional(RedundancyState),
+  }),
+).annotate({
+  identifier: "MdsResourcePropertiesInput",
+}) as any as S.Schema<MdsResourcePropertiesInput>;
+
+/** User assigned identity properties */
+export interface UserAssignedIdentityInput {}
+export const UserAssignedIdentityInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "UserAssignedIdentityInput",
+}) as any as S.Schema<UserAssignedIdentityInput>;
+
+/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+export type UserAssignedIdentitiesInput = {
+  [key: string]: UserAssignedIdentityInput | undefined;
+};
+export const UserAssignedIdentitiesInput = /*@__PURE__*/ S.Record(
+  S.String,
+  UserAssignedIdentityInput,
+) as any as S.Schema<UserAssignedIdentitiesInput>;
+
+/** Managed service identity (system assigned and/or user assigned identities) */
+export interface ManufacturingDataServicesCreateOrUpdateRequestIdentity {
+  type: ManagedServiceIdentityType | (string & {});
+  userAssignedIdentities?: UserAssignedIdentitiesInput;
+}
+export const ManufacturingDataServicesCreateOrUpdateRequestIdentity =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      type: ManagedServiceIdentityType,
+      userAssignedIdentities: S.optional(UserAssignedIdentitiesInput),
+    }),
+  ).annotate({
+    identifier: "ManufacturingDataServicesCreateOrUpdateRequestIdentity",
+  }) as any as S.Schema<ManufacturingDataServicesCreateOrUpdateRequestIdentity>;
+
+/** The resource model definition representing SKU */
+export interface ManufacturingDataServicesCreateOrUpdateRequestSku {
+  /** The name of the SKU. E.g. P3. It is typically a letter+number code */
+  name: string;
+  tier?: SkuTier | (string & {});
+  /** The SKU size. When the name field is the combination of tier and some other value, this would be the standalone code. */
+  size?: string;
+  /** If the service has different generations of hardware, for the same SKU, then that can be captured here. */
+  family?: string;
+  /** If the SKU supports scale out/in then the capacity integer should be included. If scale out/in is not possible for the resource this may be omitted. */
+  capacity?: number;
+}
+export const ManufacturingDataServicesCreateOrUpdateRequestSku =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      name: S.String,
+      tier: S.optional(SkuTier),
+      size: S.optional(S.String),
+      family: S.optional(S.String),
+      capacity: S.optional(S.Number),
+    }),
+  ).annotate({
+    identifier: "ManufacturingDataServicesCreateOrUpdateRequestSku",
+  }) as any as S.Schema<ManufacturingDataServicesCreateOrUpdateRequestSku>;
+
+export interface ManufacturingDataServicesCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name. */
+  mdsResourceName: string;
+  /** Resource tags. */
+  tags?: ManufacturingDataServicesCreateOrUpdateRequestTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: MdsResourcePropertiesInput;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: ManufacturingDataServicesCreateOrUpdateRequestIdentity;
+  /** The resource model definition representing SKU */
+  sku?: ManufacturingDataServicesCreateOrUpdateRequestSku;
+}
+export const ManufacturingDataServicesCreateOrUpdateRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      mdsResourceName: S.String.pipe(T.Label()),
+      tags: S.optional(ManufacturingDataServicesCreateOrUpdateRequestTagsMap),
+      location: S.String,
+      properties: S.optional(MdsResourcePropertiesInput),
+      identity: S.optional(
+        ManufacturingDataServicesCreateOrUpdateRequestIdentity,
+      ),
+      sku: S.optional(ManufacturingDataServicesCreateOrUpdateRequestSku),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManufacturingPlatform/manufacturingDataServices/{mdsResourceName}",
+        code: 200,
+        apiVersion: "2025-03-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ManufacturingDataServicesCreateOrUpdateRequest",
+  }) as any as S.Schema<ManufacturingDataServicesCreateOrUpdateRequest>;
+
+/** Resource tags. */
+export type ManufacturingDataServicesCreateOrUpdateResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const ManufacturingDataServicesCreateOrUpdateResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<ManufacturingDataServicesCreateOrUpdateResponseTagsMap>;
+
+/** Managed service identity (system assigned and/or user assigned identities) */
+export type ManufacturingDataServicesCreateOrUpdateResponseIdentity =
+  GetManufacturingDataServiceResponseIdentity;
+export const ManufacturingDataServicesCreateOrUpdateResponseIdentity =
+  GetManufacturingDataServiceResponseIdentity;
+
+/** The resource model definition representing SKU */
+export type ManufacturingDataServicesCreateOrUpdateResponseSku =
+  GetManufacturingDataServiceResponseSku;
+export const ManufacturingDataServicesCreateOrUpdateResponseSku =
+  GetManufacturingDataServiceResponseSku;
+
+export interface ManufacturingDataServicesCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: ManufacturingDataServicesCreateOrUpdateResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: MdsResourceProperties;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: GetManufacturingDataServiceResponseIdentity;
+  /** The resource model definition representing SKU */
+  sku?: GetManufacturingDataServiceResponseSku;
+}
+export const ManufacturingDataServicesCreateOrUpdateResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      tags: S.optional(ManufacturingDataServicesCreateOrUpdateResponseTagsMap),
+      location: S.String,
+      properties: S.optional(MdsResourceProperties),
+      identity: S.optional(GetManufacturingDataServiceResponseIdentity),
+      sku: S.optional(GetManufacturingDataServiceResponseSku),
+    }),
+  ).annotate({
+    identifier: "ManufacturingDataServicesCreateOrUpdateResponse",
+  }) as any as S.Schema<ManufacturingDataServicesCreateOrUpdateResponse>;
 
 /** Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed). */
 export type AzureResourceManagerCommonTypesManagedServiceIdentityUpdateInputType =
@@ -1164,14 +1242,14 @@ export const AzureResourceManagerCommonTypesSkuUpdate = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<AzureResourceManagerCommonTypesSkuUpdate>;
 
 /** Resource tags. */
-export type ManufacturingDataServicesUpdateRequestTagsMap = {
+export type UpdateManufacturingDataServiceRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const ManufacturingDataServicesUpdateRequestTagsMap =
+export const UpdateManufacturingDataServiceRequestTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<ManufacturingDataServicesUpdateRequestTagsMap>;
+  ) as any as S.Schema<UpdateManufacturingDataServiceRequestTagsMap>;
 
 /** The properties related to Fabric */
 export interface FabricProfileUpdate {
@@ -1255,7 +1333,7 @@ export const MdsResourceUpdatePropertiesInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "MdsResourceUpdatePropertiesInput",
 }) as any as S.Schema<MdsResourceUpdatePropertiesInput>;
 
-export interface ManufacturingDataServicesUpdateRequest {
+export interface UpdateManufacturingDataServiceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1267,11 +1345,11 @@ export interface ManufacturingDataServicesUpdateRequest {
   /** The SKU (Stock Keeping Unit) assigned to this resource. */
   sku?: AzureResourceManagerCommonTypesSkuUpdate;
   /** Resource tags. */
-  tags?: ManufacturingDataServicesUpdateRequestTagsMap;
+  tags?: UpdateManufacturingDataServiceRequestTagsMap;
   /** The resource-specific properties for this resource. */
   properties?: MdsResourceUpdatePropertiesInput;
 }
-export const ManufacturingDataServicesUpdateRequest = /*@__PURE__*/ S.suspend(
+export const UpdateManufacturingDataServiceRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -1281,7 +1359,7 @@ export const ManufacturingDataServicesUpdateRequest = /*@__PURE__*/ S.suspend(
         AzureResourceManagerCommonTypesManagedServiceIdentityUpdateInput,
       ),
       sku: S.optional(AzureResourceManagerCommonTypesSkuUpdate),
-      tags: S.optional(ManufacturingDataServicesUpdateRequestTagsMap),
+      tags: S.optional(UpdateManufacturingDataServiceRequestTagsMap),
       properties: S.optional(MdsResourceUpdatePropertiesInput),
     }).pipe(
       T.Http({
@@ -1292,32 +1370,32 @@ export const ManufacturingDataServicesUpdateRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "ManufacturingDataServicesUpdateRequest",
-}) as any as S.Schema<ManufacturingDataServicesUpdateRequest>;
+  identifier: "UpdateManufacturingDataServiceRequest",
+}) as any as S.Schema<UpdateManufacturingDataServiceRequest>;
 
 /** Resource tags. */
-export type ManufacturingDataServicesUpdateResponseTagsMap = {
+export type UpdateManufacturingDataServiceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ManufacturingDataServicesUpdateResponseTagsMap =
+export const UpdateManufacturingDataServiceResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<ManufacturingDataServicesUpdateResponseTagsMap>;
+  ) as any as S.Schema<UpdateManufacturingDataServiceResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type ManufacturingDataServicesUpdateResponseIdentity =
-  ManufacturingDataServicesCreateOrUpdateResponseIdentity;
-export const ManufacturingDataServicesUpdateResponseIdentity =
-  ManufacturingDataServicesCreateOrUpdateResponseIdentity;
+export type UpdateManufacturingDataServiceResponseIdentity =
+  GetManufacturingDataServiceResponseIdentity;
+export const UpdateManufacturingDataServiceResponseIdentity =
+  GetManufacturingDataServiceResponseIdentity;
 
 /** The resource model definition representing SKU */
-export type ManufacturingDataServicesUpdateResponseSku =
-  ManufacturingDataServicesCreateOrUpdateResponseSku;
-export const ManufacturingDataServicesUpdateResponseSku =
-  ManufacturingDataServicesCreateOrUpdateResponseSku;
+export type UpdateManufacturingDataServiceResponseSku =
+  GetManufacturingDataServiceResponseSku;
+export const UpdateManufacturingDataServiceResponseSku =
+  GetManufacturingDataServiceResponseSku;
 
-export interface ManufacturingDataServicesUpdateResponse {
+export interface UpdateManufacturingDataServiceResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -1327,122 +1405,122 @@ export interface ManufacturingDataServicesUpdateResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ManufacturingDataServicesUpdateResponseTagsMap;
+  tags?: UpdateManufacturingDataServiceResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: MdsResourceProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: ManufacturingDataServicesCreateOrUpdateResponseIdentity;
+  identity?: GetManufacturingDataServiceResponseIdentity;
   /** The resource model definition representing SKU */
-  sku?: ManufacturingDataServicesCreateOrUpdateResponseSku;
+  sku?: GetManufacturingDataServiceResponseSku;
 }
-export const ManufacturingDataServicesUpdateResponse = /*@__PURE__*/ S.suspend(
+export const UpdateManufacturingDataServiceResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
-      tags: S.optional(ManufacturingDataServicesUpdateResponseTagsMap),
+      tags: S.optional(UpdateManufacturingDataServiceResponseTagsMap),
       location: S.String,
       properties: S.optional(MdsResourceProperties),
-      identity: S.optional(
-        ManufacturingDataServicesCreateOrUpdateResponseIdentity,
-      ),
-      sku: S.optional(ManufacturingDataServicesCreateOrUpdateResponseSku),
+      identity: S.optional(GetManufacturingDataServiceResponseIdentity),
+      sku: S.optional(GetManufacturingDataServiceResponseSku),
     }),
 ).annotate({
-  identifier: "ManufacturingDataServicesUpdateResponse",
-}) as any as S.Schema<ManufacturingDataServicesUpdateResponse>;
+  identifier: "UpdateManufacturingDataServiceResponse",
+}) as any as S.Schema<UpdateManufacturingDataServiceResponse>;
 
-export interface OperationsListRequest {}
-export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/providers/Microsoft.ManufacturingPlatform/operations",
-      code: 200,
-      apiVersion: "2025-03-01",
-    }),
-  ),
-).annotate({
-  identifier: "OperationsListRequest",
-}) as any as S.Schema<OperationsListRequest>;
+export type DeleteManufacturingDataServiceError = AzureOpError;
+/** Delete a MdsResource */
+export const DeleteManufacturingDataService: API.OperationMethod<
+  DeleteManufacturingDataServiceRequest,
+  DeleteManufacturingDataServiceResponse,
+  DeleteManufacturingDataServiceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteManufacturingDataServiceRequest,
+  output: DeleteManufacturingDataServiceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
-/** Localized display information for this particular operation. */
-export interface OperationDisplay {
-  /** The localized friendly form of the resource provider name, e.g. "Microsoft Monitoring Insights" or "Microsoft Compute". */
-  provider?: string;
-  /** The localized friendly name of the resource type related to this operation. E.g. "Virtual Machines" or "Job Schedule Collections". */
-  resource?: string;
-  /** The concise, localized friendly name for the operation; suitable for dropdowns. E.g. "Create or Update Virtual Machine", "Restart Virtual Machine". */
-  operation?: string;
-  /** The short, localized friendly description of the operation; suitable for tool tips and detailed views. */
-  description?: string;
-}
-export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provider: S.optional(S.String),
-    resource: S.optional(S.String),
-    operation: S.optional(S.String),
-    description: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OperationDisplay",
-}) as any as S.Schema<OperationDisplay>;
+export type GetManufacturingDataServiceError = AzureOpError;
+/** Get a MdsResource */
+export const GetManufacturingDataService: API.OperationMethod<
+  GetManufacturingDataServiceRequest,
+  GetManufacturingDataServiceResponse,
+  GetManufacturingDataServiceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetManufacturingDataServiceRequest,
+  output: GetManufacturingDataServiceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
-/** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
-export type OperationOrigin = "user" | "system" | "user,system";
-export const OperationOrigin = /*@__PURE__*/ S.String;
+export type ListManufacturingDataServiceAvailableVersionsError = AzureOpError;
+/** Returns the list of available versions */
+export const ListManufacturingDataServiceAvailableVersions: API.OperationMethod<
+  ListManufacturingDataServiceAvailableVersionsRequest,
+  AvailableVersionListResult,
+  ListManufacturingDataServiceAvailableVersionsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListManufacturingDataServiceAvailableVersionsRequest,
+  output: AvailableVersionListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
-/** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
-export type OperationActionType = "Internal";
-export const OperationActionType = /*@__PURE__*/ S.String;
+export type ListManufacturingDataServiceByResourceGroupError = AzureOpError;
+/** List MdsResource resources by resource group */
+export const ListManufacturingDataServiceByResourceGroup: API.OperationMethod<
+  ListManufacturingDataServiceByResourceGroupRequest,
+  MdsResourceListResult,
+  ListManufacturingDataServiceByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListManufacturingDataServiceByResourceGroupRequest,
+  output: MdsResourceListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
-/** Details of a REST API operation, returned from the Resource Provider Operations API */
-export interface Operation {
-  /** The name of the operation, as per Resource-Based Access Control (RBAC). Examples: "Microsoft.Compute/virtualMachines/write", "Microsoft.Compute/virtualMachines/capture/action" */
-  name?: string;
-  /** Whether the operation applies to data-plane. This is "true" for data-plane operations and "false" for ARM/control-plane operations. */
-  isDataAction?: boolean;
-  /** Localized display information for this particular operation. */
-  display?: OperationDisplay;
-  /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
-  origin?: OperationOrigin;
-  /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
-  actionType?: OperationActionType;
-}
-export const Operation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    isDataAction: S.optional(S.Boolean),
-    display: S.optional(OperationDisplay),
-    origin: S.optional(OperationOrigin),
-    actionType: S.optional(OperationActionType),
-  }),
-).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
+export type ListManufacturingDataServiceBySubscriptionError = AzureOpError;
+/** List MdsResource resources by subscription ID */
+export const ListManufacturingDataServiceBySubscription: API.OperationMethod<
+  ListManufacturingDataServiceBySubscriptionRequest,
+  MdsResourceListResult,
+  ListManufacturingDataServiceBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListManufacturingDataServiceBySubscriptionRequest,
+  output: MdsResourceListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
-/** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
-  Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
-
-export interface OperationsListResponse {
-  /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
-  /** URL to get the next set of operation list results (if there are any). */
-  nextLink?: string;
-}
-export const OperationsListResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(OperationsListResponseValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OperationsListResponse",
-}) as any as S.Schema<OperationsListResponse>;
+export type ListOperationsError = AzureOpError;
+/** List the operations for the provider */
+export const ListOperations: API.OperationMethod<
+  ListOperationsRequest,
+  ListOperationsResponse,
+  ListOperationsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListOperationsRequest,
+  output: ListOperationsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
 export type ManufacturingDataServicesCreateOrUpdateError = AzureOpError;
 /** Create a MdsResource */
@@ -1459,106 +1537,16 @@ export const ManufacturingDataServicesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ManufacturingDataServicesDeleteError = AzureOpError;
-/** Delete a MdsResource */
-export const ManufacturingDataServicesDelete: API.OperationMethod<
-  ManufacturingDataServicesDeleteRequest,
-  ManufacturingDataServicesDeleteResponse,
-  ManufacturingDataServicesDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ManufacturingDataServicesDeleteRequest,
-  output: ManufacturingDataServicesDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ManufacturingDataServicesGetError = AzureOpError;
-/** Get a MdsResource */
-export const ManufacturingDataServicesGet: API.OperationMethod<
-  ManufacturingDataServicesGetRequest,
-  ManufacturingDataServicesGetResponse,
-  ManufacturingDataServicesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ManufacturingDataServicesGetRequest,
-  output: ManufacturingDataServicesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ManufacturingDataServicesListAvailableVersionsError = AzureOpError;
-/** Returns the list of available versions */
-export const ManufacturingDataServicesListAvailableVersions: API.OperationMethod<
-  ManufacturingDataServicesListAvailableVersionsRequest,
-  AvailableVersionListResult,
-  ManufacturingDataServicesListAvailableVersionsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ManufacturingDataServicesListAvailableVersionsRequest,
-  output: AvailableVersionListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ManufacturingDataServicesListByResourceGroupError = AzureOpError;
-/** List MdsResource resources by resource group */
-export const ManufacturingDataServicesListByResourceGroup: API.OperationMethod<
-  ManufacturingDataServicesListByResourceGroupRequest,
-  MdsResourceListResult,
-  ManufacturingDataServicesListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ManufacturingDataServicesListByResourceGroupRequest,
-  output: MdsResourceListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ManufacturingDataServicesListBySubscriptionError = AzureOpError;
-/** List MdsResource resources by subscription ID */
-export const ManufacturingDataServicesListBySubscription: API.OperationMethod<
-  ManufacturingDataServicesListBySubscriptionRequest,
-  MdsResourceListResult,
-  ManufacturingDataServicesListBySubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ManufacturingDataServicesListBySubscriptionRequest,
-  output: MdsResourceListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ManufacturingDataServicesUpdateError = AzureOpError;
+export type UpdateManufacturingDataServiceError = AzureOpError;
 /** Update a MdsResource */
-export const ManufacturingDataServicesUpdate: API.OperationMethod<
-  ManufacturingDataServicesUpdateRequest,
-  ManufacturingDataServicesUpdateResponse,
-  ManufacturingDataServicesUpdateError,
+export const UpdateManufacturingDataService: API.OperationMethod<
+  UpdateManufacturingDataServiceRequest,
+  UpdateManufacturingDataServiceResponse,
+  UpdateManufacturingDataServiceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ManufacturingDataServicesUpdateRequest,
-  output: ManufacturingDataServicesUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type OperationsListError = AzureOpError;
-/** List the operations for the provider */
-export const OperationsList: API.OperationMethod<
-  OperationsListRequest,
-  OperationsListResponse,
-  OperationsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: OperationsListRequest,
-  output: OperationsListResponse,
+  input: UpdateManufacturingDataServiceRequest,
+  output: UpdateManufacturingDataServiceResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

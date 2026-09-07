@@ -12,6 +12,73 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
+export interface DeleteDiskPoolRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Disk Pool. */
+  diskPoolName: string;
+}
+export const DeleteDiskPoolRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    diskPoolName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StoragePool/diskPools/{diskPoolName}",
+      code: 200,
+      apiVersion: "2021-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteDiskPoolRequest",
+}) as any as S.Schema<DeleteDiskPoolRequest>;
+
+export interface DeleteDiskPoolResponse {}
+export const DeleteDiskPoolResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteDiskPoolResponse",
+}) as any as S.Schema<DeleteDiskPoolResponse>;
+
+export interface DeleteIscsiTargetRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Disk Pool. */
+  diskPoolName: string;
+  /** The name of the iSCSI Target. */
+  iscsiTargetName: string;
+}
+export const DeleteIscsiTargetRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    diskPoolName: S.String.pipe(T.Label()),
+    iscsiTargetName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StoragePool/diskPools/{diskPoolName}/iscsiTargets/{iscsiTargetName}",
+      code: 200,
+      apiVersion: "2021-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteIscsiTargetRequest",
+}) as any as S.Schema<DeleteIscsiTargetRequest>;
+
+export interface DeleteIscsiTargetResponse {}
+export const DeleteIscsiTargetResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteIscsiTargetResponse",
+}) as any as S.Schema<DeleteIscsiTargetResponse>;
+
 /** Sku for ARM resource */
 export interface Sku {
   /** Sku name */
@@ -336,7 +403,7 @@ export const DiskPoolsDeallocateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DiskPoolsDeallocateResponse",
 }) as any as S.Schema<DiskPoolsDeallocateResponse>;
 
-export interface DiskPoolsDeleteRequest {
+export interface DiskPoolsUpgradeRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -344,31 +411,31 @@ export interface DiskPoolsDeleteRequest {
   /** The name of the Disk Pool. */
   diskPoolName: string;
 }
-export const DiskPoolsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const DiskPoolsUpgradeRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     diskPoolName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StoragePool/diskPools/{diskPoolName}",
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StoragePool/diskPools/{diskPoolName}/upgrade",
       code: 200,
       apiVersion: "2021-08-01",
     }),
   ),
 ).annotate({
-  identifier: "DiskPoolsDeleteRequest",
-}) as any as S.Schema<DiskPoolsDeleteRequest>;
+  identifier: "DiskPoolsUpgradeRequest",
+}) as any as S.Schema<DiskPoolsUpgradeRequest>;
 
-export interface DiskPoolsDeleteResponse {}
-export const DiskPoolsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DiskPoolsUpgradeResponse {}
+export const DiskPoolsUpgradeResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DiskPoolsDeleteResponse",
-}) as any as S.Schema<DiskPoolsDeleteResponse>;
+  identifier: "DiskPoolsUpgradeResponse",
+}) as any as S.Schema<DiskPoolsUpgradeResponse>;
 
-export interface DiskPoolsGetRequest {
+export interface GetDiskPoolRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -376,7 +443,7 @@ export interface DiskPoolsGetRequest {
   /** The name of the Disk Pool. */
   diskPoolName: string;
 }
-export const DiskPoolsGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetDiskPoolRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -390,17 +457,17 @@ export const DiskPoolsGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DiskPoolsGetRequest",
-}) as any as S.Schema<DiskPoolsGetRequest>;
+  identifier: "GetDiskPoolRequest",
+}) as any as S.Schema<GetDiskPoolRequest>;
 
 /** Resource tags. */
-export type DiskPoolsGetResponseTagsMap = { [key: string]: string | undefined };
-export const DiskPoolsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetDiskPoolResponseTagsMap = { [key: string]: string | undefined };
+export const GetDiskPoolResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<DiskPoolsGetResponseTagsMap>;
+) as any as S.Schema<GetDiskPoolResponseTagsMap>;
 
-export interface DiskPoolsGetResponse {
+export interface GetDiskPoolResponse {
   /** Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -408,7 +475,7 @@ export interface DiskPoolsGetResponse {
   /** The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts. */
   type?: string;
   /** Resource tags. */
-  tags?: DiskPoolsGetResponseTagsMap;
+  tags?: GetDiskPoolResponseTagsMap;
   /** The geo-location where the resource lives. */
   location: string;
   /** Determines the SKU of the Disk pool */
@@ -422,12 +489,12 @@ export interface DiskPoolsGetResponse {
   /** Resource metadata required by ARM RPC */
   systemData?: SystemMetadata;
 }
-export const DiskPoolsGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetDiskPoolResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
-    tags: S.optional(DiskPoolsGetResponseTagsMap),
+    tags: S.optional(GetDiskPoolResponseTagsMap),
     location: S.String,
     sku: S.optional(Sku),
     properties: DiskPoolProperties,
@@ -436,16 +503,292 @@ export const DiskPoolsGetResponse = /*@__PURE__*/ S.suspend(() =>
     systemData: S.optional(SystemMetadata),
   }),
 ).annotate({
-  identifier: "DiskPoolsGetResponse",
-}) as any as S.Schema<DiskPoolsGetResponse>;
+  identifier: "GetDiskPoolResponse",
+}) as any as S.Schema<GetDiskPoolResponse>;
 
-export interface DiskPoolsListByResourceGroupRequest {
+export interface GetIscsiTargetRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Disk Pool. */
+  diskPoolName: string;
+  /** The name of the iSCSI Target. */
+  iscsiTargetName: string;
+}
+export const GetIscsiTargetRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    diskPoolName: S.String.pipe(T.Label()),
+    iscsiTargetName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StoragePool/diskPools/{diskPoolName}/iscsiTargets/{iscsiTargetName}",
+      code: 200,
+      apiVersion: "2021-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetIscsiTargetRequest",
+}) as any as S.Schema<GetIscsiTargetRequest>;
+
+/** ACL mode for iSCSI Target. */
+export type AclMode = "Dynamic" | "Static";
+export const AclMode = /*@__PURE__*/ S.String;
+
+/** List of LUN names mapped to the ACL. */
+export type AclMappedLunsList = Array<string>;
+export const AclMappedLunsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<AclMappedLunsList>;
+
+/** Access Control List (ACL) for an iSCSI Target; defines LUN masking policy */
+export interface Acl {
+  /** iSCSI initiator IQN (iSCSI Qualified Name); example: "iqn.2005-03.org.iscsi:client". */
+  initiatorIqn: string;
+  /** List of LUN names mapped to the ACL. */
+  mappedLuns: AclMappedLunsList;
+}
+export const Acl = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    initiatorIqn: S.String,
+    mappedLuns: AclMappedLunsList,
+  }),
+).annotate({ identifier: "Acl" }) as any as S.Schema<Acl>;
+
+/** Access Control List (ACL) for an iSCSI Target; defines LUN masking policy */
+export type IscsiTargetPropertiesStaticAclsList = Array<Acl>;
+export const IscsiTargetPropertiesStaticAclsList = /*@__PURE__*/ S.Array(
+  Acl,
+) as any as S.Schema<IscsiTargetPropertiesStaticAclsList>;
+
+/** LUN to expose the Azure Managed Disk. */
+export interface IscsiLun {
+  /** User defined name for iSCSI LUN; example: "lun0" */
+  name: string;
+  /** Azure Resource ID of the Managed Disk. */
+  managedDiskAzureResourceId: string;
+  /** Specifies the Logical Unit Number of the iSCSI LUN. */
+  lun?: number;
+}
+export const IscsiLun = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String,
+    managedDiskAzureResourceId: S.String,
+    lun: S.optional(S.Number),
+  }),
+).annotate({ identifier: "IscsiLun" }) as any as S.Schema<IscsiLun>;
+
+/** List of LUNs to be exposed through iSCSI Target. */
+export type IscsiTargetPropertiesLunsList = Array<IscsiLun>;
+export const IscsiTargetPropertiesLunsList = /*@__PURE__*/ S.Array(
+  IscsiLun,
+) as any as S.Schema<IscsiTargetPropertiesLunsList>;
+
+/** List of private IPv4 addresses to connect to the iSCSI Target. */
+export type IscsiTargetPropertiesEndpointsList = Array<string>;
+export const IscsiTargetPropertiesEndpointsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<IscsiTargetPropertiesEndpointsList>;
+
+/** List of identifiers for active sessions on the iSCSI target */
+export type IscsiTargetPropertiesSessionsList = Array<string>;
+export const IscsiTargetPropertiesSessionsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<IscsiTargetPropertiesSessionsList>;
+
+/** Response properties for iSCSI Target operations. */
+export interface IscsiTargetProperties {
+  /** Mode for Target connectivity. */
+  aclMode: AclMode;
+  /** Access Control List (ACL) for an iSCSI Target; defines LUN masking policy */
+  staticAcls?: IscsiTargetPropertiesStaticAclsList;
+  /** List of LUNs to be exposed through iSCSI Target. */
+  luns?: IscsiTargetPropertiesLunsList;
+  /** iSCSI Target IQN (iSCSI Qualified Name); example: "iqn.2005-03.org.iscsi:server". */
+  targetIqn: string;
+  /** State of the operation on the resource. */
+  provisioningState: ProvisioningState;
+  /** Operational status of the iSCSI Target. */
+  status: OperationalStatus;
+  /** List of private IPv4 addresses to connect to the iSCSI Target. */
+  endpoints?: IscsiTargetPropertiesEndpointsList;
+  /** The port used by iSCSI Target portal group. */
+  port?: number;
+  /** List of identifiers for active sessions on the iSCSI target */
+  sessions?: IscsiTargetPropertiesSessionsList;
+}
+export const IscsiTargetProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    aclMode: AclMode,
+    staticAcls: S.optional(IscsiTargetPropertiesStaticAclsList),
+    luns: S.optional(IscsiTargetPropertiesLunsList),
+    targetIqn: S.String,
+    provisioningState: ProvisioningState,
+    status: OperationalStatus,
+    endpoints: S.optional(IscsiTargetPropertiesEndpointsList),
+    port: S.optional(S.Number),
+    sessions: S.optional(IscsiTargetPropertiesSessionsList),
+  }),
+).annotate({
+  identifier: "IscsiTargetProperties",
+}) as any as S.Schema<IscsiTargetProperties>;
+
+export interface GetIscsiTargetResponse {
+  /** Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts. */
+  type?: string;
+  /** Properties for iSCSI Target operations. */
+  properties: IscsiTargetProperties;
+  /** Resource metadata required by ARM RPC */
+  systemData?: SystemMetadata;
+  /** Azure resource id. Indicates if this resource is managed by another Azure resource. */
+  managedBy?: string;
+  /** List of Azure resource ids that manage this resource. */
+  managedByExtended?: ManagedByExtended;
+}
+export const GetIscsiTargetResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    properties: IscsiTargetProperties,
+    systemData: S.optional(SystemMetadata),
+    managedBy: S.optional(S.String),
+    managedByExtended: S.optional(ManagedByExtended),
+  }),
+).annotate({
+  identifier: "GetIscsiTargetResponse",
+}) as any as S.Schema<GetIscsiTargetResponse>;
+
+/** Access Control List (ACL) for an iSCSI Target; defines LUN masking policy */
+export type IscsiTargetCreatePropertiesInputStaticAclsList = Array<Acl>;
+export const IscsiTargetCreatePropertiesInputStaticAclsList =
+  /*@__PURE__*/ S.Array(
+    Acl,
+  ) as any as S.Schema<IscsiTargetCreatePropertiesInputStaticAclsList>;
+
+/** LUN to expose the Azure Managed Disk. */
+export interface IscsiLunInput {
+  /** User defined name for iSCSI LUN; example: "lun0" */
+  name: string;
+  /** Azure Resource ID of the Managed Disk. */
+  managedDiskAzureResourceId: string;
+}
+export const IscsiLunInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String,
+    managedDiskAzureResourceId: S.String,
+  }),
+).annotate({ identifier: "IscsiLunInput" }) as any as S.Schema<IscsiLunInput>;
+
+/** List of LUNs to be exposed through iSCSI Target. */
+export type IscsiTargetCreatePropertiesInputLunsList = Array<IscsiLunInput>;
+export const IscsiTargetCreatePropertiesInputLunsList = /*@__PURE__*/ S.Array(
+  IscsiLunInput,
+) as any as S.Schema<IscsiTargetCreatePropertiesInputLunsList>;
+
+/** Properties for iSCSI Target create or update request. */
+export interface IscsiTargetCreatePropertiesInput {
+  /** Mode for Target connectivity. */
+  aclMode: AclMode | (string & {});
+  /** iSCSI Target IQN (iSCSI Qualified Name); example: "iqn.2005-03.org.iscsi:server". */
+  targetIqn?: string;
+  /** Access Control List (ACL) for an iSCSI Target; defines LUN masking policy */
+  staticAcls?: IscsiTargetCreatePropertiesInputStaticAclsList;
+  /** List of LUNs to be exposed through iSCSI Target. */
+  luns?: IscsiTargetCreatePropertiesInputLunsList;
+}
+export const IscsiTargetCreatePropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    aclMode: AclMode,
+    targetIqn: S.optional(S.String),
+    staticAcls: S.optional(IscsiTargetCreatePropertiesInputStaticAclsList),
+    luns: S.optional(IscsiTargetCreatePropertiesInputLunsList),
+  }),
+).annotate({
+  identifier: "IscsiTargetCreatePropertiesInput",
+}) as any as S.Schema<IscsiTargetCreatePropertiesInput>;
+
+export interface IscsiTargetsCreateOrUpdateRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Disk Pool. */
+  diskPoolName: string;
+  /** The name of the iSCSI Target. */
+  iscsiTargetName: string;
+  /** Properties for iSCSI Target create request. */
+  properties: IscsiTargetCreatePropertiesInput;
+  /** Azure resource id. Indicates if this resource is managed by another Azure resource. */
+  managedBy?: string;
+  /** List of Azure resource ids that manage this resource. */
+  managedByExtended?: ManagedByExtended;
+}
+export const IscsiTargetsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    diskPoolName: S.String.pipe(T.Label()),
+    iscsiTargetName: S.String.pipe(T.Label()),
+    properties: IscsiTargetCreatePropertiesInput,
+    managedBy: S.optional(S.String),
+    managedByExtended: S.optional(ManagedByExtended),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StoragePool/diskPools/{diskPoolName}/iscsiTargets/{iscsiTargetName}",
+      code: 200,
+      apiVersion: "2021-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "IscsiTargetsCreateOrUpdateRequest",
+}) as any as S.Schema<IscsiTargetsCreateOrUpdateRequest>;
+
+export interface IscsiTargetsCreateOrUpdateResponse {
+  /** Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts. */
+  type?: string;
+  /** Properties for iSCSI Target operations. */
+  properties: IscsiTargetProperties;
+  /** Resource metadata required by ARM RPC */
+  systemData?: SystemMetadata;
+  /** Azure resource id. Indicates if this resource is managed by another Azure resource. */
+  managedBy?: string;
+  /** List of Azure resource ids that manage this resource. */
+  managedByExtended?: ManagedByExtended;
+}
+export const IscsiTargetsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    properties: IscsiTargetProperties,
+    systemData: S.optional(SystemMetadata),
+    managedBy: S.optional(S.String),
+    managedByExtended: S.optional(ManagedByExtended),
+  }),
+).annotate({
+  identifier: "IscsiTargetsCreateOrUpdateResponse",
+}) as any as S.Schema<IscsiTargetsCreateOrUpdateResponse>;
+
+export interface ListDiskPoolByResourceGroupRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
 }
-export const DiskPoolsListByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListDiskPoolByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -458,8 +801,8 @@ export const DiskPoolsListByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DiskPoolsListByResourceGroupRequest",
-}) as any as S.Schema<DiskPoolsListByResourceGroupRequest>;
+  identifier: "ListDiskPoolByResourceGroupRequest",
+}) as any as S.Schema<ListDiskPoolByResourceGroupRequest>;
 
 /** Resource tags. */
 export type DiskPoolTagsMap = { [key: string]: string | undefined };
@@ -528,11 +871,11 @@ export const DiskPoolListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "DiskPoolListResult",
 }) as any as S.Schema<DiskPoolListResult>;
 
-export interface DiskPoolsListBySubscriptionRequest {
+export interface ListDiskPoolBySubscriptionRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
 }
-export const DiskPoolsListBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListDiskPoolBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
   }).pipe(
@@ -544,10 +887,10 @@ export const DiskPoolsListBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DiskPoolsListBySubscriptionRequest",
-}) as any as S.Schema<DiskPoolsListBySubscriptionRequest>;
+  identifier: "ListDiskPoolBySubscriptionRequest",
+}) as any as S.Schema<ListDiskPoolBySubscriptionRequest>;
 
-export interface DiskPoolsListOutboundNetworkDependenciesEndpointsRequest {
+export interface ListDiskPoolOutboundNetworkDependenciesEndpointsRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -555,7 +898,7 @@ export interface DiskPoolsListOutboundNetworkDependenciesEndpointsRequest {
   /** The name of the Disk Pool. */
   diskPoolName: string;
 }
-export const DiskPoolsListOutboundNetworkDependenciesEndpointsRequest =
+export const ListDiskPoolOutboundNetworkDependenciesEndpointsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -570,8 +913,8 @@ export const DiskPoolsListOutboundNetworkDependenciesEndpointsRequest =
       }),
     ),
   ).annotate({
-    identifier: "DiskPoolsListOutboundNetworkDependenciesEndpointsRequest",
-  }) as any as S.Schema<DiskPoolsListOutboundNetworkDependenciesEndpointsRequest>;
+    identifier: "ListDiskPoolOutboundNetworkDependenciesEndpointsRequest",
+  }) as any as S.Schema<ListDiskPoolOutboundNetworkDependenciesEndpointsRequest>;
 
 /** Current TCP connectivity information from the App Service Environment to a single endpoint. */
 export interface EndpointDetail {
@@ -661,193 +1004,13 @@ export const OutboundEnvironmentEndpointList = /*@__PURE__*/ S.suspend(() =>
   identifier: "OutboundEnvironmentEndpointList",
 }) as any as S.Schema<OutboundEnvironmentEndpointList>;
 
-export interface DiskPoolsStartRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Disk Pool. */
-  diskPoolName: string;
-}
-export const DiskPoolsStartRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    diskPoolName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StoragePool/diskPools/{diskPoolName}/start",
-      code: 200,
-      apiVersion: "2021-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "DiskPoolsStartRequest",
-}) as any as S.Schema<DiskPoolsStartRequest>;
-
-export interface DiskPoolsStartResponse {}
-export const DiskPoolsStartResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DiskPoolsStartResponse",
-}) as any as S.Schema<DiskPoolsStartResponse>;
-
-/** List of Azure Managed Disks to attach to a Disk Pool. */
-export type DiskPoolUpdatePropertiesDisksList = Array<Disk>;
-export const DiskPoolUpdatePropertiesDisksList = /*@__PURE__*/ S.Array(
-  Disk,
-) as any as S.Schema<DiskPoolUpdatePropertiesDisksList>;
-
-/** Properties for Disk Pool update request. */
-export interface DiskPoolUpdateProperties {
-  /** List of Azure Managed Disks to attach to a Disk Pool. */
-  disks?: DiskPoolUpdatePropertiesDisksList;
-}
-export const DiskPoolUpdateProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    disks: S.optional(DiskPoolUpdatePropertiesDisksList),
-  }),
-).annotate({
-  identifier: "DiskPoolUpdateProperties",
-}) as any as S.Schema<DiskPoolUpdateProperties>;
-
-/** Resource tags. */
-export type DiskPoolsUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const DiskPoolsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<DiskPoolsUpdateRequestTagsMap>;
-
-export interface DiskPoolsUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Disk Pool. */
-  diskPoolName: string;
-  /** Azure resource id. Indicates if this resource is managed by another Azure resource. */
-  managedBy?: string;
-  /** List of Azure resource ids that manage this resource. */
-  managedByExtended?: ManagedByExtended;
-  /** Properties for Disk Pool update request. */
-  properties: DiskPoolUpdateProperties;
-  /** Determines the SKU of the Disk Pool */
-  sku?: Sku;
-  /** Resource tags. */
-  tags?: DiskPoolsUpdateRequestTagsMap;
-}
-export const DiskPoolsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    diskPoolName: S.String.pipe(T.Label()),
-    managedBy: S.optional(S.String),
-    managedByExtended: S.optional(ManagedByExtended),
-    properties: DiskPoolUpdateProperties,
-    sku: S.optional(Sku),
-    tags: S.optional(DiskPoolsUpdateRequestTagsMap),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StoragePool/diskPools/{diskPoolName}",
-      code: 200,
-      apiVersion: "2021-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "DiskPoolsUpdateRequest",
-}) as any as S.Schema<DiskPoolsUpdateRequest>;
-
-/** Resource tags. */
-export type DiskPoolsUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const DiskPoolsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<DiskPoolsUpdateResponseTagsMap>;
-
-export interface DiskPoolsUpdateResponse {
-  /** Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts. */
-  type?: string;
-  /** Resource tags. */
-  tags?: DiskPoolsUpdateResponseTagsMap;
-  /** The geo-location where the resource lives. */
-  location: string;
-  /** Determines the SKU of the Disk pool */
-  sku?: Sku;
-  /** Properties of Disk Pool. */
-  properties: DiskPoolProperties;
-  /** Azure resource id. Indicates if this resource is managed by another Azure resource. */
-  managedBy?: string;
-  /** List of Azure resource ids that manage this resource. */
-  managedByExtended?: ManagedByExtended;
-  /** Resource metadata required by ARM RPC */
-  systemData?: SystemMetadata;
-}
-export const DiskPoolsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    tags: S.optional(DiskPoolsUpdateResponseTagsMap),
-    location: S.String,
-    sku: S.optional(Sku),
-    properties: DiskPoolProperties,
-    managedBy: S.optional(S.String),
-    managedByExtended: S.optional(ManagedByExtended),
-    systemData: S.optional(SystemMetadata),
-  }),
-).annotate({
-  identifier: "DiskPoolsUpdateResponse",
-}) as any as S.Schema<DiskPoolsUpdateResponse>;
-
-export interface DiskPoolsUpgradeRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Disk Pool. */
-  diskPoolName: string;
-}
-export const DiskPoolsUpgradeRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    diskPoolName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StoragePool/diskPools/{diskPoolName}/upgrade",
-      code: 200,
-      apiVersion: "2021-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "DiskPoolsUpgradeRequest",
-}) as any as S.Schema<DiskPoolsUpgradeRequest>;
-
-export interface DiskPoolsUpgradeResponse {}
-export const DiskPoolsUpgradeResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DiskPoolsUpgradeResponse",
-}) as any as S.Schema<DiskPoolsUpgradeResponse>;
-
-export interface DiskPoolZonesListRequest {
+export interface ListDiskPoolZonesRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The location of the resource. */
   location: string;
 }
-export const DiskPoolZonesListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListDiskPoolZonesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     location: S.String.pipe(T.Label()),
@@ -860,8 +1023,8 @@ export const DiskPoolZonesListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DiskPoolZonesListRequest",
-}) as any as S.Schema<DiskPoolZonesListRequest>;
+  identifier: "ListDiskPoolZonesRequest",
+}) as any as S.Schema<ListDiskPoolZonesRequest>;
 
 /** Logical zone for Disk Pool resource; example: ["1"]. */
 export type DiskPoolZoneInfoAvailabilityZonesList = Array<string>;
@@ -918,318 +1081,7 @@ export const DiskPoolZoneListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "DiskPoolZoneListResult",
 }) as any as S.Schema<DiskPoolZoneListResult>;
 
-/** ACL mode for iSCSI Target. */
-export type AclMode = "Dynamic" | "Static";
-export const AclMode = /*@__PURE__*/ S.String;
-
-/** List of LUN names mapped to the ACL. */
-export type AclMappedLunsList = Array<string>;
-export const AclMappedLunsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<AclMappedLunsList>;
-
-/** Access Control List (ACL) for an iSCSI Target; defines LUN masking policy */
-export interface Acl {
-  /** iSCSI initiator IQN (iSCSI Qualified Name); example: "iqn.2005-03.org.iscsi:client". */
-  initiatorIqn: string;
-  /** List of LUN names mapped to the ACL. */
-  mappedLuns: AclMappedLunsList;
-}
-export const Acl = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    initiatorIqn: S.String,
-    mappedLuns: AclMappedLunsList,
-  }),
-).annotate({ identifier: "Acl" }) as any as S.Schema<Acl>;
-
-/** Access Control List (ACL) for an iSCSI Target; defines LUN masking policy */
-export type IscsiTargetCreatePropertiesInputStaticAclsList = Array<Acl>;
-export const IscsiTargetCreatePropertiesInputStaticAclsList =
-  /*@__PURE__*/ S.Array(
-    Acl,
-  ) as any as S.Schema<IscsiTargetCreatePropertiesInputStaticAclsList>;
-
-/** LUN to expose the Azure Managed Disk. */
-export interface IscsiLunInput {
-  /** User defined name for iSCSI LUN; example: "lun0" */
-  name: string;
-  /** Azure Resource ID of the Managed Disk. */
-  managedDiskAzureResourceId: string;
-}
-export const IscsiLunInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String,
-    managedDiskAzureResourceId: S.String,
-  }),
-).annotate({ identifier: "IscsiLunInput" }) as any as S.Schema<IscsiLunInput>;
-
-/** List of LUNs to be exposed through iSCSI Target. */
-export type IscsiTargetCreatePropertiesInputLunsList = Array<IscsiLunInput>;
-export const IscsiTargetCreatePropertiesInputLunsList = /*@__PURE__*/ S.Array(
-  IscsiLunInput,
-) as any as S.Schema<IscsiTargetCreatePropertiesInputLunsList>;
-
-/** Properties for iSCSI Target create or update request. */
-export interface IscsiTargetCreatePropertiesInput {
-  /** Mode for Target connectivity. */
-  aclMode: AclMode | (string & {});
-  /** iSCSI Target IQN (iSCSI Qualified Name); example: "iqn.2005-03.org.iscsi:server". */
-  targetIqn?: string;
-  /** Access Control List (ACL) for an iSCSI Target; defines LUN masking policy */
-  staticAcls?: IscsiTargetCreatePropertiesInputStaticAclsList;
-  /** List of LUNs to be exposed through iSCSI Target. */
-  luns?: IscsiTargetCreatePropertiesInputLunsList;
-}
-export const IscsiTargetCreatePropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    aclMode: AclMode,
-    targetIqn: S.optional(S.String),
-    staticAcls: S.optional(IscsiTargetCreatePropertiesInputStaticAclsList),
-    luns: S.optional(IscsiTargetCreatePropertiesInputLunsList),
-  }),
-).annotate({
-  identifier: "IscsiTargetCreatePropertiesInput",
-}) as any as S.Schema<IscsiTargetCreatePropertiesInput>;
-
-export interface IscsiTargetsCreateOrUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Disk Pool. */
-  diskPoolName: string;
-  /** The name of the iSCSI Target. */
-  iscsiTargetName: string;
-  /** Properties for iSCSI Target create request. */
-  properties: IscsiTargetCreatePropertiesInput;
-  /** Azure resource id. Indicates if this resource is managed by another Azure resource. */
-  managedBy?: string;
-  /** List of Azure resource ids that manage this resource. */
-  managedByExtended?: ManagedByExtended;
-}
-export const IscsiTargetsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    diskPoolName: S.String.pipe(T.Label()),
-    iscsiTargetName: S.String.pipe(T.Label()),
-    properties: IscsiTargetCreatePropertiesInput,
-    managedBy: S.optional(S.String),
-    managedByExtended: S.optional(ManagedByExtended),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StoragePool/diskPools/{diskPoolName}/iscsiTargets/{iscsiTargetName}",
-      code: 200,
-      apiVersion: "2021-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "IscsiTargetsCreateOrUpdateRequest",
-}) as any as S.Schema<IscsiTargetsCreateOrUpdateRequest>;
-
-/** Access Control List (ACL) for an iSCSI Target; defines LUN masking policy */
-export type IscsiTargetPropertiesStaticAclsList = Array<Acl>;
-export const IscsiTargetPropertiesStaticAclsList = /*@__PURE__*/ S.Array(
-  Acl,
-) as any as S.Schema<IscsiTargetPropertiesStaticAclsList>;
-
-/** LUN to expose the Azure Managed Disk. */
-export interface IscsiLun {
-  /** User defined name for iSCSI LUN; example: "lun0" */
-  name: string;
-  /** Azure Resource ID of the Managed Disk. */
-  managedDiskAzureResourceId: string;
-  /** Specifies the Logical Unit Number of the iSCSI LUN. */
-  lun?: number;
-}
-export const IscsiLun = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String,
-    managedDiskAzureResourceId: S.String,
-    lun: S.optional(S.Number),
-  }),
-).annotate({ identifier: "IscsiLun" }) as any as S.Schema<IscsiLun>;
-
-/** List of LUNs to be exposed through iSCSI Target. */
-export type IscsiTargetPropertiesLunsList = Array<IscsiLun>;
-export const IscsiTargetPropertiesLunsList = /*@__PURE__*/ S.Array(
-  IscsiLun,
-) as any as S.Schema<IscsiTargetPropertiesLunsList>;
-
-/** List of private IPv4 addresses to connect to the iSCSI Target. */
-export type IscsiTargetPropertiesEndpointsList = Array<string>;
-export const IscsiTargetPropertiesEndpointsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<IscsiTargetPropertiesEndpointsList>;
-
-/** List of identifiers for active sessions on the iSCSI target */
-export type IscsiTargetPropertiesSessionsList = Array<string>;
-export const IscsiTargetPropertiesSessionsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<IscsiTargetPropertiesSessionsList>;
-
-/** Response properties for iSCSI Target operations. */
-export interface IscsiTargetProperties {
-  /** Mode for Target connectivity. */
-  aclMode: AclMode;
-  /** Access Control List (ACL) for an iSCSI Target; defines LUN masking policy */
-  staticAcls?: IscsiTargetPropertiesStaticAclsList;
-  /** List of LUNs to be exposed through iSCSI Target. */
-  luns?: IscsiTargetPropertiesLunsList;
-  /** iSCSI Target IQN (iSCSI Qualified Name); example: "iqn.2005-03.org.iscsi:server". */
-  targetIqn: string;
-  /** State of the operation on the resource. */
-  provisioningState: ProvisioningState;
-  /** Operational status of the iSCSI Target. */
-  status: OperationalStatus;
-  /** List of private IPv4 addresses to connect to the iSCSI Target. */
-  endpoints?: IscsiTargetPropertiesEndpointsList;
-  /** The port used by iSCSI Target portal group. */
-  port?: number;
-  /** List of identifiers for active sessions on the iSCSI target */
-  sessions?: IscsiTargetPropertiesSessionsList;
-}
-export const IscsiTargetProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    aclMode: AclMode,
-    staticAcls: S.optional(IscsiTargetPropertiesStaticAclsList),
-    luns: S.optional(IscsiTargetPropertiesLunsList),
-    targetIqn: S.String,
-    provisioningState: ProvisioningState,
-    status: OperationalStatus,
-    endpoints: S.optional(IscsiTargetPropertiesEndpointsList),
-    port: S.optional(S.Number),
-    sessions: S.optional(IscsiTargetPropertiesSessionsList),
-  }),
-).annotate({
-  identifier: "IscsiTargetProperties",
-}) as any as S.Schema<IscsiTargetProperties>;
-
-export interface IscsiTargetsCreateOrUpdateResponse {
-  /** Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts. */
-  type?: string;
-  /** Properties for iSCSI Target operations. */
-  properties: IscsiTargetProperties;
-  /** Resource metadata required by ARM RPC */
-  systemData?: SystemMetadata;
-  /** Azure resource id. Indicates if this resource is managed by another Azure resource. */
-  managedBy?: string;
-  /** List of Azure resource ids that manage this resource. */
-  managedByExtended?: ManagedByExtended;
-}
-export const IscsiTargetsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    properties: IscsiTargetProperties,
-    systemData: S.optional(SystemMetadata),
-    managedBy: S.optional(S.String),
-    managedByExtended: S.optional(ManagedByExtended),
-  }),
-).annotate({
-  identifier: "IscsiTargetsCreateOrUpdateResponse",
-}) as any as S.Schema<IscsiTargetsCreateOrUpdateResponse>;
-
-export interface IscsiTargetsDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Disk Pool. */
-  diskPoolName: string;
-  /** The name of the iSCSI Target. */
-  iscsiTargetName: string;
-}
-export const IscsiTargetsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    diskPoolName: S.String.pipe(T.Label()),
-    iscsiTargetName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StoragePool/diskPools/{diskPoolName}/iscsiTargets/{iscsiTargetName}",
-      code: 200,
-      apiVersion: "2021-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "IscsiTargetsDeleteRequest",
-}) as any as S.Schema<IscsiTargetsDeleteRequest>;
-
-export interface IscsiTargetsDeleteResponse {}
-export const IscsiTargetsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "IscsiTargetsDeleteResponse",
-}) as any as S.Schema<IscsiTargetsDeleteResponse>;
-
-export interface IscsiTargetsGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Disk Pool. */
-  diskPoolName: string;
-  /** The name of the iSCSI Target. */
-  iscsiTargetName: string;
-}
-export const IscsiTargetsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    diskPoolName: S.String.pipe(T.Label()),
-    iscsiTargetName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StoragePool/diskPools/{diskPoolName}/iscsiTargets/{iscsiTargetName}",
-      code: 200,
-      apiVersion: "2021-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "IscsiTargetsGetRequest",
-}) as any as S.Schema<IscsiTargetsGetRequest>;
-
-export interface IscsiTargetsGetResponse {
-  /** Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts. */
-  type?: string;
-  /** Properties for iSCSI Target operations. */
-  properties: IscsiTargetProperties;
-  /** Resource metadata required by ARM RPC */
-  systemData?: SystemMetadata;
-  /** Azure resource id. Indicates if this resource is managed by another Azure resource. */
-  managedBy?: string;
-  /** List of Azure resource ids that manage this resource. */
-  managedByExtended?: ManagedByExtended;
-}
-export const IscsiTargetsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    properties: IscsiTargetProperties,
-    systemData: S.optional(SystemMetadata),
-    managedBy: S.optional(S.String),
-    managedByExtended: S.optional(ManagedByExtended),
-  }),
-).annotate({
-  identifier: "IscsiTargetsGetResponse",
-}) as any as S.Schema<IscsiTargetsGetResponse>;
-
-export interface IscsiTargetsListByDiskPoolRequest {
+export interface ListIscsiTargetByDiskPoolRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1237,7 +1089,7 @@ export interface IscsiTargetsListByDiskPoolRequest {
   /** The name of the Disk Pool. */
   diskPoolName: string;
 }
-export const IscsiTargetsListByDiskPoolRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListIscsiTargetByDiskPoolRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1251,8 +1103,8 @@ export const IscsiTargetsListByDiskPoolRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "IscsiTargetsListByDiskPoolRequest",
-}) as any as S.Schema<IscsiTargetsListByDiskPoolRequest>;
+  identifier: "ListIscsiTargetByDiskPoolRequest",
+}) as any as S.Schema<ListIscsiTargetByDiskPoolRequest>;
 
 /** Response for iSCSI Target requests. */
 export interface IscsiTarget {
@@ -1305,104 +1157,8 @@ export const IscsiTargetList = /*@__PURE__*/ S.suspend(() =>
   identifier: "IscsiTargetList",
 }) as any as S.Schema<IscsiTargetList>;
 
-/** Access Control List (ACL) for an iSCSI Target; defines LUN masking policy */
-export type IscsiTargetUpdatePropertiesInputStaticAclsList = Array<Acl>;
-export const IscsiTargetUpdatePropertiesInputStaticAclsList =
-  /*@__PURE__*/ S.Array(
-    Acl,
-  ) as any as S.Schema<IscsiTargetUpdatePropertiesInputStaticAclsList>;
-
-/** List of LUNs to be exposed through iSCSI Target. */
-export type IscsiTargetUpdatePropertiesInputLunsList = Array<IscsiLunInput>;
-export const IscsiTargetUpdatePropertiesInputLunsList = /*@__PURE__*/ S.Array(
-  IscsiLunInput,
-) as any as S.Schema<IscsiTargetUpdatePropertiesInputLunsList>;
-
-/** Properties for iSCSI Target update request. */
-export interface IscsiTargetUpdatePropertiesInput {
-  /** Access Control List (ACL) for an iSCSI Target; defines LUN masking policy */
-  staticAcls?: IscsiTargetUpdatePropertiesInputStaticAclsList;
-  /** List of LUNs to be exposed through iSCSI Target. */
-  luns?: IscsiTargetUpdatePropertiesInputLunsList;
-}
-export const IscsiTargetUpdatePropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    staticAcls: S.optional(IscsiTargetUpdatePropertiesInputStaticAclsList),
-    luns: S.optional(IscsiTargetUpdatePropertiesInputLunsList),
-  }),
-).annotate({
-  identifier: "IscsiTargetUpdatePropertiesInput",
-}) as any as S.Schema<IscsiTargetUpdatePropertiesInput>;
-
-export interface IscsiTargetsUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Disk Pool. */
-  diskPoolName: string;
-  /** The name of the iSCSI Target. */
-  iscsiTargetName: string;
-  /** Properties for iSCSI Target update request. */
-  properties: IscsiTargetUpdatePropertiesInput;
-  /** Azure resource id. Indicates if this resource is managed by another Azure resource. */
-  managedBy?: string;
-  /** List of Azure resource ids that manage this resource. */
-  managedByExtended?: ManagedByExtended;
-}
-export const IscsiTargetsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    diskPoolName: S.String.pipe(T.Label()),
-    iscsiTargetName: S.String.pipe(T.Label()),
-    properties: IscsiTargetUpdatePropertiesInput,
-    managedBy: S.optional(S.String),
-    managedByExtended: S.optional(ManagedByExtended),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StoragePool/diskPools/{diskPoolName}/iscsiTargets/{iscsiTargetName}",
-      code: 200,
-      apiVersion: "2021-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "IscsiTargetsUpdateRequest",
-}) as any as S.Schema<IscsiTargetsUpdateRequest>;
-
-export interface IscsiTargetsUpdateResponse {
-  /** Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts. */
-  type?: string;
-  /** Properties for iSCSI Target operations. */
-  properties: IscsiTargetProperties;
-  /** Resource metadata required by ARM RPC */
-  systemData?: SystemMetadata;
-  /** Azure resource id. Indicates if this resource is managed by another Azure resource. */
-  managedBy?: string;
-  /** List of Azure resource ids that manage this resource. */
-  managedByExtended?: ManagedByExtended;
-}
-export const IscsiTargetsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    properties: IscsiTargetProperties,
-    systemData: S.optional(SystemMetadata),
-    managedBy: S.optional(S.String),
-    managedByExtended: S.optional(ManagedByExtended),
-  }),
-).annotate({
-  identifier: "IscsiTargetsUpdateResponse",
-}) as any as S.Schema<IscsiTargetsUpdateResponse>;
-
-export interface OperationsListRequest {}
-export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
+export interface ListOperationsRequest {}
+export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
     T.Http({
       method: "GET",
@@ -1412,8 +1168,8 @@ export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "OperationsListRequest",
-}) as any as S.Schema<OperationsListRequest>;
+  identifier: "ListOperationsRequest",
+}) as any as S.Schema<ListOperationsRequest>;
 
 /** Metadata about an operation. */
 export interface StoragePoolOperationDisplay {
@@ -1485,13 +1241,13 @@ export const StoragePoolOperationListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "StoragePoolOperationListResult",
 }) as any as S.Schema<StoragePoolOperationListResult>;
 
-export interface ResourceSkusListRequest {
+export interface ListResourceSkusRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The location of the resource. */
   location: string;
 }
-export const ResourceSkusListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListResourceSkusRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     location: S.String.pipe(T.Label()),
@@ -1504,8 +1260,8 @@ export const ResourceSkusListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ResourceSkusListRequest",
-}) as any as S.Schema<ResourceSkusListRequest>;
+  identifier: "ListResourceSkusRequest",
+}) as any as S.Schema<ListResourceSkusRequest>;
 
 /** Capability a resource SKU has. */
 export interface ResourceSkuCapability {
@@ -1715,6 +1471,280 @@ export const ResourceSkuListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "ResourceSkuListResult",
 }) as any as S.Schema<ResourceSkuListResult>;
 
+export interface StartDiskPoolRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Disk Pool. */
+  diskPoolName: string;
+}
+export const StartDiskPoolRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    diskPoolName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StoragePool/diskPools/{diskPoolName}/start",
+      code: 200,
+      apiVersion: "2021-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "StartDiskPoolRequest",
+}) as any as S.Schema<StartDiskPoolRequest>;
+
+export interface StartDiskPoolResponse {}
+export const StartDiskPoolResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "StartDiskPoolResponse",
+}) as any as S.Schema<StartDiskPoolResponse>;
+
+/** List of Azure Managed Disks to attach to a Disk Pool. */
+export type DiskPoolUpdatePropertiesDisksList = Array<Disk>;
+export const DiskPoolUpdatePropertiesDisksList = /*@__PURE__*/ S.Array(
+  Disk,
+) as any as S.Schema<DiskPoolUpdatePropertiesDisksList>;
+
+/** Properties for Disk Pool update request. */
+export interface DiskPoolUpdateProperties {
+  /** List of Azure Managed Disks to attach to a Disk Pool. */
+  disks?: DiskPoolUpdatePropertiesDisksList;
+}
+export const DiskPoolUpdateProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    disks: S.optional(DiskPoolUpdatePropertiesDisksList),
+  }),
+).annotate({
+  identifier: "DiskPoolUpdateProperties",
+}) as any as S.Schema<DiskPoolUpdateProperties>;
+
+/** Resource tags. */
+export type UpdateDiskPoolRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateDiskPoolRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateDiskPoolRequestTagsMap>;
+
+export interface UpdateDiskPoolRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Disk Pool. */
+  diskPoolName: string;
+  /** Azure resource id. Indicates if this resource is managed by another Azure resource. */
+  managedBy?: string;
+  /** List of Azure resource ids that manage this resource. */
+  managedByExtended?: ManagedByExtended;
+  /** Properties for Disk Pool update request. */
+  properties: DiskPoolUpdateProperties;
+  /** Determines the SKU of the Disk Pool */
+  sku?: Sku;
+  /** Resource tags. */
+  tags?: UpdateDiskPoolRequestTagsMap;
+}
+export const UpdateDiskPoolRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    diskPoolName: S.String.pipe(T.Label()),
+    managedBy: S.optional(S.String),
+    managedByExtended: S.optional(ManagedByExtended),
+    properties: DiskPoolUpdateProperties,
+    sku: S.optional(Sku),
+    tags: S.optional(UpdateDiskPoolRequestTagsMap),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StoragePool/diskPools/{diskPoolName}",
+      code: 200,
+      apiVersion: "2021-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateDiskPoolRequest",
+}) as any as S.Schema<UpdateDiskPoolRequest>;
+
+/** Resource tags. */
+export type UpdateDiskPoolResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateDiskPoolResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateDiskPoolResponseTagsMap>;
+
+export interface UpdateDiskPoolResponse {
+  /** Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts. */
+  type?: string;
+  /** Resource tags. */
+  tags?: UpdateDiskPoolResponseTagsMap;
+  /** The geo-location where the resource lives. */
+  location: string;
+  /** Determines the SKU of the Disk pool */
+  sku?: Sku;
+  /** Properties of Disk Pool. */
+  properties: DiskPoolProperties;
+  /** Azure resource id. Indicates if this resource is managed by another Azure resource. */
+  managedBy?: string;
+  /** List of Azure resource ids that manage this resource. */
+  managedByExtended?: ManagedByExtended;
+  /** Resource metadata required by ARM RPC */
+  systemData?: SystemMetadata;
+}
+export const UpdateDiskPoolResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    tags: S.optional(UpdateDiskPoolResponseTagsMap),
+    location: S.String,
+    sku: S.optional(Sku),
+    properties: DiskPoolProperties,
+    managedBy: S.optional(S.String),
+    managedByExtended: S.optional(ManagedByExtended),
+    systemData: S.optional(SystemMetadata),
+  }),
+).annotate({
+  identifier: "UpdateDiskPoolResponse",
+}) as any as S.Schema<UpdateDiskPoolResponse>;
+
+/** Access Control List (ACL) for an iSCSI Target; defines LUN masking policy */
+export type IscsiTargetUpdatePropertiesInputStaticAclsList = Array<Acl>;
+export const IscsiTargetUpdatePropertiesInputStaticAclsList =
+  /*@__PURE__*/ S.Array(
+    Acl,
+  ) as any as S.Schema<IscsiTargetUpdatePropertiesInputStaticAclsList>;
+
+/** List of LUNs to be exposed through iSCSI Target. */
+export type IscsiTargetUpdatePropertiesInputLunsList = Array<IscsiLunInput>;
+export const IscsiTargetUpdatePropertiesInputLunsList = /*@__PURE__*/ S.Array(
+  IscsiLunInput,
+) as any as S.Schema<IscsiTargetUpdatePropertiesInputLunsList>;
+
+/** Properties for iSCSI Target update request. */
+export interface IscsiTargetUpdatePropertiesInput {
+  /** Access Control List (ACL) for an iSCSI Target; defines LUN masking policy */
+  staticAcls?: IscsiTargetUpdatePropertiesInputStaticAclsList;
+  /** List of LUNs to be exposed through iSCSI Target. */
+  luns?: IscsiTargetUpdatePropertiesInputLunsList;
+}
+export const IscsiTargetUpdatePropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    staticAcls: S.optional(IscsiTargetUpdatePropertiesInputStaticAclsList),
+    luns: S.optional(IscsiTargetUpdatePropertiesInputLunsList),
+  }),
+).annotate({
+  identifier: "IscsiTargetUpdatePropertiesInput",
+}) as any as S.Schema<IscsiTargetUpdatePropertiesInput>;
+
+export interface UpdateIscsiTargetRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Disk Pool. */
+  diskPoolName: string;
+  /** The name of the iSCSI Target. */
+  iscsiTargetName: string;
+  /** Properties for iSCSI Target update request. */
+  properties: IscsiTargetUpdatePropertiesInput;
+  /** Azure resource id. Indicates if this resource is managed by another Azure resource. */
+  managedBy?: string;
+  /** List of Azure resource ids that manage this resource. */
+  managedByExtended?: ManagedByExtended;
+}
+export const UpdateIscsiTargetRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    diskPoolName: S.String.pipe(T.Label()),
+    iscsiTargetName: S.String.pipe(T.Label()),
+    properties: IscsiTargetUpdatePropertiesInput,
+    managedBy: S.optional(S.String),
+    managedByExtended: S.optional(ManagedByExtended),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StoragePool/diskPools/{diskPoolName}/iscsiTargets/{iscsiTargetName}",
+      code: 200,
+      apiVersion: "2021-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateIscsiTargetRequest",
+}) as any as S.Schema<UpdateIscsiTargetRequest>;
+
+export interface UpdateIscsiTargetResponse {
+  /** Fully qualified resource Id for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. Ex- Microsoft.Compute/virtualMachines or Microsoft.Storage/storageAccounts. */
+  type?: string;
+  /** Properties for iSCSI Target operations. */
+  properties: IscsiTargetProperties;
+  /** Resource metadata required by ARM RPC */
+  systemData?: SystemMetadata;
+  /** Azure resource id. Indicates if this resource is managed by another Azure resource. */
+  managedBy?: string;
+  /** List of Azure resource ids that manage this resource. */
+  managedByExtended?: ManagedByExtended;
+}
+export const UpdateIscsiTargetResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    properties: IscsiTargetProperties,
+    systemData: S.optional(SystemMetadata),
+    managedBy: S.optional(S.String),
+    managedByExtended: S.optional(ManagedByExtended),
+  }),
+).annotate({
+  identifier: "UpdateIscsiTargetResponse",
+}) as any as S.Schema<UpdateIscsiTargetResponse>;
+
+export type DeleteDiskPoolError = AzureOpError;
+/** Delete a Disk pool; attached disks are not affected. This delete operation can take 10 minutes to complete. This is expected service behavior. */
+export const DeleteDiskPool: API.OperationMethod<
+  DeleteDiskPoolRequest,
+  DeleteDiskPoolResponse,
+  DeleteDiskPoolError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteDiskPoolRequest,
+  output: DeleteDiskPoolResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteIscsiTargetError = AzureOpError;
+/** Delete an iSCSI Target. */
+export const DeleteIscsiTarget: API.OperationMethod<
+  DeleteIscsiTargetRequest,
+  DeleteIscsiTargetResponse,
+  DeleteIscsiTargetError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteIscsiTargetRequest,
+  output: DeleteIscsiTargetResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
 export type DiskPoolsCreateOrUpdateError = AzureOpError;
 /** Create or Update Disk pool. This create or update operation can take 15 minutes to complete. This is expected service behavior. */
 export const DiskPoolsCreateOrUpdate: API.OperationMethod<
@@ -1745,112 +1775,6 @@ export const DiskPoolsDeallocate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DiskPoolsDeleteError = AzureOpError;
-/** Delete a Disk pool; attached disks are not affected. This delete operation can take 10 minutes to complete. This is expected service behavior. */
-export const DiskPoolsDelete: API.OperationMethod<
-  DiskPoolsDeleteRequest,
-  DiskPoolsDeleteResponse,
-  DiskPoolsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DiskPoolsDeleteRequest,
-  output: DiskPoolsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DiskPoolsGetError = AzureOpError;
-/** Get a Disk pool. */
-export const DiskPoolsGet: API.OperationMethod<
-  DiskPoolsGetRequest,
-  DiskPoolsGetResponse,
-  DiskPoolsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DiskPoolsGetRequest,
-  output: DiskPoolsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DiskPoolsListByResourceGroupError = AzureOpError;
-/** Gets a list of DiskPools in a resource group. */
-export const DiskPoolsListByResourceGroup: API.OperationMethod<
-  DiskPoolsListByResourceGroupRequest,
-  DiskPoolListResult,
-  DiskPoolsListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DiskPoolsListByResourceGroupRequest,
-  output: DiskPoolListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DiskPoolsListBySubscriptionError = AzureOpError;
-/** Gets a list of Disk Pools in a subscription */
-export const DiskPoolsListBySubscription: API.OperationMethod<
-  DiskPoolsListBySubscriptionRequest,
-  DiskPoolListResult,
-  DiskPoolsListBySubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DiskPoolsListBySubscriptionRequest,
-  output: DiskPoolListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DiskPoolsListOutboundNetworkDependenciesEndpointsError =
-  AzureOpError;
-/** Gets the network endpoints of all outbound dependencies of a Disk Pool */
-export const DiskPoolsListOutboundNetworkDependenciesEndpoints: API.OperationMethod<
-  DiskPoolsListOutboundNetworkDependenciesEndpointsRequest,
-  OutboundEnvironmentEndpointList,
-  DiskPoolsListOutboundNetworkDependenciesEndpointsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DiskPoolsListOutboundNetworkDependenciesEndpointsRequest,
-  output: OutboundEnvironmentEndpointList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DiskPoolsStartError = AzureOpError;
-/** The operation to start a Disk Pool. This start operation can take 10 minutes to complete. This is expected service behavior. */
-export const DiskPoolsStart: API.OperationMethod<
-  DiskPoolsStartRequest,
-  DiskPoolsStartResponse,
-  DiskPoolsStartError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DiskPoolsStartRequest,
-  output: DiskPoolsStartResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DiskPoolsUpdateError = AzureOpError;
-/** Update a Disk pool. */
-export const DiskPoolsUpdate: API.OperationMethod<
-  DiskPoolsUpdateRequest,
-  DiskPoolsUpdateResponse,
-  DiskPoolsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DiskPoolsUpdateRequest,
-  output: DiskPoolsUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type DiskPoolsUpgradeError = AzureOpError;
 /** Upgrade replaces the underlying virtual machine hosts one at a time. This operation can take 10-15 minutes to complete. This is expected service behavior. */
 export const DiskPoolsUpgrade: API.OperationMethod<
@@ -1866,16 +1790,31 @@ export const DiskPoolsUpgrade: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DiskPoolZonesListError = AzureOpError;
-/** Lists available Disk Pool Skus in an Azure location. */
-export const DiskPoolZonesList: API.OperationMethod<
-  DiskPoolZonesListRequest,
-  DiskPoolZoneListResult,
-  DiskPoolZonesListError,
+export type GetDiskPoolError = AzureOpError;
+/** Get a Disk pool. */
+export const GetDiskPool: API.OperationMethod<
+  GetDiskPoolRequest,
+  GetDiskPoolResponse,
+  GetDiskPoolError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DiskPoolZonesListRequest,
-  output: DiskPoolZoneListResult,
+  input: GetDiskPoolRequest,
+  output: GetDiskPoolResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetIscsiTargetError = AzureOpError;
+/** Get an iSCSI Target. */
+export const GetIscsiTarget: API.OperationMethod<
+  GetIscsiTargetRequest,
+  GetIscsiTargetResponse,
+  GetIscsiTargetError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetIscsiTargetRequest,
+  output: GetIscsiTargetResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -1896,91 +1835,152 @@ export const IscsiTargetsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type IscsiTargetsDeleteError = AzureOpError;
-/** Delete an iSCSI Target. */
-export const IscsiTargetsDelete: API.OperationMethod<
-  IscsiTargetsDeleteRequest,
-  IscsiTargetsDeleteResponse,
-  IscsiTargetsDeleteError,
+export type ListDiskPoolByResourceGroupError = AzureOpError;
+/** Gets a list of DiskPools in a resource group. */
+export const ListDiskPoolByResourceGroup: API.OperationMethod<
+  ListDiskPoolByResourceGroupRequest,
+  DiskPoolListResult,
+  ListDiskPoolByResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: IscsiTargetsDeleteRequest,
-  output: IscsiTargetsDeleteResponse,
+  input: ListDiskPoolByResourceGroupRequest,
+  output: DiskPoolListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type IscsiTargetsGetError = AzureOpError;
-/** Get an iSCSI Target. */
-export const IscsiTargetsGet: API.OperationMethod<
-  IscsiTargetsGetRequest,
-  IscsiTargetsGetResponse,
-  IscsiTargetsGetError,
+export type ListDiskPoolBySubscriptionError = AzureOpError;
+/** Gets a list of Disk Pools in a subscription */
+export const ListDiskPoolBySubscription: API.OperationMethod<
+  ListDiskPoolBySubscriptionRequest,
+  DiskPoolListResult,
+  ListDiskPoolBySubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: IscsiTargetsGetRequest,
-  output: IscsiTargetsGetResponse,
+  input: ListDiskPoolBySubscriptionRequest,
+  output: DiskPoolListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type IscsiTargetsListByDiskPoolError = AzureOpError;
+export type ListDiskPoolOutboundNetworkDependenciesEndpointsError =
+  AzureOpError;
+/** Gets the network endpoints of all outbound dependencies of a Disk Pool */
+export const ListDiskPoolOutboundNetworkDependenciesEndpoints: API.OperationMethod<
+  ListDiskPoolOutboundNetworkDependenciesEndpointsRequest,
+  OutboundEnvironmentEndpointList,
+  ListDiskPoolOutboundNetworkDependenciesEndpointsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDiskPoolOutboundNetworkDependenciesEndpointsRequest,
+  output: OutboundEnvironmentEndpointList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDiskPoolZonesError = AzureOpError;
+/** Lists available Disk Pool Skus in an Azure location. */
+export const ListDiskPoolZones: API.OperationMethod<
+  ListDiskPoolZonesRequest,
+  DiskPoolZoneListResult,
+  ListDiskPoolZonesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDiskPoolZonesRequest,
+  output: DiskPoolZoneListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListIscsiTargetByDiskPoolError = AzureOpError;
 /** Get iSCSI Targets in a Disk pool. */
-export const IscsiTargetsListByDiskPool: API.OperationMethod<
-  IscsiTargetsListByDiskPoolRequest,
+export const ListIscsiTargetByDiskPool: API.OperationMethod<
+  ListIscsiTargetByDiskPoolRequest,
   IscsiTargetList,
-  IscsiTargetsListByDiskPoolError,
+  ListIscsiTargetByDiskPoolError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: IscsiTargetsListByDiskPoolRequest,
+  input: ListIscsiTargetByDiskPoolRequest,
   output: IscsiTargetList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type IscsiTargetsUpdateError = AzureOpError;
-/** Update an iSCSI Target. */
-export const IscsiTargetsUpdate: API.OperationMethod<
-  IscsiTargetsUpdateRequest,
-  IscsiTargetsUpdateResponse,
-  IscsiTargetsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IscsiTargetsUpdateRequest,
-  output: IscsiTargetsUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type OperationsListError = AzureOpError;
+export type ListOperationsError = AzureOpError;
 /** Gets a list of StoragePool operations. */
-export const OperationsList: API.OperationMethod<
-  OperationsListRequest,
+export const ListOperations: API.OperationMethod<
+  ListOperationsRequest,
   StoragePoolOperationListResult,
-  OperationsListError,
+  ListOperationsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OperationsListRequest,
+  input: ListOperationsRequest,
   output: StoragePoolOperationListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ResourceSkusListError = AzureOpError;
+export type ListResourceSkusError = AzureOpError;
 /** Lists available StoragePool resources and skus in an Azure location. */
-export const ResourceSkusList: API.OperationMethod<
-  ResourceSkusListRequest,
+export const ListResourceSkus: API.OperationMethod<
+  ListResourceSkusRequest,
   ResourceSkuListResult,
-  ResourceSkusListError,
+  ListResourceSkusError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ResourceSkusListRequest,
+  input: ListResourceSkusRequest,
   output: ResourceSkuListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type StartDiskPoolError = AzureOpError;
+/** The operation to start a Disk Pool. This start operation can take 10 minutes to complete. This is expected service behavior. */
+export const StartDiskPool: API.OperationMethod<
+  StartDiskPoolRequest,
+  StartDiskPoolResponse,
+  StartDiskPoolError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: StartDiskPoolRequest,
+  output: StartDiskPoolResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateDiskPoolError = AzureOpError;
+/** Update a Disk pool. */
+export const UpdateDiskPool: API.OperationMethod<
+  UpdateDiskPoolRequest,
+  UpdateDiskPoolResponse,
+  UpdateDiskPoolError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateDiskPoolRequest,
+  output: UpdateDiskPoolResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateIscsiTargetError = AzureOpError;
+/** Update an iSCSI Target. */
+export const UpdateIscsiTarget: API.OperationMethod<
+  UpdateIscsiTargetRequest,
+  UpdateIscsiTargetResponse,
+  UpdateIscsiTargetError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateIscsiTargetRequest,
+  output: UpdateIscsiTargetResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

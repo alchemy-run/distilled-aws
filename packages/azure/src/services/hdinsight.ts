@@ -13,14 +13,62 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
+export interface CheckLocationNameAvailabilityRequest {
+  /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The Azure location (region) for which to make the request. */
+  location: string;
+  /** The resource name. */
+  name?: string;
+  /** The resource type */
+  type?: string;
+}
+export const CheckLocationNameAvailabilityRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      location: S.String.pipe(T.Label()),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.HDInsight/locations/{location}/checkNameAvailability",
+        code: 200,
+        apiVersion: "2021-06-01",
+      }),
+    ),
+).annotate({
+  identifier: "CheckLocationNameAvailabilityRequest",
+}) as any as S.Schema<CheckLocationNameAvailabilityRequest>;
+
+/** The response spec of checking name availability. */
+export interface NameAvailabilityCheckResult {
+  /** This indicates whether the name is available. */
+  nameAvailable?: boolean;
+  /** The reason of the result. */
+  reason?: string;
+  /** The related message. */
+  message?: string;
+}
+export const NameAvailabilityCheckResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nameAvailable: S.optional(S.Boolean),
+    reason: S.optional(S.String),
+    message: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "NameAvailabilityCheckResult",
+}) as any as S.Schema<NameAvailabilityCheckResult>;
+
 /** The tags for the application. */
-export type ApplicationsCreateRequestTagsMap = {
+export type CreateApplicationRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const ApplicationsCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const CreateApplicationRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ApplicationsCreateRequestTagsMap>;
+) as any as S.Schema<CreateApplicationRequestTagsMap>;
 
 /** The load-based autoscale request parameters */
 export interface AutoscaleCapacity {
@@ -643,7 +691,7 @@ export const ApplicationPropertiesInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "ApplicationPropertiesInput",
 }) as any as S.Schema<ApplicationPropertiesInput>;
 
-export interface ApplicationsCreateRequest {
+export interface CreateApplicationRequest {
   /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
   /** The name of the resource group. */
@@ -655,18 +703,18 @@ export interface ApplicationsCreateRequest {
   /** The ETag for the application */
   etag?: string;
   /** The tags for the application. */
-  tags?: ApplicationsCreateRequestTagsMap;
+  tags?: CreateApplicationRequestTagsMap;
   /** The properties of the application. */
   properties?: ApplicationPropertiesInput;
 }
-export const ApplicationsCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateApplicationRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     clusterName: S.String.pipe(T.Label()),
     applicationName: S.String.pipe(T.Label()),
     etag: S.optional(S.String),
-    tags: S.optional(ApplicationsCreateRequestTagsMap),
+    tags: S.optional(CreateApplicationRequestTagsMap),
     properties: S.optional(ApplicationPropertiesInput),
   }).pipe(
     T.Http({
@@ -677,17 +725,17 @@ export const ApplicationsCreateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ApplicationsCreateRequest",
-}) as any as S.Schema<ApplicationsCreateRequest>;
+  identifier: "CreateApplicationRequest",
+}) as any as S.Schema<CreateApplicationRequest>;
 
 /** The tags for the application. */
-export type ApplicationsCreateResponseTagsMap = {
+export type CreateApplicationResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ApplicationsCreateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const CreateApplicationResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ApplicationsCreateResponseTagsMap>;
+) as any as S.Schema<CreateApplicationResponseTagsMap>;
 
 /** The data disks groups for the role. */
 export interface DataDisksGroups {
@@ -1122,207 +1170,54 @@ export const ApplicationProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ApplicationProperties>;
 
 /** The type of identity that created the resource. */
-export type ApplicationsCreateResponseSystemDataCreatedByType =
+export type CreateApplicationResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ApplicationsCreateResponseSystemDataCreatedByType =
+export const CreateApplicationResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type ApplicationsCreateResponseSystemDataLastModifiedByType =
+export type CreateApplicationResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ApplicationsCreateResponseSystemDataLastModifiedByType =
+export const CreateApplicationResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface ApplicationsCreateResponseSystemData {
+export interface CreateApplicationResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: ApplicationsCreateResponseSystemDataCreatedByType;
+  createdByType?: CreateApplicationResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: ApplicationsCreateResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: CreateApplicationResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const ApplicationsCreateResponseSystemData = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      createdBy: S.optional(S.String),
-      createdByType: S.optional(
-        ApplicationsCreateResponseSystemDataCreatedByType,
-      ),
-      createdAt: S.optional(S.String),
-      lastModifiedBy: S.optional(S.String),
-      lastModifiedByType: S.optional(
-        ApplicationsCreateResponseSystemDataLastModifiedByType,
-      ),
-      lastModifiedAt: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "ApplicationsCreateResponseSystemData",
-}) as any as S.Schema<ApplicationsCreateResponseSystemData>;
-
-export interface ApplicationsCreateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** The ETag for the application */
-  etag?: string;
-  /** The tags for the application. */
-  tags?: ApplicationsCreateResponseTagsMap;
-  /** The properties of the application. */
-  properties?: ApplicationProperties;
-  /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: ApplicationsCreateResponseSystemData;
-}
-export const ApplicationsCreateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    etag: S.optional(S.String),
-    tags: S.optional(ApplicationsCreateResponseTagsMap),
-    properties: S.optional(ApplicationProperties),
-    systemData: S.optional(ApplicationsCreateResponseSystemData),
-  }),
-).annotate({
-  identifier: "ApplicationsCreateResponse",
-}) as any as S.Schema<ApplicationsCreateResponse>;
-
-export interface ApplicationsDeleteRequest {
-  /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the resource group. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-  /** The constant value for the application name. */
-  applicationName: string;
-}
-export const ApplicationsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    applicationName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HDInsight/clusters/{clusterName}/applications/{applicationName}",
-      code: 200,
-      apiVersion: "2021-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "ApplicationsDeleteRequest",
-}) as any as S.Schema<ApplicationsDeleteRequest>;
-
-export interface ApplicationsDeleteResponse {}
-export const ApplicationsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ApplicationsDeleteResponse",
-}) as any as S.Schema<ApplicationsDeleteResponse>;
-
-export interface ApplicationsGetRequest {
-  /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the resource group. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-  /** The constant value for the application name. */
-  applicationName: string;
-}
-export const ApplicationsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    applicationName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HDInsight/clusters/{clusterName}/applications/{applicationName}",
-      code: 200,
-      apiVersion: "2021-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "ApplicationsGetRequest",
-}) as any as S.Schema<ApplicationsGetRequest>;
-
-/** The tags for the application. */
-export type ApplicationsGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ApplicationsGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ApplicationsGetResponseTagsMap>;
-
-/** The type of identity that created the resource. */
-export type ApplicationsGetResponseSystemDataCreatedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const ApplicationsGetResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
-
-/** The type of identity that last modified the resource. */
-export type ApplicationsGetResponseSystemDataLastModifiedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const ApplicationsGetResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
-
-/** Metadata pertaining to creation and last modification of the resource. */
-export interface ApplicationsGetResponseSystemData {
-  /** The identity that created the resource. */
-  createdBy?: string;
-  /** The type of identity that created the resource. */
-  createdByType?: ApplicationsGetResponseSystemDataCreatedByType;
-  /** The timestamp of resource creation (UTC). */
-  createdAt?: string;
-  /** The identity that last modified the resource. */
-  lastModifiedBy?: string;
-  /** The type of identity that last modified the resource. */
-  lastModifiedByType?: ApplicationsGetResponseSystemDataLastModifiedByType;
-  /** The timestamp of resource last modification (UTC) */
-  lastModifiedAt?: string;
-}
-export const ApplicationsGetResponseSystemData = /*@__PURE__*/ S.suspend(() =>
+export const CreateApplicationResponseSystemData = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     createdBy: S.optional(S.String),
-    createdByType: S.optional(ApplicationsGetResponseSystemDataCreatedByType),
+    createdByType: S.optional(CreateApplicationResponseSystemDataCreatedByType),
     createdAt: S.optional(S.String),
     lastModifiedBy: S.optional(S.String),
     lastModifiedByType: S.optional(
-      ApplicationsGetResponseSystemDataLastModifiedByType,
+      CreateApplicationResponseSystemDataLastModifiedByType,
     ),
     lastModifiedAt: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ApplicationsGetResponseSystemData",
-}) as any as S.Schema<ApplicationsGetResponseSystemData>;
+  identifier: "CreateApplicationResponseSystemData",
+}) as any as S.Schema<CreateApplicationResponseSystemData>;
 
-export interface ApplicationsGetResponse {
+export interface CreateApplicationResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -1332,229 +1227,38 @@ export interface ApplicationsGetResponse {
   /** The ETag for the application */
   etag?: string;
   /** The tags for the application. */
-  tags?: ApplicationsGetResponseTagsMap;
+  tags?: CreateApplicationResponseTagsMap;
   /** The properties of the application. */
   properties?: ApplicationProperties;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: ApplicationsGetResponseSystemData;
+  systemData?: CreateApplicationResponseSystemData;
 }
-export const ApplicationsGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const CreateApplicationResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     etag: S.optional(S.String),
-    tags: S.optional(ApplicationsGetResponseTagsMap),
+    tags: S.optional(CreateApplicationResponseTagsMap),
     properties: S.optional(ApplicationProperties),
-    systemData: S.optional(ApplicationsGetResponseSystemData),
+    systemData: S.optional(CreateApplicationResponseSystemData),
   }),
 ).annotate({
-  identifier: "ApplicationsGetResponse",
-}) as any as S.Schema<ApplicationsGetResponse>;
-
-export interface ApplicationsGetAzureAsyncOperationStatusRequest {
-  /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the resource group. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-  /** The constant value for the application name. */
-  applicationName: string;
-  /** The long running operation id. */
-  operationId: string;
-}
-export const ApplicationsGetAzureAsyncOperationStatusRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      clusterName: S.String.pipe(T.Label()),
-      applicationName: S.String.pipe(T.Label()),
-      operationId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HDInsight/clusters/{clusterName}/applications/{applicationName}/azureasyncoperations/{operationId}",
-        code: 200,
-        apiVersion: "2021-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ApplicationsGetAzureAsyncOperationStatusRequest",
-  }) as any as S.Schema<ApplicationsGetAzureAsyncOperationStatusRequest>;
-
-/** The async operation state. */
-export type ApplicationsGetAzureAsyncOperationStatusResponseStatus =
-  | "InProgress"
-  | "Succeeded"
-  | "Failed";
-export const ApplicationsGetAzureAsyncOperationStatusResponseStatus =
-  /*@__PURE__*/ S.String;
-
-/** The error message associated with the cluster creation. */
-export type Errors = ApplicationPropertiesInputErrorsItem;
-export const Errors = ApplicationPropertiesInputErrorsItem;
-
-export interface ApplicationsGetAzureAsyncOperationStatusResponse {
-  /** The async operation state. */
-  status?: ApplicationsGetAzureAsyncOperationStatusResponseStatus;
-  /** The operation error information. */
-  error?: ApplicationPropertiesInputErrorsItem;
-}
-export const ApplicationsGetAzureAsyncOperationStatusResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      status: S.optional(
-        ApplicationsGetAzureAsyncOperationStatusResponseStatus,
-      ),
-      error: S.optional(ApplicationPropertiesInputErrorsItem),
-    }),
-  ).annotate({
-    identifier: "ApplicationsGetAzureAsyncOperationStatusResponse",
-  }) as any as S.Schema<ApplicationsGetAzureAsyncOperationStatusResponse>;
-
-export interface ApplicationsListByClusterRequest {
-  /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the resource group. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-}
-export const ApplicationsListByClusterRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HDInsight/clusters/{clusterName}/applications",
-      code: 200,
-      apiVersion: "2021-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "ApplicationsListByClusterRequest",
-}) as any as S.Schema<ApplicationsListByClusterRequest>;
-
-/** The tags for the application. */
-export type ApplicationTagsMap = { [key: string]: string | undefined };
-export const ApplicationTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ApplicationTagsMap>;
-
-/** The type of identity that created the resource. */
-export type ApplicationSystemDataCreatedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const ApplicationSystemDataCreatedByType = /*@__PURE__*/ S.String;
-
-/** The type of identity that last modified the resource. */
-export type ApplicationSystemDataLastModifiedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const ApplicationSystemDataLastModifiedByType = /*@__PURE__*/ S.String;
-
-/** Metadata pertaining to creation and last modification of the resource. */
-export interface ApplicationSystemData {
-  /** The identity that created the resource. */
-  createdBy?: string;
-  /** The type of identity that created the resource. */
-  createdByType?: ApplicationSystemDataCreatedByType;
-  /** The timestamp of resource creation (UTC). */
-  createdAt?: string;
-  /** The identity that last modified the resource. */
-  lastModifiedBy?: string;
-  /** The type of identity that last modified the resource. */
-  lastModifiedByType?: ApplicationSystemDataLastModifiedByType;
-  /** The timestamp of resource last modification (UTC) */
-  lastModifiedAt?: string;
-}
-export const ApplicationSystemData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    createdBy: S.optional(S.String),
-    createdByType: S.optional(ApplicationSystemDataCreatedByType),
-    createdAt: S.optional(S.String),
-    lastModifiedBy: S.optional(S.String),
-    lastModifiedByType: S.optional(ApplicationSystemDataLastModifiedByType),
-    lastModifiedAt: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ApplicationSystemData",
-}) as any as S.Schema<ApplicationSystemData>;
-
-/** The HDInsight cluster application */
-export interface Application {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** The ETag for the application */
-  etag?: string;
-  /** The tags for the application. */
-  tags?: ApplicationTagsMap;
-  /** The properties of the application. */
-  properties?: ApplicationProperties;
-  /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: ApplicationSystemData;
-}
-export const Application = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    etag: S.optional(S.String),
-    tags: S.optional(ApplicationTagsMap),
-    properties: S.optional(ApplicationProperties),
-    systemData: S.optional(ApplicationSystemData),
-  }),
-).annotate({ identifier: "Application" }) as any as S.Schema<Application>;
-
-/** The list of HDInsight applications installed on HDInsight cluster. */
-export type ApplicationListResultValueList = Array<Application>;
-export const ApplicationListResultValueList = /*@__PURE__*/ S.Array(
-  Application,
-) as any as S.Schema<ApplicationListResultValueList>;
-
-/** Result of the request to list cluster Applications. It contains a list of operations and a URL link to get the next set of results. */
-export interface ApplicationListResult {
-  /** The list of HDInsight applications installed on HDInsight cluster. */
-  value?: ApplicationListResultValueList;
-  /** The URL to get the next set of operation list results if there are any. */
-  nextLink?: string;
-}
-export const ApplicationListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(ApplicationListResultValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ApplicationListResult",
-}) as any as S.Schema<ApplicationListResult>;
+  identifier: "CreateApplicationResponse",
+}) as any as S.Schema<CreateApplicationResponse>;
 
 /** The resource tags. */
-export type ClustersCreateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ClustersCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type CreateClusterRequestTagsMap = { [key: string]: string | undefined };
+export const CreateClusterRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ClustersCreateRequestTagsMap>;
+) as any as S.Schema<CreateClusterRequestTagsMap>;
 
 /** The availability zones. */
-export type ClustersCreateRequestZonesList = Array<string>;
-export const ClustersCreateRequestZonesList = /*@__PURE__*/ S.Array(
+export type CreateClusterRequestZonesList = Array<string>;
+export const CreateClusterRequestZonesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<ClustersCreateRequestZonesList>;
+) as any as S.Schema<CreateClusterRequestZonesList>;
 
 /** The type of operating system. */
 export type ClusterCreatePropertiesInputOsType = "Windows" | "Linux";
@@ -1980,7 +1684,7 @@ export const ClusterIdentityInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "ClusterIdentityInput",
 }) as any as S.Schema<ClusterIdentityInput>;
 
-export interface ClustersCreateRequest {
+export interface CreateClusterRequest {
   /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
   /** The name of the resource group. */
@@ -1990,22 +1694,22 @@ export interface ClustersCreateRequest {
   /** The location of the cluster. */
   location?: string;
   /** The resource tags. */
-  tags?: ClustersCreateRequestTagsMap;
+  tags?: CreateClusterRequestTagsMap;
   /** The availability zones. */
-  zones?: ClustersCreateRequestZonesList;
+  zones?: CreateClusterRequestZonesList;
   /** The cluster create parameters. */
   properties?: ClusterCreatePropertiesInput;
   /** The identity of the cluster, if configured. */
   identity?: ClusterIdentityInput;
 }
-export const ClustersCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateClusterRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     clusterName: S.String.pipe(T.Label()),
     location: S.optional(S.String),
-    tags: S.optional(ClustersCreateRequestTagsMap),
-    zones: S.optional(ClustersCreateRequestZonesList),
+    tags: S.optional(CreateClusterRequestTagsMap),
+    zones: S.optional(CreateClusterRequestZonesList),
     properties: S.optional(ClusterCreatePropertiesInput),
     identity: S.optional(ClusterIdentityInput),
   }).pipe(
@@ -2017,23 +1721,23 @@ export const ClustersCreateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ClustersCreateRequest",
-}) as any as S.Schema<ClustersCreateRequest>;
+  identifier: "CreateClusterRequest",
+}) as any as S.Schema<CreateClusterRequest>;
 
 /** Resource tags. */
-export type ClustersCreateResponseTagsMap = {
+export type CreateClusterResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ClustersCreateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const CreateClusterResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ClustersCreateResponseTagsMap>;
+) as any as S.Schema<CreateClusterResponseTagsMap>;
 
 /** The availability zones. */
-export type ClustersCreateResponseZonesList = Array<string>;
-export const ClustersCreateResponseZonesList = /*@__PURE__*/ S.Array(
+export type CreateClusterResponseZonesList = Array<string>;
+export const CreateClusterResponseZonesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<ClustersCreateResponseZonesList>;
+) as any as S.Schema<CreateClusterResponseZonesList>;
 
 /** The type of operating system. */
 export type ClusterGetPropertiesOsType = "Windows" | "Linux";
@@ -2079,6 +1783,10 @@ export const QuotaInfo = /*@__PURE__*/ S.suspend(() =>
     coresUsed: S.optional(S.Number),
   }),
 ).annotate({ identifier: "QuotaInfo" }) as any as S.Schema<QuotaInfo>;
+
+/** The error message associated with the cluster creation. */
+export type Errors = ApplicationPropertiesInputErrorsItem;
+export const Errors = ApplicationPropertiesInputErrorsItem;
 
 /** The list of errors. */
 export type ClusterGetPropertiesErrorsList =
@@ -2461,54 +2169,54 @@ export const ClusterIdentity = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ClusterIdentity>;
 
 /** The type of identity that created the resource. */
-export type ClustersCreateResponseSystemDataCreatedByType =
+export type CreateClusterResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ClustersCreateResponseSystemDataCreatedByType =
+export const CreateClusterResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type ClustersCreateResponseSystemDataLastModifiedByType =
+export type CreateClusterResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const ClustersCreateResponseSystemDataLastModifiedByType =
+export const CreateClusterResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface ClustersCreateResponseSystemData {
+export interface CreateClusterResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: ClustersCreateResponseSystemDataCreatedByType;
+  createdByType?: CreateClusterResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: ClustersCreateResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: CreateClusterResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const ClustersCreateResponseSystemData = /*@__PURE__*/ S.suspend(() =>
+export const CreateClusterResponseSystemData = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     createdBy: S.optional(S.String),
-    createdByType: S.optional(ClustersCreateResponseSystemDataCreatedByType),
+    createdByType: S.optional(CreateClusterResponseSystemDataCreatedByType),
     createdAt: S.optional(S.String),
     lastModifiedBy: S.optional(S.String),
     lastModifiedByType: S.optional(
-      ClustersCreateResponseSystemDataLastModifiedByType,
+      CreateClusterResponseSystemDataLastModifiedByType,
     ),
     lastModifiedAt: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ClustersCreateResponseSystemData",
-}) as any as S.Schema<ClustersCreateResponseSystemData>;
+  identifier: "CreateClusterResponseSystemData",
+}) as any as S.Schema<CreateClusterResponseSystemData>;
 
-export interface ClustersCreateResponse {
+export interface CreateClusterResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -2516,978 +2224,38 @@ export interface ClustersCreateResponse {
   /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
   type?: string;
   /** Resource tags. */
-  tags?: ClustersCreateResponseTagsMap;
+  tags?: CreateClusterResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The ETag for the resource */
   etag?: string;
   /** The availability zones. */
-  zones?: ClustersCreateResponseZonesList;
+  zones?: CreateClusterResponseZonesList;
   /** The properties of the cluster. */
   properties?: ClusterGetProperties;
   /** The identity of the cluster, if configured. */
   identity?: ClusterIdentity;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: ClustersCreateResponseSystemData;
+  systemData?: CreateClusterResponseSystemData;
 }
-export const ClustersCreateResponse = /*@__PURE__*/ S.suspend(() =>
+export const CreateClusterResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
-    tags: S.optional(ClustersCreateResponseTagsMap),
+    tags: S.optional(CreateClusterResponseTagsMap),
     location: S.String,
     etag: S.optional(S.String),
-    zones: S.optional(ClustersCreateResponseZonesList),
+    zones: S.optional(CreateClusterResponseZonesList),
     properties: S.optional(ClusterGetProperties),
     identity: S.optional(ClusterIdentity),
-    systemData: S.optional(ClustersCreateResponseSystemData),
+    systemData: S.optional(CreateClusterResponseSystemData),
   }),
 ).annotate({
-  identifier: "ClustersCreateResponse",
-}) as any as S.Schema<ClustersCreateResponse>;
+  identifier: "CreateClusterResponse",
+}) as any as S.Schema<CreateClusterResponse>;
 
-export interface ClustersDeleteRequest {
-  /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the resource group. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-}
-export const ClustersDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HDInsight/clusters/{clusterName}",
-      code: 200,
-      apiVersion: "2021-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "ClustersDeleteRequest",
-}) as any as S.Schema<ClustersDeleteRequest>;
-
-export interface ClustersDeleteResponse {}
-export const ClustersDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ClustersDeleteResponse",
-}) as any as S.Schema<ClustersDeleteResponse>;
-
-/** The list of roles where script will be executed. */
-export type RuntimeScriptActionInputRolesList = Array<string>;
-export const RuntimeScriptActionInputRolesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<RuntimeScriptActionInputRolesList>;
-
-/** Describes a script action on a running cluster. */
-export interface RuntimeScriptActionInput {
-  /** The name of the script action. */
-  name: string;
-  /** The URI to the script. */
-  uri: string;
-  /** The parameters for the script */
-  parameters?: string;
-  /** The list of roles where script will be executed. */
-  roles: RuntimeScriptActionInputRolesList;
-}
-export const RuntimeScriptActionInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String,
-    uri: S.String,
-    parameters: S.optional(S.String),
-    roles: RuntimeScriptActionInputRolesList,
-  }),
-).annotate({
-  identifier: "RuntimeScriptActionInput",
-}) as any as S.Schema<RuntimeScriptActionInput>;
-
-/** The list of run time script actions. */
-export type ClustersExecuteScriptActionsRequestScriptActionsList =
-  Array<RuntimeScriptActionInput>;
-export const ClustersExecuteScriptActionsRequestScriptActionsList =
-  /*@__PURE__*/ S.Array(
-    RuntimeScriptActionInput,
-  ) as any as S.Schema<ClustersExecuteScriptActionsRequestScriptActionsList>;
-
-export interface ClustersExecuteScriptActionsRequest {
-  /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the resource group. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-  /** The list of run time script actions. */
-  scriptActions?: ClustersExecuteScriptActionsRequestScriptActionsList;
-  /** Gets or sets if the scripts needs to be persisted. */
-  persistOnSuccess: boolean;
-}
-export const ClustersExecuteScriptActionsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    scriptActions: S.optional(
-      ClustersExecuteScriptActionsRequestScriptActionsList,
-    ),
-    persistOnSuccess: S.Boolean,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HDInsight/clusters/{clusterName}/executeScriptActions",
-      code: 200,
-      apiVersion: "2021-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "ClustersExecuteScriptActionsRequest",
-}) as any as S.Schema<ClustersExecuteScriptActionsRequest>;
-
-export interface ClustersExecuteScriptActionsResponse {}
-export const ClustersExecuteScriptActionsResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "ClustersExecuteScriptActionsResponse",
-}) as any as S.Schema<ClustersExecuteScriptActionsResponse>;
-
-export interface ClustersGetRequest {
-  /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the resource group. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-}
-export const ClustersGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HDInsight/clusters/{clusterName}",
-      code: 200,
-      apiVersion: "2021-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "ClustersGetRequest",
-}) as any as S.Schema<ClustersGetRequest>;
-
-/** Resource tags. */
-export type ClustersGetResponseTagsMap = { [key: string]: string | undefined };
-export const ClustersGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ClustersGetResponseTagsMap>;
-
-/** The availability zones. */
-export type ClustersGetResponseZonesList = Array<string>;
-export const ClustersGetResponseZonesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ClustersGetResponseZonesList>;
-
-/** The type of identity that created the resource. */
-export type ClustersGetResponseSystemDataCreatedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const ClustersGetResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
-
-/** The type of identity that last modified the resource. */
-export type ClustersGetResponseSystemDataLastModifiedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const ClustersGetResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
-
-/** Metadata pertaining to creation and last modification of the resource. */
-export interface ClustersGetResponseSystemData {
-  /** The identity that created the resource. */
-  createdBy?: string;
-  /** The type of identity that created the resource. */
-  createdByType?: ClustersGetResponseSystemDataCreatedByType;
-  /** The timestamp of resource creation (UTC). */
-  createdAt?: string;
-  /** The identity that last modified the resource. */
-  lastModifiedBy?: string;
-  /** The type of identity that last modified the resource. */
-  lastModifiedByType?: ClustersGetResponseSystemDataLastModifiedByType;
-  /** The timestamp of resource last modification (UTC) */
-  lastModifiedAt?: string;
-}
-export const ClustersGetResponseSystemData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    createdBy: S.optional(S.String),
-    createdByType: S.optional(ClustersGetResponseSystemDataCreatedByType),
-    createdAt: S.optional(S.String),
-    lastModifiedBy: S.optional(S.String),
-    lastModifiedByType: S.optional(
-      ClustersGetResponseSystemDataLastModifiedByType,
-    ),
-    lastModifiedAt: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ClustersGetResponseSystemData",
-}) as any as S.Schema<ClustersGetResponseSystemData>;
-
-export interface ClustersGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Resource tags. */
-  tags?: ClustersGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The ETag for the resource */
-  etag?: string;
-  /** The availability zones. */
-  zones?: ClustersGetResponseZonesList;
-  /** The properties of the cluster. */
-  properties?: ClusterGetProperties;
-  /** The identity of the cluster, if configured. */
-  identity?: ClusterIdentity;
-  /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: ClustersGetResponseSystemData;
-}
-export const ClustersGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    tags: S.optional(ClustersGetResponseTagsMap),
-    location: S.String,
-    etag: S.optional(S.String),
-    zones: S.optional(ClustersGetResponseZonesList),
-    properties: S.optional(ClusterGetProperties),
-    identity: S.optional(ClusterIdentity),
-    systemData: S.optional(ClustersGetResponseSystemData),
-  }),
-).annotate({
-  identifier: "ClustersGetResponse",
-}) as any as S.Schema<ClustersGetResponse>;
-
-export interface ClustersGetAzureAsyncOperationStatusRequest {
-  /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the resource group. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-  /** The long running operation id. */
-  operationId: string;
-}
-export const ClustersGetAzureAsyncOperationStatusRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      clusterName: S.String.pipe(T.Label()),
-      operationId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HDInsight/clusters/{clusterName}/azureasyncoperations/{operationId}",
-        code: 200,
-        apiVersion: "2021-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ClustersGetAzureAsyncOperationStatusRequest",
-  }) as any as S.Schema<ClustersGetAzureAsyncOperationStatusRequest>;
-
-/** The async operation state. */
-export type AsyncOperationResultStatus = "InProgress" | "Succeeded" | "Failed";
-export const AsyncOperationResultStatus = /*@__PURE__*/ S.String;
-
-/** The azure async operation response. */
-export interface AsyncOperationResult {
-  /** The async operation state. */
-  status?: AsyncOperationResultStatus;
-  /** The operation error information. */
-  error?: ApplicationPropertiesInputErrorsItem;
-}
-export const AsyncOperationResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    status: S.optional(AsyncOperationResultStatus),
-    error: S.optional(ApplicationPropertiesInputErrorsItem),
-  }),
-).annotate({
-  identifier: "AsyncOperationResult",
-}) as any as S.Schema<AsyncOperationResult>;
-
-export interface ClustersGetGatewaySettingsRequest {
-  /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the resource group. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-}
-export const ClustersGetGatewaySettingsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HDInsight/clusters/{clusterName}/getGatewaySettings",
-      code: 200,
-      apiVersion: "2021-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "ClustersGetGatewaySettingsRequest",
-}) as any as S.Schema<ClustersGetGatewaySettingsRequest>;
-
-/** Gateway settings. */
-export interface GatewaySettings {
-  /** Indicates whether or not the gateway settings based authorization is enabled. */
-  restAuthCredential_isEnabled?: string;
-  /** The gateway settings user name. */
-  restAuthCredential_username?: string;
-  /** The gateway settings user password. */
-  restAuthCredential_password?: string | Redacted.Redacted<string>;
-}
-export const GatewaySettings = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    restAuthCredential_isEnabled: S.optional(
-      S.String.pipe(T.Body("restAuthCredential.isEnabled")),
-    ),
-    restAuthCredential_username: S.optional(
-      S.String.pipe(T.Body("restAuthCredential.username")),
-    ),
-    restAuthCredential_password: S.optional(
-      S.String.pipe(
-        T.Body("restAuthCredential.password"),
-        T.SensitiveValue({}),
-      ),
-    ),
-  }),
-).annotate({
-  identifier: "GatewaySettings",
-}) as any as S.Schema<GatewaySettings>;
-
-export interface ClustersListRequest {
-  /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-}
-export const ClustersListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.HDInsight/clusters",
-      code: 200,
-      apiVersion: "2021-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "ClustersListRequest",
-}) as any as S.Schema<ClustersListRequest>;
-
-/** Resource tags. */
-export type ClusterTagsMap = { [key: string]: string | undefined };
-export const ClusterTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ClusterTagsMap>;
-
-/** The availability zones. */
-export type ClusterZonesList = Array<string>;
-export const ClusterZonesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ClusterZonesList>;
-
-/** The type of identity that created the resource. */
-export type ClusterSystemDataCreatedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const ClusterSystemDataCreatedByType = /*@__PURE__*/ S.String;
-
-/** The type of identity that last modified the resource. */
-export type ClusterSystemDataLastModifiedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const ClusterSystemDataLastModifiedByType = /*@__PURE__*/ S.String;
-
-/** Metadata pertaining to creation and last modification of the resource. */
-export interface ClusterSystemData {
-  /** The identity that created the resource. */
-  createdBy?: string;
-  /** The type of identity that created the resource. */
-  createdByType?: ClusterSystemDataCreatedByType;
-  /** The timestamp of resource creation (UTC). */
-  createdAt?: string;
-  /** The identity that last modified the resource. */
-  lastModifiedBy?: string;
-  /** The type of identity that last modified the resource. */
-  lastModifiedByType?: ClusterSystemDataLastModifiedByType;
-  /** The timestamp of resource last modification (UTC) */
-  lastModifiedAt?: string;
-}
-export const ClusterSystemData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    createdBy: S.optional(S.String),
-    createdByType: S.optional(ClusterSystemDataCreatedByType),
-    createdAt: S.optional(S.String),
-    lastModifiedBy: S.optional(S.String),
-    lastModifiedByType: S.optional(ClusterSystemDataLastModifiedByType),
-    lastModifiedAt: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ClusterSystemData",
-}) as any as S.Schema<ClusterSystemData>;
-
-/** The HDInsight cluster. */
-export interface Cluster {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Resource tags. */
-  tags?: ClusterTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The ETag for the resource */
-  etag?: string;
-  /** The availability zones. */
-  zones?: ClusterZonesList;
-  /** The properties of the cluster. */
-  properties?: ClusterGetProperties;
-  /** The identity of the cluster, if configured. */
-  identity?: ClusterIdentity;
-  /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: ClusterSystemData;
-}
-export const Cluster = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    tags: S.optional(ClusterTagsMap),
-    location: S.String,
-    etag: S.optional(S.String),
-    zones: S.optional(ClusterZonesList),
-    properties: S.optional(ClusterGetProperties),
-    identity: S.optional(ClusterIdentity),
-    systemData: S.optional(ClusterSystemData),
-  }),
-).annotate({ identifier: "Cluster" }) as any as S.Schema<Cluster>;
-
-/** The list of Clusters. */
-export type ClusterListResultValueList = Array<Cluster>;
-export const ClusterListResultValueList = /*@__PURE__*/ S.Array(
-  Cluster,
-) as any as S.Schema<ClusterListResultValueList>;
-
-/** The List Cluster operation response. */
-export interface ClusterListResult {
-  /** The list of Clusters. */
-  value?: ClusterListResultValueList;
-  /** The link (url) to the next page of results. */
-  nextLink?: string;
-}
-export const ClusterListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(ClusterListResultValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ClusterListResult",
-}) as any as S.Schema<ClusterListResult>;
-
-export interface ClustersListByResourceGroupRequest {
-  /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the resource group. */
-  resourceGroupName: string;
-}
-export const ClustersListByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HDInsight/clusters",
-      code: 200,
-      apiVersion: "2021-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "ClustersListByResourceGroupRequest",
-}) as any as S.Schema<ClustersListByResourceGroupRequest>;
-
-export type ClustersResizeRequestRoleName = "workernode";
-export const ClustersResizeRequestRoleName = /*@__PURE__*/ S.String;
-
-export interface ClustersResizeRequest {
-  /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the resource group. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-  /** The constant value for the roleName */
-  roleName: ClustersResizeRequestRoleName | (string & {});
-  /** The target instance count for the operation. */
-  targetInstanceCount?: number;
-}
-export const ClustersResizeRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    roleName: ClustersResizeRequestRoleName.pipe(T.Label()),
-    targetInstanceCount: S.optional(S.Number),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HDInsight/clusters/{clusterName}/roles/{roleName}/resize",
-      code: 200,
-      apiVersion: "2021-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "ClustersResizeRequest",
-}) as any as S.Schema<ClustersResizeRequest>;
-
-export interface ClustersResizeResponse {}
-export const ClustersResizeResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ClustersResizeResponse",
-}) as any as S.Schema<ClustersResizeResponse>;
-
-export interface ClustersRotateDiskEncryptionKeyRequest {
-  /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the resource group. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-  /** Base key vault URI where the customers key is located eg. https://myvault.vault.azure.net */
-  vaultUri?: string;
-  /** Key name that is used for enabling disk encryption. */
-  keyName?: string;
-  /** Specific key version that is used for enabling disk encryption. */
-  keyVersion?: string;
-}
-export const ClustersRotateDiskEncryptionKeyRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      clusterName: S.String.pipe(T.Label()),
-      vaultUri: S.optional(S.String),
-      keyName: S.optional(S.String),
-      keyVersion: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HDInsight/clusters/{clusterName}/rotatediskencryptionkey",
-        code: 200,
-        apiVersion: "2021-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "ClustersRotateDiskEncryptionKeyRequest",
-}) as any as S.Schema<ClustersRotateDiskEncryptionKeyRequest>;
-
-export interface ClustersRotateDiskEncryptionKeyResponse {}
-export const ClustersRotateDiskEncryptionKeyResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "ClustersRotateDiskEncryptionKeyResponse",
-}) as any as S.Schema<ClustersRotateDiskEncryptionKeyResponse>;
-
-/** The resource tags. */
-export type ClustersUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ClustersUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ClustersUpdateRequestTagsMap>;
-
-export interface ClustersUpdateRequest {
-  /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the resource group. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-  /** The resource tags. */
-  tags?: ClustersUpdateRequestTagsMap | null;
-}
-export const ClustersUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    tags: S.optional(S.NullOr(ClustersUpdateRequestTagsMap)),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HDInsight/clusters/{clusterName}",
-      code: 200,
-      apiVersion: "2021-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "ClustersUpdateRequest",
-}) as any as S.Schema<ClustersUpdateRequest>;
-
-/** Resource tags. */
-export type ClustersUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ClustersUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ClustersUpdateResponseTagsMap>;
-
-/** The availability zones. */
-export type ClustersUpdateResponseZonesList = Array<string>;
-export const ClustersUpdateResponseZonesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ClustersUpdateResponseZonesList>;
-
-/** The type of identity that created the resource. */
-export type ClustersUpdateResponseSystemDataCreatedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const ClustersUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
-
-/** The type of identity that last modified the resource. */
-export type ClustersUpdateResponseSystemDataLastModifiedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const ClustersUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
-
-/** Metadata pertaining to creation and last modification of the resource. */
-export interface ClustersUpdateResponseSystemData {
-  /** The identity that created the resource. */
-  createdBy?: string;
-  /** The type of identity that created the resource. */
-  createdByType?: ClustersUpdateResponseSystemDataCreatedByType;
-  /** The timestamp of resource creation (UTC). */
-  createdAt?: string;
-  /** The identity that last modified the resource. */
-  lastModifiedBy?: string;
-  /** The type of identity that last modified the resource. */
-  lastModifiedByType?: ClustersUpdateResponseSystemDataLastModifiedByType;
-  /** The timestamp of resource last modification (UTC) */
-  lastModifiedAt?: string;
-}
-export const ClustersUpdateResponseSystemData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    createdBy: S.optional(S.String),
-    createdByType: S.optional(ClustersUpdateResponseSystemDataCreatedByType),
-    createdAt: S.optional(S.String),
-    lastModifiedBy: S.optional(S.String),
-    lastModifiedByType: S.optional(
-      ClustersUpdateResponseSystemDataLastModifiedByType,
-    ),
-    lastModifiedAt: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ClustersUpdateResponseSystemData",
-}) as any as S.Schema<ClustersUpdateResponseSystemData>;
-
-export interface ClustersUpdateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Resource tags. */
-  tags?: ClustersUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The ETag for the resource */
-  etag?: string;
-  /** The availability zones. */
-  zones?: ClustersUpdateResponseZonesList;
-  /** The properties of the cluster. */
-  properties?: ClusterGetProperties;
-  /** The identity of the cluster, if configured. */
-  identity?: ClusterIdentity;
-  /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: ClustersUpdateResponseSystemData;
-}
-export const ClustersUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    tags: S.optional(ClustersUpdateResponseTagsMap),
-    location: S.String,
-    etag: S.optional(S.String),
-    zones: S.optional(ClustersUpdateResponseZonesList),
-    properties: S.optional(ClusterGetProperties),
-    identity: S.optional(ClusterIdentity),
-    systemData: S.optional(ClustersUpdateResponseSystemData),
-  }),
-).annotate({
-  identifier: "ClustersUpdateResponse",
-}) as any as S.Schema<ClustersUpdateResponse>;
-
-export type ClustersUpdateAutoScaleConfigurationRequestRoleName = "workernode";
-export const ClustersUpdateAutoScaleConfigurationRequestRoleName =
-  /*@__PURE__*/ S.String;
-
-export interface ClustersUpdateAutoScaleConfigurationRequest {
-  /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the resource group. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-  /** The constant value for the roleName */
-  roleName: ClustersUpdateAutoScaleConfigurationRequestRoleName | (string & {});
-  /** The autoscale configuration. */
-  autoscale?: Autoscale;
-}
-export const ClustersUpdateAutoScaleConfigurationRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      clusterName: S.String.pipe(T.Label()),
-      roleName: ClustersUpdateAutoScaleConfigurationRequestRoleName.pipe(
-        T.Label(),
-      ),
-      autoscale: S.optional(Autoscale),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HDInsight/clusters/{clusterName}/roles/{roleName}/autoscale",
-        code: 200,
-        apiVersion: "2021-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ClustersUpdateAutoScaleConfigurationRequest",
-  }) as any as S.Schema<ClustersUpdateAutoScaleConfigurationRequest>;
-
-export interface ClustersUpdateAutoScaleConfigurationResponse {}
-export const ClustersUpdateAutoScaleConfigurationResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "ClustersUpdateAutoScaleConfigurationResponse",
-  }) as any as S.Schema<ClustersUpdateAutoScaleConfigurationResponse>;
-
-export interface ClustersUpdateGatewaySettingsRequest {
-  /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the resource group. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-  /** Indicates whether or not the gateway settings based authorization is enabled. */
-  restAuthCredential_isEnabled?: boolean;
-  /** The gateway settings user name. */
-  restAuthCredential_username?: string;
-  /** The gateway settings user password. */
-  restAuthCredential_password?: string | Redacted.Redacted<string>;
-}
-export const ClustersUpdateGatewaySettingsRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      clusterName: S.String.pipe(T.Label()),
-      restAuthCredential_isEnabled: S.optional(
-        S.Boolean.pipe(T.Body("restAuthCredential.isEnabled")),
-      ),
-      restAuthCredential_username: S.optional(
-        S.String.pipe(T.Body("restAuthCredential.username")),
-      ),
-      restAuthCredential_password: S.optional(
-        S.String.pipe(
-          T.Body("restAuthCredential.password"),
-          T.SensitiveValue({}),
-        ),
-      ),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HDInsight/clusters/{clusterName}/updateGatewaySettings",
-        code: 200,
-        apiVersion: "2021-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "ClustersUpdateGatewaySettingsRequest",
-}) as any as S.Schema<ClustersUpdateGatewaySettingsRequest>;
-
-export interface ClustersUpdateGatewaySettingsResponse {}
-export const ClustersUpdateGatewaySettingsResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "ClustersUpdateGatewaySettingsResponse",
-}) as any as S.Schema<ClustersUpdateGatewaySettingsResponse>;
-
-export interface ClustersUpdateIdentityCertificateRequest {
-  /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the resource group. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-  /** The application id. */
-  applicationId?: string;
-  /** The certificate in base64 encoded format. */
-  certificate?: string;
-  /** The password of the certificate. */
-  certificatePassword?: string | Redacted.Redacted<string>;
-}
-export const ClustersUpdateIdentityCertificateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      clusterName: S.String.pipe(T.Label()),
-      applicationId: S.optional(S.String),
-      certificate: S.optional(S.String),
-      certificatePassword: S.optional(S.String.pipe(T.SensitiveValue({}))),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HDInsight/clusters/{clusterName}/updateClusterIdentityCertificate",
-        code: 200,
-        apiVersion: "2021-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "ClustersUpdateIdentityCertificateRequest",
-}) as any as S.Schema<ClustersUpdateIdentityCertificateRequest>;
-
-export interface ClustersUpdateIdentityCertificateResponse {}
-export const ClustersUpdateIdentityCertificateResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "ClustersUpdateIdentityCertificateResponse",
-  }) as any as S.Schema<ClustersUpdateIdentityCertificateResponse>;
-
-export interface ConfigurationsGetRequest {
-  /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the resource group. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-  /** The name of the cluster configuration. */
-  configurationName: string;
-}
-export const ConfigurationsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    configurationName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HDInsight/clusters/{clusterName}/configurations/{configurationName}",
-      code: 200,
-      apiVersion: "2021-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "ConfigurationsGetRequest",
-}) as any as S.Schema<ConfigurationsGetRequest>;
-
-/** The configuration object for the specified configuration for the specified cluster. */
-export type ClusterConfiguration = { [key: string]: string | undefined };
-export const ClusterConfiguration = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ClusterConfiguration>;
-
-export type ConfigurationsGetResponse = ClusterConfiguration;
-export const ConfigurationsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  ClusterConfiguration.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "ConfigurationsGetResponse",
-}) as any as S.Schema<ConfigurationsGetResponse>;
-
-export interface ConfigurationsListRequest {
-  /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the resource group. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-}
-export const ConfigurationsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HDInsight/clusters/{clusterName}/configurations",
-      code: 200,
-      apiVersion: "2021-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "ConfigurationsListRequest",
-}) as any as S.Schema<ConfigurationsListRequest>;
-
-/** The configuration object for the specified configuration for the specified cluster. */
-export type ClusterConfigurationsConfigurationsMap = {
-  [key: string]: ClusterConfiguration | undefined;
-};
-export const ClusterConfigurationsConfigurationsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  ClusterConfiguration,
-) as any as S.Schema<ClusterConfigurationsConfigurationsMap>;
-
-/** The configuration object for the specified cluster. */
-export interface ClusterConfigurations {
-  /** The configuration object for the specified configuration for the specified cluster. */
-  configurations?: ClusterConfigurationsConfigurationsMap;
-}
-export const ClusterConfigurations = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    configurations: S.optional(ClusterConfigurationsConfigurationsMap),
-  }),
-).annotate({
-  identifier: "ClusterConfigurations",
-}) as any as S.Schema<ClusterConfigurations>;
-
-export interface ExtensionsCreateRequest {
+export interface CreateExtensionRequest {
   /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
   /** The name of the resource group. */
@@ -3501,7 +2269,7 @@ export interface ExtensionsCreateRequest {
   /** The certificate for the cluster monitoring extensions. */
   primaryKey?: string;
 }
-export const ExtensionsCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateExtensionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -3518,17 +2286,84 @@ export const ExtensionsCreateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ExtensionsCreateRequest",
-}) as any as S.Schema<ExtensionsCreateRequest>;
+  identifier: "CreateExtensionRequest",
+}) as any as S.Schema<CreateExtensionRequest>;
 
-export interface ExtensionsCreateResponse {}
-export const ExtensionsCreateResponse = /*@__PURE__*/ S.suspend(() =>
+export interface CreateExtensionResponse {}
+export const CreateExtensionResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "ExtensionsCreateResponse",
-}) as any as S.Schema<ExtensionsCreateResponse>;
+  identifier: "CreateExtensionResponse",
+}) as any as S.Schema<CreateExtensionResponse>;
 
-export interface ExtensionsDeleteRequest {
+export interface DeleteApplicationRequest {
+  /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the resource group. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+  /** The constant value for the application name. */
+  applicationName: string;
+}
+export const DeleteApplicationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    applicationName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HDInsight/clusters/{clusterName}/applications/{applicationName}",
+      code: 200,
+      apiVersion: "2021-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteApplicationRequest",
+}) as any as S.Schema<DeleteApplicationRequest>;
+
+export interface DeleteApplicationResponse {}
+export const DeleteApplicationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteApplicationResponse",
+}) as any as S.Schema<DeleteApplicationResponse>;
+
+export interface DeleteClusterRequest {
+  /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the resource group. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+}
+export const DeleteClusterRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HDInsight/clusters/{clusterName}",
+      code: 200,
+      apiVersion: "2021-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteClusterRequest",
+}) as any as S.Schema<DeleteClusterRequest>;
+
+export interface DeleteClusterResponse {}
+export const DeleteClusterResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteClusterResponse",
+}) as any as S.Schema<DeleteClusterResponse>;
+
+export interface DeleteExtensionRequest {
   /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
   /** The name of the resource group. */
@@ -3538,7 +2373,7 @@ export interface ExtensionsDeleteRequest {
   /** The name of the cluster extension. */
   extensionName: string;
 }
-export const ExtensionsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteExtensionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -3553,50 +2388,88 @@ export const ExtensionsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ExtensionsDeleteRequest",
-}) as any as S.Schema<ExtensionsDeleteRequest>;
+  identifier: "DeleteExtensionRequest",
+}) as any as S.Schema<DeleteExtensionRequest>;
 
-export interface ExtensionsDeleteResponse {}
-export const ExtensionsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteExtensionResponse {}
+export const DeleteExtensionResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "ExtensionsDeleteResponse",
-}) as any as S.Schema<ExtensionsDeleteResponse>;
+  identifier: "DeleteExtensionResponse",
+}) as any as S.Schema<DeleteExtensionResponse>;
 
-export interface ExtensionsDisableAzureMonitorRequest {
+export interface DeletePrivateEndpointConnectionRequest {
   /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
   /** The name of the resource group. */
   resourceGroupName: string;
   /** The name of the cluster. */
   clusterName: string;
+  /** The name of the private endpoint connection. */
+  privateEndpointConnectionName: string;
 }
-export const ExtensionsDisableAzureMonitorRequest = /*@__PURE__*/ S.suspend(
+export const DeletePrivateEndpointConnectionRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       clusterName: S.String.pipe(T.Label()),
+      privateEndpointConnectionName: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
         method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HDInsight/clusters/{clusterName}/extensions/azureMonitor",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HDInsight/clusters/{clusterName}/privateEndpointConnections/{privateEndpointConnectionName}",
         code: 200,
         apiVersion: "2021-06-01",
       }),
     ),
 ).annotate({
-  identifier: "ExtensionsDisableAzureMonitorRequest",
-}) as any as S.Schema<ExtensionsDisableAzureMonitorRequest>;
+  identifier: "DeletePrivateEndpointConnectionRequest",
+}) as any as S.Schema<DeletePrivateEndpointConnectionRequest>;
 
-export interface ExtensionsDisableAzureMonitorResponse {}
-export const ExtensionsDisableAzureMonitorResponse = /*@__PURE__*/ S.suspend(
+export interface DeletePrivateEndpointConnectionResponse {}
+export const DeletePrivateEndpointConnectionResponse = /*@__PURE__*/ S.suspend(
   () => S.Struct({}),
 ).annotate({
-  identifier: "ExtensionsDisableAzureMonitorResponse",
-}) as any as S.Schema<ExtensionsDisableAzureMonitorResponse>;
+  identifier: "DeletePrivateEndpointConnectionResponse",
+}) as any as S.Schema<DeletePrivateEndpointConnectionResponse>;
 
-export interface ExtensionsDisableMonitoringRequest {
+export interface DeleteScriptActionRequest {
+  /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the resource group. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+  /** The name of the script. */
+  scriptName: string;
+}
+export const DeleteScriptActionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    scriptName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HDInsight/clusters/{clusterName}/scriptActions/{scriptName}",
+      code: 200,
+      apiVersion: "2021-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteScriptActionRequest",
+}) as any as S.Schema<DeleteScriptActionRequest>;
+
+export interface DeleteScriptActionResponse {}
+export const DeleteScriptActionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteScriptActionResponse",
+}) as any as S.Schema<DeleteScriptActionResponse>;
+
+export interface DisableExtensionAzureMonitorRequest {
   /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
   /** The name of the resource group. */
@@ -3604,7 +2477,39 @@ export interface ExtensionsDisableMonitoringRequest {
   /** The name of the cluster. */
   clusterName: string;
 }
-export const ExtensionsDisableMonitoringRequest = /*@__PURE__*/ S.suspend(() =>
+export const DisableExtensionAzureMonitorRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HDInsight/clusters/{clusterName}/extensions/azureMonitor",
+      code: 200,
+      apiVersion: "2021-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "DisableExtensionAzureMonitorRequest",
+}) as any as S.Schema<DisableExtensionAzureMonitorRequest>;
+
+export interface DisableExtensionAzureMonitorResponse {}
+export const DisableExtensionAzureMonitorResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "DisableExtensionAzureMonitorResponse",
+}) as any as S.Schema<DisableExtensionAzureMonitorResponse>;
+
+export interface DisableExtensionMonitoringRequest {
+  /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the resource group. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+}
+export const DisableExtensionMonitoringRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -3618,15 +2523,15 @@ export const ExtensionsDisableMonitoringRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ExtensionsDisableMonitoringRequest",
-}) as any as S.Schema<ExtensionsDisableMonitoringRequest>;
+  identifier: "DisableExtensionMonitoringRequest",
+}) as any as S.Schema<DisableExtensionMonitoringRequest>;
 
-export interface ExtensionsDisableMonitoringResponse {}
-export const ExtensionsDisableMonitoringResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DisableExtensionMonitoringResponse {}
+export const DisableExtensionMonitoringResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "ExtensionsDisableMonitoringResponse",
-}) as any as S.Schema<ExtensionsDisableMonitoringResponse>;
+  identifier: "DisableExtensionMonitoringResponse",
+}) as any as S.Schema<DisableExtensionMonitoringResponse>;
 
 /** The global configurations of selected configurations. */
 export type AzureMonitorSelectedConfigurationsGlobalConfigurationsMap = {
@@ -3680,7 +2585,7 @@ export const AzureMonitorSelectedConfigurations = /*@__PURE__*/ S.suspend(() =>
   identifier: "AzureMonitorSelectedConfigurations",
 }) as any as S.Schema<AzureMonitorSelectedConfigurations>;
 
-export interface ExtensionsEnableAzureMonitorRequest {
+export interface EnableExtensionAzureMonitorRequest {
   /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
   /** The name of the resource group. */
@@ -3694,7 +2599,7 @@ export interface ExtensionsEnableAzureMonitorRequest {
   /** The selected configurations. */
   selectedConfigurations?: AzureMonitorSelectedConfigurations;
 }
-export const ExtensionsEnableAzureMonitorRequest = /*@__PURE__*/ S.suspend(() =>
+export const EnableExtensionAzureMonitorRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -3711,17 +2616,17 @@ export const ExtensionsEnableAzureMonitorRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ExtensionsEnableAzureMonitorRequest",
-}) as any as S.Schema<ExtensionsEnableAzureMonitorRequest>;
+  identifier: "EnableExtensionAzureMonitorRequest",
+}) as any as S.Schema<EnableExtensionAzureMonitorRequest>;
 
-export interface ExtensionsEnableAzureMonitorResponse {}
-export const ExtensionsEnableAzureMonitorResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
+export interface EnableExtensionAzureMonitorResponse {}
+export const EnableExtensionAzureMonitorResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
 ).annotate({
-  identifier: "ExtensionsEnableAzureMonitorResponse",
-}) as any as S.Schema<ExtensionsEnableAzureMonitorResponse>;
+  identifier: "EnableExtensionAzureMonitorResponse",
+}) as any as S.Schema<EnableExtensionAzureMonitorResponse>;
 
-export interface ExtensionsEnableMonitoringRequest {
+export interface EnableExtensionMonitoringRequest {
   /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
   /** The name of the resource group. */
@@ -3733,7 +2638,7 @@ export interface ExtensionsEnableMonitoringRequest {
   /** The cluster monitor workspace key. */
   primaryKey?: string;
 }
-export const ExtensionsEnableMonitoringRequest = /*@__PURE__*/ S.suspend(() =>
+export const EnableExtensionMonitoringRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -3749,17 +2654,532 @@ export const ExtensionsEnableMonitoringRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ExtensionsEnableMonitoringRequest",
-}) as any as S.Schema<ExtensionsEnableMonitoringRequest>;
+  identifier: "EnableExtensionMonitoringRequest",
+}) as any as S.Schema<EnableExtensionMonitoringRequest>;
 
-export interface ExtensionsEnableMonitoringResponse {}
-export const ExtensionsEnableMonitoringResponse = /*@__PURE__*/ S.suspend(() =>
+export interface EnableExtensionMonitoringResponse {}
+export const EnableExtensionMonitoringResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "ExtensionsEnableMonitoringResponse",
-}) as any as S.Schema<ExtensionsEnableMonitoringResponse>;
+  identifier: "EnableExtensionMonitoringResponse",
+}) as any as S.Schema<EnableExtensionMonitoringResponse>;
 
-export interface ExtensionsGetRequest {
+/** The list of roles where script will be executed. */
+export type RuntimeScriptActionInputRolesList = Array<string>;
+export const RuntimeScriptActionInputRolesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<RuntimeScriptActionInputRolesList>;
+
+/** Describes a script action on a running cluster. */
+export interface RuntimeScriptActionInput {
+  /** The name of the script action. */
+  name: string;
+  /** The URI to the script. */
+  uri: string;
+  /** The parameters for the script */
+  parameters?: string;
+  /** The list of roles where script will be executed. */
+  roles: RuntimeScriptActionInputRolesList;
+}
+export const RuntimeScriptActionInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String,
+    uri: S.String,
+    parameters: S.optional(S.String),
+    roles: RuntimeScriptActionInputRolesList,
+  }),
+).annotate({
+  identifier: "RuntimeScriptActionInput",
+}) as any as S.Schema<RuntimeScriptActionInput>;
+
+/** The list of run time script actions. */
+export type ExecuteClusterScriptActionsRequestScriptActionsList =
+  Array<RuntimeScriptActionInput>;
+export const ExecuteClusterScriptActionsRequestScriptActionsList =
+  /*@__PURE__*/ S.Array(
+    RuntimeScriptActionInput,
+  ) as any as S.Schema<ExecuteClusterScriptActionsRequestScriptActionsList>;
+
+export interface ExecuteClusterScriptActionsRequest {
+  /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the resource group. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+  /** The list of run time script actions. */
+  scriptActions?: ExecuteClusterScriptActionsRequestScriptActionsList;
+  /** Gets or sets if the scripts needs to be persisted. */
+  persistOnSuccess: boolean;
+}
+export const ExecuteClusterScriptActionsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    scriptActions: S.optional(
+      ExecuteClusterScriptActionsRequestScriptActionsList,
+    ),
+    persistOnSuccess: S.Boolean,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HDInsight/clusters/{clusterName}/executeScriptActions",
+      code: 200,
+      apiVersion: "2021-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ExecuteClusterScriptActionsRequest",
+}) as any as S.Schema<ExecuteClusterScriptActionsRequest>;
+
+export interface ExecuteClusterScriptActionsResponse {}
+export const ExecuteClusterScriptActionsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "ExecuteClusterScriptActionsResponse",
+}) as any as S.Schema<ExecuteClusterScriptActionsResponse>;
+
+export interface GetApplicationRequest {
+  /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the resource group. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+  /** The constant value for the application name. */
+  applicationName: string;
+}
+export const GetApplicationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    applicationName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HDInsight/clusters/{clusterName}/applications/{applicationName}",
+      code: 200,
+      apiVersion: "2021-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetApplicationRequest",
+}) as any as S.Schema<GetApplicationRequest>;
+
+/** The tags for the application. */
+export type GetApplicationResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetApplicationResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetApplicationResponseTagsMap>;
+
+/** The type of identity that created the resource. */
+export type GetApplicationResponseSystemDataCreatedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const GetApplicationResponseSystemDataCreatedByType =
+  /*@__PURE__*/ S.String;
+
+/** The type of identity that last modified the resource. */
+export type GetApplicationResponseSystemDataLastModifiedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const GetApplicationResponseSystemDataLastModifiedByType =
+  /*@__PURE__*/ S.String;
+
+/** Metadata pertaining to creation and last modification of the resource. */
+export interface GetApplicationResponseSystemData {
+  /** The identity that created the resource. */
+  createdBy?: string;
+  /** The type of identity that created the resource. */
+  createdByType?: GetApplicationResponseSystemDataCreatedByType;
+  /** The timestamp of resource creation (UTC). */
+  createdAt?: string;
+  /** The identity that last modified the resource. */
+  lastModifiedBy?: string;
+  /** The type of identity that last modified the resource. */
+  lastModifiedByType?: GetApplicationResponseSystemDataLastModifiedByType;
+  /** The timestamp of resource last modification (UTC) */
+  lastModifiedAt?: string;
+}
+export const GetApplicationResponseSystemData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    createdBy: S.optional(S.String),
+    createdByType: S.optional(GetApplicationResponseSystemDataCreatedByType),
+    createdAt: S.optional(S.String),
+    lastModifiedBy: S.optional(S.String),
+    lastModifiedByType: S.optional(
+      GetApplicationResponseSystemDataLastModifiedByType,
+    ),
+    lastModifiedAt: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetApplicationResponseSystemData",
+}) as any as S.Schema<GetApplicationResponseSystemData>;
+
+export interface GetApplicationResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** The ETag for the application */
+  etag?: string;
+  /** The tags for the application. */
+  tags?: GetApplicationResponseTagsMap;
+  /** The properties of the application. */
+  properties?: ApplicationProperties;
+  /** Metadata pertaining to creation and last modification of the resource. */
+  systemData?: GetApplicationResponseSystemData;
+}
+export const GetApplicationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    etag: S.optional(S.String),
+    tags: S.optional(GetApplicationResponseTagsMap),
+    properties: S.optional(ApplicationProperties),
+    systemData: S.optional(GetApplicationResponseSystemData),
+  }),
+).annotate({
+  identifier: "GetApplicationResponse",
+}) as any as S.Schema<GetApplicationResponse>;
+
+export interface GetApplicationAzureAsyncOperationStatusRequest {
+  /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the resource group. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+  /** The constant value for the application name. */
+  applicationName: string;
+  /** The long running operation id. */
+  operationId: string;
+}
+export const GetApplicationAzureAsyncOperationStatusRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      clusterName: S.String.pipe(T.Label()),
+      applicationName: S.String.pipe(T.Label()),
+      operationId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HDInsight/clusters/{clusterName}/applications/{applicationName}/azureasyncoperations/{operationId}",
+        code: 200,
+        apiVersion: "2021-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "GetApplicationAzureAsyncOperationStatusRequest",
+  }) as any as S.Schema<GetApplicationAzureAsyncOperationStatusRequest>;
+
+/** The async operation state. */
+export type GetApplicationAzureAsyncOperationStatusResponseStatus =
+  | "InProgress"
+  | "Succeeded"
+  | "Failed";
+export const GetApplicationAzureAsyncOperationStatusResponseStatus =
+  /*@__PURE__*/ S.String;
+
+export interface GetApplicationAzureAsyncOperationStatusResponse {
+  /** The async operation state. */
+  status?: GetApplicationAzureAsyncOperationStatusResponseStatus;
+  /** The operation error information. */
+  error?: ApplicationPropertiesInputErrorsItem;
+}
+export const GetApplicationAzureAsyncOperationStatusResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      status: S.optional(GetApplicationAzureAsyncOperationStatusResponseStatus),
+      error: S.optional(ApplicationPropertiesInputErrorsItem),
+    }),
+  ).annotate({
+    identifier: "GetApplicationAzureAsyncOperationStatusResponse",
+  }) as any as S.Schema<GetApplicationAzureAsyncOperationStatusResponse>;
+
+export interface GetClusterRequest {
+  /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the resource group. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+}
+export const GetClusterRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HDInsight/clusters/{clusterName}",
+      code: 200,
+      apiVersion: "2021-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetClusterRequest",
+}) as any as S.Schema<GetClusterRequest>;
+
+/** Resource tags. */
+export type GetClusterResponseTagsMap = { [key: string]: string | undefined };
+export const GetClusterResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetClusterResponseTagsMap>;
+
+/** The availability zones. */
+export type GetClusterResponseZonesList = Array<string>;
+export const GetClusterResponseZonesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<GetClusterResponseZonesList>;
+
+/** The type of identity that created the resource. */
+export type GetClusterResponseSystemDataCreatedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const GetClusterResponseSystemDataCreatedByType = /*@__PURE__*/ S.String;
+
+/** The type of identity that last modified the resource. */
+export type GetClusterResponseSystemDataLastModifiedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const GetClusterResponseSystemDataLastModifiedByType =
+  /*@__PURE__*/ S.String;
+
+/** Metadata pertaining to creation and last modification of the resource. */
+export interface GetClusterResponseSystemData {
+  /** The identity that created the resource. */
+  createdBy?: string;
+  /** The type of identity that created the resource. */
+  createdByType?: GetClusterResponseSystemDataCreatedByType;
+  /** The timestamp of resource creation (UTC). */
+  createdAt?: string;
+  /** The identity that last modified the resource. */
+  lastModifiedBy?: string;
+  /** The type of identity that last modified the resource. */
+  lastModifiedByType?: GetClusterResponseSystemDataLastModifiedByType;
+  /** The timestamp of resource last modification (UTC) */
+  lastModifiedAt?: string;
+}
+export const GetClusterResponseSystemData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    createdBy: S.optional(S.String),
+    createdByType: S.optional(GetClusterResponseSystemDataCreatedByType),
+    createdAt: S.optional(S.String),
+    lastModifiedBy: S.optional(S.String),
+    lastModifiedByType: S.optional(
+      GetClusterResponseSystemDataLastModifiedByType,
+    ),
+    lastModifiedAt: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetClusterResponseSystemData",
+}) as any as S.Schema<GetClusterResponseSystemData>;
+
+export interface GetClusterResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Resource tags. */
+  tags?: GetClusterResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The ETag for the resource */
+  etag?: string;
+  /** The availability zones. */
+  zones?: GetClusterResponseZonesList;
+  /** The properties of the cluster. */
+  properties?: ClusterGetProperties;
+  /** The identity of the cluster, if configured. */
+  identity?: ClusterIdentity;
+  /** Metadata pertaining to creation and last modification of the resource. */
+  systemData?: GetClusterResponseSystemData;
+}
+export const GetClusterResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    tags: S.optional(GetClusterResponseTagsMap),
+    location: S.String,
+    etag: S.optional(S.String),
+    zones: S.optional(GetClusterResponseZonesList),
+    properties: S.optional(ClusterGetProperties),
+    identity: S.optional(ClusterIdentity),
+    systemData: S.optional(GetClusterResponseSystemData),
+  }),
+).annotate({
+  identifier: "GetClusterResponse",
+}) as any as S.Schema<GetClusterResponse>;
+
+export interface GetClusterAzureAsyncOperationStatusRequest {
+  /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the resource group. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+  /** The long running operation id. */
+  operationId: string;
+}
+export const GetClusterAzureAsyncOperationStatusRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      clusterName: S.String.pipe(T.Label()),
+      operationId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HDInsight/clusters/{clusterName}/azureasyncoperations/{operationId}",
+        code: 200,
+        apiVersion: "2021-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "GetClusterAzureAsyncOperationStatusRequest",
+  }) as any as S.Schema<GetClusterAzureAsyncOperationStatusRequest>;
+
+/** The async operation state. */
+export type AsyncOperationResultStatus = "InProgress" | "Succeeded" | "Failed";
+export const AsyncOperationResultStatus = /*@__PURE__*/ S.String;
+
+/** The azure async operation response. */
+export interface AsyncOperationResult {
+  /** The async operation state. */
+  status?: AsyncOperationResultStatus;
+  /** The operation error information. */
+  error?: ApplicationPropertiesInputErrorsItem;
+}
+export const AsyncOperationResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: S.optional(AsyncOperationResultStatus),
+    error: S.optional(ApplicationPropertiesInputErrorsItem),
+  }),
+).annotate({
+  identifier: "AsyncOperationResult",
+}) as any as S.Schema<AsyncOperationResult>;
+
+export interface GetClusterGatewaySettingsRequest {
+  /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the resource group. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+}
+export const GetClusterGatewaySettingsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HDInsight/clusters/{clusterName}/getGatewaySettings",
+      code: 200,
+      apiVersion: "2021-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetClusterGatewaySettingsRequest",
+}) as any as S.Schema<GetClusterGatewaySettingsRequest>;
+
+/** Gateway settings. */
+export interface GatewaySettings {
+  /** Indicates whether or not the gateway settings based authorization is enabled. */
+  restAuthCredential_isEnabled?: string;
+  /** The gateway settings user name. */
+  restAuthCredential_username?: string;
+  /** The gateway settings user password. */
+  restAuthCredential_password?: string | Redacted.Redacted<string>;
+}
+export const GatewaySettings = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    restAuthCredential_isEnabled: S.optional(
+      S.String.pipe(T.Body("restAuthCredential.isEnabled")),
+    ),
+    restAuthCredential_username: S.optional(
+      S.String.pipe(T.Body("restAuthCredential.username")),
+    ),
+    restAuthCredential_password: S.optional(
+      S.String.pipe(
+        T.Body("restAuthCredential.password"),
+        T.SensitiveValue({}),
+      ),
+    ),
+  }),
+).annotate({
+  identifier: "GatewaySettings",
+}) as any as S.Schema<GatewaySettings>;
+
+export interface GetConfigurationRequest {
+  /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the resource group. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+  /** The name of the cluster configuration. */
+  configurationName: string;
+}
+export const GetConfigurationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    configurationName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HDInsight/clusters/{clusterName}/configurations/{configurationName}",
+      code: 200,
+      apiVersion: "2021-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetConfigurationRequest",
+}) as any as S.Schema<GetConfigurationRequest>;
+
+/** The configuration object for the specified configuration for the specified cluster. */
+export type ClusterConfiguration = { [key: string]: string | undefined };
+export const ClusterConfiguration = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<ClusterConfiguration>;
+
+export type GetConfigurationResponse = ClusterConfiguration;
+export const GetConfigurationResponse = /*@__PURE__*/ S.suspend(() =>
+  ClusterConfiguration.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "GetConfigurationResponse",
+}) as any as S.Schema<GetConfigurationResponse>;
+
+export interface GetExtensionRequest {
   /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
   /** The name of the resource group. */
@@ -3769,7 +3189,7 @@ export interface ExtensionsGetRequest {
   /** The name of the cluster extension. */
   extensionName: string;
 }
-export const ExtensionsGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetExtensionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -3784,8 +3204,8 @@ export const ExtensionsGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ExtensionsGetRequest",
-}) as any as S.Schema<ExtensionsGetRequest>;
+  identifier: "GetExtensionRequest",
+}) as any as S.Schema<GetExtensionRequest>;
 
 /** The cluster monitoring status response. */
 export interface ClusterMonitoringResponse {
@@ -3803,7 +3223,7 @@ export const ClusterMonitoringResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ClusterMonitoringResponse",
 }) as any as S.Schema<ClusterMonitoringResponse>;
 
-export interface ExtensionsGetAzureAsyncOperationStatusRequest {
+export interface GetExtensionAzureAsyncOperationStatusRequest {
   /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
   /** The name of the resource group. */
@@ -3815,7 +3235,7 @@ export interface ExtensionsGetAzureAsyncOperationStatusRequest {
   /** The long running operation id. */
   operationId: string;
 }
-export const ExtensionsGetAzureAsyncOperationStatusRequest =
+export const GetExtensionAzureAsyncOperationStatusRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -3832,34 +3252,34 @@ export const ExtensionsGetAzureAsyncOperationStatusRequest =
       }),
     ),
   ).annotate({
-    identifier: "ExtensionsGetAzureAsyncOperationStatusRequest",
-  }) as any as S.Schema<ExtensionsGetAzureAsyncOperationStatusRequest>;
+    identifier: "GetExtensionAzureAsyncOperationStatusRequest",
+  }) as any as S.Schema<GetExtensionAzureAsyncOperationStatusRequest>;
 
 /** The async operation state. */
-export type ExtensionsGetAzureAsyncOperationStatusResponseStatus =
+export type GetExtensionAzureAsyncOperationStatusResponseStatus =
   | "InProgress"
   | "Succeeded"
   | "Failed";
-export const ExtensionsGetAzureAsyncOperationStatusResponseStatus =
+export const GetExtensionAzureAsyncOperationStatusResponseStatus =
   /*@__PURE__*/ S.String;
 
-export interface ExtensionsGetAzureAsyncOperationStatusResponse {
+export interface GetExtensionAzureAsyncOperationStatusResponse {
   /** The async operation state. */
-  status?: ExtensionsGetAzureAsyncOperationStatusResponseStatus;
+  status?: GetExtensionAzureAsyncOperationStatusResponseStatus;
   /** The operation error information. */
   error?: ApplicationPropertiesInputErrorsItem;
 }
-export const ExtensionsGetAzureAsyncOperationStatusResponse =
+export const GetExtensionAzureAsyncOperationStatusResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      status: S.optional(ExtensionsGetAzureAsyncOperationStatusResponseStatus),
+      status: S.optional(GetExtensionAzureAsyncOperationStatusResponseStatus),
       error: S.optional(ApplicationPropertiesInputErrorsItem),
     }),
   ).annotate({
-    identifier: "ExtensionsGetAzureAsyncOperationStatusResponse",
-  }) as any as S.Schema<ExtensionsGetAzureAsyncOperationStatusResponse>;
+    identifier: "GetExtensionAzureAsyncOperationStatusResponse",
+  }) as any as S.Schema<GetExtensionAzureAsyncOperationStatusResponse>;
 
-export interface ExtensionsGetAzureMonitorStatusRequest {
+export interface GetExtensionAzureMonitorStatusRequest {
   /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
   /** The name of the resource group. */
@@ -3867,7 +3287,7 @@ export interface ExtensionsGetAzureMonitorStatusRequest {
   /** The name of the cluster. */
   clusterName: string;
 }
-export const ExtensionsGetAzureMonitorStatusRequest = /*@__PURE__*/ S.suspend(
+export const GetExtensionAzureMonitorStatusRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -3882,8 +3302,8 @@ export const ExtensionsGetAzureMonitorStatusRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "ExtensionsGetAzureMonitorStatusRequest",
-}) as any as S.Schema<ExtensionsGetAzureMonitorStatusRequest>;
+  identifier: "GetExtensionAzureMonitorStatusRequest",
+}) as any as S.Schema<GetExtensionAzureMonitorStatusRequest>;
 
 /** The azure monitor status response. */
 export interface AzureMonitorResponse {
@@ -3904,7 +3324,7 @@ export const AzureMonitorResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "AzureMonitorResponse",
 }) as any as S.Schema<AzureMonitorResponse>;
 
-export interface ExtensionsGetMonitoringStatusRequest {
+export interface GetExtensionMonitoringStatusRequest {
   /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
   /** The name of the resource group. */
@@ -3912,73 +3332,24 @@ export interface ExtensionsGetMonitoringStatusRequest {
   /** The name of the cluster. */
   clusterName: string;
 }
-export const ExtensionsGetMonitoringStatusRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      clusterName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HDInsight/clusters/{clusterName}/extensions/clustermonitoring",
-        code: 200,
-        apiVersion: "2021-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "ExtensionsGetMonitoringStatusRequest",
-}) as any as S.Schema<ExtensionsGetMonitoringStatusRequest>;
-
-export interface LocationsCheckNameAvailabilityRequest {
-  /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The Azure location (region) for which to make the request. */
-  location: string;
-  /** The resource name. */
-  name?: string;
-  /** The resource type */
-  type?: string;
-}
-export const LocationsCheckNameAvailabilityRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      location: S.String.pipe(T.Label()),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.HDInsight/locations/{location}/checkNameAvailability",
-        code: 200,
-        apiVersion: "2021-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "LocationsCheckNameAvailabilityRequest",
-}) as any as S.Schema<LocationsCheckNameAvailabilityRequest>;
-
-/** The response spec of checking name availability. */
-export interface NameAvailabilityCheckResult {
-  /** This indicates whether the name is available. */
-  nameAvailable?: boolean;
-  /** The reason of the result. */
-  reason?: string;
-  /** The related message. */
-  message?: string;
-}
-export const NameAvailabilityCheckResult = /*@__PURE__*/ S.suspend(() =>
+export const GetExtensionMonitoringStatusRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    nameAvailable: S.optional(S.Boolean),
-    reason: S.optional(S.String),
-    message: S.optional(S.String),
-  }),
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HDInsight/clusters/{clusterName}/extensions/clustermonitoring",
+      code: 200,
+      apiVersion: "2021-06-01",
+    }),
+  ),
 ).annotate({
-  identifier: "NameAvailabilityCheckResult",
-}) as any as S.Schema<NameAvailabilityCheckResult>;
+  identifier: "GetExtensionMonitoringStatusRequest",
+}) as any as S.Schema<GetExtensionMonitoringStatusRequest>;
 
-export interface LocationsGetAzureAsyncOperationStatusRequest {
+export interface GetLocationAzureAsyncOperationStatusRequest {
   /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
   /** The Azure location (region) for which to make the request. */
@@ -3986,7 +3357,7 @@ export interface LocationsGetAzureAsyncOperationStatusRequest {
   /** The long running operation id. */
   operationId: string;
 }
-export const LocationsGetAzureAsyncOperationStatusRequest =
+export const GetLocationAzureAsyncOperationStatusRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -4001,40 +3372,40 @@ export const LocationsGetAzureAsyncOperationStatusRequest =
       }),
     ),
   ).annotate({
-    identifier: "LocationsGetAzureAsyncOperationStatusRequest",
-  }) as any as S.Schema<LocationsGetAzureAsyncOperationStatusRequest>;
+    identifier: "GetLocationAzureAsyncOperationStatusRequest",
+  }) as any as S.Schema<GetLocationAzureAsyncOperationStatusRequest>;
 
 /** The async operation state. */
-export type LocationsGetAzureAsyncOperationStatusResponseStatus =
+export type GetLocationAzureAsyncOperationStatusResponseStatus =
   | "InProgress"
   | "Succeeded"
   | "Failed";
-export const LocationsGetAzureAsyncOperationStatusResponseStatus =
+export const GetLocationAzureAsyncOperationStatusResponseStatus =
   /*@__PURE__*/ S.String;
 
-export interface LocationsGetAzureAsyncOperationStatusResponse {
+export interface GetLocationAzureAsyncOperationStatusResponse {
   /** The async operation state. */
-  status?: LocationsGetAzureAsyncOperationStatusResponseStatus;
+  status?: GetLocationAzureAsyncOperationStatusResponseStatus;
   /** The operation error information. */
   error?: ApplicationPropertiesInputErrorsItem;
 }
-export const LocationsGetAzureAsyncOperationStatusResponse =
+export const GetLocationAzureAsyncOperationStatusResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      status: S.optional(LocationsGetAzureAsyncOperationStatusResponseStatus),
+      status: S.optional(GetLocationAzureAsyncOperationStatusResponseStatus),
       error: S.optional(ApplicationPropertiesInputErrorsItem),
     }),
   ).annotate({
-    identifier: "LocationsGetAzureAsyncOperationStatusResponse",
-  }) as any as S.Schema<LocationsGetAzureAsyncOperationStatusResponse>;
+    identifier: "GetLocationAzureAsyncOperationStatusResponse",
+  }) as any as S.Schema<GetLocationAzureAsyncOperationStatusResponse>;
 
-export interface LocationsGetCapabilitiesRequest {
+export interface GetLocationCapabilitiesRequest {
   /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
   /** The Azure location (region) for which to make the request. */
   location: string;
 }
-export const LocationsGetCapabilitiesRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetLocationCapabilitiesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     location: S.String.pipe(T.Label()),
@@ -4047,8 +3418,8 @@ export const LocationsGetCapabilitiesRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "LocationsGetCapabilitiesRequest",
-}) as any as S.Schema<LocationsGetCapabilitiesRequest>;
+  identifier: "GetLocationCapabilitiesRequest",
+}) as any as S.Schema<GetLocationCapabilitiesRequest>;
 
 /** The component version property. */
 export type VersionSpecComponentVersionsMap = {
@@ -4207,13 +3578,808 @@ export const CapabilitiesResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "CapabilitiesResult",
 }) as any as S.Schema<CapabilitiesResult>;
 
-export interface LocationsListBillingSpecsRequest {
+export interface GetPrivateEndpointConnectionRequest {
+  /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the resource group. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+  /** The name of the private endpoint connection. */
+  privateEndpointConnectionName: string;
+}
+export const GetPrivateEndpointConnectionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    privateEndpointConnectionName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HDInsight/clusters/{clusterName}/privateEndpointConnections/{privateEndpointConnectionName}",
+      code: 200,
+      apiVersion: "2021-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetPrivateEndpointConnectionRequest",
+}) as any as S.Schema<GetPrivateEndpointConnectionRequest>;
+
+/** The type of identity that created the resource. */
+export type GetPrivateEndpointConnectionResponseSystemDataCreatedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const GetPrivateEndpointConnectionResponseSystemDataCreatedByType =
+  /*@__PURE__*/ S.String;
+
+/** The type of identity that last modified the resource. */
+export type GetPrivateEndpointConnectionResponseSystemDataLastModifiedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const GetPrivateEndpointConnectionResponseSystemDataLastModifiedByType =
+  /*@__PURE__*/ S.String;
+
+/** Metadata pertaining to creation and last modification of the resource. */
+export interface GetPrivateEndpointConnectionResponseSystemData {
+  /** The identity that created the resource. */
+  createdBy?: string;
+  /** The type of identity that created the resource. */
+  createdByType?: GetPrivateEndpointConnectionResponseSystemDataCreatedByType;
+  /** The timestamp of resource creation (UTC). */
+  createdAt?: string;
+  /** The identity that last modified the resource. */
+  lastModifiedBy?: string;
+  /** The type of identity that last modified the resource. */
+  lastModifiedByType?: GetPrivateEndpointConnectionResponseSystemDataLastModifiedByType;
+  /** The timestamp of resource last modification (UTC) */
+  lastModifiedAt?: string;
+}
+export const GetPrivateEndpointConnectionResponseSystemData =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      createdBy: S.optional(S.String),
+      createdByType: S.optional(
+        GetPrivateEndpointConnectionResponseSystemDataCreatedByType,
+      ),
+      createdAt: S.optional(S.String),
+      lastModifiedBy: S.optional(S.String),
+      lastModifiedByType: S.optional(
+        GetPrivateEndpointConnectionResponseSystemDataLastModifiedByType,
+      ),
+      lastModifiedAt: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "GetPrivateEndpointConnectionResponseSystemData",
+  }) as any as S.Schema<GetPrivateEndpointConnectionResponseSystemData>;
+
+export interface GetPrivateEndpointConnectionResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** The private endpoint connection properties. */
+  properties: PrivateEndpointConnectionProperties;
+  /** Metadata pertaining to creation and last modification of the resource. */
+  systemData?: GetPrivateEndpointConnectionResponseSystemData;
+}
+export const GetPrivateEndpointConnectionResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      properties: PrivateEndpointConnectionProperties,
+      systemData: S.optional(GetPrivateEndpointConnectionResponseSystemData),
+    }),
+).annotate({
+  identifier: "GetPrivateEndpointConnectionResponse",
+}) as any as S.Schema<GetPrivateEndpointConnectionResponse>;
+
+export interface GetPrivateLinkResourceRequest {
+  /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the resource group. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+  /** The name of the private link resource. */
+  privateLinkResourceName: string;
+}
+export const GetPrivateLinkResourceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    privateLinkResourceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HDInsight/clusters/{clusterName}/privateLinkResources/{privateLinkResourceName}",
+      code: 200,
+      apiVersion: "2021-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetPrivateLinkResourceRequest",
+}) as any as S.Schema<GetPrivateLinkResourceRequest>;
+
+/** The private link resource required member names. */
+export type GetPrivateLinkResourceResponsePropertiesRequiredMembersList =
+  Array<string>;
+export const GetPrivateLinkResourceResponsePropertiesRequiredMembersList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<GetPrivateLinkResourceResponsePropertiesRequiredMembersList>;
+
+/** The private link resource Private link DNS zone name. */
+export type GetPrivateLinkResourceResponsePropertiesRequiredZoneNamesList =
+  Array<string>;
+export const GetPrivateLinkResourceResponsePropertiesRequiredZoneNamesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<GetPrivateLinkResourceResponsePropertiesRequiredZoneNamesList>;
+
+/** Properties of a private link resource. */
+export interface GetPrivateLinkResourceResponseProperties {
+  /** The private link resource group id. */
+  groupId?: string;
+  /** The private link resource required member names. */
+  requiredMembers?: GetPrivateLinkResourceResponsePropertiesRequiredMembersList;
+  /** The private link resource Private link DNS zone name. */
+  requiredZoneNames?: GetPrivateLinkResourceResponsePropertiesRequiredZoneNamesList;
+}
+export const GetPrivateLinkResourceResponseProperties = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      groupId: S.optional(S.String),
+      requiredMembers: S.optional(
+        GetPrivateLinkResourceResponsePropertiesRequiredMembersList,
+      ),
+      requiredZoneNames: S.optional(
+        GetPrivateLinkResourceResponsePropertiesRequiredZoneNamesList,
+      ),
+    }),
+).annotate({
+  identifier: "GetPrivateLinkResourceResponseProperties",
+}) as any as S.Schema<GetPrivateLinkResourceResponseProperties>;
+
+/** The type of identity that created the resource. */
+export type GetPrivateLinkResourceResponseSystemDataCreatedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const GetPrivateLinkResourceResponseSystemDataCreatedByType =
+  /*@__PURE__*/ S.String;
+
+/** The type of identity that last modified the resource. */
+export type GetPrivateLinkResourceResponseSystemDataLastModifiedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const GetPrivateLinkResourceResponseSystemDataLastModifiedByType =
+  /*@__PURE__*/ S.String;
+
+/** Metadata pertaining to creation and last modification of the resource. */
+export interface GetPrivateLinkResourceResponseSystemData {
+  /** The identity that created the resource. */
+  createdBy?: string;
+  /** The type of identity that created the resource. */
+  createdByType?: GetPrivateLinkResourceResponseSystemDataCreatedByType;
+  /** The timestamp of resource creation (UTC). */
+  createdAt?: string;
+  /** The identity that last modified the resource. */
+  lastModifiedBy?: string;
+  /** The type of identity that last modified the resource. */
+  lastModifiedByType?: GetPrivateLinkResourceResponseSystemDataLastModifiedByType;
+  /** The timestamp of resource last modification (UTC) */
+  lastModifiedAt?: string;
+}
+export const GetPrivateLinkResourceResponseSystemData = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      createdBy: S.optional(S.String),
+      createdByType: S.optional(
+        GetPrivateLinkResourceResponseSystemDataCreatedByType,
+      ),
+      createdAt: S.optional(S.String),
+      lastModifiedBy: S.optional(S.String),
+      lastModifiedByType: S.optional(
+        GetPrivateLinkResourceResponseSystemDataLastModifiedByType,
+      ),
+      lastModifiedAt: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "GetPrivateLinkResourceResponseSystemData",
+}) as any as S.Schema<GetPrivateLinkResourceResponseSystemData>;
+
+export interface GetPrivateLinkResourceResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Properties of a private link resource. */
+  properties?: GetPrivateLinkResourceResponseProperties;
+  /** Metadata pertaining to creation and last modification of the resource. */
+  systemData?: GetPrivateLinkResourceResponseSystemData;
+}
+export const GetPrivateLinkResourceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    properties: S.optional(GetPrivateLinkResourceResponseProperties),
+    systemData: S.optional(GetPrivateLinkResourceResponseSystemData),
+  }),
+).annotate({
+  identifier: "GetPrivateLinkResourceResponse",
+}) as any as S.Schema<GetPrivateLinkResourceResponse>;
+
+export interface GetScriptActionExecutionAsyncOperationStatusRequest {
+  /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the resource group. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+  /** The long running operation id. */
+  operationId: string;
+}
+export const GetScriptActionExecutionAsyncOperationStatusRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      clusterName: S.String.pipe(T.Label()),
+      operationId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HDInsight/clusters/{clusterName}/executeScriptActions/azureasyncoperations/{operationId}",
+        code: 200,
+        apiVersion: "2021-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "GetScriptActionExecutionAsyncOperationStatusRequest",
+  }) as any as S.Schema<GetScriptActionExecutionAsyncOperationStatusRequest>;
+
+/** The async operation state. */
+export type GetScriptActionExecutionAsyncOperationStatusResponseStatus =
+  | "InProgress"
+  | "Succeeded"
+  | "Failed";
+export const GetScriptActionExecutionAsyncOperationStatusResponseStatus =
+  /*@__PURE__*/ S.String;
+
+export interface GetScriptActionExecutionAsyncOperationStatusResponse {
+  /** The async operation state. */
+  status?: GetScriptActionExecutionAsyncOperationStatusResponseStatus;
+  /** The operation error information. */
+  error?: ApplicationPropertiesInputErrorsItem;
+}
+export const GetScriptActionExecutionAsyncOperationStatusResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      status: S.optional(
+        GetScriptActionExecutionAsyncOperationStatusResponseStatus,
+      ),
+      error: S.optional(ApplicationPropertiesInputErrorsItem),
+    }),
+  ).annotate({
+    identifier: "GetScriptActionExecutionAsyncOperationStatusResponse",
+  }) as any as S.Schema<GetScriptActionExecutionAsyncOperationStatusResponse>;
+
+export interface GetScriptActionExecutionDetailRequest {
+  /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the resource group. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+  /** The script execution Id */
+  scriptExecutionId: string;
+}
+export const GetScriptActionExecutionDetailRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      clusterName: S.String.pipe(T.Label()),
+      scriptExecutionId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HDInsight/clusters/{clusterName}/scriptExecutionHistory/{scriptExecutionId}",
+        code: 200,
+        apiVersion: "2021-06-01",
+      }),
+    ),
+).annotate({
+  identifier: "GetScriptActionExecutionDetailRequest",
+}) as any as S.Schema<GetScriptActionExecutionDetailRequest>;
+
+/** The list of roles where script will be executed. */
+export type GetScriptActionExecutionDetailResponseRolesList = Array<string>;
+export const GetScriptActionExecutionDetailResponseRolesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<GetScriptActionExecutionDetailResponseRolesList>;
+
+/** The execution summary of a script action. */
+export interface ScriptActionExecutionSummary {
+  /** The status of script action execution. */
+  status?: string;
+  /** The instance count for a given script action execution status. */
+  instanceCount?: number;
+}
+export const ScriptActionExecutionSummary = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: S.optional(S.String),
+    instanceCount: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "ScriptActionExecutionSummary",
+}) as any as S.Schema<ScriptActionExecutionSummary>;
+
+/** The summary of script action execution result. */
+export type GetScriptActionExecutionDetailResponseExecutionSummaryList =
+  Array<ScriptActionExecutionSummary>;
+export const GetScriptActionExecutionDetailResponseExecutionSummaryList =
+  /*@__PURE__*/ S.Array(
+    ScriptActionExecutionSummary,
+  ) as any as S.Schema<GetScriptActionExecutionDetailResponseExecutionSummaryList>;
+
+export interface GetScriptActionExecutionDetailResponse {
+  /** The name of the script action. */
+  name: string;
+  /** The URI to the script. */
+  uri: string;
+  /** The parameters for the script */
+  parameters?: string;
+  /** The list of roles where script will be executed. */
+  roles: GetScriptActionExecutionDetailResponseRolesList;
+  /** The application name of the script action, if any. */
+  applicationName?: string;
+  /** The execution id of the script action. */
+  scriptExecutionId?: number;
+  /** The start time of script action execution. */
+  startTime?: string;
+  /** The end time of script action execution. */
+  endTime?: string;
+  /** The current execution status of the script action. */
+  status?: string;
+  /** The reason why the script action was executed. */
+  operation?: string;
+  /** The summary of script action execution result. */
+  executionSummary?: GetScriptActionExecutionDetailResponseExecutionSummaryList;
+  /** The script action execution debug information. */
+  debugInformation?: string;
+}
+export const GetScriptActionExecutionDetailResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      name: S.String,
+      uri: S.String,
+      parameters: S.optional(S.String),
+      roles: GetScriptActionExecutionDetailResponseRolesList,
+      applicationName: S.optional(S.String),
+      scriptExecutionId: S.optional(S.Number),
+      startTime: S.optional(S.String),
+      endTime: S.optional(S.String),
+      status: S.optional(S.String),
+      operation: S.optional(S.String),
+      executionSummary: S.optional(
+        GetScriptActionExecutionDetailResponseExecutionSummaryList,
+      ),
+      debugInformation: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "GetScriptActionExecutionDetailResponse",
+}) as any as S.Schema<GetScriptActionExecutionDetailResponse>;
+
+export interface GetVirtualMachineAsyncOperationStatusRequest {
+  /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the resource group. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+  /** The long running operation id. */
+  operationId: string;
+}
+export const GetVirtualMachineAsyncOperationStatusRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      clusterName: S.String.pipe(T.Label()),
+      operationId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HDInsight/clusters/{clusterName}/restartHosts/azureasyncoperations/{operationId}",
+        code: 200,
+        apiVersion: "2021-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "GetVirtualMachineAsyncOperationStatusRequest",
+  }) as any as S.Schema<GetVirtualMachineAsyncOperationStatusRequest>;
+
+/** The async operation state. */
+export type GetVirtualMachineAsyncOperationStatusResponseStatus =
+  | "InProgress"
+  | "Succeeded"
+  | "Failed";
+export const GetVirtualMachineAsyncOperationStatusResponseStatus =
+  /*@__PURE__*/ S.String;
+
+export interface GetVirtualMachineAsyncOperationStatusResponse {
+  /** The async operation state. */
+  status?: GetVirtualMachineAsyncOperationStatusResponseStatus;
+  /** The operation error information. */
+  error?: ApplicationPropertiesInputErrorsItem;
+}
+export const GetVirtualMachineAsyncOperationStatusResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      status: S.optional(GetVirtualMachineAsyncOperationStatusResponseStatus),
+      error: S.optional(ApplicationPropertiesInputErrorsItem),
+    }),
+  ).annotate({
+    identifier: "GetVirtualMachineAsyncOperationStatusResponse",
+  }) as any as S.Schema<GetVirtualMachineAsyncOperationStatusResponse>;
+
+export interface ListApplicationByClusterRequest {
+  /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the resource group. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+}
+export const ListApplicationByClusterRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HDInsight/clusters/{clusterName}/applications",
+      code: 200,
+      apiVersion: "2021-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListApplicationByClusterRequest",
+}) as any as S.Schema<ListApplicationByClusterRequest>;
+
+/** The tags for the application. */
+export type ApplicationTagsMap = { [key: string]: string | undefined };
+export const ApplicationTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<ApplicationTagsMap>;
+
+/** The type of identity that created the resource. */
+export type ApplicationSystemDataCreatedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const ApplicationSystemDataCreatedByType = /*@__PURE__*/ S.String;
+
+/** The type of identity that last modified the resource. */
+export type ApplicationSystemDataLastModifiedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const ApplicationSystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+
+/** Metadata pertaining to creation and last modification of the resource. */
+export interface ApplicationSystemData {
+  /** The identity that created the resource. */
+  createdBy?: string;
+  /** The type of identity that created the resource. */
+  createdByType?: ApplicationSystemDataCreatedByType;
+  /** The timestamp of resource creation (UTC). */
+  createdAt?: string;
+  /** The identity that last modified the resource. */
+  lastModifiedBy?: string;
+  /** The type of identity that last modified the resource. */
+  lastModifiedByType?: ApplicationSystemDataLastModifiedByType;
+  /** The timestamp of resource last modification (UTC) */
+  lastModifiedAt?: string;
+}
+export const ApplicationSystemData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    createdBy: S.optional(S.String),
+    createdByType: S.optional(ApplicationSystemDataCreatedByType),
+    createdAt: S.optional(S.String),
+    lastModifiedBy: S.optional(S.String),
+    lastModifiedByType: S.optional(ApplicationSystemDataLastModifiedByType),
+    lastModifiedAt: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ApplicationSystemData",
+}) as any as S.Schema<ApplicationSystemData>;
+
+/** The HDInsight cluster application */
+export interface Application {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** The ETag for the application */
+  etag?: string;
+  /** The tags for the application. */
+  tags?: ApplicationTagsMap;
+  /** The properties of the application. */
+  properties?: ApplicationProperties;
+  /** Metadata pertaining to creation and last modification of the resource. */
+  systemData?: ApplicationSystemData;
+}
+export const Application = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    etag: S.optional(S.String),
+    tags: S.optional(ApplicationTagsMap),
+    properties: S.optional(ApplicationProperties),
+    systemData: S.optional(ApplicationSystemData),
+  }),
+).annotate({ identifier: "Application" }) as any as S.Schema<Application>;
+
+/** The list of HDInsight applications installed on HDInsight cluster. */
+export type ApplicationListResultValueList = Array<Application>;
+export const ApplicationListResultValueList = /*@__PURE__*/ S.Array(
+  Application,
+) as any as S.Schema<ApplicationListResultValueList>;
+
+/** Result of the request to list cluster Applications. It contains a list of operations and a URL link to get the next set of results. */
+export interface ApplicationListResult {
+  /** The list of HDInsight applications installed on HDInsight cluster. */
+  value?: ApplicationListResultValueList;
+  /** The URL to get the next set of operation list results if there are any. */
+  nextLink?: string;
+}
+export const ApplicationListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(ApplicationListResultValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ApplicationListResult",
+}) as any as S.Schema<ApplicationListResult>;
+
+export interface ListClusterByResourceGroupRequest {
+  /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the resource group. */
+  resourceGroupName: string;
+}
+export const ListClusterByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HDInsight/clusters",
+      code: 200,
+      apiVersion: "2021-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListClusterByResourceGroupRequest",
+}) as any as S.Schema<ListClusterByResourceGroupRequest>;
+
+/** Resource tags. */
+export type ClusterTagsMap = { [key: string]: string | undefined };
+export const ClusterTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<ClusterTagsMap>;
+
+/** The availability zones. */
+export type ClusterZonesList = Array<string>;
+export const ClusterZonesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ClusterZonesList>;
+
+/** The type of identity that created the resource. */
+export type ClusterSystemDataCreatedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const ClusterSystemDataCreatedByType = /*@__PURE__*/ S.String;
+
+/** The type of identity that last modified the resource. */
+export type ClusterSystemDataLastModifiedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const ClusterSystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+
+/** Metadata pertaining to creation and last modification of the resource. */
+export interface ClusterSystemData {
+  /** The identity that created the resource. */
+  createdBy?: string;
+  /** The type of identity that created the resource. */
+  createdByType?: ClusterSystemDataCreatedByType;
+  /** The timestamp of resource creation (UTC). */
+  createdAt?: string;
+  /** The identity that last modified the resource. */
+  lastModifiedBy?: string;
+  /** The type of identity that last modified the resource. */
+  lastModifiedByType?: ClusterSystemDataLastModifiedByType;
+  /** The timestamp of resource last modification (UTC) */
+  lastModifiedAt?: string;
+}
+export const ClusterSystemData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    createdBy: S.optional(S.String),
+    createdByType: S.optional(ClusterSystemDataCreatedByType),
+    createdAt: S.optional(S.String),
+    lastModifiedBy: S.optional(S.String),
+    lastModifiedByType: S.optional(ClusterSystemDataLastModifiedByType),
+    lastModifiedAt: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ClusterSystemData",
+}) as any as S.Schema<ClusterSystemData>;
+
+/** The HDInsight cluster. */
+export interface Cluster {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Resource tags. */
+  tags?: ClusterTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The ETag for the resource */
+  etag?: string;
+  /** The availability zones. */
+  zones?: ClusterZonesList;
+  /** The properties of the cluster. */
+  properties?: ClusterGetProperties;
+  /** The identity of the cluster, if configured. */
+  identity?: ClusterIdentity;
+  /** Metadata pertaining to creation and last modification of the resource. */
+  systemData?: ClusterSystemData;
+}
+export const Cluster = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    tags: S.optional(ClusterTagsMap),
+    location: S.String,
+    etag: S.optional(S.String),
+    zones: S.optional(ClusterZonesList),
+    properties: S.optional(ClusterGetProperties),
+    identity: S.optional(ClusterIdentity),
+    systemData: S.optional(ClusterSystemData),
+  }),
+).annotate({ identifier: "Cluster" }) as any as S.Schema<Cluster>;
+
+/** The list of Clusters. */
+export type ClusterListResultValueList = Array<Cluster>;
+export const ClusterListResultValueList = /*@__PURE__*/ S.Array(
+  Cluster,
+) as any as S.Schema<ClusterListResultValueList>;
+
+/** The List Cluster operation response. */
+export interface ClusterListResult {
+  /** The list of Clusters. */
+  value?: ClusterListResultValueList;
+  /** The link (url) to the next page of results. */
+  nextLink?: string;
+}
+export const ClusterListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(ClusterListResultValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ClusterListResult",
+}) as any as S.Schema<ClusterListResult>;
+
+export interface ListClustersRequest {
+  /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+}
+export const ListClustersRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.HDInsight/clusters",
+      code: 200,
+      apiVersion: "2021-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListClustersRequest",
+}) as any as S.Schema<ListClustersRequest>;
+
+export interface ListConfigurationsRequest {
+  /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the resource group. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+}
+export const ListConfigurationsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HDInsight/clusters/{clusterName}/configurations",
+      code: 200,
+      apiVersion: "2021-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListConfigurationsRequest",
+}) as any as S.Schema<ListConfigurationsRequest>;
+
+/** The configuration object for the specified configuration for the specified cluster. */
+export type ClusterConfigurationsConfigurationsMap = {
+  [key: string]: ClusterConfiguration | undefined;
+};
+export const ClusterConfigurationsConfigurationsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  ClusterConfiguration,
+) as any as S.Schema<ClusterConfigurationsConfigurationsMap>;
+
+/** The configuration object for the specified cluster. */
+export interface ClusterConfigurations {
+  /** The configuration object for the specified configuration for the specified cluster. */
+  configurations?: ClusterConfigurationsConfigurationsMap;
+}
+export const ClusterConfigurations = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    configurations: S.optional(ClusterConfigurationsConfigurationsMap),
+  }),
+).annotate({
+  identifier: "ClusterConfigurations",
+}) as any as S.Schema<ClusterConfigurations>;
+
+export interface ListLocationBillingSpecsRequest {
   /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
   /** The Azure location (region) for which to make the request. */
   location: string;
 }
-export const LocationsListBillingSpecsRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListLocationBillingSpecsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     location: S.String.pipe(T.Label()),
@@ -4226,8 +4392,8 @@ export const LocationsListBillingSpecsRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "LocationsListBillingSpecsRequest",
-}) as any as S.Schema<LocationsListBillingSpecsRequest>;
+  identifier: "ListLocationBillingSpecsRequest",
+}) as any as S.Schema<ListLocationBillingSpecsRequest>;
 
 /** The virtual machine sizes to include or exclude. */
 export type BillingResponseListResultVmSizesList = Array<string>;
@@ -4489,13 +4655,13 @@ export const BillingResponseListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "BillingResponseListResult",
 }) as any as S.Schema<BillingResponseListResult>;
 
-export interface LocationsListUsagesRequest {
+export interface ListLocationUsagesRequest {
   /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
   /** The Azure location (region) for which to make the request. */
   location: string;
 }
-export const LocationsListUsagesRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListLocationUsagesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     location: S.String.pipe(T.Label()),
@@ -4508,8 +4674,8 @@ export const LocationsListUsagesRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "LocationsListUsagesRequest",
-}) as any as S.Schema<LocationsListUsagesRequest>;
+  identifier: "ListLocationUsagesRequest",
+}) as any as S.Schema<ListLocationUsagesRequest>;
 
 /** The details about the localizable name of a type of usage. */
 export interface LocalizedName {
@@ -4564,184 +4730,8 @@ export const UsagesListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "UsagesListResult",
 }) as any as S.Schema<UsagesListResult>;
 
-/** The resource tags. */
-export type LocationsValidateClusterCreateRequestRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const LocationsValidateClusterCreateRequestRequestTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<LocationsValidateClusterCreateRequestRequestTagsMap>;
-
-/** The availability zones. */
-export type LocationsValidateClusterCreateRequestRequestZonesList =
-  Array<string>;
-export const LocationsValidateClusterCreateRequestRequestZonesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<LocationsValidateClusterCreateRequestRequestZonesList>;
-
-export interface LocationsValidateClusterCreateRequestRequest {
-  /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The Azure location (region) for which to make the request. */
-  location: string;
-  /** The resource tags. */
-  tags?: LocationsValidateClusterCreateRequestRequestTagsMap;
-  /** The availability zones. */
-  zones?: LocationsValidateClusterCreateRequestRequestZonesList;
-  /** The cluster create parameters. */
-  properties?: ClusterCreatePropertiesInput;
-  /** The identity of the cluster, if configured. */
-  identity?: ClusterIdentityInput;
-  /** The cluster name. */
-  name?: string;
-  /** The resource type. */
-  type?: string;
-  /** The tenant id. */
-  tenantId?: string;
-  /** This indicates whether fetch Aadds resource or not. */
-  fetchAaddsResource?: boolean;
-}
-export const LocationsValidateClusterCreateRequestRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      location: S.String.pipe(T.Label()),
-      tags: S.optional(LocationsValidateClusterCreateRequestRequestTagsMap),
-      zones: S.optional(LocationsValidateClusterCreateRequestRequestZonesList),
-      properties: S.optional(ClusterCreatePropertiesInput),
-      identity: S.optional(ClusterIdentityInput),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      tenantId: S.optional(S.String),
-      fetchAaddsResource: S.optional(S.Boolean),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.HDInsight/locations/{location}/validateCreateRequest",
-        code: 200,
-        apiVersion: "2021-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "LocationsValidateClusterCreateRequestRequest",
-  }) as any as S.Schema<LocationsValidateClusterCreateRequestRequest>;
-
-/** The message arguments */
-export type ValidationErrorInfoMessageArgumentsList = Array<string>;
-export const ValidationErrorInfoMessageArgumentsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ValidationErrorInfoMessageArgumentsList>;
-
-/** The validation error information. */
-export interface ValidationErrorInfo {
-  /** The error code. */
-  code?: string;
-  /** The error message. */
-  message?: string;
-  /** The error resource. */
-  errorResource?: string;
-  /** The message arguments */
-  messageArguments?: ValidationErrorInfoMessageArgumentsList;
-}
-export const ValidationErrorInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    code: S.optional(S.String),
-    message: S.optional(S.String),
-    errorResource: S.optional(S.String),
-    messageArguments: S.optional(ValidationErrorInfoMessageArgumentsList),
-  }),
-).annotate({
-  identifier: "ValidationErrorInfo",
-}) as any as S.Schema<ValidationErrorInfo>;
-
-/** The validation errors. */
-export type ClusterCreateValidationResultValidationErrorsList =
-  Array<ValidationErrorInfo>;
-export const ClusterCreateValidationResultValidationErrorsList =
-  /*@__PURE__*/ S.Array(
-    ValidationErrorInfo,
-  ) as any as S.Schema<ClusterCreateValidationResultValidationErrorsList>;
-
-/** The validation warnings. */
-export type ClusterCreateValidationResultValidationWarningsList =
-  Array<ValidationErrorInfo>;
-export const ClusterCreateValidationResultValidationWarningsList =
-  /*@__PURE__*/ S.Array(
-    ValidationErrorInfo,
-  ) as any as S.Schema<ClusterCreateValidationResultValidationWarningsList>;
-
-/** The Azure active directory domain service resource details. */
-export interface AaddsResourceDetails {
-  /** The Azure active directory domain service name. */
-  domainName?: string;
-  /** This indicates whether initial sync complete or not. */
-  initialSyncComplete?: boolean;
-  /** This indicates whether enable ldaps or not. */
-  ldapsEnabled?: boolean;
-  /** The base 64 format string of public ldap certificate. */
-  ldapsPublicCertificateInBase64?: string;
-  /** The resource id of azure active directory domain service. */
-  resourceId?: string;
-  /** The subnet resource id. */
-  subnetId?: string;
-  /** The tenant id of azure active directory domain service . */
-  tenantId?: string;
-}
-export const AaddsResourceDetails = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    domainName: S.optional(S.String),
-    initialSyncComplete: S.optional(S.Boolean),
-    ldapsEnabled: S.optional(S.Boolean),
-    ldapsPublicCertificateInBase64: S.optional(S.String),
-    resourceId: S.optional(S.String),
-    subnetId: S.optional(S.String),
-    tenantId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AaddsResourceDetails",
-}) as any as S.Schema<AaddsResourceDetails>;
-
-/** The Azure active directory domain service resource details. */
-export type ClusterCreateValidationResultAaddsResourcesDetailsList =
-  Array<AaddsResourceDetails>;
-export const ClusterCreateValidationResultAaddsResourcesDetailsList =
-  /*@__PURE__*/ S.Array(
-    AaddsResourceDetails,
-  ) as any as S.Schema<ClusterCreateValidationResultAaddsResourcesDetailsList>;
-
-/** The response of cluster create request validation. */
-export interface ClusterCreateValidationResult {
-  /** The validation errors. */
-  validationErrors?: ClusterCreateValidationResultValidationErrorsList;
-  /** The validation warnings. */
-  validationWarnings?: ClusterCreateValidationResultValidationWarningsList;
-  /** The estimated creation duration. */
-  estimatedCreationDuration?: string;
-  /** The Azure active directory domain service resource details. */
-  aaddsResourcesDetails?: ClusterCreateValidationResultAaddsResourcesDetailsList;
-}
-export const ClusterCreateValidationResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    validationErrors: S.optional(
-      ClusterCreateValidationResultValidationErrorsList,
-    ),
-    validationWarnings: S.optional(
-      ClusterCreateValidationResultValidationWarningsList,
-    ),
-    estimatedCreationDuration: S.optional(S.String),
-    aaddsResourcesDetails: S.optional(
-      ClusterCreateValidationResultAaddsResourcesDetailsList,
-    ),
-  }),
-).annotate({
-  identifier: "ClusterCreateValidationResult",
-}) as any as S.Schema<ClusterCreateValidationResult>;
-
-export interface OperationsListRequest {}
-export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
+export interface ListOperationsRequest {}
+export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
     T.Http({
       method: "GET",
@@ -4751,8 +4741,8 @@ export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "OperationsListRequest",
-}) as any as S.Schema<OperationsListRequest>;
+  identifier: "ListOperationsRequest",
+}) as any as S.Schema<ListOperationsRequest>;
 
 /** The object that represents the operation. */
 export interface OperationDisplay {
@@ -4956,272 +4946,7 @@ export const OperationListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "OperationListResult",
 }) as any as S.Schema<OperationListResult>;
 
-/** The private endpoint connection properties. */
-export interface PrivateEndpointConnectionPropertiesInput {
-  /** The private link service connection state. */
-  privateLinkServiceConnectionState: PrivateLinkServiceConnectionState;
-}
-export const PrivateEndpointConnectionPropertiesInput = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      privateLinkServiceConnectionState: PrivateLinkServiceConnectionState,
-    }),
-).annotate({
-  identifier: "PrivateEndpointConnectionPropertiesInput",
-}) as any as S.Schema<PrivateEndpointConnectionPropertiesInput>;
-
-export interface PrivateEndpointConnectionsCreateOrUpdateRequest {
-  /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the resource group. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-  /** The name of the private endpoint connection. */
-  privateEndpointConnectionName: string;
-  /** The private endpoint connection properties. */
-  properties: PrivateEndpointConnectionPropertiesInput;
-}
-export const PrivateEndpointConnectionsCreateOrUpdateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      clusterName: S.String.pipe(T.Label()),
-      privateEndpointConnectionName: S.String.pipe(T.Label()),
-      properties: PrivateEndpointConnectionPropertiesInput,
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HDInsight/clusters/{clusterName}/privateEndpointConnections/{privateEndpointConnectionName}",
-        code: 200,
-        apiVersion: "2021-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "PrivateEndpointConnectionsCreateOrUpdateRequest",
-  }) as any as S.Schema<PrivateEndpointConnectionsCreateOrUpdateRequest>;
-
-/** The type of identity that created the resource. */
-export type PrivateEndpointConnectionsCreateOrUpdateResponseSystemDataCreatedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const PrivateEndpointConnectionsCreateOrUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
-
-/** The type of identity that last modified the resource. */
-export type PrivateEndpointConnectionsCreateOrUpdateResponseSystemDataLastModifiedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const PrivateEndpointConnectionsCreateOrUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
-
-/** Metadata pertaining to creation and last modification of the resource. */
-export interface PrivateEndpointConnectionsCreateOrUpdateResponseSystemData {
-  /** The identity that created the resource. */
-  createdBy?: string;
-  /** The type of identity that created the resource. */
-  createdByType?: PrivateEndpointConnectionsCreateOrUpdateResponseSystemDataCreatedByType;
-  /** The timestamp of resource creation (UTC). */
-  createdAt?: string;
-  /** The identity that last modified the resource. */
-  lastModifiedBy?: string;
-  /** The type of identity that last modified the resource. */
-  lastModifiedByType?: PrivateEndpointConnectionsCreateOrUpdateResponseSystemDataLastModifiedByType;
-  /** The timestamp of resource last modification (UTC) */
-  lastModifiedAt?: string;
-}
-export const PrivateEndpointConnectionsCreateOrUpdateResponseSystemData =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      createdBy: S.optional(S.String),
-      createdByType: S.optional(
-        PrivateEndpointConnectionsCreateOrUpdateResponseSystemDataCreatedByType,
-      ),
-      createdAt: S.optional(S.String),
-      lastModifiedBy: S.optional(S.String),
-      lastModifiedByType: S.optional(
-        PrivateEndpointConnectionsCreateOrUpdateResponseSystemDataLastModifiedByType,
-      ),
-      lastModifiedAt: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "PrivateEndpointConnectionsCreateOrUpdateResponseSystemData",
-  }) as any as S.Schema<PrivateEndpointConnectionsCreateOrUpdateResponseSystemData>;
-
-export interface PrivateEndpointConnectionsCreateOrUpdateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** The private endpoint connection properties. */
-  properties: PrivateEndpointConnectionProperties;
-  /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: PrivateEndpointConnectionsCreateOrUpdateResponseSystemData;
-}
-export const PrivateEndpointConnectionsCreateOrUpdateResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      properties: PrivateEndpointConnectionProperties,
-      systemData: S.optional(
-        PrivateEndpointConnectionsCreateOrUpdateResponseSystemData,
-      ),
-    }),
-  ).annotate({
-    identifier: "PrivateEndpointConnectionsCreateOrUpdateResponse",
-  }) as any as S.Schema<PrivateEndpointConnectionsCreateOrUpdateResponse>;
-
-export interface PrivateEndpointConnectionsDeleteRequest {
-  /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the resource group. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-  /** The name of the private endpoint connection. */
-  privateEndpointConnectionName: string;
-}
-export const PrivateEndpointConnectionsDeleteRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      clusterName: S.String.pipe(T.Label()),
-      privateEndpointConnectionName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HDInsight/clusters/{clusterName}/privateEndpointConnections/{privateEndpointConnectionName}",
-        code: 200,
-        apiVersion: "2021-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "PrivateEndpointConnectionsDeleteRequest",
-}) as any as S.Schema<PrivateEndpointConnectionsDeleteRequest>;
-
-export interface PrivateEndpointConnectionsDeleteResponse {}
-export const PrivateEndpointConnectionsDeleteResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "PrivateEndpointConnectionsDeleteResponse",
-}) as any as S.Schema<PrivateEndpointConnectionsDeleteResponse>;
-
-export interface PrivateEndpointConnectionsGetRequest {
-  /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the resource group. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-  /** The name of the private endpoint connection. */
-  privateEndpointConnectionName: string;
-}
-export const PrivateEndpointConnectionsGetRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      clusterName: S.String.pipe(T.Label()),
-      privateEndpointConnectionName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HDInsight/clusters/{clusterName}/privateEndpointConnections/{privateEndpointConnectionName}",
-        code: 200,
-        apiVersion: "2021-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "PrivateEndpointConnectionsGetRequest",
-}) as any as S.Schema<PrivateEndpointConnectionsGetRequest>;
-
-/** The type of identity that created the resource. */
-export type PrivateEndpointConnectionsGetResponseSystemDataCreatedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const PrivateEndpointConnectionsGetResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
-
-/** The type of identity that last modified the resource. */
-export type PrivateEndpointConnectionsGetResponseSystemDataLastModifiedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const PrivateEndpointConnectionsGetResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
-
-/** Metadata pertaining to creation and last modification of the resource. */
-export interface PrivateEndpointConnectionsGetResponseSystemData {
-  /** The identity that created the resource. */
-  createdBy?: string;
-  /** The type of identity that created the resource. */
-  createdByType?: PrivateEndpointConnectionsGetResponseSystemDataCreatedByType;
-  /** The timestamp of resource creation (UTC). */
-  createdAt?: string;
-  /** The identity that last modified the resource. */
-  lastModifiedBy?: string;
-  /** The type of identity that last modified the resource. */
-  lastModifiedByType?: PrivateEndpointConnectionsGetResponseSystemDataLastModifiedByType;
-  /** The timestamp of resource last modification (UTC) */
-  lastModifiedAt?: string;
-}
-export const PrivateEndpointConnectionsGetResponseSystemData =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      createdBy: S.optional(S.String),
-      createdByType: S.optional(
-        PrivateEndpointConnectionsGetResponseSystemDataCreatedByType,
-      ),
-      createdAt: S.optional(S.String),
-      lastModifiedBy: S.optional(S.String),
-      lastModifiedByType: S.optional(
-        PrivateEndpointConnectionsGetResponseSystemDataLastModifiedByType,
-      ),
-      lastModifiedAt: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "PrivateEndpointConnectionsGetResponseSystemData",
-  }) as any as S.Schema<PrivateEndpointConnectionsGetResponseSystemData>;
-
-export interface PrivateEndpointConnectionsGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** The private endpoint connection properties. */
-  properties: PrivateEndpointConnectionProperties;
-  /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: PrivateEndpointConnectionsGetResponseSystemData;
-}
-export const PrivateEndpointConnectionsGetResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      properties: PrivateEndpointConnectionProperties,
-      systemData: S.optional(PrivateEndpointConnectionsGetResponseSystemData),
-    }),
-).annotate({
-  identifier: "PrivateEndpointConnectionsGetResponse",
-}) as any as S.Schema<PrivateEndpointConnectionsGetResponse>;
-
-export interface PrivateEndpointConnectionsListByClusterRequest {
+export interface ListPrivateEndpointConnectionByClusterRequest {
   /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
   /** The name of the resource group. */
@@ -5229,7 +4954,7 @@ export interface PrivateEndpointConnectionsListByClusterRequest {
   /** The name of the cluster. */
   clusterName: string;
 }
-export const PrivateEndpointConnectionsListByClusterRequest =
+export const ListPrivateEndpointConnectionByClusterRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -5244,8 +4969,8 @@ export const PrivateEndpointConnectionsListByClusterRequest =
       }),
     ),
   ).annotate({
-    identifier: "PrivateEndpointConnectionsListByClusterRequest",
-  }) as any as S.Schema<PrivateEndpointConnectionsListByClusterRequest>;
+    identifier: "ListPrivateEndpointConnectionByClusterRequest",
+  }) as any as S.Schema<ListPrivateEndpointConnectionByClusterRequest>;
 
 /** The type of identity that created the resource. */
 export type PrivateEndpointConnectionSystemDataCreatedByType =
@@ -5344,150 +5069,7 @@ export const PrivateEndpointConnectionListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "PrivateEndpointConnectionListResult",
 }) as any as S.Schema<PrivateEndpointConnectionListResult>;
 
-export interface PrivateLinkResourcesGetRequest {
-  /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the resource group. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-  /** The name of the private link resource. */
-  privateLinkResourceName: string;
-}
-export const PrivateLinkResourcesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    privateLinkResourceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HDInsight/clusters/{clusterName}/privateLinkResources/{privateLinkResourceName}",
-      code: 200,
-      apiVersion: "2021-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "PrivateLinkResourcesGetRequest",
-}) as any as S.Schema<PrivateLinkResourcesGetRequest>;
-
-/** The private link resource required member names. */
-export type PrivateLinkResourcesGetResponsePropertiesRequiredMembersList =
-  Array<string>;
-export const PrivateLinkResourcesGetResponsePropertiesRequiredMembersList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PrivateLinkResourcesGetResponsePropertiesRequiredMembersList>;
-
-/** The private link resource Private link DNS zone name. */
-export type PrivateLinkResourcesGetResponsePropertiesRequiredZoneNamesList =
-  Array<string>;
-export const PrivateLinkResourcesGetResponsePropertiesRequiredZoneNamesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PrivateLinkResourcesGetResponsePropertiesRequiredZoneNamesList>;
-
-/** Properties of a private link resource. */
-export interface PrivateLinkResourcesGetResponseProperties {
-  /** The private link resource group id. */
-  groupId?: string;
-  /** The private link resource required member names. */
-  requiredMembers?: PrivateLinkResourcesGetResponsePropertiesRequiredMembersList;
-  /** The private link resource Private link DNS zone name. */
-  requiredZoneNames?: PrivateLinkResourcesGetResponsePropertiesRequiredZoneNamesList;
-}
-export const PrivateLinkResourcesGetResponseProperties =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      groupId: S.optional(S.String),
-      requiredMembers: S.optional(
-        PrivateLinkResourcesGetResponsePropertiesRequiredMembersList,
-      ),
-      requiredZoneNames: S.optional(
-        PrivateLinkResourcesGetResponsePropertiesRequiredZoneNamesList,
-      ),
-    }),
-  ).annotate({
-    identifier: "PrivateLinkResourcesGetResponseProperties",
-  }) as any as S.Schema<PrivateLinkResourcesGetResponseProperties>;
-
-/** The type of identity that created the resource. */
-export type PrivateLinkResourcesGetResponseSystemDataCreatedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const PrivateLinkResourcesGetResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
-
-/** The type of identity that last modified the resource. */
-export type PrivateLinkResourcesGetResponseSystemDataLastModifiedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const PrivateLinkResourcesGetResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
-
-/** Metadata pertaining to creation and last modification of the resource. */
-export interface PrivateLinkResourcesGetResponseSystemData {
-  /** The identity that created the resource. */
-  createdBy?: string;
-  /** The type of identity that created the resource. */
-  createdByType?: PrivateLinkResourcesGetResponseSystemDataCreatedByType;
-  /** The timestamp of resource creation (UTC). */
-  createdAt?: string;
-  /** The identity that last modified the resource. */
-  lastModifiedBy?: string;
-  /** The type of identity that last modified the resource. */
-  lastModifiedByType?: PrivateLinkResourcesGetResponseSystemDataLastModifiedByType;
-  /** The timestamp of resource last modification (UTC) */
-  lastModifiedAt?: string;
-}
-export const PrivateLinkResourcesGetResponseSystemData =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      createdBy: S.optional(S.String),
-      createdByType: S.optional(
-        PrivateLinkResourcesGetResponseSystemDataCreatedByType,
-      ),
-      createdAt: S.optional(S.String),
-      lastModifiedBy: S.optional(S.String),
-      lastModifiedByType: S.optional(
-        PrivateLinkResourcesGetResponseSystemDataLastModifiedByType,
-      ),
-      lastModifiedAt: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "PrivateLinkResourcesGetResponseSystemData",
-  }) as any as S.Schema<PrivateLinkResourcesGetResponseSystemData>;
-
-export interface PrivateLinkResourcesGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Properties of a private link resource. */
-  properties?: PrivateLinkResourcesGetResponseProperties;
-  /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: PrivateLinkResourcesGetResponseSystemData;
-}
-export const PrivateLinkResourcesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    properties: S.optional(PrivateLinkResourcesGetResponseProperties),
-    systemData: S.optional(PrivateLinkResourcesGetResponseSystemData),
-  }),
-).annotate({
-  identifier: "PrivateLinkResourcesGetResponse",
-}) as any as S.Schema<PrivateLinkResourcesGetResponse>;
-
-export interface PrivateLinkResourcesListByClusterRequest {
+export interface ListPrivateLinkResourceByClusterRequest {
   /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
   /** The name of the resource group. */
@@ -5495,7 +5077,7 @@ export interface PrivateLinkResourcesListByClusterRequest {
   /** The name of the cluster. */
   clusterName: string;
 }
-export const PrivateLinkResourcesListByClusterRequest = /*@__PURE__*/ S.suspend(
+export const ListPrivateLinkResourceByClusterRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -5510,8 +5092,8 @@ export const PrivateLinkResourcesListByClusterRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "PrivateLinkResourcesListByClusterRequest",
-}) as any as S.Schema<PrivateLinkResourcesListByClusterRequest>;
+  identifier: "ListPrivateLinkResourceByClusterRequest",
+}) as any as S.Schema<ListPrivateLinkResourceByClusterRequest>;
 
 /** The private link resource required member names. */
 export type PrivateLinkResourcePropertiesRequiredMembersList = Array<string>;
@@ -5642,205 +5224,7 @@ export const PrivateLinkResourceListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "PrivateLinkResourceListResult",
 }) as any as S.Schema<PrivateLinkResourceListResult>;
 
-export interface ScriptActionsDeleteRequest {
-  /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the resource group. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-  /** The name of the script. */
-  scriptName: string;
-}
-export const ScriptActionsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    scriptName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HDInsight/clusters/{clusterName}/scriptActions/{scriptName}",
-      code: 200,
-      apiVersion: "2021-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "ScriptActionsDeleteRequest",
-}) as any as S.Schema<ScriptActionsDeleteRequest>;
-
-export interface ScriptActionsDeleteResponse {}
-export const ScriptActionsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ScriptActionsDeleteResponse",
-}) as any as S.Schema<ScriptActionsDeleteResponse>;
-
-export interface ScriptActionsGetExecutionAsyncOperationStatusRequest {
-  /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the resource group. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-  /** The long running operation id. */
-  operationId: string;
-}
-export const ScriptActionsGetExecutionAsyncOperationStatusRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      clusterName: S.String.pipe(T.Label()),
-      operationId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HDInsight/clusters/{clusterName}/executeScriptActions/azureasyncoperations/{operationId}",
-        code: 200,
-        apiVersion: "2021-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ScriptActionsGetExecutionAsyncOperationStatusRequest",
-  }) as any as S.Schema<ScriptActionsGetExecutionAsyncOperationStatusRequest>;
-
-/** The async operation state. */
-export type ScriptActionsGetExecutionAsyncOperationStatusResponseStatus =
-  | "InProgress"
-  | "Succeeded"
-  | "Failed";
-export const ScriptActionsGetExecutionAsyncOperationStatusResponseStatus =
-  /*@__PURE__*/ S.String;
-
-export interface ScriptActionsGetExecutionAsyncOperationStatusResponse {
-  /** The async operation state. */
-  status?: ScriptActionsGetExecutionAsyncOperationStatusResponseStatus;
-  /** The operation error information. */
-  error?: ApplicationPropertiesInputErrorsItem;
-}
-export const ScriptActionsGetExecutionAsyncOperationStatusResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      status: S.optional(
-        ScriptActionsGetExecutionAsyncOperationStatusResponseStatus,
-      ),
-      error: S.optional(ApplicationPropertiesInputErrorsItem),
-    }),
-  ).annotate({
-    identifier: "ScriptActionsGetExecutionAsyncOperationStatusResponse",
-  }) as any as S.Schema<ScriptActionsGetExecutionAsyncOperationStatusResponse>;
-
-export interface ScriptActionsGetExecutionDetailRequest {
-  /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the resource group. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-  /** The script execution Id */
-  scriptExecutionId: string;
-}
-export const ScriptActionsGetExecutionDetailRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      clusterName: S.String.pipe(T.Label()),
-      scriptExecutionId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HDInsight/clusters/{clusterName}/scriptExecutionHistory/{scriptExecutionId}",
-        code: 200,
-        apiVersion: "2021-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "ScriptActionsGetExecutionDetailRequest",
-}) as any as S.Schema<ScriptActionsGetExecutionDetailRequest>;
-
-/** The list of roles where script will be executed. */
-export type ScriptActionsGetExecutionDetailResponseRolesList = Array<string>;
-export const ScriptActionsGetExecutionDetailResponseRolesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ScriptActionsGetExecutionDetailResponseRolesList>;
-
-/** The execution summary of a script action. */
-export interface ScriptActionExecutionSummary {
-  /** The status of script action execution. */
-  status?: string;
-  /** The instance count for a given script action execution status. */
-  instanceCount?: number;
-}
-export const ScriptActionExecutionSummary = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    status: S.optional(S.String),
-    instanceCount: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "ScriptActionExecutionSummary",
-}) as any as S.Schema<ScriptActionExecutionSummary>;
-
-/** The summary of script action execution result. */
-export type ScriptActionsGetExecutionDetailResponseExecutionSummaryList =
-  Array<ScriptActionExecutionSummary>;
-export const ScriptActionsGetExecutionDetailResponseExecutionSummaryList =
-  /*@__PURE__*/ S.Array(
-    ScriptActionExecutionSummary,
-  ) as any as S.Schema<ScriptActionsGetExecutionDetailResponseExecutionSummaryList>;
-
-export interface ScriptActionsGetExecutionDetailResponse {
-  /** The name of the script action. */
-  name: string;
-  /** The URI to the script. */
-  uri: string;
-  /** The parameters for the script */
-  parameters?: string;
-  /** The list of roles where script will be executed. */
-  roles: ScriptActionsGetExecutionDetailResponseRolesList;
-  /** The application name of the script action, if any. */
-  applicationName?: string;
-  /** The execution id of the script action. */
-  scriptExecutionId?: number;
-  /** The start time of script action execution. */
-  startTime?: string;
-  /** The end time of script action execution. */
-  endTime?: string;
-  /** The current execution status of the script action. */
-  status?: string;
-  /** The reason why the script action was executed. */
-  operation?: string;
-  /** The summary of script action execution result. */
-  executionSummary?: ScriptActionsGetExecutionDetailResponseExecutionSummaryList;
-  /** The script action execution debug information. */
-  debugInformation?: string;
-}
-export const ScriptActionsGetExecutionDetailResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      name: S.String,
-      uri: S.String,
-      parameters: S.optional(S.String),
-      roles: ScriptActionsGetExecutionDetailResponseRolesList,
-      applicationName: S.optional(S.String),
-      scriptExecutionId: S.optional(S.Number),
-      startTime: S.optional(S.String),
-      endTime: S.optional(S.String),
-      status: S.optional(S.String),
-      operation: S.optional(S.String),
-      executionSummary: S.optional(
-        ScriptActionsGetExecutionDetailResponseExecutionSummaryList,
-      ),
-      debugInformation: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "ScriptActionsGetExecutionDetailResponse",
-}) as any as S.Schema<ScriptActionsGetExecutionDetailResponse>;
-
-export interface ScriptActionsListByClusterRequest {
+export interface ListScriptActionByClusterRequest {
   /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
   /** The name of the resource group. */
@@ -5848,7 +5232,7 @@ export interface ScriptActionsListByClusterRequest {
   /** The name of the cluster. */
   clusterName: string;
 }
-export const ScriptActionsListByClusterRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListScriptActionByClusterRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -5862,8 +5246,8 @@ export const ScriptActionsListByClusterRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ScriptActionsListByClusterRequest",
-}) as any as S.Schema<ScriptActionsListByClusterRequest>;
+  identifier: "ListScriptActionByClusterRequest",
+}) as any as S.Schema<ListScriptActionByClusterRequest>;
 
 /** The list of roles where script will be executed. */
 export type ScriptActionsListValueItemRolesList = Array<string>;
@@ -5949,7 +5333,7 @@ export const ScriptActionsList = /*@__PURE__*/ S.suspend(() =>
   identifier: "ScriptActionsList",
 }) as any as S.Schema<ScriptActionsList>;
 
-export interface ScriptExecutionHistoryListByClusterRequest {
+export interface ListScriptExecutionHistoryByClusterRequest {
   /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
   /** The name of the resource group. */
@@ -5957,7 +5341,7 @@ export interface ScriptExecutionHistoryListByClusterRequest {
   /** The name of the cluster. */
   clusterName: string;
 }
-export const ScriptExecutionHistoryListByClusterRequest =
+export const ListScriptExecutionHistoryByClusterRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -5972,8 +5356,8 @@ export const ScriptExecutionHistoryListByClusterRequest =
       }),
     ),
   ).annotate({
-    identifier: "ScriptExecutionHistoryListByClusterRequest",
-  }) as any as S.Schema<ScriptExecutionHistoryListByClusterRequest>;
+    identifier: "ListScriptExecutionHistoryByClusterRequest",
+  }) as any as S.Schema<ListScriptExecutionHistoryByClusterRequest>;
 
 /** The list of roles where script will be executed. */
 export type ScriptActionExecutionHistoryListValueItemRolesList = Array<string>;
@@ -6062,96 +5446,7 @@ export const ScriptActionExecutionHistoryList = /*@__PURE__*/ S.suspend(() =>
   identifier: "ScriptActionExecutionHistoryList",
 }) as any as S.Schema<ScriptActionExecutionHistoryList>;
 
-export interface ScriptExecutionHistoryPromoteRequest {
-  /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the resource group. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-  /** The script execution Id */
-  scriptExecutionId: string;
-}
-export const ScriptExecutionHistoryPromoteRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      clusterName: S.String.pipe(T.Label()),
-      scriptExecutionId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HDInsight/clusters/{clusterName}/scriptExecutionHistory/{scriptExecutionId}/promote",
-        code: 200,
-        apiVersion: "2021-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "ScriptExecutionHistoryPromoteRequest",
-}) as any as S.Schema<ScriptExecutionHistoryPromoteRequest>;
-
-export interface ScriptExecutionHistoryPromoteResponse {}
-export const ScriptExecutionHistoryPromoteResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "ScriptExecutionHistoryPromoteResponse",
-}) as any as S.Schema<ScriptExecutionHistoryPromoteResponse>;
-
-export interface VirtualMachinesGetAsyncOperationStatusRequest {
-  /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the resource group. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-  /** The long running operation id. */
-  operationId: string;
-}
-export const VirtualMachinesGetAsyncOperationStatusRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      clusterName: S.String.pipe(T.Label()),
-      operationId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HDInsight/clusters/{clusterName}/restartHosts/azureasyncoperations/{operationId}",
-        code: 200,
-        apiVersion: "2021-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "VirtualMachinesGetAsyncOperationStatusRequest",
-  }) as any as S.Schema<VirtualMachinesGetAsyncOperationStatusRequest>;
-
-/** The async operation state. */
-export type VirtualMachinesGetAsyncOperationStatusResponseStatus =
-  | "InProgress"
-  | "Succeeded"
-  | "Failed";
-export const VirtualMachinesGetAsyncOperationStatusResponseStatus =
-  /*@__PURE__*/ S.String;
-
-export interface VirtualMachinesGetAsyncOperationStatusResponse {
-  /** The async operation state. */
-  status?: VirtualMachinesGetAsyncOperationStatusResponseStatus;
-  /** The operation error information. */
-  error?: ApplicationPropertiesInputErrorsItem;
-}
-export const VirtualMachinesGetAsyncOperationStatusResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      status: S.optional(VirtualMachinesGetAsyncOperationStatusResponseStatus),
-      error: S.optional(ApplicationPropertiesInputErrorsItem),
-    }),
-  ).annotate({
-    identifier: "VirtualMachinesGetAsyncOperationStatusResponse",
-  }) as any as S.Schema<VirtualMachinesGetAsyncOperationStatusResponse>;
-
-export interface VirtualMachinesListHostsRequest {
+export interface ListVirtualMachineHostsRequest {
   /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
   /** The name of the resource group. */
@@ -6159,7 +5454,7 @@ export interface VirtualMachinesListHostsRequest {
   /** The name of the cluster. */
   clusterName: string;
 }
-export const VirtualMachinesListHostsRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListVirtualMachineHostsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -6173,8 +5468,8 @@ export const VirtualMachinesListHostsRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "VirtualMachinesListHostsRequest",
-}) as any as S.Schema<VirtualMachinesListHostsRequest>;
+  identifier: "ListVirtualMachineHostsRequest",
+}) as any as S.Schema<ListVirtualMachineHostsRequest>;
 
 /** The cluster host information. */
 export interface HostInfo {
@@ -6199,12 +5494,389 @@ export const HostInfoListResult = /*@__PURE__*/ S.Array(
   HostInfo,
 ) as any as S.Schema<HostInfoListResult>;
 
-export type VirtualMachinesListHostsResponse = HostInfoListResult;
-export const VirtualMachinesListHostsResponse = /*@__PURE__*/ S.suspend(() =>
+export type ListVirtualMachineHostsResponse = HostInfoListResult;
+export const ListVirtualMachineHostsResponse = /*@__PURE__*/ S.suspend(() =>
   HostInfoListResult.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "VirtualMachinesListHostsResponse",
-}) as any as S.Schema<VirtualMachinesListHostsResponse>;
+  identifier: "ListVirtualMachineHostsResponse",
+}) as any as S.Schema<ListVirtualMachineHostsResponse>;
+
+/** The resource tags. */
+export type LocationsValidateClusterCreateRequestRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const LocationsValidateClusterCreateRequestRequestTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<LocationsValidateClusterCreateRequestRequestTagsMap>;
+
+/** The availability zones. */
+export type LocationsValidateClusterCreateRequestRequestZonesList =
+  Array<string>;
+export const LocationsValidateClusterCreateRequestRequestZonesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<LocationsValidateClusterCreateRequestRequestZonesList>;
+
+export interface LocationsValidateClusterCreateRequestRequest {
+  /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The Azure location (region) for which to make the request. */
+  location: string;
+  /** The resource tags. */
+  tags?: LocationsValidateClusterCreateRequestRequestTagsMap;
+  /** The availability zones. */
+  zones?: LocationsValidateClusterCreateRequestRequestZonesList;
+  /** The cluster create parameters. */
+  properties?: ClusterCreatePropertiesInput;
+  /** The identity of the cluster, if configured. */
+  identity?: ClusterIdentityInput;
+  /** The cluster name. */
+  name?: string;
+  /** The resource type. */
+  type?: string;
+  /** The tenant id. */
+  tenantId?: string;
+  /** This indicates whether fetch Aadds resource or not. */
+  fetchAaddsResource?: boolean;
+}
+export const LocationsValidateClusterCreateRequestRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      location: S.String.pipe(T.Label()),
+      tags: S.optional(LocationsValidateClusterCreateRequestRequestTagsMap),
+      zones: S.optional(LocationsValidateClusterCreateRequestRequestZonesList),
+      properties: S.optional(ClusterCreatePropertiesInput),
+      identity: S.optional(ClusterIdentityInput),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      tenantId: S.optional(S.String),
+      fetchAaddsResource: S.optional(S.Boolean),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.HDInsight/locations/{location}/validateCreateRequest",
+        code: 200,
+        apiVersion: "2021-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "LocationsValidateClusterCreateRequestRequest",
+  }) as any as S.Schema<LocationsValidateClusterCreateRequestRequest>;
+
+/** The message arguments */
+export type ValidationErrorInfoMessageArgumentsList = Array<string>;
+export const ValidationErrorInfoMessageArgumentsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ValidationErrorInfoMessageArgumentsList>;
+
+/** The validation error information. */
+export interface ValidationErrorInfo {
+  /** The error code. */
+  code?: string;
+  /** The error message. */
+  message?: string;
+  /** The error resource. */
+  errorResource?: string;
+  /** The message arguments */
+  messageArguments?: ValidationErrorInfoMessageArgumentsList;
+}
+export const ValidationErrorInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    code: S.optional(S.String),
+    message: S.optional(S.String),
+    errorResource: S.optional(S.String),
+    messageArguments: S.optional(ValidationErrorInfoMessageArgumentsList),
+  }),
+).annotate({
+  identifier: "ValidationErrorInfo",
+}) as any as S.Schema<ValidationErrorInfo>;
+
+/** The validation errors. */
+export type ClusterCreateValidationResultValidationErrorsList =
+  Array<ValidationErrorInfo>;
+export const ClusterCreateValidationResultValidationErrorsList =
+  /*@__PURE__*/ S.Array(
+    ValidationErrorInfo,
+  ) as any as S.Schema<ClusterCreateValidationResultValidationErrorsList>;
+
+/** The validation warnings. */
+export type ClusterCreateValidationResultValidationWarningsList =
+  Array<ValidationErrorInfo>;
+export const ClusterCreateValidationResultValidationWarningsList =
+  /*@__PURE__*/ S.Array(
+    ValidationErrorInfo,
+  ) as any as S.Schema<ClusterCreateValidationResultValidationWarningsList>;
+
+/** The Azure active directory domain service resource details. */
+export interface AaddsResourceDetails {
+  /** The Azure active directory domain service name. */
+  domainName?: string;
+  /** This indicates whether initial sync complete or not. */
+  initialSyncComplete?: boolean;
+  /** This indicates whether enable ldaps or not. */
+  ldapsEnabled?: boolean;
+  /** The base 64 format string of public ldap certificate. */
+  ldapsPublicCertificateInBase64?: string;
+  /** The resource id of azure active directory domain service. */
+  resourceId?: string;
+  /** The subnet resource id. */
+  subnetId?: string;
+  /** The tenant id of azure active directory domain service . */
+  tenantId?: string;
+}
+export const AaddsResourceDetails = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    domainName: S.optional(S.String),
+    initialSyncComplete: S.optional(S.Boolean),
+    ldapsEnabled: S.optional(S.Boolean),
+    ldapsPublicCertificateInBase64: S.optional(S.String),
+    resourceId: S.optional(S.String),
+    subnetId: S.optional(S.String),
+    tenantId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "AaddsResourceDetails",
+}) as any as S.Schema<AaddsResourceDetails>;
+
+/** The Azure active directory domain service resource details. */
+export type ClusterCreateValidationResultAaddsResourcesDetailsList =
+  Array<AaddsResourceDetails>;
+export const ClusterCreateValidationResultAaddsResourcesDetailsList =
+  /*@__PURE__*/ S.Array(
+    AaddsResourceDetails,
+  ) as any as S.Schema<ClusterCreateValidationResultAaddsResourcesDetailsList>;
+
+/** The response of cluster create request validation. */
+export interface ClusterCreateValidationResult {
+  /** The validation errors. */
+  validationErrors?: ClusterCreateValidationResultValidationErrorsList;
+  /** The validation warnings. */
+  validationWarnings?: ClusterCreateValidationResultValidationWarningsList;
+  /** The estimated creation duration. */
+  estimatedCreationDuration?: string;
+  /** The Azure active directory domain service resource details. */
+  aaddsResourcesDetails?: ClusterCreateValidationResultAaddsResourcesDetailsList;
+}
+export const ClusterCreateValidationResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    validationErrors: S.optional(
+      ClusterCreateValidationResultValidationErrorsList,
+    ),
+    validationWarnings: S.optional(
+      ClusterCreateValidationResultValidationWarningsList,
+    ),
+    estimatedCreationDuration: S.optional(S.String),
+    aaddsResourcesDetails: S.optional(
+      ClusterCreateValidationResultAaddsResourcesDetailsList,
+    ),
+  }),
+).annotate({
+  identifier: "ClusterCreateValidationResult",
+}) as any as S.Schema<ClusterCreateValidationResult>;
+
+/** The private endpoint connection properties. */
+export interface PrivateEndpointConnectionPropertiesInput {
+  /** The private link service connection state. */
+  privateLinkServiceConnectionState: PrivateLinkServiceConnectionState;
+}
+export const PrivateEndpointConnectionPropertiesInput = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      privateLinkServiceConnectionState: PrivateLinkServiceConnectionState,
+    }),
+).annotate({
+  identifier: "PrivateEndpointConnectionPropertiesInput",
+}) as any as S.Schema<PrivateEndpointConnectionPropertiesInput>;
+
+export interface PrivateEndpointConnectionsCreateOrUpdateRequest {
+  /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the resource group. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+  /** The name of the private endpoint connection. */
+  privateEndpointConnectionName: string;
+  /** The private endpoint connection properties. */
+  properties: PrivateEndpointConnectionPropertiesInput;
+}
+export const PrivateEndpointConnectionsCreateOrUpdateRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      clusterName: S.String.pipe(T.Label()),
+      privateEndpointConnectionName: S.String.pipe(T.Label()),
+      properties: PrivateEndpointConnectionPropertiesInput,
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HDInsight/clusters/{clusterName}/privateEndpointConnections/{privateEndpointConnectionName}",
+        code: 200,
+        apiVersion: "2021-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "PrivateEndpointConnectionsCreateOrUpdateRequest",
+  }) as any as S.Schema<PrivateEndpointConnectionsCreateOrUpdateRequest>;
+
+/** The type of identity that created the resource. */
+export type PrivateEndpointConnectionsCreateOrUpdateResponseSystemDataCreatedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const PrivateEndpointConnectionsCreateOrUpdateResponseSystemDataCreatedByType =
+  /*@__PURE__*/ S.String;
+
+/** The type of identity that last modified the resource. */
+export type PrivateEndpointConnectionsCreateOrUpdateResponseSystemDataLastModifiedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const PrivateEndpointConnectionsCreateOrUpdateResponseSystemDataLastModifiedByType =
+  /*@__PURE__*/ S.String;
+
+/** Metadata pertaining to creation and last modification of the resource. */
+export interface PrivateEndpointConnectionsCreateOrUpdateResponseSystemData {
+  /** The identity that created the resource. */
+  createdBy?: string;
+  /** The type of identity that created the resource. */
+  createdByType?: PrivateEndpointConnectionsCreateOrUpdateResponseSystemDataCreatedByType;
+  /** The timestamp of resource creation (UTC). */
+  createdAt?: string;
+  /** The identity that last modified the resource. */
+  lastModifiedBy?: string;
+  /** The type of identity that last modified the resource. */
+  lastModifiedByType?: PrivateEndpointConnectionsCreateOrUpdateResponseSystemDataLastModifiedByType;
+  /** The timestamp of resource last modification (UTC) */
+  lastModifiedAt?: string;
+}
+export const PrivateEndpointConnectionsCreateOrUpdateResponseSystemData =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      createdBy: S.optional(S.String),
+      createdByType: S.optional(
+        PrivateEndpointConnectionsCreateOrUpdateResponseSystemDataCreatedByType,
+      ),
+      createdAt: S.optional(S.String),
+      lastModifiedBy: S.optional(S.String),
+      lastModifiedByType: S.optional(
+        PrivateEndpointConnectionsCreateOrUpdateResponseSystemDataLastModifiedByType,
+      ),
+      lastModifiedAt: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "PrivateEndpointConnectionsCreateOrUpdateResponseSystemData",
+  }) as any as S.Schema<PrivateEndpointConnectionsCreateOrUpdateResponseSystemData>;
+
+export interface PrivateEndpointConnectionsCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** The private endpoint connection properties. */
+  properties: PrivateEndpointConnectionProperties;
+  /** Metadata pertaining to creation and last modification of the resource. */
+  systemData?: PrivateEndpointConnectionsCreateOrUpdateResponseSystemData;
+}
+export const PrivateEndpointConnectionsCreateOrUpdateResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      properties: PrivateEndpointConnectionProperties,
+      systemData: S.optional(
+        PrivateEndpointConnectionsCreateOrUpdateResponseSystemData,
+      ),
+    }),
+  ).annotate({
+    identifier: "PrivateEndpointConnectionsCreateOrUpdateResponse",
+  }) as any as S.Schema<PrivateEndpointConnectionsCreateOrUpdateResponse>;
+
+export interface PromoteScriptExecutionHistoryRequest {
+  /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the resource group. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+  /** The script execution Id */
+  scriptExecutionId: string;
+}
+export const PromoteScriptExecutionHistoryRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      clusterName: S.String.pipe(T.Label()),
+      scriptExecutionId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HDInsight/clusters/{clusterName}/scriptExecutionHistory/{scriptExecutionId}/promote",
+        code: 200,
+        apiVersion: "2021-06-01",
+      }),
+    ),
+).annotate({
+  identifier: "PromoteScriptExecutionHistoryRequest",
+}) as any as S.Schema<PromoteScriptExecutionHistoryRequest>;
+
+export interface PromoteScriptExecutionHistoryResponse {}
+export const PromoteScriptExecutionHistoryResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "PromoteScriptExecutionHistoryResponse",
+}) as any as S.Schema<PromoteScriptExecutionHistoryResponse>;
+
+export type ResizeClusterRequestRoleName = "workernode";
+export const ResizeClusterRequestRoleName = /*@__PURE__*/ S.String;
+
+export interface ResizeClusterRequest {
+  /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the resource group. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+  /** The constant value for the roleName */
+  roleName: ResizeClusterRequestRoleName | (string & {});
+  /** The target instance count for the operation. */
+  targetInstanceCount?: number;
+}
+export const ResizeClusterRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    roleName: ResizeClusterRequestRoleName.pipe(T.Label()),
+    targetInstanceCount: S.optional(S.Number),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HDInsight/clusters/{clusterName}/roles/{roleName}/resize",
+      code: 200,
+      apiVersion: "2021-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ResizeClusterRequest",
+}) as any as S.Schema<ResizeClusterRequest>;
+
+export interface ResizeClusterResponse {}
+export const ResizeClusterResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "ResizeClusterResponse",
+}) as any as S.Schema<ResizeClusterResponse>;
 
 /** The list of hosts which need to be restarted. */
 export type RestartHostsParameters = Array<string>;
@@ -6212,7 +5884,7 @@ export const RestartHostsParameters = /*@__PURE__*/ S.Array(
   S.String,
 ) as any as S.Schema<RestartHostsParameters>;
 
-export interface VirtualMachinesRestartHostsRequest {
+export interface RestartVirtualMachineHostsRequest {
   /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
   /** The name of the resource group. */
@@ -6221,7 +5893,7 @@ export interface VirtualMachinesRestartHostsRequest {
   clusterName: string;
   body: RestartHostsParameters;
 }
-export const VirtualMachinesRestartHostsRequest = /*@__PURE__*/ S.suspend(() =>
+export const RestartVirtualMachineHostsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -6236,551 +5908,971 @@ export const VirtualMachinesRestartHostsRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "VirtualMachinesRestartHostsRequest",
-}) as any as S.Schema<VirtualMachinesRestartHostsRequest>;
+  identifier: "RestartVirtualMachineHostsRequest",
+}) as any as S.Schema<RestartVirtualMachineHostsRequest>;
 
-export interface VirtualMachinesRestartHostsResponse {}
-export const VirtualMachinesRestartHostsResponse = /*@__PURE__*/ S.suspend(() =>
+export interface RestartVirtualMachineHostsResponse {}
+export const RestartVirtualMachineHostsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "VirtualMachinesRestartHostsResponse",
-}) as any as S.Schema<VirtualMachinesRestartHostsResponse>;
+  identifier: "RestartVirtualMachineHostsResponse",
+}) as any as S.Schema<RestartVirtualMachineHostsResponse>;
 
-export type ApplicationsCreateError = AzureOpError;
-/** Creates applications for the HDInsight cluster. */
-export const ApplicationsCreate: API.OperationMethod<
-  ApplicationsCreateRequest,
-  ApplicationsCreateResponse,
-  ApplicationsCreateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationsCreateRequest,
-  output: ApplicationsCreateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
+export interface RotateClusterDiskEncryptionKeyRequest {
+  /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the resource group. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+  /** Base key vault URI where the customers key is located eg. https://myvault.vault.azure.net */
+  vaultUri?: string;
+  /** Key name that is used for enabling disk encryption. */
+  keyName?: string;
+  /** Specific key version that is used for enabling disk encryption. */
+  keyVersion?: string;
+}
+export const RotateClusterDiskEncryptionKeyRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      clusterName: S.String.pipe(T.Label()),
+      vaultUri: S.optional(S.String),
+      keyName: S.optional(S.String),
+      keyVersion: S.optional(S.String),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HDInsight/clusters/{clusterName}/rotatediskencryptionkey",
+        code: 200,
+        apiVersion: "2021-06-01",
+      }),
+    ),
+).annotate({
+  identifier: "RotateClusterDiskEncryptionKeyRequest",
+}) as any as S.Schema<RotateClusterDiskEncryptionKeyRequest>;
 
-export type ApplicationsDeleteError = AzureOpError;
-/** Deletes the specified application on the HDInsight cluster. */
-export const ApplicationsDelete: API.OperationMethod<
-  ApplicationsDeleteRequest,
-  ApplicationsDeleteResponse,
-  ApplicationsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationsDeleteRequest,
-  output: ApplicationsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
+export interface RotateClusterDiskEncryptionKeyResponse {}
+export const RotateClusterDiskEncryptionKeyResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "RotateClusterDiskEncryptionKeyResponse",
+}) as any as S.Schema<RotateClusterDiskEncryptionKeyResponse>;
 
-export type ApplicationsGetError = AzureOpError;
-/** Gets properties of the specified application. */
-export const ApplicationsGet: API.OperationMethod<
-  ApplicationsGetRequest,
-  ApplicationsGetResponse,
-  ApplicationsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationsGetRequest,
-  output: ApplicationsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
+/** The resource tags. */
+export type UpdateClusterRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateClusterRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateClusterRequestTagsMap>;
 
-export type ApplicationsGetAzureAsyncOperationStatusError = AzureOpError;
-/** Gets the async operation status. */
-export const ApplicationsGetAzureAsyncOperationStatus: API.OperationMethod<
-  ApplicationsGetAzureAsyncOperationStatusRequest,
-  ApplicationsGetAzureAsyncOperationStatusResponse,
-  ApplicationsGetAzureAsyncOperationStatusError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationsGetAzureAsyncOperationStatusRequest,
-  output: ApplicationsGetAzureAsyncOperationStatusResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
+export interface UpdateClusterRequest {
+  /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the resource group. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+  /** The resource tags. */
+  tags?: UpdateClusterRequestTagsMap | null;
+}
+export const UpdateClusterRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    tags: S.optional(S.NullOr(UpdateClusterRequestTagsMap)),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HDInsight/clusters/{clusterName}",
+      code: 200,
+      apiVersion: "2021-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateClusterRequest",
+}) as any as S.Schema<UpdateClusterRequest>;
 
-export type ApplicationsListByClusterError = AzureOpError;
-/** Lists all of the applications for the HDInsight cluster. */
-export const ApplicationsListByCluster: API.OperationMethod<
-  ApplicationsListByClusterRequest,
-  ApplicationListResult,
-  ApplicationsListByClusterError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApplicationsListByClusterRequest,
-  output: ApplicationListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
+/** Resource tags. */
+export type UpdateClusterResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateClusterResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateClusterResponseTagsMap>;
 
-export type ClustersCreateError = AzureOpError;
-/** Creates a new HDInsight cluster with the specified parameters. */
-export const ClustersCreate: API.OperationMethod<
-  ClustersCreateRequest,
-  ClustersCreateResponse,
-  ClustersCreateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ClustersCreateRequest,
-  output: ClustersCreateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
+/** The availability zones. */
+export type UpdateClusterResponseZonesList = Array<string>;
+export const UpdateClusterResponseZonesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<UpdateClusterResponseZonesList>;
 
-export type ClustersDeleteError = AzureOpError;
-/** Deletes the specified HDInsight cluster. */
-export const ClustersDelete: API.OperationMethod<
-  ClustersDeleteRequest,
-  ClustersDeleteResponse,
-  ClustersDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ClustersDeleteRequest,
-  output: ClustersDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
+/** The type of identity that created the resource. */
+export type UpdateClusterResponseSystemDataCreatedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const UpdateClusterResponseSystemDataCreatedByType =
+  /*@__PURE__*/ S.String;
 
-export type ClustersExecuteScriptActionsError = AzureOpError;
-/** Executes script actions on the specified HDInsight cluster. */
-export const ClustersExecuteScriptActions: API.OperationMethod<
-  ClustersExecuteScriptActionsRequest,
-  ClustersExecuteScriptActionsResponse,
-  ClustersExecuteScriptActionsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ClustersExecuteScriptActionsRequest,
-  output: ClustersExecuteScriptActionsResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
+/** The type of identity that last modified the resource. */
+export type UpdateClusterResponseSystemDataLastModifiedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const UpdateClusterResponseSystemDataLastModifiedByType =
+  /*@__PURE__*/ S.String;
 
-export type ClustersGetError = AzureOpError;
-/** Gets the specified cluster. */
-export const ClustersGet: API.OperationMethod<
-  ClustersGetRequest,
-  ClustersGetResponse,
-  ClustersGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ClustersGetRequest,
-  output: ClustersGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
+/** Metadata pertaining to creation and last modification of the resource. */
+export interface UpdateClusterResponseSystemData {
+  /** The identity that created the resource. */
+  createdBy?: string;
+  /** The type of identity that created the resource. */
+  createdByType?: UpdateClusterResponseSystemDataCreatedByType;
+  /** The timestamp of resource creation (UTC). */
+  createdAt?: string;
+  /** The identity that last modified the resource. */
+  lastModifiedBy?: string;
+  /** The type of identity that last modified the resource. */
+  lastModifiedByType?: UpdateClusterResponseSystemDataLastModifiedByType;
+  /** The timestamp of resource last modification (UTC) */
+  lastModifiedAt?: string;
+}
+export const UpdateClusterResponseSystemData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    createdBy: S.optional(S.String),
+    createdByType: S.optional(UpdateClusterResponseSystemDataCreatedByType),
+    createdAt: S.optional(S.String),
+    lastModifiedBy: S.optional(S.String),
+    lastModifiedByType: S.optional(
+      UpdateClusterResponseSystemDataLastModifiedByType,
+    ),
+    lastModifiedAt: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "UpdateClusterResponseSystemData",
+}) as any as S.Schema<UpdateClusterResponseSystemData>;
 
-export type ClustersGetAzureAsyncOperationStatusError = AzureOpError;
-/** The the async operation status. */
-export const ClustersGetAzureAsyncOperationStatus: API.OperationMethod<
-  ClustersGetAzureAsyncOperationStatusRequest,
-  AsyncOperationResult,
-  ClustersGetAzureAsyncOperationStatusError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ClustersGetAzureAsyncOperationStatusRequest,
-  output: AsyncOperationResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
+export interface UpdateClusterResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Resource tags. */
+  tags?: UpdateClusterResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The ETag for the resource */
+  etag?: string;
+  /** The availability zones. */
+  zones?: UpdateClusterResponseZonesList;
+  /** The properties of the cluster. */
+  properties?: ClusterGetProperties;
+  /** The identity of the cluster, if configured. */
+  identity?: ClusterIdentity;
+  /** Metadata pertaining to creation and last modification of the resource. */
+  systemData?: UpdateClusterResponseSystemData;
+}
+export const UpdateClusterResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    tags: S.optional(UpdateClusterResponseTagsMap),
+    location: S.String,
+    etag: S.optional(S.String),
+    zones: S.optional(UpdateClusterResponseZonesList),
+    properties: S.optional(ClusterGetProperties),
+    identity: S.optional(ClusterIdentity),
+    systemData: S.optional(UpdateClusterResponseSystemData),
+  }),
+).annotate({
+  identifier: "UpdateClusterResponse",
+}) as any as S.Schema<UpdateClusterResponse>;
 
-export type ClustersGetGatewaySettingsError = AzureOpError;
-/** Gets the gateway settings for the specified cluster. */
-export const ClustersGetGatewaySettings: API.OperationMethod<
-  ClustersGetGatewaySettingsRequest,
-  GatewaySettings,
-  ClustersGetGatewaySettingsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ClustersGetGatewaySettingsRequest,
-  output: GatewaySettings,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
+export type UpdateClusterAutoScaleConfigurationRequestRoleName = "workernode";
+export const UpdateClusterAutoScaleConfigurationRequestRoleName =
+  /*@__PURE__*/ S.String;
 
-export type ClustersListError = AzureOpError;
-/** Lists all the HDInsight clusters under the subscription. */
-export const ClustersList: API.OperationMethod<
-  ClustersListRequest,
-  ClusterListResult,
-  ClustersListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ClustersListRequest,
-  output: ClusterListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
+export interface UpdateClusterAutoScaleConfigurationRequest {
+  /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the resource group. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+  /** The constant value for the roleName */
+  roleName: UpdateClusterAutoScaleConfigurationRequestRoleName | (string & {});
+  /** The autoscale configuration. */
+  autoscale?: Autoscale;
+}
+export const UpdateClusterAutoScaleConfigurationRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      clusterName: S.String.pipe(T.Label()),
+      roleName: UpdateClusterAutoScaleConfigurationRequestRoleName.pipe(
+        T.Label(),
+      ),
+      autoscale: S.optional(Autoscale),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HDInsight/clusters/{clusterName}/roles/{roleName}/autoscale",
+        code: 200,
+        apiVersion: "2021-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "UpdateClusterAutoScaleConfigurationRequest",
+  }) as any as S.Schema<UpdateClusterAutoScaleConfigurationRequest>;
 
-export type ClustersListByResourceGroupError = AzureOpError;
-/** Lists the HDInsight clusters in a resource group. */
-export const ClustersListByResourceGroup: API.OperationMethod<
-  ClustersListByResourceGroupRequest,
-  ClusterListResult,
-  ClustersListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ClustersListByResourceGroupRequest,
-  output: ClusterListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
+export interface UpdateClusterAutoScaleConfigurationResponse {}
+export const UpdateClusterAutoScaleConfigurationResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "UpdateClusterAutoScaleConfigurationResponse",
+  }) as any as S.Schema<UpdateClusterAutoScaleConfigurationResponse>;
 
-export type ClustersResizeError = AzureOpError;
-/** Resizes the specified HDInsight cluster to the specified size. */
-export const ClustersResize: API.OperationMethod<
-  ClustersResizeRequest,
-  ClustersResizeResponse,
-  ClustersResizeError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ClustersResizeRequest,
-  output: ClustersResizeResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
+export interface UpdateClusterGatewaySettingsRequest {
+  /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the resource group. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+  /** Indicates whether or not the gateway settings based authorization is enabled. */
+  restAuthCredential_isEnabled?: boolean;
+  /** The gateway settings user name. */
+  restAuthCredential_username?: string;
+  /** The gateway settings user password. */
+  restAuthCredential_password?: string | Redacted.Redacted<string>;
+}
+export const UpdateClusterGatewaySettingsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    restAuthCredential_isEnabled: S.optional(
+      S.Boolean.pipe(T.Body("restAuthCredential.isEnabled")),
+    ),
+    restAuthCredential_username: S.optional(
+      S.String.pipe(T.Body("restAuthCredential.username")),
+    ),
+    restAuthCredential_password: S.optional(
+      S.String.pipe(
+        T.Body("restAuthCredential.password"),
+        T.SensitiveValue({}),
+      ),
+    ),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HDInsight/clusters/{clusterName}/updateGatewaySettings",
+      code: 200,
+      apiVersion: "2021-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateClusterGatewaySettingsRequest",
+}) as any as S.Schema<UpdateClusterGatewaySettingsRequest>;
 
-export type ClustersRotateDiskEncryptionKeyError = AzureOpError;
-/** Rotate disk encryption key of the specified HDInsight cluster. */
-export const ClustersRotateDiskEncryptionKey: API.OperationMethod<
-  ClustersRotateDiskEncryptionKeyRequest,
-  ClustersRotateDiskEncryptionKeyResponse,
-  ClustersRotateDiskEncryptionKeyError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ClustersRotateDiskEncryptionKeyRequest,
-  output: ClustersRotateDiskEncryptionKeyResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
+export interface UpdateClusterGatewaySettingsResponse {}
+export const UpdateClusterGatewaySettingsResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "UpdateClusterGatewaySettingsResponse",
+}) as any as S.Schema<UpdateClusterGatewaySettingsResponse>;
 
-export type ClustersUpdateError = AzureOpError;
-/** Patch HDInsight cluster with the specified parameters. */
-export const ClustersUpdate: API.OperationMethod<
-  ClustersUpdateRequest,
-  ClustersUpdateResponse,
-  ClustersUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ClustersUpdateRequest,
-  output: ClustersUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
+export interface UpdateClusterIdentityCertificateRequest {
+  /** The subscription credentials which uniquely identify Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the resource group. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+  /** The application id. */
+  applicationId?: string;
+  /** The certificate in base64 encoded format. */
+  certificate?: string;
+  /** The password of the certificate. */
+  certificatePassword?: string | Redacted.Redacted<string>;
+}
+export const UpdateClusterIdentityCertificateRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      clusterName: S.String.pipe(T.Label()),
+      applicationId: S.optional(S.String),
+      certificate: S.optional(S.String),
+      certificatePassword: S.optional(S.String.pipe(T.SensitiveValue({}))),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HDInsight/clusters/{clusterName}/updateClusterIdentityCertificate",
+        code: 200,
+        apiVersion: "2021-06-01",
+      }),
+    ),
+).annotate({
+  identifier: "UpdateClusterIdentityCertificateRequest",
+}) as any as S.Schema<UpdateClusterIdentityCertificateRequest>;
 
-export type ClustersUpdateAutoScaleConfigurationError = AzureOpError;
-/** Updates the Autoscale Configuration for HDInsight cluster. */
-export const ClustersUpdateAutoScaleConfiguration: API.OperationMethod<
-  ClustersUpdateAutoScaleConfigurationRequest,
-  ClustersUpdateAutoScaleConfigurationResponse,
-  ClustersUpdateAutoScaleConfigurationError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ClustersUpdateAutoScaleConfigurationRequest,
-  output: ClustersUpdateAutoScaleConfigurationResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
+export interface UpdateClusterIdentityCertificateResponse {}
+export const UpdateClusterIdentityCertificateResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "UpdateClusterIdentityCertificateResponse",
+}) as any as S.Schema<UpdateClusterIdentityCertificateResponse>;
 
-export type ClustersUpdateGatewaySettingsError = AzureOpError;
-/** Configures the gateway settings on the specified cluster. */
-export const ClustersUpdateGatewaySettings: API.OperationMethod<
-  ClustersUpdateGatewaySettingsRequest,
-  ClustersUpdateGatewaySettingsResponse,
-  ClustersUpdateGatewaySettingsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ClustersUpdateGatewaySettingsRequest,
-  output: ClustersUpdateGatewaySettingsResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ClustersUpdateIdentityCertificateError = AzureOpError;
-/** Updates the cluster identity certificate. */
-export const ClustersUpdateIdentityCertificate: API.OperationMethod<
-  ClustersUpdateIdentityCertificateRequest,
-  ClustersUpdateIdentityCertificateResponse,
-  ClustersUpdateIdentityCertificateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ClustersUpdateIdentityCertificateRequest,
-  output: ClustersUpdateIdentityCertificateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ConfigurationsGetError = AzureOpError;
-/** The configuration object for the specified cluster. This API is not recommended and might be removed in the future. Please consider using List configurations API instead. */
-export const ConfigurationsGet: API.OperationMethod<
-  ConfigurationsGetRequest,
-  ConfigurationsGetResponse,
-  ConfigurationsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ConfigurationsGetRequest,
-  output: ConfigurationsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ConfigurationsListError = AzureOpError;
-/** Gets all configuration information for an HDI cluster. */
-export const ConfigurationsList: API.OperationMethod<
-  ConfigurationsListRequest,
-  ClusterConfigurations,
-  ConfigurationsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ConfigurationsListRequest,
-  output: ClusterConfigurations,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ExtensionsCreateError = AzureOpError;
-/** Creates an HDInsight cluster extension. */
-export const ExtensionsCreate: API.OperationMethod<
-  ExtensionsCreateRequest,
-  ExtensionsCreateResponse,
-  ExtensionsCreateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ExtensionsCreateRequest,
-  output: ExtensionsCreateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ExtensionsDeleteError = AzureOpError;
-/** Deletes the specified extension for HDInsight cluster. */
-export const ExtensionsDelete: API.OperationMethod<
-  ExtensionsDeleteRequest,
-  ExtensionsDeleteResponse,
-  ExtensionsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ExtensionsDeleteRequest,
-  output: ExtensionsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ExtensionsDisableAzureMonitorError = AzureOpError;
-/** Disables the Azure Monitor on the HDInsight cluster. */
-export const ExtensionsDisableAzureMonitor: API.OperationMethod<
-  ExtensionsDisableAzureMonitorRequest,
-  ExtensionsDisableAzureMonitorResponse,
-  ExtensionsDisableAzureMonitorError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ExtensionsDisableAzureMonitorRequest,
-  output: ExtensionsDisableAzureMonitorResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ExtensionsDisableMonitoringError = AzureOpError;
-/** Disables the Operations Management Suite (OMS) on the HDInsight cluster. */
-export const ExtensionsDisableMonitoring: API.OperationMethod<
-  ExtensionsDisableMonitoringRequest,
-  ExtensionsDisableMonitoringResponse,
-  ExtensionsDisableMonitoringError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ExtensionsDisableMonitoringRequest,
-  output: ExtensionsDisableMonitoringResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ExtensionsEnableAzureMonitorError = AzureOpError;
-/** Enables the Azure Monitor on the HDInsight cluster. */
-export const ExtensionsEnableAzureMonitor: API.OperationMethod<
-  ExtensionsEnableAzureMonitorRequest,
-  ExtensionsEnableAzureMonitorResponse,
-  ExtensionsEnableAzureMonitorError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ExtensionsEnableAzureMonitorRequest,
-  output: ExtensionsEnableAzureMonitorResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ExtensionsEnableMonitoringError = AzureOpError;
-/** Enables the Operations Management Suite (OMS) on the HDInsight cluster. */
-export const ExtensionsEnableMonitoring: API.OperationMethod<
-  ExtensionsEnableMonitoringRequest,
-  ExtensionsEnableMonitoringResponse,
-  ExtensionsEnableMonitoringError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ExtensionsEnableMonitoringRequest,
-  output: ExtensionsEnableMonitoringResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ExtensionsGetError = AzureOpError;
-/** Gets the extension properties for the specified HDInsight cluster extension. */
-export const ExtensionsGet: API.OperationMethod<
-  ExtensionsGetRequest,
-  ClusterMonitoringResponse,
-  ExtensionsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ExtensionsGetRequest,
-  output: ClusterMonitoringResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ExtensionsGetAzureAsyncOperationStatusError = AzureOpError;
-/** Gets the async operation status. */
-export const ExtensionsGetAzureAsyncOperationStatus: API.OperationMethod<
-  ExtensionsGetAzureAsyncOperationStatusRequest,
-  ExtensionsGetAzureAsyncOperationStatusResponse,
-  ExtensionsGetAzureAsyncOperationStatusError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ExtensionsGetAzureAsyncOperationStatusRequest,
-  output: ExtensionsGetAzureAsyncOperationStatusResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ExtensionsGetAzureMonitorStatusError = AzureOpError;
-/** Gets the status of Azure Monitor on the HDInsight cluster. */
-export const ExtensionsGetAzureMonitorStatus: API.OperationMethod<
-  ExtensionsGetAzureMonitorStatusRequest,
-  AzureMonitorResponse,
-  ExtensionsGetAzureMonitorStatusError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ExtensionsGetAzureMonitorStatusRequest,
-  output: AzureMonitorResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ExtensionsGetMonitoringStatusError = AzureOpError;
-/** Gets the status of Operations Management Suite (OMS) on the HDInsight cluster. */
-export const ExtensionsGetMonitoringStatus: API.OperationMethod<
-  ExtensionsGetMonitoringStatusRequest,
-  ClusterMonitoringResponse,
-  ExtensionsGetMonitoringStatusError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ExtensionsGetMonitoringStatusRequest,
-  output: ClusterMonitoringResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type LocationsCheckNameAvailabilityError = AzureOpError;
+export type CheckLocationNameAvailabilityError = AzureOpError;
 /** Check the cluster name is available or not. */
-export const LocationsCheckNameAvailability: API.OperationMethod<
-  LocationsCheckNameAvailabilityRequest,
+export const CheckLocationNameAvailability: API.OperationMethod<
+  CheckLocationNameAvailabilityRequest,
   NameAvailabilityCheckResult,
-  LocationsCheckNameAvailabilityError,
+  CheckLocationNameAvailabilityError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: LocationsCheckNameAvailabilityRequest,
+  input: CheckLocationNameAvailabilityRequest,
   output: NameAvailabilityCheckResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type LocationsGetAzureAsyncOperationStatusError = AzureOpError;
-/** Get the async operation status. */
-export const LocationsGetAzureAsyncOperationStatus: API.OperationMethod<
-  LocationsGetAzureAsyncOperationStatusRequest,
-  LocationsGetAzureAsyncOperationStatusResponse,
-  LocationsGetAzureAsyncOperationStatusError,
+export type CreateApplicationError = AzureOpError;
+/** Creates applications for the HDInsight cluster. */
+export const CreateApplication: API.OperationMethod<
+  CreateApplicationRequest,
+  CreateApplicationResponse,
+  CreateApplicationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: LocationsGetAzureAsyncOperationStatusRequest,
-  output: LocationsGetAzureAsyncOperationStatusResponse,
+  input: CreateApplicationRequest,
+  output: CreateApplicationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type LocationsGetCapabilitiesError = AzureOpError;
-/** Gets the capabilities for the specified location. */
-export const LocationsGetCapabilities: API.OperationMethod<
-  LocationsGetCapabilitiesRequest,
-  CapabilitiesResult,
-  LocationsGetCapabilitiesError,
+export type CreateClusterError = AzureOpError;
+/** Creates a new HDInsight cluster with the specified parameters. */
+export const CreateCluster: API.OperationMethod<
+  CreateClusterRequest,
+  CreateClusterResponse,
+  CreateClusterError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: LocationsGetCapabilitiesRequest,
+  input: CreateClusterRequest,
+  output: CreateClusterResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateExtensionError = AzureOpError;
+/** Creates an HDInsight cluster extension. */
+export const CreateExtension: API.OperationMethod<
+  CreateExtensionRequest,
+  CreateExtensionResponse,
+  CreateExtensionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateExtensionRequest,
+  output: CreateExtensionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteApplicationError = AzureOpError;
+/** Deletes the specified application on the HDInsight cluster. */
+export const DeleteApplication: API.OperationMethod<
+  DeleteApplicationRequest,
+  DeleteApplicationResponse,
+  DeleteApplicationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteApplicationRequest,
+  output: DeleteApplicationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteClusterError = AzureOpError;
+/** Deletes the specified HDInsight cluster. */
+export const DeleteCluster: API.OperationMethod<
+  DeleteClusterRequest,
+  DeleteClusterResponse,
+  DeleteClusterError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteClusterRequest,
+  output: DeleteClusterResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteExtensionError = AzureOpError;
+/** Deletes the specified extension for HDInsight cluster. */
+export const DeleteExtension: API.OperationMethod<
+  DeleteExtensionRequest,
+  DeleteExtensionResponse,
+  DeleteExtensionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteExtensionRequest,
+  output: DeleteExtensionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeletePrivateEndpointConnectionError = AzureOpError;
+/** Deletes the specific private endpoint connection. */
+export const DeletePrivateEndpointConnection: API.OperationMethod<
+  DeletePrivateEndpointConnectionRequest,
+  DeletePrivateEndpointConnectionResponse,
+  DeletePrivateEndpointConnectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeletePrivateEndpointConnectionRequest,
+  output: DeletePrivateEndpointConnectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteScriptActionError = AzureOpError;
+/** Deletes a specified persisted script action of the cluster. */
+export const DeleteScriptAction: API.OperationMethod<
+  DeleteScriptActionRequest,
+  DeleteScriptActionResponse,
+  DeleteScriptActionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteScriptActionRequest,
+  output: DeleteScriptActionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DisableExtensionAzureMonitorError = AzureOpError;
+/** Disables the Azure Monitor on the HDInsight cluster. */
+export const DisableExtensionAzureMonitor: API.OperationMethod<
+  DisableExtensionAzureMonitorRequest,
+  DisableExtensionAzureMonitorResponse,
+  DisableExtensionAzureMonitorError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DisableExtensionAzureMonitorRequest,
+  output: DisableExtensionAzureMonitorResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DisableExtensionMonitoringError = AzureOpError;
+/** Disables the Operations Management Suite (OMS) on the HDInsight cluster. */
+export const DisableExtensionMonitoring: API.OperationMethod<
+  DisableExtensionMonitoringRequest,
+  DisableExtensionMonitoringResponse,
+  DisableExtensionMonitoringError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DisableExtensionMonitoringRequest,
+  output: DisableExtensionMonitoringResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type EnableExtensionAzureMonitorError = AzureOpError;
+/** Enables the Azure Monitor on the HDInsight cluster. */
+export const EnableExtensionAzureMonitor: API.OperationMethod<
+  EnableExtensionAzureMonitorRequest,
+  EnableExtensionAzureMonitorResponse,
+  EnableExtensionAzureMonitorError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: EnableExtensionAzureMonitorRequest,
+  output: EnableExtensionAzureMonitorResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type EnableExtensionMonitoringError = AzureOpError;
+/** Enables the Operations Management Suite (OMS) on the HDInsight cluster. */
+export const EnableExtensionMonitoring: API.OperationMethod<
+  EnableExtensionMonitoringRequest,
+  EnableExtensionMonitoringResponse,
+  EnableExtensionMonitoringError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: EnableExtensionMonitoringRequest,
+  output: EnableExtensionMonitoringResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ExecuteClusterScriptActionsError = AzureOpError;
+/** Executes script actions on the specified HDInsight cluster. */
+export const ExecuteClusterScriptActions: API.OperationMethod<
+  ExecuteClusterScriptActionsRequest,
+  ExecuteClusterScriptActionsResponse,
+  ExecuteClusterScriptActionsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ExecuteClusterScriptActionsRequest,
+  output: ExecuteClusterScriptActionsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetApplicationError = AzureOpError;
+/** Gets properties of the specified application. */
+export const GetApplication: API.OperationMethod<
+  GetApplicationRequest,
+  GetApplicationResponse,
+  GetApplicationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetApplicationRequest,
+  output: GetApplicationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetApplicationAzureAsyncOperationStatusError = AzureOpError;
+/** Gets the async operation status. */
+export const GetApplicationAzureAsyncOperationStatus: API.OperationMethod<
+  GetApplicationAzureAsyncOperationStatusRequest,
+  GetApplicationAzureAsyncOperationStatusResponse,
+  GetApplicationAzureAsyncOperationStatusError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetApplicationAzureAsyncOperationStatusRequest,
+  output: GetApplicationAzureAsyncOperationStatusResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetClusterError = AzureOpError;
+/** Gets the specified cluster. */
+export const GetCluster: API.OperationMethod<
+  GetClusterRequest,
+  GetClusterResponse,
+  GetClusterError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetClusterRequest,
+  output: GetClusterResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetClusterAzureAsyncOperationStatusError = AzureOpError;
+/** The the async operation status. */
+export const GetClusterAzureAsyncOperationStatus: API.OperationMethod<
+  GetClusterAzureAsyncOperationStatusRequest,
+  AsyncOperationResult,
+  GetClusterAzureAsyncOperationStatusError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetClusterAzureAsyncOperationStatusRequest,
+  output: AsyncOperationResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetClusterGatewaySettingsError = AzureOpError;
+/** Gets the gateway settings for the specified cluster. */
+export const GetClusterGatewaySettings: API.OperationMethod<
+  GetClusterGatewaySettingsRequest,
+  GatewaySettings,
+  GetClusterGatewaySettingsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetClusterGatewaySettingsRequest,
+  output: GatewaySettings,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetConfigurationError = AzureOpError;
+/** The configuration object for the specified cluster. This API is not recommended and might be removed in the future. Please consider using List configurations API instead. */
+export const GetConfiguration: API.OperationMethod<
+  GetConfigurationRequest,
+  GetConfigurationResponse,
+  GetConfigurationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetConfigurationRequest,
+  output: GetConfigurationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetExtensionError = AzureOpError;
+/** Gets the extension properties for the specified HDInsight cluster extension. */
+export const GetExtension: API.OperationMethod<
+  GetExtensionRequest,
+  ClusterMonitoringResponse,
+  GetExtensionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetExtensionRequest,
+  output: ClusterMonitoringResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetExtensionAzureAsyncOperationStatusError = AzureOpError;
+/** Gets the async operation status. */
+export const GetExtensionAzureAsyncOperationStatus: API.OperationMethod<
+  GetExtensionAzureAsyncOperationStatusRequest,
+  GetExtensionAzureAsyncOperationStatusResponse,
+  GetExtensionAzureAsyncOperationStatusError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetExtensionAzureAsyncOperationStatusRequest,
+  output: GetExtensionAzureAsyncOperationStatusResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetExtensionAzureMonitorStatusError = AzureOpError;
+/** Gets the status of Azure Monitor on the HDInsight cluster. */
+export const GetExtensionAzureMonitorStatus: API.OperationMethod<
+  GetExtensionAzureMonitorStatusRequest,
+  AzureMonitorResponse,
+  GetExtensionAzureMonitorStatusError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetExtensionAzureMonitorStatusRequest,
+  output: AzureMonitorResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetExtensionMonitoringStatusError = AzureOpError;
+/** Gets the status of Operations Management Suite (OMS) on the HDInsight cluster. */
+export const GetExtensionMonitoringStatus: API.OperationMethod<
+  GetExtensionMonitoringStatusRequest,
+  ClusterMonitoringResponse,
+  GetExtensionMonitoringStatusError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetExtensionMonitoringStatusRequest,
+  output: ClusterMonitoringResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetLocationAzureAsyncOperationStatusError = AzureOpError;
+/** Get the async operation status. */
+export const GetLocationAzureAsyncOperationStatus: API.OperationMethod<
+  GetLocationAzureAsyncOperationStatusRequest,
+  GetLocationAzureAsyncOperationStatusResponse,
+  GetLocationAzureAsyncOperationStatusError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetLocationAzureAsyncOperationStatusRequest,
+  output: GetLocationAzureAsyncOperationStatusResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetLocationCapabilitiesError = AzureOpError;
+/** Gets the capabilities for the specified location. */
+export const GetLocationCapabilities: API.OperationMethod<
+  GetLocationCapabilitiesRequest,
+  CapabilitiesResult,
+  GetLocationCapabilitiesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetLocationCapabilitiesRequest,
   output: CapabilitiesResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type LocationsListBillingSpecsError = AzureOpError;
-/** Lists the billingSpecs for the specified subscription and location. */
-export const LocationsListBillingSpecs: API.OperationMethod<
-  LocationsListBillingSpecsRequest,
-  BillingResponseListResult,
-  LocationsListBillingSpecsError,
+export type GetPrivateEndpointConnectionError = AzureOpError;
+/** Gets the specific private endpoint connection. */
+export const GetPrivateEndpointConnection: API.OperationMethod<
+  GetPrivateEndpointConnectionRequest,
+  GetPrivateEndpointConnectionResponse,
+  GetPrivateEndpointConnectionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: LocationsListBillingSpecsRequest,
+  input: GetPrivateEndpointConnectionRequest,
+  output: GetPrivateEndpointConnectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetPrivateLinkResourceError = AzureOpError;
+/** Gets the specific private link resource. */
+export const GetPrivateLinkResource: API.OperationMethod<
+  GetPrivateLinkResourceRequest,
+  GetPrivateLinkResourceResponse,
+  GetPrivateLinkResourceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPrivateLinkResourceRequest,
+  output: GetPrivateLinkResourceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetScriptActionExecutionAsyncOperationStatusError = AzureOpError;
+/** Gets the async operation status of execution operation. */
+export const GetScriptActionExecutionAsyncOperationStatus: API.OperationMethod<
+  GetScriptActionExecutionAsyncOperationStatusRequest,
+  GetScriptActionExecutionAsyncOperationStatusResponse,
+  GetScriptActionExecutionAsyncOperationStatusError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetScriptActionExecutionAsyncOperationStatusRequest,
+  output: GetScriptActionExecutionAsyncOperationStatusResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetScriptActionExecutionDetailError = AzureOpError;
+/** Gets the script execution detail for the given script execution ID. */
+export const GetScriptActionExecutionDetail: API.OperationMethod<
+  GetScriptActionExecutionDetailRequest,
+  GetScriptActionExecutionDetailResponse,
+  GetScriptActionExecutionDetailError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetScriptActionExecutionDetailRequest,
+  output: GetScriptActionExecutionDetailResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetVirtualMachineAsyncOperationStatusError = AzureOpError;
+/** Gets the async operation status. */
+export const GetVirtualMachineAsyncOperationStatus: API.OperationMethod<
+  GetVirtualMachineAsyncOperationStatusRequest,
+  GetVirtualMachineAsyncOperationStatusResponse,
+  GetVirtualMachineAsyncOperationStatusError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetVirtualMachineAsyncOperationStatusRequest,
+  output: GetVirtualMachineAsyncOperationStatusResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListApplicationByClusterError = AzureOpError;
+/** Lists all of the applications for the HDInsight cluster. */
+export const ListApplicationByCluster: API.OperationMethod<
+  ListApplicationByClusterRequest,
+  ApplicationListResult,
+  ListApplicationByClusterError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListApplicationByClusterRequest,
+  output: ApplicationListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListClusterByResourceGroupError = AzureOpError;
+/** Lists the HDInsight clusters in a resource group. */
+export const ListClusterByResourceGroup: API.OperationMethod<
+  ListClusterByResourceGroupRequest,
+  ClusterListResult,
+  ListClusterByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListClusterByResourceGroupRequest,
+  output: ClusterListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListClustersError = AzureOpError;
+/** Lists all the HDInsight clusters under the subscription. */
+export const ListClusters: API.OperationMethod<
+  ListClustersRequest,
+  ClusterListResult,
+  ListClustersError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListClustersRequest,
+  output: ClusterListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListConfigurationsError = AzureOpError;
+/** Gets all configuration information for an HDI cluster. */
+export const ListConfigurations: API.OperationMethod<
+  ListConfigurationsRequest,
+  ClusterConfigurations,
+  ListConfigurationsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListConfigurationsRequest,
+  output: ClusterConfigurations,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListLocationBillingSpecsError = AzureOpError;
+/** Lists the billingSpecs for the specified subscription and location. */
+export const ListLocationBillingSpecs: API.OperationMethod<
+  ListLocationBillingSpecsRequest,
+  BillingResponseListResult,
+  ListLocationBillingSpecsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListLocationBillingSpecsRequest,
   output: BillingResponseListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type LocationsListUsagesError = AzureOpError;
+export type ListLocationUsagesError = AzureOpError;
 /** Lists the usages for the specified location. */
-export const LocationsListUsages: API.OperationMethod<
-  LocationsListUsagesRequest,
+export const ListLocationUsages: API.OperationMethod<
+  ListLocationUsagesRequest,
   UsagesListResult,
-  LocationsListUsagesError,
+  ListLocationUsagesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: LocationsListUsagesRequest,
+  input: ListLocationUsagesRequest,
   output: UsagesListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListOperationsError = AzureOpError;
+/** Lists all of the available HDInsight REST API operations. */
+export const ListOperations: API.OperationMethod<
+  ListOperationsRequest,
+  OperationListResult,
+  ListOperationsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListOperationsRequest,
+  output: OperationListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListPrivateEndpointConnectionByClusterError = AzureOpError;
+/** Lists the private endpoint connections for a HDInsight cluster. */
+export const ListPrivateEndpointConnectionByCluster: API.OperationMethod<
+  ListPrivateEndpointConnectionByClusterRequest,
+  PrivateEndpointConnectionListResult,
+  ListPrivateEndpointConnectionByClusterError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListPrivateEndpointConnectionByClusterRequest,
+  output: PrivateEndpointConnectionListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListPrivateLinkResourceByClusterError = AzureOpError;
+/** Lists the private link resources in a HDInsight cluster. */
+export const ListPrivateLinkResourceByCluster: API.OperationMethod<
+  ListPrivateLinkResourceByClusterRequest,
+  PrivateLinkResourceListResult,
+  ListPrivateLinkResourceByClusterError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListPrivateLinkResourceByClusterRequest,
+  output: PrivateLinkResourceListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListScriptActionByClusterError = AzureOpError;
+/** Lists all the persisted script actions for the specified cluster. */
+export const ListScriptActionByCluster: API.OperationMethod<
+  ListScriptActionByClusterRequest,
+  ScriptActionsList,
+  ListScriptActionByClusterError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListScriptActionByClusterRequest,
+  output: ScriptActionsList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListScriptExecutionHistoryByClusterError = AzureOpError;
+/** Lists all scripts' execution history for the specified cluster. */
+export const ListScriptExecutionHistoryByCluster: API.OperationMethod<
+  ListScriptExecutionHistoryByClusterRequest,
+  ScriptActionExecutionHistoryList,
+  ListScriptExecutionHistoryByClusterError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListScriptExecutionHistoryByClusterRequest,
+  output: ScriptActionExecutionHistoryList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListVirtualMachineHostsError = AzureOpError;
+/** Lists the HDInsight clusters hosts */
+export const ListVirtualMachineHosts: API.OperationMethod<
+  ListVirtualMachineHostsRequest,
+  ListVirtualMachineHostsResponse,
+  ListVirtualMachineHostsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListVirtualMachineHostsRequest,
+  output: ListVirtualMachineHostsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -6801,21 +6893,6 @@ export const LocationsValidateClusterCreateRequest: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type OperationsListError = AzureOpError;
-/** Lists all of the available HDInsight REST API operations. */
-export const OperationsList: API.OperationMethod<
-  OperationsListRequest,
-  OperationListResult,
-  OperationsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: OperationsListRequest,
-  output: OperationListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type PrivateEndpointConnectionsCreateOrUpdateError = AzureOpError;
 /** Approve or reject a private endpoint connection manually. */
 export const PrivateEndpointConnectionsCreateOrUpdate: API.OperationMethod<
@@ -6831,211 +6908,121 @@ export const PrivateEndpointConnectionsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type PrivateEndpointConnectionsDeleteError = AzureOpError;
-/** Deletes the specific private endpoint connection. */
-export const PrivateEndpointConnectionsDelete: API.OperationMethod<
-  PrivateEndpointConnectionsDeleteRequest,
-  PrivateEndpointConnectionsDeleteResponse,
-  PrivateEndpointConnectionsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateEndpointConnectionsDeleteRequest,
-  output: PrivateEndpointConnectionsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateEndpointConnectionsGetError = AzureOpError;
-/** Gets the specific private endpoint connection. */
-export const PrivateEndpointConnectionsGet: API.OperationMethod<
-  PrivateEndpointConnectionsGetRequest,
-  PrivateEndpointConnectionsGetResponse,
-  PrivateEndpointConnectionsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateEndpointConnectionsGetRequest,
-  output: PrivateEndpointConnectionsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateEndpointConnectionsListByClusterError = AzureOpError;
-/** Lists the private endpoint connections for a HDInsight cluster. */
-export const PrivateEndpointConnectionsListByCluster: API.OperationMethod<
-  PrivateEndpointConnectionsListByClusterRequest,
-  PrivateEndpointConnectionListResult,
-  PrivateEndpointConnectionsListByClusterError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateEndpointConnectionsListByClusterRequest,
-  output: PrivateEndpointConnectionListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateLinkResourcesGetError = AzureOpError;
-/** Gets the specific private link resource. */
-export const PrivateLinkResourcesGet: API.OperationMethod<
-  PrivateLinkResourcesGetRequest,
-  PrivateLinkResourcesGetResponse,
-  PrivateLinkResourcesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateLinkResourcesGetRequest,
-  output: PrivateLinkResourcesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateLinkResourcesListByClusterError = AzureOpError;
-/** Lists the private link resources in a HDInsight cluster. */
-export const PrivateLinkResourcesListByCluster: API.OperationMethod<
-  PrivateLinkResourcesListByClusterRequest,
-  PrivateLinkResourceListResult,
-  PrivateLinkResourcesListByClusterError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateLinkResourcesListByClusterRequest,
-  output: PrivateLinkResourceListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ScriptActionsDeleteError = AzureOpError;
-/** Deletes a specified persisted script action of the cluster. */
-export const ScriptActionsDelete: API.OperationMethod<
-  ScriptActionsDeleteRequest,
-  ScriptActionsDeleteResponse,
-  ScriptActionsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ScriptActionsDeleteRequest,
-  output: ScriptActionsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ScriptActionsGetExecutionAsyncOperationStatusError = AzureOpError;
-/** Gets the async operation status of execution operation. */
-export const ScriptActionsGetExecutionAsyncOperationStatus: API.OperationMethod<
-  ScriptActionsGetExecutionAsyncOperationStatusRequest,
-  ScriptActionsGetExecutionAsyncOperationStatusResponse,
-  ScriptActionsGetExecutionAsyncOperationStatusError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ScriptActionsGetExecutionAsyncOperationStatusRequest,
-  output: ScriptActionsGetExecutionAsyncOperationStatusResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ScriptActionsGetExecutionDetailError = AzureOpError;
-/** Gets the script execution detail for the given script execution ID. */
-export const ScriptActionsGetExecutionDetail: API.OperationMethod<
-  ScriptActionsGetExecutionDetailRequest,
-  ScriptActionsGetExecutionDetailResponse,
-  ScriptActionsGetExecutionDetailError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ScriptActionsGetExecutionDetailRequest,
-  output: ScriptActionsGetExecutionDetailResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ScriptActionsListByClusterError = AzureOpError;
-/** Lists all the persisted script actions for the specified cluster. */
-export const ScriptActionsListByCluster: API.OperationMethod<
-  ScriptActionsListByClusterRequest,
-  ScriptActionsList,
-  ScriptActionsListByClusterError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ScriptActionsListByClusterRequest,
-  output: ScriptActionsList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ScriptExecutionHistoryListByClusterError = AzureOpError;
-/** Lists all scripts' execution history for the specified cluster. */
-export const ScriptExecutionHistoryListByCluster: API.OperationMethod<
-  ScriptExecutionHistoryListByClusterRequest,
-  ScriptActionExecutionHistoryList,
-  ScriptExecutionHistoryListByClusterError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ScriptExecutionHistoryListByClusterRequest,
-  output: ScriptActionExecutionHistoryList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ScriptExecutionHistoryPromoteError = AzureOpError;
+export type PromoteScriptExecutionHistoryError = AzureOpError;
 /** Promotes the specified ad-hoc script execution to a persisted script. */
-export const ScriptExecutionHistoryPromote: API.OperationMethod<
-  ScriptExecutionHistoryPromoteRequest,
-  ScriptExecutionHistoryPromoteResponse,
-  ScriptExecutionHistoryPromoteError,
+export const PromoteScriptExecutionHistory: API.OperationMethod<
+  PromoteScriptExecutionHistoryRequest,
+  PromoteScriptExecutionHistoryResponse,
+  PromoteScriptExecutionHistoryError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ScriptExecutionHistoryPromoteRequest,
-  output: ScriptExecutionHistoryPromoteResponse,
+  input: PromoteScriptExecutionHistoryRequest,
+  output: PromoteScriptExecutionHistoryResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type VirtualMachinesGetAsyncOperationStatusError = AzureOpError;
-/** Gets the async operation status. */
-export const VirtualMachinesGetAsyncOperationStatus: API.OperationMethod<
-  VirtualMachinesGetAsyncOperationStatusRequest,
-  VirtualMachinesGetAsyncOperationStatusResponse,
-  VirtualMachinesGetAsyncOperationStatusError,
+export type ResizeClusterError = AzureOpError;
+/** Resizes the specified HDInsight cluster to the specified size. */
+export const ResizeCluster: API.OperationMethod<
+  ResizeClusterRequest,
+  ResizeClusterResponse,
+  ResizeClusterError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachinesGetAsyncOperationStatusRequest,
-  output: VirtualMachinesGetAsyncOperationStatusResponse,
+  input: ResizeClusterRequest,
+  output: ResizeClusterResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type VirtualMachinesListHostsError = AzureOpError;
-/** Lists the HDInsight clusters hosts */
-export const VirtualMachinesListHosts: API.OperationMethod<
-  VirtualMachinesListHostsRequest,
-  VirtualMachinesListHostsResponse,
-  VirtualMachinesListHostsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachinesListHostsRequest,
-  output: VirtualMachinesListHostsResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualMachinesRestartHostsError = AzureOpError;
+export type RestartVirtualMachineHostsError = AzureOpError;
 /** Restarts the specified HDInsight cluster hosts. */
-export const VirtualMachinesRestartHosts: API.OperationMethod<
-  VirtualMachinesRestartHostsRequest,
-  VirtualMachinesRestartHostsResponse,
-  VirtualMachinesRestartHostsError,
+export const RestartVirtualMachineHosts: API.OperationMethod<
+  RestartVirtualMachineHostsRequest,
+  RestartVirtualMachineHostsResponse,
+  RestartVirtualMachineHostsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachinesRestartHostsRequest,
-  output: VirtualMachinesRestartHostsResponse,
+  input: RestartVirtualMachineHostsRequest,
+  output: RestartVirtualMachineHostsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RotateClusterDiskEncryptionKeyError = AzureOpError;
+/** Rotate disk encryption key of the specified HDInsight cluster. */
+export const RotateClusterDiskEncryptionKey: API.OperationMethod<
+  RotateClusterDiskEncryptionKeyRequest,
+  RotateClusterDiskEncryptionKeyResponse,
+  RotateClusterDiskEncryptionKeyError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RotateClusterDiskEncryptionKeyRequest,
+  output: RotateClusterDiskEncryptionKeyResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateClusterError = AzureOpError;
+/** Patch HDInsight cluster with the specified parameters. */
+export const UpdateCluster: API.OperationMethod<
+  UpdateClusterRequest,
+  UpdateClusterResponse,
+  UpdateClusterError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateClusterRequest,
+  output: UpdateClusterResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateClusterAutoScaleConfigurationError = AzureOpError;
+/** Updates the Autoscale Configuration for HDInsight cluster. */
+export const UpdateClusterAutoScaleConfiguration: API.OperationMethod<
+  UpdateClusterAutoScaleConfigurationRequest,
+  UpdateClusterAutoScaleConfigurationResponse,
+  UpdateClusterAutoScaleConfigurationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateClusterAutoScaleConfigurationRequest,
+  output: UpdateClusterAutoScaleConfigurationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateClusterGatewaySettingsError = AzureOpError;
+/** Configures the gateway settings on the specified cluster. */
+export const UpdateClusterGatewaySettings: API.OperationMethod<
+  UpdateClusterGatewaySettingsRequest,
+  UpdateClusterGatewaySettingsResponse,
+  UpdateClusterGatewaySettingsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateClusterGatewaySettingsRequest,
+  output: UpdateClusterGatewaySettingsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateClusterIdentityCertificateError = AzureOpError;
+/** Updates the cluster identity certificate. */
+export const UpdateClusterIdentityCertificate: API.OperationMethod<
+  UpdateClusterIdentityCertificateRequest,
+  UpdateClusterIdentityCertificateResponse,
+  UpdateClusterIdentityCertificateError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateClusterIdentityCertificateRequest,
+  output: UpdateClusterIdentityCertificateResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

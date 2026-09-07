@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.stamphog#StamphogDigestRunsListRequest": {
+    "com.posthog.stamphog#ListStamphogDigestRunsRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -232,10 +233,10 @@
       },
       "traits": {}
     },
-    "com.posthog.stamphog#StamphogDigestRunsList": {
+    "com.posthog.stamphog#ListStamphogDigestRuns": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.stamphog#StamphogDigestRunsListRequest"
+        "target": "com.posthog.stamphog#ListStamphogDigestRunsRequest"
       },
       "output": {
         "target": "com.posthog.stamphog#PaginatedDigestRunList"
@@ -249,7 +250,7 @@
         "smithy.api#documentation": "Read-only history of posted (or attempted) digests, filterable by Slack channel."
       }
     },
-    "com.posthog.stamphog#StamphogDigestRunsRetrieveRequest": {
+    "com.posthog.stamphog#GetStamphogDigestRunRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -272,10 +273,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.stamphog#StamphogDigestRunsRetrieve": {
+    "com.posthog.stamphog#GetStamphogDigestRun": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.stamphog#StamphogDigestRunsRetrieveRequest"
+        "target": "com.posthog.stamphog#GetStamphogDigestRunRequest"
       },
       "output": {
         "target": "com.posthog.stamphog#DigestRun"
@@ -289,7 +290,7 @@
         "smithy.api#documentation": "Read-only history of posted (or attempted) digests, filterable by Slack channel."
       }
     },
-    "com.posthog.stamphog#StamphogPullRequestsListRequest": {
+    "com.posthog.stamphog#ListStamphogPullRequestsRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -481,10 +482,10 @@
       },
       "traits": {}
     },
-    "com.posthog.stamphog#StamphogPullRequestsList": {
+    "com.posthog.stamphog#ListStamphogPullRequests": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.stamphog#StamphogPullRequestsListRequest"
+        "target": "com.posthog.stamphog#ListStamphogPullRequestsRequest"
       },
       "output": {
         "target": "com.posthog.stamphog#PaginatedStamphogPullRequestList"
@@ -498,7 +499,7 @@
         "smithy.api#documentation": "Read-only pull requests stamphog knows about, filterable by PR number and merge state."
       }
     },
-    "com.posthog.stamphog#StamphogPullRequestsRetrieveRequest": {
+    "com.posthog.stamphog#GetStamphogPullRequestRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -521,10 +522,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.stamphog#StamphogPullRequestsRetrieve": {
+    "com.posthog.stamphog#GetStamphogPullRequest": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.stamphog#StamphogPullRequestsRetrieveRequest"
+        "target": "com.posthog.stamphog#GetStamphogPullRequestRequest"
       },
       "output": {
         "target": "com.posthog.stamphog#StamphogPullRequest"
@@ -538,7 +539,7 @@
         "smithy.api#documentation": "Read-only pull requests stamphog knows about, filterable by PR number and merge state."
       }
     },
-    "com.posthog.stamphog#StamphogRepoConfigsListRequest": {
+    "com.posthog.stamphog#ListStamphogRepoConfigsRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -653,6 +654,14 @@
             "smithy.api#documentation": "Pull request label that triggers a review when review_mode is 'label'. Defaults to 'stamphog'."
           }
         },
+        "user_access_level": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The caller's access level on the stamphog resource, resolved for the team that owns this row. 'manager' is required to change enabled, review_mode, or trigger_label.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
         "created_at": {
           "target": "smithy.api#String",
           "traits": {
@@ -695,10 +704,10 @@
       },
       "traits": {}
     },
-    "com.posthog.stamphog#StamphogRepoConfigsList": {
+    "com.posthog.stamphog#ListStamphogRepoConfigs": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.stamphog#StamphogRepoConfigsListRequest"
+        "target": "com.posthog.stamphog#ListStamphogRepoConfigsRequest"
       },
       "output": {
         "target": "com.posthog.stamphog#PaginatedStamphogRepoConfigList"
@@ -712,7 +721,7 @@
         "smithy.api#documentation": "Per-repo stamphog settings — enable/disable review, GitHub App installation, policy overrides."
       }
     },
-    "com.posthog.stamphog#StamphogRepoConfigsCreateRequest": {
+    "com.posthog.stamphog#CreateStamphogRepoConfigRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -765,10 +774,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.stamphog#StamphogRepoConfigsCreate": {
+    "com.posthog.stamphog#CreateStamphogRepoConfig": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.stamphog#StamphogRepoConfigsCreateRequest"
+        "target": "com.posthog.stamphog#CreateStamphogRepoConfigRequest"
       },
       "output": {
         "target": "com.posthog.stamphog#StamphogRepoConfig"
@@ -782,7 +791,7 @@
         "smithy.api#documentation": "Per-repo stamphog settings — enable/disable review, GitHub App installation, policy overrides."
       }
     },
-    "com.posthog.stamphog#StamphogRepoConfigsRetrieveRequest": {
+    "com.posthog.stamphog#GetStamphogRepoConfigRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -805,10 +814,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.stamphog#StamphogRepoConfigsRetrieve": {
+    "com.posthog.stamphog#GetStamphogRepoConfig": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.stamphog#StamphogRepoConfigsRetrieveRequest"
+        "target": "com.posthog.stamphog#GetStamphogRepoConfigRequest"
       },
       "output": {
         "target": "com.posthog.stamphog#StamphogRepoConfig"
@@ -822,7 +831,7 @@
         "smithy.api#documentation": "Per-repo stamphog settings — enable/disable review, GitHub App installation, policy overrides."
       }
     },
-    "com.posthog.stamphog#StamphogRepoConfigsUpdateRequest": {
+    "com.posthog.stamphog#UpdateStamphogRepoConfigRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -882,10 +891,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.stamphog#StamphogRepoConfigsUpdate": {
+    "com.posthog.stamphog#UpdateStamphogRepoConfig": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.stamphog#StamphogRepoConfigsUpdateRequest"
+        "target": "com.posthog.stamphog#UpdateStamphogRepoConfigRequest"
       },
       "output": {
         "target": "com.posthog.stamphog#StamphogRepoConfig"
@@ -899,7 +908,7 @@
         "smithy.api#documentation": "Per-repo stamphog settings — enable/disable review, GitHub App installation, policy overrides."
       }
     },
-    "com.posthog.stamphog#StamphogRepoConfigsPartialUpdateRequest": {
+    "com.posthog.stamphog#UpdateStamphogRepoConfigsPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -958,10 +967,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.stamphog#StamphogRepoConfigsPartialUpdate": {
+    "com.posthog.stamphog#UpdateStamphogRepoConfigsPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.stamphog#StamphogRepoConfigsPartialUpdateRequest"
+        "target": "com.posthog.stamphog#UpdateStamphogRepoConfigsPartialRequest"
       },
       "output": {
         "target": "com.posthog.stamphog#StamphogRepoConfig"
@@ -1077,7 +1086,7 @@
         "smithy.api#documentation": "Per-repo stamphog settings — enable/disable review, GitHub App installation, policy overrides."
       }
     },
-    "com.posthog.stamphog#StamphogRepoConfigsSyncInstallationCreateRequest": {
+    "com.posthog.stamphog#CreateStamphogRepoConfigsSyncInstallationRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1198,10 +1207,10 @@
         "smithy.api#documentation": "Populated only on the discovery path when the caller can reach MORE than one installation of this App: nothing was bound, and the user must pick which installation to connect. The frontend re-runs the authorize flow and calls back with the chosen installation_id, which the explicit path verifies. Empty whenever a bind happened (or nothing was found)."
       }
     },
-    "com.posthog.stamphog#StamphogRepoConfigsSyncInstallationCreate": {
+    "com.posthog.stamphog#CreateStamphogRepoConfigsSyncInstallation": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.stamphog#StamphogRepoConfigsSyncInstallationCreateRequest"
+        "target": "com.posthog.stamphog#CreateStamphogRepoConfigsSyncInstallationRequest"
       },
       "output": {
         "target": "com.posthog.stamphog#StamphogSyncInstallationResponse"
@@ -1215,7 +1224,7 @@
         "smithy.api#documentation": "Per-repo stamphog settings — enable/disable review, GitHub App installation, policy overrides."
       }
     },
-    "com.posthog.stamphog#StamphogReviewRunsListRequestTrigger": {
+    "com.posthog.stamphog#ListStamphogReviewRunsRequestTrigger": {
       "type": "enum",
       "members": {
         "ALL": {
@@ -1239,7 +1248,7 @@
       },
       "traits": {}
     },
-    "com.posthog.stamphog#StamphogReviewRunsListRequest": {
+    "com.posthog.stamphog#ListStamphogReviewRunsRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1286,7 +1295,7 @@
           }
         },
         "trigger": {
-          "target": "com.posthog.stamphog#StamphogReviewRunsListRequestTrigger",
+          "target": "com.posthog.stamphog#ListStamphogReviewRunsRequestTrigger",
           "traits": {
             "smithy.api#httpQuery": "trigger",
             "smithy.api#documentation": "Filter by what caused the run: self_driving, label, or all."
@@ -1656,10 +1665,10 @@
       },
       "traits": {}
     },
-    "com.posthog.stamphog#StamphogReviewRunsList": {
+    "com.posthog.stamphog#ListStamphogReviewRuns": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.stamphog#StamphogReviewRunsListRequest"
+        "target": "com.posthog.stamphog#ListStamphogReviewRunsRequest"
       },
       "output": {
         "target": "com.posthog.stamphog#PaginatedReviewRunList"
@@ -1673,7 +1682,7 @@
         "smithy.api#documentation": "Read-only history of stamphog review runs, filterable by repository, PR number, and status."
       }
     },
-    "com.posthog.stamphog#StamphogReviewRunsRetrieveRequest": {
+    "com.posthog.stamphog#GetStamphogReviewRunRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1696,10 +1705,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.stamphog#StamphogReviewRunsRetrieve": {
+    "com.posthog.stamphog#GetStamphogReviewRun": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.stamphog#StamphogReviewRunsRetrieveRequest"
+        "target": "com.posthog.stamphog#GetStamphogReviewRunRequest"
       },
       "output": {
         "target": "com.posthog.stamphog#ReviewRun"
@@ -1718,31 +1727,31 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.stamphog#StamphogDigestRunsList"
+          "target": "com.posthog.stamphog#ListStamphogDigestRuns"
         },
         {
-          "target": "com.posthog.stamphog#StamphogDigestRunsRetrieve"
+          "target": "com.posthog.stamphog#GetStamphogDigestRun"
         },
         {
-          "target": "com.posthog.stamphog#StamphogPullRequestsList"
+          "target": "com.posthog.stamphog#ListStamphogPullRequests"
         },
         {
-          "target": "com.posthog.stamphog#StamphogPullRequestsRetrieve"
+          "target": "com.posthog.stamphog#GetStamphogPullRequest"
         },
         {
-          "target": "com.posthog.stamphog#StamphogRepoConfigsList"
+          "target": "com.posthog.stamphog#ListStamphogRepoConfigs"
         },
         {
-          "target": "com.posthog.stamphog#StamphogRepoConfigsCreate"
+          "target": "com.posthog.stamphog#CreateStamphogRepoConfig"
         },
         {
-          "target": "com.posthog.stamphog#StamphogRepoConfigsRetrieve"
+          "target": "com.posthog.stamphog#GetStamphogRepoConfig"
         },
         {
-          "target": "com.posthog.stamphog#StamphogRepoConfigsUpdate"
+          "target": "com.posthog.stamphog#UpdateStamphogRepoConfig"
         },
         {
-          "target": "com.posthog.stamphog#StamphogRepoConfigsPartialUpdate"
+          "target": "com.posthog.stamphog#UpdateStamphogRepoConfigsPartial"
         },
         {
           "target": "com.posthog.stamphog#StamphogRepoConfigsDestroy"
@@ -1751,13 +1760,13 @@
           "target": "com.posthog.stamphog#StamphogRepoConfigsInstallInfoRetrieve"
         },
         {
-          "target": "com.posthog.stamphog#StamphogRepoConfigsSyncInstallationCreate"
+          "target": "com.posthog.stamphog#CreateStamphogRepoConfigsSyncInstallation"
         },
         {
-          "target": "com.posthog.stamphog#StamphogReviewRunsList"
+          "target": "com.posthog.stamphog#ListStamphogReviewRuns"
         },
         {
-          "target": "com.posthog.stamphog#StamphogReviewRunsRetrieve"
+          "target": "com.posthog.stamphog#GetStamphogReviewRun"
         }
       ],
       "traits": {

@@ -14,7 +14,23 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "keyDictionary": {
+      "actionParameters": "action_parameters",
+      "botScore": "bot_score",
+      "isEuCountry": "is_eu_country",
+      "isoCode": "iso_code",
+      "plainText": "plain_text",
+      "postalCode": "postal_code",
+      "regionCode": "region_code",
+      "skipChallenge": "skip_challenge",
+      "skipResponse": "skip_response",
+      "statusCode": "status_code",
+      "stepName": "step_name",
+      "subdivision_2IsoCode": "subdivision_2_iso_code",
+      "threatScore": "threat_score"
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.request_tracers#TracesCreateRequestBody": {
@@ -122,7 +138,38 @@
         "target": "smithy.api#String"
       }
     },
-    "com.cloudflare.request_tracers#TracesCreateRequest": {
+    "com.cloudflare.request_tracers#RequestTracers": {
+      "type": "service",
+      "version": "4.0",
+      "operations": [
+        {
+          "target": "com.cloudflare.request_tracers#CreateTrace"
+        }
+      ],
+      "traits": {
+        "com.cloudflare.protocols#v4Json": {},
+        "smithy.api#title": "Cloudflare RequestTracers",
+        "smithy.api#documentation": "Cloudflare API — request_tracers resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+      }
+    },
+    "com.cloudflare.request_tracers#CreateTrace": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.request_tracers#CreateTraceRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.request_tracers#CreateTraceResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/request-tracer/trace",
+          "code": 200
+        },
+        "smithy.api#documentation": "Request Trace"
+      }
+    },
+    "com.cloudflare.request_tracers#CreateTraceRequest": {
       "type": "structure",
       "members": {
         "account_id": {
@@ -185,7 +232,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.request_tracers#TracesCreateResponse": {
+    "com.cloudflare.request_tracers#CreateTraceResponse": {
       "type": "structure",
       "members": {
         "status_code": {
@@ -201,37 +248,6 @@
       "traits": {
         "smithy.api#output": {},
         "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.request_tracers#TracesCreate": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.request_tracers#TracesCreateRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.request_tracers#TracesCreateResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "/accounts/{account_id}/request-tracer/trace",
-          "code": 200
-        },
-        "smithy.api#documentation": "Request Trace"
-      }
-    },
-    "com.cloudflare.request_tracers#RequestTracers": {
-      "type": "service",
-      "version": "4.0",
-      "operations": [
-        {
-          "target": "com.cloudflare.request_tracers#TracesCreate"
-        }
-      ],
-      "traits": {
-        "com.cloudflare.protocols#v4Json": {},
-        "smithy.api#title": "Cloudflare RequestTracers",
-        "smithy.api#documentation": "Cloudflare API — request_tracers resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
       }
     }
   }

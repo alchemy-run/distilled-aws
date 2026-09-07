@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.account_relationship_definitions#AccountRelationshipDefinitionsListRequest": {
+    "com.posthog.account_relationship_definitions#ListAccountRelationshipDefinitionsRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -119,10 +120,10 @@
       },
       "traits": {}
     },
-    "com.posthog.account_relationship_definitions#AccountRelationshipDefinitionsList": {
+    "com.posthog.account_relationship_definitions#ListAccountRelationshipDefinitions": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.account_relationship_definitions#AccountRelationshipDefinitionsListRequest"
+        "target": "com.posthog.account_relationship_definitions#ListAccountRelationshipDefinitionsRequest"
       },
       "output": {
         "target": "com.posthog.account_relationship_definitions#PaginatedAccountRelationshipDefinitionList"
@@ -135,7 +136,7 @@
         }
       }
     },
-    "com.posthog.account_relationship_definitions#AccountRelationshipDefinitionsCreateRequest": {
+    "com.posthog.account_relationship_definitions#CreateAccountRelationshipDefinitionRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -171,10 +172,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.account_relationship_definitions#AccountRelationshipDefinitionsCreate": {
+    "com.posthog.account_relationship_definitions#CreateAccountRelationshipDefinition": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.account_relationship_definitions#AccountRelationshipDefinitionsCreateRequest"
+        "target": "com.posthog.account_relationship_definitions#CreateAccountRelationshipDefinitionRequest"
       },
       "output": {
         "target": "com.posthog.account_relationship_definitions#AccountRelationshipDefinition"
@@ -187,7 +188,7 @@
         }
       }
     },
-    "com.posthog.account_relationship_definitions#AccountRelationshipDefinitionsRetrieveRequest": {
+    "com.posthog.account_relationship_definitions#GetAccountRelationshipDefinitionRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -210,10 +211,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.account_relationship_definitions#AccountRelationshipDefinitionsRetrieve": {
+    "com.posthog.account_relationship_definitions#GetAccountRelationshipDefinition": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.account_relationship_definitions#AccountRelationshipDefinitionsRetrieveRequest"
+        "target": "com.posthog.account_relationship_definitions#GetAccountRelationshipDefinitionRequest"
       },
       "output": {
         "target": "com.posthog.account_relationship_definitions#AccountRelationshipDefinition"
@@ -226,7 +227,7 @@
         }
       }
     },
-    "com.posthog.account_relationship_definitions#AccountRelationshipDefinitionsUpdateRequest": {
+    "com.posthog.account_relationship_definitions#UpdateAccountRelationshipDefinitionRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -269,10 +270,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.account_relationship_definitions#AccountRelationshipDefinitionsUpdate": {
+    "com.posthog.account_relationship_definitions#UpdateAccountRelationshipDefinition": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.account_relationship_definitions#AccountRelationshipDefinitionsUpdateRequest"
+        "target": "com.posthog.account_relationship_definitions#UpdateAccountRelationshipDefinitionRequest"
       },
       "output": {
         "target": "com.posthog.account_relationship_definitions#AccountRelationshipDefinition"
@@ -285,7 +286,7 @@
         }
       }
     },
-    "com.posthog.account_relationship_definitions#AccountRelationshipDefinitionsPartialUpdateRequest": {
+    "com.posthog.account_relationship_definitions#UpdateAccountRelationshipDefinitionsPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -327,10 +328,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.account_relationship_definitions#AccountRelationshipDefinitionsPartialUpdate": {
+    "com.posthog.account_relationship_definitions#UpdateAccountRelationshipDefinitionsPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.account_relationship_definitions#AccountRelationshipDefinitionsPartialUpdateRequest"
+        "target": "com.posthog.account_relationship_definitions#UpdateAccountRelationshipDefinitionsPartialRequest"
       },
       "output": {
         "target": "com.posthog.account_relationship_definitions#AccountRelationshipDefinition"
@@ -387,19 +388,19 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.account_relationship_definitions#AccountRelationshipDefinitionsList"
+          "target": "com.posthog.account_relationship_definitions#ListAccountRelationshipDefinitions"
         },
         {
-          "target": "com.posthog.account_relationship_definitions#AccountRelationshipDefinitionsCreate"
+          "target": "com.posthog.account_relationship_definitions#CreateAccountRelationshipDefinition"
         },
         {
-          "target": "com.posthog.account_relationship_definitions#AccountRelationshipDefinitionsRetrieve"
+          "target": "com.posthog.account_relationship_definitions#GetAccountRelationshipDefinition"
         },
         {
-          "target": "com.posthog.account_relationship_definitions#AccountRelationshipDefinitionsUpdate"
+          "target": "com.posthog.account_relationship_definitions#UpdateAccountRelationshipDefinition"
         },
         {
-          "target": "com.posthog.account_relationship_definitions#AccountRelationshipDefinitionsPartialUpdate"
+          "target": "com.posthog.account_relationship_definitions#UpdateAccountRelationshipDefinitionsPartial"
         },
         {
           "target": "com.posthog.account_relationship_definitions#AccountRelationshipDefinitionsDestroy"

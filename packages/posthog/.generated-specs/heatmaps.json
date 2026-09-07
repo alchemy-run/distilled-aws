@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.heatmaps#HeatmapsListRequestAggregation": {
+    "com.posthog.heatmaps#ListHeatmapsRequestAggregation": {
       "type": "enum",
       "members": {
         "UNIQUE_VISITORS": {
@@ -35,7 +36,7 @@
       },
       "traits": {}
     },
-    "com.posthog.heatmaps#HeatmapsListRequest": {
+    "com.posthog.heatmaps#ListHeatmapsRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -47,7 +48,7 @@
           }
         },
         "aggregation": {
-          "target": "com.posthog.heatmaps#HeatmapsListRequestAggregation",
+          "target": "com.posthog.heatmaps#ListHeatmapsRequestAggregation",
           "traits": {
             "smithy.api#httpQuery": "aggregation",
             "smithy.api#documentation": "How to aggregate counts: 'total_count' (every interaction, default) or 'unique_visitors' (distinct people).\n\n* `unique_visitors` - unique_visitors\n* `total_count` - total_count"
@@ -72,6 +73,13 @@
           "traits": {
             "smithy.api#httpQuery": "date_to",
             "smithy.api#documentation": "End of the window, inclusive. Relative or absolute 'YYYY-MM-DD'. Defaults to today."
+          }
+        },
+        "events": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "events",
+            "smithy.api#documentation": "JSON array of event filters (e.g. '[{\"id\": \"purchase\", \"properties\": []}]') to restrict results to sessions in which those events occurred. Each entry needs a string 'id' (the event name) and may carry a 'properties' array of property filters applied to that event, each of type 'event' or 'element'. Several entries are combined with AND: the session must contain a matching event for every entry. At most 10 entries, each with at most 20 property filters. Requires project-wide heatmap access, since the filter reads the project's events rather than one saved heatmap. Feature-flagged; ignored when the event filter is not enabled for the caller."
           }
         },
         "filter_test_accounts": {
@@ -224,18 +232,18 @@
       },
       "traits": {}
     },
-    "com.posthog.heatmaps#HeatmapsListResponseBodyList": {
+    "com.posthog.heatmaps#ListHeatmapsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.posthog.heatmaps#HeatmapsResponse"
       },
       "traits": {}
     },
-    "com.posthog.heatmaps#HeatmapsListResponse": {
+    "com.posthog.heatmaps#ListHeatmapsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.posthog.heatmaps#HeatmapsListResponseBodyList",
+          "target": "com.posthog.heatmaps#ListHeatmapsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -246,13 +254,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.posthog.heatmaps#HeatmapsList": {
+    "com.posthog.heatmaps#ListHeatmaps": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.heatmaps#HeatmapsListRequest"
+        "target": "com.posthog.heatmaps#ListHeatmapsRequest"
       },
       "output": {
-        "target": "com.posthog.heatmaps#HeatmapsListResponse"
+        "target": "com.posthog.heatmaps#ListHeatmapsResponse"
       },
       "errors": [
         {
@@ -274,7 +282,7 @@
         "smithy.api#documentation": "Aggregated heatmap interactions for a page. For type 'click'/'rageclick'/'mousemove' each result is a point with relative x, absolute client-y, and a count. For type 'scrolldepth' the response is scroll-depth buckets instead (cumulative reach down the page)."
       }
     },
-    "com.posthog.heatmaps#HeatmapsEventsRetrieveRequestAggregation": {
+    "com.posthog.heatmaps#GetHeatmapsEventRequestAggregation": {
       "type": "enum",
       "members": {
         "UNIQUE_VISITORS": {
@@ -292,7 +300,7 @@
       },
       "traits": {}
     },
-    "com.posthog.heatmaps#HeatmapsEventsRetrieveRequest": {
+    "com.posthog.heatmaps#GetHeatmapsEventRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -304,7 +312,7 @@
           }
         },
         "aggregation": {
-          "target": "com.posthog.heatmaps#HeatmapsEventsRetrieveRequestAggregation",
+          "target": "com.posthog.heatmaps#GetHeatmapsEventRequestAggregation",
           "traits": {
             "smithy.api#httpQuery": "aggregation",
             "smithy.api#documentation": "How to aggregate counts: 'total_count' (every interaction, default) or 'unique_visitors' (distinct people).\n\n* `unique_visitors` - unique_visitors\n* `total_count` - total_count"
@@ -329,6 +337,13 @@
           "traits": {
             "smithy.api#httpQuery": "date_to",
             "smithy.api#documentation": "End of the window, inclusive. Relative or absolute 'YYYY-MM-DD'. Defaults to today."
+          }
+        },
+        "events": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "events",
+            "smithy.api#documentation": "JSON array of event filters (e.g. '[{\"id\": \"purchase\", \"properties\": []}]') to restrict results to sessions in which those events occurred. Each entry needs a string 'id' (the event name) and may carry a 'properties' array of property filters applied to that event, each of type 'event' or 'element'. Several entries are combined with AND: the session must contain a matching event for every entry. At most 10 entries, each with at most 20 property filters. Requires project-wide heatmap access, since the filter reads the project's events rather than one saved heatmap. Feature-flagged; ignored when the event filter is not enabled for the caller."
           }
         },
         "filter_test_accounts": {
@@ -486,10 +501,10 @@
       },
       "traits": {}
     },
-    "com.posthog.heatmaps#HeatmapsEventsRetrieve": {
+    "com.posthog.heatmaps#GetHeatmapsEvent": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.heatmaps#HeatmapsEventsRetrieveRequest"
+        "target": "com.posthog.heatmaps#GetHeatmapsEventRequest"
       },
       "output": {
         "target": "com.posthog.heatmaps#HeatmapEventsResponse"
@@ -555,10 +570,10 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.heatmaps#HeatmapsList"
+          "target": "com.posthog.heatmaps#ListHeatmaps"
         },
         {
-          "target": "com.posthog.heatmaps#HeatmapsEventsRetrieve"
+          "target": "com.posthog.heatmaps#GetHeatmapsEvent"
         }
       ],
       "traits": {

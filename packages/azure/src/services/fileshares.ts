@@ -12,274 +12,7 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
-export interface FileShareGetLimitsRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the Azure region. */
-  location: string;
-}
-export const FileShareGetLimitsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    location: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.FileShares/locations/{location}/getLimits",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "FileShareGetLimitsRequest",
-}) as any as S.Schema<FileShareGetLimitsRequest>;
-
-/** File share-related limits in the specified subscription/location. */
-export interface FileShareLimits {
-  /** The maximum number of file shares that can be created. */
-  maxFileShares: number;
-  /** The maximum number of snapshots allowed per file share. */
-  maxFileShareSnapshots: number;
-  /** The maximum number of subnets that can be associated with a file share. */
-  maxFileShareSubnets: number;
-  /** The maximum number of private endpoint connections allowed for a file share. */
-  maxFileSharePrivateEndpointConnections: number;
-  /** The minimum provisioned storage in GiB for a file share. */
-  minProvisionedStorageGiB: number;
-  /** The maximum provisioned storage in GiB for a file share. */
-  maxProvisionedStorageGiB: number;
-  /** The minimum provisioned IOPS (Input/Output Operations Per Second) for a file share. */
-  minProvisionedIOPerSec: number;
-  /** The maximum provisioned IOPS (Input/Output Operations Per Second) for a file share. */
-  maxProvisionedIOPerSec: number;
-  /** The minimum provisioned throughput in MiB/s for a file share. */
-  minProvisionedThroughputMiBPerSec: number;
-  /** The maximum provisioned throughput in MiB/s for a file share. */
-  maxProvisionedThroughputMiBPerSec: number;
-}
-export const FileShareLimits = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    maxFileShares: S.Number,
-    maxFileShareSnapshots: S.Number,
-    maxFileShareSubnets: S.Number,
-    maxFileSharePrivateEndpointConnections: S.Number,
-    minProvisionedStorageGiB: S.Number,
-    maxProvisionedStorageGiB: S.Number,
-    minProvisionedIOPerSec: S.Number,
-    maxProvisionedIOPerSec: S.Number,
-    minProvisionedThroughputMiBPerSec: S.Number,
-    maxProvisionedThroughputMiBPerSec: S.Number,
-  }),
-).annotate({
-  identifier: "FileShareLimits",
-}) as any as S.Schema<FileShareLimits>;
-
-/** Constants used for calculating recommended values of file share provisioning properties. */
-export interface FileShareProvisioningConstants {
-  /** Base IO per second. */
-  baseIOPerSec: number;
-  /** Scalar IO per second. */
-  scalarIOPerSec: number;
-  /** Base throughput in MiB per second. */
-  baseThroughputMiBPerSec: number;
-  /** Scalar throughput in MiB per second. */
-  scalarThroughputMiBPerSec: number;
-  /** Guardrail scalar IO per second. */
-  guardrailIOPerSecScalar: number;
-  /** Guardrail scalar throughput in MiB per second. */
-  guardrailThroughputScalar: number;
-}
-export const FileShareProvisioningConstants = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    baseIOPerSec: S.Number,
-    scalarIOPerSec: S.Number,
-    baseThroughputMiBPerSec: S.Number,
-    scalarThroughputMiBPerSec: S.Number,
-    guardrailIOPerSecScalar: S.Number,
-    guardrailThroughputScalar: S.Number,
-  }),
-).annotate({
-  identifier: "FileShareProvisioningConstants",
-}) as any as S.Schema<FileShareProvisioningConstants>;
-
-/** File share limits API result. */
-export interface FileShareLimitsOutput {
-  /** The limits for the file share. */
-  limits: FileShareLimits;
-  /** The provisioning constants for the file share. */
-  provisioningConstants: FileShareProvisioningConstants;
-}
-export const FileShareLimitsOutput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    limits: FileShareLimits,
-    provisioningConstants: FileShareProvisioningConstants,
-  }),
-).annotate({
-  identifier: "FileShareLimitsOutput",
-}) as any as S.Schema<FileShareLimitsOutput>;
-
-/** Response structure for file share limits API. */
-export interface FileShareLimitsResponse {
-  /** The properties of the file share limits. */
-  properties: FileShareLimitsOutput;
-}
-export const FileShareLimitsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    properties: FileShareLimitsOutput,
-  }),
-).annotate({
-  identifier: "FileShareLimitsResponse",
-}) as any as S.Schema<FileShareLimitsResponse>;
-
-/** File share provisioning parameters recommendation API input structure. */
-export interface FileShareProvisioningRecommendationInput {
-  /** The desired provisioned storage size of the share in GiB. Will be use to calculate the values of remaining provisioning parameters. */
-  provisionedStorageGiB: number;
-}
-export const FileShareProvisioningRecommendationInput = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      provisionedStorageGiB: S.Number,
-    }),
-).annotate({
-  identifier: "FileShareProvisioningRecommendationInput",
-}) as any as S.Schema<FileShareProvisioningRecommendationInput>;
-
-export interface FileShareGetProvisioningRecommendationRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the Azure region. */
-  location: string;
-  /** The properties of the file share provisioning recommendation input. */
-  properties: FileShareProvisioningRecommendationInput;
-}
-export const FileShareGetProvisioningRecommendationRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      location: S.String.pipe(T.Label()),
-      properties: FileShareProvisioningRecommendationInput,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.FileShares/locations/{location}/getProvisioningRecommendation",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "FileShareGetProvisioningRecommendationRequest",
-  }) as any as S.Schema<FileShareGetProvisioningRecommendationRequest>;
-
-/** Redundancy enum. */
-export type Redundancy = "Local" | "Zone";
-export const Redundancy = /*@__PURE__*/ S.String;
-
-/** Redundancy options for the share. */
-export type FileShareProvisioningRecommendationOutputAvailableRedundancyOptionsList =
-  Array<Redundancy>;
-export const FileShareProvisioningRecommendationOutputAvailableRedundancyOptionsList =
-  /*@__PURE__*/ S.Array(
-    Redundancy,
-  ) as any as S.Schema<FileShareProvisioningRecommendationOutputAvailableRedundancyOptionsList>;
-
-/** File share provisioning parameters recommendation API result. */
-export interface FileShareProvisioningRecommendationOutput {
-  /** The recommended value of provisioned IO / sec of the share. */
-  provisionedIOPerSec: number;
-  /** The recommended value of provisioned throughput / sec of the share. */
-  provisionedThroughputMiBPerSec: number;
-  /** Redundancy options for the share. */
-  availableRedundancyOptions: FileShareProvisioningRecommendationOutputAvailableRedundancyOptionsList;
-}
-export const FileShareProvisioningRecommendationOutput =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      provisionedIOPerSec: S.Number,
-      provisionedThroughputMiBPerSec: S.Number,
-      availableRedundancyOptions:
-        FileShareProvisioningRecommendationOutputAvailableRedundancyOptionsList,
-    }),
-  ).annotate({
-    identifier: "FileShareProvisioningRecommendationOutput",
-  }) as any as S.Schema<FileShareProvisioningRecommendationOutput>;
-
-/** Response structure for file share provisioning parameters recommendation API. */
-export interface FileShareProvisioningRecommendationResponse {
-  /** The properties of the file share provisioning recommendation output. */
-  properties: FileShareProvisioningRecommendationOutput;
-}
-export const FileShareProvisioningRecommendationResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      properties: FileShareProvisioningRecommendationOutput,
-    }),
-  ).annotate({
-    identifier: "FileShareProvisioningRecommendationResponse",
-  }) as any as S.Schema<FileShareProvisioningRecommendationResponse>;
-
-export interface FileShareGetUsageDataRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the Azure region. */
-  location: string;
-}
-export const FileShareGetUsageDataRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    location: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.FileShares/locations/{location}/getUsageData",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "FileShareGetUsageDataRequest",
-}) as any as S.Schema<FileShareGetUsageDataRequest>;
-
-/** Usage data for live shares. */
-export interface LiveSharesUsageData {
-  /** The number of active file shares. */
-  fileShareCount: number;
-}
-export const LiveSharesUsageData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    fileShareCount: S.Number,
-  }),
-).annotate({
-  identifier: "LiveSharesUsageData",
-}) as any as S.Schema<LiveSharesUsageData>;
-
-/** File shares usage result. */
-export interface FileShareUsageDataOutput {
-  /** File share usage data for active file shares. */
-  liveShares: LiveSharesUsageData;
-}
-export const FileShareUsageDataOutput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    liveShares: LiveSharesUsageData,
-  }),
-).annotate({
-  identifier: "FileShareUsageDataOutput",
-}) as any as S.Schema<FileShareUsageDataOutput>;
-
-/** Response structure for file shares usage in the specified subscription/location. */
-export interface FileShareUsageDataResponse {
-  /** The properties of the file share usage data. */
-  properties: FileShareUsageDataOutput;
-}
-export const FileShareUsageDataResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    properties: FileShareUsageDataOutput,
-  }),
-).annotate({
-  identifier: "FileShareUsageDataResponse",
-}) as any as S.Schema<FileShareUsageDataResponse>;
-
-export interface FileSharesCheckNameAvailabilityRequest {
+export interface CheckFileShareNameAvailabilityRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the Azure region. */
@@ -289,7 +22,7 @@ export interface FileSharesCheckNameAvailabilityRequest {
   /** The resource type. */
   type?: string;
 }
-export const FileSharesCheckNameAvailabilityRequest = /*@__PURE__*/ S.suspend(
+export const CheckFileShareNameAvailabilityRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -305,34 +38,338 @@ export const FileSharesCheckNameAvailabilityRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "FileSharesCheckNameAvailabilityRequest",
-}) as any as S.Schema<FileSharesCheckNameAvailabilityRequest>;
+  identifier: "CheckFileShareNameAvailabilityRequest",
+}) as any as S.Schema<CheckFileShareNameAvailabilityRequest>;
 
 /** The reason why the given name is not available. */
-export type FileSharesCheckNameAvailabilityResponseReason =
+export type CheckFileShareNameAvailabilityResponseReason =
   | "Invalid"
   | "AlreadyExists";
-export const FileSharesCheckNameAvailabilityResponseReason =
+export const CheckFileShareNameAvailabilityResponseReason =
   /*@__PURE__*/ S.String;
 
-export interface FileSharesCheckNameAvailabilityResponse {
+export interface CheckFileShareNameAvailabilityResponse {
   /** Indicates if the resource name is available. */
   nameAvailable?: boolean;
   /** The reason why the given name is not available. */
-  reason?: FileSharesCheckNameAvailabilityResponseReason;
+  reason?: CheckFileShareNameAvailabilityResponseReason;
   /** Detailed reason why the given name is available. */
   message?: string;
 }
-export const FileSharesCheckNameAvailabilityResponse = /*@__PURE__*/ S.suspend(
+export const CheckFileShareNameAvailabilityResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       nameAvailable: S.optional(S.Boolean),
-      reason: S.optional(FileSharesCheckNameAvailabilityResponseReason),
+      reason: S.optional(CheckFileShareNameAvailabilityResponseReason),
       message: S.optional(S.String),
     }),
 ).annotate({
-  identifier: "FileSharesCheckNameAvailabilityResponse",
-}) as any as S.Schema<FileSharesCheckNameAvailabilityResponse>;
+  identifier: "CheckFileShareNameAvailabilityResponse",
+}) as any as S.Schema<CheckFileShareNameAvailabilityResponse>;
+
+/** The private endpoint resource. */
+export interface PrivateEndpointInput {}
+export const PrivateEndpointInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "PrivateEndpointInput",
+}) as any as S.Schema<PrivateEndpointInput>;
+
+/** The private endpoint connection status. */
+export type PrivateEndpointServiceConnectionStatus =
+  | "Pending"
+  | "Approved"
+  | "Rejected";
+export const PrivateEndpointServiceConnectionStatus = /*@__PURE__*/ S.String;
+
+/** A collection of information about the state of the connection between service consumer and provider. */
+export interface PrivateLinkServiceConnectionState {
+  /** Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service. */
+  status?: PrivateEndpointServiceConnectionStatus | (string & {});
+  /** The reason for approval/rejection of the connection. */
+  description?: string;
+  /** A message indicating if changes on the service provider require any updates on the consumer. */
+  actionsRequired?: string;
+}
+export const PrivateLinkServiceConnectionState = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: S.optional(PrivateEndpointServiceConnectionStatus),
+    description: S.optional(S.String),
+    actionsRequired: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PrivateLinkServiceConnectionState",
+}) as any as S.Schema<PrivateLinkServiceConnectionState>;
+
+/** Properties of the private endpoint connection. */
+export interface PrivateEndpointConnectionPropertiesInput {
+  /** The private endpoint resource. */
+  privateEndpoint?: PrivateEndpointInput;
+  /** A collection of information about the state of the connection between service consumer and provider. */
+  privateLinkServiceConnectionState: PrivateLinkServiceConnectionState;
+}
+export const PrivateEndpointConnectionPropertiesInput = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      privateEndpoint: S.optional(PrivateEndpointInput),
+      privateLinkServiceConnectionState: PrivateLinkServiceConnectionState,
+    }),
+).annotate({
+  identifier: "PrivateEndpointConnectionPropertiesInput",
+}) as any as S.Schema<PrivateEndpointConnectionPropertiesInput>;
+
+export interface CreatePrivateEndpointConnectionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The resource name of the file share, as seen by the administrator through Azure Resource Manager. */
+  resourceName: string;
+  /** The name of the private endpoint connection associated with the Azure resource. */
+  privateEndpointConnectionName: string;
+  /** Resource properties. */
+  properties?: PrivateEndpointConnectionPropertiesInput;
+}
+export const CreatePrivateEndpointConnectionRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      resourceName: S.String.pipe(T.Label()),
+      privateEndpointConnectionName: S.String.pipe(T.Label()),
+      properties: S.optional(PrivateEndpointConnectionPropertiesInput),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.FileShares/fileShares/{resourceName}/privateEndpointConnections/{privateEndpointConnectionName}",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+).annotate({
+  identifier: "CreatePrivateEndpointConnectionRequest",
+}) as any as S.Schema<CreatePrivateEndpointConnectionRequest>;
+
+/** The type of identity that created the resource. */
+export type SystemDataCreatedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+
+/** The type of identity that last modified the resource. */
+export type SystemDataLastModifiedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+
+/** Metadata pertaining to creation and last modification of the resource. */
+export interface SystemData {
+  /** The identity that created the resource. */
+  createdBy?: string;
+  /** The type of identity that created the resource. */
+  createdByType?: SystemDataCreatedByType;
+  /** The timestamp of resource creation (UTC). */
+  createdAt?: string;
+  /** The identity that last modified the resource. */
+  lastModifiedBy?: string;
+  /** The type of identity that last modified the resource. */
+  lastModifiedByType?: SystemDataLastModifiedByType;
+  /** The timestamp of resource last modification (UTC) */
+  lastModifiedAt?: string;
+}
+export const SystemData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    createdBy: S.optional(S.String),
+    createdByType: S.optional(SystemDataCreatedByType),
+    createdAt: S.optional(S.String),
+    lastModifiedBy: S.optional(S.String),
+    lastModifiedByType: S.optional(SystemDataLastModifiedByType),
+    lastModifiedAt: S.optional(S.String),
+  }),
+).annotate({ identifier: "SystemData" }) as any as S.Schema<SystemData>;
+
+/** The group ids for the private endpoint resource. */
+export type PrivateEndpointConnectionPropertiesGroupIdsList = Array<string>;
+export const PrivateEndpointConnectionPropertiesGroupIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<PrivateEndpointConnectionPropertiesGroupIdsList>;
+
+/** The private endpoint resource. */
+export interface PrivateEndpoint {
+  /** The ARM identifier for private endpoint. */
+  id?: string;
+}
+export const PrivateEndpoint = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PrivateEndpoint",
+}) as any as S.Schema<PrivateEndpoint>;
+
+/** The current provisioning state. */
+export type PrivateEndpointConnectionProvisioningState =
+  | "Succeeded"
+  | "Creating"
+  | "Deleting"
+  | "Failed";
+export const PrivateEndpointConnectionProvisioningState =
+  /*@__PURE__*/ S.String;
+
+/** Properties of the private endpoint connection. */
+export interface PrivateEndpointConnectionProperties {
+  /** The group ids for the private endpoint resource. */
+  groupIds?: PrivateEndpointConnectionPropertiesGroupIdsList;
+  /** The private endpoint resource. */
+  privateEndpoint?: PrivateEndpoint;
+  /** A collection of information about the state of the connection between service consumer and provider. */
+  privateLinkServiceConnectionState: PrivateLinkServiceConnectionState;
+  /** The provisioning state of the private endpoint connection resource. */
+  provisioningState?: PrivateEndpointConnectionProvisioningState;
+}
+export const PrivateEndpointConnectionProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    groupIds: S.optional(PrivateEndpointConnectionPropertiesGroupIdsList),
+    privateEndpoint: S.optional(PrivateEndpoint),
+    privateLinkServiceConnectionState: PrivateLinkServiceConnectionState,
+    provisioningState: S.optional(PrivateEndpointConnectionProvisioningState),
+  }),
+).annotate({
+  identifier: "PrivateEndpointConnectionProperties",
+}) as any as S.Schema<PrivateEndpointConnectionProperties>;
+
+export interface CreatePrivateEndpointConnectionResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource properties. */
+  properties?: PrivateEndpointConnectionProperties;
+}
+export const CreatePrivateEndpointConnectionResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(PrivateEndpointConnectionProperties),
+    }),
+).annotate({
+  identifier: "CreatePrivateEndpointConnectionResponse",
+}) as any as S.Schema<CreatePrivateEndpointConnectionResponse>;
+
+export interface DeleteFileShareRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The resource name of the file share, as seen by the administrator through Azure Resource Manager. */
+  resourceName: string;
+}
+export const DeleteFileShareRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    resourceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.FileShares/fileShares/{resourceName}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteFileShareRequest",
+}) as any as S.Schema<DeleteFileShareRequest>;
+
+export interface DeleteFileShareResponse {}
+export const DeleteFileShareResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteFileShareResponse",
+}) as any as S.Schema<DeleteFileShareResponse>;
+
+export interface DeleteFileShareSnapshotRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The resource name of the file share, as seen by the administrator through Azure Resource Manager. */
+  resourceName: string;
+  /** The name of the FileShareSnapshot */
+  name: string;
+}
+export const DeleteFileShareSnapshotRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    resourceName: S.String.pipe(T.Label()),
+    name: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.FileShares/fileShares/{resourceName}/fileShareSnapshots/{name}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteFileShareSnapshotRequest",
+}) as any as S.Schema<DeleteFileShareSnapshotRequest>;
+
+export interface DeleteFileShareSnapshotResponse {}
+export const DeleteFileShareSnapshotResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteFileShareSnapshotResponse",
+}) as any as S.Schema<DeleteFileShareSnapshotResponse>;
+
+export interface DeletePrivateEndpointConnectionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The resource name of the file share, as seen by the administrator through Azure Resource Manager. */
+  resourceName: string;
+  /** The name of the private endpoint connection associated with the Azure resource. */
+  privateEndpointConnectionName: string;
+}
+export const DeletePrivateEndpointConnectionRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      resourceName: S.String.pipe(T.Label()),
+      privateEndpointConnectionName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.FileShares/fileShares/{resourceName}/privateEndpointConnections/{privateEndpointConnectionName}",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+).annotate({
+  identifier: "DeletePrivateEndpointConnectionRequest",
+}) as any as S.Schema<DeletePrivateEndpointConnectionRequest>;
+
+export interface DeletePrivateEndpointConnectionResponse {}
+export const DeletePrivateEndpointConnectionResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "DeletePrivateEndpointConnectionResponse",
+}) as any as S.Schema<DeletePrivateEndpointConnectionResponse>;
 
 /** Resource tags. */
 export type FileSharesCreateOrUpdateRequestTagsMap = {
@@ -346,6 +383,10 @@ export const FileSharesCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
 /** Media Tier enum. */
 export type MediaTier = "SSD";
 export const MediaTier = /*@__PURE__*/ S.String;
+
+/** Redundancy enum. */
+export type Redundancy = "Local" | "Zone";
+export const Redundancy = /*@__PURE__*/ S.String;
 
 /** Protocol enum. */
 export type Protocol = "NFS";
@@ -472,48 +513,6 @@ export const FileSharesCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "FileSharesCreateOrUpdateRequest",
 }) as any as S.Schema<FileSharesCreateOrUpdateRequest>;
 
-/** The type of identity that created the resource. */
-export type SystemDataCreatedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
-
-/** The type of identity that last modified the resource. */
-export type SystemDataLastModifiedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
-
-/** Metadata pertaining to creation and last modification of the resource. */
-export interface SystemData {
-  /** The identity that created the resource. */
-  createdBy?: string;
-  /** The type of identity that created the resource. */
-  createdByType?: SystemDataCreatedByType;
-  /** The timestamp of resource creation (UTC). */
-  createdAt?: string;
-  /** The identity that last modified the resource. */
-  lastModifiedBy?: string;
-  /** The type of identity that last modified the resource. */
-  lastModifiedByType?: SystemDataLastModifiedByType;
-  /** The timestamp of resource last modification (UTC) */
-  lastModifiedAt?: string;
-}
-export const SystemData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    createdBy: S.optional(S.String),
-    createdByType: S.optional(SystemDataCreatedByType),
-    createdAt: S.optional(S.String),
-    lastModifiedBy: S.optional(S.String),
-    lastModifiedByType: S.optional(SystemDataLastModifiedByType),
-    lastModifiedAt: S.optional(S.String),
-  }),
-).annotate({ identifier: "SystemData" }) as any as S.Schema<SystemData>;
-
 /** Resource tags. */
 export type FileSharesCreateOrUpdateResponseTagsMap = {
   [key: string]: string | undefined;
@@ -538,83 +537,6 @@ export type FileShareProvisioningState =
   | "Patching"
   | "Posting";
 export const FileShareProvisioningState = /*@__PURE__*/ S.String;
-
-/** The group ids for the private endpoint resource. */
-export type PrivateEndpointConnectionPropertiesGroupIdsList = Array<string>;
-export const PrivateEndpointConnectionPropertiesGroupIdsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PrivateEndpointConnectionPropertiesGroupIdsList>;
-
-/** The private endpoint resource. */
-export interface PrivateEndpoint {
-  /** The ARM identifier for private endpoint. */
-  id?: string;
-}
-export const PrivateEndpoint = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PrivateEndpoint",
-}) as any as S.Schema<PrivateEndpoint>;
-
-/** The private endpoint connection status. */
-export type PrivateEndpointServiceConnectionStatus =
-  | "Pending"
-  | "Approved"
-  | "Rejected";
-export const PrivateEndpointServiceConnectionStatus = /*@__PURE__*/ S.String;
-
-/** A collection of information about the state of the connection between service consumer and provider. */
-export interface PrivateLinkServiceConnectionState {
-  /** Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service. */
-  status?: PrivateEndpointServiceConnectionStatus | (string & {});
-  /** The reason for approval/rejection of the connection. */
-  description?: string;
-  /** A message indicating if changes on the service provider require any updates on the consumer. */
-  actionsRequired?: string;
-}
-export const PrivateLinkServiceConnectionState = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    status: S.optional(PrivateEndpointServiceConnectionStatus),
-    description: S.optional(S.String),
-    actionsRequired: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PrivateLinkServiceConnectionState",
-}) as any as S.Schema<PrivateLinkServiceConnectionState>;
-
-/** The current provisioning state. */
-export type PrivateEndpointConnectionProvisioningState =
-  | "Succeeded"
-  | "Creating"
-  | "Deleting"
-  | "Failed";
-export const PrivateEndpointConnectionProvisioningState =
-  /*@__PURE__*/ S.String;
-
-/** Properties of the private endpoint connection. */
-export interface PrivateEndpointConnectionProperties {
-  /** The group ids for the private endpoint resource. */
-  groupIds?: PrivateEndpointConnectionPropertiesGroupIdsList;
-  /** The private endpoint resource. */
-  privateEndpoint?: PrivateEndpoint;
-  /** A collection of information about the state of the connection between service consumer and provider. */
-  privateLinkServiceConnectionState: PrivateLinkServiceConnectionState;
-  /** The provisioning state of the private endpoint connection resource. */
-  provisioningState?: PrivateEndpointConnectionProvisioningState;
-}
-export const PrivateEndpointConnectionProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    groupIds: S.optional(PrivateEndpointConnectionPropertiesGroupIdsList),
-    privateEndpoint: S.optional(PrivateEndpoint),
-    privateLinkServiceConnectionState: PrivateLinkServiceConnectionState,
-    provisioningState: S.optional(PrivateEndpointConnectionProvisioningState),
-  }),
-).annotate({
-  identifier: "PrivateEndpointConnectionProperties",
-}) as any as S.Schema<PrivateEndpointConnectionProperties>;
 
 /** The private endpoint connection resource. */
 export interface FileSharePropertiesPrivateEndpointConnectionsItem {
@@ -746,201 +668,6 @@ export const FileSharesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "FileSharesCreateOrUpdateResponse",
 }) as any as S.Schema<FileSharesCreateOrUpdateResponse>;
 
-export interface FileSharesDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The resource name of the file share, as seen by the administrator through Azure Resource Manager. */
-  resourceName: string;
-}
-export const FileSharesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    resourceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.FileShares/fileShares/{resourceName}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "FileSharesDeleteRequest",
-}) as any as S.Schema<FileSharesDeleteRequest>;
-
-export interface FileSharesDeleteResponse {}
-export const FileSharesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "FileSharesDeleteResponse",
-}) as any as S.Schema<FileSharesDeleteResponse>;
-
-export interface FileSharesGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The resource name of the file share, as seen by the administrator through Azure Resource Manager. */
-  resourceName: string;
-}
-export const FileSharesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    resourceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.FileShares/fileShares/{resourceName}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "FileSharesGetRequest",
-}) as any as S.Schema<FileSharesGetRequest>;
-
-/** Resource tags. */
-export type FileSharesGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const FileSharesGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<FileSharesGetResponseTagsMap>;
-
-export interface FileSharesGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: FileSharesGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: FileShareProperties;
-}
-export const FileSharesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(FileSharesGetResponseTagsMap),
-    location: S.String,
-    properties: S.optional(FileShareProperties),
-  }),
-).annotate({
-  identifier: "FileSharesGetResponse",
-}) as any as S.Schema<FileSharesGetResponse>;
-
-export interface FileSharesListByParentRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-}
-export const FileSharesListByParentRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.FileShares/fileShares",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "FileSharesListByParentRequest",
-}) as any as S.Schema<FileSharesListByParentRequest>;
-
-/** Resource tags. */
-export type FileShareTagsMap = { [key: string]: string | undefined };
-export const FileShareTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<FileShareTagsMap>;
-
-/** File share resource */
-export interface FileShare {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: FileShareTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: FileShareProperties;
-}
-export const FileShare = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(FileShareTagsMap),
-    location: S.String,
-    properties: S.optional(FileShareProperties),
-  }),
-).annotate({ identifier: "FileShare" }) as any as S.Schema<FileShare>;
-
-/** The FileShare items on this page */
-export type FileShareListResultValueList = Array<FileShare>;
-export const FileShareListResultValueList = /*@__PURE__*/ S.Array(
-  FileShare,
-) as any as S.Schema<FileShareListResultValueList>;
-
-/** The response of a FileShare list operation. */
-export interface FileShareListResult {
-  /** The FileShare items on this page */
-  value: FileShareListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const FileShareListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: FileShareListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "FileShareListResult",
-}) as any as S.Schema<FileShareListResult>;
-
-export interface FileSharesListBySubscriptionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-}
-export const FileSharesListBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.FileShares/fileShares",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "FileSharesListBySubscriptionRequest",
-}) as any as S.Schema<FileSharesListBySubscriptionRequest>;
-
 /** The metadata */
 export type FileShareSnapshotPropertiesInputMetadataMap = {
   [key: string]: string | undefined;
@@ -1006,42 +733,271 @@ export const FileShareSnapshotCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
   identifier: "FileShareSnapshotCreateOrUpdateResponse",
 }) as any as S.Schema<FileShareSnapshotCreateOrUpdateResponse>;
 
-export interface FileShareSnapshotDeleteRequest {
+export interface GetFileShareRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The resource name of the file share, as seen by the administrator through Azure Resource Manager. */
   resourceName: string;
-  /** The name of the FileShareSnapshot */
-  name: string;
 }
-export const FileShareSnapshotDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetFileShareRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     resourceName: S.String.pipe(T.Label()),
-    name: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.FileShares/fileShares/{resourceName}/fileShareSnapshots/{name}",
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.FileShares/fileShares/{resourceName}",
       code: 200,
       apiVersion: "2026-06-01",
     }),
   ),
 ).annotate({
-  identifier: "FileShareSnapshotDeleteRequest",
-}) as any as S.Schema<FileShareSnapshotDeleteRequest>;
+  identifier: "GetFileShareRequest",
+}) as any as S.Schema<GetFileShareRequest>;
 
-export interface FileShareSnapshotDeleteResponse {}
-export const FileShareSnapshotDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
+/** Resource tags. */
+export type GetFileShareResponseTagsMap = { [key: string]: string | undefined };
+export const GetFileShareResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetFileShareResponseTagsMap>;
+
+export interface GetFileShareResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetFileShareResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: FileShareProperties;
+}
+export const GetFileShareResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetFileShareResponseTagsMap),
+    location: S.String,
+    properties: S.optional(FileShareProperties),
+  }),
 ).annotate({
-  identifier: "FileShareSnapshotDeleteResponse",
-}) as any as S.Schema<FileShareSnapshotDeleteResponse>;
+  identifier: "GetFileShareResponse",
+}) as any as S.Schema<GetFileShareResponse>;
 
-export interface FileShareSnapshotGetRequest {
+export interface GetFileShareLimitsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the Azure region. */
+  location: string;
+}
+export const GetFileShareLimitsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    location: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.FileShares/locations/{location}/getLimits",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetFileShareLimitsRequest",
+}) as any as S.Schema<GetFileShareLimitsRequest>;
+
+/** File share-related limits in the specified subscription/location. */
+export interface FileShareLimits {
+  /** The maximum number of file shares that can be created. */
+  maxFileShares: number;
+  /** The maximum number of snapshots allowed per file share. */
+  maxFileShareSnapshots: number;
+  /** The maximum number of subnets that can be associated with a file share. */
+  maxFileShareSubnets: number;
+  /** The maximum number of private endpoint connections allowed for a file share. */
+  maxFileSharePrivateEndpointConnections: number;
+  /** The minimum provisioned storage in GiB for a file share. */
+  minProvisionedStorageGiB: number;
+  /** The maximum provisioned storage in GiB for a file share. */
+  maxProvisionedStorageGiB: number;
+  /** The minimum provisioned IOPS (Input/Output Operations Per Second) for a file share. */
+  minProvisionedIOPerSec: number;
+  /** The maximum provisioned IOPS (Input/Output Operations Per Second) for a file share. */
+  maxProvisionedIOPerSec: number;
+  /** The minimum provisioned throughput in MiB/s for a file share. */
+  minProvisionedThroughputMiBPerSec: number;
+  /** The maximum provisioned throughput in MiB/s for a file share. */
+  maxProvisionedThroughputMiBPerSec: number;
+}
+export const FileShareLimits = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    maxFileShares: S.Number,
+    maxFileShareSnapshots: S.Number,
+    maxFileShareSubnets: S.Number,
+    maxFileSharePrivateEndpointConnections: S.Number,
+    minProvisionedStorageGiB: S.Number,
+    maxProvisionedStorageGiB: S.Number,
+    minProvisionedIOPerSec: S.Number,
+    maxProvisionedIOPerSec: S.Number,
+    minProvisionedThroughputMiBPerSec: S.Number,
+    maxProvisionedThroughputMiBPerSec: S.Number,
+  }),
+).annotate({
+  identifier: "FileShareLimits",
+}) as any as S.Schema<FileShareLimits>;
+
+/** Constants used for calculating recommended values of file share provisioning properties. */
+export interface FileShareProvisioningConstants {
+  /** Base IO per second. */
+  baseIOPerSec: number;
+  /** Scalar IO per second. */
+  scalarIOPerSec: number;
+  /** Base throughput in MiB per second. */
+  baseThroughputMiBPerSec: number;
+  /** Scalar throughput in MiB per second. */
+  scalarThroughputMiBPerSec: number;
+  /** Guardrail scalar IO per second. */
+  guardrailIOPerSecScalar: number;
+  /** Guardrail scalar throughput in MiB per second. */
+  guardrailThroughputScalar: number;
+}
+export const FileShareProvisioningConstants = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    baseIOPerSec: S.Number,
+    scalarIOPerSec: S.Number,
+    baseThroughputMiBPerSec: S.Number,
+    scalarThroughputMiBPerSec: S.Number,
+    guardrailIOPerSecScalar: S.Number,
+    guardrailThroughputScalar: S.Number,
+  }),
+).annotate({
+  identifier: "FileShareProvisioningConstants",
+}) as any as S.Schema<FileShareProvisioningConstants>;
+
+/** File share limits API result. */
+export interface FileShareLimitsOutput {
+  /** The limits for the file share. */
+  limits: FileShareLimits;
+  /** The provisioning constants for the file share. */
+  provisioningConstants: FileShareProvisioningConstants;
+}
+export const FileShareLimitsOutput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    limits: FileShareLimits,
+    provisioningConstants: FileShareProvisioningConstants,
+  }),
+).annotate({
+  identifier: "FileShareLimitsOutput",
+}) as any as S.Schema<FileShareLimitsOutput>;
+
+/** Response structure for file share limits API. */
+export interface FileShareLimitsResponse {
+  /** The properties of the file share limits. */
+  properties: FileShareLimitsOutput;
+}
+export const FileShareLimitsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    properties: FileShareLimitsOutput,
+  }),
+).annotate({
+  identifier: "FileShareLimitsResponse",
+}) as any as S.Schema<FileShareLimitsResponse>;
+
+/** File share provisioning parameters recommendation API input structure. */
+export interface FileShareProvisioningRecommendationInput {
+  /** The desired provisioned storage size of the share in GiB. Will be use to calculate the values of remaining provisioning parameters. */
+  provisionedStorageGiB: number;
+}
+export const FileShareProvisioningRecommendationInput = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      provisionedStorageGiB: S.Number,
+    }),
+).annotate({
+  identifier: "FileShareProvisioningRecommendationInput",
+}) as any as S.Schema<FileShareProvisioningRecommendationInput>;
+
+export interface GetFileShareProvisioningRecommendationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the Azure region. */
+  location: string;
+  /** The properties of the file share provisioning recommendation input. */
+  properties: FileShareProvisioningRecommendationInput;
+}
+export const GetFileShareProvisioningRecommendationRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      location: S.String.pipe(T.Label()),
+      properties: FileShareProvisioningRecommendationInput,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.FileShares/locations/{location}/getProvisioningRecommendation",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "GetFileShareProvisioningRecommendationRequest",
+  }) as any as S.Schema<GetFileShareProvisioningRecommendationRequest>;
+
+/** Redundancy options for the share. */
+export type FileShareProvisioningRecommendationOutputAvailableRedundancyOptionsList =
+  Array<Redundancy>;
+export const FileShareProvisioningRecommendationOutputAvailableRedundancyOptionsList =
+  /*@__PURE__*/ S.Array(
+    Redundancy,
+  ) as any as S.Schema<FileShareProvisioningRecommendationOutputAvailableRedundancyOptionsList>;
+
+/** File share provisioning parameters recommendation API result. */
+export interface FileShareProvisioningRecommendationOutput {
+  /** The recommended value of provisioned IO / sec of the share. */
+  provisionedIOPerSec: number;
+  /** The recommended value of provisioned throughput / sec of the share. */
+  provisionedThroughputMiBPerSec: number;
+  /** Redundancy options for the share. */
+  availableRedundancyOptions: FileShareProvisioningRecommendationOutputAvailableRedundancyOptionsList;
+}
+export const FileShareProvisioningRecommendationOutput =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      provisionedIOPerSec: S.Number,
+      provisionedThroughputMiBPerSec: S.Number,
+      availableRedundancyOptions:
+        FileShareProvisioningRecommendationOutputAvailableRedundancyOptionsList,
+    }),
+  ).annotate({
+    identifier: "FileShareProvisioningRecommendationOutput",
+  }) as any as S.Schema<FileShareProvisioningRecommendationOutput>;
+
+/** Response structure for file share provisioning parameters recommendation API. */
+export interface FileShareProvisioningRecommendationResponse {
+  /** The properties of the file share provisioning recommendation output. */
+  properties: FileShareProvisioningRecommendationOutput;
+}
+export const FileShareProvisioningRecommendationResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      properties: FileShareProvisioningRecommendationOutput,
+    }),
+  ).annotate({
+    identifier: "FileShareProvisioningRecommendationResponse",
+  }) as any as S.Schema<FileShareProvisioningRecommendationResponse>;
+
+export interface GetFileShareSnapshotRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1051,7 +1007,7 @@ export interface FileShareSnapshotGetRequest {
   /** The name of the FileShareSnapshot */
   name: string;
 }
-export const FileShareSnapshotGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetFileShareSnapshotRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1066,8 +1022,8 @@ export const FileShareSnapshotGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "FileShareSnapshotGetRequest",
-}) as any as S.Schema<FileShareSnapshotGetRequest>;
+  identifier: "GetFileShareSnapshotRequest",
+}) as any as S.Schema<GetFileShareSnapshotRequest>;
 
 /** The metadata */
 export type FileShareSnapshotPropertiesMetadataMap = {
@@ -1097,7 +1053,7 @@ export const FileShareSnapshotProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "FileShareSnapshotProperties",
 }) as any as S.Schema<FileShareSnapshotProperties>;
 
-export interface FileShareSnapshotGetResponse {
+export interface GetFileShareSnapshotResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -1109,7 +1065,7 @@ export interface FileShareSnapshotGetResponse {
   /** The resource-specific properties for this resource. */
   properties?: FileShareSnapshotProperties;
 }
-export const FileShareSnapshotGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetFileShareSnapshotResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -1118,10 +1074,312 @@ export const FileShareSnapshotGetResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(FileShareSnapshotProperties),
   }),
 ).annotate({
-  identifier: "FileShareSnapshotGetResponse",
-}) as any as S.Schema<FileShareSnapshotGetResponse>;
+  identifier: "GetFileShareSnapshotResponse",
+}) as any as S.Schema<GetFileShareSnapshotResponse>;
 
-export interface FileShareSnapshotListRequest {
+export interface GetFileShareUsageDataRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the Azure region. */
+  location: string;
+}
+export const GetFileShareUsageDataRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    location: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.FileShares/locations/{location}/getUsageData",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetFileShareUsageDataRequest",
+}) as any as S.Schema<GetFileShareUsageDataRequest>;
+
+/** Usage data for live shares. */
+export interface LiveSharesUsageData {
+  /** The number of active file shares. */
+  fileShareCount: number;
+}
+export const LiveSharesUsageData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    fileShareCount: S.Number,
+  }),
+).annotate({
+  identifier: "LiveSharesUsageData",
+}) as any as S.Schema<LiveSharesUsageData>;
+
+/** File shares usage result. */
+export interface FileShareUsageDataOutput {
+  /** File share usage data for active file shares. */
+  liveShares: LiveSharesUsageData;
+}
+export const FileShareUsageDataOutput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    liveShares: LiveSharesUsageData,
+  }),
+).annotate({
+  identifier: "FileShareUsageDataOutput",
+}) as any as S.Schema<FileShareUsageDataOutput>;
+
+/** Response structure for file shares usage in the specified subscription/location. */
+export interface FileShareUsageDataResponse {
+  /** The properties of the file share usage data. */
+  properties: FileShareUsageDataOutput;
+}
+export const FileShareUsageDataResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    properties: FileShareUsageDataOutput,
+  }),
+).annotate({
+  identifier: "FileShareUsageDataResponse",
+}) as any as S.Schema<FileShareUsageDataResponse>;
+
+export interface GetPrivateEndpointConnectionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The resource name of the file share, as seen by the administrator through Azure Resource Manager. */
+  resourceName: string;
+  /** The name of the private endpoint connection associated with the Azure resource. */
+  privateEndpointConnectionName: string;
+}
+export const GetPrivateEndpointConnectionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    resourceName: S.String.pipe(T.Label()),
+    privateEndpointConnectionName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.FileShares/fileShares/{resourceName}/privateEndpointConnections/{privateEndpointConnectionName}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetPrivateEndpointConnectionRequest",
+}) as any as S.Schema<GetPrivateEndpointConnectionRequest>;
+
+export interface GetPrivateEndpointConnectionResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource properties. */
+  properties?: PrivateEndpointConnectionProperties;
+}
+export const GetPrivateEndpointConnectionResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(PrivateEndpointConnectionProperties),
+    }),
+).annotate({
+  identifier: "GetPrivateEndpointConnectionResponse",
+}) as any as S.Schema<GetPrivateEndpointConnectionResponse>;
+
+export interface GetPrivateLinkResourceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The resource name of the file share, as seen by the administrator through Azure Resource Manager. */
+  resourceName: string;
+  /** The name of the private link resource. */
+  privateLinkResourceName: string;
+}
+export const GetPrivateLinkResourceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    resourceName: S.String.pipe(T.Label()),
+    privateLinkResourceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.FileShares/fileShares/{resourceName}/privateLinkResources/{privateLinkResourceName}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetPrivateLinkResourceRequest",
+}) as any as S.Schema<GetPrivateLinkResourceRequest>;
+
+/** The private link resource required member names. */
+export type PrivateLinkResourcePropertiesRequiredMembersList = Array<string>;
+export const PrivateLinkResourcePropertiesRequiredMembersList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<PrivateLinkResourcePropertiesRequiredMembersList>;
+
+/** The private link resource private link DNS zone name. */
+export type PrivateLinkResourcePropertiesRequiredZoneNamesList = Array<string>;
+export const PrivateLinkResourcePropertiesRequiredZoneNamesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<PrivateLinkResourcePropertiesRequiredZoneNamesList>;
+
+/** Properties of a private link resource. */
+export interface PrivateLinkResourceProperties {
+  /** The private link resource group id. */
+  groupId?: string;
+  /** The private link resource required member names. */
+  requiredMembers?: PrivateLinkResourcePropertiesRequiredMembersList;
+  /** The private link resource private link DNS zone name. */
+  requiredZoneNames?: PrivateLinkResourcePropertiesRequiredZoneNamesList;
+}
+export const PrivateLinkResourceProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    groupId: S.optional(S.String),
+    requiredMembers: S.optional(
+      PrivateLinkResourcePropertiesRequiredMembersList,
+    ),
+    requiredZoneNames: S.optional(
+      PrivateLinkResourcePropertiesRequiredZoneNamesList,
+    ),
+  }),
+).annotate({
+  identifier: "PrivateLinkResourceProperties",
+}) as any as S.Schema<PrivateLinkResourceProperties>;
+
+export interface GetPrivateLinkResourceResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource properties. */
+  properties?: PrivateLinkResourceProperties;
+}
+export const GetPrivateLinkResourceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(PrivateLinkResourceProperties),
+  }),
+).annotate({
+  identifier: "GetPrivateLinkResourceResponse",
+}) as any as S.Schema<GetPrivateLinkResourceResponse>;
+
+export interface ListFileShareByParentRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+}
+export const ListFileShareByParentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.FileShares/fileShares",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListFileShareByParentRequest",
+}) as any as S.Schema<ListFileShareByParentRequest>;
+
+/** Resource tags. */
+export type FileShareTagsMap = { [key: string]: string | undefined };
+export const FileShareTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<FileShareTagsMap>;
+
+/** File share resource */
+export interface FileShare {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: FileShareTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: FileShareProperties;
+}
+export const FileShare = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(FileShareTagsMap),
+    location: S.String,
+    properties: S.optional(FileShareProperties),
+  }),
+).annotate({ identifier: "FileShare" }) as any as S.Schema<FileShare>;
+
+/** The FileShare items on this page */
+export type FileShareListResultValueList = Array<FileShare>;
+export const FileShareListResultValueList = /*@__PURE__*/ S.Array(
+  FileShare,
+) as any as S.Schema<FileShareListResultValueList>;
+
+/** The response of a FileShare list operation. */
+export interface FileShareListResult {
+  /** The FileShare items on this page */
+  value: FileShareListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const FileShareListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: FileShareListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "FileShareListResult",
+}) as any as S.Schema<FileShareListResult>;
+
+export interface ListFileShareBySubscriptionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+}
+export const ListFileShareBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.FileShares/fileShares",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListFileShareBySubscriptionRequest",
+}) as any as S.Schema<ListFileShareBySubscriptionRequest>;
+
+export interface ListFileShareSnapshotRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1129,7 +1387,7 @@ export interface FileShareSnapshotListRequest {
   /** The resource name of the file share, as seen by the administrator through Azure Resource Manager. */
   resourceName: string;
 }
-export const FileShareSnapshotListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListFileShareSnapshotRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1143,8 +1401,8 @@ export const FileShareSnapshotListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "FileShareSnapshotListRequest",
-}) as any as S.Schema<FileShareSnapshotListRequest>;
+  identifier: "ListFileShareSnapshotRequest",
+}) as any as S.Schema<ListFileShareSnapshotRequest>;
 
 /** FileShareSnapshot resource */
 export interface FileShareSnapshot {
@@ -1193,193 +1451,8 @@ export const FileShareSnapshotListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "FileShareSnapshotListResult",
 }) as any as S.Schema<FileShareSnapshotListResult>;
 
-/** The metadata */
-export type FileShareSnapshotUpdatePropertiesMetadataMap = {
-  [key: string]: string | undefined;
-};
-export const FileShareSnapshotUpdatePropertiesMetadataMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<FileShareSnapshotUpdatePropertiesMetadataMap>;
-
-/** The updatable properties of the FileShareSnapshot. */
-export interface FileShareSnapshotUpdateProperties {
-  /** The metadata */
-  metadata?: FileShareSnapshotUpdatePropertiesMetadataMap;
-}
-export const FileShareSnapshotUpdateProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    metadata: S.optional(FileShareSnapshotUpdatePropertiesMetadataMap),
-  }),
-).annotate({
-  identifier: "FileShareSnapshotUpdateProperties",
-}) as any as S.Schema<FileShareSnapshotUpdateProperties>;
-
-export interface FileShareSnapshotUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The resource name of the file share, as seen by the administrator through Azure Resource Manager. */
-  resourceName: string;
-  /** The name of the FileShareSnapshot */
-  name: string;
-  /** The resource-specific properties for this resource. */
-  properties?: FileShareSnapshotUpdateProperties;
-}
-export const FileShareSnapshotUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    resourceName: S.String.pipe(T.Label()),
-    name: S.String.pipe(T.Label()),
-    properties: S.optional(FileShareSnapshotUpdateProperties),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.FileShares/fileShares/{resourceName}/fileShareSnapshots/{name}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "FileShareSnapshotUpdateRequest",
-}) as any as S.Schema<FileShareSnapshotUpdateRequest>;
-
-export interface FileShareSnapshotUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: FileShareSnapshotProperties;
-}
-export const FileShareSnapshotUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(FileShareSnapshotProperties),
-  }),
-).annotate({
-  identifier: "FileShareSnapshotUpdateResponse",
-}) as any as S.Schema<FileShareSnapshotUpdateResponse>;
-
-/** Resource tags. */
-export type FileSharesUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const FileSharesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<FileSharesUpdateRequestTagsMap>;
-
-/** The updatable properties of the FileShare. */
-export interface FileShareUpdateProperties {
-  /** The provisioned storage size of the share in GiB (1 GiB is 1024^3 bytes or 1073741824 bytes). A component of the file share's bill is the provisioned storage, regardless of the amount of used storage. */
-  provisionedStorageGiB?: number;
-  /** The provisioned IO / sec of the share. */
-  provisionedIOPerSec?: number;
-  /** The provisioned throughput / sec of the share. */
-  provisionedThroughputMiBPerSec?: number;
-  /** Protocol settings specific NFS. */
-  nfsProtocolProperties?: NfsProtocolProperties;
-  /** The set of properties for control public access. */
-  publicAccessProperties?: PublicAccessProperties;
-  /** Gets or sets allow or disallow public network access to azure managed file share */
-  publicNetworkAccess?: PublicNetworkAccess | (string & {});
-}
-export const FileShareUpdateProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provisionedStorageGiB: S.optional(S.Number),
-    provisionedIOPerSec: S.optional(S.Number),
-    provisionedThroughputMiBPerSec: S.optional(S.Number),
-    nfsProtocolProperties: S.optional(NfsProtocolProperties),
-    publicAccessProperties: S.optional(PublicAccessProperties),
-    publicNetworkAccess: S.optional(PublicNetworkAccess),
-  }),
-).annotate({
-  identifier: "FileShareUpdateProperties",
-}) as any as S.Schema<FileShareUpdateProperties>;
-
-export interface FileSharesUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The resource name of the file share, as seen by the administrator through Azure Resource Manager. */
-  resourceName: string;
-  /** Resource tags. */
-  tags?: FileSharesUpdateRequestTagsMap;
-  /** The resource-specific properties for this resource. */
-  properties?: FileShareUpdateProperties;
-}
-export const FileSharesUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    resourceName: S.String.pipe(T.Label()),
-    tags: S.optional(FileSharesUpdateRequestTagsMap),
-    properties: S.optional(FileShareUpdateProperties),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.FileShares/fileShares/{resourceName}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "FileSharesUpdateRequest",
-}) as any as S.Schema<FileSharesUpdateRequest>;
-
-/** Resource tags. */
-export type FileSharesUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const FileSharesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<FileSharesUpdateResponseTagsMap>;
-
-export interface FileSharesUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: FileSharesUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: FileShareProperties;
-}
-export const FileSharesUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(FileSharesUpdateResponseTagsMap),
-    location: S.String,
-    properties: S.optional(FileShareProperties),
-  }),
-).annotate({
-  identifier: "FileSharesUpdateResponse",
-}) as any as S.Schema<FileSharesUpdateResponse>;
-
-export interface OperationsListRequest {}
-export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
+export interface ListOperationsRequest {}
+export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
     T.Http({
       method: "GET",
@@ -1389,8 +1462,8 @@ export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "OperationsListRequest",
-}) as any as S.Schema<OperationsListRequest>;
+  identifier: "ListOperationsRequest",
+}) as any as S.Schema<ListOperationsRequest>;
 
 /** Localized display information for this particular operation. */
 export interface OperationDisplay {
@@ -1446,199 +1519,27 @@ export const Operation = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 /** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
   Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
+) as any as S.Schema<ListOperationsResponseValueList>;
 
-export interface OperationsListResponse {
+export interface ListOperationsResponse {
   /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
+  value?: ListOperationsResponseValueList;
   /** URL to get the next set of operation list results (if there are any). */
   nextLink?: string;
 }
-export const OperationsListResponse = /*@__PURE__*/ S.suspend(() =>
+export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(OperationsListResponseValueList),
+    value: S.optional(ListOperationsResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "OperationsListResponse",
-}) as any as S.Schema<OperationsListResponse>;
+  identifier: "ListOperationsResponse",
+}) as any as S.Schema<ListOperationsResponse>;
 
-/** The private endpoint resource. */
-export interface PrivateEndpointInput {}
-export const PrivateEndpointInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "PrivateEndpointInput",
-}) as any as S.Schema<PrivateEndpointInput>;
-
-/** Properties of the private endpoint connection. */
-export interface PrivateEndpointConnectionPropertiesInput {
-  /** The private endpoint resource. */
-  privateEndpoint?: PrivateEndpointInput;
-  /** A collection of information about the state of the connection between service consumer and provider. */
-  privateLinkServiceConnectionState: PrivateLinkServiceConnectionState;
-}
-export const PrivateEndpointConnectionPropertiesInput = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      privateEndpoint: S.optional(PrivateEndpointInput),
-      privateLinkServiceConnectionState: PrivateLinkServiceConnectionState,
-    }),
-).annotate({
-  identifier: "PrivateEndpointConnectionPropertiesInput",
-}) as any as S.Schema<PrivateEndpointConnectionPropertiesInput>;
-
-export interface PrivateEndpointConnectionsCreateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The resource name of the file share, as seen by the administrator through Azure Resource Manager. */
-  resourceName: string;
-  /** The name of the private endpoint connection associated with the Azure resource. */
-  privateEndpointConnectionName: string;
-  /** Resource properties. */
-  properties?: PrivateEndpointConnectionPropertiesInput;
-}
-export const PrivateEndpointConnectionsCreateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-      privateEndpointConnectionName: S.String.pipe(T.Label()),
-      properties: S.optional(PrivateEndpointConnectionPropertiesInput),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.FileShares/fileShares/{resourceName}/privateEndpointConnections/{privateEndpointConnectionName}",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "PrivateEndpointConnectionsCreateRequest",
-}) as any as S.Schema<PrivateEndpointConnectionsCreateRequest>;
-
-export interface PrivateEndpointConnectionsCreateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource properties. */
-  properties?: PrivateEndpointConnectionProperties;
-}
-export const PrivateEndpointConnectionsCreateResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(PrivateEndpointConnectionProperties),
-    }),
-).annotate({
-  identifier: "PrivateEndpointConnectionsCreateResponse",
-}) as any as S.Schema<PrivateEndpointConnectionsCreateResponse>;
-
-export interface PrivateEndpointConnectionsDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The resource name of the file share, as seen by the administrator through Azure Resource Manager. */
-  resourceName: string;
-  /** The name of the private endpoint connection associated with the Azure resource. */
-  privateEndpointConnectionName: string;
-}
-export const PrivateEndpointConnectionsDeleteRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-      privateEndpointConnectionName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.FileShares/fileShares/{resourceName}/privateEndpointConnections/{privateEndpointConnectionName}",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "PrivateEndpointConnectionsDeleteRequest",
-}) as any as S.Schema<PrivateEndpointConnectionsDeleteRequest>;
-
-export interface PrivateEndpointConnectionsDeleteResponse {}
-export const PrivateEndpointConnectionsDeleteResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "PrivateEndpointConnectionsDeleteResponse",
-}) as any as S.Schema<PrivateEndpointConnectionsDeleteResponse>;
-
-export interface PrivateEndpointConnectionsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The resource name of the file share, as seen by the administrator through Azure Resource Manager. */
-  resourceName: string;
-  /** The name of the private endpoint connection associated with the Azure resource. */
-  privateEndpointConnectionName: string;
-}
-export const PrivateEndpointConnectionsGetRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-      privateEndpointConnectionName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.FileShares/fileShares/{resourceName}/privateEndpointConnections/{privateEndpointConnectionName}",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "PrivateEndpointConnectionsGetRequest",
-}) as any as S.Schema<PrivateEndpointConnectionsGetRequest>;
-
-export interface PrivateEndpointConnectionsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource properties. */
-  properties?: PrivateEndpointConnectionProperties;
-}
-export const PrivateEndpointConnectionsGetResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(PrivateEndpointConnectionProperties),
-    }),
-).annotate({
-  identifier: "PrivateEndpointConnectionsGetResponse",
-}) as any as S.Schema<PrivateEndpointConnectionsGetResponse>;
-
-export interface PrivateEndpointConnectionsListByFileShareRequest {
+export interface ListPrivateEndpointConnectionByFileShareRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1646,7 +1547,7 @@ export interface PrivateEndpointConnectionsListByFileShareRequest {
   /** The resource name of the file share, as seen by the administrator through Azure Resource Manager. */
   resourceName: string;
 }
-export const PrivateEndpointConnectionsListByFileShareRequest =
+export const ListPrivateEndpointConnectionByFileShareRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -1661,8 +1562,8 @@ export const PrivateEndpointConnectionsListByFileShareRequest =
       }),
     ),
   ).annotate({
-    identifier: "PrivateEndpointConnectionsListByFileShareRequest",
-  }) as any as S.Schema<PrivateEndpointConnectionsListByFileShareRequest>;
+    identifier: "ListPrivateEndpointConnectionByFileShareRequest",
+  }) as any as S.Schema<ListPrivateEndpointConnectionByFileShareRequest>;
 
 /** The private endpoint connection resource. */
 export type PrivateEndpointConnectionListResultValueItem =
@@ -1694,96 +1595,7 @@ export const PrivateEndpointConnectionListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "PrivateEndpointConnectionListResult",
 }) as any as S.Schema<PrivateEndpointConnectionListResult>;
 
-export interface PrivateLinkResourcesGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The resource name of the file share, as seen by the administrator through Azure Resource Manager. */
-  resourceName: string;
-  /** The name of the private link resource. */
-  privateLinkResourceName: string;
-}
-export const PrivateLinkResourcesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    resourceName: S.String.pipe(T.Label()),
-    privateLinkResourceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.FileShares/fileShares/{resourceName}/privateLinkResources/{privateLinkResourceName}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "PrivateLinkResourcesGetRequest",
-}) as any as S.Schema<PrivateLinkResourcesGetRequest>;
-
-/** The private link resource required member names. */
-export type PrivateLinkResourcePropertiesRequiredMembersList = Array<string>;
-export const PrivateLinkResourcePropertiesRequiredMembersList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PrivateLinkResourcePropertiesRequiredMembersList>;
-
-/** The private link resource private link DNS zone name. */
-export type PrivateLinkResourcePropertiesRequiredZoneNamesList = Array<string>;
-export const PrivateLinkResourcePropertiesRequiredZoneNamesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PrivateLinkResourcePropertiesRequiredZoneNamesList>;
-
-/** Properties of a private link resource. */
-export interface PrivateLinkResourceProperties {
-  /** The private link resource group id. */
-  groupId?: string;
-  /** The private link resource required member names. */
-  requiredMembers?: PrivateLinkResourcePropertiesRequiredMembersList;
-  /** The private link resource private link DNS zone name. */
-  requiredZoneNames?: PrivateLinkResourcePropertiesRequiredZoneNamesList;
-}
-export const PrivateLinkResourceProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    groupId: S.optional(S.String),
-    requiredMembers: S.optional(
-      PrivateLinkResourcePropertiesRequiredMembersList,
-    ),
-    requiredZoneNames: S.optional(
-      PrivateLinkResourcePropertiesRequiredZoneNamesList,
-    ),
-  }),
-).annotate({
-  identifier: "PrivateLinkResourceProperties",
-}) as any as S.Schema<PrivateLinkResourceProperties>;
-
-export interface PrivateLinkResourcesGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource properties. */
-  properties?: PrivateLinkResourceProperties;
-}
-export const PrivateLinkResourcesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(PrivateLinkResourceProperties),
-  }),
-).annotate({
-  identifier: "PrivateLinkResourcesGetResponse",
-}) as any as S.Schema<PrivateLinkResourcesGetResponse>;
-
-export interface PrivateLinkResourcesListRequest {
+export interface ListPrivateLinkResourcesRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1791,7 +1603,7 @@ export interface PrivateLinkResourcesListRequest {
   /** The resource name of the file share, as seen by the administrator through Azure Resource Manager. */
   resourceName: string;
 }
-export const PrivateLinkResourcesListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListPrivateLinkResourcesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1805,8 +1617,8 @@ export const PrivateLinkResourcesListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "PrivateLinkResourcesListRequest",
-}) as any as S.Schema<PrivateLinkResourcesListRequest>;
+  identifier: "ListPrivateLinkResourcesRequest",
+}) as any as S.Schema<ListPrivateLinkResourcesRequest>;
 
 /** A private link resource. */
 export interface PrivateLinkResource {
@@ -1855,61 +1667,261 @@ export const PrivateLinkResourceListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "PrivateLinkResourceListResult",
 }) as any as S.Schema<PrivateLinkResourceListResult>;
 
-export type FileShareGetLimitsError = AzureOpError;
-/** Get file shares limits. */
-export const FileShareGetLimits: API.OperationMethod<
-  FileShareGetLimitsRequest,
-  FileShareLimitsResponse,
-  FileShareGetLimitsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FileShareGetLimitsRequest,
-  output: FileShareLimitsResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
+/** Resource tags. */
+export type UpdateFileShareRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateFileShareRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateFileShareRequestTagsMap>;
 
-export type FileShareGetProvisioningRecommendationError = AzureOpError;
-/** Get file shares provisioning parameters recommendation. */
-export const FileShareGetProvisioningRecommendation: API.OperationMethod<
-  FileShareGetProvisioningRecommendationRequest,
-  FileShareProvisioningRecommendationResponse,
-  FileShareGetProvisioningRecommendationError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FileShareGetProvisioningRecommendationRequest,
-  output: FileShareProvisioningRecommendationResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
+/** The updatable properties of the FileShare. */
+export interface FileShareUpdateProperties {
+  /** The provisioned storage size of the share in GiB (1 GiB is 1024^3 bytes or 1073741824 bytes). A component of the file share's bill is the provisioned storage, regardless of the amount of used storage. */
+  provisionedStorageGiB?: number;
+  /** The provisioned IO / sec of the share. */
+  provisionedIOPerSec?: number;
+  /** The provisioned throughput / sec of the share. */
+  provisionedThroughputMiBPerSec?: number;
+  /** Protocol settings specific NFS. */
+  nfsProtocolProperties?: NfsProtocolProperties;
+  /** The set of properties for control public access. */
+  publicAccessProperties?: PublicAccessProperties;
+  /** Gets or sets allow or disallow public network access to azure managed file share */
+  publicNetworkAccess?: PublicNetworkAccess | (string & {});
+}
+export const FileShareUpdateProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provisionedStorageGiB: S.optional(S.Number),
+    provisionedIOPerSec: S.optional(S.Number),
+    provisionedThroughputMiBPerSec: S.optional(S.Number),
+    nfsProtocolProperties: S.optional(NfsProtocolProperties),
+    publicAccessProperties: S.optional(PublicAccessProperties),
+    publicNetworkAccess: S.optional(PublicNetworkAccess),
+  }),
+).annotate({
+  identifier: "FileShareUpdateProperties",
+}) as any as S.Schema<FileShareUpdateProperties>;
 
-export type FileShareGetUsageDataError = AzureOpError;
-/** Get file shares usage data. */
-export const FileShareGetUsageData: API.OperationMethod<
-  FileShareGetUsageDataRequest,
-  FileShareUsageDataResponse,
-  FileShareGetUsageDataError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FileShareGetUsageDataRequest,
-  output: FileShareUsageDataResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
+export interface UpdateFileShareRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The resource name of the file share, as seen by the administrator through Azure Resource Manager. */
+  resourceName: string;
+  /** Resource tags. */
+  tags?: UpdateFileShareRequestTagsMap;
+  /** The resource-specific properties for this resource. */
+  properties?: FileShareUpdateProperties;
+}
+export const UpdateFileShareRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    resourceName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateFileShareRequestTagsMap),
+    properties: S.optional(FileShareUpdateProperties),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.FileShares/fileShares/{resourceName}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateFileShareRequest",
+}) as any as S.Schema<UpdateFileShareRequest>;
 
-export type FileSharesCheckNameAvailabilityError = AzureOpError;
+/** Resource tags. */
+export type UpdateFileShareResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateFileShareResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateFileShareResponseTagsMap>;
+
+export interface UpdateFileShareResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateFileShareResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: FileShareProperties;
+}
+export const UpdateFileShareResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateFileShareResponseTagsMap),
+    location: S.String,
+    properties: S.optional(FileShareProperties),
+  }),
+).annotate({
+  identifier: "UpdateFileShareResponse",
+}) as any as S.Schema<UpdateFileShareResponse>;
+
+/** The metadata */
+export type FileShareSnapshotUpdatePropertiesMetadataMap = {
+  [key: string]: string | undefined;
+};
+export const FileShareSnapshotUpdatePropertiesMetadataMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<FileShareSnapshotUpdatePropertiesMetadataMap>;
+
+/** The updatable properties of the FileShareSnapshot. */
+export interface FileShareSnapshotUpdateProperties {
+  /** The metadata */
+  metadata?: FileShareSnapshotUpdatePropertiesMetadataMap;
+}
+export const FileShareSnapshotUpdateProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    metadata: S.optional(FileShareSnapshotUpdatePropertiesMetadataMap),
+  }),
+).annotate({
+  identifier: "FileShareSnapshotUpdateProperties",
+}) as any as S.Schema<FileShareSnapshotUpdateProperties>;
+
+export interface UpdateFileShareSnapshotRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The resource name of the file share, as seen by the administrator through Azure Resource Manager. */
+  resourceName: string;
+  /** The name of the FileShareSnapshot */
+  name: string;
+  /** The resource-specific properties for this resource. */
+  properties?: FileShareSnapshotUpdateProperties;
+}
+export const UpdateFileShareSnapshotRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    resourceName: S.String.pipe(T.Label()),
+    name: S.String.pipe(T.Label()),
+    properties: S.optional(FileShareSnapshotUpdateProperties),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.FileShares/fileShares/{resourceName}/fileShareSnapshots/{name}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateFileShareSnapshotRequest",
+}) as any as S.Schema<UpdateFileShareSnapshotRequest>;
+
+export interface UpdateFileShareSnapshotResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: FileShareSnapshotProperties;
+}
+export const UpdateFileShareSnapshotResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(FileShareSnapshotProperties),
+  }),
+).annotate({
+  identifier: "UpdateFileShareSnapshotResponse",
+}) as any as S.Schema<UpdateFileShareSnapshotResponse>;
+
+export type CheckFileShareNameAvailabilityError = AzureOpError;
 /** Implements local CheckNameAvailability operations */
-export const FileSharesCheckNameAvailability: API.OperationMethod<
-  FileSharesCheckNameAvailabilityRequest,
-  FileSharesCheckNameAvailabilityResponse,
-  FileSharesCheckNameAvailabilityError,
+export const CheckFileShareNameAvailability: API.OperationMethod<
+  CheckFileShareNameAvailabilityRequest,
+  CheckFileShareNameAvailabilityResponse,
+  CheckFileShareNameAvailabilityError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FileSharesCheckNameAvailabilityRequest,
-  output: FileSharesCheckNameAvailabilityResponse,
+  input: CheckFileShareNameAvailabilityRequest,
+  output: CheckFileShareNameAvailabilityResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreatePrivateEndpointConnectionError = AzureOpError;
+/** Update the state of specified private endpoint connection associated with the file share. */
+export const CreatePrivateEndpointConnection: API.OperationMethod<
+  CreatePrivateEndpointConnectionRequest,
+  CreatePrivateEndpointConnectionResponse,
+  CreatePrivateEndpointConnectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreatePrivateEndpointConnectionRequest,
+  output: CreatePrivateEndpointConnectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteFileShareError = AzureOpError;
+/** Delete a FileShare */
+export const DeleteFileShare: API.OperationMethod<
+  DeleteFileShareRequest,
+  DeleteFileShareResponse,
+  DeleteFileShareError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteFileShareRequest,
+  output: DeleteFileShareResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteFileShareSnapshotError = AzureOpError;
+/** Delete a FileShareSnapshot. */
+export const DeleteFileShareSnapshot: API.OperationMethod<
+  DeleteFileShareSnapshotRequest,
+  DeleteFileShareSnapshotResponse,
+  DeleteFileShareSnapshotError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteFileShareSnapshotRequest,
+  output: DeleteFileShareSnapshotResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeletePrivateEndpointConnectionError = AzureOpError;
+/** Deletes the specified private endpoint connection associated with the file share. */
+export const DeletePrivateEndpointConnection: API.OperationMethod<
+  DeletePrivateEndpointConnectionRequest,
+  DeletePrivateEndpointConnectionResponse,
+  DeletePrivateEndpointConnectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeletePrivateEndpointConnectionRequest,
+  output: DeletePrivateEndpointConnectionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -1930,66 +1942,6 @@ export const FileSharesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type FileSharesDeleteError = AzureOpError;
-/** Delete a FileShare */
-export const FileSharesDelete: API.OperationMethod<
-  FileSharesDeleteRequest,
-  FileSharesDeleteResponse,
-  FileSharesDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FileSharesDeleteRequest,
-  output: FileSharesDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type FileSharesGetError = AzureOpError;
-/** Get a FileShare */
-export const FileSharesGet: API.OperationMethod<
-  FileSharesGetRequest,
-  FileSharesGetResponse,
-  FileSharesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FileSharesGetRequest,
-  output: FileSharesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type FileSharesListByParentError = AzureOpError;
-/** List FileShare resources by resource group */
-export const FileSharesListByParent: API.OperationMethod<
-  FileSharesListByParentRequest,
-  FileShareListResult,
-  FileSharesListByParentError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FileSharesListByParentRequest,
-  output: FileShareListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type FileSharesListBySubscriptionError = AzureOpError;
-/** List FileShare resources by subscription ID */
-export const FileSharesListBySubscription: API.OperationMethod<
-  FileSharesListBySubscriptionRequest,
-  FileShareListResult,
-  FileSharesListBySubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FileSharesListBySubscriptionRequest,
-  output: FileShareListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type FileShareSnapshotCreateOrUpdateError = AzureOpError;
 /** Create a FileShareSnapshot. */
 export const FileShareSnapshotCreateOrUpdate: API.OperationMethod<
@@ -2005,181 +1957,226 @@ export const FileShareSnapshotCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type FileShareSnapshotDeleteError = AzureOpError;
-/** Delete a FileShareSnapshot. */
-export const FileShareSnapshotDelete: API.OperationMethod<
-  FileShareSnapshotDeleteRequest,
-  FileShareSnapshotDeleteResponse,
-  FileShareSnapshotDeleteError,
+export type GetFileShareError = AzureOpError;
+/** Get a FileShare */
+export const GetFileShare: API.OperationMethod<
+  GetFileShareRequest,
+  GetFileShareResponse,
+  GetFileShareError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FileShareSnapshotDeleteRequest,
-  output: FileShareSnapshotDeleteResponse,
+  input: GetFileShareRequest,
+  output: GetFileShareResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type FileShareSnapshotGetError = AzureOpError;
+export type GetFileShareLimitsError = AzureOpError;
+/** Get file shares limits. */
+export const GetFileShareLimits: API.OperationMethod<
+  GetFileShareLimitsRequest,
+  FileShareLimitsResponse,
+  GetFileShareLimitsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetFileShareLimitsRequest,
+  output: FileShareLimitsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetFileShareProvisioningRecommendationError = AzureOpError;
+/** Get file shares provisioning parameters recommendation. */
+export const GetFileShareProvisioningRecommendation: API.OperationMethod<
+  GetFileShareProvisioningRecommendationRequest,
+  FileShareProvisioningRecommendationResponse,
+  GetFileShareProvisioningRecommendationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetFileShareProvisioningRecommendationRequest,
+  output: FileShareProvisioningRecommendationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetFileShareSnapshotError = AzureOpError;
 /** Get a FileShareSnapshot */
-export const FileShareSnapshotGet: API.OperationMethod<
-  FileShareSnapshotGetRequest,
-  FileShareSnapshotGetResponse,
-  FileShareSnapshotGetError,
+export const GetFileShareSnapshot: API.OperationMethod<
+  GetFileShareSnapshotRequest,
+  GetFileShareSnapshotResponse,
+  GetFileShareSnapshotError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FileShareSnapshotGetRequest,
-  output: FileShareSnapshotGetResponse,
+  input: GetFileShareSnapshotRequest,
+  output: GetFileShareSnapshotResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type FileShareSnapshotListError = AzureOpError;
-/** List FileShareSnapshot by FileShare. */
-export const FileShareSnapshotList: API.OperationMethod<
-  FileShareSnapshotListRequest,
-  FileShareSnapshotListResult,
-  FileShareSnapshotListError,
+export type GetFileShareUsageDataError = AzureOpError;
+/** Get file shares usage data. */
+export const GetFileShareUsageData: API.OperationMethod<
+  GetFileShareUsageDataRequest,
+  FileShareUsageDataResponse,
+  GetFileShareUsageDataError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FileShareSnapshotListRequest,
+  input: GetFileShareUsageDataRequest,
+  output: FileShareUsageDataResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetPrivateEndpointConnectionError = AzureOpError;
+/** Gets the specified private endpoint connection associated with the file share. */
+export const GetPrivateEndpointConnection: API.OperationMethod<
+  GetPrivateEndpointConnectionRequest,
+  GetPrivateEndpointConnectionResponse,
+  GetPrivateEndpointConnectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPrivateEndpointConnectionRequest,
+  output: GetPrivateEndpointConnectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetPrivateLinkResourceError = AzureOpError;
+/** Gets the private link resources that need to be created for a file share. */
+export const GetPrivateLinkResource: API.OperationMethod<
+  GetPrivateLinkResourceRequest,
+  GetPrivateLinkResourceResponse,
+  GetPrivateLinkResourceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPrivateLinkResourceRequest,
+  output: GetPrivateLinkResourceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListFileShareByParentError = AzureOpError;
+/** List FileShare resources by resource group */
+export const ListFileShareByParent: API.OperationMethod<
+  ListFileShareByParentRequest,
+  FileShareListResult,
+  ListFileShareByParentError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListFileShareByParentRequest,
+  output: FileShareListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListFileShareBySubscriptionError = AzureOpError;
+/** List FileShare resources by subscription ID */
+export const ListFileShareBySubscription: API.OperationMethod<
+  ListFileShareBySubscriptionRequest,
+  FileShareListResult,
+  ListFileShareBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListFileShareBySubscriptionRequest,
+  output: FileShareListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListFileShareSnapshotError = AzureOpError;
+/** List FileShareSnapshot by FileShare. */
+export const ListFileShareSnapshot: API.OperationMethod<
+  ListFileShareSnapshotRequest,
+  FileShareSnapshotListResult,
+  ListFileShareSnapshotError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListFileShareSnapshotRequest,
   output: FileShareSnapshotListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type FileShareSnapshotUpdateError = AzureOpError;
-/** Update a FileShareSnapshot. */
-export const FileShareSnapshotUpdate: API.OperationMethod<
-  FileShareSnapshotUpdateRequest,
-  FileShareSnapshotUpdateResponse,
-  FileShareSnapshotUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FileShareSnapshotUpdateRequest,
-  output: FileShareSnapshotUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type FileSharesUpdateError = AzureOpError;
-/** Update a FileShare */
-export const FileSharesUpdate: API.OperationMethod<
-  FileSharesUpdateRequest,
-  FileSharesUpdateResponse,
-  FileSharesUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FileSharesUpdateRequest,
-  output: FileSharesUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type OperationsListError = AzureOpError;
+export type ListOperationsError = AzureOpError;
 /** List the operations for the provider */
-export const OperationsList: API.OperationMethod<
-  OperationsListRequest,
-  OperationsListResponse,
-  OperationsListError,
+export const ListOperations: API.OperationMethod<
+  ListOperationsRequest,
+  ListOperationsResponse,
+  ListOperationsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OperationsListRequest,
-  output: OperationsListResponse,
+  input: ListOperationsRequest,
+  output: ListOperationsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type PrivateEndpointConnectionsCreateError = AzureOpError;
-/** Update the state of specified private endpoint connection associated with the file share. */
-export const PrivateEndpointConnectionsCreate: API.OperationMethod<
-  PrivateEndpointConnectionsCreateRequest,
-  PrivateEndpointConnectionsCreateResponse,
-  PrivateEndpointConnectionsCreateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateEndpointConnectionsCreateRequest,
-  output: PrivateEndpointConnectionsCreateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateEndpointConnectionsDeleteError = AzureOpError;
-/** Deletes the specified private endpoint connection associated with the file share. */
-export const PrivateEndpointConnectionsDelete: API.OperationMethod<
-  PrivateEndpointConnectionsDeleteRequest,
-  PrivateEndpointConnectionsDeleteResponse,
-  PrivateEndpointConnectionsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateEndpointConnectionsDeleteRequest,
-  output: PrivateEndpointConnectionsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateEndpointConnectionsGetError = AzureOpError;
-/** Gets the specified private endpoint connection associated with the file share. */
-export const PrivateEndpointConnectionsGet: API.OperationMethod<
-  PrivateEndpointConnectionsGetRequest,
-  PrivateEndpointConnectionsGetResponse,
-  PrivateEndpointConnectionsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateEndpointConnectionsGetRequest,
-  output: PrivateEndpointConnectionsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateEndpointConnectionsListByFileShareError = AzureOpError;
+export type ListPrivateEndpointConnectionByFileShareError = AzureOpError;
 /** Get a PrivateEndpointConnection List. */
-export const PrivateEndpointConnectionsListByFileShare: API.OperationMethod<
-  PrivateEndpointConnectionsListByFileShareRequest,
+export const ListPrivateEndpointConnectionByFileShare: API.OperationMethod<
+  ListPrivateEndpointConnectionByFileShareRequest,
   PrivateEndpointConnectionListResult,
-  PrivateEndpointConnectionsListByFileShareError,
+  ListPrivateEndpointConnectionByFileShareError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PrivateEndpointConnectionsListByFileShareRequest,
+  input: ListPrivateEndpointConnectionByFileShareRequest,
   output: PrivateEndpointConnectionListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type PrivateLinkResourcesGetError = AzureOpError;
+export type ListPrivateLinkResourcesError = AzureOpError;
 /** Gets the private link resources that need to be created for a file share. */
-export const PrivateLinkResourcesGet: API.OperationMethod<
-  PrivateLinkResourcesGetRequest,
-  PrivateLinkResourcesGetResponse,
-  PrivateLinkResourcesGetError,
+export const ListPrivateLinkResources: API.OperationMethod<
+  ListPrivateLinkResourcesRequest,
+  PrivateLinkResourceListResult,
+  ListPrivateLinkResourcesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PrivateLinkResourcesGetRequest,
-  output: PrivateLinkResourcesGetResponse,
+  input: ListPrivateLinkResourcesRequest,
+  output: PrivateLinkResourceListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type PrivateLinkResourcesListError = AzureOpError;
-/** Gets the private link resources that need to be created for a file share. */
-export const PrivateLinkResourcesList: API.OperationMethod<
-  PrivateLinkResourcesListRequest,
-  PrivateLinkResourceListResult,
-  PrivateLinkResourcesListError,
+export type UpdateFileShareError = AzureOpError;
+/** Update a FileShare */
+export const UpdateFileShare: API.OperationMethod<
+  UpdateFileShareRequest,
+  UpdateFileShareResponse,
+  UpdateFileShareError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PrivateLinkResourcesListRequest,
-  output: PrivateLinkResourceListResult,
+  input: UpdateFileShareRequest,
+  output: UpdateFileShareResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateFileShareSnapshotError = AzureOpError;
+/** Update a FileShareSnapshot. */
+export const UpdateFileShareSnapshot: API.OperationMethod<
+  UpdateFileShareSnapshotRequest,
+  UpdateFileShareSnapshotResponse,
+  UpdateFileShareSnapshotError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateFileShareSnapshotRequest,
+  output: UpdateFileShareSnapshotResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.task_activity#TaskActivityListRequest": {
+    "com.posthog.task_activity#ListTaskActivityRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -319,10 +320,10 @@
         "smithy.api#documentation": "Tasks with activity, most recent first."
       }
     },
-    "com.posthog.task_activity#TaskActivityList": {
+    "com.posthog.task_activity#ListTaskActivity": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.task_activity#TaskActivityListRequest"
+        "target": "com.posthog.task_activity#ListTaskActivityRequest"
       },
       "output": {
         "target": "com.posthog.task_activity#TaskActivityPageDTO"
@@ -437,7 +438,7 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.task_activity#TaskActivityList"
+          "target": "com.posthog.task_activity#ListTaskActivity"
         },
         {
           "target": "com.posthog.task_activity#TaskActivityMarkReadCreate"

@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.azure.carbon#CarbonServiceQueryCarbonEmissionDataAvailableDateRange": {
@@ -58,13 +59,13 @@
         "smithy.api#documentation": "Response for available date range of carbon emission data"
       }
     },
-    "com.azure.carbon#OperationsList": {
+    "com.azure.carbon#ListOperations": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
       },
       "output": {
-        "target": "com.azure.carbon#OperationsListResponse"
+        "target": "com.azure.carbon#ListOperationsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -77,11 +78,11 @@
         "com.distilled.openapi#apiVersion": "2025-04-01"
       }
     },
-    "com.azure.carbon#OperationsListResponse": {
+    "com.azure.carbon#ListOperationsResponse": {
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.carbon#OperationsListResponseValueList",
+          "target": "com.azure.carbon#ListOperationsResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of operations supported by the resource provider"
           }
@@ -97,7 +98,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.carbon#OperationsListResponseValueList": {
+    "com.azure.carbon#ListOperationsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.carbon#Operation"
@@ -636,7 +637,7 @@
           "target": "com.azure.carbon#CarbonServiceQueryCarbonEmissionDataAvailableDateRange"
         },
         {
-          "target": "com.azure.carbon#OperationsList"
+          "target": "com.azure.carbon#ListOperations"
         },
         {
           "target": "com.azure.carbon#CarbonServiceQueryCarbonEmissionReports"

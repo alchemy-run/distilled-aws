@@ -1504,6 +1504,35 @@ export const ReachEstimate = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "ReachEstimate" }) as any as S.Schema<ReachEstimate>;
 
+export type GetAdGroupRequestAttributionModel = "last_touch" | "first_touch";
+export const GetAdGroupRequestAttributionModel = /*@__PURE__*/ S.String;
+
+export interface GetAdGroupRequest {
+  /** The ad group ID. */
+  id: string;
+  /** Start of the stats window. */
+  stats_from?: string;
+  /** End of the stats window. */
+  stats_to?: string;
+  /** IANA timezone the stats window is interpreted in. Defaults to UTC. */
+  time_zone?: string;
+  /** Attribution model the conversion stats count under (defaults to last_touch). Under both models a journey with any whop ad touch attributes to whop; the model picks which whop touch credits the entity and which non-whop source wins otherwise. */
+  attribution_model?: GetAdGroupRequestAttributionModel | (string & {});
+}
+export const GetAdGroupRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+    stats_from: S.optional(S.String.pipe(T.Query())),
+    stats_to: S.optional(S.String.pipe(T.Query())),
+    time_zone: S.optional(S.String.pipe(T.Query())),
+    attribution_model: S.optional(
+      GetAdGroupRequestAttributionModel.pipe(T.Query()),
+    ),
+  }).pipe(T.Http({ method: "GET", uri: "/ad_groups/{id}", code: 200 })),
+).annotate({
+  identifier: "GetAdGroupRequest",
+}) as any as S.Schema<GetAdGroupRequest>;
+
 export type ListAdGroupsRequestAdCampaignIdsList = Array<string>;
 export const ListAdGroupsRequestAdCampaignIdsList = /*@__PURE__*/ S.Array(
   S.String,
@@ -1652,37 +1681,6 @@ export const PauseAdGroupRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "PauseAdGroupRequest",
 }) as any as S.Schema<PauseAdGroupRequest>;
-
-export type RetrieveAdGroupRequestAttributionModel =
-  | "last_touch"
-  | "first_touch";
-export const RetrieveAdGroupRequestAttributionModel = /*@__PURE__*/ S.String;
-
-export interface RetrieveAdGroupRequest {
-  /** The ad group ID. */
-  id: string;
-  /** Start of the stats window. */
-  stats_from?: string;
-  /** End of the stats window. */
-  stats_to?: string;
-  /** IANA timezone the stats window is interpreted in. Defaults to UTC. */
-  time_zone?: string;
-  /** Attribution model the conversion stats count under (defaults to last_touch). Under both models a journey with any whop ad touch attributes to whop; the model picks which whop touch credits the entity and which non-whop source wins otherwise. */
-  attribution_model?: RetrieveAdGroupRequestAttributionModel | (string & {});
-}
-export const RetrieveAdGroupRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-    stats_from: S.optional(S.String.pipe(T.Query())),
-    stats_to: S.optional(S.String.pipe(T.Query())),
-    time_zone: S.optional(S.String.pipe(T.Query())),
-    attribution_model: S.optional(
-      RetrieveAdGroupRequestAttributionModel.pipe(T.Query()),
-    ),
-  }).pipe(T.Http({ method: "GET", uri: "/ad_groups/{id}", code: 200 })),
-).annotate({
-  identifier: "RetrieveAdGroupRequest",
-}) as any as S.Schema<RetrieveAdGroupRequest>;
 
 export type SearchAdGroupTargetingOptionsRequestPlatform = "meta";
 export const SearchAdGroupTargetingOptionsRequestPlatform =
@@ -2228,6 +2226,21 @@ export const estimateAdGroupReach: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetAdGroupError = NotFound | WhopOpError;
+/** Retrieve an Ad Group Retrieves a single ad group. */
+export const getAdGroup: API.OperationMethod<
+  GetAdGroupRequest,
+  AdGroup,
+  GetAdGroupError,
+  WhopOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetAdGroupRequest,
+  output: AdGroup,
+  errors: [NotFound],
+  protocol: WhopProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListAdGroupsError = WhopOpError;
 /** List Ad Groups Lists ad groups for the account, newest first. */
 export const listAdGroups: API.PaginatedOperationMethod<
@@ -2266,21 +2279,6 @@ export const pauseAdGroup: API.OperationMethod<
   input: PauseAdGroupRequest,
   output: AdGroup,
   errors: [Conflict],
-  protocol: WhopProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveAdGroupError = NotFound | WhopOpError;
-/** Retrieve an Ad Group Retrieves a single ad group. */
-export const retrieveAdGroup: API.OperationMethod<
-  RetrieveAdGroupRequest,
-  AdGroup,
-  RetrieveAdGroupError,
-  WhopOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveAdGroupRequest,
-  output: AdGroup,
-  errors: [NotFound],
   protocol: WhopProtocol,
   retry: Retry.Retry,
 }));

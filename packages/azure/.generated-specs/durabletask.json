@@ -14,13 +14,14 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.durabletask#TaskHubsDelete": {
+    "com.azure.durabletask#DeleteTaskHub": {
       "type": "operation",
       "input": {
-        "target": "com.azure.durabletask#TaskHubsDeleteRequest"
+        "target": "com.azure.durabletask#DeleteTaskHubRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -36,7 +37,7 @@
         "com.distilled.openapi#apiVersion": "2026-02-01"
       }
     },
-    "com.azure.durabletask#TaskHubsDeleteRequest": {
+    "com.azure.durabletask#DeleteTaskHubRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -364,13 +365,13 @@
         "smithy.api#documentation": "The properties of Task Hub"
       }
     },
-    "com.azure.durabletask#TaskHubsGet": {
+    "com.azure.durabletask#GetTaskHub": {
       "type": "operation",
       "input": {
-        "target": "com.azure.durabletask#TaskHubsGetRequest"
+        "target": "com.azure.durabletask#GetTaskHubRequest"
       },
       "output": {
-        "target": "com.azure.durabletask#TaskHubsGetResponse"
+        "target": "com.azure.durabletask#GetTaskHubResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -383,7 +384,7 @@
         "com.distilled.openapi#apiVersion": "2026-02-01"
       }
     },
-    "com.azure.durabletask#TaskHubsGetResponse": {
+    "com.azure.durabletask#GetTaskHubResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -421,7 +422,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.durabletask#TaskHubsGetRequest": {
+    "com.azure.durabletask#GetTaskHubRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -461,10 +462,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.durabletask#TaskHubsListByScheduler": {
+    "com.azure.durabletask#ListTaskHubByScheduler": {
       "type": "operation",
       "input": {
-        "target": "com.azure.durabletask#TaskHubsListBySchedulerRequest"
+        "target": "com.azure.durabletask#ListTaskHubBySchedulerRequest"
       },
       "output": {
         "target": "com.azure.durabletask#TaskHubListResult"
@@ -548,7 +549,7 @@
         "smithy.api#documentation": "A Task Hub resource belonging to the scheduler"
       }
     },
-    "com.azure.durabletask#TaskHubsListBySchedulerRequest": {
+    "com.azure.durabletask#ListTaskHubBySchedulerRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -580,10 +581,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.durabletask#RetentionPoliciesDelete": {
+    "com.azure.durabletask#DeleteRetentionPolicy": {
       "type": "operation",
       "input": {
-        "target": "com.azure.durabletask#RetentionPoliciesDeleteRequest"
+        "target": "com.azure.durabletask#DeleteRetentionPolicyRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -599,7 +600,7 @@
         "com.distilled.openapi#apiVersion": "2026-02-01"
       }
     },
-    "com.azure.durabletask#RetentionPoliciesDeleteRequest": {
+    "com.azure.durabletask#DeleteRetentionPolicyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -631,13 +632,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.durabletask#RetentionPoliciesUpdate": {
+    "com.azure.durabletask#UpdateRetentionPolicy": {
       "type": "operation",
       "input": {
-        "target": "com.azure.durabletask#RetentionPoliciesUpdateRequest"
+        "target": "com.azure.durabletask#UpdateRetentionPolicyRequest"
       },
       "output": {
-        "target": "com.azure.durabletask#RetentionPoliciesUpdateResponse"
+        "target": "com.azure.durabletask#UpdateRetentionPolicyResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -650,7 +651,7 @@
         "com.distilled.openapi#apiVersion": "2026-02-01"
       }
     },
-    "com.azure.durabletask#RetentionPoliciesUpdateResponse": {
+    "com.azure.durabletask#UpdateRetentionPolicyResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -770,7 +771,7 @@
         "smithy.api#documentation": "Purgeable orchestration state to be used in retention policies"
       }
     },
-    "com.azure.durabletask#RetentionPoliciesUpdateRequest": {
+    "com.azure.durabletask#UpdateRetentionPolicyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -926,13 +927,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.durabletask#RetentionPoliciesGet": {
+    "com.azure.durabletask#GetRetentionPolicy": {
       "type": "operation",
       "input": {
-        "target": "com.azure.durabletask#RetentionPoliciesGetRequest"
+        "target": "com.azure.durabletask#GetRetentionPolicyRequest"
       },
       "output": {
-        "target": "com.azure.durabletask#RetentionPoliciesGetResponse"
+        "target": "com.azure.durabletask#GetRetentionPolicyResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -945,7 +946,7 @@
         "com.distilled.openapi#apiVersion": "2026-02-01"
       }
     },
-    "com.azure.durabletask#RetentionPoliciesGetResponse": {
+    "com.azure.durabletask#GetRetentionPolicyResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -983,7 +984,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.durabletask#RetentionPoliciesGetRequest": {
+    "com.azure.durabletask#GetRetentionPolicyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1015,10 +1016,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.durabletask#RetentionPoliciesListByScheduler": {
+    "com.azure.durabletask#ListRetentionPolicyByScheduler": {
       "type": "operation",
       "input": {
-        "target": "com.azure.durabletask#RetentionPoliciesListBySchedulerRequest"
+        "target": "com.azure.durabletask#ListRetentionPolicyBySchedulerRequest"
       },
       "output": {
         "target": "com.azure.durabletask#RetentionPolicyListResult"
@@ -1102,7 +1103,7 @@
         "smithy.api#documentation": "A retention policy resource belonging to the scheduler"
       }
     },
-    "com.azure.durabletask#RetentionPoliciesListBySchedulerRequest": {
+    "com.azure.durabletask#ListRetentionPolicyBySchedulerRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1134,13 +1135,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.durabletask#SchedulersGetPrivateLink": {
+    "com.azure.durabletask#GetSchedulerPrivateLink": {
       "type": "operation",
       "input": {
-        "target": "com.azure.durabletask#SchedulersGetPrivateLinkRequest"
+        "target": "com.azure.durabletask#GetSchedulerPrivateLinkRequest"
       },
       "output": {
-        "target": "com.azure.durabletask#SchedulersGetPrivateLinkResponse"
+        "target": "com.azure.durabletask#GetSchedulerPrivateLinkResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1153,7 +1154,7 @@
         "com.distilled.openapi#apiVersion": "2026-02-01"
       }
     },
-    "com.azure.durabletask#SchedulersGetPrivateLinkResponse": {
+    "com.azure.durabletask#GetSchedulerPrivateLinkResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1235,7 +1236,7 @@
         "smithy.api#documentation": "The private link resource required member names."
       }
     },
-    "com.azure.durabletask#SchedulersGetPrivateLinkRequest": {
+    "com.azure.durabletask#GetSchedulerPrivateLinkRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1275,10 +1276,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.durabletask#SchedulersListPrivateLinks": {
+    "com.azure.durabletask#ListSchedulerPrivateLinks": {
       "type": "operation",
       "input": {
-        "target": "com.azure.durabletask#SchedulersListPrivateLinksRequest"
+        "target": "com.azure.durabletask#ListSchedulerPrivateLinksRequest"
       },
       "output": {
         "target": "com.azure.durabletask#SchedulerPrivateLinkResourceListResult"
@@ -1362,7 +1363,7 @@
         "smithy.api#documentation": "A private link resource."
       }
     },
-    "com.azure.durabletask#SchedulersListPrivateLinksRequest": {
+    "com.azure.durabletask#ListSchedulerPrivateLinksRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1394,10 +1395,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.durabletask#SchedulersDeletePrivateEndpointConnection": {
+    "com.azure.durabletask#DeleteSchedulerPrivateEndpointConnection": {
       "type": "operation",
       "input": {
-        "target": "com.azure.durabletask#SchedulersDeletePrivateEndpointConnectionRequest"
+        "target": "com.azure.durabletask#DeleteSchedulerPrivateEndpointConnectionRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1413,7 +1414,7 @@
         "com.distilled.openapi#apiVersion": "2026-02-01"
       }
     },
-    "com.azure.durabletask#SchedulersDeletePrivateEndpointConnectionRequest": {
+    "com.azure.durabletask#DeleteSchedulerPrivateEndpointConnectionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1453,13 +1454,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.durabletask#SchedulersUpdatePrivateEndpointConnection": {
+    "com.azure.durabletask#UpdateSchedulerPrivateEndpointConnection": {
       "type": "operation",
       "input": {
-        "target": "com.azure.durabletask#SchedulersUpdatePrivateEndpointConnectionRequest"
+        "target": "com.azure.durabletask#UpdateSchedulerPrivateEndpointConnectionRequest"
       },
       "output": {
-        "target": "com.azure.durabletask#SchedulersUpdatePrivateEndpointConnectionResponse"
+        "target": "com.azure.durabletask#UpdateSchedulerPrivateEndpointConnectionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1472,7 +1473,7 @@
         "com.distilled.openapi#apiVersion": "2026-02-01"
       }
     },
-    "com.azure.durabletask#SchedulersUpdatePrivateEndpointConnectionResponse": {
+    "com.azure.durabletask#UpdateSchedulerPrivateEndpointConnectionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1650,7 +1651,7 @@
         "smithy.api#documentation": "The group ids for the private endpoint resource."
       }
     },
-    "com.azure.durabletask#SchedulersUpdatePrivateEndpointConnectionRequest": {
+    "com.azure.durabletask#UpdateSchedulerPrivateEndpointConnectionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1686,7 +1687,7 @@
           }
         },
         "properties": {
-          "target": "com.azure.durabletask#SchedulersUpdatePrivateEndpointConnectionRequestProperties",
+          "target": "com.azure.durabletask#UpdateSchedulerPrivateEndpointConnectionRequestProperties",
           "traits": {
             "smithy.api#documentation": "The private endpoint connection properties"
           }
@@ -1696,17 +1697,17 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.durabletask#SchedulersUpdatePrivateEndpointConnectionRequestProperties": {
+    "com.azure.durabletask#UpdateSchedulerPrivateEndpointConnectionRequestProperties": {
       "type": "structure",
       "members": {
         "privateEndpoint": {
-          "target": "com.azure.durabletask#SchedulersUpdatePrivateEndpointConnectionRequestPropertiesPrivateEndpoint",
+          "target": "com.azure.durabletask#UpdateSchedulerPrivateEndpointConnectionRequestPropertiesPrivateEndpoint",
           "traits": {
             "smithy.api#documentation": "The private endpoint resource."
           }
         },
         "privateLinkServiceConnectionState": {
-          "target": "com.azure.durabletask#SchedulersUpdatePrivateEndpointConnectionRequestPropertiesPrivateLinkServiceConnectionState",
+          "target": "com.azure.durabletask#UpdateSchedulerPrivateEndpointConnectionRequestPropertiesPrivateLinkServiceConnectionState",
           "traits": {
             "smithy.api#documentation": "A collection of information about the state of the connection between service consumer and provider."
           }
@@ -1716,7 +1717,7 @@
         "smithy.api#documentation": "The private endpoint connection properties"
       }
     },
-    "com.azure.durabletask#SchedulersUpdatePrivateEndpointConnectionRequestPropertiesPrivateLinkServiceConnectionState": {
+    "com.azure.durabletask#UpdateSchedulerPrivateEndpointConnectionRequestPropertiesPrivateLinkServiceConnectionState": {
       "type": "structure",
       "members": {
         "status": {
@@ -1742,7 +1743,7 @@
         "smithy.api#documentation": "A collection of information about the state of the connection between service consumer and provider."
       }
     },
-    "com.azure.durabletask#SchedulersUpdatePrivateEndpointConnectionRequestPropertiesPrivateEndpoint": {
+    "com.azure.durabletask#UpdateSchedulerPrivateEndpointConnectionRequestPropertiesPrivateEndpoint": {
       "type": "structure",
       "members": {},
       "traits": {
@@ -1880,13 +1881,13 @@
         "smithy.api#documentation": "The private endpoint resource."
       }
     },
-    "com.azure.durabletask#SchedulersGetPrivateEndpointConnection": {
+    "com.azure.durabletask#GetSchedulerPrivateEndpointConnection": {
       "type": "operation",
       "input": {
-        "target": "com.azure.durabletask#SchedulersGetPrivateEndpointConnectionRequest"
+        "target": "com.azure.durabletask#GetSchedulerPrivateEndpointConnectionRequest"
       },
       "output": {
-        "target": "com.azure.durabletask#SchedulersGetPrivateEndpointConnectionResponse"
+        "target": "com.azure.durabletask#GetSchedulerPrivateEndpointConnectionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1899,7 +1900,7 @@
         "com.distilled.openapi#apiVersion": "2026-02-01"
       }
     },
-    "com.azure.durabletask#SchedulersGetPrivateEndpointConnectionResponse": {
+    "com.azure.durabletask#GetSchedulerPrivateEndpointConnectionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1937,7 +1938,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.durabletask#SchedulersGetPrivateEndpointConnectionRequest": {
+    "com.azure.durabletask#GetSchedulerPrivateEndpointConnectionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1977,10 +1978,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.durabletask#SchedulersListPrivateEndpointConnections": {
+    "com.azure.durabletask#ListSchedulerPrivateEndpointConnections": {
       "type": "operation",
       "input": {
-        "target": "com.azure.durabletask#SchedulersListPrivateEndpointConnectionsRequest"
+        "target": "com.azure.durabletask#ListSchedulerPrivateEndpointConnectionsRequest"
       },
       "output": {
         "target": "com.azure.durabletask#PrivateEndpointConnectionListResult"
@@ -2064,7 +2065,7 @@
         "smithy.api#documentation": "The private endpoint connection resource."
       }
     },
-    "com.azure.durabletask#SchedulersListPrivateEndpointConnectionsRequest": {
+    "com.azure.durabletask#ListSchedulerPrivateEndpointConnectionsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2096,10 +2097,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.durabletask#SchedulersDelete": {
+    "com.azure.durabletask#DeleteScheduler": {
       "type": "operation",
       "input": {
-        "target": "com.azure.durabletask#SchedulersDeleteRequest"
+        "target": "com.azure.durabletask#DeleteSchedulerRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2115,7 +2116,7 @@
         "com.distilled.openapi#apiVersion": "2026-02-01"
       }
     },
-    "com.azure.durabletask#SchedulersDeleteRequest": {
+    "com.azure.durabletask#DeleteSchedulerRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2147,13 +2148,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.durabletask#SchedulersUpdate": {
+    "com.azure.durabletask#UpdateScheduler": {
       "type": "operation",
       "input": {
-        "target": "com.azure.durabletask#SchedulersUpdateRequest"
+        "target": "com.azure.durabletask#UpdateSchedulerRequest"
       },
       "output": {
-        "target": "com.azure.durabletask#SchedulersUpdateResponse"
+        "target": "com.azure.durabletask#UpdateSchedulerResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2166,7 +2167,7 @@
         "com.distilled.openapi#apiVersion": "2026-02-01"
       }
     },
-    "com.azure.durabletask#SchedulersUpdateResponse": {
+    "com.azure.durabletask#UpdateSchedulerResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2194,7 +2195,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.durabletask#SchedulersUpdateResponseTagsMap",
+          "target": "com.azure.durabletask#UpdateSchedulerResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2406,7 +2407,7 @@
         "smithy.api#documentation": "IP allow list for durable task scheduler. Values can be IPv4, IPv6 or CIDR"
       }
     },
-    "com.azure.durabletask#SchedulersUpdateResponseTagsMap": {
+    "com.azure.durabletask#UpdateSchedulerResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2418,7 +2419,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.durabletask#SchedulersUpdateRequest": {
+    "com.azure.durabletask#UpdateSchedulerRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2452,7 +2453,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.durabletask#SchedulersUpdateRequestTagsMap",
+          "target": "com.azure.durabletask#UpdateSchedulerRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2462,7 +2463,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.durabletask#SchedulersUpdateRequestTagsMap": {
+    "com.azure.durabletask#UpdateSchedulerRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2711,13 +2712,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.durabletask#SchedulersGet": {
+    "com.azure.durabletask#GetScheduler": {
       "type": "operation",
       "input": {
-        "target": "com.azure.durabletask#SchedulersGetRequest"
+        "target": "com.azure.durabletask#GetSchedulerRequest"
       },
       "output": {
-        "target": "com.azure.durabletask#SchedulersGetResponse"
+        "target": "com.azure.durabletask#GetSchedulerResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2730,7 +2731,7 @@
         "com.distilled.openapi#apiVersion": "2026-02-01"
       }
     },
-    "com.azure.durabletask#SchedulersGetResponse": {
+    "com.azure.durabletask#GetSchedulerResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2758,7 +2759,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.durabletask#SchedulersGetResponseTagsMap",
+          "target": "com.azure.durabletask#GetSchedulerResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2781,7 +2782,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.durabletask#SchedulersGetResponseTagsMap": {
+    "com.azure.durabletask#GetSchedulerResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2793,7 +2794,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.durabletask#SchedulersGetRequest": {
+    "com.azure.durabletask#GetSchedulerRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2825,10 +2826,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.durabletask#SchedulersListByResourceGroup": {
+    "com.azure.durabletask#ListSchedulerByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.durabletask#SchedulersListByResourceGroupRequest"
+        "target": "com.azure.durabletask#ListSchedulerByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.durabletask#SchedulerListResult"
@@ -2937,7 +2938,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.durabletask#SchedulersListByResourceGroupRequest": {
+    "com.azure.durabletask#ListSchedulerByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2961,10 +2962,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.durabletask#SchedulersListBySubscription": {
+    "com.azure.durabletask#ListSchedulerBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.durabletask#SchedulersListBySubscriptionRequest"
+        "target": "com.azure.durabletask#ListSchedulerBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.durabletask#SchedulerListResult"
@@ -2980,7 +2981,7 @@
         "com.distilled.openapi#apiVersion": "2026-02-01"
       }
     },
-    "com.azure.durabletask#SchedulersListBySubscriptionRequest": {
+    "com.azure.durabletask#ListSchedulerBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2996,13 +2997,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.durabletask#OperationsList": {
+    "com.azure.durabletask#ListOperations": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
       },
       "output": {
-        "target": "com.azure.durabletask#OperationsListResponse"
+        "target": "com.azure.durabletask#ListOperationsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3015,11 +3016,11 @@
         "com.distilled.openapi#apiVersion": "2026-02-01"
       }
     },
-    "com.azure.durabletask#OperationsListResponse": {
+    "com.azure.durabletask#ListOperationsResponse": {
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.durabletask#OperationsListResponseValueList",
+          "target": "com.azure.durabletask#ListOperationsResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of operations supported by the resource provider"
           }
@@ -3035,7 +3036,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.durabletask#OperationsListResponseValueList": {
+    "com.azure.durabletask#ListOperationsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.durabletask#Operation"
@@ -3159,73 +3160,73 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.durabletask#TaskHubsDelete"
+          "target": "com.azure.durabletask#DeleteTaskHub"
         },
         {
           "target": "com.azure.durabletask#TaskHubsCreateOrUpdate"
         },
         {
-          "target": "com.azure.durabletask#TaskHubsGet"
+          "target": "com.azure.durabletask#GetTaskHub"
         },
         {
-          "target": "com.azure.durabletask#TaskHubsListByScheduler"
+          "target": "com.azure.durabletask#ListTaskHubByScheduler"
         },
         {
-          "target": "com.azure.durabletask#RetentionPoliciesDelete"
+          "target": "com.azure.durabletask#DeleteRetentionPolicy"
         },
         {
-          "target": "com.azure.durabletask#RetentionPoliciesUpdate"
+          "target": "com.azure.durabletask#UpdateRetentionPolicy"
         },
         {
           "target": "com.azure.durabletask#RetentionPoliciesCreateOrReplace"
         },
         {
-          "target": "com.azure.durabletask#RetentionPoliciesGet"
+          "target": "com.azure.durabletask#GetRetentionPolicy"
         },
         {
-          "target": "com.azure.durabletask#RetentionPoliciesListByScheduler"
+          "target": "com.azure.durabletask#ListRetentionPolicyByScheduler"
         },
         {
-          "target": "com.azure.durabletask#SchedulersGetPrivateLink"
+          "target": "com.azure.durabletask#GetSchedulerPrivateLink"
         },
         {
-          "target": "com.azure.durabletask#SchedulersListPrivateLinks"
+          "target": "com.azure.durabletask#ListSchedulerPrivateLinks"
         },
         {
-          "target": "com.azure.durabletask#SchedulersDeletePrivateEndpointConnection"
+          "target": "com.azure.durabletask#DeleteSchedulerPrivateEndpointConnection"
         },
         {
-          "target": "com.azure.durabletask#SchedulersUpdatePrivateEndpointConnection"
+          "target": "com.azure.durabletask#UpdateSchedulerPrivateEndpointConnection"
         },
         {
           "target": "com.azure.durabletask#SchedulersCreateOrUpdatePrivateEndpointConnection"
         },
         {
-          "target": "com.azure.durabletask#SchedulersGetPrivateEndpointConnection"
+          "target": "com.azure.durabletask#GetSchedulerPrivateEndpointConnection"
         },
         {
-          "target": "com.azure.durabletask#SchedulersListPrivateEndpointConnections"
+          "target": "com.azure.durabletask#ListSchedulerPrivateEndpointConnections"
         },
         {
-          "target": "com.azure.durabletask#SchedulersDelete"
+          "target": "com.azure.durabletask#DeleteScheduler"
         },
         {
-          "target": "com.azure.durabletask#SchedulersUpdate"
+          "target": "com.azure.durabletask#UpdateScheduler"
         },
         {
           "target": "com.azure.durabletask#SchedulersCreateOrUpdate"
         },
         {
-          "target": "com.azure.durabletask#SchedulersGet"
+          "target": "com.azure.durabletask#GetScheduler"
         },
         {
-          "target": "com.azure.durabletask#SchedulersListByResourceGroup"
+          "target": "com.azure.durabletask#ListSchedulerByResourceGroup"
         },
         {
-          "target": "com.azure.durabletask#SchedulersListBySubscription"
+          "target": "com.azure.durabletask#ListSchedulerBySubscription"
         },
         {
-          "target": "com.azure.durabletask#OperationsList"
+          "target": "com.azure.durabletask#ListOperations"
         }
       ],
       "traits": {

@@ -13,82 +13,258 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
-export interface DomainServiceOperationsListRequest {}
-export const DomainServiceOperationsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
+export interface CreateOuContainerRequest {
+  /** Gets subscription credentials which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the resource group within the user's subscription. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the domain service. */
+  domainServiceName: string;
+  /** The name of the OuContainer. */
+  ouContainerName: string;
+  /** The account name */
+  accountName?: string;
+  /** The account spn */
+  spn?: string;
+  /** The account password */
+  password?: string | Redacted.Redacted<string>;
+}
+export const CreateOuContainerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    domainServiceName: S.String.pipe(T.Label()),
+    ouContainerName: S.String.pipe(T.Label()),
+    accountName: S.optional(S.String),
+    spn: S.optional(S.String),
+    password: S.optional(S.String.pipe(T.SensitiveValue({}))),
+  }).pipe(
     T.Http({
-      method: "GET",
-      uri: "/providers/Microsoft.AAD/operations",
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Aad/domainServices/{domainServiceName}/ouContainer/{ouContainerName}",
       code: 200,
       apiVersion: "2022-12-01",
     }),
   ),
 ).annotate({
-  identifier: "DomainServiceOperationsListRequest",
-}) as any as S.Schema<DomainServiceOperationsListRequest>;
+  identifier: "CreateOuContainerRequest",
+}) as any as S.Schema<CreateOuContainerRequest>;
 
-/** The operation supported by Domain Services. */
-export interface OperationDisplayInfo {
-  /** The description of the operation. */
-  description?: string;
-  /** The action that users can perform, based on their permission level. */
-  operation?: string;
-  /** Service provider: Domain Services. */
-  provider?: string;
-  /** Resource on which the operation is performed. */
-  resource?: string;
+/** Resource tags */
+export type CreateOuContainerResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const CreateOuContainerResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<CreateOuContainerResponseTagsMap>;
+
+/** The type of identity that created the resource. */
+export type CreateOuContainerResponseSystemDataCreatedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const CreateOuContainerResponseSystemDataCreatedByType =
+  /*@__PURE__*/ S.String;
+
+/** The type of identity that last modified the resource. */
+export type CreateOuContainerResponseSystemDataLastModifiedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const CreateOuContainerResponseSystemDataLastModifiedByType =
+  /*@__PURE__*/ S.String;
+
+/** Metadata pertaining to creation and last modification of the resource. */
+export interface CreateOuContainerResponseSystemData {
+  /** The identity that created the resource. */
+  createdBy?: string;
+  /** The type of identity that created the resource. */
+  createdByType?: CreateOuContainerResponseSystemDataCreatedByType;
+  /** The timestamp of resource creation (UTC). */
+  createdAt?: string;
+  /** The identity that last modified the resource. */
+  lastModifiedBy?: string;
+  /** The type of identity that last modified the resource. */
+  lastModifiedByType?: CreateOuContainerResponseSystemDataLastModifiedByType;
+  /** The timestamp of resource last modification (UTC) */
+  lastModifiedAt?: string;
 }
-export const OperationDisplayInfo = /*@__PURE__*/ S.suspend(() =>
+export const CreateOuContainerResponseSystemData = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    description: S.optional(S.String),
-    operation: S.optional(S.String),
-    provider: S.optional(S.String),
-    resource: S.optional(S.String),
+    createdBy: S.optional(S.String),
+    createdByType: S.optional(CreateOuContainerResponseSystemDataCreatedByType),
+    createdAt: S.optional(S.String),
+    lastModifiedBy: S.optional(S.String),
+    lastModifiedByType: S.optional(
+      CreateOuContainerResponseSystemDataLastModifiedByType,
+    ),
+    lastModifiedAt: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "OperationDisplayInfo",
-}) as any as S.Schema<OperationDisplayInfo>;
+  identifier: "CreateOuContainerResponseSystemData",
+}) as any as S.Schema<CreateOuContainerResponseSystemData>;
 
-/** The operation supported by Domain Services. */
-export interface OperationEntity {
-  /** Operation name: {provider}/{resource}/{operation}. */
+/** Container Account Description */
+export interface ContainerAccount {
+  /** The account name */
+  accountName?: string;
+  /** The account spn */
+  spn?: string;
+  /** The account password */
+  password?: string | Redacted.Redacted<string>;
+}
+export const ContainerAccount = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    accountName: S.optional(S.String),
+    spn: S.optional(S.String),
+    password: S.optional(S.String.pipe(T.SensitiveValue({}))),
+  }),
+).annotate({
+  identifier: "ContainerAccount",
+}) as any as S.Schema<ContainerAccount>;
+
+/** The list of container accounts */
+export type OuContainerPropertiesAccountsList = Array<ContainerAccount>;
+export const OuContainerPropertiesAccountsList = /*@__PURE__*/ S.Array(
+  ContainerAccount,
+) as any as S.Schema<OuContainerPropertiesAccountsList>;
+
+/** Properties of the OuContainer. */
+export interface OuContainerProperties {
+  /** Azure Active Directory tenant id */
+  tenantId?: string;
+  /** The domain name of Domain Services. */
+  domainName?: string;
+  /** The Deployment id */
+  deploymentId?: string;
+  /** The OuContainer name */
+  containerId?: string;
+  /** The list of container accounts */
+  accounts?: OuContainerPropertiesAccountsList;
+  /** Status of OuContainer instance */
+  serviceStatus?: string;
+  /** Distinguished Name of OuContainer instance */
+  distinguishedName?: string;
+  /** The current deployment or provisioning state, which only appears in the response. */
+  provisioningState?: string;
+}
+export const OuContainerProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    tenantId: S.optional(S.String),
+    domainName: S.optional(S.String),
+    deploymentId: S.optional(S.String),
+    containerId: S.optional(S.String),
+    accounts: S.optional(OuContainerPropertiesAccountsList),
+    serviceStatus: S.optional(S.String),
+    distinguishedName: S.optional(S.String),
+    provisioningState: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "OuContainerProperties",
+}) as any as S.Schema<OuContainerProperties>;
+
+export interface CreateOuContainerResponse {
+  /** Resource Id */
+  id?: string;
+  /** Resource name */
   name?: string;
-  /** The operation supported by Domain Services. */
-  display?: OperationDisplayInfo;
-  /** The origin of the operation. */
-  origin?: string;
+  /** Resource type */
+  type?: string;
+  /** Resource location */
+  location?: string;
+  /** Resource tags */
+  tags?: CreateOuContainerResponseTagsMap;
+  /** Resource etag */
+  etag?: string;
+  /** Metadata pertaining to creation and last modification of the resource. */
+  systemData?: CreateOuContainerResponseSystemData;
+  /** OuContainer properties */
+  properties?: OuContainerProperties;
 }
-export const OperationEntity = /*@__PURE__*/ S.suspend(() =>
+export const CreateOuContainerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    id: S.optional(S.String),
     name: S.optional(S.String),
-    display: S.optional(OperationDisplayInfo),
-    origin: S.optional(S.String),
+    type: S.optional(S.String),
+    location: S.optional(S.String),
+    tags: S.optional(CreateOuContainerResponseTagsMap),
+    etag: S.optional(S.String),
+    systemData: S.optional(CreateOuContainerResponseSystemData),
+    properties: S.optional(OuContainerProperties),
   }),
 ).annotate({
-  identifier: "OperationEntity",
-}) as any as S.Schema<OperationEntity>;
+  identifier: "CreateOuContainerResponse",
+}) as any as S.Schema<CreateOuContainerResponse>;
 
-/** The list of operations. */
-export type OperationEntityListResultValueList = Array<OperationEntity>;
-export const OperationEntityListResultValueList = /*@__PURE__*/ S.Array(
-  OperationEntity,
-) as any as S.Schema<OperationEntityListResultValueList>;
-
-/** The list of domain service operation response. */
-export interface OperationEntityListResult {
-  /** The list of operations. */
-  value?: OperationEntityListResultValueList;
-  /** The continuation token for the next page of results. */
-  nextLink?: string;
+export interface DeleteDomainServiceRequest {
+  /** Gets subscription credentials which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the resource group within the user's subscription. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the domain service. */
+  domainServiceName: string;
 }
-export const OperationEntityListResult = /*@__PURE__*/ S.suspend(() =>
+export const DeleteDomainServiceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(OperationEntityListResultValueList),
-    nextLink: S.optional(S.String),
-  }),
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    domainServiceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AAD/domainServices/{domainServiceName}",
+      code: 200,
+      apiVersion: "2022-12-01",
+    }),
+  ),
 ).annotate({
-  identifier: "OperationEntityListResult",
-}) as any as S.Schema<OperationEntityListResult>;
+  identifier: "DeleteDomainServiceRequest",
+}) as any as S.Schema<DeleteDomainServiceRequest>;
+
+export interface DeleteDomainServiceResponse {}
+export const DeleteDomainServiceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteDomainServiceResponse",
+}) as any as S.Schema<DeleteDomainServiceResponse>;
+
+export interface DeleteOuContainerRequest {
+  /** Gets subscription credentials which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the resource group within the user's subscription. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the domain service. */
+  domainServiceName: string;
+  /** The name of the OuContainer. */
+  ouContainerName: string;
+}
+export const DeleteOuContainerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    domainServiceName: S.String.pipe(T.Label()),
+    ouContainerName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Aad/domainServices/{domainServiceName}/ouContainer/{ouContainerName}",
+      code: 200,
+      apiVersion: "2022-12-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteOuContainerRequest",
+}) as any as S.Schema<DeleteOuContainerRequest>;
+
+export interface DeleteOuContainerResponse {}
+export const DeleteOuContainerResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteOuContainerResponse",
+}) as any as S.Schema<DeleteOuContainerResponse>;
 
 /** Resource tags */
 export type DomainServicesCreateOrUpdateRequestTagsMap = {
@@ -850,7 +1026,7 @@ export const DomainServicesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
   identifier: "DomainServicesCreateOrUpdateResponse",
 }) as any as S.Schema<DomainServicesCreateOrUpdateResponse>;
 
-export interface DomainServicesDeleteRequest {
+export interface GetDomainServiceRequest {
   /** Gets subscription credentials which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
   /** The name of the resource group within the user's subscription. The name is case insensitive. */
@@ -858,39 +1034,7 @@ export interface DomainServicesDeleteRequest {
   /** The name of the domain service. */
   domainServiceName: string;
 }
-export const DomainServicesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    domainServiceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AAD/domainServices/{domainServiceName}",
-      code: 200,
-      apiVersion: "2022-12-01",
-    }),
-  ),
-).annotate({
-  identifier: "DomainServicesDeleteRequest",
-}) as any as S.Schema<DomainServicesDeleteRequest>;
-
-export interface DomainServicesDeleteResponse {}
-export const DomainServicesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DomainServicesDeleteResponse",
-}) as any as S.Schema<DomainServicesDeleteResponse>;
-
-export interface DomainServicesGetRequest {
-  /** Gets subscription credentials which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the resource group within the user's subscription. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the domain service. */
-  domainServiceName: string;
-}
-export const DomainServicesGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetDomainServiceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -904,67 +1048,67 @@ export const DomainServicesGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DomainServicesGetRequest",
-}) as any as S.Schema<DomainServicesGetRequest>;
+  identifier: "GetDomainServiceRequest",
+}) as any as S.Schema<GetDomainServiceRequest>;
 
 /** Resource tags */
-export type DomainServicesGetResponseTagsMap = {
+export type GetDomainServiceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const DomainServicesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetDomainServiceResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<DomainServicesGetResponseTagsMap>;
+) as any as S.Schema<GetDomainServiceResponseTagsMap>;
 
 /** The type of identity that created the resource. */
-export type DomainServicesGetResponseSystemDataCreatedByType =
+export type GetDomainServiceResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const DomainServicesGetResponseSystemDataCreatedByType =
+export const GetDomainServiceResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type DomainServicesGetResponseSystemDataLastModifiedByType =
+export type GetDomainServiceResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const DomainServicesGetResponseSystemDataLastModifiedByType =
+export const GetDomainServiceResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface DomainServicesGetResponseSystemData {
+export interface GetDomainServiceResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: DomainServicesGetResponseSystemDataCreatedByType;
+  createdByType?: GetDomainServiceResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: DomainServicesGetResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: GetDomainServiceResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const DomainServicesGetResponseSystemData = /*@__PURE__*/ S.suspend(() =>
+export const GetDomainServiceResponseSystemData = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     createdBy: S.optional(S.String),
-    createdByType: S.optional(DomainServicesGetResponseSystemDataCreatedByType),
+    createdByType: S.optional(GetDomainServiceResponseSystemDataCreatedByType),
     createdAt: S.optional(S.String),
     lastModifiedBy: S.optional(S.String),
     lastModifiedByType: S.optional(
-      DomainServicesGetResponseSystemDataLastModifiedByType,
+      GetDomainServiceResponseSystemDataLastModifiedByType,
     ),
     lastModifiedAt: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "DomainServicesGetResponseSystemData",
-}) as any as S.Schema<DomainServicesGetResponseSystemData>;
+  identifier: "GetDomainServiceResponseSystemData",
+}) as any as S.Schema<GetDomainServiceResponseSystemData>;
 
-export interface DomainServicesGetResponse {
+export interface GetDomainServiceResponse {
   /** Resource Id */
   id?: string;
   /** Resource name */
@@ -974,47 +1118,169 @@ export interface DomainServicesGetResponse {
   /** Resource location */
   location?: string;
   /** Resource tags */
-  tags?: DomainServicesGetResponseTagsMap;
+  tags?: GetDomainServiceResponseTagsMap;
   /** Resource etag */
   etag?: string;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: DomainServicesGetResponseSystemData;
+  systemData?: GetDomainServiceResponseSystemData;
   /** Domain service properties */
   properties?: DomainServiceProperties;
 }
-export const DomainServicesGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetDomainServiceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(DomainServicesGetResponseTagsMap),
+    tags: S.optional(GetDomainServiceResponseTagsMap),
     etag: S.optional(S.String),
-    systemData: S.optional(DomainServicesGetResponseSystemData),
+    systemData: S.optional(GetDomainServiceResponseSystemData),
     properties: S.optional(DomainServiceProperties),
   }),
 ).annotate({
-  identifier: "DomainServicesGetResponse",
-}) as any as S.Schema<DomainServicesGetResponse>;
+  identifier: "GetDomainServiceResponse",
+}) as any as S.Schema<GetDomainServiceResponse>;
 
-export interface DomainServicesListRequest {
+export interface GetOuContainerRequest {
   /** Gets subscription credentials which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
+  /** The name of the resource group within the user's subscription. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the domain service. */
+  domainServiceName: string;
+  /** The name of the OuContainer. */
+  ouContainerName: string;
 }
-export const DomainServicesListRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetOuContainerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    domainServiceName: S.String.pipe(T.Label()),
+    ouContainerName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.AAD/domainServices",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Aad/domainServices/{domainServiceName}/ouContainer/{ouContainerName}",
       code: 200,
       apiVersion: "2022-12-01",
     }),
   ),
 ).annotate({
-  identifier: "DomainServicesListRequest",
-}) as any as S.Schema<DomainServicesListRequest>;
+  identifier: "GetOuContainerRequest",
+}) as any as S.Schema<GetOuContainerRequest>;
+
+/** Resource tags */
+export type GetOuContainerResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetOuContainerResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetOuContainerResponseTagsMap>;
+
+/** The type of identity that created the resource. */
+export type GetOuContainerResponseSystemDataCreatedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const GetOuContainerResponseSystemDataCreatedByType =
+  /*@__PURE__*/ S.String;
+
+/** The type of identity that last modified the resource. */
+export type GetOuContainerResponseSystemDataLastModifiedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const GetOuContainerResponseSystemDataLastModifiedByType =
+  /*@__PURE__*/ S.String;
+
+/** Metadata pertaining to creation and last modification of the resource. */
+export interface GetOuContainerResponseSystemData {
+  /** The identity that created the resource. */
+  createdBy?: string;
+  /** The type of identity that created the resource. */
+  createdByType?: GetOuContainerResponseSystemDataCreatedByType;
+  /** The timestamp of resource creation (UTC). */
+  createdAt?: string;
+  /** The identity that last modified the resource. */
+  lastModifiedBy?: string;
+  /** The type of identity that last modified the resource. */
+  lastModifiedByType?: GetOuContainerResponseSystemDataLastModifiedByType;
+  /** The timestamp of resource last modification (UTC) */
+  lastModifiedAt?: string;
+}
+export const GetOuContainerResponseSystemData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    createdBy: S.optional(S.String),
+    createdByType: S.optional(GetOuContainerResponseSystemDataCreatedByType),
+    createdAt: S.optional(S.String),
+    lastModifiedBy: S.optional(S.String),
+    lastModifiedByType: S.optional(
+      GetOuContainerResponseSystemDataLastModifiedByType,
+    ),
+    lastModifiedAt: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetOuContainerResponseSystemData",
+}) as any as S.Schema<GetOuContainerResponseSystemData>;
+
+export interface GetOuContainerResponse {
+  /** Resource Id */
+  id?: string;
+  /** Resource name */
+  name?: string;
+  /** Resource type */
+  type?: string;
+  /** Resource location */
+  location?: string;
+  /** Resource tags */
+  tags?: GetOuContainerResponseTagsMap;
+  /** Resource etag */
+  etag?: string;
+  /** Metadata pertaining to creation and last modification of the resource. */
+  systemData?: GetOuContainerResponseSystemData;
+  /** OuContainer properties */
+  properties?: OuContainerProperties;
+}
+export const GetOuContainerResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    location: S.optional(S.String),
+    tags: S.optional(GetOuContainerResponseTagsMap),
+    etag: S.optional(S.String),
+    systemData: S.optional(GetOuContainerResponseSystemData),
+    properties: S.optional(OuContainerProperties),
+  }),
+).annotate({
+  identifier: "GetOuContainerResponse",
+}) as any as S.Schema<GetOuContainerResponse>;
+
+export interface ListDomainServiceByResourceGroupRequest {
+  /** Gets subscription credentials which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the resource group within the user's subscription. The name is case insensitive. */
+  resourceGroupName: string;
+}
+export const ListDomainServiceByResourceGroupRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AAD/domainServices",
+        code: 200,
+        apiVersion: "2022-12-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListDomainServiceByResourceGroupRequest",
+}) as any as S.Schema<ListDomainServiceByResourceGroupRequest>;
 
 /** Resource tags */
 export type DomainServiceTagsMap = { [key: string]: string | undefined };
@@ -1121,508 +1387,103 @@ export const DomainServiceListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "DomainServiceListResult",
 }) as any as S.Schema<DomainServiceListResult>;
 
-export interface DomainServicesListByResourceGroupRequest {
-  /** Gets subscription credentials which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the resource group within the user's subscription. The name is case insensitive. */
-  resourceGroupName: string;
-}
-export const DomainServicesListByResourceGroupRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AAD/domainServices",
-        code: 200,
-        apiVersion: "2022-12-01",
-      }),
-    ),
-).annotate({
-  identifier: "DomainServicesListByResourceGroupRequest",
-}) as any as S.Schema<DomainServicesListByResourceGroupRequest>;
-
-/** Resource tags */
-export type DomainServicesUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const DomainServicesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<DomainServicesUpdateRequestTagsMap>;
-
-export interface DomainServicesUpdateRequest {
-  /** Gets subscription credentials which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the resource group within the user's subscription. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the domain service. */
-  domainServiceName: string;
-  /** Resource location */
-  location?: string;
-  /** Resource tags */
-  tags?: DomainServicesUpdateRequestTagsMap;
-  /** Resource etag */
-  etag?: string;
-  /** Domain service properties */
-  properties?: DomainServicePropertiesInput;
-}
-export const DomainServicesUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    domainServiceName: S.String.pipe(T.Label()),
-    location: S.optional(S.String),
-    tags: S.optional(DomainServicesUpdateRequestTagsMap),
-    etag: S.optional(S.String),
-    properties: S.optional(DomainServicePropertiesInput),
-  }).pipe(
+export interface ListDomainServiceOperationsRequest {}
+export const ListDomainServiceOperationsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
     T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AAD/domainServices/{domainServiceName}",
+      method: "GET",
+      uri: "/providers/Microsoft.AAD/operations",
       code: 200,
       apiVersion: "2022-12-01",
     }),
   ),
 ).annotate({
-  identifier: "DomainServicesUpdateRequest",
-}) as any as S.Schema<DomainServicesUpdateRequest>;
+  identifier: "ListDomainServiceOperationsRequest",
+}) as any as S.Schema<ListDomainServiceOperationsRequest>;
 
-/** Resource tags */
-export type DomainServicesUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const DomainServicesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<DomainServicesUpdateResponseTagsMap>;
-
-/** The type of identity that created the resource. */
-export type DomainServicesUpdateResponseSystemDataCreatedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const DomainServicesUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
-
-/** The type of identity that last modified the resource. */
-export type DomainServicesUpdateResponseSystemDataLastModifiedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const DomainServicesUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
-
-/** Metadata pertaining to creation and last modification of the resource. */
-export interface DomainServicesUpdateResponseSystemData {
-  /** The identity that created the resource. */
-  createdBy?: string;
-  /** The type of identity that created the resource. */
-  createdByType?: DomainServicesUpdateResponseSystemDataCreatedByType;
-  /** The timestamp of resource creation (UTC). */
-  createdAt?: string;
-  /** The identity that last modified the resource. */
-  lastModifiedBy?: string;
-  /** The type of identity that last modified the resource. */
-  lastModifiedByType?: DomainServicesUpdateResponseSystemDataLastModifiedByType;
-  /** The timestamp of resource last modification (UTC) */
-  lastModifiedAt?: string;
+/** The operation supported by Domain Services. */
+export interface OperationDisplayInfo {
+  /** The description of the operation. */
+  description?: string;
+  /** The action that users can perform, based on their permission level. */
+  operation?: string;
+  /** Service provider: Domain Services. */
+  provider?: string;
+  /** Resource on which the operation is performed. */
+  resource?: string;
 }
-export const DomainServicesUpdateResponseSystemData = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      createdBy: S.optional(S.String),
-      createdByType: S.optional(
-        DomainServicesUpdateResponseSystemDataCreatedByType,
-      ),
-      createdAt: S.optional(S.String),
-      lastModifiedBy: S.optional(S.String),
-      lastModifiedByType: S.optional(
-        DomainServicesUpdateResponseSystemDataLastModifiedByType,
-      ),
-      lastModifiedAt: S.optional(S.String),
-    }),
+export const OperationDisplayInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    description: S.optional(S.String),
+    operation: S.optional(S.String),
+    provider: S.optional(S.String),
+    resource: S.optional(S.String),
+  }),
 ).annotate({
-  identifier: "DomainServicesUpdateResponseSystemData",
-}) as any as S.Schema<DomainServicesUpdateResponseSystemData>;
+  identifier: "OperationDisplayInfo",
+}) as any as S.Schema<OperationDisplayInfo>;
 
-export interface DomainServicesUpdateResponse {
-  /** Resource Id */
-  id?: string;
-  /** Resource name */
+/** The operation supported by Domain Services. */
+export interface OperationEntity {
+  /** Operation name: {provider}/{resource}/{operation}. */
   name?: string;
-  /** Resource type */
-  type?: string;
-  /** Resource location */
-  location?: string;
-  /** Resource tags */
-  tags?: DomainServicesUpdateResponseTagsMap;
-  /** Resource etag */
-  etag?: string;
-  /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: DomainServicesUpdateResponseSystemData;
-  /** Domain service properties */
-  properties?: DomainServiceProperties;
+  /** The operation supported by Domain Services. */
+  display?: OperationDisplayInfo;
+  /** The origin of the operation. */
+  origin?: string;
 }
-export const DomainServicesUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const OperationEntity = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    id: S.optional(S.String),
     name: S.optional(S.String),
-    type: S.optional(S.String),
-    location: S.optional(S.String),
-    tags: S.optional(DomainServicesUpdateResponseTagsMap),
-    etag: S.optional(S.String),
-    systemData: S.optional(DomainServicesUpdateResponseSystemData),
-    properties: S.optional(DomainServiceProperties),
+    display: S.optional(OperationDisplayInfo),
+    origin: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "DomainServicesUpdateResponse",
-}) as any as S.Schema<DomainServicesUpdateResponse>;
+  identifier: "OperationEntity",
+}) as any as S.Schema<OperationEntity>;
 
-export interface OuContainerCreateRequest {
+/** The list of operations. */
+export type OperationEntityListResultValueList = Array<OperationEntity>;
+export const OperationEntityListResultValueList = /*@__PURE__*/ S.Array(
+  OperationEntity,
+) as any as S.Schema<OperationEntityListResultValueList>;
+
+/** The list of domain service operation response. */
+export interface OperationEntityListResult {
+  /** The list of operations. */
+  value?: OperationEntityListResultValueList;
+  /** The continuation token for the next page of results. */
+  nextLink?: string;
+}
+export const OperationEntityListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(OperationEntityListResultValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "OperationEntityListResult",
+}) as any as S.Schema<OperationEntityListResult>;
+
+export interface ListDomainServicesRequest {
   /** Gets subscription credentials which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
-  /** The name of the resource group within the user's subscription. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the domain service. */
-  domainServiceName: string;
-  /** The name of the OuContainer. */
-  ouContainerName: string;
-  /** The account name */
-  accountName?: string;
-  /** The account spn */
-  spn?: string;
-  /** The account password */
-  password?: string | Redacted.Redacted<string>;
 }
-export const OuContainerCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListDomainServicesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    domainServiceName: S.String.pipe(T.Label()),
-    ouContainerName: S.String.pipe(T.Label()),
-    accountName: S.optional(S.String),
-    spn: S.optional(S.String),
-    password: S.optional(S.String.pipe(T.SensitiveValue({}))),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Aad/domainServices/{domainServiceName}/ouContainer/{ouContainerName}",
-      code: 200,
-      apiVersion: "2022-12-01",
-    }),
-  ),
-).annotate({
-  identifier: "OuContainerCreateRequest",
-}) as any as S.Schema<OuContainerCreateRequest>;
-
-/** Resource tags */
-export type OuContainerCreateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const OuContainerCreateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<OuContainerCreateResponseTagsMap>;
-
-/** The type of identity that created the resource. */
-export type OuContainerCreateResponseSystemDataCreatedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const OuContainerCreateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
-
-/** The type of identity that last modified the resource. */
-export type OuContainerCreateResponseSystemDataLastModifiedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const OuContainerCreateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
-
-/** Metadata pertaining to creation and last modification of the resource. */
-export interface OuContainerCreateResponseSystemData {
-  /** The identity that created the resource. */
-  createdBy?: string;
-  /** The type of identity that created the resource. */
-  createdByType?: OuContainerCreateResponseSystemDataCreatedByType;
-  /** The timestamp of resource creation (UTC). */
-  createdAt?: string;
-  /** The identity that last modified the resource. */
-  lastModifiedBy?: string;
-  /** The type of identity that last modified the resource. */
-  lastModifiedByType?: OuContainerCreateResponseSystemDataLastModifiedByType;
-  /** The timestamp of resource last modification (UTC) */
-  lastModifiedAt?: string;
-}
-export const OuContainerCreateResponseSystemData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    createdBy: S.optional(S.String),
-    createdByType: S.optional(OuContainerCreateResponseSystemDataCreatedByType),
-    createdAt: S.optional(S.String),
-    lastModifiedBy: S.optional(S.String),
-    lastModifiedByType: S.optional(
-      OuContainerCreateResponseSystemDataLastModifiedByType,
-    ),
-    lastModifiedAt: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OuContainerCreateResponseSystemData",
-}) as any as S.Schema<OuContainerCreateResponseSystemData>;
-
-/** Container Account Description */
-export interface ContainerAccount {
-  /** The account name */
-  accountName?: string;
-  /** The account spn */
-  spn?: string;
-  /** The account password */
-  password?: string | Redacted.Redacted<string>;
-}
-export const ContainerAccount = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    accountName: S.optional(S.String),
-    spn: S.optional(S.String),
-    password: S.optional(S.String.pipe(T.SensitiveValue({}))),
-  }),
-).annotate({
-  identifier: "ContainerAccount",
-}) as any as S.Schema<ContainerAccount>;
-
-/** The list of container accounts */
-export type OuContainerPropertiesAccountsList = Array<ContainerAccount>;
-export const OuContainerPropertiesAccountsList = /*@__PURE__*/ S.Array(
-  ContainerAccount,
-) as any as S.Schema<OuContainerPropertiesAccountsList>;
-
-/** Properties of the OuContainer. */
-export interface OuContainerProperties {
-  /** Azure Active Directory tenant id */
-  tenantId?: string;
-  /** The domain name of Domain Services. */
-  domainName?: string;
-  /** The Deployment id */
-  deploymentId?: string;
-  /** The OuContainer name */
-  containerId?: string;
-  /** The list of container accounts */
-  accounts?: OuContainerPropertiesAccountsList;
-  /** Status of OuContainer instance */
-  serviceStatus?: string;
-  /** Distinguished Name of OuContainer instance */
-  distinguishedName?: string;
-  /** The current deployment or provisioning state, which only appears in the response. */
-  provisioningState?: string;
-}
-export const OuContainerProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    tenantId: S.optional(S.String),
-    domainName: S.optional(S.String),
-    deploymentId: S.optional(S.String),
-    containerId: S.optional(S.String),
-    accounts: S.optional(OuContainerPropertiesAccountsList),
-    serviceStatus: S.optional(S.String),
-    distinguishedName: S.optional(S.String),
-    provisioningState: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OuContainerProperties",
-}) as any as S.Schema<OuContainerProperties>;
-
-export interface OuContainerCreateResponse {
-  /** Resource Id */
-  id?: string;
-  /** Resource name */
-  name?: string;
-  /** Resource type */
-  type?: string;
-  /** Resource location */
-  location?: string;
-  /** Resource tags */
-  tags?: OuContainerCreateResponseTagsMap;
-  /** Resource etag */
-  etag?: string;
-  /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: OuContainerCreateResponseSystemData;
-  /** OuContainer properties */
-  properties?: OuContainerProperties;
-}
-export const OuContainerCreateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    location: S.optional(S.String),
-    tags: S.optional(OuContainerCreateResponseTagsMap),
-    etag: S.optional(S.String),
-    systemData: S.optional(OuContainerCreateResponseSystemData),
-    properties: S.optional(OuContainerProperties),
-  }),
-).annotate({
-  identifier: "OuContainerCreateResponse",
-}) as any as S.Schema<OuContainerCreateResponse>;
-
-export interface OuContainerDeleteRequest {
-  /** Gets subscription credentials which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the resource group within the user's subscription. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the domain service. */
-  domainServiceName: string;
-  /** The name of the OuContainer. */
-  ouContainerName: string;
-}
-export const OuContainerDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    domainServiceName: S.String.pipe(T.Label()),
-    ouContainerName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Aad/domainServices/{domainServiceName}/ouContainer/{ouContainerName}",
-      code: 200,
-      apiVersion: "2022-12-01",
-    }),
-  ),
-).annotate({
-  identifier: "OuContainerDeleteRequest",
-}) as any as S.Schema<OuContainerDeleteRequest>;
-
-export interface OuContainerDeleteResponse {}
-export const OuContainerDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "OuContainerDeleteResponse",
-}) as any as S.Schema<OuContainerDeleteResponse>;
-
-export interface OuContainerGetRequest {
-  /** Gets subscription credentials which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
-  subscriptionId: string;
-  /** The name of the resource group within the user's subscription. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the domain service. */
-  domainServiceName: string;
-  /** The name of the OuContainer. */
-  ouContainerName: string;
-}
-export const OuContainerGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    domainServiceName: S.String.pipe(T.Label()),
-    ouContainerName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Aad/domainServices/{domainServiceName}/ouContainer/{ouContainerName}",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.AAD/domainServices",
       code: 200,
       apiVersion: "2022-12-01",
     }),
   ),
 ).annotate({
-  identifier: "OuContainerGetRequest",
-}) as any as S.Schema<OuContainerGetRequest>;
+  identifier: "ListDomainServicesRequest",
+}) as any as S.Schema<ListDomainServicesRequest>;
 
-/** Resource tags */
-export type OuContainerGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const OuContainerGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<OuContainerGetResponseTagsMap>;
-
-/** The type of identity that created the resource. */
-export type OuContainerGetResponseSystemDataCreatedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const OuContainerGetResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
-
-/** The type of identity that last modified the resource. */
-export type OuContainerGetResponseSystemDataLastModifiedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const OuContainerGetResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
-
-/** Metadata pertaining to creation and last modification of the resource. */
-export interface OuContainerGetResponseSystemData {
-  /** The identity that created the resource. */
-  createdBy?: string;
-  /** The type of identity that created the resource. */
-  createdByType?: OuContainerGetResponseSystemDataCreatedByType;
-  /** The timestamp of resource creation (UTC). */
-  createdAt?: string;
-  /** The identity that last modified the resource. */
-  lastModifiedBy?: string;
-  /** The type of identity that last modified the resource. */
-  lastModifiedByType?: OuContainerGetResponseSystemDataLastModifiedByType;
-  /** The timestamp of resource last modification (UTC) */
-  lastModifiedAt?: string;
-}
-export const OuContainerGetResponseSystemData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    createdBy: S.optional(S.String),
-    createdByType: S.optional(OuContainerGetResponseSystemDataCreatedByType),
-    createdAt: S.optional(S.String),
-    lastModifiedBy: S.optional(S.String),
-    lastModifiedByType: S.optional(
-      OuContainerGetResponseSystemDataLastModifiedByType,
-    ),
-    lastModifiedAt: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OuContainerGetResponseSystemData",
-}) as any as S.Schema<OuContainerGetResponseSystemData>;
-
-export interface OuContainerGetResponse {
-  /** Resource Id */
-  id?: string;
-  /** Resource name */
-  name?: string;
-  /** Resource type */
-  type?: string;
-  /** Resource location */
-  location?: string;
-  /** Resource tags */
-  tags?: OuContainerGetResponseTagsMap;
-  /** Resource etag */
-  etag?: string;
-  /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: OuContainerGetResponseSystemData;
-  /** OuContainer properties */
-  properties?: OuContainerProperties;
-}
-export const OuContainerGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    location: S.optional(S.String),
-    tags: S.optional(OuContainerGetResponseTagsMap),
-    etag: S.optional(S.String),
-    systemData: S.optional(OuContainerGetResponseSystemData),
-    properties: S.optional(OuContainerProperties),
-  }),
-).annotate({
-  identifier: "OuContainerGetResponse",
-}) as any as S.Schema<OuContainerGetResponse>;
-
-export interface OuContainerListRequest {
+export interface ListOuContainerRequest {
   /** Gets subscription credentials which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
   /** The name of the resource group within the user's subscription. The name is case insensitive. */
@@ -1630,7 +1491,7 @@ export interface OuContainerListRequest {
   /** The name of the domain service. */
   domainServiceName: string;
 }
-export const OuContainerListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListOuContainerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1644,8 +1505,8 @@ export const OuContainerListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "OuContainerListRequest",
-}) as any as S.Schema<OuContainerListRequest>;
+  identifier: "ListOuContainerRequest",
+}) as any as S.Schema<ListOuContainerRequest>;
 
 /** Resource tags */
 export type OuContainerTagsMap = { [key: string]: string | undefined };
@@ -1752,8 +1613,8 @@ export const OuContainerListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "OuContainerListResult",
 }) as any as S.Schema<OuContainerListResult>;
 
-export interface OuContainerOperationsListRequest {}
-export const OuContainerOperationsListRequest = /*@__PURE__*/ S.suspend(() =>
+export interface ListOuContainerOperationsRequest {}
+export const ListOuContainerOperationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
     T.Http({
       method: "GET",
@@ -1763,10 +1624,149 @@ export const OuContainerOperationsListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "OuContainerOperationsListRequest",
-}) as any as S.Schema<OuContainerOperationsListRequest>;
+  identifier: "ListOuContainerOperationsRequest",
+}) as any as S.Schema<ListOuContainerOperationsRequest>;
 
-export interface OuContainerUpdateRequest {
+/** Resource tags */
+export type UpdateDomainServiceRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateDomainServiceRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateDomainServiceRequestTagsMap>;
+
+export interface UpdateDomainServiceRequest {
+  /** Gets subscription credentials which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
+  subscriptionId: string;
+  /** The name of the resource group within the user's subscription. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the domain service. */
+  domainServiceName: string;
+  /** Resource location */
+  location?: string;
+  /** Resource tags */
+  tags?: UpdateDomainServiceRequestTagsMap;
+  /** Resource etag */
+  etag?: string;
+  /** Domain service properties */
+  properties?: DomainServicePropertiesInput;
+}
+export const UpdateDomainServiceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    domainServiceName: S.String.pipe(T.Label()),
+    location: S.optional(S.String),
+    tags: S.optional(UpdateDomainServiceRequestTagsMap),
+    etag: S.optional(S.String),
+    properties: S.optional(DomainServicePropertiesInput),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AAD/domainServices/{domainServiceName}",
+      code: 200,
+      apiVersion: "2022-12-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateDomainServiceRequest",
+}) as any as S.Schema<UpdateDomainServiceRequest>;
+
+/** Resource tags */
+export type UpdateDomainServiceResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateDomainServiceResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateDomainServiceResponseTagsMap>;
+
+/** The type of identity that created the resource. */
+export type UpdateDomainServiceResponseSystemDataCreatedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const UpdateDomainServiceResponseSystemDataCreatedByType =
+  /*@__PURE__*/ S.String;
+
+/** The type of identity that last modified the resource. */
+export type UpdateDomainServiceResponseSystemDataLastModifiedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const UpdateDomainServiceResponseSystemDataLastModifiedByType =
+  /*@__PURE__*/ S.String;
+
+/** Metadata pertaining to creation and last modification of the resource. */
+export interface UpdateDomainServiceResponseSystemData {
+  /** The identity that created the resource. */
+  createdBy?: string;
+  /** The type of identity that created the resource. */
+  createdByType?: UpdateDomainServiceResponseSystemDataCreatedByType;
+  /** The timestamp of resource creation (UTC). */
+  createdAt?: string;
+  /** The identity that last modified the resource. */
+  lastModifiedBy?: string;
+  /** The type of identity that last modified the resource. */
+  lastModifiedByType?: UpdateDomainServiceResponseSystemDataLastModifiedByType;
+  /** The timestamp of resource last modification (UTC) */
+  lastModifiedAt?: string;
+}
+export const UpdateDomainServiceResponseSystemData = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      createdBy: S.optional(S.String),
+      createdByType: S.optional(
+        UpdateDomainServiceResponseSystemDataCreatedByType,
+      ),
+      createdAt: S.optional(S.String),
+      lastModifiedBy: S.optional(S.String),
+      lastModifiedByType: S.optional(
+        UpdateDomainServiceResponseSystemDataLastModifiedByType,
+      ),
+      lastModifiedAt: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "UpdateDomainServiceResponseSystemData",
+}) as any as S.Schema<UpdateDomainServiceResponseSystemData>;
+
+export interface UpdateDomainServiceResponse {
+  /** Resource Id */
+  id?: string;
+  /** Resource name */
+  name?: string;
+  /** Resource type */
+  type?: string;
+  /** Resource location */
+  location?: string;
+  /** Resource tags */
+  tags?: UpdateDomainServiceResponseTagsMap;
+  /** Resource etag */
+  etag?: string;
+  /** Metadata pertaining to creation and last modification of the resource. */
+  systemData?: UpdateDomainServiceResponseSystemData;
+  /** Domain service properties */
+  properties?: DomainServiceProperties;
+}
+export const UpdateDomainServiceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    location: S.optional(S.String),
+    tags: S.optional(UpdateDomainServiceResponseTagsMap),
+    etag: S.optional(S.String),
+    systemData: S.optional(UpdateDomainServiceResponseSystemData),
+    properties: S.optional(DomainServiceProperties),
+  }),
+).annotate({
+  identifier: "UpdateDomainServiceResponse",
+}) as any as S.Schema<UpdateDomainServiceResponse>;
+
+export interface UpdateOuContainerRequest {
   /** Gets subscription credentials which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call. */
   subscriptionId: string;
   /** The name of the resource group within the user's subscription. The name is case insensitive. */
@@ -1782,7 +1782,7 @@ export interface OuContainerUpdateRequest {
   /** The account password */
   password?: string | Redacted.Redacted<string>;
 }
-export const OuContainerUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateOuContainerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1800,67 +1800,67 @@ export const OuContainerUpdateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "OuContainerUpdateRequest",
-}) as any as S.Schema<OuContainerUpdateRequest>;
+  identifier: "UpdateOuContainerRequest",
+}) as any as S.Schema<UpdateOuContainerRequest>;
 
 /** Resource tags */
-export type OuContainerUpdateResponseTagsMap = {
+export type UpdateOuContainerResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const OuContainerUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateOuContainerResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<OuContainerUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateOuContainerResponseTagsMap>;
 
 /** The type of identity that created the resource. */
-export type OuContainerUpdateResponseSystemDataCreatedByType =
+export type UpdateOuContainerResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const OuContainerUpdateResponseSystemDataCreatedByType =
+export const UpdateOuContainerResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type OuContainerUpdateResponseSystemDataLastModifiedByType =
+export type UpdateOuContainerResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const OuContainerUpdateResponseSystemDataLastModifiedByType =
+export const UpdateOuContainerResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface OuContainerUpdateResponseSystemData {
+export interface UpdateOuContainerResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: OuContainerUpdateResponseSystemDataCreatedByType;
+  createdByType?: UpdateOuContainerResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: OuContainerUpdateResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: UpdateOuContainerResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const OuContainerUpdateResponseSystemData = /*@__PURE__*/ S.suspend(() =>
+export const UpdateOuContainerResponseSystemData = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     createdBy: S.optional(S.String),
-    createdByType: S.optional(OuContainerUpdateResponseSystemDataCreatedByType),
+    createdByType: S.optional(UpdateOuContainerResponseSystemDataCreatedByType),
     createdAt: S.optional(S.String),
     lastModifiedBy: S.optional(S.String),
     lastModifiedByType: S.optional(
-      OuContainerUpdateResponseSystemDataLastModifiedByType,
+      UpdateOuContainerResponseSystemDataLastModifiedByType,
     ),
     lastModifiedAt: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "OuContainerUpdateResponseSystemData",
-}) as any as S.Schema<OuContainerUpdateResponseSystemData>;
+  identifier: "UpdateOuContainerResponseSystemData",
+}) as any as S.Schema<UpdateOuContainerResponseSystemData>;
 
-export interface OuContainerUpdateResponse {
+export interface UpdateOuContainerResponse {
   /** Resource Id */
   id?: string;
   /** Resource name */
@@ -1870,39 +1870,69 @@ export interface OuContainerUpdateResponse {
   /** Resource location */
   location?: string;
   /** Resource tags */
-  tags?: OuContainerUpdateResponseTagsMap;
+  tags?: UpdateOuContainerResponseTagsMap;
   /** Resource etag */
   etag?: string;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: OuContainerUpdateResponseSystemData;
+  systemData?: UpdateOuContainerResponseSystemData;
   /** OuContainer properties */
   properties?: OuContainerProperties;
 }
-export const OuContainerUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateOuContainerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(OuContainerUpdateResponseTagsMap),
+    tags: S.optional(UpdateOuContainerResponseTagsMap),
     etag: S.optional(S.String),
-    systemData: S.optional(OuContainerUpdateResponseSystemData),
+    systemData: S.optional(UpdateOuContainerResponseSystemData),
     properties: S.optional(OuContainerProperties),
   }),
 ).annotate({
-  identifier: "OuContainerUpdateResponse",
-}) as any as S.Schema<OuContainerUpdateResponse>;
+  identifier: "UpdateOuContainerResponse",
+}) as any as S.Schema<UpdateOuContainerResponse>;
 
-export type DomainServiceOperationsListError = AzureOpError;
-/** Lists all the available Domain Services operations. */
-export const DomainServiceOperationsList: API.OperationMethod<
-  DomainServiceOperationsListRequest,
-  OperationEntityListResult,
-  DomainServiceOperationsListError,
+export type CreateOuContainerError = AzureOpError;
+/** Create OuContainer The Create OuContainer operation creates a new OuContainer under the specified Domain Service instance. */
+export const CreateOuContainer: API.OperationMethod<
+  CreateOuContainerRequest,
+  CreateOuContainerResponse,
+  CreateOuContainerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DomainServiceOperationsListRequest,
-  output: OperationEntityListResult,
+  input: CreateOuContainerRequest,
+  output: CreateOuContainerResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteDomainServiceError = AzureOpError;
+/** Delete Domain Service (DELETE Resource) The Delete Domain Service operation deletes an existing Domain Service. */
+export const DeleteDomainService: API.OperationMethod<
+  DeleteDomainServiceRequest,
+  DeleteDomainServiceResponse,
+  DeleteDomainServiceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteDomainServiceRequest,
+  output: DeleteDomainServiceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteOuContainerError = AzureOpError;
+/** Delete OuContainer The Delete OuContainer operation deletes specified OuContainer. */
+export const DeleteOuContainer: API.OperationMethod<
+  DeleteOuContainerRequest,
+  DeleteOuContainerResponse,
+  DeleteOuContainerError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteOuContainerRequest,
+  output: DeleteOuContainerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -1923,166 +1953,136 @@ export const DomainServicesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DomainServicesDeleteError = AzureOpError;
-/** Delete Domain Service (DELETE Resource) The Delete Domain Service operation deletes an existing Domain Service. */
-export const DomainServicesDelete: API.OperationMethod<
-  DomainServicesDeleteRequest,
-  DomainServicesDeleteResponse,
-  DomainServicesDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DomainServicesDeleteRequest,
-  output: DomainServicesDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DomainServicesGetError = AzureOpError;
+export type GetDomainServiceError = AzureOpError;
 /** Get Domain Service The Get Domain Service operation retrieves a json representation of the Domain Service. */
-export const DomainServicesGet: API.OperationMethod<
-  DomainServicesGetRequest,
-  DomainServicesGetResponse,
-  DomainServicesGetError,
+export const GetDomainService: API.OperationMethod<
+  GetDomainServiceRequest,
+  GetDomainServiceResponse,
+  GetDomainServiceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DomainServicesGetRequest,
-  output: DomainServicesGetResponse,
+  input: GetDomainServiceRequest,
+  output: GetDomainServiceResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DomainServicesListError = AzureOpError;
-/** List Domain Services in Subscription The List Domain Services in Subscription operation lists all the domain services available under the given subscription (and across all resource groups within that subscription). */
-export const DomainServicesList: API.OperationMethod<
-  DomainServicesListRequest,
-  DomainServiceListResult,
-  DomainServicesListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DomainServicesListRequest,
-  output: DomainServiceListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DomainServicesListByResourceGroupError = AzureOpError;
-/** List Domain Services in Resource Group The List Domain Services in Resource Group operation lists all the domain services available under the given resource group. */
-export const DomainServicesListByResourceGroup: API.OperationMethod<
-  DomainServicesListByResourceGroupRequest,
-  DomainServiceListResult,
-  DomainServicesListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DomainServicesListByResourceGroupRequest,
-  output: DomainServiceListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DomainServicesUpdateError = AzureOpError;
-/** Update Domain Service (PATCH Resource) The Update Domain Service operation can be used to update the existing deployment. The update call only supports the properties listed in the PATCH body. */
-export const DomainServicesUpdate: API.OperationMethod<
-  DomainServicesUpdateRequest,
-  DomainServicesUpdateResponse,
-  DomainServicesUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DomainServicesUpdateRequest,
-  output: DomainServicesUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type OuContainerCreateError = AzureOpError;
-/** Create OuContainer The Create OuContainer operation creates a new OuContainer under the specified Domain Service instance. */
-export const OuContainerCreate: API.OperationMethod<
-  OuContainerCreateRequest,
-  OuContainerCreateResponse,
-  OuContainerCreateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: OuContainerCreateRequest,
-  output: OuContainerCreateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type OuContainerDeleteError = AzureOpError;
-/** Delete OuContainer The Delete OuContainer operation deletes specified OuContainer. */
-export const OuContainerDelete: API.OperationMethod<
-  OuContainerDeleteRequest,
-  OuContainerDeleteResponse,
-  OuContainerDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: OuContainerDeleteRequest,
-  output: OuContainerDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type OuContainerGetError = AzureOpError;
+export type GetOuContainerError = AzureOpError;
 /** Get particular OuContainer in DomainService instance Get OuContainer in DomainService instance. */
-export const OuContainerGet: API.OperationMethod<
-  OuContainerGetRequest,
-  OuContainerGetResponse,
-  OuContainerGetError,
+export const GetOuContainer: API.OperationMethod<
+  GetOuContainerRequest,
+  GetOuContainerResponse,
+  GetOuContainerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OuContainerGetRequest,
-  output: OuContainerGetResponse,
+  input: GetOuContainerRequest,
+  output: GetOuContainerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type OuContainerListError = AzureOpError;
-/** List of OuContainers in DomainService instance The List of OuContainers in DomainService instance. */
-export const OuContainerList: API.OperationMethod<
-  OuContainerListRequest,
-  OuContainerListResult,
-  OuContainerListError,
+export type ListDomainServiceByResourceGroupError = AzureOpError;
+/** List Domain Services in Resource Group The List Domain Services in Resource Group operation lists all the domain services available under the given resource group. */
+export const ListDomainServiceByResourceGroup: API.OperationMethod<
+  ListDomainServiceByResourceGroupRequest,
+  DomainServiceListResult,
+  ListDomainServiceByResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OuContainerListRequest,
-  output: OuContainerListResult,
+  input: ListDomainServiceByResourceGroupRequest,
+  output: DomainServiceListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type OuContainerOperationsListError = AzureOpError;
-/** Lists all the available OuContainer operations. */
-export const OuContainerOperationsList: API.OperationMethod<
-  OuContainerOperationsListRequest,
+export type ListDomainServiceOperationsError = AzureOpError;
+/** Lists all the available Domain Services operations. */
+export const ListDomainServiceOperations: API.OperationMethod<
+  ListDomainServiceOperationsRequest,
   OperationEntityListResult,
-  OuContainerOperationsListError,
+  ListDomainServiceOperationsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OuContainerOperationsListRequest,
+  input: ListDomainServiceOperationsRequest,
   output: OperationEntityListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type OuContainerUpdateError = AzureOpError;
-/** Update OuContainer (PATCH Resource) The Update OuContainer operation can be used to update the existing OuContainers. */
-export const OuContainerUpdate: API.OperationMethod<
-  OuContainerUpdateRequest,
-  OuContainerUpdateResponse,
-  OuContainerUpdateError,
+export type ListDomainServicesError = AzureOpError;
+/** List Domain Services in Subscription The List Domain Services in Subscription operation lists all the domain services available under the given subscription (and across all resource groups within that subscription). */
+export const ListDomainServices: API.OperationMethod<
+  ListDomainServicesRequest,
+  DomainServiceListResult,
+  ListDomainServicesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OuContainerUpdateRequest,
-  output: OuContainerUpdateResponse,
+  input: ListDomainServicesRequest,
+  output: DomainServiceListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListOuContainerError = AzureOpError;
+/** List of OuContainers in DomainService instance The List of OuContainers in DomainService instance. */
+export const ListOuContainer: API.OperationMethod<
+  ListOuContainerRequest,
+  OuContainerListResult,
+  ListOuContainerError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListOuContainerRequest,
+  output: OuContainerListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListOuContainerOperationsError = AzureOpError;
+/** Lists all the available OuContainer operations. */
+export const ListOuContainerOperations: API.OperationMethod<
+  ListOuContainerOperationsRequest,
+  OperationEntityListResult,
+  ListOuContainerOperationsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListOuContainerOperationsRequest,
+  output: OperationEntityListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateDomainServiceError = AzureOpError;
+/** Update Domain Service (PATCH Resource) The Update Domain Service operation can be used to update the existing deployment. The update call only supports the properties listed in the PATCH body. */
+export const UpdateDomainService: API.OperationMethod<
+  UpdateDomainServiceRequest,
+  UpdateDomainServiceResponse,
+  UpdateDomainServiceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateDomainServiceRequest,
+  output: UpdateDomainServiceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateOuContainerError = AzureOpError;
+/** Update OuContainer (PATCH Resource) The Update OuContainer operation can be used to update the existing OuContainers. */
+export const UpdateOuContainer: API.OperationMethod<
+  UpdateOuContainerRequest,
+  UpdateOuContainerResponse,
+  UpdateOuContainerError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateOuContainerRequest,
+  output: UpdateOuContainerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

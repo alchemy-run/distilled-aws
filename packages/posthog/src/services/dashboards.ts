@@ -40,34 +40,103 @@ export class NotFound
     [{ status: 404 }],
   ) {}
 
+export type CreateDashboardRequestFormat = "json" | "txt";
+export const CreateDashboardRequestFormat = /*@__PURE__*/ S.String;
+
+export type CreateDashboardRequestTagsList = Array<unknown>;
+export const CreateDashboardRequestTagsList = /*@__PURE__*/ S.Array(
+  S.Unknown,
+) as any as S.Schema<CreateDashboardRequestTagsList>;
+
 /** * `21` - Everyone in the project can edit * `37` - Only those invited to this dashboard can edit */
 export type RestrictionLevelEnum = 21 | 37;
 export const RestrictionLevelEnum = /*@__PURE__*/ S.Number;
 
-export interface DashboardsCollaboratorsCreateRequest {
+/** List of quick filter IDs associated with this dashboard */
+export type CreateDashboardRequestQuickFilterIdsList = Array<string>;
+export const CreateDashboardRequestQuickFilterIdsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CreateDashboardRequestQuickFilterIdsList>;
+
+/** * `tight` - tight * `condensed` - condensed * `standard` - standard * `relaxed` - relaxed * `wide` - wide */
+export type TileSpacingEnum =
+  | "tight"
+  | "condensed"
+  | "standard"
+  | "relaxed"
+  | "wide";
+export const TileSpacingEnum = /*@__PURE__*/ S.String;
+
+/** * `vertical` - vertical * `horizontal` - horizontal * `stable` - stable */
+export type LayoutCompactionEnum = "vertical" | "horizontal" | "stable";
+export const LayoutCompactionEnum = /*@__PURE__*/ S.String;
+
+export interface CreateDashboardRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
-  dashboard_id: number;
-  level?: RestrictionLevelEnum | (number & {});
-  user_uuid?: string;
+  format?: CreateDashboardRequestFormat | (string & {});
+  /** Opt in to receiving the deprecated `dashboards` field in insight payloads. Once opt-in enforcement is enabled, API-token callers stop receiving it by default; use `dashboard_tiles` instead. */
+  include_dashboards?: boolean;
+  name?: string | null;
+  description?: string;
+  pinned?: boolean;
+  last_accessed_at?: string | null;
+  deleted?: boolean;
+  /** Custom color mapping for breakdown values. */
+  breakdown_colors?: unknown;
+  /** ID of the color theme used for chart visualizations. */
+  data_color_theme_id?: number | null;
+  tags?: CreateDashboardRequestTagsList;
+  restriction_level?: RestrictionLevelEnum | (number & {});
+  last_refresh?: string | null;
+  /** List of quick filter IDs associated with this dashboard */
+  quick_filter_ids?: CreateDashboardRequestQuickFilterIdsList | null;
+  /** Named tile density preset. Use tight, condensed, standard, relaxed, or wide. * `tight` - tight * `condensed` - condensed * `standard` - standard * `relaxed` - relaxed * `wide` - wide */
+  grid_spacing?: TileSpacingEnum | (string & {});
+  /** How tiles rearrange after a move or resize. vertical stacks tiles upward, horizontal stacks tiles to the left, and stable preserves positions while moving colliding tiles. * `vertical` - vertical * `horizontal` - horizontal * `stable` - stable */
+  layout_compaction?: LayoutCompactionEnum | (string & {});
+  /** Template key to create the dashboard from a predefined template. */
+  use_template?: string;
+  /** ID of an existing dashboard to duplicate. */
+  use_dashboard?: number | null;
+  /** When deleting, also delete insights that are only on this dashboard. */
+  delete_insights?: boolean;
+  _create_in_folder?: string;
 }
-export const DashboardsCollaboratorsCreateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      dashboard_id: S.Number.pipe(T.Label()),
-      level: S.optional(RestrictionLevelEnum),
-      user_uuid: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/api/projects/{project_id}/dashboards/{dashboard_id}/collaborators/",
-        code: 200,
-      }),
+export const CreateDashboardRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    format: S.optional(CreateDashboardRequestFormat.pipe(T.Query())),
+    include_dashboards: S.optional(S.Boolean.pipe(T.Query())),
+    name: S.optional(S.NullOr(S.String)),
+    description: S.optional(S.String),
+    pinned: S.optional(S.Boolean),
+    last_accessed_at: S.optional(S.NullOr(S.String)),
+    deleted: S.optional(S.Boolean),
+    breakdown_colors: S.optional(S.Unknown),
+    data_color_theme_id: S.optional(S.NullOr(S.Number)),
+    tags: S.optional(CreateDashboardRequestTagsList),
+    restriction_level: S.optional(RestrictionLevelEnum),
+    last_refresh: S.optional(S.NullOr(S.String)),
+    quick_filter_ids: S.optional(
+      S.NullOr(CreateDashboardRequestQuickFilterIdsList),
     ),
+    grid_spacing: S.optional(TileSpacingEnum),
+    layout_compaction: S.optional(LayoutCompactionEnum),
+    use_template: S.optional(S.String),
+    use_dashboard: S.optional(S.NullOr(S.Number)),
+    delete_insights: S.optional(S.Boolean),
+    _create_in_folder: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/api/projects/{project_id}/dashboards/",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "DashboardsCollaboratorsCreateRequest",
-}) as any as S.Schema<DashboardsCollaboratorsCreateRequest>;
+  identifier: "CreateDashboardRequest",
+}) as any as S.Schema<CreateDashboardRequest>;
 
 export type UserBasicHedgehogConfigMap = { [key: string]: unknown | undefined };
 export const UserBasicHedgehogConfigMap = /*@__PURE__*/ S.Record(
@@ -120,131 +189,13 @@ export const UserBasic = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "UserBasic" }) as any as S.Schema<UserBasic>;
 
-export interface DashboardCollaboratorOutput {
-  id?: string;
-  dashboard_id?: number;
-  user?: UserBasic | null;
-  level?: RestrictionLevelEnum;
-  added_at?: string;
-  updated_at?: string;
-}
-export const DashboardCollaboratorOutput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    dashboard_id: S.optional(S.Number),
-    user: S.optional(S.NullOr(UserBasic)),
-    level: S.optional(RestrictionLevelEnum),
-    added_at: S.optional(S.String),
-    updated_at: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DashboardCollaboratorOutput",
-}) as any as S.Schema<DashboardCollaboratorOutput>;
-
-export interface DashboardsCollaboratorsDestroyRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  dashboard_id: number;
-  user__uuid: string;
-}
-export const DashboardsCollaboratorsDestroyRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      dashboard_id: S.Number.pipe(T.Label()),
-      user__uuid: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/api/projects/{project_id}/dashboards/{dashboard_id}/collaborators/{user__uuid}/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "DashboardsCollaboratorsDestroyRequest",
-}) as any as S.Schema<DashboardsCollaboratorsDestroyRequest>;
-
-export interface DashboardsCollaboratorsDestroyResponse {}
-export const DashboardsCollaboratorsDestroyResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "DashboardsCollaboratorsDestroyResponse",
-}) as any as S.Schema<DashboardsCollaboratorsDestroyResponse>;
-
-export interface DashboardsCollaboratorsListRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  dashboard_id: number;
-}
-export const DashboardsCollaboratorsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    dashboard_id: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/dashboards/{dashboard_id}/collaborators/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "DashboardsCollaboratorsListRequest",
-}) as any as S.Schema<DashboardsCollaboratorsListRequest>;
-
-export type DashboardsCollaboratorsListResponseBodyList =
-  Array<DashboardCollaboratorOutput>;
-export const DashboardsCollaboratorsListResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    DashboardCollaboratorOutput,
-  ) as any as S.Schema<DashboardsCollaboratorsListResponseBodyList>;
-
-export type DashboardsCollaboratorsListResponse =
-  DashboardsCollaboratorsListResponseBodyList;
-export const DashboardsCollaboratorsListResponse = /*@__PURE__*/ S.suspend(() =>
-  DashboardsCollaboratorsListResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "DashboardsCollaboratorsListResponse",
-}) as any as S.Schema<DashboardsCollaboratorsListResponse>;
-
-export type DashboardsCopyTileCreateRequestFormat = "json" | "txt";
-export const DashboardsCopyTileCreateRequestFormat = /*@__PURE__*/ S.String;
-
-export interface DashboardsCopyTileCreateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A unique integer value identifying this dashboard. */
-  id: number;
-  format?: DashboardsCopyTileCreateRequestFormat | (string & {});
-  /** Dashboard id the tile currently belongs to. */
-  fromDashboardId?: number;
-  /** Dashboard tile id to copy. */
-  tileId?: number;
-}
-export const DashboardsCopyTileCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.Number.pipe(T.Label()),
-    format: S.optional(DashboardsCopyTileCreateRequestFormat.pipe(T.Query())),
-    fromDashboardId: S.optional(S.Number),
-    tileId: S.optional(S.Number),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/api/projects/{project_id}/dashboards/{id}/copy_tile/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "DashboardsCopyTileCreateRequest",
-}) as any as S.Schema<DashboardsCopyTileCreateRequest>;
-
 /** * `default` - Default * `template` - Template * `duplicate` - Duplicate * `unlisted` - Unlisted (product-embedded) */
-export type CreationModeEnum =
+export type DashboardCreationModeEnum =
   | "default"
   | "template"
   | "duplicate"
   | "unlisted";
-export const CreationModeEnum = /*@__PURE__*/ S.String;
+export const DashboardCreationModeEnum = /*@__PURE__*/ S.String;
 
 export type DashboardOutputFiltersMap = { [key: string]: unknown | undefined };
 export const DashboardOutputFiltersMap = /*@__PURE__*/ S.Record(
@@ -265,8 +216,9 @@ export const DashboardOutputTagsList = /*@__PURE__*/ S.Array(
   S.Unknown,
 ) as any as S.Schema<DashboardOutputTagsList>;
 
-export type EffectivePrivilegeLevelEnum = 21 | 37;
-export const EffectivePrivilegeLevelEnum = /*@__PURE__*/ S.Number;
+/** * `21` - Can view dashboard * `37` - Can edit dashboard */
+export type PrivilegeLevelEnum = 21 | 37;
+export const PrivilegeLevelEnum = /*@__PURE__*/ S.Number;
 
 export type DashboardOutputPersistedFiltersMap = {
   [key: string]: unknown | undefined;
@@ -289,19 +241,6 @@ export type DashboardOutputQuickFilterIdsList = Array<string>;
 export const DashboardOutputQuickFilterIdsList = /*@__PURE__*/ S.Array(
   S.String,
 ) as any as S.Schema<DashboardOutputQuickFilterIdsList>;
-
-/** * `tight` - tight * `condensed` - condensed * `standard` - standard * `relaxed` - relaxed * `wide` - wide */
-export type TileSpacingEnum =
-  | "tight"
-  | "condensed"
-  | "standard"
-  | "relaxed"
-  | "wide";
-export const TileSpacingEnum = /*@__PURE__*/ S.String;
-
-/** * `vertical` - vertical * `horizontal` - horizontal * `stable` - stable */
-export type LayoutCompactionEnum = "vertical" | "horizontal" | "stable";
-export const LayoutCompactionEnum = /*@__PURE__*/ S.String;
 
 export interface DashboardCustomization {
   /** Named tile density preset. * `tight` - tight * `condensed` - condensed * `standard` - standard * `relaxed` - relaxed * `wide` - wide */
@@ -349,7 +288,7 @@ export interface DashboardOutput {
   file_system_path?: string | null;
   is_shared?: boolean;
   deleted?: boolean;
-  creation_mode?: CreationModeEnum;
+  creation_mode?: DashboardCreationModeEnum;
   filters?: DashboardOutputFiltersMap;
   variables?: DashboardOutputVariablesMap | null;
   /** Custom color mapping for breakdown values. */
@@ -358,8 +297,8 @@ export interface DashboardOutput {
   data_color_theme_id?: number | null;
   tags?: DashboardOutputTagsList;
   restriction_level?: RestrictionLevelEnum;
-  effective_restriction_level?: EffectivePrivilegeLevelEnum;
-  effective_privilege_level?: EffectivePrivilegeLevelEnum;
+  effective_restriction_level?: RestrictionLevelEnum;
+  effective_privilege_level?: PrivilegeLevelEnum;
   /** The effective access level the user has for this object */
   user_access_level?: string | null;
   access_control_version?: string;
@@ -388,15 +327,15 @@ export const DashboardOutput = /*@__PURE__*/ S.suspend(() =>
     file_system_path: S.optional(S.NullOr(S.String)),
     is_shared: S.optional(S.Boolean),
     deleted: S.optional(S.Boolean),
-    creation_mode: S.optional(CreationModeEnum),
+    creation_mode: S.optional(DashboardCreationModeEnum),
     filters: S.optional(DashboardOutputFiltersMap),
     variables: S.optional(S.NullOr(DashboardOutputVariablesMap)),
     breakdown_colors: S.optional(S.Unknown),
     data_color_theme_id: S.optional(S.NullOr(S.Number)),
     tags: S.optional(DashboardOutputTagsList),
     restriction_level: S.optional(RestrictionLevelEnum),
-    effective_restriction_level: S.optional(EffectivePrivilegeLevelEnum),
-    effective_privilege_level: S.optional(EffectivePrivilegeLevelEnum),
+    effective_restriction_level: S.optional(RestrictionLevelEnum),
+    effective_privilege_level: S.optional(PrivilegeLevelEnum),
     user_access_level: S.optional(S.NullOr(S.String)),
     access_control_version: S.optional(S.String),
     last_refresh: S.optional(S.NullOr(S.String)),
@@ -413,92 +352,174 @@ export const DashboardOutput = /*@__PURE__*/ S.suspend(() =>
   identifier: "DashboardOutput",
 }) as any as S.Schema<DashboardOutput>;
 
-export type DashboardsCreateRequestFormat = "json" | "txt";
-export const DashboardsCreateRequestFormat = /*@__PURE__*/ S.String;
-
-export type DashboardsCreateRequestTagsList = Array<unknown>;
-export const DashboardsCreateRequestTagsList = /*@__PURE__*/ S.Array(
-  S.Unknown,
-) as any as S.Schema<DashboardsCreateRequestTagsList>;
-
-/** List of quick filter IDs associated with this dashboard */
-export type DashboardsCreateRequestQuickFilterIdsList = Array<string>;
-export const DashboardsCreateRequestQuickFilterIdsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<DashboardsCreateRequestQuickFilterIdsList>;
-
-export interface DashboardsCreateRequest {
+export interface CreateDashboardsCollaboratorRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
-  format?: DashboardsCreateRequestFormat | (string & {});
-  /** Opt in to receiving the deprecated `dashboards` field in insight payloads. Once opt-in enforcement is enabled, API-token callers stop receiving it by default; use `dashboard_tiles` instead. */
-  include_dashboards?: boolean;
-  name?: string | null;
-  description?: string;
-  pinned?: boolean;
-  last_accessed_at?: string | null;
-  deleted?: boolean;
-  /** Custom color mapping for breakdown values. */
-  breakdown_colors?: unknown;
-  /** ID of the color theme used for chart visualizations. */
-  data_color_theme_id?: number | null;
-  tags?: DashboardsCreateRequestTagsList;
-  restriction_level?: RestrictionLevelEnum | (number & {});
-  last_refresh?: string | null;
-  /** List of quick filter IDs associated with this dashboard */
-  quick_filter_ids?: DashboardsCreateRequestQuickFilterIdsList | null;
-  /** Named tile density preset. Use tight, condensed, standard, relaxed, or wide. * `tight` - tight * `condensed` - condensed * `standard` - standard * `relaxed` - relaxed * `wide` - wide */
-  grid_spacing?: TileSpacingEnum | (string & {});
-  /** How tiles rearrange after a move or resize. vertical stacks tiles upward, horizontal stacks tiles to the left, and stable preserves positions while moving colliding tiles. * `vertical` - vertical * `horizontal` - horizontal * `stable` - stable */
-  layout_compaction?: LayoutCompactionEnum | (string & {});
-  /** Template key to create the dashboard from a predefined template. */
-  use_template?: string;
-  /** ID of an existing dashboard to duplicate. */
-  use_dashboard?: number | null;
-  /** When deleting, also delete insights that are only on this dashboard. */
-  delete_insights?: boolean;
-  _create_in_folder?: string;
+  dashboard_id: number;
+  level?: RestrictionLevelEnum | (number & {});
+  user_uuid?: string;
 }
-export const DashboardsCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateDashboardsCollaboratorRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
-    format: S.optional(DashboardsCreateRequestFormat.pipe(T.Query())),
-    include_dashboards: S.optional(S.Boolean.pipe(T.Query())),
-    name: S.optional(S.NullOr(S.String)),
-    description: S.optional(S.String),
-    pinned: S.optional(S.Boolean),
-    last_accessed_at: S.optional(S.NullOr(S.String)),
-    deleted: S.optional(S.Boolean),
-    breakdown_colors: S.optional(S.Unknown),
-    data_color_theme_id: S.optional(S.NullOr(S.Number)),
-    tags: S.optional(DashboardsCreateRequestTagsList),
-    restriction_level: S.optional(RestrictionLevelEnum),
-    last_refresh: S.optional(S.NullOr(S.String)),
-    quick_filter_ids: S.optional(
-      S.NullOr(DashboardsCreateRequestQuickFilterIdsList),
-    ),
-    grid_spacing: S.optional(TileSpacingEnum),
-    layout_compaction: S.optional(LayoutCompactionEnum),
-    use_template: S.optional(S.String),
-    use_dashboard: S.optional(S.NullOr(S.Number)),
-    delete_insights: S.optional(S.Boolean),
-    _create_in_folder: S.optional(S.String),
+    dashboard_id: S.Number.pipe(T.Label()),
+    level: S.optional(RestrictionLevelEnum),
+    user_uuid: S.optional(S.String),
   }).pipe(
     T.Http({
       method: "POST",
-      uri: "/api/projects/{project_id}/dashboards/",
+      uri: "/api/projects/{project_id}/dashboards/{dashboard_id}/collaborators/",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "DashboardsCreateRequest",
-}) as any as S.Schema<DashboardsCreateRequest>;
+  identifier: "CreateDashboardsCollaboratorRequest",
+}) as any as S.Schema<CreateDashboardsCollaboratorRequest>;
 
-export type DashboardsCreateTextTileCreateRequestFormat = "json" | "txt";
-export const DashboardsCreateTextTileCreateRequestFormat =
-  /*@__PURE__*/ S.String;
+export interface DashboardCollaboratorOutput {
+  id?: string;
+  dashboard_id?: number;
+  user?: UserBasic | null;
+  level?: RestrictionLevelEnum;
+  added_at?: string;
+  updated_at?: string;
+}
+export const DashboardCollaboratorOutput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    dashboard_id: S.optional(S.Number),
+    user: S.optional(S.NullOr(UserBasic)),
+    level: S.optional(RestrictionLevelEnum),
+    added_at: S.optional(S.String),
+    updated_at: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DashboardCollaboratorOutput",
+}) as any as S.Schema<DashboardCollaboratorOutput>;
 
-export interface TileLayoutBox {
+export type CreateDashboardsReorderTileRequestFormat = "json" | "txt";
+export const CreateDashboardsReorderTileRequestFormat = /*@__PURE__*/ S.String;
+
+/** Array of tile IDs in the desired display order (top to bottom, left to right). */
+export type CreateDashboardsReorderTileRequestTileOrderList = Array<number>;
+export const CreateDashboardsReorderTileRequestTileOrderList =
+  /*@__PURE__*/ S.Array(
+    S.Number,
+  ) as any as S.Schema<CreateDashboardsReorderTileRequestTileOrderList>;
+
+/** * `preserve` - preserve * `two_column` - two_column * `full_width` - full_width */
+export type LayoutEnum = "preserve" | "two_column" | "full_width";
+export const LayoutEnum = /*@__PURE__*/ S.String;
+
+export interface CreateDashboardsReorderTileRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A unique integer value identifying this dashboard. */
+  id: number;
+  format?: CreateDashboardsReorderTileRequestFormat | (string & {});
+  /** Array of tile IDs in the desired display order (top to bottom, left to right). */
+  tile_order?: CreateDashboardsReorderTileRequestTileOrderList;
+  /** How to size tiles when reordering. 'preserve' (default) keeps each tile's existing width and height and only repacks positions in the new order. 'two_column' forces a 6-wide × 5-tall grid (two tiles per row). 'full_width' forces each tile to span the full 12-column row at height 5. * `preserve` - preserve * `two_column` - two_column * `full_width` - full_width */
+  layout?: LayoutEnum | (string & {});
+}
+export const CreateDashboardsReorderTileRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
+    format: S.optional(
+      CreateDashboardsReorderTileRequestFormat.pipe(T.Query()),
+    ),
+    tile_order: S.optional(CreateDashboardsReorderTileRequestTileOrderList),
+    layout: S.optional(LayoutEnum),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/api/projects/{project_id}/dashboards/{id}/reorder_tiles/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "CreateDashboardsReorderTileRequest",
+}) as any as S.Schema<CreateDashboardsReorderTileRequest>;
+
+export interface CreateDashboardsSharingPasswordRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  dashboard_id: number;
+  enabled?: boolean;
+  settings?: unknown;
+  password_required?: boolean;
+}
+export const CreateDashboardsSharingPasswordRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      dashboard_id: S.Number.pipe(T.Label()),
+      enabled: S.optional(S.Boolean),
+      settings: S.optional(S.Unknown),
+      password_required: S.optional(S.Boolean),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/projects/{project_id}/dashboards/{dashboard_id}/sharing/passwords/",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "CreateDashboardsSharingPasswordRequest",
+}) as any as S.Schema<CreateDashboardsSharingPasswordRequest>;
+
+export interface SharePassword {
+  id?: number;
+  created_at?: string;
+  note?: string | null;
+  created_by_email?: string;
+  is_active?: boolean;
+}
+export const SharePassword = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.Number),
+    created_at: S.optional(S.String),
+    note: S.optional(S.NullOr(S.String)),
+    created_by_email: S.optional(S.String),
+    is_active: S.optional(S.Boolean),
+  }),
+).annotate({ identifier: "SharePassword" }) as any as S.Schema<SharePassword>;
+
+export type SharingConfigurationSharePasswordsList = Array<SharePassword>;
+export const SharingConfigurationSharePasswordsList = /*@__PURE__*/ S.Array(
+  SharePassword,
+) as any as S.Schema<SharingConfigurationSharePasswordsList>;
+
+/** Mixin for serializers to add user access control fields */
+export interface SharingConfiguration {
+  created_at?: string;
+  enabled?: boolean;
+  access_token?: string | Redacted.Redacted<string> | null;
+  settings?: unknown;
+  password_required?: boolean;
+  share_passwords?: SharingConfigurationSharePasswordsList;
+  /** The effective access level the user has for this object */
+  user_access_level?: string | null;
+}
+export const SharingConfiguration = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    created_at: S.optional(S.String),
+    enabled: S.optional(S.Boolean),
+    access_token: S.optional(S.NullOr(S.String).pipe(T.SensitiveValue({}))),
+    settings: S.optional(S.Unknown),
+    password_required: S.optional(S.Boolean),
+    share_passwords: S.optional(SharingConfigurationSharePasswordsList),
+    user_access_level: S.optional(S.NullOr(S.String)),
+  }),
+).annotate({
+  identifier: "SharingConfiguration",
+}) as any as S.Schema<SharingConfiguration>;
+
+export type CreateDashboardsWidgetsBatchRequestFormat = "json" | "txt";
+export const CreateDashboardsWidgetsBatchRequestFormat = /*@__PURE__*/ S.String;
+
+export interface WidgetTileLayoutBoxOpenApi {
   /** Column position in the dashboard grid (0-indexed). */
   x?: number;
   /** Row position in the dashboard grid (0-indexed). */
@@ -508,62 +529,879 @@ export interface TileLayoutBox {
   /** Height in grid rows. */
   h?: number;
 }
-export const TileLayoutBox = /*@__PURE__*/ S.suspend(() =>
+export const WidgetTileLayoutBoxOpenApi = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     x: S.optional(S.Number),
     y: S.optional(S.Number),
     w: S.optional(S.Number),
     h: S.optional(S.Number),
   }),
-).annotate({ identifier: "TileLayoutBox" }) as any as S.Schema<TileLayoutBox>;
+).annotate({
+  identifier: "WidgetTileLayoutBoxOpenApi",
+}) as any as S.Schema<WidgetTileLayoutBoxOpenApi>;
 
-export interface TileLayouts {
+export interface WidgetTileLayoutsOpenApi {
   /** Layout for the standard (desktop) breakpoint. The grid is 12 columns wide. */
-  sm?: TileLayoutBox;
+  sm?: WidgetTileLayoutBoxOpenApi;
   /** Layout for the small (mobile) breakpoint. The grid is 1 column wide. */
-  xs?: TileLayoutBox;
+  xs?: WidgetTileLayoutBoxOpenApi;
 }
-export const TileLayouts = /*@__PURE__*/ S.suspend(() =>
+export const WidgetTileLayoutsOpenApi = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    sm: S.optional(TileLayoutBox),
-    xs: S.optional(TileLayoutBox),
+    sm: S.optional(WidgetTileLayoutBoxOpenApi),
+    xs: S.optional(WidgetTileLayoutBoxOpenApi),
   }),
-).annotate({ identifier: "TileLayouts" }) as any as S.Schema<TileLayouts>;
+).annotate({
+  identifier: "WidgetTileLayoutsOpenApi",
+}) as any as S.Schema<WidgetTileLayoutsOpenApi>;
 
-export interface DashboardsCreateTextTileCreateRequest {
+/** * `activity_events_list` - activity_events_list */
+export type ActivityEventsListWidgetTypeEnum = "activity_events_list";
+export const ActivityEventsListWidgetTypeEnum = /*@__PURE__*/ S.String;
+
+export type WidgetDateRangeDateFrom =
+  | "-1M"
+  | "-30M"
+  | "-1h"
+  | "-3h"
+  | "-24h"
+  | "-7d"
+  | "-14d"
+  | "-30d"
+  | "-90d";
+export const WidgetDateRangeDateFrom = /*@__PURE__*/ S.String;
+
+export interface WidgetDateRange {
+  date_from?: WidgetDateRangeDateFrom | (string & {}) | null;
+}
+export const WidgetDateRange = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    date_from: S.optional(S.NullOr(WidgetDateRangeDateFrom)),
+  }),
+).annotate({
+  identifier: "WidgetDateRange",
+}) as any as S.Schema<WidgetDateRange>;
+
+export type PropertyOperator =
+  | "exact"
+  | "is_not"
+  | "icontains"
+  | "not_icontains"
+  | "starts_with"
+  | "not_starts_with"
+  | "ends_with"
+  | "not_ends_with"
+  | "regex"
+  | "not_regex"
+  | "gt"
+  | "gte"
+  | "lt"
+  | "lte"
+  | "is_set"
+  | "is_not_set"
+  | "is_date_exact"
+  | "is_date_before"
+  | "is_date_after"
+  | "between"
+  | "not_between"
+  | "min"
+  | "max"
+  | "in"
+  | "not_in"
+  | "is_cleaned_path_exact"
+  | "flag_evaluates_to"
+  | "semver_eq"
+  | "semver_neq"
+  | "semver_gt"
+  | "semver_gte"
+  | "semver_lt"
+  | "semver_lte"
+  | "semver_tilde"
+  | "semver_caret"
+  | "semver_wildcard"
+  | "icontains_multi"
+  | "not_icontains_multi";
+export const PropertyOperator = /*@__PURE__*/ S.String;
+
+export type WidgetFilterEntryValueCase1List = Array<string>;
+export const WidgetFilterEntryValueCase1List = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<WidgetFilterEntryValueCase1List>;
+
+export type WidgetFilterEntryValue = string | WidgetFilterEntryValueCase1List;
+export const WidgetFilterEntryValue =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<WidgetFilterEntryValue>;
+
+export interface WidgetFilterEntry {
+  filterId: string;
+  propertyName: string;
+  optionId: string;
+  operator: PropertyOperator | (string & {});
+  value?: WidgetFilterEntryValue | null;
+}
+export const WidgetFilterEntry = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    filterId: S.String,
+    propertyName: S.String,
+    optionId: S.String,
+    operator: PropertyOperator,
+    value: S.optional(S.NullOr(WidgetFilterEntryValue)),
+  }),
+).annotate({
+  identifier: "WidgetFilterEntry",
+}) as any as S.Schema<WidgetFilterEntry>;
+
+export type ActivityEventsListWidgetConfigWidgetFiltersMap = {
+  [key: string]: WidgetFilterEntry | undefined;
+};
+export const ActivityEventsListWidgetConfigWidgetFiltersMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    WidgetFilterEntry,
+  ) as any as S.Schema<ActivityEventsListWidgetConfigWidgetFiltersMap>;
+
+export type ActivityEventsPropertyFilterType = "event" | "person";
+export const ActivityEventsPropertyFilterType = /*@__PURE__*/ S.String;
+
+export type ActivityEventsPropertyFilterValueCase0Item =
+  | string
+  | number
+  | boolean;
+export const ActivityEventsPropertyFilterValueCase0Item =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<ActivityEventsPropertyFilterValueCase0Item>;
+
+export type ActivityEventsPropertyFilterValueCase0List =
+  Array<ActivityEventsPropertyFilterValueCase0Item>;
+export const ActivityEventsPropertyFilterValueCase0List = /*@__PURE__*/ S.Array(
+  ActivityEventsPropertyFilterValueCase0Item,
+) as any as S.Schema<ActivityEventsPropertyFilterValueCase0List>;
+
+export type ActivityEventsPropertyFilterValue =
+  | ActivityEventsPropertyFilterValueCase0List
+  | string
+  | number
+  | boolean;
+export const ActivityEventsPropertyFilterValue =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<ActivityEventsPropertyFilterValue>;
+
+export interface ActivityEventsPropertyFilter {
+  key: string;
+  label?: string | null;
+  operator: PropertyOperator | (string & {});
+  type: ActivityEventsPropertyFilterType | (string & {});
+  value?: ActivityEventsPropertyFilterValue | null;
+}
+export const ActivityEventsPropertyFilter = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    key: S.String,
+    label: S.optional(S.NullOr(S.String)),
+    operator: PropertyOperator,
+    type: ActivityEventsPropertyFilterType,
+    value: S.optional(S.NullOr(ActivityEventsPropertyFilterValue)),
+  }),
+).annotate({
+  identifier: "ActivityEventsPropertyFilter",
+}) as any as S.Schema<ActivityEventsPropertyFilter>;
+
+export type ActivityEventsListWidgetConfigPropertiesList =
+  Array<ActivityEventsPropertyFilter>;
+export const ActivityEventsListWidgetConfigPropertiesList =
+  /*@__PURE__*/ S.Array(
+    ActivityEventsPropertyFilter,
+  ) as any as S.Schema<ActivityEventsListWidgetConfigPropertiesList>;
+
+export interface ActivityEventsListWidgetConfig {
+  dateRange?: WidgetDateRange | null;
+  filterTestAccounts?: boolean | null;
+  widgetFilters?: ActivityEventsListWidgetConfigWidgetFiltersMap | null;
+  /** Maximum number of events to return. */
+  limit?: number;
+  /** Limit the feed to a single event name. Omit or null for all events. */
+  eventName?: string | null;
+  /** Event and person property filters, matching Activity > Explore events. */
+  properties?: ActivityEventsListWidgetConfigPropertiesList | null;
+}
+export const ActivityEventsListWidgetConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    dateRange: S.optional(S.NullOr(WidgetDateRange)),
+    filterTestAccounts: S.optional(S.NullOr(S.Boolean)),
+    widgetFilters: S.optional(
+      S.NullOr(ActivityEventsListWidgetConfigWidgetFiltersMap),
+    ),
+    limit: S.optional(S.Number),
+    eventName: S.optional(S.NullOr(S.String)),
+    properties: S.optional(
+      S.NullOr(ActivityEventsListWidgetConfigPropertiesList),
+    ),
+  }),
+).annotate({
+  identifier: "ActivityEventsListWidgetConfig",
+}) as any as S.Schema<ActivityEventsListWidgetConfig>;
+
+export interface ActivityEventsListWidgetAddRequestOpenApi {
+  /** Optional custom display name for the widget tile. */
+  name?: string | null;
+  /** Optional markdown description shown when show_description is enabled. */
+  description?: string;
+  /** Optional react-grid-layout positions keyed by breakpoint (sm, xs). */
+  layouts?: WidgetTileLayoutsOpenApi;
+  /** Whether to show the description on the dashboard tile. */
+  show_description?: boolean;
+  widget_type: ActivityEventsListWidgetTypeEnum;
+  /** Configuration for the recent events widget. */
+  config: ActivityEventsListWidgetConfig;
+}
+export const ActivityEventsListWidgetAddRequestOpenApi =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      name: S.optional(S.NullOr(S.String)),
+      description: S.optional(S.String),
+      layouts: S.optional(WidgetTileLayoutsOpenApi),
+      show_description: S.optional(S.Boolean),
+      widget_type: ActivityEventsListWidgetTypeEnum,
+      config: ActivityEventsListWidgetConfig,
+    }),
+  ).annotate({
+    identifier: "ActivityEventsListWidgetAddRequestOpenApi",
+  }) as any as S.Schema<ActivityEventsListWidgetAddRequestOpenApi>;
+
+/** * `error_tracking_list` - error_tracking_list */
+export type ErrorTrackingListWidgetTypeEnum = "error_tracking_list";
+export const ErrorTrackingListWidgetTypeEnum = /*@__PURE__*/ S.String;
+
+export type ErrorTrackingListWidgetConfigWidgetFiltersMap = {
+  [key: string]: WidgetFilterEntry | undefined;
+};
+export const ErrorTrackingListWidgetConfigWidgetFiltersMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    WidgetFilterEntry,
+  ) as any as S.Schema<ErrorTrackingListWidgetConfigWidgetFiltersMap>;
+
+/** Issue ranking column. */
+export type ErrorTrackingListWidgetConfigOrderBy =
+  | "last_seen"
+  | "first_seen"
+  | "occurrences"
+  | "users"
+  | "sessions";
+export const ErrorTrackingListWidgetConfigOrderBy = /*@__PURE__*/ S.String;
+
+/** Sort direction for orderBy. */
+export type ErrorTrackingListWidgetConfigOrderDirection = "ASC" | "DESC";
+export const ErrorTrackingListWidgetConfigOrderDirection =
+  /*@__PURE__*/ S.String;
+
+/** Issue status filter. */
+export type ErrorTrackingListWidgetConfigStatus =
+  | "archived"
+  | "active"
+  | "resolved"
+  | "pending_release"
+  | "suppressed"
+  | "all";
+export const ErrorTrackingListWidgetConfigStatus = /*@__PURE__*/ S.String;
+
+export type WidgetAssigneeFilterId = string | number;
+export const WidgetAssigneeFilterId =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<WidgetAssigneeFilterId>;
+
+export type WidgetAssigneeFilterType = "user" | "role";
+export const WidgetAssigneeFilterType = /*@__PURE__*/ S.String;
+
+export interface WidgetAssigneeFilter {
+  id: WidgetAssigneeFilterId;
+  type: WidgetAssigneeFilterType | (string & {});
+}
+export const WidgetAssigneeFilter = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: WidgetAssigneeFilterId,
+    type: WidgetAssigneeFilterType,
+  }),
+).annotate({
+  identifier: "WidgetAssigneeFilter",
+}) as any as S.Schema<WidgetAssigneeFilter>;
+
+export interface ErrorTrackingListWidgetConfig {
+  dateRange?: WidgetDateRange | null;
+  filterTestAccounts?: boolean | null;
+  widgetFilters?: ErrorTrackingListWidgetConfigWidgetFiltersMap | null;
+  /** Maximum number of issues to return. */
+  limit?: number;
+  /** Issue ranking column. */
+  orderBy?: ErrorTrackingListWidgetConfigOrderBy | (string & {});
+  /** Sort direction for orderBy. */
+  orderDirection?: ErrorTrackingListWidgetConfigOrderDirection | (string & {});
+  /** Issue status filter. */
+  status?: ErrorTrackingListWidgetConfigStatus | (string & {});
+  /** Filter by assignee ({type: user|role, id}). Omit for any assignee. */
+  assignee?: WidgetAssigneeFilter | null;
+}
+export const ErrorTrackingListWidgetConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    dateRange: S.optional(S.NullOr(WidgetDateRange)),
+    filterTestAccounts: S.optional(S.NullOr(S.Boolean)),
+    widgetFilters: S.optional(
+      S.NullOr(ErrorTrackingListWidgetConfigWidgetFiltersMap),
+    ),
+    limit: S.optional(S.Number),
+    orderBy: S.optional(ErrorTrackingListWidgetConfigOrderBy),
+    orderDirection: S.optional(ErrorTrackingListWidgetConfigOrderDirection),
+    status: S.optional(ErrorTrackingListWidgetConfigStatus),
+    assignee: S.optional(S.NullOr(WidgetAssigneeFilter)),
+  }),
+).annotate({
+  identifier: "ErrorTrackingListWidgetConfig",
+}) as any as S.Schema<ErrorTrackingListWidgetConfig>;
+
+export interface ErrorTrackingListWidgetAddRequestOpenApi {
+  /** Optional custom display name for the widget tile. */
+  name?: string | null;
+  /** Optional markdown description shown when show_description is enabled. */
+  description?: string;
+  /** Optional react-grid-layout positions keyed by breakpoint (sm, xs). */
+  layouts?: WidgetTileLayoutsOpenApi;
+  /** Whether to show the description on the dashboard tile. */
+  show_description?: boolean;
+  widget_type: ErrorTrackingListWidgetTypeEnum;
+  /** Configuration for the top issues widget. */
+  config: ErrorTrackingListWidgetConfig;
+}
+export const ErrorTrackingListWidgetAddRequestOpenApi = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      name: S.optional(S.NullOr(S.String)),
+      description: S.optional(S.String),
+      layouts: S.optional(WidgetTileLayoutsOpenApi),
+      show_description: S.optional(S.Boolean),
+      widget_type: ErrorTrackingListWidgetTypeEnum,
+      config: ErrorTrackingListWidgetConfig,
+    }),
+).annotate({
+  identifier: "ErrorTrackingListWidgetAddRequestOpenApi",
+}) as any as S.Schema<ErrorTrackingListWidgetAddRequestOpenApi>;
+
+/** * `session_replay_list` - session_replay_list */
+export type SessionReplayListWidgetTypeEnum = "session_replay_list";
+export const SessionReplayListWidgetTypeEnum = /*@__PURE__*/ S.String;
+
+export type SessionReplayListWidgetConfigWidgetFiltersMap = {
+  [key: string]: WidgetFilterEntry | undefined;
+};
+export const SessionReplayListWidgetConfigWidgetFiltersMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    WidgetFilterEntry,
+  ) as any as S.Schema<SessionReplayListWidgetConfigWidgetFiltersMap>;
+
+/** Recording ranking column. */
+export type SessionReplayListWidgetConfigOrderBy =
+  | "start_time"
+  | "activity_score"
+  | "recording_duration"
+  | "duration"
+  | "click_count"
+  | "console_error_count";
+export const SessionReplayListWidgetConfigOrderBy = /*@__PURE__*/ S.String;
+
+/** Sort direction for orderBy. */
+export type SessionReplayListWidgetConfigOrderDirection = "ASC" | "DESC";
+export const SessionReplayListWidgetConfigOrderDirection =
+  /*@__PURE__*/ S.String;
+
+export interface SessionReplayListWidgetConfig {
+  dateRange?: WidgetDateRange | null;
+  filterTestAccounts?: boolean | null;
+  widgetFilters?: SessionReplayListWidgetConfigWidgetFiltersMap | null;
+  /** Maximum number of recordings to return. */
+  limit?: number;
+  /** Recording ranking column. */
+  orderBy?: SessionReplayListWidgetConfigOrderBy | (string & {});
+  /** Sort direction for orderBy. */
+  orderDirection?: SessionReplayListWidgetConfigOrderDirection | (string & {});
+  /** short_id of a saved session replay filter to refine the recordings shown. When set, the saved filter owns the date range and property filters; only orderBy, orderDirection, and limit still apply. Combine with collectionId to filter within a collection. */
+  savedFilterId?: string | null;
+  /** short_id of a session replay collection to scope the widget to its pinned recordings. Combine with savedFilterId or property filters to narrow within the collection; orderBy, orderDirection, and limit still apply. */
+  collectionId?: string | null;
+}
+export const SessionReplayListWidgetConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    dateRange: S.optional(S.NullOr(WidgetDateRange)),
+    filterTestAccounts: S.optional(S.NullOr(S.Boolean)),
+    widgetFilters: S.optional(
+      S.NullOr(SessionReplayListWidgetConfigWidgetFiltersMap),
+    ),
+    limit: S.optional(S.Number),
+    orderBy: S.optional(SessionReplayListWidgetConfigOrderBy),
+    orderDirection: S.optional(SessionReplayListWidgetConfigOrderDirection),
+    savedFilterId: S.optional(S.NullOr(S.String)),
+    collectionId: S.optional(S.NullOr(S.String)),
+  }),
+).annotate({
+  identifier: "SessionReplayListWidgetConfig",
+}) as any as S.Schema<SessionReplayListWidgetConfig>;
+
+export interface SessionReplayListWidgetAddRequestOpenApi {
+  /** Optional custom display name for the widget tile. */
+  name?: string | null;
+  /** Optional markdown description shown when show_description is enabled. */
+  description?: string;
+  /** Optional react-grid-layout positions keyed by breakpoint (sm, xs). */
+  layouts?: WidgetTileLayoutsOpenApi;
+  /** Whether to show the description on the dashboard tile. */
+  show_description?: boolean;
+  widget_type: SessionReplayListWidgetTypeEnum;
+  /** Configuration for the recent recordings widget. */
+  config: SessionReplayListWidgetConfig;
+}
+export const SessionReplayListWidgetAddRequestOpenApi = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      name: S.optional(S.NullOr(S.String)),
+      description: S.optional(S.String),
+      layouts: S.optional(WidgetTileLayoutsOpenApi),
+      show_description: S.optional(S.Boolean),
+      widget_type: SessionReplayListWidgetTypeEnum,
+      config: SessionReplayListWidgetConfig,
+    }),
+).annotate({
+  identifier: "SessionReplayListWidgetAddRequestOpenApi",
+}) as any as S.Schema<SessionReplayListWidgetAddRequestOpenApi>;
+
+/** * `experiments_list` - experiments_list */
+export type ExperimentsListWidgetTypeEnum = "experiments_list";
+export const ExperimentsListWidgetTypeEnum = /*@__PURE__*/ S.String;
+
+/** Experiment list sort column. */
+export type ExperimentsListWidgetConfigOrderBy =
+  | "created_at"
+  | "name"
+  | "start_date";
+export const ExperimentsListWidgetConfigOrderBy = /*@__PURE__*/ S.String;
+
+/** Sort direction for orderBy. */
+export type ExperimentsListWidgetConfigOrderDirection = "ASC" | "DESC";
+export const ExperimentsListWidgetConfigOrderDirection = /*@__PURE__*/ S.String;
+
+/** Experiment status filter. */
+export type ExperimentsListWidgetConfigStatus =
+  | "draft"
+  | "running"
+  | "paused"
+  | "exposure_frozen"
+  | "stopped"
+  | "all";
+export const ExperimentsListWidgetConfigStatus = /*@__PURE__*/ S.String;
+
+export interface ExperimentsListWidgetConfig {
+  /** Maximum number of experiments to return. */
+  limit?: number;
+  /** Experiment list sort column. */
+  orderBy?: ExperimentsListWidgetConfigOrderBy | (string & {});
+  /** Sort direction for orderBy. */
+  orderDirection?: ExperimentsListWidgetConfigOrderDirection | (string & {});
+  /** Experiment status filter. */
+  status?: ExperimentsListWidgetConfigStatus | (string & {});
+  /** Filter by creator (user id). Omit for any creator. */
+  createdBy?: number | null;
+}
+export const ExperimentsListWidgetConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    limit: S.optional(S.Number),
+    orderBy: S.optional(ExperimentsListWidgetConfigOrderBy),
+    orderDirection: S.optional(ExperimentsListWidgetConfigOrderDirection),
+    status: S.optional(ExperimentsListWidgetConfigStatus),
+    createdBy: S.optional(S.NullOr(S.Number)),
+  }),
+).annotate({
+  identifier: "ExperimentsListWidgetConfig",
+}) as any as S.Schema<ExperimentsListWidgetConfig>;
+
+export interface ExperimentsListWidgetAddRequestOpenApi {
+  /** Optional custom display name for the widget tile. */
+  name?: string | null;
+  /** Optional markdown description shown when show_description is enabled. */
+  description?: string;
+  /** Optional react-grid-layout positions keyed by breakpoint (sm, xs). */
+  layouts?: WidgetTileLayoutsOpenApi;
+  /** Whether to show the description on the dashboard tile. */
+  show_description?: boolean;
+  widget_type: ExperimentsListWidgetTypeEnum;
+  /** Configuration for the experiments list widget. */
+  config: ExperimentsListWidgetConfig;
+}
+export const ExperimentsListWidgetAddRequestOpenApi = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      name: S.optional(S.NullOr(S.String)),
+      description: S.optional(S.String),
+      layouts: S.optional(WidgetTileLayoutsOpenApi),
+      show_description: S.optional(S.Boolean),
+      widget_type: ExperimentsListWidgetTypeEnum,
+      config: ExperimentsListWidgetConfig,
+    }),
+).annotate({
+  identifier: "ExperimentsListWidgetAddRequestOpenApi",
+}) as any as S.Schema<ExperimentsListWidgetAddRequestOpenApi>;
+
+/** * `experiment_results` - experiment_results */
+export type ExperimentResultsWidgetTypeEnum = "experiment_results";
+export const ExperimentResultsWidgetTypeEnum = /*@__PURE__*/ S.String;
+
+export interface ExperimentResultsWidgetConfig {
+  /** Experiment to show results for. Null until the user picks one in the widget settings. */
+  experimentId?: number | null;
+}
+export const ExperimentResultsWidgetConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    experimentId: S.optional(S.NullOr(S.Number)),
+  }),
+).annotate({
+  identifier: "ExperimentResultsWidgetConfig",
+}) as any as S.Schema<ExperimentResultsWidgetConfig>;
+
+export interface ExperimentResultsWidgetAddRequestOpenApi {
+  /** Optional custom display name for the widget tile. */
+  name?: string | null;
+  /** Optional markdown description shown when show_description is enabled. */
+  description?: string;
+  /** Optional react-grid-layout positions keyed by breakpoint (sm, xs). */
+  layouts?: WidgetTileLayoutsOpenApi;
+  /** Whether to show the description on the dashboard tile. */
+  show_description?: boolean;
+  widget_type: ExperimentResultsWidgetTypeEnum;
+  /** Configuration for the experiment results widget. */
+  config: ExperimentResultsWidgetConfig;
+}
+export const ExperimentResultsWidgetAddRequestOpenApi = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      name: S.optional(S.NullOr(S.String)),
+      description: S.optional(S.String),
+      layouts: S.optional(WidgetTileLayoutsOpenApi),
+      show_description: S.optional(S.Boolean),
+      widget_type: ExperimentResultsWidgetTypeEnum,
+      config: ExperimentResultsWidgetConfig,
+    }),
+).annotate({
+  identifier: "ExperimentResultsWidgetAddRequestOpenApi",
+}) as any as S.Schema<ExperimentResultsWidgetAddRequestOpenApi>;
+
+/** * `survey_results` - survey_results */
+export type SurveyResultsWidgetTypeEnum = "survey_results";
+export const SurveyResultsWidgetTypeEnum = /*@__PURE__*/ S.String;
+
+export interface SurveyResultsWidgetConfig {
+  /** Null or omitted means all time (the survey's full lifetime). */
+  dateRange?: WidgetDateRange | null;
+  /** Survey to show performance stats and recent responses for. Null until the user picks one. */
+  surveyId?: string | null;
+  /** Maximum number of recent responses to return. */
+  limit?: number;
+}
+export const SurveyResultsWidgetConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    dateRange: S.optional(S.NullOr(WidgetDateRange)),
+    surveyId: S.optional(S.NullOr(S.String)),
+    limit: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "SurveyResultsWidgetConfig",
+}) as any as S.Schema<SurveyResultsWidgetConfig>;
+
+export interface SurveyResultsWidgetAddRequestOpenApi {
+  /** Optional custom display name for the widget tile. */
+  name?: string | null;
+  /** Optional markdown description shown when show_description is enabled. */
+  description?: string;
+  /** Optional react-grid-layout positions keyed by breakpoint (sm, xs). */
+  layouts?: WidgetTileLayoutsOpenApi;
+  /** Whether to show the description on the dashboard tile. */
+  show_description?: boolean;
+  widget_type: SurveyResultsWidgetTypeEnum;
+  /** Configuration for the survey results widget. */
+  config: SurveyResultsWidgetConfig;
+}
+export const SurveyResultsWidgetAddRequestOpenApi = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      name: S.optional(S.NullOr(S.String)),
+      description: S.optional(S.String),
+      layouts: S.optional(WidgetTileLayoutsOpenApi),
+      show_description: S.optional(S.Boolean),
+      widget_type: SurveyResultsWidgetTypeEnum,
+      config: SurveyResultsWidgetConfig,
+    }),
+).annotate({
+  identifier: "SurveyResultsWidgetAddRequestOpenApi",
+}) as any as S.Schema<SurveyResultsWidgetAddRequestOpenApi>;
+
+/** * `logs_list` - logs_list */
+export type LogsListWidgetTypeEnum = "logs_list";
+export const LogsListWidgetTypeEnum = /*@__PURE__*/ S.String;
+
+/** Sort by newest (latest) or oldest (earliest) first. */
+export type LogsListWidgetConfigOrderBy = "latest" | "earliest";
+export const LogsListWidgetConfigOrderBy = /*@__PURE__*/ S.String;
+
+export type LogsListWidgetConfigSeverityLevelsItem =
+  | "trace"
+  | "debug"
+  | "info"
+  | "warn"
+  | "error"
+  | "fatal";
+export const LogsListWidgetConfigSeverityLevelsItem = /*@__PURE__*/ S.String;
+
+/** Only show logs at these severity levels. Empty shows all levels. */
+export type LogsListWidgetConfigSeverityLevelsList = Array<
+  LogsListWidgetConfigSeverityLevelsItem | (string & {})
+>;
+export const LogsListWidgetConfigSeverityLevelsList = /*@__PURE__*/ S.Array(
+  LogsListWidgetConfigSeverityLevelsItem,
+) as any as S.Schema<LogsListWidgetConfigSeverityLevelsList>;
+
+/** Only show logs from these services. Empty shows all services. */
+export type LogsListWidgetConfigServiceNamesList = Array<string>;
+export const LogsListWidgetConfigServiceNamesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<LogsListWidgetConfigServiceNamesList>;
+
+/** Render log timestamps in UTC or in each viewer's local timezone. */
+export type LogsListWidgetConfigTimezone = "UTC" | "local";
+export const LogsListWidgetConfigTimezone = /*@__PURE__*/ S.String;
+
+export interface LogsListWidgetConfig {
+  dateRange?: WidgetDateRange | null;
+  /** Maximum number of log lines to return. */
+  limit?: number;
+  /** Sort by newest (latest) or oldest (earliest) first. */
+  orderBy?: LogsListWidgetConfigOrderBy | (string & {});
+  /** Only show logs at these severity levels. Empty shows all levels. */
+  severityLevels?: LogsListWidgetConfigSeverityLevelsList;
+  /** Only show logs from these services. Empty shows all services. */
+  serviceNames?: LogsListWidgetConfigServiceNamesList;
+  /** Wrap long log lines instead of truncating them to a single row. */
+  wrapLines?: boolean;
+  /** Render log timestamps in UTC or in each viewer's local timezone. */
+  timezone?: LogsListWidgetConfigTimezone | (string & {});
+  /** short_id of a saved logs view to use as the source. When set, the saved view owns the date range, severity, service, and property filters; only orderBy and limit still apply. */
+  savedViewId?: string | null;
+}
+export const LogsListWidgetConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    dateRange: S.optional(S.NullOr(WidgetDateRange)),
+    limit: S.optional(S.Number),
+    orderBy: S.optional(LogsListWidgetConfigOrderBy),
+    severityLevels: S.optional(LogsListWidgetConfigSeverityLevelsList),
+    serviceNames: S.optional(LogsListWidgetConfigServiceNamesList),
+    wrapLines: S.optional(S.Boolean),
+    timezone: S.optional(LogsListWidgetConfigTimezone),
+    savedViewId: S.optional(S.NullOr(S.String)),
+  }),
+).annotate({
+  identifier: "LogsListWidgetConfig",
+}) as any as S.Schema<LogsListWidgetConfig>;
+
+export interface LogsListWidgetAddRequestOpenApi {
+  /** Optional custom display name for the widget tile. */
+  name?: string | null;
+  /** Optional markdown description shown when show_description is enabled. */
+  description?: string;
+  /** Optional react-grid-layout positions keyed by breakpoint (sm, xs). */
+  layouts?: WidgetTileLayoutsOpenApi;
+  /** Whether to show the description on the dashboard tile. */
+  show_description?: boolean;
+  widget_type: LogsListWidgetTypeEnum;
+  /** Configuration for the recent logs widget. */
+  config: LogsListWidgetConfig;
+}
+export const LogsListWidgetAddRequestOpenApi = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.NullOr(S.String)),
+    description: S.optional(S.String),
+    layouts: S.optional(WidgetTileLayoutsOpenApi),
+    show_description: S.optional(S.Boolean),
+    widget_type: LogsListWidgetTypeEnum,
+    config: LogsListWidgetConfig,
+  }),
+).annotate({
+  identifier: "LogsListWidgetAddRequestOpenApi",
+}) as any as S.Schema<LogsListWidgetAddRequestOpenApi>;
+
+/** * `conversations_recent_tickets` - conversations_recent_tickets */
+export type ConversationsRecentTicketsWidgetTypeEnum =
+  "conversations_recent_tickets";
+export const ConversationsRecentTicketsWidgetTypeEnum = /*@__PURE__*/ S.String;
+
+/** Ticket status filter. */
+export type ConversationsRecentTicketsWidgetConfigStatus =
+  | "new"
+  | "open"
+  | "pending"
+  | "on_hold"
+  | "resolved"
+  | "all";
+export const ConversationsRecentTicketsWidgetConfigStatus =
+  /*@__PURE__*/ S.String;
+
+export type ConversationsRecentTicketsWidgetConfigPrioritiesItem =
+  | "low"
+  | "medium"
+  | "high"
+  | "critical";
+export const ConversationsRecentTicketsWidgetConfigPrioritiesItem =
+  /*@__PURE__*/ S.String;
+
+/** Only show tickets with these priorities. Empty shows all priorities. */
+export type ConversationsRecentTicketsWidgetConfigPrioritiesList = Array<
+  ConversationsRecentTicketsWidgetConfigPrioritiesItem | (string & {})
+>;
+export const ConversationsRecentTicketsWidgetConfigPrioritiesList =
+  /*@__PURE__*/ S.Array(
+    ConversationsRecentTicketsWidgetConfigPrioritiesItem,
+  ) as any as S.Schema<ConversationsRecentTicketsWidgetConfigPrioritiesList>;
+
+/** Ticket channel filter. */
+export type ConversationsRecentTicketsWidgetConfigChannel =
+  | "widget"
+  | "email"
+  | "slack"
+  | "teams"
+  | "github"
+  | "all";
+export const ConversationsRecentTicketsWidgetConfigChannel =
+  /*@__PURE__*/ S.String;
+
+export type ConversationsRecentTicketsWidgetConfigAssigneesItemCase0 =
+  | "me"
+  | "unassigned";
+export const ConversationsRecentTicketsWidgetConfigAssigneesItemCase0 =
+  /*@__PURE__*/ S.String;
+
+export type ConversationsRecentTicketsWidgetConfigAssigneesItem =
+  | ConversationsRecentTicketsWidgetConfigAssigneesItemCase0
+  | WidgetAssigneeFilter;
+export const ConversationsRecentTicketsWidgetConfigAssigneesItem =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<ConversationsRecentTicketsWidgetConfigAssigneesItem>;
+
+/** Only show tickets assigned to these users or roles. 'me' means the requesting user and 'unassigned' means tickets without an assignment. Empty shows all assignees. */
+export type ConversationsRecentTicketsWidgetConfigAssigneesList =
+  Array<ConversationsRecentTicketsWidgetConfigAssigneesItem>;
+export const ConversationsRecentTicketsWidgetConfigAssigneesList =
+  /*@__PURE__*/ S.Array(
+    ConversationsRecentTicketsWidgetConfigAssigneesItem,
+  ) as any as S.Schema<ConversationsRecentTicketsWidgetConfigAssigneesList>;
+
+export interface ConversationsRecentTicketsWidgetConfig {
+  /** Maximum number of tickets to return. */
+  limit?: number;
+  /** Ticket status filter. */
+  status?: ConversationsRecentTicketsWidgetConfigStatus | (string & {});
+  /** Only show tickets with these priorities. Empty shows all priorities. */
+  priorities?: ConversationsRecentTicketsWidgetConfigPrioritiesList;
+  /** Ticket channel filter. */
+  channel?: ConversationsRecentTicketsWidgetConfigChannel | (string & {});
+  /** Only show tickets assigned to these users or roles. 'me' means the requesting user and 'unassigned' means tickets without an assignment. Empty shows all assignees. */
+  assignees?: ConversationsRecentTicketsWidgetConfigAssigneesList;
+  /** Search requester name or email, ticket subject, message text, or ticket number. */
+  search?: string;
+  /** short_id of a saved Support view to use as the source. When set, the saved view owns the ticket filters; the widget still sorts by most recently updated and applies its limit. */
+  savedViewId?: string | null;
+}
+export const ConversationsRecentTicketsWidgetConfig = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      limit: S.optional(S.Number),
+      status: S.optional(ConversationsRecentTicketsWidgetConfigStatus),
+      priorities: S.optional(
+        ConversationsRecentTicketsWidgetConfigPrioritiesList,
+      ),
+      channel: S.optional(ConversationsRecentTicketsWidgetConfigChannel),
+      assignees: S.optional(
+        ConversationsRecentTicketsWidgetConfigAssigneesList,
+      ),
+      search: S.optional(S.String),
+      savedViewId: S.optional(S.NullOr(S.String)),
+    }),
+).annotate({
+  identifier: "ConversationsRecentTicketsWidgetConfig",
+}) as any as S.Schema<ConversationsRecentTicketsWidgetConfig>;
+
+export interface ConversationsRecentTicketsWidgetAddRequestOpenApi {
+  /** Optional custom display name for the widget tile. */
+  name?: string | null;
+  /** Optional markdown description shown when show_description is enabled. */
+  description?: string;
+  /** Optional react-grid-layout positions keyed by breakpoint (sm, xs). */
+  layouts?: WidgetTileLayoutsOpenApi;
+  /** Whether to show the description on the dashboard tile. */
+  show_description?: boolean;
+  widget_type: ConversationsRecentTicketsWidgetTypeEnum;
+  /** Configuration for the recent tickets widget. */
+  config: ConversationsRecentTicketsWidgetConfig;
+}
+export const ConversationsRecentTicketsWidgetAddRequestOpenApi =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      name: S.optional(S.NullOr(S.String)),
+      description: S.optional(S.String),
+      layouts: S.optional(WidgetTileLayoutsOpenApi),
+      show_description: S.optional(S.Boolean),
+      widget_type: ConversationsRecentTicketsWidgetTypeEnum,
+      config: ConversationsRecentTicketsWidgetConfig,
+    }),
+  ).annotate({
+    identifier: "ConversationsRecentTicketsWidgetAddRequestOpenApi",
+  }) as any as S.Schema<ConversationsRecentTicketsWidgetAddRequestOpenApi>;
+
+export type AddDashboardWidgetRequest =
+  | ActivityEventsListWidgetAddRequestOpenApi
+  | ErrorTrackingListWidgetAddRequestOpenApi
+  | SessionReplayListWidgetAddRequestOpenApi
+  | ExperimentsListWidgetAddRequestOpenApi
+  | ExperimentResultsWidgetAddRequestOpenApi
+  | SurveyResultsWidgetAddRequestOpenApi
+  | LogsListWidgetAddRequestOpenApi
+  | ConversationsRecentTicketsWidgetAddRequestOpenApi;
+export const AddDashboardWidgetRequest =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<AddDashboardWidgetRequest>;
+
+/** Widget tiles to add atomically. Supported widget_type values: activity_events_list, conversations_recent_tickets, error_tracking_list, experiment_results, experiments_list, logs_list, session_replay_list, survey_results. Use dashboard-widget-catalog-list for per-type config_schema documentation. (1–10 per request). */
+export type CreateDashboardsWidgetsBatchRequestWidgetsList =
+  Array<AddDashboardWidgetRequest>;
+export const CreateDashboardsWidgetsBatchRequestWidgetsList =
+  /*@__PURE__*/ S.Array(
+    AddDashboardWidgetRequest,
+  ) as any as S.Schema<CreateDashboardsWidgetsBatchRequestWidgetsList>;
+
+export interface CreateDashboardsWidgetsBatchRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A unique integer value identifying this dashboard. */
   id: number;
-  format?: DashboardsCreateTextTileCreateRequestFormat | (string & {});
-  /** Markdown body for the text tile. Supports headings, lists, and inline formatting. Useful as a dashboard section heading, divider, or annotation between insights. Max 4000 characters. */
-  body: string;
-  /** Optional grid layout per breakpoint. If omitted, the tile is placed at the bottom of the dashboard using the default size. Text tiles typically use a thin full-width banner (e.g. w=12, h=1). */
-  layouts?: TileLayouts;
-  /** Optional accent color name (e.g. 'blue', 'green', 'purple', 'black'). */
-  color?: string | null;
+  format?: CreateDashboardsWidgetsBatchRequestFormat | (string & {});
+  /** Widget tiles to add atomically. Supported widget_type values: activity_events_list, conversations_recent_tickets, error_tracking_list, experiment_results, experiments_list, logs_list, session_replay_list, survey_results. Use dashboard-widget-catalog-list for per-type config_schema documentation. (1–10 per request). */
+  widgets: CreateDashboardsWidgetsBatchRequestWidgetsList;
 }
-export const DashboardsCreateTextTileCreateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.Number.pipe(T.Label()),
-      format: S.optional(
-        DashboardsCreateTextTileCreateRequestFormat.pipe(T.Query()),
-      ),
-      body: S.String,
-      layouts: S.optional(TileLayouts),
-      color: S.optional(S.NullOr(S.String)),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/api/projects/{project_id}/dashboards/{id}/create_text_tile/",
-        code: 200,
-      }),
+export const CreateDashboardsWidgetsBatchRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
+    format: S.optional(
+      CreateDashboardsWidgetsBatchRequestFormat.pipe(T.Query()),
     ),
+    widgets: CreateDashboardsWidgetsBatchRequestWidgetsList,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/api/projects/{project_id}/dashboards/{id}/widgets/batch/",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "DashboardsCreateTextTileCreateRequest",
-}) as any as S.Schema<DashboardsCreateTextTileCreateRequest>;
+  identifier: "CreateDashboardsWidgetsBatchRequest",
+}) as any as S.Schema<CreateDashboardsWidgetsBatchRequest>;
 
 export type BreakdownFilterBreakdownCase1Item = string | number;
 export const BreakdownFilterBreakdownCase1Item =
@@ -762,6 +1600,50 @@ export type BounceRatePageViewMode =
   | "uniq_page_screen_autocaptures";
 export const BounceRatePageViewMode = /*@__PURE__*/ S.String;
 
+export type CustomBotField =
+  | "$raw_user_agent"
+  | "$ip"
+  | "$lib"
+  | "$host"
+  | "$pathname"
+  | "$current_url";
+export const CustomBotField = /*@__PURE__*/ S.String;
+
+export type CustomBotMatcher = "contains" | "regex" | "cidr";
+export const CustomBotMatcher = /*@__PURE__*/ S.String;
+
+export interface CustomBotDefinition {
+  /** Reported by `$virt_traffic_category`. Defaults to `custom`. */
+  category?: string | null;
+  id: string;
+  /** The event property this rule reads. */
+  key: CustomBotField;
+  matcher: CustomBotMatcher;
+  /** Reported by `$virt_bot_name` and `$virt_bot_operator` when the rule matches. */
+  name: string;
+  /** Matched against the property named by `key`. */
+  pattern: string;
+}
+export const CustomBotDefinition = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    category: S.optional(S.NullOr(S.String)),
+    id: S.String,
+    key: CustomBotField,
+    matcher: CustomBotMatcher,
+    name: S.String,
+    pattern: S.String,
+  }),
+).annotate({
+  identifier: "CustomBotDefinition",
+}) as any as S.Schema<CustomBotDefinition>;
+
+export type HogQLQueryModifiersCustomBotDefinitionsList =
+  Array<CustomBotDefinition>;
+export const HogQLQueryModifiersCustomBotDefinitionsList =
+  /*@__PURE__*/ S.Array(
+    CustomBotDefinition,
+  ) as any as S.Schema<HogQLQueryModifiersCustomBotDefinitionsList>;
+
 export type FilterLogicalOperator = "AND" | "OR";
 export const FilterLogicalOperator = /*@__PURE__*/ S.String;
 
@@ -930,6 +1812,7 @@ export interface HogQLQueryModifiers {
   bounceRateDurationSeconds?: number | null;
   bounceRatePageViewMode?: BounceRatePageViewMode | null;
   convertToProjectTimezone?: boolean | null;
+  customBotDefinitions?: HogQLQueryModifiersCustomBotDefinitionsList | null;
   customChannelTypeRules?: HogQLQueryModifiersCustomChannelTypeRulesList | null;
   dataWarehouseEventsModifiers?: HogQLQueryModifiersDataWarehouseEventsModifiersList | null;
   debug?: boolean | null;
@@ -974,6 +1857,9 @@ export const HogQLQueryModifiers = /*@__PURE__*/ S.suspend(() =>
     bounceRateDurationSeconds: S.optional(S.NullOr(S.Number)),
     bounceRatePageViewMode: S.optional(S.NullOr(BounceRatePageViewMode)),
     convertToProjectTimezone: S.optional(S.NullOr(S.Boolean)),
+    customBotDefinitions: S.optional(
+      S.NullOr(HogQLQueryModifiersCustomBotDefinitionsList),
+    ),
     customChannelTypeRules: S.optional(
       S.NullOr(HogQLQueryModifiersCustomChannelTypeRulesList),
     ),
@@ -1016,47 +1902,6 @@ export const HogQLQueryModifiers = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "HogQLQueryModifiers",
 }) as any as S.Schema<HogQLQueryModifiers>;
-
-export type PropertyOperator =
-  | "exact"
-  | "is_not"
-  | "icontains"
-  | "not_icontains"
-  | "starts_with"
-  | "not_starts_with"
-  | "ends_with"
-  | "not_ends_with"
-  | "regex"
-  | "not_regex"
-  | "gt"
-  | "gte"
-  | "lt"
-  | "lte"
-  | "is_set"
-  | "is_not_set"
-  | "is_date_exact"
-  | "is_date_before"
-  | "is_date_after"
-  | "between"
-  | "not_between"
-  | "min"
-  | "max"
-  | "in"
-  | "not_in"
-  | "is_cleaned_path_exact"
-  | "flag_evaluates_to"
-  | "semver_eq"
-  | "semver_neq"
-  | "semver_gt"
-  | "semver_gte"
-  | "semver_lt"
-  | "semver_lte"
-  | "semver_tilde"
-  | "semver_caret"
-  | "semver_wildcard"
-  | "icontains_multi"
-  | "not_icontains_multi";
-export const PropertyOperator = /*@__PURE__*/ S.String;
 
 export type EventPropertyFilterValueCase0Item = string | number | boolean;
 export const EventPropertyFilterValueCase0Item =
@@ -6130,6 +6975,8 @@ export interface WebStatsTableQueryResponse {
   /** Modifiers used when performing the query */
   modifiers?: HogQLQueryModifiers | null;
   offset?: number | null;
+  /** Why a live response skipped precompute: the eligibility-gate reason that refused it. Unset when the query was eligible. */
+  preComputeIneligibleReason?: string | null;
   /** Whether a lazy-precompute read was served from expired-within-grace (stale) jobs instead of recomputing inline. */
   preComputeStale?: boolean | null;
   preComputeStrategy?: WebAnalyticsPreComputeStrategy | null;
@@ -6158,6 +7005,7 @@ export const WebStatsTableQueryResponse = /*@__PURE__*/ S.suspend(() =>
     limit: S.optional(S.NullOr(S.Number)),
     modifiers: S.optional(S.NullOr(HogQLQueryModifiers)),
     offset: S.optional(S.NullOr(S.Number)),
+    preComputeIneligibleReason: S.optional(S.NullOr(S.String)),
     preComputeStale: S.optional(S.NullOr(S.Boolean)),
     preComputeStrategy: S.optional(S.NullOr(WebAnalyticsPreComputeStrategy)),
     query_status: S.optional(S.NullOr(QueryStatus)),
@@ -6358,6 +7206,8 @@ export interface WebOverviewQueryResponse {
   hogql?: string | null;
   /** Modifiers used when performing the query */
   modifiers?: HogQLQueryModifiers | null;
+  /** Why a live response skipped precompute: the eligibility-gate reason that refused it. Unset when the query was eligible. */
+  preComputeIneligibleReason?: string | null;
   preComputeStrategy?: WebAnalyticsPreComputeStrategy | null;
   /** Query status indicates whether next to the provided data, a query is still running. */
   query_status?: QueryStatus | null;
@@ -6381,6 +7231,7 @@ export const WebOverviewQueryResponse = /*@__PURE__*/ S.suspend(() =>
     error: S.optional(S.NullOr(S.String)),
     hogql: S.optional(S.NullOr(S.String)),
     modifiers: S.optional(S.NullOr(HogQLQueryModifiers)),
+    preComputeIneligibleReason: S.optional(S.NullOr(S.String)),
     preComputeStrategy: S.optional(S.NullOr(WebAnalyticsPreComputeStrategy)),
     query_status: S.optional(S.NullOr(QueryStatus)),
     resolved_compare_date_range: S.optional(
@@ -7151,6 +8002,8 @@ export interface Response4 {
   hogql?: string | null;
   /** Modifiers used when performing the query */
   modifiers?: HogQLQueryModifiers | null;
+  /** Why a live response skipped precompute: the eligibility-gate reason that refused it. Unset when the query was eligible. */
+  preComputeIneligibleReason?: string | null;
   preComputeStrategy?: WebAnalyticsPreComputeStrategy | null;
   /** Query status indicates whether next to the provided data, a query is still running. */
   query_status?: QueryStatus | null;
@@ -7174,6 +8027,7 @@ export const Response4 = /*@__PURE__*/ S.suspend(() =>
     error: S.optional(S.NullOr(S.String)),
     hogql: S.optional(S.NullOr(S.String)),
     modifiers: S.optional(S.NullOr(HogQLQueryModifiers)),
+    preComputeIneligibleReason: S.optional(S.NullOr(S.String)),
     preComputeStrategy: S.optional(S.NullOr(WebAnalyticsPreComputeStrategy)),
     query_status: S.optional(S.NullOr(QueryStatus)),
     resolved_compare_date_range: S.optional(
@@ -7238,6 +8092,8 @@ export interface Response5 {
   /** Modifiers used when performing the query */
   modifiers?: HogQLQueryModifiers | null;
   offset?: number | null;
+  /** Why a live response skipped precompute: the eligibility-gate reason that refused it. Unset when the query was eligible. */
+  preComputeIneligibleReason?: string | null;
   /** Whether a lazy-precompute read was served from expired-within-grace (stale) jobs instead of recomputing inline. */
   preComputeStale?: boolean | null;
   preComputeStrategy?: WebAnalyticsPreComputeStrategy | null;
@@ -7266,6 +8122,7 @@ export const Response5 = /*@__PURE__*/ S.suspend(() =>
     limit: S.optional(S.NullOr(S.Number)),
     modifiers: S.optional(S.NullOr(HogQLQueryModifiers)),
     offset: S.optional(S.NullOr(S.Number)),
+    preComputeIneligibleReason: S.optional(S.NullOr(S.String)),
     preComputeStale: S.optional(S.NullOr(S.Boolean)),
     preComputeStrategy: S.optional(S.NullOr(WebAnalyticsPreComputeStrategy)),
     query_status: S.optional(S.NullOr(QueryStatus)),
@@ -7508,6 +8365,8 @@ export interface Response8 {
   /** Modifiers used when performing the query */
   modifiers?: HogQLQueryModifiers | null;
   offset?: number | null;
+  /** Why a live response skipped precompute: the eligibility-gate reason that refused it. Unset when the query was eligible. */
+  preComputeIneligibleReason?: string | null;
   preComputeStrategy?: WebAnalyticsPreComputeStrategy | null;
   /** Query status indicates whether next to the provided data, a query is still running. */
   query_status?: QueryStatus | null;
@@ -7534,6 +8393,7 @@ export const Response8 = /*@__PURE__*/ S.suspend(() =>
     limit: S.optional(S.NullOr(S.Number)),
     modifiers: S.optional(S.NullOr(HogQLQueryModifiers)),
     offset: S.optional(S.NullOr(S.Number)),
+    preComputeIneligibleReason: S.optional(S.NullOr(S.String)),
     preComputeStrategy: S.optional(S.NullOr(WebAnalyticsPreComputeStrategy)),
     query_status: S.optional(S.NullOr(QueryStatus)),
     resolved_compare_date_range: S.optional(
@@ -7634,6 +8494,8 @@ export interface Response9 {
   hogql?: string | null;
   /** Modifiers used when performing the query */
   modifiers?: HogQLQueryModifiers | null;
+  /** Why a live response skipped precompute: the eligibility-gate reason that refused it. Unset when the query was eligible. */
+  preComputeIneligibleReason?: string | null;
   preComputeStrategy?: WebAnalyticsPreComputeStrategy | null;
   /** Query status indicates whether next to the provided data, a query is still running. */
   query_status?: QueryStatus | null;
@@ -7654,6 +8516,7 @@ export const Response9 = /*@__PURE__*/ S.suspend(() =>
     error: S.optional(S.NullOr(S.String)),
     hogql: S.optional(S.NullOr(S.String)),
     modifiers: S.optional(S.NullOr(HogQLQueryModifiers)),
+    preComputeIneligibleReason: S.optional(S.NullOr(S.String)),
     preComputeStrategy: S.optional(S.NullOr(WebAnalyticsPreComputeStrategy)),
     query_status: S.optional(S.NullOr(QueryStatus)),
     resolved_compare_date_range: S.optional(
@@ -8257,6 +9120,7 @@ export type IntegrationKind =
   | "apns"
   | "postgresql"
   | "aws-s3"
+  | "aws-redshift"
   | "s3-compatible"
   | "snowflake"
   | "youtube-analytics";
@@ -9497,6 +10361,7 @@ export type TaxonomicFilterGroupType =
   | "replay_saved_filters"
   | "revenue_analytics_properties"
   | "account_fields"
+  | "account_relationships"
   | "account_custom_properties"
   | "resources"
   | "error_tracking_properties"
@@ -12642,6 +13507,8 @@ export interface WebGoalsQueryResponse {
   /** Modifiers used when performing the query */
   modifiers?: HogQLQueryModifiers | null;
   offset?: number | null;
+  /** Why a live response skipped precompute: the eligibility-gate reason that refused it. Unset when the query was eligible. */
+  preComputeIneligibleReason?: string | null;
   preComputeStrategy?: WebAnalyticsPreComputeStrategy | null;
   /** Query status indicates whether next to the provided data, a query is still running. */
   query_status?: QueryStatus | null;
@@ -12668,6 +13535,7 @@ export const WebGoalsQueryResponse = /*@__PURE__*/ S.suspend(() =>
     limit: S.optional(S.NullOr(S.Number)),
     modifiers: S.optional(S.NullOr(HogQLQueryModifiers)),
     offset: S.optional(S.NullOr(S.Number)),
+    preComputeIneligibleReason: S.optional(S.NullOr(S.String)),
     preComputeStrategy: S.optional(S.NullOr(WebAnalyticsPreComputeStrategy)),
     query_status: S.optional(S.NullOr(QueryStatus)),
     resolved_compare_date_range: S.optional(
@@ -12917,6 +13785,8 @@ export interface WebVitalsPathBreakdownQueryResponse {
   hogql?: string | null;
   /** Modifiers used when performing the query */
   modifiers?: HogQLQueryModifiers | null;
+  /** Why a live response skipped precompute: the eligibility-gate reason that refused it. Unset when the query was eligible. */
+  preComputeIneligibleReason?: string | null;
   preComputeStrategy?: WebAnalyticsPreComputeStrategy | null;
   /** Query status indicates whether next to the provided data, a query is still running. */
   query_status?: QueryStatus | null;
@@ -12937,6 +13807,7 @@ export const WebVitalsPathBreakdownQueryResponse = /*@__PURE__*/ S.suspend(() =>
     error: S.optional(S.NullOr(S.String)),
     hogql: S.optional(S.NullOr(S.String)),
     modifiers: S.optional(S.NullOr(HogQLQueryModifiers)),
+    preComputeIneligibleReason: S.optional(S.NullOr(S.String)),
     preComputeStrategy: S.optional(S.NullOr(WebAnalyticsPreComputeStrategy)),
     query_status: S.optional(S.NullOr(QueryStatus)),
     resolved_compare_date_range: S.optional(
@@ -16229,8 +17100,40 @@ export const AccountsTableAssignedToFilter = /*@__PURE__*/ S.suspend(() =>
   identifier: "AccountsTableAssignedToFilter",
 }) as any as S.Schema<AccountsTableAssignedToFilter>;
 
+export type AccountsTableAssignedFilter = AccountsTableTagsColumn;
+export const AccountsTableAssignedFilter = AccountsTableTagsColumn;
+
 export type AccountsTableUnassignedFilter = AccountsTableTagsColumn;
 export const AccountsTableUnassignedFilter = AccountsTableTagsColumn;
+
+export type AccountsTableRelationshipOperator =
+  | "exact"
+  | "is_not"
+  | "is_set"
+  | "is_not_set";
+export const AccountsTableRelationshipOperator = /*@__PURE__*/ S.String;
+
+export type AccountsTableRelationshipFilterUserIdsList = Array<number>;
+export const AccountsTableRelationshipFilterUserIdsList = /*@__PURE__*/ S.Array(
+  S.Number,
+) as any as S.Schema<AccountsTableRelationshipFilterUserIdsList>;
+
+export interface AccountsTableRelationshipFilter {
+  definitionId: string;
+  kind?: string;
+  operator: AccountsTableRelationshipOperator;
+  userIds?: AccountsTableRelationshipFilterUserIdsList | null;
+}
+export const AccountsTableRelationshipFilter = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    definitionId: S.String,
+    kind: S.optional(S.String),
+    operator: AccountsTableRelationshipOperator,
+    userIds: S.optional(S.NullOr(AccountsTableRelationshipFilterUserIdsList)),
+  }),
+).annotate({
+  identifier: "AccountsTableRelationshipFilter",
+}) as any as S.Schema<AccountsTableRelationshipFilter>;
 
 export interface AccountsTableAccountIdFilter {
   accountId: string;
@@ -16334,6 +17237,8 @@ export type AccountsTableQueryFiltersItem =
   | AccountsTableTagsFilter
   | AccountsTableAssignedToFilter
   | AccountsTableTagsColumn
+  | AccountsTableTagsColumn
+  | AccountsTableRelationshipFilter
   | AccountsTableAccountIdFilter
   | AccountsTableAccountFieldFilter
   | AccountsTableCustomPropertyFilter;
@@ -16963,6 +17868,8 @@ export interface ChartSettings {
   goalLines?: ChartSettingsGoalLinesList | null;
   heatmap?: HeatmapSettings | null;
   leftYAxisSettings?: YAxisSettings | null;
+  /** Where the legend sits relative to the chart. Unset falls back per chart type: right for pie, top for the rest. */
+  legendPosition?: LegendPosition | null;
   pie?: PieChartSettings | null;
   /** Per-breakdown-value color customizations. Keyed by the raw breakdown column value. */
   resultCustomizations?: ChartSettingsResultCustomizationsMap | null;
@@ -16993,6 +17900,7 @@ export const ChartSettings = /*@__PURE__*/ S.suspend(() =>
     goalLines: S.optional(S.NullOr(ChartSettingsGoalLinesList)),
     heatmap: S.optional(S.NullOr(HeatmapSettings)),
     leftYAxisSettings: S.optional(S.NullOr(YAxisSettings)),
+    legendPosition: S.optional(S.NullOr(LegendPosition)),
     pie: S.optional(S.NullOr(PieChartSettings)),
     resultCustomizations: S.optional(
       S.NullOr(ChartSettingsResultCustomizationsMap),
@@ -17378,8 +18286,8 @@ export interface InsightOutput {
   last_modified_at?: string;
   last_modified_by?: UserBasic | null;
   is_sample?: boolean;
-  effective_restriction_level?: EffectivePrivilegeLevelEnum;
-  effective_privilege_level?: EffectivePrivilegeLevelEnum;
+  effective_restriction_level?: RestrictionLevelEnum;
+  effective_privilege_level?: PrivilegeLevelEnum;
   /** The effective access level the user has for this object */
   user_access_level?: string | null;
   /** The timezone this chart is displayed in. */
@@ -17422,8 +18330,8 @@ export const InsightOutput = /*@__PURE__*/ S.suspend(() =>
     last_modified_at: S.optional(S.String),
     last_modified_by: S.optional(S.NullOr(UserBasic)),
     is_sample: S.optional(S.Boolean),
-    effective_restriction_level: S.optional(EffectivePrivilegeLevelEnum),
-    effective_privilege_level: S.optional(EffectivePrivilegeLevelEnum),
+    effective_restriction_level: S.optional(RestrictionLevelEnum),
+    effective_privilege_level: S.optional(PrivilegeLevelEnum),
     user_access_level: S.optional(S.NullOr(S.String)),
     timezone: S.optional(S.NullOr(S.String)),
     is_cached: S.optional(S.Boolean),
@@ -17504,517 +18412,6 @@ export const ButtonTile = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "ButtonTile" }) as any as S.Schema<ButtonTile>;
 
-export type WidgetDateRangeDateFrom =
-  | "-1M"
-  | "-30M"
-  | "-1h"
-  | "-3h"
-  | "-24h"
-  | "-7d"
-  | "-14d"
-  | "-30d"
-  | "-90d";
-export const WidgetDateRangeDateFrom = /*@__PURE__*/ S.String;
-
-export interface WidgetDateRange {
-  date_from?: WidgetDateRangeDateFrom | (string & {}) | null;
-}
-export const WidgetDateRange = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    date_from: S.optional(S.NullOr(WidgetDateRangeDateFrom)),
-  }),
-).annotate({
-  identifier: "WidgetDateRange",
-}) as any as S.Schema<WidgetDateRange>;
-
-export type WidgetFilterEntryValueCase1List = Array<string>;
-export const WidgetFilterEntryValueCase1List = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<WidgetFilterEntryValueCase1List>;
-
-export type WidgetFilterEntryValue = string | WidgetFilterEntryValueCase1List;
-export const WidgetFilterEntryValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<WidgetFilterEntryValue>;
-
-export interface WidgetFilterEntry {
-  filterId: string;
-  propertyName: string;
-  optionId: string;
-  operator: PropertyOperator | (string & {});
-  value?: WidgetFilterEntryValue | null;
-}
-export const WidgetFilterEntry = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    filterId: S.String,
-    propertyName: S.String,
-    optionId: S.String,
-    operator: PropertyOperator,
-    value: S.optional(S.NullOr(WidgetFilterEntryValue)),
-  }),
-).annotate({
-  identifier: "WidgetFilterEntry",
-}) as any as S.Schema<WidgetFilterEntry>;
-
-export type ActivityEventsListWidgetConfigWidgetFiltersMap = {
-  [key: string]: WidgetFilterEntry | undefined;
-};
-export const ActivityEventsListWidgetConfigWidgetFiltersMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    WidgetFilterEntry,
-  ) as any as S.Schema<ActivityEventsListWidgetConfigWidgetFiltersMap>;
-
-export type ActivityEventsPropertyFilterType = "event" | "person";
-export const ActivityEventsPropertyFilterType = /*@__PURE__*/ S.String;
-
-export type ActivityEventsPropertyFilterValueCase0Item =
-  | string
-  | number
-  | boolean;
-export const ActivityEventsPropertyFilterValueCase0Item =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ActivityEventsPropertyFilterValueCase0Item>;
-
-export type ActivityEventsPropertyFilterValueCase0List =
-  Array<ActivityEventsPropertyFilterValueCase0Item>;
-export const ActivityEventsPropertyFilterValueCase0List = /*@__PURE__*/ S.Array(
-  ActivityEventsPropertyFilterValueCase0Item,
-) as any as S.Schema<ActivityEventsPropertyFilterValueCase0List>;
-
-export type ActivityEventsPropertyFilterValue =
-  | ActivityEventsPropertyFilterValueCase0List
-  | string
-  | number
-  | boolean;
-export const ActivityEventsPropertyFilterValue =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ActivityEventsPropertyFilterValue>;
-
-export interface ActivityEventsPropertyFilter {
-  key: string;
-  label?: string | null;
-  operator: PropertyOperator | (string & {});
-  type: ActivityEventsPropertyFilterType | (string & {});
-  value?: ActivityEventsPropertyFilterValue | null;
-}
-export const ActivityEventsPropertyFilter = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    key: S.String,
-    label: S.optional(S.NullOr(S.String)),
-    operator: PropertyOperator,
-    type: ActivityEventsPropertyFilterType,
-    value: S.optional(S.NullOr(ActivityEventsPropertyFilterValue)),
-  }),
-).annotate({
-  identifier: "ActivityEventsPropertyFilter",
-}) as any as S.Schema<ActivityEventsPropertyFilter>;
-
-export type ActivityEventsListWidgetConfigPropertiesList =
-  Array<ActivityEventsPropertyFilter>;
-export const ActivityEventsListWidgetConfigPropertiesList =
-  /*@__PURE__*/ S.Array(
-    ActivityEventsPropertyFilter,
-  ) as any as S.Schema<ActivityEventsListWidgetConfigPropertiesList>;
-
-export interface ActivityEventsListWidgetConfig {
-  dateRange?: WidgetDateRange | null;
-  filterTestAccounts?: boolean | null;
-  widgetFilters?: ActivityEventsListWidgetConfigWidgetFiltersMap | null;
-  /** Maximum number of events to return. */
-  limit?: number;
-  /** Limit the feed to a single event name. Omit or null for all events. */
-  eventName?: string | null;
-  /** Event and person property filters, matching Activity > Explore events. */
-  properties?: ActivityEventsListWidgetConfigPropertiesList | null;
-}
-export const ActivityEventsListWidgetConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    dateRange: S.optional(S.NullOr(WidgetDateRange)),
-    filterTestAccounts: S.optional(S.NullOr(S.Boolean)),
-    widgetFilters: S.optional(
-      S.NullOr(ActivityEventsListWidgetConfigWidgetFiltersMap),
-    ),
-    limit: S.optional(S.Number),
-    eventName: S.optional(S.NullOr(S.String)),
-    properties: S.optional(
-      S.NullOr(ActivityEventsListWidgetConfigPropertiesList),
-    ),
-  }),
-).annotate({
-  identifier: "ActivityEventsListWidgetConfig",
-}) as any as S.Schema<ActivityEventsListWidgetConfig>;
-
-export type ErrorTrackingListWidgetConfigWidgetFiltersMap = {
-  [key: string]: WidgetFilterEntry | undefined;
-};
-export const ErrorTrackingListWidgetConfigWidgetFiltersMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    WidgetFilterEntry,
-  ) as any as S.Schema<ErrorTrackingListWidgetConfigWidgetFiltersMap>;
-
-/** Issue ranking column. */
-export type ErrorTrackingListWidgetConfigOrderBy =
-  | "last_seen"
-  | "first_seen"
-  | "occurrences"
-  | "users"
-  | "sessions";
-export const ErrorTrackingListWidgetConfigOrderBy = /*@__PURE__*/ S.String;
-
-/** Sort direction for orderBy. */
-export type ErrorTrackingListWidgetConfigOrderDirection = "ASC" | "DESC";
-export const ErrorTrackingListWidgetConfigOrderDirection =
-  /*@__PURE__*/ S.String;
-
-/** Issue status filter. */
-export type ErrorTrackingListWidgetConfigStatus =
-  | "archived"
-  | "active"
-  | "resolved"
-  | "pending_release"
-  | "suppressed"
-  | "all";
-export const ErrorTrackingListWidgetConfigStatus = /*@__PURE__*/ S.String;
-
-export type WidgetAssigneeFilterId = string | number;
-export const WidgetAssigneeFilterId =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<WidgetAssigneeFilterId>;
-
-export type WidgetAssigneeFilterType = "user" | "role";
-export const WidgetAssigneeFilterType = /*@__PURE__*/ S.String;
-
-export interface WidgetAssigneeFilter {
-  id: WidgetAssigneeFilterId;
-  type: WidgetAssigneeFilterType | (string & {});
-}
-export const WidgetAssigneeFilter = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: WidgetAssigneeFilterId,
-    type: WidgetAssigneeFilterType,
-  }),
-).annotate({
-  identifier: "WidgetAssigneeFilter",
-}) as any as S.Schema<WidgetAssigneeFilter>;
-
-export interface ErrorTrackingListWidgetConfig {
-  dateRange?: WidgetDateRange | null;
-  filterTestAccounts?: boolean | null;
-  widgetFilters?: ErrorTrackingListWidgetConfigWidgetFiltersMap | null;
-  /** Maximum number of issues to return. */
-  limit?: number;
-  /** Issue ranking column. */
-  orderBy?: ErrorTrackingListWidgetConfigOrderBy | (string & {});
-  /** Sort direction for orderBy. */
-  orderDirection?: ErrorTrackingListWidgetConfigOrderDirection | (string & {});
-  /** Issue status filter. */
-  status?: ErrorTrackingListWidgetConfigStatus | (string & {});
-  /** Filter by assignee ({type: user|role, id}). Omit for any assignee. */
-  assignee?: WidgetAssigneeFilter | null;
-}
-export const ErrorTrackingListWidgetConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    dateRange: S.optional(S.NullOr(WidgetDateRange)),
-    filterTestAccounts: S.optional(S.NullOr(S.Boolean)),
-    widgetFilters: S.optional(
-      S.NullOr(ErrorTrackingListWidgetConfigWidgetFiltersMap),
-    ),
-    limit: S.optional(S.Number),
-    orderBy: S.optional(ErrorTrackingListWidgetConfigOrderBy),
-    orderDirection: S.optional(ErrorTrackingListWidgetConfigOrderDirection),
-    status: S.optional(ErrorTrackingListWidgetConfigStatus),
-    assignee: S.optional(S.NullOr(WidgetAssigneeFilter)),
-  }),
-).annotate({
-  identifier: "ErrorTrackingListWidgetConfig",
-}) as any as S.Schema<ErrorTrackingListWidgetConfig>;
-
-export type SessionReplayListWidgetConfigWidgetFiltersMap = {
-  [key: string]: WidgetFilterEntry | undefined;
-};
-export const SessionReplayListWidgetConfigWidgetFiltersMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    WidgetFilterEntry,
-  ) as any as S.Schema<SessionReplayListWidgetConfigWidgetFiltersMap>;
-
-/** Recording ranking column. */
-export type SessionReplayListWidgetConfigOrderBy =
-  | "start_time"
-  | "activity_score"
-  | "recording_duration"
-  | "duration"
-  | "click_count"
-  | "console_error_count";
-export const SessionReplayListWidgetConfigOrderBy = /*@__PURE__*/ S.String;
-
-/** Sort direction for orderBy. */
-export type SessionReplayListWidgetConfigOrderDirection = "ASC" | "DESC";
-export const SessionReplayListWidgetConfigOrderDirection =
-  /*@__PURE__*/ S.String;
-
-export interface SessionReplayListWidgetConfig {
-  dateRange?: WidgetDateRange | null;
-  filterTestAccounts?: boolean | null;
-  widgetFilters?: SessionReplayListWidgetConfigWidgetFiltersMap | null;
-  /** Maximum number of recordings to return. */
-  limit?: number;
-  /** Recording ranking column. */
-  orderBy?: SessionReplayListWidgetConfigOrderBy | (string & {});
-  /** Sort direction for orderBy. */
-  orderDirection?: SessionReplayListWidgetConfigOrderDirection | (string & {});
-  /** short_id of a saved session replay filter to refine the recordings shown. When set, the saved filter owns the date range and property filters; only orderBy, orderDirection, and limit still apply. Combine with collectionId to filter within a collection. */
-  savedFilterId?: string | null;
-  /** short_id of a session replay collection to scope the widget to its pinned recordings. Combine with savedFilterId or property filters to narrow within the collection; orderBy, orderDirection, and limit still apply. */
-  collectionId?: string | null;
-}
-export const SessionReplayListWidgetConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    dateRange: S.optional(S.NullOr(WidgetDateRange)),
-    filterTestAccounts: S.optional(S.NullOr(S.Boolean)),
-    widgetFilters: S.optional(
-      S.NullOr(SessionReplayListWidgetConfigWidgetFiltersMap),
-    ),
-    limit: S.optional(S.Number),
-    orderBy: S.optional(SessionReplayListWidgetConfigOrderBy),
-    orderDirection: S.optional(SessionReplayListWidgetConfigOrderDirection),
-    savedFilterId: S.optional(S.NullOr(S.String)),
-    collectionId: S.optional(S.NullOr(S.String)),
-  }),
-).annotate({
-  identifier: "SessionReplayListWidgetConfig",
-}) as any as S.Schema<SessionReplayListWidgetConfig>;
-
-/** Experiment list sort column. */
-export type ExperimentsListWidgetConfigOrderBy =
-  | "created_at"
-  | "name"
-  | "start_date";
-export const ExperimentsListWidgetConfigOrderBy = /*@__PURE__*/ S.String;
-
-/** Sort direction for orderBy. */
-export type ExperimentsListWidgetConfigOrderDirection = "ASC" | "DESC";
-export const ExperimentsListWidgetConfigOrderDirection = /*@__PURE__*/ S.String;
-
-/** Experiment status filter. */
-export type ExperimentsListWidgetConfigStatus =
-  | "draft"
-  | "running"
-  | "paused"
-  | "exposure_frozen"
-  | "stopped"
-  | "all";
-export const ExperimentsListWidgetConfigStatus = /*@__PURE__*/ S.String;
-
-export interface ExperimentsListWidgetConfig {
-  /** Maximum number of experiments to return. */
-  limit?: number;
-  /** Experiment list sort column. */
-  orderBy?: ExperimentsListWidgetConfigOrderBy | (string & {});
-  /** Sort direction for orderBy. */
-  orderDirection?: ExperimentsListWidgetConfigOrderDirection | (string & {});
-  /** Experiment status filter. */
-  status?: ExperimentsListWidgetConfigStatus | (string & {});
-  /** Filter by creator (user id). Omit for any creator. */
-  createdBy?: number | null;
-}
-export const ExperimentsListWidgetConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    limit: S.optional(S.Number),
-    orderBy: S.optional(ExperimentsListWidgetConfigOrderBy),
-    orderDirection: S.optional(ExperimentsListWidgetConfigOrderDirection),
-    status: S.optional(ExperimentsListWidgetConfigStatus),
-    createdBy: S.optional(S.NullOr(S.Number)),
-  }),
-).annotate({
-  identifier: "ExperimentsListWidgetConfig",
-}) as any as S.Schema<ExperimentsListWidgetConfig>;
-
-export interface ExperimentResultsWidgetConfig {
-  /** Experiment to show results for. Null until the user picks one in the widget settings. */
-  experimentId?: number | null;
-}
-export const ExperimentResultsWidgetConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    experimentId: S.optional(S.NullOr(S.Number)),
-  }),
-).annotate({
-  identifier: "ExperimentResultsWidgetConfig",
-}) as any as S.Schema<ExperimentResultsWidgetConfig>;
-
-export interface SurveyResultsWidgetConfig {
-  /** Null or omitted means all time (the survey's full lifetime). */
-  dateRange?: WidgetDateRange | null;
-  /** Survey to show performance stats and recent responses for. Null until the user picks one. */
-  surveyId?: string | null;
-  /** Maximum number of recent responses to return. */
-  limit?: number;
-}
-export const SurveyResultsWidgetConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    dateRange: S.optional(S.NullOr(WidgetDateRange)),
-    surveyId: S.optional(S.NullOr(S.String)),
-    limit: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "SurveyResultsWidgetConfig",
-}) as any as S.Schema<SurveyResultsWidgetConfig>;
-
-/** Sort by newest (latest) or oldest (earliest) first. */
-export type LogsListWidgetConfigOrderBy = "latest" | "earliest";
-export const LogsListWidgetConfigOrderBy = /*@__PURE__*/ S.String;
-
-export type LogsListWidgetConfigSeverityLevelsItem =
-  | "trace"
-  | "debug"
-  | "info"
-  | "warn"
-  | "error"
-  | "fatal";
-export const LogsListWidgetConfigSeverityLevelsItem = /*@__PURE__*/ S.String;
-
-/** Only show logs at these severity levels. Empty shows all levels. */
-export type LogsListWidgetConfigSeverityLevelsList = Array<
-  LogsListWidgetConfigSeverityLevelsItem | (string & {})
->;
-export const LogsListWidgetConfigSeverityLevelsList = /*@__PURE__*/ S.Array(
-  LogsListWidgetConfigSeverityLevelsItem,
-) as any as S.Schema<LogsListWidgetConfigSeverityLevelsList>;
-
-/** Only show logs from these services. Empty shows all services. */
-export type LogsListWidgetConfigServiceNamesList = Array<string>;
-export const LogsListWidgetConfigServiceNamesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<LogsListWidgetConfigServiceNamesList>;
-
-/** Render log timestamps in UTC or in each viewer's local timezone. */
-export type LogsListWidgetConfigTimezone = "UTC" | "local";
-export const LogsListWidgetConfigTimezone = /*@__PURE__*/ S.String;
-
-export interface LogsListWidgetConfig {
-  dateRange?: WidgetDateRange | null;
-  /** Maximum number of log lines to return. */
-  limit?: number;
-  /** Sort by newest (latest) or oldest (earliest) first. */
-  orderBy?: LogsListWidgetConfigOrderBy | (string & {});
-  /** Only show logs at these severity levels. Empty shows all levels. */
-  severityLevels?: LogsListWidgetConfigSeverityLevelsList;
-  /** Only show logs from these services. Empty shows all services. */
-  serviceNames?: LogsListWidgetConfigServiceNamesList;
-  /** Wrap long log lines instead of truncating them to a single row. */
-  wrapLines?: boolean;
-  /** Render log timestamps in UTC or in each viewer's local timezone. */
-  timezone?: LogsListWidgetConfigTimezone | (string & {});
-  /** short_id of a saved logs view to use as the source. When set, the saved view owns the date range, severity, service, and property filters; only orderBy and limit still apply. */
-  savedViewId?: string | null;
-}
-export const LogsListWidgetConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    dateRange: S.optional(S.NullOr(WidgetDateRange)),
-    limit: S.optional(S.Number),
-    orderBy: S.optional(LogsListWidgetConfigOrderBy),
-    severityLevels: S.optional(LogsListWidgetConfigSeverityLevelsList),
-    serviceNames: S.optional(LogsListWidgetConfigServiceNamesList),
-    wrapLines: S.optional(S.Boolean),
-    timezone: S.optional(LogsListWidgetConfigTimezone),
-    savedViewId: S.optional(S.NullOr(S.String)),
-  }),
-).annotate({
-  identifier: "LogsListWidgetConfig",
-}) as any as S.Schema<LogsListWidgetConfig>;
-
-/** Ticket status filter. */
-export type ConversationsRecentTicketsWidgetConfigStatus =
-  | "new"
-  | "open"
-  | "pending"
-  | "on_hold"
-  | "resolved"
-  | "all";
-export const ConversationsRecentTicketsWidgetConfigStatus =
-  /*@__PURE__*/ S.String;
-
-export type ConversationsRecentTicketsWidgetConfigPrioritiesItem =
-  | "low"
-  | "medium"
-  | "high"
-  | "critical";
-export const ConversationsRecentTicketsWidgetConfigPrioritiesItem =
-  /*@__PURE__*/ S.String;
-
-/** Only show tickets with these priorities. Empty shows all priorities. */
-export type ConversationsRecentTicketsWidgetConfigPrioritiesList = Array<
-  ConversationsRecentTicketsWidgetConfigPrioritiesItem | (string & {})
->;
-export const ConversationsRecentTicketsWidgetConfigPrioritiesList =
-  /*@__PURE__*/ S.Array(
-    ConversationsRecentTicketsWidgetConfigPrioritiesItem,
-  ) as any as S.Schema<ConversationsRecentTicketsWidgetConfigPrioritiesList>;
-
-/** Ticket channel filter. */
-export type ConversationsRecentTicketsWidgetConfigChannel =
-  | "widget"
-  | "email"
-  | "slack"
-  | "teams"
-  | "github"
-  | "all";
-export const ConversationsRecentTicketsWidgetConfigChannel =
-  /*@__PURE__*/ S.String;
-
-export type ConversationsRecentTicketsWidgetConfigAssigneesItemCase0 =
-  | "me"
-  | "unassigned";
-export const ConversationsRecentTicketsWidgetConfigAssigneesItemCase0 =
-  /*@__PURE__*/ S.String;
-
-export type ConversationsRecentTicketsWidgetConfigAssigneesItem =
-  | ConversationsRecentTicketsWidgetConfigAssigneesItemCase0
-  | WidgetAssigneeFilter;
-export const ConversationsRecentTicketsWidgetConfigAssigneesItem =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<ConversationsRecentTicketsWidgetConfigAssigneesItem>;
-
-/** Only show tickets assigned to these users or roles. 'me' means the requesting user and 'unassigned' means tickets without an assignment. Empty shows all assignees. */
-export type ConversationsRecentTicketsWidgetConfigAssigneesList =
-  Array<ConversationsRecentTicketsWidgetConfigAssigneesItem>;
-export const ConversationsRecentTicketsWidgetConfigAssigneesList =
-  /*@__PURE__*/ S.Array(
-    ConversationsRecentTicketsWidgetConfigAssigneesItem,
-  ) as any as S.Schema<ConversationsRecentTicketsWidgetConfigAssigneesList>;
-
-export interface ConversationsRecentTicketsWidgetConfig {
-  /** Maximum number of tickets to return. */
-  limit?: number;
-  /** Ticket status filter. */
-  status?: ConversationsRecentTicketsWidgetConfigStatus | (string & {});
-  /** Only show tickets with these priorities. Empty shows all priorities. */
-  priorities?: ConversationsRecentTicketsWidgetConfigPrioritiesList;
-  /** Ticket channel filter. */
-  channel?: ConversationsRecentTicketsWidgetConfigChannel | (string & {});
-  /** Only show tickets assigned to these users or roles. 'me' means the requesting user and 'unassigned' means tickets without an assignment. Empty shows all assignees. */
-  assignees?: ConversationsRecentTicketsWidgetConfigAssigneesList;
-  /** Search requester name or email, ticket subject, message text, or ticket number. */
-  search?: string;
-  /** short_id of a saved Support view to use as the source. When set, the saved view owns the ticket filters; the widget still sorts by most recently updated and applies its limit. */
-  savedViewId?: string | null;
-}
-export const ConversationsRecentTicketsWidgetConfig = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      limit: S.optional(S.Number),
-      status: S.optional(ConversationsRecentTicketsWidgetConfigStatus),
-      priorities: S.optional(
-        ConversationsRecentTicketsWidgetConfigPrioritiesList,
-      ),
-      channel: S.optional(ConversationsRecentTicketsWidgetConfigChannel),
-      assignees: S.optional(
-        ConversationsRecentTicketsWidgetConfigAssigneesList,
-      ),
-      search: S.optional(S.String),
-      savedViewId: S.optional(S.NullOr(S.String)),
-    }),
-).annotate({
-  identifier: "ConversationsRecentTicketsWidgetConfig",
-}) as any as S.Schema<ConversationsRecentTicketsWidgetConfig>;
-
 export type DashboardWidgetConfig =
   | ActivityEventsListWidgetConfig
   | ErrorTrackingListWidgetConfig
@@ -18094,41 +18491,140 @@ export const DashboardTileOutput = /*@__PURE__*/ S.suspend(() =>
   identifier: "DashboardTileOutput",
 }) as any as S.Schema<DashboardTileOutput>;
 
-export type DashboardsDeleteTileRequestFormat = "json" | "txt";
-export const DashboardsDeleteTileRequestFormat = /*@__PURE__*/ S.String;
+/** Created dashboard widget tiles in request order. */
+export type AddDashboardWidgetsBatchResponseOutputTilesList =
+  Array<DashboardTileOutput>;
+export const AddDashboardWidgetsBatchResponseOutputTilesList =
+  /*@__PURE__*/ S.Array(
+    DashboardTileOutput,
+  ) as any as S.Schema<AddDashboardWidgetsBatchResponseOutputTilesList>;
 
-export interface DashboardsDeleteTileRequest {
+export interface AddDashboardWidgetsBatchResponseOutput {
+  /** Created dashboard widget tiles in request order. */
+  tiles: AddDashboardWidgetsBatchResponseOutputTilesList;
+}
+export const AddDashboardWidgetsBatchResponseOutput = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      tiles: AddDashboardWidgetsBatchResponseOutputTilesList,
+    }),
+).annotate({
+  identifier: "AddDashboardWidgetsBatchResponseOutput",
+}) as any as S.Schema<AddDashboardWidgetsBatchResponseOutput>;
+
+export interface DashboardsCollaboratorsDestroyRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  dashboard_id: number;
+  user__uuid: string;
+}
+export const DashboardsCollaboratorsDestroyRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      dashboard_id: S.Number.pipe(T.Label()),
+      user__uuid: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/api/projects/{project_id}/dashboards/{dashboard_id}/collaborators/{user__uuid}/",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "DashboardsCollaboratorsDestroyRequest",
+}) as any as S.Schema<DashboardsCollaboratorsDestroyRequest>;
+
+export interface DashboardsCollaboratorsDestroyResponse {}
+export const DashboardsCollaboratorsDestroyResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "DashboardsCollaboratorsDestroyResponse",
+}) as any as S.Schema<DashboardsCollaboratorsDestroyResponse>;
+
+export type DashboardsCopyTileCreateRequestFormat = "json" | "txt";
+export const DashboardsCopyTileCreateRequestFormat = /*@__PURE__*/ S.String;
+
+export interface DashboardsCopyTileCreateRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A unique integer value identifying this dashboard. */
   id: number;
-  format?: DashboardsDeleteTileRequestFormat | (string & {});
-  /** ID of the dashboard tile to delete. Use dashboard-get to look up tile IDs. */
-  tile_id: number;
+  format?: DashboardsCopyTileCreateRequestFormat | (string & {});
+  /** Dashboard id the tile currently belongs to. */
+  fromDashboardId?: number;
+  /** Dashboard tile id to copy. */
+  tileId?: number;
 }
-export const DashboardsDeleteTileRequest = /*@__PURE__*/ S.suspend(() =>
+export const DashboardsCopyTileCreateRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     id: S.Number.pipe(T.Label()),
-    format: S.optional(DashboardsDeleteTileRequestFormat.pipe(T.Query())),
-    tile_id: S.Number,
+    format: S.optional(DashboardsCopyTileCreateRequestFormat.pipe(T.Query())),
+    fromDashboardId: S.optional(S.Number),
+    tileId: S.optional(S.Number),
   }).pipe(
     T.Http({
       method: "POST",
-      uri: "/api/projects/{project_id}/dashboards/{id}/delete_tile/",
+      uri: "/api/projects/{project_id}/dashboards/{id}/copy_tile/",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "DashboardsDeleteTileRequest",
-}) as any as S.Schema<DashboardsDeleteTileRequest>;
+  identifier: "DashboardsCopyTileCreateRequest",
+}) as any as S.Schema<DashboardsCopyTileCreateRequest>;
 
-export interface DashboardsDeleteTileResponse {}
-export const DashboardsDeleteTileResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
+export type DashboardsCreateTextTileCreateRequestFormat = "json" | "txt";
+export const DashboardsCreateTextTileCreateRequestFormat =
+  /*@__PURE__*/ S.String;
+
+/** * `text` - text * `image` - image */
+export type CreateTextTileRequestTypeEnum = "text" | "image";
+export const CreateTextTileRequestTypeEnum = /*@__PURE__*/ S.String;
+
+export type TileLayoutBox = WidgetTileLayoutBoxOpenApi;
+export const TileLayoutBox = WidgetTileLayoutBoxOpenApi;
+
+export type TileLayouts = WidgetTileLayoutsOpenApi;
+export const TileLayouts = WidgetTileLayoutsOpenApi;
+
+export interface DashboardsCreateTextTileCreateRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A unique integer value identifying this dashboard. */
+  id: number;
+  format?: DashboardsCreateTextTileCreateRequestFormat | (string & {});
+  /** Tile type. Use image for a body with exactly one Markdown image. Defaults to text. * `text` - text * `image` - image */
+  type?: CreateTextTileRequestTypeEnum | (string & {});
+  /** Markdown body for the dashboard tile. Text tiles support headings, lists, and inline formatting. Image tiles require exactly one Markdown image. Max 4000 characters. */
+  body: string;
+  /** Optional grid layout per breakpoint. If omitted, the tile is placed at the bottom of the dashboard using the default size. Text tiles typically use a thin full-width banner (e.g. w=12, h=1). */
+  layouts?: WidgetTileLayoutsOpenApi;
+  /** Optional accent color name (e.g. 'blue', 'green', 'purple', 'black'). */
+  color?: string | null;
+}
+export const DashboardsCreateTextTileCreateRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      id: S.Number.pipe(T.Label()),
+      format: S.optional(
+        DashboardsCreateTextTileCreateRequestFormat.pipe(T.Query()),
+      ),
+      type: S.optional(CreateTextTileRequestTypeEnum),
+      body: S.String,
+      layouts: S.optional(WidgetTileLayoutsOpenApi),
+      color: S.optional(S.NullOr(S.String)),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/projects/{project_id}/dashboards/{id}/create_text_tile/",
+        code: 200,
+      }),
+    ),
 ).annotate({
-  identifier: "DashboardsDeleteTileResponse",
-}) as any as S.Schema<DashboardsDeleteTileResponse>;
+  identifier: "DashboardsCreateTextTileCreateRequest",
+}) as any as S.Schema<DashboardsCreateTextTileCreateRequest>;
 
 export type DashboardsDestroyRequestFormat = "json" | "txt";
 export const DashboardsDestroyRequestFormat = /*@__PURE__*/ S.String;
@@ -18162,131 +18658,6 @@ export const DashboardsDestroyResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "DashboardsDestroyResponse",
 }) as any as S.Schema<DashboardsDestroyResponse>;
-
-export type DashboardsListRequestFormat = "json" | "txt";
-export const DashboardsListRequestFormat = /*@__PURE__*/ S.String;
-
-export interface DashboardsListRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** Optional. Return only dashboards filed directly in this project-tree folder, e.g. 'Unfiled/Dashboards'. An empty string matches dashboards at the project root. Nested sub-folders are not included. */
-  folder?: string;
-  format?: DashboardsListRequestFormat | (string & {});
-  /** Number of results to return per page. */
-  limit?: number;
-  /** The initial index from which to return the results. */
-  offset?: number;
-  /** Optional. Match against dashboard `name`, `description`, and tag names. Returns exact (case-insensitive substring) matches only; if no exact match exists, returns similar (fuzzy trigram — typos, transpositions, prefix-as-you-type) matches instead. Results are then ordered by relevance, then pinned status, then name; each result's `search_match_type` is `exact` or `similar`. When omitted, dashboards are ordered by pinned status then alphabetical name. Capped at 200 characters; longer queries return a 400 error. */
-  search?: string;
-}
-export const DashboardsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    folder: S.optional(S.String.pipe(T.Query())),
-    format: S.optional(DashboardsListRequestFormat.pipe(T.Query())),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    offset: S.optional(S.Number.pipe(T.Query())),
-    search: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/dashboards/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "DashboardsListRequest",
-}) as any as S.Schema<DashboardsListRequest>;
-
-export type DashboardBasicTagsList = Array<unknown>;
-export const DashboardBasicTagsList = /*@__PURE__*/ S.Array(
-  S.Unknown,
-) as any as S.Schema<DashboardBasicTagsList>;
-
-/** Serializer mixin that handles tags for objects. */
-export interface DashboardBasic {
-  id?: number;
-  /** Name of the dashboard. */
-  name?: string | null;
-  /** Description of the dashboard. */
-  description?: string;
-  /** Whether the dashboard is pinned to the top of the list. */
-  pinned?: boolean;
-  created_at?: string;
-  created_by?: UserBasic | null;
-  last_accessed_at?: string | null;
-  last_viewed_at?: string | null;
-  /** Path of the project-tree folder this dashboard is filed under in the file system, e.g. 'Unfiled/Dashboards'. An empty string means the project root; null means the dashboard has no file system entry. The dashboard's own name is not part of the path. */
-  folder?: string | null;
-  /** Id of this dashboard's file system entry, or null when it has none. Together with `file_system_path` this is everything a caller needs to move the dashboard between folders, so a list page does not have to look the entry up separately. */
-  file_system_id?: string | null;
-  /** Full path of this dashboard's file system entry, e.g. 'Unfiled/Dashboards/Revenue'. Unlike `folder` this keeps the dashboard's own name as the last segment, which is what a move needs in order to compute the destination path. Null when it has no entry. */
-  file_system_path?: string | null;
-  is_shared?: boolean;
-  deleted?: boolean;
-  creation_mode?: CreationModeEnum;
-  tags?: DashboardBasicTagsList;
-  /** Controls who can edit the dashboard. * `21` - Everyone in the project can edit * `37` - Only those invited to this dashboard can edit */
-  restriction_level?: RestrictionLevelEnum;
-  effective_restriction_level?: EffectivePrivilegeLevelEnum;
-  effective_privilege_level?: EffectivePrivilegeLevelEnum;
-  /** The effective access level the user has for this object */
-  user_access_level?: string | null;
-  access_control_version?: string;
-  last_refresh?: string | null;
-  team_id?: number;
-  /** How this row matched the `search` query parameter: `exact` (the term is a case-insensitive substring of a searched field) or `similar` (a fuzzy trigram match, returned only when no exact match exists). Null when the list is not filtered by `search`. */
-  search_match_type?: SearchMatchTypeEnum | null;
-}
-export const DashboardBasic = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.Number),
-    name: S.optional(S.NullOr(S.String)),
-    description: S.optional(S.String),
-    pinned: S.optional(S.Boolean),
-    created_at: S.optional(S.String),
-    created_by: S.optional(S.NullOr(UserBasic)),
-    last_accessed_at: S.optional(S.NullOr(S.String)),
-    last_viewed_at: S.optional(S.NullOr(S.String)),
-    folder: S.optional(S.NullOr(S.String)),
-    file_system_id: S.optional(S.NullOr(S.String)),
-    file_system_path: S.optional(S.NullOr(S.String)),
-    is_shared: S.optional(S.Boolean),
-    deleted: S.optional(S.Boolean),
-    creation_mode: S.optional(CreationModeEnum),
-    tags: S.optional(DashboardBasicTagsList),
-    restriction_level: S.optional(RestrictionLevelEnum),
-    effective_restriction_level: S.optional(EffectivePrivilegeLevelEnum),
-    effective_privilege_level: S.optional(EffectivePrivilegeLevelEnum),
-    user_access_level: S.optional(S.NullOr(S.String)),
-    access_control_version: S.optional(S.String),
-    last_refresh: S.optional(S.NullOr(S.String)),
-    team_id: S.optional(S.Number),
-    search_match_type: S.optional(S.NullOr(SearchMatchTypeEnum)),
-  }),
-).annotate({ identifier: "DashboardBasic" }) as any as S.Schema<DashboardBasic>;
-
-export type PaginatedDashboardBasicListResultsList = Array<DashboardBasic>;
-export const PaginatedDashboardBasicListResultsList = /*@__PURE__*/ S.Array(
-  DashboardBasic,
-) as any as S.Schema<PaginatedDashboardBasicListResultsList>;
-
-export interface PaginatedDashboardBasicList {
-  count?: number;
-  next?: string | null;
-  previous?: string | null;
-  results?: PaginatedDashboardBasicListResultsList;
-}
-export const PaginatedDashboardBasicList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    count: S.optional(S.Number),
-    next: S.optional(S.NullOr(S.String)),
-    previous: S.optional(S.NullOr(S.String)),
-    results: S.optional(PaginatedDashboardBasicListResultsList),
-  }),
-).annotate({
-  identifier: "PaginatedDashboardBasicList",
-}) as any as S.Schema<PaginatedDashboardBasicList>;
 
 export type DashboardsMoveTileCreateRequestFormat = "json" | "txt";
 export const DashboardsMoveTileCreateRequestFormat = /*@__PURE__*/ S.String;
@@ -18329,534 +18700,6 @@ export const DashboardsMoveTileCreateRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "DashboardsMoveTileCreateRequest",
 }) as any as S.Schema<DashboardsMoveTileCreateRequest>;
-
-export type DashboardsPartialUpdateRequestFormat = "json" | "txt";
-export const DashboardsPartialUpdateRequestFormat = /*@__PURE__*/ S.String;
-
-/** OpenAPI-only shape for a dashboard's filters object (agents/MCP). Documents the dashboard-level filters that act as the single source of truth for the dashboard's tiles. Runtime persistence reads the raw ``filters`` dict from the request body, so extra keys are accepted, but these are the ones agents should set. */
-export interface DashboardFiltersOpenApi {
-  /** Dashboard-level start of the date range, e.g. '-30d', '-7d', or an ISO date. Applies to all tiles. */
-  date_from?: string | null;
-  /** Dashboard-level end of the date range, e.g. '-1d' or an ISO date. Null/omitted means up to now. */
-  date_to?: string | null;
-  /** Dashboard-level property filters applied to every tile (PostHog property filter group). */
-  properties?: unknown;
-}
-export const DashboardFiltersOpenApi = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    date_from: S.optional(S.NullOr(S.String)),
-    date_to: S.optional(S.NullOr(S.String)),
-    properties: S.optional(S.Unknown),
-  }),
-).annotate({
-  identifier: "DashboardFiltersOpenApi",
-}) as any as S.Schema<DashboardFiltersOpenApi>;
-
-export type DashboardsPartialUpdateRequestTagsList = Array<string>;
-export const DashboardsPartialUpdateRequestTagsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<DashboardsPartialUpdateRequestTagsList>;
-
-/** List of quick filter IDs associated with this dashboard. */
-export type DashboardsPartialUpdateRequestQuickFilterIdsList = Array<string>;
-export const DashboardsPartialUpdateRequestQuickFilterIdsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<DashboardsPartialUpdateRequestQuickFilterIdsList>;
-
-/** * `activity_events_list` - activity_events_list * `conversations_recent_tickets` - conversations_recent_tickets * `error_tracking_list` - error_tracking_list * `experiment_results` - experiment_results * `experiments_list` - experiments_list * `logs_list` - logs_list * `session_replay_list` - session_replay_list * `survey_results` - survey_results */
-export type DashboardPatchWidgetOpenApiWidgetTypeEnum =
-  | "activity_events_list"
-  | "conversations_recent_tickets"
-  | "error_tracking_list"
-  | "experiment_results"
-  | "experiments_list"
-  | "logs_list"
-  | "session_replay_list"
-  | "survey_results";
-export const DashboardPatchWidgetOpenApiWidgetTypeEnum = /*@__PURE__*/ S.String;
-
-export interface DashboardPatchWidgetOpenApi {
-  /** Existing widget row ID when updating a widget tile via dashboard PATCH. */
-  id?: string;
-  /** Widget type identifier (cannot be changed on update). * `activity_events_list` - activity_events_list * `conversations_recent_tickets` - conversations_recent_tickets * `error_tracking_list` - error_tracking_list * `experiment_results` - experiment_results * `experiments_list` - experiments_list * `logs_list` - logs_list * `session_replay_list` - session_replay_list * `survey_results` - survey_results */
-  widget_type?: DashboardPatchWidgetOpenApiWidgetTypeEnum | (string & {});
-  /** Widget-specific configuration. Shape depends on the tile's widget_type. */
-  config?: DashboardWidgetConfig;
-  /** Optional custom display name for the widget tile. */
-  name?: string | null;
-  /** Optional markdown description shown when show_description is enabled. */
-  description?: string;
-}
-export const DashboardPatchWidgetOpenApi = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    widget_type: S.optional(DashboardPatchWidgetOpenApiWidgetTypeEnum),
-    config: S.optional(DashboardWidgetConfig),
-    name: S.optional(S.NullOr(S.String)),
-    description: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DashboardPatchWidgetOpenApi",
-}) as any as S.Schema<DashboardPatchWidgetOpenApi>;
-
-export interface DashboardPatchTileOpenApi {
-  /** Dashboard tile ID to update. */
-  id?: number;
-  /** Nested widget row updates. */
-  widget?: DashboardPatchWidgetOpenApi;
-}
-export const DashboardPatchTileOpenApi = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.Number),
-    widget: S.optional(DashboardPatchWidgetOpenApi),
-  }),
-).annotate({
-  identifier: "DashboardPatchTileOpenApi",
-}) as any as S.Schema<DashboardPatchTileOpenApi>;
-
-/** Dashboard tiles to update. Widget tiles accept nested widget.config patches. */
-export type DashboardsPartialUpdateRequestTilesList =
-  Array<DashboardPatchTileOpenApi>;
-export const DashboardsPartialUpdateRequestTilesList = /*@__PURE__*/ S.Array(
-  DashboardPatchTileOpenApi,
-) as any as S.Schema<DashboardsPartialUpdateRequestTilesList>;
-
-export interface DashboardsPartialUpdateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A unique integer value identifying this dashboard. */
-  id: number;
-  format?: DashboardsPartialUpdateRequestFormat | (string & {});
-  /** Opt in to receiving the deprecated `dashboards` field in insight payloads. Once opt-in enforcement is enabled, API-token callers stop receiving it by default; use `dashboard_tiles` instead. */
-  include_dashboards?: boolean;
-  name?: string | null;
-  description?: string;
-  pinned?: boolean;
-  /** Dashboard-level filters (date range and properties) applied across all tiles as the source of truth. */
-  filters?: DashboardFiltersOpenApi;
-  /** Custom color mapping for breakdown values. */
-  breakdown_colors?: unknown;
-  /** ID of the color theme used for chart visualizations. */
-  data_color_theme_id?: number | null;
-  tags?: DashboardsPartialUpdateRequestTagsList;
-  restriction_level?: EffectivePrivilegeLevelEnum | (number & {});
-  /** List of quick filter IDs associated with this dashboard. */
-  quick_filter_ids?: DashboardsPartialUpdateRequestQuickFilterIdsList | null;
-  /** Named tile density preset. Use tight, condensed, standard, relaxed, or wide. * `tight` - tight * `condensed` - condensed * `standard` - standard * `relaxed` - relaxed * `wide` - wide */
-  grid_spacing?: TileSpacingEnum | (string & {});
-  /** How tiles rearrange after a move or resize. vertical stacks tiles upward, horizontal stacks tiles to the left, and stable preserves positions while moving colliding tiles. * `vertical` - vertical * `horizontal` - horizontal * `stable` - stable */
-  layout_compaction?: LayoutCompactionEnum | (string & {});
-  /** Dashboard tiles to update. Widget tiles accept nested widget.config patches. */
-  tiles?: DashboardsPartialUpdateRequestTilesList;
-  /** Template key to create the dashboard from a predefined template. */
-  use_template?: string;
-  /** ID of an existing dashboard to duplicate. */
-  use_dashboard?: number | null;
-  /** When deleting, also delete insights that are only on this dashboard. */
-  delete_insights?: boolean;
-}
-export const DashboardsPartialUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.Number.pipe(T.Label()),
-    format: S.optional(DashboardsPartialUpdateRequestFormat.pipe(T.Query())),
-    include_dashboards: S.optional(S.Boolean.pipe(T.Query())),
-    name: S.optional(S.NullOr(S.String)),
-    description: S.optional(S.String),
-    pinned: S.optional(S.Boolean),
-    filters: S.optional(DashboardFiltersOpenApi),
-    breakdown_colors: S.optional(S.Unknown),
-    data_color_theme_id: S.optional(S.NullOr(S.Number)),
-    tags: S.optional(DashboardsPartialUpdateRequestTagsList),
-    restriction_level: S.optional(EffectivePrivilegeLevelEnum),
-    quick_filter_ids: S.optional(
-      S.NullOr(DashboardsPartialUpdateRequestQuickFilterIdsList),
-    ),
-    grid_spacing: S.optional(TileSpacingEnum),
-    layout_compaction: S.optional(LayoutCompactionEnum),
-    tiles: S.optional(DashboardsPartialUpdateRequestTilesList),
-    use_template: S.optional(S.String),
-    use_dashboard: S.optional(S.NullOr(S.Number)),
-    delete_insights: S.optional(S.Boolean),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/api/projects/{project_id}/dashboards/{id}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "DashboardsPartialUpdateRequest",
-}) as any as S.Schema<DashboardsPartialUpdateRequest>;
-
-export type DashboardsReorderTilesCreateRequestFormat = "json" | "txt";
-export const DashboardsReorderTilesCreateRequestFormat = /*@__PURE__*/ S.String;
-
-/** Array of tile IDs in the desired display order (top to bottom, left to right). */
-export type DashboardsReorderTilesCreateRequestTileOrderList = Array<number>;
-export const DashboardsReorderTilesCreateRequestTileOrderList =
-  /*@__PURE__*/ S.Array(
-    S.Number,
-  ) as any as S.Schema<DashboardsReorderTilesCreateRequestTileOrderList>;
-
-/** * `preserve` - preserve * `two_column` - two_column * `full_width` - full_width */
-export type LayoutEnum = "preserve" | "two_column" | "full_width";
-export const LayoutEnum = /*@__PURE__*/ S.String;
-
-export interface DashboardsReorderTilesCreateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A unique integer value identifying this dashboard. */
-  id: number;
-  format?: DashboardsReorderTilesCreateRequestFormat | (string & {});
-  /** Array of tile IDs in the desired display order (top to bottom, left to right). */
-  tile_order?: DashboardsReorderTilesCreateRequestTileOrderList;
-  /** How to size tiles when reordering. 'preserve' (default) keeps each tile's existing width and height and only repacks positions in the new order. 'two_column' forces a 6-wide × 5-tall grid (two tiles per row). 'full_width' forces each tile to span the full 12-column row at height 5. * `preserve` - preserve * `two_column` - two_column * `full_width` - full_width */
-  layout?: LayoutEnum | (string & {});
-}
-export const DashboardsReorderTilesCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.Number.pipe(T.Label()),
-    format: S.optional(
-      DashboardsReorderTilesCreateRequestFormat.pipe(T.Query()),
-    ),
-    tile_order: S.optional(DashboardsReorderTilesCreateRequestTileOrderList),
-    layout: S.optional(LayoutEnum),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/api/projects/{project_id}/dashboards/{id}/reorder_tiles/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "DashboardsReorderTilesCreateRequest",
-}) as any as S.Schema<DashboardsReorderTilesCreateRequest>;
-
-export type DashboardsRetrieveRequestFormat = "json" | "txt";
-export const DashboardsRetrieveRequestFormat = /*@__PURE__*/ S.String;
-
-export interface DashboardsRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A unique integer value identifying this dashboard. */
-  id: number;
-  /** Object (or pre-encoded JSON string) to override dashboard filters for this request only (not persisted). Top-level keys replace; nested values are not deep-merged — pass the complete value for any key you override. Accepts the same keys as the dashboard filters schema (e.g., `date_from`, `date_to`, `properties`). Ignored when accessed via a sharing token. */
-  filters_override?: string;
-  format?: DashboardsRetrieveRequestFormat | (string & {});
-  /** Opt in to receiving the deprecated `dashboards` field in insight payloads. Once opt-in enforcement is enabled, API-token callers stop receiving it by default; use `dashboard_tiles` instead. */
-  include_dashboards?: boolean;
-  /** Object (or pre-encoded JSON string) to override dashboard variables for this request only (not persisted). Format: {"<variable_id>": {"code_name": "<code_name>", "variableId": "<variable_id>", "value": <new_value>}}. Each entry must include `code_name` — partial entries are silently dropped. The simplest workflow is to call `dashboard-get` first, copy the matching entry from the response, and mutate `value`. Top-level keys replace; nested values are not deep-merged. Ignored when accessed via a sharing token. */
-  variables_override?: string;
-}
-export const DashboardsRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.Number.pipe(T.Label()),
-    filters_override: S.optional(S.String.pipe(T.Query())),
-    format: S.optional(DashboardsRetrieveRequestFormat.pipe(T.Query())),
-    include_dashboards: S.optional(S.Boolean.pipe(T.Query())),
-    variables_override: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/dashboards/{id}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "DashboardsRetrieveRequest",
-}) as any as S.Schema<DashboardsRetrieveRequest>;
-
-export type DashboardsRunInsightsRetrieveRequestFormat = "json" | "txt";
-export const DashboardsRunInsightsRetrieveRequestFormat =
-  /*@__PURE__*/ S.String;
-
-export type DashboardsRunInsightsRetrieveRequestOutputFormat =
-  | "json"
-  | "optimized";
-export const DashboardsRunInsightsRetrieveRequestOutputFormat =
-  /*@__PURE__*/ S.String;
-
-export type DashboardsRunInsightsRetrieveRequestRefresh =
-  | "blocking"
-  | "force_blocking"
-  | "force_cache";
-export const DashboardsRunInsightsRetrieveRequestRefresh =
-  /*@__PURE__*/ S.String;
-
-export interface DashboardsRunInsightsRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A unique integer value identifying this dashboard. */
-  id: number;
-  /** Object (or pre-encoded JSON string) to override dashboard filters for this request only (not persisted). Top-level keys replace; nested values are not deep-merged — pass the complete value for any key you override. Accepts the same keys as the dashboard filters schema (e.g., `date_from`, `date_to`, `properties`). Ignored when accessed via a sharing token. */
-  filters_override?: string;
-  format?: DashboardsRunInsightsRetrieveRequestFormat | (string & {});
-  /** 'optimized' (default) returns LLM-friendly formatted text per insight. 'json' returns the raw query result objects. */
-  output_format?:
-    | DashboardsRunInsightsRetrieveRequestOutputFormat
-    | (string & {});
-  /** Cache behavior. 'force_cache' (default) serves from cache even if stale. 'blocking' uses cache if fresh, otherwise recalculates. 'force_blocking' always recalculates. */
-  refresh?: DashboardsRunInsightsRetrieveRequestRefresh | (string & {});
-  /** Object (or pre-encoded JSON string) to override dashboard variables for this request only (not persisted). Format: {"<variable_id>": {"code_name": "<code_name>", "variableId": "<variable_id>", "value": <new_value>}}. Each entry must include `code_name` — partial entries are silently dropped. The simplest workflow is to call `dashboard-get` first, copy the matching entry from the response, and mutate `value`. Top-level keys replace; nested values are not deep-merged. Ignored when accessed via a sharing token. */
-  variables_override?: string;
-}
-export const DashboardsRunInsightsRetrieveRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.Number.pipe(T.Label()),
-      filters_override: S.optional(S.String.pipe(T.Query())),
-      format: S.optional(
-        DashboardsRunInsightsRetrieveRequestFormat.pipe(T.Query()),
-      ),
-      output_format: S.optional(
-        DashboardsRunInsightsRetrieveRequestOutputFormat.pipe(T.Query()),
-      ),
-      refresh: S.optional(
-        DashboardsRunInsightsRetrieveRequestRefresh.pipe(T.Query()),
-      ),
-      variables_override: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/dashboards/{id}/run_insights/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "DashboardsRunInsightsRetrieveRequest",
-}) as any as S.Schema<DashboardsRunInsightsRetrieveRequest>;
-
-/** InsightSerializer restricted to identifiers + result only. */
-export interface InsightResult {
-  id?: number;
-  short_id?: string;
-  name?: string | null;
-  derived_name?: string | null;
-  result?: unknown;
-}
-export const InsightResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.Number),
-    short_id: S.optional(S.String),
-    name: S.optional(S.NullOr(S.String)),
-    derived_name: S.optional(S.NullOr(S.String)),
-    result: S.optional(S.Unknown),
-  }),
-).annotate({ identifier: "InsightResult" }) as any as S.Schema<InsightResult>;
-
-/** DashboardTileSerializer restricted to tile id + insight result fields. */
-export interface DashboardTileResult {
-  id?: number;
-  insight?: InsightResult;
-}
-export const DashboardTileResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.Number),
-    insight: S.optional(InsightResult),
-  }),
-).annotate({
-  identifier: "DashboardTileResult",
-}) as any as S.Schema<DashboardTileResult>;
-
-/** Results for each insight tile on the dashboard. */
-export type RunInsightsResponseResultsList = Array<DashboardTileResult>;
-export const RunInsightsResponseResultsList = /*@__PURE__*/ S.Array(
-  DashboardTileResult,
-) as any as S.Schema<RunInsightsResponseResultsList>;
-
-export interface RunInsightsResponse {
-  /** Results for each insight tile on the dashboard. */
-  results?: RunInsightsResponseResultsList;
-}
-export const RunInsightsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    results: S.optional(RunInsightsResponseResultsList),
-  }),
-).annotate({
-  identifier: "RunInsightsResponse",
-}) as any as S.Schema<RunInsightsResponse>;
-
-export type DashboardsRunWidgetsRetrieveRequestFormat = "json" | "txt";
-export const DashboardsRunWidgetsRetrieveRequestFormat = /*@__PURE__*/ S.String;
-
-export interface DashboardsRunWidgetsRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A unique integer value identifying this dashboard. */
-  id: number;
-  format?: DashboardsRunWidgetsRetrieveRequestFormat | (string & {});
-  /** Comma-separated dashboard tile IDs to run widgets for. */
-  tile_ids: string;
-}
-export const DashboardsRunWidgetsRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.Number.pipe(T.Label()),
-    format: S.optional(
-      DashboardsRunWidgetsRetrieveRequestFormat.pipe(T.Query()),
-    ),
-    tile_ids: S.String.pipe(T.Query()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/dashboards/{id}/run_widgets/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "DashboardsRunWidgetsRetrieveRequest",
-}) as any as S.Schema<DashboardsRunWidgetsRetrieveRequest>;
-
-export interface DashboardWidgetRunResult {
-  /** Dashboard tile ID for this widget result. */
-  tile_id: number;
-  /** Widget type identifier, or null when the tile was not found. */
-  widget_type: string | null;
-  /** Live widget query result payload. List widgets return results (array), limit (configured page size), hasMore (boolean), totalCount (matching rows for current filters), totalCountCapped (true when totalCount hit the widget max and more may exist), and optional offset/nextOffset. error_tracking_list results are issue summaries; session_replay_list results are recording metadata. */
-  result: unknown;
-  /** Error message when the widget could not be run. */
-  error: string | null;
-}
-export const DashboardWidgetRunResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    tile_id: S.Number,
-    widget_type: S.NullOr(S.String),
-    result: S.Unknown,
-    error: S.NullOr(S.String),
-  }),
-).annotate({
-  identifier: "DashboardWidgetRunResult",
-}) as any as S.Schema<DashboardWidgetRunResult>;
-
-/** Per-tile widget run results. */
-export type RunWidgetsResponseResultsList = Array<DashboardWidgetRunResult>;
-export const RunWidgetsResponseResultsList = /*@__PURE__*/ S.Array(
-  DashboardWidgetRunResult,
-) as any as S.Schema<RunWidgetsResponseResultsList>;
-
-export interface RunWidgetsResponse {
-  /** Per-tile widget run results. */
-  results: RunWidgetsResponseResultsList;
-}
-export const RunWidgetsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    results: RunWidgetsResponseResultsList,
-  }),
-).annotate({
-  identifier: "RunWidgetsResponse",
-}) as any as S.Schema<RunWidgetsResponse>;
-
-export interface DashboardsSharingListRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  dashboard_id: number;
-}
-export const DashboardsSharingListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    dashboard_id: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/dashboards/{dashboard_id}/sharing/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "DashboardsSharingListRequest",
-}) as any as S.Schema<DashboardsSharingListRequest>;
-
-export interface SharePassword {
-  id?: number;
-  created_at?: string;
-  note?: string | null;
-  created_by_email?: string;
-  is_active?: boolean;
-}
-export const SharePassword = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.Number),
-    created_at: S.optional(S.String),
-    note: S.optional(S.NullOr(S.String)),
-    created_by_email: S.optional(S.String),
-    is_active: S.optional(S.Boolean),
-  }),
-).annotate({ identifier: "SharePassword" }) as any as S.Schema<SharePassword>;
-
-export type SharingConfigurationSharePasswordsList = Array<SharePassword>;
-export const SharingConfigurationSharePasswordsList = /*@__PURE__*/ S.Array(
-  SharePassword,
-) as any as S.Schema<SharingConfigurationSharePasswordsList>;
-
-/** Mixin for serializers to add user access control fields */
-export interface SharingConfiguration {
-  created_at?: string;
-  enabled?: boolean;
-  access_token?: string | Redacted.Redacted<string> | null;
-  settings?: unknown;
-  password_required?: boolean;
-  share_passwords?: SharingConfigurationSharePasswordsList;
-  /** The effective access level the user has for this object */
-  user_access_level?: string | null;
-}
-export const SharingConfiguration = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    created_at: S.optional(S.String),
-    enabled: S.optional(S.Boolean),
-    access_token: S.optional(S.NullOr(S.String).pipe(T.SensitiveValue({}))),
-    settings: S.optional(S.Unknown),
-    password_required: S.optional(S.Boolean),
-    share_passwords: S.optional(SharingConfigurationSharePasswordsList),
-    user_access_level: S.optional(S.NullOr(S.String)),
-  }),
-).annotate({
-  identifier: "SharingConfiguration",
-}) as any as S.Schema<SharingConfiguration>;
-
-export type DashboardsSharingListResponseBodyList = Array<SharingConfiguration>;
-export const DashboardsSharingListResponseBodyList = /*@__PURE__*/ S.Array(
-  SharingConfiguration,
-) as any as S.Schema<DashboardsSharingListResponseBodyList>;
-
-export type DashboardsSharingListResponse =
-  DashboardsSharingListResponseBodyList;
-export const DashboardsSharingListResponse = /*@__PURE__*/ S.suspend(() =>
-  DashboardsSharingListResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "DashboardsSharingListResponse",
-}) as any as S.Schema<DashboardsSharingListResponse>;
-
-export interface DashboardsSharingPasswordsCreateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  dashboard_id: number;
-  enabled?: boolean;
-  settings?: unknown;
-  password_required?: boolean;
-}
-export const DashboardsSharingPasswordsCreateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      dashboard_id: S.Number.pipe(T.Label()),
-      enabled: S.optional(S.Boolean),
-      settings: S.optional(S.Unknown),
-      password_required: S.optional(S.Boolean),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/api/projects/{project_id}/dashboards/{dashboard_id}/sharing/passwords/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "DashboardsSharingPasswordsCreateRequest",
-}) as any as S.Schema<DashboardsSharingPasswordsCreateRequest>;
 
 export interface DashboardsSharingPasswordsDestroyRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -18914,58 +18757,6 @@ export const DashboardsSharingRefreshCreateRequest = /*@__PURE__*/ S.suspend(
   identifier: "DashboardsSharingRefreshCreateRequest",
 }) as any as S.Schema<DashboardsSharingRefreshCreateRequest>;
 
-export type DashboardsStreamTilesRetrieveRequestFormat = "json" | "txt";
-export const DashboardsStreamTilesRetrieveRequestFormat =
-  /*@__PURE__*/ S.String;
-
-export type DashboardsStreamTilesRetrieveRequestLayoutSize = "sm" | "xs";
-export const DashboardsStreamTilesRetrieveRequestLayoutSize =
-  /*@__PURE__*/ S.String;
-
-export interface DashboardsStreamTilesRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A unique integer value identifying this dashboard. */
-  id: number;
-  /** Object (or pre-encoded JSON string) to override dashboard filters for this request only (not persisted). Top-level keys replace; nested values are not deep-merged — pass the complete value for any key you override. Accepts the same keys as the dashboard filters schema (e.g., `date_from`, `date_to`, `properties`). Ignored when accessed via a sharing token. */
-  filters_override?: string;
-  format?: DashboardsStreamTilesRetrieveRequestFormat | (string & {});
-  /** Layout size for tile positioning. 'sm' (default) for standard, 'xs' for mobile. The snake_case alias `layout_size` is also accepted for backward compatibility. */
-  layoutSize?: DashboardsStreamTilesRetrieveRequestLayoutSize | (string & {});
-  /** Object (or pre-encoded JSON string) to override dashboard variables for this request only (not persisted). Format: {"<variable_id>": {"code_name": "<code_name>", "variableId": "<variable_id>", "value": <new_value>}}. Each entry must include `code_name` — partial entries are silently dropped. The simplest workflow is to call `dashboard-get` first, copy the matching entry from the response, and mutate `value`. Top-level keys replace; nested values are not deep-merged. Ignored when accessed via a sharing token. */
-  variables_override?: string;
-}
-export const DashboardsStreamTilesRetrieveRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.Number.pipe(T.Label()),
-      filters_override: S.optional(S.String.pipe(T.Query())),
-      format: S.optional(
-        DashboardsStreamTilesRetrieveRequestFormat.pipe(T.Query()),
-      ),
-      layoutSize: S.optional(
-        DashboardsStreamTilesRetrieveRequestLayoutSize.pipe(T.Query()),
-      ),
-      variables_override: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/dashboards/{id}/stream_tiles/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "DashboardsStreamTilesRetrieveRequest",
-}) as any as S.Schema<DashboardsStreamTilesRetrieveRequest>;
-
-export interface DashboardsStreamTilesRetrieveResponse {}
-export const DashboardsStreamTilesRetrieveResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "DashboardsStreamTilesRetrieveResponse",
-}) as any as S.Schema<DashboardsStreamTilesRetrieveResponse>;
-
 export type DashboardsSubscribeNudgeCreateRequestFormat = "json" | "txt";
 export const DashboardsSubscribeNudgeCreateRequestFormat =
   /*@__PURE__*/ S.String;
@@ -19008,90 +18799,6 @@ export const DashboardSubscribeNudgeResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DashboardSubscribeNudgeResponse",
 }) as any as S.Schema<DashboardSubscribeNudgeResponse>;
 
-export type DashboardsUpdateRequestFormat = "json" | "txt";
-export const DashboardsUpdateRequestFormat = /*@__PURE__*/ S.String;
-
-export type DashboardsUpdateRequestTagsList = Array<unknown>;
-export const DashboardsUpdateRequestTagsList = /*@__PURE__*/ S.Array(
-  S.Unknown,
-) as any as S.Schema<DashboardsUpdateRequestTagsList>;
-
-/** List of quick filter IDs associated with this dashboard */
-export type DashboardsUpdateRequestQuickFilterIdsList = Array<string>;
-export const DashboardsUpdateRequestQuickFilterIdsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<DashboardsUpdateRequestQuickFilterIdsList>;
-
-export interface DashboardsUpdateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A unique integer value identifying this dashboard. */
-  id: number;
-  format?: DashboardsUpdateRequestFormat | (string & {});
-  /** Opt in to receiving the deprecated `dashboards` field in insight payloads. Once opt-in enforcement is enabled, API-token callers stop receiving it by default; use `dashboard_tiles` instead. */
-  include_dashboards?: boolean;
-  name?: string | null;
-  description?: string;
-  pinned?: boolean;
-  last_accessed_at?: string | null;
-  deleted?: boolean;
-  /** Custom color mapping for breakdown values. */
-  breakdown_colors?: unknown;
-  /** ID of the color theme used for chart visualizations. */
-  data_color_theme_id?: number | null;
-  tags?: DashboardsUpdateRequestTagsList;
-  restriction_level?: RestrictionLevelEnum | (number & {});
-  last_refresh?: string | null;
-  /** List of quick filter IDs associated with this dashboard */
-  quick_filter_ids?: DashboardsUpdateRequestQuickFilterIdsList | null;
-  /** Named tile density preset. Use tight, condensed, standard, relaxed, or wide. * `tight` - tight * `condensed` - condensed * `standard` - standard * `relaxed` - relaxed * `wide` - wide */
-  grid_spacing?: TileSpacingEnum | (string & {});
-  /** How tiles rearrange after a move or resize. vertical stacks tiles upward, horizontal stacks tiles to the left, and stable preserves positions while moving colliding tiles. * `vertical` - vertical * `horizontal` - horizontal * `stable` - stable */
-  layout_compaction?: LayoutCompactionEnum | (string & {});
-  /** Template key to create the dashboard from a predefined template. */
-  use_template?: string;
-  /** ID of an existing dashboard to duplicate. */
-  use_dashboard?: number | null;
-  /** When deleting, also delete insights that are only on this dashboard. */
-  delete_insights?: boolean;
-  _create_in_folder?: string;
-}
-export const DashboardsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.Number.pipe(T.Label()),
-    format: S.optional(DashboardsUpdateRequestFormat.pipe(T.Query())),
-    include_dashboards: S.optional(S.Boolean.pipe(T.Query())),
-    name: S.optional(S.NullOr(S.String)),
-    description: S.optional(S.String),
-    pinned: S.optional(S.Boolean),
-    last_accessed_at: S.optional(S.NullOr(S.String)),
-    deleted: S.optional(S.Boolean),
-    breakdown_colors: S.optional(S.Unknown),
-    data_color_theme_id: S.optional(S.NullOr(S.Number)),
-    tags: S.optional(DashboardsUpdateRequestTagsList),
-    restriction_level: S.optional(RestrictionLevelEnum),
-    last_refresh: S.optional(S.NullOr(S.String)),
-    quick_filter_ids: S.optional(
-      S.NullOr(DashboardsUpdateRequestQuickFilterIdsList),
-    ),
-    grid_spacing: S.optional(TileSpacingEnum),
-    layout_compaction: S.optional(LayoutCompactionEnum),
-    use_template: S.optional(S.String),
-    use_dashboard: S.optional(S.NullOr(S.Number)),
-    delete_insights: S.optional(S.Boolean),
-    _create_in_folder: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/api/projects/{project_id}/dashboards/{id}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "DashboardsUpdateRequest",
-}) as any as S.Schema<DashboardsUpdateRequest>;
-
 export type DashboardsUpdateTextTileCreateRequestFormat = "json" | "txt";
 export const DashboardsUpdateTextTileCreateRequestFormat =
   /*@__PURE__*/ S.String;
@@ -19107,7 +18814,7 @@ export interface DashboardsUpdateTextTileCreateRequest {
   /** New markdown body for the text tile. Omit to leave the body unchanged. Max 4000 characters. */
   body?: string;
   /** New grid layout per breakpoint. Omit to leave the layout unchanged. */
-  layouts?: TileLayouts;
+  layouts?: WidgetTileLayoutsOpenApi;
   /** New accent color name, empty string or null to clear. Omit to leave unchanged. */
   color?: string | null;
 }
@@ -19121,7 +18828,7 @@ export const DashboardsUpdateTextTileCreateRequest = /*@__PURE__*/ S.suspend(
       ),
       tile_id: S.Number,
       body: S.optional(S.String),
-      layouts: S.optional(TileLayouts),
+      layouts: S.optional(WidgetTileLayoutsOpenApi),
       color: S.optional(S.NullOr(S.String)),
     }).pipe(
       T.Http({
@@ -19134,328 +18841,314 @@ export const DashboardsUpdateTextTileCreateRequest = /*@__PURE__*/ S.suspend(
   identifier: "DashboardsUpdateTextTileCreateRequest",
 }) as any as S.Schema<DashboardsUpdateTextTileCreateRequest>;
 
-export type DashboardsUpdateWidgetsBatchRequestFormat = "json" | "txt";
-export const DashboardsUpdateWidgetsBatchRequestFormat = /*@__PURE__*/ S.String;
+export type DeleteDashboardTileRequestFormat = "json" | "txt";
+export const DeleteDashboardTileRequestFormat = /*@__PURE__*/ S.String;
 
-/** * `activity_events_list` - activity_events_list */
-export type ActivityEventsListWidgetTypeEnum = "activity_events_list";
-export const ActivityEventsListWidgetTypeEnum = /*@__PURE__*/ S.String;
-
-export interface ActivityEventsListWidgetUpdateRequestOpenApi {
-  /** ID of the widget tile to update. Use dashboard-get to look up widget tile IDs. */
-  tile_id: number;
-  /** New display name for the widget. Empty string or null clears it; omit to leave unchanged. */
-  name?: string | null;
-  /** New markdown description for the widget. Omit to leave unchanged. */
-  description?: string;
-  widget_type: ActivityEventsListWidgetTypeEnum;
-  /** New configuration for the recent events widget. Omit to leave unchanged. */
-  config?: ActivityEventsListWidgetConfig;
-}
-export const ActivityEventsListWidgetUpdateRequestOpenApi =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      tile_id: S.Number,
-      name: S.optional(S.NullOr(S.String)),
-      description: S.optional(S.String),
-      widget_type: ActivityEventsListWidgetTypeEnum,
-      config: S.optional(ActivityEventsListWidgetConfig),
-    }),
-  ).annotate({
-    identifier: "ActivityEventsListWidgetUpdateRequestOpenApi",
-  }) as any as S.Schema<ActivityEventsListWidgetUpdateRequestOpenApi>;
-
-/** * `error_tracking_list` - error_tracking_list */
-export type ErrorTrackingListWidgetTypeEnum = "error_tracking_list";
-export const ErrorTrackingListWidgetTypeEnum = /*@__PURE__*/ S.String;
-
-export interface ErrorTrackingListWidgetUpdateRequestOpenApi {
-  /** ID of the widget tile to update. Use dashboard-get to look up widget tile IDs. */
-  tile_id: number;
-  /** New display name for the widget. Empty string or null clears it; omit to leave unchanged. */
-  name?: string | null;
-  /** New markdown description for the widget. Omit to leave unchanged. */
-  description?: string;
-  widget_type: ErrorTrackingListWidgetTypeEnum;
-  /** New configuration for the top issues widget. Omit to leave unchanged. */
-  config?: ErrorTrackingListWidgetConfig;
-}
-export const ErrorTrackingListWidgetUpdateRequestOpenApi =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      tile_id: S.Number,
-      name: S.optional(S.NullOr(S.String)),
-      description: S.optional(S.String),
-      widget_type: ErrorTrackingListWidgetTypeEnum,
-      config: S.optional(ErrorTrackingListWidgetConfig),
-    }),
-  ).annotate({
-    identifier: "ErrorTrackingListWidgetUpdateRequestOpenApi",
-  }) as any as S.Schema<ErrorTrackingListWidgetUpdateRequestOpenApi>;
-
-/** * `session_replay_list` - session_replay_list */
-export type SessionReplayListWidgetTypeEnum = "session_replay_list";
-export const SessionReplayListWidgetTypeEnum = /*@__PURE__*/ S.String;
-
-export interface SessionReplayListWidgetUpdateRequestOpenApi {
-  /** ID of the widget tile to update. Use dashboard-get to look up widget tile IDs. */
-  tile_id: number;
-  /** New display name for the widget. Empty string or null clears it; omit to leave unchanged. */
-  name?: string | null;
-  /** New markdown description for the widget. Omit to leave unchanged. */
-  description?: string;
-  widget_type: SessionReplayListWidgetTypeEnum;
-  /** New configuration for the recent recordings widget. Omit to leave unchanged. */
-  config?: SessionReplayListWidgetConfig;
-}
-export const SessionReplayListWidgetUpdateRequestOpenApi =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      tile_id: S.Number,
-      name: S.optional(S.NullOr(S.String)),
-      description: S.optional(S.String),
-      widget_type: SessionReplayListWidgetTypeEnum,
-      config: S.optional(SessionReplayListWidgetConfig),
-    }),
-  ).annotate({
-    identifier: "SessionReplayListWidgetUpdateRequestOpenApi",
-  }) as any as S.Schema<SessionReplayListWidgetUpdateRequestOpenApi>;
-
-/** * `experiments_list` - experiments_list */
-export type ExperimentsListWidgetTypeEnum = "experiments_list";
-export const ExperimentsListWidgetTypeEnum = /*@__PURE__*/ S.String;
-
-export interface ExperimentsListWidgetUpdateRequestOpenApi {
-  /** ID of the widget tile to update. Use dashboard-get to look up widget tile IDs. */
-  tile_id: number;
-  /** New display name for the widget. Empty string or null clears it; omit to leave unchanged. */
-  name?: string | null;
-  /** New markdown description for the widget. Omit to leave unchanged. */
-  description?: string;
-  widget_type: ExperimentsListWidgetTypeEnum;
-  /** New configuration for the experiments list widget. Omit to leave unchanged. */
-  config?: ExperimentsListWidgetConfig;
-}
-export const ExperimentsListWidgetUpdateRequestOpenApi =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      tile_id: S.Number,
-      name: S.optional(S.NullOr(S.String)),
-      description: S.optional(S.String),
-      widget_type: ExperimentsListWidgetTypeEnum,
-      config: S.optional(ExperimentsListWidgetConfig),
-    }),
-  ).annotate({
-    identifier: "ExperimentsListWidgetUpdateRequestOpenApi",
-  }) as any as S.Schema<ExperimentsListWidgetUpdateRequestOpenApi>;
-
-/** * `experiment_results` - experiment_results */
-export type ExperimentResultsWidgetTypeEnum = "experiment_results";
-export const ExperimentResultsWidgetTypeEnum = /*@__PURE__*/ S.String;
-
-export interface ExperimentResultsWidgetUpdateRequestOpenApi {
-  /** ID of the widget tile to update. Use dashboard-get to look up widget tile IDs. */
-  tile_id: number;
-  /** New display name for the widget. Empty string or null clears it; omit to leave unchanged. */
-  name?: string | null;
-  /** New markdown description for the widget. Omit to leave unchanged. */
-  description?: string;
-  widget_type: ExperimentResultsWidgetTypeEnum;
-  /** New configuration for the experiment results widget. Omit to leave unchanged. */
-  config?: ExperimentResultsWidgetConfig;
-}
-export const ExperimentResultsWidgetUpdateRequestOpenApi =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      tile_id: S.Number,
-      name: S.optional(S.NullOr(S.String)),
-      description: S.optional(S.String),
-      widget_type: ExperimentResultsWidgetTypeEnum,
-      config: S.optional(ExperimentResultsWidgetConfig),
-    }),
-  ).annotate({
-    identifier: "ExperimentResultsWidgetUpdateRequestOpenApi",
-  }) as any as S.Schema<ExperimentResultsWidgetUpdateRequestOpenApi>;
-
-/** * `survey_results` - survey_results */
-export type SurveyResultsWidgetTypeEnum = "survey_results";
-export const SurveyResultsWidgetTypeEnum = /*@__PURE__*/ S.String;
-
-export interface SurveyResultsWidgetUpdateRequestOpenApi {
-  /** ID of the widget tile to update. Use dashboard-get to look up widget tile IDs. */
-  tile_id: number;
-  /** New display name for the widget. Empty string or null clears it; omit to leave unchanged. */
-  name?: string | null;
-  /** New markdown description for the widget. Omit to leave unchanged. */
-  description?: string;
-  widget_type: SurveyResultsWidgetTypeEnum;
-  /** New configuration for the survey results widget. Omit to leave unchanged. */
-  config?: SurveyResultsWidgetConfig;
-}
-export const SurveyResultsWidgetUpdateRequestOpenApi = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      tile_id: S.Number,
-      name: S.optional(S.NullOr(S.String)),
-      description: S.optional(S.String),
-      widget_type: SurveyResultsWidgetTypeEnum,
-      config: S.optional(SurveyResultsWidgetConfig),
-    }),
-).annotate({
-  identifier: "SurveyResultsWidgetUpdateRequestOpenApi",
-}) as any as S.Schema<SurveyResultsWidgetUpdateRequestOpenApi>;
-
-/** * `logs_list` - logs_list */
-export type LogsListWidgetTypeEnum = "logs_list";
-export const LogsListWidgetTypeEnum = /*@__PURE__*/ S.String;
-
-export interface LogsListWidgetUpdateRequestOpenApi {
-  /** ID of the widget tile to update. Use dashboard-get to look up widget tile IDs. */
-  tile_id: number;
-  /** New display name for the widget. Empty string or null clears it; omit to leave unchanged. */
-  name?: string | null;
-  /** New markdown description for the widget. Omit to leave unchanged. */
-  description?: string;
-  widget_type: LogsListWidgetTypeEnum;
-  /** New configuration for the recent logs widget. Omit to leave unchanged. */
-  config?: LogsListWidgetConfig;
-}
-export const LogsListWidgetUpdateRequestOpenApi = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    tile_id: S.Number,
-    name: S.optional(S.NullOr(S.String)),
-    description: S.optional(S.String),
-    widget_type: LogsListWidgetTypeEnum,
-    config: S.optional(LogsListWidgetConfig),
-  }),
-).annotate({
-  identifier: "LogsListWidgetUpdateRequestOpenApi",
-}) as any as S.Schema<LogsListWidgetUpdateRequestOpenApi>;
-
-/** * `conversations_recent_tickets` - conversations_recent_tickets */
-export type ConversationsRecentTicketsWidgetTypeEnum =
-  "conversations_recent_tickets";
-export const ConversationsRecentTicketsWidgetTypeEnum = /*@__PURE__*/ S.String;
-
-export interface ConversationsRecentTicketsWidgetUpdateRequestOpenApi {
-  /** ID of the widget tile to update. Use dashboard-get to look up widget tile IDs. */
-  tile_id: number;
-  /** New display name for the widget. Empty string or null clears it; omit to leave unchanged. */
-  name?: string | null;
-  /** New markdown description for the widget. Omit to leave unchanged. */
-  description?: string;
-  widget_type: ConversationsRecentTicketsWidgetTypeEnum;
-  /** New configuration for the recent tickets widget. Omit to leave unchanged. */
-  config?: ConversationsRecentTicketsWidgetConfig;
-}
-export const ConversationsRecentTicketsWidgetUpdateRequestOpenApi =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      tile_id: S.Number,
-      name: S.optional(S.NullOr(S.String)),
-      description: S.optional(S.String),
-      widget_type: ConversationsRecentTicketsWidgetTypeEnum,
-      config: S.optional(ConversationsRecentTicketsWidgetConfig),
-    }),
-  ).annotate({
-    identifier: "ConversationsRecentTicketsWidgetUpdateRequestOpenApi",
-  }) as any as S.Schema<ConversationsRecentTicketsWidgetUpdateRequestOpenApi>;
-
-export type UpdateDashboardWidgetRequest =
-  | ActivityEventsListWidgetUpdateRequestOpenApi
-  | ErrorTrackingListWidgetUpdateRequestOpenApi
-  | SessionReplayListWidgetUpdateRequestOpenApi
-  | ExperimentsListWidgetUpdateRequestOpenApi
-  | ExperimentResultsWidgetUpdateRequestOpenApi
-  | SurveyResultsWidgetUpdateRequestOpenApi
-  | LogsListWidgetUpdateRequestOpenApi
-  | ConversationsRecentTicketsWidgetUpdateRequestOpenApi;
-export const UpdateDashboardWidgetRequest =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateDashboardWidgetRequest>;
-
-/** Widget tiles to update atomically, each identified by its tile_id. config shape is per widget_type; see dashboard-widget-catalog-list for per-type config_schema (1–10 per request). */
-export type DashboardsUpdateWidgetsBatchRequestWidgetsList =
-  Array<UpdateDashboardWidgetRequest>;
-export const DashboardsUpdateWidgetsBatchRequestWidgetsList =
-  /*@__PURE__*/ S.Array(
-    UpdateDashboardWidgetRequest,
-  ) as any as S.Schema<DashboardsUpdateWidgetsBatchRequestWidgetsList>;
-
-export interface DashboardsUpdateWidgetsBatchRequest {
+export interface DeleteDashboardTileRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A unique integer value identifying this dashboard. */
   id: number;
-  format?: DashboardsUpdateWidgetsBatchRequestFormat | (string & {});
-  /** Widget tiles to update atomically, each identified by its tile_id. config shape is per widget_type; see dashboard-widget-catalog-list for per-type config_schema (1–10 per request). */
-  widgets?: DashboardsUpdateWidgetsBatchRequestWidgetsList;
+  format?: DeleteDashboardTileRequestFormat | (string & {});
+  /** ID of the dashboard tile to delete. Use dashboard-get to look up tile IDs. */
+  tile_id: number;
 }
-export const DashboardsUpdateWidgetsBatchRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteDashboardTileRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     id: S.Number.pipe(T.Label()),
-    format: S.optional(
-      DashboardsUpdateWidgetsBatchRequestFormat.pipe(T.Query()),
-    ),
-    widgets: S.optional(DashboardsUpdateWidgetsBatchRequestWidgetsList),
+    format: S.optional(DeleteDashboardTileRequestFormat.pipe(T.Query())),
+    tile_id: S.Number,
   }).pipe(
     T.Http({
-      method: "PATCH",
-      uri: "/api/projects/{project_id}/dashboards/{id}/widgets/batch_update/",
+      method: "POST",
+      uri: "/api/projects/{project_id}/dashboards/{id}/delete_tile/",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "DashboardsUpdateWidgetsBatchRequest",
-}) as any as S.Schema<DashboardsUpdateWidgetsBatchRequest>;
+  identifier: "DeleteDashboardTileRequest",
+}) as any as S.Schema<DeleteDashboardTileRequest>;
 
-/** Updated dashboard widget tiles in request order. */
-export type UpdateDashboardWidgetsBatchResponseOutputTilesList =
-  Array<DashboardTileOutput>;
-export const UpdateDashboardWidgetsBatchResponseOutputTilesList =
-  /*@__PURE__*/ S.Array(
-    DashboardTileOutput,
-  ) as any as S.Schema<UpdateDashboardWidgetsBatchResponseOutputTilesList>;
+export interface DeleteDashboardTileResponse {}
+export const DeleteDashboardTileResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteDashboardTileResponse",
+}) as any as S.Schema<DeleteDashboardTileResponse>;
 
-export interface UpdateDashboardWidgetsBatchResponseOutput {
-  /** Updated dashboard widget tiles in request order. */
-  tiles: UpdateDashboardWidgetsBatchResponseOutputTilesList;
-}
-export const UpdateDashboardWidgetsBatchResponseOutput =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      tiles: UpdateDashboardWidgetsBatchResponseOutputTilesList,
-    }),
-  ).annotate({
-    identifier: "UpdateDashboardWidgetsBatchResponseOutput",
-  }) as any as S.Schema<UpdateDashboardWidgetsBatchResponseOutput>;
+export type GetDashboardRequestFormat = "json" | "txt";
+export const GetDashboardRequestFormat = /*@__PURE__*/ S.String;
 
-export type DashboardsWidgetCatalogRetrieveRequestFormat = "json" | "txt";
-export const DashboardsWidgetCatalogRetrieveRequestFormat =
-  /*@__PURE__*/ S.String;
-
-export interface DashboardsWidgetCatalogRetrieveRequest {
+export interface GetDashboardRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
-  format?: DashboardsWidgetCatalogRetrieveRequestFormat | (string & {});
+  /** A unique integer value identifying this dashboard. */
+  id: number;
+  /** Object (or pre-encoded JSON string) to override dashboard filters for this request only (not persisted). Top-level keys replace; nested values are not deep-merged — pass the complete value for any key you override. Accepts the same keys as the dashboard filters schema (e.g., `date_from`, `date_to`, `properties`). Ignored when accessed via a sharing token. */
+  filters_override?: string;
+  format?: GetDashboardRequestFormat | (string & {});
+  /** Opt in to receiving the deprecated `dashboards` field in insight payloads. Once opt-in enforcement is enabled, API-token callers stop receiving it by default; use `dashboard_tiles` instead. */
+  include_dashboards?: boolean;
+  /** Object (or pre-encoded JSON string) to override dashboard variables for this request only (not persisted). Format: {"<variable_id>": {"code_name": "<code_name>", "variableId": "<variable_id>", "value": <new_value>}}. Each entry must include `code_name` — partial entries are silently dropped. The simplest workflow is to call `dashboard-get` first, copy the matching entry from the response, and mutate `value`. Top-level keys replace; nested values are not deep-merged. Ignored when accessed via a sharing token. */
+  variables_override?: string;
 }
-export const DashboardsWidgetCatalogRetrieveRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      format: S.optional(
-        DashboardsWidgetCatalogRetrieveRequestFormat.pipe(T.Query()),
-      ),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/dashboards/widget_catalog/",
-        code: 200,
-      }),
-    ),
+export const GetDashboardRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
+    filters_override: S.optional(S.String.pipe(T.Query())),
+    format: S.optional(GetDashboardRequestFormat.pipe(T.Query())),
+    include_dashboards: S.optional(S.Boolean.pipe(T.Query())),
+    variables_override: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/dashboards/{id}/",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "DashboardsWidgetCatalogRetrieveRequest",
-}) as any as S.Schema<DashboardsWidgetCatalogRetrieveRequest>;
+  identifier: "GetDashboardRequest",
+}) as any as S.Schema<GetDashboardRequest>;
+
+export type GetDashboardsRunInsightRequestFormat = "json" | "txt";
+export const GetDashboardsRunInsightRequestFormat = /*@__PURE__*/ S.String;
+
+export type GetDashboardsRunInsightRequestOutputFormat = "json" | "optimized";
+export const GetDashboardsRunInsightRequestOutputFormat =
+  /*@__PURE__*/ S.String;
+
+export type GetDashboardsRunInsightRequestRefresh =
+  | "blocking"
+  | "force_blocking"
+  | "force_cache";
+export const GetDashboardsRunInsightRequestRefresh = /*@__PURE__*/ S.String;
+
+export interface GetDashboardsRunInsightRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A unique integer value identifying this dashboard. */
+  id: number;
+  /** Object (or pre-encoded JSON string) to override dashboard filters for this request only (not persisted). Top-level keys replace; nested values are not deep-merged — pass the complete value for any key you override. Accepts the same keys as the dashboard filters schema (e.g., `date_from`, `date_to`, `properties`). Ignored when accessed via a sharing token. */
+  filters_override?: string;
+  format?: GetDashboardsRunInsightRequestFormat | (string & {});
+  /** 'optimized' (default) returns LLM-friendly formatted text per insight. 'json' returns the raw query result objects. */
+  output_format?: GetDashboardsRunInsightRequestOutputFormat | (string & {});
+  /** Cache behavior. 'force_cache' (default) serves from cache even if stale. 'blocking' uses cache if fresh, otherwise recalculates. 'force_blocking' always recalculates. */
+  refresh?: GetDashboardsRunInsightRequestRefresh | (string & {});
+  /** Object (or pre-encoded JSON string) to override dashboard variables for this request only (not persisted). Format: {"<variable_id>": {"code_name": "<code_name>", "variableId": "<variable_id>", "value": <new_value>}}. Each entry must include `code_name` — partial entries are silently dropped. The simplest workflow is to call `dashboard-get` first, copy the matching entry from the response, and mutate `value`. Top-level keys replace; nested values are not deep-merged. Ignored when accessed via a sharing token. */
+  variables_override?: string;
+}
+export const GetDashboardsRunInsightRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
+    filters_override: S.optional(S.String.pipe(T.Query())),
+    format: S.optional(GetDashboardsRunInsightRequestFormat.pipe(T.Query())),
+    output_format: S.optional(
+      GetDashboardsRunInsightRequestOutputFormat.pipe(T.Query()),
+    ),
+    refresh: S.optional(GetDashboardsRunInsightRequestRefresh.pipe(T.Query())),
+    variables_override: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/dashboards/{id}/run_insights/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetDashboardsRunInsightRequest",
+}) as any as S.Schema<GetDashboardsRunInsightRequest>;
+
+/** InsightSerializer restricted to identifiers + result only. */
+export interface InsightResult {
+  id?: number;
+  short_id?: string;
+  name?: string | null;
+  derived_name?: string | null;
+  result?: unknown;
+}
+export const InsightResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.Number),
+    short_id: S.optional(S.String),
+    name: S.optional(S.NullOr(S.String)),
+    derived_name: S.optional(S.NullOr(S.String)),
+    result: S.optional(S.Unknown),
+  }),
+).annotate({ identifier: "InsightResult" }) as any as S.Schema<InsightResult>;
+
+/** DashboardTileSerializer restricted to tile id + insight result fields. */
+export interface DashboardTileResult {
+  id?: number;
+  insight?: InsightResult;
+}
+export const DashboardTileResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.Number),
+    insight: S.optional(InsightResult),
+  }),
+).annotate({
+  identifier: "DashboardTileResult",
+}) as any as S.Schema<DashboardTileResult>;
+
+/** Results for each insight tile on the dashboard. */
+export type RunInsightsResponseResultsList = Array<DashboardTileResult>;
+export const RunInsightsResponseResultsList = /*@__PURE__*/ S.Array(
+  DashboardTileResult,
+) as any as S.Schema<RunInsightsResponseResultsList>;
+
+export interface RunInsightsResponse {
+  /** Results for each insight tile on the dashboard. */
+  results?: RunInsightsResponseResultsList;
+}
+export const RunInsightsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    results: S.optional(RunInsightsResponseResultsList),
+  }),
+).annotate({
+  identifier: "RunInsightsResponse",
+}) as any as S.Schema<RunInsightsResponse>;
+
+export type GetDashboardsRunWidgetRequestFormat = "json" | "txt";
+export const GetDashboardsRunWidgetRequestFormat = /*@__PURE__*/ S.String;
+
+export interface GetDashboardsRunWidgetRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A unique integer value identifying this dashboard. */
+  id: number;
+  format?: GetDashboardsRunWidgetRequestFormat | (string & {});
+  /** Comma-separated dashboard tile IDs to run widgets for. */
+  tile_ids: string;
+}
+export const GetDashboardsRunWidgetRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
+    format: S.optional(GetDashboardsRunWidgetRequestFormat.pipe(T.Query())),
+    tile_ids: S.String.pipe(T.Query()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/dashboards/{id}/run_widgets/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetDashboardsRunWidgetRequest",
+}) as any as S.Schema<GetDashboardsRunWidgetRequest>;
+
+export interface DashboardWidgetRunResult {
+  /** Dashboard tile ID for this widget result. */
+  tile_id: number;
+  /** Widget type identifier, or null when the tile was not found. */
+  widget_type: string | null;
+  /** Live widget query result payload. List widgets return results (array), limit (configured page size), hasMore (boolean), totalCount (matching rows for current filters), totalCountCapped (true when totalCount hit the widget max and more may exist), and optional offset/nextOffset. error_tracking_list results are issue summaries; session_replay_list results are recording metadata. */
+  result: unknown;
+  /** Error message when the widget could not be run. */
+  error: string | null;
+}
+export const DashboardWidgetRunResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    tile_id: S.Number,
+    widget_type: S.NullOr(S.String),
+    result: S.Unknown,
+    error: S.NullOr(S.String),
+  }),
+).annotate({
+  identifier: "DashboardWidgetRunResult",
+}) as any as S.Schema<DashboardWidgetRunResult>;
+
+/** Per-tile widget run results. */
+export type RunWidgetsResponseResultsList = Array<DashboardWidgetRunResult>;
+export const RunWidgetsResponseResultsList = /*@__PURE__*/ S.Array(
+  DashboardWidgetRunResult,
+) as any as S.Schema<RunWidgetsResponseResultsList>;
+
+export interface RunWidgetsResponse {
+  /** Per-tile widget run results. */
+  results: RunWidgetsResponseResultsList;
+}
+export const RunWidgetsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    results: RunWidgetsResponseResultsList,
+  }),
+).annotate({
+  identifier: "RunWidgetsResponse",
+}) as any as S.Schema<RunWidgetsResponse>;
+
+export type GetDashboardsStreamTileRequestFormat = "json" | "txt";
+export const GetDashboardsStreamTileRequestFormat = /*@__PURE__*/ S.String;
+
+export type GetDashboardsStreamTileRequestLayoutSize = "sm" | "xs";
+export const GetDashboardsStreamTileRequestLayoutSize = /*@__PURE__*/ S.String;
+
+export interface GetDashboardsStreamTileRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A unique integer value identifying this dashboard. */
+  id: number;
+  /** Object (or pre-encoded JSON string) to override dashboard filters for this request only (not persisted). Top-level keys replace; nested values are not deep-merged — pass the complete value for any key you override. Accepts the same keys as the dashboard filters schema (e.g., `date_from`, `date_to`, `properties`). Ignored when accessed via a sharing token. */
+  filters_override?: string;
+  format?: GetDashboardsStreamTileRequestFormat | (string & {});
+  /** Layout size for tile positioning. 'sm' (default) for standard, 'xs' for mobile. The snake_case alias `layout_size` is also accepted for backward compatibility. */
+  layoutSize?: GetDashboardsStreamTileRequestLayoutSize | (string & {});
+  /** Object (or pre-encoded JSON string) to override dashboard variables for this request only (not persisted). Format: {"<variable_id>": {"code_name": "<code_name>", "variableId": "<variable_id>", "value": <new_value>}}. Each entry must include `code_name` — partial entries are silently dropped. The simplest workflow is to call `dashboard-get` first, copy the matching entry from the response, and mutate `value`. Top-level keys replace; nested values are not deep-merged. Ignored when accessed via a sharing token. */
+  variables_override?: string;
+}
+export const GetDashboardsStreamTileRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
+    filters_override: S.optional(S.String.pipe(T.Query())),
+    format: S.optional(GetDashboardsStreamTileRequestFormat.pipe(T.Query())),
+    layoutSize: S.optional(
+      GetDashboardsStreamTileRequestLayoutSize.pipe(T.Query()),
+    ),
+    variables_override: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/dashboards/{id}/stream_tiles/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetDashboardsStreamTileRequest",
+}) as any as S.Schema<GetDashboardsStreamTileRequest>;
+
+export interface GetDashboardsStreamTileResponse {}
+export const GetDashboardsStreamTileResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "GetDashboardsStreamTileResponse",
+}) as any as S.Schema<GetDashboardsStreamTileResponse>;
+
+export type GetDashboardsWidgetCatalogRequestFormat = "json" | "txt";
+export const GetDashboardsWidgetCatalogRequestFormat = /*@__PURE__*/ S.String;
+
+export interface GetDashboardsWidgetCatalogRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  format?: GetDashboardsWidgetCatalogRequestFormat | (string & {});
+}
+export const GetDashboardsWidgetCatalogRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    format: S.optional(GetDashboardsWidgetCatalogRequestFormat.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/dashboards/widget_catalog/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetDashboardsWidgetCatalogRequest",
+}) as any as S.Schema<GetDashboardsWidgetCatalogRequest>;
 
 export interface ActivityEventsListWidgetCatalogEntryOpenApi {
   widget_type: ActivityEventsListWidgetTypeEnum;
@@ -19710,313 +19403,791 @@ export const WidgetCatalogResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "WidgetCatalogResponse",
 }) as any as S.Schema<WidgetCatalogResponse>;
 
-export type DashboardsWidgetsBatchCreateRequestFormat = "json" | "txt";
-export const DashboardsWidgetsBatchCreateRequestFormat = /*@__PURE__*/ S.String;
+export type ListDashboardsRequestFormat = "json" | "txt";
+export const ListDashboardsRequestFormat = /*@__PURE__*/ S.String;
 
-export type WidgetTileLayoutBoxOpenApi = TileLayoutBox;
-export const WidgetTileLayoutBoxOpenApi = TileLayoutBox;
-
-export type WidgetTileLayoutsOpenApi = TileLayouts;
-export const WidgetTileLayoutsOpenApi = TileLayouts;
-
-export interface ActivityEventsListWidgetAddRequestOpenApi {
-  /** Optional custom display name for the widget tile. */
-  name?: string | null;
-  /** Optional markdown description shown when show_description is enabled. */
-  description?: string;
-  /** Optional react-grid-layout positions keyed by breakpoint (sm, xs). */
-  layouts?: TileLayouts;
-  /** Whether to show the description on the dashboard tile. */
-  show_description?: boolean;
-  widget_type: ActivityEventsListWidgetTypeEnum;
-  /** Configuration for the recent events widget. */
-  config: ActivityEventsListWidgetConfig;
-}
-export const ActivityEventsListWidgetAddRequestOpenApi =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      name: S.optional(S.NullOr(S.String)),
-      description: S.optional(S.String),
-      layouts: S.optional(TileLayouts),
-      show_description: S.optional(S.Boolean),
-      widget_type: ActivityEventsListWidgetTypeEnum,
-      config: ActivityEventsListWidgetConfig,
-    }),
-  ).annotate({
-    identifier: "ActivityEventsListWidgetAddRequestOpenApi",
-  }) as any as S.Schema<ActivityEventsListWidgetAddRequestOpenApi>;
-
-export interface ErrorTrackingListWidgetAddRequestOpenApi {
-  /** Optional custom display name for the widget tile. */
-  name?: string | null;
-  /** Optional markdown description shown when show_description is enabled. */
-  description?: string;
-  /** Optional react-grid-layout positions keyed by breakpoint (sm, xs). */
-  layouts?: TileLayouts;
-  /** Whether to show the description on the dashboard tile. */
-  show_description?: boolean;
-  widget_type: ErrorTrackingListWidgetTypeEnum;
-  /** Configuration for the top issues widget. */
-  config: ErrorTrackingListWidgetConfig;
-}
-export const ErrorTrackingListWidgetAddRequestOpenApi = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      name: S.optional(S.NullOr(S.String)),
-      description: S.optional(S.String),
-      layouts: S.optional(TileLayouts),
-      show_description: S.optional(S.Boolean),
-      widget_type: ErrorTrackingListWidgetTypeEnum,
-      config: ErrorTrackingListWidgetConfig,
-    }),
-).annotate({
-  identifier: "ErrorTrackingListWidgetAddRequestOpenApi",
-}) as any as S.Schema<ErrorTrackingListWidgetAddRequestOpenApi>;
-
-export interface SessionReplayListWidgetAddRequestOpenApi {
-  /** Optional custom display name for the widget tile. */
-  name?: string | null;
-  /** Optional markdown description shown when show_description is enabled. */
-  description?: string;
-  /** Optional react-grid-layout positions keyed by breakpoint (sm, xs). */
-  layouts?: TileLayouts;
-  /** Whether to show the description on the dashboard tile. */
-  show_description?: boolean;
-  widget_type: SessionReplayListWidgetTypeEnum;
-  /** Configuration for the recent recordings widget. */
-  config: SessionReplayListWidgetConfig;
-}
-export const SessionReplayListWidgetAddRequestOpenApi = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      name: S.optional(S.NullOr(S.String)),
-      description: S.optional(S.String),
-      layouts: S.optional(TileLayouts),
-      show_description: S.optional(S.Boolean),
-      widget_type: SessionReplayListWidgetTypeEnum,
-      config: SessionReplayListWidgetConfig,
-    }),
-).annotate({
-  identifier: "SessionReplayListWidgetAddRequestOpenApi",
-}) as any as S.Schema<SessionReplayListWidgetAddRequestOpenApi>;
-
-export interface ExperimentsListWidgetAddRequestOpenApi {
-  /** Optional custom display name for the widget tile. */
-  name?: string | null;
-  /** Optional markdown description shown when show_description is enabled. */
-  description?: string;
-  /** Optional react-grid-layout positions keyed by breakpoint (sm, xs). */
-  layouts?: TileLayouts;
-  /** Whether to show the description on the dashboard tile. */
-  show_description?: boolean;
-  widget_type: ExperimentsListWidgetTypeEnum;
-  /** Configuration for the experiments list widget. */
-  config: ExperimentsListWidgetConfig;
-}
-export const ExperimentsListWidgetAddRequestOpenApi = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      name: S.optional(S.NullOr(S.String)),
-      description: S.optional(S.String),
-      layouts: S.optional(TileLayouts),
-      show_description: S.optional(S.Boolean),
-      widget_type: ExperimentsListWidgetTypeEnum,
-      config: ExperimentsListWidgetConfig,
-    }),
-).annotate({
-  identifier: "ExperimentsListWidgetAddRequestOpenApi",
-}) as any as S.Schema<ExperimentsListWidgetAddRequestOpenApi>;
-
-export interface ExperimentResultsWidgetAddRequestOpenApi {
-  /** Optional custom display name for the widget tile. */
-  name?: string | null;
-  /** Optional markdown description shown when show_description is enabled. */
-  description?: string;
-  /** Optional react-grid-layout positions keyed by breakpoint (sm, xs). */
-  layouts?: TileLayouts;
-  /** Whether to show the description on the dashboard tile. */
-  show_description?: boolean;
-  widget_type: ExperimentResultsWidgetTypeEnum;
-  /** Configuration for the experiment results widget. */
-  config: ExperimentResultsWidgetConfig;
-}
-export const ExperimentResultsWidgetAddRequestOpenApi = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      name: S.optional(S.NullOr(S.String)),
-      description: S.optional(S.String),
-      layouts: S.optional(TileLayouts),
-      show_description: S.optional(S.Boolean),
-      widget_type: ExperimentResultsWidgetTypeEnum,
-      config: ExperimentResultsWidgetConfig,
-    }),
-).annotate({
-  identifier: "ExperimentResultsWidgetAddRequestOpenApi",
-}) as any as S.Schema<ExperimentResultsWidgetAddRequestOpenApi>;
-
-export interface SurveyResultsWidgetAddRequestOpenApi {
-  /** Optional custom display name for the widget tile. */
-  name?: string | null;
-  /** Optional markdown description shown when show_description is enabled. */
-  description?: string;
-  /** Optional react-grid-layout positions keyed by breakpoint (sm, xs). */
-  layouts?: TileLayouts;
-  /** Whether to show the description on the dashboard tile. */
-  show_description?: boolean;
-  widget_type: SurveyResultsWidgetTypeEnum;
-  /** Configuration for the survey results widget. */
-  config: SurveyResultsWidgetConfig;
-}
-export const SurveyResultsWidgetAddRequestOpenApi = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      name: S.optional(S.NullOr(S.String)),
-      description: S.optional(S.String),
-      layouts: S.optional(TileLayouts),
-      show_description: S.optional(S.Boolean),
-      widget_type: SurveyResultsWidgetTypeEnum,
-      config: SurveyResultsWidgetConfig,
-    }),
-).annotate({
-  identifier: "SurveyResultsWidgetAddRequestOpenApi",
-}) as any as S.Schema<SurveyResultsWidgetAddRequestOpenApi>;
-
-export interface LogsListWidgetAddRequestOpenApi {
-  /** Optional custom display name for the widget tile. */
-  name?: string | null;
-  /** Optional markdown description shown when show_description is enabled. */
-  description?: string;
-  /** Optional react-grid-layout positions keyed by breakpoint (sm, xs). */
-  layouts?: TileLayouts;
-  /** Whether to show the description on the dashboard tile. */
-  show_description?: boolean;
-  widget_type: LogsListWidgetTypeEnum;
-  /** Configuration for the recent logs widget. */
-  config: LogsListWidgetConfig;
-}
-export const LogsListWidgetAddRequestOpenApi = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.NullOr(S.String)),
-    description: S.optional(S.String),
-    layouts: S.optional(TileLayouts),
-    show_description: S.optional(S.Boolean),
-    widget_type: LogsListWidgetTypeEnum,
-    config: LogsListWidgetConfig,
-  }),
-).annotate({
-  identifier: "LogsListWidgetAddRequestOpenApi",
-}) as any as S.Schema<LogsListWidgetAddRequestOpenApi>;
-
-export interface ConversationsRecentTicketsWidgetAddRequestOpenApi {
-  /** Optional custom display name for the widget tile. */
-  name?: string | null;
-  /** Optional markdown description shown when show_description is enabled. */
-  description?: string;
-  /** Optional react-grid-layout positions keyed by breakpoint (sm, xs). */
-  layouts?: TileLayouts;
-  /** Whether to show the description on the dashboard tile. */
-  show_description?: boolean;
-  widget_type: ConversationsRecentTicketsWidgetTypeEnum;
-  /** Configuration for the recent tickets widget. */
-  config: ConversationsRecentTicketsWidgetConfig;
-}
-export const ConversationsRecentTicketsWidgetAddRequestOpenApi =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      name: S.optional(S.NullOr(S.String)),
-      description: S.optional(S.String),
-      layouts: S.optional(TileLayouts),
-      show_description: S.optional(S.Boolean),
-      widget_type: ConversationsRecentTicketsWidgetTypeEnum,
-      config: ConversationsRecentTicketsWidgetConfig,
-    }),
-  ).annotate({
-    identifier: "ConversationsRecentTicketsWidgetAddRequestOpenApi",
-  }) as any as S.Schema<ConversationsRecentTicketsWidgetAddRequestOpenApi>;
-
-export type AddDashboardWidgetRequest =
-  | ActivityEventsListWidgetAddRequestOpenApi
-  | ErrorTrackingListWidgetAddRequestOpenApi
-  | SessionReplayListWidgetAddRequestOpenApi
-  | ExperimentsListWidgetAddRequestOpenApi
-  | ExperimentResultsWidgetAddRequestOpenApi
-  | SurveyResultsWidgetAddRequestOpenApi
-  | LogsListWidgetAddRequestOpenApi
-  | ConversationsRecentTicketsWidgetAddRequestOpenApi;
-export const AddDashboardWidgetRequest =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<AddDashboardWidgetRequest>;
-
-/** Widget tiles to add atomically. Supported widget_type values: activity_events_list, conversations_recent_tickets, error_tracking_list, experiment_results, experiments_list, logs_list, session_replay_list, survey_results. Use dashboard-widget-catalog-list for per-type config_schema documentation. (1–10 per request). */
-export type DashboardsWidgetsBatchCreateRequestWidgetsList =
-  Array<AddDashboardWidgetRequest>;
-export const DashboardsWidgetsBatchCreateRequestWidgetsList =
-  /*@__PURE__*/ S.Array(
-    AddDashboardWidgetRequest,
-  ) as any as S.Schema<DashboardsWidgetsBatchCreateRequestWidgetsList>;
-
-export interface DashboardsWidgetsBatchCreateRequest {
+export interface ListDashboardsRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
-  /** A unique integer value identifying this dashboard. */
-  id: number;
-  format?: DashboardsWidgetsBatchCreateRequestFormat | (string & {});
-  /** Widget tiles to add atomically. Supported widget_type values: activity_events_list, conversations_recent_tickets, error_tracking_list, experiment_results, experiments_list, logs_list, session_replay_list, survey_results. Use dashboard-widget-catalog-list for per-type config_schema documentation. (1–10 per request). */
-  widgets: DashboardsWidgetsBatchCreateRequestWidgetsList;
+  /** Optional. Return only dashboards filed directly in this project-tree folder, e.g. 'Unfiled/Dashboards'. An empty string matches dashboards at the project root. Nested sub-folders are not included. */
+  folder?: string;
+  format?: ListDashboardsRequestFormat | (string & {});
+  /** Number of results to return per page. */
+  limit?: number;
+  /** The initial index from which to return the results. */
+  offset?: number;
+  /** Optional. Match against dashboard `name`, `description`, and tag names. Returns exact (case-insensitive substring) matches only; if no exact match exists, returns similar (fuzzy trigram — typos, transpositions, prefix-as-you-type) matches instead. Results are then ordered by relevance, then pinned status, then name; each result's `search_match_type` is `exact` or `similar`. When omitted, dashboards are ordered by pinned status then alphabetical name. Capped at 200 characters; longer queries return a 400 error. */
+  search?: string;
 }
-export const DashboardsWidgetsBatchCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListDashboardsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
-    id: S.Number.pipe(T.Label()),
-    format: S.optional(
-      DashboardsWidgetsBatchCreateRequestFormat.pipe(T.Query()),
-    ),
-    widgets: DashboardsWidgetsBatchCreateRequestWidgetsList,
+    folder: S.optional(S.String.pipe(T.Query())),
+    format: S.optional(ListDashboardsRequestFormat.pipe(T.Query())),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    offset: S.optional(S.Number.pipe(T.Query())),
+    search: S.optional(S.String.pipe(T.Query())),
   }).pipe(
     T.Http({
-      method: "POST",
-      uri: "/api/projects/{project_id}/dashboards/{id}/widgets/batch/",
+      method: "GET",
+      uri: "/api/projects/{project_id}/dashboards/",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "DashboardsWidgetsBatchCreateRequest",
-}) as any as S.Schema<DashboardsWidgetsBatchCreateRequest>;
+  identifier: "ListDashboardsRequest",
+}) as any as S.Schema<ListDashboardsRequest>;
 
-/** Created dashboard widget tiles in request order. */
-export type AddDashboardWidgetsBatchResponseOutputTilesList =
-  Array<DashboardTileOutput>;
-export const AddDashboardWidgetsBatchResponseOutputTilesList =
-  /*@__PURE__*/ S.Array(
-    DashboardTileOutput,
-  ) as any as S.Schema<AddDashboardWidgetsBatchResponseOutputTilesList>;
+export type DashboardBasicTagsList = Array<unknown>;
+export const DashboardBasicTagsList = /*@__PURE__*/ S.Array(
+  S.Unknown,
+) as any as S.Schema<DashboardBasicTagsList>;
 
-export interface AddDashboardWidgetsBatchResponseOutput {
-  /** Created dashboard widget tiles in request order. */
-  tiles: AddDashboardWidgetsBatchResponseOutputTilesList;
+/** Serializer mixin that handles tags for objects. */
+export interface DashboardBasic {
+  id?: number;
+  /** Name of the dashboard. */
+  name?: string | null;
+  /** Description of the dashboard. */
+  description?: string;
+  /** Whether the dashboard is pinned to the top of the list. */
+  pinned?: boolean;
+  created_at?: string;
+  created_by?: UserBasic | null;
+  last_accessed_at?: string | null;
+  last_viewed_at?: string | null;
+  /** Path of the project-tree folder this dashboard is filed under in the file system, e.g. 'Unfiled/Dashboards'. An empty string means the project root; null means the dashboard has no file system entry. The dashboard's own name is not part of the path. */
+  folder?: string | null;
+  /** Id of this dashboard's file system entry, or null when it has none. Together with `file_system_path` this is everything a caller needs to move the dashboard between folders, so a list page does not have to look the entry up separately. */
+  file_system_id?: string | null;
+  /** Full path of this dashboard's file system entry, e.g. 'Unfiled/Dashboards/Revenue'. Unlike `folder` this keeps the dashboard's own name as the last segment, which is what a move needs in order to compute the destination path. Null when it has no entry. */
+  file_system_path?: string | null;
+  is_shared?: boolean;
+  deleted?: boolean;
+  creation_mode?: DashboardCreationModeEnum;
+  tags?: DashboardBasicTagsList;
+  /** Controls who can edit the dashboard. * `21` - Everyone in the project can edit * `37` - Only those invited to this dashboard can edit */
+  restriction_level?: RestrictionLevelEnum;
+  effective_restriction_level?: RestrictionLevelEnum;
+  effective_privilege_level?: PrivilegeLevelEnum;
+  /** The effective access level the user has for this object */
+  user_access_level?: string | null;
+  access_control_version?: string;
+  last_refresh?: string | null;
+  team_id?: number;
+  /** How this row matched the `search` query parameter: `exact` (the term is a case-insensitive substring of a searched field) or `similar` (a fuzzy trigram match, returned only when no exact match exists). Null when the list is not filtered by `search`. */
+  search_match_type?: SearchMatchTypeEnum | null;
 }
-export const AddDashboardWidgetsBatchResponseOutput = /*@__PURE__*/ S.suspend(
+export const DashboardBasic = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.Number),
+    name: S.optional(S.NullOr(S.String)),
+    description: S.optional(S.String),
+    pinned: S.optional(S.Boolean),
+    created_at: S.optional(S.String),
+    created_by: S.optional(S.NullOr(UserBasic)),
+    last_accessed_at: S.optional(S.NullOr(S.String)),
+    last_viewed_at: S.optional(S.NullOr(S.String)),
+    folder: S.optional(S.NullOr(S.String)),
+    file_system_id: S.optional(S.NullOr(S.String)),
+    file_system_path: S.optional(S.NullOr(S.String)),
+    is_shared: S.optional(S.Boolean),
+    deleted: S.optional(S.Boolean),
+    creation_mode: S.optional(DashboardCreationModeEnum),
+    tags: S.optional(DashboardBasicTagsList),
+    restriction_level: S.optional(RestrictionLevelEnum),
+    effective_restriction_level: S.optional(RestrictionLevelEnum),
+    effective_privilege_level: S.optional(PrivilegeLevelEnum),
+    user_access_level: S.optional(S.NullOr(S.String)),
+    access_control_version: S.optional(S.String),
+    last_refresh: S.optional(S.NullOr(S.String)),
+    team_id: S.optional(S.Number),
+    search_match_type: S.optional(S.NullOr(SearchMatchTypeEnum)),
+  }),
+).annotate({ identifier: "DashboardBasic" }) as any as S.Schema<DashboardBasic>;
+
+export type PaginatedDashboardBasicListResultsList = Array<DashboardBasic>;
+export const PaginatedDashboardBasicListResultsList = /*@__PURE__*/ S.Array(
+  DashboardBasic,
+) as any as S.Schema<PaginatedDashboardBasicListResultsList>;
+
+export interface PaginatedDashboardBasicList {
+  count?: number;
+  next?: string | null;
+  previous?: string | null;
+  results?: PaginatedDashboardBasicListResultsList;
+}
+export const PaginatedDashboardBasicList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    count: S.optional(S.Number),
+    next: S.optional(S.NullOr(S.String)),
+    previous: S.optional(S.NullOr(S.String)),
+    results: S.optional(PaginatedDashboardBasicListResultsList),
+  }),
+).annotate({
+  identifier: "PaginatedDashboardBasicList",
+}) as any as S.Schema<PaginatedDashboardBasicList>;
+
+export interface ListDashboardsCollaboratorsRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  dashboard_id: number;
+}
+export const ListDashboardsCollaboratorsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    dashboard_id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/dashboards/{dashboard_id}/collaborators/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListDashboardsCollaboratorsRequest",
+}) as any as S.Schema<ListDashboardsCollaboratorsRequest>;
+
+export type ListDashboardsCollaboratorsResponseBodyList =
+  Array<DashboardCollaboratorOutput>;
+export const ListDashboardsCollaboratorsResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    DashboardCollaboratorOutput,
+  ) as any as S.Schema<ListDashboardsCollaboratorsResponseBodyList>;
+
+export type ListDashboardsCollaboratorsResponse =
+  ListDashboardsCollaboratorsResponseBodyList;
+export const ListDashboardsCollaboratorsResponse = /*@__PURE__*/ S.suspend(() =>
+  ListDashboardsCollaboratorsResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListDashboardsCollaboratorsResponse",
+}) as any as S.Schema<ListDashboardsCollaboratorsResponse>;
+
+export interface ListDashboardsSharingRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  dashboard_id: number;
+}
+export const ListDashboardsSharingRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    dashboard_id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/dashboards/{dashboard_id}/sharing/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListDashboardsSharingRequest",
+}) as any as S.Schema<ListDashboardsSharingRequest>;
+
+export type ListDashboardsSharingResponseBodyList = Array<SharingConfiguration>;
+export const ListDashboardsSharingResponseBodyList = /*@__PURE__*/ S.Array(
+  SharingConfiguration,
+) as any as S.Schema<ListDashboardsSharingResponseBodyList>;
+
+export type ListDashboardsSharingResponse =
+  ListDashboardsSharingResponseBodyList;
+export const ListDashboardsSharingResponse = /*@__PURE__*/ S.suspend(() =>
+  ListDashboardsSharingResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListDashboardsSharingResponse",
+}) as any as S.Schema<ListDashboardsSharingResponse>;
+
+export type UpdateDashboardRequestFormat = "json" | "txt";
+export const UpdateDashboardRequestFormat = /*@__PURE__*/ S.String;
+
+export type UpdateDashboardRequestTagsList = Array<unknown>;
+export const UpdateDashboardRequestTagsList = /*@__PURE__*/ S.Array(
+  S.Unknown,
+) as any as S.Schema<UpdateDashboardRequestTagsList>;
+
+/** List of quick filter IDs associated with this dashboard */
+export type UpdateDashboardRequestQuickFilterIdsList = Array<string>;
+export const UpdateDashboardRequestQuickFilterIdsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<UpdateDashboardRequestQuickFilterIdsList>;
+
+export interface UpdateDashboardRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A unique integer value identifying this dashboard. */
+  id: number;
+  format?: UpdateDashboardRequestFormat | (string & {});
+  /** Opt in to receiving the deprecated `dashboards` field in insight payloads. Once opt-in enforcement is enabled, API-token callers stop receiving it by default; use `dashboard_tiles` instead. */
+  include_dashboards?: boolean;
+  name?: string | null;
+  description?: string;
+  pinned?: boolean;
+  last_accessed_at?: string | null;
+  deleted?: boolean;
+  /** Custom color mapping for breakdown values. */
+  breakdown_colors?: unknown;
+  /** ID of the color theme used for chart visualizations. */
+  data_color_theme_id?: number | null;
+  tags?: UpdateDashboardRequestTagsList;
+  restriction_level?: RestrictionLevelEnum | (number & {});
+  last_refresh?: string | null;
+  /** List of quick filter IDs associated with this dashboard */
+  quick_filter_ids?: UpdateDashboardRequestQuickFilterIdsList | null;
+  /** Named tile density preset. Use tight, condensed, standard, relaxed, or wide. * `tight` - tight * `condensed` - condensed * `standard` - standard * `relaxed` - relaxed * `wide` - wide */
+  grid_spacing?: TileSpacingEnum | (string & {});
+  /** How tiles rearrange after a move or resize. vertical stacks tiles upward, horizontal stacks tiles to the left, and stable preserves positions while moving colliding tiles. * `vertical` - vertical * `horizontal` - horizontal * `stable` - stable */
+  layout_compaction?: LayoutCompactionEnum | (string & {});
+  /** Template key to create the dashboard from a predefined template. */
+  use_template?: string;
+  /** ID of an existing dashboard to duplicate. */
+  use_dashboard?: number | null;
+  /** When deleting, also delete insights that are only on this dashboard. */
+  delete_insights?: boolean;
+  _create_in_folder?: string;
+}
+export const UpdateDashboardRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
+    format: S.optional(UpdateDashboardRequestFormat.pipe(T.Query())),
+    include_dashboards: S.optional(S.Boolean.pipe(T.Query())),
+    name: S.optional(S.NullOr(S.String)),
+    description: S.optional(S.String),
+    pinned: S.optional(S.Boolean),
+    last_accessed_at: S.optional(S.NullOr(S.String)),
+    deleted: S.optional(S.Boolean),
+    breakdown_colors: S.optional(S.Unknown),
+    data_color_theme_id: S.optional(S.NullOr(S.Number)),
+    tags: S.optional(UpdateDashboardRequestTagsList),
+    restriction_level: S.optional(RestrictionLevelEnum),
+    last_refresh: S.optional(S.NullOr(S.String)),
+    quick_filter_ids: S.optional(
+      S.NullOr(UpdateDashboardRequestQuickFilterIdsList),
+    ),
+    grid_spacing: S.optional(TileSpacingEnum),
+    layout_compaction: S.optional(LayoutCompactionEnum),
+    use_template: S.optional(S.String),
+    use_dashboard: S.optional(S.NullOr(S.Number)),
+    delete_insights: S.optional(S.Boolean),
+    _create_in_folder: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/api/projects/{project_id}/dashboards/{id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "UpdateDashboardRequest",
+}) as any as S.Schema<UpdateDashboardRequest>;
+
+export type UpdateDashboardsPartialRequestFormat = "json" | "txt";
+export const UpdateDashboardsPartialRequestFormat = /*@__PURE__*/ S.String;
+
+/** OpenAPI-only shape for a dashboard's filters object (agents/MCP). Documents the dashboard-level filters that act as the single source of truth for the dashboard's tiles. Runtime persistence reads the raw ``filters`` dict from the request body, so extra keys are accepted, but these are the ones agents should set. */
+export interface DashboardFiltersOpenApi {
+  /** Dashboard-level start of the date range, e.g. '-30d', '-7d', or an ISO date. Applies to all tiles. */
+  date_from?: string | null;
+  /** Dashboard-level end of the date range, e.g. '-1d' or an ISO date. Null/omitted means up to now. */
+  date_to?: string | null;
+  /** Dashboard-level property filters applied to every tile (PostHog property filter group). */
+  properties?: unknown;
+}
+export const DashboardFiltersOpenApi = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    date_from: S.optional(S.NullOr(S.String)),
+    date_to: S.optional(S.NullOr(S.String)),
+    properties: S.optional(S.Unknown),
+  }),
+).annotate({
+  identifier: "DashboardFiltersOpenApi",
+}) as any as S.Schema<DashboardFiltersOpenApi>;
+
+export type UpdateDashboardsPartialRequestTagsList = Array<string>;
+export const UpdateDashboardsPartialRequestTagsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<UpdateDashboardsPartialRequestTagsList>;
+
+/** List of quick filter IDs associated with this dashboard. */
+export type UpdateDashboardsPartialRequestQuickFilterIdsList = Array<string>;
+export const UpdateDashboardsPartialRequestQuickFilterIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<UpdateDashboardsPartialRequestQuickFilterIdsList>;
+
+/** * `activity_events_list` - activity_events_list * `conversations_recent_tickets` - conversations_recent_tickets * `error_tracking_list` - error_tracking_list * `experiment_results` - experiment_results * `experiments_list` - experiments_list * `logs_list` - logs_list * `session_replay_list` - session_replay_list * `survey_results` - survey_results */
+export type DashboardPatchWidgetOpenApiWidgetTypeEnum =
+  | "activity_events_list"
+  | "conversations_recent_tickets"
+  | "error_tracking_list"
+  | "experiment_results"
+  | "experiments_list"
+  | "logs_list"
+  | "session_replay_list"
+  | "survey_results";
+export const DashboardPatchWidgetOpenApiWidgetTypeEnum = /*@__PURE__*/ S.String;
+
+export interface DashboardPatchWidgetOpenApi {
+  /** Existing widget row ID when updating a widget tile via dashboard PATCH. */
+  id?: string;
+  /** Widget type identifier (cannot be changed on update). * `activity_events_list` - activity_events_list * `conversations_recent_tickets` - conversations_recent_tickets * `error_tracking_list` - error_tracking_list * `experiment_results` - experiment_results * `experiments_list` - experiments_list * `logs_list` - logs_list * `session_replay_list` - session_replay_list * `survey_results` - survey_results */
+  widget_type?: DashboardPatchWidgetOpenApiWidgetTypeEnum | (string & {});
+  /** Widget-specific configuration. Shape depends on the tile's widget_type. */
+  config?: DashboardWidgetConfig;
+  /** Optional custom display name for the widget tile. */
+  name?: string | null;
+  /** Optional markdown description shown when show_description is enabled. */
+  description?: string;
+}
+export const DashboardPatchWidgetOpenApi = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    widget_type: S.optional(DashboardPatchWidgetOpenApiWidgetTypeEnum),
+    config: S.optional(DashboardWidgetConfig),
+    name: S.optional(S.NullOr(S.String)),
+    description: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DashboardPatchWidgetOpenApi",
+}) as any as S.Schema<DashboardPatchWidgetOpenApi>;
+
+export interface DashboardPatchTileOpenApi {
+  /** Dashboard tile ID to update. */
+  id?: number;
+  /** Nested widget row updates. */
+  widget?: DashboardPatchWidgetOpenApi;
+}
+export const DashboardPatchTileOpenApi = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.Number),
+    widget: S.optional(DashboardPatchWidgetOpenApi),
+  }),
+).annotate({
+  identifier: "DashboardPatchTileOpenApi",
+}) as any as S.Schema<DashboardPatchTileOpenApi>;
+
+/** Dashboard tiles to update. Widget tiles accept nested widget.config patches. */
+export type UpdateDashboardsPartialRequestTilesList =
+  Array<DashboardPatchTileOpenApi>;
+export const UpdateDashboardsPartialRequestTilesList = /*@__PURE__*/ S.Array(
+  DashboardPatchTileOpenApi,
+) as any as S.Schema<UpdateDashboardsPartialRequestTilesList>;
+
+export interface UpdateDashboardsPartialRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A unique integer value identifying this dashboard. */
+  id: number;
+  format?: UpdateDashboardsPartialRequestFormat | (string & {});
+  /** Opt in to receiving the deprecated `dashboards` field in insight payloads. Once opt-in enforcement is enabled, API-token callers stop receiving it by default; use `dashboard_tiles` instead. */
+  include_dashboards?: boolean;
+  name?: string | null;
+  description?: string;
+  pinned?: boolean;
+  /** Dashboard-level filters (date range and properties) applied across all tiles as the source of truth. */
+  filters?: DashboardFiltersOpenApi;
+  /** Custom color mapping for breakdown values. */
+  breakdown_colors?: unknown;
+  /** ID of the color theme used for chart visualizations. */
+  data_color_theme_id?: number | null;
+  tags?: UpdateDashboardsPartialRequestTagsList;
+  /** Who can edit this dashboard. * `21` - Everyone in the project can edit * `37` - Only those invited to this dashboard can edit */
+  restriction_level?: RestrictionLevelEnum | (number & {});
+  /** List of quick filter IDs associated with this dashboard. */
+  quick_filter_ids?: UpdateDashboardsPartialRequestQuickFilterIdsList | null;
+  /** Named tile density preset. Use tight, condensed, standard, relaxed, or wide. * `tight` - tight * `condensed` - condensed * `standard` - standard * `relaxed` - relaxed * `wide` - wide */
+  grid_spacing?: TileSpacingEnum | (string & {});
+  /** How tiles rearrange after a move or resize. vertical stacks tiles upward, horizontal stacks tiles to the left, and stable preserves positions while moving colliding tiles. * `vertical` - vertical * `horizontal` - horizontal * `stable` - stable */
+  layout_compaction?: LayoutCompactionEnum | (string & {});
+  /** Dashboard tiles to update. Widget tiles accept nested widget.config patches. */
+  tiles?: UpdateDashboardsPartialRequestTilesList;
+  /** Template key to create the dashboard from a predefined template. */
+  use_template?: string;
+  /** ID of an existing dashboard to duplicate. */
+  use_dashboard?: number | null;
+  /** When deleting, also delete insights that are only on this dashboard. */
+  delete_insights?: boolean;
+}
+export const UpdateDashboardsPartialRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
+    format: S.optional(UpdateDashboardsPartialRequestFormat.pipe(T.Query())),
+    include_dashboards: S.optional(S.Boolean.pipe(T.Query())),
+    name: S.optional(S.NullOr(S.String)),
+    description: S.optional(S.String),
+    pinned: S.optional(S.Boolean),
+    filters: S.optional(DashboardFiltersOpenApi),
+    breakdown_colors: S.optional(S.Unknown),
+    data_color_theme_id: S.optional(S.NullOr(S.Number)),
+    tags: S.optional(UpdateDashboardsPartialRequestTagsList),
+    restriction_level: S.optional(RestrictionLevelEnum),
+    quick_filter_ids: S.optional(
+      S.NullOr(UpdateDashboardsPartialRequestQuickFilterIdsList),
+    ),
+    grid_spacing: S.optional(TileSpacingEnum),
+    layout_compaction: S.optional(LayoutCompactionEnum),
+    tiles: S.optional(UpdateDashboardsPartialRequestTilesList),
+    use_template: S.optional(S.String),
+    use_dashboard: S.optional(S.NullOr(S.Number)),
+    delete_insights: S.optional(S.Boolean),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/api/projects/{project_id}/dashboards/{id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "UpdateDashboardsPartialRequest",
+}) as any as S.Schema<UpdateDashboardsPartialRequest>;
+
+export type UpdateDashboardWidgetsBatchRequestFormat = "json" | "txt";
+export const UpdateDashboardWidgetsBatchRequestFormat = /*@__PURE__*/ S.String;
+
+export interface ActivityEventsListWidgetUpdateRequestOpenApi {
+  /** ID of the widget tile to update. Use dashboard-get to look up widget tile IDs. */
+  tile_id: number;
+  /** New display name for the widget. Empty string or null clears it; omit to leave unchanged. */
+  name?: string | null;
+  /** New markdown description for the widget. Omit to leave unchanged. */
+  description?: string;
+  widget_type: ActivityEventsListWidgetTypeEnum;
+  /** New configuration for the recent events widget. Omit to leave unchanged. */
+  config?: ActivityEventsListWidgetConfig;
+}
+export const ActivityEventsListWidgetUpdateRequestOpenApi =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      tile_id: S.Number,
+      name: S.optional(S.NullOr(S.String)),
+      description: S.optional(S.String),
+      widget_type: ActivityEventsListWidgetTypeEnum,
+      config: S.optional(ActivityEventsListWidgetConfig),
+    }),
+  ).annotate({
+    identifier: "ActivityEventsListWidgetUpdateRequestOpenApi",
+  }) as any as S.Schema<ActivityEventsListWidgetUpdateRequestOpenApi>;
+
+export interface ErrorTrackingListWidgetUpdateRequestOpenApi {
+  /** ID of the widget tile to update. Use dashboard-get to look up widget tile IDs. */
+  tile_id: number;
+  /** New display name for the widget. Empty string or null clears it; omit to leave unchanged. */
+  name?: string | null;
+  /** New markdown description for the widget. Omit to leave unchanged. */
+  description?: string;
+  widget_type: ErrorTrackingListWidgetTypeEnum;
+  /** New configuration for the top issues widget. Omit to leave unchanged. */
+  config?: ErrorTrackingListWidgetConfig;
+}
+export const ErrorTrackingListWidgetUpdateRequestOpenApi =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      tile_id: S.Number,
+      name: S.optional(S.NullOr(S.String)),
+      description: S.optional(S.String),
+      widget_type: ErrorTrackingListWidgetTypeEnum,
+      config: S.optional(ErrorTrackingListWidgetConfig),
+    }),
+  ).annotate({
+    identifier: "ErrorTrackingListWidgetUpdateRequestOpenApi",
+  }) as any as S.Schema<ErrorTrackingListWidgetUpdateRequestOpenApi>;
+
+export interface SessionReplayListWidgetUpdateRequestOpenApi {
+  /** ID of the widget tile to update. Use dashboard-get to look up widget tile IDs. */
+  tile_id: number;
+  /** New display name for the widget. Empty string or null clears it; omit to leave unchanged. */
+  name?: string | null;
+  /** New markdown description for the widget. Omit to leave unchanged. */
+  description?: string;
+  widget_type: SessionReplayListWidgetTypeEnum;
+  /** New configuration for the recent recordings widget. Omit to leave unchanged. */
+  config?: SessionReplayListWidgetConfig;
+}
+export const SessionReplayListWidgetUpdateRequestOpenApi =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      tile_id: S.Number,
+      name: S.optional(S.NullOr(S.String)),
+      description: S.optional(S.String),
+      widget_type: SessionReplayListWidgetTypeEnum,
+      config: S.optional(SessionReplayListWidgetConfig),
+    }),
+  ).annotate({
+    identifier: "SessionReplayListWidgetUpdateRequestOpenApi",
+  }) as any as S.Schema<SessionReplayListWidgetUpdateRequestOpenApi>;
+
+export interface ExperimentsListWidgetUpdateRequestOpenApi {
+  /** ID of the widget tile to update. Use dashboard-get to look up widget tile IDs. */
+  tile_id: number;
+  /** New display name for the widget. Empty string or null clears it; omit to leave unchanged. */
+  name?: string | null;
+  /** New markdown description for the widget. Omit to leave unchanged. */
+  description?: string;
+  widget_type: ExperimentsListWidgetTypeEnum;
+  /** New configuration for the experiments list widget. Omit to leave unchanged. */
+  config?: ExperimentsListWidgetConfig;
+}
+export const ExperimentsListWidgetUpdateRequestOpenApi =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      tile_id: S.Number,
+      name: S.optional(S.NullOr(S.String)),
+      description: S.optional(S.String),
+      widget_type: ExperimentsListWidgetTypeEnum,
+      config: S.optional(ExperimentsListWidgetConfig),
+    }),
+  ).annotate({
+    identifier: "ExperimentsListWidgetUpdateRequestOpenApi",
+  }) as any as S.Schema<ExperimentsListWidgetUpdateRequestOpenApi>;
+
+export interface ExperimentResultsWidgetUpdateRequestOpenApi {
+  /** ID of the widget tile to update. Use dashboard-get to look up widget tile IDs. */
+  tile_id: number;
+  /** New display name for the widget. Empty string or null clears it; omit to leave unchanged. */
+  name?: string | null;
+  /** New markdown description for the widget. Omit to leave unchanged. */
+  description?: string;
+  widget_type: ExperimentResultsWidgetTypeEnum;
+  /** New configuration for the experiment results widget. Omit to leave unchanged. */
+  config?: ExperimentResultsWidgetConfig;
+}
+export const ExperimentResultsWidgetUpdateRequestOpenApi =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      tile_id: S.Number,
+      name: S.optional(S.NullOr(S.String)),
+      description: S.optional(S.String),
+      widget_type: ExperimentResultsWidgetTypeEnum,
+      config: S.optional(ExperimentResultsWidgetConfig),
+    }),
+  ).annotate({
+    identifier: "ExperimentResultsWidgetUpdateRequestOpenApi",
+  }) as any as S.Schema<ExperimentResultsWidgetUpdateRequestOpenApi>;
+
+export interface SurveyResultsWidgetUpdateRequestOpenApi {
+  /** ID of the widget tile to update. Use dashboard-get to look up widget tile IDs. */
+  tile_id: number;
+  /** New display name for the widget. Empty string or null clears it; omit to leave unchanged. */
+  name?: string | null;
+  /** New markdown description for the widget. Omit to leave unchanged. */
+  description?: string;
+  widget_type: SurveyResultsWidgetTypeEnum;
+  /** New configuration for the survey results widget. Omit to leave unchanged. */
+  config?: SurveyResultsWidgetConfig;
+}
+export const SurveyResultsWidgetUpdateRequestOpenApi = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      tiles: AddDashboardWidgetsBatchResponseOutputTilesList,
+      tile_id: S.Number,
+      name: S.optional(S.NullOr(S.String)),
+      description: S.optional(S.String),
+      widget_type: SurveyResultsWidgetTypeEnum,
+      config: S.optional(SurveyResultsWidgetConfig),
     }),
 ).annotate({
-  identifier: "AddDashboardWidgetsBatchResponseOutput",
-}) as any as S.Schema<AddDashboardWidgetsBatchResponseOutput>;
+  identifier: "SurveyResultsWidgetUpdateRequestOpenApi",
+}) as any as S.Schema<SurveyResultsWidgetUpdateRequestOpenApi>;
 
-export type DashboardsCollaboratorsCreateError =
+export interface LogsListWidgetUpdateRequestOpenApi {
+  /** ID of the widget tile to update. Use dashboard-get to look up widget tile IDs. */
+  tile_id: number;
+  /** New display name for the widget. Empty string or null clears it; omit to leave unchanged. */
+  name?: string | null;
+  /** New markdown description for the widget. Omit to leave unchanged. */
+  description?: string;
+  widget_type: LogsListWidgetTypeEnum;
+  /** New configuration for the recent logs widget. Omit to leave unchanged. */
+  config?: LogsListWidgetConfig;
+}
+export const LogsListWidgetUpdateRequestOpenApi = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    tile_id: S.Number,
+    name: S.optional(S.NullOr(S.String)),
+    description: S.optional(S.String),
+    widget_type: LogsListWidgetTypeEnum,
+    config: S.optional(LogsListWidgetConfig),
+  }),
+).annotate({
+  identifier: "LogsListWidgetUpdateRequestOpenApi",
+}) as any as S.Schema<LogsListWidgetUpdateRequestOpenApi>;
+
+export interface ConversationsRecentTicketsWidgetUpdateRequestOpenApi {
+  /** ID of the widget tile to update. Use dashboard-get to look up widget tile IDs. */
+  tile_id: number;
+  /** New display name for the widget. Empty string or null clears it; omit to leave unchanged. */
+  name?: string | null;
+  /** New markdown description for the widget. Omit to leave unchanged. */
+  description?: string;
+  widget_type: ConversationsRecentTicketsWidgetTypeEnum;
+  /** New configuration for the recent tickets widget. Omit to leave unchanged. */
+  config?: ConversationsRecentTicketsWidgetConfig;
+}
+export const ConversationsRecentTicketsWidgetUpdateRequestOpenApi =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      tile_id: S.Number,
+      name: S.optional(S.NullOr(S.String)),
+      description: S.optional(S.String),
+      widget_type: ConversationsRecentTicketsWidgetTypeEnum,
+      config: S.optional(ConversationsRecentTicketsWidgetConfig),
+    }),
+  ).annotate({
+    identifier: "ConversationsRecentTicketsWidgetUpdateRequestOpenApi",
+  }) as any as S.Schema<ConversationsRecentTicketsWidgetUpdateRequestOpenApi>;
+
+export type UpdateDashboardWidgetRequest =
+  | ActivityEventsListWidgetUpdateRequestOpenApi
+  | ErrorTrackingListWidgetUpdateRequestOpenApi
+  | SessionReplayListWidgetUpdateRequestOpenApi
+  | ExperimentsListWidgetUpdateRequestOpenApi
+  | ExperimentResultsWidgetUpdateRequestOpenApi
+  | SurveyResultsWidgetUpdateRequestOpenApi
+  | LogsListWidgetUpdateRequestOpenApi
+  | ConversationsRecentTicketsWidgetUpdateRequestOpenApi;
+export const UpdateDashboardWidgetRequest =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateDashboardWidgetRequest>;
+
+/** Widget tiles to update atomically, each identified by its tile_id. config shape is per widget_type; see dashboard-widget-catalog-list for per-type config_schema (1–10 per request). */
+export type UpdateDashboardWidgetsBatchRequestWidgetsList =
+  Array<UpdateDashboardWidgetRequest>;
+export const UpdateDashboardWidgetsBatchRequestWidgetsList =
+  /*@__PURE__*/ S.Array(
+    UpdateDashboardWidgetRequest,
+  ) as any as S.Schema<UpdateDashboardWidgetsBatchRequestWidgetsList>;
+
+export interface UpdateDashboardWidgetsBatchRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A unique integer value identifying this dashboard. */
+  id: number;
+  format?: UpdateDashboardWidgetsBatchRequestFormat | (string & {});
+  /** Widget tiles to update atomically, each identified by its tile_id. config shape is per widget_type; see dashboard-widget-catalog-list for per-type config_schema (1–10 per request). */
+  widgets?: UpdateDashboardWidgetsBatchRequestWidgetsList;
+}
+export const UpdateDashboardWidgetsBatchRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
+    format: S.optional(
+      UpdateDashboardWidgetsBatchRequestFormat.pipe(T.Query()),
+    ),
+    widgets: S.optional(UpdateDashboardWidgetsBatchRequestWidgetsList),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/api/projects/{project_id}/dashboards/{id}/widgets/batch_update/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "UpdateDashboardWidgetsBatchRequest",
+}) as any as S.Schema<UpdateDashboardWidgetsBatchRequest>;
+
+/** Updated dashboard widget tiles in request order. */
+export type UpdateDashboardWidgetsBatchResponseOutputTilesList =
+  Array<DashboardTileOutput>;
+export const UpdateDashboardWidgetsBatchResponseOutputTilesList =
+  /*@__PURE__*/ S.Array(
+    DashboardTileOutput,
+  ) as any as S.Schema<UpdateDashboardWidgetsBatchResponseOutputTilesList>;
+
+export interface UpdateDashboardWidgetsBatchResponseOutput {
+  /** Updated dashboard widget tiles in request order. */
+  tiles: UpdateDashboardWidgetsBatchResponseOutputTilesList;
+}
+export const UpdateDashboardWidgetsBatchResponseOutput =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      tiles: UpdateDashboardWidgetsBatchResponseOutputTilesList,
+    }),
+  ).annotate({
+    identifier: "UpdateDashboardWidgetsBatchResponseOutput",
+  }) as any as S.Schema<UpdateDashboardWidgetsBatchResponseOutput>;
+
+export type CreateDashboardError =
   | BadRequest
   | Forbidden
   | NotFound
   | PosthogOpError;
-export const dashboardsCollaboratorsCreate: API.OperationMethod<
-  DashboardsCollaboratorsCreateRequest,
-  DashboardCollaboratorOutput,
-  DashboardsCollaboratorsCreateError,
+export const createDashboard: API.OperationMethod<
+  CreateDashboardRequest,
+  DashboardOutput,
+  CreateDashboardError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DashboardsCollaboratorsCreateRequest,
+  input: CreateDashboardRequest,
+  output: DashboardOutput,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateDashboardsCollaboratorError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+export const createDashboardsCollaborator: API.OperationMethod<
+  CreateDashboardsCollaboratorRequest,
+  DashboardCollaboratorOutput,
+  CreateDashboardsCollaboratorError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateDashboardsCollaboratorRequest,
   output: DashboardCollaboratorOutput,
   errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateDashboardsReorderTileError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+export const createDashboardsReorderTile: API.OperationMethod<
+  CreateDashboardsReorderTileRequest,
+  DashboardOutput,
+  CreateDashboardsReorderTileError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateDashboardsReorderTileRequest,
+  output: DashboardOutput,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateDashboardsSharingPasswordError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+/** Create a new password for the sharing configuration. */
+export const createDashboardsSharingPassword: API.OperationMethod<
+  CreateDashboardsSharingPasswordRequest,
+  SharingConfiguration,
+  CreateDashboardsSharingPasswordError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateDashboardsSharingPasswordRequest,
+  output: SharingConfiguration,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateDashboardsWidgetsBatchError = PosthogOpError;
+/** Add multiple widget tiles to a dashboard in one atomic request. */
+export const createDashboardsWidgetsBatch: API.OperationMethod<
+  CreateDashboardsWidgetsBatchRequest,
+  AddDashboardWidgetsBatchResponseOutput,
+  CreateDashboardsWidgetsBatchError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateDashboardsWidgetsBatchRequest,
+  output: AddDashboardWidgetsBatchResponseOutput,
+  errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
@@ -20033,23 +20204,6 @@ export const dashboardsCollaboratorsDestroy: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: DashboardsCollaboratorsDestroyRequest,
   output: DashboardsCollaboratorsDestroyResponse,
-  errors: [Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DashboardsCollaboratorsListError =
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-export const dashboardsCollaboratorsList: API.OperationMethod<
-  DashboardsCollaboratorsListRequest,
-  DashboardsCollaboratorsListResponse,
-  DashboardsCollaboratorsListError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DashboardsCollaboratorsListRequest,
-  output: DashboardsCollaboratorsListResponse,
   errors: [Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
@@ -20074,24 +20228,6 @@ export const dashboardsCopyTileCreate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DashboardsCreateError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-export const dashboardsCreate: API.OperationMethod<
-  DashboardsCreateRequest,
-  DashboardOutput,
-  DashboardsCreateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DashboardsCreateRequest,
-  output: DashboardOutput,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
 export type DashboardsCreateTextTileCreateError = PosthogOpError;
 /** Add a markdown text tile to a dashboard. Text tiles render as markdown blocks on the dashboard — useful as section headings, dividers, or annotations between insight tiles to give the dashboard structure. */
 export const dashboardsCreateTextTileCreate: API.OperationMethod<
@@ -20102,21 +20238,6 @@ export const dashboardsCreateTextTileCreate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: DashboardsCreateTextTileCreateRequest,
   output: DashboardTileOutput,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DashboardsDeleteTileError = PosthogOpError;
-/** Soft-delete a single tile from a dashboard. Works for text, insight, and button tiles. The underlying Insight, Text, or ButtonTile object is preserved — only the dashboard tile is hidden. To delete the entire dashboard, use the dashboard delete endpoint instead. */
-export const dashboardsDeleteTile: API.OperationMethod<
-  DashboardsDeleteTileRequest,
-  DashboardsDeleteTileResponse,
-  DashboardsDeleteTileError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DashboardsDeleteTileRequest,
-  output: DashboardsDeleteTileResponse,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
@@ -20141,24 +20262,6 @@ export const dashboardsDestroy: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DashboardsListError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-export const dashboardsList: API.OperationMethod<
-  DashboardsListRequest,
-  PaginatedDashboardBasicList,
-  DashboardsListError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DashboardsListRequest,
-  output: PaginatedDashboardBasicList,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
 export type DashboardsMoveTileCreateError = PosthogOpError;
 export const dashboardsMoveTileCreate: API.OperationMethod<
   DashboardsMoveTileCreateRequest,
@@ -20169,126 +20272,6 @@ export const dashboardsMoveTileCreate: API.OperationMethod<
   input: DashboardsMoveTileCreateRequest,
   output: DashboardOutput,
   errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DashboardsPartialUpdateError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-export const dashboardsPartialUpdate: API.OperationMethod<
-  DashboardsPartialUpdateRequest,
-  DashboardOutput,
-  DashboardsPartialUpdateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DashboardsPartialUpdateRequest,
-  output: DashboardOutput,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DashboardsReorderTilesCreateError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-export const dashboardsReorderTilesCreate: API.OperationMethod<
-  DashboardsReorderTilesCreateRequest,
-  DashboardOutput,
-  DashboardsReorderTilesCreateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DashboardsReorderTilesCreateRequest,
-  output: DashboardOutput,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DashboardsRetrieveError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-export const dashboardsRetrieve: API.OperationMethod<
-  DashboardsRetrieveRequest,
-  DashboardOutput,
-  DashboardsRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DashboardsRetrieveRequest,
-  output: DashboardOutput,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DashboardsRunInsightsRetrieveError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** Run all insights on a dashboard and return their results. */
-export const dashboardsRunInsightsRetrieve: API.OperationMethod<
-  DashboardsRunInsightsRetrieveRequest,
-  RunInsightsResponse,
-  DashboardsRunInsightsRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DashboardsRunInsightsRetrieveRequest,
-  output: RunInsightsResponse,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DashboardsRunWidgetsRetrieveError = PosthogOpError;
-export const dashboardsRunWidgetsRetrieve: API.OperationMethod<
-  DashboardsRunWidgetsRetrieveRequest,
-  RunWidgetsResponse,
-  DashboardsRunWidgetsRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DashboardsRunWidgetsRetrieveRequest,
-  output: RunWidgetsResponse,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DashboardsSharingListError = Forbidden | NotFound | PosthogOpError;
-export const dashboardsSharingList: API.OperationMethod<
-  DashboardsSharingListRequest,
-  DashboardsSharingListResponse,
-  DashboardsSharingListError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DashboardsSharingListRequest,
-  output: DashboardsSharingListResponse,
-  errors: [Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DashboardsSharingPasswordsCreateError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** Create a new password for the sharing configuration. */
-export const dashboardsSharingPasswordsCreate: API.OperationMethod<
-  DashboardsSharingPasswordsCreateRequest,
-  SharingConfiguration,
-  DashboardsSharingPasswordsCreateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DashboardsSharingPasswordsCreateRequest,
-  output: SharingConfiguration,
-  errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
@@ -20329,25 +20312,6 @@ export const dashboardsSharingRefreshCreate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DashboardsStreamTilesRetrieveError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** Stream dashboard metadata and tiles via Server-Sent Events. Sends metadata first, then tiles as they are rendered. */
-export const dashboardsStreamTilesRetrieve: API.OperationMethod<
-  DashboardsStreamTilesRetrieveRequest,
-  DashboardsStreamTilesRetrieveResponse,
-  DashboardsStreamTilesRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DashboardsStreamTilesRetrieveRequest,
-  output: DashboardsStreamTilesRetrieveResponse,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
 export type DashboardsSubscribeNudgeCreateError = PosthogOpError;
 /** Send the requesting user an in-app notification suggesting they subscribe to this dashboard. Deduplicated server-side: at most one notification per user and dashboard, ever, so repeat calls return 200 with created=false. */
 export const dashboardsSubscribeNudgeCreate: API.OperationMethod<
@@ -20359,24 +20323,6 @@ export const dashboardsSubscribeNudgeCreate: API.OperationMethod<
   input: DashboardsSubscribeNudgeCreateRequest,
   output: DashboardSubscribeNudgeResponse,
   errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DashboardsUpdateError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-export const dashboardsUpdate: API.OperationMethod<
-  DashboardsUpdateRequest,
-  DashboardOutput,
-  DashboardsUpdateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DashboardsUpdateRequest,
-  output: DashboardOutput,
-  errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
@@ -20396,46 +20342,201 @@ export const dashboardsUpdateTextTileCreate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DashboardsUpdateWidgetsBatchError = PosthogOpError;
-/** Update the settings of existing widgets in place, atomically — config, name, and description. Each entry targets a widget by its tile_id and reuses the same write path as the dashboard PATCH endpoint. The widget_type is immutable. This edits widget settings only (config, name, description); tile placement (layouts, show_description) is a dashboard concern — use the dashboard PATCH endpoint or reorder_tiles for that. All updates succeed or fail together. To add new widgets, use the widgets/batch POST endpoint; to remove one, use delete_tile. */
-export const dashboardsUpdateWidgetsBatch: API.OperationMethod<
-  DashboardsUpdateWidgetsBatchRequest,
-  UpdateDashboardWidgetsBatchResponseOutput,
-  DashboardsUpdateWidgetsBatchError,
+export type DeleteDashboardTileError = PosthogOpError;
+/** Soft-delete a single tile from a dashboard. Works for text, insight, and button tiles. The underlying Insight, Text, or ButtonTile object is preserved — only the dashboard tile is hidden. To delete the entire dashboard, use the dashboard delete endpoint instead. */
+export const deleteDashboardTile: API.OperationMethod<
+  DeleteDashboardTileRequest,
+  DeleteDashboardTileResponse,
+  DeleteDashboardTileError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DashboardsUpdateWidgetsBatchRequest,
-  output: UpdateDashboardWidgetsBatchResponseOutput,
+  input: DeleteDashboardTileRequest,
+  output: DeleteDashboardTileResponse,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type DashboardsWidgetCatalogRetrieveError = PosthogOpError;
-/** List registered dashboard widget types and per-type config_schema documentation for agents. */
-export const dashboardsWidgetCatalogRetrieve: API.OperationMethod<
-  DashboardsWidgetCatalogRetrieveRequest,
-  WidgetCatalogResponse,
-  DashboardsWidgetCatalogRetrieveError,
+export type GetDashboardError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+export const getDashboard: API.OperationMethod<
+  GetDashboardRequest,
+  DashboardOutput,
+  GetDashboardError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DashboardsWidgetCatalogRetrieveRequest,
+  input: GetDashboardRequest,
+  output: DashboardOutput,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDashboardsRunInsightError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+/** Run all insights on a dashboard and return their results. */
+export const getDashboardsRunInsight: API.OperationMethod<
+  GetDashboardsRunInsightRequest,
+  RunInsightsResponse,
+  GetDashboardsRunInsightError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDashboardsRunInsightRequest,
+  output: RunInsightsResponse,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDashboardsRunWidgetError = PosthogOpError;
+export const getDashboardsRunWidget: API.OperationMethod<
+  GetDashboardsRunWidgetRequest,
+  RunWidgetsResponse,
+  GetDashboardsRunWidgetError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDashboardsRunWidgetRequest,
+  output: RunWidgetsResponse,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDashboardsStreamTileError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+/** Stream dashboard metadata and tiles via Server-Sent Events. Sends metadata first, then tiles as they are rendered. */
+export const getDashboardsStreamTile: API.OperationMethod<
+  GetDashboardsStreamTileRequest,
+  GetDashboardsStreamTileResponse,
+  GetDashboardsStreamTileError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDashboardsStreamTileRequest,
+  output: GetDashboardsStreamTileResponse,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDashboardsWidgetCatalogError = PosthogOpError;
+/** List registered dashboard widget types and per-type config_schema documentation for agents. */
+export const getDashboardsWidgetCatalog: API.OperationMethod<
+  GetDashboardsWidgetCatalogRequest,
+  WidgetCatalogResponse,
+  GetDashboardsWidgetCatalogError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDashboardsWidgetCatalogRequest,
   output: WidgetCatalogResponse,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type DashboardsWidgetsBatchCreateError = PosthogOpError;
-/** Add multiple widget tiles to a dashboard in one atomic request. */
-export const dashboardsWidgetsBatchCreate: API.OperationMethod<
-  DashboardsWidgetsBatchCreateRequest,
-  AddDashboardWidgetsBatchResponseOutput,
-  DashboardsWidgetsBatchCreateError,
+export type ListDashboardsError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+export const listDashboards: API.OperationMethod<
+  ListDashboardsRequest,
+  PaginatedDashboardBasicList,
+  ListDashboardsError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DashboardsWidgetsBatchCreateRequest,
-  output: AddDashboardWidgetsBatchResponseOutput,
+  input: ListDashboardsRequest,
+  output: PaginatedDashboardBasicList,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDashboardsCollaboratorsError =
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+export const listDashboardsCollaborators: API.OperationMethod<
+  ListDashboardsCollaboratorsRequest,
+  ListDashboardsCollaboratorsResponse,
+  ListDashboardsCollaboratorsError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDashboardsCollaboratorsRequest,
+  output: ListDashboardsCollaboratorsResponse,
+  errors: [Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDashboardsSharingError = Forbidden | NotFound | PosthogOpError;
+export const listDashboardsSharing: API.OperationMethod<
+  ListDashboardsSharingRequest,
+  ListDashboardsSharingResponse,
+  ListDashboardsSharingError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDashboardsSharingRequest,
+  output: ListDashboardsSharingResponse,
+  errors: [Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateDashboardError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+export const updateDashboard: API.OperationMethod<
+  UpdateDashboardRequest,
+  DashboardOutput,
+  UpdateDashboardError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateDashboardRequest,
+  output: DashboardOutput,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateDashboardsPartialError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+export const updateDashboardsPartial: API.OperationMethod<
+  UpdateDashboardsPartialRequest,
+  DashboardOutput,
+  UpdateDashboardsPartialError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateDashboardsPartialRequest,
+  output: DashboardOutput,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateDashboardWidgetsBatchError = PosthogOpError;
+/** Update the settings of existing widgets in place, atomically — config, name, and description. Each entry targets a widget by its tile_id and reuses the same write path as the dashboard PATCH endpoint. The widget_type is immutable. This edits widget settings only (config, name, description); tile placement (layouts, show_description) is a dashboard concern — use the dashboard PATCH endpoint or reorder_tiles for that. All updates succeed or fail together. To add new widgets, use the widgets/batch POST endpoint; to remove one, use delete_tile. */
+export const updateDashboardWidgetsBatch: API.OperationMethod<
+  UpdateDashboardWidgetsBatchRequest,
+  UpdateDashboardWidgetsBatchResponseOutput,
+  UpdateDashboardWidgetsBatchError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateDashboardWidgetsBatchRequest,
+  output: UpdateDashboardWidgetsBatchResponseOutput,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,

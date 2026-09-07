@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.environments#EnvironmentsActivityRetrieveRequest": {
+    "com.posthog.environments#GetEnvironmentsActivityRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -41,10 +42,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.environments#EnvironmentsActivityRetrieve": {
+    "com.posthog.environments#GetEnvironmentsActivity": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.environments#EnvironmentsActivityRetrieveRequest"
+        "target": "com.posthog.environments#GetEnvironmentsActivityRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3776,6 +3777,18 @@
       "traits": {
         "smithy.api#documentation": "* `0` - Disabled\n* `1` - Stateless\n* `2` - Stateful"
       }
+    },
+    "com.posthog.environments#TeamFeatureFlagPolicyConfig": {
+      "type": "structure",
+      "members": {
+        "require_tags": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When enabled, a new feature flag needs at least one tag, and a tagged flag cannot lose its last one. A create that declares it comes from a survey, experiment, early access feature, product tour, or web experiment is exempt, because those forms have no tag input. The caller sets that declaration, so a flag can still be created without a tag."
+          }
+        }
+      },
+      "traits": {}
     },
     "com.posthog.environments#TeamRevenueAnalyticsConfig": {
       "type": "structure",
@@ -7811,7 +7824,7 @@
         "test_account_filters": {
           "target": "smithy.api#Document",
           "traits": {
-            "smithy.api#documentation": "Filters used to identify internal/test users. Each entry is a property filter.\n\n            Supported entry types and the exact shape each accepts:\n\n            # Person property — match (or exclude) by a person property\n            {\"key\": \"email\", \"type\": \"person\", \"value\": \"@example.com\", \"operator\": \"icontains\"}\n\n            # Event property — match by an event property\n            {\"key\": \"$host\", \"type\": \"event\", \"value\": \"localhost\", \"operator\": \"icontains\"}\n\n            # Cohort membership — match (or exclude) members of a cohort.\n            # Use operator \"in\" for inclusion and \"not_in\" for exclusion. Do NOT use a\n            # `negation` field here — `negation` is specific to cohort *definitions*\n            # (the inner sub-filters that build a cohort) and is rejected by the\n            # property-filter schema.\n            {\"key\": \"id\", \"type\": \"cohort\", \"value\": 8814, \"operator\": \"not_in\"}\n\n            Common operators: \"exact\", \"is_not\", \"icontains\", \"not_icontains\", \"regex\",\n            \"not_regex\", \"gt\", \"lt\", \"gte\", \"lte\", \"is_set\", \"is_not_set\", \"in\", \"not_in\"."
+            "smithy.api#documentation": "Filters used to identify internal/test users. Each entry is a property filter.\n\n            Supported entry types and the exact shape each accepts:\n\n            # Person property — match (or exclude) by a person property\n            {\"key\": \"email\", \"type\": \"person\", \"value\": \"@example.com\", \"operator\": \"ends_with\"}\n\n            # Event property — match by an event property\n            {\"key\": \"$host\", \"type\": \"event\", \"value\": \"localhost\", \"operator\": \"icontains\"}\n\n            # Cohort membership — match (or exclude) members of a cohort.\n            # Use operator \"in\" for inclusion and \"not_in\" for exclusion. Do NOT use a\n            # `negation` field here — `negation` is specific to cohort *definitions*\n            # (the inner sub-filters that build a cohort) and is rejected by the\n            # property-filter schema.\n            {\"key\": \"id\", \"type\": \"cohort\", \"value\": 8814, \"operator\": \"not_in\"}\n\n            Common operators: \"exact\", \"is_not\", \"icontains\", \"not_icontains\", \"starts_with\",\n            \"not_starts_with\", \"ends_with\", \"not_ends_with\", \"regex\", \"not_regex\", \"gt\", \"lt\",\n            \"gte\", \"lte\", \"is_set\", \"is_not_set\", \"in\", \"not_in\"."
           }
         },
         "test_account_filters_default_checked": {
@@ -8038,6 +8051,9 @@
             "com.distilled.openapi#nullable": {}
           }
         },
+        "feature_flag_policy_config": {
+          "target": "com.posthog.environments#TeamFeatureFlagPolicyConfig"
+        },
         "capture_dead_clicks": {
           "target": "smithy.api#Boolean",
           "traits": {
@@ -8135,56 +8151,56 @@
         "smithy.api#documentation": "Deprecated: use /api/environments/{id}/ instead."
       }
     },
-    "com.posthog.environments#EnvironmentsCompleteProductOnboardingPartialUpdateRequestAppUrlsList": {
+    "com.posthog.environments#UpdateEnvironmentsCompleteProductOnboardingPartialRequestAppUrlsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.posthog.environments#EnvironmentsCompleteProductOnboardingPartialUpdateRequestPersonDisplayNamePropertiesList": {
+    "com.posthog.environments#UpdateEnvironmentsCompleteProductOnboardingPartialRequestPersonDisplayNamePropertiesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.posthog.environments#EnvironmentsCompleteProductOnboardingPartialUpdateRequestSessionRecordingUrlTriggerConfigList": {
+    "com.posthog.environments#UpdateEnvironmentsCompleteProductOnboardingPartialRequestSessionRecordingUrlTriggerConfigList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
       },
       "traits": {}
     },
-    "com.posthog.environments#EnvironmentsCompleteProductOnboardingPartialUpdateRequestSessionRecordingUrlBlocklistConfigList": {
+    "com.posthog.environments#UpdateEnvironmentsCompleteProductOnboardingPartialRequestSessionRecordingUrlBlocklistConfigList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
       },
       "traits": {}
     },
-    "com.posthog.environments#EnvironmentsCompleteProductOnboardingPartialUpdateRequestSessionRecordingEventTriggerConfigList": {
+    "com.posthog.environments#UpdateEnvironmentsCompleteProductOnboardingPartialRequestSessionRecordingEventTriggerConfigList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.posthog.environments#EnvironmentsCompleteProductOnboardingPartialUpdateRequestLiveEventsColumnsList": {
+    "com.posthog.environments#UpdateEnvironmentsCompleteProductOnboardingPartialRequestLiveEventsColumnsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.posthog.environments#EnvironmentsCompleteProductOnboardingPartialUpdateRequestRecordingDomainsList": {
+    "com.posthog.environments#UpdateEnvironmentsCompleteProductOnboardingPartialRequestRecordingDomainsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.posthog.environments#EnvironmentsCompleteProductOnboardingPartialUpdateRequestBusinessModel": {
+    "com.posthog.environments#UpdateEnvironmentsCompleteProductOnboardingPartialRequestBusinessModel": {
       "type": "union",
       "members": {
         "BusinessModelEnum": {
@@ -8198,7 +8214,7 @@
         "smithy.api#documentation": "Whether this project serves B2B or B2C customers, used to optimize the UI layout.\n\n* `b2b` - B2B\n* `b2c` - B2C\n* `other` - Other"
       }
     },
-    "com.posthog.environments#EnvironmentsCompleteProductOnboardingPartialUpdateRequest": {
+    "com.posthog.environments#UpdateEnvironmentsCompleteProductOnboardingPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -8224,7 +8240,7 @@
           "target": "smithy.api#Boolean"
         },
         "app_urls": {
-          "target": "com.posthog.environments#EnvironmentsCompleteProductOnboardingPartialUpdateRequestAppUrlsList"
+          "target": "com.posthog.environments#UpdateEnvironmentsCompleteProductOnboardingPartialRequestAppUrlsList"
         },
         "anonymize_ips": {
           "target": "smithy.api#Boolean"
@@ -8235,7 +8251,7 @@
         "test_account_filters": {
           "target": "smithy.api#Document",
           "traits": {
-            "smithy.api#documentation": "Filters used to identify internal/test users. Each entry is a property filter.\n\n            Supported entry types and the exact shape each accepts:\n\n            # Person property — match (or exclude) by a person property\n            {\"key\": \"email\", \"type\": \"person\", \"value\": \"@example.com\", \"operator\": \"icontains\"}\n\n            # Event property — match by an event property\n            {\"key\": \"$host\", \"type\": \"event\", \"value\": \"localhost\", \"operator\": \"icontains\"}\n\n            # Cohort membership — match (or exclude) members of a cohort.\n            # Use operator \"in\" for inclusion and \"not_in\" for exclusion. Do NOT use a\n            # `negation` field here — `negation` is specific to cohort *definitions*\n            # (the inner sub-filters that build a cohort) and is rejected by the\n            # property-filter schema.\n            {\"key\": \"id\", \"type\": \"cohort\", \"value\": 8814, \"operator\": \"not_in\"}\n\n            Common operators: \"exact\", \"is_not\", \"icontains\", \"not_icontains\", \"regex\",\n            \"not_regex\", \"gt\", \"lt\", \"gte\", \"lte\", \"is_set\", \"is_not_set\", \"in\", \"not_in\"."
+            "smithy.api#documentation": "Filters used to identify internal/test users. Each entry is a property filter.\n\n            Supported entry types and the exact shape each accepts:\n\n            # Person property — match (or exclude) by a person property\n            {\"key\": \"email\", \"type\": \"person\", \"value\": \"@example.com\", \"operator\": \"ends_with\"}\n\n            # Event property — match by an event property\n            {\"key\": \"$host\", \"type\": \"event\", \"value\": \"localhost\", \"operator\": \"icontains\"}\n\n            # Cohort membership — match (or exclude) members of a cohort.\n            # Use operator \"in\" for inclusion and \"not_in\" for exclusion. Do NOT use a\n            # `negation` field here — `negation` is specific to cohort *definitions*\n            # (the inner sub-filters that build a cohort) and is rejected by the\n            # property-filter schema.\n            {\"key\": \"id\", \"type\": \"cohort\", \"value\": 8814, \"operator\": \"not_in\"}\n\n            Common operators: \"exact\", \"is_not\", \"icontains\", \"not_icontains\", \"starts_with\",\n            \"not_starts_with\", \"ends_with\", \"not_ends_with\", \"regex\", \"not_regex\", \"gt\", \"lt\",\n            \"gte\", \"lte\", \"is_set\", \"is_not_set\", \"in\", \"not_in\"."
           }
         },
         "test_account_filters_default_checked": {
@@ -8257,7 +8273,7 @@
           "target": "smithy.api#Document"
         },
         "person_display_name_properties": {
-          "target": "com.posthog.environments#EnvironmentsCompleteProductOnboardingPartialUpdateRequestPersonDisplayNamePropertiesList",
+          "target": "com.posthog.environments#UpdateEnvironmentsCompleteProductOnboardingPartialRequestPersonDisplayNamePropertiesList",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
@@ -8329,19 +8345,19 @@
           "target": "smithy.api#Document"
         },
         "session_recording_url_trigger_config": {
-          "target": "com.posthog.environments#EnvironmentsCompleteProductOnboardingPartialUpdateRequestSessionRecordingUrlTriggerConfigList",
+          "target": "com.posthog.environments#UpdateEnvironmentsCompleteProductOnboardingPartialRequestSessionRecordingUrlTriggerConfigList",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
         },
         "session_recording_url_blocklist_config": {
-          "target": "com.posthog.environments#EnvironmentsCompleteProductOnboardingPartialUpdateRequestSessionRecordingUrlBlocklistConfigList",
+          "target": "com.posthog.environments#UpdateEnvironmentsCompleteProductOnboardingPartialRequestSessionRecordingUrlBlocklistConfigList",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
         },
         "session_recording_event_trigger_config": {
-          "target": "com.posthog.environments#EnvironmentsCompleteProductOnboardingPartialUpdateRequestSessionRecordingEventTriggerConfigList",
+          "target": "com.posthog.environments#UpdateEnvironmentsCompleteProductOnboardingPartialRequestSessionRecordingEventTriggerConfigList",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
@@ -8380,13 +8396,13 @@
           }
         },
         "live_events_columns": {
-          "target": "com.posthog.environments#EnvironmentsCompleteProductOnboardingPartialUpdateRequestLiveEventsColumnsList",
+          "target": "com.posthog.environments#UpdateEnvironmentsCompleteProductOnboardingPartialRequestLiveEventsColumnsList",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
         },
         "recording_domains": {
-          "target": "com.posthog.environments#EnvironmentsCompleteProductOnboardingPartialUpdateRequestRecordingDomainsList",
+          "target": "com.posthog.environments#UpdateEnvironmentsCompleteProductOnboardingPartialRequestRecordingDomainsList",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
@@ -8462,6 +8478,9 @@
             "com.distilled.openapi#nullable": {}
           }
         },
+        "feature_flag_policy_config": {
+          "target": "com.posthog.environments#TeamFeatureFlagPolicyConfig"
+        },
         "capture_dead_clicks": {
           "target": "smithy.api#Boolean",
           "traits": {
@@ -8502,7 +8521,7 @@
           }
         },
         "business_model": {
-          "target": "com.posthog.environments#EnvironmentsCompleteProductOnboardingPartialUpdateRequestBusinessModel",
+          "target": "com.posthog.environments#UpdateEnvironmentsCompleteProductOnboardingPartialRequestBusinessModel",
           "traits": {
             "smithy.api#documentation": "Whether this project serves B2B or B2C customers, used to optimize the UI layout.\n\n* `b2b` - B2B\n* `b2c` - B2C\n* `other` - Other",
             "com.distilled.openapi#nullable": {}
@@ -8531,10 +8550,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.environments#EnvironmentsCompleteProductOnboardingPartialUpdate": {
+    "com.posthog.environments#UpdateEnvironmentsCompleteProductOnboardingPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.environments#EnvironmentsCompleteProductOnboardingPartialUpdateRequest"
+        "target": "com.posthog.environments#UpdateEnvironmentsCompleteProductOnboardingPartialRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -8659,7 +8678,7 @@
         "test_account_filters": {
           "target": "smithy.api#Document",
           "traits": {
-            "smithy.api#documentation": "Filters used to identify internal/test users. Each entry is a property filter.\n\n            Supported entry types and the exact shape each accepts:\n\n            # Person property — match (or exclude) by a person property\n            {\"key\": \"email\", \"type\": \"person\", \"value\": \"@example.com\", \"operator\": \"icontains\"}\n\n            # Event property — match by an event property\n            {\"key\": \"$host\", \"type\": \"event\", \"value\": \"localhost\", \"operator\": \"icontains\"}\n\n            # Cohort membership — match (or exclude) members of a cohort.\n            # Use operator \"in\" for inclusion and \"not_in\" for exclusion. Do NOT use a\n            # `negation` field here — `negation` is specific to cohort *definitions*\n            # (the inner sub-filters that build a cohort) and is rejected by the\n            # property-filter schema.\n            {\"key\": \"id\", \"type\": \"cohort\", \"value\": 8814, \"operator\": \"not_in\"}\n\n            Common operators: \"exact\", \"is_not\", \"icontains\", \"not_icontains\", \"regex\",\n            \"not_regex\", \"gt\", \"lt\", \"gte\", \"lte\", \"is_set\", \"is_not_set\", \"in\", \"not_in\"."
+            "smithy.api#documentation": "Filters used to identify internal/test users. Each entry is a property filter.\n\n            Supported entry types and the exact shape each accepts:\n\n            # Person property — match (or exclude) by a person property\n            {\"key\": \"email\", \"type\": \"person\", \"value\": \"@example.com\", \"operator\": \"ends_with\"}\n\n            # Event property — match by an event property\n            {\"key\": \"$host\", \"type\": \"event\", \"value\": \"localhost\", \"operator\": \"icontains\"}\n\n            # Cohort membership — match (or exclude) members of a cohort.\n            # Use operator \"in\" for inclusion and \"not_in\" for exclusion. Do NOT use a\n            # `negation` field here — `negation` is specific to cohort *definitions*\n            # (the inner sub-filters that build a cohort) and is rejected by the\n            # property-filter schema.\n            {\"key\": \"id\", \"type\": \"cohort\", \"value\": 8814, \"operator\": \"not_in\"}\n\n            Common operators: \"exact\", \"is_not\", \"icontains\", \"not_icontains\", \"starts_with\",\n            \"not_starts_with\", \"ends_with\", \"not_ends_with\", \"regex\", \"not_regex\", \"gt\", \"lt\",\n            \"gte\", \"lte\", \"is_set\", \"is_not_set\", \"in\", \"not_in\"."
           }
         },
         "test_account_filters_default_checked": {
@@ -8886,6 +8905,9 @@
             "com.distilled.openapi#nullable": {}
           }
         },
+        "feature_flag_policy_config": {
+          "target": "com.posthog.environments#TeamFeatureFlagPolicyConfig"
+        },
         "capture_dead_clicks": {
           "target": "smithy.api#Boolean",
           "traits": {
@@ -8983,7 +9005,7 @@
         "smithy.api#documentation": "Deprecated: use /api/environments/{id}/ instead."
       }
     },
-    "com.posthog.environments#EnvironmentsEvaluationContextSuggestionsCreateRequest": {
+    "com.posthog.environments#CreateEnvironmentsEvaluationContextSuggestionRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -9041,10 +9063,10 @@
       },
       "traits": {}
     },
-    "com.posthog.environments#EnvironmentsEvaluationContextSuggestionsCreate": {
+    "com.posthog.environments#CreateEnvironmentsEvaluationContextSuggestion": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.environments#EnvironmentsEvaluationContextSuggestionsCreateRequest"
+        "target": "com.posthog.environments#CreateEnvironmentsEvaluationContextSuggestionRequest"
       },
       "output": {
         "target": "com.posthog.environments#EvaluationContextSuggestionResponse"
@@ -9107,7 +9129,7 @@
         "smithy.api#documentation": "Hide an evaluation context name from the flag editor's suggestion list, or restore it.\n\nPOST hides the name; DELETE restores it. The underlying context row and any flags already\nusing it are never modified — this only controls what gets suggested."
       }
     },
-    "com.posthog.environments#EnvironmentsEventIngestionRestrictionsListRequest": {
+    "com.posthog.environments#ListEnvironmentsEventIngestionRestrictionsRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -9253,7 +9275,7 @@
         "smithy.api#documentation": "Event UUIDs the restriction applies to. Empty means it is not filtered by event UUID."
       }
     },
-    "com.posthog.environments#PipelinesEnum": {
+    "com.posthog.environments#IngestionPipelineEnum": {
       "type": "enum",
       "members": {
         "ANALYTICS": {
@@ -9294,24 +9316,24 @@
     "com.posthog.environments#EventIngestionRestrictionPipelinesList": {
       "type": "list",
       "member": {
-        "target": "com.posthog.environments#PipelinesEnum"
+        "target": "com.posthog.environments#IngestionPipelineEnum"
       },
       "traits": {
         "smithy.api#documentation": "Ingestion pipelines the restriction applies to. Filters combine with AND; values within a filter combine with OR."
       }
     },
-    "com.posthog.environments#EnvironmentsEventIngestionRestrictionsListResponseBodyList": {
+    "com.posthog.environments#ListEnvironmentsEventIngestionRestrictionsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.posthog.environments#EventIngestionRestriction"
       },
       "traits": {}
     },
-    "com.posthog.environments#EnvironmentsEventIngestionRestrictionsListResponse": {
+    "com.posthog.environments#ListEnvironmentsEventIngestionRestrictionsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.posthog.environments#EnvironmentsEventIngestionRestrictionsListResponseBodyList",
+          "target": "com.posthog.environments#ListEnvironmentsEventIngestionRestrictionsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -9322,13 +9344,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.posthog.environments#EnvironmentsEventIngestionRestrictionsList": {
+    "com.posthog.environments#ListEnvironmentsEventIngestionRestrictions": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.environments#EnvironmentsEventIngestionRestrictionsListRequest"
+        "target": "com.posthog.environments#ListEnvironmentsEventIngestionRestrictionsRequest"
       },
       "output": {
-        "target": "com.posthog.environments#EnvironmentsEventIngestionRestrictionsListResponse"
+        "target": "com.posthog.environments#ListEnvironmentsEventIngestionRestrictionsResponse"
       },
       "errors": [
         {
@@ -9347,7 +9369,7 @@
         "smithy.api#documentation": "Deprecated: use /api/environments/{id}/ instead."
       }
     },
-    "com.posthog.environments#EnvironmentsExperimentsConfigRetrieveRequest": {
+    "com.posthog.environments#GetEnvironmentsExperimentsConfigRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -9371,10 +9393,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.environments#EnvironmentsExperimentsConfigRetrieve": {
+    "com.posthog.environments#GetEnvironmentsExperimentsConfig": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.environments#EnvironmentsExperimentsConfigRetrieveRequest"
+        "target": "com.posthog.environments#GetEnvironmentsExperimentsConfigRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -9396,56 +9418,56 @@
         "smithy.api#documentation": "Manage experiment configuration for this environment."
       }
     },
-    "com.posthog.environments#EnvironmentsExperimentsConfigPartialUpdateRequestAppUrlsList": {
+    "com.posthog.environments#UpdateEnvironmentsExperimentsConfigPartialRequestAppUrlsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.posthog.environments#EnvironmentsExperimentsConfigPartialUpdateRequestPersonDisplayNamePropertiesList": {
+    "com.posthog.environments#UpdateEnvironmentsExperimentsConfigPartialRequestPersonDisplayNamePropertiesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.posthog.environments#EnvironmentsExperimentsConfigPartialUpdateRequestSessionRecordingUrlTriggerConfigList": {
+    "com.posthog.environments#UpdateEnvironmentsExperimentsConfigPartialRequestSessionRecordingUrlTriggerConfigList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
       },
       "traits": {}
     },
-    "com.posthog.environments#EnvironmentsExperimentsConfigPartialUpdateRequestSessionRecordingUrlBlocklistConfigList": {
+    "com.posthog.environments#UpdateEnvironmentsExperimentsConfigPartialRequestSessionRecordingUrlBlocklistConfigList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
       },
       "traits": {}
     },
-    "com.posthog.environments#EnvironmentsExperimentsConfigPartialUpdateRequestSessionRecordingEventTriggerConfigList": {
+    "com.posthog.environments#UpdateEnvironmentsExperimentsConfigPartialRequestSessionRecordingEventTriggerConfigList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.posthog.environments#EnvironmentsExperimentsConfigPartialUpdateRequestLiveEventsColumnsList": {
+    "com.posthog.environments#UpdateEnvironmentsExperimentsConfigPartialRequestLiveEventsColumnsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.posthog.environments#EnvironmentsExperimentsConfigPartialUpdateRequestRecordingDomainsList": {
+    "com.posthog.environments#UpdateEnvironmentsExperimentsConfigPartialRequestRecordingDomainsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.posthog.environments#EnvironmentsExperimentsConfigPartialUpdateRequestBusinessModel": {
+    "com.posthog.environments#UpdateEnvironmentsExperimentsConfigPartialRequestBusinessModel": {
       "type": "union",
       "members": {
         "BusinessModelEnum": {
@@ -9459,7 +9481,7 @@
         "smithy.api#documentation": "Whether this project serves B2B or B2C customers, used to optimize the UI layout.\n\n* `b2b` - B2B\n* `b2c` - B2C\n* `other` - Other"
       }
     },
-    "com.posthog.environments#EnvironmentsExperimentsConfigPartialUpdateRequest": {
+    "com.posthog.environments#UpdateEnvironmentsExperimentsConfigPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -9485,7 +9507,7 @@
           "target": "smithy.api#Boolean"
         },
         "app_urls": {
-          "target": "com.posthog.environments#EnvironmentsExperimentsConfigPartialUpdateRequestAppUrlsList"
+          "target": "com.posthog.environments#UpdateEnvironmentsExperimentsConfigPartialRequestAppUrlsList"
         },
         "anonymize_ips": {
           "target": "smithy.api#Boolean"
@@ -9496,7 +9518,7 @@
         "test_account_filters": {
           "target": "smithy.api#Document",
           "traits": {
-            "smithy.api#documentation": "Filters used to identify internal/test users. Each entry is a property filter.\n\n            Supported entry types and the exact shape each accepts:\n\n            # Person property — match (or exclude) by a person property\n            {\"key\": \"email\", \"type\": \"person\", \"value\": \"@example.com\", \"operator\": \"icontains\"}\n\n            # Event property — match by an event property\n            {\"key\": \"$host\", \"type\": \"event\", \"value\": \"localhost\", \"operator\": \"icontains\"}\n\n            # Cohort membership — match (or exclude) members of a cohort.\n            # Use operator \"in\" for inclusion and \"not_in\" for exclusion. Do NOT use a\n            # `negation` field here — `negation` is specific to cohort *definitions*\n            # (the inner sub-filters that build a cohort) and is rejected by the\n            # property-filter schema.\n            {\"key\": \"id\", \"type\": \"cohort\", \"value\": 8814, \"operator\": \"not_in\"}\n\n            Common operators: \"exact\", \"is_not\", \"icontains\", \"not_icontains\", \"regex\",\n            \"not_regex\", \"gt\", \"lt\", \"gte\", \"lte\", \"is_set\", \"is_not_set\", \"in\", \"not_in\"."
+            "smithy.api#documentation": "Filters used to identify internal/test users. Each entry is a property filter.\n\n            Supported entry types and the exact shape each accepts:\n\n            # Person property — match (or exclude) by a person property\n            {\"key\": \"email\", \"type\": \"person\", \"value\": \"@example.com\", \"operator\": \"ends_with\"}\n\n            # Event property — match by an event property\n            {\"key\": \"$host\", \"type\": \"event\", \"value\": \"localhost\", \"operator\": \"icontains\"}\n\n            # Cohort membership — match (or exclude) members of a cohort.\n            # Use operator \"in\" for inclusion and \"not_in\" for exclusion. Do NOT use a\n            # `negation` field here — `negation` is specific to cohort *definitions*\n            # (the inner sub-filters that build a cohort) and is rejected by the\n            # property-filter schema.\n            {\"key\": \"id\", \"type\": \"cohort\", \"value\": 8814, \"operator\": \"not_in\"}\n\n            Common operators: \"exact\", \"is_not\", \"icontains\", \"not_icontains\", \"starts_with\",\n            \"not_starts_with\", \"ends_with\", \"not_ends_with\", \"regex\", \"not_regex\", \"gt\", \"lt\",\n            \"gte\", \"lte\", \"is_set\", \"is_not_set\", \"in\", \"not_in\"."
           }
         },
         "test_account_filters_default_checked": {
@@ -9518,7 +9540,7 @@
           "target": "smithy.api#Document"
         },
         "person_display_name_properties": {
-          "target": "com.posthog.environments#EnvironmentsExperimentsConfigPartialUpdateRequestPersonDisplayNamePropertiesList",
+          "target": "com.posthog.environments#UpdateEnvironmentsExperimentsConfigPartialRequestPersonDisplayNamePropertiesList",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
@@ -9590,19 +9612,19 @@
           "target": "smithy.api#Document"
         },
         "session_recording_url_trigger_config": {
-          "target": "com.posthog.environments#EnvironmentsExperimentsConfigPartialUpdateRequestSessionRecordingUrlTriggerConfigList",
+          "target": "com.posthog.environments#UpdateEnvironmentsExperimentsConfigPartialRequestSessionRecordingUrlTriggerConfigList",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
         },
         "session_recording_url_blocklist_config": {
-          "target": "com.posthog.environments#EnvironmentsExperimentsConfigPartialUpdateRequestSessionRecordingUrlBlocklistConfigList",
+          "target": "com.posthog.environments#UpdateEnvironmentsExperimentsConfigPartialRequestSessionRecordingUrlBlocklistConfigList",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
         },
         "session_recording_event_trigger_config": {
-          "target": "com.posthog.environments#EnvironmentsExperimentsConfigPartialUpdateRequestSessionRecordingEventTriggerConfigList",
+          "target": "com.posthog.environments#UpdateEnvironmentsExperimentsConfigPartialRequestSessionRecordingEventTriggerConfigList",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
@@ -9641,13 +9663,13 @@
           }
         },
         "live_events_columns": {
-          "target": "com.posthog.environments#EnvironmentsExperimentsConfigPartialUpdateRequestLiveEventsColumnsList",
+          "target": "com.posthog.environments#UpdateEnvironmentsExperimentsConfigPartialRequestLiveEventsColumnsList",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
         },
         "recording_domains": {
-          "target": "com.posthog.environments#EnvironmentsExperimentsConfigPartialUpdateRequestRecordingDomainsList",
+          "target": "com.posthog.environments#UpdateEnvironmentsExperimentsConfigPartialRequestRecordingDomainsList",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
@@ -9723,6 +9745,9 @@
             "com.distilled.openapi#nullable": {}
           }
         },
+        "feature_flag_policy_config": {
+          "target": "com.posthog.environments#TeamFeatureFlagPolicyConfig"
+        },
         "capture_dead_clicks": {
           "target": "smithy.api#Boolean",
           "traits": {
@@ -9763,7 +9788,7 @@
           }
         },
         "business_model": {
-          "target": "com.posthog.environments#EnvironmentsExperimentsConfigPartialUpdateRequestBusinessModel",
+          "target": "com.posthog.environments#UpdateEnvironmentsExperimentsConfigPartialRequestBusinessModel",
           "traits": {
             "smithy.api#documentation": "Whether this project serves B2B or B2C customers, used to optimize the UI layout.\n\n* `b2b` - B2B\n* `b2c` - B2C\n* `other` - Other",
             "com.distilled.openapi#nullable": {}
@@ -9792,10 +9817,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.environments#EnvironmentsExperimentsConfigPartialUpdate": {
+    "com.posthog.environments#UpdateEnvironmentsExperimentsConfigPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.environments#EnvironmentsExperimentsConfigPartialUpdateRequest"
+        "target": "com.posthog.environments#UpdateEnvironmentsExperimentsConfigPartialRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -9920,7 +9945,7 @@
         "test_account_filters": {
           "target": "smithy.api#Document",
           "traits": {
-            "smithy.api#documentation": "Filters used to identify internal/test users. Each entry is a property filter.\n\n            Supported entry types and the exact shape each accepts:\n\n            # Person property — match (or exclude) by a person property\n            {\"key\": \"email\", \"type\": \"person\", \"value\": \"@example.com\", \"operator\": \"icontains\"}\n\n            # Event property — match by an event property\n            {\"key\": \"$host\", \"type\": \"event\", \"value\": \"localhost\", \"operator\": \"icontains\"}\n\n            # Cohort membership — match (or exclude) members of a cohort.\n            # Use operator \"in\" for inclusion and \"not_in\" for exclusion. Do NOT use a\n            # `negation` field here — `negation` is specific to cohort *definitions*\n            # (the inner sub-filters that build a cohort) and is rejected by the\n            # property-filter schema.\n            {\"key\": \"id\", \"type\": \"cohort\", \"value\": 8814, \"operator\": \"not_in\"}\n\n            Common operators: \"exact\", \"is_not\", \"icontains\", \"not_icontains\", \"regex\",\n            \"not_regex\", \"gt\", \"lt\", \"gte\", \"lte\", \"is_set\", \"is_not_set\", \"in\", \"not_in\"."
+            "smithy.api#documentation": "Filters used to identify internal/test users. Each entry is a property filter.\n\n            Supported entry types and the exact shape each accepts:\n\n            # Person property — match (or exclude) by a person property\n            {\"key\": \"email\", \"type\": \"person\", \"value\": \"@example.com\", \"operator\": \"ends_with\"}\n\n            # Event property — match by an event property\n            {\"key\": \"$host\", \"type\": \"event\", \"value\": \"localhost\", \"operator\": \"icontains\"}\n\n            # Cohort membership — match (or exclude) members of a cohort.\n            # Use operator \"in\" for inclusion and \"not_in\" for exclusion. Do NOT use a\n            # `negation` field here — `negation` is specific to cohort *definitions*\n            # (the inner sub-filters that build a cohort) and is rejected by the\n            # property-filter schema.\n            {\"key\": \"id\", \"type\": \"cohort\", \"value\": 8814, \"operator\": \"not_in\"}\n\n            Common operators: \"exact\", \"is_not\", \"icontains\", \"not_icontains\", \"starts_with\",\n            \"not_starts_with\", \"ends_with\", \"not_ends_with\", \"regex\", \"not_regex\", \"gt\", \"lt\",\n            \"gte\", \"lte\", \"is_set\", \"is_not_set\", \"in\", \"not_in\"."
           }
         },
         "test_account_filters_default_checked": {
@@ -10147,6 +10172,9 @@
             "com.distilled.openapi#nullable": {}
           }
         },
+        "feature_flag_policy_config": {
+          "target": "com.posthog.environments#TeamFeatureFlagPolicyConfig"
+        },
         "capture_dead_clicks": {
           "target": "smithy.api#Boolean",
           "traits": {
@@ -10244,7 +10272,7 @@
         "smithy.api#documentation": "Deprecated: use /api/environments/{id}/ instead."
       }
     },
-    "com.posthog.environments#EnvironmentsIsGeneratingDemoDataRetrieveRequest": {
+    "com.posthog.environments#GetEnvironmentsIsGeneratingDemoDataRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -10268,10 +10296,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.environments#EnvironmentsIsGeneratingDemoDataRetrieve": {
+    "com.posthog.environments#GetEnvironmentsIsGeneratingDemoData": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.environments#EnvironmentsIsGeneratingDemoDataRetrieveRequest"
+        "target": "com.posthog.environments#GetEnvironmentsIsGeneratingDemoDataRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -10293,7 +10321,7 @@
         "smithy.api#documentation": "Deprecated: use /api/environments/{id}/ instead."
       }
     },
-    "com.posthog.environments#EnvironmentsLogsConfigRetrieveRequest": {
+    "com.posthog.environments#GetEnvironmentsLogsConfigRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -10317,10 +10345,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.environments#EnvironmentsLogsConfigRetrieve": {
+    "com.posthog.environments#GetEnvironmentsLogsConfig": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.environments#EnvironmentsLogsConfigRetrieveRequest"
+        "target": "com.posthog.environments#GetEnvironmentsLogsConfigRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -10334,56 +10362,56 @@
         "smithy.api#documentation": "Manage logs product configuration for this environment. Members can read;\nwriting requires project admin, matching the admin-only settings UI."
       }
     },
-    "com.posthog.environments#EnvironmentsLogsConfigPartialUpdateRequestAppUrlsList": {
+    "com.posthog.environments#UpdateEnvironmentsLogsConfigPartialRequestAppUrlsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.posthog.environments#EnvironmentsLogsConfigPartialUpdateRequestPersonDisplayNamePropertiesList": {
+    "com.posthog.environments#UpdateEnvironmentsLogsConfigPartialRequestPersonDisplayNamePropertiesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.posthog.environments#EnvironmentsLogsConfigPartialUpdateRequestSessionRecordingUrlTriggerConfigList": {
+    "com.posthog.environments#UpdateEnvironmentsLogsConfigPartialRequestSessionRecordingUrlTriggerConfigList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
       },
       "traits": {}
     },
-    "com.posthog.environments#EnvironmentsLogsConfigPartialUpdateRequestSessionRecordingUrlBlocklistConfigList": {
+    "com.posthog.environments#UpdateEnvironmentsLogsConfigPartialRequestSessionRecordingUrlBlocklistConfigList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Document"
       },
       "traits": {}
     },
-    "com.posthog.environments#EnvironmentsLogsConfigPartialUpdateRequestSessionRecordingEventTriggerConfigList": {
+    "com.posthog.environments#UpdateEnvironmentsLogsConfigPartialRequestSessionRecordingEventTriggerConfigList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.posthog.environments#EnvironmentsLogsConfigPartialUpdateRequestLiveEventsColumnsList": {
+    "com.posthog.environments#UpdateEnvironmentsLogsConfigPartialRequestLiveEventsColumnsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.posthog.environments#EnvironmentsLogsConfigPartialUpdateRequestRecordingDomainsList": {
+    "com.posthog.environments#UpdateEnvironmentsLogsConfigPartialRequestRecordingDomainsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.posthog.environments#EnvironmentsLogsConfigPartialUpdateRequestBusinessModel": {
+    "com.posthog.environments#UpdateEnvironmentsLogsConfigPartialRequestBusinessModel": {
       "type": "union",
       "members": {
         "BusinessModelEnum": {
@@ -10397,7 +10425,7 @@
         "smithy.api#documentation": "Whether this project serves B2B or B2C customers, used to optimize the UI layout.\n\n* `b2b` - B2B\n* `b2c` - B2C\n* `other` - Other"
       }
     },
-    "com.posthog.environments#EnvironmentsLogsConfigPartialUpdateRequest": {
+    "com.posthog.environments#UpdateEnvironmentsLogsConfigPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -10423,7 +10451,7 @@
           "target": "smithy.api#Boolean"
         },
         "app_urls": {
-          "target": "com.posthog.environments#EnvironmentsLogsConfigPartialUpdateRequestAppUrlsList"
+          "target": "com.posthog.environments#UpdateEnvironmentsLogsConfigPartialRequestAppUrlsList"
         },
         "anonymize_ips": {
           "target": "smithy.api#Boolean"
@@ -10434,7 +10462,7 @@
         "test_account_filters": {
           "target": "smithy.api#Document",
           "traits": {
-            "smithy.api#documentation": "Filters used to identify internal/test users. Each entry is a property filter.\n\n            Supported entry types and the exact shape each accepts:\n\n            # Person property — match (or exclude) by a person property\n            {\"key\": \"email\", \"type\": \"person\", \"value\": \"@example.com\", \"operator\": \"icontains\"}\n\n            # Event property — match by an event property\n            {\"key\": \"$host\", \"type\": \"event\", \"value\": \"localhost\", \"operator\": \"icontains\"}\n\n            # Cohort membership — match (or exclude) members of a cohort.\n            # Use operator \"in\" for inclusion and \"not_in\" for exclusion. Do NOT use a\n            # `negation` field here — `negation` is specific to cohort *definitions*\n            # (the inner sub-filters that build a cohort) and is rejected by the\n            # property-filter schema.\n            {\"key\": \"id\", \"type\": \"cohort\", \"value\": 8814, \"operator\": \"not_in\"}\n\n            Common operators: \"exact\", \"is_not\", \"icontains\", \"not_icontains\", \"regex\",\n            \"not_regex\", \"gt\", \"lt\", \"gte\", \"lte\", \"is_set\", \"is_not_set\", \"in\", \"not_in\"."
+            "smithy.api#documentation": "Filters used to identify internal/test users. Each entry is a property filter.\n\n            Supported entry types and the exact shape each accepts:\n\n            # Person property — match (or exclude) by a person property\n            {\"key\": \"email\", \"type\": \"person\", \"value\": \"@example.com\", \"operator\": \"ends_with\"}\n\n            # Event property — match by an event property\n            {\"key\": \"$host\", \"type\": \"event\", \"value\": \"localhost\", \"operator\": \"icontains\"}\n\n            # Cohort membership — match (or exclude) members of a cohort.\n            # Use operator \"in\" for inclusion and \"not_in\" for exclusion. Do NOT use a\n            # `negation` field here — `negation` is specific to cohort *definitions*\n            # (the inner sub-filters that build a cohort) and is rejected by the\n            # property-filter schema.\n            {\"key\": \"id\", \"type\": \"cohort\", \"value\": 8814, \"operator\": \"not_in\"}\n\n            Common operators: \"exact\", \"is_not\", \"icontains\", \"not_icontains\", \"starts_with\",\n            \"not_starts_with\", \"ends_with\", \"not_ends_with\", \"regex\", \"not_regex\", \"gt\", \"lt\",\n            \"gte\", \"lte\", \"is_set\", \"is_not_set\", \"in\", \"not_in\"."
           }
         },
         "test_account_filters_default_checked": {
@@ -10456,7 +10484,7 @@
           "target": "smithy.api#Document"
         },
         "person_display_name_properties": {
-          "target": "com.posthog.environments#EnvironmentsLogsConfigPartialUpdateRequestPersonDisplayNamePropertiesList",
+          "target": "com.posthog.environments#UpdateEnvironmentsLogsConfigPartialRequestPersonDisplayNamePropertiesList",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
@@ -10528,19 +10556,19 @@
           "target": "smithy.api#Document"
         },
         "session_recording_url_trigger_config": {
-          "target": "com.posthog.environments#EnvironmentsLogsConfigPartialUpdateRequestSessionRecordingUrlTriggerConfigList",
+          "target": "com.posthog.environments#UpdateEnvironmentsLogsConfigPartialRequestSessionRecordingUrlTriggerConfigList",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
         },
         "session_recording_url_blocklist_config": {
-          "target": "com.posthog.environments#EnvironmentsLogsConfigPartialUpdateRequestSessionRecordingUrlBlocklistConfigList",
+          "target": "com.posthog.environments#UpdateEnvironmentsLogsConfigPartialRequestSessionRecordingUrlBlocklistConfigList",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
         },
         "session_recording_event_trigger_config": {
-          "target": "com.posthog.environments#EnvironmentsLogsConfigPartialUpdateRequestSessionRecordingEventTriggerConfigList",
+          "target": "com.posthog.environments#UpdateEnvironmentsLogsConfigPartialRequestSessionRecordingEventTriggerConfigList",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
@@ -10579,13 +10607,13 @@
           }
         },
         "live_events_columns": {
-          "target": "com.posthog.environments#EnvironmentsLogsConfigPartialUpdateRequestLiveEventsColumnsList",
+          "target": "com.posthog.environments#UpdateEnvironmentsLogsConfigPartialRequestLiveEventsColumnsList",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
         },
         "recording_domains": {
-          "target": "com.posthog.environments#EnvironmentsLogsConfigPartialUpdateRequestRecordingDomainsList",
+          "target": "com.posthog.environments#UpdateEnvironmentsLogsConfigPartialRequestRecordingDomainsList",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
@@ -10661,6 +10689,9 @@
             "com.distilled.openapi#nullable": {}
           }
         },
+        "feature_flag_policy_config": {
+          "target": "com.posthog.environments#TeamFeatureFlagPolicyConfig"
+        },
         "capture_dead_clicks": {
           "target": "smithy.api#Boolean",
           "traits": {
@@ -10701,7 +10732,7 @@
           }
         },
         "business_model": {
-          "target": "com.posthog.environments#EnvironmentsLogsConfigPartialUpdateRequestBusinessModel",
+          "target": "com.posthog.environments#UpdateEnvironmentsLogsConfigPartialRequestBusinessModel",
           "traits": {
             "smithy.api#documentation": "Whether this project serves B2B or B2C customers, used to optimize the UI layout.\n\n* `b2b` - B2B\n* `b2c` - B2C\n* `other` - Other",
             "com.distilled.openapi#nullable": {}
@@ -10730,10 +10761,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.environments#EnvironmentsLogsConfigPartialUpdate": {
+    "com.posthog.environments#UpdateEnvironmentsLogsConfigPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.environments#EnvironmentsLogsConfigPartialUpdateRequest"
+        "target": "com.posthog.environments#UpdateEnvironmentsLogsConfigPartialRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -10847,7 +10878,7 @@
         "test_account_filters": {
           "target": "smithy.api#Document",
           "traits": {
-            "smithy.api#documentation": "Filters used to identify internal/test users. Each entry is a property filter.\n\n            Supported entry types and the exact shape each accepts:\n\n            # Person property — match (or exclude) by a person property\n            {\"key\": \"email\", \"type\": \"person\", \"value\": \"@example.com\", \"operator\": \"icontains\"}\n\n            # Event property — match by an event property\n            {\"key\": \"$host\", \"type\": \"event\", \"value\": \"localhost\", \"operator\": \"icontains\"}\n\n            # Cohort membership — match (or exclude) members of a cohort.\n            # Use operator \"in\" for inclusion and \"not_in\" for exclusion. Do NOT use a\n            # `negation` field here — `negation` is specific to cohort *definitions*\n            # (the inner sub-filters that build a cohort) and is rejected by the\n            # property-filter schema.\n            {\"key\": \"id\", \"type\": \"cohort\", \"value\": 8814, \"operator\": \"not_in\"}\n\n            Common operators: \"exact\", \"is_not\", \"icontains\", \"not_icontains\", \"regex\",\n            \"not_regex\", \"gt\", \"lt\", \"gte\", \"lte\", \"is_set\", \"is_not_set\", \"in\", \"not_in\"."
+            "smithy.api#documentation": "Filters used to identify internal/test users. Each entry is a property filter.\n\n            Supported entry types and the exact shape each accepts:\n\n            # Person property — match (or exclude) by a person property\n            {\"key\": \"email\", \"type\": \"person\", \"value\": \"@example.com\", \"operator\": \"ends_with\"}\n\n            # Event property — match by an event property\n            {\"key\": \"$host\", \"type\": \"event\", \"value\": \"localhost\", \"operator\": \"icontains\"}\n\n            # Cohort membership — match (or exclude) members of a cohort.\n            # Use operator \"in\" for inclusion and \"not_in\" for exclusion. Do NOT use a\n            # `negation` field here — `negation` is specific to cohort *definitions*\n            # (the inner sub-filters that build a cohort) and is rejected by the\n            # property-filter schema.\n            {\"key\": \"id\", \"type\": \"cohort\", \"value\": 8814, \"operator\": \"not_in\"}\n\n            Common operators: \"exact\", \"is_not\", \"icontains\", \"not_icontains\", \"starts_with\",\n            \"not_starts_with\", \"ends_with\", \"not_ends_with\", \"regex\", \"not_regex\", \"gt\", \"lt\",\n            \"gte\", \"lte\", \"is_set\", \"is_not_set\", \"in\", \"not_in\"."
           }
         },
         "test_account_filters_default_checked": {
@@ -11074,6 +11105,9 @@
             "com.distilled.openapi#nullable": {}
           }
         },
+        "feature_flag_policy_config": {
+          "target": "com.posthog.environments#TeamFeatureFlagPolicyConfig"
+        },
         "capture_dead_clicks": {
           "target": "smithy.api#Boolean",
           "traits": {
@@ -11271,7 +11305,7 @@
         "test_account_filters": {
           "target": "smithy.api#Document",
           "traits": {
-            "smithy.api#documentation": "Filters used to identify internal/test users. Each entry is a property filter.\n\n            Supported entry types and the exact shape each accepts:\n\n            # Person property — match (or exclude) by a person property\n            {\"key\": \"email\", \"type\": \"person\", \"value\": \"@example.com\", \"operator\": \"icontains\"}\n\n            # Event property — match by an event property\n            {\"key\": \"$host\", \"type\": \"event\", \"value\": \"localhost\", \"operator\": \"icontains\"}\n\n            # Cohort membership — match (or exclude) members of a cohort.\n            # Use operator \"in\" for inclusion and \"not_in\" for exclusion. Do NOT use a\n            # `negation` field here — `negation` is specific to cohort *definitions*\n            # (the inner sub-filters that build a cohort) and is rejected by the\n            # property-filter schema.\n            {\"key\": \"id\", \"type\": \"cohort\", \"value\": 8814, \"operator\": \"not_in\"}\n\n            Common operators: \"exact\", \"is_not\", \"icontains\", \"not_icontains\", \"regex\",\n            \"not_regex\", \"gt\", \"lt\", \"gte\", \"lte\", \"is_set\", \"is_not_set\", \"in\", \"not_in\"."
+            "smithy.api#documentation": "Filters used to identify internal/test users. Each entry is a property filter.\n\n            Supported entry types and the exact shape each accepts:\n\n            # Person property — match (or exclude) by a person property\n            {\"key\": \"email\", \"type\": \"person\", \"value\": \"@example.com\", \"operator\": \"ends_with\"}\n\n            # Event property — match by an event property\n            {\"key\": \"$host\", \"type\": \"event\", \"value\": \"localhost\", \"operator\": \"icontains\"}\n\n            # Cohort membership — match (or exclude) members of a cohort.\n            # Use operator \"in\" for inclusion and \"not_in\" for exclusion. Do NOT use a\n            # `negation` field here — `negation` is specific to cohort *definitions*\n            # (the inner sub-filters that build a cohort) and is rejected by the\n            # property-filter schema.\n            {\"key\": \"id\", \"type\": \"cohort\", \"value\": 8814, \"operator\": \"not_in\"}\n\n            Common operators: \"exact\", \"is_not\", \"icontains\", \"not_icontains\", \"starts_with\",\n            \"not_starts_with\", \"ends_with\", \"not_ends_with\", \"regex\", \"not_regex\", \"gt\", \"lt\",\n            \"gte\", \"lte\", \"is_set\", \"is_not_set\", \"in\", \"not_in\"."
           }
         },
         "test_account_filters_default_checked": {
@@ -11498,6 +11532,9 @@
             "com.distilled.openapi#nullable": {}
           }
         },
+        "feature_flag_policy_config": {
+          "target": "com.posthog.environments#TeamFeatureFlagPolicyConfig"
+        },
         "capture_dead_clicks": {
           "target": "smithy.api#Boolean",
           "traits": {
@@ -11595,7 +11632,7 @@
         "smithy.api#documentation": "Deprecated: use /api/environments/{id}/ instead."
       }
     },
-    "com.posthog.environments#EnvironmentsSettingsAsOfRetrieveRequest": {
+    "com.posthog.environments#GetEnvironmentsSettingsAsOfRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -11619,10 +11656,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.environments#EnvironmentsSettingsAsOfRetrieve": {
+    "com.posthog.environments#GetEnvironmentsSettingsAsOf": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.environments#EnvironmentsSettingsAsOfRetrieveRequest"
+        "target": "com.posthog.environments#GetEnvironmentsSettingsAsOfRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -11688,43 +11725,43 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.environments#EnvironmentsActivityRetrieve"
+          "target": "com.posthog.environments#GetEnvironmentsActivity"
         },
         {
           "target": "com.posthog.environments#EnvironmentsAddProductIntentPartialUpdate"
         },
         {
-          "target": "com.posthog.environments#EnvironmentsCompleteProductOnboardingPartialUpdate"
+          "target": "com.posthog.environments#UpdateEnvironmentsCompleteProductOnboardingPartial"
         },
         {
           "target": "com.posthog.environments#EnvironmentsDeleteSecretTokenBackupPartialUpdate"
         },
         {
-          "target": "com.posthog.environments#EnvironmentsEvaluationContextSuggestionsCreate"
+          "target": "com.posthog.environments#CreateEnvironmentsEvaluationContextSuggestion"
         },
         {
           "target": "com.posthog.environments#EnvironmentsEvaluationContextSuggestionsDestroy"
         },
         {
-          "target": "com.posthog.environments#EnvironmentsEventIngestionRestrictionsList"
+          "target": "com.posthog.environments#ListEnvironmentsEventIngestionRestrictions"
         },
         {
-          "target": "com.posthog.environments#EnvironmentsExperimentsConfigRetrieve"
+          "target": "com.posthog.environments#GetEnvironmentsExperimentsConfig"
         },
         {
-          "target": "com.posthog.environments#EnvironmentsExperimentsConfigPartialUpdate"
+          "target": "com.posthog.environments#UpdateEnvironmentsExperimentsConfigPartial"
         },
         {
           "target": "com.posthog.environments#EnvironmentsGenerateConversationsPublicTokenCreate"
         },
         {
-          "target": "com.posthog.environments#EnvironmentsIsGeneratingDemoDataRetrieve"
+          "target": "com.posthog.environments#GetEnvironmentsIsGeneratingDemoData"
         },
         {
-          "target": "com.posthog.environments#EnvironmentsLogsConfigRetrieve"
+          "target": "com.posthog.environments#GetEnvironmentsLogsConfig"
         },
         {
-          "target": "com.posthog.environments#EnvironmentsLogsConfigPartialUpdate"
+          "target": "com.posthog.environments#UpdateEnvironmentsLogsConfigPartial"
         },
         {
           "target": "com.posthog.environments#EnvironmentsResetTokenPartialUpdate"
@@ -11733,7 +11770,7 @@
           "target": "com.posthog.environments#EnvironmentsRotateSecretTokenPartialUpdate"
         },
         {
-          "target": "com.posthog.environments#EnvironmentsSettingsAsOfRetrieve"
+          "target": "com.posthog.environments#GetEnvironmentsSettingsAsOf"
         }
       ],
       "traits": {

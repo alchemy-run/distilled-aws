@@ -11,7 +11,7 @@ import * as Retry from "../retry.ts";
 
 export type { PosthogOpError, PosthogOpContext };
 
-export interface TaskActivityListRequest {
+export interface ListTaskActivityRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** Activity timestamp from the final row of the previous page. */
@@ -21,7 +21,7 @@ export interface TaskActivityListRequest {
   /** Maximum number of tasks to return (most recent activity first). */
   limit?: number;
 }
-export const TaskActivityListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListTaskActivityRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     before: S.optional(S.String.pipe(T.Query())),
@@ -35,8 +35,8 @@ export const TaskActivityListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "TaskActivityListRequest",
-}) as any as S.Schema<TaskActivityListRequest>;
+  identifier: "ListTaskActivityRequest",
+}) as any as S.Schema<ListTaskActivityRequest>;
 
 /** * `awaiting_input` - awaiting_input * `completed` - completed * `mention` - mention * `thread_reply` - thread_reply * `owned_item_comment` - owned_item_comment * `message` - message * `created` - created */
 export type ActivityKindEnum =
@@ -217,15 +217,15 @@ export const TaskActivityMarkReadResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "TaskActivityMarkReadResponse",
 }) as any as S.Schema<TaskActivityMarkReadResponse>;
 
-export type TaskActivityListError = PosthogOpError;
+export type ListTaskActivityError = PosthogOpError;
 /** List the requester's task activity Task lifecycle rows collapse per task. Comment notifications remain separate. Results are most-recent first and restricted to tasks the requester can see. */
-export const taskActivityList: API.OperationMethod<
-  TaskActivityListRequest,
+export const listTaskActivity: API.OperationMethod<
+  ListTaskActivityRequest,
   TaskActivityPageDTO,
-  TaskActivityListError,
+  ListTaskActivityError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: TaskActivityListRequest,
+  input: ListTaskActivityRequest,
   output: TaskActivityPageDTO,
   errors: [],
   protocol: PosthogProtocol,

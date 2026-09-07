@@ -11,13 +11,13 @@ import * as Retry from "../retry.ts";
 
 export type { PosthogOpError, PosthogOpContext };
 
-export interface EvaluationDirectoriesCreateRequest {
+export interface CreateEvaluationDirectoryRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** Directory name shown in the online evals list. */
   name: string;
 }
-export const EvaluationDirectoriesCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateEvaluationDirectoryRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     name: S.String,
@@ -29,8 +29,8 @@ export const EvaluationDirectoriesCreateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "EvaluationDirectoriesCreateRequest",
-}) as any as S.Schema<EvaluationDirectoriesCreateRequest>;
+  identifier: "CreateEvaluationDirectoryRequest",
+}) as any as S.Schema<CreateEvaluationDirectoryRequest>;
 
 export type UserBasicHedgehogConfigMap = { [key: string]: unknown | undefined };
 export const UserBasicHedgehogConfigMap = /*@__PURE__*/ S.Record(
@@ -135,11 +135,32 @@ export const EvaluationDirectoriesDestroyResponse = /*@__PURE__*/ S.suspend(
   identifier: "EvaluationDirectoriesDestroyResponse",
 }) as any as S.Schema<EvaluationDirectoriesDestroyResponse>;
 
-export interface EvaluationDirectoriesListRequest {
+export interface GetEvaluationDirectoryRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this evaluation directory. */
+  id: string;
+}
+export const GetEvaluationDirectoryRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/evaluation_directories/{id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetEvaluationDirectoryRequest",
+}) as any as S.Schema<GetEvaluationDirectoryRequest>;
+
+export interface ListEvaluationDirectoriesRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
 }
-export const EvaluationDirectoriesListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListEvaluationDirectoriesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
   }).pipe(
@@ -150,24 +171,24 @@ export const EvaluationDirectoriesListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "EvaluationDirectoriesListRequest",
-}) as any as S.Schema<EvaluationDirectoriesListRequest>;
+  identifier: "ListEvaluationDirectoriesRequest",
+}) as any as S.Schema<ListEvaluationDirectoriesRequest>;
 
-export type EvaluationDirectoriesListResponseBodyList =
+export type ListEvaluationDirectoriesResponseBodyList =
   Array<EvaluationDirectory>;
-export const EvaluationDirectoriesListResponseBodyList = /*@__PURE__*/ S.Array(
+export const ListEvaluationDirectoriesResponseBodyList = /*@__PURE__*/ S.Array(
   EvaluationDirectory,
-) as any as S.Schema<EvaluationDirectoriesListResponseBodyList>;
+) as any as S.Schema<ListEvaluationDirectoriesResponseBodyList>;
 
-export type EvaluationDirectoriesListResponse =
-  EvaluationDirectoriesListResponseBodyList;
-export const EvaluationDirectoriesListResponse = /*@__PURE__*/ S.suspend(() =>
-  EvaluationDirectoriesListResponseBodyList.pipe(T.RawResponseRoot()),
+export type ListEvaluationDirectoriesResponse =
+  ListEvaluationDirectoriesResponseBodyList;
+export const ListEvaluationDirectoriesResponse = /*@__PURE__*/ S.suspend(() =>
+  ListEvaluationDirectoriesResponseBodyList.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "EvaluationDirectoriesListResponse",
-}) as any as S.Schema<EvaluationDirectoriesListResponse>;
+  identifier: "ListEvaluationDirectoriesResponse",
+}) as any as S.Schema<ListEvaluationDirectoriesResponse>;
 
-export interface EvaluationDirectoriesPartialUpdateRequest {
+export interface UpdateEvaluationDirectoriesPartialRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A UUID string identifying this evaluation directory. */
@@ -175,7 +196,7 @@ export interface EvaluationDirectoriesPartialUpdateRequest {
   /** Directory name shown in the online evals list. */
   name?: string;
 }
-export const EvaluationDirectoriesPartialUpdateRequest =
+export const UpdateEvaluationDirectoriesPartialRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
@@ -189,39 +210,17 @@ export const EvaluationDirectoriesPartialUpdateRequest =
       }),
     ),
   ).annotate({
-    identifier: "EvaluationDirectoriesPartialUpdateRequest",
-  }) as any as S.Schema<EvaluationDirectoriesPartialUpdateRequest>;
+    identifier: "UpdateEvaluationDirectoriesPartialRequest",
+  }) as any as S.Schema<UpdateEvaluationDirectoriesPartialRequest>;
 
-export interface EvaluationDirectoriesRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this evaluation directory. */
-  id: string;
-}
-export const EvaluationDirectoriesRetrieveRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/evaluation_directories/{id}/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "EvaluationDirectoriesRetrieveRequest",
-}) as any as S.Schema<EvaluationDirectoriesRetrieveRequest>;
-
-export type EvaluationDirectoriesCreateError = PosthogOpError;
-export const evaluationDirectoriesCreate: API.OperationMethod<
-  EvaluationDirectoriesCreateRequest,
+export type CreateEvaluationDirectoryError = PosthogOpError;
+export const createEvaluationDirectory: API.OperationMethod<
+  CreateEvaluationDirectoryRequest,
   EvaluationDirectory,
-  EvaluationDirectoriesCreateError,
+  CreateEvaluationDirectoryError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: EvaluationDirectoriesCreateRequest,
+  input: CreateEvaluationDirectoryRequest,
   output: EvaluationDirectory,
   errors: [],
   protocol: PosthogProtocol,
@@ -242,42 +241,42 @@ export const evaluationDirectoriesDestroy: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type EvaluationDirectoriesListError = PosthogOpError;
-export const evaluationDirectoriesList: API.OperationMethod<
-  EvaluationDirectoriesListRequest,
-  EvaluationDirectoriesListResponse,
-  EvaluationDirectoriesListError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: EvaluationDirectoriesListRequest,
-  output: EvaluationDirectoriesListResponse,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type EvaluationDirectoriesPartialUpdateError = PosthogOpError;
-export const evaluationDirectoriesPartialUpdate: API.OperationMethod<
-  EvaluationDirectoriesPartialUpdateRequest,
+export type GetEvaluationDirectoryError = PosthogOpError;
+export const getEvaluationDirectory: API.OperationMethod<
+  GetEvaluationDirectoryRequest,
   EvaluationDirectory,
-  EvaluationDirectoriesPartialUpdateError,
+  GetEvaluationDirectoryError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: EvaluationDirectoriesPartialUpdateRequest,
+  input: GetEvaluationDirectoryRequest,
   output: EvaluationDirectory,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type EvaluationDirectoriesRetrieveError = PosthogOpError;
-export const evaluationDirectoriesRetrieve: API.OperationMethod<
-  EvaluationDirectoriesRetrieveRequest,
-  EvaluationDirectory,
-  EvaluationDirectoriesRetrieveError,
+export type ListEvaluationDirectoriesError = PosthogOpError;
+export const listEvaluationDirectories: API.OperationMethod<
+  ListEvaluationDirectoriesRequest,
+  ListEvaluationDirectoriesResponse,
+  ListEvaluationDirectoriesError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: EvaluationDirectoriesRetrieveRequest,
+  input: ListEvaluationDirectoriesRequest,
+  output: ListEvaluationDirectoriesResponse,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateEvaluationDirectoriesPartialError = PosthogOpError;
+export const updateEvaluationDirectoriesPartial: API.OperationMethod<
+  UpdateEvaluationDirectoriesPartialRequest,
+  EvaluationDirectory,
+  UpdateEvaluationDirectoriesPartialError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateEvaluationDirectoriesPartialRequest,
   output: EvaluationDirectory,
   errors: [],
   protocol: PosthogProtocol,

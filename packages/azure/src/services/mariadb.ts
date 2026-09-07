@@ -12,7 +12,7 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
-export interface ServersStartRequest {
+export interface StartServerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -20,7 +20,7 @@ export interface ServersStartRequest {
   /** The name of the server. */
   serverName: string;
 }
-export const ServersStartRequest = /*@__PURE__*/ S.suspend(() =>
+export const StartServerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -34,17 +34,17 @@ export const ServersStartRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ServersStartRequest",
-}) as any as S.Schema<ServersStartRequest>;
+  identifier: "StartServerRequest",
+}) as any as S.Schema<StartServerRequest>;
 
-export interface ServersStartResponse {}
-export const ServersStartResponse = /*@__PURE__*/ S.suspend(() =>
+export interface StartServerResponse {}
+export const StartServerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "ServersStartResponse",
-}) as any as S.Schema<ServersStartResponse>;
+  identifier: "StartServerResponse",
+}) as any as S.Schema<StartServerResponse>;
 
-export interface ServersStopRequest {
+export interface StopServerRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -52,7 +52,7 @@ export interface ServersStopRequest {
   /** The name of the server. */
   serverName: string;
 }
-export const ServersStopRequest = /*@__PURE__*/ S.suspend(() =>
+export const StopServerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -66,41 +66,41 @@ export const ServersStopRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ServersStopRequest",
-}) as any as S.Schema<ServersStopRequest>;
+  identifier: "StopServerRequest",
+}) as any as S.Schema<StopServerRequest>;
 
-export interface ServersStopResponse {}
-export const ServersStopResponse = /*@__PURE__*/ S.suspend(() =>
+export interface StopServerResponse {}
+export const StopServerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "ServersStopResponse",
-}) as any as S.Schema<ServersStopResponse>;
+  identifier: "StopServerResponse",
+}) as any as S.Schema<StopServerResponse>;
 
-export type ServersStartError = AzureOpError;
+export type StartServerError = AzureOpError;
 /** Starts a stopped server. */
-export const ServersStart: API.OperationMethod<
-  ServersStartRequest,
-  ServersStartResponse,
-  ServersStartError,
+export const StartServer: API.OperationMethod<
+  StartServerRequest,
+  StartServerResponse,
+  StartServerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ServersStartRequest,
-  output: ServersStartResponse,
+  input: StartServerRequest,
+  output: StartServerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ServersStopError = AzureOpError;
+export type StopServerError = AzureOpError;
 /** Stops a running server. */
-export const ServersStop: API.OperationMethod<
-  ServersStopRequest,
-  ServersStopResponse,
-  ServersStopError,
+export const StopServer: API.OperationMethod<
+  StopServerRequest,
+  StopServerResponse,
+  StopServerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ServersStopRequest,
-  output: ServersStopResponse,
+  input: StopServerRequest,
+  output: StopServerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

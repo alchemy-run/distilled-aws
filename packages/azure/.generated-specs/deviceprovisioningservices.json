@@ -14,13 +14,14 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.deviceprovisioningservices#IotDpsResourceListValidSkus": {
+    "com.azure.deviceprovisioningservices#ListIotDpsResourceValidSkus": {
       "type": "operation",
       "input": {
-        "target": "com.azure.deviceprovisioningservices#IotDpsResourceListValidSkusRequest"
+        "target": "com.azure.deviceprovisioningservices#ListIotDpsResourceValidSkusRequest"
       },
       "output": {
         "target": "com.azure.deviceprovisioningservices#IotDpsSkuDefinitionListResult"
@@ -94,7 +95,7 @@
         "smithy.api#documentation": "Sku name."
       }
     },
-    "com.azure.deviceprovisioningservices#IotDpsResourceListValidSkusRequest": {
+    "com.azure.deviceprovisioningservices#ListIotDpsResourceValidSkusRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -126,13 +127,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.deviceprovisioningservices#IotDpsResourceGetPrivateLinkResources": {
+    "com.azure.deviceprovisioningservices#GetIotDpsResourcePrivateLinkResources": {
       "type": "operation",
       "input": {
-        "target": "com.azure.deviceprovisioningservices#IotDpsResourceGetPrivateLinkResourcesRequest"
+        "target": "com.azure.deviceprovisioningservices#GetIotDpsResourcePrivateLinkResourcesRequest"
       },
       "output": {
-        "target": "com.azure.deviceprovisioningservices#IotDpsResourceGetPrivateLinkResourcesResponse"
+        "target": "com.azure.deviceprovisioningservices#GetIotDpsResourcePrivateLinkResourcesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -145,7 +146,7 @@
         "com.distilled.openapi#apiVersion": "2026-08-31"
       }
     },
-    "com.azure.deviceprovisioningservices#IotDpsResourceGetPrivateLinkResourcesResponse": {
+    "com.azure.deviceprovisioningservices#GetIotDpsResourcePrivateLinkResourcesResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -336,7 +337,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.deviceprovisioningservices#IotDpsResourceGetPrivateLinkResourcesRequest": {
+    "com.azure.deviceprovisioningservices#GetIotDpsResourcePrivateLinkResourcesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -376,10 +377,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.deviceprovisioningservices#IotDpsResourceListPrivateLinkResources": {
+    "com.azure.deviceprovisioningservices#ListIotDpsResourcePrivateLinkResources": {
       "type": "operation",
       "input": {
-        "target": "com.azure.deviceprovisioningservices#IotDpsResourceListPrivateLinkResourcesRequest"
+        "target": "com.azure.deviceprovisioningservices#ListIotDpsResourcePrivateLinkResourcesRequest"
       },
       "output": {
         "target": "com.azure.deviceprovisioningservices#PrivateLinkResources"
@@ -457,7 +458,7 @@
         "smithy.api#documentation": "The group information for creating a private endpoint on a provisioning service"
       }
     },
-    "com.azure.deviceprovisioningservices#IotDpsResourceListPrivateLinkResourcesRequest": {
+    "com.azure.deviceprovisioningservices#ListIotDpsResourcePrivateLinkResourcesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -489,13 +490,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.deviceprovisioningservices#IotDpsResourceDeletePrivateEndpointConnection": {
+    "com.azure.deviceprovisioningservices#DeleteIotDpsResourcePrivateEndpointConnection": {
       "type": "operation",
       "input": {
-        "target": "com.azure.deviceprovisioningservices#IotDpsResourceDeletePrivateEndpointConnectionRequest"
+        "target": "com.azure.deviceprovisioningservices#DeleteIotDpsResourcePrivateEndpointConnectionRequest"
       },
       "output": {
-        "target": "com.azure.deviceprovisioningservices#IotDpsResourceDeletePrivateEndpointConnectionResponse"
+        "target": "com.azure.deviceprovisioningservices#DeleteIotDpsResourcePrivateEndpointConnectionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -508,7 +509,7 @@
         "com.distilled.openapi#apiVersion": "2026-08-31"
       }
     },
-    "com.azure.deviceprovisioningservices#IotDpsResourceDeletePrivateEndpointConnectionResponse": {
+    "com.azure.deviceprovisioningservices#DeleteIotDpsResourcePrivateEndpointConnectionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -642,7 +643,7 @@
         "smithy.api#documentation": "The private endpoint property of a private endpoint connection"
       }
     },
-    "com.azure.deviceprovisioningservices#IotDpsResourceDeletePrivateEndpointConnectionRequest": {
+    "com.azure.deviceprovisioningservices#DeleteIotDpsResourcePrivateEndpointConnectionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -815,13 +816,13 @@
         "smithy.api#documentation": "The private endpoint property of a private endpoint connection"
       }
     },
-    "com.azure.deviceprovisioningservices#IotDpsResourceGetPrivateEndpointConnection": {
+    "com.azure.deviceprovisioningservices#GetIotDpsResourcePrivateEndpointConnection": {
       "type": "operation",
       "input": {
-        "target": "com.azure.deviceprovisioningservices#IotDpsResourceGetPrivateEndpointConnectionRequest"
+        "target": "com.azure.deviceprovisioningservices#GetIotDpsResourcePrivateEndpointConnectionRequest"
       },
       "output": {
-        "target": "com.azure.deviceprovisioningservices#IotDpsResourceGetPrivateEndpointConnectionResponse"
+        "target": "com.azure.deviceprovisioningservices#GetIotDpsResourcePrivateEndpointConnectionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -834,7 +835,7 @@
         "com.distilled.openapi#apiVersion": "2026-08-31"
       }
     },
-    "com.azure.deviceprovisioningservices#IotDpsResourceGetPrivateEndpointConnectionResponse": {
+    "com.azure.deviceprovisioningservices#GetIotDpsResourcePrivateEndpointConnectionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -873,7 +874,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.deviceprovisioningservices#IotDpsResourceGetPrivateEndpointConnectionRequest": {
+    "com.azure.deviceprovisioningservices#GetIotDpsResourcePrivateEndpointConnectionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -913,13 +914,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.deviceprovisioningservices#IotDpsResourceListPrivateEndpointConnections": {
+    "com.azure.deviceprovisioningservices#ListIotDpsResourcePrivateEndpointConnections": {
       "type": "operation",
       "input": {
-        "target": "com.azure.deviceprovisioningservices#IotDpsResourceListPrivateEndpointConnectionsRequest"
+        "target": "com.azure.deviceprovisioningservices#ListIotDpsResourcePrivateEndpointConnectionsRequest"
       },
       "output": {
-        "target": "com.azure.deviceprovisioningservices#IotDpsResourceListPrivateEndpointConnectionsResponse"
+        "target": "com.azure.deviceprovisioningservices#ListIotDpsResourcePrivateEndpointConnectionsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -932,7 +933,7 @@
         "com.distilled.openapi#apiVersion": "2026-08-31"
       }
     },
-    "com.azure.deviceprovisioningservices#IotDpsResourceListPrivateEndpointConnectionsResponse": {
+    "com.azure.deviceprovisioningservices#ListIotDpsResourcePrivateEndpointConnectionsResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -995,7 +996,7 @@
         "smithy.api#documentation": "The private endpoint connection of a provisioning service"
       }
     },
-    "com.azure.deviceprovisioningservices#IotDpsResourceListPrivateEndpointConnectionsRequest": {
+    "com.azure.deviceprovisioningservices#ListIotDpsResourcePrivateEndpointConnectionsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1027,10 +1028,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.deviceprovisioningservices#IotDpsResourceGetOperationResult": {
+    "com.azure.deviceprovisioningservices#GetIotDpsResourceOperationResult": {
       "type": "operation",
       "input": {
-        "target": "com.azure.deviceprovisioningservices#IotDpsResourceGetOperationResultRequest"
+        "target": "com.azure.deviceprovisioningservices#GetIotDpsResourceOperationResultRequest"
       },
       "output": {
         "target": "com.azure.deviceprovisioningservices#AsyncOperationResult"
@@ -1092,7 +1093,7 @@
         "smithy.api#documentation": "Error response containing message and code."
       }
     },
-    "com.azure.deviceprovisioningservices#IotDpsResourceGetOperationResultRequest": {
+    "com.azure.deviceprovisioningservices#GetIotDpsResourceOperationResultRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1140,10 +1141,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.deviceprovisioningservices#IotDpsResourceListKeys": {
+    "com.azure.deviceprovisioningservices#ListIotDpsResourceKeys": {
       "type": "operation",
       "input": {
-        "target": "com.azure.deviceprovisioningservices#IotDpsResourceListKeysRequest"
+        "target": "com.azure.deviceprovisioningservices#ListIotDpsResourceKeysRequest"
       },
       "output": {
         "target": "com.azure.deviceprovisioningservices#SharedAccessSignatureAuthorizationRuleListResult"
@@ -1267,7 +1268,7 @@
         "smithy.api#documentation": "Rights that this key has."
       }
     },
-    "com.azure.deviceprovisioningservices#IotDpsResourceListKeysRequest": {
+    "com.azure.deviceprovisioningservices#ListIotDpsResourceKeysRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1299,10 +1300,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.deviceprovisioningservices#IotDpsResourceListKeysForKeyName": {
+    "com.azure.deviceprovisioningservices#ListIotDpsResourceKeysForKeyName": {
       "type": "operation",
       "input": {
-        "target": "com.azure.deviceprovisioningservices#IotDpsResourceListKeysForKeyNameRequest"
+        "target": "com.azure.deviceprovisioningservices#ListIotDpsResourceKeysForKeyNameRequest"
       },
       "output": {
         "target": "com.azure.deviceprovisioningservices#SharedAccessSignatureAuthorizationRuleAccessRightsDescription"
@@ -1318,7 +1319,7 @@
         "com.distilled.openapi#apiVersion": "2026-08-31"
       }
     },
-    "com.azure.deviceprovisioningservices#IotDpsResourceListKeysForKeyNameRequest": {
+    "com.azure.deviceprovisioningservices#ListIotDpsResourceKeysForKeyNameRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1358,13 +1359,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.deviceprovisioningservices#DpsCertificateVerifyCertificate": {
+    "com.azure.deviceprovisioningservices#VerifyDpsCertificateCertificate": {
       "type": "operation",
       "input": {
-        "target": "com.azure.deviceprovisioningservices#DpsCertificateVerifyCertificateRequest"
+        "target": "com.azure.deviceprovisioningservices#VerifyDpsCertificateCertificateRequest"
       },
       "output": {
-        "target": "com.azure.deviceprovisioningservices#DpsCertificateVerifyCertificateResponse"
+        "target": "com.azure.deviceprovisioningservices#VerifyDpsCertificateCertificateResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1377,7 +1378,7 @@
         "com.distilled.openapi#apiVersion": "2026-08-31"
       }
     },
-    "com.azure.deviceprovisioningservices#DpsCertificateVerifyCertificateResponse": {
+    "com.azure.deviceprovisioningservices#VerifyDpsCertificateCertificateResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1471,7 +1472,7 @@
         "smithy.api#documentation": "The description of an X509 CA Certificate."
       }
     },
-    "com.azure.deviceprovisioningservices#DpsCertificateVerifyCertificateRequest": {
+    "com.azure.deviceprovisioningservices#VerifyDpsCertificateCertificateRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1528,7 +1529,7 @@
           }
         },
         "certificate_purpose": {
-          "target": "com.azure.deviceprovisioningservices#DpsCertificateVerifyCertificateRequestCertificatePurpose",
+          "target": "com.azure.deviceprovisioningservices#VerifyDpsCertificateCertificateRequestCertificatePurpose",
           "traits": {
             "smithy.api#httpQuery": "certificate.purpose",
             "smithy.api#documentation": "Describe the purpose of the certificate."
@@ -1573,7 +1574,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.deviceprovisioningservices#DpsCertificateVerifyCertificateRequestCertificatePurpose": {
+    "com.azure.deviceprovisioningservices#VerifyDpsCertificateCertificateRequestCertificatePurpose": {
       "type": "enum",
       "members": {
         "CLIENTAUTHENTICATION": {
@@ -1591,10 +1592,10 @@
       },
       "traits": {}
     },
-    "com.azure.deviceprovisioningservices#DpsCertificateGenerateVerificationCode": {
+    "com.azure.deviceprovisioningservices#GenerateDpsCertificateVerificationCode": {
       "type": "operation",
       "input": {
-        "target": "com.azure.deviceprovisioningservices#DpsCertificateGenerateVerificationCodeRequest"
+        "target": "com.azure.deviceprovisioningservices#GenerateDpsCertificateVerificationCodeRequest"
       },
       "output": {
         "target": "com.azure.deviceprovisioningservices#VerificationCodeResponse"
@@ -1699,7 +1700,7 @@
       },
       "traits": {}
     },
-    "com.azure.deviceprovisioningservices#DpsCertificateGenerateVerificationCodeRequest": {
+    "com.azure.deviceprovisioningservices#GenerateDpsCertificateVerificationCodeRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1756,7 +1757,7 @@
           }
         },
         "certificate_purpose": {
-          "target": "com.azure.deviceprovisioningservices#DpsCertificateGenerateVerificationCodeRequestCertificatePurpose",
+          "target": "com.azure.deviceprovisioningservices#GenerateDpsCertificateVerificationCodeRequestCertificatePurpose",
           "traits": {
             "smithy.api#httpQuery": "certificate.purpose",
             "smithy.api#documentation": "Description mentioning the purpose of the certificate."
@@ -1795,7 +1796,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.deviceprovisioningservices#DpsCertificateGenerateVerificationCodeRequestCertificatePurpose": {
+    "com.azure.deviceprovisioningservices#GenerateDpsCertificateVerificationCodeRequestCertificatePurpose": {
       "type": "enum",
       "members": {
         "CLIENTAUTHENTICATION": {
@@ -1813,10 +1814,10 @@
       },
       "traits": {}
     },
-    "com.azure.deviceprovisioningservices#DpsCertificateDelete": {
+    "com.azure.deviceprovisioningservices#DeleteDpsCertificate": {
       "type": "operation",
       "input": {
-        "target": "com.azure.deviceprovisioningservices#DpsCertificateDeleteRequest"
+        "target": "com.azure.deviceprovisioningservices#DeleteDpsCertificateRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1832,7 +1833,7 @@
         "com.distilled.openapi#apiVersion": "2026-08-31"
       }
     },
-    "com.azure.deviceprovisioningservices#DpsCertificateDeleteRequest": {
+    "com.azure.deviceprovisioningservices#DeleteDpsCertificateRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1889,7 +1890,7 @@
           }
         },
         "certificate_purpose": {
-          "target": "com.azure.deviceprovisioningservices#DpsCertificateDeleteRequestCertificatePurpose",
+          "target": "com.azure.deviceprovisioningservices#DeleteDpsCertificateRequestCertificatePurpose",
           "traits": {
             "smithy.api#httpQuery": "certificate.purpose",
             "smithy.api#documentation": "A description that mentions the purpose of the certificate."
@@ -1928,7 +1929,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.deviceprovisioningservices#DpsCertificateDeleteRequestCertificatePurpose": {
+    "com.azure.deviceprovisioningservices#DeleteDpsCertificateRequestCertificatePurpose": {
       "type": "enum",
       "members": {
         "CLIENTAUTHENTICATION": {
@@ -2075,13 +2076,13 @@
         "smithy.api#documentation": "The description of an X509 CA Certificate."
       }
     },
-    "com.azure.deviceprovisioningservices#DpsCertificateGet": {
+    "com.azure.deviceprovisioningservices#GetDpsCertificate": {
       "type": "operation",
       "input": {
-        "target": "com.azure.deviceprovisioningservices#DpsCertificateGetRequest"
+        "target": "com.azure.deviceprovisioningservices#GetDpsCertificateRequest"
       },
       "output": {
-        "target": "com.azure.deviceprovisioningservices#DpsCertificateGetResponse"
+        "target": "com.azure.deviceprovisioningservices#GetDpsCertificateResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2094,7 +2095,7 @@
         "com.distilled.openapi#apiVersion": "2026-08-31"
       }
     },
-    "com.azure.deviceprovisioningservices#DpsCertificateGetResponse": {
+    "com.azure.deviceprovisioningservices#GetDpsCertificateResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2138,7 +2139,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.deviceprovisioningservices#DpsCertificateGetRequest": {
+    "com.azure.deviceprovisioningservices#GetDpsCertificateRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2178,10 +2179,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.deviceprovisioningservices#DpsCertificateList": {
+    "com.azure.deviceprovisioningservices#ListDpsCertificate": {
       "type": "operation",
       "input": {
-        "target": "com.azure.deviceprovisioningservices#DpsCertificateListRequest"
+        "target": "com.azure.deviceprovisioningservices#ListDpsCertificateRequest"
       },
       "output": {
         "target": "com.azure.deviceprovisioningservices#CertificateListDescription"
@@ -2264,7 +2265,7 @@
         "smithy.api#documentation": "The X509 Certificate."
       }
     },
-    "com.azure.deviceprovisioningservices#DpsCertificateListRequest": {
+    "com.azure.deviceprovisioningservices#ListDpsCertificateRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2296,10 +2297,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.deviceprovisioningservices#IotDpsResourceDelete": {
+    "com.azure.deviceprovisioningservices#DeleteIotDpsResource": {
       "type": "operation",
       "input": {
-        "target": "com.azure.deviceprovisioningservices#IotDpsResourceDeleteRequest"
+        "target": "com.azure.deviceprovisioningservices#DeleteIotDpsResourceRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2315,7 +2316,7 @@
         "com.distilled.openapi#apiVersion": "2026-08-31"
       }
     },
-    "com.azure.deviceprovisioningservices#IotDpsResourceDeleteRequest": {
+    "com.azure.deviceprovisioningservices#DeleteIotDpsResourceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2347,13 +2348,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.deviceprovisioningservices#IotDpsResourceUpdate": {
+    "com.azure.deviceprovisioningservices#UpdateIotDpsResource": {
       "type": "operation",
       "input": {
-        "target": "com.azure.deviceprovisioningservices#IotDpsResourceUpdateRequest"
+        "target": "com.azure.deviceprovisioningservices#UpdateIotDpsResourceRequest"
       },
       "output": {
-        "target": "com.azure.deviceprovisioningservices#IotDpsResourceUpdateResponse"
+        "target": "com.azure.deviceprovisioningservices#UpdateIotDpsResourceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2366,7 +2367,7 @@
         "com.distilled.openapi#apiVersion": "2026-08-31"
       }
     },
-    "com.azure.deviceprovisioningservices#IotDpsResourceUpdateResponse": {
+    "com.azure.deviceprovisioningservices#UpdateIotDpsResourceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2394,7 +2395,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.deviceprovisioningservices#IotDpsResourceUpdateResponseTagsMap",
+          "target": "com.azure.deviceprovisioningservices#UpdateIotDpsResourceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2439,7 +2440,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.deviceprovisioningservices#IotDpsResourceUpdateResponseIdentity",
+          "target": "com.azure.deviceprovisioningservices#UpdateIotDpsResourceResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -2449,7 +2450,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.deviceprovisioningservices#IotDpsResourceUpdateResponseIdentity": {
+    "com.azure.deviceprovisioningservices#UpdateIotDpsResourceResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -2990,7 +2991,7 @@
         "smithy.api#documentation": "Current state of the provisioning service."
       }
     },
-    "com.azure.deviceprovisioningservices#IotDpsResourceUpdateResponseTagsMap": {
+    "com.azure.deviceprovisioningservices#UpdateIotDpsResourceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3002,7 +3003,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.deviceprovisioningservices#IotDpsResourceUpdateRequest": {
+    "com.azure.deviceprovisioningservices#UpdateIotDpsResourceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3030,7 +3031,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.deviceprovisioningservices#IotDpsResourceUpdateRequestTagsMap",
+          "target": "com.azure.deviceprovisioningservices#UpdateIotDpsResourceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags"
           }
@@ -3040,7 +3041,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.deviceprovisioningservices#IotDpsResourceUpdateRequestTagsMap": {
+    "com.azure.deviceprovisioningservices#UpdateIotDpsResourceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3529,13 +3530,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.deviceprovisioningservices#IotDpsResourceGet": {
+    "com.azure.deviceprovisioningservices#GetIotDpsResource": {
       "type": "operation",
       "input": {
-        "target": "com.azure.deviceprovisioningservices#IotDpsResourceGetRequest"
+        "target": "com.azure.deviceprovisioningservices#GetIotDpsResourceRequest"
       },
       "output": {
-        "target": "com.azure.deviceprovisioningservices#IotDpsResourceGetResponse"
+        "target": "com.azure.deviceprovisioningservices#GetIotDpsResourceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3548,7 +3549,7 @@
         "com.distilled.openapi#apiVersion": "2026-08-31"
       }
     },
-    "com.azure.deviceprovisioningservices#IotDpsResourceGetResponse": {
+    "com.azure.deviceprovisioningservices#GetIotDpsResourceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3576,7 +3577,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.deviceprovisioningservices#IotDpsResourceGetResponseTagsMap",
+          "target": "com.azure.deviceprovisioningservices#GetIotDpsResourceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3621,7 +3622,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.deviceprovisioningservices#IotDpsResourceGetResponseIdentity",
+          "target": "com.azure.deviceprovisioningservices#GetIotDpsResourceResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -3631,7 +3632,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.deviceprovisioningservices#IotDpsResourceGetResponseIdentity": {
+    "com.azure.deviceprovisioningservices#GetIotDpsResourceResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -3663,7 +3664,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.deviceprovisioningservices#IotDpsResourceGetResponseTagsMap": {
+    "com.azure.deviceprovisioningservices#GetIotDpsResourceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3675,7 +3676,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.deviceprovisioningservices#IotDpsResourceGetRequest": {
+    "com.azure.deviceprovisioningservices#GetIotDpsResourceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3707,10 +3708,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.deviceprovisioningservices#IotDpsResourceListByResourceGroup": {
+    "com.azure.deviceprovisioningservices#ListIotDpsResourceByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.deviceprovisioningservices#IotDpsResourceListByResourceGroupRequest"
+        "target": "com.azure.deviceprovisioningservices#ListIotDpsResourceByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.deviceprovisioningservices#ProvisioningServiceDescriptionListResult"
@@ -3883,7 +3884,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.deviceprovisioningservices#IotDpsResourceListByResourceGroupRequest": {
+    "com.azure.deviceprovisioningservices#ListIotDpsResourceByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3907,10 +3908,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.deviceprovisioningservices#IotDpsResourceListBySubscription": {
+    "com.azure.deviceprovisioningservices#ListIotDpsResourceBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.deviceprovisioningservices#IotDpsResourceListBySubscriptionRequest"
+        "target": "com.azure.deviceprovisioningservices#ListIotDpsResourceBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.deviceprovisioningservices#ProvisioningServiceDescriptionListResult"
@@ -3926,7 +3927,7 @@
         "com.distilled.openapi#apiVersion": "2026-08-31"
       }
     },
-    "com.azure.deviceprovisioningservices#IotDpsResourceListBySubscriptionRequest": {
+    "com.azure.deviceprovisioningservices#ListIotDpsResourceBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3942,10 +3943,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.deviceprovisioningservices#IotDpsResourceCheckProvisioningServiceNameAvailability": {
+    "com.azure.deviceprovisioningservices#CheckIotDpsResourceProvisioningServiceNameAvailability": {
       "type": "operation",
       "input": {
-        "target": "com.azure.deviceprovisioningservices#IotDpsResourceCheckProvisioningServiceNameAvailabilityRequest"
+        "target": "com.azure.deviceprovisioningservices#CheckIotDpsResourceProvisioningServiceNameAvailabilityRequest"
       },
       "output": {
         "target": "com.azure.deviceprovisioningservices#NameAvailabilityInfo"
@@ -4007,7 +4008,7 @@
         "smithy.api#documentation": "specifies the reason a name is unavailable"
       }
     },
-    "com.azure.deviceprovisioningservices#IotDpsResourceCheckProvisioningServiceNameAvailabilityRequest": {
+    "com.azure.deviceprovisioningservices#CheckIotDpsResourceProvisioningServiceNameAvailabilityRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4030,7 +4031,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.deviceprovisioningservices#OperationsList": {
+    "com.azure.deviceprovisioningservices#ListOperations": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -4128,76 +4129,76 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.deviceprovisioningservices#IotDpsResourceListValidSkus"
+          "target": "com.azure.deviceprovisioningservices#ListIotDpsResourceValidSkus"
         },
         {
-          "target": "com.azure.deviceprovisioningservices#IotDpsResourceGetPrivateLinkResources"
+          "target": "com.azure.deviceprovisioningservices#GetIotDpsResourcePrivateLinkResources"
         },
         {
-          "target": "com.azure.deviceprovisioningservices#IotDpsResourceListPrivateLinkResources"
+          "target": "com.azure.deviceprovisioningservices#ListIotDpsResourcePrivateLinkResources"
         },
         {
-          "target": "com.azure.deviceprovisioningservices#IotDpsResourceDeletePrivateEndpointConnection"
+          "target": "com.azure.deviceprovisioningservices#DeleteIotDpsResourcePrivateEndpointConnection"
         },
         {
           "target": "com.azure.deviceprovisioningservices#IotDpsResourceCreateOrUpdatePrivateEndpointConnection"
         },
         {
-          "target": "com.azure.deviceprovisioningservices#IotDpsResourceGetPrivateEndpointConnection"
+          "target": "com.azure.deviceprovisioningservices#GetIotDpsResourcePrivateEndpointConnection"
         },
         {
-          "target": "com.azure.deviceprovisioningservices#IotDpsResourceListPrivateEndpointConnections"
+          "target": "com.azure.deviceprovisioningservices#ListIotDpsResourcePrivateEndpointConnections"
         },
         {
-          "target": "com.azure.deviceprovisioningservices#IotDpsResourceGetOperationResult"
+          "target": "com.azure.deviceprovisioningservices#GetIotDpsResourceOperationResult"
         },
         {
-          "target": "com.azure.deviceprovisioningservices#IotDpsResourceListKeys"
+          "target": "com.azure.deviceprovisioningservices#ListIotDpsResourceKeys"
         },
         {
-          "target": "com.azure.deviceprovisioningservices#IotDpsResourceListKeysForKeyName"
+          "target": "com.azure.deviceprovisioningservices#ListIotDpsResourceKeysForKeyName"
         },
         {
-          "target": "com.azure.deviceprovisioningservices#DpsCertificateVerifyCertificate"
+          "target": "com.azure.deviceprovisioningservices#VerifyDpsCertificateCertificate"
         },
         {
-          "target": "com.azure.deviceprovisioningservices#DpsCertificateGenerateVerificationCode"
+          "target": "com.azure.deviceprovisioningservices#GenerateDpsCertificateVerificationCode"
         },
         {
-          "target": "com.azure.deviceprovisioningservices#DpsCertificateDelete"
+          "target": "com.azure.deviceprovisioningservices#DeleteDpsCertificate"
         },
         {
           "target": "com.azure.deviceprovisioningservices#DpsCertificateCreateOrUpdate"
         },
         {
-          "target": "com.azure.deviceprovisioningservices#DpsCertificateGet"
+          "target": "com.azure.deviceprovisioningservices#GetDpsCertificate"
         },
         {
-          "target": "com.azure.deviceprovisioningservices#DpsCertificateList"
+          "target": "com.azure.deviceprovisioningservices#ListDpsCertificate"
         },
         {
-          "target": "com.azure.deviceprovisioningservices#IotDpsResourceDelete"
+          "target": "com.azure.deviceprovisioningservices#DeleteIotDpsResource"
         },
         {
-          "target": "com.azure.deviceprovisioningservices#IotDpsResourceUpdate"
+          "target": "com.azure.deviceprovisioningservices#UpdateIotDpsResource"
         },
         {
           "target": "com.azure.deviceprovisioningservices#IotDpsResourceCreateOrUpdate"
         },
         {
-          "target": "com.azure.deviceprovisioningservices#IotDpsResourceGet"
+          "target": "com.azure.deviceprovisioningservices#GetIotDpsResource"
         },
         {
-          "target": "com.azure.deviceprovisioningservices#IotDpsResourceListByResourceGroup"
+          "target": "com.azure.deviceprovisioningservices#ListIotDpsResourceByResourceGroup"
         },
         {
-          "target": "com.azure.deviceprovisioningservices#IotDpsResourceListBySubscription"
+          "target": "com.azure.deviceprovisioningservices#ListIotDpsResourceBySubscription"
         },
         {
-          "target": "com.azure.deviceprovisioningservices#IotDpsResourceCheckProvisioningServiceNameAvailability"
+          "target": "com.azure.deviceprovisioningservices#CheckIotDpsResourceProvisioningServiceNameAvailability"
         },
         {
-          "target": "com.azure.deviceprovisioningservices#OperationsList"
+          "target": "com.azure.deviceprovisioningservices#ListOperations"
         }
       ],
       "traits": {

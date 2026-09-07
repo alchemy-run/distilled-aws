@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.modal.domain#DomainCertificateVerifyRequest": {
+    "com.modal.domain#VerifyDomainCertificateRequest": {
       "type": "structure",
       "members": {
         "domainId": {
@@ -123,7 +124,7 @@
         "target": "com.modal.domain#DNSRecord"
       }
     },
-    "com.modal.domain#DomainCertificateVerifyResponse": {
+    "com.modal.domain#VerifyDomainCertificateResponse": {
       "type": "structure",
       "members": {
         "domain": {
@@ -134,13 +135,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.modal.domain#DomainCertificateVerify": {
+    "com.modal.domain#VerifyDomainCertificate": {
       "type": "operation",
       "input": {
-        "target": "com.modal.domain#DomainCertificateVerifyRequest"
+        "target": "com.modal.domain#VerifyDomainCertificateRequest"
       },
       "output": {
-        "target": "com.modal.domain#DomainCertificateVerifyResponse"
+        "target": "com.modal.domain#VerifyDomainCertificateResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -151,7 +152,7 @@
         "smithy.api#documentation": "Domains"
       }
     },
-    "com.modal.domain#DomainCreateRequest": {
+    "com.modal.domain#CreateDomainRequest": {
       "type": "structure",
       "members": {
         "domainName": {
@@ -162,7 +163,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.modal.domain#DomainCreateResponse": {
+    "com.modal.domain#CreateDomainResponse": {
       "type": "structure",
       "members": {
         "domainId": {
@@ -176,13 +177,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.modal.domain#DomainCreate": {
+    "com.modal.domain#CreateDomain": {
       "type": "operation",
       "input": {
-        "target": "com.modal.domain#DomainCreateRequest"
+        "target": "com.modal.domain#CreateDomainRequest"
       },
       "output": {
-        "target": "com.modal.domain#DomainCreateResponse"
+        "target": "com.modal.domain#CreateDomainResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -192,7 +193,7 @@
         }
       }
     },
-    "com.modal.domain#DomainListRequest": {
+    "com.modal.domain#ListDomainRequest": {
       "type": "structure",
       "members": {},
       "traits": {
@@ -205,7 +206,7 @@
         "target": "com.modal.domain#Domain"
       }
     },
-    "com.modal.domain#DomainListResponse": {
+    "com.modal.domain#ListDomainResponse": {
       "type": "structure",
       "members": {
         "domains": {
@@ -216,13 +217,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.modal.domain#DomainList": {
+    "com.modal.domain#ListDomain": {
       "type": "operation",
       "input": {
-        "target": "com.modal.domain#DomainListRequest"
+        "target": "com.modal.domain#ListDomainRequest"
       },
       "output": {
-        "target": "com.modal.domain#DomainListResponse"
+        "target": "com.modal.domain#ListDomainResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -237,13 +238,13 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.modal.domain#DomainCertificateVerify"
+          "target": "com.modal.domain#VerifyDomainCertificate"
         },
         {
-          "target": "com.modal.domain#DomainCreate"
+          "target": "com.modal.domain#CreateDomain"
         },
         {
-          "target": "com.modal.domain#DomainList"
+          "target": "com.modal.domain#ListDomain"
         }
       ],
       "traits": {

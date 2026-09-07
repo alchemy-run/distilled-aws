@@ -208,7 +208,55 @@ export const CatalogsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CatalogsCreateOrUpdateResponse",
 }) as any as S.Schema<CatalogsCreateOrUpdateResponse>;
 
-export interface CatalogsDeleteRequest {
+/** Device identifiers of the devices to be claimed. */
+export type ClaimDeviceGroupDevicesRequestDeviceIdentifiersList = Array<string>;
+export const ClaimDeviceGroupDevicesRequestDeviceIdentifiersList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ClaimDeviceGroupDevicesRequestDeviceIdentifiersList>;
+
+export interface ClaimDeviceGroupDevicesRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of catalog */
+  catalogName: string;
+  /** Name of product. */
+  productName: string;
+  /** Name of device group. */
+  deviceGroupName: string;
+  /** Device identifiers of the devices to be claimed. */
+  deviceIdentifiers: ClaimDeviceGroupDevicesRequestDeviceIdentifiersList;
+}
+export const ClaimDeviceGroupDevicesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    catalogName: S.String.pipe(T.Label()),
+    productName: S.String.pipe(T.Label()),
+    deviceGroupName: S.String.pipe(T.Label()),
+    deviceIdentifiers: ClaimDeviceGroupDevicesRequestDeviceIdentifiersList,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}/claimDevices",
+      code: 200,
+      apiVersion: "2024-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "ClaimDeviceGroupDevicesRequest",
+}) as any as S.Schema<ClaimDeviceGroupDevicesRequest>;
+
+export interface ClaimDeviceGroupDevicesResponse {}
+export const ClaimDeviceGroupDevicesResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "ClaimDeviceGroupDevicesResponse",
+}) as any as S.Schema<ClaimDeviceGroupDevicesResponse>;
+
+export interface DeleteCatalogRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -216,7 +264,7 @@ export interface CatalogsDeleteRequest {
   /** Name of catalog */
   catalogName: string;
 }
-export const CatalogsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteCatalogRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -230,217 +278,299 @@ export const CatalogsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "CatalogsDeleteRequest",
-}) as any as S.Schema<CatalogsDeleteRequest>;
+  identifier: "DeleteCatalogRequest",
+}) as any as S.Schema<DeleteCatalogRequest>;
 
-export interface CatalogsDeleteResponse {}
-export const CatalogsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteCatalogResponse {}
+export const DeleteCatalogResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "CatalogsDeleteResponse",
-}) as any as S.Schema<CatalogsDeleteResponse>;
+  identifier: "DeleteCatalogResponse",
+}) as any as S.Schema<DeleteCatalogResponse>;
 
-export interface CatalogsGetRequest {
+export interface DeleteDeploymentRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** Name of catalog */
   catalogName: string;
+  /** Name of product. */
+  productName: string;
+  /** Name of device group. */
+  deviceGroupName: string;
+  /** Deployment name. Use .default for deployment creation and to get the current deployment for the associated device group. */
+  deploymentName: string;
 }
-export const CatalogsGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteDeploymentRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     catalogName: S.String.pipe(T.Label()),
+    productName: S.String.pipe(T.Label()),
+    deviceGroupName: S.String.pipe(T.Label()),
+    deploymentName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}",
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}/deployments/{deploymentName}",
       code: 200,
       apiVersion: "2024-04-01",
     }),
   ),
 ).annotate({
-  identifier: "CatalogsGetRequest",
-}) as any as S.Schema<CatalogsGetRequest>;
+  identifier: "DeleteDeploymentRequest",
+}) as any as S.Schema<DeleteDeploymentRequest>;
 
-/** Resource tags. */
-export type CatalogsGetResponseTagsMap = { [key: string]: string | undefined };
-export const CatalogsGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<CatalogsGetResponseTagsMap>;
-
-export interface CatalogsGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: CatalogsGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: CatalogProperties;
-}
-export const CatalogsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(CatalogsGetResponseTagsMap),
-    location: S.String,
-    properties: S.optional(CatalogProperties),
-  }),
+export interface DeleteDeploymentResponse {}
+export const DeleteDeploymentResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
 ).annotate({
-  identifier: "CatalogsGetResponse",
-}) as any as S.Schema<CatalogsGetResponse>;
+  identifier: "DeleteDeploymentResponse",
+}) as any as S.Schema<DeleteDeploymentResponse>;
 
-export interface CatalogsListByResourceGroupRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-}
-export const CatalogsListByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs",
-      code: 200,
-      apiVersion: "2024-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "CatalogsListByResourceGroupRequest",
-}) as any as S.Schema<CatalogsListByResourceGroupRequest>;
-
-/** Resource tags. */
-export type CatalogTagsMap = { [key: string]: string | undefined };
-export const CatalogTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<CatalogTagsMap>;
-
-/** An Azure Sphere catalog */
-export interface Catalog {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: CatalogTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: CatalogProperties;
-}
-export const Catalog = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(CatalogTagsMap),
-    location: S.String,
-    properties: S.optional(CatalogProperties),
-  }),
-).annotate({ identifier: "Catalog" }) as any as S.Schema<Catalog>;
-
-/** The Catalog items on this page */
-export type CatalogListResultValueList = Array<Catalog>;
-export const CatalogListResultValueList = /*@__PURE__*/ S.Array(
-  Catalog,
-) as any as S.Schema<CatalogListResultValueList>;
-
-/** The response of a Catalog list operation. */
-export interface CatalogListResult {
-  /** The Catalog items on this page */
-  value: CatalogListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const CatalogListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: CatalogListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "CatalogListResult",
-}) as any as S.Schema<CatalogListResult>;
-
-export interface CatalogsListBySubscriptionRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-}
-export const CatalogsListBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.AzureSphere/catalogs",
-      code: 200,
-      apiVersion: "2024-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "CatalogsListBySubscriptionRequest",
-}) as any as S.Schema<CatalogsListBySubscriptionRequest>;
-
-export interface CatalogsListDeploymentsRequest {
+export interface DeleteDeviceRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** Name of catalog */
   catalogName: string;
-  /** Filter the result list using the given expression */
-  _filter?: string;
-  /** The number of result items to return. */
-  _top?: number;
-  /** The number of result items to skip. */
-  _skip?: number;
-  /** The maximum number of result items per page. */
-  _maxpagesize?: number;
+  /** Name of product. */
+  productName: string;
+  /** Name of device group. */
+  deviceGroupName: string;
+  /** Device name */
+  deviceName: string;
 }
-export const CatalogsListDeploymentsRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteDeviceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     catalogName: S.String.pipe(T.Label()),
-    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-    _top: S.optional(S.Number.pipe(T.Query("$top"))),
-    _skip: S.optional(S.Number.pipe(T.Query("$skip"))),
-    _maxpagesize: S.optional(S.Number.pipe(T.Query("$maxpagesize"))),
+    productName: S.String.pipe(T.Label()),
+    deviceGroupName: S.String.pipe(T.Label()),
+    deviceName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/listDeployments",
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}/devices/{deviceName}",
       code: 200,
       apiVersion: "2024-04-01",
     }),
   ),
 ).annotate({
-  identifier: "CatalogsListDeploymentsRequest",
-}) as any as S.Schema<CatalogsListDeploymentsRequest>;
+  identifier: "DeleteDeviceRequest",
+}) as any as S.Schema<DeleteDeviceRequest>;
+
+export interface DeleteDeviceResponse {}
+export const DeleteDeviceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteDeviceResponse",
+}) as any as S.Schema<DeleteDeviceResponse>;
+
+export interface DeleteDeviceGroupRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of catalog */
+  catalogName: string;
+  /** Name of product. */
+  productName: string;
+  /** Name of device group. */
+  deviceGroupName: string;
+}
+export const DeleteDeviceGroupRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    catalogName: S.String.pipe(T.Label()),
+    productName: S.String.pipe(T.Label()),
+    deviceGroupName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}",
+      code: 200,
+      apiVersion: "2024-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteDeviceGroupRequest",
+}) as any as S.Schema<DeleteDeviceGroupRequest>;
+
+export interface DeleteDeviceGroupResponse {}
+export const DeleteDeviceGroupResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteDeviceGroupResponse",
+}) as any as S.Schema<DeleteDeviceGroupResponse>;
+
+export interface DeleteImageRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of catalog */
+  catalogName: string;
+  /** Image name. Use an image GUID for GA versions of the API. */
+  imageName: string;
+}
+export const DeleteImageRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    catalogName: S.String.pipe(T.Label()),
+    imageName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/images/{imageName}",
+      code: 200,
+      apiVersion: "2024-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteImageRequest",
+}) as any as S.Schema<DeleteImageRequest>;
+
+export interface DeleteImageResponse {}
+export const DeleteImageResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteImageResponse",
+}) as any as S.Schema<DeleteImageResponse>;
+
+export interface DeleteProductRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of catalog */
+  catalogName: string;
+  /** Name of product. */
+  productName: string;
+}
+export const DeleteProductRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    catalogName: S.String.pipe(T.Label()),
+    productName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}",
+      code: 200,
+      apiVersion: "2024-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteProductRequest",
+}) as any as S.Schema<DeleteProductRequest>;
+
+export interface DeleteProductResponse {}
+export const DeleteProductResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteProductResponse",
+}) as any as S.Schema<DeleteProductResponse>;
 
 /** Regional data boundary values. */
 export type RegionalDataBoundary = "None" | "EU";
 export const RegionalDataBoundary = /*@__PURE__*/ S.String;
+
+/** The properties of image */
+export interface ImagePropertiesInput {
+  /** Image as a UTF-8 encoded base 64 string on image create. This field contains the image URI on image reads. */
+  image?: string;
+  /** Image ID */
+  imageId?: string;
+  /** Regional data boundary for an image */
+  regionalDataBoundary?: RegionalDataBoundary | (string & {});
+}
+export const ImagePropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    image: S.optional(S.String),
+    imageId: S.optional(S.String),
+    regionalDataBoundary: S.optional(RegionalDataBoundary),
+  }),
+).annotate({
+  identifier: "ImagePropertiesInput",
+}) as any as S.Schema<ImagePropertiesInput>;
+
+/** An image resource belonging to a catalog resource. */
+export interface ImageInput {
+  /** The resource-specific properties for this resource. */
+  properties?: ImagePropertiesInput;
+}
+export const ImageInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    properties: S.optional(ImagePropertiesInput),
+  }),
+).annotate({ identifier: "ImageInput" }) as any as S.Schema<ImageInput>;
+
+/** Images deployed */
+export type DeploymentPropertiesInputDeployedImagesList = Array<ImageInput>;
+export const DeploymentPropertiesInputDeployedImagesList =
+  /*@__PURE__*/ S.Array(
+    ImageInput,
+  ) as any as S.Schema<DeploymentPropertiesInputDeployedImagesList>;
+
+/** The properties of deployment */
+export interface DeploymentPropertiesInput {
+  /** Deployment ID */
+  deploymentId?: string;
+  /** Images deployed */
+  deployedImages?: DeploymentPropertiesInputDeployedImagesList;
+}
+export const DeploymentPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    deploymentId: S.optional(S.String),
+    deployedImages: S.optional(DeploymentPropertiesInputDeployedImagesList),
+  }),
+).annotate({
+  identifier: "DeploymentPropertiesInput",
+}) as any as S.Schema<DeploymentPropertiesInput>;
+
+export interface DeploymentsCreateOrUpdateRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of catalog */
+  catalogName: string;
+  /** Name of product. */
+  productName: string;
+  /** Name of device group. */
+  deviceGroupName: string;
+  /** Deployment name. Use .default for deployment creation and to get the current deployment for the associated device group. */
+  deploymentName: string;
+  /** The resource-specific properties for this resource. */
+  properties?: DeploymentPropertiesInput;
+}
+export const DeploymentsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    catalogName: S.String.pipe(T.Label()),
+    productName: S.String.pipe(T.Label()),
+    deviceGroupName: S.String.pipe(T.Label()),
+    deploymentName: S.String.pipe(T.Label()),
+    properties: S.optional(DeploymentPropertiesInput),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}/deployments/{deploymentName}",
+      code: 200,
+      apiVersion: "2024-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeploymentsCreateOrUpdateRequest",
+}) as any as S.Schema<DeploymentsCreateOrUpdateRequest>;
 
 /** Image type values. */
 export type ImageType =
@@ -558,858 +688,6 @@ export const DeploymentProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeploymentProperties",
 }) as any as S.Schema<DeploymentProperties>;
 
-/** An deployment resource belonging to a device group resource. */
-export interface Deployment {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: DeploymentProperties;
-}
-export const Deployment = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(DeploymentProperties),
-  }),
-).annotate({ identifier: "Deployment" }) as any as S.Schema<Deployment>;
-
-/** The Deployment items on this page */
-export type DeploymentListResultValueList = Array<Deployment>;
-export const DeploymentListResultValueList = /*@__PURE__*/ S.Array(
-  Deployment,
-) as any as S.Schema<DeploymentListResultValueList>;
-
-/** The response of a Deployment list operation. */
-export interface DeploymentListResult {
-  /** The Deployment items on this page */
-  value: DeploymentListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const DeploymentListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: DeploymentListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DeploymentListResult",
-}) as any as S.Schema<DeploymentListResult>;
-
-export interface CatalogsListDeviceGroupsRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of catalog */
-  catalogName: string;
-  /** Filter the result list using the given expression */
-  _filter?: string;
-  /** The number of result items to return. */
-  _top?: number;
-  /** The number of result items to skip. */
-  _skip?: number;
-  /** The maximum number of result items per page. */
-  _maxpagesize?: number;
-  /** Device Group name. */
-  deviceGroupName?: string;
-}
-export const CatalogsListDeviceGroupsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    catalogName: S.String.pipe(T.Label()),
-    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-    _top: S.optional(S.Number.pipe(T.Query("$top"))),
-    _skip: S.optional(S.Number.pipe(T.Query("$skip"))),
-    _maxpagesize: S.optional(S.Number.pipe(T.Query("$maxpagesize"))),
-    deviceGroupName: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/listDeviceGroups",
-      code: 200,
-      apiVersion: "2024-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "CatalogsListDeviceGroupsRequest",
-}) as any as S.Schema<CatalogsListDeviceGroupsRequest>;
-
-/** OS feed type values. */
-export type OSFeedType = "Retail" | "RetailEval";
-export const OSFeedType = /*@__PURE__*/ S.String;
-
-/** Update policy values. */
-export type UpdatePolicy = "UpdateAll" | "No3rdPartyAppUpdates";
-export const UpdatePolicy = /*@__PURE__*/ S.String;
-
-/** Allow crash dumps values. */
-export type AllowCrashDumpCollection = "Enabled" | "Disabled";
-export const AllowCrashDumpCollection = /*@__PURE__*/ S.String;
-
-/** The properties of deviceGroup */
-export interface DeviceGroupProperties {
-  /** Description of the device group. */
-  description?: string;
-  /** Operating system feed type of the device group. */
-  osFeedType?: OSFeedType;
-  /** Update policy of the device group. */
-  updatePolicy?: UpdatePolicy;
-  /** Flag to define if the user allows for crash dump collection. */
-  allowCrashDumpsCollection?: AllowCrashDumpCollection;
-  /** Regional data boundary for the device group. */
-  regionalDataBoundary?: RegionalDataBoundary;
-  /** Deployment status for the device group. */
-  hasDeployment?: boolean;
-  /** The status of the last operation. */
-  provisioningState?: ProvisioningState;
-}
-export const DeviceGroupProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    description: S.optional(S.String),
-    osFeedType: S.optional(OSFeedType),
-    updatePolicy: S.optional(UpdatePolicy),
-    allowCrashDumpsCollection: S.optional(AllowCrashDumpCollection),
-    regionalDataBoundary: S.optional(RegionalDataBoundary),
-    hasDeployment: S.optional(S.Boolean),
-    provisioningState: S.optional(ProvisioningState),
-  }),
-).annotate({
-  identifier: "DeviceGroupProperties",
-}) as any as S.Schema<DeviceGroupProperties>;
-
-/** An device group resource belonging to a product resource. */
-export interface DeviceGroup {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: DeviceGroupProperties;
-}
-export const DeviceGroup = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(DeviceGroupProperties),
-  }),
-).annotate({ identifier: "DeviceGroup" }) as any as S.Schema<DeviceGroup>;
-
-/** The DeviceGroup items on this page */
-export type DeviceGroupListResultValueList = Array<DeviceGroup>;
-export const DeviceGroupListResultValueList = /*@__PURE__*/ S.Array(
-  DeviceGroup,
-) as any as S.Schema<DeviceGroupListResultValueList>;
-
-/** The response of a DeviceGroup list operation. */
-export interface DeviceGroupListResult {
-  /** The DeviceGroup items on this page */
-  value: DeviceGroupListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const DeviceGroupListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: DeviceGroupListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DeviceGroupListResult",
-}) as any as S.Schema<DeviceGroupListResult>;
-
-export interface CatalogsListDeviceInsightsRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of catalog */
-  catalogName: string;
-  /** Filter the result list using the given expression */
-  _filter?: string;
-  /** The number of result items to return. */
-  _top?: number;
-  /** The number of result items to skip. */
-  _skip?: number;
-  /** The maximum number of result items per page. */
-  _maxpagesize?: number;
-}
-export const CatalogsListDeviceInsightsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    catalogName: S.String.pipe(T.Label()),
-    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-    _top: S.optional(S.Number.pipe(T.Query("$top"))),
-    _skip: S.optional(S.Number.pipe(T.Query("$skip"))),
-    _maxpagesize: S.optional(S.Number.pipe(T.Query("$maxpagesize"))),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/listDeviceInsights",
-      code: 200,
-      apiVersion: "2024-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "CatalogsListDeviceInsightsRequest",
-}) as any as S.Schema<CatalogsListDeviceInsightsRequest>;
-
-/** Device insight report. */
-export interface DeviceInsight {
-  /** Device ID */
-  deviceId: string;
-  /** Event description */
-  description: string;
-  /** Event start timestamp */
-  startTimestampUtc: string;
-  /** Event end timestamp */
-  endTimestampUtc: string;
-  /** Event category */
-  eventCategory: string;
-  /** Event class */
-  eventClass: string;
-  /** Event type */
-  eventType: string;
-  /** Event count */
-  eventCount: number;
-}
-export const DeviceInsight = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    deviceId: S.String,
-    description: S.String,
-    startTimestampUtc: S.String,
-    endTimestampUtc: S.String,
-    eventCategory: S.String,
-    eventClass: S.String,
-    eventType: S.String,
-    eventCount: S.Number,
-  }),
-).annotate({ identifier: "DeviceInsight" }) as any as S.Schema<DeviceInsight>;
-
-/** The DeviceInsight items on this page */
-export type PagedDeviceInsightValueList = Array<DeviceInsight>;
-export const PagedDeviceInsightValueList = /*@__PURE__*/ S.Array(
-  DeviceInsight,
-) as any as S.Schema<PagedDeviceInsightValueList>;
-
-/** Paged collection of DeviceInsight items */
-export interface PagedDeviceInsight {
-  /** The DeviceInsight items on this page */
-  value: PagedDeviceInsightValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const PagedDeviceInsight = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: PagedDeviceInsightValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PagedDeviceInsight",
-}) as any as S.Schema<PagedDeviceInsight>;
-
-export interface CatalogsListDevicesRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of catalog */
-  catalogName: string;
-  /** Filter the result list using the given expression */
-  _filter?: string;
-  /** The number of result items to return. */
-  _top?: number;
-  /** The number of result items to skip. */
-  _skip?: number;
-  /** The maximum number of result items per page. */
-  _maxpagesize?: number;
-}
-export const CatalogsListDevicesRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    catalogName: S.String.pipe(T.Label()),
-    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-    _top: S.optional(S.Number.pipe(T.Query("$top"))),
-    _skip: S.optional(S.Number.pipe(T.Query("$skip"))),
-    _maxpagesize: S.optional(S.Number.pipe(T.Query("$maxpagesize"))),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/listDevices",
-      code: 200,
-      apiVersion: "2024-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "CatalogsListDevicesRequest",
-}) as any as S.Schema<CatalogsListDevicesRequest>;
-
-/** The properties of device */
-export interface DeviceProperties {
-  /** Device ID */
-  deviceId?: string;
-  /** SKU of the chip */
-  chipSku?: string;
-  /** OS version available for installation when update requested */
-  lastAvailableOsVersion?: string;
-  /** OS version running on device when update requested */
-  lastInstalledOsVersion?: string;
-  /** Time when update requested and new OS version available */
-  lastOsUpdateUtc?: string;
-  /** Time when update was last requested */
-  lastUpdateRequestUtc?: string;
-  /** The status of the last operation. */
-  provisioningState?: ProvisioningState;
-}
-export const DeviceProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    deviceId: S.optional(S.String),
-    chipSku: S.optional(S.String),
-    lastAvailableOsVersion: S.optional(S.String),
-    lastInstalledOsVersion: S.optional(S.String),
-    lastOsUpdateUtc: S.optional(S.String),
-    lastUpdateRequestUtc: S.optional(S.String),
-    provisioningState: S.optional(ProvisioningState),
-  }),
-).annotate({
-  identifier: "DeviceProperties",
-}) as any as S.Schema<DeviceProperties>;
-
-/** An device resource belonging to a device group resource. */
-export interface Device {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: DeviceProperties;
-}
-export const Device = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(DeviceProperties),
-  }),
-).annotate({ identifier: "Device" }) as any as S.Schema<Device>;
-
-/** The Device items on this page */
-export type DeviceListResultValueList = Array<Device>;
-export const DeviceListResultValueList = /*@__PURE__*/ S.Array(
-  Device,
-) as any as S.Schema<DeviceListResultValueList>;
-
-/** The response of a Device list operation. */
-export interface DeviceListResult {
-  /** The Device items on this page */
-  value: DeviceListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const DeviceListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: DeviceListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DeviceListResult",
-}) as any as S.Schema<DeviceListResult>;
-
-/** Resource tags. */
-export type CatalogsUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const CatalogsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<CatalogsUpdateRequestTagsMap>;
-
-export interface CatalogsUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of catalog */
-  catalogName: string;
-  /** Resource tags. */
-  tags?: CatalogsUpdateRequestTagsMap;
-}
-export const CatalogsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    catalogName: S.String.pipe(T.Label()),
-    tags: S.optional(CatalogsUpdateRequestTagsMap),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}",
-      code: 200,
-      apiVersion: "2024-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "CatalogsUpdateRequest",
-}) as any as S.Schema<CatalogsUpdateRequest>;
-
-/** Resource tags. */
-export type CatalogsUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const CatalogsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<CatalogsUpdateResponseTagsMap>;
-
-export interface CatalogsUpdateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: CatalogsUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: CatalogProperties;
-}
-export const CatalogsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(CatalogsUpdateResponseTagsMap),
-    location: S.String,
-    properties: S.optional(CatalogProperties),
-  }),
-).annotate({
-  identifier: "CatalogsUpdateResponse",
-}) as any as S.Schema<CatalogsUpdateResponse>;
-
-/** The properties of image */
-export interface ImagePropertiesInput {
-  /** Image as a UTF-8 encoded base 64 string on image create. This field contains the image URI on image reads. */
-  image?: string;
-  /** Image ID */
-  imageId?: string;
-  /** Regional data boundary for an image */
-  regionalDataBoundary?: RegionalDataBoundary | (string & {});
-}
-export const ImagePropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    image: S.optional(S.String),
-    imageId: S.optional(S.String),
-    regionalDataBoundary: S.optional(RegionalDataBoundary),
-  }),
-).annotate({
-  identifier: "ImagePropertiesInput",
-}) as any as S.Schema<ImagePropertiesInput>;
-
-export interface CatalogsUploadImageRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of catalog */
-  catalogName: string;
-  /** The resource-specific properties for this resource. */
-  properties?: ImagePropertiesInput;
-}
-export const CatalogsUploadImageRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    catalogName: S.String.pipe(T.Label()),
-    properties: S.optional(ImagePropertiesInput),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/uploadImage",
-      code: 200,
-      apiVersion: "2024-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "CatalogsUploadImageRequest",
-}) as any as S.Schema<CatalogsUploadImageRequest>;
-
-export interface CatalogsUploadImageResponse {}
-export const CatalogsUploadImageResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "CatalogsUploadImageResponse",
-}) as any as S.Schema<CatalogsUploadImageResponse>;
-
-export interface CertificatesGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of catalog */
-  catalogName: string;
-  /** Serial number of the certificate. Use '.default' to get current active certificate. */
-  serialNumber: string;
-}
-export const CertificatesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    catalogName: S.String.pipe(T.Label()),
-    serialNumber: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/certificates/{serialNumber}",
-      code: 200,
-      apiVersion: "2024-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "CertificatesGetRequest",
-}) as any as S.Schema<CertificatesGetRequest>;
-
-/** Certificate status values. */
-export type CertificateStatus = "Active" | "Inactive" | "Expired" | "Revoked";
-export const CertificateStatus = /*@__PURE__*/ S.String;
-
-/** The properties of certificate */
-export interface CertificateProperties {
-  /** The certificate as a UTF-8 encoded base 64 string. */
-  certificate?: string;
-  /** The certificate status. */
-  status?: CertificateStatus;
-  /** The certificate subject. */
-  subject?: string;
-  /** The certificate thumbprint. */
-  thumbprint?: string;
-  /** The certificate expiry date. */
-  expiryUtc?: string;
-  /** The certificate not before date. */
-  notBeforeUtc?: string;
-  /** The status of the last operation. */
-  provisioningState?: ProvisioningState;
-}
-export const CertificateProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    certificate: S.optional(S.String),
-    status: S.optional(CertificateStatus),
-    subject: S.optional(S.String),
-    thumbprint: S.optional(S.String),
-    expiryUtc: S.optional(S.String),
-    notBeforeUtc: S.optional(S.String),
-    provisioningState: S.optional(ProvisioningState),
-  }),
-).annotate({
-  identifier: "CertificateProperties",
-}) as any as S.Schema<CertificateProperties>;
-
-export interface CertificatesGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: CertificateProperties;
-}
-export const CertificatesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(CertificateProperties),
-  }),
-).annotate({
-  identifier: "CertificatesGetResponse",
-}) as any as S.Schema<CertificatesGetResponse>;
-
-export interface CertificatesListByCatalogRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of catalog */
-  catalogName: string;
-  /** Filter the result list using the given expression */
-  _filter?: string;
-  /** The number of result items to return. */
-  _top?: number;
-  /** The number of result items to skip. */
-  _skip?: number;
-  /** The maximum number of result items per page. */
-  _maxpagesize?: number;
-}
-export const CertificatesListByCatalogRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    catalogName: S.String.pipe(T.Label()),
-    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-    _top: S.optional(S.Number.pipe(T.Query("$top"))),
-    _skip: S.optional(S.Number.pipe(T.Query("$skip"))),
-    _maxpagesize: S.optional(S.Number.pipe(T.Query("$maxpagesize"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/certificates",
-      code: 200,
-      apiVersion: "2024-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "CertificatesListByCatalogRequest",
-}) as any as S.Schema<CertificatesListByCatalogRequest>;
-
-/** An certificate resource belonging to a catalog resource. */
-export interface Certificate {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: CertificateProperties;
-}
-export const Certificate = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(CertificateProperties),
-  }),
-).annotate({ identifier: "Certificate" }) as any as S.Schema<Certificate>;
-
-/** The Certificate items on this page */
-export type CertificateListResultValueList = Array<Certificate>;
-export const CertificateListResultValueList = /*@__PURE__*/ S.Array(
-  Certificate,
-) as any as S.Schema<CertificateListResultValueList>;
-
-/** The response of a Certificate list operation. */
-export interface CertificateListResult {
-  /** The Certificate items on this page */
-  value: CertificateListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const CertificateListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: CertificateListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "CertificateListResult",
-}) as any as S.Schema<CertificateListResult>;
-
-export interface CertificatesRetrieveCertChainRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of catalog */
-  catalogName: string;
-  /** Serial number of the certificate. Use '.default' to get current active certificate. */
-  serialNumber: string;
-}
-export const CertificatesRetrieveCertChainRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      catalogName: S.String.pipe(T.Label()),
-      serialNumber: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/certificates/{serialNumber}/retrieveCertChain",
-        code: 200,
-        apiVersion: "2024-04-01",
-      }),
-    ),
-).annotate({
-  identifier: "CertificatesRetrieveCertChainRequest",
-}) as any as S.Schema<CertificatesRetrieveCertChainRequest>;
-
-/** The certificate chain response. */
-export interface CertificateChainResponse {
-  /** The certificate chain. */
-  certificateChain?: string;
-}
-export const CertificateChainResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    certificateChain: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "CertificateChainResponse",
-}) as any as S.Schema<CertificateChainResponse>;
-
-export interface CertificatesRetrieveProofOfPossessionNonceRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of catalog */
-  catalogName: string;
-  /** Serial number of the certificate. Use '.default' to get current active certificate. */
-  serialNumber: string;
-  /** The proof of possession nonce */
-  proofOfPossessionNonce: string;
-}
-export const CertificatesRetrieveProofOfPossessionNonceRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      catalogName: S.String.pipe(T.Label()),
-      serialNumber: S.String.pipe(T.Label()),
-      proofOfPossessionNonce: S.String,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/certificates/{serialNumber}/retrieveProofOfPossessionNonce",
-        code: 200,
-        apiVersion: "2024-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "CertificatesRetrieveProofOfPossessionNonceRequest",
-  }) as any as S.Schema<CertificatesRetrieveProofOfPossessionNonceRequest>;
-
-export interface CertificatesRetrieveProofOfPossessionNonceResponse {
-  /** The certificate as a UTF-8 encoded base 64 string. */
-  certificate?: string;
-  /** The certificate status. */
-  status?: CertificateStatus;
-  /** The certificate subject. */
-  subject?: string;
-  /** The certificate thumbprint. */
-  thumbprint?: string;
-  /** The certificate expiry date. */
-  expiryUtc?: string;
-  /** The certificate not before date. */
-  notBeforeUtc?: string;
-  /** The status of the last operation. */
-  provisioningState?: ProvisioningState;
-}
-export const CertificatesRetrieveProofOfPossessionNonceResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      certificate: S.optional(S.String),
-      status: S.optional(CertificateStatus),
-      subject: S.optional(S.String),
-      thumbprint: S.optional(S.String),
-      expiryUtc: S.optional(S.String),
-      notBeforeUtc: S.optional(S.String),
-      provisioningState: S.optional(ProvisioningState),
-    }),
-  ).annotate({
-    identifier: "CertificatesRetrieveProofOfPossessionNonceResponse",
-  }) as any as S.Schema<CertificatesRetrieveProofOfPossessionNonceResponse>;
-
-/** An image resource belonging to a catalog resource. */
-export interface ImageInput {
-  /** The resource-specific properties for this resource. */
-  properties?: ImagePropertiesInput;
-}
-export const ImageInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    properties: S.optional(ImagePropertiesInput),
-  }),
-).annotate({ identifier: "ImageInput" }) as any as S.Schema<ImageInput>;
-
-/** Images deployed */
-export type DeploymentPropertiesInputDeployedImagesList = Array<ImageInput>;
-export const DeploymentPropertiesInputDeployedImagesList =
-  /*@__PURE__*/ S.Array(
-    ImageInput,
-  ) as any as S.Schema<DeploymentPropertiesInputDeployedImagesList>;
-
-/** The properties of deployment */
-export interface DeploymentPropertiesInput {
-  /** Deployment ID */
-  deploymentId?: string;
-  /** Images deployed */
-  deployedImages?: DeploymentPropertiesInputDeployedImagesList;
-}
-export const DeploymentPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    deploymentId: S.optional(S.String),
-    deployedImages: S.optional(DeploymentPropertiesInputDeployedImagesList),
-  }),
-).annotate({
-  identifier: "DeploymentPropertiesInput",
-}) as any as S.Schema<DeploymentPropertiesInput>;
-
-export interface DeploymentsCreateOrUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of catalog */
-  catalogName: string;
-  /** Name of product. */
-  productName: string;
-  /** Name of device group. */
-  deviceGroupName: string;
-  /** Deployment name. Use .default for deployment creation and to get the current deployment for the associated device group. */
-  deploymentName: string;
-  /** The resource-specific properties for this resource. */
-  properties?: DeploymentPropertiesInput;
-}
-export const DeploymentsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    catalogName: S.String.pipe(T.Label()),
-    productName: S.String.pipe(T.Label()),
-    deviceGroupName: S.String.pipe(T.Label()),
-    deploymentName: S.String.pipe(T.Label()),
-    properties: S.optional(DeploymentPropertiesInput),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}/deployments/{deploymentName}",
-      code: 200,
-      apiVersion: "2024-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "DeploymentsCreateOrUpdateRequest",
-}) as any as S.Schema<DeploymentsCreateOrUpdateRequest>;
-
 export interface DeploymentsCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
@@ -1433,197 +711,6 @@ export const DeploymentsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "DeploymentsCreateOrUpdateResponse",
 }) as any as S.Schema<DeploymentsCreateOrUpdateResponse>;
-
-export interface DeploymentsDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of catalog */
-  catalogName: string;
-  /** Name of product. */
-  productName: string;
-  /** Name of device group. */
-  deviceGroupName: string;
-  /** Deployment name. Use .default for deployment creation and to get the current deployment for the associated device group. */
-  deploymentName: string;
-}
-export const DeploymentsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    catalogName: S.String.pipe(T.Label()),
-    productName: S.String.pipe(T.Label()),
-    deviceGroupName: S.String.pipe(T.Label()),
-    deploymentName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}/deployments/{deploymentName}",
-      code: 200,
-      apiVersion: "2024-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "DeploymentsDeleteRequest",
-}) as any as S.Schema<DeploymentsDeleteRequest>;
-
-export interface DeploymentsDeleteResponse {}
-export const DeploymentsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DeploymentsDeleteResponse",
-}) as any as S.Schema<DeploymentsDeleteResponse>;
-
-export interface DeploymentsGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of catalog */
-  catalogName: string;
-  /** Name of product. */
-  productName: string;
-  /** Name of device group. */
-  deviceGroupName: string;
-  /** Deployment name. Use .default for deployment creation and to get the current deployment for the associated device group. */
-  deploymentName: string;
-}
-export const DeploymentsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    catalogName: S.String.pipe(T.Label()),
-    productName: S.String.pipe(T.Label()),
-    deviceGroupName: S.String.pipe(T.Label()),
-    deploymentName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}/deployments/{deploymentName}",
-      code: 200,
-      apiVersion: "2024-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "DeploymentsGetRequest",
-}) as any as S.Schema<DeploymentsGetRequest>;
-
-export interface DeploymentsGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: DeploymentProperties;
-}
-export const DeploymentsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(DeploymentProperties),
-  }),
-).annotate({
-  identifier: "DeploymentsGetResponse",
-}) as any as S.Schema<DeploymentsGetResponse>;
-
-export interface DeploymentsListByDeviceGroupRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of catalog */
-  catalogName: string;
-  /** Name of product. */
-  productName: string;
-  /** Name of device group. */
-  deviceGroupName: string;
-  /** Filter the result list using the given expression */
-  _filter?: string;
-  /** The number of result items to return. */
-  _top?: number;
-  /** The number of result items to skip. */
-  _skip?: number;
-  /** The maximum number of result items per page. */
-  _maxpagesize?: number;
-}
-export const DeploymentsListByDeviceGroupRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    catalogName: S.String.pipe(T.Label()),
-    productName: S.String.pipe(T.Label()),
-    deviceGroupName: S.String.pipe(T.Label()),
-    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-    _top: S.optional(S.Number.pipe(T.Query("$top"))),
-    _skip: S.optional(S.Number.pipe(T.Query("$skip"))),
-    _maxpagesize: S.optional(S.Number.pipe(T.Query("$maxpagesize"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}/deployments",
-      code: 200,
-      apiVersion: "2024-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "DeploymentsListByDeviceGroupRequest",
-}) as any as S.Schema<DeploymentsListByDeviceGroupRequest>;
-
-/** Device identifiers of the devices to be claimed. */
-export type DeviceGroupsClaimDevicesRequestDeviceIdentifiersList =
-  Array<string>;
-export const DeviceGroupsClaimDevicesRequestDeviceIdentifiersList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<DeviceGroupsClaimDevicesRequestDeviceIdentifiersList>;
-
-export interface DeviceGroupsClaimDevicesRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of catalog */
-  catalogName: string;
-  /** Name of product. */
-  productName: string;
-  /** Name of device group. */
-  deviceGroupName: string;
-  /** Device identifiers of the devices to be claimed. */
-  deviceIdentifiers: DeviceGroupsClaimDevicesRequestDeviceIdentifiersList;
-}
-export const DeviceGroupsClaimDevicesRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    catalogName: S.String.pipe(T.Label()),
-    productName: S.String.pipe(T.Label()),
-    deviceGroupName: S.String.pipe(T.Label()),
-    deviceIdentifiers: DeviceGroupsClaimDevicesRequestDeviceIdentifiersList,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}/claimDevices",
-      code: 200,
-      apiVersion: "2024-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "DeviceGroupsClaimDevicesRequest",
-}) as any as S.Schema<DeviceGroupsClaimDevicesRequest>;
-
-export interface DeviceGroupsClaimDevicesResponse {}
-export const DeviceGroupsClaimDevicesResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DeviceGroupsClaimDevicesResponse",
-}) as any as S.Schema<DeviceGroupsClaimDevicesResponse>;
 
 export interface DeviceGroupsCountDevicesRequest {
   /** The ID of the target subscription. */
@@ -1667,6 +754,18 @@ export const DeviceGroupsCountDevicesResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "DeviceGroupsCountDevicesResponse",
 }) as any as S.Schema<DeviceGroupsCountDevicesResponse>;
+
+/** OS feed type values. */
+export type OSFeedType = "Retail" | "RetailEval";
+export const OSFeedType = /*@__PURE__*/ S.String;
+
+/** Update policy values. */
+export type UpdatePolicy = "UpdateAll" | "No3rdPartyAppUpdates";
+export const UpdatePolicy = /*@__PURE__*/ S.String;
+
+/** Allow crash dumps values. */
+export type AllowCrashDumpCollection = "Enabled" | "Disabled";
+export const AllowCrashDumpCollection = /*@__PURE__*/ S.String;
 
 /** The properties of deviceGroup */
 export interface DeviceGroupPropertiesInput {
@@ -1727,6 +826,37 @@ export const DeviceGroupsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeviceGroupsCreateOrUpdateRequest",
 }) as any as S.Schema<DeviceGroupsCreateOrUpdateRequest>;
 
+/** The properties of deviceGroup */
+export interface DeviceGroupProperties {
+  /** Description of the device group. */
+  description?: string;
+  /** Operating system feed type of the device group. */
+  osFeedType?: OSFeedType;
+  /** Update policy of the device group. */
+  updatePolicy?: UpdatePolicy;
+  /** Flag to define if the user allows for crash dump collection. */
+  allowCrashDumpsCollection?: AllowCrashDumpCollection;
+  /** Regional data boundary for the device group. */
+  regionalDataBoundary?: RegionalDataBoundary;
+  /** Deployment status for the device group. */
+  hasDeployment?: boolean;
+  /** The status of the last operation. */
+  provisioningState?: ProvisioningState;
+}
+export const DeviceGroupProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    description: S.optional(S.String),
+    osFeedType: S.optional(OSFeedType),
+    updatePolicy: S.optional(UpdatePolicy),
+    allowCrashDumpsCollection: S.optional(AllowCrashDumpCollection),
+    regionalDataBoundary: S.optional(RegionalDataBoundary),
+    hasDeployment: S.optional(S.Boolean),
+    provisioningState: S.optional(ProvisioningState),
+  }),
+).annotate({
+  identifier: "DeviceGroupProperties",
+}) as any as S.Schema<DeviceGroupProperties>;
+
 export interface DeviceGroupsCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
@@ -1750,201 +880,6 @@ export const DeviceGroupsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "DeviceGroupsCreateOrUpdateResponse",
 }) as any as S.Schema<DeviceGroupsCreateOrUpdateResponse>;
-
-export interface DeviceGroupsDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of catalog */
-  catalogName: string;
-  /** Name of product. */
-  productName: string;
-  /** Name of device group. */
-  deviceGroupName: string;
-}
-export const DeviceGroupsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    catalogName: S.String.pipe(T.Label()),
-    productName: S.String.pipe(T.Label()),
-    deviceGroupName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}",
-      code: 200,
-      apiVersion: "2024-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "DeviceGroupsDeleteRequest",
-}) as any as S.Schema<DeviceGroupsDeleteRequest>;
-
-export interface DeviceGroupsDeleteResponse {}
-export const DeviceGroupsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DeviceGroupsDeleteResponse",
-}) as any as S.Schema<DeviceGroupsDeleteResponse>;
-
-export interface DeviceGroupsGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of catalog */
-  catalogName: string;
-  /** Name of product. */
-  productName: string;
-  /** Name of device group. */
-  deviceGroupName: string;
-}
-export const DeviceGroupsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    catalogName: S.String.pipe(T.Label()),
-    productName: S.String.pipe(T.Label()),
-    deviceGroupName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}",
-      code: 200,
-      apiVersion: "2024-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "DeviceGroupsGetRequest",
-}) as any as S.Schema<DeviceGroupsGetRequest>;
-
-export interface DeviceGroupsGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: DeviceGroupProperties;
-}
-export const DeviceGroupsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(DeviceGroupProperties),
-  }),
-).annotate({
-  identifier: "DeviceGroupsGetResponse",
-}) as any as S.Schema<DeviceGroupsGetResponse>;
-
-export interface DeviceGroupsListByProductRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of catalog */
-  catalogName: string;
-  /** Name of product. */
-  productName: string;
-  /** Filter the result list using the given expression */
-  _filter?: string;
-  /** The number of result items to return. */
-  _top?: number;
-  /** The number of result items to skip. */
-  _skip?: number;
-  /** The maximum number of result items per page. */
-  _maxpagesize?: number;
-}
-export const DeviceGroupsListByProductRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    catalogName: S.String.pipe(T.Label()),
-    productName: S.String.pipe(T.Label()),
-    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-    _top: S.optional(S.Number.pipe(T.Query("$top"))),
-    _skip: S.optional(S.Number.pipe(T.Query("$skip"))),
-    _maxpagesize: S.optional(S.Number.pipe(T.Query("$maxpagesize"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups",
-      code: 200,
-      apiVersion: "2024-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "DeviceGroupsListByProductRequest",
-}) as any as S.Schema<DeviceGroupsListByProductRequest>;
-
-/** The updatable properties of the DeviceGroup. */
-export type DeviceGroupUpdateProperties = DeviceGroupPropertiesInput;
-export const DeviceGroupUpdateProperties = DeviceGroupPropertiesInput;
-
-export interface DeviceGroupsUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of catalog */
-  catalogName: string;
-  /** Name of product. */
-  productName: string;
-  /** Name of device group. */
-  deviceGroupName: string;
-  /** The updatable properties of the DeviceGroup. */
-  properties?: DeviceGroupPropertiesInput;
-}
-export const DeviceGroupsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    catalogName: S.String.pipe(T.Label()),
-    productName: S.String.pipe(T.Label()),
-    deviceGroupName: S.String.pipe(T.Label()),
-    properties: S.optional(DeviceGroupPropertiesInput),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}",
-      code: 200,
-      apiVersion: "2024-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "DeviceGroupsUpdateRequest",
-}) as any as S.Schema<DeviceGroupsUpdateRequest>;
-
-export interface DeviceGroupsUpdateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: DeviceGroupProperties;
-}
-export const DeviceGroupsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(DeviceGroupProperties),
-  }),
-).annotate({
-  identifier: "DeviceGroupsUpdateResponse",
-}) as any as S.Schema<DeviceGroupsUpdateResponse>;
 
 /** The properties of device */
 export interface DevicePropertiesInput {
@@ -1996,6 +931,37 @@ export const DevicesCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "DevicesCreateOrUpdateRequest",
 }) as any as S.Schema<DevicesCreateOrUpdateRequest>;
 
+/** The properties of device */
+export interface DeviceProperties {
+  /** Device ID */
+  deviceId?: string;
+  /** SKU of the chip */
+  chipSku?: string;
+  /** OS version available for installation when update requested */
+  lastAvailableOsVersion?: string;
+  /** OS version running on device when update requested */
+  lastInstalledOsVersion?: string;
+  /** Time when update requested and new OS version available */
+  lastOsUpdateUtc?: string;
+  /** Time when update was last requested */
+  lastUpdateRequestUtc?: string;
+  /** The status of the last operation. */
+  provisioningState?: ProvisioningState;
+}
+export const DeviceProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    deviceId: S.optional(S.String),
+    chipSku: S.optional(S.String),
+    lastAvailableOsVersion: S.optional(S.String),
+    lastInstalledOsVersion: S.optional(S.String),
+    lastOsUpdateUtc: S.optional(S.String),
+    lastUpdateRequestUtc: S.optional(S.String),
+    provisioningState: S.optional(ProvisioningState),
+  }),
+).annotate({
+  identifier: "DeviceProperties",
+}) as any as S.Schema<DeviceProperties>;
+
 export interface DevicesCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
@@ -2020,61 +986,20 @@ export const DevicesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DevicesCreateOrUpdateResponse",
 }) as any as S.Schema<DevicesCreateOrUpdateResponse>;
 
-export interface DevicesDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of catalog */
-  catalogName: string;
-  /** Name of product. */
-  productName: string;
-  /** Name of device group. */
-  deviceGroupName: string;
-  /** Device name */
-  deviceName: string;
-}
-export const DevicesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    catalogName: S.String.pipe(T.Label()),
-    productName: S.String.pipe(T.Label()),
-    deviceGroupName: S.String.pipe(T.Label()),
-    deviceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}/devices/{deviceName}",
-      code: 200,
-      apiVersion: "2024-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "DevicesDeleteRequest",
-}) as any as S.Schema<DevicesDeleteRequest>;
-
-export interface DevicesDeleteResponse {}
-export const DevicesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DevicesDeleteResponse",
-}) as any as S.Schema<DevicesDeleteResponse>;
-
 /** Capability image type */
 export type CapabilityType = "ApplicationDevelopment" | "FieldServicing";
 export const CapabilityType = /*@__PURE__*/ S.String;
 
 /** List of capabilities to create */
-export type DevicesGenerateCapabilityImageRequestCapabilitiesList = Array<
+export type GenerateDeviceCapabilityImageRequestCapabilitiesList = Array<
   CapabilityType | (string & {})
 >;
-export const DevicesGenerateCapabilityImageRequestCapabilitiesList =
+export const GenerateDeviceCapabilityImageRequestCapabilitiesList =
   /*@__PURE__*/ S.Array(
     CapabilityType,
-  ) as any as S.Schema<DevicesGenerateCapabilityImageRequestCapabilitiesList>;
+  ) as any as S.Schema<GenerateDeviceCapabilityImageRequestCapabilitiesList>;
 
-export interface DevicesGenerateCapabilityImageRequest {
+export interface GenerateDeviceCapabilityImageRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2088,9 +1013,9 @@ export interface DevicesGenerateCapabilityImageRequest {
   /** Device name */
   deviceName: string;
   /** List of capabilities to create */
-  capabilities: DevicesGenerateCapabilityImageRequestCapabilitiesList;
+  capabilities: GenerateDeviceCapabilityImageRequestCapabilitiesList;
 }
-export const DevicesGenerateCapabilityImageRequest = /*@__PURE__*/ S.suspend(
+export const GenerateDeviceCapabilityImageRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -2099,7 +1024,7 @@ export const DevicesGenerateCapabilityImageRequest = /*@__PURE__*/ S.suspend(
       productName: S.String.pipe(T.Label()),
       deviceGroupName: S.String.pipe(T.Label()),
       deviceName: S.String.pipe(T.Label()),
-      capabilities: DevicesGenerateCapabilityImageRequestCapabilitiesList,
+      capabilities: GenerateDeviceCapabilityImageRequestCapabilitiesList,
     }).pipe(
       T.Http({
         method: "POST",
@@ -2109,8 +1034,8 @@ export const DevicesGenerateCapabilityImageRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "DevicesGenerateCapabilityImageRequest",
-}) as any as S.Schema<DevicesGenerateCapabilityImageRequest>;
+  identifier: "GenerateDeviceCapabilityImageRequest",
+}) as any as S.Schema<GenerateDeviceCapabilityImageRequest>;
 
 /** Signed device capability image response */
 export interface SignedCapabilityImageResponse {
@@ -2125,7 +1050,392 @@ export const SignedCapabilityImageResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "SignedCapabilityImageResponse",
 }) as any as S.Schema<SignedCapabilityImageResponse>;
 
-export interface DevicesGetRequest {
+export interface GenerateProductDefaultDeviceGroupsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of catalog */
+  catalogName: string;
+  /** Name of product. */
+  productName: string;
+}
+export const GenerateProductDefaultDeviceGroupsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      catalogName: S.String.pipe(T.Label()),
+      productName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/generateDefaultDeviceGroups",
+        code: 200,
+        apiVersion: "2024-04-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "GenerateProductDefaultDeviceGroupsRequest",
+  }) as any as S.Schema<GenerateProductDefaultDeviceGroupsRequest>;
+
+/** An device group resource belonging to a product resource. */
+export interface DeviceGroup {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: DeviceGroupProperties;
+}
+export const DeviceGroup = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(DeviceGroupProperties),
+  }),
+).annotate({ identifier: "DeviceGroup" }) as any as S.Schema<DeviceGroup>;
+
+/** The DeviceGroup items on this page */
+export type DeviceGroupListResultValueList = Array<DeviceGroup>;
+export const DeviceGroupListResultValueList = /*@__PURE__*/ S.Array(
+  DeviceGroup,
+) as any as S.Schema<DeviceGroupListResultValueList>;
+
+/** The response of a DeviceGroup list operation. */
+export interface DeviceGroupListResult {
+  /** The DeviceGroup items on this page */
+  value: DeviceGroupListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const DeviceGroupListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: DeviceGroupListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DeviceGroupListResult",
+}) as any as S.Schema<DeviceGroupListResult>;
+
+export interface GetCatalogRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of catalog */
+  catalogName: string;
+}
+export const GetCatalogRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    catalogName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}",
+      code: 200,
+      apiVersion: "2024-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetCatalogRequest",
+}) as any as S.Schema<GetCatalogRequest>;
+
+/** Resource tags. */
+export type GetCatalogResponseTagsMap = { [key: string]: string | undefined };
+export const GetCatalogResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetCatalogResponseTagsMap>;
+
+export interface GetCatalogResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetCatalogResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: CatalogProperties;
+}
+export const GetCatalogResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetCatalogResponseTagsMap),
+    location: S.String,
+    properties: S.optional(CatalogProperties),
+  }),
+).annotate({
+  identifier: "GetCatalogResponse",
+}) as any as S.Schema<GetCatalogResponse>;
+
+export interface GetCertificateRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of catalog */
+  catalogName: string;
+  /** Serial number of the certificate. Use '.default' to get current active certificate. */
+  serialNumber: string;
+}
+export const GetCertificateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    catalogName: S.String.pipe(T.Label()),
+    serialNumber: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/certificates/{serialNumber}",
+      code: 200,
+      apiVersion: "2024-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetCertificateRequest",
+}) as any as S.Schema<GetCertificateRequest>;
+
+/** Certificate status values. */
+export type CertificateStatus = "Active" | "Inactive" | "Expired" | "Revoked";
+export const CertificateStatus = /*@__PURE__*/ S.String;
+
+/** The properties of certificate */
+export interface CertificateProperties {
+  /** The certificate as a UTF-8 encoded base 64 string. */
+  certificate?: string;
+  /** The certificate status. */
+  status?: CertificateStatus;
+  /** The certificate subject. */
+  subject?: string;
+  /** The certificate thumbprint. */
+  thumbprint?: string;
+  /** The certificate expiry date. */
+  expiryUtc?: string;
+  /** The certificate not before date. */
+  notBeforeUtc?: string;
+  /** The status of the last operation. */
+  provisioningState?: ProvisioningState;
+}
+export const CertificateProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    certificate: S.optional(S.String),
+    status: S.optional(CertificateStatus),
+    subject: S.optional(S.String),
+    thumbprint: S.optional(S.String),
+    expiryUtc: S.optional(S.String),
+    notBeforeUtc: S.optional(S.String),
+    provisioningState: S.optional(ProvisioningState),
+  }),
+).annotate({
+  identifier: "CertificateProperties",
+}) as any as S.Schema<CertificateProperties>;
+
+export interface GetCertificateResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: CertificateProperties;
+}
+export const GetCertificateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(CertificateProperties),
+  }),
+).annotate({
+  identifier: "GetCertificateResponse",
+}) as any as S.Schema<GetCertificateResponse>;
+
+export interface GetCertificateCertChainRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of catalog */
+  catalogName: string;
+  /** Serial number of the certificate. Use '.default' to get current active certificate. */
+  serialNumber: string;
+}
+export const GetCertificateCertChainRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    catalogName: S.String.pipe(T.Label()),
+    serialNumber: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/certificates/{serialNumber}/retrieveCertChain",
+      code: 200,
+      apiVersion: "2024-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetCertificateCertChainRequest",
+}) as any as S.Schema<GetCertificateCertChainRequest>;
+
+/** The certificate chain response. */
+export interface CertificateChainResponse {
+  /** The certificate chain. */
+  certificateChain?: string;
+}
+export const CertificateChainResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    certificateChain: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "CertificateChainResponse",
+}) as any as S.Schema<CertificateChainResponse>;
+
+export interface GetCertificateProofOfPossessionNonceRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of catalog */
+  catalogName: string;
+  /** Serial number of the certificate. Use '.default' to get current active certificate. */
+  serialNumber: string;
+  /** The proof of possession nonce */
+  proofOfPossessionNonce: string;
+}
+export const GetCertificateProofOfPossessionNonceRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      catalogName: S.String.pipe(T.Label()),
+      serialNumber: S.String.pipe(T.Label()),
+      proofOfPossessionNonce: S.String,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/certificates/{serialNumber}/retrieveProofOfPossessionNonce",
+        code: 200,
+        apiVersion: "2024-04-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "GetCertificateProofOfPossessionNonceRequest",
+  }) as any as S.Schema<GetCertificateProofOfPossessionNonceRequest>;
+
+export interface GetCertificateProofOfPossessionNonceResponse {
+  /** The certificate as a UTF-8 encoded base 64 string. */
+  certificate?: string;
+  /** The certificate status. */
+  status?: CertificateStatus;
+  /** The certificate subject. */
+  subject?: string;
+  /** The certificate thumbprint. */
+  thumbprint?: string;
+  /** The certificate expiry date. */
+  expiryUtc?: string;
+  /** The certificate not before date. */
+  notBeforeUtc?: string;
+  /** The status of the last operation. */
+  provisioningState?: ProvisioningState;
+}
+export const GetCertificateProofOfPossessionNonceResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      certificate: S.optional(S.String),
+      status: S.optional(CertificateStatus),
+      subject: S.optional(S.String),
+      thumbprint: S.optional(S.String),
+      expiryUtc: S.optional(S.String),
+      notBeforeUtc: S.optional(S.String),
+      provisioningState: S.optional(ProvisioningState),
+    }),
+  ).annotate({
+    identifier: "GetCertificateProofOfPossessionNonceResponse",
+  }) as any as S.Schema<GetCertificateProofOfPossessionNonceResponse>;
+
+export interface GetDeploymentRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of catalog */
+  catalogName: string;
+  /** Name of product. */
+  productName: string;
+  /** Name of device group. */
+  deviceGroupName: string;
+  /** Deployment name. Use .default for deployment creation and to get the current deployment for the associated device group. */
+  deploymentName: string;
+}
+export const GetDeploymentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    catalogName: S.String.pipe(T.Label()),
+    productName: S.String.pipe(T.Label()),
+    deviceGroupName: S.String.pipe(T.Label()),
+    deploymentName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}/deployments/{deploymentName}",
+      code: 200,
+      apiVersion: "2024-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetDeploymentRequest",
+}) as any as S.Schema<GetDeploymentRequest>;
+
+export interface GetDeploymentResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: DeploymentProperties;
+}
+export const GetDeploymentResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(DeploymentProperties),
+  }),
+).annotate({
+  identifier: "GetDeploymentResponse",
+}) as any as S.Schema<GetDeploymentResponse>;
+
+export interface GetDeviceRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2139,7 +1449,7 @@ export interface DevicesGetRequest {
   /** Device name */
   deviceName: string;
 }
-export const DevicesGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetDeviceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -2156,10 +1466,10 @@ export const DevicesGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DevicesGetRequest",
-}) as any as S.Schema<DevicesGetRequest>;
+  identifier: "GetDeviceRequest",
+}) as any as S.Schema<GetDeviceRequest>;
 
-export interface DevicesGetResponse {
+export interface GetDeviceResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -2171,7 +1481,7 @@ export interface DevicesGetResponse {
   /** The resource-specific properties for this resource. */
   properties?: DeviceProperties;
 }
-export const DevicesGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetDeviceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -2180,10 +1490,10 @@ export const DevicesGetResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(DeviceProperties),
   }),
 ).annotate({
-  identifier: "DevicesGetResponse",
-}) as any as S.Schema<DevicesGetResponse>;
+  identifier: "GetDeviceResponse",
+}) as any as S.Schema<GetDeviceResponse>;
 
-export interface DevicesListByDeviceGroupRequest {
+export interface GetDeviceGroupRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2195,7 +1505,7 @@ export interface DevicesListByDeviceGroupRequest {
   /** Name of device group. */
   deviceGroupName: string;
 }
-export const DevicesListByDeviceGroupRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetDeviceGroupRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -2205,66 +1515,16 @@ export const DevicesListByDeviceGroupRequest = /*@__PURE__*/ S.suspend(() =>
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}/devices",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}",
       code: 200,
       apiVersion: "2024-04-01",
     }),
   ),
 ).annotate({
-  identifier: "DevicesListByDeviceGroupRequest",
-}) as any as S.Schema<DevicesListByDeviceGroupRequest>;
+  identifier: "GetDeviceGroupRequest",
+}) as any as S.Schema<GetDeviceGroupRequest>;
 
-/** The updatable properties of the Device. */
-export interface DeviceUpdateProperties {
-  /** Device group id */
-  deviceGroupId?: string;
-}
-export const DeviceUpdateProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    deviceGroupId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DeviceUpdateProperties",
-}) as any as S.Schema<DeviceUpdateProperties>;
-
-export interface DevicesUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of catalog */
-  catalogName: string;
-  /** Name of product. */
-  productName: string;
-  /** Name of device group. */
-  deviceGroupName: string;
-  /** Device name */
-  deviceName: string;
-  /** The updatable properties of the Device. */
-  properties?: DeviceUpdateProperties;
-}
-export const DevicesUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    catalogName: S.String.pipe(T.Label()),
-    productName: S.String.pipe(T.Label()),
-    deviceGroupName: S.String.pipe(T.Label()),
-    deviceName: S.String.pipe(T.Label()),
-    properties: S.optional(DeviceUpdateProperties),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}/devices/{deviceName}",
-      code: 200,
-      apiVersion: "2024-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "DevicesUpdateRequest",
-}) as any as S.Schema<DevicesUpdateRequest>;
-
-export interface DevicesUpdateResponse {
+export interface GetDeviceGroupResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -2274,19 +1534,139 @@ export interface DevicesUpdateResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** The resource-specific properties for this resource. */
-  properties?: DeviceProperties;
+  properties?: DeviceGroupProperties;
 }
-export const DevicesUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetDeviceGroupResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    properties: S.optional(DeviceProperties),
+    properties: S.optional(DeviceGroupProperties),
   }),
 ).annotate({
-  identifier: "DevicesUpdateResponse",
-}) as any as S.Schema<DevicesUpdateResponse>;
+  identifier: "GetDeviceGroupResponse",
+}) as any as S.Schema<GetDeviceGroupResponse>;
+
+export interface GetImageRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of catalog */
+  catalogName: string;
+  /** Image name. Use an image GUID for GA versions of the API. */
+  imageName: string;
+}
+export const GetImageRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    catalogName: S.String.pipe(T.Label()),
+    imageName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/images/{imageName}",
+      code: 200,
+      apiVersion: "2024-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetImageRequest",
+}) as any as S.Schema<GetImageRequest>;
+
+export interface GetImageResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: ImageProperties;
+}
+export const GetImageResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ImageProperties),
+  }),
+).annotate({
+  identifier: "GetImageResponse",
+}) as any as S.Schema<GetImageResponse>;
+
+export interface GetProductRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of catalog */
+  catalogName: string;
+  /** Name of product. */
+  productName: string;
+}
+export const GetProductRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    catalogName: S.String.pipe(T.Label()),
+    productName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}",
+      code: 200,
+      apiVersion: "2024-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetProductRequest",
+}) as any as S.Schema<GetProductRequest>;
+
+/** The properties of product */
+export interface ProductProperties {
+  /** Description of the product */
+  description?: string;
+  /** The status of the last operation. */
+  provisioningState?: ProvisioningState | (string & {});
+}
+export const ProductProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    description: S.optional(S.String),
+    provisioningState: S.optional(ProvisioningState),
+  }),
+).annotate({
+  identifier: "ProductProperties",
+}) as any as S.Schema<ProductProperties>;
+
+export interface GetProductResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: ProductProperties;
+}
+export const GetProductResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ProductProperties),
+  }),
+).annotate({
+  identifier: "GetProductResponse",
+}) as any as S.Schema<GetProductResponse>;
 
 export interface ImagesCreateOrUpdateRequest {
   /** The ID of the target subscription. */
@@ -2343,70 +1723,37 @@ export const ImagesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ImagesCreateOrUpdateResponse",
 }) as any as S.Schema<ImagesCreateOrUpdateResponse>;
 
-export interface ImagesDeleteRequest {
+export interface ListCatalogByResourceGroupRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
-  /** Name of catalog */
-  catalogName: string;
-  /** Image name. Use an image GUID for GA versions of the API. */
-  imageName: string;
 }
-export const ImagesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListCatalogByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
-    catalogName: S.String.pipe(T.Label()),
-    imageName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/images/{imageName}",
-      code: 200,
-      apiVersion: "2024-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "ImagesDeleteRequest",
-}) as any as S.Schema<ImagesDeleteRequest>;
-
-export interface ImagesDeleteResponse {}
-export const ImagesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ImagesDeleteResponse",
-}) as any as S.Schema<ImagesDeleteResponse>;
-
-export interface ImagesGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of catalog */
-  catalogName: string;
-  /** Image name. Use an image GUID for GA versions of the API. */
-  imageName: string;
-}
-export const ImagesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    catalogName: S.String.pipe(T.Label()),
-    imageName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/images/{imageName}",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs",
       code: 200,
       apiVersion: "2024-04-01",
     }),
   ),
 ).annotate({
-  identifier: "ImagesGetRequest",
-}) as any as S.Schema<ImagesGetRequest>;
+  identifier: "ListCatalogByResourceGroupRequest",
+}) as any as S.Schema<ListCatalogByResourceGroupRequest>;
 
-export interface ImagesGetResponse {
+/** Resource tags. */
+export type CatalogTagsMap = { [key: string]: string | undefined };
+export const CatalogTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<CatalogTagsMap>;
+
+/** An Azure Sphere catalog */
+export interface Catalog {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -2415,22 +1762,67 @@ export interface ImagesGetResponse {
   type?: string;
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
+  /** Resource tags. */
+  tags?: CatalogTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
   /** The resource-specific properties for this resource. */
-  properties?: ImageProperties;
+  properties?: CatalogProperties;
 }
-export const ImagesGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const Catalog = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    properties: S.optional(ImageProperties),
+    tags: S.optional(CatalogTagsMap),
+    location: S.String,
+    properties: S.optional(CatalogProperties),
+  }),
+).annotate({ identifier: "Catalog" }) as any as S.Schema<Catalog>;
+
+/** The Catalog items on this page */
+export type CatalogListResultValueList = Array<Catalog>;
+export const CatalogListResultValueList = /*@__PURE__*/ S.Array(
+  Catalog,
+) as any as S.Schema<CatalogListResultValueList>;
+
+/** The response of a Catalog list operation. */
+export interface CatalogListResult {
+  /** The Catalog items on this page */
+  value: CatalogListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const CatalogListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: CatalogListResultValueList,
+    nextLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ImagesGetResponse",
-}) as any as S.Schema<ImagesGetResponse>;
+  identifier: "CatalogListResult",
+}) as any as S.Schema<CatalogListResult>;
 
-export interface ImagesListByCatalogRequest {
+export interface ListCatalogBySubscriptionRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+}
+export const ListCatalogBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.AzureSphere/catalogs",
+      code: 200,
+      apiVersion: "2024-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListCatalogBySubscriptionRequest",
+}) as any as S.Schema<ListCatalogBySubscriptionRequest>;
+
+export interface ListCatalogDeploymentsRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2446,7 +1838,498 @@ export interface ImagesListByCatalogRequest {
   /** The maximum number of result items per page. */
   _maxpagesize?: number;
 }
-export const ImagesListByCatalogRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListCatalogDeploymentsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    catalogName: S.String.pipe(T.Label()),
+    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+    _top: S.optional(S.Number.pipe(T.Query("$top"))),
+    _skip: S.optional(S.Number.pipe(T.Query("$skip"))),
+    _maxpagesize: S.optional(S.Number.pipe(T.Query("$maxpagesize"))),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/listDeployments",
+      code: 200,
+      apiVersion: "2024-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListCatalogDeploymentsRequest",
+}) as any as S.Schema<ListCatalogDeploymentsRequest>;
+
+/** An deployment resource belonging to a device group resource. */
+export interface Deployment {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: DeploymentProperties;
+}
+export const Deployment = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(DeploymentProperties),
+  }),
+).annotate({ identifier: "Deployment" }) as any as S.Schema<Deployment>;
+
+/** The Deployment items on this page */
+export type DeploymentListResultValueList = Array<Deployment>;
+export const DeploymentListResultValueList = /*@__PURE__*/ S.Array(
+  Deployment,
+) as any as S.Schema<DeploymentListResultValueList>;
+
+/** The response of a Deployment list operation. */
+export interface DeploymentListResult {
+  /** The Deployment items on this page */
+  value: DeploymentListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const DeploymentListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: DeploymentListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DeploymentListResult",
+}) as any as S.Schema<DeploymentListResult>;
+
+export interface ListCatalogDeviceGroupsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of catalog */
+  catalogName: string;
+  /** Filter the result list using the given expression */
+  _filter?: string;
+  /** The number of result items to return. */
+  _top?: number;
+  /** The number of result items to skip. */
+  _skip?: number;
+  /** The maximum number of result items per page. */
+  _maxpagesize?: number;
+  /** Device Group name. */
+  deviceGroupName?: string;
+}
+export const ListCatalogDeviceGroupsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    catalogName: S.String.pipe(T.Label()),
+    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+    _top: S.optional(S.Number.pipe(T.Query("$top"))),
+    _skip: S.optional(S.Number.pipe(T.Query("$skip"))),
+    _maxpagesize: S.optional(S.Number.pipe(T.Query("$maxpagesize"))),
+    deviceGroupName: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/listDeviceGroups",
+      code: 200,
+      apiVersion: "2024-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListCatalogDeviceGroupsRequest",
+}) as any as S.Schema<ListCatalogDeviceGroupsRequest>;
+
+export interface ListCatalogDeviceInsightsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of catalog */
+  catalogName: string;
+  /** Filter the result list using the given expression */
+  _filter?: string;
+  /** The number of result items to return. */
+  _top?: number;
+  /** The number of result items to skip. */
+  _skip?: number;
+  /** The maximum number of result items per page. */
+  _maxpagesize?: number;
+}
+export const ListCatalogDeviceInsightsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    catalogName: S.String.pipe(T.Label()),
+    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+    _top: S.optional(S.Number.pipe(T.Query("$top"))),
+    _skip: S.optional(S.Number.pipe(T.Query("$skip"))),
+    _maxpagesize: S.optional(S.Number.pipe(T.Query("$maxpagesize"))),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/listDeviceInsights",
+      code: 200,
+      apiVersion: "2024-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListCatalogDeviceInsightsRequest",
+}) as any as S.Schema<ListCatalogDeviceInsightsRequest>;
+
+/** Device insight report. */
+export interface DeviceInsight {
+  /** Device ID */
+  deviceId: string;
+  /** Event description */
+  description: string;
+  /** Event start timestamp */
+  startTimestampUtc: string;
+  /** Event end timestamp */
+  endTimestampUtc: string;
+  /** Event category */
+  eventCategory: string;
+  /** Event class */
+  eventClass: string;
+  /** Event type */
+  eventType: string;
+  /** Event count */
+  eventCount: number;
+}
+export const DeviceInsight = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    deviceId: S.String,
+    description: S.String,
+    startTimestampUtc: S.String,
+    endTimestampUtc: S.String,
+    eventCategory: S.String,
+    eventClass: S.String,
+    eventType: S.String,
+    eventCount: S.Number,
+  }),
+).annotate({ identifier: "DeviceInsight" }) as any as S.Schema<DeviceInsight>;
+
+/** The DeviceInsight items on this page */
+export type PagedDeviceInsightValueList = Array<DeviceInsight>;
+export const PagedDeviceInsightValueList = /*@__PURE__*/ S.Array(
+  DeviceInsight,
+) as any as S.Schema<PagedDeviceInsightValueList>;
+
+/** Paged collection of DeviceInsight items */
+export interface PagedDeviceInsight {
+  /** The DeviceInsight items on this page */
+  value: PagedDeviceInsightValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const PagedDeviceInsight = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: PagedDeviceInsightValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PagedDeviceInsight",
+}) as any as S.Schema<PagedDeviceInsight>;
+
+export interface ListCatalogDevicesRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of catalog */
+  catalogName: string;
+  /** Filter the result list using the given expression */
+  _filter?: string;
+  /** The number of result items to return. */
+  _top?: number;
+  /** The number of result items to skip. */
+  _skip?: number;
+  /** The maximum number of result items per page. */
+  _maxpagesize?: number;
+}
+export const ListCatalogDevicesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    catalogName: S.String.pipe(T.Label()),
+    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+    _top: S.optional(S.Number.pipe(T.Query("$top"))),
+    _skip: S.optional(S.Number.pipe(T.Query("$skip"))),
+    _maxpagesize: S.optional(S.Number.pipe(T.Query("$maxpagesize"))),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/listDevices",
+      code: 200,
+      apiVersion: "2024-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListCatalogDevicesRequest",
+}) as any as S.Schema<ListCatalogDevicesRequest>;
+
+/** An device resource belonging to a device group resource. */
+export interface Device {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: DeviceProperties;
+}
+export const Device = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(DeviceProperties),
+  }),
+).annotate({ identifier: "Device" }) as any as S.Schema<Device>;
+
+/** The Device items on this page */
+export type DeviceListResultValueList = Array<Device>;
+export const DeviceListResultValueList = /*@__PURE__*/ S.Array(
+  Device,
+) as any as S.Schema<DeviceListResultValueList>;
+
+/** The response of a Device list operation. */
+export interface DeviceListResult {
+  /** The Device items on this page */
+  value: DeviceListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const DeviceListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: DeviceListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DeviceListResult",
+}) as any as S.Schema<DeviceListResult>;
+
+export interface ListCertificateByCatalogRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of catalog */
+  catalogName: string;
+  /** Filter the result list using the given expression */
+  _filter?: string;
+  /** The number of result items to return. */
+  _top?: number;
+  /** The number of result items to skip. */
+  _skip?: number;
+  /** The maximum number of result items per page. */
+  _maxpagesize?: number;
+}
+export const ListCertificateByCatalogRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    catalogName: S.String.pipe(T.Label()),
+    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+    _top: S.optional(S.Number.pipe(T.Query("$top"))),
+    _skip: S.optional(S.Number.pipe(T.Query("$skip"))),
+    _maxpagesize: S.optional(S.Number.pipe(T.Query("$maxpagesize"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/certificates",
+      code: 200,
+      apiVersion: "2024-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListCertificateByCatalogRequest",
+}) as any as S.Schema<ListCertificateByCatalogRequest>;
+
+/** An certificate resource belonging to a catalog resource. */
+export interface Certificate {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: CertificateProperties;
+}
+export const Certificate = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(CertificateProperties),
+  }),
+).annotate({ identifier: "Certificate" }) as any as S.Schema<Certificate>;
+
+/** The Certificate items on this page */
+export type CertificateListResultValueList = Array<Certificate>;
+export const CertificateListResultValueList = /*@__PURE__*/ S.Array(
+  Certificate,
+) as any as S.Schema<CertificateListResultValueList>;
+
+/** The response of a Certificate list operation. */
+export interface CertificateListResult {
+  /** The Certificate items on this page */
+  value: CertificateListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const CertificateListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: CertificateListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "CertificateListResult",
+}) as any as S.Schema<CertificateListResult>;
+
+export interface ListDeploymentByDeviceGroupRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of catalog */
+  catalogName: string;
+  /** Name of product. */
+  productName: string;
+  /** Name of device group. */
+  deviceGroupName: string;
+  /** Filter the result list using the given expression */
+  _filter?: string;
+  /** The number of result items to return. */
+  _top?: number;
+  /** The number of result items to skip. */
+  _skip?: number;
+  /** The maximum number of result items per page. */
+  _maxpagesize?: number;
+}
+export const ListDeploymentByDeviceGroupRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    catalogName: S.String.pipe(T.Label()),
+    productName: S.String.pipe(T.Label()),
+    deviceGroupName: S.String.pipe(T.Label()),
+    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+    _top: S.optional(S.Number.pipe(T.Query("$top"))),
+    _skip: S.optional(S.Number.pipe(T.Query("$skip"))),
+    _maxpagesize: S.optional(S.Number.pipe(T.Query("$maxpagesize"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}/deployments",
+      code: 200,
+      apiVersion: "2024-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListDeploymentByDeviceGroupRequest",
+}) as any as S.Schema<ListDeploymentByDeviceGroupRequest>;
+
+export interface ListDeviceByDeviceGroupRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of catalog */
+  catalogName: string;
+  /** Name of product. */
+  productName: string;
+  /** Name of device group. */
+  deviceGroupName: string;
+}
+export const ListDeviceByDeviceGroupRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    catalogName: S.String.pipe(T.Label()),
+    productName: S.String.pipe(T.Label()),
+    deviceGroupName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}/devices",
+      code: 200,
+      apiVersion: "2024-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListDeviceByDeviceGroupRequest",
+}) as any as S.Schema<ListDeviceByDeviceGroupRequest>;
+
+export interface ListDeviceGroupByProductRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of catalog */
+  catalogName: string;
+  /** Name of product. */
+  productName: string;
+  /** Filter the result list using the given expression */
+  _filter?: string;
+  /** The number of result items to return. */
+  _top?: number;
+  /** The number of result items to skip. */
+  _skip?: number;
+  /** The maximum number of result items per page. */
+  _maxpagesize?: number;
+}
+export const ListDeviceGroupByProductRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    catalogName: S.String.pipe(T.Label()),
+    productName: S.String.pipe(T.Label()),
+    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+    _top: S.optional(S.Number.pipe(T.Query("$top"))),
+    _skip: S.optional(S.Number.pipe(T.Query("$skip"))),
+    _maxpagesize: S.optional(S.Number.pipe(T.Query("$maxpagesize"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups",
+      code: 200,
+      apiVersion: "2024-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListDeviceGroupByProductRequest",
+}) as any as S.Schema<ListDeviceGroupByProductRequest>;
+
+export interface ListImageByCatalogRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of catalog */
+  catalogName: string;
+  /** Filter the result list using the given expression */
+  _filter?: string;
+  /** The number of result items to return. */
+  _top?: number;
+  /** The number of result items to skip. */
+  _skip?: number;
+  /** The maximum number of result items per page. */
+  _maxpagesize?: number;
+}
+export const ListImageByCatalogRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -2464,8 +2347,8 @@ export const ImagesListByCatalogRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ImagesListByCatalogRequest",
-}) as any as S.Schema<ImagesListByCatalogRequest>;
+  identifier: "ListImageByCatalogRequest",
+}) as any as S.Schema<ListImageByCatalogRequest>;
 
 /** The Image items on this page */
 export type ImageListResultValueList = Array<Image>;
@@ -2489,8 +2372,8 @@ export const ImageListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "ImageListResult",
 }) as any as S.Schema<ImageListResult>;
 
-export interface OperationsListRequest {}
-export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
+export interface ListOperationsRequest {}
+export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
     T.Http({
       method: "GET",
@@ -2500,8 +2383,8 @@ export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "OperationsListRequest",
-}) as any as S.Schema<OperationsListRequest>;
+  identifier: "ListOperationsRequest",
+}) as any as S.Schema<ListOperationsRequest>;
 
 /** Localized display information for this particular operation. */
 export interface OperationDisplay {
@@ -2557,25 +2440,95 @@ export const Operation = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 /** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
   Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
+) as any as S.Schema<ListOperationsResponseValueList>;
 
-export interface OperationsListResponse {
+export interface ListOperationsResponse {
   /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
+  value?: ListOperationsResponseValueList;
   /** URL to get the next set of operation list results (if there are any). */
   nextLink?: string;
 }
-export const OperationsListResponse = /*@__PURE__*/ S.suspend(() =>
+export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(OperationsListResponseValueList),
+    value: S.optional(ListOperationsResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "OperationsListResponse",
-}) as any as S.Schema<OperationsListResponse>;
+  identifier: "ListOperationsResponse",
+}) as any as S.Schema<ListOperationsResponse>;
+
+export interface ListProductByCatalogRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of catalog */
+  catalogName: string;
+}
+export const ListProductByCatalogRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    catalogName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products",
+      code: 200,
+      apiVersion: "2024-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListProductByCatalogRequest",
+}) as any as S.Schema<ListProductByCatalogRequest>;
+
+/** An product resource belonging to a catalog resource. */
+export interface Product {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: ProductProperties;
+}
+export const Product = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ProductProperties),
+  }),
+).annotate({ identifier: "Product" }) as any as S.Schema<Product>;
+
+/** The Product items on this page */
+export type ProductListResultValueList = Array<Product>;
+export const ProductListResultValueList = /*@__PURE__*/ S.Array(
+  Product,
+) as any as S.Schema<ProductListResultValueList>;
+
+/** The response of a Product list operation. */
+export interface ProductListResult {
+  /** The Product items on this page */
+  value: ProductListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const ProductListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: ProductListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ProductListResult",
+}) as any as S.Schema<ProductListResult>;
 
 export interface ProductsCountDevicesRequest {
   /** The ID of the target subscription. */
@@ -2616,22 +2569,6 @@ export const ProductsCountDevicesResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ProductsCountDevicesResponse",
 }) as any as S.Schema<ProductsCountDevicesResponse>;
-
-/** The properties of product */
-export interface ProductProperties {
-  /** Description of the product */
-  description?: string;
-  /** The status of the last operation. */
-  provisioningState?: ProvisioningState | (string & {});
-}
-export const ProductProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    description: S.optional(S.String),
-    provisioningState: S.optional(ProvisioningState),
-  }),
-).annotate({
-  identifier: "ProductProperties",
-}) as any as S.Schema<ProductProperties>;
 
 export interface ProductsCreateOrUpdateRequest {
   /** The ID of the target subscription. */
@@ -2688,42 +2625,94 @@ export const ProductsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ProductsCreateOrUpdateResponse",
 }) as any as S.Schema<ProductsCreateOrUpdateResponse>;
 
-export interface ProductsDeleteRequest {
+/** Resource tags. */
+export type UpdateCatalogRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateCatalogRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateCatalogRequestTagsMap>;
+
+export interface UpdateCatalogRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** Name of catalog */
   catalogName: string;
-  /** Name of product. */
-  productName: string;
+  /** Resource tags. */
+  tags?: UpdateCatalogRequestTagsMap;
 }
-export const ProductsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateCatalogRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     catalogName: S.String.pipe(T.Label()),
-    productName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateCatalogRequestTagsMap),
   }).pipe(
     T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}",
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}",
       code: 200,
       apiVersion: "2024-04-01",
     }),
   ),
 ).annotate({
-  identifier: "ProductsDeleteRequest",
-}) as any as S.Schema<ProductsDeleteRequest>;
+  identifier: "UpdateCatalogRequest",
+}) as any as S.Schema<UpdateCatalogRequest>;
 
-export interface ProductsDeleteResponse {}
-export const ProductsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
+/** Resource tags. */
+export type UpdateCatalogResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateCatalogResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateCatalogResponseTagsMap>;
+
+export interface UpdateCatalogResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateCatalogResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: CatalogProperties;
+}
+export const UpdateCatalogResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateCatalogResponseTagsMap),
+    location: S.String,
+    properties: S.optional(CatalogProperties),
+  }),
 ).annotate({
-  identifier: "ProductsDeleteResponse",
-}) as any as S.Schema<ProductsDeleteResponse>;
+  identifier: "UpdateCatalogResponse",
+}) as any as S.Schema<UpdateCatalogResponse>;
 
-export interface ProductsGenerateDefaultDeviceGroupsRequest {
+/** The updatable properties of the Device. */
+export interface DeviceUpdateProperties {
+  /** Device group id */
+  deviceGroupId?: string;
+}
+export const DeviceUpdateProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    deviceGroupId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DeviceUpdateProperties",
+}) as any as S.Schema<DeviceUpdateProperties>;
+
+export interface UpdateDeviceRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2732,55 +2721,35 @@ export interface ProductsGenerateDefaultDeviceGroupsRequest {
   catalogName: string;
   /** Name of product. */
   productName: string;
+  /** Name of device group. */
+  deviceGroupName: string;
+  /** Device name */
+  deviceName: string;
+  /** The updatable properties of the Device. */
+  properties?: DeviceUpdateProperties;
 }
-export const ProductsGenerateDefaultDeviceGroupsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      catalogName: S.String.pipe(T.Label()),
-      productName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/generateDefaultDeviceGroups",
-        code: 200,
-        apiVersion: "2024-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ProductsGenerateDefaultDeviceGroupsRequest",
-  }) as any as S.Schema<ProductsGenerateDefaultDeviceGroupsRequest>;
-
-export interface ProductsGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of catalog */
-  catalogName: string;
-  /** Name of product. */
-  productName: string;
-}
-export const ProductsGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateDeviceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     catalogName: S.String.pipe(T.Label()),
     productName: S.String.pipe(T.Label()),
+    deviceGroupName: S.String.pipe(T.Label()),
+    deviceName: S.String.pipe(T.Label()),
+    properties: S.optional(DeviceUpdateProperties),
   }).pipe(
     T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}",
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}/devices/{deviceName}",
       code: 200,
       apiVersion: "2024-04-01",
     }),
   ),
 ).annotate({
-  identifier: "ProductsGetRequest",
-}) as any as S.Schema<ProductsGetRequest>;
+  identifier: "UpdateDeviceRequest",
+}) as any as S.Schema<UpdateDeviceRequest>;
 
-export interface ProductsGetResponse {
+export interface UpdateDeviceResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -2790,47 +2759,59 @@ export interface ProductsGetResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** The resource-specific properties for this resource. */
-  properties?: ProductProperties;
+  properties?: DeviceProperties;
 }
-export const ProductsGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateDeviceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    properties: S.optional(ProductProperties),
+    properties: S.optional(DeviceProperties),
   }),
 ).annotate({
-  identifier: "ProductsGetResponse",
-}) as any as S.Schema<ProductsGetResponse>;
+  identifier: "UpdateDeviceResponse",
+}) as any as S.Schema<UpdateDeviceResponse>;
 
-export interface ProductsListByCatalogRequest {
+/** The updatable properties of the DeviceGroup. */
+export type DeviceGroupUpdateProperties = DeviceGroupPropertiesInput;
+export const DeviceGroupUpdateProperties = DeviceGroupPropertiesInput;
+
+export interface UpdateDeviceGroupRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** Name of catalog */
   catalogName: string;
+  /** Name of product. */
+  productName: string;
+  /** Name of device group. */
+  deviceGroupName: string;
+  /** The updatable properties of the DeviceGroup. */
+  properties?: DeviceGroupPropertiesInput;
 }
-export const ProductsListByCatalogRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateDeviceGroupRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     catalogName: S.String.pipe(T.Label()),
+    productName: S.String.pipe(T.Label()),
+    deviceGroupName: S.String.pipe(T.Label()),
+    properties: S.optional(DeviceGroupPropertiesInput),
   }).pipe(
     T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products",
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/products/{productName}/deviceGroups/{deviceGroupName}",
       code: 200,
       apiVersion: "2024-04-01",
     }),
   ),
 ).annotate({
-  identifier: "ProductsListByCatalogRequest",
-}) as any as S.Schema<ProductsListByCatalogRequest>;
+  identifier: "UpdateDeviceGroupRequest",
+}) as any as S.Schema<UpdateDeviceGroupRequest>;
 
-/** An product resource belonging to a catalog resource. */
-export interface Product {
+export interface UpdateDeviceGroupResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -2840,39 +2821,19 @@ export interface Product {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** The resource-specific properties for this resource. */
-  properties?: ProductProperties;
+  properties?: DeviceGroupProperties;
 }
-export const Product = /*@__PURE__*/ S.suspend(() =>
+export const UpdateDeviceGroupResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    properties: S.optional(ProductProperties),
-  }),
-).annotate({ identifier: "Product" }) as any as S.Schema<Product>;
-
-/** The Product items on this page */
-export type ProductListResultValueList = Array<Product>;
-export const ProductListResultValueList = /*@__PURE__*/ S.Array(
-  Product,
-) as any as S.Schema<ProductListResultValueList>;
-
-/** The response of a Product list operation. */
-export interface ProductListResult {
-  /** The Product items on this page */
-  value: ProductListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const ProductListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: ProductListResultValueList,
-    nextLink: S.optional(S.String),
+    properties: S.optional(DeviceGroupProperties),
   }),
 ).annotate({
-  identifier: "ProductListResult",
-}) as any as S.Schema<ProductListResult>;
+  identifier: "UpdateDeviceGroupResponse",
+}) as any as S.Schema<UpdateDeviceGroupResponse>;
 
 /** The updatable properties of the Product. */
 export interface ProductUpdateProperties {
@@ -2887,7 +2848,7 @@ export const ProductUpdateProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "ProductUpdateProperties",
 }) as any as S.Schema<ProductUpdateProperties>;
 
-export interface ProductsUpdateRequest {
+export interface UpdateProductRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2899,7 +2860,7 @@ export interface ProductsUpdateRequest {
   /** The updatable properties of the Product. */
   properties?: ProductUpdateProperties;
 }
-export const ProductsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateProductRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -2915,10 +2876,10 @@ export const ProductsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ProductsUpdateRequest",
-}) as any as S.Schema<ProductsUpdateRequest>;
+  identifier: "UpdateProductRequest",
+}) as any as S.Schema<UpdateProductRequest>;
 
-export interface ProductsUpdateResponse {
+export interface UpdateProductResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -2930,7 +2891,7 @@ export interface ProductsUpdateResponse {
   /** The resource-specific properties for this resource. */
   properties?: ProductProperties;
 }
-export const ProductsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateProductResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -2939,8 +2900,43 @@ export const ProductsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(ProductProperties),
   }),
 ).annotate({
-  identifier: "ProductsUpdateResponse",
-}) as any as S.Schema<ProductsUpdateResponse>;
+  identifier: "UpdateProductResponse",
+}) as any as S.Schema<UpdateProductResponse>;
+
+export interface UploadCatalogImageRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of catalog */
+  catalogName: string;
+  /** The resource-specific properties for this resource. */
+  properties?: ImagePropertiesInput;
+}
+export const UploadCatalogImageRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    catalogName: S.String.pipe(T.Label()),
+    properties: S.optional(ImagePropertiesInput),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureSphere/catalogs/{catalogName}/uploadImage",
+      code: 200,
+      apiVersion: "2024-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "UploadCatalogImageRequest",
+}) as any as S.Schema<UploadCatalogImageRequest>;
+
+export interface UploadCatalogImageResponse {}
+export const UploadCatalogImageResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "UploadCatalogImageResponse",
+}) as any as S.Schema<UploadCatalogImageResponse>;
 
 export type CatalogsCountDevicesError = AzureOpError;
 /** Counts devices in catalog. */
@@ -2972,211 +2968,106 @@ export const CatalogsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CatalogsDeleteError = AzureOpError;
+export type ClaimDeviceGroupDevicesError = AzureOpError;
+/** Bulk claims the devices. Use '.unassigned' or '.default' for the device group and product names when bulk claiming devices to a catalog only. */
+export const ClaimDeviceGroupDevices: API.OperationMethod<
+  ClaimDeviceGroupDevicesRequest,
+  ClaimDeviceGroupDevicesResponse,
+  ClaimDeviceGroupDevicesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ClaimDeviceGroupDevicesRequest,
+  output: ClaimDeviceGroupDevicesResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteCatalogError = AzureOpError;
 /** Delete a Catalog */
-export const CatalogsDelete: API.OperationMethod<
-  CatalogsDeleteRequest,
-  CatalogsDeleteResponse,
-  CatalogsDeleteError,
+export const DeleteCatalog: API.OperationMethod<
+  DeleteCatalogRequest,
+  DeleteCatalogResponse,
+  DeleteCatalogError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CatalogsDeleteRequest,
-  output: CatalogsDeleteResponse,
+  input: DeleteCatalogRequest,
+  output: DeleteCatalogResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type CatalogsGetError = AzureOpError;
-/** Get a Catalog */
-export const CatalogsGet: API.OperationMethod<
-  CatalogsGetRequest,
-  CatalogsGetResponse,
-  CatalogsGetError,
+export type DeleteDeploymentError = AzureOpError;
+/** Delete a Deployment. '.default' and '.unassigned' are system defined values and cannot be used for product or device group name. */
+export const DeleteDeployment: API.OperationMethod<
+  DeleteDeploymentRequest,
+  DeleteDeploymentResponse,
+  DeleteDeploymentError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CatalogsGetRequest,
-  output: CatalogsGetResponse,
+  input: DeleteDeploymentRequest,
+  output: DeleteDeploymentResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type CatalogsListByResourceGroupError = AzureOpError;
-/** List Catalog resources by resource group */
-export const CatalogsListByResourceGroup: API.OperationMethod<
-  CatalogsListByResourceGroupRequest,
-  CatalogListResult,
-  CatalogsListByResourceGroupError,
+export type DeleteDeviceError = AzureOpError;
+/** Delete a Device */
+export const DeleteDevice: API.OperationMethod<
+  DeleteDeviceRequest,
+  DeleteDeviceResponse,
+  DeleteDeviceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CatalogsListByResourceGroupRequest,
-  output: CatalogListResult,
+  input: DeleteDeviceRequest,
+  output: DeleteDeviceResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type CatalogsListBySubscriptionError = AzureOpError;
-/** List Catalog resources by subscription ID */
-export const CatalogsListBySubscription: API.OperationMethod<
-  CatalogsListBySubscriptionRequest,
-  CatalogListResult,
-  CatalogsListBySubscriptionError,
+export type DeleteDeviceGroupError = AzureOpError;
+/** Delete a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used for product or device group name. */
+export const DeleteDeviceGroup: API.OperationMethod<
+  DeleteDeviceGroupRequest,
+  DeleteDeviceGroupResponse,
+  DeleteDeviceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CatalogsListBySubscriptionRequest,
-  output: CatalogListResult,
+  input: DeleteDeviceGroupRequest,
+  output: DeleteDeviceGroupResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type CatalogsListDeploymentsError = AzureOpError;
-/** Lists deployments for catalog. */
-export const CatalogsListDeployments: API.OperationMethod<
-  CatalogsListDeploymentsRequest,
-  DeploymentListResult,
-  CatalogsListDeploymentsError,
+export type DeleteImageError = AzureOpError;
+/** Delete a Image */
+export const DeleteImage: API.OperationMethod<
+  DeleteImageRequest,
+  DeleteImageResponse,
+  DeleteImageError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CatalogsListDeploymentsRequest,
-  output: DeploymentListResult,
+  input: DeleteImageRequest,
+  output: DeleteImageResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type CatalogsListDeviceGroupsError = AzureOpError;
-/** List the device groups for the catalog. */
-export const CatalogsListDeviceGroups: API.OperationMethod<
-  CatalogsListDeviceGroupsRequest,
-  DeviceGroupListResult,
-  CatalogsListDeviceGroupsError,
+export type DeleteProductError = AzureOpError;
+/** Delete a Product. '.default' and '.unassigned' are system defined values and cannot be used for product name' */
+export const DeleteProduct: API.OperationMethod<
+  DeleteProductRequest,
+  DeleteProductResponse,
+  DeleteProductError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CatalogsListDeviceGroupsRequest,
-  output: DeviceGroupListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CatalogsListDeviceInsightsError = AzureOpError;
-/** Lists device insights for catalog. */
-export const CatalogsListDeviceInsights: API.OperationMethod<
-  CatalogsListDeviceInsightsRequest,
-  PagedDeviceInsight,
-  CatalogsListDeviceInsightsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CatalogsListDeviceInsightsRequest,
-  output: PagedDeviceInsight,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CatalogsListDevicesError = AzureOpError;
-/** Lists devices for catalog. */
-export const CatalogsListDevices: API.OperationMethod<
-  CatalogsListDevicesRequest,
-  DeviceListResult,
-  CatalogsListDevicesError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CatalogsListDevicesRequest,
-  output: DeviceListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CatalogsUpdateError = AzureOpError;
-/** Update a Catalog */
-export const CatalogsUpdate: API.OperationMethod<
-  CatalogsUpdateRequest,
-  CatalogsUpdateResponse,
-  CatalogsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CatalogsUpdateRequest,
-  output: CatalogsUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CatalogsUploadImageError = AzureOpError;
-/** Creates an image. Use this action when the image ID is unknown. */
-export const CatalogsUploadImage: API.OperationMethod<
-  CatalogsUploadImageRequest,
-  CatalogsUploadImageResponse,
-  CatalogsUploadImageError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CatalogsUploadImageRequest,
-  output: CatalogsUploadImageResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CertificatesGetError = AzureOpError;
-/** Get a Certificate */
-export const CertificatesGet: API.OperationMethod<
-  CertificatesGetRequest,
-  CertificatesGetResponse,
-  CertificatesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CertificatesGetRequest,
-  output: CertificatesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CertificatesListByCatalogError = AzureOpError;
-/** List Certificate resources by Catalog */
-export const CertificatesListByCatalog: API.OperationMethod<
-  CertificatesListByCatalogRequest,
-  CertificateListResult,
-  CertificatesListByCatalogError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CertificatesListByCatalogRequest,
-  output: CertificateListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CertificatesRetrieveCertChainError = AzureOpError;
-/** Retrieves cert chain. */
-export const CertificatesRetrieveCertChain: API.OperationMethod<
-  CertificatesRetrieveCertChainRequest,
-  CertificateChainResponse,
-  CertificatesRetrieveCertChainError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CertificatesRetrieveCertChainRequest,
-  output: CertificateChainResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CertificatesRetrieveProofOfPossessionNonceError = AzureOpError;
-/** Gets the proof of possession nonce. */
-export const CertificatesRetrieveProofOfPossessionNonce: API.OperationMethod<
-  CertificatesRetrieveProofOfPossessionNonceRequest,
-  CertificatesRetrieveProofOfPossessionNonceResponse,
-  CertificatesRetrieveProofOfPossessionNonceError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CertificatesRetrieveProofOfPossessionNonceRequest,
-  output: CertificatesRetrieveProofOfPossessionNonceResponse,
+  input: DeleteProductRequest,
+  output: DeleteProductResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -3192,66 +3083,6 @@ export const DeploymentsCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: DeploymentsCreateOrUpdateRequest,
   output: DeploymentsCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeploymentsDeleteError = AzureOpError;
-/** Delete a Deployment. '.default' and '.unassigned' are system defined values and cannot be used for product or device group name. */
-export const DeploymentsDelete: API.OperationMethod<
-  DeploymentsDeleteRequest,
-  DeploymentsDeleteResponse,
-  DeploymentsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeploymentsDeleteRequest,
-  output: DeploymentsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeploymentsGetError = AzureOpError;
-/** Get a Deployment. '.default' and '.unassigned' are system defined values and cannot be used for product or device group name. */
-export const DeploymentsGet: API.OperationMethod<
-  DeploymentsGetRequest,
-  DeploymentsGetResponse,
-  DeploymentsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeploymentsGetRequest,
-  output: DeploymentsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeploymentsListByDeviceGroupError = AzureOpError;
-/** List Deployment resources by DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used for product or device group name. */
-export const DeploymentsListByDeviceGroup: API.OperationMethod<
-  DeploymentsListByDeviceGroupRequest,
-  DeploymentListResult,
-  DeploymentsListByDeviceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeploymentsListByDeviceGroupRequest,
-  output: DeploymentListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeviceGroupsClaimDevicesError = AzureOpError;
-/** Bulk claims the devices. Use '.unassigned' or '.default' for the device group and product names when bulk claiming devices to a catalog only. */
-export const DeviceGroupsClaimDevices: API.OperationMethod<
-  DeviceGroupsClaimDevicesRequest,
-  DeviceGroupsClaimDevicesResponse,
-  DeviceGroupsClaimDevicesError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeviceGroupsClaimDevicesRequest,
-  output: DeviceGroupsClaimDevicesResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -3287,66 +3118,6 @@ export const DeviceGroupsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeviceGroupsDeleteError = AzureOpError;
-/** Delete a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used for product or device group name. */
-export const DeviceGroupsDelete: API.OperationMethod<
-  DeviceGroupsDeleteRequest,
-  DeviceGroupsDeleteResponse,
-  DeviceGroupsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeviceGroupsDeleteRequest,
-  output: DeviceGroupsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeviceGroupsGetError = AzureOpError;
-/** Get a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used for product or device group name. */
-export const DeviceGroupsGet: API.OperationMethod<
-  DeviceGroupsGetRequest,
-  DeviceGroupsGetResponse,
-  DeviceGroupsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeviceGroupsGetRequest,
-  output: DeviceGroupsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeviceGroupsListByProductError = AzureOpError;
-/** List DeviceGroup resources by Product. '.default' and '.unassigned' are system defined values and cannot be used for product name. */
-export const DeviceGroupsListByProduct: API.OperationMethod<
-  DeviceGroupsListByProductRequest,
-  DeviceGroupListResult,
-  DeviceGroupsListByProductError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeviceGroupsListByProductRequest,
-  output: DeviceGroupListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeviceGroupsUpdateError = AzureOpError;
-/** Update a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used for product or device group name. */
-export const DeviceGroupsUpdate: API.OperationMethod<
-  DeviceGroupsUpdateRequest,
-  DeviceGroupsUpdateResponse,
-  DeviceGroupsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeviceGroupsUpdateRequest,
-  output: DeviceGroupsUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type DevicesCreateOrUpdateError = AzureOpError;
 /** Create a Device. Use '.unassigned' or '.default' for the device group and product names to claim a device to the catalog only. */
 export const DevicesCreateOrUpdate: API.OperationMethod<
@@ -3362,76 +3133,166 @@ export const DevicesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DevicesDeleteError = AzureOpError;
-/** Delete a Device */
-export const DevicesDelete: API.OperationMethod<
-  DevicesDeleteRequest,
-  DevicesDeleteResponse,
-  DevicesDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DevicesDeleteRequest,
-  output: DevicesDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DevicesGenerateCapabilityImageError = AzureOpError;
+export type GenerateDeviceCapabilityImageError = AzureOpError;
 /** Generates the capability image for the device. Use '.unassigned' or '.default' for the device group and product names to generate the image for a device that does not belong to a specific device group and product. */
-export const DevicesGenerateCapabilityImage: API.OperationMethod<
-  DevicesGenerateCapabilityImageRequest,
+export const GenerateDeviceCapabilityImage: API.OperationMethod<
+  GenerateDeviceCapabilityImageRequest,
   SignedCapabilityImageResponse,
-  DevicesGenerateCapabilityImageError,
+  GenerateDeviceCapabilityImageError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DevicesGenerateCapabilityImageRequest,
+  input: GenerateDeviceCapabilityImageRequest,
   output: SignedCapabilityImageResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DevicesGetError = AzureOpError;
+export type GenerateProductDefaultDeviceGroupsError = AzureOpError;
+/** Generates default device groups for the product. '.default' and '.unassigned' are system defined values and cannot be used for product name. */
+export const GenerateProductDefaultDeviceGroups: API.OperationMethod<
+  GenerateProductDefaultDeviceGroupsRequest,
+  DeviceGroupListResult,
+  GenerateProductDefaultDeviceGroupsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GenerateProductDefaultDeviceGroupsRequest,
+  output: DeviceGroupListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetCatalogError = AzureOpError;
+/** Get a Catalog */
+export const GetCatalog: API.OperationMethod<
+  GetCatalogRequest,
+  GetCatalogResponse,
+  GetCatalogError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCatalogRequest,
+  output: GetCatalogResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetCertificateError = AzureOpError;
+/** Get a Certificate */
+export const GetCertificate: API.OperationMethod<
+  GetCertificateRequest,
+  GetCertificateResponse,
+  GetCertificateError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCertificateRequest,
+  output: GetCertificateResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetCertificateCertChainError = AzureOpError;
+/** Retrieves cert chain. */
+export const GetCertificateCertChain: API.OperationMethod<
+  GetCertificateCertChainRequest,
+  CertificateChainResponse,
+  GetCertificateCertChainError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCertificateCertChainRequest,
+  output: CertificateChainResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetCertificateProofOfPossessionNonceError = AzureOpError;
+/** Gets the proof of possession nonce. */
+export const GetCertificateProofOfPossessionNonce: API.OperationMethod<
+  GetCertificateProofOfPossessionNonceRequest,
+  GetCertificateProofOfPossessionNonceResponse,
+  GetCertificateProofOfPossessionNonceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCertificateProofOfPossessionNonceRequest,
+  output: GetCertificateProofOfPossessionNonceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDeploymentError = AzureOpError;
+/** Get a Deployment. '.default' and '.unassigned' are system defined values and cannot be used for product or device group name. */
+export const GetDeployment: API.OperationMethod<
+  GetDeploymentRequest,
+  GetDeploymentResponse,
+  GetDeploymentError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDeploymentRequest,
+  output: GetDeploymentResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDeviceError = AzureOpError;
 /** Get a Device. Use '.unassigned' or '.default' for the device group and product names when a device does not belong to a device group and product. */
-export const DevicesGet: API.OperationMethod<
-  DevicesGetRequest,
-  DevicesGetResponse,
-  DevicesGetError,
+export const GetDevice: API.OperationMethod<
+  GetDeviceRequest,
+  GetDeviceResponse,
+  GetDeviceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DevicesGetRequest,
-  output: DevicesGetResponse,
+  input: GetDeviceRequest,
+  output: GetDeviceResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DevicesListByDeviceGroupError = AzureOpError;
-/** List Device resources by DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used for product or device group name. */
-export const DevicesListByDeviceGroup: API.OperationMethod<
-  DevicesListByDeviceGroupRequest,
-  DeviceListResult,
-  DevicesListByDeviceGroupError,
+export type GetDeviceGroupError = AzureOpError;
+/** Get a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used for product or device group name. */
+export const GetDeviceGroup: API.OperationMethod<
+  GetDeviceGroupRequest,
+  GetDeviceGroupResponse,
+  GetDeviceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DevicesListByDeviceGroupRequest,
-  output: DeviceListResult,
+  input: GetDeviceGroupRequest,
+  output: GetDeviceGroupResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DevicesUpdateError = AzureOpError;
-/** Update a Device. Use '.unassigned' or '.default' for the device group and product names to move a device to the catalog level. */
-export const DevicesUpdate: API.OperationMethod<
-  DevicesUpdateRequest,
-  DevicesUpdateResponse,
-  DevicesUpdateError,
+export type GetImageError = AzureOpError;
+/** Get a Image */
+export const GetImage: API.OperationMethod<
+  GetImageRequest,
+  GetImageResponse,
+  GetImageError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DevicesUpdateRequest,
-  output: DevicesUpdateResponse,
+  input: GetImageRequest,
+  output: GetImageResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetProductError = AzureOpError;
+/** Get a Product. '.default' and '.unassigned' are system defined values and cannot be used for product name. */
+export const GetProduct: API.OperationMethod<
+  GetProductRequest,
+  GetProductResponse,
+  GetProductError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetProductRequest,
+  output: GetProductResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -3452,61 +3313,196 @@ export const ImagesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ImagesDeleteError = AzureOpError;
-/** Delete a Image */
-export const ImagesDelete: API.OperationMethod<
-  ImagesDeleteRequest,
-  ImagesDeleteResponse,
-  ImagesDeleteError,
+export type ListCatalogByResourceGroupError = AzureOpError;
+/** List Catalog resources by resource group */
+export const ListCatalogByResourceGroup: API.OperationMethod<
+  ListCatalogByResourceGroupRequest,
+  CatalogListResult,
+  ListCatalogByResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ImagesDeleteRequest,
-  output: ImagesDeleteResponse,
+  input: ListCatalogByResourceGroupRequest,
+  output: CatalogListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ImagesGetError = AzureOpError;
-/** Get a Image */
-export const ImagesGet: API.OperationMethod<
-  ImagesGetRequest,
-  ImagesGetResponse,
-  ImagesGetError,
+export type ListCatalogBySubscriptionError = AzureOpError;
+/** List Catalog resources by subscription ID */
+export const ListCatalogBySubscription: API.OperationMethod<
+  ListCatalogBySubscriptionRequest,
+  CatalogListResult,
+  ListCatalogBySubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ImagesGetRequest,
-  output: ImagesGetResponse,
+  input: ListCatalogBySubscriptionRequest,
+  output: CatalogListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ImagesListByCatalogError = AzureOpError;
+export type ListCatalogDeploymentsError = AzureOpError;
+/** Lists deployments for catalog. */
+export const ListCatalogDeployments: API.OperationMethod<
+  ListCatalogDeploymentsRequest,
+  DeploymentListResult,
+  ListCatalogDeploymentsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListCatalogDeploymentsRequest,
+  output: DeploymentListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListCatalogDeviceGroupsError = AzureOpError;
+/** List the device groups for the catalog. */
+export const ListCatalogDeviceGroups: API.OperationMethod<
+  ListCatalogDeviceGroupsRequest,
+  DeviceGroupListResult,
+  ListCatalogDeviceGroupsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListCatalogDeviceGroupsRequest,
+  output: DeviceGroupListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListCatalogDeviceInsightsError = AzureOpError;
+/** Lists device insights for catalog. */
+export const ListCatalogDeviceInsights: API.OperationMethod<
+  ListCatalogDeviceInsightsRequest,
+  PagedDeviceInsight,
+  ListCatalogDeviceInsightsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListCatalogDeviceInsightsRequest,
+  output: PagedDeviceInsight,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListCatalogDevicesError = AzureOpError;
+/** Lists devices for catalog. */
+export const ListCatalogDevices: API.OperationMethod<
+  ListCatalogDevicesRequest,
+  DeviceListResult,
+  ListCatalogDevicesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListCatalogDevicesRequest,
+  output: DeviceListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListCertificateByCatalogError = AzureOpError;
+/** List Certificate resources by Catalog */
+export const ListCertificateByCatalog: API.OperationMethod<
+  ListCertificateByCatalogRequest,
+  CertificateListResult,
+  ListCertificateByCatalogError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListCertificateByCatalogRequest,
+  output: CertificateListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDeploymentByDeviceGroupError = AzureOpError;
+/** List Deployment resources by DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used for product or device group name. */
+export const ListDeploymentByDeviceGroup: API.OperationMethod<
+  ListDeploymentByDeviceGroupRequest,
+  DeploymentListResult,
+  ListDeploymentByDeviceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDeploymentByDeviceGroupRequest,
+  output: DeploymentListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDeviceByDeviceGroupError = AzureOpError;
+/** List Device resources by DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used for product or device group name. */
+export const ListDeviceByDeviceGroup: API.OperationMethod<
+  ListDeviceByDeviceGroupRequest,
+  DeviceListResult,
+  ListDeviceByDeviceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDeviceByDeviceGroupRequest,
+  output: DeviceListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDeviceGroupByProductError = AzureOpError;
+/** List DeviceGroup resources by Product. '.default' and '.unassigned' are system defined values and cannot be used for product name. */
+export const ListDeviceGroupByProduct: API.OperationMethod<
+  ListDeviceGroupByProductRequest,
+  DeviceGroupListResult,
+  ListDeviceGroupByProductError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDeviceGroupByProductRequest,
+  output: DeviceGroupListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListImageByCatalogError = AzureOpError;
 /** List Image resources by Catalog */
-export const ImagesListByCatalog: API.OperationMethod<
-  ImagesListByCatalogRequest,
+export const ListImageByCatalog: API.OperationMethod<
+  ListImageByCatalogRequest,
   ImageListResult,
-  ImagesListByCatalogError,
+  ListImageByCatalogError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ImagesListByCatalogRequest,
+  input: ListImageByCatalogRequest,
   output: ImageListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type OperationsListError = AzureOpError;
+export type ListOperationsError = AzureOpError;
 /** List the operations for the provider */
-export const OperationsList: API.OperationMethod<
-  OperationsListRequest,
-  OperationsListResponse,
-  OperationsListError,
+export const ListOperations: API.OperationMethod<
+  ListOperationsRequest,
+  ListOperationsResponse,
+  ListOperationsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OperationsListRequest,
-  output: OperationsListResponse,
+  input: ListOperationsRequest,
+  output: ListOperationsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListProductByCatalogError = AzureOpError;
+/** List Product resources by Catalog */
+export const ListProductByCatalog: API.OperationMethod<
+  ListProductByCatalogRequest,
+  ProductListResult,
+  ListProductByCatalogError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListProductByCatalogRequest,
+  output: ProductListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -3542,76 +3538,76 @@ export const ProductsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ProductsDeleteError = AzureOpError;
-/** Delete a Product. '.default' and '.unassigned' are system defined values and cannot be used for product name' */
-export const ProductsDelete: API.OperationMethod<
-  ProductsDeleteRequest,
-  ProductsDeleteResponse,
-  ProductsDeleteError,
+export type UpdateCatalogError = AzureOpError;
+/** Update a Catalog */
+export const UpdateCatalog: API.OperationMethod<
+  UpdateCatalogRequest,
+  UpdateCatalogResponse,
+  UpdateCatalogError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ProductsDeleteRequest,
-  output: ProductsDeleteResponse,
+  input: UpdateCatalogRequest,
+  output: UpdateCatalogResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ProductsGenerateDefaultDeviceGroupsError = AzureOpError;
-/** Generates default device groups for the product. '.default' and '.unassigned' are system defined values and cannot be used for product name. */
-export const ProductsGenerateDefaultDeviceGroups: API.OperationMethod<
-  ProductsGenerateDefaultDeviceGroupsRequest,
-  DeviceGroupListResult,
-  ProductsGenerateDefaultDeviceGroupsError,
+export type UpdateDeviceError = AzureOpError;
+/** Update a Device. Use '.unassigned' or '.default' for the device group and product names to move a device to the catalog level. */
+export const UpdateDevice: API.OperationMethod<
+  UpdateDeviceRequest,
+  UpdateDeviceResponse,
+  UpdateDeviceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ProductsGenerateDefaultDeviceGroupsRequest,
-  output: DeviceGroupListResult,
+  input: UpdateDeviceRequest,
+  output: UpdateDeviceResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ProductsGetError = AzureOpError;
-/** Get a Product. '.default' and '.unassigned' are system defined values and cannot be used for product name. */
-export const ProductsGet: API.OperationMethod<
-  ProductsGetRequest,
-  ProductsGetResponse,
-  ProductsGetError,
+export type UpdateDeviceGroupError = AzureOpError;
+/** Update a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used for product or device group name. */
+export const UpdateDeviceGroup: API.OperationMethod<
+  UpdateDeviceGroupRequest,
+  UpdateDeviceGroupResponse,
+  UpdateDeviceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ProductsGetRequest,
-  output: ProductsGetResponse,
+  input: UpdateDeviceGroupRequest,
+  output: UpdateDeviceGroupResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ProductsListByCatalogError = AzureOpError;
-/** List Product resources by Catalog */
-export const ProductsListByCatalog: API.OperationMethod<
-  ProductsListByCatalogRequest,
-  ProductListResult,
-  ProductsListByCatalogError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ProductsListByCatalogRequest,
-  output: ProductListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ProductsUpdateError = AzureOpError;
+export type UpdateProductError = AzureOpError;
 /** Update a Product. '.default' and '.unassigned' are system defined values and cannot be used for product name. */
-export const ProductsUpdate: API.OperationMethod<
-  ProductsUpdateRequest,
-  ProductsUpdateResponse,
-  ProductsUpdateError,
+export const UpdateProduct: API.OperationMethod<
+  UpdateProductRequest,
+  UpdateProductResponse,
+  UpdateProductError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ProductsUpdateRequest,
-  output: ProductsUpdateResponse,
+  input: UpdateProductRequest,
+  output: UpdateProductResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UploadCatalogImageError = AzureOpError;
+/** Creates an image. Use this action when the image ID is unknown. */
+export const UploadCatalogImage: API.OperationMethod<
+  UploadCatalogImageRequest,
+  UploadCatalogImageResponse,
+  UploadCatalogImageError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UploadCatalogImageRequest,
+  output: UploadCatalogImageResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

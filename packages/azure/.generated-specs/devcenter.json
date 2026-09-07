@@ -14,16 +14,17 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.devcenter#ProjectCatalogImageDefinitionBuildGetBuildDetails": {
+    "com.azure.devcenter#GetProjectCatalogImageDefinitionBuildBuildDetails": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#ProjectCatalogImageDefinitionBuildGetBuildDetailsRequest"
+        "target": "com.azure.devcenter#GetProjectCatalogImageDefinitionBuildBuildDetailsRequest"
       },
       "output": {
-        "target": "com.azure.devcenter#ProjectCatalogImageDefinitionBuildGetBuildDetailsResponse"
+        "target": "com.azure.devcenter#GetProjectCatalogImageDefinitionBuildBuildDetailsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -36,7 +37,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#ProjectCatalogImageDefinitionBuildGetBuildDetailsResponse": {
+    "com.azure.devcenter#GetProjectCatalogImageDefinitionBuildBuildDetailsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -64,7 +65,7 @@
           }
         },
         "imageReference": {
-          "target": "com.azure.devcenter#ProjectCatalogImageDefinitionBuildGetBuildDetailsResponseImageReference",
+          "target": "com.azure.devcenter#GetProjectCatalogImageDefinitionBuildBuildDetailsResponseImageReference",
           "traits": {
             "smithy.api#documentation": "Image reference information"
           }
@@ -94,7 +95,7 @@
           }
         },
         "taskGroups": {
-          "target": "com.azure.devcenter#ProjectCatalogImageDefinitionBuildGetBuildDetailsResponseTaskGroupsList",
+          "target": "com.azure.devcenter#GetProjectCatalogImageDefinitionBuildBuildDetailsResponseTaskGroupsList",
           "traits": {
             "smithy.api#documentation": "The list of task groups executed during the image definition build."
           }
@@ -104,7 +105,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devcenter#ProjectCatalogImageDefinitionBuildGetBuildDetailsResponseTaskGroupsList": {
+    "com.azure.devcenter#GetProjectCatalogImageDefinitionBuildBuildDetailsResponseTaskGroupsList": {
       "type": "list",
       "member": {
         "target": "com.azure.devcenter#ImageDefinitionBuildTaskGroup"
@@ -307,7 +308,7 @@
         "smithy.api#documentation": "Image creation error details"
       }
     },
-    "com.azure.devcenter#ProjectCatalogImageDefinitionBuildGetBuildDetailsResponseImageReference": {
+    "com.azure.devcenter#GetProjectCatalogImageDefinitionBuildBuildDetailsResponseImageReference": {
       "type": "structure",
       "members": {
         "id": {
@@ -435,7 +436,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.devcenter#ProjectCatalogImageDefinitionBuildGetBuildDetailsRequest": {
+    "com.azure.devcenter#GetProjectCatalogImageDefinitionBuildBuildDetailsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -491,10 +492,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#ProjectCatalogImageDefinitionBuildCancel": {
+    "com.azure.devcenter#CancelProjectCatalogImageDefinitionBuild": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#ProjectCatalogImageDefinitionBuildCancelRequest"
+        "target": "com.azure.devcenter#CancelProjectCatalogImageDefinitionBuildRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -510,7 +511,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#ProjectCatalogImageDefinitionBuildCancelRequest": {
+    "com.azure.devcenter#CancelProjectCatalogImageDefinitionBuildRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -566,13 +567,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#ProjectCatalogImageDefinitionBuildGet": {
+    "com.azure.devcenter#GetProjectCatalogImageDefinitionBuild": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#ProjectCatalogImageDefinitionBuildGetRequest"
+        "target": "com.azure.devcenter#GetProjectCatalogImageDefinitionBuildRequest"
       },
       "output": {
-        "target": "com.azure.devcenter#ProjectCatalogImageDefinitionBuildGetResponse"
+        "target": "com.azure.devcenter#GetProjectCatalogImageDefinitionBuildResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -585,7 +586,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#ProjectCatalogImageDefinitionBuildGetResponse": {
+    "com.azure.devcenter#GetProjectCatalogImageDefinitionBuildResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -681,7 +682,7 @@
         "smithy.api#documentation": "Image reference information"
       }
     },
-    "com.azure.devcenter#ProjectCatalogImageDefinitionBuildGetRequest": {
+    "com.azure.devcenter#GetProjectCatalogImageDefinitionBuildRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -737,10 +738,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#ProjectCatalogImageDefinitionBuildsListByImageDefinition": {
+    "com.azure.devcenter#ListProjectCatalogImageDefinitionBuildByImageDefinition": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#ProjectCatalogImageDefinitionBuildsListByImageDefinitionRequest"
+        "target": "com.azure.devcenter#ListProjectCatalogImageDefinitionBuildByImageDefinitionRequest"
       },
       "output": {
         "target": "com.azure.devcenter#ImageDefinitionBuildListResult"
@@ -823,7 +824,7 @@
         "smithy.api#documentation": "Represents a specific build of an Image Definition."
       }
     },
-    "com.azure.devcenter#ProjectCatalogImageDefinitionBuildsListByImageDefinitionRequest": {
+    "com.azure.devcenter#ListProjectCatalogImageDefinitionBuildByImageDefinitionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -938,13 +939,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#ProjectCatalogImageDefinitionsGetErrorDetails": {
+    "com.azure.devcenter#GetProjectCatalogImageDefinitionErrorDetails": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#ProjectCatalogImageDefinitionsGetErrorDetailsRequest"
+        "target": "com.azure.devcenter#GetProjectCatalogImageDefinitionErrorDetailsRequest"
       },
       "output": {
-        "target": "com.azure.devcenter#ProjectCatalogImageDefinitionsGetErrorDetailsResponse"
+        "target": "com.azure.devcenter#GetProjectCatalogImageDefinitionErrorDetailsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -957,11 +958,11 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#ProjectCatalogImageDefinitionsGetErrorDetailsResponse": {
+    "com.azure.devcenter#GetProjectCatalogImageDefinitionErrorDetailsResponse": {
       "type": "structure",
       "members": {
         "errors": {
-          "target": "com.azure.devcenter#ProjectCatalogImageDefinitionsGetErrorDetailsResponseErrorsList",
+          "target": "com.azure.devcenter#GetProjectCatalogImageDefinitionErrorDetailsResponseErrorsList",
           "traits": {
             "smithy.api#documentation": "Errors associated with resources synchronized from the catalog."
           }
@@ -971,7 +972,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devcenter#ProjectCatalogImageDefinitionsGetErrorDetailsResponseErrorsList": {
+    "com.azure.devcenter#GetProjectCatalogImageDefinitionErrorDetailsResponseErrorsList": {
       "type": "list",
       "member": {
         "target": "com.azure.devcenter#CatalogErrorDetails"
@@ -1000,7 +1001,7 @@
         "smithy.api#documentation": "Catalog error details"
       }
     },
-    "com.azure.devcenter#ProjectCatalogImageDefinitionsGetErrorDetailsRequest": {
+    "com.azure.devcenter#GetProjectCatalogImageDefinitionErrorDetailsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1048,13 +1049,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#ProjectCatalogImageDefinitionsGetByProjectCatalog": {
+    "com.azure.devcenter#GetProjectCatalogImageDefinitionByProjectCatalog": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#ProjectCatalogImageDefinitionsGetByProjectCatalogRequest"
+        "target": "com.azure.devcenter#GetProjectCatalogImageDefinitionByProjectCatalogRequest"
       },
       "output": {
-        "target": "com.azure.devcenter#ProjectCatalogImageDefinitionsGetByProjectCatalogResponse"
+        "target": "com.azure.devcenter#GetProjectCatalogImageDefinitionByProjectCatalogResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1067,7 +1068,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#ProjectCatalogImageDefinitionsGetByProjectCatalogResponse": {
+    "com.azure.devcenter#GetProjectCatalogImageDefinitionByProjectCatalogResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1343,7 +1344,7 @@
         "smithy.api#documentation": "Image reference information"
       }
     },
-    "com.azure.devcenter#ProjectCatalogImageDefinitionsGetByProjectCatalogRequest": {
+    "com.azure.devcenter#GetProjectCatalogImageDefinitionByProjectCatalogRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1391,10 +1392,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#ProjectCatalogImageDefinitionsListByProjectCatalog": {
+    "com.azure.devcenter#ListProjectCatalogImageDefinitionByProjectCatalog": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#ProjectCatalogImageDefinitionsListByProjectCatalogRequest"
+        "target": "com.azure.devcenter#ListProjectCatalogImageDefinitionByProjectCatalogRequest"
       },
       "output": {
         "target": "com.azure.devcenter#ImageDefinitionListResult"
@@ -1477,7 +1478,7 @@
         "smithy.api#documentation": "Represents a definition for an Image."
       }
     },
-    "com.azure.devcenter#ProjectCatalogImageDefinitionsListByProjectCatalogRequest": {
+    "com.azure.devcenter#ListProjectCatalogImageDefinitionByProjectCatalogRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1524,13 +1525,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#EnvironmentDefinitionsGetErrorDetails": {
+    "com.azure.devcenter#GetEnvironmentDefinitionErrorDetails": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#EnvironmentDefinitionsGetErrorDetailsRequest"
+        "target": "com.azure.devcenter#GetEnvironmentDefinitionErrorDetailsRequest"
       },
       "output": {
-        "target": "com.azure.devcenter#EnvironmentDefinitionsGetErrorDetailsResponse"
+        "target": "com.azure.devcenter#GetEnvironmentDefinitionErrorDetailsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1543,11 +1544,11 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#EnvironmentDefinitionsGetErrorDetailsResponse": {
+    "com.azure.devcenter#GetEnvironmentDefinitionErrorDetailsResponse": {
       "type": "structure",
       "members": {
         "errors": {
-          "target": "com.azure.devcenter#EnvironmentDefinitionsGetErrorDetailsResponseErrorsList",
+          "target": "com.azure.devcenter#GetEnvironmentDefinitionErrorDetailsResponseErrorsList",
           "traits": {
             "smithy.api#documentation": "Errors associated with resources synchronized from the catalog."
           }
@@ -1557,7 +1558,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devcenter#EnvironmentDefinitionsGetErrorDetailsResponseErrorsList": {
+    "com.azure.devcenter#GetEnvironmentDefinitionErrorDetailsResponseErrorsList": {
       "type": "list",
       "member": {
         "target": "com.azure.devcenter#CatalogErrorDetails"
@@ -1566,7 +1567,7 @@
         "smithy.api#documentation": "Errors associated with resources synchronized from the catalog."
       }
     },
-    "com.azure.devcenter#EnvironmentDefinitionsGetErrorDetailsRequest": {
+    "com.azure.devcenter#GetEnvironmentDefinitionErrorDetailsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1614,13 +1615,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#EnvironmentDefinitionsGet": {
+    "com.azure.devcenter#GetEnvironmentDefinition": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#EnvironmentDefinitionsGetRequest"
+        "target": "com.azure.devcenter#GetEnvironmentDefinitionRequest"
       },
       "output": {
-        "target": "com.azure.devcenter#EnvironmentDefinitionsGetResponse"
+        "target": "com.azure.devcenter#GetEnvironmentDefinitionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1633,7 +1634,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#EnvironmentDefinitionsGetResponse": {
+    "com.azure.devcenter#GetEnvironmentDefinitionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1832,7 +1833,7 @@
         "smithy.api#documentation": "The type of data a parameter accepts."
       }
     },
-    "com.azure.devcenter#EnvironmentDefinitionsGetRequest": {
+    "com.azure.devcenter#GetEnvironmentDefinitionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1880,10 +1881,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#EnvironmentDefinitionsListByCatalog": {
+    "com.azure.devcenter#ListEnvironmentDefinitionByCatalog": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#EnvironmentDefinitionsListByCatalogRequest"
+        "target": "com.azure.devcenter#ListEnvironmentDefinitionByCatalogRequest"
       },
       "output": {
         "target": "com.azure.devcenter#EnvironmentDefinitionListResult"
@@ -1966,7 +1967,7 @@
         "smithy.api#documentation": "Represents an environment definition catalog item."
       }
     },
-    "com.azure.devcenter#EnvironmentDefinitionsListByCatalogRequest": {
+    "com.azure.devcenter#ListEnvironmentDefinitionByCatalogRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2013,13 +2014,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#CustomizationTasksGetErrorDetails": {
+    "com.azure.devcenter#GetCustomizationTaskErrorDetails": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#CustomizationTasksGetErrorDetailsRequest"
+        "target": "com.azure.devcenter#GetCustomizationTaskErrorDetailsRequest"
       },
       "output": {
-        "target": "com.azure.devcenter#CustomizationTasksGetErrorDetailsResponse"
+        "target": "com.azure.devcenter#GetCustomizationTaskErrorDetailsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2032,11 +2033,11 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#CustomizationTasksGetErrorDetailsResponse": {
+    "com.azure.devcenter#GetCustomizationTaskErrorDetailsResponse": {
       "type": "structure",
       "members": {
         "errors": {
-          "target": "com.azure.devcenter#CustomizationTasksGetErrorDetailsResponseErrorsList",
+          "target": "com.azure.devcenter#GetCustomizationTaskErrorDetailsResponseErrorsList",
           "traits": {
             "smithy.api#documentation": "Errors associated with resources synchronized from the catalog."
           }
@@ -2046,7 +2047,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devcenter#CustomizationTasksGetErrorDetailsResponseErrorsList": {
+    "com.azure.devcenter#GetCustomizationTaskErrorDetailsResponseErrorsList": {
       "type": "list",
       "member": {
         "target": "com.azure.devcenter#CatalogErrorDetails"
@@ -2055,7 +2056,7 @@
         "smithy.api#documentation": "Errors associated with resources synchronized from the catalog."
       }
     },
-    "com.azure.devcenter#CustomizationTasksGetErrorDetailsRequest": {
+    "com.azure.devcenter#GetCustomizationTaskErrorDetailsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2103,13 +2104,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#CustomizationTasksGet": {
+    "com.azure.devcenter#GetCustomizationTask": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#CustomizationTasksGetRequest"
+        "target": "com.azure.devcenter#GetCustomizationTaskRequest"
       },
       "output": {
-        "target": "com.azure.devcenter#CustomizationTasksGetResponse"
+        "target": "com.azure.devcenter#GetCustomizationTaskResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2122,7 +2123,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#CustomizationTasksGetResponse": {
+    "com.azure.devcenter#GetCustomizationTaskResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2282,7 +2283,7 @@
         "smithy.api#documentation": "Type of the input."
       }
     },
-    "com.azure.devcenter#CustomizationTasksGetRequest": {
+    "com.azure.devcenter#GetCustomizationTaskRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2330,10 +2331,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#CustomizationTasksListByCatalog": {
+    "com.azure.devcenter#ListCustomizationTaskByCatalog": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#CustomizationTasksListByCatalogRequest"
+        "target": "com.azure.devcenter#ListCustomizationTaskByCatalogRequest"
       },
       "output": {
         "target": "com.azure.devcenter#CustomizationTaskListResult"
@@ -2416,7 +2417,7 @@
         "smithy.api#documentation": "Represents a Task to be used in customizing a Dev Box."
       }
     },
-    "com.azure.devcenter#CustomizationTasksListByCatalogRequest": {
+    "com.azure.devcenter#ListCustomizationTaskByCatalogRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2463,13 +2464,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#CheckScopedNameAvailabilityExecute": {
+    "com.azure.devcenter#ExecuteCheckScopedNameAvailability": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#CheckScopedNameAvailabilityExecuteRequest"
+        "target": "com.azure.devcenter#ExecuteCheckScopedNameAvailabilityRequest"
       },
       "output": {
-        "target": "com.azure.devcenter#CheckScopedNameAvailabilityExecuteResponse"
+        "target": "com.azure.devcenter#ExecuteCheckScopedNameAvailabilityResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2482,7 +2483,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#CheckScopedNameAvailabilityExecuteResponse": {
+    "com.azure.devcenter#ExecuteCheckScopedNameAvailabilityResponse": {
       "type": "structure",
       "members": {
         "nameAvailable": {
@@ -2492,7 +2493,7 @@
           }
         },
         "reason": {
-          "target": "com.azure.devcenter#CheckScopedNameAvailabilityExecuteResponseReason",
+          "target": "com.azure.devcenter#ExecuteCheckScopedNameAvailabilityResponseReason",
           "traits": {
             "smithy.api#documentation": "The reason why the given name is not available."
           }
@@ -2508,7 +2509,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devcenter#CheckScopedNameAvailabilityExecuteResponseReason": {
+    "com.azure.devcenter#ExecuteCheckScopedNameAvailabilityResponseReason": {
       "type": "enum",
       "members": {
         "INVALID": {
@@ -2528,7 +2529,7 @@
         "smithy.api#documentation": "The reason why the given name is not available."
       }
     },
-    "com.azure.devcenter#CheckScopedNameAvailabilityExecuteRequest": {
+    "com.azure.devcenter#ExecuteCheckScopedNameAvailabilityRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2562,13 +2563,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#CheckNameAvailabilityExecute": {
+    "com.azure.devcenter#ExecuteCheckNameAvailability": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#CheckNameAvailabilityExecuteRequest"
+        "target": "com.azure.devcenter#ExecuteCheckNameAvailabilityRequest"
       },
       "output": {
-        "target": "com.azure.devcenter#CheckNameAvailabilityExecuteResponse"
+        "target": "com.azure.devcenter#ExecuteCheckNameAvailabilityResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2581,7 +2582,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#CheckNameAvailabilityExecuteResponse": {
+    "com.azure.devcenter#ExecuteCheckNameAvailabilityResponse": {
       "type": "structure",
       "members": {
         "nameAvailable": {
@@ -2591,7 +2592,7 @@
           }
         },
         "reason": {
-          "target": "com.azure.devcenter#CheckNameAvailabilityExecuteResponseReason",
+          "target": "com.azure.devcenter#ExecuteCheckNameAvailabilityResponseReason",
           "traits": {
             "smithy.api#documentation": "The reason why the given name is not available."
           }
@@ -2607,7 +2608,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devcenter#CheckNameAvailabilityExecuteResponseReason": {
+    "com.azure.devcenter#ExecuteCheckNameAvailabilityResponseReason": {
       "type": "enum",
       "members": {
         "INVALID": {
@@ -2627,7 +2628,7 @@
         "smithy.api#documentation": "The reason why the given name is not available."
       }
     },
-    "com.azure.devcenter#CheckNameAvailabilityExecuteRequest": {
+    "com.azure.devcenter#ExecuteCheckNameAvailabilityRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2655,10 +2656,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#UsagesListByLocation": {
+    "com.azure.devcenter#ListUsageByLocation": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#UsagesListByLocationRequest"
+        "target": "com.azure.devcenter#ListUsageByLocationRequest"
       },
       "output": {
         "target": "com.azure.devcenter#ListUsagesResult"
@@ -2775,7 +2776,7 @@
         "smithy.api#documentation": "The unit details."
       }
     },
-    "com.azure.devcenter#UsagesListByLocationRequest": {
+    "com.azure.devcenter#ListUsageByLocationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2799,13 +2800,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#OperationStatusesGet": {
+    "com.azure.devcenter#GetOperationStatus": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#OperationStatusesGetRequest"
+        "target": "com.azure.devcenter#GetOperationStatusRequest"
       },
       "output": {
-        "target": "com.azure.devcenter#OperationStatusesGetResponse"
+        "target": "com.azure.devcenter#GetOperationStatusResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2818,7 +2819,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#OperationStatusesGetResponse": {
+    "com.azure.devcenter#GetOperationStatusResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2865,7 +2866,7 @@
           }
         },
         "operations": {
-          "target": "com.azure.devcenter#OperationStatusesGetResponseOperationsList",
+          "target": "com.azure.devcenter#GetOperationStatusResponseOperationsList",
           "traits": {
             "smithy.api#documentation": "The operations list."
           }
@@ -2963,7 +2964,7 @@
         "smithy.api#documentation": "The error details."
       }
     },
-    "com.azure.devcenter#OperationStatusesGetResponseOperationsList": {
+    "com.azure.devcenter#GetOperationStatusResponseOperationsList": {
       "type": "list",
       "member": {
         "target": "com.azure.devcenter#OperationStatusResult"
@@ -3044,7 +3045,7 @@
         "smithy.api#documentation": "The operations list."
       }
     },
-    "com.azure.devcenter#OperationStatusesGetRequest": {
+    "com.azure.devcenter#GetOperationStatusRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3076,13 +3077,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#OperationsList": {
+    "com.azure.devcenter#ListOperations": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
       },
       "output": {
-        "target": "com.azure.devcenter#OperationsListResponse"
+        "target": "com.azure.devcenter#ListOperationsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3095,11 +3096,11 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#OperationsListResponse": {
+    "com.azure.devcenter#ListOperationsResponse": {
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.devcenter#OperationsListResponseValueList",
+          "target": "com.azure.devcenter#ListOperationsResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of operations supported by the resource provider"
           }
@@ -3115,7 +3116,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devcenter#OperationsListResponseValueList": {
+    "com.azure.devcenter#ListOperationsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.devcenter#Operation"
@@ -3234,13 +3235,13 @@
         "smithy.api#documentation": "Localized display information for this particular operation."
       }
     },
-    "com.azure.devcenter#DevBoxDefinitionsGetByProject": {
+    "com.azure.devcenter#GetDevBoxDefinitionByProject": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#DevBoxDefinitionsGetByProjectRequest"
+        "target": "com.azure.devcenter#GetDevBoxDefinitionByProjectRequest"
       },
       "output": {
-        "target": "com.azure.devcenter#DevBoxDefinitionsGetByProjectResponse"
+        "target": "com.azure.devcenter#GetDevBoxDefinitionByProjectResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3253,7 +3254,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#DevBoxDefinitionsGetByProjectResponse": {
+    "com.azure.devcenter#GetDevBoxDefinitionByProjectResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3281,7 +3282,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devcenter#DevBoxDefinitionsGetByProjectResponseTagsMap",
+          "target": "com.azure.devcenter#GetDevBoxDefinitionByProjectResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3690,7 +3691,7 @@
         "smithy.api#documentation": "Image reference information"
       }
     },
-    "com.azure.devcenter#DevBoxDefinitionsGetByProjectResponseTagsMap": {
+    "com.azure.devcenter#GetDevBoxDefinitionByProjectResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3702,7 +3703,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.devcenter#DevBoxDefinitionsGetByProjectRequest": {
+    "com.azure.devcenter#GetDevBoxDefinitionByProjectRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3742,10 +3743,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#DevBoxDefinitionsListByProject": {
+    "com.azure.devcenter#ListDevBoxDefinitionByProject": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#DevBoxDefinitionsListByProjectRequest"
+        "target": "com.azure.devcenter#ListDevBoxDefinitionByProjectRequest"
       },
       "output": {
         "target": "com.azure.devcenter#DevBoxDefinitionListResult"
@@ -3853,7 +3854,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.devcenter#DevBoxDefinitionsListByProjectRequest": {
+    "com.azure.devcenter#ListDevBoxDefinitionByProjectRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3892,10 +3893,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#DevBoxDefinitionsDelete": {
+    "com.azure.devcenter#DeleteDevBoxDefinition": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#DevBoxDefinitionsDeleteRequest"
+        "target": "com.azure.devcenter#DeleteDevBoxDefinitionRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3911,7 +3912,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#DevBoxDefinitionsDeleteRequest": {
+    "com.azure.devcenter#DeleteDevBoxDefinitionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3951,13 +3952,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#DevBoxDefinitionsUpdate": {
+    "com.azure.devcenter#UpdateDevBoxDefinition": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#DevBoxDefinitionsUpdateRequest"
+        "target": "com.azure.devcenter#UpdateDevBoxDefinitionRequest"
       },
       "output": {
-        "target": "com.azure.devcenter#DevBoxDefinitionsUpdateResponse"
+        "target": "com.azure.devcenter#UpdateDevBoxDefinitionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3970,7 +3971,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#DevBoxDefinitionsUpdateResponse": {
+    "com.azure.devcenter#UpdateDevBoxDefinitionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3998,7 +3999,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devcenter#DevBoxDefinitionsUpdateResponseTagsMap",
+          "target": "com.azure.devcenter#UpdateDevBoxDefinitionResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4021,7 +4022,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devcenter#DevBoxDefinitionsUpdateResponseTagsMap": {
+    "com.azure.devcenter#UpdateDevBoxDefinitionResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4033,7 +4034,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.devcenter#DevBoxDefinitionsUpdateRequest": {
+    "com.azure.devcenter#UpdateDevBoxDefinitionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4550,13 +4551,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.devcenter#DevBoxDefinitionsGet": {
+    "com.azure.devcenter#GetDevBoxDefinition": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#DevBoxDefinitionsGetRequest"
+        "target": "com.azure.devcenter#GetDevBoxDefinitionRequest"
       },
       "output": {
-        "target": "com.azure.devcenter#DevBoxDefinitionsGetResponse"
+        "target": "com.azure.devcenter#GetDevBoxDefinitionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4569,7 +4570,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#DevBoxDefinitionsGetResponse": {
+    "com.azure.devcenter#GetDevBoxDefinitionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -4597,7 +4598,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devcenter#DevBoxDefinitionsGetResponseTagsMap",
+          "target": "com.azure.devcenter#GetDevBoxDefinitionResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4620,7 +4621,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devcenter#DevBoxDefinitionsGetResponseTagsMap": {
+    "com.azure.devcenter#GetDevBoxDefinitionResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4632,7 +4633,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.devcenter#DevBoxDefinitionsGetRequest": {
+    "com.azure.devcenter#GetDevBoxDefinitionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4672,10 +4673,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#DevBoxDefinitionsListByDevCenter": {
+    "com.azure.devcenter#ListDevBoxDefinitionByDevCenter": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#DevBoxDefinitionsListByDevCenterRequest"
+        "target": "com.azure.devcenter#ListDevBoxDefinitionByDevCenterRequest"
       },
       "output": {
         "target": "com.azure.devcenter#DevBoxDefinitionListResult"
@@ -4691,7 +4692,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#DevBoxDefinitionsListByDevCenterRequest": {
+    "com.azure.devcenter#ListDevBoxDefinitionByDevCenterRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4730,10 +4731,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#ProjectEnvironmentTypesDelete": {
+    "com.azure.devcenter#DeleteProjectEnvironmentType": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#ProjectEnvironmentTypesDeleteRequest"
+        "target": "com.azure.devcenter#DeleteProjectEnvironmentTypeRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4749,7 +4750,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#ProjectEnvironmentTypesDeleteRequest": {
+    "com.azure.devcenter#DeleteProjectEnvironmentTypeRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4789,13 +4790,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#ProjectEnvironmentTypesUpdate": {
+    "com.azure.devcenter#UpdateProjectEnvironmentType": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#ProjectEnvironmentTypesUpdateRequest"
+        "target": "com.azure.devcenter#UpdateProjectEnvironmentTypeRequest"
       },
       "output": {
-        "target": "com.azure.devcenter#ProjectEnvironmentTypesUpdateResponse"
+        "target": "com.azure.devcenter#UpdateProjectEnvironmentTypeResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4808,7 +4809,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#ProjectEnvironmentTypesUpdateResponse": {
+    "com.azure.devcenter#UpdateProjectEnvironmentTypeResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -4842,13 +4843,13 @@
           }
         },
         "tags": {
-          "target": "com.azure.devcenter#ProjectEnvironmentTypesUpdateResponseTagsMap",
+          "target": "com.azure.devcenter#UpdateProjectEnvironmentTypeResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
         },
         "identity": {
-          "target": "com.azure.devcenter#ProjectEnvironmentTypesUpdateResponseIdentity",
+          "target": "com.azure.devcenter#UpdateProjectEnvironmentTypeResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -4864,7 +4865,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devcenter#ProjectEnvironmentTypesUpdateResponseIdentity": {
+    "com.azure.devcenter#UpdateProjectEnvironmentTypeResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -4957,7 +4958,7 @@
         "smithy.api#documentation": "Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed)."
       }
     },
-    "com.azure.devcenter#ProjectEnvironmentTypesUpdateResponseTagsMap": {
+    "com.azure.devcenter#UpdateProjectEnvironmentTypeResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5227,7 +5228,7 @@
         "smithy.api#documentation": "Indicates whether the environment type is either enabled or disabled."
       }
     },
-    "com.azure.devcenter#ProjectEnvironmentTypesUpdateRequest": {
+    "com.azure.devcenter#UpdateProjectEnvironmentTypeRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5269,13 +5270,13 @@
           }
         },
         "tags": {
-          "target": "com.azure.devcenter#ProjectEnvironmentTypesUpdateRequestTagsMap",
+          "target": "com.azure.devcenter#UpdateProjectEnvironmentTypeRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
         },
         "identity": {
-          "target": "com.azure.devcenter#ProjectEnvironmentTypesUpdateRequestIdentity",
+          "target": "com.azure.devcenter#UpdateProjectEnvironmentTypeRequestIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -5285,7 +5286,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#ProjectEnvironmentTypesUpdateRequestIdentity": {
+    "com.azure.devcenter#UpdateProjectEnvironmentTypeRequestIdentity": {
       "type": "structure",
       "members": {
         "type": {
@@ -5321,7 +5322,7 @@
         "smithy.api#documentation": "User assigned identity properties"
       }
     },
-    "com.azure.devcenter#ProjectEnvironmentTypesUpdateRequestTagsMap": {
+    "com.azure.devcenter#UpdateProjectEnvironmentTypeRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5727,13 +5728,13 @@
         "smithy.api#documentation": "A map of roles to assign to the environment creator."
       }
     },
-    "com.azure.devcenter#ProjectEnvironmentTypesGet": {
+    "com.azure.devcenter#GetProjectEnvironmentType": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#ProjectEnvironmentTypesGetRequest"
+        "target": "com.azure.devcenter#GetProjectEnvironmentTypeRequest"
       },
       "output": {
-        "target": "com.azure.devcenter#ProjectEnvironmentTypesGetResponse"
+        "target": "com.azure.devcenter#GetProjectEnvironmentTypeResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5746,7 +5747,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#ProjectEnvironmentTypesGetResponse": {
+    "com.azure.devcenter#GetProjectEnvironmentTypeResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -5780,13 +5781,13 @@
           }
         },
         "tags": {
-          "target": "com.azure.devcenter#ProjectEnvironmentTypesGetResponseTagsMap",
+          "target": "com.azure.devcenter#GetProjectEnvironmentTypeResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
         },
         "identity": {
-          "target": "com.azure.devcenter#ProjectEnvironmentTypesGetResponseIdentity",
+          "target": "com.azure.devcenter#GetProjectEnvironmentTypeResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -5802,7 +5803,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devcenter#ProjectEnvironmentTypesGetResponseIdentity": {
+    "com.azure.devcenter#GetProjectEnvironmentTypeResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -5831,7 +5832,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.devcenter#ProjectEnvironmentTypesGetResponseTagsMap": {
+    "com.azure.devcenter#GetProjectEnvironmentTypeResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5843,7 +5844,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.devcenter#ProjectEnvironmentTypesGetRequest": {
+    "com.azure.devcenter#GetProjectEnvironmentTypeRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5883,10 +5884,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#ProjectEnvironmentTypesList": {
+    "com.azure.devcenter#ListProjectEnvironmentTypes": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#ProjectEnvironmentTypesListRequest"
+        "target": "com.azure.devcenter#ListProjectEnvironmentTypesRequest"
       },
       "output": {
         "target": "com.azure.devcenter#ProjectEnvironmentTypeListResult"
@@ -6028,7 +6029,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.devcenter#ProjectEnvironmentTypesListRequest": {
+    "com.azure.devcenter#ListProjectEnvironmentTypesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6067,13 +6068,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#ProjectAllowedEnvironmentTypesGet": {
+    "com.azure.devcenter#GetProjectAllowedEnvironmentType": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#ProjectAllowedEnvironmentTypesGetRequest"
+        "target": "com.azure.devcenter#GetProjectAllowedEnvironmentTypeRequest"
       },
       "output": {
-        "target": "com.azure.devcenter#ProjectAllowedEnvironmentTypesGetResponse"
+        "target": "com.azure.devcenter#GetProjectAllowedEnvironmentTypeResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6086,7 +6087,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#ProjectAllowedEnvironmentTypesGetResponse": {
+    "com.azure.devcenter#GetProjectAllowedEnvironmentTypeResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -6248,7 +6249,7 @@
         "smithy.api#documentation": "Provisioning state of the resource."
       }
     },
-    "com.azure.devcenter#ProjectAllowedEnvironmentTypesGetRequest": {
+    "com.azure.devcenter#GetProjectAllowedEnvironmentTypeRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6288,10 +6289,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#ProjectAllowedEnvironmentTypesList": {
+    "com.azure.devcenter#ListProjectAllowedEnvironmentTypes": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#ProjectAllowedEnvironmentTypesListRequest"
+        "target": "com.azure.devcenter#ListProjectAllowedEnvironmentTypesRequest"
       },
       "output": {
         "target": "com.azure.devcenter#AllowedEnvironmentTypeListResult"
@@ -6374,7 +6375,7 @@
         "smithy.api#documentation": "Represents an allowed environment type."
       }
     },
-    "com.azure.devcenter#ProjectAllowedEnvironmentTypesListRequest": {
+    "com.azure.devcenter#ListProjectAllowedEnvironmentTypesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6413,10 +6414,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#EnvironmentTypesDelete": {
+    "com.azure.devcenter#DeleteEnvironmentType": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#EnvironmentTypesDeleteRequest"
+        "target": "com.azure.devcenter#DeleteEnvironmentTypeRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -6432,7 +6433,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#EnvironmentTypesDeleteRequest": {
+    "com.azure.devcenter#DeleteEnvironmentTypeRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6472,13 +6473,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#EnvironmentTypesUpdate": {
+    "com.azure.devcenter#UpdateEnvironmentType": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#EnvironmentTypesUpdateRequest"
+        "target": "com.azure.devcenter#UpdateEnvironmentTypeRequest"
       },
       "output": {
-        "target": "com.azure.devcenter#EnvironmentTypesUpdateResponse"
+        "target": "com.azure.devcenter#UpdateEnvironmentTypeResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6491,7 +6492,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#EnvironmentTypesUpdateResponse": {
+    "com.azure.devcenter#UpdateEnvironmentTypeResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -6525,7 +6526,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devcenter#EnvironmentTypesUpdateResponseTagsMap",
+          "target": "com.azure.devcenter#UpdateEnvironmentTypeResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -6535,7 +6536,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devcenter#EnvironmentTypesUpdateResponseTagsMap": {
+    "com.azure.devcenter#UpdateEnvironmentTypeResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6671,7 +6672,7 @@
         "smithy.api#documentation": "Provisioning state of the resource."
       }
     },
-    "com.azure.devcenter#EnvironmentTypesUpdateRequest": {
+    "com.azure.devcenter#UpdateEnvironmentTypeRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6713,7 +6714,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devcenter#EnvironmentTypesUpdateRequestTagsMap",
+          "target": "com.azure.devcenter#UpdateEnvironmentTypeRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -6723,7 +6724,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#EnvironmentTypesUpdateRequestTagsMap": {
+    "com.azure.devcenter#UpdateEnvironmentTypeRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6902,13 +6903,13 @@
         "smithy.api#documentation": "Properties of an environment type."
       }
     },
-    "com.azure.devcenter#EnvironmentTypesGet": {
+    "com.azure.devcenter#GetEnvironmentType": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#EnvironmentTypesGetRequest"
+        "target": "com.azure.devcenter#GetEnvironmentTypeRequest"
       },
       "output": {
-        "target": "com.azure.devcenter#EnvironmentTypesGetResponse"
+        "target": "com.azure.devcenter#GetEnvironmentTypeResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6921,7 +6922,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#EnvironmentTypesGetResponse": {
+    "com.azure.devcenter#GetEnvironmentTypeResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -6955,7 +6956,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devcenter#EnvironmentTypesGetResponseTagsMap",
+          "target": "com.azure.devcenter#GetEnvironmentTypeResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -6965,7 +6966,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devcenter#EnvironmentTypesGetResponseTagsMap": {
+    "com.azure.devcenter#GetEnvironmentTypeResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6977,7 +6978,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.devcenter#EnvironmentTypesGetRequest": {
+    "com.azure.devcenter#GetEnvironmentTypeRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7017,10 +7018,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#EnvironmentTypesListByDevCenter": {
+    "com.azure.devcenter#ListEnvironmentTypeByDevCenter": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#EnvironmentTypesListByDevCenterRequest"
+        "target": "com.azure.devcenter#ListEnvironmentTypeByDevCenterRequest"
       },
       "output": {
         "target": "com.azure.devcenter#EnvironmentTypeListResult"
@@ -7121,7 +7122,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.devcenter#EnvironmentTypesListByDevCenterRequest": {
+    "com.azure.devcenter#ListEnvironmentTypeByDevCenterRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7160,10 +7161,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#CatalogsConnect": {
+    "com.azure.devcenter#ConnectCatalog": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#CatalogsConnectRequest"
+        "target": "com.azure.devcenter#ConnectCatalogRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -7179,7 +7180,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#CatalogsConnectRequest": {
+    "com.azure.devcenter#ConnectCatalogRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7219,10 +7220,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#CatalogsSync": {
+    "com.azure.devcenter#SyncCatalog": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#CatalogsSyncRequest"
+        "target": "com.azure.devcenter#SyncCatalogRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -7238,7 +7239,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#CatalogsSyncRequest": {
+    "com.azure.devcenter#SyncCatalogRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7278,10 +7279,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#CatalogsGetSyncErrorDetails": {
+    "com.azure.devcenter#GetCatalogSyncErrorDetails": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#CatalogsGetSyncErrorDetailsRequest"
+        "target": "com.azure.devcenter#GetCatalogSyncErrorDetailsRequest"
       },
       "output": {
         "target": "com.azure.devcenter#SyncErrorDetails"
@@ -7430,7 +7431,7 @@
         "smithy.api#documentation": "Catalog error details"
       }
     },
-    "com.azure.devcenter#CatalogsGetSyncErrorDetailsRequest": {
+    "com.azure.devcenter#GetCatalogSyncErrorDetailsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7470,10 +7471,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#CatalogsDelete": {
+    "com.azure.devcenter#DeleteCatalog": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#CatalogsDeleteRequest"
+        "target": "com.azure.devcenter#DeleteCatalogRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -7489,7 +7490,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#CatalogsDeleteRequest": {
+    "com.azure.devcenter#DeleteCatalogRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7529,13 +7530,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#CatalogsUpdate": {
+    "com.azure.devcenter#UpdateCatalog": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#CatalogsUpdateRequest"
+        "target": "com.azure.devcenter#UpdateCatalogRequest"
       },
       "output": {
-        "target": "com.azure.devcenter#CatalogsUpdateResponse"
+        "target": "com.azure.devcenter#UpdateCatalogResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7548,7 +7549,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#CatalogsUpdateResponse": {
+    "com.azure.devcenter#UpdateCatalogResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -7953,7 +7954,7 @@
         "smithy.api#documentation": "Properties for a Git repository catalog."
       }
     },
-    "com.azure.devcenter#CatalogsUpdateRequest": {
+    "com.azure.devcenter#UpdateCatalogRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8230,13 +8231,13 @@
         "smithy.api#documentation": "Indicates the type of sync that is configured for the catalog."
       }
     },
-    "com.azure.devcenter#CatalogsGet": {
+    "com.azure.devcenter#GetCatalog": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#CatalogsGetRequest"
+        "target": "com.azure.devcenter#GetCatalogRequest"
       },
       "output": {
-        "target": "com.azure.devcenter#CatalogsGetResponse"
+        "target": "com.azure.devcenter#GetCatalogResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -8249,7 +8250,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#CatalogsGetResponse": {
+    "com.azure.devcenter#GetCatalogResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -8287,7 +8288,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devcenter#CatalogsGetRequest": {
+    "com.azure.devcenter#GetCatalogRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8327,10 +8328,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#CatalogsListByDevCenter": {
+    "com.azure.devcenter#ListCatalogByDevCenter": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#CatalogsListByDevCenterRequest"
+        "target": "com.azure.devcenter#ListCatalogByDevCenterRequest"
       },
       "output": {
         "target": "com.azure.devcenter#CatalogListResult"
@@ -8413,7 +8414,7 @@
         "smithy.api#documentation": "Represents a catalog."
       }
     },
-    "com.azure.devcenter#CatalogsListByDevCenterRequest": {
+    "com.azure.devcenter#ListCatalogByDevCenterRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8452,10 +8453,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#AttachedNetworksDelete": {
+    "com.azure.devcenter#DeleteAttachedNetwork": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#AttachedNetworksDeleteRequest"
+        "target": "com.azure.devcenter#DeleteAttachedNetworkRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -8471,7 +8472,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#AttachedNetworksDeleteRequest": {
+    "com.azure.devcenter#DeleteAttachedNetworkRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8936,13 +8937,13 @@
         "smithy.api#documentation": "Health check status values"
       }
     },
-    "com.azure.devcenter#AttachedNetworksGetByDevCenter": {
+    "com.azure.devcenter#GetAttachedNetworkByDevCenter": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#AttachedNetworksGetByDevCenterRequest"
+        "target": "com.azure.devcenter#GetAttachedNetworkByDevCenterRequest"
       },
       "output": {
-        "target": "com.azure.devcenter#AttachedNetworksGetByDevCenterResponse"
+        "target": "com.azure.devcenter#GetAttachedNetworkByDevCenterResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -8955,7 +8956,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#AttachedNetworksGetByDevCenterResponse": {
+    "com.azure.devcenter#GetAttachedNetworkByDevCenterResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -8993,7 +8994,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devcenter#AttachedNetworksGetByDevCenterRequest": {
+    "com.azure.devcenter#GetAttachedNetworkByDevCenterRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9033,10 +9034,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#AttachedNetworksListByDevCenter": {
+    "com.azure.devcenter#ListAttachedNetworkByDevCenter": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#AttachedNetworksListByDevCenterRequest"
+        "target": "com.azure.devcenter#ListAttachedNetworkByDevCenterRequest"
       },
       "output": {
         "target": "com.azure.devcenter#AttachedNetworkListResult"
@@ -9119,7 +9120,7 @@
         "smithy.api#documentation": "Represents an attached NetworkConnection."
       }
     },
-    "com.azure.devcenter#AttachedNetworksListByDevCenterRequest": {
+    "com.azure.devcenter#ListAttachedNetworkByDevCenterRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9158,13 +9159,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#SkusListByProject": {
+    "com.azure.devcenter#ListSkusByProject": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#SkusListByProjectRequest"
+        "target": "com.azure.devcenter#ListSkusByProjectRequest"
       },
       "output": {
-        "target": "com.azure.devcenter#SkusListByProjectResponse"
+        "target": "com.azure.devcenter#ListSkusByProjectResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -9177,11 +9178,11 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#SkusListByProjectResponse": {
+    "com.azure.devcenter#ListSkusByProjectResponse": {
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.devcenter#SkusListByProjectResponseValueList",
+          "target": "com.azure.devcenter#ListSkusByProjectResponseValueList",
           "traits": {
             "smithy.api#documentation": "Current page of results."
           }
@@ -9197,16 +9198,16 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devcenter#SkusListByProjectResponseValueList": {
+    "com.azure.devcenter#ListSkusByProjectResponseValueList": {
       "type": "list",
       "member": {
-        "target": "com.azure.devcenter#SkusListByProjectResponseValueItem"
+        "target": "com.azure.devcenter#ListSkusByProjectResponseValueItem"
       },
       "traits": {
         "smithy.api#documentation": "Current page of results."
       }
     },
-    "com.azure.devcenter#SkusListByProjectResponseValueItem": {
+    "com.azure.devcenter#ListSkusByProjectResponseValueItem": {
       "type": "structure",
       "members": {
         "name": {
@@ -9244,13 +9245,13 @@
           }
         },
         "locations": {
-          "target": "com.azure.devcenter#SkusListByProjectResponseValueItemLocationsList",
+          "target": "com.azure.devcenter#ListSkusByProjectResponseValueItemLocationsList",
           "traits": {
             "smithy.api#documentation": "SKU supported locations."
           }
         },
         "capabilities": {
-          "target": "com.azure.devcenter#SkusListByProjectResponseValueItemCapabilitiesList",
+          "target": "com.azure.devcenter#ListSkusByProjectResponseValueItemCapabilitiesList",
           "traits": {
             "smithy.api#documentation": "Collection of name/value pairs to describe the SKU capabilities."
           }
@@ -9260,7 +9261,7 @@
         "smithy.api#documentation": "The resource model definition representing SKU for DevCenter resources"
       }
     },
-    "com.azure.devcenter#SkusListByProjectResponseValueItemCapabilitiesList": {
+    "com.azure.devcenter#ListSkusByProjectResponseValueItemCapabilitiesList": {
       "type": "list",
       "member": {
         "target": "com.azure.devcenter#Capability"
@@ -9289,7 +9290,7 @@
         "smithy.api#documentation": "A name/value pair to describe a capability."
       }
     },
-    "com.azure.devcenter#SkusListByProjectResponseValueItemLocationsList": {
+    "com.azure.devcenter#ListSkusByProjectResponseValueItemLocationsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -9298,7 +9299,7 @@
         "smithy.api#documentation": "SKU supported locations."
       }
     },
-    "com.azure.devcenter#SkusListByProjectRequest": {
+    "com.azure.devcenter#ListSkusByProjectRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9330,13 +9331,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#ImageVersionsGetByProject": {
+    "com.azure.devcenter#GetImageVersionByProject": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#ImageVersionsGetByProjectRequest"
+        "target": "com.azure.devcenter#GetImageVersionByProjectRequest"
       },
       "output": {
-        "target": "com.azure.devcenter#ImageVersionsGetByProjectResponse"
+        "target": "com.azure.devcenter#GetImageVersionByProjectResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -9349,7 +9350,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#ImageVersionsGetByProjectResponse": {
+    "com.azure.devcenter#GetImageVersionByProjectResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -9529,7 +9530,7 @@
         "smithy.api#documentation": "Provisioning state of the resource."
       }
     },
-    "com.azure.devcenter#ImageVersionsGetByProjectRequest": {
+    "com.azure.devcenter#GetImageVersionByProjectRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9577,10 +9578,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#ImageVersionsListByProject": {
+    "com.azure.devcenter#ListImageVersionByProject": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#ImageVersionsListByProjectRequest"
+        "target": "com.azure.devcenter#ListImageVersionByProjectRequest"
       },
       "output": {
         "target": "com.azure.devcenter#ImageVersionListResult"
@@ -9663,7 +9664,7 @@
         "smithy.api#documentation": "Represents an image version."
       }
     },
-    "com.azure.devcenter#ImageVersionsListByProjectRequest": {
+    "com.azure.devcenter#ListImageVersionByProjectRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9703,13 +9704,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#ImagesGetByProject": {
+    "com.azure.devcenter#GetImageByProject": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#ImagesGetByProjectRequest"
+        "target": "com.azure.devcenter#GetImageByProjectRequest"
       },
       "output": {
-        "target": "com.azure.devcenter#ImagesGetByProjectResponse"
+        "target": "com.azure.devcenter#GetImageByProjectResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -9722,7 +9723,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#ImagesGetByProjectResponse": {
+    "com.azure.devcenter#GetImageByProjectResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -9954,7 +9955,7 @@
         "smithy.api#documentation": "Properties for a range of values."
       }
     },
-    "com.azure.devcenter#ImagesGetByProjectRequest": {
+    "com.azure.devcenter#GetImageByProjectRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9994,10 +9995,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#ImagesListByProject": {
+    "com.azure.devcenter#ListImageByProject": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#ImagesListByProjectRequest"
+        "target": "com.azure.devcenter#ListImageByProjectRequest"
       },
       "output": {
         "target": "com.azure.devcenter#ImageListResult"
@@ -10080,7 +10081,7 @@
         "smithy.api#documentation": "Represents an image."
       }
     },
-    "com.azure.devcenter#ImagesListByProjectRequest": {
+    "com.azure.devcenter#ListImageByProjectRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10112,13 +10113,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#ImageVersionsGet": {
+    "com.azure.devcenter#GetImageVersion": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#ImageVersionsGetRequest"
+        "target": "com.azure.devcenter#GetImageVersionRequest"
       },
       "output": {
-        "target": "com.azure.devcenter#ImageVersionsGetResponse"
+        "target": "com.azure.devcenter#GetImageVersionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -10131,7 +10132,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#ImageVersionsGetResponse": {
+    "com.azure.devcenter#GetImageVersionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -10169,7 +10170,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devcenter#ImageVersionsGetRequest": {
+    "com.azure.devcenter#GetImageVersionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10225,10 +10226,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#ImageVersionsListByImage": {
+    "com.azure.devcenter#ListImageVersionByImage": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#ImageVersionsListByImageRequest"
+        "target": "com.azure.devcenter#ListImageVersionByImageRequest"
       },
       "output": {
         "target": "com.azure.devcenter#ImageVersionListResult"
@@ -10244,7 +10245,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#ImageVersionsListByImageRequest": {
+    "com.azure.devcenter#ListImageVersionByImageRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10292,13 +10293,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#ImagesGet": {
+    "com.azure.devcenter#GetImage": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#ImagesGetRequest"
+        "target": "com.azure.devcenter#GetImageRequest"
       },
       "output": {
-        "target": "com.azure.devcenter#ImagesGetResponse"
+        "target": "com.azure.devcenter#GetImageResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -10311,7 +10312,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#ImagesGetResponse": {
+    "com.azure.devcenter#GetImageResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -10349,7 +10350,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devcenter#ImagesGetRequest": {
+    "com.azure.devcenter#GetImageRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10397,10 +10398,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#ImagesListByGallery": {
+    "com.azure.devcenter#ListImageByGallery": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#ImagesListByGalleryRequest"
+        "target": "com.azure.devcenter#ListImageByGalleryRequest"
       },
       "output": {
         "target": "com.azure.devcenter#ImageListResult"
@@ -10416,7 +10417,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#ImagesListByGalleryRequest": {
+    "com.azure.devcenter#ListImageByGalleryRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10463,10 +10464,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#ImagesListByDevCenter": {
+    "com.azure.devcenter#ListImageByDevCenter": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#ImagesListByDevCenterRequest"
+        "target": "com.azure.devcenter#ListImageByDevCenterRequest"
       },
       "output": {
         "target": "com.azure.devcenter#ImageListResult"
@@ -10482,7 +10483,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#ImagesListByDevCenterRequest": {
+    "com.azure.devcenter#ListImageByDevCenterRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10521,10 +10522,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#GalleriesDelete": {
+    "com.azure.devcenter#DeleteGallery": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#GalleriesDeleteRequest"
+        "target": "com.azure.devcenter#DeleteGalleryRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -10540,7 +10541,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#GalleriesDeleteRequest": {
+    "com.azure.devcenter#DeleteGalleryRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10823,13 +10824,13 @@
         "smithy.api#documentation": "Properties of a gallery."
       }
     },
-    "com.azure.devcenter#GalleriesGet": {
+    "com.azure.devcenter#GetGallery": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#GalleriesGetRequest"
+        "target": "com.azure.devcenter#GetGalleryRequest"
       },
       "output": {
-        "target": "com.azure.devcenter#GalleriesGetResponse"
+        "target": "com.azure.devcenter#GetGalleryResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -10842,7 +10843,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#GalleriesGetResponse": {
+    "com.azure.devcenter#GetGalleryResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -10880,7 +10881,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devcenter#GalleriesGetRequest": {
+    "com.azure.devcenter#GetGalleryRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10920,10 +10921,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#GalleriesListByDevCenter": {
+    "com.azure.devcenter#ListGalleryByDevCenter": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#GalleriesListByDevCenterRequest"
+        "target": "com.azure.devcenter#ListGalleryByDevCenterRequest"
       },
       "output": {
         "target": "com.azure.devcenter#GalleryListResult"
@@ -11006,7 +11007,7 @@
         "smithy.api#documentation": "Represents a gallery."
       }
     },
-    "com.azure.devcenter#GalleriesListByDevCenterRequest": {
+    "com.azure.devcenter#ListGalleryByDevCenterRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11045,10 +11046,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#ProjectCatalogsConnect": {
+    "com.azure.devcenter#ConnectProjectCatalog": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#ProjectCatalogsConnectRequest"
+        "target": "com.azure.devcenter#ConnectProjectCatalogRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -11064,7 +11065,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#ProjectCatalogsConnectRequest": {
+    "com.azure.devcenter#ConnectProjectCatalogRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11104,10 +11105,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#ProjectCatalogsSync": {
+    "com.azure.devcenter#SyncProjectCatalog": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#ProjectCatalogsSyncRequest"
+        "target": "com.azure.devcenter#SyncProjectCatalogRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -11123,7 +11124,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#ProjectCatalogsSyncRequest": {
+    "com.azure.devcenter#SyncProjectCatalogRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11163,10 +11164,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#ProjectCatalogsGetSyncErrorDetails": {
+    "com.azure.devcenter#GetProjectCatalogSyncErrorDetails": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#ProjectCatalogsGetSyncErrorDetailsRequest"
+        "target": "com.azure.devcenter#GetProjectCatalogSyncErrorDetailsRequest"
       },
       "output": {
         "target": "com.azure.devcenter#SyncErrorDetails"
@@ -11182,7 +11183,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#ProjectCatalogsGetSyncErrorDetailsRequest": {
+    "com.azure.devcenter#GetProjectCatalogSyncErrorDetailsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11222,13 +11223,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#ProjectCatalogEnvironmentDefinitionsGetErrorDetails": {
+    "com.azure.devcenter#GetProjectCatalogEnvironmentDefinitionErrorDetails": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#ProjectCatalogEnvironmentDefinitionsGetErrorDetailsRequest"
+        "target": "com.azure.devcenter#GetProjectCatalogEnvironmentDefinitionErrorDetailsRequest"
       },
       "output": {
-        "target": "com.azure.devcenter#ProjectCatalogEnvironmentDefinitionsGetErrorDetailsResponse"
+        "target": "com.azure.devcenter#GetProjectCatalogEnvironmentDefinitionErrorDetailsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -11241,11 +11242,11 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#ProjectCatalogEnvironmentDefinitionsGetErrorDetailsResponse": {
+    "com.azure.devcenter#GetProjectCatalogEnvironmentDefinitionErrorDetailsResponse": {
       "type": "structure",
       "members": {
         "errors": {
-          "target": "com.azure.devcenter#ProjectCatalogEnvironmentDefinitionsGetErrorDetailsResponseErrorsList",
+          "target": "com.azure.devcenter#GetProjectCatalogEnvironmentDefinitionErrorDetailsResponseErrorsList",
           "traits": {
             "smithy.api#documentation": "Errors associated with resources synchronized from the catalog."
           }
@@ -11255,7 +11256,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devcenter#ProjectCatalogEnvironmentDefinitionsGetErrorDetailsResponseErrorsList": {
+    "com.azure.devcenter#GetProjectCatalogEnvironmentDefinitionErrorDetailsResponseErrorsList": {
       "type": "list",
       "member": {
         "target": "com.azure.devcenter#CatalogErrorDetails"
@@ -11264,7 +11265,7 @@
         "smithy.api#documentation": "Errors associated with resources synchronized from the catalog."
       }
     },
-    "com.azure.devcenter#ProjectCatalogEnvironmentDefinitionsGetErrorDetailsRequest": {
+    "com.azure.devcenter#GetProjectCatalogEnvironmentDefinitionErrorDetailsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11312,13 +11313,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#EnvironmentDefinitionsGetByProjectCatalog": {
+    "com.azure.devcenter#GetEnvironmentDefinitionByProjectCatalog": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#EnvironmentDefinitionsGetByProjectCatalogRequest"
+        "target": "com.azure.devcenter#GetEnvironmentDefinitionByProjectCatalogRequest"
       },
       "output": {
-        "target": "com.azure.devcenter#EnvironmentDefinitionsGetByProjectCatalogResponse"
+        "target": "com.azure.devcenter#GetEnvironmentDefinitionByProjectCatalogResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -11331,7 +11332,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#EnvironmentDefinitionsGetByProjectCatalogResponse": {
+    "com.azure.devcenter#GetEnvironmentDefinitionByProjectCatalogResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -11369,7 +11370,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devcenter#EnvironmentDefinitionsGetByProjectCatalogRequest": {
+    "com.azure.devcenter#GetEnvironmentDefinitionByProjectCatalogRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11417,10 +11418,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#EnvironmentDefinitionsListByProjectCatalog": {
+    "com.azure.devcenter#ListEnvironmentDefinitionByProjectCatalog": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#EnvironmentDefinitionsListByProjectCatalogRequest"
+        "target": "com.azure.devcenter#ListEnvironmentDefinitionByProjectCatalogRequest"
       },
       "output": {
         "target": "com.azure.devcenter#EnvironmentDefinitionListResult"
@@ -11436,7 +11437,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#EnvironmentDefinitionsListByProjectCatalogRequest": {
+    "com.azure.devcenter#ListEnvironmentDefinitionByProjectCatalogRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11476,10 +11477,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#ProjectCatalogsDelete": {
+    "com.azure.devcenter#DeleteProjectCatalog": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#ProjectCatalogsDeleteRequest"
+        "target": "com.azure.devcenter#DeleteProjectCatalogRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -11495,7 +11496,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#ProjectCatalogsDeleteRequest": {
+    "com.azure.devcenter#DeleteProjectCatalogRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11535,13 +11536,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#ProjectCatalogsPatch": {
+    "com.azure.devcenter#PatchProjectCatalog": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#ProjectCatalogsPatchRequest"
+        "target": "com.azure.devcenter#PatchProjectCatalogRequest"
       },
       "output": {
-        "target": "com.azure.devcenter#ProjectCatalogsPatchResponse"
+        "target": "com.azure.devcenter#PatchProjectCatalogResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -11554,7 +11555,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#ProjectCatalogsPatchResponse": {
+    "com.azure.devcenter#PatchProjectCatalogResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -11592,7 +11593,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devcenter#ProjectCatalogsPatchRequest": {
+    "com.azure.devcenter#PatchProjectCatalogRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11741,13 +11742,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#ProjectCatalogsGet": {
+    "com.azure.devcenter#GetProjectCatalog": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#ProjectCatalogsGetRequest"
+        "target": "com.azure.devcenter#GetProjectCatalogRequest"
       },
       "output": {
-        "target": "com.azure.devcenter#ProjectCatalogsGetResponse"
+        "target": "com.azure.devcenter#GetProjectCatalogResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -11760,7 +11761,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#ProjectCatalogsGetResponse": {
+    "com.azure.devcenter#GetProjectCatalogResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -11798,7 +11799,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devcenter#ProjectCatalogsGetRequest": {
+    "com.azure.devcenter#GetProjectCatalogRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11838,10 +11839,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#ProjectCatalogsList": {
+    "com.azure.devcenter#ListProjectCatalogs": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#ProjectCatalogsListRequest"
+        "target": "com.azure.devcenter#ListProjectCatalogsRequest"
       },
       "output": {
         "target": "com.azure.devcenter#CatalogListResult"
@@ -11857,7 +11858,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#ProjectCatalogsListRequest": {
+    "com.azure.devcenter#ListProjectCatalogsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11896,13 +11897,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#AttachedNetworksGetByProject": {
+    "com.azure.devcenter#GetAttachedNetworkByProject": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#AttachedNetworksGetByProjectRequest"
+        "target": "com.azure.devcenter#GetAttachedNetworkByProjectRequest"
       },
       "output": {
-        "target": "com.azure.devcenter#AttachedNetworksGetByProjectResponse"
+        "target": "com.azure.devcenter#GetAttachedNetworkByProjectResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -11915,7 +11916,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#AttachedNetworksGetByProjectResponse": {
+    "com.azure.devcenter#GetAttachedNetworkByProjectResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -11953,7 +11954,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devcenter#AttachedNetworksGetByProjectRequest": {
+    "com.azure.devcenter#GetAttachedNetworkByProjectRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11993,10 +11994,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#AttachedNetworksListByProject": {
+    "com.azure.devcenter#ListAttachedNetworkByProject": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#AttachedNetworksListByProjectRequest"
+        "target": "com.azure.devcenter#ListAttachedNetworkByProjectRequest"
       },
       "output": {
         "target": "com.azure.devcenter#AttachedNetworkListResult"
@@ -12012,7 +12013,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#AttachedNetworksListByProjectRequest": {
+    "com.azure.devcenter#ListAttachedNetworkByProjectRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -12051,10 +12052,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#ProjectsGetInheritedSettings": {
+    "com.azure.devcenter#GetProjectInheritedSettings": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#ProjectsGetInheritedSettingsRequest"
+        "target": "com.azure.devcenter#GetProjectInheritedSettingsRequest"
       },
       "output": {
         "target": "com.azure.devcenter#InheritedSettingsForProject"
@@ -12155,7 +12156,7 @@
         "smithy.api#documentation": "Catalog item sync types enable or disable status. Indicates whether project catalogs are allowed to sync catalog items under projects associated to this dev center."
       }
     },
-    "com.azure.devcenter#ProjectsGetInheritedSettingsRequest": {
+    "com.azure.devcenter#GetProjectInheritedSettingsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -12187,10 +12188,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#ProjectsDelete": {
+    "com.azure.devcenter#DeleteProject": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#ProjectsDeleteRequest"
+        "target": "com.azure.devcenter#DeleteProjectRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -12206,7 +12207,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#ProjectsDeleteRequest": {
+    "com.azure.devcenter#DeleteProjectRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -12238,13 +12239,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#ProjectsUpdate": {
+    "com.azure.devcenter#UpdateProject": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#ProjectsUpdateRequest"
+        "target": "com.azure.devcenter#UpdateProjectRequest"
       },
       "output": {
-        "target": "com.azure.devcenter#ProjectsUpdateResponse"
+        "target": "com.azure.devcenter#UpdateProjectResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -12257,7 +12258,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#ProjectsUpdateResponse": {
+    "com.azure.devcenter#UpdateProjectResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -12285,7 +12286,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devcenter#ProjectsUpdateResponseTagsMap",
+          "target": "com.azure.devcenter#UpdateProjectResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -12304,7 +12305,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.devcenter#ProjectsUpdateResponseIdentity",
+          "target": "com.azure.devcenter#UpdateProjectResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -12314,7 +12315,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devcenter#ProjectsUpdateResponseIdentity": {
+    "com.azure.devcenter#UpdateProjectResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -12520,7 +12521,7 @@
         "smithy.api#documentation": "Indicates catalog item types that can be synced."
       }
     },
-    "com.azure.devcenter#ProjectsUpdateResponseTagsMap": {
+    "com.azure.devcenter#UpdateProjectResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -12532,7 +12533,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.devcenter#ProjectsUpdateRequest": {
+    "com.azure.devcenter#UpdateProjectRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -12578,7 +12579,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.devcenter#ProjectsUpdateRequestIdentity",
+          "target": "com.azure.devcenter#UpdateProjectRequestIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -12588,7 +12589,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#ProjectsUpdateRequestIdentity": {
+    "com.azure.devcenter#UpdateProjectRequestIdentity": {
       "type": "structure",
       "members": {
         "type": {
@@ -12884,13 +12885,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.devcenter#ProjectsGet": {
+    "com.azure.devcenter#GetProject": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#ProjectsGetRequest"
+        "target": "com.azure.devcenter#GetProjectRequest"
       },
       "output": {
-        "target": "com.azure.devcenter#ProjectsGetResponse"
+        "target": "com.azure.devcenter#GetProjectResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -12903,7 +12904,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#ProjectsGetResponse": {
+    "com.azure.devcenter#GetProjectResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -12931,7 +12932,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devcenter#ProjectsGetResponseTagsMap",
+          "target": "com.azure.devcenter#GetProjectResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -12950,7 +12951,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.devcenter#ProjectsGetResponseIdentity",
+          "target": "com.azure.devcenter#GetProjectResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -12960,7 +12961,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devcenter#ProjectsGetResponseIdentity": {
+    "com.azure.devcenter#GetProjectResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -12989,7 +12990,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.devcenter#ProjectsGetResponseTagsMap": {
+    "com.azure.devcenter#GetProjectResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -13001,7 +13002,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.devcenter#ProjectsGetRequest": {
+    "com.azure.devcenter#GetProjectRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -13033,10 +13034,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#ProjectsListByResourceGroup": {
+    "com.azure.devcenter#ListProjectByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#ProjectsListByResourceGroupRequest"
+        "target": "com.azure.devcenter#ListProjectByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.devcenter#ProjectListResult"
@@ -13179,7 +13180,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.devcenter#ProjectsListByResourceGroupRequest": {
+    "com.azure.devcenter#ListProjectByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -13210,10 +13211,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#ProjectsListBySubscription": {
+    "com.azure.devcenter#ListProjectBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#ProjectsListBySubscriptionRequest"
+        "target": "com.azure.devcenter#ListProjectBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.devcenter#ProjectListResult"
@@ -13229,7 +13230,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#ProjectsListBySubscriptionRequest": {
+    "com.azure.devcenter#ListProjectBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -13252,10 +13253,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#ProjectPoliciesDelete": {
+    "com.azure.devcenter#DeleteProjectPolicy": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#ProjectPoliciesDeleteRequest"
+        "target": "com.azure.devcenter#DeleteProjectPolicyRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -13271,7 +13272,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#ProjectPoliciesDeleteRequest": {
+    "com.azure.devcenter#DeleteProjectPolicyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -13311,13 +13312,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#ProjectPoliciesUpdate": {
+    "com.azure.devcenter#UpdateProjectPolicy": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#ProjectPoliciesUpdateRequest"
+        "target": "com.azure.devcenter#UpdateProjectPolicyRequest"
       },
       "output": {
-        "target": "com.azure.devcenter#ProjectPoliciesUpdateResponse"
+        "target": "com.azure.devcenter#UpdateProjectPolicyResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -13330,7 +13331,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#ProjectPoliciesUpdateResponse": {
+    "com.azure.devcenter#UpdateProjectPolicyResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -13594,7 +13595,7 @@
         "smithy.api#documentation": "Indicates what action to perform for the policy."
       }
     },
-    "com.azure.devcenter#ProjectPoliciesUpdateRequest": {
+    "com.azure.devcenter#UpdateProjectPolicyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -13819,13 +13820,13 @@
         "smithy.api#documentation": "Resource policies that are a part of this project policy."
       }
     },
-    "com.azure.devcenter#ProjectPoliciesGet": {
+    "com.azure.devcenter#GetProjectPolicy": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#ProjectPoliciesGetRequest"
+        "target": "com.azure.devcenter#GetProjectPolicyRequest"
       },
       "output": {
-        "target": "com.azure.devcenter#ProjectPoliciesGetResponse"
+        "target": "com.azure.devcenter#GetProjectPolicyResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -13838,7 +13839,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#ProjectPoliciesGetResponse": {
+    "com.azure.devcenter#GetProjectPolicyResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -13876,7 +13877,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devcenter#ProjectPoliciesGetRequest": {
+    "com.azure.devcenter#GetProjectPolicyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -13916,10 +13917,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#ProjectPoliciesListByDevCenter": {
+    "com.azure.devcenter#ListProjectPolicyByDevCenter": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#ProjectPoliciesListByDevCenterRequest"
+        "target": "com.azure.devcenter#ListProjectPolicyByDevCenterRequest"
       },
       "output": {
         "target": "com.azure.devcenter#ProjectPolicyListResult"
@@ -14002,7 +14003,7 @@
         "smithy.api#documentation": "Represents an project policy resource."
       }
     },
-    "com.azure.devcenter#ProjectPoliciesListByDevCenterRequest": {
+    "com.azure.devcenter#ListProjectPolicyByDevCenterRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -14041,10 +14042,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#DevCentersDelete": {
+    "com.azure.devcenter#DeleteDevCenter": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#DevCentersDeleteRequest"
+        "target": "com.azure.devcenter#DeleteDevCenterRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -14060,7 +14061,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#DevCentersDeleteRequest": {
+    "com.azure.devcenter#DeleteDevCenterRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -14092,13 +14093,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#DevCentersUpdate": {
+    "com.azure.devcenter#UpdateDevCenter": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#DevCentersUpdateRequest"
+        "target": "com.azure.devcenter#UpdateDevCenterRequest"
       },
       "output": {
-        "target": "com.azure.devcenter#DevCentersUpdateResponse"
+        "target": "com.azure.devcenter#UpdateDevCenterResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -14111,7 +14112,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#DevCentersUpdateResponse": {
+    "com.azure.devcenter#UpdateDevCenterResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -14139,7 +14140,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devcenter#DevCentersUpdateResponseTagsMap",
+          "target": "com.azure.devcenter#UpdateDevCenterResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -14158,7 +14159,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.devcenter#DevCentersUpdateResponseIdentity",
+          "target": "com.azure.devcenter#UpdateDevCenterResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -14168,7 +14169,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devcenter#DevCentersUpdateResponseIdentity": {
+    "com.azure.devcenter#UpdateDevCenterResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -14480,7 +14481,7 @@
         "smithy.api#documentation": "Values can be systemAssignedIdentity or userAssignedIdentity"
       }
     },
-    "com.azure.devcenter#DevCentersUpdateResponseTagsMap": {
+    "com.azure.devcenter#UpdateDevCenterResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -14492,7 +14493,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.devcenter#DevCentersUpdateRequest": {
+    "com.azure.devcenter#UpdateDevCenterRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -14532,7 +14533,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.devcenter#DevCentersUpdateRequestIdentity",
+          "target": "com.azure.devcenter#UpdateDevCenterRequestIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -14586,7 +14587,7 @@
         "smithy.api#documentation": "Properties of the devcenter. These properties can be updated after the resource has been created."
       }
     },
-    "com.azure.devcenter#DevCentersUpdateRequestIdentity": {
+    "com.azure.devcenter#UpdateDevCenterRequestIdentity": {
       "type": "structure",
       "members": {
         "type": {
@@ -14844,13 +14845,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.devcenter#DevCentersGet": {
+    "com.azure.devcenter#GetDevCenter": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#DevCentersGetRequest"
+        "target": "com.azure.devcenter#GetDevCenterRequest"
       },
       "output": {
-        "target": "com.azure.devcenter#DevCentersGetResponse"
+        "target": "com.azure.devcenter#GetDevCenterResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -14863,7 +14864,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#DevCentersGetResponse": {
+    "com.azure.devcenter#GetDevCenterResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -14891,7 +14892,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devcenter#DevCentersGetResponseTagsMap",
+          "target": "com.azure.devcenter#GetDevCenterResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -14910,7 +14911,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.devcenter#DevCentersGetResponseIdentity",
+          "target": "com.azure.devcenter#GetDevCenterResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -14920,7 +14921,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devcenter#DevCentersGetResponseIdentity": {
+    "com.azure.devcenter#GetDevCenterResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -14949,7 +14950,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.devcenter#DevCentersGetResponseTagsMap": {
+    "com.azure.devcenter#GetDevCenterResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -14961,7 +14962,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.devcenter#DevCentersGetRequest": {
+    "com.azure.devcenter#GetDevCenterRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -14993,10 +14994,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#DevCentersListByResourceGroup": {
+    "com.azure.devcenter#ListDevCenterByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#DevCentersListByResourceGroupRequest"
+        "target": "com.azure.devcenter#ListDevCenterByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.devcenter#DevCenterListResult"
@@ -15139,7 +15140,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.devcenter#DevCentersListByResourceGroupRequest": {
+    "com.azure.devcenter#ListDevCenterByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -15170,10 +15171,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#DevCentersListBySubscription": {
+    "com.azure.devcenter#ListDevCenterBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#DevCentersListBySubscriptionRequest"
+        "target": "com.azure.devcenter#ListDevCenterBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.devcenter#DevCenterListResult"
@@ -15189,7 +15190,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#DevCentersListBySubscriptionRequest": {
+    "com.azure.devcenter#ListDevCenterBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -15212,10 +15213,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#NetworkConnectionsListOutboundNetworkDependenciesEndpoints": {
+    "com.azure.devcenter#ListNetworkConnectionOutboundNetworkDependenciesEndpoints": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#NetworkConnectionsListOutboundNetworkDependenciesEndpointsRequest"
+        "target": "com.azure.devcenter#ListNetworkConnectionOutboundNetworkDependenciesEndpointsRequest"
       },
       "output": {
         "target": "com.azure.devcenter#OutboundEnvironmentEndpointCollection"
@@ -15338,7 +15339,7 @@
         "smithy.api#documentation": "Details about the connection between the Batch service and the endpoint."
       }
     },
-    "com.azure.devcenter#NetworkConnectionsListOutboundNetworkDependenciesEndpointsRequest": {
+    "com.azure.devcenter#ListNetworkConnectionOutboundNetworkDependenciesEndpointsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -15377,10 +15378,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#NetworkConnectionsRunHealthChecks": {
+    "com.azure.devcenter#RunNetworkConnectionHealthChecks": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#NetworkConnectionsRunHealthChecksRequest"
+        "target": "com.azure.devcenter#RunNetworkConnectionHealthChecksRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -15396,7 +15397,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#NetworkConnectionsRunHealthChecksRequest": {
+    "com.azure.devcenter#RunNetworkConnectionHealthChecksRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -15428,13 +15429,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#NetworkConnectionsGetHealthDetails": {
+    "com.azure.devcenter#GetNetworkConnectionHealthDetails": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#NetworkConnectionsGetHealthDetailsRequest"
+        "target": "com.azure.devcenter#GetNetworkConnectionHealthDetailsRequest"
       },
       "output": {
-        "target": "com.azure.devcenter#NetworkConnectionsGetHealthDetailsResponse"
+        "target": "com.azure.devcenter#GetNetworkConnectionHealthDetailsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -15447,7 +15448,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#NetworkConnectionsGetHealthDetailsResponse": {
+    "com.azure.devcenter#GetNetworkConnectionHealthDetailsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -15620,7 +15621,7 @@
         "smithy.api#documentation": "Health check status values"
       }
     },
-    "com.azure.devcenter#NetworkConnectionsGetHealthDetailsRequest": {
+    "com.azure.devcenter#GetNetworkConnectionHealthDetailsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -15652,10 +15653,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#NetworkConnectionsListHealthDetails": {
+    "com.azure.devcenter#ListNetworkConnectionHealthDetails": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#NetworkConnectionsListHealthDetailsRequest"
+        "target": "com.azure.devcenter#ListNetworkConnectionHealthDetailsRequest"
       },
       "output": {
         "target": "com.azure.devcenter#HealthCheckStatusDetailsListResult"
@@ -15738,7 +15739,7 @@
         "smithy.api#documentation": "Health Check details."
       }
     },
-    "com.azure.devcenter#NetworkConnectionsListHealthDetailsRequest": {
+    "com.azure.devcenter#ListNetworkConnectionHealthDetailsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -15777,10 +15778,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#NetworkConnectionsDelete": {
+    "com.azure.devcenter#DeleteNetworkConnection": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#NetworkConnectionsDeleteRequest"
+        "target": "com.azure.devcenter#DeleteNetworkConnectionRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -15796,7 +15797,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#NetworkConnectionsDeleteRequest": {
+    "com.azure.devcenter#DeleteNetworkConnectionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -15828,13 +15829,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#NetworkConnectionsUpdate": {
+    "com.azure.devcenter#UpdateNetworkConnection": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#NetworkConnectionsUpdateRequest"
+        "target": "com.azure.devcenter#UpdateNetworkConnectionRequest"
       },
       "output": {
-        "target": "com.azure.devcenter#NetworkConnectionsUpdateResponse"
+        "target": "com.azure.devcenter#UpdateNetworkConnectionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -15847,7 +15848,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#NetworkConnectionsUpdateResponse": {
+    "com.azure.devcenter#UpdateNetworkConnectionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -15875,7 +15876,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devcenter#NetworkConnectionsUpdateResponseTagsMap",
+          "target": "com.azure.devcenter#UpdateNetworkConnectionResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -16143,7 +16144,7 @@
         "smithy.api#documentation": "Provisioning state of the resource."
       }
     },
-    "com.azure.devcenter#NetworkConnectionsUpdateResponseTagsMap": {
+    "com.azure.devcenter#UpdateNetworkConnectionResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -16155,7 +16156,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.devcenter#NetworkConnectionsUpdateRequest": {
+    "com.azure.devcenter#UpdateNetworkConnectionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -16524,13 +16525,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.devcenter#NetworkConnectionsGet": {
+    "com.azure.devcenter#GetNetworkConnection": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#NetworkConnectionsGetRequest"
+        "target": "com.azure.devcenter#GetNetworkConnectionRequest"
       },
       "output": {
-        "target": "com.azure.devcenter#NetworkConnectionsGetResponse"
+        "target": "com.azure.devcenter#GetNetworkConnectionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -16543,7 +16544,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#NetworkConnectionsGetResponse": {
+    "com.azure.devcenter#GetNetworkConnectionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -16571,7 +16572,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devcenter#NetworkConnectionsGetResponseTagsMap",
+          "target": "com.azure.devcenter#GetNetworkConnectionResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -16594,7 +16595,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devcenter#NetworkConnectionsGetResponseTagsMap": {
+    "com.azure.devcenter#GetNetworkConnectionResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -16606,7 +16607,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.devcenter#NetworkConnectionsGetRequest": {
+    "com.azure.devcenter#GetNetworkConnectionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -16638,10 +16639,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#NetworkConnectionsListByResourceGroup": {
+    "com.azure.devcenter#ListNetworkConnectionByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#NetworkConnectionsListByResourceGroupRequest"
+        "target": "com.azure.devcenter#ListNetworkConnectionByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.devcenter#NetworkConnectionListResult"
@@ -16749,7 +16750,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.devcenter#NetworkConnectionsListByResourceGroupRequest": {
+    "com.azure.devcenter#ListNetworkConnectionByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -16780,10 +16781,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#NetworkConnectionsListBySubscription": {
+    "com.azure.devcenter#ListNetworkConnectionBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#NetworkConnectionsListBySubscriptionRequest"
+        "target": "com.azure.devcenter#ListNetworkConnectionBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.devcenter#NetworkConnectionListResult"
@@ -16799,7 +16800,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#NetworkConnectionsListBySubscriptionRequest": {
+    "com.azure.devcenter#ListNetworkConnectionBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -16822,10 +16823,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#SchedulesDelete": {
+    "com.azure.devcenter#DeleteSchedule": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#SchedulesDeleteRequest"
+        "target": "com.azure.devcenter#DeleteScheduleRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -16841,7 +16842,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#SchedulesDeleteRequest": {
+    "com.azure.devcenter#DeleteScheduleRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -16896,13 +16897,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#SchedulesUpdate": {
+    "com.azure.devcenter#UpdateSchedule": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#SchedulesUpdateRequest"
+        "target": "com.azure.devcenter#UpdateScheduleRequest"
       },
       "output": {
-        "target": "com.azure.devcenter#SchedulesUpdateResponse"
+        "target": "com.azure.devcenter#UpdateScheduleResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -16915,7 +16916,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#SchedulesUpdateResponse": {
+    "com.azure.devcenter#UpdateScheduleResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -17165,7 +17166,7 @@
         "smithy.api#documentation": "The supported types for a scheduled task."
       }
     },
-    "com.azure.devcenter#SchedulesUpdateRequest": {
+    "com.azure.devcenter#UpdateScheduleRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -17448,13 +17449,13 @@
         "smithy.api#documentation": "The Schedule properties defining when and what to execute."
       }
     },
-    "com.azure.devcenter#SchedulesGet": {
+    "com.azure.devcenter#GetSchedule": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#SchedulesGetRequest"
+        "target": "com.azure.devcenter#GetScheduleRequest"
       },
       "output": {
-        "target": "com.azure.devcenter#SchedulesGetResponse"
+        "target": "com.azure.devcenter#GetScheduleResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -17467,7 +17468,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#SchedulesGetResponse": {
+    "com.azure.devcenter#GetScheduleResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -17505,7 +17506,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devcenter#SchedulesGetRequest": {
+    "com.azure.devcenter#GetScheduleRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -17560,10 +17561,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#SchedulesListByPool": {
+    "com.azure.devcenter#ListScheduleByPool": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#SchedulesListByPoolRequest"
+        "target": "com.azure.devcenter#ListScheduleByPoolRequest"
       },
       "output": {
         "target": "com.azure.devcenter#ScheduleListResult"
@@ -17646,7 +17647,7 @@
         "smithy.api#documentation": "Represents a Schedule to execute a task."
       }
     },
-    "com.azure.devcenter#SchedulesListByPoolRequest": {
+    "com.azure.devcenter#ListScheduleByPoolRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -17693,10 +17694,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#PoolsRunHealthChecks": {
+    "com.azure.devcenter#RunPoolHealthChecks": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#PoolsRunHealthChecksRequest"
+        "target": "com.azure.devcenter#RunPoolHealthChecksRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -17712,7 +17713,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#PoolsRunHealthChecksRequest": {
+    "com.azure.devcenter#RunPoolHealthChecksRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -17752,10 +17753,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#PoolsDelete": {
+    "com.azure.devcenter#DeletePool": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#PoolsDeleteRequest"
+        "target": "com.azure.devcenter#DeletePoolRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -17771,7 +17772,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#PoolsDeleteRequest": {
+    "com.azure.devcenter#DeletePoolRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -17811,13 +17812,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#PoolsUpdate": {
+    "com.azure.devcenter#UpdatePool": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#PoolsUpdateRequest"
+        "target": "com.azure.devcenter#UpdatePoolRequest"
       },
       "output": {
-        "target": "com.azure.devcenter#PoolsUpdateResponse"
+        "target": "com.azure.devcenter#UpdatePoolResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -17830,7 +17831,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#PoolsUpdateResponse": {
+    "com.azure.devcenter#UpdatePoolResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -17858,7 +17859,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devcenter#PoolsUpdateResponseTagsMap",
+          "target": "com.azure.devcenter#UpdatePoolResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -18445,7 +18446,7 @@
         "smithy.api#documentation": "Indicates if the pool is created from an existing Dev Box Definition or if one is provided directly."
       }
     },
-    "com.azure.devcenter#PoolsUpdateResponseTagsMap": {
+    "com.azure.devcenter#UpdatePoolResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -18457,7 +18458,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.devcenter#PoolsUpdateRequest": {
+    "com.azure.devcenter#UpdatePoolRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -18940,13 +18941,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.devcenter#PoolsGet": {
+    "com.azure.devcenter#GetPool": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#PoolsGetRequest"
+        "target": "com.azure.devcenter#GetPoolRequest"
       },
       "output": {
-        "target": "com.azure.devcenter#PoolsGetResponse"
+        "target": "com.azure.devcenter#GetPoolResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -18959,7 +18960,7 @@
         "com.distilled.openapi#apiVersion": "2025-02-01"
       }
     },
-    "com.azure.devcenter#PoolsGetResponse": {
+    "com.azure.devcenter#GetPoolResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -18987,7 +18988,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devcenter#PoolsGetResponseTagsMap",
+          "target": "com.azure.devcenter#GetPoolResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -19010,7 +19011,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devcenter#PoolsGetResponseTagsMap": {
+    "com.azure.devcenter#GetPoolResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -19022,7 +19023,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.devcenter#PoolsGetRequest": {
+    "com.azure.devcenter#GetPoolRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -19062,10 +19063,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#PoolsListByProject": {
+    "com.azure.devcenter#ListPoolByProject": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#PoolsListByProjectRequest"
+        "target": "com.azure.devcenter#ListPoolByProjectRequest"
       },
       "output": {
         "target": "com.azure.devcenter#PoolListResult"
@@ -19173,7 +19174,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.devcenter#PoolsListByProjectRequest": {
+    "com.azure.devcenter#ListPoolByProjectRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -19212,10 +19213,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devcenter#SkusListBySubscription": {
+    "com.azure.devcenter#ListSkusBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devcenter#SkusListBySubscriptionRequest"
+        "target": "com.azure.devcenter#ListSkusBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.devcenter#SkuListResult"
@@ -19332,7 +19333,7 @@
         "smithy.api#documentation": "SKU supported locations."
       }
     },
-    "com.azure.devcenter#SkusListBySubscriptionRequest": {
+    "com.azure.devcenter#ListSkusBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -19360,355 +19361,355 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.devcenter#ProjectCatalogImageDefinitionBuildGetBuildDetails"
+          "target": "com.azure.devcenter#GetProjectCatalogImageDefinitionBuildBuildDetails"
         },
         {
-          "target": "com.azure.devcenter#ProjectCatalogImageDefinitionBuildCancel"
+          "target": "com.azure.devcenter#CancelProjectCatalogImageDefinitionBuild"
         },
         {
-          "target": "com.azure.devcenter#ProjectCatalogImageDefinitionBuildGet"
+          "target": "com.azure.devcenter#GetProjectCatalogImageDefinitionBuild"
         },
         {
-          "target": "com.azure.devcenter#ProjectCatalogImageDefinitionBuildsListByImageDefinition"
+          "target": "com.azure.devcenter#ListProjectCatalogImageDefinitionBuildByImageDefinition"
         },
         {
           "target": "com.azure.devcenter#ProjectCatalogImageDefinitionsBuildImage"
         },
         {
-          "target": "com.azure.devcenter#ProjectCatalogImageDefinitionsGetErrorDetails"
+          "target": "com.azure.devcenter#GetProjectCatalogImageDefinitionErrorDetails"
         },
         {
-          "target": "com.azure.devcenter#ProjectCatalogImageDefinitionsGetByProjectCatalog"
+          "target": "com.azure.devcenter#GetProjectCatalogImageDefinitionByProjectCatalog"
         },
         {
-          "target": "com.azure.devcenter#ProjectCatalogImageDefinitionsListByProjectCatalog"
+          "target": "com.azure.devcenter#ListProjectCatalogImageDefinitionByProjectCatalog"
         },
         {
-          "target": "com.azure.devcenter#EnvironmentDefinitionsGetErrorDetails"
+          "target": "com.azure.devcenter#GetEnvironmentDefinitionErrorDetails"
         },
         {
-          "target": "com.azure.devcenter#EnvironmentDefinitionsGet"
+          "target": "com.azure.devcenter#GetEnvironmentDefinition"
         },
         {
-          "target": "com.azure.devcenter#EnvironmentDefinitionsListByCatalog"
+          "target": "com.azure.devcenter#ListEnvironmentDefinitionByCatalog"
         },
         {
-          "target": "com.azure.devcenter#CustomizationTasksGetErrorDetails"
+          "target": "com.azure.devcenter#GetCustomizationTaskErrorDetails"
         },
         {
-          "target": "com.azure.devcenter#CustomizationTasksGet"
+          "target": "com.azure.devcenter#GetCustomizationTask"
         },
         {
-          "target": "com.azure.devcenter#CustomizationTasksListByCatalog"
+          "target": "com.azure.devcenter#ListCustomizationTaskByCatalog"
         },
         {
-          "target": "com.azure.devcenter#CheckScopedNameAvailabilityExecute"
+          "target": "com.azure.devcenter#ExecuteCheckScopedNameAvailability"
         },
         {
-          "target": "com.azure.devcenter#CheckNameAvailabilityExecute"
+          "target": "com.azure.devcenter#ExecuteCheckNameAvailability"
         },
         {
-          "target": "com.azure.devcenter#UsagesListByLocation"
+          "target": "com.azure.devcenter#ListUsageByLocation"
         },
         {
-          "target": "com.azure.devcenter#OperationStatusesGet"
+          "target": "com.azure.devcenter#GetOperationStatus"
         },
         {
-          "target": "com.azure.devcenter#OperationsList"
+          "target": "com.azure.devcenter#ListOperations"
         },
         {
-          "target": "com.azure.devcenter#DevBoxDefinitionsGetByProject"
+          "target": "com.azure.devcenter#GetDevBoxDefinitionByProject"
         },
         {
-          "target": "com.azure.devcenter#DevBoxDefinitionsListByProject"
+          "target": "com.azure.devcenter#ListDevBoxDefinitionByProject"
         },
         {
-          "target": "com.azure.devcenter#DevBoxDefinitionsDelete"
+          "target": "com.azure.devcenter#DeleteDevBoxDefinition"
         },
         {
-          "target": "com.azure.devcenter#DevBoxDefinitionsUpdate"
+          "target": "com.azure.devcenter#UpdateDevBoxDefinition"
         },
         {
           "target": "com.azure.devcenter#DevBoxDefinitionsCreateOrUpdate"
         },
         {
-          "target": "com.azure.devcenter#DevBoxDefinitionsGet"
+          "target": "com.azure.devcenter#GetDevBoxDefinition"
         },
         {
-          "target": "com.azure.devcenter#DevBoxDefinitionsListByDevCenter"
+          "target": "com.azure.devcenter#ListDevBoxDefinitionByDevCenter"
         },
         {
-          "target": "com.azure.devcenter#ProjectEnvironmentTypesDelete"
+          "target": "com.azure.devcenter#DeleteProjectEnvironmentType"
         },
         {
-          "target": "com.azure.devcenter#ProjectEnvironmentTypesUpdate"
+          "target": "com.azure.devcenter#UpdateProjectEnvironmentType"
         },
         {
           "target": "com.azure.devcenter#ProjectEnvironmentTypesCreateOrUpdate"
         },
         {
-          "target": "com.azure.devcenter#ProjectEnvironmentTypesGet"
+          "target": "com.azure.devcenter#GetProjectEnvironmentType"
         },
         {
-          "target": "com.azure.devcenter#ProjectEnvironmentTypesList"
+          "target": "com.azure.devcenter#ListProjectEnvironmentTypes"
         },
         {
-          "target": "com.azure.devcenter#ProjectAllowedEnvironmentTypesGet"
+          "target": "com.azure.devcenter#GetProjectAllowedEnvironmentType"
         },
         {
-          "target": "com.azure.devcenter#ProjectAllowedEnvironmentTypesList"
+          "target": "com.azure.devcenter#ListProjectAllowedEnvironmentTypes"
         },
         {
-          "target": "com.azure.devcenter#EnvironmentTypesDelete"
+          "target": "com.azure.devcenter#DeleteEnvironmentType"
         },
         {
-          "target": "com.azure.devcenter#EnvironmentTypesUpdate"
+          "target": "com.azure.devcenter#UpdateEnvironmentType"
         },
         {
           "target": "com.azure.devcenter#EnvironmentTypesCreateOrUpdate"
         },
         {
-          "target": "com.azure.devcenter#EnvironmentTypesGet"
+          "target": "com.azure.devcenter#GetEnvironmentType"
         },
         {
-          "target": "com.azure.devcenter#EnvironmentTypesListByDevCenter"
+          "target": "com.azure.devcenter#ListEnvironmentTypeByDevCenter"
         },
         {
-          "target": "com.azure.devcenter#CatalogsConnect"
+          "target": "com.azure.devcenter#ConnectCatalog"
         },
         {
-          "target": "com.azure.devcenter#CatalogsSync"
+          "target": "com.azure.devcenter#SyncCatalog"
         },
         {
-          "target": "com.azure.devcenter#CatalogsGetSyncErrorDetails"
+          "target": "com.azure.devcenter#GetCatalogSyncErrorDetails"
         },
         {
-          "target": "com.azure.devcenter#CatalogsDelete"
+          "target": "com.azure.devcenter#DeleteCatalog"
         },
         {
-          "target": "com.azure.devcenter#CatalogsUpdate"
+          "target": "com.azure.devcenter#UpdateCatalog"
         },
         {
           "target": "com.azure.devcenter#CatalogsCreateOrUpdate"
         },
         {
-          "target": "com.azure.devcenter#CatalogsGet"
+          "target": "com.azure.devcenter#GetCatalog"
         },
         {
-          "target": "com.azure.devcenter#CatalogsListByDevCenter"
+          "target": "com.azure.devcenter#ListCatalogByDevCenter"
         },
         {
-          "target": "com.azure.devcenter#AttachedNetworksDelete"
+          "target": "com.azure.devcenter#DeleteAttachedNetwork"
         },
         {
           "target": "com.azure.devcenter#AttachedNetworksCreateOrUpdate"
         },
         {
-          "target": "com.azure.devcenter#AttachedNetworksGetByDevCenter"
+          "target": "com.azure.devcenter#GetAttachedNetworkByDevCenter"
         },
         {
-          "target": "com.azure.devcenter#AttachedNetworksListByDevCenter"
+          "target": "com.azure.devcenter#ListAttachedNetworkByDevCenter"
         },
         {
-          "target": "com.azure.devcenter#SkusListByProject"
+          "target": "com.azure.devcenter#ListSkusByProject"
         },
         {
-          "target": "com.azure.devcenter#ImageVersionsGetByProject"
+          "target": "com.azure.devcenter#GetImageVersionByProject"
         },
         {
-          "target": "com.azure.devcenter#ImageVersionsListByProject"
+          "target": "com.azure.devcenter#ListImageVersionByProject"
         },
         {
-          "target": "com.azure.devcenter#ImagesGetByProject"
+          "target": "com.azure.devcenter#GetImageByProject"
         },
         {
-          "target": "com.azure.devcenter#ImagesListByProject"
+          "target": "com.azure.devcenter#ListImageByProject"
         },
         {
-          "target": "com.azure.devcenter#ImageVersionsGet"
+          "target": "com.azure.devcenter#GetImageVersion"
         },
         {
-          "target": "com.azure.devcenter#ImageVersionsListByImage"
+          "target": "com.azure.devcenter#ListImageVersionByImage"
         },
         {
-          "target": "com.azure.devcenter#ImagesGet"
+          "target": "com.azure.devcenter#GetImage"
         },
         {
-          "target": "com.azure.devcenter#ImagesListByGallery"
+          "target": "com.azure.devcenter#ListImageByGallery"
         },
         {
-          "target": "com.azure.devcenter#ImagesListByDevCenter"
+          "target": "com.azure.devcenter#ListImageByDevCenter"
         },
         {
-          "target": "com.azure.devcenter#GalleriesDelete"
+          "target": "com.azure.devcenter#DeleteGallery"
         },
         {
           "target": "com.azure.devcenter#GalleriesCreateOrUpdate"
         },
         {
-          "target": "com.azure.devcenter#GalleriesGet"
+          "target": "com.azure.devcenter#GetGallery"
         },
         {
-          "target": "com.azure.devcenter#GalleriesListByDevCenter"
+          "target": "com.azure.devcenter#ListGalleryByDevCenter"
         },
         {
-          "target": "com.azure.devcenter#ProjectCatalogsConnect"
+          "target": "com.azure.devcenter#ConnectProjectCatalog"
         },
         {
-          "target": "com.azure.devcenter#ProjectCatalogsSync"
+          "target": "com.azure.devcenter#SyncProjectCatalog"
         },
         {
-          "target": "com.azure.devcenter#ProjectCatalogsGetSyncErrorDetails"
+          "target": "com.azure.devcenter#GetProjectCatalogSyncErrorDetails"
         },
         {
-          "target": "com.azure.devcenter#ProjectCatalogEnvironmentDefinitionsGetErrorDetails"
+          "target": "com.azure.devcenter#GetProjectCatalogEnvironmentDefinitionErrorDetails"
         },
         {
-          "target": "com.azure.devcenter#EnvironmentDefinitionsGetByProjectCatalog"
+          "target": "com.azure.devcenter#GetEnvironmentDefinitionByProjectCatalog"
         },
         {
-          "target": "com.azure.devcenter#EnvironmentDefinitionsListByProjectCatalog"
+          "target": "com.azure.devcenter#ListEnvironmentDefinitionByProjectCatalog"
         },
         {
-          "target": "com.azure.devcenter#ProjectCatalogsDelete"
+          "target": "com.azure.devcenter#DeleteProjectCatalog"
         },
         {
-          "target": "com.azure.devcenter#ProjectCatalogsPatch"
+          "target": "com.azure.devcenter#PatchProjectCatalog"
         },
         {
           "target": "com.azure.devcenter#ProjectCatalogsCreateOrUpdate"
         },
         {
-          "target": "com.azure.devcenter#ProjectCatalogsGet"
+          "target": "com.azure.devcenter#GetProjectCatalog"
         },
         {
-          "target": "com.azure.devcenter#ProjectCatalogsList"
+          "target": "com.azure.devcenter#ListProjectCatalogs"
         },
         {
-          "target": "com.azure.devcenter#AttachedNetworksGetByProject"
+          "target": "com.azure.devcenter#GetAttachedNetworkByProject"
         },
         {
-          "target": "com.azure.devcenter#AttachedNetworksListByProject"
+          "target": "com.azure.devcenter#ListAttachedNetworkByProject"
         },
         {
-          "target": "com.azure.devcenter#ProjectsGetInheritedSettings"
+          "target": "com.azure.devcenter#GetProjectInheritedSettings"
         },
         {
-          "target": "com.azure.devcenter#ProjectsDelete"
+          "target": "com.azure.devcenter#DeleteProject"
         },
         {
-          "target": "com.azure.devcenter#ProjectsUpdate"
+          "target": "com.azure.devcenter#UpdateProject"
         },
         {
           "target": "com.azure.devcenter#ProjectsCreateOrUpdate"
         },
         {
-          "target": "com.azure.devcenter#ProjectsGet"
+          "target": "com.azure.devcenter#GetProject"
         },
         {
-          "target": "com.azure.devcenter#ProjectsListByResourceGroup"
+          "target": "com.azure.devcenter#ListProjectByResourceGroup"
         },
         {
-          "target": "com.azure.devcenter#ProjectsListBySubscription"
+          "target": "com.azure.devcenter#ListProjectBySubscription"
         },
         {
-          "target": "com.azure.devcenter#ProjectPoliciesDelete"
+          "target": "com.azure.devcenter#DeleteProjectPolicy"
         },
         {
-          "target": "com.azure.devcenter#ProjectPoliciesUpdate"
+          "target": "com.azure.devcenter#UpdateProjectPolicy"
         },
         {
           "target": "com.azure.devcenter#ProjectPoliciesCreateOrUpdate"
         },
         {
-          "target": "com.azure.devcenter#ProjectPoliciesGet"
+          "target": "com.azure.devcenter#GetProjectPolicy"
         },
         {
-          "target": "com.azure.devcenter#ProjectPoliciesListByDevCenter"
+          "target": "com.azure.devcenter#ListProjectPolicyByDevCenter"
         },
         {
-          "target": "com.azure.devcenter#DevCentersDelete"
+          "target": "com.azure.devcenter#DeleteDevCenter"
         },
         {
-          "target": "com.azure.devcenter#DevCentersUpdate"
+          "target": "com.azure.devcenter#UpdateDevCenter"
         },
         {
           "target": "com.azure.devcenter#DevCentersCreateOrUpdate"
         },
         {
-          "target": "com.azure.devcenter#DevCentersGet"
+          "target": "com.azure.devcenter#GetDevCenter"
         },
         {
-          "target": "com.azure.devcenter#DevCentersListByResourceGroup"
+          "target": "com.azure.devcenter#ListDevCenterByResourceGroup"
         },
         {
-          "target": "com.azure.devcenter#DevCentersListBySubscription"
+          "target": "com.azure.devcenter#ListDevCenterBySubscription"
         },
         {
-          "target": "com.azure.devcenter#NetworkConnectionsListOutboundNetworkDependenciesEndpoints"
+          "target": "com.azure.devcenter#ListNetworkConnectionOutboundNetworkDependenciesEndpoints"
         },
         {
-          "target": "com.azure.devcenter#NetworkConnectionsRunHealthChecks"
+          "target": "com.azure.devcenter#RunNetworkConnectionHealthChecks"
         },
         {
-          "target": "com.azure.devcenter#NetworkConnectionsGetHealthDetails"
+          "target": "com.azure.devcenter#GetNetworkConnectionHealthDetails"
         },
         {
-          "target": "com.azure.devcenter#NetworkConnectionsListHealthDetails"
+          "target": "com.azure.devcenter#ListNetworkConnectionHealthDetails"
         },
         {
-          "target": "com.azure.devcenter#NetworkConnectionsDelete"
+          "target": "com.azure.devcenter#DeleteNetworkConnection"
         },
         {
-          "target": "com.azure.devcenter#NetworkConnectionsUpdate"
+          "target": "com.azure.devcenter#UpdateNetworkConnection"
         },
         {
           "target": "com.azure.devcenter#NetworkConnectionsCreateOrUpdate"
         },
         {
-          "target": "com.azure.devcenter#NetworkConnectionsGet"
+          "target": "com.azure.devcenter#GetNetworkConnection"
         },
         {
-          "target": "com.azure.devcenter#NetworkConnectionsListByResourceGroup"
+          "target": "com.azure.devcenter#ListNetworkConnectionByResourceGroup"
         },
         {
-          "target": "com.azure.devcenter#NetworkConnectionsListBySubscription"
+          "target": "com.azure.devcenter#ListNetworkConnectionBySubscription"
         },
         {
-          "target": "com.azure.devcenter#SchedulesDelete"
+          "target": "com.azure.devcenter#DeleteSchedule"
         },
         {
-          "target": "com.azure.devcenter#SchedulesUpdate"
+          "target": "com.azure.devcenter#UpdateSchedule"
         },
         {
           "target": "com.azure.devcenter#SchedulesCreateOrUpdate"
         },
         {
-          "target": "com.azure.devcenter#SchedulesGet"
+          "target": "com.azure.devcenter#GetSchedule"
         },
         {
-          "target": "com.azure.devcenter#SchedulesListByPool"
+          "target": "com.azure.devcenter#ListScheduleByPool"
         },
         {
-          "target": "com.azure.devcenter#PoolsRunHealthChecks"
+          "target": "com.azure.devcenter#RunPoolHealthChecks"
         },
         {
-          "target": "com.azure.devcenter#PoolsDelete"
+          "target": "com.azure.devcenter#DeletePool"
         },
         {
-          "target": "com.azure.devcenter#PoolsUpdate"
+          "target": "com.azure.devcenter#UpdatePool"
         },
         {
           "target": "com.azure.devcenter#PoolsCreateOrUpdate"
         },
         {
-          "target": "com.azure.devcenter#PoolsGet"
+          "target": "com.azure.devcenter#GetPool"
         },
         {
-          "target": "com.azure.devcenter#PoolsListByProject"
+          "target": "com.azure.devcenter#ListPoolByProject"
         },
         {
-          "target": "com.azure.devcenter#SkusListBySubscription"
+          "target": "com.azure.devcenter#ListSkusBySubscription"
         }
       ],
       "traits": {

@@ -135,168 +135,6 @@ export const AccessPolicyAssignmentCreateUpdateResponse =
     identifier: "AccessPolicyAssignmentCreateUpdateResponse",
   }) as any as S.Schema<AccessPolicyAssignmentCreateUpdateResponse>;
 
-export interface AccessPolicyAssignmentDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Redis Enterprise cluster. Name must be 1-60 characters long. Allowed characters(A-Z, a-z, 0-9) and hyphen(-). There can be no leading nor trailing nor consecutive hyphens */
-  clusterName: string;
-  /** The name of the Redis Enterprise database. */
-  databaseName: string;
-  /** The name of the Redis Enterprise database access policy assignment. */
-  accessPolicyAssignmentName: string;
-}
-export const AccessPolicyAssignmentDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    databaseName: S.String.pipe(T.Label()),
-    accessPolicyAssignmentName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cache/redisEnterprise/{clusterName}/databases/{databaseName}/accessPolicyAssignments/{accessPolicyAssignmentName}",
-      code: 200,
-      apiVersion: "2025-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "AccessPolicyAssignmentDeleteRequest",
-}) as any as S.Schema<AccessPolicyAssignmentDeleteRequest>;
-
-export interface AccessPolicyAssignmentDeleteResponse {}
-export const AccessPolicyAssignmentDeleteResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "AccessPolicyAssignmentDeleteResponse",
-}) as any as S.Schema<AccessPolicyAssignmentDeleteResponse>;
-
-export interface AccessPolicyAssignmentGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Redis Enterprise cluster. Name must be 1-60 characters long. Allowed characters(A-Z, a-z, 0-9) and hyphen(-). There can be no leading nor trailing nor consecutive hyphens */
-  clusterName: string;
-  /** The name of the Redis Enterprise database. */
-  databaseName: string;
-  /** The name of the Redis Enterprise database access policy assignment. */
-  accessPolicyAssignmentName: string;
-}
-export const AccessPolicyAssignmentGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    databaseName: S.String.pipe(T.Label()),
-    accessPolicyAssignmentName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cache/redisEnterprise/{clusterName}/databases/{databaseName}/accessPolicyAssignments/{accessPolicyAssignmentName}",
-      code: 200,
-      apiVersion: "2025-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "AccessPolicyAssignmentGetRequest",
-}) as any as S.Schema<AccessPolicyAssignmentGetRequest>;
-
-export interface AccessPolicyAssignmentGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Properties of the access policy assignment. */
-  properties?: AccessPolicyAssignmentProperties;
-}
-export const AccessPolicyAssignmentGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    properties: S.optional(AccessPolicyAssignmentProperties),
-  }),
-).annotate({
-  identifier: "AccessPolicyAssignmentGetResponse",
-}) as any as S.Schema<AccessPolicyAssignmentGetResponse>;
-
-export interface AccessPolicyAssignmentListRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Redis Enterprise cluster. Name must be 1-60 characters long. Allowed characters(A-Z, a-z, 0-9) and hyphen(-). There can be no leading nor trailing nor consecutive hyphens */
-  clusterName: string;
-  /** The name of the Redis Enterprise database. */
-  databaseName: string;
-}
-export const AccessPolicyAssignmentListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    databaseName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cache/redisEnterprise/{clusterName}/databases/{databaseName}/accessPolicyAssignments",
-      code: 200,
-      apiVersion: "2025-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "AccessPolicyAssignmentListRequest",
-}) as any as S.Schema<AccessPolicyAssignmentListRequest>;
-
-/** Describes the access policy assignment of Redis Enterprise database */
-export interface AccessPolicyAssignment {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Properties of the access policy assignment. */
-  properties?: AccessPolicyAssignmentProperties;
-}
-export const AccessPolicyAssignment = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    properties: S.optional(AccessPolicyAssignmentProperties),
-  }),
-).annotate({
-  identifier: "AccessPolicyAssignment",
-}) as any as S.Schema<AccessPolicyAssignment>;
-
-/** List of access policy assignments. */
-export type AccessPolicyAssignmentListValueList = Array<AccessPolicyAssignment>;
-export const AccessPolicyAssignmentListValueList = /*@__PURE__*/ S.Array(
-  AccessPolicyAssignment,
-) as any as S.Schema<AccessPolicyAssignmentListValueList>;
-
-/** The response of a list-all operation. */
-export interface AccessPolicyAssignmentList {
-  /** List of access policy assignments. */
-  value?: AccessPolicyAssignmentListValueList;
-  /** The URI to fetch the next page of results. */
-  nextLink?: string;
-}
-export const AccessPolicyAssignmentList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(AccessPolicyAssignmentListValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AccessPolicyAssignmentList",
-}) as any as S.Schema<AccessPolicyAssignmentList>;
-
 /** Specifies whether redis clients can connect using TLS-encrypted or plaintext redis protocols. Default is TLS-encrypted. */
 export type DatabaseCreatePropertiesInputClientProtocol =
   | "Encrypted"
@@ -469,7 +307,7 @@ export const DatabaseCreatePropertiesInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "DatabaseCreatePropertiesInput",
 }) as any as S.Schema<DatabaseCreatePropertiesInput>;
 
-export interface DatabasesCreateRequest {
+export interface CreateDatabaseRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -481,7 +319,7 @@ export interface DatabasesCreateRequest {
   /** Other properties of the database. */
   properties?: DatabaseCreatePropertiesInput;
 }
-export const DatabasesCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateDatabaseRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -497,8 +335,8 @@ export const DatabasesCreateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DatabasesCreateRequest",
-}) as any as S.Schema<DatabasesCreateRequest>;
+  identifier: "CreateDatabaseRequest",
+}) as any as S.Schema<CreateDatabaseRequest>;
 
 /** Specifies whether redis clients can connect using TLS-encrypted or plaintext redis protocols. Default is TLS-encrypted. */
 export type DatabaseCreatePropertiesClientProtocol = "Encrypted" | "Plaintext";
@@ -674,7 +512,7 @@ export const DatabaseCreateProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "DatabaseCreateProperties",
 }) as any as S.Schema<DatabaseCreateProperties>;
 
-export interface DatabasesCreateResponse {
+export interface CreateDatabaseResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -684,7 +522,7 @@ export interface DatabasesCreateResponse {
   /** Other properties of the database. */
   properties?: DatabaseCreateProperties;
 }
-export const DatabasesCreateResponse = /*@__PURE__*/ S.suspend(() =>
+export const CreateDatabaseResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -692,1296 +530,17 @@ export const DatabasesCreateResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(DatabaseCreateProperties),
   }),
 ).annotate({
-  identifier: "DatabasesCreateResponse",
-}) as any as S.Schema<DatabasesCreateResponse>;
-
-export interface DatabasesDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Redis Enterprise cluster. Name must be 1-60 characters long. Allowed characters(A-Z, a-z, 0-9) and hyphen(-). There can be no leading nor trailing nor consecutive hyphens */
-  clusterName: string;
-  /** The name of the Redis Enterprise database. */
-  databaseName: string;
-}
-export const DatabasesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    databaseName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cache/redisEnterprise/{clusterName}/databases/{databaseName}",
-      code: 200,
-      apiVersion: "2025-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "DatabasesDeleteRequest",
-}) as any as S.Schema<DatabasesDeleteRequest>;
-
-export interface DatabasesDeleteResponse {}
-export const DatabasesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DatabasesDeleteResponse",
-}) as any as S.Schema<DatabasesDeleteResponse>;
-
-export interface DatabasesExportRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Redis Enterprise cluster. Name must be 1-60 characters long. Allowed characters(A-Z, a-z, 0-9) and hyphen(-). There can be no leading nor trailing nor consecutive hyphens */
-  clusterName: string;
-  /** The name of the Redis Enterprise database. */
-  databaseName: string;
-  /** SAS URI for the target directory to export to */
-  sasUri: string;
-}
-export const DatabasesExportRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    databaseName: S.String.pipe(T.Label()),
-    sasUri: S.String,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cache/redisEnterprise/{clusterName}/databases/{databaseName}/export",
-      code: 200,
-      apiVersion: "2025-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "DatabasesExportRequest",
-}) as any as S.Schema<DatabasesExportRequest>;
-
-export interface DatabasesExportResponse {}
-export const DatabasesExportResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DatabasesExportResponse",
-}) as any as S.Schema<DatabasesExportResponse>;
-
-/** The identifiers of all the other database resources in the georeplication group to be flushed. */
-export type DatabasesFlushRequestIdsList = Array<string>;
-export const DatabasesFlushRequestIdsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<DatabasesFlushRequestIdsList>;
-
-export interface DatabasesFlushRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Redis Enterprise cluster. Name must be 1-60 characters long. Allowed characters(A-Z, a-z, 0-9) and hyphen(-). There can be no leading nor trailing nor consecutive hyphens */
-  clusterName: string;
-  /** The name of the Redis Enterprise database. */
-  databaseName: string;
-  /** The identifiers of all the other database resources in the georeplication group to be flushed. */
-  ids?: DatabasesFlushRequestIdsList;
-}
-export const DatabasesFlushRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    databaseName: S.String.pipe(T.Label()),
-    ids: S.optional(DatabasesFlushRequestIdsList),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cache/redisEnterprise/{clusterName}/databases/{databaseName}/flush",
-      code: 200,
-      apiVersion: "2025-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "DatabasesFlushRequest",
-}) as any as S.Schema<DatabasesFlushRequest>;
-
-export interface DatabasesFlushResponse {}
-export const DatabasesFlushResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DatabasesFlushResponse",
-}) as any as S.Schema<DatabasesFlushResponse>;
-
-/** The resource IDs of the databases that are expected to be linked and included in the replication group. This parameter is used to validate that the linking is to the expected (unlinked) part of the replication group, if it is splintered. */
-export type DatabasesForceLinkToReplicationGroupRequestGeoReplicationLinkedDatabasesList =
-  Array<LinkedDatabaseInput>;
-export const DatabasesForceLinkToReplicationGroupRequestGeoReplicationLinkedDatabasesList =
-  /*@__PURE__*/ S.Array(
-    LinkedDatabaseInput,
-  ) as any as S.Schema<DatabasesForceLinkToReplicationGroupRequestGeoReplicationLinkedDatabasesList>;
-
-/** Properties to configure geo replication for this database. */
-export interface DatabasesForceLinkToReplicationGroupRequestGeoReplication {
-  /** The name of the group of linked database resources. This should match the existing replication group name. */
-  groupNickname?: string;
-  /** The resource IDs of the databases that are expected to be linked and included in the replication group. This parameter is used to validate that the linking is to the expected (unlinked) part of the replication group, if it is splintered. */
-  linkedDatabases?: DatabasesForceLinkToReplicationGroupRequestGeoReplicationLinkedDatabasesList;
-}
-export const DatabasesForceLinkToReplicationGroupRequestGeoReplication =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      groupNickname: S.optional(S.String),
-      linkedDatabases: S.optional(
-        DatabasesForceLinkToReplicationGroupRequestGeoReplicationLinkedDatabasesList,
-      ),
-    }),
-  ).annotate({
-    identifier: "DatabasesForceLinkToReplicationGroupRequestGeoReplication",
-  }) as any as S.Schema<DatabasesForceLinkToReplicationGroupRequestGeoReplication>;
-
-export interface DatabasesForceLinkToReplicationGroupRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Redis Enterprise cluster. Name must be 1-60 characters long. Allowed characters(A-Z, a-z, 0-9) and hyphen(-). There can be no leading nor trailing nor consecutive hyphens */
-  clusterName: string;
-  /** The name of the Redis Enterprise database. */
-  databaseName: string;
-  /** Properties to configure geo replication for this database. */
-  geoReplication: DatabasesForceLinkToReplicationGroupRequestGeoReplication;
-}
-export const DatabasesForceLinkToReplicationGroupRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      clusterName: S.String.pipe(T.Label()),
-      databaseName: S.String.pipe(T.Label()),
-      geoReplication: DatabasesForceLinkToReplicationGroupRequestGeoReplication,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cache/redisEnterprise/{clusterName}/databases/{databaseName}/forceLinkToReplicationGroup",
-        code: 200,
-        apiVersion: "2025-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "DatabasesForceLinkToReplicationGroupRequest",
-  }) as any as S.Schema<DatabasesForceLinkToReplicationGroupRequest>;
-
-export interface DatabasesForceLinkToReplicationGroupResponse {}
-export const DatabasesForceLinkToReplicationGroupResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DatabasesForceLinkToReplicationGroupResponse",
-  }) as any as S.Schema<DatabasesForceLinkToReplicationGroupResponse>;
-
-/** The resource IDs of the database resources to be unlinked. */
-export type DatabasesForceUnlinkRequestIdsList = Array<string>;
-export const DatabasesForceUnlinkRequestIdsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<DatabasesForceUnlinkRequestIdsList>;
-
-export interface DatabasesForceUnlinkRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Redis Enterprise cluster. Name must be 1-60 characters long. Allowed characters(A-Z, a-z, 0-9) and hyphen(-). There can be no leading nor trailing nor consecutive hyphens */
-  clusterName: string;
-  /** The name of the Redis Enterprise database. */
-  databaseName: string;
-  /** The resource IDs of the database resources to be unlinked. */
-  ids: DatabasesForceUnlinkRequestIdsList;
-}
-export const DatabasesForceUnlinkRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    databaseName: S.String.pipe(T.Label()),
-    ids: DatabasesForceUnlinkRequestIdsList,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cache/redisEnterprise/{clusterName}/databases/{databaseName}/forceUnlink",
-      code: 200,
-      apiVersion: "2025-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "DatabasesForceUnlinkRequest",
-}) as any as S.Schema<DatabasesForceUnlinkRequest>;
-
-export interface DatabasesForceUnlinkResponse {}
-export const DatabasesForceUnlinkResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DatabasesForceUnlinkResponse",
-}) as any as S.Schema<DatabasesForceUnlinkResponse>;
-
-export interface DatabasesGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Redis Enterprise cluster. Name must be 1-60 characters long. Allowed characters(A-Z, a-z, 0-9) and hyphen(-). There can be no leading nor trailing nor consecutive hyphens */
-  clusterName: string;
-  /** The name of the Redis Enterprise database. */
-  databaseName: string;
-}
-export const DatabasesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    databaseName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cache/redisEnterprise/{clusterName}/databases/{databaseName}",
-      code: 200,
-      apiVersion: "2025-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "DatabasesGetRequest",
-}) as any as S.Schema<DatabasesGetRequest>;
-
-export interface DatabasesGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Other properties of the database. */
-  properties?: DatabaseCreateProperties;
-}
-export const DatabasesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    properties: S.optional(DatabaseCreateProperties),
-  }),
-).annotate({
-  identifier: "DatabasesGetResponse",
-}) as any as S.Schema<DatabasesGetResponse>;
-
-/** SAS URIs for the target blobs to import from */
-export type DatabasesImportRequestSasUrisList = Array<string>;
-export const DatabasesImportRequestSasUrisList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<DatabasesImportRequestSasUrisList>;
-
-export interface DatabasesImportRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Redis Enterprise cluster. Name must be 1-60 characters long. Allowed characters(A-Z, a-z, 0-9) and hyphen(-). There can be no leading nor trailing nor consecutive hyphens */
-  clusterName: string;
-  /** The name of the Redis Enterprise database. */
-  databaseName: string;
-  /** SAS URIs for the target blobs to import from */
-  sasUris: DatabasesImportRequestSasUrisList;
-}
-export const DatabasesImportRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    databaseName: S.String.pipe(T.Label()),
-    sasUris: DatabasesImportRequestSasUrisList,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cache/redisEnterprise/{clusterName}/databases/{databaseName}/import",
-      code: 200,
-      apiVersion: "2025-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "DatabasesImportRequest",
-}) as any as S.Schema<DatabasesImportRequest>;
-
-export interface DatabasesImportResponse {}
-export const DatabasesImportResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DatabasesImportResponse",
-}) as any as S.Schema<DatabasesImportResponse>;
-
-export interface DatabasesListByClusterRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Redis Enterprise cluster. Name must be 1-60 characters long. Allowed characters(A-Z, a-z, 0-9) and hyphen(-). There can be no leading nor trailing nor consecutive hyphens */
-  clusterName: string;
-}
-export const DatabasesListByClusterRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cache/redisEnterprise/{clusterName}/databases",
-      code: 200,
-      apiVersion: "2025-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "DatabasesListByClusterRequest",
-}) as any as S.Schema<DatabasesListByClusterRequest>;
-
-/** Describes a database on the Redis Enterprise cluster */
-export interface Database {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Other properties of the database. */
-  properties?: DatabaseCreateProperties;
-}
-export const Database = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    properties: S.optional(DatabaseCreateProperties),
-  }),
-).annotate({ identifier: "Database" }) as any as S.Schema<Database>;
-
-/** List of databases */
-export type DatabaseListValueList = Array<Database>;
-export const DatabaseListValueList = /*@__PURE__*/ S.Array(
-  Database,
-) as any as S.Schema<DatabaseListValueList>;
-
-/** The response of a list-all operation. */
-export interface DatabaseList {
-  /** List of databases */
-  value?: DatabaseListValueList;
-  /** The URI to fetch the next page of results. */
-  nextLink?: string;
-}
-export const DatabaseList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(DatabaseListValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({ identifier: "DatabaseList" }) as any as S.Schema<DatabaseList>;
-
-export interface DatabasesListKeysRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Redis Enterprise cluster. Name must be 1-60 characters long. Allowed characters(A-Z, a-z, 0-9) and hyphen(-). There can be no leading nor trailing nor consecutive hyphens */
-  clusterName: string;
-  /** The name of the Redis Enterprise database. */
-  databaseName: string;
-}
-export const DatabasesListKeysRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    databaseName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cache/redisEnterprise/{clusterName}/databases/{databaseName}/listKeys",
-      code: 200,
-      apiVersion: "2025-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "DatabasesListKeysRequest",
-}) as any as S.Schema<DatabasesListKeysRequest>;
-
-/** The secret access keys used for authenticating connections to redis */
-export interface AccessKeys {
-  /** The current primary key that clients can use to authenticate */
-  primaryKey?: string;
-  /** The current secondary key that clients can use to authenticate */
-  secondaryKey?: string;
-}
-export const AccessKeys = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    primaryKey: S.optional(S.String),
-    secondaryKey: S.optional(S.String),
-  }),
-).annotate({ identifier: "AccessKeys" }) as any as S.Schema<AccessKeys>;
-
-/** Which access key to regenerate. */
-export type DatabasesRegenerateKeyRequestKeyType = "Primary" | "Secondary";
-export const DatabasesRegenerateKeyRequestKeyType = /*@__PURE__*/ S.String;
-
-export interface DatabasesRegenerateKeyRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Redis Enterprise cluster. Name must be 1-60 characters long. Allowed characters(A-Z, a-z, 0-9) and hyphen(-). There can be no leading nor trailing nor consecutive hyphens */
-  clusterName: string;
-  /** The name of the Redis Enterprise database. */
-  databaseName: string;
-  /** Which access key to regenerate. */
-  keyType: DatabasesRegenerateKeyRequestKeyType | (string & {});
-}
-export const DatabasesRegenerateKeyRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    databaseName: S.String.pipe(T.Label()),
-    keyType: DatabasesRegenerateKeyRequestKeyType,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cache/redisEnterprise/{clusterName}/databases/{databaseName}/regenerateKey",
-      code: 200,
-      apiVersion: "2025-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "DatabasesRegenerateKeyRequest",
-}) as any as S.Schema<DatabasesRegenerateKeyRequest>;
-
-/** Specifies whether redis clients can connect using TLS-encrypted or plaintext redis protocols. Default is TLS-encrypted. */
-export type DatabaseUpdatePropertiesInputClientProtocol =
-  | "Encrypted"
-  | "Plaintext";
-export const DatabaseUpdatePropertiesInputClientProtocol =
-  /*@__PURE__*/ S.String;
-
-/** Clustering policy - default is OSSCluster. This property can be updated only if the current value is NoCluster. If the value is OSSCluster or EnterpriseCluster, it cannot be updated without deleting the database. */
-export type DatabaseUpdatePropertiesInputClusteringPolicy =
-  | "EnterpriseCluster"
-  | "OSSCluster"
-  | "NoCluster";
-export const DatabaseUpdatePropertiesInputClusteringPolicy =
-  /*@__PURE__*/ S.String;
-
-/** Redis eviction policy - default is VolatileLRU */
-export type DatabaseUpdatePropertiesInputEvictionPolicy =
-  | "AllKeysLFU"
-  | "AllKeysLRU"
-  | "AllKeysRandom"
-  | "VolatileLRU"
-  | "VolatileLFU"
-  | "VolatileTTL"
-  | "VolatileRandom"
-  | "NoEviction";
-export const DatabaseUpdatePropertiesInputEvictionPolicy =
-  /*@__PURE__*/ S.String;
-
-/** Optional set of redis modules to enable in this database - modules can only be added at creation time. */
-export type DatabaseUpdatePropertiesInputModulesList = Array<ModuleInput>;
-export const DatabaseUpdatePropertiesInputModulesList = /*@__PURE__*/ S.Array(
-  ModuleInput,
-) as any as S.Schema<DatabaseUpdatePropertiesInputModulesList>;
-
-/** List of database resources to link with this database */
-export type DatabaseUpdatePropertiesInputGeoReplicationLinkedDatabasesList =
-  Array<LinkedDatabaseInput>;
-export const DatabaseUpdatePropertiesInputGeoReplicationLinkedDatabasesList =
-  /*@__PURE__*/ S.Array(
-    LinkedDatabaseInput,
-  ) as any as S.Schema<DatabaseUpdatePropertiesInputGeoReplicationLinkedDatabasesList>;
-
-/** Optional set of properties to configure geo replication for this database. */
-export interface DatabaseUpdatePropertiesInputGeoReplication {
-  /** Name for the group of linked database resources */
-  groupNickname?: string;
-  /** List of database resources to link with this database */
-  linkedDatabases?: DatabaseUpdatePropertiesInputGeoReplicationLinkedDatabasesList;
-}
-export const DatabaseUpdatePropertiesInputGeoReplication =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      groupNickname: S.optional(S.String),
-      linkedDatabases: S.optional(
-        DatabaseUpdatePropertiesInputGeoReplicationLinkedDatabasesList,
-      ),
-    }),
-  ).annotate({
-    identifier: "DatabaseUpdatePropertiesInputGeoReplication",
-  }) as any as S.Schema<DatabaseUpdatePropertiesInputGeoReplication>;
-
-/** Option to defer upgrade when newest version is released - default is NotDeferred. Learn more: https://aka.ms/redisversionupgrade */
-export type DatabaseUpdatePropertiesInputDeferUpgrade =
-  | "Deferred"
-  | "NotDeferred";
-export const DatabaseUpdatePropertiesInputDeferUpgrade = /*@__PURE__*/ S.String;
-
-/** This property can be Enabled/Disabled to allow or deny access with the current access keys. Can be updated even after database is created. */
-export type DatabaseUpdatePropertiesInputAccessKeysAuthentication =
-  | "Disabled"
-  | "Enabled";
-export const DatabaseUpdatePropertiesInputAccessKeysAuthentication =
-  /*@__PURE__*/ S.String;
-
-/** Properties for updating Redis Enterprise databases */
-export interface DatabaseUpdatePropertiesInput {
-  /** Specifies whether redis clients can connect using TLS-encrypted or plaintext redis protocols. Default is TLS-encrypted. */
-  clientProtocol?: DatabaseUpdatePropertiesInputClientProtocol | (string & {});
-  /** TCP port of the database endpoint. Specified at create time. Defaults to an available port. */
-  port?: number;
-  /** Clustering policy - default is OSSCluster. This property can be updated only if the current value is NoCluster. If the value is OSSCluster or EnterpriseCluster, it cannot be updated without deleting the database. */
-  clusteringPolicy?:
-    | DatabaseUpdatePropertiesInputClusteringPolicy
-    | (string & {});
-  /** Redis eviction policy - default is VolatileLRU */
-  evictionPolicy?: DatabaseUpdatePropertiesInputEvictionPolicy | (string & {});
-  /** Persistence settings */
-  persistence?: Persistence;
-  /** Optional set of redis modules to enable in this database - modules can only be added at creation time. */
-  modules?: DatabaseUpdatePropertiesInputModulesList;
-  /** Optional set of properties to configure geo replication for this database. */
-  geoReplication?: DatabaseUpdatePropertiesInputGeoReplication;
-  /** Option to defer upgrade when newest version is released - default is NotDeferred. Learn more: https://aka.ms/redisversionupgrade */
-  deferUpgrade?: DatabaseUpdatePropertiesInputDeferUpgrade | (string & {});
-  /** This property can be Enabled/Disabled to allow or deny access with the current access keys. Can be updated even after database is created. */
-  accessKeysAuthentication?:
-    | DatabaseUpdatePropertiesInputAccessKeysAuthentication
-    | (string & {});
-}
-export const DatabaseUpdatePropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    clientProtocol: S.optional(DatabaseUpdatePropertiesInputClientProtocol),
-    port: S.optional(S.Number),
-    clusteringPolicy: S.optional(DatabaseUpdatePropertiesInputClusteringPolicy),
-    evictionPolicy: S.optional(DatabaseUpdatePropertiesInputEvictionPolicy),
-    persistence: S.optional(Persistence),
-    modules: S.optional(DatabaseUpdatePropertiesInputModulesList),
-    geoReplication: S.optional(DatabaseUpdatePropertiesInputGeoReplication),
-    deferUpgrade: S.optional(DatabaseUpdatePropertiesInputDeferUpgrade),
-    accessKeysAuthentication: S.optional(
-      DatabaseUpdatePropertiesInputAccessKeysAuthentication,
-    ),
-  }),
-).annotate({
-  identifier: "DatabaseUpdatePropertiesInput",
-}) as any as S.Schema<DatabaseUpdatePropertiesInput>;
-
-export interface DatabasesUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Redis Enterprise cluster. Name must be 1-60 characters long. Allowed characters(A-Z, a-z, 0-9) and hyphen(-). There can be no leading nor trailing nor consecutive hyphens */
-  clusterName: string;
-  /** The name of the Redis Enterprise database. */
-  databaseName: string;
-  /** Properties of the database. */
-  properties?: DatabaseUpdatePropertiesInput;
-}
-export const DatabasesUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    databaseName: S.String.pipe(T.Label()),
-    properties: S.optional(DatabaseUpdatePropertiesInput),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cache/redisEnterprise/{clusterName}/databases/{databaseName}",
-      code: 200,
-      apiVersion: "2025-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "DatabasesUpdateRequest",
-}) as any as S.Schema<DatabasesUpdateRequest>;
-
-export interface DatabasesUpdateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Other properties of the database. */
-  properties?: DatabaseCreateProperties;
-}
-export const DatabasesUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    properties: S.optional(DatabaseCreateProperties),
-  }),
-).annotate({
-  identifier: "DatabasesUpdateResponse",
-}) as any as S.Schema<DatabasesUpdateResponse>;
-
-export interface DatabasesUpgradeDBRedisVersionRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Redis Enterprise cluster. Name must be 1-60 characters long. Allowed characters(A-Z, a-z, 0-9) and hyphen(-). There can be no leading nor trailing nor consecutive hyphens */
-  clusterName: string;
-  /** The name of the Redis Enterprise database. */
-  databaseName: string;
-}
-export const DatabasesUpgradeDBRedisVersionRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      clusterName: S.String.pipe(T.Label()),
-      databaseName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cache/redisEnterprise/{clusterName}/databases/{databaseName}/upgradeDBRedisVersion",
-        code: 200,
-        apiVersion: "2025-07-01",
-      }),
-    ),
-).annotate({
-  identifier: "DatabasesUpgradeDBRedisVersionRequest",
-}) as any as S.Schema<DatabasesUpgradeDBRedisVersionRequest>;
-
-export interface DatabasesUpgradeDBRedisVersionResponse {}
-export const DatabasesUpgradeDBRedisVersionResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "DatabasesUpgradeDBRedisVersionResponse",
-}) as any as S.Schema<DatabasesUpgradeDBRedisVersionResponse>;
-
-export interface OperationsListRequest {}
-export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/providers/Microsoft.Cache/operations",
-      code: 200,
-      apiVersion: "2025-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "OperationsListRequest",
-}) as any as S.Schema<OperationsListRequest>;
-
-/** Localized display information for this particular operation. */
-export interface OperationDisplay {
-  /** The localized friendly form of the resource provider name, e.g. "Microsoft Monitoring Insights" or "Microsoft Compute". */
-  provider?: string;
-  /** The localized friendly name of the resource type related to this operation. E.g. "Virtual Machines" or "Job Schedule Collections". */
-  resource?: string;
-  /** The concise, localized friendly name for the operation; suitable for dropdowns. E.g. "Create or Update Virtual Machine", "Restart Virtual Machine". */
-  operation?: string;
-  /** The short, localized friendly description of the operation; suitable for tool tips and detailed views. */
-  description?: string;
-}
-export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provider: S.optional(S.String),
-    resource: S.optional(S.String),
-    operation: S.optional(S.String),
-    description: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OperationDisplay",
-}) as any as S.Schema<OperationDisplay>;
-
-/** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
-export type OperationOrigin = "user" | "system" | "user,system";
-export const OperationOrigin = /*@__PURE__*/ S.String;
-
-/** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
-export type OperationActionType = "Internal";
-export const OperationActionType = /*@__PURE__*/ S.String;
-
-/** Details of a REST API operation, returned from the Resource Provider Operations API */
-export interface Operation {
-  /** The name of the operation, as per Resource-Based Access Control (RBAC). Examples: "Microsoft.Compute/virtualMachines/write", "Microsoft.Compute/virtualMachines/capture/action" */
-  name?: string;
-  /** Whether the operation applies to data-plane. This is "true" for data-plane operations and "false" for ARM/control-plane operations. */
-  isDataAction?: boolean;
-  /** Localized display information for this particular operation. */
-  display?: OperationDisplay;
-  /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
-  origin?: OperationOrigin;
-  /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
-  actionType?: OperationActionType;
-}
-export const Operation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    isDataAction: S.optional(S.Boolean),
-    display: S.optional(OperationDisplay),
-    origin: S.optional(OperationOrigin),
-    actionType: S.optional(OperationActionType),
-  }),
-).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
-
-/** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
-  Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
-
-export interface OperationsListResponse {
-  /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
-  /** URL to get the next set of operation list results (if there are any). */
-  nextLink?: string;
-}
-export const OperationsListResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(OperationsListResponseValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OperationsListResponse",
-}) as any as S.Schema<OperationsListResponse>;
-
-export interface OperationsStatusGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of Azure region. */
-  location: string;
-  /** The ID of an ongoing async operation. */
-  operationId: string;
-}
-export const OperationsStatusGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    location: S.String.pipe(T.Label()),
-    operationId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Cache/locations/{location}/operationsStatus/{operationId}",
-      code: 200,
-      apiVersion: "2025-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "OperationsStatusGetRequest",
-}) as any as S.Schema<OperationsStatusGetRequest>;
-
-/** The error details. */
-export type ErrorDetailDetailsList = Array<ErrorDetail>;
-export const ErrorDetailDetailsList = /*@__PURE__*/ S.Array(
-  S.suspend(() => ErrorDetail),
-) as any as S.Schema<ErrorDetailDetailsList>;
-
-/** The resource management error additional info. */
-export interface ErrorAdditionalInfo {
-  /** The additional info type. */
-  type?: string;
-  /** The additional info. */
-  info?: unknown;
-}
-export const ErrorAdditionalInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: S.optional(S.String),
-    info: S.optional(S.Unknown),
-  }),
-).annotate({
-  identifier: "ErrorAdditionalInfo",
-}) as any as S.Schema<ErrorAdditionalInfo>;
-
-/** The error additional info. */
-export type ErrorDetailAdditionalInfoList = Array<ErrorAdditionalInfo>;
-export const ErrorDetailAdditionalInfoList = /*@__PURE__*/ S.Array(
-  ErrorAdditionalInfo,
-) as any as S.Schema<ErrorDetailAdditionalInfoList>;
-
-/** The error detail. */
-export interface ErrorDetail {
-  /** The error code. */
-  code?: string;
-  /** The error message. */
-  message?: string;
-  /** The error target. */
-  target?: string;
-  /** The error details. */
-  details?: ErrorDetailDetailsList;
-  /** The error additional info. */
-  additionalInfo?: ErrorDetailAdditionalInfoList;
-}
-export const ErrorDetail = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    code: S.optional(S.String),
-    message: S.optional(S.String),
-    target: S.optional(S.String),
-    details: S.optional(ErrorDetailDetailsList),
-    additionalInfo: S.optional(ErrorDetailAdditionalInfoList),
-  }),
-).annotate({ identifier: "ErrorDetail" }) as any as S.Schema<ErrorDetail>;
-
-/** Common error response for all Azure Resource Manager APIs to return error details for failed operations. (This also follows the OData error response format.). */
-export interface OperationStatusError {
-  /** The error object. */
-  error?: ErrorDetail;
-}
-export const OperationStatusError = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    error: S.optional(ErrorDetail),
-  }),
-).annotate({
-  identifier: "OperationStatusError",
-}) as any as S.Schema<OperationStatusError>;
-
-/** The status of a long-running operation. */
-export interface OperationStatus {
-  /** The operation's unique id. */
-  id?: string;
-  /** The operation's name. */
-  name?: string;
-  /** The start time of the operation. */
-  startTime?: string;
-  /** The end time of the operation. */
-  endTime?: string;
-  /** The current status of the operation. */
-  status?: string;
-  /** Common error response for all Azure Resource Manager APIs to return error details for failed operations. (This also follows the OData error response format.). */
-  error?: OperationStatusError;
-}
-export const OperationStatus = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    startTime: S.optional(S.String),
-    endTime: S.optional(S.String),
-    status: S.optional(S.String),
-    error: S.optional(OperationStatusError),
-  }),
-).annotate({
-  identifier: "OperationStatus",
-}) as any as S.Schema<OperationStatus>;
-
-export interface PrivateEndpointConnectionsDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Redis Enterprise cluster. Name must be 1-60 characters long. Allowed characters(A-Z, a-z, 0-9) and hyphen(-). There can be no leading nor trailing nor consecutive hyphens */
-  clusterName: string;
-  /** The name of the private endpoint connection associated with the Azure resource */
-  privateEndpointConnectionName: string;
-}
-export const PrivateEndpointConnectionsDeleteRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      clusterName: S.String.pipe(T.Label()),
-      privateEndpointConnectionName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cache/redisEnterprise/{clusterName}/privateEndpointConnections/{privateEndpointConnectionName}",
-        code: 200,
-        apiVersion: "2025-07-01",
-      }),
-    ),
-).annotate({
-  identifier: "PrivateEndpointConnectionsDeleteRequest",
-}) as any as S.Schema<PrivateEndpointConnectionsDeleteRequest>;
-
-export interface PrivateEndpointConnectionsDeleteResponse {}
-export const PrivateEndpointConnectionsDeleteResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "PrivateEndpointConnectionsDeleteResponse",
-}) as any as S.Schema<PrivateEndpointConnectionsDeleteResponse>;
-
-export interface PrivateEndpointConnectionsGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Redis Enterprise cluster. Name must be 1-60 characters long. Allowed characters(A-Z, a-z, 0-9) and hyphen(-). There can be no leading nor trailing nor consecutive hyphens */
-  clusterName: string;
-  /** The name of the private endpoint connection associated with the Azure resource */
-  privateEndpointConnectionName: string;
-}
-export const PrivateEndpointConnectionsGetRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      clusterName: S.String.pipe(T.Label()),
-      privateEndpointConnectionName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cache/redisEnterprise/{clusterName}/privateEndpointConnections/{privateEndpointConnectionName}",
-        code: 200,
-        apiVersion: "2025-07-01",
-      }),
-    ),
-).annotate({
-  identifier: "PrivateEndpointConnectionsGetRequest",
-}) as any as S.Schema<PrivateEndpointConnectionsGetRequest>;
-
-/** The Private Endpoint resource. */
-export interface PrivateEndpoint {
-  /** The ARM identifier for Private Endpoint */
-  id?: string;
-}
-export const PrivateEndpoint = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PrivateEndpoint",
-}) as any as S.Schema<PrivateEndpoint>;
-
-/** The private endpoint connection status. */
-export type PrivateEndpointServiceConnectionStatus =
-  | "Pending"
-  | "Approved"
-  | "Rejected";
-export const PrivateEndpointServiceConnectionStatus = /*@__PURE__*/ S.String;
-
-/** A collection of information about the state of the connection between service consumer and provider. */
-export interface PrivateLinkServiceConnectionState {
-  /** Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service. */
-  status?: PrivateEndpointServiceConnectionStatus | (string & {});
-  /** The reason for approval/rejection of the connection. */
-  description?: string;
-  /** A message indicating if changes on the service provider require any updates on the consumer. */
-  actionsRequired?: string;
-}
-export const PrivateLinkServiceConnectionState = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    status: S.optional(PrivateEndpointServiceConnectionStatus),
-    description: S.optional(S.String),
-    actionsRequired: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PrivateLinkServiceConnectionState",
-}) as any as S.Schema<PrivateLinkServiceConnectionState>;
-
-/** The current provisioning state. */
-export type PrivateEndpointConnectionProvisioningState =
-  | "Succeeded"
-  | "Creating"
-  | "Deleting"
-  | "Failed";
-export const PrivateEndpointConnectionProvisioningState =
-  /*@__PURE__*/ S.String;
-
-/** Properties of the PrivateEndpointConnectProperties. */
-export interface PrivateEndpointConnectionProperties {
-  /** The resource of private end point. */
-  privateEndpoint?: PrivateEndpoint;
-  /** A collection of information about the state of the connection between service consumer and provider. */
-  privateLinkServiceConnectionState: PrivateLinkServiceConnectionState;
-  /** The provisioning state of the private endpoint connection resource. */
-  provisioningState?: PrivateEndpointConnectionProvisioningState;
-}
-export const PrivateEndpointConnectionProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    privateEndpoint: S.optional(PrivateEndpoint),
-    privateLinkServiceConnectionState: PrivateLinkServiceConnectionState,
-    provisioningState: S.optional(PrivateEndpointConnectionProvisioningState),
-  }),
-).annotate({
-  identifier: "PrivateEndpointConnectionProperties",
-}) as any as S.Schema<PrivateEndpointConnectionProperties>;
-
-export interface PrivateEndpointConnectionsGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Resource properties. */
-  properties?: PrivateEndpointConnectionProperties;
-}
-export const PrivateEndpointConnectionsGetResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      properties: S.optional(PrivateEndpointConnectionProperties),
-    }),
-).annotate({
-  identifier: "PrivateEndpointConnectionsGetResponse",
-}) as any as S.Schema<PrivateEndpointConnectionsGetResponse>;
-
-export interface PrivateEndpointConnectionsListRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Redis Enterprise cluster. Name must be 1-60 characters long. Allowed characters(A-Z, a-z, 0-9) and hyphen(-). There can be no leading nor trailing nor consecutive hyphens */
-  clusterName: string;
-}
-export const PrivateEndpointConnectionsListRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      clusterName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cache/redisEnterprise/{clusterName}/privateEndpointConnections",
-        code: 200,
-        apiVersion: "2025-07-01",
-      }),
-    ),
-).annotate({
-  identifier: "PrivateEndpointConnectionsListRequest",
-}) as any as S.Schema<PrivateEndpointConnectionsListRequest>;
-
-/** The Private Endpoint Connection resource. */
-export interface PrivateEndpointConnection {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Resource properties. */
-  properties?: PrivateEndpointConnectionProperties;
-}
-export const PrivateEndpointConnection = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    properties: S.optional(PrivateEndpointConnectionProperties),
-  }),
-).annotate({
-  identifier: "PrivateEndpointConnection",
-}) as any as S.Schema<PrivateEndpointConnection>;
-
-/** Array of private endpoint connections */
-export type PrivateEndpointConnectionsListResponseValueList =
-  Array<PrivateEndpointConnection>;
-export const PrivateEndpointConnectionsListResponseValueList =
-  /*@__PURE__*/ S.Array(
-    PrivateEndpointConnection,
-  ) as any as S.Schema<PrivateEndpointConnectionsListResponseValueList>;
-
-export interface PrivateEndpointConnectionsListResponse {
-  /** Array of private endpoint connections */
-  value?: PrivateEndpointConnectionsListResponseValueList;
-}
-export const PrivateEndpointConnectionsListResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      value: S.optional(PrivateEndpointConnectionsListResponseValueList),
-    }),
-).annotate({
-  identifier: "PrivateEndpointConnectionsListResponse",
-}) as any as S.Schema<PrivateEndpointConnectionsListResponse>;
-
-/** The Private Endpoint resource. */
-export interface PrivateEndpointInput {}
-export const PrivateEndpointInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "PrivateEndpointInput",
-}) as any as S.Schema<PrivateEndpointInput>;
-
-/** Properties of the PrivateEndpointConnectProperties. */
-export interface PrivateEndpointConnectionPropertiesInput {
-  /** The resource of private end point. */
-  privateEndpoint?: PrivateEndpointInput;
-  /** A collection of information about the state of the connection between service consumer and provider. */
-  privateLinkServiceConnectionState: PrivateLinkServiceConnectionState;
-}
-export const PrivateEndpointConnectionPropertiesInput = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      privateEndpoint: S.optional(PrivateEndpointInput),
-      privateLinkServiceConnectionState: PrivateLinkServiceConnectionState,
-    }),
-).annotate({
-  identifier: "PrivateEndpointConnectionPropertiesInput",
-}) as any as S.Schema<PrivateEndpointConnectionPropertiesInput>;
-
-export interface PrivateEndpointConnectionsPutRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Redis Enterprise cluster. Name must be 1-60 characters long. Allowed characters(A-Z, a-z, 0-9) and hyphen(-). There can be no leading nor trailing nor consecutive hyphens */
-  clusterName: string;
-  /** The name of the private endpoint connection associated with the Azure resource */
-  privateEndpointConnectionName: string;
-  /** Resource properties. */
-  properties?: PrivateEndpointConnectionPropertiesInput;
-}
-export const PrivateEndpointConnectionsPutRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      clusterName: S.String.pipe(T.Label()),
-      privateEndpointConnectionName: S.String.pipe(T.Label()),
-      properties: S.optional(PrivateEndpointConnectionPropertiesInput),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cache/redisEnterprise/{clusterName}/privateEndpointConnections/{privateEndpointConnectionName}",
-        code: 200,
-        apiVersion: "2025-07-01",
-      }),
-    ),
-).annotate({
-  identifier: "PrivateEndpointConnectionsPutRequest",
-}) as any as S.Schema<PrivateEndpointConnectionsPutRequest>;
-
-export interface PrivateEndpointConnectionsPutResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Resource properties. */
-  properties?: PrivateEndpointConnectionProperties;
-}
-export const PrivateEndpointConnectionsPutResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      properties: S.optional(PrivateEndpointConnectionProperties),
-    }),
-).annotate({
-  identifier: "PrivateEndpointConnectionsPutResponse",
-}) as any as S.Schema<PrivateEndpointConnectionsPutResponse>;
-
-export interface PrivateLinkResourcesListByClusterRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Redis Enterprise cluster. Name must be 1-60 characters long. Allowed characters(A-Z, a-z, 0-9) and hyphen(-). There can be no leading nor trailing nor consecutive hyphens */
-  clusterName: string;
-}
-export const PrivateLinkResourcesListByClusterRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      clusterName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cache/redisEnterprise/{clusterName}/privateLinkResources",
-        code: 200,
-        apiVersion: "2025-07-01",
-      }),
-    ),
-).annotate({
-  identifier: "PrivateLinkResourcesListByClusterRequest",
-}) as any as S.Schema<PrivateLinkResourcesListByClusterRequest>;
-
-/** The private link resource required member names. */
-export type PrivateLinkResourcePropertiesRequiredMembersList = Array<string>;
-export const PrivateLinkResourcePropertiesRequiredMembersList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PrivateLinkResourcePropertiesRequiredMembersList>;
-
-/** The private link resource Private link DNS zone name. */
-export type PrivateLinkResourcePropertiesRequiredZoneNamesList = Array<string>;
-export const PrivateLinkResourcePropertiesRequiredZoneNamesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PrivateLinkResourcePropertiesRequiredZoneNamesList>;
-
-/** Properties of a private link resource. */
-export interface PrivateLinkResourceProperties {
-  /** The private link resource group id. */
-  groupId?: string;
-  /** The private link resource required member names. */
-  requiredMembers?: PrivateLinkResourcePropertiesRequiredMembersList;
-  /** The private link resource Private link DNS zone name. */
-  requiredZoneNames?: PrivateLinkResourcePropertiesRequiredZoneNamesList;
-}
-export const PrivateLinkResourceProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    groupId: S.optional(S.String),
-    requiredMembers: S.optional(
-      PrivateLinkResourcePropertiesRequiredMembersList,
-    ),
-    requiredZoneNames: S.optional(
-      PrivateLinkResourcePropertiesRequiredZoneNamesList,
-    ),
-  }),
-).annotate({
-  identifier: "PrivateLinkResourceProperties",
-}) as any as S.Schema<PrivateLinkResourceProperties>;
-
-/** A private link resource */
-export interface PrivateLinkResource {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Resource properties. */
-  properties?: PrivateLinkResourceProperties;
-}
-export const PrivateLinkResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    properties: S.optional(PrivateLinkResourceProperties),
-  }),
-).annotate({
-  identifier: "PrivateLinkResource",
-}) as any as S.Schema<PrivateLinkResource>;
-
-/** Array of private link resources */
-export type PrivateLinkResourcesListByClusterResponseValueList =
-  Array<PrivateLinkResource>;
-export const PrivateLinkResourcesListByClusterResponseValueList =
-  /*@__PURE__*/ S.Array(
-    PrivateLinkResource,
-  ) as any as S.Schema<PrivateLinkResourcesListByClusterResponseValueList>;
-
-export interface PrivateLinkResourcesListByClusterResponse {
-  /** Array of private link resources */
-  value?: PrivateLinkResourcesListByClusterResponseValueList;
-}
-export const PrivateLinkResourcesListByClusterResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      value: S.optional(PrivateLinkResourcesListByClusterResponseValueList),
-    }),
-  ).annotate({
-    identifier: "PrivateLinkResourcesListByClusterResponse",
-  }) as any as S.Schema<PrivateLinkResourcesListByClusterResponse>;
+  identifier: "CreateDatabaseResponse",
+}) as any as S.Schema<CreateDatabaseResponse>;
 
 /** Resource tags. */
-export type RedisEnterpriseCreateRequestTagsMap = {
+export type CreateRedisEnterpriseRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const RedisEnterpriseCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const CreateRedisEnterpriseRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<RedisEnterpriseCreateRequestTagsMap>;
+) as any as S.Schema<CreateRedisEnterpriseRequestTagsMap>;
 
 /** The level of Redis Enterprise cluster to deploy. Possible values: ('Balanced_B5', 'MemoryOptimized_M10', 'ComputeOptimized_X5', etc.). For more information on SKUs see the latest pricing documentation. Note that additional SKUs may become supported in the future. */
 export type SkuName =
@@ -2057,10 +616,10 @@ export const Sku = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Sku" }) as any as S.Schema<Sku>;
 
 /** The Availability Zones where this cluster will be deployed. */
-export type RedisEnterpriseCreateRequestZonesList = Array<string>;
-export const RedisEnterpriseCreateRequestZonesList = /*@__PURE__*/ S.Array(
+export type CreateRedisEnterpriseRequestZonesList = Array<string>;
+export const CreateRedisEnterpriseRequestZonesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<RedisEnterpriseCreateRequestZonesList>;
+) as any as S.Schema<CreateRedisEnterpriseRequestZonesList>;
 
 /** Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed). */
 export type ManagedServiceIdentityType =
@@ -2071,32 +630,36 @@ export type ManagedServiceIdentityType =
 export const ManagedServiceIdentityType = /*@__PURE__*/ S.String;
 
 /** User assigned identity properties */
-export type UserAssignedIdentityInput = PrivateEndpointInput;
-export const UserAssignedIdentityInput = PrivateEndpointInput;
+export interface UserAssignedIdentityInput {}
+export const UserAssignedIdentityInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "UserAssignedIdentityInput",
+}) as any as S.Schema<UserAssignedIdentityInput>;
 
 /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
 export type UserAssignedIdentitiesInput = {
-  [key: string]: PrivateEndpointInput | undefined;
+  [key: string]: UserAssignedIdentityInput | undefined;
 };
 export const UserAssignedIdentitiesInput = /*@__PURE__*/ S.Record(
   S.String,
-  PrivateEndpointInput,
+  UserAssignedIdentityInput,
 ) as any as S.Schema<UserAssignedIdentitiesInput>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export interface RedisEnterpriseCreateRequestIdentity {
+export interface CreateRedisEnterpriseRequestIdentity {
   type: ManagedServiceIdentityType | (string & {});
   userAssignedIdentities?: UserAssignedIdentitiesInput;
 }
-export const RedisEnterpriseCreateRequestIdentity = /*@__PURE__*/ S.suspend(
+export const CreateRedisEnterpriseRequestIdentity = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       type: ManagedServiceIdentityType,
       userAssignedIdentities: S.optional(UserAssignedIdentitiesInput),
     }),
 ).annotate({
-  identifier: "RedisEnterpriseCreateRequestIdentity",
-}) as any as S.Schema<RedisEnterpriseCreateRequestIdentity>;
+  identifier: "CreateRedisEnterpriseRequestIdentity",
+}) as any as S.Schema<CreateRedisEnterpriseRequestIdentity>;
 
 /** Enabled by default. If highAvailability is disabled, the data set is not replicated. This affects the availability SLA, and increases the risk of data loss. */
 export type ClusterCreatePropertiesInputHighAvailability =
@@ -2218,7 +781,7 @@ export const ClusterCreatePropertiesInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "ClusterCreatePropertiesInput",
 }) as any as S.Schema<ClusterCreatePropertiesInput>;
 
-export interface RedisEnterpriseCreateRequest {
+export interface CreateRedisEnterpriseRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2226,28 +789,28 @@ export interface RedisEnterpriseCreateRequest {
   /** The name of the Redis Enterprise cluster. Name must be 1-60 characters long. Allowed characters(A-Z, a-z, 0-9) and hyphen(-). There can be no leading nor trailing nor consecutive hyphens */
   clusterName: string;
   /** Resource tags. */
-  tags?: RedisEnterpriseCreateRequestTagsMap;
+  tags?: CreateRedisEnterpriseRequestTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The SKU to create, which affects price, performance, and features. */
   sku: Sku;
   /** The Availability Zones where this cluster will be deployed. */
-  zones?: RedisEnterpriseCreateRequestZonesList;
+  zones?: CreateRedisEnterpriseRequestZonesList;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: RedisEnterpriseCreateRequestIdentity;
+  identity?: CreateRedisEnterpriseRequestIdentity;
   /** Other properties of the cluster. */
   properties?: ClusterCreatePropertiesInput;
 }
-export const RedisEnterpriseCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateRedisEnterpriseRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     clusterName: S.String.pipe(T.Label()),
-    tags: S.optional(RedisEnterpriseCreateRequestTagsMap),
+    tags: S.optional(CreateRedisEnterpriseRequestTagsMap),
     location: S.String,
     sku: Sku,
-    zones: S.optional(RedisEnterpriseCreateRequestZonesList),
-    identity: S.optional(RedisEnterpriseCreateRequestIdentity),
+    zones: S.optional(CreateRedisEnterpriseRequestZonesList),
+    identity: S.optional(CreateRedisEnterpriseRequestIdentity),
     properties: S.optional(ClusterCreatePropertiesInput),
   }).pipe(
     T.Http({
@@ -2258,27 +821,27 @@ export const RedisEnterpriseCreateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "RedisEnterpriseCreateRequest",
-}) as any as S.Schema<RedisEnterpriseCreateRequest>;
+  identifier: "CreateRedisEnterpriseRequest",
+}) as any as S.Schema<CreateRedisEnterpriseRequest>;
 
 /** Resource tags. */
-export type RedisEnterpriseCreateResponseTagsMap = {
+export type CreateRedisEnterpriseResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const RedisEnterpriseCreateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const CreateRedisEnterpriseResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<RedisEnterpriseCreateResponseTagsMap>;
+) as any as S.Schema<CreateRedisEnterpriseResponseTagsMap>;
 
 /** Distinguishes the kind of cluster. Read-only. */
 export type Kind = "v1" | "v2";
 export const Kind = /*@__PURE__*/ S.String;
 
 /** The Availability Zones where this cluster will be deployed. */
-export type RedisEnterpriseCreateResponseZonesList = Array<string>;
-export const RedisEnterpriseCreateResponseZonesList = /*@__PURE__*/ S.Array(
+export type CreateRedisEnterpriseResponseZonesList = Array<string>;
+export const CreateRedisEnterpriseResponseZonesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<RedisEnterpriseCreateResponseZonesList>;
+) as any as S.Schema<CreateRedisEnterpriseResponseZonesList>;
 
 /** User assigned identity properties */
 export interface UserAssignedIdentity {
@@ -2306,7 +869,7 @@ export const UserAssignedIdentities = /*@__PURE__*/ S.Record(
 ) as any as S.Schema<UserAssignedIdentities>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export interface RedisEnterpriseCreateResponseIdentity {
+export interface CreateRedisEnterpriseResponseIdentity {
   /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   principalId?: string;
   /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
@@ -2314,7 +877,7 @@ export interface RedisEnterpriseCreateResponseIdentity {
   type: ManagedServiceIdentityType;
   userAssignedIdentities?: UserAssignedIdentities;
 }
-export const RedisEnterpriseCreateResponseIdentity = /*@__PURE__*/ S.suspend(
+export const CreateRedisEnterpriseResponseIdentity = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       principalId: S.optional(S.String),
@@ -2323,8 +886,8 @@ export const RedisEnterpriseCreateResponseIdentity = /*@__PURE__*/ S.suspend(
       userAssignedIdentities: S.optional(UserAssignedIdentities),
     }),
 ).annotate({
-  identifier: "RedisEnterpriseCreateResponseIdentity",
-}) as any as S.Schema<RedisEnterpriseCreateResponseIdentity>;
+  identifier: "CreateRedisEnterpriseResponseIdentity",
+}) as any as S.Schema<CreateRedisEnterpriseResponseIdentity>;
 
 /** Enabled by default. If highAvailability is disabled, the data set is not replicated. This affects the availability SLA, and increases the risk of data loss. */
 export type ClusterCreatePropertiesHighAvailability = "Enabled" | "Disabled";
@@ -2399,18 +962,102 @@ export const ClusterCreatePropertiesEncryption = /*@__PURE__*/ S.suspend(() =>
 export type ClusterCreatePropertiesRedundancyMode = "None" | "LR" | "ZR";
 export const ClusterCreatePropertiesRedundancyMode = /*@__PURE__*/ S.String;
 
+/** The Private Endpoint resource. */
+export interface PrivateEndpoint {
+  /** The ARM identifier for Private Endpoint */
+  id?: string;
+}
+export const PrivateEndpoint = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PrivateEndpoint",
+}) as any as S.Schema<PrivateEndpoint>;
+
+/** The private endpoint connection status. */
+export type PrivateEndpointServiceConnectionStatus =
+  | "Pending"
+  | "Approved"
+  | "Rejected";
+export const PrivateEndpointServiceConnectionStatus = /*@__PURE__*/ S.String;
+
+/** A collection of information about the state of the connection between service consumer and provider. */
+export interface PrivateLinkServiceConnectionState {
+  /** Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service. */
+  status?: PrivateEndpointServiceConnectionStatus | (string & {});
+  /** The reason for approval/rejection of the connection. */
+  description?: string;
+  /** A message indicating if changes on the service provider require any updates on the consumer. */
+  actionsRequired?: string;
+}
+export const PrivateLinkServiceConnectionState = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: S.optional(PrivateEndpointServiceConnectionStatus),
+    description: S.optional(S.String),
+    actionsRequired: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PrivateLinkServiceConnectionState",
+}) as any as S.Schema<PrivateLinkServiceConnectionState>;
+
+/** The current provisioning state. */
+export type PrivateEndpointConnectionProvisioningState =
+  | "Succeeded"
+  | "Creating"
+  | "Deleting"
+  | "Failed";
+export const PrivateEndpointConnectionProvisioningState =
+  /*@__PURE__*/ S.String;
+
+/** Properties of the PrivateEndpointConnectProperties. */
+export interface PrivateEndpointConnectionProperties {
+  /** The resource of private end point. */
+  privateEndpoint?: PrivateEndpoint;
+  /** A collection of information about the state of the connection between service consumer and provider. */
+  privateLinkServiceConnectionState: PrivateLinkServiceConnectionState;
+  /** The provisioning state of the private endpoint connection resource. */
+  provisioningState?: PrivateEndpointConnectionProvisioningState;
+}
+export const PrivateEndpointConnectionProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    privateEndpoint: S.optional(PrivateEndpoint),
+    privateLinkServiceConnectionState: PrivateLinkServiceConnectionState,
+    provisioningState: S.optional(PrivateEndpointConnectionProvisioningState),
+  }),
+).annotate({
+  identifier: "PrivateEndpointConnectionProperties",
+}) as any as S.Schema<PrivateEndpointConnectionProperties>;
+
 /** The Private Endpoint Connection resource. */
-export type ClusterCreatePropertiesPrivateEndpointConnectionsItem =
-  PrivateEndpointConnection;
+export interface ClusterCreatePropertiesPrivateEndpointConnectionsItem {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Resource properties. */
+  properties?: PrivateEndpointConnectionProperties;
+}
 export const ClusterCreatePropertiesPrivateEndpointConnectionsItem =
-  PrivateEndpointConnection;
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      properties: S.optional(PrivateEndpointConnectionProperties),
+    }),
+  ).annotate({
+    identifier: "ClusterCreatePropertiesPrivateEndpointConnectionsItem",
+  }) as any as S.Schema<ClusterCreatePropertiesPrivateEndpointConnectionsItem>;
 
 /** List of private endpoint connections associated with the specified Redis Enterprise cluster */
 export type ClusterCreatePropertiesPrivateEndpointConnectionsList =
-  Array<PrivateEndpointConnection>;
+  Array<ClusterCreatePropertiesPrivateEndpointConnectionsItem>;
 export const ClusterCreatePropertiesPrivateEndpointConnectionsList =
   /*@__PURE__*/ S.Array(
-    PrivateEndpointConnection,
+    ClusterCreatePropertiesPrivateEndpointConnectionsItem,
   ) as any as S.Schema<ClusterCreatePropertiesPrivateEndpointConnectionsList>;
 
 /** Whether or not public network traffic can access the Redis cluster. Only 'Enabled' or 'Disabled' can be set. null is returned only for clusters created using an old API version which do not have this property and cannot be set. */
@@ -2460,7 +1107,7 @@ export const ClusterCreateProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "ClusterCreateProperties",
 }) as any as S.Schema<ClusterCreateProperties>;
 
-export interface RedisEnterpriseCreateResponse {
+export interface CreateRedisEnterpriseResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -2468,37 +1115,247 @@ export interface RedisEnterpriseCreateResponse {
   /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
   type?: string;
   /** Resource tags. */
-  tags?: RedisEnterpriseCreateResponseTagsMap;
+  tags?: CreateRedisEnterpriseResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   kind?: Kind;
   /** The SKU to create, which affects price, performance, and features. */
   sku: Sku;
   /** The Availability Zones where this cluster will be deployed. */
-  zones?: RedisEnterpriseCreateResponseZonesList;
+  zones?: CreateRedisEnterpriseResponseZonesList;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: RedisEnterpriseCreateResponseIdentity;
+  identity?: CreateRedisEnterpriseResponseIdentity;
   /** Other properties of the cluster. */
   properties?: ClusterCreateProperties;
 }
-export const RedisEnterpriseCreateResponse = /*@__PURE__*/ S.suspend(() =>
+export const CreateRedisEnterpriseResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
-    tags: S.optional(RedisEnterpriseCreateResponseTagsMap),
+    tags: S.optional(CreateRedisEnterpriseResponseTagsMap),
     location: S.String,
     kind: S.optional(Kind),
     sku: Sku,
-    zones: S.optional(RedisEnterpriseCreateResponseZonesList),
-    identity: S.optional(RedisEnterpriseCreateResponseIdentity),
+    zones: S.optional(CreateRedisEnterpriseResponseZonesList),
+    identity: S.optional(CreateRedisEnterpriseResponseIdentity),
     properties: S.optional(ClusterCreateProperties),
   }),
 ).annotate({
-  identifier: "RedisEnterpriseCreateResponse",
-}) as any as S.Schema<RedisEnterpriseCreateResponse>;
+  identifier: "CreateRedisEnterpriseResponse",
+}) as any as S.Schema<CreateRedisEnterpriseResponse>;
 
-export interface RedisEnterpriseDeleteRequest {
+/** The resource IDs of the databases that are expected to be linked and included in the replication group. This parameter is used to validate that the linking is to the expected (unlinked) part of the replication group, if it is splintered. */
+export type DatabasesForceLinkToReplicationGroupRequestGeoReplicationLinkedDatabasesList =
+  Array<LinkedDatabaseInput>;
+export const DatabasesForceLinkToReplicationGroupRequestGeoReplicationLinkedDatabasesList =
+  /*@__PURE__*/ S.Array(
+    LinkedDatabaseInput,
+  ) as any as S.Schema<DatabasesForceLinkToReplicationGroupRequestGeoReplicationLinkedDatabasesList>;
+
+/** Properties to configure geo replication for this database. */
+export interface DatabasesForceLinkToReplicationGroupRequestGeoReplication {
+  /** The name of the group of linked database resources. This should match the existing replication group name. */
+  groupNickname?: string;
+  /** The resource IDs of the databases that are expected to be linked and included in the replication group. This parameter is used to validate that the linking is to the expected (unlinked) part of the replication group, if it is splintered. */
+  linkedDatabases?: DatabasesForceLinkToReplicationGroupRequestGeoReplicationLinkedDatabasesList;
+}
+export const DatabasesForceLinkToReplicationGroupRequestGeoReplication =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      groupNickname: S.optional(S.String),
+      linkedDatabases: S.optional(
+        DatabasesForceLinkToReplicationGroupRequestGeoReplicationLinkedDatabasesList,
+      ),
+    }),
+  ).annotate({
+    identifier: "DatabasesForceLinkToReplicationGroupRequestGeoReplication",
+  }) as any as S.Schema<DatabasesForceLinkToReplicationGroupRequestGeoReplication>;
+
+export interface DatabasesForceLinkToReplicationGroupRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Redis Enterprise cluster. Name must be 1-60 characters long. Allowed characters(A-Z, a-z, 0-9) and hyphen(-). There can be no leading nor trailing nor consecutive hyphens */
+  clusterName: string;
+  /** The name of the Redis Enterprise database. */
+  databaseName: string;
+  /** Properties to configure geo replication for this database. */
+  geoReplication: DatabasesForceLinkToReplicationGroupRequestGeoReplication;
+}
+export const DatabasesForceLinkToReplicationGroupRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      clusterName: S.String.pipe(T.Label()),
+      databaseName: S.String.pipe(T.Label()),
+      geoReplication: DatabasesForceLinkToReplicationGroupRequestGeoReplication,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cache/redisEnterprise/{clusterName}/databases/{databaseName}/forceLinkToReplicationGroup",
+        code: 200,
+        apiVersion: "2025-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "DatabasesForceLinkToReplicationGroupRequest",
+  }) as any as S.Schema<DatabasesForceLinkToReplicationGroupRequest>;
+
+export interface DatabasesForceLinkToReplicationGroupResponse {}
+export const DatabasesForceLinkToReplicationGroupResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "DatabasesForceLinkToReplicationGroupResponse",
+  }) as any as S.Schema<DatabasesForceLinkToReplicationGroupResponse>;
+
+export interface DatabasesUpgradeDBRedisVersionRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Redis Enterprise cluster. Name must be 1-60 characters long. Allowed characters(A-Z, a-z, 0-9) and hyphen(-). There can be no leading nor trailing nor consecutive hyphens */
+  clusterName: string;
+  /** The name of the Redis Enterprise database. */
+  databaseName: string;
+}
+export const DatabasesUpgradeDBRedisVersionRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      clusterName: S.String.pipe(T.Label()),
+      databaseName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cache/redisEnterprise/{clusterName}/databases/{databaseName}/upgradeDBRedisVersion",
+        code: 200,
+        apiVersion: "2025-07-01",
+      }),
+    ),
+).annotate({
+  identifier: "DatabasesUpgradeDBRedisVersionRequest",
+}) as any as S.Schema<DatabasesUpgradeDBRedisVersionRequest>;
+
+export interface DatabasesUpgradeDBRedisVersionResponse {}
+export const DatabasesUpgradeDBRedisVersionResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "DatabasesUpgradeDBRedisVersionResponse",
+}) as any as S.Schema<DatabasesUpgradeDBRedisVersionResponse>;
+
+export interface DeleteAccessPolicyAssignmentRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Redis Enterprise cluster. Name must be 1-60 characters long. Allowed characters(A-Z, a-z, 0-9) and hyphen(-). There can be no leading nor trailing nor consecutive hyphens */
+  clusterName: string;
+  /** The name of the Redis Enterprise database. */
+  databaseName: string;
+  /** The name of the Redis Enterprise database access policy assignment. */
+  accessPolicyAssignmentName: string;
+}
+export const DeleteAccessPolicyAssignmentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    databaseName: S.String.pipe(T.Label()),
+    accessPolicyAssignmentName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cache/redisEnterprise/{clusterName}/databases/{databaseName}/accessPolicyAssignments/{accessPolicyAssignmentName}",
+      code: 200,
+      apiVersion: "2025-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteAccessPolicyAssignmentRequest",
+}) as any as S.Schema<DeleteAccessPolicyAssignmentRequest>;
+
+export interface DeleteAccessPolicyAssignmentResponse {}
+export const DeleteAccessPolicyAssignmentResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "DeleteAccessPolicyAssignmentResponse",
+}) as any as S.Schema<DeleteAccessPolicyAssignmentResponse>;
+
+export interface DeleteDatabaseRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Redis Enterprise cluster. Name must be 1-60 characters long. Allowed characters(A-Z, a-z, 0-9) and hyphen(-). There can be no leading nor trailing nor consecutive hyphens */
+  clusterName: string;
+  /** The name of the Redis Enterprise database. */
+  databaseName: string;
+}
+export const DeleteDatabaseRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    databaseName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cache/redisEnterprise/{clusterName}/databases/{databaseName}",
+      code: 200,
+      apiVersion: "2025-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteDatabaseRequest",
+}) as any as S.Schema<DeleteDatabaseRequest>;
+
+export interface DeleteDatabaseResponse {}
+export const DeleteDatabaseResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteDatabaseResponse",
+}) as any as S.Schema<DeleteDatabaseResponse>;
+
+export interface DeletePrivateEndpointConnectionRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Redis Enterprise cluster. Name must be 1-60 characters long. Allowed characters(A-Z, a-z, 0-9) and hyphen(-). There can be no leading nor trailing nor consecutive hyphens */
+  clusterName: string;
+  /** The name of the private endpoint connection associated with the Azure resource */
+  privateEndpointConnectionName: string;
+}
+export const DeletePrivateEndpointConnectionRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      clusterName: S.String.pipe(T.Label()),
+      privateEndpointConnectionName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cache/redisEnterprise/{clusterName}/privateEndpointConnections/{privateEndpointConnectionName}",
+        code: 200,
+        apiVersion: "2025-07-01",
+      }),
+    ),
+).annotate({
+  identifier: "DeletePrivateEndpointConnectionRequest",
+}) as any as S.Schema<DeletePrivateEndpointConnectionRequest>;
+
+export interface DeletePrivateEndpointConnectionResponse {}
+export const DeletePrivateEndpointConnectionResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "DeletePrivateEndpointConnectionResponse",
+}) as any as S.Schema<DeletePrivateEndpointConnectionResponse>;
+
+export interface DeleteRedisEnterpriseRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2506,7 +1363,7 @@ export interface RedisEnterpriseDeleteRequest {
   /** The name of the Redis Enterprise cluster. Name must be 1-60 characters long. Allowed characters(A-Z, a-z, 0-9) and hyphen(-). There can be no leading nor trailing nor consecutive hyphens */
   clusterName: string;
 }
-export const RedisEnterpriseDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteRedisEnterpriseRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -2520,17 +1377,367 @@ export const RedisEnterpriseDeleteRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "RedisEnterpriseDeleteRequest",
-}) as any as S.Schema<RedisEnterpriseDeleteRequest>;
+  identifier: "DeleteRedisEnterpriseRequest",
+}) as any as S.Schema<DeleteRedisEnterpriseRequest>;
 
-export interface RedisEnterpriseDeleteResponse {}
-export const RedisEnterpriseDeleteResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteRedisEnterpriseResponse {}
+export const DeleteRedisEnterpriseResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "RedisEnterpriseDeleteResponse",
-}) as any as S.Schema<RedisEnterpriseDeleteResponse>;
+  identifier: "DeleteRedisEnterpriseResponse",
+}) as any as S.Schema<DeleteRedisEnterpriseResponse>;
 
-export interface RedisEnterpriseGetRequest {
+export interface ExportDatabaseRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Redis Enterprise cluster. Name must be 1-60 characters long. Allowed characters(A-Z, a-z, 0-9) and hyphen(-). There can be no leading nor trailing nor consecutive hyphens */
+  clusterName: string;
+  /** The name of the Redis Enterprise database. */
+  databaseName: string;
+  /** SAS URI for the target directory to export to */
+  sasUri: string;
+}
+export const ExportDatabaseRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    databaseName: S.String.pipe(T.Label()),
+    sasUri: S.String,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cache/redisEnterprise/{clusterName}/databases/{databaseName}/export",
+      code: 200,
+      apiVersion: "2025-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ExportDatabaseRequest",
+}) as any as S.Schema<ExportDatabaseRequest>;
+
+export interface ExportDatabaseResponse {}
+export const ExportDatabaseResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "ExportDatabaseResponse",
+}) as any as S.Schema<ExportDatabaseResponse>;
+
+/** The identifiers of all the other database resources in the georeplication group to be flushed. */
+export type FlushDatabaseRequestIdsList = Array<string>;
+export const FlushDatabaseRequestIdsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<FlushDatabaseRequestIdsList>;
+
+export interface FlushDatabaseRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Redis Enterprise cluster. Name must be 1-60 characters long. Allowed characters(A-Z, a-z, 0-9) and hyphen(-). There can be no leading nor trailing nor consecutive hyphens */
+  clusterName: string;
+  /** The name of the Redis Enterprise database. */
+  databaseName: string;
+  /** The identifiers of all the other database resources in the georeplication group to be flushed. */
+  ids?: FlushDatabaseRequestIdsList;
+}
+export const FlushDatabaseRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    databaseName: S.String.pipe(T.Label()),
+    ids: S.optional(FlushDatabaseRequestIdsList),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cache/redisEnterprise/{clusterName}/databases/{databaseName}/flush",
+      code: 200,
+      apiVersion: "2025-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "FlushDatabaseRequest",
+}) as any as S.Schema<FlushDatabaseRequest>;
+
+export interface FlushDatabaseResponse {}
+export const FlushDatabaseResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "FlushDatabaseResponse",
+}) as any as S.Schema<FlushDatabaseResponse>;
+
+export interface GetAccessPolicyAssignmentRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Redis Enterprise cluster. Name must be 1-60 characters long. Allowed characters(A-Z, a-z, 0-9) and hyphen(-). There can be no leading nor trailing nor consecutive hyphens */
+  clusterName: string;
+  /** The name of the Redis Enterprise database. */
+  databaseName: string;
+  /** The name of the Redis Enterprise database access policy assignment. */
+  accessPolicyAssignmentName: string;
+}
+export const GetAccessPolicyAssignmentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    databaseName: S.String.pipe(T.Label()),
+    accessPolicyAssignmentName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cache/redisEnterprise/{clusterName}/databases/{databaseName}/accessPolicyAssignments/{accessPolicyAssignmentName}",
+      code: 200,
+      apiVersion: "2025-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetAccessPolicyAssignmentRequest",
+}) as any as S.Schema<GetAccessPolicyAssignmentRequest>;
+
+export interface GetAccessPolicyAssignmentResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Properties of the access policy assignment. */
+  properties?: AccessPolicyAssignmentProperties;
+}
+export const GetAccessPolicyAssignmentResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    properties: S.optional(AccessPolicyAssignmentProperties),
+  }),
+).annotate({
+  identifier: "GetAccessPolicyAssignmentResponse",
+}) as any as S.Schema<GetAccessPolicyAssignmentResponse>;
+
+export interface GetDatabaseRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Redis Enterprise cluster. Name must be 1-60 characters long. Allowed characters(A-Z, a-z, 0-9) and hyphen(-). There can be no leading nor trailing nor consecutive hyphens */
+  clusterName: string;
+  /** The name of the Redis Enterprise database. */
+  databaseName: string;
+}
+export const GetDatabaseRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    databaseName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cache/redisEnterprise/{clusterName}/databases/{databaseName}",
+      code: 200,
+      apiVersion: "2025-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetDatabaseRequest",
+}) as any as S.Schema<GetDatabaseRequest>;
+
+export interface GetDatabaseResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Other properties of the database. */
+  properties?: DatabaseCreateProperties;
+}
+export const GetDatabaseResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    properties: S.optional(DatabaseCreateProperties),
+  }),
+).annotate({
+  identifier: "GetDatabaseResponse",
+}) as any as S.Schema<GetDatabaseResponse>;
+
+export interface GetOperationsStatusRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of Azure region. */
+  location: string;
+  /** The ID of an ongoing async operation. */
+  operationId: string;
+}
+export const GetOperationsStatusRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    location: S.String.pipe(T.Label()),
+    operationId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Cache/locations/{location}/operationsStatus/{operationId}",
+      code: 200,
+      apiVersion: "2025-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetOperationsStatusRequest",
+}) as any as S.Schema<GetOperationsStatusRequest>;
+
+/** The error details. */
+export type ErrorDetailDetailsList = Array<ErrorDetail>;
+export const ErrorDetailDetailsList = /*@__PURE__*/ S.Array(
+  S.suspend(() => ErrorDetail),
+) as any as S.Schema<ErrorDetailDetailsList>;
+
+/** The resource management error additional info. */
+export interface ErrorAdditionalInfo {
+  /** The additional info type. */
+  type?: string;
+  /** The additional info. */
+  info?: unknown;
+}
+export const ErrorAdditionalInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: S.optional(S.String),
+    info: S.optional(S.Unknown),
+  }),
+).annotate({
+  identifier: "ErrorAdditionalInfo",
+}) as any as S.Schema<ErrorAdditionalInfo>;
+
+/** The error additional info. */
+export type ErrorDetailAdditionalInfoList = Array<ErrorAdditionalInfo>;
+export const ErrorDetailAdditionalInfoList = /*@__PURE__*/ S.Array(
+  ErrorAdditionalInfo,
+) as any as S.Schema<ErrorDetailAdditionalInfoList>;
+
+/** The error detail. */
+export interface ErrorDetail {
+  /** The error code. */
+  code?: string;
+  /** The error message. */
+  message?: string;
+  /** The error target. */
+  target?: string;
+  /** The error details. */
+  details?: ErrorDetailDetailsList;
+  /** The error additional info. */
+  additionalInfo?: ErrorDetailAdditionalInfoList;
+}
+export const ErrorDetail = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    code: S.optional(S.String),
+    message: S.optional(S.String),
+    target: S.optional(S.String),
+    details: S.optional(ErrorDetailDetailsList),
+    additionalInfo: S.optional(ErrorDetailAdditionalInfoList),
+  }),
+).annotate({ identifier: "ErrorDetail" }) as any as S.Schema<ErrorDetail>;
+
+/** Common error response for all Azure Resource Manager APIs to return error details for failed operations. (This also follows the OData error response format.). */
+export interface OperationStatusError {
+  /** The error object. */
+  error?: ErrorDetail;
+}
+export const OperationStatusError = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    error: S.optional(ErrorDetail),
+  }),
+).annotate({
+  identifier: "OperationStatusError",
+}) as any as S.Schema<OperationStatusError>;
+
+/** The status of a long-running operation. */
+export interface OperationStatus {
+  /** The operation's unique id. */
+  id?: string;
+  /** The operation's name. */
+  name?: string;
+  /** The start time of the operation. */
+  startTime?: string;
+  /** The end time of the operation. */
+  endTime?: string;
+  /** The current status of the operation. */
+  status?: string;
+  /** Common error response for all Azure Resource Manager APIs to return error details for failed operations. (This also follows the OData error response format.). */
+  error?: OperationStatusError;
+}
+export const OperationStatus = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    startTime: S.optional(S.String),
+    endTime: S.optional(S.String),
+    status: S.optional(S.String),
+    error: S.optional(OperationStatusError),
+  }),
+).annotate({
+  identifier: "OperationStatus",
+}) as any as S.Schema<OperationStatus>;
+
+export interface GetPrivateEndpointConnectionRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Redis Enterprise cluster. Name must be 1-60 characters long. Allowed characters(A-Z, a-z, 0-9) and hyphen(-). There can be no leading nor trailing nor consecutive hyphens */
+  clusterName: string;
+  /** The name of the private endpoint connection associated with the Azure resource */
+  privateEndpointConnectionName: string;
+}
+export const GetPrivateEndpointConnectionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    privateEndpointConnectionName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cache/redisEnterprise/{clusterName}/privateEndpointConnections/{privateEndpointConnectionName}",
+      code: 200,
+      apiVersion: "2025-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetPrivateEndpointConnectionRequest",
+}) as any as S.Schema<GetPrivateEndpointConnectionRequest>;
+
+export interface GetPrivateEndpointConnectionResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Resource properties. */
+  properties?: PrivateEndpointConnectionProperties;
+}
+export const GetPrivateEndpointConnectionResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      properties: S.optional(PrivateEndpointConnectionProperties),
+    }),
+).annotate({
+  identifier: "GetPrivateEndpointConnectionResponse",
+}) as any as S.Schema<GetPrivateEndpointConnectionResponse>;
+
+export interface GetRedisEnterpriseRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2538,7 +1745,7 @@ export interface RedisEnterpriseGetRequest {
   /** The name of the Redis Enterprise cluster. Name must be 1-60 characters long. Allowed characters(A-Z, a-z, 0-9) and hyphen(-). There can be no leading nor trailing nor consecutive hyphens */
   clusterName: string;
 }
-export const RedisEnterpriseGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetRedisEnterpriseRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -2552,31 +1759,31 @@ export const RedisEnterpriseGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "RedisEnterpriseGetRequest",
-}) as any as S.Schema<RedisEnterpriseGetRequest>;
+  identifier: "GetRedisEnterpriseRequest",
+}) as any as S.Schema<GetRedisEnterpriseRequest>;
 
 /** Resource tags. */
-export type RedisEnterpriseGetResponseTagsMap = {
+export type GetRedisEnterpriseResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const RedisEnterpriseGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetRedisEnterpriseResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<RedisEnterpriseGetResponseTagsMap>;
+) as any as S.Schema<GetRedisEnterpriseResponseTagsMap>;
 
 /** The Availability Zones where this cluster will be deployed. */
-export type RedisEnterpriseGetResponseZonesList = Array<string>;
-export const RedisEnterpriseGetResponseZonesList = /*@__PURE__*/ S.Array(
+export type GetRedisEnterpriseResponseZonesList = Array<string>;
+export const GetRedisEnterpriseResponseZonesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<RedisEnterpriseGetResponseZonesList>;
+) as any as S.Schema<GetRedisEnterpriseResponseZonesList>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type RedisEnterpriseGetResponseIdentity =
-  RedisEnterpriseCreateResponseIdentity;
-export const RedisEnterpriseGetResponseIdentity =
-  RedisEnterpriseCreateResponseIdentity;
+export type GetRedisEnterpriseResponseIdentity =
+  CreateRedisEnterpriseResponseIdentity;
+export const GetRedisEnterpriseResponseIdentity =
+  CreateRedisEnterpriseResponseIdentity;
 
-export interface RedisEnterpriseGetResponse {
+export interface GetRedisEnterpriseResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -2584,41 +1791,511 @@ export interface RedisEnterpriseGetResponse {
   /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
   type?: string;
   /** Resource tags. */
-  tags?: RedisEnterpriseGetResponseTagsMap;
+  tags?: GetRedisEnterpriseResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   kind?: Kind;
   /** The SKU to create, which affects price, performance, and features. */
   sku: Sku;
   /** The Availability Zones where this cluster will be deployed. */
-  zones?: RedisEnterpriseGetResponseZonesList;
+  zones?: GetRedisEnterpriseResponseZonesList;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: RedisEnterpriseCreateResponseIdentity;
+  identity?: CreateRedisEnterpriseResponseIdentity;
   /** Other properties of the cluster. */
   properties?: ClusterCreateProperties;
 }
-export const RedisEnterpriseGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetRedisEnterpriseResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
-    tags: S.optional(RedisEnterpriseGetResponseTagsMap),
+    tags: S.optional(GetRedisEnterpriseResponseTagsMap),
     location: S.String,
     kind: S.optional(Kind),
     sku: Sku,
-    zones: S.optional(RedisEnterpriseGetResponseZonesList),
-    identity: S.optional(RedisEnterpriseCreateResponseIdentity),
+    zones: S.optional(GetRedisEnterpriseResponseZonesList),
+    identity: S.optional(CreateRedisEnterpriseResponseIdentity),
     properties: S.optional(ClusterCreateProperties),
   }),
 ).annotate({
-  identifier: "RedisEnterpriseGetResponse",
-}) as any as S.Schema<RedisEnterpriseGetResponse>;
+  identifier: "GetRedisEnterpriseResponse",
+}) as any as S.Schema<GetRedisEnterpriseResponse>;
 
-export interface RedisEnterpriseListRequest {
+/** SAS URIs for the target blobs to import from */
+export type ImportDatabaseRequestSasUrisList = Array<string>;
+export const ImportDatabaseRequestSasUrisList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ImportDatabaseRequestSasUrisList>;
+
+export interface ImportDatabaseRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Redis Enterprise cluster. Name must be 1-60 characters long. Allowed characters(A-Z, a-z, 0-9) and hyphen(-). There can be no leading nor trailing nor consecutive hyphens */
+  clusterName: string;
+  /** The name of the Redis Enterprise database. */
+  databaseName: string;
+  /** SAS URIs for the target blobs to import from */
+  sasUris: ImportDatabaseRequestSasUrisList;
+}
+export const ImportDatabaseRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    databaseName: S.String.pipe(T.Label()),
+    sasUris: ImportDatabaseRequestSasUrisList,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cache/redisEnterprise/{clusterName}/databases/{databaseName}/import",
+      code: 200,
+      apiVersion: "2025-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ImportDatabaseRequest",
+}) as any as S.Schema<ImportDatabaseRequest>;
+
+export interface ImportDatabaseResponse {}
+export const ImportDatabaseResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "ImportDatabaseResponse",
+}) as any as S.Schema<ImportDatabaseResponse>;
+
+export interface ListAccessPolicyAssignmentRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Redis Enterprise cluster. Name must be 1-60 characters long. Allowed characters(A-Z, a-z, 0-9) and hyphen(-). There can be no leading nor trailing nor consecutive hyphens */
+  clusterName: string;
+  /** The name of the Redis Enterprise database. */
+  databaseName: string;
+}
+export const ListAccessPolicyAssignmentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    databaseName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cache/redisEnterprise/{clusterName}/databases/{databaseName}/accessPolicyAssignments",
+      code: 200,
+      apiVersion: "2025-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListAccessPolicyAssignmentRequest",
+}) as any as S.Schema<ListAccessPolicyAssignmentRequest>;
+
+/** Describes the access policy assignment of Redis Enterprise database */
+export interface AccessPolicyAssignment {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Properties of the access policy assignment. */
+  properties?: AccessPolicyAssignmentProperties;
+}
+export const AccessPolicyAssignment = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    properties: S.optional(AccessPolicyAssignmentProperties),
+  }),
+).annotate({
+  identifier: "AccessPolicyAssignment",
+}) as any as S.Schema<AccessPolicyAssignment>;
+
+/** List of access policy assignments. */
+export type AccessPolicyAssignmentListValueList = Array<AccessPolicyAssignment>;
+export const AccessPolicyAssignmentListValueList = /*@__PURE__*/ S.Array(
+  AccessPolicyAssignment,
+) as any as S.Schema<AccessPolicyAssignmentListValueList>;
+
+/** The response of a list-all operation. */
+export interface AccessPolicyAssignmentList {
+  /** List of access policy assignments. */
+  value?: AccessPolicyAssignmentListValueList;
+  /** The URI to fetch the next page of results. */
+  nextLink?: string;
+}
+export const AccessPolicyAssignmentList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(AccessPolicyAssignmentListValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "AccessPolicyAssignmentList",
+}) as any as S.Schema<AccessPolicyAssignmentList>;
+
+export interface ListDatabaseByClusterRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Redis Enterprise cluster. Name must be 1-60 characters long. Allowed characters(A-Z, a-z, 0-9) and hyphen(-). There can be no leading nor trailing nor consecutive hyphens */
+  clusterName: string;
+}
+export const ListDatabaseByClusterRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cache/redisEnterprise/{clusterName}/databases",
+      code: 200,
+      apiVersion: "2025-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListDatabaseByClusterRequest",
+}) as any as S.Schema<ListDatabaseByClusterRequest>;
+
+/** Describes a database on the Redis Enterprise cluster */
+export interface Database {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Other properties of the database. */
+  properties?: DatabaseCreateProperties;
+}
+export const Database = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    properties: S.optional(DatabaseCreateProperties),
+  }),
+).annotate({ identifier: "Database" }) as any as S.Schema<Database>;
+
+/** List of databases */
+export type DatabaseListValueList = Array<Database>;
+export const DatabaseListValueList = /*@__PURE__*/ S.Array(
+  Database,
+) as any as S.Schema<DatabaseListValueList>;
+
+/** The response of a list-all operation. */
+export interface DatabaseList {
+  /** List of databases */
+  value?: DatabaseListValueList;
+  /** The URI to fetch the next page of results. */
+  nextLink?: string;
+}
+export const DatabaseList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(DatabaseListValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({ identifier: "DatabaseList" }) as any as S.Schema<DatabaseList>;
+
+export interface ListDatabaseKeysRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Redis Enterprise cluster. Name must be 1-60 characters long. Allowed characters(A-Z, a-z, 0-9) and hyphen(-). There can be no leading nor trailing nor consecutive hyphens */
+  clusterName: string;
+  /** The name of the Redis Enterprise database. */
+  databaseName: string;
+}
+export const ListDatabaseKeysRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    databaseName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cache/redisEnterprise/{clusterName}/databases/{databaseName}/listKeys",
+      code: 200,
+      apiVersion: "2025-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListDatabaseKeysRequest",
+}) as any as S.Schema<ListDatabaseKeysRequest>;
+
+/** The secret access keys used for authenticating connections to redis */
+export interface AccessKeys {
+  /** The current primary key that clients can use to authenticate */
+  primaryKey?: string;
+  /** The current secondary key that clients can use to authenticate */
+  secondaryKey?: string;
+}
+export const AccessKeys = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    primaryKey: S.optional(S.String),
+    secondaryKey: S.optional(S.String),
+  }),
+).annotate({ identifier: "AccessKeys" }) as any as S.Schema<AccessKeys>;
+
+export interface ListOperationsRequest {}
+export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/providers/Microsoft.Cache/operations",
+      code: 200,
+      apiVersion: "2025-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListOperationsRequest",
+}) as any as S.Schema<ListOperationsRequest>;
+
+/** Localized display information for this particular operation. */
+export interface OperationDisplay {
+  /** The localized friendly form of the resource provider name, e.g. "Microsoft Monitoring Insights" or "Microsoft Compute". */
+  provider?: string;
+  /** The localized friendly name of the resource type related to this operation. E.g. "Virtual Machines" or "Job Schedule Collections". */
+  resource?: string;
+  /** The concise, localized friendly name for the operation; suitable for dropdowns. E.g. "Create or Update Virtual Machine", "Restart Virtual Machine". */
+  operation?: string;
+  /** The short, localized friendly description of the operation; suitable for tool tips and detailed views. */
+  description?: string;
+}
+export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provider: S.optional(S.String),
+    resource: S.optional(S.String),
+    operation: S.optional(S.String),
+    description: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "OperationDisplay",
+}) as any as S.Schema<OperationDisplay>;
+
+/** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
+export type OperationOrigin = "user" | "system" | "user,system";
+export const OperationOrigin = /*@__PURE__*/ S.String;
+
+/** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
+export type OperationActionType = "Internal";
+export const OperationActionType = /*@__PURE__*/ S.String;
+
+/** Details of a REST API operation, returned from the Resource Provider Operations API */
+export interface Operation {
+  /** The name of the operation, as per Resource-Based Access Control (RBAC). Examples: "Microsoft.Compute/virtualMachines/write", "Microsoft.Compute/virtualMachines/capture/action" */
+  name?: string;
+  /** Whether the operation applies to data-plane. This is "true" for data-plane operations and "false" for ARM/control-plane operations. */
+  isDataAction?: boolean;
+  /** Localized display information for this particular operation. */
+  display?: OperationDisplay;
+  /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
+  origin?: OperationOrigin;
+  /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
+  actionType?: OperationActionType;
+}
+export const Operation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    isDataAction: S.optional(S.Boolean),
+    display: S.optional(OperationDisplay),
+    origin: S.optional(OperationOrigin),
+    actionType: S.optional(OperationActionType),
+  }),
+).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
+
+/** List of operations supported by the resource provider */
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
+  Operation,
+) as any as S.Schema<ListOperationsResponseValueList>;
+
+export interface ListOperationsResponse {
+  /** List of operations supported by the resource provider */
+  value?: ListOperationsResponseValueList;
+  /** URL to get the next set of operation list results (if there are any). */
+  nextLink?: string;
+}
+export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(ListOperationsResponseValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ListOperationsResponse",
+}) as any as S.Schema<ListOperationsResponse>;
+
+export interface ListPrivateEndpointConnectionsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Redis Enterprise cluster. Name must be 1-60 characters long. Allowed characters(A-Z, a-z, 0-9) and hyphen(-). There can be no leading nor trailing nor consecutive hyphens */
+  clusterName: string;
+}
+export const ListPrivateEndpointConnectionsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      clusterName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cache/redisEnterprise/{clusterName}/privateEndpointConnections",
+        code: 200,
+        apiVersion: "2025-07-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListPrivateEndpointConnectionsRequest",
+}) as any as S.Schema<ListPrivateEndpointConnectionsRequest>;
+
+/** The Private Endpoint Connection resource. */
+export type PrivateEndpointConnection =
+  ClusterCreatePropertiesPrivateEndpointConnectionsItem;
+export const PrivateEndpointConnection =
+  ClusterCreatePropertiesPrivateEndpointConnectionsItem;
+
+/** Array of private endpoint connections */
+export type ListPrivateEndpointConnectionsResponseValueList =
+  Array<ClusterCreatePropertiesPrivateEndpointConnectionsItem>;
+export const ListPrivateEndpointConnectionsResponseValueList =
+  /*@__PURE__*/ S.Array(
+    ClusterCreatePropertiesPrivateEndpointConnectionsItem,
+  ) as any as S.Schema<ListPrivateEndpointConnectionsResponseValueList>;
+
+export interface ListPrivateEndpointConnectionsResponse {
+  /** Array of private endpoint connections */
+  value?: ListPrivateEndpointConnectionsResponseValueList;
+}
+export const ListPrivateEndpointConnectionsResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      value: S.optional(ListPrivateEndpointConnectionsResponseValueList),
+    }),
+).annotate({
+  identifier: "ListPrivateEndpointConnectionsResponse",
+}) as any as S.Schema<ListPrivateEndpointConnectionsResponse>;
+
+export interface ListPrivateLinkResourceByClusterRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Redis Enterprise cluster. Name must be 1-60 characters long. Allowed characters(A-Z, a-z, 0-9) and hyphen(-). There can be no leading nor trailing nor consecutive hyphens */
+  clusterName: string;
+}
+export const ListPrivateLinkResourceByClusterRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      clusterName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cache/redisEnterprise/{clusterName}/privateLinkResources",
+        code: 200,
+        apiVersion: "2025-07-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListPrivateLinkResourceByClusterRequest",
+}) as any as S.Schema<ListPrivateLinkResourceByClusterRequest>;
+
+/** The private link resource required member names. */
+export type PrivateLinkResourcePropertiesRequiredMembersList = Array<string>;
+export const PrivateLinkResourcePropertiesRequiredMembersList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<PrivateLinkResourcePropertiesRequiredMembersList>;
+
+/** The private link resource Private link DNS zone name. */
+export type PrivateLinkResourcePropertiesRequiredZoneNamesList = Array<string>;
+export const PrivateLinkResourcePropertiesRequiredZoneNamesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<PrivateLinkResourcePropertiesRequiredZoneNamesList>;
+
+/** Properties of a private link resource. */
+export interface PrivateLinkResourceProperties {
+  /** The private link resource group id. */
+  groupId?: string;
+  /** The private link resource required member names. */
+  requiredMembers?: PrivateLinkResourcePropertiesRequiredMembersList;
+  /** The private link resource Private link DNS zone name. */
+  requiredZoneNames?: PrivateLinkResourcePropertiesRequiredZoneNamesList;
+}
+export const PrivateLinkResourceProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    groupId: S.optional(S.String),
+    requiredMembers: S.optional(
+      PrivateLinkResourcePropertiesRequiredMembersList,
+    ),
+    requiredZoneNames: S.optional(
+      PrivateLinkResourcePropertiesRequiredZoneNamesList,
+    ),
+  }),
+).annotate({
+  identifier: "PrivateLinkResourceProperties",
+}) as any as S.Schema<PrivateLinkResourceProperties>;
+
+/** A private link resource */
+export interface PrivateLinkResource {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Resource properties. */
+  properties?: PrivateLinkResourceProperties;
+}
+export const PrivateLinkResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    properties: S.optional(PrivateLinkResourceProperties),
+  }),
+).annotate({
+  identifier: "PrivateLinkResource",
+}) as any as S.Schema<PrivateLinkResource>;
+
+/** Array of private link resources */
+export type ListPrivateLinkResourceByClusterResponseValueList =
+  Array<PrivateLinkResource>;
+export const ListPrivateLinkResourceByClusterResponseValueList =
+  /*@__PURE__*/ S.Array(
+    PrivateLinkResource,
+  ) as any as S.Schema<ListPrivateLinkResourceByClusterResponseValueList>;
+
+export interface ListPrivateLinkResourceByClusterResponse {
+  /** Array of private link resources */
+  value?: ListPrivateLinkResourceByClusterResponseValueList;
+}
+export const ListPrivateLinkResourceByClusterResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      value: S.optional(ListPrivateLinkResourceByClusterResponseValueList),
+    }),
+).annotate({
+  identifier: "ListPrivateLinkResourceByClusterResponse",
+}) as any as S.Schema<ListPrivateLinkResourceByClusterResponse>;
+
+export interface ListRedisEnterpriseRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
 }
-export const RedisEnterpriseListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListRedisEnterpriseRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
   }).pipe(
@@ -2630,8 +2307,8 @@ export const RedisEnterpriseListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "RedisEnterpriseListRequest",
-}) as any as S.Schema<RedisEnterpriseListRequest>;
+  identifier: "ListRedisEnterpriseRequest",
+}) as any as S.Schema<ListRedisEnterpriseRequest>;
 
 /** Resource tags. */
 export type ClusterTagsMap = { [key: string]: string | undefined };
@@ -2647,8 +2324,8 @@ export const ClusterZonesList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ClusterZonesList>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type ClusterIdentity = RedisEnterpriseCreateResponseIdentity;
-export const ClusterIdentity = RedisEnterpriseCreateResponseIdentity;
+export type ClusterIdentity = CreateRedisEnterpriseResponseIdentity;
+export const ClusterIdentity = CreateRedisEnterpriseResponseIdentity;
 
 /** Describes the Redis Enterprise cluster */
 export interface Cluster {
@@ -2668,7 +2345,7 @@ export interface Cluster {
   /** The Availability Zones where this cluster will be deployed. */
   zones?: ClusterZonesList;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: RedisEnterpriseCreateResponseIdentity;
+  identity?: CreateRedisEnterpriseResponseIdentity;
   /** Other properties of the cluster. */
   properties?: ClusterCreateProperties;
 }
@@ -2682,7 +2359,7 @@ export const Cluster = /*@__PURE__*/ S.suspend(() =>
     kind: S.optional(Kind),
     sku: Sku,
     zones: S.optional(ClusterZonesList),
-    identity: S.optional(RedisEnterpriseCreateResponseIdentity),
+    identity: S.optional(CreateRedisEnterpriseResponseIdentity),
     properties: S.optional(ClusterCreateProperties),
   }),
 ).annotate({ identifier: "Cluster" }) as any as S.Schema<Cluster>;
@@ -2707,13 +2384,13 @@ export const ClusterList = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "ClusterList" }) as any as S.Schema<ClusterList>;
 
-export interface RedisEnterpriseListByResourceGroupRequest {
+export interface ListRedisEnterpriseByResourceGroupRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
 }
-export const RedisEnterpriseListByResourceGroupRequest =
+export const ListRedisEnterpriseByResourceGroupRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -2727,10 +2404,10 @@ export const RedisEnterpriseListByResourceGroupRequest =
       }),
     ),
   ).annotate({
-    identifier: "RedisEnterpriseListByResourceGroupRequest",
-  }) as any as S.Schema<RedisEnterpriseListByResourceGroupRequest>;
+    identifier: "ListRedisEnterpriseByResourceGroupRequest",
+  }) as any as S.Schema<ListRedisEnterpriseByResourceGroupRequest>;
 
-export interface RedisEnterpriseListSkusForScalingRequest {
+export interface ListRedisEnterpriseSkusForScalingRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2738,7 +2415,7 @@ export interface RedisEnterpriseListSkusForScalingRequest {
   /** The name of the Redis Enterprise cluster. Name must be 1-60 characters long. Allowed characters(A-Z, a-z, 0-9) and hyphen(-). There can be no leading nor trailing nor consecutive hyphens */
   clusterName: string;
 }
-export const RedisEnterpriseListSkusForScalingRequest = /*@__PURE__*/ S.suspend(
+export const ListRedisEnterpriseSkusForScalingRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -2753,8 +2430,8 @@ export const RedisEnterpriseListSkusForScalingRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "RedisEnterpriseListSkusForScalingRequest",
-}) as any as S.Schema<RedisEnterpriseListSkusForScalingRequest>;
+  identifier: "ListRedisEnterpriseSkusForScalingRequest",
+}) as any as S.Schema<ListRedisEnterpriseSkusForScalingRequest>;
 
 /** Details of a Redis Enterprise cluster SKU. */
 export interface SkuDetails {
@@ -2786,6 +2463,328 @@ export const SkuDetailsList = /*@__PURE__*/ S.suspend(() =>
     skus: S.optional(SkuDetailsListSkusList),
   }),
 ).annotate({ identifier: "SkuDetailsList" }) as any as S.Schema<SkuDetailsList>;
+
+/** The Private Endpoint resource. */
+export type PrivateEndpointInput = UserAssignedIdentityInput;
+export const PrivateEndpointInput = UserAssignedIdentityInput;
+
+/** Properties of the PrivateEndpointConnectProperties. */
+export interface PrivateEndpointConnectionPropertiesInput {
+  /** The resource of private end point. */
+  privateEndpoint?: UserAssignedIdentityInput;
+  /** A collection of information about the state of the connection between service consumer and provider. */
+  privateLinkServiceConnectionState: PrivateLinkServiceConnectionState;
+}
+export const PrivateEndpointConnectionPropertiesInput = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      privateEndpoint: S.optional(UserAssignedIdentityInput),
+      privateLinkServiceConnectionState: PrivateLinkServiceConnectionState,
+    }),
+).annotate({
+  identifier: "PrivateEndpointConnectionPropertiesInput",
+}) as any as S.Schema<PrivateEndpointConnectionPropertiesInput>;
+
+export interface PutPrivateEndpointConnectionRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Redis Enterprise cluster. Name must be 1-60 characters long. Allowed characters(A-Z, a-z, 0-9) and hyphen(-). There can be no leading nor trailing nor consecutive hyphens */
+  clusterName: string;
+  /** The name of the private endpoint connection associated with the Azure resource */
+  privateEndpointConnectionName: string;
+  /** Resource properties. */
+  properties?: PrivateEndpointConnectionPropertiesInput;
+}
+export const PutPrivateEndpointConnectionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    privateEndpointConnectionName: S.String.pipe(T.Label()),
+    properties: S.optional(PrivateEndpointConnectionPropertiesInput),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cache/redisEnterprise/{clusterName}/privateEndpointConnections/{privateEndpointConnectionName}",
+      code: 200,
+      apiVersion: "2025-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "PutPrivateEndpointConnectionRequest",
+}) as any as S.Schema<PutPrivateEndpointConnectionRequest>;
+
+export interface PutPrivateEndpointConnectionResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Resource properties. */
+  properties?: PrivateEndpointConnectionProperties;
+}
+export const PutPrivateEndpointConnectionResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      properties: S.optional(PrivateEndpointConnectionProperties),
+    }),
+).annotate({
+  identifier: "PutPrivateEndpointConnectionResponse",
+}) as any as S.Schema<PutPrivateEndpointConnectionResponse>;
+
+/** Which access key to regenerate. */
+export type RegenerateDatabaseKeyRequestKeyType = "Primary" | "Secondary";
+export const RegenerateDatabaseKeyRequestKeyType = /*@__PURE__*/ S.String;
+
+export interface RegenerateDatabaseKeyRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Redis Enterprise cluster. Name must be 1-60 characters long. Allowed characters(A-Z, a-z, 0-9) and hyphen(-). There can be no leading nor trailing nor consecutive hyphens */
+  clusterName: string;
+  /** The name of the Redis Enterprise database. */
+  databaseName: string;
+  /** Which access key to regenerate. */
+  keyType: RegenerateDatabaseKeyRequestKeyType | (string & {});
+}
+export const RegenerateDatabaseKeyRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    databaseName: S.String.pipe(T.Label()),
+    keyType: RegenerateDatabaseKeyRequestKeyType,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cache/redisEnterprise/{clusterName}/databases/{databaseName}/regenerateKey",
+      code: 200,
+      apiVersion: "2025-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "RegenerateDatabaseKeyRequest",
+}) as any as S.Schema<RegenerateDatabaseKeyRequest>;
+
+/** The resource IDs of the database resources to be unlinked. */
+export type UnlinkDatabasesForceRequestIdsList = Array<string>;
+export const UnlinkDatabasesForceRequestIdsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<UnlinkDatabasesForceRequestIdsList>;
+
+export interface UnlinkDatabasesForceRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Redis Enterprise cluster. Name must be 1-60 characters long. Allowed characters(A-Z, a-z, 0-9) and hyphen(-). There can be no leading nor trailing nor consecutive hyphens */
+  clusterName: string;
+  /** The name of the Redis Enterprise database. */
+  databaseName: string;
+  /** The resource IDs of the database resources to be unlinked. */
+  ids: UnlinkDatabasesForceRequestIdsList;
+}
+export const UnlinkDatabasesForceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    databaseName: S.String.pipe(T.Label()),
+    ids: UnlinkDatabasesForceRequestIdsList,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cache/redisEnterprise/{clusterName}/databases/{databaseName}/forceUnlink",
+      code: 200,
+      apiVersion: "2025-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "UnlinkDatabasesForceRequest",
+}) as any as S.Schema<UnlinkDatabasesForceRequest>;
+
+export interface UnlinkDatabasesForceResponse {}
+export const UnlinkDatabasesForceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "UnlinkDatabasesForceResponse",
+}) as any as S.Schema<UnlinkDatabasesForceResponse>;
+
+/** Specifies whether redis clients can connect using TLS-encrypted or plaintext redis protocols. Default is TLS-encrypted. */
+export type DatabaseUpdatePropertiesInputClientProtocol =
+  | "Encrypted"
+  | "Plaintext";
+export const DatabaseUpdatePropertiesInputClientProtocol =
+  /*@__PURE__*/ S.String;
+
+/** Clustering policy - default is OSSCluster. This property can be updated only if the current value is NoCluster. If the value is OSSCluster or EnterpriseCluster, it cannot be updated without deleting the database. */
+export type DatabaseUpdatePropertiesInputClusteringPolicy =
+  | "EnterpriseCluster"
+  | "OSSCluster"
+  | "NoCluster";
+export const DatabaseUpdatePropertiesInputClusteringPolicy =
+  /*@__PURE__*/ S.String;
+
+/** Redis eviction policy - default is VolatileLRU */
+export type DatabaseUpdatePropertiesInputEvictionPolicy =
+  | "AllKeysLFU"
+  | "AllKeysLRU"
+  | "AllKeysRandom"
+  | "VolatileLRU"
+  | "VolatileLFU"
+  | "VolatileTTL"
+  | "VolatileRandom"
+  | "NoEviction";
+export const DatabaseUpdatePropertiesInputEvictionPolicy =
+  /*@__PURE__*/ S.String;
+
+/** Optional set of redis modules to enable in this database - modules can only be added at creation time. */
+export type DatabaseUpdatePropertiesInputModulesList = Array<ModuleInput>;
+export const DatabaseUpdatePropertiesInputModulesList = /*@__PURE__*/ S.Array(
+  ModuleInput,
+) as any as S.Schema<DatabaseUpdatePropertiesInputModulesList>;
+
+/** List of database resources to link with this database */
+export type DatabaseUpdatePropertiesInputGeoReplicationLinkedDatabasesList =
+  Array<LinkedDatabaseInput>;
+export const DatabaseUpdatePropertiesInputGeoReplicationLinkedDatabasesList =
+  /*@__PURE__*/ S.Array(
+    LinkedDatabaseInput,
+  ) as any as S.Schema<DatabaseUpdatePropertiesInputGeoReplicationLinkedDatabasesList>;
+
+/** Optional set of properties to configure geo replication for this database. */
+export interface DatabaseUpdatePropertiesInputGeoReplication {
+  /** Name for the group of linked database resources */
+  groupNickname?: string;
+  /** List of database resources to link with this database */
+  linkedDatabases?: DatabaseUpdatePropertiesInputGeoReplicationLinkedDatabasesList;
+}
+export const DatabaseUpdatePropertiesInputGeoReplication =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      groupNickname: S.optional(S.String),
+      linkedDatabases: S.optional(
+        DatabaseUpdatePropertiesInputGeoReplicationLinkedDatabasesList,
+      ),
+    }),
+  ).annotate({
+    identifier: "DatabaseUpdatePropertiesInputGeoReplication",
+  }) as any as S.Schema<DatabaseUpdatePropertiesInputGeoReplication>;
+
+/** Option to defer upgrade when newest version is released - default is NotDeferred. Learn more: https://aka.ms/redisversionupgrade */
+export type DatabaseUpdatePropertiesInputDeferUpgrade =
+  | "Deferred"
+  | "NotDeferred";
+export const DatabaseUpdatePropertiesInputDeferUpgrade = /*@__PURE__*/ S.String;
+
+/** This property can be Enabled/Disabled to allow or deny access with the current access keys. Can be updated even after database is created. */
+export type DatabaseUpdatePropertiesInputAccessKeysAuthentication =
+  | "Disabled"
+  | "Enabled";
+export const DatabaseUpdatePropertiesInputAccessKeysAuthentication =
+  /*@__PURE__*/ S.String;
+
+/** Properties for updating Redis Enterprise databases */
+export interface DatabaseUpdatePropertiesInput {
+  /** Specifies whether redis clients can connect using TLS-encrypted or plaintext redis protocols. Default is TLS-encrypted. */
+  clientProtocol?: DatabaseUpdatePropertiesInputClientProtocol | (string & {});
+  /** TCP port of the database endpoint. Specified at create time. Defaults to an available port. */
+  port?: number;
+  /** Clustering policy - default is OSSCluster. This property can be updated only if the current value is NoCluster. If the value is OSSCluster or EnterpriseCluster, it cannot be updated without deleting the database. */
+  clusteringPolicy?:
+    | DatabaseUpdatePropertiesInputClusteringPolicy
+    | (string & {});
+  /** Redis eviction policy - default is VolatileLRU */
+  evictionPolicy?: DatabaseUpdatePropertiesInputEvictionPolicy | (string & {});
+  /** Persistence settings */
+  persistence?: Persistence;
+  /** Optional set of redis modules to enable in this database - modules can only be added at creation time. */
+  modules?: DatabaseUpdatePropertiesInputModulesList;
+  /** Optional set of properties to configure geo replication for this database. */
+  geoReplication?: DatabaseUpdatePropertiesInputGeoReplication;
+  /** Option to defer upgrade when newest version is released - default is NotDeferred. Learn more: https://aka.ms/redisversionupgrade */
+  deferUpgrade?: DatabaseUpdatePropertiesInputDeferUpgrade | (string & {});
+  /** This property can be Enabled/Disabled to allow or deny access with the current access keys. Can be updated even after database is created. */
+  accessKeysAuthentication?:
+    | DatabaseUpdatePropertiesInputAccessKeysAuthentication
+    | (string & {});
+}
+export const DatabaseUpdatePropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    clientProtocol: S.optional(DatabaseUpdatePropertiesInputClientProtocol),
+    port: S.optional(S.Number),
+    clusteringPolicy: S.optional(DatabaseUpdatePropertiesInputClusteringPolicy),
+    evictionPolicy: S.optional(DatabaseUpdatePropertiesInputEvictionPolicy),
+    persistence: S.optional(Persistence),
+    modules: S.optional(DatabaseUpdatePropertiesInputModulesList),
+    geoReplication: S.optional(DatabaseUpdatePropertiesInputGeoReplication),
+    deferUpgrade: S.optional(DatabaseUpdatePropertiesInputDeferUpgrade),
+    accessKeysAuthentication: S.optional(
+      DatabaseUpdatePropertiesInputAccessKeysAuthentication,
+    ),
+  }),
+).annotate({
+  identifier: "DatabaseUpdatePropertiesInput",
+}) as any as S.Schema<DatabaseUpdatePropertiesInput>;
+
+export interface UpdateDatabaseRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Redis Enterprise cluster. Name must be 1-60 characters long. Allowed characters(A-Z, a-z, 0-9) and hyphen(-). There can be no leading nor trailing nor consecutive hyphens */
+  clusterName: string;
+  /** The name of the Redis Enterprise database. */
+  databaseName: string;
+  /** Properties of the database. */
+  properties?: DatabaseUpdatePropertiesInput;
+}
+export const UpdateDatabaseRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    databaseName: S.String.pipe(T.Label()),
+    properties: S.optional(DatabaseUpdatePropertiesInput),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cache/redisEnterprise/{clusterName}/databases/{databaseName}",
+      code: 200,
+      apiVersion: "2025-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateDatabaseRequest",
+}) as any as S.Schema<UpdateDatabaseRequest>;
+
+export interface UpdateDatabaseResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Other properties of the database. */
+  properties?: DatabaseCreateProperties;
+}
+export const UpdateDatabaseResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    properties: S.optional(DatabaseCreateProperties),
+  }),
+).annotate({
+  identifier: "UpdateDatabaseResponse",
+}) as any as S.Schema<UpdateDatabaseResponse>;
 
 /** Enabled by default. If highAvailability is disabled, the data set is not replicated. This affects the availability SLA, and increases the risk of data loss. */
 export type ClusterUpdatePropertiesInputHighAvailability =
@@ -2908,21 +2907,21 @@ export const ClusterUpdatePropertiesInput = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ClusterUpdatePropertiesInput>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type RedisEnterpriseUpdateRequestIdentity =
-  RedisEnterpriseCreateRequestIdentity;
-export const RedisEnterpriseUpdateRequestIdentity =
-  RedisEnterpriseCreateRequestIdentity;
+export type UpdateRedisEnterpriseRequestIdentity =
+  CreateRedisEnterpriseRequestIdentity;
+export const UpdateRedisEnterpriseRequestIdentity =
+  CreateRedisEnterpriseRequestIdentity;
 
 /** Resource tags. */
-export type RedisEnterpriseUpdateRequestTagsMap = {
+export type UpdateRedisEnterpriseRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const RedisEnterpriseUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateRedisEnterpriseRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<RedisEnterpriseUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateRedisEnterpriseRequestTagsMap>;
 
-export interface RedisEnterpriseUpdateRequest {
+export interface UpdateRedisEnterpriseRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2934,19 +2933,19 @@ export interface RedisEnterpriseUpdateRequest {
   /** Other properties of the cluster. */
   properties?: ClusterUpdatePropertiesInput;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: RedisEnterpriseCreateRequestIdentity;
+  identity?: CreateRedisEnterpriseRequestIdentity;
   /** Resource tags. */
-  tags?: RedisEnterpriseUpdateRequestTagsMap;
+  tags?: UpdateRedisEnterpriseRequestTagsMap;
 }
-export const RedisEnterpriseUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateRedisEnterpriseRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     clusterName: S.String.pipe(T.Label()),
     sku: S.optional(Sku),
     properties: S.optional(ClusterUpdatePropertiesInput),
-    identity: S.optional(RedisEnterpriseCreateRequestIdentity),
-    tags: S.optional(RedisEnterpriseUpdateRequestTagsMap),
+    identity: S.optional(CreateRedisEnterpriseRequestIdentity),
+    tags: S.optional(UpdateRedisEnterpriseRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -2956,31 +2955,31 @@ export const RedisEnterpriseUpdateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "RedisEnterpriseUpdateRequest",
-}) as any as S.Schema<RedisEnterpriseUpdateRequest>;
+  identifier: "UpdateRedisEnterpriseRequest",
+}) as any as S.Schema<UpdateRedisEnterpriseRequest>;
 
 /** Resource tags. */
-export type RedisEnterpriseUpdateResponseTagsMap = {
+export type UpdateRedisEnterpriseResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const RedisEnterpriseUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateRedisEnterpriseResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<RedisEnterpriseUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateRedisEnterpriseResponseTagsMap>;
 
 /** The Availability Zones where this cluster will be deployed. */
-export type RedisEnterpriseUpdateResponseZonesList = Array<string>;
-export const RedisEnterpriseUpdateResponseZonesList = /*@__PURE__*/ S.Array(
+export type UpdateRedisEnterpriseResponseZonesList = Array<string>;
+export const UpdateRedisEnterpriseResponseZonesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<RedisEnterpriseUpdateResponseZonesList>;
+) as any as S.Schema<UpdateRedisEnterpriseResponseZonesList>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type RedisEnterpriseUpdateResponseIdentity =
-  RedisEnterpriseCreateResponseIdentity;
-export const RedisEnterpriseUpdateResponseIdentity =
-  RedisEnterpriseCreateResponseIdentity;
+export type UpdateRedisEnterpriseResponseIdentity =
+  CreateRedisEnterpriseResponseIdentity;
+export const UpdateRedisEnterpriseResponseIdentity =
+  CreateRedisEnterpriseResponseIdentity;
 
-export interface RedisEnterpriseUpdateResponse {
+export interface UpdateRedisEnterpriseResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -2988,35 +2987,35 @@ export interface RedisEnterpriseUpdateResponse {
   /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
   type?: string;
   /** Resource tags. */
-  tags?: RedisEnterpriseUpdateResponseTagsMap;
+  tags?: UpdateRedisEnterpriseResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   kind?: Kind;
   /** The SKU to create, which affects price, performance, and features. */
   sku: Sku;
   /** The Availability Zones where this cluster will be deployed. */
-  zones?: RedisEnterpriseUpdateResponseZonesList;
+  zones?: UpdateRedisEnterpriseResponseZonesList;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: RedisEnterpriseCreateResponseIdentity;
+  identity?: CreateRedisEnterpriseResponseIdentity;
   /** Other properties of the cluster. */
   properties?: ClusterCreateProperties;
 }
-export const RedisEnterpriseUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateRedisEnterpriseResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
-    tags: S.optional(RedisEnterpriseUpdateResponseTagsMap),
+    tags: S.optional(UpdateRedisEnterpriseResponseTagsMap),
     location: S.String,
     kind: S.optional(Kind),
     sku: Sku,
-    zones: S.optional(RedisEnterpriseUpdateResponseZonesList),
-    identity: S.optional(RedisEnterpriseCreateResponseIdentity),
+    zones: S.optional(UpdateRedisEnterpriseResponseZonesList),
+    identity: S.optional(CreateRedisEnterpriseResponseIdentity),
     properties: S.optional(ClusterCreateProperties),
   }),
 ).annotate({
-  identifier: "RedisEnterpriseUpdateResponse",
-}) as any as S.Schema<RedisEnterpriseUpdateResponse>;
+  identifier: "UpdateRedisEnterpriseResponse",
+}) as any as S.Schema<UpdateRedisEnterpriseResponse>;
 
 export type AccessPolicyAssignmentCreateUpdateError = AzureOpError;
 /** Creates/Updates a particular access policy assignment for a database */
@@ -3033,106 +3032,31 @@ export const AccessPolicyAssignmentCreateUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type AccessPolicyAssignmentDeleteError = AzureOpError;
-/** Deletes a single access policy assignment. */
-export const AccessPolicyAssignmentDelete: API.OperationMethod<
-  AccessPolicyAssignmentDeleteRequest,
-  AccessPolicyAssignmentDeleteResponse,
-  AccessPolicyAssignmentDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccessPolicyAssignmentDeleteRequest,
-  output: AccessPolicyAssignmentDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AccessPolicyAssignmentGetError = AzureOpError;
-/** Gets information about access policy assignment for database. */
-export const AccessPolicyAssignmentGet: API.OperationMethod<
-  AccessPolicyAssignmentGetRequest,
-  AccessPolicyAssignmentGetResponse,
-  AccessPolicyAssignmentGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccessPolicyAssignmentGetRequest,
-  output: AccessPolicyAssignmentGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AccessPolicyAssignmentList2Error = AzureOpError;
-/** Gets all access policy assignments.. */
-export const AccessPolicyAssignmentList2: API.OperationMethod<
-  AccessPolicyAssignmentListRequest,
-  AccessPolicyAssignmentList,
-  AccessPolicyAssignmentList2Error,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccessPolicyAssignmentListRequest,
-  output: AccessPolicyAssignmentList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DatabasesCreateError = AzureOpError;
+export type CreateDatabaseError = AzureOpError;
 /** Creates a database */
-export const DatabasesCreate: API.OperationMethod<
-  DatabasesCreateRequest,
-  DatabasesCreateResponse,
-  DatabasesCreateError,
+export const CreateDatabase: API.OperationMethod<
+  CreateDatabaseRequest,
+  CreateDatabaseResponse,
+  CreateDatabaseError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DatabasesCreateRequest,
-  output: DatabasesCreateResponse,
+  input: CreateDatabaseRequest,
+  output: CreateDatabaseResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DatabasesDeleteError = AzureOpError;
-/** Deletes a single database */
-export const DatabasesDelete: API.OperationMethod<
-  DatabasesDeleteRequest,
-  DatabasesDeleteResponse,
-  DatabasesDeleteError,
+export type CreateRedisEnterpriseError = AzureOpError;
+/** Creates or updates an existing (overwrite/recreate, with potential downtime) cache cluster */
+export const CreateRedisEnterprise: API.OperationMethod<
+  CreateRedisEnterpriseRequest,
+  CreateRedisEnterpriseResponse,
+  CreateRedisEnterpriseError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DatabasesDeleteRequest,
-  output: DatabasesDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DatabasesExportError = AzureOpError;
-/** Exports a database file from target database. */
-export const DatabasesExport: API.OperationMethod<
-  DatabasesExportRequest,
-  DatabasesExportResponse,
-  DatabasesExportError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DatabasesExportRequest,
-  output: DatabasesExportResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DatabasesFlushError = AzureOpError;
-/** Flushes all the keys in this database and also from its linked databases. */
-export const DatabasesFlush: API.OperationMethod<
-  DatabasesFlushRequest,
-  DatabasesFlushResponse,
-  DatabasesFlushError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DatabasesFlushRequest,
-  output: DatabasesFlushResponse,
+  input: CreateRedisEnterpriseRequest,
+  output: CreateRedisEnterpriseResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -3153,111 +3077,6 @@ export const DatabasesForceLinkToReplicationGroup: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DatabasesForceUnlinkError = AzureOpError;
-/** Forcibly removes the link to the specified database resource. */
-export const DatabasesForceUnlink: API.OperationMethod<
-  DatabasesForceUnlinkRequest,
-  DatabasesForceUnlinkResponse,
-  DatabasesForceUnlinkError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DatabasesForceUnlinkRequest,
-  output: DatabasesForceUnlinkResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DatabasesGetError = AzureOpError;
-/** Gets information about a database in a Redis Enterprise cluster. */
-export const DatabasesGet: API.OperationMethod<
-  DatabasesGetRequest,
-  DatabasesGetResponse,
-  DatabasesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DatabasesGetRequest,
-  output: DatabasesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DatabasesImportError = AzureOpError;
-/** Imports database files to target database. */
-export const DatabasesImport: API.OperationMethod<
-  DatabasesImportRequest,
-  DatabasesImportResponse,
-  DatabasesImportError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DatabasesImportRequest,
-  output: DatabasesImportResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DatabasesListByClusterError = AzureOpError;
-/** Gets all databases in the specified Redis Enterprise cluster. */
-export const DatabasesListByCluster: API.OperationMethod<
-  DatabasesListByClusterRequest,
-  DatabaseList,
-  DatabasesListByClusterError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DatabasesListByClusterRequest,
-  output: DatabaseList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DatabasesListKeysError = AzureOpError;
-/** Retrieves the access keys for the Redis Enterprise database. */
-export const DatabasesListKeys: API.OperationMethod<
-  DatabasesListKeysRequest,
-  AccessKeys,
-  DatabasesListKeysError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DatabasesListKeysRequest,
-  output: AccessKeys,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DatabasesRegenerateKeyError = AzureOpError;
-/** Regenerates the Redis Enterprise database's access keys. */
-export const DatabasesRegenerateKey: API.OperationMethod<
-  DatabasesRegenerateKeyRequest,
-  AccessKeys,
-  DatabasesRegenerateKeyError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DatabasesRegenerateKeyRequest,
-  output: AccessKeys,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DatabasesUpdateError = AzureOpError;
-/** Updates a database */
-export const DatabasesUpdate: API.OperationMethod<
-  DatabasesUpdateRequest,
-  DatabasesUpdateResponse,
-  DatabasesUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DatabasesUpdateRequest,
-  output: DatabasesUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type DatabasesUpgradeDBRedisVersionError = AzureOpError;
 /** Upgrades the database Redis version to the latest available. */
 export const DatabasesUpgradeDBRedisVersion: API.OperationMethod<
@@ -3273,211 +3092,391 @@ export const DatabasesUpgradeDBRedisVersion: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type OperationsListError = AzureOpError;
-/** Lists all of the available REST API operations of the Microsoft.Cache provider. */
-export const OperationsList: API.OperationMethod<
-  OperationsListRequest,
-  OperationsListResponse,
-  OperationsListError,
+export type DeleteAccessPolicyAssignmentError = AzureOpError;
+/** Deletes a single access policy assignment. */
+export const DeleteAccessPolicyAssignment: API.OperationMethod<
+  DeleteAccessPolicyAssignmentRequest,
+  DeleteAccessPolicyAssignmentResponse,
+  DeleteAccessPolicyAssignmentError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OperationsListRequest,
-  output: OperationsListResponse,
+  input: DeleteAccessPolicyAssignmentRequest,
+  output: DeleteAccessPolicyAssignmentResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type OperationsStatusGetError = AzureOpError;
-/** Gets the status of operation. */
-export const OperationsStatusGet: API.OperationMethod<
-  OperationsStatusGetRequest,
-  OperationStatus,
-  OperationsStatusGetError,
+export type DeleteDatabaseError = AzureOpError;
+/** Deletes a single database */
+export const DeleteDatabase: API.OperationMethod<
+  DeleteDatabaseRequest,
+  DeleteDatabaseResponse,
+  DeleteDatabaseError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OperationsStatusGetRequest,
+  input: DeleteDatabaseRequest,
+  output: DeleteDatabaseResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeletePrivateEndpointConnectionError = AzureOpError;
+/** Deletes the specified private endpoint connection associated with the Redis Enterprise cluster. */
+export const DeletePrivateEndpointConnection: API.OperationMethod<
+  DeletePrivateEndpointConnectionRequest,
+  DeletePrivateEndpointConnectionResponse,
+  DeletePrivateEndpointConnectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeletePrivateEndpointConnectionRequest,
+  output: DeletePrivateEndpointConnectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteRedisEnterpriseError = AzureOpError;
+/** Deletes a Redis Enterprise cache cluster. */
+export const DeleteRedisEnterprise: API.OperationMethod<
+  DeleteRedisEnterpriseRequest,
+  DeleteRedisEnterpriseResponse,
+  DeleteRedisEnterpriseError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteRedisEnterpriseRequest,
+  output: DeleteRedisEnterpriseResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ExportDatabaseError = AzureOpError;
+/** Exports a database file from target database. */
+export const ExportDatabase: API.OperationMethod<
+  ExportDatabaseRequest,
+  ExportDatabaseResponse,
+  ExportDatabaseError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ExportDatabaseRequest,
+  output: ExportDatabaseResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type FlushDatabaseError = AzureOpError;
+/** Flushes all the keys in this database and also from its linked databases. */
+export const FlushDatabase: API.OperationMethod<
+  FlushDatabaseRequest,
+  FlushDatabaseResponse,
+  FlushDatabaseError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: FlushDatabaseRequest,
+  output: FlushDatabaseResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetAccessPolicyAssignmentError = AzureOpError;
+/** Gets information about access policy assignment for database. */
+export const GetAccessPolicyAssignment: API.OperationMethod<
+  GetAccessPolicyAssignmentRequest,
+  GetAccessPolicyAssignmentResponse,
+  GetAccessPolicyAssignmentError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetAccessPolicyAssignmentRequest,
+  output: GetAccessPolicyAssignmentResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDatabaseError = AzureOpError;
+/** Gets information about a database in a Redis Enterprise cluster. */
+export const GetDatabase: API.OperationMethod<
+  GetDatabaseRequest,
+  GetDatabaseResponse,
+  GetDatabaseError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDatabaseRequest,
+  output: GetDatabaseResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetOperationsStatusError = AzureOpError;
+/** Gets the status of operation. */
+export const GetOperationsStatus: API.OperationMethod<
+  GetOperationsStatusRequest,
+  OperationStatus,
+  GetOperationsStatusError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetOperationsStatusRequest,
   output: OperationStatus,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type PrivateEndpointConnectionsDeleteError = AzureOpError;
-/** Deletes the specified private endpoint connection associated with the Redis Enterprise cluster. */
-export const PrivateEndpointConnectionsDelete: API.OperationMethod<
-  PrivateEndpointConnectionsDeleteRequest,
-  PrivateEndpointConnectionsDeleteResponse,
-  PrivateEndpointConnectionsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateEndpointConnectionsDeleteRequest,
-  output: PrivateEndpointConnectionsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateEndpointConnectionsGetError = AzureOpError;
+export type GetPrivateEndpointConnectionError = AzureOpError;
 /** Gets the specified private endpoint connection associated with the Redis Enterprise cluster. */
-export const PrivateEndpointConnectionsGet: API.OperationMethod<
-  PrivateEndpointConnectionsGetRequest,
-  PrivateEndpointConnectionsGetResponse,
-  PrivateEndpointConnectionsGetError,
+export const GetPrivateEndpointConnection: API.OperationMethod<
+  GetPrivateEndpointConnectionRequest,
+  GetPrivateEndpointConnectionResponse,
+  GetPrivateEndpointConnectionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PrivateEndpointConnectionsGetRequest,
-  output: PrivateEndpointConnectionsGetResponse,
+  input: GetPrivateEndpointConnectionRequest,
+  output: GetPrivateEndpointConnectionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type PrivateEndpointConnectionsListError = AzureOpError;
-/** Lists all the private endpoint connections associated with the Redis Enterprise cluster. */
-export const PrivateEndpointConnectionsList: API.OperationMethod<
-  PrivateEndpointConnectionsListRequest,
-  PrivateEndpointConnectionsListResponse,
-  PrivateEndpointConnectionsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateEndpointConnectionsListRequest,
-  output: PrivateEndpointConnectionsListResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateEndpointConnectionsPutError = AzureOpError;
-/** Updates the state of the specified private endpoint connection associated with the Redis Enterprise cluster. */
-export const PrivateEndpointConnectionsPut: API.OperationMethod<
-  PrivateEndpointConnectionsPutRequest,
-  PrivateEndpointConnectionsPutResponse,
-  PrivateEndpointConnectionsPutError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateEndpointConnectionsPutRequest,
-  output: PrivateEndpointConnectionsPutResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateLinkResourcesListByClusterError = AzureOpError;
-/** Gets the private link resources that need to be created for a Redis Enterprise cluster. */
-export const PrivateLinkResourcesListByCluster: API.OperationMethod<
-  PrivateLinkResourcesListByClusterRequest,
-  PrivateLinkResourcesListByClusterResponse,
-  PrivateLinkResourcesListByClusterError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateLinkResourcesListByClusterRequest,
-  output: PrivateLinkResourcesListByClusterResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RedisEnterpriseCreateError = AzureOpError;
-/** Creates or updates an existing (overwrite/recreate, with potential downtime) cache cluster */
-export const RedisEnterpriseCreate: API.OperationMethod<
-  RedisEnterpriseCreateRequest,
-  RedisEnterpriseCreateResponse,
-  RedisEnterpriseCreateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RedisEnterpriseCreateRequest,
-  output: RedisEnterpriseCreateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RedisEnterpriseDeleteError = AzureOpError;
-/** Deletes a Redis Enterprise cache cluster. */
-export const RedisEnterpriseDelete: API.OperationMethod<
-  RedisEnterpriseDeleteRequest,
-  RedisEnterpriseDeleteResponse,
-  RedisEnterpriseDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RedisEnterpriseDeleteRequest,
-  output: RedisEnterpriseDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RedisEnterpriseGetError = AzureOpError;
+export type GetRedisEnterpriseError = AzureOpError;
 /** Gets information about a Redis Enterprise cluster */
-export const RedisEnterpriseGet: API.OperationMethod<
-  RedisEnterpriseGetRequest,
-  RedisEnterpriseGetResponse,
-  RedisEnterpriseGetError,
+export const GetRedisEnterprise: API.OperationMethod<
+  GetRedisEnterpriseRequest,
+  GetRedisEnterpriseResponse,
+  GetRedisEnterpriseError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: RedisEnterpriseGetRequest,
-  output: RedisEnterpriseGetResponse,
+  input: GetRedisEnterpriseRequest,
+  output: GetRedisEnterpriseResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type RedisEnterpriseListError = AzureOpError;
+export type ImportDatabaseError = AzureOpError;
+/** Imports database files to target database. */
+export const ImportDatabase: API.OperationMethod<
+  ImportDatabaseRequest,
+  ImportDatabaseResponse,
+  ImportDatabaseError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ImportDatabaseRequest,
+  output: ImportDatabaseResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListAccessPolicyAssignmentError = AzureOpError;
+/** Gets all access policy assignments.. */
+export const ListAccessPolicyAssignment: API.OperationMethod<
+  ListAccessPolicyAssignmentRequest,
+  AccessPolicyAssignmentList,
+  ListAccessPolicyAssignmentError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListAccessPolicyAssignmentRequest,
+  output: AccessPolicyAssignmentList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDatabaseByClusterError = AzureOpError;
+/** Gets all databases in the specified Redis Enterprise cluster. */
+export const ListDatabaseByCluster: API.OperationMethod<
+  ListDatabaseByClusterRequest,
+  DatabaseList,
+  ListDatabaseByClusterError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDatabaseByClusterRequest,
+  output: DatabaseList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDatabaseKeysError = AzureOpError;
+/** Retrieves the access keys for the Redis Enterprise database. */
+export const ListDatabaseKeys: API.OperationMethod<
+  ListDatabaseKeysRequest,
+  AccessKeys,
+  ListDatabaseKeysError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDatabaseKeysRequest,
+  output: AccessKeys,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListOperationsError = AzureOpError;
+/** Lists all of the available REST API operations of the Microsoft.Cache provider. */
+export const ListOperations: API.OperationMethod<
+  ListOperationsRequest,
+  ListOperationsResponse,
+  ListOperationsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListOperationsRequest,
+  output: ListOperationsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListPrivateEndpointConnectionsError = AzureOpError;
+/** Lists all the private endpoint connections associated with the Redis Enterprise cluster. */
+export const ListPrivateEndpointConnections: API.OperationMethod<
+  ListPrivateEndpointConnectionsRequest,
+  ListPrivateEndpointConnectionsResponse,
+  ListPrivateEndpointConnectionsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListPrivateEndpointConnectionsRequest,
+  output: ListPrivateEndpointConnectionsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListPrivateLinkResourceByClusterError = AzureOpError;
+/** Gets the private link resources that need to be created for a Redis Enterprise cluster. */
+export const ListPrivateLinkResourceByCluster: API.OperationMethod<
+  ListPrivateLinkResourceByClusterRequest,
+  ListPrivateLinkResourceByClusterResponse,
+  ListPrivateLinkResourceByClusterError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListPrivateLinkResourceByClusterRequest,
+  output: ListPrivateLinkResourceByClusterResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListRedisEnterpriseError = AzureOpError;
 /** Lists all Redis Enterprise clusters in the specified subscription. */
-export const RedisEnterpriseList: API.OperationMethod<
-  RedisEnterpriseListRequest,
+export const ListRedisEnterprise: API.OperationMethod<
+  ListRedisEnterpriseRequest,
   ClusterList,
-  RedisEnterpriseListError,
+  ListRedisEnterpriseError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: RedisEnterpriseListRequest,
+  input: ListRedisEnterpriseRequest,
   output: ClusterList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type RedisEnterpriseListByResourceGroupError = AzureOpError;
+export type ListRedisEnterpriseByResourceGroupError = AzureOpError;
 /** Lists all Redis Enterprise clusters in a resource group. */
-export const RedisEnterpriseListByResourceGroup: API.OperationMethod<
-  RedisEnterpriseListByResourceGroupRequest,
+export const ListRedisEnterpriseByResourceGroup: API.OperationMethod<
+  ListRedisEnterpriseByResourceGroupRequest,
   ClusterList,
-  RedisEnterpriseListByResourceGroupError,
+  ListRedisEnterpriseByResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: RedisEnterpriseListByResourceGroupRequest,
+  input: ListRedisEnterpriseByResourceGroupRequest,
   output: ClusterList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type RedisEnterpriseListSkusForScalingError = AzureOpError;
+export type ListRedisEnterpriseSkusForScalingError = AzureOpError;
 /** Lists the available SKUs for scaling the Redis Enterprise cluster. */
-export const RedisEnterpriseListSkusForScaling: API.OperationMethod<
-  RedisEnterpriseListSkusForScalingRequest,
+export const ListRedisEnterpriseSkusForScaling: API.OperationMethod<
+  ListRedisEnterpriseSkusForScalingRequest,
   SkuDetailsList,
-  RedisEnterpriseListSkusForScalingError,
+  ListRedisEnterpriseSkusForScalingError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: RedisEnterpriseListSkusForScalingRequest,
+  input: ListRedisEnterpriseSkusForScalingRequest,
   output: SkuDetailsList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type RedisEnterpriseUpdateError = AzureOpError;
-/** Updates an existing Redis Enterprise cluster */
-export const RedisEnterpriseUpdate: API.OperationMethod<
-  RedisEnterpriseUpdateRequest,
-  RedisEnterpriseUpdateResponse,
-  RedisEnterpriseUpdateError,
+export type PutPrivateEndpointConnectionError = AzureOpError;
+/** Updates the state of the specified private endpoint connection associated with the Redis Enterprise cluster. */
+export const PutPrivateEndpointConnection: API.OperationMethod<
+  PutPrivateEndpointConnectionRequest,
+  PutPrivateEndpointConnectionResponse,
+  PutPrivateEndpointConnectionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: RedisEnterpriseUpdateRequest,
-  output: RedisEnterpriseUpdateResponse,
+  input: PutPrivateEndpointConnectionRequest,
+  output: PutPrivateEndpointConnectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RegenerateDatabaseKeyError = AzureOpError;
+/** Regenerates the Redis Enterprise database's access keys. */
+export const RegenerateDatabaseKey: API.OperationMethod<
+  RegenerateDatabaseKeyRequest,
+  AccessKeys,
+  RegenerateDatabaseKeyError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RegenerateDatabaseKeyRequest,
+  output: AccessKeys,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UnlinkDatabasesForceError = AzureOpError;
+/** Forcibly removes the link to the specified database resource. */
+export const UnlinkDatabasesForce: API.OperationMethod<
+  UnlinkDatabasesForceRequest,
+  UnlinkDatabasesForceResponse,
+  UnlinkDatabasesForceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UnlinkDatabasesForceRequest,
+  output: UnlinkDatabasesForceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateDatabaseError = AzureOpError;
+/** Updates a database */
+export const UpdateDatabase: API.OperationMethod<
+  UpdateDatabaseRequest,
+  UpdateDatabaseResponse,
+  UpdateDatabaseError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateDatabaseRequest,
+  output: UpdateDatabaseResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateRedisEnterpriseError = AzureOpError;
+/** Updates an existing Redis Enterprise cluster */
+export const UpdateRedisEnterprise: API.OperationMethod<
+  UpdateRedisEnterpriseRequest,
+  UpdateRedisEnterpriseResponse,
+  UpdateRedisEnterpriseError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateRedisEnterpriseRequest,
+  output: UpdateRedisEnterpriseResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

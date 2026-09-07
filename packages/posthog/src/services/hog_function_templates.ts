@@ -39,38 +39,25 @@ export class NotFound
     [{ status: 404 }],
   ) {}
 
-export interface HogFunctionTemplatesListRequest {
+export interface GetHogFunctionTemplateRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
-  /** Number of results to return per page. */
-  limit?: number;
-  /** The initial index from which to return the results. */
-  offset?: number;
-  /** Filter to a specific template by its template_id. Deprecated templates are excluded from list results; use the retrieve endpoint to look up a template by ID regardless of status. */
-  template_id?: string;
-  /** Filter by template type (e.g. destination, email, sms_provider, broadcast). Defaults to destination if neither type nor types is provided. */
-  type?: string;
-  /** Comma-separated list of template types to include (e.g. destination,email,sms_provider). */
-  types?: string;
+  template_id: string;
 }
-export const HogFunctionTemplatesListRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetHogFunctionTemplateRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    offset: S.optional(S.Number.pipe(T.Query())),
-    template_id: S.optional(S.String.pipe(T.Query())),
-    type: S.optional(S.String.pipe(T.Query())),
-    types: S.optional(S.String.pipe(T.Query())),
+    template_id: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/api/projects/{project_id}/hog_function_templates/",
+      uri: "/api/projects/{project_id}/hog_function_templates/{template_id}/",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "HogFunctionTemplatesListRequest",
-}) as any as S.Schema<HogFunctionTemplatesListRequest>;
+  identifier: "GetHogFunctionTemplateRequest",
+}) as any as S.Schema<GetHogFunctionTemplateRequest>;
 
 export interface HogFunctionMappingTemplate {
   /** Name of this mapping template. */
@@ -159,6 +146,39 @@ export const HogFunctionTemplate = /*@__PURE__*/ S.suspend(() =>
   identifier: "HogFunctionTemplate",
 }) as any as S.Schema<HogFunctionTemplate>;
 
+export interface ListHogFunctionTemplatesRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** Number of results to return per page. */
+  limit?: number;
+  /** The initial index from which to return the results. */
+  offset?: number;
+  /** Filter to a specific template by its template_id. Deprecated templates are excluded from list results; use the retrieve endpoint to look up a template by ID regardless of status. */
+  template_id?: string;
+  /** Filter by template type (e.g. destination, email, sms_provider, broadcast). Defaults to destination if neither type nor types is provided. */
+  type?: string;
+  /** Comma-separated list of template types to include (e.g. destination,email,sms_provider). */
+  types?: string;
+}
+export const ListHogFunctionTemplatesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    offset: S.optional(S.Number.pipe(T.Query())),
+    template_id: S.optional(S.String.pipe(T.Query())),
+    type: S.optional(S.String.pipe(T.Query())),
+    types: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/hog_function_templates/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListHogFunctionTemplatesRequest",
+}) as any as S.Schema<ListHogFunctionTemplatesRequest>;
+
 export type PaginatedHogFunctionTemplateListResultsList =
   Array<HogFunctionTemplate>;
 export const PaginatedHogFunctionTemplateListResultsList =
@@ -183,27 +203,7 @@ export const PaginatedHogFunctionTemplateList = /*@__PURE__*/ S.suspend(() =>
   identifier: "PaginatedHogFunctionTemplateList",
 }) as any as S.Schema<PaginatedHogFunctionTemplateList>;
 
-export interface HogFunctionTemplatesRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  template_id: string;
-}
-export const HogFunctionTemplatesRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    template_id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/hog_function_templates/{template_id}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "HogFunctionTemplatesRetrieveRequest",
-}) as any as S.Schema<HogFunctionTemplatesRetrieveRequest>;
-
-export interface PublicHogFunctionTemplatesListRequest {
+export interface ListPublicHogFunctionTemplatesRequest {
   /** Number of results to return per page. */
   limit?: number;
   /** The initial index from which to return the results. */
@@ -215,7 +215,7 @@ export interface PublicHogFunctionTemplatesListRequest {
   /** Comma-separated list of template types to include (e.g. destination,email,sms_provider). */
   types?: string;
 }
-export const PublicHogFunctionTemplatesListRequest = /*@__PURE__*/ S.suspend(
+export const ListPublicHogFunctionTemplatesRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       limit: S.optional(S.Number.pipe(T.Query())),
@@ -231,55 +231,52 @@ export const PublicHogFunctionTemplatesListRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "PublicHogFunctionTemplatesListRequest",
-}) as any as S.Schema<PublicHogFunctionTemplatesListRequest>;
+  identifier: "ListPublicHogFunctionTemplatesRequest",
+}) as any as S.Schema<ListPublicHogFunctionTemplatesRequest>;
 
-export type HogFunctionTemplatesListError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-export const hogFunctionTemplatesList: API.OperationMethod<
-  HogFunctionTemplatesListRequest,
-  PaginatedHogFunctionTemplateList,
-  HogFunctionTemplatesListError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: HogFunctionTemplatesListRequest,
-  output: PaginatedHogFunctionTemplateList,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type HogFunctionTemplatesRetrieveError =
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-export const hogFunctionTemplatesRetrieve: API.OperationMethod<
-  HogFunctionTemplatesRetrieveRequest,
+export type GetHogFunctionTemplateError = Forbidden | NotFound | PosthogOpError;
+export const getHogFunctionTemplate: API.OperationMethod<
+  GetHogFunctionTemplateRequest,
   HogFunctionTemplate,
-  HogFunctionTemplatesRetrieveError,
+  GetHogFunctionTemplateError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: HogFunctionTemplatesRetrieveRequest,
+  input: GetHogFunctionTemplateRequest,
   output: HogFunctionTemplate,
   errors: [Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type PublicHogFunctionTemplatesListError =
+export type ListHogFunctionTemplatesError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+export const listHogFunctionTemplates: API.OperationMethod<
+  ListHogFunctionTemplatesRequest,
+  PaginatedHogFunctionTemplateList,
+  ListHogFunctionTemplatesError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListHogFunctionTemplatesRequest,
+  output: PaginatedHogFunctionTemplateList,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListPublicHogFunctionTemplatesError =
   | BadRequest
   | Forbidden
   | PosthogOpError;
-export const publicHogFunctionTemplatesList: API.OperationMethod<
-  PublicHogFunctionTemplatesListRequest,
+export const listPublicHogFunctionTemplates: API.OperationMethod<
+  ListPublicHogFunctionTemplatesRequest,
   PaginatedHogFunctionTemplateList,
-  PublicHogFunctionTemplatesListError,
+  ListPublicHogFunctionTemplatesError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PublicHogFunctionTemplatesListRequest,
+  input: ListPublicHogFunctionTemplatesRequest,
   output: PaginatedHogFunctionTemplateList,
   errors: [BadRequest, Forbidden],
   protocol: PosthogProtocol,

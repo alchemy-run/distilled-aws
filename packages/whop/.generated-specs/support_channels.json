@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.whop.support_channels#SupportChannelView": {
@@ -490,7 +491,7 @@
         "smithy.api#documentation": "Create support channel\n\n[Legacy API — https://docs.whop.com/api-reference]\n\nOpen a new support channel between a company team member and a customer. Returns the existing channel if one already exists for that user.\n\nRequired permissions:\n - `support_chat:create`"
       }
     },
-    "com.whop.support_channels#RetrieveSupportChannelRequest": {
+    "com.whop.support_channels#GetSupportChannelRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -506,10 +507,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.whop.support_channels#RetrieveSupportChannel": {
+    "com.whop.support_channels#GetSupportChannel": {
       "type": "operation",
       "input": {
-        "target": "com.whop.support_channels#RetrieveSupportChannelRequest"
+        "target": "com.whop.support_channels#GetSupportChannelRequest"
       },
       "output": {
         "target": "com.whop.support_channels#SupportChannel"
@@ -600,7 +601,7 @@
           "target": "com.whop.support_channels#CreateSupportChannel"
         },
         {
-          "target": "com.whop.support_channels#RetrieveSupportChannel"
+          "target": "com.whop.support_channels#GetSupportChannel"
         }
       ],
       "traits": {

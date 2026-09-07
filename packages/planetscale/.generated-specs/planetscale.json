@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.planetscale.api#ListOrganizationsRequest": {
@@ -1268,7 +1269,6 @@
           "target": "smithy.api#Integer",
           "traits": {
             "smithy.api#documentation": "The amount of storage in bytes",
-            "smithy.api#required": {},
             "com.distilled.openapi#nullable": {}
           }
         },
@@ -1297,7 +1297,6 @@
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "The provider of the cluster SKU (nil, AWS or GCP)",
-            "smithy.api#required": {},
             "com.distilled.openapi#nullable": {}
           }
         },
@@ -1312,7 +1311,13 @@
           "target": "smithy.api#Double",
           "traits": {
             "smithy.api#documentation": "The default vtgate rate for the cluster SKU",
-            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "default_neki_router": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The recommended Neki router size for the cluster SKU",
             "com.distilled.openapi#nullable": {}
           }
         },
@@ -4664,6 +4669,12 @@
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Restore from a point-in-time recovery timestamp (e.g. 2023-01-01T00:00:00Z). Available only for PostgreSQL databases."
+          }
+        },
+        "replicas": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "For PostgreSQL backup restores and point-in-time recovery, the number of additional replicas from 0 to 8, subject to the target cluster size. 0 creates a single-node branch. If omitted, the target cluster size's minimum is used."
           }
         },
         "seed_data": {
@@ -17127,6 +17138,13 @@
             "smithy.api#required": {}
           }
         },
+        "external": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If the keyspace uses an external datasource",
+            "smithy.api#required": {}
+          }
+        },
         "replicas": {
           "target": "smithy.api#Integer",
           "traits": {
@@ -17393,6 +17411,13 @@
           "target": "smithy.api#Boolean",
           "traits": {
             "smithy.api#documentation": "If the keyspace is sharded",
+            "smithy.api#required": {}
+          }
+        },
+        "external": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If the keyspace uses an external datasource",
             "smithy.api#required": {}
           }
         },
@@ -22617,6 +22642,13 @@
             "smithy.api#required": {}
           }
         },
+        "read_only_region": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether or not the password is scoped to a read-only region",
+            "smithy.api#required": {}
+          }
+        },
         "renewable": {
           "target": "smithy.api#Boolean",
           "traits": {
@@ -22925,6 +22957,13 @@
           "target": "smithy.api#Boolean",
           "traits": {
             "smithy.api#documentation": "Whether or not the password is for a read replica",
+            "smithy.api#required": {}
+          }
+        },
+        "read_only_region": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether or not the password is scoped to a read-only region",
             "smithy.api#required": {}
           }
         },
@@ -23370,6 +23409,13 @@
           "target": "smithy.api#Boolean",
           "traits": {
             "smithy.api#documentation": "Whether or not the password is for a read replica",
+            "smithy.api#required": {}
+          }
+        },
+        "read_only_region": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether or not the password is scoped to a read-only region",
             "smithy.api#required": {}
           }
         },
@@ -36047,7 +36093,7 @@
         "smithy.api#documentation": "Get a deploy request"
       }
     },
-    "com.planetscale.api#CloseDeployRequestRequestState": {
+    "com.planetscale.api#DeployCloseRequestRequestState": {
       "type": "enum",
       "members": {
         "CLOSED": {
@@ -36061,7 +36107,7 @@
         "smithy.api#documentation": "The deploy request will be updated to this state"
       }
     },
-    "com.planetscale.api#CloseDeployRequestRequest": {
+    "com.planetscale.api#DeployCloseRequestRequest": {
       "type": "structure",
       "members": {
         "organization": {
@@ -36089,7 +36135,7 @@
           }
         },
         "state": {
-          "target": "com.planetscale.api#CloseDeployRequestRequestState",
+          "target": "com.planetscale.api#DeployCloseRequestRequestState",
           "traits": {
             "smithy.api#documentation": "The deploy request will be updated to this state"
           }
@@ -36099,10 +36145,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.planetscale.api#CloseDeployRequest": {
+    "com.planetscale.api#DeployCloseRequest": {
       "type": "operation",
       "input": {
-        "target": "com.planetscale.api#CloseDeployRequestRequest"
+        "target": "com.planetscale.api#DeployCloseRequestRequest"
       },
       "output": {
         "target": "com.planetscale.api#DatabaseDeployRequest"
@@ -36124,7 +36170,7 @@
         "smithy.api#documentation": "Close a deploy request"
       }
     },
-    "com.planetscale.api#CompleteGatedDeployRequestRequest": {
+    "com.planetscale.api#DeployCompleteGatedRequestRequest": {
       "type": "structure",
       "members": {
         "organization": {
@@ -36156,10 +36202,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.planetscale.api#CompleteGatedDeployRequest": {
+    "com.planetscale.api#DeployCompleteGatedRequest": {
       "type": "operation",
       "input": {
-        "target": "com.planetscale.api#CompleteGatedDeployRequestRequest"
+        "target": "com.planetscale.api#DeployCompleteGatedRequestRequest"
       },
       "output": {
         "target": "com.planetscale.api#DatabaseDeployRequest"
@@ -36364,7 +36410,7 @@
         "smithy.api#documentation": "Cancel a queued deploy request"
       }
     },
-    "com.planetscale.api#CompleteErroredDeployRequest": {
+    "com.planetscale.api#DeployCompleteErroredRequest": {
       "type": "structure",
       "members": {
         "organization": {
@@ -36396,10 +36442,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.planetscale.api#CompleteErroredDeploy": {
+    "com.planetscale.api#DeployCompleteErrored": {
       "type": "operation",
       "input": {
-        "target": "com.planetscale.api#CompleteErroredDeployRequest"
+        "target": "com.planetscale.api#DeployCompleteErroredRequest"
       },
       "output": {
         "target": "com.planetscale.api#DatabaseDeployRequest"
@@ -36421,7 +36467,7 @@
         "smithy.api#documentation": "Complete an errored deploy"
       }
     },
-    "com.planetscale.api#QueueDeployRequestRequest": {
+    "com.planetscale.api#DeployQueueRequestRequest": {
       "type": "structure",
       "members": {
         "organization": {
@@ -36459,10 +36505,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.planetscale.api#QueueDeployRequest": {
+    "com.planetscale.api#DeployQueueRequest": {
       "type": "operation",
       "input": {
-        "target": "com.planetscale.api#QueueDeployRequestRequest"
+        "target": "com.planetscale.api#DeployQueueRequestRequest"
       },
       "output": {
         "target": "com.planetscale.api#DatabaseDeployRequest"
@@ -37621,7 +37667,7 @@
         "smithy.api#documentation": "Get a deployment\n\nGet the deployment for a deploy request"
       }
     },
-    "com.planetscale.api#ForceCutoverDeployRequestRequest": {
+    "com.planetscale.api#DeployForceCutoverRequestRequest": {
       "type": "structure",
       "members": {
         "organization": {
@@ -37653,10 +37699,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.planetscale.api#ForceCutoverDeployRequest": {
+    "com.planetscale.api#DeployForceCutoverRequest": {
       "type": "operation",
       "input": {
-        "target": "com.planetscale.api#ForceCutoverDeployRequestRequest"
+        "target": "com.planetscale.api#DeployForceCutoverRequestRequest"
       },
       "output": {
         "target": "com.planetscale.api#DatabaseDeployRequest"
@@ -38333,7 +38379,7 @@
         }
       }
     },
-    "com.planetscale.api#ReviewDeployRequestRequestState": {
+    "com.planetscale.api#DeployReviewRequestRequestState": {
       "type": "enum",
       "members": {
         "COMMENTED": {
@@ -38353,7 +38399,7 @@
         "smithy.api#documentation": "Whether the review is a comment or approval. Service tokens must have corresponding access (either `approve_deploy_request` or `review_deploy_request`)"
       }
     },
-    "com.planetscale.api#ReviewDeployRequestRequest": {
+    "com.planetscale.api#DeployReviewRequestRequest": {
       "type": "structure",
       "members": {
         "organization": {
@@ -38381,7 +38427,7 @@
           }
         },
         "state": {
-          "target": "com.planetscale.api#ReviewDeployRequestRequestState",
+          "target": "com.planetscale.api#DeployReviewRequestRequestState",
           "traits": {
             "smithy.api#documentation": "Whether the review is a comment or approval. Service tokens must have corresponding access (either `approve_deploy_request` or `review_deploy_request`)"
           }
@@ -38498,10 +38544,10 @@
       },
       "traits": {}
     },
-    "com.planetscale.api#ReviewDeployRequest": {
+    "com.planetscale.api#DeployReviewRequest": {
       "type": "operation",
       "input": {
-        "target": "com.planetscale.api#ReviewDeployRequestRequest"
+        "target": "com.planetscale.api#DeployReviewRequestRequest"
       },
       "output": {
         "target": "com.planetscale.api#DeployRequestReview"
@@ -38580,7 +38626,7 @@
         "smithy.api#documentation": "Skip revert period\n\nSkips the revert period for a deploy request"
       }
     },
-    "com.planetscale.api#CheckDeployRequestStorageRequest": {
+    "com.planetscale.api#DeployCheckRequestStorageRequest": {
       "type": "structure",
       "members": {
         "organization": {
@@ -38612,7 +38658,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.planetscale.api#CheckDeployRequestStorageResponseStorageReportValueValue": {
+    "com.planetscale.api#DeployCheckRequestStorageResponseStorageReportValueValue": {
       "type": "structure",
       "members": {
         "used": {
@@ -38650,35 +38696,41 @@
           "traits": {
             "smithy.api#documentation": "Whether this shard has enough remaining storage for the deployment"
           }
+        },
+        "blocked_by_in_flight": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether this shard lacks storage only because a competing in-flight deployment is still copying"
+          }
         }
       },
       "traits": {}
     },
-    "com.planetscale.api#CheckDeployRequestStorageResponseStorageReportValueMap": {
+    "com.planetscale.api#DeployCheckRequestStorageResponseStorageReportValueMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
       },
       "value": {
-        "target": "com.planetscale.api#CheckDeployRequestStorageResponseStorageReportValueValue"
+        "target": "com.planetscale.api#DeployCheckRequestStorageResponseStorageReportValueValue"
       },
       "traits": {
         "smithy.api#documentation": "Per-shard storage details. Keys are shard names."
       }
     },
-    "com.planetscale.api#CheckDeployRequestStorageResponseStorageReportMap": {
+    "com.planetscale.api#DeployCheckRequestStorageResponseStorageReportMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
       },
       "value": {
-        "target": "com.planetscale.api#CheckDeployRequestStorageResponseStorageReportValueMap"
+        "target": "com.planetscale.api#DeployCheckRequestStorageResponseStorageReportValueMap"
       },
       "traits": {
         "smithy.api#documentation": "Per-keyspace and per-shard storage report. Keys are keyspace names."
       }
     },
-    "com.planetscale.api#CheckDeployRequestStorageResponse": {
+    "com.planetscale.api#DeployCheckRequestStorageResponse": {
       "type": "structure",
       "members": {
         "enough_storage": {
@@ -38703,7 +38755,7 @@
           }
         },
         "storage_report": {
-          "target": "com.planetscale.api#CheckDeployRequestStorageResponseStorageReportMap",
+          "target": "com.planetscale.api#DeployCheckRequestStorageResponseStorageReportMap",
           "traits": {
             "smithy.api#documentation": "Per-keyspace and per-shard storage report. Keys are keyspace names.",
             "smithy.api#required": {}
@@ -38714,13 +38766,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.planetscale.api#CheckDeployRequestStorage": {
+    "com.planetscale.api#DeployCheckRequestStorage": {
       "type": "operation",
       "input": {
-        "target": "com.planetscale.api#CheckDeployRequestStorageRequest"
+        "target": "com.planetscale.api#DeployCheckRequestStorageRequest"
       },
       "output": {
-        "target": "com.planetscale.api#CheckDeployRequestStorageResponse"
+        "target": "com.planetscale.api#DeployCheckRequestStorageResponse"
       },
       "errors": [
         {
@@ -41342,6 +41394,12 @@
             "smithy.api#enumValue": "branch.primary_promoted"
           }
         },
+        "BRANCH_PRIMARY_SWITCHOVER_IMMINENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "branch.primary_switchover_imminent"
+          }
+        },
         "BRANCH_SCHEMA_RECOMMENDATION": {
           "target": "smithy.api#Unit",
           "traits": {
@@ -41731,6 +41789,12 @@
           "target": "smithy.api#Unit",
           "traits": {
             "smithy.api#enumValue": "branch.primary_promoted"
+          }
+        },
+        "BRANCH_PRIMARY_SWITCHOVER_IMMINENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "branch.primary_switchover_imminent"
           }
         },
         "BRANCH_SCHEMA_RECOMMENDATION": {
@@ -44258,7 +44322,7 @@
         "smithy.api#documentation": "Get a workflow"
       }
     },
-    "com.planetscale.api#WorkflowCancelRequest": {
+    "com.planetscale.api#CancelWorkflowRequest": {
       "type": "structure",
       "members": {
         "organization": {
@@ -44290,10 +44354,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.planetscale.api#WorkflowCancel": {
+    "com.planetscale.api#CancelWorkflow": {
       "type": "operation",
       "input": {
-        "target": "com.planetscale.api#WorkflowCancelRequest"
+        "target": "com.planetscale.api#CancelWorkflowRequest"
       },
       "output": {
         "target": "com.planetscale.api#Workflow"
@@ -44315,7 +44379,7 @@
         "smithy.api#documentation": "Cancel a workflow"
       }
     },
-    "com.planetscale.api#WorkflowCompleteRequest": {
+    "com.planetscale.api#CompleteWorkflowRequest": {
       "type": "structure",
       "members": {
         "organization": {
@@ -44347,10 +44411,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.planetscale.api#WorkflowComplete": {
+    "com.planetscale.api#CompleteWorkflow": {
       "type": "operation",
       "input": {
-        "target": "com.planetscale.api#WorkflowCompleteRequest"
+        "target": "com.planetscale.api#CompleteWorkflowRequest"
       },
       "output": {
         "target": "com.planetscale.api#Workflow"
@@ -44429,7 +44493,7 @@
         "smithy.api#documentation": "Cutover traffic"
       }
     },
-    "com.planetscale.api#WorkflowRetryRequest": {
+    "com.planetscale.api#RetryWorkflowRequest": {
       "type": "structure",
       "members": {
         "organization": {
@@ -44461,10 +44525,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.planetscale.api#WorkflowRetry": {
+    "com.planetscale.api#RetryWorkflow": {
       "type": "operation",
       "input": {
-        "target": "com.planetscale.api#WorkflowRetryRequest"
+        "target": "com.planetscale.api#RetryWorkflowRequest"
       },
       "output": {
         "target": "com.planetscale.api#Workflow"
@@ -50843,6 +50907,13 @@
             "smithy.api#required": {}
           }
         },
+        "read_only_region": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether or not the password is scoped to a read-only region",
+            "smithy.api#required": {}
+          }
+        },
         "renewable": {
           "target": "smithy.api#Boolean",
           "traits": {
@@ -51554,6 +51625,13 @@
           "target": "smithy.api#Boolean",
           "traits": {
             "smithy.api#documentation": "Whether or not the password is for a read replica",
+            "smithy.api#required": {}
+          }
+        },
+        "read_only_region": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether or not the password is scoped to a read-only region",
             "smithy.api#required": {}
           }
         },
@@ -52552,10 +52630,10 @@
           "target": "com.planetscale.api#GetDeployRequest"
         },
         {
-          "target": "com.planetscale.api#CloseDeployRequest"
+          "target": "com.planetscale.api#DeployCloseRequest"
         },
         {
-          "target": "com.planetscale.api#CompleteGatedDeployRequest"
+          "target": "com.planetscale.api#DeployCompleteGatedRequest"
         },
         {
           "target": "com.planetscale.api#UpdateAutoApply"
@@ -52567,16 +52645,16 @@
           "target": "com.planetscale.api#CancelDeployRequest"
         },
         {
-          "target": "com.planetscale.api#CompleteErroredDeploy"
+          "target": "com.planetscale.api#DeployCompleteErrored"
         },
         {
-          "target": "com.planetscale.api#QueueDeployRequest"
+          "target": "com.planetscale.api#DeployQueueRequest"
         },
         {
           "target": "com.planetscale.api#GetDeployment"
         },
         {
-          "target": "com.planetscale.api#ForceCutoverDeployRequest"
+          "target": "com.planetscale.api#DeployForceCutoverRequest"
         },
         {
           "target": "com.planetscale.api#ListDeployOperations"
@@ -52588,13 +52666,13 @@
           "target": "com.planetscale.api#ListDeployRequestReviews"
         },
         {
-          "target": "com.planetscale.api#ReviewDeployRequest"
+          "target": "com.planetscale.api#DeployReviewRequest"
         },
         {
           "target": "com.planetscale.api#SkipRevertPeriod"
         },
         {
-          "target": "com.planetscale.api#CheckDeployRequestStorage"
+          "target": "com.planetscale.api#DeployCheckRequestStorage"
         },
         {
           "target": "com.planetscale.api#GetDeployRequestThrottler"
@@ -52660,16 +52738,16 @@
           "target": "com.planetscale.api#GetWorkflow"
         },
         {
-          "target": "com.planetscale.api#WorkflowCancel"
+          "target": "com.planetscale.api#CancelWorkflow"
         },
         {
-          "target": "com.planetscale.api#WorkflowComplete"
+          "target": "com.planetscale.api#CompleteWorkflow"
         },
         {
           "target": "com.planetscale.api#WorkflowCutover"
         },
         {
-          "target": "com.planetscale.api#WorkflowRetry"
+          "target": "com.planetscale.api#RetryWorkflow"
         },
         {
           "target": "com.planetscale.api#WorkflowReverseCutover"

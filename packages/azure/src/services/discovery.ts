@@ -223,451 +223,6 @@ export const BookshelfPrivateEndpointConnectionsCreateOrUpdateResponse =
     identifier: "BookshelfPrivateEndpointConnectionsCreateOrUpdateResponse",
   }) as any as S.Schema<BookshelfPrivateEndpointConnectionsCreateOrUpdateResponse>;
 
-export interface BookshelfPrivateEndpointConnectionsDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Bookshelf */
-  bookshelfName: string;
-  /** The name of the private endpoint connection associated with the Azure resource. */
-  privateEndpointConnectionName: string;
-}
-export const BookshelfPrivateEndpointConnectionsDeleteRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      bookshelfName: S.String.pipe(T.Label()),
-      privateEndpointConnectionName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/bookshelves/{bookshelfName}/privateEndpointConnections/{privateEndpointConnectionName}",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "BookshelfPrivateEndpointConnectionsDeleteRequest",
-  }) as any as S.Schema<BookshelfPrivateEndpointConnectionsDeleteRequest>;
-
-export interface BookshelfPrivateEndpointConnectionsDeleteResponse {}
-export const BookshelfPrivateEndpointConnectionsDeleteResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "BookshelfPrivateEndpointConnectionsDeleteResponse",
-  }) as any as S.Schema<BookshelfPrivateEndpointConnectionsDeleteResponse>;
-
-export interface BookshelfPrivateEndpointConnectionsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Bookshelf */
-  bookshelfName: string;
-  /** The name of the private endpoint connection associated with the Azure resource. */
-  privateEndpointConnectionName: string;
-}
-export const BookshelfPrivateEndpointConnectionsGetRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      bookshelfName: S.String.pipe(T.Label()),
-      privateEndpointConnectionName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/bookshelves/{bookshelfName}/privateEndpointConnections/{privateEndpointConnectionName}",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "BookshelfPrivateEndpointConnectionsGetRequest",
-  }) as any as S.Schema<BookshelfPrivateEndpointConnectionsGetRequest>;
-
-/** The group ids for the private endpoint resource. */
-export type BookshelfPrivateEndpointConnectionsGetResponsePropertiesGroupIdsList =
-  Array<string>;
-export const BookshelfPrivateEndpointConnectionsGetResponsePropertiesGroupIdsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<BookshelfPrivateEndpointConnectionsGetResponsePropertiesGroupIdsList>;
-
-/** Properties of the private endpoint connection. */
-export interface BookshelfPrivateEndpointConnectionsGetResponseProperties {
-  /** The group ids for the private endpoint resource. */
-  groupIds?: BookshelfPrivateEndpointConnectionsGetResponsePropertiesGroupIdsList;
-  /** The private endpoint resource. */
-  privateEndpoint?: PrivateEndpoint;
-  /** A collection of information about the state of the connection between service consumer and provider. */
-  privateLinkServiceConnectionState: PrivateLinkServiceConnectionState;
-  /** The provisioning state of the private endpoint connection resource. */
-  provisioningState?: PrivateEndpointConnectionProvisioningState;
-}
-export const BookshelfPrivateEndpointConnectionsGetResponseProperties =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      groupIds: S.optional(
-        BookshelfPrivateEndpointConnectionsGetResponsePropertiesGroupIdsList,
-      ),
-      privateEndpoint: S.optional(PrivateEndpoint),
-      privateLinkServiceConnectionState: PrivateLinkServiceConnectionState,
-      provisioningState: S.optional(PrivateEndpointConnectionProvisioningState),
-    }),
-  ).annotate({
-    identifier: "BookshelfPrivateEndpointConnectionsGetResponseProperties",
-  }) as any as S.Schema<BookshelfPrivateEndpointConnectionsGetResponseProperties>;
-
-export interface BookshelfPrivateEndpointConnectionsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of the private endpoint connection. */
-  properties?: BookshelfPrivateEndpointConnectionsGetResponseProperties;
-}
-export const BookshelfPrivateEndpointConnectionsGetResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(
-        BookshelfPrivateEndpointConnectionsGetResponseProperties,
-      ),
-    }),
-  ).annotate({
-    identifier: "BookshelfPrivateEndpointConnectionsGetResponse",
-  }) as any as S.Schema<BookshelfPrivateEndpointConnectionsGetResponse>;
-
-export interface BookshelfPrivateEndpointConnectionsListByBookshelfRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Bookshelf */
-  bookshelfName: string;
-}
-export const BookshelfPrivateEndpointConnectionsListByBookshelfRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      bookshelfName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/bookshelves/{bookshelfName}/privateEndpointConnections",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "BookshelfPrivateEndpointConnectionsListByBookshelfRequest",
-  }) as any as S.Schema<BookshelfPrivateEndpointConnectionsListByBookshelfRequest>;
-
-/** The group ids for the private endpoint resource. */
-export type BookshelfPrivateEndpointConnectionPropertiesGroupIdsList =
-  Array<string>;
-export const BookshelfPrivateEndpointConnectionPropertiesGroupIdsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<BookshelfPrivateEndpointConnectionPropertiesGroupIdsList>;
-
-/** Properties of the private endpoint connection. */
-export interface BookshelfPrivateEndpointConnectionProperties {
-  /** The group ids for the private endpoint resource. */
-  groupIds?: BookshelfPrivateEndpointConnectionPropertiesGroupIdsList;
-  /** The private endpoint resource. */
-  privateEndpoint?: PrivateEndpoint;
-  /** A collection of information about the state of the connection between service consumer and provider. */
-  privateLinkServiceConnectionState: PrivateLinkServiceConnectionState;
-  /** The provisioning state of the private endpoint connection resource. */
-  provisioningState?: PrivateEndpointConnectionProvisioningState;
-}
-export const BookshelfPrivateEndpointConnectionProperties =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      groupIds: S.optional(
-        BookshelfPrivateEndpointConnectionPropertiesGroupIdsList,
-      ),
-      privateEndpoint: S.optional(PrivateEndpoint),
-      privateLinkServiceConnectionState: PrivateLinkServiceConnectionState,
-      provisioningState: S.optional(PrivateEndpointConnectionProvisioningState),
-    }),
-  ).annotate({
-    identifier: "BookshelfPrivateEndpointConnectionProperties",
-  }) as any as S.Schema<BookshelfPrivateEndpointConnectionProperties>;
-
-/** The Private Endpoint Connection resource for Bookshelf. */
-export interface BookshelfPrivateEndpointConnection {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of the private endpoint connection. */
-  properties?: BookshelfPrivateEndpointConnectionProperties;
-}
-export const BookshelfPrivateEndpointConnection = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(BookshelfPrivateEndpointConnectionProperties),
-  }),
-).annotate({
-  identifier: "BookshelfPrivateEndpointConnection",
-}) as any as S.Schema<BookshelfPrivateEndpointConnection>;
-
-/** The BookshelfPrivateEndpointConnection items on this page */
-export type BookshelfPrivateEndpointConnectionListResultValueList =
-  Array<BookshelfPrivateEndpointConnection>;
-export const BookshelfPrivateEndpointConnectionListResultValueList =
-  /*@__PURE__*/ S.Array(
-    BookshelfPrivateEndpointConnection,
-  ) as any as S.Schema<BookshelfPrivateEndpointConnectionListResultValueList>;
-
-/** The response of a BookshelfPrivateEndpointConnection list operation. */
-export interface BookshelfPrivateEndpointConnectionListResult {
-  /** The BookshelfPrivateEndpointConnection items on this page */
-  value: BookshelfPrivateEndpointConnectionListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const BookshelfPrivateEndpointConnectionListResult =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      value: BookshelfPrivateEndpointConnectionListResultValueList,
-      nextLink: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "BookshelfPrivateEndpointConnectionListResult",
-  }) as any as S.Schema<BookshelfPrivateEndpointConnectionListResult>;
-
-export interface BookshelfPrivateLinkResourcesGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Bookshelf */
-  bookshelfName: string;
-  /** The name of the private link associated with the Azure resource. */
-  privateLinkResourceName: string;
-}
-export const BookshelfPrivateLinkResourcesGetRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      bookshelfName: S.String.pipe(T.Label()),
-      privateLinkResourceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/bookshelves/{bookshelfName}/privateLinkResources/{privateLinkResourceName}",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "BookshelfPrivateLinkResourcesGetRequest",
-}) as any as S.Schema<BookshelfPrivateLinkResourcesGetRequest>;
-
-/** The private link resource required member names. */
-export type BookshelfPrivateLinkResourcesGetResponsePropertiesRequiredMembersList =
-  Array<string>;
-export const BookshelfPrivateLinkResourcesGetResponsePropertiesRequiredMembersList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<BookshelfPrivateLinkResourcesGetResponsePropertiesRequiredMembersList>;
-
-/** The private link resource private link DNS zone name. */
-export type BookshelfPrivateLinkResourcesGetResponsePropertiesRequiredZoneNamesList =
-  Array<string>;
-export const BookshelfPrivateLinkResourcesGetResponsePropertiesRequiredZoneNamesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<BookshelfPrivateLinkResourcesGetResponsePropertiesRequiredZoneNamesList>;
-
-/** Properties of a private link resource. */
-export interface BookshelfPrivateLinkResourcesGetResponseProperties {
-  /** The private link resource group id. */
-  groupId?: string;
-  /** The private link resource required member names. */
-  requiredMembers?: BookshelfPrivateLinkResourcesGetResponsePropertiesRequiredMembersList;
-  /** The private link resource private link DNS zone name. */
-  requiredZoneNames?: BookshelfPrivateLinkResourcesGetResponsePropertiesRequiredZoneNamesList;
-}
-export const BookshelfPrivateLinkResourcesGetResponseProperties =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      groupId: S.optional(S.String),
-      requiredMembers: S.optional(
-        BookshelfPrivateLinkResourcesGetResponsePropertiesRequiredMembersList,
-      ),
-      requiredZoneNames: S.optional(
-        BookshelfPrivateLinkResourcesGetResponsePropertiesRequiredZoneNamesList,
-      ),
-    }),
-  ).annotate({
-    identifier: "BookshelfPrivateLinkResourcesGetResponseProperties",
-  }) as any as S.Schema<BookshelfPrivateLinkResourcesGetResponseProperties>;
-
-export interface BookshelfPrivateLinkResourcesGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of a private link resource. */
-  properties?: BookshelfPrivateLinkResourcesGetResponseProperties;
-}
-export const BookshelfPrivateLinkResourcesGetResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(
-        BookshelfPrivateLinkResourcesGetResponseProperties,
-      ),
-    }),
-).annotate({
-  identifier: "BookshelfPrivateLinkResourcesGetResponse",
-}) as any as S.Schema<BookshelfPrivateLinkResourcesGetResponse>;
-
-export interface BookshelfPrivateLinkResourcesListByBookshelfRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Bookshelf */
-  bookshelfName: string;
-}
-export const BookshelfPrivateLinkResourcesListByBookshelfRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      bookshelfName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/bookshelves/{bookshelfName}/privateLinkResources",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "BookshelfPrivateLinkResourcesListByBookshelfRequest",
-  }) as any as S.Schema<BookshelfPrivateLinkResourcesListByBookshelfRequest>;
-
-/** The private link resource required member names. */
-export type BookshelfPrivateLinkResourcePropertiesRequiredMembersList =
-  Array<string>;
-export const BookshelfPrivateLinkResourcePropertiesRequiredMembersList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<BookshelfPrivateLinkResourcePropertiesRequiredMembersList>;
-
-/** The private link resource private link DNS zone name. */
-export type BookshelfPrivateLinkResourcePropertiesRequiredZoneNamesList =
-  Array<string>;
-export const BookshelfPrivateLinkResourcePropertiesRequiredZoneNamesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<BookshelfPrivateLinkResourcePropertiesRequiredZoneNamesList>;
-
-/** Properties of a private link resource. */
-export interface BookshelfPrivateLinkResourceProperties {
-  /** The private link resource group id. */
-  groupId?: string;
-  /** The private link resource required member names. */
-  requiredMembers?: BookshelfPrivateLinkResourcePropertiesRequiredMembersList;
-  /** The private link resource private link DNS zone name. */
-  requiredZoneNames?: BookshelfPrivateLinkResourcePropertiesRequiredZoneNamesList;
-}
-export const BookshelfPrivateLinkResourceProperties = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      groupId: S.optional(S.String),
-      requiredMembers: S.optional(
-        BookshelfPrivateLinkResourcePropertiesRequiredMembersList,
-      ),
-      requiredZoneNames: S.optional(
-        BookshelfPrivateLinkResourcePropertiesRequiredZoneNamesList,
-      ),
-    }),
-).annotate({
-  identifier: "BookshelfPrivateLinkResourceProperties",
-}) as any as S.Schema<BookshelfPrivateLinkResourceProperties>;
-
-/** A private link resource for Bookshelf. */
-export interface BookshelfPrivateLinkResource {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of a private link resource. */
-  properties?: BookshelfPrivateLinkResourceProperties;
-}
-export const BookshelfPrivateLinkResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(BookshelfPrivateLinkResourceProperties),
-  }),
-).annotate({
-  identifier: "BookshelfPrivateLinkResource",
-}) as any as S.Schema<BookshelfPrivateLinkResource>;
-
-/** The BookshelfPrivateLinkResource items on this page */
-export type BookshelfPrivateLinkResourceListResultValueList =
-  Array<BookshelfPrivateLinkResource>;
-export const BookshelfPrivateLinkResourceListResultValueList =
-  /*@__PURE__*/ S.Array(
-    BookshelfPrivateLinkResource,
-  ) as any as S.Schema<BookshelfPrivateLinkResourceListResultValueList>;
-
-/** The response of a BookshelfPrivateLinkResource list operation. */
-export interface BookshelfPrivateLinkResourceListResult {
-  /** The BookshelfPrivateLinkResource items on this page */
-  value: BookshelfPrivateLinkResourceListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const BookshelfPrivateLinkResourceListResult = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      value: BookshelfPrivateLinkResourceListResultValueList,
-      nextLink: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "BookshelfPrivateLinkResourceListResult",
-}) as any as S.Schema<BookshelfPrivateLinkResourceListResult>;
-
 /** Resource tags. */
 export type BookshelvesCreateOrUpdateRequestTagsMap = {
   [key: string]: string | undefined;
@@ -1014,314 +569,6 @@ export const BookshelvesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "BookshelvesCreateOrUpdateResponse",
 }) as any as S.Schema<BookshelvesCreateOrUpdateResponse>;
 
-export interface BookshelvesDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Bookshelf */
-  bookshelfName: string;
-}
-export const BookshelvesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    bookshelfName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/bookshelves/{bookshelfName}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "BookshelvesDeleteRequest",
-}) as any as S.Schema<BookshelvesDeleteRequest>;
-
-export interface BookshelvesDeleteResponse {}
-export const BookshelvesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "BookshelvesDeleteResponse",
-}) as any as S.Schema<BookshelvesDeleteResponse>;
-
-export interface BookshelvesGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Bookshelf */
-  bookshelfName: string;
-}
-export const BookshelvesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    bookshelfName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/bookshelves/{bookshelfName}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "BookshelvesGetRequest",
-}) as any as S.Schema<BookshelvesGetRequest>;
-
-/** Resource tags. */
-export type BookshelvesGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const BookshelvesGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<BookshelvesGetResponseTagsMap>;
-
-export interface BookshelvesGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: BookshelvesGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: BookshelfProperties;
-}
-export const BookshelvesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(BookshelvesGetResponseTagsMap),
-    location: S.String,
-    properties: S.optional(BookshelfProperties),
-  }),
-).annotate({
-  identifier: "BookshelvesGetResponse",
-}) as any as S.Schema<BookshelvesGetResponse>;
-
-export interface BookshelvesListByResourceGroupRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-}
-export const BookshelvesListByResourceGroupRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/bookshelves",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "BookshelvesListByResourceGroupRequest",
-}) as any as S.Schema<BookshelvesListByResourceGroupRequest>;
-
-/** Resource tags. */
-export type BookshelfTagsMap = { [key: string]: string | undefined };
-export const BookshelfTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<BookshelfTagsMap>;
-
-/** Bookshelf tracked resource */
-export interface Bookshelf {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: BookshelfTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: BookshelfProperties;
-}
-export const Bookshelf = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(BookshelfTagsMap),
-    location: S.String,
-    properties: S.optional(BookshelfProperties),
-  }),
-).annotate({ identifier: "Bookshelf" }) as any as S.Schema<Bookshelf>;
-
-/** The Bookshelf items on this page */
-export type BookshelfListResultValueList = Array<Bookshelf>;
-export const BookshelfListResultValueList = /*@__PURE__*/ S.Array(
-  Bookshelf,
-) as any as S.Schema<BookshelfListResultValueList>;
-
-/** The response of a Bookshelf list operation. */
-export interface BookshelfListResult {
-  /** The Bookshelf items on this page */
-  value: BookshelfListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const BookshelfListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: BookshelfListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "BookshelfListResult",
-}) as any as S.Schema<BookshelfListResult>;
-
-export interface BookshelvesListBySubscriptionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-}
-export const BookshelvesListBySubscriptionRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Discovery/bookshelves",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "BookshelvesListBySubscriptionRequest",
-}) as any as S.Schema<BookshelvesListBySubscriptionRequest>;
-
-/** Resource tags. */
-export type BookshelvesUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const BookshelvesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<BookshelvesUpdateRequestTagsMap>;
-
-/** Key Vault Properties with clientId selection */
-export interface BookshelfKeyVaultPropertiesUpdate {
-  /** The Key Name in Key Vault */
-  keyName?: string;
-  /** The Key Version in Key Vault */
-  keyVersion?: string;
-}
-export const BookshelfKeyVaultPropertiesUpdate = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    keyName: S.optional(S.String),
-    keyVersion: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "BookshelfKeyVaultPropertiesUpdate",
-}) as any as S.Schema<BookshelfKeyVaultPropertiesUpdate>;
-
-/** Bookshelf properties */
-export interface BookshelfPropertiesUpdate {
-  /** The key to use for encrypting data at rest when customer managed keys are enabled. Required if Customer Managed Keys is enabled. */
-  keyVaultProperties?: BookshelfKeyVaultPropertiesUpdate;
-  /** Whether or not public network access is allowed for this resource. For security reasons, it is recommended to disable it whenever possible. */
-  publicNetworkAccess?: PublicNetworkAccess | (string & {});
-}
-export const BookshelfPropertiesUpdate = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    keyVaultProperties: S.optional(BookshelfKeyVaultPropertiesUpdate),
-    publicNetworkAccess: S.optional(PublicNetworkAccess),
-  }),
-).annotate({
-  identifier: "BookshelfPropertiesUpdate",
-}) as any as S.Schema<BookshelfPropertiesUpdate>;
-
-export interface BookshelvesUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Bookshelf */
-  bookshelfName: string;
-  /** Resource tags. */
-  tags?: BookshelvesUpdateRequestTagsMap;
-  /** The resource-specific properties for this resource. */
-  properties?: BookshelfPropertiesUpdate;
-}
-export const BookshelvesUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    bookshelfName: S.String.pipe(T.Label()),
-    tags: S.optional(BookshelvesUpdateRequestTagsMap),
-    properties: S.optional(BookshelfPropertiesUpdate),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/bookshelves/{bookshelfName}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "BookshelvesUpdateRequest",
-}) as any as S.Schema<BookshelvesUpdateRequest>;
-
-/** Resource tags. */
-export type BookshelvesUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const BookshelvesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<BookshelvesUpdateResponseTagsMap>;
-
-export interface BookshelvesUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: BookshelvesUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: BookshelfProperties;
-}
-export const BookshelvesUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(BookshelvesUpdateResponseTagsMap),
-    location: S.String,
-    properties: S.optional(BookshelfProperties),
-  }),
-).annotate({
-  identifier: "BookshelvesUpdateResponse",
-}) as any as S.Schema<BookshelvesUpdateResponse>;
-
 /** Resource tags. */
 export type ChatModelDeploymentsCreateOrUpdateRequestTagsMap = {
   [key: string]: string | undefined;
@@ -1464,7 +711,74 @@ export const ChatModelDeploymentsCreateOrUpdateResponse =
     identifier: "ChatModelDeploymentsCreateOrUpdateResponse",
   }) as any as S.Schema<ChatModelDeploymentsCreateOrUpdateResponse>;
 
-export interface ChatModelDeploymentsDeleteRequest {
+export interface DeleteBookshelfPrivateEndpointConnectionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Bookshelf */
+  bookshelfName: string;
+  /** The name of the private endpoint connection associated with the Azure resource. */
+  privateEndpointConnectionName: string;
+}
+export const DeleteBookshelfPrivateEndpointConnectionRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      bookshelfName: S.String.pipe(T.Label()),
+      privateEndpointConnectionName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/bookshelves/{bookshelfName}/privateEndpointConnections/{privateEndpointConnectionName}",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "DeleteBookshelfPrivateEndpointConnectionRequest",
+  }) as any as S.Schema<DeleteBookshelfPrivateEndpointConnectionRequest>;
+
+export interface DeleteBookshelfPrivateEndpointConnectionResponse {}
+export const DeleteBookshelfPrivateEndpointConnectionResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "DeleteBookshelfPrivateEndpointConnectionResponse",
+  }) as any as S.Schema<DeleteBookshelfPrivateEndpointConnectionResponse>;
+
+export interface DeleteBookshelveRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Bookshelf */
+  bookshelfName: string;
+}
+export const DeleteBookshelveRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    bookshelfName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/bookshelves/{bookshelfName}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteBookshelveRequest",
+}) as any as S.Schema<DeleteBookshelveRequest>;
+
+export interface DeleteBookshelveResponse {}
+export const DeleteBookshelveResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteBookshelveResponse",
+}) as any as S.Schema<DeleteBookshelveResponse>;
+
+export interface DeleteChatModelDeploymentRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1474,7 +788,7 @@ export interface ChatModelDeploymentsDeleteRequest {
   /** The name of the ChatModelDeployment */
   chatModelDeploymentName: string;
 }
-export const ChatModelDeploymentsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteChatModelDeploymentRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1489,17 +803,532 @@ export const ChatModelDeploymentsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ChatModelDeploymentsDeleteRequest",
-}) as any as S.Schema<ChatModelDeploymentsDeleteRequest>;
+  identifier: "DeleteChatModelDeploymentRequest",
+}) as any as S.Schema<DeleteChatModelDeploymentRequest>;
 
-export interface ChatModelDeploymentsDeleteResponse {}
-export const ChatModelDeploymentsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteChatModelDeploymentResponse {}
+export const DeleteChatModelDeploymentResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "ChatModelDeploymentsDeleteResponse",
-}) as any as S.Schema<ChatModelDeploymentsDeleteResponse>;
+  identifier: "DeleteChatModelDeploymentResponse",
+}) as any as S.Schema<DeleteChatModelDeploymentResponse>;
 
-export interface ChatModelDeploymentsGetRequest {
+export interface DeleteNodePoolRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Supercomputer */
+  supercomputerName: string;
+  /** The name of the NodePool */
+  nodePoolName: string;
+}
+export const DeleteNodePoolRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    supercomputerName: S.String.pipe(T.Label()),
+    nodePoolName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/supercomputers/{supercomputerName}/nodePools/{nodePoolName}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteNodePoolRequest",
+}) as any as S.Schema<DeleteNodePoolRequest>;
+
+export interface DeleteNodePoolResponse {}
+export const DeleteNodePoolResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteNodePoolResponse",
+}) as any as S.Schema<DeleteNodePoolResponse>;
+
+export interface DeleteProjectRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Workspace */
+  workspaceName: string;
+  /** The name of the Project */
+  projectName: string;
+}
+export const DeleteProjectRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    projectName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/workspaces/{workspaceName}/projects/{projectName}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteProjectRequest",
+}) as any as S.Schema<DeleteProjectRequest>;
+
+export interface DeleteProjectResponse {}
+export const DeleteProjectResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteProjectResponse",
+}) as any as S.Schema<DeleteProjectResponse>;
+
+export interface DeleteStorageAssetRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the StorageContainer */
+  storageContainerName: string;
+  /** The name of the StorageAsset */
+  storageAssetName: string;
+}
+export const DeleteStorageAssetRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    storageContainerName: S.String.pipe(T.Label()),
+    storageAssetName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/storageContainers/{storageContainerName}/storageAssets/{storageAssetName}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteStorageAssetRequest",
+}) as any as S.Schema<DeleteStorageAssetRequest>;
+
+export interface DeleteStorageAssetResponse {}
+export const DeleteStorageAssetResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteStorageAssetResponse",
+}) as any as S.Schema<DeleteStorageAssetResponse>;
+
+export interface DeleteStorageContainerRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the StorageContainer */
+  storageContainerName: string;
+}
+export const DeleteStorageContainerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    storageContainerName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/storageContainers/{storageContainerName}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteStorageContainerRequest",
+}) as any as S.Schema<DeleteStorageContainerRequest>;
+
+export interface DeleteStorageContainerResponse {}
+export const DeleteStorageContainerResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteStorageContainerResponse",
+}) as any as S.Schema<DeleteStorageContainerResponse>;
+
+export interface DeleteSupercomputerRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Supercomputer */
+  supercomputerName: string;
+}
+export const DeleteSupercomputerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    supercomputerName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/supercomputers/{supercomputerName}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteSupercomputerRequest",
+}) as any as S.Schema<DeleteSupercomputerRequest>;
+
+export interface DeleteSupercomputerResponse {}
+export const DeleteSupercomputerResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteSupercomputerResponse",
+}) as any as S.Schema<DeleteSupercomputerResponse>;
+
+export interface DeleteToolRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Tool */
+  toolName: string;
+}
+export const DeleteToolRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    toolName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/tools/{toolName}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteToolRequest",
+}) as any as S.Schema<DeleteToolRequest>;
+
+export interface DeleteToolResponse {}
+export const DeleteToolResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteToolResponse",
+}) as any as S.Schema<DeleteToolResponse>;
+
+export interface DeleteWorkspaceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Workspace */
+  workspaceName: string;
+}
+export const DeleteWorkspaceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/workspaces/{workspaceName}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteWorkspaceRequest",
+}) as any as S.Schema<DeleteWorkspaceRequest>;
+
+export interface DeleteWorkspaceResponse {}
+export const DeleteWorkspaceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteWorkspaceResponse",
+}) as any as S.Schema<DeleteWorkspaceResponse>;
+
+export interface DeleteWorkspacePrivateEndpointConnectionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Workspace */
+  workspaceName: string;
+  /** The name of the private endpoint connection associated with the Azure resource. */
+  privateEndpointConnectionName: string;
+}
+export const DeleteWorkspacePrivateEndpointConnectionRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      workspaceName: S.String.pipe(T.Label()),
+      privateEndpointConnectionName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/workspaces/{workspaceName}/privateEndpointConnections/{privateEndpointConnectionName}",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "DeleteWorkspacePrivateEndpointConnectionRequest",
+  }) as any as S.Schema<DeleteWorkspacePrivateEndpointConnectionRequest>;
+
+export interface DeleteWorkspacePrivateEndpointConnectionResponse {}
+export const DeleteWorkspacePrivateEndpointConnectionResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "DeleteWorkspacePrivateEndpointConnectionResponse",
+  }) as any as S.Schema<DeleteWorkspacePrivateEndpointConnectionResponse>;
+
+export interface GetBookshelfPrivateEndpointConnectionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Bookshelf */
+  bookshelfName: string;
+  /** The name of the private endpoint connection associated with the Azure resource. */
+  privateEndpointConnectionName: string;
+}
+export const GetBookshelfPrivateEndpointConnectionRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      bookshelfName: S.String.pipe(T.Label()),
+      privateEndpointConnectionName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/bookshelves/{bookshelfName}/privateEndpointConnections/{privateEndpointConnectionName}",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "GetBookshelfPrivateEndpointConnectionRequest",
+  }) as any as S.Schema<GetBookshelfPrivateEndpointConnectionRequest>;
+
+/** The group ids for the private endpoint resource. */
+export type GetBookshelfPrivateEndpointConnectionResponsePropertiesGroupIdsList =
+  Array<string>;
+export const GetBookshelfPrivateEndpointConnectionResponsePropertiesGroupIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<GetBookshelfPrivateEndpointConnectionResponsePropertiesGroupIdsList>;
+
+/** Properties of the private endpoint connection. */
+export interface GetBookshelfPrivateEndpointConnectionResponseProperties {
+  /** The group ids for the private endpoint resource. */
+  groupIds?: GetBookshelfPrivateEndpointConnectionResponsePropertiesGroupIdsList;
+  /** The private endpoint resource. */
+  privateEndpoint?: PrivateEndpoint;
+  /** A collection of information about the state of the connection between service consumer and provider. */
+  privateLinkServiceConnectionState: PrivateLinkServiceConnectionState;
+  /** The provisioning state of the private endpoint connection resource. */
+  provisioningState?: PrivateEndpointConnectionProvisioningState;
+}
+export const GetBookshelfPrivateEndpointConnectionResponseProperties =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      groupIds: S.optional(
+        GetBookshelfPrivateEndpointConnectionResponsePropertiesGroupIdsList,
+      ),
+      privateEndpoint: S.optional(PrivateEndpoint),
+      privateLinkServiceConnectionState: PrivateLinkServiceConnectionState,
+      provisioningState: S.optional(PrivateEndpointConnectionProvisioningState),
+    }),
+  ).annotate({
+    identifier: "GetBookshelfPrivateEndpointConnectionResponseProperties",
+  }) as any as S.Schema<GetBookshelfPrivateEndpointConnectionResponseProperties>;
+
+export interface GetBookshelfPrivateEndpointConnectionResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of the private endpoint connection. */
+  properties?: GetBookshelfPrivateEndpointConnectionResponseProperties;
+}
+export const GetBookshelfPrivateEndpointConnectionResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(
+        GetBookshelfPrivateEndpointConnectionResponseProperties,
+      ),
+    }),
+  ).annotate({
+    identifier: "GetBookshelfPrivateEndpointConnectionResponse",
+  }) as any as S.Schema<GetBookshelfPrivateEndpointConnectionResponse>;
+
+export interface GetBookshelfPrivateLinkResourceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Bookshelf */
+  bookshelfName: string;
+  /** The name of the private link associated with the Azure resource. */
+  privateLinkResourceName: string;
+}
+export const GetBookshelfPrivateLinkResourceRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      bookshelfName: S.String.pipe(T.Label()),
+      privateLinkResourceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/bookshelves/{bookshelfName}/privateLinkResources/{privateLinkResourceName}",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+).annotate({
+  identifier: "GetBookshelfPrivateLinkResourceRequest",
+}) as any as S.Schema<GetBookshelfPrivateLinkResourceRequest>;
+
+/** The private link resource required member names. */
+export type GetBookshelfPrivateLinkResourceResponsePropertiesRequiredMembersList =
+  Array<string>;
+export const GetBookshelfPrivateLinkResourceResponsePropertiesRequiredMembersList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<GetBookshelfPrivateLinkResourceResponsePropertiesRequiredMembersList>;
+
+/** The private link resource private link DNS zone name. */
+export type GetBookshelfPrivateLinkResourceResponsePropertiesRequiredZoneNamesList =
+  Array<string>;
+export const GetBookshelfPrivateLinkResourceResponsePropertiesRequiredZoneNamesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<GetBookshelfPrivateLinkResourceResponsePropertiesRequiredZoneNamesList>;
+
+/** Properties of a private link resource. */
+export interface GetBookshelfPrivateLinkResourceResponseProperties {
+  /** The private link resource group id. */
+  groupId?: string;
+  /** The private link resource required member names. */
+  requiredMembers?: GetBookshelfPrivateLinkResourceResponsePropertiesRequiredMembersList;
+  /** The private link resource private link DNS zone name. */
+  requiredZoneNames?: GetBookshelfPrivateLinkResourceResponsePropertiesRequiredZoneNamesList;
+}
+export const GetBookshelfPrivateLinkResourceResponseProperties =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      groupId: S.optional(S.String),
+      requiredMembers: S.optional(
+        GetBookshelfPrivateLinkResourceResponsePropertiesRequiredMembersList,
+      ),
+      requiredZoneNames: S.optional(
+        GetBookshelfPrivateLinkResourceResponsePropertiesRequiredZoneNamesList,
+      ),
+    }),
+  ).annotate({
+    identifier: "GetBookshelfPrivateLinkResourceResponseProperties",
+  }) as any as S.Schema<GetBookshelfPrivateLinkResourceResponseProperties>;
+
+export interface GetBookshelfPrivateLinkResourceResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of a private link resource. */
+  properties?: GetBookshelfPrivateLinkResourceResponseProperties;
+}
+export const GetBookshelfPrivateLinkResourceResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(GetBookshelfPrivateLinkResourceResponseProperties),
+    }),
+).annotate({
+  identifier: "GetBookshelfPrivateLinkResourceResponse",
+}) as any as S.Schema<GetBookshelfPrivateLinkResourceResponse>;
+
+export interface GetBookshelveRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Bookshelf */
+  bookshelfName: string;
+}
+export const GetBookshelveRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    bookshelfName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/bookshelves/{bookshelfName}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetBookshelveRequest",
+}) as any as S.Schema<GetBookshelveRequest>;
+
+/** Resource tags. */
+export type GetBookshelveResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetBookshelveResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetBookshelveResponseTagsMap>;
+
+export interface GetBookshelveResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetBookshelveResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: BookshelfProperties;
+}
+export const GetBookshelveResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetBookshelveResponseTagsMap),
+    location: S.String,
+    properties: S.optional(BookshelfProperties),
+  }),
+).annotate({
+  identifier: "GetBookshelveResponse",
+}) as any as S.Schema<GetBookshelveResponse>;
+
+export interface GetChatModelDeploymentRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1509,7 +1338,7 @@ export interface ChatModelDeploymentsGetRequest {
   /** The name of the ChatModelDeployment */
   chatModelDeploymentName: string;
 }
-export const ChatModelDeploymentsGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetChatModelDeploymentRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1524,19 +1353,19 @@ export const ChatModelDeploymentsGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ChatModelDeploymentsGetRequest",
-}) as any as S.Schema<ChatModelDeploymentsGetRequest>;
+  identifier: "GetChatModelDeploymentRequest",
+}) as any as S.Schema<GetChatModelDeploymentRequest>;
 
 /** Resource tags. */
-export type ChatModelDeploymentsGetResponseTagsMap = {
+export type GetChatModelDeploymentResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ChatModelDeploymentsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetChatModelDeploymentResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ChatModelDeploymentsGetResponseTagsMap>;
+) as any as S.Schema<GetChatModelDeploymentResponseTagsMap>;
 
-export interface ChatModelDeploymentsGetResponse {
+export interface GetChatModelDeploymentResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -1546,27 +1375,733 @@ export interface ChatModelDeploymentsGetResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ChatModelDeploymentsGetResponseTagsMap;
+  tags?: GetChatModelDeploymentResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: ChatModelDeploymentProperties;
 }
-export const ChatModelDeploymentsGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetChatModelDeploymentResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ChatModelDeploymentsGetResponseTagsMap),
+    tags: S.optional(GetChatModelDeploymentResponseTagsMap),
     location: S.String,
     properties: S.optional(ChatModelDeploymentProperties),
   }),
 ).annotate({
-  identifier: "ChatModelDeploymentsGetResponse",
-}) as any as S.Schema<ChatModelDeploymentsGetResponse>;
+  identifier: "GetChatModelDeploymentResponse",
+}) as any as S.Schema<GetChatModelDeploymentResponse>;
 
-export interface ChatModelDeploymentsListByWorkspaceRequest {
+export interface GetNodePoolRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Supercomputer */
+  supercomputerName: string;
+  /** The name of the NodePool */
+  nodePoolName: string;
+}
+export const GetNodePoolRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    supercomputerName: S.String.pipe(T.Label()),
+    nodePoolName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/supercomputers/{supercomputerName}/nodePools/{nodePoolName}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetNodePoolRequest",
+}) as any as S.Schema<GetNodePoolRequest>;
+
+/** Resource tags. */
+export type GetNodePoolResponseTagsMap = { [key: string]: string | undefined };
+export const GetNodePoolResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetNodePoolResponseTagsMap>;
+
+/** Supported Azure VM Sizes. */
+export type VmSize =
+  | "Standard_NC24ads_A100_v4"
+  | "Standard_NC48ads_A100_v4"
+  | "Standard_NC96ads_A100_v4"
+  | "Standard_NC4as_T4_v3"
+  | "Standard_NC8as_T4_v3"
+  | "Standard_NC16as_T4_v3"
+  | "Standard_NC64as_T4_v3"
+  | "Standard_NV6ads_A10_v5"
+  | "Standard_NV12ads_A10_v5"
+  | "Standard_NV24ads_A10_v5"
+  | "Standard_NV36ads_A10_v5"
+  | "Standard_NV36adms_A10_v5"
+  | "Standard_NV72ads_A10_v5"
+  | "Standard_ND40rs_v2";
+export const VmSize = /*@__PURE__*/ S.String;
+
+/** The Virtual Machine Scale Set priority. If not specified, the default is 'Regular'. */
+export type NodePoolPropertiesScaleSetPriority = "Regular" | "Spot";
+export const NodePoolPropertiesScaleSetPriority = /*@__PURE__*/ S.String;
+
+/** NodePool properties */
+export interface NodePoolProperties {
+  /** The status of the last operation. */
+  provisioningState?: ProvisioningState;
+  /** The node pool subnet. */
+  subnetId: string;
+  /** The size of the underlying Azure VM. */
+  vmSize: VmSize;
+  /** The maximum number of nodes. */
+  maxNodeCount: number;
+  /** The minimum number of nodes. */
+  minNodeCount?: number;
+  /** The Virtual Machine Scale Set priority. If not specified, the default is 'Regular'. */
+  scaleSetPriority?: NodePoolPropertiesScaleSetPriority;
+  /** The size of the OS disk in GB. If not specified, the default is 120 GB. */
+  osDiskSizeGb?: number;
+  /** The percent of disk usage before which image garbage collection is never run. This cannot be set higher than imageCacheUpperThreshold. The default is 40% */
+  imageCacheLowerThreshold?: number;
+  /** The percent of disk usage after which image garbage collection is guaranteed to run. The default is 60% */
+  imageCacheUpperThreshold?: number;
+}
+export const NodePoolProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provisioningState: S.optional(ProvisioningState),
+    subnetId: S.String,
+    vmSize: VmSize,
+    maxNodeCount: S.Number,
+    minNodeCount: S.optional(S.Number),
+    scaleSetPriority: S.optional(NodePoolPropertiesScaleSetPriority),
+    osDiskSizeGb: S.optional(S.Number),
+    imageCacheLowerThreshold: S.optional(S.Number),
+    imageCacheUpperThreshold: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "NodePoolProperties",
+}) as any as S.Schema<NodePoolProperties>;
+
+export interface GetNodePoolResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetNodePoolResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: NodePoolProperties;
+}
+export const GetNodePoolResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetNodePoolResponseTagsMap),
+    location: S.String,
+    properties: S.optional(NodePoolProperties),
+  }),
+).annotate({
+  identifier: "GetNodePoolResponse",
+}) as any as S.Schema<GetNodePoolResponse>;
+
+export interface GetProjectRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Workspace */
+  workspaceName: string;
+  /** The name of the Project */
+  projectName: string;
+}
+export const GetProjectRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    projectName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/workspaces/{workspaceName}/projects/{projectName}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetProjectRequest",
+}) as any as S.Schema<GetProjectRequest>;
+
+/** Resource tags. */
+export type GetProjectResponseTagsMap = { [key: string]: string | undefined };
+export const GetProjectResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetProjectResponseTagsMap>;
+
+/** Allowed StorageContainers (Control plane resource references). */
+export type ProjectPropertiesStorageContainerIdsList = Array<string>;
+export const ProjectPropertiesStorageContainerIdsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ProjectPropertiesStorageContainerIdsList>;
+
+/** Settings schema for the project */
+export interface ProjectSettings {
+  /** Default preferences to guide AI behaviors in this project. */
+  behaviorPreferences?: string;
+}
+export const ProjectSettings = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    behaviorPreferences: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ProjectSettings",
+}) as any as S.Schema<ProjectSettings>;
+
+/** Project properties */
+export interface ProjectProperties {
+  /** The status of the last operation. */
+  provisioningState?: ProvisioningState;
+  /** Foundry project endpoint URI. */
+  foundryProjectEndpoint?: string;
+  /** Allowed StorageContainers (Control plane resource references). */
+  storageContainerIds?: ProjectPropertiesStorageContainerIdsList;
+  /** Settings for the project. */
+  settings?: ProjectSettings;
+}
+export const ProjectProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provisioningState: S.optional(ProvisioningState),
+    foundryProjectEndpoint: S.optional(S.String),
+    storageContainerIds: S.optional(ProjectPropertiesStorageContainerIdsList),
+    settings: S.optional(ProjectSettings),
+  }),
+).annotate({
+  identifier: "ProjectProperties",
+}) as any as S.Schema<ProjectProperties>;
+
+export interface GetProjectResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetProjectResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: ProjectProperties;
+}
+export const GetProjectResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetProjectResponseTagsMap),
+    location: S.String,
+    properties: S.optional(ProjectProperties),
+  }),
+).annotate({
+  identifier: "GetProjectResponse",
+}) as any as S.Schema<GetProjectResponse>;
+
+export interface GetStorageAssetRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the StorageContainer */
+  storageContainerName: string;
+  /** The name of the StorageAsset */
+  storageAssetName: string;
+}
+export const GetStorageAssetRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    storageContainerName: S.String.pipe(T.Label()),
+    storageAssetName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/storageContainers/{storageContainerName}/storageAssets/{storageAssetName}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetStorageAssetRequest",
+}) as any as S.Schema<GetStorageAssetRequest>;
+
+/** Resource tags. */
+export type GetStorageAssetResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetStorageAssetResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetStorageAssetResponseTagsMap>;
+
+/** Storage Asset properties */
+export interface StorageAssetProperties {
+  /** The description */
+  description: string;
+  /** The status of the last operation. */
+  provisioningState?: ProvisioningState;
+  /** The path to the data within its parent container. This should be relative to the root of the parent container. */
+  path?: string;
+}
+export const StorageAssetProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    description: S.String,
+    provisioningState: S.optional(ProvisioningState),
+    path: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "StorageAssetProperties",
+}) as any as S.Schema<StorageAssetProperties>;
+
+export interface GetStorageAssetResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetStorageAssetResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: StorageAssetProperties;
+}
+export const GetStorageAssetResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetStorageAssetResponseTagsMap),
+    location: S.String,
+    properties: S.optional(StorageAssetProperties),
+  }),
+).annotate({
+  identifier: "GetStorageAssetResponse",
+}) as any as S.Schema<GetStorageAssetResponse>;
+
+export interface GetStorageContainerRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the StorageContainer */
+  storageContainerName: string;
+}
+export const GetStorageContainerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    storageContainerName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/storageContainers/{storageContainerName}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetStorageContainerRequest",
+}) as any as S.Schema<GetStorageContainerRequest>;
+
+/** Resource tags. */
+export type GetStorageContainerResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetStorageContainerResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetStorageContainerResponseTagsMap>;
+
+/** The kind of the backing storage store. */
+export type StorageStoreType = "AzureStorageBlob" | "AzureNetAppFiles";
+export const StorageStoreType = /*@__PURE__*/ S.String;
+
+/** An abstract representation of storage store kind. */
+export interface StorageStore {
+  /** The storage store kind. */
+  kind: StorageStoreType | (string & {});
+}
+export const StorageStore = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    kind: StorageStoreType,
+  }),
+).annotate({ identifier: "StorageStore" }) as any as S.Schema<StorageStore>;
+
+/** Storage Container properties */
+export interface StorageContainerProperties {
+  /** The status of the last operation. */
+  provisioningState?: ProvisioningState;
+  /** Storage store properties */
+  storageStore: StorageStore;
+}
+export const StorageContainerProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provisioningState: S.optional(ProvisioningState),
+    storageStore: StorageStore,
+  }),
+).annotate({
+  identifier: "StorageContainerProperties",
+}) as any as S.Schema<StorageContainerProperties>;
+
+export interface GetStorageContainerResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetStorageContainerResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: StorageContainerProperties;
+}
+export const GetStorageContainerResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetStorageContainerResponseTagsMap),
+    location: S.String,
+    properties: S.optional(StorageContainerProperties),
+  }),
+).annotate({
+  identifier: "GetStorageContainerResponse",
+}) as any as S.Schema<GetStorageContainerResponse>;
+
+export interface GetSupercomputerRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Supercomputer */
+  supercomputerName: string;
+}
+export const GetSupercomputerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    supercomputerName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/supercomputers/{supercomputerName}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetSupercomputerRequest",
+}) as any as S.Schema<GetSupercomputerRequest>;
+
+/** Resource tags. */
+export type GetSupercomputerResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetSupercomputerResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetSupercomputerResponseTagsMap>;
+
+/** Network egress type provisioned for the supercomputer workloads. Defaults to LoadBalancer if not specified. If None is specified, the customer is responsible for providing outbound connectivity for Supercomputer functionality. */
+export type SupercomputerPropertiesOutboundType = "LoadBalancer" | "None";
+export const SupercomputerPropertiesOutboundType = /*@__PURE__*/ S.String;
+
+/** Supported System SKU Sizes. */
+export type SystemSku =
+  | "Standard_D4s_v6"
+  | "Standard_D4s_v5"
+  | "Standard_D4s_v4";
+export const SystemSku = /*@__PURE__*/ S.String;
+
+/** For user assigned identity resource property. */
+export interface Identity {
+  /** The resource ID of the user assigned identity. */
+  id: string;
+  /** The principal ID of the assigned identity. */
+  principalId?: string;
+  /** The client ID of the assigned identity. */
+  clientId?: string;
+}
+export const Identity = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    principalId: S.optional(S.String),
+    clientId: S.optional(S.String),
+  }),
+).annotate({ identifier: "Identity" }) as any as S.Schema<Identity>;
+
+/** User assigned identity properties */
+export type SupercomputerIdentitiesWorkloadIdentitiesValue =
+  BookshelfPropertiesWorkloadIdentitiesValue;
+export const SupercomputerIdentitiesWorkloadIdentitiesValue =
+  BookshelfPropertiesWorkloadIdentitiesValue;
+
+/** User assigned identity IDs to be used by workloads as federated credentials running on supercomputer. The key value must be the resource ID of the identity resource. */
+export type SupercomputerIdentitiesWorkloadIdentitiesMap = {
+  [key: string]: BookshelfPropertiesWorkloadIdentitiesValue | undefined;
+};
+export const SupercomputerIdentitiesWorkloadIdentitiesMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    BookshelfPropertiesWorkloadIdentitiesValue,
+  ) as any as S.Schema<SupercomputerIdentitiesWorkloadIdentitiesMap>;
+
+/** Dictionary of identity properties for the Supercomputer. */
+export interface SupercomputerIdentities {
+  /** Cluster identity ID. */
+  clusterIdentity: Identity;
+  /** Kubelet identity ID used by the supercomputer. This identity is used by the supercomputer at node level to access Azure resources. This identity must have ManagedIdentityOperator role on the clusterIdentity. */
+  kubeletIdentity: Identity;
+  /** User assigned identity IDs to be used by workloads as federated credentials running on supercomputer. The key value must be the resource ID of the identity resource. */
+  workloadIdentities?: SupercomputerIdentitiesWorkloadIdentitiesMap;
+}
+export const SupercomputerIdentities = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    clusterIdentity: Identity,
+    kubeletIdentity: Identity,
+    workloadIdentities: S.optional(
+      SupercomputerIdentitiesWorkloadIdentitiesMap,
+    ),
+  }),
+).annotate({
+  identifier: "SupercomputerIdentities",
+}) as any as S.Schema<SupercomputerIdentities>;
+
+/** Supercomputer properties */
+export interface SupercomputerProperties {
+  /** The status of the last operation. */
+  provisioningState?: ProvisioningState;
+  /** System Subnet ID associated with managed NodePool for system resources. It should have connectivity to the child NodePool subnets. */
+  subnetId: string;
+  /** System Subnet ID associated with AKS apiserver. Must be delegated to Microsoft.ContainerService/managedClusters. It should have connectivity to the system subnet and nodepool subnets. */
+  managementSubnetId?: string;
+  /** Network egress type provisioned for the supercomputer workloads. Defaults to LoadBalancer if not specified. If None is specified, the customer is responsible for providing outbound connectivity for Supercomputer functionality. */
+  outboundType?: SupercomputerPropertiesOutboundType;
+  /** The SKU to use for the system node pool. */
+  systemSku?: SystemSku;
+  /** Dictionary of identity properties. */
+  identities: SupercomputerIdentities;
+  /** Whether or not to use a customer managed key when encrypting data at rest */
+  customerManagedKeys?: CustomerManagedKeys;
+  /** Disk Encryption Set ID to use for Customer Managed Keys encryption. Required if Customer Managed Keys is enabled. */
+  diskEncryptionSetId?: string;
+  /** The Log Analytics Cluster to use for debug logs. This is required when Customer Managed Keys are enabled. */
+  logAnalyticsClusterId?: string;
+  /** The resource group for resources managed on behalf of customer. */
+  managedResourceGroup?: string;
+  /** Managed-On-Behalf-Of configuration properties. This configuration exists for the resources where a resource provider manages those resources on behalf of the resource owner. */
+  managedOnBehalfOfConfiguration?: WithMoboBrokerResources;
+}
+export const SupercomputerProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provisioningState: S.optional(ProvisioningState),
+    subnetId: S.String,
+    managementSubnetId: S.optional(S.String),
+    outboundType: S.optional(SupercomputerPropertiesOutboundType),
+    systemSku: S.optional(SystemSku),
+    identities: SupercomputerIdentities,
+    customerManagedKeys: S.optional(CustomerManagedKeys),
+    diskEncryptionSetId: S.optional(S.String),
+    logAnalyticsClusterId: S.optional(S.String),
+    managedResourceGroup: S.optional(S.String),
+    managedOnBehalfOfConfiguration: S.optional(WithMoboBrokerResources),
+  }),
+).annotate({
+  identifier: "SupercomputerProperties",
+}) as any as S.Schema<SupercomputerProperties>;
+
+/** Type of managed service identity (either system assigned, or none). */
+export type SystemAssignedServiceIdentityType = "None" | "SystemAssigned";
+export const SystemAssignedServiceIdentityType = /*@__PURE__*/ S.String;
+
+/** Managed service identity (either system assigned, or none) */
+export interface GetSupercomputerResponseIdentity {
+  /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
+  principalId?: string;
+  /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
+  tenantId?: string;
+  type: SystemAssignedServiceIdentityType;
+}
+export const GetSupercomputerResponseIdentity = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    principalId: S.optional(S.String),
+    tenantId: S.optional(S.String),
+    type: SystemAssignedServiceIdentityType,
+  }),
+).annotate({
+  identifier: "GetSupercomputerResponseIdentity",
+}) as any as S.Schema<GetSupercomputerResponseIdentity>;
+
+export interface GetSupercomputerResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetSupercomputerResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: SupercomputerProperties;
+  /** Managed service identity (either system assigned, or none) */
+  identity?: GetSupercomputerResponseIdentity;
+}
+export const GetSupercomputerResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetSupercomputerResponseTagsMap),
+    location: S.String,
+    properties: S.optional(SupercomputerProperties),
+    identity: S.optional(GetSupercomputerResponseIdentity),
+  }),
+).annotate({
+  identifier: "GetSupercomputerResponse",
+}) as any as S.Schema<GetSupercomputerResponse>;
+
+export interface GetToolRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Tool */
+  toolName: string;
+}
+export const GetToolRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    toolName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/tools/{toolName}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({ identifier: "GetToolRequest" }) as any as S.Schema<GetToolRequest>;
+
+/** Resource tags. */
+export type GetToolResponseTagsMap = { [key: string]: string | undefined };
+export const GetToolResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetToolResponseTagsMap>;
+
+/** Environment variables to make available */
+export type ToolPropertiesEnvironmentVariablesMap = {
+  [key: string]: string | undefined;
+};
+export const ToolPropertiesEnvironmentVariablesMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<ToolPropertiesEnvironmentVariablesMap>;
+
+/** The JSON content for defining a resource */
+export type ToolPropertiesDefinitionContentMap = {
+  [key: string]: unknown | undefined;
+};
+export const ToolPropertiesDefinitionContentMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<ToolPropertiesDefinitionContentMap>;
+
+/** Discovery Tool list item properties */
+export interface ToolProperties {
+  /** The status of the last operation. */
+  provisioningState?: ProvisioningState;
+  /** The version of a resource definition */
+  version: string;
+  /** Environment variables to make available */
+  environmentVariables?: ToolPropertiesEnvironmentVariablesMap;
+  /** The JSON content for defining a resource */
+  definitionContent: ToolPropertiesDefinitionContentMap;
+}
+export const ToolProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provisioningState: S.optional(ProvisioningState),
+    version: S.String,
+    environmentVariables: S.optional(ToolPropertiesEnvironmentVariablesMap),
+    definitionContent: ToolPropertiesDefinitionContentMap,
+  }),
+).annotate({ identifier: "ToolProperties" }) as any as S.Schema<ToolProperties>;
+
+export interface GetToolResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetToolResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: ToolProperties;
+}
+export const GetToolResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetToolResponseTagsMap),
+    location: S.String,
+    properties: S.optional(ToolProperties),
+  }),
+).annotate({
+  identifier: "GetToolResponse",
+}) as any as S.Schema<GetToolResponse>;
+
+export interface GetWorkspaceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1574,7 +2109,673 @@ export interface ChatModelDeploymentsListByWorkspaceRequest {
   /** The name of the Workspace */
   workspaceName: string;
 }
-export const ChatModelDeploymentsListByWorkspaceRequest =
+export const GetWorkspaceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/workspaces/{workspaceName}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetWorkspaceRequest",
+}) as any as S.Schema<GetWorkspaceRequest>;
+
+/** Resource tags. */
+export type GetWorkspaceResponseTagsMap = { [key: string]: string | undefined };
+export const GetWorkspaceResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetWorkspaceResponseTagsMap>;
+
+/** List of linked SuperComputers. */
+export type WorkspacePropertiesSupercomputerIdsList = Array<string>;
+export const WorkspacePropertiesSupercomputerIdsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<WorkspacePropertiesSupercomputerIdsList>;
+
+/** For Key Vault Key references */
+export interface KeyVaultProperties {
+  /** The Key Vault URI */
+  keyVaultUri: string;
+  /** The Key Name in Key Vault */
+  keyName: string;
+  /** The Key Version in Key Vault */
+  keyVersion?: string;
+}
+export const KeyVaultProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    keyVaultUri: S.String,
+    keyName: S.String,
+    keyVersion: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "KeyVaultProperties",
+}) as any as S.Schema<KeyVaultProperties>;
+
+/** The private endpoint connection resource. */
+export type WorkspacePropertiesPrivateEndpointConnectionsItem =
+  BookshelfPropertiesPrivateEndpointConnectionsItem;
+export const WorkspacePropertiesPrivateEndpointConnectionsItem =
+  BookshelfPropertiesPrivateEndpointConnectionsItem;
+
+/** List of private endpoint connections. */
+export type WorkspacePropertiesPrivateEndpointConnectionsList =
+  Array<BookshelfPropertiesPrivateEndpointConnectionsItem>;
+export const WorkspacePropertiesPrivateEndpointConnectionsList =
+  /*@__PURE__*/ S.Array(
+    BookshelfPropertiesPrivateEndpointConnectionsItem,
+  ) as any as S.Schema<WorkspacePropertiesPrivateEndpointConnectionsList>;
+
+/** Workspace properties */
+export interface WorkspaceProperties {
+  /** The status of the last operation. */
+  provisioningState?: ProvisioningState;
+  /** List of linked SuperComputers. */
+  supercomputerIds?: WorkspacePropertiesSupercomputerIdsList;
+  /** workspace API endpoint Uri. */
+  workspaceApiUri?: string;
+  /** workspace User Interface Uri. */
+  workspaceUiUri?: string;
+  /** Identity IDs used for leveraging Workspace resources. */
+  workspaceIdentity: Identity;
+  /** Whether or not to use a customer managed key when encrypting data at rest */
+  customerManagedKeys?: CustomerManagedKeys;
+  /** The key to use for encrypting data at rest when customer managed keys are enabled. */
+  keyVaultProperties?: KeyVaultProperties;
+  /** The Log Analytics Cluster to use for debug logs. This is required when Customer Managed Keys are enabled. */
+  logAnalyticsClusterId?: string;
+  /** List of private endpoint connections. */
+  privateEndpointConnections?: WorkspacePropertiesPrivateEndpointConnectionsList;
+  /** Whether or not public network access is allowed for this resource. For security reasons, it is recommended to disable it whenever possible. */
+  publicNetworkAccess?: PublicNetworkAccess;
+  /** Agent Subnet ID for agent resources. */
+  agentSubnetId?: string;
+  /** Private Endpoint Subnet ID for private endpoint connections. */
+  privateEndpointSubnetId?: string;
+  /** Function Subnet ID for workspace resources. */
+  workspaceSubnetId?: string;
+  /** The resource group for resources managed on behalf of customer. */
+  managedResourceGroup?: string;
+  /** Managed-On-Behalf-Of configuration properties. This configuration exists for the resources where a resource provider manages those resources on behalf of the resource owner. */
+  managedOnBehalfOfConfiguration?: WithMoboBrokerResources;
+}
+export const WorkspaceProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provisioningState: S.optional(ProvisioningState),
+    supercomputerIds: S.optional(WorkspacePropertiesSupercomputerIdsList),
+    workspaceApiUri: S.optional(S.String),
+    workspaceUiUri: S.optional(S.String),
+    workspaceIdentity: Identity,
+    customerManagedKeys: S.optional(CustomerManagedKeys),
+    keyVaultProperties: S.optional(KeyVaultProperties),
+    logAnalyticsClusterId: S.optional(S.String),
+    privateEndpointConnections: S.optional(
+      WorkspacePropertiesPrivateEndpointConnectionsList,
+    ),
+    publicNetworkAccess: S.optional(PublicNetworkAccess),
+    agentSubnetId: S.optional(S.String),
+    privateEndpointSubnetId: S.optional(S.String),
+    workspaceSubnetId: S.optional(S.String),
+    managedResourceGroup: S.optional(S.String),
+    managedOnBehalfOfConfiguration: S.optional(WithMoboBrokerResources),
+  }),
+).annotate({
+  identifier: "WorkspaceProperties",
+}) as any as S.Schema<WorkspaceProperties>;
+
+export interface GetWorkspaceResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetWorkspaceResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: WorkspaceProperties;
+}
+export const GetWorkspaceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetWorkspaceResponseTagsMap),
+    location: S.String,
+    properties: S.optional(WorkspaceProperties),
+  }),
+).annotate({
+  identifier: "GetWorkspaceResponse",
+}) as any as S.Schema<GetWorkspaceResponse>;
+
+export interface GetWorkspacePrivateEndpointConnectionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Workspace */
+  workspaceName: string;
+  /** The name of the private endpoint connection associated with the Azure resource. */
+  privateEndpointConnectionName: string;
+}
+export const GetWorkspacePrivateEndpointConnectionRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      workspaceName: S.String.pipe(T.Label()),
+      privateEndpointConnectionName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/workspaces/{workspaceName}/privateEndpointConnections/{privateEndpointConnectionName}",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "GetWorkspacePrivateEndpointConnectionRequest",
+  }) as any as S.Schema<GetWorkspacePrivateEndpointConnectionRequest>;
+
+/** The group ids for the private endpoint resource. */
+export type GetWorkspacePrivateEndpointConnectionResponsePropertiesGroupIdsList =
+  Array<string>;
+export const GetWorkspacePrivateEndpointConnectionResponsePropertiesGroupIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<GetWorkspacePrivateEndpointConnectionResponsePropertiesGroupIdsList>;
+
+/** Properties of the private endpoint connection. */
+export interface GetWorkspacePrivateEndpointConnectionResponseProperties {
+  /** The group ids for the private endpoint resource. */
+  groupIds?: GetWorkspacePrivateEndpointConnectionResponsePropertiesGroupIdsList;
+  /** The private endpoint resource. */
+  privateEndpoint?: PrivateEndpoint;
+  /** A collection of information about the state of the connection between service consumer and provider. */
+  privateLinkServiceConnectionState: PrivateLinkServiceConnectionState;
+  /** The provisioning state of the private endpoint connection resource. */
+  provisioningState?: PrivateEndpointConnectionProvisioningState;
+}
+export const GetWorkspacePrivateEndpointConnectionResponseProperties =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      groupIds: S.optional(
+        GetWorkspacePrivateEndpointConnectionResponsePropertiesGroupIdsList,
+      ),
+      privateEndpoint: S.optional(PrivateEndpoint),
+      privateLinkServiceConnectionState: PrivateLinkServiceConnectionState,
+      provisioningState: S.optional(PrivateEndpointConnectionProvisioningState),
+    }),
+  ).annotate({
+    identifier: "GetWorkspacePrivateEndpointConnectionResponseProperties",
+  }) as any as S.Schema<GetWorkspacePrivateEndpointConnectionResponseProperties>;
+
+export interface GetWorkspacePrivateEndpointConnectionResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of the private endpoint connection. */
+  properties?: GetWorkspacePrivateEndpointConnectionResponseProperties;
+}
+export const GetWorkspacePrivateEndpointConnectionResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(
+        GetWorkspacePrivateEndpointConnectionResponseProperties,
+      ),
+    }),
+  ).annotate({
+    identifier: "GetWorkspacePrivateEndpointConnectionResponse",
+  }) as any as S.Schema<GetWorkspacePrivateEndpointConnectionResponse>;
+
+export interface GetWorkspacePrivateLinkResourceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Workspace */
+  workspaceName: string;
+  /** The name of the private link associated with the Azure resource. */
+  privateLinkResourceName: string;
+}
+export const GetWorkspacePrivateLinkResourceRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      workspaceName: S.String.pipe(T.Label()),
+      privateLinkResourceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/workspaces/{workspaceName}/privateLinkResources/{privateLinkResourceName}",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+).annotate({
+  identifier: "GetWorkspacePrivateLinkResourceRequest",
+}) as any as S.Schema<GetWorkspacePrivateLinkResourceRequest>;
+
+/** The private link resource required member names. */
+export type GetWorkspacePrivateLinkResourceResponsePropertiesRequiredMembersList =
+  Array<string>;
+export const GetWorkspacePrivateLinkResourceResponsePropertiesRequiredMembersList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<GetWorkspacePrivateLinkResourceResponsePropertiesRequiredMembersList>;
+
+/** The private link resource private link DNS zone name. */
+export type GetWorkspacePrivateLinkResourceResponsePropertiesRequiredZoneNamesList =
+  Array<string>;
+export const GetWorkspacePrivateLinkResourceResponsePropertiesRequiredZoneNamesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<GetWorkspacePrivateLinkResourceResponsePropertiesRequiredZoneNamesList>;
+
+/** Properties of a private link resource. */
+export interface GetWorkspacePrivateLinkResourceResponseProperties {
+  /** The private link resource group id. */
+  groupId?: string;
+  /** The private link resource required member names. */
+  requiredMembers?: GetWorkspacePrivateLinkResourceResponsePropertiesRequiredMembersList;
+  /** The private link resource private link DNS zone name. */
+  requiredZoneNames?: GetWorkspacePrivateLinkResourceResponsePropertiesRequiredZoneNamesList;
+}
+export const GetWorkspacePrivateLinkResourceResponseProperties =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      groupId: S.optional(S.String),
+      requiredMembers: S.optional(
+        GetWorkspacePrivateLinkResourceResponsePropertiesRequiredMembersList,
+      ),
+      requiredZoneNames: S.optional(
+        GetWorkspacePrivateLinkResourceResponsePropertiesRequiredZoneNamesList,
+      ),
+    }),
+  ).annotate({
+    identifier: "GetWorkspacePrivateLinkResourceResponseProperties",
+  }) as any as S.Schema<GetWorkspacePrivateLinkResourceResponseProperties>;
+
+export interface GetWorkspacePrivateLinkResourceResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of a private link resource. */
+  properties?: GetWorkspacePrivateLinkResourceResponseProperties;
+}
+export const GetWorkspacePrivateLinkResourceResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(GetWorkspacePrivateLinkResourceResponseProperties),
+    }),
+).annotate({
+  identifier: "GetWorkspacePrivateLinkResourceResponse",
+}) as any as S.Schema<GetWorkspacePrivateLinkResourceResponse>;
+
+export interface ListBookshelfPrivateEndpointConnectionByBookshelfRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Bookshelf */
+  bookshelfName: string;
+}
+export const ListBookshelfPrivateEndpointConnectionByBookshelfRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      bookshelfName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/bookshelves/{bookshelfName}/privateEndpointConnections",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListBookshelfPrivateEndpointConnectionByBookshelfRequest",
+  }) as any as S.Schema<ListBookshelfPrivateEndpointConnectionByBookshelfRequest>;
+
+/** The group ids for the private endpoint resource. */
+export type BookshelfPrivateEndpointConnectionPropertiesGroupIdsList =
+  Array<string>;
+export const BookshelfPrivateEndpointConnectionPropertiesGroupIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<BookshelfPrivateEndpointConnectionPropertiesGroupIdsList>;
+
+/** Properties of the private endpoint connection. */
+export interface BookshelfPrivateEndpointConnectionProperties {
+  /** The group ids for the private endpoint resource. */
+  groupIds?: BookshelfPrivateEndpointConnectionPropertiesGroupIdsList;
+  /** The private endpoint resource. */
+  privateEndpoint?: PrivateEndpoint;
+  /** A collection of information about the state of the connection between service consumer and provider. */
+  privateLinkServiceConnectionState: PrivateLinkServiceConnectionState;
+  /** The provisioning state of the private endpoint connection resource. */
+  provisioningState?: PrivateEndpointConnectionProvisioningState;
+}
+export const BookshelfPrivateEndpointConnectionProperties =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      groupIds: S.optional(
+        BookshelfPrivateEndpointConnectionPropertiesGroupIdsList,
+      ),
+      privateEndpoint: S.optional(PrivateEndpoint),
+      privateLinkServiceConnectionState: PrivateLinkServiceConnectionState,
+      provisioningState: S.optional(PrivateEndpointConnectionProvisioningState),
+    }),
+  ).annotate({
+    identifier: "BookshelfPrivateEndpointConnectionProperties",
+  }) as any as S.Schema<BookshelfPrivateEndpointConnectionProperties>;
+
+/** The Private Endpoint Connection resource for Bookshelf. */
+export interface BookshelfPrivateEndpointConnection {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of the private endpoint connection. */
+  properties?: BookshelfPrivateEndpointConnectionProperties;
+}
+export const BookshelfPrivateEndpointConnection = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(BookshelfPrivateEndpointConnectionProperties),
+  }),
+).annotate({
+  identifier: "BookshelfPrivateEndpointConnection",
+}) as any as S.Schema<BookshelfPrivateEndpointConnection>;
+
+/** The BookshelfPrivateEndpointConnection items on this page */
+export type BookshelfPrivateEndpointConnectionListResultValueList =
+  Array<BookshelfPrivateEndpointConnection>;
+export const BookshelfPrivateEndpointConnectionListResultValueList =
+  /*@__PURE__*/ S.Array(
+    BookshelfPrivateEndpointConnection,
+  ) as any as S.Schema<BookshelfPrivateEndpointConnectionListResultValueList>;
+
+/** The response of a BookshelfPrivateEndpointConnection list operation. */
+export interface BookshelfPrivateEndpointConnectionListResult {
+  /** The BookshelfPrivateEndpointConnection items on this page */
+  value: BookshelfPrivateEndpointConnectionListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const BookshelfPrivateEndpointConnectionListResult =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      value: BookshelfPrivateEndpointConnectionListResultValueList,
+      nextLink: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "BookshelfPrivateEndpointConnectionListResult",
+  }) as any as S.Schema<BookshelfPrivateEndpointConnectionListResult>;
+
+export interface ListBookshelfPrivateLinkResourceByBookshelfRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Bookshelf */
+  bookshelfName: string;
+}
+export const ListBookshelfPrivateLinkResourceByBookshelfRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      bookshelfName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/bookshelves/{bookshelfName}/privateLinkResources",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListBookshelfPrivateLinkResourceByBookshelfRequest",
+  }) as any as S.Schema<ListBookshelfPrivateLinkResourceByBookshelfRequest>;
+
+/** The private link resource required member names. */
+export type BookshelfPrivateLinkResourcePropertiesRequiredMembersList =
+  Array<string>;
+export const BookshelfPrivateLinkResourcePropertiesRequiredMembersList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<BookshelfPrivateLinkResourcePropertiesRequiredMembersList>;
+
+/** The private link resource private link DNS zone name. */
+export type BookshelfPrivateLinkResourcePropertiesRequiredZoneNamesList =
+  Array<string>;
+export const BookshelfPrivateLinkResourcePropertiesRequiredZoneNamesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<BookshelfPrivateLinkResourcePropertiesRequiredZoneNamesList>;
+
+/** Properties of a private link resource. */
+export interface BookshelfPrivateLinkResourceProperties {
+  /** The private link resource group id. */
+  groupId?: string;
+  /** The private link resource required member names. */
+  requiredMembers?: BookshelfPrivateLinkResourcePropertiesRequiredMembersList;
+  /** The private link resource private link DNS zone name. */
+  requiredZoneNames?: BookshelfPrivateLinkResourcePropertiesRequiredZoneNamesList;
+}
+export const BookshelfPrivateLinkResourceProperties = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      groupId: S.optional(S.String),
+      requiredMembers: S.optional(
+        BookshelfPrivateLinkResourcePropertiesRequiredMembersList,
+      ),
+      requiredZoneNames: S.optional(
+        BookshelfPrivateLinkResourcePropertiesRequiredZoneNamesList,
+      ),
+    }),
+).annotate({
+  identifier: "BookshelfPrivateLinkResourceProperties",
+}) as any as S.Schema<BookshelfPrivateLinkResourceProperties>;
+
+/** A private link resource for Bookshelf. */
+export interface BookshelfPrivateLinkResource {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of a private link resource. */
+  properties?: BookshelfPrivateLinkResourceProperties;
+}
+export const BookshelfPrivateLinkResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(BookshelfPrivateLinkResourceProperties),
+  }),
+).annotate({
+  identifier: "BookshelfPrivateLinkResource",
+}) as any as S.Schema<BookshelfPrivateLinkResource>;
+
+/** The BookshelfPrivateLinkResource items on this page */
+export type BookshelfPrivateLinkResourceListResultValueList =
+  Array<BookshelfPrivateLinkResource>;
+export const BookshelfPrivateLinkResourceListResultValueList =
+  /*@__PURE__*/ S.Array(
+    BookshelfPrivateLinkResource,
+  ) as any as S.Schema<BookshelfPrivateLinkResourceListResultValueList>;
+
+/** The response of a BookshelfPrivateLinkResource list operation. */
+export interface BookshelfPrivateLinkResourceListResult {
+  /** The BookshelfPrivateLinkResource items on this page */
+  value: BookshelfPrivateLinkResourceListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const BookshelfPrivateLinkResourceListResult = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      value: BookshelfPrivateLinkResourceListResultValueList,
+      nextLink: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "BookshelfPrivateLinkResourceListResult",
+}) as any as S.Schema<BookshelfPrivateLinkResourceListResult>;
+
+export interface ListBookshelveByResourceGroupRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+}
+export const ListBookshelveByResourceGroupRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/bookshelves",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListBookshelveByResourceGroupRequest",
+}) as any as S.Schema<ListBookshelveByResourceGroupRequest>;
+
+/** Resource tags. */
+export type BookshelfTagsMap = { [key: string]: string | undefined };
+export const BookshelfTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<BookshelfTagsMap>;
+
+/** Bookshelf tracked resource */
+export interface Bookshelf {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: BookshelfTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: BookshelfProperties;
+}
+export const Bookshelf = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(BookshelfTagsMap),
+    location: S.String,
+    properties: S.optional(BookshelfProperties),
+  }),
+).annotate({ identifier: "Bookshelf" }) as any as S.Schema<Bookshelf>;
+
+/** The Bookshelf items on this page */
+export type BookshelfListResultValueList = Array<Bookshelf>;
+export const BookshelfListResultValueList = /*@__PURE__*/ S.Array(
+  Bookshelf,
+) as any as S.Schema<BookshelfListResultValueList>;
+
+/** The response of a Bookshelf list operation. */
+export interface BookshelfListResult {
+  /** The Bookshelf items on this page */
+  value: BookshelfListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const BookshelfListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: BookshelfListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "BookshelfListResult",
+}) as any as S.Schema<BookshelfListResult>;
+
+export interface ListBookshelveBySubscriptionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+}
+export const ListBookshelveBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Discovery/bookshelves",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListBookshelveBySubscriptionRequest",
+}) as any as S.Schema<ListBookshelveBySubscriptionRequest>;
+
+export interface ListChatModelDeploymentByWorkspaceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Workspace */
+  workspaceName: string;
+}
+export const ListChatModelDeploymentByWorkspaceRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -1589,8 +2790,8 @@ export const ChatModelDeploymentsListByWorkspaceRequest =
       }),
     ),
   ).annotate({
-    identifier: "ChatModelDeploymentsListByWorkspaceRequest",
-  }) as any as S.Schema<ChatModelDeploymentsListByWorkspaceRequest>;
+    identifier: "ListChatModelDeploymentByWorkspaceRequest",
+  }) as any as S.Schema<ListChatModelDeploymentByWorkspaceRequest>;
 
 /** Resource tags. */
 export type ChatModelDeploymentTagsMap = { [key: string]: string | undefined };
@@ -1652,72 +2853,40 @@ export const ChatModelDeploymentListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "ChatModelDeploymentListResult",
 }) as any as S.Schema<ChatModelDeploymentListResult>;
 
-/** Resource tags. */
-export type ChatModelDeploymentsUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ChatModelDeploymentsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ChatModelDeploymentsUpdateRequestTagsMap>;
-
-/** Defines a deployment binding a specific model family to a user-defined deployment name for chat inference. */
-export interface ChatModelDeploymentPropertiesUpdate {
-  /** Provisioned SKU capacity units for this chat model deployment. */
-  capacity?: number;
-}
-export const ChatModelDeploymentPropertiesUpdate = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    capacity: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "ChatModelDeploymentPropertiesUpdate",
-}) as any as S.Schema<ChatModelDeploymentPropertiesUpdate>;
-
-export interface ChatModelDeploymentsUpdateRequest {
+export interface ListNodePoolBySupercomputerRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
-  /** The name of the Workspace */
-  workspaceName: string;
-  /** The name of the ChatModelDeployment */
-  chatModelDeploymentName: string;
-  /** Resource tags. */
-  tags?: ChatModelDeploymentsUpdateRequestTagsMap;
-  /** The resource-specific properties for this resource. */
-  properties?: ChatModelDeploymentPropertiesUpdate;
+  /** The name of the Supercomputer */
+  supercomputerName: string;
 }
-export const ChatModelDeploymentsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListNodePoolBySupercomputerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    chatModelDeploymentName: S.String.pipe(T.Label()),
-    tags: S.optional(ChatModelDeploymentsUpdateRequestTagsMap),
-    properties: S.optional(ChatModelDeploymentPropertiesUpdate),
+    supercomputerName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/workspaces/{workspaceName}/chatModelDeployments/{chatModelDeploymentName}",
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/supercomputers/{supercomputerName}/nodePools",
       code: 200,
       apiVersion: "2026-06-01",
     }),
   ),
 ).annotate({
-  identifier: "ChatModelDeploymentsUpdateRequest",
-}) as any as S.Schema<ChatModelDeploymentsUpdateRequest>;
+  identifier: "ListNodePoolBySupercomputerRequest",
+}) as any as S.Schema<ListNodePoolBySupercomputerRequest>;
 
 /** Resource tags. */
-export type ChatModelDeploymentsUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ChatModelDeploymentsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export type NodePoolTagsMap = { [key: string]: string | undefined };
+export const NodePoolTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ChatModelDeploymentsUpdateResponseTagsMap>;
+) as any as S.Schema<NodePoolTagsMap>;
 
-export interface ChatModelDeploymentsUpdateResponse {
+/** NodePool tracked resource */
+export interface NodePool {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -1727,25 +2896,932 @@ export interface ChatModelDeploymentsUpdateResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ChatModelDeploymentsUpdateResponseTagsMap;
+  tags?: NodePoolTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
-  properties?: ChatModelDeploymentProperties;
+  properties?: NodePoolProperties;
 }
-export const ChatModelDeploymentsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const NodePool = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ChatModelDeploymentsUpdateResponseTagsMap),
+    tags: S.optional(NodePoolTagsMap),
     location: S.String,
-    properties: S.optional(ChatModelDeploymentProperties),
+    properties: S.optional(NodePoolProperties),
+  }),
+).annotate({ identifier: "NodePool" }) as any as S.Schema<NodePool>;
+
+/** The NodePool items on this page */
+export type NodePoolListResultValueList = Array<NodePool>;
+export const NodePoolListResultValueList = /*@__PURE__*/ S.Array(
+  NodePool,
+) as any as S.Schema<NodePoolListResultValueList>;
+
+/** The response of a NodePool list operation. */
+export interface NodePoolListResult {
+  /** The NodePool items on this page */
+  value: NodePoolListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const NodePoolListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: NodePoolListResultValueList,
+    nextLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ChatModelDeploymentsUpdateResponse",
-}) as any as S.Schema<ChatModelDeploymentsUpdateResponse>;
+  identifier: "NodePoolListResult",
+}) as any as S.Schema<NodePoolListResult>;
+
+export interface ListOperationsRequest {}
+export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/providers/Microsoft.Discovery/operations",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListOperationsRequest",
+}) as any as S.Schema<ListOperationsRequest>;
+
+/** Localized display information for this particular operation. */
+export interface OperationDisplay {
+  /** The localized friendly form of the resource provider name, e.g. "Microsoft Monitoring Insights" or "Microsoft Compute". */
+  provider?: string;
+  /** The localized friendly name of the resource type related to this operation. E.g. "Virtual Machines" or "Job Schedule Collections". */
+  resource?: string;
+  /** The concise, localized friendly name for the operation; suitable for dropdowns. E.g. "Create or Update Virtual Machine", "Restart Virtual Machine". */
+  operation?: string;
+  /** The short, localized friendly description of the operation; suitable for tool tips and detailed views. */
+  description?: string;
+}
+export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provider: S.optional(S.String),
+    resource: S.optional(S.String),
+    operation: S.optional(S.String),
+    description: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "OperationDisplay",
+}) as any as S.Schema<OperationDisplay>;
+
+/** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
+export type OperationOrigin = "user" | "system" | "user,system";
+export const OperationOrigin = /*@__PURE__*/ S.String;
+
+/** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
+export type OperationActionType = "Internal";
+export const OperationActionType = /*@__PURE__*/ S.String;
+
+/** Details of a REST API operation, returned from the Resource Provider Operations API */
+export interface Operation {
+  /** The name of the operation, as per Resource-Based Access Control (RBAC). Examples: "Microsoft.Compute/virtualMachines/write", "Microsoft.Compute/virtualMachines/capture/action" */
+  name?: string;
+  /** Whether the operation applies to data-plane. This is "true" for data-plane operations and "false" for ARM/control-plane operations. */
+  isDataAction?: boolean;
+  /** Localized display information for this particular operation. */
+  display?: OperationDisplay;
+  /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
+  origin?: OperationOrigin;
+  /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
+  actionType?: OperationActionType;
+}
+export const Operation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    isDataAction: S.optional(S.Boolean),
+    display: S.optional(OperationDisplay),
+    origin: S.optional(OperationOrigin),
+    actionType: S.optional(OperationActionType),
+  }),
+).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
+
+/** List of operations supported by the resource provider */
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
+  Operation,
+) as any as S.Schema<ListOperationsResponseValueList>;
+
+export interface ListOperationsResponse {
+  /** List of operations supported by the resource provider */
+  value?: ListOperationsResponseValueList;
+  /** URL to get the next set of operation list results (if there are any). */
+  nextLink?: string;
+}
+export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(ListOperationsResponseValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ListOperationsResponse",
+}) as any as S.Schema<ListOperationsResponse>;
+
+export interface ListProjectByWorkspaceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Workspace */
+  workspaceName: string;
+}
+export const ListProjectByWorkspaceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/workspaces/{workspaceName}/projects",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListProjectByWorkspaceRequest",
+}) as any as S.Schema<ListProjectByWorkspaceRequest>;
+
+/** Resource tags. */
+export type ProjectTagsMap = { [key: string]: string | undefined };
+export const ProjectTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<ProjectTagsMap>;
+
+/** Project tracked resource */
+export interface Project {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: ProjectTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: ProjectProperties;
+}
+export const Project = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(ProjectTagsMap),
+    location: S.String,
+    properties: S.optional(ProjectProperties),
+  }),
+).annotate({ identifier: "Project" }) as any as S.Schema<Project>;
+
+/** The Project items on this page */
+export type ProjectListResultValueList = Array<Project>;
+export const ProjectListResultValueList = /*@__PURE__*/ S.Array(
+  Project,
+) as any as S.Schema<ProjectListResultValueList>;
+
+/** The response of a Project list operation. */
+export interface ProjectListResult {
+  /** The Project items on this page */
+  value: ProjectListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const ProjectListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: ProjectListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ProjectListResult",
+}) as any as S.Schema<ProjectListResult>;
+
+export interface ListStorageAssetByStorageContainerRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the StorageContainer */
+  storageContainerName: string;
+}
+export const ListStorageAssetByStorageContainerRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      storageContainerName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/storageContainers/{storageContainerName}/storageAssets",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListStorageAssetByStorageContainerRequest",
+  }) as any as S.Schema<ListStorageAssetByStorageContainerRequest>;
+
+/** Resource tags. */
+export type StorageAssetTagsMap = { [key: string]: string | undefined };
+export const StorageAssetTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<StorageAssetTagsMap>;
+
+/** Storage Asset tracked resource */
+export interface StorageAsset {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: StorageAssetTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: StorageAssetProperties;
+}
+export const StorageAsset = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(StorageAssetTagsMap),
+    location: S.String,
+    properties: S.optional(StorageAssetProperties),
+  }),
+).annotate({ identifier: "StorageAsset" }) as any as S.Schema<StorageAsset>;
+
+/** The StorageAsset items on this page */
+export type StorageAssetListResultValueList = Array<StorageAsset>;
+export const StorageAssetListResultValueList = /*@__PURE__*/ S.Array(
+  StorageAsset,
+) as any as S.Schema<StorageAssetListResultValueList>;
+
+/** The response of a StorageAsset list operation. */
+export interface StorageAssetListResult {
+  /** The StorageAsset items on this page */
+  value: StorageAssetListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const StorageAssetListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: StorageAssetListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "StorageAssetListResult",
+}) as any as S.Schema<StorageAssetListResult>;
+
+export interface ListStorageContainerByResourceGroupRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+}
+export const ListStorageContainerByResourceGroupRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/storageContainers",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListStorageContainerByResourceGroupRequest",
+  }) as any as S.Schema<ListStorageContainerByResourceGroupRequest>;
+
+/** Resource tags. */
+export type StorageContainerTagsMap = { [key: string]: string | undefined };
+export const StorageContainerTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<StorageContainerTagsMap>;
+
+/** Storage Container tracked resource */
+export interface StorageContainer {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: StorageContainerTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: StorageContainerProperties;
+}
+export const StorageContainer = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(StorageContainerTagsMap),
+    location: S.String,
+    properties: S.optional(StorageContainerProperties),
+  }),
+).annotate({
+  identifier: "StorageContainer",
+}) as any as S.Schema<StorageContainer>;
+
+/** The StorageContainer items on this page */
+export type StorageContainerListResultValueList = Array<StorageContainer>;
+export const StorageContainerListResultValueList = /*@__PURE__*/ S.Array(
+  StorageContainer,
+) as any as S.Schema<StorageContainerListResultValueList>;
+
+/** The response of a StorageContainer list operation. */
+export interface StorageContainerListResult {
+  /** The StorageContainer items on this page */
+  value: StorageContainerListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const StorageContainerListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: StorageContainerListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "StorageContainerListResult",
+}) as any as S.Schema<StorageContainerListResult>;
+
+export interface ListStorageContainerBySubscriptionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+}
+export const ListStorageContainerBySubscriptionRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Discovery/storageContainers",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListStorageContainerBySubscriptionRequest",
+  }) as any as S.Schema<ListStorageContainerBySubscriptionRequest>;
+
+export interface ListSupercomputerByResourceGroupRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+}
+export const ListSupercomputerByResourceGroupRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/supercomputers",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListSupercomputerByResourceGroupRequest",
+}) as any as S.Schema<ListSupercomputerByResourceGroupRequest>;
+
+/** Resource tags. */
+export type SupercomputerTagsMap = { [key: string]: string | undefined };
+export const SupercomputerTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<SupercomputerTagsMap>;
+
+/** Managed service identity (either system assigned, or none) */
+export type SupercomputerIdentity = GetSupercomputerResponseIdentity;
+export const SupercomputerIdentity = GetSupercomputerResponseIdentity;
+
+/** Supercomputer tracked resource */
+export interface Supercomputer {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: SupercomputerTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: SupercomputerProperties;
+  /** Managed service identity (either system assigned, or none) */
+  identity?: GetSupercomputerResponseIdentity;
+}
+export const Supercomputer = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(SupercomputerTagsMap),
+    location: S.String,
+    properties: S.optional(SupercomputerProperties),
+    identity: S.optional(GetSupercomputerResponseIdentity),
+  }),
+).annotate({ identifier: "Supercomputer" }) as any as S.Schema<Supercomputer>;
+
+/** The Supercomputer items on this page */
+export type SupercomputerListResultValueList = Array<Supercomputer>;
+export const SupercomputerListResultValueList = /*@__PURE__*/ S.Array(
+  Supercomputer,
+) as any as S.Schema<SupercomputerListResultValueList>;
+
+/** The response of a Supercomputer list operation. */
+export interface SupercomputerListResult {
+  /** The Supercomputer items on this page */
+  value: SupercomputerListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const SupercomputerListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: SupercomputerListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "SupercomputerListResult",
+}) as any as S.Schema<SupercomputerListResult>;
+
+export interface ListSupercomputerBySubscriptionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+}
+export const ListSupercomputerBySubscriptionRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Discovery/supercomputers",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListSupercomputerBySubscriptionRequest",
+}) as any as S.Schema<ListSupercomputerBySubscriptionRequest>;
+
+export interface ListToolByResourceGroupRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+}
+export const ListToolByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/tools",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListToolByResourceGroupRequest",
+}) as any as S.Schema<ListToolByResourceGroupRequest>;
+
+/** Resource tags. */
+export type ToolTagsMap = { [key: string]: string | undefined };
+export const ToolTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<ToolTagsMap>;
+
+/** Tool tracked resource */
+export interface Tool {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: ToolTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: ToolProperties;
+}
+export const Tool = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(ToolTagsMap),
+    location: S.String,
+    properties: S.optional(ToolProperties),
+  }),
+).annotate({ identifier: "Tool" }) as any as S.Schema<Tool>;
+
+/** The Tool items on this page */
+export type ToolListResultValueList = Array<Tool>;
+export const ToolListResultValueList = /*@__PURE__*/ S.Array(
+  Tool,
+) as any as S.Schema<ToolListResultValueList>;
+
+/** The response of a Tool list operation. */
+export interface ToolListResult {
+  /** The Tool items on this page */
+  value: ToolListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const ToolListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: ToolListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({ identifier: "ToolListResult" }) as any as S.Schema<ToolListResult>;
+
+export interface ListToolBySubscriptionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+}
+export const ListToolBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Discovery/tools",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListToolBySubscriptionRequest",
+}) as any as S.Schema<ListToolBySubscriptionRequest>;
+
+export interface ListWorkspaceByResourceGroupRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+}
+export const ListWorkspaceByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/workspaces",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListWorkspaceByResourceGroupRequest",
+}) as any as S.Schema<ListWorkspaceByResourceGroupRequest>;
+
+/** Resource tags. */
+export type WorkspaceTagsMap = { [key: string]: string | undefined };
+export const WorkspaceTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<WorkspaceTagsMap>;
+
+/** Workspace tracked resource */
+export interface Workspace {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: WorkspaceTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: WorkspaceProperties;
+}
+export const Workspace = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(WorkspaceTagsMap),
+    location: S.String,
+    properties: S.optional(WorkspaceProperties),
+  }),
+).annotate({ identifier: "Workspace" }) as any as S.Schema<Workspace>;
+
+/** The Workspace items on this page */
+export type WorkspaceListResultValueList = Array<Workspace>;
+export const WorkspaceListResultValueList = /*@__PURE__*/ S.Array(
+  Workspace,
+) as any as S.Schema<WorkspaceListResultValueList>;
+
+/** The response of a Workspace list operation. */
+export interface WorkspaceListResult {
+  /** The Workspace items on this page */
+  value: WorkspaceListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const WorkspaceListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: WorkspaceListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "WorkspaceListResult",
+}) as any as S.Schema<WorkspaceListResult>;
+
+export interface ListWorkspaceBySubscriptionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+}
+export const ListWorkspaceBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Discovery/workspaces",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListWorkspaceBySubscriptionRequest",
+}) as any as S.Schema<ListWorkspaceBySubscriptionRequest>;
+
+export interface ListWorkspacePrivateEndpointConnectionByWorkspaceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Workspace */
+  workspaceName: string;
+}
+export const ListWorkspacePrivateEndpointConnectionByWorkspaceRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      workspaceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/workspaces/{workspaceName}/privateEndpointConnections",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListWorkspacePrivateEndpointConnectionByWorkspaceRequest",
+  }) as any as S.Schema<ListWorkspacePrivateEndpointConnectionByWorkspaceRequest>;
+
+/** The group ids for the private endpoint resource. */
+export type WorkspacePrivateEndpointConnectionPropertiesGroupIdsList =
+  Array<string>;
+export const WorkspacePrivateEndpointConnectionPropertiesGroupIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<WorkspacePrivateEndpointConnectionPropertiesGroupIdsList>;
+
+/** Properties of the private endpoint connection. */
+export interface WorkspacePrivateEndpointConnectionProperties {
+  /** The group ids for the private endpoint resource. */
+  groupIds?: WorkspacePrivateEndpointConnectionPropertiesGroupIdsList;
+  /** The private endpoint resource. */
+  privateEndpoint?: PrivateEndpoint;
+  /** A collection of information about the state of the connection between service consumer and provider. */
+  privateLinkServiceConnectionState: PrivateLinkServiceConnectionState;
+  /** The provisioning state of the private endpoint connection resource. */
+  provisioningState?: PrivateEndpointConnectionProvisioningState;
+}
+export const WorkspacePrivateEndpointConnectionProperties =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      groupIds: S.optional(
+        WorkspacePrivateEndpointConnectionPropertiesGroupIdsList,
+      ),
+      privateEndpoint: S.optional(PrivateEndpoint),
+      privateLinkServiceConnectionState: PrivateLinkServiceConnectionState,
+      provisioningState: S.optional(PrivateEndpointConnectionProvisioningState),
+    }),
+  ).annotate({
+    identifier: "WorkspacePrivateEndpointConnectionProperties",
+  }) as any as S.Schema<WorkspacePrivateEndpointConnectionProperties>;
+
+/** The Private Endpoint Connection resource for Workspace. */
+export interface WorkspacePrivateEndpointConnection {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of the private endpoint connection. */
+  properties?: WorkspacePrivateEndpointConnectionProperties;
+}
+export const WorkspacePrivateEndpointConnection = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(WorkspacePrivateEndpointConnectionProperties),
+  }),
+).annotate({
+  identifier: "WorkspacePrivateEndpointConnection",
+}) as any as S.Schema<WorkspacePrivateEndpointConnection>;
+
+/** The WorkspacePrivateEndpointConnection items on this page */
+export type WorkspacePrivateEndpointConnectionListResultValueList =
+  Array<WorkspacePrivateEndpointConnection>;
+export const WorkspacePrivateEndpointConnectionListResultValueList =
+  /*@__PURE__*/ S.Array(
+    WorkspacePrivateEndpointConnection,
+  ) as any as S.Schema<WorkspacePrivateEndpointConnectionListResultValueList>;
+
+/** The response of a WorkspacePrivateEndpointConnection list operation. */
+export interface WorkspacePrivateEndpointConnectionListResult {
+  /** The WorkspacePrivateEndpointConnection items on this page */
+  value: WorkspacePrivateEndpointConnectionListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const WorkspacePrivateEndpointConnectionListResult =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      value: WorkspacePrivateEndpointConnectionListResultValueList,
+      nextLink: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "WorkspacePrivateEndpointConnectionListResult",
+  }) as any as S.Schema<WorkspacePrivateEndpointConnectionListResult>;
+
+export interface ListWorkspacePrivateLinkResourceByWorkspaceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Workspace */
+  workspaceName: string;
+}
+export const ListWorkspacePrivateLinkResourceByWorkspaceRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      workspaceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/workspaces/{workspaceName}/privateLinkResources",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListWorkspacePrivateLinkResourceByWorkspaceRequest",
+  }) as any as S.Schema<ListWorkspacePrivateLinkResourceByWorkspaceRequest>;
+
+/** The private link resource required member names. */
+export type WorkspacePrivateLinkResourcePropertiesRequiredMembersList =
+  Array<string>;
+export const WorkspacePrivateLinkResourcePropertiesRequiredMembersList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<WorkspacePrivateLinkResourcePropertiesRequiredMembersList>;
+
+/** The private link resource private link DNS zone name. */
+export type WorkspacePrivateLinkResourcePropertiesRequiredZoneNamesList =
+  Array<string>;
+export const WorkspacePrivateLinkResourcePropertiesRequiredZoneNamesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<WorkspacePrivateLinkResourcePropertiesRequiredZoneNamesList>;
+
+/** Properties of a private link resource. */
+export interface WorkspacePrivateLinkResourceProperties {
+  /** The private link resource group id. */
+  groupId?: string;
+  /** The private link resource required member names. */
+  requiredMembers?: WorkspacePrivateLinkResourcePropertiesRequiredMembersList;
+  /** The private link resource private link DNS zone name. */
+  requiredZoneNames?: WorkspacePrivateLinkResourcePropertiesRequiredZoneNamesList;
+}
+export const WorkspacePrivateLinkResourceProperties = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      groupId: S.optional(S.String),
+      requiredMembers: S.optional(
+        WorkspacePrivateLinkResourcePropertiesRequiredMembersList,
+      ),
+      requiredZoneNames: S.optional(
+        WorkspacePrivateLinkResourcePropertiesRequiredZoneNamesList,
+      ),
+    }),
+).annotate({
+  identifier: "WorkspacePrivateLinkResourceProperties",
+}) as any as S.Schema<WorkspacePrivateLinkResourceProperties>;
+
+/** A private link resource for Workspace. */
+export interface WorkspacePrivateLinkResource {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of a private link resource. */
+  properties?: WorkspacePrivateLinkResourceProperties;
+}
+export const WorkspacePrivateLinkResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(WorkspacePrivateLinkResourceProperties),
+  }),
+).annotate({
+  identifier: "WorkspacePrivateLinkResource",
+}) as any as S.Schema<WorkspacePrivateLinkResource>;
+
+/** The WorkspacePrivateLinkResource items on this page */
+export type WorkspacePrivateLinkResourceListResultValueList =
+  Array<WorkspacePrivateLinkResource>;
+export const WorkspacePrivateLinkResourceListResultValueList =
+  /*@__PURE__*/ S.Array(
+    WorkspacePrivateLinkResource,
+  ) as any as S.Schema<WorkspacePrivateLinkResourceListResultValueList>;
+
+/** The response of a WorkspacePrivateLinkResource list operation. */
+export interface WorkspacePrivateLinkResourceListResult {
+  /** The WorkspacePrivateLinkResource items on this page */
+  value: WorkspacePrivateLinkResourceListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const WorkspacePrivateLinkResourceListResult = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      value: WorkspacePrivateLinkResourceListResultValueList,
+      nextLink: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "WorkspacePrivateLinkResourceListResult",
+}) as any as S.Schema<WorkspacePrivateLinkResourceListResult>;
 
 /** Resource tags. */
 export type NodePoolsCreateOrUpdateRequestTagsMap = {
@@ -1755,24 +3831,6 @@ export const NodePoolsCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
 ) as any as S.Schema<NodePoolsCreateOrUpdateRequestTagsMap>;
-
-/** Supported Azure VM Sizes. */
-export type VmSize =
-  | "Standard_NC24ads_A100_v4"
-  | "Standard_NC48ads_A100_v4"
-  | "Standard_NC96ads_A100_v4"
-  | "Standard_NC4as_T4_v3"
-  | "Standard_NC8as_T4_v3"
-  | "Standard_NC16as_T4_v3"
-  | "Standard_NC64as_T4_v3"
-  | "Standard_NV6ads_A10_v5"
-  | "Standard_NV12ads_A10_v5"
-  | "Standard_NV24ads_A10_v5"
-  | "Standard_NV36ads_A10_v5"
-  | "Standard_NV36adms_A10_v5"
-  | "Standard_NV72ads_A10_v5"
-  | "Standard_ND40rs_v2";
-export const VmSize = /*@__PURE__*/ S.String;
 
 /** The Virtual Machine Scale Set priority. If not specified, the default is 'Regular'. */
 export type NodePoolPropertiesInputScaleSetPriority = "Regular" | "Spot";
@@ -1858,47 +3916,6 @@ export const NodePoolsCreateOrUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
 ) as any as S.Schema<NodePoolsCreateOrUpdateResponseTagsMap>;
 
-/** The Virtual Machine Scale Set priority. If not specified, the default is 'Regular'. */
-export type NodePoolPropertiesScaleSetPriority = "Regular" | "Spot";
-export const NodePoolPropertiesScaleSetPriority = /*@__PURE__*/ S.String;
-
-/** NodePool properties */
-export interface NodePoolProperties {
-  /** The status of the last operation. */
-  provisioningState?: ProvisioningState;
-  /** The node pool subnet. */
-  subnetId: string;
-  /** The size of the underlying Azure VM. */
-  vmSize: VmSize;
-  /** The maximum number of nodes. */
-  maxNodeCount: number;
-  /** The minimum number of nodes. */
-  minNodeCount?: number;
-  /** The Virtual Machine Scale Set priority. If not specified, the default is 'Regular'. */
-  scaleSetPriority?: NodePoolPropertiesScaleSetPriority;
-  /** The size of the OS disk in GB. If not specified, the default is 120 GB. */
-  osDiskSizeGb?: number;
-  /** The percent of disk usage before which image garbage collection is never run. This cannot be set higher than imageCacheUpperThreshold. The default is 40% */
-  imageCacheLowerThreshold?: number;
-  /** The percent of disk usage after which image garbage collection is guaranteed to run. The default is 60% */
-  imageCacheUpperThreshold?: number;
-}
-export const NodePoolProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provisioningState: S.optional(ProvisioningState),
-    subnetId: S.String,
-    vmSize: VmSize,
-    maxNodeCount: S.Number,
-    minNodeCount: S.optional(S.Number),
-    scaleSetPriority: S.optional(NodePoolPropertiesScaleSetPriority),
-    osDiskSizeGb: S.optional(S.Number),
-    imageCacheLowerThreshold: S.optional(S.Number),
-    imageCacheUpperThreshold: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "NodePoolProperties",
-}) as any as S.Schema<NodePoolProperties>;
-
 export interface NodePoolsCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
@@ -1929,375 +3946,6 @@ export const NodePoolsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "NodePoolsCreateOrUpdateResponse",
 }) as any as S.Schema<NodePoolsCreateOrUpdateResponse>;
 
-export interface NodePoolsDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Supercomputer */
-  supercomputerName: string;
-  /** The name of the NodePool */
-  nodePoolName: string;
-}
-export const NodePoolsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    supercomputerName: S.String.pipe(T.Label()),
-    nodePoolName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/supercomputers/{supercomputerName}/nodePools/{nodePoolName}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "NodePoolsDeleteRequest",
-}) as any as S.Schema<NodePoolsDeleteRequest>;
-
-export interface NodePoolsDeleteResponse {}
-export const NodePoolsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "NodePoolsDeleteResponse",
-}) as any as S.Schema<NodePoolsDeleteResponse>;
-
-export interface NodePoolsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Supercomputer */
-  supercomputerName: string;
-  /** The name of the NodePool */
-  nodePoolName: string;
-}
-export const NodePoolsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    supercomputerName: S.String.pipe(T.Label()),
-    nodePoolName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/supercomputers/{supercomputerName}/nodePools/{nodePoolName}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "NodePoolsGetRequest",
-}) as any as S.Schema<NodePoolsGetRequest>;
-
-/** Resource tags. */
-export type NodePoolsGetResponseTagsMap = { [key: string]: string | undefined };
-export const NodePoolsGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<NodePoolsGetResponseTagsMap>;
-
-export interface NodePoolsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: NodePoolsGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: NodePoolProperties;
-}
-export const NodePoolsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(NodePoolsGetResponseTagsMap),
-    location: S.String,
-    properties: S.optional(NodePoolProperties),
-  }),
-).annotate({
-  identifier: "NodePoolsGetResponse",
-}) as any as S.Schema<NodePoolsGetResponse>;
-
-export interface NodePoolsListBySupercomputerRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Supercomputer */
-  supercomputerName: string;
-}
-export const NodePoolsListBySupercomputerRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    supercomputerName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/supercomputers/{supercomputerName}/nodePools",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "NodePoolsListBySupercomputerRequest",
-}) as any as S.Schema<NodePoolsListBySupercomputerRequest>;
-
-/** Resource tags. */
-export type NodePoolTagsMap = { [key: string]: string | undefined };
-export const NodePoolTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<NodePoolTagsMap>;
-
-/** NodePool tracked resource */
-export interface NodePool {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: NodePoolTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: NodePoolProperties;
-}
-export const NodePool = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(NodePoolTagsMap),
-    location: S.String,
-    properties: S.optional(NodePoolProperties),
-  }),
-).annotate({ identifier: "NodePool" }) as any as S.Schema<NodePool>;
-
-/** The NodePool items on this page */
-export type NodePoolListResultValueList = Array<NodePool>;
-export const NodePoolListResultValueList = /*@__PURE__*/ S.Array(
-  NodePool,
-) as any as S.Schema<NodePoolListResultValueList>;
-
-/** The response of a NodePool list operation. */
-export interface NodePoolListResult {
-  /** The NodePool items on this page */
-  value: NodePoolListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const NodePoolListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: NodePoolListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "NodePoolListResult",
-}) as any as S.Schema<NodePoolListResult>;
-
-/** Resource tags. */
-export type NodePoolsUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const NodePoolsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<NodePoolsUpdateRequestTagsMap>;
-
-/** NodePool properties */
-export interface NodePoolPropertiesUpdate {
-  /** The maximum number of nodes. */
-  maxNodeCount?: number;
-  /** The minimum number of nodes. */
-  minNodeCount?: number;
-}
-export const NodePoolPropertiesUpdate = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    maxNodeCount: S.optional(S.Number),
-    minNodeCount: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "NodePoolPropertiesUpdate",
-}) as any as S.Schema<NodePoolPropertiesUpdate>;
-
-export interface NodePoolsUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Supercomputer */
-  supercomputerName: string;
-  /** The name of the NodePool */
-  nodePoolName: string;
-  /** Resource tags. */
-  tags?: NodePoolsUpdateRequestTagsMap;
-  /** The resource-specific properties for this resource. */
-  properties?: NodePoolPropertiesUpdate;
-}
-export const NodePoolsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    supercomputerName: S.String.pipe(T.Label()),
-    nodePoolName: S.String.pipe(T.Label()),
-    tags: S.optional(NodePoolsUpdateRequestTagsMap),
-    properties: S.optional(NodePoolPropertiesUpdate),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/supercomputers/{supercomputerName}/nodePools/{nodePoolName}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "NodePoolsUpdateRequest",
-}) as any as S.Schema<NodePoolsUpdateRequest>;
-
-/** Resource tags. */
-export type NodePoolsUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const NodePoolsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<NodePoolsUpdateResponseTagsMap>;
-
-export interface NodePoolsUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: NodePoolsUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: NodePoolProperties;
-}
-export const NodePoolsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(NodePoolsUpdateResponseTagsMap),
-    location: S.String,
-    properties: S.optional(NodePoolProperties),
-  }),
-).annotate({
-  identifier: "NodePoolsUpdateResponse",
-}) as any as S.Schema<NodePoolsUpdateResponse>;
-
-export interface OperationsListRequest {}
-export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/providers/Microsoft.Discovery/operations",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "OperationsListRequest",
-}) as any as S.Schema<OperationsListRequest>;
-
-/** Localized display information for this particular operation. */
-export interface OperationDisplay {
-  /** The localized friendly form of the resource provider name, e.g. "Microsoft Monitoring Insights" or "Microsoft Compute". */
-  provider?: string;
-  /** The localized friendly name of the resource type related to this operation. E.g. "Virtual Machines" or "Job Schedule Collections". */
-  resource?: string;
-  /** The concise, localized friendly name for the operation; suitable for dropdowns. E.g. "Create or Update Virtual Machine", "Restart Virtual Machine". */
-  operation?: string;
-  /** The short, localized friendly description of the operation; suitable for tool tips and detailed views. */
-  description?: string;
-}
-export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provider: S.optional(S.String),
-    resource: S.optional(S.String),
-    operation: S.optional(S.String),
-    description: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OperationDisplay",
-}) as any as S.Schema<OperationDisplay>;
-
-/** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
-export type OperationOrigin = "user" | "system" | "user,system";
-export const OperationOrigin = /*@__PURE__*/ S.String;
-
-/** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
-export type OperationActionType = "Internal";
-export const OperationActionType = /*@__PURE__*/ S.String;
-
-/** Details of a REST API operation, returned from the Resource Provider Operations API */
-export interface Operation {
-  /** The name of the operation, as per Resource-Based Access Control (RBAC). Examples: "Microsoft.Compute/virtualMachines/write", "Microsoft.Compute/virtualMachines/capture/action" */
-  name?: string;
-  /** Whether the operation applies to data-plane. This is "true" for data-plane operations and "false" for ARM/control-plane operations. */
-  isDataAction?: boolean;
-  /** Localized display information for this particular operation. */
-  display?: OperationDisplay;
-  /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
-  origin?: OperationOrigin;
-  /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
-  actionType?: OperationActionType;
-}
-export const Operation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    isDataAction: S.optional(S.Boolean),
-    display: S.optional(OperationDisplay),
-    origin: S.optional(OperationOrigin),
-    actionType: S.optional(OperationActionType),
-  }),
-).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
-
-/** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
-  Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
-
-export interface OperationsListResponse {
-  /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
-  /** URL to get the next set of operation list results (if there are any). */
-  nextLink?: string;
-}
-export const OperationsListResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(OperationsListResponseValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OperationsListResponse",
-}) as any as S.Schema<OperationsListResponse>;
-
 /** Resource tags. */
 export type ProjectsCreateOrUpdateRequestTagsMap = {
   [key: string]: string | undefined;
@@ -2313,19 +3961,6 @@ export const ProjectPropertiesInputStorageContainerIdsList =
   /*@__PURE__*/ S.Array(
     S.String,
   ) as any as S.Schema<ProjectPropertiesInputStorageContainerIdsList>;
-
-/** Settings schema for the project */
-export interface ProjectSettings {
-  /** Default preferences to guide AI behaviors in this project. */
-  behaviorPreferences?: string;
-}
-export const ProjectSettings = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    behaviorPreferences: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ProjectSettings",
-}) as any as S.Schema<ProjectSettings>;
 
 /** Project properties */
 export interface ProjectPropertiesInput {
@@ -2391,34 +4026,6 @@ export const ProjectsCreateOrUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
 ) as any as S.Schema<ProjectsCreateOrUpdateResponseTagsMap>;
 
-/** Allowed StorageContainers (Control plane resource references). */
-export type ProjectPropertiesStorageContainerIdsList = Array<string>;
-export const ProjectPropertiesStorageContainerIdsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ProjectPropertiesStorageContainerIdsList>;
-
-/** Project properties */
-export interface ProjectProperties {
-  /** The status of the last operation. */
-  provisioningState?: ProvisioningState;
-  /** Foundry project endpoint URI. */
-  foundryProjectEndpoint?: string;
-  /** Allowed StorageContainers (Control plane resource references). */
-  storageContainerIds?: ProjectPropertiesStorageContainerIdsList;
-  /** Settings for the project. */
-  settings?: ProjectSettings;
-}
-export const ProjectProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provisioningState: S.optional(ProvisioningState),
-    foundryProjectEndpoint: S.optional(S.String),
-    storageContainerIds: S.optional(ProjectPropertiesStorageContainerIdsList),
-    settings: S.optional(ProjectSettings),
-  }),
-).annotate({
-  identifier: "ProjectProperties",
-}) as any as S.Schema<ProjectProperties>;
-
 export interface ProjectsCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
@@ -2448,271 +4055,6 @@ export const ProjectsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ProjectsCreateOrUpdateResponse",
 }) as any as S.Schema<ProjectsCreateOrUpdateResponse>;
-
-export interface ProjectsDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Workspace */
-  workspaceName: string;
-  /** The name of the Project */
-  projectName: string;
-}
-export const ProjectsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    projectName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/workspaces/{workspaceName}/projects/{projectName}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "ProjectsDeleteRequest",
-}) as any as S.Schema<ProjectsDeleteRequest>;
-
-export interface ProjectsDeleteResponse {}
-export const ProjectsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ProjectsDeleteResponse",
-}) as any as S.Schema<ProjectsDeleteResponse>;
-
-export interface ProjectsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Workspace */
-  workspaceName: string;
-  /** The name of the Project */
-  projectName: string;
-}
-export const ProjectsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    projectName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/workspaces/{workspaceName}/projects/{projectName}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "ProjectsGetRequest",
-}) as any as S.Schema<ProjectsGetRequest>;
-
-/** Resource tags. */
-export type ProjectsGetResponseTagsMap = { [key: string]: string | undefined };
-export const ProjectsGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ProjectsGetResponseTagsMap>;
-
-export interface ProjectsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: ProjectsGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: ProjectProperties;
-}
-export const ProjectsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(ProjectsGetResponseTagsMap),
-    location: S.String,
-    properties: S.optional(ProjectProperties),
-  }),
-).annotate({
-  identifier: "ProjectsGetResponse",
-}) as any as S.Schema<ProjectsGetResponse>;
-
-export interface ProjectsListByWorkspaceRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Workspace */
-  workspaceName: string;
-}
-export const ProjectsListByWorkspaceRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/workspaces/{workspaceName}/projects",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "ProjectsListByWorkspaceRequest",
-}) as any as S.Schema<ProjectsListByWorkspaceRequest>;
-
-/** Resource tags. */
-export type ProjectTagsMap = { [key: string]: string | undefined };
-export const ProjectTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ProjectTagsMap>;
-
-/** Project tracked resource */
-export interface Project {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: ProjectTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: ProjectProperties;
-}
-export const Project = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(ProjectTagsMap),
-    location: S.String,
-    properties: S.optional(ProjectProperties),
-  }),
-).annotate({ identifier: "Project" }) as any as S.Schema<Project>;
-
-/** The Project items on this page */
-export type ProjectListResultValueList = Array<Project>;
-export const ProjectListResultValueList = /*@__PURE__*/ S.Array(
-  Project,
-) as any as S.Schema<ProjectListResultValueList>;
-
-/** The response of a Project list operation. */
-export interface ProjectListResult {
-  /** The Project items on this page */
-  value: ProjectListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const ProjectListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: ProjectListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ProjectListResult",
-}) as any as S.Schema<ProjectListResult>;
-
-/** Resource tags. */
-export type ProjectsUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ProjectsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ProjectsUpdateRequestTagsMap>;
-
-export interface ProjectsUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Workspace */
-  workspaceName: string;
-  /** The name of the Project */
-  projectName: string;
-  /** Resource tags. */
-  tags?: ProjectsUpdateRequestTagsMap;
-  /** The resource-specific properties for this resource. */
-  properties?: ProjectPropertiesInput;
-}
-export const ProjectsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    projectName: S.String.pipe(T.Label()),
-    tags: S.optional(ProjectsUpdateRequestTagsMap),
-    properties: S.optional(ProjectPropertiesInput),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/workspaces/{workspaceName}/projects/{projectName}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "ProjectsUpdateRequest",
-}) as any as S.Schema<ProjectsUpdateRequest>;
-
-/** Resource tags. */
-export type ProjectsUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ProjectsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ProjectsUpdateResponseTagsMap>;
-
-export interface ProjectsUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: ProjectsUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: ProjectProperties;
-}
-export const ProjectsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(ProjectsUpdateResponseTagsMap),
-    location: S.String,
-    properties: S.optional(ProjectProperties),
-  }),
-).annotate({
-  identifier: "ProjectsUpdateResponse",
-}) as any as S.Schema<ProjectsUpdateResponse>;
 
 /** Resource tags. */
 export type StorageAssetsCreateOrUpdateRequestTagsMap = {
@@ -2786,25 +4128,6 @@ export const StorageAssetsCreateOrUpdateResponseTagsMap =
     S.String,
   ) as any as S.Schema<StorageAssetsCreateOrUpdateResponseTagsMap>;
 
-/** Storage Asset properties */
-export interface StorageAssetProperties {
-  /** The description */
-  description: string;
-  /** The status of the last operation. */
-  provisioningState?: ProvisioningState;
-  /** The path to the data within its parent container. This should be relative to the root of the parent container. */
-  path?: string;
-}
-export const StorageAssetProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    description: S.String,
-    provisioningState: S.optional(ProvisioningState),
-    path: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "StorageAssetProperties",
-}) as any as S.Schema<StorageAssetProperties>;
-
 export interface StorageAssetsCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
@@ -2835,287 +4158,6 @@ export const StorageAssetsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "StorageAssetsCreateOrUpdateResponse",
 }) as any as S.Schema<StorageAssetsCreateOrUpdateResponse>;
 
-export interface StorageAssetsDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the StorageContainer */
-  storageContainerName: string;
-  /** The name of the StorageAsset */
-  storageAssetName: string;
-}
-export const StorageAssetsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    storageContainerName: S.String.pipe(T.Label()),
-    storageAssetName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/storageContainers/{storageContainerName}/storageAssets/{storageAssetName}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "StorageAssetsDeleteRequest",
-}) as any as S.Schema<StorageAssetsDeleteRequest>;
-
-export interface StorageAssetsDeleteResponse {}
-export const StorageAssetsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "StorageAssetsDeleteResponse",
-}) as any as S.Schema<StorageAssetsDeleteResponse>;
-
-export interface StorageAssetsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the StorageContainer */
-  storageContainerName: string;
-  /** The name of the StorageAsset */
-  storageAssetName: string;
-}
-export const StorageAssetsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    storageContainerName: S.String.pipe(T.Label()),
-    storageAssetName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/storageContainers/{storageContainerName}/storageAssets/{storageAssetName}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "StorageAssetsGetRequest",
-}) as any as S.Schema<StorageAssetsGetRequest>;
-
-/** Resource tags. */
-export type StorageAssetsGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const StorageAssetsGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<StorageAssetsGetResponseTagsMap>;
-
-export interface StorageAssetsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: StorageAssetsGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: StorageAssetProperties;
-}
-export const StorageAssetsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(StorageAssetsGetResponseTagsMap),
-    location: S.String,
-    properties: S.optional(StorageAssetProperties),
-  }),
-).annotate({
-  identifier: "StorageAssetsGetResponse",
-}) as any as S.Schema<StorageAssetsGetResponse>;
-
-export interface StorageAssetsListByStorageContainerRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the StorageContainer */
-  storageContainerName: string;
-}
-export const StorageAssetsListByStorageContainerRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      storageContainerName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/storageContainers/{storageContainerName}/storageAssets",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "StorageAssetsListByStorageContainerRequest",
-  }) as any as S.Schema<StorageAssetsListByStorageContainerRequest>;
-
-/** Resource tags. */
-export type StorageAssetTagsMap = { [key: string]: string | undefined };
-export const StorageAssetTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<StorageAssetTagsMap>;
-
-/** Storage Asset tracked resource */
-export interface StorageAsset {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: StorageAssetTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: StorageAssetProperties;
-}
-export const StorageAsset = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(StorageAssetTagsMap),
-    location: S.String,
-    properties: S.optional(StorageAssetProperties),
-  }),
-).annotate({ identifier: "StorageAsset" }) as any as S.Schema<StorageAsset>;
-
-/** The StorageAsset items on this page */
-export type StorageAssetListResultValueList = Array<StorageAsset>;
-export const StorageAssetListResultValueList = /*@__PURE__*/ S.Array(
-  StorageAsset,
-) as any as S.Schema<StorageAssetListResultValueList>;
-
-/** The response of a StorageAsset list operation. */
-export interface StorageAssetListResult {
-  /** The StorageAsset items on this page */
-  value: StorageAssetListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const StorageAssetListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: StorageAssetListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "StorageAssetListResult",
-}) as any as S.Schema<StorageAssetListResult>;
-
-/** Resource tags. */
-export type StorageAssetsUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const StorageAssetsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<StorageAssetsUpdateRequestTagsMap>;
-
-/** Storage Asset properties */
-export interface StorageAssetPropertiesUpdate {
-  /** The description */
-  description?: string;
-}
-export const StorageAssetPropertiesUpdate = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    description: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "StorageAssetPropertiesUpdate",
-}) as any as S.Schema<StorageAssetPropertiesUpdate>;
-
-export interface StorageAssetsUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the StorageContainer */
-  storageContainerName: string;
-  /** The name of the StorageAsset */
-  storageAssetName: string;
-  /** Resource tags. */
-  tags?: StorageAssetsUpdateRequestTagsMap;
-  /** The resource-specific properties for this resource. */
-  properties?: StorageAssetPropertiesUpdate;
-}
-export const StorageAssetsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    storageContainerName: S.String.pipe(T.Label()),
-    storageAssetName: S.String.pipe(T.Label()),
-    tags: S.optional(StorageAssetsUpdateRequestTagsMap),
-    properties: S.optional(StorageAssetPropertiesUpdate),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/storageContainers/{storageContainerName}/storageAssets/{storageAssetName}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "StorageAssetsUpdateRequest",
-}) as any as S.Schema<StorageAssetsUpdateRequest>;
-
-/** Resource tags. */
-export type StorageAssetsUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const StorageAssetsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<StorageAssetsUpdateResponseTagsMap>;
-
-export interface StorageAssetsUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: StorageAssetsUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: StorageAssetProperties;
-}
-export const StorageAssetsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(StorageAssetsUpdateResponseTagsMap),
-    location: S.String,
-    properties: S.optional(StorageAssetProperties),
-  }),
-).annotate({
-  identifier: "StorageAssetsUpdateResponse",
-}) as any as S.Schema<StorageAssetsUpdateResponse>;
-
 /** Resource tags. */
 export type StorageContainersCreateOrUpdateRequestTagsMap = {
   [key: string]: string | undefined;
@@ -3125,21 +4167,6 @@ export const StorageContainersCreateOrUpdateRequestTagsMap =
     S.String,
     S.String,
   ) as any as S.Schema<StorageContainersCreateOrUpdateRequestTagsMap>;
-
-/** The kind of the backing storage store. */
-export type StorageStoreType = "AzureStorageBlob" | "AzureNetAppFiles";
-export const StorageStoreType = /*@__PURE__*/ S.String;
-
-/** An abstract representation of storage store kind. */
-export interface StorageStore {
-  /** The storage store kind. */
-  kind: StorageStoreType | (string & {});
-}
-export const StorageStore = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    kind: StorageStoreType,
-  }),
-).annotate({ identifier: "StorageStore" }) as any as S.Schema<StorageStore>;
 
 /** Storage Container properties */
 export interface StorageContainerPropertiesInput {
@@ -3199,22 +4226,6 @@ export const StorageContainersCreateOrUpdateResponseTagsMap =
     S.String,
   ) as any as S.Schema<StorageContainersCreateOrUpdateResponseTagsMap>;
 
-/** Storage Container properties */
-export interface StorageContainerProperties {
-  /** The status of the last operation. */
-  provisioningState?: ProvisioningState;
-  /** Storage store properties */
-  storageStore: StorageStore;
-}
-export const StorageContainerProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provisioningState: S.optional(ProvisioningState),
-    storageStore: StorageStore,
-  }),
-).annotate({
-  identifier: "StorageContainerProperties",
-}) as any as S.Schema<StorageContainerProperties>;
-
 export interface StorageContainersCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
@@ -3246,284 +4257,6 @@ export const StorageContainersCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
   identifier: "StorageContainersCreateOrUpdateResponse",
 }) as any as S.Schema<StorageContainersCreateOrUpdateResponse>;
 
-export interface StorageContainersDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the StorageContainer */
-  storageContainerName: string;
-}
-export const StorageContainersDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    storageContainerName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/storageContainers/{storageContainerName}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "StorageContainersDeleteRequest",
-}) as any as S.Schema<StorageContainersDeleteRequest>;
-
-export interface StorageContainersDeleteResponse {}
-export const StorageContainersDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "StorageContainersDeleteResponse",
-}) as any as S.Schema<StorageContainersDeleteResponse>;
-
-export interface StorageContainersGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the StorageContainer */
-  storageContainerName: string;
-}
-export const StorageContainersGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    storageContainerName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/storageContainers/{storageContainerName}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "StorageContainersGetRequest",
-}) as any as S.Schema<StorageContainersGetRequest>;
-
-/** Resource tags. */
-export type StorageContainersGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const StorageContainersGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<StorageContainersGetResponseTagsMap>;
-
-export interface StorageContainersGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: StorageContainersGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: StorageContainerProperties;
-}
-export const StorageContainersGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(StorageContainersGetResponseTagsMap),
-    location: S.String,
-    properties: S.optional(StorageContainerProperties),
-  }),
-).annotate({
-  identifier: "StorageContainersGetResponse",
-}) as any as S.Schema<StorageContainersGetResponse>;
-
-export interface StorageContainersListByResourceGroupRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-}
-export const StorageContainersListByResourceGroupRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/storageContainers",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "StorageContainersListByResourceGroupRequest",
-  }) as any as S.Schema<StorageContainersListByResourceGroupRequest>;
-
-/** Resource tags. */
-export type StorageContainerTagsMap = { [key: string]: string | undefined };
-export const StorageContainerTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<StorageContainerTagsMap>;
-
-/** Storage Container tracked resource */
-export interface StorageContainer {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: StorageContainerTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: StorageContainerProperties;
-}
-export const StorageContainer = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(StorageContainerTagsMap),
-    location: S.String,
-    properties: S.optional(StorageContainerProperties),
-  }),
-).annotate({
-  identifier: "StorageContainer",
-}) as any as S.Schema<StorageContainer>;
-
-/** The StorageContainer items on this page */
-export type StorageContainerListResultValueList = Array<StorageContainer>;
-export const StorageContainerListResultValueList = /*@__PURE__*/ S.Array(
-  StorageContainer,
-) as any as S.Schema<StorageContainerListResultValueList>;
-
-/** The response of a StorageContainer list operation. */
-export interface StorageContainerListResult {
-  /** The StorageContainer items on this page */
-  value: StorageContainerListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const StorageContainerListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: StorageContainerListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "StorageContainerListResult",
-}) as any as S.Schema<StorageContainerListResult>;
-
-export interface StorageContainersListBySubscriptionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-}
-export const StorageContainersListBySubscriptionRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Discovery/storageContainers",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "StorageContainersListBySubscriptionRequest",
-  }) as any as S.Schema<StorageContainersListBySubscriptionRequest>;
-
-/** Resource tags. */
-export type StorageContainersUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const StorageContainersUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<StorageContainersUpdateRequestTagsMap>;
-
-export interface StorageContainersUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the StorageContainer */
-  storageContainerName: string;
-  /** Resource tags. */
-  tags?: StorageContainersUpdateRequestTagsMap;
-  /** The resource-specific properties for this resource. */
-  properties?: unknown;
-}
-export const StorageContainersUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    storageContainerName: S.String.pipe(T.Label()),
-    tags: S.optional(StorageContainersUpdateRequestTagsMap),
-    properties: S.optional(S.Unknown),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/storageContainers/{storageContainerName}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "StorageContainersUpdateRequest",
-}) as any as S.Schema<StorageContainersUpdateRequest>;
-
-/** Resource tags. */
-export type StorageContainersUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const StorageContainersUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<StorageContainersUpdateResponseTagsMap>;
-
-export interface StorageContainersUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: StorageContainersUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: StorageContainerProperties;
-}
-export const StorageContainersUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(StorageContainersUpdateResponseTagsMap),
-    location: S.String,
-    properties: S.optional(StorageContainerProperties),
-  }),
-).annotate({
-  identifier: "StorageContainersUpdateResponse",
-}) as any as S.Schema<StorageContainersUpdateResponse>;
-
 /** Resource tags. */
 export type SupercomputersCreateOrUpdateRequestTagsMap = {
   [key: string]: string | undefined;
@@ -3537,30 +4270,6 @@ export const SupercomputersCreateOrUpdateRequestTagsMap =
 /** Network egress type provisioned for the supercomputer workloads. Defaults to LoadBalancer if not specified. If None is specified, the customer is responsible for providing outbound connectivity for Supercomputer functionality. */
 export type SupercomputerPropertiesInputOutboundType = "LoadBalancer" | "None";
 export const SupercomputerPropertiesInputOutboundType = /*@__PURE__*/ S.String;
-
-/** Supported System SKU Sizes. */
-export type SystemSku =
-  | "Standard_D4s_v6"
-  | "Standard_D4s_v5"
-  | "Standard_D4s_v4";
-export const SystemSku = /*@__PURE__*/ S.String;
-
-/** For user assigned identity resource property. */
-export interface Identity {
-  /** The resource ID of the user assigned identity. */
-  id: string;
-  /** The principal ID of the assigned identity. */
-  principalId?: string;
-  /** The client ID of the assigned identity. */
-  clientId?: string;
-}
-export const Identity = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    principalId: S.optional(S.String),
-    clientId: S.optional(S.String),
-  }),
-).annotate({ identifier: "Identity" }) as any as S.Schema<Identity>;
 
 /** User assigned identity properties */
 export type SupercomputerIdentitiesInputWorkloadIdentitiesValue =
@@ -3633,10 +4342,6 @@ export const SupercomputerPropertiesInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "SupercomputerPropertiesInput",
 }) as any as S.Schema<SupercomputerPropertiesInput>;
 
-/** Type of managed service identity (either system assigned, or none). */
-export type SystemAssignedServiceIdentityType = "None" | "SystemAssigned";
-export const SystemAssignedServiceIdentityType = /*@__PURE__*/ S.String;
-
 /** Managed service identity (either system assigned, or none) */
 export interface SupercomputersCreateOrUpdateRequestIdentity {
   type: SystemAssignedServiceIdentityType | (string & {});
@@ -3697,108 +4402,11 @@ export const SupercomputersCreateOrUpdateResponseTagsMap =
     S.String,
   ) as any as S.Schema<SupercomputersCreateOrUpdateResponseTagsMap>;
 
-/** Network egress type provisioned for the supercomputer workloads. Defaults to LoadBalancer if not specified. If None is specified, the customer is responsible for providing outbound connectivity for Supercomputer functionality. */
-export type SupercomputerPropertiesOutboundType = "LoadBalancer" | "None";
-export const SupercomputerPropertiesOutboundType = /*@__PURE__*/ S.String;
-
-/** User assigned identity properties */
-export type SupercomputerIdentitiesWorkloadIdentitiesValue =
-  BookshelfPropertiesWorkloadIdentitiesValue;
-export const SupercomputerIdentitiesWorkloadIdentitiesValue =
-  BookshelfPropertiesWorkloadIdentitiesValue;
-
-/** User assigned identity IDs to be used by workloads as federated credentials running on supercomputer. The key value must be the resource ID of the identity resource. */
-export type SupercomputerIdentitiesWorkloadIdentitiesMap = {
-  [key: string]: BookshelfPropertiesWorkloadIdentitiesValue | undefined;
-};
-export const SupercomputerIdentitiesWorkloadIdentitiesMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    BookshelfPropertiesWorkloadIdentitiesValue,
-  ) as any as S.Schema<SupercomputerIdentitiesWorkloadIdentitiesMap>;
-
-/** Dictionary of identity properties for the Supercomputer. */
-export interface SupercomputerIdentities {
-  /** Cluster identity ID. */
-  clusterIdentity: Identity;
-  /** Kubelet identity ID used by the supercomputer. This identity is used by the supercomputer at node level to access Azure resources. This identity must have ManagedIdentityOperator role on the clusterIdentity. */
-  kubeletIdentity: Identity;
-  /** User assigned identity IDs to be used by workloads as federated credentials running on supercomputer. The key value must be the resource ID of the identity resource. */
-  workloadIdentities?: SupercomputerIdentitiesWorkloadIdentitiesMap;
-}
-export const SupercomputerIdentities = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    clusterIdentity: Identity,
-    kubeletIdentity: Identity,
-    workloadIdentities: S.optional(
-      SupercomputerIdentitiesWorkloadIdentitiesMap,
-    ),
-  }),
-).annotate({
-  identifier: "SupercomputerIdentities",
-}) as any as S.Schema<SupercomputerIdentities>;
-
-/** Supercomputer properties */
-export interface SupercomputerProperties {
-  /** The status of the last operation. */
-  provisioningState?: ProvisioningState;
-  /** System Subnet ID associated with managed NodePool for system resources. It should have connectivity to the child NodePool subnets. */
-  subnetId: string;
-  /** System Subnet ID associated with AKS apiserver. Must be delegated to Microsoft.ContainerService/managedClusters. It should have connectivity to the system subnet and nodepool subnets. */
-  managementSubnetId?: string;
-  /** Network egress type provisioned for the supercomputer workloads. Defaults to LoadBalancer if not specified. If None is specified, the customer is responsible for providing outbound connectivity for Supercomputer functionality. */
-  outboundType?: SupercomputerPropertiesOutboundType;
-  /** The SKU to use for the system node pool. */
-  systemSku?: SystemSku;
-  /** Dictionary of identity properties. */
-  identities: SupercomputerIdentities;
-  /** Whether or not to use a customer managed key when encrypting data at rest */
-  customerManagedKeys?: CustomerManagedKeys;
-  /** Disk Encryption Set ID to use for Customer Managed Keys encryption. Required if Customer Managed Keys is enabled. */
-  diskEncryptionSetId?: string;
-  /** The Log Analytics Cluster to use for debug logs. This is required when Customer Managed Keys are enabled. */
-  logAnalyticsClusterId?: string;
-  /** The resource group for resources managed on behalf of customer. */
-  managedResourceGroup?: string;
-  /** Managed-On-Behalf-Of configuration properties. This configuration exists for the resources where a resource provider manages those resources on behalf of the resource owner. */
-  managedOnBehalfOfConfiguration?: WithMoboBrokerResources;
-}
-export const SupercomputerProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provisioningState: S.optional(ProvisioningState),
-    subnetId: S.String,
-    managementSubnetId: S.optional(S.String),
-    outboundType: S.optional(SupercomputerPropertiesOutboundType),
-    systemSku: S.optional(SystemSku),
-    identities: SupercomputerIdentities,
-    customerManagedKeys: S.optional(CustomerManagedKeys),
-    diskEncryptionSetId: S.optional(S.String),
-    logAnalyticsClusterId: S.optional(S.String),
-    managedResourceGroup: S.optional(S.String),
-    managedOnBehalfOfConfiguration: S.optional(WithMoboBrokerResources),
-  }),
-).annotate({
-  identifier: "SupercomputerProperties",
-}) as any as S.Schema<SupercomputerProperties>;
-
 /** Managed service identity (either system assigned, or none) */
-export interface SupercomputersCreateOrUpdateResponseIdentity {
-  /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
-  principalId?: string;
-  /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
-  tenantId?: string;
-  type: SystemAssignedServiceIdentityType;
-}
+export type SupercomputersCreateOrUpdateResponseIdentity =
+  GetSupercomputerResponseIdentity;
 export const SupercomputersCreateOrUpdateResponseIdentity =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      principalId: S.optional(S.String),
-      tenantId: S.optional(S.String),
-      type: SystemAssignedServiceIdentityType,
-    }),
-  ).annotate({
-    identifier: "SupercomputersCreateOrUpdateResponseIdentity",
-  }) as any as S.Schema<SupercomputersCreateOrUpdateResponseIdentity>;
+  GetSupercomputerResponseIdentity;
 
 export interface SupercomputersCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
@@ -3816,7 +4424,7 @@ export interface SupercomputersCreateOrUpdateResponse {
   /** The resource-specific properties for this resource. */
   properties?: SupercomputerProperties;
   /** Managed service identity (either system assigned, or none) */
-  identity?: SupercomputersCreateOrUpdateResponseIdentity;
+  identity?: GetSupercomputerResponseIdentity;
 }
 export const SupercomputersCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
   () =>
@@ -3828,389 +4436,11 @@ export const SupercomputersCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
       tags: S.optional(SupercomputersCreateOrUpdateResponseTagsMap),
       location: S.String,
       properties: S.optional(SupercomputerProperties),
-      identity: S.optional(SupercomputersCreateOrUpdateResponseIdentity),
+      identity: S.optional(GetSupercomputerResponseIdentity),
     }),
 ).annotate({
   identifier: "SupercomputersCreateOrUpdateResponse",
 }) as any as S.Schema<SupercomputersCreateOrUpdateResponse>;
-
-export interface SupercomputersDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Supercomputer */
-  supercomputerName: string;
-}
-export const SupercomputersDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    supercomputerName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/supercomputers/{supercomputerName}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "SupercomputersDeleteRequest",
-}) as any as S.Schema<SupercomputersDeleteRequest>;
-
-export interface SupercomputersDeleteResponse {}
-export const SupercomputersDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "SupercomputersDeleteResponse",
-}) as any as S.Schema<SupercomputersDeleteResponse>;
-
-export interface SupercomputersGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Supercomputer */
-  supercomputerName: string;
-}
-export const SupercomputersGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    supercomputerName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/supercomputers/{supercomputerName}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "SupercomputersGetRequest",
-}) as any as S.Schema<SupercomputersGetRequest>;
-
-/** Resource tags. */
-export type SupercomputersGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const SupercomputersGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<SupercomputersGetResponseTagsMap>;
-
-/** Managed service identity (either system assigned, or none) */
-export type SupercomputersGetResponseIdentity =
-  SupercomputersCreateOrUpdateResponseIdentity;
-export const SupercomputersGetResponseIdentity =
-  SupercomputersCreateOrUpdateResponseIdentity;
-
-export interface SupercomputersGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: SupercomputersGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: SupercomputerProperties;
-  /** Managed service identity (either system assigned, or none) */
-  identity?: SupercomputersCreateOrUpdateResponseIdentity;
-}
-export const SupercomputersGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(SupercomputersGetResponseTagsMap),
-    location: S.String,
-    properties: S.optional(SupercomputerProperties),
-    identity: S.optional(SupercomputersCreateOrUpdateResponseIdentity),
-  }),
-).annotate({
-  identifier: "SupercomputersGetResponse",
-}) as any as S.Schema<SupercomputersGetResponse>;
-
-export interface SupercomputersListByResourceGroupRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-}
-export const SupercomputersListByResourceGroupRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/supercomputers",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "SupercomputersListByResourceGroupRequest",
-}) as any as S.Schema<SupercomputersListByResourceGroupRequest>;
-
-/** Resource tags. */
-export type SupercomputerTagsMap = { [key: string]: string | undefined };
-export const SupercomputerTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<SupercomputerTagsMap>;
-
-/** Managed service identity (either system assigned, or none) */
-export type SupercomputerIdentity =
-  SupercomputersCreateOrUpdateResponseIdentity;
-export const SupercomputerIdentity =
-  SupercomputersCreateOrUpdateResponseIdentity;
-
-/** Supercomputer tracked resource */
-export interface Supercomputer {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: SupercomputerTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: SupercomputerProperties;
-  /** Managed service identity (either system assigned, or none) */
-  identity?: SupercomputersCreateOrUpdateResponseIdentity;
-}
-export const Supercomputer = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(SupercomputerTagsMap),
-    location: S.String,
-    properties: S.optional(SupercomputerProperties),
-    identity: S.optional(SupercomputersCreateOrUpdateResponseIdentity),
-  }),
-).annotate({ identifier: "Supercomputer" }) as any as S.Schema<Supercomputer>;
-
-/** The Supercomputer items on this page */
-export type SupercomputerListResultValueList = Array<Supercomputer>;
-export const SupercomputerListResultValueList = /*@__PURE__*/ S.Array(
-  Supercomputer,
-) as any as S.Schema<SupercomputerListResultValueList>;
-
-/** The response of a Supercomputer list operation. */
-export interface SupercomputerListResult {
-  /** The Supercomputer items on this page */
-  value: SupercomputerListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const SupercomputerListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: SupercomputerListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SupercomputerListResult",
-}) as any as S.Schema<SupercomputerListResult>;
-
-export interface SupercomputersListBySubscriptionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-}
-export const SupercomputersListBySubscriptionRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Discovery/supercomputers",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "SupercomputersListBySubscriptionRequest",
-}) as any as S.Schema<SupercomputersListBySubscriptionRequest>;
-
-/** Resource tags. */
-export type SupercomputersUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const SupercomputersUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<SupercomputersUpdateRequestTagsMap>;
-
-/** User assigned identity properties */
-export type SupercomputerIdentitiesUpdateInputWorkloadIdentitiesValue =
-  PrivateEndpointInput;
-export const SupercomputerIdentitiesUpdateInputWorkloadIdentitiesValue =
-  PrivateEndpointInput;
-
-/** User assigned identity IDs to be used by workloads as federated credentials running on supercomputer. The key value must be the resource ID of the identity resource. */
-export type SupercomputerIdentitiesUpdateInputWorkloadIdentitiesMap = {
-  [key: string]: PrivateEndpointInput | undefined;
-};
-export const SupercomputerIdentitiesUpdateInputWorkloadIdentitiesMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    PrivateEndpointInput,
-  ) as any as S.Schema<SupercomputerIdentitiesUpdateInputWorkloadIdentitiesMap>;
-
-/** Dictionary of identity properties for the Supercomputer. */
-export interface SupercomputerIdentitiesUpdateInput {
-  /** User assigned identity IDs to be used by workloads as federated credentials running on supercomputer. The key value must be the resource ID of the identity resource. */
-  workloadIdentities?: SupercomputerIdentitiesUpdateInputWorkloadIdentitiesMap;
-}
-export const SupercomputerIdentitiesUpdateInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    workloadIdentities: S.optional(
-      SupercomputerIdentitiesUpdateInputWorkloadIdentitiesMap,
-    ),
-  }),
-).annotate({
-  identifier: "SupercomputerIdentitiesUpdateInput",
-}) as any as S.Schema<SupercomputerIdentitiesUpdateInput>;
-
-/** Supercomputer properties */
-export interface SupercomputerPropertiesUpdateInput {
-  /** Dictionary of identity properties. */
-  identities?: SupercomputerIdentitiesUpdateInput;
-}
-export const SupercomputerPropertiesUpdateInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    identities: S.optional(SupercomputerIdentitiesUpdateInput),
-  }),
-).annotate({
-  identifier: "SupercomputerPropertiesUpdateInput",
-}) as any as S.Schema<SupercomputerPropertiesUpdateInput>;
-
-/** Type of managed service identity (either system assigned, or none). */
-export type AzureResourceManagerCommonTypesSystemAssignedServiceIdentityUpdateType =
-  | "None"
-  | "SystemAssigned";
-export const AzureResourceManagerCommonTypesSystemAssignedServiceIdentityUpdateType =
-  /*@__PURE__*/ S.String;
-
-/** Managed service identity (either system assigned, or none) */
-export interface AzureResourceManagerCommonTypesSystemAssignedServiceIdentityUpdate {
-  /** Type of managed service identity (either system assigned, or none). */
-  type?:
-    | AzureResourceManagerCommonTypesSystemAssignedServiceIdentityUpdateType
-    | (string & {});
-}
-export const AzureResourceManagerCommonTypesSystemAssignedServiceIdentityUpdate =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      type: S.optional(
-        AzureResourceManagerCommonTypesSystemAssignedServiceIdentityUpdateType,
-      ),
-    }),
-  ).annotate({
-    identifier:
-      "AzureResourceManagerCommonTypesSystemAssignedServiceIdentityUpdate",
-  }) as any as S.Schema<AzureResourceManagerCommonTypesSystemAssignedServiceIdentityUpdate>;
-
-export interface SupercomputersUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Supercomputer */
-  supercomputerName: string;
-  /** Resource tags. */
-  tags?: SupercomputersUpdateRequestTagsMap;
-  /** The resource-specific properties for this resource. */
-  properties?: SupercomputerPropertiesUpdateInput;
-  /** The managed service identities assigned to this resource. */
-  identity?: AzureResourceManagerCommonTypesSystemAssignedServiceIdentityUpdate;
-}
-export const SupercomputersUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    supercomputerName: S.String.pipe(T.Label()),
-    tags: S.optional(SupercomputersUpdateRequestTagsMap),
-    properties: S.optional(SupercomputerPropertiesUpdateInput),
-    identity: S.optional(
-      AzureResourceManagerCommonTypesSystemAssignedServiceIdentityUpdate,
-    ),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/supercomputers/{supercomputerName}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "SupercomputersUpdateRequest",
-}) as any as S.Schema<SupercomputersUpdateRequest>;
-
-/** Resource tags. */
-export type SupercomputersUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const SupercomputersUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<SupercomputersUpdateResponseTagsMap>;
-
-/** Managed service identity (either system assigned, or none) */
-export type SupercomputersUpdateResponseIdentity =
-  SupercomputersCreateOrUpdateResponseIdentity;
-export const SupercomputersUpdateResponseIdentity =
-  SupercomputersCreateOrUpdateResponseIdentity;
-
-export interface SupercomputersUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: SupercomputersUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: SupercomputerProperties;
-  /** Managed service identity (either system assigned, or none) */
-  identity?: SupercomputersCreateOrUpdateResponseIdentity;
-}
-export const SupercomputersUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(SupercomputersUpdateResponseTagsMap),
-    location: S.String,
-    properties: S.optional(SupercomputerProperties),
-    identity: S.optional(SupercomputersCreateOrUpdateResponseIdentity),
-  }),
-).annotate({
-  identifier: "SupercomputersUpdateResponse",
-}) as any as S.Schema<SupercomputersUpdateResponse>;
 
 /** Resource tags. */
 export type ToolsCreateOrUpdateRequestTagsMap = {
@@ -4304,44 +4534,6 @@ export const ToolsCreateOrUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
 ) as any as S.Schema<ToolsCreateOrUpdateResponseTagsMap>;
 
-/** Environment variables to make available */
-export type ToolPropertiesEnvironmentVariablesMap = {
-  [key: string]: string | undefined;
-};
-export const ToolPropertiesEnvironmentVariablesMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ToolPropertiesEnvironmentVariablesMap>;
-
-/** The JSON content for defining a resource */
-export type ToolPropertiesDefinitionContentMap = {
-  [key: string]: unknown | undefined;
-};
-export const ToolPropertiesDefinitionContentMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<ToolPropertiesDefinitionContentMap>;
-
-/** Discovery Tool list item properties */
-export interface ToolProperties {
-  /** The status of the last operation. */
-  provisioningState?: ProvisioningState;
-  /** The version of a resource definition */
-  version: string;
-  /** Environment variables to make available */
-  environmentVariables?: ToolPropertiesEnvironmentVariablesMap;
-  /** The JSON content for defining a resource */
-  definitionContent: ToolPropertiesDefinitionContentMap;
-}
-export const ToolProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provisioningState: S.optional(ProvisioningState),
-    version: S.String,
-    environmentVariables: S.optional(ToolPropertiesEnvironmentVariablesMap),
-    definitionContent: ToolPropertiesDefinitionContentMap,
-  }),
-).annotate({ identifier: "ToolProperties" }) as any as S.Schema<ToolProperties>;
-
 export interface ToolsCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
@@ -4372,71 +4564,88 @@ export const ToolsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ToolsCreateOrUpdateResponse",
 }) as any as S.Schema<ToolsCreateOrUpdateResponse>;
 
-export interface ToolsDeleteRequest {
+/** Resource tags. */
+export type UpdateBookshelveRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateBookshelveRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateBookshelveRequestTagsMap>;
+
+/** Key Vault Properties with clientId selection */
+export interface BookshelfKeyVaultPropertiesUpdate {
+  /** The Key Name in Key Vault */
+  keyName?: string;
+  /** The Key Version in Key Vault */
+  keyVersion?: string;
+}
+export const BookshelfKeyVaultPropertiesUpdate = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    keyName: S.optional(S.String),
+    keyVersion: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "BookshelfKeyVaultPropertiesUpdate",
+}) as any as S.Schema<BookshelfKeyVaultPropertiesUpdate>;
+
+/** Bookshelf properties */
+export interface BookshelfPropertiesUpdate {
+  /** The key to use for encrypting data at rest when customer managed keys are enabled. Required if Customer Managed Keys is enabled. */
+  keyVaultProperties?: BookshelfKeyVaultPropertiesUpdate;
+  /** Whether or not public network access is allowed for this resource. For security reasons, it is recommended to disable it whenever possible. */
+  publicNetworkAccess?: PublicNetworkAccess | (string & {});
+}
+export const BookshelfPropertiesUpdate = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    keyVaultProperties: S.optional(BookshelfKeyVaultPropertiesUpdate),
+    publicNetworkAccess: S.optional(PublicNetworkAccess),
+  }),
+).annotate({
+  identifier: "BookshelfPropertiesUpdate",
+}) as any as S.Schema<BookshelfPropertiesUpdate>;
+
+export interface UpdateBookshelveRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
-  /** The name of the Tool */
-  toolName: string;
+  /** The name of the Bookshelf */
+  bookshelfName: string;
+  /** Resource tags. */
+  tags?: UpdateBookshelveRequestTagsMap;
+  /** The resource-specific properties for this resource. */
+  properties?: BookshelfPropertiesUpdate;
 }
-export const ToolsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateBookshelveRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
-    toolName: S.String.pipe(T.Label()),
+    bookshelfName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateBookshelveRequestTagsMap),
+    properties: S.optional(BookshelfPropertiesUpdate),
   }).pipe(
     T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/tools/{toolName}",
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/bookshelves/{bookshelfName}",
       code: 200,
       apiVersion: "2026-06-01",
     }),
   ),
 ).annotate({
-  identifier: "ToolsDeleteRequest",
-}) as any as S.Schema<ToolsDeleteRequest>;
-
-export interface ToolsDeleteResponse {}
-export const ToolsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ToolsDeleteResponse",
-}) as any as S.Schema<ToolsDeleteResponse>;
-
-export interface ToolsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Tool */
-  toolName: string;
-}
-export const ToolsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    toolName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/tools/{toolName}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "ToolsGetRequest",
-}) as any as S.Schema<ToolsGetRequest>;
+  identifier: "UpdateBookshelveRequest",
+}) as any as S.Schema<UpdateBookshelveRequest>;
 
 /** Resource tags. */
-export type ToolsGetResponseTagsMap = { [key: string]: string | undefined };
-export const ToolsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateBookshelveResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateBookshelveResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ToolsGetResponseTagsMap>;
+) as any as S.Schema<UpdateBookshelveResponseTagsMap>;
 
-export interface ToolsGetResponse {
+export interface UpdateBookshelveResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -4446,57 +4655,92 @@ export interface ToolsGetResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ToolsGetResponseTagsMap;
+  tags?: UpdateBookshelveResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
-  properties?: ToolProperties;
+  properties?: BookshelfProperties;
 }
-export const ToolsGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateBookshelveResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ToolsGetResponseTagsMap),
+    tags: S.optional(UpdateBookshelveResponseTagsMap),
     location: S.String,
-    properties: S.optional(ToolProperties),
+    properties: S.optional(BookshelfProperties),
   }),
 ).annotate({
-  identifier: "ToolsGetResponse",
-}) as any as S.Schema<ToolsGetResponse>;
+  identifier: "UpdateBookshelveResponse",
+}) as any as S.Schema<UpdateBookshelveResponse>;
 
-export interface ToolsListByResourceGroupRequest {
+/** Resource tags. */
+export type UpdateChatModelDeploymentRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateChatModelDeploymentRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateChatModelDeploymentRequestTagsMap>;
+
+/** Defines a deployment binding a specific model family to a user-defined deployment name for chat inference. */
+export interface ChatModelDeploymentPropertiesUpdate {
+  /** Provisioned SKU capacity units for this chat model deployment. */
+  capacity?: number;
+}
+export const ChatModelDeploymentPropertiesUpdate = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    capacity: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "ChatModelDeploymentPropertiesUpdate",
+}) as any as S.Schema<ChatModelDeploymentPropertiesUpdate>;
+
+export interface UpdateChatModelDeploymentRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
+  /** The name of the Workspace */
+  workspaceName: string;
+  /** The name of the ChatModelDeployment */
+  chatModelDeploymentName: string;
+  /** Resource tags. */
+  tags?: UpdateChatModelDeploymentRequestTagsMap;
+  /** The resource-specific properties for this resource. */
+  properties?: ChatModelDeploymentPropertiesUpdate;
 }
-export const ToolsListByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateChatModelDeploymentRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    chatModelDeploymentName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateChatModelDeploymentRequestTagsMap),
+    properties: S.optional(ChatModelDeploymentPropertiesUpdate),
   }).pipe(
     T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/tools",
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/workspaces/{workspaceName}/chatModelDeployments/{chatModelDeploymentName}",
       code: 200,
       apiVersion: "2026-06-01",
     }),
   ),
 ).annotate({
-  identifier: "ToolsListByResourceGroupRequest",
-}) as any as S.Schema<ToolsListByResourceGroupRequest>;
+  identifier: "UpdateChatModelDeploymentRequest",
+}) as any as S.Schema<UpdateChatModelDeploymentRequest>;
 
 /** Resource tags. */
-export type ToolTagsMap = { [key: string]: string | undefined };
-export const ToolTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateChatModelDeploymentResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateChatModelDeploymentResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ToolTagsMap>;
+) as any as S.Schema<UpdateChatModelDeploymentResponseTagsMap>;
 
-/** Tool tracked resource */
-export interface Tool {
+export interface UpdateChatModelDeploymentResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -4506,69 +4750,547 @@ export interface Tool {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ToolTagsMap;
+  tags?: UpdateChatModelDeploymentResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
-  properties?: ToolProperties;
+  properties?: ChatModelDeploymentProperties;
 }
-export const Tool = /*@__PURE__*/ S.suspend(() =>
+export const UpdateChatModelDeploymentResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ToolTagsMap),
+    tags: S.optional(UpdateChatModelDeploymentResponseTagsMap),
     location: S.String,
-    properties: S.optional(ToolProperties),
+    properties: S.optional(ChatModelDeploymentProperties),
   }),
-).annotate({ identifier: "Tool" }) as any as S.Schema<Tool>;
+).annotate({
+  identifier: "UpdateChatModelDeploymentResponse",
+}) as any as S.Schema<UpdateChatModelDeploymentResponse>;
 
-/** The Tool items on this page */
-export type ToolListResultValueList = Array<Tool>;
-export const ToolListResultValueList = /*@__PURE__*/ S.Array(
-  Tool,
-) as any as S.Schema<ToolListResultValueList>;
+/** Resource tags. */
+export type UpdateNodePoolRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateNodePoolRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateNodePoolRequestTagsMap>;
 
-/** The response of a Tool list operation. */
-export interface ToolListResult {
-  /** The Tool items on this page */
-  value: ToolListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
+/** NodePool properties */
+export interface NodePoolPropertiesUpdate {
+  /** The maximum number of nodes. */
+  maxNodeCount?: number;
+  /** The minimum number of nodes. */
+  minNodeCount?: number;
 }
-export const ToolListResult = /*@__PURE__*/ S.suspend(() =>
+export const NodePoolPropertiesUpdate = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: ToolListResultValueList,
-    nextLink: S.optional(S.String),
+    maxNodeCount: S.optional(S.Number),
+    minNodeCount: S.optional(S.Number),
   }),
-).annotate({ identifier: "ToolListResult" }) as any as S.Schema<ToolListResult>;
+).annotate({
+  identifier: "NodePoolPropertiesUpdate",
+}) as any as S.Schema<NodePoolPropertiesUpdate>;
 
-export interface ToolsListBySubscriptionRequest {
+export interface UpdateNodePoolRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Supercomputer */
+  supercomputerName: string;
+  /** The name of the NodePool */
+  nodePoolName: string;
+  /** Resource tags. */
+  tags?: UpdateNodePoolRequestTagsMap;
+  /** The resource-specific properties for this resource. */
+  properties?: NodePoolPropertiesUpdate;
 }
-export const ToolsListBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateNodePoolRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    supercomputerName: S.String.pipe(T.Label()),
+    nodePoolName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateNodePoolRequestTagsMap),
+    properties: S.optional(NodePoolPropertiesUpdate),
   }).pipe(
     T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Discovery/tools",
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/supercomputers/{supercomputerName}/nodePools/{nodePoolName}",
       code: 200,
       apiVersion: "2026-06-01",
     }),
   ),
 ).annotate({
-  identifier: "ToolsListBySubscriptionRequest",
-}) as any as S.Schema<ToolsListBySubscriptionRequest>;
+  identifier: "UpdateNodePoolRequest",
+}) as any as S.Schema<UpdateNodePoolRequest>;
 
 /** Resource tags. */
-export type ToolsUpdateRequestTagsMap = { [key: string]: string | undefined };
-export const ToolsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateNodePoolResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateNodePoolResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ToolsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateNodePoolResponseTagsMap>;
+
+export interface UpdateNodePoolResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateNodePoolResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: NodePoolProperties;
+}
+export const UpdateNodePoolResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateNodePoolResponseTagsMap),
+    location: S.String,
+    properties: S.optional(NodePoolProperties),
+  }),
+).annotate({
+  identifier: "UpdateNodePoolResponse",
+}) as any as S.Schema<UpdateNodePoolResponse>;
+
+/** Resource tags. */
+export type UpdateProjectRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateProjectRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateProjectRequestTagsMap>;
+
+export interface UpdateProjectRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Workspace */
+  workspaceName: string;
+  /** The name of the Project */
+  projectName: string;
+  /** Resource tags. */
+  tags?: UpdateProjectRequestTagsMap;
+  /** The resource-specific properties for this resource. */
+  properties?: ProjectPropertiesInput;
+}
+export const UpdateProjectRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    projectName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateProjectRequestTagsMap),
+    properties: S.optional(ProjectPropertiesInput),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/workspaces/{workspaceName}/projects/{projectName}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateProjectRequest",
+}) as any as S.Schema<UpdateProjectRequest>;
+
+/** Resource tags. */
+export type UpdateProjectResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateProjectResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateProjectResponseTagsMap>;
+
+export interface UpdateProjectResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateProjectResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: ProjectProperties;
+}
+export const UpdateProjectResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateProjectResponseTagsMap),
+    location: S.String,
+    properties: S.optional(ProjectProperties),
+  }),
+).annotate({
+  identifier: "UpdateProjectResponse",
+}) as any as S.Schema<UpdateProjectResponse>;
+
+/** Resource tags. */
+export type UpdateStorageAssetRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateStorageAssetRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateStorageAssetRequestTagsMap>;
+
+/** Storage Asset properties */
+export interface StorageAssetPropertiesUpdate {
+  /** The description */
+  description?: string;
+}
+export const StorageAssetPropertiesUpdate = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    description: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "StorageAssetPropertiesUpdate",
+}) as any as S.Schema<StorageAssetPropertiesUpdate>;
+
+export interface UpdateStorageAssetRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the StorageContainer */
+  storageContainerName: string;
+  /** The name of the StorageAsset */
+  storageAssetName: string;
+  /** Resource tags. */
+  tags?: UpdateStorageAssetRequestTagsMap;
+  /** The resource-specific properties for this resource. */
+  properties?: StorageAssetPropertiesUpdate;
+}
+export const UpdateStorageAssetRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    storageContainerName: S.String.pipe(T.Label()),
+    storageAssetName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateStorageAssetRequestTagsMap),
+    properties: S.optional(StorageAssetPropertiesUpdate),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/storageContainers/{storageContainerName}/storageAssets/{storageAssetName}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateStorageAssetRequest",
+}) as any as S.Schema<UpdateStorageAssetRequest>;
+
+/** Resource tags. */
+export type UpdateStorageAssetResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateStorageAssetResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateStorageAssetResponseTagsMap>;
+
+export interface UpdateStorageAssetResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateStorageAssetResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: StorageAssetProperties;
+}
+export const UpdateStorageAssetResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateStorageAssetResponseTagsMap),
+    location: S.String,
+    properties: S.optional(StorageAssetProperties),
+  }),
+).annotate({
+  identifier: "UpdateStorageAssetResponse",
+}) as any as S.Schema<UpdateStorageAssetResponse>;
+
+/** Resource tags. */
+export type UpdateStorageContainerRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateStorageContainerRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateStorageContainerRequestTagsMap>;
+
+export interface UpdateStorageContainerRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the StorageContainer */
+  storageContainerName: string;
+  /** Resource tags. */
+  tags?: UpdateStorageContainerRequestTagsMap;
+  /** The resource-specific properties for this resource. */
+  properties?: unknown;
+}
+export const UpdateStorageContainerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    storageContainerName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateStorageContainerRequestTagsMap),
+    properties: S.optional(S.Unknown),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/storageContainers/{storageContainerName}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateStorageContainerRequest",
+}) as any as S.Schema<UpdateStorageContainerRequest>;
+
+/** Resource tags. */
+export type UpdateStorageContainerResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateStorageContainerResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateStorageContainerResponseTagsMap>;
+
+export interface UpdateStorageContainerResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateStorageContainerResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: StorageContainerProperties;
+}
+export const UpdateStorageContainerResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateStorageContainerResponseTagsMap),
+    location: S.String,
+    properties: S.optional(StorageContainerProperties),
+  }),
+).annotate({
+  identifier: "UpdateStorageContainerResponse",
+}) as any as S.Schema<UpdateStorageContainerResponse>;
+
+/** Resource tags. */
+export type UpdateSupercomputerRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateSupercomputerRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateSupercomputerRequestTagsMap>;
+
+/** User assigned identity properties */
+export type SupercomputerIdentitiesUpdateInputWorkloadIdentitiesValue =
+  PrivateEndpointInput;
+export const SupercomputerIdentitiesUpdateInputWorkloadIdentitiesValue =
+  PrivateEndpointInput;
+
+/** User assigned identity IDs to be used by workloads as federated credentials running on supercomputer. The key value must be the resource ID of the identity resource. */
+export type SupercomputerIdentitiesUpdateInputWorkloadIdentitiesMap = {
+  [key: string]: PrivateEndpointInput | undefined;
+};
+export const SupercomputerIdentitiesUpdateInputWorkloadIdentitiesMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    PrivateEndpointInput,
+  ) as any as S.Schema<SupercomputerIdentitiesUpdateInputWorkloadIdentitiesMap>;
+
+/** Dictionary of identity properties for the Supercomputer. */
+export interface SupercomputerIdentitiesUpdateInput {
+  /** User assigned identity IDs to be used by workloads as federated credentials running on supercomputer. The key value must be the resource ID of the identity resource. */
+  workloadIdentities?: SupercomputerIdentitiesUpdateInputWorkloadIdentitiesMap;
+}
+export const SupercomputerIdentitiesUpdateInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    workloadIdentities: S.optional(
+      SupercomputerIdentitiesUpdateInputWorkloadIdentitiesMap,
+    ),
+  }),
+).annotate({
+  identifier: "SupercomputerIdentitiesUpdateInput",
+}) as any as S.Schema<SupercomputerIdentitiesUpdateInput>;
+
+/** Supercomputer properties */
+export interface SupercomputerPropertiesUpdateInput {
+  /** Dictionary of identity properties. */
+  identities?: SupercomputerIdentitiesUpdateInput;
+}
+export const SupercomputerPropertiesUpdateInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    identities: S.optional(SupercomputerIdentitiesUpdateInput),
+  }),
+).annotate({
+  identifier: "SupercomputerPropertiesUpdateInput",
+}) as any as S.Schema<SupercomputerPropertiesUpdateInput>;
+
+/** Type of managed service identity (either system assigned, or none). */
+export type AzureResourceManagerCommonTypesSystemAssignedServiceIdentityUpdateType =
+  | "None"
+  | "SystemAssigned";
+export const AzureResourceManagerCommonTypesSystemAssignedServiceIdentityUpdateType =
+  /*@__PURE__*/ S.String;
+
+/** Managed service identity (either system assigned, or none) */
+export interface AzureResourceManagerCommonTypesSystemAssignedServiceIdentityUpdate {
+  /** Type of managed service identity (either system assigned, or none). */
+  type?:
+    | AzureResourceManagerCommonTypesSystemAssignedServiceIdentityUpdateType
+    | (string & {});
+}
+export const AzureResourceManagerCommonTypesSystemAssignedServiceIdentityUpdate =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      type: S.optional(
+        AzureResourceManagerCommonTypesSystemAssignedServiceIdentityUpdateType,
+      ),
+    }),
+  ).annotate({
+    identifier:
+      "AzureResourceManagerCommonTypesSystemAssignedServiceIdentityUpdate",
+  }) as any as S.Schema<AzureResourceManagerCommonTypesSystemAssignedServiceIdentityUpdate>;
+
+export interface UpdateSupercomputerRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Supercomputer */
+  supercomputerName: string;
+  /** Resource tags. */
+  tags?: UpdateSupercomputerRequestTagsMap;
+  /** The resource-specific properties for this resource. */
+  properties?: SupercomputerPropertiesUpdateInput;
+  /** The managed service identities assigned to this resource. */
+  identity?: AzureResourceManagerCommonTypesSystemAssignedServiceIdentityUpdate;
+}
+export const UpdateSupercomputerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    supercomputerName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateSupercomputerRequestTagsMap),
+    properties: S.optional(SupercomputerPropertiesUpdateInput),
+    identity: S.optional(
+      AzureResourceManagerCommonTypesSystemAssignedServiceIdentityUpdate,
+    ),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/supercomputers/{supercomputerName}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateSupercomputerRequest",
+}) as any as S.Schema<UpdateSupercomputerRequest>;
+
+/** Resource tags. */
+export type UpdateSupercomputerResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateSupercomputerResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateSupercomputerResponseTagsMap>;
+
+/** Managed service identity (either system assigned, or none) */
+export type UpdateSupercomputerResponseIdentity =
+  GetSupercomputerResponseIdentity;
+export const UpdateSupercomputerResponseIdentity =
+  GetSupercomputerResponseIdentity;
+
+export interface UpdateSupercomputerResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateSupercomputerResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: SupercomputerProperties;
+  /** Managed service identity (either system assigned, or none) */
+  identity?: GetSupercomputerResponseIdentity;
+}
+export const UpdateSupercomputerResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateSupercomputerResponseTagsMap),
+    location: S.String,
+    properties: S.optional(SupercomputerProperties),
+    identity: S.optional(GetSupercomputerResponseIdentity),
+  }),
+).annotate({
+  identifier: "UpdateSupercomputerResponse",
+}) as any as S.Schema<UpdateSupercomputerResponse>;
+
+/** Resource tags. */
+export type UpdateToolRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateToolRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateToolRequestTagsMap>;
 
 /** Environment variables to make available */
 export type ToolPropertiesUpdateEnvironmentVariablesMap = {
@@ -4610,7 +5332,7 @@ export const ToolPropertiesUpdate = /*@__PURE__*/ S.suspend(() =>
   identifier: "ToolPropertiesUpdate",
 }) as any as S.Schema<ToolPropertiesUpdate>;
 
-export interface ToolsUpdateRequest {
+export interface UpdateToolRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -4618,16 +5340,16 @@ export interface ToolsUpdateRequest {
   /** The name of the Tool */
   toolName: string;
   /** Resource tags. */
-  tags?: ToolsUpdateRequestTagsMap;
+  tags?: UpdateToolRequestTagsMap;
   /** The resource-specific properties for this resource. */
   properties?: ToolPropertiesUpdate;
 }
-export const ToolsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateToolRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     toolName: S.String.pipe(T.Label()),
-    tags: S.optional(ToolsUpdateRequestTagsMap),
+    tags: S.optional(UpdateToolRequestTagsMap),
     properties: S.optional(ToolPropertiesUpdate),
   }).pipe(
     T.Http({
@@ -4638,17 +5360,17 @@ export const ToolsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ToolsUpdateRequest",
-}) as any as S.Schema<ToolsUpdateRequest>;
+  identifier: "UpdateToolRequest",
+}) as any as S.Schema<UpdateToolRequest>;
 
 /** Resource tags. */
-export type ToolsUpdateResponseTagsMap = { [key: string]: string | undefined };
-export const ToolsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateToolResponseTagsMap = { [key: string]: string | undefined };
+export const UpdateToolResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ToolsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateToolResponseTagsMap>;
 
-export interface ToolsUpdateResponse {
+export interface UpdateToolResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -4658,25 +5380,134 @@ export interface ToolsUpdateResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ToolsUpdateResponseTagsMap;
+  tags?: UpdateToolResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: ToolProperties;
 }
-export const ToolsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateToolResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ToolsUpdateResponseTagsMap),
+    tags: S.optional(UpdateToolResponseTagsMap),
     location: S.String,
     properties: S.optional(ToolProperties),
   }),
 ).annotate({
-  identifier: "ToolsUpdateResponse",
-}) as any as S.Schema<ToolsUpdateResponse>;
+  identifier: "UpdateToolResponse",
+}) as any as S.Schema<UpdateToolResponse>;
+
+/** Resource tags. */
+export type UpdateWorkspaceRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateWorkspaceRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateWorkspaceRequestTagsMap>;
+
+/** List of linked SuperComputers. */
+export type WorkspacePropertiesUpdateSupercomputerIdsList = Array<string>;
+export const WorkspacePropertiesUpdateSupercomputerIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<WorkspacePropertiesUpdateSupercomputerIdsList>;
+
+/** For Key Vault Key references */
+export type KeyVaultPropertiesUpdate = BookshelfKeyVaultPropertiesUpdate;
+export const KeyVaultPropertiesUpdate = BookshelfKeyVaultPropertiesUpdate;
+
+/** Workspace properties */
+export interface WorkspacePropertiesUpdate {
+  /** List of linked SuperComputers. */
+  supercomputerIds?: WorkspacePropertiesUpdateSupercomputerIdsList;
+  /** The key to use for encrypting data at rest when customer managed keys are enabled. */
+  keyVaultProperties?: BookshelfKeyVaultPropertiesUpdate;
+  /** Whether or not public network access is allowed for this resource. For security reasons, it is recommended to disable it whenever possible. */
+  publicNetworkAccess?: PublicNetworkAccess | (string & {});
+}
+export const WorkspacePropertiesUpdate = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    supercomputerIds: S.optional(WorkspacePropertiesUpdateSupercomputerIdsList),
+    keyVaultProperties: S.optional(BookshelfKeyVaultPropertiesUpdate),
+    publicNetworkAccess: S.optional(PublicNetworkAccess),
+  }),
+).annotate({
+  identifier: "WorkspacePropertiesUpdate",
+}) as any as S.Schema<WorkspacePropertiesUpdate>;
+
+export interface UpdateWorkspaceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Workspace */
+  workspaceName: string;
+  /** Resource tags. */
+  tags?: UpdateWorkspaceRequestTagsMap;
+  /** The resource-specific properties for this resource. */
+  properties?: WorkspacePropertiesUpdate;
+}
+export const UpdateWorkspaceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateWorkspaceRequestTagsMap),
+    properties: S.optional(WorkspacePropertiesUpdate),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/workspaces/{workspaceName}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateWorkspaceRequest",
+}) as any as S.Schema<UpdateWorkspaceRequest>;
+
+/** Resource tags. */
+export type UpdateWorkspaceResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateWorkspaceResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateWorkspaceResponseTagsMap>;
+
+export interface UpdateWorkspaceResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateWorkspaceResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: WorkspaceProperties;
+}
+export const UpdateWorkspaceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateWorkspaceResponseTagsMap),
+    location: S.String,
+    properties: S.optional(WorkspaceProperties),
+  }),
+).annotate({
+  identifier: "UpdateWorkspaceResponse",
+}) as any as S.Schema<UpdateWorkspaceResponse>;
 
 /** Properties of the private endpoint connection. */
 export type WorkspacePrivateEndpointConnectionsCreateOrUpdateRequestProperties =
@@ -4779,451 +5610,6 @@ export const WorkspacePrivateEndpointConnectionsCreateOrUpdateResponse =
     identifier: "WorkspacePrivateEndpointConnectionsCreateOrUpdateResponse",
   }) as any as S.Schema<WorkspacePrivateEndpointConnectionsCreateOrUpdateResponse>;
 
-export interface WorkspacePrivateEndpointConnectionsDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Workspace */
-  workspaceName: string;
-  /** The name of the private endpoint connection associated with the Azure resource. */
-  privateEndpointConnectionName: string;
-}
-export const WorkspacePrivateEndpointConnectionsDeleteRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      workspaceName: S.String.pipe(T.Label()),
-      privateEndpointConnectionName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/workspaces/{workspaceName}/privateEndpointConnections/{privateEndpointConnectionName}",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "WorkspacePrivateEndpointConnectionsDeleteRequest",
-  }) as any as S.Schema<WorkspacePrivateEndpointConnectionsDeleteRequest>;
-
-export interface WorkspacePrivateEndpointConnectionsDeleteResponse {}
-export const WorkspacePrivateEndpointConnectionsDeleteResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "WorkspacePrivateEndpointConnectionsDeleteResponse",
-  }) as any as S.Schema<WorkspacePrivateEndpointConnectionsDeleteResponse>;
-
-export interface WorkspacePrivateEndpointConnectionsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Workspace */
-  workspaceName: string;
-  /** The name of the private endpoint connection associated with the Azure resource. */
-  privateEndpointConnectionName: string;
-}
-export const WorkspacePrivateEndpointConnectionsGetRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      workspaceName: S.String.pipe(T.Label()),
-      privateEndpointConnectionName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/workspaces/{workspaceName}/privateEndpointConnections/{privateEndpointConnectionName}",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "WorkspacePrivateEndpointConnectionsGetRequest",
-  }) as any as S.Schema<WorkspacePrivateEndpointConnectionsGetRequest>;
-
-/** The group ids for the private endpoint resource. */
-export type WorkspacePrivateEndpointConnectionsGetResponsePropertiesGroupIdsList =
-  Array<string>;
-export const WorkspacePrivateEndpointConnectionsGetResponsePropertiesGroupIdsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<WorkspacePrivateEndpointConnectionsGetResponsePropertiesGroupIdsList>;
-
-/** Properties of the private endpoint connection. */
-export interface WorkspacePrivateEndpointConnectionsGetResponseProperties {
-  /** The group ids for the private endpoint resource. */
-  groupIds?: WorkspacePrivateEndpointConnectionsGetResponsePropertiesGroupIdsList;
-  /** The private endpoint resource. */
-  privateEndpoint?: PrivateEndpoint;
-  /** A collection of information about the state of the connection between service consumer and provider. */
-  privateLinkServiceConnectionState: PrivateLinkServiceConnectionState;
-  /** The provisioning state of the private endpoint connection resource. */
-  provisioningState?: PrivateEndpointConnectionProvisioningState;
-}
-export const WorkspacePrivateEndpointConnectionsGetResponseProperties =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      groupIds: S.optional(
-        WorkspacePrivateEndpointConnectionsGetResponsePropertiesGroupIdsList,
-      ),
-      privateEndpoint: S.optional(PrivateEndpoint),
-      privateLinkServiceConnectionState: PrivateLinkServiceConnectionState,
-      provisioningState: S.optional(PrivateEndpointConnectionProvisioningState),
-    }),
-  ).annotate({
-    identifier: "WorkspacePrivateEndpointConnectionsGetResponseProperties",
-  }) as any as S.Schema<WorkspacePrivateEndpointConnectionsGetResponseProperties>;
-
-export interface WorkspacePrivateEndpointConnectionsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of the private endpoint connection. */
-  properties?: WorkspacePrivateEndpointConnectionsGetResponseProperties;
-}
-export const WorkspacePrivateEndpointConnectionsGetResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(
-        WorkspacePrivateEndpointConnectionsGetResponseProperties,
-      ),
-    }),
-  ).annotate({
-    identifier: "WorkspacePrivateEndpointConnectionsGetResponse",
-  }) as any as S.Schema<WorkspacePrivateEndpointConnectionsGetResponse>;
-
-export interface WorkspacePrivateEndpointConnectionsListByWorkspaceRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Workspace */
-  workspaceName: string;
-}
-export const WorkspacePrivateEndpointConnectionsListByWorkspaceRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      workspaceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/workspaces/{workspaceName}/privateEndpointConnections",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "WorkspacePrivateEndpointConnectionsListByWorkspaceRequest",
-  }) as any as S.Schema<WorkspacePrivateEndpointConnectionsListByWorkspaceRequest>;
-
-/** The group ids for the private endpoint resource. */
-export type WorkspacePrivateEndpointConnectionPropertiesGroupIdsList =
-  Array<string>;
-export const WorkspacePrivateEndpointConnectionPropertiesGroupIdsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<WorkspacePrivateEndpointConnectionPropertiesGroupIdsList>;
-
-/** Properties of the private endpoint connection. */
-export interface WorkspacePrivateEndpointConnectionProperties {
-  /** The group ids for the private endpoint resource. */
-  groupIds?: WorkspacePrivateEndpointConnectionPropertiesGroupIdsList;
-  /** The private endpoint resource. */
-  privateEndpoint?: PrivateEndpoint;
-  /** A collection of information about the state of the connection between service consumer and provider. */
-  privateLinkServiceConnectionState: PrivateLinkServiceConnectionState;
-  /** The provisioning state of the private endpoint connection resource. */
-  provisioningState?: PrivateEndpointConnectionProvisioningState;
-}
-export const WorkspacePrivateEndpointConnectionProperties =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      groupIds: S.optional(
-        WorkspacePrivateEndpointConnectionPropertiesGroupIdsList,
-      ),
-      privateEndpoint: S.optional(PrivateEndpoint),
-      privateLinkServiceConnectionState: PrivateLinkServiceConnectionState,
-      provisioningState: S.optional(PrivateEndpointConnectionProvisioningState),
-    }),
-  ).annotate({
-    identifier: "WorkspacePrivateEndpointConnectionProperties",
-  }) as any as S.Schema<WorkspacePrivateEndpointConnectionProperties>;
-
-/** The Private Endpoint Connection resource for Workspace. */
-export interface WorkspacePrivateEndpointConnection {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of the private endpoint connection. */
-  properties?: WorkspacePrivateEndpointConnectionProperties;
-}
-export const WorkspacePrivateEndpointConnection = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(WorkspacePrivateEndpointConnectionProperties),
-  }),
-).annotate({
-  identifier: "WorkspacePrivateEndpointConnection",
-}) as any as S.Schema<WorkspacePrivateEndpointConnection>;
-
-/** The WorkspacePrivateEndpointConnection items on this page */
-export type WorkspacePrivateEndpointConnectionListResultValueList =
-  Array<WorkspacePrivateEndpointConnection>;
-export const WorkspacePrivateEndpointConnectionListResultValueList =
-  /*@__PURE__*/ S.Array(
-    WorkspacePrivateEndpointConnection,
-  ) as any as S.Schema<WorkspacePrivateEndpointConnectionListResultValueList>;
-
-/** The response of a WorkspacePrivateEndpointConnection list operation. */
-export interface WorkspacePrivateEndpointConnectionListResult {
-  /** The WorkspacePrivateEndpointConnection items on this page */
-  value: WorkspacePrivateEndpointConnectionListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const WorkspacePrivateEndpointConnectionListResult =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      value: WorkspacePrivateEndpointConnectionListResultValueList,
-      nextLink: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "WorkspacePrivateEndpointConnectionListResult",
-  }) as any as S.Schema<WorkspacePrivateEndpointConnectionListResult>;
-
-export interface WorkspacePrivateLinkResourcesGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Workspace */
-  workspaceName: string;
-  /** The name of the private link associated with the Azure resource. */
-  privateLinkResourceName: string;
-}
-export const WorkspacePrivateLinkResourcesGetRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      workspaceName: S.String.pipe(T.Label()),
-      privateLinkResourceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/workspaces/{workspaceName}/privateLinkResources/{privateLinkResourceName}",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "WorkspacePrivateLinkResourcesGetRequest",
-}) as any as S.Schema<WorkspacePrivateLinkResourcesGetRequest>;
-
-/** The private link resource required member names. */
-export type WorkspacePrivateLinkResourcesGetResponsePropertiesRequiredMembersList =
-  Array<string>;
-export const WorkspacePrivateLinkResourcesGetResponsePropertiesRequiredMembersList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<WorkspacePrivateLinkResourcesGetResponsePropertiesRequiredMembersList>;
-
-/** The private link resource private link DNS zone name. */
-export type WorkspacePrivateLinkResourcesGetResponsePropertiesRequiredZoneNamesList =
-  Array<string>;
-export const WorkspacePrivateLinkResourcesGetResponsePropertiesRequiredZoneNamesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<WorkspacePrivateLinkResourcesGetResponsePropertiesRequiredZoneNamesList>;
-
-/** Properties of a private link resource. */
-export interface WorkspacePrivateLinkResourcesGetResponseProperties {
-  /** The private link resource group id. */
-  groupId?: string;
-  /** The private link resource required member names. */
-  requiredMembers?: WorkspacePrivateLinkResourcesGetResponsePropertiesRequiredMembersList;
-  /** The private link resource private link DNS zone name. */
-  requiredZoneNames?: WorkspacePrivateLinkResourcesGetResponsePropertiesRequiredZoneNamesList;
-}
-export const WorkspacePrivateLinkResourcesGetResponseProperties =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      groupId: S.optional(S.String),
-      requiredMembers: S.optional(
-        WorkspacePrivateLinkResourcesGetResponsePropertiesRequiredMembersList,
-      ),
-      requiredZoneNames: S.optional(
-        WorkspacePrivateLinkResourcesGetResponsePropertiesRequiredZoneNamesList,
-      ),
-    }),
-  ).annotate({
-    identifier: "WorkspacePrivateLinkResourcesGetResponseProperties",
-  }) as any as S.Schema<WorkspacePrivateLinkResourcesGetResponseProperties>;
-
-export interface WorkspacePrivateLinkResourcesGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of a private link resource. */
-  properties?: WorkspacePrivateLinkResourcesGetResponseProperties;
-}
-export const WorkspacePrivateLinkResourcesGetResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(
-        WorkspacePrivateLinkResourcesGetResponseProperties,
-      ),
-    }),
-).annotate({
-  identifier: "WorkspacePrivateLinkResourcesGetResponse",
-}) as any as S.Schema<WorkspacePrivateLinkResourcesGetResponse>;
-
-export interface WorkspacePrivateLinkResourcesListByWorkspaceRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Workspace */
-  workspaceName: string;
-}
-export const WorkspacePrivateLinkResourcesListByWorkspaceRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      workspaceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/workspaces/{workspaceName}/privateLinkResources",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "WorkspacePrivateLinkResourcesListByWorkspaceRequest",
-  }) as any as S.Schema<WorkspacePrivateLinkResourcesListByWorkspaceRequest>;
-
-/** The private link resource required member names. */
-export type WorkspacePrivateLinkResourcePropertiesRequiredMembersList =
-  Array<string>;
-export const WorkspacePrivateLinkResourcePropertiesRequiredMembersList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<WorkspacePrivateLinkResourcePropertiesRequiredMembersList>;
-
-/** The private link resource private link DNS zone name. */
-export type WorkspacePrivateLinkResourcePropertiesRequiredZoneNamesList =
-  Array<string>;
-export const WorkspacePrivateLinkResourcePropertiesRequiredZoneNamesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<WorkspacePrivateLinkResourcePropertiesRequiredZoneNamesList>;
-
-/** Properties of a private link resource. */
-export interface WorkspacePrivateLinkResourceProperties {
-  /** The private link resource group id. */
-  groupId?: string;
-  /** The private link resource required member names. */
-  requiredMembers?: WorkspacePrivateLinkResourcePropertiesRequiredMembersList;
-  /** The private link resource private link DNS zone name. */
-  requiredZoneNames?: WorkspacePrivateLinkResourcePropertiesRequiredZoneNamesList;
-}
-export const WorkspacePrivateLinkResourceProperties = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      groupId: S.optional(S.String),
-      requiredMembers: S.optional(
-        WorkspacePrivateLinkResourcePropertiesRequiredMembersList,
-      ),
-      requiredZoneNames: S.optional(
-        WorkspacePrivateLinkResourcePropertiesRequiredZoneNamesList,
-      ),
-    }),
-).annotate({
-  identifier: "WorkspacePrivateLinkResourceProperties",
-}) as any as S.Schema<WorkspacePrivateLinkResourceProperties>;
-
-/** A private link resource for Workspace. */
-export interface WorkspacePrivateLinkResource {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of a private link resource. */
-  properties?: WorkspacePrivateLinkResourceProperties;
-}
-export const WorkspacePrivateLinkResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(WorkspacePrivateLinkResourceProperties),
-  }),
-).annotate({
-  identifier: "WorkspacePrivateLinkResource",
-}) as any as S.Schema<WorkspacePrivateLinkResource>;
-
-/** The WorkspacePrivateLinkResource items on this page */
-export type WorkspacePrivateLinkResourceListResultValueList =
-  Array<WorkspacePrivateLinkResource>;
-export const WorkspacePrivateLinkResourceListResultValueList =
-  /*@__PURE__*/ S.Array(
-    WorkspacePrivateLinkResource,
-  ) as any as S.Schema<WorkspacePrivateLinkResourceListResultValueList>;
-
-/** The response of a WorkspacePrivateLinkResource list operation. */
-export interface WorkspacePrivateLinkResourceListResult {
-  /** The WorkspacePrivateLinkResource items on this page */
-  value: WorkspacePrivateLinkResourceListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const WorkspacePrivateLinkResourceListResult = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      value: WorkspacePrivateLinkResourceListResultValueList,
-      nextLink: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "WorkspacePrivateLinkResourceListResult",
-}) as any as S.Schema<WorkspacePrivateLinkResourceListResult>;
-
 /** Resource tags. */
 export type WorkspacesCreateOrUpdateRequestTagsMap = {
   [key: string]: string | undefined;
@@ -5239,25 +5625,6 @@ export const WorkspacePropertiesInputSupercomputerIdsList =
   /*@__PURE__*/ S.Array(
     S.String,
   ) as any as S.Schema<WorkspacePropertiesInputSupercomputerIdsList>;
-
-/** For Key Vault Key references */
-export interface KeyVaultProperties {
-  /** The Key Vault URI */
-  keyVaultUri: string;
-  /** The Key Name in Key Vault */
-  keyName: string;
-  /** The Key Version in Key Vault */
-  keyVersion?: string;
-}
-export const KeyVaultProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    keyVaultUri: S.String,
-    keyName: S.String,
-    keyVersion: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "KeyVaultProperties",
-}) as any as S.Schema<KeyVaultProperties>;
 
 /** Workspace properties */
 export interface WorkspacePropertiesInput {
@@ -5339,83 +5706,6 @@ export const WorkspacesCreateOrUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
 ) as any as S.Schema<WorkspacesCreateOrUpdateResponseTagsMap>;
 
-/** List of linked SuperComputers. */
-export type WorkspacePropertiesSupercomputerIdsList = Array<string>;
-export const WorkspacePropertiesSupercomputerIdsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<WorkspacePropertiesSupercomputerIdsList>;
-
-/** The private endpoint connection resource. */
-export type WorkspacePropertiesPrivateEndpointConnectionsItem =
-  BookshelfPropertiesPrivateEndpointConnectionsItem;
-export const WorkspacePropertiesPrivateEndpointConnectionsItem =
-  BookshelfPropertiesPrivateEndpointConnectionsItem;
-
-/** List of private endpoint connections. */
-export type WorkspacePropertiesPrivateEndpointConnectionsList =
-  Array<BookshelfPropertiesPrivateEndpointConnectionsItem>;
-export const WorkspacePropertiesPrivateEndpointConnectionsList =
-  /*@__PURE__*/ S.Array(
-    BookshelfPropertiesPrivateEndpointConnectionsItem,
-  ) as any as S.Schema<WorkspacePropertiesPrivateEndpointConnectionsList>;
-
-/** Workspace properties */
-export interface WorkspaceProperties {
-  /** The status of the last operation. */
-  provisioningState?: ProvisioningState;
-  /** List of linked SuperComputers. */
-  supercomputerIds?: WorkspacePropertiesSupercomputerIdsList;
-  /** workspace API endpoint Uri. */
-  workspaceApiUri?: string;
-  /** workspace User Interface Uri. */
-  workspaceUiUri?: string;
-  /** Identity IDs used for leveraging Workspace resources. */
-  workspaceIdentity: Identity;
-  /** Whether or not to use a customer managed key when encrypting data at rest */
-  customerManagedKeys?: CustomerManagedKeys;
-  /** The key to use for encrypting data at rest when customer managed keys are enabled. */
-  keyVaultProperties?: KeyVaultProperties;
-  /** The Log Analytics Cluster to use for debug logs. This is required when Customer Managed Keys are enabled. */
-  logAnalyticsClusterId?: string;
-  /** List of private endpoint connections. */
-  privateEndpointConnections?: WorkspacePropertiesPrivateEndpointConnectionsList;
-  /** Whether or not public network access is allowed for this resource. For security reasons, it is recommended to disable it whenever possible. */
-  publicNetworkAccess?: PublicNetworkAccess;
-  /** Agent Subnet ID for agent resources. */
-  agentSubnetId?: string;
-  /** Private Endpoint Subnet ID for private endpoint connections. */
-  privateEndpointSubnetId?: string;
-  /** Function Subnet ID for workspace resources. */
-  workspaceSubnetId?: string;
-  /** The resource group for resources managed on behalf of customer. */
-  managedResourceGroup?: string;
-  /** Managed-On-Behalf-Of configuration properties. This configuration exists for the resources where a resource provider manages those resources on behalf of the resource owner. */
-  managedOnBehalfOfConfiguration?: WithMoboBrokerResources;
-}
-export const WorkspaceProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provisioningState: S.optional(ProvisioningState),
-    supercomputerIds: S.optional(WorkspacePropertiesSupercomputerIdsList),
-    workspaceApiUri: S.optional(S.String),
-    workspaceUiUri: S.optional(S.String),
-    workspaceIdentity: Identity,
-    customerManagedKeys: S.optional(CustomerManagedKeys),
-    keyVaultProperties: S.optional(KeyVaultProperties),
-    logAnalyticsClusterId: S.optional(S.String),
-    privateEndpointConnections: S.optional(
-      WorkspacePropertiesPrivateEndpointConnectionsList,
-    ),
-    publicNetworkAccess: S.optional(PublicNetworkAccess),
-    agentSubnetId: S.optional(S.String),
-    privateEndpointSubnetId: S.optional(S.String),
-    workspaceSubnetId: S.optional(S.String),
-    managedResourceGroup: S.optional(S.String),
-    managedOnBehalfOfConfiguration: S.optional(WithMoboBrokerResources),
-  }),
-).annotate({
-  identifier: "WorkspaceProperties",
-}) as any as S.Schema<WorkspaceProperties>;
-
 export interface WorkspacesCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
@@ -5446,311 +5736,6 @@ export const WorkspacesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "WorkspacesCreateOrUpdateResponse",
 }) as any as S.Schema<WorkspacesCreateOrUpdateResponse>;
 
-export interface WorkspacesDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Workspace */
-  workspaceName: string;
-}
-export const WorkspacesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/workspaces/{workspaceName}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "WorkspacesDeleteRequest",
-}) as any as S.Schema<WorkspacesDeleteRequest>;
-
-export interface WorkspacesDeleteResponse {}
-export const WorkspacesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "WorkspacesDeleteResponse",
-}) as any as S.Schema<WorkspacesDeleteResponse>;
-
-export interface WorkspacesGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Workspace */
-  workspaceName: string;
-}
-export const WorkspacesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/workspaces/{workspaceName}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "WorkspacesGetRequest",
-}) as any as S.Schema<WorkspacesGetRequest>;
-
-/** Resource tags. */
-export type WorkspacesGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const WorkspacesGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<WorkspacesGetResponseTagsMap>;
-
-export interface WorkspacesGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: WorkspacesGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: WorkspaceProperties;
-}
-export const WorkspacesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(WorkspacesGetResponseTagsMap),
-    location: S.String,
-    properties: S.optional(WorkspaceProperties),
-  }),
-).annotate({
-  identifier: "WorkspacesGetResponse",
-}) as any as S.Schema<WorkspacesGetResponse>;
-
-export interface WorkspacesListByResourceGroupRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-}
-export const WorkspacesListByResourceGroupRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/workspaces",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "WorkspacesListByResourceGroupRequest",
-}) as any as S.Schema<WorkspacesListByResourceGroupRequest>;
-
-/** Resource tags. */
-export type WorkspaceTagsMap = { [key: string]: string | undefined };
-export const WorkspaceTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<WorkspaceTagsMap>;
-
-/** Workspace tracked resource */
-export interface Workspace {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: WorkspaceTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: WorkspaceProperties;
-}
-export const Workspace = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(WorkspaceTagsMap),
-    location: S.String,
-    properties: S.optional(WorkspaceProperties),
-  }),
-).annotate({ identifier: "Workspace" }) as any as S.Schema<Workspace>;
-
-/** The Workspace items on this page */
-export type WorkspaceListResultValueList = Array<Workspace>;
-export const WorkspaceListResultValueList = /*@__PURE__*/ S.Array(
-  Workspace,
-) as any as S.Schema<WorkspaceListResultValueList>;
-
-/** The response of a Workspace list operation. */
-export interface WorkspaceListResult {
-  /** The Workspace items on this page */
-  value: WorkspaceListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const WorkspaceListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: WorkspaceListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "WorkspaceListResult",
-}) as any as S.Schema<WorkspaceListResult>;
-
-export interface WorkspacesListBySubscriptionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-}
-export const WorkspacesListBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Discovery/workspaces",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "WorkspacesListBySubscriptionRequest",
-}) as any as S.Schema<WorkspacesListBySubscriptionRequest>;
-
-/** Resource tags. */
-export type WorkspacesUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const WorkspacesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<WorkspacesUpdateRequestTagsMap>;
-
-/** List of linked SuperComputers. */
-export type WorkspacePropertiesUpdateSupercomputerIdsList = Array<string>;
-export const WorkspacePropertiesUpdateSupercomputerIdsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<WorkspacePropertiesUpdateSupercomputerIdsList>;
-
-/** For Key Vault Key references */
-export type KeyVaultPropertiesUpdate = BookshelfKeyVaultPropertiesUpdate;
-export const KeyVaultPropertiesUpdate = BookshelfKeyVaultPropertiesUpdate;
-
-/** Workspace properties */
-export interface WorkspacePropertiesUpdate {
-  /** List of linked SuperComputers. */
-  supercomputerIds?: WorkspacePropertiesUpdateSupercomputerIdsList;
-  /** The key to use for encrypting data at rest when customer managed keys are enabled. */
-  keyVaultProperties?: BookshelfKeyVaultPropertiesUpdate;
-  /** Whether or not public network access is allowed for this resource. For security reasons, it is recommended to disable it whenever possible. */
-  publicNetworkAccess?: PublicNetworkAccess | (string & {});
-}
-export const WorkspacePropertiesUpdate = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    supercomputerIds: S.optional(WorkspacePropertiesUpdateSupercomputerIdsList),
-    keyVaultProperties: S.optional(BookshelfKeyVaultPropertiesUpdate),
-    publicNetworkAccess: S.optional(PublicNetworkAccess),
-  }),
-).annotate({
-  identifier: "WorkspacePropertiesUpdate",
-}) as any as S.Schema<WorkspacePropertiesUpdate>;
-
-export interface WorkspacesUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Workspace */
-  workspaceName: string;
-  /** Resource tags. */
-  tags?: WorkspacesUpdateRequestTagsMap;
-  /** The resource-specific properties for this resource. */
-  properties?: WorkspacePropertiesUpdate;
-}
-export const WorkspacesUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    tags: S.optional(WorkspacesUpdateRequestTagsMap),
-    properties: S.optional(WorkspacePropertiesUpdate),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Discovery/workspaces/{workspaceName}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "WorkspacesUpdateRequest",
-}) as any as S.Schema<WorkspacesUpdateRequest>;
-
-/** Resource tags. */
-export type WorkspacesUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const WorkspacesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<WorkspacesUpdateResponseTagsMap>;
-
-export interface WorkspacesUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: WorkspacesUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: WorkspaceProperties;
-}
-export const WorkspacesUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(WorkspacesUpdateResponseTagsMap),
-    location: S.String,
-    properties: S.optional(WorkspaceProperties),
-  }),
-).annotate({
-  identifier: "WorkspacesUpdateResponse",
-}) as any as S.Schema<WorkspacesUpdateResponse>;
-
 export type BookshelfPrivateEndpointConnectionsCreateOrUpdateError =
   AzureOpError;
 /** Approves or updates the specified private endpoint connection. */
@@ -5762,82 +5747,6 @@ export const BookshelfPrivateEndpointConnectionsCreateOrUpdate: API.OperationMet
 > = /*@__PURE__*/ API.make(() => ({
   input: BookshelfPrivateEndpointConnectionsCreateOrUpdateRequest,
   output: BookshelfPrivateEndpointConnectionsCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BookshelfPrivateEndpointConnectionsDeleteError = AzureOpError;
-/** Deletes the specified private endpoint connection. */
-export const BookshelfPrivateEndpointConnectionsDelete: API.OperationMethod<
-  BookshelfPrivateEndpointConnectionsDeleteRequest,
-  BookshelfPrivateEndpointConnectionsDeleteResponse,
-  BookshelfPrivateEndpointConnectionsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BookshelfPrivateEndpointConnectionsDeleteRequest,
-  output: BookshelfPrivateEndpointConnectionsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BookshelfPrivateEndpointConnectionsGetError = AzureOpError;
-/** Gets the specified private endpoint connection associated with the bookshelf. */
-export const BookshelfPrivateEndpointConnectionsGet: API.OperationMethod<
-  BookshelfPrivateEndpointConnectionsGetRequest,
-  BookshelfPrivateEndpointConnectionsGetResponse,
-  BookshelfPrivateEndpointConnectionsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BookshelfPrivateEndpointConnectionsGetRequest,
-  output: BookshelfPrivateEndpointConnectionsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BookshelfPrivateEndpointConnectionsListByBookshelfError =
-  AzureOpError;
-/** Lists all private endpoint connections for a bookshelf. */
-export const BookshelfPrivateEndpointConnectionsListByBookshelf: API.OperationMethod<
-  BookshelfPrivateEndpointConnectionsListByBookshelfRequest,
-  BookshelfPrivateEndpointConnectionListResult,
-  BookshelfPrivateEndpointConnectionsListByBookshelfError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BookshelfPrivateEndpointConnectionsListByBookshelfRequest,
-  output: BookshelfPrivateEndpointConnectionListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BookshelfPrivateLinkResourcesGetError = AzureOpError;
-/** Gets the specified private link resource for the bookshelf. */
-export const BookshelfPrivateLinkResourcesGet: API.OperationMethod<
-  BookshelfPrivateLinkResourcesGetRequest,
-  BookshelfPrivateLinkResourcesGetResponse,
-  BookshelfPrivateLinkResourcesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BookshelfPrivateLinkResourcesGetRequest,
-  output: BookshelfPrivateLinkResourcesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BookshelfPrivateLinkResourcesListByBookshelfError = AzureOpError;
-/** Lists all private link resources for the bookshelf. */
-export const BookshelfPrivateLinkResourcesListByBookshelf: API.OperationMethod<
-  BookshelfPrivateLinkResourcesListByBookshelfRequest,
-  BookshelfPrivateLinkResourceListResult,
-  BookshelfPrivateLinkResourcesListByBookshelfError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BookshelfPrivateLinkResourcesListByBookshelfRequest,
-  output: BookshelfPrivateLinkResourceListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -5858,81 +5767,6 @@ export const BookshelvesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type BookshelvesDeleteError = AzureOpError;
-/** Delete a Bookshelf */
-export const BookshelvesDelete: API.OperationMethod<
-  BookshelvesDeleteRequest,
-  BookshelvesDeleteResponse,
-  BookshelvesDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BookshelvesDeleteRequest,
-  output: BookshelvesDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BookshelvesGetError = AzureOpError;
-/** Get a Bookshelf */
-export const BookshelvesGet: API.OperationMethod<
-  BookshelvesGetRequest,
-  BookshelvesGetResponse,
-  BookshelvesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BookshelvesGetRequest,
-  output: BookshelvesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BookshelvesListByResourceGroupError = AzureOpError;
-/** List Bookshelf resources by resource group */
-export const BookshelvesListByResourceGroup: API.OperationMethod<
-  BookshelvesListByResourceGroupRequest,
-  BookshelfListResult,
-  BookshelvesListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BookshelvesListByResourceGroupRequest,
-  output: BookshelfListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BookshelvesListBySubscriptionError = AzureOpError;
-/** List Bookshelf resources by subscription ID */
-export const BookshelvesListBySubscription: API.OperationMethod<
-  BookshelvesListBySubscriptionRequest,
-  BookshelfListResult,
-  BookshelvesListBySubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BookshelvesListBySubscriptionRequest,
-  output: BookshelfListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BookshelvesUpdateError = AzureOpError;
-/** Update a Bookshelf */
-export const BookshelvesUpdate: API.OperationMethod<
-  BookshelvesUpdateRequest,
-  BookshelvesUpdateResponse,
-  BookshelvesUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BookshelvesUpdateRequest,
-  output: BookshelvesUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ChatModelDeploymentsCreateOrUpdateError = AzureOpError;
 /** Create a ChatModelDeployment */
 export const ChatModelDeploymentsCreateOrUpdate: API.OperationMethod<
@@ -5948,61 +5782,648 @@ export const ChatModelDeploymentsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ChatModelDeploymentsDeleteError = AzureOpError;
+export type DeleteBookshelfPrivateEndpointConnectionError = AzureOpError;
+/** Deletes the specified private endpoint connection. */
+export const DeleteBookshelfPrivateEndpointConnection: API.OperationMethod<
+  DeleteBookshelfPrivateEndpointConnectionRequest,
+  DeleteBookshelfPrivateEndpointConnectionResponse,
+  DeleteBookshelfPrivateEndpointConnectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteBookshelfPrivateEndpointConnectionRequest,
+  output: DeleteBookshelfPrivateEndpointConnectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteBookshelveError = AzureOpError;
+/** Delete a Bookshelf */
+export const DeleteBookshelve: API.OperationMethod<
+  DeleteBookshelveRequest,
+  DeleteBookshelveResponse,
+  DeleteBookshelveError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteBookshelveRequest,
+  output: DeleteBookshelveResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteChatModelDeploymentError = AzureOpError;
 /** Delete a ChatModelDeployment */
-export const ChatModelDeploymentsDelete: API.OperationMethod<
-  ChatModelDeploymentsDeleteRequest,
-  ChatModelDeploymentsDeleteResponse,
-  ChatModelDeploymentsDeleteError,
+export const DeleteChatModelDeployment: API.OperationMethod<
+  DeleteChatModelDeploymentRequest,
+  DeleteChatModelDeploymentResponse,
+  DeleteChatModelDeploymentError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ChatModelDeploymentsDeleteRequest,
-  output: ChatModelDeploymentsDeleteResponse,
+  input: DeleteChatModelDeploymentRequest,
+  output: DeleteChatModelDeploymentResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ChatModelDeploymentsGetError = AzureOpError;
+export type DeleteNodePoolError = AzureOpError;
+/** Delete a NodePool */
+export const DeleteNodePool: API.OperationMethod<
+  DeleteNodePoolRequest,
+  DeleteNodePoolResponse,
+  DeleteNodePoolError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteNodePoolRequest,
+  output: DeleteNodePoolResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteProjectError = AzureOpError;
+/** Delete a Project */
+export const DeleteProject: API.OperationMethod<
+  DeleteProjectRequest,
+  DeleteProjectResponse,
+  DeleteProjectError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteProjectRequest,
+  output: DeleteProjectResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteStorageAssetError = AzureOpError;
+/** Delete a StorageAsset */
+export const DeleteStorageAsset: API.OperationMethod<
+  DeleteStorageAssetRequest,
+  DeleteStorageAssetResponse,
+  DeleteStorageAssetError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteStorageAssetRequest,
+  output: DeleteStorageAssetResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteStorageContainerError = AzureOpError;
+/** Delete a StorageContainer */
+export const DeleteStorageContainer: API.OperationMethod<
+  DeleteStorageContainerRequest,
+  DeleteStorageContainerResponse,
+  DeleteStorageContainerError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteStorageContainerRequest,
+  output: DeleteStorageContainerResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteSupercomputerError = AzureOpError;
+/** Delete a Supercomputer */
+export const DeleteSupercomputer: API.OperationMethod<
+  DeleteSupercomputerRequest,
+  DeleteSupercomputerResponse,
+  DeleteSupercomputerError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteSupercomputerRequest,
+  output: DeleteSupercomputerResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteToolError = AzureOpError;
+/** Delete a Tool */
+export const DeleteTool: API.OperationMethod<
+  DeleteToolRequest,
+  DeleteToolResponse,
+  DeleteToolError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteToolRequest,
+  output: DeleteToolResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteWorkspaceError = AzureOpError;
+/** Delete a Workspace */
+export const DeleteWorkspace: API.OperationMethod<
+  DeleteWorkspaceRequest,
+  DeleteWorkspaceResponse,
+  DeleteWorkspaceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteWorkspaceRequest,
+  output: DeleteWorkspaceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteWorkspacePrivateEndpointConnectionError = AzureOpError;
+/** Deletes the specified private endpoint connection. */
+export const DeleteWorkspacePrivateEndpointConnection: API.OperationMethod<
+  DeleteWorkspacePrivateEndpointConnectionRequest,
+  DeleteWorkspacePrivateEndpointConnectionResponse,
+  DeleteWorkspacePrivateEndpointConnectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteWorkspacePrivateEndpointConnectionRequest,
+  output: DeleteWorkspacePrivateEndpointConnectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetBookshelfPrivateEndpointConnectionError = AzureOpError;
+/** Gets the specified private endpoint connection associated with the bookshelf. */
+export const GetBookshelfPrivateEndpointConnection: API.OperationMethod<
+  GetBookshelfPrivateEndpointConnectionRequest,
+  GetBookshelfPrivateEndpointConnectionResponse,
+  GetBookshelfPrivateEndpointConnectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetBookshelfPrivateEndpointConnectionRequest,
+  output: GetBookshelfPrivateEndpointConnectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetBookshelfPrivateLinkResourceError = AzureOpError;
+/** Gets the specified private link resource for the bookshelf. */
+export const GetBookshelfPrivateLinkResource: API.OperationMethod<
+  GetBookshelfPrivateLinkResourceRequest,
+  GetBookshelfPrivateLinkResourceResponse,
+  GetBookshelfPrivateLinkResourceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetBookshelfPrivateLinkResourceRequest,
+  output: GetBookshelfPrivateLinkResourceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetBookshelveError = AzureOpError;
+/** Get a Bookshelf */
+export const GetBookshelve: API.OperationMethod<
+  GetBookshelveRequest,
+  GetBookshelveResponse,
+  GetBookshelveError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetBookshelveRequest,
+  output: GetBookshelveResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetChatModelDeploymentError = AzureOpError;
 /** Get a ChatModelDeployment */
-export const ChatModelDeploymentsGet: API.OperationMethod<
-  ChatModelDeploymentsGetRequest,
-  ChatModelDeploymentsGetResponse,
-  ChatModelDeploymentsGetError,
+export const GetChatModelDeployment: API.OperationMethod<
+  GetChatModelDeploymentRequest,
+  GetChatModelDeploymentResponse,
+  GetChatModelDeploymentError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ChatModelDeploymentsGetRequest,
-  output: ChatModelDeploymentsGetResponse,
+  input: GetChatModelDeploymentRequest,
+  output: GetChatModelDeploymentResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ChatModelDeploymentsListByWorkspaceError = AzureOpError;
-/** List ChatModelDeployment resources by Workspace */
-export const ChatModelDeploymentsListByWorkspace: API.OperationMethod<
-  ChatModelDeploymentsListByWorkspaceRequest,
-  ChatModelDeploymentListResult,
-  ChatModelDeploymentsListByWorkspaceError,
+export type GetNodePoolError = AzureOpError;
+/** Get a NodePool */
+export const GetNodePool: API.OperationMethod<
+  GetNodePoolRequest,
+  GetNodePoolResponse,
+  GetNodePoolError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ChatModelDeploymentsListByWorkspaceRequest,
+  input: GetNodePoolRequest,
+  output: GetNodePoolResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetProjectError = AzureOpError;
+/** Get a Project */
+export const GetProject: API.OperationMethod<
+  GetProjectRequest,
+  GetProjectResponse,
+  GetProjectError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetProjectRequest,
+  output: GetProjectResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetStorageAssetError = AzureOpError;
+/** Get a StorageAsset */
+export const GetStorageAsset: API.OperationMethod<
+  GetStorageAssetRequest,
+  GetStorageAssetResponse,
+  GetStorageAssetError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetStorageAssetRequest,
+  output: GetStorageAssetResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetStorageContainerError = AzureOpError;
+/** Get a StorageContainer */
+export const GetStorageContainer: API.OperationMethod<
+  GetStorageContainerRequest,
+  GetStorageContainerResponse,
+  GetStorageContainerError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetStorageContainerRequest,
+  output: GetStorageContainerResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSupercomputerError = AzureOpError;
+/** Get a Supercomputer */
+export const GetSupercomputer: API.OperationMethod<
+  GetSupercomputerRequest,
+  GetSupercomputerResponse,
+  GetSupercomputerError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSupercomputerRequest,
+  output: GetSupercomputerResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetToolError = AzureOpError;
+/** Get a Tool */
+export const GetTool: API.OperationMethod<
+  GetToolRequest,
+  GetToolResponse,
+  GetToolError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetToolRequest,
+  output: GetToolResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetWorkspaceError = AzureOpError;
+/** Get a Workspace */
+export const GetWorkspace: API.OperationMethod<
+  GetWorkspaceRequest,
+  GetWorkspaceResponse,
+  GetWorkspaceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetWorkspaceRequest,
+  output: GetWorkspaceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetWorkspacePrivateEndpointConnectionError = AzureOpError;
+/** Gets the specified private endpoint connection associated with the workspace. */
+export const GetWorkspacePrivateEndpointConnection: API.OperationMethod<
+  GetWorkspacePrivateEndpointConnectionRequest,
+  GetWorkspacePrivateEndpointConnectionResponse,
+  GetWorkspacePrivateEndpointConnectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetWorkspacePrivateEndpointConnectionRequest,
+  output: GetWorkspacePrivateEndpointConnectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetWorkspacePrivateLinkResourceError = AzureOpError;
+/** Gets the specified private link resource for the workspace. */
+export const GetWorkspacePrivateLinkResource: API.OperationMethod<
+  GetWorkspacePrivateLinkResourceRequest,
+  GetWorkspacePrivateLinkResourceResponse,
+  GetWorkspacePrivateLinkResourceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetWorkspacePrivateLinkResourceRequest,
+  output: GetWorkspacePrivateLinkResourceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListBookshelfPrivateEndpointConnectionByBookshelfError =
+  AzureOpError;
+/** Lists all private endpoint connections for a bookshelf. */
+export const ListBookshelfPrivateEndpointConnectionByBookshelf: API.OperationMethod<
+  ListBookshelfPrivateEndpointConnectionByBookshelfRequest,
+  BookshelfPrivateEndpointConnectionListResult,
+  ListBookshelfPrivateEndpointConnectionByBookshelfError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListBookshelfPrivateEndpointConnectionByBookshelfRequest,
+  output: BookshelfPrivateEndpointConnectionListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListBookshelfPrivateLinkResourceByBookshelfError = AzureOpError;
+/** Lists all private link resources for the bookshelf. */
+export const ListBookshelfPrivateLinkResourceByBookshelf: API.OperationMethod<
+  ListBookshelfPrivateLinkResourceByBookshelfRequest,
+  BookshelfPrivateLinkResourceListResult,
+  ListBookshelfPrivateLinkResourceByBookshelfError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListBookshelfPrivateLinkResourceByBookshelfRequest,
+  output: BookshelfPrivateLinkResourceListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListBookshelveByResourceGroupError = AzureOpError;
+/** List Bookshelf resources by resource group */
+export const ListBookshelveByResourceGroup: API.OperationMethod<
+  ListBookshelveByResourceGroupRequest,
+  BookshelfListResult,
+  ListBookshelveByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListBookshelveByResourceGroupRequest,
+  output: BookshelfListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListBookshelveBySubscriptionError = AzureOpError;
+/** List Bookshelf resources by subscription ID */
+export const ListBookshelveBySubscription: API.OperationMethod<
+  ListBookshelveBySubscriptionRequest,
+  BookshelfListResult,
+  ListBookshelveBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListBookshelveBySubscriptionRequest,
+  output: BookshelfListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListChatModelDeploymentByWorkspaceError = AzureOpError;
+/** List ChatModelDeployment resources by Workspace */
+export const ListChatModelDeploymentByWorkspace: API.OperationMethod<
+  ListChatModelDeploymentByWorkspaceRequest,
+  ChatModelDeploymentListResult,
+  ListChatModelDeploymentByWorkspaceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListChatModelDeploymentByWorkspaceRequest,
   output: ChatModelDeploymentListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ChatModelDeploymentsUpdateError = AzureOpError;
-/** Update a ChatModelDeployment */
-export const ChatModelDeploymentsUpdate: API.OperationMethod<
-  ChatModelDeploymentsUpdateRequest,
-  ChatModelDeploymentsUpdateResponse,
-  ChatModelDeploymentsUpdateError,
+export type ListNodePoolBySupercomputerError = AzureOpError;
+/** List NodePool resources by Supercomputer */
+export const ListNodePoolBySupercomputer: API.OperationMethod<
+  ListNodePoolBySupercomputerRequest,
+  NodePoolListResult,
+  ListNodePoolBySupercomputerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ChatModelDeploymentsUpdateRequest,
-  output: ChatModelDeploymentsUpdateResponse,
+  input: ListNodePoolBySupercomputerRequest,
+  output: NodePoolListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListOperationsError = AzureOpError;
+/** List the operations for the provider */
+export const ListOperations: API.OperationMethod<
+  ListOperationsRequest,
+  ListOperationsResponse,
+  ListOperationsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListOperationsRequest,
+  output: ListOperationsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListProjectByWorkspaceError = AzureOpError;
+/** List Project resources by Workspace */
+export const ListProjectByWorkspace: API.OperationMethod<
+  ListProjectByWorkspaceRequest,
+  ProjectListResult,
+  ListProjectByWorkspaceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListProjectByWorkspaceRequest,
+  output: ProjectListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListStorageAssetByStorageContainerError = AzureOpError;
+/** List StorageAsset resources by StorageContainer */
+export const ListStorageAssetByStorageContainer: API.OperationMethod<
+  ListStorageAssetByStorageContainerRequest,
+  StorageAssetListResult,
+  ListStorageAssetByStorageContainerError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListStorageAssetByStorageContainerRequest,
+  output: StorageAssetListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListStorageContainerByResourceGroupError = AzureOpError;
+/** List StorageContainer resources by resource group */
+export const ListStorageContainerByResourceGroup: API.OperationMethod<
+  ListStorageContainerByResourceGroupRequest,
+  StorageContainerListResult,
+  ListStorageContainerByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListStorageContainerByResourceGroupRequest,
+  output: StorageContainerListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListStorageContainerBySubscriptionError = AzureOpError;
+/** List StorageContainer resources by subscription ID */
+export const ListStorageContainerBySubscription: API.OperationMethod<
+  ListStorageContainerBySubscriptionRequest,
+  StorageContainerListResult,
+  ListStorageContainerBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListStorageContainerBySubscriptionRequest,
+  output: StorageContainerListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSupercomputerByResourceGroupError = AzureOpError;
+/** List Supercomputer resources by resource group */
+export const ListSupercomputerByResourceGroup: API.OperationMethod<
+  ListSupercomputerByResourceGroupRequest,
+  SupercomputerListResult,
+  ListSupercomputerByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSupercomputerByResourceGroupRequest,
+  output: SupercomputerListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSupercomputerBySubscriptionError = AzureOpError;
+/** List Supercomputer resources by subscription ID */
+export const ListSupercomputerBySubscription: API.OperationMethod<
+  ListSupercomputerBySubscriptionRequest,
+  SupercomputerListResult,
+  ListSupercomputerBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSupercomputerBySubscriptionRequest,
+  output: SupercomputerListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListToolByResourceGroupError = AzureOpError;
+/** List Tool resources by resource group */
+export const ListToolByResourceGroup: API.OperationMethod<
+  ListToolByResourceGroupRequest,
+  ToolListResult,
+  ListToolByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListToolByResourceGroupRequest,
+  output: ToolListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListToolBySubscriptionError = AzureOpError;
+/** List Tool resources by subscription ID */
+export const ListToolBySubscription: API.OperationMethod<
+  ListToolBySubscriptionRequest,
+  ToolListResult,
+  ListToolBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListToolBySubscriptionRequest,
+  output: ToolListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListWorkspaceByResourceGroupError = AzureOpError;
+/** List Workspace resources by resource group */
+export const ListWorkspaceByResourceGroup: API.OperationMethod<
+  ListWorkspaceByResourceGroupRequest,
+  WorkspaceListResult,
+  ListWorkspaceByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListWorkspaceByResourceGroupRequest,
+  output: WorkspaceListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListWorkspaceBySubscriptionError = AzureOpError;
+/** List Workspace resources by subscription ID */
+export const ListWorkspaceBySubscription: API.OperationMethod<
+  ListWorkspaceBySubscriptionRequest,
+  WorkspaceListResult,
+  ListWorkspaceBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListWorkspaceBySubscriptionRequest,
+  output: WorkspaceListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListWorkspacePrivateEndpointConnectionByWorkspaceError =
+  AzureOpError;
+/** Lists all private endpoint connections for a workspace. */
+export const ListWorkspacePrivateEndpointConnectionByWorkspace: API.OperationMethod<
+  ListWorkspacePrivateEndpointConnectionByWorkspaceRequest,
+  WorkspacePrivateEndpointConnectionListResult,
+  ListWorkspacePrivateEndpointConnectionByWorkspaceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListWorkspacePrivateEndpointConnectionByWorkspaceRequest,
+  output: WorkspacePrivateEndpointConnectionListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListWorkspacePrivateLinkResourceByWorkspaceError = AzureOpError;
+/** Lists all private link resources for the workspace. */
+export const ListWorkspacePrivateLinkResourceByWorkspace: API.OperationMethod<
+  ListWorkspacePrivateLinkResourceByWorkspaceRequest,
+  WorkspacePrivateLinkResourceListResult,
+  ListWorkspacePrivateLinkResourceByWorkspaceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListWorkspacePrivateLinkResourceByWorkspaceRequest,
+  output: WorkspacePrivateLinkResourceListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -6023,81 +6444,6 @@ export const NodePoolsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type NodePoolsDeleteError = AzureOpError;
-/** Delete a NodePool */
-export const NodePoolsDelete: API.OperationMethod<
-  NodePoolsDeleteRequest,
-  NodePoolsDeleteResponse,
-  NodePoolsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NodePoolsDeleteRequest,
-  output: NodePoolsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type NodePoolsGetError = AzureOpError;
-/** Get a NodePool */
-export const NodePoolsGet: API.OperationMethod<
-  NodePoolsGetRequest,
-  NodePoolsGetResponse,
-  NodePoolsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NodePoolsGetRequest,
-  output: NodePoolsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type NodePoolsListBySupercomputerError = AzureOpError;
-/** List NodePool resources by Supercomputer */
-export const NodePoolsListBySupercomputer: API.OperationMethod<
-  NodePoolsListBySupercomputerRequest,
-  NodePoolListResult,
-  NodePoolsListBySupercomputerError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NodePoolsListBySupercomputerRequest,
-  output: NodePoolListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type NodePoolsUpdateError = AzureOpError;
-/** Update a NodePool */
-export const NodePoolsUpdate: API.OperationMethod<
-  NodePoolsUpdateRequest,
-  NodePoolsUpdateResponse,
-  NodePoolsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NodePoolsUpdateRequest,
-  output: NodePoolsUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type OperationsListError = AzureOpError;
-/** List the operations for the provider */
-export const OperationsList: API.OperationMethod<
-  OperationsListRequest,
-  OperationsListResponse,
-  OperationsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: OperationsListRequest,
-  output: OperationsListResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ProjectsCreateOrUpdateError = AzureOpError;
 /** Create a Project */
 export const ProjectsCreateOrUpdate: API.OperationMethod<
@@ -6108,66 +6454,6 @@ export const ProjectsCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ProjectsCreateOrUpdateRequest,
   output: ProjectsCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ProjectsDeleteError = AzureOpError;
-/** Delete a Project */
-export const ProjectsDelete: API.OperationMethod<
-  ProjectsDeleteRequest,
-  ProjectsDeleteResponse,
-  ProjectsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ProjectsDeleteRequest,
-  output: ProjectsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ProjectsGetError = AzureOpError;
-/** Get a Project */
-export const ProjectsGet: API.OperationMethod<
-  ProjectsGetRequest,
-  ProjectsGetResponse,
-  ProjectsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ProjectsGetRequest,
-  output: ProjectsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ProjectsListByWorkspaceError = AzureOpError;
-/** List Project resources by Workspace */
-export const ProjectsListByWorkspace: API.OperationMethod<
-  ProjectsListByWorkspaceRequest,
-  ProjectListResult,
-  ProjectsListByWorkspaceError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ProjectsListByWorkspaceRequest,
-  output: ProjectListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ProjectsUpdateError = AzureOpError;
-/** Update a Project */
-export const ProjectsUpdate: API.OperationMethod<
-  ProjectsUpdateRequest,
-  ProjectsUpdateResponse,
-  ProjectsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ProjectsUpdateRequest,
-  output: ProjectsUpdateResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -6188,66 +6474,6 @@ export const StorageAssetsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type StorageAssetsDeleteError = AzureOpError;
-/** Delete a StorageAsset */
-export const StorageAssetsDelete: API.OperationMethod<
-  StorageAssetsDeleteRequest,
-  StorageAssetsDeleteResponse,
-  StorageAssetsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: StorageAssetsDeleteRequest,
-  output: StorageAssetsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type StorageAssetsGetError = AzureOpError;
-/** Get a StorageAsset */
-export const StorageAssetsGet: API.OperationMethod<
-  StorageAssetsGetRequest,
-  StorageAssetsGetResponse,
-  StorageAssetsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: StorageAssetsGetRequest,
-  output: StorageAssetsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type StorageAssetsListByStorageContainerError = AzureOpError;
-/** List StorageAsset resources by StorageContainer */
-export const StorageAssetsListByStorageContainer: API.OperationMethod<
-  StorageAssetsListByStorageContainerRequest,
-  StorageAssetListResult,
-  StorageAssetsListByStorageContainerError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: StorageAssetsListByStorageContainerRequest,
-  output: StorageAssetListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type StorageAssetsUpdateError = AzureOpError;
-/** Update a StorageAsset */
-export const StorageAssetsUpdate: API.OperationMethod<
-  StorageAssetsUpdateRequest,
-  StorageAssetsUpdateResponse,
-  StorageAssetsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: StorageAssetsUpdateRequest,
-  output: StorageAssetsUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type StorageContainersCreateOrUpdateError = AzureOpError;
 /** Create a StorageContainer */
 export const StorageContainersCreateOrUpdate: API.OperationMethod<
@@ -6258,81 +6484,6 @@ export const StorageContainersCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: StorageContainersCreateOrUpdateRequest,
   output: StorageContainersCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type StorageContainersDeleteError = AzureOpError;
-/** Delete a StorageContainer */
-export const StorageContainersDelete: API.OperationMethod<
-  StorageContainersDeleteRequest,
-  StorageContainersDeleteResponse,
-  StorageContainersDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: StorageContainersDeleteRequest,
-  output: StorageContainersDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type StorageContainersGetError = AzureOpError;
-/** Get a StorageContainer */
-export const StorageContainersGet: API.OperationMethod<
-  StorageContainersGetRequest,
-  StorageContainersGetResponse,
-  StorageContainersGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: StorageContainersGetRequest,
-  output: StorageContainersGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type StorageContainersListByResourceGroupError = AzureOpError;
-/** List StorageContainer resources by resource group */
-export const StorageContainersListByResourceGroup: API.OperationMethod<
-  StorageContainersListByResourceGroupRequest,
-  StorageContainerListResult,
-  StorageContainersListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: StorageContainersListByResourceGroupRequest,
-  output: StorageContainerListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type StorageContainersListBySubscriptionError = AzureOpError;
-/** List StorageContainer resources by subscription ID */
-export const StorageContainersListBySubscription: API.OperationMethod<
-  StorageContainersListBySubscriptionRequest,
-  StorageContainerListResult,
-  StorageContainersListBySubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: StorageContainersListBySubscriptionRequest,
-  output: StorageContainerListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type StorageContainersUpdateError = AzureOpError;
-/** Update a StorageContainer */
-export const StorageContainersUpdate: API.OperationMethod<
-  StorageContainersUpdateRequest,
-  StorageContainersUpdateResponse,
-  StorageContainersUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: StorageContainersUpdateRequest,
-  output: StorageContainersUpdateResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -6353,81 +6504,6 @@ export const SupercomputersCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type SupercomputersDeleteError = AzureOpError;
-/** Delete a Supercomputer */
-export const SupercomputersDelete: API.OperationMethod<
-  SupercomputersDeleteRequest,
-  SupercomputersDeleteResponse,
-  SupercomputersDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SupercomputersDeleteRequest,
-  output: SupercomputersDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SupercomputersGetError = AzureOpError;
-/** Get a Supercomputer */
-export const SupercomputersGet: API.OperationMethod<
-  SupercomputersGetRequest,
-  SupercomputersGetResponse,
-  SupercomputersGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SupercomputersGetRequest,
-  output: SupercomputersGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SupercomputersListByResourceGroupError = AzureOpError;
-/** List Supercomputer resources by resource group */
-export const SupercomputersListByResourceGroup: API.OperationMethod<
-  SupercomputersListByResourceGroupRequest,
-  SupercomputerListResult,
-  SupercomputersListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SupercomputersListByResourceGroupRequest,
-  output: SupercomputerListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SupercomputersListBySubscriptionError = AzureOpError;
-/** List Supercomputer resources by subscription ID */
-export const SupercomputersListBySubscription: API.OperationMethod<
-  SupercomputersListBySubscriptionRequest,
-  SupercomputerListResult,
-  SupercomputersListBySubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SupercomputersListBySubscriptionRequest,
-  output: SupercomputerListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SupercomputersUpdateError = AzureOpError;
-/** Update a Supercomputer */
-export const SupercomputersUpdate: API.OperationMethod<
-  SupercomputersUpdateRequest,
-  SupercomputersUpdateResponse,
-  SupercomputersUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SupercomputersUpdateRequest,
-  output: SupercomputersUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ToolsCreateOrUpdateError = AzureOpError;
 /** Create a Tool */
 export const ToolsCreateOrUpdate: API.OperationMethod<
@@ -6443,76 +6519,136 @@ export const ToolsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ToolsDeleteError = AzureOpError;
-/** Delete a Tool */
-export const ToolsDelete: API.OperationMethod<
-  ToolsDeleteRequest,
-  ToolsDeleteResponse,
-  ToolsDeleteError,
+export type UpdateBookshelveError = AzureOpError;
+/** Update a Bookshelf */
+export const UpdateBookshelve: API.OperationMethod<
+  UpdateBookshelveRequest,
+  UpdateBookshelveResponse,
+  UpdateBookshelveError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ToolsDeleteRequest,
-  output: ToolsDeleteResponse,
+  input: UpdateBookshelveRequest,
+  output: UpdateBookshelveResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ToolsGetError = AzureOpError;
-/** Get a Tool */
-export const ToolsGet: API.OperationMethod<
-  ToolsGetRequest,
-  ToolsGetResponse,
-  ToolsGetError,
+export type UpdateChatModelDeploymentError = AzureOpError;
+/** Update a ChatModelDeployment */
+export const UpdateChatModelDeployment: API.OperationMethod<
+  UpdateChatModelDeploymentRequest,
+  UpdateChatModelDeploymentResponse,
+  UpdateChatModelDeploymentError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ToolsGetRequest,
-  output: ToolsGetResponse,
+  input: UpdateChatModelDeploymentRequest,
+  output: UpdateChatModelDeploymentResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ToolsListByResourceGroupError = AzureOpError;
-/** List Tool resources by resource group */
-export const ToolsListByResourceGroup: API.OperationMethod<
-  ToolsListByResourceGroupRequest,
-  ToolListResult,
-  ToolsListByResourceGroupError,
+export type UpdateNodePoolError = AzureOpError;
+/** Update a NodePool */
+export const UpdateNodePool: API.OperationMethod<
+  UpdateNodePoolRequest,
+  UpdateNodePoolResponse,
+  UpdateNodePoolError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ToolsListByResourceGroupRequest,
-  output: ToolListResult,
+  input: UpdateNodePoolRequest,
+  output: UpdateNodePoolResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ToolsListBySubscriptionError = AzureOpError;
-/** List Tool resources by subscription ID */
-export const ToolsListBySubscription: API.OperationMethod<
-  ToolsListBySubscriptionRequest,
-  ToolListResult,
-  ToolsListBySubscriptionError,
+export type UpdateProjectError = AzureOpError;
+/** Update a Project */
+export const UpdateProject: API.OperationMethod<
+  UpdateProjectRequest,
+  UpdateProjectResponse,
+  UpdateProjectError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ToolsListBySubscriptionRequest,
-  output: ToolListResult,
+  input: UpdateProjectRequest,
+  output: UpdateProjectResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ToolsUpdateError = AzureOpError;
+export type UpdateStorageAssetError = AzureOpError;
+/** Update a StorageAsset */
+export const UpdateStorageAsset: API.OperationMethod<
+  UpdateStorageAssetRequest,
+  UpdateStorageAssetResponse,
+  UpdateStorageAssetError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateStorageAssetRequest,
+  output: UpdateStorageAssetResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateStorageContainerError = AzureOpError;
+/** Update a StorageContainer */
+export const UpdateStorageContainer: API.OperationMethod<
+  UpdateStorageContainerRequest,
+  UpdateStorageContainerResponse,
+  UpdateStorageContainerError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateStorageContainerRequest,
+  output: UpdateStorageContainerResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateSupercomputerError = AzureOpError;
+/** Update a Supercomputer */
+export const UpdateSupercomputer: API.OperationMethod<
+  UpdateSupercomputerRequest,
+  UpdateSupercomputerResponse,
+  UpdateSupercomputerError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateSupercomputerRequest,
+  output: UpdateSupercomputerResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateToolError = AzureOpError;
 /** Update a Tool */
-export const ToolsUpdate: API.OperationMethod<
-  ToolsUpdateRequest,
-  ToolsUpdateResponse,
-  ToolsUpdateError,
+export const UpdateTool: API.OperationMethod<
+  UpdateToolRequest,
+  UpdateToolResponse,
+  UpdateToolError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ToolsUpdateRequest,
-  output: ToolsUpdateResponse,
+  input: UpdateToolRequest,
+  output: UpdateToolResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateWorkspaceError = AzureOpError;
+/** Update a Workspace */
+export const UpdateWorkspace: API.OperationMethod<
+  UpdateWorkspaceRequest,
+  UpdateWorkspaceResponse,
+  UpdateWorkspaceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateWorkspaceRequest,
+  output: UpdateWorkspaceResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -6534,82 +6670,6 @@ export const WorkspacePrivateEndpointConnectionsCreateOrUpdate: API.OperationMet
   retry: Retry.Retry,
 }));
 
-export type WorkspacePrivateEndpointConnectionsDeleteError = AzureOpError;
-/** Deletes the specified private endpoint connection. */
-export const WorkspacePrivateEndpointConnectionsDelete: API.OperationMethod<
-  WorkspacePrivateEndpointConnectionsDeleteRequest,
-  WorkspacePrivateEndpointConnectionsDeleteResponse,
-  WorkspacePrivateEndpointConnectionsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkspacePrivateEndpointConnectionsDeleteRequest,
-  output: WorkspacePrivateEndpointConnectionsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkspacePrivateEndpointConnectionsGetError = AzureOpError;
-/** Gets the specified private endpoint connection associated with the workspace. */
-export const WorkspacePrivateEndpointConnectionsGet: API.OperationMethod<
-  WorkspacePrivateEndpointConnectionsGetRequest,
-  WorkspacePrivateEndpointConnectionsGetResponse,
-  WorkspacePrivateEndpointConnectionsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkspacePrivateEndpointConnectionsGetRequest,
-  output: WorkspacePrivateEndpointConnectionsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkspacePrivateEndpointConnectionsListByWorkspaceError =
-  AzureOpError;
-/** Lists all private endpoint connections for a workspace. */
-export const WorkspacePrivateEndpointConnectionsListByWorkspace: API.OperationMethod<
-  WorkspacePrivateEndpointConnectionsListByWorkspaceRequest,
-  WorkspacePrivateEndpointConnectionListResult,
-  WorkspacePrivateEndpointConnectionsListByWorkspaceError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkspacePrivateEndpointConnectionsListByWorkspaceRequest,
-  output: WorkspacePrivateEndpointConnectionListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkspacePrivateLinkResourcesGetError = AzureOpError;
-/** Gets the specified private link resource for the workspace. */
-export const WorkspacePrivateLinkResourcesGet: API.OperationMethod<
-  WorkspacePrivateLinkResourcesGetRequest,
-  WorkspacePrivateLinkResourcesGetResponse,
-  WorkspacePrivateLinkResourcesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkspacePrivateLinkResourcesGetRequest,
-  output: WorkspacePrivateLinkResourcesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkspacePrivateLinkResourcesListByWorkspaceError = AzureOpError;
-/** Lists all private link resources for the workspace. */
-export const WorkspacePrivateLinkResourcesListByWorkspace: API.OperationMethod<
-  WorkspacePrivateLinkResourcesListByWorkspaceRequest,
-  WorkspacePrivateLinkResourceListResult,
-  WorkspacePrivateLinkResourcesListByWorkspaceError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkspacePrivateLinkResourcesListByWorkspaceRequest,
-  output: WorkspacePrivateLinkResourceListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type WorkspacesCreateOrUpdateError = AzureOpError;
 /** Create a Workspace */
 export const WorkspacesCreateOrUpdate: API.OperationMethod<
@@ -6620,81 +6680,6 @@ export const WorkspacesCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: WorkspacesCreateOrUpdateRequest,
   output: WorkspacesCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkspacesDeleteError = AzureOpError;
-/** Delete a Workspace */
-export const WorkspacesDelete: API.OperationMethod<
-  WorkspacesDeleteRequest,
-  WorkspacesDeleteResponse,
-  WorkspacesDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkspacesDeleteRequest,
-  output: WorkspacesDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkspacesGetError = AzureOpError;
-/** Get a Workspace */
-export const WorkspacesGet: API.OperationMethod<
-  WorkspacesGetRequest,
-  WorkspacesGetResponse,
-  WorkspacesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkspacesGetRequest,
-  output: WorkspacesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkspacesListByResourceGroupError = AzureOpError;
-/** List Workspace resources by resource group */
-export const WorkspacesListByResourceGroup: API.OperationMethod<
-  WorkspacesListByResourceGroupRequest,
-  WorkspaceListResult,
-  WorkspacesListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkspacesListByResourceGroupRequest,
-  output: WorkspaceListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkspacesListBySubscriptionError = AzureOpError;
-/** List Workspace resources by subscription ID */
-export const WorkspacesListBySubscription: API.OperationMethod<
-  WorkspacesListBySubscriptionRequest,
-  WorkspaceListResult,
-  WorkspacesListBySubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkspacesListBySubscriptionRequest,
-  output: WorkspaceListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkspacesUpdateError = AzureOpError;
-/** Update a Workspace */
-export const WorkspacesUpdate: API.OperationMethod<
-  WorkspacesUpdateRequest,
-  WorkspacesUpdateResponse,
-  WorkspacesUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkspacesUpdateRequest,
-  output: WorkspacesUpdateResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

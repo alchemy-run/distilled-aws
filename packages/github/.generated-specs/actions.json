@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.github.actions#GetActionsCacheRetentionLimitForEnterpriseRequest": {
@@ -6631,6 +6632,76 @@
         "smithy.api#documentation": "List self-hosted runners for an organization\n\nLists all self-hosted runners configured in an organization.\n\nAuthenticated users must have admin access to the organization to use this endpoint.\n\nOAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint. If the repository is private, the `repo` scope is also required."
       }
     },
+    "com.github.actions#GetRunnerVersionDeprecationForOrgRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The runner version to look up."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.actions#GetRunnerVersionDeprecationForOrgResponse": {
+      "type": "structure",
+      "members": {
+        "runner_version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The runner version string.",
+            "smithy.api#required": {}
+          }
+        },
+        "registration_deprecates_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date after which this runner version can no longer register. Null if no schedule is set.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "runtime_deprecates_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date after which jobs will no longer be dispatched to runners on this version.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.actions#GetRunnerVersionDeprecationForOrg": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.actions#GetRunnerVersionDeprecationForOrgRequest"
+      },
+      "output": {
+        "target": "com.github.actions#GetRunnerVersionDeprecationForOrgResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/orgs/{org}/actions/runners/deprecations/{version}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get runner version end-of-life schedule for an organization\n\nGets the end-of-life schedule for a specific runner version in an organization. Returns the runner version\nand the dates when registration and runtime support will end.\n\nAuthenticated users must have admin access to the organization to use this endpoint.\n\nOAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint."
+      }
+    },
     "com.github.actions#ListRunnerApplicationsForOrgRequest": {
       "type": "structure",
       "members": {
@@ -10497,7 +10568,7 @@
         "smithy.api#documentation": "Download job logs for a workflow run\n\nGets a redirect URL to download a plain text file of logs for a workflow job. This link expires after 1 minute. Look\nfor `Location:` in the response header to find the URL for the download.\n\nAnyone with read access to the repository can use this endpoint.\n\nIf the repository is private, OAuth tokens and personal access tokens (classic) need the `repo` scope to use this endpoint."
       }
     },
-    "com.github.actions#ReRunJobForWorkflowRunRequest": {
+    "com.github.actions#RunReRunJobForWorkflowRequest": {
       "type": "structure",
       "members": {
         "owner": {
@@ -10541,7 +10612,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.github.actions#ReRunJobForWorkflowRunResponse": {
+    "com.github.actions#RunReRunJobForWorkflowResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -10556,13 +10627,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.github.actions#ReRunJobForWorkflowRun": {
+    "com.github.actions#RunReRunJobForWorkflow": {
       "type": "operation",
       "input": {
-        "target": "com.github.actions#ReRunJobForWorkflowRunRequest"
+        "target": "com.github.actions#RunReRunJobForWorkflowRequest"
       },
       "output": {
-        "target": "com.github.actions#ReRunJobForWorkflowRunResponse"
+        "target": "com.github.actions#RunReRunJobForWorkflowResponse"
       },
       "errors": [
         {
@@ -11900,6 +11971,84 @@
           "code": 200
         },
         "smithy.api#documentation": "List self-hosted runners for a repository\n\nLists all self-hosted runners configured in a repository.\n\nAuthenticated users must have admin access to the repository to use this endpoint.\n\nOAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint."
+      }
+    },
+    "com.github.actions#GetRunnerVersionDeprecationForRepoRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The account owner of the repository. The name is not case sensitive."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the repository without the `.git` extension. The name is not case sensitive."
+          }
+        },
+        "version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The runner version to look up."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.actions#GetRunnerVersionDeprecationForRepoResponse": {
+      "type": "structure",
+      "members": {
+        "runner_version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The runner version string.",
+            "smithy.api#required": {}
+          }
+        },
+        "registration_deprecates_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date after which this runner version can no longer register. Null if no schedule is set.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "runtime_deprecates_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date after which jobs will no longer be dispatched to runners on this version.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.actions#GetRunnerVersionDeprecationForRepo": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.actions#GetRunnerVersionDeprecationForRepoRequest"
+      },
+      "output": {
+        "target": "com.github.actions#GetRunnerVersionDeprecationForRepoResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/repos/{owner}/{repo}/actions/runners/deprecations/{version}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get runner version end-of-life schedule for a repository\n\nGets the end-of-life schedule for a specific runner version in a repository. Returns the runner version\nand the dates when registration and runtime support will end.\n\nAuthenticated users must have admin access to the repository to use this endpoint.\n\nOAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint."
       }
     },
     "com.github.actions#ListRunnerApplicationsForRepoRequest": {
@@ -18682,6 +18831,9 @@
           "target": "com.github.actions#ListSelfHostedRunnersForOrg"
         },
         {
+          "target": "com.github.actions#GetRunnerVersionDeprecationForOrg"
+        },
+        {
           "target": "com.github.actions#ListRunnerApplicationsForOrg"
         },
         {
@@ -18817,7 +18969,7 @@
           "target": "com.github.actions#DownloadJobLogsForWorkflowRun"
         },
         {
-          "target": "com.github.actions#ReRunJobForWorkflowRun"
+          "target": "com.github.actions#RunReRunJobForWorkflow"
         },
         {
           "target": "com.github.actions#GetCustomOidcSubClaimForRepo"
@@ -18875,6 +19027,9 @@
         },
         {
           "target": "com.github.actions#ListSelfHostedRunnersForRepo"
+        },
+        {
+          "target": "com.github.actions#GetRunnerVersionDeprecationForRepo"
         },
         {
           "target": "com.github.actions#ListRunnerApplicationsForRepo"

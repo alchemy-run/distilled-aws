@@ -11,13 +11,13 @@ import * as Retry from "../retry.ts";
 
 export type { PosthogOpError, PosthogOpContext };
 
-export interface SdkHealthReportRetrieveRequest {
+export interface GetSdkHealthReportRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** When true, bypasses the Redis cache and re-queries ClickHouse for SDK usage. A background job refreshes this data once a day, so the cached answer is usually current. Use sparingly. */
   force_refresh?: boolean;
 }
-export const SdkHealthReportRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetSdkHealthReportRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     force_refresh: S.optional(S.Boolean.pipe(T.Query())),
@@ -29,8 +29,8 @@ export const SdkHealthReportRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "SdkHealthReportRetrieveRequest",
-}) as any as S.Schema<SdkHealthReportRetrieveRequest>;
+  identifier: "GetSdkHealthReportRequest",
+}) as any as S.Schema<GetSdkHealthReportRequest>;
 
 /** * `healthy` - healthy * `needs_attention` - needs_attention */
 export type OverallHealthEnum = "healthy" | "needs_attention";
@@ -218,15 +218,15 @@ export const SdkHealthReport = /*@__PURE__*/ S.suspend(() =>
   identifier: "SdkHealthReport",
 }) as any as S.Schema<SdkHealthReport>;
 
-export type SdkHealthReportRetrieveError = PosthogOpError;
+export type GetSdkHealthReportError = PosthogOpError;
 /** Get SDK health report for a project Returns a pre-digested health assessment of the PostHog SDKs the project is using. Covers which SDKs are current vs outdated (smart-semver rules with grace periods and traffic-percentage thresholds), per-version breakdown, and a human-readable reason for each assessment. Use this to diagnose SDK version issues, surface upgrade recommendations, or check overall SDK health. */
-export const sdkHealthReportRetrieve: API.OperationMethod<
-  SdkHealthReportRetrieveRequest,
+export const getSdkHealthReport: API.OperationMethod<
+  GetSdkHealthReportRequest,
   SdkHealthReport,
-  SdkHealthReportRetrieveError,
+  GetSdkHealthReportError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SdkHealthReportRetrieveRequest,
+  input: GetSdkHealthReportRequest,
   output: SdkHealthReport,
   errors: [],
   protocol: PosthogProtocol,

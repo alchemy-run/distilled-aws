@@ -14,13 +14,14 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.edgeorder#OrdersListByResourceGroup": {
+    "com.azure.edgeorder#ListOrderByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.edgeorder#OrdersListByResourceGroupRequest"
+        "target": "com.azure.edgeorder#ListOrderByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.edgeorder#OrderResourceList"
@@ -445,7 +446,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.edgeorder#OrdersListByResourceGroupRequest": {
+    "com.azure.edgeorder#ListOrderByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -747,10 +748,10 @@
         "smithy.api#documentation": "Type of address based on its usage context."
       }
     },
-    "com.azure.edgeorder#OrderItemsCancel": {
+    "com.azure.edgeorder#CancelOrderItem": {
       "type": "operation",
       "input": {
-        "target": "com.azure.edgeorder#OrderItemsCancelRequest"
+        "target": "com.azure.edgeorder#CancelOrderItemRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -766,7 +767,7 @@
         "com.distilled.openapi#apiVersion": "2024-02-01"
       }
     },
-    "com.azure.edgeorder#OrderItemsCancelRequest": {
+    "com.azure.edgeorder#CancelOrderItemRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -805,10 +806,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.edgeorder#OrderItemsDelete": {
+    "com.azure.edgeorder#DeleteOrderItem": {
       "type": "operation",
       "input": {
-        "target": "com.azure.edgeorder#OrderItemsDeleteRequest"
+        "target": "com.azure.edgeorder#DeleteOrderItemRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -824,7 +825,7 @@
         "com.distilled.openapi#apiVersion": "2024-02-01"
       }
     },
-    "com.azure.edgeorder#OrderItemsDeleteRequest": {
+    "com.azure.edgeorder#DeleteOrderItemRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -856,13 +857,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.edgeorder#OrderItemsUpdate": {
+    "com.azure.edgeorder#UpdateOrderItem": {
       "type": "operation",
       "input": {
-        "target": "com.azure.edgeorder#OrderItemsUpdateRequest"
+        "target": "com.azure.edgeorder#UpdateOrderItemRequest"
       },
       "output": {
-        "target": "com.azure.edgeorder#OrderItemsUpdateResponse"
+        "target": "com.azure.edgeorder#UpdateOrderItemResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -875,7 +876,7 @@
         "com.distilled.openapi#apiVersion": "2024-02-01"
       }
     },
-    "com.azure.edgeorder#OrderItemsUpdateResponse": {
+    "com.azure.edgeorder#UpdateOrderItemResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -903,7 +904,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.edgeorder#OrderItemsUpdateResponseTagsMap",
+          "target": "com.azure.edgeorder#UpdateOrderItemResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2309,7 +2310,7 @@
         "smithy.api#documentation": "List Provisioning Details for Devices in Additional Config."
       }
     },
-    "com.azure.edgeorder#OrderItemsUpdateResponseTagsMap": {
+    "com.azure.edgeorder#UpdateOrderItemResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2321,7 +2322,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.edgeorder#OrderItemsUpdateRequest": {
+    "com.azure.edgeorder#UpdateOrderItemRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2355,7 +2356,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.edgeorder#OrderItemsUpdateRequestTagsMap",
+          "target": "com.azure.edgeorder#UpdateOrderItemRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "The list of key value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups)."
           }
@@ -2410,7 +2411,7 @@
         "smithy.api#documentation": "User assigned identity properties"
       }
     },
-    "com.azure.edgeorder#OrderItemsUpdateRequestTagsMap": {
+    "com.azure.edgeorder#UpdateOrderItemRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2566,13 +2567,13 @@
         "smithy.api#documentation": "Additional notification email list."
       }
     },
-    "com.azure.edgeorder#OrderItemsCreate": {
+    "com.azure.edgeorder#CreateOrderItem": {
       "type": "operation",
       "input": {
-        "target": "com.azure.edgeorder#OrderItemsCreateRequest"
+        "target": "com.azure.edgeorder#CreateOrderItemRequest"
       },
       "output": {
-        "target": "com.azure.edgeorder#OrderItemsCreateResponse"
+        "target": "com.azure.edgeorder#CreateOrderItemResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2585,7 +2586,7 @@
         "com.distilled.openapi#apiVersion": "2024-02-01"
       }
     },
-    "com.azure.edgeorder#OrderItemsCreateResponse": {
+    "com.azure.edgeorder#CreateOrderItemResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2613,7 +2614,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.edgeorder#OrderItemsCreateResponseTagsMap",
+          "target": "com.azure.edgeorder#CreateOrderItemResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2643,7 +2644,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.edgeorder#OrderItemsCreateResponseTagsMap": {
+    "com.azure.edgeorder#CreateOrderItemResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2655,7 +2656,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.edgeorder#OrderItemsCreateRequest": {
+    "com.azure.edgeorder#CreateOrderItemRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2683,7 +2684,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.edgeorder#OrderItemsCreateRequestTagsMap",
+          "target": "com.azure.edgeorder#CreateOrderItemRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2910,7 +2911,7 @@
         "smithy.api#documentation": "Describes product display information."
       }
     },
-    "com.azure.edgeorder#OrderItemsCreateRequestTagsMap": {
+    "com.azure.edgeorder#CreateOrderItemRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2922,13 +2923,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.edgeorder#OrderItemsGet": {
+    "com.azure.edgeorder#GetOrderItem": {
       "type": "operation",
       "input": {
-        "target": "com.azure.edgeorder#OrderItemsGetRequest"
+        "target": "com.azure.edgeorder#GetOrderItemRequest"
       },
       "output": {
-        "target": "com.azure.edgeorder#OrderItemsGetResponse"
+        "target": "com.azure.edgeorder#GetOrderItemResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2941,7 +2942,7 @@
         "com.distilled.openapi#apiVersion": "2024-02-01"
       }
     },
-    "com.azure.edgeorder#OrderItemsGetResponse": {
+    "com.azure.edgeorder#GetOrderItemResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2969,7 +2970,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.edgeorder#OrderItemsGetResponseTagsMap",
+          "target": "com.azure.edgeorder#GetOrderItemResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2999,7 +3000,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.edgeorder#OrderItemsGetResponseTagsMap": {
+    "com.azure.edgeorder#GetOrderItemResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3011,7 +3012,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.edgeorder#OrderItemsGetRequest": {
+    "com.azure.edgeorder#GetOrderItemRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3050,10 +3051,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.edgeorder#OrderItemsListByResourceGroup": {
+    "com.azure.edgeorder#ListOrderItemByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.edgeorder#OrderItemsListByResourceGroupRequest"
+        "target": "com.azure.edgeorder#ListOrderItemByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.edgeorder#OrderItemResourceList"
@@ -3169,7 +3170,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.edgeorder#OrderItemsListByResourceGroupRequest": {
+    "com.azure.edgeorder#ListOrderItemByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3221,13 +3222,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.edgeorder#OrdersGet": {
+    "com.azure.edgeorder#GetOrder": {
       "type": "operation",
       "input": {
-        "target": "com.azure.edgeorder#OrdersGetRequest"
+        "target": "com.azure.edgeorder#GetOrderRequest"
       },
       "output": {
-        "target": "com.azure.edgeorder#OrdersGetResponse"
+        "target": "com.azure.edgeorder#GetOrderResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3240,7 +3241,7 @@
         "com.distilled.openapi#apiVersion": "2024-02-01"
       }
     },
-    "com.azure.edgeorder#OrdersGetResponse": {
+    "com.azure.edgeorder#GetOrderResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3279,7 +3280,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.edgeorder#OrdersGetRequest": {
+    "com.azure.edgeorder#GetOrderRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3319,10 +3320,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.edgeorder#AddressesDelete": {
+    "com.azure.edgeorder#DeleteAddress": {
       "type": "operation",
       "input": {
-        "target": "com.azure.edgeorder#AddressesDeleteRequest"
+        "target": "com.azure.edgeorder#DeleteAddressRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3338,7 +3339,7 @@
         "com.distilled.openapi#apiVersion": "2024-02-01"
       }
     },
-    "com.azure.edgeorder#AddressesDeleteRequest": {
+    "com.azure.edgeorder#DeleteAddressRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3370,13 +3371,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.edgeorder#AddressesUpdate": {
+    "com.azure.edgeorder#UpdateAddress": {
       "type": "operation",
       "input": {
-        "target": "com.azure.edgeorder#AddressesUpdateRequest"
+        "target": "com.azure.edgeorder#UpdateAddressRequest"
       },
       "output": {
-        "target": "com.azure.edgeorder#AddressesUpdateResponse"
+        "target": "com.azure.edgeorder#UpdateAddressResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3389,7 +3390,7 @@
         "com.distilled.openapi#apiVersion": "2024-02-01"
       }
     },
-    "com.azure.edgeorder#AddressesUpdateResponse": {
+    "com.azure.edgeorder#UpdateAddressResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3417,7 +3418,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.edgeorder#AddressesUpdateResponseTagsMap",
+          "target": "com.azure.edgeorder#UpdateAddressResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3441,7 +3442,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.edgeorder#AddressesUpdateResponseTagsMap": {
+    "com.azure.edgeorder#UpdateAddressResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3453,7 +3454,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.edgeorder#AddressesUpdateRequest": {
+    "com.azure.edgeorder#UpdateAddressRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3487,7 +3488,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.edgeorder#AddressesUpdateRequestTagsMap",
+          "target": "com.azure.edgeorder#UpdateAddressRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "The list of key value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups)."
           }
@@ -3497,7 +3498,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.edgeorder#AddressesUpdateRequestTagsMap": {
+    "com.azure.edgeorder#UpdateAddressRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3529,13 +3530,13 @@
         "smithy.api#documentation": "Address Update Properties."
       }
     },
-    "com.azure.edgeorder#AddressesCreate": {
+    "com.azure.edgeorder#CreateAddress": {
       "type": "operation",
       "input": {
-        "target": "com.azure.edgeorder#AddressesCreateRequest"
+        "target": "com.azure.edgeorder#CreateAddressRequest"
       },
       "output": {
-        "target": "com.azure.edgeorder#AddressesCreateResponse"
+        "target": "com.azure.edgeorder#CreateAddressResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3548,7 +3549,7 @@
         "com.distilled.openapi#apiVersion": "2024-02-01"
       }
     },
-    "com.azure.edgeorder#AddressesCreateResponse": {
+    "com.azure.edgeorder#CreateAddressResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3576,7 +3577,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.edgeorder#AddressesCreateResponseTagsMap",
+          "target": "com.azure.edgeorder#CreateAddressResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3600,7 +3601,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.edgeorder#AddressesCreateResponseTagsMap": {
+    "com.azure.edgeorder#CreateAddressResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3612,7 +3613,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.edgeorder#AddressesCreateRequest": {
+    "com.azure.edgeorder#CreateAddressRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3640,7 +3641,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.edgeorder#AddressesCreateRequestTagsMap",
+          "target": "com.azure.edgeorder#CreateAddressRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3664,7 +3665,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.edgeorder#AddressesCreateRequestTagsMap": {
+    "com.azure.edgeorder#CreateAddressRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3676,13 +3677,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.edgeorder#AddressesGet": {
+    "com.azure.edgeorder#GetAddress": {
       "type": "operation",
       "input": {
-        "target": "com.azure.edgeorder#AddressesGetRequest"
+        "target": "com.azure.edgeorder#GetAddressRequest"
       },
       "output": {
-        "target": "com.azure.edgeorder#AddressesGetResponse"
+        "target": "com.azure.edgeorder#GetAddressResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3695,7 +3696,7 @@
         "com.distilled.openapi#apiVersion": "2024-02-01"
       }
     },
-    "com.azure.edgeorder#AddressesGetResponse": {
+    "com.azure.edgeorder#GetAddressResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3723,7 +3724,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.edgeorder#AddressesGetResponseTagsMap",
+          "target": "com.azure.edgeorder#GetAddressResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3747,7 +3748,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.edgeorder#AddressesGetResponseTagsMap": {
+    "com.azure.edgeorder#GetAddressResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3759,7 +3760,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.edgeorder#AddressesGetRequest": {
+    "com.azure.edgeorder#GetAddressRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3791,10 +3792,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.edgeorder#AddressesListByResourceGroup": {
+    "com.azure.edgeorder#ListAddressByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.edgeorder#AddressesListByResourceGroupRequest"
+        "target": "com.azure.edgeorder#ListAddressByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.edgeorder#AddressResourceList"
@@ -3904,7 +3905,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.edgeorder#AddressesListByResourceGroupRequest": {
+    "com.azure.edgeorder#ListAddressByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3949,10 +3950,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.edgeorder#ProductsAndConfigurationsListProductFamiliesMetadata": {
+    "com.azure.edgeorder#ListProductsAndConfigurationProductFamiliesMetadata": {
       "type": "operation",
       "input": {
-        "target": "com.azure.edgeorder#ProductsAndConfigurationsListProductFamiliesMetadataRequest"
+        "target": "com.azure.edgeorder#ListProductsAndConfigurationProductFamiliesMetadataRequest"
       },
       "output": {
         "target": "com.azure.edgeorder#ProductFamiliesMetadata"
@@ -5450,7 +5451,7 @@
         "smithy.api#documentation": "Image information for the product system."
       }
     },
-    "com.azure.edgeorder#ProductsAndConfigurationsListProductFamiliesMetadataRequest": {
+    "com.azure.edgeorder#ListProductsAndConfigurationProductFamiliesMetadataRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5473,10 +5474,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.edgeorder#OrdersListBySubscription": {
+    "com.azure.edgeorder#ListOrderBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.edgeorder#OrdersListBySubscriptionRequest"
+        "target": "com.azure.edgeorder#ListOrderBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.edgeorder#OrderResourceList"
@@ -5492,7 +5493,7 @@
         "com.distilled.openapi#apiVersion": "2024-02-01"
       }
     },
-    "com.azure.edgeorder#OrdersListBySubscriptionRequest": {
+    "com.azure.edgeorder#ListOrderBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5522,10 +5523,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.edgeorder#OrderItemsListBySubscription": {
+    "com.azure.edgeorder#ListOrderItemBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.edgeorder#OrderItemsListBySubscriptionRequest"
+        "target": "com.azure.edgeorder#ListOrderItemBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.edgeorder#OrderItemResourceList"
@@ -5541,7 +5542,7 @@
         "com.distilled.openapi#apiVersion": "2024-02-01"
       }
     },
-    "com.azure.edgeorder#OrderItemsListBySubscriptionRequest": {
+    "com.azure.edgeorder#ListOrderItemBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5585,10 +5586,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.edgeorder#ProductsAndConfigurationsListProductFamilies": {
+    "com.azure.edgeorder#ListProductsAndConfigurationProductFamilies": {
       "type": "operation",
       "input": {
-        "target": "com.azure.edgeorder#ProductsAndConfigurationsListProductFamiliesRequest"
+        "target": "com.azure.edgeorder#ListProductsAndConfigurationProductFamiliesRequest"
       },
       "output": {
         "target": "com.azure.edgeorder#ProductFamilies"
@@ -5648,7 +5649,7 @@
         "smithy.api#documentation": "Product Family."
       }
     },
-    "com.azure.edgeorder#ProductsAndConfigurationsListProductFamiliesRequest": {
+    "com.azure.edgeorder#ListProductsAndConfigurationProductFamiliesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5674,7 +5675,7 @@
           }
         },
         "filterableProperties": {
-          "target": "com.azure.edgeorder#ProductsAndConfigurationsListProductFamiliesRequestFilterablePropertiesMap",
+          "target": "com.azure.edgeorder#ListProductsAndConfigurationProductFamiliesRequestFilterablePropertiesMap",
           "traits": {
             "smithy.api#documentation": "Dictionary of filterable properties on product family.",
             "smithy.api#required": {}
@@ -5747,29 +5748,29 @@
         "smithy.api#documentation": "Represents subscription registered features."
       }
     },
-    "com.azure.edgeorder#ProductsAndConfigurationsListProductFamiliesRequestFilterablePropertiesMap": {
+    "com.azure.edgeorder#ListProductsAndConfigurationProductFamiliesRequestFilterablePropertiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
       },
       "value": {
-        "target": "com.azure.edgeorder#ProductsAndConfigurationsListProductFamiliesRequestFilterablePropertiesValueList"
+        "target": "com.azure.edgeorder#ListProductsAndConfigurationProductFamiliesRequestFilterablePropertiesValueList"
       },
       "traits": {
         "smithy.api#documentation": "Dictionary of filterable properties on product family."
       }
     },
-    "com.azure.edgeorder#ProductsAndConfigurationsListProductFamiliesRequestFilterablePropertiesValueList": {
+    "com.azure.edgeorder#ListProductsAndConfigurationProductFamiliesRequestFilterablePropertiesValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.edgeorder#FilterableProperty"
       },
       "traits": {}
     },
-    "com.azure.edgeorder#ProductsAndConfigurationsListConfigurations": {
+    "com.azure.edgeorder#ListProductsAndConfigurationConfigurations": {
       "type": "operation",
       "input": {
-        "target": "com.azure.edgeorder#ProductsAndConfigurationsListConfigurationsRequest"
+        "target": "com.azure.edgeorder#ListProductsAndConfigurationConfigurationsRequest"
       },
       "output": {
         "target": "com.azure.edgeorder#Configurations"
@@ -5815,7 +5816,7 @@
         "smithy.api#documentation": "The Configuration items on this page"
       }
     },
-    "com.azure.edgeorder#ProductsAndConfigurationsListConfigurationsRequest": {
+    "com.azure.edgeorder#ListProductsAndConfigurationConfigurationsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5924,10 +5925,10 @@
         "smithy.api#documentation": "Filters specific to product."
       }
     },
-    "com.azure.edgeorder#AddressesListBySubscription": {
+    "com.azure.edgeorder#ListAddressBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.edgeorder#AddressesListBySubscriptionRequest"
+        "target": "com.azure.edgeorder#ListAddressBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.edgeorder#AddressResourceList"
@@ -5943,7 +5944,7 @@
         "com.distilled.openapi#apiVersion": "2024-02-01"
       }
     },
-    "com.azure.edgeorder#AddressesListBySubscriptionRequest": {
+    "com.azure.edgeorder#ListAddressBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5980,13 +5981,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.edgeorder#OperationsList": {
+    "com.azure.edgeorder#ListOperations": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
       },
       "output": {
-        "target": "com.azure.edgeorder#OperationsListResponse"
+        "target": "com.azure.edgeorder#ListOperationsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5999,11 +6000,11 @@
         "com.distilled.openapi#apiVersion": "2024-02-01"
       }
     },
-    "com.azure.edgeorder#OperationsListResponse": {
+    "com.azure.edgeorder#ListOperationsResponse": {
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.edgeorder#OperationsListResponseValueList",
+          "target": "com.azure.edgeorder#ListOperationsResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of operations supported by the resource provider"
           }
@@ -6019,7 +6020,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.edgeorder#OperationsListResponseValueList": {
+    "com.azure.edgeorder#ListOperationsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.edgeorder#Operation"
@@ -6143,67 +6144,67 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.edgeorder#OrdersListByResourceGroup"
+          "target": "com.azure.edgeorder#ListOrderByResourceGroup"
         },
         {
           "target": "com.azure.edgeorder#OrderItemsReturn"
         },
         {
-          "target": "com.azure.edgeorder#OrderItemsCancel"
+          "target": "com.azure.edgeorder#CancelOrderItem"
         },
         {
-          "target": "com.azure.edgeorder#OrderItemsDelete"
+          "target": "com.azure.edgeorder#DeleteOrderItem"
         },
         {
-          "target": "com.azure.edgeorder#OrderItemsUpdate"
+          "target": "com.azure.edgeorder#UpdateOrderItem"
         },
         {
-          "target": "com.azure.edgeorder#OrderItemsCreate"
+          "target": "com.azure.edgeorder#CreateOrderItem"
         },
         {
-          "target": "com.azure.edgeorder#OrderItemsGet"
+          "target": "com.azure.edgeorder#GetOrderItem"
         },
         {
-          "target": "com.azure.edgeorder#OrderItemsListByResourceGroup"
+          "target": "com.azure.edgeorder#ListOrderItemByResourceGroup"
         },
         {
-          "target": "com.azure.edgeorder#OrdersGet"
+          "target": "com.azure.edgeorder#GetOrder"
         },
         {
-          "target": "com.azure.edgeorder#AddressesDelete"
+          "target": "com.azure.edgeorder#DeleteAddress"
         },
         {
-          "target": "com.azure.edgeorder#AddressesUpdate"
+          "target": "com.azure.edgeorder#UpdateAddress"
         },
         {
-          "target": "com.azure.edgeorder#AddressesCreate"
+          "target": "com.azure.edgeorder#CreateAddress"
         },
         {
-          "target": "com.azure.edgeorder#AddressesGet"
+          "target": "com.azure.edgeorder#GetAddress"
         },
         {
-          "target": "com.azure.edgeorder#AddressesListByResourceGroup"
+          "target": "com.azure.edgeorder#ListAddressByResourceGroup"
         },
         {
-          "target": "com.azure.edgeorder#ProductsAndConfigurationsListProductFamiliesMetadata"
+          "target": "com.azure.edgeorder#ListProductsAndConfigurationProductFamiliesMetadata"
         },
         {
-          "target": "com.azure.edgeorder#OrdersListBySubscription"
+          "target": "com.azure.edgeorder#ListOrderBySubscription"
         },
         {
-          "target": "com.azure.edgeorder#OrderItemsListBySubscription"
+          "target": "com.azure.edgeorder#ListOrderItemBySubscription"
         },
         {
-          "target": "com.azure.edgeorder#ProductsAndConfigurationsListProductFamilies"
+          "target": "com.azure.edgeorder#ListProductsAndConfigurationProductFamilies"
         },
         {
-          "target": "com.azure.edgeorder#ProductsAndConfigurationsListConfigurations"
+          "target": "com.azure.edgeorder#ListProductsAndConfigurationConfigurations"
         },
         {
-          "target": "com.azure.edgeorder#AddressesListBySubscription"
+          "target": "com.azure.edgeorder#ListAddressBySubscription"
         },
         {
-          "target": "com.azure.edgeorder#OperationsList"
+          "target": "com.azure.edgeorder#ListOperations"
         }
       ],
       "traits": {

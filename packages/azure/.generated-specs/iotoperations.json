@@ -14,13 +14,14 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.iotoperations#RegistryEndpointDelete": {
+    "com.azure.iotoperations#DeleteRegistryEndpoint": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iotoperations#RegistryEndpointDeleteRequest"
+        "target": "com.azure.iotoperations#DeleteRegistryEndpointRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -36,7 +37,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.iotoperations#RegistryEndpointDeleteRequest": {
+    "com.azure.iotoperations#DeleteRegistryEndpointRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -585,13 +586,13 @@
         "smithy.api#documentation": "The signing certificate authorities used by artifacts in the registry endpoint"
       }
     },
-    "com.azure.iotoperations#RegistryEndpointGet": {
+    "com.azure.iotoperations#GetRegistryEndpoint": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iotoperations#RegistryEndpointGetRequest"
+        "target": "com.azure.iotoperations#GetRegistryEndpointRequest"
       },
       "output": {
-        "target": "com.azure.iotoperations#RegistryEndpointGetResponse"
+        "target": "com.azure.iotoperations#GetRegistryEndpointResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -604,7 +605,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.iotoperations#RegistryEndpointGetResponse": {
+    "com.azure.iotoperations#GetRegistryEndpointResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -648,7 +649,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.iotoperations#RegistryEndpointGetRequest": {
+    "com.azure.iotoperations#GetRegistryEndpointRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -688,10 +689,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.iotoperations#RegistryEndpointListByInstanceResource": {
+    "com.azure.iotoperations#ListRegistryEndpointByInstanceResource": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iotoperations#RegistryEndpointListByInstanceResourceRequest"
+        "target": "com.azure.iotoperations#ListRegistryEndpointByInstanceResourceRequest"
       },
       "output": {
         "target": "com.azure.iotoperations#RegistryEndpointResourceListResult"
@@ -781,7 +782,7 @@
         "smithy.api#documentation": "RegistryEndpoint resource"
       }
     },
-    "com.azure.iotoperations#RegistryEndpointListByInstanceResourceRequest": {
+    "com.azure.iotoperations#ListRegistryEndpointByInstanceResourceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -813,10 +814,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.iotoperations#DataflowDelete": {
+    "com.azure.iotoperations#DeleteDataflow": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iotoperations#DataflowDeleteRequest"
+        "target": "com.azure.iotoperations#DeleteDataflowRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -832,7 +833,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.iotoperations#DataflowDeleteRequest": {
+    "com.azure.iotoperations#DeleteDataflowRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1759,13 +1760,13 @@
         "smithy.api#documentation": "Mode for Dataflow. Optional; defaults to Enabled."
       }
     },
-    "com.azure.iotoperations#DataflowGet": {
+    "com.azure.iotoperations#GetDataflow": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iotoperations#DataflowGetRequest"
+        "target": "com.azure.iotoperations#GetDataflowRequest"
       },
       "output": {
-        "target": "com.azure.iotoperations#DataflowGetResponse"
+        "target": "com.azure.iotoperations#GetDataflowResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1778,7 +1779,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.iotoperations#DataflowGetResponse": {
+    "com.azure.iotoperations#GetDataflowResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1822,7 +1823,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.iotoperations#DataflowGetRequest": {
+    "com.azure.iotoperations#GetDataflowRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1870,10 +1871,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.iotoperations#DataflowListByProfileResource": {
+    "com.azure.iotoperations#ListDataflowByProfileResource": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iotoperations#DataflowListByProfileResourceRequest"
+        "target": "com.azure.iotoperations#ListDataflowByProfileResourceRequest"
       },
       "output": {
         "target": "com.azure.iotoperations#DataflowResourceListResult"
@@ -1963,7 +1964,7 @@
         "smithy.api#documentation": "Instance dataflowProfile dataflow resource"
       }
     },
-    "com.azure.iotoperations#DataflowListByProfileResourceRequest": {
+    "com.azure.iotoperations#ListDataflowByProfileResourceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2003,10 +2004,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.iotoperations#DataflowGraphDelete": {
+    "com.azure.iotoperations#DeleteDataflowGraph": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iotoperations#DataflowGraphDeleteRequest"
+        "target": "com.azure.iotoperations#DeleteDataflowGraphRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2022,7 +2023,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.iotoperations#DataflowGraphDeleteRequest": {
+    "com.azure.iotoperations#DeleteDataflowGraphRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2559,13 +2560,13 @@
         "smithy.api#documentation": "The mode of the dataflow graph."
       }
     },
-    "com.azure.iotoperations#DataflowGraphGet": {
+    "com.azure.iotoperations#GetDataflowGraph": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iotoperations#DataflowGraphGetRequest"
+        "target": "com.azure.iotoperations#GetDataflowGraphRequest"
       },
       "output": {
-        "target": "com.azure.iotoperations#DataflowGraphGetResponse"
+        "target": "com.azure.iotoperations#GetDataflowGraphResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2578,7 +2579,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.iotoperations#DataflowGraphGetResponse": {
+    "com.azure.iotoperations#GetDataflowGraphResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2622,7 +2623,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.iotoperations#DataflowGraphGetRequest": {
+    "com.azure.iotoperations#GetDataflowGraphRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2670,10 +2671,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.iotoperations#DataflowGraphListByDataflowProfile": {
+    "com.azure.iotoperations#ListDataflowGraphByDataflowProfile": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iotoperations#DataflowGraphListByDataflowProfileRequest"
+        "target": "com.azure.iotoperations#ListDataflowGraphByDataflowProfileRequest"
       },
       "output": {
         "target": "com.azure.iotoperations#DataflowGraphResourceListResult"
@@ -2763,7 +2764,7 @@
         "smithy.api#documentation": "Instance dataflowEndpoint resource."
       }
     },
-    "com.azure.iotoperations#DataflowGraphListByDataflowProfileRequest": {
+    "com.azure.iotoperations#ListDataflowGraphByDataflowProfileRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2803,10 +2804,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.iotoperations#DataflowProfileDelete": {
+    "com.azure.iotoperations#DeleteDataflowProfile": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iotoperations#DataflowProfileDeleteRequest"
+        "target": "com.azure.iotoperations#DeleteDataflowProfileRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2822,7 +2823,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.iotoperations#DataflowProfileDeleteRequest": {
+    "com.azure.iotoperations#DeleteDataflowProfileRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3129,13 +3130,13 @@
         "smithy.api#documentation": "DataflowProfile Resource properties"
       }
     },
-    "com.azure.iotoperations#DataflowProfileGet": {
+    "com.azure.iotoperations#GetDataflowProfile": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iotoperations#DataflowProfileGetRequest"
+        "target": "com.azure.iotoperations#GetDataflowProfileRequest"
       },
       "output": {
-        "target": "com.azure.iotoperations#DataflowProfileGetResponse"
+        "target": "com.azure.iotoperations#GetDataflowProfileResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3148,7 +3149,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.iotoperations#DataflowProfileGetResponse": {
+    "com.azure.iotoperations#GetDataflowProfileResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3192,7 +3193,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.iotoperations#DataflowProfileGetRequest": {
+    "com.azure.iotoperations#GetDataflowProfileRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3232,10 +3233,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.iotoperations#DataflowProfileListByResourceGroup": {
+    "com.azure.iotoperations#ListDataflowProfileByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iotoperations#DataflowProfileListByResourceGroupRequest"
+        "target": "com.azure.iotoperations#ListDataflowProfileByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.iotoperations#DataflowProfileResourceListResult"
@@ -3325,7 +3326,7 @@
         "smithy.api#documentation": "Instance dataflowProfile resource"
       }
     },
-    "com.azure.iotoperations#DataflowProfileListByResourceGroupRequest": {
+    "com.azure.iotoperations#ListDataflowProfileByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3357,10 +3358,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.iotoperations#DataflowEndpointDelete": {
+    "com.azure.iotoperations#DeleteDataflowEndpoint": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iotoperations#DataflowEndpointDeleteRequest"
+        "target": "com.azure.iotoperations#DeleteDataflowEndpointRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3376,7 +3377,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.iotoperations#DataflowEndpointDeleteRequest": {
+    "com.azure.iotoperations#DeleteDataflowEndpointRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4881,13 +4882,13 @@
         "smithy.api#documentation": "DataflowEndpoint Resource properties. NOTE - Only one type of endpoint is supported for one Resource"
       }
     },
-    "com.azure.iotoperations#DataflowEndpointGet": {
+    "com.azure.iotoperations#GetDataflowEndpoint": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iotoperations#DataflowEndpointGetRequest"
+        "target": "com.azure.iotoperations#GetDataflowEndpointRequest"
       },
       "output": {
-        "target": "com.azure.iotoperations#DataflowEndpointGetResponse"
+        "target": "com.azure.iotoperations#GetDataflowEndpointResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4900,7 +4901,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.iotoperations#DataflowEndpointGetResponse": {
+    "com.azure.iotoperations#GetDataflowEndpointResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -4944,7 +4945,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.iotoperations#DataflowEndpointGetRequest": {
+    "com.azure.iotoperations#GetDataflowEndpointRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4984,10 +4985,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.iotoperations#DataflowEndpointListByResourceGroup": {
+    "com.azure.iotoperations#ListDataflowEndpointByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iotoperations#DataflowEndpointListByResourceGroupRequest"
+        "target": "com.azure.iotoperations#ListDataflowEndpointByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.iotoperations#DataflowEndpointResourceListResult"
@@ -5077,7 +5078,7 @@
         "smithy.api#documentation": "Instance dataflowEndpoint resource"
       }
     },
-    "com.azure.iotoperations#DataflowEndpointListByResourceGroupRequest": {
+    "com.azure.iotoperations#ListDataflowEndpointByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5109,10 +5110,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.iotoperations#BrokerListenerDelete": {
+    "com.azure.iotoperations#DeleteBrokerListener": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iotoperations#BrokerListenerDeleteRequest"
+        "target": "com.azure.iotoperations#DeleteBrokerListenerRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -5128,7 +5129,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.iotoperations#BrokerListenerDeleteRequest": {
+    "com.azure.iotoperations#DeleteBrokerListenerRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5820,13 +5821,13 @@
         "smithy.api#documentation": "Ports on which this listener accepts client connections."
       }
     },
-    "com.azure.iotoperations#BrokerListenerGet": {
+    "com.azure.iotoperations#GetBrokerListener": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iotoperations#BrokerListenerGetRequest"
+        "target": "com.azure.iotoperations#GetBrokerListenerRequest"
       },
       "output": {
-        "target": "com.azure.iotoperations#BrokerListenerGetResponse"
+        "target": "com.azure.iotoperations#GetBrokerListenerResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5839,7 +5840,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.iotoperations#BrokerListenerGetResponse": {
+    "com.azure.iotoperations#GetBrokerListenerResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -5883,7 +5884,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.iotoperations#BrokerListenerGetRequest": {
+    "com.azure.iotoperations#GetBrokerListenerRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5931,10 +5932,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.iotoperations#BrokerListenerListByResourceGroup": {
+    "com.azure.iotoperations#ListBrokerListenerByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iotoperations#BrokerListenerListByResourceGroupRequest"
+        "target": "com.azure.iotoperations#ListBrokerListenerByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.iotoperations#BrokerListenerResourceListResult"
@@ -6024,7 +6025,7 @@
         "smithy.api#documentation": "Instance broker resource"
       }
     },
-    "com.azure.iotoperations#BrokerListenerListByResourceGroupRequest": {
+    "com.azure.iotoperations#ListBrokerListenerByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6064,10 +6065,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.iotoperations#BrokerAuthorizationDelete": {
+    "com.azure.iotoperations#DeleteBrokerAuthorization": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iotoperations#BrokerAuthorizationDeleteRequest"
+        "target": "com.azure.iotoperations#DeleteBrokerAuthorizationRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -6083,7 +6084,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.iotoperations#BrokerAuthorizationDeleteRequest": {
+    "com.azure.iotoperations#DeleteBrokerAuthorizationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6647,13 +6648,13 @@
         "smithy.api#documentation": "BrokerAuthorization Resource properties"
       }
     },
-    "com.azure.iotoperations#BrokerAuthorizationGet": {
+    "com.azure.iotoperations#GetBrokerAuthorization": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iotoperations#BrokerAuthorizationGetRequest"
+        "target": "com.azure.iotoperations#GetBrokerAuthorizationRequest"
       },
       "output": {
-        "target": "com.azure.iotoperations#BrokerAuthorizationGetResponse"
+        "target": "com.azure.iotoperations#GetBrokerAuthorizationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6666,7 +6667,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.iotoperations#BrokerAuthorizationGetResponse": {
+    "com.azure.iotoperations#GetBrokerAuthorizationResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -6710,7 +6711,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.iotoperations#BrokerAuthorizationGetRequest": {
+    "com.azure.iotoperations#GetBrokerAuthorizationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6758,10 +6759,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.iotoperations#BrokerAuthorizationListByResourceGroup": {
+    "com.azure.iotoperations#ListBrokerAuthorizationByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iotoperations#BrokerAuthorizationListByResourceGroupRequest"
+        "target": "com.azure.iotoperations#ListBrokerAuthorizationByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.iotoperations#BrokerAuthorizationResourceListResult"
@@ -6851,7 +6852,7 @@
         "smithy.api#documentation": "Instance broker authorizations resource"
       }
     },
-    "com.azure.iotoperations#BrokerAuthorizationListByResourceGroupRequest": {
+    "com.azure.iotoperations#ListBrokerAuthorizationByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6891,10 +6892,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.iotoperations#BrokerAuthenticationDelete": {
+    "com.azure.iotoperations#DeleteBrokerAuthentication": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iotoperations#BrokerAuthenticationDeleteRequest"
+        "target": "com.azure.iotoperations#DeleteBrokerAuthenticationRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -6910,7 +6911,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.iotoperations#BrokerAuthenticationDeleteRequest": {
+    "com.azure.iotoperations#DeleteBrokerAuthenticationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7408,13 +7409,13 @@
         "smithy.api#documentation": "Defines a set of Broker authentication methods to be used on `BrokerListeners`. For each array element one authenticator type supported."
       }
     },
-    "com.azure.iotoperations#BrokerAuthenticationGet": {
+    "com.azure.iotoperations#GetBrokerAuthentication": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iotoperations#BrokerAuthenticationGetRequest"
+        "target": "com.azure.iotoperations#GetBrokerAuthenticationRequest"
       },
       "output": {
-        "target": "com.azure.iotoperations#BrokerAuthenticationGetResponse"
+        "target": "com.azure.iotoperations#GetBrokerAuthenticationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7427,7 +7428,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.iotoperations#BrokerAuthenticationGetResponse": {
+    "com.azure.iotoperations#GetBrokerAuthenticationResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -7471,7 +7472,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.iotoperations#BrokerAuthenticationGetRequest": {
+    "com.azure.iotoperations#GetBrokerAuthenticationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7519,10 +7520,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.iotoperations#BrokerAuthenticationListByResourceGroup": {
+    "com.azure.iotoperations#ListBrokerAuthenticationByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iotoperations#BrokerAuthenticationListByResourceGroupRequest"
+        "target": "com.azure.iotoperations#ListBrokerAuthenticationByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.iotoperations#BrokerAuthenticationResourceListResult"
@@ -7612,7 +7613,7 @@
         "smithy.api#documentation": "Instance broker authentication resource"
       }
     },
-    "com.azure.iotoperations#BrokerAuthenticationListByResourceGroupRequest": {
+    "com.azure.iotoperations#ListBrokerAuthenticationByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7652,10 +7653,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.iotoperations#BrokerDelete": {
+    "com.azure.iotoperations#DeleteBroker": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iotoperations#BrokerDeleteRequest"
+        "target": "com.azure.iotoperations#DeleteBrokerRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -7671,7 +7672,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.iotoperations#BrokerDeleteRequest": {
+    "com.azure.iotoperations#DeleteBrokerRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8989,13 +8990,13 @@
         "smithy.api#documentation": "Memory profile of Broker."
       }
     },
-    "com.azure.iotoperations#BrokerGet": {
+    "com.azure.iotoperations#GetBroker": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iotoperations#BrokerGetRequest"
+        "target": "com.azure.iotoperations#GetBrokerRequest"
       },
       "output": {
-        "target": "com.azure.iotoperations#BrokerGetResponse"
+        "target": "com.azure.iotoperations#GetBrokerResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -9008,7 +9009,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.iotoperations#BrokerGetResponse": {
+    "com.azure.iotoperations#GetBrokerResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -9052,7 +9053,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.iotoperations#BrokerGetRequest": {
+    "com.azure.iotoperations#GetBrokerRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9092,10 +9093,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.iotoperations#BrokerListByResourceGroup": {
+    "com.azure.iotoperations#ListBrokerByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iotoperations#BrokerListByResourceGroupRequest"
+        "target": "com.azure.iotoperations#ListBrokerByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.iotoperations#BrokerResourceListResult"
@@ -9185,7 +9186,7 @@
         "smithy.api#documentation": "Instance broker resource"
       }
     },
-    "com.azure.iotoperations#BrokerListByResourceGroupRequest": {
+    "com.azure.iotoperations#ListBrokerByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9217,10 +9218,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.iotoperations#AkriServiceDelete": {
+    "com.azure.iotoperations#DeleteAkriService": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iotoperations#AkriServiceDeleteRequest"
+        "target": "com.azure.iotoperations#DeleteAkriServiceRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -9236,7 +9237,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.iotoperations#AkriServiceDeleteRequest": {
+    "com.azure.iotoperations#DeleteAkriServiceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9432,13 +9433,13 @@
         "smithy.api#documentation": "AkriService properties."
       }
     },
-    "com.azure.iotoperations#AkriServiceGet": {
+    "com.azure.iotoperations#GetAkriService": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iotoperations#AkriServiceGetRequest"
+        "target": "com.azure.iotoperations#GetAkriServiceRequest"
       },
       "output": {
-        "target": "com.azure.iotoperations#AkriServiceGetResponse"
+        "target": "com.azure.iotoperations#GetAkriServiceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -9451,7 +9452,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.iotoperations#AkriServiceGetResponse": {
+    "com.azure.iotoperations#GetAkriServiceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -9495,7 +9496,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.iotoperations#AkriServiceGetRequest": {
+    "com.azure.iotoperations#GetAkriServiceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9535,10 +9536,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.iotoperations#AkriServiceListByInstanceResource": {
+    "com.azure.iotoperations#ListAkriServiceByInstanceResource": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iotoperations#AkriServiceListByInstanceResourceRequest"
+        "target": "com.azure.iotoperations#ListAkriServiceByInstanceResourceRequest"
       },
       "output": {
         "target": "com.azure.iotoperations#AkriServiceResourceListResult"
@@ -9628,7 +9629,7 @@
         "smithy.api#documentation": "AkriService resource."
       }
     },
-    "com.azure.iotoperations#AkriServiceListByInstanceResourceRequest": {
+    "com.azure.iotoperations#ListAkriServiceByInstanceResourceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9660,10 +9661,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.iotoperations#AkriConnectorDelete": {
+    "com.azure.iotoperations#DeleteAkriConnector": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iotoperations#AkriConnectorDeleteRequest"
+        "target": "com.azure.iotoperations#DeleteAkriConnectorRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -9679,7 +9680,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.iotoperations#AkriConnectorDeleteRequest": {
+    "com.azure.iotoperations#DeleteAkriConnectorRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9966,13 +9967,13 @@
         "smithy.api#documentation": "AkriConnector properties."
       }
     },
-    "com.azure.iotoperations#AkriConnectorGet": {
+    "com.azure.iotoperations#GetAkriConnector": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iotoperations#AkriConnectorGetRequest"
+        "target": "com.azure.iotoperations#GetAkriConnectorRequest"
       },
       "output": {
-        "target": "com.azure.iotoperations#AkriConnectorGetResponse"
+        "target": "com.azure.iotoperations#GetAkriConnectorResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -9985,7 +9986,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.iotoperations#AkriConnectorGetResponse": {
+    "com.azure.iotoperations#GetAkriConnectorResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -10029,7 +10030,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.iotoperations#AkriConnectorGetRequest": {
+    "com.azure.iotoperations#GetAkriConnectorRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10077,10 +10078,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.iotoperations#AkriConnectorListByTemplate": {
+    "com.azure.iotoperations#ListAkriConnectorByTemplate": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iotoperations#AkriConnectorListByTemplateRequest"
+        "target": "com.azure.iotoperations#ListAkriConnectorByTemplateRequest"
       },
       "output": {
         "target": "com.azure.iotoperations#AkriConnectorResourceListResult"
@@ -10170,7 +10171,7 @@
         "smithy.api#documentation": "AkriConnector resource."
       }
     },
-    "com.azure.iotoperations#AkriConnectorListByTemplateRequest": {
+    "com.azure.iotoperations#ListAkriConnectorByTemplateRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10210,10 +10211,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.iotoperations#AkriConnectorTemplateDelete": {
+    "com.azure.iotoperations#DeleteAkriConnectorTemplate": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iotoperations#AkriConnectorTemplateDeleteRequest"
+        "target": "com.azure.iotoperations#DeleteAkriConnectorTemplateRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -10229,7 +10230,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.iotoperations#AkriConnectorTemplateDeleteRequest": {
+    "com.azure.iotoperations#DeleteAkriConnectorTemplateRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10736,13 +10737,13 @@
         "smithy.api#documentation": "Device inbound endpoint types."
       }
     },
-    "com.azure.iotoperations#AkriConnectorTemplateGet": {
+    "com.azure.iotoperations#GetAkriConnectorTemplate": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iotoperations#AkriConnectorTemplateGetRequest"
+        "target": "com.azure.iotoperations#GetAkriConnectorTemplateRequest"
       },
       "output": {
-        "target": "com.azure.iotoperations#AkriConnectorTemplateGetResponse"
+        "target": "com.azure.iotoperations#GetAkriConnectorTemplateResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -10755,7 +10756,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.iotoperations#AkriConnectorTemplateGetResponse": {
+    "com.azure.iotoperations#GetAkriConnectorTemplateResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -10799,7 +10800,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.iotoperations#AkriConnectorTemplateGetRequest": {
+    "com.azure.iotoperations#GetAkriConnectorTemplateRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10839,10 +10840,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.iotoperations#AkriConnectorTemplateListByInstanceResource": {
+    "com.azure.iotoperations#ListAkriConnectorTemplateByInstanceResource": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iotoperations#AkriConnectorTemplateListByInstanceResourceRequest"
+        "target": "com.azure.iotoperations#ListAkriConnectorTemplateByInstanceResourceRequest"
       },
       "output": {
         "target": "com.azure.iotoperations#AkriConnectorTemplateResourceListResult"
@@ -10932,7 +10933,7 @@
         "smithy.api#documentation": "AkriConnectorTemplate resource."
       }
     },
-    "com.azure.iotoperations#AkriConnectorTemplateListByInstanceResourceRequest": {
+    "com.azure.iotoperations#ListAkriConnectorTemplateByInstanceResourceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10964,10 +10965,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.iotoperations#InstanceDelete": {
+    "com.azure.iotoperations#DeleteInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iotoperations#InstanceDeleteRequest"
+        "target": "com.azure.iotoperations#DeleteInstanceRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -10983,7 +10984,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.iotoperations#InstanceDeleteRequest": {
+    "com.azure.iotoperations#DeleteInstanceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11015,13 +11016,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.iotoperations#InstanceUpdate": {
+    "com.azure.iotoperations#UpdateInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iotoperations#InstanceUpdateRequest"
+        "target": "com.azure.iotoperations#UpdateInstanceRequest"
       },
       "output": {
-        "target": "com.azure.iotoperations#InstanceUpdateResponse"
+        "target": "com.azure.iotoperations#UpdateInstanceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -11034,7 +11035,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.iotoperations#InstanceUpdateResponse": {
+    "com.azure.iotoperations#UpdateInstanceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -11062,7 +11063,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.iotoperations#InstanceUpdateResponseTagsMap",
+          "target": "com.azure.iotoperations#UpdateInstanceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -11088,7 +11089,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.iotoperations#InstanceUpdateResponseIdentity",
+          "target": "com.azure.iotoperations#UpdateInstanceResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -11098,7 +11099,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.iotoperations#InstanceUpdateResponseIdentity": {
+    "com.azure.iotoperations#UpdateInstanceResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -11395,7 +11396,7 @@
         "smithy.api#documentation": "The reference to the Schema Registry for this AIO Instance."
       }
     },
-    "com.azure.iotoperations#InstanceUpdateResponseTagsMap": {
+    "com.azure.iotoperations#UpdateInstanceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -11407,7 +11408,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.iotoperations#InstanceUpdateRequest": {
+    "com.azure.iotoperations#UpdateInstanceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11435,13 +11436,13 @@
           }
         },
         "tags": {
-          "target": "com.azure.iotoperations#InstanceUpdateRequestTagsMap",
+          "target": "com.azure.iotoperations#UpdateInstanceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
         },
         "identity": {
-          "target": "com.azure.iotoperations#InstanceUpdateRequestIdentity",
+          "target": "com.azure.iotoperations#UpdateInstanceRequestIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -11451,7 +11452,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.iotoperations#InstanceUpdateRequestIdentity": {
+    "com.azure.iotoperations#UpdateInstanceRequestIdentity": {
       "type": "structure",
       "members": {
         "type": {
@@ -11487,7 +11488,7 @@
         "smithy.api#documentation": "User assigned identity properties"
       }
     },
-    "com.azure.iotoperations#InstanceUpdateRequestTagsMap": {
+    "com.azure.iotoperations#UpdateInstanceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -11767,13 +11768,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.iotoperations#InstanceGet": {
+    "com.azure.iotoperations#GetInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iotoperations#InstanceGetRequest"
+        "target": "com.azure.iotoperations#GetInstanceRequest"
       },
       "output": {
-        "target": "com.azure.iotoperations#InstanceGetResponse"
+        "target": "com.azure.iotoperations#GetInstanceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -11786,7 +11787,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.iotoperations#InstanceGetResponse": {
+    "com.azure.iotoperations#GetInstanceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -11814,7 +11815,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.iotoperations#InstanceGetResponseTagsMap",
+          "target": "com.azure.iotoperations#GetInstanceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -11840,7 +11841,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.iotoperations#InstanceGetResponseIdentity",
+          "target": "com.azure.iotoperations#GetInstanceResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -11850,7 +11851,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.iotoperations#InstanceGetResponseIdentity": {
+    "com.azure.iotoperations#GetInstanceResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -11879,7 +11880,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.iotoperations#InstanceGetResponseTagsMap": {
+    "com.azure.iotoperations#GetInstanceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -11891,7 +11892,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.iotoperations#InstanceGetRequest": {
+    "com.azure.iotoperations#GetInstanceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11923,10 +11924,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.iotoperations#InstanceListByResourceGroup": {
+    "com.azure.iotoperations#ListInstanceByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iotoperations#InstanceListByResourceGroupRequest"
+        "target": "com.azure.iotoperations#ListInstanceByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.iotoperations#InstanceResourceListResult"
@@ -12077,7 +12078,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.iotoperations#InstanceListByResourceGroupRequest": {
+    "com.azure.iotoperations#ListInstanceByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -12101,10 +12102,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.iotoperations#InstanceListBySubscription": {
+    "com.azure.iotoperations#ListInstanceBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iotoperations#InstanceListBySubscriptionRequest"
+        "target": "com.azure.iotoperations#ListInstanceBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.iotoperations#InstanceResourceListResult"
@@ -12120,7 +12121,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.iotoperations#InstanceListBySubscriptionRequest": {
+    "com.azure.iotoperations#ListInstanceBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -12136,13 +12137,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.iotoperations#OperationsList": {
+    "com.azure.iotoperations#ListOperations": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
       },
       "output": {
-        "target": "com.azure.iotoperations#OperationsListResponse"
+        "target": "com.azure.iotoperations#ListOperationsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -12155,11 +12156,11 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.iotoperations#OperationsListResponse": {
+    "com.azure.iotoperations#ListOperationsResponse": {
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.iotoperations#OperationsListResponseValueList",
+          "target": "com.azure.iotoperations#ListOperationsResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of operations supported by the resource provider"
           }
@@ -12175,7 +12176,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.iotoperations#OperationsListResponseValueList": {
+    "com.azure.iotoperations#ListOperationsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.iotoperations#Operation"
@@ -12299,169 +12300,169 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.iotoperations#RegistryEndpointDelete"
+          "target": "com.azure.iotoperations#DeleteRegistryEndpoint"
         },
         {
           "target": "com.azure.iotoperations#RegistryEndpointCreateOrUpdate"
         },
         {
-          "target": "com.azure.iotoperations#RegistryEndpointGet"
+          "target": "com.azure.iotoperations#GetRegistryEndpoint"
         },
         {
-          "target": "com.azure.iotoperations#RegistryEndpointListByInstanceResource"
+          "target": "com.azure.iotoperations#ListRegistryEndpointByInstanceResource"
         },
         {
-          "target": "com.azure.iotoperations#DataflowDelete"
+          "target": "com.azure.iotoperations#DeleteDataflow"
         },
         {
           "target": "com.azure.iotoperations#DataflowCreateOrUpdate"
         },
         {
-          "target": "com.azure.iotoperations#DataflowGet"
+          "target": "com.azure.iotoperations#GetDataflow"
         },
         {
-          "target": "com.azure.iotoperations#DataflowListByProfileResource"
+          "target": "com.azure.iotoperations#ListDataflowByProfileResource"
         },
         {
-          "target": "com.azure.iotoperations#DataflowGraphDelete"
+          "target": "com.azure.iotoperations#DeleteDataflowGraph"
         },
         {
           "target": "com.azure.iotoperations#DataflowGraphCreateOrUpdate"
         },
         {
-          "target": "com.azure.iotoperations#DataflowGraphGet"
+          "target": "com.azure.iotoperations#GetDataflowGraph"
         },
         {
-          "target": "com.azure.iotoperations#DataflowGraphListByDataflowProfile"
+          "target": "com.azure.iotoperations#ListDataflowGraphByDataflowProfile"
         },
         {
-          "target": "com.azure.iotoperations#DataflowProfileDelete"
+          "target": "com.azure.iotoperations#DeleteDataflowProfile"
         },
         {
           "target": "com.azure.iotoperations#DataflowProfileCreateOrUpdate"
         },
         {
-          "target": "com.azure.iotoperations#DataflowProfileGet"
+          "target": "com.azure.iotoperations#GetDataflowProfile"
         },
         {
-          "target": "com.azure.iotoperations#DataflowProfileListByResourceGroup"
+          "target": "com.azure.iotoperations#ListDataflowProfileByResourceGroup"
         },
         {
-          "target": "com.azure.iotoperations#DataflowEndpointDelete"
+          "target": "com.azure.iotoperations#DeleteDataflowEndpoint"
         },
         {
           "target": "com.azure.iotoperations#DataflowEndpointCreateOrUpdate"
         },
         {
-          "target": "com.azure.iotoperations#DataflowEndpointGet"
+          "target": "com.azure.iotoperations#GetDataflowEndpoint"
         },
         {
-          "target": "com.azure.iotoperations#DataflowEndpointListByResourceGroup"
+          "target": "com.azure.iotoperations#ListDataflowEndpointByResourceGroup"
         },
         {
-          "target": "com.azure.iotoperations#BrokerListenerDelete"
+          "target": "com.azure.iotoperations#DeleteBrokerListener"
         },
         {
           "target": "com.azure.iotoperations#BrokerListenerCreateOrUpdate"
         },
         {
-          "target": "com.azure.iotoperations#BrokerListenerGet"
+          "target": "com.azure.iotoperations#GetBrokerListener"
         },
         {
-          "target": "com.azure.iotoperations#BrokerListenerListByResourceGroup"
+          "target": "com.azure.iotoperations#ListBrokerListenerByResourceGroup"
         },
         {
-          "target": "com.azure.iotoperations#BrokerAuthorizationDelete"
+          "target": "com.azure.iotoperations#DeleteBrokerAuthorization"
         },
         {
           "target": "com.azure.iotoperations#BrokerAuthorizationCreateOrUpdate"
         },
         {
-          "target": "com.azure.iotoperations#BrokerAuthorizationGet"
+          "target": "com.azure.iotoperations#GetBrokerAuthorization"
         },
         {
-          "target": "com.azure.iotoperations#BrokerAuthorizationListByResourceGroup"
+          "target": "com.azure.iotoperations#ListBrokerAuthorizationByResourceGroup"
         },
         {
-          "target": "com.azure.iotoperations#BrokerAuthenticationDelete"
+          "target": "com.azure.iotoperations#DeleteBrokerAuthentication"
         },
         {
           "target": "com.azure.iotoperations#BrokerAuthenticationCreateOrUpdate"
         },
         {
-          "target": "com.azure.iotoperations#BrokerAuthenticationGet"
+          "target": "com.azure.iotoperations#GetBrokerAuthentication"
         },
         {
-          "target": "com.azure.iotoperations#BrokerAuthenticationListByResourceGroup"
+          "target": "com.azure.iotoperations#ListBrokerAuthenticationByResourceGroup"
         },
         {
-          "target": "com.azure.iotoperations#BrokerDelete"
+          "target": "com.azure.iotoperations#DeleteBroker"
         },
         {
           "target": "com.azure.iotoperations#BrokerCreateOrUpdate"
         },
         {
-          "target": "com.azure.iotoperations#BrokerGet"
+          "target": "com.azure.iotoperations#GetBroker"
         },
         {
-          "target": "com.azure.iotoperations#BrokerListByResourceGroup"
+          "target": "com.azure.iotoperations#ListBrokerByResourceGroup"
         },
         {
-          "target": "com.azure.iotoperations#AkriServiceDelete"
+          "target": "com.azure.iotoperations#DeleteAkriService"
         },
         {
           "target": "com.azure.iotoperations#AkriServiceCreateOrUpdate"
         },
         {
-          "target": "com.azure.iotoperations#AkriServiceGet"
+          "target": "com.azure.iotoperations#GetAkriService"
         },
         {
-          "target": "com.azure.iotoperations#AkriServiceListByInstanceResource"
+          "target": "com.azure.iotoperations#ListAkriServiceByInstanceResource"
         },
         {
-          "target": "com.azure.iotoperations#AkriConnectorDelete"
+          "target": "com.azure.iotoperations#DeleteAkriConnector"
         },
         {
           "target": "com.azure.iotoperations#AkriConnectorCreateOrUpdate"
         },
         {
-          "target": "com.azure.iotoperations#AkriConnectorGet"
+          "target": "com.azure.iotoperations#GetAkriConnector"
         },
         {
-          "target": "com.azure.iotoperations#AkriConnectorListByTemplate"
+          "target": "com.azure.iotoperations#ListAkriConnectorByTemplate"
         },
         {
-          "target": "com.azure.iotoperations#AkriConnectorTemplateDelete"
+          "target": "com.azure.iotoperations#DeleteAkriConnectorTemplate"
         },
         {
           "target": "com.azure.iotoperations#AkriConnectorTemplateCreateOrUpdate"
         },
         {
-          "target": "com.azure.iotoperations#AkriConnectorTemplateGet"
+          "target": "com.azure.iotoperations#GetAkriConnectorTemplate"
         },
         {
-          "target": "com.azure.iotoperations#AkriConnectorTemplateListByInstanceResource"
+          "target": "com.azure.iotoperations#ListAkriConnectorTemplateByInstanceResource"
         },
         {
-          "target": "com.azure.iotoperations#InstanceDelete"
+          "target": "com.azure.iotoperations#DeleteInstance"
         },
         {
-          "target": "com.azure.iotoperations#InstanceUpdate"
+          "target": "com.azure.iotoperations#UpdateInstance"
         },
         {
           "target": "com.azure.iotoperations#InstanceCreateOrUpdate"
         },
         {
-          "target": "com.azure.iotoperations#InstanceGet"
+          "target": "com.azure.iotoperations#GetInstance"
         },
         {
-          "target": "com.azure.iotoperations#InstanceListByResourceGroup"
+          "target": "com.azure.iotoperations#ListInstanceByResourceGroup"
         },
         {
-          "target": "com.azure.iotoperations#InstanceListBySubscription"
+          "target": "com.azure.iotoperations#ListInstanceBySubscription"
         },
         {
-          "target": "com.azure.iotoperations#OperationsList"
+          "target": "com.azure.iotoperations#ListOperations"
         }
       ],
       "traits": {

@@ -14,16 +14,17 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.postgresqlhsc#PrivateLinkResourcesGet": {
+    "com.azure.postgresqlhsc#GetPrivateLinkResource": {
       "type": "operation",
       "input": {
-        "target": "com.azure.postgresqlhsc#PrivateLinkResourcesGetRequest"
+        "target": "com.azure.postgresqlhsc#GetPrivateLinkResourceRequest"
       },
       "output": {
-        "target": "com.azure.postgresqlhsc#PrivateLinkResourcesGetResponse"
+        "target": "com.azure.postgresqlhsc#GetPrivateLinkResourceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -36,7 +37,7 @@
         "com.distilled.openapi#apiVersion": "2022-11-08"
       }
     },
-    "com.azure.postgresqlhsc#PrivateLinkResourcesGetResponse": {
+    "com.azure.postgresqlhsc#GetPrivateLinkResourceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -226,7 +227,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.postgresqlhsc#PrivateLinkResourcesGetRequest": {
+    "com.azure.postgresqlhsc#GetPrivateLinkResourceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -266,10 +267,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.postgresqlhsc#PrivateLinkResourcesListByCluster": {
+    "com.azure.postgresqlhsc#ListPrivateLinkResourceByCluster": {
       "type": "operation",
       "input": {
-        "target": "com.azure.postgresqlhsc#PrivateLinkResourcesListByClusterRequest"
+        "target": "com.azure.postgresqlhsc#ListPrivateLinkResourceByClusterRequest"
       },
       "output": {
         "target": "com.azure.postgresqlhsc#PrivateLinkResourceListResult"
@@ -346,7 +347,7 @@
         "smithy.api#documentation": "A private link resource."
       }
     },
-    "com.azure.postgresqlhsc#PrivateLinkResourcesListByClusterRequest": {
+    "com.azure.postgresqlhsc#ListPrivateLinkResourceByClusterRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -378,10 +379,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.postgresqlhsc#PrivateEndpointConnectionsDelete": {
+    "com.azure.postgresqlhsc#DeletePrivateEndpointConnection": {
       "type": "operation",
       "input": {
-        "target": "com.azure.postgresqlhsc#PrivateEndpointConnectionsDeleteRequest"
+        "target": "com.azure.postgresqlhsc#DeletePrivateEndpointConnectionRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -397,7 +398,7 @@
         "com.distilled.openapi#apiVersion": "2022-11-08"
       }
     },
-    "com.azure.postgresqlhsc#PrivateEndpointConnectionsDeleteRequest": {
+    "com.azure.postgresqlhsc#DeletePrivateEndpointConnectionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -708,13 +709,13 @@
         "smithy.api#documentation": "The private endpoint resource."
       }
     },
-    "com.azure.postgresqlhsc#PrivateEndpointConnectionsGet": {
+    "com.azure.postgresqlhsc#GetPrivateEndpointConnection": {
       "type": "operation",
       "input": {
-        "target": "com.azure.postgresqlhsc#PrivateEndpointConnectionsGetRequest"
+        "target": "com.azure.postgresqlhsc#GetPrivateEndpointConnectionRequest"
       },
       "output": {
-        "target": "com.azure.postgresqlhsc#PrivateEndpointConnectionsGetResponse"
+        "target": "com.azure.postgresqlhsc#GetPrivateEndpointConnectionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -727,7 +728,7 @@
         "com.distilled.openapi#apiVersion": "2022-11-08"
       }
     },
-    "com.azure.postgresqlhsc#PrivateEndpointConnectionsGetResponse": {
+    "com.azure.postgresqlhsc#GetPrivateEndpointConnectionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -765,7 +766,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.postgresqlhsc#PrivateEndpointConnectionsGetRequest": {
+    "com.azure.postgresqlhsc#GetPrivateEndpointConnectionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -805,10 +806,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.postgresqlhsc#PrivateEndpointConnectionsListByCluster": {
+    "com.azure.postgresqlhsc#ListPrivateEndpointConnectionByCluster": {
       "type": "operation",
       "input": {
-        "target": "com.azure.postgresqlhsc#PrivateEndpointConnectionsListByClusterRequest"
+        "target": "com.azure.postgresqlhsc#ListPrivateEndpointConnectionByClusterRequest"
       },
       "output": {
         "target": "com.azure.postgresqlhsc#PrivateEndpointConnectionListResult"
@@ -885,7 +886,7 @@
         "smithy.api#documentation": "The private endpoint connection resource."
       }
     },
-    "com.azure.postgresqlhsc#PrivateEndpointConnectionsListByClusterRequest": {
+    "com.azure.postgresqlhsc#ListPrivateEndpointConnectionByClusterRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -917,7 +918,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.postgresqlhsc#OperationsList": {
+    "com.azure.postgresqlhsc#ListOperations": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -1073,10 +1074,10 @@
         "smithy.api#documentation": "Display metadata associated with the operation."
       }
     },
-    "com.azure.postgresqlhsc#ClustersCheckNameAvailability": {
+    "com.azure.postgresqlhsc#CheckClusterNameAvailability": {
       "type": "operation",
       "input": {
-        "target": "com.azure.postgresqlhsc#ClustersCheckNameAvailabilityRequest"
+        "target": "com.azure.postgresqlhsc#CheckClusterNameAvailabilityRequest"
       },
       "output": {
         "target": "com.azure.postgresqlhsc#NameAvailability"
@@ -1124,7 +1125,7 @@
         "smithy.api#documentation": "Represents cluster name availability."
       }
     },
-    "com.azure.postgresqlhsc#ClustersCheckNameAvailabilityRequest": {
+    "com.azure.postgresqlhsc#CheckClusterNameAvailabilityRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1143,7 +1144,7 @@
           }
         },
         "type": {
-          "target": "com.azure.postgresqlhsc#ClustersCheckNameAvailabilityRequestType",
+          "target": "com.azure.postgresqlhsc#CheckClusterNameAvailabilityRequestType",
           "traits": {
             "smithy.api#documentation": "Resource type used for verification.",
             "smithy.api#required": {}
@@ -1154,7 +1155,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.postgresqlhsc#ClustersCheckNameAvailabilityRequestType": {
+    "com.azure.postgresqlhsc#CheckClusterNameAvailabilityRequestType": {
       "type": "enum",
       "members": {
         "MICROSOFT_DBFORPOSTGRESQL_SERVERGROUPSV2": {
@@ -1219,10 +1220,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.postgresqlhsc#ClustersStop": {
+    "com.azure.postgresqlhsc#StopCluster": {
       "type": "operation",
       "input": {
-        "target": "com.azure.postgresqlhsc#ClustersStopRequest"
+        "target": "com.azure.postgresqlhsc#StopClusterRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1238,7 +1239,7 @@
         "com.distilled.openapi#apiVersion": "2022-11-08"
       }
     },
-    "com.azure.postgresqlhsc#ClustersStopRequest": {
+    "com.azure.postgresqlhsc#StopClusterRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1270,10 +1271,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.postgresqlhsc#ClustersStart": {
+    "com.azure.postgresqlhsc#StartCluster": {
       "type": "operation",
       "input": {
-        "target": "com.azure.postgresqlhsc#ClustersStartRequest"
+        "target": "com.azure.postgresqlhsc#StartClusterRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1289,7 +1290,7 @@
         "com.distilled.openapi#apiVersion": "2022-11-08"
       }
     },
-    "com.azure.postgresqlhsc#ClustersStartRequest": {
+    "com.azure.postgresqlhsc#StartClusterRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1321,10 +1322,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.postgresqlhsc#ClustersRestart": {
+    "com.azure.postgresqlhsc#RestartCluster": {
       "type": "operation",
       "input": {
-        "target": "com.azure.postgresqlhsc#ClustersRestartRequest"
+        "target": "com.azure.postgresqlhsc#RestartClusterRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1340,7 +1341,7 @@
         "com.distilled.openapi#apiVersion": "2022-11-08"
       }
     },
-    "com.azure.postgresqlhsc#ClustersRestartRequest": {
+    "com.azure.postgresqlhsc#RestartClusterRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1372,10 +1373,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.postgresqlhsc#RolesListByCluster": {
+    "com.azure.postgresqlhsc#ListRoleByCluster": {
       "type": "operation",
       "input": {
-        "target": "com.azure.postgresqlhsc#RolesListByClusterRequest"
+        "target": "com.azure.postgresqlhsc#ListRoleByClusterRequest"
       },
       "output": {
         "target": "com.azure.postgresqlhsc#RoleListResult"
@@ -1507,7 +1508,7 @@
         "smithy.api#documentation": "The current provisioning state."
       }
     },
-    "com.azure.postgresqlhsc#RolesListByClusterRequest": {
+    "com.azure.postgresqlhsc#ListRoleByClusterRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1539,10 +1540,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.postgresqlhsc#RolesDelete": {
+    "com.azure.postgresqlhsc#DeleteRole": {
       "type": "operation",
       "input": {
-        "target": "com.azure.postgresqlhsc#RolesDeleteRequest"
+        "target": "com.azure.postgresqlhsc#DeleteRoleRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1558,7 +1559,7 @@
         "com.distilled.openapi#apiVersion": "2022-11-08"
       }
     },
-    "com.azure.postgresqlhsc#RolesDeleteRequest": {
+    "com.azure.postgresqlhsc#DeleteRoleRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1598,13 +1599,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.postgresqlhsc#RolesCreate": {
+    "com.azure.postgresqlhsc#CreateRole": {
       "type": "operation",
       "input": {
-        "target": "com.azure.postgresqlhsc#RolesCreateRequest"
+        "target": "com.azure.postgresqlhsc#CreateRoleRequest"
       },
       "output": {
-        "target": "com.azure.postgresqlhsc#RolesCreateResponse"
+        "target": "com.azure.postgresqlhsc#CreateRoleResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1617,7 +1618,7 @@
         "com.distilled.openapi#apiVersion": "2022-11-08"
       }
     },
-    "com.azure.postgresqlhsc#RolesCreateResponse": {
+    "com.azure.postgresqlhsc#CreateRoleResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1656,7 +1657,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.postgresqlhsc#RolesCreateRequest": {
+    "com.azure.postgresqlhsc#CreateRoleRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1719,13 +1720,13 @@
         "smithy.api#documentation": "The properties of a cluster role."
       }
     },
-    "com.azure.postgresqlhsc#RolesGet": {
+    "com.azure.postgresqlhsc#GetRole": {
       "type": "operation",
       "input": {
-        "target": "com.azure.postgresqlhsc#RolesGetRequest"
+        "target": "com.azure.postgresqlhsc#GetRoleRequest"
       },
       "output": {
-        "target": "com.azure.postgresqlhsc#RolesGetResponse"
+        "target": "com.azure.postgresqlhsc#GetRoleResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1738,7 +1739,7 @@
         "com.distilled.openapi#apiVersion": "2022-11-08"
       }
     },
-    "com.azure.postgresqlhsc#RolesGetResponse": {
+    "com.azure.postgresqlhsc#GetRoleResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1777,7 +1778,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.postgresqlhsc#RolesGetRequest": {
+    "com.azure.postgresqlhsc#GetRoleRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1817,10 +1818,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.postgresqlhsc#FirewallRulesListByCluster": {
+    "com.azure.postgresqlhsc#ListFirewallRuleByCluster": {
       "type": "operation",
       "input": {
-        "target": "com.azure.postgresqlhsc#FirewallRulesListByClusterRequest"
+        "target": "com.azure.postgresqlhsc#ListFirewallRuleByClusterRequest"
       },
       "output": {
         "target": "com.azure.postgresqlhsc#FirewallRuleListResult"
@@ -1926,7 +1927,7 @@
         "smithy.api#documentation": "The properties of a cluster firewall rule."
       }
     },
-    "com.azure.postgresqlhsc#FirewallRulesListByClusterRequest": {
+    "com.azure.postgresqlhsc#ListFirewallRuleByClusterRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1958,10 +1959,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.postgresqlhsc#FirewallRulesDelete": {
+    "com.azure.postgresqlhsc#DeleteFirewallRule": {
       "type": "operation",
       "input": {
-        "target": "com.azure.postgresqlhsc#FirewallRulesDeleteRequest"
+        "target": "com.azure.postgresqlhsc#DeleteFirewallRuleRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1977,7 +1978,7 @@
         "com.distilled.openapi#apiVersion": "2022-11-08"
       }
     },
-    "com.azure.postgresqlhsc#FirewallRulesDeleteRequest": {
+    "com.azure.postgresqlhsc#DeleteFirewallRuleRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2144,13 +2145,13 @@
         "smithy.api#documentation": "The properties of a cluster firewall rule."
       }
     },
-    "com.azure.postgresqlhsc#FirewallRulesGet": {
+    "com.azure.postgresqlhsc#GetFirewallRule": {
       "type": "operation",
       "input": {
-        "target": "com.azure.postgresqlhsc#FirewallRulesGetRequest"
+        "target": "com.azure.postgresqlhsc#GetFirewallRuleRequest"
       },
       "output": {
-        "target": "com.azure.postgresqlhsc#FirewallRulesGetResponse"
+        "target": "com.azure.postgresqlhsc#GetFirewallRuleResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2163,7 +2164,7 @@
         "com.distilled.openapi#apiVersion": "2022-11-08"
       }
     },
-    "com.azure.postgresqlhsc#FirewallRulesGetResponse": {
+    "com.azure.postgresqlhsc#GetFirewallRuleResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2202,7 +2203,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.postgresqlhsc#FirewallRulesGetRequest": {
+    "com.azure.postgresqlhsc#GetFirewallRuleRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2242,13 +2243,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.postgresqlhsc#ConfigurationsUpdateOnNode": {
+    "com.azure.postgresqlhsc#UpdateConfigurationOnNode": {
       "type": "operation",
       "input": {
-        "target": "com.azure.postgresqlhsc#ConfigurationsUpdateOnNodeRequest"
+        "target": "com.azure.postgresqlhsc#UpdateConfigurationOnNodeRequest"
       },
       "output": {
-        "target": "com.azure.postgresqlhsc#ConfigurationsUpdateOnNodeResponse"
+        "target": "com.azure.postgresqlhsc#UpdateConfigurationOnNodeResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2261,7 +2262,7 @@
         "com.distilled.openapi#apiVersion": "2022-11-08"
       }
     },
-    "com.azure.postgresqlhsc#ConfigurationsUpdateOnNodeResponse": {
+    "com.azure.postgresqlhsc#UpdateConfigurationOnNodeResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2388,7 +2389,7 @@
         "smithy.api#documentation": "Data type of the configuration."
       }
     },
-    "com.azure.postgresqlhsc#ConfigurationsUpdateOnNodeRequest": {
+    "com.azure.postgresqlhsc#UpdateConfigurationOnNodeRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2449,13 +2450,13 @@
         "smithy.api#documentation": "The properties of a configuration."
       }
     },
-    "com.azure.postgresqlhsc#ConfigurationsGetNode": {
+    "com.azure.postgresqlhsc#GetConfigurationNode": {
       "type": "operation",
       "input": {
-        "target": "com.azure.postgresqlhsc#ConfigurationsGetNodeRequest"
+        "target": "com.azure.postgresqlhsc#GetConfigurationNodeRequest"
       },
       "output": {
-        "target": "com.azure.postgresqlhsc#ConfigurationsGetNodeResponse"
+        "target": "com.azure.postgresqlhsc#GetConfigurationNodeResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2468,7 +2469,7 @@
         "com.distilled.openapi#apiVersion": "2022-11-08"
       }
     },
-    "com.azure.postgresqlhsc#ConfigurationsGetNodeResponse": {
+    "com.azure.postgresqlhsc#GetConfigurationNodeResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2506,7 +2507,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.postgresqlhsc#ConfigurationsGetNodeRequest": {
+    "com.azure.postgresqlhsc#GetConfigurationNodeRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2546,13 +2547,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.postgresqlhsc#ConfigurationsUpdateOnCoordinator": {
+    "com.azure.postgresqlhsc#UpdateConfigurationOnCoordinator": {
       "type": "operation",
       "input": {
-        "target": "com.azure.postgresqlhsc#ConfigurationsUpdateOnCoordinatorRequest"
+        "target": "com.azure.postgresqlhsc#UpdateConfigurationOnCoordinatorRequest"
       },
       "output": {
-        "target": "com.azure.postgresqlhsc#ConfigurationsUpdateOnCoordinatorResponse"
+        "target": "com.azure.postgresqlhsc#UpdateConfigurationOnCoordinatorResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2565,7 +2566,7 @@
         "com.distilled.openapi#apiVersion": "2022-11-08"
       }
     },
-    "com.azure.postgresqlhsc#ConfigurationsUpdateOnCoordinatorResponse": {
+    "com.azure.postgresqlhsc#UpdateConfigurationOnCoordinatorResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2603,7 +2604,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.postgresqlhsc#ConfigurationsUpdateOnCoordinatorRequest": {
+    "com.azure.postgresqlhsc#UpdateConfigurationOnCoordinatorRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2649,13 +2650,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.postgresqlhsc#ConfigurationsGetCoordinator": {
+    "com.azure.postgresqlhsc#GetConfigurationCoordinator": {
       "type": "operation",
       "input": {
-        "target": "com.azure.postgresqlhsc#ConfigurationsGetCoordinatorRequest"
+        "target": "com.azure.postgresqlhsc#GetConfigurationCoordinatorRequest"
       },
       "output": {
-        "target": "com.azure.postgresqlhsc#ConfigurationsGetCoordinatorResponse"
+        "target": "com.azure.postgresqlhsc#GetConfigurationCoordinatorResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2668,7 +2669,7 @@
         "com.distilled.openapi#apiVersion": "2022-11-08"
       }
     },
-    "com.azure.postgresqlhsc#ConfigurationsGetCoordinatorResponse": {
+    "com.azure.postgresqlhsc#GetConfigurationCoordinatorResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2706,7 +2707,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.postgresqlhsc#ConfigurationsGetCoordinatorRequest": {
+    "com.azure.postgresqlhsc#GetConfigurationCoordinatorRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2746,13 +2747,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.postgresqlhsc#ConfigurationsGet": {
+    "com.azure.postgresqlhsc#GetConfiguration": {
       "type": "operation",
       "input": {
-        "target": "com.azure.postgresqlhsc#ConfigurationsGetRequest"
+        "target": "com.azure.postgresqlhsc#GetConfigurationRequest"
       },
       "output": {
-        "target": "com.azure.postgresqlhsc#ConfigurationsGetResponse"
+        "target": "com.azure.postgresqlhsc#GetConfigurationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2765,7 +2766,7 @@
         "com.distilled.openapi#apiVersion": "2022-11-08"
       }
     },
-    "com.azure.postgresqlhsc#ConfigurationsGetResponse": {
+    "com.azure.postgresqlhsc#GetConfigurationResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2943,7 +2944,7 @@
         "smithy.api#documentation": "Data type of the configuration."
       }
     },
-    "com.azure.postgresqlhsc#ConfigurationsGetRequest": {
+    "com.azure.postgresqlhsc#GetConfigurationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2983,10 +2984,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.postgresqlhsc#ConfigurationsListByCluster": {
+    "com.azure.postgresqlhsc#ListConfigurationByCluster": {
       "type": "operation",
       "input": {
-        "target": "com.azure.postgresqlhsc#ConfigurationsListByClusterRequest"
+        "target": "com.azure.postgresqlhsc#ListConfigurationByClusterRequest"
       },
       "output": {
         "target": "com.azure.postgresqlhsc#ClusterConfigurationListResult"
@@ -3069,7 +3070,7 @@
         "smithy.api#documentation": "Represents configuration details for coordinator and node."
       }
     },
-    "com.azure.postgresqlhsc#ConfigurationsListByClusterRequest": {
+    "com.azure.postgresqlhsc#ListConfigurationByClusterRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3101,10 +3102,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.postgresqlhsc#ConfigurationsListByServer": {
+    "com.azure.postgresqlhsc#ListConfigurationByServer": {
       "type": "operation",
       "input": {
-        "target": "com.azure.postgresqlhsc#ConfigurationsListByServerRequest"
+        "target": "com.azure.postgresqlhsc#ListConfigurationByServerRequest"
       },
       "output": {
         "target": "com.azure.postgresqlhsc#ServerConfigurationListResult"
@@ -3187,7 +3188,7 @@
         "smithy.api#documentation": "Represents a configuration."
       }
     },
-    "com.azure.postgresqlhsc#ConfigurationsListByServerRequest": {
+    "com.azure.postgresqlhsc#ListConfigurationByServerRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3227,13 +3228,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.postgresqlhsc#ServersGet": {
+    "com.azure.postgresqlhsc#GetServer": {
       "type": "operation",
       "input": {
-        "target": "com.azure.postgresqlhsc#ServersGetRequest"
+        "target": "com.azure.postgresqlhsc#GetServerRequest"
       },
       "output": {
-        "target": "com.azure.postgresqlhsc#ServersGetResponse"
+        "target": "com.azure.postgresqlhsc#GetServerResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3246,7 +3247,7 @@
         "com.distilled.openapi#apiVersion": "2022-11-08"
       }
     },
-    "com.azure.postgresqlhsc#ServersGetResponse": {
+    "com.azure.postgresqlhsc#GetServerResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3376,7 +3377,7 @@
         "smithy.api#documentation": "The properties of a server in cluster."
       }
     },
-    "com.azure.postgresqlhsc#ServersGetRequest": {
+    "com.azure.postgresqlhsc#GetServerRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3416,10 +3417,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.postgresqlhsc#ServersListByCluster": {
+    "com.azure.postgresqlhsc#ListServerByCluster": {
       "type": "operation",
       "input": {
-        "target": "com.azure.postgresqlhsc#ServersListByClusterRequest"
+        "target": "com.azure.postgresqlhsc#ListServerByClusterRequest"
       },
       "output": {
         "target": "com.azure.postgresqlhsc#ClusterServerListResult"
@@ -3496,7 +3497,7 @@
         "smithy.api#documentation": "Represents a server in a cluster."
       }
     },
-    "com.azure.postgresqlhsc#ServersListByClusterRequest": {
+    "com.azure.postgresqlhsc#ListServerByClusterRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3528,10 +3529,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.postgresqlhsc#ClustersDelete": {
+    "com.azure.postgresqlhsc#DeleteCluster": {
       "type": "operation",
       "input": {
-        "target": "com.azure.postgresqlhsc#ClustersDeleteRequest"
+        "target": "com.azure.postgresqlhsc#DeleteClusterRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3547,7 +3548,7 @@
         "com.distilled.openapi#apiVersion": "2022-11-08"
       }
     },
-    "com.azure.postgresqlhsc#ClustersDeleteRequest": {
+    "com.azure.postgresqlhsc#DeleteClusterRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3579,13 +3580,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.postgresqlhsc#ClustersUpdate": {
+    "com.azure.postgresqlhsc#UpdateCluster": {
       "type": "operation",
       "input": {
-        "target": "com.azure.postgresqlhsc#ClustersUpdateRequest"
+        "target": "com.azure.postgresqlhsc#UpdateClusterRequest"
       },
       "output": {
-        "target": "com.azure.postgresqlhsc#ClustersUpdateResponse"
+        "target": "com.azure.postgresqlhsc#UpdateClusterResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3598,7 +3599,7 @@
         "com.distilled.openapi#apiVersion": "2022-11-08"
       }
     },
-    "com.azure.postgresqlhsc#ClustersUpdateResponse": {
+    "com.azure.postgresqlhsc#UpdateClusterResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3626,7 +3627,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.postgresqlhsc#ClustersUpdateResponseTagsMap",
+          "target": "com.azure.postgresqlhsc#UpdateClusterResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4006,7 +4007,7 @@
         "smithy.api#documentation": "Schedule settings for regular cluster updates."
       }
     },
-    "com.azure.postgresqlhsc#ClustersUpdateResponseTagsMap": {
+    "com.azure.postgresqlhsc#UpdateClusterResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4018,7 +4019,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.postgresqlhsc#ClustersUpdateRequest": {
+    "com.azure.postgresqlhsc#UpdateClusterRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4052,7 +4053,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.postgresqlhsc#ClustersUpdateRequestTagsMap",
+          "target": "com.azure.postgresqlhsc#UpdateClusterRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Application-specific metadata in the form of key-value pairs."
           }
@@ -4062,7 +4063,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.postgresqlhsc#ClustersUpdateRequestTagsMap": {
+    "com.azure.postgresqlhsc#UpdateClusterRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4173,13 +4174,13 @@
         "smithy.api#documentation": "The properties used to update a cluster."
       }
     },
-    "com.azure.postgresqlhsc#ClustersCreate": {
+    "com.azure.postgresqlhsc#CreateCluster": {
       "type": "operation",
       "input": {
-        "target": "com.azure.postgresqlhsc#ClustersCreateRequest"
+        "target": "com.azure.postgresqlhsc#CreateClusterRequest"
       },
       "output": {
-        "target": "com.azure.postgresqlhsc#ClustersCreateResponse"
+        "target": "com.azure.postgresqlhsc#CreateClusterResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4192,7 +4193,7 @@
         "com.distilled.openapi#apiVersion": "2022-11-08"
       }
     },
-    "com.azure.postgresqlhsc#ClustersCreateResponse": {
+    "com.azure.postgresqlhsc#CreateClusterResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -4220,7 +4221,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.postgresqlhsc#ClustersCreateResponseTagsMap",
+          "target": "com.azure.postgresqlhsc#CreateClusterResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4243,7 +4244,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.postgresqlhsc#ClustersCreateResponseTagsMap": {
+    "com.azure.postgresqlhsc#CreateClusterResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4255,7 +4256,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.postgresqlhsc#ClustersCreateRequest": {
+    "com.azure.postgresqlhsc#CreateClusterRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4283,7 +4284,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.postgresqlhsc#ClustersCreateRequestTagsMap",
+          "target": "com.azure.postgresqlhsc#CreateClusterRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4429,7 +4430,7 @@
         "smithy.api#documentation": "Properties of the cluster."
       }
     },
-    "com.azure.postgresqlhsc#ClustersCreateRequestTagsMap": {
+    "com.azure.postgresqlhsc#CreateClusterRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4441,13 +4442,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.postgresqlhsc#ClustersGet": {
+    "com.azure.postgresqlhsc#GetCluster": {
       "type": "operation",
       "input": {
-        "target": "com.azure.postgresqlhsc#ClustersGetRequest"
+        "target": "com.azure.postgresqlhsc#GetClusterRequest"
       },
       "output": {
-        "target": "com.azure.postgresqlhsc#ClustersGetResponse"
+        "target": "com.azure.postgresqlhsc#GetClusterResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4460,7 +4461,7 @@
         "com.distilled.openapi#apiVersion": "2022-11-08"
       }
     },
-    "com.azure.postgresqlhsc#ClustersGetResponse": {
+    "com.azure.postgresqlhsc#GetClusterResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -4488,7 +4489,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.postgresqlhsc#ClustersGetResponseTagsMap",
+          "target": "com.azure.postgresqlhsc#GetClusterResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4511,7 +4512,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.postgresqlhsc#ClustersGetResponseTagsMap": {
+    "com.azure.postgresqlhsc#GetClusterResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4523,7 +4524,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.postgresqlhsc#ClustersGetRequest": {
+    "com.azure.postgresqlhsc#GetClusterRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4555,10 +4556,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.postgresqlhsc#ClustersListByResourceGroup": {
+    "com.azure.postgresqlhsc#ListClusterByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.postgresqlhsc#ClustersListByResourceGroupRequest"
+        "target": "com.azure.postgresqlhsc#ListClusterByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.postgresqlhsc#ClusterListResult"
@@ -4666,7 +4667,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.postgresqlhsc#ClustersListByResourceGroupRequest": {
+    "com.azure.postgresqlhsc#ListClusterByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4690,10 +4691,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.postgresqlhsc#ClustersList": {
+    "com.azure.postgresqlhsc#ListClusters": {
       "type": "operation",
       "input": {
-        "target": "com.azure.postgresqlhsc#ClustersListRequest"
+        "target": "com.azure.postgresqlhsc#ListClustersRequest"
       },
       "output": {
         "target": "com.azure.postgresqlhsc#ClusterListResult"
@@ -4709,7 +4710,7 @@
         "com.distilled.openapi#apiVersion": "2022-11-08"
       }
     },
-    "com.azure.postgresqlhsc#ClustersListRequest": {
+    "com.azure.postgresqlhsc#ListClustersRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4730,109 +4731,109 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.postgresqlhsc#PrivateLinkResourcesGet"
+          "target": "com.azure.postgresqlhsc#GetPrivateLinkResource"
         },
         {
-          "target": "com.azure.postgresqlhsc#PrivateLinkResourcesListByCluster"
+          "target": "com.azure.postgresqlhsc#ListPrivateLinkResourceByCluster"
         },
         {
-          "target": "com.azure.postgresqlhsc#PrivateEndpointConnectionsDelete"
+          "target": "com.azure.postgresqlhsc#DeletePrivateEndpointConnection"
         },
         {
           "target": "com.azure.postgresqlhsc#PrivateEndpointConnectionsCreateOrUpdate"
         },
         {
-          "target": "com.azure.postgresqlhsc#PrivateEndpointConnectionsGet"
+          "target": "com.azure.postgresqlhsc#GetPrivateEndpointConnection"
         },
         {
-          "target": "com.azure.postgresqlhsc#PrivateEndpointConnectionsListByCluster"
+          "target": "com.azure.postgresqlhsc#ListPrivateEndpointConnectionByCluster"
         },
         {
-          "target": "com.azure.postgresqlhsc#OperationsList"
+          "target": "com.azure.postgresqlhsc#ListOperations"
         },
         {
-          "target": "com.azure.postgresqlhsc#ClustersCheckNameAvailability"
+          "target": "com.azure.postgresqlhsc#CheckClusterNameAvailability"
         },
         {
           "target": "com.azure.postgresqlhsc#ClustersPromoteReadReplica"
         },
         {
-          "target": "com.azure.postgresqlhsc#ClustersStop"
+          "target": "com.azure.postgresqlhsc#StopCluster"
         },
         {
-          "target": "com.azure.postgresqlhsc#ClustersStart"
+          "target": "com.azure.postgresqlhsc#StartCluster"
         },
         {
-          "target": "com.azure.postgresqlhsc#ClustersRestart"
+          "target": "com.azure.postgresqlhsc#RestartCluster"
         },
         {
-          "target": "com.azure.postgresqlhsc#RolesListByCluster"
+          "target": "com.azure.postgresqlhsc#ListRoleByCluster"
         },
         {
-          "target": "com.azure.postgresqlhsc#RolesDelete"
+          "target": "com.azure.postgresqlhsc#DeleteRole"
         },
         {
-          "target": "com.azure.postgresqlhsc#RolesCreate"
+          "target": "com.azure.postgresqlhsc#CreateRole"
         },
         {
-          "target": "com.azure.postgresqlhsc#RolesGet"
+          "target": "com.azure.postgresqlhsc#GetRole"
         },
         {
-          "target": "com.azure.postgresqlhsc#FirewallRulesListByCluster"
+          "target": "com.azure.postgresqlhsc#ListFirewallRuleByCluster"
         },
         {
-          "target": "com.azure.postgresqlhsc#FirewallRulesDelete"
+          "target": "com.azure.postgresqlhsc#DeleteFirewallRule"
         },
         {
           "target": "com.azure.postgresqlhsc#FirewallRulesCreateOrUpdate"
         },
         {
-          "target": "com.azure.postgresqlhsc#FirewallRulesGet"
+          "target": "com.azure.postgresqlhsc#GetFirewallRule"
         },
         {
-          "target": "com.azure.postgresqlhsc#ConfigurationsUpdateOnNode"
+          "target": "com.azure.postgresqlhsc#UpdateConfigurationOnNode"
         },
         {
-          "target": "com.azure.postgresqlhsc#ConfigurationsGetNode"
+          "target": "com.azure.postgresqlhsc#GetConfigurationNode"
         },
         {
-          "target": "com.azure.postgresqlhsc#ConfigurationsUpdateOnCoordinator"
+          "target": "com.azure.postgresqlhsc#UpdateConfigurationOnCoordinator"
         },
         {
-          "target": "com.azure.postgresqlhsc#ConfigurationsGetCoordinator"
+          "target": "com.azure.postgresqlhsc#GetConfigurationCoordinator"
         },
         {
-          "target": "com.azure.postgresqlhsc#ConfigurationsGet"
+          "target": "com.azure.postgresqlhsc#GetConfiguration"
         },
         {
-          "target": "com.azure.postgresqlhsc#ConfigurationsListByCluster"
+          "target": "com.azure.postgresqlhsc#ListConfigurationByCluster"
         },
         {
-          "target": "com.azure.postgresqlhsc#ConfigurationsListByServer"
+          "target": "com.azure.postgresqlhsc#ListConfigurationByServer"
         },
         {
-          "target": "com.azure.postgresqlhsc#ServersGet"
+          "target": "com.azure.postgresqlhsc#GetServer"
         },
         {
-          "target": "com.azure.postgresqlhsc#ServersListByCluster"
+          "target": "com.azure.postgresqlhsc#ListServerByCluster"
         },
         {
-          "target": "com.azure.postgresqlhsc#ClustersDelete"
+          "target": "com.azure.postgresqlhsc#DeleteCluster"
         },
         {
-          "target": "com.azure.postgresqlhsc#ClustersUpdate"
+          "target": "com.azure.postgresqlhsc#UpdateCluster"
         },
         {
-          "target": "com.azure.postgresqlhsc#ClustersCreate"
+          "target": "com.azure.postgresqlhsc#CreateCluster"
         },
         {
-          "target": "com.azure.postgresqlhsc#ClustersGet"
+          "target": "com.azure.postgresqlhsc#GetCluster"
         },
         {
-          "target": "com.azure.postgresqlhsc#ClustersListByResourceGroup"
+          "target": "com.azure.postgresqlhsc#ListClusterByResourceGroup"
         },
         {
-          "target": "com.azure.postgresqlhsc#ClustersList"
+          "target": "com.azure.postgresqlhsc#ListClusters"
         }
       ],
       "traits": {

@@ -13,7 +13,7 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
-export interface AgentPoolsAbortLatestOperationRequest {
+export interface AbortAgentPoolLatestOperationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -23,7 +23,7 @@ export interface AgentPoolsAbortLatestOperationRequest {
   /** The name of the agent pool. */
   agentPoolName: string;
 }
-export const AgentPoolsAbortLatestOperationRequest = /*@__PURE__*/ S.suspend(
+export const AbortAgentPoolLatestOperationRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -39,15 +39,47 @@ export const AgentPoolsAbortLatestOperationRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "AgentPoolsAbortLatestOperationRequest",
-}) as any as S.Schema<AgentPoolsAbortLatestOperationRequest>;
+  identifier: "AbortAgentPoolLatestOperationRequest",
+}) as any as S.Schema<AbortAgentPoolLatestOperationRequest>;
 
-export interface AgentPoolsAbortLatestOperationResponse {}
-export const AgentPoolsAbortLatestOperationResponse = /*@__PURE__*/ S.suspend(
+export interface AbortAgentPoolLatestOperationResponse {}
+export const AbortAgentPoolLatestOperationResponse = /*@__PURE__*/ S.suspend(
   () => S.Struct({}),
 ).annotate({
-  identifier: "AgentPoolsAbortLatestOperationResponse",
-}) as any as S.Schema<AgentPoolsAbortLatestOperationResponse>;
+  identifier: "AbortAgentPoolLatestOperationResponse",
+}) as any as S.Schema<AbortAgentPoolLatestOperationResponse>;
+
+export interface AbortManagedClusterLatestOperationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the managed cluster resource. */
+  resourceName: string;
+}
+export const AbortManagedClusterLatestOperationRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      resourceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/abort",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "AbortManagedClusterLatestOperationRequest",
+  }) as any as S.Schema<AbortManagedClusterLatestOperationRequest>;
+
+export interface AbortManagedClusterLatestOperationResponse {}
+export const AbortManagedClusterLatestOperationResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "AbortManagedClusterLatestOperationResponse",
+  }) as any as S.Schema<AbortManagedClusterLatestOperationResponse>;
 
 /** The OS disk type to be used for machines in the agent pool. The default is 'Ephemeral' if the VM supports it and has a cache disk larger than the requested OSDiskSizeGB. Otherwise, defaults to 'Managed'. May not be changed after creation. For more information see [Ephemeral OS](https://docs.microsoft.com/azure/aks/cluster-configuration#ephemeral-os). */
 export type OSDiskType = "Managed" | "Ephemeral";
@@ -1410,440 +1442,6 @@ export const AgentPoolsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "AgentPoolsCreateOrUpdateResponse",
 }) as any as S.Schema<AgentPoolsCreateOrUpdateResponse>;
 
-export interface AgentPoolsDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the managed cluster resource. */
-  resourceName: string;
-  /** The name of the agent pool. */
-  agentPoolName: string;
-  /** ignore-pod-disruption-budget=true to delete those pods on a node without considering Pod Disruption Budget */
-  ignore_pod_disruption_budget?: boolean;
-}
-export const AgentPoolsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    resourceName: S.String.pipe(T.Label()),
-    agentPoolName: S.String.pipe(T.Label()),
-    ignore_pod_disruption_budget: S.optional(
-      S.Boolean.pipe(T.Query("ignore-pod-disruption-budget")),
-    ),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/agentPools/{agentPoolName}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "AgentPoolsDeleteRequest",
-}) as any as S.Schema<AgentPoolsDeleteRequest>;
-
-export interface AgentPoolsDeleteResponse {}
-export const AgentPoolsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "AgentPoolsDeleteResponse",
-}) as any as S.Schema<AgentPoolsDeleteResponse>;
-
-/** The agent pool machine names. */
-export type AgentPoolsDeleteMachinesRequestMachineNamesList = Array<string>;
-export const AgentPoolsDeleteMachinesRequestMachineNamesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<AgentPoolsDeleteMachinesRequestMachineNamesList>;
-
-export interface AgentPoolsDeleteMachinesRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the managed cluster resource. */
-  resourceName: string;
-  /** The name of the agent pool. */
-  agentPoolName: string;
-  /** The agent pool machine names. */
-  machineNames: AgentPoolsDeleteMachinesRequestMachineNamesList;
-}
-export const AgentPoolsDeleteMachinesRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    resourceName: S.String.pipe(T.Label()),
-    agentPoolName: S.String.pipe(T.Label()),
-    machineNames: AgentPoolsDeleteMachinesRequestMachineNamesList,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/agentPools/{agentPoolName}/deleteMachines",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "AgentPoolsDeleteMachinesRequest",
-}) as any as S.Schema<AgentPoolsDeleteMachinesRequest>;
-
-export interface AgentPoolsDeleteMachinesResponse {}
-export const AgentPoolsDeleteMachinesResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "AgentPoolsDeleteMachinesResponse",
-}) as any as S.Schema<AgentPoolsDeleteMachinesResponse>;
-
-export interface AgentPoolsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the managed cluster resource. */
-  resourceName: string;
-  /** The name of the agent pool. */
-  agentPoolName: string;
-}
-export const AgentPoolsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    resourceName: S.String.pipe(T.Label()),
-    agentPoolName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/agentPools/{agentPoolName}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "AgentPoolsGetRequest",
-}) as any as S.Schema<AgentPoolsGetRequest>;
-
-export interface AgentPoolsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of an agent pool. */
-  properties?: ManagedClusterAgentPoolProfileProperties;
-}
-export const AgentPoolsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ManagedClusterAgentPoolProfileProperties),
-  }),
-).annotate({
-  identifier: "AgentPoolsGetResponse",
-}) as any as S.Schema<AgentPoolsGetResponse>;
-
-export interface AgentPoolsGetAvailableAgentPoolVersionsRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the managed cluster resource. */
-  resourceName: string;
-}
-export const AgentPoolsGetAvailableAgentPoolVersionsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/availableAgentPoolVersions",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "AgentPoolsGetAvailableAgentPoolVersionsRequest",
-  }) as any as S.Schema<AgentPoolsGetAvailableAgentPoolVersionsRequest>;
-
-/** Available version information for an agent pool. */
-export interface AgentPoolAvailableVersionsPropertiesAgentPoolVersionsItem {
-  /** Whether this version is the default agent pool version. */
-  default?: boolean;
-  /** The Kubernetes version (major.minor.patch). */
-  kubernetesVersion?: string;
-  /** Whether Kubernetes version is currently in preview. */
-  isPreview?: boolean;
-}
-export const AgentPoolAvailableVersionsPropertiesAgentPoolVersionsItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      default: S.optional(S.Boolean),
-      kubernetesVersion: S.optional(S.String),
-      isPreview: S.optional(S.Boolean),
-    }),
-  ).annotate({
-    identifier: "AgentPoolAvailableVersionsPropertiesAgentPoolVersionsItem",
-  }) as any as S.Schema<AgentPoolAvailableVersionsPropertiesAgentPoolVersionsItem>;
-
-/** List of versions available for agent pool. */
-export type AgentPoolAvailableVersionsPropertiesAgentPoolVersionsList =
-  Array<AgentPoolAvailableVersionsPropertiesAgentPoolVersionsItem>;
-export const AgentPoolAvailableVersionsPropertiesAgentPoolVersionsList =
-  /*@__PURE__*/ S.Array(
-    AgentPoolAvailableVersionsPropertiesAgentPoolVersionsItem,
-  ) as any as S.Schema<AgentPoolAvailableVersionsPropertiesAgentPoolVersionsList>;
-
-/** The list of available agent pool versions. */
-export interface AgentPoolAvailableVersionsProperties {
-  /** List of versions available for agent pool. */
-  agentPoolVersions?: AgentPoolAvailableVersionsPropertiesAgentPoolVersionsList;
-}
-export const AgentPoolAvailableVersionsProperties = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      agentPoolVersions: S.optional(
-        AgentPoolAvailableVersionsPropertiesAgentPoolVersionsList,
-      ),
-    }),
-).annotate({
-  identifier: "AgentPoolAvailableVersionsProperties",
-}) as any as S.Schema<AgentPoolAvailableVersionsProperties>;
-
-/** The list of available versions for an agent pool. */
-export interface AgentPoolAvailableVersions {
-  /** The ID of the agent pool version list. */
-  id?: string;
-  /** The name of the agent pool version list. */
-  name?: string;
-  /** Type of the agent pool version list. */
-  type?: string;
-  /** Properties of agent pool available versions. */
-  properties: AgentPoolAvailableVersionsProperties;
-}
-export const AgentPoolAvailableVersions = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    properties: AgentPoolAvailableVersionsProperties,
-  }),
-).annotate({
-  identifier: "AgentPoolAvailableVersions",
-}) as any as S.Schema<AgentPoolAvailableVersions>;
-
-export interface AgentPoolsGetUpgradeProfileRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the managed cluster resource. */
-  resourceName: string;
-  /** The name of the agent pool. */
-  agentPoolName: string;
-}
-export const AgentPoolsGetUpgradeProfileRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    resourceName: S.String.pipe(T.Label()),
-    agentPoolName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/agentPools/{agentPoolName}/upgradeProfiles/default",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "AgentPoolsGetUpgradeProfileRequest",
-}) as any as S.Schema<AgentPoolsGetUpgradeProfileRequest>;
-
-/** The operating system type. The default is Linux. */
-export type AgentPoolUpgradeProfilePropertiesOsType = "Linux" | "Windows";
-export const AgentPoolUpgradeProfilePropertiesOsType = /*@__PURE__*/ S.String;
-
-/** Available upgrades for an AgentPool. */
-export interface AgentPoolUpgradeProfilePropertiesUpgradesItem {
-  /** The Kubernetes version (major.minor.patch). */
-  kubernetesVersion?: string;
-  /** Whether the Kubernetes version is currently in preview. */
-  isPreview?: boolean;
-}
-export const AgentPoolUpgradeProfilePropertiesUpgradesItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      kubernetesVersion: S.optional(S.String),
-      isPreview: S.optional(S.Boolean),
-    }),
-  ).annotate({
-    identifier: "AgentPoolUpgradeProfilePropertiesUpgradesItem",
-  }) as any as S.Schema<AgentPoolUpgradeProfilePropertiesUpgradesItem>;
-
-/** List of orchestrator types and versions available for upgrade. */
-export type AgentPoolUpgradeProfilePropertiesUpgradesList =
-  Array<AgentPoolUpgradeProfilePropertiesUpgradesItem>;
-export const AgentPoolUpgradeProfilePropertiesUpgradesList =
-  /*@__PURE__*/ S.Array(
-    AgentPoolUpgradeProfilePropertiesUpgradesItem,
-  ) as any as S.Schema<AgentPoolUpgradeProfilePropertiesUpgradesList>;
-
-/** A historical version that can be used for rollback operations. */
-export interface AgentPoolRecentlyUsedVersion {
-  /** The Kubernetes version (major.minor.patch) available for rollback. */
-  orchestratorVersion?: string;
-  /** The node image version available for rollback. */
-  nodeImageVersion?: string;
-  /** The timestamp when this version was last used. */
-  timestamp?: string;
-}
-export const AgentPoolRecentlyUsedVersion = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    orchestratorVersion: S.optional(S.String),
-    nodeImageVersion: S.optional(S.String),
-    timestamp: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AgentPoolRecentlyUsedVersion",
-}) as any as S.Schema<AgentPoolRecentlyUsedVersion>;
-
-/** List of historical good versions for rollback operations. */
-export type AgentPoolUpgradeProfilePropertiesRecentlyUsedVersionsList =
-  Array<AgentPoolRecentlyUsedVersion>;
-export const AgentPoolUpgradeProfilePropertiesRecentlyUsedVersionsList =
-  /*@__PURE__*/ S.Array(
-    AgentPoolRecentlyUsedVersion,
-  ) as any as S.Schema<AgentPoolUpgradeProfilePropertiesRecentlyUsedVersionsList>;
-
-/** The list of available upgrade versions. */
-export interface AgentPoolUpgradeProfileProperties {
-  /** The Kubernetes version (major.minor.patch). */
-  kubernetesVersion: string;
-  /** The operating system type. The default is Linux. */
-  osType: AgentPoolUpgradeProfilePropertiesOsType;
-  /** List of orchestrator types and versions available for upgrade. */
-  upgrades?: AgentPoolUpgradeProfilePropertiesUpgradesList;
-  /** List of historical good versions for rollback operations. */
-  recentlyUsedVersions?: AgentPoolUpgradeProfilePropertiesRecentlyUsedVersionsList;
-  /** The latest AKS supported node image version. */
-  latestNodeImageVersion?: string;
-}
-export const AgentPoolUpgradeProfileProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    kubernetesVersion: S.String,
-    osType: AgentPoolUpgradeProfilePropertiesOsType,
-    upgrades: S.optional(AgentPoolUpgradeProfilePropertiesUpgradesList),
-    recentlyUsedVersions: S.optional(
-      AgentPoolUpgradeProfilePropertiesRecentlyUsedVersionsList,
-    ),
-    latestNodeImageVersion: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AgentPoolUpgradeProfileProperties",
-}) as any as S.Schema<AgentPoolUpgradeProfileProperties>;
-
-export interface AgentPoolsGetUpgradeProfileResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties of the agent pool upgrade profile. */
-  properties: AgentPoolUpgradeProfileProperties;
-}
-export const AgentPoolsGetUpgradeProfileResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: AgentPoolUpgradeProfileProperties,
-  }),
-).annotate({
-  identifier: "AgentPoolsGetUpgradeProfileResponse",
-}) as any as S.Schema<AgentPoolsGetUpgradeProfileResponse>;
-
-export interface AgentPoolsListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the managed cluster resource. */
-  resourceName: string;
-}
-export const AgentPoolsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    resourceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/agentPools",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "AgentPoolsListRequest",
-}) as any as S.Schema<AgentPoolsListRequest>;
-
-/** Agent Pool. */
-export interface AgentPool {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of an agent pool. */
-  properties?: ManagedClusterAgentPoolProfileProperties;
-}
-export const AgentPool = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ManagedClusterAgentPoolProfileProperties),
-  }),
-).annotate({ identifier: "AgentPool" }) as any as S.Schema<AgentPool>;
-
-/** The AgentPool items on this page */
-export type AgentPoolListResultValueList = Array<AgentPool>;
-export const AgentPoolListResultValueList = /*@__PURE__*/ S.Array(
-  AgentPool,
-) as any as S.Schema<AgentPoolListResultValueList>;
-
-/** The response of a AgentPool list operation. */
-export interface AgentPoolListResult {
-  /** The AgentPool items on this page */
-  value: AgentPoolListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const AgentPoolListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: AgentPoolListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AgentPoolListResult",
-}) as any as S.Schema<AgentPoolListResult>;
-
 export interface AgentPoolsUpgradeNodeImageVersionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -1977,7 +1575,7 @@ export interface AutoUpgradeProfilePropertiesInput {
   disabled?: boolean;
   /** The status of the auto upgrade profile. */
   autoUpgradeProfileStatus?: AutoUpgradeProfileStatusInput;
-  /** This is the target Kubernetes version for auto-upgrade. The format must be `{major version}.{minor version}`. For example, "1.30". By default, this is empty. If upgrade channel is set to TargetKubernetesVersion, this field must not be empty. If upgrade channel is Rapid, Stable or NodeImage, this field must be empty. */
+  /** This is the target Kubernetes version for auto-upgrade. The format must be `{major version}.{minor version}`. For example, "1.30". By default, this is empty. If upgrade channel is set to TargetKubernetesVersion, this field must not be empty. If upgrade channel is not TargetKubernetesVersion, this field must be empty. */
   targetKubernetesVersion?: string;
   /** If upgrade channel is not TargetKubernetesVersion, this field must be False. If set to True: Fleet auto upgrade will continue generate update runs for patches of minor versions earlier than N-2 (where N is the latest supported minor version) if those minor versions support Long-Term Support (LTS). By default, this is set to False. For more information on AKS LTS, please see https://learn.microsoft.com/en-us/azure/aks/long-term-support */
   longTermSupport?: boolean;
@@ -2129,7 +1727,7 @@ export interface AutoUpgradeProfileProperties {
   disabled?: boolean;
   /** The status of the auto upgrade profile. */
   autoUpgradeProfileStatus?: AutoUpgradeProfileStatus;
-  /** This is the target Kubernetes version for auto-upgrade. The format must be `{major version}.{minor version}`. For example, "1.30". By default, this is empty. If upgrade channel is set to TargetKubernetesVersion, this field must not be empty. If upgrade channel is Rapid, Stable or NodeImage, this field must be empty. */
+  /** This is the target Kubernetes version for auto-upgrade. The format must be `{major version}.{minor version}`. For example, "1.30". By default, this is empty. If upgrade channel is set to TargetKubernetesVersion, this field must not be empty. If upgrade channel is not TargetKubernetesVersion, this field must be empty. */
   targetKubernetesVersion?: string;
   /** If upgrade channel is not TargetKubernetesVersion, this field must be False. If set to True: Fleet auto upgrade will continue generate update runs for patches of minor versions earlier than N-2 (where N is the latest supported minor version) if those minor versions support Long-Term Support (LTS). By default, this is set to False. For more information on AKS LTS, please see https://learn.microsoft.com/en-us/azure/aks/long-term-support */
   longTermSupport?: boolean;
@@ -2177,178 +1775,6 @@ export const AutoUpgradeProfilesCreateOrUpdateResponse =
     identifier: "AutoUpgradeProfilesCreateOrUpdateResponse",
   }) as any as S.Schema<AutoUpgradeProfilesCreateOrUpdateResponse>;
 
-export interface AutoUpgradeProfilesDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Fleet resource. */
-  fleetName: string;
-  /** The name of the AutoUpgradeProfile resource. */
-  autoUpgradeProfileName: string;
-}
-export const AutoUpgradeProfilesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    fleetName: S.String.pipe(T.Label()),
-    autoUpgradeProfileName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/fleets/{fleetName}/autoUpgradeProfiles/{autoUpgradeProfileName}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "AutoUpgradeProfilesDeleteRequest",
-}) as any as S.Schema<AutoUpgradeProfilesDeleteRequest>;
-
-export interface AutoUpgradeProfilesDeleteResponse {}
-export const AutoUpgradeProfilesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "AutoUpgradeProfilesDeleteResponse",
-}) as any as S.Schema<AutoUpgradeProfilesDeleteResponse>;
-
-export interface AutoUpgradeProfilesGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Fleet resource. */
-  fleetName: string;
-  /** The name of the AutoUpgradeProfile resource. */
-  autoUpgradeProfileName: string;
-}
-export const AutoUpgradeProfilesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    fleetName: S.String.pipe(T.Label()),
-    autoUpgradeProfileName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/fleets/{fleetName}/autoUpgradeProfiles/{autoUpgradeProfileName}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "AutoUpgradeProfilesGetRequest",
-}) as any as S.Schema<AutoUpgradeProfilesGetRequest>;
-
-export interface AutoUpgradeProfilesGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: AutoUpgradeProfileProperties;
-  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
-  eTag?: string;
-}
-export const AutoUpgradeProfilesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(AutoUpgradeProfileProperties),
-    eTag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AutoUpgradeProfilesGetResponse",
-}) as any as S.Schema<AutoUpgradeProfilesGetResponse>;
-
-export interface AutoUpgradeProfilesListByFleetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Fleet resource. */
-  fleetName: string;
-  /** The number of result items to return. */
-  _top?: number;
-  /** The page-continuation token to use with a paged version of this API. */
-  _skipToken?: string;
-}
-export const AutoUpgradeProfilesListByFleetRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      fleetName: S.String.pipe(T.Label()),
-      _top: S.optional(S.Number.pipe(T.Query("$top"))),
-      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/fleets/{fleetName}/autoUpgradeProfiles",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "AutoUpgradeProfilesListByFleetRequest",
-}) as any as S.Schema<AutoUpgradeProfilesListByFleetRequest>;
-
-/** The AutoUpgradeProfile resource. */
-export interface AutoUpgradeProfile {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: AutoUpgradeProfileProperties;
-  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
-  eTag?: string;
-}
-export const AutoUpgradeProfile = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(AutoUpgradeProfileProperties),
-    eTag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AutoUpgradeProfile",
-}) as any as S.Schema<AutoUpgradeProfile>;
-
-/** The AutoUpgradeProfile items on this page */
-export type AutoUpgradeProfileListResultValueList = Array<AutoUpgradeProfile>;
-export const AutoUpgradeProfileListResultValueList = /*@__PURE__*/ S.Array(
-  AutoUpgradeProfile,
-) as any as S.Schema<AutoUpgradeProfileListResultValueList>;
-
-/** The response of a AutoUpgradeProfile list operation. */
-export interface AutoUpgradeProfileListResult {
-  /** The AutoUpgradeProfile items on this page */
-  value: AutoUpgradeProfileListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const AutoUpgradeProfileListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: AutoUpgradeProfileListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AutoUpgradeProfileListResult",
-}) as any as S.Schema<AutoUpgradeProfileListResult>;
-
 /** Specifies the level of Deployment Safeguards */
 export type DeploymentSafeguardsLevel = "Warn" | "Enforce";
 export const DeploymentSafeguardsLevel = /*@__PURE__*/ S.String;
@@ -2389,13 +1815,13 @@ export const DeploymentSafeguardsPropertiesInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeploymentSafeguardsPropertiesInput",
 }) as any as S.Schema<DeploymentSafeguardsPropertiesInput>;
 
-export interface DeploymentSafeguardsCreateRequest {
+export interface CreateDeploymentSafeguardRequest {
   /** The fully qualified Azure Resource manager identifier of the resource. */
   resourceUri: string;
   /** The resource-specific properties for this resource. */
   properties?: DeploymentSafeguardsPropertiesInput;
 }
-export const DeploymentSafeguardsCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateDeploymentSafeguardRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     resourceUri: S.String.pipe(T.Label()),
     properties: S.optional(DeploymentSafeguardsPropertiesInput),
@@ -2408,8 +1834,8 @@ export const DeploymentSafeguardsCreateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeploymentSafeguardsCreateRequest",
-}) as any as S.Schema<DeploymentSafeguardsCreateRequest>;
+  identifier: "CreateDeploymentSafeguardRequest",
+}) as any as S.Schema<CreateDeploymentSafeguardRequest>;
 
 /** The provisioning state of the last accepted operation. */
 export type ProvisioningState =
@@ -2465,7 +1891,7 @@ export const DeploymentSafeguardsProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeploymentSafeguardsProperties",
 }) as any as S.Schema<DeploymentSafeguardsProperties>;
 
-export interface DeploymentSafeguardsCreateResponse {
+export interface CreateDeploymentSafeguardResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -2479,7 +1905,7 @@ export interface DeploymentSafeguardsCreateResponse {
   /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
   eTag?: string;
 }
-export const DeploymentSafeguardsCreateResponse = /*@__PURE__*/ S.suspend(() =>
+export const CreateDeploymentSafeguardResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -2489,14 +1915,322 @@ export const DeploymentSafeguardsCreateResponse = /*@__PURE__*/ S.suspend(() =>
     eTag: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "DeploymentSafeguardsCreateResponse",
-}) as any as S.Schema<DeploymentSafeguardsCreateResponse>;
+  identifier: "CreateDeploymentSafeguardResponse",
+}) as any as S.Schema<CreateDeploymentSafeguardResponse>;
 
-export interface DeploymentSafeguardsDeleteRequest {
+/** The labels for the fleet member. */
+export type FleetMemberPropertiesInputLabelsMap = {
+  [key: string]: string | undefined;
+};
+export const FleetMemberPropertiesInputLabelsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<FleetMemberPropertiesInputLabelsMap>;
+
+/** A member of the Fleet. It contains a reference to an existing Kubernetes cluster on Azure. */
+export interface FleetMemberPropertiesInput {
+  /** The ARM resource id of the cluster that joins the Fleet. Must be a valid Azure resource id. e.g.: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{clusterName}'. */
+  clusterResourceId: string;
+  /** The group this member belongs to for multi-cluster update management. */
+  group?: string;
+  /** The labels for the fleet member. */
+  labels?: FleetMemberPropertiesInputLabelsMap;
+}
+export const FleetMemberPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    clusterResourceId: S.String,
+    group: S.optional(S.String),
+    labels: S.optional(FleetMemberPropertiesInputLabelsMap),
+  }),
+).annotate({
+  identifier: "FleetMemberPropertiesInput",
+}) as any as S.Schema<FleetMemberPropertiesInput>;
+
+export interface CreateFleetMemberRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Fleet resource. */
+  fleetName: string;
+  /** The name of the Fleet member resource. */
+  fleetMemberName: string;
+  /** The resource-specific properties for this resource. */
+  properties?: FleetMemberPropertiesInput;
+}
+export const CreateFleetMemberRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    fleetName: S.String.pipe(T.Label()),
+    fleetMemberName: S.String.pipe(T.Label()),
+    properties: S.optional(FleetMemberPropertiesInput),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/fleets/{fleetName}/members/{fleetMemberName}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "CreateFleetMemberRequest",
+}) as any as S.Schema<CreateFleetMemberRequest>;
+
+/** The provisioning state of the last accepted operation. */
+export type FleetMemberProvisioningState =
+  | "Succeeded"
+  | "Failed"
+  | "Canceled"
+  | "Joining"
+  | "Leaving"
+  | "Updating";
+export const FleetMemberProvisioningState = /*@__PURE__*/ S.String;
+
+/** The labels for the fleet member. */
+export type FleetMemberPropertiesLabelsMap = {
+  [key: string]: string | undefined;
+};
+export const FleetMemberPropertiesLabelsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<FleetMemberPropertiesLabelsMap>;
+
+/** The error details. */
+export type FleetMemberStatusLastOperationErrorDetailsList = Array<ErrorDetail>;
+export const FleetMemberStatusLastOperationErrorDetailsList =
+  /*@__PURE__*/ S.Array(
+    ErrorDetail,
+  ) as any as S.Schema<FleetMemberStatusLastOperationErrorDetailsList>;
+
+/** The error additional info. */
+export type FleetMemberStatusLastOperationErrorAdditionalInfoList =
+  Array<ErrorAdditionalInfo>;
+export const FleetMemberStatusLastOperationErrorAdditionalInfoList =
+  /*@__PURE__*/ S.Array(
+    ErrorAdditionalInfo,
+  ) as any as S.Schema<FleetMemberStatusLastOperationErrorAdditionalInfoList>;
+
+/** The error detail. */
+export interface FleetMemberStatusLastOperationError {
+  /** The error code. */
+  code?: string;
+  /** The error message. */
+  message?: string;
+  /** The error target. */
+  target?: string;
+  /** The error details. */
+  details?: FleetMemberStatusLastOperationErrorDetailsList;
+  /** The error additional info. */
+  additionalInfo?: FleetMemberStatusLastOperationErrorAdditionalInfoList;
+}
+export const FleetMemberStatusLastOperationError = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    code: S.optional(S.String),
+    message: S.optional(S.String),
+    target: S.optional(S.String),
+    details: S.optional(FleetMemberStatusLastOperationErrorDetailsList),
+    additionalInfo: S.optional(
+      FleetMemberStatusLastOperationErrorAdditionalInfoList,
+    ),
+  }),
+).annotate({
+  identifier: "FleetMemberStatusLastOperationError",
+}) as any as S.Schema<FleetMemberStatusLastOperationError>;
+
+/** Status information for the fleet member */
+export interface FleetMemberStatus {
+  /** The last operation ID for the fleet member */
+  lastOperationId?: string;
+  /** The error detail. */
+  lastOperationError?: FleetMemberStatusLastOperationError;
+}
+export const FleetMemberStatus = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    lastOperationId: S.optional(S.String),
+    lastOperationError: S.optional(FleetMemberStatusLastOperationError),
+  }),
+).annotate({
+  identifier: "FleetMemberStatus",
+}) as any as S.Schema<FleetMemberStatus>;
+
+/** A member of the Fleet. It contains a reference to an existing Kubernetes cluster on Azure. */
+export interface FleetMemberProperties {
+  /** The ARM resource id of the cluster that joins the Fleet. Must be a valid Azure resource id. e.g.: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{clusterName}'. */
+  clusterResourceId: string;
+  /** The group this member belongs to for multi-cluster update management. */
+  group?: string;
+  /** The status of the last operation. */
+  provisioningState?: FleetMemberProvisioningState;
+  /** The labels for the fleet member. */
+  labels?: FleetMemberPropertiesLabelsMap;
+  /** Status information of the last operation for fleet member. */
+  status?: FleetMemberStatus;
+}
+export const FleetMemberProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    clusterResourceId: S.String,
+    group: S.optional(S.String),
+    provisioningState: S.optional(FleetMemberProvisioningState),
+    labels: S.optional(FleetMemberPropertiesLabelsMap),
+    status: S.optional(FleetMemberStatus),
+  }),
+).annotate({
+  identifier: "FleetMemberProperties",
+}) as any as S.Schema<FleetMemberProperties>;
+
+export interface CreateFleetMemberResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: FleetMemberProperties;
+  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
+  eTag?: string;
+}
+export const CreateFleetMemberResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(FleetMemberProperties),
+    eTag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "CreateFleetMemberResponse",
+}) as any as S.Schema<CreateFleetMemberResponse>;
+
+export interface DeleteAgentPoolRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the managed cluster resource. */
+  resourceName: string;
+  /** The name of the agent pool. */
+  agentPoolName: string;
+  /** ignore-pod-disruption-budget=true to delete those pods on a node without considering Pod Disruption Budget */
+  ignore_pod_disruption_budget?: boolean;
+}
+export const DeleteAgentPoolRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    resourceName: S.String.pipe(T.Label()),
+    agentPoolName: S.String.pipe(T.Label()),
+    ignore_pod_disruption_budget: S.optional(
+      S.Boolean.pipe(T.Query("ignore-pod-disruption-budget")),
+    ),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/agentPools/{agentPoolName}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteAgentPoolRequest",
+}) as any as S.Schema<DeleteAgentPoolRequest>;
+
+export interface DeleteAgentPoolResponse {}
+export const DeleteAgentPoolResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteAgentPoolResponse",
+}) as any as S.Schema<DeleteAgentPoolResponse>;
+
+/** The agent pool machine names. */
+export type DeleteAgentPoolMachinesRequestMachineNamesList = Array<string>;
+export const DeleteAgentPoolMachinesRequestMachineNamesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<DeleteAgentPoolMachinesRequestMachineNamesList>;
+
+export interface DeleteAgentPoolMachinesRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the managed cluster resource. */
+  resourceName: string;
+  /** The name of the agent pool. */
+  agentPoolName: string;
+  /** The agent pool machine names. */
+  machineNames: DeleteAgentPoolMachinesRequestMachineNamesList;
+}
+export const DeleteAgentPoolMachinesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    resourceName: S.String.pipe(T.Label()),
+    agentPoolName: S.String.pipe(T.Label()),
+    machineNames: DeleteAgentPoolMachinesRequestMachineNamesList,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/agentPools/{agentPoolName}/deleteMachines",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteAgentPoolMachinesRequest",
+}) as any as S.Schema<DeleteAgentPoolMachinesRequest>;
+
+export interface DeleteAgentPoolMachinesResponse {}
+export const DeleteAgentPoolMachinesResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteAgentPoolMachinesResponse",
+}) as any as S.Schema<DeleteAgentPoolMachinesResponse>;
+
+export interface DeleteAutoUpgradeProfileRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Fleet resource. */
+  fleetName: string;
+  /** The name of the AutoUpgradeProfile resource. */
+  autoUpgradeProfileName: string;
+}
+export const DeleteAutoUpgradeProfileRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    fleetName: S.String.pipe(T.Label()),
+    autoUpgradeProfileName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/fleets/{fleetName}/autoUpgradeProfiles/{autoUpgradeProfileName}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteAutoUpgradeProfileRequest",
+}) as any as S.Schema<DeleteAutoUpgradeProfileRequest>;
+
+export interface DeleteAutoUpgradeProfileResponse {}
+export const DeleteAutoUpgradeProfileResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteAutoUpgradeProfileResponse",
+}) as any as S.Schema<DeleteAutoUpgradeProfileResponse>;
+
+export interface DeleteDeploymentSafeguardRequest {
   /** The fully qualified Azure Resource manager identifier of the resource. */
   resourceUri: string;
 }
-export const DeploymentSafeguardsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteDeploymentSafeguardRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     resourceUri: S.String.pipe(T.Label()),
   }).pipe(
@@ -2508,130 +2242,429 @@ export const DeploymentSafeguardsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DeploymentSafeguardsDeleteRequest",
-}) as any as S.Schema<DeploymentSafeguardsDeleteRequest>;
+  identifier: "DeleteDeploymentSafeguardRequest",
+}) as any as S.Schema<DeleteDeploymentSafeguardRequest>;
 
-export interface DeploymentSafeguardsDeleteResponse {}
-export const DeploymentSafeguardsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteDeploymentSafeguardResponse {}
+export const DeleteDeploymentSafeguardResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeploymentSafeguardsDeleteResponse",
-}) as any as S.Schema<DeploymentSafeguardsDeleteResponse>;
+  identifier: "DeleteDeploymentSafeguardResponse",
+}) as any as S.Schema<DeleteDeploymentSafeguardResponse>;
 
-export interface DeploymentSafeguardsGetRequest {
-  /** The fully qualified Azure Resource manager identifier of the resource. */
-  resourceUri: string;
+export interface DeleteFleetRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Fleet resource. */
+  fleetName: string;
 }
-export const DeploymentSafeguardsGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteFleetRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    resourceUri: S.String.pipe(T.Label()),
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    fleetName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
-      method: "GET",
-      uri: "/{resourceUri}/providers/Microsoft.ContainerService/deploymentSafeguards/default",
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/fleets/{fleetName}",
       code: 200,
-      apiVersion: "2025-07-01",
+      apiVersion: "2026-06-01",
     }),
   ),
 ).annotate({
-  identifier: "DeploymentSafeguardsGetRequest",
-}) as any as S.Schema<DeploymentSafeguardsGetRequest>;
+  identifier: "DeleteFleetRequest",
+}) as any as S.Schema<DeleteFleetRequest>;
 
-export interface DeploymentSafeguardsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: DeploymentSafeguardsProperties;
-  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
-  eTag?: string;
-}
-export const DeploymentSafeguardsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(DeploymentSafeguardsProperties),
-    eTag: S.optional(S.String),
-  }),
+export interface DeleteFleetResponse {}
+export const DeleteFleetResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
 ).annotate({
-  identifier: "DeploymentSafeguardsGetResponse",
-}) as any as S.Schema<DeploymentSafeguardsGetResponse>;
+  identifier: "DeleteFleetResponse",
+}) as any as S.Schema<DeleteFleetResponse>;
 
-export interface DeploymentSafeguardsListRequest {
-  /** The fully qualified Azure Resource manager identifier of the resource. */
-  resourceUri: string;
+export interface DeleteFleetManagedNamespaceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Fleet resource. */
+  fleetName: string;
+  /** The name of the fleet managed namespace resource. */
+  managedNamespaceName: string;
 }
-export const DeploymentSafeguardsListRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteFleetManagedNamespaceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    resourceUri: S.String.pipe(T.Label()),
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    fleetName: S.String.pipe(T.Label()),
+    managedNamespaceName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
-      method: "GET",
-      uri: "/{resourceUri}/providers/Microsoft.ContainerService/deploymentSafeguards",
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/fleets/{fleetName}/managedNamespaces/{managedNamespaceName}",
       code: 200,
-      apiVersion: "2025-07-01",
+      apiVersion: "2026-06-01",
     }),
   ),
 ).annotate({
-  identifier: "DeploymentSafeguardsListRequest",
-}) as any as S.Schema<DeploymentSafeguardsListRequest>;
+  identifier: "DeleteFleetManagedNamespaceRequest",
+}) as any as S.Schema<DeleteFleetManagedNamespaceRequest>;
 
-/** Deployment Safeguards */
-export interface DeploymentSafeguard {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: DeploymentSafeguardsProperties;
-  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
-  eTag?: string;
-}
-export const DeploymentSafeguard = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(DeploymentSafeguardsProperties),
-    eTag: S.optional(S.String),
-  }),
+export interface DeleteFleetManagedNamespaceResponse {}
+export const DeleteFleetManagedNamespaceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
 ).annotate({
-  identifier: "DeploymentSafeguard",
-}) as any as S.Schema<DeploymentSafeguard>;
+  identifier: "DeleteFleetManagedNamespaceResponse",
+}) as any as S.Schema<DeleteFleetManagedNamespaceResponse>;
 
-/** The DeploymentSafeguard items on this page */
-export type DeploymentSafeguardListResultValueList = Array<DeploymentSafeguard>;
-export const DeploymentSafeguardListResultValueList = /*@__PURE__*/ S.Array(
-  DeploymentSafeguard,
-) as any as S.Schema<DeploymentSafeguardListResultValueList>;
-
-/** The response of a DeploymentSafeguard list operation. */
-export interface DeploymentSafeguardListResult {
-  /** The DeploymentSafeguard items on this page */
-  value: DeploymentSafeguardListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
+export interface DeleteFleetMemberRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Fleet resource. */
+  fleetName: string;
+  /** The name of the Fleet member resource. */
+  fleetMemberName: string;
 }
-export const DeploymentSafeguardListResult = /*@__PURE__*/ S.suspend(() =>
+export const DeleteFleetMemberRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: DeploymentSafeguardListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    fleetName: S.String.pipe(T.Label()),
+    fleetMemberName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/fleets/{fleetName}/members/{fleetMemberName}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
 ).annotate({
-  identifier: "DeploymentSafeguardListResult",
-}) as any as S.Schema<DeploymentSafeguardListResult>;
+  identifier: "DeleteFleetMemberRequest",
+}) as any as S.Schema<DeleteFleetMemberRequest>;
+
+export interface DeleteFleetMemberResponse {}
+export const DeleteFleetMemberResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteFleetMemberResponse",
+}) as any as S.Schema<DeleteFleetMemberResponse>;
+
+export interface DeleteFleetUpdateStrategyRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Fleet resource. */
+  fleetName: string;
+  /** The name of the UpdateStrategy resource. */
+  updateStrategyName: string;
+}
+export const DeleteFleetUpdateStrategyRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    fleetName: S.String.pipe(T.Label()),
+    updateStrategyName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/fleets/{fleetName}/updateStrategies/{updateStrategyName}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteFleetUpdateStrategyRequest",
+}) as any as S.Schema<DeleteFleetUpdateStrategyRequest>;
+
+export interface DeleteFleetUpdateStrategyResponse {}
+export const DeleteFleetUpdateStrategyResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteFleetUpdateStrategyResponse",
+}) as any as S.Schema<DeleteFleetUpdateStrategyResponse>;
+
+export interface DeleteIdentityBindingRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the managed cluster resource. */
+  resourceName: string;
+  /** The name of the identity binding. */
+  identityBindingName: string;
+}
+export const DeleteIdentityBindingRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    resourceName: S.String.pipe(T.Label()),
+    identityBindingName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/identityBindings/{identityBindingName}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteIdentityBindingRequest",
+}) as any as S.Schema<DeleteIdentityBindingRequest>;
+
+export interface DeleteIdentityBindingResponse {}
+export const DeleteIdentityBindingResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteIdentityBindingResponse",
+}) as any as S.Schema<DeleteIdentityBindingResponse>;
+
+export interface DeleteMaintenanceConfigurationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the managed cluster resource. */
+  resourceName: string;
+  /** The name of the maintenance configuration. Supported values are 'default', 'aksManagedAutoUpgradeSchedule', or 'aksManagedNodeOSUpgradeSchedule'. */
+  configName: string;
+}
+export const DeleteMaintenanceConfigurationRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      resourceName: S.String.pipe(T.Label()),
+      configName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/maintenanceConfigurations/{configName}",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+).annotate({
+  identifier: "DeleteMaintenanceConfigurationRequest",
+}) as any as S.Schema<DeleteMaintenanceConfigurationRequest>;
+
+export interface DeleteMaintenanceConfigurationResponse {}
+export const DeleteMaintenanceConfigurationResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "DeleteMaintenanceConfigurationResponse",
+}) as any as S.Schema<DeleteMaintenanceConfigurationResponse>;
+
+export interface DeleteManagedClusterRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the managed cluster resource. */
+  resourceName: string;
+}
+export const DeleteManagedClusterRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    resourceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteManagedClusterRequest",
+}) as any as S.Schema<DeleteManagedClusterRequest>;
+
+export interface DeleteManagedClusterResponse {}
+export const DeleteManagedClusterResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteManagedClusterResponse",
+}) as any as S.Schema<DeleteManagedClusterResponse>;
+
+export interface DeleteManagedNamespaceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the managed cluster resource. */
+  resourceName: string;
+  /** The name of the managed namespace. */
+  managedNamespaceName: string;
+}
+export const DeleteManagedNamespaceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    resourceName: S.String.pipe(T.Label()),
+    managedNamespaceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/managedNamespaces/{managedNamespaceName}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteManagedNamespaceRequest",
+}) as any as S.Schema<DeleteManagedNamespaceRequest>;
+
+export interface DeleteManagedNamespaceResponse {}
+export const DeleteManagedNamespaceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteManagedNamespaceResponse",
+}) as any as S.Schema<DeleteManagedNamespaceResponse>;
+
+export interface DeletePrivateEndpointConnectionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the managed cluster resource. */
+  resourceName: string;
+  /** The name of the private endpoint connection. */
+  privateEndpointConnectionName: string;
+}
+export const DeletePrivateEndpointConnectionRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      resourceName: S.String.pipe(T.Label()),
+      privateEndpointConnectionName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/privateEndpointConnections/{privateEndpointConnectionName}",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+).annotate({
+  identifier: "DeletePrivateEndpointConnectionRequest",
+}) as any as S.Schema<DeletePrivateEndpointConnectionRequest>;
+
+export interface DeletePrivateEndpointConnectionResponse {}
+export const DeletePrivateEndpointConnectionResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "DeletePrivateEndpointConnectionResponse",
+}) as any as S.Schema<DeletePrivateEndpointConnectionResponse>;
+
+export interface DeleteSnapshotRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the managed cluster resource. */
+  resourceName: string;
+}
+export const DeleteSnapshotRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    resourceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/snapshots/{resourceName}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteSnapshotRequest",
+}) as any as S.Schema<DeleteSnapshotRequest>;
+
+export interface DeleteSnapshotResponse {}
+export const DeleteSnapshotResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteSnapshotResponse",
+}) as any as S.Schema<DeleteSnapshotResponse>;
+
+export interface DeleteTrustedAccessRoleBindingRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the managed cluster resource. */
+  resourceName: string;
+  /** The name of trusted access role binding. */
+  trustedAccessRoleBindingName: string;
+}
+export const DeleteTrustedAccessRoleBindingRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      resourceName: S.String.pipe(T.Label()),
+      trustedAccessRoleBindingName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/trustedAccessRoleBindings/{trustedAccessRoleBindingName}",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+).annotate({
+  identifier: "DeleteTrustedAccessRoleBindingRequest",
+}) as any as S.Schema<DeleteTrustedAccessRoleBindingRequest>;
+
+export interface DeleteTrustedAccessRoleBindingResponse {}
+export const DeleteTrustedAccessRoleBindingResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "DeleteTrustedAccessRoleBindingResponse",
+}) as any as S.Schema<DeleteTrustedAccessRoleBindingResponse>;
+
+export interface DeleteUpdateRunRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Fleet resource. */
+  fleetName: string;
+  /** The name of the UpdateRun resource. */
+  updateRunName: string;
+}
+export const DeleteUpdateRunRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    fleetName: S.String.pipe(T.Label()),
+    updateRunName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/fleets/{fleetName}/updateRuns/{updateRunName}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteUpdateRunRequest",
+}) as any as S.Schema<DeleteUpdateRunRequest>;
+
+export interface DeleteUpdateRunResponse {}
+export const DeleteUpdateRunResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteUpdateRunResponse",
+}) as any as S.Schema<DeleteUpdateRunResponse>;
 
 /** Resource tags. */
 export type FleetManagedNamespacesCreateOrUpdateRequestTagsMap = {
@@ -3249,731 +3282,6 @@ export const FleetManagedNamespacesCreateOrUpdateResponse =
     identifier: "FleetManagedNamespacesCreateOrUpdateResponse",
   }) as any as S.Schema<FleetManagedNamespacesCreateOrUpdateResponse>;
 
-export interface FleetManagedNamespacesDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Fleet resource. */
-  fleetName: string;
-  /** The name of the fleet managed namespace resource. */
-  managedNamespaceName: string;
-}
-export const FleetManagedNamespacesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    fleetName: S.String.pipe(T.Label()),
-    managedNamespaceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/fleets/{fleetName}/managedNamespaces/{managedNamespaceName}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "FleetManagedNamespacesDeleteRequest",
-}) as any as S.Schema<FleetManagedNamespacesDeleteRequest>;
-
-export interface FleetManagedNamespacesDeleteResponse {}
-export const FleetManagedNamespacesDeleteResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "FleetManagedNamespacesDeleteResponse",
-}) as any as S.Schema<FleetManagedNamespacesDeleteResponse>;
-
-export interface FleetManagedNamespacesGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Fleet resource. */
-  fleetName: string;
-  /** The name of the fleet managed namespace resource. */
-  managedNamespaceName: string;
-}
-export const FleetManagedNamespacesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    fleetName: S.String.pipe(T.Label()),
-    managedNamespaceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/fleets/{fleetName}/managedNamespaces/{managedNamespaceName}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "FleetManagedNamespacesGetRequest",
-}) as any as S.Schema<FleetManagedNamespacesGetRequest>;
-
-/** Resource tags. */
-export type FleetManagedNamespacesGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const FleetManagedNamespacesGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<FleetManagedNamespacesGetResponseTagsMap>;
-
-export interface FleetManagedNamespacesGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: FleetManagedNamespacesGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: FleetManagedNamespaceProperties;
-  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
-  eTag?: string;
-}
-export const FleetManagedNamespacesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(FleetManagedNamespacesGetResponseTagsMap),
-    location: S.String,
-    properties: S.optional(FleetManagedNamespaceProperties),
-    eTag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "FleetManagedNamespacesGetResponse",
-}) as any as S.Schema<FleetManagedNamespacesGetResponse>;
-
-export interface FleetManagedNamespacesListByFleetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Fleet resource. */
-  fleetName: string;
-}
-export const FleetManagedNamespacesListByFleetRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      fleetName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/fleets/{fleetName}/managedNamespaces",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "FleetManagedNamespacesListByFleetRequest",
-}) as any as S.Schema<FleetManagedNamespacesListByFleetRequest>;
-
-/** Resource tags. */
-export type FleetManagedNamespaceTagsMap = {
-  [key: string]: string | undefined;
-};
-export const FleetManagedNamespaceTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<FleetManagedNamespaceTagsMap>;
-
-/** A fleet managed namespace. */
-export interface FleetManagedNamespace {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: FleetManagedNamespaceTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: FleetManagedNamespaceProperties;
-  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
-  eTag?: string;
-}
-export const FleetManagedNamespace = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(FleetManagedNamespaceTagsMap),
-    location: S.String,
-    properties: S.optional(FleetManagedNamespaceProperties),
-    eTag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "FleetManagedNamespace",
-}) as any as S.Schema<FleetManagedNamespace>;
-
-/** The FleetManagedNamespace items on this page */
-export type FleetManagedNamespaceListResultValueList =
-  Array<FleetManagedNamespace>;
-export const FleetManagedNamespaceListResultValueList = /*@__PURE__*/ S.Array(
-  FleetManagedNamespace,
-) as any as S.Schema<FleetManagedNamespaceListResultValueList>;
-
-/** The response of a FleetManagedNamespace list operation. */
-export interface FleetManagedNamespaceListResult {
-  /** The FleetManagedNamespace items on this page */
-  value: FleetManagedNamespaceListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const FleetManagedNamespaceListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: FleetManagedNamespaceListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "FleetManagedNamespaceListResult",
-}) as any as S.Schema<FleetManagedNamespaceListResult>;
-
-/** Resource tags. */
-export type FleetManagedNamespacesUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const FleetManagedNamespacesUpdateRequestTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<FleetManagedNamespacesUpdateRequestTagsMap>;
-
-export interface FleetManagedNamespacesUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Fleet resource. */
-  fleetName: string;
-  /** The name of the fleet managed namespace resource. */
-  managedNamespaceName: string;
-  /** Resource tags. */
-  tags?: FleetManagedNamespacesUpdateRequestTagsMap;
-}
-export const FleetManagedNamespacesUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    fleetName: S.String.pipe(T.Label()),
-    managedNamespaceName: S.String.pipe(T.Label()),
-    tags: S.optional(FleetManagedNamespacesUpdateRequestTagsMap),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/fleets/{fleetName}/managedNamespaces/{managedNamespaceName}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "FleetManagedNamespacesUpdateRequest",
-}) as any as S.Schema<FleetManagedNamespacesUpdateRequest>;
-
-/** Resource tags. */
-export type FleetManagedNamespacesUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const FleetManagedNamespacesUpdateResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<FleetManagedNamespacesUpdateResponseTagsMap>;
-
-export interface FleetManagedNamespacesUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: FleetManagedNamespacesUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: FleetManagedNamespaceProperties;
-  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
-  eTag?: string;
-}
-export const FleetManagedNamespacesUpdateResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      tags: S.optional(FleetManagedNamespacesUpdateResponseTagsMap),
-      location: S.String,
-      properties: S.optional(FleetManagedNamespaceProperties),
-      eTag: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "FleetManagedNamespacesUpdateResponse",
-}) as any as S.Schema<FleetManagedNamespacesUpdateResponse>;
-
-/** The labels for the fleet member. */
-export type FleetMemberPropertiesInputLabelsMap = {
-  [key: string]: string | undefined;
-};
-export const FleetMemberPropertiesInputLabelsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<FleetMemberPropertiesInputLabelsMap>;
-
-/** A member of the Fleet. It contains a reference to an existing Kubernetes cluster on Azure. */
-export interface FleetMemberPropertiesInput {
-  /** The ARM resource id of the cluster that joins the Fleet. Must be a valid Azure resource id. e.g.: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{clusterName}'. */
-  clusterResourceId: string;
-  /** The group this member belongs to for multi-cluster update management. */
-  group?: string;
-  /** The labels for the fleet member. */
-  labels?: FleetMemberPropertiesInputLabelsMap;
-}
-export const FleetMemberPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    clusterResourceId: S.String,
-    group: S.optional(S.String),
-    labels: S.optional(FleetMemberPropertiesInputLabelsMap),
-  }),
-).annotate({
-  identifier: "FleetMemberPropertiesInput",
-}) as any as S.Schema<FleetMemberPropertiesInput>;
-
-export interface FleetMembersCreateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Fleet resource. */
-  fleetName: string;
-  /** The name of the Fleet member resource. */
-  fleetMemberName: string;
-  /** The resource-specific properties for this resource. */
-  properties?: FleetMemberPropertiesInput;
-}
-export const FleetMembersCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    fleetName: S.String.pipe(T.Label()),
-    fleetMemberName: S.String.pipe(T.Label()),
-    properties: S.optional(FleetMemberPropertiesInput),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/fleets/{fleetName}/members/{fleetMemberName}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "FleetMembersCreateRequest",
-}) as any as S.Schema<FleetMembersCreateRequest>;
-
-/** The provisioning state of the last accepted operation. */
-export type FleetMemberProvisioningState =
-  | "Succeeded"
-  | "Failed"
-  | "Canceled"
-  | "Joining"
-  | "Leaving"
-  | "Updating";
-export const FleetMemberProvisioningState = /*@__PURE__*/ S.String;
-
-/** The labels for the fleet member. */
-export type FleetMemberPropertiesLabelsMap = {
-  [key: string]: string | undefined;
-};
-export const FleetMemberPropertiesLabelsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<FleetMemberPropertiesLabelsMap>;
-
-/** The error details. */
-export type FleetMemberStatusLastOperationErrorDetailsList = Array<ErrorDetail>;
-export const FleetMemberStatusLastOperationErrorDetailsList =
-  /*@__PURE__*/ S.Array(
-    ErrorDetail,
-  ) as any as S.Schema<FleetMemberStatusLastOperationErrorDetailsList>;
-
-/** The error additional info. */
-export type FleetMemberStatusLastOperationErrorAdditionalInfoList =
-  Array<ErrorAdditionalInfo>;
-export const FleetMemberStatusLastOperationErrorAdditionalInfoList =
-  /*@__PURE__*/ S.Array(
-    ErrorAdditionalInfo,
-  ) as any as S.Schema<FleetMemberStatusLastOperationErrorAdditionalInfoList>;
-
-/** The error detail. */
-export interface FleetMemberStatusLastOperationError {
-  /** The error code. */
-  code?: string;
-  /** The error message. */
-  message?: string;
-  /** The error target. */
-  target?: string;
-  /** The error details. */
-  details?: FleetMemberStatusLastOperationErrorDetailsList;
-  /** The error additional info. */
-  additionalInfo?: FleetMemberStatusLastOperationErrorAdditionalInfoList;
-}
-export const FleetMemberStatusLastOperationError = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    code: S.optional(S.String),
-    message: S.optional(S.String),
-    target: S.optional(S.String),
-    details: S.optional(FleetMemberStatusLastOperationErrorDetailsList),
-    additionalInfo: S.optional(
-      FleetMemberStatusLastOperationErrorAdditionalInfoList,
-    ),
-  }),
-).annotate({
-  identifier: "FleetMemberStatusLastOperationError",
-}) as any as S.Schema<FleetMemberStatusLastOperationError>;
-
-/** Status information for the fleet member */
-export interface FleetMemberStatus {
-  /** The last operation ID for the fleet member */
-  lastOperationId?: string;
-  /** The error detail. */
-  lastOperationError?: FleetMemberStatusLastOperationError;
-}
-export const FleetMemberStatus = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    lastOperationId: S.optional(S.String),
-    lastOperationError: S.optional(FleetMemberStatusLastOperationError),
-  }),
-).annotate({
-  identifier: "FleetMemberStatus",
-}) as any as S.Schema<FleetMemberStatus>;
-
-/** A member of the Fleet. It contains a reference to an existing Kubernetes cluster on Azure. */
-export interface FleetMemberProperties {
-  /** The ARM resource id of the cluster that joins the Fleet. Must be a valid Azure resource id. e.g.: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{clusterName}'. */
-  clusterResourceId: string;
-  /** The group this member belongs to for multi-cluster update management. */
-  group?: string;
-  /** The status of the last operation. */
-  provisioningState?: FleetMemberProvisioningState;
-  /** The labels for the fleet member. */
-  labels?: FleetMemberPropertiesLabelsMap;
-  /** Status information of the last operation for fleet member. */
-  status?: FleetMemberStatus;
-}
-export const FleetMemberProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    clusterResourceId: S.String,
-    group: S.optional(S.String),
-    provisioningState: S.optional(FleetMemberProvisioningState),
-    labels: S.optional(FleetMemberPropertiesLabelsMap),
-    status: S.optional(FleetMemberStatus),
-  }),
-).annotate({
-  identifier: "FleetMemberProperties",
-}) as any as S.Schema<FleetMemberProperties>;
-
-export interface FleetMembersCreateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: FleetMemberProperties;
-  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
-  eTag?: string;
-}
-export const FleetMembersCreateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(FleetMemberProperties),
-    eTag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "FleetMembersCreateResponse",
-}) as any as S.Schema<FleetMembersCreateResponse>;
-
-export interface FleetMembersDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Fleet resource. */
-  fleetName: string;
-  /** The name of the Fleet member resource. */
-  fleetMemberName: string;
-}
-export const FleetMembersDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    fleetName: S.String.pipe(T.Label()),
-    fleetMemberName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/fleets/{fleetName}/members/{fleetMemberName}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "FleetMembersDeleteRequest",
-}) as any as S.Schema<FleetMembersDeleteRequest>;
-
-export interface FleetMembersDeleteResponse {}
-export const FleetMembersDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "FleetMembersDeleteResponse",
-}) as any as S.Schema<FleetMembersDeleteResponse>;
-
-export interface FleetMembersGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Fleet resource. */
-  fleetName: string;
-  /** The name of the Fleet member resource. */
-  fleetMemberName: string;
-}
-export const FleetMembersGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    fleetName: S.String.pipe(T.Label()),
-    fleetMemberName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/fleets/{fleetName}/members/{fleetMemberName}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "FleetMembersGetRequest",
-}) as any as S.Schema<FleetMembersGetRequest>;
-
-export interface FleetMembersGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: FleetMemberProperties;
-  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
-  eTag?: string;
-}
-export const FleetMembersGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(FleetMemberProperties),
-    eTag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "FleetMembersGetResponse",
-}) as any as S.Schema<FleetMembersGetResponse>;
-
-export interface FleetMembersListByFleetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Fleet resource. */
-  fleetName: string;
-  /** The number of result items to return. */
-  _top?: number;
-  /** The page-continuation token to use with a paged version of this API. */
-  _skipToken?: string;
-  /** Filter the result list using the given expression. */
-  _filter?: string;
-}
-export const FleetMembersListByFleetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    fleetName: S.String.pipe(T.Label()),
-    _top: S.optional(S.Number.pipe(T.Query("$top"))),
-    _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
-    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/fleets/{fleetName}/members",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "FleetMembersListByFleetRequest",
-}) as any as S.Schema<FleetMembersListByFleetRequest>;
-
-/** A member of the Fleet. It contains a reference to an existing Kubernetes cluster on Azure. */
-export interface FleetMember {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: FleetMemberProperties;
-  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
-  eTag?: string;
-}
-export const FleetMember = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(FleetMemberProperties),
-    eTag: S.optional(S.String),
-  }),
-).annotate({ identifier: "FleetMember" }) as any as S.Schema<FleetMember>;
-
-/** The FleetMember items on this page */
-export type FleetMemberListResultValueList = Array<FleetMember>;
-export const FleetMemberListResultValueList = /*@__PURE__*/ S.Array(
-  FleetMember,
-) as any as S.Schema<FleetMemberListResultValueList>;
-
-/** The response of a FleetMember list operation. */
-export interface FleetMemberListResult {
-  /** The FleetMember items on this page */
-  value: FleetMemberListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const FleetMemberListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: FleetMemberListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "FleetMemberListResult",
-}) as any as S.Schema<FleetMemberListResult>;
-
-/** The labels for the fleet member. */
-export type FleetMemberUpdatePropertiesLabelsMap = {
-  [key: string]: string | undefined;
-};
-export const FleetMemberUpdatePropertiesLabelsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<FleetMemberUpdatePropertiesLabelsMap>;
-
-/** The updatable properties of the FleetMember. */
-export interface FleetMemberUpdateProperties {
-  /** The group this member belongs to for multi-cluster update management. */
-  group?: string;
-  /** The labels for the fleet member. */
-  labels?: FleetMemberUpdatePropertiesLabelsMap;
-}
-export const FleetMemberUpdateProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    group: S.optional(S.String),
-    labels: S.optional(FleetMemberUpdatePropertiesLabelsMap),
-  }),
-).annotate({
-  identifier: "FleetMemberUpdateProperties",
-}) as any as S.Schema<FleetMemberUpdateProperties>;
-
-export interface FleetMembersUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Fleet resource. */
-  fleetName: string;
-  /** The name of the Fleet member resource. */
-  fleetMemberName: string;
-  /** The resource-specific properties for this resource. */
-  properties?: FleetMemberUpdateProperties;
-}
-export const FleetMembersUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    fleetName: S.String.pipe(T.Label()),
-    fleetMemberName: S.String.pipe(T.Label()),
-    properties: S.optional(FleetMemberUpdateProperties),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/fleets/{fleetName}/members/{fleetMemberName}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "FleetMembersUpdateRequest",
-}) as any as S.Schema<FleetMembersUpdateRequest>;
-
-export interface FleetMembersUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: FleetMemberProperties;
-  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
-  eTag?: string;
-}
-export const FleetMembersUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(FleetMemberProperties),
-    eTag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "FleetMembersUpdateResponse",
-}) as any as S.Schema<FleetMembersUpdateResponse>;
-
 /** Resource tags. */
 export type FleetsCreateOrUpdateRequestTagsMap = {
   [key: string]: string | undefined;
@@ -4321,376 +3629,6 @@ export const FleetsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "FleetsCreateOrUpdateResponse",
 }) as any as S.Schema<FleetsCreateOrUpdateResponse>;
 
-export interface FleetsDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Fleet resource. */
-  fleetName: string;
-}
-export const FleetsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    fleetName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/fleets/{fleetName}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "FleetsDeleteRequest",
-}) as any as S.Schema<FleetsDeleteRequest>;
-
-export interface FleetsDeleteResponse {}
-export const FleetsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "FleetsDeleteResponse",
-}) as any as S.Schema<FleetsDeleteResponse>;
-
-export interface FleetsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Fleet resource. */
-  fleetName: string;
-}
-export const FleetsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    fleetName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/fleets/{fleetName}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "FleetsGetRequest",
-}) as any as S.Schema<FleetsGetRequest>;
-
-/** Resource tags. */
-export type FleetsGetResponseTagsMap = { [key: string]: string | undefined };
-export const FleetsGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<FleetsGetResponseTagsMap>;
-
-/** Managed service identity (system assigned and/or user assigned identities) */
-export type FleetsGetResponseIdentity = FleetsCreateOrUpdateResponseIdentity;
-export const FleetsGetResponseIdentity = FleetsCreateOrUpdateResponseIdentity;
-
-export interface FleetsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: FleetsGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: FleetProperties;
-  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
-  eTag?: string;
-  /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: FleetsCreateOrUpdateResponseIdentity;
-}
-export const FleetsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(FleetsGetResponseTagsMap),
-    location: S.String,
-    properties: S.optional(FleetProperties),
-    eTag: S.optional(S.String),
-    identity: S.optional(FleetsCreateOrUpdateResponseIdentity),
-  }),
-).annotate({
-  identifier: "FleetsGetResponse",
-}) as any as S.Schema<FleetsGetResponse>;
-
-export interface FleetsListByResourceGroupRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-}
-export const FleetsListByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/fleets",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "FleetsListByResourceGroupRequest",
-}) as any as S.Schema<FleetsListByResourceGroupRequest>;
-
-/** Resource tags. */
-export type FleetTagsMap = { [key: string]: string | undefined };
-export const FleetTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<FleetTagsMap>;
-
-/** Managed service identity (system assigned and/or user assigned identities) */
-export type FleetIdentity = FleetsCreateOrUpdateResponseIdentity;
-export const FleetIdentity = FleetsCreateOrUpdateResponseIdentity;
-
-/** The Fleet resource. */
-export interface Fleet {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: FleetTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: FleetProperties;
-  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
-  eTag?: string;
-  /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: FleetsCreateOrUpdateResponseIdentity;
-}
-export const Fleet = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(FleetTagsMap),
-    location: S.String,
-    properties: S.optional(FleetProperties),
-    eTag: S.optional(S.String),
-    identity: S.optional(FleetsCreateOrUpdateResponseIdentity),
-  }),
-).annotate({ identifier: "Fleet" }) as any as S.Schema<Fleet>;
-
-/** The Fleet items on this page */
-export type FleetListResultValueList = Array<Fleet>;
-export const FleetListResultValueList = /*@__PURE__*/ S.Array(
-  Fleet,
-) as any as S.Schema<FleetListResultValueList>;
-
-/** The response of a Fleet list operation. */
-export interface FleetListResult {
-  /** The Fleet items on this page */
-  value: FleetListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const FleetListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: FleetListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "FleetListResult",
-}) as any as S.Schema<FleetListResult>;
-
-export interface FleetsListBySubscriptionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The number of result items to return. */
-  _top?: number;
-  /** The page-continuation token to use with a paged version of this API. */
-  _skipToken?: string;
-}
-export const FleetsListBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    _top: S.optional(S.Number.pipe(T.Query("$top"))),
-    _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ContainerService/fleets",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "FleetsListBySubscriptionRequest",
-}) as any as S.Schema<FleetsListBySubscriptionRequest>;
-
-export interface FleetsListCredentialsRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Fleet resource. */
-  fleetName: string;
-}
-export const FleetsListCredentialsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    fleetName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/fleets/{fleetName}/listCredentials",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "FleetsListCredentialsRequest",
-}) as any as S.Schema<FleetsListCredentialsRequest>;
-
-/** One credential result item. */
-export interface FleetCredentialResult {
-  /** The name of the credential. */
-  name?: string;
-  /** Base64-encoded Kubernetes configuration file. */
-  value?: string;
-}
-export const FleetCredentialResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    value: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "FleetCredentialResult",
-}) as any as S.Schema<FleetCredentialResult>;
-
-/** Array of base64-encoded Kubernetes configuration files. */
-export type FleetCredentialResultsKubeconfigsList =
-  Array<FleetCredentialResult>;
-export const FleetCredentialResultsKubeconfigsList = /*@__PURE__*/ S.Array(
-  FleetCredentialResult,
-) as any as S.Schema<FleetCredentialResultsKubeconfigsList>;
-
-/** The Credential results response. */
-export interface FleetCredentialResults {
-  /** Array of base64-encoded Kubernetes configuration files. */
-  kubeconfigs?: FleetCredentialResultsKubeconfigsList;
-}
-export const FleetCredentialResults = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    kubeconfigs: S.optional(FleetCredentialResultsKubeconfigsList),
-  }),
-).annotate({
-  identifier: "FleetCredentialResults",
-}) as any as S.Schema<FleetCredentialResults>;
-
-/** Resource tags. */
-export type FleetsUpdateRequestTagsMap = { [key: string]: string | undefined };
-export const FleetsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<FleetsUpdateRequestTagsMap>;
-
-/** Managed service identity (system assigned and/or user assigned identities) */
-export type FleetsUpdateRequestIdentity = FleetsCreateOrUpdateRequestIdentity;
-export const FleetsUpdateRequestIdentity = FleetsCreateOrUpdateRequestIdentity;
-
-export interface FleetsUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Fleet resource. */
-  fleetName: string;
-  /** Resource tags. */
-  tags?: FleetsUpdateRequestTagsMap;
-  /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: FleetsCreateOrUpdateRequestIdentity;
-}
-export const FleetsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    fleetName: S.String.pipe(T.Label()),
-    tags: S.optional(FleetsUpdateRequestTagsMap),
-    identity: S.optional(FleetsCreateOrUpdateRequestIdentity),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/fleets/{fleetName}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "FleetsUpdateRequest",
-}) as any as S.Schema<FleetsUpdateRequest>;
-
-/** Resource tags. */
-export type FleetsUpdateResponseTagsMap = { [key: string]: string | undefined };
-export const FleetsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<FleetsUpdateResponseTagsMap>;
-
-/** Managed service identity (system assigned and/or user assigned identities) */
-export type FleetsUpdateResponseIdentity = FleetsCreateOrUpdateResponseIdentity;
-export const FleetsUpdateResponseIdentity =
-  FleetsCreateOrUpdateResponseIdentity;
-
-export interface FleetsUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: FleetsUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: FleetProperties;
-  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
-  eTag?: string;
-  /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: FleetsCreateOrUpdateResponseIdentity;
-}
-export const FleetsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(FleetsUpdateResponseTagsMap),
-    location: S.String,
-    properties: S.optional(FleetProperties),
-    eTag: S.optional(S.String),
-    identity: S.optional(FleetsCreateOrUpdateResponseIdentity),
-  }),
-).annotate({
-  identifier: "FleetsUpdateResponse",
-}) as any as S.Schema<FleetsUpdateResponse>;
-
 /** The type of the Gate determines how it is completed. */
 export type GateType = "Approval";
 export const GateType = /*@__PURE__*/ S.String;
@@ -4902,42 +3840,584 @@ export const FleetUpdateStrategiesCreateOrUpdateResponse =
     identifier: "FleetUpdateStrategiesCreateOrUpdateResponse",
   }) as any as S.Schema<FleetUpdateStrategiesCreateOrUpdateResponse>;
 
-export interface FleetUpdateStrategiesDeleteRequest {
+export interface GetAgentPoolRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
-  /** The name of the Fleet resource. */
-  fleetName: string;
-  /** The name of the UpdateStrategy resource. */
-  updateStrategyName: string;
+  /** The name of the managed cluster resource. */
+  resourceName: string;
+  /** The name of the agent pool. */
+  agentPoolName: string;
 }
-export const FleetUpdateStrategiesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetAgentPoolRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
-    fleetName: S.String.pipe(T.Label()),
-    updateStrategyName: S.String.pipe(T.Label()),
+    resourceName: S.String.pipe(T.Label()),
+    agentPoolName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/fleets/{fleetName}/updateStrategies/{updateStrategyName}",
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/agentPools/{agentPoolName}",
       code: 200,
       apiVersion: "2026-06-01",
     }),
   ),
 ).annotate({
-  identifier: "FleetUpdateStrategiesDeleteRequest",
-}) as any as S.Schema<FleetUpdateStrategiesDeleteRequest>;
+  identifier: "GetAgentPoolRequest",
+}) as any as S.Schema<GetAgentPoolRequest>;
 
-export interface FleetUpdateStrategiesDeleteResponse {}
-export const FleetUpdateStrategiesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
+export interface GetAgentPoolResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of an agent pool. */
+  properties?: ManagedClusterAgentPoolProfileProperties;
+}
+export const GetAgentPoolResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ManagedClusterAgentPoolProfileProperties),
+  }),
 ).annotate({
-  identifier: "FleetUpdateStrategiesDeleteResponse",
-}) as any as S.Schema<FleetUpdateStrategiesDeleteResponse>;
+  identifier: "GetAgentPoolResponse",
+}) as any as S.Schema<GetAgentPoolResponse>;
 
-export interface FleetUpdateStrategiesGetRequest {
+export interface GetAgentPoolAvailableAgentPoolVersionsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the managed cluster resource. */
+  resourceName: string;
+}
+export const GetAgentPoolAvailableAgentPoolVersionsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      resourceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/availableAgentPoolVersions",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "GetAgentPoolAvailableAgentPoolVersionsRequest",
+  }) as any as S.Schema<GetAgentPoolAvailableAgentPoolVersionsRequest>;
+
+/** Available version information for an agent pool. */
+export interface AgentPoolAvailableVersionsPropertiesAgentPoolVersionsItem {
+  /** Whether this version is the default agent pool version. */
+  default?: boolean;
+  /** The Kubernetes version (major.minor.patch). */
+  kubernetesVersion?: string;
+  /** Whether Kubernetes version is currently in preview. */
+  isPreview?: boolean;
+}
+export const AgentPoolAvailableVersionsPropertiesAgentPoolVersionsItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      default: S.optional(S.Boolean),
+      kubernetesVersion: S.optional(S.String),
+      isPreview: S.optional(S.Boolean),
+    }),
+  ).annotate({
+    identifier: "AgentPoolAvailableVersionsPropertiesAgentPoolVersionsItem",
+  }) as any as S.Schema<AgentPoolAvailableVersionsPropertiesAgentPoolVersionsItem>;
+
+/** List of versions available for agent pool. */
+export type AgentPoolAvailableVersionsPropertiesAgentPoolVersionsList =
+  Array<AgentPoolAvailableVersionsPropertiesAgentPoolVersionsItem>;
+export const AgentPoolAvailableVersionsPropertiesAgentPoolVersionsList =
+  /*@__PURE__*/ S.Array(
+    AgentPoolAvailableVersionsPropertiesAgentPoolVersionsItem,
+  ) as any as S.Schema<AgentPoolAvailableVersionsPropertiesAgentPoolVersionsList>;
+
+/** The list of available agent pool versions. */
+export interface AgentPoolAvailableVersionsProperties {
+  /** List of versions available for agent pool. */
+  agentPoolVersions?: AgentPoolAvailableVersionsPropertiesAgentPoolVersionsList;
+}
+export const AgentPoolAvailableVersionsProperties = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      agentPoolVersions: S.optional(
+        AgentPoolAvailableVersionsPropertiesAgentPoolVersionsList,
+      ),
+    }),
+).annotate({
+  identifier: "AgentPoolAvailableVersionsProperties",
+}) as any as S.Schema<AgentPoolAvailableVersionsProperties>;
+
+/** The list of available versions for an agent pool. */
+export interface AgentPoolAvailableVersions {
+  /** The ID of the agent pool version list. */
+  id?: string;
+  /** The name of the agent pool version list. */
+  name?: string;
+  /** Type of the agent pool version list. */
+  type?: string;
+  /** Properties of agent pool available versions. */
+  properties: AgentPoolAvailableVersionsProperties;
+}
+export const AgentPoolAvailableVersions = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    properties: AgentPoolAvailableVersionsProperties,
+  }),
+).annotate({
+  identifier: "AgentPoolAvailableVersions",
+}) as any as S.Schema<AgentPoolAvailableVersions>;
+
+export interface GetAgentPoolUpgradeProfileRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the managed cluster resource. */
+  resourceName: string;
+  /** The name of the agent pool. */
+  agentPoolName: string;
+}
+export const GetAgentPoolUpgradeProfileRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    resourceName: S.String.pipe(T.Label()),
+    agentPoolName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/agentPools/{agentPoolName}/upgradeProfiles/default",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetAgentPoolUpgradeProfileRequest",
+}) as any as S.Schema<GetAgentPoolUpgradeProfileRequest>;
+
+/** The operating system type. The default is Linux. */
+export type AgentPoolUpgradeProfilePropertiesOsType = "Linux" | "Windows";
+export const AgentPoolUpgradeProfilePropertiesOsType = /*@__PURE__*/ S.String;
+
+/** Available upgrades for an AgentPool. */
+export interface AgentPoolUpgradeProfilePropertiesUpgradesItem {
+  /** The Kubernetes version (major.minor.patch). */
+  kubernetesVersion?: string;
+  /** Whether the Kubernetes version is currently in preview. */
+  isPreview?: boolean;
+}
+export const AgentPoolUpgradeProfilePropertiesUpgradesItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      kubernetesVersion: S.optional(S.String),
+      isPreview: S.optional(S.Boolean),
+    }),
+  ).annotate({
+    identifier: "AgentPoolUpgradeProfilePropertiesUpgradesItem",
+  }) as any as S.Schema<AgentPoolUpgradeProfilePropertiesUpgradesItem>;
+
+/** List of orchestrator types and versions available for upgrade. */
+export type AgentPoolUpgradeProfilePropertiesUpgradesList =
+  Array<AgentPoolUpgradeProfilePropertiesUpgradesItem>;
+export const AgentPoolUpgradeProfilePropertiesUpgradesList =
+  /*@__PURE__*/ S.Array(
+    AgentPoolUpgradeProfilePropertiesUpgradesItem,
+  ) as any as S.Schema<AgentPoolUpgradeProfilePropertiesUpgradesList>;
+
+/** A historical version that can be used for rollback operations. */
+export interface AgentPoolRecentlyUsedVersion {
+  /** The Kubernetes version (major.minor.patch) available for rollback. */
+  orchestratorVersion?: string;
+  /** The node image version available for rollback. */
+  nodeImageVersion?: string;
+  /** The timestamp when this version was last used. */
+  timestamp?: string;
+}
+export const AgentPoolRecentlyUsedVersion = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    orchestratorVersion: S.optional(S.String),
+    nodeImageVersion: S.optional(S.String),
+    timestamp: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "AgentPoolRecentlyUsedVersion",
+}) as any as S.Schema<AgentPoolRecentlyUsedVersion>;
+
+/** List of historical good versions for rollback operations. */
+export type AgentPoolUpgradeProfilePropertiesRecentlyUsedVersionsList =
+  Array<AgentPoolRecentlyUsedVersion>;
+export const AgentPoolUpgradeProfilePropertiesRecentlyUsedVersionsList =
+  /*@__PURE__*/ S.Array(
+    AgentPoolRecentlyUsedVersion,
+  ) as any as S.Schema<AgentPoolUpgradeProfilePropertiesRecentlyUsedVersionsList>;
+
+/** The list of available upgrade versions. */
+export interface AgentPoolUpgradeProfileProperties {
+  /** The Kubernetes version (major.minor.patch). */
+  kubernetesVersion: string;
+  /** The operating system type. The default is Linux. */
+  osType: AgentPoolUpgradeProfilePropertiesOsType;
+  /** List of orchestrator types and versions available for upgrade. */
+  upgrades?: AgentPoolUpgradeProfilePropertiesUpgradesList;
+  /** List of historical good versions for rollback operations. */
+  recentlyUsedVersions?: AgentPoolUpgradeProfilePropertiesRecentlyUsedVersionsList;
+  /** The latest AKS supported node image version. */
+  latestNodeImageVersion?: string;
+}
+export const AgentPoolUpgradeProfileProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    kubernetesVersion: S.String,
+    osType: AgentPoolUpgradeProfilePropertiesOsType,
+    upgrades: S.optional(AgentPoolUpgradeProfilePropertiesUpgradesList),
+    recentlyUsedVersions: S.optional(
+      AgentPoolUpgradeProfilePropertiesRecentlyUsedVersionsList,
+    ),
+    latestNodeImageVersion: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "AgentPoolUpgradeProfileProperties",
+}) as any as S.Schema<AgentPoolUpgradeProfileProperties>;
+
+export interface GetAgentPoolUpgradeProfileResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of the agent pool upgrade profile. */
+  properties: AgentPoolUpgradeProfileProperties;
+}
+export const GetAgentPoolUpgradeProfileResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: AgentPoolUpgradeProfileProperties,
+  }),
+).annotate({
+  identifier: "GetAgentPoolUpgradeProfileResponse",
+}) as any as S.Schema<GetAgentPoolUpgradeProfileResponse>;
+
+export interface GetAutoUpgradeProfileRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Fleet resource. */
+  fleetName: string;
+  /** The name of the AutoUpgradeProfile resource. */
+  autoUpgradeProfileName: string;
+}
+export const GetAutoUpgradeProfileRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    fleetName: S.String.pipe(T.Label()),
+    autoUpgradeProfileName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/fleets/{fleetName}/autoUpgradeProfiles/{autoUpgradeProfileName}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetAutoUpgradeProfileRequest",
+}) as any as S.Schema<GetAutoUpgradeProfileRequest>;
+
+export interface GetAutoUpgradeProfileResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: AutoUpgradeProfileProperties;
+  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
+  eTag?: string;
+}
+export const GetAutoUpgradeProfileResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(AutoUpgradeProfileProperties),
+    eTag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetAutoUpgradeProfileResponse",
+}) as any as S.Schema<GetAutoUpgradeProfileResponse>;
+
+export interface GetDeploymentSafeguardRequest {
+  /** The fully qualified Azure Resource manager identifier of the resource. */
+  resourceUri: string;
+}
+export const GetDeploymentSafeguardRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    resourceUri: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/{resourceUri}/providers/Microsoft.ContainerService/deploymentSafeguards/default",
+      code: 200,
+      apiVersion: "2025-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetDeploymentSafeguardRequest",
+}) as any as S.Schema<GetDeploymentSafeguardRequest>;
+
+export interface GetDeploymentSafeguardResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: DeploymentSafeguardsProperties;
+  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
+  eTag?: string;
+}
+export const GetDeploymentSafeguardResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(DeploymentSafeguardsProperties),
+    eTag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetDeploymentSafeguardResponse",
+}) as any as S.Schema<GetDeploymentSafeguardResponse>;
+
+export interface GetFleetRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Fleet resource. */
+  fleetName: string;
+}
+export const GetFleetRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    fleetName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/fleets/{fleetName}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetFleetRequest",
+}) as any as S.Schema<GetFleetRequest>;
+
+/** Resource tags. */
+export type GetFleetResponseTagsMap = { [key: string]: string | undefined };
+export const GetFleetResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetFleetResponseTagsMap>;
+
+/** Managed service identity (system assigned and/or user assigned identities) */
+export type GetFleetResponseIdentity = FleetsCreateOrUpdateResponseIdentity;
+export const GetFleetResponseIdentity = FleetsCreateOrUpdateResponseIdentity;
+
+export interface GetFleetResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetFleetResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: FleetProperties;
+  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
+  eTag?: string;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: FleetsCreateOrUpdateResponseIdentity;
+}
+export const GetFleetResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetFleetResponseTagsMap),
+    location: S.String,
+    properties: S.optional(FleetProperties),
+    eTag: S.optional(S.String),
+    identity: S.optional(FleetsCreateOrUpdateResponseIdentity),
+  }),
+).annotate({
+  identifier: "GetFleetResponse",
+}) as any as S.Schema<GetFleetResponse>;
+
+export interface GetFleetManagedNamespaceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Fleet resource. */
+  fleetName: string;
+  /** The name of the fleet managed namespace resource. */
+  managedNamespaceName: string;
+}
+export const GetFleetManagedNamespaceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    fleetName: S.String.pipe(T.Label()),
+    managedNamespaceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/fleets/{fleetName}/managedNamespaces/{managedNamespaceName}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetFleetManagedNamespaceRequest",
+}) as any as S.Schema<GetFleetManagedNamespaceRequest>;
+
+/** Resource tags. */
+export type GetFleetManagedNamespaceResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetFleetManagedNamespaceResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetFleetManagedNamespaceResponseTagsMap>;
+
+export interface GetFleetManagedNamespaceResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetFleetManagedNamespaceResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: FleetManagedNamespaceProperties;
+  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
+  eTag?: string;
+}
+export const GetFleetManagedNamespaceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetFleetManagedNamespaceResponseTagsMap),
+    location: S.String,
+    properties: S.optional(FleetManagedNamespaceProperties),
+    eTag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetFleetManagedNamespaceResponse",
+}) as any as S.Schema<GetFleetManagedNamespaceResponse>;
+
+export interface GetFleetMemberRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Fleet resource. */
+  fleetName: string;
+  /** The name of the Fleet member resource. */
+  fleetMemberName: string;
+}
+export const GetFleetMemberRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    fleetName: S.String.pipe(T.Label()),
+    fleetMemberName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/fleets/{fleetName}/members/{fleetMemberName}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetFleetMemberRequest",
+}) as any as S.Schema<GetFleetMemberRequest>;
+
+export interface GetFleetMemberResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: FleetMemberProperties;
+  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
+  eTag?: string;
+}
+export const GetFleetMemberResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(FleetMemberProperties),
+    eTag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetFleetMemberResponse",
+}) as any as S.Schema<GetFleetMemberResponse>;
+
+export interface GetFleetUpdateStrategyRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -4947,7 +4427,7 @@ export interface FleetUpdateStrategiesGetRequest {
   /** The name of the UpdateStrategy resource. */
   updateStrategyName: string;
 }
-export const FleetUpdateStrategiesGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetFleetUpdateStrategyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -4962,10 +4442,10 @@ export const FleetUpdateStrategiesGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "FleetUpdateStrategiesGetRequest",
-}) as any as S.Schema<FleetUpdateStrategiesGetRequest>;
+  identifier: "GetFleetUpdateStrategyRequest",
+}) as any as S.Schema<GetFleetUpdateStrategyRequest>;
 
-export interface FleetUpdateStrategiesGetResponse {
+export interface GetFleetUpdateStrategyResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -4979,7 +4459,7 @@ export interface FleetUpdateStrategiesGetResponse {
   /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
   eTag?: string;
 }
-export const FleetUpdateStrategiesGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetFleetUpdateStrategyResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -4989,92 +4469,10 @@ export const FleetUpdateStrategiesGetResponse = /*@__PURE__*/ S.suspend(() =>
     eTag: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "FleetUpdateStrategiesGetResponse",
-}) as any as S.Schema<FleetUpdateStrategiesGetResponse>;
+  identifier: "GetFleetUpdateStrategyResponse",
+}) as any as S.Schema<GetFleetUpdateStrategyResponse>;
 
-export interface FleetUpdateStrategiesListByFleetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Fleet resource. */
-  fleetName: string;
-  /** The number of result items to return. */
-  _top?: number;
-  /** The page-continuation token to use with a paged version of this API. */
-  _skipToken?: string;
-}
-export const FleetUpdateStrategiesListByFleetRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      fleetName: S.String.pipe(T.Label()),
-      _top: S.optional(S.Number.pipe(T.Query("$top"))),
-      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/fleets/{fleetName}/updateStrategies",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "FleetUpdateStrategiesListByFleetRequest",
-}) as any as S.Schema<FleetUpdateStrategiesListByFleetRequest>;
-
-/** Defines a multi-stage process to perform update operations across members of a Fleet. */
-export interface FleetUpdateStrategy {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: FleetUpdateStrategyProperties;
-  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
-  eTag?: string;
-}
-export const FleetUpdateStrategy = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(FleetUpdateStrategyProperties),
-    eTag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "FleetUpdateStrategy",
-}) as any as S.Schema<FleetUpdateStrategy>;
-
-/** The FleetUpdateStrategy items on this page */
-export type FleetUpdateStrategyListResultValueList = Array<FleetUpdateStrategy>;
-export const FleetUpdateStrategyListResultValueList = /*@__PURE__*/ S.Array(
-  FleetUpdateStrategy,
-) as any as S.Schema<FleetUpdateStrategyListResultValueList>;
-
-/** The response of a FleetUpdateStrategy list operation. */
-export interface FleetUpdateStrategyListResult {
-  /** The FleetUpdateStrategy items on this page */
-  value: FleetUpdateStrategyListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const FleetUpdateStrategyListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: FleetUpdateStrategyListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "FleetUpdateStrategyListResult",
-}) as any as S.Schema<FleetUpdateStrategyListResult>;
-
-export interface GatesGetRequest {
+export interface GetGateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -5084,7 +4482,7 @@ export interface GatesGetRequest {
   /** The name of the Gate resource, a GUID. */
   gateName: string;
 }
-export const GatesGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetGateRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -5098,9 +4496,7 @@ export const GatesGetRequest = /*@__PURE__*/ S.suspend(() =>
       apiVersion: "2026-06-01",
     }),
   ),
-).annotate({
-  identifier: "GatesGetRequest",
-}) as any as S.Schema<GatesGetRequest>;
+).annotate({ identifier: "GetGateRequest" }) as any as S.Schema<GetGateRequest>;
 
 /** The provisioning state of the Gate resource. */
 export type GateProvisioningState = "Succeeded" | "Failed" | "Canceled";
@@ -5173,7 +4569,7 @@ export const GateProperties = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "GateProperties" }) as any as S.Schema<GateProperties>;
 
-export interface GatesGetResponse {
+export interface GetGateResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -5187,7 +4583,7 @@ export interface GatesGetResponse {
   /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
   eTag?: string;
 }
-export const GatesGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetGateResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -5197,188 +4593,10 @@ export const GatesGetResponse = /*@__PURE__*/ S.suspend(() =>
     eTag: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "GatesGetResponse",
-}) as any as S.Schema<GatesGetResponse>;
+  identifier: "GetGateResponse",
+}) as any as S.Schema<GetGateResponse>;
 
-export interface GatesListByFleetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Fleet resource. */
-  fleetName: string;
-  /** Filter the result list using the given expression. */
-  _filter?: string;
-  /** The number of result items to return. */
-  _top?: number;
-  /** The page-continuation token to use with a paged version of this API. */
-  _skipToken?: string;
-}
-export const GatesListByFleetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    fleetName: S.String.pipe(T.Label()),
-    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-    _top: S.optional(S.Number.pipe(T.Query("$top"))),
-    _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/fleets/{fleetName}/gates",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "GatesListByFleetRequest",
-}) as any as S.Schema<GatesListByFleetRequest>;
-
-/** A Gate controls the progression during a staged rollout, e.g. in an Update Run. */
-export interface Gate {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: GateProperties;
-  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
-  eTag?: string;
-}
-export const Gate = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(GateProperties),
-    eTag: S.optional(S.String),
-  }),
-).annotate({ identifier: "Gate" }) as any as S.Schema<Gate>;
-
-/** The Gate items on this page */
-export type GateListResultValueList = Array<Gate>;
-export const GateListResultValueList = /*@__PURE__*/ S.Array(
-  Gate,
-) as any as S.Schema<GateListResultValueList>;
-
-/** The response of a Gate list operation. */
-export interface GateListResult {
-  /** The Gate items on this page */
-  value: GateListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const GateListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: GateListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({ identifier: "GateListResult" }) as any as S.Schema<GateListResult>;
-
-/** Properties of a Gate that can be patched. */
-export interface GatePatchProperties {
-  /** The state of the Gate. */
-  state?: GateState | (string & {});
-}
-export const GatePatchProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    state: S.optional(GateState),
-  }),
-).annotate({
-  identifier: "GatePatchProperties",
-}) as any as S.Schema<GatePatchProperties>;
-
-export interface GatesUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Fleet resource. */
-  fleetName: string;
-  /** The name of the Gate resource, a GUID. */
-  gateName: string;
-  /** Properties of a Gate that can be patched. */
-  properties?: GatePatchProperties;
-}
-export const GatesUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    fleetName: S.String.pipe(T.Label()),
-    gateName: S.String.pipe(T.Label()),
-    properties: S.optional(GatePatchProperties),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/fleets/{fleetName}/gates/{gateName}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "GatesUpdateRequest",
-}) as any as S.Schema<GatesUpdateRequest>;
-
-export interface GatesUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: GateProperties;
-  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
-  eTag?: string;
-}
-export const GatesUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(GateProperties),
-    eTag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "GatesUpdateResponse",
-}) as any as S.Schema<GatesUpdateResponse>;
-
-/** Managed identity profile for the identity binding. */
-export interface IdentityBindingManagedIdentityProfileInput {
-  /** The resource ID of the managed identity. */
-  resourceId: string;
-}
-export const IdentityBindingManagedIdentityProfileInput =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      resourceId: S.String,
-    }),
-  ).annotate({
-    identifier: "IdentityBindingManagedIdentityProfileInput",
-  }) as any as S.Schema<IdentityBindingManagedIdentityProfileInput>;
-
-/** IdentityBinding properties. */
-export interface IdentityBindingPropertiesInput {
-  /** Managed identity profile for the identity binding. */
-  managedIdentity: IdentityBindingManagedIdentityProfileInput;
-}
-export const IdentityBindingPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    managedIdentity: IdentityBindingManagedIdentityProfileInput,
-  }),
-).annotate({
-  identifier: "IdentityBindingPropertiesInput",
-}) as any as S.Schema<IdentityBindingPropertiesInput>;
-
-export interface IdentityBindingsCreateOrUpdateRequest {
+export interface GetIdentityBindingRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -5387,28 +4605,24 @@ export interface IdentityBindingsCreateOrUpdateRequest {
   resourceName: string;
   /** The name of the identity binding. */
   identityBindingName: string;
-  /** The resource-specific properties for this resource. */
-  properties?: IdentityBindingPropertiesInput;
 }
-export const IdentityBindingsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-      identityBindingName: S.String.pipe(T.Label()),
-      properties: S.optional(IdentityBindingPropertiesInput),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/identityBindings/{identityBindingName}",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
+export const GetIdentityBindingRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    resourceName: S.String.pipe(T.Label()),
+    identityBindingName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/identityBindings/{identityBindingName}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
 ).annotate({
-  identifier: "IdentityBindingsCreateOrUpdateRequest",
-}) as any as S.Schema<IdentityBindingsCreateOrUpdateRequest>;
+  identifier: "GetIdentityBindingRequest",
+}) as any as S.Schema<GetIdentityBindingRequest>;
 
 /** Managed identity profile for the identity binding. */
 export interface IdentityBindingManagedIdentityProfile {
@@ -5475,7 +4689,7 @@ export const IdentityBindingProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "IdentityBindingProperties",
 }) as any as S.Schema<IdentityBindingProperties>;
 
-export interface IdentityBindingsCreateOrUpdateResponse {
+export interface GetIdentityBindingResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -5489,98 +4703,7 @@ export interface IdentityBindingsCreateOrUpdateResponse {
   /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
   eTag?: string;
 }
-export const IdentityBindingsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(IdentityBindingProperties),
-      eTag: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "IdentityBindingsCreateOrUpdateResponse",
-}) as any as S.Schema<IdentityBindingsCreateOrUpdateResponse>;
-
-export interface IdentityBindingsDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the managed cluster resource. */
-  resourceName: string;
-  /** The name of the identity binding. */
-  identityBindingName: string;
-}
-export const IdentityBindingsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    resourceName: S.String.pipe(T.Label()),
-    identityBindingName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/identityBindings/{identityBindingName}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "IdentityBindingsDeleteRequest",
-}) as any as S.Schema<IdentityBindingsDeleteRequest>;
-
-export interface IdentityBindingsDeleteResponse {}
-export const IdentityBindingsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "IdentityBindingsDeleteResponse",
-}) as any as S.Schema<IdentityBindingsDeleteResponse>;
-
-export interface IdentityBindingsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the managed cluster resource. */
-  resourceName: string;
-  /** The name of the identity binding. */
-  identityBindingName: string;
-}
-export const IdentityBindingsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    resourceName: S.String.pipe(T.Label()),
-    identityBindingName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/identityBindings/{identityBindingName}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "IdentityBindingsGetRequest",
-}) as any as S.Schema<IdentityBindingsGetRequest>;
-
-export interface IdentityBindingsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: IdentityBindingProperties;
-  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
-  eTag?: string;
-}
-export const IdentityBindingsGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetIdentityBindingResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -5590,86 +4713,10 @@ export const IdentityBindingsGetResponse = /*@__PURE__*/ S.suspend(() =>
     eTag: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "IdentityBindingsGetResponse",
-}) as any as S.Schema<IdentityBindingsGetResponse>;
+  identifier: "GetIdentityBindingResponse",
+}) as any as S.Schema<GetIdentityBindingResponse>;
 
-export interface IdentityBindingsListByManagedClusterRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the managed cluster resource. */
-  resourceName: string;
-}
-export const IdentityBindingsListByManagedClusterRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/identityBindings",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "IdentityBindingsListByManagedClusterRequest",
-  }) as any as S.Schema<IdentityBindingsListByManagedClusterRequest>;
-
-/** The IdentityBinding resource. */
-export interface IdentityBinding {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: IdentityBindingProperties;
-  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
-  eTag?: string;
-}
-export const IdentityBinding = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(IdentityBindingProperties),
-    eTag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "IdentityBinding",
-}) as any as S.Schema<IdentityBinding>;
-
-/** The IdentityBinding items on this page */
-export type IdentityBindingListResultValueList = Array<IdentityBinding>;
-export const IdentityBindingListResultValueList = /*@__PURE__*/ S.Array(
-  IdentityBinding,
-) as any as S.Schema<IdentityBindingListResultValueList>;
-
-/** The response of a IdentityBinding list operation. */
-export interface IdentityBindingListResult {
-  /** The IdentityBinding items on this page */
-  value: IdentityBindingListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const IdentityBindingListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: IdentityBindingListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "IdentityBindingListResult",
-}) as any as S.Schema<IdentityBindingListResult>;
-
-export interface MachinesGetRequest {
+export interface GetMachineRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -5681,7 +4728,7 @@ export interface MachinesGetRequest {
   /** Host name of the machine. */
   machineName: string;
 }
-export const MachinesGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetMachineRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -5697,8 +4744,8 @@ export const MachinesGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "MachinesGetRequest",
-}) as any as S.Schema<MachinesGetRequest>;
+  identifier: "GetMachineRequest",
+}) as any as S.Schema<GetMachineRequest>;
 
 /** To determine if address belongs IPv4 or IPv6 family */
 export type IPFamily = "IPv4" | "IPv6";
@@ -5756,12 +4803,12 @@ export const MachineProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<MachineProperties>;
 
 /** The Availability zone in which machine is located. */
-export type MachinesGetResponseZonesList = Array<string>;
-export const MachinesGetResponseZonesList = /*@__PURE__*/ S.Array(
+export type GetMachineResponseZonesList = Array<string>;
+export const GetMachineResponseZonesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<MachinesGetResponseZonesList>;
+) as any as S.Schema<GetMachineResponseZonesList>;
 
-export interface MachinesGetResponse {
+export interface GetMachineResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -5773,102 +4820,48 @@ export interface MachinesGetResponse {
   /** The properties of the machine */
   properties?: MachineProperties;
   /** The Availability zone in which machine is located. */
-  zones?: MachinesGetResponseZonesList;
+  zones?: GetMachineResponseZonesList;
 }
-export const MachinesGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetMachineResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(MachineProperties),
-    zones: S.optional(MachinesGetResponseZonesList),
+    zones: S.optional(GetMachineResponseZonesList),
   }),
 ).annotate({
-  identifier: "MachinesGetResponse",
-}) as any as S.Schema<MachinesGetResponse>;
+  identifier: "GetMachineResponse",
+}) as any as S.Schema<GetMachineResponse>;
 
-export interface MachinesListRequest {
+export interface GetMaintenanceConfigurationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of the managed cluster resource. */
   resourceName: string;
-  /** The name of the agent pool. */
-  agentPoolName: string;
+  /** The name of the maintenance configuration. Supported values are 'default', 'aksManagedAutoUpgradeSchedule', or 'aksManagedNodeOSUpgradeSchedule'. */
+  configName: string;
 }
-export const MachinesListRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetMaintenanceConfigurationRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     resourceName: S.String.pipe(T.Label()),
-    agentPoolName: S.String.pipe(T.Label()),
+    configName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/agentPools/{agentPoolName}/machines",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/maintenanceConfigurations/{configName}",
       code: 200,
       apiVersion: "2026-06-01",
     }),
   ),
 ).annotate({
-  identifier: "MachinesListRequest",
-}) as any as S.Schema<MachinesListRequest>;
-
-/** The Availability zone in which machine is located. */
-export type MachineZonesList = Array<string>;
-export const MachineZonesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<MachineZonesList>;
-
-/** A machine. Contains details about the underlying virtual machine. A machine may be visible here but not in kubectl get nodes; if so it may be because the machine has not been registered with the Kubernetes API Server yet. */
-export interface Machine {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties of the machine */
-  properties?: MachineProperties;
-  /** The Availability zone in which machine is located. */
-  zones?: MachineZonesList;
-}
-export const Machine = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(MachineProperties),
-    zones: S.optional(MachineZonesList),
-  }),
-).annotate({ identifier: "Machine" }) as any as S.Schema<Machine>;
-
-/** The Machine items on this page */
-export type MachineListResultValueList = Array<Machine>;
-export const MachineListResultValueList = /*@__PURE__*/ S.Array(
-  Machine,
-) as any as S.Schema<MachineListResultValueList>;
-
-/** The response of a Machine list operation. */
-export interface MachineListResult {
-  /** The Machine items on this page */
-  value: MachineListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const MachineListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: MachineListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "MachineListResult",
-}) as any as S.Schema<MachineListResult>;
+  identifier: "GetMaintenanceConfigurationRequest",
+}) as any as S.Schema<GetMaintenanceConfigurationRequest>;
 
 /** The weekday enum. */
 export type WeekDay =
@@ -6084,39 +5077,7 @@ export const MaintenanceConfigurationProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "MaintenanceConfigurationProperties",
 }) as any as S.Schema<MaintenanceConfigurationProperties>;
 
-export interface MaintenanceConfigurationsCreateOrUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the managed cluster resource. */
-  resourceName: string;
-  /** The name of the maintenance configuration. Supported values are 'default', 'aksManagedAutoUpgradeSchedule', or 'aksManagedNodeOSUpgradeSchedule'. */
-  configName: string;
-  /** Properties of a default maintenance configuration. */
-  properties?: MaintenanceConfigurationProperties;
-}
-export const MaintenanceConfigurationsCreateOrUpdateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-      configName: S.String.pipe(T.Label()),
-      properties: S.optional(MaintenanceConfigurationProperties),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/maintenanceConfigurations/{configName}",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "MaintenanceConfigurationsCreateOrUpdateRequest",
-  }) as any as S.Schema<MaintenanceConfigurationsCreateOrUpdateRequest>;
-
-export interface MaintenanceConfigurationsCreateOrUpdateResponse {
+export interface GetMaintenanceConfigurationResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -6128,148 +5089,7 @@ export interface MaintenanceConfigurationsCreateOrUpdateResponse {
   /** Properties of a default maintenance configuration. */
   properties?: MaintenanceConfigurationProperties;
 }
-export const MaintenanceConfigurationsCreateOrUpdateResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(MaintenanceConfigurationProperties),
-    }),
-  ).annotate({
-    identifier: "MaintenanceConfigurationsCreateOrUpdateResponse",
-  }) as any as S.Schema<MaintenanceConfigurationsCreateOrUpdateResponse>;
-
-export interface MaintenanceConfigurationsDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the managed cluster resource. */
-  resourceName: string;
-  /** The name of the maintenance configuration. Supported values are 'default', 'aksManagedAutoUpgradeSchedule', or 'aksManagedNodeOSUpgradeSchedule'. */
-  configName: string;
-}
-export const MaintenanceConfigurationsDeleteRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-      configName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/maintenanceConfigurations/{configName}",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "MaintenanceConfigurationsDeleteRequest",
-}) as any as S.Schema<MaintenanceConfigurationsDeleteRequest>;
-
-export interface MaintenanceConfigurationsDeleteResponse {}
-export const MaintenanceConfigurationsDeleteResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "MaintenanceConfigurationsDeleteResponse",
-}) as any as S.Schema<MaintenanceConfigurationsDeleteResponse>;
-
-export interface MaintenanceConfigurationsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the managed cluster resource. */
-  resourceName: string;
-  /** The name of the maintenance configuration. Supported values are 'default', 'aksManagedAutoUpgradeSchedule', or 'aksManagedNodeOSUpgradeSchedule'. */
-  configName: string;
-}
-export const MaintenanceConfigurationsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    resourceName: S.String.pipe(T.Label()),
-    configName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/maintenanceConfigurations/{configName}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "MaintenanceConfigurationsGetRequest",
-}) as any as S.Schema<MaintenanceConfigurationsGetRequest>;
-
-export interface MaintenanceConfigurationsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of a default maintenance configuration. */
-  properties?: MaintenanceConfigurationProperties;
-}
-export const MaintenanceConfigurationsGetResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(MaintenanceConfigurationProperties),
-    }),
-).annotate({
-  identifier: "MaintenanceConfigurationsGetResponse",
-}) as any as S.Schema<MaintenanceConfigurationsGetResponse>;
-
-export interface MaintenanceConfigurationsListByManagedClusterRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the managed cluster resource. */
-  resourceName: string;
-}
-export const MaintenanceConfigurationsListByManagedClusterRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/maintenanceConfigurations",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "MaintenanceConfigurationsListByManagedClusterRequest",
-  }) as any as S.Schema<MaintenanceConfigurationsListByManagedClusterRequest>;
-
-/** Planned maintenance configuration, used to configure when updates can be deployed to a Managed Cluster. See [planned maintenance](https://docs.microsoft.com/azure/aks/planned-maintenance) for more information about planned maintenance. */
-export interface MaintenanceConfiguration {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of a default maintenance configuration. */
-  properties?: MaintenanceConfigurationProperties;
-}
-export const MaintenanceConfiguration = /*@__PURE__*/ S.suspend(() =>
+export const GetMaintenanceConfigurationResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -6278,34 +5098,10 @@ export const MaintenanceConfiguration = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(MaintenanceConfigurationProperties),
   }),
 ).annotate({
-  identifier: "MaintenanceConfiguration",
-}) as any as S.Schema<MaintenanceConfiguration>;
+  identifier: "GetMaintenanceConfigurationResponse",
+}) as any as S.Schema<GetMaintenanceConfigurationResponse>;
 
-/** The MaintenanceConfiguration items on this page */
-export type MaintenanceConfigurationListResultValueList =
-  Array<MaintenanceConfiguration>;
-export const MaintenanceConfigurationListResultValueList =
-  /*@__PURE__*/ S.Array(
-    MaintenanceConfiguration,
-  ) as any as S.Schema<MaintenanceConfigurationListResultValueList>;
-
-/** The response of a MaintenanceConfiguration list operation. */
-export interface MaintenanceConfigurationListResult {
-  /** The MaintenanceConfiguration items on this page */
-  value: MaintenanceConfigurationListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const MaintenanceConfigurationListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: MaintenanceConfigurationListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "MaintenanceConfigurationListResult",
-}) as any as S.Schema<MaintenanceConfigurationListResult>;
-
-export interface ManagedClustersAbortLatestOperationRequest {
+export interface GetManagedClusterRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -6313,103 +5109,93 @@ export interface ManagedClustersAbortLatestOperationRequest {
   /** The name of the managed cluster resource. */
   resourceName: string;
 }
-export const ManagedClustersAbortLatestOperationRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/abort",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ManagedClustersAbortLatestOperationRequest",
-  }) as any as S.Schema<ManagedClustersAbortLatestOperationRequest>;
-
-export interface ManagedClustersAbortLatestOperationResponse {}
-export const ManagedClustersAbortLatestOperationResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "ManagedClustersAbortLatestOperationResponse",
-  }) as any as S.Schema<ManagedClustersAbortLatestOperationResponse>;
+export const GetManagedClusterRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    resourceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetManagedClusterRequest",
+}) as any as S.Schema<GetManagedClusterRequest>;
 
 /** Resource tags. */
-export type ManagedClustersCreateOrUpdateRequestTagsMap = {
+export type GetManagedClusterResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ManagedClustersCreateOrUpdateRequestTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<ManagedClustersCreateOrUpdateRequestTagsMap>;
+export const GetManagedClusterResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetManagedClusterResponseTagsMap>;
 
 /** The operating system type. The default is Linux. */
-export type ManagedClusterAgentPoolProfileInputOsType = "Linux" | "Windows";
-export const ManagedClusterAgentPoolProfileInputOsType = /*@__PURE__*/ S.String;
+export type ManagedClusterAgentPoolProfileOsType = "Linux" | "Windows";
+export const ManagedClusterAgentPoolProfileOsType = /*@__PURE__*/ S.String;
 
 /** The list of Availability zones to use for nodes. This can only be specified if the AgentPoolType property is 'VirtualMachineScaleSets'. */
-export type ManagedClusterAgentPoolProfileInputAvailabilityZonesList =
-  Array<string>;
-export const ManagedClusterAgentPoolProfileInputAvailabilityZonesList =
+export type ManagedClusterAgentPoolProfileAvailabilityZonesList = Array<string>;
+export const ManagedClusterAgentPoolProfileAvailabilityZonesList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<ManagedClusterAgentPoolProfileInputAvailabilityZonesList>;
+  ) as any as S.Schema<ManagedClusterAgentPoolProfileAvailabilityZonesList>;
 
 /** The Virtual Machine Scale Set priority. */
-export type ManagedClusterAgentPoolProfileInputScaleSetPriority =
-  | "Spot"
-  | "Regular";
-export const ManagedClusterAgentPoolProfileInputScaleSetPriority =
+export type ManagedClusterAgentPoolProfileScaleSetPriority = "Spot" | "Regular";
+export const ManagedClusterAgentPoolProfileScaleSetPriority =
   /*@__PURE__*/ S.String;
 
 /** The Virtual Machine Scale Set eviction policy. The eviction policy specifies what to do with the VM when it is evicted. The default is Delete. For more information about eviction see [spot VMs](https://docs.microsoft.com/azure/virtual-machines/spot-vms) */
-export type ManagedClusterAgentPoolProfileInputScaleSetEvictionPolicy =
+export type ManagedClusterAgentPoolProfileScaleSetEvictionPolicy =
   | "Delete"
   | "Deallocate";
-export const ManagedClusterAgentPoolProfileInputScaleSetEvictionPolicy =
+export const ManagedClusterAgentPoolProfileScaleSetEvictionPolicy =
   /*@__PURE__*/ S.String;
 
 /** The tags to be persisted on the agent pool virtual machine scale set. */
-export type ManagedClusterAgentPoolProfileInputTagsMap = {
+export type ManagedClusterAgentPoolProfileTagsMap = {
   [key: string]: string | undefined;
 };
-export const ManagedClusterAgentPoolProfileInputTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<ManagedClusterAgentPoolProfileInputTagsMap>;
+export const ManagedClusterAgentPoolProfileTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<ManagedClusterAgentPoolProfileTagsMap>;
 
 /** The node labels to be persisted across all nodes in agent pool. */
-export type ManagedClusterAgentPoolProfileInputNodeLabelsMap = {
+export type ManagedClusterAgentPoolProfileNodeLabelsMap = {
   [key: string]: string | undefined;
 };
-export const ManagedClusterAgentPoolProfileInputNodeLabelsMap =
+export const ManagedClusterAgentPoolProfileNodeLabelsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<ManagedClusterAgentPoolProfileInputNodeLabelsMap>;
+  ) as any as S.Schema<ManagedClusterAgentPoolProfileNodeLabelsMap>;
 
 /** The taints added to new nodes during node pool create and scale. For example, key=value:NoSchedule. */
-export type ManagedClusterAgentPoolProfileInputNodeTaintsList = Array<string>;
-export const ManagedClusterAgentPoolProfileInputNodeTaintsList =
+export type ManagedClusterAgentPoolProfileNodeTaintsList = Array<string>;
+export const ManagedClusterAgentPoolProfileNodeTaintsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<ManagedClusterAgentPoolProfileInputNodeTaintsList>;
+  ) as any as S.Schema<ManagedClusterAgentPoolProfileNodeTaintsList>;
 
 /** The status of nodes in a VirtualMachines agent pool. */
-export type ManagedClusterAgentPoolProfileInputVirtualMachineNodesStatusList =
+export type ManagedClusterAgentPoolProfileVirtualMachineNodesStatusList =
   Array<VirtualMachineNodes>;
-export const ManagedClusterAgentPoolProfileInputVirtualMachineNodesStatusList =
+export const ManagedClusterAgentPoolProfileVirtualMachineNodesStatusList =
   /*@__PURE__*/ S.Array(
     VirtualMachineNodes,
-  ) as any as S.Schema<ManagedClusterAgentPoolProfileInputVirtualMachineNodesStatusList>;
+  ) as any as S.Schema<ManagedClusterAgentPoolProfileVirtualMachineNodesStatusList>;
 
 /** Profile for the container service agent pool. */
-export interface ManagedClusterAgentPoolProfileInput {
+export interface ManagedClusterAgentPoolProfile {
+  /** Unique read-only string used to implement optimistic concurrency. The eTag value will change when the resource is updated. Specify an if-match or if-none-match header with the eTag value for a subsequent request to enable optimistic concurrency per the normal eTag convention. */
+  eTag?: string;
   /** Number of agents (VMs) to host docker containers. Allowed values must be in the range of 0 to 1000 (inclusive) for user pools and in the range of 1 to 1000 (inclusive) for system pools. The default value is 1. */
   count?: number;
   /** The size of the agent pool VMs. VM size availability varies by region. If a node contains insufficient compute resources (memory, cpu, etc) pods might fail to run correctly. For more details on restricted VM sizes, see: https://docs.microsoft.com/azure/aks/quotas-skus-regions */
@@ -6417,11 +5203,11 @@ export interface ManagedClusterAgentPoolProfileInput {
   /** OS Disk Size in GB to be used to specify the disk size for every machine in the master/agent pool. If you specify 0, it will apply the default osDisk size according to the vmSize specified. */
   osDiskSizeGB?: number;
   /** The OS disk type to be used for machines in the agent pool. The default is 'Ephemeral' if the VM supports it and has a cache disk larger than the requested OSDiskSizeGB. Otherwise, defaults to 'Managed'. May not be changed after creation. For more information see [Ephemeral OS](https://docs.microsoft.com/azure/aks/cluster-configuration#ephemeral-os). */
-  osDiskType?: OSDiskType | (string & {});
+  osDiskType?: OSDiskType;
   /** Determines the placement of emptyDir volumes, container runtime data root, and Kubelet ephemeral storage. */
-  kubeletDiskType?: KubeletDiskType | (string & {});
+  kubeletDiskType?: KubeletDiskType;
   /** Determines the type of workload a node can run. */
-  workloadRuntime?: WorkloadRuntime | (string & {});
+  workloadRuntime?: WorkloadRuntime;
   /** Message of the day for Linux nodes, base64-encoded. A base64-encoded string which will be written to /etc/motd after decoding. This allows customization of the message of the day for Linux nodes. It must not be specified for Windows nodes. It must be a static string (i.e., will be printed raw and not be executed as a script). */
   messageOfTheDay?: string;
   /** The ID of the subnet which agent pool nodes and optionally pods will join on startup. If this is not specified, a VNET and subnet will be generated and used. If no podSubnetID is specified, this applies to nodes and pods, otherwise it applies to just nodes. This is of the form: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworks/{virtualNetworkName}/subnets/{subnetName} */
@@ -6429,13 +5215,13 @@ export interface ManagedClusterAgentPoolProfileInput {
   /** The ID of the subnet which pods will join when launched. If omitted, pod IPs are statically assigned on the node subnet (see vnetSubnetID for more details). This is of the form: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworks/{virtualNetworkName}/subnets/{subnetName} */
   podSubnetID?: string;
   /** Pod IP Allocation Mode. The IP allocation mode for pods in the agent pool. Must be used with podSubnetId. The default is 'DynamicIndividual'. */
-  podIPAllocationMode?: PodIPAllocationMode | (string & {});
+  podIPAllocationMode?: PodIPAllocationMode;
   /** The maximum number of pods that can run on a node. */
   maxPods?: number;
   /** The operating system type. The default is Linux. */
-  osType?: ManagedClusterAgentPoolProfileInputOsType | (string & {});
+  osType?: ManagedClusterAgentPoolProfileOsType;
   /** Specifies the OS SKU used by the agent pool. The default is Ubuntu if OSType is Linux. The default is Windows2019 when Kubernetes <= 1.24 or Windows2022 when Kubernetes >= 1.25 if OSType is Windows. */
-  osSKU?: OSSKU | (string & {});
+  osSKU?: OSSKU;
   /** The maximum number of nodes for auto-scaling */
   maxCount?: number;
   /** The minimum number of nodes for auto-scaling */
@@ -6443,41 +5229,41 @@ export interface ManagedClusterAgentPoolProfileInput {
   /** Whether to enable auto-scaler */
   enableAutoScaling?: boolean;
   /** The scale down mode to use when scaling the Agent Pool. This also effects the cluster autoscaler behavior. If not specified, it defaults to Delete. */
-  scaleDownMode?: ScaleDownMode | (string & {});
+  scaleDownMode?: ScaleDownMode;
   /** The type of Agent Pool. */
-  type?: AgentPoolType | (string & {});
+  type?: AgentPoolType;
   /** The mode of an agent pool. A cluster must have at least one 'System' Agent Pool at all times. For additional information on agent pool restrictions and best practices, see: https://docs.microsoft.com/azure/aks/use-system-pools */
-  mode?: AgentPoolMode | (string & {});
+  mode?: AgentPoolMode;
   /** The version of Kubernetes specified by the user. Both patch version <major.minor.patch> (e.g. 1.20.13) and <major.minor> (e.g. 1.20) are supported. When <major.minor> is specified, the latest supported GA patch version is chosen automatically. Updating the cluster with the same <major.minor> once it has been created (e.g. 1.14.x -> 1.14) will not trigger an upgrade, even if a newer patch version is available. As a best practice, you should upgrade all node pools in an AKS cluster to the same Kubernetes version. The node pool version must have the same major version as the control plane. The node pool minor version must be within two minor versions of the control plane version. The node pool version cannot be greater than the control plane version. For more information see [upgrading a node pool](https://docs.microsoft.com/azure/aks/use-multiple-node-pools#upgrade-a-node-pool). */
   orchestratorVersion?: string;
+  /** The version of Kubernetes the Agent Pool is running. If orchestratorVersion is a fully specified version <major.minor.patch>, this field will be exactly equal to it. If orchestratorVersion is <major.minor>, this field will contain the full <major.minor.patch> version being used. */
+  currentOrchestratorVersion?: string;
   /** The version of the node image. Setting this value triggers an agentPool rollback. Only values from `recentlyUsedVersions` are allowed. */
   nodeImageVersion?: string;
   /** Settings for upgrading the agentpool */
   upgradeSettings?: AgentPoolUpgradeSettings;
+  /** The current deployment or provisioning state. */
+  provisioningState?: string;
   /** Whether the Agent Pool is running or stopped. When an Agent Pool is first created it is initially Running. The Agent Pool can be stopped by setting this field to Stopped. A stopped Agent Pool stops all of its VMs and does not accrue billing charges. An Agent Pool can only be stopped if it is Running and provisioning state is Succeeded */
   powerState?: PowerState;
   /** The list of Availability zones to use for nodes. This can only be specified if the AgentPoolType property is 'VirtualMachineScaleSets'. */
-  availabilityZones?: ManagedClusterAgentPoolProfileInputAvailabilityZonesList;
+  availabilityZones?: ManagedClusterAgentPoolProfileAvailabilityZonesList;
   /** Whether each node is allocated its own public IP. Some scenarios may require nodes in a node pool to receive their own dedicated public IP addresses. A common scenario is for gaming workloads, where a console needs to make a direct connection to a cloud virtual machine to minimize hops. For more information see [assigning a public IP per node](https://docs.microsoft.com/azure/aks/use-multiple-node-pools#assign-a-public-ip-per-node-for-your-node-pools). The default is false. */
   enableNodePublicIP?: boolean;
   /** The public IP prefix ID which VM nodes should use IPs from. This is of the form: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/publicIPPrefixes/{publicIPPrefixName} */
   nodePublicIPPrefixID?: string;
   /** The Virtual Machine Scale Set priority. */
-  scaleSetPriority?:
-    | ManagedClusterAgentPoolProfileInputScaleSetPriority
-    | (string & {});
+  scaleSetPriority?: ManagedClusterAgentPoolProfileScaleSetPriority;
   /** The Virtual Machine Scale Set eviction policy. The eviction policy specifies what to do with the VM when it is evicted. The default is Delete. For more information about eviction see [spot VMs](https://docs.microsoft.com/azure/virtual-machines/spot-vms) */
-  scaleSetEvictionPolicy?:
-    | ManagedClusterAgentPoolProfileInputScaleSetEvictionPolicy
-    | (string & {});
+  scaleSetEvictionPolicy?: ManagedClusterAgentPoolProfileScaleSetEvictionPolicy;
   /** The max price (in US Dollars) you are willing to pay for spot instances. Possible values are any decimal value greater than zero or -1 which indicates default price to be up-to on-demand. Possible values are any decimal value greater than zero or -1 which indicates the willingness to pay any on-demand price. For more details on spot pricing, see [spot VMs pricing](https://docs.microsoft.com/azure/virtual-machines/spot-vms#pricing) */
   spotMaxPrice?: number;
   /** The tags to be persisted on the agent pool virtual machine scale set. */
-  tags?: ManagedClusterAgentPoolProfileInputTagsMap;
+  tags?: ManagedClusterAgentPoolProfileTagsMap;
   /** The node labels to be persisted across all nodes in agent pool. */
-  nodeLabels?: ManagedClusterAgentPoolProfileInputNodeLabelsMap;
+  nodeLabels?: ManagedClusterAgentPoolProfileNodeLabelsMap;
   /** The taints added to new nodes during node pool create and scale. For example, key=value:NoSchedule. */
-  nodeTaints?: ManagedClusterAgentPoolProfileInputNodeTaintsList;
+  nodeTaints?: ManagedClusterAgentPoolProfileNodeTaintsList;
   /** The ID for Proximity Placement Group. */
   proximityPlacementGroupID?: string;
   /** The Kubelet configuration on the agent pool nodes. */
@@ -6491,7 +5277,7 @@ export interface ManagedClusterAgentPoolProfileInput {
   /** Whether to use a FIPS-enabled OS. See [Add a FIPS-enabled node pool](https://docs.microsoft.com/azure/aks/use-multiple-node-pools#add-a-fips-enabled-node-pool-preview) for more details. */
   enableFIPS?: boolean;
   /** GPUInstanceProfile to be used to specify GPU MIG instance profile for supported GPU VM SKU. */
-  gpuInstanceProfile?: GPUInstanceProfile | (string & {});
+  gpuInstanceProfile?: GPUInstanceProfile;
   /** CreationData to be used to specify the source Snapshot ID if the node pool will be created/upgraded using a snapshot. */
   creationData?: CreationData;
   /** The fully qualified resource ID of the Capacity Reservation Group to provide virtual machines from a reserved group of Virtual Machines. This is of the form: '/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Compute/capacityreservationgroups/{capacityReservationGroupName}' Customers use it to create an agentpool with a specified CRG. For more information see [Capacity Reservation](https://learn.microsoft.com/en-us/azure/virtual-machines/capacity-reservation-overview) */
@@ -6513,16 +5299,17 @@ export interface ManagedClusterAgentPoolProfileInput {
   /** Specifications on VirtualMachines agent pool. */
   virtualMachinesProfile?: VirtualMachinesProfile;
   /** The status of nodes in a VirtualMachines agent pool. */
-  virtualMachineNodesStatus?: ManagedClusterAgentPoolProfileInputVirtualMachineNodesStatusList;
+  virtualMachineNodesStatus?: ManagedClusterAgentPoolProfileVirtualMachineNodesStatusList;
   /** Contains read-only information about the Agent Pool. */
-  status?: AgentPoolStatusInput;
+  status?: AgentPoolStatus;
   /** Configures the per-node local DNS, with VnetDNS and KubeDNS overrides. LocalDNS helps improve performance and reliability of DNS resolution in an AKS cluster. For more details see aka.ms/aks/localdns. */
   localDNSProfile?: LocalDNSProfile;
   /** Unique name of the agent pool profile in the context of the subscription and resource group. Windows agent pool names must be 6 characters or less. */
   name: string;
 }
-export const ManagedClusterAgentPoolProfileInput = /*@__PURE__*/ S.suspend(() =>
+export const ManagedClusterAgentPoolProfile = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    eTag: S.optional(S.String),
     count: S.optional(S.Number),
     vmSize: S.optional(S.String),
     osDiskSizeGB: S.optional(S.Number),
@@ -6534,7 +5321,7 @@ export const ManagedClusterAgentPoolProfileInput = /*@__PURE__*/ S.suspend(() =>
     podSubnetID: S.optional(S.String),
     podIPAllocationMode: S.optional(PodIPAllocationMode),
     maxPods: S.optional(S.Number),
-    osType: S.optional(ManagedClusterAgentPoolProfileInputOsType),
+    osType: S.optional(ManagedClusterAgentPoolProfileOsType),
     osSKU: S.optional(OSSKU),
     maxCount: S.optional(S.Number),
     minCount: S.optional(S.Number),
@@ -6543,24 +5330,26 @@ export const ManagedClusterAgentPoolProfileInput = /*@__PURE__*/ S.suspend(() =>
     type: S.optional(AgentPoolType),
     mode: S.optional(AgentPoolMode),
     orchestratorVersion: S.optional(S.String),
+    currentOrchestratorVersion: S.optional(S.String),
     nodeImageVersion: S.optional(S.String),
     upgradeSettings: S.optional(AgentPoolUpgradeSettings),
+    provisioningState: S.optional(S.String),
     powerState: S.optional(PowerState),
     availabilityZones: S.optional(
-      ManagedClusterAgentPoolProfileInputAvailabilityZonesList,
+      ManagedClusterAgentPoolProfileAvailabilityZonesList,
     ),
     enableNodePublicIP: S.optional(S.Boolean),
     nodePublicIPPrefixID: S.optional(S.String),
     scaleSetPriority: S.optional(
-      ManagedClusterAgentPoolProfileInputScaleSetPriority,
+      ManagedClusterAgentPoolProfileScaleSetPriority,
     ),
     scaleSetEvictionPolicy: S.optional(
-      ManagedClusterAgentPoolProfileInputScaleSetEvictionPolicy,
+      ManagedClusterAgentPoolProfileScaleSetEvictionPolicy,
     ),
     spotMaxPrice: S.optional(S.Number),
-    tags: S.optional(ManagedClusterAgentPoolProfileInputTagsMap),
-    nodeLabels: S.optional(ManagedClusterAgentPoolProfileInputNodeLabelsMap),
-    nodeTaints: S.optional(ManagedClusterAgentPoolProfileInputNodeTaintsList),
+    tags: S.optional(ManagedClusterAgentPoolProfileTagsMap),
+    nodeLabels: S.optional(ManagedClusterAgentPoolProfileNodeLabelsMap),
+    nodeTaints: S.optional(ManagedClusterAgentPoolProfileNodeTaintsList),
     proximityPlacementGroupID: S.optional(S.String),
     kubeletConfig: S.optional(KubeletConfig),
     linuxOSConfig: S.optional(LinuxOSConfig),
@@ -6579,23 +5368,23 @@ export const ManagedClusterAgentPoolProfileInput = /*@__PURE__*/ S.suspend(() =>
     artifactStreamingProfile: S.optional(AgentPoolArtifactStreamingProfile),
     virtualMachinesProfile: S.optional(VirtualMachinesProfile),
     virtualMachineNodesStatus: S.optional(
-      ManagedClusterAgentPoolProfileInputVirtualMachineNodesStatusList,
+      ManagedClusterAgentPoolProfileVirtualMachineNodesStatusList,
     ),
-    status: S.optional(AgentPoolStatusInput),
+    status: S.optional(AgentPoolStatus),
     localDNSProfile: S.optional(LocalDNSProfile),
     name: S.String,
   }),
 ).annotate({
-  identifier: "ManagedClusterAgentPoolProfileInput",
-}) as any as S.Schema<ManagedClusterAgentPoolProfileInput>;
+  identifier: "ManagedClusterAgentPoolProfile",
+}) as any as S.Schema<ManagedClusterAgentPoolProfile>;
 
 /** The agent pool properties. */
-export type ManagedClusterPropertiesInputAgentPoolProfilesList =
-  Array<ManagedClusterAgentPoolProfileInput>;
-export const ManagedClusterPropertiesInputAgentPoolProfilesList =
+export type ManagedClusterPropertiesAgentPoolProfilesList =
+  Array<ManagedClusterAgentPoolProfile>;
+export const ManagedClusterPropertiesAgentPoolProfilesList =
   /*@__PURE__*/ S.Array(
-    ManagedClusterAgentPoolProfileInput,
-  ) as any as S.Schema<ManagedClusterPropertiesInputAgentPoolProfilesList>;
+    ManagedClusterAgentPoolProfile,
+  ) as any as S.Schema<ManagedClusterPropertiesAgentPoolProfilesList>;
 
 /** Contains information about SSH certificate public key data. */
 export interface ContainerServiceSshPublicKey {
@@ -6760,17 +5549,88 @@ export const ManagedClusterAddonProfile = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ManagedClusterAddonProfile>;
 
 /** The profile of managed cluster add-on. */
-export type ManagedClusterPropertiesInputAddonProfilesMap = {
+export type ManagedClusterPropertiesAddonProfilesMap = {
   [key: string]: ManagedClusterAddonProfile | undefined;
 };
-export const ManagedClusterPropertiesInputAddonProfilesMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    ManagedClusterAddonProfile,
-  ) as any as S.Schema<ManagedClusterPropertiesInputAddonProfilesMap>;
+export const ManagedClusterPropertiesAddonProfilesMap = /*@__PURE__*/ S.Record(
+  S.String,
+  ManagedClusterAddonProfile,
+) as any as S.Schema<ManagedClusterPropertiesAddonProfilesMap>;
+
+/** The current provisioning state of the pod identity. */
+export type ManagedClusterPodIdentityProvisioningState =
+  | "Assigned"
+  | "Canceled"
+  | "Deleting"
+  | "Failed"
+  | "Succeeded"
+  | "Updating";
+export const ManagedClusterPodIdentityProvisioningState =
+  /*@__PURE__*/ S.String;
+
+/** A list of additional details about the error. */
+export type ManagedClusterPodIdentityProvisioningErrorBodyDetailsList =
+  Array<ManagedClusterPodIdentityProvisioningErrorBody>;
+export const ManagedClusterPodIdentityProvisioningErrorBodyDetailsList =
+  /*@__PURE__*/ S.Array(
+    S.suspend(() => ManagedClusterPodIdentityProvisioningErrorBody),
+  ) as any as S.Schema<ManagedClusterPodIdentityProvisioningErrorBodyDetailsList>;
+
+/** An error response from the pod identity provisioning. */
+export interface ManagedClusterPodIdentityProvisioningErrorBody {
+  /** An identifier for the error. Codes are invariant and are intended to be consumed programmatically. */
+  code?: string;
+  /** A message describing the error, intended to be suitable for display in a user interface. */
+  message?: string;
+  /** The target of the particular error. For example, the name of the property in error. */
+  target?: string;
+  /** A list of additional details about the error. */
+  details?: ManagedClusterPodIdentityProvisioningErrorBodyDetailsList;
+}
+export const ManagedClusterPodIdentityProvisioningErrorBody =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      code: S.optional(S.String),
+      message: S.optional(S.String),
+      target: S.optional(S.String),
+      details: S.optional(
+        ManagedClusterPodIdentityProvisioningErrorBodyDetailsList,
+      ),
+    }),
+  ).annotate({
+    identifier: "ManagedClusterPodIdentityProvisioningErrorBody",
+  }) as any as S.Schema<ManagedClusterPodIdentityProvisioningErrorBody>;
+
+/** An error response from the pod identity provisioning. */
+export interface ManagedClusterPodIdentityProvisioningError {
+  /** Details about the error. */
+  error?: ManagedClusterPodIdentityProvisioningErrorBody;
+}
+export const ManagedClusterPodIdentityProvisioningError =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      error: S.optional(ManagedClusterPodIdentityProvisioningErrorBody),
+    }),
+  ).annotate({
+    identifier: "ManagedClusterPodIdentityProvisioningError",
+  }) as any as S.Schema<ManagedClusterPodIdentityProvisioningError>;
+
+/** Pod identity provisioning information. */
+export interface ManagedClusterPodIdentityProvisioningInfo {
+  /** Pod identity assignment error (if any). */
+  error?: ManagedClusterPodIdentityProvisioningError;
+}
+export const ManagedClusterPodIdentityProvisioningInfo =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      error: S.optional(ManagedClusterPodIdentityProvisioningError),
+    }),
+  ).annotate({
+    identifier: "ManagedClusterPodIdentityProvisioningInfo",
+  }) as any as S.Schema<ManagedClusterPodIdentityProvisioningInfo>;
 
 /** Details about the pod identity assigned to the Managed Cluster. */
-export interface ManagedClusterPodIdentityInput {
+export interface ManagedClusterPodIdentity {
   /** The name of the pod identity. */
   name: string;
   /** The namespace of the pod identity. */
@@ -6779,25 +5639,31 @@ export interface ManagedClusterPodIdentityInput {
   bindingSelector?: string;
   /** The user assigned identity details. */
   identity: UserAssignedIdentity;
+  /** The current provisioning state of the pod identity. */
+  provisioningState?: ManagedClusterPodIdentityProvisioningState;
+  /** The provisioning information for the pod identity. */
+  provisioningInfo?: ManagedClusterPodIdentityProvisioningInfo;
 }
-export const ManagedClusterPodIdentityInput = /*@__PURE__*/ S.suspend(() =>
+export const ManagedClusterPodIdentity = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     name: S.String,
     namespace: S.String,
     bindingSelector: S.optional(S.String),
     identity: UserAssignedIdentity,
+    provisioningState: S.optional(ManagedClusterPodIdentityProvisioningState),
+    provisioningInfo: S.optional(ManagedClusterPodIdentityProvisioningInfo),
   }),
 ).annotate({
-  identifier: "ManagedClusterPodIdentityInput",
-}) as any as S.Schema<ManagedClusterPodIdentityInput>;
+  identifier: "ManagedClusterPodIdentity",
+}) as any as S.Schema<ManagedClusterPodIdentity>;
 
 /** The pod identities to use in the cluster. */
-export type ManagedClusterPodIdentityProfileInputUserAssignedIdentitiesList =
-  Array<ManagedClusterPodIdentityInput>;
-export const ManagedClusterPodIdentityProfileInputUserAssignedIdentitiesList =
+export type ManagedClusterPodIdentityProfileUserAssignedIdentitiesList =
+  Array<ManagedClusterPodIdentity>;
+export const ManagedClusterPodIdentityProfileUserAssignedIdentitiesList =
   /*@__PURE__*/ S.Array(
-    ManagedClusterPodIdentityInput,
-  ) as any as S.Schema<ManagedClusterPodIdentityProfileInputUserAssignedIdentitiesList>;
+    ManagedClusterPodIdentity,
+  ) as any as S.Schema<ManagedClusterPodIdentityProfileUserAssignedIdentitiesList>;
 
 /** The pod labels to match. */
 export type ManagedClusterPodIdentityExceptionPodLabelsMap = {
@@ -6829,53 +5695,54 @@ export const ManagedClusterPodIdentityException = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ManagedClusterPodIdentityException>;
 
 /** The pod identity exceptions to allow. */
-export type ManagedClusterPodIdentityProfileInputUserAssignedIdentityExceptionsList =
+export type ManagedClusterPodIdentityProfileUserAssignedIdentityExceptionsList =
   Array<ManagedClusterPodIdentityException>;
-export const ManagedClusterPodIdentityProfileInputUserAssignedIdentityExceptionsList =
+export const ManagedClusterPodIdentityProfileUserAssignedIdentityExceptionsList =
   /*@__PURE__*/ S.Array(
     ManagedClusterPodIdentityException,
-  ) as any as S.Schema<ManagedClusterPodIdentityProfileInputUserAssignedIdentityExceptionsList>;
+  ) as any as S.Schema<ManagedClusterPodIdentityProfileUserAssignedIdentityExceptionsList>;
 
 /** The pod identity profile of the Managed Cluster. See [use AAD pod identity](https://docs.microsoft.com/azure/aks/use-azure-ad-pod-identity) for more details on pod identity integration. */
-export interface ManagedClusterPodIdentityProfileInput {
+export interface ManagedClusterPodIdentityProfile {
   /** Whether the pod identity addon is enabled. */
   enabled?: boolean;
   /** Whether pod identity is allowed to run on clusters with Kubenet networking. Running in Kubenet is disabled by default due to the security related nature of AAD Pod Identity and the risks of IP spoofing. See [using Kubenet network plugin with AAD Pod Identity](https://docs.microsoft.com/azure/aks/use-azure-ad-pod-identity#using-kubenet-network-plugin-with-azure-active-directory-pod-managed-identities) for more information. */
   allowNetworkPluginKubenet?: boolean;
   /** The pod identities to use in the cluster. */
-  userAssignedIdentities?: ManagedClusterPodIdentityProfileInputUserAssignedIdentitiesList;
+  userAssignedIdentities?: ManagedClusterPodIdentityProfileUserAssignedIdentitiesList;
   /** The pod identity exceptions to allow. */
-  userAssignedIdentityExceptions?: ManagedClusterPodIdentityProfileInputUserAssignedIdentityExceptionsList;
+  userAssignedIdentityExceptions?: ManagedClusterPodIdentityProfileUserAssignedIdentityExceptionsList;
 }
-export const ManagedClusterPodIdentityProfileInput = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      enabled: S.optional(S.Boolean),
-      allowNetworkPluginKubenet: S.optional(S.Boolean),
-      userAssignedIdentities: S.optional(
-        ManagedClusterPodIdentityProfileInputUserAssignedIdentitiesList,
-      ),
-      userAssignedIdentityExceptions: S.optional(
-        ManagedClusterPodIdentityProfileInputUserAssignedIdentityExceptionsList,
-      ),
-    }),
+export const ManagedClusterPodIdentityProfile = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    enabled: S.optional(S.Boolean),
+    allowNetworkPluginKubenet: S.optional(S.Boolean),
+    userAssignedIdentities: S.optional(
+      ManagedClusterPodIdentityProfileUserAssignedIdentitiesList,
+    ),
+    userAssignedIdentityExceptions: S.optional(
+      ManagedClusterPodIdentityProfileUserAssignedIdentityExceptionsList,
+    ),
+  }),
 ).annotate({
-  identifier: "ManagedClusterPodIdentityProfileInput",
-}) as any as S.Schema<ManagedClusterPodIdentityProfileInput>;
+  identifier: "ManagedClusterPodIdentityProfile",
+}) as any as S.Schema<ManagedClusterPodIdentityProfile>;
 
 /** The OIDC issuer profile of the Managed Cluster. */
-export interface ManagedClusterOIDCIssuerProfileInput {
+export interface ManagedClusterOIDCIssuerProfile {
+  /** The OIDC issuer url of the Managed Cluster. */
+  issuerURL?: string;
   /** Whether the OIDC issuer is enabled. */
   enabled?: boolean;
 }
-export const ManagedClusterOIDCIssuerProfileInput = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      enabled: S.optional(S.Boolean),
-    }),
+export const ManagedClusterOIDCIssuerProfile = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    issuerURL: S.optional(S.String),
+    enabled: S.optional(S.Boolean),
+  }),
 ).annotate({
-  identifier: "ManagedClusterOIDCIssuerProfileInput",
-}) as any as S.Schema<ManagedClusterOIDCIssuerProfileInput>;
+  identifier: "ManagedClusterOIDCIssuerProfile",
+}) as any as S.Schema<ManagedClusterOIDCIssuerProfile>;
 
 /** The restriction level applied to the cluster's node resource group. If not specified, the default is 'Unrestricted' */
 export type RestrictionLevel = "Unrestricted" | "ReadOnly";
@@ -7016,13 +5883,13 @@ export const AdvancedNetworking = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<AdvancedNetworking>;
 
 /** The outbound (egress) routing method. This can only be set at cluster creation time and cannot be changed later. For more information see [egress outbound type](https://docs.microsoft.com/azure/aks/egress-outboundtype). */
-export type ContainerServiceNetworkProfileInputOutboundType =
+export type ContainerServiceNetworkProfileOutboundType =
   | "loadBalancer"
   | "userDefinedRouting"
   | "managedNATGateway"
   | "userAssignedNATGateway"
   | "none";
-export const ContainerServiceNetworkProfileInputOutboundType =
+export const ContainerServiceNetworkProfileOutboundType =
   /*@__PURE__*/ S.String;
 
 /** The load balancer sku for the managed cluster. The default is 'standard'. See [Azure Load Balancer SKUs](https://docs.microsoft.com/azure/load-balancer/skus) for more information about the differences between load balancer SKUs. */
@@ -7107,21 +5974,31 @@ export const ManagedClusterLoadBalancerProfileOutboundIPs =
     identifier: "ManagedClusterLoadBalancerProfileOutboundIPs",
   }) as any as S.Schema<ManagedClusterLoadBalancerProfileOutboundIPs>;
 
+/** The effective outbound IP resources of the cluster load balancer. */
+export type ManagedClusterLoadBalancerProfileEffectiveOutboundIPsList =
+  Array<ResourceReference>;
+export const ManagedClusterLoadBalancerProfileEffectiveOutboundIPsList =
+  /*@__PURE__*/ S.Array(
+    ResourceReference,
+  ) as any as S.Schema<ManagedClusterLoadBalancerProfileEffectiveOutboundIPsList>;
+
 /** The type of the managed inbound Load Balancer BackendPool. */
-export type ManagedClusterLoadBalancerProfileInputBackendPoolType =
+export type ManagedClusterLoadBalancerProfileBackendPoolType =
   | "NodeIPConfiguration"
   | "NodeIP";
-export const ManagedClusterLoadBalancerProfileInputBackendPoolType =
+export const ManagedClusterLoadBalancerProfileBackendPoolType =
   /*@__PURE__*/ S.String;
 
 /** Profile of the managed cluster load balancer. */
-export interface ManagedClusterLoadBalancerProfileInput {
+export interface ManagedClusterLoadBalancerProfile {
   /** Desired managed outbound IPs for the cluster load balancer. */
   managedOutboundIPs?: ManagedClusterLoadBalancerProfileManagedOutboundIPs;
   /** Desired outbound IP Prefix resources for the cluster load balancer. */
   outboundIPPrefixes?: ManagedClusterLoadBalancerProfileOutboundIPPrefixes;
   /** Desired outbound IP resources for the cluster load balancer. */
   outboundIPs?: ManagedClusterLoadBalancerProfileOutboundIPs;
+  /** The effective outbound IP resources of the cluster load balancer. */
+  effectiveOutboundIPs?: ManagedClusterLoadBalancerProfileEffectiveOutboundIPsList;
   /** The desired number of allocated SNAT ports per VM. Allowed values are in the range of 0 to 64000 (inclusive). The default value is 0 which results in Azure dynamically allocating ports. */
   allocatedOutboundPorts?: number;
   /** Desired outbound flow idle timeout in minutes. Allowed values are in the range of 4 to 120 (inclusive). The default value is 30 minutes. */
@@ -7129,30 +6006,30 @@ export interface ManagedClusterLoadBalancerProfileInput {
   /** Enable multiple standard load balancers per AKS cluster or not. */
   enableMultipleStandardLoadBalancers?: boolean;
   /** The type of the managed inbound Load Balancer BackendPool. */
-  backendPoolType?:
-    | ManagedClusterLoadBalancerProfileInputBackendPoolType
-    | (string & {});
+  backendPoolType?: ManagedClusterLoadBalancerProfileBackendPoolType;
 }
-export const ManagedClusterLoadBalancerProfileInput = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      managedOutboundIPs: S.optional(
-        ManagedClusterLoadBalancerProfileManagedOutboundIPs,
-      ),
-      outboundIPPrefixes: S.optional(
-        ManagedClusterLoadBalancerProfileOutboundIPPrefixes,
-      ),
-      outboundIPs: S.optional(ManagedClusterLoadBalancerProfileOutboundIPs),
-      allocatedOutboundPorts: S.optional(S.Number),
-      idleTimeoutInMinutes: S.optional(S.Number),
-      enableMultipleStandardLoadBalancers: S.optional(S.Boolean),
-      backendPoolType: S.optional(
-        ManagedClusterLoadBalancerProfileInputBackendPoolType,
-      ),
-    }),
+export const ManagedClusterLoadBalancerProfile = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    managedOutboundIPs: S.optional(
+      ManagedClusterLoadBalancerProfileManagedOutboundIPs,
+    ),
+    outboundIPPrefixes: S.optional(
+      ManagedClusterLoadBalancerProfileOutboundIPPrefixes,
+    ),
+    outboundIPs: S.optional(ManagedClusterLoadBalancerProfileOutboundIPs),
+    effectiveOutboundIPs: S.optional(
+      ManagedClusterLoadBalancerProfileEffectiveOutboundIPsList,
+    ),
+    allocatedOutboundPorts: S.optional(S.Number),
+    idleTimeoutInMinutes: S.optional(S.Number),
+    enableMultipleStandardLoadBalancers: S.optional(S.Boolean),
+    backendPoolType: S.optional(
+      ManagedClusterLoadBalancerProfileBackendPoolType,
+    ),
+  }),
 ).annotate({
-  identifier: "ManagedClusterLoadBalancerProfileInput",
-}) as any as S.Schema<ManagedClusterLoadBalancerProfileInput>;
+  identifier: "ManagedClusterLoadBalancerProfile",
+}) as any as S.Schema<ManagedClusterLoadBalancerProfile>;
 
 /** The SKU of a managed cluster NAT Gateway. */
 export type ManagedClusterNATGatewaySku = "Standard" | "StandardV2";
@@ -7175,83 +6052,95 @@ export const ManagedClusterManagedOutboundIPProfile = /*@__PURE__*/ S.suspend(
   identifier: "ManagedClusterManagedOutboundIPProfile",
 }) as any as S.Schema<ManagedClusterManagedOutboundIPProfile>;
 
+/** The effective outbound IP resources of the cluster NAT gateway. */
+export type ManagedClusterNATGatewayProfileEffectiveOutboundIPsList =
+  Array<ResourceReference>;
+export const ManagedClusterNATGatewayProfileEffectiveOutboundIPsList =
+  /*@__PURE__*/ S.Array(
+    ResourceReference,
+  ) as any as S.Schema<ManagedClusterNATGatewayProfileEffectiveOutboundIPsList>;
+
 /** A list of public IP prefix resources. */
-export type ManagedClusterNATGatewayProfileInputOutboundIPPrefixesPublicIPPrefixesList =
+export type ManagedClusterNATGatewayProfileOutboundIPPrefixesPublicIPPrefixesList =
   Array<string>;
-export const ManagedClusterNATGatewayProfileInputOutboundIPPrefixesPublicIPPrefixesList =
+export const ManagedClusterNATGatewayProfileOutboundIPPrefixesPublicIPPrefixesList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<ManagedClusterNATGatewayProfileInputOutboundIPPrefixesPublicIPPrefixesList>;
+  ) as any as S.Schema<ManagedClusterNATGatewayProfileOutboundIPPrefixesPublicIPPrefixesList>;
 
 /** Desired outbound IP Prefix resources for the managed NAT Gateway. Only compatible with NAT Gateway V2. */
-export interface ManagedClusterNATGatewayProfileInputOutboundIPPrefixes {
+export interface ManagedClusterNATGatewayProfileOutboundIPPrefixes {
   /** A list of public IP prefix resources. */
-  publicIPPrefixes?: ManagedClusterNATGatewayProfileInputOutboundIPPrefixesPublicIPPrefixesList;
+  publicIPPrefixes?: ManagedClusterNATGatewayProfileOutboundIPPrefixesPublicIPPrefixesList;
 }
-export const ManagedClusterNATGatewayProfileInputOutboundIPPrefixes =
+export const ManagedClusterNATGatewayProfileOutboundIPPrefixes =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       publicIPPrefixes: S.optional(
-        ManagedClusterNATGatewayProfileInputOutboundIPPrefixesPublicIPPrefixesList,
+        ManagedClusterNATGatewayProfileOutboundIPPrefixesPublicIPPrefixesList,
       ),
     }),
   ).annotate({
-    identifier: "ManagedClusterNATGatewayProfileInputOutboundIPPrefixes",
-  }) as any as S.Schema<ManagedClusterNATGatewayProfileInputOutboundIPPrefixes>;
+    identifier: "ManagedClusterNATGatewayProfileOutboundIPPrefixes",
+  }) as any as S.Schema<ManagedClusterNATGatewayProfileOutboundIPPrefixes>;
 
 /** A list of public IP resources. */
-export type ManagedClusterNATGatewayProfileInputOutboundIPsPublicIPsList =
+export type ManagedClusterNATGatewayProfileOutboundIPsPublicIPsList =
   Array<string>;
-export const ManagedClusterNATGatewayProfileInputOutboundIPsPublicIPsList =
+export const ManagedClusterNATGatewayProfileOutboundIPsPublicIPsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<ManagedClusterNATGatewayProfileInputOutboundIPsPublicIPsList>;
+  ) as any as S.Schema<ManagedClusterNATGatewayProfileOutboundIPsPublicIPsList>;
 
 /** Desired outbound IP resources for the managed NAT Gateway. */
-export interface ManagedClusterNATGatewayProfileInputOutboundIPs {
+export interface ManagedClusterNATGatewayProfileOutboundIPs {
   /** A list of public IP resources. */
-  publicIPs?: ManagedClusterNATGatewayProfileInputOutboundIPsPublicIPsList;
+  publicIPs?: ManagedClusterNATGatewayProfileOutboundIPsPublicIPsList;
 }
-export const ManagedClusterNATGatewayProfileInputOutboundIPs =
+export const ManagedClusterNATGatewayProfileOutboundIPs =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       publicIPs: S.optional(
-        ManagedClusterNATGatewayProfileInputOutboundIPsPublicIPsList,
+        ManagedClusterNATGatewayProfileOutboundIPsPublicIPsList,
       ),
     }),
   ).annotate({
-    identifier: "ManagedClusterNATGatewayProfileInputOutboundIPs",
-  }) as any as S.Schema<ManagedClusterNATGatewayProfileInputOutboundIPs>;
+    identifier: "ManagedClusterNATGatewayProfileOutboundIPs",
+  }) as any as S.Schema<ManagedClusterNATGatewayProfileOutboundIPs>;
 
 /** Profile of the managed cluster NAT gateway. */
-export interface ManagedClusterNATGatewayProfileInput {
+export interface ManagedClusterNATGatewayProfile {
   /** The SKU of the managed cluster NAT Gateway. Defaults to 'StandardV2' where available in the region, otherwise 'Standard'. */
-  sku?: ManagedClusterNATGatewaySku | (string & {});
+  sku?: ManagedClusterNATGatewaySku;
   /** Profile of the managed outbound IP resources of the cluster NAT gateway. */
   managedOutboundIPProfile?: ManagedClusterManagedOutboundIPProfile;
+  /** The effective outbound IP resources of the cluster NAT gateway. */
+  effectiveOutboundIPs?: ManagedClusterNATGatewayProfileEffectiveOutboundIPsList;
   /** Desired outbound IP Prefix resources for the managed NAT Gateway. Only compatible with NAT Gateway V2. */
-  outboundIPPrefixes?: ManagedClusterNATGatewayProfileInputOutboundIPPrefixes;
+  outboundIPPrefixes?: ManagedClusterNATGatewayProfileOutboundIPPrefixes;
   /** Desired outbound IP resources for the managed NAT Gateway. */
-  outboundIPs?: ManagedClusterNATGatewayProfileInputOutboundIPs;
+  outboundIPs?: ManagedClusterNATGatewayProfileOutboundIPs;
   /** Desired outbound flow idle timeout in minutes. Allowed values are in the range of 4 to 120 (inclusive). The default value is 4 minutes. */
   idleTimeoutInMinutes?: number;
 }
-export const ManagedClusterNATGatewayProfileInput = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      sku: S.optional(ManagedClusterNATGatewaySku),
-      managedOutboundIPProfile: S.optional(
-        ManagedClusterManagedOutboundIPProfile,
-      ),
-      outboundIPPrefixes: S.optional(
-        ManagedClusterNATGatewayProfileInputOutboundIPPrefixes,
-      ),
-      outboundIPs: S.optional(ManagedClusterNATGatewayProfileInputOutboundIPs),
-      idleTimeoutInMinutes: S.optional(S.Number),
-    }),
+export const ManagedClusterNATGatewayProfile = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    sku: S.optional(ManagedClusterNATGatewaySku),
+    managedOutboundIPProfile: S.optional(
+      ManagedClusterManagedOutboundIPProfile,
+    ),
+    effectiveOutboundIPs: S.optional(
+      ManagedClusterNATGatewayProfileEffectiveOutboundIPsList,
+    ),
+    outboundIPPrefixes: S.optional(
+      ManagedClusterNATGatewayProfileOutboundIPPrefixes,
+    ),
+    outboundIPs: S.optional(ManagedClusterNATGatewayProfileOutboundIPs),
+    idleTimeoutInMinutes: S.optional(S.Number),
+  }),
 ).annotate({
-  identifier: "ManagedClusterNATGatewayProfileInput",
-}) as any as S.Schema<ManagedClusterNATGatewayProfileInput>;
+  identifier: "ManagedClusterNATGatewayProfile",
+}) as any as S.Schema<ManagedClusterNATGatewayProfile>;
 
 /** The Static Egress Gateway addon configuration for the cluster. */
 export interface ManagedClusterStaticEgressGatewayProfile {
@@ -7268,40 +6157,37 @@ export const ManagedClusterStaticEgressGatewayProfile = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<ManagedClusterStaticEgressGatewayProfile>;
 
 /** The CIDR notation IP ranges from which to assign pod IPs. One IPv4 CIDR is expected for single-stack networking. Two CIDRs, one for each IP family (IPv4/IPv6), is expected for dual-stack networking. */
-export type ContainerServiceNetworkProfileInputPodCidrsList = Array<string>;
-export const ContainerServiceNetworkProfileInputPodCidrsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ContainerServiceNetworkProfileInputPodCidrsList>;
+export type ContainerServiceNetworkProfilePodCidrsList = Array<string>;
+export const ContainerServiceNetworkProfilePodCidrsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ContainerServiceNetworkProfilePodCidrsList>;
 
 /** The CIDR notation IP ranges from which to assign service cluster IPs. One IPv4 CIDR is expected for single-stack networking. Two CIDRs, one for each IP family (IPv4/IPv6), is expected for dual-stack networking. They must not overlap with any Subnet IP ranges. */
-export type ContainerServiceNetworkProfileInputServiceCidrsList = Array<string>;
-export const ContainerServiceNetworkProfileInputServiceCidrsList =
+export type ContainerServiceNetworkProfileServiceCidrsList = Array<string>;
+export const ContainerServiceNetworkProfileServiceCidrsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<ContainerServiceNetworkProfileInputServiceCidrsList>;
+  ) as any as S.Schema<ContainerServiceNetworkProfileServiceCidrsList>;
 
 /** The IP families used to specify IP versions available to the cluster. IP families are used to determine single-stack or dual-stack clusters. For single-stack, the expected value is IPv4. For dual-stack, the expected values are IPv4 and IPv6. */
-export type ContainerServiceNetworkProfileInputIpFamiliesList = Array<
-  IPFamily | (string & {})
->;
-export const ContainerServiceNetworkProfileInputIpFamiliesList =
+export type ContainerServiceNetworkProfileIpFamiliesList = Array<IPFamily>;
+export const ContainerServiceNetworkProfileIpFamiliesList =
   /*@__PURE__*/ S.Array(
     IPFamily,
-  ) as any as S.Schema<ContainerServiceNetworkProfileInputIpFamiliesList>;
+  ) as any as S.Schema<ContainerServiceNetworkProfileIpFamiliesList>;
 
 /** Profile of network configuration. */
-export interface ContainerServiceNetworkProfileInput {
+export interface ContainerServiceNetworkProfile {
   /** Network plugin used for building the Kubernetes network. */
-  networkPlugin?: NetworkPlugin | (string & {});
+  networkPlugin?: NetworkPlugin;
   /** The mode the network plugin should use. */
-  networkPluginMode?: NetworkPluginMode | (string & {});
+  networkPluginMode?: NetworkPluginMode;
   /** Network policy used for building the Kubernetes network. */
-  networkPolicy?: NetworkPolicy | (string & {});
+  networkPolicy?: NetworkPolicy;
   /** The network mode Azure CNI is configured with. This cannot be specified if networkPlugin is anything other than 'azure'. */
-  networkMode?: NetworkMode | (string & {});
+  networkMode?: NetworkMode;
   /** Network dataplane used in the Kubernetes cluster. */
-  networkDataplane?: NetworkDataplane | (string & {});
+  networkDataplane?: NetworkDataplane;
   /** Advanced Networking profile for enabling observability and security feature suite on a cluster. For more information see aka.ms/aksadvancednetworking. */
   advancedNetworking?: AdvancedNetworking;
   /** A CIDR notation IP range from which to assign pod IPs when kubenet is used. */
@@ -7311,25 +6197,23 @@ export interface ContainerServiceNetworkProfileInput {
   /** An IP address assigned to the Kubernetes DNS service. It must be within the Kubernetes service address range specified in serviceCidr. */
   dnsServiceIP?: string;
   /** The outbound (egress) routing method. This can only be set at cluster creation time and cannot be changed later. For more information see [egress outbound type](https://docs.microsoft.com/azure/aks/egress-outboundtype). */
-  outboundType?:
-    | ContainerServiceNetworkProfileInputOutboundType
-    | (string & {});
+  outboundType?: ContainerServiceNetworkProfileOutboundType;
   /** The load balancer sku for the managed cluster. The default is 'standard'. See [Azure Load Balancer SKUs](https://docs.microsoft.com/azure/load-balancer/skus) for more information about the differences between load balancer SKUs. */
-  loadBalancerSku?: LoadBalancerSku | (string & {});
+  loadBalancerSku?: LoadBalancerSku;
   /** Profile of the cluster load balancer. */
-  loadBalancerProfile?: ManagedClusterLoadBalancerProfileInput;
+  loadBalancerProfile?: ManagedClusterLoadBalancerProfile;
   /** Profile of the cluster NAT gateway. */
-  natGatewayProfile?: ManagedClusterNATGatewayProfileInput;
+  natGatewayProfile?: ManagedClusterNATGatewayProfile;
   /** The profile for Static Egress Gateway addon. For more details about Static Egress Gateway, see https://aka.ms/aks/static-egress-gateway. */
   staticEgressGatewayProfile?: ManagedClusterStaticEgressGatewayProfile;
   /** The CIDR notation IP ranges from which to assign pod IPs. One IPv4 CIDR is expected for single-stack networking. Two CIDRs, one for each IP family (IPv4/IPv6), is expected for dual-stack networking. */
-  podCidrs?: ContainerServiceNetworkProfileInputPodCidrsList;
+  podCidrs?: ContainerServiceNetworkProfilePodCidrsList;
   /** The CIDR notation IP ranges from which to assign service cluster IPs. One IPv4 CIDR is expected for single-stack networking. Two CIDRs, one for each IP family (IPv4/IPv6), is expected for dual-stack networking. They must not overlap with any Subnet IP ranges. */
-  serviceCidrs?: ContainerServiceNetworkProfileInputServiceCidrsList;
+  serviceCidrs?: ContainerServiceNetworkProfileServiceCidrsList;
   /** The IP families used to specify IP versions available to the cluster. IP families are used to determine single-stack or dual-stack clusters. For single-stack, the expected value is IPv4. For dual-stack, the expected values are IPv4 and IPv6. */
-  ipFamilies?: ContainerServiceNetworkProfileInputIpFamiliesList;
+  ipFamilies?: ContainerServiceNetworkProfileIpFamiliesList;
 }
-export const ContainerServiceNetworkProfileInput = /*@__PURE__*/ S.suspend(() =>
+export const ContainerServiceNetworkProfile = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     networkPlugin: S.optional(NetworkPlugin),
     networkPluginMode: S.optional(NetworkPluginMode),
@@ -7340,22 +6224,20 @@ export const ContainerServiceNetworkProfileInput = /*@__PURE__*/ S.suspend(() =>
     podCidr: S.optional(S.String),
     serviceCidr: S.optional(S.String),
     dnsServiceIP: S.optional(S.String),
-    outboundType: S.optional(ContainerServiceNetworkProfileInputOutboundType),
+    outboundType: S.optional(ContainerServiceNetworkProfileOutboundType),
     loadBalancerSku: S.optional(LoadBalancerSku),
-    loadBalancerProfile: S.optional(ManagedClusterLoadBalancerProfileInput),
-    natGatewayProfile: S.optional(ManagedClusterNATGatewayProfileInput),
+    loadBalancerProfile: S.optional(ManagedClusterLoadBalancerProfile),
+    natGatewayProfile: S.optional(ManagedClusterNATGatewayProfile),
     staticEgressGatewayProfile: S.optional(
       ManagedClusterStaticEgressGatewayProfile,
     ),
-    podCidrs: S.optional(ContainerServiceNetworkProfileInputPodCidrsList),
-    serviceCidrs: S.optional(
-      ContainerServiceNetworkProfileInputServiceCidrsList,
-    ),
-    ipFamilies: S.optional(ContainerServiceNetworkProfileInputIpFamiliesList),
+    podCidrs: S.optional(ContainerServiceNetworkProfilePodCidrsList),
+    serviceCidrs: S.optional(ContainerServiceNetworkProfileServiceCidrsList),
+    ipFamilies: S.optional(ContainerServiceNetworkProfileIpFamiliesList),
   }),
 ).annotate({
-  identifier: "ContainerServiceNetworkProfileInput",
-}) as any as S.Schema<ContainerServiceNetworkProfileInput>;
+  identifier: "ContainerServiceNetworkProfile",
+}) as any as S.Schema<ContainerServiceNetworkProfile>;
 
 /** The list of AAD group object IDs that will have admin role of the cluster. */
 export type ManagedClusterAADProfileAdminGroupObjectIDsList = Array<string>;
@@ -7613,24 +6495,23 @@ export const ManagedClusterAPIServerAccessProfile = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<ManagedClusterAPIServerAccessProfile>;
 
 /** The user identity associated with the managed cluster. This identity will be used by the kubelet. Only one user assigned identity is allowed. The only accepted key is "kubeletidentity", with value of "resourceId": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}". */
-export type ManagedClusterPropertiesInputIdentityProfileMap = {
+export type ManagedClusterPropertiesIdentityProfileMap = {
   [key: string]: UserAssignedIdentity | undefined;
 };
-export const ManagedClusterPropertiesInputIdentityProfileMap =
+export const ManagedClusterPropertiesIdentityProfileMap =
   /*@__PURE__*/ S.Record(
     S.String,
     UserAssignedIdentity,
-  ) as any as S.Schema<ManagedClusterPropertiesInputIdentityProfileMap>;
+  ) as any as S.Schema<ManagedClusterPropertiesIdentityProfileMap>;
 
 /** The RequiredMembers of the resource */
-export type PrivateLinkResourceInputRequiredMembersList = Array<string>;
-export const PrivateLinkResourceInputRequiredMembersList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PrivateLinkResourceInputRequiredMembersList>;
+export type PrivateLinkResourceRequiredMembersList = Array<string>;
+export const PrivateLinkResourceRequiredMembersList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<PrivateLinkResourceRequiredMembersList>;
 
 /** A private link resource */
-export interface PrivateLinkResourceInput {
+export interface PrivateLinkResource {
   /** The ID of the private link resource. */
   id?: string;
   /** The name of the private link resource. See [naming rules](https://aka.ms/search-naming-rules) for more details. */
@@ -7640,27 +6521,30 @@ export interface PrivateLinkResourceInput {
   /** The group ID of the resource. */
   groupId?: string;
   /** The RequiredMembers of the resource */
-  requiredMembers?: PrivateLinkResourceInputRequiredMembersList;
+  requiredMembers?: PrivateLinkResourceRequiredMembersList;
+  /** The private link service ID of the resource, this field is exposed only to NRP internally. */
+  privateLinkServiceID?: string;
 }
-export const PrivateLinkResourceInput = /*@__PURE__*/ S.suspend(() =>
+export const PrivateLinkResource = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     groupId: S.optional(S.String),
-    requiredMembers: S.optional(PrivateLinkResourceInputRequiredMembersList),
+    requiredMembers: S.optional(PrivateLinkResourceRequiredMembersList),
+    privateLinkServiceID: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "PrivateLinkResourceInput",
-}) as any as S.Schema<PrivateLinkResourceInput>;
+  identifier: "PrivateLinkResource",
+}) as any as S.Schema<PrivateLinkResource>;
 
 /** Private link resources associated with the cluster. */
-export type ManagedClusterPropertiesInputPrivateLinkResourcesList =
-  Array<PrivateLinkResourceInput>;
-export const ManagedClusterPropertiesInputPrivateLinkResourcesList =
+export type ManagedClusterPropertiesPrivateLinkResourcesList =
+  Array<PrivateLinkResource>;
+export const ManagedClusterPropertiesPrivateLinkResourcesList =
   /*@__PURE__*/ S.Array(
-    PrivateLinkResourceInput,
-  ) as any as S.Schema<ManagedClusterPropertiesInputPrivateLinkResourcesList>;
+    PrivateLinkResource,
+  ) as any as S.Schema<ManagedClusterPropertiesPrivateLinkResourcesList>;
 
 /** The endpoints that should not go through proxy. */
 export type ManagedClusterHTTPProxyConfigNoProxyList = Array<string>;
@@ -8616,1042 +7500,6 @@ export const ManagedClusterHostedSystemProfile = /*@__PURE__*/ S.suspend(() =>
   identifier: "ManagedClusterHostedSystemProfile",
 }) as any as S.Schema<ManagedClusterHostedSystemProfile>;
 
-/** The error detail. */
-export type ManagedClusterStatusInputProvisioningError =
-  AgentPoolStatusInputProvisioningError;
-export const ManagedClusterStatusInputProvisioningError =
-  AgentPoolStatusInputProvisioningError;
-
-/** Contains read-only information about the Managed Cluster. */
-export type ManagedClusterStatusInput = AgentPoolStatusInput;
-export const ManagedClusterStatusInput = AgentPoolStatusInput;
-
-/** Properties of the managed cluster. */
-export interface ManagedClusterPropertiesInput {
-  /** The version of Kubernetes specified by the user. Both patch version <major.minor.patch> (e.g. 1.20.13) and <major.minor> (e.g. 1.20) are supported. When <major.minor> is specified, the latest supported GA patch version is chosen automatically. Updating the cluster with the same <major.minor> once it has been created (e.g. 1.14.x -> 1.14) will not trigger an upgrade, even if a newer patch version is available. When you upgrade a supported AKS cluster, Kubernetes minor versions cannot be skipped. All upgrades must be performed sequentially by major version number. For example, upgrades between 1.14.x -> 1.15.x or 1.15.x -> 1.16.x are allowed, however 1.14.x -> 1.16.x is not allowed. See [upgrading an AKS cluster](https://docs.microsoft.com/azure/aks/upgrade-cluster) for more details. */
-  kubernetesVersion?: string;
-  /** The DNS prefix of the Managed Cluster. This cannot be updated once the Managed Cluster has been created. */
-  dnsPrefix?: string;
-  /** The FQDN subdomain of the private cluster with custom private dns zone. This cannot be updated once the Managed Cluster has been created. */
-  fqdnSubdomain?: string;
-  /** The agent pool properties. */
-  agentPoolProfiles?: ManagedClusterPropertiesInputAgentPoolProfilesList;
-  /** The profile for Linux VMs in the Managed Cluster. */
-  linuxProfile?: ContainerServiceLinuxProfile;
-  /** The profile for Windows VMs in the Managed Cluster. */
-  windowsProfile?: ManagedClusterWindowsProfile;
-  /** Information about a service principal identity for the cluster to use for manipulating Azure APIs. */
-  servicePrincipalProfile?: ManagedClusterServicePrincipalProfile;
-  /** The profile of managed cluster add-on. */
-  addonProfiles?: ManagedClusterPropertiesInputAddonProfilesMap;
-  /** The pod identity profile of the Managed Cluster. See [use AAD pod identity](https://docs.microsoft.com/azure/aks/use-azure-ad-pod-identity) for more details on AAD pod identity integration. */
-  podIdentityProfile?: ManagedClusterPodIdentityProfileInput;
-  /** The OIDC issuer profile of the Managed Cluster. */
-  oidcIssuerProfile?: ManagedClusterOIDCIssuerProfileInput;
-  /** The name of the resource group containing agent pool nodes. */
-  nodeResourceGroup?: string;
-  /** Profile of the node resource group configuration. */
-  nodeResourceGroupProfile?: ManagedClusterNodeResourceGroupProfile;
-  /** Whether to enable Kubernetes Role-Based Access Control. */
-  enableRBAC?: boolean;
-  /** The support plan for the Managed Cluster. If unspecified, the default is 'KubernetesOfficial'. */
-  supportPlan?: KubernetesSupportPlan | (string & {});
-  /** The network configuration profile. */
-  networkProfile?: ContainerServiceNetworkProfileInput;
-  /** The Azure Active Directory configuration. */
-  aadProfile?: ManagedClusterAADProfile;
-  /** The auto upgrade configuration. */
-  autoUpgradeProfile?: ManagedClusterAutoUpgradeProfile;
-  /** Settings for upgrading a cluster. */
-  upgradeSettings?: ClusterUpgradeSettings;
-  /** Parameters to be applied to the cluster-autoscaler when enabled */
-  autoScalerProfile?: ManagedClusterPropertiesAutoScalerProfile;
-  /** The access profile for managed cluster API server. */
-  apiServerAccessProfile?: ManagedClusterAPIServerAccessProfile;
-  /** The Resource ID of the disk encryption set to use for enabling encryption at rest. This is of the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/diskEncryptionSets/{encryptionSetName}' */
-  diskEncryptionSetID?: string;
-  /** The user identity associated with the managed cluster. This identity will be used by the kubelet. Only one user assigned identity is allowed. The only accepted key is "kubeletidentity", with value of "resourceId": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}". */
-  identityProfile?: ManagedClusterPropertiesInputIdentityProfileMap;
-  /** Private link resources associated with the cluster. */
-  privateLinkResources?: ManagedClusterPropertiesInputPrivateLinkResourcesList;
-  /** If local accounts should be disabled on the Managed Cluster. If set to true, getting static credentials will be disabled for this cluster. This must only be used on Managed Clusters that are AAD enabled. For more details see [disable local accounts](https://docs.microsoft.com/azure/aks/managed-aad#disable-local-accounts-preview). */
-  disableLocalAccounts?: boolean;
-  /** Configurations for provisioning the cluster with HTTP proxy servers. */
-  httpProxyConfig?: ManagedClusterHTTPProxyConfig;
-  /** Security profile for the managed cluster. */
-  securityProfile?: ManagedClusterSecurityProfile;
-  /** Storage profile for the managed cluster. */
-  storageProfile?: ManagedClusterStorageProfile;
-  /** Ingress profile for the managed cluster. */
-  ingressProfile?: ManagedClusterIngressProfile;
-  /** PublicNetworkAccess of the managedCluster. Allow or deny public network access for AKS */
-  publicNetworkAccess?: PublicNetworkAccess | (string & {});
-  /** Workload Auto-scaler profile for the managed cluster. */
-  workloadAutoScalerProfile?: ManagedClusterWorkloadAutoScalerProfile;
-  /** Azure Monitor addon profiles for monitoring the managed cluster. */
-  azureMonitorProfile?: ManagedClusterAzureMonitorProfile;
-  /** Service mesh profile for a managed cluster. */
-  serviceMeshProfile?: ServiceMeshProfile;
-  /** Optional cluster metrics configuration. */
-  metricsProfile?: ManagedClusterMetricsProfile;
-  /** Node provisioning settings that apply to the whole cluster. */
-  nodeProvisioningProfile?: ManagedClusterNodeProvisioningProfile;
-  /** Profile of the cluster bootstrap configuration. */
-  bootstrapProfile?: ManagedClusterBootstrapProfile;
-  /** AI toolchain operator settings that apply to the whole cluster. */
-  aiToolchainOperatorProfile?: ManagedClusterAIToolchainOperatorProfile;
-  /** Profile with scheduler-related settings, like the configuration mode for each scheduler managed by AKS. See https://aka.ms/aks/scheduler-profile. */
-  schedulerProfile?: SchedulerProfile;
-  /** Settings for hosted system addons. For more information, see https://aka.ms/aks/automatic/systemcomponents. */
-  hostedSystemProfile?: ManagedClusterHostedSystemProfile;
-  /** Contains read-only information about the Managed Cluster. */
-  status?: AgentPoolStatusInput;
-}
-export const ManagedClusterPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    kubernetesVersion: S.optional(S.String),
-    dnsPrefix: S.optional(S.String),
-    fqdnSubdomain: S.optional(S.String),
-    agentPoolProfiles: S.optional(
-      ManagedClusterPropertiesInputAgentPoolProfilesList,
-    ),
-    linuxProfile: S.optional(ContainerServiceLinuxProfile),
-    windowsProfile: S.optional(ManagedClusterWindowsProfile),
-    servicePrincipalProfile: S.optional(ManagedClusterServicePrincipalProfile),
-    addonProfiles: S.optional(ManagedClusterPropertiesInputAddonProfilesMap),
-    podIdentityProfile: S.optional(ManagedClusterPodIdentityProfileInput),
-    oidcIssuerProfile: S.optional(ManagedClusterOIDCIssuerProfileInput),
-    nodeResourceGroup: S.optional(S.String),
-    nodeResourceGroupProfile: S.optional(
-      ManagedClusterNodeResourceGroupProfile,
-    ),
-    enableRBAC: S.optional(S.Boolean),
-    supportPlan: S.optional(KubernetesSupportPlan),
-    networkProfile: S.optional(ContainerServiceNetworkProfileInput),
-    aadProfile: S.optional(ManagedClusterAADProfile),
-    autoUpgradeProfile: S.optional(ManagedClusterAutoUpgradeProfile),
-    upgradeSettings: S.optional(ClusterUpgradeSettings),
-    autoScalerProfile: S.optional(ManagedClusterPropertiesAutoScalerProfile),
-    apiServerAccessProfile: S.optional(ManagedClusterAPIServerAccessProfile),
-    diskEncryptionSetID: S.optional(S.String),
-    identityProfile: S.optional(
-      ManagedClusterPropertiesInputIdentityProfileMap,
-    ),
-    privateLinkResources: S.optional(
-      ManagedClusterPropertiesInputPrivateLinkResourcesList,
-    ),
-    disableLocalAccounts: S.optional(S.Boolean),
-    httpProxyConfig: S.optional(ManagedClusterHTTPProxyConfig),
-    securityProfile: S.optional(ManagedClusterSecurityProfile),
-    storageProfile: S.optional(ManagedClusterStorageProfile),
-    ingressProfile: S.optional(ManagedClusterIngressProfile),
-    publicNetworkAccess: S.optional(PublicNetworkAccess),
-    workloadAutoScalerProfile: S.optional(
-      ManagedClusterWorkloadAutoScalerProfile,
-    ),
-    azureMonitorProfile: S.optional(ManagedClusterAzureMonitorProfile),
-    serviceMeshProfile: S.optional(ServiceMeshProfile),
-    metricsProfile: S.optional(ManagedClusterMetricsProfile),
-    nodeProvisioningProfile: S.optional(ManagedClusterNodeProvisioningProfile),
-    bootstrapProfile: S.optional(ManagedClusterBootstrapProfile),
-    aiToolchainOperatorProfile: S.optional(
-      ManagedClusterAIToolchainOperatorProfile,
-    ),
-    schedulerProfile: S.optional(SchedulerProfile),
-    hostedSystemProfile: S.optional(ManagedClusterHostedSystemProfile),
-    status: S.optional(AgentPoolStatusInput),
-  }),
-).annotate({
-  identifier: "ManagedClusterPropertiesInput",
-}) as any as S.Schema<ManagedClusterPropertiesInput>;
-
-/** The name of a managed cluster SKU. */
-export type ManagedClusterSKUName = "Base" | "Automatic";
-export const ManagedClusterSKUName = /*@__PURE__*/ S.String;
-
-/** The tier of a managed cluster SKU. If not specified, the default is 'Free'. See [AKS Pricing Tier](https://learn.microsoft.com/azure/aks/free-standard-pricing-tiers) for more details. */
-export type ManagedClusterSKUTier = "Premium" | "Standard" | "Free";
-export const ManagedClusterSKUTier = /*@__PURE__*/ S.String;
-
-/** The SKU of a Managed Cluster. */
-export interface ManagedClusterSKU {
-  /** The name of a managed cluster SKU. */
-  name?: ManagedClusterSKUName | (string & {});
-  /** The tier of a managed cluster SKU. If not specified, the default is 'Free'. See [AKS Pricing Tier](https://learn.microsoft.com/azure/aks/free-standard-pricing-tiers) for more details. */
-  tier?: ManagedClusterSKUTier | (string & {});
-}
-export const ManagedClusterSKU = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(ManagedClusterSKUName),
-    tier: S.optional(ManagedClusterSKUTier),
-  }),
-).annotate({
-  identifier: "ManagedClusterSKU",
-}) as any as S.Schema<ManagedClusterSKU>;
-
-/** The type of extendedLocation. */
-export type ExtendedLocationTypes = "EdgeZone";
-export const ExtendedLocationTypes = /*@__PURE__*/ S.String;
-
-/** The complex type of the extended location. */
-export interface ExtendedLocation {
-  /** The name of the extended location. */
-  name?: string;
-  /** The type of the extended location. */
-  type?: ExtendedLocationTypes | (string & {});
-}
-export const ExtendedLocation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    type: S.optional(ExtendedLocationTypes),
-  }),
-).annotate({
-  identifier: "ExtendedLocation",
-}) as any as S.Schema<ExtendedLocation>;
-
-/** The type of identity used for the managed cluster. For more information see [use managed identities in AKS](https://docs.microsoft.com/azure/aks/use-managed-identity). */
-export type ResourceIdentityType = "SystemAssigned" | "UserAssigned" | "None";
-export const ResourceIdentityType = /*@__PURE__*/ S.String;
-
-/** Delegated resource properties - internal use only. */
-export interface ManagedClusterIdentityInputDelegatedResourcesValue {
-  /** The ARM resource id of the delegated resource - internal use only. */
-  resourceId?: string;
-  /** The tenant id of the delegated resource - internal use only. */
-  tenantId?: string;
-  /** The delegation id of the referral delegation (optional) - internal use only. */
-  referralResource?: string;
-  /** The source resource location - internal use only. */
-  location?: string;
-}
-export const ManagedClusterIdentityInputDelegatedResourcesValue =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      resourceId: S.optional(S.String),
-      tenantId: S.optional(S.String),
-      referralResource: S.optional(S.String),
-      location: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "ManagedClusterIdentityInputDelegatedResourcesValue",
-  }) as any as S.Schema<ManagedClusterIdentityInputDelegatedResourcesValue>;
-
-/** The delegated identity resources assigned to this managed cluster. This can only be set by another Azure Resource Provider, and managed cluster only accept one delegated identity resource. Internal use only. */
-export type ManagedClusterIdentityInputDelegatedResourcesMap = {
-  [key: string]: ManagedClusterIdentityInputDelegatedResourcesValue | undefined;
-};
-export const ManagedClusterIdentityInputDelegatedResourcesMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    ManagedClusterIdentityInputDelegatedResourcesValue,
-  ) as any as S.Schema<ManagedClusterIdentityInputDelegatedResourcesMap>;
-
-/** User assigned identity properties. */
-export type ManagedServiceIdentityUserAssignedIdentitiesValueInput =
-  AgentPoolStatusInputProvisioningError;
-export const ManagedServiceIdentityUserAssignedIdentitiesValueInput =
-  AgentPoolStatusInputProvisioningError;
-
-/** The user identity associated with the managed cluster. This identity will be used in control plane. Only one user assigned identity is allowed. The keys must be ARM resource IDs in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'. */
-export type ManagedClusterIdentityInputUserAssignedIdentitiesMap = {
-  [key: string]: AgentPoolStatusInputProvisioningError | undefined;
-};
-export const ManagedClusterIdentityInputUserAssignedIdentitiesMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    AgentPoolStatusInputProvisioningError,
-  ) as any as S.Schema<ManagedClusterIdentityInputUserAssignedIdentitiesMap>;
-
-/** Identity for the managed cluster. */
-export interface ManagedClusterIdentityInput {
-  /** The type of identity used for the managed cluster. For more information see [use managed identities in AKS](https://docs.microsoft.com/azure/aks/use-managed-identity). */
-  type?: ResourceIdentityType | (string & {});
-  /** The delegated identity resources assigned to this managed cluster. This can only be set by another Azure Resource Provider, and managed cluster only accept one delegated identity resource. Internal use only. */
-  delegatedResources?: ManagedClusterIdentityInputDelegatedResourcesMap;
-  /** The user identity associated with the managed cluster. This identity will be used in control plane. Only one user assigned identity is allowed. The keys must be ARM resource IDs in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'. */
-  userAssignedIdentities?: ManagedClusterIdentityInputUserAssignedIdentitiesMap;
-}
-export const ManagedClusterIdentityInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: S.optional(ResourceIdentityType),
-    delegatedResources: S.optional(
-      ManagedClusterIdentityInputDelegatedResourcesMap,
-    ),
-    userAssignedIdentities: S.optional(
-      ManagedClusterIdentityInputUserAssignedIdentitiesMap,
-    ),
-  }),
-).annotate({
-  identifier: "ManagedClusterIdentityInput",
-}) as any as S.Schema<ManagedClusterIdentityInput>;
-
-export interface ManagedClustersCreateOrUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the managed cluster resource. */
-  resourceName: string;
-  /** Resource tags. */
-  tags?: ManagedClustersCreateOrUpdateRequestTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Properties of a managed cluster. */
-  properties?: ManagedClusterPropertiesInput;
-  /** The managed cluster SKU. */
-  sku?: ManagedClusterSKU;
-  /** The extended location of the Virtual Machine. */
-  extendedLocation?: ExtendedLocation;
-  /** The identity of the managed cluster, if configured. */
-  identity?: ManagedClusterIdentityInput;
-  /** This is primarily used to expose different UI experiences in the portal for different kinds */
-  kind?: string;
-}
-export const ManagedClustersCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-      tags: S.optional(ManagedClustersCreateOrUpdateRequestTagsMap),
-      location: S.String,
-      properties: S.optional(ManagedClusterPropertiesInput),
-      sku: S.optional(ManagedClusterSKU),
-      extendedLocation: S.optional(ExtendedLocation),
-      identity: S.optional(ManagedClusterIdentityInput),
-      kind: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "ManagedClustersCreateOrUpdateRequest",
-}) as any as S.Schema<ManagedClustersCreateOrUpdateRequest>;
-
-/** Resource tags. */
-export type ManagedClustersCreateOrUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ManagedClustersCreateOrUpdateResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<ManagedClustersCreateOrUpdateResponseTagsMap>;
-
-/** The operating system type. The default is Linux. */
-export type ManagedClusterAgentPoolProfileOsType = "Linux" | "Windows";
-export const ManagedClusterAgentPoolProfileOsType = /*@__PURE__*/ S.String;
-
-/** The list of Availability zones to use for nodes. This can only be specified if the AgentPoolType property is 'VirtualMachineScaleSets'. */
-export type ManagedClusterAgentPoolProfileAvailabilityZonesList = Array<string>;
-export const ManagedClusterAgentPoolProfileAvailabilityZonesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ManagedClusterAgentPoolProfileAvailabilityZonesList>;
-
-/** The Virtual Machine Scale Set priority. */
-export type ManagedClusterAgentPoolProfileScaleSetPriority = "Spot" | "Regular";
-export const ManagedClusterAgentPoolProfileScaleSetPriority =
-  /*@__PURE__*/ S.String;
-
-/** The Virtual Machine Scale Set eviction policy. The eviction policy specifies what to do with the VM when it is evicted. The default is Delete. For more information about eviction see [spot VMs](https://docs.microsoft.com/azure/virtual-machines/spot-vms) */
-export type ManagedClusterAgentPoolProfileScaleSetEvictionPolicy =
-  | "Delete"
-  | "Deallocate";
-export const ManagedClusterAgentPoolProfileScaleSetEvictionPolicy =
-  /*@__PURE__*/ S.String;
-
-/** The tags to be persisted on the agent pool virtual machine scale set. */
-export type ManagedClusterAgentPoolProfileTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ManagedClusterAgentPoolProfileTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ManagedClusterAgentPoolProfileTagsMap>;
-
-/** The node labels to be persisted across all nodes in agent pool. */
-export type ManagedClusterAgentPoolProfileNodeLabelsMap = {
-  [key: string]: string | undefined;
-};
-export const ManagedClusterAgentPoolProfileNodeLabelsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<ManagedClusterAgentPoolProfileNodeLabelsMap>;
-
-/** The taints added to new nodes during node pool create and scale. For example, key=value:NoSchedule. */
-export type ManagedClusterAgentPoolProfileNodeTaintsList = Array<string>;
-export const ManagedClusterAgentPoolProfileNodeTaintsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ManagedClusterAgentPoolProfileNodeTaintsList>;
-
-/** The status of nodes in a VirtualMachines agent pool. */
-export type ManagedClusterAgentPoolProfileVirtualMachineNodesStatusList =
-  Array<VirtualMachineNodes>;
-export const ManagedClusterAgentPoolProfileVirtualMachineNodesStatusList =
-  /*@__PURE__*/ S.Array(
-    VirtualMachineNodes,
-  ) as any as S.Schema<ManagedClusterAgentPoolProfileVirtualMachineNodesStatusList>;
-
-/** Profile for the container service agent pool. */
-export interface ManagedClusterAgentPoolProfile {
-  /** Unique read-only string used to implement optimistic concurrency. The eTag value will change when the resource is updated. Specify an if-match or if-none-match header with the eTag value for a subsequent request to enable optimistic concurrency per the normal eTag convention. */
-  eTag?: string;
-  /** Number of agents (VMs) to host docker containers. Allowed values must be in the range of 0 to 1000 (inclusive) for user pools and in the range of 1 to 1000 (inclusive) for system pools. The default value is 1. */
-  count?: number;
-  /** The size of the agent pool VMs. VM size availability varies by region. If a node contains insufficient compute resources (memory, cpu, etc) pods might fail to run correctly. For more details on restricted VM sizes, see: https://docs.microsoft.com/azure/aks/quotas-skus-regions */
-  vmSize?: string;
-  /** OS Disk Size in GB to be used to specify the disk size for every machine in the master/agent pool. If you specify 0, it will apply the default osDisk size according to the vmSize specified. */
-  osDiskSizeGB?: number;
-  /** The OS disk type to be used for machines in the agent pool. The default is 'Ephemeral' if the VM supports it and has a cache disk larger than the requested OSDiskSizeGB. Otherwise, defaults to 'Managed'. May not be changed after creation. For more information see [Ephemeral OS](https://docs.microsoft.com/azure/aks/cluster-configuration#ephemeral-os). */
-  osDiskType?: OSDiskType;
-  /** Determines the placement of emptyDir volumes, container runtime data root, and Kubelet ephemeral storage. */
-  kubeletDiskType?: KubeletDiskType;
-  /** Determines the type of workload a node can run. */
-  workloadRuntime?: WorkloadRuntime;
-  /** Message of the day for Linux nodes, base64-encoded. A base64-encoded string which will be written to /etc/motd after decoding. This allows customization of the message of the day for Linux nodes. It must not be specified for Windows nodes. It must be a static string (i.e., will be printed raw and not be executed as a script). */
-  messageOfTheDay?: string;
-  /** The ID of the subnet which agent pool nodes and optionally pods will join on startup. If this is not specified, a VNET and subnet will be generated and used. If no podSubnetID is specified, this applies to nodes and pods, otherwise it applies to just nodes. This is of the form: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworks/{virtualNetworkName}/subnets/{subnetName} */
-  vnetSubnetID?: string;
-  /** The ID of the subnet which pods will join when launched. If omitted, pod IPs are statically assigned on the node subnet (see vnetSubnetID for more details). This is of the form: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworks/{virtualNetworkName}/subnets/{subnetName} */
-  podSubnetID?: string;
-  /** Pod IP Allocation Mode. The IP allocation mode for pods in the agent pool. Must be used with podSubnetId. The default is 'DynamicIndividual'. */
-  podIPAllocationMode?: PodIPAllocationMode;
-  /** The maximum number of pods that can run on a node. */
-  maxPods?: number;
-  /** The operating system type. The default is Linux. */
-  osType?: ManagedClusterAgentPoolProfileOsType;
-  /** Specifies the OS SKU used by the agent pool. The default is Ubuntu if OSType is Linux. The default is Windows2019 when Kubernetes <= 1.24 or Windows2022 when Kubernetes >= 1.25 if OSType is Windows. */
-  osSKU?: OSSKU;
-  /** The maximum number of nodes for auto-scaling */
-  maxCount?: number;
-  /** The minimum number of nodes for auto-scaling */
-  minCount?: number;
-  /** Whether to enable auto-scaler */
-  enableAutoScaling?: boolean;
-  /** The scale down mode to use when scaling the Agent Pool. This also effects the cluster autoscaler behavior. If not specified, it defaults to Delete. */
-  scaleDownMode?: ScaleDownMode;
-  /** The type of Agent Pool. */
-  type?: AgentPoolType;
-  /** The mode of an agent pool. A cluster must have at least one 'System' Agent Pool at all times. For additional information on agent pool restrictions and best practices, see: https://docs.microsoft.com/azure/aks/use-system-pools */
-  mode?: AgentPoolMode;
-  /** The version of Kubernetes specified by the user. Both patch version <major.minor.patch> (e.g. 1.20.13) and <major.minor> (e.g. 1.20) are supported. When <major.minor> is specified, the latest supported GA patch version is chosen automatically. Updating the cluster with the same <major.minor> once it has been created (e.g. 1.14.x -> 1.14) will not trigger an upgrade, even if a newer patch version is available. As a best practice, you should upgrade all node pools in an AKS cluster to the same Kubernetes version. The node pool version must have the same major version as the control plane. The node pool minor version must be within two minor versions of the control plane version. The node pool version cannot be greater than the control plane version. For more information see [upgrading a node pool](https://docs.microsoft.com/azure/aks/use-multiple-node-pools#upgrade-a-node-pool). */
-  orchestratorVersion?: string;
-  /** The version of Kubernetes the Agent Pool is running. If orchestratorVersion is a fully specified version <major.minor.patch>, this field will be exactly equal to it. If orchestratorVersion is <major.minor>, this field will contain the full <major.minor.patch> version being used. */
-  currentOrchestratorVersion?: string;
-  /** The version of the node image. Setting this value triggers an agentPool rollback. Only values from `recentlyUsedVersions` are allowed. */
-  nodeImageVersion?: string;
-  /** Settings for upgrading the agentpool */
-  upgradeSettings?: AgentPoolUpgradeSettings;
-  /** The current deployment or provisioning state. */
-  provisioningState?: string;
-  /** Whether the Agent Pool is running or stopped. When an Agent Pool is first created it is initially Running. The Agent Pool can be stopped by setting this field to Stopped. A stopped Agent Pool stops all of its VMs and does not accrue billing charges. An Agent Pool can only be stopped if it is Running and provisioning state is Succeeded */
-  powerState?: PowerState;
-  /** The list of Availability zones to use for nodes. This can only be specified if the AgentPoolType property is 'VirtualMachineScaleSets'. */
-  availabilityZones?: ManagedClusterAgentPoolProfileAvailabilityZonesList;
-  /** Whether each node is allocated its own public IP. Some scenarios may require nodes in a node pool to receive their own dedicated public IP addresses. A common scenario is for gaming workloads, where a console needs to make a direct connection to a cloud virtual machine to minimize hops. For more information see [assigning a public IP per node](https://docs.microsoft.com/azure/aks/use-multiple-node-pools#assign-a-public-ip-per-node-for-your-node-pools). The default is false. */
-  enableNodePublicIP?: boolean;
-  /** The public IP prefix ID which VM nodes should use IPs from. This is of the form: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/publicIPPrefixes/{publicIPPrefixName} */
-  nodePublicIPPrefixID?: string;
-  /** The Virtual Machine Scale Set priority. */
-  scaleSetPriority?: ManagedClusterAgentPoolProfileScaleSetPriority;
-  /** The Virtual Machine Scale Set eviction policy. The eviction policy specifies what to do with the VM when it is evicted. The default is Delete. For more information about eviction see [spot VMs](https://docs.microsoft.com/azure/virtual-machines/spot-vms) */
-  scaleSetEvictionPolicy?: ManagedClusterAgentPoolProfileScaleSetEvictionPolicy;
-  /** The max price (in US Dollars) you are willing to pay for spot instances. Possible values are any decimal value greater than zero or -1 which indicates default price to be up-to on-demand. Possible values are any decimal value greater than zero or -1 which indicates the willingness to pay any on-demand price. For more details on spot pricing, see [spot VMs pricing](https://docs.microsoft.com/azure/virtual-machines/spot-vms#pricing) */
-  spotMaxPrice?: number;
-  /** The tags to be persisted on the agent pool virtual machine scale set. */
-  tags?: ManagedClusterAgentPoolProfileTagsMap;
-  /** The node labels to be persisted across all nodes in agent pool. */
-  nodeLabels?: ManagedClusterAgentPoolProfileNodeLabelsMap;
-  /** The taints added to new nodes during node pool create and scale. For example, key=value:NoSchedule. */
-  nodeTaints?: ManagedClusterAgentPoolProfileNodeTaintsList;
-  /** The ID for Proximity Placement Group. */
-  proximityPlacementGroupID?: string;
-  /** The Kubelet configuration on the agent pool nodes. */
-  kubeletConfig?: KubeletConfig;
-  /** The OS configuration of Linux agent nodes. */
-  linuxOSConfig?: LinuxOSConfig;
-  /** Whether to enable host based OS and data drive encryption. This is only supported on certain VM sizes and in certain Azure regions. For more information, see: https://docs.microsoft.com/azure/aks/enable-host-encryption */
-  enableEncryptionAtHost?: boolean;
-  /** Whether to enable UltraSSD */
-  enableUltraSSD?: boolean;
-  /** Whether to use a FIPS-enabled OS. See [Add a FIPS-enabled node pool](https://docs.microsoft.com/azure/aks/use-multiple-node-pools#add-a-fips-enabled-node-pool-preview) for more details. */
-  enableFIPS?: boolean;
-  /** GPUInstanceProfile to be used to specify GPU MIG instance profile for supported GPU VM SKU. */
-  gpuInstanceProfile?: GPUInstanceProfile;
-  /** CreationData to be used to specify the source Snapshot ID if the node pool will be created/upgraded using a snapshot. */
-  creationData?: CreationData;
-  /** The fully qualified resource ID of the Capacity Reservation Group to provide virtual machines from a reserved group of Virtual Machines. This is of the form: '/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Compute/capacityreservationgroups/{capacityReservationGroupName}' Customers use it to create an agentpool with a specified CRG. For more information see [Capacity Reservation](https://learn.microsoft.com/en-us/azure/virtual-machines/capacity-reservation-overview) */
-  capacityReservationGroupID?: string;
-  /** The fully qualified resource ID of the Dedicated Host Group to provision virtual machines from, used only in creation scenario and not allowed to changed once set. This is of the form: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/hostGroups/{hostGroupName}. For more information see [Azure dedicated hosts](https://docs.microsoft.com/azure/virtual-machines/dedicated-hosts). */
-  hostGroupID?: string;
-  /** Network-related settings of an agent pool. */
-  networkProfile?: AgentPoolNetworkProfile;
-  /** The Windows agent pool's specific profile. */
-  windowsProfile?: AgentPoolWindowsProfile;
-  /** The security settings of an agent pool. */
-  securityProfile?: AgentPoolSecurityProfile;
-  /** GPU settings for the Agent Pool. */
-  gpuProfile?: GPUProfile;
-  /** Profile specific to a managed agent pool in Gateway mode. This field cannot be set if agent pool mode is not Gateway. */
-  gatewayProfile?: AgentPoolGatewayProfile;
-  /** Configuration for using artifact streaming on AKS. */
-  artifactStreamingProfile?: AgentPoolArtifactStreamingProfile;
-  /** Specifications on VirtualMachines agent pool. */
-  virtualMachinesProfile?: VirtualMachinesProfile;
-  /** The status of nodes in a VirtualMachines agent pool. */
-  virtualMachineNodesStatus?: ManagedClusterAgentPoolProfileVirtualMachineNodesStatusList;
-  /** Contains read-only information about the Agent Pool. */
-  status?: AgentPoolStatus;
-  /** Configures the per-node local DNS, with VnetDNS and KubeDNS overrides. LocalDNS helps improve performance and reliability of DNS resolution in an AKS cluster. For more details see aka.ms/aks/localdns. */
-  localDNSProfile?: LocalDNSProfile;
-  /** Unique name of the agent pool profile in the context of the subscription and resource group. Windows agent pool names must be 6 characters or less. */
-  name: string;
-}
-export const ManagedClusterAgentPoolProfile = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    eTag: S.optional(S.String),
-    count: S.optional(S.Number),
-    vmSize: S.optional(S.String),
-    osDiskSizeGB: S.optional(S.Number),
-    osDiskType: S.optional(OSDiskType),
-    kubeletDiskType: S.optional(KubeletDiskType),
-    workloadRuntime: S.optional(WorkloadRuntime),
-    messageOfTheDay: S.optional(S.String),
-    vnetSubnetID: S.optional(S.String),
-    podSubnetID: S.optional(S.String),
-    podIPAllocationMode: S.optional(PodIPAllocationMode),
-    maxPods: S.optional(S.Number),
-    osType: S.optional(ManagedClusterAgentPoolProfileOsType),
-    osSKU: S.optional(OSSKU),
-    maxCount: S.optional(S.Number),
-    minCount: S.optional(S.Number),
-    enableAutoScaling: S.optional(S.Boolean),
-    scaleDownMode: S.optional(ScaleDownMode),
-    type: S.optional(AgentPoolType),
-    mode: S.optional(AgentPoolMode),
-    orchestratorVersion: S.optional(S.String),
-    currentOrchestratorVersion: S.optional(S.String),
-    nodeImageVersion: S.optional(S.String),
-    upgradeSettings: S.optional(AgentPoolUpgradeSettings),
-    provisioningState: S.optional(S.String),
-    powerState: S.optional(PowerState),
-    availabilityZones: S.optional(
-      ManagedClusterAgentPoolProfileAvailabilityZonesList,
-    ),
-    enableNodePublicIP: S.optional(S.Boolean),
-    nodePublicIPPrefixID: S.optional(S.String),
-    scaleSetPriority: S.optional(
-      ManagedClusterAgentPoolProfileScaleSetPriority,
-    ),
-    scaleSetEvictionPolicy: S.optional(
-      ManagedClusterAgentPoolProfileScaleSetEvictionPolicy,
-    ),
-    spotMaxPrice: S.optional(S.Number),
-    tags: S.optional(ManagedClusterAgentPoolProfileTagsMap),
-    nodeLabels: S.optional(ManagedClusterAgentPoolProfileNodeLabelsMap),
-    nodeTaints: S.optional(ManagedClusterAgentPoolProfileNodeTaintsList),
-    proximityPlacementGroupID: S.optional(S.String),
-    kubeletConfig: S.optional(KubeletConfig),
-    linuxOSConfig: S.optional(LinuxOSConfig),
-    enableEncryptionAtHost: S.optional(S.Boolean),
-    enableUltraSSD: S.optional(S.Boolean),
-    enableFIPS: S.optional(S.Boolean),
-    gpuInstanceProfile: S.optional(GPUInstanceProfile),
-    creationData: S.optional(CreationData),
-    capacityReservationGroupID: S.optional(S.String),
-    hostGroupID: S.optional(S.String),
-    networkProfile: S.optional(AgentPoolNetworkProfile),
-    windowsProfile: S.optional(AgentPoolWindowsProfile),
-    securityProfile: S.optional(AgentPoolSecurityProfile),
-    gpuProfile: S.optional(GPUProfile),
-    gatewayProfile: S.optional(AgentPoolGatewayProfile),
-    artifactStreamingProfile: S.optional(AgentPoolArtifactStreamingProfile),
-    virtualMachinesProfile: S.optional(VirtualMachinesProfile),
-    virtualMachineNodesStatus: S.optional(
-      ManagedClusterAgentPoolProfileVirtualMachineNodesStatusList,
-    ),
-    status: S.optional(AgentPoolStatus),
-    localDNSProfile: S.optional(LocalDNSProfile),
-    name: S.String,
-  }),
-).annotate({
-  identifier: "ManagedClusterAgentPoolProfile",
-}) as any as S.Schema<ManagedClusterAgentPoolProfile>;
-
-/** The agent pool properties. */
-export type ManagedClusterPropertiesAgentPoolProfilesList =
-  Array<ManagedClusterAgentPoolProfile>;
-export const ManagedClusterPropertiesAgentPoolProfilesList =
-  /*@__PURE__*/ S.Array(
-    ManagedClusterAgentPoolProfile,
-  ) as any as S.Schema<ManagedClusterPropertiesAgentPoolProfilesList>;
-
-/** The profile of managed cluster add-on. */
-export type ManagedClusterPropertiesAddonProfilesMap = {
-  [key: string]: ManagedClusterAddonProfile | undefined;
-};
-export const ManagedClusterPropertiesAddonProfilesMap = /*@__PURE__*/ S.Record(
-  S.String,
-  ManagedClusterAddonProfile,
-) as any as S.Schema<ManagedClusterPropertiesAddonProfilesMap>;
-
-/** The current provisioning state of the pod identity. */
-export type ManagedClusterPodIdentityProvisioningState =
-  | "Assigned"
-  | "Canceled"
-  | "Deleting"
-  | "Failed"
-  | "Succeeded"
-  | "Updating";
-export const ManagedClusterPodIdentityProvisioningState =
-  /*@__PURE__*/ S.String;
-
-/** A list of additional details about the error. */
-export type ManagedClusterPodIdentityProvisioningErrorBodyDetailsList =
-  Array<ManagedClusterPodIdentityProvisioningErrorBody>;
-export const ManagedClusterPodIdentityProvisioningErrorBodyDetailsList =
-  /*@__PURE__*/ S.Array(
-    S.suspend(() => ManagedClusterPodIdentityProvisioningErrorBody),
-  ) as any as S.Schema<ManagedClusterPodIdentityProvisioningErrorBodyDetailsList>;
-
-/** An error response from the pod identity provisioning. */
-export interface ManagedClusterPodIdentityProvisioningErrorBody {
-  /** An identifier for the error. Codes are invariant and are intended to be consumed programmatically. */
-  code?: string;
-  /** A message describing the error, intended to be suitable for display in a user interface. */
-  message?: string;
-  /** The target of the particular error. For example, the name of the property in error. */
-  target?: string;
-  /** A list of additional details about the error. */
-  details?: ManagedClusterPodIdentityProvisioningErrorBodyDetailsList;
-}
-export const ManagedClusterPodIdentityProvisioningErrorBody =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      code: S.optional(S.String),
-      message: S.optional(S.String),
-      target: S.optional(S.String),
-      details: S.optional(
-        ManagedClusterPodIdentityProvisioningErrorBodyDetailsList,
-      ),
-    }),
-  ).annotate({
-    identifier: "ManagedClusterPodIdentityProvisioningErrorBody",
-  }) as any as S.Schema<ManagedClusterPodIdentityProvisioningErrorBody>;
-
-/** An error response from the pod identity provisioning. */
-export interface ManagedClusterPodIdentityProvisioningError {
-  /** Details about the error. */
-  error?: ManagedClusterPodIdentityProvisioningErrorBody;
-}
-export const ManagedClusterPodIdentityProvisioningError =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      error: S.optional(ManagedClusterPodIdentityProvisioningErrorBody),
-    }),
-  ).annotate({
-    identifier: "ManagedClusterPodIdentityProvisioningError",
-  }) as any as S.Schema<ManagedClusterPodIdentityProvisioningError>;
-
-/** Pod identity provisioning information. */
-export interface ManagedClusterPodIdentityProvisioningInfo {
-  /** Pod identity assignment error (if any). */
-  error?: ManagedClusterPodIdentityProvisioningError;
-}
-export const ManagedClusterPodIdentityProvisioningInfo =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      error: S.optional(ManagedClusterPodIdentityProvisioningError),
-    }),
-  ).annotate({
-    identifier: "ManagedClusterPodIdentityProvisioningInfo",
-  }) as any as S.Schema<ManagedClusterPodIdentityProvisioningInfo>;
-
-/** Details about the pod identity assigned to the Managed Cluster. */
-export interface ManagedClusterPodIdentity {
-  /** The name of the pod identity. */
-  name: string;
-  /** The namespace of the pod identity. */
-  namespace: string;
-  /** The binding selector to use for the AzureIdentityBinding resource. */
-  bindingSelector?: string;
-  /** The user assigned identity details. */
-  identity: UserAssignedIdentity;
-  /** The current provisioning state of the pod identity. */
-  provisioningState?: ManagedClusterPodIdentityProvisioningState;
-  /** The provisioning information for the pod identity. */
-  provisioningInfo?: ManagedClusterPodIdentityProvisioningInfo;
-}
-export const ManagedClusterPodIdentity = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String,
-    namespace: S.String,
-    bindingSelector: S.optional(S.String),
-    identity: UserAssignedIdentity,
-    provisioningState: S.optional(ManagedClusterPodIdentityProvisioningState),
-    provisioningInfo: S.optional(ManagedClusterPodIdentityProvisioningInfo),
-  }),
-).annotate({
-  identifier: "ManagedClusterPodIdentity",
-}) as any as S.Schema<ManagedClusterPodIdentity>;
-
-/** The pod identities to use in the cluster. */
-export type ManagedClusterPodIdentityProfileUserAssignedIdentitiesList =
-  Array<ManagedClusterPodIdentity>;
-export const ManagedClusterPodIdentityProfileUserAssignedIdentitiesList =
-  /*@__PURE__*/ S.Array(
-    ManagedClusterPodIdentity,
-  ) as any as S.Schema<ManagedClusterPodIdentityProfileUserAssignedIdentitiesList>;
-
-/** The pod identity exceptions to allow. */
-export type ManagedClusterPodIdentityProfileUserAssignedIdentityExceptionsList =
-  Array<ManagedClusterPodIdentityException>;
-export const ManagedClusterPodIdentityProfileUserAssignedIdentityExceptionsList =
-  /*@__PURE__*/ S.Array(
-    ManagedClusterPodIdentityException,
-  ) as any as S.Schema<ManagedClusterPodIdentityProfileUserAssignedIdentityExceptionsList>;
-
-/** The pod identity profile of the Managed Cluster. See [use AAD pod identity](https://docs.microsoft.com/azure/aks/use-azure-ad-pod-identity) for more details on pod identity integration. */
-export interface ManagedClusterPodIdentityProfile {
-  /** Whether the pod identity addon is enabled. */
-  enabled?: boolean;
-  /** Whether pod identity is allowed to run on clusters with Kubenet networking. Running in Kubenet is disabled by default due to the security related nature of AAD Pod Identity and the risks of IP spoofing. See [using Kubenet network plugin with AAD Pod Identity](https://docs.microsoft.com/azure/aks/use-azure-ad-pod-identity#using-kubenet-network-plugin-with-azure-active-directory-pod-managed-identities) for more information. */
-  allowNetworkPluginKubenet?: boolean;
-  /** The pod identities to use in the cluster. */
-  userAssignedIdentities?: ManagedClusterPodIdentityProfileUserAssignedIdentitiesList;
-  /** The pod identity exceptions to allow. */
-  userAssignedIdentityExceptions?: ManagedClusterPodIdentityProfileUserAssignedIdentityExceptionsList;
-}
-export const ManagedClusterPodIdentityProfile = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    enabled: S.optional(S.Boolean),
-    allowNetworkPluginKubenet: S.optional(S.Boolean),
-    userAssignedIdentities: S.optional(
-      ManagedClusterPodIdentityProfileUserAssignedIdentitiesList,
-    ),
-    userAssignedIdentityExceptions: S.optional(
-      ManagedClusterPodIdentityProfileUserAssignedIdentityExceptionsList,
-    ),
-  }),
-).annotate({
-  identifier: "ManagedClusterPodIdentityProfile",
-}) as any as S.Schema<ManagedClusterPodIdentityProfile>;
-
-/** The OIDC issuer profile of the Managed Cluster. */
-export interface ManagedClusterOIDCIssuerProfile {
-  /** The OIDC issuer url of the Managed Cluster. */
-  issuerURL?: string;
-  /** Whether the OIDC issuer is enabled. */
-  enabled?: boolean;
-}
-export const ManagedClusterOIDCIssuerProfile = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    issuerURL: S.optional(S.String),
-    enabled: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "ManagedClusterOIDCIssuerProfile",
-}) as any as S.Schema<ManagedClusterOIDCIssuerProfile>;
-
-/** The outbound (egress) routing method. This can only be set at cluster creation time and cannot be changed later. For more information see [egress outbound type](https://docs.microsoft.com/azure/aks/egress-outboundtype). */
-export type ContainerServiceNetworkProfileOutboundType =
-  | "loadBalancer"
-  | "userDefinedRouting"
-  | "managedNATGateway"
-  | "userAssignedNATGateway"
-  | "none";
-export const ContainerServiceNetworkProfileOutboundType =
-  /*@__PURE__*/ S.String;
-
-/** The effective outbound IP resources of the cluster load balancer. */
-export type ManagedClusterLoadBalancerProfileEffectiveOutboundIPsList =
-  Array<ResourceReference>;
-export const ManagedClusterLoadBalancerProfileEffectiveOutboundIPsList =
-  /*@__PURE__*/ S.Array(
-    ResourceReference,
-  ) as any as S.Schema<ManagedClusterLoadBalancerProfileEffectiveOutboundIPsList>;
-
-/** The type of the managed inbound Load Balancer BackendPool. */
-export type ManagedClusterLoadBalancerProfileBackendPoolType =
-  | "NodeIPConfiguration"
-  | "NodeIP";
-export const ManagedClusterLoadBalancerProfileBackendPoolType =
-  /*@__PURE__*/ S.String;
-
-/** Profile of the managed cluster load balancer. */
-export interface ManagedClusterLoadBalancerProfile {
-  /** Desired managed outbound IPs for the cluster load balancer. */
-  managedOutboundIPs?: ManagedClusterLoadBalancerProfileManagedOutboundIPs;
-  /** Desired outbound IP Prefix resources for the cluster load balancer. */
-  outboundIPPrefixes?: ManagedClusterLoadBalancerProfileOutboundIPPrefixes;
-  /** Desired outbound IP resources for the cluster load balancer. */
-  outboundIPs?: ManagedClusterLoadBalancerProfileOutboundIPs;
-  /** The effective outbound IP resources of the cluster load balancer. */
-  effectiveOutboundIPs?: ManagedClusterLoadBalancerProfileEffectiveOutboundIPsList;
-  /** The desired number of allocated SNAT ports per VM. Allowed values are in the range of 0 to 64000 (inclusive). The default value is 0 which results in Azure dynamically allocating ports. */
-  allocatedOutboundPorts?: number;
-  /** Desired outbound flow idle timeout in minutes. Allowed values are in the range of 4 to 120 (inclusive). The default value is 30 minutes. */
-  idleTimeoutInMinutes?: number;
-  /** Enable multiple standard load balancers per AKS cluster or not. */
-  enableMultipleStandardLoadBalancers?: boolean;
-  /** The type of the managed inbound Load Balancer BackendPool. */
-  backendPoolType?: ManagedClusterLoadBalancerProfileBackendPoolType;
-}
-export const ManagedClusterLoadBalancerProfile = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    managedOutboundIPs: S.optional(
-      ManagedClusterLoadBalancerProfileManagedOutboundIPs,
-    ),
-    outboundIPPrefixes: S.optional(
-      ManagedClusterLoadBalancerProfileOutboundIPPrefixes,
-    ),
-    outboundIPs: S.optional(ManagedClusterLoadBalancerProfileOutboundIPs),
-    effectiveOutboundIPs: S.optional(
-      ManagedClusterLoadBalancerProfileEffectiveOutboundIPsList,
-    ),
-    allocatedOutboundPorts: S.optional(S.Number),
-    idleTimeoutInMinutes: S.optional(S.Number),
-    enableMultipleStandardLoadBalancers: S.optional(S.Boolean),
-    backendPoolType: S.optional(
-      ManagedClusterLoadBalancerProfileBackendPoolType,
-    ),
-  }),
-).annotate({
-  identifier: "ManagedClusterLoadBalancerProfile",
-}) as any as S.Schema<ManagedClusterLoadBalancerProfile>;
-
-/** The effective outbound IP resources of the cluster NAT gateway. */
-export type ManagedClusterNATGatewayProfileEffectiveOutboundIPsList =
-  Array<ResourceReference>;
-export const ManagedClusterNATGatewayProfileEffectiveOutboundIPsList =
-  /*@__PURE__*/ S.Array(
-    ResourceReference,
-  ) as any as S.Schema<ManagedClusterNATGatewayProfileEffectiveOutboundIPsList>;
-
-/** A list of public IP prefix resources. */
-export type ManagedClusterNATGatewayProfileOutboundIPPrefixesPublicIPPrefixesList =
-  Array<string>;
-export const ManagedClusterNATGatewayProfileOutboundIPPrefixesPublicIPPrefixesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ManagedClusterNATGatewayProfileOutboundIPPrefixesPublicIPPrefixesList>;
-
-/** Desired outbound IP Prefix resources for the managed NAT Gateway. Only compatible with NAT Gateway V2. */
-export interface ManagedClusterNATGatewayProfileOutboundIPPrefixes {
-  /** A list of public IP prefix resources. */
-  publicIPPrefixes?: ManagedClusterNATGatewayProfileOutboundIPPrefixesPublicIPPrefixesList;
-}
-export const ManagedClusterNATGatewayProfileOutboundIPPrefixes =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      publicIPPrefixes: S.optional(
-        ManagedClusterNATGatewayProfileOutboundIPPrefixesPublicIPPrefixesList,
-      ),
-    }),
-  ).annotate({
-    identifier: "ManagedClusterNATGatewayProfileOutboundIPPrefixes",
-  }) as any as S.Schema<ManagedClusterNATGatewayProfileOutboundIPPrefixes>;
-
-/** A list of public IP resources. */
-export type ManagedClusterNATGatewayProfileOutboundIPsPublicIPsList =
-  Array<string>;
-export const ManagedClusterNATGatewayProfileOutboundIPsPublicIPsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ManagedClusterNATGatewayProfileOutboundIPsPublicIPsList>;
-
-/** Desired outbound IP resources for the managed NAT Gateway. */
-export interface ManagedClusterNATGatewayProfileOutboundIPs {
-  /** A list of public IP resources. */
-  publicIPs?: ManagedClusterNATGatewayProfileOutboundIPsPublicIPsList;
-}
-export const ManagedClusterNATGatewayProfileOutboundIPs =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      publicIPs: S.optional(
-        ManagedClusterNATGatewayProfileOutboundIPsPublicIPsList,
-      ),
-    }),
-  ).annotate({
-    identifier: "ManagedClusterNATGatewayProfileOutboundIPs",
-  }) as any as S.Schema<ManagedClusterNATGatewayProfileOutboundIPs>;
-
-/** Profile of the managed cluster NAT gateway. */
-export interface ManagedClusterNATGatewayProfile {
-  /** The SKU of the managed cluster NAT Gateway. Defaults to 'StandardV2' where available in the region, otherwise 'Standard'. */
-  sku?: ManagedClusterNATGatewaySku;
-  /** Profile of the managed outbound IP resources of the cluster NAT gateway. */
-  managedOutboundIPProfile?: ManagedClusterManagedOutboundIPProfile;
-  /** The effective outbound IP resources of the cluster NAT gateway. */
-  effectiveOutboundIPs?: ManagedClusterNATGatewayProfileEffectiveOutboundIPsList;
-  /** Desired outbound IP Prefix resources for the managed NAT Gateway. Only compatible with NAT Gateway V2. */
-  outboundIPPrefixes?: ManagedClusterNATGatewayProfileOutboundIPPrefixes;
-  /** Desired outbound IP resources for the managed NAT Gateway. */
-  outboundIPs?: ManagedClusterNATGatewayProfileOutboundIPs;
-  /** Desired outbound flow idle timeout in minutes. Allowed values are in the range of 4 to 120 (inclusive). The default value is 4 minutes. */
-  idleTimeoutInMinutes?: number;
-}
-export const ManagedClusterNATGatewayProfile = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    sku: S.optional(ManagedClusterNATGatewaySku),
-    managedOutboundIPProfile: S.optional(
-      ManagedClusterManagedOutboundIPProfile,
-    ),
-    effectiveOutboundIPs: S.optional(
-      ManagedClusterNATGatewayProfileEffectiveOutboundIPsList,
-    ),
-    outboundIPPrefixes: S.optional(
-      ManagedClusterNATGatewayProfileOutboundIPPrefixes,
-    ),
-    outboundIPs: S.optional(ManagedClusterNATGatewayProfileOutboundIPs),
-    idleTimeoutInMinutes: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "ManagedClusterNATGatewayProfile",
-}) as any as S.Schema<ManagedClusterNATGatewayProfile>;
-
-/** The CIDR notation IP ranges from which to assign pod IPs. One IPv4 CIDR is expected for single-stack networking. Two CIDRs, one for each IP family (IPv4/IPv6), is expected for dual-stack networking. */
-export type ContainerServiceNetworkProfilePodCidrsList = Array<string>;
-export const ContainerServiceNetworkProfilePodCidrsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ContainerServiceNetworkProfilePodCidrsList>;
-
-/** The CIDR notation IP ranges from which to assign service cluster IPs. One IPv4 CIDR is expected for single-stack networking. Two CIDRs, one for each IP family (IPv4/IPv6), is expected for dual-stack networking. They must not overlap with any Subnet IP ranges. */
-export type ContainerServiceNetworkProfileServiceCidrsList = Array<string>;
-export const ContainerServiceNetworkProfileServiceCidrsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ContainerServiceNetworkProfileServiceCidrsList>;
-
-/** The IP families used to specify IP versions available to the cluster. IP families are used to determine single-stack or dual-stack clusters. For single-stack, the expected value is IPv4. For dual-stack, the expected values are IPv4 and IPv6. */
-export type ContainerServiceNetworkProfileIpFamiliesList = Array<IPFamily>;
-export const ContainerServiceNetworkProfileIpFamiliesList =
-  /*@__PURE__*/ S.Array(
-    IPFamily,
-  ) as any as S.Schema<ContainerServiceNetworkProfileIpFamiliesList>;
-
-/** Profile of network configuration. */
-export interface ContainerServiceNetworkProfile {
-  /** Network plugin used for building the Kubernetes network. */
-  networkPlugin?: NetworkPlugin;
-  /** The mode the network plugin should use. */
-  networkPluginMode?: NetworkPluginMode;
-  /** Network policy used for building the Kubernetes network. */
-  networkPolicy?: NetworkPolicy;
-  /** The network mode Azure CNI is configured with. This cannot be specified if networkPlugin is anything other than 'azure'. */
-  networkMode?: NetworkMode;
-  /** Network dataplane used in the Kubernetes cluster. */
-  networkDataplane?: NetworkDataplane;
-  /** Advanced Networking profile for enabling observability and security feature suite on a cluster. For more information see aka.ms/aksadvancednetworking. */
-  advancedNetworking?: AdvancedNetworking;
-  /** A CIDR notation IP range from which to assign pod IPs when kubenet is used. */
-  podCidr?: string;
-  /** A CIDR notation IP range from which to assign service cluster IPs. It must not overlap with any Subnet IP ranges. */
-  serviceCidr?: string;
-  /** An IP address assigned to the Kubernetes DNS service. It must be within the Kubernetes service address range specified in serviceCidr. */
-  dnsServiceIP?: string;
-  /** The outbound (egress) routing method. This can only be set at cluster creation time and cannot be changed later. For more information see [egress outbound type](https://docs.microsoft.com/azure/aks/egress-outboundtype). */
-  outboundType?: ContainerServiceNetworkProfileOutboundType;
-  /** The load balancer sku for the managed cluster. The default is 'standard'. See [Azure Load Balancer SKUs](https://docs.microsoft.com/azure/load-balancer/skus) for more information about the differences between load balancer SKUs. */
-  loadBalancerSku?: LoadBalancerSku;
-  /** Profile of the cluster load balancer. */
-  loadBalancerProfile?: ManagedClusterLoadBalancerProfile;
-  /** Profile of the cluster NAT gateway. */
-  natGatewayProfile?: ManagedClusterNATGatewayProfile;
-  /** The profile for Static Egress Gateway addon. For more details about Static Egress Gateway, see https://aka.ms/aks/static-egress-gateway. */
-  staticEgressGatewayProfile?: ManagedClusterStaticEgressGatewayProfile;
-  /** The CIDR notation IP ranges from which to assign pod IPs. One IPv4 CIDR is expected for single-stack networking. Two CIDRs, one for each IP family (IPv4/IPv6), is expected for dual-stack networking. */
-  podCidrs?: ContainerServiceNetworkProfilePodCidrsList;
-  /** The CIDR notation IP ranges from which to assign service cluster IPs. One IPv4 CIDR is expected for single-stack networking. Two CIDRs, one for each IP family (IPv4/IPv6), is expected for dual-stack networking. They must not overlap with any Subnet IP ranges. */
-  serviceCidrs?: ContainerServiceNetworkProfileServiceCidrsList;
-  /** The IP families used to specify IP versions available to the cluster. IP families are used to determine single-stack or dual-stack clusters. For single-stack, the expected value is IPv4. For dual-stack, the expected values are IPv4 and IPv6. */
-  ipFamilies?: ContainerServiceNetworkProfileIpFamiliesList;
-}
-export const ContainerServiceNetworkProfile = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    networkPlugin: S.optional(NetworkPlugin),
-    networkPluginMode: S.optional(NetworkPluginMode),
-    networkPolicy: S.optional(NetworkPolicy),
-    networkMode: S.optional(NetworkMode),
-    networkDataplane: S.optional(NetworkDataplane),
-    advancedNetworking: S.optional(AdvancedNetworking),
-    podCidr: S.optional(S.String),
-    serviceCidr: S.optional(S.String),
-    dnsServiceIP: S.optional(S.String),
-    outboundType: S.optional(ContainerServiceNetworkProfileOutboundType),
-    loadBalancerSku: S.optional(LoadBalancerSku),
-    loadBalancerProfile: S.optional(ManagedClusterLoadBalancerProfile),
-    natGatewayProfile: S.optional(ManagedClusterNATGatewayProfile),
-    staticEgressGatewayProfile: S.optional(
-      ManagedClusterStaticEgressGatewayProfile,
-    ),
-    podCidrs: S.optional(ContainerServiceNetworkProfilePodCidrsList),
-    serviceCidrs: S.optional(ContainerServiceNetworkProfileServiceCidrsList),
-    ipFamilies: S.optional(ContainerServiceNetworkProfileIpFamiliesList),
-  }),
-).annotate({
-  identifier: "ContainerServiceNetworkProfile",
-}) as any as S.Schema<ContainerServiceNetworkProfile>;
-
-/** The user identity associated with the managed cluster. This identity will be used by the kubelet. Only one user assigned identity is allowed. The only accepted key is "kubeletidentity", with value of "resourceId": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}". */
-export type ManagedClusterPropertiesIdentityProfileMap = {
-  [key: string]: UserAssignedIdentity | undefined;
-};
-export const ManagedClusterPropertiesIdentityProfileMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    UserAssignedIdentity,
-  ) as any as S.Schema<ManagedClusterPropertiesIdentityProfileMap>;
-
-/** The RequiredMembers of the resource */
-export type PrivateLinkResourceRequiredMembersList = Array<string>;
-export const PrivateLinkResourceRequiredMembersList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<PrivateLinkResourceRequiredMembersList>;
-
-/** A private link resource */
-export interface PrivateLinkResource {
-  /** The ID of the private link resource. */
-  id?: string;
-  /** The name of the private link resource. See [naming rules](https://aka.ms/search-naming-rules) for more details. */
-  name?: string;
-  /** The resource type. */
-  type?: string;
-  /** The group ID of the resource. */
-  groupId?: string;
-  /** The RequiredMembers of the resource */
-  requiredMembers?: PrivateLinkResourceRequiredMembersList;
-  /** The private link service ID of the resource, this field is exposed only to NRP internally. */
-  privateLinkServiceID?: string;
-}
-export const PrivateLinkResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    groupId: S.optional(S.String),
-    requiredMembers: S.optional(PrivateLinkResourceRequiredMembersList),
-    privateLinkServiceID: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PrivateLinkResource",
-}) as any as S.Schema<PrivateLinkResource>;
-
-/** Private link resources associated with the cluster. */
-export type ManagedClusterPropertiesPrivateLinkResourcesList =
-  Array<PrivateLinkResource>;
-export const ManagedClusterPropertiesPrivateLinkResourcesList =
-  /*@__PURE__*/ S.Array(
-    PrivateLinkResource,
-  ) as any as S.Schema<ManagedClusterPropertiesPrivateLinkResourcesList>;
-
 /** The error details. */
 export type ManagedClusterStatusProvisioningErrorDetailsList =
   Array<ErrorDetail>;
@@ -9870,20 +7718,85 @@ export const ManagedClusterProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "ManagedClusterProperties",
 }) as any as S.Schema<ManagedClusterProperties>;
 
+/** The name of a managed cluster SKU. */
+export type ManagedClusterSKUName = "Base" | "Automatic";
+export const ManagedClusterSKUName = /*@__PURE__*/ S.String;
+
+/** The tier of a managed cluster SKU. If not specified, the default is 'Free'. See [AKS Pricing Tier](https://learn.microsoft.com/azure/aks/free-standard-pricing-tiers) for more details. */
+export type ManagedClusterSKUTier = "Premium" | "Standard" | "Free";
+export const ManagedClusterSKUTier = /*@__PURE__*/ S.String;
+
+/** The SKU of a Managed Cluster. */
+export interface ManagedClusterSKU {
+  /** The name of a managed cluster SKU. */
+  name?: ManagedClusterSKUName | (string & {});
+  /** The tier of a managed cluster SKU. If not specified, the default is 'Free'. See [AKS Pricing Tier](https://learn.microsoft.com/azure/aks/free-standard-pricing-tiers) for more details. */
+  tier?: ManagedClusterSKUTier | (string & {});
+}
+export const ManagedClusterSKU = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(ManagedClusterSKUName),
+    tier: S.optional(ManagedClusterSKUTier),
+  }),
+).annotate({
+  identifier: "ManagedClusterSKU",
+}) as any as S.Schema<ManagedClusterSKU>;
+
+/** The type of extendedLocation. */
+export type ExtendedLocationTypes = "EdgeZone";
+export const ExtendedLocationTypes = /*@__PURE__*/ S.String;
+
+/** The complex type of the extended location. */
+export interface ExtendedLocation {
+  /** The name of the extended location. */
+  name?: string;
+  /** The type of the extended location. */
+  type?: ExtendedLocationTypes | (string & {});
+}
+export const ExtendedLocation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    type: S.optional(ExtendedLocationTypes),
+  }),
+).annotate({
+  identifier: "ExtendedLocation",
+}) as any as S.Schema<ExtendedLocation>;
+
+/** The type of identity used for the managed cluster. For more information see [use managed identities in AKS](https://docs.microsoft.com/azure/aks/use-managed-identity). */
+export type ResourceIdentityType = "SystemAssigned" | "UserAssigned" | "None";
+export const ResourceIdentityType = /*@__PURE__*/ S.String;
+
 /** Delegated resource properties - internal use only. */
-export type ManagedClusterIdentityDelegatedResourcesValue =
-  ManagedClusterIdentityInputDelegatedResourcesValue;
+export interface ManagedClusterIdentityDelegatedResourcesValue {
+  /** The ARM resource id of the delegated resource - internal use only. */
+  resourceId?: string;
+  /** The tenant id of the delegated resource - internal use only. */
+  tenantId?: string;
+  /** The delegation id of the referral delegation (optional) - internal use only. */
+  referralResource?: string;
+  /** The source resource location - internal use only. */
+  location?: string;
+}
 export const ManagedClusterIdentityDelegatedResourcesValue =
-  ManagedClusterIdentityInputDelegatedResourcesValue;
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      resourceId: S.optional(S.String),
+      tenantId: S.optional(S.String),
+      referralResource: S.optional(S.String),
+      location: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "ManagedClusterIdentityDelegatedResourcesValue",
+  }) as any as S.Schema<ManagedClusterIdentityDelegatedResourcesValue>;
 
 /** The delegated identity resources assigned to this managed cluster. This can only be set by another Azure Resource Provider, and managed cluster only accept one delegated identity resource. Internal use only. */
 export type ManagedClusterIdentityDelegatedResourcesMap = {
-  [key: string]: ManagedClusterIdentityInputDelegatedResourcesValue | undefined;
+  [key: string]: ManagedClusterIdentityDelegatedResourcesValue | undefined;
 };
 export const ManagedClusterIdentityDelegatedResourcesMap =
   /*@__PURE__*/ S.Record(
     S.String,
-    ManagedClusterIdentityInputDelegatedResourcesValue,
+    ManagedClusterIdentityDelegatedResourcesValue,
   ) as any as S.Schema<ManagedClusterIdentityDelegatedResourcesMap>;
 
 /** User assigned identity properties. */
@@ -9940,7 +7853,7 @@ export const ManagedClusterIdentity = /*@__PURE__*/ S.suspend(() =>
   identifier: "ManagedClusterIdentity",
 }) as any as S.Schema<ManagedClusterIdentity>;
 
-export interface ManagedClustersCreateOrUpdateResponse {
+export interface GetManagedClusterResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -9950,7 +7863,7 @@ export interface ManagedClustersCreateOrUpdateResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ManagedClustersCreateOrUpdateResponseTagsMap;
+  tags?: GetManagedClusterResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties of a managed cluster. */
@@ -9966,125 +7879,13 @@ export interface ManagedClustersCreateOrUpdateResponse {
   /** This is primarily used to expose different UI experiences in the portal for different kinds */
   kind?: string;
 }
-export const ManagedClustersCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      tags: S.optional(ManagedClustersCreateOrUpdateResponseTagsMap),
-      location: S.String,
-      properties: S.optional(ManagedClusterProperties),
-      eTag: S.optional(S.String),
-      sku: S.optional(ManagedClusterSKU),
-      extendedLocation: S.optional(ExtendedLocation),
-      identity: S.optional(ManagedClusterIdentity),
-      kind: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "ManagedClustersCreateOrUpdateResponse",
-}) as any as S.Schema<ManagedClustersCreateOrUpdateResponse>;
-
-export interface ManagedClustersDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the managed cluster resource. */
-  resourceName: string;
-}
-export const ManagedClustersDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    resourceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "ManagedClustersDeleteRequest",
-}) as any as S.Schema<ManagedClustersDeleteRequest>;
-
-export interface ManagedClustersDeleteResponse {}
-export const ManagedClustersDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ManagedClustersDeleteResponse",
-}) as any as S.Schema<ManagedClustersDeleteResponse>;
-
-export interface ManagedClustersGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the managed cluster resource. */
-  resourceName: string;
-}
-export const ManagedClustersGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    resourceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "ManagedClustersGetRequest",
-}) as any as S.Schema<ManagedClustersGetRequest>;
-
-/** Resource tags. */
-export type ManagedClustersGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ManagedClustersGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ManagedClustersGetResponseTagsMap>;
-
-export interface ManagedClustersGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: ManagedClustersGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Properties of a managed cluster. */
-  properties?: ManagedClusterProperties;
-  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
-  eTag?: string;
-  /** The managed cluster SKU. */
-  sku?: ManagedClusterSKU;
-  /** The extended location of the Virtual Machine. */
-  extendedLocation?: ExtendedLocation;
-  /** The identity of the managed cluster, if configured. */
-  identity?: ManagedClusterIdentity;
-  /** This is primarily used to expose different UI experiences in the portal for different kinds */
-  kind?: string;
-}
-export const ManagedClustersGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetManagedClusterResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ManagedClustersGetResponseTagsMap),
+    tags: S.optional(GetManagedClusterResponseTagsMap),
     location: S.String,
     properties: S.optional(ManagedClusterProperties),
     eTag: S.optional(S.String),
@@ -10094,10 +7895,10 @@ export const ManagedClustersGetResponse = /*@__PURE__*/ S.suspend(() =>
     kind: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ManagedClustersGetResponse",
-}) as any as S.Schema<ManagedClustersGetResponse>;
+  identifier: "GetManagedClusterResponse",
+}) as any as S.Schema<GetManagedClusterResponse>;
 
-export interface ManagedClustersGetCommandResultRequest {
+export interface GetManagedClusterCommandResultRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -10107,7 +7908,7 @@ export interface ManagedClustersGetCommandResultRequest {
   /** Id of the command. */
   commandId: string;
 }
-export const ManagedClustersGetCommandResultRequest = /*@__PURE__*/ S.suspend(
+export const GetManagedClusterCommandResultRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -10123,8 +7924,8 @@ export const ManagedClustersGetCommandResultRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "ManagedClustersGetCommandResultRequest",
-}) as any as S.Schema<ManagedClustersGetCommandResultRequest>;
+  identifier: "GetManagedClusterCommandResultRequest",
+}) as any as S.Schema<GetManagedClusterCommandResultRequest>;
 
 /** The results of a run command */
 export interface CommandResultProperties {
@@ -10170,7 +7971,7 @@ export const RunCommandResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "RunCommandResult",
 }) as any as S.Schema<RunCommandResult>;
 
-export interface ManagedClustersGetMeshRevisionProfileRequest {
+export interface GetManagedClusterMeshRevisionProfileRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the Azure region. */
@@ -10178,7 +7979,7 @@ export interface ManagedClustersGetMeshRevisionProfileRequest {
   /** The mode of the mesh. */
   mode: string;
 }
-export const ManagedClustersGetMeshRevisionProfileRequest =
+export const GetManagedClusterMeshRevisionProfileRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -10193,8 +7994,8 @@ export const ManagedClustersGetMeshRevisionProfileRequest =
       }),
     ),
   ).annotate({
-    identifier: "ManagedClustersGetMeshRevisionProfileRequest",
-  }) as any as S.Schema<ManagedClustersGetMeshRevisionProfileRequest>;
+    identifier: "GetManagedClusterMeshRevisionProfileRequest",
+  }) as any as S.Schema<GetManagedClusterMeshRevisionProfileRequest>;
 
 /** List of revisions available for upgrade of a specific mesh revision */
 export type MeshRevisionUpgradesList = Array<string>;
@@ -10268,7 +8069,7 @@ export const MeshRevisionProfileProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "MeshRevisionProfileProperties",
 }) as any as S.Schema<MeshRevisionProfileProperties>;
 
-export interface ManagedClustersGetMeshRevisionProfileResponse {
+export interface GetManagedClusterMeshRevisionProfileResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -10280,7 +8081,7 @@ export interface ManagedClustersGetMeshRevisionProfileResponse {
   /** Mesh revision profile properties for a mesh */
   properties?: MeshRevisionProfileProperties;
 }
-export const ManagedClustersGetMeshRevisionProfileResponse =
+export const GetManagedClusterMeshRevisionProfileResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
@@ -10290,10 +8091,10 @@ export const ManagedClustersGetMeshRevisionProfileResponse =
       properties: S.optional(MeshRevisionProfileProperties),
     }),
   ).annotate({
-    identifier: "ManagedClustersGetMeshRevisionProfileResponse",
-  }) as any as S.Schema<ManagedClustersGetMeshRevisionProfileResponse>;
+    identifier: "GetManagedClusterMeshRevisionProfileResponse",
+  }) as any as S.Schema<GetManagedClusterMeshRevisionProfileResponse>;
 
-export interface ManagedClustersGetMeshUpgradeProfileRequest {
+export interface GetManagedClusterMeshUpgradeProfileRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -10303,7 +8104,7 @@ export interface ManagedClustersGetMeshUpgradeProfileRequest {
   /** The mode of the mesh. */
   mode: string;
 }
-export const ManagedClustersGetMeshUpgradeProfileRequest =
+export const GetManagedClusterMeshUpgradeProfileRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -10319,10 +8120,10 @@ export const ManagedClustersGetMeshUpgradeProfileRequest =
       }),
     ),
   ).annotate({
-    identifier: "ManagedClustersGetMeshUpgradeProfileRequest",
-  }) as any as S.Schema<ManagedClustersGetMeshUpgradeProfileRequest>;
+    identifier: "GetManagedClusterMeshUpgradeProfileRequest",
+  }) as any as S.Schema<GetManagedClusterMeshUpgradeProfileRequest>;
 
-export interface ManagedClustersGetMeshUpgradeProfileResponse {
+export interface GetManagedClusterMeshUpgradeProfileResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -10334,7 +8135,7 @@ export interface ManagedClustersGetMeshUpgradeProfileResponse {
   /** Mesh upgrade profile properties for a major.minor release. */
   properties?: MeshRevision;
 }
-export const ManagedClustersGetMeshUpgradeProfileResponse =
+export const GetManagedClusterMeshUpgradeProfileResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
@@ -10344,10 +8145,10 @@ export const ManagedClustersGetMeshUpgradeProfileResponse =
       properties: S.optional(MeshRevision),
     }),
   ).annotate({
-    identifier: "ManagedClustersGetMeshUpgradeProfileResponse",
-  }) as any as S.Schema<ManagedClustersGetMeshUpgradeProfileResponse>;
+    identifier: "GetManagedClusterMeshUpgradeProfileResponse",
+  }) as any as S.Schema<GetManagedClusterMeshUpgradeProfileResponse>;
 
-export interface ManagedClustersGetUpgradeProfileRequest {
+export interface GetManagedClusterUpgradeProfileRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -10355,7 +8156,7 @@ export interface ManagedClustersGetUpgradeProfileRequest {
   /** The name of the managed cluster resource. */
   resourceName: string;
 }
-export const ManagedClustersGetUpgradeProfileRequest = /*@__PURE__*/ S.suspend(
+export const GetManagedClusterUpgradeProfileRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -10370,8 +8171,8 @@ export const ManagedClustersGetUpgradeProfileRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "ManagedClustersGetUpgradeProfileRequest",
-}) as any as S.Schema<ManagedClustersGetUpgradeProfileRequest>;
+  identifier: "GetManagedClusterUpgradeProfileRequest",
+}) as any as S.Schema<GetManagedClusterUpgradeProfileRequest>;
 
 /** The operating system type. The default is Linux. */
 export type ManagedClusterPoolUpgradeProfileOsType = "Linux" | "Windows";
@@ -10439,7 +8240,7 @@ export const ManagedClusterUpgradeProfileProperties = /*@__PURE__*/ S.suspend(
   identifier: "ManagedClusterUpgradeProfileProperties",
 }) as any as S.Schema<ManagedClusterUpgradeProfileProperties>;
 
-export interface ManagedClustersGetUpgradeProfileResponse {
+export interface GetManagedClusterUpgradeProfileResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -10451,7 +8252,7 @@ export interface ManagedClustersGetUpgradeProfileResponse {
   /** The properties of the upgrade profile. */
   properties: ManagedClusterUpgradeProfileProperties;
 }
-export const ManagedClustersGetUpgradeProfileResponse = /*@__PURE__*/ S.suspend(
+export const GetManagedClusterUpgradeProfileResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
@@ -10461,941 +8262,73 @@ export const ManagedClustersGetUpgradeProfileResponse = /*@__PURE__*/ S.suspend(
       properties: ManagedClusterUpgradeProfileProperties,
     }),
 ).annotate({
-  identifier: "ManagedClustersGetUpgradeProfileResponse",
-}) as any as S.Schema<ManagedClustersGetUpgradeProfileResponse>;
+  identifier: "GetManagedClusterUpgradeProfileResponse",
+}) as any as S.Schema<GetManagedClusterUpgradeProfileResponse>;
 
-export interface ManagedClustersListRequest {
+export interface GetManagedNamespaceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the managed cluster resource. */
+  resourceName: string;
+  /** The name of the managed namespace. */
+  managedNamespaceName: string;
 }
-export const ManagedClustersListRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetManagedNamespaceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    resourceName: S.String.pipe(T.Label()),
+    managedNamespaceName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ContainerService/managedClusters",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/managedNamespaces/{managedNamespaceName}",
       code: 200,
       apiVersion: "2026-06-01",
     }),
   ),
 ).annotate({
-  identifier: "ManagedClustersListRequest",
-}) as any as S.Schema<ManagedClustersListRequest>;
+  identifier: "GetManagedNamespaceRequest",
+}) as any as S.Schema<GetManagedNamespaceRequest>;
 
 /** Resource tags. */
-export type ManagedClusterTagsMap = { [key: string]: string | undefined };
-export const ManagedClusterTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ManagedClusterTagsMap>;
-
-/** Managed cluster. */
-export interface ManagedCluster {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: ManagedClusterTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Properties of a managed cluster. */
-  properties?: ManagedClusterProperties;
-  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
-  eTag?: string;
-  /** The managed cluster SKU. */
-  sku?: ManagedClusterSKU;
-  /** The extended location of the Virtual Machine. */
-  extendedLocation?: ExtendedLocation;
-  /** The identity of the managed cluster, if configured. */
-  identity?: ManagedClusterIdentity;
-  /** This is primarily used to expose different UI experiences in the portal for different kinds */
-  kind?: string;
-}
-export const ManagedCluster = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(ManagedClusterTagsMap),
-    location: S.String,
-    properties: S.optional(ManagedClusterProperties),
-    eTag: S.optional(S.String),
-    sku: S.optional(ManagedClusterSKU),
-    extendedLocation: S.optional(ExtendedLocation),
-    identity: S.optional(ManagedClusterIdentity),
-    kind: S.optional(S.String),
-  }),
-).annotate({ identifier: "ManagedCluster" }) as any as S.Schema<ManagedCluster>;
-
-/** The ManagedCluster items on this page */
-export type ManagedClusterListResultValueList = Array<ManagedCluster>;
-export const ManagedClusterListResultValueList = /*@__PURE__*/ S.Array(
-  ManagedCluster,
-) as any as S.Schema<ManagedClusterListResultValueList>;
-
-/** The response of a ManagedCluster list operation. */
-export interface ManagedClusterListResult {
-  /** The ManagedCluster items on this page */
-  value: ManagedClusterListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const ManagedClusterListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: ManagedClusterListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ManagedClusterListResult",
-}) as any as S.Schema<ManagedClusterListResult>;
-
-export interface ManagedClustersListByResourceGroupRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-}
-export const ManagedClustersListByResourceGroupRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ManagedClustersListByResourceGroupRequest",
-  }) as any as S.Schema<ManagedClustersListByResourceGroupRequest>;
-
-export interface ManagedClustersListClusterAdminCredentialsRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the managed cluster resource. */
-  resourceName: string;
-  /** server fqdn type for credentials to be returned */
-  server_fqdn?: string;
-}
-export const ManagedClustersListClusterAdminCredentialsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-      server_fqdn: S.optional(S.String.pipe(T.Query("server-fqdn"))),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/listClusterAdminCredential",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ManagedClustersListClusterAdminCredentialsRequest",
-  }) as any as S.Schema<ManagedClustersListClusterAdminCredentialsRequest>;
-
-/** The credential result response. */
-export type CredentialResult = FleetCredentialResult;
-export const CredentialResult = FleetCredentialResult;
-
-/** Base64-encoded Kubernetes configuration file. */
-export type CredentialResultsKubeconfigsList = Array<FleetCredentialResult>;
-export const CredentialResultsKubeconfigsList = /*@__PURE__*/ S.Array(
-  FleetCredentialResult,
-) as any as S.Schema<CredentialResultsKubeconfigsList>;
-
-/** The list credential result response. */
-export interface CredentialResults {
-  /** Base64-encoded Kubernetes configuration file. */
-  kubeconfigs?: CredentialResultsKubeconfigsList;
-}
-export const CredentialResults = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    kubeconfigs: S.optional(CredentialResultsKubeconfigsList),
-  }),
-).annotate({
-  identifier: "CredentialResults",
-}) as any as S.Schema<CredentialResults>;
-
-export interface ManagedClustersListClusterMonitoringUserCredentialsRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the managed cluster resource. */
-  resourceName: string;
-  /** server fqdn type for credentials to be returned */
-  server_fqdn?: string;
-}
-export const ManagedClustersListClusterMonitoringUserCredentialsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-      server_fqdn: S.optional(S.String.pipe(T.Query("server-fqdn"))),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/listClusterMonitoringUserCredential",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ManagedClustersListClusterMonitoringUserCredentialsRequest",
-  }) as any as S.Schema<ManagedClustersListClusterMonitoringUserCredentialsRequest>;
-
-export type ManagedClustersListClusterUserCredentialsRequestFormat =
-  | "azure"
-  | "exec";
-export const ManagedClustersListClusterUserCredentialsRequestFormat =
-  /*@__PURE__*/ S.String;
-
-export interface ManagedClustersListClusterUserCredentialsRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the managed cluster resource. */
-  resourceName: string;
-  /** server fqdn type for credentials to be returned */
-  server_fqdn?: string;
-  /** Only apply to AAD clusters, specifies the format of returned kubeconfig. Format 'azure' will return azure auth-provider kubeconfig; format 'exec' will return exec format kubeconfig, which requires kubelogin binary in the path. */
-  format?:
-    | ManagedClustersListClusterUserCredentialsRequestFormat
-    | (string & {});
-}
-export const ManagedClustersListClusterUserCredentialsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-      server_fqdn: S.optional(S.String.pipe(T.Query("server-fqdn"))),
-      format: S.optional(
-        ManagedClustersListClusterUserCredentialsRequestFormat.pipe(T.Query()),
-      ),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/listClusterUserCredential",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ManagedClustersListClusterUserCredentialsRequest",
-  }) as any as S.Schema<ManagedClustersListClusterUserCredentialsRequest>;
-
-export interface ManagedClustersListKubernetesVersionsRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the Azure region. */
-  location: string;
-}
-export const ManagedClustersListKubernetesVersionsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      location: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ContainerService/locations/{location}/kubernetesVersions",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ManagedClustersListKubernetesVersionsRequest",
-  }) as any as S.Schema<ManagedClustersListKubernetesVersionsRequest>;
-
-/** Kubernetes support plans available for this version. */
-export type KubernetesVersionCapabilitiesSupportPlanList =
-  Array<KubernetesSupportPlan>;
-export const KubernetesVersionCapabilitiesSupportPlanList =
-  /*@__PURE__*/ S.Array(
-    KubernetesSupportPlan,
-  ) as any as S.Schema<KubernetesVersionCapabilitiesSupportPlanList>;
-
-/** Capabilities on this Kubernetes version. */
-export interface KubernetesVersionCapabilities {
-  /** Kubernetes support plans available for this version. */
-  supportPlan?: KubernetesVersionCapabilitiesSupportPlanList;
-}
-export const KubernetesVersionCapabilities = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    supportPlan: S.optional(KubernetesVersionCapabilitiesSupportPlanList),
-  }),
-).annotate({
-  identifier: "KubernetesVersionCapabilities",
-}) as any as S.Schema<KubernetesVersionCapabilities>;
-
-/** Possible upgrade path for given patch version */
-export type KubernetesPatchVersionUpgradesList = Array<string>;
-export const KubernetesPatchVersionUpgradesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<KubernetesPatchVersionUpgradesList>;
-
-/** Kubernetes patch version profile */
-export interface KubernetesPatchVersion {
-  /** Possible upgrade path for given patch version */
-  upgrades?: KubernetesPatchVersionUpgradesList;
-}
-export const KubernetesPatchVersion = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    upgrades: S.optional(KubernetesPatchVersionUpgradesList),
-  }),
-).annotate({
-  identifier: "KubernetesPatchVersion",
-}) as any as S.Schema<KubernetesPatchVersion>;
-
-/** Patch versions of Kubernetes release */
-export type KubernetesVersionPatchVersionsMap = {
-  [key: string]: KubernetesPatchVersion | undefined;
-};
-export const KubernetesVersionPatchVersionsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  KubernetesPatchVersion,
-) as any as S.Schema<KubernetesVersionPatchVersionsMap>;
-
-/** Kubernetes version profile for given major.minor release. */
-export interface KubernetesVersion {
-  /** major.minor version of Kubernetes release */
-  version?: string;
-  /** Capabilities on this Kubernetes version. */
-  capabilities?: KubernetesVersionCapabilities;
-  /** Whether this version is default. */
-  isDefault?: boolean;
-  /** Whether this version is in preview mode. */
-  isPreview?: boolean;
-  /** Patch versions of Kubernetes release */
-  patchVersions?: KubernetesVersionPatchVersionsMap;
-}
-export const KubernetesVersion = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    version: S.optional(S.String),
-    capabilities: S.optional(KubernetesVersionCapabilities),
-    isDefault: S.optional(S.Boolean),
-    isPreview: S.optional(S.Boolean),
-    patchVersions: S.optional(KubernetesVersionPatchVersionsMap),
-  }),
-).annotate({
-  identifier: "KubernetesVersion",
-}) as any as S.Schema<KubernetesVersion>;
-
-/** Array of AKS supported Kubernetes versions. */
-export type KubernetesVersionListResultValuesList = Array<KubernetesVersion>;
-export const KubernetesVersionListResultValuesList = /*@__PURE__*/ S.Array(
-  KubernetesVersion,
-) as any as S.Schema<KubernetesVersionListResultValuesList>;
-
-/** Hold values properties, which is array of KubernetesVersion */
-export interface KubernetesVersionListResult {
-  /** Array of AKS supported Kubernetes versions. */
-  values?: KubernetesVersionListResultValuesList;
-}
-export const KubernetesVersionListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    values: S.optional(KubernetesVersionListResultValuesList),
-  }),
-).annotate({
-  identifier: "KubernetesVersionListResult",
-}) as any as S.Schema<KubernetesVersionListResult>;
-
-export interface ManagedClustersListMeshRevisionProfilesRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the Azure region. */
-  location: string;
-}
-export const ManagedClustersListMeshRevisionProfilesRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      location: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ContainerService/locations/{location}/meshRevisionProfiles",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ManagedClustersListMeshRevisionProfilesRequest",
-  }) as any as S.Schema<ManagedClustersListMeshRevisionProfilesRequest>;
-
-/** Mesh revision profile for a mesh. */
-export interface MeshRevisionProfile {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Mesh revision profile properties for a mesh */
-  properties?: MeshRevisionProfileProperties;
-}
-export const MeshRevisionProfile = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(MeshRevisionProfileProperties),
-  }),
-).annotate({
-  identifier: "MeshRevisionProfile",
-}) as any as S.Schema<MeshRevisionProfile>;
-
-/** The MeshRevisionProfile items on this page */
-export type MeshRevisionProfileListValueList = Array<MeshRevisionProfile>;
-export const MeshRevisionProfileListValueList = /*@__PURE__*/ S.Array(
-  MeshRevisionProfile,
-) as any as S.Schema<MeshRevisionProfileListValueList>;
-
-/** Holds an array of MeshRevisionsProfiles */
-export interface MeshRevisionProfileList {
-  /** The MeshRevisionProfile items on this page */
-  value: MeshRevisionProfileListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const MeshRevisionProfileList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: MeshRevisionProfileListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "MeshRevisionProfileList",
-}) as any as S.Schema<MeshRevisionProfileList>;
-
-export interface ManagedClustersListMeshUpgradeProfilesRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the managed cluster resource. */
-  resourceName: string;
-}
-export const ManagedClustersListMeshUpgradeProfilesRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/meshUpgradeProfiles",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ManagedClustersListMeshUpgradeProfilesRequest",
-  }) as any as S.Schema<ManagedClustersListMeshUpgradeProfilesRequest>;
-
-/** Upgrade profile for given mesh. */
-export interface MeshUpgradeProfile {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Mesh upgrade profile properties for a major.minor release. */
-  properties?: MeshRevision;
-}
-export const MeshUpgradeProfile = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(MeshRevision),
-  }),
-).annotate({
-  identifier: "MeshUpgradeProfile",
-}) as any as S.Schema<MeshUpgradeProfile>;
-
-/** The MeshUpgradeProfile items on this page */
-export type MeshUpgradeProfileListValueList = Array<MeshUpgradeProfile>;
-export const MeshUpgradeProfileListValueList = /*@__PURE__*/ S.Array(
-  MeshUpgradeProfile,
-) as any as S.Schema<MeshUpgradeProfileListValueList>;
-
-/** Holds an array of MeshUpgradeProfiles */
-export interface MeshUpgradeProfileList {
-  /** The MeshUpgradeProfile items on this page */
-  value: MeshUpgradeProfileListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const MeshUpgradeProfileList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: MeshUpgradeProfileListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "MeshUpgradeProfileList",
-}) as any as S.Schema<MeshUpgradeProfileList>;
-
-export interface ManagedClustersListOutboundNetworkDependenciesEndpointsRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the managed cluster resource. */
-  resourceName: string;
-}
-export const ManagedClustersListOutboundNetworkDependenciesEndpointsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/outboundNetworkDependenciesEndpoints",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier:
-      "ManagedClustersListOutboundNetworkDependenciesEndpointsRequest",
-  }) as any as S.Schema<ManagedClustersListOutboundNetworkDependenciesEndpointsRequest>;
-
-/** connect information from the AKS agent nodes to a single endpoint. */
-export interface EndpointDetail {
-  /** An IP Address that Domain Name currently resolves to. */
-  ipAddress?: string;
-  /** The port an endpoint is connected to. */
-  port?: number;
-  /** The protocol used for connection */
-  protocol?: string;
-  /** Description of the detail */
-  description?: string;
-}
-export const EndpointDetail = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ipAddress: S.optional(S.String),
-    port: S.optional(S.Number),
-    protocol: S.optional(S.String),
-    description: S.optional(S.String),
-  }),
-).annotate({ identifier: "EndpointDetail" }) as any as S.Schema<EndpointDetail>;
-
-/** The Ports and Protocols used when connecting to domainName. */
-export type EndpointDependencyEndpointDetailsList = Array<EndpointDetail>;
-export const EndpointDependencyEndpointDetailsList = /*@__PURE__*/ S.Array(
-  EndpointDetail,
-) as any as S.Schema<EndpointDependencyEndpointDetailsList>;
-
-/** A domain name that AKS agent nodes are reaching at. */
-export interface EndpointDependency {
-  /** The domain name of the dependency. */
-  domainName?: string;
-  /** The Ports and Protocols used when connecting to domainName. */
-  endpointDetails?: EndpointDependencyEndpointDetailsList;
-}
-export const EndpointDependency = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    domainName: S.optional(S.String),
-    endpointDetails: S.optional(EndpointDependencyEndpointDetailsList),
-  }),
-).annotate({
-  identifier: "EndpointDependency",
-}) as any as S.Schema<EndpointDependency>;
-
-/** The endpoints that AKS agent nodes connect to */
-export type OutboundEnvironmentEndpointEndpointsList =
-  Array<EndpointDependency>;
-export const OutboundEnvironmentEndpointEndpointsList = /*@__PURE__*/ S.Array(
-  EndpointDependency,
-) as any as S.Schema<OutboundEnvironmentEndpointEndpointsList>;
-
-/** Egress endpoints which AKS agent nodes connect to for common purpose. */
-export interface OutboundEnvironmentEndpoint {
-  /** The category of endpoints accessed by the AKS agent node, e.g. azure-resource-management, apiserver, etc. */
-  category?: string;
-  /** The endpoints that AKS agent nodes connect to */
-  endpoints?: OutboundEnvironmentEndpointEndpointsList;
-}
-export const OutboundEnvironmentEndpoint = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    category: S.optional(S.String),
-    endpoints: S.optional(OutboundEnvironmentEndpointEndpointsList),
-  }),
-).annotate({
-  identifier: "OutboundEnvironmentEndpoint",
-}) as any as S.Schema<OutboundEnvironmentEndpoint>;
-
-/** The OutboundEnvironmentEndpoint items on this page */
-export type OutboundEnvironmentEndpointCollectionValueList =
-  Array<OutboundEnvironmentEndpoint>;
-export const OutboundEnvironmentEndpointCollectionValueList =
-  /*@__PURE__*/ S.Array(
-    OutboundEnvironmentEndpoint,
-  ) as any as S.Schema<OutboundEnvironmentEndpointCollectionValueList>;
-
-/** Collection of OutboundEnvironmentEndpoint */
-export interface OutboundEnvironmentEndpointCollection {
-  /** The OutboundEnvironmentEndpoint items on this page */
-  value: OutboundEnvironmentEndpointCollectionValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const OutboundEnvironmentEndpointCollection = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      value: OutboundEnvironmentEndpointCollectionValueList,
-      nextLink: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "OutboundEnvironmentEndpointCollection",
-}) as any as S.Schema<OutboundEnvironmentEndpointCollection>;
-
-export interface ManagedClustersResetServicePrincipalProfileRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the managed cluster resource. */
-  resourceName: string;
-  /** The ID for the service principal. */
-  clientId: string;
-  /** The secret password associated with the service principal in plain text. */
-  secret?: string | Redacted.Redacted<string>;
-}
-export const ManagedClustersResetServicePrincipalProfileRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-      clientId: S.String,
-      secret: S.optional(S.String.pipe(T.SensitiveValue({}))),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/resetServicePrincipalProfile",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ManagedClustersResetServicePrincipalProfileRequest",
-  }) as any as S.Schema<ManagedClustersResetServicePrincipalProfileRequest>;
-
-export interface ManagedClustersResetServicePrincipalProfileResponse {}
-export const ManagedClustersResetServicePrincipalProfileResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "ManagedClustersResetServicePrincipalProfileResponse",
-  }) as any as S.Schema<ManagedClustersResetServicePrincipalProfileResponse>;
-
-export interface ManagedClustersRotateClusterCertificatesRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the managed cluster resource. */
-  resourceName: string;
-}
-export const ManagedClustersRotateClusterCertificatesRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/rotateClusterCertificates",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ManagedClustersRotateClusterCertificatesRequest",
-  }) as any as S.Schema<ManagedClustersRotateClusterCertificatesRequest>;
-
-export interface ManagedClustersRotateClusterCertificatesResponse {}
-export const ManagedClustersRotateClusterCertificatesResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "ManagedClustersRotateClusterCertificatesResponse",
-  }) as any as S.Schema<ManagedClustersRotateClusterCertificatesResponse>;
-
-export interface ManagedClustersRotateServiceAccountSigningKeysRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the managed cluster resource. */
-  resourceName: string;
-}
-export const ManagedClustersRotateServiceAccountSigningKeysRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/rotateServiceAccountSigningKeys",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ManagedClustersRotateServiceAccountSigningKeysRequest",
-  }) as any as S.Schema<ManagedClustersRotateServiceAccountSigningKeysRequest>;
-
-export interface ManagedClustersRotateServiceAccountSigningKeysResponse {}
-export const ManagedClustersRotateServiceAccountSigningKeysResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "ManagedClustersRotateServiceAccountSigningKeysResponse",
-  }) as any as S.Schema<ManagedClustersRotateServiceAccountSigningKeysResponse>;
-
-export interface ManagedClustersRunCommandRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the managed cluster resource. */
-  resourceName: string;
-  /** The command to run. */
-  command: string;
-  /** A base64 encoded zip file containing the files required by the command. */
-  context?: string;
-  /** AuthToken issued for AKS AAD Server App. */
-  clusterToken?: string;
-}
-export const ManagedClustersRunCommandRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    resourceName: S.String.pipe(T.Label()),
-    command: S.String,
-    context: S.optional(S.String),
-    clusterToken: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/runCommand",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "ManagedClustersRunCommandRequest",
-}) as any as S.Schema<ManagedClustersRunCommandRequest>;
-
-export interface ManagedClustersStartRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the managed cluster resource. */
-  resourceName: string;
-}
-export const ManagedClustersStartRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    resourceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/start",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "ManagedClustersStartRequest",
-}) as any as S.Schema<ManagedClustersStartRequest>;
-
-export interface ManagedClustersStartResponse {}
-export const ManagedClustersStartResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ManagedClustersStartResponse",
-}) as any as S.Schema<ManagedClustersStartResponse>;
-
-export interface ManagedClustersStopRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the managed cluster resource. */
-  resourceName: string;
-}
-export const ManagedClustersStopRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    resourceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/stop",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "ManagedClustersStopRequest",
-}) as any as S.Schema<ManagedClustersStopRequest>;
-
-export interface ManagedClustersStopResponse {}
-export const ManagedClustersStopResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ManagedClustersStopResponse",
-}) as any as S.Schema<ManagedClustersStopResponse>;
-
-/** Resource tags. */
-export type ManagedClustersUpdateTagsRequestTagsMap = {
+export type GetManagedNamespaceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ManagedClustersUpdateTagsRequestTagsMap = /*@__PURE__*/ S.Record(
+export const GetManagedNamespaceResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ManagedClustersUpdateTagsRequestTagsMap>;
+) as any as S.Schema<GetManagedNamespaceResponseTagsMap>;
 
-export interface ManagedClustersUpdateTagsRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the managed cluster resource. */
-  resourceName: string;
-  /** Resource tags. */
-  tags?: ManagedClustersUpdateTagsRequestTagsMap;
-}
-export const ManagedClustersUpdateTagsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    resourceName: S.String.pipe(T.Label()),
-    tags: S.optional(ManagedClustersUpdateTagsRequestTagsMap),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "ManagedClustersUpdateTagsRequest",
-}) as any as S.Schema<ManagedClustersUpdateTagsRequest>;
-
-/** Resource tags. */
-export type ManagedClustersUpdateTagsResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ManagedClustersUpdateTagsResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ManagedClustersUpdateTagsResponseTagsMap>;
-
-export interface ManagedClustersUpdateTagsResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: ManagedClustersUpdateTagsResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Properties of a managed cluster. */
-  properties?: ManagedClusterProperties;
-  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
-  eTag?: string;
-  /** The managed cluster SKU. */
-  sku?: ManagedClusterSKU;
-  /** The extended location of the Virtual Machine. */
-  extendedLocation?: ExtendedLocation;
-  /** The identity of the managed cluster, if configured. */
-  identity?: ManagedClusterIdentity;
-  /** This is primarily used to expose different UI experiences in the portal for different kinds */
-  kind?: string;
-}
-export const ManagedClustersUpdateTagsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(ManagedClustersUpdateTagsResponseTagsMap),
-    location: S.String,
-    properties: S.optional(ManagedClusterProperties),
-    eTag: S.optional(S.String),
-    sku: S.optional(ManagedClusterSKU),
-    extendedLocation: S.optional(ExtendedLocation),
-    identity: S.optional(ManagedClusterIdentity),
-    kind: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ManagedClustersUpdateTagsResponse",
-}) as any as S.Schema<ManagedClustersUpdateTagsResponse>;
-
-/** Resource tags. */
-export type ManagedNamespacesCreateOrUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ManagedNamespacesCreateOrUpdateRequestTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<ManagedNamespacesCreateOrUpdateRequestTagsMap>;
+/** The current provisioning state of the namespace. */
+export type NamespaceProvisioningState =
+  | "Updating"
+  | "Deleting"
+  | "Creating"
+  | "Succeeded"
+  | "Failed"
+  | "Canceled";
+export const NamespaceProvisioningState = /*@__PURE__*/ S.String;
 
 /** The labels of managed namespace. */
-export type NamespacePropertiesInputLabelsMap = {
+export type NamespacePropertiesLabelsMap = {
   [key: string]: string | undefined;
 };
-export const NamespacePropertiesInputLabelsMap = /*@__PURE__*/ S.Record(
+export const NamespacePropertiesLabelsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<NamespacePropertiesInputLabelsMap>;
+) as any as S.Schema<NamespacePropertiesLabelsMap>;
 
 /** The annotations of managed namespace. */
-export type NamespacePropertiesInputAnnotationsMap = {
+export type NamespacePropertiesAnnotationsMap = {
   [key: string]: string | undefined;
 };
-export const NamespacePropertiesInputAnnotationsMap = /*@__PURE__*/ S.Record(
+export const NamespacePropertiesAnnotationsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<NamespacePropertiesInputAnnotationsMap>;
+) as any as S.Schema<NamespacePropertiesAnnotationsMap>;
 
 /** Resource quota for the namespace. */
 export interface ResourceQuota {
@@ -11456,110 +8389,6 @@ export type DeletePolicy = "Keep" | "Delete";
 export const DeletePolicy = /*@__PURE__*/ S.String;
 
 /** Properties of a namespace managed by ARM */
-export interface NamespacePropertiesInput {
-  /** The labels of managed namespace. */
-  labels?: NamespacePropertiesInputLabelsMap;
-  /** The annotations of managed namespace. */
-  annotations?: NamespacePropertiesInputAnnotationsMap;
-  /** The default resource quota enforced upon the namespace. Customers can have other Kubernetes resource quota objects under the namespace. Resource quotas are additive; if multiple resource quotas are applied to a given namespace, then the effective limit will be one such that all quotas on the namespace can be satisfied. */
-  defaultResourceQuota?: ResourceQuota;
-  /** The default network policy enforced upon the namespace. Customers can have other Kubernetes network policy objects under the namespace. Network policies are additive; if a policy or policies apply to a given pod for a given direction, the connections allowed in that direction for the pod is the union of what all applicable policies allow. */
-  defaultNetworkPolicy?: NetworkPolicies;
-  /** Action if Kubernetes namespace with same name already exists. */
-  adoptionPolicy?: AdoptionPolicy | (string & {});
-  /** Delete options of a namespace. */
-  deletePolicy?: DeletePolicy | (string & {});
-}
-export const NamespacePropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    labels: S.optional(NamespacePropertiesInputLabelsMap),
-    annotations: S.optional(NamespacePropertiesInputAnnotationsMap),
-    defaultResourceQuota: S.optional(ResourceQuota),
-    defaultNetworkPolicy: S.optional(NetworkPolicies),
-    adoptionPolicy: S.optional(AdoptionPolicy),
-    deletePolicy: S.optional(DeletePolicy),
-  }),
-).annotate({
-  identifier: "NamespacePropertiesInput",
-}) as any as S.Schema<NamespacePropertiesInput>;
-
-export interface ManagedNamespacesCreateOrUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the managed cluster resource. */
-  resourceName: string;
-  /** The name of the managed namespace. */
-  managedNamespaceName: string;
-  /** Resource tags. */
-  tags?: ManagedNamespacesCreateOrUpdateRequestTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Properties of a namespace. */
-  properties?: NamespacePropertiesInput;
-}
-export const ManagedNamespacesCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-      managedNamespaceName: S.String.pipe(T.Label()),
-      tags: S.optional(ManagedNamespacesCreateOrUpdateRequestTagsMap),
-      location: S.String,
-      properties: S.optional(NamespacePropertiesInput),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/managedNamespaces/{managedNamespaceName}",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "ManagedNamespacesCreateOrUpdateRequest",
-}) as any as S.Schema<ManagedNamespacesCreateOrUpdateRequest>;
-
-/** Resource tags. */
-export type ManagedNamespacesCreateOrUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ManagedNamespacesCreateOrUpdateResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<ManagedNamespacesCreateOrUpdateResponseTagsMap>;
-
-/** The current provisioning state of the namespace. */
-export type NamespaceProvisioningState =
-  | "Updating"
-  | "Deleting"
-  | "Creating"
-  | "Succeeded"
-  | "Failed"
-  | "Canceled";
-export const NamespaceProvisioningState = /*@__PURE__*/ S.String;
-
-/** The labels of managed namespace. */
-export type NamespacePropertiesLabelsMap = {
-  [key: string]: string | undefined;
-};
-export const NamespacePropertiesLabelsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<NamespacePropertiesLabelsMap>;
-
-/** The annotations of managed namespace. */
-export type NamespacePropertiesAnnotationsMap = {
-  [key: string]: string | undefined;
-};
-export const NamespacePropertiesAnnotationsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<NamespacePropertiesAnnotationsMap>;
-
-/** Properties of a namespace managed by ARM */
 export interface NamespaceProperties {
   /** The current provisioning state of the namespace. */
   provisioningState?: NamespaceProvisioningState;
@@ -11593,7 +8422,7 @@ export const NamespaceProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "NamespaceProperties",
 }) as any as S.Schema<NamespaceProperties>;
 
-export interface ManagedNamespacesCreateOrUpdateResponse {
+export interface GetManagedNamespaceResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -11603,7 +8432,7 @@ export interface ManagedNamespacesCreateOrUpdateResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ManagedNamespacesCreateOrUpdateResponseTagsMap;
+  tags?: GetManagedNamespaceResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties of a namespace. */
@@ -11611,403 +8440,22 @@ export interface ManagedNamespacesCreateOrUpdateResponse {
   /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
   eTag?: string;
 }
-export const ManagedNamespacesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      tags: S.optional(ManagedNamespacesCreateOrUpdateResponseTagsMap),
-      location: S.String,
-      properties: S.optional(NamespaceProperties),
-      eTag: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "ManagedNamespacesCreateOrUpdateResponse",
-}) as any as S.Schema<ManagedNamespacesCreateOrUpdateResponse>;
-
-export interface ManagedNamespacesDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the managed cluster resource. */
-  resourceName: string;
-  /** The name of the managed namespace. */
-  managedNamespaceName: string;
-}
-export const ManagedNamespacesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    resourceName: S.String.pipe(T.Label()),
-    managedNamespaceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/managedNamespaces/{managedNamespaceName}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "ManagedNamespacesDeleteRequest",
-}) as any as S.Schema<ManagedNamespacesDeleteRequest>;
-
-export interface ManagedNamespacesDeleteResponse {}
-export const ManagedNamespacesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ManagedNamespacesDeleteResponse",
-}) as any as S.Schema<ManagedNamespacesDeleteResponse>;
-
-export interface ManagedNamespacesGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the managed cluster resource. */
-  resourceName: string;
-  /** The name of the managed namespace. */
-  managedNamespaceName: string;
-}
-export const ManagedNamespacesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    resourceName: S.String.pipe(T.Label()),
-    managedNamespaceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/managedNamespaces/{managedNamespaceName}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "ManagedNamespacesGetRequest",
-}) as any as S.Schema<ManagedNamespacesGetRequest>;
-
-/** Resource tags. */
-export type ManagedNamespacesGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ManagedNamespacesGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ManagedNamespacesGetResponseTagsMap>;
-
-export interface ManagedNamespacesGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: ManagedNamespacesGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Properties of a namespace. */
-  properties?: NamespaceProperties;
-  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
-  eTag?: string;
-}
-export const ManagedNamespacesGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetManagedNamespaceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ManagedNamespacesGetResponseTagsMap),
+    tags: S.optional(GetManagedNamespaceResponseTagsMap),
     location: S.String,
     properties: S.optional(NamespaceProperties),
     eTag: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ManagedNamespacesGetResponse",
-}) as any as S.Schema<ManagedNamespacesGetResponse>;
+  identifier: "GetManagedNamespaceResponse",
+}) as any as S.Schema<GetManagedNamespaceResponse>;
 
-export interface ManagedNamespacesListByManagedClusterRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the managed cluster resource. */
-  resourceName: string;
-}
-export const ManagedNamespacesListByManagedClusterRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/managedNamespaces",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ManagedNamespacesListByManagedClusterRequest",
-  }) as any as S.Schema<ManagedNamespacesListByManagedClusterRequest>;
-
-/** Resource tags. */
-export type ManagedNamespaceTagsMap = { [key: string]: string | undefined };
-export const ManagedNamespaceTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ManagedNamespaceTagsMap>;
-
-/** Namespace managed by ARM. */
-export interface ManagedNamespace {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: ManagedNamespaceTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Properties of a namespace. */
-  properties?: NamespaceProperties;
-  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
-  eTag?: string;
-}
-export const ManagedNamespace = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(ManagedNamespaceTagsMap),
-    location: S.String,
-    properties: S.optional(NamespaceProperties),
-    eTag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ManagedNamespace",
-}) as any as S.Schema<ManagedNamespace>;
-
-/** The ManagedNamespace items on this page */
-export type ManagedNamespaceListResultValueList = Array<ManagedNamespace>;
-export const ManagedNamespaceListResultValueList = /*@__PURE__*/ S.Array(
-  ManagedNamespace,
-) as any as S.Schema<ManagedNamespaceListResultValueList>;
-
-/** The response of a ManagedNamespace list operation. */
-export interface ManagedNamespaceListResult {
-  /** The ManagedNamespace items on this page */
-  value: ManagedNamespaceListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const ManagedNamespaceListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: ManagedNamespaceListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ManagedNamespaceListResult",
-}) as any as S.Schema<ManagedNamespaceListResult>;
-
-export interface ManagedNamespacesListCredentialRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the managed cluster resource. */
-  resourceName: string;
-  /** The name of the managed namespace. */
-  managedNamespaceName: string;
-}
-export const ManagedNamespacesListCredentialRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-      managedNamespaceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/managedNamespaces/{managedNamespaceName}/listCredential",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "ManagedNamespacesListCredentialRequest",
-}) as any as S.Schema<ManagedNamespacesListCredentialRequest>;
-
-/** Resource tags. */
-export type ManagedNamespacesUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ManagedNamespacesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ManagedNamespacesUpdateRequestTagsMap>;
-
-export interface ManagedNamespacesUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the managed cluster resource. */
-  resourceName: string;
-  /** The name of the managed namespace. */
-  managedNamespaceName: string;
-  /** Resource tags. */
-  tags?: ManagedNamespacesUpdateRequestTagsMap;
-}
-export const ManagedNamespacesUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    resourceName: S.String.pipe(T.Label()),
-    managedNamespaceName: S.String.pipe(T.Label()),
-    tags: S.optional(ManagedNamespacesUpdateRequestTagsMap),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/managedNamespaces/{managedNamespaceName}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "ManagedNamespacesUpdateRequest",
-}) as any as S.Schema<ManagedNamespacesUpdateRequest>;
-
-/** Resource tags. */
-export type ManagedNamespacesUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ManagedNamespacesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ManagedNamespacesUpdateResponseTagsMap>;
-
-export interface ManagedNamespacesUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: ManagedNamespacesUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Properties of a namespace. */
-  properties?: NamespaceProperties;
-  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
-  eTag?: string;
-}
-export const ManagedNamespacesUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(ManagedNamespacesUpdateResponseTagsMap),
-    location: S.String,
-    properties: S.optional(NamespaceProperties),
-    eTag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ManagedNamespacesUpdateResponse",
-}) as any as S.Schema<ManagedNamespacesUpdateResponse>;
-
-export interface OperationsListRequest {}
-export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/providers/Microsoft.ContainerService/operations",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "OperationsListRequest",
-}) as any as S.Schema<OperationsListRequest>;
-
-/** Describes the properties of a Operation Value Display. */
-export interface OperationValueDisplay {
-  /** The display name of the operation. */
-  operation?: string;
-  /** The display name of the resource the operation applies to. */
-  resource?: string;
-  /** The description of the operation. */
-  description?: string;
-  /** The resource provider for the operation. */
-  provider?: string;
-}
-export const OperationValueDisplay = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    operation: S.optional(S.String),
-    resource: S.optional(S.String),
-    description: S.optional(S.String),
-    provider: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OperationValueDisplay",
-}) as any as S.Schema<OperationValueDisplay>;
-
-/** Describes the properties of a Operation value. */
-export interface OperationValue {
-  /** The origin of the operation. */
-  origin?: string;
-  /** The name of the operation. */
-  name?: string;
-  /** Describes the properties of a Operation Value Display. */
-  display?: OperationValueDisplay;
-}
-export const OperationValue = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    origin: S.optional(S.String),
-    name: S.optional(S.String),
-    display: S.optional(OperationValueDisplay),
-  }),
-).annotate({ identifier: "OperationValue" }) as any as S.Schema<OperationValue>;
-
-/** The list of operations */
-export type OperationListResultValueList = Array<OperationValue>;
-export const OperationListResultValueList = /*@__PURE__*/ S.Array(
-  OperationValue,
-) as any as S.Schema<OperationListResultValueList>;
-
-/** The List Operation response. */
-export interface OperationListResult {
-  /** The list of operations */
-  value: OperationListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const OperationListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: OperationListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OperationListResult",
-}) as any as S.Schema<OperationListResult>;
-
-export interface PrivateEndpointConnectionsDeleteRequest {
+export interface GetPrivateEndpointConnectionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -12017,60 +8465,23 @@ export interface PrivateEndpointConnectionsDeleteRequest {
   /** The name of the private endpoint connection. */
   privateEndpointConnectionName: string;
 }
-export const PrivateEndpointConnectionsDeleteRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-      privateEndpointConnectionName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/privateEndpointConnections/{privateEndpointConnectionName}",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
+export const GetPrivateEndpointConnectionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    resourceName: S.String.pipe(T.Label()),
+    privateEndpointConnectionName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/privateEndpointConnections/{privateEndpointConnectionName}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
 ).annotate({
-  identifier: "PrivateEndpointConnectionsDeleteRequest",
-}) as any as S.Schema<PrivateEndpointConnectionsDeleteRequest>;
-
-export interface PrivateEndpointConnectionsDeleteResponse {}
-export const PrivateEndpointConnectionsDeleteResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "PrivateEndpointConnectionsDeleteResponse",
-}) as any as S.Schema<PrivateEndpointConnectionsDeleteResponse>;
-
-export interface PrivateEndpointConnectionsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the managed cluster resource. */
-  resourceName: string;
-  /** The name of the private endpoint connection. */
-  privateEndpointConnectionName: string;
-}
-export const PrivateEndpointConnectionsGetRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-      privateEndpointConnectionName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/privateEndpointConnections/{privateEndpointConnectionName}",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "PrivateEndpointConnectionsGetRequest",
-}) as any as S.Schema<PrivateEndpointConnectionsGetRequest>;
+  identifier: "GetPrivateEndpointConnectionRequest",
+}) as any as S.Schema<GetPrivateEndpointConnectionRequest>;
 
 /** The current provisioning state. */
 export type PrivateEndpointConnectionProvisioningState =
@@ -12138,7 +8549,7 @@ export const PrivateEndpointConnectionProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "PrivateEndpointConnectionProperties",
 }) as any as S.Schema<PrivateEndpointConnectionProperties>;
 
-export interface PrivateEndpointConnectionsGetResponse {
+export interface GetPrivateEndpointConnectionResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -12150,7 +8561,7 @@ export interface PrivateEndpointConnectionsGetResponse {
   /** The properties of a private endpoint connection. */
   properties?: PrivateEndpointConnectionProperties;
 }
-export const PrivateEndpointConnectionsGetResponse = /*@__PURE__*/ S.suspend(
+export const GetPrivateEndpointConnectionResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
@@ -12160,10 +8571,10 @@ export const PrivateEndpointConnectionsGetResponse = /*@__PURE__*/ S.suspend(
       properties: S.optional(PrivateEndpointConnectionProperties),
     }),
 ).annotate({
-  identifier: "PrivateEndpointConnectionsGetResponse",
-}) as any as S.Schema<PrivateEndpointConnectionsGetResponse>;
+  identifier: "GetPrivateEndpointConnectionResponse",
+}) as any as S.Schema<GetPrivateEndpointConnectionResponse>;
 
-export interface PrivateEndpointConnectionsListRequest {
+export interface GetSnapshotRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -12171,153 +8582,7 @@ export interface PrivateEndpointConnectionsListRequest {
   /** The name of the managed cluster resource. */
   resourceName: string;
 }
-export const PrivateEndpointConnectionsListRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/privateEndpointConnections",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "PrivateEndpointConnectionsListRequest",
-}) as any as S.Schema<PrivateEndpointConnectionsListRequest>;
-
-/** A private endpoint connection */
-export interface PrivateEndpointConnection {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties of a private endpoint connection. */
-  properties?: PrivateEndpointConnectionProperties;
-}
-export const PrivateEndpointConnection = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(PrivateEndpointConnectionProperties),
-  }),
-).annotate({
-  identifier: "PrivateEndpointConnection",
-}) as any as S.Schema<PrivateEndpointConnection>;
-
-/** The collection value. */
-export type PrivateEndpointConnectionListResultValueList =
-  Array<PrivateEndpointConnection>;
-export const PrivateEndpointConnectionListResultValueList =
-  /*@__PURE__*/ S.Array(
-    PrivateEndpointConnection,
-  ) as any as S.Schema<PrivateEndpointConnectionListResultValueList>;
-
-/** A list of private endpoint connections */
-export interface PrivateEndpointConnectionListResult {
-  /** The collection value. */
-  value?: PrivateEndpointConnectionListResultValueList;
-}
-export const PrivateEndpointConnectionListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(PrivateEndpointConnectionListResultValueList),
-  }),
-).annotate({
-  identifier: "PrivateEndpointConnectionListResult",
-}) as any as S.Schema<PrivateEndpointConnectionListResult>;
-
-/** Properties of a private endpoint connection. */
-export interface PrivateEndpointConnectionPropertiesInput {
-  /** The resource of private endpoint. */
-  privateEndpoint?: PrivateEndpoint;
-  /** A collection of information about the state of the connection between service consumer and provider. */
-  privateLinkServiceConnectionState: PrivateLinkServiceConnectionState;
-}
-export const PrivateEndpointConnectionPropertiesInput = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      privateEndpoint: S.optional(PrivateEndpoint),
-      privateLinkServiceConnectionState: PrivateLinkServiceConnectionState,
-    }),
-).annotate({
-  identifier: "PrivateEndpointConnectionPropertiesInput",
-}) as any as S.Schema<PrivateEndpointConnectionPropertiesInput>;
-
-export interface PrivateEndpointConnectionsUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the managed cluster resource. */
-  resourceName: string;
-  /** The name of the private endpoint connection. */
-  privateEndpointConnectionName: string;
-  /** The properties of a private endpoint connection. */
-  properties?: PrivateEndpointConnectionPropertiesInput;
-}
-export const PrivateEndpointConnectionsUpdateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-      privateEndpointConnectionName: S.String.pipe(T.Label()),
-      properties: S.optional(PrivateEndpointConnectionPropertiesInput),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/privateEndpointConnections/{privateEndpointConnectionName}",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "PrivateEndpointConnectionsUpdateRequest",
-}) as any as S.Schema<PrivateEndpointConnectionsUpdateRequest>;
-
-export interface PrivateEndpointConnectionsUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties of a private endpoint connection. */
-  properties?: PrivateEndpointConnectionProperties;
-}
-export const PrivateEndpointConnectionsUpdateResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(PrivateEndpointConnectionProperties),
-    }),
-).annotate({
-  identifier: "PrivateEndpointConnectionsUpdateResponse",
-}) as any as S.Schema<PrivateEndpointConnectionsUpdateResponse>;
-
-export interface PrivateLinkResourcesListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the managed cluster resource. */
-  resourceName: string;
-}
-export const PrivateLinkResourcesListRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetSnapshotRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -12325,157 +8590,21 @@ export const PrivateLinkResourcesListRequest = /*@__PURE__*/ S.suspend(() =>
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/privateLinkResources",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "PrivateLinkResourcesListRequest",
-}) as any as S.Schema<PrivateLinkResourcesListRequest>;
-
-/** The collection value. */
-export type PrivateLinkResourcesListResultValueList =
-  Array<PrivateLinkResource>;
-export const PrivateLinkResourcesListResultValueList = /*@__PURE__*/ S.Array(
-  PrivateLinkResource,
-) as any as S.Schema<PrivateLinkResourcesListResultValueList>;
-
-/** A list of private link resources */
-export interface PrivateLinkResourcesListResult {
-  /** The collection value. */
-  value?: PrivateLinkResourcesListResultValueList;
-}
-export const PrivateLinkResourcesListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(PrivateLinkResourcesListResultValueList),
-  }),
-).annotate({
-  identifier: "PrivateLinkResourcesListResult",
-}) as any as S.Schema<PrivateLinkResourcesListResult>;
-
-/** The RequiredMembers of the resource */
-export type ResolvePrivateLinkServiceIdPOSTRequestRequiredMembersList =
-  Array<string>;
-export const ResolvePrivateLinkServiceIdPOSTRequestRequiredMembersList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ResolvePrivateLinkServiceIdPOSTRequestRequiredMembersList>;
-
-export interface ResolvePrivateLinkServiceIdPOSTRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the managed cluster resource. */
-  resourceName: string;
-  /** The ID of the private link resource. */
-  id?: string;
-  /** The name of the private link resource. See [naming rules](https://aka.ms/search-naming-rules) for more details. */
-  name?: string;
-  /** The resource type. */
-  type?: string;
-  /** The group ID of the resource. */
-  groupId?: string;
-  /** The RequiredMembers of the resource */
-  requiredMembers?: ResolvePrivateLinkServiceIdPOSTRequestRequiredMembersList;
-}
-export const ResolvePrivateLinkServiceIdPOSTRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      groupId: S.optional(S.String),
-      requiredMembers: S.optional(
-        ResolvePrivateLinkServiceIdPOSTRequestRequiredMembersList,
-      ),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/resolvePrivateLinkServiceId",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "ResolvePrivateLinkServiceIdPOSTRequest",
-}) as any as S.Schema<ResolvePrivateLinkServiceIdPOSTRequest>;
-
-/** Resource tags. */
-export type SnapshotsCreateOrUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const SnapshotsCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<SnapshotsCreateOrUpdateRequestTagsMap>;
-
-/** The type of a snapshot. The default is NodePool. */
-export type SnapshotPropertiesInputSnapshotType = "NodePool";
-export const SnapshotPropertiesInputSnapshotType = /*@__PURE__*/ S.String;
-
-/** Properties used to configure a node pool snapshot. */
-export interface SnapshotPropertiesInput {
-  /** CreationData to be used to specify the source agent pool resource ID to create this snapshot. */
-  creationData?: CreationData;
-  /** The type of a snapshot. The default is NodePool. */
-  snapshotType?: SnapshotPropertiesInputSnapshotType | (string & {});
-}
-export const SnapshotPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    creationData: S.optional(CreationData),
-    snapshotType: S.optional(SnapshotPropertiesInputSnapshotType),
-  }),
-).annotate({
-  identifier: "SnapshotPropertiesInput",
-}) as any as S.Schema<SnapshotPropertiesInput>;
-
-export interface SnapshotsCreateOrUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the managed cluster resource. */
-  resourceName: string;
-  /** Resource tags. */
-  tags?: SnapshotsCreateOrUpdateRequestTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Properties of a snapshot. */
-  properties?: SnapshotPropertiesInput;
-}
-export const SnapshotsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    resourceName: S.String.pipe(T.Label()),
-    tags: S.optional(SnapshotsCreateOrUpdateRequestTagsMap),
-    location: S.String,
-    properties: S.optional(SnapshotPropertiesInput),
-  }).pipe(
-    T.Http({
-      method: "PUT",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/snapshots/{resourceName}",
       code: 200,
       apiVersion: "2026-06-01",
     }),
   ),
 ).annotate({
-  identifier: "SnapshotsCreateOrUpdateRequest",
-}) as any as S.Schema<SnapshotsCreateOrUpdateRequest>;
+  identifier: "GetSnapshotRequest",
+}) as any as S.Schema<GetSnapshotRequest>;
 
 /** Resource tags. */
-export type SnapshotsCreateOrUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const SnapshotsCreateOrUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetSnapshotResponseTagsMap = { [key: string]: string | undefined };
+export const GetSnapshotResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<SnapshotsCreateOrUpdateResponseTagsMap>;
+) as any as S.Schema<GetSnapshotResponseTagsMap>;
 
 /** The type of a snapshot. The default is NodePool. */
 export type SnapshotPropertiesSnapshotType = "NodePool";
@@ -12519,7 +8648,7 @@ export const SnapshotProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "SnapshotProperties",
 }) as any as S.Schema<SnapshotProperties>;
 
-export interface SnapshotsCreateOrUpdateResponse {
+export interface GetSnapshotResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -12529,320 +8658,27 @@ export interface SnapshotsCreateOrUpdateResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: SnapshotsCreateOrUpdateResponseTagsMap;
+  tags?: GetSnapshotResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties of a snapshot. */
   properties?: SnapshotProperties;
 }
-export const SnapshotsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetSnapshotResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(SnapshotsCreateOrUpdateResponseTagsMap),
+    tags: S.optional(GetSnapshotResponseTagsMap),
     location: S.String,
     properties: S.optional(SnapshotProperties),
   }),
 ).annotate({
-  identifier: "SnapshotsCreateOrUpdateResponse",
-}) as any as S.Schema<SnapshotsCreateOrUpdateResponse>;
+  identifier: "GetSnapshotResponse",
+}) as any as S.Schema<GetSnapshotResponse>;
 
-export interface SnapshotsDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the managed cluster resource. */
-  resourceName: string;
-}
-export const SnapshotsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    resourceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/snapshots/{resourceName}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "SnapshotsDeleteRequest",
-}) as any as S.Schema<SnapshotsDeleteRequest>;
-
-export interface SnapshotsDeleteResponse {}
-export const SnapshotsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "SnapshotsDeleteResponse",
-}) as any as S.Schema<SnapshotsDeleteResponse>;
-
-export interface SnapshotsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the managed cluster resource. */
-  resourceName: string;
-}
-export const SnapshotsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    resourceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/snapshots/{resourceName}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "SnapshotsGetRequest",
-}) as any as S.Schema<SnapshotsGetRequest>;
-
-/** Resource tags. */
-export type SnapshotsGetResponseTagsMap = { [key: string]: string | undefined };
-export const SnapshotsGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<SnapshotsGetResponseTagsMap>;
-
-export interface SnapshotsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: SnapshotsGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Properties of a snapshot. */
-  properties?: SnapshotProperties;
-}
-export const SnapshotsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(SnapshotsGetResponseTagsMap),
-    location: S.String,
-    properties: S.optional(SnapshotProperties),
-  }),
-).annotate({
-  identifier: "SnapshotsGetResponse",
-}) as any as S.Schema<SnapshotsGetResponse>;
-
-export interface SnapshotsListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-}
-export const SnapshotsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ContainerService/snapshots",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "SnapshotsListRequest",
-}) as any as S.Schema<SnapshotsListRequest>;
-
-/** Resource tags. */
-export type SnapshotTagsMap = { [key: string]: string | undefined };
-export const SnapshotTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<SnapshotTagsMap>;
-
-/** A node pool snapshot resource. */
-export interface Snapshot {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: SnapshotTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Properties of a snapshot. */
-  properties?: SnapshotProperties;
-}
-export const Snapshot = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(SnapshotTagsMap),
-    location: S.String,
-    properties: S.optional(SnapshotProperties),
-  }),
-).annotate({ identifier: "Snapshot" }) as any as S.Schema<Snapshot>;
-
-/** The Snapshot items on this page */
-export type SnapshotListResultValueList = Array<Snapshot>;
-export const SnapshotListResultValueList = /*@__PURE__*/ S.Array(
-  Snapshot,
-) as any as S.Schema<SnapshotListResultValueList>;
-
-/** The response of a Snapshot list operation. */
-export interface SnapshotListResult {
-  /** The Snapshot items on this page */
-  value: SnapshotListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const SnapshotListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: SnapshotListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SnapshotListResult",
-}) as any as S.Schema<SnapshotListResult>;
-
-export interface SnapshotsListByResourceGroupRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-}
-export const SnapshotsListByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/snapshots",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "SnapshotsListByResourceGroupRequest",
-}) as any as S.Schema<SnapshotsListByResourceGroupRequest>;
-
-/** Resource tags. */
-export type SnapshotsUpdateTagsRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const SnapshotsUpdateTagsRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<SnapshotsUpdateTagsRequestTagsMap>;
-
-export interface SnapshotsUpdateTagsRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the managed cluster resource. */
-  resourceName: string;
-  /** Resource tags. */
-  tags?: SnapshotsUpdateTagsRequestTagsMap;
-}
-export const SnapshotsUpdateTagsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    resourceName: S.String.pipe(T.Label()),
-    tags: S.optional(SnapshotsUpdateTagsRequestTagsMap),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/snapshots/{resourceName}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "SnapshotsUpdateTagsRequest",
-}) as any as S.Schema<SnapshotsUpdateTagsRequest>;
-
-/** Resource tags. */
-export type SnapshotsUpdateTagsResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const SnapshotsUpdateTagsResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<SnapshotsUpdateTagsResponseTagsMap>;
-
-export interface SnapshotsUpdateTagsResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: SnapshotsUpdateTagsResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Properties of a snapshot. */
-  properties?: SnapshotProperties;
-}
-export const SnapshotsUpdateTagsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(SnapshotsUpdateTagsResponseTagsMap),
-    location: S.String,
-    properties: S.optional(SnapshotProperties),
-  }),
-).annotate({
-  identifier: "SnapshotsUpdateTagsResponse",
-}) as any as S.Schema<SnapshotsUpdateTagsResponse>;
-
-/** A list of roles to bind, each item is a resource type qualified role name. For example: 'Microsoft.MachineLearningServices/workspaces/reader'. */
-export type TrustedAccessRoleBindingPropertiesInputRolesList = Array<string>;
-export const TrustedAccessRoleBindingPropertiesInputRolesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<TrustedAccessRoleBindingPropertiesInputRolesList>;
-
-/** Properties for trusted access role binding */
-export interface TrustedAccessRoleBindingPropertiesInput {
-  /** The ARM resource ID of source resource that trusted access is configured for. */
-  sourceResourceId: string;
-  /** A list of roles to bind, each item is a resource type qualified role name. For example: 'Microsoft.MachineLearningServices/workspaces/reader'. */
-  roles: TrustedAccessRoleBindingPropertiesInputRolesList;
-}
-export const TrustedAccessRoleBindingPropertiesInput = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      sourceResourceId: S.String,
-      roles: TrustedAccessRoleBindingPropertiesInputRolesList,
-    }),
-).annotate({
-  identifier: "TrustedAccessRoleBindingPropertiesInput",
-}) as any as S.Schema<TrustedAccessRoleBindingPropertiesInput>;
-
-export interface TrustedAccessRoleBindingsCreateOrUpdateRequest {
+export interface GetTrustedAccessRoleBindingRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -12851,28 +8687,24 @@ export interface TrustedAccessRoleBindingsCreateOrUpdateRequest {
   resourceName: string;
   /** The name of trusted access role binding. */
   trustedAccessRoleBindingName: string;
-  /** Properties for trusted access role binding */
-  properties: TrustedAccessRoleBindingPropertiesInput;
 }
-export const TrustedAccessRoleBindingsCreateOrUpdateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-      trustedAccessRoleBindingName: S.String.pipe(T.Label()),
-      properties: TrustedAccessRoleBindingPropertiesInput,
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/trustedAccessRoleBindings/{trustedAccessRoleBindingName}",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "TrustedAccessRoleBindingsCreateOrUpdateRequest",
-  }) as any as S.Schema<TrustedAccessRoleBindingsCreateOrUpdateRequest>;
+export const GetTrustedAccessRoleBindingRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    resourceName: S.String.pipe(T.Label()),
+    trustedAccessRoleBindingName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/trustedAccessRoleBindings/{trustedAccessRoleBindingName}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetTrustedAccessRoleBindingRequest",
+}) as any as S.Schema<GetTrustedAccessRoleBindingRequest>;
 
 /** The current provisioning state of trusted access role binding. */
 export type TrustedAccessRoleBindingProvisioningState =
@@ -12909,7 +8741,7 @@ export const TrustedAccessRoleBindingProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "TrustedAccessRoleBindingProperties",
 }) as any as S.Schema<TrustedAccessRoleBindingProperties>;
 
-export interface TrustedAccessRoleBindingsCreateOrUpdateResponse {
+export interface GetTrustedAccessRoleBindingResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -12921,148 +8753,7 @@ export interface TrustedAccessRoleBindingsCreateOrUpdateResponse {
   /** Properties for trusted access role binding */
   properties: TrustedAccessRoleBindingProperties;
 }
-export const TrustedAccessRoleBindingsCreateOrUpdateResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: TrustedAccessRoleBindingProperties,
-    }),
-  ).annotate({
-    identifier: "TrustedAccessRoleBindingsCreateOrUpdateResponse",
-  }) as any as S.Schema<TrustedAccessRoleBindingsCreateOrUpdateResponse>;
-
-export interface TrustedAccessRoleBindingsDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the managed cluster resource. */
-  resourceName: string;
-  /** The name of trusted access role binding. */
-  trustedAccessRoleBindingName: string;
-}
-export const TrustedAccessRoleBindingsDeleteRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-      trustedAccessRoleBindingName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/trustedAccessRoleBindings/{trustedAccessRoleBindingName}",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "TrustedAccessRoleBindingsDeleteRequest",
-}) as any as S.Schema<TrustedAccessRoleBindingsDeleteRequest>;
-
-export interface TrustedAccessRoleBindingsDeleteResponse {}
-export const TrustedAccessRoleBindingsDeleteResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "TrustedAccessRoleBindingsDeleteResponse",
-}) as any as S.Schema<TrustedAccessRoleBindingsDeleteResponse>;
-
-export interface TrustedAccessRoleBindingsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the managed cluster resource. */
-  resourceName: string;
-  /** The name of trusted access role binding. */
-  trustedAccessRoleBindingName: string;
-}
-export const TrustedAccessRoleBindingsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    resourceName: S.String.pipe(T.Label()),
-    trustedAccessRoleBindingName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/trustedAccessRoleBindings/{trustedAccessRoleBindingName}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "TrustedAccessRoleBindingsGetRequest",
-}) as any as S.Schema<TrustedAccessRoleBindingsGetRequest>;
-
-export interface TrustedAccessRoleBindingsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties for trusted access role binding */
-  properties: TrustedAccessRoleBindingProperties;
-}
-export const TrustedAccessRoleBindingsGetResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: TrustedAccessRoleBindingProperties,
-    }),
-).annotate({
-  identifier: "TrustedAccessRoleBindingsGetResponse",
-}) as any as S.Schema<TrustedAccessRoleBindingsGetResponse>;
-
-export interface TrustedAccessRoleBindingsListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the managed cluster resource. */
-  resourceName: string;
-}
-export const TrustedAccessRoleBindingsListRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/trustedAccessRoleBindings",
-        code: 200,
-        apiVersion: "2026-06-01",
-      }),
-    ),
-).annotate({
-  identifier: "TrustedAccessRoleBindingsListRequest",
-}) as any as S.Schema<TrustedAccessRoleBindingsListRequest>;
-
-/** Defines binding between a resource and role */
-export interface TrustedAccessRoleBinding {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties for trusted access role binding */
-  properties: TrustedAccessRoleBindingProperties;
-}
-export const TrustedAccessRoleBinding = /*@__PURE__*/ S.suspend(() =>
+export const GetTrustedAccessRoleBindingResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -13071,156 +8762,40 @@ export const TrustedAccessRoleBinding = /*@__PURE__*/ S.suspend(() =>
     properties: TrustedAccessRoleBindingProperties,
   }),
 ).annotate({
-  identifier: "TrustedAccessRoleBinding",
-}) as any as S.Schema<TrustedAccessRoleBinding>;
+  identifier: "GetTrustedAccessRoleBindingResponse",
+}) as any as S.Schema<GetTrustedAccessRoleBindingResponse>;
 
-/** The TrustedAccessRoleBinding items on this page */
-export type TrustedAccessRoleBindingListResultValueList =
-  Array<TrustedAccessRoleBinding>;
-export const TrustedAccessRoleBindingListResultValueList =
-  /*@__PURE__*/ S.Array(
-    TrustedAccessRoleBinding,
-  ) as any as S.Schema<TrustedAccessRoleBindingListResultValueList>;
-
-/** The response of a TrustedAccessRoleBinding list operation. */
-export interface TrustedAccessRoleBindingListResult {
-  /** The TrustedAccessRoleBinding items on this page */
-  value: TrustedAccessRoleBindingListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const TrustedAccessRoleBindingListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: TrustedAccessRoleBindingListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "TrustedAccessRoleBindingListResult",
-}) as any as S.Schema<TrustedAccessRoleBindingListResult>;
-
-export interface TrustedAccessRolesListRequest {
+export interface GetUpdateRunRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
-  /** The name of the Azure region. */
-  location: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Fleet resource. */
+  fleetName: string;
+  /** The name of the UpdateRun resource. */
+  updateRunName: string;
 }
-export const TrustedAccessRolesListRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetUpdateRunRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
-    location: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    fleetName: S.String.pipe(T.Label()),
+    updateRunName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ContainerService/locations/{location}/trustedAccessRoles",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/fleets/{fleetName}/updateRuns/{updateRunName}",
       code: 200,
       apiVersion: "2026-06-01",
     }),
   ),
 ).annotate({
-  identifier: "TrustedAccessRolesListRequest",
-}) as any as S.Schema<TrustedAccessRolesListRequest>;
+  identifier: "GetUpdateRunRequest",
+}) as any as S.Schema<GetUpdateRunRequest>;
 
-/** List of allowed verbs */
-export type TrustedAccessRoleRuleVerbsList = Array<string>;
-export const TrustedAccessRoleRuleVerbsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<TrustedAccessRoleRuleVerbsList>;
-
-/** List of allowed apiGroups */
-export type TrustedAccessRoleRuleApiGroupsList = Array<string>;
-export const TrustedAccessRoleRuleApiGroupsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<TrustedAccessRoleRuleApiGroupsList>;
-
-/** List of allowed resources */
-export type TrustedAccessRoleRuleResourcesList = Array<string>;
-export const TrustedAccessRoleRuleResourcesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<TrustedAccessRoleRuleResourcesList>;
-
-/** List of allowed names */
-export type TrustedAccessRoleRuleResourceNamesList = Array<string>;
-export const TrustedAccessRoleRuleResourceNamesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<TrustedAccessRoleRuleResourceNamesList>;
-
-/** List of allowed nonResourceURLs */
-export type TrustedAccessRoleRuleNonResourceURLsList = Array<string>;
-export const TrustedAccessRoleRuleNonResourceURLsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<TrustedAccessRoleRuleNonResourceURLsList>;
-
-/** Rule for trusted access role */
-export interface TrustedAccessRoleRule {
-  /** List of allowed verbs */
-  verbs?: TrustedAccessRoleRuleVerbsList;
-  /** List of allowed apiGroups */
-  apiGroups?: TrustedAccessRoleRuleApiGroupsList;
-  /** List of allowed resources */
-  resources?: TrustedAccessRoleRuleResourcesList;
-  /** List of allowed names */
-  resourceNames?: TrustedAccessRoleRuleResourceNamesList;
-  /** List of allowed nonResourceURLs */
-  nonResourceURLs?: TrustedAccessRoleRuleNonResourceURLsList;
-}
-export const TrustedAccessRoleRule = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    verbs: S.optional(TrustedAccessRoleRuleVerbsList),
-    apiGroups: S.optional(TrustedAccessRoleRuleApiGroupsList),
-    resources: S.optional(TrustedAccessRoleRuleResourcesList),
-    resourceNames: S.optional(TrustedAccessRoleRuleResourceNamesList),
-    nonResourceURLs: S.optional(TrustedAccessRoleRuleNonResourceURLsList),
-  }),
-).annotate({
-  identifier: "TrustedAccessRoleRule",
-}) as any as S.Schema<TrustedAccessRoleRule>;
-
-/** List of rules for the role. This maps to 'rules' property of [Kubernetes Cluster Role](https://kubernetes.io/docs/reference/kubernetes-api/authorization-resources/cluster-role-v1/#ClusterRole). */
-export type TrustedAccessRoleRulesList = Array<TrustedAccessRoleRule>;
-export const TrustedAccessRoleRulesList = /*@__PURE__*/ S.Array(
-  TrustedAccessRoleRule,
-) as any as S.Schema<TrustedAccessRoleRulesList>;
-
-/** Trusted access role definition. */
-export interface TrustedAccessRole {
-  /** Resource type of Azure resource */
-  sourceResourceType?: string;
-  /** Name of role, name is unique under a source resource type */
-  name?: string;
-  /** List of rules for the role. This maps to 'rules' property of [Kubernetes Cluster Role](https://kubernetes.io/docs/reference/kubernetes-api/authorization-resources/cluster-role-v1/#ClusterRole). */
-  rules?: TrustedAccessRoleRulesList;
-}
-export const TrustedAccessRole = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    sourceResourceType: S.optional(S.String),
-    name: S.optional(S.String),
-    rules: S.optional(TrustedAccessRoleRulesList),
-  }),
-).annotate({
-  identifier: "TrustedAccessRole",
-}) as any as S.Schema<TrustedAccessRole>;
-
-/** The TrustedAccessRole items on this page */
-export type TrustedAccessRoleListResultValueList = Array<TrustedAccessRole>;
-export const TrustedAccessRoleListResultValueList = /*@__PURE__*/ S.Array(
-  TrustedAccessRole,
-) as any as S.Schema<TrustedAccessRoleListResultValueList>;
-
-/** List of trusted access roles */
-export interface TrustedAccessRoleListResult {
-  /** The TrustedAccessRole items on this page */
-  value: TrustedAccessRoleListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const TrustedAccessRoleListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: TrustedAccessRoleListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "TrustedAccessRoleListResult",
-}) as any as S.Schema<TrustedAccessRoleListResult>;
+/** The provisioning state of the UpdateRun resource. */
+export type UpdateRunProvisioningState = "Succeeded" | "Failed" | "Canceled";
+export const UpdateRunProvisioningState = /*@__PURE__*/ S.String;
 
 /** The type of upgrade to perform when targeting ManagedClusters. */
 export type ManagedClusterUpgradeType =
@@ -13248,106 +8823,6 @@ export const ManagedClusterUpgradeSpec = /*@__PURE__*/ S.suspend(() =>
 /** The node image upgrade type. */
 export type NodeImageSelectionType = "Latest" | "Consistent" | "Custom";
 export const NodeImageSelectionType = /*@__PURE__*/ S.String;
-
-/** The node upgrade image version. */
-export type NodeImageVersionInput = AgentPoolStatusInputProvisioningError;
-export const NodeImageVersionInput = AgentPoolStatusInputProvisioningError;
-
-/** Custom node image versions to upgrade the nodes to. This field is required if node image selection type is Custom. Otherwise, it must be empty. For each node image family (e.g., 'AKSUbuntu-1804gen2containerd'), this field can contain at most one version (e.g., only one of 'AKSUbuntu-1804gen2containerd-2023.01.12' or 'AKSUbuntu-1804gen2containerd-2023.02.12', not both). If the nodes belong to a family without a matching image version in this field, they are not upgraded. */
-export type NodeImageSelectionInputCustomNodeImageVersionsList =
-  Array<AgentPoolStatusInputProvisioningError>;
-export const NodeImageSelectionInputCustomNodeImageVersionsList =
-  /*@__PURE__*/ S.Array(
-    AgentPoolStatusInputProvisioningError,
-  ) as any as S.Schema<NodeImageSelectionInputCustomNodeImageVersionsList>;
-
-/** The node image upgrade to be applied to the target nodes in update run. */
-export interface NodeImageSelectionInput {
-  /** The node image upgrade type. */
-  type: NodeImageSelectionType | (string & {});
-  /** Custom node image versions to upgrade the nodes to. This field is required if node image selection type is Custom. Otherwise, it must be empty. For each node image family (e.g., 'AKSUbuntu-1804gen2containerd'), this field can contain at most one version (e.g., only one of 'AKSUbuntu-1804gen2containerd-2023.01.12' or 'AKSUbuntu-1804gen2containerd-2023.02.12', not both). If the nodes belong to a family without a matching image version in this field, they are not upgraded. */
-  customNodeImageVersions?: NodeImageSelectionInputCustomNodeImageVersionsList;
-}
-export const NodeImageSelectionInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: NodeImageSelectionType,
-    customNodeImageVersions: S.optional(
-      NodeImageSelectionInputCustomNodeImageVersionsList,
-    ),
-  }),
-).annotate({
-  identifier: "NodeImageSelectionInput",
-}) as any as S.Schema<NodeImageSelectionInput>;
-
-/** The update to be applied to the ManagedClusters. */
-export interface ManagedClusterUpdateInput {
-  /** The upgrade to apply to the ManagedClusters. */
-  upgrade: ManagedClusterUpgradeSpec;
-  /** The node image upgrade to be applied to the target nodes in update run. */
-  nodeImageSelection?: NodeImageSelectionInput;
-}
-export const ManagedClusterUpdateInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    upgrade: ManagedClusterUpgradeSpec,
-    nodeImageSelection: S.optional(NodeImageSelectionInput),
-  }),
-).annotate({
-  identifier: "ManagedClusterUpdateInput",
-}) as any as S.Schema<ManagedClusterUpdateInput>;
-
-/** The properties of the UpdateRun. */
-export interface UpdateRunPropertiesInput {
-  /** The resource id of the FleetUpdateStrategy resource to reference. When creating a new run, there are three ways to define a strategy for the run: 1. Define a new strategy in place: Set the "strategy" field. 2. Use an existing strategy: Set the "updateStrategyId" field. (since 2023-08-15-preview) 3. Use the default strategy to update all the members one by one: Leave both "updateStrategyId" and "strategy" unset. (since 2023-08-15-preview) Setting both "updateStrategyId" and "strategy" is invalid. UpdateRuns created by "updateStrategyId" snapshot the referenced UpdateStrategy at the time of creation and store it in the "strategy" field. Subsequent changes to the referenced FleetUpdateStrategy resource do not propagate. UpdateRunStrategy changes can be made directly on the "strategy" field before launching the UpdateRun. */
-  updateStrategyId?: string;
-  /** The strategy defines the order in which the clusters will be updated. If not set, all members will be updated sequentially. The UpdateRun status will show a single UpdateStage and a single UpdateGroup targeting all members. The strategy of the UpdateRun can be modified until the run is started. */
-  strategy?: UpdateRunStrategy;
-  /** The update to be applied to all clusters in the UpdateRun. The managedClusterUpdate can be modified until the run is started. */
-  managedClusterUpdate: ManagedClusterUpdateInput;
-}
-export const UpdateRunPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    updateStrategyId: S.optional(S.String),
-    strategy: S.optional(UpdateRunStrategy),
-    managedClusterUpdate: ManagedClusterUpdateInput,
-  }),
-).annotate({
-  identifier: "UpdateRunPropertiesInput",
-}) as any as S.Schema<UpdateRunPropertiesInput>;
-
-export interface UpdateRunsCreateOrUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Fleet resource. */
-  fleetName: string;
-  /** The name of the UpdateRun resource. */
-  updateRunName: string;
-  /** The resource-specific properties for this resource. */
-  properties?: UpdateRunPropertiesInput;
-}
-export const UpdateRunsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    fleetName: S.String.pipe(T.Label()),
-    updateRunName: S.String.pipe(T.Label()),
-    properties: S.optional(UpdateRunPropertiesInput),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/fleets/{fleetName}/updateRuns/{updateRunName}",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "UpdateRunsCreateOrUpdateRequest",
-}) as any as S.Schema<UpdateRunsCreateOrUpdateRequest>;
-
-/** The provisioning state of the UpdateRun resource. */
-export type UpdateRunProvisioningState = "Succeeded" | "Failed" | "Canceled";
-export const UpdateRunProvisioningState = /*@__PURE__*/ S.String;
 
 /** The node upgrade image version. */
 export interface NodeImageVersion {
@@ -13702,7 +9177,7 @@ export const UpdateRunProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateRunProperties",
 }) as any as S.Schema<UpdateRunProperties>;
 
-export interface UpdateRunsCreateOrUpdateResponse {
+export interface GetUpdateRunResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -13716,7 +9191,7 @@ export interface UpdateRunsCreateOrUpdateResponse {
   /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
   eTag?: string;
 }
-export const UpdateRunsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetUpdateRunResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -13726,73 +9201,123 @@ export const UpdateRunsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
     eTag: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "UpdateRunsCreateOrUpdateResponse",
-}) as any as S.Schema<UpdateRunsCreateOrUpdateResponse>;
+  identifier: "GetUpdateRunResponse",
+}) as any as S.Schema<GetUpdateRunResponse>;
 
-export interface UpdateRunsDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Fleet resource. */
-  fleetName: string;
-  /** The name of the UpdateRun resource. */
-  updateRunName: string;
+/** Managed identity profile for the identity binding. */
+export interface IdentityBindingManagedIdentityProfileInput {
+  /** The resource ID of the managed identity. */
+  resourceId: string;
 }
-export const UpdateRunsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    fleetName: S.String.pipe(T.Label()),
-    updateRunName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/fleets/{fleetName}/updateRuns/{updateRunName}",
-      code: 200,
-      apiVersion: "2026-06-01",
+export const IdentityBindingManagedIdentityProfileInput =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      resourceId: S.String,
     }),
-  ),
-).annotate({
-  identifier: "UpdateRunsDeleteRequest",
-}) as any as S.Schema<UpdateRunsDeleteRequest>;
+  ).annotate({
+    identifier: "IdentityBindingManagedIdentityProfileInput",
+  }) as any as S.Schema<IdentityBindingManagedIdentityProfileInput>;
 
-export interface UpdateRunsDeleteResponse {}
-export const UpdateRunsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
+/** IdentityBinding properties. */
+export interface IdentityBindingPropertiesInput {
+  /** Managed identity profile for the identity binding. */
+  managedIdentity: IdentityBindingManagedIdentityProfileInput;
+}
+export const IdentityBindingPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    managedIdentity: IdentityBindingManagedIdentityProfileInput,
+  }),
 ).annotate({
-  identifier: "UpdateRunsDeleteResponse",
-}) as any as S.Schema<UpdateRunsDeleteResponse>;
+  identifier: "IdentityBindingPropertiesInput",
+}) as any as S.Schema<IdentityBindingPropertiesInput>;
 
-export interface UpdateRunsGetRequest {
+export interface IdentityBindingsCreateOrUpdateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
-  /** The name of the Fleet resource. */
-  fleetName: string;
-  /** The name of the UpdateRun resource. */
-  updateRunName: string;
+  /** The name of the managed cluster resource. */
+  resourceName: string;
+  /** The name of the identity binding. */
+  identityBindingName: string;
+  /** The resource-specific properties for this resource. */
+  properties?: IdentityBindingPropertiesInput;
 }
-export const UpdateRunsGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const IdentityBindingsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      resourceName: S.String.pipe(T.Label()),
+      identityBindingName: S.String.pipe(T.Label()),
+      properties: S.optional(IdentityBindingPropertiesInput),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/identityBindings/{identityBindingName}",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+).annotate({
+  identifier: "IdentityBindingsCreateOrUpdateRequest",
+}) as any as S.Schema<IdentityBindingsCreateOrUpdateRequest>;
+
+export interface IdentityBindingsCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: IdentityBindingProperties;
+  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
+  eTag?: string;
+}
+export const IdentityBindingsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(IdentityBindingProperties),
+      eTag: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "IdentityBindingsCreateOrUpdateResponse",
+}) as any as S.Schema<IdentityBindingsCreateOrUpdateResponse>;
+
+export interface ListAgentPoolsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the managed cluster resource. */
+  resourceName: string;
+}
+export const ListAgentPoolsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
-    fleetName: S.String.pipe(T.Label()),
-    updateRunName: S.String.pipe(T.Label()),
+    resourceName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/fleets/{fleetName}/updateRuns/{updateRunName}",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/agentPools",
       code: 200,
       apiVersion: "2026-06-01",
     }),
   ),
 ).annotate({
-  identifier: "UpdateRunsGetRequest",
-}) as any as S.Schema<UpdateRunsGetRequest>;
+  identifier: "ListAgentPoolsRequest",
+}) as any as S.Schema<ListAgentPoolsRequest>;
 
-export interface UpdateRunsGetResponse {
+/** Agent Pool. */
+export interface AgentPool {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -13801,25 +9326,42 @@ export interface UpdateRunsGetResponse {
   type?: string;
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: UpdateRunProperties;
-  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
-  eTag?: string;
+  /** Properties of an agent pool. */
+  properties?: ManagedClusterAgentPoolProfileProperties;
 }
-export const UpdateRunsGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const AgentPool = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    properties: S.optional(UpdateRunProperties),
-    eTag: S.optional(S.String),
+    properties: S.optional(ManagedClusterAgentPoolProfileProperties),
+  }),
+).annotate({ identifier: "AgentPool" }) as any as S.Schema<AgentPool>;
+
+/** The AgentPool items on this page */
+export type AgentPoolListResultValueList = Array<AgentPool>;
+export const AgentPoolListResultValueList = /*@__PURE__*/ S.Array(
+  AgentPool,
+) as any as S.Schema<AgentPoolListResultValueList>;
+
+/** The response of a AgentPool list operation. */
+export interface AgentPoolListResult {
+  /** The AgentPool items on this page */
+  value: AgentPoolListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const AgentPoolListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: AgentPoolListResultValueList,
+    nextLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "UpdateRunsGetResponse",
-}) as any as S.Schema<UpdateRunsGetResponse>;
+  identifier: "AgentPoolListResult",
+}) as any as S.Schema<AgentPoolListResult>;
 
-export interface UpdateRunsListByFleetRequest {
+export interface ListAutoUpgradeProfileByFleetRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -13831,7 +9373,2124 @@ export interface UpdateRunsListByFleetRequest {
   /** The page-continuation token to use with a paged version of this API. */
   _skipToken?: string;
 }
-export const UpdateRunsListByFleetRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListAutoUpgradeProfileByFleetRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      fleetName: S.String.pipe(T.Label()),
+      _top: S.optional(S.Number.pipe(T.Query("$top"))),
+      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/fleets/{fleetName}/autoUpgradeProfiles",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListAutoUpgradeProfileByFleetRequest",
+}) as any as S.Schema<ListAutoUpgradeProfileByFleetRequest>;
+
+/** The AutoUpgradeProfile resource. */
+export interface AutoUpgradeProfile {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: AutoUpgradeProfileProperties;
+  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
+  eTag?: string;
+}
+export const AutoUpgradeProfile = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(AutoUpgradeProfileProperties),
+    eTag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "AutoUpgradeProfile",
+}) as any as S.Schema<AutoUpgradeProfile>;
+
+/** The AutoUpgradeProfile items on this page */
+export type AutoUpgradeProfileListResultValueList = Array<AutoUpgradeProfile>;
+export const AutoUpgradeProfileListResultValueList = /*@__PURE__*/ S.Array(
+  AutoUpgradeProfile,
+) as any as S.Schema<AutoUpgradeProfileListResultValueList>;
+
+/** The response of a AutoUpgradeProfile list operation. */
+export interface AutoUpgradeProfileListResult {
+  /** The AutoUpgradeProfile items on this page */
+  value: AutoUpgradeProfileListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const AutoUpgradeProfileListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: AutoUpgradeProfileListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "AutoUpgradeProfileListResult",
+}) as any as S.Schema<AutoUpgradeProfileListResult>;
+
+export interface ListDeploymentSafeguardsRequest {
+  /** The fully qualified Azure Resource manager identifier of the resource. */
+  resourceUri: string;
+}
+export const ListDeploymentSafeguardsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    resourceUri: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/{resourceUri}/providers/Microsoft.ContainerService/deploymentSafeguards",
+      code: 200,
+      apiVersion: "2025-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListDeploymentSafeguardsRequest",
+}) as any as S.Schema<ListDeploymentSafeguardsRequest>;
+
+/** Deployment Safeguards */
+export interface DeploymentSafeguard {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: DeploymentSafeguardsProperties;
+  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
+  eTag?: string;
+}
+export const DeploymentSafeguard = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(DeploymentSafeguardsProperties),
+    eTag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DeploymentSafeguard",
+}) as any as S.Schema<DeploymentSafeguard>;
+
+/** The DeploymentSafeguard items on this page */
+export type DeploymentSafeguardListResultValueList = Array<DeploymentSafeguard>;
+export const DeploymentSafeguardListResultValueList = /*@__PURE__*/ S.Array(
+  DeploymentSafeguard,
+) as any as S.Schema<DeploymentSafeguardListResultValueList>;
+
+/** The response of a DeploymentSafeguard list operation. */
+export interface DeploymentSafeguardListResult {
+  /** The DeploymentSafeguard items on this page */
+  value: DeploymentSafeguardListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const DeploymentSafeguardListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: DeploymentSafeguardListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DeploymentSafeguardListResult",
+}) as any as S.Schema<DeploymentSafeguardListResult>;
+
+export interface ListFleetByResourceGroupRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+}
+export const ListFleetByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/fleets",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListFleetByResourceGroupRequest",
+}) as any as S.Schema<ListFleetByResourceGroupRequest>;
+
+/** Resource tags. */
+export type FleetTagsMap = { [key: string]: string | undefined };
+export const FleetTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<FleetTagsMap>;
+
+/** Managed service identity (system assigned and/or user assigned identities) */
+export type FleetIdentity = FleetsCreateOrUpdateResponseIdentity;
+export const FleetIdentity = FleetsCreateOrUpdateResponseIdentity;
+
+/** The Fleet resource. */
+export interface Fleet {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: FleetTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: FleetProperties;
+  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
+  eTag?: string;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: FleetsCreateOrUpdateResponseIdentity;
+}
+export const Fleet = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(FleetTagsMap),
+    location: S.String,
+    properties: S.optional(FleetProperties),
+    eTag: S.optional(S.String),
+    identity: S.optional(FleetsCreateOrUpdateResponseIdentity),
+  }),
+).annotate({ identifier: "Fleet" }) as any as S.Schema<Fleet>;
+
+/** The Fleet items on this page */
+export type FleetListResultValueList = Array<Fleet>;
+export const FleetListResultValueList = /*@__PURE__*/ S.Array(
+  Fleet,
+) as any as S.Schema<FleetListResultValueList>;
+
+/** The response of a Fleet list operation. */
+export interface FleetListResult {
+  /** The Fleet items on this page */
+  value: FleetListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const FleetListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: FleetListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "FleetListResult",
+}) as any as S.Schema<FleetListResult>;
+
+export interface ListFleetBySubscriptionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The number of result items to return. */
+  _top?: number;
+  /** The page-continuation token to use with a paged version of this API. */
+  _skipToken?: string;
+}
+export const ListFleetBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    _top: S.optional(S.Number.pipe(T.Query("$top"))),
+    _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ContainerService/fleets",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListFleetBySubscriptionRequest",
+}) as any as S.Schema<ListFleetBySubscriptionRequest>;
+
+export interface ListFleetCredentialsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Fleet resource. */
+  fleetName: string;
+}
+export const ListFleetCredentialsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    fleetName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/fleets/{fleetName}/listCredentials",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListFleetCredentialsRequest",
+}) as any as S.Schema<ListFleetCredentialsRequest>;
+
+/** One credential result item. */
+export interface FleetCredentialResult {
+  /** The name of the credential. */
+  name?: string;
+  /** Base64-encoded Kubernetes configuration file. */
+  value?: string;
+}
+export const FleetCredentialResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    value: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "FleetCredentialResult",
+}) as any as S.Schema<FleetCredentialResult>;
+
+/** Array of base64-encoded Kubernetes configuration files. */
+export type FleetCredentialResultsKubeconfigsList =
+  Array<FleetCredentialResult>;
+export const FleetCredentialResultsKubeconfigsList = /*@__PURE__*/ S.Array(
+  FleetCredentialResult,
+) as any as S.Schema<FleetCredentialResultsKubeconfigsList>;
+
+/** The Credential results response. */
+export interface FleetCredentialResults {
+  /** Array of base64-encoded Kubernetes configuration files. */
+  kubeconfigs?: FleetCredentialResultsKubeconfigsList;
+}
+export const FleetCredentialResults = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    kubeconfigs: S.optional(FleetCredentialResultsKubeconfigsList),
+  }),
+).annotate({
+  identifier: "FleetCredentialResults",
+}) as any as S.Schema<FleetCredentialResults>;
+
+export interface ListFleetManagedNamespaceByFleetRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Fleet resource. */
+  fleetName: string;
+}
+export const ListFleetManagedNamespaceByFleetRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      fleetName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/fleets/{fleetName}/managedNamespaces",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListFleetManagedNamespaceByFleetRequest",
+}) as any as S.Schema<ListFleetManagedNamespaceByFleetRequest>;
+
+/** Resource tags. */
+export type FleetManagedNamespaceTagsMap = {
+  [key: string]: string | undefined;
+};
+export const FleetManagedNamespaceTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<FleetManagedNamespaceTagsMap>;
+
+/** A fleet managed namespace. */
+export interface FleetManagedNamespace {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: FleetManagedNamespaceTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: FleetManagedNamespaceProperties;
+  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
+  eTag?: string;
+}
+export const FleetManagedNamespace = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(FleetManagedNamespaceTagsMap),
+    location: S.String,
+    properties: S.optional(FleetManagedNamespaceProperties),
+    eTag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "FleetManagedNamespace",
+}) as any as S.Schema<FleetManagedNamespace>;
+
+/** The FleetManagedNamespace items on this page */
+export type FleetManagedNamespaceListResultValueList =
+  Array<FleetManagedNamespace>;
+export const FleetManagedNamespaceListResultValueList = /*@__PURE__*/ S.Array(
+  FleetManagedNamespace,
+) as any as S.Schema<FleetManagedNamespaceListResultValueList>;
+
+/** The response of a FleetManagedNamespace list operation. */
+export interface FleetManagedNamespaceListResult {
+  /** The FleetManagedNamespace items on this page */
+  value: FleetManagedNamespaceListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const FleetManagedNamespaceListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: FleetManagedNamespaceListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "FleetManagedNamespaceListResult",
+}) as any as S.Schema<FleetManagedNamespaceListResult>;
+
+export interface ListFleetMemberByFleetRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Fleet resource. */
+  fleetName: string;
+  /** The number of result items to return. */
+  _top?: number;
+  /** The page-continuation token to use with a paged version of this API. */
+  _skipToken?: string;
+  /** Filter the result list using the given expression. */
+  _filter?: string;
+}
+export const ListFleetMemberByFleetRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    fleetName: S.String.pipe(T.Label()),
+    _top: S.optional(S.Number.pipe(T.Query("$top"))),
+    _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
+    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/fleets/{fleetName}/members",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListFleetMemberByFleetRequest",
+}) as any as S.Schema<ListFleetMemberByFleetRequest>;
+
+/** A member of the Fleet. It contains a reference to an existing Kubernetes cluster on Azure. */
+export interface FleetMember {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: FleetMemberProperties;
+  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
+  eTag?: string;
+}
+export const FleetMember = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(FleetMemberProperties),
+    eTag: S.optional(S.String),
+  }),
+).annotate({ identifier: "FleetMember" }) as any as S.Schema<FleetMember>;
+
+/** The FleetMember items on this page */
+export type FleetMemberListResultValueList = Array<FleetMember>;
+export const FleetMemberListResultValueList = /*@__PURE__*/ S.Array(
+  FleetMember,
+) as any as S.Schema<FleetMemberListResultValueList>;
+
+/** The response of a FleetMember list operation. */
+export interface FleetMemberListResult {
+  /** The FleetMember items on this page */
+  value: FleetMemberListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const FleetMemberListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: FleetMemberListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "FleetMemberListResult",
+}) as any as S.Schema<FleetMemberListResult>;
+
+export interface ListFleetUpdateStrategyByFleetRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Fleet resource. */
+  fleetName: string;
+  /** The number of result items to return. */
+  _top?: number;
+  /** The page-continuation token to use with a paged version of this API. */
+  _skipToken?: string;
+}
+export const ListFleetUpdateStrategyByFleetRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      fleetName: S.String.pipe(T.Label()),
+      _top: S.optional(S.Number.pipe(T.Query("$top"))),
+      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/fleets/{fleetName}/updateStrategies",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListFleetUpdateStrategyByFleetRequest",
+}) as any as S.Schema<ListFleetUpdateStrategyByFleetRequest>;
+
+/** Defines a multi-stage process to perform update operations across members of a Fleet. */
+export interface FleetUpdateStrategy {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: FleetUpdateStrategyProperties;
+  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
+  eTag?: string;
+}
+export const FleetUpdateStrategy = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(FleetUpdateStrategyProperties),
+    eTag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "FleetUpdateStrategy",
+}) as any as S.Schema<FleetUpdateStrategy>;
+
+/** The FleetUpdateStrategy items on this page */
+export type FleetUpdateStrategyListResultValueList = Array<FleetUpdateStrategy>;
+export const FleetUpdateStrategyListResultValueList = /*@__PURE__*/ S.Array(
+  FleetUpdateStrategy,
+) as any as S.Schema<FleetUpdateStrategyListResultValueList>;
+
+/** The response of a FleetUpdateStrategy list operation. */
+export interface FleetUpdateStrategyListResult {
+  /** The FleetUpdateStrategy items on this page */
+  value: FleetUpdateStrategyListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const FleetUpdateStrategyListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: FleetUpdateStrategyListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "FleetUpdateStrategyListResult",
+}) as any as S.Schema<FleetUpdateStrategyListResult>;
+
+export interface ListGateByFleetRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Fleet resource. */
+  fleetName: string;
+  /** Filter the result list using the given expression. */
+  _filter?: string;
+  /** The number of result items to return. */
+  _top?: number;
+  /** The page-continuation token to use with a paged version of this API. */
+  _skipToken?: string;
+}
+export const ListGateByFleetRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    fleetName: S.String.pipe(T.Label()),
+    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+    _top: S.optional(S.Number.pipe(T.Query("$top"))),
+    _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/fleets/{fleetName}/gates",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListGateByFleetRequest",
+}) as any as S.Schema<ListGateByFleetRequest>;
+
+/** A Gate controls the progression during a staged rollout, e.g. in an Update Run. */
+export interface Gate {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: GateProperties;
+  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
+  eTag?: string;
+}
+export const Gate = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(GateProperties),
+    eTag: S.optional(S.String),
+  }),
+).annotate({ identifier: "Gate" }) as any as S.Schema<Gate>;
+
+/** The Gate items on this page */
+export type GateListResultValueList = Array<Gate>;
+export const GateListResultValueList = /*@__PURE__*/ S.Array(
+  Gate,
+) as any as S.Schema<GateListResultValueList>;
+
+/** The response of a Gate list operation. */
+export interface GateListResult {
+  /** The Gate items on this page */
+  value: GateListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const GateListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: GateListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({ identifier: "GateListResult" }) as any as S.Schema<GateListResult>;
+
+export interface ListIdentityBindingByManagedClusterRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the managed cluster resource. */
+  resourceName: string;
+}
+export const ListIdentityBindingByManagedClusterRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      resourceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/identityBindings",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListIdentityBindingByManagedClusterRequest",
+  }) as any as S.Schema<ListIdentityBindingByManagedClusterRequest>;
+
+/** The IdentityBinding resource. */
+export interface IdentityBinding {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: IdentityBindingProperties;
+  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
+  eTag?: string;
+}
+export const IdentityBinding = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(IdentityBindingProperties),
+    eTag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "IdentityBinding",
+}) as any as S.Schema<IdentityBinding>;
+
+/** The IdentityBinding items on this page */
+export type IdentityBindingListResultValueList = Array<IdentityBinding>;
+export const IdentityBindingListResultValueList = /*@__PURE__*/ S.Array(
+  IdentityBinding,
+) as any as S.Schema<IdentityBindingListResultValueList>;
+
+/** The response of a IdentityBinding list operation. */
+export interface IdentityBindingListResult {
+  /** The IdentityBinding items on this page */
+  value: IdentityBindingListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const IdentityBindingListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: IdentityBindingListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "IdentityBindingListResult",
+}) as any as S.Schema<IdentityBindingListResult>;
+
+export interface ListMachinesRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the managed cluster resource. */
+  resourceName: string;
+  /** The name of the agent pool. */
+  agentPoolName: string;
+}
+export const ListMachinesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    resourceName: S.String.pipe(T.Label()),
+    agentPoolName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/agentPools/{agentPoolName}/machines",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListMachinesRequest",
+}) as any as S.Schema<ListMachinesRequest>;
+
+/** The Availability zone in which machine is located. */
+export type MachineZonesList = Array<string>;
+export const MachineZonesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<MachineZonesList>;
+
+/** A machine. Contains details about the underlying virtual machine. A machine may be visible here but not in kubectl get nodes; if so it may be because the machine has not been registered with the Kubernetes API Server yet. */
+export interface Machine {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of the machine */
+  properties?: MachineProperties;
+  /** The Availability zone in which machine is located. */
+  zones?: MachineZonesList;
+}
+export const Machine = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(MachineProperties),
+    zones: S.optional(MachineZonesList),
+  }),
+).annotate({ identifier: "Machine" }) as any as S.Schema<Machine>;
+
+/** The Machine items on this page */
+export type MachineListResultValueList = Array<Machine>;
+export const MachineListResultValueList = /*@__PURE__*/ S.Array(
+  Machine,
+) as any as S.Schema<MachineListResultValueList>;
+
+/** The response of a Machine list operation. */
+export interface MachineListResult {
+  /** The Machine items on this page */
+  value: MachineListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const MachineListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: MachineListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "MachineListResult",
+}) as any as S.Schema<MachineListResult>;
+
+export interface ListMaintenanceConfigurationByManagedClusterRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the managed cluster resource. */
+  resourceName: string;
+}
+export const ListMaintenanceConfigurationByManagedClusterRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      resourceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/maintenanceConfigurations",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListMaintenanceConfigurationByManagedClusterRequest",
+  }) as any as S.Schema<ListMaintenanceConfigurationByManagedClusterRequest>;
+
+/** Planned maintenance configuration, used to configure when updates can be deployed to a Managed Cluster. See [planned maintenance](https://docs.microsoft.com/azure/aks/planned-maintenance) for more information about planned maintenance. */
+export interface MaintenanceConfiguration {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of a default maintenance configuration. */
+  properties?: MaintenanceConfigurationProperties;
+}
+export const MaintenanceConfiguration = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(MaintenanceConfigurationProperties),
+  }),
+).annotate({
+  identifier: "MaintenanceConfiguration",
+}) as any as S.Schema<MaintenanceConfiguration>;
+
+/** The MaintenanceConfiguration items on this page */
+export type MaintenanceConfigurationListResultValueList =
+  Array<MaintenanceConfiguration>;
+export const MaintenanceConfigurationListResultValueList =
+  /*@__PURE__*/ S.Array(
+    MaintenanceConfiguration,
+  ) as any as S.Schema<MaintenanceConfigurationListResultValueList>;
+
+/** The response of a MaintenanceConfiguration list operation. */
+export interface MaintenanceConfigurationListResult {
+  /** The MaintenanceConfiguration items on this page */
+  value: MaintenanceConfigurationListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const MaintenanceConfigurationListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: MaintenanceConfigurationListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "MaintenanceConfigurationListResult",
+}) as any as S.Schema<MaintenanceConfigurationListResult>;
+
+export interface ListManagedClusterByResourceGroupRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+}
+export const ListManagedClusterByResourceGroupRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListManagedClusterByResourceGroupRequest",
+}) as any as S.Schema<ListManagedClusterByResourceGroupRequest>;
+
+/** Resource tags. */
+export type ManagedClusterTagsMap = { [key: string]: string | undefined };
+export const ManagedClusterTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<ManagedClusterTagsMap>;
+
+/** Managed cluster. */
+export interface ManagedCluster {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: ManagedClusterTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Properties of a managed cluster. */
+  properties?: ManagedClusterProperties;
+  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
+  eTag?: string;
+  /** The managed cluster SKU. */
+  sku?: ManagedClusterSKU;
+  /** The extended location of the Virtual Machine. */
+  extendedLocation?: ExtendedLocation;
+  /** The identity of the managed cluster, if configured. */
+  identity?: ManagedClusterIdentity;
+  /** This is primarily used to expose different UI experiences in the portal for different kinds */
+  kind?: string;
+}
+export const ManagedCluster = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(ManagedClusterTagsMap),
+    location: S.String,
+    properties: S.optional(ManagedClusterProperties),
+    eTag: S.optional(S.String),
+    sku: S.optional(ManagedClusterSKU),
+    extendedLocation: S.optional(ExtendedLocation),
+    identity: S.optional(ManagedClusterIdentity),
+    kind: S.optional(S.String),
+  }),
+).annotate({ identifier: "ManagedCluster" }) as any as S.Schema<ManagedCluster>;
+
+/** The ManagedCluster items on this page */
+export type ManagedClusterListResultValueList = Array<ManagedCluster>;
+export const ManagedClusterListResultValueList = /*@__PURE__*/ S.Array(
+  ManagedCluster,
+) as any as S.Schema<ManagedClusterListResultValueList>;
+
+/** The response of a ManagedCluster list operation. */
+export interface ManagedClusterListResult {
+  /** The ManagedCluster items on this page */
+  value: ManagedClusterListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const ManagedClusterListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: ManagedClusterListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ManagedClusterListResult",
+}) as any as S.Schema<ManagedClusterListResult>;
+
+export interface ListManagedClusterClusterAdminCredentialsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the managed cluster resource. */
+  resourceName: string;
+  /** server fqdn type for credentials to be returned */
+  server_fqdn?: string;
+}
+export const ListManagedClusterClusterAdminCredentialsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      resourceName: S.String.pipe(T.Label()),
+      server_fqdn: S.optional(S.String.pipe(T.Query("server-fqdn"))),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/listClusterAdminCredential",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListManagedClusterClusterAdminCredentialsRequest",
+  }) as any as S.Schema<ListManagedClusterClusterAdminCredentialsRequest>;
+
+/** The credential result response. */
+export type CredentialResult = FleetCredentialResult;
+export const CredentialResult = FleetCredentialResult;
+
+/** Base64-encoded Kubernetes configuration file. */
+export type CredentialResultsKubeconfigsList = Array<FleetCredentialResult>;
+export const CredentialResultsKubeconfigsList = /*@__PURE__*/ S.Array(
+  FleetCredentialResult,
+) as any as S.Schema<CredentialResultsKubeconfigsList>;
+
+/** The list credential result response. */
+export interface CredentialResults {
+  /** Base64-encoded Kubernetes configuration file. */
+  kubeconfigs?: CredentialResultsKubeconfigsList;
+}
+export const CredentialResults = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    kubeconfigs: S.optional(CredentialResultsKubeconfigsList),
+  }),
+).annotate({
+  identifier: "CredentialResults",
+}) as any as S.Schema<CredentialResults>;
+
+export interface ListManagedClusterClusterMonitoringUserCredentialsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the managed cluster resource. */
+  resourceName: string;
+  /** server fqdn type for credentials to be returned */
+  server_fqdn?: string;
+}
+export const ListManagedClusterClusterMonitoringUserCredentialsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      resourceName: S.String.pipe(T.Label()),
+      server_fqdn: S.optional(S.String.pipe(T.Query("server-fqdn"))),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/listClusterMonitoringUserCredential",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListManagedClusterClusterMonitoringUserCredentialsRequest",
+  }) as any as S.Schema<ListManagedClusterClusterMonitoringUserCredentialsRequest>;
+
+export type ListManagedClusterClusterUserCredentialsRequestFormat =
+  | "azure"
+  | "exec";
+export const ListManagedClusterClusterUserCredentialsRequestFormat =
+  /*@__PURE__*/ S.String;
+
+export interface ListManagedClusterClusterUserCredentialsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the managed cluster resource. */
+  resourceName: string;
+  /** server fqdn type for credentials to be returned */
+  server_fqdn?: string;
+  /** Only apply to AAD clusters, specifies the format of returned kubeconfig. Format 'azure' will return azure auth-provider kubeconfig; format 'exec' will return exec format kubeconfig, which requires kubelogin binary in the path. */
+  format?:
+    | ListManagedClusterClusterUserCredentialsRequestFormat
+    | (string & {});
+}
+export const ListManagedClusterClusterUserCredentialsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      resourceName: S.String.pipe(T.Label()),
+      server_fqdn: S.optional(S.String.pipe(T.Query("server-fqdn"))),
+      format: S.optional(
+        ListManagedClusterClusterUserCredentialsRequestFormat.pipe(T.Query()),
+      ),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/listClusterUserCredential",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListManagedClusterClusterUserCredentialsRequest",
+  }) as any as S.Schema<ListManagedClusterClusterUserCredentialsRequest>;
+
+export interface ListManagedClusterKubernetesVersionsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the Azure region. */
+  location: string;
+}
+export const ListManagedClusterKubernetesVersionsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      location: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ContainerService/locations/{location}/kubernetesVersions",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListManagedClusterKubernetesVersionsRequest",
+  }) as any as S.Schema<ListManagedClusterKubernetesVersionsRequest>;
+
+/** Kubernetes support plans available for this version. */
+export type KubernetesVersionCapabilitiesSupportPlanList =
+  Array<KubernetesSupportPlan>;
+export const KubernetesVersionCapabilitiesSupportPlanList =
+  /*@__PURE__*/ S.Array(
+    KubernetesSupportPlan,
+  ) as any as S.Schema<KubernetesVersionCapabilitiesSupportPlanList>;
+
+/** Capabilities on this Kubernetes version. */
+export interface KubernetesVersionCapabilities {
+  /** Kubernetes support plans available for this version. */
+  supportPlan?: KubernetesVersionCapabilitiesSupportPlanList;
+}
+export const KubernetesVersionCapabilities = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    supportPlan: S.optional(KubernetesVersionCapabilitiesSupportPlanList),
+  }),
+).annotate({
+  identifier: "KubernetesVersionCapabilities",
+}) as any as S.Schema<KubernetesVersionCapabilities>;
+
+/** Possible upgrade path for given patch version */
+export type KubernetesPatchVersionUpgradesList = Array<string>;
+export const KubernetesPatchVersionUpgradesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<KubernetesPatchVersionUpgradesList>;
+
+/** Kubernetes patch version profile */
+export interface KubernetesPatchVersion {
+  /** Possible upgrade path for given patch version */
+  upgrades?: KubernetesPatchVersionUpgradesList;
+}
+export const KubernetesPatchVersion = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    upgrades: S.optional(KubernetesPatchVersionUpgradesList),
+  }),
+).annotate({
+  identifier: "KubernetesPatchVersion",
+}) as any as S.Schema<KubernetesPatchVersion>;
+
+/** Patch versions of Kubernetes release */
+export type KubernetesVersionPatchVersionsMap = {
+  [key: string]: KubernetesPatchVersion | undefined;
+};
+export const KubernetesVersionPatchVersionsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  KubernetesPatchVersion,
+) as any as S.Schema<KubernetesVersionPatchVersionsMap>;
+
+/** Kubernetes version profile for given major.minor release. */
+export interface KubernetesVersion {
+  /** major.minor version of Kubernetes release */
+  version?: string;
+  /** Capabilities on this Kubernetes version. */
+  capabilities?: KubernetesVersionCapabilities;
+  /** Whether this version is default. */
+  isDefault?: boolean;
+  /** Whether this version is in preview mode. */
+  isPreview?: boolean;
+  /** Patch versions of Kubernetes release */
+  patchVersions?: KubernetesVersionPatchVersionsMap;
+}
+export const KubernetesVersion = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    version: S.optional(S.String),
+    capabilities: S.optional(KubernetesVersionCapabilities),
+    isDefault: S.optional(S.Boolean),
+    isPreview: S.optional(S.Boolean),
+    patchVersions: S.optional(KubernetesVersionPatchVersionsMap),
+  }),
+).annotate({
+  identifier: "KubernetesVersion",
+}) as any as S.Schema<KubernetesVersion>;
+
+/** Array of AKS supported Kubernetes versions. */
+export type KubernetesVersionListResultValuesList = Array<KubernetesVersion>;
+export const KubernetesVersionListResultValuesList = /*@__PURE__*/ S.Array(
+  KubernetesVersion,
+) as any as S.Schema<KubernetesVersionListResultValuesList>;
+
+/** Hold values properties, which is array of KubernetesVersion */
+export interface KubernetesVersionListResult {
+  /** Array of AKS supported Kubernetes versions. */
+  values?: KubernetesVersionListResultValuesList;
+}
+export const KubernetesVersionListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    values: S.optional(KubernetesVersionListResultValuesList),
+  }),
+).annotate({
+  identifier: "KubernetesVersionListResult",
+}) as any as S.Schema<KubernetesVersionListResult>;
+
+export interface ListManagedClusterMeshRevisionProfilesRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the Azure region. */
+  location: string;
+}
+export const ListManagedClusterMeshRevisionProfilesRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      location: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ContainerService/locations/{location}/meshRevisionProfiles",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListManagedClusterMeshRevisionProfilesRequest",
+  }) as any as S.Schema<ListManagedClusterMeshRevisionProfilesRequest>;
+
+/** Mesh revision profile for a mesh. */
+export interface MeshRevisionProfile {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Mesh revision profile properties for a mesh */
+  properties?: MeshRevisionProfileProperties;
+}
+export const MeshRevisionProfile = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(MeshRevisionProfileProperties),
+  }),
+).annotate({
+  identifier: "MeshRevisionProfile",
+}) as any as S.Schema<MeshRevisionProfile>;
+
+/** The MeshRevisionProfile items on this page */
+export type MeshRevisionProfileListValueList = Array<MeshRevisionProfile>;
+export const MeshRevisionProfileListValueList = /*@__PURE__*/ S.Array(
+  MeshRevisionProfile,
+) as any as S.Schema<MeshRevisionProfileListValueList>;
+
+/** Holds an array of MeshRevisionsProfiles */
+export interface MeshRevisionProfileList {
+  /** The MeshRevisionProfile items on this page */
+  value: MeshRevisionProfileListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const MeshRevisionProfileList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: MeshRevisionProfileListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "MeshRevisionProfileList",
+}) as any as S.Schema<MeshRevisionProfileList>;
+
+export interface ListManagedClusterMeshUpgradeProfilesRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the managed cluster resource. */
+  resourceName: string;
+}
+export const ListManagedClusterMeshUpgradeProfilesRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      resourceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/meshUpgradeProfiles",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListManagedClusterMeshUpgradeProfilesRequest",
+  }) as any as S.Schema<ListManagedClusterMeshUpgradeProfilesRequest>;
+
+/** Upgrade profile for given mesh. */
+export interface MeshUpgradeProfile {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Mesh upgrade profile properties for a major.minor release. */
+  properties?: MeshRevision;
+}
+export const MeshUpgradeProfile = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(MeshRevision),
+  }),
+).annotate({
+  identifier: "MeshUpgradeProfile",
+}) as any as S.Schema<MeshUpgradeProfile>;
+
+/** The MeshUpgradeProfile items on this page */
+export type MeshUpgradeProfileListValueList = Array<MeshUpgradeProfile>;
+export const MeshUpgradeProfileListValueList = /*@__PURE__*/ S.Array(
+  MeshUpgradeProfile,
+) as any as S.Schema<MeshUpgradeProfileListValueList>;
+
+/** Holds an array of MeshUpgradeProfiles */
+export interface MeshUpgradeProfileList {
+  /** The MeshUpgradeProfile items on this page */
+  value: MeshUpgradeProfileListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const MeshUpgradeProfileList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: MeshUpgradeProfileListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "MeshUpgradeProfileList",
+}) as any as S.Schema<MeshUpgradeProfileList>;
+
+export interface ListManagedClusterOutboundNetworkDependenciesEndpointsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the managed cluster resource. */
+  resourceName: string;
+}
+export const ListManagedClusterOutboundNetworkDependenciesEndpointsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      resourceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/outboundNetworkDependenciesEndpoints",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListManagedClusterOutboundNetworkDependenciesEndpointsRequest",
+  }) as any as S.Schema<ListManagedClusterOutboundNetworkDependenciesEndpointsRequest>;
+
+/** connect information from the AKS agent nodes to a single endpoint. */
+export interface EndpointDetail {
+  /** An IP Address that Domain Name currently resolves to. */
+  ipAddress?: string;
+  /** The port an endpoint is connected to. */
+  port?: number;
+  /** The protocol used for connection */
+  protocol?: string;
+  /** Description of the detail */
+  description?: string;
+}
+export const EndpointDetail = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ipAddress: S.optional(S.String),
+    port: S.optional(S.Number),
+    protocol: S.optional(S.String),
+    description: S.optional(S.String),
+  }),
+).annotate({ identifier: "EndpointDetail" }) as any as S.Schema<EndpointDetail>;
+
+/** The Ports and Protocols used when connecting to domainName. */
+export type EndpointDependencyEndpointDetailsList = Array<EndpointDetail>;
+export const EndpointDependencyEndpointDetailsList = /*@__PURE__*/ S.Array(
+  EndpointDetail,
+) as any as S.Schema<EndpointDependencyEndpointDetailsList>;
+
+/** A domain name that AKS agent nodes are reaching at. */
+export interface EndpointDependency {
+  /** The domain name of the dependency. */
+  domainName?: string;
+  /** The Ports and Protocols used when connecting to domainName. */
+  endpointDetails?: EndpointDependencyEndpointDetailsList;
+}
+export const EndpointDependency = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    domainName: S.optional(S.String),
+    endpointDetails: S.optional(EndpointDependencyEndpointDetailsList),
+  }),
+).annotate({
+  identifier: "EndpointDependency",
+}) as any as S.Schema<EndpointDependency>;
+
+/** The endpoints that AKS agent nodes connect to */
+export type OutboundEnvironmentEndpointEndpointsList =
+  Array<EndpointDependency>;
+export const OutboundEnvironmentEndpointEndpointsList = /*@__PURE__*/ S.Array(
+  EndpointDependency,
+) as any as S.Schema<OutboundEnvironmentEndpointEndpointsList>;
+
+/** Egress endpoints which AKS agent nodes connect to for common purpose. */
+export interface OutboundEnvironmentEndpoint {
+  /** The category of endpoints accessed by the AKS agent node, e.g. azure-resource-management, apiserver, etc. */
+  category?: string;
+  /** The endpoints that AKS agent nodes connect to */
+  endpoints?: OutboundEnvironmentEndpointEndpointsList;
+}
+export const OutboundEnvironmentEndpoint = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    category: S.optional(S.String),
+    endpoints: S.optional(OutboundEnvironmentEndpointEndpointsList),
+  }),
+).annotate({
+  identifier: "OutboundEnvironmentEndpoint",
+}) as any as S.Schema<OutboundEnvironmentEndpoint>;
+
+/** The OutboundEnvironmentEndpoint items on this page */
+export type OutboundEnvironmentEndpointCollectionValueList =
+  Array<OutboundEnvironmentEndpoint>;
+export const OutboundEnvironmentEndpointCollectionValueList =
+  /*@__PURE__*/ S.Array(
+    OutboundEnvironmentEndpoint,
+  ) as any as S.Schema<OutboundEnvironmentEndpointCollectionValueList>;
+
+/** Collection of OutboundEnvironmentEndpoint */
+export interface OutboundEnvironmentEndpointCollection {
+  /** The OutboundEnvironmentEndpoint items on this page */
+  value: OutboundEnvironmentEndpointCollectionValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const OutboundEnvironmentEndpointCollection = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      value: OutboundEnvironmentEndpointCollectionValueList,
+      nextLink: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "OutboundEnvironmentEndpointCollection",
+}) as any as S.Schema<OutboundEnvironmentEndpointCollection>;
+
+export interface ListManagedClustersRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+}
+export const ListManagedClustersRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ContainerService/managedClusters",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListManagedClustersRequest",
+}) as any as S.Schema<ListManagedClustersRequest>;
+
+export interface ListManagedNamespaceByManagedClusterRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the managed cluster resource. */
+  resourceName: string;
+}
+export const ListManagedNamespaceByManagedClusterRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      resourceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/managedNamespaces",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListManagedNamespaceByManagedClusterRequest",
+  }) as any as S.Schema<ListManagedNamespaceByManagedClusterRequest>;
+
+/** Resource tags. */
+export type ManagedNamespaceTagsMap = { [key: string]: string | undefined };
+export const ManagedNamespaceTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<ManagedNamespaceTagsMap>;
+
+/** Namespace managed by ARM. */
+export interface ManagedNamespace {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: ManagedNamespaceTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Properties of a namespace. */
+  properties?: NamespaceProperties;
+  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
+  eTag?: string;
+}
+export const ManagedNamespace = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(ManagedNamespaceTagsMap),
+    location: S.String,
+    properties: S.optional(NamespaceProperties),
+    eTag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ManagedNamespace",
+}) as any as S.Schema<ManagedNamespace>;
+
+/** The ManagedNamespace items on this page */
+export type ManagedNamespaceListResultValueList = Array<ManagedNamespace>;
+export const ManagedNamespaceListResultValueList = /*@__PURE__*/ S.Array(
+  ManagedNamespace,
+) as any as S.Schema<ManagedNamespaceListResultValueList>;
+
+/** The response of a ManagedNamespace list operation. */
+export interface ManagedNamespaceListResult {
+  /** The ManagedNamespace items on this page */
+  value: ManagedNamespaceListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const ManagedNamespaceListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: ManagedNamespaceListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ManagedNamespaceListResult",
+}) as any as S.Schema<ManagedNamespaceListResult>;
+
+export interface ListManagedNamespaceCredentialRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the managed cluster resource. */
+  resourceName: string;
+  /** The name of the managed namespace. */
+  managedNamespaceName: string;
+}
+export const ListManagedNamespaceCredentialRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      resourceName: S.String.pipe(T.Label()),
+      managedNamespaceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/managedNamespaces/{managedNamespaceName}/listCredential",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListManagedNamespaceCredentialRequest",
+}) as any as S.Schema<ListManagedNamespaceCredentialRequest>;
+
+export interface ListOperationsRequest {}
+export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/providers/Microsoft.ContainerService/operations",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListOperationsRequest",
+}) as any as S.Schema<ListOperationsRequest>;
+
+/** Describes the properties of a Operation Value Display. */
+export interface OperationValueDisplay {
+  /** The display name of the operation. */
+  operation?: string;
+  /** The display name of the resource the operation applies to. */
+  resource?: string;
+  /** The description of the operation. */
+  description?: string;
+  /** The resource provider for the operation. */
+  provider?: string;
+}
+export const OperationValueDisplay = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    operation: S.optional(S.String),
+    resource: S.optional(S.String),
+    description: S.optional(S.String),
+    provider: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "OperationValueDisplay",
+}) as any as S.Schema<OperationValueDisplay>;
+
+/** Describes the properties of a Operation value. */
+export interface OperationValue {
+  /** The origin of the operation. */
+  origin?: string;
+  /** The name of the operation. */
+  name?: string;
+  /** Describes the properties of a Operation Value Display. */
+  display?: OperationValueDisplay;
+}
+export const OperationValue = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    origin: S.optional(S.String),
+    name: S.optional(S.String),
+    display: S.optional(OperationValueDisplay),
+  }),
+).annotate({ identifier: "OperationValue" }) as any as S.Schema<OperationValue>;
+
+/** The list of operations */
+export type OperationListResultValueList = Array<OperationValue>;
+export const OperationListResultValueList = /*@__PURE__*/ S.Array(
+  OperationValue,
+) as any as S.Schema<OperationListResultValueList>;
+
+/** The List Operation response. */
+export interface OperationListResult {
+  /** The list of operations */
+  value: OperationListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const OperationListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: OperationListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "OperationListResult",
+}) as any as S.Schema<OperationListResult>;
+
+export interface ListPrivateEndpointConnectionsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the managed cluster resource. */
+  resourceName: string;
+}
+export const ListPrivateEndpointConnectionsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      resourceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/privateEndpointConnections",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListPrivateEndpointConnectionsRequest",
+}) as any as S.Schema<ListPrivateEndpointConnectionsRequest>;
+
+/** A private endpoint connection */
+export interface PrivateEndpointConnection {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of a private endpoint connection. */
+  properties?: PrivateEndpointConnectionProperties;
+}
+export const PrivateEndpointConnection = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(PrivateEndpointConnectionProperties),
+  }),
+).annotate({
+  identifier: "PrivateEndpointConnection",
+}) as any as S.Schema<PrivateEndpointConnection>;
+
+/** The collection value. */
+export type PrivateEndpointConnectionListResultValueList =
+  Array<PrivateEndpointConnection>;
+export const PrivateEndpointConnectionListResultValueList =
+  /*@__PURE__*/ S.Array(
+    PrivateEndpointConnection,
+  ) as any as S.Schema<PrivateEndpointConnectionListResultValueList>;
+
+/** A list of private endpoint connections */
+export interface PrivateEndpointConnectionListResult {
+  /** The collection value. */
+  value?: PrivateEndpointConnectionListResultValueList;
+}
+export const PrivateEndpointConnectionListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(PrivateEndpointConnectionListResultValueList),
+  }),
+).annotate({
+  identifier: "PrivateEndpointConnectionListResult",
+}) as any as S.Schema<PrivateEndpointConnectionListResult>;
+
+export interface ListPrivateLinkResourcesRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the managed cluster resource. */
+  resourceName: string;
+}
+export const ListPrivateLinkResourcesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    resourceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/privateLinkResources",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListPrivateLinkResourcesRequest",
+}) as any as S.Schema<ListPrivateLinkResourcesRequest>;
+
+/** The collection value. */
+export type PrivateLinkResourcesListResultValueList =
+  Array<PrivateLinkResource>;
+export const PrivateLinkResourcesListResultValueList = /*@__PURE__*/ S.Array(
+  PrivateLinkResource,
+) as any as S.Schema<PrivateLinkResourcesListResultValueList>;
+
+/** A list of private link resources */
+export interface PrivateLinkResourcesListResult {
+  /** The collection value. */
+  value?: PrivateLinkResourcesListResultValueList;
+}
+export const PrivateLinkResourcesListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(PrivateLinkResourcesListResultValueList),
+  }),
+).annotate({
+  identifier: "PrivateLinkResourcesListResult",
+}) as any as S.Schema<PrivateLinkResourcesListResult>;
+
+export interface ListSnapshotByResourceGroupRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+}
+export const ListSnapshotByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/snapshots",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListSnapshotByResourceGroupRequest",
+}) as any as S.Schema<ListSnapshotByResourceGroupRequest>;
+
+/** Resource tags. */
+export type SnapshotTagsMap = { [key: string]: string | undefined };
+export const SnapshotTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<SnapshotTagsMap>;
+
+/** A node pool snapshot resource. */
+export interface Snapshot {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: SnapshotTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Properties of a snapshot. */
+  properties?: SnapshotProperties;
+}
+export const Snapshot = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(SnapshotTagsMap),
+    location: S.String,
+    properties: S.optional(SnapshotProperties),
+  }),
+).annotate({ identifier: "Snapshot" }) as any as S.Schema<Snapshot>;
+
+/** The Snapshot items on this page */
+export type SnapshotListResultValueList = Array<Snapshot>;
+export const SnapshotListResultValueList = /*@__PURE__*/ S.Array(
+  Snapshot,
+) as any as S.Schema<SnapshotListResultValueList>;
+
+/** The response of a Snapshot list operation. */
+export interface SnapshotListResult {
+  /** The Snapshot items on this page */
+  value: SnapshotListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const SnapshotListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: SnapshotListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "SnapshotListResult",
+}) as any as S.Schema<SnapshotListResult>;
+
+export interface ListSnapshotsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+}
+export const ListSnapshotsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ContainerService/snapshots",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListSnapshotsRequest",
+}) as any as S.Schema<ListSnapshotsRequest>;
+
+export interface ListTrustedAccessRoleBindingsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the managed cluster resource. */
+  resourceName: string;
+}
+export const ListTrustedAccessRoleBindingsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      resourceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/trustedAccessRoleBindings",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListTrustedAccessRoleBindingsRequest",
+}) as any as S.Schema<ListTrustedAccessRoleBindingsRequest>;
+
+/** Defines binding between a resource and role */
+export interface TrustedAccessRoleBinding {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties for trusted access role binding */
+  properties: TrustedAccessRoleBindingProperties;
+}
+export const TrustedAccessRoleBinding = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: TrustedAccessRoleBindingProperties,
+  }),
+).annotate({
+  identifier: "TrustedAccessRoleBinding",
+}) as any as S.Schema<TrustedAccessRoleBinding>;
+
+/** The TrustedAccessRoleBinding items on this page */
+export type TrustedAccessRoleBindingListResultValueList =
+  Array<TrustedAccessRoleBinding>;
+export const TrustedAccessRoleBindingListResultValueList =
+  /*@__PURE__*/ S.Array(
+    TrustedAccessRoleBinding,
+  ) as any as S.Schema<TrustedAccessRoleBindingListResultValueList>;
+
+/** The response of a TrustedAccessRoleBinding list operation. */
+export interface TrustedAccessRoleBindingListResult {
+  /** The TrustedAccessRoleBinding items on this page */
+  value: TrustedAccessRoleBindingListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const TrustedAccessRoleBindingListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: TrustedAccessRoleBindingListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "TrustedAccessRoleBindingListResult",
+}) as any as S.Schema<TrustedAccessRoleBindingListResult>;
+
+export interface ListTrustedAccessRolesRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the Azure region. */
+  location: string;
+}
+export const ListTrustedAccessRolesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    location: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ContainerService/locations/{location}/trustedAccessRoles",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListTrustedAccessRolesRequest",
+}) as any as S.Schema<ListTrustedAccessRolesRequest>;
+
+/** List of allowed verbs */
+export type TrustedAccessRoleRuleVerbsList = Array<string>;
+export const TrustedAccessRoleRuleVerbsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<TrustedAccessRoleRuleVerbsList>;
+
+/** List of allowed apiGroups */
+export type TrustedAccessRoleRuleApiGroupsList = Array<string>;
+export const TrustedAccessRoleRuleApiGroupsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<TrustedAccessRoleRuleApiGroupsList>;
+
+/** List of allowed resources */
+export type TrustedAccessRoleRuleResourcesList = Array<string>;
+export const TrustedAccessRoleRuleResourcesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<TrustedAccessRoleRuleResourcesList>;
+
+/** List of allowed names */
+export type TrustedAccessRoleRuleResourceNamesList = Array<string>;
+export const TrustedAccessRoleRuleResourceNamesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<TrustedAccessRoleRuleResourceNamesList>;
+
+/** List of allowed nonResourceURLs */
+export type TrustedAccessRoleRuleNonResourceURLsList = Array<string>;
+export const TrustedAccessRoleRuleNonResourceURLsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<TrustedAccessRoleRuleNonResourceURLsList>;
+
+/** Rule for trusted access role */
+export interface TrustedAccessRoleRule {
+  /** List of allowed verbs */
+  verbs?: TrustedAccessRoleRuleVerbsList;
+  /** List of allowed apiGroups */
+  apiGroups?: TrustedAccessRoleRuleApiGroupsList;
+  /** List of allowed resources */
+  resources?: TrustedAccessRoleRuleResourcesList;
+  /** List of allowed names */
+  resourceNames?: TrustedAccessRoleRuleResourceNamesList;
+  /** List of allowed nonResourceURLs */
+  nonResourceURLs?: TrustedAccessRoleRuleNonResourceURLsList;
+}
+export const TrustedAccessRoleRule = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    verbs: S.optional(TrustedAccessRoleRuleVerbsList),
+    apiGroups: S.optional(TrustedAccessRoleRuleApiGroupsList),
+    resources: S.optional(TrustedAccessRoleRuleResourcesList),
+    resourceNames: S.optional(TrustedAccessRoleRuleResourceNamesList),
+    nonResourceURLs: S.optional(TrustedAccessRoleRuleNonResourceURLsList),
+  }),
+).annotate({
+  identifier: "TrustedAccessRoleRule",
+}) as any as S.Schema<TrustedAccessRoleRule>;
+
+/** List of rules for the role. This maps to 'rules' property of [Kubernetes Cluster Role](https://kubernetes.io/docs/reference/kubernetes-api/authorization-resources/cluster-role-v1/#ClusterRole). */
+export type TrustedAccessRoleRulesList = Array<TrustedAccessRoleRule>;
+export const TrustedAccessRoleRulesList = /*@__PURE__*/ S.Array(
+  TrustedAccessRoleRule,
+) as any as S.Schema<TrustedAccessRoleRulesList>;
+
+/** Trusted access role definition. */
+export interface TrustedAccessRole {
+  /** Resource type of Azure resource */
+  sourceResourceType?: string;
+  /** Name of role, name is unique under a source resource type */
+  name?: string;
+  /** List of rules for the role. This maps to 'rules' property of [Kubernetes Cluster Role](https://kubernetes.io/docs/reference/kubernetes-api/authorization-resources/cluster-role-v1/#ClusterRole). */
+  rules?: TrustedAccessRoleRulesList;
+}
+export const TrustedAccessRole = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    sourceResourceType: S.optional(S.String),
+    name: S.optional(S.String),
+    rules: S.optional(TrustedAccessRoleRulesList),
+  }),
+).annotate({
+  identifier: "TrustedAccessRole",
+}) as any as S.Schema<TrustedAccessRole>;
+
+/** The TrustedAccessRole items on this page */
+export type TrustedAccessRoleListResultValueList = Array<TrustedAccessRole>;
+export const TrustedAccessRoleListResultValueList = /*@__PURE__*/ S.Array(
+  TrustedAccessRole,
+) as any as S.Schema<TrustedAccessRoleListResultValueList>;
+
+/** List of trusted access roles */
+export interface TrustedAccessRoleListResult {
+  /** The TrustedAccessRole items on this page */
+  value: TrustedAccessRoleListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const TrustedAccessRoleListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: TrustedAccessRoleListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "TrustedAccessRoleListResult",
+}) as any as S.Schema<TrustedAccessRoleListResult>;
+
+export interface ListUpdateRunByFleetRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Fleet resource. */
+  fleetName: string;
+  /** The number of result items to return. */
+  _top?: number;
+  /** The page-continuation token to use with a paged version of this API. */
+  _skipToken?: string;
+}
+export const ListUpdateRunByFleetRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -13847,8 +11506,8 @@ export const UpdateRunsListByFleetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UpdateRunsListByFleetRequest",
-}) as any as S.Schema<UpdateRunsListByFleetRequest>;
+  identifier: "ListUpdateRunByFleetRequest",
+}) as any as S.Schema<ListUpdateRunByFleetRequest>;
 
 /** A multi-stage process to perform update operations across members of a Fleet. */
 export interface UpdateRun {
@@ -13897,6 +11556,2372 @@ export const UpdateRunListResult = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "UpdateRunListResult",
 }) as any as S.Schema<UpdateRunListResult>;
+
+export interface MaintenanceConfigurationsCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the managed cluster resource. */
+  resourceName: string;
+  /** The name of the maintenance configuration. Supported values are 'default', 'aksManagedAutoUpgradeSchedule', or 'aksManagedNodeOSUpgradeSchedule'. */
+  configName: string;
+  /** Properties of a default maintenance configuration. */
+  properties?: MaintenanceConfigurationProperties;
+}
+export const MaintenanceConfigurationsCreateOrUpdateRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      resourceName: S.String.pipe(T.Label()),
+      configName: S.String.pipe(T.Label()),
+      properties: S.optional(MaintenanceConfigurationProperties),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/maintenanceConfigurations/{configName}",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "MaintenanceConfigurationsCreateOrUpdateRequest",
+  }) as any as S.Schema<MaintenanceConfigurationsCreateOrUpdateRequest>;
+
+export interface MaintenanceConfigurationsCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of a default maintenance configuration. */
+  properties?: MaintenanceConfigurationProperties;
+}
+export const MaintenanceConfigurationsCreateOrUpdateResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(MaintenanceConfigurationProperties),
+    }),
+  ).annotate({
+    identifier: "MaintenanceConfigurationsCreateOrUpdateResponse",
+  }) as any as S.Schema<MaintenanceConfigurationsCreateOrUpdateResponse>;
+
+/** Resource tags. */
+export type ManagedClustersCreateOrUpdateRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const ManagedClustersCreateOrUpdateRequestTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<ManagedClustersCreateOrUpdateRequestTagsMap>;
+
+/** The operating system type. The default is Linux. */
+export type ManagedClusterAgentPoolProfileInputOsType = "Linux" | "Windows";
+export const ManagedClusterAgentPoolProfileInputOsType = /*@__PURE__*/ S.String;
+
+/** The list of Availability zones to use for nodes. This can only be specified if the AgentPoolType property is 'VirtualMachineScaleSets'. */
+export type ManagedClusterAgentPoolProfileInputAvailabilityZonesList =
+  Array<string>;
+export const ManagedClusterAgentPoolProfileInputAvailabilityZonesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ManagedClusterAgentPoolProfileInputAvailabilityZonesList>;
+
+/** The Virtual Machine Scale Set priority. */
+export type ManagedClusterAgentPoolProfileInputScaleSetPriority =
+  | "Spot"
+  | "Regular";
+export const ManagedClusterAgentPoolProfileInputScaleSetPriority =
+  /*@__PURE__*/ S.String;
+
+/** The Virtual Machine Scale Set eviction policy. The eviction policy specifies what to do with the VM when it is evicted. The default is Delete. For more information about eviction see [spot VMs](https://docs.microsoft.com/azure/virtual-machines/spot-vms) */
+export type ManagedClusterAgentPoolProfileInputScaleSetEvictionPolicy =
+  | "Delete"
+  | "Deallocate";
+export const ManagedClusterAgentPoolProfileInputScaleSetEvictionPolicy =
+  /*@__PURE__*/ S.String;
+
+/** The tags to be persisted on the agent pool virtual machine scale set. */
+export type ManagedClusterAgentPoolProfileInputTagsMap = {
+  [key: string]: string | undefined;
+};
+export const ManagedClusterAgentPoolProfileInputTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<ManagedClusterAgentPoolProfileInputTagsMap>;
+
+/** The node labels to be persisted across all nodes in agent pool. */
+export type ManagedClusterAgentPoolProfileInputNodeLabelsMap = {
+  [key: string]: string | undefined;
+};
+export const ManagedClusterAgentPoolProfileInputNodeLabelsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<ManagedClusterAgentPoolProfileInputNodeLabelsMap>;
+
+/** The taints added to new nodes during node pool create and scale. For example, key=value:NoSchedule. */
+export type ManagedClusterAgentPoolProfileInputNodeTaintsList = Array<string>;
+export const ManagedClusterAgentPoolProfileInputNodeTaintsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ManagedClusterAgentPoolProfileInputNodeTaintsList>;
+
+/** The status of nodes in a VirtualMachines agent pool. */
+export type ManagedClusterAgentPoolProfileInputVirtualMachineNodesStatusList =
+  Array<VirtualMachineNodes>;
+export const ManagedClusterAgentPoolProfileInputVirtualMachineNodesStatusList =
+  /*@__PURE__*/ S.Array(
+    VirtualMachineNodes,
+  ) as any as S.Schema<ManagedClusterAgentPoolProfileInputVirtualMachineNodesStatusList>;
+
+/** Profile for the container service agent pool. */
+export interface ManagedClusterAgentPoolProfileInput {
+  /** Number of agents (VMs) to host docker containers. Allowed values must be in the range of 0 to 1000 (inclusive) for user pools and in the range of 1 to 1000 (inclusive) for system pools. The default value is 1. */
+  count?: number;
+  /** The size of the agent pool VMs. VM size availability varies by region. If a node contains insufficient compute resources (memory, cpu, etc) pods might fail to run correctly. For more details on restricted VM sizes, see: https://docs.microsoft.com/azure/aks/quotas-skus-regions */
+  vmSize?: string;
+  /** OS Disk Size in GB to be used to specify the disk size for every machine in the master/agent pool. If you specify 0, it will apply the default osDisk size according to the vmSize specified. */
+  osDiskSizeGB?: number;
+  /** The OS disk type to be used for machines in the agent pool. The default is 'Ephemeral' if the VM supports it and has a cache disk larger than the requested OSDiskSizeGB. Otherwise, defaults to 'Managed'. May not be changed after creation. For more information see [Ephemeral OS](https://docs.microsoft.com/azure/aks/cluster-configuration#ephemeral-os). */
+  osDiskType?: OSDiskType | (string & {});
+  /** Determines the placement of emptyDir volumes, container runtime data root, and Kubelet ephemeral storage. */
+  kubeletDiskType?: KubeletDiskType | (string & {});
+  /** Determines the type of workload a node can run. */
+  workloadRuntime?: WorkloadRuntime | (string & {});
+  /** Message of the day for Linux nodes, base64-encoded. A base64-encoded string which will be written to /etc/motd after decoding. This allows customization of the message of the day for Linux nodes. It must not be specified for Windows nodes. It must be a static string (i.e., will be printed raw and not be executed as a script). */
+  messageOfTheDay?: string;
+  /** The ID of the subnet which agent pool nodes and optionally pods will join on startup. If this is not specified, a VNET and subnet will be generated and used. If no podSubnetID is specified, this applies to nodes and pods, otherwise it applies to just nodes. This is of the form: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworks/{virtualNetworkName}/subnets/{subnetName} */
+  vnetSubnetID?: string;
+  /** The ID of the subnet which pods will join when launched. If omitted, pod IPs are statically assigned on the node subnet (see vnetSubnetID for more details). This is of the form: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworks/{virtualNetworkName}/subnets/{subnetName} */
+  podSubnetID?: string;
+  /** Pod IP Allocation Mode. The IP allocation mode for pods in the agent pool. Must be used with podSubnetId. The default is 'DynamicIndividual'. */
+  podIPAllocationMode?: PodIPAllocationMode | (string & {});
+  /** The maximum number of pods that can run on a node. */
+  maxPods?: number;
+  /** The operating system type. The default is Linux. */
+  osType?: ManagedClusterAgentPoolProfileInputOsType | (string & {});
+  /** Specifies the OS SKU used by the agent pool. The default is Ubuntu if OSType is Linux. The default is Windows2019 when Kubernetes <= 1.24 or Windows2022 when Kubernetes >= 1.25 if OSType is Windows. */
+  osSKU?: OSSKU | (string & {});
+  /** The maximum number of nodes for auto-scaling */
+  maxCount?: number;
+  /** The minimum number of nodes for auto-scaling */
+  minCount?: number;
+  /** Whether to enable auto-scaler */
+  enableAutoScaling?: boolean;
+  /** The scale down mode to use when scaling the Agent Pool. This also effects the cluster autoscaler behavior. If not specified, it defaults to Delete. */
+  scaleDownMode?: ScaleDownMode | (string & {});
+  /** The type of Agent Pool. */
+  type?: AgentPoolType | (string & {});
+  /** The mode of an agent pool. A cluster must have at least one 'System' Agent Pool at all times. For additional information on agent pool restrictions and best practices, see: https://docs.microsoft.com/azure/aks/use-system-pools */
+  mode?: AgentPoolMode | (string & {});
+  /** The version of Kubernetes specified by the user. Both patch version <major.minor.patch> (e.g. 1.20.13) and <major.minor> (e.g. 1.20) are supported. When <major.minor> is specified, the latest supported GA patch version is chosen automatically. Updating the cluster with the same <major.minor> once it has been created (e.g. 1.14.x -> 1.14) will not trigger an upgrade, even if a newer patch version is available. As a best practice, you should upgrade all node pools in an AKS cluster to the same Kubernetes version. The node pool version must have the same major version as the control plane. The node pool minor version must be within two minor versions of the control plane version. The node pool version cannot be greater than the control plane version. For more information see [upgrading a node pool](https://docs.microsoft.com/azure/aks/use-multiple-node-pools#upgrade-a-node-pool). */
+  orchestratorVersion?: string;
+  /** The version of the node image. Setting this value triggers an agentPool rollback. Only values from `recentlyUsedVersions` are allowed. */
+  nodeImageVersion?: string;
+  /** Settings for upgrading the agentpool */
+  upgradeSettings?: AgentPoolUpgradeSettings;
+  /** Whether the Agent Pool is running or stopped. When an Agent Pool is first created it is initially Running. The Agent Pool can be stopped by setting this field to Stopped. A stopped Agent Pool stops all of its VMs and does not accrue billing charges. An Agent Pool can only be stopped if it is Running and provisioning state is Succeeded */
+  powerState?: PowerState;
+  /** The list of Availability zones to use for nodes. This can only be specified if the AgentPoolType property is 'VirtualMachineScaleSets'. */
+  availabilityZones?: ManagedClusterAgentPoolProfileInputAvailabilityZonesList;
+  /** Whether each node is allocated its own public IP. Some scenarios may require nodes in a node pool to receive their own dedicated public IP addresses. A common scenario is for gaming workloads, where a console needs to make a direct connection to a cloud virtual machine to minimize hops. For more information see [assigning a public IP per node](https://docs.microsoft.com/azure/aks/use-multiple-node-pools#assign-a-public-ip-per-node-for-your-node-pools). The default is false. */
+  enableNodePublicIP?: boolean;
+  /** The public IP prefix ID which VM nodes should use IPs from. This is of the form: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/publicIPPrefixes/{publicIPPrefixName} */
+  nodePublicIPPrefixID?: string;
+  /** The Virtual Machine Scale Set priority. */
+  scaleSetPriority?:
+    | ManagedClusterAgentPoolProfileInputScaleSetPriority
+    | (string & {});
+  /** The Virtual Machine Scale Set eviction policy. The eviction policy specifies what to do with the VM when it is evicted. The default is Delete. For more information about eviction see [spot VMs](https://docs.microsoft.com/azure/virtual-machines/spot-vms) */
+  scaleSetEvictionPolicy?:
+    | ManagedClusterAgentPoolProfileInputScaleSetEvictionPolicy
+    | (string & {});
+  /** The max price (in US Dollars) you are willing to pay for spot instances. Possible values are any decimal value greater than zero or -1 which indicates default price to be up-to on-demand. Possible values are any decimal value greater than zero or -1 which indicates the willingness to pay any on-demand price. For more details on spot pricing, see [spot VMs pricing](https://docs.microsoft.com/azure/virtual-machines/spot-vms#pricing) */
+  spotMaxPrice?: number;
+  /** The tags to be persisted on the agent pool virtual machine scale set. */
+  tags?: ManagedClusterAgentPoolProfileInputTagsMap;
+  /** The node labels to be persisted across all nodes in agent pool. */
+  nodeLabels?: ManagedClusterAgentPoolProfileInputNodeLabelsMap;
+  /** The taints added to new nodes during node pool create and scale. For example, key=value:NoSchedule. */
+  nodeTaints?: ManagedClusterAgentPoolProfileInputNodeTaintsList;
+  /** The ID for Proximity Placement Group. */
+  proximityPlacementGroupID?: string;
+  /** The Kubelet configuration on the agent pool nodes. */
+  kubeletConfig?: KubeletConfig;
+  /** The OS configuration of Linux agent nodes. */
+  linuxOSConfig?: LinuxOSConfig;
+  /** Whether to enable host based OS and data drive encryption. This is only supported on certain VM sizes and in certain Azure regions. For more information, see: https://docs.microsoft.com/azure/aks/enable-host-encryption */
+  enableEncryptionAtHost?: boolean;
+  /** Whether to enable UltraSSD */
+  enableUltraSSD?: boolean;
+  /** Whether to use a FIPS-enabled OS. See [Add a FIPS-enabled node pool](https://docs.microsoft.com/azure/aks/use-multiple-node-pools#add-a-fips-enabled-node-pool-preview) for more details. */
+  enableFIPS?: boolean;
+  /** GPUInstanceProfile to be used to specify GPU MIG instance profile for supported GPU VM SKU. */
+  gpuInstanceProfile?: GPUInstanceProfile | (string & {});
+  /** CreationData to be used to specify the source Snapshot ID if the node pool will be created/upgraded using a snapshot. */
+  creationData?: CreationData;
+  /** The fully qualified resource ID of the Capacity Reservation Group to provide virtual machines from a reserved group of Virtual Machines. This is of the form: '/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Compute/capacityreservationgroups/{capacityReservationGroupName}' Customers use it to create an agentpool with a specified CRG. For more information see [Capacity Reservation](https://learn.microsoft.com/en-us/azure/virtual-machines/capacity-reservation-overview) */
+  capacityReservationGroupID?: string;
+  /** The fully qualified resource ID of the Dedicated Host Group to provision virtual machines from, used only in creation scenario and not allowed to changed once set. This is of the form: /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/hostGroups/{hostGroupName}. For more information see [Azure dedicated hosts](https://docs.microsoft.com/azure/virtual-machines/dedicated-hosts). */
+  hostGroupID?: string;
+  /** Network-related settings of an agent pool. */
+  networkProfile?: AgentPoolNetworkProfile;
+  /** The Windows agent pool's specific profile. */
+  windowsProfile?: AgentPoolWindowsProfile;
+  /** The security settings of an agent pool. */
+  securityProfile?: AgentPoolSecurityProfile;
+  /** GPU settings for the Agent Pool. */
+  gpuProfile?: GPUProfile;
+  /** Profile specific to a managed agent pool in Gateway mode. This field cannot be set if agent pool mode is not Gateway. */
+  gatewayProfile?: AgentPoolGatewayProfile;
+  /** Configuration for using artifact streaming on AKS. */
+  artifactStreamingProfile?: AgentPoolArtifactStreamingProfile;
+  /** Specifications on VirtualMachines agent pool. */
+  virtualMachinesProfile?: VirtualMachinesProfile;
+  /** The status of nodes in a VirtualMachines agent pool. */
+  virtualMachineNodesStatus?: ManagedClusterAgentPoolProfileInputVirtualMachineNodesStatusList;
+  /** Contains read-only information about the Agent Pool. */
+  status?: AgentPoolStatusInput;
+  /** Configures the per-node local DNS, with VnetDNS and KubeDNS overrides. LocalDNS helps improve performance and reliability of DNS resolution in an AKS cluster. For more details see aka.ms/aks/localdns. */
+  localDNSProfile?: LocalDNSProfile;
+  /** Unique name of the agent pool profile in the context of the subscription and resource group. Windows agent pool names must be 6 characters or less. */
+  name: string;
+}
+export const ManagedClusterAgentPoolProfileInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    count: S.optional(S.Number),
+    vmSize: S.optional(S.String),
+    osDiskSizeGB: S.optional(S.Number),
+    osDiskType: S.optional(OSDiskType),
+    kubeletDiskType: S.optional(KubeletDiskType),
+    workloadRuntime: S.optional(WorkloadRuntime),
+    messageOfTheDay: S.optional(S.String),
+    vnetSubnetID: S.optional(S.String),
+    podSubnetID: S.optional(S.String),
+    podIPAllocationMode: S.optional(PodIPAllocationMode),
+    maxPods: S.optional(S.Number),
+    osType: S.optional(ManagedClusterAgentPoolProfileInputOsType),
+    osSKU: S.optional(OSSKU),
+    maxCount: S.optional(S.Number),
+    minCount: S.optional(S.Number),
+    enableAutoScaling: S.optional(S.Boolean),
+    scaleDownMode: S.optional(ScaleDownMode),
+    type: S.optional(AgentPoolType),
+    mode: S.optional(AgentPoolMode),
+    orchestratorVersion: S.optional(S.String),
+    nodeImageVersion: S.optional(S.String),
+    upgradeSettings: S.optional(AgentPoolUpgradeSettings),
+    powerState: S.optional(PowerState),
+    availabilityZones: S.optional(
+      ManagedClusterAgentPoolProfileInputAvailabilityZonesList,
+    ),
+    enableNodePublicIP: S.optional(S.Boolean),
+    nodePublicIPPrefixID: S.optional(S.String),
+    scaleSetPriority: S.optional(
+      ManagedClusterAgentPoolProfileInputScaleSetPriority,
+    ),
+    scaleSetEvictionPolicy: S.optional(
+      ManagedClusterAgentPoolProfileInputScaleSetEvictionPolicy,
+    ),
+    spotMaxPrice: S.optional(S.Number),
+    tags: S.optional(ManagedClusterAgentPoolProfileInputTagsMap),
+    nodeLabels: S.optional(ManagedClusterAgentPoolProfileInputNodeLabelsMap),
+    nodeTaints: S.optional(ManagedClusterAgentPoolProfileInputNodeTaintsList),
+    proximityPlacementGroupID: S.optional(S.String),
+    kubeletConfig: S.optional(KubeletConfig),
+    linuxOSConfig: S.optional(LinuxOSConfig),
+    enableEncryptionAtHost: S.optional(S.Boolean),
+    enableUltraSSD: S.optional(S.Boolean),
+    enableFIPS: S.optional(S.Boolean),
+    gpuInstanceProfile: S.optional(GPUInstanceProfile),
+    creationData: S.optional(CreationData),
+    capacityReservationGroupID: S.optional(S.String),
+    hostGroupID: S.optional(S.String),
+    networkProfile: S.optional(AgentPoolNetworkProfile),
+    windowsProfile: S.optional(AgentPoolWindowsProfile),
+    securityProfile: S.optional(AgentPoolSecurityProfile),
+    gpuProfile: S.optional(GPUProfile),
+    gatewayProfile: S.optional(AgentPoolGatewayProfile),
+    artifactStreamingProfile: S.optional(AgentPoolArtifactStreamingProfile),
+    virtualMachinesProfile: S.optional(VirtualMachinesProfile),
+    virtualMachineNodesStatus: S.optional(
+      ManagedClusterAgentPoolProfileInputVirtualMachineNodesStatusList,
+    ),
+    status: S.optional(AgentPoolStatusInput),
+    localDNSProfile: S.optional(LocalDNSProfile),
+    name: S.String,
+  }),
+).annotate({
+  identifier: "ManagedClusterAgentPoolProfileInput",
+}) as any as S.Schema<ManagedClusterAgentPoolProfileInput>;
+
+/** The agent pool properties. */
+export type ManagedClusterPropertiesInputAgentPoolProfilesList =
+  Array<ManagedClusterAgentPoolProfileInput>;
+export const ManagedClusterPropertiesInputAgentPoolProfilesList =
+  /*@__PURE__*/ S.Array(
+    ManagedClusterAgentPoolProfileInput,
+  ) as any as S.Schema<ManagedClusterPropertiesInputAgentPoolProfilesList>;
+
+/** The profile of managed cluster add-on. */
+export type ManagedClusterPropertiesInputAddonProfilesMap = {
+  [key: string]: ManagedClusterAddonProfile | undefined;
+};
+export const ManagedClusterPropertiesInputAddonProfilesMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    ManagedClusterAddonProfile,
+  ) as any as S.Schema<ManagedClusterPropertiesInputAddonProfilesMap>;
+
+/** Details about the pod identity assigned to the Managed Cluster. */
+export interface ManagedClusterPodIdentityInput {
+  /** The name of the pod identity. */
+  name: string;
+  /** The namespace of the pod identity. */
+  namespace: string;
+  /** The binding selector to use for the AzureIdentityBinding resource. */
+  bindingSelector?: string;
+  /** The user assigned identity details. */
+  identity: UserAssignedIdentity;
+}
+export const ManagedClusterPodIdentityInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String,
+    namespace: S.String,
+    bindingSelector: S.optional(S.String),
+    identity: UserAssignedIdentity,
+  }),
+).annotate({
+  identifier: "ManagedClusterPodIdentityInput",
+}) as any as S.Schema<ManagedClusterPodIdentityInput>;
+
+/** The pod identities to use in the cluster. */
+export type ManagedClusterPodIdentityProfileInputUserAssignedIdentitiesList =
+  Array<ManagedClusterPodIdentityInput>;
+export const ManagedClusterPodIdentityProfileInputUserAssignedIdentitiesList =
+  /*@__PURE__*/ S.Array(
+    ManagedClusterPodIdentityInput,
+  ) as any as S.Schema<ManagedClusterPodIdentityProfileInputUserAssignedIdentitiesList>;
+
+/** The pod identity exceptions to allow. */
+export type ManagedClusterPodIdentityProfileInputUserAssignedIdentityExceptionsList =
+  Array<ManagedClusterPodIdentityException>;
+export const ManagedClusterPodIdentityProfileInputUserAssignedIdentityExceptionsList =
+  /*@__PURE__*/ S.Array(
+    ManagedClusterPodIdentityException,
+  ) as any as S.Schema<ManagedClusterPodIdentityProfileInputUserAssignedIdentityExceptionsList>;
+
+/** The pod identity profile of the Managed Cluster. See [use AAD pod identity](https://docs.microsoft.com/azure/aks/use-azure-ad-pod-identity) for more details on pod identity integration. */
+export interface ManagedClusterPodIdentityProfileInput {
+  /** Whether the pod identity addon is enabled. */
+  enabled?: boolean;
+  /** Whether pod identity is allowed to run on clusters with Kubenet networking. Running in Kubenet is disabled by default due to the security related nature of AAD Pod Identity and the risks of IP spoofing. See [using Kubenet network plugin with AAD Pod Identity](https://docs.microsoft.com/azure/aks/use-azure-ad-pod-identity#using-kubenet-network-plugin-with-azure-active-directory-pod-managed-identities) for more information. */
+  allowNetworkPluginKubenet?: boolean;
+  /** The pod identities to use in the cluster. */
+  userAssignedIdentities?: ManagedClusterPodIdentityProfileInputUserAssignedIdentitiesList;
+  /** The pod identity exceptions to allow. */
+  userAssignedIdentityExceptions?: ManagedClusterPodIdentityProfileInputUserAssignedIdentityExceptionsList;
+}
+export const ManagedClusterPodIdentityProfileInput = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      enabled: S.optional(S.Boolean),
+      allowNetworkPluginKubenet: S.optional(S.Boolean),
+      userAssignedIdentities: S.optional(
+        ManagedClusterPodIdentityProfileInputUserAssignedIdentitiesList,
+      ),
+      userAssignedIdentityExceptions: S.optional(
+        ManagedClusterPodIdentityProfileInputUserAssignedIdentityExceptionsList,
+      ),
+    }),
+).annotate({
+  identifier: "ManagedClusterPodIdentityProfileInput",
+}) as any as S.Schema<ManagedClusterPodIdentityProfileInput>;
+
+/** The OIDC issuer profile of the Managed Cluster. */
+export interface ManagedClusterOIDCIssuerProfileInput {
+  /** Whether the OIDC issuer is enabled. */
+  enabled?: boolean;
+}
+export const ManagedClusterOIDCIssuerProfileInput = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      enabled: S.optional(S.Boolean),
+    }),
+).annotate({
+  identifier: "ManagedClusterOIDCIssuerProfileInput",
+}) as any as S.Schema<ManagedClusterOIDCIssuerProfileInput>;
+
+/** The outbound (egress) routing method. This can only be set at cluster creation time and cannot be changed later. For more information see [egress outbound type](https://docs.microsoft.com/azure/aks/egress-outboundtype). */
+export type ContainerServiceNetworkProfileInputOutboundType =
+  | "loadBalancer"
+  | "userDefinedRouting"
+  | "managedNATGateway"
+  | "userAssignedNATGateway"
+  | "none";
+export const ContainerServiceNetworkProfileInputOutboundType =
+  /*@__PURE__*/ S.String;
+
+/** The type of the managed inbound Load Balancer BackendPool. */
+export type ManagedClusterLoadBalancerProfileInputBackendPoolType =
+  | "NodeIPConfiguration"
+  | "NodeIP";
+export const ManagedClusterLoadBalancerProfileInputBackendPoolType =
+  /*@__PURE__*/ S.String;
+
+/** Profile of the managed cluster load balancer. */
+export interface ManagedClusterLoadBalancerProfileInput {
+  /** Desired managed outbound IPs for the cluster load balancer. */
+  managedOutboundIPs?: ManagedClusterLoadBalancerProfileManagedOutboundIPs;
+  /** Desired outbound IP Prefix resources for the cluster load balancer. */
+  outboundIPPrefixes?: ManagedClusterLoadBalancerProfileOutboundIPPrefixes;
+  /** Desired outbound IP resources for the cluster load balancer. */
+  outboundIPs?: ManagedClusterLoadBalancerProfileOutboundIPs;
+  /** The desired number of allocated SNAT ports per VM. Allowed values are in the range of 0 to 64000 (inclusive). The default value is 0 which results in Azure dynamically allocating ports. */
+  allocatedOutboundPorts?: number;
+  /** Desired outbound flow idle timeout in minutes. Allowed values are in the range of 4 to 120 (inclusive). The default value is 30 minutes. */
+  idleTimeoutInMinutes?: number;
+  /** Enable multiple standard load balancers per AKS cluster or not. */
+  enableMultipleStandardLoadBalancers?: boolean;
+  /** The type of the managed inbound Load Balancer BackendPool. */
+  backendPoolType?:
+    | ManagedClusterLoadBalancerProfileInputBackendPoolType
+    | (string & {});
+}
+export const ManagedClusterLoadBalancerProfileInput = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      managedOutboundIPs: S.optional(
+        ManagedClusterLoadBalancerProfileManagedOutboundIPs,
+      ),
+      outboundIPPrefixes: S.optional(
+        ManagedClusterLoadBalancerProfileOutboundIPPrefixes,
+      ),
+      outboundIPs: S.optional(ManagedClusterLoadBalancerProfileOutboundIPs),
+      allocatedOutboundPorts: S.optional(S.Number),
+      idleTimeoutInMinutes: S.optional(S.Number),
+      enableMultipleStandardLoadBalancers: S.optional(S.Boolean),
+      backendPoolType: S.optional(
+        ManagedClusterLoadBalancerProfileInputBackendPoolType,
+      ),
+    }),
+).annotate({
+  identifier: "ManagedClusterLoadBalancerProfileInput",
+}) as any as S.Schema<ManagedClusterLoadBalancerProfileInput>;
+
+/** A list of public IP prefix resources. */
+export type ManagedClusterNATGatewayProfileInputOutboundIPPrefixesPublicIPPrefixesList =
+  Array<string>;
+export const ManagedClusterNATGatewayProfileInputOutboundIPPrefixesPublicIPPrefixesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ManagedClusterNATGatewayProfileInputOutboundIPPrefixesPublicIPPrefixesList>;
+
+/** Desired outbound IP Prefix resources for the managed NAT Gateway. Only compatible with NAT Gateway V2. */
+export interface ManagedClusterNATGatewayProfileInputOutboundIPPrefixes {
+  /** A list of public IP prefix resources. */
+  publicIPPrefixes?: ManagedClusterNATGatewayProfileInputOutboundIPPrefixesPublicIPPrefixesList;
+}
+export const ManagedClusterNATGatewayProfileInputOutboundIPPrefixes =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      publicIPPrefixes: S.optional(
+        ManagedClusterNATGatewayProfileInputOutboundIPPrefixesPublicIPPrefixesList,
+      ),
+    }),
+  ).annotate({
+    identifier: "ManagedClusterNATGatewayProfileInputOutboundIPPrefixes",
+  }) as any as S.Schema<ManagedClusterNATGatewayProfileInputOutboundIPPrefixes>;
+
+/** A list of public IP resources. */
+export type ManagedClusterNATGatewayProfileInputOutboundIPsPublicIPsList =
+  Array<string>;
+export const ManagedClusterNATGatewayProfileInputOutboundIPsPublicIPsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ManagedClusterNATGatewayProfileInputOutboundIPsPublicIPsList>;
+
+/** Desired outbound IP resources for the managed NAT Gateway. */
+export interface ManagedClusterNATGatewayProfileInputOutboundIPs {
+  /** A list of public IP resources. */
+  publicIPs?: ManagedClusterNATGatewayProfileInputOutboundIPsPublicIPsList;
+}
+export const ManagedClusterNATGatewayProfileInputOutboundIPs =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      publicIPs: S.optional(
+        ManagedClusterNATGatewayProfileInputOutboundIPsPublicIPsList,
+      ),
+    }),
+  ).annotate({
+    identifier: "ManagedClusterNATGatewayProfileInputOutboundIPs",
+  }) as any as S.Schema<ManagedClusterNATGatewayProfileInputOutboundIPs>;
+
+/** Profile of the managed cluster NAT gateway. */
+export interface ManagedClusterNATGatewayProfileInput {
+  /** The SKU of the managed cluster NAT Gateway. Defaults to 'StandardV2' where available in the region, otherwise 'Standard'. */
+  sku?: ManagedClusterNATGatewaySku | (string & {});
+  /** Profile of the managed outbound IP resources of the cluster NAT gateway. */
+  managedOutboundIPProfile?: ManagedClusterManagedOutboundIPProfile;
+  /** Desired outbound IP Prefix resources for the managed NAT Gateway. Only compatible with NAT Gateway V2. */
+  outboundIPPrefixes?: ManagedClusterNATGatewayProfileInputOutboundIPPrefixes;
+  /** Desired outbound IP resources for the managed NAT Gateway. */
+  outboundIPs?: ManagedClusterNATGatewayProfileInputOutboundIPs;
+  /** Desired outbound flow idle timeout in minutes. Allowed values are in the range of 4 to 120 (inclusive). The default value is 4 minutes. */
+  idleTimeoutInMinutes?: number;
+}
+export const ManagedClusterNATGatewayProfileInput = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      sku: S.optional(ManagedClusterNATGatewaySku),
+      managedOutboundIPProfile: S.optional(
+        ManagedClusterManagedOutboundIPProfile,
+      ),
+      outboundIPPrefixes: S.optional(
+        ManagedClusterNATGatewayProfileInputOutboundIPPrefixes,
+      ),
+      outboundIPs: S.optional(ManagedClusterNATGatewayProfileInputOutboundIPs),
+      idleTimeoutInMinutes: S.optional(S.Number),
+    }),
+).annotate({
+  identifier: "ManagedClusterNATGatewayProfileInput",
+}) as any as S.Schema<ManagedClusterNATGatewayProfileInput>;
+
+/** The CIDR notation IP ranges from which to assign pod IPs. One IPv4 CIDR is expected for single-stack networking. Two CIDRs, one for each IP family (IPv4/IPv6), is expected for dual-stack networking. */
+export type ContainerServiceNetworkProfileInputPodCidrsList = Array<string>;
+export const ContainerServiceNetworkProfileInputPodCidrsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ContainerServiceNetworkProfileInputPodCidrsList>;
+
+/** The CIDR notation IP ranges from which to assign service cluster IPs. One IPv4 CIDR is expected for single-stack networking. Two CIDRs, one for each IP family (IPv4/IPv6), is expected for dual-stack networking. They must not overlap with any Subnet IP ranges. */
+export type ContainerServiceNetworkProfileInputServiceCidrsList = Array<string>;
+export const ContainerServiceNetworkProfileInputServiceCidrsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ContainerServiceNetworkProfileInputServiceCidrsList>;
+
+/** The IP families used to specify IP versions available to the cluster. IP families are used to determine single-stack or dual-stack clusters. For single-stack, the expected value is IPv4. For dual-stack, the expected values are IPv4 and IPv6. */
+export type ContainerServiceNetworkProfileInputIpFamiliesList = Array<
+  IPFamily | (string & {})
+>;
+export const ContainerServiceNetworkProfileInputIpFamiliesList =
+  /*@__PURE__*/ S.Array(
+    IPFamily,
+  ) as any as S.Schema<ContainerServiceNetworkProfileInputIpFamiliesList>;
+
+/** Profile of network configuration. */
+export interface ContainerServiceNetworkProfileInput {
+  /** Network plugin used for building the Kubernetes network. */
+  networkPlugin?: NetworkPlugin | (string & {});
+  /** The mode the network plugin should use. */
+  networkPluginMode?: NetworkPluginMode | (string & {});
+  /** Network policy used for building the Kubernetes network. */
+  networkPolicy?: NetworkPolicy | (string & {});
+  /** The network mode Azure CNI is configured with. This cannot be specified if networkPlugin is anything other than 'azure'. */
+  networkMode?: NetworkMode | (string & {});
+  /** Network dataplane used in the Kubernetes cluster. */
+  networkDataplane?: NetworkDataplane | (string & {});
+  /** Advanced Networking profile for enabling observability and security feature suite on a cluster. For more information see aka.ms/aksadvancednetworking. */
+  advancedNetworking?: AdvancedNetworking;
+  /** A CIDR notation IP range from which to assign pod IPs when kubenet is used. */
+  podCidr?: string;
+  /** A CIDR notation IP range from which to assign service cluster IPs. It must not overlap with any Subnet IP ranges. */
+  serviceCidr?: string;
+  /** An IP address assigned to the Kubernetes DNS service. It must be within the Kubernetes service address range specified in serviceCidr. */
+  dnsServiceIP?: string;
+  /** The outbound (egress) routing method. This can only be set at cluster creation time and cannot be changed later. For more information see [egress outbound type](https://docs.microsoft.com/azure/aks/egress-outboundtype). */
+  outboundType?:
+    | ContainerServiceNetworkProfileInputOutboundType
+    | (string & {});
+  /** The load balancer sku for the managed cluster. The default is 'standard'. See [Azure Load Balancer SKUs](https://docs.microsoft.com/azure/load-balancer/skus) for more information about the differences between load balancer SKUs. */
+  loadBalancerSku?: LoadBalancerSku | (string & {});
+  /** Profile of the cluster load balancer. */
+  loadBalancerProfile?: ManagedClusterLoadBalancerProfileInput;
+  /** Profile of the cluster NAT gateway. */
+  natGatewayProfile?: ManagedClusterNATGatewayProfileInput;
+  /** The profile for Static Egress Gateway addon. For more details about Static Egress Gateway, see https://aka.ms/aks/static-egress-gateway. */
+  staticEgressGatewayProfile?: ManagedClusterStaticEgressGatewayProfile;
+  /** The CIDR notation IP ranges from which to assign pod IPs. One IPv4 CIDR is expected for single-stack networking. Two CIDRs, one for each IP family (IPv4/IPv6), is expected for dual-stack networking. */
+  podCidrs?: ContainerServiceNetworkProfileInputPodCidrsList;
+  /** The CIDR notation IP ranges from which to assign service cluster IPs. One IPv4 CIDR is expected for single-stack networking. Two CIDRs, one for each IP family (IPv4/IPv6), is expected for dual-stack networking. They must not overlap with any Subnet IP ranges. */
+  serviceCidrs?: ContainerServiceNetworkProfileInputServiceCidrsList;
+  /** The IP families used to specify IP versions available to the cluster. IP families are used to determine single-stack or dual-stack clusters. For single-stack, the expected value is IPv4. For dual-stack, the expected values are IPv4 and IPv6. */
+  ipFamilies?: ContainerServiceNetworkProfileInputIpFamiliesList;
+}
+export const ContainerServiceNetworkProfileInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    networkPlugin: S.optional(NetworkPlugin),
+    networkPluginMode: S.optional(NetworkPluginMode),
+    networkPolicy: S.optional(NetworkPolicy),
+    networkMode: S.optional(NetworkMode),
+    networkDataplane: S.optional(NetworkDataplane),
+    advancedNetworking: S.optional(AdvancedNetworking),
+    podCidr: S.optional(S.String),
+    serviceCidr: S.optional(S.String),
+    dnsServiceIP: S.optional(S.String),
+    outboundType: S.optional(ContainerServiceNetworkProfileInputOutboundType),
+    loadBalancerSku: S.optional(LoadBalancerSku),
+    loadBalancerProfile: S.optional(ManagedClusterLoadBalancerProfileInput),
+    natGatewayProfile: S.optional(ManagedClusterNATGatewayProfileInput),
+    staticEgressGatewayProfile: S.optional(
+      ManagedClusterStaticEgressGatewayProfile,
+    ),
+    podCidrs: S.optional(ContainerServiceNetworkProfileInputPodCidrsList),
+    serviceCidrs: S.optional(
+      ContainerServiceNetworkProfileInputServiceCidrsList,
+    ),
+    ipFamilies: S.optional(ContainerServiceNetworkProfileInputIpFamiliesList),
+  }),
+).annotate({
+  identifier: "ContainerServiceNetworkProfileInput",
+}) as any as S.Schema<ContainerServiceNetworkProfileInput>;
+
+/** The user identity associated with the managed cluster. This identity will be used by the kubelet. Only one user assigned identity is allowed. The only accepted key is "kubeletidentity", with value of "resourceId": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}". */
+export type ManagedClusterPropertiesInputIdentityProfileMap = {
+  [key: string]: UserAssignedIdentity | undefined;
+};
+export const ManagedClusterPropertiesInputIdentityProfileMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    UserAssignedIdentity,
+  ) as any as S.Schema<ManagedClusterPropertiesInputIdentityProfileMap>;
+
+/** The RequiredMembers of the resource */
+export type PrivateLinkResourceInputRequiredMembersList = Array<string>;
+export const PrivateLinkResourceInputRequiredMembersList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<PrivateLinkResourceInputRequiredMembersList>;
+
+/** A private link resource */
+export interface PrivateLinkResourceInput {
+  /** The ID of the private link resource. */
+  id?: string;
+  /** The name of the private link resource. See [naming rules](https://aka.ms/search-naming-rules) for more details. */
+  name?: string;
+  /** The resource type. */
+  type?: string;
+  /** The group ID of the resource. */
+  groupId?: string;
+  /** The RequiredMembers of the resource */
+  requiredMembers?: PrivateLinkResourceInputRequiredMembersList;
+}
+export const PrivateLinkResourceInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    groupId: S.optional(S.String),
+    requiredMembers: S.optional(PrivateLinkResourceInputRequiredMembersList),
+  }),
+).annotate({
+  identifier: "PrivateLinkResourceInput",
+}) as any as S.Schema<PrivateLinkResourceInput>;
+
+/** Private link resources associated with the cluster. */
+export type ManagedClusterPropertiesInputPrivateLinkResourcesList =
+  Array<PrivateLinkResourceInput>;
+export const ManagedClusterPropertiesInputPrivateLinkResourcesList =
+  /*@__PURE__*/ S.Array(
+    PrivateLinkResourceInput,
+  ) as any as S.Schema<ManagedClusterPropertiesInputPrivateLinkResourcesList>;
+
+/** The error detail. */
+export type ManagedClusterStatusInputProvisioningError =
+  AgentPoolStatusInputProvisioningError;
+export const ManagedClusterStatusInputProvisioningError =
+  AgentPoolStatusInputProvisioningError;
+
+/** Contains read-only information about the Managed Cluster. */
+export type ManagedClusterStatusInput = AgentPoolStatusInput;
+export const ManagedClusterStatusInput = AgentPoolStatusInput;
+
+/** Properties of the managed cluster. */
+export interface ManagedClusterPropertiesInput {
+  /** The version of Kubernetes specified by the user. Both patch version <major.minor.patch> (e.g. 1.20.13) and <major.minor> (e.g. 1.20) are supported. When <major.minor> is specified, the latest supported GA patch version is chosen automatically. Updating the cluster with the same <major.minor> once it has been created (e.g. 1.14.x -> 1.14) will not trigger an upgrade, even if a newer patch version is available. When you upgrade a supported AKS cluster, Kubernetes minor versions cannot be skipped. All upgrades must be performed sequentially by major version number. For example, upgrades between 1.14.x -> 1.15.x or 1.15.x -> 1.16.x are allowed, however 1.14.x -> 1.16.x is not allowed. See [upgrading an AKS cluster](https://docs.microsoft.com/azure/aks/upgrade-cluster) for more details. */
+  kubernetesVersion?: string;
+  /** The DNS prefix of the Managed Cluster. This cannot be updated once the Managed Cluster has been created. */
+  dnsPrefix?: string;
+  /** The FQDN subdomain of the private cluster with custom private dns zone. This cannot be updated once the Managed Cluster has been created. */
+  fqdnSubdomain?: string;
+  /** The agent pool properties. */
+  agentPoolProfiles?: ManagedClusterPropertiesInputAgentPoolProfilesList;
+  /** The profile for Linux VMs in the Managed Cluster. */
+  linuxProfile?: ContainerServiceLinuxProfile;
+  /** The profile for Windows VMs in the Managed Cluster. */
+  windowsProfile?: ManagedClusterWindowsProfile;
+  /** Information about a service principal identity for the cluster to use for manipulating Azure APIs. */
+  servicePrincipalProfile?: ManagedClusterServicePrincipalProfile;
+  /** The profile of managed cluster add-on. */
+  addonProfiles?: ManagedClusterPropertiesInputAddonProfilesMap;
+  /** The pod identity profile of the Managed Cluster. See [use AAD pod identity](https://docs.microsoft.com/azure/aks/use-azure-ad-pod-identity) for more details on AAD pod identity integration. */
+  podIdentityProfile?: ManagedClusterPodIdentityProfileInput;
+  /** The OIDC issuer profile of the Managed Cluster. */
+  oidcIssuerProfile?: ManagedClusterOIDCIssuerProfileInput;
+  /** The name of the resource group containing agent pool nodes. */
+  nodeResourceGroup?: string;
+  /** Profile of the node resource group configuration. */
+  nodeResourceGroupProfile?: ManagedClusterNodeResourceGroupProfile;
+  /** Whether to enable Kubernetes Role-Based Access Control. */
+  enableRBAC?: boolean;
+  /** The support plan for the Managed Cluster. If unspecified, the default is 'KubernetesOfficial'. */
+  supportPlan?: KubernetesSupportPlan | (string & {});
+  /** The network configuration profile. */
+  networkProfile?: ContainerServiceNetworkProfileInput;
+  /** The Azure Active Directory configuration. */
+  aadProfile?: ManagedClusterAADProfile;
+  /** The auto upgrade configuration. */
+  autoUpgradeProfile?: ManagedClusterAutoUpgradeProfile;
+  /** Settings for upgrading a cluster. */
+  upgradeSettings?: ClusterUpgradeSettings;
+  /** Parameters to be applied to the cluster-autoscaler when enabled */
+  autoScalerProfile?: ManagedClusterPropertiesAutoScalerProfile;
+  /** The access profile for managed cluster API server. */
+  apiServerAccessProfile?: ManagedClusterAPIServerAccessProfile;
+  /** The Resource ID of the disk encryption set to use for enabling encryption at rest. This is of the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/diskEncryptionSets/{encryptionSetName}' */
+  diskEncryptionSetID?: string;
+  /** The user identity associated with the managed cluster. This identity will be used by the kubelet. Only one user assigned identity is allowed. The only accepted key is "kubeletidentity", with value of "resourceId": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}". */
+  identityProfile?: ManagedClusterPropertiesInputIdentityProfileMap;
+  /** Private link resources associated with the cluster. */
+  privateLinkResources?: ManagedClusterPropertiesInputPrivateLinkResourcesList;
+  /** If local accounts should be disabled on the Managed Cluster. If set to true, getting static credentials will be disabled for this cluster. This must only be used on Managed Clusters that are AAD enabled. For more details see [disable local accounts](https://docs.microsoft.com/azure/aks/managed-aad#disable-local-accounts-preview). */
+  disableLocalAccounts?: boolean;
+  /** Configurations for provisioning the cluster with HTTP proxy servers. */
+  httpProxyConfig?: ManagedClusterHTTPProxyConfig;
+  /** Security profile for the managed cluster. */
+  securityProfile?: ManagedClusterSecurityProfile;
+  /** Storage profile for the managed cluster. */
+  storageProfile?: ManagedClusterStorageProfile;
+  /** Ingress profile for the managed cluster. */
+  ingressProfile?: ManagedClusterIngressProfile;
+  /** PublicNetworkAccess of the managedCluster. Allow or deny public network access for AKS */
+  publicNetworkAccess?: PublicNetworkAccess | (string & {});
+  /** Workload Auto-scaler profile for the managed cluster. */
+  workloadAutoScalerProfile?: ManagedClusterWorkloadAutoScalerProfile;
+  /** Azure Monitor addon profiles for monitoring the managed cluster. */
+  azureMonitorProfile?: ManagedClusterAzureMonitorProfile;
+  /** Service mesh profile for a managed cluster. */
+  serviceMeshProfile?: ServiceMeshProfile;
+  /** Optional cluster metrics configuration. */
+  metricsProfile?: ManagedClusterMetricsProfile;
+  /** Node provisioning settings that apply to the whole cluster. */
+  nodeProvisioningProfile?: ManagedClusterNodeProvisioningProfile;
+  /** Profile of the cluster bootstrap configuration. */
+  bootstrapProfile?: ManagedClusterBootstrapProfile;
+  /** AI toolchain operator settings that apply to the whole cluster. */
+  aiToolchainOperatorProfile?: ManagedClusterAIToolchainOperatorProfile;
+  /** Profile with scheduler-related settings, like the configuration mode for each scheduler managed by AKS. See https://aka.ms/aks/scheduler-profile. */
+  schedulerProfile?: SchedulerProfile;
+  /** Settings for hosted system addons. For more information, see https://aka.ms/aks/automatic/systemcomponents. */
+  hostedSystemProfile?: ManagedClusterHostedSystemProfile;
+  /** Contains read-only information about the Managed Cluster. */
+  status?: AgentPoolStatusInput;
+}
+export const ManagedClusterPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    kubernetesVersion: S.optional(S.String),
+    dnsPrefix: S.optional(S.String),
+    fqdnSubdomain: S.optional(S.String),
+    agentPoolProfiles: S.optional(
+      ManagedClusterPropertiesInputAgentPoolProfilesList,
+    ),
+    linuxProfile: S.optional(ContainerServiceLinuxProfile),
+    windowsProfile: S.optional(ManagedClusterWindowsProfile),
+    servicePrincipalProfile: S.optional(ManagedClusterServicePrincipalProfile),
+    addonProfiles: S.optional(ManagedClusterPropertiesInputAddonProfilesMap),
+    podIdentityProfile: S.optional(ManagedClusterPodIdentityProfileInput),
+    oidcIssuerProfile: S.optional(ManagedClusterOIDCIssuerProfileInput),
+    nodeResourceGroup: S.optional(S.String),
+    nodeResourceGroupProfile: S.optional(
+      ManagedClusterNodeResourceGroupProfile,
+    ),
+    enableRBAC: S.optional(S.Boolean),
+    supportPlan: S.optional(KubernetesSupportPlan),
+    networkProfile: S.optional(ContainerServiceNetworkProfileInput),
+    aadProfile: S.optional(ManagedClusterAADProfile),
+    autoUpgradeProfile: S.optional(ManagedClusterAutoUpgradeProfile),
+    upgradeSettings: S.optional(ClusterUpgradeSettings),
+    autoScalerProfile: S.optional(ManagedClusterPropertiesAutoScalerProfile),
+    apiServerAccessProfile: S.optional(ManagedClusterAPIServerAccessProfile),
+    diskEncryptionSetID: S.optional(S.String),
+    identityProfile: S.optional(
+      ManagedClusterPropertiesInputIdentityProfileMap,
+    ),
+    privateLinkResources: S.optional(
+      ManagedClusterPropertiesInputPrivateLinkResourcesList,
+    ),
+    disableLocalAccounts: S.optional(S.Boolean),
+    httpProxyConfig: S.optional(ManagedClusterHTTPProxyConfig),
+    securityProfile: S.optional(ManagedClusterSecurityProfile),
+    storageProfile: S.optional(ManagedClusterStorageProfile),
+    ingressProfile: S.optional(ManagedClusterIngressProfile),
+    publicNetworkAccess: S.optional(PublicNetworkAccess),
+    workloadAutoScalerProfile: S.optional(
+      ManagedClusterWorkloadAutoScalerProfile,
+    ),
+    azureMonitorProfile: S.optional(ManagedClusterAzureMonitorProfile),
+    serviceMeshProfile: S.optional(ServiceMeshProfile),
+    metricsProfile: S.optional(ManagedClusterMetricsProfile),
+    nodeProvisioningProfile: S.optional(ManagedClusterNodeProvisioningProfile),
+    bootstrapProfile: S.optional(ManagedClusterBootstrapProfile),
+    aiToolchainOperatorProfile: S.optional(
+      ManagedClusterAIToolchainOperatorProfile,
+    ),
+    schedulerProfile: S.optional(SchedulerProfile),
+    hostedSystemProfile: S.optional(ManagedClusterHostedSystemProfile),
+    status: S.optional(AgentPoolStatusInput),
+  }),
+).annotate({
+  identifier: "ManagedClusterPropertiesInput",
+}) as any as S.Schema<ManagedClusterPropertiesInput>;
+
+/** Delegated resource properties - internal use only. */
+export type ManagedClusterIdentityInputDelegatedResourcesValue =
+  ManagedClusterIdentityDelegatedResourcesValue;
+export const ManagedClusterIdentityInputDelegatedResourcesValue =
+  ManagedClusterIdentityDelegatedResourcesValue;
+
+/** The delegated identity resources assigned to this managed cluster. This can only be set by another Azure Resource Provider, and managed cluster only accept one delegated identity resource. Internal use only. */
+export type ManagedClusterIdentityInputDelegatedResourcesMap = {
+  [key: string]: ManagedClusterIdentityDelegatedResourcesValue | undefined;
+};
+export const ManagedClusterIdentityInputDelegatedResourcesMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    ManagedClusterIdentityDelegatedResourcesValue,
+  ) as any as S.Schema<ManagedClusterIdentityInputDelegatedResourcesMap>;
+
+/** User assigned identity properties. */
+export type ManagedServiceIdentityUserAssignedIdentitiesValueInput =
+  AgentPoolStatusInputProvisioningError;
+export const ManagedServiceIdentityUserAssignedIdentitiesValueInput =
+  AgentPoolStatusInputProvisioningError;
+
+/** The user identity associated with the managed cluster. This identity will be used in control plane. Only one user assigned identity is allowed. The keys must be ARM resource IDs in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'. */
+export type ManagedClusterIdentityInputUserAssignedIdentitiesMap = {
+  [key: string]: AgentPoolStatusInputProvisioningError | undefined;
+};
+export const ManagedClusterIdentityInputUserAssignedIdentitiesMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    AgentPoolStatusInputProvisioningError,
+  ) as any as S.Schema<ManagedClusterIdentityInputUserAssignedIdentitiesMap>;
+
+/** Identity for the managed cluster. */
+export interface ManagedClusterIdentityInput {
+  /** The type of identity used for the managed cluster. For more information see [use managed identities in AKS](https://docs.microsoft.com/azure/aks/use-managed-identity). */
+  type?: ResourceIdentityType | (string & {});
+  /** The delegated identity resources assigned to this managed cluster. This can only be set by another Azure Resource Provider, and managed cluster only accept one delegated identity resource. Internal use only. */
+  delegatedResources?: ManagedClusterIdentityInputDelegatedResourcesMap;
+  /** The user identity associated with the managed cluster. This identity will be used in control plane. Only one user assigned identity is allowed. The keys must be ARM resource IDs in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'. */
+  userAssignedIdentities?: ManagedClusterIdentityInputUserAssignedIdentitiesMap;
+}
+export const ManagedClusterIdentityInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: S.optional(ResourceIdentityType),
+    delegatedResources: S.optional(
+      ManagedClusterIdentityInputDelegatedResourcesMap,
+    ),
+    userAssignedIdentities: S.optional(
+      ManagedClusterIdentityInputUserAssignedIdentitiesMap,
+    ),
+  }),
+).annotate({
+  identifier: "ManagedClusterIdentityInput",
+}) as any as S.Schema<ManagedClusterIdentityInput>;
+
+export interface ManagedClustersCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the managed cluster resource. */
+  resourceName: string;
+  /** Resource tags. */
+  tags?: ManagedClustersCreateOrUpdateRequestTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Properties of a managed cluster. */
+  properties?: ManagedClusterPropertiesInput;
+  /** The managed cluster SKU. */
+  sku?: ManagedClusterSKU;
+  /** The extended location of the Virtual Machine. */
+  extendedLocation?: ExtendedLocation;
+  /** The identity of the managed cluster, if configured. */
+  identity?: ManagedClusterIdentityInput;
+  /** This is primarily used to expose different UI experiences in the portal for different kinds */
+  kind?: string;
+}
+export const ManagedClustersCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      resourceName: S.String.pipe(T.Label()),
+      tags: S.optional(ManagedClustersCreateOrUpdateRequestTagsMap),
+      location: S.String,
+      properties: S.optional(ManagedClusterPropertiesInput),
+      sku: S.optional(ManagedClusterSKU),
+      extendedLocation: S.optional(ExtendedLocation),
+      identity: S.optional(ManagedClusterIdentityInput),
+      kind: S.optional(S.String),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+).annotate({
+  identifier: "ManagedClustersCreateOrUpdateRequest",
+}) as any as S.Schema<ManagedClustersCreateOrUpdateRequest>;
+
+/** Resource tags. */
+export type ManagedClustersCreateOrUpdateResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const ManagedClustersCreateOrUpdateResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<ManagedClustersCreateOrUpdateResponseTagsMap>;
+
+export interface ManagedClustersCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: ManagedClustersCreateOrUpdateResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Properties of a managed cluster. */
+  properties?: ManagedClusterProperties;
+  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
+  eTag?: string;
+  /** The managed cluster SKU. */
+  sku?: ManagedClusterSKU;
+  /** The extended location of the Virtual Machine. */
+  extendedLocation?: ExtendedLocation;
+  /** The identity of the managed cluster, if configured. */
+  identity?: ManagedClusterIdentity;
+  /** This is primarily used to expose different UI experiences in the portal for different kinds */
+  kind?: string;
+}
+export const ManagedClustersCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      tags: S.optional(ManagedClustersCreateOrUpdateResponseTagsMap),
+      location: S.String,
+      properties: S.optional(ManagedClusterProperties),
+      eTag: S.optional(S.String),
+      sku: S.optional(ManagedClusterSKU),
+      extendedLocation: S.optional(ExtendedLocation),
+      identity: S.optional(ManagedClusterIdentity),
+      kind: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "ManagedClustersCreateOrUpdateResponse",
+}) as any as S.Schema<ManagedClustersCreateOrUpdateResponse>;
+
+/** Resource tags. */
+export type ManagedNamespacesCreateOrUpdateRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const ManagedNamespacesCreateOrUpdateRequestTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<ManagedNamespacesCreateOrUpdateRequestTagsMap>;
+
+/** The labels of managed namespace. */
+export type NamespacePropertiesInputLabelsMap = {
+  [key: string]: string | undefined;
+};
+export const NamespacePropertiesInputLabelsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<NamespacePropertiesInputLabelsMap>;
+
+/** The annotations of managed namespace. */
+export type NamespacePropertiesInputAnnotationsMap = {
+  [key: string]: string | undefined;
+};
+export const NamespacePropertiesInputAnnotationsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<NamespacePropertiesInputAnnotationsMap>;
+
+/** Properties of a namespace managed by ARM */
+export interface NamespacePropertiesInput {
+  /** The labels of managed namespace. */
+  labels?: NamespacePropertiesInputLabelsMap;
+  /** The annotations of managed namespace. */
+  annotations?: NamespacePropertiesInputAnnotationsMap;
+  /** The default resource quota enforced upon the namespace. Customers can have other Kubernetes resource quota objects under the namespace. Resource quotas are additive; if multiple resource quotas are applied to a given namespace, then the effective limit will be one such that all quotas on the namespace can be satisfied. */
+  defaultResourceQuota?: ResourceQuota;
+  /** The default network policy enforced upon the namespace. Customers can have other Kubernetes network policy objects under the namespace. Network policies are additive; if a policy or policies apply to a given pod for a given direction, the connections allowed in that direction for the pod is the union of what all applicable policies allow. */
+  defaultNetworkPolicy?: NetworkPolicies;
+  /** Action if Kubernetes namespace with same name already exists. */
+  adoptionPolicy?: AdoptionPolicy | (string & {});
+  /** Delete options of a namespace. */
+  deletePolicy?: DeletePolicy | (string & {});
+}
+export const NamespacePropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    labels: S.optional(NamespacePropertiesInputLabelsMap),
+    annotations: S.optional(NamespacePropertiesInputAnnotationsMap),
+    defaultResourceQuota: S.optional(ResourceQuota),
+    defaultNetworkPolicy: S.optional(NetworkPolicies),
+    adoptionPolicy: S.optional(AdoptionPolicy),
+    deletePolicy: S.optional(DeletePolicy),
+  }),
+).annotate({
+  identifier: "NamespacePropertiesInput",
+}) as any as S.Schema<NamespacePropertiesInput>;
+
+export interface ManagedNamespacesCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the managed cluster resource. */
+  resourceName: string;
+  /** The name of the managed namespace. */
+  managedNamespaceName: string;
+  /** Resource tags. */
+  tags?: ManagedNamespacesCreateOrUpdateRequestTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Properties of a namespace. */
+  properties?: NamespacePropertiesInput;
+}
+export const ManagedNamespacesCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      resourceName: S.String.pipe(T.Label()),
+      managedNamespaceName: S.String.pipe(T.Label()),
+      tags: S.optional(ManagedNamespacesCreateOrUpdateRequestTagsMap),
+      location: S.String,
+      properties: S.optional(NamespacePropertiesInput),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/managedNamespaces/{managedNamespaceName}",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+).annotate({
+  identifier: "ManagedNamespacesCreateOrUpdateRequest",
+}) as any as S.Schema<ManagedNamespacesCreateOrUpdateRequest>;
+
+/** Resource tags. */
+export type ManagedNamespacesCreateOrUpdateResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const ManagedNamespacesCreateOrUpdateResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<ManagedNamespacesCreateOrUpdateResponseTagsMap>;
+
+export interface ManagedNamespacesCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: ManagedNamespacesCreateOrUpdateResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Properties of a namespace. */
+  properties?: NamespaceProperties;
+  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
+  eTag?: string;
+}
+export const ManagedNamespacesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      tags: S.optional(ManagedNamespacesCreateOrUpdateResponseTagsMap),
+      location: S.String,
+      properties: S.optional(NamespaceProperties),
+      eTag: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "ManagedNamespacesCreateOrUpdateResponse",
+}) as any as S.Schema<ManagedNamespacesCreateOrUpdateResponse>;
+
+/** The RequiredMembers of the resource */
+export type PostResolvePrivateLinkServiceIdRequestRequiredMembersList =
+  Array<string>;
+export const PostResolvePrivateLinkServiceIdRequestRequiredMembersList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<PostResolvePrivateLinkServiceIdRequestRequiredMembersList>;
+
+export interface PostResolvePrivateLinkServiceIdRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the managed cluster resource. */
+  resourceName: string;
+  /** The ID of the private link resource. */
+  id?: string;
+  /** The name of the private link resource. See [naming rules](https://aka.ms/search-naming-rules) for more details. */
+  name?: string;
+  /** The resource type. */
+  type?: string;
+  /** The group ID of the resource. */
+  groupId?: string;
+  /** The RequiredMembers of the resource */
+  requiredMembers?: PostResolvePrivateLinkServiceIdRequestRequiredMembersList;
+}
+export const PostResolvePrivateLinkServiceIdRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      resourceName: S.String.pipe(T.Label()),
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      groupId: S.optional(S.String),
+      requiredMembers: S.optional(
+        PostResolvePrivateLinkServiceIdRequestRequiredMembersList,
+      ),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/resolvePrivateLinkServiceId",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+).annotate({
+  identifier: "PostResolvePrivateLinkServiceIdRequest",
+}) as any as S.Schema<PostResolvePrivateLinkServiceIdRequest>;
+
+export interface ResetManagedClusterServicePrincipalProfileRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the managed cluster resource. */
+  resourceName: string;
+  /** The ID for the service principal. */
+  clientId: string;
+  /** The secret password associated with the service principal in plain text. */
+  secret?: string | Redacted.Redacted<string>;
+}
+export const ResetManagedClusterServicePrincipalProfileRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      resourceName: S.String.pipe(T.Label()),
+      clientId: S.String,
+      secret: S.optional(S.String.pipe(T.SensitiveValue({}))),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/resetServicePrincipalProfile",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ResetManagedClusterServicePrincipalProfileRequest",
+  }) as any as S.Schema<ResetManagedClusterServicePrincipalProfileRequest>;
+
+export interface ResetManagedClusterServicePrincipalProfileResponse {}
+export const ResetManagedClusterServicePrincipalProfileResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "ResetManagedClusterServicePrincipalProfileResponse",
+  }) as any as S.Schema<ResetManagedClusterServicePrincipalProfileResponse>;
+
+export interface RotateManagedClusterClusterCertificatesRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the managed cluster resource. */
+  resourceName: string;
+}
+export const RotateManagedClusterClusterCertificatesRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      resourceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/rotateClusterCertificates",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "RotateManagedClusterClusterCertificatesRequest",
+  }) as any as S.Schema<RotateManagedClusterClusterCertificatesRequest>;
+
+export interface RotateManagedClusterClusterCertificatesResponse {}
+export const RotateManagedClusterClusterCertificatesResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "RotateManagedClusterClusterCertificatesResponse",
+  }) as any as S.Schema<RotateManagedClusterClusterCertificatesResponse>;
+
+export interface RotateManagedClusterServiceAccountSigningKeysRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the managed cluster resource. */
+  resourceName: string;
+}
+export const RotateManagedClusterServiceAccountSigningKeysRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      resourceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/rotateServiceAccountSigningKeys",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "RotateManagedClusterServiceAccountSigningKeysRequest",
+  }) as any as S.Schema<RotateManagedClusterServiceAccountSigningKeysRequest>;
+
+export interface RotateManagedClusterServiceAccountSigningKeysResponse {}
+export const RotateManagedClusterServiceAccountSigningKeysResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "RotateManagedClusterServiceAccountSigningKeysResponse",
+  }) as any as S.Schema<RotateManagedClusterServiceAccountSigningKeysResponse>;
+
+export interface RunManagedClusterCommandRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the managed cluster resource. */
+  resourceName: string;
+  /** The command to run. */
+  command: string;
+  /** A base64 encoded zip file containing the files required by the command. */
+  context?: string;
+  /** AuthToken issued for AKS AAD Server App. */
+  clusterToken?: string;
+}
+export const RunManagedClusterCommandRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    resourceName: S.String.pipe(T.Label()),
+    command: S.String,
+    context: S.optional(S.String),
+    clusterToken: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/runCommand",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "RunManagedClusterCommandRequest",
+}) as any as S.Schema<RunManagedClusterCommandRequest>;
+
+/** Resource tags. */
+export type SnapshotsCreateOrUpdateRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const SnapshotsCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<SnapshotsCreateOrUpdateRequestTagsMap>;
+
+/** The type of a snapshot. The default is NodePool. */
+export type SnapshotPropertiesInputSnapshotType = "NodePool";
+export const SnapshotPropertiesInputSnapshotType = /*@__PURE__*/ S.String;
+
+/** Properties used to configure a node pool snapshot. */
+export interface SnapshotPropertiesInput {
+  /** CreationData to be used to specify the source agent pool resource ID to create this snapshot. */
+  creationData?: CreationData;
+  /** The type of a snapshot. The default is NodePool. */
+  snapshotType?: SnapshotPropertiesInputSnapshotType | (string & {});
+}
+export const SnapshotPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    creationData: S.optional(CreationData),
+    snapshotType: S.optional(SnapshotPropertiesInputSnapshotType),
+  }),
+).annotate({
+  identifier: "SnapshotPropertiesInput",
+}) as any as S.Schema<SnapshotPropertiesInput>;
+
+export interface SnapshotsCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the managed cluster resource. */
+  resourceName: string;
+  /** Resource tags. */
+  tags?: SnapshotsCreateOrUpdateRequestTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Properties of a snapshot. */
+  properties?: SnapshotPropertiesInput;
+}
+export const SnapshotsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    resourceName: S.String.pipe(T.Label()),
+    tags: S.optional(SnapshotsCreateOrUpdateRequestTagsMap),
+    location: S.String,
+    properties: S.optional(SnapshotPropertiesInput),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/snapshots/{resourceName}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "SnapshotsCreateOrUpdateRequest",
+}) as any as S.Schema<SnapshotsCreateOrUpdateRequest>;
+
+/** Resource tags. */
+export type SnapshotsCreateOrUpdateResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const SnapshotsCreateOrUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<SnapshotsCreateOrUpdateResponseTagsMap>;
+
+export interface SnapshotsCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: SnapshotsCreateOrUpdateResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Properties of a snapshot. */
+  properties?: SnapshotProperties;
+}
+export const SnapshotsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(SnapshotsCreateOrUpdateResponseTagsMap),
+    location: S.String,
+    properties: S.optional(SnapshotProperties),
+  }),
+).annotate({
+  identifier: "SnapshotsCreateOrUpdateResponse",
+}) as any as S.Schema<SnapshotsCreateOrUpdateResponse>;
+
+export interface StartManagedClusterRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the managed cluster resource. */
+  resourceName: string;
+}
+export const StartManagedClusterRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    resourceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/start",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "StartManagedClusterRequest",
+}) as any as S.Schema<StartManagedClusterRequest>;
+
+export interface StartManagedClusterResponse {}
+export const StartManagedClusterResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "StartManagedClusterResponse",
+}) as any as S.Schema<StartManagedClusterResponse>;
+
+export interface StartUpdateRunRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Fleet resource. */
+  fleetName: string;
+  /** The name of the UpdateRun resource. */
+  updateRunName: string;
+}
+export const StartUpdateRunRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    fleetName: S.String.pipe(T.Label()),
+    updateRunName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/fleets/{fleetName}/updateRuns/{updateRunName}/start",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "StartUpdateRunRequest",
+}) as any as S.Schema<StartUpdateRunRequest>;
+
+export interface StartUpdateRunResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: UpdateRunProperties;
+  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
+  eTag?: string;
+}
+export const StartUpdateRunResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(UpdateRunProperties),
+    eTag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "StartUpdateRunResponse",
+}) as any as S.Schema<StartUpdateRunResponse>;
+
+export interface StopManagedClusterRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the managed cluster resource. */
+  resourceName: string;
+}
+export const StopManagedClusterRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    resourceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/stop",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "StopManagedClusterRequest",
+}) as any as S.Schema<StopManagedClusterRequest>;
+
+export interface StopManagedClusterResponse {}
+export const StopManagedClusterResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "StopManagedClusterResponse",
+}) as any as S.Schema<StopManagedClusterResponse>;
+
+export interface StopUpdateRunRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Fleet resource. */
+  fleetName: string;
+  /** The name of the UpdateRun resource. */
+  updateRunName: string;
+}
+export const StopUpdateRunRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    fleetName: S.String.pipe(T.Label()),
+    updateRunName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/fleets/{fleetName}/updateRuns/{updateRunName}/stop",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "StopUpdateRunRequest",
+}) as any as S.Schema<StopUpdateRunRequest>;
+
+export interface StopUpdateRunResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: UpdateRunProperties;
+  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
+  eTag?: string;
+}
+export const StopUpdateRunResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(UpdateRunProperties),
+    eTag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "StopUpdateRunResponse",
+}) as any as S.Schema<StopUpdateRunResponse>;
+
+/** A list of roles to bind, each item is a resource type qualified role name. For example: 'Microsoft.MachineLearningServices/workspaces/reader'. */
+export type TrustedAccessRoleBindingPropertiesInputRolesList = Array<string>;
+export const TrustedAccessRoleBindingPropertiesInputRolesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<TrustedAccessRoleBindingPropertiesInputRolesList>;
+
+/** Properties for trusted access role binding */
+export interface TrustedAccessRoleBindingPropertiesInput {
+  /** The ARM resource ID of source resource that trusted access is configured for. */
+  sourceResourceId: string;
+  /** A list of roles to bind, each item is a resource type qualified role name. For example: 'Microsoft.MachineLearningServices/workspaces/reader'. */
+  roles: TrustedAccessRoleBindingPropertiesInputRolesList;
+}
+export const TrustedAccessRoleBindingPropertiesInput = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      sourceResourceId: S.String,
+      roles: TrustedAccessRoleBindingPropertiesInputRolesList,
+    }),
+).annotate({
+  identifier: "TrustedAccessRoleBindingPropertiesInput",
+}) as any as S.Schema<TrustedAccessRoleBindingPropertiesInput>;
+
+export interface TrustedAccessRoleBindingsCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the managed cluster resource. */
+  resourceName: string;
+  /** The name of trusted access role binding. */
+  trustedAccessRoleBindingName: string;
+  /** Properties for trusted access role binding */
+  properties: TrustedAccessRoleBindingPropertiesInput;
+}
+export const TrustedAccessRoleBindingsCreateOrUpdateRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      resourceName: S.String.pipe(T.Label()),
+      trustedAccessRoleBindingName: S.String.pipe(T.Label()),
+      properties: TrustedAccessRoleBindingPropertiesInput,
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/trustedAccessRoleBindings/{trustedAccessRoleBindingName}",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "TrustedAccessRoleBindingsCreateOrUpdateRequest",
+  }) as any as S.Schema<TrustedAccessRoleBindingsCreateOrUpdateRequest>;
+
+export interface TrustedAccessRoleBindingsCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties for trusted access role binding */
+  properties: TrustedAccessRoleBindingProperties;
+}
+export const TrustedAccessRoleBindingsCreateOrUpdateResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: TrustedAccessRoleBindingProperties,
+    }),
+  ).annotate({
+    identifier: "TrustedAccessRoleBindingsCreateOrUpdateResponse",
+  }) as any as S.Schema<TrustedAccessRoleBindingsCreateOrUpdateResponse>;
+
+/** Resource tags. */
+export type UpdateFleetRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateFleetRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateFleetRequestTagsMap>;
+
+/** Managed service identity (system assigned and/or user assigned identities) */
+export type UpdateFleetRequestIdentity = FleetsCreateOrUpdateRequestIdentity;
+export const UpdateFleetRequestIdentity = FleetsCreateOrUpdateRequestIdentity;
+
+export interface UpdateFleetRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Fleet resource. */
+  fleetName: string;
+  /** Resource tags. */
+  tags?: UpdateFleetRequestTagsMap;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: FleetsCreateOrUpdateRequestIdentity;
+}
+export const UpdateFleetRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    fleetName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateFleetRequestTagsMap),
+    identity: S.optional(FleetsCreateOrUpdateRequestIdentity),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/fleets/{fleetName}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateFleetRequest",
+}) as any as S.Schema<UpdateFleetRequest>;
+
+/** Resource tags. */
+export type UpdateFleetResponseTagsMap = { [key: string]: string | undefined };
+export const UpdateFleetResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateFleetResponseTagsMap>;
+
+/** Managed service identity (system assigned and/or user assigned identities) */
+export type UpdateFleetResponseIdentity = FleetsCreateOrUpdateResponseIdentity;
+export const UpdateFleetResponseIdentity = FleetsCreateOrUpdateResponseIdentity;
+
+export interface UpdateFleetResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateFleetResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: FleetProperties;
+  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
+  eTag?: string;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: FleetsCreateOrUpdateResponseIdentity;
+}
+export const UpdateFleetResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateFleetResponseTagsMap),
+    location: S.String,
+    properties: S.optional(FleetProperties),
+    eTag: S.optional(S.String),
+    identity: S.optional(FleetsCreateOrUpdateResponseIdentity),
+  }),
+).annotate({
+  identifier: "UpdateFleetResponse",
+}) as any as S.Schema<UpdateFleetResponse>;
+
+/** Resource tags. */
+export type UpdateFleetManagedNamespaceRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateFleetManagedNamespaceRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateFleetManagedNamespaceRequestTagsMap>;
+
+export interface UpdateFleetManagedNamespaceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Fleet resource. */
+  fleetName: string;
+  /** The name of the fleet managed namespace resource. */
+  managedNamespaceName: string;
+  /** Resource tags. */
+  tags?: UpdateFleetManagedNamespaceRequestTagsMap;
+}
+export const UpdateFleetManagedNamespaceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    fleetName: S.String.pipe(T.Label()),
+    managedNamespaceName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateFleetManagedNamespaceRequestTagsMap),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/fleets/{fleetName}/managedNamespaces/{managedNamespaceName}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateFleetManagedNamespaceRequest",
+}) as any as S.Schema<UpdateFleetManagedNamespaceRequest>;
+
+/** Resource tags. */
+export type UpdateFleetManagedNamespaceResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateFleetManagedNamespaceResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<UpdateFleetManagedNamespaceResponseTagsMap>;
+
+export interface UpdateFleetManagedNamespaceResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateFleetManagedNamespaceResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: FleetManagedNamespaceProperties;
+  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
+  eTag?: string;
+}
+export const UpdateFleetManagedNamespaceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateFleetManagedNamespaceResponseTagsMap),
+    location: S.String,
+    properties: S.optional(FleetManagedNamespaceProperties),
+    eTag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "UpdateFleetManagedNamespaceResponse",
+}) as any as S.Schema<UpdateFleetManagedNamespaceResponse>;
+
+/** The labels for the fleet member. */
+export type FleetMemberUpdatePropertiesLabelsMap = {
+  [key: string]: string | undefined;
+};
+export const FleetMemberUpdatePropertiesLabelsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<FleetMemberUpdatePropertiesLabelsMap>;
+
+/** The updatable properties of the FleetMember. */
+export interface FleetMemberUpdateProperties {
+  /** The group this member belongs to for multi-cluster update management. */
+  group?: string;
+  /** The labels for the fleet member. */
+  labels?: FleetMemberUpdatePropertiesLabelsMap;
+}
+export const FleetMemberUpdateProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    group: S.optional(S.String),
+    labels: S.optional(FleetMemberUpdatePropertiesLabelsMap),
+  }),
+).annotate({
+  identifier: "FleetMemberUpdateProperties",
+}) as any as S.Schema<FleetMemberUpdateProperties>;
+
+export interface UpdateFleetMemberRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Fleet resource. */
+  fleetName: string;
+  /** The name of the Fleet member resource. */
+  fleetMemberName: string;
+  /** The resource-specific properties for this resource. */
+  properties?: FleetMemberUpdateProperties;
+}
+export const UpdateFleetMemberRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    fleetName: S.String.pipe(T.Label()),
+    fleetMemberName: S.String.pipe(T.Label()),
+    properties: S.optional(FleetMemberUpdateProperties),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/fleets/{fleetName}/members/{fleetMemberName}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateFleetMemberRequest",
+}) as any as S.Schema<UpdateFleetMemberRequest>;
+
+export interface UpdateFleetMemberResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: FleetMemberProperties;
+  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
+  eTag?: string;
+}
+export const UpdateFleetMemberResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(FleetMemberProperties),
+    eTag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "UpdateFleetMemberResponse",
+}) as any as S.Schema<UpdateFleetMemberResponse>;
+
+/** Properties of a Gate that can be patched. */
+export interface GatePatchProperties {
+  /** The state of the Gate. */
+  state?: GateState | (string & {});
+}
+export const GatePatchProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    state: S.optional(GateState),
+  }),
+).annotate({
+  identifier: "GatePatchProperties",
+}) as any as S.Schema<GatePatchProperties>;
+
+export interface UpdateGateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Fleet resource. */
+  fleetName: string;
+  /** The name of the Gate resource, a GUID. */
+  gateName: string;
+  /** Properties of a Gate that can be patched. */
+  properties?: GatePatchProperties;
+}
+export const UpdateGateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    fleetName: S.String.pipe(T.Label()),
+    gateName: S.String.pipe(T.Label()),
+    properties: S.optional(GatePatchProperties),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/fleets/{fleetName}/gates/{gateName}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateGateRequest",
+}) as any as S.Schema<UpdateGateRequest>;
+
+export interface UpdateGateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: GateProperties;
+  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
+  eTag?: string;
+}
+export const UpdateGateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(GateProperties),
+    eTag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "UpdateGateResponse",
+}) as any as S.Schema<UpdateGateResponse>;
+
+/** Resource tags. */
+export type UpdateManagedClusterTagsRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateManagedClusterTagsRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateManagedClusterTagsRequestTagsMap>;
+
+export interface UpdateManagedClusterTagsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the managed cluster resource. */
+  resourceName: string;
+  /** Resource tags. */
+  tags?: UpdateManagedClusterTagsRequestTagsMap;
+}
+export const UpdateManagedClusterTagsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    resourceName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateManagedClusterTagsRequestTagsMap),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateManagedClusterTagsRequest",
+}) as any as S.Schema<UpdateManagedClusterTagsRequest>;
+
+/** Resource tags. */
+export type UpdateManagedClusterTagsResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateManagedClusterTagsResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateManagedClusterTagsResponseTagsMap>;
+
+export interface UpdateManagedClusterTagsResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateManagedClusterTagsResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Properties of a managed cluster. */
+  properties?: ManagedClusterProperties;
+  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
+  eTag?: string;
+  /** The managed cluster SKU. */
+  sku?: ManagedClusterSKU;
+  /** The extended location of the Virtual Machine. */
+  extendedLocation?: ExtendedLocation;
+  /** The identity of the managed cluster, if configured. */
+  identity?: ManagedClusterIdentity;
+  /** This is primarily used to expose different UI experiences in the portal for different kinds */
+  kind?: string;
+}
+export const UpdateManagedClusterTagsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateManagedClusterTagsResponseTagsMap),
+    location: S.String,
+    properties: S.optional(ManagedClusterProperties),
+    eTag: S.optional(S.String),
+    sku: S.optional(ManagedClusterSKU),
+    extendedLocation: S.optional(ExtendedLocation),
+    identity: S.optional(ManagedClusterIdentity),
+    kind: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "UpdateManagedClusterTagsResponse",
+}) as any as S.Schema<UpdateManagedClusterTagsResponse>;
+
+/** Resource tags. */
+export type UpdateManagedNamespaceRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateManagedNamespaceRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateManagedNamespaceRequestTagsMap>;
+
+export interface UpdateManagedNamespaceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the managed cluster resource. */
+  resourceName: string;
+  /** The name of the managed namespace. */
+  managedNamespaceName: string;
+  /** Resource tags. */
+  tags?: UpdateManagedNamespaceRequestTagsMap;
+}
+export const UpdateManagedNamespaceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    resourceName: S.String.pipe(T.Label()),
+    managedNamespaceName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateManagedNamespaceRequestTagsMap),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/managedNamespaces/{managedNamespaceName}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateManagedNamespaceRequest",
+}) as any as S.Schema<UpdateManagedNamespaceRequest>;
+
+/** Resource tags. */
+export type UpdateManagedNamespaceResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateManagedNamespaceResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateManagedNamespaceResponseTagsMap>;
+
+export interface UpdateManagedNamespaceResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateManagedNamespaceResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Properties of a namespace. */
+  properties?: NamespaceProperties;
+  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
+  eTag?: string;
+}
+export const UpdateManagedNamespaceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateManagedNamespaceResponseTagsMap),
+    location: S.String,
+    properties: S.optional(NamespaceProperties),
+    eTag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "UpdateManagedNamespaceResponse",
+}) as any as S.Schema<UpdateManagedNamespaceResponse>;
+
+/** Properties of a private endpoint connection. */
+export interface PrivateEndpointConnectionPropertiesInput {
+  /** The resource of private endpoint. */
+  privateEndpoint?: PrivateEndpoint;
+  /** A collection of information about the state of the connection between service consumer and provider. */
+  privateLinkServiceConnectionState: PrivateLinkServiceConnectionState;
+}
+export const PrivateEndpointConnectionPropertiesInput = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      privateEndpoint: S.optional(PrivateEndpoint),
+      privateLinkServiceConnectionState: PrivateLinkServiceConnectionState,
+    }),
+).annotate({
+  identifier: "PrivateEndpointConnectionPropertiesInput",
+}) as any as S.Schema<PrivateEndpointConnectionPropertiesInput>;
+
+export interface UpdatePrivateEndpointConnectionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the managed cluster resource. */
+  resourceName: string;
+  /** The name of the private endpoint connection. */
+  privateEndpointConnectionName: string;
+  /** The properties of a private endpoint connection. */
+  properties?: PrivateEndpointConnectionPropertiesInput;
+}
+export const UpdatePrivateEndpointConnectionRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      resourceName: S.String.pipe(T.Label()),
+      privateEndpointConnectionName: S.String.pipe(T.Label()),
+      properties: S.optional(PrivateEndpointConnectionPropertiesInput),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{resourceName}/privateEndpointConnections/{privateEndpointConnectionName}",
+        code: 200,
+        apiVersion: "2026-06-01",
+      }),
+    ),
+).annotate({
+  identifier: "UpdatePrivateEndpointConnectionRequest",
+}) as any as S.Schema<UpdatePrivateEndpointConnectionRequest>;
+
+export interface UpdatePrivateEndpointConnectionResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of a private endpoint connection. */
+  properties?: PrivateEndpointConnectionProperties;
+}
+export const UpdatePrivateEndpointConnectionResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(PrivateEndpointConnectionProperties),
+    }),
+).annotate({
+  identifier: "UpdatePrivateEndpointConnectionResponse",
+}) as any as S.Schema<UpdatePrivateEndpointConnectionResponse>;
+
+/** The node upgrade image version. */
+export type NodeImageVersionInput = AgentPoolStatusInputProvisioningError;
+export const NodeImageVersionInput = AgentPoolStatusInputProvisioningError;
+
+/** Custom node image versions to upgrade the nodes to. This field is required if node image selection type is Custom. Otherwise, it must be empty. For each node image family (e.g., 'AKSUbuntu-1804gen2containerd'), this field can contain at most one version (e.g., only one of 'AKSUbuntu-1804gen2containerd-2023.01.12' or 'AKSUbuntu-1804gen2containerd-2023.02.12', not both). If the nodes belong to a family without a matching image version in this field, they are not upgraded. */
+export type NodeImageSelectionInputCustomNodeImageVersionsList =
+  Array<AgentPoolStatusInputProvisioningError>;
+export const NodeImageSelectionInputCustomNodeImageVersionsList =
+  /*@__PURE__*/ S.Array(
+    AgentPoolStatusInputProvisioningError,
+  ) as any as S.Schema<NodeImageSelectionInputCustomNodeImageVersionsList>;
+
+/** The node image upgrade to be applied to the target nodes in update run. */
+export interface NodeImageSelectionInput {
+  /** The node image upgrade type. */
+  type: NodeImageSelectionType | (string & {});
+  /** Custom node image versions to upgrade the nodes to. This field is required if node image selection type is Custom. Otherwise, it must be empty. For each node image family (e.g., 'AKSUbuntu-1804gen2containerd'), this field can contain at most one version (e.g., only one of 'AKSUbuntu-1804gen2containerd-2023.01.12' or 'AKSUbuntu-1804gen2containerd-2023.02.12', not both). If the nodes belong to a family without a matching image version in this field, they are not upgraded. */
+  customNodeImageVersions?: NodeImageSelectionInputCustomNodeImageVersionsList;
+}
+export const NodeImageSelectionInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: NodeImageSelectionType,
+    customNodeImageVersions: S.optional(
+      NodeImageSelectionInputCustomNodeImageVersionsList,
+    ),
+  }),
+).annotate({
+  identifier: "NodeImageSelectionInput",
+}) as any as S.Schema<NodeImageSelectionInput>;
+
+/** The update to be applied to the ManagedClusters. */
+export interface ManagedClusterUpdateInput {
+  /** The upgrade to apply to the ManagedClusters. */
+  upgrade: ManagedClusterUpgradeSpec;
+  /** The node image upgrade to be applied to the target nodes in update run. */
+  nodeImageSelection?: NodeImageSelectionInput;
+}
+export const ManagedClusterUpdateInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    upgrade: ManagedClusterUpgradeSpec,
+    nodeImageSelection: S.optional(NodeImageSelectionInput),
+  }),
+).annotate({
+  identifier: "ManagedClusterUpdateInput",
+}) as any as S.Schema<ManagedClusterUpdateInput>;
+
+/** The properties of the UpdateRun. */
+export interface UpdateRunPropertiesInput {
+  /** The resource id of the FleetUpdateStrategy resource to reference. When creating a new run, there are three ways to define a strategy for the run: 1. Define a new strategy in place: Set the "strategy" field. 2. Use an existing strategy: Set the "updateStrategyId" field. (since 2023-08-15-preview) 3. Use the default strategy to update all the members one by one: Leave both "updateStrategyId" and "strategy" unset. (since 2023-08-15-preview) Setting both "updateStrategyId" and "strategy" is invalid. UpdateRuns created by "updateStrategyId" snapshot the referenced UpdateStrategy at the time of creation and store it in the "strategy" field. Subsequent changes to the referenced FleetUpdateStrategy resource do not propagate. UpdateRunStrategy changes can be made directly on the "strategy" field before launching the UpdateRun. */
+  updateStrategyId?: string;
+  /** The strategy defines the order in which the clusters will be updated. If not set, all members will be updated sequentially. The UpdateRun status will show a single UpdateStage and a single UpdateGroup targeting all members. The strategy of the UpdateRun can be modified until the run is started. */
+  strategy?: UpdateRunStrategy;
+  /** The update to be applied to all clusters in the UpdateRun. The managedClusterUpdate can be modified until the run is started. */
+  managedClusterUpdate: ManagedClusterUpdateInput;
+}
+export const UpdateRunPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    updateStrategyId: S.optional(S.String),
+    strategy: S.optional(UpdateRunStrategy),
+    managedClusterUpdate: ManagedClusterUpdateInput,
+  }),
+).annotate({
+  identifier: "UpdateRunPropertiesInput",
+}) as any as S.Schema<UpdateRunPropertiesInput>;
+
+export interface UpdateRunsCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Fleet resource. */
+  fleetName: string;
+  /** The name of the UpdateRun resource. */
+  updateRunName: string;
+  /** The resource-specific properties for this resource. */
+  properties?: UpdateRunPropertiesInput;
+}
+export const UpdateRunsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    fleetName: S.String.pipe(T.Label()),
+    updateRunName: S.String.pipe(T.Label()),
+    properties: S.optional(UpdateRunPropertiesInput),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/fleets/{fleetName}/updateRuns/{updateRunName}",
+      code: 200,
+      apiVersion: "2026-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateRunsCreateOrUpdateRequest",
+}) as any as S.Schema<UpdateRunsCreateOrUpdateRequest>;
+
+export interface UpdateRunsCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: UpdateRunProperties;
+  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
+  eTag?: string;
+}
+export const UpdateRunsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(UpdateRunProperties),
+    eTag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "UpdateRunsCreateOrUpdateResponse",
+}) as any as S.Schema<UpdateRunsCreateOrUpdateResponse>;
 
 /** The target type of a skip request. */
 export type TargetType = "Member" | "Group" | "Stage" | "AfterStageWait";
@@ -13980,35 +14005,53 @@ export const UpdateRunsSkipResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateRunsSkipResponse",
 }) as any as S.Schema<UpdateRunsSkipResponse>;
 
-export interface UpdateRunsStartRequest {
+/** Resource tags. */
+export type UpdateSnapshotTagsRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateSnapshotTagsRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateSnapshotTagsRequestTagsMap>;
+
+export interface UpdateSnapshotTagsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
-  /** The name of the Fleet resource. */
-  fleetName: string;
-  /** The name of the UpdateRun resource. */
-  updateRunName: string;
+  /** The name of the managed cluster resource. */
+  resourceName: string;
+  /** Resource tags. */
+  tags?: UpdateSnapshotTagsRequestTagsMap;
 }
-export const UpdateRunsStartRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateSnapshotTagsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
-    fleetName: S.String.pipe(T.Label()),
-    updateRunName: S.String.pipe(T.Label()),
+    resourceName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateSnapshotTagsRequestTagsMap),
   }).pipe(
     T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/fleets/{fleetName}/updateRuns/{updateRunName}/start",
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/snapshots/{resourceName}",
       code: 200,
       apiVersion: "2026-06-01",
     }),
   ),
 ).annotate({
-  identifier: "UpdateRunsStartRequest",
-}) as any as S.Schema<UpdateRunsStartRequest>;
+  identifier: "UpdateSnapshotTagsRequest",
+}) as any as S.Schema<UpdateSnapshotTagsRequest>;
 
-export interface UpdateRunsStartResponse {
+/** Resource tags. */
+export type UpdateSnapshotTagsResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateSnapshotTagsResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateSnapshotTagsResponseTagsMap>;
+
+export interface UpdateSnapshotTagsResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -14017,89 +14060,52 @@ export interface UpdateRunsStartResponse {
   type?: string;
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: UpdateRunProperties;
-  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
-  eTag?: string;
+  /** Resource tags. */
+  tags?: UpdateSnapshotTagsResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Properties of a snapshot. */
+  properties?: SnapshotProperties;
 }
-export const UpdateRunsStartResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateSnapshotTagsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    properties: S.optional(UpdateRunProperties),
-    eTag: S.optional(S.String),
+    tags: S.optional(UpdateSnapshotTagsResponseTagsMap),
+    location: S.String,
+    properties: S.optional(SnapshotProperties),
   }),
 ).annotate({
-  identifier: "UpdateRunsStartResponse",
-}) as any as S.Schema<UpdateRunsStartResponse>;
+  identifier: "UpdateSnapshotTagsResponse",
+}) as any as S.Schema<UpdateSnapshotTagsResponse>;
 
-export interface UpdateRunsStopRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Fleet resource. */
-  fleetName: string;
-  /** The name of the UpdateRun resource. */
-  updateRunName: string;
-}
-export const UpdateRunsStopRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    fleetName: S.String.pipe(T.Label()),
-    updateRunName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/fleets/{fleetName}/updateRuns/{updateRunName}/stop",
-      code: 200,
-      apiVersion: "2026-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "UpdateRunsStopRequest",
-}) as any as S.Schema<UpdateRunsStopRequest>;
-
-export interface UpdateRunsStopResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: UpdateRunProperties;
-  /** If eTag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields. */
-  eTag?: string;
-}
-export const UpdateRunsStopResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(UpdateRunProperties),
-    eTag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "UpdateRunsStopResponse",
-}) as any as S.Schema<UpdateRunsStopResponse>;
-
-export type AgentPoolsAbortLatestOperationError = AzureOpError;
+export type AbortAgentPoolLatestOperationError = AzureOpError;
 /** Aborts last operation running on agent pool. Aborts the currently running operation on the agent pool. The Agent Pool will be moved to a Canceling state and eventually to a Canceled state when cancellation finishes. If the operation completes before cancellation can take place, a 409 error code is returned. */
-export const AgentPoolsAbortLatestOperation: API.OperationMethod<
-  AgentPoolsAbortLatestOperationRequest,
-  AgentPoolsAbortLatestOperationResponse,
-  AgentPoolsAbortLatestOperationError,
+export const AbortAgentPoolLatestOperation: API.OperationMethod<
+  AbortAgentPoolLatestOperationRequest,
+  AbortAgentPoolLatestOperationResponse,
+  AbortAgentPoolLatestOperationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AgentPoolsAbortLatestOperationRequest,
-  output: AgentPoolsAbortLatestOperationResponse,
+  input: AbortAgentPoolLatestOperationRequest,
+  output: AbortAgentPoolLatestOperationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type AbortManagedClusterLatestOperationError = AzureOpError;
+/** Aborts last operation running on managed cluster. Aborts the currently running operation on the managed cluster. The Managed Cluster will be moved to a Canceling state and eventually to a Canceled state when cancellation finishes. If the operation completes before cancellation can take place, a 409 error code is returned. */
+export const AbortManagedClusterLatestOperation: API.OperationMethod<
+  AbortManagedClusterLatestOperationRequest,
+  AbortManagedClusterLatestOperationResponse,
+  AbortManagedClusterLatestOperationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: AbortManagedClusterLatestOperationRequest,
+  output: AbortManagedClusterLatestOperationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -14115,96 +14121,6 @@ export const AgentPoolsCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: AgentPoolsCreateOrUpdateRequest,
   output: AgentPoolsCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AgentPoolsDeleteError = AzureOpError;
-/** Deletes an agent pool in the specified managed cluster. */
-export const AgentPoolsDelete: API.OperationMethod<
-  AgentPoolsDeleteRequest,
-  AgentPoolsDeleteResponse,
-  AgentPoolsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AgentPoolsDeleteRequest,
-  output: AgentPoolsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AgentPoolsDeleteMachinesError = AzureOpError;
-/** Deletes specific machines in an agent pool. */
-export const AgentPoolsDeleteMachines: API.OperationMethod<
-  AgentPoolsDeleteMachinesRequest,
-  AgentPoolsDeleteMachinesResponse,
-  AgentPoolsDeleteMachinesError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AgentPoolsDeleteMachinesRequest,
-  output: AgentPoolsDeleteMachinesResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AgentPoolsGetError = AzureOpError;
-/** Gets the specified managed cluster agent pool. */
-export const AgentPoolsGet: API.OperationMethod<
-  AgentPoolsGetRequest,
-  AgentPoolsGetResponse,
-  AgentPoolsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AgentPoolsGetRequest,
-  output: AgentPoolsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AgentPoolsGetAvailableAgentPoolVersionsError = AzureOpError;
-/** Gets a list of supported Kubernetes versions for the specified agent pool. See [supported Kubernetes versions](https://docs.microsoft.com/azure/aks/supported-kubernetes-versions) for more details about the version lifecycle. */
-export const AgentPoolsGetAvailableAgentPoolVersions: API.OperationMethod<
-  AgentPoolsGetAvailableAgentPoolVersionsRequest,
-  AgentPoolAvailableVersions,
-  AgentPoolsGetAvailableAgentPoolVersionsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AgentPoolsGetAvailableAgentPoolVersionsRequest,
-  output: AgentPoolAvailableVersions,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AgentPoolsGetUpgradeProfileError = AzureOpError;
-/** Gets the upgrade profile for an agent pool. */
-export const AgentPoolsGetUpgradeProfile: API.OperationMethod<
-  AgentPoolsGetUpgradeProfileRequest,
-  AgentPoolsGetUpgradeProfileResponse,
-  AgentPoolsGetUpgradeProfileError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AgentPoolsGetUpgradeProfileRequest,
-  output: AgentPoolsGetUpgradeProfileResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AgentPoolsListError = AzureOpError;
-/** Gets a list of agent pools in the specified managed cluster. */
-export const AgentPoolsList: API.OperationMethod<
-  AgentPoolsListRequest,
-  AgentPoolListResult,
-  AgentPoolsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AgentPoolsListRequest,
-  output: AgentPoolListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -14255,106 +14171,271 @@ export const AutoUpgradeProfilesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type AutoUpgradeProfilesDeleteError = AzureOpError;
-/** Delete a AutoUpgradeProfile */
-export const AutoUpgradeProfilesDelete: API.OperationMethod<
-  AutoUpgradeProfilesDeleteRequest,
-  AutoUpgradeProfilesDeleteResponse,
-  AutoUpgradeProfilesDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AutoUpgradeProfilesDeleteRequest,
-  output: AutoUpgradeProfilesDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AutoUpgradeProfilesGetError = AzureOpError;
-/** Get a AutoUpgradeProfile */
-export const AutoUpgradeProfilesGet: API.OperationMethod<
-  AutoUpgradeProfilesGetRequest,
-  AutoUpgradeProfilesGetResponse,
-  AutoUpgradeProfilesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AutoUpgradeProfilesGetRequest,
-  output: AutoUpgradeProfilesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AutoUpgradeProfilesListByFleetError = AzureOpError;
-/** List AutoUpgradeProfile resources by Fleet */
-export const AutoUpgradeProfilesListByFleet: API.OperationMethod<
-  AutoUpgradeProfilesListByFleetRequest,
-  AutoUpgradeProfileListResult,
-  AutoUpgradeProfilesListByFleetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AutoUpgradeProfilesListByFleetRequest,
-  output: AutoUpgradeProfileListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeploymentSafeguardsCreateError = AzureOpError;
+export type CreateDeploymentSafeguardError = AzureOpError;
 /** Creates or updates a deploymentSafeguard */
-export const DeploymentSafeguardsCreate: API.OperationMethod<
-  DeploymentSafeguardsCreateRequest,
-  DeploymentSafeguardsCreateResponse,
-  DeploymentSafeguardsCreateError,
+export const CreateDeploymentSafeguard: API.OperationMethod<
+  CreateDeploymentSafeguardRequest,
+  CreateDeploymentSafeguardResponse,
+  CreateDeploymentSafeguardError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeploymentSafeguardsCreateRequest,
-  output: DeploymentSafeguardsCreateResponse,
+  input: CreateDeploymentSafeguardRequest,
+  output: CreateDeploymentSafeguardResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeploymentSafeguardsDeleteError = AzureOpError;
+export type CreateFleetMemberError = AzureOpError;
+/** Create a FleetMember */
+export const CreateFleetMember: API.OperationMethod<
+  CreateFleetMemberRequest,
+  CreateFleetMemberResponse,
+  CreateFleetMemberError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateFleetMemberRequest,
+  output: CreateFleetMemberResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteAgentPoolError = AzureOpError;
+/** Deletes an agent pool in the specified managed cluster. */
+export const DeleteAgentPool: API.OperationMethod<
+  DeleteAgentPoolRequest,
+  DeleteAgentPoolResponse,
+  DeleteAgentPoolError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteAgentPoolRequest,
+  output: DeleteAgentPoolResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteAgentPoolMachinesError = AzureOpError;
+/** Deletes specific machines in an agent pool. */
+export const DeleteAgentPoolMachines: API.OperationMethod<
+  DeleteAgentPoolMachinesRequest,
+  DeleteAgentPoolMachinesResponse,
+  DeleteAgentPoolMachinesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteAgentPoolMachinesRequest,
+  output: DeleteAgentPoolMachinesResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteAutoUpgradeProfileError = AzureOpError;
+/** Delete a AutoUpgradeProfile */
+export const DeleteAutoUpgradeProfile: API.OperationMethod<
+  DeleteAutoUpgradeProfileRequest,
+  DeleteAutoUpgradeProfileResponse,
+  DeleteAutoUpgradeProfileError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteAutoUpgradeProfileRequest,
+  output: DeleteAutoUpgradeProfileResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteDeploymentSafeguardError = AzureOpError;
 /** Delete DeploymentSafeguards */
-export const DeploymentSafeguardsDelete: API.OperationMethod<
-  DeploymentSafeguardsDeleteRequest,
-  DeploymentSafeguardsDeleteResponse,
-  DeploymentSafeguardsDeleteError,
+export const DeleteDeploymentSafeguard: API.OperationMethod<
+  DeleteDeploymentSafeguardRequest,
+  DeleteDeploymentSafeguardResponse,
+  DeleteDeploymentSafeguardError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeploymentSafeguardsDeleteRequest,
-  output: DeploymentSafeguardsDeleteResponse,
+  input: DeleteDeploymentSafeguardRequest,
+  output: DeleteDeploymentSafeguardResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeploymentSafeguardsGetError = AzureOpError;
-/** Fetch a deployment safeguard by name */
-export const DeploymentSafeguardsGet: API.OperationMethod<
-  DeploymentSafeguardsGetRequest,
-  DeploymentSafeguardsGetResponse,
-  DeploymentSafeguardsGetError,
+export type DeleteFleetError = AzureOpError;
+/** Delete a Fleet */
+export const DeleteFleet: API.OperationMethod<
+  DeleteFleetRequest,
+  DeleteFleetResponse,
+  DeleteFleetError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeploymentSafeguardsGetRequest,
-  output: DeploymentSafeguardsGetResponse,
+  input: DeleteFleetRequest,
+  output: DeleteFleetResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeploymentSafeguardsListError = AzureOpError;
-/** List DeploymentSafeguards by parent resource */
-export const DeploymentSafeguardsList: API.OperationMethod<
-  DeploymentSafeguardsListRequest,
-  DeploymentSafeguardListResult,
-  DeploymentSafeguardsListError,
+export type DeleteFleetManagedNamespaceError = AzureOpError;
+/** Delete a FleetManagedNamespace */
+export const DeleteFleetManagedNamespace: API.OperationMethod<
+  DeleteFleetManagedNamespaceRequest,
+  DeleteFleetManagedNamespaceResponse,
+  DeleteFleetManagedNamespaceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeploymentSafeguardsListRequest,
-  output: DeploymentSafeguardListResult,
+  input: DeleteFleetManagedNamespaceRequest,
+  output: DeleteFleetManagedNamespaceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteFleetMemberError = AzureOpError;
+/** Delete a FleetMember */
+export const DeleteFleetMember: API.OperationMethod<
+  DeleteFleetMemberRequest,
+  DeleteFleetMemberResponse,
+  DeleteFleetMemberError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteFleetMemberRequest,
+  output: DeleteFleetMemberResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteFleetUpdateStrategyError = AzureOpError;
+/** Delete a FleetUpdateStrategy */
+export const DeleteFleetUpdateStrategy: API.OperationMethod<
+  DeleteFleetUpdateStrategyRequest,
+  DeleteFleetUpdateStrategyResponse,
+  DeleteFleetUpdateStrategyError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteFleetUpdateStrategyRequest,
+  output: DeleteFleetUpdateStrategyResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteIdentityBindingError = AzureOpError;
+/** Deletes an identity binding in the specified managed cluster. */
+export const DeleteIdentityBinding: API.OperationMethod<
+  DeleteIdentityBindingRequest,
+  DeleteIdentityBindingResponse,
+  DeleteIdentityBindingError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteIdentityBindingRequest,
+  output: DeleteIdentityBindingResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteMaintenanceConfigurationError = AzureOpError;
+/** Deletes a maintenance configuration. */
+export const DeleteMaintenanceConfiguration: API.OperationMethod<
+  DeleteMaintenanceConfigurationRequest,
+  DeleteMaintenanceConfigurationResponse,
+  DeleteMaintenanceConfigurationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteMaintenanceConfigurationRequest,
+  output: DeleteMaintenanceConfigurationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteManagedClusterError = AzureOpError;
+/** Deletes a managed cluster. */
+export const DeleteManagedCluster: API.OperationMethod<
+  DeleteManagedClusterRequest,
+  DeleteManagedClusterResponse,
+  DeleteManagedClusterError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteManagedClusterRequest,
+  output: DeleteManagedClusterResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteManagedNamespaceError = AzureOpError;
+/** Deletes a namespace. */
+export const DeleteManagedNamespace: API.OperationMethod<
+  DeleteManagedNamespaceRequest,
+  DeleteManagedNamespaceResponse,
+  DeleteManagedNamespaceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteManagedNamespaceRequest,
+  output: DeleteManagedNamespaceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeletePrivateEndpointConnectionError = AzureOpError;
+/** Deletes a private endpoint connection. */
+export const DeletePrivateEndpointConnection: API.OperationMethod<
+  DeletePrivateEndpointConnectionRequest,
+  DeletePrivateEndpointConnectionResponse,
+  DeletePrivateEndpointConnectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeletePrivateEndpointConnectionRequest,
+  output: DeletePrivateEndpointConnectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteSnapshotError = AzureOpError;
+/** Deletes a snapshot. */
+export const DeleteSnapshot: API.OperationMethod<
+  DeleteSnapshotRequest,
+  DeleteSnapshotResponse,
+  DeleteSnapshotError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteSnapshotRequest,
+  output: DeleteSnapshotResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteTrustedAccessRoleBindingError = AzureOpError;
+/** Delete a trusted access role binding. */
+export const DeleteTrustedAccessRoleBinding: API.OperationMethod<
+  DeleteTrustedAccessRoleBindingRequest,
+  DeleteTrustedAccessRoleBindingResponse,
+  DeleteTrustedAccessRoleBindingError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteTrustedAccessRoleBindingRequest,
+  output: DeleteTrustedAccessRoleBindingResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteUpdateRunError = AzureOpError;
+/** Delete a UpdateRun */
+export const DeleteUpdateRun: API.OperationMethod<
+  DeleteUpdateRunRequest,
+  DeleteUpdateRunResponse,
+  DeleteUpdateRunError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteUpdateRunRequest,
+  output: DeleteUpdateRunResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -14375,141 +14456,6 @@ export const FleetManagedNamespacesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type FleetManagedNamespacesDeleteError = AzureOpError;
-/** Delete a FleetManagedNamespace */
-export const FleetManagedNamespacesDelete: API.OperationMethod<
-  FleetManagedNamespacesDeleteRequest,
-  FleetManagedNamespacesDeleteResponse,
-  FleetManagedNamespacesDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FleetManagedNamespacesDeleteRequest,
-  output: FleetManagedNamespacesDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type FleetManagedNamespacesGetError = AzureOpError;
-/** Get a FleetManagedNamespace */
-export const FleetManagedNamespacesGet: API.OperationMethod<
-  FleetManagedNamespacesGetRequest,
-  FleetManagedNamespacesGetResponse,
-  FleetManagedNamespacesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FleetManagedNamespacesGetRequest,
-  output: FleetManagedNamespacesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type FleetManagedNamespacesListByFleetError = AzureOpError;
-/** List FleetManagedNamespace resources by Fleet */
-export const FleetManagedNamespacesListByFleet: API.OperationMethod<
-  FleetManagedNamespacesListByFleetRequest,
-  FleetManagedNamespaceListResult,
-  FleetManagedNamespacesListByFleetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FleetManagedNamespacesListByFleetRequest,
-  output: FleetManagedNamespaceListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type FleetManagedNamespacesUpdateError = AzureOpError;
-/** Update a FleetManagedNamespace */
-export const FleetManagedNamespacesUpdate: API.OperationMethod<
-  FleetManagedNamespacesUpdateRequest,
-  FleetManagedNamespacesUpdateResponse,
-  FleetManagedNamespacesUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FleetManagedNamespacesUpdateRequest,
-  output: FleetManagedNamespacesUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type FleetMembersCreateError = AzureOpError;
-/** Create a FleetMember */
-export const FleetMembersCreate: API.OperationMethod<
-  FleetMembersCreateRequest,
-  FleetMembersCreateResponse,
-  FleetMembersCreateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FleetMembersCreateRequest,
-  output: FleetMembersCreateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type FleetMembersDeleteError = AzureOpError;
-/** Delete a FleetMember */
-export const FleetMembersDelete: API.OperationMethod<
-  FleetMembersDeleteRequest,
-  FleetMembersDeleteResponse,
-  FleetMembersDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FleetMembersDeleteRequest,
-  output: FleetMembersDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type FleetMembersGetError = AzureOpError;
-/** Get a FleetMember */
-export const FleetMembersGet: API.OperationMethod<
-  FleetMembersGetRequest,
-  FleetMembersGetResponse,
-  FleetMembersGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FleetMembersGetRequest,
-  output: FleetMembersGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type FleetMembersListByFleetError = AzureOpError;
-/** List FleetMember resources by Fleet */
-export const FleetMembersListByFleet: API.OperationMethod<
-  FleetMembersListByFleetRequest,
-  FleetMemberListResult,
-  FleetMembersListByFleetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FleetMembersListByFleetRequest,
-  output: FleetMemberListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type FleetMembersUpdateError = AzureOpError;
-/** Update a FleetMember */
-export const FleetMembersUpdate: API.OperationMethod<
-  FleetMembersUpdateRequest,
-  FleetMembersUpdateResponse,
-  FleetMembersUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FleetMembersUpdateRequest,
-  output: FleetMembersUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type FleetsCreateOrUpdateError = AzureOpError;
 /** Creates or updates a Fleet. */
 export const FleetsCreateOrUpdate: API.OperationMethod<
@@ -14520,96 +14466,6 @@ export const FleetsCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: FleetsCreateOrUpdateRequest,
   output: FleetsCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type FleetsDeleteError = AzureOpError;
-/** Delete a Fleet */
-export const FleetsDelete: API.OperationMethod<
-  FleetsDeleteRequest,
-  FleetsDeleteResponse,
-  FleetsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FleetsDeleteRequest,
-  output: FleetsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type FleetsGetError = AzureOpError;
-/** Gets a Fleet. */
-export const FleetsGet: API.OperationMethod<
-  FleetsGetRequest,
-  FleetsGetResponse,
-  FleetsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FleetsGetRequest,
-  output: FleetsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type FleetsListByResourceGroupError = AzureOpError;
-/** Lists fleets in the specified subscription and resource group. */
-export const FleetsListByResourceGroup: API.OperationMethod<
-  FleetsListByResourceGroupRequest,
-  FleetListResult,
-  FleetsListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FleetsListByResourceGroupRequest,
-  output: FleetListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type FleetsListBySubscriptionError = AzureOpError;
-/** Lists fleets in the specified subscription. */
-export const FleetsListBySubscription: API.OperationMethod<
-  FleetsListBySubscriptionRequest,
-  FleetListResult,
-  FleetsListBySubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FleetsListBySubscriptionRequest,
-  output: FleetListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type FleetsListCredentialsError = AzureOpError;
-/** Lists the user credentials of a Fleet. */
-export const FleetsListCredentials: API.OperationMethod<
-  FleetsListCredentialsRequest,
-  FleetCredentialResults,
-  FleetsListCredentialsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FleetsListCredentialsRequest,
-  output: FleetCredentialResults,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type FleetsUpdateError = AzureOpError;
-/** Update a Fleet */
-export const FleetsUpdate: API.OperationMethod<
-  FleetsUpdateRequest,
-  FleetsUpdateResponse,
-  FleetsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FleetsUpdateRequest,
-  output: FleetsUpdateResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -14630,91 +14486,346 @@ export const FleetUpdateStrategiesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type FleetUpdateStrategiesDeleteError = AzureOpError;
-/** Delete a FleetUpdateStrategy */
-export const FleetUpdateStrategiesDelete: API.OperationMethod<
-  FleetUpdateStrategiesDeleteRequest,
-  FleetUpdateStrategiesDeleteResponse,
-  FleetUpdateStrategiesDeleteError,
+export type GetAgentPoolError = AzureOpError;
+/** Gets the specified managed cluster agent pool. */
+export const GetAgentPool: API.OperationMethod<
+  GetAgentPoolRequest,
+  GetAgentPoolResponse,
+  GetAgentPoolError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FleetUpdateStrategiesDeleteRequest,
-  output: FleetUpdateStrategiesDeleteResponse,
+  input: GetAgentPoolRequest,
+  output: GetAgentPoolResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type FleetUpdateStrategiesGetError = AzureOpError;
+export type GetAgentPoolAvailableAgentPoolVersionsError = AzureOpError;
+/** Gets a list of supported Kubernetes versions for the specified agent pool. See [supported Kubernetes versions](https://docs.microsoft.com/azure/aks/supported-kubernetes-versions) for more details about the version lifecycle. */
+export const GetAgentPoolAvailableAgentPoolVersions: API.OperationMethod<
+  GetAgentPoolAvailableAgentPoolVersionsRequest,
+  AgentPoolAvailableVersions,
+  GetAgentPoolAvailableAgentPoolVersionsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetAgentPoolAvailableAgentPoolVersionsRequest,
+  output: AgentPoolAvailableVersions,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetAgentPoolUpgradeProfileError = AzureOpError;
+/** Gets the upgrade profile for an agent pool. */
+export const GetAgentPoolUpgradeProfile: API.OperationMethod<
+  GetAgentPoolUpgradeProfileRequest,
+  GetAgentPoolUpgradeProfileResponse,
+  GetAgentPoolUpgradeProfileError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetAgentPoolUpgradeProfileRequest,
+  output: GetAgentPoolUpgradeProfileResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetAutoUpgradeProfileError = AzureOpError;
+/** Get a AutoUpgradeProfile */
+export const GetAutoUpgradeProfile: API.OperationMethod<
+  GetAutoUpgradeProfileRequest,
+  GetAutoUpgradeProfileResponse,
+  GetAutoUpgradeProfileError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetAutoUpgradeProfileRequest,
+  output: GetAutoUpgradeProfileResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDeploymentSafeguardError = AzureOpError;
+/** Fetch a deployment safeguard by name */
+export const GetDeploymentSafeguard: API.OperationMethod<
+  GetDeploymentSafeguardRequest,
+  GetDeploymentSafeguardResponse,
+  GetDeploymentSafeguardError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDeploymentSafeguardRequest,
+  output: GetDeploymentSafeguardResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetFleetError = AzureOpError;
+/** Gets a Fleet. */
+export const GetFleet: API.OperationMethod<
+  GetFleetRequest,
+  GetFleetResponse,
+  GetFleetError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetFleetRequest,
+  output: GetFleetResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetFleetManagedNamespaceError = AzureOpError;
+/** Get a FleetManagedNamespace */
+export const GetFleetManagedNamespace: API.OperationMethod<
+  GetFleetManagedNamespaceRequest,
+  GetFleetManagedNamespaceResponse,
+  GetFleetManagedNamespaceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetFleetManagedNamespaceRequest,
+  output: GetFleetManagedNamespaceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetFleetMemberError = AzureOpError;
+/** Get a FleetMember */
+export const GetFleetMember: API.OperationMethod<
+  GetFleetMemberRequest,
+  GetFleetMemberResponse,
+  GetFleetMemberError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetFleetMemberRequest,
+  output: GetFleetMemberResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetFleetUpdateStrategyError = AzureOpError;
 /** Get a FleetUpdateStrategy */
-export const FleetUpdateStrategiesGet: API.OperationMethod<
-  FleetUpdateStrategiesGetRequest,
-  FleetUpdateStrategiesGetResponse,
-  FleetUpdateStrategiesGetError,
+export const GetFleetUpdateStrategy: API.OperationMethod<
+  GetFleetUpdateStrategyRequest,
+  GetFleetUpdateStrategyResponse,
+  GetFleetUpdateStrategyError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FleetUpdateStrategiesGetRequest,
-  output: FleetUpdateStrategiesGetResponse,
+  input: GetFleetUpdateStrategyRequest,
+  output: GetFleetUpdateStrategyResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type FleetUpdateStrategiesListByFleetError = AzureOpError;
-/** List FleetUpdateStrategy resources by Fleet */
-export const FleetUpdateStrategiesListByFleet: API.OperationMethod<
-  FleetUpdateStrategiesListByFleetRequest,
-  FleetUpdateStrategyListResult,
-  FleetUpdateStrategiesListByFleetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FleetUpdateStrategiesListByFleetRequest,
-  output: FleetUpdateStrategyListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GatesGetError = AzureOpError;
+export type GetGateError = AzureOpError;
 /** Get a Gate */
-export const GatesGet: API.OperationMethod<
-  GatesGetRequest,
-  GatesGetResponse,
-  GatesGetError,
+export const GetGate: API.OperationMethod<
+  GetGateRequest,
+  GetGateResponse,
+  GetGateError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GatesGetRequest,
-  output: GatesGetResponse,
+  input: GetGateRequest,
+  output: GetGateResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GatesListByFleetError = AzureOpError;
-/** List Gate resources by Fleet */
-export const GatesListByFleet: API.OperationMethod<
-  GatesListByFleetRequest,
-  GateListResult,
-  GatesListByFleetError,
+export type GetIdentityBindingError = AzureOpError;
+/** Gets the specified Identity Binding. */
+export const GetIdentityBinding: API.OperationMethod<
+  GetIdentityBindingRequest,
+  GetIdentityBindingResponse,
+  GetIdentityBindingError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GatesListByFleetRequest,
-  output: GateListResult,
+  input: GetIdentityBindingRequest,
+  output: GetIdentityBindingResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type GatesUpdateError = AzureOpError;
-/** Update a Gate */
-export const GatesUpdate: API.OperationMethod<
-  GatesUpdateRequest,
-  GatesUpdateResponse,
-  GatesUpdateError,
+export type GetMachineError = AzureOpError;
+/** Get a specific machine in the specified agent pool. */
+export const GetMachine: API.OperationMethod<
+  GetMachineRequest,
+  GetMachineResponse,
+  GetMachineError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: GatesUpdateRequest,
-  output: GatesUpdateResponse,
+  input: GetMachineRequest,
+  output: GetMachineResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetMaintenanceConfigurationError = AzureOpError;
+/** Gets the specified maintenance configuration of a managed cluster. */
+export const GetMaintenanceConfiguration: API.OperationMethod<
+  GetMaintenanceConfigurationRequest,
+  GetMaintenanceConfigurationResponse,
+  GetMaintenanceConfigurationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetMaintenanceConfigurationRequest,
+  output: GetMaintenanceConfigurationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetManagedClusterError = AzureOpError;
+/** Gets a managed cluster. */
+export const GetManagedCluster: API.OperationMethod<
+  GetManagedClusterRequest,
+  GetManagedClusterResponse,
+  GetManagedClusterError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetManagedClusterRequest,
+  output: GetManagedClusterResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetManagedClusterCommandResultError = AzureOpError;
+/** Gets the results of a command which has been run on the Managed Cluster. */
+export const GetManagedClusterCommandResult: API.OperationMethod<
+  GetManagedClusterCommandResultRequest,
+  RunCommandResult,
+  GetManagedClusterCommandResultError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetManagedClusterCommandResultRequest,
+  output: RunCommandResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetManagedClusterMeshRevisionProfileError = AzureOpError;
+/** Gets a mesh revision profile for a specified mesh in the specified location. Contains extra metadata on the revision, including supported revisions, cluster compatibility and available upgrades */
+export const GetManagedClusterMeshRevisionProfile: API.OperationMethod<
+  GetManagedClusterMeshRevisionProfileRequest,
+  GetManagedClusterMeshRevisionProfileResponse,
+  GetManagedClusterMeshRevisionProfileError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetManagedClusterMeshRevisionProfileRequest,
+  output: GetManagedClusterMeshRevisionProfileResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetManagedClusterMeshUpgradeProfileError = AzureOpError;
+/** Gets available upgrades for a service mesh in a cluster. */
+export const GetManagedClusterMeshUpgradeProfile: API.OperationMethod<
+  GetManagedClusterMeshUpgradeProfileRequest,
+  GetManagedClusterMeshUpgradeProfileResponse,
+  GetManagedClusterMeshUpgradeProfileError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetManagedClusterMeshUpgradeProfileRequest,
+  output: GetManagedClusterMeshUpgradeProfileResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetManagedClusterUpgradeProfileError = AzureOpError;
+/** Gets the upgrade profile of a managed cluster. */
+export const GetManagedClusterUpgradeProfile: API.OperationMethod<
+  GetManagedClusterUpgradeProfileRequest,
+  GetManagedClusterUpgradeProfileResponse,
+  GetManagedClusterUpgradeProfileError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetManagedClusterUpgradeProfileRequest,
+  output: GetManagedClusterUpgradeProfileResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetManagedNamespaceError = AzureOpError;
+/** Gets the specified namespace of a managed cluster. */
+export const GetManagedNamespace: API.OperationMethod<
+  GetManagedNamespaceRequest,
+  GetManagedNamespaceResponse,
+  GetManagedNamespaceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetManagedNamespaceRequest,
+  output: GetManagedNamespaceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetPrivateEndpointConnectionError = AzureOpError;
+/** Gets the specified private endpoint connection. To learn more about private clusters, see: https://docs.microsoft.com/azure/aks/private-clusters */
+export const GetPrivateEndpointConnection: API.OperationMethod<
+  GetPrivateEndpointConnectionRequest,
+  GetPrivateEndpointConnectionResponse,
+  GetPrivateEndpointConnectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPrivateEndpointConnectionRequest,
+  output: GetPrivateEndpointConnectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSnapshotError = AzureOpError;
+/** Gets a snapshot. */
+export const GetSnapshot: API.OperationMethod<
+  GetSnapshotRequest,
+  GetSnapshotResponse,
+  GetSnapshotError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSnapshotRequest,
+  output: GetSnapshotResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetTrustedAccessRoleBindingError = AzureOpError;
+/** Get a trusted access role binding. */
+export const GetTrustedAccessRoleBinding: API.OperationMethod<
+  GetTrustedAccessRoleBindingRequest,
+  GetTrustedAccessRoleBindingResponse,
+  GetTrustedAccessRoleBindingError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetTrustedAccessRoleBindingRequest,
+  output: GetTrustedAccessRoleBindingResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetUpdateRunError = AzureOpError;
+/** Get a UpdateRun */
+export const GetUpdateRun: API.OperationMethod<
+  GetUpdateRunRequest,
+  GetUpdateRunResponse,
+  GetUpdateRunError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetUpdateRunRequest,
+  output: GetUpdateRunResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -14735,76 +14846,483 @@ export const IdentityBindingsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type IdentityBindingsDeleteError = AzureOpError;
-/** Deletes an identity binding in the specified managed cluster. */
-export const IdentityBindingsDelete: API.OperationMethod<
-  IdentityBindingsDeleteRequest,
-  IdentityBindingsDeleteResponse,
-  IdentityBindingsDeleteError,
+export type ListAgentPoolsError = AzureOpError;
+/** Gets a list of agent pools in the specified managed cluster. */
+export const ListAgentPools: API.OperationMethod<
+  ListAgentPoolsRequest,
+  AgentPoolListResult,
+  ListAgentPoolsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: IdentityBindingsDeleteRequest,
-  output: IdentityBindingsDeleteResponse,
+  input: ListAgentPoolsRequest,
+  output: AgentPoolListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type IdentityBindingsGetError = AzureOpError;
-/** Gets the specified Identity Binding. */
-export const IdentityBindingsGet: API.OperationMethod<
-  IdentityBindingsGetRequest,
-  IdentityBindingsGetResponse,
-  IdentityBindingsGetError,
+export type ListAutoUpgradeProfileByFleetError = AzureOpError;
+/** List AutoUpgradeProfile resources by Fleet */
+export const ListAutoUpgradeProfileByFleet: API.OperationMethod<
+  ListAutoUpgradeProfileByFleetRequest,
+  AutoUpgradeProfileListResult,
+  ListAutoUpgradeProfileByFleetError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: IdentityBindingsGetRequest,
-  output: IdentityBindingsGetResponse,
+  input: ListAutoUpgradeProfileByFleetRequest,
+  output: AutoUpgradeProfileListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type IdentityBindingsListByManagedClusterError = AzureOpError;
+export type ListDeploymentSafeguardsError = AzureOpError;
+/** List DeploymentSafeguards by parent resource */
+export const ListDeploymentSafeguards: API.OperationMethod<
+  ListDeploymentSafeguardsRequest,
+  DeploymentSafeguardListResult,
+  ListDeploymentSafeguardsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDeploymentSafeguardsRequest,
+  output: DeploymentSafeguardListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListFleetByResourceGroupError = AzureOpError;
+/** Lists fleets in the specified subscription and resource group. */
+export const ListFleetByResourceGroup: API.OperationMethod<
+  ListFleetByResourceGroupRequest,
+  FleetListResult,
+  ListFleetByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListFleetByResourceGroupRequest,
+  output: FleetListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListFleetBySubscriptionError = AzureOpError;
+/** Lists fleets in the specified subscription. */
+export const ListFleetBySubscription: API.OperationMethod<
+  ListFleetBySubscriptionRequest,
+  FleetListResult,
+  ListFleetBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListFleetBySubscriptionRequest,
+  output: FleetListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListFleetCredentialsError = AzureOpError;
+/** Lists the user credentials of a Fleet. */
+export const ListFleetCredentials: API.OperationMethod<
+  ListFleetCredentialsRequest,
+  FleetCredentialResults,
+  ListFleetCredentialsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListFleetCredentialsRequest,
+  output: FleetCredentialResults,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListFleetManagedNamespaceByFleetError = AzureOpError;
+/** List FleetManagedNamespace resources by Fleet */
+export const ListFleetManagedNamespaceByFleet: API.OperationMethod<
+  ListFleetManagedNamespaceByFleetRequest,
+  FleetManagedNamespaceListResult,
+  ListFleetManagedNamespaceByFleetError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListFleetManagedNamespaceByFleetRequest,
+  output: FleetManagedNamespaceListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListFleetMemberByFleetError = AzureOpError;
+/** List FleetMember resources by Fleet */
+export const ListFleetMemberByFleet: API.OperationMethod<
+  ListFleetMemberByFleetRequest,
+  FleetMemberListResult,
+  ListFleetMemberByFleetError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListFleetMemberByFleetRequest,
+  output: FleetMemberListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListFleetUpdateStrategyByFleetError = AzureOpError;
+/** List FleetUpdateStrategy resources by Fleet */
+export const ListFleetUpdateStrategyByFleet: API.OperationMethod<
+  ListFleetUpdateStrategyByFleetRequest,
+  FleetUpdateStrategyListResult,
+  ListFleetUpdateStrategyByFleetError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListFleetUpdateStrategyByFleetRequest,
+  output: FleetUpdateStrategyListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListGateByFleetError = AzureOpError;
+/** List Gate resources by Fleet */
+export const ListGateByFleet: API.OperationMethod<
+  ListGateByFleetRequest,
+  GateListResult,
+  ListGateByFleetError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListGateByFleetRequest,
+  output: GateListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListIdentityBindingByManagedClusterError = AzureOpError;
 /** Gets a list of identity bindings in the specified managed cluster. */
-export const IdentityBindingsListByManagedCluster: API.OperationMethod<
-  IdentityBindingsListByManagedClusterRequest,
+export const ListIdentityBindingByManagedCluster: API.OperationMethod<
+  ListIdentityBindingByManagedClusterRequest,
   IdentityBindingListResult,
-  IdentityBindingsListByManagedClusterError,
+  ListIdentityBindingByManagedClusterError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: IdentityBindingsListByManagedClusterRequest,
+  input: ListIdentityBindingByManagedClusterRequest,
   output: IdentityBindingListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type MachinesGetError = AzureOpError;
-/** Get a specific machine in the specified agent pool. */
-export const MachinesGet: API.OperationMethod<
-  MachinesGetRequest,
-  MachinesGetResponse,
-  MachinesGetError,
+export type ListMachinesError = AzureOpError;
+/** Gets a list of machines in the specified agent pool. */
+export const ListMachines: API.OperationMethod<
+  ListMachinesRequest,
+  MachineListResult,
+  ListMachinesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: MachinesGetRequest,
-  output: MachinesGetResponse,
+  input: ListMachinesRequest,
+  output: MachineListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type MachinesListError = AzureOpError;
-/** Gets a list of machines in the specified agent pool. */
-export const MachinesList: API.OperationMethod<
-  MachinesListRequest,
-  MachineListResult,
-  MachinesListError,
+export type ListMaintenanceConfigurationByManagedClusterError = AzureOpError;
+/** Gets a list of maintenance configurations in the specified managed cluster. */
+export const ListMaintenanceConfigurationByManagedCluster: API.OperationMethod<
+  ListMaintenanceConfigurationByManagedClusterRequest,
+  MaintenanceConfigurationListResult,
+  ListMaintenanceConfigurationByManagedClusterError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: MachinesListRequest,
-  output: MachineListResult,
+  input: ListMaintenanceConfigurationByManagedClusterRequest,
+  output: MaintenanceConfigurationListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListManagedClusterByResourceGroupError = AzureOpError;
+/** Lists managed clusters in the specified subscription and resource group. */
+export const ListManagedClusterByResourceGroup: API.OperationMethod<
+  ListManagedClusterByResourceGroupRequest,
+  ManagedClusterListResult,
+  ListManagedClusterByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListManagedClusterByResourceGroupRequest,
+  output: ManagedClusterListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListManagedClusterClusterAdminCredentialsError = AzureOpError;
+/** Lists the admin credentials of a managed cluster. */
+export const ListManagedClusterClusterAdminCredentials: API.OperationMethod<
+  ListManagedClusterClusterAdminCredentialsRequest,
+  CredentialResults,
+  ListManagedClusterClusterAdminCredentialsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListManagedClusterClusterAdminCredentialsRequest,
+  output: CredentialResults,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListManagedClusterClusterMonitoringUserCredentialsError =
+  AzureOpError;
+/** Lists the cluster monitoring user credentials of a managed cluster. */
+export const ListManagedClusterClusterMonitoringUserCredentials: API.OperationMethod<
+  ListManagedClusterClusterMonitoringUserCredentialsRequest,
+  CredentialResults,
+  ListManagedClusterClusterMonitoringUserCredentialsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListManagedClusterClusterMonitoringUserCredentialsRequest,
+  output: CredentialResults,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListManagedClusterClusterUserCredentialsError = AzureOpError;
+/** Lists the user credentials of a managed cluster. */
+export const ListManagedClusterClusterUserCredentials: API.OperationMethod<
+  ListManagedClusterClusterUserCredentialsRequest,
+  CredentialResults,
+  ListManagedClusterClusterUserCredentialsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListManagedClusterClusterUserCredentialsRequest,
+  output: CredentialResults,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListManagedClusterKubernetesVersionsError = AzureOpError;
+/** Gets a list of supported Kubernetes versions in the specified subscription. Contains extra metadata on the version, including supported patch versions, capabilities, available upgrades, and details on preview status of the version */
+export const ListManagedClusterKubernetesVersions: API.OperationMethod<
+  ListManagedClusterKubernetesVersionsRequest,
+  KubernetesVersionListResult,
+  ListManagedClusterKubernetesVersionsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListManagedClusterKubernetesVersionsRequest,
+  output: KubernetesVersionListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListManagedClusterMeshRevisionProfilesError = AzureOpError;
+/** Lists mesh revision profiles for all meshes in the specified location. Contains extra metadata on each revision, including supported revisions, cluster compatibility and available upgrades */
+export const ListManagedClusterMeshRevisionProfiles: API.OperationMethod<
+  ListManagedClusterMeshRevisionProfilesRequest,
+  MeshRevisionProfileList,
+  ListManagedClusterMeshRevisionProfilesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListManagedClusterMeshRevisionProfilesRequest,
+  output: MeshRevisionProfileList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListManagedClusterMeshUpgradeProfilesError = AzureOpError;
+/** Lists available upgrades for all service meshes in a specific cluster. */
+export const ListManagedClusterMeshUpgradeProfiles: API.OperationMethod<
+  ListManagedClusterMeshUpgradeProfilesRequest,
+  MeshUpgradeProfileList,
+  ListManagedClusterMeshUpgradeProfilesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListManagedClusterMeshUpgradeProfilesRequest,
+  output: MeshUpgradeProfileList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListManagedClusterOutboundNetworkDependenciesEndpointsError =
+  AzureOpError;
+/** Gets a list of egress endpoints (network endpoints of all outbound dependencies) in the specified managed cluster. Gets a list of egress endpoints (network endpoints of all outbound dependencies) in the specified managed cluster. The operation returns properties of each egress endpoint. */
+export const ListManagedClusterOutboundNetworkDependenciesEndpoints: API.OperationMethod<
+  ListManagedClusterOutboundNetworkDependenciesEndpointsRequest,
+  OutboundEnvironmentEndpointCollection,
+  ListManagedClusterOutboundNetworkDependenciesEndpointsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListManagedClusterOutboundNetworkDependenciesEndpointsRequest,
+  output: OutboundEnvironmentEndpointCollection,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListManagedClustersError = AzureOpError;
+/** Gets a list of managed clusters in the specified subscription. */
+export const ListManagedClusters: API.OperationMethod<
+  ListManagedClustersRequest,
+  ManagedClusterListResult,
+  ListManagedClustersError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListManagedClustersRequest,
+  output: ManagedClusterListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListManagedNamespaceByManagedClusterError = AzureOpError;
+/** Gets a list of managed namespaces in the specified managed cluster. */
+export const ListManagedNamespaceByManagedCluster: API.OperationMethod<
+  ListManagedNamespaceByManagedClusterRequest,
+  ManagedNamespaceListResult,
+  ListManagedNamespaceByManagedClusterError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListManagedNamespaceByManagedClusterRequest,
+  output: ManagedNamespaceListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListManagedNamespaceCredentialError = AzureOpError;
+/** Lists the credentials of a namespace. */
+export const ListManagedNamespaceCredential: API.OperationMethod<
+  ListManagedNamespaceCredentialRequest,
+  CredentialResults,
+  ListManagedNamespaceCredentialError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListManagedNamespaceCredentialRequest,
+  output: CredentialResults,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListOperationsError = AzureOpError;
+/** Gets a list of operations. */
+export const ListOperations: API.OperationMethod<
+  ListOperationsRequest,
+  OperationListResult,
+  ListOperationsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListOperationsRequest,
+  output: OperationListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListPrivateEndpointConnectionsError = AzureOpError;
+/** Gets a list of private endpoint connections in the specified managed cluster. To learn more about private clusters, see: https://docs.microsoft.com/azure/aks/private-clusters */
+export const ListPrivateEndpointConnections: API.OperationMethod<
+  ListPrivateEndpointConnectionsRequest,
+  PrivateEndpointConnectionListResult,
+  ListPrivateEndpointConnectionsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListPrivateEndpointConnectionsRequest,
+  output: PrivateEndpointConnectionListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListPrivateLinkResourcesError = AzureOpError;
+/** Gets a list of private link resources in the specified managed cluster. To learn more about private clusters, see: https://docs.microsoft.com/azure/aks/private-clusters */
+export const ListPrivateLinkResources: API.OperationMethod<
+  ListPrivateLinkResourcesRequest,
+  PrivateLinkResourcesListResult,
+  ListPrivateLinkResourcesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListPrivateLinkResourcesRequest,
+  output: PrivateLinkResourcesListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSnapshotByResourceGroupError = AzureOpError;
+/** Lists snapshots in the specified subscription and resource group. */
+export const ListSnapshotByResourceGroup: API.OperationMethod<
+  ListSnapshotByResourceGroupRequest,
+  SnapshotListResult,
+  ListSnapshotByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSnapshotByResourceGroupRequest,
+  output: SnapshotListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSnapshotsError = AzureOpError;
+/** Gets a list of snapshots in the specified subscription. */
+export const ListSnapshots: API.OperationMethod<
+  ListSnapshotsRequest,
+  SnapshotListResult,
+  ListSnapshotsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSnapshotsRequest,
+  output: SnapshotListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListTrustedAccessRoleBindingsError = AzureOpError;
+/** List trusted access role bindings. */
+export const ListTrustedAccessRoleBindings: API.OperationMethod<
+  ListTrustedAccessRoleBindingsRequest,
+  TrustedAccessRoleBindingListResult,
+  ListTrustedAccessRoleBindingsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListTrustedAccessRoleBindingsRequest,
+  output: TrustedAccessRoleBindingListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListTrustedAccessRolesError = AzureOpError;
+/** List supported trusted access roles. */
+export const ListTrustedAccessRoles: API.OperationMethod<
+  ListTrustedAccessRolesRequest,
+  TrustedAccessRoleListResult,
+  ListTrustedAccessRolesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListTrustedAccessRolesRequest,
+  output: TrustedAccessRoleListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListUpdateRunByFleetError = AzureOpError;
+/** List UpdateRun resources by Fleet */
+export const ListUpdateRunByFleet: API.OperationMethod<
+  ListUpdateRunByFleetRequest,
+  UpdateRunListResult,
+  ListUpdateRunByFleetError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListUpdateRunByFleetRequest,
+  output: UpdateRunListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -14825,66 +15343,6 @@ export const MaintenanceConfigurationsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type MaintenanceConfigurationsDeleteError = AzureOpError;
-/** Deletes a maintenance configuration. */
-export const MaintenanceConfigurationsDelete: API.OperationMethod<
-  MaintenanceConfigurationsDeleteRequest,
-  MaintenanceConfigurationsDeleteResponse,
-  MaintenanceConfigurationsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: MaintenanceConfigurationsDeleteRequest,
-  output: MaintenanceConfigurationsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type MaintenanceConfigurationsGetError = AzureOpError;
-/** Gets the specified maintenance configuration of a managed cluster. */
-export const MaintenanceConfigurationsGet: API.OperationMethod<
-  MaintenanceConfigurationsGetRequest,
-  MaintenanceConfigurationsGetResponse,
-  MaintenanceConfigurationsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: MaintenanceConfigurationsGetRequest,
-  output: MaintenanceConfigurationsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type MaintenanceConfigurationsListByManagedClusterError = AzureOpError;
-/** Gets a list of maintenance configurations in the specified managed cluster. */
-export const MaintenanceConfigurationsListByManagedCluster: API.OperationMethod<
-  MaintenanceConfigurationsListByManagedClusterRequest,
-  MaintenanceConfigurationListResult,
-  MaintenanceConfigurationsListByManagedClusterError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: MaintenanceConfigurationsListByManagedClusterRequest,
-  output: MaintenanceConfigurationListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ManagedClustersAbortLatestOperationError = AzureOpError;
-/** Aborts last operation running on managed cluster. Aborts the currently running operation on the managed cluster. The Managed Cluster will be moved to a Canceling state and eventually to a Canceled state when cancellation finishes. If the operation completes before cancellation can take place, a 409 error code is returned. */
-export const ManagedClustersAbortLatestOperation: API.OperationMethod<
-  ManagedClustersAbortLatestOperationRequest,
-  ManagedClustersAbortLatestOperationResponse,
-  ManagedClustersAbortLatestOperationError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ManagedClustersAbortLatestOperationRequest,
-  output: ManagedClustersAbortLatestOperationResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ManagedClustersCreateOrUpdateError = AzureOpError;
 /** Creates or updates a managed cluster. */
 export const ManagedClustersCreateOrUpdate: API.OperationMethod<
@@ -14895,338 +15353,6 @@ export const ManagedClustersCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ManagedClustersCreateOrUpdateRequest,
   output: ManagedClustersCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ManagedClustersDeleteError = AzureOpError;
-/** Deletes a managed cluster. */
-export const ManagedClustersDelete: API.OperationMethod<
-  ManagedClustersDeleteRequest,
-  ManagedClustersDeleteResponse,
-  ManagedClustersDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ManagedClustersDeleteRequest,
-  output: ManagedClustersDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ManagedClustersGetError = AzureOpError;
-/** Gets a managed cluster. */
-export const ManagedClustersGet: API.OperationMethod<
-  ManagedClustersGetRequest,
-  ManagedClustersGetResponse,
-  ManagedClustersGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ManagedClustersGetRequest,
-  output: ManagedClustersGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ManagedClustersGetCommandResultError = AzureOpError;
-/** Gets the results of a command which has been run on the Managed Cluster. */
-export const ManagedClustersGetCommandResult: API.OperationMethod<
-  ManagedClustersGetCommandResultRequest,
-  RunCommandResult,
-  ManagedClustersGetCommandResultError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ManagedClustersGetCommandResultRequest,
-  output: RunCommandResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ManagedClustersGetMeshRevisionProfileError = AzureOpError;
-/** Gets a mesh revision profile for a specified mesh in the specified location. Contains extra metadata on the revision, including supported revisions, cluster compatibility and available upgrades */
-export const ManagedClustersGetMeshRevisionProfile: API.OperationMethod<
-  ManagedClustersGetMeshRevisionProfileRequest,
-  ManagedClustersGetMeshRevisionProfileResponse,
-  ManagedClustersGetMeshRevisionProfileError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ManagedClustersGetMeshRevisionProfileRequest,
-  output: ManagedClustersGetMeshRevisionProfileResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ManagedClustersGetMeshUpgradeProfileError = AzureOpError;
-/** Gets available upgrades for a service mesh in a cluster. */
-export const ManagedClustersGetMeshUpgradeProfile: API.OperationMethod<
-  ManagedClustersGetMeshUpgradeProfileRequest,
-  ManagedClustersGetMeshUpgradeProfileResponse,
-  ManagedClustersGetMeshUpgradeProfileError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ManagedClustersGetMeshUpgradeProfileRequest,
-  output: ManagedClustersGetMeshUpgradeProfileResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ManagedClustersGetUpgradeProfileError = AzureOpError;
-/** Gets the upgrade profile of a managed cluster. */
-export const ManagedClustersGetUpgradeProfile: API.OperationMethod<
-  ManagedClustersGetUpgradeProfileRequest,
-  ManagedClustersGetUpgradeProfileResponse,
-  ManagedClustersGetUpgradeProfileError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ManagedClustersGetUpgradeProfileRequest,
-  output: ManagedClustersGetUpgradeProfileResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ManagedClustersListError = AzureOpError;
-/** Gets a list of managed clusters in the specified subscription. */
-export const ManagedClustersList: API.OperationMethod<
-  ManagedClustersListRequest,
-  ManagedClusterListResult,
-  ManagedClustersListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ManagedClustersListRequest,
-  output: ManagedClusterListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ManagedClustersListByResourceGroupError = AzureOpError;
-/** Lists managed clusters in the specified subscription and resource group. */
-export const ManagedClustersListByResourceGroup: API.OperationMethod<
-  ManagedClustersListByResourceGroupRequest,
-  ManagedClusterListResult,
-  ManagedClustersListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ManagedClustersListByResourceGroupRequest,
-  output: ManagedClusterListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ManagedClustersListClusterAdminCredentialsError = AzureOpError;
-/** Lists the admin credentials of a managed cluster. */
-export const ManagedClustersListClusterAdminCredentials: API.OperationMethod<
-  ManagedClustersListClusterAdminCredentialsRequest,
-  CredentialResults,
-  ManagedClustersListClusterAdminCredentialsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ManagedClustersListClusterAdminCredentialsRequest,
-  output: CredentialResults,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ManagedClustersListClusterMonitoringUserCredentialsError =
-  AzureOpError;
-/** Lists the cluster monitoring user credentials of a managed cluster. */
-export const ManagedClustersListClusterMonitoringUserCredentials: API.OperationMethod<
-  ManagedClustersListClusterMonitoringUserCredentialsRequest,
-  CredentialResults,
-  ManagedClustersListClusterMonitoringUserCredentialsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ManagedClustersListClusterMonitoringUserCredentialsRequest,
-  output: CredentialResults,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ManagedClustersListClusterUserCredentialsError = AzureOpError;
-/** Lists the user credentials of a managed cluster. */
-export const ManagedClustersListClusterUserCredentials: API.OperationMethod<
-  ManagedClustersListClusterUserCredentialsRequest,
-  CredentialResults,
-  ManagedClustersListClusterUserCredentialsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ManagedClustersListClusterUserCredentialsRequest,
-  output: CredentialResults,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ManagedClustersListKubernetesVersionsError = AzureOpError;
-/** Gets a list of supported Kubernetes versions in the specified subscription. Contains extra metadata on the version, including supported patch versions, capabilities, available upgrades, and details on preview status of the version */
-export const ManagedClustersListKubernetesVersions: API.OperationMethod<
-  ManagedClustersListKubernetesVersionsRequest,
-  KubernetesVersionListResult,
-  ManagedClustersListKubernetesVersionsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ManagedClustersListKubernetesVersionsRequest,
-  output: KubernetesVersionListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ManagedClustersListMeshRevisionProfilesError = AzureOpError;
-/** Lists mesh revision profiles for all meshes in the specified location. Contains extra metadata on each revision, including supported revisions, cluster compatibility and available upgrades */
-export const ManagedClustersListMeshRevisionProfiles: API.OperationMethod<
-  ManagedClustersListMeshRevisionProfilesRequest,
-  MeshRevisionProfileList,
-  ManagedClustersListMeshRevisionProfilesError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ManagedClustersListMeshRevisionProfilesRequest,
-  output: MeshRevisionProfileList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ManagedClustersListMeshUpgradeProfilesError = AzureOpError;
-/** Lists available upgrades for all service meshes in a specific cluster. */
-export const ManagedClustersListMeshUpgradeProfiles: API.OperationMethod<
-  ManagedClustersListMeshUpgradeProfilesRequest,
-  MeshUpgradeProfileList,
-  ManagedClustersListMeshUpgradeProfilesError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ManagedClustersListMeshUpgradeProfilesRequest,
-  output: MeshUpgradeProfileList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ManagedClustersListOutboundNetworkDependenciesEndpointsError =
-  AzureOpError;
-/** Gets a list of egress endpoints (network endpoints of all outbound dependencies) in the specified managed cluster. Gets a list of egress endpoints (network endpoints of all outbound dependencies) in the specified managed cluster. The operation returns properties of each egress endpoint. */
-export const ManagedClustersListOutboundNetworkDependenciesEndpoints: API.OperationMethod<
-  ManagedClustersListOutboundNetworkDependenciesEndpointsRequest,
-  OutboundEnvironmentEndpointCollection,
-  ManagedClustersListOutboundNetworkDependenciesEndpointsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ManagedClustersListOutboundNetworkDependenciesEndpointsRequest,
-  output: OutboundEnvironmentEndpointCollection,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ManagedClustersResetServicePrincipalProfileError = AzureOpError;
-/** Reset the Service Principal Profile of a managed cluster. This action cannot be performed on a cluster that is not using a service principal */
-export const ManagedClustersResetServicePrincipalProfile: API.OperationMethod<
-  ManagedClustersResetServicePrincipalProfileRequest,
-  ManagedClustersResetServicePrincipalProfileResponse,
-  ManagedClustersResetServicePrincipalProfileError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ManagedClustersResetServicePrincipalProfileRequest,
-  output: ManagedClustersResetServicePrincipalProfileResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ManagedClustersRotateClusterCertificatesError = AzureOpError;
-/** Rotates the certificates of a managed cluster. See [Certificate rotation](https://docs.microsoft.com/azure/aks/certificate-rotation) for more details about rotating managed cluster certificates. */
-export const ManagedClustersRotateClusterCertificates: API.OperationMethod<
-  ManagedClustersRotateClusterCertificatesRequest,
-  ManagedClustersRotateClusterCertificatesResponse,
-  ManagedClustersRotateClusterCertificatesError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ManagedClustersRotateClusterCertificatesRequest,
-  output: ManagedClustersRotateClusterCertificatesResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ManagedClustersRotateServiceAccountSigningKeysError = AzureOpError;
-/** Rotates the service account signing keys of a managed cluster. */
-export const ManagedClustersRotateServiceAccountSigningKeys: API.OperationMethod<
-  ManagedClustersRotateServiceAccountSigningKeysRequest,
-  ManagedClustersRotateServiceAccountSigningKeysResponse,
-  ManagedClustersRotateServiceAccountSigningKeysError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ManagedClustersRotateServiceAccountSigningKeysRequest,
-  output: ManagedClustersRotateServiceAccountSigningKeysResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ManagedClustersRunCommandError = AzureOpError;
-/** Submits a command to run against the Managed Cluster. AKS will create a pod to run the command. This is primarily useful for private clusters. For more information see [AKS Run Command](https://docs.microsoft.com/azure/aks/private-clusters#aks-run-command-preview). */
-export const ManagedClustersRunCommand: API.OperationMethod<
-  ManagedClustersRunCommandRequest,
-  RunCommandResult,
-  ManagedClustersRunCommandError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ManagedClustersRunCommandRequest,
-  output: RunCommandResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ManagedClustersStartError = AzureOpError;
-/** Starts a previously stopped Managed Cluster See [starting a cluster](https://docs.microsoft.com/azure/aks/start-stop-cluster) for more details about starting a cluster. */
-export const ManagedClustersStart: API.OperationMethod<
-  ManagedClustersStartRequest,
-  ManagedClustersStartResponse,
-  ManagedClustersStartError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ManagedClustersStartRequest,
-  output: ManagedClustersStartResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ManagedClustersStopError = AzureOpError;
-/** Stops a Managed Cluster This can only be performed on Azure Virtual Machine Scale set backed clusters. Stopping a cluster stops the control plane and agent nodes entirely, while maintaining all object and cluster state. A cluster does not accrue charges while it is stopped. See [stopping a cluster](https://docs.microsoft.com/azure/aks/start-stop-cluster) for more details about stopping a cluster. */
-export const ManagedClustersStop: API.OperationMethod<
-  ManagedClustersStopRequest,
-  ManagedClustersStopResponse,
-  ManagedClustersStopError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ManagedClustersStopRequest,
-  output: ManagedClustersStopResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ManagedClustersUpdateTagsError = AzureOpError;
-/** Updates tags on a managed cluster. */
-export const ManagedClustersUpdateTags: API.OperationMethod<
-  ManagedClustersUpdateTagsRequest,
-  ManagedClustersUpdateTagsResponse,
-  ManagedClustersUpdateTagsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ManagedClustersUpdateTagsRequest,
-  output: ManagedClustersUpdateTagsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -15247,181 +15373,76 @@ export const ManagedNamespacesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ManagedNamespacesDeleteError = AzureOpError;
-/** Deletes a namespace. */
-export const ManagedNamespacesDelete: API.OperationMethod<
-  ManagedNamespacesDeleteRequest,
-  ManagedNamespacesDeleteResponse,
-  ManagedNamespacesDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ManagedNamespacesDeleteRequest,
-  output: ManagedNamespacesDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ManagedNamespacesGetError = AzureOpError;
-/** Gets the specified namespace of a managed cluster. */
-export const ManagedNamespacesGet: API.OperationMethod<
-  ManagedNamespacesGetRequest,
-  ManagedNamespacesGetResponse,
-  ManagedNamespacesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ManagedNamespacesGetRequest,
-  output: ManagedNamespacesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ManagedNamespacesListByManagedClusterError = AzureOpError;
-/** Gets a list of managed namespaces in the specified managed cluster. */
-export const ManagedNamespacesListByManagedCluster: API.OperationMethod<
-  ManagedNamespacesListByManagedClusterRequest,
-  ManagedNamespaceListResult,
-  ManagedNamespacesListByManagedClusterError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ManagedNamespacesListByManagedClusterRequest,
-  output: ManagedNamespaceListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ManagedNamespacesListCredentialError = AzureOpError;
-/** Lists the credentials of a namespace. */
-export const ManagedNamespacesListCredential: API.OperationMethod<
-  ManagedNamespacesListCredentialRequest,
-  CredentialResults,
-  ManagedNamespacesListCredentialError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ManagedNamespacesListCredentialRequest,
-  output: CredentialResults,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ManagedNamespacesUpdateError = AzureOpError;
-/** Updates tags on a managed namespace. */
-export const ManagedNamespacesUpdate: API.OperationMethod<
-  ManagedNamespacesUpdateRequest,
-  ManagedNamespacesUpdateResponse,
-  ManagedNamespacesUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ManagedNamespacesUpdateRequest,
-  output: ManagedNamespacesUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type OperationsListError = AzureOpError;
-/** Gets a list of operations. */
-export const OperationsList: API.OperationMethod<
-  OperationsListRequest,
-  OperationListResult,
-  OperationsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: OperationsListRequest,
-  output: OperationListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateEndpointConnectionsDeleteError = AzureOpError;
-/** Deletes a private endpoint connection. */
-export const PrivateEndpointConnectionsDelete: API.OperationMethod<
-  PrivateEndpointConnectionsDeleteRequest,
-  PrivateEndpointConnectionsDeleteResponse,
-  PrivateEndpointConnectionsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateEndpointConnectionsDeleteRequest,
-  output: PrivateEndpointConnectionsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateEndpointConnectionsGetError = AzureOpError;
-/** Gets the specified private endpoint connection. To learn more about private clusters, see: https://docs.microsoft.com/azure/aks/private-clusters */
-export const PrivateEndpointConnectionsGet: API.OperationMethod<
-  PrivateEndpointConnectionsGetRequest,
-  PrivateEndpointConnectionsGetResponse,
-  PrivateEndpointConnectionsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateEndpointConnectionsGetRequest,
-  output: PrivateEndpointConnectionsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateEndpointConnectionsListError = AzureOpError;
-/** Gets a list of private endpoint connections in the specified managed cluster. To learn more about private clusters, see: https://docs.microsoft.com/azure/aks/private-clusters */
-export const PrivateEndpointConnectionsList: API.OperationMethod<
-  PrivateEndpointConnectionsListRequest,
-  PrivateEndpointConnectionListResult,
-  PrivateEndpointConnectionsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateEndpointConnectionsListRequest,
-  output: PrivateEndpointConnectionListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateEndpointConnectionsUpdateError = AzureOpError;
-/** Updates a private endpoint connection. */
-export const PrivateEndpointConnectionsUpdate: API.OperationMethod<
-  PrivateEndpointConnectionsUpdateRequest,
-  PrivateEndpointConnectionsUpdateResponse,
-  PrivateEndpointConnectionsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateEndpointConnectionsUpdateRequest,
-  output: PrivateEndpointConnectionsUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateLinkResourcesListError = AzureOpError;
-/** Gets a list of private link resources in the specified managed cluster. To learn more about private clusters, see: https://docs.microsoft.com/azure/aks/private-clusters */
-export const PrivateLinkResourcesList: API.OperationMethod<
-  PrivateLinkResourcesListRequest,
-  PrivateLinkResourcesListResult,
-  PrivateLinkResourcesListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateLinkResourcesListRequest,
-  output: PrivateLinkResourcesListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ResolvePrivateLinkServiceIdPOSTError = AzureOpError;
+export type PostResolvePrivateLinkServiceIdError = AzureOpError;
 /** Gets the private link service ID for the specified managed cluster. */
-export const ResolvePrivateLinkServiceIdPOST: API.OperationMethod<
-  ResolvePrivateLinkServiceIdPOSTRequest,
+export const PostResolvePrivateLinkServiceId: API.OperationMethod<
+  PostResolvePrivateLinkServiceIdRequest,
   PrivateLinkResource,
-  ResolvePrivateLinkServiceIdPOSTError,
+  PostResolvePrivateLinkServiceIdError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ResolvePrivateLinkServiceIdPOSTRequest,
+  input: PostResolvePrivateLinkServiceIdRequest,
   output: PrivateLinkResource,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ResetManagedClusterServicePrincipalProfileError = AzureOpError;
+/** Reset the Service Principal Profile of a managed cluster. This action cannot be performed on a cluster that is not using a service principal */
+export const ResetManagedClusterServicePrincipalProfile: API.OperationMethod<
+  ResetManagedClusterServicePrincipalProfileRequest,
+  ResetManagedClusterServicePrincipalProfileResponse,
+  ResetManagedClusterServicePrincipalProfileError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ResetManagedClusterServicePrincipalProfileRequest,
+  output: ResetManagedClusterServicePrincipalProfileResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RotateManagedClusterClusterCertificatesError = AzureOpError;
+/** Rotates the certificates of a managed cluster. See [Certificate rotation](https://docs.microsoft.com/azure/aks/certificate-rotation) for more details about rotating managed cluster certificates. */
+export const RotateManagedClusterClusterCertificates: API.OperationMethod<
+  RotateManagedClusterClusterCertificatesRequest,
+  RotateManagedClusterClusterCertificatesResponse,
+  RotateManagedClusterClusterCertificatesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RotateManagedClusterClusterCertificatesRequest,
+  output: RotateManagedClusterClusterCertificatesResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RotateManagedClusterServiceAccountSigningKeysError = AzureOpError;
+/** Rotates the service account signing keys of a managed cluster. */
+export const RotateManagedClusterServiceAccountSigningKeys: API.OperationMethod<
+  RotateManagedClusterServiceAccountSigningKeysRequest,
+  RotateManagedClusterServiceAccountSigningKeysResponse,
+  RotateManagedClusterServiceAccountSigningKeysError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RotateManagedClusterServiceAccountSigningKeysRequest,
+  output: RotateManagedClusterServiceAccountSigningKeysResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RunManagedClusterCommandError = AzureOpError;
+/** Submits a command to run against the Managed Cluster. AKS will create a pod to run the command. This is primarily useful for private clusters. For more information see [AKS Run Command](https://docs.microsoft.com/azure/aks/private-clusters#aks-run-command-preview). */
+export const RunManagedClusterCommand: API.OperationMethod<
+  RunManagedClusterCommandRequest,
+  RunCommandResult,
+  RunManagedClusterCommandError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RunManagedClusterCommandRequest,
+  output: RunCommandResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -15442,76 +15463,61 @@ export const SnapshotsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type SnapshotsDeleteError = AzureOpError;
-/** Deletes a snapshot. */
-export const SnapshotsDelete: API.OperationMethod<
-  SnapshotsDeleteRequest,
-  SnapshotsDeleteResponse,
-  SnapshotsDeleteError,
+export type StartManagedClusterError = AzureOpError;
+/** Starts a previously stopped Managed Cluster See [starting a cluster](https://docs.microsoft.com/azure/aks/start-stop-cluster) for more details about starting a cluster. */
+export const StartManagedCluster: API.OperationMethod<
+  StartManagedClusterRequest,
+  StartManagedClusterResponse,
+  StartManagedClusterError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SnapshotsDeleteRequest,
-  output: SnapshotsDeleteResponse,
+  input: StartManagedClusterRequest,
+  output: StartManagedClusterResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type SnapshotsGetError = AzureOpError;
-/** Gets a snapshot. */
-export const SnapshotsGet: API.OperationMethod<
-  SnapshotsGetRequest,
-  SnapshotsGetResponse,
-  SnapshotsGetError,
+export type StartUpdateRunError = AzureOpError;
+/** Starts an UpdateRun. */
+export const StartUpdateRun: API.OperationMethod<
+  StartUpdateRunRequest,
+  StartUpdateRunResponse,
+  StartUpdateRunError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SnapshotsGetRequest,
-  output: SnapshotsGetResponse,
+  input: StartUpdateRunRequest,
+  output: StartUpdateRunResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type SnapshotsListError = AzureOpError;
-/** Gets a list of snapshots in the specified subscription. */
-export const SnapshotsList: API.OperationMethod<
-  SnapshotsListRequest,
-  SnapshotListResult,
-  SnapshotsListError,
+export type StopManagedClusterError = AzureOpError;
+/** Stops a Managed Cluster This can only be performed on Azure Virtual Machine Scale set backed clusters. Stopping a cluster stops the control plane and agent nodes entirely, while maintaining all object and cluster state. A cluster does not accrue charges while it is stopped. See [stopping a cluster](https://docs.microsoft.com/azure/aks/start-stop-cluster) for more details about stopping a cluster. */
+export const StopManagedCluster: API.OperationMethod<
+  StopManagedClusterRequest,
+  StopManagedClusterResponse,
+  StopManagedClusterError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SnapshotsListRequest,
-  output: SnapshotListResult,
+  input: StopManagedClusterRequest,
+  output: StopManagedClusterResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type SnapshotsListByResourceGroupError = AzureOpError;
-/** Lists snapshots in the specified subscription and resource group. */
-export const SnapshotsListByResourceGroup: API.OperationMethod<
-  SnapshotsListByResourceGroupRequest,
-  SnapshotListResult,
-  SnapshotsListByResourceGroupError,
+export type StopUpdateRunError = AzureOpError;
+/** Stops an UpdateRun. */
+export const StopUpdateRun: API.OperationMethod<
+  StopUpdateRunRequest,
+  StopUpdateRunResponse,
+  StopUpdateRunError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SnapshotsListByResourceGroupRequest,
-  output: SnapshotListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SnapshotsUpdateTagsError = AzureOpError;
-/** Updates tags on a snapshot. */
-export const SnapshotsUpdateTags: API.OperationMethod<
-  SnapshotsUpdateTagsRequest,
-  SnapshotsUpdateTagsResponse,
-  SnapshotsUpdateTagsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SnapshotsUpdateTagsRequest,
-  output: SnapshotsUpdateTagsResponse,
+  input: StopUpdateRunRequest,
+  output: StopUpdateRunResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -15532,61 +15538,106 @@ export const TrustedAccessRoleBindingsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type TrustedAccessRoleBindingsDeleteError = AzureOpError;
-/** Delete a trusted access role binding. */
-export const TrustedAccessRoleBindingsDelete: API.OperationMethod<
-  TrustedAccessRoleBindingsDeleteRequest,
-  TrustedAccessRoleBindingsDeleteResponse,
-  TrustedAccessRoleBindingsDeleteError,
+export type UpdateFleetError = AzureOpError;
+/** Update a Fleet */
+export const UpdateFleet: API.OperationMethod<
+  UpdateFleetRequest,
+  UpdateFleetResponse,
+  UpdateFleetError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: TrustedAccessRoleBindingsDeleteRequest,
-  output: TrustedAccessRoleBindingsDeleteResponse,
+  input: UpdateFleetRequest,
+  output: UpdateFleetResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type TrustedAccessRoleBindingsGetError = AzureOpError;
-/** Get a trusted access role binding. */
-export const TrustedAccessRoleBindingsGet: API.OperationMethod<
-  TrustedAccessRoleBindingsGetRequest,
-  TrustedAccessRoleBindingsGetResponse,
-  TrustedAccessRoleBindingsGetError,
+export type UpdateFleetManagedNamespaceError = AzureOpError;
+/** Update a FleetManagedNamespace */
+export const UpdateFleetManagedNamespace: API.OperationMethod<
+  UpdateFleetManagedNamespaceRequest,
+  UpdateFleetManagedNamespaceResponse,
+  UpdateFleetManagedNamespaceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: TrustedAccessRoleBindingsGetRequest,
-  output: TrustedAccessRoleBindingsGetResponse,
+  input: UpdateFleetManagedNamespaceRequest,
+  output: UpdateFleetManagedNamespaceResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type TrustedAccessRoleBindingsListError = AzureOpError;
-/** List trusted access role bindings. */
-export const TrustedAccessRoleBindingsList: API.OperationMethod<
-  TrustedAccessRoleBindingsListRequest,
-  TrustedAccessRoleBindingListResult,
-  TrustedAccessRoleBindingsListError,
+export type UpdateFleetMemberError = AzureOpError;
+/** Update a FleetMember */
+export const UpdateFleetMember: API.OperationMethod<
+  UpdateFleetMemberRequest,
+  UpdateFleetMemberResponse,
+  UpdateFleetMemberError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: TrustedAccessRoleBindingsListRequest,
-  output: TrustedAccessRoleBindingListResult,
+  input: UpdateFleetMemberRequest,
+  output: UpdateFleetMemberResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type TrustedAccessRolesListError = AzureOpError;
-/** List supported trusted access roles. */
-export const TrustedAccessRolesList: API.OperationMethod<
-  TrustedAccessRolesListRequest,
-  TrustedAccessRoleListResult,
-  TrustedAccessRolesListError,
+export type UpdateGateError = AzureOpError;
+/** Update a Gate */
+export const UpdateGate: API.OperationMethod<
+  UpdateGateRequest,
+  UpdateGateResponse,
+  UpdateGateError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: TrustedAccessRolesListRequest,
-  output: TrustedAccessRoleListResult,
+  input: UpdateGateRequest,
+  output: UpdateGateResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateManagedClusterTagsError = AzureOpError;
+/** Updates tags on a managed cluster. */
+export const UpdateManagedClusterTags: API.OperationMethod<
+  UpdateManagedClusterTagsRequest,
+  UpdateManagedClusterTagsResponse,
+  UpdateManagedClusterTagsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateManagedClusterTagsRequest,
+  output: UpdateManagedClusterTagsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateManagedNamespaceError = AzureOpError;
+/** Updates tags on a managed namespace. */
+export const UpdateManagedNamespace: API.OperationMethod<
+  UpdateManagedNamespaceRequest,
+  UpdateManagedNamespaceResponse,
+  UpdateManagedNamespaceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateManagedNamespaceRequest,
+  output: UpdateManagedNamespaceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdatePrivateEndpointConnectionError = AzureOpError;
+/** Updates a private endpoint connection. */
+export const UpdatePrivateEndpointConnection: API.OperationMethod<
+  UpdatePrivateEndpointConnectionRequest,
+  UpdatePrivateEndpointConnectionResponse,
+  UpdatePrivateEndpointConnectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdatePrivateEndpointConnectionRequest,
+  output: UpdatePrivateEndpointConnectionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -15607,51 +15658,6 @@ export const UpdateRunsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateRunsDeleteError = AzureOpError;
-/** Delete a UpdateRun */
-export const UpdateRunsDelete: API.OperationMethod<
-  UpdateRunsDeleteRequest,
-  UpdateRunsDeleteResponse,
-  UpdateRunsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdateRunsDeleteRequest,
-  output: UpdateRunsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UpdateRunsGetError = AzureOpError;
-/** Get a UpdateRun */
-export const UpdateRunsGet: API.OperationMethod<
-  UpdateRunsGetRequest,
-  UpdateRunsGetResponse,
-  UpdateRunsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdateRunsGetRequest,
-  output: UpdateRunsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UpdateRunsListByFleetError = AzureOpError;
-/** List UpdateRun resources by Fleet */
-export const UpdateRunsListByFleet: API.OperationMethod<
-  UpdateRunsListByFleetRequest,
-  UpdateRunListResult,
-  UpdateRunsListByFleetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdateRunsListByFleetRequest,
-  output: UpdateRunListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type UpdateRunsSkipError = AzureOpError;
 /** Skips one or a combination of member/group/stage/afterStageWait(s) of an update run. */
 export const UpdateRunsSkip: API.OperationMethod<
@@ -15667,31 +15673,16 @@ export const UpdateRunsSkip: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UpdateRunsStartError = AzureOpError;
-/** Starts an UpdateRun. */
-export const UpdateRunsStart: API.OperationMethod<
-  UpdateRunsStartRequest,
-  UpdateRunsStartResponse,
-  UpdateRunsStartError,
+export type UpdateSnapshotTagsError = AzureOpError;
+/** Updates tags on a snapshot. */
+export const UpdateSnapshotTags: API.OperationMethod<
+  UpdateSnapshotTagsRequest,
+  UpdateSnapshotTagsResponse,
+  UpdateSnapshotTagsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UpdateRunsStartRequest,
-  output: UpdateRunsStartResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UpdateRunsStopError = AzureOpError;
-/** Stops an UpdateRun. */
-export const UpdateRunsStop: API.OperationMethod<
-  UpdateRunsStopRequest,
-  UpdateRunsStopResponse,
-  UpdateRunsStopError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UpdateRunsStopRequest,
-  output: UpdateRunsStopResponse,
+  input: UpdateSnapshotTagsRequest,
+  output: UpdateSnapshotTagsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

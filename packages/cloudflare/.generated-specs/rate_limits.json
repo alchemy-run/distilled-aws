@@ -14,7 +14,15 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "keyDictionary": {
+      "contentType": "content_type",
+      "originTraffic": "origin_traffic",
+      "perPage": "per_page",
+      "resultInfo": "result_info",
+      "totalCount": "total_count"
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.rate_limits#CreateRequestActionMode": {
@@ -243,50 +251,6 @@
         "response": {
           "target": "com.cloudflare.rate_limits#CreateRequestMatchResponse"
         }
-      }
-    },
-    "com.cloudflare.rate_limits#CreateRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Defines an identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "action": {
-          "target": "com.cloudflare.rate_limits#CreateRequestAction",
-          "traits": {
-            "smithy.api#documentation": "The action to perform when the threshold of matched traffic within the configured period is exceeded.",
-            "smithy.api#required": {}
-          }
-        },
-        "match": {
-          "target": "com.cloudflare.rate_limits#CreateRequestMatch",
-          "traits": {
-            "smithy.api#documentation": "Determines which traffic the rate limit counts towards the threshold.",
-            "smithy.api#required": {}
-          }
-        },
-        "period": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The time in seconds (an integer value) to count matching traffic. If the count exceeds the configured threshold within this period, Cloudflare will perform the configured action.",
-            "smithy.api#required": {}
-          }
-        },
-        "threshold": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The threshold that will trigger the configured mitigation action. Configure this value along with the `period` property to establish a threshold per period.",
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.rate_limits#CreateResponseActionMode": {
@@ -548,104 +512,6 @@
         }
       }
     },
-    "com.cloudflare.rate_limits#CreateResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The unique identifier of the rate limit."
-          }
-        },
-        "action": {
-          "target": "com.cloudflare.rate_limits#CreateResponseAction",
-          "traits": {
-            "smithy.api#documentation": "The action to perform when the threshold of matched traffic within the configured period is exceeded."
-          }
-        },
-        "bypass": {
-          "target": "com.cloudflare.rate_limits#CreateResponseBypassList",
-          "traits": {
-            "smithy.api#documentation": "Criteria specifying when the current rate limit should be bypassed. You can specify that the rate limit should not apply to one or more URLs."
-          }
-        },
-        "description": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "An informative summary of the rule. This value is sanitized and any tags will be removed."
-          }
-        },
-        "disabled": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "When true, indicates that the rate limit is currently disabled."
-          }
-        },
-        "match": {
-          "target": "com.cloudflare.rate_limits#CreateResponseMatch",
-          "traits": {
-            "smithy.api#documentation": "Determines which traffic the rate limit counts towards the threshold."
-          }
-        },
-        "period": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The time in seconds (an integer value) to count matching traffic. If the count exceeds the configured threshold within this period, Cloudflare will perform the configured action."
-          }
-        },
-        "threshold": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The threshold that will trigger the configured mitigation action. Configure this value along with the `period` property to establish a threshold per period."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.rate_limits#Create": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.rate_limits#CreateRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.rate_limits#CreateResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "/zones/{zone_id}/rate_limits",
-          "code": 200
-        },
-        "smithy.api#documentation": "Creates a new rate limit for a zone. Refer to the object definition for a list of required attributes."
-      }
-    },
-    "com.cloudflare.rate_limits#DeleteRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Defines an identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "rate_limit_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Defines the unique identifier of the rate limit.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.rate_limits#DeleteResponseActionMode": {
       "type": "enum",
       "members": {
@@ -905,81 +771,6 @@
         }
       }
     },
-    "com.cloudflare.rate_limits#DeleteResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The unique identifier of the rate limit."
-          }
-        },
-        "action": {
-          "target": "com.cloudflare.rate_limits#DeleteResponseAction",
-          "traits": {
-            "smithy.api#documentation": "The action to perform when the threshold of matched traffic within the configured period is exceeded."
-          }
-        },
-        "bypass": {
-          "target": "com.cloudflare.rate_limits#DeleteResponseBypassList",
-          "traits": {
-            "smithy.api#documentation": "Criteria specifying when the current rate limit should be bypassed. You can specify that the rate limit should not apply to one or more URLs."
-          }
-        },
-        "description": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "An informative summary of the rule. This value is sanitized and any tags will be removed."
-          }
-        },
-        "disabled": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "When true, indicates that the rate limit is currently disabled."
-          }
-        },
-        "match": {
-          "target": "com.cloudflare.rate_limits#DeleteResponseMatch",
-          "traits": {
-            "smithy.api#documentation": "Determines which traffic the rate limit counts towards the threshold."
-          }
-        },
-        "period": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The time in seconds (an integer value) to count matching traffic. If the count exceeds the configured threshold within this period, Cloudflare will perform the configured action."
-          }
-        },
-        "threshold": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The threshold that will trigger the configured mitigation action. Configure this value along with the `period` property to establish a threshold per period."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.rate_limits#Delete": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.rate_limits#DeleteRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.rate_limits#DeleteResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "/zones/{zone_id}/rate_limits/{rate_limit_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Deletes an existing rate limit.",
-        "smithy.api#idempotent": {}
-      }
-    },
     "com.cloudflare.rate_limits#EditRequestActionMode": {
       "type": "enum",
       "members": {
@@ -1206,58 +997,6 @@
         "response": {
           "target": "com.cloudflare.rate_limits#EditRequestMatchResponse"
         }
-      }
-    },
-    "com.cloudflare.rate_limits#EditRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Defines an identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "rate_limit_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Defines the unique identifier of the rate limit.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "action": {
-          "target": "com.cloudflare.rate_limits#EditRequestAction",
-          "traits": {
-            "smithy.api#documentation": "The action to perform when the threshold of matched traffic within the configured period is exceeded.",
-            "smithy.api#required": {}
-          }
-        },
-        "match": {
-          "target": "com.cloudflare.rate_limits#EditRequestMatch",
-          "traits": {
-            "smithy.api#documentation": "Determines which traffic the rate limit counts towards the threshold.",
-            "smithy.api#required": {}
-          }
-        },
-        "period": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The time in seconds (an integer value) to count matching traffic. If the count exceeds the configured threshold within this period, Cloudflare will perform the configured action.",
-            "smithy.api#required": {}
-          }
-        },
-        "threshold": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The threshold that will trigger the configured mitigation action. Configure this value along with the `period` property to establish a threshold per period.",
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.rate_limits#EditResponseActionMode": {
@@ -1519,105 +1258,6 @@
         }
       }
     },
-    "com.cloudflare.rate_limits#EditResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The unique identifier of the rate limit."
-          }
-        },
-        "action": {
-          "target": "com.cloudflare.rate_limits#EditResponseAction",
-          "traits": {
-            "smithy.api#documentation": "The action to perform when the threshold of matched traffic within the configured period is exceeded."
-          }
-        },
-        "bypass": {
-          "target": "com.cloudflare.rate_limits#EditResponseBypassList",
-          "traits": {
-            "smithy.api#documentation": "Criteria specifying when the current rate limit should be bypassed. You can specify that the rate limit should not apply to one or more URLs."
-          }
-        },
-        "description": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "An informative summary of the rule. This value is sanitized and any tags will be removed."
-          }
-        },
-        "disabled": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "When true, indicates that the rate limit is currently disabled."
-          }
-        },
-        "match": {
-          "target": "com.cloudflare.rate_limits#EditResponseMatch",
-          "traits": {
-            "smithy.api#documentation": "Determines which traffic the rate limit counts towards the threshold."
-          }
-        },
-        "period": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The time in seconds (an integer value) to count matching traffic. If the count exceeds the configured threshold within this period, Cloudflare will perform the configured action."
-          }
-        },
-        "threshold": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The threshold that will trigger the configured mitigation action. Configure this value along with the `period` property to establish a threshold per period."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.rate_limits#Edit": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.rate_limits#EditRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.rate_limits#EditResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "PUT",
-          "uri": "/zones/{zone_id}/rate_limits/{rate_limit_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Updates an existing rate limit.",
-        "smithy.api#idempotent": {}
-      }
-    },
-    "com.cloudflare.rate_limits#GetRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Defines an identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "rate_limit_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Defines the unique identifier of the rate limit.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.rate_limits#GetResponseActionMode": {
       "type": "enum",
       "members": {
@@ -1875,111 +1515,6 @@
         "response": {
           "target": "com.cloudflare.rate_limits#GetResponseMatchResponse"
         }
-      }
-    },
-    "com.cloudflare.rate_limits#GetResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The unique identifier of the rate limit."
-          }
-        },
-        "action": {
-          "target": "com.cloudflare.rate_limits#GetResponseAction",
-          "traits": {
-            "smithy.api#documentation": "The action to perform when the threshold of matched traffic within the configured period is exceeded."
-          }
-        },
-        "bypass": {
-          "target": "com.cloudflare.rate_limits#GetResponseBypassList",
-          "traits": {
-            "smithy.api#documentation": "Criteria specifying when the current rate limit should be bypassed. You can specify that the rate limit should not apply to one or more URLs."
-          }
-        },
-        "description": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "An informative summary of the rule. This value is sanitized and any tags will be removed."
-          }
-        },
-        "disabled": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "When true, indicates that the rate limit is currently disabled."
-          }
-        },
-        "match": {
-          "target": "com.cloudflare.rate_limits#GetResponseMatch",
-          "traits": {
-            "smithy.api#documentation": "Determines which traffic the rate limit counts towards the threshold."
-          }
-        },
-        "period": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The time in seconds (an integer value) to count matching traffic. If the count exceeds the configured threshold within this period, Cloudflare will perform the configured action."
-          }
-        },
-        "threshold": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The threshold that will trigger the configured mitigation action. Configure this value along with the `period` property to establish a threshold per period."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.rate_limits#Get": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.rate_limits#GetRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.rate_limits#GetResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/zones/{zone_id}/rate_limits/{rate_limit_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Fetches the details of a rate limit.",
-        "smithy.api#readonly": {}
-      }
-    },
-    "com.cloudflare.rate_limits#ListRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Defines an identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "page": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Defines the page number of paginated results.",
-            "smithy.api#httpQuery": "page"
-          }
-        },
-        "per_page": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Defines the maximum number of results per page. You can only set the value to `1` or to a multiple of 5 such as `5`, `10`, `15`, or `20`.",
-            "smithy.api#httpQuery": "per_page"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.rate_limits#ListResultItemActionMode": {
@@ -2300,7 +1835,531 @@
         "target": "com.cloudflare.rate_limits#ListResultItem"
       }
     },
-    "com.cloudflare.rate_limits#ListResponse": {
+    "com.cloudflare.rate_limits#RateLimits": {
+      "type": "service",
+      "version": "4.0",
+      "operations": [
+        {
+          "target": "com.cloudflare.rate_limits#CreateRateLimit"
+        },
+        {
+          "target": "com.cloudflare.rate_limits#DeleteRateLimit"
+        },
+        {
+          "target": "com.cloudflare.rate_limits#EditRateLimit"
+        },
+        {
+          "target": "com.cloudflare.rate_limits#GetRateLimit"
+        },
+        {
+          "target": "com.cloudflare.rate_limits#ListRateLimits"
+        }
+      ],
+      "traits": {
+        "com.cloudflare.protocols#v4Json": {},
+        "smithy.api#title": "Cloudflare RateLimits",
+        "smithy.api#documentation": "Cloudflare API — rate_limits resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+      }
+    },
+    "com.cloudflare.rate_limits#CreateRateLimit": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.rate_limits#CreateRateLimitRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.rate_limits#CreateRateLimitResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/zones/{zone_id}/rate_limits",
+          "code": 200
+        },
+        "smithy.api#documentation": "Creates a new rate limit for a zone. Refer to the object definition for a list of required attributes."
+      }
+    },
+    "com.cloudflare.rate_limits#CreateRateLimitRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Defines an identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "action": {
+          "target": "com.cloudflare.rate_limits#CreateRequestAction",
+          "traits": {
+            "smithy.api#documentation": "The action to perform when the threshold of matched traffic within the configured period is exceeded.",
+            "smithy.api#required": {}
+          }
+        },
+        "match": {
+          "target": "com.cloudflare.rate_limits#CreateRequestMatch",
+          "traits": {
+            "smithy.api#documentation": "Determines which traffic the rate limit counts towards the threshold.",
+            "smithy.api#required": {}
+          }
+        },
+        "period": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The time in seconds (an integer value) to count matching traffic. If the count exceeds the configured threshold within this period, Cloudflare will perform the configured action.",
+            "smithy.api#required": {}
+          }
+        },
+        "threshold": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The threshold that will trigger the configured mitigation action. Configure this value along with the `period` property to establish a threshold per period.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.rate_limits#CreateRateLimitResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the rate limit."
+          }
+        },
+        "action": {
+          "target": "com.cloudflare.rate_limits#CreateResponseAction",
+          "traits": {
+            "smithy.api#documentation": "The action to perform when the threshold of matched traffic within the configured period is exceeded."
+          }
+        },
+        "bypass": {
+          "target": "com.cloudflare.rate_limits#CreateResponseBypassList",
+          "traits": {
+            "smithy.api#documentation": "Criteria specifying when the current rate limit should be bypassed. You can specify that the rate limit should not apply to one or more URLs."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An informative summary of the rule. This value is sanitized and any tags will be removed."
+          }
+        },
+        "disabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When true, indicates that the rate limit is currently disabled."
+          }
+        },
+        "match": {
+          "target": "com.cloudflare.rate_limits#CreateResponseMatch",
+          "traits": {
+            "smithy.api#documentation": "Determines which traffic the rate limit counts towards the threshold."
+          }
+        },
+        "period": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The time in seconds (an integer value) to count matching traffic. If the count exceeds the configured threshold within this period, Cloudflare will perform the configured action."
+          }
+        },
+        "threshold": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The threshold that will trigger the configured mitigation action. Configure this value along with the `period` property to establish a threshold per period."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.rate_limits#DeleteRateLimit": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.rate_limits#DeleteRateLimitRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.rate_limits#DeleteRateLimitResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/zones/{zone_id}/rate_limits/{rate_limit_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Deletes an existing rate limit.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.rate_limits#DeleteRateLimitRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Defines an identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "rate_limit_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Defines the unique identifier of the rate limit.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.rate_limits#DeleteRateLimitResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the rate limit."
+          }
+        },
+        "action": {
+          "target": "com.cloudflare.rate_limits#DeleteResponseAction",
+          "traits": {
+            "smithy.api#documentation": "The action to perform when the threshold of matched traffic within the configured period is exceeded."
+          }
+        },
+        "bypass": {
+          "target": "com.cloudflare.rate_limits#DeleteResponseBypassList",
+          "traits": {
+            "smithy.api#documentation": "Criteria specifying when the current rate limit should be bypassed. You can specify that the rate limit should not apply to one or more URLs."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An informative summary of the rule. This value is sanitized and any tags will be removed."
+          }
+        },
+        "disabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When true, indicates that the rate limit is currently disabled."
+          }
+        },
+        "match": {
+          "target": "com.cloudflare.rate_limits#DeleteResponseMatch",
+          "traits": {
+            "smithy.api#documentation": "Determines which traffic the rate limit counts towards the threshold."
+          }
+        },
+        "period": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The time in seconds (an integer value) to count matching traffic. If the count exceeds the configured threshold within this period, Cloudflare will perform the configured action."
+          }
+        },
+        "threshold": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The threshold that will trigger the configured mitigation action. Configure this value along with the `period` property to establish a threshold per period."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.rate_limits#EditRateLimit": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.rate_limits#EditRateLimitRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.rate_limits#EditRateLimitResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/zones/{zone_id}/rate_limits/{rate_limit_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Updates an existing rate limit.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.rate_limits#EditRateLimitRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Defines an identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "rate_limit_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Defines the unique identifier of the rate limit.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "action": {
+          "target": "com.cloudflare.rate_limits#EditRequestAction",
+          "traits": {
+            "smithy.api#documentation": "The action to perform when the threshold of matched traffic within the configured period is exceeded.",
+            "smithy.api#required": {}
+          }
+        },
+        "match": {
+          "target": "com.cloudflare.rate_limits#EditRequestMatch",
+          "traits": {
+            "smithy.api#documentation": "Determines which traffic the rate limit counts towards the threshold.",
+            "smithy.api#required": {}
+          }
+        },
+        "period": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The time in seconds (an integer value) to count matching traffic. If the count exceeds the configured threshold within this period, Cloudflare will perform the configured action.",
+            "smithy.api#required": {}
+          }
+        },
+        "threshold": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The threshold that will trigger the configured mitigation action. Configure this value along with the `period` property to establish a threshold per period.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.rate_limits#EditRateLimitResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the rate limit."
+          }
+        },
+        "action": {
+          "target": "com.cloudflare.rate_limits#EditResponseAction",
+          "traits": {
+            "smithy.api#documentation": "The action to perform when the threshold of matched traffic within the configured period is exceeded."
+          }
+        },
+        "bypass": {
+          "target": "com.cloudflare.rate_limits#EditResponseBypassList",
+          "traits": {
+            "smithy.api#documentation": "Criteria specifying when the current rate limit should be bypassed. You can specify that the rate limit should not apply to one or more URLs."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An informative summary of the rule. This value is sanitized and any tags will be removed."
+          }
+        },
+        "disabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When true, indicates that the rate limit is currently disabled."
+          }
+        },
+        "match": {
+          "target": "com.cloudflare.rate_limits#EditResponseMatch",
+          "traits": {
+            "smithy.api#documentation": "Determines which traffic the rate limit counts towards the threshold."
+          }
+        },
+        "period": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The time in seconds (an integer value) to count matching traffic. If the count exceeds the configured threshold within this period, Cloudflare will perform the configured action."
+          }
+        },
+        "threshold": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The threshold that will trigger the configured mitigation action. Configure this value along with the `period` property to establish a threshold per period."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.rate_limits#GetRateLimit": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.rate_limits#GetRateLimitRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.rate_limits#GetRateLimitResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/rate_limits/{rate_limit_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Fetches the details of a rate limit.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.rate_limits#GetRateLimitRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Defines an identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "rate_limit_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Defines the unique identifier of the rate limit.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.rate_limits#GetRateLimitResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the rate limit."
+          }
+        },
+        "action": {
+          "target": "com.cloudflare.rate_limits#GetResponseAction",
+          "traits": {
+            "smithy.api#documentation": "The action to perform when the threshold of matched traffic within the configured period is exceeded."
+          }
+        },
+        "bypass": {
+          "target": "com.cloudflare.rate_limits#GetResponseBypassList",
+          "traits": {
+            "smithy.api#documentation": "Criteria specifying when the current rate limit should be bypassed. You can specify that the rate limit should not apply to one or more URLs."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An informative summary of the rule. This value is sanitized and any tags will be removed."
+          }
+        },
+        "disabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When true, indicates that the rate limit is currently disabled."
+          }
+        },
+        "match": {
+          "target": "com.cloudflare.rate_limits#GetResponseMatch",
+          "traits": {
+            "smithy.api#documentation": "Determines which traffic the rate limit counts towards the threshold."
+          }
+        },
+        "period": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The time in seconds (an integer value) to count matching traffic. If the count exceeds the configured threshold within this period, Cloudflare will perform the configured action."
+          }
+        },
+        "threshold": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The threshold that will trigger the configured mitigation action. Configure this value along with the `period` property to establish a threshold per period."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.rate_limits#ListRateLimits": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.rate_limits#ListRateLimitsRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.rate_limits#ListRateLimitsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/rate_limits",
+          "code": 200
+        },
+        "smithy.api#documentation": "Fetches the rate limits for a zone.",
+        "smithy.api#readonly": {},
+        "smithy.api#paginated": {
+          "mode": "page",
+          "inputToken": "page",
+          "outputToken": "resultInfo.page",
+          "items": "result",
+          "pageSize": "perPage"
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#ListRateLimitsRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Defines an identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Defines the page number of paginated results.",
+            "smithy.api#httpQuery": "page"
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Defines the maximum number of results per page. You can only set the value to `1` or to a multiple of 5 such as `5`, `10`, `15`, or `20`.",
+            "smithy.api#httpQuery": "per_page"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.rate_limits#ListRateLimitsResponse": {
       "type": "structure",
       "members": {
         "result": {
@@ -2313,50 +2372,6 @@
       },
       "traits": {
         "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.rate_limits#List": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.rate_limits#ListRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.rate_limits#ListResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/zones/{zone_id}/rate_limits",
-          "code": 200
-        },
-        "smithy.api#documentation": "Fetches the rate limits for a zone.",
-        "smithy.api#readonly": {}
-      }
-    },
-    "com.cloudflare.rate_limits#RateLimits": {
-      "type": "service",
-      "version": "4.0",
-      "operations": [
-        {
-          "target": "com.cloudflare.rate_limits#Create"
-        },
-        {
-          "target": "com.cloudflare.rate_limits#Delete"
-        },
-        {
-          "target": "com.cloudflare.rate_limits#Edit"
-        },
-        {
-          "target": "com.cloudflare.rate_limits#Get"
-        },
-        {
-          "target": "com.cloudflare.rate_limits#List"
-        }
-      ],
-      "traits": {
-        "com.cloudflare.protocols#v4Json": {},
-        "smithy.api#title": "Cloudflare RateLimits",
-        "smithy.api#documentation": "Cloudflare API — rate_limits resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
       }
     }
   }

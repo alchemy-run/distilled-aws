@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.huggingface.users#GetMcpToolsResponseBuiltInToolsList": {
@@ -2307,7 +2308,7 @@
         "smithy.api#documentation": "Get social handles\n\nGet a user's social media handles"
       }
     },
-    "com.huggingface.users#RetrieveUserAvatarRequest": {
+    "com.huggingface.users#GetUserAvatarRequest": {
       "type": "structure",
       "members": {
         "username": {
@@ -2328,7 +2329,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.huggingface.users#RetrieveUserAvatarResponse": {
+    "com.huggingface.users#GetUserAvatarResponse": {
       "type": "structure",
       "members": {
         "avatarUrl": {
@@ -2342,13 +2343,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.huggingface.users#RetrieveUserAvatar": {
+    "com.huggingface.users#GetUserAvatar": {
       "type": "operation",
       "input": {
-        "target": "com.huggingface.users#RetrieveUserAvatarRequest"
+        "target": "com.huggingface.users#GetUserAvatarRequest"
       },
       "output": {
-        "target": "com.huggingface.users#RetrieveUserAvatarResponse"
+        "target": "com.huggingface.users#GetUserAvatarResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3297,7 +3298,7 @@
           "target": "com.huggingface.users#GetSocialHandles"
         },
         {
-          "target": "com.huggingface.users#RetrieveUserAvatar"
+          "target": "com.huggingface.users#GetUserAvatar"
         },
         {
           "target": "com.huggingface.users#ListUserLikes"

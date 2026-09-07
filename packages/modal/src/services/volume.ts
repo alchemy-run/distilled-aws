@@ -12,13 +12,13 @@ import * as Retry from "../retry.ts";
 
 export type { ModalOpError, ModalOpContext };
 
-export interface VolumeCommitRequest {
+export interface CommitVolumeRequest {
   /** NOTE(staffan): Mounting a volume in multiple locations is not supported, so volume_id alone uniquely identifies a volume mount. */
   volumeId?: string;
   /** Set by the runtime when committing a volume mounted in a sandbox sidecar container (used for runtime-driven commit-on-exit). Unset targets the task's main container. */
   containerId?: string;
 }
-export const VolumeCommitRequest = /*@__PURE__*/ S.suspend(() =>
+export const CommitVolumeRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     volumeId: S.optional(S.String),
     containerId: S.optional(S.String),
@@ -30,19 +30,169 @@ export const VolumeCommitRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "VolumeCommitRequest",
-}) as any as S.Schema<VolumeCommitRequest>;
+  identifier: "CommitVolumeRequest",
+}) as any as S.Schema<CommitVolumeRequest>;
 
-export interface VolumeCommitResponse {
+export interface CommitVolumeResponse {
   skipReload?: boolean;
 }
-export const VolumeCommitResponse = /*@__PURE__*/ S.suspend(() =>
+export const CommitVolumeResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     skipReload: S.optional(S.Boolean),
   }),
 ).annotate({
-  identifier: "VolumeCommitResponse",
-}) as any as S.Schema<VolumeCommitResponse>;
+  identifier: "CommitVolumeResponse",
+}) as any as S.Schema<CommitVolumeResponse>;
+
+export interface DeleteVolumeRequest {
+  volumeId?: string;
+  environmentName?: string;
+}
+export const DeleteVolumeRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    volumeId: S.optional(S.String),
+    environmentName: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/modal.client.ModalClient/VolumeDelete",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "DeleteVolumeRequest",
+}) as any as S.Schema<DeleteVolumeRequest>;
+
+export interface DeleteVolumeResponse {}
+export const DeleteVolumeResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteVolumeResponse",
+}) as any as S.Schema<DeleteVolumeResponse>;
+
+export interface ListPagination {
+  maxObjects?: number;
+  createdBefore?: number;
+}
+export const ListPagination = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    maxObjects: S.optional(S.Number),
+    createdBefore: S.optional(S.Number),
+  }),
+).annotate({ identifier: "ListPagination" }) as any as S.Schema<ListPagination>;
+
+export interface ListVolumeRequest {
+  environmentName?: string;
+  pagination?: ListPagination;
+}
+export const ListVolumeRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    environmentName: S.optional(S.String),
+    pagination: S.optional(ListPagination),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/modal.client.ModalClient/VolumeList",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListVolumeRequest",
+}) as any as S.Schema<ListVolumeRequest>;
+
+/** HTTP/2 tunnel */
+export type VolumeFsVersion =
+  | "VOLUME_FS_VERSION_UNSPECIFIED"
+  | "VOLUME_FS_VERSION_V1"
+  | "VOLUME_FS_VERSION_V2";
+export const VolumeFsVersion = /*@__PURE__*/ S.String;
+
+export interface CreationInfo {
+  /** This message is used in metadata for resource objects like Dict, Queue, Volume, etc. */
+  createdAt?: number;
+  /** Timestamp of resource creation */
+  createdBy?: string;
+}
+export const CreationInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    createdAt: S.optional(S.Number),
+    createdBy: S.optional(S.String),
+  }),
+).annotate({ identifier: "CreationInfo" }) as any as S.Schema<CreationInfo>;
+
+export interface VolumeMetadata {
+  version?: VolumeFsVersion;
+  name?: string;
+  creationInfo?: CreationInfo;
+}
+export const VolumeMetadata = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    version: S.optional(VolumeFsVersion),
+    name: S.optional(S.String),
+    creationInfo: S.optional(CreationInfo),
+  }),
+).annotate({ identifier: "VolumeMetadata" }) as any as S.Schema<VolumeMetadata>;
+
+export interface VolumeListItem {
+  label?: string;
+  /** app name of object entity app */
+  volumeId?: string;
+  createdAt?: number;
+  /** Superseded by metadata, used by clients up to 1.1.2 */
+  metadata?: VolumeMetadata;
+}
+export const VolumeListItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    label: S.optional(S.String),
+    volumeId: S.optional(S.String),
+    createdAt: S.optional(S.Number),
+    metadata: S.optional(VolumeMetadata),
+  }),
+).annotate({ identifier: "VolumeListItem" }) as any as S.Schema<VolumeListItem>;
+
+export type VolumeListItemList = Array<VolumeListItem>;
+export const VolumeListItemList = /*@__PURE__*/ S.Array(
+  VolumeListItem,
+) as any as S.Schema<VolumeListItemList>;
+
+export interface ListVolumeResponse {
+  items?: VolumeListItemList;
+  environmentName?: string;
+}
+export const ListVolumeResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    items: S.optional(VolumeListItemList),
+    environmentName: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ListVolumeResponse",
+}) as any as S.Schema<ListVolumeResponse>;
+
+export interface RenameVolumeRequest {
+  volumeId?: string;
+  name?: string;
+}
+export const RenameVolumeRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    volumeId: S.optional(S.String),
+    name: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/modal.client.ModalClient/VolumeRename",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "RenameVolumeRequest",
+}) as any as S.Schema<RenameVolumeRequest>;
+
+export interface RenameVolumeResponse {}
+export const RenameVolumeResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "RenameVolumeResponse",
+}) as any as S.Schema<RenameVolumeResponse>;
 
 export type StringList = Array<string>;
 export const StringList = /*@__PURE__*/ S.Array(
@@ -109,32 +259,6 @@ export const VolumeCopyFiles2Response = /*@__PURE__*/ S.suspend(() =>
   identifier: "VolumeCopyFiles2Response",
 }) as any as S.Schema<VolumeCopyFiles2Response>;
 
-export interface VolumeDeleteRequest {
-  volumeId?: string;
-  environmentName?: string;
-}
-export const VolumeDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    volumeId: S.optional(S.String),
-    environmentName: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/modal.client.ModalClient/VolumeDelete",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "VolumeDeleteRequest",
-}) as any as S.Schema<VolumeDeleteRequest>;
-
-export interface VolumeDeleteResponse {}
-export const VolumeDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "VolumeDeleteResponse",
-}) as any as S.Schema<VolumeDeleteResponse>;
-
 export interface VolumeGetByIdRequest {
   volumeId?: string;
 }
@@ -151,39 +275,6 @@ export const VolumeGetByIdRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "VolumeGetByIdRequest",
 }) as any as S.Schema<VolumeGetByIdRequest>;
-
-/** HTTP/2 tunnel */
-export type VolumeFsVersion =
-  | "VOLUME_FS_VERSION_UNSPECIFIED"
-  | "VOLUME_FS_VERSION_V1"
-  | "VOLUME_FS_VERSION_V2";
-export const VolumeFsVersion = /*@__PURE__*/ S.String;
-
-export interface CreationInfo {
-  /** This message is used in metadata for resource objects like Dict, Queue, Volume, etc. */
-  createdAt?: number;
-  /** Timestamp of resource creation */
-  createdBy?: string;
-}
-export const CreationInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    createdAt: S.optional(S.Number),
-    createdBy: S.optional(S.String),
-  }),
-).annotate({ identifier: "CreationInfo" }) as any as S.Schema<CreationInfo>;
-
-export interface VolumeMetadata {
-  version?: VolumeFsVersion;
-  name?: string;
-  creationInfo?: CreationInfo;
-}
-export const VolumeMetadata = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    version: S.optional(VolumeFsVersion),
-    name: S.optional(S.String),
-    creationInfo: S.optional(CreationInfo),
-  }),
-).annotate({ identifier: "VolumeMetadata" }) as any as S.Schema<VolumeMetadata>;
 
 export interface VolumeGetByIdResponse {
   volumeId?: string;
@@ -378,71 +469,6 @@ export const VolumeHeartbeatResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "VolumeHeartbeatResponse",
 }) as any as S.Schema<VolumeHeartbeatResponse>;
-
-export interface ListPagination {
-  maxObjects?: number;
-  createdBefore?: number;
-}
-export const ListPagination = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    maxObjects: S.optional(S.Number),
-    createdBefore: S.optional(S.Number),
-  }),
-).annotate({ identifier: "ListPagination" }) as any as S.Schema<ListPagination>;
-
-export interface VolumeListRequest {
-  environmentName?: string;
-  pagination?: ListPagination;
-}
-export const VolumeListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    environmentName: S.optional(S.String),
-    pagination: S.optional(ListPagination),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/modal.client.ModalClient/VolumeList",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "VolumeListRequest",
-}) as any as S.Schema<VolumeListRequest>;
-
-export interface VolumeListItem {
-  label?: string;
-  /** app name of object entity app */
-  volumeId?: string;
-  createdAt?: number;
-  /** Superseded by metadata, used by clients up to 1.1.2 */
-  metadata?: VolumeMetadata;
-}
-export const VolumeListItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    label: S.optional(S.String),
-    volumeId: S.optional(S.String),
-    createdAt: S.optional(S.Number),
-    metadata: S.optional(VolumeMetadata),
-  }),
-).annotate({ identifier: "VolumeListItem" }) as any as S.Schema<VolumeListItem>;
-
-export type VolumeListItemList = Array<VolumeListItem>;
-export const VolumeListItemList = /*@__PURE__*/ S.Array(
-  VolumeListItem,
-) as any as S.Schema<VolumeListItemList>;
-
-export interface VolumeListResponse {
-  items?: VolumeListItemList;
-  environmentName?: string;
-}
-export const VolumeListResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    items: S.optional(VolumeListItemList),
-    environmentName: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "VolumeListResponse",
-}) as any as S.Schema<VolumeListResponse>;
 
 export interface MountFile {
   filename?: string;
@@ -684,42 +710,58 @@ export const VolumeRemoveFile2Response = /*@__PURE__*/ S.suspend(() =>
   identifier: "VolumeRemoveFile2Response",
 }) as any as S.Schema<VolumeRemoveFile2Response>;
 
-export interface VolumeRenameRequest {
-  volumeId?: string;
-  name?: string;
-}
-export const VolumeRenameRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    volumeId: S.optional(S.String),
-    name: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/modal.client.ModalClient/VolumeRename",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "VolumeRenameRequest",
-}) as any as S.Schema<VolumeRenameRequest>;
-
-export interface VolumeRenameResponse {}
-export const VolumeRenameResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "VolumeRenameResponse",
-}) as any as S.Schema<VolumeRenameResponse>;
-
-export type VolumeCommitError = ModalOpError;
+export type CommitVolumeError = ModalOpError;
 /** Volumes */
-export const volumeCommit: API.OperationMethod<
-  VolumeCommitRequest,
-  VolumeCommitResponse,
-  VolumeCommitError,
+export const commitVolume: API.OperationMethod<
+  CommitVolumeRequest,
+  CommitVolumeResponse,
+  CommitVolumeError,
   ModalOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: VolumeCommitRequest,
-  output: VolumeCommitResponse,
+  input: CommitVolumeRequest,
+  output: CommitVolumeResponse,
+  errors: [UnknownModalError],
+  protocol: ModalProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteVolumeError = ModalOpError;
+export const deleteVolume: API.OperationMethod<
+  DeleteVolumeRequest,
+  DeleteVolumeResponse,
+  DeleteVolumeError,
+  ModalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteVolumeRequest,
+  output: DeleteVolumeResponse,
+  errors: [UnknownModalError],
+  protocol: ModalProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListVolumeError = ModalOpError;
+export const listVolume: API.OperationMethod<
+  ListVolumeRequest,
+  ListVolumeResponse,
+  ListVolumeError,
+  ModalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListVolumeRequest,
+  output: ListVolumeResponse,
+  errors: [UnknownModalError],
+  protocol: ModalProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RenameVolumeError = ModalOpError;
+export const renameVolume: API.OperationMethod<
+  RenameVolumeRequest,
+  RenameVolumeResponse,
+  RenameVolumeError,
+  ModalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RenameVolumeRequest,
+  output: RenameVolumeResponse,
   errors: [UnknownModalError],
   protocol: ModalProtocol,
   retry: Retry.Retry,
@@ -748,20 +790,6 @@ export const volumeCopyFiles2: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: VolumeCopyFiles2Request,
   output: VolumeCopyFiles2Response,
-  errors: [UnknownModalError],
-  protocol: ModalProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VolumeDeleteError = ModalOpError;
-export const volumeDelete: API.OperationMethod<
-  VolumeDeleteRequest,
-  VolumeDeleteResponse,
-  VolumeDeleteError,
-  ModalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VolumeDeleteRequest,
-  output: VolumeDeleteResponse,
   errors: [UnknownModalError],
   protocol: ModalProtocol,
   retry: Retry.Retry,
@@ -837,20 +865,6 @@ export const volumeHeartbeat: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type VolumeListError = ModalOpError;
-export const volumeList: API.OperationMethod<
-  VolumeListRequest,
-  VolumeListResponse,
-  VolumeListError,
-  ModalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VolumeListRequest,
-  output: VolumeListResponse,
-  errors: [UnknownModalError],
-  protocol: ModalProtocol,
-  retry: Retry.Retry,
-}));
-
 export type VolumePutFilesError = ModalOpError;
 export const volumePutFiles: API.OperationMethod<
   VolumePutFilesRequest,
@@ -916,20 +930,6 @@ export const volumeRemoveFile2: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: VolumeRemoveFile2Request,
   output: VolumeRemoveFile2Response,
-  errors: [UnknownModalError],
-  protocol: ModalProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VolumeRenameError = ModalOpError;
-export const volumeRename: API.OperationMethod<
-  VolumeRenameRequest,
-  VolumeRenameResponse,
-  VolumeRenameError,
-  ModalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VolumeRenameRequest,
-  output: VolumeRenameResponse,
   errors: [UnknownModalError],
   protocol: ModalProtocol,
   retry: Retry.Retry,

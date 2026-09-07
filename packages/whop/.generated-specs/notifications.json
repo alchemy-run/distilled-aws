@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.whop.notifications#ListNotificationsRequest": {
@@ -670,7 +671,7 @@
         "smithy.api#documentation": "List Notification Badges\n\nLists the authenticated user's per-experience unread badge state. Requires a user credential. Returns one row per experience the user belongs to (or per requested experience)."
       }
     },
-    "com.whop.notifications#MarkNotificationsReadRequest": {
+    "com.whop.notifications#ReadMarkNotificationRequest": {
       "type": "structure",
       "members": {
         "all": {
@@ -697,18 +698,18 @@
         "smithy.api#input": {}
       }
     },
-    "com.whop.notifications#MarkNotificationsReadResponseDataList": {
+    "com.whop.notifications#ReadMarkNotificationResponseDataList": {
       "type": "list",
       "member": {
         "target": "com.whop.notifications#NotificationBadge"
       },
       "traits": {}
     },
-    "com.whop.notifications#MarkNotificationsReadResponse": {
+    "com.whop.notifications#ReadMarkNotificationResponse": {
       "type": "structure",
       "members": {
         "data": {
-          "target": "com.whop.notifications#MarkNotificationsReadResponseDataList",
+          "target": "com.whop.notifications#ReadMarkNotificationResponseDataList",
           "traits": {
             "smithy.api#required": {}
           }
@@ -718,13 +719,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.whop.notifications#MarkNotificationsRead": {
+    "com.whop.notifications#ReadMarkNotification": {
       "type": "operation",
       "input": {
-        "target": "com.whop.notifications#MarkNotificationsReadRequest"
+        "target": "com.whop.notifications#ReadMarkNotificationRequest"
       },
       "output": {
-        "target": "com.whop.notifications#MarkNotificationsReadResponse"
+        "target": "com.whop.notifications#ReadMarkNotificationResponse"
       },
       "errors": [
         {
@@ -967,7 +968,7 @@
         }
       }
     },
-    "com.whop.notifications#RetrieveNotificationRequest": {
+    "com.whop.notifications#GetNotificationRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -983,10 +984,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.whop.notifications#RetrieveNotification": {
+    "com.whop.notifications#GetNotification": {
       "type": "operation",
       "input": {
-        "target": "com.whop.notifications#RetrieveNotificationRequest"
+        "target": "com.whop.notifications#GetNotificationRequest"
       },
       "output": {
         "target": "com.whop.notifications#Notification"
@@ -1071,13 +1072,13 @@
           "target": "com.whop.notifications#ListNotificationBadges"
         },
         {
-          "target": "com.whop.notifications#MarkNotificationsRead"
+          "target": "com.whop.notifications#ReadMarkNotification"
         },
         {
           "target": "com.whop.notifications#ListNotificationTopics"
         },
         {
-          "target": "com.whop.notifications#RetrieveNotification"
+          "target": "com.whop.notifications#GetNotification"
         }
       ],
       "traits": {

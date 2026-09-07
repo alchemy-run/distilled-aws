@@ -12,66 +12,6 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
-export interface BitLockerKeysListRequest {
-  /** The subscription ID for the Azure user. */
-  subscriptionId: string;
-  /** The resource group name uniquely identifies the resource group within the user subscription. */
-  resourceGroupName: string;
-  /** The name of the import/export job. */
-  jobName: string;
-}
-export const BitLockerKeysListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    jobName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ImportExport/jobs/{jobName}/listBitLockerKeys",
-      code: 200,
-      apiVersion: "2020-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "BitLockerKeysListRequest",
-}) as any as S.Schema<BitLockerKeysListRequest>;
-
-/** BitLocker recovery key or password to the specified drive */
-export interface DriveBitLockerKey {
-  /** BitLocker recovery key or password */
-  bitLockerKey?: string;
-  /** Drive ID */
-  driveId?: string;
-}
-export const DriveBitLockerKey = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    bitLockerKey: S.optional(S.String),
-    driveId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DriveBitLockerKey",
-}) as any as S.Schema<DriveBitLockerKey>;
-
-/** drive status */
-export type GetBitLockerKeysResponseValueList = Array<DriveBitLockerKey>;
-export const GetBitLockerKeysResponseValueList = /*@__PURE__*/ S.Array(
-  DriveBitLockerKey,
-) as any as S.Schema<GetBitLockerKeysResponseValueList>;
-
-/** GetBitLockerKeys response */
-export interface GetBitLockerKeysResponse {
-  /** drive status */
-  value?: GetBitLockerKeysResponseValueList;
-}
-export const GetBitLockerKeysResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(GetBitLockerKeysResponseValueList),
-  }),
-).annotate({
-  identifier: "GetBitLockerKeysResponse",
-}) as any as S.Schema<GetBitLockerKeysResponse>;
-
 /** Specifies the return address information for the job. */
 export interface ReturnAddress {
   /** The name of the recipient who will receive the hard drives when they are returned. */
@@ -389,7 +329,7 @@ export const JobDetailsInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "JobDetailsInput",
 }) as any as S.Schema<JobDetailsInput>;
 
-export interface JobsCreateRequest {
+export interface CreateJobRequest {
   /** The subscription ID for the Azure user. */
   subscriptionId: string;
   /** The resource group name uniquely identifies the resource group within the user subscription. */
@@ -403,7 +343,7 @@ export interface JobsCreateRequest {
   /** Specifies the job properties */
   properties?: JobDetailsInput;
 }
-export const JobsCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateJobRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -420,8 +360,8 @@ export const JobsCreateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "JobsCreateRequest",
-}) as any as S.Schema<JobsCreateRequest>;
+  identifier: "CreateJobRequest",
+}) as any as S.Schema<CreateJobRequest>;
 
 /** The type of identity that created the resource. */
 export type JobResponseSystemDataCreatedByType =
@@ -627,7 +567,7 @@ export const JobResponse = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "JobResponse" }) as any as S.Schema<JobResponse>;
 
-export interface JobsDeleteRequest {
+export interface DeleteJobRequest {
   /** The subscription ID for the Azure user. */
   subscriptionId: string;
   /** The resource group name uniquely identifies the resource group within the user subscription. */
@@ -635,7 +575,7 @@ export interface JobsDeleteRequest {
   /** The name of the import/export job. */
   jobName: string;
 }
-export const JobsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteJobRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -649,17 +589,17 @@ export const JobsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "JobsDeleteRequest",
-}) as any as S.Schema<JobsDeleteRequest>;
+  identifier: "DeleteJobRequest",
+}) as any as S.Schema<DeleteJobRequest>;
 
-export interface JobsDeleteResponse {}
-export const JobsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteJobResponse {}
+export const DeleteJobResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "JobsDeleteResponse",
-}) as any as S.Schema<JobsDeleteResponse>;
+  identifier: "DeleteJobResponse",
+}) as any as S.Schema<DeleteJobResponse>;
 
-export interface JobsGetRequest {
+export interface GetJobRequest {
   /** The subscription ID for the Azure user. */
   subscriptionId: string;
   /** The resource group name uniquely identifies the resource group within the user subscription. */
@@ -667,7 +607,7 @@ export interface JobsGetRequest {
   /** The name of the import/export job. */
   jobName: string;
 }
-export const JobsGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetJobRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -680,159 +620,13 @@ export const JobsGetRequest = /*@__PURE__*/ S.suspend(() =>
       apiVersion: "2020-08-01",
     }),
   ),
-).annotate({ identifier: "JobsGetRequest" }) as any as S.Schema<JobsGetRequest>;
+).annotate({ identifier: "GetJobRequest" }) as any as S.Schema<GetJobRequest>;
 
-export interface JobsListByResourceGroupRequest {
-  /** The subscription ID for the Azure user. */
-  subscriptionId: string;
-  /** The resource group name uniquely identifies the resource group within the user subscription. */
-  resourceGroupName: string;
-  /** An integer value that specifies how many jobs at most should be returned. The value cannot exceed 100. */
-  _top?: number;
-  /** Can be used to restrict the results to certain conditions. */
-  _filter?: string;
-}
-export const JobsListByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    _top: S.optional(S.Number.pipe(T.Query("$top"))),
-    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ImportExport/jobs",
-      code: 200,
-      apiVersion: "2020-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "JobsListByResourceGroupRequest",
-}) as any as S.Schema<JobsListByResourceGroupRequest>;
-
-/** Job list */
-export type ListJobsResponseValueList = Array<JobResponse>;
-export const ListJobsResponseValueList = /*@__PURE__*/ S.Array(
-  JobResponse,
-) as any as S.Schema<ListJobsResponseValueList>;
-
-/** List jobs response */
-export interface ListJobsResponse {
-  /** link to next batch of jobs */
-  nextLink?: string;
-  /** Job list */
-  value?: ListJobsResponseValueList;
-}
-export const ListJobsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    nextLink: S.optional(S.String),
-    value: S.optional(ListJobsResponseValueList),
-  }),
-).annotate({
-  identifier: "ListJobsResponse",
-}) as any as S.Schema<ListJobsResponse>;
-
-export interface JobsListBySubscriptionRequest {
-  /** The subscription ID for the Azure user. */
-  subscriptionId: string;
-  /** An integer value that specifies how many jobs at most should be returned. The value cannot exceed 100. */
-  _top?: number;
-  /** Can be used to restrict the results to certain conditions. */
-  _filter?: string;
-}
-export const JobsListBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    _top: S.optional(S.Number.pipe(T.Query("$top"))),
-    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ImportExport/jobs",
-      code: 200,
-      apiVersion: "2020-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "JobsListBySubscriptionRequest",
-}) as any as S.Schema<JobsListBySubscriptionRequest>;
-
-/** List of drives that comprise the job. */
-export type JobsUpdateRequestPropertiesDriveListList = Array<DriveStatus>;
-export const JobsUpdateRequestPropertiesDriveListList = /*@__PURE__*/ S.Array(
-  DriveStatus,
-) as any as S.Schema<JobsUpdateRequestPropertiesDriveListList>;
-
-/** Specifies the properties of a UpdateJob. */
-export interface JobsUpdateRequestProperties {
-  /** If specified, the value must be true. The service will attempt to cancel the job. */
-  cancelRequested?: boolean;
-  /** If specified, the value must be Shipping, which tells the Import/Export service that the package for the job has been shipped. The ReturnAddress and DeliveryPackage properties must have been set either in this request or in a previous request, otherwise the request will fail. */
-  state?: string;
-  /** Specifies the return address information for the job. */
-  returnAddress?: ReturnAddress;
-  /** Specifies the return carrier and customer's account with the carrier. */
-  returnShipping?: ReturnShipping;
-  /** Contains information about the package being shipped by the customer to the Microsoft data center. */
-  deliveryPackage?: DeliveryPackageInformation;
-  /** Indicates whether error logging or verbose logging is enabled. */
-  logLevel?: string;
-  /** Indicates whether the manifest files on the drives should be copied to block blobs. */
-  backupDriveManifest?: boolean;
-  /** List of drives that comprise the job. */
-  driveList?: JobsUpdateRequestPropertiesDriveListList;
-}
-export const JobsUpdateRequestProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    cancelRequested: S.optional(S.Boolean),
-    state: S.optional(S.String),
-    returnAddress: S.optional(ReturnAddress),
-    returnShipping: S.optional(ReturnShipping),
-    deliveryPackage: S.optional(DeliveryPackageInformation),
-    logLevel: S.optional(S.String),
-    backupDriveManifest: S.optional(S.Boolean),
-    driveList: S.optional(JobsUpdateRequestPropertiesDriveListList),
-  }),
-).annotate({
-  identifier: "JobsUpdateRequestProperties",
-}) as any as S.Schema<JobsUpdateRequestProperties>;
-
-export interface JobsUpdateRequest {
-  /** The subscription ID for the Azure user. */
-  subscriptionId: string;
-  /** The resource group name uniquely identifies the resource group within the user subscription. */
-  resourceGroupName: string;
-  /** The name of the import/export job. */
-  jobName: string;
-  /** Specifies the tags that will be assigned to the job */
-  tags?: unknown;
-  /** Specifies the properties of a UpdateJob. */
-  properties?: JobsUpdateRequestProperties;
-}
-export const JobsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    jobName: S.String.pipe(T.Label()),
-    tags: S.optional(S.Unknown),
-    properties: S.optional(JobsUpdateRequestProperties),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ImportExport/jobs/{jobName}",
-      code: 200,
-      apiVersion: "2020-08-01",
-    }),
-  ),
-).annotate({
-  identifier: "JobsUpdateRequest",
-}) as any as S.Schema<JobsUpdateRequest>;
-
-export interface LocationsGetRequest {
+export interface GetLocationRequest {
   /** The name of the location. For example, West US or westus. */
   locationName: string;
 }
-export const LocationsGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetLocationRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     locationName: S.String.pipe(T.Label()),
   }).pipe(
@@ -844,8 +638,8 @@ export const LocationsGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "LocationsGetRequest",
-}) as any as S.Schema<LocationsGetRequest>;
+  identifier: "GetLocationRequest",
+}) as any as S.Schema<GetLocationRequest>;
 
 /** A list of carriers that are supported at this location. */
 export type LocationPropertiesSupportedCarriersList = Array<string>;
@@ -922,8 +716,143 @@ export const Location = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "Location" }) as any as S.Schema<Location>;
 
-export interface LocationsListRequest {}
-export const LocationsListRequest = /*@__PURE__*/ S.suspend(() =>
+export interface ListBitLockerKeysRequest {
+  /** The subscription ID for the Azure user. */
+  subscriptionId: string;
+  /** The resource group name uniquely identifies the resource group within the user subscription. */
+  resourceGroupName: string;
+  /** The name of the import/export job. */
+  jobName: string;
+}
+export const ListBitLockerKeysRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    jobName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ImportExport/jobs/{jobName}/listBitLockerKeys",
+      code: 200,
+      apiVersion: "2020-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListBitLockerKeysRequest",
+}) as any as S.Schema<ListBitLockerKeysRequest>;
+
+/** BitLocker recovery key or password to the specified drive */
+export interface DriveBitLockerKey {
+  /** BitLocker recovery key or password */
+  bitLockerKey?: string;
+  /** Drive ID */
+  driveId?: string;
+}
+export const DriveBitLockerKey = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    bitLockerKey: S.optional(S.String),
+    driveId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DriveBitLockerKey",
+}) as any as S.Schema<DriveBitLockerKey>;
+
+/** drive status */
+export type GetBitLockerKeysResponseValueList = Array<DriveBitLockerKey>;
+export const GetBitLockerKeysResponseValueList = /*@__PURE__*/ S.Array(
+  DriveBitLockerKey,
+) as any as S.Schema<GetBitLockerKeysResponseValueList>;
+
+/** GetBitLockerKeys response */
+export interface GetBitLockerKeysResponse {
+  /** drive status */
+  value?: GetBitLockerKeysResponseValueList;
+}
+export const GetBitLockerKeysResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(GetBitLockerKeysResponseValueList),
+  }),
+).annotate({
+  identifier: "GetBitLockerKeysResponse",
+}) as any as S.Schema<GetBitLockerKeysResponse>;
+
+export interface ListJobByResourceGroupRequest {
+  /** The subscription ID for the Azure user. */
+  subscriptionId: string;
+  /** The resource group name uniquely identifies the resource group within the user subscription. */
+  resourceGroupName: string;
+  /** An integer value that specifies how many jobs at most should be returned. The value cannot exceed 100. */
+  _top?: number;
+  /** Can be used to restrict the results to certain conditions. */
+  _filter?: string;
+}
+export const ListJobByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    _top: S.optional(S.Number.pipe(T.Query("$top"))),
+    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ImportExport/jobs",
+      code: 200,
+      apiVersion: "2020-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListJobByResourceGroupRequest",
+}) as any as S.Schema<ListJobByResourceGroupRequest>;
+
+/** Job list */
+export type ListJobsResponseValueList = Array<JobResponse>;
+export const ListJobsResponseValueList = /*@__PURE__*/ S.Array(
+  JobResponse,
+) as any as S.Schema<ListJobsResponseValueList>;
+
+/** List jobs response */
+export interface ListJobsResponse {
+  /** link to next batch of jobs */
+  nextLink?: string;
+  /** Job list */
+  value?: ListJobsResponseValueList;
+}
+export const ListJobsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nextLink: S.optional(S.String),
+    value: S.optional(ListJobsResponseValueList),
+  }),
+).annotate({
+  identifier: "ListJobsResponse",
+}) as any as S.Schema<ListJobsResponse>;
+
+export interface ListJobBySubscriptionRequest {
+  /** The subscription ID for the Azure user. */
+  subscriptionId: string;
+  /** An integer value that specifies how many jobs at most should be returned. The value cannot exceed 100. */
+  _top?: number;
+  /** Can be used to restrict the results to certain conditions. */
+  _filter?: string;
+}
+export const ListJobBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    _top: S.optional(S.Number.pipe(T.Query("$top"))),
+    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ImportExport/jobs",
+      code: 200,
+      apiVersion: "2020-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListJobBySubscriptionRequest",
+}) as any as S.Schema<ListJobBySubscriptionRequest>;
+
+export interface ListLocationsRequest {}
+export const ListLocationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
     T.Http({
       method: "GET",
@@ -933,8 +862,8 @@ export const LocationsListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "LocationsListRequest",
-}) as any as S.Schema<LocationsListRequest>;
+  identifier: "ListLocationsRequest",
+}) as any as S.Schema<ListLocationsRequest>;
 
 /** locations */
 export type LocationsResponseValueList = Array<Location>;
@@ -955,8 +884,8 @@ export const LocationsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "LocationsResponse",
 }) as any as S.Schema<LocationsResponse>;
 
-export interface OperationsListRequest {}
-export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
+export interface ListOperationsRequest {}
+export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
     T.Http({
       method: "GET",
@@ -966,8 +895,8 @@ export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "OperationsListRequest",
-}) as any as S.Schema<OperationsListRequest>;
+  identifier: "ListOperationsRequest",
+}) as any as S.Schema<ListOperationsRequest>;
 
 /** operation display properties */
 export interface OperationDisplay {
@@ -1024,151 +953,222 @@ export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListOperationsResponse",
 }) as any as S.Schema<ListOperationsResponse>;
 
-export type BitLockerKeysListError = AzureOpError;
-/** Returns the BitLocker Keys for all drives in the specified job. */
-export const BitLockerKeysList: API.OperationMethod<
-  BitLockerKeysListRequest,
-  GetBitLockerKeysResponse,
-  BitLockerKeysListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BitLockerKeysListRequest,
-  output: GetBitLockerKeysResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
+/** List of drives that comprise the job. */
+export type UpdateJobRequestPropertiesDriveListList = Array<DriveStatus>;
+export const UpdateJobRequestPropertiesDriveListList = /*@__PURE__*/ S.Array(
+  DriveStatus,
+) as any as S.Schema<UpdateJobRequestPropertiesDriveListList>;
 
-export type JobsCreateError = AzureOpError;
+/** Specifies the properties of a UpdateJob. */
+export interface UpdateJobRequestProperties {
+  /** If specified, the value must be true. The service will attempt to cancel the job. */
+  cancelRequested?: boolean;
+  /** If specified, the value must be Shipping, which tells the Import/Export service that the package for the job has been shipped. The ReturnAddress and DeliveryPackage properties must have been set either in this request or in a previous request, otherwise the request will fail. */
+  state?: string;
+  /** Specifies the return address information for the job. */
+  returnAddress?: ReturnAddress;
+  /** Specifies the return carrier and customer's account with the carrier. */
+  returnShipping?: ReturnShipping;
+  /** Contains information about the package being shipped by the customer to the Microsoft data center. */
+  deliveryPackage?: DeliveryPackageInformation;
+  /** Indicates whether error logging or verbose logging is enabled. */
+  logLevel?: string;
+  /** Indicates whether the manifest files on the drives should be copied to block blobs. */
+  backupDriveManifest?: boolean;
+  /** List of drives that comprise the job. */
+  driveList?: UpdateJobRequestPropertiesDriveListList;
+}
+export const UpdateJobRequestProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    cancelRequested: S.optional(S.Boolean),
+    state: S.optional(S.String),
+    returnAddress: S.optional(ReturnAddress),
+    returnShipping: S.optional(ReturnShipping),
+    deliveryPackage: S.optional(DeliveryPackageInformation),
+    logLevel: S.optional(S.String),
+    backupDriveManifest: S.optional(S.Boolean),
+    driveList: S.optional(UpdateJobRequestPropertiesDriveListList),
+  }),
+).annotate({
+  identifier: "UpdateJobRequestProperties",
+}) as any as S.Schema<UpdateJobRequestProperties>;
+
+export interface UpdateJobRequest {
+  /** The subscription ID for the Azure user. */
+  subscriptionId: string;
+  /** The resource group name uniquely identifies the resource group within the user subscription. */
+  resourceGroupName: string;
+  /** The name of the import/export job. */
+  jobName: string;
+  /** Specifies the tags that will be assigned to the job */
+  tags?: unknown;
+  /** Specifies the properties of a UpdateJob. */
+  properties?: UpdateJobRequestProperties;
+}
+export const UpdateJobRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    jobName: S.String.pipe(T.Label()),
+    tags: S.optional(S.Unknown),
+    properties: S.optional(UpdateJobRequestProperties),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ImportExport/jobs/{jobName}",
+      code: 200,
+      apiVersion: "2020-08-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateJobRequest",
+}) as any as S.Schema<UpdateJobRequest>;
+
+export type CreateJobError = AzureOpError;
 /** Creates a new job or updates an existing job in the specified subscription. */
-export const JobsCreate: API.OperationMethod<
-  JobsCreateRequest,
+export const CreateJob: API.OperationMethod<
+  CreateJobRequest,
   JobResponse,
-  JobsCreateError,
+  CreateJobError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: JobsCreateRequest,
+  input: CreateJobRequest,
   output: JobResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type JobsDeleteError = AzureOpError;
+export type DeleteJobError = AzureOpError;
 /** Deletes an existing job. Only jobs in the Creating or Completed states can be deleted. */
-export const JobsDelete: API.OperationMethod<
-  JobsDeleteRequest,
-  JobsDeleteResponse,
-  JobsDeleteError,
+export const DeleteJob: API.OperationMethod<
+  DeleteJobRequest,
+  DeleteJobResponse,
+  DeleteJobError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: JobsDeleteRequest,
-  output: JobsDeleteResponse,
+  input: DeleteJobRequest,
+  output: DeleteJobResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type JobsGetError = AzureOpError;
+export type GetJobError = AzureOpError;
 /** Gets information about an existing job. */
-export const JobsGet: API.OperationMethod<
-  JobsGetRequest,
+export const GetJob: API.OperationMethod<
+  GetJobRequest,
   JobResponse,
-  JobsGetError,
+  GetJobError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: JobsGetRequest,
+  input: GetJobRequest,
   output: JobResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type JobsListByResourceGroupError = AzureOpError;
-/** Returns all active and completed jobs in a resource group. */
-export const JobsListByResourceGroup: API.OperationMethod<
-  JobsListByResourceGroupRequest,
-  ListJobsResponse,
-  JobsListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: JobsListByResourceGroupRequest,
-  output: ListJobsResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type JobsListBySubscriptionError = AzureOpError;
-/** Returns all active and completed jobs in a subscription. */
-export const JobsListBySubscription: API.OperationMethod<
-  JobsListBySubscriptionRequest,
-  ListJobsResponse,
-  JobsListBySubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: JobsListBySubscriptionRequest,
-  output: ListJobsResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type JobsUpdateError = AzureOpError;
-/** Updates specific properties of a job. You can call this operation to notify the Import/Export service that the hard drives comprising the import or export job have been shipped to the Microsoft data center. It can also be used to cancel an existing job. */
-export const JobsUpdate: API.OperationMethod<
-  JobsUpdateRequest,
-  JobResponse,
-  JobsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: JobsUpdateRequest,
-  output: JobResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type LocationsGetError = AzureOpError;
+export type GetLocationError = AzureOpError;
 /** Returns the details about a location to which you can ship the disks associated with an import or export job. A location is an Azure region. */
-export const LocationsGet: API.OperationMethod<
-  LocationsGetRequest,
+export const GetLocation: API.OperationMethod<
+  GetLocationRequest,
   Location,
-  LocationsGetError,
+  GetLocationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: LocationsGetRequest,
+  input: GetLocationRequest,
   output: Location,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type LocationsListError = AzureOpError;
-/** Returns a list of locations to which you can ship the disks associated with an import or export job. A location is a Microsoft data center region. */
-export const LocationsList: API.OperationMethod<
-  LocationsListRequest,
-  LocationsResponse,
-  LocationsListError,
+export type ListBitLockerKeysError = AzureOpError;
+/** Returns the BitLocker Keys for all drives in the specified job. */
+export const ListBitLockerKeys: API.OperationMethod<
+  ListBitLockerKeysRequest,
+  GetBitLockerKeysResponse,
+  ListBitLockerKeysError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: LocationsListRequest,
+  input: ListBitLockerKeysRequest,
+  output: GetBitLockerKeysResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListJobByResourceGroupError = AzureOpError;
+/** Returns all active and completed jobs in a resource group. */
+export const ListJobByResourceGroup: API.OperationMethod<
+  ListJobByResourceGroupRequest,
+  ListJobsResponse,
+  ListJobByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListJobByResourceGroupRequest,
+  output: ListJobsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListJobBySubscriptionError = AzureOpError;
+/** Returns all active and completed jobs in a subscription. */
+export const ListJobBySubscription: API.OperationMethod<
+  ListJobBySubscriptionRequest,
+  ListJobsResponse,
+  ListJobBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListJobBySubscriptionRequest,
+  output: ListJobsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListLocationsError = AzureOpError;
+/** Returns a list of locations to which you can ship the disks associated with an import or export job. A location is a Microsoft data center region. */
+export const ListLocations: API.OperationMethod<
+  ListLocationsRequest,
+  LocationsResponse,
+  ListLocationsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListLocationsRequest,
   output: LocationsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type OperationsListError = AzureOpError;
+export type ListOperationsError = AzureOpError;
 /** Returns the list of operations supported by the import/export resource provider. */
-export const OperationsList: API.OperationMethod<
-  OperationsListRequest,
+export const ListOperations: API.OperationMethod<
+  ListOperationsRequest,
   ListOperationsResponse,
-  OperationsListError,
+  ListOperationsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OperationsListRequest,
+  input: ListOperationsRequest,
   output: ListOperationsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateJobError = AzureOpError;
+/** Updates specific properties of a job. You can call this operation to notify the Import/Export service that the hard drives comprising the import or export job have been shipped to the Microsoft data center. It can also be used to cancel an existing job. */
+export const UpdateJob: API.OperationMethod<
+  UpdateJobRequest,
+  JobResponse,
+  UpdateJobError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateJobRequest,
+  output: JobResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

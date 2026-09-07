@@ -14,7 +14,20 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "keyDictionary": {
+      "createdAt": "created_at",
+      "mitigationAction": "mitigation_action",
+      "operationId": "operation_id",
+      "perPage": "per_page",
+      "resultInfo": "result_info",
+      "schemaId": "schema_id",
+      "totalCount": "total_count",
+      "validationDefaultMitigationAction": "validation_default_mitigation_action",
+      "validationEnabled": "validation_enabled",
+      "validationOverrideMitigationAction": "validation_override_mitigation_action"
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.schema_validation#SchemasCreateRequestKind": {
@@ -28,50 +41,6 @@
         }
       }
     },
-    "com.cloudflare.schema_validation#SchemasCreateRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "kind": {
-          "target": "com.cloudflare.schema_validation#SchemasCreateRequestKind",
-          "traits": {
-            "smithy.api#documentation": "The kind of the schema",
-            "smithy.api#required": {}
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A human-readable name for the schema",
-            "smithy.api#required": {}
-          }
-        },
-        "source": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The raw schema, e.g., the OpenAPI schema, either as JSON or YAML",
-            "smithy.api#required": {}
-          }
-        },
-        "validation_enabled": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "An indicator if this schema is enabled",
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.schema_validation#SchemasCreateResponseKind": {
       "type": "enum",
       "members": {
@@ -81,160 +50,6 @@
             "smithy.api#enumValue": "openapi_v3"
           }
         }
-      }
-    },
-    "com.cloudflare.schema_validation#SchemasCreateResponse": {
-      "type": "structure",
-      "members": {
-        "created_at": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "kind": {
-          "target": "com.cloudflare.schema_validation#SchemasCreateResponseKind",
-          "traits": {
-            "smithy.api#documentation": "The kind of the schema",
-            "smithy.api#required": {}
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A human-readable name for the schema",
-            "smithy.api#required": {}
-          }
-        },
-        "schema_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A unique identifier of this schema",
-            "smithy.api#required": {}
-          }
-        },
-        "source": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The raw schema, e.g., the OpenAPI schema, either as JSON or YAML",
-            "smithy.api#required": {}
-          }
-        },
-        "validation_enabled": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "An indicator if this schema is enabled"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.schema_validation#SchemasCreate": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.schema_validation#SchemasCreateRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.schema_validation#SchemasCreateResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "/zones/{zone_id}/schema_validation/schemas",
-          "code": 200
-        },
-        "smithy.api#documentation": "Uploads a new OpenAPI schema for API Shield schema validation. The schema defines expected request/response formats for API endpoints."
-      }
-    },
-    "com.cloudflare.schema_validation#SchemasDeleteRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "schema_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "UUID.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.schema_validation#SchemasDeleteResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The ID of the schema that was just deleted",
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.schema_validation#SchemasDelete": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.schema_validation#SchemasDeleteRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.schema_validation#SchemasDeleteResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "/zones/{zone_id}/schema_validation/schemas/{schema_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Permanently removes an uploaded OpenAPI schema from API Shield. Operations using this schema will lose their validation rules.",
-        "smithy.api#idempotent": {}
-      }
-    },
-    "com.cloudflare.schema_validation#SchemasEditRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "schema_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "UUID.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "validation_enabled": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Flag whether schema is enabled for validation."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.schema_validation#SchemasEditResponseKind": {
@@ -248,103 +63,6 @@
         }
       }
     },
-    "com.cloudflare.schema_validation#SchemasEditResponse": {
-      "type": "structure",
-      "members": {
-        "created_at": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "kind": {
-          "target": "com.cloudflare.schema_validation#SchemasEditResponseKind",
-          "traits": {
-            "smithy.api#documentation": "The kind of the schema",
-            "smithy.api#required": {}
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A human-readable name for the schema",
-            "smithy.api#required": {}
-          }
-        },
-        "schema_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A unique identifier of this schema",
-            "smithy.api#required": {}
-          }
-        },
-        "source": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The raw schema, e.g., the OpenAPI schema, either as JSON or YAML",
-            "smithy.api#required": {}
-          }
-        },
-        "validation_enabled": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "An indicator if this schema is enabled"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.schema_validation#SchemasEdit": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.schema_validation#SchemasEditRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.schema_validation#SchemasEditResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "PATCH",
-          "uri": "/zones/{zone_id}/schema_validation/schemas/{schema_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Modifies an existing OpenAPI schema in API Shield, updating the validation rules for associated API operations."
-      }
-    },
-    "com.cloudflare.schema_validation#SchemasGetRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "schema_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "UUID.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "omit_source": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Omit the source-files of schemas and only retrieve their meta-data.",
-            "smithy.api#httpQuery": "omit_source"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.schema_validation#SchemasGetResponseKind": {
       "type": "enum",
       "members": {
@@ -354,117 +72,6 @@
             "smithy.api#enumValue": "openapi_v3"
           }
         }
-      }
-    },
-    "com.cloudflare.schema_validation#SchemasGetResponse": {
-      "type": "structure",
-      "members": {
-        "created_at": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "kind": {
-          "target": "com.cloudflare.schema_validation#SchemasGetResponseKind",
-          "traits": {
-            "smithy.api#documentation": "The kind of the schema",
-            "smithy.api#required": {}
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A human-readable name for the schema",
-            "smithy.api#required": {}
-          }
-        },
-        "schema_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A unique identifier of this schema",
-            "smithy.api#required": {}
-          }
-        },
-        "source": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The raw schema, e.g., the OpenAPI schema, either as JSON or YAML",
-            "smithy.api#required": {}
-          }
-        },
-        "validation_enabled": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "An indicator if this schema is enabled"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.schema_validation#SchemasGet": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.schema_validation#SchemasGetRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.schema_validation#SchemasGetResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/zones/{zone_id}/schema_validation/schemas/{schema_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Gets the contents and metadata of a specific OpenAPI schema uploaded to API Shield.",
-        "smithy.api#readonly": {}
-      }
-    },
-    "com.cloudflare.schema_validation#SchemasListRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "omit_source": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Omit the source-files of schemas and only retrieve their meta-data.",
-            "smithy.api#httpQuery": "omit_source"
-          }
-        },
-        "page": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Page number of paginated results.",
-            "smithy.api#httpQuery": "page"
-          }
-        },
-        "per_page": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Maximum number of results per page.",
-            "smithy.api#httpQuery": "per_page"
-          }
-        },
-        "validation_enabled": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Filter for enabled schemas",
-            "smithy.api#httpQuery": "validation_enabled"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.schema_validation#SchemasListResultItemKind": {
@@ -529,39 +136,6 @@
         "target": "com.cloudflare.schema_validation#SchemasListResultItem"
       }
     },
-    "com.cloudflare.schema_validation#SchemasListResponse": {
-      "type": "structure",
-      "members": {
-        "result": {
-          "target": "com.cloudflare.schema_validation#SchemasListResultList",
-          "traits": {
-            "com.cloudflare.protocols#envelopePayload": {},
-            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.schema_validation#SchemasList": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.schema_validation#SchemasListRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.schema_validation#SchemasListResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/zones/{zone_id}/schema_validation/schemas",
-          "code": 200
-        },
-        "smithy.api#documentation": "Lists all OpenAPI schemas uploaded to API Shield with pagination support.",
-        "smithy.api#readonly": {}
-      }
-    },
     "com.cloudflare.schema_validation#SettingsEditRequestValidationDefaultMitigationAction": {
       "type": "enum",
       "members": {
@@ -594,34 +168,6 @@
             "smithy.api#enumValue": "none"
           }
         }
-      }
-    },
-    "com.cloudflare.schema_validation#SettingsEditRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "validation_default_mitigation_action": {
-          "target": "com.cloudflare.schema_validation#SettingsEditRequestValidationDefaultMitigationAction",
-          "traits": {
-            "smithy.api#documentation": "The default mitigation action used"
-          }
-        },
-        "validation_override_mitigation_action": {
-          "target": "com.cloudflare.schema_validation#SettingsEditRequestValidationOverrideMitigationAction",
-          "traits": {
-            "smithy.api#documentation": "When set, this overrides both zone level and operation level mitigation actions."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.schema_validation#SettingsEditResponseValidationDefaultMitigationAction": {
@@ -658,61 +204,6 @@
         }
       }
     },
-    "com.cloudflare.schema_validation#SettingsEditResponse": {
-      "type": "structure",
-      "members": {
-        "validation_default_mitigation_action": {
-          "target": "com.cloudflare.schema_validation#SettingsEditResponseValidationDefaultMitigationAction",
-          "traits": {
-            "smithy.api#documentation": "The default mitigation action used",
-            "smithy.api#required": {}
-          }
-        },
-        "validation_override_mitigation_action": {
-          "target": "com.cloudflare.schema_validation#SettingsEditResponseValidationOverrideMitigationAction",
-          "traits": {
-            "smithy.api#documentation": "When not null, this overrides global both zone level and operation level mitigation actions. This can serve as a quick way to disable schema validation for the whole zone."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.schema_validation#SettingsEdit": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.schema_validation#SettingsEditRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.schema_validation#SettingsEditResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "PATCH",
-          "uri": "/zones/{zone_id}/schema_validation/settings",
-          "code": 200
-        },
-        "smithy.api#documentation": "Partially updates global schema validation settings for a zone using PATCH semantics."
-      }
-    },
-    "com.cloudflare.schema_validation#SettingsGetRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.schema_validation#SettingsGetResponseValidationDefaultMitigationAction": {
       "type": "enum",
       "members": {
@@ -745,46 +236,6 @@
             "smithy.api#enumValue": "none"
           }
         }
-      }
-    },
-    "com.cloudflare.schema_validation#SettingsGetResponse": {
-      "type": "structure",
-      "members": {
-        "validation_default_mitigation_action": {
-          "target": "com.cloudflare.schema_validation#SettingsGetResponseValidationDefaultMitigationAction",
-          "traits": {
-            "smithy.api#documentation": "The default mitigation action used",
-            "smithy.api#required": {}
-          }
-        },
-        "validation_override_mitigation_action": {
-          "target": "com.cloudflare.schema_validation#SettingsGetResponseValidationOverrideMitigationAction",
-          "traits": {
-            "smithy.api#documentation": "When not null, this overrides global both zone level and operation level mitigation actions. This can serve as a quick way to disable schema validation for the whole zone."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.schema_validation#SettingsGet": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.schema_validation#SettingsGetRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.schema_validation#SettingsGetResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/zones/{zone_id}/schema_validation/settings",
-          "code": 200
-        },
-        "smithy.api#documentation": "Retrieves the current global schema validation settings for a zone.",
-        "smithy.api#readonly": {}
       }
     },
     "com.cloudflare.schema_validation#SettingsUpdateRequestValidationDefaultMitigationAction": {
@@ -821,35 +272,6 @@
         }
       }
     },
-    "com.cloudflare.schema_validation#SettingsUpdateRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "validation_default_mitigation_action": {
-          "target": "com.cloudflare.schema_validation#SettingsUpdateRequestValidationDefaultMitigationAction",
-          "traits": {
-            "smithy.api#documentation": "The default mitigation action used",
-            "smithy.api#required": {}
-          }
-        },
-        "validation_override_mitigation_action": {
-          "target": "com.cloudflare.schema_validation#SettingsUpdateRequestValidationOverrideMitigationAction",
-          "traits": {
-            "smithy.api#documentation": "When set, this overrides both zone level and operation level mitigation actions."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.schema_validation#SettingsUpdateResponseValidationDefaultMitigationAction": {
       "type": "enum",
       "members": {
@@ -882,46 +304,6 @@
             "smithy.api#enumValue": "none"
           }
         }
-      }
-    },
-    "com.cloudflare.schema_validation#SettingsUpdateResponse": {
-      "type": "structure",
-      "members": {
-        "validation_default_mitigation_action": {
-          "target": "com.cloudflare.schema_validation#SettingsUpdateResponseValidationDefaultMitigationAction",
-          "traits": {
-            "smithy.api#documentation": "The default mitigation action used",
-            "smithy.api#required": {}
-          }
-        },
-        "validation_override_mitigation_action": {
-          "target": "com.cloudflare.schema_validation#SettingsUpdateResponseValidationOverrideMitigationAction",
-          "traits": {
-            "smithy.api#documentation": "When not null, this overrides global both zone level and operation level mitigation actions. This can serve as a quick way to disable schema validation for the whole zone."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.schema_validation#SettingsUpdate": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.schema_validation#SettingsUpdateRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.schema_validation#SettingsUpdateResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "PUT",
-          "uri": "/zones/{zone_id}/schema_validation/settings",
-          "code": 200
-        },
-        "smithy.api#documentation": "Fully updates global schema validation settings for a zone, replacing existing configuration.",
-        "smithy.api#idempotent": {}
       }
     },
     "com.cloudflare.schema_validation#SettingsOperationsBulkEditRequestBodyValueMitigationAction": {
@@ -965,29 +347,6 @@
       },
       "value": {
         "target": "com.cloudflare.schema_validation#SettingsOperationsBulkEditRequestBodyValue"
-      }
-    },
-    "com.cloudflare.schema_validation#SettingsOperationsBulkEditRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.cloudflare.schema_validation#SettingsOperationsBulkEditRequestBodyMap",
-          "traits": {
-            "smithy.api#required": {},
-            "smithy.api#httpPayload": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.schema_validation#SettingsOperationsBulkEditResultValueMitigationAction": {
@@ -1041,119 +400,6 @@
         "target": "com.cloudflare.schema_validation#SettingsOperationsBulkEditResultValue"
       }
     },
-    "com.cloudflare.schema_validation#SettingsOperationsBulkEditResponse": {
-      "type": "structure",
-      "members": {
-        "result": {
-          "target": "com.cloudflare.schema_validation#SettingsOperationsBulkEditResultMap",
-          "traits": {
-            "com.cloudflare.protocols#envelopePayload": {},
-            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.schema_validation#SettingsOperationsBulkEdit": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.schema_validation#SettingsOperationsBulkEditRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.schema_validation#SettingsOperationsBulkEditResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "PATCH",
-          "uri": "/zones/{zone_id}/schema_validation/settings/operations",
-          "code": 200
-        },
-        "smithy.api#documentation": "Updates schema validation settings for multiple API operations in a single request. Efficient for applying consistent validation rules across endpoints."
-      }
-    },
-    "com.cloudflare.schema_validation#SettingsOperationsDeleteRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "operation_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "UUID.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.schema_validation#SettingsOperationsDeleteResponse": {
-      "type": "structure",
-      "members": {
-        "operation_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "UUID."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.schema_validation#SettingsOperationsDelete": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.schema_validation#SettingsOperationsDeleteRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.schema_validation#SettingsOperationsDeleteResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "/zones/{zone_id}/schema_validation/settings/operations/{operation_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Removes custom schema validation settings for a specific API operation, reverting to zone-level defaults.",
-        "smithy.api#idempotent": {}
-      }
-    },
-    "com.cloudflare.schema_validation#SettingsOperationsGetRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "operation_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "UUID.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.schema_validation#SettingsOperationsGetResponseMitigationAction": {
       "type": "enum",
       "members": {
@@ -1175,77 +421,6 @@
             "smithy.api#enumValue": "none"
           }
         }
-      }
-    },
-    "com.cloudflare.schema_validation#SettingsOperationsGetResponse": {
-      "type": "structure",
-      "members": {
-        "mitigation_action": {
-          "target": "com.cloudflare.schema_validation#SettingsOperationsGetResponseMitigationAction",
-          "traits": {
-            "smithy.api#documentation": "When set, this applies a mitigation action to this operation which supersedes a global schema validation setting just for this operation",
-            "smithy.api#required": {}
-          }
-        },
-        "operation_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "UUID.",
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.schema_validation#SettingsOperationsGet": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.schema_validation#SettingsOperationsGetRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.schema_validation#SettingsOperationsGetResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/zones/{zone_id}/schema_validation/settings/operations/{operation_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Retrieves the schema validation settings configured for a specific API operation.",
-        "smithy.api#readonly": {}
-      }
-    },
-    "com.cloudflare.schema_validation#SettingsOperationsListRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "page": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Page number of paginated results.",
-            "smithy.api#httpQuery": "page"
-          }
-        },
-        "per_page": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Maximum number of results per page.",
-            "smithy.api#httpQuery": "per_page"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.schema_validation#SettingsOperationsListResultItemMitigationAction": {
@@ -1296,39 +471,6 @@
         "target": "com.cloudflare.schema_validation#SettingsOperationsListResultItem"
       }
     },
-    "com.cloudflare.schema_validation#SettingsOperationsListResponse": {
-      "type": "structure",
-      "members": {
-        "result": {
-          "target": "com.cloudflare.schema_validation#SettingsOperationsListResultList",
-          "traits": {
-            "com.cloudflare.protocols#envelopePayload": {},
-            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.schema_validation#SettingsOperationsList": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.schema_validation#SettingsOperationsListRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.schema_validation#SettingsOperationsListResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/zones/{zone_id}/schema_validation/settings/operations",
-          "code": 200
-        },
-        "smithy.api#documentation": "Lists all per-operation schema validation settings configured for the zone.",
-        "smithy.api#readonly": {}
-      }
-    },
     "com.cloudflare.schema_validation#SettingsOperationsUpdateRequestMitigationAction": {
       "type": "enum",
       "members": {
@@ -1352,7 +494,1169 @@
         }
       }
     },
-    "com.cloudflare.schema_validation#SettingsOperationsUpdateRequest": {
+    "com.cloudflare.schema_validation#SettingsOperationsUpdateResponseMitigationAction": {
+      "type": "enum",
+      "members": {
+        "LOG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "log"
+          }
+        },
+        "BLOCK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "block"
+          }
+        },
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "none"
+          }
+        }
+      }
+    },
+    "com.cloudflare.schema_validation#SchemaValidation": {
+      "type": "service",
+      "version": "4.0",
+      "operations": [
+        {
+          "target": "com.cloudflare.schema_validation#BulkPatchSettingOperations"
+        },
+        {
+          "target": "com.cloudflare.schema_validation#CreateSchema"
+        },
+        {
+          "target": "com.cloudflare.schema_validation#DeleteSchema"
+        },
+        {
+          "target": "com.cloudflare.schema_validation#DeleteSettingOperation"
+        },
+        {
+          "target": "com.cloudflare.schema_validation#GetSchema"
+        },
+        {
+          "target": "com.cloudflare.schema_validation#GetSetting"
+        },
+        {
+          "target": "com.cloudflare.schema_validation#GetSettingOperation"
+        },
+        {
+          "target": "com.cloudflare.schema_validation#ListSchemas"
+        },
+        {
+          "target": "com.cloudflare.schema_validation#ListSettingOperations"
+        },
+        {
+          "target": "com.cloudflare.schema_validation#PatchSchema"
+        },
+        {
+          "target": "com.cloudflare.schema_validation#PatchSetting"
+        },
+        {
+          "target": "com.cloudflare.schema_validation#PutSetting"
+        },
+        {
+          "target": "com.cloudflare.schema_validation#PutSettingOperation"
+        }
+      ],
+      "traits": {
+        "com.cloudflare.protocols#v4Json": {},
+        "smithy.api#title": "Cloudflare SchemaValidation",
+        "smithy.api#documentation": "Cloudflare API — schema_validation resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+      }
+    },
+    "com.cloudflare.schema_validation#Forbidden": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.cloudflare.schema_validation#InvalidSchema": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "code": 50010
+          }
+        ]
+      }
+    },
+    "com.cloudflare.schema_validation#OperationNotFound": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "code": 10404
+          }
+        ]
+      }
+    },
+    "com.cloudflare.schema_validation#SchemaNotFound": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "code": 19400
+          }
+        ]
+      }
+    },
+    "com.cloudflare.schema_validation#UnentitledMitigationAction": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "code": 11400
+          }
+        ]
+      }
+    },
+    "com.cloudflare.schema_validation#ZonePurged": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "message": {
+              "includes": "has been purged"
+            }
+          }
+        ]
+      }
+    },
+    "com.cloudflare.schema_validation#BulkPatchSettingOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.schema_validation#BulkPatchSettingOperationsRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.schema_validation#BulkPatchSettingOperationsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/zones/{zone_id}/schema_validation/settings/operations",
+          "code": 200
+        },
+        "smithy.api#documentation": "Updates schema validation settings for multiple API operations in a single request. Efficient for applying consistent validation rules across endpoints."
+      }
+    },
+    "com.cloudflare.schema_validation#BulkPatchSettingOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.cloudflare.schema_validation#SettingsOperationsBulkEditRequestBodyMap",
+          "traits": {
+            "smithy.api#required": {},
+            "smithy.api#httpPayload": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.schema_validation#BulkPatchSettingOperationsResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.schema_validation#SettingsOperationsBulkEditResultMap",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.schema_validation#CreateSchema": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.schema_validation#CreateSchemaRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.schema_validation#CreateSchemaResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/zones/{zone_id}/schema_validation/schemas",
+          "code": 200
+        },
+        "smithy.api#documentation": "Uploads a new OpenAPI schema for API Shield schema validation. The schema defines expected request/response formats for API endpoints."
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.schema_validation#InvalidSchema"
+        },
+        {
+          "target": "com.cloudflare.schema_validation#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.schema_validation#CreateSchemaRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "kind": {
+          "target": "com.cloudflare.schema_validation#SchemasCreateRequestKind",
+          "traits": {
+            "smithy.api#documentation": "The kind of the schema",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A human-readable name for the schema",
+            "smithy.api#required": {}
+          }
+        },
+        "source": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The raw schema, e.g., the OpenAPI schema, either as JSON or YAML",
+            "smithy.api#required": {}
+          }
+        },
+        "validation_enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "An indicator if this schema is enabled",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.schema_validation#CreateSchemaResponse": {
+      "type": "structure",
+      "members": {
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "kind": {
+          "target": "com.cloudflare.schema_validation#SchemasCreateResponseKind",
+          "traits": {
+            "smithy.api#documentation": "The kind of the schema",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A human-readable name for the schema",
+            "smithy.api#required": {}
+          }
+        },
+        "schema_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A unique identifier of this schema",
+            "smithy.api#required": {}
+          }
+        },
+        "source": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The raw schema, e.g., the OpenAPI schema, either as JSON or YAML",
+            "smithy.api#required": {}
+          }
+        },
+        "validation_enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "An indicator if this schema is enabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.schema_validation#DeleteSchema": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.schema_validation#DeleteSchemaRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.schema_validation#DeleteSchemaResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/zones/{zone_id}/schema_validation/schemas/{schema_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Permanently removes an uploaded OpenAPI schema from API Shield. Operations using this schema will lose their validation rules.",
+        "smithy.api#idempotent": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.schema_validation#SchemaNotFound"
+        }
+      ]
+    },
+    "com.cloudflare.schema_validation#DeleteSchemaRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "schema_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UUID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.schema_validation#DeleteSchemaResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the schema that was just deleted",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.schema_validation#DeleteSettingOperation": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.schema_validation#DeleteSettingOperationRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.schema_validation#DeleteSettingOperationResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/zones/{zone_id}/schema_validation/settings/operations/{operation_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Removes custom schema validation settings for a specific API operation, reverting to zone-level defaults.",
+        "smithy.api#idempotent": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.schema_validation#OperationNotFound"
+        }
+      ]
+    },
+    "com.cloudflare.schema_validation#DeleteSettingOperationRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "operation_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UUID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.schema_validation#DeleteSettingOperationResponse": {
+      "type": "structure",
+      "members": {
+        "operation_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UUID."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.schema_validation#GetSchema": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.schema_validation#GetSchemaRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.schema_validation#GetSchemaResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/schema_validation/schemas/{schema_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Gets the contents and metadata of a specific OpenAPI schema uploaded to API Shield.",
+        "smithy.api#readonly": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.schema_validation#SchemaNotFound"
+        },
+        {
+          "target": "com.cloudflare.schema_validation#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.schema_validation#GetSchemaRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "schema_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UUID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "omit_source": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Omit the source-files of schemas and only retrieve their meta-data.",
+            "smithy.api#httpQuery": "omit_source"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.schema_validation#GetSchemaResponse": {
+      "type": "structure",
+      "members": {
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "kind": {
+          "target": "com.cloudflare.schema_validation#SchemasGetResponseKind",
+          "traits": {
+            "smithy.api#documentation": "The kind of the schema",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A human-readable name for the schema",
+            "smithy.api#required": {}
+          }
+        },
+        "schema_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A unique identifier of this schema",
+            "smithy.api#required": {}
+          }
+        },
+        "source": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The raw schema, e.g., the OpenAPI schema, either as JSON or YAML",
+            "smithy.api#required": {}
+          }
+        },
+        "validation_enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "An indicator if this schema is enabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.schema_validation#GetSetting": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.schema_validation#GetSettingRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.schema_validation#GetSettingResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/schema_validation/settings",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieves the current global schema validation settings for a zone.",
+        "smithy.api#readonly": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.schema_validation#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.schema_validation#GetSettingRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.schema_validation#GetSettingResponse": {
+      "type": "structure",
+      "members": {
+        "validation_default_mitigation_action": {
+          "target": "com.cloudflare.schema_validation#SettingsGetResponseValidationDefaultMitigationAction",
+          "traits": {
+            "smithy.api#documentation": "The default mitigation action used",
+            "smithy.api#required": {}
+          }
+        },
+        "validation_override_mitigation_action": {
+          "target": "com.cloudflare.schema_validation#SettingsGetResponseValidationOverrideMitigationAction",
+          "traits": {
+            "smithy.api#documentation": "When not null, this overrides global both zone level and operation level mitigation actions. This can serve as a quick way to disable schema validation for the whole zone."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.schema_validation#GetSettingOperation": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.schema_validation#GetSettingOperationRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.schema_validation#GetSettingOperationResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/schema_validation/settings/operations/{operation_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieves the schema validation settings configured for a specific API operation.",
+        "smithy.api#readonly": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.schema_validation#OperationNotFound"
+        },
+        {
+          "target": "com.cloudflare.schema_validation#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.schema_validation#GetSettingOperationRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "operation_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UUID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.schema_validation#GetSettingOperationResponse": {
+      "type": "structure",
+      "members": {
+        "mitigation_action": {
+          "target": "com.cloudflare.schema_validation#SettingsOperationsGetResponseMitigationAction",
+          "traits": {
+            "smithy.api#documentation": "When set, this applies a mitigation action to this operation which supersedes a global schema validation setting just for this operation",
+            "smithy.api#required": {}
+          }
+        },
+        "operation_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UUID.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.schema_validation#ListSchemas": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.schema_validation#ListSchemasRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.schema_validation#ListSchemasResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/schema_validation/schemas",
+          "code": 200
+        },
+        "smithy.api#documentation": "Lists all OpenAPI schemas uploaded to API Shield with pagination support.",
+        "smithy.api#readonly": {},
+        "smithy.api#paginated": {
+          "mode": "page",
+          "inputToken": "page",
+          "outputToken": "resultInfo.page",
+          "items": "result",
+          "pageSize": "perPage"
+        }
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.schema_validation#ZonePurged"
+        },
+        {
+          "target": "com.cloudflare.schema_validation#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.schema_validation#ListSchemasRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "omit_source": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Omit the source-files of schemas and only retrieve their meta-data.",
+            "smithy.api#httpQuery": "omit_source"
+          }
+        },
+        "page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Page number of paginated results.",
+            "smithy.api#httpQuery": "page"
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Maximum number of results per page.",
+            "smithy.api#httpQuery": "per_page"
+          }
+        },
+        "validation_enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Filter for enabled schemas",
+            "smithy.api#httpQuery": "validation_enabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.schema_validation#ListSchemasResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.schema_validation#SchemasListResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.schema_validation#ListSettingOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.schema_validation#ListSettingOperationsRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.schema_validation#ListSettingOperationsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/schema_validation/settings/operations",
+          "code": 200
+        },
+        "smithy.api#documentation": "Lists all per-operation schema validation settings configured for the zone.",
+        "smithy.api#readonly": {},
+        "smithy.api#paginated": {
+          "mode": "page",
+          "inputToken": "page",
+          "outputToken": "resultInfo.page",
+          "items": "result",
+          "pageSize": "perPage"
+        }
+      }
+    },
+    "com.cloudflare.schema_validation#ListSettingOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Page number of paginated results.",
+            "smithy.api#httpQuery": "page"
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Maximum number of results per page.",
+            "smithy.api#httpQuery": "per_page"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.schema_validation#ListSettingOperationsResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.schema_validation#SettingsOperationsListResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.schema_validation#PatchSchema": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.schema_validation#PatchSchemaRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.schema_validation#PatchSchemaResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/zones/{zone_id}/schema_validation/schemas/{schema_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Modifies an existing OpenAPI schema in API Shield, updating the validation rules for associated API operations."
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.schema_validation#SchemaNotFound"
+        }
+      ]
+    },
+    "com.cloudflare.schema_validation#PatchSchemaRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "schema_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UUID.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "validation_enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Flag whether schema is enabled for validation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.schema_validation#PatchSchemaResponse": {
+      "type": "structure",
+      "members": {
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "kind": {
+          "target": "com.cloudflare.schema_validation#SchemasEditResponseKind",
+          "traits": {
+            "smithy.api#documentation": "The kind of the schema",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A human-readable name for the schema",
+            "smithy.api#required": {}
+          }
+        },
+        "schema_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A unique identifier of this schema",
+            "smithy.api#required": {}
+          }
+        },
+        "source": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The raw schema, e.g., the OpenAPI schema, either as JSON or YAML",
+            "smithy.api#required": {}
+          }
+        },
+        "validation_enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "An indicator if this schema is enabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.schema_validation#PatchSetting": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.schema_validation#PatchSettingRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.schema_validation#PatchSettingResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/zones/{zone_id}/schema_validation/settings",
+          "code": 200
+        },
+        "smithy.api#documentation": "Partially updates global schema validation settings for a zone using PATCH semantics."
+      }
+    },
+    "com.cloudflare.schema_validation#PatchSettingRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "validation_default_mitigation_action": {
+          "target": "com.cloudflare.schema_validation#SettingsEditRequestValidationDefaultMitigationAction",
+          "traits": {
+            "smithy.api#documentation": "The default mitigation action used"
+          }
+        },
+        "validation_override_mitigation_action": {
+          "target": "com.cloudflare.schema_validation#SettingsEditRequestValidationOverrideMitigationAction",
+          "traits": {
+            "smithy.api#documentation": "When set, this overrides both zone level and operation level mitigation actions.",
+            "com.cloudflare.protocols#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.schema_validation#PatchSettingResponse": {
+      "type": "structure",
+      "members": {
+        "validation_default_mitigation_action": {
+          "target": "com.cloudflare.schema_validation#SettingsEditResponseValidationDefaultMitigationAction",
+          "traits": {
+            "smithy.api#documentation": "The default mitigation action used",
+            "smithy.api#required": {}
+          }
+        },
+        "validation_override_mitigation_action": {
+          "target": "com.cloudflare.schema_validation#SettingsEditResponseValidationOverrideMitigationAction",
+          "traits": {
+            "smithy.api#documentation": "When not null, this overrides global both zone level and operation level mitigation actions. This can serve as a quick way to disable schema validation for the whole zone."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.schema_validation#PutSetting": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.schema_validation#PutSettingRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.schema_validation#PutSettingResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/zones/{zone_id}/schema_validation/settings",
+          "code": 200
+        },
+        "smithy.api#documentation": "Fully updates global schema validation settings for a zone, replacing existing configuration.",
+        "smithy.api#idempotent": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.schema_validation#UnentitledMitigationAction"
+        },
+        {
+          "target": "com.cloudflare.schema_validation#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.schema_validation#PutSettingRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "validation_default_mitigation_action": {
+          "target": "com.cloudflare.schema_validation#SettingsUpdateRequestValidationDefaultMitigationAction",
+          "traits": {
+            "smithy.api#documentation": "The default mitigation action used",
+            "smithy.api#required": {}
+          }
+        },
+        "validation_override_mitigation_action": {
+          "target": "com.cloudflare.schema_validation#SettingsUpdateRequestValidationOverrideMitigationAction",
+          "traits": {
+            "smithy.api#documentation": "When set, this overrides both zone level and operation level mitigation actions.",
+            "com.cloudflare.protocols#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.schema_validation#PutSettingResponse": {
+      "type": "structure",
+      "members": {
+        "validation_default_mitigation_action": {
+          "target": "com.cloudflare.schema_validation#SettingsUpdateResponseValidationDefaultMitigationAction",
+          "traits": {
+            "smithy.api#documentation": "The default mitigation action used",
+            "smithy.api#required": {}
+          }
+        },
+        "validation_override_mitigation_action": {
+          "target": "com.cloudflare.schema_validation#SettingsUpdateResponseValidationOverrideMitigationAction",
+          "traits": {
+            "smithy.api#documentation": "When not null, this overrides global both zone level and operation level mitigation actions. This can serve as a quick way to disable schema validation for the whole zone."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.schema_validation#PutSettingOperation": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.schema_validation#PutSettingOperationRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.schema_validation#PutSettingOperationResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/zones/{zone_id}/schema_validation/settings/operations/{operation_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Fully updates schema validation settings for a specific API operation.",
+        "smithy.api#idempotent": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.schema_validation#OperationNotFound"
+        },
+        {
+          "target": "com.cloudflare.schema_validation#UnentitledMitigationAction"
+        }
+      ]
+    },
+    "com.cloudflare.schema_validation#PutSettingOperationRequest": {
       "type": "structure",
       "members": {
         "zone_id": {
@@ -1383,30 +1687,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.schema_validation#SettingsOperationsUpdateResponseMitigationAction": {
-      "type": "enum",
-      "members": {
-        "LOG": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "log"
-          }
-        },
-        "BLOCK": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "block"
-          }
-        },
-        "NONE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "none"
-          }
-        }
-      }
-    },
-    "com.cloudflare.schema_validation#SettingsOperationsUpdateResponse": {
+    "com.cloudflare.schema_validation#PutSettingOperationResponse": {
       "type": "structure",
       "members": {
         "mitigation_action": {
@@ -1427,74 +1708,6 @@
       "traits": {
         "smithy.api#output": {},
         "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.schema_validation#SettingsOperationsUpdate": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.schema_validation#SettingsOperationsUpdateRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.schema_validation#SettingsOperationsUpdateResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "PUT",
-          "uri": "/zones/{zone_id}/schema_validation/settings/operations/{operation_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Fully updates schema validation settings for a specific API operation.",
-        "smithy.api#idempotent": {}
-      }
-    },
-    "com.cloudflare.schema_validation#SchemaValidation": {
-      "type": "service",
-      "version": "4.0",
-      "operations": [
-        {
-          "target": "com.cloudflare.schema_validation#SchemasCreate"
-        },
-        {
-          "target": "com.cloudflare.schema_validation#SchemasDelete"
-        },
-        {
-          "target": "com.cloudflare.schema_validation#SchemasEdit"
-        },
-        {
-          "target": "com.cloudflare.schema_validation#SchemasGet"
-        },
-        {
-          "target": "com.cloudflare.schema_validation#SchemasList"
-        },
-        {
-          "target": "com.cloudflare.schema_validation#SettingsEdit"
-        },
-        {
-          "target": "com.cloudflare.schema_validation#SettingsGet"
-        },
-        {
-          "target": "com.cloudflare.schema_validation#SettingsUpdate"
-        },
-        {
-          "target": "com.cloudflare.schema_validation#SettingsOperationsBulkEdit"
-        },
-        {
-          "target": "com.cloudflare.schema_validation#SettingsOperationsDelete"
-        },
-        {
-          "target": "com.cloudflare.schema_validation#SettingsOperationsGet"
-        },
-        {
-          "target": "com.cloudflare.schema_validation#SettingsOperationsList"
-        },
-        {
-          "target": "com.cloudflare.schema_validation#SettingsOperationsUpdate"
-        }
-      ],
-      "traits": {
-        "com.cloudflare.protocols#v4Json": {},
-        "smithy.api#title": "Cloudflare SchemaValidation",
-        "smithy.api#documentation": "Cloudflare API — schema_validation resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
       }
     }
   }

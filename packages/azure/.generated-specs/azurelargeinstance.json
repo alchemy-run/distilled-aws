@@ -14,16 +14,17 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.azurelargeinstance#AzureLargeStorageInstanceUpdate": {
+    "com.azure.azurelargeinstance#UpdateAzureLargeStorageInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurelargeinstance#AzureLargeStorageInstanceUpdateRequest"
+        "target": "com.azure.azurelargeinstance#UpdateAzureLargeStorageInstanceRequest"
       },
       "output": {
-        "target": "com.azure.azurelargeinstance#AzureLargeStorageInstanceUpdateResponse"
+        "target": "com.azure.azurelargeinstance#UpdateAzureLargeStorageInstanceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -36,7 +37,7 @@
         "com.distilled.openapi#apiVersion": "2024-04-10"
       }
     },
-    "com.azure.azurelargeinstance#AzureLargeStorageInstanceUpdateResponse": {
+    "com.azure.azurelargeinstance#UpdateAzureLargeStorageInstanceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -64,7 +65,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.azurelargeinstance#AzureLargeStorageInstanceUpdateResponseTagsMap",
+          "target": "com.azure.azurelargeinstance#UpdateAzureLargeStorageInstanceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -259,7 +260,7 @@
         "smithy.api#documentation": "An enum of possible operation states for an AzureLargeStorageInstances"
       }
     },
-    "com.azure.azurelargeinstance#AzureLargeStorageInstanceUpdateResponseTagsMap": {
+    "com.azure.azurelargeinstance#UpdateAzureLargeStorageInstanceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -379,7 +380,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.azurelargeinstance#AzureLargeStorageInstanceUpdateRequest": {
+    "com.azure.azurelargeinstance#UpdateAzureLargeStorageInstanceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -407,7 +408,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.azurelargeinstance#AzureLargeStorageInstanceUpdateRequestTagsMap",
+          "target": "com.azure.azurelargeinstance#UpdateAzureLargeStorageInstanceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -417,7 +418,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurelargeinstance#AzureLargeStorageInstanceUpdateRequestTagsMap": {
+    "com.azure.azurelargeinstance#UpdateAzureLargeStorageInstanceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -429,13 +430,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.azurelargeinstance#AzureLargeStorageInstanceGet": {
+    "com.azure.azurelargeinstance#GetAzureLargeStorageInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurelargeinstance#AzureLargeStorageInstanceGetRequest"
+        "target": "com.azure.azurelargeinstance#GetAzureLargeStorageInstanceRequest"
       },
       "output": {
-        "target": "com.azure.azurelargeinstance#AzureLargeStorageInstanceGetResponse"
+        "target": "com.azure.azurelargeinstance#GetAzureLargeStorageInstanceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -448,7 +449,7 @@
         "com.distilled.openapi#apiVersion": "2024-04-10"
       }
     },
-    "com.azure.azurelargeinstance#AzureLargeStorageInstanceGetResponse": {
+    "com.azure.azurelargeinstance#GetAzureLargeStorageInstanceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -476,7 +477,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.azurelargeinstance#AzureLargeStorageInstanceGetResponseTagsMap",
+          "target": "com.azure.azurelargeinstance#GetAzureLargeStorageInstanceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -499,7 +500,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.azurelargeinstance#AzureLargeStorageInstanceGetResponseTagsMap": {
+    "com.azure.azurelargeinstance#GetAzureLargeStorageInstanceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -511,7 +512,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.azurelargeinstance#AzureLargeStorageInstanceGetRequest": {
+    "com.azure.azurelargeinstance#GetAzureLargeStorageInstanceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -543,10 +544,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurelargeinstance#AzureLargeStorageInstanceListByResourceGroup": {
+    "com.azure.azurelargeinstance#ListAzureLargeStorageInstanceByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurelargeinstance#AzureLargeStorageInstanceListByResourceGroupRequest"
+        "target": "com.azure.azurelargeinstance#ListAzureLargeStorageInstanceByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.azurelargeinstance#AzureLargeStorageInstanceListResult"
@@ -655,7 +656,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.azurelargeinstance#AzureLargeStorageInstanceListByResourceGroupRequest": {
+    "com.azure.azurelargeinstance#ListAzureLargeStorageInstanceByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -679,13 +680,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurelargeinstance#AzureLargeInstanceStart": {
+    "com.azure.azurelargeinstance#StartAzureLargeInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurelargeinstance#AzureLargeInstanceStartRequest"
+        "target": "com.azure.azurelargeinstance#StartAzureLargeInstanceRequest"
       },
       "output": {
-        "target": "com.azure.azurelargeinstance#AzureLargeInstanceStartResponse"
+        "target": "com.azure.azurelargeinstance#StartAzureLargeInstanceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -698,7 +699,7 @@
         "com.distilled.openapi#apiVersion": "2024-04-10"
       }
     },
-    "com.azure.azurelargeinstance#AzureLargeInstanceStartResponse": {
+    "com.azure.azurelargeinstance#StartAzureLargeInstanceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -745,7 +746,7 @@
           }
         },
         "operations": {
-          "target": "com.azure.azurelargeinstance#AzureLargeInstanceStartResponseOperationsList",
+          "target": "com.azure.azurelargeinstance#StartAzureLargeInstanceResponseOperationsList",
           "traits": {
             "smithy.api#documentation": "The operations list."
           }
@@ -837,7 +838,7 @@
         "smithy.api#documentation": "The error details."
       }
     },
-    "com.azure.azurelargeinstance#AzureLargeInstanceStartResponseOperationsList": {
+    "com.azure.azurelargeinstance#StartAzureLargeInstanceResponseOperationsList": {
       "type": "list",
       "member": {
         "target": "com.azure.azurelargeinstance#OperationStatusResult"
@@ -918,7 +919,7 @@
         "smithy.api#documentation": "The operations list."
       }
     },
-    "com.azure.azurelargeinstance#AzureLargeInstanceStartRequest": {
+    "com.azure.azurelargeinstance#StartAzureLargeInstanceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1073,13 +1074,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurelargeinstance#AzureLargeInstanceRestart": {
+    "com.azure.azurelargeinstance#RestartAzureLargeInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurelargeinstance#AzureLargeInstanceRestartRequest"
+        "target": "com.azure.azurelargeinstance#RestartAzureLargeInstanceRequest"
       },
       "output": {
-        "target": "com.azure.azurelargeinstance#AzureLargeInstanceRestartResponse"
+        "target": "com.azure.azurelargeinstance#RestartAzureLargeInstanceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1092,7 +1093,7 @@
         "com.distilled.openapi#apiVersion": "2024-04-10"
       }
     },
-    "com.azure.azurelargeinstance#AzureLargeInstanceRestartResponse": {
+    "com.azure.azurelargeinstance#RestartAzureLargeInstanceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1139,7 +1140,7 @@
           }
         },
         "operations": {
-          "target": "com.azure.azurelargeinstance#AzureLargeInstanceRestartResponseOperationsList",
+          "target": "com.azure.azurelargeinstance#RestartAzureLargeInstanceResponseOperationsList",
           "traits": {
             "smithy.api#documentation": "The operations list."
           }
@@ -1155,7 +1156,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.azurelargeinstance#AzureLargeInstanceRestartResponseOperationsList": {
+    "com.azure.azurelargeinstance#RestartAzureLargeInstanceResponseOperationsList": {
       "type": "list",
       "member": {
         "target": "com.azure.azurelargeinstance#OperationStatusResult"
@@ -1164,7 +1165,7 @@
         "smithy.api#documentation": "The operations list."
       }
     },
-    "com.azure.azurelargeinstance#AzureLargeInstanceRestartRequest": {
+    "com.azure.azurelargeinstance#RestartAzureLargeInstanceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1222,13 +1223,13 @@
         "smithy.api#documentation": "Enum of two possible values to determine if the ALI instance restart operation should forcefully terminate and halt any existing processes that may be running on the server or not."
       }
     },
-    "com.azure.azurelargeinstance#AzureLargeInstanceUpdate": {
+    "com.azure.azurelargeinstance#UpdateAzureLargeInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurelargeinstance#AzureLargeInstanceUpdateRequest"
+        "target": "com.azure.azurelargeinstance#UpdateAzureLargeInstanceRequest"
       },
       "output": {
-        "target": "com.azure.azurelargeinstance#AzureLargeInstanceUpdateResponse"
+        "target": "com.azure.azurelargeinstance#UpdateAzureLargeInstanceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1241,7 +1242,7 @@
         "com.distilled.openapi#apiVersion": "2024-04-10"
       }
     },
-    "com.azure.azurelargeinstance#AzureLargeInstanceUpdateResponse": {
+    "com.azure.azurelargeinstance#UpdateAzureLargeInstanceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1269,7 +1270,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.azurelargeinstance#AzureLargeInstanceUpdateResponseTagsMap",
+          "target": "com.azure.azurelargeinstance#UpdateAzureLargeInstanceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1882,7 +1883,7 @@
         "smithy.api#documentation": "Enum of available model types (each of which have their own storage / memory sizes) for an Azure Large Instance type. See https://learn.microsoft.com/azure/sap/large-instances/hana-available-skus"
       }
     },
-    "com.azure.azurelargeinstance#AzureLargeInstanceUpdateResponseTagsMap": {
+    "com.azure.azurelargeinstance#UpdateAzureLargeInstanceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1894,7 +1895,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.azurelargeinstance#AzureLargeInstanceUpdateRequest": {
+    "com.azure.azurelargeinstance#UpdateAzureLargeInstanceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1922,7 +1923,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.azurelargeinstance#AzureLargeInstanceUpdateRequestTagsMap",
+          "target": "com.azure.azurelargeinstance#UpdateAzureLargeInstanceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1932,7 +1933,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurelargeinstance#AzureLargeInstanceUpdateRequestTagsMap": {
+    "com.azure.azurelargeinstance#UpdateAzureLargeInstanceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1944,13 +1945,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.azurelargeinstance#AzureLargeInstanceGet": {
+    "com.azure.azurelargeinstance#GetAzureLargeInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurelargeinstance#AzureLargeInstanceGetRequest"
+        "target": "com.azure.azurelargeinstance#GetAzureLargeInstanceRequest"
       },
       "output": {
-        "target": "com.azure.azurelargeinstance#AzureLargeInstanceGetResponse"
+        "target": "com.azure.azurelargeinstance#GetAzureLargeInstanceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1963,7 +1964,7 @@
         "com.distilled.openapi#apiVersion": "2024-04-10"
       }
     },
-    "com.azure.azurelargeinstance#AzureLargeInstanceGetResponse": {
+    "com.azure.azurelargeinstance#GetAzureLargeInstanceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1991,7 +1992,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.azurelargeinstance#AzureLargeInstanceGetResponseTagsMap",
+          "target": "com.azure.azurelargeinstance#GetAzureLargeInstanceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2014,7 +2015,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.azurelargeinstance#AzureLargeInstanceGetResponseTagsMap": {
+    "com.azure.azurelargeinstance#GetAzureLargeInstanceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2026,7 +2027,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.azurelargeinstance#AzureLargeInstanceGetRequest": {
+    "com.azure.azurelargeinstance#GetAzureLargeInstanceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2058,10 +2059,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurelargeinstance#AzureLargeInstanceListByResourceGroup": {
+    "com.azure.azurelargeinstance#ListAzureLargeInstanceByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurelargeinstance#AzureLargeInstanceListByResourceGroupRequest"
+        "target": "com.azure.azurelargeinstance#ListAzureLargeInstanceByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.azurelargeinstance#AzureLargeInstanceListResult"
@@ -2170,7 +2171,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.azurelargeinstance#AzureLargeInstanceListByResourceGroupRequest": {
+    "com.azure.azurelargeinstance#ListAzureLargeInstanceByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2194,10 +2195,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurelargeinstance#AzureLargeStorageInstanceListBySubscription": {
+    "com.azure.azurelargeinstance#ListAzureLargeStorageInstanceBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurelargeinstance#AzureLargeStorageInstanceListBySubscriptionRequest"
+        "target": "com.azure.azurelargeinstance#ListAzureLargeStorageInstanceBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.azurelargeinstance#AzureLargeStorageInstanceListResult"
@@ -2213,7 +2214,7 @@
         "com.distilled.openapi#apiVersion": "2024-04-10"
       }
     },
-    "com.azure.azurelargeinstance#AzureLargeStorageInstanceListBySubscriptionRequest": {
+    "com.azure.azurelargeinstance#ListAzureLargeStorageInstanceBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2229,10 +2230,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurelargeinstance#AzureLargeInstanceListBySubscription": {
+    "com.azure.azurelargeinstance#ListAzureLargeInstanceBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurelargeinstance#AzureLargeInstanceListBySubscriptionRequest"
+        "target": "com.azure.azurelargeinstance#ListAzureLargeInstanceBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.azurelargeinstance#AzureLargeInstanceListResult"
@@ -2248,7 +2249,7 @@
         "com.distilled.openapi#apiVersion": "2024-04-10"
       }
     },
-    "com.azure.azurelargeinstance#AzureLargeInstanceListBySubscriptionRequest": {
+    "com.azure.azurelargeinstance#ListAzureLargeInstanceBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2264,13 +2265,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurelargeinstance#OperationsList": {
+    "com.azure.azurelargeinstance#ListOperations": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
       },
       "output": {
-        "target": "com.azure.azurelargeinstance#OperationsListResponse"
+        "target": "com.azure.azurelargeinstance#ListOperationsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2283,11 +2284,11 @@
         "com.distilled.openapi#apiVersion": "2024-04-10"
       }
     },
-    "com.azure.azurelargeinstance#OperationsListResponse": {
+    "com.azure.azurelargeinstance#ListOperationsResponse": {
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.azurelargeinstance#OperationsListResponseValueList",
+          "target": "com.azure.azurelargeinstance#ListOperationsResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of operations supported by the resource provider"
           }
@@ -2303,7 +2304,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.azurelargeinstance#OperationsListResponseValueList": {
+    "com.azure.azurelargeinstance#ListOperationsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.azurelargeinstance#Operation"
@@ -2427,40 +2428,40 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.azurelargeinstance#AzureLargeStorageInstanceUpdate"
+          "target": "com.azure.azurelargeinstance#UpdateAzureLargeStorageInstance"
         },
         {
-          "target": "com.azure.azurelargeinstance#AzureLargeStorageInstanceGet"
+          "target": "com.azure.azurelargeinstance#GetAzureLargeStorageInstance"
         },
         {
-          "target": "com.azure.azurelargeinstance#AzureLargeStorageInstanceListByResourceGroup"
+          "target": "com.azure.azurelargeinstance#ListAzureLargeStorageInstanceByResourceGroup"
         },
         {
-          "target": "com.azure.azurelargeinstance#AzureLargeInstanceStart"
+          "target": "com.azure.azurelargeinstance#StartAzureLargeInstance"
         },
         {
           "target": "com.azure.azurelargeinstance#AzureLargeInstanceShutdown"
         },
         {
-          "target": "com.azure.azurelargeinstance#AzureLargeInstanceRestart"
+          "target": "com.azure.azurelargeinstance#RestartAzureLargeInstance"
         },
         {
-          "target": "com.azure.azurelargeinstance#AzureLargeInstanceUpdate"
+          "target": "com.azure.azurelargeinstance#UpdateAzureLargeInstance"
         },
         {
-          "target": "com.azure.azurelargeinstance#AzureLargeInstanceGet"
+          "target": "com.azure.azurelargeinstance#GetAzureLargeInstance"
         },
         {
-          "target": "com.azure.azurelargeinstance#AzureLargeInstanceListByResourceGroup"
+          "target": "com.azure.azurelargeinstance#ListAzureLargeInstanceByResourceGroup"
         },
         {
-          "target": "com.azure.azurelargeinstance#AzureLargeStorageInstanceListBySubscription"
+          "target": "com.azure.azurelargeinstance#ListAzureLargeStorageInstanceBySubscription"
         },
         {
-          "target": "com.azure.azurelargeinstance#AzureLargeInstanceListBySubscription"
+          "target": "com.azure.azurelargeinstance#ListAzureLargeInstanceBySubscription"
         },
         {
-          "target": "com.azure.azurelargeinstance#OperationsList"
+          "target": "com.azure.azurelargeinstance#ListOperations"
         }
       ],
       "traits": {

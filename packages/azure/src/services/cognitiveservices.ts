@@ -293,70 +293,97 @@ export const AccountCapabilityHostsCreateOrUpdateResponse =
     identifier: "AccountCapabilityHostsCreateOrUpdateResponse",
   }) as any as S.Schema<AccountCapabilityHostsCreateOrUpdateResponse>;
 
-export interface AccountCapabilityHostsDeleteRequest {
+/** RAI Custom Blocklist Item properties. */
+export interface RaiBlocklistItemProperties {
+  /** Pattern to match against. */
+  pattern?: string;
+  /** If the pattern is a regex pattern. */
+  isRegex?: boolean;
+}
+export const RaiBlocklistItemProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    pattern: S.optional(S.String),
+    isRegex: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "RaiBlocklistItemProperties",
+}) as any as S.Schema<RaiBlocklistItemProperties>;
+
+/** The Cognitive Services RaiBlocklist Item request body. */
+export interface RaiBlocklistItemBulkRequest {
+  name?: string;
+  /** Properties of Cognitive Services RaiBlocklist Item. */
+  properties?: RaiBlocklistItemProperties;
+}
+export const RaiBlocklistItemBulkRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    properties: S.optional(RaiBlocklistItemProperties),
+  }),
+).annotate({
+  identifier: "RaiBlocklistItemBulkRequest",
+}) as any as S.Schema<RaiBlocklistItemBulkRequest>;
+
+/** The list of Cognitive Services RaiBlocklist Items for batch add. */
+export type RaiBlocklistItemsBulkAddRequest =
+  Array<RaiBlocklistItemBulkRequest>;
+export const RaiBlocklistItemsBulkAddRequest = /*@__PURE__*/ S.Array(
+  RaiBlocklistItemBulkRequest,
+) as any as S.Schema<RaiBlocklistItemsBulkAddRequest>;
+
+export interface AddRaiBlocklistItemBatchRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of Cognitive Services account. */
   accountName: string;
-  /** The name of the capability host associated with the Cognitive Services Resource */
-  capabilityHostName: string;
+  /** The name of the RaiBlocklist associated with the Cognitive Services Account */
+  raiBlocklistName: string;
+  body: RaiBlocklistItemsBulkAddRequest;
 }
-export const AccountCapabilityHostsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const AddRaiBlocklistItemBatchRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     accountName: S.String.pipe(T.Label()),
-    capabilityHostName: S.String.pipe(T.Label()),
+    raiBlocklistName: S.String.pipe(T.Label()),
+    body: RaiBlocklistItemsBulkAddRequest.pipe(T.HttpBody()),
   }).pipe(
     T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/capabilityHosts/{capabilityHostName}",
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/raiBlocklists/{raiBlocklistName}/addRaiBlocklistItems",
       code: 200,
       apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
-  identifier: "AccountCapabilityHostsDeleteRequest",
-}) as any as S.Schema<AccountCapabilityHostsDeleteRequest>;
+  identifier: "AddRaiBlocklistItemBatchRequest",
+}) as any as S.Schema<AddRaiBlocklistItemBatchRequest>;
 
-export interface AccountCapabilityHostsDeleteResponse {}
-export const AccountCapabilityHostsDeleteResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "AccountCapabilityHostsDeleteResponse",
-}) as any as S.Schema<AccountCapabilityHostsDeleteResponse>;
-
-export interface AccountCapabilityHostsGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-  /** The name of the capability host associated with the Cognitive Services Resource */
-  capabilityHostName: string;
+/** RAI Custom Blocklist properties. */
+export interface RaiBlocklistProperties {
+  /** Description of the block list. */
+  description?: string;
 }
-export const AccountCapabilityHostsGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const RaiBlocklistProperties = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    capabilityHostName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/capabilityHosts/{capabilityHostName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
+    description: S.optional(S.String),
+  }),
 ).annotate({
-  identifier: "AccountCapabilityHostsGetRequest",
-}) as any as S.Schema<AccountCapabilityHostsGetRequest>;
+  identifier: "RaiBlocklistProperties",
+}) as any as S.Schema<RaiBlocklistProperties>;
 
-export interface AccountCapabilityHostsGetResponse {
+/** Resource tags. */
+export type AddRaiBlocklistItemBatchResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const AddRaiBlocklistItemBatchResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<AddRaiBlocklistItemBatchResponseTagsMap>;
+
+export interface AddRaiBlocklistItemBatchResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -365,627 +392,1136 @@ export interface AccountCapabilityHostsGetResponse {
   type?: string;
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
-  /** [Required] Additional attributes of the entity. */
-  properties: CapabilityHostProperties;
+  /** Properties of Cognitive Services RaiBlocklist. */
+  properties?: RaiBlocklistProperties;
+  /** Resource Etag. */
+  etag?: string;
+  /** Resource tags. */
+  tags?: AddRaiBlocklistItemBatchResponseTagsMap;
 }
-export const AccountCapabilityHostsGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const AddRaiBlocklistItemBatchResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    properties: CapabilityHostProperties,
+    properties: S.optional(RaiBlocklistProperties),
+    etag: S.optional(S.String),
+    tags: S.optional(AddRaiBlocklistItemBatchResponseTagsMap),
   }),
 ).annotate({
-  identifier: "AccountCapabilityHostsGetResponse",
-}) as any as S.Schema<AccountCapabilityHostsGetResponse>;
+  identifier: "AddRaiBlocklistItemBatchResponse",
+}) as any as S.Schema<AddRaiBlocklistItemBatchResponse>;
 
-export interface AccountCapabilityHostsListRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-}
-export const AccountCapabilityHostsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/capabilityHosts",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "AccountCapabilityHostsListRequest",
-}) as any as S.Schema<AccountCapabilityHostsListRequest>;
+/** Tag dictionary. Tags can be added, removed, and updated. */
+export type AgenticApplicationPropertiesInputTagsMap = {
+  [key: string]: string | undefined;
+};
+export const AgenticApplicationPropertiesInputTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<AgenticApplicationPropertiesInputTagsMap>;
 
-/** Azure Resource Manager resource envelope. */
-export interface CapabilityHost {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** [Required] Additional attributes of the entity. */
-  properties: CapabilityHostProperties;
+/** Type modeling a reference to a version of an agent definition. */
+export interface AgentReferenceProperties {
+  /** Gets the agent's unique identifier within the organization (subscription). */
+  agentId?: string | null;
+  /** Gets the agent's name (unique within the project/app). */
+  agentName?: string | null;
 }
-export const CapabilityHost = /*@__PURE__*/ S.suspend(() =>
+export const AgentReferenceProperties = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: CapabilityHostProperties,
+    agentId: S.optional(S.NullOr(S.String)),
+    agentName: S.optional(S.NullOr(S.String)),
   }),
-).annotate({ identifier: "CapabilityHost" }) as any as S.Schema<CapabilityHost>;
+).annotate({
+  identifier: "AgentReferenceProperties",
+}) as any as S.Schema<AgentReferenceProperties>;
 
-/** An array of objects of type Capability Host. */
-export type CapabilityHostResourceArmPaginatedResultValueList =
-  Array<CapabilityHost>;
-export const CapabilityHostResourceArmPaginatedResultValueList =
+/** The list of agent definitions comprising this application, returned as references to the objects under the parent project; use this to obtain a flat list of all agent-version pairs represented by this application. */
+export type AgenticApplicationPropertiesInputAgentsList =
+  Array<AgentReferenceProperties>;
+export const AgenticApplicationPropertiesInputAgentsList =
   /*@__PURE__*/ S.Array(
-    CapabilityHost,
-  ) as any as S.Schema<CapabilityHostResourceArmPaginatedResultValueList>;
+    AgentReferenceProperties,
+  ) as any as S.Schema<AgenticApplicationPropertiesInputAgentsList>;
 
-/** A paginated list of Capability Host entities. */
-export interface CapabilityHostResourceArmPaginatedResult {
-  /** The link to the next page of Capability Host objects. If null, there are no additional pages. */
-  nextLink?: string | null;
-  /** An array of objects of type Capability Host. */
-  value?: CapabilityHostResourceArmPaginatedResultValueList;
+/** Specifies the kind of Entra identity described by this object. */
+export type IdentityKind =
+  | "AgentBlueprint"
+  | "AgentInstance"
+  | "AgenticUser"
+  | "Managed"
+  | "None";
+export const IdentityKind = /*@__PURE__*/ S.String;
+
+/** Enumeration of identity types, from the perspective of management. */
+export type IdentityManagementType = "System" | "User" | "None";
+export const IdentityManagementType = /*@__PURE__*/ S.String;
+
+/** Type representing an identity assignment */
+export interface AssignedIdentityInput {
+  /** Specifies the kind of Entra identity described by this object. */
+  kind: IdentityKind | (string & {});
+  /** Enumeration of identity types, from the perspective of management. */
+  type: IdentityManagementType | (string & {});
+  /** The client ID of the identity. */
+  clientId: string;
+  /** The principal ID of the identity. */
+  principalId: string;
+  /** The tenant ID of the identity. */
+  tenantId: string;
+  /** The subject of this identity assignment. */
+  subject?: string | null;
 }
-export const CapabilityHostResourceArmPaginatedResult = /*@__PURE__*/ S.suspend(
+export const AssignedIdentityInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    kind: IdentityKind,
+    type: IdentityManagementType,
+    clientId: S.String,
+    principalId: S.String,
+    tenantId: S.String,
+    subject: S.optional(S.NullOr(S.String)),
+  }),
+).annotate({
+  identifier: "AssignedIdentityInput",
+}) as any as S.Schema<AssignedIdentityInput>;
+
+/** Authorization scheme type. */
+export type BuiltInAuthorizationScheme =
+  | "Default"
+  | "OrganizationScope"
+  | "Channels"
+  | "Custom";
+export const BuiltInAuthorizationScheme = /*@__PURE__*/ S.String;
+
+/** Represents a policy for authorizing applications based on specified authentication and authorization schemes. */
+export interface ApplicationAuthorizationPolicy {
+  /** Authorization scheme type. */
+  type: BuiltInAuthorizationScheme | (string & {});
+}
+export const ApplicationAuthorizationPolicy = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: BuiltInAuthorizationScheme,
+  }),
+).annotate({
+  identifier: "ApplicationAuthorizationPolicy",
+}) as any as S.Schema<ApplicationAuthorizationPolicy>;
+
+/** Traffic routing protocol, used to distribute an application's inbound traffic to its deployments. */
+export type TrafficRoutingProtocol = "FixedRatio";
+export const TrafficRoutingProtocol = /*@__PURE__*/ S.String;
+
+/** Represents a rule for routing traffic to a specific deployment. */
+export interface TrafficRoutingRule {
+  /** The identifier of this traffic routing rule. */
+  ruleId?: string | null;
+  /** A user-provided description for this traffic routing rule. */
+  description?: string | null;
+  /** The unique identifier of the deployment to which traffic is routed by this rule. */
+  deploymentId?: string | null;
+  /** Gets or sets the percentage of traffic allocated to this instance. */
+  trafficPercentage?: number;
+}
+export const TrafficRoutingRule = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ruleId: S.optional(S.NullOr(S.String)),
+    description: S.optional(S.NullOr(S.String)),
+    deploymentId: S.optional(S.NullOr(S.String)),
+    trafficPercentage: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "TrafficRoutingRule",
+}) as any as S.Schema<TrafficRoutingRule>;
+
+/** Gets or sets the collection of traffic routing rules. */
+export type ApplicationTrafficRoutingPolicyRulesList =
+  Array<TrafficRoutingRule>;
+export const ApplicationTrafficRoutingPolicyRulesList = /*@__PURE__*/ S.Array(
+  TrafficRoutingRule,
+) as any as S.Schema<ApplicationTrafficRoutingPolicyRulesList>;
+
+/** Type representing an application traffic policy as a property of an agentic application. */
+export interface ApplicationTrafficRoutingPolicy {
+  /** Methodology used to route traffic to the application's deployments. */
+  protocol?: TrafficRoutingProtocol | (string & {});
+  /** Gets or sets the collection of traffic routing rules. */
+  rules?: ApplicationTrafficRoutingPolicyRulesList | null;
+}
+export const ApplicationTrafficRoutingPolicy = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    protocol: S.optional(TrafficRoutingProtocol),
+    rules: S.optional(S.NullOr(ApplicationTrafficRoutingPolicyRulesList)),
+  }),
+).annotate({
+  identifier: "ApplicationTrafficRoutingPolicy",
+}) as any as S.Schema<ApplicationTrafficRoutingPolicy>;
+
+/** Resource type representing an agentic application as a management construct. */
+export interface AgenticApplicationPropertiesInput {
+  /** The asset description text. */
+  description?: string | null;
+  /** Tag dictionary. Tags can be added, removed, and updated. */
+  tags?: AgenticApplicationPropertiesInputTagsMap | null;
+  /** The display name of the application. */
+  displayName?: string | null;
+  /** The application's dedicated invocation endpoint. */
+  baseUrl?: string | null;
+  /** The list of agent definitions comprising this application, returned as references to the objects under the parent project; use this to obtain a flat list of all agent-version pairs represented by this application. */
+  agents?: AgenticApplicationPropertiesInputAgentsList | null;
+  /** The EntraId Agentic Blueprint of the application. */
+  agentIdentityBlueprint?: AssignedIdentityInput | null;
+  /** The (default) agent instance identity of the application. */
+  defaultInstanceIdentity?: AssignedIdentityInput | null;
+  /** Gets or sets the authorization policy associated with this agentic application instance. */
+  authorizationPolicy?: ApplicationAuthorizationPolicy | null;
+  /** Gets or sets the traffic routing policy for the application's deployments. */
+  trafficRoutingPolicy?: ApplicationTrafficRoutingPolicy | null;
+}
+export const AgenticApplicationPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    description: S.optional(S.NullOr(S.String)),
+    tags: S.optional(S.NullOr(AgenticApplicationPropertiesInputTagsMap)),
+    displayName: S.optional(S.NullOr(S.String)),
+    baseUrl: S.optional(S.NullOr(S.String)),
+    agents: S.optional(S.NullOr(AgenticApplicationPropertiesInputAgentsList)),
+    agentIdentityBlueprint: S.optional(S.NullOr(AssignedIdentityInput)),
+    defaultInstanceIdentity: S.optional(S.NullOr(AssignedIdentityInput)),
+    authorizationPolicy: S.optional(S.NullOr(ApplicationAuthorizationPolicy)),
+    trafficRoutingPolicy: S.optional(S.NullOr(ApplicationTrafficRoutingPolicy)),
+  }),
+).annotate({
+  identifier: "AgenticApplicationPropertiesInput",
+}) as any as S.Schema<AgenticApplicationPropertiesInput>;
+
+export interface AgentApplicationsCreateOrUpdateRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+  /** The name of Cognitive Services account's project. */
+  projectName: string;
+  /** Name for the Agent Application. */
+  name: string;
+  /** [Required] Additional attributes of the entity. */
+  properties: AgenticApplicationPropertiesInput;
+}
+export const AgentApplicationsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      nextLink: S.optional(S.NullOr(S.String)),
-      value: S.optional(CapabilityHostResourceArmPaginatedResultValueList),
-    }),
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+      projectName: S.String.pipe(T.Label()),
+      name: S.String.pipe(T.Label()),
+      properties: AgenticApplicationPropertiesInput,
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}/applications/{name}",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
 ).annotate({
-  identifier: "CapabilityHostResourceArmPaginatedResult",
-}) as any as S.Schema<CapabilityHostResourceArmPaginatedResult>;
+  identifier: "AgentApplicationsCreateOrUpdateRequest",
+}) as any as S.Schema<AgentApplicationsCreateOrUpdateRequest>;
 
-/** Authentication type of the connection target */
-export type ConnectionAuthType =
-  | "PAT"
-  | "ManagedIdentity"
-  | "UsernamePassword"
-  | "None"
-  | "SAS"
-  | "AccountKey"
-  | "ServicePrincipal"
-  | "AccessKey"
-  | "ApiKey"
-  | "CustomKeys"
-  | "OAuth2"
-  | "AAD"
-  | "DelegatedSAS"
-  | "ProjectManagedIdentity"
-  | "AccountManagedIdentity"
-  | "UserEntraToken"
-  | "AgentUserImpersonation"
-  | "AgenticIdentityToken"
-  | "AgenticUser";
-export const ConnectionAuthType = /*@__PURE__*/ S.String;
-
-/** Category of the connection */
-export type ConnectionCategory =
-  | "PythonFeed"
-  | "ContainerRegistry"
-  | "Git"
-  | "S3"
-  | "Snowflake"
-  | "AzureKeyVault"
-  | "AzureSqlDb"
-  | "AzureSynapseAnalytics"
-  | "AzureMySqlDb"
-  | "AzurePostgresDb"
-  | "ADLSGen2"
-  | "AzureContainerAppEnvironment"
-  | "Redis"
-  | "ApiKey"
-  | "AzureOpenAI"
-  | "AIServices"
-  | "CognitiveSearch"
-  | "CognitiveService"
-  | "CustomKeys"
-  | "AzureBlob"
-  | "AzureStorageAccount"
-  | "AzureOneLake"
-  | "CosmosDb"
-  | "CosmosDbMongoDbApi"
-  | "AzureDataExplorer"
-  | "AzureMariaDb"
-  | "AzureDatabricksDeltaLake"
-  | "AzureSqlMi"
-  | "AzureTableStorage"
-  | "AmazonRdsForOracle"
-  | "AmazonRdsForSqlServer"
-  | "AmazonRedshift"
-  | "Db2"
-  | "Drill"
-  | "GoogleBigQuery"
-  | "Greenplum"
-  | "Hbase"
-  | "Hive"
-  | "Impala"
-  | "Informix"
-  | "MariaDb"
-  | "MicrosoftAccess"
-  | "MySql"
-  | "Netezza"
-  | "Oracle"
-  | "Phoenix"
-  | "PostgreSql"
-  | "Presto"
-  | "SapOpenHub"
-  | "SapBw"
-  | "SapHana"
-  | "SapTable"
-  | "Spark"
-  | "SqlServer"
-  | "Sybase"
-  | "Teradata"
-  | "Vertica"
-  | "Pinecone"
-  | "Databricks"
-  | "Cassandra"
-  | "Couchbase"
-  | "MongoDbV2"
-  | "MongoDbAtlas"
-  | "AmazonS3Compatible"
-  | "FileServer"
-  | "FtpServer"
-  | "GoogleCloudStorage"
-  | "Hdfs"
-  | "OracleCloudStorage"
-  | "Sftp"
-  | "GenericHttp"
-  | "ODataRest"
-  | "Odbc"
-  | "GenericRest"
-  | "RemoteTool"
-  | "AmazonMws"
-  | "Concur"
-  | "Dynamics"
-  | "DynamicsAx"
-  | "DynamicsCrm"
-  | "GoogleAdWords"
-  | "Hubspot"
-  | "Jira"
-  | "Magento"
-  | "Marketo"
-  | "Office365"
-  | "Eloqua"
-  | "Responsys"
-  | "OracleServiceCloud"
-  | "PayPal"
-  | "QuickBooks"
-  | "Salesforce"
-  | "SalesforceServiceCloud"
-  | "SalesforceMarketingCloud"
-  | "SapCloudForCustomer"
-  | "SapEcc"
-  | "ServiceNow"
-  | "SharePointOnlineList"
-  | "Shopify"
-  | "Square"
-  | "WebTable"
-  | "Xero"
-  | "Zoho"
-  | "GenericContainerRegistry"
-  | "Elasticsearch"
-  | "AppInsights"
-  | "AppConfig"
-  | "OpenAI"
-  | "Serp"
-  | "BingLLMSearch"
-  | "Serverless"
-  | "ManagedOnlineEndpoint"
-  | "ApiManagement"
-  | "ModelGateway"
-  | "GroundingWithBingSearch"
-  | "GroundingWithCustomSearch"
-  | "Sharepoint"
-  | "MicrosoftFabric"
-  | "PowerPlatformEnvironment"
-  | "RemoteA2A";
-export const ConnectionCategory = /*@__PURE__*/ S.String;
-
-/** Store user metadata for this connection */
-export type ConnectionPropertiesV2InputMetadataMap = {
+/** Tag dictionary. Tags can be added, removed, and updated. */
+export type AgenticApplicationPropertiesTagsMap = {
   [key: string]: string | undefined;
 };
-export const ConnectionPropertiesV2InputMetadataMap = /*@__PURE__*/ S.Record(
+export const AgenticApplicationPropertiesTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ConnectionPropertiesV2InputMetadataMap>;
+) as any as S.Schema<AgenticApplicationPropertiesTagsMap>;
 
-export type ManagedPERequirement = "Required" | "NotRequired" | "NotApplicable";
-export const ManagedPERequirement = /*@__PURE__*/ S.String;
+/** The list of agent definitions comprising this application, returned as references to the objects under the parent project; use this to obtain a flat list of all agent-version pairs represented by this application. */
+export type AgenticApplicationPropertiesAgentsList =
+  Array<AgentReferenceProperties>;
+export const AgenticApplicationPropertiesAgentsList = /*@__PURE__*/ S.Array(
+  AgentReferenceProperties,
+) as any as S.Schema<AgenticApplicationPropertiesAgentsList>;
 
-export type ManagedPEStatus = "Inactive" | "Active" | "NotApplicable";
-export const ManagedPEStatus = /*@__PURE__*/ S.String;
+/** Represents the provisioning state of an identity resource. */
+export type IdentityProvisioningState =
+  | "Creating"
+  | "Updating"
+  | "Succeeded"
+  | "Failed"
+  | "Canceled"
+  | "Deleting";
+export const IdentityProvisioningState = /*@__PURE__*/ S.String;
 
-export type ConnectionPropertiesV2InputSharedUserListList = Array<string>;
-export const ConnectionPropertiesV2InputSharedUserListList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ConnectionPropertiesV2InputSharedUserListList>;
-
-/** Connection property base schema. */
-export interface ConnectionPropertiesV2Input {
-  /** Authentication type of the connection target */
-  authType: ConnectionAuthType | (string & {});
-  /** Category of the connection */
-  category?: ConnectionCategory | (string & {});
-  /** Provides the error message if the connection fails */
-  error?: string;
-  expiryTime?: string;
-  isSharedToAll?: boolean;
-  /** Store user metadata for this connection */
-  metadata?: ConnectionPropertiesV2InputMetadataMap;
-  /** Specifies how private endpoints are used with this connection: 'Required', 'NotRequired', or 'NotApplicable'. */
-  peRequirement?: ManagedPERequirement | (string & {});
-  /** Specifies the status of private endpoints for this connection: 'Inactive', 'Active', or 'NotApplicable'. */
-  peStatus?: ManagedPEStatus | (string & {});
-  sharedUserList?: ConnectionPropertiesV2InputSharedUserListList;
-  /** The connection URL to be used. */
-  target?: string;
-  useWorkspaceManagedIdentity?: boolean;
+/** Type representing an identity assignment */
+export interface AssignedIdentity {
+  /** Specifies the kind of Entra identity described by this object. */
+  kind: IdentityKind;
+  /** Enumeration of identity types, from the perspective of management. */
+  type: IdentityManagementType;
+  /** The client ID of the identity. */
+  clientId: string;
+  /** The principal ID of the identity. */
+  principalId: string;
+  /** The tenant ID of the identity. */
+  tenantId: string;
+  /** The subject of this identity assignment. */
+  subject?: string | null;
+  /** Represents the provisioning state of an identity resource. */
+  provisioningState?: IdentityProvisioningState;
 }
-export const ConnectionPropertiesV2Input = /*@__PURE__*/ S.suspend(() =>
+export const AssignedIdentity = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    authType: ConnectionAuthType,
-    category: S.optional(ConnectionCategory),
-    error: S.optional(S.String),
-    expiryTime: S.optional(S.String),
-    isSharedToAll: S.optional(S.Boolean),
-    metadata: S.optional(ConnectionPropertiesV2InputMetadataMap),
-    peRequirement: S.optional(ManagedPERequirement),
-    peStatus: S.optional(ManagedPEStatus),
-    sharedUserList: S.optional(ConnectionPropertiesV2InputSharedUserListList),
-    target: S.optional(S.String),
-    useWorkspaceManagedIdentity: S.optional(S.Boolean),
+    kind: IdentityKind,
+    type: IdentityManagementType,
+    clientId: S.String,
+    principalId: S.String,
+    tenantId: S.String,
+    subject: S.optional(S.NullOr(S.String)),
+    provisioningState: S.optional(IdentityProvisioningState),
   }),
 ).annotate({
-  identifier: "ConnectionPropertiesV2Input",
-}) as any as S.Schema<ConnectionPropertiesV2Input>;
+  identifier: "AssignedIdentity",
+}) as any as S.Schema<AssignedIdentity>;
 
-export interface AccountConnectionsCreateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-  /** Friendly name of the connection */
-  connectionName: string;
-  /** Connection property base schema. */
-  properties: ConnectionPropertiesV2Input;
+/** Provisioning state of an agentic application. */
+export type AgenticApplicationProvisioningState =
+  | "Succeeded"
+  | "Failed"
+  | "Canceled"
+  | "Creating"
+  | "Updating"
+  | "Deleting";
+export const AgenticApplicationProvisioningState = /*@__PURE__*/ S.String;
+
+/** Resource type representing an agentic application as a management construct. */
+export interface AgenticApplicationProperties {
+  /** The asset description text. */
+  description?: string | null;
+  /** Tag dictionary. Tags can be added, removed, and updated. */
+  tags?: AgenticApplicationPropertiesTagsMap | null;
+  /** The display name of the application. */
+  displayName?: string | null;
+  /** The application's dedicated invocation endpoint. */
+  baseUrl?: string | null;
+  /** The list of agent definitions comprising this application, returned as references to the objects under the parent project; use this to obtain a flat list of all agent-version pairs represented by this application. */
+  agents?: AgenticApplicationPropertiesAgentsList | null;
+  /** The EntraId Agentic Blueprint of the application. */
+  agentIdentityBlueprint?: AssignedIdentity | null;
+  /** The (default) agent instance identity of the application. */
+  defaultInstanceIdentity?: AssignedIdentity | null;
+  /** Gets or sets the authorization policy associated with this agentic application instance. */
+  authorizationPolicy?: ApplicationAuthorizationPolicy | null;
+  /** Gets or sets the traffic routing policy for the application's deployments. */
+  trafficRoutingPolicy?: ApplicationTrafficRoutingPolicy | null;
+  /** Provisioning state of the application. */
+  provisioningState?: AgenticApplicationProvisioningState;
+  /** Enabledstate of the application. */
+  isEnabled?: boolean;
 }
-export const AccountConnectionsCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const AgenticApplicationProperties = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    connectionName: S.String.pipe(T.Label()),
-    properties: ConnectionPropertiesV2Input,
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/connections/{connectionName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
+    description: S.optional(S.NullOr(S.String)),
+    tags: S.optional(S.NullOr(AgenticApplicationPropertiesTagsMap)),
+    displayName: S.optional(S.NullOr(S.String)),
+    baseUrl: S.optional(S.NullOr(S.String)),
+    agents: S.optional(S.NullOr(AgenticApplicationPropertiesAgentsList)),
+    agentIdentityBlueprint: S.optional(S.NullOr(AssignedIdentity)),
+    defaultInstanceIdentity: S.optional(S.NullOr(AssignedIdentity)),
+    authorizationPolicy: S.optional(S.NullOr(ApplicationAuthorizationPolicy)),
+    trafficRoutingPolicy: S.optional(S.NullOr(ApplicationTrafficRoutingPolicy)),
+    provisioningState: S.optional(AgenticApplicationProvisioningState),
+    isEnabled: S.optional(S.Boolean),
+  }),
 ).annotate({
-  identifier: "AccountConnectionsCreateRequest",
-}) as any as S.Schema<AccountConnectionsCreateRequest>;
+  identifier: "AgenticApplicationProperties",
+}) as any as S.Schema<AgenticApplicationProperties>;
 
-/** Group based on connection category */
-export type ConnectionGroup =
-  | "Azure"
-  | "AzureAI"
-  | "Database"
-  | "NoSQL"
-  | "File"
-  | "GenericProtocol"
-  | "ServicesAndApps";
-export const ConnectionGroup = /*@__PURE__*/ S.String;
+export interface AgentApplicationsCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** [Required] Additional attributes of the entity. */
+  properties: AgenticApplicationProperties;
+}
+export const AgentApplicationsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: AgenticApplicationProperties,
+    }),
+).annotate({
+  identifier: "AgentApplicationsCreateOrUpdateResponse",
+}) as any as S.Schema<AgentApplicationsCreateOrUpdateResponse>;
 
-/** Store user metadata for this connection */
-export type ConnectionPropertiesV2MetadataMap = {
+/** Tag dictionary. Tags can be added, removed, and updated. */
+export type AgentDeploymentPropertiesInputTagsMap = {
   [key: string]: string | undefined;
 };
-export const ConnectionPropertiesV2MetadataMap = /*@__PURE__*/ S.Record(
+export const AgentDeploymentPropertiesInputTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ConnectionPropertiesV2MetadataMap>;
+) as any as S.Schema<AgentDeploymentPropertiesInputTagsMap>;
 
-export type ConnectionPropertiesV2SharedUserListList = Array<string>;
-export const ConnectionPropertiesV2SharedUserListList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ConnectionPropertiesV2SharedUserListList>;
+/** Current operational state of the agentic functionality represented by this deployment. */
+export type AgentDeploymentState =
+  | "Starting"
+  | "Running"
+  | "Stopping"
+  | "Stopped"
+  | "Failed"
+  | "Deleting"
+  | "Deleted"
+  | "Updating";
+export const AgentDeploymentState = /*@__PURE__*/ S.String;
 
-/** Connection property base schema. */
-export interface ConnectionPropertiesV2 {
-  /** Authentication type of the connection target */
-  authType: ConnectionAuthType;
-  /** Category of the connection */
-  category?: ConnectionCategory;
-  /** A type definition that refers the id to an Azure Resource Manager resource. */
-  createdByWorkspaceArmId?: string;
-  /** Provides the error message if the connection fails */
-  error?: string;
-  expiryTime?: string;
-  /** Group based on connection category */
-  group?: ConnectionGroup;
-  isSharedToAll?: boolean;
-  /** Store user metadata for this connection */
-  metadata?: ConnectionPropertiesV2MetadataMap;
-  /** Specifies how private endpoints are used with this connection: 'Required', 'NotRequired', or 'NotApplicable'. */
-  peRequirement?: ManagedPERequirement;
-  /** Specifies the status of private endpoints for this connection: 'Inactive', 'Active', or 'NotApplicable'. */
-  peStatus?: ManagedPEStatus;
-  sharedUserList?: ConnectionPropertiesV2SharedUserListList;
-  /** The connection URL to be used. */
-  target?: string;
-  useWorkspaceManagedIdentity?: boolean;
+/** Protocol used by the agent/exposed by a deployment. */
+export type AgentProtocol = "Agent" | "A2A" | "Responses";
+export const AgentProtocol = /*@__PURE__*/ S.String;
+
+/** Type modeling the protocol and version used by an agent/exposed by a deployment. */
+export interface AgentProtocolVersion {
+  /** The protocol used by the agent/exposed by a deployment. */
+  protocol?: AgentProtocol | (string & {});
+  /** The version of the protocol. */
+  version?: string | null;
 }
-export const ConnectionPropertiesV2 = /*@__PURE__*/ S.suspend(() =>
+export const AgentProtocolVersion = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    authType: ConnectionAuthType,
-    category: S.optional(ConnectionCategory),
-    createdByWorkspaceArmId: S.optional(S.String),
-    error: S.optional(S.String),
-    expiryTime: S.optional(S.String),
-    group: S.optional(ConnectionGroup),
-    isSharedToAll: S.optional(S.Boolean),
-    metadata: S.optional(ConnectionPropertiesV2MetadataMap),
-    peRequirement: S.optional(ManagedPERequirement),
-    peStatus: S.optional(ManagedPEStatus),
-    sharedUserList: S.optional(ConnectionPropertiesV2SharedUserListList),
-    target: S.optional(S.String),
-    useWorkspaceManagedIdentity: S.optional(S.Boolean),
+    protocol: S.optional(AgentProtocol),
+    version: S.optional(S.NullOr(S.String)),
   }),
 ).annotate({
-  identifier: "ConnectionPropertiesV2",
-}) as any as S.Schema<ConnectionPropertiesV2>;
+  identifier: "AgentProtocolVersion",
+}) as any as S.Schema<AgentProtocolVersion>;
 
-export interface AccountConnectionsCreateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Connection property base schema. */
-  properties: ConnectionPropertiesV2;
-}
-export const AccountConnectionsCreateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: ConnectionPropertiesV2,
-  }),
-).annotate({
-  identifier: "AccountConnectionsCreateResponse",
-}) as any as S.Schema<AccountConnectionsCreateResponse>;
-
-export interface AccountConnectionsDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-  /** Friendly name of the connection */
-  connectionName: string;
-}
-export const AccountConnectionsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    connectionName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/connections/{connectionName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "AccountConnectionsDeleteRequest",
-}) as any as S.Schema<AccountConnectionsDeleteRequest>;
-
-export interface AccountConnectionsDeleteResponse {}
-export const AccountConnectionsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "AccountConnectionsDeleteResponse",
-}) as any as S.Schema<AccountConnectionsDeleteResponse>;
-
-export interface AccountConnectionsGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-  /** Friendly name of the connection */
-  connectionName: string;
-}
-export const AccountConnectionsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    connectionName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/connections/{connectionName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "AccountConnectionsGetRequest",
-}) as any as S.Schema<AccountConnectionsGetRequest>;
-
-export interface AccountConnectionsGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Connection property base schema. */
-  properties: ConnectionPropertiesV2;
-}
-export const AccountConnectionsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: ConnectionPropertiesV2,
-  }),
-).annotate({
-  identifier: "AccountConnectionsGetResponse",
-}) as any as S.Schema<AccountConnectionsGetResponse>;
-
-export interface AccountConnectionsListRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-  /** Target of the connection. */
-  target?: string;
-  /** Category of the connection. */
-  category?: string;
-  /** query parameter that indicates if get connection call should return both connections and datastores */
-  includeAll?: boolean;
-}
-export const AccountConnectionsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    target: S.optional(S.String.pipe(T.Query())),
-    category: S.optional(S.String.pipe(T.Query())),
-    includeAll: S.optional(S.Boolean.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/connections",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "AccountConnectionsListRequest",
-}) as any as S.Schema<AccountConnectionsListRequest>;
-
-/** Connection base resource schema. */
-export interface ConnectionPropertiesV2BasicResource {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Connection property base schema. */
-  properties: ConnectionPropertiesV2;
-}
-export const ConnectionPropertiesV2BasicResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: ConnectionPropertiesV2,
-  }),
-).annotate({
-  identifier: "ConnectionPropertiesV2BasicResource",
-}) as any as S.Schema<ConnectionPropertiesV2BasicResource>;
-
-export type ConnectionPropertiesV2BasicResourceArmPaginatedResultValueList =
-  Array<ConnectionPropertiesV2BasicResource>;
-export const ConnectionPropertiesV2BasicResourceArmPaginatedResultValueList =
+/** Gets or sets the supported protocol types and versions exposed by this deployment. */
+export type AgentDeploymentPropertiesInputProtocolsList =
+  Array<AgentProtocolVersion>;
+export const AgentDeploymentPropertiesInputProtocolsList =
   /*@__PURE__*/ S.Array(
-    ConnectionPropertiesV2BasicResource,
-  ) as any as S.Schema<ConnectionPropertiesV2BasicResourceArmPaginatedResultValueList>;
+    AgentProtocolVersion,
+  ) as any as S.Schema<AgentDeploymentPropertiesInputProtocolsList>;
 
-export interface ConnectionPropertiesV2BasicResourceArmPaginatedResult {
-  nextLink?: string;
-  value?: ConnectionPropertiesV2BasicResourceArmPaginatedResultValueList;
+/** Type modeling a reference to a version of an agent definition. */
+export interface VersionedAgentReference {
+  /** Gets the agent's unique identifier within the organization (subscription). */
+  agentId?: string | null;
+  /** Gets the agent's name (unique within the project/app). */
+  agentName?: string | null;
+  /** Gets the agent's version (unique for each agent lineage). */
+  agentVersion?: string | null;
 }
-export const ConnectionPropertiesV2BasicResourceArmPaginatedResult =
+export const VersionedAgentReference = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    agentId: S.optional(S.NullOr(S.String)),
+    agentName: S.optional(S.NullOr(S.String)),
+    agentVersion: S.optional(S.NullOr(S.String)),
+  }),
+).annotate({
+  identifier: "VersionedAgentReference",
+}) as any as S.Schema<VersionedAgentReference>;
+
+/** Returns a flat list of agent:version deployed in this deployment. */
+export type AgentDeploymentPropertiesInputAgentsList =
+  Array<VersionedAgentReference>;
+export const AgentDeploymentPropertiesInputAgentsList = /*@__PURE__*/ S.Array(
+  VersionedAgentReference,
+) as any as S.Schema<AgentDeploymentPropertiesInputAgentsList>;
+
+/** Specifies the type of deployment for an agent, indicating how the underlying compute and network infrastructure is managed. */
+export type AgentDeploymentType = "Managed" | "Hosted" | "Custom";
+export const AgentDeploymentType = /*@__PURE__*/ S.String;
+
+/** Type representing an agent deployment as a management construct. */
+export interface AgentDeploymentPropertiesInput {
+  /** The asset description text. */
+  description?: string | null;
+  /** Tag dictionary. Tags can be added, removed, and updated. */
+  tags?: AgentDeploymentPropertiesInputTagsMap | null;
+  /** Gets or sets the display name of the deployment. */
+  displayName?: string | null;
+  /** Gets or sets the unique identifier of the deployment. */
+  deploymentId?: string | null;
+  /** Gets or sets the current operational state of the deployment (and, intrinsically, of the comprising agents). */
+  state?: AgentDeploymentState | (string & {}) | null;
+  /** Gets or sets the supported protocol types and versions exposed by this deployment. */
+  protocols?: AgentDeploymentPropertiesInputProtocolsList | null;
+  /** Returns a flat list of agent:version deployed in this deployment. */
+  agents?: AgentDeploymentPropertiesInputAgentsList | null;
+  /** Gets or sets the type of deployment for the agent. */
+  deploymentType: AgentDeploymentType | (string & {});
+}
+export const AgentDeploymentPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    description: S.optional(S.NullOr(S.String)),
+    tags: S.optional(S.NullOr(AgentDeploymentPropertiesInputTagsMap)),
+    displayName: S.optional(S.NullOr(S.String)),
+    deploymentId: S.optional(S.NullOr(S.String)),
+    state: S.optional(S.NullOr(AgentDeploymentState)),
+    protocols: S.optional(
+      S.NullOr(AgentDeploymentPropertiesInputProtocolsList),
+    ),
+    agents: S.optional(S.NullOr(AgentDeploymentPropertiesInputAgentsList)),
+    deploymentType: AgentDeploymentType,
+  }),
+).annotate({
+  identifier: "AgentDeploymentPropertiesInput",
+}) as any as S.Schema<AgentDeploymentPropertiesInput>;
+
+export interface AgentDeploymentsCreateOrUpdateRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+  /** The name of Cognitive Services account's project. */
+  projectName: string;
+  /** The name of the application associated with the Cognitive Services Account */
+  appName: string;
+  /** The name of the deployment associated with the Cognitive Services Account */
+  deploymentName: string;
+  /** [Required] Additional attributes of the entity. */
+  properties: AgentDeploymentPropertiesInput;
+}
+export const AgentDeploymentsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+      projectName: S.String.pipe(T.Label()),
+      appName: S.String.pipe(T.Label()),
+      deploymentName: S.String.pipe(T.Label()),
+      properties: AgentDeploymentPropertiesInput,
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}/applications/{appName}/agentDeployments/{deploymentName}",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+).annotate({
+  identifier: "AgentDeploymentsCreateOrUpdateRequest",
+}) as any as S.Schema<AgentDeploymentsCreateOrUpdateRequest>;
+
+/** Tag dictionary. Tags can be added, removed, and updated. */
+export type AgentDeploymentPropertiesTagsMap = {
+  [key: string]: string | undefined;
+};
+export const AgentDeploymentPropertiesTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<AgentDeploymentPropertiesTagsMap>;
+
+/** Gets or sets the supported protocol types and versions exposed by this deployment. */
+export type AgentDeploymentPropertiesProtocolsList =
+  Array<AgentProtocolVersion>;
+export const AgentDeploymentPropertiesProtocolsList = /*@__PURE__*/ S.Array(
+  AgentProtocolVersion,
+) as any as S.Schema<AgentDeploymentPropertiesProtocolsList>;
+
+/** Returns a flat list of agent:version deployed in this deployment. */
+export type AgentDeploymentPropertiesAgentsList =
+  Array<VersionedAgentReference>;
+export const AgentDeploymentPropertiesAgentsList = /*@__PURE__*/ S.Array(
+  VersionedAgentReference,
+) as any as S.Schema<AgentDeploymentPropertiesAgentsList>;
+
+/** Provisioning state of an agentic deployment, as an Azure resource. */
+export type AgentDeploymentProvisioningState =
+  | "Succeeded"
+  | "Failed"
+  | "Canceled"
+  | "Creating"
+  | "Updating"
+  | "Deleting";
+export const AgentDeploymentProvisioningState = /*@__PURE__*/ S.String;
+
+/** Type representing an agent deployment as a management construct. */
+export interface AgentDeploymentProperties {
+  /** The asset description text. */
+  description?: string | null;
+  /** Tag dictionary. Tags can be added, removed, and updated. */
+  tags?: AgentDeploymentPropertiesTagsMap | null;
+  /** Gets or sets the display name of the deployment. */
+  displayName?: string | null;
+  /** Gets or sets the unique identifier of the deployment. */
+  deploymentId?: string | null;
+  /** Gets or sets the current operational state of the deployment (and, intrinsically, of the comprising agents). */
+  state?: AgentDeploymentState | null;
+  /** Gets or sets the supported protocol types and versions exposed by this deployment. */
+  protocols?: AgentDeploymentPropertiesProtocolsList | null;
+  /** Returns a flat list of agent:version deployed in this deployment. */
+  agents?: AgentDeploymentPropertiesAgentsList | null;
+  /** Gets or sets the type of deployment for the agent. */
+  deploymentType: AgentDeploymentType;
+  /** Gets or sets the provisioning state of the agent deployment. */
+  provisioningState?: AgentDeploymentProvisioningState;
+}
+export const AgentDeploymentProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    description: S.optional(S.NullOr(S.String)),
+    tags: S.optional(S.NullOr(AgentDeploymentPropertiesTagsMap)),
+    displayName: S.optional(S.NullOr(S.String)),
+    deploymentId: S.optional(S.NullOr(S.String)),
+    state: S.optional(S.NullOr(AgentDeploymentState)),
+    protocols: S.optional(S.NullOr(AgentDeploymentPropertiesProtocolsList)),
+    agents: S.optional(S.NullOr(AgentDeploymentPropertiesAgentsList)),
+    deploymentType: AgentDeploymentType,
+    provisioningState: S.optional(AgentDeploymentProvisioningState),
+  }),
+).annotate({
+  identifier: "AgentDeploymentProperties",
+}) as any as S.Schema<AgentDeploymentProperties>;
+
+export interface AgentDeploymentsCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** [Required] Additional attributes of the entity. */
+  properties: AgentDeploymentProperties;
+}
+export const AgentDeploymentsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: AgentDeploymentProperties,
+    }),
+).annotate({
+  identifier: "AgentDeploymentsCreateOrUpdateResponse",
+}) as any as S.Schema<AgentDeploymentsCreateOrUpdateResponse>;
+
+/** Properties of Cognitive Services account deployment model. */
+export interface DeploymentModel {
+  /** Deployment model publisher. */
+  publisher?: string;
+  /** Deployment model format. */
+  format?: string;
+  /** Deployment model name. */
+  name?: string;
+  /** Optional. Deployment model version. If version is not specified, a default version will be assigned. The default version is different for different models and might change when there is new version available for a model. Default version for a model could be found from list models API. */
+  version?: string;
+  /** Optional. Deployment model source ARM resource ID. */
+  source?: string;
+  /** Optional. Source of the model, another Microsoft.CognitiveServices accounts ARM resource ID. */
+  sourceAccount?: string;
+}
+export const DeploymentModel = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    publisher: S.optional(S.String),
+    format: S.optional(S.String),
+    name: S.optional(S.String),
+    version: S.optional(S.String),
+    source: S.optional(S.String),
+    sourceAccount: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DeploymentModel",
+}) as any as S.Schema<DeploymentModel>;
+
+/** Dictionary, Model Capacity Calculator Workload Parameters. */
+export interface ModelCapacityCalculatorWorkloadRequestParam {
+  /** Average prompt tokens. */
+  avgPromptTokens?: number;
+  /** Average generated tokens. */
+  avgGeneratedTokens?: number;
+}
+export const ModelCapacityCalculatorWorkloadRequestParam =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      nextLink: S.optional(S.String),
-      value: S.optional(
-        ConnectionPropertiesV2BasicResourceArmPaginatedResultValueList,
-      ),
+      avgPromptTokens: S.optional(S.Number),
+      avgGeneratedTokens: S.optional(S.Number),
     }),
   ).annotate({
-    identifier: "ConnectionPropertiesV2BasicResourceArmPaginatedResult",
-  }) as any as S.Schema<ConnectionPropertiesV2BasicResourceArmPaginatedResult>;
+    identifier: "ModelCapacityCalculatorWorkloadRequestParam",
+  }) as any as S.Schema<ModelCapacityCalculatorWorkloadRequestParam>;
 
-export interface AccountConnectionsUpdateRequest {
+/** Model Capacity Calculator Workload. */
+export interface ModelCapacityCalculatorWorkload {
+  /** Request per minute. */
+  requestPerMinute?: number;
+  /** Dictionary, Model Capacity Calculator Workload Parameters. */
+  requestParameters?: ModelCapacityCalculatorWorkloadRequestParam;
+}
+export const ModelCapacityCalculatorWorkload = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    requestPerMinute: S.optional(S.Number),
+    requestParameters: S.optional(ModelCapacityCalculatorWorkloadRequestParam),
+  }),
+).annotate({
+  identifier: "ModelCapacityCalculatorWorkload",
+}) as any as S.Schema<ModelCapacityCalculatorWorkload>;
+
+/** List of Model Capacity Calculator Workload. */
+export type CalculateModelCapacityRequestWorkloadsList =
+  Array<ModelCapacityCalculatorWorkload>;
+export const CalculateModelCapacityRequestWorkloadsList = /*@__PURE__*/ S.Array(
+  ModelCapacityCalculatorWorkload,
+) as any as S.Schema<CalculateModelCapacityRequestWorkloadsList>;
+
+export interface CalculateModelCapacityRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** Properties of Cognitive Services account deployment model. */
+  model?: DeploymentModel;
+  /** The name of SKU. */
+  skuName?: string;
+  /** List of Model Capacity Calculator Workload. */
+  workloads?: CalculateModelCapacityRequestWorkloadsList;
+}
+export const CalculateModelCapacityRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    model: S.optional(DeploymentModel),
+    skuName: S.optional(S.String),
+    workloads: S.optional(CalculateModelCapacityRequestWorkloadsList),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/calculateModelCapacity",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "CalculateModelCapacityRequest",
+}) as any as S.Schema<CalculateModelCapacityRequest>;
+
+/** Model Estimated Capacity. */
+export interface CalculateModelCapacityResultEstimatedCapacity {
+  value?: number;
+  deployableValue?: number;
+}
+export const CalculateModelCapacityResultEstimatedCapacity =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      value: S.optional(S.Number),
+      deployableValue: S.optional(S.Number),
+    }),
+  ).annotate({
+    identifier: "CalculateModelCapacityResultEstimatedCapacity",
+  }) as any as S.Schema<CalculateModelCapacityResultEstimatedCapacity>;
+
+/** Calculate Model Capacity result. */
+export interface CalculateModelCapacityResult {
+  /** Properties of Cognitive Services account deployment model. */
+  model?: DeploymentModel;
+  skuName?: string;
+  /** Model Estimated Capacity. */
+  estimatedCapacity?: CalculateModelCapacityResultEstimatedCapacity;
+}
+export const CalculateModelCapacityResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    model: S.optional(DeploymentModel),
+    skuName: S.optional(S.String),
+    estimatedCapacity: S.optional(
+      CalculateModelCapacityResultEstimatedCapacity,
+    ),
+  }),
+).annotate({
+  identifier: "CalculateModelCapacityResult",
+}) as any as S.Schema<CalculateModelCapacityResult>;
+
+export interface CheckDomainAvailabilityRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The subdomain name to use. */
+  subdomainName: string;
+  /** The Type of the resource. */
+  type: string;
+  /** The kind (type) of cognitive service account. */
+  kind?: string;
+}
+export const CheckDomainAvailabilityRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    subdomainName: S.String,
+    type: S.String,
+    kind: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/checkDomainAvailability",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "CheckDomainAvailabilityRequest",
+}) as any as S.Schema<CheckDomainAvailabilityRequest>;
+
+/** Domain availability. */
+export interface DomainAvailability {
+  /** Indicates the given SKU is available or not. */
+  isSubdomainAvailable?: boolean;
+  /** Reason why the SKU is not available. */
+  reason?: string;
+  /** The subdomain name to use. */
+  subdomainName?: string;
+  /** The Type of the resource. */
+  type?: string;
+  /** The kind (type) of cognitive service account. */
+  kind?: string;
+}
+export const DomainAvailability = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    isSubdomainAvailable: S.optional(S.Boolean),
+    reason: S.optional(S.String),
+    subdomainName: S.optional(S.String),
+    type: S.optional(S.String),
+    kind: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DomainAvailability",
+}) as any as S.Schema<DomainAvailability>;
+
+/** The SKU of the resource. */
+export type CheckSkuAvailabilityRequestSkusList = Array<string>;
+export const CheckSkuAvailabilityRequestSkusList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CheckSkuAvailabilityRequestSkusList>;
+
+export interface CheckSkuAvailabilityRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of Azure region. */
+  location: string;
+  /** The SKU of the resource. */
+  skus: CheckSkuAvailabilityRequestSkusList;
+  /** The kind (type) of cognitive service account. */
+  kind: string;
+  /** The Type of the resource. */
+  type: string;
+}
+export const CheckSkuAvailabilityRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    location: S.String.pipe(T.Label()),
+    skus: CheckSkuAvailabilityRequestSkusList,
+    kind: S.String,
+    type: S.String,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/locations/{location}/checkSkuAvailability",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "CheckSkuAvailabilityRequest",
+}) as any as S.Schema<CheckSkuAvailabilityRequest>;
+
+/** SKU availability. */
+export interface SkuAvailability {
+  /** The kind (type) of cognitive service account. */
+  kind?: string;
+  /** The Type of the resource. */
+  type?: string;
+  /** The name of SKU. */
+  skuName?: string;
+  /** Indicates the given SKU is available or not. */
+  skuAvailable?: boolean;
+  /** Reason why the SKU is not available. */
+  reason?: string;
+  /** Additional error message. */
+  message?: string;
+}
+export const SkuAvailability = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    kind: S.optional(S.String),
+    type: S.optional(S.String),
+    skuName: S.optional(S.String),
+    skuAvailable: S.optional(S.Boolean),
+    reason: S.optional(S.String),
+    message: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "SkuAvailability",
+}) as any as S.Schema<SkuAvailability>;
+
+/** Check SKU availability result list. */
+export type SkuAvailabilityListResultValueList = Array<SkuAvailability>;
+export const SkuAvailabilityListResultValueList = /*@__PURE__*/ S.Array(
+  SkuAvailability,
+) as any as S.Schema<SkuAvailabilityListResultValueList>;
+
+/** Check SKU availability result list. */
+export interface SkuAvailabilityListResult {
+  /** Check SKU availability result list. */
+  value?: SkuAvailabilityListResultValueList;
+}
+export const SkuAvailabilityListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(SkuAvailabilityListResultValueList),
+  }),
+).annotate({
+  identifier: "SkuAvailabilityListResult",
+}) as any as S.Schema<SkuAvailabilityListResult>;
+
+/** Account hosting model. */
+export type HostingModel =
+  | "Web"
+  | "ConnectedContainer"
+  | "DisconnectedContainer"
+  | "ProvisionedWeb";
+export const HostingModel = /*@__PURE__*/ S.String;
+
+/** Cognitive Services account commitment period. */
+export interface CommitmentPeriodInput {
+  /** Commitment period commitment tier. */
+  tier?: string;
+  /** Commitment period commitment count. */
+  count?: number;
+}
+export const CommitmentPeriodInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    tier: S.optional(S.String),
+    count: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "CommitmentPeriodInput",
+}) as any as S.Schema<CommitmentPeriodInput>;
+
+/** Properties of Cognitive Services account commitment plan. */
+export interface CommitmentPlanPropertiesInput {
+  /** Commitment plan guid. */
+  commitmentPlanGuid?: string;
+  /** Account hosting model. */
+  hostingModel?: HostingModel | (string & {});
+  /** Commitment plan type. */
+  planType?: string;
+  /** Cognitive Services account commitment period. */
+  current?: CommitmentPeriodInput;
+  /** AutoRenew commitment plan. */
+  autoRenew?: boolean;
+  /** Cognitive Services account commitment period. */
+  next?: CommitmentPeriodInput;
+}
+export const CommitmentPlanPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    commitmentPlanGuid: S.optional(S.String),
+    hostingModel: S.optional(HostingModel),
+    planType: S.optional(S.String),
+    current: S.optional(CommitmentPeriodInput),
+    autoRenew: S.optional(S.Boolean),
+    next: S.optional(CommitmentPeriodInput),
+  }),
+).annotate({
+  identifier: "CommitmentPlanPropertiesInput",
+}) as any as S.Schema<CommitmentPlanPropertiesInput>;
+
+/** Resource tags. */
+export type CommitmentPlansCreateOrUpdateRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const CommitmentPlansCreateOrUpdateRequestTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<CommitmentPlansCreateOrUpdateRequestTagsMap>;
+
+/** This field is required to be implemented by the Resource Provider if the service has more than one tier, but is not required on a PUT. */
+export type SkuTier = "Free" | "Basic" | "Standard" | "Premium" | "Enterprise";
+export const SkuTier = /*@__PURE__*/ S.String;
+
+/** The resource model definition representing SKU */
+export interface Sku {
+  /** The name of the SKU. Ex - P3. It is typically a letter+number code */
+  name: string;
+  /** This field is required to be implemented by the Resource Provider if the service has more than one tier, but is not required on a PUT. */
+  tier?: SkuTier | (string & {});
+  /** The SKU size. When the name field is the combination of tier and some other value, this would be the standalone code. */
+  size?: string;
+  /** If the service has different generations of hardware, for the same SKU, then that can be captured here. */
+  family?: string;
+  /** If the SKU supports scale out/in then the capacity integer should be included. If scale out/in is not possible for the resource this may be omitted. */
+  capacity?: number;
+}
+export const Sku = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String,
+    tier: S.optional(SkuTier),
+    size: S.optional(S.String),
+    family: S.optional(S.String),
+    capacity: S.optional(S.Number),
+  }),
+).annotate({ identifier: "Sku" }) as any as S.Schema<Sku>;
+
+export interface CommitmentPlansCreateOrUpdateRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of Cognitive Services account. */
   accountName: string;
-  /** Friendly name of the connection */
-  connectionName: string;
-  /** The properties that the Cognitive services connection will be updated with. */
-  properties?: ConnectionPropertiesV2Input;
+  /** The name of the commitmentPlan associated with the Cognitive Services Account */
+  commitmentPlanName: string;
+  /** Properties of Cognitive Services account commitment plan. */
+  properties?: CommitmentPlanPropertiesInput;
+  /** Resource tags. */
+  tags?: CommitmentPlansCreateOrUpdateRequestTagsMap;
+  /** The geo-location where the resource lives */
+  location?: string;
+  /** The kind (type) of cognitive service account. */
+  kind?: string;
+  /** The resource model definition representing SKU */
+  sku?: Sku;
 }
-export const AccountConnectionsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    connectionName: S.String.pipe(T.Label()),
-    properties: S.optional(ConnectionPropertiesV2Input),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/connections/{connectionName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
+export const CommitmentPlansCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+      commitmentPlanName: S.String.pipe(T.Label()),
+      properties: S.optional(CommitmentPlanPropertiesInput),
+      tags: S.optional(CommitmentPlansCreateOrUpdateRequestTagsMap),
+      location: S.optional(S.String),
+      kind: S.optional(S.String),
+      sku: S.optional(Sku),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/commitmentPlans/{commitmentPlanName}",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
 ).annotate({
-  identifier: "AccountConnectionsUpdateRequest",
-}) as any as S.Schema<AccountConnectionsUpdateRequest>;
+  identifier: "CommitmentPlansCreateOrUpdateRequest",
+}) as any as S.Schema<CommitmentPlansCreateOrUpdateRequest>;
 
-export interface AccountConnectionsUpdateResponse {
+/** Gets the status of the resource at the time the operation was called. */
+export type CommitmentPlanProvisioningState =
+  | "Accepted"
+  | "Creating"
+  | "Deleting"
+  | "Moving"
+  | "Failed"
+  | "Succeeded"
+  | "Canceled";
+export const CommitmentPlanProvisioningState = /*@__PURE__*/ S.String;
+
+/** Cognitive Services account commitment quota. */
+export interface CommitmentQuota {
+  /** Commitment quota quantity. */
+  quantity?: number;
+  /** Commitment quota unit. */
+  unit?: string;
+}
+export const CommitmentQuota = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    quantity: S.optional(S.Number),
+    unit: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "CommitmentQuota",
+}) as any as S.Schema<CommitmentQuota>;
+
+/** Cognitive Services account commitment period. */
+export interface CommitmentPeriod {
+  /** Commitment period commitment tier. */
+  tier?: string;
+  /** Commitment period commitment count. */
+  count?: number;
+  /** Cognitive Services account commitment quota. */
+  quota?: CommitmentQuota;
+  /** Commitment period start date. */
+  startDate?: string;
+  /** Commitment period end date. */
+  endDate?: string;
+}
+export const CommitmentPeriod = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    tier: S.optional(S.String),
+    count: S.optional(S.Number),
+    quota: S.optional(CommitmentQuota),
+    startDate: S.optional(S.String),
+    endDate: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "CommitmentPeriod",
+}) as any as S.Schema<CommitmentPeriod>;
+
+/** The list of ProvisioningIssue. */
+export type CommitmentPlanPropertiesProvisioningIssuesList = Array<string>;
+export const CommitmentPlanPropertiesProvisioningIssuesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CommitmentPlanPropertiesProvisioningIssuesList>;
+
+/** Properties of Cognitive Services account commitment plan. */
+export interface CommitmentPlanProperties {
+  /** Gets the status of the resource at the time the operation was called. */
+  provisioningState?: CommitmentPlanProvisioningState;
+  /** Commitment plan guid. */
+  commitmentPlanGuid?: string;
+  /** Account hosting model. */
+  hostingModel?: HostingModel;
+  /** Commitment plan type. */
+  planType?: string;
+  /** Cognitive Services account commitment period. */
+  current?: CommitmentPeriod;
+  /** AutoRenew commitment plan. */
+  autoRenew?: boolean;
+  /** Cognitive Services account commitment period. */
+  next?: CommitmentPeriod;
+  /** Cognitive Services account commitment period. */
+  last?: CommitmentPeriod;
+  /** The list of ProvisioningIssue. */
+  provisioningIssues?: CommitmentPlanPropertiesProvisioningIssuesList;
+}
+export const CommitmentPlanProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provisioningState: S.optional(CommitmentPlanProvisioningState),
+    commitmentPlanGuid: S.optional(S.String),
+    hostingModel: S.optional(HostingModel),
+    planType: S.optional(S.String),
+    current: S.optional(CommitmentPeriod),
+    autoRenew: S.optional(S.Boolean),
+    next: S.optional(CommitmentPeriod),
+    last: S.optional(CommitmentPeriod),
+    provisioningIssues: S.optional(
+      CommitmentPlanPropertiesProvisioningIssuesList,
+    ),
+  }),
+).annotate({
+  identifier: "CommitmentPlanProperties",
+}) as any as S.Schema<CommitmentPlanProperties>;
+
+/** Resource tags. */
+export type CommitmentPlansCreateOrUpdateResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const CommitmentPlansCreateOrUpdateResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<CommitmentPlansCreateOrUpdateResponseTagsMap>;
+
+export interface CommitmentPlansCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -994,20 +1530,237 @@ export interface AccountConnectionsUpdateResponse {
   type?: string;
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
-  /** Connection property base schema. */
-  properties: ConnectionPropertiesV2;
+  /** Properties of Cognitive Services account commitment plan. */
+  properties?: CommitmentPlanProperties;
+  /** Resource tags. */
+  tags?: CommitmentPlansCreateOrUpdateResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location?: string;
+  /** Resource Etag. */
+  etag?: string;
+  /** The kind (type) of cognitive service account. */
+  kind?: string;
+  /** The resource model definition representing SKU */
+  sku?: Sku;
 }
-export const AccountConnectionsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: ConnectionPropertiesV2,
-  }),
+export const CommitmentPlansCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(CommitmentPlanProperties),
+      tags: S.optional(CommitmentPlansCreateOrUpdateResponseTagsMap),
+      location: S.optional(S.String),
+      etag: S.optional(S.String),
+      kind: S.optional(S.String),
+      sku: S.optional(Sku),
+    }),
 ).annotate({
-  identifier: "AccountConnectionsUpdateResponse",
-}) as any as S.Schema<AccountConnectionsUpdateResponse>;
+  identifier: "CommitmentPlansCreateOrUpdateResponse",
+}) as any as S.Schema<CommitmentPlansCreateOrUpdateResponse>;
+
+/** The commitment plan account association properties. */
+export interface CommitmentPlanAccountAssociationProperties {
+  /** The Azure resource id of the account. */
+  accountId?: string;
+}
+export const CommitmentPlanAccountAssociationProperties =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      accountId: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "CommitmentPlanAccountAssociationProperties",
+  }) as any as S.Schema<CommitmentPlanAccountAssociationProperties>;
+
+/** Resource tags. */
+export type CommitmentPlansCreateOrUpdateAssociationRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const CommitmentPlansCreateOrUpdateAssociationRequestTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<CommitmentPlansCreateOrUpdateAssociationRequestTagsMap>;
+
+export interface CommitmentPlansCreateOrUpdateAssociationRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the commitmentPlan associated with the Cognitive Services Account */
+  commitmentPlanName: string;
+  /** The name of the commitment plan association with the Cognitive Services Account */
+  commitmentPlanAssociationName: string;
+  /** Properties of Cognitive Services account commitment plan association. */
+  properties?: CommitmentPlanAccountAssociationProperties;
+  /** Resource tags. */
+  tags?: CommitmentPlansCreateOrUpdateAssociationRequestTagsMap;
+}
+export const CommitmentPlansCreateOrUpdateAssociationRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      commitmentPlanName: S.String.pipe(T.Label()),
+      commitmentPlanAssociationName: S.String.pipe(T.Label()),
+      properties: S.optional(CommitmentPlanAccountAssociationProperties),
+      tags: S.optional(CommitmentPlansCreateOrUpdateAssociationRequestTagsMap),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/commitmentPlans/{commitmentPlanName}/accountAssociations/{commitmentPlanAssociationName}",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "CommitmentPlansCreateOrUpdateAssociationRequest",
+  }) as any as S.Schema<CommitmentPlansCreateOrUpdateAssociationRequest>;
+
+/** Resource tags. */
+export type CommitmentPlansCreateOrUpdateAssociationResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const CommitmentPlansCreateOrUpdateAssociationResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<CommitmentPlansCreateOrUpdateAssociationResponseTagsMap>;
+
+export interface CommitmentPlansCreateOrUpdateAssociationResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of Cognitive Services account commitment plan association. */
+  properties?: CommitmentPlanAccountAssociationProperties;
+  /** Resource Etag. */
+  etag?: string;
+  /** Resource tags. */
+  tags?: CommitmentPlansCreateOrUpdateAssociationResponseTagsMap;
+}
+export const CommitmentPlansCreateOrUpdateAssociationResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(CommitmentPlanAccountAssociationProperties),
+      etag: S.optional(S.String),
+      tags: S.optional(CommitmentPlansCreateOrUpdateAssociationResponseTagsMap),
+    }),
+  ).annotate({
+    identifier: "CommitmentPlansCreateOrUpdateAssociationResponse",
+  }) as any as S.Schema<CommitmentPlansCreateOrUpdateAssociationResponse>;
+
+/** Resource tags. */
+export type CommitmentPlansCreateOrUpdatePlanRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const CommitmentPlansCreateOrUpdatePlanRequestTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<CommitmentPlansCreateOrUpdatePlanRequestTagsMap>;
+
+export interface CommitmentPlansCreateOrUpdatePlanRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the commitmentPlan associated with the Cognitive Services Account */
+  commitmentPlanName: string;
+  /** Properties of Cognitive Services account commitment plan. */
+  properties?: CommitmentPlanPropertiesInput;
+  /** Resource tags. */
+  tags?: CommitmentPlansCreateOrUpdatePlanRequestTagsMap;
+  /** The geo-location where the resource lives */
+  location?: string;
+  /** The kind (type) of cognitive service account. */
+  kind?: string;
+  /** The resource model definition representing SKU */
+  sku?: Sku;
+}
+export const CommitmentPlansCreateOrUpdatePlanRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      commitmentPlanName: S.String.pipe(T.Label()),
+      properties: S.optional(CommitmentPlanPropertiesInput),
+      tags: S.optional(CommitmentPlansCreateOrUpdatePlanRequestTagsMap),
+      location: S.optional(S.String),
+      kind: S.optional(S.String),
+      sku: S.optional(Sku),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/commitmentPlans/{commitmentPlanName}",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+).annotate({
+  identifier: "CommitmentPlansCreateOrUpdatePlanRequest",
+}) as any as S.Schema<CommitmentPlansCreateOrUpdatePlanRequest>;
+
+/** Resource tags. */
+export type CommitmentPlansCreateOrUpdatePlanResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const CommitmentPlansCreateOrUpdatePlanResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<CommitmentPlansCreateOrUpdatePlanResponseTagsMap>;
+
+export interface CommitmentPlansCreateOrUpdatePlanResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of Cognitive Services account commitment plan. */
+  properties?: CommitmentPlanProperties;
+  /** Resource tags. */
+  tags?: CommitmentPlansCreateOrUpdatePlanResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location?: string;
+  /** Resource Etag. */
+  etag?: string;
+  /** The kind (type) of cognitive service account. */
+  kind?: string;
+  /** The resource model definition representing SKU */
+  sku?: Sku;
+}
+export const CommitmentPlansCreateOrUpdatePlanResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(CommitmentPlanProperties),
+      tags: S.optional(CommitmentPlansCreateOrUpdatePlanResponseTagsMap),
+      location: S.optional(S.String),
+      etag: S.optional(S.String),
+      kind: S.optional(S.String),
+      sku: S.optional(Sku),
+    }),
+  ).annotate({
+    identifier: "CommitmentPlansCreateOrUpdatePlanResponse",
+  }) as any as S.Schema<CommitmentPlansCreateOrUpdatePlanResponse>;
 
 /** The default action when no rule from ipRules and from virtualNetworkRules match. This is only used after the bypass property has been evaluated. */
 export type NetworkRuleAction = "Allow" | "Deny";
@@ -1367,40 +2120,11 @@ export const AccountPropertiesInput = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<AccountPropertiesInput>;
 
 /** Resource tags. */
-export type AccountsCreateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const AccountsCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type CreateAccountRequestTagsMap = { [key: string]: string | undefined };
+export const CreateAccountRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AccountsCreateRequestTagsMap>;
-
-/** This field is required to be implemented by the Resource Provider if the service has more than one tier, but is not required on a PUT. */
-export type SkuTier = "Free" | "Basic" | "Standard" | "Premium" | "Enterprise";
-export const SkuTier = /*@__PURE__*/ S.String;
-
-/** The resource model definition representing SKU */
-export interface Sku {
-  /** The name of the SKU. Ex - P3. It is typically a letter+number code */
-  name: string;
-  /** This field is required to be implemented by the Resource Provider if the service has more than one tier, but is not required on a PUT. */
-  tier?: SkuTier | (string & {});
-  /** The SKU size. When the name field is the combination of tier and some other value, this would be the standalone code. */
-  size?: string;
-  /** If the service has different generations of hardware, for the same SKU, then that can be captured here. */
-  family?: string;
-  /** If the SKU supports scale out/in then the capacity integer should be included. If scale out/in is not possible for the resource this may be omitted. */
-  capacity?: number;
-}
-export const Sku = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String,
-    tier: S.optional(SkuTier),
-    size: S.optional(S.String),
-    family: S.optional(S.String),
-    capacity: S.optional(S.Number),
-  }),
-).annotate({ identifier: "Sku" }) as any as S.Schema<Sku>;
+) as any as S.Schema<CreateAccountRequestTagsMap>;
 
 /** The identity type. */
 export type ResourceIdentityType =
@@ -1441,7 +2165,7 @@ export const IdentityInput = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "IdentityInput" }) as any as S.Schema<IdentityInput>;
 
-export interface AccountsCreateRequest {
+export interface CreateAccountRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1451,7 +2175,7 @@ export interface AccountsCreateRequest {
   /** Properties of Cognitive Services account. */
   properties?: AccountPropertiesInput;
   /** Resource tags. */
-  tags?: AccountsCreateRequestTagsMap;
+  tags?: CreateAccountRequestTagsMap;
   /** The geo-location where the resource lives */
   location?: string;
   /** The kind (type) of cognitive service account. */
@@ -1461,13 +2185,13 @@ export interface AccountsCreateRequest {
   /** Identity for the resource. */
   identity?: IdentityInput;
 }
-export const AccountsCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateAccountRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     accountName: S.String.pipe(T.Label()),
     properties: S.optional(AccountPropertiesInput),
-    tags: S.optional(AccountsCreateRequestTagsMap),
+    tags: S.optional(CreateAccountRequestTagsMap),
     location: S.optional(S.String),
     kind: S.optional(S.String),
     sku: S.optional(Sku),
@@ -1481,8 +2205,8 @@ export const AccountsCreateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "AccountsCreateRequest",
-}) as any as S.Schema<AccountsCreateRequest>;
+  identifier: "CreateAccountRequest",
+}) as any as S.Schema<CreateAccountRequest>;
 
 /** Gets the status of the cognitive services account at the time the operation was called. */
 export type ProvisioningState =
@@ -1923,13 +2647,13 @@ export const AccountProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<AccountProperties>;
 
 /** Resource tags. */
-export type AccountsCreateResponseTagsMap = {
+export type CreateAccountResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const AccountsCreateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const CreateAccountResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AccountsCreateResponseTagsMap>;
+) as any as S.Schema<CreateAccountResponseTagsMap>;
 
 /** User-assigned managed identity. */
 export interface UserAssignedIdentity {
@@ -1976,7 +2700,7 @@ export const Identity = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "Identity" }) as any as S.Schema<Identity>;
 
-export interface AccountsCreateResponse {
+export interface CreateAccountResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -1988,7 +2712,7 @@ export interface AccountsCreateResponse {
   /** Properties of Cognitive Services account. */
   properties?: AccountProperties;
   /** Resource tags. */
-  tags?: AccountsCreateResponseTagsMap;
+  tags?: CreateAccountResponseTagsMap;
   /** The geo-location where the resource lives */
   location?: string;
   /** Resource Etag. */
@@ -2000,14 +2724,14 @@ export interface AccountsCreateResponse {
   /** Identity for the resource. */
   identity?: Identity;
 }
-export const AccountsCreateResponse = /*@__PURE__*/ S.suspend(() =>
+export const CreateAccountResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(AccountProperties),
-    tags: S.optional(AccountsCreateResponseTagsMap),
+    tags: S.optional(CreateAccountResponseTagsMap),
     location: S.optional(S.String),
     etag: S.optional(S.String),
     kind: S.optional(S.String),
@@ -2015,875 +2739,448 @@ export const AccountsCreateResponse = /*@__PURE__*/ S.suspend(() =>
     identity: S.optional(Identity),
   }),
 ).annotate({
-  identifier: "AccountsCreateResponse",
-}) as any as S.Schema<AccountsCreateResponse>;
+  identifier: "CreateAccountResponse",
+}) as any as S.Schema<CreateAccountResponse>;
 
-export interface AccountsDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-}
-export const AccountsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "AccountsDeleteRequest",
-}) as any as S.Schema<AccountsDeleteRequest>;
+/** Authentication type of the connection target */
+export type ConnectionAuthType =
+  | "PAT"
+  | "ManagedIdentity"
+  | "UsernamePassword"
+  | "None"
+  | "SAS"
+  | "AccountKey"
+  | "ServicePrincipal"
+  | "AccessKey"
+  | "ApiKey"
+  | "CustomKeys"
+  | "OAuth2"
+  | "AAD"
+  | "DelegatedSAS"
+  | "ProjectManagedIdentity"
+  | "AccountManagedIdentity"
+  | "UserEntraToken"
+  | "AgentUserImpersonation"
+  | "AgenticIdentityToken"
+  | "AgenticUser";
+export const ConnectionAuthType = /*@__PURE__*/ S.String;
 
-export interface AccountsDeleteResponse {}
-export const AccountsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "AccountsDeleteResponse",
-}) as any as S.Schema<AccountsDeleteResponse>;
+/** Category of the connection */
+export type ConnectionCategory =
+  | "PythonFeed"
+  | "ContainerRegistry"
+  | "Git"
+  | "S3"
+  | "Snowflake"
+  | "AzureKeyVault"
+  | "AzureSqlDb"
+  | "AzureSynapseAnalytics"
+  | "AzureMySqlDb"
+  | "AzurePostgresDb"
+  | "ADLSGen2"
+  | "AzureContainerAppEnvironment"
+  | "Redis"
+  | "ApiKey"
+  | "AzureOpenAI"
+  | "AIServices"
+  | "CognitiveSearch"
+  | "CognitiveService"
+  | "CustomKeys"
+  | "AzureBlob"
+  | "AzureStorageAccount"
+  | "AzureOneLake"
+  | "CosmosDb"
+  | "CosmosDbMongoDbApi"
+  | "AzureDataExplorer"
+  | "AzureMariaDb"
+  | "AzureDatabricksDeltaLake"
+  | "AzureSqlMi"
+  | "AzureTableStorage"
+  | "AmazonRdsForOracle"
+  | "AmazonRdsForSqlServer"
+  | "AmazonRedshift"
+  | "Db2"
+  | "Drill"
+  | "GoogleBigQuery"
+  | "Greenplum"
+  | "Hbase"
+  | "Hive"
+  | "Impala"
+  | "Informix"
+  | "MariaDb"
+  | "MicrosoftAccess"
+  | "MySql"
+  | "Netezza"
+  | "Oracle"
+  | "Phoenix"
+  | "PostgreSql"
+  | "Presto"
+  | "SapOpenHub"
+  | "SapBw"
+  | "SapHana"
+  | "SapTable"
+  | "Spark"
+  | "SqlServer"
+  | "Sybase"
+  | "Teradata"
+  | "Vertica"
+  | "Pinecone"
+  | "Databricks"
+  | "Cassandra"
+  | "Couchbase"
+  | "MongoDbV2"
+  | "MongoDbAtlas"
+  | "AmazonS3Compatible"
+  | "FileServer"
+  | "FtpServer"
+  | "GoogleCloudStorage"
+  | "Hdfs"
+  | "OracleCloudStorage"
+  | "Sftp"
+  | "GenericHttp"
+  | "ODataRest"
+  | "Odbc"
+  | "GenericRest"
+  | "RemoteTool"
+  | "AmazonMws"
+  | "Concur"
+  | "Dynamics"
+  | "DynamicsAx"
+  | "DynamicsCrm"
+  | "GoogleAdWords"
+  | "Hubspot"
+  | "Jira"
+  | "Magento"
+  | "Marketo"
+  | "Office365"
+  | "Eloqua"
+  | "Responsys"
+  | "OracleServiceCloud"
+  | "PayPal"
+  | "QuickBooks"
+  | "Salesforce"
+  | "SalesforceServiceCloud"
+  | "SalesforceMarketingCloud"
+  | "SapCloudForCustomer"
+  | "SapEcc"
+  | "ServiceNow"
+  | "SharePointOnlineList"
+  | "Shopify"
+  | "Square"
+  | "WebTable"
+  | "Xero"
+  | "Zoho"
+  | "GenericContainerRegistry"
+  | "Elasticsearch"
+  | "AppInsights"
+  | "AppConfig"
+  | "OpenAI"
+  | "Serp"
+  | "BingLLMSearch"
+  | "Serverless"
+  | "ManagedOnlineEndpoint"
+  | "ApiManagement"
+  | "ModelGateway"
+  | "GroundingWithBingSearch"
+  | "GroundingWithCustomSearch"
+  | "Sharepoint"
+  | "MicrosoftFabric"
+  | "PowerPlatformEnvironment"
+  | "RemoteA2A";
+export const ConnectionCategory = /*@__PURE__*/ S.String;
 
-export interface AccountsGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-}
-export const AccountsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "AccountsGetRequest",
-}) as any as S.Schema<AccountsGetRequest>;
-
-/** Resource tags. */
-export type AccountsGetResponseTagsMap = { [key: string]: string | undefined };
-export const AccountsGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<AccountsGetResponseTagsMap>;
-
-export interface AccountsGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of Cognitive Services account. */
-  properties?: AccountProperties;
-  /** Resource tags. */
-  tags?: AccountsGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location?: string;
-  /** Resource Etag. */
-  etag?: string;
-  /** The kind (type) of cognitive service account. */
-  kind?: string;
-  /** The resource model definition representing SKU */
-  sku?: Sku;
-  /** Identity for the resource. */
-  identity?: Identity;
-}
-export const AccountsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(AccountProperties),
-    tags: S.optional(AccountsGetResponseTagsMap),
-    location: S.optional(S.String),
-    etag: S.optional(S.String),
-    kind: S.optional(S.String),
-    sku: S.optional(Sku),
-    identity: S.optional(Identity),
-  }),
-).annotate({
-  identifier: "AccountsGetResponse",
-}) as any as S.Schema<AccountsGetResponse>;
-
-export interface AccountsListRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-}
-export const AccountsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/accounts",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "AccountsListRequest",
-}) as any as S.Schema<AccountsListRequest>;
-
-/** Resource tags. */
-export type AccountTagsMap = { [key: string]: string | undefined };
-export const AccountTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<AccountTagsMap>;
-
-/** Cognitive Services account is an Azure resource representing the provisioned account, it's type, location and SKU. */
-export interface Account {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of Cognitive Services account. */
-  properties?: AccountProperties;
-  /** Resource tags. */
-  tags?: AccountTagsMap;
-  /** The geo-location where the resource lives */
-  location?: string;
-  /** Resource Etag. */
-  etag?: string;
-  /** The kind (type) of cognitive service account. */
-  kind?: string;
-  /** The resource model definition representing SKU */
-  sku?: Sku;
-  /** Identity for the resource. */
-  identity?: Identity;
-}
-export const Account = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(AccountProperties),
-    tags: S.optional(AccountTagsMap),
-    location: S.optional(S.String),
-    etag: S.optional(S.String),
-    kind: S.optional(S.String),
-    sku: S.optional(Sku),
-    identity: S.optional(Identity),
-  }),
-).annotate({ identifier: "Account" }) as any as S.Schema<Account>;
-
-/** Gets the list of Cognitive Services accounts and their properties. */
-export type AccountListResultValueList = Array<Account>;
-export const AccountListResultValueList = /*@__PURE__*/ S.Array(
-  Account,
-) as any as S.Schema<AccountListResultValueList>;
-
-/** The list of cognitive services accounts operation response. */
-export interface AccountListResult {
-  /** The link used to get the next page of accounts. */
-  nextLink?: string;
-  /** Gets the list of Cognitive Services accounts and their properties. */
-  value?: AccountListResultValueList;
-}
-export const AccountListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    nextLink: S.optional(S.String),
-    value: S.optional(AccountListResultValueList),
-  }),
-).annotate({
-  identifier: "AccountListResult",
-}) as any as S.Schema<AccountListResult>;
-
-export interface AccountsListByResourceGroupRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-}
-export const AccountsListByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "AccountsListByResourceGroupRequest",
-}) as any as S.Schema<AccountsListByResourceGroupRequest>;
-
-export interface AccountsListKeysRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-}
-export const AccountsListKeysRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/listKeys",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "AccountsListKeysRequest",
-}) as any as S.Schema<AccountsListKeysRequest>;
-
-/** The access keys for the cognitive services account. */
-export interface ApiKeys {
-  /** Gets the value of key 1. */
-  key1?: string;
-  /** Gets the value of key 2. */
-  key2?: string;
-}
-export const ApiKeys = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    key1: S.optional(S.String),
-    key2: S.optional(S.String),
-  }),
-).annotate({ identifier: "ApiKeys" }) as any as S.Schema<ApiKeys>;
-
-export interface AccountsListModelsRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-}
-export const AccountsListModelsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/models",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "AccountsListModelsRequest",
-}) as any as S.Schema<AccountsListModelsRequest>;
-
-/** Properties of Cognitive Services account deployment model. */
-export interface DeploymentModel {
-  /** Deployment model publisher. */
-  publisher?: string;
-  /** Deployment model format. */
-  format?: string;
-  /** Deployment model name. */
-  name?: string;
-  /** Optional. Deployment model version. If version is not specified, a default version will be assigned. The default version is different for different models and might change when there is new version available for a model. Default version for a model could be found from list models API. */
-  version?: string;
-  /** Optional. Deployment model source ARM resource ID. */
-  source?: string;
-  /** Optional. Source of the model, another Microsoft.CognitiveServices accounts ARM resource ID. */
-  sourceAccount?: string;
-}
-export const DeploymentModel = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    publisher: S.optional(S.String),
-    format: S.optional(S.String),
-    name: S.optional(S.String),
-    version: S.optional(S.String),
-    source: S.optional(S.String),
-    sourceAccount: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DeploymentModel",
-}) as any as S.Schema<DeploymentModel>;
-
-/** The array of allowed values for capacity. */
-export type CapacityConfigAllowedValuesList = Array<number>;
-export const CapacityConfigAllowedValuesList = /*@__PURE__*/ S.Array(
-  S.Number,
-) as any as S.Schema<CapacityConfigAllowedValuesList>;
-
-/** The capacity configuration. */
-export interface CapacityConfig {
-  /** The minimum capacity. */
-  minimum?: number;
-  /** The maximum capacity. */
-  maximum?: number;
-  /** The minimal incremental between allowed values for capacity. */
-  step?: number;
-  /** The default capacity. */
-  default?: number;
-  /** The array of allowed values for capacity. */
-  allowedValues?: CapacityConfigAllowedValuesList;
-}
-export const CapacityConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    minimum: S.optional(S.Number),
-    maximum: S.optional(S.Number),
-    step: S.optional(S.Number),
-    default: S.optional(S.Number),
-    allowedValues: S.optional(CapacityConfigAllowedValuesList),
-  }),
-).annotate({ identifier: "CapacityConfig" }) as any as S.Schema<CapacityConfig>;
-
-/** The list of rateLimit. */
-export type ModelSkuRateLimitsList = Array<CallRateLimit>;
-export const ModelSkuRateLimitsList = /*@__PURE__*/ S.Array(
-  CallRateLimit,
-) as any as S.Schema<ModelSkuRateLimitsList>;
-
-export interface BillingMeterInfo {
-  name?: string;
-  meterId?: string;
-  unit?: string;
-}
-export const BillingMeterInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    meterId: S.optional(S.String),
-    unit: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "BillingMeterInfo",
-}) as any as S.Schema<BillingMeterInfo>;
-
-/** The list of billing meter info. */
-export type ModelSkuCostList = Array<BillingMeterInfo>;
-export const ModelSkuCostList = /*@__PURE__*/ S.Array(
-  BillingMeterInfo,
-) as any as S.Schema<ModelSkuCostList>;
-
-/** Describes an available Cognitive Services Model SKU. */
-export interface ModelSku {
-  /** The name of the model SKU. */
-  name?: string;
-  /** The usage name of the model SKU. */
-  usageName?: string;
-  /** The datetime of deprecation of the model SKU. */
-  deprecationDate?: string;
-  /** The capacity configuration. */
-  capacity?: CapacityConfig;
-  /** The list of rateLimit. */
-  rateLimits?: ModelSkuRateLimitsList;
-  /** The list of billing meter info. */
-  cost?: ModelSkuCostList;
-}
-export const ModelSku = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    usageName: S.optional(S.String),
-    deprecationDate: S.optional(S.String),
-    capacity: S.optional(CapacityConfig),
-    rateLimits: S.optional(ModelSkuRateLimitsList),
-    cost: S.optional(ModelSkuCostList),
-  }),
-).annotate({ identifier: "ModelSku" }) as any as S.Schema<ModelSku>;
-
-/** The list of Model Sku. */
-export type AccountModelSkusList = Array<ModelSku>;
-export const AccountModelSkusList = /*@__PURE__*/ S.Array(
-  ModelSku,
-) as any as S.Schema<AccountModelSkusList>;
-
-/** The capabilities. */
-export type AccountModelCapabilitiesMap = { [key: string]: string | undefined };
-export const AccountModelCapabilitiesMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<AccountModelCapabilitiesMap>;
-
-/** The capabilities for finetune models. */
-export type AccountModelFinetuneCapabilitiesMap = {
+/** Store user metadata for this connection */
+export type ConnectionPropertiesV2InputMetadataMap = {
   [key: string]: string | undefined;
 };
-export const AccountModelFinetuneCapabilitiesMap = /*@__PURE__*/ S.Record(
+export const ConnectionPropertiesV2InputMetadataMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AccountModelFinetuneCapabilitiesMap>;
+) as any as S.Schema<ConnectionPropertiesV2InputMetadataMap>;
 
-/** Indicates whether the deprecation date is a confirmed planned end-of-life date or an estimated deprecation date. When 'Planned', the deprecation date represents a confirmed and communicated model end-of-life date. When 'Tentative', the deprecation date is an estimated timeline that may be subject to change. */
-export type DeprecationStatus = "Planned" | "Tentative";
-export const DeprecationStatus = /*@__PURE__*/ S.String;
+export type ManagedPERequirement = "Required" | "NotRequired" | "NotApplicable";
+export const ManagedPERequirement = /*@__PURE__*/ S.String;
 
-/** Cognitive Services account ModelDeprecationInfo. */
-export interface ModelDeprecationInfo {
-  /** The datetime of deprecation of the fineTune Model. */
-  fineTune?: string;
-  /** The datetime of deprecation of the inference Model. */
-  inference?: string;
-  /** Indicates whether the deprecation date is a confirmed planned end-of-life date or an estimated deprecation date. When 'Planned', the deprecation date represents a confirmed and communicated model end-of-life date. When 'Tentative', the deprecation date is an estimated timeline that may be subject to change. */
-  deprecationStatus?: DeprecationStatus;
+export type ManagedPEStatus = "Inactive" | "Active" | "NotApplicable";
+export const ManagedPEStatus = /*@__PURE__*/ S.String;
+
+export type ConnectionPropertiesV2InputSharedUserListList = Array<string>;
+export const ConnectionPropertiesV2InputSharedUserListList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ConnectionPropertiesV2InputSharedUserListList>;
+
+/** Connection property base schema. */
+export interface ConnectionPropertiesV2Input {
+  /** Authentication type of the connection target */
+  authType: ConnectionAuthType | (string & {});
+  /** Category of the connection */
+  category?: ConnectionCategory | (string & {});
+  /** Provides the error message if the connection fails */
+  error?: string;
+  expiryTime?: string;
+  isSharedToAll?: boolean;
+  /** Store user metadata for this connection */
+  metadata?: ConnectionPropertiesV2InputMetadataMap;
+  /** Specifies how private endpoints are used with this connection: 'Required', 'NotRequired', or 'NotApplicable'. */
+  peRequirement?: ManagedPERequirement | (string & {});
+  /** Specifies the status of private endpoints for this connection: 'Inactive', 'Active', or 'NotApplicable'. */
+  peStatus?: ManagedPEStatus | (string & {});
+  sharedUserList?: ConnectionPropertiesV2InputSharedUserListList;
+  /** The connection URL to be used. */
+  target?: string;
+  useWorkspaceManagedIdentity?: boolean;
 }
-export const ModelDeprecationInfo = /*@__PURE__*/ S.suspend(() =>
+export const ConnectionPropertiesV2Input = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    fineTune: S.optional(S.String),
-    inference: S.optional(S.String),
-    deprecationStatus: S.optional(DeprecationStatus),
+    authType: ConnectionAuthType,
+    category: S.optional(ConnectionCategory),
+    error: S.optional(S.String),
+    expiryTime: S.optional(S.String),
+    isSharedToAll: S.optional(S.Boolean),
+    metadata: S.optional(ConnectionPropertiesV2InputMetadataMap),
+    peRequirement: S.optional(ManagedPERequirement),
+    peStatus: S.optional(ManagedPEStatus),
+    sharedUserList: S.optional(ConnectionPropertiesV2InputSharedUserListList),
+    target: S.optional(S.String),
+    useWorkspaceManagedIdentity: S.optional(S.Boolean),
   }),
 ).annotate({
-  identifier: "ModelDeprecationInfo",
-}) as any as S.Schema<ModelDeprecationInfo>;
+  identifier: "ConnectionPropertiesV2Input",
+}) as any as S.Schema<ConnectionPropertiesV2Input>;
 
-/** Configuration for model replacement. */
-export interface ReplacementConfig {
-  /** The name of the replacement model. */
-  targetModelName?: string;
-  /** The version of the replacement model. */
-  targetModelVersion?: string;
-  /** The date when automatic upgrade should start. This applies to deployments with the OnceNewDefaultVersionAvailable upgrade option. */
-  autoUpgradeStartDate?: string;
-  /** The number of days before deprecation date to trigger upgrade. This applies to deployments with the OnceCurrentVersionExpired upgrade option. */
-  upgradeOnExpiryLeadTimeDays?: number;
-}
-export const ReplacementConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    targetModelName: S.optional(S.String),
-    targetModelVersion: S.optional(S.String),
-    autoUpgradeStartDate: S.optional(S.String),
-    upgradeOnExpiryLeadTimeDays: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "ReplacementConfig",
-}) as any as S.Schema<ReplacementConfig>;
-
-/** Model lifecycle status. */
-export type ModelLifecycleStatus =
-  | "Stable"
-  | "Preview"
-  | "GenerallyAvailable"
-  | "Deprecating"
-  | "Deprecated"
-  | "Legacy";
-export const ModelLifecycleStatus = /*@__PURE__*/ S.String;
-
-/** The type of identity that created the resource. */
-export type AccountModelSystemDataCreatedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const AccountModelSystemDataCreatedByType = /*@__PURE__*/ S.String;
-
-/** The type of identity that last modified the resource. */
-export type AccountModelSystemDataLastModifiedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const AccountModelSystemDataLastModifiedByType = /*@__PURE__*/ S.String;
-
-/** Metadata pertaining to creation and last modification of the resource. */
-export interface AccountModelSystemData {
-  /** The identity that created the resource. */
-  createdBy?: string;
-  /** The type of identity that created the resource. */
-  createdByType?: AccountModelSystemDataCreatedByType;
-  /** The timestamp of resource creation (UTC). */
-  createdAt?: string;
-  /** The identity that last modified the resource. */
-  lastModifiedBy?: string;
-  /** The type of identity that last modified the resource. */
-  lastModifiedByType?: AccountModelSystemDataLastModifiedByType;
-  /** The timestamp of resource last modification (UTC) */
-  lastModifiedAt?: string;
-}
-export const AccountModelSystemData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    createdBy: S.optional(S.String),
-    createdByType: S.optional(AccountModelSystemDataCreatedByType),
-    createdAt: S.optional(S.String),
-    lastModifiedBy: S.optional(S.String),
-    lastModifiedByType: S.optional(AccountModelSystemDataLastModifiedByType),
-    lastModifiedAt: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AccountModelSystemData",
-}) as any as S.Schema<AccountModelSystemData>;
-
-/** Cognitive Services account Model. */
-export interface AccountModel {
-  /** Deployment model publisher. */
-  publisher?: string;
-  /** Deployment model format. */
-  format?: string;
-  /** Deployment model name. */
-  name?: string;
-  /** Optional. Deployment model version. If version is not specified, a default version will be assigned. The default version is different for different models and might change when there is new version available for a model. Default version for a model could be found from list models API. */
-  version?: string;
-  /** Optional. Deployment model source ARM resource ID. */
-  source?: string;
-  /** Optional. Source of the model, another Microsoft.CognitiveServices accounts ARM resource ID. */
-  sourceAccount?: string;
-  /** The call rate limit Cognitive Services account. */
-  callRateLimit?: CallRateLimit;
-  /** Properties of Cognitive Services account deployment model. */
-  baseModel?: DeploymentModel;
-  /** If the model is default version. */
-  isDefaultVersion?: boolean;
-  /** The list of Model Sku. */
-  skus?: AccountModelSkusList;
-  /** The max capacity. */
-  maxCapacity?: number;
-  /** The capabilities. */
-  capabilities?: AccountModelCapabilitiesMap;
-  /** The capabilities for finetune models. */
-  finetuneCapabilities?: AccountModelFinetuneCapabilitiesMap;
-  /** Cognitive Services account ModelDeprecationInfo. */
-  deprecation?: ModelDeprecationInfo;
-  /** Configuration for model replacement. */
-  replacementConfig?: ReplacementConfig;
-  /** Asset identifier for the model in the model catalog. */
-  modelCatalogAssetId?: string;
-  /** Model lifecycle status. */
-  lifecycleStatus?: ModelLifecycleStatus;
-  /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: AccountModelSystemData;
-}
-export const AccountModel = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    publisher: S.optional(S.String),
-    format: S.optional(S.String),
-    name: S.optional(S.String),
-    version: S.optional(S.String),
-    source: S.optional(S.String),
-    sourceAccount: S.optional(S.String),
-    callRateLimit: S.optional(CallRateLimit),
-    baseModel: S.optional(DeploymentModel),
-    isDefaultVersion: S.optional(S.Boolean),
-    skus: S.optional(AccountModelSkusList),
-    maxCapacity: S.optional(S.Number),
-    capabilities: S.optional(AccountModelCapabilitiesMap),
-    finetuneCapabilities: S.optional(AccountModelFinetuneCapabilitiesMap),
-    deprecation: S.optional(ModelDeprecationInfo),
-    replacementConfig: S.optional(ReplacementConfig),
-    modelCatalogAssetId: S.optional(S.String),
-    lifecycleStatus: S.optional(ModelLifecycleStatus),
-    systemData: S.optional(AccountModelSystemData),
-  }),
-).annotate({ identifier: "AccountModel" }) as any as S.Schema<AccountModel>;
-
-/** Gets the list of Cognitive Services accounts Model and their properties. */
-export type AccountModelListResultValueList = Array<AccountModel>;
-export const AccountModelListResultValueList = /*@__PURE__*/ S.Array(
-  AccountModel,
-) as any as S.Schema<AccountModelListResultValueList>;
-
-/** The list of cognitive services accounts operation response. */
-export interface AccountModelListResult {
-  /** The link used to get the next page of Model. */
-  nextLink?: string;
-  /** Gets the list of Cognitive Services accounts Model and their properties. */
-  value?: AccountModelListResultValueList;
-}
-export const AccountModelListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    nextLink: S.optional(S.String),
-    value: S.optional(AccountModelListResultValueList),
-  }),
-).annotate({
-  identifier: "AccountModelListResult",
-}) as any as S.Schema<AccountModelListResult>;
-
-export interface AccountsListSkusRequest {
+export interface CreateAccountConnectionRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of Cognitive Services account. */
   accountName: string;
+  /** Friendly name of the connection */
+  connectionName: string;
+  /** Connection property base schema. */
+  properties: ConnectionPropertiesV2Input;
 }
-export const AccountsListSkusRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateAccountConnectionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     accountName: S.String.pipe(T.Label()),
+    connectionName: S.String.pipe(T.Label()),
+    properties: ConnectionPropertiesV2Input,
   }).pipe(
     T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/skus",
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/connections/{connectionName}",
       code: 200,
       apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
-  identifier: "AccountsListSkusRequest",
-}) as any as S.Schema<AccountsListSkusRequest>;
+  identifier: "CreateAccountConnectionRequest",
+}) as any as S.Schema<CreateAccountConnectionRequest>;
 
-/** Cognitive Services resource type and SKU. */
-export interface AccountSku {
-  /** Resource Namespace and Type */
-  resourceType?: string;
-  /** The SKU of Cognitive Services account. */
-  sku?: Sku;
-}
-export const AccountSku = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    resourceType: S.optional(S.String),
-    sku: S.optional(Sku),
-  }),
-).annotate({ identifier: "AccountSku" }) as any as S.Schema<AccountSku>;
+/** Group based on connection category */
+export type ConnectionGroup =
+  | "Azure"
+  | "AzureAI"
+  | "Database"
+  | "NoSQL"
+  | "File"
+  | "GenericProtocol"
+  | "ServicesAndApps";
+export const ConnectionGroup = /*@__PURE__*/ S.String;
 
-/** Gets the list of Cognitive Services accounts and their properties. */
-export type AccountSkuListResultValueList = Array<AccountSku>;
-export const AccountSkuListResultValueList = /*@__PURE__*/ S.Array(
-  AccountSku,
-) as any as S.Schema<AccountSkuListResultValueList>;
-
-/** The list of cognitive services accounts operation response. */
-export interface AccountSkuListResult {
-  /** Gets the list of Cognitive Services accounts and their properties. */
-  value?: AccountSkuListResultValueList;
-}
-export const AccountSkuListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(AccountSkuListResultValueList),
-  }),
-).annotate({
-  identifier: "AccountSkuListResult",
-}) as any as S.Schema<AccountSkuListResult>;
-
-export interface AccountsListUsagesRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-  /** An OData filter expression that describes a subset of usages to return. The supported parameter is name.value (name of the metric, can have an or of multiple names). */
-  _filter?: string;
-}
-export const AccountsListUsagesRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/usages",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "AccountsListUsagesRequest",
-}) as any as S.Schema<AccountsListUsagesRequest>;
-
-/** The unit of the metric. */
-export type UnitType =
-  | "Count"
-  | "Bytes"
-  | "Seconds"
-  | "Percent"
-  | "CountPerSecond"
-  | "BytesPerSecond"
-  | "Milliseconds";
-export const UnitType = /*@__PURE__*/ S.String;
-
-/** A metric name. */
-export interface MetricName {
-  /** The name of the metric. */
-  value?: string;
-  /** The friendly name of the metric. */
-  localizedValue?: string;
-}
-export const MetricName = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(S.String),
-    localizedValue: S.optional(S.String),
-  }),
-).annotate({ identifier: "MetricName" }) as any as S.Schema<MetricName>;
-
-/** Cognitive Services account quota usage status. */
-export type QuotaUsageStatus = "Included" | "Blocked" | "InOverage" | "Unknown";
-export const QuotaUsageStatus = /*@__PURE__*/ S.String;
-
-/** The quota scope that determines the level at which the quota is applied. */
-export type QuotaScopeType = "Regional" | "Global" | "DataZone" | "Classic";
-export const QuotaScopeType = /*@__PURE__*/ S.String;
-
-/** The usage data for a usage request. */
-export interface Usage {
-  /** The unit of the metric. */
-  unit?: UnitType;
-  /** The name information for the metric. */
-  name?: MetricName;
-  /** The quota period used to summarize the usage values. */
-  quotaPeriod?: string;
-  /** Maximum value for this metric. */
-  limit?: number;
-  /** Current value for this metric. */
-  currentValue?: number;
-  /** Next reset time for current quota. */
-  nextResetTime?: string;
-  /** Cognitive Services account quota usage status. */
-  status?: QuotaUsageStatus;
-  /** The scope type of the quota usage. */
-  scopeType?: QuotaScopeType | null;
-  /** The scope identifier of the quota usage. */
-  scopeId?: string | null;
-}
-export const Usage = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    unit: S.optional(UnitType),
-    name: S.optional(MetricName),
-    quotaPeriod: S.optional(S.String),
-    limit: S.optional(S.Number),
-    currentValue: S.optional(S.Number),
-    nextResetTime: S.optional(S.String),
-    status: S.optional(QuotaUsageStatus),
-    scopeType: S.optional(S.NullOr(QuotaScopeType)),
-    scopeId: S.optional(S.NullOr(S.String)),
-  }),
-).annotate({ identifier: "Usage" }) as any as S.Schema<Usage>;
-
-/** The list of usages for Cognitive Service account. */
-export type UsageListResultValueList = Array<Usage>;
-export const UsageListResultValueList = /*@__PURE__*/ S.Array(
-  Usage,
-) as any as S.Schema<UsageListResultValueList>;
-
-/** The response to a list usage request. */
-export interface UsageListResult {
-  /** The link used to get the next page of Usages. */
-  nextLink?: string;
-  /** The list of usages for Cognitive Service account. */
-  value?: UsageListResultValueList;
-}
-export const UsageListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    nextLink: S.optional(S.String),
-    value: S.optional(UsageListResultValueList),
-  }),
-).annotate({
-  identifier: "UsageListResult",
-}) as any as S.Schema<UsageListResult>;
-
-/** key name to generate (Key1|Key2) */
-export type KeyName = "Key1" | "Key2";
-export const KeyName = /*@__PURE__*/ S.String;
-
-export interface AccountsRegenerateKeyRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-  /** key name to generate (Key1|Key2) */
-  keyName: KeyName | (string & {});
-}
-export const AccountsRegenerateKeyRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    keyName: KeyName,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/regenerateKey",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "AccountsRegenerateKeyRequest",
-}) as any as S.Schema<AccountsRegenerateKeyRequest>;
-
-/** Resource tags. */
-export type AccountsUpdateRequestTagsMap = {
+/** Store user metadata for this connection */
+export type ConnectionPropertiesV2MetadataMap = {
   [key: string]: string | undefined;
 };
-export const AccountsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const ConnectionPropertiesV2MetadataMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AccountsUpdateRequestTagsMap>;
+) as any as S.Schema<ConnectionPropertiesV2MetadataMap>;
 
-export interface AccountsUpdateRequest {
+export type ConnectionPropertiesV2SharedUserListList = Array<string>;
+export const ConnectionPropertiesV2SharedUserListList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ConnectionPropertiesV2SharedUserListList>;
+
+/** Connection property base schema. */
+export interface ConnectionPropertiesV2 {
+  /** Authentication type of the connection target */
+  authType: ConnectionAuthType;
+  /** Category of the connection */
+  category?: ConnectionCategory;
+  /** A type definition that refers the id to an Azure Resource Manager resource. */
+  createdByWorkspaceArmId?: string;
+  /** Provides the error message if the connection fails */
+  error?: string;
+  expiryTime?: string;
+  /** Group based on connection category */
+  group?: ConnectionGroup;
+  isSharedToAll?: boolean;
+  /** Store user metadata for this connection */
+  metadata?: ConnectionPropertiesV2MetadataMap;
+  /** Specifies how private endpoints are used with this connection: 'Required', 'NotRequired', or 'NotApplicable'. */
+  peRequirement?: ManagedPERequirement;
+  /** Specifies the status of private endpoints for this connection: 'Inactive', 'Active', or 'NotApplicable'. */
+  peStatus?: ManagedPEStatus;
+  sharedUserList?: ConnectionPropertiesV2SharedUserListList;
+  /** The connection URL to be used. */
+  target?: string;
+  useWorkspaceManagedIdentity?: boolean;
+}
+export const ConnectionPropertiesV2 = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    authType: ConnectionAuthType,
+    category: S.optional(ConnectionCategory),
+    createdByWorkspaceArmId: S.optional(S.String),
+    error: S.optional(S.String),
+    expiryTime: S.optional(S.String),
+    group: S.optional(ConnectionGroup),
+    isSharedToAll: S.optional(S.Boolean),
+    metadata: S.optional(ConnectionPropertiesV2MetadataMap),
+    peRequirement: S.optional(ManagedPERequirement),
+    peStatus: S.optional(ManagedPEStatus),
+    sharedUserList: S.optional(ConnectionPropertiesV2SharedUserListList),
+    target: S.optional(S.String),
+    useWorkspaceManagedIdentity: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "ConnectionPropertiesV2",
+}) as any as S.Schema<ConnectionPropertiesV2>;
+
+export interface CreateAccountConnectionResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Connection property base schema. */
+  properties: ConnectionPropertiesV2;
+}
+export const CreateAccountConnectionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: ConnectionPropertiesV2,
+  }),
+).annotate({
+  identifier: "CreateAccountConnectionResponse",
+}) as any as S.Schema<CreateAccountConnectionResponse>;
+
+/** Properties of Cognitive Services Project'. */
+export interface ProjectPropertiesInput {
+  /** The display name of the Cognitive Services Project. */
+  displayName?: string;
+  /** The description of the Cognitive Services Project. */
+  description?: string;
+}
+export const ProjectPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    displayName: S.optional(S.String),
+    description: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ProjectPropertiesInput",
+}) as any as S.Schema<ProjectPropertiesInput>;
+
+/** Resource tags. */
+export type CreateProjectRequestTagsMap = { [key: string]: string | undefined };
+export const CreateProjectRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<CreateProjectRequestTagsMap>;
+
+export interface CreateProjectRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of Cognitive Services account. */
   accountName: string;
-  /** Properties of Cognitive Services account. */
-  properties?: AccountPropertiesInput;
+  /** The name of Cognitive Services account's project. */
+  projectName: string;
+  /** Properties of Cognitive Services project. */
+  properties?: ProjectPropertiesInput;
   /** Resource tags. */
-  tags?: AccountsUpdateRequestTagsMap;
+  tags?: CreateProjectRequestTagsMap;
   /** The geo-location where the resource lives */
   location?: string;
-  /** The kind (type) of cognitive service account. */
-  kind?: string;
-  /** The resource model definition representing SKU */
-  sku?: Sku;
   /** Identity for the resource. */
   identity?: IdentityInput;
 }
-export const AccountsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateProjectRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     accountName: S.String.pipe(T.Label()),
-    properties: S.optional(AccountPropertiesInput),
-    tags: S.optional(AccountsUpdateRequestTagsMap),
+    projectName: S.String.pipe(T.Label()),
+    properties: S.optional(ProjectPropertiesInput),
+    tags: S.optional(CreateProjectRequestTagsMap),
     location: S.optional(S.String),
-    kind: S.optional(S.String),
-    sku: S.optional(Sku),
     identity: S.optional(IdentityInput),
   }).pipe(
     T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}",
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}",
       code: 200,
       apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
-  identifier: "AccountsUpdateRequest",
-}) as any as S.Schema<AccountsUpdateRequest>;
+  identifier: "CreateProjectRequest",
+}) as any as S.Schema<CreateProjectRequest>;
 
-/** Resource tags. */
-export type AccountsUpdateResponseTagsMap = {
+/** The list of endpoint for this Cognitive Services Project. */
+export type ProjectPropertiesEndpointsMap = {
   [key: string]: string | undefined;
 };
-export const AccountsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const ProjectPropertiesEndpointsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AccountsUpdateResponseTagsMap>;
+) as any as S.Schema<ProjectPropertiesEndpointsMap>;
 
-export interface AccountsUpdateResponse {
+/** Properties of Cognitive Services Project'. */
+export interface ProjectProperties {
+  /** Gets the status of the cognitive services project at the time the operation was called. */
+  provisioningState?: ProvisioningState;
+  /** The display name of the Cognitive Services Project. */
+  displayName?: string;
+  /** The description of the Cognitive Services Project. */
+  description?: string;
+  /** The list of endpoint for this Cognitive Services Project. */
+  endpoints?: ProjectPropertiesEndpointsMap;
+  /** Indicates whether the project is the default project for the account. */
+  isDefault?: boolean;
+}
+export const ProjectProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provisioningState: S.optional(ProvisioningState),
+    displayName: S.optional(S.String),
+    description: S.optional(S.String),
+    endpoints: S.optional(ProjectPropertiesEndpointsMap),
+    isDefault: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "ProjectProperties",
+}) as any as S.Schema<ProjectProperties>;
+
+/** Resource tags. */
+export type CreateProjectResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const CreateProjectResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<CreateProjectResponseTagsMap>;
+
+export interface CreateProjectResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -2892,221 +3189,34 @@ export interface AccountsUpdateResponse {
   type?: string;
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
-  /** Properties of Cognitive Services account. */
-  properties?: AccountProperties;
+  /** Properties of Cognitive Services project. */
+  properties?: ProjectProperties;
   /** Resource tags. */
-  tags?: AccountsUpdateResponseTagsMap;
+  tags?: CreateProjectResponseTagsMap;
   /** The geo-location where the resource lives */
   location?: string;
   /** Resource Etag. */
   etag?: string;
-  /** The kind (type) of cognitive service account. */
-  kind?: string;
-  /** The resource model definition representing SKU */
-  sku?: Sku;
   /** Identity for the resource. */
   identity?: Identity;
 }
-export const AccountsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const CreateProjectResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    properties: S.optional(AccountProperties),
-    tags: S.optional(AccountsUpdateResponseTagsMap),
+    properties: S.optional(ProjectProperties),
+    tags: S.optional(CreateProjectResponseTagsMap),
     location: S.optional(S.String),
     etag: S.optional(S.String),
-    kind: S.optional(S.String),
-    sku: S.optional(Sku),
     identity: S.optional(Identity),
   }),
 ).annotate({
-  identifier: "AccountsUpdateResponse",
-}) as any as S.Schema<AccountsUpdateResponse>;
+  identifier: "CreateProjectResponse",
+}) as any as S.Schema<CreateProjectResponse>;
 
-/** Tag dictionary. Tags can be added, removed, and updated. */
-export type AgenticApplicationPropertiesInputTagsMap = {
-  [key: string]: string | undefined;
-};
-export const AgenticApplicationPropertiesInputTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<AgenticApplicationPropertiesInputTagsMap>;
-
-/** Type modeling a reference to a version of an agent definition. */
-export interface AgentReferenceProperties {
-  /** Gets the agent's unique identifier within the organization (subscription). */
-  agentId?: string | null;
-  /** Gets the agent's name (unique within the project/app). */
-  agentName?: string | null;
-}
-export const AgentReferenceProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    agentId: S.optional(S.NullOr(S.String)),
-    agentName: S.optional(S.NullOr(S.String)),
-  }),
-).annotate({
-  identifier: "AgentReferenceProperties",
-}) as any as S.Schema<AgentReferenceProperties>;
-
-/** The list of agent definitions comprising this application, returned as references to the objects under the parent project; use this to obtain a flat list of all agent-version pairs represented by this application. */
-export type AgenticApplicationPropertiesInputAgentsList =
-  Array<AgentReferenceProperties>;
-export const AgenticApplicationPropertiesInputAgentsList =
-  /*@__PURE__*/ S.Array(
-    AgentReferenceProperties,
-  ) as any as S.Schema<AgenticApplicationPropertiesInputAgentsList>;
-
-/** Specifies the kind of Entra identity described by this object. */
-export type IdentityKind =
-  | "AgentBlueprint"
-  | "AgentInstance"
-  | "AgenticUser"
-  | "Managed"
-  | "None";
-export const IdentityKind = /*@__PURE__*/ S.String;
-
-/** Enumeration of identity types, from the perspective of management. */
-export type IdentityManagementType = "System" | "User" | "None";
-export const IdentityManagementType = /*@__PURE__*/ S.String;
-
-/** Type representing an identity assignment */
-export interface AssignedIdentityInput {
-  /** Specifies the kind of Entra identity described by this object. */
-  kind: IdentityKind | (string & {});
-  /** Enumeration of identity types, from the perspective of management. */
-  type: IdentityManagementType | (string & {});
-  /** The client ID of the identity. */
-  clientId: string;
-  /** The principal ID of the identity. */
-  principalId: string;
-  /** The tenant ID of the identity. */
-  tenantId: string;
-  /** The subject of this identity assignment. */
-  subject?: string | null;
-}
-export const AssignedIdentityInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    kind: IdentityKind,
-    type: IdentityManagementType,
-    clientId: S.String,
-    principalId: S.String,
-    tenantId: S.String,
-    subject: S.optional(S.NullOr(S.String)),
-  }),
-).annotate({
-  identifier: "AssignedIdentityInput",
-}) as any as S.Schema<AssignedIdentityInput>;
-
-/** Authorization scheme type. */
-export type BuiltInAuthorizationScheme =
-  | "Default"
-  | "OrganizationScope"
-  | "Channels"
-  | "Custom";
-export const BuiltInAuthorizationScheme = /*@__PURE__*/ S.String;
-
-/** Represents a policy for authorizing applications based on specified authentication and authorization schemes. */
-export interface ApplicationAuthorizationPolicy {
-  /** Authorization scheme type. */
-  type: BuiltInAuthorizationScheme | (string & {});
-}
-export const ApplicationAuthorizationPolicy = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: BuiltInAuthorizationScheme,
-  }),
-).annotate({
-  identifier: "ApplicationAuthorizationPolicy",
-}) as any as S.Schema<ApplicationAuthorizationPolicy>;
-
-/** Traffic routing protocol, used to distribute an application's inbound traffic to its deployments. */
-export type TrafficRoutingProtocol = "FixedRatio";
-export const TrafficRoutingProtocol = /*@__PURE__*/ S.String;
-
-/** Represents a rule for routing traffic to a specific deployment. */
-export interface TrafficRoutingRule {
-  /** The identifier of this traffic routing rule. */
-  ruleId?: string | null;
-  /** A user-provided description for this traffic routing rule. */
-  description?: string | null;
-  /** The unique identifier of the deployment to which traffic is routed by this rule. */
-  deploymentId?: string | null;
-  /** Gets or sets the percentage of traffic allocated to this instance. */
-  trafficPercentage?: number;
-}
-export const TrafficRoutingRule = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ruleId: S.optional(S.NullOr(S.String)),
-    description: S.optional(S.NullOr(S.String)),
-    deploymentId: S.optional(S.NullOr(S.String)),
-    trafficPercentage: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "TrafficRoutingRule",
-}) as any as S.Schema<TrafficRoutingRule>;
-
-/** Gets or sets the collection of traffic routing rules. */
-export type ApplicationTrafficRoutingPolicyRulesList =
-  Array<TrafficRoutingRule>;
-export const ApplicationTrafficRoutingPolicyRulesList = /*@__PURE__*/ S.Array(
-  TrafficRoutingRule,
-) as any as S.Schema<ApplicationTrafficRoutingPolicyRulesList>;
-
-/** Type representing an application traffic policy as a property of an agentic application. */
-export interface ApplicationTrafficRoutingPolicy {
-  /** Methodology used to route traffic to the application's deployments. */
-  protocol?: TrafficRoutingProtocol | (string & {});
-  /** Gets or sets the collection of traffic routing rules. */
-  rules?: ApplicationTrafficRoutingPolicyRulesList | null;
-}
-export const ApplicationTrafficRoutingPolicy = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    protocol: S.optional(TrafficRoutingProtocol),
-    rules: S.optional(S.NullOr(ApplicationTrafficRoutingPolicyRulesList)),
-  }),
-).annotate({
-  identifier: "ApplicationTrafficRoutingPolicy",
-}) as any as S.Schema<ApplicationTrafficRoutingPolicy>;
-
-/** Resource type representing an agentic application as a management construct. */
-export interface AgenticApplicationPropertiesInput {
-  /** The asset description text. */
-  description?: string | null;
-  /** Tag dictionary. Tags can be added, removed, and updated. */
-  tags?: AgenticApplicationPropertiesInputTagsMap | null;
-  /** The display name of the application. */
-  displayName?: string | null;
-  /** The application's dedicated invocation endpoint. */
-  baseUrl?: string | null;
-  /** The list of agent definitions comprising this application, returned as references to the objects under the parent project; use this to obtain a flat list of all agent-version pairs represented by this application. */
-  agents?: AgenticApplicationPropertiesInputAgentsList | null;
-  /** The EntraId Agentic Blueprint of the application. */
-  agentIdentityBlueprint?: AssignedIdentityInput | null;
-  /** The (default) agent instance identity of the application. */
-  defaultInstanceIdentity?: AssignedIdentityInput | null;
-  /** Gets or sets the authorization policy associated with this agentic application instance. */
-  authorizationPolicy?: ApplicationAuthorizationPolicy | null;
-  /** Gets or sets the traffic routing policy for the application's deployments. */
-  trafficRoutingPolicy?: ApplicationTrafficRoutingPolicy | null;
-}
-export const AgenticApplicationPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    description: S.optional(S.NullOr(S.String)),
-    tags: S.optional(S.NullOr(AgenticApplicationPropertiesInputTagsMap)),
-    displayName: S.optional(S.NullOr(S.String)),
-    baseUrl: S.optional(S.NullOr(S.String)),
-    agents: S.optional(S.NullOr(AgenticApplicationPropertiesInputAgentsList)),
-    agentIdentityBlueprint: S.optional(S.NullOr(AssignedIdentityInput)),
-    defaultInstanceIdentity: S.optional(S.NullOr(AssignedIdentityInput)),
-    authorizationPolicy: S.optional(S.NullOr(ApplicationAuthorizationPolicy)),
-    trafficRoutingPolicy: S.optional(S.NullOr(ApplicationTrafficRoutingPolicy)),
-  }),
-).annotate({
-  identifier: "AgenticApplicationPropertiesInput",
-}) as any as S.Schema<AgenticApplicationPropertiesInput>;
-
-export interface AgentApplicationsCreateOrUpdateRequest {
+export interface CreateProjectConnectionRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -3115,143 +3225,32 @@ export interface AgentApplicationsCreateOrUpdateRequest {
   accountName: string;
   /** The name of Cognitive Services account's project. */
   projectName: string;
-  /** Name for the Agent Application. */
-  name: string;
-  /** [Required] Additional attributes of the entity. */
-  properties: AgenticApplicationPropertiesInput;
+  /** Friendly name of the connection */
+  connectionName: string;
+  /** Connection property base schema. */
+  properties: ConnectionPropertiesV2Input;
 }
-export const AgentApplicationsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-      projectName: S.String.pipe(T.Label()),
-      name: S.String.pipe(T.Label()),
-      properties: AgenticApplicationPropertiesInput,
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}/applications/{name}",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-).annotate({
-  identifier: "AgentApplicationsCreateOrUpdateRequest",
-}) as any as S.Schema<AgentApplicationsCreateOrUpdateRequest>;
-
-/** Tag dictionary. Tags can be added, removed, and updated. */
-export type AgenticApplicationPropertiesTagsMap = {
-  [key: string]: string | undefined;
-};
-export const AgenticApplicationPropertiesTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<AgenticApplicationPropertiesTagsMap>;
-
-/** The list of agent definitions comprising this application, returned as references to the objects under the parent project; use this to obtain a flat list of all agent-version pairs represented by this application. */
-export type AgenticApplicationPropertiesAgentsList =
-  Array<AgentReferenceProperties>;
-export const AgenticApplicationPropertiesAgentsList = /*@__PURE__*/ S.Array(
-  AgentReferenceProperties,
-) as any as S.Schema<AgenticApplicationPropertiesAgentsList>;
-
-/** Represents the provisioning state of an identity resource. */
-export type IdentityProvisioningState =
-  | "Creating"
-  | "Updating"
-  | "Succeeded"
-  | "Failed"
-  | "Canceled"
-  | "Deleting";
-export const IdentityProvisioningState = /*@__PURE__*/ S.String;
-
-/** Type representing an identity assignment */
-export interface AssignedIdentity {
-  /** Specifies the kind of Entra identity described by this object. */
-  kind: IdentityKind;
-  /** Enumeration of identity types, from the perspective of management. */
-  type: IdentityManagementType;
-  /** The client ID of the identity. */
-  clientId: string;
-  /** The principal ID of the identity. */
-  principalId: string;
-  /** The tenant ID of the identity. */
-  tenantId: string;
-  /** The subject of this identity assignment. */
-  subject?: string | null;
-  /** Represents the provisioning state of an identity resource. */
-  provisioningState?: IdentityProvisioningState;
-}
-export const AssignedIdentity = /*@__PURE__*/ S.suspend(() =>
+export const CreateProjectConnectionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    kind: IdentityKind,
-    type: IdentityManagementType,
-    clientId: S.String,
-    principalId: S.String,
-    tenantId: S.String,
-    subject: S.optional(S.NullOr(S.String)),
-    provisioningState: S.optional(IdentityProvisioningState),
-  }),
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    projectName: S.String.pipe(T.Label()),
+    connectionName: S.String.pipe(T.Label()),
+    properties: ConnectionPropertiesV2Input,
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}/connections/{connectionName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
 ).annotate({
-  identifier: "AssignedIdentity",
-}) as any as S.Schema<AssignedIdentity>;
+  identifier: "CreateProjectConnectionRequest",
+}) as any as S.Schema<CreateProjectConnectionRequest>;
 
-/** Provisioning state of an agentic application. */
-export type AgenticApplicationProvisioningState =
-  | "Succeeded"
-  | "Failed"
-  | "Canceled"
-  | "Creating"
-  | "Updating"
-  | "Deleting";
-export const AgenticApplicationProvisioningState = /*@__PURE__*/ S.String;
-
-/** Resource type representing an agentic application as a management construct. */
-export interface AgenticApplicationProperties {
-  /** The asset description text. */
-  description?: string | null;
-  /** Tag dictionary. Tags can be added, removed, and updated. */
-  tags?: AgenticApplicationPropertiesTagsMap | null;
-  /** The display name of the application. */
-  displayName?: string | null;
-  /** The application's dedicated invocation endpoint. */
-  baseUrl?: string | null;
-  /** The list of agent definitions comprising this application, returned as references to the objects under the parent project; use this to obtain a flat list of all agent-version pairs represented by this application. */
-  agents?: AgenticApplicationPropertiesAgentsList | null;
-  /** The EntraId Agentic Blueprint of the application. */
-  agentIdentityBlueprint?: AssignedIdentity | null;
-  /** The (default) agent instance identity of the application. */
-  defaultInstanceIdentity?: AssignedIdentity | null;
-  /** Gets or sets the authorization policy associated with this agentic application instance. */
-  authorizationPolicy?: ApplicationAuthorizationPolicy | null;
-  /** Gets or sets the traffic routing policy for the application's deployments. */
-  trafficRoutingPolicy?: ApplicationTrafficRoutingPolicy | null;
-  /** Provisioning state of the application. */
-  provisioningState?: AgenticApplicationProvisioningState;
-  /** Enabledstate of the application. */
-  isEnabled?: boolean;
-}
-export const AgenticApplicationProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    description: S.optional(S.NullOr(S.String)),
-    tags: S.optional(S.NullOr(AgenticApplicationPropertiesTagsMap)),
-    displayName: S.optional(S.NullOr(S.String)),
-    baseUrl: S.optional(S.NullOr(S.String)),
-    agents: S.optional(S.NullOr(AgenticApplicationPropertiesAgentsList)),
-    agentIdentityBlueprint: S.optional(S.NullOr(AssignedIdentity)),
-    defaultInstanceIdentity: S.optional(S.NullOr(AssignedIdentity)),
-    authorizationPolicy: S.optional(S.NullOr(ApplicationAuthorizationPolicy)),
-    trafficRoutingPolicy: S.optional(S.NullOr(ApplicationTrafficRoutingPolicy)),
-    provisioningState: S.optional(AgenticApplicationProvisioningState),
-    isEnabled: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "AgenticApplicationProperties",
-}) as any as S.Schema<AgenticApplicationProperties>;
-
-export interface AgentApplicationsCreateOrUpdateResponse {
+export interface CreateProjectConnectionResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -3260,2326 +3259,20 @@ export interface AgentApplicationsCreateOrUpdateResponse {
   type?: string;
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
-  /** [Required] Additional attributes of the entity. */
-  properties: AgenticApplicationProperties;
+  /** Connection property base schema. */
+  properties: ConnectionPropertiesV2;
 }
-export const AgentApplicationsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: AgenticApplicationProperties,
-    }),
-).annotate({
-  identifier: "AgentApplicationsCreateOrUpdateResponse",
-}) as any as S.Schema<AgentApplicationsCreateOrUpdateResponse>;
-
-export interface AgentApplicationsDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-  /** The name of Cognitive Services account's project. */
-  projectName: string;
-  /** Name for the Agent Application. */
-  name: string;
-}
-export const AgentApplicationsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    projectName: S.String.pipe(T.Label()),
-    name: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}/applications/{name}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "AgentApplicationsDeleteRequest",
-}) as any as S.Schema<AgentApplicationsDeleteRequest>;
-
-export interface AgentApplicationsDeleteResponse {}
-export const AgentApplicationsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "AgentApplicationsDeleteResponse",
-}) as any as S.Schema<AgentApplicationsDeleteResponse>;
-
-export interface AgentApplicationsDisableRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-  /** The name of Cognitive Services account's project. */
-  projectName: string;
-  /** Name for the Agent Application. */
-  name: string;
-}
-export const AgentApplicationsDisableRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    projectName: S.String.pipe(T.Label()),
-    name: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}/applications/{name}/disable",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "AgentApplicationsDisableRequest",
-}) as any as S.Schema<AgentApplicationsDisableRequest>;
-
-export interface AgentApplicationsDisableResponse {}
-export const AgentApplicationsDisableResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "AgentApplicationsDisableResponse",
-}) as any as S.Schema<AgentApplicationsDisableResponse>;
-
-export interface AgentApplicationsEnableRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-  /** The name of Cognitive Services account's project. */
-  projectName: string;
-  /** Name for the Agent Application. */
-  name: string;
-}
-export const AgentApplicationsEnableRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    projectName: S.String.pipe(T.Label()),
-    name: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}/applications/{name}/enable",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "AgentApplicationsEnableRequest",
-}) as any as S.Schema<AgentApplicationsEnableRequest>;
-
-export interface AgentApplicationsEnableResponse {}
-export const AgentApplicationsEnableResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "AgentApplicationsEnableResponse",
-}) as any as S.Schema<AgentApplicationsEnableResponse>;
-
-export interface AgentApplicationsGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-  /** The name of Cognitive Services account's project. */
-  projectName: string;
-  /** Name for the Agent Application. */
-  name: string;
-}
-export const AgentApplicationsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    projectName: S.String.pipe(T.Label()),
-    name: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}/applications/{name}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "AgentApplicationsGetRequest",
-}) as any as S.Schema<AgentApplicationsGetRequest>;
-
-export interface AgentApplicationsGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** [Required] Additional attributes of the entity. */
-  properties: AgenticApplicationProperties;
-}
-export const AgentApplicationsGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const CreateProjectConnectionResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    properties: AgenticApplicationProperties,
+    properties: ConnectionPropertiesV2,
   }),
 ).annotate({
-  identifier: "AgentApplicationsGetResponse",
-}) as any as S.Schema<AgentApplicationsGetResponse>;
-
-export type AgentApplicationsListRequestNamesList = Array<string>;
-export const AgentApplicationsListRequestNamesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<AgentApplicationsListRequestNamesList>;
-
-export interface AgentApplicationsListRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-  /** The name of Cognitive Services account's project. */
-  projectName: string;
-  /** Number of agent applications to be retrieved in a page of results. */
-  count?: number;
-  /** Number of agent applications to skip. */
-  _skip?: number;
-  /** Continuation token for pagination. */
-  _skipToken?: string;
-  /** Names of agent applications to retrieve. */
-  names?: AgentApplicationsListRequestNamesList;
-  /** Search text for filtering agent applications. */
-  searchText?: string;
-  /** Field to order by. */
-  orderBy?: string;
-  /** Whether to order in ascending order. */
-  orderByAsc?: boolean;
-}
-export const AgentApplicationsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    projectName: S.String.pipe(T.Label()),
-    count: S.optional(S.Number.pipe(T.Query())),
-    _skip: S.optional(S.Number.pipe(T.Query("$skip"))),
-    _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
-    names: S.optional(AgentApplicationsListRequestNamesList.pipe(T.Query())),
-    searchText: S.optional(S.String.pipe(T.Query())),
-    orderBy: S.optional(S.String.pipe(T.Query())),
-    orderByAsc: S.optional(S.Boolean.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}/applications",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "AgentApplicationsListRequest",
-}) as any as S.Schema<AgentApplicationsListRequest>;
-
-/** Agent Application resource */
-export interface AgentApplication {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** [Required] Additional attributes of the entity. */
-  properties: AgenticApplicationProperties;
-}
-export const AgentApplication = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: AgenticApplicationProperties,
-  }),
-).annotate({
-  identifier: "AgentApplication",
-}) as any as S.Schema<AgentApplication>;
-
-/** An array of objects of type Agent Application. */
-export type AgentApplicationResourceArmPaginatedResultValueList =
-  Array<AgentApplication>;
-export const AgentApplicationResourceArmPaginatedResultValueList =
-  /*@__PURE__*/ S.Array(
-    AgentApplication,
-  ) as any as S.Schema<AgentApplicationResourceArmPaginatedResultValueList>;
-
-/** A paginated list of Agent Application entities. */
-export interface AgentApplicationResourceArmPaginatedResult {
-  /** The link to the next page of Agent Application objects. If null, there are no additional pages. */
-  nextLink?: string | null;
-  /** An array of objects of type Agent Application. */
-  value?: AgentApplicationResourceArmPaginatedResultValueList;
-}
-export const AgentApplicationResourceArmPaginatedResult =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      nextLink: S.optional(S.NullOr(S.String)),
-      value: S.optional(AgentApplicationResourceArmPaginatedResultValueList),
-    }),
-  ).annotate({
-    identifier: "AgentApplicationResourceArmPaginatedResult",
-  }) as any as S.Schema<AgentApplicationResourceArmPaginatedResult>;
-
-export interface AgentApplicationsListAgentsRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-  /** The name of Cognitive Services account's project. */
-  projectName: string;
-  /** Name for the Agent Application. */
-  name: string;
-}
-export const AgentApplicationsListAgentsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    projectName: S.String.pipe(T.Label()),
-    name: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}/applications/{name}/listAgents",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "AgentApplicationsListAgentsRequest",
-}) as any as S.Schema<AgentApplicationsListAgentsRequest>;
-
-/** Agent Reference resource */
-export interface AgentReference {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** [Required] Additional attributes of the entity. */
-  properties: AgentReferenceProperties;
-}
-export const AgentReference = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: AgentReferenceProperties,
-  }),
-).annotate({ identifier: "AgentReference" }) as any as S.Schema<AgentReference>;
-
-/** An array of objects of type Agent Reference. */
-export type AgentReferenceResourceArmPaginatedResultValueList =
-  Array<AgentReference>;
-export const AgentReferenceResourceArmPaginatedResultValueList =
-  /*@__PURE__*/ S.Array(
-    AgentReference,
-  ) as any as S.Schema<AgentReferenceResourceArmPaginatedResultValueList>;
-
-/** A paginated list of Agent Reference entities. */
-export interface AgentReferenceResourceArmPaginatedResult {
-  /** The link to the next page of Agent Reference objects. If null, there are no additional pages. */
-  nextLink?: string | null;
-  /** An array of objects of type Agent Reference. */
-  value?: AgentReferenceResourceArmPaginatedResultValueList | null;
-}
-export const AgentReferenceResourceArmPaginatedResult = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      nextLink: S.optional(S.NullOr(S.String)),
-      value: S.optional(
-        S.NullOr(AgentReferenceResourceArmPaginatedResultValueList),
-      ),
-    }),
-).annotate({
-  identifier: "AgentReferenceResourceArmPaginatedResult",
-}) as any as S.Schema<AgentReferenceResourceArmPaginatedResult>;
-
-/** Tag dictionary. Tags can be added, removed, and updated. */
-export type AgentDeploymentPropertiesInputTagsMap = {
-  [key: string]: string | undefined;
-};
-export const AgentDeploymentPropertiesInputTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<AgentDeploymentPropertiesInputTagsMap>;
-
-/** Current operational state of the agentic functionality represented by this deployment. */
-export type AgentDeploymentState =
-  | "Starting"
-  | "Running"
-  | "Stopping"
-  | "Stopped"
-  | "Failed"
-  | "Deleting"
-  | "Deleted"
-  | "Updating";
-export const AgentDeploymentState = /*@__PURE__*/ S.String;
-
-/** Protocol used by the agent/exposed by a deployment. */
-export type AgentProtocol = "Agent" | "A2A" | "Responses";
-export const AgentProtocol = /*@__PURE__*/ S.String;
-
-/** Type modeling the protocol and version used by an agent/exposed by a deployment. */
-export interface AgentProtocolVersion {
-  /** The protocol used by the agent/exposed by a deployment. */
-  protocol?: AgentProtocol | (string & {});
-  /** The version of the protocol. */
-  version?: string | null;
-}
-export const AgentProtocolVersion = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    protocol: S.optional(AgentProtocol),
-    version: S.optional(S.NullOr(S.String)),
-  }),
-).annotate({
-  identifier: "AgentProtocolVersion",
-}) as any as S.Schema<AgentProtocolVersion>;
-
-/** Gets or sets the supported protocol types and versions exposed by this deployment. */
-export type AgentDeploymentPropertiesInputProtocolsList =
-  Array<AgentProtocolVersion>;
-export const AgentDeploymentPropertiesInputProtocolsList =
-  /*@__PURE__*/ S.Array(
-    AgentProtocolVersion,
-  ) as any as S.Schema<AgentDeploymentPropertiesInputProtocolsList>;
-
-/** Type modeling a reference to a version of an agent definition. */
-export interface VersionedAgentReference {
-  /** Gets the agent's unique identifier within the organization (subscription). */
-  agentId?: string | null;
-  /** Gets the agent's name (unique within the project/app). */
-  agentName?: string | null;
-  /** Gets the agent's version (unique for each agent lineage). */
-  agentVersion?: string | null;
-}
-export const VersionedAgentReference = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    agentId: S.optional(S.NullOr(S.String)),
-    agentName: S.optional(S.NullOr(S.String)),
-    agentVersion: S.optional(S.NullOr(S.String)),
-  }),
-).annotate({
-  identifier: "VersionedAgentReference",
-}) as any as S.Schema<VersionedAgentReference>;
-
-/** Returns a flat list of agent:version deployed in this deployment. */
-export type AgentDeploymentPropertiesInputAgentsList =
-  Array<VersionedAgentReference>;
-export const AgentDeploymentPropertiesInputAgentsList = /*@__PURE__*/ S.Array(
-  VersionedAgentReference,
-) as any as S.Schema<AgentDeploymentPropertiesInputAgentsList>;
-
-/** Specifies the type of deployment for an agent, indicating how the underlying compute and network infrastructure is managed. */
-export type AgentDeploymentType = "Managed" | "Hosted" | "Custom";
-export const AgentDeploymentType = /*@__PURE__*/ S.String;
-
-/** Type representing an agent deployment as a management construct. */
-export interface AgentDeploymentPropertiesInput {
-  /** The asset description text. */
-  description?: string | null;
-  /** Tag dictionary. Tags can be added, removed, and updated. */
-  tags?: AgentDeploymentPropertiesInputTagsMap | null;
-  /** Gets or sets the display name of the deployment. */
-  displayName?: string | null;
-  /** Gets or sets the unique identifier of the deployment. */
-  deploymentId?: string | null;
-  /** Gets or sets the current operational state of the deployment (and, intrinsically, of the comprising agents). */
-  state?: AgentDeploymentState | (string & {}) | null;
-  /** Gets or sets the supported protocol types and versions exposed by this deployment. */
-  protocols?: AgentDeploymentPropertiesInputProtocolsList | null;
-  /** Returns a flat list of agent:version deployed in this deployment. */
-  agents?: AgentDeploymentPropertiesInputAgentsList | null;
-  /** Gets or sets the type of deployment for the agent. */
-  deploymentType: AgentDeploymentType | (string & {});
-}
-export const AgentDeploymentPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    description: S.optional(S.NullOr(S.String)),
-    tags: S.optional(S.NullOr(AgentDeploymentPropertiesInputTagsMap)),
-    displayName: S.optional(S.NullOr(S.String)),
-    deploymentId: S.optional(S.NullOr(S.String)),
-    state: S.optional(S.NullOr(AgentDeploymentState)),
-    protocols: S.optional(
-      S.NullOr(AgentDeploymentPropertiesInputProtocolsList),
-    ),
-    agents: S.optional(S.NullOr(AgentDeploymentPropertiesInputAgentsList)),
-    deploymentType: AgentDeploymentType,
-  }),
-).annotate({
-  identifier: "AgentDeploymentPropertiesInput",
-}) as any as S.Schema<AgentDeploymentPropertiesInput>;
-
-export interface AgentDeploymentsCreateOrUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-  /** The name of Cognitive Services account's project. */
-  projectName: string;
-  /** The name of the application associated with the Cognitive Services Account */
-  appName: string;
-  /** The name of the deployment associated with the Cognitive Services Account */
-  deploymentName: string;
-  /** [Required] Additional attributes of the entity. */
-  properties: AgentDeploymentPropertiesInput;
-}
-export const AgentDeploymentsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-      projectName: S.String.pipe(T.Label()),
-      appName: S.String.pipe(T.Label()),
-      deploymentName: S.String.pipe(T.Label()),
-      properties: AgentDeploymentPropertiesInput,
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}/applications/{appName}/agentDeployments/{deploymentName}",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-).annotate({
-  identifier: "AgentDeploymentsCreateOrUpdateRequest",
-}) as any as S.Schema<AgentDeploymentsCreateOrUpdateRequest>;
-
-/** Tag dictionary. Tags can be added, removed, and updated. */
-export type AgentDeploymentPropertiesTagsMap = {
-  [key: string]: string | undefined;
-};
-export const AgentDeploymentPropertiesTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<AgentDeploymentPropertiesTagsMap>;
-
-/** Gets or sets the supported protocol types and versions exposed by this deployment. */
-export type AgentDeploymentPropertiesProtocolsList =
-  Array<AgentProtocolVersion>;
-export const AgentDeploymentPropertiesProtocolsList = /*@__PURE__*/ S.Array(
-  AgentProtocolVersion,
-) as any as S.Schema<AgentDeploymentPropertiesProtocolsList>;
-
-/** Returns a flat list of agent:version deployed in this deployment. */
-export type AgentDeploymentPropertiesAgentsList =
-  Array<VersionedAgentReference>;
-export const AgentDeploymentPropertiesAgentsList = /*@__PURE__*/ S.Array(
-  VersionedAgentReference,
-) as any as S.Schema<AgentDeploymentPropertiesAgentsList>;
-
-/** Provisioning state of an agentic deployment, as an Azure resource. */
-export type AgentDeploymentProvisioningState =
-  | "Succeeded"
-  | "Failed"
-  | "Canceled"
-  | "Creating"
-  | "Updating"
-  | "Deleting";
-export const AgentDeploymentProvisioningState = /*@__PURE__*/ S.String;
-
-/** Type representing an agent deployment as a management construct. */
-export interface AgentDeploymentProperties {
-  /** The asset description text. */
-  description?: string | null;
-  /** Tag dictionary. Tags can be added, removed, and updated. */
-  tags?: AgentDeploymentPropertiesTagsMap | null;
-  /** Gets or sets the display name of the deployment. */
-  displayName?: string | null;
-  /** Gets or sets the unique identifier of the deployment. */
-  deploymentId?: string | null;
-  /** Gets or sets the current operational state of the deployment (and, intrinsically, of the comprising agents). */
-  state?: AgentDeploymentState | null;
-  /** Gets or sets the supported protocol types and versions exposed by this deployment. */
-  protocols?: AgentDeploymentPropertiesProtocolsList | null;
-  /** Returns a flat list of agent:version deployed in this deployment. */
-  agents?: AgentDeploymentPropertiesAgentsList | null;
-  /** Gets or sets the type of deployment for the agent. */
-  deploymentType: AgentDeploymentType;
-  /** Gets or sets the provisioning state of the agent deployment. */
-  provisioningState?: AgentDeploymentProvisioningState;
-}
-export const AgentDeploymentProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    description: S.optional(S.NullOr(S.String)),
-    tags: S.optional(S.NullOr(AgentDeploymentPropertiesTagsMap)),
-    displayName: S.optional(S.NullOr(S.String)),
-    deploymentId: S.optional(S.NullOr(S.String)),
-    state: S.optional(S.NullOr(AgentDeploymentState)),
-    protocols: S.optional(S.NullOr(AgentDeploymentPropertiesProtocolsList)),
-    agents: S.optional(S.NullOr(AgentDeploymentPropertiesAgentsList)),
-    deploymentType: AgentDeploymentType,
-    provisioningState: S.optional(AgentDeploymentProvisioningState),
-  }),
-).annotate({
-  identifier: "AgentDeploymentProperties",
-}) as any as S.Schema<AgentDeploymentProperties>;
-
-export interface AgentDeploymentsCreateOrUpdateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** [Required] Additional attributes of the entity. */
-  properties: AgentDeploymentProperties;
-}
-export const AgentDeploymentsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: AgentDeploymentProperties,
-    }),
-).annotate({
-  identifier: "AgentDeploymentsCreateOrUpdateResponse",
-}) as any as S.Schema<AgentDeploymentsCreateOrUpdateResponse>;
-
-export interface AgentDeploymentsDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-  /** The name of Cognitive Services account's project. */
-  projectName: string;
-  /** The name of the application associated with the Cognitive Services Account */
-  appName: string;
-  /** The name of the deployment associated with the Cognitive Services Account */
-  deploymentName: string;
-}
-export const AgentDeploymentsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    projectName: S.String.pipe(T.Label()),
-    appName: S.String.pipe(T.Label()),
-    deploymentName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}/applications/{appName}/agentDeployments/{deploymentName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "AgentDeploymentsDeleteRequest",
-}) as any as S.Schema<AgentDeploymentsDeleteRequest>;
-
-export interface AgentDeploymentsDeleteResponse {}
-export const AgentDeploymentsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "AgentDeploymentsDeleteResponse",
-}) as any as S.Schema<AgentDeploymentsDeleteResponse>;
-
-export interface AgentDeploymentsGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-  /** The name of Cognitive Services account's project. */
-  projectName: string;
-  /** The name of the application associated with the Cognitive Services Account */
-  appName: string;
-  /** The name of the deployment associated with the Cognitive Services Account */
-  deploymentName: string;
-}
-export const AgentDeploymentsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    projectName: S.String.pipe(T.Label()),
-    appName: S.String.pipe(T.Label()),
-    deploymentName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}/applications/{appName}/agentDeployments/{deploymentName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "AgentDeploymentsGetRequest",
-}) as any as S.Schema<AgentDeploymentsGetRequest>;
-
-export interface AgentDeploymentsGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** [Required] Additional attributes of the entity. */
-  properties: AgentDeploymentProperties;
-}
-export const AgentDeploymentsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: AgentDeploymentProperties,
-  }),
-).annotate({
-  identifier: "AgentDeploymentsGetResponse",
-}) as any as S.Schema<AgentDeploymentsGetResponse>;
-
-export type AgentDeploymentsListRequestNamesList = Array<string>;
-export const AgentDeploymentsListRequestNamesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<AgentDeploymentsListRequestNamesList>;
-
-export interface AgentDeploymentsListRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-  /** The name of Cognitive Services account's project. */
-  projectName: string;
-  /** The name of the application associated with the Cognitive Services Account */
-  appName: string;
-  /** Number of agent deployments to be retrieved in a page of results. */
-  count?: number;
-  /** Continuation token for pagination. */
-  _skipToken?: string;
-  /** Names of agent deployments to retrieve. */
-  names?: AgentDeploymentsListRequestNamesList;
-  /** Field to order by. */
-  orderBy?: string;
-  /** Whether to order in ascending order. */
-  orderByAsc?: boolean;
-}
-export const AgentDeploymentsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    projectName: S.String.pipe(T.Label()),
-    appName: S.String.pipe(T.Label()),
-    count: S.optional(S.Number.pipe(T.Query())),
-    _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
-    names: S.optional(AgentDeploymentsListRequestNamesList.pipe(T.Query())),
-    orderBy: S.optional(S.String.pipe(T.Query())),
-    orderByAsc: S.optional(S.Boolean.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}/applications/{appName}/agentDeployments",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "AgentDeploymentsListRequest",
-}) as any as S.Schema<AgentDeploymentsListRequest>;
-
-/** Agent Deployment resource */
-export interface AgentDeployment {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** [Required] Additional attributes of the entity. */
-  properties: AgentDeploymentProperties;
-}
-export const AgentDeployment = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: AgentDeploymentProperties,
-  }),
-).annotate({
-  identifier: "AgentDeployment",
-}) as any as S.Schema<AgentDeployment>;
-
-/** An array of objects of type Agent Deployment. */
-export type AgentDeploymentResourceArmPaginatedResultValueList =
-  Array<AgentDeployment>;
-export const AgentDeploymentResourceArmPaginatedResultValueList =
-  /*@__PURE__*/ S.Array(
-    AgentDeployment,
-  ) as any as S.Schema<AgentDeploymentResourceArmPaginatedResultValueList>;
-
-/** A paginated list of Agent Deployment entities. */
-export interface AgentDeploymentResourceArmPaginatedResult {
-  /** The link to the next page of Agent Deployment objects. If null, there are no additional pages. */
-  nextLink?: string | null;
-  /** An array of objects of type Agent Deployment. */
-  value?: AgentDeploymentResourceArmPaginatedResultValueList;
-}
-export const AgentDeploymentResourceArmPaginatedResult =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      nextLink: S.optional(S.NullOr(S.String)),
-      value: S.optional(AgentDeploymentResourceArmPaginatedResultValueList),
-    }),
-  ).annotate({
-    identifier: "AgentDeploymentResourceArmPaginatedResult",
-  }) as any as S.Schema<AgentDeploymentResourceArmPaginatedResult>;
-
-export interface AgentDeploymentsStartRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-  /** The name of Cognitive Services account's project. */
-  projectName: string;
-  /** The name of the application associated with the Cognitive Services Account */
-  appName: string;
-  /** The name of the deployment associated with the Cognitive Services Account */
-  deploymentName: string;
-}
-export const AgentDeploymentsStartRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    projectName: S.String.pipe(T.Label()),
-    appName: S.String.pipe(T.Label()),
-    deploymentName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}/applications/{appName}/agentDeployments/{deploymentName}/start",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "AgentDeploymentsStartRequest",
-}) as any as S.Schema<AgentDeploymentsStartRequest>;
-
-export interface AgentDeploymentsStartResponse {}
-export const AgentDeploymentsStartResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "AgentDeploymentsStartResponse",
-}) as any as S.Schema<AgentDeploymentsStartResponse>;
-
-export interface AgentDeploymentsStopRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-  /** The name of Cognitive Services account's project. */
-  projectName: string;
-  /** The name of the application associated with the Cognitive Services Account */
-  appName: string;
-  /** The name of the deployment associated with the Cognitive Services Account */
-  deploymentName: string;
-}
-export const AgentDeploymentsStopRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    projectName: S.String.pipe(T.Label()),
-    appName: S.String.pipe(T.Label()),
-    deploymentName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}/applications/{appName}/agentDeployments/{deploymentName}/stop",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "AgentDeploymentsStopRequest",
-}) as any as S.Schema<AgentDeploymentsStopRequest>;
-
-export interface AgentDeploymentsStopResponse {}
-export const AgentDeploymentsStopResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "AgentDeploymentsStopResponse",
-}) as any as S.Schema<AgentDeploymentsStopResponse>;
-
-/** Dictionary, Model Capacity Calculator Workload Parameters. */
-export interface ModelCapacityCalculatorWorkloadRequestParam {
-  /** Average prompt tokens. */
-  avgPromptTokens?: number;
-  /** Average generated tokens. */
-  avgGeneratedTokens?: number;
-}
-export const ModelCapacityCalculatorWorkloadRequestParam =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      avgPromptTokens: S.optional(S.Number),
-      avgGeneratedTokens: S.optional(S.Number),
-    }),
-  ).annotate({
-    identifier: "ModelCapacityCalculatorWorkloadRequestParam",
-  }) as any as S.Schema<ModelCapacityCalculatorWorkloadRequestParam>;
-
-/** Model Capacity Calculator Workload. */
-export interface ModelCapacityCalculatorWorkload {
-  /** Request per minute. */
-  requestPerMinute?: number;
-  /** Dictionary, Model Capacity Calculator Workload Parameters. */
-  requestParameters?: ModelCapacityCalculatorWorkloadRequestParam;
-}
-export const ModelCapacityCalculatorWorkload = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    requestPerMinute: S.optional(S.Number),
-    requestParameters: S.optional(ModelCapacityCalculatorWorkloadRequestParam),
-  }),
-).annotate({
-  identifier: "ModelCapacityCalculatorWorkload",
-}) as any as S.Schema<ModelCapacityCalculatorWorkload>;
-
-/** List of Model Capacity Calculator Workload. */
-export type CalculateModelCapacityRequestWorkloadsList =
-  Array<ModelCapacityCalculatorWorkload>;
-export const CalculateModelCapacityRequestWorkloadsList = /*@__PURE__*/ S.Array(
-  ModelCapacityCalculatorWorkload,
-) as any as S.Schema<CalculateModelCapacityRequestWorkloadsList>;
-
-export interface CalculateModelCapacityRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** Properties of Cognitive Services account deployment model. */
-  model?: DeploymentModel;
-  /** The name of SKU. */
-  skuName?: string;
-  /** List of Model Capacity Calculator Workload. */
-  workloads?: CalculateModelCapacityRequestWorkloadsList;
-}
-export const CalculateModelCapacityRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    model: S.optional(DeploymentModel),
-    skuName: S.optional(S.String),
-    workloads: S.optional(CalculateModelCapacityRequestWorkloadsList),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/calculateModelCapacity",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "CalculateModelCapacityRequest",
-}) as any as S.Schema<CalculateModelCapacityRequest>;
-
-/** Model Estimated Capacity. */
-export interface CalculateModelCapacityResultEstimatedCapacity {
-  value?: number;
-  deployableValue?: number;
-}
-export const CalculateModelCapacityResultEstimatedCapacity =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      value: S.optional(S.Number),
-      deployableValue: S.optional(S.Number),
-    }),
-  ).annotate({
-    identifier: "CalculateModelCapacityResultEstimatedCapacity",
-  }) as any as S.Schema<CalculateModelCapacityResultEstimatedCapacity>;
-
-/** Calculate Model Capacity result. */
-export interface CalculateModelCapacityResult {
-  /** Properties of Cognitive Services account deployment model. */
-  model?: DeploymentModel;
-  skuName?: string;
-  /** Model Estimated Capacity. */
-  estimatedCapacity?: CalculateModelCapacityResultEstimatedCapacity;
-}
-export const CalculateModelCapacityResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    model: S.optional(DeploymentModel),
-    skuName: S.optional(S.String),
-    estimatedCapacity: S.optional(
-      CalculateModelCapacityResultEstimatedCapacity,
-    ),
-  }),
-).annotate({
-  identifier: "CalculateModelCapacityResult",
-}) as any as S.Schema<CalculateModelCapacityResult>;
-
-export interface CheckDomainAvailabilityRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The subdomain name to use. */
-  subdomainName: string;
-  /** The Type of the resource. */
-  type: string;
-  /** The kind (type) of cognitive service account. */
-  kind?: string;
-}
-export const CheckDomainAvailabilityRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    subdomainName: S.String,
-    type: S.String,
-    kind: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/checkDomainAvailability",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "CheckDomainAvailabilityRequest",
-}) as any as S.Schema<CheckDomainAvailabilityRequest>;
-
-/** Domain availability. */
-export interface DomainAvailability {
-  /** Indicates the given SKU is available or not. */
-  isSubdomainAvailable?: boolean;
-  /** Reason why the SKU is not available. */
-  reason?: string;
-  /** The subdomain name to use. */
-  subdomainName?: string;
-  /** The Type of the resource. */
-  type?: string;
-  /** The kind (type) of cognitive service account. */
-  kind?: string;
-}
-export const DomainAvailability = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    isSubdomainAvailable: S.optional(S.Boolean),
-    reason: S.optional(S.String),
-    subdomainName: S.optional(S.String),
-    type: S.optional(S.String),
-    kind: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DomainAvailability",
-}) as any as S.Schema<DomainAvailability>;
-
-/** The SKU of the resource. */
-export type CheckSkuAvailabilityRequestSkusList = Array<string>;
-export const CheckSkuAvailabilityRequestSkusList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<CheckSkuAvailabilityRequestSkusList>;
-
-export interface CheckSkuAvailabilityRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of Azure region. */
-  location: string;
-  /** The SKU of the resource. */
-  skus: CheckSkuAvailabilityRequestSkusList;
-  /** The kind (type) of cognitive service account. */
-  kind: string;
-  /** The Type of the resource. */
-  type: string;
-}
-export const CheckSkuAvailabilityRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    location: S.String.pipe(T.Label()),
-    skus: CheckSkuAvailabilityRequestSkusList,
-    kind: S.String,
-    type: S.String,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/locations/{location}/checkSkuAvailability",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "CheckSkuAvailabilityRequest",
-}) as any as S.Schema<CheckSkuAvailabilityRequest>;
-
-/** SKU availability. */
-export interface SkuAvailability {
-  /** The kind (type) of cognitive service account. */
-  kind?: string;
-  /** The Type of the resource. */
-  type?: string;
-  /** The name of SKU. */
-  skuName?: string;
-  /** Indicates the given SKU is available or not. */
-  skuAvailable?: boolean;
-  /** Reason why the SKU is not available. */
-  reason?: string;
-  /** Additional error message. */
-  message?: string;
-}
-export const SkuAvailability = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    kind: S.optional(S.String),
-    type: S.optional(S.String),
-    skuName: S.optional(S.String),
-    skuAvailable: S.optional(S.Boolean),
-    reason: S.optional(S.String),
-    message: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SkuAvailability",
-}) as any as S.Schema<SkuAvailability>;
-
-/** Check SKU availability result list. */
-export type SkuAvailabilityListResultValueList = Array<SkuAvailability>;
-export const SkuAvailabilityListResultValueList = /*@__PURE__*/ S.Array(
-  SkuAvailability,
-) as any as S.Schema<SkuAvailabilityListResultValueList>;
-
-/** Check SKU availability result list. */
-export interface SkuAvailabilityListResult {
-  /** Check SKU availability result list. */
-  value?: SkuAvailabilityListResultValueList;
-}
-export const SkuAvailabilityListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(SkuAvailabilityListResultValueList),
-  }),
-).annotate({
-  identifier: "SkuAvailabilityListResult",
-}) as any as S.Schema<SkuAvailabilityListResult>;
-
-/** Account hosting model. */
-export type HostingModel =
-  | "Web"
-  | "ConnectedContainer"
-  | "DisconnectedContainer"
-  | "ProvisionedWeb";
-export const HostingModel = /*@__PURE__*/ S.String;
-
-/** Cognitive Services account commitment period. */
-export interface CommitmentPeriodInput {
-  /** Commitment period commitment tier. */
-  tier?: string;
-  /** Commitment period commitment count. */
-  count?: number;
-}
-export const CommitmentPeriodInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    tier: S.optional(S.String),
-    count: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "CommitmentPeriodInput",
-}) as any as S.Schema<CommitmentPeriodInput>;
-
-/** Properties of Cognitive Services account commitment plan. */
-export interface CommitmentPlanPropertiesInput {
-  /** Commitment plan guid. */
-  commitmentPlanGuid?: string;
-  /** Account hosting model. */
-  hostingModel?: HostingModel | (string & {});
-  /** Commitment plan type. */
-  planType?: string;
-  /** Cognitive Services account commitment period. */
-  current?: CommitmentPeriodInput;
-  /** AutoRenew commitment plan. */
-  autoRenew?: boolean;
-  /** Cognitive Services account commitment period. */
-  next?: CommitmentPeriodInput;
-}
-export const CommitmentPlanPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    commitmentPlanGuid: S.optional(S.String),
-    hostingModel: S.optional(HostingModel),
-    planType: S.optional(S.String),
-    current: S.optional(CommitmentPeriodInput),
-    autoRenew: S.optional(S.Boolean),
-    next: S.optional(CommitmentPeriodInput),
-  }),
-).annotate({
-  identifier: "CommitmentPlanPropertiesInput",
-}) as any as S.Schema<CommitmentPlanPropertiesInput>;
-
-/** Resource tags. */
-export type CommitmentPlansCreateOrUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const CommitmentPlansCreateOrUpdateRequestTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<CommitmentPlansCreateOrUpdateRequestTagsMap>;
-
-export interface CommitmentPlansCreateOrUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-  /** The name of the commitmentPlan associated with the Cognitive Services Account */
-  commitmentPlanName: string;
-  /** Properties of Cognitive Services account commitment plan. */
-  properties?: CommitmentPlanPropertiesInput;
-  /** Resource tags. */
-  tags?: CommitmentPlansCreateOrUpdateRequestTagsMap;
-  /** The geo-location where the resource lives */
-  location?: string;
-  /** The kind (type) of cognitive service account. */
-  kind?: string;
-  /** The resource model definition representing SKU */
-  sku?: Sku;
-}
-export const CommitmentPlansCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-      commitmentPlanName: S.String.pipe(T.Label()),
-      properties: S.optional(CommitmentPlanPropertiesInput),
-      tags: S.optional(CommitmentPlansCreateOrUpdateRequestTagsMap),
-      location: S.optional(S.String),
-      kind: S.optional(S.String),
-      sku: S.optional(Sku),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/commitmentPlans/{commitmentPlanName}",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-).annotate({
-  identifier: "CommitmentPlansCreateOrUpdateRequest",
-}) as any as S.Schema<CommitmentPlansCreateOrUpdateRequest>;
-
-/** Gets the status of the resource at the time the operation was called. */
-export type CommitmentPlanProvisioningState =
-  | "Accepted"
-  | "Creating"
-  | "Deleting"
-  | "Moving"
-  | "Failed"
-  | "Succeeded"
-  | "Canceled";
-export const CommitmentPlanProvisioningState = /*@__PURE__*/ S.String;
-
-/** Cognitive Services account commitment quota. */
-export interface CommitmentQuota {
-  /** Commitment quota quantity. */
-  quantity?: number;
-  /** Commitment quota unit. */
-  unit?: string;
-}
-export const CommitmentQuota = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    quantity: S.optional(S.Number),
-    unit: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "CommitmentQuota",
-}) as any as S.Schema<CommitmentQuota>;
-
-/** Cognitive Services account commitment period. */
-export interface CommitmentPeriod {
-  /** Commitment period commitment tier. */
-  tier?: string;
-  /** Commitment period commitment count. */
-  count?: number;
-  /** Cognitive Services account commitment quota. */
-  quota?: CommitmentQuota;
-  /** Commitment period start date. */
-  startDate?: string;
-  /** Commitment period end date. */
-  endDate?: string;
-}
-export const CommitmentPeriod = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    tier: S.optional(S.String),
-    count: S.optional(S.Number),
-    quota: S.optional(CommitmentQuota),
-    startDate: S.optional(S.String),
-    endDate: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "CommitmentPeriod",
-}) as any as S.Schema<CommitmentPeriod>;
-
-/** The list of ProvisioningIssue. */
-export type CommitmentPlanPropertiesProvisioningIssuesList = Array<string>;
-export const CommitmentPlanPropertiesProvisioningIssuesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<CommitmentPlanPropertiesProvisioningIssuesList>;
-
-/** Properties of Cognitive Services account commitment plan. */
-export interface CommitmentPlanProperties {
-  /** Gets the status of the resource at the time the operation was called. */
-  provisioningState?: CommitmentPlanProvisioningState;
-  /** Commitment plan guid. */
-  commitmentPlanGuid?: string;
-  /** Account hosting model. */
-  hostingModel?: HostingModel;
-  /** Commitment plan type. */
-  planType?: string;
-  /** Cognitive Services account commitment period. */
-  current?: CommitmentPeriod;
-  /** AutoRenew commitment plan. */
-  autoRenew?: boolean;
-  /** Cognitive Services account commitment period. */
-  next?: CommitmentPeriod;
-  /** Cognitive Services account commitment period. */
-  last?: CommitmentPeriod;
-  /** The list of ProvisioningIssue. */
-  provisioningIssues?: CommitmentPlanPropertiesProvisioningIssuesList;
-}
-export const CommitmentPlanProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provisioningState: S.optional(CommitmentPlanProvisioningState),
-    commitmentPlanGuid: S.optional(S.String),
-    hostingModel: S.optional(HostingModel),
-    planType: S.optional(S.String),
-    current: S.optional(CommitmentPeriod),
-    autoRenew: S.optional(S.Boolean),
-    next: S.optional(CommitmentPeriod),
-    last: S.optional(CommitmentPeriod),
-    provisioningIssues: S.optional(
-      CommitmentPlanPropertiesProvisioningIssuesList,
-    ),
-  }),
-).annotate({
-  identifier: "CommitmentPlanProperties",
-}) as any as S.Schema<CommitmentPlanProperties>;
-
-/** Resource tags. */
-export type CommitmentPlansCreateOrUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const CommitmentPlansCreateOrUpdateResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<CommitmentPlansCreateOrUpdateResponseTagsMap>;
-
-export interface CommitmentPlansCreateOrUpdateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of Cognitive Services account commitment plan. */
-  properties?: CommitmentPlanProperties;
-  /** Resource tags. */
-  tags?: CommitmentPlansCreateOrUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location?: string;
-  /** Resource Etag. */
-  etag?: string;
-  /** The kind (type) of cognitive service account. */
-  kind?: string;
-  /** The resource model definition representing SKU */
-  sku?: Sku;
-}
-export const CommitmentPlansCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(CommitmentPlanProperties),
-      tags: S.optional(CommitmentPlansCreateOrUpdateResponseTagsMap),
-      location: S.optional(S.String),
-      etag: S.optional(S.String),
-      kind: S.optional(S.String),
-      sku: S.optional(Sku),
-    }),
-).annotate({
-  identifier: "CommitmentPlansCreateOrUpdateResponse",
-}) as any as S.Schema<CommitmentPlansCreateOrUpdateResponse>;
-
-/** The commitment plan account association properties. */
-export interface CommitmentPlanAccountAssociationProperties {
-  /** The Azure resource id of the account. */
-  accountId?: string;
-}
-export const CommitmentPlanAccountAssociationProperties =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      accountId: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "CommitmentPlanAccountAssociationProperties",
-  }) as any as S.Schema<CommitmentPlanAccountAssociationProperties>;
-
-/** Resource tags. */
-export type CommitmentPlansCreateOrUpdateAssociationRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const CommitmentPlansCreateOrUpdateAssociationRequestTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<CommitmentPlansCreateOrUpdateAssociationRequestTagsMap>;
-
-export interface CommitmentPlansCreateOrUpdateAssociationRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the commitmentPlan associated with the Cognitive Services Account */
-  commitmentPlanName: string;
-  /** The name of the commitment plan association with the Cognitive Services Account */
-  commitmentPlanAssociationName: string;
-  /** Properties of Cognitive Services account commitment plan association. */
-  properties?: CommitmentPlanAccountAssociationProperties;
-  /** Resource tags. */
-  tags?: CommitmentPlansCreateOrUpdateAssociationRequestTagsMap;
-}
-export const CommitmentPlansCreateOrUpdateAssociationRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      commitmentPlanName: S.String.pipe(T.Label()),
-      commitmentPlanAssociationName: S.String.pipe(T.Label()),
-      properties: S.optional(CommitmentPlanAccountAssociationProperties),
-      tags: S.optional(CommitmentPlansCreateOrUpdateAssociationRequestTagsMap),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/commitmentPlans/{commitmentPlanName}/accountAssociations/{commitmentPlanAssociationName}",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "CommitmentPlansCreateOrUpdateAssociationRequest",
-  }) as any as S.Schema<CommitmentPlansCreateOrUpdateAssociationRequest>;
-
-/** Resource tags. */
-export type CommitmentPlansCreateOrUpdateAssociationResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const CommitmentPlansCreateOrUpdateAssociationResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<CommitmentPlansCreateOrUpdateAssociationResponseTagsMap>;
-
-export interface CommitmentPlansCreateOrUpdateAssociationResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of Cognitive Services account commitment plan association. */
-  properties?: CommitmentPlanAccountAssociationProperties;
-  /** Resource Etag. */
-  etag?: string;
-  /** Resource tags. */
-  tags?: CommitmentPlansCreateOrUpdateAssociationResponseTagsMap;
-}
-export const CommitmentPlansCreateOrUpdateAssociationResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(CommitmentPlanAccountAssociationProperties),
-      etag: S.optional(S.String),
-      tags: S.optional(CommitmentPlansCreateOrUpdateAssociationResponseTagsMap),
-    }),
-  ).annotate({
-    identifier: "CommitmentPlansCreateOrUpdateAssociationResponse",
-  }) as any as S.Schema<CommitmentPlansCreateOrUpdateAssociationResponse>;
-
-/** Resource tags. */
-export type CommitmentPlansCreateOrUpdatePlanRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const CommitmentPlansCreateOrUpdatePlanRequestTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<CommitmentPlansCreateOrUpdatePlanRequestTagsMap>;
-
-export interface CommitmentPlansCreateOrUpdatePlanRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the commitmentPlan associated with the Cognitive Services Account */
-  commitmentPlanName: string;
-  /** Properties of Cognitive Services account commitment plan. */
-  properties?: CommitmentPlanPropertiesInput;
-  /** Resource tags. */
-  tags?: CommitmentPlansCreateOrUpdatePlanRequestTagsMap;
-  /** The geo-location where the resource lives */
-  location?: string;
-  /** The kind (type) of cognitive service account. */
-  kind?: string;
-  /** The resource model definition representing SKU */
-  sku?: Sku;
-}
-export const CommitmentPlansCreateOrUpdatePlanRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      commitmentPlanName: S.String.pipe(T.Label()),
-      properties: S.optional(CommitmentPlanPropertiesInput),
-      tags: S.optional(CommitmentPlansCreateOrUpdatePlanRequestTagsMap),
-      location: S.optional(S.String),
-      kind: S.optional(S.String),
-      sku: S.optional(Sku),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/commitmentPlans/{commitmentPlanName}",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-).annotate({
-  identifier: "CommitmentPlansCreateOrUpdatePlanRequest",
-}) as any as S.Schema<CommitmentPlansCreateOrUpdatePlanRequest>;
-
-/** Resource tags. */
-export type CommitmentPlansCreateOrUpdatePlanResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const CommitmentPlansCreateOrUpdatePlanResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<CommitmentPlansCreateOrUpdatePlanResponseTagsMap>;
-
-export interface CommitmentPlansCreateOrUpdatePlanResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of Cognitive Services account commitment plan. */
-  properties?: CommitmentPlanProperties;
-  /** Resource tags. */
-  tags?: CommitmentPlansCreateOrUpdatePlanResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location?: string;
-  /** Resource Etag. */
-  etag?: string;
-  /** The kind (type) of cognitive service account. */
-  kind?: string;
-  /** The resource model definition representing SKU */
-  sku?: Sku;
-}
-export const CommitmentPlansCreateOrUpdatePlanResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(CommitmentPlanProperties),
-      tags: S.optional(CommitmentPlansCreateOrUpdatePlanResponseTagsMap),
-      location: S.optional(S.String),
-      etag: S.optional(S.String),
-      kind: S.optional(S.String),
-      sku: S.optional(Sku),
-    }),
-  ).annotate({
-    identifier: "CommitmentPlansCreateOrUpdatePlanResponse",
-  }) as any as S.Schema<CommitmentPlansCreateOrUpdatePlanResponse>;
-
-export interface CommitmentPlansDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-  /** The name of the commitmentPlan associated with the Cognitive Services Account */
-  commitmentPlanName: string;
-}
-export const CommitmentPlansDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    commitmentPlanName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/commitmentPlans/{commitmentPlanName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "CommitmentPlansDeleteRequest",
-}) as any as S.Schema<CommitmentPlansDeleteRequest>;
-
-export interface CommitmentPlansDeleteResponse {}
-export const CommitmentPlansDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "CommitmentPlansDeleteResponse",
-}) as any as S.Schema<CommitmentPlansDeleteResponse>;
-
-export interface CommitmentPlansDeleteAssociationRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the commitmentPlan associated with the Cognitive Services Account */
-  commitmentPlanName: string;
-  /** The name of the commitment plan association with the Cognitive Services Account */
-  commitmentPlanAssociationName: string;
-}
-export const CommitmentPlansDeleteAssociationRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      commitmentPlanName: S.String.pipe(T.Label()),
-      commitmentPlanAssociationName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/commitmentPlans/{commitmentPlanName}/accountAssociations/{commitmentPlanAssociationName}",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-).annotate({
-  identifier: "CommitmentPlansDeleteAssociationRequest",
-}) as any as S.Schema<CommitmentPlansDeleteAssociationRequest>;
-
-export interface CommitmentPlansDeleteAssociationResponse {}
-export const CommitmentPlansDeleteAssociationResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "CommitmentPlansDeleteAssociationResponse",
-}) as any as S.Schema<CommitmentPlansDeleteAssociationResponse>;
-
-export interface CommitmentPlansDeletePlanRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the commitmentPlan associated with the Cognitive Services Account */
-  commitmentPlanName: string;
-}
-export const CommitmentPlansDeletePlanRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    commitmentPlanName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/commitmentPlans/{commitmentPlanName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "CommitmentPlansDeletePlanRequest",
-}) as any as S.Schema<CommitmentPlansDeletePlanRequest>;
-
-export interface CommitmentPlansDeletePlanResponse {}
-export const CommitmentPlansDeletePlanResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "CommitmentPlansDeletePlanResponse",
-}) as any as S.Schema<CommitmentPlansDeletePlanResponse>;
-
-export interface CommitmentPlansGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-  /** The name of the commitmentPlan associated with the Cognitive Services Account */
-  commitmentPlanName: string;
-}
-export const CommitmentPlansGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    commitmentPlanName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/commitmentPlans/{commitmentPlanName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "CommitmentPlansGetRequest",
-}) as any as S.Schema<CommitmentPlansGetRequest>;
-
-/** Resource tags. */
-export type CommitmentPlansGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const CommitmentPlansGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<CommitmentPlansGetResponseTagsMap>;
-
-export interface CommitmentPlansGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of Cognitive Services account commitment plan. */
-  properties?: CommitmentPlanProperties;
-  /** Resource tags. */
-  tags?: CommitmentPlansGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location?: string;
-  /** Resource Etag. */
-  etag?: string;
-  /** The kind (type) of cognitive service account. */
-  kind?: string;
-  /** The resource model definition representing SKU */
-  sku?: Sku;
-}
-export const CommitmentPlansGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(CommitmentPlanProperties),
-    tags: S.optional(CommitmentPlansGetResponseTagsMap),
-    location: S.optional(S.String),
-    etag: S.optional(S.String),
-    kind: S.optional(S.String),
-    sku: S.optional(Sku),
-  }),
-).annotate({
-  identifier: "CommitmentPlansGetResponse",
-}) as any as S.Schema<CommitmentPlansGetResponse>;
-
-export interface CommitmentPlansGetAssociationRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the commitmentPlan associated with the Cognitive Services Account */
-  commitmentPlanName: string;
-  /** The name of the commitment plan association with the Cognitive Services Account */
-  commitmentPlanAssociationName: string;
-}
-export const CommitmentPlansGetAssociationRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      commitmentPlanName: S.String.pipe(T.Label()),
-      commitmentPlanAssociationName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/commitmentPlans/{commitmentPlanName}/accountAssociations/{commitmentPlanAssociationName}",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-).annotate({
-  identifier: "CommitmentPlansGetAssociationRequest",
-}) as any as S.Schema<CommitmentPlansGetAssociationRequest>;
-
-/** Resource tags. */
-export type CommitmentPlansGetAssociationResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const CommitmentPlansGetAssociationResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<CommitmentPlansGetAssociationResponseTagsMap>;
-
-export interface CommitmentPlansGetAssociationResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of Cognitive Services account commitment plan association. */
-  properties?: CommitmentPlanAccountAssociationProperties;
-  /** Resource Etag. */
-  etag?: string;
-  /** Resource tags. */
-  tags?: CommitmentPlansGetAssociationResponseTagsMap;
-}
-export const CommitmentPlansGetAssociationResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(CommitmentPlanAccountAssociationProperties),
-      etag: S.optional(S.String),
-      tags: S.optional(CommitmentPlansGetAssociationResponseTagsMap),
-    }),
-).annotate({
-  identifier: "CommitmentPlansGetAssociationResponse",
-}) as any as S.Schema<CommitmentPlansGetAssociationResponse>;
-
-export interface CommitmentPlansGetPlanRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the commitmentPlan associated with the Cognitive Services Account */
-  commitmentPlanName: string;
-}
-export const CommitmentPlansGetPlanRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    commitmentPlanName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/commitmentPlans/{commitmentPlanName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "CommitmentPlansGetPlanRequest",
-}) as any as S.Schema<CommitmentPlansGetPlanRequest>;
-
-/** Resource tags. */
-export type CommitmentPlansGetPlanResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const CommitmentPlansGetPlanResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<CommitmentPlansGetPlanResponseTagsMap>;
-
-export interface CommitmentPlansGetPlanResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of Cognitive Services account commitment plan. */
-  properties?: CommitmentPlanProperties;
-  /** Resource tags. */
-  tags?: CommitmentPlansGetPlanResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location?: string;
-  /** Resource Etag. */
-  etag?: string;
-  /** The kind (type) of cognitive service account. */
-  kind?: string;
-  /** The resource model definition representing SKU */
-  sku?: Sku;
-}
-export const CommitmentPlansGetPlanResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(CommitmentPlanProperties),
-    tags: S.optional(CommitmentPlansGetPlanResponseTagsMap),
-    location: S.optional(S.String),
-    etag: S.optional(S.String),
-    kind: S.optional(S.String),
-    sku: S.optional(Sku),
-  }),
-).annotate({
-  identifier: "CommitmentPlansGetPlanResponse",
-}) as any as S.Schema<CommitmentPlansGetPlanResponse>;
-
-export interface CommitmentPlansListRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-}
-export const CommitmentPlansListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/commitmentPlans",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "CommitmentPlansListRequest",
-}) as any as S.Schema<CommitmentPlansListRequest>;
-
-/** Resource tags. */
-export type CommitmentPlanTagsMap = { [key: string]: string | undefined };
-export const CommitmentPlanTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<CommitmentPlanTagsMap>;
-
-/** Cognitive Services account commitment plan. */
-export interface CommitmentPlan {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of Cognitive Services account commitment plan. */
-  properties?: CommitmentPlanProperties;
-  /** Resource tags. */
-  tags?: CommitmentPlanTagsMap;
-  /** The geo-location where the resource lives */
-  location?: string;
-  /** Resource Etag. */
-  etag?: string;
-  /** The kind (type) of cognitive service account. */
-  kind?: string;
-  /** The resource model definition representing SKU */
-  sku?: Sku;
-}
-export const CommitmentPlan = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(CommitmentPlanProperties),
-    tags: S.optional(CommitmentPlanTagsMap),
-    location: S.optional(S.String),
-    etag: S.optional(S.String),
-    kind: S.optional(S.String),
-    sku: S.optional(Sku),
-  }),
-).annotate({ identifier: "CommitmentPlan" }) as any as S.Schema<CommitmentPlan>;
-
-/** Gets the list of Cognitive Services accounts CommitmentPlan and their properties. */
-export type CommitmentPlanListResultValueList = Array<CommitmentPlan>;
-export const CommitmentPlanListResultValueList = /*@__PURE__*/ S.Array(
-  CommitmentPlan,
-) as any as S.Schema<CommitmentPlanListResultValueList>;
-
-/** The list of cognitive services accounts operation response. */
-export interface CommitmentPlanListResult {
-  /** The link used to get the next page of CommitmentPlan. */
-  nextLink?: string;
-  /** Gets the list of Cognitive Services accounts CommitmentPlan and their properties. */
-  value?: CommitmentPlanListResultValueList;
-}
-export const CommitmentPlanListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    nextLink: S.optional(S.String),
-    value: S.optional(CommitmentPlanListResultValueList),
-  }),
-).annotate({
-  identifier: "CommitmentPlanListResult",
-}) as any as S.Schema<CommitmentPlanListResult>;
-
-export interface CommitmentPlansListAssociationsRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the commitmentPlan associated with the Cognitive Services Account */
-  commitmentPlanName: string;
-}
-export const CommitmentPlansListAssociationsRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      commitmentPlanName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/commitmentPlans/{commitmentPlanName}/accountAssociations",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-).annotate({
-  identifier: "CommitmentPlansListAssociationsRequest",
-}) as any as S.Schema<CommitmentPlansListAssociationsRequest>;
-
-/** Resource tags. */
-export type CommitmentPlanAccountAssociationTagsMap = {
-  [key: string]: string | undefined;
-};
-export const CommitmentPlanAccountAssociationTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<CommitmentPlanAccountAssociationTagsMap>;
-
-/** The commitment plan association. */
-export interface CommitmentPlanAccountAssociation {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of Cognitive Services account commitment plan association. */
-  properties?: CommitmentPlanAccountAssociationProperties;
-  /** Resource Etag. */
-  etag?: string;
-  /** Resource tags. */
-  tags?: CommitmentPlanAccountAssociationTagsMap;
-}
-export const CommitmentPlanAccountAssociation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(CommitmentPlanAccountAssociationProperties),
-    etag: S.optional(S.String),
-    tags: S.optional(CommitmentPlanAccountAssociationTagsMap),
-  }),
-).annotate({
-  identifier: "CommitmentPlanAccountAssociation",
-}) as any as S.Schema<CommitmentPlanAccountAssociation>;
-
-/** Gets the list of Cognitive Services Commitment Plan Account Association and their properties. */
-export type CommitmentPlanAccountAssociationListResultValueList =
-  Array<CommitmentPlanAccountAssociation>;
-export const CommitmentPlanAccountAssociationListResultValueList =
-  /*@__PURE__*/ S.Array(
-    CommitmentPlanAccountAssociation,
-  ) as any as S.Schema<CommitmentPlanAccountAssociationListResultValueList>;
-
-/** The list of cognitive services Commitment Plan Account Association operation response. */
-export interface CommitmentPlanAccountAssociationListResult {
-  /** The link used to get the next page of Commitment Plan Account Association. */
-  nextLink?: string;
-  /** Gets the list of Cognitive Services Commitment Plan Account Association and their properties. */
-  value?: CommitmentPlanAccountAssociationListResultValueList;
-}
-export const CommitmentPlanAccountAssociationListResult =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      nextLink: S.optional(S.String),
-      value: S.optional(CommitmentPlanAccountAssociationListResultValueList),
-    }),
-  ).annotate({
-    identifier: "CommitmentPlanAccountAssociationListResult",
-  }) as any as S.Schema<CommitmentPlanAccountAssociationListResult>;
-
-export interface CommitmentPlansListPlansByResourceGroupRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-}
-export const CommitmentPlansListPlansByResourceGroupRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/commitmentPlans",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "CommitmentPlansListPlansByResourceGroupRequest",
-  }) as any as S.Schema<CommitmentPlansListPlansByResourceGroupRequest>;
-
-export interface CommitmentPlansListPlansBySubscriptionRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-}
-export const CommitmentPlansListPlansBySubscriptionRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/commitmentPlans",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "CommitmentPlansListPlansBySubscriptionRequest",
-  }) as any as S.Schema<CommitmentPlansListPlansBySubscriptionRequest>;
-
-/** Resource tags. */
-export type CommitmentPlansUpdatePlanRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const CommitmentPlansUpdatePlanRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<CommitmentPlansUpdatePlanRequestTagsMap>;
-
-export interface CommitmentPlansUpdatePlanRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the commitmentPlan associated with the Cognitive Services Account */
-  commitmentPlanName: string;
-  /** Resource tags. */
-  tags?: CommitmentPlansUpdatePlanRequestTagsMap;
-  /** The resource model definition representing SKU */
-  sku?: Sku;
-}
-export const CommitmentPlansUpdatePlanRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    commitmentPlanName: S.String.pipe(T.Label()),
-    tags: S.optional(CommitmentPlansUpdatePlanRequestTagsMap),
-    sku: S.optional(Sku),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/commitmentPlans/{commitmentPlanName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "CommitmentPlansUpdatePlanRequest",
-}) as any as S.Schema<CommitmentPlansUpdatePlanRequest>;
-
-/** Resource tags. */
-export type CommitmentPlansUpdatePlanResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const CommitmentPlansUpdatePlanResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<CommitmentPlansUpdatePlanResponseTagsMap>;
-
-export interface CommitmentPlansUpdatePlanResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of Cognitive Services account commitment plan. */
-  properties?: CommitmentPlanProperties;
-  /** Resource tags. */
-  tags?: CommitmentPlansUpdatePlanResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location?: string;
-  /** Resource Etag. */
-  etag?: string;
-  /** The kind (type) of cognitive service account. */
-  kind?: string;
-  /** The resource model definition representing SKU */
-  sku?: Sku;
-}
-export const CommitmentPlansUpdatePlanResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(CommitmentPlanProperties),
-    tags: S.optional(CommitmentPlansUpdatePlanResponseTagsMap),
-    location: S.optional(S.String),
-    etag: S.optional(S.String),
-    kind: S.optional(S.String),
-    sku: S.optional(Sku),
-  }),
-).annotate({
-  identifier: "CommitmentPlansUpdatePlanResponse",
-}) as any as S.Schema<CommitmentPlansUpdatePlanResponse>;
-
-export interface CommitmentTiersListRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of Azure region. */
-  location: string;
-}
-export const CommitmentTiersListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    location: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/locations/{location}/commitmentTiers",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "CommitmentTiersListRequest",
-}) as any as S.Schema<CommitmentTiersListRequest>;
-
-/** Cognitive Services account commitment cost. */
-export interface CommitmentCost {
-  /** Commitment meter Id. */
-  commitmentMeterId?: string;
-  /** Overage meter Id. */
-  overageMeterId?: string;
-}
-export const CommitmentCost = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    commitmentMeterId: S.optional(S.String),
-    overageMeterId: S.optional(S.String),
-  }),
-).annotate({ identifier: "CommitmentCost" }) as any as S.Schema<CommitmentCost>;
-
-/** Cognitive Services account commitment tier. */
-export interface CommitmentTier {
-  /** The kind (type) of cognitive service account. */
-  kind?: string;
-  /** The name of the SKU. Ex - P3. It is typically a letter+number code */
-  skuName?: string;
-  /** Account hosting model. */
-  hostingModel?: HostingModel;
-  /** Commitment plan type. */
-  planType?: string;
-  /** Commitment period commitment tier. */
-  tier?: string;
-  /** Commitment period commitment max count. */
-  maxCount?: number;
-  /** Cognitive Services account commitment quota. */
-  quota?: CommitmentQuota;
-  /** Cognitive Services account commitment cost. */
-  cost?: CommitmentCost;
-}
-export const CommitmentTier = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    kind: S.optional(S.String),
-    skuName: S.optional(S.String),
-    hostingModel: S.optional(HostingModel),
-    planType: S.optional(S.String),
-    tier: S.optional(S.String),
-    maxCount: S.optional(S.Number),
-    quota: S.optional(CommitmentQuota),
-    cost: S.optional(CommitmentCost),
-  }),
-).annotate({ identifier: "CommitmentTier" }) as any as S.Schema<CommitmentTier>;
-
-/** Gets the list of Cognitive Services accounts CommitmentTier and their properties. */
-export type CommitmentTierListResultValueList = Array<CommitmentTier>;
-export const CommitmentTierListResultValueList = /*@__PURE__*/ S.Array(
-  CommitmentTier,
-) as any as S.Schema<CommitmentTierListResultValueList>;
-
-/** The list of cognitive services accounts operation response. */
-export interface CommitmentTierListResult {
-  /** The link used to get the next page of CommitmentTier. */
-  nextLink?: string;
-  /** Gets the list of Cognitive Services accounts CommitmentTier and their properties. */
-  value?: CommitmentTierListResultValueList;
-}
-export const CommitmentTierListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    nextLink: S.optional(S.String),
-    value: S.optional(CommitmentTierListResultValueList),
-  }),
-).annotate({
-  identifier: "CommitmentTierListResult",
-}) as any as S.Schema<CommitmentTierListResult>;
+  identifier: "CreateProjectConnectionResponse",
+}) as any as S.Schema<CreateProjectConnectionResponse>;
 
 /** Defender for AI state on the AI resource. */
 export type DefenderForAISettingState = "Disabled" | "Enabled";
@@ -5684,74 +3377,7 @@ export const DefenderForAISettingsCreateOrUpdateResponse =
     identifier: "DefenderForAISettingsCreateOrUpdateResponse",
   }) as any as S.Schema<DefenderForAISettingsCreateOrUpdateResponse>;
 
-export interface DefenderForAISettingsGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-  /** The name of the defender for AI setting. */
-  defenderForAISettingName: string;
-}
-export const DefenderForAISettingsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    defenderForAISettingName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/defenderForAISettings/{defenderForAISettingName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "DefenderForAISettingsGetRequest",
-}) as any as S.Schema<DefenderForAISettingsGetRequest>;
-
-/** Resource tags. */
-export type DefenderForAISettingsGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const DefenderForAISettingsGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<DefenderForAISettingsGetResponseTagsMap>;
-
-export interface DefenderForAISettingsGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The Defender for AI resource properties. */
-  properties?: DefenderForAISettingProperties;
-  /** Resource Etag. */
-  etag?: string;
-  /** Resource tags. */
-  tags?: DefenderForAISettingsGetResponseTagsMap;
-}
-export const DefenderForAISettingsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(DefenderForAISettingProperties),
-    etag: S.optional(S.String),
-    tags: S.optional(DefenderForAISettingsGetResponseTagsMap),
-  }),
-).annotate({
-  identifier: "DefenderForAISettingsGetResponse",
-}) as any as S.Schema<DefenderForAISettingsGetResponse>;
-
-export interface DefenderForAISettingsListRequest {
+export interface DeleteAccountRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -5759,298 +3385,851 @@ export interface DefenderForAISettingsListRequest {
   /** The name of Cognitive Services account. */
   accountName: string;
 }
-export const DefenderForAISettingsListRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteAccountRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/defenderForAISettings",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "DefenderForAISettingsListRequest",
-}) as any as S.Schema<DefenderForAISettingsListRequest>;
-
-/** Resource tags. */
-export type DefenderForAISettingTagsMap = { [key: string]: string | undefined };
-export const DefenderForAISettingTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<DefenderForAISettingTagsMap>;
-
-/** The Defender for AI resource. */
-export interface DefenderForAISetting {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The Defender for AI resource properties. */
-  properties?: DefenderForAISettingProperties;
-  /** Resource Etag. */
-  etag?: string;
-  /** Resource tags. */
-  tags?: DefenderForAISettingTagsMap;
-}
-export const DefenderForAISetting = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(DefenderForAISettingProperties),
-    etag: S.optional(S.String),
-    tags: S.optional(DefenderForAISettingTagsMap),
-  }),
-).annotate({
-  identifier: "DefenderForAISetting",
-}) as any as S.Schema<DefenderForAISetting>;
-
-/** The list of Defender for AI Settings. */
-export type DefenderForAISettingResultValueList = Array<DefenderForAISetting>;
-export const DefenderForAISettingResultValueList = /*@__PURE__*/ S.Array(
-  DefenderForAISetting,
-) as any as S.Schema<DefenderForAISettingResultValueList>;
-
-/** The list of cognitive services Defender for AI Settings. */
-export interface DefenderForAISettingResult {
-  /** The link used to get the next page of Defender for AI Settings. */
-  nextLink?: string;
-  /** The list of Defender for AI Settings. */
-  value?: DefenderForAISettingResultValueList;
-}
-export const DefenderForAISettingResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    nextLink: S.optional(S.String),
-    value: S.optional(DefenderForAISettingResultValueList),
-  }),
-).annotate({
-  identifier: "DefenderForAISettingResult",
-}) as any as S.Schema<DefenderForAISettingResult>;
-
-/** Resource tags. */
-export type DefenderForAISettingsUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const DefenderForAISettingsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<DefenderForAISettingsUpdateRequestTagsMap>;
-
-export interface DefenderForAISettingsUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-  /** The name of the defender for AI setting. */
-  defenderForAISettingName: string;
-  /** The Defender for AI resource properties. */
-  properties?: DefenderForAISettingProperties;
-  /** Resource tags. */
-  tags?: DefenderForAISettingsUpdateRequestTagsMap;
-}
-export const DefenderForAISettingsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    defenderForAISettingName: S.String.pipe(T.Label()),
-    properties: S.optional(DefenderForAISettingProperties),
-    tags: S.optional(DefenderForAISettingsUpdateRequestTagsMap),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/defenderForAISettings/{defenderForAISettingName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "DefenderForAISettingsUpdateRequest",
-}) as any as S.Schema<DefenderForAISettingsUpdateRequest>;
-
-/** Resource tags. */
-export type DefenderForAISettingsUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const DefenderForAISettingsUpdateResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<DefenderForAISettingsUpdateResponseTagsMap>;
-
-export interface DefenderForAISettingsUpdateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The Defender for AI resource properties. */
-  properties?: DefenderForAISettingProperties;
-  /** Resource Etag. */
-  etag?: string;
-  /** Resource tags. */
-  tags?: DefenderForAISettingsUpdateResponseTagsMap;
-}
-export const DefenderForAISettingsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(DefenderForAISettingProperties),
-    etag: S.optional(S.String),
-    tags: S.optional(DefenderForAISettingsUpdateResponseTagsMap),
-  }),
-).annotate({
-  identifier: "DefenderForAISettingsUpdateResponse",
-}) as any as S.Schema<DefenderForAISettingsUpdateResponse>;
-
-export interface DeletedAccountsGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of Azure region. */
-  location: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-}
-export const DeletedAccountsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    location: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/locations/{location}/resourceGroups/{resourceGroupName}/deletedAccounts/{accountName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "DeletedAccountsGetRequest",
-}) as any as S.Schema<DeletedAccountsGetRequest>;
-
-/** Resource tags. */
-export type DeletedAccountsGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const DeletedAccountsGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<DeletedAccountsGetResponseTagsMap>;
-
-export interface DeletedAccountsGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of Cognitive Services account. */
-  properties?: AccountProperties;
-  /** Resource tags. */
-  tags?: DeletedAccountsGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location?: string;
-  /** Resource Etag. */
-  etag?: string;
-  /** The kind (type) of cognitive service account. */
-  kind?: string;
-  /** The resource model definition representing SKU */
-  sku?: Sku;
-  /** Identity for the resource. */
-  identity?: Identity;
-}
-export const DeletedAccountsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(AccountProperties),
-    tags: S.optional(DeletedAccountsGetResponseTagsMap),
-    location: S.optional(S.String),
-    etag: S.optional(S.String),
-    kind: S.optional(S.String),
-    sku: S.optional(Sku),
-    identity: S.optional(Identity),
-  }),
-).annotate({
-  identifier: "DeletedAccountsGetResponse",
-}) as any as S.Schema<DeletedAccountsGetResponse>;
-
-export interface DeletedAccountsListRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-}
-export const DeletedAccountsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/deletedAccounts",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "DeletedAccountsListRequest",
-}) as any as S.Schema<DeletedAccountsListRequest>;
-
-export interface DeletedAccountsPurgeRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of Azure region. */
-  location: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-}
-export const DeletedAccountsPurgeRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    location: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     accountName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/locations/{location}/resourceGroups/{resourceGroupName}/deletedAccounts/{accountName}",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}",
       code: 200,
       apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
-  identifier: "DeletedAccountsPurgeRequest",
-}) as any as S.Schema<DeletedAccountsPurgeRequest>;
+  identifier: "DeleteAccountRequest",
+}) as any as S.Schema<DeleteAccountRequest>;
 
-export interface DeletedAccountsPurgeResponse {}
-export const DeletedAccountsPurgeResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteAccountResponse {}
+export const DeleteAccountResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeletedAccountsPurgeResponse",
-}) as any as S.Schema<DeletedAccountsPurgeResponse>;
+  identifier: "DeleteAccountResponse",
+}) as any as S.Schema<DeleteAccountResponse>;
+
+export interface DeleteAccountCapabilityHostRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+  /** The name of the capability host associated with the Cognitive Services Resource */
+  capabilityHostName: string;
+}
+export const DeleteAccountCapabilityHostRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    capabilityHostName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/capabilityHosts/{capabilityHostName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteAccountCapabilityHostRequest",
+}) as any as S.Schema<DeleteAccountCapabilityHostRequest>;
+
+export interface DeleteAccountCapabilityHostResponse {}
+export const DeleteAccountCapabilityHostResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteAccountCapabilityHostResponse",
+}) as any as S.Schema<DeleteAccountCapabilityHostResponse>;
+
+export interface DeleteAccountConnectionRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+  /** Friendly name of the connection */
+  connectionName: string;
+}
+export const DeleteAccountConnectionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    connectionName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/connections/{connectionName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteAccountConnectionRequest",
+}) as any as S.Schema<DeleteAccountConnectionRequest>;
+
+export interface DeleteAccountConnectionResponse {}
+export const DeleteAccountConnectionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteAccountConnectionResponse",
+}) as any as S.Schema<DeleteAccountConnectionResponse>;
+
+export interface DeleteAgentApplicationRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+  /** The name of Cognitive Services account's project. */
+  projectName: string;
+  /** Name for the Agent Application. */
+  name: string;
+}
+export const DeleteAgentApplicationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    projectName: S.String.pipe(T.Label()),
+    name: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}/applications/{name}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteAgentApplicationRequest",
+}) as any as S.Schema<DeleteAgentApplicationRequest>;
+
+export interface DeleteAgentApplicationResponse {}
+export const DeleteAgentApplicationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteAgentApplicationResponse",
+}) as any as S.Schema<DeleteAgentApplicationResponse>;
+
+export interface DeleteAgentDeploymentRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+  /** The name of Cognitive Services account's project. */
+  projectName: string;
+  /** The name of the application associated with the Cognitive Services Account */
+  appName: string;
+  /** The name of the deployment associated with the Cognitive Services Account */
+  deploymentName: string;
+}
+export const DeleteAgentDeploymentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    projectName: S.String.pipe(T.Label()),
+    appName: S.String.pipe(T.Label()),
+    deploymentName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}/applications/{appName}/agentDeployments/{deploymentName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteAgentDeploymentRequest",
+}) as any as S.Schema<DeleteAgentDeploymentRequest>;
+
+export interface DeleteAgentDeploymentResponse {}
+export const DeleteAgentDeploymentResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteAgentDeploymentResponse",
+}) as any as S.Schema<DeleteAgentDeploymentResponse>;
+
+export interface DeleteCommitmentPlanRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+  /** The name of the commitmentPlan associated with the Cognitive Services Account */
+  commitmentPlanName: string;
+}
+export const DeleteCommitmentPlanRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    commitmentPlanName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/commitmentPlans/{commitmentPlanName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteCommitmentPlanRequest",
+}) as any as S.Schema<DeleteCommitmentPlanRequest>;
+
+export interface DeleteCommitmentPlanResponse {}
+export const DeleteCommitmentPlanResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteCommitmentPlanResponse",
+}) as any as S.Schema<DeleteCommitmentPlanResponse>;
+
+export interface DeleteCommitmentPlanAssociationRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the commitmentPlan associated with the Cognitive Services Account */
+  commitmentPlanName: string;
+  /** The name of the commitment plan association with the Cognitive Services Account */
+  commitmentPlanAssociationName: string;
+}
+export const DeleteCommitmentPlanAssociationRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      commitmentPlanName: S.String.pipe(T.Label()),
+      commitmentPlanAssociationName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/commitmentPlans/{commitmentPlanName}/accountAssociations/{commitmentPlanAssociationName}",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+).annotate({
+  identifier: "DeleteCommitmentPlanAssociationRequest",
+}) as any as S.Schema<DeleteCommitmentPlanAssociationRequest>;
+
+export interface DeleteCommitmentPlanAssociationResponse {}
+export const DeleteCommitmentPlanAssociationResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "DeleteCommitmentPlanAssociationResponse",
+}) as any as S.Schema<DeleteCommitmentPlanAssociationResponse>;
+
+export interface DeleteCommitmentPlanPlanRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the commitmentPlan associated with the Cognitive Services Account */
+  commitmentPlanName: string;
+}
+export const DeleteCommitmentPlanPlanRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    commitmentPlanName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/commitmentPlans/{commitmentPlanName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteCommitmentPlanPlanRequest",
+}) as any as S.Schema<DeleteCommitmentPlanPlanRequest>;
+
+export interface DeleteCommitmentPlanPlanResponse {}
+export const DeleteCommitmentPlanPlanResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteCommitmentPlanPlanResponse",
+}) as any as S.Schema<DeleteCommitmentPlanPlanResponse>;
+
+export interface DeleteDeploymentRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+  /** The name of the deployment associated with the Cognitive Services Account */
+  deploymentName: string;
+}
+export const DeleteDeploymentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    deploymentName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/deployments/{deploymentName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteDeploymentRequest",
+}) as any as S.Schema<DeleteDeploymentRequest>;
+
+export interface DeleteDeploymentResponse {}
+export const DeleteDeploymentResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteDeploymentResponse",
+}) as any as S.Schema<DeleteDeploymentResponse>;
+
+export interface DeleteEncryptionScopeRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+  /** The name of the encryptionScope associated with the Cognitive Services Account */
+  encryptionScopeName: string;
+}
+export const DeleteEncryptionScopeRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    encryptionScopeName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/encryptionScopes/{encryptionScopeName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteEncryptionScopeRequest",
+}) as any as S.Schema<DeleteEncryptionScopeRequest>;
+
+export interface DeleteEncryptionScopeResponse {}
+export const DeleteEncryptionScopeResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteEncryptionScopeResponse",
+}) as any as S.Schema<DeleteEncryptionScopeResponse>;
+
+export interface DeleteManagedNetworkSettingsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+  /** Name of the managedNetwork associated with the cognitive services account. Only 'default' is supported. */
+  managedNetworkName: string;
+}
+export const DeleteManagedNetworkSettingsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    managedNetworkName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/managedNetworks/{managedNetworkName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteManagedNetworkSettingsRequest",
+}) as any as S.Schema<DeleteManagedNetworkSettingsRequest>;
+
+export interface DeleteManagedNetworkSettingsResponse {}
+export const DeleteManagedNetworkSettingsResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "DeleteManagedNetworkSettingsResponse",
+}) as any as S.Schema<DeleteManagedNetworkSettingsResponse>;
+
+export interface DeleteOutboundRuleRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+  /** Name of the managedNetwork associated with the cognitive services account. Only 'default' is supported. */
+  managedNetworkName: string;
+  /** Name of the cognitive services account managed network outbound rule */
+  ruleName: string;
+}
+export const DeleteOutboundRuleRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    managedNetworkName: S.String.pipe(T.Label()),
+    ruleName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/managedNetworks/{managedNetworkName}/outboundRules/{ruleName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteOutboundRuleRequest",
+}) as any as S.Schema<DeleteOutboundRuleRequest>;
+
+export interface DeleteOutboundRuleResponse {}
+export const DeleteOutboundRuleResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteOutboundRuleResponse",
+}) as any as S.Schema<DeleteOutboundRuleResponse>;
+
+export interface DeletePrivateEndpointConnectionRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+  /** The name of the private endpoint connection associated with the Cognitive Services Account */
+  privateEndpointConnectionName: string;
+}
+export const DeletePrivateEndpointConnectionRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+      privateEndpointConnectionName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/privateEndpointConnections/{privateEndpointConnectionName}",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+).annotate({
+  identifier: "DeletePrivateEndpointConnectionRequest",
+}) as any as S.Schema<DeletePrivateEndpointConnectionRequest>;
+
+export interface DeletePrivateEndpointConnectionResponse {}
+export const DeletePrivateEndpointConnectionResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "DeletePrivateEndpointConnectionResponse",
+}) as any as S.Schema<DeletePrivateEndpointConnectionResponse>;
+
+export interface DeleteProjectRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+  /** The name of Cognitive Services account's project. */
+  projectName: string;
+}
+export const DeleteProjectRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    projectName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteProjectRequest",
+}) as any as S.Schema<DeleteProjectRequest>;
+
+export interface DeleteProjectResponse {}
+export const DeleteProjectResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteProjectResponse",
+}) as any as S.Schema<DeleteProjectResponse>;
+
+export interface DeleteProjectCapabilityHostRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+  /** The name of Cognitive Services account's project. */
+  projectName: string;
+  /** The name of the capability host associated with the Cognitive Services Resource */
+  capabilityHostName: string;
+}
+export const DeleteProjectCapabilityHostRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    projectName: S.String.pipe(T.Label()),
+    capabilityHostName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}/capabilityHosts/{capabilityHostName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteProjectCapabilityHostRequest",
+}) as any as S.Schema<DeleteProjectCapabilityHostRequest>;
+
+export interface DeleteProjectCapabilityHostResponse {}
+export const DeleteProjectCapabilityHostResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteProjectCapabilityHostResponse",
+}) as any as S.Schema<DeleteProjectCapabilityHostResponse>;
+
+export interface DeleteProjectConnectionRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+  /** The name of Cognitive Services account's project. */
+  projectName: string;
+  /** Friendly name of the connection */
+  connectionName: string;
+}
+export const DeleteProjectConnectionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    projectName: S.String.pipe(T.Label()),
+    connectionName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}/connections/{connectionName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteProjectConnectionRequest",
+}) as any as S.Schema<DeleteProjectConnectionRequest>;
+
+export interface DeleteProjectConnectionResponse {}
+export const DeleteProjectConnectionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteProjectConnectionResponse",
+}) as any as S.Schema<DeleteProjectConnectionResponse>;
+
+export interface DeleteRaiBlocklistRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+  /** The name of the RaiBlocklist associated with the Cognitive Services Account */
+  raiBlocklistName: string;
+}
+export const DeleteRaiBlocklistRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    raiBlocklistName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/raiBlocklists/{raiBlocklistName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteRaiBlocklistRequest",
+}) as any as S.Schema<DeleteRaiBlocklistRequest>;
+
+export interface DeleteRaiBlocklistResponse {}
+export const DeleteRaiBlocklistResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteRaiBlocklistResponse",
+}) as any as S.Schema<DeleteRaiBlocklistResponse>;
+
+export interface DeleteRaiBlocklistItemRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+  /** The name of the RaiBlocklist associated with the Cognitive Services Account */
+  raiBlocklistName: string;
+  /** The name of the RaiBlocklist Item associated with the custom blocklist */
+  raiBlocklistItemName: string;
+}
+export const DeleteRaiBlocklistItemRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    raiBlocklistName: S.String.pipe(T.Label()),
+    raiBlocklistItemName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/raiBlocklists/{raiBlocklistName}/raiBlocklistItems/{raiBlocklistItemName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteRaiBlocklistItemRequest",
+}) as any as S.Schema<DeleteRaiBlocklistItemRequest>;
+
+export interface DeleteRaiBlocklistItemResponse {}
+export const DeleteRaiBlocklistItemResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteRaiBlocklistItemResponse",
+}) as any as S.Schema<DeleteRaiBlocklistItemResponse>;
+
+/** The list of Cognitive Services RaiBlocklist Items Names. */
+export type RaiBlocklistItemsBulkDeleteRequest = Array<string>;
+export const RaiBlocklistItemsBulkDeleteRequest = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<RaiBlocklistItemsBulkDeleteRequest>;
+
+export interface DeleteRaiBlocklistItemBatchRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+  /** The name of the RaiBlocklist associated with the Cognitive Services Account */
+  raiBlocklistName: string;
+  body: RaiBlocklistItemsBulkDeleteRequest;
+}
+export const DeleteRaiBlocklistItemBatchRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    raiBlocklistName: S.String.pipe(T.Label()),
+    body: RaiBlocklistItemsBulkDeleteRequest.pipe(T.HttpBody()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/raiBlocklists/{raiBlocklistName}/deleteRaiBlocklistItems",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteRaiBlocklistItemBatchRequest",
+}) as any as S.Schema<DeleteRaiBlocklistItemBatchRequest>;
+
+export interface DeleteRaiBlocklistItemBatchResponse {}
+export const DeleteRaiBlocklistItemBatchResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteRaiBlocklistItemBatchResponse",
+}) as any as S.Schema<DeleteRaiBlocklistItemBatchResponse>;
+
+export interface DeleteRaiExternalSafetyProviderRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the Rai External Safety Provider associated with the Cognitive Services Account */
+  safetyProviderName: string;
+}
+export const DeleteRaiExternalSafetyProviderRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      safetyProviderName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/raiExternalSafetyProviders/{safetyProviderName}",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+).annotate({
+  identifier: "DeleteRaiExternalSafetyProviderRequest",
+}) as any as S.Schema<DeleteRaiExternalSafetyProviderRequest>;
+
+export interface DeleteRaiExternalSafetyProviderResponse {}
+export const DeleteRaiExternalSafetyProviderResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "DeleteRaiExternalSafetyProviderResponse",
+}) as any as S.Schema<DeleteRaiExternalSafetyProviderResponse>;
+
+export interface DeleteRaiPolicyRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+  /** The name of the RaiPolicy associated with the Cognitive Services Account */
+  raiPolicyName: string;
+}
+export const DeleteRaiPolicyRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    raiPolicyName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/raiPolicies/{raiPolicyName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteRaiPolicyRequest",
+}) as any as S.Schema<DeleteRaiPolicyRequest>;
+
+export interface DeleteRaiPolicyResponse {}
+export const DeleteRaiPolicyResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteRaiPolicyResponse",
+}) as any as S.Schema<DeleteRaiPolicyResponse>;
+
+export interface DeleteRaiToolLabelRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+  /** The name of the Rai Tool Label */
+  raiToolConnectionName: string;
+}
+export const DeleteRaiToolLabelRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    raiToolConnectionName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/raiToolLabels/{raiToolConnectionName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteRaiToolLabelRequest",
+}) as any as S.Schema<DeleteRaiToolLabelRequest>;
+
+export interface DeleteRaiToolLabelResponse {}
+export const DeleteRaiToolLabelResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteRaiToolLabelResponse",
+}) as any as S.Schema<DeleteRaiToolLabelResponse>;
+
+export interface DeleteRaiTopicRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+  /** The name of the Rai Topic associated with the Cognitive Services Account */
+  raiTopicName: string;
+}
+export const DeleteRaiTopicRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    raiTopicName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/raitopics/{raiTopicName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteRaiTopicRequest",
+}) as any as S.Schema<DeleteRaiTopicRequest>;
+
+export interface DeleteRaiTopicResponse {}
+export const DeleteRaiTopicResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteRaiTopicResponse",
+}) as any as S.Schema<DeleteRaiTopicResponse>;
+
+export interface DeleteSubscriptionRaiPolicyRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the RaiPolicy associated with the Cognitive Services Account */
+  raiPolicyName: string;
+}
+export const DeleteSubscriptionRaiPolicyRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    raiPolicyName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/raiPolicy/{raiPolicyName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteSubscriptionRaiPolicyRequest",
+}) as any as S.Schema<DeleteSubscriptionRaiPolicyRequest>;
+
+export interface DeleteSubscriptionRaiPolicyResponse {}
+export const DeleteSubscriptionRaiPolicyResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteSubscriptionRaiPolicyResponse",
+}) as any as S.Schema<DeleteSubscriptionRaiPolicyResponse>;
 
 /** Deployment scale type. */
 export type DeploymentScaleType = "Standard" | "Manual";
@@ -6362,488 +4541,81 @@ export const DeploymentsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeploymentsCreateOrUpdateResponse",
 }) as any as S.Schema<DeploymentsCreateOrUpdateResponse>;
 
-export interface DeploymentsDeleteRequest {
+export interface DisableAgentApplicationRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of Cognitive Services account. */
   accountName: string;
-  /** The name of the deployment associated with the Cognitive Services Account */
-  deploymentName: string;
+  /** The name of Cognitive Services account's project. */
+  projectName: string;
+  /** Name for the Agent Application. */
+  name: string;
 }
-export const DeploymentsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const DisableAgentApplicationRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     accountName: S.String.pipe(T.Label()),
-    deploymentName: S.String.pipe(T.Label()),
+    projectName: S.String.pipe(T.Label()),
+    name: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/deployments/{deploymentName}",
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}/applications/{name}/disable",
       code: 200,
       apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
-  identifier: "DeploymentsDeleteRequest",
-}) as any as S.Schema<DeploymentsDeleteRequest>;
+  identifier: "DisableAgentApplicationRequest",
+}) as any as S.Schema<DisableAgentApplicationRequest>;
 
-export interface DeploymentsDeleteResponse {}
-export const DeploymentsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DisableAgentApplicationResponse {}
+export const DisableAgentApplicationResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DeploymentsDeleteResponse",
-}) as any as S.Schema<DeploymentsDeleteResponse>;
+  identifier: "DisableAgentApplicationResponse",
+}) as any as S.Schema<DisableAgentApplicationResponse>;
 
-export interface DeploymentsGetRequest {
+export interface EnableAgentApplicationRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of Cognitive Services account. */
   accountName: string;
-  /** The name of the deployment associated with the Cognitive Services Account */
-  deploymentName: string;
+  /** The name of Cognitive Services account's project. */
+  projectName: string;
+  /** Name for the Agent Application. */
+  name: string;
 }
-export const DeploymentsGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const EnableAgentApplicationRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     accountName: S.String.pipe(T.Label()),
-    deploymentName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/deployments/{deploymentName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "DeploymentsGetRequest",
-}) as any as S.Schema<DeploymentsGetRequest>;
-
-/** Resource tags. */
-export type DeploymentsGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const DeploymentsGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<DeploymentsGetResponseTagsMap>;
-
-export interface DeploymentsGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of Cognitive Services account deployment. */
-  properties?: DeploymentProperties;
-  /** The resource model definition representing SKU */
-  sku?: Sku;
-  /** Resource Etag. */
-  etag?: string;
-  /** Resource tags. */
-  tags?: DeploymentsGetResponseTagsMap;
-}
-export const DeploymentsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(DeploymentProperties),
-    sku: S.optional(Sku),
-    etag: S.optional(S.String),
-    tags: S.optional(DeploymentsGetResponseTagsMap),
-  }),
-).annotate({
-  identifier: "DeploymentsGetResponse",
-}) as any as S.Schema<DeploymentsGetResponse>;
-
-export interface DeploymentsListRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-}
-export const DeploymentsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/deployments",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "DeploymentsListRequest",
-}) as any as S.Schema<DeploymentsListRequest>;
-
-/** Resource tags. */
-export type DeploymentTagsMap = { [key: string]: string | undefined };
-export const DeploymentTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<DeploymentTagsMap>;
-
-/** Cognitive Services account deployment. */
-export interface Deployment {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of Cognitive Services account deployment. */
-  properties?: DeploymentProperties;
-  /** The resource model definition representing SKU */
-  sku?: Sku;
-  /** Resource Etag. */
-  etag?: string;
-  /** Resource tags. */
-  tags?: DeploymentTagsMap;
-}
-export const Deployment = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(DeploymentProperties),
-    sku: S.optional(Sku),
-    etag: S.optional(S.String),
-    tags: S.optional(DeploymentTagsMap),
-  }),
-).annotate({ identifier: "Deployment" }) as any as S.Schema<Deployment>;
-
-/** Gets the list of Cognitive Services accounts Deployment and their properties. */
-export type DeploymentListResultValueList = Array<Deployment>;
-export const DeploymentListResultValueList = /*@__PURE__*/ S.Array(
-  Deployment,
-) as any as S.Schema<DeploymentListResultValueList>;
-
-/** The list of cognitive services accounts operation response. */
-export interface DeploymentListResult {
-  /** The link used to get the next page of Deployment. */
-  nextLink?: string;
-  /** Gets the list of Cognitive Services accounts Deployment and their properties. */
-  value?: DeploymentListResultValueList;
-}
-export const DeploymentListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    nextLink: S.optional(S.String),
-    value: S.optional(DeploymentListResultValueList),
-  }),
-).annotate({
-  identifier: "DeploymentListResult",
-}) as any as S.Schema<DeploymentListResult>;
-
-export interface DeploymentsListSkusRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-  /** The name of the deployment associated with the Cognitive Services Account */
-  deploymentName: string;
-}
-export const DeploymentsListSkusRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    deploymentName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/deployments/{deploymentName}/skus",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "DeploymentsListSkusRequest",
-}) as any as S.Schema<DeploymentsListSkusRequest>;
-
-/** Properties of Cognitive Services account resource sku resource properties. */
-export interface SkuResource {
-  /** The resource type name. */
-  resourceType?: string;
-  /** The resource model definition representing SKU */
-  sku?: Sku;
-  /** The capacity configuration. */
-  capacity?: CapacityConfig;
-}
-export const SkuResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    resourceType: S.optional(S.String),
-    sku: S.optional(Sku),
-    capacity: S.optional(CapacityConfig),
-  }),
-).annotate({ identifier: "SkuResource" }) as any as S.Schema<SkuResource>;
-
-/** Gets the list of Cognitive Services accounts deployment skus. */
-export type DeploymentSkuListResultValueList = Array<SkuResource>;
-export const DeploymentSkuListResultValueList = /*@__PURE__*/ S.Array(
-  SkuResource,
-) as any as S.Schema<DeploymentSkuListResultValueList>;
-
-/** The list of cognitive services accounts operation response. */
-export interface DeploymentSkuListResult {
-  /** The link used to get the next page of deployment skus. */
-  nextLink?: string;
-  /** Gets the list of Cognitive Services accounts deployment skus. */
-  value?: DeploymentSkuListResultValueList;
-}
-export const DeploymentSkuListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    nextLink: S.optional(S.String),
-    value: S.optional(DeploymentSkuListResultValueList),
-  }),
-).annotate({
-  identifier: "DeploymentSkuListResult",
-}) as any as S.Schema<DeploymentSkuListResult>;
-
-export interface DeploymentsPauseRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-  /** The name of the deployment associated with the Cognitive Services Account */
-  deploymentName: string;
-}
-export const DeploymentsPauseRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    deploymentName: S.String.pipe(T.Label()),
+    projectName: S.String.pipe(T.Label()),
+    name: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/deployments/{deploymentName}/pause",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}/applications/{name}/enable",
       code: 200,
       apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
-  identifier: "DeploymentsPauseRequest",
-}) as any as S.Schema<DeploymentsPauseRequest>;
+  identifier: "EnableAgentApplicationRequest",
+}) as any as S.Schema<EnableAgentApplicationRequest>;
 
-/** Resource tags. */
-export type DeploymentsPauseResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const DeploymentsPauseResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<DeploymentsPauseResponseTagsMap>;
-
-export interface DeploymentsPauseResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of Cognitive Services account deployment. */
-  properties?: DeploymentProperties;
-  /** The resource model definition representing SKU */
-  sku?: Sku;
-  /** Resource Etag. */
-  etag?: string;
-  /** Resource tags. */
-  tags?: DeploymentsPauseResponseTagsMap;
-}
-export const DeploymentsPauseResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(DeploymentProperties),
-    sku: S.optional(Sku),
-    etag: S.optional(S.String),
-    tags: S.optional(DeploymentsPauseResponseTagsMap),
-  }),
+export interface EnableAgentApplicationResponse {}
+export const EnableAgentApplicationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
 ).annotate({
-  identifier: "DeploymentsPauseResponse",
-}) as any as S.Schema<DeploymentsPauseResponse>;
-
-export interface DeploymentsResumeRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-  /** The name of the deployment associated with the Cognitive Services Account */
-  deploymentName: string;
-}
-export const DeploymentsResumeRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    deploymentName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/deployments/{deploymentName}/resume",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "DeploymentsResumeRequest",
-}) as any as S.Schema<DeploymentsResumeRequest>;
-
-/** Resource tags. */
-export type DeploymentsResumeResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const DeploymentsResumeResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<DeploymentsResumeResponseTagsMap>;
-
-export interface DeploymentsResumeResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of Cognitive Services account deployment. */
-  properties?: DeploymentProperties;
-  /** The resource model definition representing SKU */
-  sku?: Sku;
-  /** Resource Etag. */
-  etag?: string;
-  /** Resource tags. */
-  tags?: DeploymentsResumeResponseTagsMap;
-}
-export const DeploymentsResumeResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(DeploymentProperties),
-    sku: S.optional(Sku),
-    etag: S.optional(S.String),
-    tags: S.optional(DeploymentsResumeResponseTagsMap),
-  }),
-).annotate({
-  identifier: "DeploymentsResumeResponse",
-}) as any as S.Schema<DeploymentsResumeResponse>;
-
-/** Resource tags. */
-export type DeploymentsUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const DeploymentsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<DeploymentsUpdateRequestTagsMap>;
-
-export interface DeploymentsUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-  /** The name of the deployment associated with the Cognitive Services Account */
-  deploymentName: string;
-  /** Resource tags. */
-  tags?: DeploymentsUpdateRequestTagsMap;
-  /** The resource model definition representing SKU */
-  sku?: Sku;
-}
-export const DeploymentsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    deploymentName: S.String.pipe(T.Label()),
-    tags: S.optional(DeploymentsUpdateRequestTagsMap),
-    sku: S.optional(Sku),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/deployments/{deploymentName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "DeploymentsUpdateRequest",
-}) as any as S.Schema<DeploymentsUpdateRequest>;
-
-/** Resource tags. */
-export type DeploymentsUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const DeploymentsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<DeploymentsUpdateResponseTagsMap>;
-
-export interface DeploymentsUpdateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of Cognitive Services account deployment. */
-  properties?: DeploymentProperties;
-  /** The resource model definition representing SKU */
-  sku?: Sku;
-  /** Resource Etag. */
-  etag?: string;
-  /** Resource tags. */
-  tags?: DeploymentsUpdateResponseTagsMap;
-}
-export const DeploymentsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(DeploymentProperties),
-    sku: S.optional(Sku),
-    etag: S.optional(S.String),
-    tags: S.optional(DeploymentsUpdateResponseTagsMap),
-  }),
-).annotate({
-  identifier: "DeploymentsUpdateResponse",
-}) as any as S.Schema<DeploymentsUpdateResponse>;
+  identifier: "EnableAgentApplicationResponse",
+}) as any as S.Schema<EnableAgentApplicationResponse>;
 
 /** Enumerates the possible value of keySource for Encryption */
 export type EncryptionScopePropertiesInputKeySource =
@@ -6999,79 +4771,335 @@ export const EncryptionScopesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
   identifier: "EncryptionScopesCreateOrUpdateResponse",
 }) as any as S.Schema<EncryptionScopesCreateOrUpdateResponse>;
 
-export interface EncryptionScopesDeleteRequest {
+export interface GetAccountRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of Cognitive Services account. */
   accountName: string;
-  /** The name of the encryptionScope associated with the Cognitive Services Account */
-  encryptionScopeName: string;
 }
-export const EncryptionScopesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetAccountRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     accountName: S.String.pipe(T.Label()),
-    encryptionScopeName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/encryptionScopes/{encryptionScopeName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "EncryptionScopesDeleteRequest",
-}) as any as S.Schema<EncryptionScopesDeleteRequest>;
-
-export interface EncryptionScopesDeleteResponse {}
-export const EncryptionScopesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "EncryptionScopesDeleteResponse",
-}) as any as S.Schema<EncryptionScopesDeleteResponse>;
-
-export interface EncryptionScopesGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-  /** The name of the encryptionScope associated with the Cognitive Services Account */
-  encryptionScopeName: string;
-}
-export const EncryptionScopesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    encryptionScopeName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/encryptionScopes/{encryptionScopeName}",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}",
       code: 200,
       apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
-  identifier: "EncryptionScopesGetRequest",
-}) as any as S.Schema<EncryptionScopesGetRequest>;
+  identifier: "GetAccountRequest",
+}) as any as S.Schema<GetAccountRequest>;
 
 /** Resource tags. */
-export type EncryptionScopesGetResponseTagsMap = {
+export type GetAccountResponseTagsMap = { [key: string]: string | undefined };
+export const GetAccountResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetAccountResponseTagsMap>;
+
+export interface GetAccountResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of Cognitive Services account. */
+  properties?: AccountProperties;
+  /** Resource tags. */
+  tags?: GetAccountResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location?: string;
+  /** Resource Etag. */
+  etag?: string;
+  /** The kind (type) of cognitive service account. */
+  kind?: string;
+  /** The resource model definition representing SKU */
+  sku?: Sku;
+  /** Identity for the resource. */
+  identity?: Identity;
+}
+export const GetAccountResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(AccountProperties),
+    tags: S.optional(GetAccountResponseTagsMap),
+    location: S.optional(S.String),
+    etag: S.optional(S.String),
+    kind: S.optional(S.String),
+    sku: S.optional(Sku),
+    identity: S.optional(Identity),
+  }),
+).annotate({
+  identifier: "GetAccountResponse",
+}) as any as S.Schema<GetAccountResponse>;
+
+export interface GetAccountCapabilityHostRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+  /** The name of the capability host associated with the Cognitive Services Resource */
+  capabilityHostName: string;
+}
+export const GetAccountCapabilityHostRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    capabilityHostName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/capabilityHosts/{capabilityHostName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetAccountCapabilityHostRequest",
+}) as any as S.Schema<GetAccountCapabilityHostRequest>;
+
+export interface GetAccountCapabilityHostResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** [Required] Additional attributes of the entity. */
+  properties: CapabilityHostProperties;
+}
+export const GetAccountCapabilityHostResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: CapabilityHostProperties,
+  }),
+).annotate({
+  identifier: "GetAccountCapabilityHostResponse",
+}) as any as S.Schema<GetAccountCapabilityHostResponse>;
+
+export interface GetAccountConnectionRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+  /** Friendly name of the connection */
+  connectionName: string;
+}
+export const GetAccountConnectionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    connectionName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/connections/{connectionName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetAccountConnectionRequest",
+}) as any as S.Schema<GetAccountConnectionRequest>;
+
+export interface GetAccountConnectionResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Connection property base schema. */
+  properties: ConnectionPropertiesV2;
+}
+export const GetAccountConnectionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: ConnectionPropertiesV2,
+  }),
+).annotate({
+  identifier: "GetAccountConnectionResponse",
+}) as any as S.Schema<GetAccountConnectionResponse>;
+
+export interface GetAgentApplicationRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+  /** The name of Cognitive Services account's project. */
+  projectName: string;
+  /** Name for the Agent Application. */
+  name: string;
+}
+export const GetAgentApplicationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    projectName: S.String.pipe(T.Label()),
+    name: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}/applications/{name}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetAgentApplicationRequest",
+}) as any as S.Schema<GetAgentApplicationRequest>;
+
+export interface GetAgentApplicationResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** [Required] Additional attributes of the entity. */
+  properties: AgenticApplicationProperties;
+}
+export const GetAgentApplicationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: AgenticApplicationProperties,
+  }),
+).annotate({
+  identifier: "GetAgentApplicationResponse",
+}) as any as S.Schema<GetAgentApplicationResponse>;
+
+export interface GetAgentDeploymentRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+  /** The name of Cognitive Services account's project. */
+  projectName: string;
+  /** The name of the application associated with the Cognitive Services Account */
+  appName: string;
+  /** The name of the deployment associated with the Cognitive Services Account */
+  deploymentName: string;
+}
+export const GetAgentDeploymentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    projectName: S.String.pipe(T.Label()),
+    appName: S.String.pipe(T.Label()),
+    deploymentName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}/applications/{appName}/agentDeployments/{deploymentName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetAgentDeploymentRequest",
+}) as any as S.Schema<GetAgentDeploymentRequest>;
+
+export interface GetAgentDeploymentResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** [Required] Additional attributes of the entity. */
+  properties: AgentDeploymentProperties;
+}
+export const GetAgentDeploymentResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: AgentDeploymentProperties,
+  }),
+).annotate({
+  identifier: "GetAgentDeploymentResponse",
+}) as any as S.Schema<GetAgentDeploymentResponse>;
+
+export interface GetCommitmentPlanRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+  /** The name of the commitmentPlan associated with the Cognitive Services Account */
+  commitmentPlanName: string;
+}
+export const GetCommitmentPlanRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    commitmentPlanName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/commitmentPlans/{commitmentPlanName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetCommitmentPlanRequest",
+}) as any as S.Schema<GetCommitmentPlanRequest>;
+
+/** Resource tags. */
+export type GetCommitmentPlanResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const EncryptionScopesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetCommitmentPlanResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<EncryptionScopesGetResponseTagsMap>;
+) as any as S.Schema<GetCommitmentPlanResponseTagsMap>;
 
-export interface EncryptionScopesGetResponse {
+export interface GetCommitmentPlanResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -7080,61 +5108,216 @@ export interface EncryptionScopesGetResponse {
   type?: string;
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
-  /** Properties of Cognitive Services EncryptionScope. */
-  properties?: EncryptionScopeProperties;
+  /** Properties of Cognitive Services account commitment plan. */
+  properties?: CommitmentPlanProperties;
+  /** Resource tags. */
+  tags?: GetCommitmentPlanResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location?: string;
   /** Resource Etag. */
   etag?: string;
-  /** Resource tags. */
-  tags?: EncryptionScopesGetResponseTagsMap;
+  /** The kind (type) of cognitive service account. */
+  kind?: string;
+  /** The resource model definition representing SKU */
+  sku?: Sku;
 }
-export const EncryptionScopesGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetCommitmentPlanResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    properties: S.optional(EncryptionScopeProperties),
+    properties: S.optional(CommitmentPlanProperties),
+    tags: S.optional(GetCommitmentPlanResponseTagsMap),
+    location: S.optional(S.String),
     etag: S.optional(S.String),
-    tags: S.optional(EncryptionScopesGetResponseTagsMap),
+    kind: S.optional(S.String),
+    sku: S.optional(Sku),
   }),
 ).annotate({
-  identifier: "EncryptionScopesGetResponse",
-}) as any as S.Schema<EncryptionScopesGetResponse>;
+  identifier: "GetCommitmentPlanResponse",
+}) as any as S.Schema<GetCommitmentPlanResponse>;
 
-export interface EncryptionScopesListRequest {
+export interface GetCommitmentPlanAssociationRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the commitmentPlan associated with the Cognitive Services Account */
+  commitmentPlanName: string;
+  /** The name of the commitment plan association with the Cognitive Services Account */
+  commitmentPlanAssociationName: string;
+}
+export const GetCommitmentPlanAssociationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    commitmentPlanName: S.String.pipe(T.Label()),
+    commitmentPlanAssociationName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/commitmentPlans/{commitmentPlanName}/accountAssociations/{commitmentPlanAssociationName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetCommitmentPlanAssociationRequest",
+}) as any as S.Schema<GetCommitmentPlanAssociationRequest>;
+
+/** Resource tags. */
+export type GetCommitmentPlanAssociationResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetCommitmentPlanAssociationResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<GetCommitmentPlanAssociationResponseTagsMap>;
+
+export interface GetCommitmentPlanAssociationResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of Cognitive Services account commitment plan association. */
+  properties?: CommitmentPlanAccountAssociationProperties;
+  /** Resource Etag. */
+  etag?: string;
+  /** Resource tags. */
+  tags?: GetCommitmentPlanAssociationResponseTagsMap;
+}
+export const GetCommitmentPlanAssociationResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(CommitmentPlanAccountAssociationProperties),
+      etag: S.optional(S.String),
+      tags: S.optional(GetCommitmentPlanAssociationResponseTagsMap),
+    }),
+).annotate({
+  identifier: "GetCommitmentPlanAssociationResponse",
+}) as any as S.Schema<GetCommitmentPlanAssociationResponse>;
+
+export interface GetCommitmentPlanPlanRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the commitmentPlan associated with the Cognitive Services Account */
+  commitmentPlanName: string;
+}
+export const GetCommitmentPlanPlanRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    commitmentPlanName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/commitmentPlans/{commitmentPlanName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetCommitmentPlanPlanRequest",
+}) as any as S.Schema<GetCommitmentPlanPlanRequest>;
+
+/** Resource tags. */
+export type GetCommitmentPlanPlanResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetCommitmentPlanPlanResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetCommitmentPlanPlanResponseTagsMap>;
+
+export interface GetCommitmentPlanPlanResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of Cognitive Services account commitment plan. */
+  properties?: CommitmentPlanProperties;
+  /** Resource tags. */
+  tags?: GetCommitmentPlanPlanResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location?: string;
+  /** Resource Etag. */
+  etag?: string;
+  /** The kind (type) of cognitive service account. */
+  kind?: string;
+  /** The resource model definition representing SKU */
+  sku?: Sku;
+}
+export const GetCommitmentPlanPlanResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(CommitmentPlanProperties),
+    tags: S.optional(GetCommitmentPlanPlanResponseTagsMap),
+    location: S.optional(S.String),
+    etag: S.optional(S.String),
+    kind: S.optional(S.String),
+    sku: S.optional(Sku),
+  }),
+).annotate({
+  identifier: "GetCommitmentPlanPlanResponse",
+}) as any as S.Schema<GetCommitmentPlanPlanResponse>;
+
+export interface GetDefenderForAISettingsRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of Cognitive Services account. */
   accountName: string;
+  /** The name of the defender for AI setting. */
+  defenderForAISettingName: string;
 }
-export const EncryptionScopesListRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetDefenderForAISettingsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     accountName: S.String.pipe(T.Label()),
+    defenderForAISettingName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/encryptionScopes",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/defenderForAISettings/{defenderForAISettingName}",
       code: 200,
       apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
-  identifier: "EncryptionScopesListRequest",
-}) as any as S.Schema<EncryptionScopesListRequest>;
+  identifier: "GetDefenderForAISettingsRequest",
+}) as any as S.Schema<GetDefenderForAISettingsRequest>;
 
 /** Resource tags. */
-export type EncryptionScopeTagsMap = { [key: string]: string | undefined };
-export const EncryptionScopeTagsMap = /*@__PURE__*/ S.Record(
+export type GetDefenderForAISettingsResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetDefenderForAISettingsResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<EncryptionScopeTagsMap>;
+) as any as S.Schema<GetDefenderForAISettingsResponseTagsMap>;
 
-/** Cognitive Services EncryptionScope */
-export interface EncryptionScope {
+export interface GetDefenderForAISettingsResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -7143,109 +5326,65 @@ export interface EncryptionScope {
   type?: string;
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
-  /** Properties of Cognitive Services EncryptionScope. */
-  properties?: EncryptionScopeProperties;
+  /** The Defender for AI resource properties. */
+  properties?: DefenderForAISettingProperties;
   /** Resource Etag. */
   etag?: string;
   /** Resource tags. */
-  tags?: EncryptionScopeTagsMap;
+  tags?: GetDefenderForAISettingsResponseTagsMap;
 }
-export const EncryptionScope = /*@__PURE__*/ S.suspend(() =>
+export const GetDefenderForAISettingsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    properties: S.optional(EncryptionScopeProperties),
+    properties: S.optional(DefenderForAISettingProperties),
     etag: S.optional(S.String),
-    tags: S.optional(EncryptionScopeTagsMap),
+    tags: S.optional(GetDefenderForAISettingsResponseTagsMap),
   }),
 ).annotate({
-  identifier: "EncryptionScope",
-}) as any as S.Schema<EncryptionScope>;
+  identifier: "GetDefenderForAISettingsResponse",
+}) as any as S.Schema<GetDefenderForAISettingsResponse>;
 
-/** The list of EncryptionScope. */
-export type EncryptionScopeListResultValueList = Array<EncryptionScope>;
-export const EncryptionScopeListResultValueList = /*@__PURE__*/ S.Array(
-  EncryptionScope,
-) as any as S.Schema<EncryptionScopeListResultValueList>;
-
-/** The list of cognitive services EncryptionScopes. */
-export interface EncryptionScopeListResult {
-  /** The link used to get the next page of EncryptionScope. */
-  nextLink?: string;
-  /** The list of EncryptionScope. */
-  value?: EncryptionScopeListResultValueList;
-}
-export const EncryptionScopeListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    nextLink: S.optional(S.String),
-    value: S.optional(EncryptionScopeListResultValueList),
-  }),
-).annotate({
-  identifier: "EncryptionScopeListResult",
-}) as any as S.Schema<EncryptionScopeListResult>;
-
-export interface LocationBasedModelCapacitiesListRequest {
+export interface GetDeletedAccountRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of Azure region. */
   location: string;
-  /** The format of the Model */
-  modelFormat: string;
-  /** The name of the Model */
-  modelName: string;
-  /** The version of the Model */
-  modelVersion: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
 }
-export const LocationBasedModelCapacitiesListRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      location: S.String.pipe(T.Label()),
-      modelFormat: S.String.pipe(T.Query()),
-      modelName: S.String.pipe(T.Query()),
-      modelVersion: S.String.pipe(T.Query()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/locations/{location}/modelCapacities",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-).annotate({
-  identifier: "LocationBasedModelCapacitiesListRequest",
-}) as any as S.Schema<LocationBasedModelCapacitiesListRequest>;
-
-/** Cognitive Services account ModelSkuCapacity. */
-export interface ModelSkuCapacityProperties {
-  /** Properties of Cognitive Services account deployment model. */
-  model?: DeploymentModel;
-  skuName?: string;
-  /** The available capacity for deployment with this model and sku. */
-  availableCapacity?: number;
-  /** The available capacity for deployment with a fine-tune version of this model and sku. */
-  availableFinetuneCapacity?: number;
-  /** The scope identifier for model SKU capacity. */
-  scopeId?: string | null;
-  /** The scope type for model SKU capacity. */
-  scopeType?: QuotaScopeType | null;
-}
-export const ModelSkuCapacityProperties = /*@__PURE__*/ S.suspend(() =>
+export const GetDeletedAccountRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    model: S.optional(DeploymentModel),
-    skuName: S.optional(S.String),
-    availableCapacity: S.optional(S.Number),
-    availableFinetuneCapacity: S.optional(S.Number),
-    scopeId: S.optional(S.NullOr(S.String)),
-    scopeType: S.optional(S.NullOr(QuotaScopeType)),
-  }),
+    subscriptionId: S.String.pipe(T.Label()),
+    location: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/locations/{location}/resourceGroups/{resourceGroupName}/deletedAccounts/{accountName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
 ).annotate({
-  identifier: "ModelSkuCapacityProperties",
-}) as any as S.Schema<ModelSkuCapacityProperties>;
+  identifier: "GetDeletedAccountRequest",
+}) as any as S.Schema<GetDeletedAccountRequest>;
 
-export interface ModelCapacityListResultValueItem {
+/** Resource tags. */
+export type GetDeletedAccountResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetDeletedAccountResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetDeletedAccountResponseTagsMap>;
+
+export interface GetDeletedAccountResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -7254,129 +5393,177 @@ export interface ModelCapacityListResultValueItem {
   type?: string;
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
-  /** The location of the Model Sku Capacity. */
+  /** Properties of Cognitive Services account. */
+  properties?: AccountProperties;
+  /** Resource tags. */
+  tags?: GetDeletedAccountResponseTagsMap;
+  /** The geo-location where the resource lives */
   location?: string;
-  /** Cognitive Services account ModelSkuCapacity. */
-  properties?: ModelSkuCapacityProperties;
+  /** Resource Etag. */
+  etag?: string;
+  /** The kind (type) of cognitive service account. */
+  kind?: string;
+  /** The resource model definition representing SKU */
+  sku?: Sku;
+  /** Identity for the resource. */
+  identity?: Identity;
 }
-export const ModelCapacityListResultValueItem = /*@__PURE__*/ S.suspend(() =>
+export const GetDeletedAccountResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
+    properties: S.optional(AccountProperties),
+    tags: S.optional(GetDeletedAccountResponseTagsMap),
     location: S.optional(S.String),
-    properties: S.optional(ModelSkuCapacityProperties),
+    etag: S.optional(S.String),
+    kind: S.optional(S.String),
+    sku: S.optional(Sku),
+    identity: S.optional(Identity),
   }),
 ).annotate({
-  identifier: "ModelCapacityListResultValueItem",
-}) as any as S.Schema<ModelCapacityListResultValueItem>;
+  identifier: "GetDeletedAccountResponse",
+}) as any as S.Schema<GetDeletedAccountResponse>;
 
-/** Gets the list of Cognitive Services accounts ModelSkuCapacity. */
-export type ModelCapacityListResultValueList =
-  Array<ModelCapacityListResultValueItem>;
-export const ModelCapacityListResultValueList = /*@__PURE__*/ S.Array(
-  ModelCapacityListResultValueItem,
-) as any as S.Schema<ModelCapacityListResultValueList>;
-
-/** The list of cognitive services accounts operation response. */
-export interface ModelCapacityListResult {
-  /** The link used to get the next page of ModelSkuCapacity. */
-  nextLink?: string;
-  /** Gets the list of Cognitive Services accounts ModelSkuCapacity. */
-  value?: ModelCapacityListResultValueList;
-}
-export const ModelCapacityListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    nextLink: S.optional(S.String),
-    value: S.optional(ModelCapacityListResultValueList),
-  }),
-).annotate({
-  identifier: "ModelCapacityListResult",
-}) as any as S.Schema<ModelCapacityListResult>;
-
-export interface ManagedNetworkProvisionsProvisionManagedNetworkRequest {
+export interface GetDeploymentRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of Cognitive Services account. */
   accountName: string;
-  /** Name of the managedNetwork associated with the cognitive services account. Only 'default' is supported. */
-  managedNetworkName: string;
+  /** The name of the deployment associated with the Cognitive Services Account */
+  deploymentName: string;
 }
-export const ManagedNetworkProvisionsProvisionManagedNetworkRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-      managedNetworkName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/managedNetworks/{managedNetworkName}/provision",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ManagedNetworkProvisionsProvisionManagedNetworkRequest",
-  }) as any as S.Schema<ManagedNetworkProvisionsProvisionManagedNetworkRequest>;
-
-/** Status for the managed network of a cognitive services account. */
-export type ManagedNetworkStatus = "Inactive" | "Active";
-export const ManagedNetworkStatus = /*@__PURE__*/ S.String;
-
-/** Status of the Provisioning for the managed network of a cognitive services account. */
-export interface ManagedNetworkProvisionStatus {
-  /** Status for the managed network of a cognitive services account. */
-  status?: ManagedNetworkStatus | (string & {});
-}
-export const ManagedNetworkProvisionStatus = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    status: S.optional(ManagedNetworkStatus),
-  }),
-).annotate({
-  identifier: "ManagedNetworkProvisionStatus",
-}) as any as S.Schema<ManagedNetworkProvisionStatus>;
-
-export interface ManagedNetworkSettingsDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-  /** Name of the managedNetwork associated with the cognitive services account. Only 'default' is supported. */
-  managedNetworkName: string;
-}
-export const ManagedNetworkSettingsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetDeploymentRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     accountName: S.String.pipe(T.Label()),
-    managedNetworkName: S.String.pipe(T.Label()),
+    deploymentName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/managedNetworks/{managedNetworkName}",
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/deployments/{deploymentName}",
       code: 200,
       apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
-  identifier: "ManagedNetworkSettingsDeleteRequest",
-}) as any as S.Schema<ManagedNetworkSettingsDeleteRequest>;
+  identifier: "GetDeploymentRequest",
+}) as any as S.Schema<GetDeploymentRequest>;
 
-export interface ManagedNetworkSettingsDeleteResponse {}
-export const ManagedNetworkSettingsDeleteResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
+/** Resource tags. */
+export type GetDeploymentResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetDeploymentResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetDeploymentResponseTagsMap>;
+
+export interface GetDeploymentResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of Cognitive Services account deployment. */
+  properties?: DeploymentProperties;
+  /** The resource model definition representing SKU */
+  sku?: Sku;
+  /** Resource Etag. */
+  etag?: string;
+  /** Resource tags. */
+  tags?: GetDeploymentResponseTagsMap;
+}
+export const GetDeploymentResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(DeploymentProperties),
+    sku: S.optional(Sku),
+    etag: S.optional(S.String),
+    tags: S.optional(GetDeploymentResponseTagsMap),
+  }),
 ).annotate({
-  identifier: "ManagedNetworkSettingsDeleteResponse",
-}) as any as S.Schema<ManagedNetworkSettingsDeleteResponse>;
+  identifier: "GetDeploymentResponse",
+}) as any as S.Schema<GetDeploymentResponse>;
 
-export interface ManagedNetworkSettingsGetRequest {
+export interface GetEncryptionScopeRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+  /** The name of the encryptionScope associated with the Cognitive Services Account */
+  encryptionScopeName: string;
+}
+export const GetEncryptionScopeRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    encryptionScopeName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/encryptionScopes/{encryptionScopeName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetEncryptionScopeRequest",
+}) as any as S.Schema<GetEncryptionScopeRequest>;
+
+/** Resource tags. */
+export type GetEncryptionScopeResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetEncryptionScopeResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetEncryptionScopeResponseTagsMap>;
+
+export interface GetEncryptionScopeResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of Cognitive Services EncryptionScope. */
+  properties?: EncryptionScopeProperties;
+  /** Resource Etag. */
+  etag?: string;
+  /** Resource tags. */
+  tags?: GetEncryptionScopeResponseTagsMap;
+}
+export const GetEncryptionScopeResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(EncryptionScopeProperties),
+    etag: S.optional(S.String),
+    tags: S.optional(GetEncryptionScopeResponseTagsMap),
+  }),
+).annotate({
+  identifier: "GetEncryptionScopeResponse",
+}) as any as S.Schema<GetEncryptionScopeResponse>;
+
+export interface GetManagedNetworkSettingsRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -7386,7 +5573,7 @@ export interface ManagedNetworkSettingsGetRequest {
   /** Name of the managedNetwork associated with the cognitive services account. Only 'default' is supported. */
   managedNetworkName: string;
 }
-export const ManagedNetworkSettingsGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetManagedNetworkSettingsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -7401,8 +5588,8 @@ export const ManagedNetworkSettingsGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ManagedNetworkSettingsGetRequest",
-}) as any as S.Schema<ManagedNetworkSettingsGetRequest>;
+  identifier: "GetManagedNetworkSettingsRequest",
+}) as any as S.Schema<GetManagedNetworkSettingsRequest>;
 
 /** Isolation mode for the managed network of a cognitive services account. */
 export type IsolationMode =
@@ -7467,6 +5654,23 @@ export const ManagedNetworkSettingsExOutboundRulesMap = /*@__PURE__*/ S.Record(
   S.String,
   OutboundRule,
 ) as any as S.Schema<ManagedNetworkSettingsExOutboundRulesMap>;
+
+/** Status for the managed network of a cognitive services account. */
+export type ManagedNetworkStatus = "Inactive" | "Active";
+export const ManagedNetworkStatus = /*@__PURE__*/ S.String;
+
+/** Status of the Provisioning for the managed network of a cognitive services account. */
+export interface ManagedNetworkProvisionStatus {
+  /** Status for the managed network of a cognitive services account. */
+  status?: ManagedNetworkStatus | (string & {});
+}
+export const ManagedNetworkProvisionStatus = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: S.optional(ManagedNetworkStatus),
+  }),
+).annotate({
+  identifier: "ManagedNetworkProvisionStatus",
+}) as any as S.Schema<ManagedNetworkProvisionStatus>;
 
 /** Firewall Sku used for FQDN Rules */
 export type FirewallSku = "Standard" | "Basic";
@@ -7546,7 +5750,7 @@ export const ManagedNetworkSettingsProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "ManagedNetworkSettingsProperties",
 }) as any as S.Schema<ManagedNetworkSettingsProperties>;
 
-export interface ManagedNetworkSettingsGetResponse {
+export interface GetManagedNetworkSettingsResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -7558,7 +5762,7 @@ export interface ManagedNetworkSettingsGetResponse {
   /** The properties of the managed network settings of a cognitive services account. */
   properties?: ManagedNetworkSettingsProperties;
 }
-export const ManagedNetworkSettingsGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetManagedNetworkSettingsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -7567,355 +5771,10 @@ export const ManagedNetworkSettingsGetResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(ManagedNetworkSettingsProperties),
   }),
 ).annotate({
-  identifier: "ManagedNetworkSettingsGetResponse",
-}) as any as S.Schema<ManagedNetworkSettingsGetResponse>;
+  identifier: "GetManagedNetworkSettingsResponse",
+}) as any as S.Schema<GetManagedNetworkSettingsResponse>;
 
-export interface ManagedNetworkSettingsListRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-}
-export const ManagedNetworkSettingsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/managedNetworks",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "ManagedNetworkSettingsListRequest",
-}) as any as S.Schema<ManagedNetworkSettingsListRequest>;
-
-/** Concrete proxy resource types can be created by aliasing this type using a specific property type. */
-export interface ManagedNetworkSettingsPropertiesBasicResource {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties of the managed network settings of a cognitive services account. */
-  properties?: ManagedNetworkSettingsProperties;
-}
-export const ManagedNetworkSettingsPropertiesBasicResource =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(ManagedNetworkSettingsProperties),
-    }),
-  ).annotate({
-    identifier: "ManagedNetworkSettingsPropertiesBasicResource",
-  }) as any as S.Schema<ManagedNetworkSettingsPropertiesBasicResource>;
-
-/** The list of managed network settings of an account. Since this list may be incomplete, the nextLink field should be used to request the next list of cognitive services accounts. */
-export type ManagedNetworkListResultValueList =
-  Array<ManagedNetworkSettingsPropertiesBasicResource>;
-export const ManagedNetworkListResultValueList = /*@__PURE__*/ S.Array(
-  ManagedNetworkSettingsPropertiesBasicResource,
-) as any as S.Schema<ManagedNetworkListResultValueList>;
-
-/** List of managed networks of a cognitive services account. */
-export interface ManagedNetworkListResult {
-  /** The link to the next page constructed using the continuationToken. If null, there are no additional pages. */
-  nextLink?: string;
-  /** The list of managed network settings of an account. Since this list may be incomplete, the nextLink field should be used to request the next list of cognitive services accounts. */
-  value?: ManagedNetworkListResultValueList;
-}
-export const ManagedNetworkListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    nextLink: S.optional(S.String),
-    value: S.optional(ManagedNetworkListResultValueList),
-  }),
-).annotate({
-  identifier: "ManagedNetworkListResult",
-}) as any as S.Schema<ManagedNetworkListResult>;
-
-/** Outbound Rule for the managed network of a cognitive services account. */
-export interface OutboundRuleInput {
-  /** Category of a managed network Outbound Rule of a cognitive services account. */
-  category?: RuleCategory | (string & {});
-  /** Type of a managed network Outbound Rule of a cognitive services account. */
-  status?: RuleStatus | (string & {});
-  /** Type of a managed network Outbound Rule of a cognitive services account. */
-  type: RuleType | (string & {});
-}
-export const OutboundRuleInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    category: S.optional(RuleCategory),
-    status: S.optional(RuleStatus),
-    type: RuleType,
-  }),
-).annotate({
-  identifier: "OutboundRuleInput",
-}) as any as S.Schema<OutboundRuleInput>;
-
-/** Dictionary of <OutboundRule> */
-export type ManagedNetworkSettingsExInputOutboundRulesMap = {
-  [key: string]: OutboundRuleInput | undefined;
-};
-export const ManagedNetworkSettingsExInputOutboundRulesMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    OutboundRuleInput,
-  ) as any as S.Schema<ManagedNetworkSettingsExInputOutboundRulesMap>;
-
-export interface ManagedNetworkSettingsExInput {
-  /** Isolation mode for the managed network of a cognitive services account. */
-  isolationMode?: IsolationMode | (string & {});
-  /** Dictionary of <OutboundRule> */
-  outboundRules?: ManagedNetworkSettingsExInputOutboundRulesMap | null;
-  /** Status of the Provisioning for the managed network of a cognitive services account. */
-  status?: ManagedNetworkProvisionStatus;
-  /** Firewall Sku used for FQDN Rules */
-  firewallSku?: FirewallSku | (string & {});
-  /** The Kind of the managed network. Users can switch from V1 to V2 for granular access controls, but cannot switch back to V1 once V2 is enabled. */
-  managedNetworkKind?: ManagedNetworkKind | (string & {});
-}
-export const ManagedNetworkSettingsExInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    isolationMode: S.optional(IsolationMode),
-    outboundRules: S.optional(
-      S.NullOr(ManagedNetworkSettingsExInputOutboundRulesMap),
-    ),
-    status: S.optional(ManagedNetworkProvisionStatus),
-    firewallSku: S.optional(FirewallSku),
-    managedNetworkKind: S.optional(ManagedNetworkKind),
-  }),
-).annotate({
-  identifier: "ManagedNetworkSettingsExInput",
-}) as any as S.Schema<ManagedNetworkSettingsExInput>;
-
-/** The properties of the managed network settings of a cognitive services account. */
-export interface ManagedNetworkSettingsPropertiesInput {
-  /** Managed Network settings for a cognitive services account. */
-  managedNetwork?: ManagedNetworkSettingsExInput;
-}
-export const ManagedNetworkSettingsPropertiesInput = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      managedNetwork: S.optional(ManagedNetworkSettingsExInput),
-    }),
-).annotate({
-  identifier: "ManagedNetworkSettingsPropertiesInput",
-}) as any as S.Schema<ManagedNetworkSettingsPropertiesInput>;
-
-export interface ManagedNetworkSettingsPatchRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-  /** Name of the managedNetwork associated with the cognitive services account. Only 'default' is supported. */
-  managedNetworkName: string;
-  /** The properties of the managed network settings of a cognitive services account. */
-  properties?: ManagedNetworkSettingsPropertiesInput;
-}
-export const ManagedNetworkSettingsPatchRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    managedNetworkName: S.String.pipe(T.Label()),
-    properties: S.optional(ManagedNetworkSettingsPropertiesInput),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/managedNetworks/{managedNetworkName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "ManagedNetworkSettingsPatchRequest",
-}) as any as S.Schema<ManagedNetworkSettingsPatchRequest>;
-
-export interface ManagedNetworkSettingsPatchResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties of the managed network settings of a cognitive services account. */
-  properties?: ManagedNetworkSettingsProperties;
-}
-export const ManagedNetworkSettingsPatchResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ManagedNetworkSettingsProperties),
-  }),
-).annotate({
-  identifier: "ManagedNetworkSettingsPatchResponse",
-}) as any as S.Schema<ManagedNetworkSettingsPatchResponse>;
-
-export interface ManagedNetworkSettingsPutRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-  /** Name of the managedNetwork associated with the cognitive services account. Only 'default' is supported. */
-  managedNetworkName: string;
-  /** The properties of the managed network settings of a cognitive services account. */
-  properties?: ManagedNetworkSettingsPropertiesInput;
-}
-export const ManagedNetworkSettingsPutRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    managedNetworkName: S.String.pipe(T.Label()),
-    properties: S.optional(ManagedNetworkSettingsPropertiesInput),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/managedNetworks/{managedNetworkName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "ManagedNetworkSettingsPutRequest",
-}) as any as S.Schema<ManagedNetworkSettingsPutRequest>;
-
-export interface ManagedNetworkSettingsPutResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties of the managed network settings of a cognitive services account. */
-  properties?: ManagedNetworkSettingsProperties;
-}
-export const ManagedNetworkSettingsPutResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ManagedNetworkSettingsProperties),
-  }),
-).annotate({
-  identifier: "ManagedNetworkSettingsPutResponse",
-}) as any as S.Schema<ManagedNetworkSettingsPutResponse>;
-
-export interface ModelCapacitiesListRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The format of the Model */
-  modelFormat: string;
-  /** The name of the Model */
-  modelName: string;
-  /** The version of the Model */
-  modelVersion: string;
-}
-export const ModelCapacitiesListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    modelFormat: S.String.pipe(T.Query()),
-    modelName: S.String.pipe(T.Query()),
-    modelVersion: S.String.pipe(T.Query()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/modelCapacities",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "ModelCapacitiesListRequest",
-}) as any as S.Schema<ModelCapacitiesListRequest>;
-
-export interface ModelsListRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of Azure region. */
-  location: string;
-}
-export const ModelsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    location: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/locations/{location}/models",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "ModelsListRequest",
-}) as any as S.Schema<ModelsListRequest>;
-
-/** Cognitive Services Model. */
-export interface Model {
-  /** Cognitive Services account Model. */
-  model?: AccountModel;
-  /** The kind (type) of cognitive service account. */
-  kind?: string;
-  /** The name of SKU. */
-  skuName?: string;
-  /** The description of the model. */
-  description?: string;
-}
-export const Model = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    model: S.optional(AccountModel),
-    kind: S.optional(S.String),
-    skuName: S.optional(S.String),
-    description: S.optional(S.String),
-  }),
-).annotate({ identifier: "Model" }) as any as S.Schema<Model>;
-
-/** Gets the list of Cognitive Services accounts Model and their properties. */
-export type ModelListResultValueList = Array<Model>;
-export const ModelListResultValueList = /*@__PURE__*/ S.Array(
-  Model,
-) as any as S.Schema<ModelListResultValueList>;
-
-/** The list of cognitive services models. */
-export interface ModelListResult {
-  /** The link used to get the next page of Model. */
-  nextLink?: string;
-  /** Gets the list of Cognitive Services accounts Model and their properties. */
-  value?: ModelListResultValueList;
-}
-export const ModelListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    nextLink: S.optional(S.String),
-    value: S.optional(ModelListResultValueList),
-  }),
-).annotate({
-  identifier: "ModelListResult",
-}) as any as S.Schema<ModelListResult>;
-
-export interface NetworkSecurityPerimeterConfigurationsGetRequest {
+export interface GetNetworkSecurityPerimeterConfigurationRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -7925,7 +5784,7 @@ export interface NetworkSecurityPerimeterConfigurationsGetRequest {
   /** The name of the NSP Configuration. */
   nspConfigurationName: string;
 }
-export const NetworkSecurityPerimeterConfigurationsGetRequest =
+export const GetNetworkSecurityPerimeterConfigurationRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -7941,8 +5800,8 @@ export const NetworkSecurityPerimeterConfigurationsGetRequest =
       }),
     ),
   ).annotate({
-    identifier: "NetworkSecurityPerimeterConfigurationsGetRequest",
-  }) as any as S.Schema<NetworkSecurityPerimeterConfigurationsGetRequest>;
+    identifier: "GetNetworkSecurityPerimeterConfigurationRequest",
+  }) as any as S.Schema<GetNetworkSecurityPerimeterConfigurationRequest>;
 
 /** IDs of resources that can be associated to the same perimeter to remediate the issue. */
 export type ProvisioningIssuePropertiesSuggestedResourceIdsList = Array<string>;
@@ -8218,7 +6077,7 @@ export const NetworkSecurityPerimeterConfigurationProperties =
     identifier: "NetworkSecurityPerimeterConfigurationProperties",
   }) as any as S.Schema<NetworkSecurityPerimeterConfigurationProperties>;
 
-export interface NetworkSecurityPerimeterConfigurationsGetResponse {
+export interface GetNetworkSecurityPerimeterConfigurationResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -8230,7 +6089,7 @@ export interface NetworkSecurityPerimeterConfigurationsGetResponse {
   /** NSP Configuration properties. */
   properties?: NetworkSecurityPerimeterConfigurationProperties;
 }
-export const NetworkSecurityPerimeterConfigurationsGetResponse =
+export const GetNetworkSecurityPerimeterConfigurationResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
@@ -8240,287 +6099,10 @@ export const NetworkSecurityPerimeterConfigurationsGetResponse =
       properties: S.optional(NetworkSecurityPerimeterConfigurationProperties),
     }),
   ).annotate({
-    identifier: "NetworkSecurityPerimeterConfigurationsGetResponse",
-  }) as any as S.Schema<NetworkSecurityPerimeterConfigurationsGetResponse>;
+    identifier: "GetNetworkSecurityPerimeterConfigurationResponse",
+  }) as any as S.Schema<GetNetworkSecurityPerimeterConfigurationResponse>;
 
-export interface NetworkSecurityPerimeterConfigurationsListRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-}
-export const NetworkSecurityPerimeterConfigurationsListRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/networkSecurityPerimeterConfigurations",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "NetworkSecurityPerimeterConfigurationsListRequest",
-  }) as any as S.Schema<NetworkSecurityPerimeterConfigurationsListRequest>;
-
-/** NSP Configuration for an Cognitive Services account. */
-export interface NetworkSecurityPerimeterConfiguration {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** NSP Configuration properties. */
-  properties?: NetworkSecurityPerimeterConfigurationProperties;
-}
-export const NetworkSecurityPerimeterConfiguration = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(NetworkSecurityPerimeterConfigurationProperties),
-    }),
-).annotate({
-  identifier: "NetworkSecurityPerimeterConfiguration",
-}) as any as S.Schema<NetworkSecurityPerimeterConfiguration>;
-
-/** Array of NSP configurations List Result for an Cognitive Services account. */
-export type NetworkSecurityPerimeterConfigurationListValueList =
-  Array<NetworkSecurityPerimeterConfiguration>;
-export const NetworkSecurityPerimeterConfigurationListValueList =
-  /*@__PURE__*/ S.Array(
-    NetworkSecurityPerimeterConfiguration,
-  ) as any as S.Schema<NetworkSecurityPerimeterConfigurationListValueList>;
-
-/** A list of NSP configurations for an Cognitive Services account. */
-export interface NetworkSecurityPerimeterConfigurationList {
-  /** Array of NSP configurations List Result for an Cognitive Services account. */
-  value?: NetworkSecurityPerimeterConfigurationListValueList;
-  /** Link to retrieve next page of results. */
-  nextLink?: string;
-}
-export const NetworkSecurityPerimeterConfigurationList =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      value: S.optional(NetworkSecurityPerimeterConfigurationListValueList),
-      nextLink: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "NetworkSecurityPerimeterConfigurationList",
-  }) as any as S.Schema<NetworkSecurityPerimeterConfigurationList>;
-
-export interface NetworkSecurityPerimeterConfigurationsReconcileRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-  /** The name of the NSP Configuration. */
-  nspConfigurationName: string;
-}
-export const NetworkSecurityPerimeterConfigurationsReconcileRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-      nspConfigurationName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/networkSecurityPerimeterConfigurations/{nspConfigurationName}/reconcile",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "NetworkSecurityPerimeterConfigurationsReconcileRequest",
-  }) as any as S.Schema<NetworkSecurityPerimeterConfigurationsReconcileRequest>;
-
-export interface NetworkSecurityPerimeterConfigurationsReconcileResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** NSP Configuration properties. */
-  properties?: NetworkSecurityPerimeterConfigurationProperties;
-}
-export const NetworkSecurityPerimeterConfigurationsReconcileResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(NetworkSecurityPerimeterConfigurationProperties),
-    }),
-  ).annotate({
-    identifier: "NetworkSecurityPerimeterConfigurationsReconcileResponse",
-  }) as any as S.Schema<NetworkSecurityPerimeterConfigurationsReconcileResponse>;
-
-export interface OperationsListRequest {}
-export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/providers/Microsoft.CognitiveServices/operations",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "OperationsListRequest",
-}) as any as S.Schema<OperationsListRequest>;
-
-/** Localized display information for this particular operation. */
-export interface OperationDisplay {
-  /** The localized friendly form of the resource provider name, e.g. "Microsoft Monitoring Insights" or "Microsoft Compute". */
-  provider?: string;
-  /** The localized friendly name of the resource type related to this operation. E.g. "Virtual Machines" or "Job Schedule Collections". */
-  resource?: string;
-  /** The concise, localized friendly name for the operation; suitable for dropdowns. E.g. "Create or Update Virtual Machine", "Restart Virtual Machine". */
-  operation?: string;
-  /** The short, localized friendly description of the operation; suitable for tool tips and detailed views. */
-  description?: string;
-}
-export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provider: S.optional(S.String),
-    resource: S.optional(S.String),
-    operation: S.optional(S.String),
-    description: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OperationDisplay",
-}) as any as S.Schema<OperationDisplay>;
-
-/** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
-export type OperationOrigin = "user" | "system" | "user,system";
-export const OperationOrigin = /*@__PURE__*/ S.String;
-
-/** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
-export type OperationActionType = "Internal";
-export const OperationActionType = /*@__PURE__*/ S.String;
-
-/** Details of a REST API operation, returned from the Resource Provider Operations API */
-export interface Operation {
-  /** The name of the operation, as per Resource-Based Access Control (RBAC). Examples: "Microsoft.Compute/virtualMachines/write", "Microsoft.Compute/virtualMachines/capture/action" */
-  name?: string;
-  /** Whether the operation applies to data-plane. This is "true" for data-plane operations and "false" for ARM/control-plane operations. */
-  isDataAction?: boolean;
-  /** Localized display information for this particular operation. */
-  display?: OperationDisplay;
-  /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
-  origin?: OperationOrigin;
-  /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
-  actionType?: OperationActionType;
-}
-export const Operation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    isDataAction: S.optional(S.Boolean),
-    display: S.optional(OperationDisplay),
-    origin: S.optional(OperationOrigin),
-    actionType: S.optional(OperationActionType),
-  }),
-).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
-
-/** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
-  Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
-
-export interface OperationsListResponse {
-  /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
-  /** URL to get the next set of operation list results (if there are any). */
-  nextLink?: string;
-}
-export const OperationsListResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(OperationsListResponseValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OperationsListResponse",
-}) as any as S.Schema<OperationsListResponse>;
-
-export interface OutboundRuleCreateOrUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-  /** Name of the managedNetwork associated with the cognitive services account. Only 'default' is supported. */
-  managedNetworkName: string;
-  /** Name of the cognitive services account managed network outbound rule */
-  ruleName: string;
-  /** Outbound Rule for the managed network of a cognitive services account. */
-  properties: OutboundRuleInput;
-}
-export const OutboundRuleCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    managedNetworkName: S.String.pipe(T.Label()),
-    ruleName: S.String.pipe(T.Label()),
-    properties: OutboundRuleInput,
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/managedNetworks/{managedNetworkName}/outboundRules/{ruleName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "OutboundRuleCreateOrUpdateRequest",
-}) as any as S.Schema<OutboundRuleCreateOrUpdateRequest>;
-
-export interface OutboundRuleCreateOrUpdateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Outbound Rule for the managed network of a cognitive services account. */
-  properties: OutboundRule;
-}
-export const OutboundRuleCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: OutboundRule,
-  }),
-).annotate({
-  identifier: "OutboundRuleCreateOrUpdateResponse",
-}) as any as S.Schema<OutboundRuleCreateOrUpdateResponse>;
-
-export interface OutboundRuleDeleteRequest {
+export interface GetOutboundRuleRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -8532,45 +6114,7 @@ export interface OutboundRuleDeleteRequest {
   /** Name of the cognitive services account managed network outbound rule */
   ruleName: string;
 }
-export const OutboundRuleDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    managedNetworkName: S.String.pipe(T.Label()),
-    ruleName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/managedNetworks/{managedNetworkName}/outboundRules/{ruleName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "OutboundRuleDeleteRequest",
-}) as any as S.Schema<OutboundRuleDeleteRequest>;
-
-export interface OutboundRuleDeleteResponse {}
-export const OutboundRuleDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "OutboundRuleDeleteResponse",
-}) as any as S.Schema<OutboundRuleDeleteResponse>;
-
-export interface OutboundRuleGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-  /** Name of the managedNetwork associated with the cognitive services account. Only 'default' is supported. */
-  managedNetworkName: string;
-  /** Name of the cognitive services account managed network outbound rule */
-  ruleName: string;
-}
-export const OutboundRuleGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetOutboundRuleRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -8586,10 +6130,10 @@ export const OutboundRuleGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "OutboundRuleGetRequest",
-}) as any as S.Schema<OutboundRuleGetRequest>;
+  identifier: "GetOutboundRuleRequest",
+}) as any as S.Schema<GetOutboundRuleRequest>;
 
-export interface OutboundRuleGetResponse {
+export interface GetOutboundRuleResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -8601,7 +6145,7 @@ export interface OutboundRuleGetResponse {
   /** Outbound Rule for the managed network of a cognitive services account. */
   properties: OutboundRule;
 }
-export const OutboundRuleGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetOutboundRuleResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -8610,211 +6154,10 @@ export const OutboundRuleGetResponse = /*@__PURE__*/ S.suspend(() =>
     properties: OutboundRule,
   }),
 ).annotate({
-  identifier: "OutboundRuleGetResponse",
-}) as any as S.Schema<OutboundRuleGetResponse>;
+  identifier: "GetOutboundRuleResponse",
+}) as any as S.Schema<GetOutboundRuleResponse>;
 
-export interface OutboundRuleListRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-  /** Name of the managedNetwork associated with the cognitive services account. Only 'default' is supported. */
-  managedNetworkName: string;
-}
-export const OutboundRuleListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    managedNetworkName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/managedNetworks/{managedNetworkName}/outboundRules",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "OutboundRuleListRequest",
-}) as any as S.Schema<OutboundRuleListRequest>;
-
-/** Concrete proxy resource types can be created by aliasing this type using a specific property type. */
-export interface OutboundRuleBasicResource {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Outbound Rule for the managed network of a cognitive services account. */
-  properties: OutboundRule;
-}
-export const OutboundRuleBasicResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: OutboundRule,
-  }),
-).annotate({
-  identifier: "OutboundRuleBasicResource",
-}) as any as S.Schema<OutboundRuleBasicResource>;
-
-/** The list of cognitive services accounts. Since this list may be incomplete, the nextLink field should be used to request the next list of cognitive services accounts. */
-export type OutboundRuleListResultValueList = Array<OutboundRuleBasicResource>;
-export const OutboundRuleListResultValueList = /*@__PURE__*/ S.Array(
-  OutboundRuleBasicResource,
-) as any as S.Schema<OutboundRuleListResultValueList>;
-
-/** List of outbound rules for the managed network of a cognitive services account. */
-export interface OutboundRuleListResult {
-  /** The link to the next page constructed using the continuationToken. If null, there are no additional pages. */
-  nextLink?: string;
-  /** The list of cognitive services accounts. Since this list may be incomplete, the nextLink field should be used to request the next list of cognitive services accounts. */
-  value?: OutboundRuleListResultValueList;
-}
-export const OutboundRuleListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    nextLink: S.optional(S.String),
-    value: S.optional(OutboundRuleListResultValueList),
-  }),
-).annotate({
-  identifier: "OutboundRuleListResult",
-}) as any as S.Schema<OutboundRuleListResult>;
-
-/** Dictionary of <OutboundRule> */
-export type ManagedNetworkSettingsInputOutboundRulesMap = {
-  [key: string]: OutboundRuleInput | undefined;
-};
-export const ManagedNetworkSettingsInputOutboundRulesMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    OutboundRuleInput,
-  ) as any as S.Schema<ManagedNetworkSettingsInputOutboundRulesMap>;
-
-/** Managed Network settings for a cognitive services account. */
-export interface ManagedNetworkSettingsInput {
-  /** Isolation mode for the managed network of a cognitive services account. */
-  isolationMode?: IsolationMode | (string & {});
-  /** Dictionary of <OutboundRule> */
-  outboundRules?: ManagedNetworkSettingsInputOutboundRulesMap | null;
-  /** Status of the Provisioning for the managed network of a cognitive services account. */
-  status?: ManagedNetworkProvisionStatus;
-  /** Firewall Sku used for FQDN Rules */
-  firewallSku?: FirewallSku | (string & {});
-  /** The Kind of the managed network. Users can switch from V1 to V2 for granular access controls, but cannot switch back to V1 once V2 is enabled. */
-  managedNetworkKind?: ManagedNetworkKind | (string & {});
-}
-export const ManagedNetworkSettingsInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    isolationMode: S.optional(IsolationMode),
-    outboundRules: S.optional(
-      S.NullOr(ManagedNetworkSettingsInputOutboundRulesMap),
-    ),
-    status: S.optional(ManagedNetworkProvisionStatus),
-    firewallSku: S.optional(FirewallSku),
-    managedNetworkKind: S.optional(ManagedNetworkKind),
-  }),
-).annotate({
-  identifier: "ManagedNetworkSettingsInput",
-}) as any as S.Schema<ManagedNetworkSettingsInput>;
-
-export interface OutboundRulesPostRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-  /** Name of the managedNetwork associated with the cognitive services account. Only 'default' is supported. */
-  managedNetworkName: string;
-  /** Managed Network settings for a cognitive services account. */
-  properties?: ManagedNetworkSettingsInput;
-}
-export const OutboundRulesPostRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    managedNetworkName: S.String.pipe(T.Label()),
-    properties: S.optional(ManagedNetworkSettingsInput),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/managedNetworks/{managedNetworkName}/batchOutboundRules",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "OutboundRulesPostRequest",
-}) as any as S.Schema<OutboundRulesPostRequest>;
-
-/** The Private Endpoint resource. */
-export type PrivateEndpointConnectionPropertiesInputPrivateEndpoint =
-  UserAssignedIdentityInput;
-export const PrivateEndpointConnectionPropertiesInputPrivateEndpoint =
-  UserAssignedIdentityInput;
-
-/** A collection of information about the state of the connection between service consumer and provider. */
-export interface PrivateEndpointConnectionPropertiesInputPrivateLinkServiceConnectionState {
-  /** Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service. */
-  status?: PrivateEndpointServiceConnectionStatus | (string & {});
-  /** The reason for approval/rejection of the connection. */
-  description?: string;
-  /** A message indicating if changes on the service provider require any updates on the consumer. */
-  actionsRequired?: string;
-}
-export const PrivateEndpointConnectionPropertiesInputPrivateLinkServiceConnectionState =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      status: S.optional(PrivateEndpointServiceConnectionStatus),
-      description: S.optional(S.String),
-      actionsRequired: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier:
-      "PrivateEndpointConnectionPropertiesInputPrivateLinkServiceConnectionState",
-  }) as any as S.Schema<PrivateEndpointConnectionPropertiesInputPrivateLinkServiceConnectionState>;
-
-/** The private link resource group ids. */
-export type PrivateEndpointConnectionPropertiesInputGroupIdsList =
-  Array<string>;
-export const PrivateEndpointConnectionPropertiesInputGroupIdsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PrivateEndpointConnectionPropertiesInputGroupIdsList>;
-
-/** Properties of the PrivateEndpointConnectProperties. */
-export interface PrivateEndpointConnectionPropertiesInput {
-  /** The Private Endpoint resource. */
-  privateEndpoint?: UserAssignedIdentityInput;
-  /** A collection of information about the state of the connection between service consumer and provider. */
-  privateLinkServiceConnectionState: PrivateEndpointConnectionPropertiesInputPrivateLinkServiceConnectionState;
-  /** The private link resource group ids. */
-  groupIds?: PrivateEndpointConnectionPropertiesInputGroupIdsList;
-}
-export const PrivateEndpointConnectionPropertiesInput = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      privateEndpoint: S.optional(UserAssignedIdentityInput),
-      privateLinkServiceConnectionState:
-        PrivateEndpointConnectionPropertiesInputPrivateLinkServiceConnectionState,
-      groupIds: S.optional(
-        PrivateEndpointConnectionPropertiesInputGroupIdsList,
-      ),
-    }),
-).annotate({
-  identifier: "PrivateEndpointConnectionPropertiesInput",
-}) as any as S.Schema<PrivateEndpointConnectionPropertiesInput>;
-
-export interface PrivateEndpointConnectionsCreateOrUpdateRequest {
+export interface GetPrivateEndpointConnectionRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -8823,33 +6166,26 @@ export interface PrivateEndpointConnectionsCreateOrUpdateRequest {
   accountName: string;
   /** The name of the private endpoint connection associated with the Cognitive Services Account */
   privateEndpointConnectionName: string;
-  /** Resource properties. */
-  properties?: PrivateEndpointConnectionPropertiesInput;
-  /** The location of the private endpoint connection */
-  location?: string;
 }
-export const PrivateEndpointConnectionsCreateOrUpdateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-      privateEndpointConnectionName: S.String.pipe(T.Label()),
-      properties: S.optional(PrivateEndpointConnectionPropertiesInput),
-      location: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/privateEndpointConnections/{privateEndpointConnectionName}",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "PrivateEndpointConnectionsCreateOrUpdateRequest",
-  }) as any as S.Schema<PrivateEndpointConnectionsCreateOrUpdateRequest>;
+export const GetPrivateEndpointConnectionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    privateEndpointConnectionName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/privateEndpointConnections/{privateEndpointConnectionName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetPrivateEndpointConnectionRequest",
+}) as any as S.Schema<GetPrivateEndpointConnectionRequest>;
 
-export interface PrivateEndpointConnectionsCreateOrUpdateResponse {
+export interface GetPrivateEndpointConnectionResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -8865,103 +6201,7 @@ export interface PrivateEndpointConnectionsCreateOrUpdateResponse {
   /** The location of the private endpoint connection */
   location?: string;
 }
-export const PrivateEndpointConnectionsCreateOrUpdateResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(PrivateEndpointConnectionProperties),
-      etag: S.optional(S.String),
-      location: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "PrivateEndpointConnectionsCreateOrUpdateResponse",
-  }) as any as S.Schema<PrivateEndpointConnectionsCreateOrUpdateResponse>;
-
-export interface PrivateEndpointConnectionsDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-  /** The name of the private endpoint connection associated with the Cognitive Services Account */
-  privateEndpointConnectionName: string;
-}
-export const PrivateEndpointConnectionsDeleteRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-      privateEndpointConnectionName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/privateEndpointConnections/{privateEndpointConnectionName}",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-).annotate({
-  identifier: "PrivateEndpointConnectionsDeleteRequest",
-}) as any as S.Schema<PrivateEndpointConnectionsDeleteRequest>;
-
-export interface PrivateEndpointConnectionsDeleteResponse {}
-export const PrivateEndpointConnectionsDeleteResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "PrivateEndpointConnectionsDeleteResponse",
-}) as any as S.Schema<PrivateEndpointConnectionsDeleteResponse>;
-
-export interface PrivateEndpointConnectionsGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-  /** The name of the private endpoint connection associated with the Cognitive Services Account */
-  privateEndpointConnectionName: string;
-}
-export const PrivateEndpointConnectionsGetRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-      privateEndpointConnectionName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/privateEndpointConnections/{privateEndpointConnectionName}",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-).annotate({
-  identifier: "PrivateEndpointConnectionsGetRequest",
-}) as any as S.Schema<PrivateEndpointConnectionsGetRequest>;
-
-export interface PrivateEndpointConnectionsGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource properties. */
-  properties?: PrivateEndpointConnectionProperties;
-  /** Resource Etag. */
-  etag?: string;
-  /** The location of the private endpoint connection */
-  location?: string;
-}
-export const PrivateEndpointConnectionsGetResponse = /*@__PURE__*/ S.suspend(
+export const GetPrivateEndpointConnectionResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
@@ -8973,123 +6213,45 @@ export const PrivateEndpointConnectionsGetResponse = /*@__PURE__*/ S.suspend(
       location: S.optional(S.String),
     }),
 ).annotate({
-  identifier: "PrivateEndpointConnectionsGetResponse",
-}) as any as S.Schema<PrivateEndpointConnectionsGetResponse>;
+  identifier: "GetPrivateEndpointConnectionResponse",
+}) as any as S.Schema<GetPrivateEndpointConnectionResponse>;
 
-export interface PrivateEndpointConnectionsListRequest {
+export interface GetProjectRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of Cognitive Services account. */
   accountName: string;
+  /** The name of Cognitive Services account's project. */
+  projectName: string;
 }
-export const PrivateEndpointConnectionsListRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/privateEndpointConnections",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-).annotate({
-  identifier: "PrivateEndpointConnectionsListRequest",
-}) as any as S.Schema<PrivateEndpointConnectionsListRequest>;
-
-/** Array of private endpoint connections */
-export type PrivateEndpointConnectionListResultValueList =
-  Array<PrivateEndpointConnection>;
-export const PrivateEndpointConnectionListResultValueList =
-  /*@__PURE__*/ S.Array(
-    PrivateEndpointConnection,
-  ) as any as S.Schema<PrivateEndpointConnectionListResultValueList>;
-
-/** A list of private endpoint connections */
-export interface PrivateEndpointConnectionListResult {
-  /** Array of private endpoint connections */
-  value?: PrivateEndpointConnectionListResultValueList;
-}
-export const PrivateEndpointConnectionListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(PrivateEndpointConnectionListResultValueList),
-  }),
-).annotate({
-  identifier: "PrivateEndpointConnectionListResult",
-}) as any as S.Schema<PrivateEndpointConnectionListResult>;
-
-export interface PrivateLinkResourcesListRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-}
-export const PrivateLinkResourcesListRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetProjectRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     accountName: S.String.pipe(T.Label()),
+    projectName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/privateLinkResources",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}",
       code: 200,
       apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
-  identifier: "PrivateLinkResourcesListRequest",
-}) as any as S.Schema<PrivateLinkResourcesListRequest>;
+  identifier: "GetProjectRequest",
+}) as any as S.Schema<GetProjectRequest>;
 
-/** The private link resource required member names. */
-export type PrivateLinkResourcePropertiesRequiredMembersList = Array<string>;
-export const PrivateLinkResourcePropertiesRequiredMembersList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PrivateLinkResourcePropertiesRequiredMembersList>;
+/** Resource tags. */
+export type GetProjectResponseTagsMap = { [key: string]: string | undefined };
+export const GetProjectResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetProjectResponseTagsMap>;
 
-/** The private link resource Private link DNS zone name. */
-export type PrivateLinkResourcePropertiesRequiredZoneNamesList = Array<string>;
-export const PrivateLinkResourcePropertiesRequiredZoneNamesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PrivateLinkResourcePropertiesRequiredZoneNamesList>;
-
-/** Properties of a private link resource. */
-export interface PrivateLinkResourceProperties {
-  /** The private link resource group id. */
-  groupId?: string;
-  /** The private link resource required member names. */
-  requiredMembers?: PrivateLinkResourcePropertiesRequiredMembersList;
-  /** The private link resource Private link DNS zone name. */
-  requiredZoneNames?: PrivateLinkResourcePropertiesRequiredZoneNamesList;
-  /** The private link resource display name. */
-  displayName?: string;
-}
-export const PrivateLinkResourceProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    groupId: S.optional(S.String),
-    requiredMembers: S.optional(
-      PrivateLinkResourcePropertiesRequiredMembersList,
-    ),
-    requiredZoneNames: S.optional(
-      PrivateLinkResourcePropertiesRequiredZoneNamesList,
-    ),
-    displayName: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PrivateLinkResourceProperties",
-}) as any as S.Schema<PrivateLinkResourceProperties>;
-
-/** A private link resource */
-export interface PrivateLinkResource {
+export interface GetProjectResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -9098,107 +6260,34 @@ export interface PrivateLinkResource {
   type?: string;
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
-  /** Resource properties. */
-  properties?: PrivateLinkResourceProperties;
+  /** Properties of Cognitive Services project. */
+  properties?: ProjectProperties;
+  /** Resource tags. */
+  tags?: GetProjectResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location?: string;
+  /** Resource Etag. */
+  etag?: string;
+  /** Identity for the resource. */
+  identity?: Identity;
 }
-export const PrivateLinkResource = /*@__PURE__*/ S.suspend(() =>
+export const GetProjectResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    properties: S.optional(PrivateLinkResourceProperties),
+    properties: S.optional(ProjectProperties),
+    tags: S.optional(GetProjectResponseTagsMap),
+    location: S.optional(S.String),
+    etag: S.optional(S.String),
+    identity: S.optional(Identity),
   }),
 ).annotate({
-  identifier: "PrivateLinkResource",
-}) as any as S.Schema<PrivateLinkResource>;
+  identifier: "GetProjectResponse",
+}) as any as S.Schema<GetProjectResponse>;
 
-/** Array of private link resources */
-export type PrivateLinkResourceListResultValueList = Array<PrivateLinkResource>;
-export const PrivateLinkResourceListResultValueList = /*@__PURE__*/ S.Array(
-  PrivateLinkResource,
-) as any as S.Schema<PrivateLinkResourceListResultValueList>;
-
-/** A list of private link resources */
-export interface PrivateLinkResourceListResult {
-  /** Array of private link resources */
-  value?: PrivateLinkResourceListResultValueList;
-}
-export const PrivateLinkResourceListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(PrivateLinkResourceListResultValueList),
-  }),
-).annotate({
-  identifier: "PrivateLinkResourceListResult",
-}) as any as S.Schema<PrivateLinkResourceListResult>;
-
-/** List of AI services connections. */
-export type ProjectCapabilityHostPropertiesInputAiServicesConnectionsList =
-  Array<string>;
-export const ProjectCapabilityHostPropertiesInputAiServicesConnectionsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ProjectCapabilityHostPropertiesInputAiServicesConnectionsList>;
-
-/** List of connection names from those available in the account or project to be used for vector database (e.g. CosmosDB). */
-export type ProjectCapabilityHostPropertiesInputVectorStoreConnectionsList =
-  Array<string>;
-export const ProjectCapabilityHostPropertiesInputVectorStoreConnectionsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ProjectCapabilityHostPropertiesInputVectorStoreConnectionsList>;
-
-/** List of connection names from those available in the account or project to be used as a storage resource. */
-export type ProjectCapabilityHostPropertiesInputStorageConnectionsList =
-  Array<string>;
-export const ProjectCapabilityHostPropertiesInputStorageConnectionsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ProjectCapabilityHostPropertiesInputStorageConnectionsList>;
-
-/** List of connection names from those available in the account or project to be used for Thread storage. */
-export type ProjectCapabilityHostPropertiesInputThreadStorageConnectionsList =
-  Array<string>;
-export const ProjectCapabilityHostPropertiesInputThreadStorageConnectionsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ProjectCapabilityHostPropertiesInputThreadStorageConnectionsList>;
-
-export interface ProjectCapabilityHostPropertiesInput {
-  /** List of AI services connections. */
-  aiServicesConnections?: ProjectCapabilityHostPropertiesInputAiServicesConnectionsList | null;
-  /** List of connection names from those available in the account or project to be used for vector database (e.g. CosmosDB). */
-  vectorStoreConnections?: ProjectCapabilityHostPropertiesInputVectorStoreConnectionsList | null;
-  /** List of connection names from those available in the account or project to be used as a storage resource. */
-  storageConnections?: ProjectCapabilityHostPropertiesInputStorageConnectionsList | null;
-  /** List of connection names from those available in the account or project to be used for Thread storage. */
-  threadStorageConnections?: ProjectCapabilityHostPropertiesInputThreadStorageConnectionsList | null;
-}
-export const ProjectCapabilityHostPropertiesInput = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      aiServicesConnections: S.optional(
-        S.NullOr(ProjectCapabilityHostPropertiesInputAiServicesConnectionsList),
-      ),
-      vectorStoreConnections: S.optional(
-        S.NullOr(
-          ProjectCapabilityHostPropertiesInputVectorStoreConnectionsList,
-        ),
-      ),
-      storageConnections: S.optional(
-        S.NullOr(ProjectCapabilityHostPropertiesInputStorageConnectionsList),
-      ),
-      threadStorageConnections: S.optional(
-        S.NullOr(
-          ProjectCapabilityHostPropertiesInputThreadStorageConnectionsList,
-        ),
-      ),
-    }),
-).annotate({
-  identifier: "ProjectCapabilityHostPropertiesInput",
-}) as any as S.Schema<ProjectCapabilityHostPropertiesInput>;
-
-export interface ProjectCapabilityHostsCreateOrUpdateRequest {
+export interface GetProjectCapabilityHostRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -9209,29 +6298,25 @@ export interface ProjectCapabilityHostsCreateOrUpdateRequest {
   projectName: string;
   /** The name of the capability host associated with the Cognitive Services Resource */
   capabilityHostName: string;
-  /** [Required] Additional attributes of the entity. */
-  properties: ProjectCapabilityHostPropertiesInput;
 }
-export const ProjectCapabilityHostsCreateOrUpdateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-      projectName: S.String.pipe(T.Label()),
-      capabilityHostName: S.String.pipe(T.Label()),
-      properties: ProjectCapabilityHostPropertiesInput,
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}/capabilityHosts/{capabilityHostName}",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ProjectCapabilityHostsCreateOrUpdateRequest",
-  }) as any as S.Schema<ProjectCapabilityHostsCreateOrUpdateRequest>;
+export const GetProjectCapabilityHostRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    projectName: S.String.pipe(T.Label()),
+    capabilityHostName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}/capabilityHosts/{capabilityHostName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetProjectCapabilityHostRequest",
+}) as any as S.Schema<GetProjectCapabilityHostRequest>;
 
 /** List of AI services connections. */
 export type ProjectCapabilityHostPropertiesAiServicesConnectionsList =
@@ -9297,7 +6382,7 @@ export const ProjectCapabilityHostProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "ProjectCapabilityHostProperties",
 }) as any as S.Schema<ProjectCapabilityHostProperties>;
 
-export interface ProjectCapabilityHostsCreateOrUpdateResponse {
+export interface GetProjectCapabilityHostResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -9309,101 +6394,7 @@ export interface ProjectCapabilityHostsCreateOrUpdateResponse {
   /** [Required] Additional attributes of the entity. */
   properties: ProjectCapabilityHostProperties;
 }
-export const ProjectCapabilityHostsCreateOrUpdateResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: ProjectCapabilityHostProperties,
-    }),
-  ).annotate({
-    identifier: "ProjectCapabilityHostsCreateOrUpdateResponse",
-  }) as any as S.Schema<ProjectCapabilityHostsCreateOrUpdateResponse>;
-
-export interface ProjectCapabilityHostsDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-  /** The name of Cognitive Services account's project. */
-  projectName: string;
-  /** The name of the capability host associated with the Cognitive Services Resource */
-  capabilityHostName: string;
-}
-export const ProjectCapabilityHostsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    projectName: S.String.pipe(T.Label()),
-    capabilityHostName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}/capabilityHosts/{capabilityHostName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "ProjectCapabilityHostsDeleteRequest",
-}) as any as S.Schema<ProjectCapabilityHostsDeleteRequest>;
-
-export interface ProjectCapabilityHostsDeleteResponse {}
-export const ProjectCapabilityHostsDeleteResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "ProjectCapabilityHostsDeleteResponse",
-}) as any as S.Schema<ProjectCapabilityHostsDeleteResponse>;
-
-export interface ProjectCapabilityHostsGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-  /** The name of Cognitive Services account's project. */
-  projectName: string;
-  /** The name of the capability host associated with the Cognitive Services Resource */
-  capabilityHostName: string;
-}
-export const ProjectCapabilityHostsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    projectName: S.String.pipe(T.Label()),
-    capabilityHostName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}/capabilityHosts/{capabilityHostName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "ProjectCapabilityHostsGetRequest",
-}) as any as S.Schema<ProjectCapabilityHostsGetRequest>;
-
-export interface ProjectCapabilityHostsGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** [Required] Additional attributes of the entity. */
-  properties: ProjectCapabilityHostProperties;
-}
-export const ProjectCapabilityHostsGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetProjectCapabilityHostResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -9412,90 +6403,10 @@ export const ProjectCapabilityHostsGetResponse = /*@__PURE__*/ S.suspend(() =>
     properties: ProjectCapabilityHostProperties,
   }),
 ).annotate({
-  identifier: "ProjectCapabilityHostsGetResponse",
-}) as any as S.Schema<ProjectCapabilityHostsGetResponse>;
+  identifier: "GetProjectCapabilityHostResponse",
+}) as any as S.Schema<GetProjectCapabilityHostResponse>;
 
-export interface ProjectCapabilityHostsListRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-  /** The name of Cognitive Services account's project. */
-  projectName: string;
-}
-export const ProjectCapabilityHostsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    projectName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}/capabilityHosts",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "ProjectCapabilityHostsListRequest",
-}) as any as S.Schema<ProjectCapabilityHostsListRequest>;
-
-/** Azure Resource Manager resource envelope for Project CapabilityHost. */
-export interface ProjectCapabilityHost {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** [Required] Additional attributes of the entity. */
-  properties: ProjectCapabilityHostProperties;
-}
-export const ProjectCapabilityHost = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: ProjectCapabilityHostProperties,
-  }),
-).annotate({
-  identifier: "ProjectCapabilityHost",
-}) as any as S.Schema<ProjectCapabilityHost>;
-
-/** An array of objects of type Project Capability Host. */
-export type ProjectCapabilityHostResourceArmPaginatedResultValueList =
-  Array<ProjectCapabilityHost>;
-export const ProjectCapabilityHostResourceArmPaginatedResultValueList =
-  /*@__PURE__*/ S.Array(
-    ProjectCapabilityHost,
-  ) as any as S.Schema<ProjectCapabilityHostResourceArmPaginatedResultValueList>;
-
-/** A paginated list of Project Capability Host entities. */
-export interface ProjectCapabilityHostResourceArmPaginatedResult {
-  /** The link to the next page of Project Capability Host objects. If null, there are no additional pages. */
-  nextLink?: string | null;
-  /** An array of objects of type Project Capability Host. */
-  value?: ProjectCapabilityHostResourceArmPaginatedResultValueList;
-}
-export const ProjectCapabilityHostResourceArmPaginatedResult =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      nextLink: S.optional(S.NullOr(S.String)),
-      value: S.optional(
-        ProjectCapabilityHostResourceArmPaginatedResultValueList,
-      ),
-    }),
-  ).annotate({
-    identifier: "ProjectCapabilityHostResourceArmPaginatedResult",
-  }) as any as S.Schema<ProjectCapabilityHostResourceArmPaginatedResult>;
-
-export interface ProjectConnectionsCreateRequest {
+export interface GetProjectConnectionRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -9506,30 +6417,27 @@ export interface ProjectConnectionsCreateRequest {
   projectName: string;
   /** Friendly name of the connection */
   connectionName: string;
-  /** Connection property base schema. */
-  properties: ConnectionPropertiesV2Input;
 }
-export const ProjectConnectionsCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetProjectConnectionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     accountName: S.String.pipe(T.Label()),
     projectName: S.String.pipe(T.Label()),
     connectionName: S.String.pipe(T.Label()),
-    properties: ConnectionPropertiesV2Input,
   }).pipe(
     T.Http({
-      method: "PUT",
+      method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}/connections/{connectionName}",
       code: 200,
       apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
-  identifier: "ProjectConnectionsCreateRequest",
-}) as any as S.Schema<ProjectConnectionsCreateRequest>;
+  identifier: "GetProjectConnectionRequest",
+}) as any as S.Schema<GetProjectConnectionRequest>;
 
-export interface ProjectConnectionsCreateResponse {
+export interface GetProjectConnectionResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -9541,7 +6449,7 @@ export interface ProjectConnectionsCreateResponse {
   /** Connection property base schema. */
   properties: ConnectionPropertiesV2;
 }
-export const ProjectConnectionsCreateResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetProjectConnectionResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -9550,671 +6458,34 @@ export const ProjectConnectionsCreateResponse = /*@__PURE__*/ S.suspend(() =>
     properties: ConnectionPropertiesV2,
   }),
 ).annotate({
-  identifier: "ProjectConnectionsCreateResponse",
-}) as any as S.Schema<ProjectConnectionsCreateResponse>;
+  identifier: "GetProjectConnectionResponse",
+}) as any as S.Schema<GetProjectConnectionResponse>;
 
-export interface ProjectConnectionsDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-  /** The name of Cognitive Services account's project. */
-  projectName: string;
-  /** Friendly name of the connection */
-  connectionName: string;
-}
-export const ProjectConnectionsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    projectName: S.String.pipe(T.Label()),
-    connectionName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}/connections/{connectionName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "ProjectConnectionsDeleteRequest",
-}) as any as S.Schema<ProjectConnectionsDeleteRequest>;
-
-export interface ProjectConnectionsDeleteResponse {}
-export const ProjectConnectionsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ProjectConnectionsDeleteResponse",
-}) as any as S.Schema<ProjectConnectionsDeleteResponse>;
-
-export interface ProjectConnectionsGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-  /** The name of Cognitive Services account's project. */
-  projectName: string;
-  /** Friendly name of the connection */
-  connectionName: string;
-}
-export const ProjectConnectionsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    projectName: S.String.pipe(T.Label()),
-    connectionName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}/connections/{connectionName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "ProjectConnectionsGetRequest",
-}) as any as S.Schema<ProjectConnectionsGetRequest>;
-
-export interface ProjectConnectionsGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Connection property base schema. */
-  properties: ConnectionPropertiesV2;
-}
-export const ProjectConnectionsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: ConnectionPropertiesV2,
-  }),
-).annotate({
-  identifier: "ProjectConnectionsGetResponse",
-}) as any as S.Schema<ProjectConnectionsGetResponse>;
-
-export interface ProjectConnectionsListRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-  /** The name of Cognitive Services account's project. */
-  projectName: string;
-  /** Target of the connection. */
-  target?: string;
-  /** Category of the connection. */
-  category?: string;
-  /** query parameter that indicates if get connection call should return both connections and datastores */
-  includeAll?: boolean;
-}
-export const ProjectConnectionsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    projectName: S.String.pipe(T.Label()),
-    target: S.optional(S.String.pipe(T.Query())),
-    category: S.optional(S.String.pipe(T.Query())),
-    includeAll: S.optional(S.Boolean.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}/connections",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "ProjectConnectionsListRequest",
-}) as any as S.Schema<ProjectConnectionsListRequest>;
-
-export interface ProjectConnectionsUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-  /** The name of Cognitive Services account's project. */
-  projectName: string;
-  /** Friendly name of the connection */
-  connectionName: string;
-  /** The properties that the Cognitive services connection will be updated with. */
-  properties?: ConnectionPropertiesV2Input;
-}
-export const ProjectConnectionsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    projectName: S.String.pipe(T.Label()),
-    connectionName: S.String.pipe(T.Label()),
-    properties: S.optional(ConnectionPropertiesV2Input),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}/connections/{connectionName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "ProjectConnectionsUpdateRequest",
-}) as any as S.Schema<ProjectConnectionsUpdateRequest>;
-
-export interface ProjectConnectionsUpdateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Connection property base schema. */
-  properties: ConnectionPropertiesV2;
-}
-export const ProjectConnectionsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: ConnectionPropertiesV2,
-  }),
-).annotate({
-  identifier: "ProjectConnectionsUpdateResponse",
-}) as any as S.Schema<ProjectConnectionsUpdateResponse>;
-
-/** Properties of Cognitive Services Project'. */
-export interface ProjectPropertiesInput {
-  /** The display name of the Cognitive Services Project. */
-  displayName?: string;
-  /** The description of the Cognitive Services Project. */
-  description?: string;
-}
-export const ProjectPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    displayName: S.optional(S.String),
-    description: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ProjectPropertiesInput",
-}) as any as S.Schema<ProjectPropertiesInput>;
-
-/** Resource tags. */
-export type ProjectsCreateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ProjectsCreateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ProjectsCreateRequestTagsMap>;
-
-export interface ProjectsCreateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-  /** The name of Cognitive Services account's project. */
-  projectName: string;
-  /** Properties of Cognitive Services project. */
-  properties?: ProjectPropertiesInput;
-  /** Resource tags. */
-  tags?: ProjectsCreateRequestTagsMap;
-  /** The geo-location where the resource lives */
-  location?: string;
-  /** Identity for the resource. */
-  identity?: IdentityInput;
-}
-export const ProjectsCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    projectName: S.String.pipe(T.Label()),
-    properties: S.optional(ProjectPropertiesInput),
-    tags: S.optional(ProjectsCreateRequestTagsMap),
-    location: S.optional(S.String),
-    identity: S.optional(IdentityInput),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "ProjectsCreateRequest",
-}) as any as S.Schema<ProjectsCreateRequest>;
-
-/** The list of endpoint for this Cognitive Services Project. */
-export type ProjectPropertiesEndpointsMap = {
-  [key: string]: string | undefined;
-};
-export const ProjectPropertiesEndpointsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ProjectPropertiesEndpointsMap>;
-
-/** Properties of Cognitive Services Project'. */
-export interface ProjectProperties {
-  /** Gets the status of the cognitive services project at the time the operation was called. */
-  provisioningState?: ProvisioningState;
-  /** The display name of the Cognitive Services Project. */
-  displayName?: string;
-  /** The description of the Cognitive Services Project. */
-  description?: string;
-  /** The list of endpoint for this Cognitive Services Project. */
-  endpoints?: ProjectPropertiesEndpointsMap;
-  /** Indicates whether the project is the default project for the account. */
-  isDefault?: boolean;
-}
-export const ProjectProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provisioningState: S.optional(ProvisioningState),
-    displayName: S.optional(S.String),
-    description: S.optional(S.String),
-    endpoints: S.optional(ProjectPropertiesEndpointsMap),
-    isDefault: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "ProjectProperties",
-}) as any as S.Schema<ProjectProperties>;
-
-/** Resource tags. */
-export type ProjectsCreateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ProjectsCreateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ProjectsCreateResponseTagsMap>;
-
-export interface ProjectsCreateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of Cognitive Services project. */
-  properties?: ProjectProperties;
-  /** Resource tags. */
-  tags?: ProjectsCreateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location?: string;
-  /** Resource Etag. */
-  etag?: string;
-  /** Identity for the resource. */
-  identity?: Identity;
-}
-export const ProjectsCreateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ProjectProperties),
-    tags: S.optional(ProjectsCreateResponseTagsMap),
-    location: S.optional(S.String),
-    etag: S.optional(S.String),
-    identity: S.optional(Identity),
-  }),
-).annotate({
-  identifier: "ProjectsCreateResponse",
-}) as any as S.Schema<ProjectsCreateResponse>;
-
-export interface ProjectsDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-  /** The name of Cognitive Services account's project. */
-  projectName: string;
-}
-export const ProjectsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    projectName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "ProjectsDeleteRequest",
-}) as any as S.Schema<ProjectsDeleteRequest>;
-
-export interface ProjectsDeleteResponse {}
-export const ProjectsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ProjectsDeleteResponse",
-}) as any as S.Schema<ProjectsDeleteResponse>;
-
-export interface ProjectsGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-  /** The name of Cognitive Services account's project. */
-  projectName: string;
-}
-export const ProjectsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    projectName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "ProjectsGetRequest",
-}) as any as S.Schema<ProjectsGetRequest>;
-
-/** Resource tags. */
-export type ProjectsGetResponseTagsMap = { [key: string]: string | undefined };
-export const ProjectsGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ProjectsGetResponseTagsMap>;
-
-export interface ProjectsGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of Cognitive Services project. */
-  properties?: ProjectProperties;
-  /** Resource tags. */
-  tags?: ProjectsGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location?: string;
-  /** Resource Etag. */
-  etag?: string;
-  /** Identity for the resource. */
-  identity?: Identity;
-}
-export const ProjectsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ProjectProperties),
-    tags: S.optional(ProjectsGetResponseTagsMap),
-    location: S.optional(S.String),
-    etag: S.optional(S.String),
-    identity: S.optional(Identity),
-  }),
-).annotate({
-  identifier: "ProjectsGetResponse",
-}) as any as S.Schema<ProjectsGetResponse>;
-
-export interface ProjectsListRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-}
-export const ProjectsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "ProjectsListRequest",
-}) as any as S.Schema<ProjectsListRequest>;
-
-/** Resource tags. */
-export type ProjectTagsMap = { [key: string]: string | undefined };
-export const ProjectTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ProjectTagsMap>;
-
-/** Cognitive Services project is an Azure resource representing the provisioned account's project, it's type, location and SKU. */
-export interface Project {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of Cognitive Services project. */
-  properties?: ProjectProperties;
-  /** Resource tags. */
-  tags?: ProjectTagsMap;
-  /** The geo-location where the resource lives */
-  location?: string;
-  /** Resource Etag. */
-  etag?: string;
-  /** Identity for the resource. */
-  identity?: Identity;
-}
-export const Project = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ProjectProperties),
-    tags: S.optional(ProjectTagsMap),
-    location: S.optional(S.String),
-    etag: S.optional(S.String),
-    identity: S.optional(Identity),
-  }),
-).annotate({ identifier: "Project" }) as any as S.Schema<Project>;
-
-/** Gets the list of Cognitive Services projects and their properties. */
-export type ProjectListResultValueList = Array<Project>;
-export const ProjectListResultValueList = /*@__PURE__*/ S.Array(
-  Project,
-) as any as S.Schema<ProjectListResultValueList>;
-
-/** The list of cognitive services projects operation response. */
-export interface ProjectListResult {
-  /** The link used to get the next page of projects. */
-  nextLink?: string;
-  /** Gets the list of Cognitive Services projects and their properties. */
-  value?: ProjectListResultValueList;
-}
-export const ProjectListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    nextLink: S.optional(S.String),
-    value: S.optional(ProjectListResultValueList),
-  }),
-).annotate({
-  identifier: "ProjectListResult",
-}) as any as S.Schema<ProjectListResult>;
-
-/** Resource tags. */
-export type ProjectsUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ProjectsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ProjectsUpdateRequestTagsMap>;
-
-export interface ProjectsUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-  /** The name of Cognitive Services account's project. */
-  projectName: string;
-  /** Properties of Cognitive Services project. */
-  properties?: ProjectPropertiesInput;
-  /** Resource tags. */
-  tags?: ProjectsUpdateRequestTagsMap;
-  /** The geo-location where the resource lives */
-  location?: string;
-  /** Identity for the resource. */
-  identity?: IdentityInput;
-}
-export const ProjectsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    projectName: S.String.pipe(T.Label()),
-    properties: S.optional(ProjectPropertiesInput),
-    tags: S.optional(ProjectsUpdateRequestTagsMap),
-    location: S.optional(S.String),
-    identity: S.optional(IdentityInput),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "ProjectsUpdateRequest",
-}) as any as S.Schema<ProjectsUpdateRequest>;
-
-/** Resource tags. */
-export type ProjectsUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ProjectsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ProjectsUpdateResponseTagsMap>;
-
-export interface ProjectsUpdateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of Cognitive Services project. */
-  properties?: ProjectProperties;
-  /** Resource tags. */
-  tags?: ProjectsUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location?: string;
-  /** Resource Etag. */
-  etag?: string;
-  /** Identity for the resource. */
-  identity?: Identity;
-}
-export const ProjectsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ProjectProperties),
-    tags: S.optional(ProjectsUpdateResponseTagsMap),
-    location: S.optional(S.String),
-    etag: S.optional(S.String),
-    identity: S.optional(Identity),
-  }),
-).annotate({
-  identifier: "ProjectsUpdateResponse",
-}) as any as S.Schema<ProjectsUpdateResponse>;
-
-/** Gets the tier upgrade policy for the subscription. */
-export type TierUpgradePolicy = "OnceUpgradeIsAvailable" | "NoAutoUpgrade";
-export const TierUpgradePolicy = /*@__PURE__*/ S.String;
-
-/** Properties of Quota Tier resource'. */
-export interface QuotaTierPropertiesInput {
-  /** Gets the tier upgrade policy for the subscription. */
-  tierUpgradePolicy?: TierUpgradePolicy | (string & {});
-}
-export const QuotaTierPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    tierUpgradePolicy: S.optional(TierUpgradePolicy),
-  }),
-).annotate({
-  identifier: "QuotaTierPropertiesInput",
-}) as any as S.Schema<QuotaTierPropertiesInput>;
-
-export interface QuotaTiersCreateOrUpdateRequest {
+export interface GetQuotaTierRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** Default parameter. Leave the value as default. */
   default: string;
-  /** Properties of quota tier resource. */
-  properties?: QuotaTierPropertiesInput;
 }
-export const QuotaTiersCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetQuotaTierRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     default: S.String.pipe(T.Label()),
-    properties: S.optional(QuotaTierPropertiesInput),
   }).pipe(
     T.Http({
-      method: "PUT",
+      method: "GET",
       uri: "/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/quotaTiers/{default}",
       code: 200,
       apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
-  identifier: "QuotaTiersCreateOrUpdateRequest",
-}) as any as S.Schema<QuotaTiersCreateOrUpdateRequest>;
+  identifier: "GetQuotaTierRequest",
+}) as any as S.Schema<GetQuotaTierRequest>;
+
+/** Gets the tier upgrade policy for the subscription. */
+export type TierUpgradePolicy = "OnceUpgradeIsAvailable" | "NoAutoUpgrade";
+export const TierUpgradePolicy = /*@__PURE__*/ S.String;
 
 /** Specifies whether an upgrade to the next quota tier is available. */
 export type UpgradeAvailabilityStatus = "Available" | "NotAvailable";
@@ -10266,7 +6537,7 @@ export const QuotaTierProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "QuotaTierProperties",
 }) as any as S.Schema<QuotaTierProperties>;
 
-export interface QuotaTiersCreateOrUpdateResponse {
+export interface GetQuotaTierResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -10278,7 +6549,7 @@ export interface QuotaTiersCreateOrUpdateResponse {
   /** Properties of quota tier resource. */
   properties?: QuotaTierProperties;
 }
-export const QuotaTiersCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetQuotaTierResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -10287,207 +6558,10 @@ export const QuotaTiersCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(QuotaTierProperties),
   }),
 ).annotate({
-  identifier: "QuotaTiersCreateOrUpdateResponse",
-}) as any as S.Schema<QuotaTiersCreateOrUpdateResponse>;
+  identifier: "GetQuotaTierResponse",
+}) as any as S.Schema<GetQuotaTierResponse>;
 
-export interface QuotaTiersGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** Default parameter. Leave the value as default. */
-  default: string;
-}
-export const QuotaTiersGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    default: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/quotaTiers/{default}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "QuotaTiersGetRequest",
-}) as any as S.Schema<QuotaTiersGetRequest>;
-
-export interface QuotaTiersGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of quota tier resource. */
-  properties?: QuotaTierProperties;
-}
-export const QuotaTiersGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(QuotaTierProperties),
-  }),
-).annotate({
-  identifier: "QuotaTiersGetResponse",
-}) as any as S.Schema<QuotaTiersGetResponse>;
-
-export interface QuotaTiersListBySubscriptionRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-}
-export const QuotaTiersListBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/quotaTiers",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "QuotaTiersListBySubscriptionRequest",
-}) as any as S.Schema<QuotaTiersListBySubscriptionRequest>;
-
-/** The quota tier information for the subscription */
-export interface QuotaTier {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of quota tier resource. */
-  properties?: QuotaTierProperties;
-}
-export const QuotaTier = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(QuotaTierProperties),
-  }),
-).annotate({ identifier: "QuotaTier" }) as any as S.Schema<QuotaTier>;
-
-/** Gets the list of Quota Tiers and their properties. */
-export type QuotaTierListResultValueList = Array<QuotaTier>;
-export const QuotaTierListResultValueList = /*@__PURE__*/ S.Array(
-  QuotaTier,
-) as any as S.Schema<QuotaTierListResultValueList>;
-
-/** The list of Quota Tiers response. */
-export interface QuotaTierListResult {
-  /** The link used to get the next page of quota tiers. */
-  nextLink?: string;
-  /** Gets the list of Quota Tiers and their properties. */
-  value?: QuotaTierListResultValueList;
-}
-export const QuotaTierListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    nextLink: S.optional(S.String),
-    value: S.optional(QuotaTierListResultValueList),
-  }),
-).annotate({
-  identifier: "QuotaTierListResult",
-}) as any as S.Schema<QuotaTierListResult>;
-
-export interface QuotaTiersUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** Default parameter. Leave the value as default. */
-  default: string;
-  /** Properties of quota tier resource. */
-  properties?: QuotaTierPropertiesInput;
-}
-export const QuotaTiersUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    default: S.String.pipe(T.Label()),
-    properties: S.optional(QuotaTierPropertiesInput),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/quotaTiers/{default}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "QuotaTiersUpdateRequest",
-}) as any as S.Schema<QuotaTiersUpdateRequest>;
-
-export interface QuotaTiersUpdateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of quota tier resource. */
-  properties?: QuotaTierProperties;
-}
-export const QuotaTiersUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(QuotaTierProperties),
-  }),
-).annotate({
-  identifier: "QuotaTiersUpdateResponse",
-}) as any as S.Schema<QuotaTiersUpdateResponse>;
-
-/** RAI Custom Blocklist Item properties. */
-export interface RaiBlocklistItemProperties {
-  /** Pattern to match against. */
-  pattern?: string;
-  /** If the pattern is a regex pattern. */
-  isRegex?: boolean;
-}
-export const RaiBlocklistItemProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    pattern: S.optional(S.String),
-    isRegex: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "RaiBlocklistItemProperties",
-}) as any as S.Schema<RaiBlocklistItemProperties>;
-
-/** The Cognitive Services RaiBlocklist Item request body. */
-export interface RaiBlocklistItemBulkRequest {
-  name?: string;
-  /** Properties of Cognitive Services RaiBlocklist Item. */
-  properties?: RaiBlocklistItemProperties;
-}
-export const RaiBlocklistItemBulkRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    properties: S.optional(RaiBlocklistItemProperties),
-  }),
-).annotate({
-  identifier: "RaiBlocklistItemBulkRequest",
-}) as any as S.Schema<RaiBlocklistItemBulkRequest>;
-
-/** The list of Cognitive Services RaiBlocklist Items for batch add. */
-export type RaiBlocklistItemsBulkAddRequest =
-  Array<RaiBlocklistItemBulkRequest>;
-export const RaiBlocklistItemsBulkAddRequest = /*@__PURE__*/ S.Array(
-  RaiBlocklistItemBulkRequest,
-) as any as S.Schema<RaiBlocklistItemsBulkAddRequest>;
-
-export interface RaiBlocklistItemsBatchAddRequest {
+export interface GetRaiBlocklistRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -10496,50 +6570,35 @@ export interface RaiBlocklistItemsBatchAddRequest {
   accountName: string;
   /** The name of the RaiBlocklist associated with the Cognitive Services Account */
   raiBlocklistName: string;
-  body: RaiBlocklistItemsBulkAddRequest;
 }
-export const RaiBlocklistItemsBatchAddRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetRaiBlocklistRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     accountName: S.String.pipe(T.Label()),
     raiBlocklistName: S.String.pipe(T.Label()),
-    body: RaiBlocklistItemsBulkAddRequest.pipe(T.HttpBody()),
   }).pipe(
     T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/raiBlocklists/{raiBlocklistName}/addRaiBlocklistItems",
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/raiBlocklists/{raiBlocklistName}",
       code: 200,
       apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
-  identifier: "RaiBlocklistItemsBatchAddRequest",
-}) as any as S.Schema<RaiBlocklistItemsBatchAddRequest>;
-
-/** RAI Custom Blocklist properties. */
-export interface RaiBlocklistProperties {
-  /** Description of the block list. */
-  description?: string;
-}
-export const RaiBlocklistProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    description: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "RaiBlocklistProperties",
-}) as any as S.Schema<RaiBlocklistProperties>;
+  identifier: "GetRaiBlocklistRequest",
+}) as any as S.Schema<GetRaiBlocklistRequest>;
 
 /** Resource tags. */
-export type RaiBlocklistItemsBatchAddResponseTagsMap = {
+export type GetRaiBlocklistResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const RaiBlocklistItemsBatchAddResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetRaiBlocklistResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<RaiBlocklistItemsBatchAddResponseTagsMap>;
+) as any as S.Schema<GetRaiBlocklistResponseTagsMap>;
 
-export interface RaiBlocklistItemsBatchAddResponse {
+export interface GetRaiBlocklistResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -10553,9 +6612,9 @@ export interface RaiBlocklistItemsBatchAddResponse {
   /** Resource Etag. */
   etag?: string;
   /** Resource tags. */
-  tags?: RaiBlocklistItemsBatchAddResponseTagsMap;
+  tags?: GetRaiBlocklistResponseTagsMap;
 }
-export const RaiBlocklistItemsBatchAddResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetRaiBlocklistResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -10563,145 +6622,13 @@ export const RaiBlocklistItemsBatchAddResponse = /*@__PURE__*/ S.suspend(() =>
     systemData: S.optional(SystemData),
     properties: S.optional(RaiBlocklistProperties),
     etag: S.optional(S.String),
-    tags: S.optional(RaiBlocklistItemsBatchAddResponseTagsMap),
+    tags: S.optional(GetRaiBlocklistResponseTagsMap),
   }),
 ).annotate({
-  identifier: "RaiBlocklistItemsBatchAddResponse",
-}) as any as S.Schema<RaiBlocklistItemsBatchAddResponse>;
+  identifier: "GetRaiBlocklistResponse",
+}) as any as S.Schema<GetRaiBlocklistResponse>;
 
-/** The list of Cognitive Services RaiBlocklist Items Names. */
-export type RaiBlocklistItemsBulkDeleteRequest = Array<string>;
-export const RaiBlocklistItemsBulkDeleteRequest = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<RaiBlocklistItemsBulkDeleteRequest>;
-
-export interface RaiBlocklistItemsBatchDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-  /** The name of the RaiBlocklist associated with the Cognitive Services Account */
-  raiBlocklistName: string;
-  body: RaiBlocklistItemsBulkDeleteRequest;
-}
-export const RaiBlocklistItemsBatchDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    raiBlocklistName: S.String.pipe(T.Label()),
-    body: RaiBlocklistItemsBulkDeleteRequest.pipe(T.HttpBody()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/raiBlocklists/{raiBlocklistName}/deleteRaiBlocklistItems",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "RaiBlocklistItemsBatchDeleteRequest",
-}) as any as S.Schema<RaiBlocklistItemsBatchDeleteRequest>;
-
-export interface RaiBlocklistItemsBatchDeleteResponse {}
-export const RaiBlocklistItemsBatchDeleteResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "RaiBlocklistItemsBatchDeleteResponse",
-}) as any as S.Schema<RaiBlocklistItemsBatchDeleteResponse>;
-
-/** Resource tags. */
-export type RaiBlocklistItemsCreateOrUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const RaiBlocklistItemsCreateOrUpdateRequestTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<RaiBlocklistItemsCreateOrUpdateRequestTagsMap>;
-
-export interface RaiBlocklistItemsCreateOrUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-  /** The name of the RaiBlocklist associated with the Cognitive Services Account */
-  raiBlocklistName: string;
-  /** The name of the RaiBlocklist Item associated with the custom blocklist */
-  raiBlocklistItemName: string;
-  /** Properties of Cognitive Services RaiBlocklist Item. */
-  properties?: RaiBlocklistItemProperties;
-  /** Resource tags. */
-  tags?: RaiBlocklistItemsCreateOrUpdateRequestTagsMap;
-}
-export const RaiBlocklistItemsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-      raiBlocklistName: S.String.pipe(T.Label()),
-      raiBlocklistItemName: S.String.pipe(T.Label()),
-      properties: S.optional(RaiBlocklistItemProperties),
-      tags: S.optional(RaiBlocklistItemsCreateOrUpdateRequestTagsMap),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/raiBlocklists/{raiBlocklistName}/raiBlocklistItems/{raiBlocklistItemName}",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-).annotate({
-  identifier: "RaiBlocklistItemsCreateOrUpdateRequest",
-}) as any as S.Schema<RaiBlocklistItemsCreateOrUpdateRequest>;
-
-/** Resource tags. */
-export type RaiBlocklistItemsCreateOrUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const RaiBlocklistItemsCreateOrUpdateResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<RaiBlocklistItemsCreateOrUpdateResponseTagsMap>;
-
-export interface RaiBlocklistItemsCreateOrUpdateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of Cognitive Services RaiBlocklist Item. */
-  properties?: RaiBlocklistItemProperties;
-  /** Resource Etag. */
-  etag?: string;
-  /** Resource tags. */
-  tags?: RaiBlocklistItemsCreateOrUpdateResponseTagsMap;
-}
-export const RaiBlocklistItemsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(RaiBlocklistItemProperties),
-      etag: S.optional(S.String),
-      tags: S.optional(RaiBlocklistItemsCreateOrUpdateResponseTagsMap),
-    }),
-).annotate({
-  identifier: "RaiBlocklistItemsCreateOrUpdateResponse",
-}) as any as S.Schema<RaiBlocklistItemsCreateOrUpdateResponse>;
-
-export interface RaiBlocklistItemsDeleteRequest {
+export interface GetRaiBlocklistItemRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -10713,45 +6640,7 @@ export interface RaiBlocklistItemsDeleteRequest {
   /** The name of the RaiBlocklist Item associated with the custom blocklist */
   raiBlocklistItemName: string;
 }
-export const RaiBlocklistItemsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    raiBlocklistName: S.String.pipe(T.Label()),
-    raiBlocklistItemName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/raiBlocklists/{raiBlocklistName}/raiBlocklistItems/{raiBlocklistItemName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "RaiBlocklistItemsDeleteRequest",
-}) as any as S.Schema<RaiBlocklistItemsDeleteRequest>;
-
-export interface RaiBlocklistItemsDeleteResponse {}
-export const RaiBlocklistItemsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "RaiBlocklistItemsDeleteResponse",
-}) as any as S.Schema<RaiBlocklistItemsDeleteResponse>;
-
-export interface RaiBlocklistItemsGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-  /** The name of the RaiBlocklist associated with the Cognitive Services Account */
-  raiBlocklistName: string;
-  /** The name of the RaiBlocklist Item associated with the custom blocklist */
-  raiBlocklistItemName: string;
-}
-export const RaiBlocklistItemsGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetRaiBlocklistItemRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -10767,19 +6656,19 @@ export const RaiBlocklistItemsGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "RaiBlocklistItemsGetRequest",
-}) as any as S.Schema<RaiBlocklistItemsGetRequest>;
+  identifier: "GetRaiBlocklistItemRequest",
+}) as any as S.Schema<GetRaiBlocklistItemRequest>;
 
 /** Resource tags. */
-export type RaiBlocklistItemsGetResponseTagsMap = {
+export type GetRaiBlocklistItemResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const RaiBlocklistItemsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetRaiBlocklistItemResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<RaiBlocklistItemsGetResponseTagsMap>;
+) as any as S.Schema<GetRaiBlocklistItemResponseTagsMap>;
 
-export interface RaiBlocklistItemsGetResponse {
+export interface GetRaiBlocklistItemResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -10793,9 +6682,9 @@ export interface RaiBlocklistItemsGetResponse {
   /** Resource Etag. */
   etag?: string;
   /** Resource tags. */
-  tags?: RaiBlocklistItemsGetResponseTagsMap;
+  tags?: GetRaiBlocklistItemResponseTagsMap;
 }
-export const RaiBlocklistItemsGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetRaiBlocklistItemResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -10803,369 +6692,13 @@ export const RaiBlocklistItemsGetResponse = /*@__PURE__*/ S.suspend(() =>
     systemData: S.optional(SystemData),
     properties: S.optional(RaiBlocklistItemProperties),
     etag: S.optional(S.String),
-    tags: S.optional(RaiBlocklistItemsGetResponseTagsMap),
+    tags: S.optional(GetRaiBlocklistItemResponseTagsMap),
   }),
 ).annotate({
-  identifier: "RaiBlocklistItemsGetResponse",
-}) as any as S.Schema<RaiBlocklistItemsGetResponse>;
+  identifier: "GetRaiBlocklistItemResponse",
+}) as any as S.Schema<GetRaiBlocklistItemResponse>;
 
-export interface RaiBlocklistItemsListRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-  /** The name of the RaiBlocklist associated with the Cognitive Services Account */
-  raiBlocklistName: string;
-}
-export const RaiBlocklistItemsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    raiBlocklistName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/raiBlocklists/{raiBlocklistName}/raiBlocklistItems",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "RaiBlocklistItemsListRequest",
-}) as any as S.Schema<RaiBlocklistItemsListRequest>;
-
-/** Resource tags. */
-export type RaiBlocklistItemTagsMap = { [key: string]: string | undefined };
-export const RaiBlocklistItemTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<RaiBlocklistItemTagsMap>;
-
-/** Cognitive Services RaiBlocklist Item. */
-export interface RaiBlocklistItem {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of Cognitive Services RaiBlocklist Item. */
-  properties?: RaiBlocklistItemProperties;
-  /** Resource Etag. */
-  etag?: string;
-  /** Resource tags. */
-  tags?: RaiBlocklistItemTagsMap;
-}
-export const RaiBlocklistItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(RaiBlocklistItemProperties),
-    etag: S.optional(S.String),
-    tags: S.optional(RaiBlocklistItemTagsMap),
-  }),
-).annotate({
-  identifier: "RaiBlocklistItem",
-}) as any as S.Schema<RaiBlocklistItem>;
-
-/** The list of RaiBlocklistItems. */
-export type RaiBlockListItemsResultValueList = Array<RaiBlocklistItem>;
-export const RaiBlockListItemsResultValueList = /*@__PURE__*/ S.Array(
-  RaiBlocklistItem,
-) as any as S.Schema<RaiBlockListItemsResultValueList>;
-
-/** The list of cognitive services RAI Blocklist Items. */
-export interface RaiBlockListItemsResult {
-  /** The link used to get the next page of RaiBlocklistItems. */
-  nextLink?: string;
-  /** The list of RaiBlocklistItems. */
-  value?: RaiBlockListItemsResultValueList;
-}
-export const RaiBlockListItemsResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    nextLink: S.optional(S.String),
-    value: S.optional(RaiBlockListItemsResultValueList),
-  }),
-).annotate({
-  identifier: "RaiBlockListItemsResult",
-}) as any as S.Schema<RaiBlockListItemsResult>;
-
-/** Resource tags. */
-export type RaiBlocklistsCreateOrUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const RaiBlocklistsCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<RaiBlocklistsCreateOrUpdateRequestTagsMap>;
-
-export interface RaiBlocklistsCreateOrUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-  /** The name of the RaiBlocklist associated with the Cognitive Services Account */
-  raiBlocklistName: string;
-  /** Properties of Cognitive Services RaiBlocklist. */
-  properties?: RaiBlocklistProperties;
-  /** Resource tags. */
-  tags?: RaiBlocklistsCreateOrUpdateRequestTagsMap;
-}
-export const RaiBlocklistsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    raiBlocklistName: S.String.pipe(T.Label()),
-    properties: S.optional(RaiBlocklistProperties),
-    tags: S.optional(RaiBlocklistsCreateOrUpdateRequestTagsMap),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/raiBlocklists/{raiBlocklistName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "RaiBlocklistsCreateOrUpdateRequest",
-}) as any as S.Schema<RaiBlocklistsCreateOrUpdateRequest>;
-
-/** Resource tags. */
-export type RaiBlocklistsCreateOrUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const RaiBlocklistsCreateOrUpdateResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<RaiBlocklistsCreateOrUpdateResponseTagsMap>;
-
-export interface RaiBlocklistsCreateOrUpdateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of Cognitive Services RaiBlocklist. */
-  properties?: RaiBlocklistProperties;
-  /** Resource Etag. */
-  etag?: string;
-  /** Resource tags. */
-  tags?: RaiBlocklistsCreateOrUpdateResponseTagsMap;
-}
-export const RaiBlocklistsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(RaiBlocklistProperties),
-    etag: S.optional(S.String),
-    tags: S.optional(RaiBlocklistsCreateOrUpdateResponseTagsMap),
-  }),
-).annotate({
-  identifier: "RaiBlocklistsCreateOrUpdateResponse",
-}) as any as S.Schema<RaiBlocklistsCreateOrUpdateResponse>;
-
-export interface RaiBlocklistsDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-  /** The name of the RaiBlocklist associated with the Cognitive Services Account */
-  raiBlocklistName: string;
-}
-export const RaiBlocklistsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    raiBlocklistName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/raiBlocklists/{raiBlocklistName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "RaiBlocklistsDeleteRequest",
-}) as any as S.Schema<RaiBlocklistsDeleteRequest>;
-
-export interface RaiBlocklistsDeleteResponse {}
-export const RaiBlocklistsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "RaiBlocklistsDeleteResponse",
-}) as any as S.Schema<RaiBlocklistsDeleteResponse>;
-
-export interface RaiBlocklistsGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-  /** The name of the RaiBlocklist associated with the Cognitive Services Account */
-  raiBlocklistName: string;
-}
-export const RaiBlocklistsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    raiBlocklistName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/raiBlocklists/{raiBlocklistName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "RaiBlocklistsGetRequest",
-}) as any as S.Schema<RaiBlocklistsGetRequest>;
-
-/** Resource tags. */
-export type RaiBlocklistsGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const RaiBlocklistsGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<RaiBlocklistsGetResponseTagsMap>;
-
-export interface RaiBlocklistsGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of Cognitive Services RaiBlocklist. */
-  properties?: RaiBlocklistProperties;
-  /** Resource Etag. */
-  etag?: string;
-  /** Resource tags. */
-  tags?: RaiBlocklistsGetResponseTagsMap;
-}
-export const RaiBlocklistsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(RaiBlocklistProperties),
-    etag: S.optional(S.String),
-    tags: S.optional(RaiBlocklistsGetResponseTagsMap),
-  }),
-).annotate({
-  identifier: "RaiBlocklistsGetResponse",
-}) as any as S.Schema<RaiBlocklistsGetResponse>;
-
-export interface RaiBlocklistsListRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-}
-export const RaiBlocklistsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/raiBlocklists",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "RaiBlocklistsListRequest",
-}) as any as S.Schema<RaiBlocklistsListRequest>;
-
-/** Resource tags. */
-export type RaiBlocklistTagsMap = { [key: string]: string | undefined };
-export const RaiBlocklistTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<RaiBlocklistTagsMap>;
-
-/** Cognitive Services RaiBlocklist. */
-export interface RaiBlocklist {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of Cognitive Services RaiBlocklist. */
-  properties?: RaiBlocklistProperties;
-  /** Resource Etag. */
-  etag?: string;
-  /** Resource tags. */
-  tags?: RaiBlocklistTagsMap;
-}
-export const RaiBlocklist = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(RaiBlocklistProperties),
-    etag: S.optional(S.String),
-    tags: S.optional(RaiBlocklistTagsMap),
-  }),
-).annotate({ identifier: "RaiBlocklist" }) as any as S.Schema<RaiBlocklist>;
-
-/** The list of RaiBlocklist. */
-export type RaiBlockListResultValueList = Array<RaiBlocklist>;
-export const RaiBlockListResultValueList = /*@__PURE__*/ S.Array(
-  RaiBlocklist,
-) as any as S.Schema<RaiBlockListResultValueList>;
-
-/** The list of cognitive services RAI Blocklists. */
-export interface RaiBlockListResult {
-  /** The link used to get the next page of RaiBlocklists. */
-  nextLink?: string;
-  /** The list of RaiBlocklist. */
-  value?: RaiBlockListResultValueList;
-}
-export const RaiBlockListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    nextLink: S.optional(S.String),
-    value: S.optional(RaiBlockListResultValueList),
-  }),
-).annotate({
-  identifier: "RaiBlockListResult",
-}) as any as S.Schema<RaiBlockListResult>;
-
-export interface RaiContentFiltersGetRequest {
+export interface GetRaiContentFilterRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of Azure region. */
@@ -11173,7 +6706,7 @@ export interface RaiContentFiltersGetRequest {
   /** The name of the RAI Content Filter. */
   filterName: string;
 }
-export const RaiContentFiltersGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetRaiContentFilterRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     location: S.String.pipe(T.Label()),
@@ -11187,8 +6720,8 @@ export const RaiContentFiltersGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "RaiContentFiltersGetRequest",
-}) as any as S.Schema<RaiContentFiltersGetRequest>;
+  identifier: "GetRaiContentFilterRequest",
+}) as any as S.Schema<GetRaiContentFilterRequest>;
 
 /** Content source to apply the Content Filters. */
 export type RaiPolicyContentSource =
@@ -11219,7 +6752,7 @@ export const RaiContentFilterProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "RaiContentFilterProperties",
 }) as any as S.Schema<RaiContentFilterProperties>;
 
-export interface RaiContentFiltersGetResponse {
+export interface GetRaiContentFilterResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -11231,7 +6764,7 @@ export interface RaiContentFiltersGetResponse {
   /** Azure OpenAI Content Filter Properties. */
   properties?: RaiContentFilterProperties;
 }
-export const RaiContentFiltersGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetRaiContentFilterResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -11240,135 +6773,30 @@ export const RaiContentFiltersGetResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(RaiContentFilterProperties),
   }),
 ).annotate({
-  identifier: "RaiContentFiltersGetResponse",
-}) as any as S.Schema<RaiContentFiltersGetResponse>;
+  identifier: "GetRaiContentFilterResponse",
+}) as any as S.Schema<GetRaiContentFilterResponse>;
 
-export interface RaiContentFiltersListRequest {
+export interface GetRaiExternalSafetyProviderRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
-  /** The name of Azure region. */
-  location: string;
+  /** The name of the Rai External Safety Provider associated with the Cognitive Services Account */
+  safetyProviderName: string;
 }
-export const RaiContentFiltersListRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetRaiExternalSafetyProviderRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
-    location: S.String.pipe(T.Label()),
+    safetyProviderName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/locations/{location}/raiContentFilters",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/raiExternalSafetyProviders/{safetyProviderName}",
       code: 200,
       apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
-  identifier: "RaiContentFiltersListRequest",
-}) as any as S.Schema<RaiContentFiltersListRequest>;
-
-/** Azure OpenAI Content Filter. */
-export interface RaiContentFilter {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Azure OpenAI Content Filter Properties. */
-  properties?: RaiContentFilterProperties;
-}
-export const RaiContentFilter = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(RaiContentFilterProperties),
-  }),
-).annotate({
-  identifier: "RaiContentFilter",
-}) as any as S.Schema<RaiContentFilter>;
-
-/** The list of RaiContentFilter. */
-export type RaiContentFilterListResultValueList = Array<RaiContentFilter>;
-export const RaiContentFilterListResultValueList = /*@__PURE__*/ S.Array(
-  RaiContentFilter,
-) as any as S.Schema<RaiContentFilterListResultValueList>;
-
-/** The list of Content Filters. */
-export interface RaiContentFilterListResult {
-  /** The link used to get the next page of Content Filters. */
-  nextLink?: string;
-  /** The list of RaiContentFilter. */
-  value?: RaiContentFilterListResultValueList;
-}
-export const RaiContentFilterListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    nextLink: S.optional(S.String),
-    value: S.optional(RaiContentFilterListResultValueList),
-  }),
-).annotate({
-  identifier: "RaiContentFilterListResult",
-}) as any as S.Schema<RaiContentFilterListResult>;
-
-/** RAI External SafetyProvider schema properties. */
-export interface RaiExternalSafetyProviderSchemaPropertiesInput {
-  /** The unique identifier of the safety provider. */
-  providerId?: string;
-  /** Name of the safety provider. */
-  providerName?: string;
-  /** Safety provider mode sync/async. */
-  mode?: string;
-  /** Webhook URL for the safety provider. */
-  url?: string;
-  /** The name of the secret in Key Vault that contains the api key to access the webhook. */
-  secretName?: string;
-  /** The managed identity to access the Key Vault. */
-  managedIdentity?: string;
-  /** The Key Vault URI that contains the api key for safety provider urls. */
-  keyVaultUri?: string;
-}
-export const RaiExternalSafetyProviderSchemaPropertiesInput =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      providerId: S.optional(S.String),
-      providerName: S.optional(S.String),
-      mode: S.optional(S.String),
-      url: S.optional(S.String),
-      secretName: S.optional(S.String),
-      managedIdentity: S.optional(S.String),
-      keyVaultUri: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "RaiExternalSafetyProviderSchemaPropertiesInput",
-  }) as any as S.Schema<RaiExternalSafetyProviderSchemaPropertiesInput>;
-
-export interface RaiExternalSafetyProviderCreateOrUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the Rai External Safety Provider associated with the Cognitive Services Account */
-  safetyProviderName: string;
-  /** Properties of Cognitive Services Rai External Safety provider. */
-  properties?: RaiExternalSafetyProviderSchemaPropertiesInput;
-}
-export const RaiExternalSafetyProviderCreateOrUpdateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      safetyProviderName: S.String.pipe(T.Label()),
-      properties: S.optional(RaiExternalSafetyProviderSchemaPropertiesInput),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/raiExternalSafetyProviders/{safetyProviderName}",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "RaiExternalSafetyProviderCreateOrUpdateRequest",
-  }) as any as S.Schema<RaiExternalSafetyProviderCreateOrUpdateRequest>;
+  identifier: "GetRaiExternalSafetyProviderRequest",
+}) as any as S.Schema<GetRaiExternalSafetyProviderRequest>;
 
 /** RAI External SafetyProvider schema properties. */
 export interface RaiExternalSafetyProviderSchemaProperties {
@@ -11409,16 +6837,16 @@ export const RaiExternalSafetyProviderSchemaProperties =
   }) as any as S.Schema<RaiExternalSafetyProviderSchemaProperties>;
 
 /** Resource tags. */
-export type RaiExternalSafetyProviderCreateOrUpdateResponseTagsMap = {
+export type GetRaiExternalSafetyProviderResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const RaiExternalSafetyProviderCreateOrUpdateResponseTagsMap =
+export const GetRaiExternalSafetyProviderResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<RaiExternalSafetyProviderCreateOrUpdateResponseTagsMap>;
+  ) as any as S.Schema<GetRaiExternalSafetyProviderResponseTagsMap>;
 
-export interface RaiExternalSafetyProviderCreateOrUpdateResponse {
+export interface GetRaiExternalSafetyProviderResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -11432,10 +6860,10 @@ export interface RaiExternalSafetyProviderCreateOrUpdateResponse {
   /** Resource Etag. */
   etag?: string;
   /** Resource tags. */
-  tags?: RaiExternalSafetyProviderCreateOrUpdateResponseTagsMap;
+  tags?: GetRaiExternalSafetyProviderResponseTagsMap;
 }
-export const RaiExternalSafetyProviderCreateOrUpdateResponse =
-  /*@__PURE__*/ S.suspend(() =>
+export const GetRaiExternalSafetyProviderResponse = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       id: S.optional(S.String),
       name: S.optional(S.String),
@@ -11443,187 +6871,39 @@ export const RaiExternalSafetyProviderCreateOrUpdateResponse =
       systemData: S.optional(SystemData),
       properties: S.optional(RaiExternalSafetyProviderSchemaProperties),
       etag: S.optional(S.String),
-      tags: S.optional(RaiExternalSafetyProviderCreateOrUpdateResponseTagsMap),
+      tags: S.optional(GetRaiExternalSafetyProviderResponseTagsMap),
     }),
-  ).annotate({
-    identifier: "RaiExternalSafetyProviderCreateOrUpdateResponse",
-  }) as any as S.Schema<RaiExternalSafetyProviderCreateOrUpdateResponse>;
+).annotate({
+  identifier: "GetRaiExternalSafetyProviderResponse",
+}) as any as S.Schema<GetRaiExternalSafetyProviderResponse>;
 
-export interface RaiExternalSafetyProviderDeleteRequest {
+export interface GetRaiPolicyRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
-  /** The name of the Rai External Safety Provider associated with the Cognitive Services Account */
-  safetyProviderName: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+  /** The name of the RaiPolicy associated with the Cognitive Services Account */
+  raiPolicyName: string;
 }
-export const RaiExternalSafetyProviderDeleteRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      safetyProviderName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/raiExternalSafetyProviders/{safetyProviderName}",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-).annotate({
-  identifier: "RaiExternalSafetyProviderDeleteRequest",
-}) as any as S.Schema<RaiExternalSafetyProviderDeleteRequest>;
-
-export interface RaiExternalSafetyProviderDeleteResponse {}
-export const RaiExternalSafetyProviderDeleteResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "RaiExternalSafetyProviderDeleteResponse",
-}) as any as S.Schema<RaiExternalSafetyProviderDeleteResponse>;
-
-export interface RaiExternalSafetyProviderGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the Rai External Safety Provider associated with the Cognitive Services Account */
-  safetyProviderName: string;
-}
-export const RaiExternalSafetyProviderGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetRaiPolicyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
-    safetyProviderName: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    raiPolicyName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/raiExternalSafetyProviders/{safetyProviderName}",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/raiPolicies/{raiPolicyName}",
       code: 200,
       apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
-  identifier: "RaiExternalSafetyProviderGetRequest",
-}) as any as S.Schema<RaiExternalSafetyProviderGetRequest>;
-
-/** Resource tags. */
-export type RaiExternalSafetyProviderGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const RaiExternalSafetyProviderGetResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<RaiExternalSafetyProviderGetResponseTagsMap>;
-
-export interface RaiExternalSafetyProviderGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of Cognitive Services Rai External Safety provider. */
-  properties?: RaiExternalSafetyProviderSchemaProperties;
-  /** Resource Etag. */
-  etag?: string;
-  /** Resource tags. */
-  tags?: RaiExternalSafetyProviderGetResponseTagsMap;
-}
-export const RaiExternalSafetyProviderGetResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(RaiExternalSafetyProviderSchemaProperties),
-      etag: S.optional(S.String),
-      tags: S.optional(RaiExternalSafetyProviderGetResponseTagsMap),
-    }),
-).annotate({
-  identifier: "RaiExternalSafetyProviderGetResponse",
-}) as any as S.Schema<RaiExternalSafetyProviderGetResponse>;
-
-export interface RaiExternalSafetyProvidersListRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-}
-export const RaiExternalSafetyProvidersListRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/raiExternalSafetyProviders",
-        code: 200,
-        apiVersion: "2026-07-01",
-      }),
-    ),
-).annotate({
-  identifier: "RaiExternalSafetyProvidersListRequest",
-}) as any as S.Schema<RaiExternalSafetyProvidersListRequest>;
-
-/** Resource tags. */
-export type RaiExternalSafetyProviderSchemaTagsMap = {
-  [key: string]: string | undefined;
-};
-export const RaiExternalSafetyProviderSchemaTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<RaiExternalSafetyProviderSchemaTagsMap>;
-
-/** Cognitive Services Rai External Safety provider Schema. */
-export interface RaiExternalSafetyProviderSchema {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of Cognitive Services Rai External Safety provider. */
-  properties?: RaiExternalSafetyProviderSchemaProperties;
-  /** Resource Etag. */
-  etag?: string;
-  /** Resource tags. */
-  tags?: RaiExternalSafetyProviderSchemaTagsMap;
-}
-export const RaiExternalSafetyProviderSchema = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(RaiExternalSafetyProviderSchemaProperties),
-    etag: S.optional(S.String),
-    tags: S.optional(RaiExternalSafetyProviderSchemaTagsMap),
-  }),
-).annotate({
-  identifier: "RaiExternalSafetyProviderSchema",
-}) as any as S.Schema<RaiExternalSafetyProviderSchema>;
-
-/** The list of RaiExternalSafetyProvider. */
-export type RaiExternalSafetyProviderResultValueList =
-  Array<RaiExternalSafetyProviderSchema>;
-export const RaiExternalSafetyProviderResultValueList = /*@__PURE__*/ S.Array(
-  RaiExternalSafetyProviderSchema,
-) as any as S.Schema<RaiExternalSafetyProviderResultValueList>;
-
-/** The list of cognitive services RAI External Safety Providers. */
-export interface RaiExternalSafetyProviderResult {
-  /** The link used to get the next page of Rai External Safety Provider. */
-  nextLink?: string;
-  /** The list of RaiExternalSafetyProvider. */
-  value?: RaiExternalSafetyProviderResultValueList;
-}
-export const RaiExternalSafetyProviderResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    nextLink: S.optional(S.String),
-    value: S.optional(RaiExternalSafetyProviderResultValueList),
-  }),
-).annotate({
-  identifier: "RaiExternalSafetyProviderResult",
-}) as any as S.Schema<RaiExternalSafetyProviderResult>;
+  identifier: "GetRaiPolicyRequest",
+}) as any as S.Schema<GetRaiPolicyRequest>;
 
 /** Content Filters policy type. */
 export type RaiPolicyType = "UserManaged" | "SystemManaged";
@@ -11766,58 +7046,13 @@ export const RaiPolicyProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RaiPolicyProperties>;
 
 /** Resource tags. */
-export type RaiPoliciesCreateOrUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const RaiPoliciesCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type GetRaiPolicyResponseTagsMap = { [key: string]: string | undefined };
+export const GetRaiPolicyResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<RaiPoliciesCreateOrUpdateRequestTagsMap>;
+) as any as S.Schema<GetRaiPolicyResponseTagsMap>;
 
-export interface RaiPoliciesCreateOrUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-  /** The name of the RaiPolicy associated with the Cognitive Services Account */
-  raiPolicyName: string;
-  /** Properties of Cognitive Services RaiPolicy. */
-  properties?: RaiPolicyProperties;
-  /** Resource tags. */
-  tags?: RaiPoliciesCreateOrUpdateRequestTagsMap;
-}
-export const RaiPoliciesCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    raiPolicyName: S.String.pipe(T.Label()),
-    properties: S.optional(RaiPolicyProperties),
-    tags: S.optional(RaiPoliciesCreateOrUpdateRequestTagsMap),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/raiPolicies/{raiPolicyName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "RaiPoliciesCreateOrUpdateRequest",
-}) as any as S.Schema<RaiPoliciesCreateOrUpdateRequest>;
-
-/** Resource tags. */
-export type RaiPoliciesCreateOrUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const RaiPoliciesCreateOrUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<RaiPoliciesCreateOrUpdateResponseTagsMap>;
-
-export interface RaiPoliciesCreateOrUpdateResponse {
+export interface GetRaiPolicyResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -11831,9 +7066,9 @@ export interface RaiPoliciesCreateOrUpdateResponse {
   /** Resource Etag. */
   etag?: string;
   /** Resource tags. */
-  tags?: RaiPoliciesCreateOrUpdateResponseTagsMap;
+  tags?: GetRaiPolicyResponseTagsMap;
 }
-export const RaiPoliciesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetRaiPolicyResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -11841,196 +7076,39 @@ export const RaiPoliciesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
     systemData: S.optional(SystemData),
     properties: S.optional(RaiPolicyProperties),
     etag: S.optional(S.String),
-    tags: S.optional(RaiPoliciesCreateOrUpdateResponseTagsMap),
+    tags: S.optional(GetRaiPolicyResponseTagsMap),
   }),
 ).annotate({
-  identifier: "RaiPoliciesCreateOrUpdateResponse",
-}) as any as S.Schema<RaiPoliciesCreateOrUpdateResponse>;
+  identifier: "GetRaiPolicyResponse",
+}) as any as S.Schema<GetRaiPolicyResponse>;
 
-export interface RaiPoliciesDeleteRequest {
+export interface GetRaiToolLabelRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of Cognitive Services account. */
   accountName: string;
-  /** The name of the RaiPolicy associated with the Cognitive Services Account */
-  raiPolicyName: string;
+  /** The name of the Rai Tool Label */
+  raiToolConnectionName: string;
 }
-export const RaiPoliciesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetRaiToolLabelRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     accountName: S.String.pipe(T.Label()),
-    raiPolicyName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/raiPolicies/{raiPolicyName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "RaiPoliciesDeleteRequest",
-}) as any as S.Schema<RaiPoliciesDeleteRequest>;
-
-export interface RaiPoliciesDeleteResponse {}
-export const RaiPoliciesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "RaiPoliciesDeleteResponse",
-}) as any as S.Schema<RaiPoliciesDeleteResponse>;
-
-export interface RaiPoliciesGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-  /** The name of the RaiPolicy associated with the Cognitive Services Account */
-  raiPolicyName: string;
-}
-export const RaiPoliciesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    raiPolicyName: S.String.pipe(T.Label()),
+    raiToolConnectionName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/raiPolicies/{raiPolicyName}",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/raiToolLabels/{raiToolConnectionName}",
       code: 200,
       apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
-  identifier: "RaiPoliciesGetRequest",
-}) as any as S.Schema<RaiPoliciesGetRequest>;
-
-/** Resource tags. */
-export type RaiPoliciesGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const RaiPoliciesGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<RaiPoliciesGetResponseTagsMap>;
-
-export interface RaiPoliciesGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of Cognitive Services RaiPolicy. */
-  properties?: RaiPolicyProperties;
-  /** Resource Etag. */
-  etag?: string;
-  /** Resource tags. */
-  tags?: RaiPoliciesGetResponseTagsMap;
-}
-export const RaiPoliciesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(RaiPolicyProperties),
-    etag: S.optional(S.String),
-    tags: S.optional(RaiPoliciesGetResponseTagsMap),
-  }),
-).annotate({
-  identifier: "RaiPoliciesGetResponse",
-}) as any as S.Schema<RaiPoliciesGetResponse>;
-
-export interface RaiPoliciesListRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-}
-export const RaiPoliciesListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/raiPolicies",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "RaiPoliciesListRequest",
-}) as any as S.Schema<RaiPoliciesListRequest>;
-
-/** Resource tags. */
-export type RaiPolicyTagsMap = { [key: string]: string | undefined };
-export const RaiPolicyTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<RaiPolicyTagsMap>;
-
-/** Cognitive Services RaiPolicy. */
-export interface RaiPolicy {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of Cognitive Services RaiPolicy. */
-  properties?: RaiPolicyProperties;
-  /** Resource Etag. */
-  etag?: string;
-  /** Resource tags. */
-  tags?: RaiPolicyTagsMap;
-}
-export const RaiPolicy = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(RaiPolicyProperties),
-    etag: S.optional(S.String),
-    tags: S.optional(RaiPolicyTagsMap),
-  }),
-).annotate({ identifier: "RaiPolicy" }) as any as S.Schema<RaiPolicy>;
-
-/** The list of RaiPolicy. */
-export type RaiPolicyListResultValueList = Array<RaiPolicy>;
-export const RaiPolicyListResultValueList = /*@__PURE__*/ S.Array(
-  RaiPolicy,
-) as any as S.Schema<RaiPolicyListResultValueList>;
-
-/** The list of cognitive services RaiPolicies. */
-export interface RaiPolicyListResult {
-  /** The link used to get the next page of RaiPolicy. */
-  nextLink?: string;
-  /** The list of RaiPolicy. */
-  value?: RaiPolicyListResultValueList;
-}
-export const RaiPolicyListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    nextLink: S.optional(S.String),
-    value: S.optional(RaiPolicyListResultValueList),
-  }),
-).annotate({
-  identifier: "RaiPolicyListResult",
-}) as any as S.Schema<RaiPolicyListResult>;
+  identifier: "GetRaiToolLabelRequest",
+}) as any as S.Schema<GetRaiToolLabelRequest>;
 
 /** Dictionary of label key-value pairs for the account scope. */
 export type RaiToolLabelPropertiesAccountScopeLabelValuesMap = {
@@ -12108,59 +7186,15 @@ export const RaiToolLabelProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<RaiToolLabelProperties>;
 
 /** Resource tags. */
-export type RaiToolLabelsCreateOrUpdateRequestTagsMap = {
+export type GetRaiToolLabelResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const RaiToolLabelsCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const GetRaiToolLabelResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<RaiToolLabelsCreateOrUpdateRequestTagsMap>;
+) as any as S.Schema<GetRaiToolLabelResponseTagsMap>;
 
-export interface RaiToolLabelsCreateOrUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-  /** The name of the Rai Tool Label */
-  raiToolConnectionName: string;
-  /** Properties of the RAI Tool Label. */
-  properties?: RaiToolLabelProperties;
-  /** Resource tags. */
-  tags?: RaiToolLabelsCreateOrUpdateRequestTagsMap;
-}
-export const RaiToolLabelsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    raiToolConnectionName: S.String.pipe(T.Label()),
-    properties: S.optional(RaiToolLabelProperties),
-    tags: S.optional(RaiToolLabelsCreateOrUpdateRequestTagsMap),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/raiToolLabels/{raiToolConnectionName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "RaiToolLabelsCreateOrUpdateRequest",
-}) as any as S.Schema<RaiToolLabelsCreateOrUpdateRequest>;
-
-/** Resource tags. */
-export type RaiToolLabelsCreateOrUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const RaiToolLabelsCreateOrUpdateResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<RaiToolLabelsCreateOrUpdateResponseTagsMap>;
-
-export interface RaiToolLabelsCreateOrUpdateResponse {
+export interface GetRaiToolLabelResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -12174,9 +7208,9 @@ export interface RaiToolLabelsCreateOrUpdateResponse {
   /** Resource Etag. */
   etag?: string;
   /** Resource tags. */
-  tags?: RaiToolLabelsCreateOrUpdateResponseTagsMap;
+  tags?: GetRaiToolLabelResponseTagsMap;
 }
-export const RaiToolLabelsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetRaiToolLabelResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -12184,85 +7218,82 @@ export const RaiToolLabelsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
     systemData: S.optional(SystemData),
     properties: S.optional(RaiToolLabelProperties),
     etag: S.optional(S.String),
-    tags: S.optional(RaiToolLabelsCreateOrUpdateResponseTagsMap),
+    tags: S.optional(GetRaiToolLabelResponseTagsMap),
   }),
 ).annotate({
-  identifier: "RaiToolLabelsCreateOrUpdateResponse",
-}) as any as S.Schema<RaiToolLabelsCreateOrUpdateResponse>;
+  identifier: "GetRaiToolLabelResponse",
+}) as any as S.Schema<GetRaiToolLabelResponse>;
 
-export interface RaiToolLabelsDeleteRequest {
+export interface GetRaiTopicRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of Cognitive Services account. */
   accountName: string;
-  /** The name of the Rai Tool Label */
-  raiToolConnectionName: string;
+  /** The name of the Rai Topic associated with the Cognitive Services Account */
+  raiTopicName: string;
 }
-export const RaiToolLabelsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetRaiTopicRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     accountName: S.String.pipe(T.Label()),
-    raiToolConnectionName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/raiToolLabels/{raiToolConnectionName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "RaiToolLabelsDeleteRequest",
-}) as any as S.Schema<RaiToolLabelsDeleteRequest>;
-
-export interface RaiToolLabelsDeleteResponse {}
-export const RaiToolLabelsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "RaiToolLabelsDeleteResponse",
-}) as any as S.Schema<RaiToolLabelsDeleteResponse>;
-
-export interface RaiToolLabelsGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-  /** The name of the Rai Tool Label */
-  raiToolConnectionName: string;
-}
-export const RaiToolLabelsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    raiToolConnectionName: S.String.pipe(T.Label()),
+    raiTopicName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/raiToolLabels/{raiToolConnectionName}",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/raitopics/{raiTopicName}",
       code: 200,
       apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
-  identifier: "RaiToolLabelsGetRequest",
-}) as any as S.Schema<RaiToolLabelsGetRequest>;
+  identifier: "GetRaiTopicRequest",
+}) as any as S.Schema<GetRaiTopicRequest>;
+
+/** RAI Custom Topic properties. */
+export interface RaiTopicProperties {
+  /** The unique identifier of the custom topic. */
+  topicId?: string;
+  /** The name of the custom topic. */
+  topicName?: string;
+  /** Description of the custom topic. */
+  description?: string;
+  /** Sample blob url for the custom topic. */
+  sampleBlobUrl?: string;
+  /** Status of the custom topic. */
+  status?: string;
+  /** Failed reason if the status is Failed. */
+  failedReason?: string;
+  /** Creation time of the custom topic. */
+  createdAt?: string;
+  /** Last modified time of the custom topic. */
+  lastModifiedAt?: string;
+}
+export const RaiTopicProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    topicId: S.optional(S.String),
+    topicName: S.optional(S.String),
+    description: S.optional(S.String),
+    sampleBlobUrl: S.optional(S.String),
+    status: S.optional(S.String),
+    failedReason: S.optional(S.String),
+    createdAt: S.optional(S.String),
+    lastModifiedAt: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "RaiTopicProperties",
+}) as any as S.Schema<RaiTopicProperties>;
 
 /** Resource tags. */
-export type RaiToolLabelsGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const RaiToolLabelsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetRaiTopicResponseTagsMap = { [key: string]: string | undefined };
+export const GetRaiTopicResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<RaiToolLabelsGetResponseTagsMap>;
+) as any as S.Schema<GetRaiTopicResponseTagsMap>;
 
-export interface RaiToolLabelsGetResponse {
+export interface GetRaiTopicResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -12271,28 +7302,181 @@ export interface RaiToolLabelsGetResponse {
   type?: string;
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
-  /** Properties of the RAI Tool Label. */
-  properties?: RaiToolLabelProperties;
+  /** Properties of Cognitive Services Rai Topic. */
+  properties?: RaiTopicProperties;
   /** Resource Etag. */
   etag?: string;
   /** Resource tags. */
-  tags?: RaiToolLabelsGetResponseTagsMap;
+  tags?: GetRaiTopicResponseTagsMap;
 }
-export const RaiToolLabelsGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetRaiTopicResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    properties: S.optional(RaiToolLabelProperties),
+    properties: S.optional(RaiTopicProperties),
     etag: S.optional(S.String),
-    tags: S.optional(RaiToolLabelsGetResponseTagsMap),
+    tags: S.optional(GetRaiTopicResponseTagsMap),
   }),
 ).annotate({
-  identifier: "RaiToolLabelsGetResponse",
-}) as any as S.Schema<RaiToolLabelsGetResponse>;
+  identifier: "GetRaiTopicResponse",
+}) as any as S.Schema<GetRaiTopicResponse>;
 
-export interface RaiToolLabelsListRequest {
+export interface GetSubscriptionRaiPolicyRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the RaiPolicy associated with the Cognitive Services Account */
+  raiPolicyName: string;
+}
+export const GetSubscriptionRaiPolicyRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    raiPolicyName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/raiPolicy/{raiPolicyName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetSubscriptionRaiPolicyRequest",
+}) as any as S.Schema<GetSubscriptionRaiPolicyRequest>;
+
+/** Resource tags. */
+export type GetSubscriptionRaiPolicyResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetSubscriptionRaiPolicyResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetSubscriptionRaiPolicyResponseTagsMap>;
+
+export interface GetSubscriptionRaiPolicyResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of Cognitive Services RaiPolicy. */
+  properties?: RaiPolicyProperties;
+  /** Resource Etag. */
+  etag?: string;
+  /** Resource tags. */
+  tags?: GetSubscriptionRaiPolicyResponseTagsMap;
+}
+export const GetSubscriptionRaiPolicyResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(RaiPolicyProperties),
+    etag: S.optional(S.String),
+    tags: S.optional(GetSubscriptionRaiPolicyResponseTagsMap),
+  }),
+).annotate({
+  identifier: "GetSubscriptionRaiPolicyResponse",
+}) as any as S.Schema<GetSubscriptionRaiPolicyResponse>;
+
+export interface ListAccountByResourceGroupRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+}
+export const ListAccountByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListAccountByResourceGroupRequest",
+}) as any as S.Schema<ListAccountByResourceGroupRequest>;
+
+/** Resource tags. */
+export type AccountTagsMap = { [key: string]: string | undefined };
+export const AccountTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<AccountTagsMap>;
+
+/** Cognitive Services account is an Azure resource representing the provisioned account, it's type, location and SKU. */
+export interface Account {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of Cognitive Services account. */
+  properties?: AccountProperties;
+  /** Resource tags. */
+  tags?: AccountTagsMap;
+  /** The geo-location where the resource lives */
+  location?: string;
+  /** Resource Etag. */
+  etag?: string;
+  /** The kind (type) of cognitive service account. */
+  kind?: string;
+  /** The resource model definition representing SKU */
+  sku?: Sku;
+  /** Identity for the resource. */
+  identity?: Identity;
+}
+export const Account = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(AccountProperties),
+    tags: S.optional(AccountTagsMap),
+    location: S.optional(S.String),
+    etag: S.optional(S.String),
+    kind: S.optional(S.String),
+    sku: S.optional(Sku),
+    identity: S.optional(Identity),
+  }),
+).annotate({ identifier: "Account" }) as any as S.Schema<Account>;
+
+/** Gets the list of Cognitive Services accounts and their properties. */
+export type AccountListResultValueList = Array<Account>;
+export const AccountListResultValueList = /*@__PURE__*/ S.Array(
+  Account,
+) as any as S.Schema<AccountListResultValueList>;
+
+/** The list of cognitive services accounts operation response. */
+export interface AccountListResult {
+  /** The link used to get the next page of accounts. */
+  nextLink?: string;
+  /** Gets the list of Cognitive Services accounts and their properties. */
+  value?: AccountListResultValueList;
+}
+export const AccountListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nextLink: S.optional(S.String),
+    value: S.optional(AccountListResultValueList),
+  }),
+).annotate({
+  identifier: "AccountListResult",
+}) as any as S.Schema<AccountListResult>;
+
+export interface ListAccountCapabilityHostsRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -12300,7 +7484,2999 @@ export interface RaiToolLabelsListRequest {
   /** The name of Cognitive Services account. */
   accountName: string;
 }
-export const RaiToolLabelsListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListAccountCapabilityHostsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/capabilityHosts",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListAccountCapabilityHostsRequest",
+}) as any as S.Schema<ListAccountCapabilityHostsRequest>;
+
+/** Azure Resource Manager resource envelope. */
+export interface CapabilityHost {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** [Required] Additional attributes of the entity. */
+  properties: CapabilityHostProperties;
+}
+export const CapabilityHost = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: CapabilityHostProperties,
+  }),
+).annotate({ identifier: "CapabilityHost" }) as any as S.Schema<CapabilityHost>;
+
+/** An array of objects of type Capability Host. */
+export type CapabilityHostResourceArmPaginatedResultValueList =
+  Array<CapabilityHost>;
+export const CapabilityHostResourceArmPaginatedResultValueList =
+  /*@__PURE__*/ S.Array(
+    CapabilityHost,
+  ) as any as S.Schema<CapabilityHostResourceArmPaginatedResultValueList>;
+
+/** A paginated list of Capability Host entities. */
+export interface CapabilityHostResourceArmPaginatedResult {
+  /** The link to the next page of Capability Host objects. If null, there are no additional pages. */
+  nextLink?: string | null;
+  /** An array of objects of type Capability Host. */
+  value?: CapabilityHostResourceArmPaginatedResultValueList;
+}
+export const CapabilityHostResourceArmPaginatedResult = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      nextLink: S.optional(S.NullOr(S.String)),
+      value: S.optional(CapabilityHostResourceArmPaginatedResultValueList),
+    }),
+).annotate({
+  identifier: "CapabilityHostResourceArmPaginatedResult",
+}) as any as S.Schema<CapabilityHostResourceArmPaginatedResult>;
+
+export interface ListAccountConnectionsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+  /** Target of the connection. */
+  target?: string;
+  /** Category of the connection. */
+  category?: string;
+  /** query parameter that indicates if get connection call should return both connections and datastores */
+  includeAll?: boolean;
+}
+export const ListAccountConnectionsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    target: S.optional(S.String.pipe(T.Query())),
+    category: S.optional(S.String.pipe(T.Query())),
+    includeAll: S.optional(S.Boolean.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/connections",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListAccountConnectionsRequest",
+}) as any as S.Schema<ListAccountConnectionsRequest>;
+
+/** Connection base resource schema. */
+export interface ConnectionPropertiesV2BasicResource {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Connection property base schema. */
+  properties: ConnectionPropertiesV2;
+}
+export const ConnectionPropertiesV2BasicResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: ConnectionPropertiesV2,
+  }),
+).annotate({
+  identifier: "ConnectionPropertiesV2BasicResource",
+}) as any as S.Schema<ConnectionPropertiesV2BasicResource>;
+
+export type ConnectionPropertiesV2BasicResourceArmPaginatedResultValueList =
+  Array<ConnectionPropertiesV2BasicResource>;
+export const ConnectionPropertiesV2BasicResourceArmPaginatedResultValueList =
+  /*@__PURE__*/ S.Array(
+    ConnectionPropertiesV2BasicResource,
+  ) as any as S.Schema<ConnectionPropertiesV2BasicResourceArmPaginatedResultValueList>;
+
+export interface ConnectionPropertiesV2BasicResourceArmPaginatedResult {
+  nextLink?: string;
+  value?: ConnectionPropertiesV2BasicResourceArmPaginatedResultValueList;
+}
+export const ConnectionPropertiesV2BasicResourceArmPaginatedResult =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      nextLink: S.optional(S.String),
+      value: S.optional(
+        ConnectionPropertiesV2BasicResourceArmPaginatedResultValueList,
+      ),
+    }),
+  ).annotate({
+    identifier: "ConnectionPropertiesV2BasicResourceArmPaginatedResult",
+  }) as any as S.Schema<ConnectionPropertiesV2BasicResourceArmPaginatedResult>;
+
+export interface ListAccountKeysRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+}
+export const ListAccountKeysRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/listKeys",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListAccountKeysRequest",
+}) as any as S.Schema<ListAccountKeysRequest>;
+
+/** The access keys for the cognitive services account. */
+export interface ApiKeys {
+  /** Gets the value of key 1. */
+  key1?: string;
+  /** Gets the value of key 2. */
+  key2?: string;
+}
+export const ApiKeys = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    key1: S.optional(S.String),
+    key2: S.optional(S.String),
+  }),
+).annotate({ identifier: "ApiKeys" }) as any as S.Schema<ApiKeys>;
+
+export interface ListAccountModelsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+}
+export const ListAccountModelsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/models",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListAccountModelsRequest",
+}) as any as S.Schema<ListAccountModelsRequest>;
+
+/** The array of allowed values for capacity. */
+export type CapacityConfigAllowedValuesList = Array<number>;
+export const CapacityConfigAllowedValuesList = /*@__PURE__*/ S.Array(
+  S.Number,
+) as any as S.Schema<CapacityConfigAllowedValuesList>;
+
+/** The capacity configuration. */
+export interface CapacityConfig {
+  /** The minimum capacity. */
+  minimum?: number;
+  /** The maximum capacity. */
+  maximum?: number;
+  /** The minimal incremental between allowed values for capacity. */
+  step?: number;
+  /** The default capacity. */
+  default?: number;
+  /** The array of allowed values for capacity. */
+  allowedValues?: CapacityConfigAllowedValuesList;
+}
+export const CapacityConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    minimum: S.optional(S.Number),
+    maximum: S.optional(S.Number),
+    step: S.optional(S.Number),
+    default: S.optional(S.Number),
+    allowedValues: S.optional(CapacityConfigAllowedValuesList),
+  }),
+).annotate({ identifier: "CapacityConfig" }) as any as S.Schema<CapacityConfig>;
+
+/** The list of rateLimit. */
+export type ModelSkuRateLimitsList = Array<CallRateLimit>;
+export const ModelSkuRateLimitsList = /*@__PURE__*/ S.Array(
+  CallRateLimit,
+) as any as S.Schema<ModelSkuRateLimitsList>;
+
+export interface BillingMeterInfo {
+  name?: string;
+  meterId?: string;
+  unit?: string;
+}
+export const BillingMeterInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    meterId: S.optional(S.String),
+    unit: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "BillingMeterInfo",
+}) as any as S.Schema<BillingMeterInfo>;
+
+/** The list of billing meter info. */
+export type ModelSkuCostList = Array<BillingMeterInfo>;
+export const ModelSkuCostList = /*@__PURE__*/ S.Array(
+  BillingMeterInfo,
+) as any as S.Schema<ModelSkuCostList>;
+
+/** Describes an available Cognitive Services Model SKU. */
+export interface ModelSku {
+  /** The name of the model SKU. */
+  name?: string;
+  /** The usage name of the model SKU. */
+  usageName?: string;
+  /** The datetime of deprecation of the model SKU. */
+  deprecationDate?: string;
+  /** The capacity configuration. */
+  capacity?: CapacityConfig;
+  /** The list of rateLimit. */
+  rateLimits?: ModelSkuRateLimitsList;
+  /** The list of billing meter info. */
+  cost?: ModelSkuCostList;
+}
+export const ModelSku = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    usageName: S.optional(S.String),
+    deprecationDate: S.optional(S.String),
+    capacity: S.optional(CapacityConfig),
+    rateLimits: S.optional(ModelSkuRateLimitsList),
+    cost: S.optional(ModelSkuCostList),
+  }),
+).annotate({ identifier: "ModelSku" }) as any as S.Schema<ModelSku>;
+
+/** The list of Model Sku. */
+export type AccountModelSkusList = Array<ModelSku>;
+export const AccountModelSkusList = /*@__PURE__*/ S.Array(
+  ModelSku,
+) as any as S.Schema<AccountModelSkusList>;
+
+/** The capabilities. */
+export type AccountModelCapabilitiesMap = { [key: string]: string | undefined };
+export const AccountModelCapabilitiesMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<AccountModelCapabilitiesMap>;
+
+/** The capabilities for finetune models. */
+export type AccountModelFinetuneCapabilitiesMap = {
+  [key: string]: string | undefined;
+};
+export const AccountModelFinetuneCapabilitiesMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<AccountModelFinetuneCapabilitiesMap>;
+
+/** Indicates whether the deprecation date is a confirmed planned end-of-life date or an estimated deprecation date. When 'Planned', the deprecation date represents a confirmed and communicated model end-of-life date. When 'Tentative', the deprecation date is an estimated timeline that may be subject to change. */
+export type DeprecationStatus = "Planned" | "Tentative";
+export const DeprecationStatus = /*@__PURE__*/ S.String;
+
+/** Cognitive Services account ModelDeprecationInfo. */
+export interface ModelDeprecationInfo {
+  /** The datetime of deprecation of the fineTune Model. */
+  fineTune?: string;
+  /** The datetime of deprecation of the inference Model. */
+  inference?: string;
+  /** Indicates whether the deprecation date is a confirmed planned end-of-life date or an estimated deprecation date. When 'Planned', the deprecation date represents a confirmed and communicated model end-of-life date. When 'Tentative', the deprecation date is an estimated timeline that may be subject to change. */
+  deprecationStatus?: DeprecationStatus;
+}
+export const ModelDeprecationInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    fineTune: S.optional(S.String),
+    inference: S.optional(S.String),
+    deprecationStatus: S.optional(DeprecationStatus),
+  }),
+).annotate({
+  identifier: "ModelDeprecationInfo",
+}) as any as S.Schema<ModelDeprecationInfo>;
+
+/** Configuration for model replacement. */
+export interface ReplacementConfig {
+  /** The name of the replacement model. */
+  targetModelName?: string;
+  /** The version of the replacement model. */
+  targetModelVersion?: string;
+  /** The date when automatic upgrade should start. This applies to deployments with the OnceNewDefaultVersionAvailable upgrade option. */
+  autoUpgradeStartDate?: string;
+  /** The number of days before deprecation date to trigger upgrade. This applies to deployments with the OnceCurrentVersionExpired upgrade option. */
+  upgradeOnExpiryLeadTimeDays?: number;
+}
+export const ReplacementConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    targetModelName: S.optional(S.String),
+    targetModelVersion: S.optional(S.String),
+    autoUpgradeStartDate: S.optional(S.String),
+    upgradeOnExpiryLeadTimeDays: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "ReplacementConfig",
+}) as any as S.Schema<ReplacementConfig>;
+
+/** Model lifecycle status. */
+export type ModelLifecycleStatus =
+  | "Stable"
+  | "Preview"
+  | "GenerallyAvailable"
+  | "Deprecating"
+  | "Deprecated"
+  | "Legacy";
+export const ModelLifecycleStatus = /*@__PURE__*/ S.String;
+
+/** The type of identity that created the resource. */
+export type AccountModelSystemDataCreatedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const AccountModelSystemDataCreatedByType = /*@__PURE__*/ S.String;
+
+/** The type of identity that last modified the resource. */
+export type AccountModelSystemDataLastModifiedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const AccountModelSystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+
+/** Metadata pertaining to creation and last modification of the resource. */
+export interface AccountModelSystemData {
+  /** The identity that created the resource. */
+  createdBy?: string;
+  /** The type of identity that created the resource. */
+  createdByType?: AccountModelSystemDataCreatedByType;
+  /** The timestamp of resource creation (UTC). */
+  createdAt?: string;
+  /** The identity that last modified the resource. */
+  lastModifiedBy?: string;
+  /** The type of identity that last modified the resource. */
+  lastModifiedByType?: AccountModelSystemDataLastModifiedByType;
+  /** The timestamp of resource last modification (UTC) */
+  lastModifiedAt?: string;
+}
+export const AccountModelSystemData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    createdBy: S.optional(S.String),
+    createdByType: S.optional(AccountModelSystemDataCreatedByType),
+    createdAt: S.optional(S.String),
+    lastModifiedBy: S.optional(S.String),
+    lastModifiedByType: S.optional(AccountModelSystemDataLastModifiedByType),
+    lastModifiedAt: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "AccountModelSystemData",
+}) as any as S.Schema<AccountModelSystemData>;
+
+/** Cognitive Services account Model. */
+export interface AccountModel {
+  /** Deployment model publisher. */
+  publisher?: string;
+  /** Deployment model format. */
+  format?: string;
+  /** Deployment model name. */
+  name?: string;
+  /** Optional. Deployment model version. If version is not specified, a default version will be assigned. The default version is different for different models and might change when there is new version available for a model. Default version for a model could be found from list models API. */
+  version?: string;
+  /** Optional. Deployment model source ARM resource ID. */
+  source?: string;
+  /** Optional. Source of the model, another Microsoft.CognitiveServices accounts ARM resource ID. */
+  sourceAccount?: string;
+  /** The call rate limit Cognitive Services account. */
+  callRateLimit?: CallRateLimit;
+  /** Properties of Cognitive Services account deployment model. */
+  baseModel?: DeploymentModel;
+  /** If the model is default version. */
+  isDefaultVersion?: boolean;
+  /** The list of Model Sku. */
+  skus?: AccountModelSkusList;
+  /** The max capacity. */
+  maxCapacity?: number;
+  /** The capabilities. */
+  capabilities?: AccountModelCapabilitiesMap;
+  /** The capabilities for finetune models. */
+  finetuneCapabilities?: AccountModelFinetuneCapabilitiesMap;
+  /** Cognitive Services account ModelDeprecationInfo. */
+  deprecation?: ModelDeprecationInfo;
+  /** Configuration for model replacement. */
+  replacementConfig?: ReplacementConfig;
+  /** Asset identifier for the model in the model catalog. */
+  modelCatalogAssetId?: string;
+  /** Model lifecycle status. */
+  lifecycleStatus?: ModelLifecycleStatus;
+  /** Metadata pertaining to creation and last modification of the resource. */
+  systemData?: AccountModelSystemData;
+}
+export const AccountModel = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    publisher: S.optional(S.String),
+    format: S.optional(S.String),
+    name: S.optional(S.String),
+    version: S.optional(S.String),
+    source: S.optional(S.String),
+    sourceAccount: S.optional(S.String),
+    callRateLimit: S.optional(CallRateLimit),
+    baseModel: S.optional(DeploymentModel),
+    isDefaultVersion: S.optional(S.Boolean),
+    skus: S.optional(AccountModelSkusList),
+    maxCapacity: S.optional(S.Number),
+    capabilities: S.optional(AccountModelCapabilitiesMap),
+    finetuneCapabilities: S.optional(AccountModelFinetuneCapabilitiesMap),
+    deprecation: S.optional(ModelDeprecationInfo),
+    replacementConfig: S.optional(ReplacementConfig),
+    modelCatalogAssetId: S.optional(S.String),
+    lifecycleStatus: S.optional(ModelLifecycleStatus),
+    systemData: S.optional(AccountModelSystemData),
+  }),
+).annotate({ identifier: "AccountModel" }) as any as S.Schema<AccountModel>;
+
+/** Gets the list of Cognitive Services accounts Model and their properties. */
+export type AccountModelListResultValueList = Array<AccountModel>;
+export const AccountModelListResultValueList = /*@__PURE__*/ S.Array(
+  AccountModel,
+) as any as S.Schema<AccountModelListResultValueList>;
+
+/** The list of cognitive services accounts operation response. */
+export interface AccountModelListResult {
+  /** The link used to get the next page of Model. */
+  nextLink?: string;
+  /** Gets the list of Cognitive Services accounts Model and their properties. */
+  value?: AccountModelListResultValueList;
+}
+export const AccountModelListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nextLink: S.optional(S.String),
+    value: S.optional(AccountModelListResultValueList),
+  }),
+).annotate({
+  identifier: "AccountModelListResult",
+}) as any as S.Schema<AccountModelListResult>;
+
+export interface ListAccountsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+}
+export const ListAccountsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/accounts",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListAccountsRequest",
+}) as any as S.Schema<ListAccountsRequest>;
+
+export interface ListAccountSkusRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+}
+export const ListAccountSkusRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/skus",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListAccountSkusRequest",
+}) as any as S.Schema<ListAccountSkusRequest>;
+
+/** Cognitive Services resource type and SKU. */
+export interface AccountSku {
+  /** Resource Namespace and Type */
+  resourceType?: string;
+  /** The SKU of Cognitive Services account. */
+  sku?: Sku;
+}
+export const AccountSku = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    resourceType: S.optional(S.String),
+    sku: S.optional(Sku),
+  }),
+).annotate({ identifier: "AccountSku" }) as any as S.Schema<AccountSku>;
+
+/** Gets the list of Cognitive Services accounts and their properties. */
+export type AccountSkuListResultValueList = Array<AccountSku>;
+export const AccountSkuListResultValueList = /*@__PURE__*/ S.Array(
+  AccountSku,
+) as any as S.Schema<AccountSkuListResultValueList>;
+
+/** The list of cognitive services accounts operation response. */
+export interface AccountSkuListResult {
+  /** Gets the list of Cognitive Services accounts and their properties. */
+  value?: AccountSkuListResultValueList;
+}
+export const AccountSkuListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(AccountSkuListResultValueList),
+  }),
+).annotate({
+  identifier: "AccountSkuListResult",
+}) as any as S.Schema<AccountSkuListResult>;
+
+export interface ListAccountUsagesRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+  /** An OData filter expression that describes a subset of usages to return. The supported parameter is name.value (name of the metric, can have an or of multiple names). */
+  _filter?: string;
+}
+export const ListAccountUsagesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/usages",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListAccountUsagesRequest",
+}) as any as S.Schema<ListAccountUsagesRequest>;
+
+/** The unit of the metric. */
+export type UnitType =
+  | "Count"
+  | "Bytes"
+  | "Seconds"
+  | "Percent"
+  | "CountPerSecond"
+  | "BytesPerSecond"
+  | "Milliseconds";
+export const UnitType = /*@__PURE__*/ S.String;
+
+/** A metric name. */
+export interface MetricName {
+  /** The name of the metric. */
+  value?: string;
+  /** The friendly name of the metric. */
+  localizedValue?: string;
+}
+export const MetricName = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(S.String),
+    localizedValue: S.optional(S.String),
+  }),
+).annotate({ identifier: "MetricName" }) as any as S.Schema<MetricName>;
+
+/** Cognitive Services account quota usage status. */
+export type QuotaUsageStatus = "Included" | "Blocked" | "InOverage" | "Unknown";
+export const QuotaUsageStatus = /*@__PURE__*/ S.String;
+
+/** The quota scope that determines the level at which the quota is applied. */
+export type QuotaScopeType = "Regional" | "Global" | "DataZone" | "Classic";
+export const QuotaScopeType = /*@__PURE__*/ S.String;
+
+/** The usage data for a usage request. */
+export interface Usage {
+  /** The unit of the metric. */
+  unit?: UnitType;
+  /** The name information for the metric. */
+  name?: MetricName;
+  /** The quota period used to summarize the usage values. */
+  quotaPeriod?: string;
+  /** Maximum value for this metric. */
+  limit?: number;
+  /** Current value for this metric. */
+  currentValue?: number;
+  /** Next reset time for current quota. */
+  nextResetTime?: string;
+  /** Cognitive Services account quota usage status. */
+  status?: QuotaUsageStatus;
+  /** The scope type of the quota usage. */
+  scopeType?: QuotaScopeType | null;
+  /** The scope identifier of the quota usage. */
+  scopeId?: string | null;
+}
+export const Usage = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    unit: S.optional(UnitType),
+    name: S.optional(MetricName),
+    quotaPeriod: S.optional(S.String),
+    limit: S.optional(S.Number),
+    currentValue: S.optional(S.Number),
+    nextResetTime: S.optional(S.String),
+    status: S.optional(QuotaUsageStatus),
+    scopeType: S.optional(S.NullOr(QuotaScopeType)),
+    scopeId: S.optional(S.NullOr(S.String)),
+  }),
+).annotate({ identifier: "Usage" }) as any as S.Schema<Usage>;
+
+/** The list of usages for Cognitive Service account. */
+export type UsageListResultValueList = Array<Usage>;
+export const UsageListResultValueList = /*@__PURE__*/ S.Array(
+  Usage,
+) as any as S.Schema<UsageListResultValueList>;
+
+/** The response to a list usage request. */
+export interface UsageListResult {
+  /** The link used to get the next page of Usages. */
+  nextLink?: string;
+  /** The list of usages for Cognitive Service account. */
+  value?: UsageListResultValueList;
+}
+export const UsageListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nextLink: S.optional(S.String),
+    value: S.optional(UsageListResultValueList),
+  }),
+).annotate({
+  identifier: "UsageListResult",
+}) as any as S.Schema<UsageListResult>;
+
+export interface ListAgentApplicationAgentsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+  /** The name of Cognitive Services account's project. */
+  projectName: string;
+  /** Name for the Agent Application. */
+  name: string;
+}
+export const ListAgentApplicationAgentsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    projectName: S.String.pipe(T.Label()),
+    name: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}/applications/{name}/listAgents",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListAgentApplicationAgentsRequest",
+}) as any as S.Schema<ListAgentApplicationAgentsRequest>;
+
+/** Agent Reference resource */
+export interface AgentReference {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** [Required] Additional attributes of the entity. */
+  properties: AgentReferenceProperties;
+}
+export const AgentReference = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: AgentReferenceProperties,
+  }),
+).annotate({ identifier: "AgentReference" }) as any as S.Schema<AgentReference>;
+
+/** An array of objects of type Agent Reference. */
+export type AgentReferenceResourceArmPaginatedResultValueList =
+  Array<AgentReference>;
+export const AgentReferenceResourceArmPaginatedResultValueList =
+  /*@__PURE__*/ S.Array(
+    AgentReference,
+  ) as any as S.Schema<AgentReferenceResourceArmPaginatedResultValueList>;
+
+/** A paginated list of Agent Reference entities. */
+export interface AgentReferenceResourceArmPaginatedResult {
+  /** The link to the next page of Agent Reference objects. If null, there are no additional pages. */
+  nextLink?: string | null;
+  /** An array of objects of type Agent Reference. */
+  value?: AgentReferenceResourceArmPaginatedResultValueList | null;
+}
+export const AgentReferenceResourceArmPaginatedResult = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      nextLink: S.optional(S.NullOr(S.String)),
+      value: S.optional(
+        S.NullOr(AgentReferenceResourceArmPaginatedResultValueList),
+      ),
+    }),
+).annotate({
+  identifier: "AgentReferenceResourceArmPaginatedResult",
+}) as any as S.Schema<AgentReferenceResourceArmPaginatedResult>;
+
+export type ListAgentApplicationsRequestNamesList = Array<string>;
+export const ListAgentApplicationsRequestNamesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ListAgentApplicationsRequestNamesList>;
+
+export interface ListAgentApplicationsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+  /** The name of Cognitive Services account's project. */
+  projectName: string;
+  /** Number of agent applications to be retrieved in a page of results. */
+  count?: number;
+  /** Number of agent applications to skip. */
+  _skip?: number;
+  /** Continuation token for pagination. */
+  _skipToken?: string;
+  /** Names of agent applications to retrieve. */
+  names?: ListAgentApplicationsRequestNamesList;
+  /** Search text for filtering agent applications. */
+  searchText?: string;
+  /** Field to order by. */
+  orderBy?: string;
+  /** Whether to order in ascending order. */
+  orderByAsc?: boolean;
+}
+export const ListAgentApplicationsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    projectName: S.String.pipe(T.Label()),
+    count: S.optional(S.Number.pipe(T.Query())),
+    _skip: S.optional(S.Number.pipe(T.Query("$skip"))),
+    _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
+    names: S.optional(ListAgentApplicationsRequestNamesList.pipe(T.Query())),
+    searchText: S.optional(S.String.pipe(T.Query())),
+    orderBy: S.optional(S.String.pipe(T.Query())),
+    orderByAsc: S.optional(S.Boolean.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}/applications",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListAgentApplicationsRequest",
+}) as any as S.Schema<ListAgentApplicationsRequest>;
+
+/** Agent Application resource */
+export interface AgentApplication {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** [Required] Additional attributes of the entity. */
+  properties: AgenticApplicationProperties;
+}
+export const AgentApplication = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: AgenticApplicationProperties,
+  }),
+).annotate({
+  identifier: "AgentApplication",
+}) as any as S.Schema<AgentApplication>;
+
+/** An array of objects of type Agent Application. */
+export type AgentApplicationResourceArmPaginatedResultValueList =
+  Array<AgentApplication>;
+export const AgentApplicationResourceArmPaginatedResultValueList =
+  /*@__PURE__*/ S.Array(
+    AgentApplication,
+  ) as any as S.Schema<AgentApplicationResourceArmPaginatedResultValueList>;
+
+/** A paginated list of Agent Application entities. */
+export interface AgentApplicationResourceArmPaginatedResult {
+  /** The link to the next page of Agent Application objects. If null, there are no additional pages. */
+  nextLink?: string | null;
+  /** An array of objects of type Agent Application. */
+  value?: AgentApplicationResourceArmPaginatedResultValueList;
+}
+export const AgentApplicationResourceArmPaginatedResult =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      nextLink: S.optional(S.NullOr(S.String)),
+      value: S.optional(AgentApplicationResourceArmPaginatedResultValueList),
+    }),
+  ).annotate({
+    identifier: "AgentApplicationResourceArmPaginatedResult",
+  }) as any as S.Schema<AgentApplicationResourceArmPaginatedResult>;
+
+export type ListAgentDeploymentsRequestNamesList = Array<string>;
+export const ListAgentDeploymentsRequestNamesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ListAgentDeploymentsRequestNamesList>;
+
+export interface ListAgentDeploymentsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+  /** The name of Cognitive Services account's project. */
+  projectName: string;
+  /** The name of the application associated with the Cognitive Services Account */
+  appName: string;
+  /** Number of agent deployments to be retrieved in a page of results. */
+  count?: number;
+  /** Continuation token for pagination. */
+  _skipToken?: string;
+  /** Names of agent deployments to retrieve. */
+  names?: ListAgentDeploymentsRequestNamesList;
+  /** Field to order by. */
+  orderBy?: string;
+  /** Whether to order in ascending order. */
+  orderByAsc?: boolean;
+}
+export const ListAgentDeploymentsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    projectName: S.String.pipe(T.Label()),
+    appName: S.String.pipe(T.Label()),
+    count: S.optional(S.Number.pipe(T.Query())),
+    _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
+    names: S.optional(ListAgentDeploymentsRequestNamesList.pipe(T.Query())),
+    orderBy: S.optional(S.String.pipe(T.Query())),
+    orderByAsc: S.optional(S.Boolean.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}/applications/{appName}/agentDeployments",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListAgentDeploymentsRequest",
+}) as any as S.Schema<ListAgentDeploymentsRequest>;
+
+/** Agent Deployment resource */
+export interface AgentDeployment {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** [Required] Additional attributes of the entity. */
+  properties: AgentDeploymentProperties;
+}
+export const AgentDeployment = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: AgentDeploymentProperties,
+  }),
+).annotate({
+  identifier: "AgentDeployment",
+}) as any as S.Schema<AgentDeployment>;
+
+/** An array of objects of type Agent Deployment. */
+export type AgentDeploymentResourceArmPaginatedResultValueList =
+  Array<AgentDeployment>;
+export const AgentDeploymentResourceArmPaginatedResultValueList =
+  /*@__PURE__*/ S.Array(
+    AgentDeployment,
+  ) as any as S.Schema<AgentDeploymentResourceArmPaginatedResultValueList>;
+
+/** A paginated list of Agent Deployment entities. */
+export interface AgentDeploymentResourceArmPaginatedResult {
+  /** The link to the next page of Agent Deployment objects. If null, there are no additional pages. */
+  nextLink?: string | null;
+  /** An array of objects of type Agent Deployment. */
+  value?: AgentDeploymentResourceArmPaginatedResultValueList;
+}
+export const AgentDeploymentResourceArmPaginatedResult =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      nextLink: S.optional(S.NullOr(S.String)),
+      value: S.optional(AgentDeploymentResourceArmPaginatedResultValueList),
+    }),
+  ).annotate({
+    identifier: "AgentDeploymentResourceArmPaginatedResult",
+  }) as any as S.Schema<AgentDeploymentResourceArmPaginatedResult>;
+
+export interface ListCommitmentPlanAssociationsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the commitmentPlan associated with the Cognitive Services Account */
+  commitmentPlanName: string;
+}
+export const ListCommitmentPlanAssociationsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      commitmentPlanName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/commitmentPlans/{commitmentPlanName}/accountAssociations",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListCommitmentPlanAssociationsRequest",
+}) as any as S.Schema<ListCommitmentPlanAssociationsRequest>;
+
+/** Resource tags. */
+export type CommitmentPlanAccountAssociationTagsMap = {
+  [key: string]: string | undefined;
+};
+export const CommitmentPlanAccountAssociationTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<CommitmentPlanAccountAssociationTagsMap>;
+
+/** The commitment plan association. */
+export interface CommitmentPlanAccountAssociation {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of Cognitive Services account commitment plan association. */
+  properties?: CommitmentPlanAccountAssociationProperties;
+  /** Resource Etag. */
+  etag?: string;
+  /** Resource tags. */
+  tags?: CommitmentPlanAccountAssociationTagsMap;
+}
+export const CommitmentPlanAccountAssociation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(CommitmentPlanAccountAssociationProperties),
+    etag: S.optional(S.String),
+    tags: S.optional(CommitmentPlanAccountAssociationTagsMap),
+  }),
+).annotate({
+  identifier: "CommitmentPlanAccountAssociation",
+}) as any as S.Schema<CommitmentPlanAccountAssociation>;
+
+/** Gets the list of Cognitive Services Commitment Plan Account Association and their properties. */
+export type CommitmentPlanAccountAssociationListResultValueList =
+  Array<CommitmentPlanAccountAssociation>;
+export const CommitmentPlanAccountAssociationListResultValueList =
+  /*@__PURE__*/ S.Array(
+    CommitmentPlanAccountAssociation,
+  ) as any as S.Schema<CommitmentPlanAccountAssociationListResultValueList>;
+
+/** The list of cognitive services Commitment Plan Account Association operation response. */
+export interface CommitmentPlanAccountAssociationListResult {
+  /** The link used to get the next page of Commitment Plan Account Association. */
+  nextLink?: string;
+  /** Gets the list of Cognitive Services Commitment Plan Account Association and their properties. */
+  value?: CommitmentPlanAccountAssociationListResultValueList;
+}
+export const CommitmentPlanAccountAssociationListResult =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      nextLink: S.optional(S.String),
+      value: S.optional(CommitmentPlanAccountAssociationListResultValueList),
+    }),
+  ).annotate({
+    identifier: "CommitmentPlanAccountAssociationListResult",
+  }) as any as S.Schema<CommitmentPlanAccountAssociationListResult>;
+
+export interface ListCommitmentPlanPlansByResourceGroupRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+}
+export const ListCommitmentPlanPlansByResourceGroupRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/commitmentPlans",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListCommitmentPlanPlansByResourceGroupRequest",
+  }) as any as S.Schema<ListCommitmentPlanPlansByResourceGroupRequest>;
+
+/** Resource tags. */
+export type CommitmentPlanTagsMap = { [key: string]: string | undefined };
+export const CommitmentPlanTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<CommitmentPlanTagsMap>;
+
+/** Cognitive Services account commitment plan. */
+export interface CommitmentPlan {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of Cognitive Services account commitment plan. */
+  properties?: CommitmentPlanProperties;
+  /** Resource tags. */
+  tags?: CommitmentPlanTagsMap;
+  /** The geo-location where the resource lives */
+  location?: string;
+  /** Resource Etag. */
+  etag?: string;
+  /** The kind (type) of cognitive service account. */
+  kind?: string;
+  /** The resource model definition representing SKU */
+  sku?: Sku;
+}
+export const CommitmentPlan = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(CommitmentPlanProperties),
+    tags: S.optional(CommitmentPlanTagsMap),
+    location: S.optional(S.String),
+    etag: S.optional(S.String),
+    kind: S.optional(S.String),
+    sku: S.optional(Sku),
+  }),
+).annotate({ identifier: "CommitmentPlan" }) as any as S.Schema<CommitmentPlan>;
+
+/** Gets the list of Cognitive Services accounts CommitmentPlan and their properties. */
+export type CommitmentPlanListResultValueList = Array<CommitmentPlan>;
+export const CommitmentPlanListResultValueList = /*@__PURE__*/ S.Array(
+  CommitmentPlan,
+) as any as S.Schema<CommitmentPlanListResultValueList>;
+
+/** The list of cognitive services accounts operation response. */
+export interface CommitmentPlanListResult {
+  /** The link used to get the next page of CommitmentPlan. */
+  nextLink?: string;
+  /** Gets the list of Cognitive Services accounts CommitmentPlan and their properties. */
+  value?: CommitmentPlanListResultValueList;
+}
+export const CommitmentPlanListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nextLink: S.optional(S.String),
+    value: S.optional(CommitmentPlanListResultValueList),
+  }),
+).annotate({
+  identifier: "CommitmentPlanListResult",
+}) as any as S.Schema<CommitmentPlanListResult>;
+
+export interface ListCommitmentPlanPlansBySubscriptionRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+}
+export const ListCommitmentPlanPlansBySubscriptionRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/commitmentPlans",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListCommitmentPlanPlansBySubscriptionRequest",
+  }) as any as S.Schema<ListCommitmentPlanPlansBySubscriptionRequest>;
+
+export interface ListCommitmentPlansRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+}
+export const ListCommitmentPlansRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/commitmentPlans",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListCommitmentPlansRequest",
+}) as any as S.Schema<ListCommitmentPlansRequest>;
+
+export interface ListCommitmentTiersRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of Azure region. */
+  location: string;
+}
+export const ListCommitmentTiersRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    location: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/locations/{location}/commitmentTiers",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListCommitmentTiersRequest",
+}) as any as S.Schema<ListCommitmentTiersRequest>;
+
+/** Cognitive Services account commitment cost. */
+export interface CommitmentCost {
+  /** Commitment meter Id. */
+  commitmentMeterId?: string;
+  /** Overage meter Id. */
+  overageMeterId?: string;
+}
+export const CommitmentCost = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    commitmentMeterId: S.optional(S.String),
+    overageMeterId: S.optional(S.String),
+  }),
+).annotate({ identifier: "CommitmentCost" }) as any as S.Schema<CommitmentCost>;
+
+/** Cognitive Services account commitment tier. */
+export interface CommitmentTier {
+  /** The kind (type) of cognitive service account. */
+  kind?: string;
+  /** The name of the SKU. Ex - P3. It is typically a letter+number code */
+  skuName?: string;
+  /** Account hosting model. */
+  hostingModel?: HostingModel;
+  /** Commitment plan type. */
+  planType?: string;
+  /** Commitment period commitment tier. */
+  tier?: string;
+  /** Commitment period commitment max count. */
+  maxCount?: number;
+  /** Cognitive Services account commitment quota. */
+  quota?: CommitmentQuota;
+  /** Cognitive Services account commitment cost. */
+  cost?: CommitmentCost;
+}
+export const CommitmentTier = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    kind: S.optional(S.String),
+    skuName: S.optional(S.String),
+    hostingModel: S.optional(HostingModel),
+    planType: S.optional(S.String),
+    tier: S.optional(S.String),
+    maxCount: S.optional(S.Number),
+    quota: S.optional(CommitmentQuota),
+    cost: S.optional(CommitmentCost),
+  }),
+).annotate({ identifier: "CommitmentTier" }) as any as S.Schema<CommitmentTier>;
+
+/** Gets the list of Cognitive Services accounts CommitmentTier and their properties. */
+export type CommitmentTierListResultValueList = Array<CommitmentTier>;
+export const CommitmentTierListResultValueList = /*@__PURE__*/ S.Array(
+  CommitmentTier,
+) as any as S.Schema<CommitmentTierListResultValueList>;
+
+/** The list of cognitive services accounts operation response. */
+export interface CommitmentTierListResult {
+  /** The link used to get the next page of CommitmentTier. */
+  nextLink?: string;
+  /** Gets the list of Cognitive Services accounts CommitmentTier and their properties. */
+  value?: CommitmentTierListResultValueList;
+}
+export const CommitmentTierListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nextLink: S.optional(S.String),
+    value: S.optional(CommitmentTierListResultValueList),
+  }),
+).annotate({
+  identifier: "CommitmentTierListResult",
+}) as any as S.Schema<CommitmentTierListResult>;
+
+export interface ListDefenderForAISettingsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+}
+export const ListDefenderForAISettingsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/defenderForAISettings",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListDefenderForAISettingsRequest",
+}) as any as S.Schema<ListDefenderForAISettingsRequest>;
+
+/** Resource tags. */
+export type DefenderForAISettingTagsMap = { [key: string]: string | undefined };
+export const DefenderForAISettingTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<DefenderForAISettingTagsMap>;
+
+/** The Defender for AI resource. */
+export interface DefenderForAISetting {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The Defender for AI resource properties. */
+  properties?: DefenderForAISettingProperties;
+  /** Resource Etag. */
+  etag?: string;
+  /** Resource tags. */
+  tags?: DefenderForAISettingTagsMap;
+}
+export const DefenderForAISetting = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(DefenderForAISettingProperties),
+    etag: S.optional(S.String),
+    tags: S.optional(DefenderForAISettingTagsMap),
+  }),
+).annotate({
+  identifier: "DefenderForAISetting",
+}) as any as S.Schema<DefenderForAISetting>;
+
+/** The list of Defender for AI Settings. */
+export type DefenderForAISettingResultValueList = Array<DefenderForAISetting>;
+export const DefenderForAISettingResultValueList = /*@__PURE__*/ S.Array(
+  DefenderForAISetting,
+) as any as S.Schema<DefenderForAISettingResultValueList>;
+
+/** The list of cognitive services Defender for AI Settings. */
+export interface DefenderForAISettingResult {
+  /** The link used to get the next page of Defender for AI Settings. */
+  nextLink?: string;
+  /** The list of Defender for AI Settings. */
+  value?: DefenderForAISettingResultValueList;
+}
+export const DefenderForAISettingResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nextLink: S.optional(S.String),
+    value: S.optional(DefenderForAISettingResultValueList),
+  }),
+).annotate({
+  identifier: "DefenderForAISettingResult",
+}) as any as S.Schema<DefenderForAISettingResult>;
+
+export interface ListDeletedAccountsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+}
+export const ListDeletedAccountsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/deletedAccounts",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListDeletedAccountsRequest",
+}) as any as S.Schema<ListDeletedAccountsRequest>;
+
+export interface ListDeploymentsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+}
+export const ListDeploymentsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/deployments",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListDeploymentsRequest",
+}) as any as S.Schema<ListDeploymentsRequest>;
+
+/** Resource tags. */
+export type DeploymentTagsMap = { [key: string]: string | undefined };
+export const DeploymentTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<DeploymentTagsMap>;
+
+/** Cognitive Services account deployment. */
+export interface Deployment {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of Cognitive Services account deployment. */
+  properties?: DeploymentProperties;
+  /** The resource model definition representing SKU */
+  sku?: Sku;
+  /** Resource Etag. */
+  etag?: string;
+  /** Resource tags. */
+  tags?: DeploymentTagsMap;
+}
+export const Deployment = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(DeploymentProperties),
+    sku: S.optional(Sku),
+    etag: S.optional(S.String),
+    tags: S.optional(DeploymentTagsMap),
+  }),
+).annotate({ identifier: "Deployment" }) as any as S.Schema<Deployment>;
+
+/** Gets the list of Cognitive Services accounts Deployment and their properties. */
+export type DeploymentListResultValueList = Array<Deployment>;
+export const DeploymentListResultValueList = /*@__PURE__*/ S.Array(
+  Deployment,
+) as any as S.Schema<DeploymentListResultValueList>;
+
+/** The list of cognitive services accounts operation response. */
+export interface DeploymentListResult {
+  /** The link used to get the next page of Deployment. */
+  nextLink?: string;
+  /** Gets the list of Cognitive Services accounts Deployment and their properties. */
+  value?: DeploymentListResultValueList;
+}
+export const DeploymentListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nextLink: S.optional(S.String),
+    value: S.optional(DeploymentListResultValueList),
+  }),
+).annotate({
+  identifier: "DeploymentListResult",
+}) as any as S.Schema<DeploymentListResult>;
+
+export interface ListDeploymentSkusRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+  /** The name of the deployment associated with the Cognitive Services Account */
+  deploymentName: string;
+}
+export const ListDeploymentSkusRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    deploymentName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/deployments/{deploymentName}/skus",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListDeploymentSkusRequest",
+}) as any as S.Schema<ListDeploymentSkusRequest>;
+
+/** Properties of Cognitive Services account resource sku resource properties. */
+export interface SkuResource {
+  /** The resource type name. */
+  resourceType?: string;
+  /** The resource model definition representing SKU */
+  sku?: Sku;
+  /** The capacity configuration. */
+  capacity?: CapacityConfig;
+}
+export const SkuResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    resourceType: S.optional(S.String),
+    sku: S.optional(Sku),
+    capacity: S.optional(CapacityConfig),
+  }),
+).annotate({ identifier: "SkuResource" }) as any as S.Schema<SkuResource>;
+
+/** Gets the list of Cognitive Services accounts deployment skus. */
+export type DeploymentSkuListResultValueList = Array<SkuResource>;
+export const DeploymentSkuListResultValueList = /*@__PURE__*/ S.Array(
+  SkuResource,
+) as any as S.Schema<DeploymentSkuListResultValueList>;
+
+/** The list of cognitive services accounts operation response. */
+export interface DeploymentSkuListResult {
+  /** The link used to get the next page of deployment skus. */
+  nextLink?: string;
+  /** Gets the list of Cognitive Services accounts deployment skus. */
+  value?: DeploymentSkuListResultValueList;
+}
+export const DeploymentSkuListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nextLink: S.optional(S.String),
+    value: S.optional(DeploymentSkuListResultValueList),
+  }),
+).annotate({
+  identifier: "DeploymentSkuListResult",
+}) as any as S.Schema<DeploymentSkuListResult>;
+
+export interface ListEncryptionScopesRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+}
+export const ListEncryptionScopesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/encryptionScopes",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListEncryptionScopesRequest",
+}) as any as S.Schema<ListEncryptionScopesRequest>;
+
+/** Resource tags. */
+export type EncryptionScopeTagsMap = { [key: string]: string | undefined };
+export const EncryptionScopeTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<EncryptionScopeTagsMap>;
+
+/** Cognitive Services EncryptionScope */
+export interface EncryptionScope {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of Cognitive Services EncryptionScope. */
+  properties?: EncryptionScopeProperties;
+  /** Resource Etag. */
+  etag?: string;
+  /** Resource tags. */
+  tags?: EncryptionScopeTagsMap;
+}
+export const EncryptionScope = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(EncryptionScopeProperties),
+    etag: S.optional(S.String),
+    tags: S.optional(EncryptionScopeTagsMap),
+  }),
+).annotate({
+  identifier: "EncryptionScope",
+}) as any as S.Schema<EncryptionScope>;
+
+/** The list of EncryptionScope. */
+export type EncryptionScopeListResultValueList = Array<EncryptionScope>;
+export const EncryptionScopeListResultValueList = /*@__PURE__*/ S.Array(
+  EncryptionScope,
+) as any as S.Schema<EncryptionScopeListResultValueList>;
+
+/** The list of cognitive services EncryptionScopes. */
+export interface EncryptionScopeListResult {
+  /** The link used to get the next page of EncryptionScope. */
+  nextLink?: string;
+  /** The list of EncryptionScope. */
+  value?: EncryptionScopeListResultValueList;
+}
+export const EncryptionScopeListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nextLink: S.optional(S.String),
+    value: S.optional(EncryptionScopeListResultValueList),
+  }),
+).annotate({
+  identifier: "EncryptionScopeListResult",
+}) as any as S.Schema<EncryptionScopeListResult>;
+
+export interface ListLocationBasedModelCapacitiesRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of Azure region. */
+  location: string;
+  /** The format of the Model */
+  modelFormat: string;
+  /** The name of the Model */
+  modelName: string;
+  /** The version of the Model */
+  modelVersion: string;
+}
+export const ListLocationBasedModelCapacitiesRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      location: S.String.pipe(T.Label()),
+      modelFormat: S.String.pipe(T.Query()),
+      modelName: S.String.pipe(T.Query()),
+      modelVersion: S.String.pipe(T.Query()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/locations/{location}/modelCapacities",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListLocationBasedModelCapacitiesRequest",
+}) as any as S.Schema<ListLocationBasedModelCapacitiesRequest>;
+
+/** Cognitive Services account ModelSkuCapacity. */
+export interface ModelSkuCapacityProperties {
+  /** Properties of Cognitive Services account deployment model. */
+  model?: DeploymentModel;
+  skuName?: string;
+  /** The available capacity for deployment with this model and sku. */
+  availableCapacity?: number;
+  /** The available capacity for deployment with a fine-tune version of this model and sku. */
+  availableFinetuneCapacity?: number;
+  /** The scope identifier for model SKU capacity. */
+  scopeId?: string | null;
+  /** The scope type for model SKU capacity. */
+  scopeType?: QuotaScopeType | null;
+}
+export const ModelSkuCapacityProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    model: S.optional(DeploymentModel),
+    skuName: S.optional(S.String),
+    availableCapacity: S.optional(S.Number),
+    availableFinetuneCapacity: S.optional(S.Number),
+    scopeId: S.optional(S.NullOr(S.String)),
+    scopeType: S.optional(S.NullOr(QuotaScopeType)),
+  }),
+).annotate({
+  identifier: "ModelSkuCapacityProperties",
+}) as any as S.Schema<ModelSkuCapacityProperties>;
+
+export interface ModelCapacityListResultValueItem {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The location of the Model Sku Capacity. */
+  location?: string;
+  /** Cognitive Services account ModelSkuCapacity. */
+  properties?: ModelSkuCapacityProperties;
+}
+export const ModelCapacityListResultValueItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    location: S.optional(S.String),
+    properties: S.optional(ModelSkuCapacityProperties),
+  }),
+).annotate({
+  identifier: "ModelCapacityListResultValueItem",
+}) as any as S.Schema<ModelCapacityListResultValueItem>;
+
+/** Gets the list of Cognitive Services accounts ModelSkuCapacity. */
+export type ModelCapacityListResultValueList =
+  Array<ModelCapacityListResultValueItem>;
+export const ModelCapacityListResultValueList = /*@__PURE__*/ S.Array(
+  ModelCapacityListResultValueItem,
+) as any as S.Schema<ModelCapacityListResultValueList>;
+
+/** The list of cognitive services accounts operation response. */
+export interface ModelCapacityListResult {
+  /** The link used to get the next page of ModelSkuCapacity. */
+  nextLink?: string;
+  /** Gets the list of Cognitive Services accounts ModelSkuCapacity. */
+  value?: ModelCapacityListResultValueList;
+}
+export const ModelCapacityListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nextLink: S.optional(S.String),
+    value: S.optional(ModelCapacityListResultValueList),
+  }),
+).annotate({
+  identifier: "ModelCapacityListResult",
+}) as any as S.Schema<ModelCapacityListResult>;
+
+export interface ListManagedNetworkSettingsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+}
+export const ListManagedNetworkSettingsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/managedNetworks",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListManagedNetworkSettingsRequest",
+}) as any as S.Schema<ListManagedNetworkSettingsRequest>;
+
+/** Concrete proxy resource types can be created by aliasing this type using a specific property type. */
+export interface ManagedNetworkSettingsPropertiesBasicResource {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of the managed network settings of a cognitive services account. */
+  properties?: ManagedNetworkSettingsProperties;
+}
+export const ManagedNetworkSettingsPropertiesBasicResource =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(ManagedNetworkSettingsProperties),
+    }),
+  ).annotate({
+    identifier: "ManagedNetworkSettingsPropertiesBasicResource",
+  }) as any as S.Schema<ManagedNetworkSettingsPropertiesBasicResource>;
+
+/** The list of managed network settings of an account. Since this list may be incomplete, the nextLink field should be used to request the next list of cognitive services accounts. */
+export type ManagedNetworkListResultValueList =
+  Array<ManagedNetworkSettingsPropertiesBasicResource>;
+export const ManagedNetworkListResultValueList = /*@__PURE__*/ S.Array(
+  ManagedNetworkSettingsPropertiesBasicResource,
+) as any as S.Schema<ManagedNetworkListResultValueList>;
+
+/** List of managed networks of a cognitive services account. */
+export interface ManagedNetworkListResult {
+  /** The link to the next page constructed using the continuationToken. If null, there are no additional pages. */
+  nextLink?: string;
+  /** The list of managed network settings of an account. Since this list may be incomplete, the nextLink field should be used to request the next list of cognitive services accounts. */
+  value?: ManagedNetworkListResultValueList;
+}
+export const ManagedNetworkListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nextLink: S.optional(S.String),
+    value: S.optional(ManagedNetworkListResultValueList),
+  }),
+).annotate({
+  identifier: "ManagedNetworkListResult",
+}) as any as S.Schema<ManagedNetworkListResult>;
+
+export interface ListModelCapacitiesRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The format of the Model */
+  modelFormat: string;
+  /** The name of the Model */
+  modelName: string;
+  /** The version of the Model */
+  modelVersion: string;
+}
+export const ListModelCapacitiesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    modelFormat: S.String.pipe(T.Query()),
+    modelName: S.String.pipe(T.Query()),
+    modelVersion: S.String.pipe(T.Query()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/modelCapacities",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListModelCapacitiesRequest",
+}) as any as S.Schema<ListModelCapacitiesRequest>;
+
+export interface ListModelsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of Azure region. */
+  location: string;
+}
+export const ListModelsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    location: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/locations/{location}/models",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListModelsRequest",
+}) as any as S.Schema<ListModelsRequest>;
+
+/** Cognitive Services Model. */
+export interface Model {
+  /** Cognitive Services account Model. */
+  model?: AccountModel;
+  /** The kind (type) of cognitive service account. */
+  kind?: string;
+  /** The name of SKU. */
+  skuName?: string;
+  /** The description of the model. */
+  description?: string;
+}
+export const Model = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    model: S.optional(AccountModel),
+    kind: S.optional(S.String),
+    skuName: S.optional(S.String),
+    description: S.optional(S.String),
+  }),
+).annotate({ identifier: "Model" }) as any as S.Schema<Model>;
+
+/** Gets the list of Cognitive Services accounts Model and their properties. */
+export type ModelListResultValueList = Array<Model>;
+export const ModelListResultValueList = /*@__PURE__*/ S.Array(
+  Model,
+) as any as S.Schema<ModelListResultValueList>;
+
+/** The list of cognitive services models. */
+export interface ModelListResult {
+  /** The link used to get the next page of Model. */
+  nextLink?: string;
+  /** Gets the list of Cognitive Services accounts Model and their properties. */
+  value?: ModelListResultValueList;
+}
+export const ModelListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nextLink: S.optional(S.String),
+    value: S.optional(ModelListResultValueList),
+  }),
+).annotate({
+  identifier: "ModelListResult",
+}) as any as S.Schema<ModelListResult>;
+
+export interface ListNetworkSecurityPerimeterConfigurationsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+}
+export const ListNetworkSecurityPerimeterConfigurationsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/networkSecurityPerimeterConfigurations",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListNetworkSecurityPerimeterConfigurationsRequest",
+  }) as any as S.Schema<ListNetworkSecurityPerimeterConfigurationsRequest>;
+
+/** NSP Configuration for an Cognitive Services account. */
+export interface NetworkSecurityPerimeterConfiguration {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** NSP Configuration properties. */
+  properties?: NetworkSecurityPerimeterConfigurationProperties;
+}
+export const NetworkSecurityPerimeterConfiguration = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(NetworkSecurityPerimeterConfigurationProperties),
+    }),
+).annotate({
+  identifier: "NetworkSecurityPerimeterConfiguration",
+}) as any as S.Schema<NetworkSecurityPerimeterConfiguration>;
+
+/** Array of NSP configurations List Result for an Cognitive Services account. */
+export type NetworkSecurityPerimeterConfigurationListValueList =
+  Array<NetworkSecurityPerimeterConfiguration>;
+export const NetworkSecurityPerimeterConfigurationListValueList =
+  /*@__PURE__*/ S.Array(
+    NetworkSecurityPerimeterConfiguration,
+  ) as any as S.Schema<NetworkSecurityPerimeterConfigurationListValueList>;
+
+/** A list of NSP configurations for an Cognitive Services account. */
+export interface NetworkSecurityPerimeterConfigurationList {
+  /** Array of NSP configurations List Result for an Cognitive Services account. */
+  value?: NetworkSecurityPerimeterConfigurationListValueList;
+  /** Link to retrieve next page of results. */
+  nextLink?: string;
+}
+export const NetworkSecurityPerimeterConfigurationList =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      value: S.optional(NetworkSecurityPerimeterConfigurationListValueList),
+      nextLink: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "NetworkSecurityPerimeterConfigurationList",
+  }) as any as S.Schema<NetworkSecurityPerimeterConfigurationList>;
+
+export interface ListOperationsRequest {}
+export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/providers/Microsoft.CognitiveServices/operations",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListOperationsRequest",
+}) as any as S.Schema<ListOperationsRequest>;
+
+/** Localized display information for this particular operation. */
+export interface OperationDisplay {
+  /** The localized friendly form of the resource provider name, e.g. "Microsoft Monitoring Insights" or "Microsoft Compute". */
+  provider?: string;
+  /** The localized friendly name of the resource type related to this operation. E.g. "Virtual Machines" or "Job Schedule Collections". */
+  resource?: string;
+  /** The concise, localized friendly name for the operation; suitable for dropdowns. E.g. "Create or Update Virtual Machine", "Restart Virtual Machine". */
+  operation?: string;
+  /** The short, localized friendly description of the operation; suitable for tool tips and detailed views. */
+  description?: string;
+}
+export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provider: S.optional(S.String),
+    resource: S.optional(S.String),
+    operation: S.optional(S.String),
+    description: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "OperationDisplay",
+}) as any as S.Schema<OperationDisplay>;
+
+/** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
+export type OperationOrigin = "user" | "system" | "user,system";
+export const OperationOrigin = /*@__PURE__*/ S.String;
+
+/** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
+export type OperationActionType = "Internal";
+export const OperationActionType = /*@__PURE__*/ S.String;
+
+/** Details of a REST API operation, returned from the Resource Provider Operations API */
+export interface Operation {
+  /** The name of the operation, as per Resource-Based Access Control (RBAC). Examples: "Microsoft.Compute/virtualMachines/write", "Microsoft.Compute/virtualMachines/capture/action" */
+  name?: string;
+  /** Whether the operation applies to data-plane. This is "true" for data-plane operations and "false" for ARM/control-plane operations. */
+  isDataAction?: boolean;
+  /** Localized display information for this particular operation. */
+  display?: OperationDisplay;
+  /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
+  origin?: OperationOrigin;
+  /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
+  actionType?: OperationActionType;
+}
+export const Operation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    isDataAction: S.optional(S.Boolean),
+    display: S.optional(OperationDisplay),
+    origin: S.optional(OperationOrigin),
+    actionType: S.optional(OperationActionType),
+  }),
+).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
+
+/** List of operations supported by the resource provider */
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
+  Operation,
+) as any as S.Schema<ListOperationsResponseValueList>;
+
+export interface ListOperationsResponse {
+  /** List of operations supported by the resource provider */
+  value?: ListOperationsResponseValueList;
+  /** URL to get the next set of operation list results (if there are any). */
+  nextLink?: string;
+}
+export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(ListOperationsResponseValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ListOperationsResponse",
+}) as any as S.Schema<ListOperationsResponse>;
+
+export interface ListOutboundRuleRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+  /** Name of the managedNetwork associated with the cognitive services account. Only 'default' is supported. */
+  managedNetworkName: string;
+}
+export const ListOutboundRuleRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    managedNetworkName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/managedNetworks/{managedNetworkName}/outboundRules",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListOutboundRuleRequest",
+}) as any as S.Schema<ListOutboundRuleRequest>;
+
+/** Concrete proxy resource types can be created by aliasing this type using a specific property type. */
+export interface OutboundRuleBasicResource {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Outbound Rule for the managed network of a cognitive services account. */
+  properties: OutboundRule;
+}
+export const OutboundRuleBasicResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: OutboundRule,
+  }),
+).annotate({
+  identifier: "OutboundRuleBasicResource",
+}) as any as S.Schema<OutboundRuleBasicResource>;
+
+/** The list of cognitive services accounts. Since this list may be incomplete, the nextLink field should be used to request the next list of cognitive services accounts. */
+export type OutboundRuleListResultValueList = Array<OutboundRuleBasicResource>;
+export const OutboundRuleListResultValueList = /*@__PURE__*/ S.Array(
+  OutboundRuleBasicResource,
+) as any as S.Schema<OutboundRuleListResultValueList>;
+
+/** List of outbound rules for the managed network of a cognitive services account. */
+export interface OutboundRuleListResult {
+  /** The link to the next page constructed using the continuationToken. If null, there are no additional pages. */
+  nextLink?: string;
+  /** The list of cognitive services accounts. Since this list may be incomplete, the nextLink field should be used to request the next list of cognitive services accounts. */
+  value?: OutboundRuleListResultValueList;
+}
+export const OutboundRuleListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nextLink: S.optional(S.String),
+    value: S.optional(OutboundRuleListResultValueList),
+  }),
+).annotate({
+  identifier: "OutboundRuleListResult",
+}) as any as S.Schema<OutboundRuleListResult>;
+
+export interface ListPrivateEndpointConnectionsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+}
+export const ListPrivateEndpointConnectionsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/privateEndpointConnections",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListPrivateEndpointConnectionsRequest",
+}) as any as S.Schema<ListPrivateEndpointConnectionsRequest>;
+
+/** Array of private endpoint connections */
+export type PrivateEndpointConnectionListResultValueList =
+  Array<PrivateEndpointConnection>;
+export const PrivateEndpointConnectionListResultValueList =
+  /*@__PURE__*/ S.Array(
+    PrivateEndpointConnection,
+  ) as any as S.Schema<PrivateEndpointConnectionListResultValueList>;
+
+/** A list of private endpoint connections */
+export interface PrivateEndpointConnectionListResult {
+  /** Array of private endpoint connections */
+  value?: PrivateEndpointConnectionListResultValueList;
+}
+export const PrivateEndpointConnectionListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(PrivateEndpointConnectionListResultValueList),
+  }),
+).annotate({
+  identifier: "PrivateEndpointConnectionListResult",
+}) as any as S.Schema<PrivateEndpointConnectionListResult>;
+
+export interface ListPrivateLinkResourcesRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+}
+export const ListPrivateLinkResourcesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/privateLinkResources",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListPrivateLinkResourcesRequest",
+}) as any as S.Schema<ListPrivateLinkResourcesRequest>;
+
+/** The private link resource required member names. */
+export type PrivateLinkResourcePropertiesRequiredMembersList = Array<string>;
+export const PrivateLinkResourcePropertiesRequiredMembersList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<PrivateLinkResourcePropertiesRequiredMembersList>;
+
+/** The private link resource Private link DNS zone name. */
+export type PrivateLinkResourcePropertiesRequiredZoneNamesList = Array<string>;
+export const PrivateLinkResourcePropertiesRequiredZoneNamesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<PrivateLinkResourcePropertiesRequiredZoneNamesList>;
+
+/** Properties of a private link resource. */
+export interface PrivateLinkResourceProperties {
+  /** The private link resource group id. */
+  groupId?: string;
+  /** The private link resource required member names. */
+  requiredMembers?: PrivateLinkResourcePropertiesRequiredMembersList;
+  /** The private link resource Private link DNS zone name. */
+  requiredZoneNames?: PrivateLinkResourcePropertiesRequiredZoneNamesList;
+  /** The private link resource display name. */
+  displayName?: string;
+}
+export const PrivateLinkResourceProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    groupId: S.optional(S.String),
+    requiredMembers: S.optional(
+      PrivateLinkResourcePropertiesRequiredMembersList,
+    ),
+    requiredZoneNames: S.optional(
+      PrivateLinkResourcePropertiesRequiredZoneNamesList,
+    ),
+    displayName: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PrivateLinkResourceProperties",
+}) as any as S.Schema<PrivateLinkResourceProperties>;
+
+/** A private link resource */
+export interface PrivateLinkResource {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource properties. */
+  properties?: PrivateLinkResourceProperties;
+}
+export const PrivateLinkResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(PrivateLinkResourceProperties),
+  }),
+).annotate({
+  identifier: "PrivateLinkResource",
+}) as any as S.Schema<PrivateLinkResource>;
+
+/** Array of private link resources */
+export type PrivateLinkResourceListResultValueList = Array<PrivateLinkResource>;
+export const PrivateLinkResourceListResultValueList = /*@__PURE__*/ S.Array(
+  PrivateLinkResource,
+) as any as S.Schema<PrivateLinkResourceListResultValueList>;
+
+/** A list of private link resources */
+export interface PrivateLinkResourceListResult {
+  /** Array of private link resources */
+  value?: PrivateLinkResourceListResultValueList;
+}
+export const PrivateLinkResourceListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(PrivateLinkResourceListResultValueList),
+  }),
+).annotate({
+  identifier: "PrivateLinkResourceListResult",
+}) as any as S.Schema<PrivateLinkResourceListResult>;
+
+export interface ListProjectCapabilityHostsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+  /** The name of Cognitive Services account's project. */
+  projectName: string;
+}
+export const ListProjectCapabilityHostsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    projectName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}/capabilityHosts",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListProjectCapabilityHostsRequest",
+}) as any as S.Schema<ListProjectCapabilityHostsRequest>;
+
+/** Azure Resource Manager resource envelope for Project CapabilityHost. */
+export interface ProjectCapabilityHost {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** [Required] Additional attributes of the entity. */
+  properties: ProjectCapabilityHostProperties;
+}
+export const ProjectCapabilityHost = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: ProjectCapabilityHostProperties,
+  }),
+).annotate({
+  identifier: "ProjectCapabilityHost",
+}) as any as S.Schema<ProjectCapabilityHost>;
+
+/** An array of objects of type Project Capability Host. */
+export type ProjectCapabilityHostResourceArmPaginatedResultValueList =
+  Array<ProjectCapabilityHost>;
+export const ProjectCapabilityHostResourceArmPaginatedResultValueList =
+  /*@__PURE__*/ S.Array(
+    ProjectCapabilityHost,
+  ) as any as S.Schema<ProjectCapabilityHostResourceArmPaginatedResultValueList>;
+
+/** A paginated list of Project Capability Host entities. */
+export interface ProjectCapabilityHostResourceArmPaginatedResult {
+  /** The link to the next page of Project Capability Host objects. If null, there are no additional pages. */
+  nextLink?: string | null;
+  /** An array of objects of type Project Capability Host. */
+  value?: ProjectCapabilityHostResourceArmPaginatedResultValueList;
+}
+export const ProjectCapabilityHostResourceArmPaginatedResult =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      nextLink: S.optional(S.NullOr(S.String)),
+      value: S.optional(
+        ProjectCapabilityHostResourceArmPaginatedResultValueList,
+      ),
+    }),
+  ).annotate({
+    identifier: "ProjectCapabilityHostResourceArmPaginatedResult",
+  }) as any as S.Schema<ProjectCapabilityHostResourceArmPaginatedResult>;
+
+export interface ListProjectConnectionsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+  /** The name of Cognitive Services account's project. */
+  projectName: string;
+  /** Target of the connection. */
+  target?: string;
+  /** Category of the connection. */
+  category?: string;
+  /** query parameter that indicates if get connection call should return both connections and datastores */
+  includeAll?: boolean;
+}
+export const ListProjectConnectionsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    projectName: S.String.pipe(T.Label()),
+    target: S.optional(S.String.pipe(T.Query())),
+    category: S.optional(S.String.pipe(T.Query())),
+    includeAll: S.optional(S.Boolean.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}/connections",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListProjectConnectionsRequest",
+}) as any as S.Schema<ListProjectConnectionsRequest>;
+
+export interface ListProjectsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+}
+export const ListProjectsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListProjectsRequest",
+}) as any as S.Schema<ListProjectsRequest>;
+
+/** Resource tags. */
+export type ProjectTagsMap = { [key: string]: string | undefined };
+export const ProjectTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<ProjectTagsMap>;
+
+/** Cognitive Services project is an Azure resource representing the provisioned account's project, it's type, location and SKU. */
+export interface Project {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of Cognitive Services project. */
+  properties?: ProjectProperties;
+  /** Resource tags. */
+  tags?: ProjectTagsMap;
+  /** The geo-location where the resource lives */
+  location?: string;
+  /** Resource Etag. */
+  etag?: string;
+  /** Identity for the resource. */
+  identity?: Identity;
+}
+export const Project = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ProjectProperties),
+    tags: S.optional(ProjectTagsMap),
+    location: S.optional(S.String),
+    etag: S.optional(S.String),
+    identity: S.optional(Identity),
+  }),
+).annotate({ identifier: "Project" }) as any as S.Schema<Project>;
+
+/** Gets the list of Cognitive Services projects and their properties. */
+export type ProjectListResultValueList = Array<Project>;
+export const ProjectListResultValueList = /*@__PURE__*/ S.Array(
+  Project,
+) as any as S.Schema<ProjectListResultValueList>;
+
+/** The list of cognitive services projects operation response. */
+export interface ProjectListResult {
+  /** The link used to get the next page of projects. */
+  nextLink?: string;
+  /** Gets the list of Cognitive Services projects and their properties. */
+  value?: ProjectListResultValueList;
+}
+export const ProjectListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nextLink: S.optional(S.String),
+    value: S.optional(ProjectListResultValueList),
+  }),
+).annotate({
+  identifier: "ProjectListResult",
+}) as any as S.Schema<ProjectListResult>;
+
+export interface ListQuotaTierBySubscriptionRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+}
+export const ListQuotaTierBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/quotaTiers",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListQuotaTierBySubscriptionRequest",
+}) as any as S.Schema<ListQuotaTierBySubscriptionRequest>;
+
+/** The quota tier information for the subscription */
+export interface QuotaTier {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of quota tier resource. */
+  properties?: QuotaTierProperties;
+}
+export const QuotaTier = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(QuotaTierProperties),
+  }),
+).annotate({ identifier: "QuotaTier" }) as any as S.Schema<QuotaTier>;
+
+/** Gets the list of Quota Tiers and their properties. */
+export type QuotaTierListResultValueList = Array<QuotaTier>;
+export const QuotaTierListResultValueList = /*@__PURE__*/ S.Array(
+  QuotaTier,
+) as any as S.Schema<QuotaTierListResultValueList>;
+
+/** The list of Quota Tiers response. */
+export interface QuotaTierListResult {
+  /** The link used to get the next page of quota tiers. */
+  nextLink?: string;
+  /** Gets the list of Quota Tiers and their properties. */
+  value?: QuotaTierListResultValueList;
+}
+export const QuotaTierListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nextLink: S.optional(S.String),
+    value: S.optional(QuotaTierListResultValueList),
+  }),
+).annotate({
+  identifier: "QuotaTierListResult",
+}) as any as S.Schema<QuotaTierListResult>;
+
+export interface ListRaiBlocklistItemsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+  /** The name of the RaiBlocklist associated with the Cognitive Services Account */
+  raiBlocklistName: string;
+}
+export const ListRaiBlocklistItemsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    raiBlocklistName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/raiBlocklists/{raiBlocklistName}/raiBlocklistItems",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListRaiBlocklistItemsRequest",
+}) as any as S.Schema<ListRaiBlocklistItemsRequest>;
+
+/** Resource tags. */
+export type RaiBlocklistItemTagsMap = { [key: string]: string | undefined };
+export const RaiBlocklistItemTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<RaiBlocklistItemTagsMap>;
+
+/** Cognitive Services RaiBlocklist Item. */
+export interface RaiBlocklistItem {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of Cognitive Services RaiBlocklist Item. */
+  properties?: RaiBlocklistItemProperties;
+  /** Resource Etag. */
+  etag?: string;
+  /** Resource tags. */
+  tags?: RaiBlocklistItemTagsMap;
+}
+export const RaiBlocklistItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(RaiBlocklistItemProperties),
+    etag: S.optional(S.String),
+    tags: S.optional(RaiBlocklistItemTagsMap),
+  }),
+).annotate({
+  identifier: "RaiBlocklistItem",
+}) as any as S.Schema<RaiBlocklistItem>;
+
+/** The list of RaiBlocklistItems. */
+export type RaiBlockListItemsResultValueList = Array<RaiBlocklistItem>;
+export const RaiBlockListItemsResultValueList = /*@__PURE__*/ S.Array(
+  RaiBlocklistItem,
+) as any as S.Schema<RaiBlockListItemsResultValueList>;
+
+/** The list of cognitive services RAI Blocklist Items. */
+export interface RaiBlockListItemsResult {
+  /** The link used to get the next page of RaiBlocklistItems. */
+  nextLink?: string;
+  /** The list of RaiBlocklistItems. */
+  value?: RaiBlockListItemsResultValueList;
+}
+export const RaiBlockListItemsResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nextLink: S.optional(S.String),
+    value: S.optional(RaiBlockListItemsResultValueList),
+  }),
+).annotate({
+  identifier: "RaiBlockListItemsResult",
+}) as any as S.Schema<RaiBlockListItemsResult>;
+
+export interface ListRaiBlocklistsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+}
+export const ListRaiBlocklistsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/raiBlocklists",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListRaiBlocklistsRequest",
+}) as any as S.Schema<ListRaiBlocklistsRequest>;
+
+/** Resource tags. */
+export type RaiBlocklistTagsMap = { [key: string]: string | undefined };
+export const RaiBlocklistTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<RaiBlocklistTagsMap>;
+
+/** Cognitive Services RaiBlocklist. */
+export interface RaiBlocklist {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of Cognitive Services RaiBlocklist. */
+  properties?: RaiBlocklistProperties;
+  /** Resource Etag. */
+  etag?: string;
+  /** Resource tags. */
+  tags?: RaiBlocklistTagsMap;
+}
+export const RaiBlocklist = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(RaiBlocklistProperties),
+    etag: S.optional(S.String),
+    tags: S.optional(RaiBlocklistTagsMap),
+  }),
+).annotate({ identifier: "RaiBlocklist" }) as any as S.Schema<RaiBlocklist>;
+
+/** The list of RaiBlocklist. */
+export type RaiBlockListResultValueList = Array<RaiBlocklist>;
+export const RaiBlockListResultValueList = /*@__PURE__*/ S.Array(
+  RaiBlocklist,
+) as any as S.Schema<RaiBlockListResultValueList>;
+
+/** The list of cognitive services RAI Blocklists. */
+export interface RaiBlockListResult {
+  /** The link used to get the next page of RaiBlocklists. */
+  nextLink?: string;
+  /** The list of RaiBlocklist. */
+  value?: RaiBlockListResultValueList;
+}
+export const RaiBlockListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nextLink: S.optional(S.String),
+    value: S.optional(RaiBlockListResultValueList),
+  }),
+).annotate({
+  identifier: "RaiBlockListResult",
+}) as any as S.Schema<RaiBlockListResult>;
+
+export interface ListRaiContentFiltersRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of Azure region. */
+  location: string;
+}
+export const ListRaiContentFiltersRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    location: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/locations/{location}/raiContentFilters",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListRaiContentFiltersRequest",
+}) as any as S.Schema<ListRaiContentFiltersRequest>;
+
+/** Azure OpenAI Content Filter. */
+export interface RaiContentFilter {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Azure OpenAI Content Filter Properties. */
+  properties?: RaiContentFilterProperties;
+}
+export const RaiContentFilter = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(RaiContentFilterProperties),
+  }),
+).annotate({
+  identifier: "RaiContentFilter",
+}) as any as S.Schema<RaiContentFilter>;
+
+/** The list of RaiContentFilter. */
+export type RaiContentFilterListResultValueList = Array<RaiContentFilter>;
+export const RaiContentFilterListResultValueList = /*@__PURE__*/ S.Array(
+  RaiContentFilter,
+) as any as S.Schema<RaiContentFilterListResultValueList>;
+
+/** The list of Content Filters. */
+export interface RaiContentFilterListResult {
+  /** The link used to get the next page of Content Filters. */
+  nextLink?: string;
+  /** The list of RaiContentFilter. */
+  value?: RaiContentFilterListResultValueList;
+}
+export const RaiContentFilterListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nextLink: S.optional(S.String),
+    value: S.optional(RaiContentFilterListResultValueList),
+  }),
+).annotate({
+  identifier: "RaiContentFilterListResult",
+}) as any as S.Schema<RaiContentFilterListResult>;
+
+export interface ListRaiExternalSafetyProvidersRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+}
+export const ListRaiExternalSafetyProvidersRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/raiExternalSafetyProviders",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListRaiExternalSafetyProvidersRequest",
+}) as any as S.Schema<ListRaiExternalSafetyProvidersRequest>;
+
+/** Resource tags. */
+export type RaiExternalSafetyProviderSchemaTagsMap = {
+  [key: string]: string | undefined;
+};
+export const RaiExternalSafetyProviderSchemaTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<RaiExternalSafetyProviderSchemaTagsMap>;
+
+/** Cognitive Services Rai External Safety provider Schema. */
+export interface RaiExternalSafetyProviderSchema {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of Cognitive Services Rai External Safety provider. */
+  properties?: RaiExternalSafetyProviderSchemaProperties;
+  /** Resource Etag. */
+  etag?: string;
+  /** Resource tags. */
+  tags?: RaiExternalSafetyProviderSchemaTagsMap;
+}
+export const RaiExternalSafetyProviderSchema = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(RaiExternalSafetyProviderSchemaProperties),
+    etag: S.optional(S.String),
+    tags: S.optional(RaiExternalSafetyProviderSchemaTagsMap),
+  }),
+).annotate({
+  identifier: "RaiExternalSafetyProviderSchema",
+}) as any as S.Schema<RaiExternalSafetyProviderSchema>;
+
+/** The list of RaiExternalSafetyProvider. */
+export type RaiExternalSafetyProviderResultValueList =
+  Array<RaiExternalSafetyProviderSchema>;
+export const RaiExternalSafetyProviderResultValueList = /*@__PURE__*/ S.Array(
+  RaiExternalSafetyProviderSchema,
+) as any as S.Schema<RaiExternalSafetyProviderResultValueList>;
+
+/** The list of cognitive services RAI External Safety Providers. */
+export interface RaiExternalSafetyProviderResult {
+  /** The link used to get the next page of Rai External Safety Provider. */
+  nextLink?: string;
+  /** The list of RaiExternalSafetyProvider. */
+  value?: RaiExternalSafetyProviderResultValueList;
+}
+export const RaiExternalSafetyProviderResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nextLink: S.optional(S.String),
+    value: S.optional(RaiExternalSafetyProviderResultValueList),
+  }),
+).annotate({
+  identifier: "RaiExternalSafetyProviderResult",
+}) as any as S.Schema<RaiExternalSafetyProviderResult>;
+
+export interface ListRaiPoliciesRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+}
+export const ListRaiPoliciesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/raiPolicies",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListRaiPoliciesRequest",
+}) as any as S.Schema<ListRaiPoliciesRequest>;
+
+/** Resource tags. */
+export type RaiPolicyTagsMap = { [key: string]: string | undefined };
+export const RaiPolicyTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<RaiPolicyTagsMap>;
+
+/** Cognitive Services RaiPolicy. */
+export interface RaiPolicy {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of Cognitive Services RaiPolicy. */
+  properties?: RaiPolicyProperties;
+  /** Resource Etag. */
+  etag?: string;
+  /** Resource tags. */
+  tags?: RaiPolicyTagsMap;
+}
+export const RaiPolicy = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(RaiPolicyProperties),
+    etag: S.optional(S.String),
+    tags: S.optional(RaiPolicyTagsMap),
+  }),
+).annotate({ identifier: "RaiPolicy" }) as any as S.Schema<RaiPolicy>;
+
+/** The list of RaiPolicy. */
+export type RaiPolicyListResultValueList = Array<RaiPolicy>;
+export const RaiPolicyListResultValueList = /*@__PURE__*/ S.Array(
+  RaiPolicy,
+) as any as S.Schema<RaiPolicyListResultValueList>;
+
+/** The list of cognitive services RaiPolicies. */
+export interface RaiPolicyListResult {
+  /** The link used to get the next page of RaiPolicy. */
+  nextLink?: string;
+  /** The list of RaiPolicy. */
+  value?: RaiPolicyListResultValueList;
+}
+export const RaiPolicyListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nextLink: S.optional(S.String),
+    value: S.optional(RaiPolicyListResultValueList),
+  }),
+).annotate({
+  identifier: "RaiPolicyListResult",
+}) as any as S.Schema<RaiPolicyListResult>;
+
+export interface ListRaiToolLabelsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+}
+export const ListRaiToolLabelsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -12314,8 +10490,8 @@ export const RaiToolLabelsListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "RaiToolLabelsListRequest",
-}) as any as S.Schema<RaiToolLabelsListRequest>;
+  identifier: "ListRaiToolLabelsRequest",
+}) as any as S.Schema<ListRaiToolLabelsRequest>;
 
 /** Resource tags. */
 export type RaiToolLabelTagsMap = { [key: string]: string | undefined };
@@ -12375,223 +10551,7 @@ export const RaiToolLabelResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "RaiToolLabelResult",
 }) as any as S.Schema<RaiToolLabelResult>;
 
-/** RAI Custom Topic properties. */
-export interface RaiTopicProperties {
-  /** The unique identifier of the custom topic. */
-  topicId?: string;
-  /** The name of the custom topic. */
-  topicName?: string;
-  /** Description of the custom topic. */
-  description?: string;
-  /** Sample blob url for the custom topic. */
-  sampleBlobUrl?: string;
-  /** Status of the custom topic. */
-  status?: string;
-  /** Failed reason if the status is Failed. */
-  failedReason?: string;
-  /** Creation time of the custom topic. */
-  createdAt?: string;
-  /** Last modified time of the custom topic. */
-  lastModifiedAt?: string;
-}
-export const RaiTopicProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    topicId: S.optional(S.String),
-    topicName: S.optional(S.String),
-    description: S.optional(S.String),
-    sampleBlobUrl: S.optional(S.String),
-    status: S.optional(S.String),
-    failedReason: S.optional(S.String),
-    createdAt: S.optional(S.String),
-    lastModifiedAt: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "RaiTopicProperties",
-}) as any as S.Schema<RaiTopicProperties>;
-
-/** Resource tags. */
-export type RaiTopicsCreateOrUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const RaiTopicsCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<RaiTopicsCreateOrUpdateRequestTagsMap>;
-
-export interface RaiTopicsCreateOrUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-  /** The name of the Rai Topic associated with the Cognitive Services Account */
-  raiTopicName: string;
-  /** Properties of Cognitive Services Rai Topic. */
-  properties?: RaiTopicProperties;
-  /** Resource tags. */
-  tags?: RaiTopicsCreateOrUpdateRequestTagsMap;
-}
-export const RaiTopicsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    raiTopicName: S.String.pipe(T.Label()),
-    properties: S.optional(RaiTopicProperties),
-    tags: S.optional(RaiTopicsCreateOrUpdateRequestTagsMap),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/raitopics/{raiTopicName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "RaiTopicsCreateOrUpdateRequest",
-}) as any as S.Schema<RaiTopicsCreateOrUpdateRequest>;
-
-/** Resource tags. */
-export type RaiTopicsCreateOrUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const RaiTopicsCreateOrUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<RaiTopicsCreateOrUpdateResponseTagsMap>;
-
-export interface RaiTopicsCreateOrUpdateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of Cognitive Services Rai Topic. */
-  properties?: RaiTopicProperties;
-  /** Resource Etag. */
-  etag?: string;
-  /** Resource tags. */
-  tags?: RaiTopicsCreateOrUpdateResponseTagsMap;
-}
-export const RaiTopicsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(RaiTopicProperties),
-    etag: S.optional(S.String),
-    tags: S.optional(RaiTopicsCreateOrUpdateResponseTagsMap),
-  }),
-).annotate({
-  identifier: "RaiTopicsCreateOrUpdateResponse",
-}) as any as S.Schema<RaiTopicsCreateOrUpdateResponse>;
-
-export interface RaiTopicsDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-  /** The name of the Rai Topic associated with the Cognitive Services Account */
-  raiTopicName: string;
-}
-export const RaiTopicsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    raiTopicName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/raitopics/{raiTopicName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "RaiTopicsDeleteRequest",
-}) as any as S.Schema<RaiTopicsDeleteRequest>;
-
-export interface RaiTopicsDeleteResponse {}
-export const RaiTopicsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "RaiTopicsDeleteResponse",
-}) as any as S.Schema<RaiTopicsDeleteResponse>;
-
-export interface RaiTopicsGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of Cognitive Services account. */
-  accountName: string;
-  /** The name of the Rai Topic associated with the Cognitive Services Account */
-  raiTopicName: string;
-}
-export const RaiTopicsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    raiTopicName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/raitopics/{raiTopicName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "RaiTopicsGetRequest",
-}) as any as S.Schema<RaiTopicsGetRequest>;
-
-/** Resource tags. */
-export type RaiTopicsGetResponseTagsMap = { [key: string]: string | undefined };
-export const RaiTopicsGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<RaiTopicsGetResponseTagsMap>;
-
-export interface RaiTopicsGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of Cognitive Services Rai Topic. */
-  properties?: RaiTopicProperties;
-  /** Resource Etag. */
-  etag?: string;
-  /** Resource tags. */
-  tags?: RaiTopicsGetResponseTagsMap;
-}
-export const RaiTopicsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(RaiTopicProperties),
-    etag: S.optional(S.String),
-    tags: S.optional(RaiTopicsGetResponseTagsMap),
-  }),
-).annotate({
-  identifier: "RaiTopicsGetResponse",
-}) as any as S.Schema<RaiTopicsGetResponse>;
-
-export interface RaiTopicsListRequest {
+export interface ListRaiTopicsRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -12599,7 +10559,7 @@ export interface RaiTopicsListRequest {
   /** The name of Cognitive Services account. */
   accountName: string;
 }
-export const RaiTopicsListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListRaiTopicsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -12613,8 +10573,8 @@ export const RaiTopicsListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "RaiTopicsListRequest",
-}) as any as S.Schema<RaiTopicsListRequest>;
+  identifier: "ListRaiTopicsRequest",
+}) as any as S.Schema<ListRaiTopicsRequest>;
 
 /** Resource tags. */
 export type RaiTopicTagsMap = { [key: string]: string | undefined };
@@ -12672,11 +10632,11 @@ export const RaiTopicResult = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "RaiTopicResult" }) as any as S.Schema<RaiTopicResult>;
 
-export interface ResourceSkusListRequest {
+export interface ListResourceSkusRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
 }
-export const ResourceSkusListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListResourceSkusRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
   }).pipe(
@@ -12688,8 +10648,8 @@ export const ResourceSkusListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ResourceSkusListRequest",
-}) as any as S.Schema<ResourceSkusListRequest>;
+  identifier: "ListResourceSkusRequest",
+}) as any as S.Schema<ListResourceSkusRequest>;
 
 /** The set of locations that the SKU is available. */
 export type ResourceSkuLocationsList = Array<string>;
@@ -12816,6 +10776,1538 @@ export const ResourceSkuListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "ResourceSkuListResult",
 }) as any as S.Schema<ResourceSkuListResult>;
 
+export interface ListUsagesRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of Azure region. */
+  location: string;
+  /** An OData filter expression that describes a subset of usages to return. The supported parameter is name.value (name of the metric, can have an or of multiple names). */
+  _filter?: string;
+}
+export const ListUsagesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    location: S.String.pipe(T.Label()),
+    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/locations/{location}/usages",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListUsagesRequest",
+}) as any as S.Schema<ListUsagesRequest>;
+
+export interface NetworkSecurityPerimeterConfigurationsReconcileRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+  /** The name of the NSP Configuration. */
+  nspConfigurationName: string;
+}
+export const NetworkSecurityPerimeterConfigurationsReconcileRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+      nspConfigurationName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/networkSecurityPerimeterConfigurations/{nspConfigurationName}/reconcile",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "NetworkSecurityPerimeterConfigurationsReconcileRequest",
+  }) as any as S.Schema<NetworkSecurityPerimeterConfigurationsReconcileRequest>;
+
+export interface NetworkSecurityPerimeterConfigurationsReconcileResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** NSP Configuration properties. */
+  properties?: NetworkSecurityPerimeterConfigurationProperties;
+}
+export const NetworkSecurityPerimeterConfigurationsReconcileResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(NetworkSecurityPerimeterConfigurationProperties),
+    }),
+  ).annotate({
+    identifier: "NetworkSecurityPerimeterConfigurationsReconcileResponse",
+  }) as any as S.Schema<NetworkSecurityPerimeterConfigurationsReconcileResponse>;
+
+/** Outbound Rule for the managed network of a cognitive services account. */
+export interface OutboundRuleInput {
+  /** Category of a managed network Outbound Rule of a cognitive services account. */
+  category?: RuleCategory | (string & {});
+  /** Type of a managed network Outbound Rule of a cognitive services account. */
+  status?: RuleStatus | (string & {});
+  /** Type of a managed network Outbound Rule of a cognitive services account. */
+  type: RuleType | (string & {});
+}
+export const OutboundRuleInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    category: S.optional(RuleCategory),
+    status: S.optional(RuleStatus),
+    type: RuleType,
+  }),
+).annotate({
+  identifier: "OutboundRuleInput",
+}) as any as S.Schema<OutboundRuleInput>;
+
+export interface OutboundRuleCreateOrUpdateRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+  /** Name of the managedNetwork associated with the cognitive services account. Only 'default' is supported. */
+  managedNetworkName: string;
+  /** Name of the cognitive services account managed network outbound rule */
+  ruleName: string;
+  /** Outbound Rule for the managed network of a cognitive services account. */
+  properties: OutboundRuleInput;
+}
+export const OutboundRuleCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    managedNetworkName: S.String.pipe(T.Label()),
+    ruleName: S.String.pipe(T.Label()),
+    properties: OutboundRuleInput,
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/managedNetworks/{managedNetworkName}/outboundRules/{ruleName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "OutboundRuleCreateOrUpdateRequest",
+}) as any as S.Schema<OutboundRuleCreateOrUpdateRequest>;
+
+export interface OutboundRuleCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Outbound Rule for the managed network of a cognitive services account. */
+  properties: OutboundRule;
+}
+export const OutboundRuleCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: OutboundRule,
+  }),
+).annotate({
+  identifier: "OutboundRuleCreateOrUpdateResponse",
+}) as any as S.Schema<OutboundRuleCreateOrUpdateResponse>;
+
+/** Dictionary of <OutboundRule> */
+export type ManagedNetworkSettingsExInputOutboundRulesMap = {
+  [key: string]: OutboundRuleInput | undefined;
+};
+export const ManagedNetworkSettingsExInputOutboundRulesMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    OutboundRuleInput,
+  ) as any as S.Schema<ManagedNetworkSettingsExInputOutboundRulesMap>;
+
+export interface ManagedNetworkSettingsExInput {
+  /** Isolation mode for the managed network of a cognitive services account. */
+  isolationMode?: IsolationMode | (string & {});
+  /** Dictionary of <OutboundRule> */
+  outboundRules?: ManagedNetworkSettingsExInputOutboundRulesMap | null;
+  /** Status of the Provisioning for the managed network of a cognitive services account. */
+  status?: ManagedNetworkProvisionStatus;
+  /** Firewall Sku used for FQDN Rules */
+  firewallSku?: FirewallSku | (string & {});
+  /** The Kind of the managed network. Users can switch from V1 to V2 for granular access controls, but cannot switch back to V1 once V2 is enabled. */
+  managedNetworkKind?: ManagedNetworkKind | (string & {});
+}
+export const ManagedNetworkSettingsExInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    isolationMode: S.optional(IsolationMode),
+    outboundRules: S.optional(
+      S.NullOr(ManagedNetworkSettingsExInputOutboundRulesMap),
+    ),
+    status: S.optional(ManagedNetworkProvisionStatus),
+    firewallSku: S.optional(FirewallSku),
+    managedNetworkKind: S.optional(ManagedNetworkKind),
+  }),
+).annotate({
+  identifier: "ManagedNetworkSettingsExInput",
+}) as any as S.Schema<ManagedNetworkSettingsExInput>;
+
+/** The properties of the managed network settings of a cognitive services account. */
+export interface ManagedNetworkSettingsPropertiesInput {
+  /** Managed Network settings for a cognitive services account. */
+  managedNetwork?: ManagedNetworkSettingsExInput;
+}
+export const ManagedNetworkSettingsPropertiesInput = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      managedNetwork: S.optional(ManagedNetworkSettingsExInput),
+    }),
+).annotate({
+  identifier: "ManagedNetworkSettingsPropertiesInput",
+}) as any as S.Schema<ManagedNetworkSettingsPropertiesInput>;
+
+export interface PatchManagedNetworkSettingsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+  /** Name of the managedNetwork associated with the cognitive services account. Only 'default' is supported. */
+  managedNetworkName: string;
+  /** The properties of the managed network settings of a cognitive services account. */
+  properties?: ManagedNetworkSettingsPropertiesInput;
+}
+export const PatchManagedNetworkSettingsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    managedNetworkName: S.String.pipe(T.Label()),
+    properties: S.optional(ManagedNetworkSettingsPropertiesInput),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/managedNetworks/{managedNetworkName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "PatchManagedNetworkSettingsRequest",
+}) as any as S.Schema<PatchManagedNetworkSettingsRequest>;
+
+export interface PatchManagedNetworkSettingsResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of the managed network settings of a cognitive services account. */
+  properties?: ManagedNetworkSettingsProperties;
+}
+export const PatchManagedNetworkSettingsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ManagedNetworkSettingsProperties),
+  }),
+).annotate({
+  identifier: "PatchManagedNetworkSettingsResponse",
+}) as any as S.Schema<PatchManagedNetworkSettingsResponse>;
+
+export interface PauseDeploymentRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+  /** The name of the deployment associated with the Cognitive Services Account */
+  deploymentName: string;
+}
+export const PauseDeploymentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    deploymentName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/deployments/{deploymentName}/pause",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "PauseDeploymentRequest",
+}) as any as S.Schema<PauseDeploymentRequest>;
+
+/** Resource tags. */
+export type PauseDeploymentResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const PauseDeploymentResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<PauseDeploymentResponseTagsMap>;
+
+export interface PauseDeploymentResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of Cognitive Services account deployment. */
+  properties?: DeploymentProperties;
+  /** The resource model definition representing SKU */
+  sku?: Sku;
+  /** Resource Etag. */
+  etag?: string;
+  /** Resource tags. */
+  tags?: PauseDeploymentResponseTagsMap;
+}
+export const PauseDeploymentResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(DeploymentProperties),
+    sku: S.optional(Sku),
+    etag: S.optional(S.String),
+    tags: S.optional(PauseDeploymentResponseTagsMap),
+  }),
+).annotate({
+  identifier: "PauseDeploymentResponse",
+}) as any as S.Schema<PauseDeploymentResponse>;
+
+/** Dictionary of <OutboundRule> */
+export type ManagedNetworkSettingsInputOutboundRulesMap = {
+  [key: string]: OutboundRuleInput | undefined;
+};
+export const ManagedNetworkSettingsInputOutboundRulesMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    OutboundRuleInput,
+  ) as any as S.Schema<ManagedNetworkSettingsInputOutboundRulesMap>;
+
+/** Managed Network settings for a cognitive services account. */
+export interface ManagedNetworkSettingsInput {
+  /** Isolation mode for the managed network of a cognitive services account. */
+  isolationMode?: IsolationMode | (string & {});
+  /** Dictionary of <OutboundRule> */
+  outboundRules?: ManagedNetworkSettingsInputOutboundRulesMap | null;
+  /** Status of the Provisioning for the managed network of a cognitive services account. */
+  status?: ManagedNetworkProvisionStatus;
+  /** Firewall Sku used for FQDN Rules */
+  firewallSku?: FirewallSku | (string & {});
+  /** The Kind of the managed network. Users can switch from V1 to V2 for granular access controls, but cannot switch back to V1 once V2 is enabled. */
+  managedNetworkKind?: ManagedNetworkKind | (string & {});
+}
+export const ManagedNetworkSettingsInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    isolationMode: S.optional(IsolationMode),
+    outboundRules: S.optional(
+      S.NullOr(ManagedNetworkSettingsInputOutboundRulesMap),
+    ),
+    status: S.optional(ManagedNetworkProvisionStatus),
+    firewallSku: S.optional(FirewallSku),
+    managedNetworkKind: S.optional(ManagedNetworkKind),
+  }),
+).annotate({
+  identifier: "ManagedNetworkSettingsInput",
+}) as any as S.Schema<ManagedNetworkSettingsInput>;
+
+export interface PostOutboundRuleRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+  /** Name of the managedNetwork associated with the cognitive services account. Only 'default' is supported. */
+  managedNetworkName: string;
+  /** Managed Network settings for a cognitive services account. */
+  properties?: ManagedNetworkSettingsInput;
+}
+export const PostOutboundRuleRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    managedNetworkName: S.String.pipe(T.Label()),
+    properties: S.optional(ManagedNetworkSettingsInput),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/managedNetworks/{managedNetworkName}/batchOutboundRules",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "PostOutboundRuleRequest",
+}) as any as S.Schema<PostOutboundRuleRequest>;
+
+/** The Private Endpoint resource. */
+export type PrivateEndpointConnectionPropertiesInputPrivateEndpoint =
+  UserAssignedIdentityInput;
+export const PrivateEndpointConnectionPropertiesInputPrivateEndpoint =
+  UserAssignedIdentityInput;
+
+/** A collection of information about the state of the connection between service consumer and provider. */
+export interface PrivateEndpointConnectionPropertiesInputPrivateLinkServiceConnectionState {
+  /** Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service. */
+  status?: PrivateEndpointServiceConnectionStatus | (string & {});
+  /** The reason for approval/rejection of the connection. */
+  description?: string;
+  /** A message indicating if changes on the service provider require any updates on the consumer. */
+  actionsRequired?: string;
+}
+export const PrivateEndpointConnectionPropertiesInputPrivateLinkServiceConnectionState =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      status: S.optional(PrivateEndpointServiceConnectionStatus),
+      description: S.optional(S.String),
+      actionsRequired: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier:
+      "PrivateEndpointConnectionPropertiesInputPrivateLinkServiceConnectionState",
+  }) as any as S.Schema<PrivateEndpointConnectionPropertiesInputPrivateLinkServiceConnectionState>;
+
+/** The private link resource group ids. */
+export type PrivateEndpointConnectionPropertiesInputGroupIdsList =
+  Array<string>;
+export const PrivateEndpointConnectionPropertiesInputGroupIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<PrivateEndpointConnectionPropertiesInputGroupIdsList>;
+
+/** Properties of the PrivateEndpointConnectProperties. */
+export interface PrivateEndpointConnectionPropertiesInput {
+  /** The Private Endpoint resource. */
+  privateEndpoint?: UserAssignedIdentityInput;
+  /** A collection of information about the state of the connection between service consumer and provider. */
+  privateLinkServiceConnectionState: PrivateEndpointConnectionPropertiesInputPrivateLinkServiceConnectionState;
+  /** The private link resource group ids. */
+  groupIds?: PrivateEndpointConnectionPropertiesInputGroupIdsList;
+}
+export const PrivateEndpointConnectionPropertiesInput = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      privateEndpoint: S.optional(UserAssignedIdentityInput),
+      privateLinkServiceConnectionState:
+        PrivateEndpointConnectionPropertiesInputPrivateLinkServiceConnectionState,
+      groupIds: S.optional(
+        PrivateEndpointConnectionPropertiesInputGroupIdsList,
+      ),
+    }),
+).annotate({
+  identifier: "PrivateEndpointConnectionPropertiesInput",
+}) as any as S.Schema<PrivateEndpointConnectionPropertiesInput>;
+
+export interface PrivateEndpointConnectionsCreateOrUpdateRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+  /** The name of the private endpoint connection associated with the Cognitive Services Account */
+  privateEndpointConnectionName: string;
+  /** Resource properties. */
+  properties?: PrivateEndpointConnectionPropertiesInput;
+  /** The location of the private endpoint connection */
+  location?: string;
+}
+export const PrivateEndpointConnectionsCreateOrUpdateRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+      privateEndpointConnectionName: S.String.pipe(T.Label()),
+      properties: S.optional(PrivateEndpointConnectionPropertiesInput),
+      location: S.optional(S.String),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/privateEndpointConnections/{privateEndpointConnectionName}",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "PrivateEndpointConnectionsCreateOrUpdateRequest",
+  }) as any as S.Schema<PrivateEndpointConnectionsCreateOrUpdateRequest>;
+
+export interface PrivateEndpointConnectionsCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource properties. */
+  properties?: PrivateEndpointConnectionProperties;
+  /** Resource Etag. */
+  etag?: string;
+  /** The location of the private endpoint connection */
+  location?: string;
+}
+export const PrivateEndpointConnectionsCreateOrUpdateResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(PrivateEndpointConnectionProperties),
+      etag: S.optional(S.String),
+      location: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "PrivateEndpointConnectionsCreateOrUpdateResponse",
+  }) as any as S.Schema<PrivateEndpointConnectionsCreateOrUpdateResponse>;
+
+/** List of AI services connections. */
+export type ProjectCapabilityHostPropertiesInputAiServicesConnectionsList =
+  Array<string>;
+export const ProjectCapabilityHostPropertiesInputAiServicesConnectionsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ProjectCapabilityHostPropertiesInputAiServicesConnectionsList>;
+
+/** List of connection names from those available in the account or project to be used for vector database (e.g. CosmosDB). */
+export type ProjectCapabilityHostPropertiesInputVectorStoreConnectionsList =
+  Array<string>;
+export const ProjectCapabilityHostPropertiesInputVectorStoreConnectionsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ProjectCapabilityHostPropertiesInputVectorStoreConnectionsList>;
+
+/** List of connection names from those available in the account or project to be used as a storage resource. */
+export type ProjectCapabilityHostPropertiesInputStorageConnectionsList =
+  Array<string>;
+export const ProjectCapabilityHostPropertiesInputStorageConnectionsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ProjectCapabilityHostPropertiesInputStorageConnectionsList>;
+
+/** List of connection names from those available in the account or project to be used for Thread storage. */
+export type ProjectCapabilityHostPropertiesInputThreadStorageConnectionsList =
+  Array<string>;
+export const ProjectCapabilityHostPropertiesInputThreadStorageConnectionsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ProjectCapabilityHostPropertiesInputThreadStorageConnectionsList>;
+
+export interface ProjectCapabilityHostPropertiesInput {
+  /** List of AI services connections. */
+  aiServicesConnections?: ProjectCapabilityHostPropertiesInputAiServicesConnectionsList | null;
+  /** List of connection names from those available in the account or project to be used for vector database (e.g. CosmosDB). */
+  vectorStoreConnections?: ProjectCapabilityHostPropertiesInputVectorStoreConnectionsList | null;
+  /** List of connection names from those available in the account or project to be used as a storage resource. */
+  storageConnections?: ProjectCapabilityHostPropertiesInputStorageConnectionsList | null;
+  /** List of connection names from those available in the account or project to be used for Thread storage. */
+  threadStorageConnections?: ProjectCapabilityHostPropertiesInputThreadStorageConnectionsList | null;
+}
+export const ProjectCapabilityHostPropertiesInput = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      aiServicesConnections: S.optional(
+        S.NullOr(ProjectCapabilityHostPropertiesInputAiServicesConnectionsList),
+      ),
+      vectorStoreConnections: S.optional(
+        S.NullOr(
+          ProjectCapabilityHostPropertiesInputVectorStoreConnectionsList,
+        ),
+      ),
+      storageConnections: S.optional(
+        S.NullOr(ProjectCapabilityHostPropertiesInputStorageConnectionsList),
+      ),
+      threadStorageConnections: S.optional(
+        S.NullOr(
+          ProjectCapabilityHostPropertiesInputThreadStorageConnectionsList,
+        ),
+      ),
+    }),
+).annotate({
+  identifier: "ProjectCapabilityHostPropertiesInput",
+}) as any as S.Schema<ProjectCapabilityHostPropertiesInput>;
+
+export interface ProjectCapabilityHostsCreateOrUpdateRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+  /** The name of Cognitive Services account's project. */
+  projectName: string;
+  /** The name of the capability host associated with the Cognitive Services Resource */
+  capabilityHostName: string;
+  /** [Required] Additional attributes of the entity. */
+  properties: ProjectCapabilityHostPropertiesInput;
+}
+export const ProjectCapabilityHostsCreateOrUpdateRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+      projectName: S.String.pipe(T.Label()),
+      capabilityHostName: S.String.pipe(T.Label()),
+      properties: ProjectCapabilityHostPropertiesInput,
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}/capabilityHosts/{capabilityHostName}",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ProjectCapabilityHostsCreateOrUpdateRequest",
+  }) as any as S.Schema<ProjectCapabilityHostsCreateOrUpdateRequest>;
+
+export interface ProjectCapabilityHostsCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** [Required] Additional attributes of the entity. */
+  properties: ProjectCapabilityHostProperties;
+}
+export const ProjectCapabilityHostsCreateOrUpdateResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: ProjectCapabilityHostProperties,
+    }),
+  ).annotate({
+    identifier: "ProjectCapabilityHostsCreateOrUpdateResponse",
+  }) as any as S.Schema<ProjectCapabilityHostsCreateOrUpdateResponse>;
+
+export interface ProvisionManagedNetworkProvisionManagedNetworkRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+  /** Name of the managedNetwork associated with the cognitive services account. Only 'default' is supported. */
+  managedNetworkName: string;
+}
+export const ProvisionManagedNetworkProvisionManagedNetworkRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+      managedNetworkName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/managedNetworks/{managedNetworkName}/provision",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ProvisionManagedNetworkProvisionManagedNetworkRequest",
+  }) as any as S.Schema<ProvisionManagedNetworkProvisionManagedNetworkRequest>;
+
+export interface PurgeDeletedAccountRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of Azure region. */
+  location: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+}
+export const PurgeDeletedAccountRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    location: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/locations/{location}/resourceGroups/{resourceGroupName}/deletedAccounts/{accountName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "PurgeDeletedAccountRequest",
+}) as any as S.Schema<PurgeDeletedAccountRequest>;
+
+export interface PurgeDeletedAccountResponse {}
+export const PurgeDeletedAccountResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "PurgeDeletedAccountResponse",
+}) as any as S.Schema<PurgeDeletedAccountResponse>;
+
+export interface PutManagedNetworkSettingsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+  /** Name of the managedNetwork associated with the cognitive services account. Only 'default' is supported. */
+  managedNetworkName: string;
+  /** The properties of the managed network settings of a cognitive services account. */
+  properties?: ManagedNetworkSettingsPropertiesInput;
+}
+export const PutManagedNetworkSettingsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    managedNetworkName: S.String.pipe(T.Label()),
+    properties: S.optional(ManagedNetworkSettingsPropertiesInput),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/managedNetworks/{managedNetworkName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "PutManagedNetworkSettingsRequest",
+}) as any as S.Schema<PutManagedNetworkSettingsRequest>;
+
+export interface PutManagedNetworkSettingsResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of the managed network settings of a cognitive services account. */
+  properties?: ManagedNetworkSettingsProperties;
+}
+export const PutManagedNetworkSettingsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ManagedNetworkSettingsProperties),
+  }),
+).annotate({
+  identifier: "PutManagedNetworkSettingsResponse",
+}) as any as S.Schema<PutManagedNetworkSettingsResponse>;
+
+/** Properties of Quota Tier resource'. */
+export interface QuotaTierPropertiesInput {
+  /** Gets the tier upgrade policy for the subscription. */
+  tierUpgradePolicy?: TierUpgradePolicy | (string & {});
+}
+export const QuotaTierPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    tierUpgradePolicy: S.optional(TierUpgradePolicy),
+  }),
+).annotate({
+  identifier: "QuotaTierPropertiesInput",
+}) as any as S.Schema<QuotaTierPropertiesInput>;
+
+export interface QuotaTiersCreateOrUpdateRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** Default parameter. Leave the value as default. */
+  default: string;
+  /** Properties of quota tier resource. */
+  properties?: QuotaTierPropertiesInput;
+}
+export const QuotaTiersCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    default: S.String.pipe(T.Label()),
+    properties: S.optional(QuotaTierPropertiesInput),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/quotaTiers/{default}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "QuotaTiersCreateOrUpdateRequest",
+}) as any as S.Schema<QuotaTiersCreateOrUpdateRequest>;
+
+export interface QuotaTiersCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of quota tier resource. */
+  properties?: QuotaTierProperties;
+}
+export const QuotaTiersCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(QuotaTierProperties),
+  }),
+).annotate({
+  identifier: "QuotaTiersCreateOrUpdateResponse",
+}) as any as S.Schema<QuotaTiersCreateOrUpdateResponse>;
+
+/** Resource tags. */
+export type RaiBlocklistItemsCreateOrUpdateRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const RaiBlocklistItemsCreateOrUpdateRequestTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<RaiBlocklistItemsCreateOrUpdateRequestTagsMap>;
+
+export interface RaiBlocklistItemsCreateOrUpdateRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+  /** The name of the RaiBlocklist associated with the Cognitive Services Account */
+  raiBlocklistName: string;
+  /** The name of the RaiBlocklist Item associated with the custom blocklist */
+  raiBlocklistItemName: string;
+  /** Properties of Cognitive Services RaiBlocklist Item. */
+  properties?: RaiBlocklistItemProperties;
+  /** Resource tags. */
+  tags?: RaiBlocklistItemsCreateOrUpdateRequestTagsMap;
+}
+export const RaiBlocklistItemsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+      raiBlocklistName: S.String.pipe(T.Label()),
+      raiBlocklistItemName: S.String.pipe(T.Label()),
+      properties: S.optional(RaiBlocklistItemProperties),
+      tags: S.optional(RaiBlocklistItemsCreateOrUpdateRequestTagsMap),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/raiBlocklists/{raiBlocklistName}/raiBlocklistItems/{raiBlocklistItemName}",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+).annotate({
+  identifier: "RaiBlocklistItemsCreateOrUpdateRequest",
+}) as any as S.Schema<RaiBlocklistItemsCreateOrUpdateRequest>;
+
+/** Resource tags. */
+export type RaiBlocklistItemsCreateOrUpdateResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const RaiBlocklistItemsCreateOrUpdateResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<RaiBlocklistItemsCreateOrUpdateResponseTagsMap>;
+
+export interface RaiBlocklistItemsCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of Cognitive Services RaiBlocklist Item. */
+  properties?: RaiBlocklistItemProperties;
+  /** Resource Etag. */
+  etag?: string;
+  /** Resource tags. */
+  tags?: RaiBlocklistItemsCreateOrUpdateResponseTagsMap;
+}
+export const RaiBlocklistItemsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(RaiBlocklistItemProperties),
+      etag: S.optional(S.String),
+      tags: S.optional(RaiBlocklistItemsCreateOrUpdateResponseTagsMap),
+    }),
+).annotate({
+  identifier: "RaiBlocklistItemsCreateOrUpdateResponse",
+}) as any as S.Schema<RaiBlocklistItemsCreateOrUpdateResponse>;
+
+/** Resource tags. */
+export type RaiBlocklistsCreateOrUpdateRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const RaiBlocklistsCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<RaiBlocklistsCreateOrUpdateRequestTagsMap>;
+
+export interface RaiBlocklistsCreateOrUpdateRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+  /** The name of the RaiBlocklist associated with the Cognitive Services Account */
+  raiBlocklistName: string;
+  /** Properties of Cognitive Services RaiBlocklist. */
+  properties?: RaiBlocklistProperties;
+  /** Resource tags. */
+  tags?: RaiBlocklistsCreateOrUpdateRequestTagsMap;
+}
+export const RaiBlocklistsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    raiBlocklistName: S.String.pipe(T.Label()),
+    properties: S.optional(RaiBlocklistProperties),
+    tags: S.optional(RaiBlocklistsCreateOrUpdateRequestTagsMap),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/raiBlocklists/{raiBlocklistName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "RaiBlocklistsCreateOrUpdateRequest",
+}) as any as S.Schema<RaiBlocklistsCreateOrUpdateRequest>;
+
+/** Resource tags. */
+export type RaiBlocklistsCreateOrUpdateResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const RaiBlocklistsCreateOrUpdateResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<RaiBlocklistsCreateOrUpdateResponseTagsMap>;
+
+export interface RaiBlocklistsCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of Cognitive Services RaiBlocklist. */
+  properties?: RaiBlocklistProperties;
+  /** Resource Etag. */
+  etag?: string;
+  /** Resource tags. */
+  tags?: RaiBlocklistsCreateOrUpdateResponseTagsMap;
+}
+export const RaiBlocklistsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(RaiBlocklistProperties),
+    etag: S.optional(S.String),
+    tags: S.optional(RaiBlocklistsCreateOrUpdateResponseTagsMap),
+  }),
+).annotate({
+  identifier: "RaiBlocklistsCreateOrUpdateResponse",
+}) as any as S.Schema<RaiBlocklistsCreateOrUpdateResponse>;
+
+/** RAI External SafetyProvider schema properties. */
+export interface RaiExternalSafetyProviderSchemaPropertiesInput {
+  /** The unique identifier of the safety provider. */
+  providerId?: string;
+  /** Name of the safety provider. */
+  providerName?: string;
+  /** Safety provider mode sync/async. */
+  mode?: string;
+  /** Webhook URL for the safety provider. */
+  url?: string;
+  /** The name of the secret in Key Vault that contains the api key to access the webhook. */
+  secretName?: string;
+  /** The managed identity to access the Key Vault. */
+  managedIdentity?: string;
+  /** The Key Vault URI that contains the api key for safety provider urls. */
+  keyVaultUri?: string;
+}
+export const RaiExternalSafetyProviderSchemaPropertiesInput =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      providerId: S.optional(S.String),
+      providerName: S.optional(S.String),
+      mode: S.optional(S.String),
+      url: S.optional(S.String),
+      secretName: S.optional(S.String),
+      managedIdentity: S.optional(S.String),
+      keyVaultUri: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "RaiExternalSafetyProviderSchemaPropertiesInput",
+  }) as any as S.Schema<RaiExternalSafetyProviderSchemaPropertiesInput>;
+
+export interface RaiExternalSafetyProviderCreateOrUpdateRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the Rai External Safety Provider associated with the Cognitive Services Account */
+  safetyProviderName: string;
+  /** Properties of Cognitive Services Rai External Safety provider. */
+  properties?: RaiExternalSafetyProviderSchemaPropertiesInput;
+}
+export const RaiExternalSafetyProviderCreateOrUpdateRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      safetyProviderName: S.String.pipe(T.Label()),
+      properties: S.optional(RaiExternalSafetyProviderSchemaPropertiesInput),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/raiExternalSafetyProviders/{safetyProviderName}",
+        code: 200,
+        apiVersion: "2026-07-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "RaiExternalSafetyProviderCreateOrUpdateRequest",
+  }) as any as S.Schema<RaiExternalSafetyProviderCreateOrUpdateRequest>;
+
+/** Resource tags. */
+export type RaiExternalSafetyProviderCreateOrUpdateResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const RaiExternalSafetyProviderCreateOrUpdateResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<RaiExternalSafetyProviderCreateOrUpdateResponseTagsMap>;
+
+export interface RaiExternalSafetyProviderCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of Cognitive Services Rai External Safety provider. */
+  properties?: RaiExternalSafetyProviderSchemaProperties;
+  /** Resource Etag. */
+  etag?: string;
+  /** Resource tags. */
+  tags?: RaiExternalSafetyProviderCreateOrUpdateResponseTagsMap;
+}
+export const RaiExternalSafetyProviderCreateOrUpdateResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(RaiExternalSafetyProviderSchemaProperties),
+      etag: S.optional(S.String),
+      tags: S.optional(RaiExternalSafetyProviderCreateOrUpdateResponseTagsMap),
+    }),
+  ).annotate({
+    identifier: "RaiExternalSafetyProviderCreateOrUpdateResponse",
+  }) as any as S.Schema<RaiExternalSafetyProviderCreateOrUpdateResponse>;
+
+/** Resource tags. */
+export type RaiPoliciesCreateOrUpdateRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const RaiPoliciesCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<RaiPoliciesCreateOrUpdateRequestTagsMap>;
+
+export interface RaiPoliciesCreateOrUpdateRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+  /** The name of the RaiPolicy associated with the Cognitive Services Account */
+  raiPolicyName: string;
+  /** Properties of Cognitive Services RaiPolicy. */
+  properties?: RaiPolicyProperties;
+  /** Resource tags. */
+  tags?: RaiPoliciesCreateOrUpdateRequestTagsMap;
+}
+export const RaiPoliciesCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    raiPolicyName: S.String.pipe(T.Label()),
+    properties: S.optional(RaiPolicyProperties),
+    tags: S.optional(RaiPoliciesCreateOrUpdateRequestTagsMap),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/raiPolicies/{raiPolicyName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "RaiPoliciesCreateOrUpdateRequest",
+}) as any as S.Schema<RaiPoliciesCreateOrUpdateRequest>;
+
+/** Resource tags. */
+export type RaiPoliciesCreateOrUpdateResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const RaiPoliciesCreateOrUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<RaiPoliciesCreateOrUpdateResponseTagsMap>;
+
+export interface RaiPoliciesCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of Cognitive Services RaiPolicy. */
+  properties?: RaiPolicyProperties;
+  /** Resource Etag. */
+  etag?: string;
+  /** Resource tags. */
+  tags?: RaiPoliciesCreateOrUpdateResponseTagsMap;
+}
+export const RaiPoliciesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(RaiPolicyProperties),
+    etag: S.optional(S.String),
+    tags: S.optional(RaiPoliciesCreateOrUpdateResponseTagsMap),
+  }),
+).annotate({
+  identifier: "RaiPoliciesCreateOrUpdateResponse",
+}) as any as S.Schema<RaiPoliciesCreateOrUpdateResponse>;
+
+/** Resource tags. */
+export type RaiToolLabelsCreateOrUpdateRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const RaiToolLabelsCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<RaiToolLabelsCreateOrUpdateRequestTagsMap>;
+
+export interface RaiToolLabelsCreateOrUpdateRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+  /** The name of the Rai Tool Label */
+  raiToolConnectionName: string;
+  /** Properties of the RAI Tool Label. */
+  properties?: RaiToolLabelProperties;
+  /** Resource tags. */
+  tags?: RaiToolLabelsCreateOrUpdateRequestTagsMap;
+}
+export const RaiToolLabelsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    raiToolConnectionName: S.String.pipe(T.Label()),
+    properties: S.optional(RaiToolLabelProperties),
+    tags: S.optional(RaiToolLabelsCreateOrUpdateRequestTagsMap),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/raiToolLabels/{raiToolConnectionName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "RaiToolLabelsCreateOrUpdateRequest",
+}) as any as S.Schema<RaiToolLabelsCreateOrUpdateRequest>;
+
+/** Resource tags. */
+export type RaiToolLabelsCreateOrUpdateResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const RaiToolLabelsCreateOrUpdateResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<RaiToolLabelsCreateOrUpdateResponseTagsMap>;
+
+export interface RaiToolLabelsCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of the RAI Tool Label. */
+  properties?: RaiToolLabelProperties;
+  /** Resource Etag. */
+  etag?: string;
+  /** Resource tags. */
+  tags?: RaiToolLabelsCreateOrUpdateResponseTagsMap;
+}
+export const RaiToolLabelsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(RaiToolLabelProperties),
+    etag: S.optional(S.String),
+    tags: S.optional(RaiToolLabelsCreateOrUpdateResponseTagsMap),
+  }),
+).annotate({
+  identifier: "RaiToolLabelsCreateOrUpdateResponse",
+}) as any as S.Schema<RaiToolLabelsCreateOrUpdateResponse>;
+
+/** Resource tags. */
+export type RaiTopicsCreateOrUpdateRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const RaiTopicsCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<RaiTopicsCreateOrUpdateRequestTagsMap>;
+
+export interface RaiTopicsCreateOrUpdateRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+  /** The name of the Rai Topic associated with the Cognitive Services Account */
+  raiTopicName: string;
+  /** Properties of Cognitive Services Rai Topic. */
+  properties?: RaiTopicProperties;
+  /** Resource tags. */
+  tags?: RaiTopicsCreateOrUpdateRequestTagsMap;
+}
+export const RaiTopicsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    raiTopicName: S.String.pipe(T.Label()),
+    properties: S.optional(RaiTopicProperties),
+    tags: S.optional(RaiTopicsCreateOrUpdateRequestTagsMap),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/raitopics/{raiTopicName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "RaiTopicsCreateOrUpdateRequest",
+}) as any as S.Schema<RaiTopicsCreateOrUpdateRequest>;
+
+/** Resource tags. */
+export type RaiTopicsCreateOrUpdateResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const RaiTopicsCreateOrUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<RaiTopicsCreateOrUpdateResponseTagsMap>;
+
+export interface RaiTopicsCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of Cognitive Services Rai Topic. */
+  properties?: RaiTopicProperties;
+  /** Resource Etag. */
+  etag?: string;
+  /** Resource tags. */
+  tags?: RaiTopicsCreateOrUpdateResponseTagsMap;
+}
+export const RaiTopicsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(RaiTopicProperties),
+    etag: S.optional(S.String),
+    tags: S.optional(RaiTopicsCreateOrUpdateResponseTagsMap),
+  }),
+).annotate({
+  identifier: "RaiTopicsCreateOrUpdateResponse",
+}) as any as S.Schema<RaiTopicsCreateOrUpdateResponse>;
+
+/** key name to generate (Key1|Key2) */
+export type KeyName = "Key1" | "Key2";
+export const KeyName = /*@__PURE__*/ S.String;
+
+export interface RegenerateAccountKeyRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+  /** key name to generate (Key1|Key2) */
+  keyName: KeyName | (string & {});
+}
+export const RegenerateAccountKeyRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    keyName: KeyName,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/regenerateKey",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "RegenerateAccountKeyRequest",
+}) as any as S.Schema<RegenerateAccountKeyRequest>;
+
+export interface ResumeDeploymentRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+  /** The name of the deployment associated with the Cognitive Services Account */
+  deploymentName: string;
+}
+export const ResumeDeploymentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    deploymentName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/deployments/{deploymentName}/resume",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "ResumeDeploymentRequest",
+}) as any as S.Schema<ResumeDeploymentRequest>;
+
+/** Resource tags. */
+export type ResumeDeploymentResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const ResumeDeploymentResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<ResumeDeploymentResponseTagsMap>;
+
+export interface ResumeDeploymentResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of Cognitive Services account deployment. */
+  properties?: DeploymentProperties;
+  /** The resource model definition representing SKU */
+  sku?: Sku;
+  /** Resource Etag. */
+  etag?: string;
+  /** Resource tags. */
+  tags?: ResumeDeploymentResponseTagsMap;
+}
+export const ResumeDeploymentResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(DeploymentProperties),
+    sku: S.optional(Sku),
+    etag: S.optional(S.String),
+    tags: S.optional(ResumeDeploymentResponseTagsMap),
+  }),
+).annotate({
+  identifier: "ResumeDeploymentResponse",
+}) as any as S.Schema<ResumeDeploymentResponse>;
+
+export interface StartAgentDeploymentRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+  /** The name of Cognitive Services account's project. */
+  projectName: string;
+  /** The name of the application associated with the Cognitive Services Account */
+  appName: string;
+  /** The name of the deployment associated with the Cognitive Services Account */
+  deploymentName: string;
+}
+export const StartAgentDeploymentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    projectName: S.String.pipe(T.Label()),
+    appName: S.String.pipe(T.Label()),
+    deploymentName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}/applications/{appName}/agentDeployments/{deploymentName}/start",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "StartAgentDeploymentRequest",
+}) as any as S.Schema<StartAgentDeploymentRequest>;
+
+export interface StartAgentDeploymentResponse {}
+export const StartAgentDeploymentResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "StartAgentDeploymentResponse",
+}) as any as S.Schema<StartAgentDeploymentResponse>;
+
+export interface StopAgentDeploymentRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+  /** The name of Cognitive Services account's project. */
+  projectName: string;
+  /** The name of the application associated with the Cognitive Services Account */
+  appName: string;
+  /** The name of the deployment associated with the Cognitive Services Account */
+  deploymentName: string;
+}
+export const StopAgentDeploymentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    projectName: S.String.pipe(T.Label()),
+    appName: S.String.pipe(T.Label()),
+    deploymentName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}/applications/{appName}/agentDeployments/{deploymentName}/stop",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "StopAgentDeploymentRequest",
+}) as any as S.Schema<StopAgentDeploymentRequest>;
+
+export interface StopAgentDeploymentResponse {}
+export const StopAgentDeploymentResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "StopAgentDeploymentResponse",
+}) as any as S.Schema<StopAgentDeploymentResponse>;
+
 /** Resource tags. */
 export type SubscriptionRaiPolicyCreateOrUpdateRequestTagsMap = {
   [key: string]: string | undefined;
@@ -12896,96 +12388,6 @@ export const SubscriptionRaiPolicyCreateOrUpdateResponse =
     identifier: "SubscriptionRaiPolicyCreateOrUpdateResponse",
   }) as any as S.Schema<SubscriptionRaiPolicyCreateOrUpdateResponse>;
 
-export interface SubscriptionRaiPolicyDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the RaiPolicy associated with the Cognitive Services Account */
-  raiPolicyName: string;
-}
-export const SubscriptionRaiPolicyDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    raiPolicyName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/raiPolicy/{raiPolicyName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "SubscriptionRaiPolicyDeleteRequest",
-}) as any as S.Schema<SubscriptionRaiPolicyDeleteRequest>;
-
-export interface SubscriptionRaiPolicyDeleteResponse {}
-export const SubscriptionRaiPolicyDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "SubscriptionRaiPolicyDeleteResponse",
-}) as any as S.Schema<SubscriptionRaiPolicyDeleteResponse>;
-
-export interface SubscriptionRaiPolicyGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the RaiPolicy associated with the Cognitive Services Account */
-  raiPolicyName: string;
-}
-export const SubscriptionRaiPolicyGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    raiPolicyName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/raiPolicy/{raiPolicyName}",
-      code: 200,
-      apiVersion: "2026-07-01",
-    }),
-  ),
-).annotate({
-  identifier: "SubscriptionRaiPolicyGetRequest",
-}) as any as S.Schema<SubscriptionRaiPolicyGetRequest>;
-
-/** Resource tags. */
-export type SubscriptionRaiPolicyGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const SubscriptionRaiPolicyGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<SubscriptionRaiPolicyGetResponseTagsMap>;
-
-export interface SubscriptionRaiPolicyGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of Cognitive Services RaiPolicy. */
-  properties?: RaiPolicyProperties;
-  /** Resource Etag. */
-  etag?: string;
-  /** Resource tags. */
-  tags?: SubscriptionRaiPolicyGetResponseTagsMap;
-}
-export const SubscriptionRaiPolicyGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(RaiPolicyProperties),
-    etag: S.optional(S.String),
-    tags: S.optional(SubscriptionRaiPolicyGetResponseTagsMap),
-  }),
-).annotate({
-  identifier: "SubscriptionRaiPolicyGetResponse",
-}) as any as S.Schema<SubscriptionRaiPolicyGetResponse>;
-
 export interface TestRaiExternalSafetyProviderCreateOrUpdateRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
@@ -13061,30 +12463,616 @@ export const TestRaiExternalSafetyProviderCreateOrUpdateResponse =
     identifier: "TestRaiExternalSafetyProviderCreateOrUpdateResponse",
   }) as any as S.Schema<TestRaiExternalSafetyProviderCreateOrUpdateResponse>;
 
-export interface UsagesListRequest {
+/** Resource tags. */
+export type UpdateAccountRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateAccountRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateAccountRequestTagsMap>;
+
+export interface UpdateAccountRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
-  /** The name of Azure region. */
-  location: string;
-  /** An OData filter expression that describes a subset of usages to return. The supported parameter is name.value (name of the metric, can have an or of multiple names). */
-  _filter?: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+  /** Properties of Cognitive Services account. */
+  properties?: AccountPropertiesInput;
+  /** Resource tags. */
+  tags?: UpdateAccountRequestTagsMap;
+  /** The geo-location where the resource lives */
+  location?: string;
+  /** The kind (type) of cognitive service account. */
+  kind?: string;
+  /** The resource model definition representing SKU */
+  sku?: Sku;
+  /** Identity for the resource. */
+  identity?: IdentityInput;
 }
-export const UsagesListRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateAccountRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
-    location: S.String.pipe(T.Label()),
-    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    properties: S.optional(AccountPropertiesInput),
+    tags: S.optional(UpdateAccountRequestTagsMap),
+    location: S.optional(S.String),
+    kind: S.optional(S.String),
+    sku: S.optional(Sku),
+    identity: S.optional(IdentityInput),
   }).pipe(
     T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/locations/{location}/usages",
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}",
       code: 200,
       apiVersion: "2026-07-01",
     }),
   ),
 ).annotate({
-  identifier: "UsagesListRequest",
-}) as any as S.Schema<UsagesListRequest>;
+  identifier: "UpdateAccountRequest",
+}) as any as S.Schema<UpdateAccountRequest>;
+
+/** Resource tags. */
+export type UpdateAccountResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateAccountResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateAccountResponseTagsMap>;
+
+export interface UpdateAccountResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of Cognitive Services account. */
+  properties?: AccountProperties;
+  /** Resource tags. */
+  tags?: UpdateAccountResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location?: string;
+  /** Resource Etag. */
+  etag?: string;
+  /** The kind (type) of cognitive service account. */
+  kind?: string;
+  /** The resource model definition representing SKU */
+  sku?: Sku;
+  /** Identity for the resource. */
+  identity?: Identity;
+}
+export const UpdateAccountResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(AccountProperties),
+    tags: S.optional(UpdateAccountResponseTagsMap),
+    location: S.optional(S.String),
+    etag: S.optional(S.String),
+    kind: S.optional(S.String),
+    sku: S.optional(Sku),
+    identity: S.optional(Identity),
+  }),
+).annotate({
+  identifier: "UpdateAccountResponse",
+}) as any as S.Schema<UpdateAccountResponse>;
+
+export interface UpdateAccountConnectionRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+  /** Friendly name of the connection */
+  connectionName: string;
+  /** The properties that the Cognitive services connection will be updated with. */
+  properties?: ConnectionPropertiesV2Input;
+}
+export const UpdateAccountConnectionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    connectionName: S.String.pipe(T.Label()),
+    properties: S.optional(ConnectionPropertiesV2Input),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/connections/{connectionName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateAccountConnectionRequest",
+}) as any as S.Schema<UpdateAccountConnectionRequest>;
+
+export interface UpdateAccountConnectionResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Connection property base schema. */
+  properties: ConnectionPropertiesV2;
+}
+export const UpdateAccountConnectionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: ConnectionPropertiesV2,
+  }),
+).annotate({
+  identifier: "UpdateAccountConnectionResponse",
+}) as any as S.Schema<UpdateAccountConnectionResponse>;
+
+/** Resource tags. */
+export type UpdateCommitmentPlanPlanRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateCommitmentPlanPlanRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateCommitmentPlanPlanRequestTagsMap>;
+
+export interface UpdateCommitmentPlanPlanRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the commitmentPlan associated with the Cognitive Services Account */
+  commitmentPlanName: string;
+  /** Resource tags. */
+  tags?: UpdateCommitmentPlanPlanRequestTagsMap;
+  /** The resource model definition representing SKU */
+  sku?: Sku;
+}
+export const UpdateCommitmentPlanPlanRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    commitmentPlanName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateCommitmentPlanPlanRequestTagsMap),
+    sku: S.optional(Sku),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/commitmentPlans/{commitmentPlanName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateCommitmentPlanPlanRequest",
+}) as any as S.Schema<UpdateCommitmentPlanPlanRequest>;
+
+/** Resource tags. */
+export type UpdateCommitmentPlanPlanResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateCommitmentPlanPlanResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateCommitmentPlanPlanResponseTagsMap>;
+
+export interface UpdateCommitmentPlanPlanResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of Cognitive Services account commitment plan. */
+  properties?: CommitmentPlanProperties;
+  /** Resource tags. */
+  tags?: UpdateCommitmentPlanPlanResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location?: string;
+  /** Resource Etag. */
+  etag?: string;
+  /** The kind (type) of cognitive service account. */
+  kind?: string;
+  /** The resource model definition representing SKU */
+  sku?: Sku;
+}
+export const UpdateCommitmentPlanPlanResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(CommitmentPlanProperties),
+    tags: S.optional(UpdateCommitmentPlanPlanResponseTagsMap),
+    location: S.optional(S.String),
+    etag: S.optional(S.String),
+    kind: S.optional(S.String),
+    sku: S.optional(Sku),
+  }),
+).annotate({
+  identifier: "UpdateCommitmentPlanPlanResponse",
+}) as any as S.Schema<UpdateCommitmentPlanPlanResponse>;
+
+/** Resource tags. */
+export type UpdateDefenderForAISettingsRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateDefenderForAISettingsRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateDefenderForAISettingsRequestTagsMap>;
+
+export interface UpdateDefenderForAISettingsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+  /** The name of the defender for AI setting. */
+  defenderForAISettingName: string;
+  /** The Defender for AI resource properties. */
+  properties?: DefenderForAISettingProperties;
+  /** Resource tags. */
+  tags?: UpdateDefenderForAISettingsRequestTagsMap;
+}
+export const UpdateDefenderForAISettingsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    defenderForAISettingName: S.String.pipe(T.Label()),
+    properties: S.optional(DefenderForAISettingProperties),
+    tags: S.optional(UpdateDefenderForAISettingsRequestTagsMap),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/defenderForAISettings/{defenderForAISettingName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateDefenderForAISettingsRequest",
+}) as any as S.Schema<UpdateDefenderForAISettingsRequest>;
+
+/** Resource tags. */
+export type UpdateDefenderForAISettingsResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateDefenderForAISettingsResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<UpdateDefenderForAISettingsResponseTagsMap>;
+
+export interface UpdateDefenderForAISettingsResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The Defender for AI resource properties. */
+  properties?: DefenderForAISettingProperties;
+  /** Resource Etag. */
+  etag?: string;
+  /** Resource tags. */
+  tags?: UpdateDefenderForAISettingsResponseTagsMap;
+}
+export const UpdateDefenderForAISettingsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(DefenderForAISettingProperties),
+    etag: S.optional(S.String),
+    tags: S.optional(UpdateDefenderForAISettingsResponseTagsMap),
+  }),
+).annotate({
+  identifier: "UpdateDefenderForAISettingsResponse",
+}) as any as S.Schema<UpdateDefenderForAISettingsResponse>;
+
+/** Resource tags. */
+export type UpdateDeploymentRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateDeploymentRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateDeploymentRequestTagsMap>;
+
+export interface UpdateDeploymentRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+  /** The name of the deployment associated with the Cognitive Services Account */
+  deploymentName: string;
+  /** Resource tags. */
+  tags?: UpdateDeploymentRequestTagsMap;
+  /** The resource model definition representing SKU */
+  sku?: Sku;
+}
+export const UpdateDeploymentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    deploymentName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateDeploymentRequestTagsMap),
+    sku: S.optional(Sku),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/deployments/{deploymentName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateDeploymentRequest",
+}) as any as S.Schema<UpdateDeploymentRequest>;
+
+/** Resource tags. */
+export type UpdateDeploymentResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateDeploymentResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateDeploymentResponseTagsMap>;
+
+export interface UpdateDeploymentResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of Cognitive Services account deployment. */
+  properties?: DeploymentProperties;
+  /** The resource model definition representing SKU */
+  sku?: Sku;
+  /** Resource Etag. */
+  etag?: string;
+  /** Resource tags. */
+  tags?: UpdateDeploymentResponseTagsMap;
+}
+export const UpdateDeploymentResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(DeploymentProperties),
+    sku: S.optional(Sku),
+    etag: S.optional(S.String),
+    tags: S.optional(UpdateDeploymentResponseTagsMap),
+  }),
+).annotate({
+  identifier: "UpdateDeploymentResponse",
+}) as any as S.Schema<UpdateDeploymentResponse>;
+
+/** Resource tags. */
+export type UpdateProjectRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateProjectRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateProjectRequestTagsMap>;
+
+export interface UpdateProjectRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+  /** The name of Cognitive Services account's project. */
+  projectName: string;
+  /** Properties of Cognitive Services project. */
+  properties?: ProjectPropertiesInput;
+  /** Resource tags. */
+  tags?: UpdateProjectRequestTagsMap;
+  /** The geo-location where the resource lives */
+  location?: string;
+  /** Identity for the resource. */
+  identity?: IdentityInput;
+}
+export const UpdateProjectRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    projectName: S.String.pipe(T.Label()),
+    properties: S.optional(ProjectPropertiesInput),
+    tags: S.optional(UpdateProjectRequestTagsMap),
+    location: S.optional(S.String),
+    identity: S.optional(IdentityInput),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateProjectRequest",
+}) as any as S.Schema<UpdateProjectRequest>;
+
+/** Resource tags. */
+export type UpdateProjectResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateProjectResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateProjectResponseTagsMap>;
+
+export interface UpdateProjectResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of Cognitive Services project. */
+  properties?: ProjectProperties;
+  /** Resource tags. */
+  tags?: UpdateProjectResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location?: string;
+  /** Resource Etag. */
+  etag?: string;
+  /** Identity for the resource. */
+  identity?: Identity;
+}
+export const UpdateProjectResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ProjectProperties),
+    tags: S.optional(UpdateProjectResponseTagsMap),
+    location: S.optional(S.String),
+    etag: S.optional(S.String),
+    identity: S.optional(Identity),
+  }),
+).annotate({
+  identifier: "UpdateProjectResponse",
+}) as any as S.Schema<UpdateProjectResponse>;
+
+export interface UpdateProjectConnectionRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of Cognitive Services account. */
+  accountName: string;
+  /** The name of Cognitive Services account's project. */
+  projectName: string;
+  /** Friendly name of the connection */
+  connectionName: string;
+  /** The properties that the Cognitive services connection will be updated with. */
+  properties?: ConnectionPropertiesV2Input;
+}
+export const UpdateProjectConnectionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    projectName: S.String.pipe(T.Label()),
+    connectionName: S.String.pipe(T.Label()),
+    properties: S.optional(ConnectionPropertiesV2Input),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}/connections/{connectionName}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateProjectConnectionRequest",
+}) as any as S.Schema<UpdateProjectConnectionRequest>;
+
+export interface UpdateProjectConnectionResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Connection property base schema. */
+  properties: ConnectionPropertiesV2;
+}
+export const UpdateProjectConnectionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: ConnectionPropertiesV2,
+  }),
+).annotate({
+  identifier: "UpdateProjectConnectionResponse",
+}) as any as S.Schema<UpdateProjectConnectionResponse>;
+
+export interface UpdateQuotaTierRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** Default parameter. Leave the value as default. */
+  default: string;
+  /** Properties of quota tier resource. */
+  properties?: QuotaTierPropertiesInput;
+}
+export const UpdateQuotaTierRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    default: S.String.pipe(T.Label()),
+    properties: S.optional(QuotaTierPropertiesInput),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/quotaTiers/{default}",
+      code: 200,
+      apiVersion: "2026-07-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateQuotaTierRequest",
+}) as any as S.Schema<UpdateQuotaTierRequest>;
+
+export interface UpdateQuotaTierResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of quota tier resource. */
+  properties?: QuotaTierProperties;
+}
+export const UpdateQuotaTierResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(QuotaTierProperties),
+  }),
+).annotate({
+  identifier: "UpdateQuotaTierResponse",
+}) as any as S.Schema<UpdateQuotaTierResponse>;
 
 export type AccountCapabilityHostsCreateOrUpdateError = AzureOpError;
 /** Create or update account capabilityHost. Create or update account capabilityHost. */
@@ -13101,286 +13089,16 @@ export const AccountCapabilityHostsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type AccountCapabilityHostsDeleteError = AzureOpError;
-/** Delete account capabilityHost. Delete account capabilityHost. */
-export const AccountCapabilityHostsDelete: API.OperationMethod<
-  AccountCapabilityHostsDeleteRequest,
-  AccountCapabilityHostsDeleteResponse,
-  AccountCapabilityHostsDeleteError,
+export type AddRaiBlocklistItemBatchError = AzureOpError;
+/** Batch operation to add blocklist items. */
+export const AddRaiBlocklistItemBatch: API.OperationMethod<
+  AddRaiBlocklistItemBatchRequest,
+  AddRaiBlocklistItemBatchResponse,
+  AddRaiBlocklistItemBatchError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AccountCapabilityHostsDeleteRequest,
-  output: AccountCapabilityHostsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AccountCapabilityHostsGetError = AzureOpError;
-/** Get account capabilityHost. Get account capabilityHost. */
-export const AccountCapabilityHostsGet: API.OperationMethod<
-  AccountCapabilityHostsGetRequest,
-  AccountCapabilityHostsGetResponse,
-  AccountCapabilityHostsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccountCapabilityHostsGetRequest,
-  output: AccountCapabilityHostsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AccountCapabilityHostsListError = AzureOpError;
-/** List capabilityHost. List capabilityHost. */
-export const AccountCapabilityHostsList: API.OperationMethod<
-  AccountCapabilityHostsListRequest,
-  CapabilityHostResourceArmPaginatedResult,
-  AccountCapabilityHostsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccountCapabilityHostsListRequest,
-  output: CapabilityHostResourceArmPaginatedResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AccountConnectionsCreateError = AzureOpError;
-/** Create or update Cognitive Services account connection under the specified account. Create or update Cognitive Services account connection under the specified account. */
-export const AccountConnectionsCreate: API.OperationMethod<
-  AccountConnectionsCreateRequest,
-  AccountConnectionsCreateResponse,
-  AccountConnectionsCreateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccountConnectionsCreateRequest,
-  output: AccountConnectionsCreateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AccountConnectionsDeleteError = AzureOpError;
-/** Delete Cognitive Services account connection by name. Delete Cognitive Services account connection by name. */
-export const AccountConnectionsDelete: API.OperationMethod<
-  AccountConnectionsDeleteRequest,
-  AccountConnectionsDeleteResponse,
-  AccountConnectionsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccountConnectionsDeleteRequest,
-  output: AccountConnectionsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AccountConnectionsGetError = AzureOpError;
-/** Lists Cognitive Services account connection by name. Lists Cognitive Services account connection by name. */
-export const AccountConnectionsGet: API.OperationMethod<
-  AccountConnectionsGetRequest,
-  AccountConnectionsGetResponse,
-  AccountConnectionsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccountConnectionsGetRequest,
-  output: AccountConnectionsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AccountConnectionsListError = AzureOpError;
-/** Lists all the available Cognitive Services account connections under the specified account. Lists all the available Cognitive Services account connections under the specified account. */
-export const AccountConnectionsList: API.OperationMethod<
-  AccountConnectionsListRequest,
-  ConnectionPropertiesV2BasicResourceArmPaginatedResult,
-  AccountConnectionsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccountConnectionsListRequest,
-  output: ConnectionPropertiesV2BasicResourceArmPaginatedResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AccountConnectionsUpdateError = AzureOpError;
-/** Update Cognitive Services account connection under the specified account. Update Cognitive Services account connection under the specified account. */
-export const AccountConnectionsUpdate: API.OperationMethod<
-  AccountConnectionsUpdateRequest,
-  AccountConnectionsUpdateResponse,
-  AccountConnectionsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccountConnectionsUpdateRequest,
-  output: AccountConnectionsUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AccountsCreateError = AzureOpError;
-/** Create Cognitive Services Account. Accounts is a resource group wide resource type. It holds the keys for developer to access intelligent APIs. It's also the resource type for billing. */
-export const AccountsCreate: API.OperationMethod<
-  AccountsCreateRequest,
-  AccountsCreateResponse,
-  AccountsCreateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccountsCreateRequest,
-  output: AccountsCreateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AccountsDeleteError = AzureOpError;
-/** Deletes a Cognitive Services account from the resource group. */
-export const AccountsDelete: API.OperationMethod<
-  AccountsDeleteRequest,
-  AccountsDeleteResponse,
-  AccountsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccountsDeleteRequest,
-  output: AccountsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AccountsGetError = AzureOpError;
-/** Returns a Cognitive Services account specified by the parameters. */
-export const AccountsGet: API.OperationMethod<
-  AccountsGetRequest,
-  AccountsGetResponse,
-  AccountsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccountsGetRequest,
-  output: AccountsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AccountsListError = AzureOpError;
-/** Returns all the resources of a particular type belonging to a subscription. */
-export const AccountsList: API.OperationMethod<
-  AccountsListRequest,
-  AccountListResult,
-  AccountsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccountsListRequest,
-  output: AccountListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AccountsListByResourceGroupError = AzureOpError;
-/** Returns all the resources of a particular type belonging to a resource group */
-export const AccountsListByResourceGroup: API.OperationMethod<
-  AccountsListByResourceGroupRequest,
-  AccountListResult,
-  AccountsListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccountsListByResourceGroupRequest,
-  output: AccountListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AccountsListKeysError = AzureOpError;
-/** Lists the account keys for the specified Cognitive Services account. */
-export const AccountsListKeys: API.OperationMethod<
-  AccountsListKeysRequest,
-  ApiKeys,
-  AccountsListKeysError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccountsListKeysRequest,
-  output: ApiKeys,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AccountsListModelsError = AzureOpError;
-/** List available Models for the requested Cognitive Services account */
-export const AccountsListModels: API.OperationMethod<
-  AccountsListModelsRequest,
-  AccountModelListResult,
-  AccountsListModelsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccountsListModelsRequest,
-  output: AccountModelListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AccountsListSkusError = AzureOpError;
-/** List available SKUs for the requested Cognitive Services account */
-export const AccountsListSkus: API.OperationMethod<
-  AccountsListSkusRequest,
-  AccountSkuListResult,
-  AccountsListSkusError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccountsListSkusRequest,
-  output: AccountSkuListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AccountsListUsagesError = AzureOpError;
-/** Get usages for the requested Cognitive Services account */
-export const AccountsListUsages: API.OperationMethod<
-  AccountsListUsagesRequest,
-  UsageListResult,
-  AccountsListUsagesError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccountsListUsagesRequest,
-  output: UsageListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AccountsRegenerateKeyError = AzureOpError;
-/** Regenerates the specified account key for the specified Cognitive Services account. */
-export const AccountsRegenerateKey: API.OperationMethod<
-  AccountsRegenerateKeyRequest,
-  ApiKeys,
-  AccountsRegenerateKeyError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccountsRegenerateKeyRequest,
-  output: ApiKeys,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AccountsUpdateError = AzureOpError;
-/** Updates a Cognitive Services account */
-export const AccountsUpdate: API.OperationMethod<
-  AccountsUpdateRequest,
-  AccountsUpdateResponse,
-  AccountsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccountsUpdateRequest,
-  output: AccountsUpdateResponse,
+  input: AddRaiBlocklistItemBatchRequest,
+  output: AddRaiBlocklistItemBatchResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -13401,96 +13119,6 @@ export const AgentApplicationsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type AgentApplicationsDeleteError = AzureOpError;
-/** Delete Agent Application. Delete Agent Application. */
-export const AgentApplicationsDelete: API.OperationMethod<
-  AgentApplicationsDeleteRequest,
-  AgentApplicationsDeleteResponse,
-  AgentApplicationsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AgentApplicationsDeleteRequest,
-  output: AgentApplicationsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AgentApplicationsDisableError = AzureOpError;
-/** Disables an Agent Application. Disables an Agent Application. */
-export const AgentApplicationsDisable: API.OperationMethod<
-  AgentApplicationsDisableRequest,
-  AgentApplicationsDisableResponse,
-  AgentApplicationsDisableError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AgentApplicationsDisableRequest,
-  output: AgentApplicationsDisableResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AgentApplicationsEnableError = AzureOpError;
-/** Enables an Agent Application. Enables an Agent Application. */
-export const AgentApplicationsEnable: API.OperationMethod<
-  AgentApplicationsEnableRequest,
-  AgentApplicationsEnableResponse,
-  AgentApplicationsEnableError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AgentApplicationsEnableRequest,
-  output: AgentApplicationsEnableResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AgentApplicationsGetError = AzureOpError;
-/** Gets an Agent Application by name. Gets an Agent Application by name. */
-export const AgentApplicationsGet: API.OperationMethod<
-  AgentApplicationsGetRequest,
-  AgentApplicationsGetResponse,
-  AgentApplicationsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AgentApplicationsGetRequest,
-  output: AgentApplicationsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AgentApplicationsListError = AzureOpError;
-/** Lists Agent Applications in the project. Lists Agent Applications in the project. */
-export const AgentApplicationsList: API.OperationMethod<
-  AgentApplicationsListRequest,
-  AgentApplicationResourceArmPaginatedResult,
-  AgentApplicationsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AgentApplicationsListRequest,
-  output: AgentApplicationResourceArmPaginatedResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AgentApplicationsListAgentsError = AzureOpError;
-/** Lists agents for an Agent Application. Lists agents for an Agent Application. */
-export const AgentApplicationsListAgents: API.OperationMethod<
-  AgentApplicationsListAgentsRequest,
-  AgentReferenceResourceArmPaginatedResult,
-  AgentApplicationsListAgentsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AgentApplicationsListAgentsRequest,
-  output: AgentReferenceResourceArmPaginatedResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type AgentDeploymentsCreateOrUpdateError = AzureOpError;
 /** Creates or updates an Agent Deployment (asynchronous). Creates or updates an Agent Deployment (asynchronous). */
 export const AgentDeploymentsCreateOrUpdate: API.OperationMethod<
@@ -13501,81 +13129,6 @@ export const AgentDeploymentsCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: AgentDeploymentsCreateOrUpdateRequest,
   output: AgentDeploymentsCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AgentDeploymentsDeleteError = AzureOpError;
-/** Delete Agent Deployment. Delete Agent Deployment. */
-export const AgentDeploymentsDelete: API.OperationMethod<
-  AgentDeploymentsDeleteRequest,
-  AgentDeploymentsDeleteResponse,
-  AgentDeploymentsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AgentDeploymentsDeleteRequest,
-  output: AgentDeploymentsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AgentDeploymentsGetError = AzureOpError;
-/** Gets an Agent Deployment by name. Gets an Agent Deployment by name. */
-export const AgentDeploymentsGet: API.OperationMethod<
-  AgentDeploymentsGetRequest,
-  AgentDeploymentsGetResponse,
-  AgentDeploymentsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AgentDeploymentsGetRequest,
-  output: AgentDeploymentsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AgentDeploymentsListError = AzureOpError;
-/** Lists Agent Deployments in the application. Lists Agent Deployments in the application. */
-export const AgentDeploymentsList: API.OperationMethod<
-  AgentDeploymentsListRequest,
-  AgentDeploymentResourceArmPaginatedResult,
-  AgentDeploymentsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AgentDeploymentsListRequest,
-  output: AgentDeploymentResourceArmPaginatedResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AgentDeploymentsStartError = AzureOpError;
-/** Starts an Agent Deployment. Starts an Agent Deployment. */
-export const AgentDeploymentsStart: API.OperationMethod<
-  AgentDeploymentsStartRequest,
-  AgentDeploymentsStartResponse,
-  AgentDeploymentsStartError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AgentDeploymentsStartRequest,
-  output: AgentDeploymentsStartResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AgentDeploymentsStopError = AzureOpError;
-/** Stops an Agent Deployment. Stops an Agent Deployment. */
-export const AgentDeploymentsStop: API.OperationMethod<
-  AgentDeploymentsStopRequest,
-  AgentDeploymentsStopResponse,
-  AgentDeploymentsStopError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AgentDeploymentsStopRequest,
-  output: AgentDeploymentsStopResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -13671,181 +13224,61 @@ export const CommitmentPlansCreateOrUpdatePlan: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CommitmentPlansDeleteError = AzureOpError;
-/** Deletes the specified commitmentPlan associated with the Cognitive Services account. */
-export const CommitmentPlansDelete: API.OperationMethod<
-  CommitmentPlansDeleteRequest,
-  CommitmentPlansDeleteResponse,
-  CommitmentPlansDeleteError,
+export type CreateAccountError = AzureOpError;
+/** Create Cognitive Services Account. Accounts is a resource group wide resource type. It holds the keys for developer to access intelligent APIs. It's also the resource type for billing. */
+export const CreateAccount: API.OperationMethod<
+  CreateAccountRequest,
+  CreateAccountResponse,
+  CreateAccountError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CommitmentPlansDeleteRequest,
-  output: CommitmentPlansDeleteResponse,
+  input: CreateAccountRequest,
+  output: CreateAccountResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type CommitmentPlansDeleteAssociationError = AzureOpError;
-/** Deletes the association of the Cognitive Services commitment plan. */
-export const CommitmentPlansDeleteAssociation: API.OperationMethod<
-  CommitmentPlansDeleteAssociationRequest,
-  CommitmentPlansDeleteAssociationResponse,
-  CommitmentPlansDeleteAssociationError,
+export type CreateAccountConnectionError = AzureOpError;
+/** Create or update Cognitive Services account connection under the specified account. Create or update Cognitive Services account connection under the specified account. */
+export const CreateAccountConnection: API.OperationMethod<
+  CreateAccountConnectionRequest,
+  CreateAccountConnectionResponse,
+  CreateAccountConnectionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CommitmentPlansDeleteAssociationRequest,
-  output: CommitmentPlansDeleteAssociationResponse,
+  input: CreateAccountConnectionRequest,
+  output: CreateAccountConnectionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type CommitmentPlansDeletePlanError = AzureOpError;
-/** Deletes a Cognitive Services commitment plan from the resource group. */
-export const CommitmentPlansDeletePlan: API.OperationMethod<
-  CommitmentPlansDeletePlanRequest,
-  CommitmentPlansDeletePlanResponse,
-  CommitmentPlansDeletePlanError,
+export type CreateProjectError = AzureOpError;
+/** Create Cognitive Services Account's Project. Project is a sub-resource of an account which give AI developer it's individual container to work on. */
+export const CreateProject: API.OperationMethod<
+  CreateProjectRequest,
+  CreateProjectResponse,
+  CreateProjectError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CommitmentPlansDeletePlanRequest,
-  output: CommitmentPlansDeletePlanResponse,
+  input: CreateProjectRequest,
+  output: CreateProjectResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type CommitmentPlansGetError = AzureOpError;
-/** Gets the specified commitmentPlans associated with the Cognitive Services account. */
-export const CommitmentPlansGet: API.OperationMethod<
-  CommitmentPlansGetRequest,
-  CommitmentPlansGetResponse,
-  CommitmentPlansGetError,
+export type CreateProjectConnectionError = AzureOpError;
+/** Create or update Cognitive Services project connection under the specified project. Create or update Cognitive Services project connection under the specified project. */
+export const CreateProjectConnection: API.OperationMethod<
+  CreateProjectConnectionRequest,
+  CreateProjectConnectionResponse,
+  CreateProjectConnectionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CommitmentPlansGetRequest,
-  output: CommitmentPlansGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CommitmentPlansGetAssociationError = AzureOpError;
-/** Gets the association of the Cognitive Services commitment plan. */
-export const CommitmentPlansGetAssociation: API.OperationMethod<
-  CommitmentPlansGetAssociationRequest,
-  CommitmentPlansGetAssociationResponse,
-  CommitmentPlansGetAssociationError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CommitmentPlansGetAssociationRequest,
-  output: CommitmentPlansGetAssociationResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CommitmentPlansGetPlanError = AzureOpError;
-/** Returns a Cognitive Services commitment plan specified by the parameters. */
-export const CommitmentPlansGetPlan: API.OperationMethod<
-  CommitmentPlansGetPlanRequest,
-  CommitmentPlansGetPlanResponse,
-  CommitmentPlansGetPlanError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CommitmentPlansGetPlanRequest,
-  output: CommitmentPlansGetPlanResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CommitmentPlansListError = AzureOpError;
-/** Gets the commitmentPlans associated with the Cognitive Services account. */
-export const CommitmentPlansList: API.OperationMethod<
-  CommitmentPlansListRequest,
-  CommitmentPlanListResult,
-  CommitmentPlansListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CommitmentPlansListRequest,
-  output: CommitmentPlanListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CommitmentPlansListAssociationsError = AzureOpError;
-/** Gets the associations of the Cognitive Services commitment plan. */
-export const CommitmentPlansListAssociations: API.OperationMethod<
-  CommitmentPlansListAssociationsRequest,
-  CommitmentPlanAccountAssociationListResult,
-  CommitmentPlansListAssociationsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CommitmentPlansListAssociationsRequest,
-  output: CommitmentPlanAccountAssociationListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CommitmentPlansListPlansByResourceGroupError = AzureOpError;
-/** Returns all the resources of a particular type belonging to a resource group */
-export const CommitmentPlansListPlansByResourceGroup: API.OperationMethod<
-  CommitmentPlansListPlansByResourceGroupRequest,
-  CommitmentPlanListResult,
-  CommitmentPlansListPlansByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CommitmentPlansListPlansByResourceGroupRequest,
-  output: CommitmentPlanListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CommitmentPlansListPlansBySubscriptionError = AzureOpError;
-/** Returns all the resources of a particular type belonging to a subscription. */
-export const CommitmentPlansListPlansBySubscription: API.OperationMethod<
-  CommitmentPlansListPlansBySubscriptionRequest,
-  CommitmentPlanListResult,
-  CommitmentPlansListPlansBySubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CommitmentPlansListPlansBySubscriptionRequest,
-  output: CommitmentPlanListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CommitmentPlansUpdatePlanError = AzureOpError;
-/** Create Cognitive Services commitment plan. */
-export const CommitmentPlansUpdatePlan: API.OperationMethod<
-  CommitmentPlansUpdatePlanRequest,
-  CommitmentPlansUpdatePlanResponse,
-  CommitmentPlansUpdatePlanError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CommitmentPlansUpdatePlanRequest,
-  output: CommitmentPlansUpdatePlanResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CommitmentTiersListError = AzureOpError;
-/** List Commitment Tiers. */
-export const CommitmentTiersList: API.OperationMethod<
-  CommitmentTiersListRequest,
-  CommitmentTierListResult,
-  CommitmentTiersListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CommitmentTiersListRequest,
-  output: CommitmentTierListResult,
+  input: CreateProjectConnectionRequest,
+  output: CreateProjectConnectionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -13866,91 +13299,361 @@ export const DefenderForAISettingsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DefenderForAISettingsGetError = AzureOpError;
-/** Gets the specified Defender for AI setting by name. */
-export const DefenderForAISettingsGet: API.OperationMethod<
-  DefenderForAISettingsGetRequest,
-  DefenderForAISettingsGetResponse,
-  DefenderForAISettingsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DefenderForAISettingsGetRequest,
-  output: DefenderForAISettingsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DefenderForAISettingsListError = AzureOpError;
-/** Lists the Defender for AI settings. */
-export const DefenderForAISettingsList: API.OperationMethod<
-  DefenderForAISettingsListRequest,
-  DefenderForAISettingResult,
-  DefenderForAISettingsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DefenderForAISettingsListRequest,
-  output: DefenderForAISettingResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DefenderForAISettingsUpdateError = AzureOpError;
-/** Updates the specified Defender for AI setting. */
-export const DefenderForAISettingsUpdate: API.OperationMethod<
-  DefenderForAISettingsUpdateRequest,
-  DefenderForAISettingsUpdateResponse,
-  DefenderForAISettingsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DefenderForAISettingsUpdateRequest,
-  output: DefenderForAISettingsUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeletedAccountsGetError = AzureOpError;
-/** Returns a Cognitive Services account specified by the parameters. */
-export const DeletedAccountsGet: API.OperationMethod<
-  DeletedAccountsGetRequest,
-  DeletedAccountsGetResponse,
-  DeletedAccountsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeletedAccountsGetRequest,
-  output: DeletedAccountsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeletedAccountsListError = AzureOpError;
-/** Returns all the resources of a particular type belonging to a subscription. */
-export const DeletedAccountsList: API.OperationMethod<
-  DeletedAccountsListRequest,
-  AccountListResult,
-  DeletedAccountsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeletedAccountsListRequest,
-  output: AccountListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeletedAccountsPurgeError = AzureOpError;
+export type DeleteAccountError = AzureOpError;
 /** Deletes a Cognitive Services account from the resource group. */
-export const DeletedAccountsPurge: API.OperationMethod<
-  DeletedAccountsPurgeRequest,
-  DeletedAccountsPurgeResponse,
-  DeletedAccountsPurgeError,
+export const DeleteAccount: API.OperationMethod<
+  DeleteAccountRequest,
+  DeleteAccountResponse,
+  DeleteAccountError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeletedAccountsPurgeRequest,
-  output: DeletedAccountsPurgeResponse,
+  input: DeleteAccountRequest,
+  output: DeleteAccountResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteAccountCapabilityHostError = AzureOpError;
+/** Delete account capabilityHost. Delete account capabilityHost. */
+export const DeleteAccountCapabilityHost: API.OperationMethod<
+  DeleteAccountCapabilityHostRequest,
+  DeleteAccountCapabilityHostResponse,
+  DeleteAccountCapabilityHostError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteAccountCapabilityHostRequest,
+  output: DeleteAccountCapabilityHostResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteAccountConnectionError = AzureOpError;
+/** Delete Cognitive Services account connection by name. Delete Cognitive Services account connection by name. */
+export const DeleteAccountConnection: API.OperationMethod<
+  DeleteAccountConnectionRequest,
+  DeleteAccountConnectionResponse,
+  DeleteAccountConnectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteAccountConnectionRequest,
+  output: DeleteAccountConnectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteAgentApplicationError = AzureOpError;
+/** Delete Agent Application. Delete Agent Application. */
+export const DeleteAgentApplication: API.OperationMethod<
+  DeleteAgentApplicationRequest,
+  DeleteAgentApplicationResponse,
+  DeleteAgentApplicationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteAgentApplicationRequest,
+  output: DeleteAgentApplicationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteAgentDeploymentError = AzureOpError;
+/** Delete Agent Deployment. Delete Agent Deployment. */
+export const DeleteAgentDeployment: API.OperationMethod<
+  DeleteAgentDeploymentRequest,
+  DeleteAgentDeploymentResponse,
+  DeleteAgentDeploymentError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteAgentDeploymentRequest,
+  output: DeleteAgentDeploymentResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteCommitmentPlanError = AzureOpError;
+/** Deletes the specified commitmentPlan associated with the Cognitive Services account. */
+export const DeleteCommitmentPlan: API.OperationMethod<
+  DeleteCommitmentPlanRequest,
+  DeleteCommitmentPlanResponse,
+  DeleteCommitmentPlanError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteCommitmentPlanRequest,
+  output: DeleteCommitmentPlanResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteCommitmentPlanAssociationError = AzureOpError;
+/** Deletes the association of the Cognitive Services commitment plan. */
+export const DeleteCommitmentPlanAssociation: API.OperationMethod<
+  DeleteCommitmentPlanAssociationRequest,
+  DeleteCommitmentPlanAssociationResponse,
+  DeleteCommitmentPlanAssociationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteCommitmentPlanAssociationRequest,
+  output: DeleteCommitmentPlanAssociationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteCommitmentPlanPlanError = AzureOpError;
+/** Deletes a Cognitive Services commitment plan from the resource group. */
+export const DeleteCommitmentPlanPlan: API.OperationMethod<
+  DeleteCommitmentPlanPlanRequest,
+  DeleteCommitmentPlanPlanResponse,
+  DeleteCommitmentPlanPlanError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteCommitmentPlanPlanRequest,
+  output: DeleteCommitmentPlanPlanResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteDeploymentError = AzureOpError;
+/** Deletes the specified deployment associated with the Cognitive Services account. */
+export const DeleteDeployment: API.OperationMethod<
+  DeleteDeploymentRequest,
+  DeleteDeploymentResponse,
+  DeleteDeploymentError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteDeploymentRequest,
+  output: DeleteDeploymentResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteEncryptionScopeError = AzureOpError;
+/** Deletes the specified encryptionScope associated with the Cognitive Services account. */
+export const DeleteEncryptionScope: API.OperationMethod<
+  DeleteEncryptionScopeRequest,
+  DeleteEncryptionScopeResponse,
+  DeleteEncryptionScopeError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteEncryptionScopeRequest,
+  output: DeleteEncryptionScopeResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteManagedNetworkSettingsError = AzureOpError;
+/** Delete API for managed network settings of a cognitive services account. Delete API for managed network settings of a cognitive services account. */
+export const DeleteManagedNetworkSettings: API.OperationMethod<
+  DeleteManagedNetworkSettingsRequest,
+  DeleteManagedNetworkSettingsResponse,
+  DeleteManagedNetworkSettingsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteManagedNetworkSettingsRequest,
+  output: DeleteManagedNetworkSettingsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteOutboundRuleError = AzureOpError;
+/** The DELETE API for deleting a single outbound rule of the managed network associated with the cognitive services account. The DELETE API for deleting a single outbound rule of the managed network associated with the cognitive services account. */
+export const DeleteOutboundRule: API.OperationMethod<
+  DeleteOutboundRuleRequest,
+  DeleteOutboundRuleResponse,
+  DeleteOutboundRuleError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteOutboundRuleRequest,
+  output: DeleteOutboundRuleResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeletePrivateEndpointConnectionError = AzureOpError;
+/** Deletes the specified private endpoint connection associated with the Cognitive Services account. */
+export const DeletePrivateEndpointConnection: API.OperationMethod<
+  DeletePrivateEndpointConnectionRequest,
+  DeletePrivateEndpointConnectionResponse,
+  DeletePrivateEndpointConnectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeletePrivateEndpointConnectionRequest,
+  output: DeletePrivateEndpointConnectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteProjectError = AzureOpError;
+/** Deletes a Cognitive Services project from the resource group. */
+export const DeleteProject: API.OperationMethod<
+  DeleteProjectRequest,
+  DeleteProjectResponse,
+  DeleteProjectError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteProjectRequest,
+  output: DeleteProjectResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteProjectCapabilityHostError = AzureOpError;
+/** Delete project capabilityHost. Delete project capabilityHost. */
+export const DeleteProjectCapabilityHost: API.OperationMethod<
+  DeleteProjectCapabilityHostRequest,
+  DeleteProjectCapabilityHostResponse,
+  DeleteProjectCapabilityHostError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteProjectCapabilityHostRequest,
+  output: DeleteProjectCapabilityHostResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteProjectConnectionError = AzureOpError;
+/** Delete Cognitive Services project connection by name. Delete Cognitive Services project connection by name. */
+export const DeleteProjectConnection: API.OperationMethod<
+  DeleteProjectConnectionRequest,
+  DeleteProjectConnectionResponse,
+  DeleteProjectConnectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteProjectConnectionRequest,
+  output: DeleteProjectConnectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteRaiBlocklistError = AzureOpError;
+/** Deletes the specified custom blocklist associated with the Azure OpenAI account. */
+export const DeleteRaiBlocklist: API.OperationMethod<
+  DeleteRaiBlocklistRequest,
+  DeleteRaiBlocklistResponse,
+  DeleteRaiBlocklistError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteRaiBlocklistRequest,
+  output: DeleteRaiBlocklistResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteRaiBlocklistItemError = AzureOpError;
+/** Deletes the specified blocklist Item associated with the custom blocklist. */
+export const DeleteRaiBlocklistItem: API.OperationMethod<
+  DeleteRaiBlocklistItemRequest,
+  DeleteRaiBlocklistItemResponse,
+  DeleteRaiBlocklistItemError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteRaiBlocklistItemRequest,
+  output: DeleteRaiBlocklistItemResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteRaiBlocklistItemBatchError = AzureOpError;
+/** Batch operation to delete blocklist items. */
+export const DeleteRaiBlocklistItemBatch: API.OperationMethod<
+  DeleteRaiBlocklistItemBatchRequest,
+  DeleteRaiBlocklistItemBatchResponse,
+  DeleteRaiBlocklistItemBatchError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteRaiBlocklistItemBatchRequest,
+  output: DeleteRaiBlocklistItemBatchResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteRaiExternalSafetyProviderError = AzureOpError;
+/** Deletes the specified custom topic associated with the subscription. */
+export const DeleteRaiExternalSafetyProvider: API.OperationMethod<
+  DeleteRaiExternalSafetyProviderRequest,
+  DeleteRaiExternalSafetyProviderResponse,
+  DeleteRaiExternalSafetyProviderError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteRaiExternalSafetyProviderRequest,
+  output: DeleteRaiExternalSafetyProviderResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteRaiPolicyError = AzureOpError;
+/** Deletes the specified Content Filters associated with the Azure OpenAI account. */
+export const DeleteRaiPolicy: API.OperationMethod<
+  DeleteRaiPolicyRequest,
+  DeleteRaiPolicyResponse,
+  DeleteRaiPolicyError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteRaiPolicyRequest,
+  output: DeleteRaiPolicyResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteRaiToolLabelError = AzureOpError;
+/** Deletes the specified RAI Tool Label associated with the Azure OpenAI account. */
+export const DeleteRaiToolLabel: API.OperationMethod<
+  DeleteRaiToolLabelRequest,
+  DeleteRaiToolLabelResponse,
+  DeleteRaiToolLabelError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteRaiToolLabelRequest,
+  output: DeleteRaiToolLabelResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteRaiTopicError = AzureOpError;
+/** Deletes the specified custom topic associated with the Azure OpenAI account. */
+export const DeleteRaiTopic: API.OperationMethod<
+  DeleteRaiTopicRequest,
+  DeleteRaiTopicResponse,
+  DeleteRaiTopicError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteRaiTopicRequest,
+  output: DeleteRaiTopicResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteSubscriptionRaiPolicyError = AzureOpError;
+/** Deletes the specified Content Filters associated with the subscription. */
+export const DeleteSubscriptionRaiPolicy: API.OperationMethod<
+  DeleteSubscriptionRaiPolicyRequest,
+  DeleteSubscriptionRaiPolicyResponse,
+  DeleteSubscriptionRaiPolicyError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteSubscriptionRaiPolicyRequest,
+  output: DeleteSubscriptionRaiPolicyResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -13971,106 +13674,31 @@ export const DeploymentsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DeploymentsDeleteError = AzureOpError;
-/** Deletes the specified deployment associated with the Cognitive Services account. */
-export const DeploymentsDelete: API.OperationMethod<
-  DeploymentsDeleteRequest,
-  DeploymentsDeleteResponse,
-  DeploymentsDeleteError,
+export type DisableAgentApplicationError = AzureOpError;
+/** Disables an Agent Application. Disables an Agent Application. */
+export const DisableAgentApplication: API.OperationMethod<
+  DisableAgentApplicationRequest,
+  DisableAgentApplicationResponse,
+  DisableAgentApplicationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeploymentsDeleteRequest,
-  output: DeploymentsDeleteResponse,
+  input: DisableAgentApplicationRequest,
+  output: DisableAgentApplicationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DeploymentsGetError = AzureOpError;
-/** Gets the specified deployments associated with the Cognitive Services account. */
-export const DeploymentsGet: API.OperationMethod<
-  DeploymentsGetRequest,
-  DeploymentsGetResponse,
-  DeploymentsGetError,
+export type EnableAgentApplicationError = AzureOpError;
+/** Enables an Agent Application. Enables an Agent Application. */
+export const EnableAgentApplication: API.OperationMethod<
+  EnableAgentApplicationRequest,
+  EnableAgentApplicationResponse,
+  EnableAgentApplicationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DeploymentsGetRequest,
-  output: DeploymentsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeploymentsListError = AzureOpError;
-/** Gets the deployments associated with the Cognitive Services account. */
-export const DeploymentsList: API.OperationMethod<
-  DeploymentsListRequest,
-  DeploymentListResult,
-  DeploymentsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeploymentsListRequest,
-  output: DeploymentListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeploymentsListSkusError = AzureOpError;
-/** Lists the specified deployments skus associated with the Cognitive Services account. */
-export const DeploymentsListSkus: API.OperationMethod<
-  DeploymentsListSkusRequest,
-  DeploymentSkuListResult,
-  DeploymentsListSkusError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeploymentsListSkusRequest,
-  output: DeploymentSkuListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeploymentsPauseError = AzureOpError;
-/** Pause a deployment Pauses inferencing on a deployment by setting the deploymentState to 'Paused' (see #/definitions/DeploymentProperties/properties/deploymentState). Only Standard, DataZoneStandard, and GlobalStandard SKUs support this operation. Inference requests to the paused deployment endpoint will receive HTTP 423 (Locked). This operation is idempotent. */
-export const DeploymentsPause: API.OperationMethod<
-  DeploymentsPauseRequest,
-  DeploymentsPauseResponse,
-  DeploymentsPauseError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeploymentsPauseRequest,
-  output: DeploymentsPauseResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeploymentsResumeError = AzureOpError;
-/** Resume a deployment Resumes inferencing on a previously paused deployment by setting the deploymentState to 'Running' (see #/definitions/DeploymentProperties/properties/deploymentState). This operation is idempotent and can be safely called on already running deployments. */
-export const DeploymentsResume: API.OperationMethod<
-  DeploymentsResumeRequest,
-  DeploymentsResumeResponse,
-  DeploymentsResumeError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeploymentsResumeRequest,
-  output: DeploymentsResumeResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DeploymentsUpdateError = AzureOpError;
-/** Update specified deployments associated with the Cognitive Services account. */
-export const DeploymentsUpdate: API.OperationMethod<
-  DeploymentsUpdateRequest,
-  DeploymentsUpdateResponse,
-  DeploymentsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DeploymentsUpdateRequest,
-  output: DeploymentsUpdateResponse,
+  input: EnableAgentApplicationRequest,
+  output: EnableAgentApplicationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -14091,211 +13719,1066 @@ export const EncryptionScopesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type EncryptionScopesDeleteError = AzureOpError;
-/** Deletes the specified encryptionScope associated with the Cognitive Services account. */
-export const EncryptionScopesDelete: API.OperationMethod<
-  EncryptionScopesDeleteRequest,
-  EncryptionScopesDeleteResponse,
-  EncryptionScopesDeleteError,
+export type GetAccountError = AzureOpError;
+/** Returns a Cognitive Services account specified by the parameters. */
+export const GetAccount: API.OperationMethod<
+  GetAccountRequest,
+  GetAccountResponse,
+  GetAccountError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: EncryptionScopesDeleteRequest,
-  output: EncryptionScopesDeleteResponse,
+  input: GetAccountRequest,
+  output: GetAccountResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type EncryptionScopesGetError = AzureOpError;
+export type GetAccountCapabilityHostError = AzureOpError;
+/** Get account capabilityHost. Get account capabilityHost. */
+export const GetAccountCapabilityHost: API.OperationMethod<
+  GetAccountCapabilityHostRequest,
+  GetAccountCapabilityHostResponse,
+  GetAccountCapabilityHostError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetAccountCapabilityHostRequest,
+  output: GetAccountCapabilityHostResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetAccountConnectionError = AzureOpError;
+/** Lists Cognitive Services account connection by name. Lists Cognitive Services account connection by name. */
+export const GetAccountConnection: API.OperationMethod<
+  GetAccountConnectionRequest,
+  GetAccountConnectionResponse,
+  GetAccountConnectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetAccountConnectionRequest,
+  output: GetAccountConnectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetAgentApplicationError = AzureOpError;
+/** Gets an Agent Application by name. Gets an Agent Application by name. */
+export const GetAgentApplication: API.OperationMethod<
+  GetAgentApplicationRequest,
+  GetAgentApplicationResponse,
+  GetAgentApplicationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetAgentApplicationRequest,
+  output: GetAgentApplicationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetAgentDeploymentError = AzureOpError;
+/** Gets an Agent Deployment by name. Gets an Agent Deployment by name. */
+export const GetAgentDeployment: API.OperationMethod<
+  GetAgentDeploymentRequest,
+  GetAgentDeploymentResponse,
+  GetAgentDeploymentError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetAgentDeploymentRequest,
+  output: GetAgentDeploymentResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetCommitmentPlanError = AzureOpError;
+/** Gets the specified commitmentPlans associated with the Cognitive Services account. */
+export const GetCommitmentPlan: API.OperationMethod<
+  GetCommitmentPlanRequest,
+  GetCommitmentPlanResponse,
+  GetCommitmentPlanError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCommitmentPlanRequest,
+  output: GetCommitmentPlanResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetCommitmentPlanAssociationError = AzureOpError;
+/** Gets the association of the Cognitive Services commitment plan. */
+export const GetCommitmentPlanAssociation: API.OperationMethod<
+  GetCommitmentPlanAssociationRequest,
+  GetCommitmentPlanAssociationResponse,
+  GetCommitmentPlanAssociationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCommitmentPlanAssociationRequest,
+  output: GetCommitmentPlanAssociationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetCommitmentPlanPlanError = AzureOpError;
+/** Returns a Cognitive Services commitment plan specified by the parameters. */
+export const GetCommitmentPlanPlan: API.OperationMethod<
+  GetCommitmentPlanPlanRequest,
+  GetCommitmentPlanPlanResponse,
+  GetCommitmentPlanPlanError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCommitmentPlanPlanRequest,
+  output: GetCommitmentPlanPlanResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDefenderForAISettingsError = AzureOpError;
+/** Gets the specified Defender for AI setting by name. */
+export const GetDefenderForAISettings: API.OperationMethod<
+  GetDefenderForAISettingsRequest,
+  GetDefenderForAISettingsResponse,
+  GetDefenderForAISettingsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDefenderForAISettingsRequest,
+  output: GetDefenderForAISettingsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDeletedAccountError = AzureOpError;
+/** Returns a Cognitive Services account specified by the parameters. */
+export const GetDeletedAccount: API.OperationMethod<
+  GetDeletedAccountRequest,
+  GetDeletedAccountResponse,
+  GetDeletedAccountError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDeletedAccountRequest,
+  output: GetDeletedAccountResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDeploymentError = AzureOpError;
+/** Gets the specified deployments associated with the Cognitive Services account. */
+export const GetDeployment: API.OperationMethod<
+  GetDeploymentRequest,
+  GetDeploymentResponse,
+  GetDeploymentError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDeploymentRequest,
+  output: GetDeploymentResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetEncryptionScopeError = AzureOpError;
 /** Gets the specified EncryptionScope associated with the Cognitive Services account. */
-export const EncryptionScopesGet: API.OperationMethod<
-  EncryptionScopesGetRequest,
-  EncryptionScopesGetResponse,
-  EncryptionScopesGetError,
+export const GetEncryptionScope: API.OperationMethod<
+  GetEncryptionScopeRequest,
+  GetEncryptionScopeResponse,
+  GetEncryptionScopeError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: EncryptionScopesGetRequest,
-  output: EncryptionScopesGetResponse,
+  input: GetEncryptionScopeRequest,
+  output: GetEncryptionScopeResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type EncryptionScopesListError = AzureOpError;
-/** Gets the content filters associated with the Azure OpenAI account. */
-export const EncryptionScopesList: API.OperationMethod<
-  EncryptionScopesListRequest,
-  EncryptionScopeListResult,
-  EncryptionScopesListError,
+export type GetManagedNetworkSettingsError = AzureOpError;
+/** Get API for managed network settings of a cognitive services account. Get API for managed network settings of a cognitive services account. */
+export const GetManagedNetworkSettings: API.OperationMethod<
+  GetManagedNetworkSettingsRequest,
+  GetManagedNetworkSettingsResponse,
+  GetManagedNetworkSettingsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: EncryptionScopesListRequest,
+  input: GetManagedNetworkSettingsRequest,
+  output: GetManagedNetworkSettingsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetNetworkSecurityPerimeterConfigurationError = AzureOpError;
+/** Gets the specified NSP configurations for an account. */
+export const GetNetworkSecurityPerimeterConfiguration: API.OperationMethod<
+  GetNetworkSecurityPerimeterConfigurationRequest,
+  GetNetworkSecurityPerimeterConfigurationResponse,
+  GetNetworkSecurityPerimeterConfigurationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetNetworkSecurityPerimeterConfigurationRequest,
+  output: GetNetworkSecurityPerimeterConfigurationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetOutboundRuleError = AzureOpError;
+/** The GET API for retrieving a single outbound rule of the managed network associated with the cognitive services account. The GET API for retrieving a single outbound rule of the managed network associated with the cognitive services account. */
+export const GetOutboundRule: API.OperationMethod<
+  GetOutboundRuleRequest,
+  GetOutboundRuleResponse,
+  GetOutboundRuleError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetOutboundRuleRequest,
+  output: GetOutboundRuleResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetPrivateEndpointConnectionError = AzureOpError;
+/** Gets the specified private endpoint connection associated with the Cognitive Services account. */
+export const GetPrivateEndpointConnection: API.OperationMethod<
+  GetPrivateEndpointConnectionRequest,
+  GetPrivateEndpointConnectionResponse,
+  GetPrivateEndpointConnectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPrivateEndpointConnectionRequest,
+  output: GetPrivateEndpointConnectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetProjectError = AzureOpError;
+/** Returns a Cognitive Services project specified by the parameters. */
+export const GetProject: API.OperationMethod<
+  GetProjectRequest,
+  GetProjectResponse,
+  GetProjectError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetProjectRequest,
+  output: GetProjectResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetProjectCapabilityHostError = AzureOpError;
+/** Get project capabilityHost. Get project capabilityHost. */
+export const GetProjectCapabilityHost: API.OperationMethod<
+  GetProjectCapabilityHostRequest,
+  GetProjectCapabilityHostResponse,
+  GetProjectCapabilityHostError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetProjectCapabilityHostRequest,
+  output: GetProjectCapabilityHostResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetProjectConnectionError = AzureOpError;
+/** Lists Cognitive Services project connection by name. Lists Cognitive Services project connection by name. */
+export const GetProjectConnection: API.OperationMethod<
+  GetProjectConnectionRequest,
+  GetProjectConnectionResponse,
+  GetProjectConnectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetProjectConnectionRequest,
+  output: GetProjectConnectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetQuotaTierError = AzureOpError;
+/** Gets the Quota Tier for a subscription Gets the Quota Tier information for the given subscription. QuotaTiers is a subscription wide resource type. It holds current tier information. */
+export const GetQuotaTier: API.OperationMethod<
+  GetQuotaTierRequest,
+  GetQuotaTierResponse,
+  GetQuotaTierError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetQuotaTierRequest,
+  output: GetQuotaTierResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetRaiBlocklistError = AzureOpError;
+/** Gets the specified custom blocklist associated with the Azure OpenAI account. */
+export const GetRaiBlocklist: API.OperationMethod<
+  GetRaiBlocklistRequest,
+  GetRaiBlocklistResponse,
+  GetRaiBlocklistError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetRaiBlocklistRequest,
+  output: GetRaiBlocklistResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetRaiBlocklistItemError = AzureOpError;
+/** Gets the specified custom blocklist Item associated with the custom blocklist. */
+export const GetRaiBlocklistItem: API.OperationMethod<
+  GetRaiBlocklistItemRequest,
+  GetRaiBlocklistItemResponse,
+  GetRaiBlocklistItemError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetRaiBlocklistItemRequest,
+  output: GetRaiBlocklistItemResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetRaiContentFilterError = AzureOpError;
+/** Get Content Filters by Name. */
+export const GetRaiContentFilter: API.OperationMethod<
+  GetRaiContentFilterRequest,
+  GetRaiContentFilterResponse,
+  GetRaiContentFilterError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetRaiContentFilterRequest,
+  output: GetRaiContentFilterResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetRaiExternalSafetyProviderError = AzureOpError;
+/** Gets the specified external safety provider associated with the Subscription */
+export const GetRaiExternalSafetyProvider: API.OperationMethod<
+  GetRaiExternalSafetyProviderRequest,
+  GetRaiExternalSafetyProviderResponse,
+  GetRaiExternalSafetyProviderError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetRaiExternalSafetyProviderRequest,
+  output: GetRaiExternalSafetyProviderResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetRaiPolicyError = AzureOpError;
+/** Gets the specified Content Filters associated with the Azure OpenAI account. */
+export const GetRaiPolicy: API.OperationMethod<
+  GetRaiPolicyRequest,
+  GetRaiPolicyResponse,
+  GetRaiPolicyError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetRaiPolicyRequest,
+  output: GetRaiPolicyResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetRaiToolLabelError = AzureOpError;
+/** Gets the specified RAI Tool Label associated with the Azure OpenAI account. */
+export const GetRaiToolLabel: API.OperationMethod<
+  GetRaiToolLabelRequest,
+  GetRaiToolLabelResponse,
+  GetRaiToolLabelError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetRaiToolLabelRequest,
+  output: GetRaiToolLabelResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetRaiTopicError = AzureOpError;
+/** Gets the specified custom topic associated with the Azure OpenAI account. */
+export const GetRaiTopic: API.OperationMethod<
+  GetRaiTopicRequest,
+  GetRaiTopicResponse,
+  GetRaiTopicError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetRaiTopicRequest,
+  output: GetRaiTopicResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSubscriptionRaiPolicyError = AzureOpError;
+/** Gets the specified Content Filters associated with the Subscription. */
+export const GetSubscriptionRaiPolicy: API.OperationMethod<
+  GetSubscriptionRaiPolicyRequest,
+  GetSubscriptionRaiPolicyResponse,
+  GetSubscriptionRaiPolicyError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSubscriptionRaiPolicyRequest,
+  output: GetSubscriptionRaiPolicyResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListAccountByResourceGroupError = AzureOpError;
+/** Returns all the resources of a particular type belonging to a resource group */
+export const ListAccountByResourceGroup: API.OperationMethod<
+  ListAccountByResourceGroupRequest,
+  AccountListResult,
+  ListAccountByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListAccountByResourceGroupRequest,
+  output: AccountListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListAccountCapabilityHostsError = AzureOpError;
+/** List capabilityHost. List capabilityHost. */
+export const ListAccountCapabilityHosts: API.OperationMethod<
+  ListAccountCapabilityHostsRequest,
+  CapabilityHostResourceArmPaginatedResult,
+  ListAccountCapabilityHostsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListAccountCapabilityHostsRequest,
+  output: CapabilityHostResourceArmPaginatedResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListAccountConnectionsError = AzureOpError;
+/** Lists all the available Cognitive Services account connections under the specified account. Lists all the available Cognitive Services account connections under the specified account. */
+export const ListAccountConnections: API.OperationMethod<
+  ListAccountConnectionsRequest,
+  ConnectionPropertiesV2BasicResourceArmPaginatedResult,
+  ListAccountConnectionsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListAccountConnectionsRequest,
+  output: ConnectionPropertiesV2BasicResourceArmPaginatedResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListAccountKeysError = AzureOpError;
+/** Lists the account keys for the specified Cognitive Services account. */
+export const ListAccountKeys: API.OperationMethod<
+  ListAccountKeysRequest,
+  ApiKeys,
+  ListAccountKeysError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListAccountKeysRequest,
+  output: ApiKeys,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListAccountModelsError = AzureOpError;
+/** List available Models for the requested Cognitive Services account */
+export const ListAccountModels: API.OperationMethod<
+  ListAccountModelsRequest,
+  AccountModelListResult,
+  ListAccountModelsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListAccountModelsRequest,
+  output: AccountModelListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListAccountsError = AzureOpError;
+/** Returns all the resources of a particular type belonging to a subscription. */
+export const ListAccounts: API.OperationMethod<
+  ListAccountsRequest,
+  AccountListResult,
+  ListAccountsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListAccountsRequest,
+  output: AccountListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListAccountSkusError = AzureOpError;
+/** List available SKUs for the requested Cognitive Services account */
+export const ListAccountSkus: API.OperationMethod<
+  ListAccountSkusRequest,
+  AccountSkuListResult,
+  ListAccountSkusError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListAccountSkusRequest,
+  output: AccountSkuListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListAccountUsagesError = AzureOpError;
+/** Get usages for the requested Cognitive Services account */
+export const ListAccountUsages: API.OperationMethod<
+  ListAccountUsagesRequest,
+  UsageListResult,
+  ListAccountUsagesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListAccountUsagesRequest,
+  output: UsageListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListAgentApplicationAgentsError = AzureOpError;
+/** Lists agents for an Agent Application. Lists agents for an Agent Application. */
+export const ListAgentApplicationAgents: API.OperationMethod<
+  ListAgentApplicationAgentsRequest,
+  AgentReferenceResourceArmPaginatedResult,
+  ListAgentApplicationAgentsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListAgentApplicationAgentsRequest,
+  output: AgentReferenceResourceArmPaginatedResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListAgentApplicationsError = AzureOpError;
+/** Lists Agent Applications in the project. Lists Agent Applications in the project. */
+export const ListAgentApplications: API.OperationMethod<
+  ListAgentApplicationsRequest,
+  AgentApplicationResourceArmPaginatedResult,
+  ListAgentApplicationsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListAgentApplicationsRequest,
+  output: AgentApplicationResourceArmPaginatedResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListAgentDeploymentsError = AzureOpError;
+/** Lists Agent Deployments in the application. Lists Agent Deployments in the application. */
+export const ListAgentDeployments: API.OperationMethod<
+  ListAgentDeploymentsRequest,
+  AgentDeploymentResourceArmPaginatedResult,
+  ListAgentDeploymentsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListAgentDeploymentsRequest,
+  output: AgentDeploymentResourceArmPaginatedResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListCommitmentPlanAssociationsError = AzureOpError;
+/** Gets the associations of the Cognitive Services commitment plan. */
+export const ListCommitmentPlanAssociations: API.OperationMethod<
+  ListCommitmentPlanAssociationsRequest,
+  CommitmentPlanAccountAssociationListResult,
+  ListCommitmentPlanAssociationsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListCommitmentPlanAssociationsRequest,
+  output: CommitmentPlanAccountAssociationListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListCommitmentPlanPlansByResourceGroupError = AzureOpError;
+/** Returns all the resources of a particular type belonging to a resource group */
+export const ListCommitmentPlanPlansByResourceGroup: API.OperationMethod<
+  ListCommitmentPlanPlansByResourceGroupRequest,
+  CommitmentPlanListResult,
+  ListCommitmentPlanPlansByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListCommitmentPlanPlansByResourceGroupRequest,
+  output: CommitmentPlanListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListCommitmentPlanPlansBySubscriptionError = AzureOpError;
+/** Returns all the resources of a particular type belonging to a subscription. */
+export const ListCommitmentPlanPlansBySubscription: API.OperationMethod<
+  ListCommitmentPlanPlansBySubscriptionRequest,
+  CommitmentPlanListResult,
+  ListCommitmentPlanPlansBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListCommitmentPlanPlansBySubscriptionRequest,
+  output: CommitmentPlanListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListCommitmentPlansError = AzureOpError;
+/** Gets the commitmentPlans associated with the Cognitive Services account. */
+export const ListCommitmentPlans: API.OperationMethod<
+  ListCommitmentPlansRequest,
+  CommitmentPlanListResult,
+  ListCommitmentPlansError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListCommitmentPlansRequest,
+  output: CommitmentPlanListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListCommitmentTiersError = AzureOpError;
+/** List Commitment Tiers. */
+export const ListCommitmentTiers: API.OperationMethod<
+  ListCommitmentTiersRequest,
+  CommitmentTierListResult,
+  ListCommitmentTiersError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListCommitmentTiersRequest,
+  output: CommitmentTierListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDefenderForAISettingsError = AzureOpError;
+/** Lists the Defender for AI settings. */
+export const ListDefenderForAISettings: API.OperationMethod<
+  ListDefenderForAISettingsRequest,
+  DefenderForAISettingResult,
+  ListDefenderForAISettingsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDefenderForAISettingsRequest,
+  output: DefenderForAISettingResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDeletedAccountsError = AzureOpError;
+/** Returns all the resources of a particular type belonging to a subscription. */
+export const ListDeletedAccounts: API.OperationMethod<
+  ListDeletedAccountsRequest,
+  AccountListResult,
+  ListDeletedAccountsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDeletedAccountsRequest,
+  output: AccountListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDeploymentsError = AzureOpError;
+/** Gets the deployments associated with the Cognitive Services account. */
+export const ListDeployments: API.OperationMethod<
+  ListDeploymentsRequest,
+  DeploymentListResult,
+  ListDeploymentsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDeploymentsRequest,
+  output: DeploymentListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDeploymentSkusError = AzureOpError;
+/** Lists the specified deployments skus associated with the Cognitive Services account. */
+export const ListDeploymentSkus: API.OperationMethod<
+  ListDeploymentSkusRequest,
+  DeploymentSkuListResult,
+  ListDeploymentSkusError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDeploymentSkusRequest,
+  output: DeploymentSkuListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListEncryptionScopesError = AzureOpError;
+/** Gets the content filters associated with the Azure OpenAI account. */
+export const ListEncryptionScopes: API.OperationMethod<
+  ListEncryptionScopesRequest,
+  EncryptionScopeListResult,
+  ListEncryptionScopesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListEncryptionScopesRequest,
   output: EncryptionScopeListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type LocationBasedModelCapacitiesListError = AzureOpError;
+export type ListLocationBasedModelCapacitiesError = AzureOpError;
 /** List Location Based ModelCapacities. */
-export const LocationBasedModelCapacitiesList: API.OperationMethod<
-  LocationBasedModelCapacitiesListRequest,
+export const ListLocationBasedModelCapacities: API.OperationMethod<
+  ListLocationBasedModelCapacitiesRequest,
   ModelCapacityListResult,
-  LocationBasedModelCapacitiesListError,
+  ListLocationBasedModelCapacitiesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: LocationBasedModelCapacitiesListRequest,
+  input: ListLocationBasedModelCapacitiesRequest,
   output: ModelCapacityListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ManagedNetworkProvisionsProvisionManagedNetworkError = AzureOpError;
-/** Provisions the managed network of a cognitive services account. Provisions the managed network of a cognitive services account. */
-export const ManagedNetworkProvisionsProvisionManagedNetwork: API.OperationMethod<
-  ManagedNetworkProvisionsProvisionManagedNetworkRequest,
-  ManagedNetworkProvisionStatus,
-  ManagedNetworkProvisionsProvisionManagedNetworkError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ManagedNetworkProvisionsProvisionManagedNetworkRequest,
-  output: ManagedNetworkProvisionStatus,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ManagedNetworkSettingsDeleteError = AzureOpError;
-/** Delete API for managed network settings of a cognitive services account. Delete API for managed network settings of a cognitive services account. */
-export const ManagedNetworkSettingsDelete: API.OperationMethod<
-  ManagedNetworkSettingsDeleteRequest,
-  ManagedNetworkSettingsDeleteResponse,
-  ManagedNetworkSettingsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ManagedNetworkSettingsDeleteRequest,
-  output: ManagedNetworkSettingsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ManagedNetworkSettingsGetError = AzureOpError;
-/** Get API for managed network settings of a cognitive services account. Get API for managed network settings of a cognitive services account. */
-export const ManagedNetworkSettingsGet: API.OperationMethod<
-  ManagedNetworkSettingsGetRequest,
-  ManagedNetworkSettingsGetResponse,
-  ManagedNetworkSettingsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ManagedNetworkSettingsGetRequest,
-  output: ManagedNetworkSettingsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ManagedNetworkSettingsListError = AzureOpError;
+export type ListManagedNetworkSettingsError = AzureOpError;
 /** List API for managed network settings of a cognitive services account. List API for managed network settings of a cognitive services account. */
-export const ManagedNetworkSettingsList: API.OperationMethod<
-  ManagedNetworkSettingsListRequest,
+export const ListManagedNetworkSettings: API.OperationMethod<
+  ListManagedNetworkSettingsRequest,
   ManagedNetworkListResult,
-  ManagedNetworkSettingsListError,
+  ListManagedNetworkSettingsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ManagedNetworkSettingsListRequest,
+  input: ListManagedNetworkSettingsRequest,
   output: ManagedNetworkListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ManagedNetworkSettingsPatchError = AzureOpError;
-/** Patch API for managed network settings of a cognitive services account. Patch API for managed network settings of a cognitive services account. */
-export const ManagedNetworkSettingsPatch: API.OperationMethod<
-  ManagedNetworkSettingsPatchRequest,
-  ManagedNetworkSettingsPatchResponse,
-  ManagedNetworkSettingsPatchError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ManagedNetworkSettingsPatchRequest,
-  output: ManagedNetworkSettingsPatchResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ManagedNetworkSettingsPutError = AzureOpError;
-/** PUT API for managed network settings of a cognitive services account. PUT API for managed network settings of a cognitive services account. */
-export const ManagedNetworkSettingsPut: API.OperationMethod<
-  ManagedNetworkSettingsPutRequest,
-  ManagedNetworkSettingsPutResponse,
-  ManagedNetworkSettingsPutError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ManagedNetworkSettingsPutRequest,
-  output: ManagedNetworkSettingsPutResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ModelCapacitiesListError = AzureOpError;
+export type ListModelCapacitiesError = AzureOpError;
 /** List ModelCapacities. */
-export const ModelCapacitiesList: API.OperationMethod<
-  ModelCapacitiesListRequest,
+export const ListModelCapacities: API.OperationMethod<
+  ListModelCapacitiesRequest,
   ModelCapacityListResult,
-  ModelCapacitiesListError,
+  ListModelCapacitiesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ModelCapacitiesListRequest,
+  input: ListModelCapacitiesRequest,
   output: ModelCapacityListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ModelsListError = AzureOpError;
+export type ListModelsError = AzureOpError;
 /** List Models. */
-export const ModelsList: API.OperationMethod<
-  ModelsListRequest,
+export const ListModels: API.OperationMethod<
+  ListModelsRequest,
   ModelListResult,
-  ModelsListError,
+  ListModelsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ModelsListRequest,
+  input: ListModelsRequest,
   output: ModelListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type NetworkSecurityPerimeterConfigurationsGetError = AzureOpError;
-/** Gets the specified NSP configurations for an account. */
-export const NetworkSecurityPerimeterConfigurationsGet: API.OperationMethod<
-  NetworkSecurityPerimeterConfigurationsGetRequest,
-  NetworkSecurityPerimeterConfigurationsGetResponse,
-  NetworkSecurityPerimeterConfigurationsGetError,
+export type ListNetworkSecurityPerimeterConfigurationsError = AzureOpError;
+/** Gets a list of NSP configurations for an account. */
+export const ListNetworkSecurityPerimeterConfigurations: API.OperationMethod<
+  ListNetworkSecurityPerimeterConfigurationsRequest,
+  NetworkSecurityPerimeterConfigurationList,
+  ListNetworkSecurityPerimeterConfigurationsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: NetworkSecurityPerimeterConfigurationsGetRequest,
-  output: NetworkSecurityPerimeterConfigurationsGetResponse,
+  input: ListNetworkSecurityPerimeterConfigurationsRequest,
+  output: NetworkSecurityPerimeterConfigurationList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type NetworkSecurityPerimeterConfigurationsListError = AzureOpError;
-/** Gets a list of NSP configurations for an account. */
-export const NetworkSecurityPerimeterConfigurationsList: API.OperationMethod<
-  NetworkSecurityPerimeterConfigurationsListRequest,
-  NetworkSecurityPerimeterConfigurationList,
-  NetworkSecurityPerimeterConfigurationsListError,
+export type ListOperationsError = AzureOpError;
+/** Lists all the available Cognitive Services account operations. */
+export const ListOperations: API.OperationMethod<
+  ListOperationsRequest,
+  ListOperationsResponse,
+  ListOperationsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: NetworkSecurityPerimeterConfigurationsListRequest,
-  output: NetworkSecurityPerimeterConfigurationList,
+  input: ListOperationsRequest,
+  output: ListOperationsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListOutboundRuleError = AzureOpError;
+/** The GET API for retrieving the list of outbound rules of the managed network associated with the cognitive services account. The GET API for retrieving the list of outbound rules of the managed network associated with the cognitive services account. */
+export const ListOutboundRule: API.OperationMethod<
+  ListOutboundRuleRequest,
+  OutboundRuleListResult,
+  ListOutboundRuleError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListOutboundRuleRequest,
+  output: OutboundRuleListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListPrivateEndpointConnectionsError = AzureOpError;
+/** Gets the private endpoint connections associated with the Cognitive Services account. */
+export const ListPrivateEndpointConnections: API.OperationMethod<
+  ListPrivateEndpointConnectionsRequest,
+  PrivateEndpointConnectionListResult,
+  ListPrivateEndpointConnectionsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListPrivateEndpointConnectionsRequest,
+  output: PrivateEndpointConnectionListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListPrivateLinkResourcesError = AzureOpError;
+/** Gets the private link resources that need to be created for a Cognitive Services account. */
+export const ListPrivateLinkResources: API.OperationMethod<
+  ListPrivateLinkResourcesRequest,
+  PrivateLinkResourceListResult,
+  ListPrivateLinkResourcesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListPrivateLinkResourcesRequest,
+  output: PrivateLinkResourceListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListProjectCapabilityHostsError = AzureOpError;
+/** List capabilityHost. List capabilityHost. */
+export const ListProjectCapabilityHosts: API.OperationMethod<
+  ListProjectCapabilityHostsRequest,
+  ProjectCapabilityHostResourceArmPaginatedResult,
+  ListProjectCapabilityHostsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListProjectCapabilityHostsRequest,
+  output: ProjectCapabilityHostResourceArmPaginatedResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListProjectConnectionsError = AzureOpError;
+/** Lists all the available Cognitive Services project connections under the specified project. Lists all the available Cognitive Services project connections under the specified project. */
+export const ListProjectConnections: API.OperationMethod<
+  ListProjectConnectionsRequest,
+  ConnectionPropertiesV2BasicResourceArmPaginatedResult,
+  ListProjectConnectionsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListProjectConnectionsRequest,
+  output: ConnectionPropertiesV2BasicResourceArmPaginatedResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListProjectsError = AzureOpError;
+/** Returns all the projects in a Cognitive Services account. */
+export const ListProjects: API.OperationMethod<
+  ListProjectsRequest,
+  ProjectListResult,
+  ListProjectsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListProjectsRequest,
+  output: ProjectListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListQuotaTierBySubscriptionError = AzureOpError;
+/** Returns all the resources of a particular type belonging to a subscription. */
+export const ListQuotaTierBySubscription: API.OperationMethod<
+  ListQuotaTierBySubscriptionRequest,
+  QuotaTierListResult,
+  ListQuotaTierBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListQuotaTierBySubscriptionRequest,
+  output: QuotaTierListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListRaiBlocklistItemsError = AzureOpError;
+/** Gets the blocklist items associated with the custom blocklist. */
+export const ListRaiBlocklistItems: API.OperationMethod<
+  ListRaiBlocklistItemsRequest,
+  RaiBlockListItemsResult,
+  ListRaiBlocklistItemsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListRaiBlocklistItemsRequest,
+  output: RaiBlockListItemsResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListRaiBlocklistsError = AzureOpError;
+/** Gets the custom blocklists associated with the Azure OpenAI account. */
+export const ListRaiBlocklists: API.OperationMethod<
+  ListRaiBlocklistsRequest,
+  RaiBlockListResult,
+  ListRaiBlocklistsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListRaiBlocklistsRequest,
+  output: RaiBlockListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListRaiContentFiltersError = AzureOpError;
+/** List Content Filters types. */
+export const ListRaiContentFilters: API.OperationMethod<
+  ListRaiContentFiltersRequest,
+  RaiContentFilterListResult,
+  ListRaiContentFiltersError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListRaiContentFiltersRequest,
+  output: RaiContentFilterListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListRaiExternalSafetyProvidersError = AzureOpError;
+/** Gets the safety providers associated with the subscription */
+export const ListRaiExternalSafetyProviders: API.OperationMethod<
+  ListRaiExternalSafetyProvidersRequest,
+  RaiExternalSafetyProviderResult,
+  ListRaiExternalSafetyProvidersError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListRaiExternalSafetyProvidersRequest,
+  output: RaiExternalSafetyProviderResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListRaiPoliciesError = AzureOpError;
+/** Gets the content filters associated with the Azure OpenAI account. */
+export const ListRaiPolicies: API.OperationMethod<
+  ListRaiPoliciesRequest,
+  RaiPolicyListResult,
+  ListRaiPoliciesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListRaiPoliciesRequest,
+  output: RaiPolicyListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListRaiToolLabelsError = AzureOpError;
+/** Lists all RAI Tool Labels associated with the Azure OpenAI account. */
+export const ListRaiToolLabels: API.OperationMethod<
+  ListRaiToolLabelsRequest,
+  RaiToolLabelResult,
+  ListRaiToolLabelsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListRaiToolLabelsRequest,
+  output: RaiToolLabelResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListRaiTopicsError = AzureOpError;
+/** Gets the custom topics associated with the Azure OpenAI account. */
+export const ListRaiTopics: API.OperationMethod<
+  ListRaiTopicsRequest,
+  RaiTopicResult,
+  ListRaiTopicsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListRaiTopicsRequest,
+  output: RaiTopicResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListResourceSkusError = AzureOpError;
+/** Gets the list of Microsoft.CognitiveServices SKUs available for your Subscription. */
+export const ListResourceSkus: API.OperationMethod<
+  ListResourceSkusRequest,
+  ResourceSkuListResult,
+  ListResourceSkusError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListResourceSkusRequest,
+  output: ResourceSkuListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListUsagesError = AzureOpError;
+/** Get usages for the requested subscription */
+export const ListUsages: API.OperationMethod<
+  ListUsagesRequest,
+  UsageListResult,
+  ListUsagesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListUsagesRequest,
+  output: UsageListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -14316,21 +14799,6 @@ export const NetworkSecurityPerimeterConfigurationsReconcile: API.OperationMetho
   retry: Retry.Retry,
 }));
 
-export type OperationsListError = AzureOpError;
-/** Lists all the available Cognitive Services account operations. */
-export const OperationsList: API.OperationMethod<
-  OperationsListRequest,
-  OperationsListResponse,
-  OperationsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: OperationsListRequest,
-  output: OperationsListResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type OutboundRuleCreateOrUpdateError = AzureOpError;
 /** The PUT API for creating or updating a single outbound rule of the managed network associated with the cognitive services account. The PUT API for creating or updating a single outbound rule of the managed network associated with the cognitive services account. */
 export const OutboundRuleCreateOrUpdate: API.OperationMethod<
@@ -14346,60 +14814,45 @@ export const OutboundRuleCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type OutboundRuleDeleteError = AzureOpError;
-/** The DELETE API for deleting a single outbound rule of the managed network associated with the cognitive services account. The DELETE API for deleting a single outbound rule of the managed network associated with the cognitive services account. */
-export const OutboundRuleDelete: API.OperationMethod<
-  OutboundRuleDeleteRequest,
-  OutboundRuleDeleteResponse,
-  OutboundRuleDeleteError,
+export type PatchManagedNetworkSettingsError = AzureOpError;
+/** Patch API for managed network settings of a cognitive services account. Patch API for managed network settings of a cognitive services account. */
+export const PatchManagedNetworkSettings: API.OperationMethod<
+  PatchManagedNetworkSettingsRequest,
+  PatchManagedNetworkSettingsResponse,
+  PatchManagedNetworkSettingsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OutboundRuleDeleteRequest,
-  output: OutboundRuleDeleteResponse,
+  input: PatchManagedNetworkSettingsRequest,
+  output: PatchManagedNetworkSettingsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type OutboundRuleGetError = AzureOpError;
-/** The GET API for retrieving a single outbound rule of the managed network associated with the cognitive services account. The GET API for retrieving a single outbound rule of the managed network associated with the cognitive services account. */
-export const OutboundRuleGet: API.OperationMethod<
-  OutboundRuleGetRequest,
-  OutboundRuleGetResponse,
-  OutboundRuleGetError,
+export type PauseDeploymentError = AzureOpError;
+/** Pause a deployment Pauses inferencing on a deployment by setting the deploymentState to 'Paused' (see #/definitions/DeploymentProperties/properties/deploymentState). Only Standard, DataZoneStandard, and GlobalStandard SKUs support this operation. Inference requests to the paused deployment endpoint will receive HTTP 423 (Locked). This operation is idempotent. */
+export const PauseDeployment: API.OperationMethod<
+  PauseDeploymentRequest,
+  PauseDeploymentResponse,
+  PauseDeploymentError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OutboundRuleGetRequest,
-  output: OutboundRuleGetResponse,
+  input: PauseDeploymentRequest,
+  output: PauseDeploymentResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type OutboundRuleListError = AzureOpError;
-/** The GET API for retrieving the list of outbound rules of the managed network associated with the cognitive services account. The GET API for retrieving the list of outbound rules of the managed network associated with the cognitive services account. */
-export const OutboundRuleList: API.OperationMethod<
-  OutboundRuleListRequest,
-  OutboundRuleListResult,
-  OutboundRuleListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: OutboundRuleListRequest,
-  output: OutboundRuleListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type OutboundRulesPostError = AzureOpError;
+export type PostOutboundRuleError = AzureOpError;
 /** The POST API for updating the outbound rules of the managed network associated with the cognitive services account. The POST API for updating the outbound rules of the managed network associated with the cognitive services account. */
-export const OutboundRulesPost: API.OperationMethod<
-  OutboundRulesPostRequest,
+export const PostOutboundRule: API.OperationMethod<
+  PostOutboundRuleRequest,
   OutboundRuleListResult,
-  OutboundRulesPostError,
+  PostOutboundRuleError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OutboundRulesPostRequest,
+  input: PostOutboundRuleRequest,
   output: OutboundRuleListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -14421,66 +14874,6 @@ export const PrivateEndpointConnectionsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type PrivateEndpointConnectionsDeleteError = AzureOpError;
-/** Deletes the specified private endpoint connection associated with the Cognitive Services account. */
-export const PrivateEndpointConnectionsDelete: API.OperationMethod<
-  PrivateEndpointConnectionsDeleteRequest,
-  PrivateEndpointConnectionsDeleteResponse,
-  PrivateEndpointConnectionsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateEndpointConnectionsDeleteRequest,
-  output: PrivateEndpointConnectionsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateEndpointConnectionsGetError = AzureOpError;
-/** Gets the specified private endpoint connection associated with the Cognitive Services account. */
-export const PrivateEndpointConnectionsGet: API.OperationMethod<
-  PrivateEndpointConnectionsGetRequest,
-  PrivateEndpointConnectionsGetResponse,
-  PrivateEndpointConnectionsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateEndpointConnectionsGetRequest,
-  output: PrivateEndpointConnectionsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateEndpointConnectionsListError = AzureOpError;
-/** Gets the private endpoint connections associated with the Cognitive Services account. */
-export const PrivateEndpointConnectionsList: API.OperationMethod<
-  PrivateEndpointConnectionsListRequest,
-  PrivateEndpointConnectionListResult,
-  PrivateEndpointConnectionsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateEndpointConnectionsListRequest,
-  output: PrivateEndpointConnectionListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateLinkResourcesListError = AzureOpError;
-/** Gets the private link resources that need to be created for a Cognitive Services account. */
-export const PrivateLinkResourcesList: API.OperationMethod<
-  PrivateLinkResourcesListRequest,
-  PrivateLinkResourceListResult,
-  PrivateLinkResourcesListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateLinkResourcesListRequest,
-  output: PrivateLinkResourceListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ProjectCapabilityHostsCreateOrUpdateError = AzureOpError;
 /** Create or update project capabilityHost. Create or update project capabilityHost. */
 export const ProjectCapabilityHostsCreateOrUpdate: API.OperationMethod<
@@ -14496,196 +14889,46 @@ export const ProjectCapabilityHostsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ProjectCapabilityHostsDeleteError = AzureOpError;
-/** Delete project capabilityHost. Delete project capabilityHost. */
-export const ProjectCapabilityHostsDelete: API.OperationMethod<
-  ProjectCapabilityHostsDeleteRequest,
-  ProjectCapabilityHostsDeleteResponse,
-  ProjectCapabilityHostsDeleteError,
+export type ProvisionManagedNetworkProvisionManagedNetworkError = AzureOpError;
+/** Provisions the managed network of a cognitive services account. Provisions the managed network of a cognitive services account. */
+export const ProvisionManagedNetworkProvisionManagedNetwork: API.OperationMethod<
+  ProvisionManagedNetworkProvisionManagedNetworkRequest,
+  ManagedNetworkProvisionStatus,
+  ProvisionManagedNetworkProvisionManagedNetworkError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ProjectCapabilityHostsDeleteRequest,
-  output: ProjectCapabilityHostsDeleteResponse,
+  input: ProvisionManagedNetworkProvisionManagedNetworkRequest,
+  output: ManagedNetworkProvisionStatus,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ProjectCapabilityHostsGetError = AzureOpError;
-/** Get project capabilityHost. Get project capabilityHost. */
-export const ProjectCapabilityHostsGet: API.OperationMethod<
-  ProjectCapabilityHostsGetRequest,
-  ProjectCapabilityHostsGetResponse,
-  ProjectCapabilityHostsGetError,
+export type PurgeDeletedAccountError = AzureOpError;
+/** Deletes a Cognitive Services account from the resource group. */
+export const PurgeDeletedAccount: API.OperationMethod<
+  PurgeDeletedAccountRequest,
+  PurgeDeletedAccountResponse,
+  PurgeDeletedAccountError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ProjectCapabilityHostsGetRequest,
-  output: ProjectCapabilityHostsGetResponse,
+  input: PurgeDeletedAccountRequest,
+  output: PurgeDeletedAccountResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ProjectCapabilityHostsListError = AzureOpError;
-/** List capabilityHost. List capabilityHost. */
-export const ProjectCapabilityHostsList: API.OperationMethod<
-  ProjectCapabilityHostsListRequest,
-  ProjectCapabilityHostResourceArmPaginatedResult,
-  ProjectCapabilityHostsListError,
+export type PutManagedNetworkSettingsError = AzureOpError;
+/** PUT API for managed network settings of a cognitive services account. PUT API for managed network settings of a cognitive services account. */
+export const PutManagedNetworkSettings: API.OperationMethod<
+  PutManagedNetworkSettingsRequest,
+  PutManagedNetworkSettingsResponse,
+  PutManagedNetworkSettingsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ProjectCapabilityHostsListRequest,
-  output: ProjectCapabilityHostResourceArmPaginatedResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ProjectConnectionsCreateError = AzureOpError;
-/** Create or update Cognitive Services project connection under the specified project. Create or update Cognitive Services project connection under the specified project. */
-export const ProjectConnectionsCreate: API.OperationMethod<
-  ProjectConnectionsCreateRequest,
-  ProjectConnectionsCreateResponse,
-  ProjectConnectionsCreateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ProjectConnectionsCreateRequest,
-  output: ProjectConnectionsCreateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ProjectConnectionsDeleteError = AzureOpError;
-/** Delete Cognitive Services project connection by name. Delete Cognitive Services project connection by name. */
-export const ProjectConnectionsDelete: API.OperationMethod<
-  ProjectConnectionsDeleteRequest,
-  ProjectConnectionsDeleteResponse,
-  ProjectConnectionsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ProjectConnectionsDeleteRequest,
-  output: ProjectConnectionsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ProjectConnectionsGetError = AzureOpError;
-/** Lists Cognitive Services project connection by name. Lists Cognitive Services project connection by name. */
-export const ProjectConnectionsGet: API.OperationMethod<
-  ProjectConnectionsGetRequest,
-  ProjectConnectionsGetResponse,
-  ProjectConnectionsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ProjectConnectionsGetRequest,
-  output: ProjectConnectionsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ProjectConnectionsListError = AzureOpError;
-/** Lists all the available Cognitive Services project connections under the specified project. Lists all the available Cognitive Services project connections under the specified project. */
-export const ProjectConnectionsList: API.OperationMethod<
-  ProjectConnectionsListRequest,
-  ConnectionPropertiesV2BasicResourceArmPaginatedResult,
-  ProjectConnectionsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ProjectConnectionsListRequest,
-  output: ConnectionPropertiesV2BasicResourceArmPaginatedResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ProjectConnectionsUpdateError = AzureOpError;
-/** Update Cognitive Services project connection under the specified project. Update Cognitive Services project connection under the specified project. */
-export const ProjectConnectionsUpdate: API.OperationMethod<
-  ProjectConnectionsUpdateRequest,
-  ProjectConnectionsUpdateResponse,
-  ProjectConnectionsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ProjectConnectionsUpdateRequest,
-  output: ProjectConnectionsUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ProjectsCreateError = AzureOpError;
-/** Create Cognitive Services Account's Project. Project is a sub-resource of an account which give AI developer it's individual container to work on. */
-export const ProjectsCreate: API.OperationMethod<
-  ProjectsCreateRequest,
-  ProjectsCreateResponse,
-  ProjectsCreateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ProjectsCreateRequest,
-  output: ProjectsCreateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ProjectsDeleteError = AzureOpError;
-/** Deletes a Cognitive Services project from the resource group. */
-export const ProjectsDelete: API.OperationMethod<
-  ProjectsDeleteRequest,
-  ProjectsDeleteResponse,
-  ProjectsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ProjectsDeleteRequest,
-  output: ProjectsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ProjectsGetError = AzureOpError;
-/** Returns a Cognitive Services project specified by the parameters. */
-export const ProjectsGet: API.OperationMethod<
-  ProjectsGetRequest,
-  ProjectsGetResponse,
-  ProjectsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ProjectsGetRequest,
-  output: ProjectsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ProjectsListError = AzureOpError;
-/** Returns all the projects in a Cognitive Services account. */
-export const ProjectsList: API.OperationMethod<
-  ProjectsListRequest,
-  ProjectListResult,
-  ProjectsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ProjectsListRequest,
-  output: ProjectListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ProjectsUpdateError = AzureOpError;
-/** Updates a Cognitive Services Project */
-export const ProjectsUpdate: API.OperationMethod<
-  ProjectsUpdateRequest,
-  ProjectsUpdateResponse,
-  ProjectsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ProjectsUpdateRequest,
-  output: ProjectsUpdateResponse,
+  input: PutManagedNetworkSettingsRequest,
+  output: PutManagedNetworkSettingsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -14706,81 +14949,6 @@ export const QuotaTiersCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type QuotaTiersGetError = AzureOpError;
-/** Gets the Quota Tier for a subscription Gets the Quota Tier information for the given subscription. QuotaTiers is a subscription wide resource type. It holds current tier information. */
-export const QuotaTiersGet: API.OperationMethod<
-  QuotaTiersGetRequest,
-  QuotaTiersGetResponse,
-  QuotaTiersGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: QuotaTiersGetRequest,
-  output: QuotaTiersGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type QuotaTiersListBySubscriptionError = AzureOpError;
-/** Returns all the resources of a particular type belonging to a subscription. */
-export const QuotaTiersListBySubscription: API.OperationMethod<
-  QuotaTiersListBySubscriptionRequest,
-  QuotaTierListResult,
-  QuotaTiersListBySubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: QuotaTiersListBySubscriptionRequest,
-  output: QuotaTierListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type QuotaTiersUpdateError = AzureOpError;
-/** Updates the Quota Tier resource for a subscription. The only properties that can be updated are "tierUpgradePolicy" Update the Quota Tier information for the given subscription. QuotaTiers is a subscription wide resource type. It holds current tier information. */
-export const QuotaTiersUpdate: API.OperationMethod<
-  QuotaTiersUpdateRequest,
-  QuotaTiersUpdateResponse,
-  QuotaTiersUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: QuotaTiersUpdateRequest,
-  output: QuotaTiersUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RaiBlocklistItemsBatchAddError = AzureOpError;
-/** Batch operation to add blocklist items. */
-export const RaiBlocklistItemsBatchAdd: API.OperationMethod<
-  RaiBlocklistItemsBatchAddRequest,
-  RaiBlocklistItemsBatchAddResponse,
-  RaiBlocklistItemsBatchAddError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RaiBlocklistItemsBatchAddRequest,
-  output: RaiBlocklistItemsBatchAddResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RaiBlocklistItemsBatchDeleteError = AzureOpError;
-/** Batch operation to delete blocklist items. */
-export const RaiBlocklistItemsBatchDelete: API.OperationMethod<
-  RaiBlocklistItemsBatchDeleteRequest,
-  RaiBlocklistItemsBatchDeleteResponse,
-  RaiBlocklistItemsBatchDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RaiBlocklistItemsBatchDeleteRequest,
-  output: RaiBlocklistItemsBatchDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type RaiBlocklistItemsCreateOrUpdateError = AzureOpError;
 /** Update the state of specified blocklist item associated with the Azure OpenAI account. */
 export const RaiBlocklistItemsCreateOrUpdate: API.OperationMethod<
@@ -14791,51 +14959,6 @@ export const RaiBlocklistItemsCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: RaiBlocklistItemsCreateOrUpdateRequest,
   output: RaiBlocklistItemsCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RaiBlocklistItemsDeleteError = AzureOpError;
-/** Deletes the specified blocklist Item associated with the custom blocklist. */
-export const RaiBlocklistItemsDelete: API.OperationMethod<
-  RaiBlocklistItemsDeleteRequest,
-  RaiBlocklistItemsDeleteResponse,
-  RaiBlocklistItemsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RaiBlocklistItemsDeleteRequest,
-  output: RaiBlocklistItemsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RaiBlocklistItemsGetError = AzureOpError;
-/** Gets the specified custom blocklist Item associated with the custom blocklist. */
-export const RaiBlocklistItemsGet: API.OperationMethod<
-  RaiBlocklistItemsGetRequest,
-  RaiBlocklistItemsGetResponse,
-  RaiBlocklistItemsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RaiBlocklistItemsGetRequest,
-  output: RaiBlocklistItemsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RaiBlocklistItemsListError = AzureOpError;
-/** Gets the blocklist items associated with the custom blocklist. */
-export const RaiBlocklistItemsList: API.OperationMethod<
-  RaiBlocklistItemsListRequest,
-  RaiBlockListItemsResult,
-  RaiBlocklistItemsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RaiBlocklistItemsListRequest,
-  output: RaiBlockListItemsResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -14856,81 +14979,6 @@ export const RaiBlocklistsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type RaiBlocklistsDeleteError = AzureOpError;
-/** Deletes the specified custom blocklist associated with the Azure OpenAI account. */
-export const RaiBlocklistsDelete: API.OperationMethod<
-  RaiBlocklistsDeleteRequest,
-  RaiBlocklistsDeleteResponse,
-  RaiBlocklistsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RaiBlocklistsDeleteRequest,
-  output: RaiBlocklistsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RaiBlocklistsGetError = AzureOpError;
-/** Gets the specified custom blocklist associated with the Azure OpenAI account. */
-export const RaiBlocklistsGet: API.OperationMethod<
-  RaiBlocklistsGetRequest,
-  RaiBlocklistsGetResponse,
-  RaiBlocklistsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RaiBlocklistsGetRequest,
-  output: RaiBlocklistsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RaiBlocklistsListError = AzureOpError;
-/** Gets the custom blocklists associated with the Azure OpenAI account. */
-export const RaiBlocklistsList: API.OperationMethod<
-  RaiBlocklistsListRequest,
-  RaiBlockListResult,
-  RaiBlocklistsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RaiBlocklistsListRequest,
-  output: RaiBlockListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RaiContentFiltersGetError = AzureOpError;
-/** Get Content Filters by Name. */
-export const RaiContentFiltersGet: API.OperationMethod<
-  RaiContentFiltersGetRequest,
-  RaiContentFiltersGetResponse,
-  RaiContentFiltersGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RaiContentFiltersGetRequest,
-  output: RaiContentFiltersGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RaiContentFiltersListError = AzureOpError;
-/** List Content Filters types. */
-export const RaiContentFiltersList: API.OperationMethod<
-  RaiContentFiltersListRequest,
-  RaiContentFilterListResult,
-  RaiContentFiltersListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RaiContentFiltersListRequest,
-  output: RaiContentFilterListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type RaiExternalSafetyProviderCreateOrUpdateError = AzureOpError;
 /** Create the rai safety provider associated with the subscription. */
 export const RaiExternalSafetyProviderCreateOrUpdate: API.OperationMethod<
@@ -14941,51 +14989,6 @@ export const RaiExternalSafetyProviderCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: RaiExternalSafetyProviderCreateOrUpdateRequest,
   output: RaiExternalSafetyProviderCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RaiExternalSafetyProviderDeleteError = AzureOpError;
-/** Deletes the specified custom topic associated with the subscription. */
-export const RaiExternalSafetyProviderDelete: API.OperationMethod<
-  RaiExternalSafetyProviderDeleteRequest,
-  RaiExternalSafetyProviderDeleteResponse,
-  RaiExternalSafetyProviderDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RaiExternalSafetyProviderDeleteRequest,
-  output: RaiExternalSafetyProviderDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RaiExternalSafetyProviderGetError = AzureOpError;
-/** Gets the specified external safety provider associated with the Subscription */
-export const RaiExternalSafetyProviderGet: API.OperationMethod<
-  RaiExternalSafetyProviderGetRequest,
-  RaiExternalSafetyProviderGetResponse,
-  RaiExternalSafetyProviderGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RaiExternalSafetyProviderGetRequest,
-  output: RaiExternalSafetyProviderGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RaiExternalSafetyProvidersListError = AzureOpError;
-/** Gets the safety providers associated with the subscription */
-export const RaiExternalSafetyProvidersList: API.OperationMethod<
-  RaiExternalSafetyProvidersListRequest,
-  RaiExternalSafetyProviderResult,
-  RaiExternalSafetyProvidersListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RaiExternalSafetyProvidersListRequest,
-  output: RaiExternalSafetyProviderResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -15006,51 +15009,6 @@ export const RaiPoliciesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type RaiPoliciesDeleteError = AzureOpError;
-/** Deletes the specified Content Filters associated with the Azure OpenAI account. */
-export const RaiPoliciesDelete: API.OperationMethod<
-  RaiPoliciesDeleteRequest,
-  RaiPoliciesDeleteResponse,
-  RaiPoliciesDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RaiPoliciesDeleteRequest,
-  output: RaiPoliciesDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RaiPoliciesGetError = AzureOpError;
-/** Gets the specified Content Filters associated with the Azure OpenAI account. */
-export const RaiPoliciesGet: API.OperationMethod<
-  RaiPoliciesGetRequest,
-  RaiPoliciesGetResponse,
-  RaiPoliciesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RaiPoliciesGetRequest,
-  output: RaiPoliciesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RaiPoliciesListError = AzureOpError;
-/** Gets the content filters associated with the Azure OpenAI account. */
-export const RaiPoliciesList: API.OperationMethod<
-  RaiPoliciesListRequest,
-  RaiPolicyListResult,
-  RaiPoliciesListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RaiPoliciesListRequest,
-  output: RaiPolicyListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type RaiToolLabelsCreateOrUpdateError = AzureOpError;
 /** Creates the RAI Tool Label associated with the Azure OpenAI account. */
 export const RaiToolLabelsCreateOrUpdate: API.OperationMethod<
@@ -15061,51 +15019,6 @@ export const RaiToolLabelsCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: RaiToolLabelsCreateOrUpdateRequest,
   output: RaiToolLabelsCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RaiToolLabelsDeleteError = AzureOpError;
-/** Deletes the specified RAI Tool Label associated with the Azure OpenAI account. */
-export const RaiToolLabelsDelete: API.OperationMethod<
-  RaiToolLabelsDeleteRequest,
-  RaiToolLabelsDeleteResponse,
-  RaiToolLabelsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RaiToolLabelsDeleteRequest,
-  output: RaiToolLabelsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RaiToolLabelsGetError = AzureOpError;
-/** Gets the specified RAI Tool Label associated with the Azure OpenAI account. */
-export const RaiToolLabelsGet: API.OperationMethod<
-  RaiToolLabelsGetRequest,
-  RaiToolLabelsGetResponse,
-  RaiToolLabelsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RaiToolLabelsGetRequest,
-  output: RaiToolLabelsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RaiToolLabelsListError = AzureOpError;
-/** Lists all RAI Tool Labels associated with the Azure OpenAI account. */
-export const RaiToolLabelsList: API.OperationMethod<
-  RaiToolLabelsListRequest,
-  RaiToolLabelResult,
-  RaiToolLabelsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RaiToolLabelsListRequest,
-  output: RaiToolLabelResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -15126,61 +15039,61 @@ export const RaiTopicsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type RaiTopicsDeleteError = AzureOpError;
-/** Deletes the specified custom topic associated with the Azure OpenAI account. */
-export const RaiTopicsDelete: API.OperationMethod<
-  RaiTopicsDeleteRequest,
-  RaiTopicsDeleteResponse,
-  RaiTopicsDeleteError,
+export type RegenerateAccountKeyError = AzureOpError;
+/** Regenerates the specified account key for the specified Cognitive Services account. */
+export const RegenerateAccountKey: API.OperationMethod<
+  RegenerateAccountKeyRequest,
+  ApiKeys,
+  RegenerateAccountKeyError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: RaiTopicsDeleteRequest,
-  output: RaiTopicsDeleteResponse,
+  input: RegenerateAccountKeyRequest,
+  output: ApiKeys,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type RaiTopicsGetError = AzureOpError;
-/** Gets the specified custom topic associated with the Azure OpenAI account. */
-export const RaiTopicsGet: API.OperationMethod<
-  RaiTopicsGetRequest,
-  RaiTopicsGetResponse,
-  RaiTopicsGetError,
+export type ResumeDeploymentError = AzureOpError;
+/** Resume a deployment Resumes inferencing on a previously paused deployment by setting the deploymentState to 'Running' (see #/definitions/DeploymentProperties/properties/deploymentState). This operation is idempotent and can be safely called on already running deployments. */
+export const ResumeDeployment: API.OperationMethod<
+  ResumeDeploymentRequest,
+  ResumeDeploymentResponse,
+  ResumeDeploymentError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: RaiTopicsGetRequest,
-  output: RaiTopicsGetResponse,
+  input: ResumeDeploymentRequest,
+  output: ResumeDeploymentResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type RaiTopicsListError = AzureOpError;
-/** Gets the custom topics associated with the Azure OpenAI account. */
-export const RaiTopicsList: API.OperationMethod<
-  RaiTopicsListRequest,
-  RaiTopicResult,
-  RaiTopicsListError,
+export type StartAgentDeploymentError = AzureOpError;
+/** Starts an Agent Deployment. Starts an Agent Deployment. */
+export const StartAgentDeployment: API.OperationMethod<
+  StartAgentDeploymentRequest,
+  StartAgentDeploymentResponse,
+  StartAgentDeploymentError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: RaiTopicsListRequest,
-  output: RaiTopicResult,
+  input: StartAgentDeploymentRequest,
+  output: StartAgentDeploymentResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ResourceSkusListError = AzureOpError;
-/** Gets the list of Microsoft.CognitiveServices SKUs available for your Subscription. */
-export const ResourceSkusList: API.OperationMethod<
-  ResourceSkusListRequest,
-  ResourceSkuListResult,
-  ResourceSkusListError,
+export type StopAgentDeploymentError = AzureOpError;
+/** Stops an Agent Deployment. Stops an Agent Deployment. */
+export const StopAgentDeployment: API.OperationMethod<
+  StopAgentDeploymentRequest,
+  StopAgentDeploymentResponse,
+  StopAgentDeploymentError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ResourceSkusListRequest,
-  output: ResourceSkuListResult,
+  input: StopAgentDeploymentRequest,
+  output: StopAgentDeploymentResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -15201,36 +15114,6 @@ export const SubscriptionRaiPolicyCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type SubscriptionRaiPolicyDeleteError = AzureOpError;
-/** Deletes the specified Content Filters associated with the subscription. */
-export const SubscriptionRaiPolicyDelete: API.OperationMethod<
-  SubscriptionRaiPolicyDeleteRequest,
-  SubscriptionRaiPolicyDeleteResponse,
-  SubscriptionRaiPolicyDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SubscriptionRaiPolicyDeleteRequest,
-  output: SubscriptionRaiPolicyDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SubscriptionRaiPolicyGetError = AzureOpError;
-/** Gets the specified Content Filters associated with the Subscription. */
-export const SubscriptionRaiPolicyGet: API.OperationMethod<
-  SubscriptionRaiPolicyGetRequest,
-  SubscriptionRaiPolicyGetResponse,
-  SubscriptionRaiPolicyGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SubscriptionRaiPolicyGetRequest,
-  output: SubscriptionRaiPolicyGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type TestRaiExternalSafetyProviderCreateOrUpdateError = AzureOpError;
 /** Test the rai safety provider associated with the subscription. */
 export const TestRaiExternalSafetyProviderCreateOrUpdate: API.OperationMethod<
@@ -15246,16 +15129,121 @@ export const TestRaiExternalSafetyProviderCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type UsagesListError = AzureOpError;
-/** Get usages for the requested subscription */
-export const UsagesList: API.OperationMethod<
-  UsagesListRequest,
-  UsageListResult,
-  UsagesListError,
+export type UpdateAccountError = AzureOpError;
+/** Updates a Cognitive Services account */
+export const UpdateAccount: API.OperationMethod<
+  UpdateAccountRequest,
+  UpdateAccountResponse,
+  UpdateAccountError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UsagesListRequest,
-  output: UsageListResult,
+  input: UpdateAccountRequest,
+  output: UpdateAccountResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateAccountConnectionError = AzureOpError;
+/** Update Cognitive Services account connection under the specified account. Update Cognitive Services account connection under the specified account. */
+export const UpdateAccountConnection: API.OperationMethod<
+  UpdateAccountConnectionRequest,
+  UpdateAccountConnectionResponse,
+  UpdateAccountConnectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateAccountConnectionRequest,
+  output: UpdateAccountConnectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateCommitmentPlanPlanError = AzureOpError;
+/** Create Cognitive Services commitment plan. */
+export const UpdateCommitmentPlanPlan: API.OperationMethod<
+  UpdateCommitmentPlanPlanRequest,
+  UpdateCommitmentPlanPlanResponse,
+  UpdateCommitmentPlanPlanError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateCommitmentPlanPlanRequest,
+  output: UpdateCommitmentPlanPlanResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateDefenderForAISettingsError = AzureOpError;
+/** Updates the specified Defender for AI setting. */
+export const UpdateDefenderForAISettings: API.OperationMethod<
+  UpdateDefenderForAISettingsRequest,
+  UpdateDefenderForAISettingsResponse,
+  UpdateDefenderForAISettingsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateDefenderForAISettingsRequest,
+  output: UpdateDefenderForAISettingsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateDeploymentError = AzureOpError;
+/** Update specified deployments associated with the Cognitive Services account. */
+export const UpdateDeployment: API.OperationMethod<
+  UpdateDeploymentRequest,
+  UpdateDeploymentResponse,
+  UpdateDeploymentError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateDeploymentRequest,
+  output: UpdateDeploymentResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateProjectError = AzureOpError;
+/** Updates a Cognitive Services Project */
+export const UpdateProject: API.OperationMethod<
+  UpdateProjectRequest,
+  UpdateProjectResponse,
+  UpdateProjectError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateProjectRequest,
+  output: UpdateProjectResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateProjectConnectionError = AzureOpError;
+/** Update Cognitive Services project connection under the specified project. Update Cognitive Services project connection under the specified project. */
+export const UpdateProjectConnection: API.OperationMethod<
+  UpdateProjectConnectionRequest,
+  UpdateProjectConnectionResponse,
+  UpdateProjectConnectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateProjectConnectionRequest,
+  output: UpdateProjectConnectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateQuotaTierError = AzureOpError;
+/** Updates the Quota Tier resource for a subscription. The only properties that can be updated are "tierUpgradePolicy" Update the Quota Tier information for the given subscription. QuotaTiers is a subscription wide resource type. It holds current tier information. */
+export const UpdateQuotaTier: API.OperationMethod<
+  UpdateQuotaTierRequest,
+  UpdateQuotaTierResponse,
+  UpdateQuotaTierError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateQuotaTierRequest,
+  output: UpdateQuotaTierResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

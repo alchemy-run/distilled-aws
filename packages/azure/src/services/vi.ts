@@ -13,60 +13,6 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
-/** The type of resource, Microsoft.VideoIndexer/accounts */
-export type AccountsCheckNameAvailabilityRequestType =
-  "Microsoft.VideoIndexer/accounts";
-export const AccountsCheckNameAvailabilityRequestType = /*@__PURE__*/ S.String;
-
-export interface AccountsCheckNameAvailabilityRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The VideoIndexer account name. */
-  name: string;
-  /** The type of resource, Microsoft.VideoIndexer/accounts */
-  type: AccountsCheckNameAvailabilityRequestType | (string & {});
-}
-export const AccountsCheckNameAvailabilityRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      name: S.String,
-      type: AccountsCheckNameAvailabilityRequestType,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.VideoIndexer/checkNameAvailability",
-        code: 200,
-        apiVersion: "2025-04-01",
-      }),
-    ),
-).annotate({
-  identifier: "AccountsCheckNameAvailabilityRequest",
-}) as any as S.Schema<AccountsCheckNameAvailabilityRequest>;
-
-/** Gets the reason that a Video Indexer account name could not be used. The Reason element is only returned if NameAvailable is false. */
-export type CheckNameAvailabilityResultReason = "AlreadyExists";
-export const CheckNameAvailabilityResultReason = /*@__PURE__*/ S.String;
-
-/** The CheckNameAvailability operation response. */
-export interface CheckNameAvailabilityResult {
-  /** Gets a boolean value that indicates whether the name is available for you to use. If true, the name is available. If false, the name has already been taken. */
-  nameAvailable?: boolean;
-  /** Gets the reason that a Video Indexer account name could not be used. The Reason element is only returned if NameAvailable is false. */
-  reason?: CheckNameAvailabilityResultReason;
-  /** Gets an error message explaining the Reason value in more detail. */
-  message?: string;
-}
-export const CheckNameAvailabilityResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    nameAvailable: S.optional(S.Boolean),
-    reason: S.optional(CheckNameAvailabilityResultReason),
-    message: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "CheckNameAvailabilityResult",
-}) as any as S.Schema<CheckNameAvailabilityResult>;
-
 /** Resource tags. */
 export type AccountsCreateOrUpdateRequestTagsMap = {
   [key: string]: string | undefined;
@@ -572,7 +518,60 @@ export const AccountsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "AccountsCreateOrUpdateResponse",
 }) as any as S.Schema<AccountsCreateOrUpdateResponse>;
 
-export interface AccountsDeleteRequest {
+/** The type of resource, Microsoft.VideoIndexer/accounts */
+export type CheckAccountNameAvailabilityRequestType =
+  "Microsoft.VideoIndexer/accounts";
+export const CheckAccountNameAvailabilityRequestType = /*@__PURE__*/ S.String;
+
+export interface CheckAccountNameAvailabilityRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The VideoIndexer account name. */
+  name: string;
+  /** The type of resource, Microsoft.VideoIndexer/accounts */
+  type: CheckAccountNameAvailabilityRequestType | (string & {});
+}
+export const CheckAccountNameAvailabilityRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    name: S.String,
+    type: CheckAccountNameAvailabilityRequestType,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.VideoIndexer/checkNameAvailability",
+      code: 200,
+      apiVersion: "2025-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "CheckAccountNameAvailabilityRequest",
+}) as any as S.Schema<CheckAccountNameAvailabilityRequest>;
+
+/** Gets the reason that a Video Indexer account name could not be used. The Reason element is only returned if NameAvailable is false. */
+export type CheckNameAvailabilityResultReason = "AlreadyExists";
+export const CheckNameAvailabilityResultReason = /*@__PURE__*/ S.String;
+
+/** The CheckNameAvailability operation response. */
+export interface CheckNameAvailabilityResult {
+  /** Gets a boolean value that indicates whether the name is available for you to use. If true, the name is available. If false, the name has already been taken. */
+  nameAvailable?: boolean;
+  /** Gets the reason that a Video Indexer account name could not be used. The Reason element is only returned if NameAvailable is false. */
+  reason?: CheckNameAvailabilityResultReason;
+  /** Gets an error message explaining the Reason value in more detail. */
+  message?: string;
+}
+export const CheckNameAvailabilityResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nameAvailable: S.optional(S.Boolean),
+    reason: S.optional(CheckNameAvailabilityResultReason),
+    message: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "CheckNameAvailabilityResult",
+}) as any as S.Schema<CheckNameAvailabilityResult>;
+
+export interface DeleteAccountRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -580,7 +579,7 @@ export interface AccountsDeleteRequest {
   /** The name of the Azure Video Indexer account. */
   accountName: string;
 }
-export const AccountsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteAccountRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -594,354 +593,51 @@ export const AccountsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "AccountsDeleteRequest",
-}) as any as S.Schema<AccountsDeleteRequest>;
+  identifier: "DeleteAccountRequest",
+}) as any as S.Schema<DeleteAccountRequest>;
 
-export interface AccountsDeleteResponse {}
-export const AccountsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteAccountResponse {}
+export const DeleteAccountResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "AccountsDeleteResponse",
-}) as any as S.Schema<AccountsDeleteResponse>;
+  identifier: "DeleteAccountResponse",
+}) as any as S.Schema<DeleteAccountResponse>;
 
-export interface AccountsGetRequest {
+export interface DeletePrivateEndpointConnectionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of the Azure Video Indexer account. */
   accountName: string;
+  /** The name of the private endpoint connection associated with the Azure resource. */
+  privateEndpointConnectionName: string;
 }
-export const AccountsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VideoIndexer/accounts/{accountName}",
-      code: 200,
-      apiVersion: "2025-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "AccountsGetRequest",
-}) as any as S.Schema<AccountsGetRequest>;
-
-/** Resource tags. */
-export type AccountsGetResponseTagsMap = { [key: string]: string | undefined };
-export const AccountsGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<AccountsGetResponseTagsMap>;
-
-/** Managed service identity (system assigned and/or user assigned identities) */
-export type AccountsGetResponseIdentity =
-  AccountsCreateOrUpdateResponseIdentity;
-export const AccountsGetResponseIdentity =
-  AccountsCreateOrUpdateResponseIdentity;
-
-export interface AccountsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: AccountsGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** List of account properties */
-  properties?: AccountPropertiesForPutRequest;
-  /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: AccountsCreateOrUpdateResponseIdentity;
-}
-export const AccountsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(AccountsGetResponseTagsMap),
-    location: S.String,
-    properties: S.optional(AccountPropertiesForPutRequest),
-    identity: S.optional(AccountsCreateOrUpdateResponseIdentity),
-  }),
-).annotate({
-  identifier: "AccountsGetResponse",
-}) as any as S.Schema<AccountsGetResponse>;
-
-export interface AccountsListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-}
-export const AccountsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.VideoIndexer/accounts",
-      code: 200,
-      apiVersion: "2025-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "AccountsListRequest",
-}) as any as S.Schema<AccountsListRequest>;
-
-/** Resource tags. */
-export type AccountTagsMap = { [key: string]: string | undefined };
-export const AccountTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<AccountTagsMap>;
-
-/** Managed service identity (system assigned and/or user assigned identities) */
-export type AccountIdentity = AccountsCreateOrUpdateResponseIdentity;
-export const AccountIdentity = AccountsCreateOrUpdateResponseIdentity;
-
-/** An Azure Video Indexer account. */
-export interface Account {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: AccountTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** List of account properties */
-  properties?: AccountPropertiesForPutRequest;
-  /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: AccountsCreateOrUpdateResponseIdentity;
-}
-export const Account = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(AccountTagsMap),
-    location: S.String,
-    properties: S.optional(AccountPropertiesForPutRequest),
-    identity: S.optional(AccountsCreateOrUpdateResponseIdentity),
-  }),
-).annotate({ identifier: "Account" }) as any as S.Schema<Account>;
-
-/** List of accounts and their properties. */
-export type AccountListValueList = Array<Account>;
-export const AccountListValueList = /*@__PURE__*/ S.Array(
-  Account,
-) as any as S.Schema<AccountListValueList>;
-
-/** The list operation response, that contains the data pools and their properties. */
-export interface AccountList {
-  /** List of accounts and their properties. */
-  value?: AccountListValueList;
-  /** URL to get the next set of operation list results if there are any. */
-  nextLink?: string;
-}
-export const AccountList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(AccountListValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({ identifier: "AccountList" }) as any as S.Schema<AccountList>;
-
-export interface AccountsListByResourceGroupRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-}
-export const AccountsListByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VideoIndexer/accounts",
-      code: 200,
-      apiVersion: "2025-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "AccountsListByResourceGroupRequest",
-}) as any as S.Schema<AccountsListByResourceGroupRequest>;
-
-/** Resource tags */
-export type AccountsUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const AccountsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<AccountsUpdateRequestTagsMap>;
-
-/** The storage services details */
-export interface StorageServicesForPatchRequest {
-  /** The user assigned identity to be used to grant permissions */
-  userAssignedIdentity?: string;
-}
-export const StorageServicesForPatchRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    userAssignedIdentity: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "StorageServicesForPatchRequest",
-}) as any as S.Schema<StorageServicesForPatchRequest>;
-
-/** The openAi services details */
-export type OpenAiServicesForPatchRequest = OpenAiServicesForPutRequest;
-export const OpenAiServicesForPatchRequest = OpenAiServicesForPutRequest;
-
-/** Whether or not public network access is allowed for the account. */
-export type AccountPropertiesForPatchRequestInputPublicNetworkAccess =
-  | "Enabled"
-  | "Disabled";
-export const AccountPropertiesForPatchRequestInputPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
-
-/** The private endpoint connection resource. */
-export type AccountPropertiesForPatchRequestInputPrivateEndpointConnectionsItem =
-  AccountPropertiesForPutRequestInputPrivateEndpointConnectionsItem;
-export const AccountPropertiesForPatchRequestInputPrivateEndpointConnectionsItem =
-  AccountPropertiesForPutRequestInputPrivateEndpointConnectionsItem;
-
-/** List of private endpoint connections associated with the account. */
-export type AccountPropertiesForPatchRequestInputPrivateEndpointConnectionsList =
-  Array<AccountPropertiesForPutRequestInputPrivateEndpointConnectionsItem>;
-export const AccountPropertiesForPatchRequestInputPrivateEndpointConnectionsList =
-  /*@__PURE__*/ S.Array(
-    AccountPropertiesForPutRequestInputPrivateEndpointConnectionsItem,
-  ) as any as S.Schema<AccountPropertiesForPatchRequestInputPrivateEndpointConnectionsList>;
-
-/** Azure Video Indexer account properties */
-export interface AccountPropertiesForPatchRequestInput {
-  /** The storage services details */
-  storageServices?: StorageServicesForPatchRequest;
-  /** The openAi services details */
-  openAiServices?: OpenAiServicesForPutRequest;
-  /** Whether or not public network access is allowed for the account. */
-  publicNetworkAccess?:
-    | AccountPropertiesForPatchRequestInputPublicNetworkAccess
-    | (string & {});
-  /** List of private endpoint connections associated with the account. */
-  privateEndpointConnections?: AccountPropertiesForPatchRequestInputPrivateEndpointConnectionsList;
-}
-export const AccountPropertiesForPatchRequestInput = /*@__PURE__*/ S.suspend(
+export const DeletePrivateEndpointConnectionRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      storageServices: S.optional(StorageServicesForPatchRequest),
-      openAiServices: S.optional(OpenAiServicesForPutRequest),
-      publicNetworkAccess: S.optional(
-        AccountPropertiesForPatchRequestInputPublicNetworkAccess,
-      ),
-      privateEndpointConnections: S.optional(
-        AccountPropertiesForPatchRequestInputPrivateEndpointConnectionsList,
-      ),
-    }),
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+      privateEndpointConnectionName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VideoIndexer/accounts/{accountName}/privateEndpointConnections/{privateEndpointConnectionName}",
+        code: 200,
+        apiVersion: "2025-04-01",
+      }),
+    ),
 ).annotate({
-  identifier: "AccountPropertiesForPatchRequestInput",
-}) as any as S.Schema<AccountPropertiesForPatchRequestInput>;
+  identifier: "DeletePrivateEndpointConnectionRequest",
+}) as any as S.Schema<DeletePrivateEndpointConnectionRequest>;
 
-/** Managed service identity (system assigned and/or user assigned identities) */
-export type AccountsUpdateRequestIdentity =
-  AccountsCreateOrUpdateRequestIdentity;
-export const AccountsUpdateRequestIdentity =
-  AccountsCreateOrUpdateRequestIdentity;
-
-export interface AccountsUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Azure Video Indexer account. */
-  accountName: string;
-  /** Resource tags */
-  tags?: AccountsUpdateRequestTagsMap;
-  /** List of account properties */
-  properties?: AccountPropertiesForPatchRequestInput;
-  /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: AccountsCreateOrUpdateRequestIdentity;
-}
-export const AccountsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    tags: S.optional(AccountsUpdateRequestTagsMap),
-    properties: S.optional(AccountPropertiesForPatchRequestInput),
-    identity: S.optional(AccountsCreateOrUpdateRequestIdentity),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VideoIndexer/accounts/{accountName}",
-      code: 200,
-      apiVersion: "2025-04-01",
-    }),
-  ),
+export interface DeletePrivateEndpointConnectionResponse {}
+export const DeletePrivateEndpointConnectionResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
 ).annotate({
-  identifier: "AccountsUpdateRequest",
-}) as any as S.Schema<AccountsUpdateRequest>;
-
-/** Resource tags. */
-export type AccountsUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const AccountsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<AccountsUpdateResponseTagsMap>;
-
-/** Managed service identity (system assigned and/or user assigned identities) */
-export type AccountsUpdateResponseIdentity =
-  AccountsCreateOrUpdateResponseIdentity;
-export const AccountsUpdateResponseIdentity =
-  AccountsCreateOrUpdateResponseIdentity;
-
-export interface AccountsUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: AccountsUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** List of account properties */
-  properties?: AccountPropertiesForPutRequest;
-  /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: AccountsCreateOrUpdateResponseIdentity;
-}
-export const AccountsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(AccountsUpdateResponseTagsMap),
-    location: S.String,
-    properties: S.optional(AccountPropertiesForPutRequest),
-    identity: S.optional(AccountsCreateOrUpdateResponseIdentity),
-  }),
-).annotate({
-  identifier: "AccountsUpdateResponse",
-}) as any as S.Schema<AccountsUpdateResponse>;
+  identifier: "DeletePrivateEndpointConnectionResponse",
+}) as any as S.Schema<DeletePrivateEndpointConnectionResponse>;
 
 /** The requested permission */
 export type GenerateAccessTokenRequestPermissionType = "Contributor" | "Reader";
@@ -1146,8 +842,324 @@ export const GenerateRestrictedViewerAccessTokenRequest =
     identifier: "GenerateRestrictedViewerAccessTokenRequest",
   }) as any as S.Schema<GenerateRestrictedViewerAccessTokenRequest>;
 
-export interface OperationsListRequest {}
-export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
+export interface GetAccountRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Azure Video Indexer account. */
+  accountName: string;
+}
+export const GetAccountRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VideoIndexer/accounts/{accountName}",
+      code: 200,
+      apiVersion: "2025-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetAccountRequest",
+}) as any as S.Schema<GetAccountRequest>;
+
+/** Resource tags. */
+export type GetAccountResponseTagsMap = { [key: string]: string | undefined };
+export const GetAccountResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetAccountResponseTagsMap>;
+
+/** Managed service identity (system assigned and/or user assigned identities) */
+export type GetAccountResponseIdentity = AccountsCreateOrUpdateResponseIdentity;
+export const GetAccountResponseIdentity =
+  AccountsCreateOrUpdateResponseIdentity;
+
+export interface GetAccountResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetAccountResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** List of account properties */
+  properties?: AccountPropertiesForPutRequest;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: AccountsCreateOrUpdateResponseIdentity;
+}
+export const GetAccountResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetAccountResponseTagsMap),
+    location: S.String,
+    properties: S.optional(AccountPropertiesForPutRequest),
+    identity: S.optional(AccountsCreateOrUpdateResponseIdentity),
+  }),
+).annotate({
+  identifier: "GetAccountResponse",
+}) as any as S.Schema<GetAccountResponse>;
+
+export interface GetPrivateEndpointConnectionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Azure Video Indexer account. */
+  accountName: string;
+  /** The name of the private endpoint connection associated with the Azure resource. */
+  privateEndpointConnectionName: string;
+}
+export const GetPrivateEndpointConnectionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    privateEndpointConnectionName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VideoIndexer/accounts/{accountName}/privateEndpointConnections/{privateEndpointConnectionName}",
+      code: 200,
+      apiVersion: "2025-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetPrivateEndpointConnectionRequest",
+}) as any as S.Schema<GetPrivateEndpointConnectionRequest>;
+
+export interface GetPrivateEndpointConnectionResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource properties. */
+  properties?: PrivateEndpointConnectionProperties;
+}
+export const GetPrivateEndpointConnectionResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(PrivateEndpointConnectionProperties),
+    }),
+).annotate({
+  identifier: "GetPrivateEndpointConnectionResponse",
+}) as any as S.Schema<GetPrivateEndpointConnectionResponse>;
+
+export interface GetPrivateLinkResourceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Azure Video Indexer account. */
+  accountName: string;
+  /** The group ID of the private link resource. */
+  groupId: string;
+}
+export const GetPrivateLinkResourceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    groupId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VideoIndexer/accounts/{accountName}/privateLinkResources/{groupId}",
+      code: 200,
+      apiVersion: "2025-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetPrivateLinkResourceRequest",
+}) as any as S.Schema<GetPrivateLinkResourceRequest>;
+
+/** The private link resource required member names. */
+export type PrivateLinkResourcePropertiesRequiredMembersList = Array<string>;
+export const PrivateLinkResourcePropertiesRequiredMembersList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<PrivateLinkResourcePropertiesRequiredMembersList>;
+
+/** The private link resource private link DNS zone name. */
+export type PrivateLinkResourcePropertiesRequiredZoneNamesList = Array<string>;
+export const PrivateLinkResourcePropertiesRequiredZoneNamesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<PrivateLinkResourcePropertiesRequiredZoneNamesList>;
+
+/** Properties of a private link resource. */
+export interface PrivateLinkResourceProperties {
+  /** The private link resource group id. */
+  groupId?: string;
+  /** The private link resource required member names. */
+  requiredMembers?: PrivateLinkResourcePropertiesRequiredMembersList;
+  /** The private link resource private link DNS zone name. */
+  requiredZoneNames?: PrivateLinkResourcePropertiesRequiredZoneNamesList;
+}
+export const PrivateLinkResourceProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    groupId: S.optional(S.String),
+    requiredMembers: S.optional(
+      PrivateLinkResourcePropertiesRequiredMembersList,
+    ),
+    requiredZoneNames: S.optional(
+      PrivateLinkResourcePropertiesRequiredZoneNamesList,
+    ),
+  }),
+).annotate({
+  identifier: "PrivateLinkResourceProperties",
+}) as any as S.Schema<PrivateLinkResourceProperties>;
+
+export interface GetPrivateLinkResourceResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource properties. */
+  properties?: PrivateLinkResourceProperties;
+}
+export const GetPrivateLinkResourceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(PrivateLinkResourceProperties),
+  }),
+).annotate({
+  identifier: "GetPrivateLinkResourceResponse",
+}) as any as S.Schema<GetPrivateLinkResourceResponse>;
+
+export interface ListAccountByResourceGroupRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+}
+export const ListAccountByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VideoIndexer/accounts",
+      code: 200,
+      apiVersion: "2025-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListAccountByResourceGroupRequest",
+}) as any as S.Schema<ListAccountByResourceGroupRequest>;
+
+/** Resource tags. */
+export type AccountTagsMap = { [key: string]: string | undefined };
+export const AccountTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<AccountTagsMap>;
+
+/** Managed service identity (system assigned and/or user assigned identities) */
+export type AccountIdentity = AccountsCreateOrUpdateResponseIdentity;
+export const AccountIdentity = AccountsCreateOrUpdateResponseIdentity;
+
+/** An Azure Video Indexer account. */
+export interface Account {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: AccountTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** List of account properties */
+  properties?: AccountPropertiesForPutRequest;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: AccountsCreateOrUpdateResponseIdentity;
+}
+export const Account = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(AccountTagsMap),
+    location: S.String,
+    properties: S.optional(AccountPropertiesForPutRequest),
+    identity: S.optional(AccountsCreateOrUpdateResponseIdentity),
+  }),
+).annotate({ identifier: "Account" }) as any as S.Schema<Account>;
+
+/** List of accounts and their properties. */
+export type AccountListValueList = Array<Account>;
+export const AccountListValueList = /*@__PURE__*/ S.Array(
+  Account,
+) as any as S.Schema<AccountListValueList>;
+
+/** The list operation response, that contains the data pools and their properties. */
+export interface AccountList {
+  /** List of accounts and their properties. */
+  value?: AccountListValueList;
+  /** URL to get the next set of operation list results if there are any. */
+  nextLink?: string;
+}
+export const AccountList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(AccountListValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({ identifier: "AccountList" }) as any as S.Schema<AccountList>;
+
+export interface ListAccountsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+}
+export const ListAccountsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.VideoIndexer/accounts",
+      code: 200,
+      apiVersion: "2025-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListAccountsRequest",
+}) as any as S.Schema<ListAccountsRequest>;
+
+export interface ListOperationsRequest {}
+export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
     T.Http({
       method: "GET",
@@ -1157,8 +1169,8 @@ export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "OperationsListRequest",
-}) as any as S.Schema<OperationsListRequest>;
+  identifier: "ListOperationsRequest",
+}) as any as S.Schema<ListOperationsRequest>;
 
 /** Operation display payload */
 export interface OperationDisplay {
@@ -1227,6 +1239,139 @@ export const OperationListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "OperationListResult",
 }) as any as S.Schema<OperationListResult>;
 
+export interface ListPrivateEndpointConnectionByAccountRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Azure Video Indexer account. */
+  accountName: string;
+}
+export const ListPrivateEndpointConnectionByAccountRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VideoIndexer/accounts/{accountName}/privateEndpointConnections",
+        code: 200,
+        apiVersion: "2025-04-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListPrivateEndpointConnectionByAccountRequest",
+  }) as any as S.Schema<ListPrivateEndpointConnectionByAccountRequest>;
+
+/** The private endpoint connection resource. */
+export type PrivateEndpointConnection =
+  AccountPropertiesForPutRequestPrivateEndpointConnectionsItem;
+export const PrivateEndpointConnection =
+  AccountPropertiesForPutRequestPrivateEndpointConnectionsItem;
+
+/** Array of private endpoint connections. */
+export type ListPrivateEndpointConnectionByAccountResponseValueList =
+  Array<AccountPropertiesForPutRequestPrivateEndpointConnectionsItem>;
+export const ListPrivateEndpointConnectionByAccountResponseValueList =
+  /*@__PURE__*/ S.Array(
+    AccountPropertiesForPutRequestPrivateEndpointConnectionsItem,
+  ) as any as S.Schema<ListPrivateEndpointConnectionByAccountResponseValueList>;
+
+export interface ListPrivateEndpointConnectionByAccountResponse {
+  /** Array of private endpoint connections. */
+  value?: ListPrivateEndpointConnectionByAccountResponseValueList;
+  /** URL to get the next set of operation list results (if there are any). */
+  nextLink?: string;
+}
+export const ListPrivateEndpointConnectionByAccountResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      value: S.optional(
+        ListPrivateEndpointConnectionByAccountResponseValueList,
+      ),
+      nextLink: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "ListPrivateEndpointConnectionByAccountResponse",
+  }) as any as S.Schema<ListPrivateEndpointConnectionByAccountResponse>;
+
+export interface ListPrivateLinkResourceByAccountRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Azure Video Indexer account. */
+  accountName: string;
+}
+export const ListPrivateLinkResourceByAccountRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VideoIndexer/accounts/{accountName}/privateLinkResources",
+        code: 200,
+        apiVersion: "2025-04-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListPrivateLinkResourceByAccountRequest",
+}) as any as S.Schema<ListPrivateLinkResourceByAccountRequest>;
+
+/** A private link resource. */
+export interface PrivateLinkResource {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource properties. */
+  properties?: PrivateLinkResourceProperties;
+}
+export const PrivateLinkResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(PrivateLinkResourceProperties),
+  }),
+).annotate({
+  identifier: "PrivateLinkResource",
+}) as any as S.Schema<PrivateLinkResource>;
+
+/** Array of private link resources */
+export type ListPrivateLinkResourceByAccountResponseValueList =
+  Array<PrivateLinkResource>;
+export const ListPrivateLinkResourceByAccountResponseValueList =
+  /*@__PURE__*/ S.Array(
+    PrivateLinkResource,
+  ) as any as S.Schema<ListPrivateLinkResourceByAccountResponseValueList>;
+
+export interface ListPrivateLinkResourceByAccountResponse {
+  /** Array of private link resources */
+  value?: ListPrivateLinkResourceByAccountResponseValueList;
+  /** URL to get the next set of operation list results (if there are any). */
+  nextLink?: string;
+}
+export const ListPrivateLinkResourceByAccountResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      value: S.optional(ListPrivateLinkResourceByAccountResponseValueList),
+      nextLink: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "ListPrivateLinkResourceByAccountResponse",
+}) as any as S.Schema<ListPrivateLinkResourceByAccountResponse>;
+
 export interface PrivateEndpointConnectionsCreateOrUpdateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -1284,220 +1429,136 @@ export const PrivateEndpointConnectionsCreateOrUpdateResponse =
     identifier: "PrivateEndpointConnectionsCreateOrUpdateResponse",
   }) as any as S.Schema<PrivateEndpointConnectionsCreateOrUpdateResponse>;
 
-export interface PrivateEndpointConnectionsDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Azure Video Indexer account. */
-  accountName: string;
-  /** The name of the private endpoint connection associated with the Azure resource. */
-  privateEndpointConnectionName: string;
-}
-export const PrivateEndpointConnectionsDeleteRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-      privateEndpointConnectionName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VideoIndexer/accounts/{accountName}/privateEndpointConnections/{privateEndpointConnectionName}",
-        code: 200,
-        apiVersion: "2025-04-01",
-      }),
-    ),
-).annotate({
-  identifier: "PrivateEndpointConnectionsDeleteRequest",
-}) as any as S.Schema<PrivateEndpointConnectionsDeleteRequest>;
+/** Resource tags */
+export type UpdateAccountRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateAccountRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateAccountRequestTagsMap>;
 
-export interface PrivateEndpointConnectionsDeleteResponse {}
-export const PrivateEndpointConnectionsDeleteResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "PrivateEndpointConnectionsDeleteResponse",
-}) as any as S.Schema<PrivateEndpointConnectionsDeleteResponse>;
-
-export interface PrivateEndpointConnectionsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Azure Video Indexer account. */
-  accountName: string;
-  /** The name of the private endpoint connection associated with the Azure resource. */
-  privateEndpointConnectionName: string;
+/** The storage services details */
+export interface StorageServicesForPatchRequest {
+  /** The user assigned identity to be used to grant permissions */
+  userAssignedIdentity?: string;
 }
-export const PrivateEndpointConnectionsGetRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-      privateEndpointConnectionName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VideoIndexer/accounts/{accountName}/privateEndpointConnections/{privateEndpointConnectionName}",
-        code: 200,
-        apiVersion: "2025-04-01",
-      }),
-    ),
+export const StorageServicesForPatchRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    userAssignedIdentity: S.optional(S.String),
+  }),
 ).annotate({
-  identifier: "PrivateEndpointConnectionsGetRequest",
-}) as any as S.Schema<PrivateEndpointConnectionsGetRequest>;
+  identifier: "StorageServicesForPatchRequest",
+}) as any as S.Schema<StorageServicesForPatchRequest>;
 
-export interface PrivateEndpointConnectionsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource properties. */
-  properties?: PrivateEndpointConnectionProperties;
-}
-export const PrivateEndpointConnectionsGetResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(PrivateEndpointConnectionProperties),
-    }),
-).annotate({
-  identifier: "PrivateEndpointConnectionsGetResponse",
-}) as any as S.Schema<PrivateEndpointConnectionsGetResponse>;
+/** The openAi services details */
+export type OpenAiServicesForPatchRequest = OpenAiServicesForPutRequest;
+export const OpenAiServicesForPatchRequest = OpenAiServicesForPutRequest;
 
-export interface PrivateEndpointConnectionsListByAccountRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Azure Video Indexer account. */
-  accountName: string;
-}
-export const PrivateEndpointConnectionsListByAccountRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VideoIndexer/accounts/{accountName}/privateEndpointConnections",
-        code: 200,
-        apiVersion: "2025-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "PrivateEndpointConnectionsListByAccountRequest",
-  }) as any as S.Schema<PrivateEndpointConnectionsListByAccountRequest>;
+/** Whether or not public network access is allowed for the account. */
+export type AccountPropertiesForPatchRequestInputPublicNetworkAccess =
+  | "Enabled"
+  | "Disabled";
+export const AccountPropertiesForPatchRequestInputPublicNetworkAccess =
+  /*@__PURE__*/ S.String;
 
 /** The private endpoint connection resource. */
-export type PrivateEndpointConnection =
-  AccountPropertiesForPutRequestPrivateEndpointConnectionsItem;
-export const PrivateEndpointConnection =
-  AccountPropertiesForPutRequestPrivateEndpointConnectionsItem;
+export type AccountPropertiesForPatchRequestInputPrivateEndpointConnectionsItem =
+  AccountPropertiesForPutRequestInputPrivateEndpointConnectionsItem;
+export const AccountPropertiesForPatchRequestInputPrivateEndpointConnectionsItem =
+  AccountPropertiesForPutRequestInputPrivateEndpointConnectionsItem;
 
-/** Array of private endpoint connections. */
-export type PrivateEndpointConnectionsListByAccountResponseValueList =
-  Array<AccountPropertiesForPutRequestPrivateEndpointConnectionsItem>;
-export const PrivateEndpointConnectionsListByAccountResponseValueList =
+/** List of private endpoint connections associated with the account. */
+export type AccountPropertiesForPatchRequestInputPrivateEndpointConnectionsList =
+  Array<AccountPropertiesForPutRequestInputPrivateEndpointConnectionsItem>;
+export const AccountPropertiesForPatchRequestInputPrivateEndpointConnectionsList =
   /*@__PURE__*/ S.Array(
-    AccountPropertiesForPutRequestPrivateEndpointConnectionsItem,
-  ) as any as S.Schema<PrivateEndpointConnectionsListByAccountResponseValueList>;
+    AccountPropertiesForPutRequestInputPrivateEndpointConnectionsItem,
+  ) as any as S.Schema<AccountPropertiesForPatchRequestInputPrivateEndpointConnectionsList>;
 
-export interface PrivateEndpointConnectionsListByAccountResponse {
-  /** Array of private endpoint connections. */
-  value?: PrivateEndpointConnectionsListByAccountResponseValueList;
-  /** URL to get the next set of operation list results (if there are any). */
-  nextLink?: string;
+/** Azure Video Indexer account properties */
+export interface AccountPropertiesForPatchRequestInput {
+  /** The storage services details */
+  storageServices?: StorageServicesForPatchRequest;
+  /** The openAi services details */
+  openAiServices?: OpenAiServicesForPutRequest;
+  /** Whether or not public network access is allowed for the account. */
+  publicNetworkAccess?:
+    | AccountPropertiesForPatchRequestInputPublicNetworkAccess
+    | (string & {});
+  /** List of private endpoint connections associated with the account. */
+  privateEndpointConnections?: AccountPropertiesForPatchRequestInputPrivateEndpointConnectionsList;
 }
-export const PrivateEndpointConnectionsListByAccountResponse =
-  /*@__PURE__*/ S.suspend(() =>
+export const AccountPropertiesForPatchRequestInput = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
-      value: S.optional(
-        PrivateEndpointConnectionsListByAccountResponseValueList,
+      storageServices: S.optional(StorageServicesForPatchRequest),
+      openAiServices: S.optional(OpenAiServicesForPutRequest),
+      publicNetworkAccess: S.optional(
+        AccountPropertiesForPatchRequestInputPublicNetworkAccess,
       ),
-      nextLink: S.optional(S.String),
+      privateEndpointConnections: S.optional(
+        AccountPropertiesForPatchRequestInputPrivateEndpointConnectionsList,
+      ),
     }),
-  ).annotate({
-    identifier: "PrivateEndpointConnectionsListByAccountResponse",
-  }) as any as S.Schema<PrivateEndpointConnectionsListByAccountResponse>;
+).annotate({
+  identifier: "AccountPropertiesForPatchRequestInput",
+}) as any as S.Schema<AccountPropertiesForPatchRequestInput>;
 
-export interface PrivateLinkResourcesGetRequest {
+/** Managed service identity (system assigned and/or user assigned identities) */
+export type UpdateAccountRequestIdentity =
+  AccountsCreateOrUpdateRequestIdentity;
+export const UpdateAccountRequestIdentity =
+  AccountsCreateOrUpdateRequestIdentity;
+
+export interface UpdateAccountRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of the Azure Video Indexer account. */
   accountName: string;
-  /** The group ID of the private link resource. */
-  groupId: string;
+  /** Resource tags */
+  tags?: UpdateAccountRequestTagsMap;
+  /** List of account properties */
+  properties?: AccountPropertiesForPatchRequestInput;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: AccountsCreateOrUpdateRequestIdentity;
 }
-export const PrivateLinkResourcesGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateAccountRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     accountName: S.String.pipe(T.Label()),
-    groupId: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateAccountRequestTagsMap),
+    properties: S.optional(AccountPropertiesForPatchRequestInput),
+    identity: S.optional(AccountsCreateOrUpdateRequestIdentity),
   }).pipe(
     T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VideoIndexer/accounts/{accountName}/privateLinkResources/{groupId}",
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VideoIndexer/accounts/{accountName}",
       code: 200,
       apiVersion: "2025-04-01",
     }),
   ),
 ).annotate({
-  identifier: "PrivateLinkResourcesGetRequest",
-}) as any as S.Schema<PrivateLinkResourcesGetRequest>;
+  identifier: "UpdateAccountRequest",
+}) as any as S.Schema<UpdateAccountRequest>;
 
-/** The private link resource required member names. */
-export type PrivateLinkResourcePropertiesRequiredMembersList = Array<string>;
-export const PrivateLinkResourcePropertiesRequiredMembersList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PrivateLinkResourcePropertiesRequiredMembersList>;
+/** Resource tags. */
+export type UpdateAccountResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateAccountResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateAccountResponseTagsMap>;
 
-/** The private link resource private link DNS zone name. */
-export type PrivateLinkResourcePropertiesRequiredZoneNamesList = Array<string>;
-export const PrivateLinkResourcePropertiesRequiredZoneNamesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PrivateLinkResourcePropertiesRequiredZoneNamesList>;
+/** Managed service identity (system assigned and/or user assigned identities) */
+export type UpdateAccountResponseIdentity =
+  AccountsCreateOrUpdateResponseIdentity;
+export const UpdateAccountResponseIdentity =
+  AccountsCreateOrUpdateResponseIdentity;
 
-/** Properties of a private link resource. */
-export interface PrivateLinkResourceProperties {
-  /** The private link resource group id. */
-  groupId?: string;
-  /** The private link resource required member names. */
-  requiredMembers?: PrivateLinkResourcePropertiesRequiredMembersList;
-  /** The private link resource private link DNS zone name. */
-  requiredZoneNames?: PrivateLinkResourcePropertiesRequiredZoneNamesList;
-}
-export const PrivateLinkResourceProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    groupId: S.optional(S.String),
-    requiredMembers: S.optional(
-      PrivateLinkResourcePropertiesRequiredMembersList,
-    ),
-    requiredZoneNames: S.optional(
-      PrivateLinkResourcePropertiesRequiredZoneNamesList,
-    ),
-  }),
-).annotate({
-  identifier: "PrivateLinkResourceProperties",
-}) as any as S.Schema<PrivateLinkResourceProperties>;
-
-export interface PrivateLinkResourcesGetResponse {
+export interface UpdateAccountResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -1506,110 +1567,29 @@ export interface PrivateLinkResourcesGetResponse {
   type?: string;
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
-  /** Resource properties. */
-  properties?: PrivateLinkResourceProperties;
+  /** Resource tags. */
+  tags?: UpdateAccountResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** List of account properties */
+  properties?: AccountPropertiesForPutRequest;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: AccountsCreateOrUpdateResponseIdentity;
 }
-export const PrivateLinkResourcesGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateAccountResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    properties: S.optional(PrivateLinkResourceProperties),
+    tags: S.optional(UpdateAccountResponseTagsMap),
+    location: S.String,
+    properties: S.optional(AccountPropertiesForPutRequest),
+    identity: S.optional(AccountsCreateOrUpdateResponseIdentity),
   }),
 ).annotate({
-  identifier: "PrivateLinkResourcesGetResponse",
-}) as any as S.Schema<PrivateLinkResourcesGetResponse>;
-
-export interface PrivateLinkResourcesListByAccountRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Azure Video Indexer account. */
-  accountName: string;
-}
-export const PrivateLinkResourcesListByAccountRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.VideoIndexer/accounts/{accountName}/privateLinkResources",
-        code: 200,
-        apiVersion: "2025-04-01",
-      }),
-    ),
-).annotate({
-  identifier: "PrivateLinkResourcesListByAccountRequest",
-}) as any as S.Schema<PrivateLinkResourcesListByAccountRequest>;
-
-/** A private link resource. */
-export interface PrivateLinkResource {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource properties. */
-  properties?: PrivateLinkResourceProperties;
-}
-export const PrivateLinkResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(PrivateLinkResourceProperties),
-  }),
-).annotate({
-  identifier: "PrivateLinkResource",
-}) as any as S.Schema<PrivateLinkResource>;
-
-/** Array of private link resources */
-export type PrivateLinkResourcesListByAccountResponseValueList =
-  Array<PrivateLinkResource>;
-export const PrivateLinkResourcesListByAccountResponseValueList =
-  /*@__PURE__*/ S.Array(
-    PrivateLinkResource,
-  ) as any as S.Schema<PrivateLinkResourcesListByAccountResponseValueList>;
-
-export interface PrivateLinkResourcesListByAccountResponse {
-  /** Array of private link resources */
-  value?: PrivateLinkResourcesListByAccountResponseValueList;
-  /** URL to get the next set of operation list results (if there are any). */
-  nextLink?: string;
-}
-export const PrivateLinkResourcesListByAccountResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      value: S.optional(PrivateLinkResourcesListByAccountResponseValueList),
-      nextLink: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "PrivateLinkResourcesListByAccountResponse",
-  }) as any as S.Schema<PrivateLinkResourcesListByAccountResponse>;
-
-export type AccountsCheckNameAvailabilityError = AzureOpError;
-/** Checks that the Video Indexer account name is valid and is not already in use. */
-export const AccountsCheckNameAvailability: API.OperationMethod<
-  AccountsCheckNameAvailabilityRequest,
-  CheckNameAvailabilityResult,
-  AccountsCheckNameAvailabilityError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccountsCheckNameAvailabilityRequest,
-  output: CheckNameAvailabilityResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
+  identifier: "UpdateAccountResponse",
+}) as any as S.Schema<UpdateAccountResponse>;
 
 export type AccountsCreateOrUpdateError = AzureOpError;
 /** Creates or updates an Azure Video Indexer account. */
@@ -1626,76 +1606,46 @@ export const AccountsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type AccountsDeleteError = AzureOpError;
+export type CheckAccountNameAvailabilityError = AzureOpError;
+/** Checks that the Video Indexer account name is valid and is not already in use. */
+export const CheckAccountNameAvailability: API.OperationMethod<
+  CheckAccountNameAvailabilityRequest,
+  CheckNameAvailabilityResult,
+  CheckAccountNameAvailabilityError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CheckAccountNameAvailabilityRequest,
+  output: CheckNameAvailabilityResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteAccountError = AzureOpError;
 /** Delete an Azure Video Indexer account. */
-export const AccountsDelete: API.OperationMethod<
-  AccountsDeleteRequest,
-  AccountsDeleteResponse,
-  AccountsDeleteError,
+export const DeleteAccount: API.OperationMethod<
+  DeleteAccountRequest,
+  DeleteAccountResponse,
+  DeleteAccountError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AccountsDeleteRequest,
-  output: AccountsDeleteResponse,
+  input: DeleteAccountRequest,
+  output: DeleteAccountResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type AccountsGetError = AzureOpError;
-/** Gets the properties of an Azure Video Indexer account. */
-export const AccountsGet: API.OperationMethod<
-  AccountsGetRequest,
-  AccountsGetResponse,
-  AccountsGetError,
+export type DeletePrivateEndpointConnectionError = AzureOpError;
+/** Deletes the specified private endpoint connection associated with the Video Indexer account. */
+export const DeletePrivateEndpointConnection: API.OperationMethod<
+  DeletePrivateEndpointConnectionRequest,
+  DeletePrivateEndpointConnectionResponse,
+  DeletePrivateEndpointConnectionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AccountsGetRequest,
-  output: AccountsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AccountsListError = AzureOpError;
-/** List all Azure Video Indexer accounts available under the subscription */
-export const AccountsList: API.OperationMethod<
-  AccountsListRequest,
-  AccountList,
-  AccountsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccountsListRequest,
-  output: AccountList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AccountsListByResourceGroupError = AzureOpError;
-/** List all Azure Video Indexer accounts available under the resource group */
-export const AccountsListByResourceGroup: API.OperationMethod<
-  AccountsListByResourceGroupRequest,
-  AccountList,
-  AccountsListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccountsListByResourceGroupRequest,
-  output: AccountList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AccountsUpdateError = AzureOpError;
-/** Updates the properties of an existing Azure Video Indexer account. */
-export const AccountsUpdate: API.OperationMethod<
-  AccountsUpdateRequest,
-  AccountsUpdateResponse,
-  AccountsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccountsUpdateRequest,
-  output: AccountsUpdateResponse,
+  input: DeletePrivateEndpointConnectionRequest,
+  output: DeletePrivateEndpointConnectionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -1761,16 +1711,121 @@ export const GenerateRestrictedViewerAccessToken: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type OperationsListError = AzureOpError;
-/** Lists all of the available Azure Video Indexer provider operations. */
-export const OperationsList: API.OperationMethod<
-  OperationsListRequest,
-  OperationListResult,
-  OperationsListError,
+export type GetAccountError = AzureOpError;
+/** Gets the properties of an Azure Video Indexer account. */
+export const GetAccount: API.OperationMethod<
+  GetAccountRequest,
+  GetAccountResponse,
+  GetAccountError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OperationsListRequest,
+  input: GetAccountRequest,
+  output: GetAccountResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetPrivateEndpointConnectionError = AzureOpError;
+/** Get the specified private endpoint connection associated with the Video Indexer account. */
+export const GetPrivateEndpointConnection: API.OperationMethod<
+  GetPrivateEndpointConnectionRequest,
+  GetPrivateEndpointConnectionResponse,
+  GetPrivateEndpointConnectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPrivateEndpointConnectionRequest,
+  output: GetPrivateEndpointConnectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetPrivateLinkResourceError = AzureOpError;
+/** Get the private link resource with the specified group Id associated with the Video Indexer account. */
+export const GetPrivateLinkResource: API.OperationMethod<
+  GetPrivateLinkResourceRequest,
+  GetPrivateLinkResourceResponse,
+  GetPrivateLinkResourceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPrivateLinkResourceRequest,
+  output: GetPrivateLinkResourceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListAccountByResourceGroupError = AzureOpError;
+/** List all Azure Video Indexer accounts available under the resource group */
+export const ListAccountByResourceGroup: API.OperationMethod<
+  ListAccountByResourceGroupRequest,
+  AccountList,
+  ListAccountByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListAccountByResourceGroupRequest,
+  output: AccountList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListAccountsError = AzureOpError;
+/** List all Azure Video Indexer accounts available under the subscription */
+export const ListAccounts: API.OperationMethod<
+  ListAccountsRequest,
+  AccountList,
+  ListAccountsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListAccountsRequest,
+  output: AccountList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListOperationsError = AzureOpError;
+/** Lists all of the available Azure Video Indexer provider operations. */
+export const ListOperations: API.OperationMethod<
+  ListOperationsRequest,
+  OperationListResult,
+  ListOperationsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListOperationsRequest,
   output: OperationListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListPrivateEndpointConnectionByAccountError = AzureOpError;
+/** List all private endpoint connections in a Video Indexer account. */
+export const ListPrivateEndpointConnectionByAccount: API.OperationMethod<
+  ListPrivateEndpointConnectionByAccountRequest,
+  ListPrivateEndpointConnectionByAccountResponse,
+  ListPrivateEndpointConnectionByAccountError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListPrivateEndpointConnectionByAccountRequest,
+  output: ListPrivateEndpointConnectionByAccountResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListPrivateLinkResourceByAccountError = AzureOpError;
+/** List all private link resources in a Video Indexer account. */
+export const ListPrivateLinkResourceByAccount: API.OperationMethod<
+  ListPrivateLinkResourceByAccountRequest,
+  ListPrivateLinkResourceByAccountResponse,
+  ListPrivateLinkResourceByAccountError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListPrivateLinkResourceByAccountRequest,
+  output: ListPrivateLinkResourceByAccountResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -1791,76 +1846,16 @@ export const PrivateEndpointConnectionsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type PrivateEndpointConnectionsDeleteError = AzureOpError;
-/** Deletes the specified private endpoint connection associated with the Video Indexer account. */
-export const PrivateEndpointConnectionsDelete: API.OperationMethod<
-  PrivateEndpointConnectionsDeleteRequest,
-  PrivateEndpointConnectionsDeleteResponse,
-  PrivateEndpointConnectionsDeleteError,
+export type UpdateAccountError = AzureOpError;
+/** Updates the properties of an existing Azure Video Indexer account. */
+export const UpdateAccount: API.OperationMethod<
+  UpdateAccountRequest,
+  UpdateAccountResponse,
+  UpdateAccountError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PrivateEndpointConnectionsDeleteRequest,
-  output: PrivateEndpointConnectionsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateEndpointConnectionsGetError = AzureOpError;
-/** Get the specified private endpoint connection associated with the Video Indexer account. */
-export const PrivateEndpointConnectionsGet: API.OperationMethod<
-  PrivateEndpointConnectionsGetRequest,
-  PrivateEndpointConnectionsGetResponse,
-  PrivateEndpointConnectionsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateEndpointConnectionsGetRequest,
-  output: PrivateEndpointConnectionsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateEndpointConnectionsListByAccountError = AzureOpError;
-/** List all private endpoint connections in a Video Indexer account. */
-export const PrivateEndpointConnectionsListByAccount: API.OperationMethod<
-  PrivateEndpointConnectionsListByAccountRequest,
-  PrivateEndpointConnectionsListByAccountResponse,
-  PrivateEndpointConnectionsListByAccountError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateEndpointConnectionsListByAccountRequest,
-  output: PrivateEndpointConnectionsListByAccountResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateLinkResourcesGetError = AzureOpError;
-/** Get the private link resource with the specified group Id associated with the Video Indexer account. */
-export const PrivateLinkResourcesGet: API.OperationMethod<
-  PrivateLinkResourcesGetRequest,
-  PrivateLinkResourcesGetResponse,
-  PrivateLinkResourcesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateLinkResourcesGetRequest,
-  output: PrivateLinkResourcesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateLinkResourcesListByAccountError = AzureOpError;
-/** List all private link resources in a Video Indexer account. */
-export const PrivateLinkResourcesListByAccount: API.OperationMethod<
-  PrivateLinkResourcesListByAccountRequest,
-  PrivateLinkResourcesListByAccountResponse,
-  PrivateLinkResourcesListByAccountError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateLinkResourcesListByAccountRequest,
-  output: PrivateLinkResourcesListByAccountResponse,
+  input: UpdateAccountRequest,
+  output: UpdateAccountResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

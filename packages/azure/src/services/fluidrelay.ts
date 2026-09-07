@@ -12,7 +12,7 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
-export interface FluidRelayContainersDeleteRequest {
+export interface DeleteFluidRelayContainerRequest {
   /** The subscription id (GUID) for this resource. */
   subscriptionId: string;
   /** The resource group containing the resource. */
@@ -22,7 +22,7 @@ export interface FluidRelayContainersDeleteRequest {
   /** The Fluid Relay container resource name. */
   fluidRelayContainerName: string;
 }
-export const FluidRelayContainersDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteFluidRelayContainerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroup: S.String.pipe(T.Label()),
@@ -37,351 +37,47 @@ export const FluidRelayContainersDeleteRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "FluidRelayContainersDeleteRequest",
-}) as any as S.Schema<FluidRelayContainersDeleteRequest>;
+  identifier: "DeleteFluidRelayContainerRequest",
+}) as any as S.Schema<DeleteFluidRelayContainerRequest>;
 
-export interface FluidRelayContainersDeleteResponse {}
-export const FluidRelayContainersDeleteResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteFluidRelayContainerResponse {}
+export const DeleteFluidRelayContainerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "FluidRelayContainersDeleteResponse",
-}) as any as S.Schema<FluidRelayContainersDeleteResponse>;
+  identifier: "DeleteFluidRelayContainerResponse",
+}) as any as S.Schema<DeleteFluidRelayContainerResponse>;
 
-export interface FluidRelayContainersGetRequest {
+export interface DeleteFluidRelayServerRequest {
   /** The subscription id (GUID) for this resource. */
   subscriptionId: string;
   /** The resource group containing the resource. */
   resourceGroup: string;
   /** The Fluid Relay server resource name. */
   fluidRelayServerName: string;
-  /** The Fluid Relay container resource name. */
-  fluidRelayContainerName: string;
 }
-export const FluidRelayContainersGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteFluidRelayServerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroup: S.String.pipe(T.Label()),
     fluidRelayServerName: S.String.pipe(T.Label()),
-    fluidRelayContainerName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.FluidRelay/fluidRelayServers/{fluidRelayServerName}/fluidRelayContainers/{fluidRelayContainerName}",
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.FluidRelay/fluidRelayServers/{fluidRelayServerName}",
       code: 200,
       apiVersion: "2022-06-01",
     }),
   ),
 ).annotate({
-  identifier: "FluidRelayContainersGetRequest",
-}) as any as S.Schema<FluidRelayContainersGetRequest>;
+  identifier: "DeleteFluidRelayServerRequest",
+}) as any as S.Schema<DeleteFluidRelayServerRequest>;
 
-/** Provision states for FluidRelay RP */
-export type FluidRelayContainerPropertiesProvisioningState =
-  | "Succeeded"
-  | "Failed"
-  | "Canceled";
-export const FluidRelayContainerPropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
-
-/** The properties of a Fluid Relay Container resource. */
-export interface FluidRelayContainerProperties {
-  /** The Fluid tenantId for this container */
-  frsTenantId?: string;
-  /** The frsContainerId for this container */
-  frsContainerId?: string;
-  /** Provision states for FluidRelay RP */
-  provisioningState?: FluidRelayContainerPropertiesProvisioningState;
-  /** The creation time of this resource */
-  creationTime?: string;
-  /** Last time when user access this resource */
-  lastAccessTime?: string;
-}
-export const FluidRelayContainerProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    frsTenantId: S.optional(S.String),
-    frsContainerId: S.optional(S.String),
-    provisioningState: S.optional(
-      FluidRelayContainerPropertiesProvisioningState,
-    ),
-    creationTime: S.optional(S.String),
-    lastAccessTime: S.optional(S.String),
-  }),
+export interface DeleteFluidRelayServerResponse {}
+export const DeleteFluidRelayServerResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
 ).annotate({
-  identifier: "FluidRelayContainerProperties",
-}) as any as S.Schema<FluidRelayContainerProperties>;
-
-/** The type of identity that created the resource. */
-export type FluidRelayContainersGetResponseSystemDataCreatedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const FluidRelayContainersGetResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
-
-/** The type of identity that last modified the resource. */
-export type FluidRelayContainersGetResponseSystemDataLastModifiedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const FluidRelayContainersGetResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
-
-/** Metadata pertaining to creation and last modification of the resource. */
-export interface FluidRelayContainersGetResponseSystemData {
-  /** The identity that created the resource. */
-  createdBy?: string;
-  /** The type of identity that created the resource. */
-  createdByType?: FluidRelayContainersGetResponseSystemDataCreatedByType;
-  /** The timestamp of resource creation (UTC). */
-  createdAt?: string;
-  /** The identity that last modified the resource. */
-  lastModifiedBy?: string;
-  /** The type of identity that last modified the resource. */
-  lastModifiedByType?: FluidRelayContainersGetResponseSystemDataLastModifiedByType;
-  /** The timestamp of resource last modification (UTC) */
-  lastModifiedAt?: string;
-}
-export const FluidRelayContainersGetResponseSystemData =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      createdBy: S.optional(S.String),
-      createdByType: S.optional(
-        FluidRelayContainersGetResponseSystemDataCreatedByType,
-      ),
-      createdAt: S.optional(S.String),
-      lastModifiedBy: S.optional(S.String),
-      lastModifiedByType: S.optional(
-        FluidRelayContainersGetResponseSystemDataLastModifiedByType,
-      ),
-      lastModifiedAt: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "FluidRelayContainersGetResponseSystemData",
-  }) as any as S.Schema<FluidRelayContainersGetResponseSystemData>;
-
-export interface FluidRelayContainersGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** The resource-specific properties for this resource. */
-  properties?: FluidRelayContainerProperties;
-  /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: FluidRelayContainersGetResponseSystemData;
-}
-export const FluidRelayContainersGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    properties: S.optional(FluidRelayContainerProperties),
-    systemData: S.optional(FluidRelayContainersGetResponseSystemData),
-  }),
-).annotate({
-  identifier: "FluidRelayContainersGetResponse",
-}) as any as S.Schema<FluidRelayContainersGetResponse>;
-
-export interface FluidRelayContainersListByFluidRelayServersRequest {
-  /** The subscription id (GUID) for this resource. */
-  subscriptionId: string;
-  /** The resource group containing the resource. */
-  resourceGroup: string;
-  /** The Fluid Relay server resource name. */
-  fluidRelayServerName: string;
-}
-export const FluidRelayContainersListByFluidRelayServersRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroup: S.String.pipe(T.Label()),
-      fluidRelayServerName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.FluidRelay/fluidRelayServers/{fluidRelayServerName}/fluidRelayContainers",
-        code: 200,
-        apiVersion: "2022-06-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "FluidRelayContainersListByFluidRelayServersRequest",
-  }) as any as S.Schema<FluidRelayContainersListByFluidRelayServersRequest>;
-
-/** The type of identity that created the resource. */
-export type FluidRelayContainerSystemDataCreatedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const FluidRelayContainerSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
-
-/** The type of identity that last modified the resource. */
-export type FluidRelayContainerSystemDataLastModifiedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const FluidRelayContainerSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
-
-/** Metadata pertaining to creation and last modification of the resource. */
-export interface FluidRelayContainerSystemData {
-  /** The identity that created the resource. */
-  createdBy?: string;
-  /** The type of identity that created the resource. */
-  createdByType?: FluidRelayContainerSystemDataCreatedByType;
-  /** The timestamp of resource creation (UTC). */
-  createdAt?: string;
-  /** The identity that last modified the resource. */
-  lastModifiedBy?: string;
-  /** The type of identity that last modified the resource. */
-  lastModifiedByType?: FluidRelayContainerSystemDataLastModifiedByType;
-  /** The timestamp of resource last modification (UTC) */
-  lastModifiedAt?: string;
-}
-export const FluidRelayContainerSystemData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    createdBy: S.optional(S.String),
-    createdByType: S.optional(FluidRelayContainerSystemDataCreatedByType),
-    createdAt: S.optional(S.String),
-    lastModifiedBy: S.optional(S.String),
-    lastModifiedByType: S.optional(
-      FluidRelayContainerSystemDataLastModifiedByType,
-    ),
-    lastModifiedAt: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "FluidRelayContainerSystemData",
-}) as any as S.Schema<FluidRelayContainerSystemData>;
-
-/** A FluidRelay Container. */
-export interface FluidRelayContainer {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** The resource-specific properties for this resource. */
-  properties?: FluidRelayContainerProperties;
-  /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: FluidRelayContainerSystemData;
-}
-export const FluidRelayContainer = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    properties: S.optional(FluidRelayContainerProperties),
-    systemData: S.optional(FluidRelayContainerSystemData),
-  }),
-).annotate({
-  identifier: "FluidRelayContainer",
-}) as any as S.Schema<FluidRelayContainer>;
-
-/** A sequence of FluidRelay containers. */
-export type FluidRelayContainerListValueList = Array<FluidRelayContainer>;
-export const FluidRelayContainerListValueList = /*@__PURE__*/ S.Array(
-  FluidRelayContainer,
-) as any as S.Schema<FluidRelayContainerListValueList>;
-
-/** Paged response */
-export interface FluidRelayContainerList {
-  /** A sequence of FluidRelay containers. */
-  value?: FluidRelayContainerListValueList;
-  /** A link to the next page of results, if any. */
-  nextLink?: string;
-}
-export const FluidRelayContainerList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(FluidRelayContainerListValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "FluidRelayContainerList",
-}) as any as S.Schema<FluidRelayContainerList>;
-
-export interface FluidRelayOperationsListRequest {}
-export const FluidRelayOperationsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/providers/Microsoft.FluidRelay/operations",
-      code: 200,
-      apiVersion: "2022-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "FluidRelayOperationsListRequest",
-}) as any as S.Schema<FluidRelayOperationsListRequest>;
-
-/** The object that represents the operation. */
-export interface OperationDisplay {
-  /** Service provider: Microsoft.FluidRelay */
-  provider?: string;
-  /** Type on which the operation is performed, e.g., 'servers'. */
-  resource?: string;
-  /** Operation type, e.g., read, write, delete, etc. */
-  operation?: string;
-  /** Description of the operation, e.g., 'Write confluent'. */
-  description?: string;
-}
-export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provider: S.optional(S.String),
-    resource: S.optional(S.String),
-    operation: S.optional(S.String),
-    description: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OperationDisplay",
-}) as any as S.Schema<OperationDisplay>;
-
-/** A FluidRelay REST API operation. */
-export interface OperationResult {
-  /** Operation name: {provider}/{resource}/{operation} */
-  name?: string;
-  /** The object that represents the operation. */
-  display?: OperationDisplay;
-  /** Indicates whether the operation is a data action */
-  isDataAction?: boolean;
-}
-export const OperationResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    display: S.optional(OperationDisplay),
-    isDataAction: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "OperationResult",
-}) as any as S.Schema<OperationResult>;
-
-/** List of FluidRelay operations supported by the Microsoft.FluidRelay provider. */
-export type OperationListResultValueList = Array<OperationResult>;
-export const OperationListResultValueList = /*@__PURE__*/ S.Array(
-  OperationResult,
-) as any as S.Schema<OperationListResultValueList>;
-
-/** Result of GET request to list FluidRelay operations. */
-export interface OperationListResult {
-  /** List of FluidRelay operations supported by the Microsoft.FluidRelay provider. */
-  value?: OperationListResultValueList;
-  /** URL to get the next set of operation list results if there are any. */
-  nextLink?: string;
-}
-export const OperationListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(OperationListResultValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OperationListResult",
-}) as any as S.Schema<OperationListResult>;
+  identifier: "DeleteFluidRelayServerResponse",
+}) as any as S.Schema<DeleteFluidRelayServerResponse>;
 
 /** Resource tags. */
 export type FluidRelayServersCreateOrUpdateRequestTagsMap = {
@@ -788,39 +484,145 @@ export const FluidRelayServersCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
   identifier: "FluidRelayServersCreateOrUpdateResponse",
 }) as any as S.Schema<FluidRelayServersCreateOrUpdateResponse>;
 
-export interface FluidRelayServersDeleteRequest {
+export interface GetFluidRelayContainerRequest {
   /** The subscription id (GUID) for this resource. */
   subscriptionId: string;
   /** The resource group containing the resource. */
   resourceGroup: string;
   /** The Fluid Relay server resource name. */
   fluidRelayServerName: string;
+  /** The Fluid Relay container resource name. */
+  fluidRelayContainerName: string;
 }
-export const FluidRelayServersDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetFluidRelayContainerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroup: S.String.pipe(T.Label()),
     fluidRelayServerName: S.String.pipe(T.Label()),
+    fluidRelayContainerName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.FluidRelay/fluidRelayServers/{fluidRelayServerName}",
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.FluidRelay/fluidRelayServers/{fluidRelayServerName}/fluidRelayContainers/{fluidRelayContainerName}",
       code: 200,
       apiVersion: "2022-06-01",
     }),
   ),
 ).annotate({
-  identifier: "FluidRelayServersDeleteRequest",
-}) as any as S.Schema<FluidRelayServersDeleteRequest>;
+  identifier: "GetFluidRelayContainerRequest",
+}) as any as S.Schema<GetFluidRelayContainerRequest>;
 
-export interface FluidRelayServersDeleteResponse {}
-export const FluidRelayServersDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
+/** Provision states for FluidRelay RP */
+export type FluidRelayContainerPropertiesProvisioningState =
+  | "Succeeded"
+  | "Failed"
+  | "Canceled";
+export const FluidRelayContainerPropertiesProvisioningState =
+  /*@__PURE__*/ S.String;
+
+/** The properties of a Fluid Relay Container resource. */
+export interface FluidRelayContainerProperties {
+  /** The Fluid tenantId for this container */
+  frsTenantId?: string;
+  /** The frsContainerId for this container */
+  frsContainerId?: string;
+  /** Provision states for FluidRelay RP */
+  provisioningState?: FluidRelayContainerPropertiesProvisioningState;
+  /** The creation time of this resource */
+  creationTime?: string;
+  /** Last time when user access this resource */
+  lastAccessTime?: string;
+}
+export const FluidRelayContainerProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    frsTenantId: S.optional(S.String),
+    frsContainerId: S.optional(S.String),
+    provisioningState: S.optional(
+      FluidRelayContainerPropertiesProvisioningState,
+    ),
+    creationTime: S.optional(S.String),
+    lastAccessTime: S.optional(S.String),
+  }),
 ).annotate({
-  identifier: "FluidRelayServersDeleteResponse",
-}) as any as S.Schema<FluidRelayServersDeleteResponse>;
+  identifier: "FluidRelayContainerProperties",
+}) as any as S.Schema<FluidRelayContainerProperties>;
 
-export interface FluidRelayServersGetRequest {
+/** The type of identity that created the resource. */
+export type GetFluidRelayContainerResponseSystemDataCreatedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const GetFluidRelayContainerResponseSystemDataCreatedByType =
+  /*@__PURE__*/ S.String;
+
+/** The type of identity that last modified the resource. */
+export type GetFluidRelayContainerResponseSystemDataLastModifiedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const GetFluidRelayContainerResponseSystemDataLastModifiedByType =
+  /*@__PURE__*/ S.String;
+
+/** Metadata pertaining to creation and last modification of the resource. */
+export interface GetFluidRelayContainerResponseSystemData {
+  /** The identity that created the resource. */
+  createdBy?: string;
+  /** The type of identity that created the resource. */
+  createdByType?: GetFluidRelayContainerResponseSystemDataCreatedByType;
+  /** The timestamp of resource creation (UTC). */
+  createdAt?: string;
+  /** The identity that last modified the resource. */
+  lastModifiedBy?: string;
+  /** The type of identity that last modified the resource. */
+  lastModifiedByType?: GetFluidRelayContainerResponseSystemDataLastModifiedByType;
+  /** The timestamp of resource last modification (UTC) */
+  lastModifiedAt?: string;
+}
+export const GetFluidRelayContainerResponseSystemData = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      createdBy: S.optional(S.String),
+      createdByType: S.optional(
+        GetFluidRelayContainerResponseSystemDataCreatedByType,
+      ),
+      createdAt: S.optional(S.String),
+      lastModifiedBy: S.optional(S.String),
+      lastModifiedByType: S.optional(
+        GetFluidRelayContainerResponseSystemDataLastModifiedByType,
+      ),
+      lastModifiedAt: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "GetFluidRelayContainerResponseSystemData",
+}) as any as S.Schema<GetFluidRelayContainerResponseSystemData>;
+
+export interface GetFluidRelayContainerResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** The resource-specific properties for this resource. */
+  properties?: FluidRelayContainerProperties;
+  /** Metadata pertaining to creation and last modification of the resource. */
+  systemData?: GetFluidRelayContainerResponseSystemData;
+}
+export const GetFluidRelayContainerResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    properties: S.optional(FluidRelayContainerProperties),
+    systemData: S.optional(GetFluidRelayContainerResponseSystemData),
+  }),
+).annotate({
+  identifier: "GetFluidRelayContainerResponse",
+}) as any as S.Schema<GetFluidRelayContainerResponse>;
+
+export interface GetFluidRelayServerRequest {
   /** The subscription id (GUID) for this resource. */
   subscriptionId: string;
   /** The resource group containing the resource. */
@@ -828,7 +630,7 @@ export interface FluidRelayServersGetRequest {
   /** The Fluid Relay server resource name. */
   fluidRelayServerName: string;
 }
-export const FluidRelayServersGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetFluidRelayServerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroup: S.String.pipe(T.Label()),
@@ -842,70 +644,70 @@ export const FluidRelayServersGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "FluidRelayServersGetRequest",
-}) as any as S.Schema<FluidRelayServersGetRequest>;
+  identifier: "GetFluidRelayServerRequest",
+}) as any as S.Schema<GetFluidRelayServerRequest>;
 
 /** Resource tags. */
-export type FluidRelayServersGetResponseTagsMap = {
+export type GetFluidRelayServerResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const FluidRelayServersGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetFluidRelayServerResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<FluidRelayServersGetResponseTagsMap>;
+) as any as S.Schema<GetFluidRelayServerResponseTagsMap>;
 
 /** The type of identity that created the resource. */
-export type FluidRelayServersGetResponseSystemDataCreatedByType =
+export type GetFluidRelayServerResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const FluidRelayServersGetResponseSystemDataCreatedByType =
+export const GetFluidRelayServerResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type FluidRelayServersGetResponseSystemDataLastModifiedByType =
+export type GetFluidRelayServerResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const FluidRelayServersGetResponseSystemDataLastModifiedByType =
+export const GetFluidRelayServerResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface FluidRelayServersGetResponseSystemData {
+export interface GetFluidRelayServerResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: FluidRelayServersGetResponseSystemDataCreatedByType;
+  createdByType?: GetFluidRelayServerResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: FluidRelayServersGetResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: GetFluidRelayServerResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const FluidRelayServersGetResponseSystemData = /*@__PURE__*/ S.suspend(
+export const GetFluidRelayServerResponseSystemData = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       createdBy: S.optional(S.String),
       createdByType: S.optional(
-        FluidRelayServersGetResponseSystemDataCreatedByType,
+        GetFluidRelayServerResponseSystemDataCreatedByType,
       ),
       createdAt: S.optional(S.String),
       lastModifiedBy: S.optional(S.String),
       lastModifiedByType: S.optional(
-        FluidRelayServersGetResponseSystemDataLastModifiedByType,
+        GetFluidRelayServerResponseSystemDataLastModifiedByType,
       ),
       lastModifiedAt: S.optional(S.String),
     }),
 ).annotate({
-  identifier: "FluidRelayServersGetResponseSystemData",
-}) as any as S.Schema<FluidRelayServersGetResponseSystemData>;
+  identifier: "GetFluidRelayServerResponseSystemData",
+}) as any as S.Schema<GetFluidRelayServerResponseSystemData>;
 
-export interface FluidRelayServersGetResponse {
+export interface GetFluidRelayServerResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -913,38 +715,236 @@ export interface FluidRelayServersGetResponse {
   /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
   type?: string;
   /** Resource tags. */
-  tags?: FluidRelayServersGetResponseTagsMap;
+  tags?: GetFluidRelayServerResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: FluidRelayServerProperties;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: FluidRelayServersGetResponseSystemData;
+  systemData?: GetFluidRelayServerResponseSystemData;
   /** The type of identity used for the resource. */
   identity?: Identity;
 }
-export const FluidRelayServersGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetFluidRelayServerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
-    tags: S.optional(FluidRelayServersGetResponseTagsMap),
+    tags: S.optional(GetFluidRelayServerResponseTagsMap),
     location: S.String,
     properties: S.optional(FluidRelayServerProperties),
-    systemData: S.optional(FluidRelayServersGetResponseSystemData),
+    systemData: S.optional(GetFluidRelayServerResponseSystemData),
     identity: S.optional(Identity),
   }),
 ).annotate({
-  identifier: "FluidRelayServersGetResponse",
-}) as any as S.Schema<FluidRelayServersGetResponse>;
+  identifier: "GetFluidRelayServerResponse",
+}) as any as S.Schema<GetFluidRelayServerResponse>;
 
-export interface FluidRelayServersListByResourceGroupRequest {
+export interface ListFluidRelayContainerByFluidRelayServersRequest {
+  /** The subscription id (GUID) for this resource. */
+  subscriptionId: string;
+  /** The resource group containing the resource. */
+  resourceGroup: string;
+  /** The Fluid Relay server resource name. */
+  fluidRelayServerName: string;
+}
+export const ListFluidRelayContainerByFluidRelayServersRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroup: S.String.pipe(T.Label()),
+      fluidRelayServerName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.FluidRelay/fluidRelayServers/{fluidRelayServerName}/fluidRelayContainers",
+        code: 200,
+        apiVersion: "2022-06-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListFluidRelayContainerByFluidRelayServersRequest",
+  }) as any as S.Schema<ListFluidRelayContainerByFluidRelayServersRequest>;
+
+/** The type of identity that created the resource. */
+export type FluidRelayContainerSystemDataCreatedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const FluidRelayContainerSystemDataCreatedByType =
+  /*@__PURE__*/ S.String;
+
+/** The type of identity that last modified the resource. */
+export type FluidRelayContainerSystemDataLastModifiedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const FluidRelayContainerSystemDataLastModifiedByType =
+  /*@__PURE__*/ S.String;
+
+/** Metadata pertaining to creation and last modification of the resource. */
+export interface FluidRelayContainerSystemData {
+  /** The identity that created the resource. */
+  createdBy?: string;
+  /** The type of identity that created the resource. */
+  createdByType?: FluidRelayContainerSystemDataCreatedByType;
+  /** The timestamp of resource creation (UTC). */
+  createdAt?: string;
+  /** The identity that last modified the resource. */
+  lastModifiedBy?: string;
+  /** The type of identity that last modified the resource. */
+  lastModifiedByType?: FluidRelayContainerSystemDataLastModifiedByType;
+  /** The timestamp of resource last modification (UTC) */
+  lastModifiedAt?: string;
+}
+export const FluidRelayContainerSystemData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    createdBy: S.optional(S.String),
+    createdByType: S.optional(FluidRelayContainerSystemDataCreatedByType),
+    createdAt: S.optional(S.String),
+    lastModifiedBy: S.optional(S.String),
+    lastModifiedByType: S.optional(
+      FluidRelayContainerSystemDataLastModifiedByType,
+    ),
+    lastModifiedAt: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "FluidRelayContainerSystemData",
+}) as any as S.Schema<FluidRelayContainerSystemData>;
+
+/** A FluidRelay Container. */
+export interface FluidRelayContainer {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** The resource-specific properties for this resource. */
+  properties?: FluidRelayContainerProperties;
+  /** Metadata pertaining to creation and last modification of the resource. */
+  systemData?: FluidRelayContainerSystemData;
+}
+export const FluidRelayContainer = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    properties: S.optional(FluidRelayContainerProperties),
+    systemData: S.optional(FluidRelayContainerSystemData),
+  }),
+).annotate({
+  identifier: "FluidRelayContainer",
+}) as any as S.Schema<FluidRelayContainer>;
+
+/** A sequence of FluidRelay containers. */
+export type FluidRelayContainerListValueList = Array<FluidRelayContainer>;
+export const FluidRelayContainerListValueList = /*@__PURE__*/ S.Array(
+  FluidRelayContainer,
+) as any as S.Schema<FluidRelayContainerListValueList>;
+
+/** Paged response */
+export interface FluidRelayContainerList {
+  /** A sequence of FluidRelay containers. */
+  value?: FluidRelayContainerListValueList;
+  /** A link to the next page of results, if any. */
+  nextLink?: string;
+}
+export const FluidRelayContainerList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(FluidRelayContainerListValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "FluidRelayContainerList",
+}) as any as S.Schema<FluidRelayContainerList>;
+
+export interface ListFluidRelayOperationsRequest {}
+export const ListFluidRelayOperationsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/providers/Microsoft.FluidRelay/operations",
+      code: 200,
+      apiVersion: "2022-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListFluidRelayOperationsRequest",
+}) as any as S.Schema<ListFluidRelayOperationsRequest>;
+
+/** The object that represents the operation. */
+export interface OperationDisplay {
+  /** Service provider: Microsoft.FluidRelay */
+  provider?: string;
+  /** Type on which the operation is performed, e.g., 'servers'. */
+  resource?: string;
+  /** Operation type, e.g., read, write, delete, etc. */
+  operation?: string;
+  /** Description of the operation, e.g., 'Write confluent'. */
+  description?: string;
+}
+export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provider: S.optional(S.String),
+    resource: S.optional(S.String),
+    operation: S.optional(S.String),
+    description: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "OperationDisplay",
+}) as any as S.Schema<OperationDisplay>;
+
+/** A FluidRelay REST API operation. */
+export interface OperationResult {
+  /** Operation name: {provider}/{resource}/{operation} */
+  name?: string;
+  /** The object that represents the operation. */
+  display?: OperationDisplay;
+  /** Indicates whether the operation is a data action */
+  isDataAction?: boolean;
+}
+export const OperationResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    display: S.optional(OperationDisplay),
+    isDataAction: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "OperationResult",
+}) as any as S.Schema<OperationResult>;
+
+/** List of FluidRelay operations supported by the Microsoft.FluidRelay provider. */
+export type OperationListResultValueList = Array<OperationResult>;
+export const OperationListResultValueList = /*@__PURE__*/ S.Array(
+  OperationResult,
+) as any as S.Schema<OperationListResultValueList>;
+
+/** Result of GET request to list FluidRelay operations. */
+export interface OperationListResult {
+  /** List of FluidRelay operations supported by the Microsoft.FluidRelay provider. */
+  value?: OperationListResultValueList;
+  /** URL to get the next set of operation list results if there are any. */
+  nextLink?: string;
+}
+export const OperationListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(OperationListResultValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "OperationListResult",
+}) as any as S.Schema<OperationListResult>;
+
+export interface ListFluidRelayServerByResourceGroupRequest {
   /** The subscription id (GUID) for this resource. */
   subscriptionId: string;
   /** The resource group containing the resource. */
   resourceGroup: string;
 }
-export const FluidRelayServersListByResourceGroupRequest =
+export const ListFluidRelayServerByResourceGroupRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -958,8 +958,8 @@ export const FluidRelayServersListByResourceGroupRequest =
       }),
     ),
   ).annotate({
-    identifier: "FluidRelayServersListByResourceGroupRequest",
-  }) as any as S.Schema<FluidRelayServersListByResourceGroupRequest>;
+    identifier: "ListFluidRelayServerByResourceGroupRequest",
+  }) as any as S.Schema<ListFluidRelayServerByResourceGroupRequest>;
 
 /** Resource tags. */
 export type FluidRelayServerTagsMap = { [key: string]: string | undefined };
@@ -1071,11 +1071,11 @@ export const FluidRelayServerList = /*@__PURE__*/ S.suspend(() =>
   identifier: "FluidRelayServerList",
 }) as any as S.Schema<FluidRelayServerList>;
 
-export interface FluidRelayServersListBySubscriptionRequest {
+export interface ListFluidRelayServerBySubscriptionRequest {
   /** The subscription id (GUID) for this resource. */
   subscriptionId: string;
 }
-export const FluidRelayServersListBySubscriptionRequest =
+export const ListFluidRelayServerBySubscriptionRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -1088,10 +1088,10 @@ export const FluidRelayServersListBySubscriptionRequest =
       }),
     ),
   ).annotate({
-    identifier: "FluidRelayServersListBySubscriptionRequest",
-  }) as any as S.Schema<FluidRelayServersListBySubscriptionRequest>;
+    identifier: "ListFluidRelayServerBySubscriptionRequest",
+  }) as any as S.Schema<ListFluidRelayServerBySubscriptionRequest>;
 
-export interface FluidRelayServersListKeysRequest {
+export interface ListFluidRelayServerKeysRequest {
   /** The subscription id (GUID) for this resource. */
   subscriptionId: string;
   /** The resource group containing the resource. */
@@ -1099,7 +1099,7 @@ export interface FluidRelayServersListKeysRequest {
   /** The Fluid Relay server resource name. */
   fluidRelayServerName: string;
 }
-export const FluidRelayServersListKeysRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListFluidRelayServerKeysRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroup: S.String.pipe(T.Label()),
@@ -1113,8 +1113,8 @@ export const FluidRelayServersListKeysRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "FluidRelayServersListKeysRequest",
-}) as any as S.Schema<FluidRelayServersListKeysRequest>;
+  identifier: "ListFluidRelayServerKeysRequest",
+}) as any as S.Schema<ListFluidRelayServerKeysRequest>;
 
 /** The set of available keys for this server. */
 export interface FluidRelayServerKeys {
@@ -1133,11 +1133,11 @@ export const FluidRelayServerKeys = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FluidRelayServerKeys>;
 
 /** The key to regenerate. */
-export type FluidRelayServersRegenerateKeyRequestKeyName = "key1" | "key2";
-export const FluidRelayServersRegenerateKeyRequestKeyName =
+export type RegenerateFluidRelayServerKeyRequestKeyName = "key1" | "key2";
+export const RegenerateFluidRelayServerKeyRequestKeyName =
   /*@__PURE__*/ S.String;
 
-export interface FluidRelayServersRegenerateKeyRequest {
+export interface RegenerateFluidRelayServerKeyRequest {
   /** The subscription id (GUID) for this resource. */
   subscriptionId: string;
   /** The resource group containing the resource. */
@@ -1145,15 +1145,15 @@ export interface FluidRelayServersRegenerateKeyRequest {
   /** The Fluid Relay server resource name. */
   fluidRelayServerName: string;
   /** The key to regenerate. */
-  keyName: FluidRelayServersRegenerateKeyRequestKeyName | (string & {});
+  keyName: RegenerateFluidRelayServerKeyRequestKeyName | (string & {});
 }
-export const FluidRelayServersRegenerateKeyRequest = /*@__PURE__*/ S.suspend(
+export const RegenerateFluidRelayServerKeyRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroup: S.String.pipe(T.Label()),
       fluidRelayServerName: S.String.pipe(T.Label()),
-      keyName: FluidRelayServersRegenerateKeyRequestKeyName,
+      keyName: RegenerateFluidRelayServerKeyRequestKeyName,
     }).pipe(
       T.Http({
         method: "POST",
@@ -1163,8 +1163,8 @@ export const FluidRelayServersRegenerateKeyRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "FluidRelayServersRegenerateKeyRequest",
-}) as any as S.Schema<FluidRelayServersRegenerateKeyRequest>;
+  identifier: "RegenerateFluidRelayServerKeyRequest",
+}) as any as S.Schema<RegenerateFluidRelayServerKeyRequest>;
 
 /** The properties that can be provided when updating FluidRelayServer resource */
 export interface FluidRelayServerUpdateProperties {
@@ -1180,15 +1180,15 @@ export const FluidRelayServerUpdateProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<FluidRelayServerUpdateProperties>;
 
 /** Resource tags. */
-export type FluidRelayServersUpdateRequestTagsMap = {
+export type UpdateFluidRelayServerRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const FluidRelayServersUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateFluidRelayServerRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<FluidRelayServersUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateFluidRelayServerRequestTagsMap>;
 
-export interface FluidRelayServersUpdateRequest {
+export interface UpdateFluidRelayServerRequest {
   /** The subscription id (GUID) for this resource. */
   subscriptionId: string;
   /** The resource group containing the resource. */
@@ -1198,19 +1198,19 @@ export interface FluidRelayServersUpdateRequest {
   /** The resource-specific properties that can be updated for this resource. */
   properties?: FluidRelayServerUpdateProperties;
   /** Resource tags. */
-  tags?: FluidRelayServersUpdateRequestTagsMap;
+  tags?: UpdateFluidRelayServerRequestTagsMap;
   /** The type of identity used for the resource. */
   identity?: IdentityInput;
   /** The geo-location where the resource lives */
   location?: string;
 }
-export const FluidRelayServersUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateFluidRelayServerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroup: S.String.pipe(T.Label()),
     fluidRelayServerName: S.String.pipe(T.Label()),
     properties: S.optional(FluidRelayServerUpdateProperties),
-    tags: S.optional(FluidRelayServersUpdateRequestTagsMap),
+    tags: S.optional(UpdateFluidRelayServerRequestTagsMap),
     identity: S.optional(IdentityInput),
     location: S.optional(S.String),
   }).pipe(
@@ -1222,70 +1222,70 @@ export const FluidRelayServersUpdateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "FluidRelayServersUpdateRequest",
-}) as any as S.Schema<FluidRelayServersUpdateRequest>;
+  identifier: "UpdateFluidRelayServerRequest",
+}) as any as S.Schema<UpdateFluidRelayServerRequest>;
 
 /** Resource tags. */
-export type FluidRelayServersUpdateResponseTagsMap = {
+export type UpdateFluidRelayServerResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const FluidRelayServersUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateFluidRelayServerResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<FluidRelayServersUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateFluidRelayServerResponseTagsMap>;
 
 /** The type of identity that created the resource. */
-export type FluidRelayServersUpdateResponseSystemDataCreatedByType =
+export type UpdateFluidRelayServerResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const FluidRelayServersUpdateResponseSystemDataCreatedByType =
+export const UpdateFluidRelayServerResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type FluidRelayServersUpdateResponseSystemDataLastModifiedByType =
+export type UpdateFluidRelayServerResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const FluidRelayServersUpdateResponseSystemDataLastModifiedByType =
+export const UpdateFluidRelayServerResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface FluidRelayServersUpdateResponseSystemData {
+export interface UpdateFluidRelayServerResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: FluidRelayServersUpdateResponseSystemDataCreatedByType;
+  createdByType?: UpdateFluidRelayServerResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: FluidRelayServersUpdateResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: UpdateFluidRelayServerResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const FluidRelayServersUpdateResponseSystemData =
-  /*@__PURE__*/ S.suspend(() =>
+export const UpdateFluidRelayServerResponseSystemData = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       createdBy: S.optional(S.String),
       createdByType: S.optional(
-        FluidRelayServersUpdateResponseSystemDataCreatedByType,
+        UpdateFluidRelayServerResponseSystemDataCreatedByType,
       ),
       createdAt: S.optional(S.String),
       lastModifiedBy: S.optional(S.String),
       lastModifiedByType: S.optional(
-        FluidRelayServersUpdateResponseSystemDataLastModifiedByType,
+        UpdateFluidRelayServerResponseSystemDataLastModifiedByType,
       ),
       lastModifiedAt: S.optional(S.String),
     }),
-  ).annotate({
-    identifier: "FluidRelayServersUpdateResponseSystemData",
-  }) as any as S.Schema<FluidRelayServersUpdateResponseSystemData>;
+).annotate({
+  identifier: "UpdateFluidRelayServerResponseSystemData",
+}) as any as S.Schema<UpdateFluidRelayServerResponseSystemData>;
 
-export interface FluidRelayServersUpdateResponse {
+export interface UpdateFluidRelayServerResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -1293,86 +1293,56 @@ export interface FluidRelayServersUpdateResponse {
   /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
   type?: string;
   /** Resource tags. */
-  tags?: FluidRelayServersUpdateResponseTagsMap;
+  tags?: UpdateFluidRelayServerResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: FluidRelayServerProperties;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: FluidRelayServersUpdateResponseSystemData;
+  systemData?: UpdateFluidRelayServerResponseSystemData;
   /** The type of identity used for the resource. */
   identity?: Identity;
 }
-export const FluidRelayServersUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateFluidRelayServerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
-    tags: S.optional(FluidRelayServersUpdateResponseTagsMap),
+    tags: S.optional(UpdateFluidRelayServerResponseTagsMap),
     location: S.String,
     properties: S.optional(FluidRelayServerProperties),
-    systemData: S.optional(FluidRelayServersUpdateResponseSystemData),
+    systemData: S.optional(UpdateFluidRelayServerResponseSystemData),
     identity: S.optional(Identity),
   }),
 ).annotate({
-  identifier: "FluidRelayServersUpdateResponse",
-}) as any as S.Schema<FluidRelayServersUpdateResponse>;
+  identifier: "UpdateFluidRelayServerResponse",
+}) as any as S.Schema<UpdateFluidRelayServerResponse>;
 
-export type FluidRelayContainersDeleteError = AzureOpError;
+export type DeleteFluidRelayContainerError = AzureOpError;
 /** Delete a Fluid Relay container. */
-export const FluidRelayContainersDelete: API.OperationMethod<
-  FluidRelayContainersDeleteRequest,
-  FluidRelayContainersDeleteResponse,
-  FluidRelayContainersDeleteError,
+export const DeleteFluidRelayContainer: API.OperationMethod<
+  DeleteFluidRelayContainerRequest,
+  DeleteFluidRelayContainerResponse,
+  DeleteFluidRelayContainerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FluidRelayContainersDeleteRequest,
-  output: FluidRelayContainersDeleteResponse,
+  input: DeleteFluidRelayContainerRequest,
+  output: DeleteFluidRelayContainerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type FluidRelayContainersGetError = AzureOpError;
-/** Get a Fluid Relay container. */
-export const FluidRelayContainersGet: API.OperationMethod<
-  FluidRelayContainersGetRequest,
-  FluidRelayContainersGetResponse,
-  FluidRelayContainersGetError,
+export type DeleteFluidRelayServerError = AzureOpError;
+/** Delete a Fluid Relay server. */
+export const DeleteFluidRelayServer: API.OperationMethod<
+  DeleteFluidRelayServerRequest,
+  DeleteFluidRelayServerResponse,
+  DeleteFluidRelayServerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FluidRelayContainersGetRequest,
-  output: FluidRelayContainersGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type FluidRelayContainersListByFluidRelayServersError = AzureOpError;
-/** List all Fluid Relay containers which are children of a given Fluid Relay server. */
-export const FluidRelayContainersListByFluidRelayServers: API.OperationMethod<
-  FluidRelayContainersListByFluidRelayServersRequest,
-  FluidRelayContainerList,
-  FluidRelayContainersListByFluidRelayServersError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FluidRelayContainersListByFluidRelayServersRequest,
-  output: FluidRelayContainerList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type FluidRelayOperationsListError = AzureOpError;
-/** List all operations provided by Microsoft.FluidRelay. */
-export const FluidRelayOperationsList: API.OperationMethod<
-  FluidRelayOperationsListRequest,
-  OperationListResult,
-  FluidRelayOperationsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FluidRelayOperationsListRequest,
-  output: OperationListResult,
+  input: DeleteFluidRelayServerRequest,
+  output: DeleteFluidRelayServerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -1393,106 +1363,136 @@ export const FluidRelayServersCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type FluidRelayServersDeleteError = AzureOpError;
-/** Delete a Fluid Relay server. */
-export const FluidRelayServersDelete: API.OperationMethod<
-  FluidRelayServersDeleteRequest,
-  FluidRelayServersDeleteResponse,
-  FluidRelayServersDeleteError,
+export type GetFluidRelayContainerError = AzureOpError;
+/** Get a Fluid Relay container. */
+export const GetFluidRelayContainer: API.OperationMethod<
+  GetFluidRelayContainerRequest,
+  GetFluidRelayContainerResponse,
+  GetFluidRelayContainerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FluidRelayServersDeleteRequest,
-  output: FluidRelayServersDeleteResponse,
+  input: GetFluidRelayContainerRequest,
+  output: GetFluidRelayContainerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type FluidRelayServersGetError = AzureOpError;
+export type GetFluidRelayServerError = AzureOpError;
 /** Get a Fluid Relay server. */
-export const FluidRelayServersGet: API.OperationMethod<
-  FluidRelayServersGetRequest,
-  FluidRelayServersGetResponse,
-  FluidRelayServersGetError,
+export const GetFluidRelayServer: API.OperationMethod<
+  GetFluidRelayServerRequest,
+  GetFluidRelayServerResponse,
+  GetFluidRelayServerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FluidRelayServersGetRequest,
-  output: FluidRelayServersGetResponse,
+  input: GetFluidRelayServerRequest,
+  output: GetFluidRelayServerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type FluidRelayServersListByResourceGroupError = AzureOpError;
+export type ListFluidRelayContainerByFluidRelayServersError = AzureOpError;
+/** List all Fluid Relay containers which are children of a given Fluid Relay server. */
+export const ListFluidRelayContainerByFluidRelayServers: API.OperationMethod<
+  ListFluidRelayContainerByFluidRelayServersRequest,
+  FluidRelayContainerList,
+  ListFluidRelayContainerByFluidRelayServersError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListFluidRelayContainerByFluidRelayServersRequest,
+  output: FluidRelayContainerList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListFluidRelayOperationsError = AzureOpError;
+/** List all operations provided by Microsoft.FluidRelay. */
+export const ListFluidRelayOperations: API.OperationMethod<
+  ListFluidRelayOperationsRequest,
+  OperationListResult,
+  ListFluidRelayOperationsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListFluidRelayOperationsRequest,
+  output: OperationListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListFluidRelayServerByResourceGroupError = AzureOpError;
 /** List all Fluid Relay servers in a resource group. */
-export const FluidRelayServersListByResourceGroup: API.OperationMethod<
-  FluidRelayServersListByResourceGroupRequest,
+export const ListFluidRelayServerByResourceGroup: API.OperationMethod<
+  ListFluidRelayServerByResourceGroupRequest,
   FluidRelayServerList,
-  FluidRelayServersListByResourceGroupError,
+  ListFluidRelayServerByResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FluidRelayServersListByResourceGroupRequest,
+  input: ListFluidRelayServerByResourceGroupRequest,
   output: FluidRelayServerList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type FluidRelayServersListBySubscriptionError = AzureOpError;
+export type ListFluidRelayServerBySubscriptionError = AzureOpError;
 /** List all Fluid Relay servers in a subscription. */
-export const FluidRelayServersListBySubscription: API.OperationMethod<
-  FluidRelayServersListBySubscriptionRequest,
+export const ListFluidRelayServerBySubscription: API.OperationMethod<
+  ListFluidRelayServerBySubscriptionRequest,
   FluidRelayServerList,
-  FluidRelayServersListBySubscriptionError,
+  ListFluidRelayServerBySubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FluidRelayServersListBySubscriptionRequest,
+  input: ListFluidRelayServerBySubscriptionRequest,
   output: FluidRelayServerList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type FluidRelayServersListKeysError = AzureOpError;
+export type ListFluidRelayServerKeysError = AzureOpError;
 /** Get primary and secondary key for this server. */
-export const FluidRelayServersListKeys: API.OperationMethod<
-  FluidRelayServersListKeysRequest,
+export const ListFluidRelayServerKeys: API.OperationMethod<
+  ListFluidRelayServerKeysRequest,
   FluidRelayServerKeys,
-  FluidRelayServersListKeysError,
+  ListFluidRelayServerKeysError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FluidRelayServersListKeysRequest,
+  input: ListFluidRelayServerKeysRequest,
   output: FluidRelayServerKeys,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type FluidRelayServersRegenerateKeyError = AzureOpError;
+export type RegenerateFluidRelayServerKeyError = AzureOpError;
 /** Regenerate the primary or secondary key for this server. */
-export const FluidRelayServersRegenerateKey: API.OperationMethod<
-  FluidRelayServersRegenerateKeyRequest,
+export const RegenerateFluidRelayServerKey: API.OperationMethod<
+  RegenerateFluidRelayServerKeyRequest,
   FluidRelayServerKeys,
-  FluidRelayServersRegenerateKeyError,
+  RegenerateFluidRelayServerKeyError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FluidRelayServersRegenerateKeyRequest,
+  input: RegenerateFluidRelayServerKeyRequest,
   output: FluidRelayServerKeys,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type FluidRelayServersUpdateError = AzureOpError;
+export type UpdateFluidRelayServerError = AzureOpError;
 /** Update a Fluid Relay server. */
-export const FluidRelayServersUpdate: API.OperationMethod<
-  FluidRelayServersUpdateRequest,
-  FluidRelayServersUpdateResponse,
-  FluidRelayServersUpdateError,
+export const UpdateFluidRelayServer: API.OperationMethod<
+  UpdateFluidRelayServerRequest,
+  UpdateFluidRelayServerResponse,
+  UpdateFluidRelayServerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FluidRelayServersUpdateRequest,
-  output: FluidRelayServersUpdateResponse,
+  input: UpdateFluidRelayServerRequest,
+  output: UpdateFluidRelayServerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

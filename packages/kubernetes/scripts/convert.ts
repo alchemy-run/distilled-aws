@@ -42,6 +42,7 @@ import {
   type PatchFile,
 } from "@distilled.cloud/core/json-patch";
 import { convertOpenApiToSmithy } from "@distilled.cloud/core/codegen/openapi";
+import { finalizeConvert } from "@distilled.cloud/core/codegen/patches";
 
 const root = path.resolve(import.meta.dir, "..");
 const specPath = path.join(
@@ -310,3 +311,5 @@ for (const group of [...groupPaths.keys()].sort()) {
 }
 
 console.log(`\n✅ ${totalOps} operations across ${groupPaths.size} models`);
+
+await finalizeConvert({ root });

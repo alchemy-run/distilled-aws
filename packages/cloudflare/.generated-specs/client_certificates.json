@@ -14,39 +14,23 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "keyDictionary": {
+      "certificateAuthority": "certificate_authority",
+      "commonName": "common_name",
+      "expiresOn": "expires_on",
+      "fingerprintSha256": "fingerprint_sha256",
+      "issuedOn": "issued_on",
+      "organizationalUnit": "organizational_unit",
+      "perPage": "per_page",
+      "resultInfo": "result_info",
+      "serialNumber": "serial_number",
+      "totalCount": "total_count",
+      "validityDays": "validity_days"
+    },
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.cloudflare.client_certificates#CreateRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "csr": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The Certificate Signing Request (CSR). Must be newline-encoded.",
-            "smithy.api#required": {}
-          }
-        },
-        "validity_days": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The number of days the Client Certificate will be valid after the issued_on date.",
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.client_certificates#CreateResponseCertificateAuthority": {
       "type": "structure",
       "members": {
@@ -85,164 +69,6 @@
             "smithy.api#enumValue": "revoked"
           }
         }
-      }
-    },
-    "com.cloudflare.client_certificates#CreateResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier."
-          }
-        },
-        "certificate": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The Client Certificate PEM."
-          }
-        },
-        "certificate_authority": {
-          "target": "com.cloudflare.client_certificates#CreateResponseCertificateAuthority",
-          "traits": {
-            "smithy.api#documentation": "Certificate Authority used to issue the Client Certificate."
-          }
-        },
-        "common_name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Common Name of the Client Certificate."
-          }
-        },
-        "country": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Country, provided by the CSR."
-          }
-        },
-        "csr": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The Certificate Signing Request (CSR). Must be newline-encoded."
-          }
-        },
-        "expires_on": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Date that the Client Certificate expires."
-          }
-        },
-        "fingerprint_sha256": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Unique identifier of the Client Certificate."
-          }
-        },
-        "issued_on": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Date that the Client Certificate was issued by the Certificate Authority."
-          }
-        },
-        "location": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Location, provided by the CSR."
-          }
-        },
-        "organization": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Organization, provided by the CSR."
-          }
-        },
-        "organizational_unit": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Organizational Unit, provided by the CSR."
-          }
-        },
-        "serial_number": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The serial number on the created Client Certificate."
-          }
-        },
-        "signature": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The type of hash used for the Client Certificate.."
-          }
-        },
-        "ski": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Subject Key Identifier."
-          }
-        },
-        "state": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "State, provided by the CSR."
-          }
-        },
-        "status": {
-          "target": "com.cloudflare.client_certificates#CreateResponseStatus",
-          "traits": {
-            "smithy.api#documentation": "Client Certificates may be active or revoked, and the pending_reactivation or pending_revocation represent in-progress asynchronous transitions."
-          }
-        },
-        "validity_days": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The number of days the Client Certificate will be valid after the issued_on date."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.client_certificates#Create": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.client_certificates#CreateRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.client_certificates#CreateResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "/zones/{zone_id}/client_certificates",
-          "code": 200
-        },
-        "smithy.api#documentation": "Create a new API Shield mTLS Client Certificate."
-      }
-    },
-    "com.cloudflare.client_certificates#DeleteRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "client_certificate_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.client_certificates#DeleteResponseCertificateAuthority": {
@@ -285,168 +111,6 @@
         }
       }
     },
-    "com.cloudflare.client_certificates#DeleteResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier."
-          }
-        },
-        "certificate": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The Client Certificate PEM."
-          }
-        },
-        "certificate_authority": {
-          "target": "com.cloudflare.client_certificates#DeleteResponseCertificateAuthority",
-          "traits": {
-            "smithy.api#documentation": "Certificate Authority used to issue the Client Certificate."
-          }
-        },
-        "common_name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Common Name of the Client Certificate."
-          }
-        },
-        "country": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Country, provided by the CSR."
-          }
-        },
-        "csr": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The Certificate Signing Request (CSR). Must be newline-encoded."
-          }
-        },
-        "expires_on": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Date that the Client Certificate expires."
-          }
-        },
-        "fingerprint_sha256": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Unique identifier of the Client Certificate."
-          }
-        },
-        "issued_on": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Date that the Client Certificate was issued by the Certificate Authority."
-          }
-        },
-        "location": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Location, provided by the CSR."
-          }
-        },
-        "organization": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Organization, provided by the CSR."
-          }
-        },
-        "organizational_unit": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Organizational Unit, provided by the CSR."
-          }
-        },
-        "serial_number": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The serial number on the created Client Certificate."
-          }
-        },
-        "signature": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The type of hash used for the Client Certificate.."
-          }
-        },
-        "ski": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Subject Key Identifier."
-          }
-        },
-        "state": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "State, provided by the CSR."
-          }
-        },
-        "status": {
-          "target": "com.cloudflare.client_certificates#DeleteResponseStatus",
-          "traits": {
-            "smithy.api#documentation": "Client Certificates may be active or revoked, and the pending_reactivation or pending_revocation represent in-progress asynchronous transitions."
-          }
-        },
-        "validity_days": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The number of days the Client Certificate will be valid after the issued_on date."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.client_certificates#Delete": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.client_certificates#DeleteRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.client_certificates#DeleteResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "/zones/{zone_id}/client_certificates/{client_certificate_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Set a API Shield mTLS Client Certificate to pending_revocation status for processing to revoked status.",
-        "smithy.api#idempotent": {}
-      }
-    },
-    "com.cloudflare.client_certificates#EditRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "client_certificate_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "reactivate": {
-          "target": "smithy.api#Boolean"
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.client_certificates#EditResponseCertificateAuthority": {
       "type": "structure",
       "members": {
@@ -485,164 +149,6 @@
             "smithy.api#enumValue": "revoked"
           }
         }
-      }
-    },
-    "com.cloudflare.client_certificates#EditResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier."
-          }
-        },
-        "certificate": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The Client Certificate PEM."
-          }
-        },
-        "certificate_authority": {
-          "target": "com.cloudflare.client_certificates#EditResponseCertificateAuthority",
-          "traits": {
-            "smithy.api#documentation": "Certificate Authority used to issue the Client Certificate."
-          }
-        },
-        "common_name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Common Name of the Client Certificate."
-          }
-        },
-        "country": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Country, provided by the CSR."
-          }
-        },
-        "csr": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The Certificate Signing Request (CSR). Must be newline-encoded."
-          }
-        },
-        "expires_on": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Date that the Client Certificate expires."
-          }
-        },
-        "fingerprint_sha256": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Unique identifier of the Client Certificate."
-          }
-        },
-        "issued_on": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Date that the Client Certificate was issued by the Certificate Authority."
-          }
-        },
-        "location": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Location, provided by the CSR."
-          }
-        },
-        "organization": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Organization, provided by the CSR."
-          }
-        },
-        "organizational_unit": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Organizational Unit, provided by the CSR."
-          }
-        },
-        "serial_number": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The serial number on the created Client Certificate."
-          }
-        },
-        "signature": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The type of hash used for the Client Certificate.."
-          }
-        },
-        "ski": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Subject Key Identifier."
-          }
-        },
-        "state": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "State, provided by the CSR."
-          }
-        },
-        "status": {
-          "target": "com.cloudflare.client_certificates#EditResponseStatus",
-          "traits": {
-            "smithy.api#documentation": "Client Certificates may be active or revoked, and the pending_reactivation or pending_revocation represent in-progress asynchronous transitions."
-          }
-        },
-        "validity_days": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The number of days the Client Certificate will be valid after the issued_on date."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.client_certificates#Edit": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.client_certificates#EditRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.client_certificates#EditResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "PATCH",
-          "uri": "/zones/{zone_id}/client_certificates/{client_certificate_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "If a API Shield mTLS Client Certificate is in a pending_revocation state, you may reactivate it with this endpoint."
-      }
-    },
-    "com.cloudflare.client_certificates#GetRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "client_certificate_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.client_certificates#GetResponseCertificateAuthority": {
@@ -685,141 +191,6 @@
         }
       }
     },
-    "com.cloudflare.client_certificates#GetResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier."
-          }
-        },
-        "certificate": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The Client Certificate PEM."
-          }
-        },
-        "certificate_authority": {
-          "target": "com.cloudflare.client_certificates#GetResponseCertificateAuthority",
-          "traits": {
-            "smithy.api#documentation": "Certificate Authority used to issue the Client Certificate."
-          }
-        },
-        "common_name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Common Name of the Client Certificate."
-          }
-        },
-        "country": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Country, provided by the CSR."
-          }
-        },
-        "csr": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The Certificate Signing Request (CSR). Must be newline-encoded."
-          }
-        },
-        "expires_on": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Date that the Client Certificate expires."
-          }
-        },
-        "fingerprint_sha256": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Unique identifier of the Client Certificate."
-          }
-        },
-        "issued_on": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Date that the Client Certificate was issued by the Certificate Authority."
-          }
-        },
-        "location": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Location, provided by the CSR."
-          }
-        },
-        "organization": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Organization, provided by the CSR."
-          }
-        },
-        "organizational_unit": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Organizational Unit, provided by the CSR."
-          }
-        },
-        "serial_number": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The serial number on the created Client Certificate."
-          }
-        },
-        "signature": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The type of hash used for the Client Certificate.."
-          }
-        },
-        "ski": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Subject Key Identifier."
-          }
-        },
-        "state": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "State, provided by the CSR."
-          }
-        },
-        "status": {
-          "target": "com.cloudflare.client_certificates#GetResponseStatus",
-          "traits": {
-            "smithy.api#documentation": "Client Certificates may be active or revoked, and the pending_reactivation or pending_revocation represent in-progress asynchronous transitions."
-          }
-        },
-        "validity_days": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The number of days the Client Certificate will be valid after the issued_on date."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.client_certificates#Get": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.client_certificates#GetRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.client_certificates#GetResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/zones/{zone_id}/client_certificates/{client_certificate_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Get Details for a single mTLS API Shield Client Certificate.",
-        "smithy.api#readonly": {}
-      }
-    },
     "com.cloudflare.client_certificates#ListRequestStatus": {
       "type": "enum",
       "members": {
@@ -853,57 +224,6 @@
             "smithy.api#enumValue": "revoked"
           }
         }
-      }
-    },
-    "com.cloudflare.client_certificates#ListRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "limit": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Limit to the number of records returned.",
-            "smithy.api#httpQuery": "limit"
-          }
-        },
-        "offset": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Offset the results.",
-            "smithy.api#httpQuery": "offset"
-          }
-        },
-        "page": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Page number of paginated results.",
-            "smithy.api#httpQuery": "page"
-          }
-        },
-        "per_page": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Number of records per page.",
-            "smithy.api#httpQuery": "per_page"
-          }
-        },
-        "status": {
-          "target": "com.cloudflare.client_certificates#ListRequestStatus",
-          "traits": {
-            "smithy.api#documentation": "Client Certitifcate Status to filter results by.",
-            "smithy.api#httpQuery": "status"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.client_certificates#ListResultItemCertificateAuthority": {
@@ -1065,7 +385,686 @@
         "target": "com.cloudflare.client_certificates#ListResultItem"
       }
     },
-    "com.cloudflare.client_certificates#ListResponse": {
+    "com.cloudflare.client_certificates#ClientCertificates": {
+      "type": "service",
+      "version": "4.0",
+      "operations": [
+        {
+          "target": "com.cloudflare.client_certificates#CreateClientCertificate"
+        },
+        {
+          "target": "com.cloudflare.client_certificates#DeleteClientCertificate"
+        },
+        {
+          "target": "com.cloudflare.client_certificates#GetClientCertificate"
+        },
+        {
+          "target": "com.cloudflare.client_certificates#ListClientCertificates"
+        },
+        {
+          "target": "com.cloudflare.client_certificates#PatchClientCertificate"
+        }
+      ],
+      "traits": {
+        "com.cloudflare.protocols#v4Json": {},
+        "smithy.api#title": "Cloudflare ClientCertificates",
+        "smithy.api#documentation": "Cloudflare API — client_certificates resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+      }
+    },
+    "com.cloudflare.client_certificates#ClientCertificateAlreadyRevoked": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "code": 1407,
+            "message": {
+              "includes": "already deleted"
+            }
+          }
+        ]
+      }
+    },
+    "com.cloudflare.client_certificates#ClientCertificateNotFound": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "code": 1415,
+            "message": {
+              "includes": "Invalid Certificate ID"
+            }
+          },
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.cloudflare.client_certificates#Forbidden": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.cloudflare.client_certificates#CreateClientCertificate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.client_certificates#CreateClientCertificateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.client_certificates#CreateClientCertificateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/zones/{zone_id}/client_certificates",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a new API Shield mTLS Client Certificate."
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.client_certificates#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.client_certificates#CreateClientCertificateRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "csr": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Certificate Signing Request (CSR). Must be newline-encoded.",
+            "smithy.api#required": {}
+          }
+        },
+        "validity_days": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of days the Client Certificate will be valid after the issued_on date.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.client_certificates#CreateClientCertificateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier."
+          }
+        },
+        "certificate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Client Certificate PEM."
+          }
+        },
+        "certificate_authority": {
+          "target": "com.cloudflare.client_certificates#CreateResponseCertificateAuthority",
+          "traits": {
+            "smithy.api#documentation": "Certificate Authority used to issue the Client Certificate."
+          }
+        },
+        "common_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Common Name of the Client Certificate."
+          }
+        },
+        "country": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Country, provided by the CSR."
+          }
+        },
+        "csr": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Certificate Signing Request (CSR). Must be newline-encoded."
+          }
+        },
+        "expires_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Date that the Client Certificate expires."
+          }
+        },
+        "fingerprint_sha256": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier of the Client Certificate."
+          }
+        },
+        "issued_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Date that the Client Certificate was issued by the Certificate Authority."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Location, provided by the CSR."
+          }
+        },
+        "organization": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Organization, provided by the CSR."
+          }
+        },
+        "organizational_unit": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Organizational Unit, provided by the CSR."
+          }
+        },
+        "serial_number": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The serial number on the created Client Certificate."
+          }
+        },
+        "signature": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of hash used for the Client Certificate.."
+          }
+        },
+        "ski": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Subject Key Identifier."
+          }
+        },
+        "state": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "State, provided by the CSR."
+          }
+        },
+        "status": {
+          "target": "com.cloudflare.client_certificates#CreateResponseStatus",
+          "traits": {
+            "smithy.api#documentation": "Client Certificates may be active or revoked, and the pending_reactivation or pending_revocation represent in-progress asynchronous transitions."
+          }
+        },
+        "validity_days": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of days the Client Certificate will be valid after the issued_on date."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.client_certificates#DeleteClientCertificate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.client_certificates#DeleteClientCertificateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.client_certificates#DeleteClientCertificateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/zones/{zone_id}/client_certificates/{client_certificate_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Set a API Shield mTLS Client Certificate to pending_revocation status for processing to revoked status.",
+        "smithy.api#idempotent": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.client_certificates#ClientCertificateNotFound"
+        },
+        {
+          "target": "com.cloudflare.client_certificates#ClientCertificateAlreadyRevoked"
+        },
+        {
+          "target": "com.cloudflare.client_certificates#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.client_certificates#DeleteClientCertificateRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "client_certificate_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.client_certificates#DeleteClientCertificateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier."
+          }
+        },
+        "certificate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Client Certificate PEM."
+          }
+        },
+        "certificate_authority": {
+          "target": "com.cloudflare.client_certificates#DeleteResponseCertificateAuthority",
+          "traits": {
+            "smithy.api#documentation": "Certificate Authority used to issue the Client Certificate."
+          }
+        },
+        "common_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Common Name of the Client Certificate."
+          }
+        },
+        "country": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Country, provided by the CSR."
+          }
+        },
+        "csr": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Certificate Signing Request (CSR). Must be newline-encoded."
+          }
+        },
+        "expires_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Date that the Client Certificate expires."
+          }
+        },
+        "fingerprint_sha256": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier of the Client Certificate."
+          }
+        },
+        "issued_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Date that the Client Certificate was issued by the Certificate Authority."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Location, provided by the CSR."
+          }
+        },
+        "organization": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Organization, provided by the CSR."
+          }
+        },
+        "organizational_unit": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Organizational Unit, provided by the CSR."
+          }
+        },
+        "serial_number": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The serial number on the created Client Certificate."
+          }
+        },
+        "signature": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of hash used for the Client Certificate.."
+          }
+        },
+        "ski": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Subject Key Identifier."
+          }
+        },
+        "state": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "State, provided by the CSR."
+          }
+        },
+        "status": {
+          "target": "com.cloudflare.client_certificates#DeleteResponseStatus",
+          "traits": {
+            "smithy.api#documentation": "Client Certificates may be active or revoked, and the pending_reactivation or pending_revocation represent in-progress asynchronous transitions."
+          }
+        },
+        "validity_days": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of days the Client Certificate will be valid after the issued_on date."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.client_certificates#GetClientCertificate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.client_certificates#GetClientCertificateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.client_certificates#GetClientCertificateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/client_certificates/{client_certificate_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get Details for a single mTLS API Shield Client Certificate.",
+        "smithy.api#readonly": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.client_certificates#ClientCertificateNotFound"
+        },
+        {
+          "target": "com.cloudflare.client_certificates#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.client_certificates#GetClientCertificateRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "client_certificate_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.client_certificates#GetClientCertificateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier."
+          }
+        },
+        "certificate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Client Certificate PEM."
+          }
+        },
+        "certificate_authority": {
+          "target": "com.cloudflare.client_certificates#GetResponseCertificateAuthority",
+          "traits": {
+            "smithy.api#documentation": "Certificate Authority used to issue the Client Certificate."
+          }
+        },
+        "common_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Common Name of the Client Certificate."
+          }
+        },
+        "country": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Country, provided by the CSR."
+          }
+        },
+        "csr": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Certificate Signing Request (CSR). Must be newline-encoded."
+          }
+        },
+        "expires_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Date that the Client Certificate expires."
+          }
+        },
+        "fingerprint_sha256": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier of the Client Certificate."
+          }
+        },
+        "issued_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Date that the Client Certificate was issued by the Certificate Authority."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Location, provided by the CSR."
+          }
+        },
+        "organization": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Organization, provided by the CSR."
+          }
+        },
+        "organizational_unit": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Organizational Unit, provided by the CSR."
+          }
+        },
+        "serial_number": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The serial number on the created Client Certificate."
+          }
+        },
+        "signature": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of hash used for the Client Certificate.."
+          }
+        },
+        "ski": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Subject Key Identifier."
+          }
+        },
+        "state": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "State, provided by the CSR."
+          }
+        },
+        "status": {
+          "target": "com.cloudflare.client_certificates#GetResponseStatus",
+          "traits": {
+            "smithy.api#documentation": "Client Certificates may be active or revoked, and the pending_reactivation or pending_revocation represent in-progress asynchronous transitions."
+          }
+        },
+        "validity_days": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of days the Client Certificate will be valid after the issued_on date."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.client_certificates#ListClientCertificates": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.client_certificates#ListClientCertificatesRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.client_certificates#ListClientCertificatesResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/client_certificates",
+          "code": 200
+        },
+        "smithy.api#documentation": "List all of your Zone's API Shield mTLS Client Certificates by Status and/or using Pagination.",
+        "smithy.api#readonly": {},
+        "smithy.api#paginated": {
+          "mode": "page",
+          "inputToken": "page",
+          "outputToken": "resultInfo.page",
+          "items": "result",
+          "pageSize": "perPage"
+        }
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.client_certificates#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.client_certificates#ListClientCertificatesRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Limit to the number of records returned.",
+            "smithy.api#httpQuery": "limit"
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Offset the results.",
+            "smithy.api#httpQuery": "offset"
+          }
+        },
+        "page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Page number of paginated results.",
+            "smithy.api#httpQuery": "page"
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Number of records per page.",
+            "smithy.api#httpQuery": "per_page"
+          }
+        },
+        "status": {
+          "target": "com.cloudflare.client_certificates#ListRequestStatus",
+          "traits": {
+            "smithy.api#documentation": "Client Certitifcate Status to filter results by.",
+            "smithy.api#httpQuery": "status"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.client_certificates#ListClientCertificatesResponse": {
       "type": "structure",
       "members": {
         "result": {
@@ -1080,48 +1079,173 @@
         "smithy.api#output": {}
       }
     },
-    "com.cloudflare.client_certificates#List": {
+    "com.cloudflare.client_certificates#PatchClientCertificate": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.client_certificates#ListRequest"
+        "target": "com.cloudflare.client_certificates#PatchClientCertificateRequest"
       },
       "output": {
-        "target": "com.cloudflare.client_certificates#ListResponse"
+        "target": "com.cloudflare.client_certificates#PatchClientCertificateResponse"
       },
       "traits": {
         "smithy.api#http": {
-          "method": "GET",
-          "uri": "/zones/{zone_id}/client_certificates",
+          "method": "PATCH",
+          "uri": "/zones/{zone_id}/client_certificates/{client_certificate_id}",
           "code": 200
         },
-        "smithy.api#documentation": "List all of your Zone's API Shield mTLS Client Certificates by Status and/or using Pagination.",
-        "smithy.api#readonly": {}
+        "smithy.api#documentation": "If a API Shield mTLS Client Certificate is in a pending_revocation state, you may reactivate it with this endpoint."
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.client_certificates#ClientCertificateNotFound"
+        },
+        {
+          "target": "com.cloudflare.client_certificates#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.client_certificates#PatchClientCertificateRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "client_certificate_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "reactivate": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
       }
     },
-    "com.cloudflare.client_certificates#ClientCertificates": {
-      "type": "service",
-      "version": "4.0",
-      "operations": [
-        {
-          "target": "com.cloudflare.client_certificates#Create"
+    "com.cloudflare.client_certificates#PatchClientCertificateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier."
+          }
         },
-        {
-          "target": "com.cloudflare.client_certificates#Delete"
+        "certificate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Client Certificate PEM."
+          }
         },
-        {
-          "target": "com.cloudflare.client_certificates#Edit"
+        "certificate_authority": {
+          "target": "com.cloudflare.client_certificates#EditResponseCertificateAuthority",
+          "traits": {
+            "smithy.api#documentation": "Certificate Authority used to issue the Client Certificate."
+          }
         },
-        {
-          "target": "com.cloudflare.client_certificates#Get"
+        "common_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Common Name of the Client Certificate."
+          }
         },
-        {
-          "target": "com.cloudflare.client_certificates#List"
+        "country": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Country, provided by the CSR."
+          }
+        },
+        "csr": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Certificate Signing Request (CSR). Must be newline-encoded."
+          }
+        },
+        "expires_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Date that the Client Certificate expires."
+          }
+        },
+        "fingerprint_sha256": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier of the Client Certificate."
+          }
+        },
+        "issued_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Date that the Client Certificate was issued by the Certificate Authority."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Location, provided by the CSR."
+          }
+        },
+        "organization": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Organization, provided by the CSR."
+          }
+        },
+        "organizational_unit": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Organizational Unit, provided by the CSR."
+          }
+        },
+        "serial_number": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The serial number on the created Client Certificate."
+          }
+        },
+        "signature": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of hash used for the Client Certificate.."
+          }
+        },
+        "ski": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Subject Key Identifier."
+          }
+        },
+        "state": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "State, provided by the CSR."
+          }
+        },
+        "status": {
+          "target": "com.cloudflare.client_certificates#EditResponseStatus",
+          "traits": {
+            "smithy.api#documentation": "Client Certificates may be active or revoked, and the pending_reactivation or pending_revocation represent in-progress asynchronous transitions."
+          }
+        },
+        "validity_days": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of days the Client Certificate will be valid after the issued_on date."
+          }
         }
-      ],
+      },
       "traits": {
-        "com.cloudflare.protocols#v4Json": {},
-        "smithy.api#title": "Cloudflare ClientCertificates",
-        "smithy.api#documentation": "Cloudflare API — client_certificates resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
       }
     }
   }

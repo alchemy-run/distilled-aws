@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.whop.payment_method_domains#ListPaymentMethodDomainsRequestStatus": {
@@ -413,7 +414,7 @@
         "smithy.api#documentation": "Create Payment Method Domain\n\nRegisters a hostname with the wallet provider and attempts verification inline. Returns `verified` when the provider fetched the domain-association file (for Apple Pay, `/.well-known/apple-developer-merchantid-domain-association`), or `pending` when it could not — host the file, then retry with the verify endpoint."
       }
     },
-    "com.whop.payment_method_domains#RetrievePaymentMethodDomainRequest": {
+    "com.whop.payment_method_domains#GetPaymentMethodDomainRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -429,10 +430,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.whop.payment_method_domains#RetrievePaymentMethodDomain": {
+    "com.whop.payment_method_domains#GetPaymentMethodDomain": {
       "type": "operation",
       "input": {
-        "target": "com.whop.payment_method_domains#RetrievePaymentMethodDomainRequest"
+        "target": "com.whop.payment_method_domains#GetPaymentMethodDomainRequest"
       },
       "output": {
         "target": "com.whop.payment_method_domains#PaymentMethodDomain"
@@ -632,7 +633,7 @@
           "target": "com.whop.payment_method_domains#CreatePaymentMethodDomain"
         },
         {
-          "target": "com.whop.payment_method_domains#RetrievePaymentMethodDomain"
+          "target": "com.whop.payment_method_domains#GetPaymentMethodDomain"
         },
         {
           "target": "com.whop.payment_method_domains#DeletePaymentMethodDomain"

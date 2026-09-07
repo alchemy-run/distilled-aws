@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.posthog.billing#BillingOverviewResponse": {
@@ -120,16 +121,10 @@
           }
         },
         "stripe_portal_url": {
-          "target": "smithy.api#String",
-          "traits": {
-            "com.distilled.openapi#nullable": {}
-          }
+          "target": "smithy.api#String"
         },
         "external_billing_provider_invoices_url": {
-          "target": "smithy.api#String",
-          "traits": {
-            "com.distilled.openapi#nullable": {}
-          }
+          "target": "smithy.api#String"
         },
         "products": {
           "target": "com.posthog.billing#BillingOverviewResponseProductsList",
@@ -196,7 +191,7 @@
       },
       "traits": {}
     },
-    "com.posthog.billing#BillingList": {
+    "com.posthog.billing#ListBilling": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -320,7 +315,7 @@
         }
       }
     },
-    "com.posthog.billing#BillingCouponsClaimCreateRequest": {
+    "com.posthog.billing#CreateBillingCouponsClaimRequest": {
       "type": "structure",
       "members": {
         "plan": {
@@ -340,10 +335,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.billing#BillingCouponsClaimCreate": {
+    "com.posthog.billing#CreateBillingCouponsClaim": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.billing#BillingCouponsClaimCreateRequest"
+        "target": "com.posthog.billing#CreateBillingCouponsClaimRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -356,7 +351,7 @@
         }
       }
     },
-    "com.posthog.billing#BillingCouponsOverviewRetrieve": {
+    "com.posthog.billing#GetBillingCouponsOverview": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -372,7 +367,7 @@
         }
       }
     },
-    "com.posthog.billing#BillingCreditsOverviewRetrieve": {
+    "com.posthog.billing#GetBillingCreditsOverview": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -388,7 +383,7 @@
         }
       }
     },
-    "com.posthog.billing#BillingCreditsPurchaseCreateRequest": {
+    "com.posthog.billing#CreateBillingCreditsPurchaseRequest": {
       "type": "structure",
       "members": {
         "plan": {
@@ -408,10 +403,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.billing#BillingCreditsPurchaseCreate": {
+    "com.posthog.billing#CreateBillingCreditsPurchase": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.billing#BillingCreditsPurchaseCreateRequest"
+        "target": "com.posthog.billing#CreateBillingCreditsPurchaseRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -476,7 +471,7 @@
         }
       }
     },
-    "com.posthog.billing#BillingLicensePartialUpdateRequest": {
+    "com.posthog.billing#UpdateBillingLicensePartialRequest": {
       "type": "structure",
       "members": {
         "plan": {
@@ -490,10 +485,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.billing#BillingLicensePartialUpdate": {
+    "com.posthog.billing#UpdateBillingLicensePartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.billing#BillingLicensePartialUpdateRequest"
+        "target": "com.posthog.billing#UpdateBillingLicensePartialRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -528,7 +523,7 @@
       },
       "traits": {}
     },
-    "com.posthog.billing#BillingPeriodRetrieve": {
+    "com.posthog.billing#GetBillingPeriod": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -545,7 +540,7 @@
         "smithy.api#documentation": "Get the current organization billing period"
       }
     },
-    "com.posthog.billing#BillingPortalRetrieve": {
+    "com.posthog.billing#GetBillingPortal": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -561,7 +556,7 @@
         }
       }
     },
-    "com.posthog.billing#BillingSpendRetrieveRequest": {
+    "com.posthog.billing#GetBillingSpendRequest": {
       "type": "structure",
       "members": {
         "breakdowns": {
@@ -716,10 +711,10 @@
       },
       "traits": {}
     },
-    "com.posthog.billing#BillingSpendRetrieve": {
+    "com.posthog.billing#GetBillingSpend": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.billing#BillingSpendRetrieveRequest"
+        "target": "com.posthog.billing#GetBillingSpendRequest"
       },
       "output": {
         "target": "com.posthog.billing#BillingTimeSeriesResponse"
@@ -769,7 +764,7 @@
         }
       }
     },
-    "com.posthog.billing#BillingSubscriptionSwitchPlanCreateRequest": {
+    "com.posthog.billing#CreateBillingSubscriptionSwitchPlanRequest": {
       "type": "structure",
       "members": {
         "plan": {
@@ -789,10 +784,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.billing#BillingSubscriptionSwitchPlanCreate": {
+    "com.posthog.billing#CreateBillingSubscriptionSwitchPlan": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.billing#BillingSubscriptionSwitchPlanCreateRequest"
+        "target": "com.posthog.billing#CreateBillingSubscriptionSwitchPlanRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -877,7 +872,7 @@
         }
       }
     },
-    "com.posthog.billing#BillingUsageRetrieveRequest": {
+    "com.posthog.billing#GetBillingUsageRequest": {
       "type": "structure",
       "members": {
         "breakdowns": {
@@ -924,10 +919,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.billing#BillingUsageRetrieve": {
+    "com.posthog.billing#GetBillingUsage": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.billing#BillingUsageRetrieveRequest"
+        "target": "com.posthog.billing#GetBillingUsageRequest"
       },
       "output": {
         "target": "com.posthog.billing#BillingTimeSeriesResponse"
@@ -940,7 +935,7 @@
         }
       }
     },
-    "com.posthog.billing#BillingAlertsListRequest": {
+    "com.posthog.billing#ListBillingAlertsRequest": {
       "type": "structure",
       "members": {
         "organization_id": {
@@ -1061,7 +1056,7 @@
           }
         },
         "metric": {
-          "target": "com.posthog.billing#BillingAlertMetricEnum",
+          "target": "com.posthog.billing#BillingAlertConfigurationMetricEnum",
           "traits": {
             "smithy.api#documentation": "Billing-period total to evaluate: current spend so far, or projected period-end spend.\n\n* `spend` - Spend\n* `projected_spend` - Projected spend"
           }
@@ -1081,7 +1076,7 @@
           }
         },
         "threshold_type": {
-          "target": "com.posthog.billing#ThresholdTypeEnum",
+          "target": "com.posthog.billing#BillingAlertConfigurationThresholdTypeEnum",
           "traits": {
             "smithy.api#documentation": "Threshold rule type. The first version supports absolute value only.\n\n* `relative_increase` - Relative increase\n* `absolute_value` - Absolute value\n* `absolute_increase` - Absolute increase"
           }
@@ -1119,7 +1114,7 @@
           }
         },
         "state": {
-          "target": "com.posthog.billing#BillingAlertStateEnum",
+          "target": "com.posthog.billing#BillingAlertConfigurationStateEnum",
           "traits": {
             "smithy.api#documentation": "Current lifecycle state of this alert.\n\n* `not_firing` - Not firing\n* `firing` - Firing\n* `errored` - Errored\n* `snoozed` - Snoozed\n* `broken` - Broken",
             "smithy.api#required": {}
@@ -1194,7 +1189,7 @@
       },
       "traits": {}
     },
-    "com.posthog.billing#BillingAlertMetricEnum": {
+    "com.posthog.billing#BillingAlertConfigurationMetricEnum": {
       "type": "enum",
       "members": {
         "SPEND": {
@@ -1228,7 +1223,7 @@
         "smithy.api#documentation": "* `USD` - USD"
       }
     },
-    "com.posthog.billing#ThresholdTypeEnum": {
+    "com.posthog.billing#BillingAlertConfigurationThresholdTypeEnum": {
       "type": "enum",
       "members": {
         "RELATIVE_INCREASE": {
@@ -1254,7 +1249,7 @@
         "smithy.api#documentation": "* `relative_increase` - Relative increase\n* `absolute_value` - Absolute value\n* `absolute_increase` - Absolute increase"
       }
     },
-    "com.posthog.billing#BillingAlertStateEnum": {
+    "com.posthog.billing#BillingAlertConfigurationStateEnum": {
       "type": "enum",
       "members": {
         "NOT_FIRING": {
@@ -1359,10 +1354,10 @@
       },
       "traits": {}
     },
-    "com.posthog.billing#BillingAlertsList": {
+    "com.posthog.billing#ListBillingAlerts": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.billing#BillingAlertsListRequest"
+        "target": "com.posthog.billing#ListBillingAlertsRequest"
       },
       "output": {
         "target": "com.posthog.billing#PaginatedBillingAlertConfigurationListOutput"
@@ -1445,7 +1440,7 @@
       },
       "traits": {}
     },
-    "com.posthog.billing#BillingAlertsCreateRequest": {
+    "com.posthog.billing#CreateBillingAlertRequest": {
       "type": "structure",
       "members": {
         "organization_id": {
@@ -1476,13 +1471,13 @@
           }
         },
         "metric": {
-          "target": "com.posthog.billing#BillingAlertMetricEnum",
+          "target": "com.posthog.billing#BillingAlertConfigurationMetricEnum",
           "traits": {
             "smithy.api#documentation": "Billing-period total to evaluate: current spend so far, or projected period-end spend.\n\n* `spend` - Spend\n* `projected_spend` - Projected spend"
           }
         },
         "threshold_type": {
-          "target": "com.posthog.billing#ThresholdTypeEnum",
+          "target": "com.posthog.billing#BillingAlertConfigurationThresholdTypeEnum",
           "traits": {
             "smithy.api#documentation": "Threshold rule type. The first version supports absolute value only.\n\n* `relative_increase` - Relative increase\n* `absolute_value` - Absolute value\n* `absolute_increase` - Absolute increase"
           }
@@ -1543,10 +1538,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.billing#BillingAlertsCreate": {
+    "com.posthog.billing#CreateBillingAlert": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.billing#BillingAlertsCreateRequest"
+        "target": "com.posthog.billing#CreateBillingAlertRequest"
       },
       "output": {
         "target": "com.posthog.billing#BillingAlertConfigurationOutput"
@@ -1559,7 +1554,7 @@
         }
       }
     },
-    "com.posthog.billing#BillingAlertsRetrieveRequest": {
+    "com.posthog.billing#GetBillingAlertRequest": {
       "type": "structure",
       "members": {
         "organization_id": {
@@ -1583,10 +1578,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.billing#BillingAlertsRetrieve": {
+    "com.posthog.billing#GetBillingAlert": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.billing#BillingAlertsRetrieveRequest"
+        "target": "com.posthog.billing#GetBillingAlertRequest"
       },
       "output": {
         "target": "com.posthog.billing#BillingAlertConfigurationOutput"
@@ -1599,7 +1594,7 @@
         }
       }
     },
-    "com.posthog.billing#BillingAlertsUpdateRequest": {
+    "com.posthog.billing#UpdateBillingAlertRequest": {
       "type": "structure",
       "members": {
         "organization_id": {
@@ -1638,13 +1633,13 @@
           }
         },
         "metric": {
-          "target": "com.posthog.billing#BillingAlertMetricEnum",
+          "target": "com.posthog.billing#BillingAlertConfigurationMetricEnum",
           "traits": {
             "smithy.api#documentation": "Billing-period total to evaluate: current spend so far, or projected period-end spend.\n\n* `spend` - Spend\n* `projected_spend` - Projected spend"
           }
         },
         "threshold_type": {
-          "target": "com.posthog.billing#ThresholdTypeEnum",
+          "target": "com.posthog.billing#BillingAlertConfigurationThresholdTypeEnum",
           "traits": {
             "smithy.api#documentation": "Threshold rule type. The first version supports absolute value only.\n\n* `relative_increase` - Relative increase\n* `absolute_value` - Absolute value\n* `absolute_increase` - Absolute increase"
           }
@@ -1705,10 +1700,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.billing#BillingAlertsUpdate": {
+    "com.posthog.billing#UpdateBillingAlert": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.billing#BillingAlertsUpdateRequest"
+        "target": "com.posthog.billing#UpdateBillingAlertRequest"
       },
       "output": {
         "target": "com.posthog.billing#BillingAlertConfigurationOutput"
@@ -1721,7 +1716,7 @@
         }
       }
     },
-    "com.posthog.billing#BillingAlertsPartialUpdateRequest": {
+    "com.posthog.billing#UpdateBillingAlertsPartialRequest": {
       "type": "structure",
       "members": {
         "organization_id": {
@@ -1759,13 +1754,13 @@
           }
         },
         "metric": {
-          "target": "com.posthog.billing#BillingAlertMetricEnum",
+          "target": "com.posthog.billing#BillingAlertConfigurationMetricEnum",
           "traits": {
             "smithy.api#documentation": "Billing-period total to evaluate: current spend so far, or projected period-end spend.\n\n* `spend` - Spend\n* `projected_spend` - Projected spend"
           }
         },
         "threshold_type": {
-          "target": "com.posthog.billing#ThresholdTypeEnum",
+          "target": "com.posthog.billing#BillingAlertConfigurationThresholdTypeEnum",
           "traits": {
             "smithy.api#documentation": "Threshold rule type. The first version supports absolute value only.\n\n* `relative_increase` - Relative increase\n* `absolute_value` - Absolute value\n* `absolute_increase` - Absolute increase"
           }
@@ -1826,10 +1821,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.billing#BillingAlertsPartialUpdate": {
+    "com.posthog.billing#UpdateBillingAlertsPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.billing#BillingAlertsPartialUpdateRequest"
+        "target": "com.posthog.billing#UpdateBillingAlertsPartialRequest"
       },
       "output": {
         "target": "com.posthog.billing#BillingAlertConfigurationOutput"
@@ -1882,7 +1877,7 @@
         }
       }
     },
-    "com.posthog.billing#BillingAlertsCheckNowCreateRequest": {
+    "com.posthog.billing#CreateBillingAlertsCheckNowRequest": {
       "type": "structure",
       "members": {
         "organization_id": {
@@ -2017,7 +2012,7 @@
           }
         },
         "metric": {
-          "target": "com.posthog.billing#BillingAlertMetricEnum",
+          "target": "com.posthog.billing#BillingAlertConfigurationMetricEnum",
           "traits": {
             "smithy.api#documentation": "Billing metric evaluated by this event.\n\n* `spend` - Spend\n* `projected_spend` - Projected spend",
             "smithy.api#required": {}
@@ -2063,7 +2058,7 @@
           }
         },
         "state_before": {
-          "target": "com.posthog.billing#BillingAlertStateEnum",
+          "target": "com.posthog.billing#BillingAlertConfigurationStateEnum",
           "traits": {
             "smithy.api#documentation": "Alert state before this event was applied.\n\n* `not_firing` - Not firing\n* `firing` - Firing\n* `errored` - Errored\n* `snoozed` - Snoozed\n* `broken` - Broken",
             "smithy.api#required": {},
@@ -2071,7 +2066,7 @@
           }
         },
         "state_after": {
-          "target": "com.posthog.billing#BillingAlertStateEnum",
+          "target": "com.posthog.billing#BillingAlertConfigurationStateEnum",
           "traits": {
             "smithy.api#documentation": "Alert state after this event was applied.\n\n* `not_firing` - Not firing\n* `firing` - Firing\n* `errored` - Errored\n* `snoozed` - Snoozed\n* `broken` - Broken",
             "smithy.api#required": {},
@@ -2185,10 +2180,10 @@
         "smithy.api#documentation": "* `scheduled` - Scheduled\n* `manual` - Manual"
       }
     },
-    "com.posthog.billing#BillingAlertsCheckNowCreate": {
+    "com.posthog.billing#CreateBillingAlertsCheckNow": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.billing#BillingAlertsCheckNowCreateRequest"
+        "target": "com.posthog.billing#CreateBillingAlertsCheckNowRequest"
       },
       "output": {
         "target": "com.posthog.billing#BillingAlertCheckNowResponse"
@@ -2202,7 +2197,7 @@
         "smithy.api#documentation": "Evaluate this billing alert immediately against real billing spend data. An enabled alert can send notifications when the evaluation records a dispatchable event. A paused alert is evaluated as a preview only: it reports the current spend and would-be outcome without sending notifications or recording an evaluation."
       }
     },
-    "com.posthog.billing#BillingAlertsDestinationsCreateRequest": {
+    "com.posthog.billing#CreateBillingAlertsDestinationRequest": {
       "type": "structure",
       "members": {
         "organization_id": {
@@ -2276,10 +2271,10 @@
       },
       "traits": {}
     },
-    "com.posthog.billing#BillingAlertsDestinationsCreate": {
+    "com.posthog.billing#CreateBillingAlertsDestination": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.billing#BillingAlertsDestinationsCreateRequest"
+        "target": "com.posthog.billing#CreateBillingAlertsDestinationRequest"
       },
       "output": {
         "target": "com.posthog.billing#BillingAlertDestinationResponse"
@@ -2350,7 +2345,7 @@
         "smithy.api#documentation": "Delete a notification destination by deleting its HogFunction group atomically."
       }
     },
-    "com.posthog.billing#BillingAlertsEventsListRequest": {
+    "com.posthog.billing#ListBillingAlertsEventsRequest": {
       "type": "structure",
       "members": {
         "organization_id": {
@@ -2425,10 +2420,10 @@
       },
       "traits": {}
     },
-    "com.posthog.billing#BillingAlertsEventsList": {
+    "com.posthog.billing#ListBillingAlertsEvents": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.billing#BillingAlertsEventsListRequest"
+        "target": "com.posthog.billing#ListBillingAlertsEventsRequest"
       },
       "output": {
         "target": "com.posthog.billing#PaginatedBillingAlertEventList"
@@ -2447,7 +2442,7 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.billing#BillingList"
+          "target": "com.posthog.billing#ListBilling"
         },
         {
           "target": "com.posthog.billing#BillingActivateCreate"
@@ -2459,16 +2454,16 @@
           "target": "com.posthog.billing#BillingActivateAuthorizeStatusCreate"
         },
         {
-          "target": "com.posthog.billing#BillingCouponsClaimCreate"
+          "target": "com.posthog.billing#CreateBillingCouponsClaim"
         },
         {
-          "target": "com.posthog.billing#BillingCouponsOverviewRetrieve"
+          "target": "com.posthog.billing#GetBillingCouponsOverview"
         },
         {
-          "target": "com.posthog.billing#BillingCreditsOverviewRetrieve"
+          "target": "com.posthog.billing#GetBillingCreditsOverview"
         },
         {
-          "target": "com.posthog.billing#BillingCreditsPurchaseCreate"
+          "target": "com.posthog.billing#CreateBillingCreditsPurchase"
         },
         {
           "target": "com.posthog.billing#BillingDeactivateCreate"
@@ -2477,22 +2472,22 @@
           "target": "com.posthog.billing#BillingGetInvoicesRetrieve"
         },
         {
-          "target": "com.posthog.billing#BillingLicensePartialUpdate"
+          "target": "com.posthog.billing#UpdateBillingLicensePartial"
         },
         {
-          "target": "com.posthog.billing#BillingPeriodRetrieve"
+          "target": "com.posthog.billing#GetBillingPeriod"
         },
         {
-          "target": "com.posthog.billing#BillingPortalRetrieve"
+          "target": "com.posthog.billing#GetBillingPortal"
         },
         {
-          "target": "com.posthog.billing#BillingSpendRetrieve"
+          "target": "com.posthog.billing#GetBillingSpend"
         },
         {
           "target": "com.posthog.billing#BillingStartupsApplyCreate"
         },
         {
-          "target": "com.posthog.billing#BillingSubscriptionSwitchPlanCreate"
+          "target": "com.posthog.billing#CreateBillingSubscriptionSwitchPlan"
         },
         {
           "target": "com.posthog.billing#BillingTrialsActivateCreate"
@@ -2501,37 +2496,37 @@
           "target": "com.posthog.billing#BillingTrialsCancelCreate"
         },
         {
-          "target": "com.posthog.billing#BillingUsageRetrieve"
+          "target": "com.posthog.billing#GetBillingUsage"
         },
         {
-          "target": "com.posthog.billing#BillingAlertsList"
+          "target": "com.posthog.billing#ListBillingAlerts"
         },
         {
-          "target": "com.posthog.billing#BillingAlertsCreate"
+          "target": "com.posthog.billing#CreateBillingAlert"
         },
         {
-          "target": "com.posthog.billing#BillingAlertsRetrieve"
+          "target": "com.posthog.billing#GetBillingAlert"
         },
         {
-          "target": "com.posthog.billing#BillingAlertsUpdate"
+          "target": "com.posthog.billing#UpdateBillingAlert"
         },
         {
-          "target": "com.posthog.billing#BillingAlertsPartialUpdate"
+          "target": "com.posthog.billing#UpdateBillingAlertsPartial"
         },
         {
           "target": "com.posthog.billing#BillingAlertsDestroy"
         },
         {
-          "target": "com.posthog.billing#BillingAlertsCheckNowCreate"
+          "target": "com.posthog.billing#CreateBillingAlertsCheckNow"
         },
         {
-          "target": "com.posthog.billing#BillingAlertsDestinationsCreate"
+          "target": "com.posthog.billing#CreateBillingAlertsDestination"
         },
         {
           "target": "com.posthog.billing#BillingAlertsDestinationsDeleteCreate"
         },
         {
-          "target": "com.posthog.billing#BillingAlertsEventsList"
+          "target": "com.posthog.billing#ListBillingAlertsEvents"
         }
       ],
       "traits": {

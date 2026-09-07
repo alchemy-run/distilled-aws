@@ -14,25 +14,19 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "keyDictionary": {
+      "documentationUrl": "documentation_url",
+      "perPage": "per_page",
+      "resultInfo": "result_info",
+      "skipWizard": "skip_wizard",
+      "supportSubaddress": "support_subaddress",
+      "totalCount": "total_count",
+      "totalPages": "total_pages"
+    },
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.cloudflare.email_routing#DisableRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.email_routing#DisableResponseStatus": {
       "type": "enum",
       "members": {
@@ -66,105 +60,6 @@
             "smithy.api#enumValue": "unlocked"
           }
         }
-      }
-    },
-    "com.cloudflare.email_routing#DisableResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Email Routing settings identifier.",
-            "smithy.api#required": {}
-          }
-        },
-        "enabled": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "State of the zone settings for Email Routing.",
-            "smithy.api#required": {}
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Domain of your zone.",
-            "smithy.api#required": {}
-          }
-        },
-        "created": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The date and time the settings have been created."
-          }
-        },
-        "modified": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The date and time the settings have been modified."
-          }
-        },
-        "skip_wizard": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Flag to check if the user skipped the configuration wizard."
-          }
-        },
-        "status": {
-          "target": "com.cloudflare.email_routing#DisableResponseStatus",
-          "traits": {
-            "smithy.api#documentation": "Show the state of your account, and the type or configuration error."
-          }
-        },
-        "support_subaddress": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether subaddressing (plus-addressing) is honored when matching incoming mail against routing rules."
-          }
-        },
-        "tag": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Email Routing settings tag. (Deprecated, replaced by Email Routing settings identifier)"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.email_routing#Disable": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.email_routing#DisableRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.email_routing#DisableResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "/zones/{zone_id}/email/routing/disable",
-          "code": 200
-        },
-        "smithy.api#documentation": "Disable your Email Routing zone. Also removes additional MX records previously required for Email Routing to work."
-      }
-    },
-    "com.cloudflare.email_routing#EnableRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.email_routing#EnableResponseStatus": {
@@ -202,105 +97,6 @@
         }
       }
     },
-    "com.cloudflare.email_routing#EnableResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Email Routing settings identifier.",
-            "smithy.api#required": {}
-          }
-        },
-        "enabled": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "State of the zone settings for Email Routing.",
-            "smithy.api#required": {}
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Domain of your zone.",
-            "smithy.api#required": {}
-          }
-        },
-        "created": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The date and time the settings have been created."
-          }
-        },
-        "modified": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The date and time the settings have been modified."
-          }
-        },
-        "skip_wizard": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Flag to check if the user skipped the configuration wizard."
-          }
-        },
-        "status": {
-          "target": "com.cloudflare.email_routing#EnableResponseStatus",
-          "traits": {
-            "smithy.api#documentation": "Show the state of your account, and the type or configuration error."
-          }
-        },
-        "support_subaddress": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether subaddressing (plus-addressing) is honored when matching incoming mail against routing rules."
-          }
-        },
-        "tag": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Email Routing settings tag. (Deprecated, replaced by Email Routing settings identifier)"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.email_routing#Enable": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.email_routing#EnableRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.email_routing#EnableResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "/zones/{zone_id}/email/routing/enable",
-          "code": 200
-        },
-        "smithy.api#documentation": "Enable you Email Routing zone. Add and lock the necessary MX and SPF records."
-      }
-    },
-    "com.cloudflare.email_routing#GetRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.email_routing#GetResponseStatus": {
       "type": "enum",
       "members": {
@@ -334,90 +130,6 @@
             "smithy.api#enumValue": "unlocked"
           }
         }
-      }
-    },
-    "com.cloudflare.email_routing#GetResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Email Routing settings identifier.",
-            "smithy.api#required": {}
-          }
-        },
-        "enabled": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "State of the zone settings for Email Routing.",
-            "smithy.api#required": {}
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Domain of your zone.",
-            "smithy.api#required": {}
-          }
-        },
-        "created": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The date and time the settings have been created."
-          }
-        },
-        "modified": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The date and time the settings have been modified."
-          }
-        },
-        "skip_wizard": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Flag to check if the user skipped the configuration wizard."
-          }
-        },
-        "status": {
-          "target": "com.cloudflare.email_routing#GetResponseStatus",
-          "traits": {
-            "smithy.api#documentation": "Show the state of your account, and the type or configuration error."
-          }
-        },
-        "support_subaddress": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether subaddressing (plus-addressing) is honored when matching incoming mail against routing rules."
-          }
-        },
-        "tag": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Email Routing settings tag. (Deprecated, replaced by Email Routing settings identifier)"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.email_routing#Get": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.email_routing#GetRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.email_routing#GetResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/zones/{zone_id}/email/routing",
-          "code": 200
-        },
-        "smithy.api#documentation": "Get information about the settings for your Email Routing zone.",
-        "smithy.api#readonly": {}
       }
     },
     "com.cloudflare.email_routing#UnlockRequest": {
@@ -560,179 +272,7 @@
         "smithy.api#documentation": "Unlock MX records previously locked by Email Routing. Deprecated - use PATCH /zones/{zone_id}/email/routing/dns instead."
       }
     },
-    "com.cloudflare.email_routing#AddressesCreateRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "email": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The contact email address of the user.",
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.email_routing#AddressesCreateResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Destination address identifier."
-          }
-        },
-        "created": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The date and time the destination address has been created."
-          }
-        },
-        "email": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The contact email address of the user."
-          }
-        },
-        "modified": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The date and time the destination address was last modified."
-          }
-        },
-        "tag": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Destination address tag. (Deprecated, replaced by destination address identifier)"
-          }
-        },
-        "verified": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The date and time the destination address has been verified. Null means not verified yet."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.email_routing#AddressesCreate": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.email_routing#AddressesCreateRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.email_routing#AddressesCreateResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "/accounts/{account_id}/email/routing/addresses",
-          "code": 200
-        },
-        "smithy.api#documentation": "Create a destination address to forward your emails to. Destination addresses need to be verified before they can be used."
-      }
-    },
-    "com.cloudflare.email_routing#AddressesDeleteRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "destination_address_identifier": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Destination address identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.email_routing#AddressesDeleteResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Destination address identifier."
-          }
-        },
-        "created": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The date and time the destination address has been created."
-          }
-        },
-        "email": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The contact email address of the user."
-          }
-        },
-        "modified": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The date and time the destination address was last modified."
-          }
-        },
-        "tag": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Destination address tag. (Deprecated, replaced by destination address identifier)"
-          }
-        },
-        "verified": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The date and time the destination address has been verified. Null means not verified yet."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.email_routing#AddressesDelete": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.email_routing#AddressesDeleteRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.email_routing#AddressesDeleteResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "/accounts/{account_id}/email/routing/addresses/{destination_address_identifier}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Deletes a specific destination address.",
-        "smithy.api#idempotent": {}
-      }
-    },
-    "com.cloudflare.email_routing#AddressesEditRequestStatus": {
+    "com.cloudflare.email_routing#EditAddressRequestStatus": {
       "type": "enum",
       "members": {
         "UNVERIFIED": {
@@ -749,7 +289,7 @@
         }
       }
     },
-    "com.cloudflare.email_routing#AddressesEditRequest": {
+    "com.cloudflare.email_routing#EditAddressRequest": {
       "type": "structure",
       "members": {
         "account_id": {
@@ -769,7 +309,7 @@
           }
         },
         "status": {
-          "target": "com.cloudflare.email_routing#AddressesEditRequestStatus",
+          "target": "com.cloudflare.email_routing#EditAddressRequestStatus",
           "traits": {
             "smithy.api#documentation": "Destination address status. Non-admin callers may only set verified addresses back to unverified; setting to verified requires admin privileges.",
             "smithy.api#required": {}
@@ -780,7 +320,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.email_routing#AddressesEditResponse": {
+    "com.cloudflare.email_routing#EditAddressResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -825,13 +365,13 @@
         "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
       }
     },
-    "com.cloudflare.email_routing#AddressesEdit": {
+    "com.cloudflare.email_routing#EditAddress": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.email_routing#AddressesEditRequest"
+        "target": "com.cloudflare.email_routing#EditAddressRequest"
       },
       "output": {
-        "target": "com.cloudflare.email_routing#AddressesEditResponse"
+        "target": "com.cloudflare.email_routing#EditAddressResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -840,93 +380,6 @@
           "code": 200
         },
         "smithy.api#documentation": "Updates the status of a specific destination address."
-      }
-    },
-    "com.cloudflare.email_routing#AddressesGetRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "destination_address_identifier": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Destination address identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.email_routing#AddressesGetResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Destination address identifier."
-          }
-        },
-        "created": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The date and time the destination address has been created."
-          }
-        },
-        "email": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The contact email address of the user."
-          }
-        },
-        "modified": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The date and time the destination address was last modified."
-          }
-        },
-        "tag": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Destination address tag. (Deprecated, replaced by destination address identifier)"
-          }
-        },
-        "verified": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The date and time the destination address has been verified. Null means not verified yet."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.email_routing#AddressesGet": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.email_routing#AddressesGetRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.email_routing#AddressesGetResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/accounts/{account_id}/email/routing/addresses/{destination_address_identifier}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Gets information for a specific destination email already created.",
-        "smithy.api#readonly": {}
       }
     },
     "com.cloudflare.email_routing#AddressesListRequestDirection": {
@@ -944,50 +397,6 @@
             "smithy.api#enumValue": "desc"
           }
         }
-      }
-    },
-    "com.cloudflare.email_routing#AddressesListRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "direction": {
-          "target": "com.cloudflare.email_routing#AddressesListRequestDirection",
-          "traits": {
-            "smithy.api#documentation": "Sorts results in an ascending or descending order.",
-            "smithy.api#httpQuery": "direction"
-          }
-        },
-        "page": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Page number of paginated results.",
-            "smithy.api#httpQuery": "page"
-          }
-        },
-        "per_page": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Maximum number of results per page.",
-            "smithy.api#httpQuery": "per_page"
-          }
-        },
-        "verified": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Filter by verified destination addresses.",
-            "smithy.api#httpQuery": "verified"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.email_routing#AddressesListResultItem": {
@@ -1037,61 +446,6 @@
         "target": "com.cloudflare.email_routing#AddressesListResultItem"
       }
     },
-    "com.cloudflare.email_routing#AddressesListResponse": {
-      "type": "structure",
-      "members": {
-        "result": {
-          "target": "com.cloudflare.email_routing#AddressesListResultList",
-          "traits": {
-            "com.cloudflare.protocols#envelopePayload": {},
-            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.email_routing#AddressesList": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.email_routing#AddressesListRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.email_routing#AddressesListResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/accounts/{account_id}/email/routing/addresses",
-          "code": 200
-        },
-        "smithy.api#documentation": "Lists existing destination addresses.",
-        "smithy.api#readonly": {}
-      }
-    },
-    "com.cloudflare.email_routing#DnsCreateRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Domain of your zone."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.email_routing#DnsCreateResponseStatus": {
       "type": "enum",
       "members": {
@@ -1127,145 +481,6 @@
         }
       }
     },
-    "com.cloudflare.email_routing#DnsCreateResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Email Routing settings identifier.",
-            "smithy.api#required": {}
-          }
-        },
-        "enabled": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "State of the zone settings for Email Routing.",
-            "smithy.api#required": {}
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Domain of your zone.",
-            "smithy.api#required": {}
-          }
-        },
-        "created": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The date and time the settings have been created."
-          }
-        },
-        "modified": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The date and time the settings have been modified."
-          }
-        },
-        "skip_wizard": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Flag to check if the user skipped the configuration wizard."
-          }
-        },
-        "status": {
-          "target": "com.cloudflare.email_routing#DnsCreateResponseStatus",
-          "traits": {
-            "smithy.api#documentation": "Show the state of your account, and the type or configuration error."
-          }
-        },
-        "support_subaddress": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether subaddressing (plus-addressing) is honored when matching incoming mail against routing rules."
-          }
-        },
-        "tag": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Email Routing settings tag. (Deprecated, replaced by Email Routing settings identifier)"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.email_routing#DnsCreate": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.email_routing#DnsCreateRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.email_routing#DnsCreateResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "/zones/{zone_id}/email/routing/dns",
-          "code": 200
-        },
-        "smithy.api#documentation": "Enable you Email Routing zone. Add and lock the necessary MX and SPF records."
-      }
-    },
-    "com.cloudflare.email_routing#DnsDeleteRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.email_routing#DnsDelete": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.email_routing#DnsDeleteRequest"
-      },
-      "output": {
-        "target": "smithy.api#Unit"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "/zones/{zone_id}/email/routing/dns",
-          "code": 200
-        },
-        "smithy.api#documentation": "Disable your Email Routing zone. Also removes additional MX records previously required for Email Routing to work.",
-        "smithy.api#idempotent": {}
-      }
-    },
-    "com.cloudflare.email_routing#DnsEditRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Domain of your zone."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.email_routing#DnsEditResponseStatus": {
       "type": "enum",
       "members": {
@@ -1299,112 +514,6 @@
             "smithy.api#enumValue": "unlocked"
           }
         }
-      }
-    },
-    "com.cloudflare.email_routing#DnsEditResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Email Routing settings identifier.",
-            "smithy.api#required": {}
-          }
-        },
-        "enabled": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "State of the zone settings for Email Routing.",
-            "smithy.api#required": {}
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Domain of your zone.",
-            "smithy.api#required": {}
-          }
-        },
-        "created": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The date and time the settings have been created."
-          }
-        },
-        "modified": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The date and time the settings have been modified."
-          }
-        },
-        "skip_wizard": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Flag to check if the user skipped the configuration wizard."
-          }
-        },
-        "status": {
-          "target": "com.cloudflare.email_routing#DnsEditResponseStatus",
-          "traits": {
-            "smithy.api#documentation": "Show the state of your account, and the type or configuration error."
-          }
-        },
-        "support_subaddress": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether subaddressing (plus-addressing) is honored when matching incoming mail against routing rules."
-          }
-        },
-        "tag": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Email Routing settings tag. (Deprecated, replaced by Email Routing settings identifier)"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.email_routing#DnsEdit": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.email_routing#DnsEditRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.email_routing#DnsEditResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "PATCH",
-          "uri": "/zones/{zone_id}/email/routing/dns",
-          "code": 200
-        },
-        "smithy.api#documentation": "Unlock MX Records previously locked by Email Routing."
-      }
-    },
-    "com.cloudflare.email_routing#DnsGetRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "subdomain": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Domain of your zone.",
-            "smithy.api#httpQuery": "subdomain"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.email_routing#DnsGetResponseErrorsItemMissingType": {
@@ -1616,39 +725,6 @@
         "target": "com.cloudflare.email_routing#DnsGetResponseRecordItem"
       }
     },
-    "com.cloudflare.email_routing#DnsGetResponse": {
-      "type": "structure",
-      "members": {
-        "errors": {
-          "target": "com.cloudflare.email_routing#DnsGetResponseErrorsList"
-        },
-        "record": {
-          "target": "com.cloudflare.email_routing#DnsGetResponseRecordList"
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.email_routing#DnsGet": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.email_routing#DnsGetRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.email_routing#DnsGetResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/zones/{zone_id}/email/routing/dns",
-          "code": 200
-        },
-        "smithy.api#documentation": "Show the DNS records needed to configure your Email Routing zone.",
-        "smithy.api#readonly": {}
-      }
-    },
     "com.cloudflare.email_routing#RulesCreateRequestActionsItemType": {
       "type": "enum",
       "members": {
@@ -1772,66 +848,6 @@
             "smithy.api#enumValue": "wrangler"
           }
         }
-      }
-    },
-    "com.cloudflare.email_routing#RulesCreateRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "actions": {
-          "target": "com.cloudflare.email_routing#RulesCreateRequestActionsList",
-          "traits": {
-            "smithy.api#documentation": "List actions patterns.",
-            "smithy.api#required": {}
-          }
-        },
-        "matchers": {
-          "target": "com.cloudflare.email_routing#RulesCreateRequestMatchersList",
-          "traits": {
-            "smithy.api#documentation": "Matching patterns to forward to your actions.",
-            "smithy.api#required": {}
-          }
-        },
-        "enabled": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Routing rule status."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Routing rule name."
-          }
-        },
-        "owner_worker_tag": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Public tag (script_tag) of the Worker that owns this rule. Required when"
-          }
-        },
-        "priority": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Priority of the routing rule."
-          }
-        },
-        "source": {
-          "target": "com.cloudflare.email_routing#RulesCreateRequestSource",
-          "traits": {
-            "smithy.api#documentation": "Who manages the rule. `api` covers dashboard, generic API, and Terraform;"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.email_routing#RulesCreateResponseActionsItemType": {
@@ -1959,104 +975,6 @@
         }
       }
     },
-    "com.cloudflare.email_routing#RulesCreateResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Routing rule identifier."
-          }
-        },
-        "actions": {
-          "target": "com.cloudflare.email_routing#RulesCreateResponseActionsList",
-          "traits": {
-            "smithy.api#documentation": "List actions patterns."
-          }
-        },
-        "enabled": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Routing rule status."
-          }
-        },
-        "matchers": {
-          "target": "com.cloudflare.email_routing#RulesCreateResponseMatchersList",
-          "traits": {
-            "smithy.api#documentation": "Matching patterns to forward to your actions."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Routing rule name."
-          }
-        },
-        "priority": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Priority of the routing rule."
-          }
-        },
-        "source": {
-          "target": "com.cloudflare.email_routing#RulesCreateResponseSource",
-          "traits": {
-            "smithy.api#documentation": "Who manages the rule. `api` covers dashboard, generic API, and Terraform;"
-          }
-        },
-        "tag": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Routing rule tag. (Deprecated, replaced by routing rule identifier)"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.email_routing#RulesCreate": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.email_routing#RulesCreateRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.email_routing#RulesCreateResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "/zones/{zone_id}/email/routing/rules",
-          "code": 200
-        },
-        "smithy.api#documentation": "Rules consist of a set of criteria for matching emails (such as an email being sent to a specific custom email address) plus a set of actions to take on the email (like forwarding it to a specific destination address). Forward actions require all destination addresses to be verified."
-      }
-    },
-    "com.cloudflare.email_routing#RulesDeleteRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "rule_identifier": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Routing rule identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.email_routing#RulesDeleteResponseActionsItemType": {
       "type": "enum",
       "members": {
@@ -2180,105 +1098,6 @@
             "smithy.api#enumValue": "wrangler"
           }
         }
-      }
-    },
-    "com.cloudflare.email_routing#RulesDeleteResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Routing rule identifier."
-          }
-        },
-        "actions": {
-          "target": "com.cloudflare.email_routing#RulesDeleteResponseActionsList",
-          "traits": {
-            "smithy.api#documentation": "List actions patterns."
-          }
-        },
-        "enabled": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Routing rule status."
-          }
-        },
-        "matchers": {
-          "target": "com.cloudflare.email_routing#RulesDeleteResponseMatchersList",
-          "traits": {
-            "smithy.api#documentation": "Matching patterns to forward to your actions."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Routing rule name."
-          }
-        },
-        "priority": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Priority of the routing rule."
-          }
-        },
-        "source": {
-          "target": "com.cloudflare.email_routing#RulesDeleteResponseSource",
-          "traits": {
-            "smithy.api#documentation": "Who manages the rule. `api` covers dashboard, generic API, and Terraform;"
-          }
-        },
-        "tag": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Routing rule tag. (Deprecated, replaced by routing rule identifier)"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.email_routing#RulesDelete": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.email_routing#RulesDeleteRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.email_routing#RulesDeleteResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "/zones/{zone_id}/email/routing/rules/{rule_identifier}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Delete a specific routing rule.",
-        "smithy.api#idempotent": {}
-      }
-    },
-    "com.cloudflare.email_routing#RulesGetRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "rule_identifier": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Routing rule identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.email_routing#RulesGetResponseActionsItemType": {
@@ -2406,81 +1225,6 @@
         }
       }
     },
-    "com.cloudflare.email_routing#RulesGetResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Routing rule identifier."
-          }
-        },
-        "actions": {
-          "target": "com.cloudflare.email_routing#RulesGetResponseActionsList",
-          "traits": {
-            "smithy.api#documentation": "List actions patterns."
-          }
-        },
-        "enabled": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Routing rule status."
-          }
-        },
-        "matchers": {
-          "target": "com.cloudflare.email_routing#RulesGetResponseMatchersList",
-          "traits": {
-            "smithy.api#documentation": "Matching patterns to forward to your actions."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Routing rule name."
-          }
-        },
-        "priority": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Priority of the routing rule."
-          }
-        },
-        "source": {
-          "target": "com.cloudflare.email_routing#RulesGetResponseSource",
-          "traits": {
-            "smithy.api#documentation": "Who manages the rule. `api` covers dashboard, generic API, and Terraform;"
-          }
-        },
-        "tag": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Routing rule tag. (Deprecated, replaced by routing rule identifier)"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.email_routing#RulesGet": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.email_routing#RulesGetRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.email_routing#RulesGetResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/zones/{zone_id}/email/routing/rules/{rule_identifier}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Get information for a specific routing rule already created.",
-        "smithy.api#readonly": {}
-      }
-    },
     "com.cloudflare.email_routing#RulesUpdateRequestActionsItemType": {
       "type": "enum",
       "members": {
@@ -2604,74 +1348,6 @@
             "smithy.api#enumValue": "wrangler"
           }
         }
-      }
-    },
-    "com.cloudflare.email_routing#RulesUpdateRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "rule_identifier": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Routing rule identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "actions": {
-          "target": "com.cloudflare.email_routing#RulesUpdateRequestActionsList",
-          "traits": {
-            "smithy.api#documentation": "List actions patterns.",
-            "smithy.api#required": {}
-          }
-        },
-        "matchers": {
-          "target": "com.cloudflare.email_routing#RulesUpdateRequestMatchersList",
-          "traits": {
-            "smithy.api#documentation": "Matching patterns to forward to your actions.",
-            "smithy.api#required": {}
-          }
-        },
-        "enabled": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Routing rule status."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Routing rule name."
-          }
-        },
-        "owner_worker_tag": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Public tag (script_tag) of the Worker that owns this rule. Required when"
-          }
-        },
-        "priority": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Priority of the routing rule."
-          }
-        },
-        "source": {
-          "target": "com.cloudflare.email_routing#RulesUpdateRequestSource",
-          "traits": {
-            "smithy.api#documentation": "Who manages the rule. `api` covers dashboard, generic API, and Terraform;"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.email_routing#RulesUpdateResponseActionsItemType": {
@@ -2799,97 +1475,6 @@
         }
       }
     },
-    "com.cloudflare.email_routing#RulesUpdateResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Routing rule identifier."
-          }
-        },
-        "actions": {
-          "target": "com.cloudflare.email_routing#RulesUpdateResponseActionsList",
-          "traits": {
-            "smithy.api#documentation": "List actions patterns."
-          }
-        },
-        "enabled": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Routing rule status."
-          }
-        },
-        "matchers": {
-          "target": "com.cloudflare.email_routing#RulesUpdateResponseMatchersList",
-          "traits": {
-            "smithy.api#documentation": "Matching patterns to forward to your actions."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Routing rule name."
-          }
-        },
-        "priority": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Priority of the routing rule."
-          }
-        },
-        "source": {
-          "target": "com.cloudflare.email_routing#RulesUpdateResponseSource",
-          "traits": {
-            "smithy.api#documentation": "Who manages the rule. `api` covers dashboard, generic API, and Terraform;"
-          }
-        },
-        "tag": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Routing rule tag. (Deprecated, replaced by routing rule identifier)"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.email_routing#RulesUpdate": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.email_routing#RulesUpdateRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.email_routing#RulesUpdateResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "PUT",
-          "uri": "/zones/{zone_id}/email/routing/rules/{rule_identifier}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Update actions and matches, or enable/disable specific routing rules. Forward actions require all destination addresses to be verified.",
-        "smithy.api#idempotent": {}
-      }
-    },
-    "com.cloudflare.email_routing#RulesCatchAllsGetRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.email_routing#RulesCatchAllsGetResponseActionsItemType": {
       "type": "enum",
       "members": {
@@ -2984,75 +1569,6 @@
             "smithy.api#enumValue": "wrangler"
           }
         }
-      }
-    },
-    "com.cloudflare.email_routing#RulesCatchAllsGetResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Routing rule identifier."
-          }
-        },
-        "actions": {
-          "target": "com.cloudflare.email_routing#RulesCatchAllsGetResponseActionsList",
-          "traits": {
-            "smithy.api#documentation": "List actions for the catch-all routing rule."
-          }
-        },
-        "enabled": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Routing rule status."
-          }
-        },
-        "matchers": {
-          "target": "com.cloudflare.email_routing#RulesCatchAllsGetResponseMatchersList",
-          "traits": {
-            "smithy.api#documentation": "List of matchers for the catch-all routing rule."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Routing rule name."
-          }
-        },
-        "source": {
-          "target": "com.cloudflare.email_routing#RulesCatchAllsGetResponseSource",
-          "traits": {
-            "smithy.api#documentation": "Who manages the rule. `api` covers dashboard, generic API, and Terraform;"
-          }
-        },
-        "tag": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Routing rule tag. (Deprecated, replaced by routing rule identifier)"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.email_routing#RulesCatchAllsGet": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.email_routing#RulesCatchAllsGetRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.email_routing#RulesCatchAllsGetResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/zones/{zone_id}/email/routing/rules/catch_all",
-          "code": 200
-        },
-        "smithy.api#documentation": "Get information on the default catch-all routing rule.",
-        "smithy.api#readonly": {}
       }
     },
     "com.cloudflare.email_routing#RulesCatchAllsUpdateRequestActionsItemType": {
@@ -3151,60 +1667,6 @@
         }
       }
     },
-    "com.cloudflare.email_routing#RulesCatchAllsUpdateRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "actions": {
-          "target": "com.cloudflare.email_routing#RulesCatchAllsUpdateRequestActionsList",
-          "traits": {
-            "smithy.api#documentation": "List actions for the catch-all routing rule.",
-            "smithy.api#required": {}
-          }
-        },
-        "matchers": {
-          "target": "com.cloudflare.email_routing#RulesCatchAllsUpdateRequestMatchersList",
-          "traits": {
-            "smithy.api#documentation": "List of matchers for the catch-all routing rule.",
-            "smithy.api#required": {}
-          }
-        },
-        "enabled": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Routing rule status."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Routing rule name."
-          }
-        },
-        "owner_worker_tag": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Public tag (script_tag) of the Worker that owns this rule. Required when"
-          }
-        },
-        "source": {
-          "target": "com.cloudflare.email_routing#RulesCatchAllsUpdateRequestSource",
-          "traits": {
-            "smithy.api#documentation": "Who manages the rule. `api` covers dashboard, generic API, and Terraform;"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.email_routing#RulesCatchAllsUpdateResponseActionsItemType": {
       "type": "enum",
       "members": {
@@ -3301,7 +1763,1679 @@
         }
       }
     },
-    "com.cloudflare.email_routing#RulesCatchAllsUpdateResponse": {
+    "com.cloudflare.email_routing#EmailRouting": {
+      "type": "service",
+      "version": "4.0",
+      "operations": [
+        {
+          "target": "com.cloudflare.email_routing#Unlock"
+        },
+        {
+          "target": "com.cloudflare.email_routing#EditAddress"
+        },
+        {
+          "target": "com.cloudflare.email_routing#CreateAddress"
+        },
+        {
+          "target": "com.cloudflare.email_routing#CreateDns"
+        },
+        {
+          "target": "com.cloudflare.email_routing#CreateRule"
+        },
+        {
+          "target": "com.cloudflare.email_routing#DeleteAddress"
+        },
+        {
+          "target": "com.cloudflare.email_routing#DeleteDns"
+        },
+        {
+          "target": "com.cloudflare.email_routing#DeleteRule"
+        },
+        {
+          "target": "com.cloudflare.email_routing#DisableEmailRouting"
+        },
+        {
+          "target": "com.cloudflare.email_routing#EnableEmailRouting"
+        },
+        {
+          "target": "com.cloudflare.email_routing#GetAddress"
+        },
+        {
+          "target": "com.cloudflare.email_routing#GetDns"
+        },
+        {
+          "target": "com.cloudflare.email_routing#GetEmailRouting"
+        },
+        {
+          "target": "com.cloudflare.email_routing#GetRule"
+        },
+        {
+          "target": "com.cloudflare.email_routing#GetRuleCatchAll"
+        },
+        {
+          "target": "com.cloudflare.email_routing#ListAddresses"
+        },
+        {
+          "target": "com.cloudflare.email_routing#PatchDns"
+        },
+        {
+          "target": "com.cloudflare.email_routing#PutRuleCatchAll"
+        },
+        {
+          "target": "com.cloudflare.email_routing#UpdateRule"
+        },
+        {
+          "target": "com.cloudflare.email_routing#ListRules"
+        }
+      ],
+      "traits": {
+        "com.cloudflare.protocols#v4Json": {},
+        "smithy.api#title": "Cloudflare EmailRouting",
+        "smithy.api#documentation": "Cloudflare API — email_routing resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+      }
+    },
+    "com.cloudflare.email_routing#DestinationNotVerified": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "code": 2054
+          }
+        ]
+      }
+    },
+    "com.cloudflare.email_routing#EmailAddressCreatedTooRecently": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "code": 2032
+          }
+        ]
+      }
+    },
+    "com.cloudflare.email_routing#EmailAddressNotFound": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "code": 2015
+          }
+        ]
+      }
+    },
+    "com.cloudflare.email_routing#EmailRoutingRuleNotFound": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.cloudflare.email_routing#Forbidden": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.cloudflare.email_routing#WorkerScriptNotFound": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "code": 2016
+          }
+        ]
+      }
+    },
+    "com.cloudflare.email_routing#CreateAddress": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.email_routing#CreateAddressRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.email_routing#CreateAddressResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/email/routing/addresses",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a destination address to forward your emails to. Destination addresses need to be verified before they can be used."
+      }
+    },
+    "com.cloudflare.email_routing#CreateAddressRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The contact email address of the user.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.email_routing#CreateAddressResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Destination address identifier."
+          }
+        },
+        "created": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time the destination address has been created."
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The contact email address of the user."
+          }
+        },
+        "modified": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time the destination address was last modified."
+          }
+        },
+        "tag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Destination address tag. (Deprecated, replaced by destination address identifier)"
+          }
+        },
+        "verified": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time the destination address has been verified. Null means not verified yet."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.email_routing#CreateDns": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.email_routing#CreateDnsRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.email_routing#CreateDnsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/zones/{zone_id}/email/routing/dns",
+          "code": 200
+        },
+        "smithy.api#documentation": "Enable you Email Routing zone. Add and lock the necessary MX and SPF records."
+      }
+    },
+    "com.cloudflare.email_routing#CreateDnsRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Domain of your zone."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.email_routing#CreateDnsResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Email Routing settings identifier.",
+            "smithy.api#required": {}
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "State of the zone settings for Email Routing.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Domain of your zone.",
+            "smithy.api#required": {}
+          }
+        },
+        "created": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time the settings have been created."
+          }
+        },
+        "modified": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time the settings have been modified."
+          }
+        },
+        "skip_wizard": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Flag to check if the user skipped the configuration wizard."
+          }
+        },
+        "status": {
+          "target": "com.cloudflare.email_routing#DnsCreateResponseStatus",
+          "traits": {
+            "smithy.api#documentation": "Show the state of your account, and the type or configuration error."
+          }
+        },
+        "support_subaddress": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether subaddressing (plus-addressing) is honored when matching incoming mail against routing rules."
+          }
+        },
+        "tag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Email Routing settings tag. (Deprecated, replaced by Email Routing settings identifier)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.email_routing#CreateRule": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.email_routing#CreateRuleRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.email_routing#CreateRuleResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/zones/{zone_id}/email/routing/rules",
+          "code": 200
+        },
+        "smithy.api#documentation": "Rules consist of a set of criteria for matching emails (such as an email being sent to a specific custom email address) plus a set of actions to take on the email (like forwarding it to a specific destination address). Forward actions require all destination addresses to be verified."
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.email_routing#WorkerScriptNotFound"
+        }
+      ]
+    },
+    "com.cloudflare.email_routing#CreateRuleRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "actions": {
+          "target": "com.cloudflare.email_routing#RulesCreateRequestActionsList",
+          "traits": {
+            "smithy.api#documentation": "List actions patterns.",
+            "smithy.api#required": {}
+          }
+        },
+        "matchers": {
+          "target": "com.cloudflare.email_routing#RulesCreateRequestMatchersList",
+          "traits": {
+            "smithy.api#documentation": "Matching patterns to forward to your actions.",
+            "smithy.api#required": {}
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Routing rule status."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Routing rule name."
+          }
+        },
+        "owner_worker_tag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Public tag (script_tag) of the Worker that owns this rule. Required when"
+          }
+        },
+        "priority": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Priority of the routing rule."
+          }
+        },
+        "source": {
+          "target": "com.cloudflare.email_routing#RulesCreateRequestSource",
+          "traits": {
+            "smithy.api#documentation": "Who manages the rule. `api` covers dashboard, generic API, and Terraform;"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.email_routing#CreateRuleResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Routing rule identifier."
+          }
+        },
+        "actions": {
+          "target": "com.cloudflare.email_routing#RulesCreateResponseActionsList",
+          "traits": {
+            "smithy.api#documentation": "List actions patterns."
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Routing rule status."
+          }
+        },
+        "matchers": {
+          "target": "com.cloudflare.email_routing#RulesCreateResponseMatchersList",
+          "traits": {
+            "smithy.api#documentation": "Matching patterns to forward to your actions."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Routing rule name."
+          }
+        },
+        "priority": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Priority of the routing rule."
+          }
+        },
+        "source": {
+          "target": "com.cloudflare.email_routing#RulesCreateResponseSource",
+          "traits": {
+            "smithy.api#documentation": "Who manages the rule. `api` covers dashboard, generic API, and Terraform;"
+          }
+        },
+        "tag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Routing rule tag. (Deprecated, replaced by routing rule identifier)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.email_routing#DeleteAddress": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.email_routing#DeleteAddressRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.email_routing#DeleteAddressResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/accounts/{account_id}/email/routing/addresses/{destination_address_identifier}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Deletes a specific destination address.",
+        "smithy.api#idempotent": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.email_routing#EmailAddressNotFound"
+        },
+        {
+          "target": "com.cloudflare.email_routing#EmailAddressCreatedTooRecently"
+        }
+      ]
+    },
+    "com.cloudflare.email_routing#DeleteAddressRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "destination_address_identifier": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Destination address identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.email_routing#DeleteAddressResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Destination address identifier."
+          }
+        },
+        "created": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time the destination address has been created."
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The contact email address of the user."
+          }
+        },
+        "modified": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time the destination address was last modified."
+          }
+        },
+        "tag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Destination address tag. (Deprecated, replaced by destination address identifier)"
+          }
+        },
+        "verified": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time the destination address has been verified. Null means not verified yet."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.email_routing#DeleteDns": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.email_routing#DeleteDnsRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/zones/{zone_id}/email/routing/dns",
+          "code": 200
+        },
+        "smithy.api#documentation": "Disable your Email Routing zone. Also removes additional MX records previously required for Email Routing to work.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.email_routing#DeleteDnsRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.email_routing#DeleteRule": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.email_routing#DeleteRuleRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.email_routing#DeleteRuleResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/zones/{zone_id}/email/routing/rules/{rule_identifier}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a specific routing rule.",
+        "smithy.api#idempotent": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.email_routing#EmailRoutingRuleNotFound"
+        }
+      ]
+    },
+    "com.cloudflare.email_routing#DeleteRuleRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "rule_identifier": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Routing rule identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.email_routing#DeleteRuleResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Routing rule identifier."
+          }
+        },
+        "actions": {
+          "target": "com.cloudflare.email_routing#RulesDeleteResponseActionsList",
+          "traits": {
+            "smithy.api#documentation": "List actions patterns."
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Routing rule status."
+          }
+        },
+        "matchers": {
+          "target": "com.cloudflare.email_routing#RulesDeleteResponseMatchersList",
+          "traits": {
+            "smithy.api#documentation": "Matching patterns to forward to your actions."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Routing rule name."
+          }
+        },
+        "priority": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Priority of the routing rule."
+          }
+        },
+        "source": {
+          "target": "com.cloudflare.email_routing#RulesDeleteResponseSource",
+          "traits": {
+            "smithy.api#documentation": "Who manages the rule. `api` covers dashboard, generic API, and Terraform;"
+          }
+        },
+        "tag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Routing rule tag. (Deprecated, replaced by routing rule identifier)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.email_routing#DisableEmailRouting": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.email_routing#DisableEmailRoutingRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.email_routing#DisableEmailRoutingResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/zones/{zone_id}/email/routing/disable",
+          "code": 200
+        },
+        "smithy.api#documentation": "Disable your Email Routing zone. Also removes additional MX records previously required for Email Routing to work."
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.email_routing#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.email_routing#DisableEmailRoutingRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.email_routing#DisableEmailRoutingResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Email Routing settings identifier.",
+            "smithy.api#required": {}
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "State of the zone settings for Email Routing.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Domain of your zone.",
+            "smithy.api#required": {}
+          }
+        },
+        "created": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time the settings have been created."
+          }
+        },
+        "modified": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time the settings have been modified."
+          }
+        },
+        "skip_wizard": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Flag to check if the user skipped the configuration wizard."
+          }
+        },
+        "status": {
+          "target": "com.cloudflare.email_routing#DisableResponseStatus",
+          "traits": {
+            "smithy.api#documentation": "Show the state of your account, and the type or configuration error."
+          }
+        },
+        "support_subaddress": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether subaddressing (plus-addressing) is honored when matching incoming mail against routing rules."
+          }
+        },
+        "tag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Email Routing settings tag. (Deprecated, replaced by Email Routing settings identifier)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.email_routing#EnableEmailRouting": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.email_routing#EnableEmailRoutingRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.email_routing#EnableEmailRoutingResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/zones/{zone_id}/email/routing/enable",
+          "code": 200
+        },
+        "smithy.api#documentation": "Enable you Email Routing zone. Add and lock the necessary MX and SPF records."
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.email_routing#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.email_routing#EnableEmailRoutingRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.email_routing#EnableEmailRoutingResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Email Routing settings identifier.",
+            "smithy.api#required": {}
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "State of the zone settings for Email Routing.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Domain of your zone.",
+            "smithy.api#required": {}
+          }
+        },
+        "created": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time the settings have been created."
+          }
+        },
+        "modified": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time the settings have been modified."
+          }
+        },
+        "skip_wizard": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Flag to check if the user skipped the configuration wizard."
+          }
+        },
+        "status": {
+          "target": "com.cloudflare.email_routing#EnableResponseStatus",
+          "traits": {
+            "smithy.api#documentation": "Show the state of your account, and the type or configuration error."
+          }
+        },
+        "support_subaddress": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether subaddressing (plus-addressing) is honored when matching incoming mail against routing rules."
+          }
+        },
+        "tag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Email Routing settings tag. (Deprecated, replaced by Email Routing settings identifier)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.email_routing#GetAddress": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.email_routing#GetAddressRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.email_routing#GetAddressResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/email/routing/addresses/{destination_address_identifier}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Gets information for a specific destination email already created.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.email_routing#GetAddressRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "destination_address_identifier": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Destination address identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.email_routing#GetAddressResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Destination address identifier."
+          }
+        },
+        "created": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time the destination address has been created."
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The contact email address of the user."
+          }
+        },
+        "modified": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time the destination address was last modified."
+          }
+        },
+        "tag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Destination address tag. (Deprecated, replaced by destination address identifier)"
+          }
+        },
+        "verified": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time the destination address has been verified. Null means not verified yet."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.email_routing#GetDns": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.email_routing#GetDnsRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.email_routing#GetDnsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/email/routing/dns",
+          "code": 200
+        },
+        "smithy.api#documentation": "Show the DNS records needed to configure your Email Routing zone.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.email_routing#GetDnsRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "subdomain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Domain of your zone.",
+            "smithy.api#httpQuery": "subdomain"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.email_routing#GetDnsResponse": {
+      "type": "structure",
+      "members": {
+        "errors": {
+          "target": "com.cloudflare.email_routing#DnsGetResponseErrorsList"
+        },
+        "record": {
+          "target": "com.cloudflare.email_routing#DnsGetResponseRecordList"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.email_routing#GetEmailRouting": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.email_routing#GetEmailRoutingRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.email_routing#GetEmailRoutingResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/email/routing",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get information about the settings for your Email Routing zone.",
+        "smithy.api#readonly": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.email_routing#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.email_routing#GetEmailRoutingRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.email_routing#GetEmailRoutingResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Email Routing settings identifier.",
+            "smithy.api#required": {}
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "State of the zone settings for Email Routing.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Domain of your zone.",
+            "smithy.api#required": {}
+          }
+        },
+        "created": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time the settings have been created."
+          }
+        },
+        "modified": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time the settings have been modified."
+          }
+        },
+        "skip_wizard": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Flag to check if the user skipped the configuration wizard."
+          }
+        },
+        "status": {
+          "target": "com.cloudflare.email_routing#GetResponseStatus",
+          "traits": {
+            "smithy.api#documentation": "Show the state of your account, and the type or configuration error."
+          }
+        },
+        "support_subaddress": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether subaddressing (plus-addressing) is honored when matching incoming mail against routing rules."
+          }
+        },
+        "tag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Email Routing settings tag. (Deprecated, replaced by Email Routing settings identifier)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.email_routing#GetRule": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.email_routing#GetRuleRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.email_routing#GetRuleResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/email/routing/rules/{rule_identifier}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get information for a specific routing rule already created.",
+        "smithy.api#readonly": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.email_routing#Forbidden"
+        },
+        {
+          "target": "com.cloudflare.email_routing#EmailRoutingRuleNotFound"
+        }
+      ]
+    },
+    "com.cloudflare.email_routing#GetRuleRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "rule_identifier": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Routing rule identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.email_routing#GetRuleResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Routing rule identifier."
+          }
+        },
+        "actions": {
+          "target": "com.cloudflare.email_routing#RulesGetResponseActionsList",
+          "traits": {
+            "smithy.api#documentation": "List actions patterns."
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Routing rule status."
+          }
+        },
+        "matchers": {
+          "target": "com.cloudflare.email_routing#RulesGetResponseMatchersList",
+          "traits": {
+            "smithy.api#documentation": "Matching patterns to forward to your actions."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Routing rule name."
+          }
+        },
+        "priority": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Priority of the routing rule."
+          }
+        },
+        "source": {
+          "target": "com.cloudflare.email_routing#RulesGetResponseSource",
+          "traits": {
+            "smithy.api#documentation": "Who manages the rule. `api` covers dashboard, generic API, and Terraform;"
+          }
+        },
+        "tag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Routing rule tag. (Deprecated, replaced by routing rule identifier)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.email_routing#GetRuleCatchAll": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.email_routing#GetRuleCatchAllRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.email_routing#GetRuleCatchAllResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/email/routing/rules/catch_all",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get information on the default catch-all routing rule.",
+        "smithy.api#readonly": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.email_routing#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.email_routing#GetRuleCatchAllRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.email_routing#GetRuleCatchAllResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Routing rule identifier."
+          }
+        },
+        "actions": {
+          "target": "com.cloudflare.email_routing#RulesCatchAllsGetResponseActionsList",
+          "traits": {
+            "smithy.api#documentation": "List actions for the catch-all routing rule."
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Routing rule status."
+          }
+        },
+        "matchers": {
+          "target": "com.cloudflare.email_routing#RulesCatchAllsGetResponseMatchersList",
+          "traits": {
+            "smithy.api#documentation": "List of matchers for the catch-all routing rule."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Routing rule name."
+          }
+        },
+        "source": {
+          "target": "com.cloudflare.email_routing#RulesCatchAllsGetResponseSource",
+          "traits": {
+            "smithy.api#documentation": "Who manages the rule. `api` covers dashboard, generic API, and Terraform;"
+          }
+        },
+        "tag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Routing rule tag. (Deprecated, replaced by routing rule identifier)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.email_routing#ListAddresses": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.email_routing#ListAddressesRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.email_routing#ListAddressesResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/email/routing/addresses",
+          "code": 200
+        },
+        "smithy.api#documentation": "Lists existing destination addresses.",
+        "smithy.api#readonly": {},
+        "smithy.api#paginated": {
+          "mode": "page",
+          "inputToken": "page",
+          "outputToken": "resultInfo.page",
+          "items": "result",
+          "pageSize": "perPage"
+        }
+      }
+    },
+    "com.cloudflare.email_routing#ListAddressesRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "direction": {
+          "target": "com.cloudflare.email_routing#AddressesListRequestDirection",
+          "traits": {
+            "smithy.api#documentation": "Sorts results in an ascending or descending order.",
+            "smithy.api#httpQuery": "direction"
+          }
+        },
+        "page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Page number of paginated results.",
+            "smithy.api#httpQuery": "page"
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Maximum number of results per page.",
+            "smithy.api#httpQuery": "per_page"
+          }
+        },
+        "verified": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Filter by verified destination addresses.",
+            "smithy.api#httpQuery": "verified"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.email_routing#ListAddressesResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.email_routing#AddressesListResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.email_routing#PatchDns": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.email_routing#PatchDnsRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.email_routing#PatchDnsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/zones/{zone_id}/email/routing/dns",
+          "code": 200
+        },
+        "smithy.api#documentation": "Unlock MX Records previously locked by Email Routing."
+      }
+    },
+    "com.cloudflare.email_routing#PatchDnsRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Domain of your zone."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.email_routing#PatchDnsResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Email Routing settings identifier.",
+            "smithy.api#required": {}
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "State of the zone settings for Email Routing.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Domain of your zone.",
+            "smithy.api#required": {}
+          }
+        },
+        "created": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time the settings have been created."
+          }
+        },
+        "modified": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time the settings have been modified."
+          }
+        },
+        "skip_wizard": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Flag to check if the user skipped the configuration wizard."
+          }
+        },
+        "status": {
+          "target": "com.cloudflare.email_routing#DnsEditResponseStatus",
+          "traits": {
+            "smithy.api#documentation": "Show the state of your account, and the type or configuration error."
+          }
+        },
+        "support_subaddress": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether subaddressing (plus-addressing) is honored when matching incoming mail against routing rules."
+          }
+        },
+        "tag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Email Routing settings tag. (Deprecated, replaced by Email Routing settings identifier)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.email_routing#PutRuleCatchAll": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.email_routing#PutRuleCatchAllRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.email_routing#PutRuleCatchAllResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/zones/{zone_id}/email/routing/rules/catch_all",
+          "code": 200
+        },
+        "smithy.api#documentation": "Enable or disable catch-all routing rule, or change action to forward to specific destination address. Forward actions require all destination addresses to be verified.",
+        "smithy.api#idempotent": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.email_routing#Forbidden"
+        },
+        {
+          "target": "com.cloudflare.email_routing#DestinationNotVerified"
+        },
+        {
+          "target": "com.cloudflare.email_routing#WorkerScriptNotFound"
+        }
+      ]
+    },
+    "com.cloudflare.email_routing#PutRuleCatchAllRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "actions": {
+          "target": "com.cloudflare.email_routing#RulesCatchAllsUpdateRequestActionsList",
+          "traits": {
+            "smithy.api#documentation": "List actions for the catch-all routing rule.",
+            "smithy.api#required": {}
+          }
+        },
+        "matchers": {
+          "target": "com.cloudflare.email_routing#RulesCatchAllsUpdateRequestMatchersList",
+          "traits": {
+            "smithy.api#documentation": "List of matchers for the catch-all routing rule.",
+            "smithy.api#required": {}
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Routing rule status."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Routing rule name."
+          }
+        },
+        "owner_worker_tag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Public tag (script_tag) of the Worker that owns this rule. Required when"
+          }
+        },
+        "source": {
+          "target": "com.cloudflare.email_routing#RulesCatchAllsUpdateRequestSource",
+          "traits": {
+            "smithy.api#documentation": "Who manages the rule. `api` covers dashboard, generic API, and Terraform;"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.email_routing#PutRuleCatchAllResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3352,90 +3486,232 @@
         "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
       }
     },
-    "com.cloudflare.email_routing#RulesCatchAllsUpdate": {
+    "com.cloudflare.email_routing#UpdateRule": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.email_routing#RulesCatchAllsUpdateRequest"
+        "target": "com.cloudflare.email_routing#UpdateRuleRequest"
       },
       "output": {
-        "target": "com.cloudflare.email_routing#RulesCatchAllsUpdateResponse"
+        "target": "com.cloudflare.email_routing#UpdateRuleResponse"
       },
       "traits": {
         "smithy.api#http": {
           "method": "PUT",
-          "uri": "/zones/{zone_id}/email/routing/rules/catch_all",
+          "uri": "/zones/{zone_id}/email/routing/rules/{rule_identifier}",
           "code": 200
         },
-        "smithy.api#documentation": "Enable or disable catch-all routing rule, or change action to forward to specific destination address. Forward actions require all destination addresses to be verified.",
+        "smithy.api#documentation": "Update actions and matches, or enable/disable specific routing rules. Forward actions require all destination addresses to be verified.",
         "smithy.api#idempotent": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.email_routing#WorkerScriptNotFound"
+        }
+      ]
+    },
+    "com.cloudflare.email_routing#UpdateRuleRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "rule_identifier": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Routing rule identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "actions": {
+          "target": "com.cloudflare.email_routing#RulesUpdateRequestActionsList",
+          "traits": {
+            "smithy.api#documentation": "List actions patterns.",
+            "smithy.api#required": {}
+          }
+        },
+        "matchers": {
+          "target": "com.cloudflare.email_routing#RulesUpdateRequestMatchersList",
+          "traits": {
+            "smithy.api#documentation": "Matching patterns to forward to your actions.",
+            "smithy.api#required": {}
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Routing rule status."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Routing rule name."
+          }
+        },
+        "owner_worker_tag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Public tag (script_tag) of the Worker that owns this rule. Required when"
+          }
+        },
+        "priority": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Priority of the routing rule."
+          }
+        },
+        "source": {
+          "target": "com.cloudflare.email_routing#RulesUpdateRequestSource",
+          "traits": {
+            "smithy.api#documentation": "Who manages the rule. `api` covers dashboard, generic API, and Terraform;"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
       }
     },
-    "com.cloudflare.email_routing#EmailRouting": {
-      "type": "service",
-      "version": "4.0",
-      "operations": [
-        {
-          "target": "com.cloudflare.email_routing#Disable"
+    "com.cloudflare.email_routing#UpdateRuleResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Routing rule identifier."
+          }
         },
-        {
-          "target": "com.cloudflare.email_routing#Enable"
+        "actions": {
+          "target": "com.cloudflare.email_routing#RulesUpdateResponseActionsList",
+          "traits": {
+            "smithy.api#documentation": "List actions patterns."
+          }
         },
-        {
-          "target": "com.cloudflare.email_routing#Get"
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Routing rule status."
+          }
         },
-        {
-          "target": "com.cloudflare.email_routing#Unlock"
+        "matchers": {
+          "target": "com.cloudflare.email_routing#RulesUpdateResponseMatchersList",
+          "traits": {
+            "smithy.api#documentation": "Matching patterns to forward to your actions."
+          }
         },
-        {
-          "target": "com.cloudflare.email_routing#AddressesCreate"
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Routing rule name."
+          }
         },
-        {
-          "target": "com.cloudflare.email_routing#AddressesDelete"
+        "priority": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Priority of the routing rule."
+          }
         },
-        {
-          "target": "com.cloudflare.email_routing#AddressesEdit"
+        "source": {
+          "target": "com.cloudflare.email_routing#RulesUpdateResponseSource",
+          "traits": {
+            "smithy.api#documentation": "Who manages the rule. `api` covers dashboard, generic API, and Terraform;"
+          }
         },
-        {
-          "target": "com.cloudflare.email_routing#AddressesGet"
-        },
-        {
-          "target": "com.cloudflare.email_routing#AddressesList"
-        },
-        {
-          "target": "com.cloudflare.email_routing#DnsCreate"
-        },
-        {
-          "target": "com.cloudflare.email_routing#DnsDelete"
-        },
-        {
-          "target": "com.cloudflare.email_routing#DnsEdit"
-        },
-        {
-          "target": "com.cloudflare.email_routing#DnsGet"
-        },
-        {
-          "target": "com.cloudflare.email_routing#RulesCreate"
-        },
-        {
-          "target": "com.cloudflare.email_routing#RulesDelete"
-        },
-        {
-          "target": "com.cloudflare.email_routing#RulesGet"
-        },
-        {
-          "target": "com.cloudflare.email_routing#RulesUpdate"
-        },
-        {
-          "target": "com.cloudflare.email_routing#RulesCatchAllsGet"
-        },
-        {
-          "target": "com.cloudflare.email_routing#RulesCatchAllsUpdate"
+        "tag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Routing rule tag. (Deprecated, replaced by routing rule identifier)"
+          }
         }
-      ],
+      },
       "traits": {
-        "com.cloudflare.protocols#v4Json": {},
-        "smithy.api#title": "Cloudflare EmailRouting",
-        "smithy.api#documentation": "Cloudflare API — email_routing resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.email_routing#ListRulesRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#httpQuery": "page"
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#httpQuery": "per_page"
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Filter by enabled routing rules.",
+            "smithy.api#httpQuery": "enabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.email_routing#ListRulesResponseResultList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.email_routing#GetRuleResponse"
+      }
+    },
+    "com.cloudflare.email_routing#ListRulesResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.email_routing#ListRulesResponseResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "Routing rules for the zone."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.email_routing#ListRules": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.email_routing#ListRulesRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.email_routing#ListRulesResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/email/routing/rules",
+          "code": 200
+        },
+        "smithy.api#paginated": {
+          "mode": "page",
+          "inputToken": "page",
+          "outputToken": "resultInfo.page",
+          "items": "result",
+          "pageSize": "perPage"
+        },
+        "smithy.api#documentation": "List routing rules (docs-absent endpoint)."
       }
     }
   }

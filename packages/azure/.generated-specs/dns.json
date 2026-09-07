@@ -14,13 +14,14 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.dns#ZonesList": {
+    "com.azure.dns#ListZones": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dns#ZonesListRequest"
+        "target": "com.azure.dns#ListZonesRequest"
       },
       "output": {
         "target": "com.azure.dns#ZoneListResult"
@@ -239,7 +240,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.dns#ZonesListRequest": {
+    "com.azure.dns#ListZonesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -262,10 +263,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dns#DnsResourceReferenceGetByTargetResources": {
+    "com.azure.dns#GetDnsResourceReferenceByTargetResources": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dns#DnsResourceReferenceGetByTargetResourcesRequest"
+        "target": "com.azure.dns#GetDnsResourceReferenceByTargetResourcesRequest"
       },
       "output": {
         "target": "com.azure.dns#DnsResourceReferenceResult"
@@ -347,7 +348,7 @@
         "smithy.api#documentation": "A list of dns Records "
       }
     },
-    "com.azure.dns#DnsResourceReferenceGetByTargetResourcesRequest": {
+    "com.azure.dns#GetDnsResourceReferenceByTargetResourcesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -392,10 +393,10 @@
         "smithy.api#documentation": "A list of references to azure resources for which referencing dns records need to be queried."
       }
     },
-    "com.azure.dns#ZonesListByResourceGroup": {
+    "com.azure.dns#ListZoneByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dns#ZonesListByResourceGroupRequest"
+        "target": "com.azure.dns#ListZoneByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.dns#ZoneListResult"
@@ -411,7 +412,7 @@
         "com.distilled.openapi#apiVersion": "2018-05-01"
       }
     },
-    "com.azure.dns#ZonesListByResourceGroupRequest": {
+    "com.azure.dns#ListZoneByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -442,10 +443,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dns#ZonesDelete": {
+    "com.azure.dns#DeleteZone": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dns#ZonesDeleteRequest"
+        "target": "com.azure.dns#DeleteZoneRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -461,7 +462,7 @@
         "com.distilled.openapi#apiVersion": "2018-05-01"
       }
     },
-    "com.azure.dns#ZonesDeleteRequest": {
+    "com.azure.dns#DeleteZoneRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -493,13 +494,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dns#ZonesUpdate": {
+    "com.azure.dns#UpdateZone": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dns#ZonesUpdateRequest"
+        "target": "com.azure.dns#UpdateZoneRequest"
       },
       "output": {
-        "target": "com.azure.dns#ZonesUpdateResponse"
+        "target": "com.azure.dns#UpdateZoneResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -512,7 +513,7 @@
         "com.distilled.openapi#apiVersion": "2018-05-01"
       }
     },
-    "com.azure.dns#ZonesUpdateResponse": {
+    "com.azure.dns#UpdateZoneResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -541,7 +542,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dns#ZonesUpdateResponseTagsMap",
+          "target": "com.azure.dns#UpdateZoneResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -563,7 +564,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.dns#ZonesUpdateResponseTagsMap": {
+    "com.azure.dns#UpdateZoneResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -575,7 +576,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.dns#ZonesUpdateRequest": {
+    "com.azure.dns#UpdateZoneRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -603,7 +604,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dns#ZonesUpdateRequestTagsMap",
+          "target": "com.azure.dns#UpdateZoneRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -613,7 +614,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dns#ZonesUpdateRequestTagsMap": {
+    "com.azure.dns#UpdateZoneRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -840,13 +841,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.dns#ZonesGet": {
+    "com.azure.dns#GetZone": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dns#ZonesGetRequest"
+        "target": "com.azure.dns#GetZoneRequest"
       },
       "output": {
-        "target": "com.azure.dns#ZonesGetResponse"
+        "target": "com.azure.dns#GetZoneResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -859,7 +860,7 @@
         "com.distilled.openapi#apiVersion": "2018-05-01"
       }
     },
-    "com.azure.dns#ZonesGetResponse": {
+    "com.azure.dns#GetZoneResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -888,7 +889,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dns#ZonesGetResponseTagsMap",
+          "target": "com.azure.dns#GetZoneResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -910,7 +911,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.dns#ZonesGetResponseTagsMap": {
+    "com.azure.dns#GetZoneResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -922,7 +923,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.dns#ZonesGetRequest": {
+    "com.azure.dns#GetZoneRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -954,10 +955,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dns#RecordSetsListAllByDnsZone": {
+    "com.azure.dns#ListRecordSetAllByDnsZone": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dns#RecordSetsListAllByDnsZoneRequest"
+        "target": "com.azure.dns#ListRecordSetAllByDnsZoneRequest"
       },
       "output": {
         "target": "com.azure.dns#RecordSetListResult"
@@ -1443,7 +1444,7 @@
         "smithy.api#documentation": "The metadata attached to the record set."
       }
     },
-    "com.azure.dns#RecordSetsListAllByDnsZoneRequest": {
+    "com.azure.dns#ListRecordSetAllByDnsZoneRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1489,10 +1490,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dns#RecordSetsListByDnsZone": {
+    "com.azure.dns#ListRecordSetByDnsZone": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dns#RecordSetsListByDnsZoneRequest"
+        "target": "com.azure.dns#ListRecordSetByDnsZoneRequest"
       },
       "output": {
         "target": "com.azure.dns#RecordSetListResult"
@@ -1508,7 +1509,7 @@
         "com.distilled.openapi#apiVersion": "2018-05-01"
       }
     },
-    "com.azure.dns#RecordSetsListByDnsZoneRequest": {
+    "com.azure.dns#ListRecordSetByDnsZoneRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1554,10 +1555,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dns#RecordSetsListByType": {
+    "com.azure.dns#ListRecordSetByType": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dns#RecordSetsListByTypeRequest"
+        "target": "com.azure.dns#ListRecordSetByTypeRequest"
       },
       "output": {
         "target": "com.azure.dns#RecordSetListResult"
@@ -1573,7 +1574,7 @@
         "com.distilled.openapi#apiVersion": "2018-05-01"
       }
     },
-    "com.azure.dns#RecordSetsListByTypeRequest": {
+    "com.azure.dns#ListRecordSetByTypeRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1601,7 +1602,7 @@
           }
         },
         "recordType": {
-          "target": "com.azure.dns#RecordSetsListByTypeRequestRecordType",
+          "target": "com.azure.dns#ListRecordSetByTypeRequestRecordType",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -1627,7 +1628,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dns#RecordSetsListByTypeRequestRecordType": {
+    "com.azure.dns#ListRecordSetByTypeRequestRecordType": {
       "type": "enum",
       "members": {
         "A": {
@@ -1693,10 +1694,10 @@
       },
       "traits": {}
     },
-    "com.azure.dns#RecordSetsDelete": {
+    "com.azure.dns#DeleteRecordSet": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dns#RecordSetsDeleteRequest"
+        "target": "com.azure.dns#DeleteRecordSetRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1712,7 +1713,7 @@
         "com.distilled.openapi#apiVersion": "2018-05-01"
       }
     },
-    "com.azure.dns#RecordSetsDeleteRequest": {
+    "com.azure.dns#DeleteRecordSetRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1740,7 +1741,7 @@
           }
         },
         "recordType": {
-          "target": "com.azure.dns#RecordSetsDeleteRequestRecordType",
+          "target": "com.azure.dns#DeleteRecordSetRequestRecordType",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -1760,7 +1761,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dns#RecordSetsDeleteRequestRecordType": {
+    "com.azure.dns#DeleteRecordSetRequestRecordType": {
       "type": "enum",
       "members": {
         "A": {
@@ -1826,10 +1827,10 @@
       },
       "traits": {}
     },
-    "com.azure.dns#RecordSetsUpdate": {
+    "com.azure.dns#UpdateRecordSet": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dns#RecordSetsUpdateRequest"
+        "target": "com.azure.dns#UpdateRecordSetRequest"
       },
       "output": {
         "target": "com.azure.dns#RecordSet"
@@ -1845,7 +1846,7 @@
         "com.distilled.openapi#apiVersion": "2018-05-01"
       }
     },
-    "com.azure.dns#RecordSetsUpdateRequest": {
+    "com.azure.dns#UpdateRecordSetRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1873,7 +1874,7 @@
           }
         },
         "recordType": {
-          "target": "com.azure.dns#RecordSetsUpdateRequestRecordType",
+          "target": "com.azure.dns#UpdateRecordSetRequestRecordType",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -2075,7 +2076,7 @@
         "smithy.api#documentation": "The metadata attached to the record set."
       }
     },
-    "com.azure.dns#RecordSetsUpdateRequestRecordType": {
+    "com.azure.dns#UpdateRecordSetRequestRecordType": {
       "type": "enum",
       "members": {
         "A": {
@@ -2286,10 +2287,10 @@
       },
       "traits": {}
     },
-    "com.azure.dns#RecordSetsGet": {
+    "com.azure.dns#GetRecordSet": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dns#RecordSetsGetRequest"
+        "target": "com.azure.dns#GetRecordSetRequest"
       },
       "output": {
         "target": "com.azure.dns#RecordSet"
@@ -2305,7 +2306,7 @@
         "com.distilled.openapi#apiVersion": "2018-05-01"
       }
     },
-    "com.azure.dns#RecordSetsGetRequest": {
+    "com.azure.dns#GetRecordSetRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2333,7 +2334,7 @@
           }
         },
         "recordType": {
-          "target": "com.azure.dns#RecordSetsGetRequestRecordType",
+          "target": "com.azure.dns#GetRecordSetRequestRecordType",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -2353,7 +2354,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dns#RecordSetsGetRequestRecordType": {
+    "com.azure.dns#GetRecordSetRequestRecordType": {
       "type": "enum",
       "members": {
         "A": {
@@ -2424,46 +2425,46 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.dns#ZonesList"
+          "target": "com.azure.dns#ListZones"
         },
         {
-          "target": "com.azure.dns#DnsResourceReferenceGetByTargetResources"
+          "target": "com.azure.dns#GetDnsResourceReferenceByTargetResources"
         },
         {
-          "target": "com.azure.dns#ZonesListByResourceGroup"
+          "target": "com.azure.dns#ListZoneByResourceGroup"
         },
         {
-          "target": "com.azure.dns#ZonesDelete"
+          "target": "com.azure.dns#DeleteZone"
         },
         {
-          "target": "com.azure.dns#ZonesUpdate"
+          "target": "com.azure.dns#UpdateZone"
         },
         {
           "target": "com.azure.dns#ZonesCreateOrUpdate"
         },
         {
-          "target": "com.azure.dns#ZonesGet"
+          "target": "com.azure.dns#GetZone"
         },
         {
-          "target": "com.azure.dns#RecordSetsListAllByDnsZone"
+          "target": "com.azure.dns#ListRecordSetAllByDnsZone"
         },
         {
-          "target": "com.azure.dns#RecordSetsListByDnsZone"
+          "target": "com.azure.dns#ListRecordSetByDnsZone"
         },
         {
-          "target": "com.azure.dns#RecordSetsListByType"
+          "target": "com.azure.dns#ListRecordSetByType"
         },
         {
-          "target": "com.azure.dns#RecordSetsDelete"
+          "target": "com.azure.dns#DeleteRecordSet"
         },
         {
-          "target": "com.azure.dns#RecordSetsUpdate"
+          "target": "com.azure.dns#UpdateRecordSet"
         },
         {
           "target": "com.azure.dns#RecordSetsCreateOrUpdate"
         },
         {
-          "target": "com.azure.dns#RecordSetsGet"
+          "target": "com.azure.dns#GetRecordSet"
         }
       ],
       "traits": {

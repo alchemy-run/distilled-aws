@@ -14,13 +14,14 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.hybridkubernetes#ConnectedClusterListClusterUserCredential": {
+    "com.azure.hybridkubernetes#ListConnectedClusterClusterUserCredential": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hybridkubernetes#ConnectedClusterListClusterUserCredentialRequest"
+        "target": "com.azure.hybridkubernetes#ListConnectedClusterClusterUserCredentialRequest"
       },
       "output": {
         "target": "com.azure.hybridkubernetes#CredentialResults"
@@ -129,7 +130,7 @@
         "smithy.api#documentation": "Contains the REP (rendezvous endpoint) and “Sender” access token."
       }
     },
-    "com.azure.hybridkubernetes#ConnectedClusterListClusterUserCredentialRequest": {
+    "com.azure.hybridkubernetes#ListConnectedClusterClusterUserCredentialRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -195,10 +196,10 @@
         "smithy.api#documentation": "The mode of client authentication."
       }
     },
-    "com.azure.hybridkubernetes#ConnectedClusterDelete": {
+    "com.azure.hybridkubernetes#DeleteConnectedCluster": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hybridkubernetes#ConnectedClusterDeleteRequest"
+        "target": "com.azure.hybridkubernetes#DeleteConnectedClusterRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -214,7 +215,7 @@
         "com.distilled.openapi#apiVersion": "2026-05-01"
       }
     },
-    "com.azure.hybridkubernetes#ConnectedClusterDeleteRequest": {
+    "com.azure.hybridkubernetes#DeleteConnectedClusterRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -246,13 +247,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hybridkubernetes#ConnectedClusterUpdate": {
+    "com.azure.hybridkubernetes#UpdateConnectedCluster": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hybridkubernetes#ConnectedClusterUpdateRequest"
+        "target": "com.azure.hybridkubernetes#UpdateConnectedClusterRequest"
       },
       "output": {
-        "target": "com.azure.hybridkubernetes#ConnectedClusterUpdateResponse"
+        "target": "com.azure.hybridkubernetes#UpdateConnectedClusterResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -265,7 +266,7 @@
         "com.distilled.openapi#apiVersion": "2026-05-01"
       }
     },
-    "com.azure.hybridkubernetes#ConnectedClusterUpdateResponse": {
+    "com.azure.hybridkubernetes#UpdateConnectedClusterResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -293,7 +294,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hybridkubernetes#ConnectedClusterUpdateResponseTagsMap",
+          "target": "com.azure.hybridkubernetes#UpdateConnectedClusterResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -986,7 +987,7 @@
         "smithy.api#documentation": "The current deployment state of connectedClusters."
       }
     },
-    "com.azure.hybridkubernetes#ConnectedClusterUpdateResponseTagsMap": {
+    "com.azure.hybridkubernetes#UpdateConnectedClusterResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1106,7 +1107,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.hybridkubernetes#ConnectedClusterUpdateRequest": {
+    "com.azure.hybridkubernetes#UpdateConnectedClusterRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1134,7 +1135,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hybridkubernetes#ConnectedClusterUpdateRequestTagsMap",
+          "target": "com.azure.hybridkubernetes#UpdateConnectedClusterRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1208,7 +1209,7 @@
         "smithy.api#documentation": "Indicates whether Azure Hybrid Benefit is opted in"
       }
     },
-    "com.azure.hybridkubernetes#ConnectedClusterUpdateRequestTagsMap": {
+    "com.azure.hybridkubernetes#UpdateConnectedClusterRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1701,13 +1702,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.hybridkubernetes#ConnectedClusterGet": {
+    "com.azure.hybridkubernetes#GetConnectedCluster": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hybridkubernetes#ConnectedClusterGetRequest"
+        "target": "com.azure.hybridkubernetes#GetConnectedClusterRequest"
       },
       "output": {
-        "target": "com.azure.hybridkubernetes#ConnectedClusterGetResponse"
+        "target": "com.azure.hybridkubernetes#GetConnectedClusterResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1720,7 +1721,7 @@
         "com.distilled.openapi#apiVersion": "2026-05-01"
       }
     },
-    "com.azure.hybridkubernetes#ConnectedClusterGetResponse": {
+    "com.azure.hybridkubernetes#GetConnectedClusterResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1748,7 +1749,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.hybridkubernetes#ConnectedClusterGetResponseTagsMap",
+          "target": "com.azure.hybridkubernetes#GetConnectedClusterResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1785,7 +1786,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.hybridkubernetes#ConnectedClusterGetResponseTagsMap": {
+    "com.azure.hybridkubernetes#GetConnectedClusterResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1797,7 +1798,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.hybridkubernetes#ConnectedClusterGetRequest": {
+    "com.azure.hybridkubernetes#GetConnectedClusterRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1829,10 +1830,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hybridkubernetes#ConnectedClusterListByResourceGroup": {
+    "com.azure.hybridkubernetes#ListConnectedClusterByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hybridkubernetes#ConnectedClusterListByResourceGroupRequest"
+        "target": "com.azure.hybridkubernetes#ListConnectedClusterByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.hybridkubernetes#ConnectedClusterList"
@@ -1955,7 +1956,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.hybridkubernetes#ConnectedClusterListByResourceGroupRequest": {
+    "com.azure.hybridkubernetes#ListConnectedClusterByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1979,10 +1980,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hybridkubernetes#ConnectedClusterListBySubscription": {
+    "com.azure.hybridkubernetes#ListConnectedClusterBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.hybridkubernetes#ConnectedClusterListBySubscriptionRequest"
+        "target": "com.azure.hybridkubernetes#ListConnectedClusterBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.hybridkubernetes#ConnectedClusterList"
@@ -1998,7 +1999,7 @@
         "com.distilled.openapi#apiVersion": "2026-05-01"
       }
     },
-    "com.azure.hybridkubernetes#ConnectedClusterListBySubscriptionRequest": {
+    "com.azure.hybridkubernetes#ListConnectedClusterBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2014,7 +2015,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.hybridkubernetes#OperationsGet": {
+    "com.azure.hybridkubernetes#GetOperation": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -2178,28 +2179,28 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.hybridkubernetes#ConnectedClusterListClusterUserCredential"
+          "target": "com.azure.hybridkubernetes#ListConnectedClusterClusterUserCredential"
         },
         {
-          "target": "com.azure.hybridkubernetes#ConnectedClusterDelete"
+          "target": "com.azure.hybridkubernetes#DeleteConnectedCluster"
         },
         {
-          "target": "com.azure.hybridkubernetes#ConnectedClusterUpdate"
+          "target": "com.azure.hybridkubernetes#UpdateConnectedCluster"
         },
         {
           "target": "com.azure.hybridkubernetes#ConnectedClusterCreateOrReplace"
         },
         {
-          "target": "com.azure.hybridkubernetes#ConnectedClusterGet"
+          "target": "com.azure.hybridkubernetes#GetConnectedCluster"
         },
         {
-          "target": "com.azure.hybridkubernetes#ConnectedClusterListByResourceGroup"
+          "target": "com.azure.hybridkubernetes#ListConnectedClusterByResourceGroup"
         },
         {
-          "target": "com.azure.hybridkubernetes#ConnectedClusterListBySubscription"
+          "target": "com.azure.hybridkubernetes#ListConnectedClusterBySubscription"
         },
         {
-          "target": "com.azure.hybridkubernetes#OperationsGet"
+          "target": "com.azure.hybridkubernetes#GetOperation"
         }
       ],
       "traits": {

@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.whop.ad_campaigns#ListAdCampaignsRequestStatus": {
@@ -1544,7 +1545,7 @@
         "smithy.api#documentation": "Create an Ad Campaign\n\nCreates an ad campaign for an account."
       }
     },
-    "com.whop.ad_campaigns#RetrieveAdCampaignRequestAttributionModel": {
+    "com.whop.ad_campaigns#GetAdCampaignRequestAttributionModel": {
       "type": "enum",
       "members": {
         "LAST_TOUCH": {
@@ -1562,7 +1563,7 @@
       },
       "traits": {}
     },
-    "com.whop.ad_campaigns#RetrieveAdCampaignRequest": {
+    "com.whop.ad_campaigns#GetAdCampaignRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -1595,7 +1596,7 @@
           }
         },
         "attribution_model": {
-          "target": "com.whop.ad_campaigns#RetrieveAdCampaignRequestAttributionModel",
+          "target": "com.whop.ad_campaigns#GetAdCampaignRequestAttributionModel",
           "traits": {
             "smithy.api#httpQuery": "attribution_model",
             "smithy.api#documentation": "Attribution model the conversion stats count under (defaults to last_touch). Under both models a journey with any whop ad touch attributes to whop; the model picks which whop touch credits the entity and which non-whop source wins otherwise."
@@ -1606,10 +1607,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.whop.ad_campaigns#RetrieveAdCampaign": {
+    "com.whop.ad_campaigns#GetAdCampaign": {
       "type": "operation",
       "input": {
-        "target": "com.whop.ad_campaigns#RetrieveAdCampaignRequest"
+        "target": "com.whop.ad_campaigns#GetAdCampaignRequest"
       },
       "output": {
         "target": "com.whop.ad_campaigns#AdCampaign"
@@ -2166,7 +2167,7 @@
           "target": "com.whop.ad_campaigns#CreateAdCampaign"
         },
         {
-          "target": "com.whop.ad_campaigns#RetrieveAdCampaign"
+          "target": "com.whop.ad_campaigns#GetAdCampaign"
         },
         {
           "target": "com.whop.ad_campaigns#UpdateAdCampaign"

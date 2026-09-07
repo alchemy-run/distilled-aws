@@ -11,7 +11,7 @@ import * as Retry from "../retry.ts";
 
 export type { PosthogOpError, PosthogOpContext };
 
-export interface WarehouseExpressionsCreateRequest {
+export interface CreateWarehouseExpressionRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** Whether this expression has been soft-deleted. */
@@ -25,7 +25,7 @@ export interface WarehouseExpressionsCreateRequest {
   /** ExternalDataSource id to scope the expression to that connection's direct-query database. Null applies it to the default warehouse database. */
   connection_id?: string | null;
 }
-export const WarehouseExpressionsCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateWarehouseExpressionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     deleted: S.optional(S.NullOr(S.Boolean)),
@@ -41,8 +41,8 @@ export const WarehouseExpressionsCreateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "WarehouseExpressionsCreateRequest",
-}) as any as S.Schema<WarehouseExpressionsCreateRequest>;
+  identifier: "CreateWarehouseExpressionRequest",
+}) as any as S.Schema<CreateWarehouseExpressionRequest>;
 
 export type UserBasicHedgehogConfigMap = { [key: string]: unknown | undefined };
 export const UserBasicHedgehogConfigMap = /*@__PURE__*/ S.Record(
@@ -125,6 +125,152 @@ export const DataWarehouseExpression = /*@__PURE__*/ S.suspend(() =>
   identifier: "DataWarehouseExpression",
 }) as any as S.Schema<DataWarehouseExpression>;
 
+export interface GetWarehouseExpressionRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this data warehouse expression. */
+  id: string;
+}
+export const GetWarehouseExpressionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/warehouse_expressions/{id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetWarehouseExpressionRequest",
+}) as any as S.Schema<GetWarehouseExpressionRequest>;
+
+export interface ListWarehouseExpressionsRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** Number of results to return per page. */
+  limit?: number;
+  /** The initial index from which to return the results. */
+  offset?: number;
+  /** A search term. */
+  search?: string;
+}
+export const ListWarehouseExpressionsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    offset: S.optional(S.Number.pipe(T.Query())),
+    search: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/warehouse_expressions/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListWarehouseExpressionsRequest",
+}) as any as S.Schema<ListWarehouseExpressionsRequest>;
+
+export type PaginatedDataWarehouseExpressionListResultsList =
+  Array<DataWarehouseExpression>;
+export const PaginatedDataWarehouseExpressionListResultsList =
+  /*@__PURE__*/ S.Array(
+    DataWarehouseExpression,
+  ) as any as S.Schema<PaginatedDataWarehouseExpressionListResultsList>;
+
+export interface PaginatedDataWarehouseExpressionList {
+  count: number;
+  next?: string | null;
+  previous?: string | null;
+  results: PaginatedDataWarehouseExpressionListResultsList;
+}
+export const PaginatedDataWarehouseExpressionList = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      count: S.Number,
+      next: S.optional(S.NullOr(S.String)),
+      previous: S.optional(S.NullOr(S.String)),
+      results: PaginatedDataWarehouseExpressionListResultsList,
+    }),
+).annotate({
+  identifier: "PaginatedDataWarehouseExpressionList",
+}) as any as S.Schema<PaginatedDataWarehouseExpressionList>;
+
+export interface UpdateWarehouseExpressionRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this data warehouse expression. */
+  id: string;
+  /** Whether this expression has been soft-deleted. */
+  deleted?: boolean | null;
+  /** Name of the table the expression field is added to, for example events. */
+  table_name: string;
+  /** Name of the virtual field the expression is exposed as. Letters, numbers, underscores and $ only, starting with a letter, underscore or $. Must not clash with an existing field on the table. */
+  field_name: string;
+  /** HogQL expression evaluated in the context of the table, for example properties.$browser or lower(email). */
+  expression: string;
+  /** ExternalDataSource id to scope the expression to that connection's direct-query database. Null applies it to the default warehouse database. */
+  connection_id?: string | null;
+}
+export const UpdateWarehouseExpressionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+    deleted: S.optional(S.NullOr(S.Boolean)),
+    table_name: S.String,
+    field_name: S.String,
+    expression: S.String,
+    connection_id: S.optional(S.NullOr(S.String)),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/api/projects/{project_id}/warehouse_expressions/{id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "UpdateWarehouseExpressionRequest",
+}) as any as S.Schema<UpdateWarehouseExpressionRequest>;
+
+export interface UpdateWarehouseExpressionsPartialRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this data warehouse expression. */
+  id: string;
+  /** Whether this expression has been soft-deleted. */
+  deleted?: boolean | null;
+  /** Name of the table the expression field is added to, for example events. */
+  table_name?: string;
+  /** Name of the virtual field the expression is exposed as. Letters, numbers, underscores and $ only, starting with a letter, underscore or $. Must not clash with an existing field on the table. */
+  field_name?: string;
+  /** HogQL expression evaluated in the context of the table, for example properties.$browser or lower(email). */
+  expression?: string;
+  /** ExternalDataSource id to scope the expression to that connection's direct-query database. Null applies it to the default warehouse database. */
+  connection_id?: string | null;
+}
+export const UpdateWarehouseExpressionsPartialRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      id: S.String.pipe(T.Label()),
+      deleted: S.optional(S.NullOr(S.Boolean)),
+      table_name: S.optional(S.String),
+      field_name: S.optional(S.String),
+      expression: S.optional(S.String),
+      connection_id: S.optional(S.NullOr(S.String)),
+    }).pipe(
+      T.Http({
+        method: "PATCH",
+        uri: "/api/projects/{project_id}/warehouse_expressions/{id}/",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "UpdateWarehouseExpressionsPartialRequest",
+}) as any as S.Schema<UpdateWarehouseExpressionsPartialRequest>;
+
 export interface WarehouseExpressionsDestroyRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
@@ -153,161 +299,75 @@ export const WarehouseExpressionsDestroyResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "WarehouseExpressionsDestroyResponse",
 }) as any as S.Schema<WarehouseExpressionsDestroyResponse>;
 
-export interface WarehouseExpressionsListRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** Number of results to return per page. */
-  limit?: number;
-  /** The initial index from which to return the results. */
-  offset?: number;
-  /** A search term. */
-  search?: string;
-}
-export const WarehouseExpressionsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    offset: S.optional(S.Number.pipe(T.Query())),
-    search: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/warehouse_expressions/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "WarehouseExpressionsListRequest",
-}) as any as S.Schema<WarehouseExpressionsListRequest>;
-
-export type PaginatedDataWarehouseExpressionListResultsList =
-  Array<DataWarehouseExpression>;
-export const PaginatedDataWarehouseExpressionListResultsList =
-  /*@__PURE__*/ S.Array(
-    DataWarehouseExpression,
-  ) as any as S.Schema<PaginatedDataWarehouseExpressionListResultsList>;
-
-export interface PaginatedDataWarehouseExpressionList {
-  count: number;
-  next?: string | null;
-  previous?: string | null;
-  results: PaginatedDataWarehouseExpressionListResultsList;
-}
-export const PaginatedDataWarehouseExpressionList = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      count: S.Number,
-      next: S.optional(S.NullOr(S.String)),
-      previous: S.optional(S.NullOr(S.String)),
-      results: PaginatedDataWarehouseExpressionListResultsList,
-    }),
-).annotate({
-  identifier: "PaginatedDataWarehouseExpressionList",
-}) as any as S.Schema<PaginatedDataWarehouseExpressionList>;
-
-export interface WarehouseExpressionsPartialUpdateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this data warehouse expression. */
-  id: string;
-  /** Whether this expression has been soft-deleted. */
-  deleted?: boolean | null;
-  /** Name of the table the expression field is added to, for example events. */
-  table_name?: string;
-  /** Name of the virtual field the expression is exposed as. Letters, numbers, underscores and $ only, starting with a letter, underscore or $. Must not clash with an existing field on the table. */
-  field_name?: string;
-  /** HogQL expression evaluated in the context of the table, for example properties.$browser or lower(email). */
-  expression?: string;
-  /** ExternalDataSource id to scope the expression to that connection's direct-query database. Null applies it to the default warehouse database. */
-  connection_id?: string | null;
-}
-export const WarehouseExpressionsPartialUpdateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-      deleted: S.optional(S.NullOr(S.Boolean)),
-      table_name: S.optional(S.String),
-      field_name: S.optional(S.String),
-      expression: S.optional(S.String),
-      connection_id: S.optional(S.NullOr(S.String)),
-    }).pipe(
-      T.Http({
-        method: "PATCH",
-        uri: "/api/projects/{project_id}/warehouse_expressions/{id}/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "WarehouseExpressionsPartialUpdateRequest",
-}) as any as S.Schema<WarehouseExpressionsPartialUpdateRequest>;
-
-export interface WarehouseExpressionsRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this data warehouse expression. */
-  id: string;
-}
-export const WarehouseExpressionsRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/warehouse_expressions/{id}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "WarehouseExpressionsRetrieveRequest",
-}) as any as S.Schema<WarehouseExpressionsRetrieveRequest>;
-
-export interface WarehouseExpressionsUpdateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this data warehouse expression. */
-  id: string;
-  /** Whether this expression has been soft-deleted. */
-  deleted?: boolean | null;
-  /** Name of the table the expression field is added to, for example events. */
-  table_name: string;
-  /** Name of the virtual field the expression is exposed as. Letters, numbers, underscores and $ only, starting with a letter, underscore or $. Must not clash with an existing field on the table. */
-  field_name: string;
-  /** HogQL expression evaluated in the context of the table, for example properties.$browser or lower(email). */
-  expression: string;
-  /** ExternalDataSource id to scope the expression to that connection's direct-query database. Null applies it to the default warehouse database. */
-  connection_id?: string | null;
-}
-export const WarehouseExpressionsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-    deleted: S.optional(S.NullOr(S.Boolean)),
-    table_name: S.String,
-    field_name: S.String,
-    expression: S.String,
-    connection_id: S.optional(S.NullOr(S.String)),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/api/projects/{project_id}/warehouse_expressions/{id}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "WarehouseExpressionsUpdateRequest",
-}) as any as S.Schema<WarehouseExpressionsUpdateRequest>;
-
-export type WarehouseExpressionsCreateError = PosthogOpError;
+export type CreateWarehouseExpressionError = PosthogOpError;
 /** Create, read, update and delete saved HogQL expressions that appear as virtual fields on tables. */
-export const warehouseExpressionsCreate: API.OperationMethod<
-  WarehouseExpressionsCreateRequest,
+export const createWarehouseExpression: API.OperationMethod<
+  CreateWarehouseExpressionRequest,
   DataWarehouseExpression,
-  WarehouseExpressionsCreateError,
+  CreateWarehouseExpressionError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: WarehouseExpressionsCreateRequest,
+  input: CreateWarehouseExpressionRequest,
+  output: DataWarehouseExpression,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetWarehouseExpressionError = PosthogOpError;
+/** Create, read, update and delete saved HogQL expressions that appear as virtual fields on tables. */
+export const getWarehouseExpression: API.OperationMethod<
+  GetWarehouseExpressionRequest,
+  DataWarehouseExpression,
+  GetWarehouseExpressionError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetWarehouseExpressionRequest,
+  output: DataWarehouseExpression,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListWarehouseExpressionsError = PosthogOpError;
+/** Create, read, update and delete saved HogQL expressions that appear as virtual fields on tables. */
+export const listWarehouseExpressions: API.OperationMethod<
+  ListWarehouseExpressionsRequest,
+  PaginatedDataWarehouseExpressionList,
+  ListWarehouseExpressionsError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListWarehouseExpressionsRequest,
+  output: PaginatedDataWarehouseExpressionList,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateWarehouseExpressionError = PosthogOpError;
+/** Create, read, update and delete saved HogQL expressions that appear as virtual fields on tables. */
+export const updateWarehouseExpression: API.OperationMethod<
+  UpdateWarehouseExpressionRequest,
+  DataWarehouseExpression,
+  UpdateWarehouseExpressionError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateWarehouseExpressionRequest,
+  output: DataWarehouseExpression,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateWarehouseExpressionsPartialError = PosthogOpError;
+/** Create, read, update and delete saved HogQL expressions that appear as virtual fields on tables. */
+export const updateWarehouseExpressionsPartial: API.OperationMethod<
+  UpdateWarehouseExpressionsPartialRequest,
+  DataWarehouseExpression,
+  UpdateWarehouseExpressionsPartialError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateWarehouseExpressionsPartialRequest,
   output: DataWarehouseExpression,
   errors: [],
   protocol: PosthogProtocol,
@@ -324,66 +384,6 @@ export const warehouseExpressionsDestroy: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: WarehouseExpressionsDestroyRequest,
   output: WarehouseExpressionsDestroyResponse,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WarehouseExpressionsListError = PosthogOpError;
-/** Create, read, update and delete saved HogQL expressions that appear as virtual fields on tables. */
-export const warehouseExpressionsList: API.OperationMethod<
-  WarehouseExpressionsListRequest,
-  PaginatedDataWarehouseExpressionList,
-  WarehouseExpressionsListError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WarehouseExpressionsListRequest,
-  output: PaginatedDataWarehouseExpressionList,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WarehouseExpressionsPartialUpdateError = PosthogOpError;
-/** Create, read, update and delete saved HogQL expressions that appear as virtual fields on tables. */
-export const warehouseExpressionsPartialUpdate: API.OperationMethod<
-  WarehouseExpressionsPartialUpdateRequest,
-  DataWarehouseExpression,
-  WarehouseExpressionsPartialUpdateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WarehouseExpressionsPartialUpdateRequest,
-  output: DataWarehouseExpression,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WarehouseExpressionsRetrieveError = PosthogOpError;
-/** Create, read, update and delete saved HogQL expressions that appear as virtual fields on tables. */
-export const warehouseExpressionsRetrieve: API.OperationMethod<
-  WarehouseExpressionsRetrieveRequest,
-  DataWarehouseExpression,
-  WarehouseExpressionsRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WarehouseExpressionsRetrieveRequest,
-  output: DataWarehouseExpression,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WarehouseExpressionsUpdateError = PosthogOpError;
-/** Create, read, update and delete saved HogQL expressions that appear as virtual fields on tables. */
-export const warehouseExpressionsUpdate: API.OperationMethod<
-  WarehouseExpressionsUpdateRequest,
-  DataWarehouseExpression,
-  WarehouseExpressionsUpdateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WarehouseExpressionsUpdateRequest,
-  output: DataWarehouseExpression,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,

@@ -12,6 +12,38 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
+export interface CancelExperimentRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** String that represents a Experiment resource name. */
+  experimentName: string;
+}
+export const CancelExperimentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    experimentName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Chaos/experiments/{experimentName}/cancel",
+      code: 200,
+      apiVersion: "2025-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "CancelExperimentRequest",
+}) as any as S.Schema<CancelExperimentRequest>;
+
+export interface CancelExperimentResponse {}
+export const CancelExperimentResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "CancelExperimentResponse",
+}) as any as S.Schema<CancelExperimentResponse>;
+
 /** Model that represents the Capability properties model. */
 export interface CapabilityPropertiesInput {}
 export const CapabilityPropertiesInput = /*@__PURE__*/ S.suspend(() =>
@@ -151,7 +183,7 @@ export const CapabilitiesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CapabilitiesCreateOrUpdateResponse",
 }) as any as S.Schema<CapabilitiesCreateOrUpdateResponse>;
 
-export interface CapabilitiesDeleteRequest {
+export interface DeleteCapabilityRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -167,7 +199,7 @@ export interface CapabilitiesDeleteRequest {
   /** String that represents a Capability resource name. */
   capabilityName: string;
 }
-export const CapabilitiesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteCapabilityRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -185,368 +217,17 @@ export const CapabilitiesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "CapabilitiesDeleteRequest",
-}) as any as S.Schema<CapabilitiesDeleteRequest>;
+  identifier: "DeleteCapabilityRequest",
+}) as any as S.Schema<DeleteCapabilityRequest>;
 
-export interface CapabilitiesDeleteResponse {}
-export const CapabilitiesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteCapabilityResponse {}
+export const DeleteCapabilityResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "CapabilitiesDeleteResponse",
-}) as any as S.Schema<CapabilitiesDeleteResponse>;
+  identifier: "DeleteCapabilityResponse",
+}) as any as S.Schema<DeleteCapabilityResponse>;
 
-export interface CapabilitiesGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The parent resource provider namespace. */
-  parentProviderNamespace: string;
-  /** The parent resource type. */
-  parentResourceType: string;
-  /** The parent resource name. */
-  parentResourceName: string;
-  /** String that represents a Target resource name. */
-  targetName: string;
-  /** String that represents a Capability resource name. */
-  capabilityName: string;
-}
-export const CapabilitiesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    parentProviderNamespace: S.String.pipe(T.Label()),
-    parentResourceType: S.String.pipe(T.Label()),
-    parentResourceName: S.String.pipe(T.Label()),
-    targetName: S.String.pipe(T.Label()),
-    capabilityName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{parentProviderNamespace}/{parentResourceType}/{parentResourceName}/providers/Microsoft.Chaos/targets/{targetName}/capabilities/{capabilityName}",
-      code: 200,
-      apiVersion: "2025-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "CapabilitiesGetRequest",
-}) as any as S.Schema<CapabilitiesGetRequest>;
-
-export interface CapabilitiesGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties of a capability resource. */
-  properties?: CapabilityProperties;
-}
-export const CapabilitiesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(CapabilityProperties),
-  }),
-).annotate({
-  identifier: "CapabilitiesGetResponse",
-}) as any as S.Schema<CapabilitiesGetResponse>;
-
-export interface CapabilitiesListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The parent resource provider namespace. */
-  parentProviderNamespace: string;
-  /** The parent resource type. */
-  parentResourceType: string;
-  /** The parent resource name. */
-  parentResourceName: string;
-  /** String that represents a Target resource name. */
-  targetName: string;
-  /** String that sets the continuation token. */
-  continuationToken?: string;
-}
-export const CapabilitiesListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    parentProviderNamespace: S.String.pipe(T.Label()),
-    parentResourceType: S.String.pipe(T.Label()),
-    parentResourceName: S.String.pipe(T.Label()),
-    targetName: S.String.pipe(T.Label()),
-    continuationToken: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{parentProviderNamespace}/{parentResourceType}/{parentResourceName}/providers/Microsoft.Chaos/targets/{targetName}/capabilities",
-      code: 200,
-      apiVersion: "2025-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "CapabilitiesListRequest",
-}) as any as S.Schema<CapabilitiesListRequest>;
-
-/** Model that represents a Capability resource. */
-export interface Capability {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties of a capability resource. */
-  properties?: CapabilityProperties;
-}
-export const Capability = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(CapabilityProperties),
-  }),
-).annotate({ identifier: "Capability" }) as any as S.Schema<Capability>;
-
-/** The Capability items on this page */
-export type CapabilityListResultValueList = Array<Capability>;
-export const CapabilityListResultValueList = /*@__PURE__*/ S.Array(
-  Capability,
-) as any as S.Schema<CapabilityListResultValueList>;
-
-/** Model that represents a list of Capability resources and a link for pagination. */
-export interface CapabilityListResult {
-  /** The Capability items on this page */
-  value: CapabilityListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const CapabilityListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: CapabilityListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "CapabilityListResult",
-}) as any as S.Schema<CapabilityListResult>;
-
-export interface CapabilityTypesGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the Azure region. */
-  location: string;
-  /** String that represents a Target Type resource name. */
-  targetTypeName: string;
-  /** String that represents a Capability Type resource name. */
-  capabilityTypeName: string;
-}
-export const CapabilityTypesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    location: S.String.pipe(T.Label()),
-    targetTypeName: S.String.pipe(T.Label()),
-    capabilityTypeName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Chaos/locations/{location}/targetTypes/{targetTypeName}/capabilityTypes/{capabilityTypeName}",
-      code: 200,
-      apiVersion: "2025-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "CapabilityTypesGetRequest",
-}) as any as S.Schema<CapabilityTypesGetRequest>;
-
-/** Control plane actions necessary to execute capability type. */
-export type CapabilityTypePropertiesAzureRbacActionsList = Array<string>;
-export const CapabilityTypePropertiesAzureRbacActionsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<CapabilityTypePropertiesAzureRbacActionsList>;
-
-/** Data plane actions necessary to execute capability type. */
-export type CapabilityTypePropertiesAzureRbacDataActionsList = Array<string>;
-export const CapabilityTypePropertiesAzureRbacDataActionsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<CapabilityTypePropertiesAzureRbacDataActionsList>;
-
-/** Required Azure Role Definition Ids to execute capability type. */
-export type CapabilityTypePropertiesRequiredAzureRoleDefinitionIdsList =
-  Array<string>;
-export const CapabilityTypePropertiesRequiredAzureRoleDefinitionIdsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<CapabilityTypePropertiesRequiredAzureRoleDefinitionIdsList>;
-
-/** Runtime properties of this Capability Type. */
-export interface CapabilityTypePropertiesRuntimeProperties {
-  /** String of the kind of the resource's action type (continuous or discrete). */
-  kind?: string;
-}
-export const CapabilityTypePropertiesRuntimeProperties =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      kind: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "CapabilityTypePropertiesRuntimeProperties",
-  }) as any as S.Schema<CapabilityTypePropertiesRuntimeProperties>;
-
-/** Model that represents the Capability Type properties model. */
-export interface CapabilityTypeProperties {
-  /** String of the Publisher that this Capability Type extends. */
-  publisher?: string;
-  /** String of the Target Type that this Capability Type extends. */
-  targetType?: string;
-  /** Localized string of the display name. */
-  displayName?: string;
-  /** Localized string of the description. */
-  description?: string;
-  /** URL to retrieve JSON schema of the Capability Type parameters. */
-  parametersSchema?: string;
-  /** String of the URN for this Capability Type. */
-  urn?: string;
-  /** String of the kind of this Capability Type. */
-  kind?: string;
-  /** Control plane actions necessary to execute capability type. */
-  azureRbacActions?: CapabilityTypePropertiesAzureRbacActionsList;
-  /** Data plane actions necessary to execute capability type. */
-  azureRbacDataActions?: CapabilityTypePropertiesAzureRbacDataActionsList;
-  /** Required Azure Role Definition Ids to execute capability type. */
-  requiredAzureRoleDefinitionIds?: CapabilityTypePropertiesRequiredAzureRoleDefinitionIdsList;
-  /** Runtime properties of this Capability Type. */
-  runtimeProperties?: CapabilityTypePropertiesRuntimeProperties;
-}
-export const CapabilityTypeProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    publisher: S.optional(S.String),
-    targetType: S.optional(S.String),
-    displayName: S.optional(S.String),
-    description: S.optional(S.String),
-    parametersSchema: S.optional(S.String),
-    urn: S.optional(S.String),
-    kind: S.optional(S.String),
-    azureRbacActions: S.optional(CapabilityTypePropertiesAzureRbacActionsList),
-    azureRbacDataActions: S.optional(
-      CapabilityTypePropertiesAzureRbacDataActionsList,
-    ),
-    requiredAzureRoleDefinitionIds: S.optional(
-      CapabilityTypePropertiesRequiredAzureRoleDefinitionIdsList,
-    ),
-    runtimeProperties: S.optional(CapabilityTypePropertiesRuntimeProperties),
-  }),
-).annotate({
-  identifier: "CapabilityTypeProperties",
-}) as any as S.Schema<CapabilityTypeProperties>;
-
-export interface CapabilityTypesGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties of the capability type resource. */
-  properties?: CapabilityTypeProperties;
-}
-export const CapabilityTypesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(CapabilityTypeProperties),
-  }),
-).annotate({
-  identifier: "CapabilityTypesGetResponse",
-}) as any as S.Schema<CapabilityTypesGetResponse>;
-
-export interface CapabilityTypesListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the Azure region. */
-  location: string;
-  /** String that represents a Target Type resource name. */
-  targetTypeName: string;
-  /** String that sets the continuation token. */
-  continuationToken?: string;
-}
-export const CapabilityTypesListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    location: S.String.pipe(T.Label()),
-    targetTypeName: S.String.pipe(T.Label()),
-    continuationToken: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Chaos/locations/{location}/targetTypes/{targetTypeName}/capabilityTypes",
-      code: 200,
-      apiVersion: "2025-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "CapabilityTypesListRequest",
-}) as any as S.Schema<CapabilityTypesListRequest>;
-
-/** Model that represents a Capability Type resource. */
-export interface CapabilityType {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties of the capability type resource. */
-  properties?: CapabilityTypeProperties;
-}
-export const CapabilityType = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(CapabilityTypeProperties),
-  }),
-).annotate({ identifier: "CapabilityType" }) as any as S.Schema<CapabilityType>;
-
-/** The CapabilityType items on this page */
-export type CapabilityTypeListResultValueList = Array<CapabilityType>;
-export const CapabilityTypeListResultValueList = /*@__PURE__*/ S.Array(
-  CapabilityType,
-) as any as S.Schema<CapabilityTypeListResultValueList>;
-
-/** Model that represents a list of Capability Type resources and a link for pagination. */
-export interface CapabilityTypeListResult {
-  /** The CapabilityType items on this page */
-  value: CapabilityTypeListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const CapabilityTypeListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: CapabilityTypeListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "CapabilityTypeListResult",
-}) as any as S.Schema<CapabilityTypeListResult>;
-
-export interface ExperimentsCancelRequest {
+export interface DeleteExperimentRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -554,29 +235,70 @@ export interface ExperimentsCancelRequest {
   /** String that represents a Experiment resource name. */
   experimentName: string;
 }
-export const ExperimentsCancelRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteExperimentRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     experimentName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Chaos/experiments/{experimentName}/cancel",
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Chaos/experiments/{experimentName}",
       code: 200,
       apiVersion: "2025-01-01",
     }),
   ),
 ).annotate({
-  identifier: "ExperimentsCancelRequest",
-}) as any as S.Schema<ExperimentsCancelRequest>;
+  identifier: "DeleteExperimentRequest",
+}) as any as S.Schema<DeleteExperimentRequest>;
 
-export interface ExperimentsCancelResponse {}
-export const ExperimentsCancelResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteExperimentResponse {}
+export const DeleteExperimentResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "ExperimentsCancelResponse",
-}) as any as S.Schema<ExperimentsCancelResponse>;
+  identifier: "DeleteExperimentResponse",
+}) as any as S.Schema<DeleteExperimentResponse>;
+
+export interface DeleteTargetRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The parent resource provider namespace. */
+  parentProviderNamespace: string;
+  /** The parent resource type. */
+  parentResourceType: string;
+  /** The parent resource name. */
+  parentResourceName: string;
+  /** String that represents a Target resource name. */
+  targetName: string;
+}
+export const DeleteTargetRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    parentProviderNamespace: S.String.pipe(T.Label()),
+    parentResourceType: S.String.pipe(T.Label()),
+    parentResourceName: S.String.pipe(T.Label()),
+    targetName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{parentProviderNamespace}/{parentResourceType}/{parentResourceName}/providers/Microsoft.Chaos/targets/{targetName}",
+      code: 200,
+      apiVersion: "2025-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteTargetRequest",
+}) as any as S.Schema<DeleteTargetRequest>;
+
+export interface DeleteTargetResponse {}
+export const DeleteTargetResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteTargetResponse",
+}) as any as S.Schema<DeleteTargetResponse>;
 
 /** Resource tags. */
 export type ExperimentsCreateOrUpdateRequestTagsMap = {
@@ -921,38 +643,6 @@ export const ExperimentsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ExperimentsCreateOrUpdateResponse",
 }) as any as S.Schema<ExperimentsCreateOrUpdateResponse>;
 
-export interface ExperimentsDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** String that represents a Experiment resource name. */
-  experimentName: string;
-}
-export const ExperimentsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    experimentName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Chaos/experiments/{experimentName}",
-      code: 200,
-      apiVersion: "2025-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "ExperimentsDeleteRequest",
-}) as any as S.Schema<ExperimentsDeleteRequest>;
-
-export interface ExperimentsDeleteResponse {}
-export const ExperimentsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ExperimentsDeleteResponse",
-}) as any as S.Schema<ExperimentsDeleteResponse>;
-
 export interface ExperimentsExecutionDetailsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -1186,7 +876,203 @@ export const ExperimentExecutionDetails = /*@__PURE__*/ S.suspend(() =>
   identifier: "ExperimentExecutionDetails",
 }) as any as S.Schema<ExperimentExecutionDetails>;
 
-export interface ExperimentsGetRequest {
+export interface GetCapabilityRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The parent resource provider namespace. */
+  parentProviderNamespace: string;
+  /** The parent resource type. */
+  parentResourceType: string;
+  /** The parent resource name. */
+  parentResourceName: string;
+  /** String that represents a Target resource name. */
+  targetName: string;
+  /** String that represents a Capability resource name. */
+  capabilityName: string;
+}
+export const GetCapabilityRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    parentProviderNamespace: S.String.pipe(T.Label()),
+    parentResourceType: S.String.pipe(T.Label()),
+    parentResourceName: S.String.pipe(T.Label()),
+    targetName: S.String.pipe(T.Label()),
+    capabilityName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{parentProviderNamespace}/{parentResourceType}/{parentResourceName}/providers/Microsoft.Chaos/targets/{targetName}/capabilities/{capabilityName}",
+      code: 200,
+      apiVersion: "2025-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetCapabilityRequest",
+}) as any as S.Schema<GetCapabilityRequest>;
+
+export interface GetCapabilityResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of a capability resource. */
+  properties?: CapabilityProperties;
+}
+export const GetCapabilityResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(CapabilityProperties),
+  }),
+).annotate({
+  identifier: "GetCapabilityResponse",
+}) as any as S.Schema<GetCapabilityResponse>;
+
+export interface GetCapabilityTypeRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the Azure region. */
+  location: string;
+  /** String that represents a Target Type resource name. */
+  targetTypeName: string;
+  /** String that represents a Capability Type resource name. */
+  capabilityTypeName: string;
+}
+export const GetCapabilityTypeRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    location: S.String.pipe(T.Label()),
+    targetTypeName: S.String.pipe(T.Label()),
+    capabilityTypeName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Chaos/locations/{location}/targetTypes/{targetTypeName}/capabilityTypes/{capabilityTypeName}",
+      code: 200,
+      apiVersion: "2025-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetCapabilityTypeRequest",
+}) as any as S.Schema<GetCapabilityTypeRequest>;
+
+/** Control plane actions necessary to execute capability type. */
+export type CapabilityTypePropertiesAzureRbacActionsList = Array<string>;
+export const CapabilityTypePropertiesAzureRbacActionsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CapabilityTypePropertiesAzureRbacActionsList>;
+
+/** Data plane actions necessary to execute capability type. */
+export type CapabilityTypePropertiesAzureRbacDataActionsList = Array<string>;
+export const CapabilityTypePropertiesAzureRbacDataActionsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CapabilityTypePropertiesAzureRbacDataActionsList>;
+
+/** Required Azure Role Definition Ids to execute capability type. */
+export type CapabilityTypePropertiesRequiredAzureRoleDefinitionIdsList =
+  Array<string>;
+export const CapabilityTypePropertiesRequiredAzureRoleDefinitionIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CapabilityTypePropertiesRequiredAzureRoleDefinitionIdsList>;
+
+/** Runtime properties of this Capability Type. */
+export interface CapabilityTypePropertiesRuntimeProperties {
+  /** String of the kind of the resource's action type (continuous or discrete). */
+  kind?: string;
+}
+export const CapabilityTypePropertiesRuntimeProperties =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      kind: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "CapabilityTypePropertiesRuntimeProperties",
+  }) as any as S.Schema<CapabilityTypePropertiesRuntimeProperties>;
+
+/** Model that represents the Capability Type properties model. */
+export interface CapabilityTypeProperties {
+  /** String of the Publisher that this Capability Type extends. */
+  publisher?: string;
+  /** String of the Target Type that this Capability Type extends. */
+  targetType?: string;
+  /** Localized string of the display name. */
+  displayName?: string;
+  /** Localized string of the description. */
+  description?: string;
+  /** URL to retrieve JSON schema of the Capability Type parameters. */
+  parametersSchema?: string;
+  /** String of the URN for this Capability Type. */
+  urn?: string;
+  /** String of the kind of this Capability Type. */
+  kind?: string;
+  /** Control plane actions necessary to execute capability type. */
+  azureRbacActions?: CapabilityTypePropertiesAzureRbacActionsList;
+  /** Data plane actions necessary to execute capability type. */
+  azureRbacDataActions?: CapabilityTypePropertiesAzureRbacDataActionsList;
+  /** Required Azure Role Definition Ids to execute capability type. */
+  requiredAzureRoleDefinitionIds?: CapabilityTypePropertiesRequiredAzureRoleDefinitionIdsList;
+  /** Runtime properties of this Capability Type. */
+  runtimeProperties?: CapabilityTypePropertiesRuntimeProperties;
+}
+export const CapabilityTypeProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    publisher: S.optional(S.String),
+    targetType: S.optional(S.String),
+    displayName: S.optional(S.String),
+    description: S.optional(S.String),
+    parametersSchema: S.optional(S.String),
+    urn: S.optional(S.String),
+    kind: S.optional(S.String),
+    azureRbacActions: S.optional(CapabilityTypePropertiesAzureRbacActionsList),
+    azureRbacDataActions: S.optional(
+      CapabilityTypePropertiesAzureRbacDataActionsList,
+    ),
+    requiredAzureRoleDefinitionIds: S.optional(
+      CapabilityTypePropertiesRequiredAzureRoleDefinitionIdsList,
+    ),
+    runtimeProperties: S.optional(CapabilityTypePropertiesRuntimeProperties),
+  }),
+).annotate({
+  identifier: "CapabilityTypeProperties",
+}) as any as S.Schema<CapabilityTypeProperties>;
+
+export interface GetCapabilityTypeResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of the capability type resource. */
+  properties?: CapabilityTypeProperties;
+}
+export const GetCapabilityTypeResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(CapabilityTypeProperties),
+  }),
+).annotate({
+  identifier: "GetCapabilityTypeResponse",
+}) as any as S.Schema<GetCapabilityTypeResponse>;
+
+export interface GetExperimentRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1194,7 +1080,7 @@ export interface ExperimentsGetRequest {
   /** String that represents a Experiment resource name. */
   experimentName: string;
 }
-export const ExperimentsGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetExperimentRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1208,25 +1094,25 @@ export const ExperimentsGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ExperimentsGetRequest",
-}) as any as S.Schema<ExperimentsGetRequest>;
+  identifier: "GetExperimentRequest",
+}) as any as S.Schema<GetExperimentRequest>;
 
 /** Resource tags. */
-export type ExperimentsGetResponseTagsMap = {
+export type GetExperimentResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ExperimentsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetExperimentResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ExperimentsGetResponseTagsMap>;
+) as any as S.Schema<GetExperimentResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type ExperimentsGetResponseIdentity =
+export type GetExperimentResponseIdentity =
   ExperimentsCreateOrUpdateResponseIdentity;
-export const ExperimentsGetResponseIdentity =
+export const GetExperimentResponseIdentity =
   ExperimentsCreateOrUpdateResponseIdentity;
 
-export interface ExperimentsGetResponse {
+export interface GetExperimentResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -1236,7 +1122,7 @@ export interface ExperimentsGetResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ExperimentsGetResponseTagsMap;
+  tags?: GetExperimentResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Managed service identity (system assigned and/or user assigned identities) */
@@ -1244,22 +1130,22 @@ export interface ExperimentsGetResponse {
   /** The properties of the experiment resource. */
   properties: ExperimentProperties;
 }
-export const ExperimentsGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetExperimentResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ExperimentsGetResponseTagsMap),
+    tags: S.optional(GetExperimentResponseTagsMap),
     location: S.String,
     identity: S.optional(ExperimentsCreateOrUpdateResponseIdentity),
     properties: ExperimentProperties,
   }),
 ).annotate({
-  identifier: "ExperimentsGetResponse",
-}) as any as S.Schema<ExperimentsGetResponse>;
+  identifier: "GetExperimentResponse",
+}) as any as S.Schema<GetExperimentResponse>;
 
-export interface ExperimentsGetExecutionRequest {
+export interface GetExperimentExecutionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1269,7 +1155,7 @@ export interface ExperimentsGetExecutionRequest {
   /** GUID that represents a Experiment execution detail. */
   executionId: string;
 }
-export const ExperimentsGetExecutionRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetExperimentExecutionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1284,8 +1170,8 @@ export const ExperimentsGetExecutionRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ExperimentsGetExecutionRequest",
-}) as any as S.Schema<ExperimentsGetExecutionRequest>;
+  identifier: "GetExperimentExecutionRequest",
+}) as any as S.Schema<GetExperimentExecutionRequest>;
 
 /** Model that represents the execution properties of an Experiment. */
 export interface ExperimentExecutionProperties {
@@ -1306,7 +1192,7 @@ export const ExperimentExecutionProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "ExperimentExecutionProperties",
 }) as any as S.Schema<ExperimentExecutionProperties>;
 
-export interface ExperimentsGetExecutionResponse {
+export interface GetExperimentExecutionResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -1318,7 +1204,7 @@ export interface ExperimentsGetExecutionResponse {
   /** The properties of experiment execution status. */
   properties?: ExperimentExecutionProperties;
 }
-export const ExperimentsGetExecutionResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetExperimentExecutionResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -1327,414 +1213,10 @@ export const ExperimentsGetExecutionResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(ExperimentExecutionProperties),
   }),
 ).annotate({
-  identifier: "ExperimentsGetExecutionResponse",
-}) as any as S.Schema<ExperimentsGetExecutionResponse>;
+  identifier: "GetExperimentExecutionResponse",
+}) as any as S.Schema<GetExperimentExecutionResponse>;
 
-export interface ExperimentsListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Optional value that indicates whether to filter results based on if the Experiment is currently running. If null, then the results will not be filtered. */
-  running?: boolean;
-  /** String that sets the continuation token. */
-  continuationToken?: string;
-}
-export const ExperimentsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    running: S.optional(S.Boolean.pipe(T.Query())),
-    continuationToken: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Chaos/experiments",
-      code: 200,
-      apiVersion: "2025-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "ExperimentsListRequest",
-}) as any as S.Schema<ExperimentsListRequest>;
-
-/** Resource tags. */
-export type ExperimentTagsMap = { [key: string]: string | undefined };
-export const ExperimentTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ExperimentTagsMap>;
-
-/** Managed service identity (system assigned and/or user assigned identities) */
-export type ExperimentIdentity = ExperimentsCreateOrUpdateResponseIdentity;
-export const ExperimentIdentity = ExperimentsCreateOrUpdateResponseIdentity;
-
-/** Model that represents a Experiment resource. */
-export interface Experiment {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: ExperimentTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: ExperimentsCreateOrUpdateResponseIdentity;
-  /** The properties of the experiment resource. */
-  properties: ExperimentProperties;
-}
-export const Experiment = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(ExperimentTagsMap),
-    location: S.String,
-    identity: S.optional(ExperimentsCreateOrUpdateResponseIdentity),
-    properties: ExperimentProperties,
-  }),
-).annotate({ identifier: "Experiment" }) as any as S.Schema<Experiment>;
-
-/** The Experiment items on this page */
-export type ExperimentListResultValueList = Array<Experiment>;
-export const ExperimentListResultValueList = /*@__PURE__*/ S.Array(
-  Experiment,
-) as any as S.Schema<ExperimentListResultValueList>;
-
-/** Model that represents a list of Experiment resources and a link for pagination. */
-export interface ExperimentListResult {
-  /** The Experiment items on this page */
-  value: ExperimentListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const ExperimentListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: ExperimentListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ExperimentListResult",
-}) as any as S.Schema<ExperimentListResult>;
-
-export interface ExperimentsListAllRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** Optional value that indicates whether to filter results based on if the Experiment is currently running. If null, then the results will not be filtered. */
-  running?: boolean;
-  /** String that sets the continuation token. */
-  continuationToken?: string;
-}
-export const ExperimentsListAllRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    running: S.optional(S.Boolean.pipe(T.Query())),
-    continuationToken: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Chaos/experiments",
-      code: 200,
-      apiVersion: "2025-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "ExperimentsListAllRequest",
-}) as any as S.Schema<ExperimentsListAllRequest>;
-
-export interface ExperimentsListAllExecutionsRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** String that represents a Experiment resource name. */
-  experimentName: string;
-}
-export const ExperimentsListAllExecutionsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    experimentName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Chaos/experiments/{experimentName}/executions",
-      code: 200,
-      apiVersion: "2025-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "ExperimentsListAllExecutionsRequest",
-}) as any as S.Schema<ExperimentsListAllExecutionsRequest>;
-
-/** Model that represents the execution of a Experiment. */
-export interface ExperimentExecution {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties of experiment execution status. */
-  properties?: ExperimentExecutionProperties;
-}
-export const ExperimentExecution = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ExperimentExecutionProperties),
-  }),
-).annotate({
-  identifier: "ExperimentExecution",
-}) as any as S.Schema<ExperimentExecution>;
-
-/** The ExperimentExecution items on this page */
-export type ExperimentExecutionListResultValueList = Array<ExperimentExecution>;
-export const ExperimentExecutionListResultValueList = /*@__PURE__*/ S.Array(
-  ExperimentExecution,
-) as any as S.Schema<ExperimentExecutionListResultValueList>;
-
-/** Model that represents a list of Experiment executions and a link for pagination. */
-export interface ExperimentExecutionListResult {
-  /** The ExperimentExecution items on this page */
-  value: ExperimentExecutionListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const ExperimentExecutionListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: ExperimentExecutionListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ExperimentExecutionListResult",
-}) as any as S.Schema<ExperimentExecutionListResult>;
-
-export interface ExperimentsStartRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** String that represents a Experiment resource name. */
-  experimentName: string;
-}
-export const ExperimentsStartRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    experimentName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Chaos/experiments/{experimentName}/start",
-      code: 200,
-      apiVersion: "2025-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "ExperimentsStartRequest",
-}) as any as S.Schema<ExperimentsStartRequest>;
-
-export interface ExperimentsStartResponse {}
-export const ExperimentsStartResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ExperimentsStartResponse",
-}) as any as S.Schema<ExperimentsStartResponse>;
-
-/** Resource tags. */
-export type ExperimentsUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ExperimentsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ExperimentsUpdateRequestTagsMap>;
-
-/** Managed service identity (system assigned and/or user assigned identities) */
-export type ExperimentsUpdateRequestIdentity =
-  ExperimentsCreateOrUpdateRequestIdentity;
-export const ExperimentsUpdateRequestIdentity =
-  ExperimentsCreateOrUpdateRequestIdentity;
-
-export interface ExperimentsUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** String that represents a Experiment resource name. */
-  experimentName: string;
-  /** Resource tags. */
-  tags?: ExperimentsUpdateRequestTagsMap;
-  /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: ExperimentsCreateOrUpdateRequestIdentity;
-}
-export const ExperimentsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    experimentName: S.String.pipe(T.Label()),
-    tags: S.optional(ExperimentsUpdateRequestTagsMap),
-    identity: S.optional(ExperimentsCreateOrUpdateRequestIdentity),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Chaos/experiments/{experimentName}",
-      code: 200,
-      apiVersion: "2025-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "ExperimentsUpdateRequest",
-}) as any as S.Schema<ExperimentsUpdateRequest>;
-
-/** Resource tags. */
-export type ExperimentsUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ExperimentsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ExperimentsUpdateResponseTagsMap>;
-
-/** Managed service identity (system assigned and/or user assigned identities) */
-export type ExperimentsUpdateResponseIdentity =
-  ExperimentsCreateOrUpdateResponseIdentity;
-export const ExperimentsUpdateResponseIdentity =
-  ExperimentsCreateOrUpdateResponseIdentity;
-
-export interface ExperimentsUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: ExperimentsUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: ExperimentsCreateOrUpdateResponseIdentity;
-  /** The properties of the experiment resource. */
-  properties: ExperimentProperties;
-}
-export const ExperimentsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(ExperimentsUpdateResponseTagsMap),
-    location: S.String,
-    identity: S.optional(ExperimentsCreateOrUpdateResponseIdentity),
-    properties: ExperimentProperties,
-  }),
-).annotate({
-  identifier: "ExperimentsUpdateResponse",
-}) as any as S.Schema<ExperimentsUpdateResponse>;
-
-export interface OperationsListAllRequest {}
-export const OperationsListAllRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/providers/Microsoft.Chaos/operations",
-      code: 200,
-      apiVersion: "2025-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "OperationsListAllRequest",
-}) as any as S.Schema<OperationsListAllRequest>;
-
-/** Localized display information for this particular operation. */
-export interface OperationDisplay {
-  /** The localized friendly form of the resource provider name, e.g. "Microsoft Monitoring Insights" or "Microsoft Compute". */
-  provider?: string;
-  /** The localized friendly name of the resource type related to this operation. E.g. "Virtual Machines" or "Job Schedule Collections". */
-  resource?: string;
-  /** The concise, localized friendly name for the operation; suitable for dropdowns. E.g. "Create or Update Virtual Machine", "Restart Virtual Machine". */
-  operation?: string;
-  /** The short, localized friendly description of the operation; suitable for tool tips and detailed views. */
-  description?: string;
-}
-export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provider: S.optional(S.String),
-    resource: S.optional(S.String),
-    operation: S.optional(S.String),
-    description: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OperationDisplay",
-}) as any as S.Schema<OperationDisplay>;
-
-/** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
-export type OperationOrigin = "user" | "system" | "user,system";
-export const OperationOrigin = /*@__PURE__*/ S.String;
-
-/** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
-export type OperationActionType = "Internal";
-export const OperationActionType = /*@__PURE__*/ S.String;
-
-/** Details of a REST API operation, returned from the Resource Provider Operations API */
-export interface Operation {
-  /** The name of the operation, as per Resource-Based Access Control (RBAC). Examples: "Microsoft.Compute/virtualMachines/write", "Microsoft.Compute/virtualMachines/capture/action" */
-  name?: string;
-  /** Whether the operation applies to data-plane. This is "true" for data-plane operations and "false" for ARM/control-plane operations. */
-  isDataAction?: boolean;
-  /** Localized display information for this particular operation. */
-  display?: OperationDisplay;
-  /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
-  origin?: OperationOrigin;
-  /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
-  actionType?: OperationActionType;
-}
-export const Operation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    isDataAction: S.optional(S.Boolean),
-    display: S.optional(OperationDisplay),
-    origin: S.optional(OperationOrigin),
-    actionType: S.optional(OperationActionType),
-  }),
-).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
-
-/** List of operations supported by the resource provider */
-export type OperationsListAllResponseValueList = Array<Operation>;
-export const OperationsListAllResponseValueList = /*@__PURE__*/ S.Array(
-  Operation,
-) as any as S.Schema<OperationsListAllResponseValueList>;
-
-export interface OperationsListAllResponse {
-  /** List of operations supported by the resource provider */
-  value?: OperationsListAllResponseValueList;
-  /** URL to get the next set of operation list results (if there are any). */
-  nextLink?: string;
-}
-export const OperationsListAllResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(OperationsListAllResponseValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OperationsListAllResponse",
-}) as any as S.Schema<OperationsListAllResponse>;
-
-export interface OperationStatusesGetRequest {
+export interface GetOperationStatusRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the Azure region. */
@@ -1742,7 +1224,7 @@ export interface OperationStatusesGetRequest {
   /** The ID of an ongoing async operation. */
   operationId: string;
 }
-export const OperationStatusesGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetOperationStatusRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     location: S.String.pipe(T.Label()),
@@ -1756,8 +1238,8 @@ export const OperationStatusesGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "OperationStatusesGetRequest",
-}) as any as S.Schema<OperationStatusesGetRequest>;
+  identifier: "GetOperationStatusRequest",
+}) as any as S.Schema<GetOperationStatusRequest>;
 
 /** The operations list. */
 export type OperationStatusResultOperationsList = Array<OperationStatusResult>;
@@ -1854,13 +1336,13 @@ export const OperationStatusResult = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<OperationStatusResult>;
 
 /** The operations list. */
-export type OperationStatusesGetResponseOperationsList =
+export type GetOperationStatusResponseOperationsList =
   Array<OperationStatusResult>;
-export const OperationStatusesGetResponseOperationsList = /*@__PURE__*/ S.Array(
+export const GetOperationStatusResponseOperationsList = /*@__PURE__*/ S.Array(
   OperationStatusResult,
-) as any as S.Schema<OperationStatusesGetResponseOperationsList>;
+) as any as S.Schema<GetOperationStatusResponseOperationsList>;
 
-export interface OperationStatusesGetResponse {
+export interface GetOperationStatusResponse {
   /** Fully qualified ID for the async operation. */
   id?: string;
   /** Fully qualified ID of the resource against which the original async operation was started. */
@@ -1876,11 +1358,11 @@ export interface OperationStatusesGetResponse {
   /** The end time of the operation. */
   endTime?: string;
   /** The operations list. */
-  operations?: OperationStatusesGetResponseOperationsList;
+  operations?: GetOperationStatusResponseOperationsList;
   /** If present, details of the operation error. */
   error?: ErrorDetail;
 }
-export const OperationStatusesGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetOperationStatusResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     resourceId: S.optional(S.String),
@@ -1889,12 +1371,783 @@ export const OperationStatusesGetResponse = /*@__PURE__*/ S.suspend(() =>
     percentComplete: S.optional(S.Number),
     startTime: S.optional(S.String),
     endTime: S.optional(S.String),
-    operations: S.optional(OperationStatusesGetResponseOperationsList),
+    operations: S.optional(GetOperationStatusResponseOperationsList),
     error: S.optional(ErrorDetail),
   }),
 ).annotate({
-  identifier: "OperationStatusesGetResponse",
-}) as any as S.Schema<OperationStatusesGetResponse>;
+  identifier: "GetOperationStatusResponse",
+}) as any as S.Schema<GetOperationStatusResponse>;
+
+export interface GetTargetRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The parent resource provider namespace. */
+  parentProviderNamespace: string;
+  /** The parent resource type. */
+  parentResourceType: string;
+  /** The parent resource name. */
+  parentResourceName: string;
+  /** String that represents a Target resource name. */
+  targetName: string;
+}
+export const GetTargetRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    parentProviderNamespace: S.String.pipe(T.Label()),
+    parentResourceType: S.String.pipe(T.Label()),
+    parentResourceName: S.String.pipe(T.Label()),
+    targetName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{parentProviderNamespace}/{parentResourceType}/{parentResourceName}/providers/Microsoft.Chaos/targets/{targetName}",
+      code: 200,
+      apiVersion: "2025-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetTargetRequest",
+}) as any as S.Schema<GetTargetRequest>;
+
+/** The properties of the target resource. */
+export type GetTargetResponsePropertiesMap = {
+  [key: string]: unknown | undefined;
+};
+export const GetTargetResponsePropertiesMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<GetTargetResponsePropertiesMap>;
+
+export interface GetTargetResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of the target resource. */
+  properties: GetTargetResponsePropertiesMap;
+  /** Azure resource location. */
+  location?: string;
+}
+export const GetTargetResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: GetTargetResponsePropertiesMap,
+    location: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetTargetResponse",
+}) as any as S.Schema<GetTargetResponse>;
+
+export interface GetTargetTypeRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the Azure region. */
+  location: string;
+  /** String that represents a Target Type resource name. */
+  targetTypeName: string;
+}
+export const GetTargetTypeRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    location: S.String.pipe(T.Label()),
+    targetTypeName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Chaos/locations/{location}/targetTypes/{targetTypeName}",
+      code: 200,
+      apiVersion: "2025-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetTargetTypeRequest",
+}) as any as S.Schema<GetTargetTypeRequest>;
+
+/** List of resource types this Target Type can extend. */
+export type TargetTypePropertiesResourceTypesList = Array<string>;
+export const TargetTypePropertiesResourceTypesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<TargetTypePropertiesResourceTypesList>;
+
+/** Model that represents the base Target Type properties model. */
+export interface TargetTypeProperties {
+  /** Localized string of the display name. */
+  displayName?: string;
+  /** Localized string of the description. */
+  description?: string;
+  /** URL to retrieve JSON schema of the Target Type properties. */
+  propertiesSchema?: string;
+  /** List of resource types this Target Type can extend. */
+  resourceTypes?: TargetTypePropertiesResourceTypesList;
+}
+export const TargetTypeProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    displayName: S.optional(S.String),
+    description: S.optional(S.String),
+    propertiesSchema: S.optional(S.String),
+    resourceTypes: S.optional(TargetTypePropertiesResourceTypesList),
+  }),
+).annotate({
+  identifier: "TargetTypeProperties",
+}) as any as S.Schema<TargetTypeProperties>;
+
+export interface GetTargetTypeResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of the target type resource. */
+  properties: TargetTypeProperties;
+}
+export const GetTargetTypeResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: TargetTypeProperties,
+  }),
+).annotate({
+  identifier: "GetTargetTypeResponse",
+}) as any as S.Schema<GetTargetTypeResponse>;
+
+export interface ListCapabilitiesRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The parent resource provider namespace. */
+  parentProviderNamespace: string;
+  /** The parent resource type. */
+  parentResourceType: string;
+  /** The parent resource name. */
+  parentResourceName: string;
+  /** String that represents a Target resource name. */
+  targetName: string;
+  /** String that sets the continuation token. */
+  continuationToken?: string;
+}
+export const ListCapabilitiesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    parentProviderNamespace: S.String.pipe(T.Label()),
+    parentResourceType: S.String.pipe(T.Label()),
+    parentResourceName: S.String.pipe(T.Label()),
+    targetName: S.String.pipe(T.Label()),
+    continuationToken: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{parentProviderNamespace}/{parentResourceType}/{parentResourceName}/providers/Microsoft.Chaos/targets/{targetName}/capabilities",
+      code: 200,
+      apiVersion: "2025-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListCapabilitiesRequest",
+}) as any as S.Schema<ListCapabilitiesRequest>;
+
+/** Model that represents a Capability resource. */
+export interface Capability {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of a capability resource. */
+  properties?: CapabilityProperties;
+}
+export const Capability = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(CapabilityProperties),
+  }),
+).annotate({ identifier: "Capability" }) as any as S.Schema<Capability>;
+
+/** The Capability items on this page */
+export type CapabilityListResultValueList = Array<Capability>;
+export const CapabilityListResultValueList = /*@__PURE__*/ S.Array(
+  Capability,
+) as any as S.Schema<CapabilityListResultValueList>;
+
+/** Model that represents a list of Capability resources and a link for pagination. */
+export interface CapabilityListResult {
+  /** The Capability items on this page */
+  value: CapabilityListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const CapabilityListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: CapabilityListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "CapabilityListResult",
+}) as any as S.Schema<CapabilityListResult>;
+
+export interface ListCapabilityTypesRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the Azure region. */
+  location: string;
+  /** String that represents a Target Type resource name. */
+  targetTypeName: string;
+  /** String that sets the continuation token. */
+  continuationToken?: string;
+}
+export const ListCapabilityTypesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    location: S.String.pipe(T.Label()),
+    targetTypeName: S.String.pipe(T.Label()),
+    continuationToken: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Chaos/locations/{location}/targetTypes/{targetTypeName}/capabilityTypes",
+      code: 200,
+      apiVersion: "2025-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListCapabilityTypesRequest",
+}) as any as S.Schema<ListCapabilityTypesRequest>;
+
+/** Model that represents a Capability Type resource. */
+export interface CapabilityType {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of the capability type resource. */
+  properties?: CapabilityTypeProperties;
+}
+export const CapabilityType = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(CapabilityTypeProperties),
+  }),
+).annotate({ identifier: "CapabilityType" }) as any as S.Schema<CapabilityType>;
+
+/** The CapabilityType items on this page */
+export type CapabilityTypeListResultValueList = Array<CapabilityType>;
+export const CapabilityTypeListResultValueList = /*@__PURE__*/ S.Array(
+  CapabilityType,
+) as any as S.Schema<CapabilityTypeListResultValueList>;
+
+/** Model that represents a list of Capability Type resources and a link for pagination. */
+export interface CapabilityTypeListResult {
+  /** The CapabilityType items on this page */
+  value: CapabilityTypeListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const CapabilityTypeListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: CapabilityTypeListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "CapabilityTypeListResult",
+}) as any as S.Schema<CapabilityTypeListResult>;
+
+export interface ListExperimentAllRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** Optional value that indicates whether to filter results based on if the Experiment is currently running. If null, then the results will not be filtered. */
+  running?: boolean;
+  /** String that sets the continuation token. */
+  continuationToken?: string;
+}
+export const ListExperimentAllRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    running: S.optional(S.Boolean.pipe(T.Query())),
+    continuationToken: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Chaos/experiments",
+      code: 200,
+      apiVersion: "2025-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListExperimentAllRequest",
+}) as any as S.Schema<ListExperimentAllRequest>;
+
+/** Resource tags. */
+export type ExperimentTagsMap = { [key: string]: string | undefined };
+export const ExperimentTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<ExperimentTagsMap>;
+
+/** Managed service identity (system assigned and/or user assigned identities) */
+export type ExperimentIdentity = ExperimentsCreateOrUpdateResponseIdentity;
+export const ExperimentIdentity = ExperimentsCreateOrUpdateResponseIdentity;
+
+/** Model that represents a Experiment resource. */
+export interface Experiment {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: ExperimentTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: ExperimentsCreateOrUpdateResponseIdentity;
+  /** The properties of the experiment resource. */
+  properties: ExperimentProperties;
+}
+export const Experiment = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(ExperimentTagsMap),
+    location: S.String,
+    identity: S.optional(ExperimentsCreateOrUpdateResponseIdentity),
+    properties: ExperimentProperties,
+  }),
+).annotate({ identifier: "Experiment" }) as any as S.Schema<Experiment>;
+
+/** The Experiment items on this page */
+export type ExperimentListResultValueList = Array<Experiment>;
+export const ExperimentListResultValueList = /*@__PURE__*/ S.Array(
+  Experiment,
+) as any as S.Schema<ExperimentListResultValueList>;
+
+/** Model that represents a list of Experiment resources and a link for pagination. */
+export interface ExperimentListResult {
+  /** The Experiment items on this page */
+  value: ExperimentListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const ExperimentListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: ExperimentListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ExperimentListResult",
+}) as any as S.Schema<ExperimentListResult>;
+
+export interface ListExperimentAllExecutionsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** String that represents a Experiment resource name. */
+  experimentName: string;
+}
+export const ListExperimentAllExecutionsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    experimentName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Chaos/experiments/{experimentName}/executions",
+      code: 200,
+      apiVersion: "2025-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListExperimentAllExecutionsRequest",
+}) as any as S.Schema<ListExperimentAllExecutionsRequest>;
+
+/** Model that represents the execution of a Experiment. */
+export interface ExperimentExecution {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of experiment execution status. */
+  properties?: ExperimentExecutionProperties;
+}
+export const ExperimentExecution = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ExperimentExecutionProperties),
+  }),
+).annotate({
+  identifier: "ExperimentExecution",
+}) as any as S.Schema<ExperimentExecution>;
+
+/** The ExperimentExecution items on this page */
+export type ExperimentExecutionListResultValueList = Array<ExperimentExecution>;
+export const ExperimentExecutionListResultValueList = /*@__PURE__*/ S.Array(
+  ExperimentExecution,
+) as any as S.Schema<ExperimentExecutionListResultValueList>;
+
+/** Model that represents a list of Experiment executions and a link for pagination. */
+export interface ExperimentExecutionListResult {
+  /** The ExperimentExecution items on this page */
+  value: ExperimentExecutionListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const ExperimentExecutionListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: ExperimentExecutionListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ExperimentExecutionListResult",
+}) as any as S.Schema<ExperimentExecutionListResult>;
+
+export interface ListExperimentsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Optional value that indicates whether to filter results based on if the Experiment is currently running. If null, then the results will not be filtered. */
+  running?: boolean;
+  /** String that sets the continuation token. */
+  continuationToken?: string;
+}
+export const ListExperimentsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    running: S.optional(S.Boolean.pipe(T.Query())),
+    continuationToken: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Chaos/experiments",
+      code: 200,
+      apiVersion: "2025-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListExperimentsRequest",
+}) as any as S.Schema<ListExperimentsRequest>;
+
+export interface ListOperationAllRequest {}
+export const ListOperationAllRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/providers/Microsoft.Chaos/operations",
+      code: 200,
+      apiVersion: "2025-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListOperationAllRequest",
+}) as any as S.Schema<ListOperationAllRequest>;
+
+/** Localized display information for this particular operation. */
+export interface OperationDisplay {
+  /** The localized friendly form of the resource provider name, e.g. "Microsoft Monitoring Insights" or "Microsoft Compute". */
+  provider?: string;
+  /** The localized friendly name of the resource type related to this operation. E.g. "Virtual Machines" or "Job Schedule Collections". */
+  resource?: string;
+  /** The concise, localized friendly name for the operation; suitable for dropdowns. E.g. "Create or Update Virtual Machine", "Restart Virtual Machine". */
+  operation?: string;
+  /** The short, localized friendly description of the operation; suitable for tool tips and detailed views. */
+  description?: string;
+}
+export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provider: S.optional(S.String),
+    resource: S.optional(S.String),
+    operation: S.optional(S.String),
+    description: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "OperationDisplay",
+}) as any as S.Schema<OperationDisplay>;
+
+/** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
+export type OperationOrigin = "user" | "system" | "user,system";
+export const OperationOrigin = /*@__PURE__*/ S.String;
+
+/** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
+export type OperationActionType = "Internal";
+export const OperationActionType = /*@__PURE__*/ S.String;
+
+/** Details of a REST API operation, returned from the Resource Provider Operations API */
+export interface Operation {
+  /** The name of the operation, as per Resource-Based Access Control (RBAC). Examples: "Microsoft.Compute/virtualMachines/write", "Microsoft.Compute/virtualMachines/capture/action" */
+  name?: string;
+  /** Whether the operation applies to data-plane. This is "true" for data-plane operations and "false" for ARM/control-plane operations. */
+  isDataAction?: boolean;
+  /** Localized display information for this particular operation. */
+  display?: OperationDisplay;
+  /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
+  origin?: OperationOrigin;
+  /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
+  actionType?: OperationActionType;
+}
+export const Operation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    isDataAction: S.optional(S.Boolean),
+    display: S.optional(OperationDisplay),
+    origin: S.optional(OperationOrigin),
+    actionType: S.optional(OperationActionType),
+  }),
+).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
+
+/** List of operations supported by the resource provider */
+export type ListOperationAllResponseValueList = Array<Operation>;
+export const ListOperationAllResponseValueList = /*@__PURE__*/ S.Array(
+  Operation,
+) as any as S.Schema<ListOperationAllResponseValueList>;
+
+export interface ListOperationAllResponse {
+  /** List of operations supported by the resource provider */
+  value?: ListOperationAllResponseValueList;
+  /** URL to get the next set of operation list results (if there are any). */
+  nextLink?: string;
+}
+export const ListOperationAllResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(ListOperationAllResponseValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ListOperationAllResponse",
+}) as any as S.Schema<ListOperationAllResponse>;
+
+export interface ListTargetsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The parent resource provider namespace. */
+  parentProviderNamespace: string;
+  /** The parent resource type. */
+  parentResourceType: string;
+  /** The parent resource name. */
+  parentResourceName: string;
+  /** String that sets the continuation token. */
+  continuationToken?: string;
+}
+export const ListTargetsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    parentProviderNamespace: S.String.pipe(T.Label()),
+    parentResourceType: S.String.pipe(T.Label()),
+    parentResourceName: S.String.pipe(T.Label()),
+    continuationToken: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{parentProviderNamespace}/{parentResourceType}/{parentResourceName}/providers/Microsoft.Chaos/targets",
+      code: 200,
+      apiVersion: "2025-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListTargetsRequest",
+}) as any as S.Schema<ListTargetsRequest>;
+
+/** The properties of the target resource. */
+export type TargetPropertiesMap = { [key: string]: unknown | undefined };
+export const TargetPropertiesMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<TargetPropertiesMap>;
+
+/** Model that represents a Target resource. */
+export interface Target {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of the target resource. */
+  properties: TargetPropertiesMap;
+  /** Azure resource location. */
+  location?: string;
+}
+export const Target = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: TargetPropertiesMap,
+    location: S.optional(S.String),
+  }),
+).annotate({ identifier: "Target" }) as any as S.Schema<Target>;
+
+/** The Target items on this page */
+export type TargetListResultValueList = Array<Target>;
+export const TargetListResultValueList = /*@__PURE__*/ S.Array(
+  Target,
+) as any as S.Schema<TargetListResultValueList>;
+
+/** Model that represents a list of Target resources and a link for pagination. */
+export interface TargetListResult {
+  /** The Target items on this page */
+  value: TargetListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const TargetListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: TargetListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "TargetListResult",
+}) as any as S.Schema<TargetListResult>;
+
+export interface ListTargetTypesRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the Azure region. */
+  location: string;
+  /** String that sets the continuation token. */
+  continuationToken?: string;
+}
+export const ListTargetTypesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    location: S.String.pipe(T.Label()),
+    continuationToken: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Chaos/locations/{location}/targetTypes",
+      code: 200,
+      apiVersion: "2025-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListTargetTypesRequest",
+}) as any as S.Schema<ListTargetTypesRequest>;
+
+/** Model that represents a Target Type resource. */
+export interface TargetType {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of the target type resource. */
+  properties: TargetTypeProperties;
+}
+export const TargetType = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: TargetTypeProperties,
+  }),
+).annotate({ identifier: "TargetType" }) as any as S.Schema<TargetType>;
+
+/** The TargetType items on this page */
+export type TargetTypeListResultValueList = Array<TargetType>;
+export const TargetTypeListResultValueList = /*@__PURE__*/ S.Array(
+  TargetType,
+) as any as S.Schema<TargetTypeListResultValueList>;
+
+/** Model that represents a list of Target Type resources and a link for pagination. */
+export interface TargetTypeListResult {
+  /** The TargetType items on this page */
+  value: TargetTypeListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const TargetTypeListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: TargetTypeListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "TargetTypeListResult",
+}) as any as S.Schema<TargetTypeListResult>;
+
+export interface StartExperimentRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** String that represents a Experiment resource name. */
+  experimentName: string;
+}
+export const StartExperimentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    experimentName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Chaos/experiments/{experimentName}/start",
+      code: 200,
+      apiVersion: "2025-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "StartExperimentRequest",
+}) as any as S.Schema<StartExperimentRequest>;
+
+export interface StartExperimentResponse {}
+export const StartExperimentResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "StartExperimentResponse",
+}) as any as S.Schema<StartExperimentResponse>;
 
 /** The properties of the target resource. */
 export type TargetsCreateOrUpdateRequestPropertiesMap = {
@@ -1982,260 +2235,68 @@ export const TargetsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "TargetsCreateOrUpdateResponse",
 }) as any as S.Schema<TargetsCreateOrUpdateResponse>;
 
-export interface TargetsDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The parent resource provider namespace. */
-  parentProviderNamespace: string;
-  /** The parent resource type. */
-  parentResourceType: string;
-  /** The parent resource name. */
-  parentResourceName: string;
-  /** String that represents a Target resource name. */
-  targetName: string;
-}
-export const TargetsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    parentProviderNamespace: S.String.pipe(T.Label()),
-    parentResourceType: S.String.pipe(T.Label()),
-    parentResourceName: S.String.pipe(T.Label()),
-    targetName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{parentProviderNamespace}/{parentResourceType}/{parentResourceName}/providers/Microsoft.Chaos/targets/{targetName}",
-      code: 200,
-      apiVersion: "2025-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "TargetsDeleteRequest",
-}) as any as S.Schema<TargetsDeleteRequest>;
-
-export interface TargetsDeleteResponse {}
-export const TargetsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "TargetsDeleteResponse",
-}) as any as S.Schema<TargetsDeleteResponse>;
-
-export interface TargetsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The parent resource provider namespace. */
-  parentProviderNamespace: string;
-  /** The parent resource type. */
-  parentResourceType: string;
-  /** The parent resource name. */
-  parentResourceName: string;
-  /** String that represents a Target resource name. */
-  targetName: string;
-}
-export const TargetsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    parentProviderNamespace: S.String.pipe(T.Label()),
-    parentResourceType: S.String.pipe(T.Label()),
-    parentResourceName: S.String.pipe(T.Label()),
-    targetName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{parentProviderNamespace}/{parentResourceType}/{parentResourceName}/providers/Microsoft.Chaos/targets/{targetName}",
-      code: 200,
-      apiVersion: "2025-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "TargetsGetRequest",
-}) as any as S.Schema<TargetsGetRequest>;
-
-/** The properties of the target resource. */
-export type TargetsGetResponsePropertiesMap = {
-  [key: string]: unknown | undefined;
+/** Resource tags. */
+export type UpdateExperimentRequestTagsMap = {
+  [key: string]: string | undefined;
 };
-export const TargetsGetResponsePropertiesMap = /*@__PURE__*/ S.Record(
+export const UpdateExperimentRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
-  S.Unknown,
-) as any as S.Schema<TargetsGetResponsePropertiesMap>;
+  S.String,
+) as any as S.Schema<UpdateExperimentRequestTagsMap>;
 
-export interface TargetsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties of the target resource. */
-  properties: TargetsGetResponsePropertiesMap;
-  /** Azure resource location. */
-  location?: string;
-}
-export const TargetsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: TargetsGetResponsePropertiesMap,
-    location: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "TargetsGetResponse",
-}) as any as S.Schema<TargetsGetResponse>;
+/** Managed service identity (system assigned and/or user assigned identities) */
+export type UpdateExperimentRequestIdentity =
+  ExperimentsCreateOrUpdateRequestIdentity;
+export const UpdateExperimentRequestIdentity =
+  ExperimentsCreateOrUpdateRequestIdentity;
 
-export interface TargetsListRequest {
+export interface UpdateExperimentRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
-  /** The parent resource provider namespace. */
-  parentProviderNamespace: string;
-  /** The parent resource type. */
-  parentResourceType: string;
-  /** The parent resource name. */
-  parentResourceName: string;
-  /** String that sets the continuation token. */
-  continuationToken?: string;
+  /** String that represents a Experiment resource name. */
+  experimentName: string;
+  /** Resource tags. */
+  tags?: UpdateExperimentRequestTagsMap;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: ExperimentsCreateOrUpdateRequestIdentity;
 }
-export const TargetsListRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateExperimentRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
-    parentProviderNamespace: S.String.pipe(T.Label()),
-    parentResourceType: S.String.pipe(T.Label()),
-    parentResourceName: S.String.pipe(T.Label()),
-    continuationToken: S.optional(S.String.pipe(T.Query())),
+    experimentName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateExperimentRequestTagsMap),
+    identity: S.optional(ExperimentsCreateOrUpdateRequestIdentity),
   }).pipe(
     T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{parentProviderNamespace}/{parentResourceType}/{parentResourceName}/providers/Microsoft.Chaos/targets",
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Chaos/experiments/{experimentName}",
       code: 200,
       apiVersion: "2025-01-01",
     }),
   ),
 ).annotate({
-  identifier: "TargetsListRequest",
-}) as any as S.Schema<TargetsListRequest>;
+  identifier: "UpdateExperimentRequest",
+}) as any as S.Schema<UpdateExperimentRequest>;
 
-/** The properties of the target resource. */
-export type TargetPropertiesMap = { [key: string]: unknown | undefined };
-export const TargetPropertiesMap = /*@__PURE__*/ S.Record(
+/** Resource tags. */
+export type UpdateExperimentResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateExperimentResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
-  S.Unknown,
-) as any as S.Schema<TargetPropertiesMap>;
-
-/** Model that represents a Target resource. */
-export interface Target {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties of the target resource. */
-  properties: TargetPropertiesMap;
-  /** Azure resource location. */
-  location?: string;
-}
-export const Target = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: TargetPropertiesMap,
-    location: S.optional(S.String),
-  }),
-).annotate({ identifier: "Target" }) as any as S.Schema<Target>;
-
-/** The Target items on this page */
-export type TargetListResultValueList = Array<Target>;
-export const TargetListResultValueList = /*@__PURE__*/ S.Array(
-  Target,
-) as any as S.Schema<TargetListResultValueList>;
-
-/** Model that represents a list of Target resources and a link for pagination. */
-export interface TargetListResult {
-  /** The Target items on this page */
-  value: TargetListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const TargetListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: TargetListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "TargetListResult",
-}) as any as S.Schema<TargetListResult>;
-
-export interface TargetTypesGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the Azure region. */
-  location: string;
-  /** String that represents a Target Type resource name. */
-  targetTypeName: string;
-}
-export const TargetTypesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    location: S.String.pipe(T.Label()),
-    targetTypeName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Chaos/locations/{location}/targetTypes/{targetTypeName}",
-      code: 200,
-      apiVersion: "2025-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "TargetTypesGetRequest",
-}) as any as S.Schema<TargetTypesGetRequest>;
-
-/** List of resource types this Target Type can extend. */
-export type TargetTypePropertiesResourceTypesList = Array<string>;
-export const TargetTypePropertiesResourceTypesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<TargetTypePropertiesResourceTypesList>;
+) as any as S.Schema<UpdateExperimentResponseTagsMap>;
 
-/** Model that represents the base Target Type properties model. */
-export interface TargetTypeProperties {
-  /** Localized string of the display name. */
-  displayName?: string;
-  /** Localized string of the description. */
-  description?: string;
-  /** URL to retrieve JSON schema of the Target Type properties. */
-  propertiesSchema?: string;
-  /** List of resource types this Target Type can extend. */
-  resourceTypes?: TargetTypePropertiesResourceTypesList;
-}
-export const TargetTypeProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    displayName: S.optional(S.String),
-    description: S.optional(S.String),
-    propertiesSchema: S.optional(S.String),
-    resourceTypes: S.optional(TargetTypePropertiesResourceTypesList),
-  }),
-).annotate({
-  identifier: "TargetTypeProperties",
-}) as any as S.Schema<TargetTypeProperties>;
+/** Managed service identity (system assigned and/or user assigned identities) */
+export type UpdateExperimentResponseIdentity =
+  ExperimentsCreateOrUpdateResponseIdentity;
+export const UpdateExperimentResponseIdentity =
+  ExperimentsCreateOrUpdateResponseIdentity;
 
-export interface TargetTypesGetResponse {
+export interface UpdateExperimentResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -2244,90 +2305,44 @@ export interface TargetTypesGetResponse {
   type?: string;
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
-  /** The properties of the target type resource. */
-  properties: TargetTypeProperties;
-}
-export const TargetTypesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: TargetTypeProperties,
-  }),
-).annotate({
-  identifier: "TargetTypesGetResponse",
-}) as any as S.Schema<TargetTypesGetResponse>;
-
-export interface TargetTypesListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the Azure region. */
+  /** Resource tags. */
+  tags?: UpdateExperimentResponseTagsMap;
+  /** The geo-location where the resource lives */
   location: string;
-  /** String that sets the continuation token. */
-  continuationToken?: string;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: ExperimentsCreateOrUpdateResponseIdentity;
+  /** The properties of the experiment resource. */
+  properties: ExperimentProperties;
 }
-export const TargetTypesListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    location: S.String.pipe(T.Label()),
-    continuationToken: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Chaos/locations/{location}/targetTypes",
-      code: 200,
-      apiVersion: "2025-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "TargetTypesListRequest",
-}) as any as S.Schema<TargetTypesListRequest>;
-
-/** Model that represents a Target Type resource. */
-export interface TargetType {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties of the target type resource. */
-  properties: TargetTypeProperties;
-}
-export const TargetType = /*@__PURE__*/ S.suspend(() =>
+export const UpdateExperimentResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    properties: TargetTypeProperties,
-  }),
-).annotate({ identifier: "TargetType" }) as any as S.Schema<TargetType>;
-
-/** The TargetType items on this page */
-export type TargetTypeListResultValueList = Array<TargetType>;
-export const TargetTypeListResultValueList = /*@__PURE__*/ S.Array(
-  TargetType,
-) as any as S.Schema<TargetTypeListResultValueList>;
-
-/** Model that represents a list of Target Type resources and a link for pagination. */
-export interface TargetTypeListResult {
-  /** The TargetType items on this page */
-  value: TargetTypeListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const TargetTypeListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: TargetTypeListResultValueList,
-    nextLink: S.optional(S.String),
+    tags: S.optional(UpdateExperimentResponseTagsMap),
+    location: S.String,
+    identity: S.optional(ExperimentsCreateOrUpdateResponseIdentity),
+    properties: ExperimentProperties,
   }),
 ).annotate({
-  identifier: "TargetTypeListResult",
-}) as any as S.Schema<TargetTypeListResult>;
+  identifier: "UpdateExperimentResponse",
+}) as any as S.Schema<UpdateExperimentResponse>;
+
+export type CancelExperimentError = AzureOpError;
+/** Cancel a running Experiment resource. */
+export const CancelExperiment: API.OperationMethod<
+  CancelExperimentRequest,
+  CancelExperimentResponse,
+  CancelExperimentError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CancelExperimentRequest,
+  output: CancelExperimentResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
 export type CapabilitiesCreateOrUpdateError = AzureOpError;
 /** Create or update a Capability resource that extends a Target resource. */
@@ -2344,91 +2359,46 @@ export const CapabilitiesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CapabilitiesDeleteError = AzureOpError;
+export type DeleteCapabilityError = AzureOpError;
 /** Delete a Capability that extends a Target resource. */
-export const CapabilitiesDelete: API.OperationMethod<
-  CapabilitiesDeleteRequest,
-  CapabilitiesDeleteResponse,
-  CapabilitiesDeleteError,
+export const DeleteCapability: API.OperationMethod<
+  DeleteCapabilityRequest,
+  DeleteCapabilityResponse,
+  DeleteCapabilityError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CapabilitiesDeleteRequest,
-  output: CapabilitiesDeleteResponse,
+  input: DeleteCapabilityRequest,
+  output: DeleteCapabilityResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type CapabilitiesGetError = AzureOpError;
-/** Get a Capability resource that extends a Target resource. */
-export const CapabilitiesGet: API.OperationMethod<
-  CapabilitiesGetRequest,
-  CapabilitiesGetResponse,
-  CapabilitiesGetError,
+export type DeleteExperimentError = AzureOpError;
+/** Delete a Experiment resource. */
+export const DeleteExperiment: API.OperationMethod<
+  DeleteExperimentRequest,
+  DeleteExperimentResponse,
+  DeleteExperimentError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CapabilitiesGetRequest,
-  output: CapabilitiesGetResponse,
+  input: DeleteExperimentRequest,
+  output: DeleteExperimentResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type CapabilitiesListError = AzureOpError;
-/** Get a list of Capability resources that extend a Target resource. */
-export const CapabilitiesList: API.OperationMethod<
-  CapabilitiesListRequest,
-  CapabilityListResult,
-  CapabilitiesListError,
+export type DeleteTargetError = AzureOpError;
+/** Delete a Target resource that extends a tracked regional resource. */
+export const DeleteTarget: API.OperationMethod<
+  DeleteTargetRequest,
+  DeleteTargetResponse,
+  DeleteTargetError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CapabilitiesListRequest,
-  output: CapabilityListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CapabilityTypesGetError = AzureOpError;
-/** Get a Capability Type resource for given Target Type and location. */
-export const CapabilityTypesGet: API.OperationMethod<
-  CapabilityTypesGetRequest,
-  CapabilityTypesGetResponse,
-  CapabilityTypesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CapabilityTypesGetRequest,
-  output: CapabilityTypesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CapabilityTypesListError = AzureOpError;
-/** Get a list of Capability Type resources for given Target Type and location. */
-export const CapabilityTypesList: API.OperationMethod<
-  CapabilityTypesListRequest,
-  CapabilityTypeListResult,
-  CapabilityTypesListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CapabilityTypesListRequest,
-  output: CapabilityTypeListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ExperimentsCancelError = AzureOpError;
-/** Cancel a running Experiment resource. */
-export const ExperimentsCancel: API.OperationMethod<
-  ExperimentsCancelRequest,
-  ExperimentsCancelResponse,
-  ExperimentsCancelError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ExperimentsCancelRequest,
-  output: ExperimentsCancelResponse,
+  input: DeleteTargetRequest,
+  output: DeleteTargetResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -2449,21 +2419,6 @@ export const ExperimentsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ExperimentsDeleteError = AzureOpError;
-/** Delete a Experiment resource. */
-export const ExperimentsDelete: API.OperationMethod<
-  ExperimentsDeleteRequest,
-  ExperimentsDeleteResponse,
-  ExperimentsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ExperimentsDeleteRequest,
-  output: ExperimentsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ExperimentsExecutionDetailsError = AzureOpError;
 /** Execution details of an experiment resource. */
 export const ExperimentsExecutionDetails: API.OperationMethod<
@@ -2479,136 +2434,241 @@ export const ExperimentsExecutionDetails: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ExperimentsGetError = AzureOpError;
+export type GetCapabilityError = AzureOpError;
+/** Get a Capability resource that extends a Target resource. */
+export const GetCapability: API.OperationMethod<
+  GetCapabilityRequest,
+  GetCapabilityResponse,
+  GetCapabilityError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCapabilityRequest,
+  output: GetCapabilityResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetCapabilityTypeError = AzureOpError;
+/** Get a Capability Type resource for given Target Type and location. */
+export const GetCapabilityType: API.OperationMethod<
+  GetCapabilityTypeRequest,
+  GetCapabilityTypeResponse,
+  GetCapabilityTypeError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCapabilityTypeRequest,
+  output: GetCapabilityTypeResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetExperimentError = AzureOpError;
 /** Get a Experiment resource. */
-export const ExperimentsGet: API.OperationMethod<
-  ExperimentsGetRequest,
-  ExperimentsGetResponse,
-  ExperimentsGetError,
+export const GetExperiment: API.OperationMethod<
+  GetExperimentRequest,
+  GetExperimentResponse,
+  GetExperimentError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ExperimentsGetRequest,
-  output: ExperimentsGetResponse,
+  input: GetExperimentRequest,
+  output: GetExperimentResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ExperimentsGetExecutionError = AzureOpError;
+export type GetExperimentExecutionError = AzureOpError;
 /** Get an execution of an Experiment resource. */
-export const ExperimentsGetExecution: API.OperationMethod<
-  ExperimentsGetExecutionRequest,
-  ExperimentsGetExecutionResponse,
-  ExperimentsGetExecutionError,
+export const GetExperimentExecution: API.OperationMethod<
+  GetExperimentExecutionRequest,
+  GetExperimentExecutionResponse,
+  GetExperimentExecutionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ExperimentsGetExecutionRequest,
-  output: ExperimentsGetExecutionResponse,
+  input: GetExperimentExecutionRequest,
+  output: GetExperimentExecutionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ExperimentsListError = AzureOpError;
-/** Get a list of Experiment resources in a resource group. */
-export const ExperimentsList: API.OperationMethod<
-  ExperimentsListRequest,
-  ExperimentListResult,
-  ExperimentsListError,
+export type GetOperationStatusError = AzureOpError;
+/** Returns the current status of an async operation. */
+export const GetOperationStatus: API.OperationMethod<
+  GetOperationStatusRequest,
+  GetOperationStatusResponse,
+  GetOperationStatusError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ExperimentsListRequest,
-  output: ExperimentListResult,
+  input: GetOperationStatusRequest,
+  output: GetOperationStatusResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ExperimentsListAllError = AzureOpError;
+export type GetTargetError = AzureOpError;
+/** Get a Target resource that extends a tracked regional resource. */
+export const GetTarget: API.OperationMethod<
+  GetTargetRequest,
+  GetTargetResponse,
+  GetTargetError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetTargetRequest,
+  output: GetTargetResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetTargetTypeError = AzureOpError;
+/** Get a Target Type resources for given location. */
+export const GetTargetType: API.OperationMethod<
+  GetTargetTypeRequest,
+  GetTargetTypeResponse,
+  GetTargetTypeError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetTargetTypeRequest,
+  output: GetTargetTypeResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListCapabilitiesError = AzureOpError;
+/** Get a list of Capability resources that extend a Target resource. */
+export const ListCapabilities: API.OperationMethod<
+  ListCapabilitiesRequest,
+  CapabilityListResult,
+  ListCapabilitiesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListCapabilitiesRequest,
+  output: CapabilityListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListCapabilityTypesError = AzureOpError;
+/** Get a list of Capability Type resources for given Target Type and location. */
+export const ListCapabilityTypes: API.OperationMethod<
+  ListCapabilityTypesRequest,
+  CapabilityTypeListResult,
+  ListCapabilityTypesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListCapabilityTypesRequest,
+  output: CapabilityTypeListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListExperimentAllError = AzureOpError;
 /** Get a list of Experiment resources in a subscription. */
-export const ExperimentsListAll: API.OperationMethod<
-  ExperimentsListAllRequest,
+export const ListExperimentAll: API.OperationMethod<
+  ListExperimentAllRequest,
   ExperimentListResult,
-  ExperimentsListAllError,
+  ListExperimentAllError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ExperimentsListAllRequest,
+  input: ListExperimentAllRequest,
   output: ExperimentListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ExperimentsListAllExecutionsError = AzureOpError;
+export type ListExperimentAllExecutionsError = AzureOpError;
 /** Get a list of executions of an Experiment resource. */
-export const ExperimentsListAllExecutions: API.OperationMethod<
-  ExperimentsListAllExecutionsRequest,
+export const ListExperimentAllExecutions: API.OperationMethod<
+  ListExperimentAllExecutionsRequest,
   ExperimentExecutionListResult,
-  ExperimentsListAllExecutionsError,
+  ListExperimentAllExecutionsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ExperimentsListAllExecutionsRequest,
+  input: ListExperimentAllExecutionsRequest,
   output: ExperimentExecutionListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ExperimentsStartError = AzureOpError;
-/** Start a Experiment resource. */
-export const ExperimentsStart: API.OperationMethod<
-  ExperimentsStartRequest,
-  ExperimentsStartResponse,
-  ExperimentsStartError,
+export type ListExperimentsError = AzureOpError;
+/** Get a list of Experiment resources in a resource group. */
+export const ListExperiments: API.OperationMethod<
+  ListExperimentsRequest,
+  ExperimentListResult,
+  ListExperimentsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ExperimentsStartRequest,
-  output: ExperimentsStartResponse,
+  input: ListExperimentsRequest,
+  output: ExperimentListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ExperimentsUpdateError = AzureOpError;
-/** Update an experiment. */
-export const ExperimentsUpdate: API.OperationMethod<
-  ExperimentsUpdateRequest,
-  ExperimentsUpdateResponse,
-  ExperimentsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ExperimentsUpdateRequest,
-  output: ExperimentsUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type OperationsListAllError = AzureOpError;
+export type ListOperationAllError = AzureOpError;
 /** List the operations for the provider */
-export const OperationsListAll: API.OperationMethod<
-  OperationsListAllRequest,
-  OperationsListAllResponse,
-  OperationsListAllError,
+export const ListOperationAll: API.OperationMethod<
+  ListOperationAllRequest,
+  ListOperationAllResponse,
+  ListOperationAllError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OperationsListAllRequest,
-  output: OperationsListAllResponse,
+  input: ListOperationAllRequest,
+  output: ListOperationAllResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type OperationStatusesGetError = AzureOpError;
-/** Returns the current status of an async operation. */
-export const OperationStatusesGet: API.OperationMethod<
-  OperationStatusesGetRequest,
-  OperationStatusesGetResponse,
-  OperationStatusesGetError,
+export type ListTargetsError = AzureOpError;
+/** Get a list of Target resources that extend a tracked regional resource. */
+export const ListTargets: API.OperationMethod<
+  ListTargetsRequest,
+  TargetListResult,
+  ListTargetsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OperationStatusesGetRequest,
-  output: OperationStatusesGetResponse,
+  input: ListTargetsRequest,
+  output: TargetListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListTargetTypesError = AzureOpError;
+/** Get a list of Target Type resources for given location. */
+export const ListTargetTypes: API.OperationMethod<
+  ListTargetTypesRequest,
+  TargetTypeListResult,
+  ListTargetTypesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListTargetTypesRequest,
+  output: TargetTypeListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type StartExperimentError = AzureOpError;
+/** Start a Experiment resource. */
+export const StartExperiment: API.OperationMethod<
+  StartExperimentRequest,
+  StartExperimentResponse,
+  StartExperimentError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: StartExperimentRequest,
+  output: StartExperimentResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -2629,76 +2689,16 @@ export const TargetsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type TargetsDeleteError = AzureOpError;
-/** Delete a Target resource that extends a tracked regional resource. */
-export const TargetsDelete: API.OperationMethod<
-  TargetsDeleteRequest,
-  TargetsDeleteResponse,
-  TargetsDeleteError,
+export type UpdateExperimentError = AzureOpError;
+/** Update an experiment. */
+export const UpdateExperiment: API.OperationMethod<
+  UpdateExperimentRequest,
+  UpdateExperimentResponse,
+  UpdateExperimentError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: TargetsDeleteRequest,
-  output: TargetsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TargetsGetError = AzureOpError;
-/** Get a Target resource that extends a tracked regional resource. */
-export const TargetsGet: API.OperationMethod<
-  TargetsGetRequest,
-  TargetsGetResponse,
-  TargetsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TargetsGetRequest,
-  output: TargetsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TargetsListError = AzureOpError;
-/** Get a list of Target resources that extend a tracked regional resource. */
-export const TargetsList: API.OperationMethod<
-  TargetsListRequest,
-  TargetListResult,
-  TargetsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TargetsListRequest,
-  output: TargetListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TargetTypesGetError = AzureOpError;
-/** Get a Target Type resources for given location. */
-export const TargetTypesGet: API.OperationMethod<
-  TargetTypesGetRequest,
-  TargetTypesGetResponse,
-  TargetTypesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TargetTypesGetRequest,
-  output: TargetTypesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TargetTypesListError = AzureOpError;
-/** Get a list of Target Type resources for given location. */
-export const TargetTypesList: API.OperationMethod<
-  TargetTypesListRequest,
-  TargetTypeListResult,
-  TargetTypesListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TargetTypesListRequest,
-  output: TargetTypeListResult,
+  input: UpdateExperimentRequest,
+  output: UpdateExperimentResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

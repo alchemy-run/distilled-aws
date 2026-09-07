@@ -314,309 +314,6 @@ export const ApprovalCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ApprovalCreateOrUpdateResponse",
 }) as any as S.Schema<ApprovalCreateOrUpdateResponse>;
 
-export interface ApprovalDeleteRequest {
-  /** The fully qualified Azure Resource manager identifier of the resource. */
-  resourceUri: string;
-  /** The name of the approvals resource. */
-  approvalName: string;
-}
-export const ApprovalDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    resourceUri: S.String.pipe(T.Label()),
-    approvalName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/{resourceUri}/providers/Microsoft.Mission/approvals/{approvalName}",
-      code: 200,
-      apiVersion: "2026-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "ApprovalDeleteRequest",
-}) as any as S.Schema<ApprovalDeleteRequest>;
-
-export interface ApprovalDeleteResponse {}
-export const ApprovalDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ApprovalDeleteResponse",
-}) as any as S.Schema<ApprovalDeleteResponse>;
-
-export interface ApprovalGetRequest {
-  /** The fully qualified Azure Resource manager identifier of the resource. */
-  resourceUri: string;
-  /** The name of the approvals resource. */
-  approvalName: string;
-}
-export const ApprovalGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    resourceUri: S.String.pipe(T.Label()),
-    approvalName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/{resourceUri}/providers/Microsoft.Mission/approvals/{approvalName}",
-      code: 200,
-      apiVersion: "2026-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "ApprovalGetRequest",
-}) as any as S.Schema<ApprovalGetRequest>;
-
-export interface ApprovalGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: ApprovalProperties;
-}
-export const ApprovalGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ApprovalProperties),
-  }),
-).annotate({
-  identifier: "ApprovalGetResponse",
-}) as any as S.Schema<ApprovalGetResponse>;
-
-export interface ApprovalListByParentRequest {
-  /** The fully qualified Azure Resource manager identifier of the resource. */
-  resourceUri: string;
-}
-export const ApprovalListByParentRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    resourceUri: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/{resourceUri}/providers/Microsoft.Mission/approvals",
-      code: 200,
-      apiVersion: "2026-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "ApprovalListByParentRequest",
-}) as any as S.Schema<ApprovalListByParentRequest>;
-
-/** Approval Model Resource */
-export interface ApprovalResource {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: ApprovalProperties;
-}
-export const ApprovalResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ApprovalProperties),
-  }),
-).annotate({
-  identifier: "ApprovalResource",
-}) as any as S.Schema<ApprovalResource>;
-
-/** The ApprovalResource items on this page */
-export type ApprovalResourceListResultValueList = Array<ApprovalResource>;
-export const ApprovalResourceListResultValueList = /*@__PURE__*/ S.Array(
-  ApprovalResource,
-) as any as S.Schema<ApprovalResourceListResultValueList>;
-
-/** The response of a ApprovalResource list operation. */
-export interface ApprovalResourceListResult {
-  /** The ApprovalResource items on this page */
-  value: ApprovalResourceListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const ApprovalResourceListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: ApprovalResourceListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ApprovalResourceListResult",
-}) as any as S.Schema<ApprovalResourceListResult>;
-
-/** Approval status indicating 'Approved' or 'Rejected' */
-export type ApprovalNotifyInitiatorRequestApprovalStatus =
-  | "Approved"
-  | "Rejected";
-export const ApprovalNotifyInitiatorRequestApprovalStatus =
-  /*@__PURE__*/ S.String;
-
-export interface ApprovalNotifyInitiatorRequest {
-  /** The fully qualified Azure Resource manager identifier of the resource. */
-  resourceUri: string;
-  /** The name of the approvals resource. */
-  approvalName: string;
-  /** Approval status indicating 'Approved' or 'Rejected' */
-  approvalStatus: ApprovalNotifyInitiatorRequestApprovalStatus | (string & {});
-}
-export const ApprovalNotifyInitiatorRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    resourceUri: S.String.pipe(T.Label()),
-    approvalName: S.String.pipe(T.Label()),
-    approvalStatus: ApprovalNotifyInitiatorRequestApprovalStatus,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/{resourceUri}/providers/Microsoft.Mission/approvals/{approvalName}/notifyInitiator",
-      code: 200,
-      apiVersion: "2026-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "ApprovalNotifyInitiatorRequest",
-}) as any as S.Schema<ApprovalNotifyInitiatorRequest>;
-
-/** Response body after handling of approvalCallbackRequest */
-export interface ApprovalActionResponse {
-  /** Confirmation message indicating the result of the operation. */
-  message: string;
-}
-export const ApprovalActionResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    message: S.String,
-  }),
-).annotate({
-  identifier: "ApprovalActionResponse",
-}) as any as S.Schema<ApprovalActionResponse>;
-
-/** List of approvers for the approval request */
-export type ApprovalPatchPropertiesInputApproversList = Array<ApproverInput>;
-export const ApprovalPatchPropertiesInputApproversList = /*@__PURE__*/ S.Array(
-  ApproverInput,
-) as any as S.Schema<ApprovalPatchPropertiesInputApproversList>;
-
-/** Approval Status. It can be Approved, Rejected, Pending, Deleted or Expired. */
-export type ApprovalStatus =
-  | "Approved"
-  | "Rejected"
-  | "Pending"
-  | "Deleted"
-  | "Expired";
-export const ApprovalStatus = /*@__PURE__*/ S.String;
-
-/** Request Metadata patch properties. */
-export interface RequestMetadataUpdatableProperties {
-  /** Resource Action of the item being approved or declined. */
-  resourceAction?: string;
-  /** Route name for the approval callback */
-  approvalCallbackRoute?: string;
-  /** Payload to be sent upon any action on approval request */
-  approvalCallbackPayload?: string;
-  /** Status of the approval. Uses ApprovalStatus enum. */
-  approvalStatus?: ApprovalStatus | (string & {});
-}
-export const RequestMetadataUpdatableProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    resourceAction: S.optional(S.String),
-    approvalCallbackRoute: S.optional(S.String),
-    approvalCallbackPayload: S.optional(S.String),
-    approvalStatus: S.optional(ApprovalStatus),
-  }),
-).annotate({
-  identifier: "RequestMetadataUpdatableProperties",
-}) as any as S.Schema<RequestMetadataUpdatableProperties>;
-
-/** Approvals patch properties. */
-export interface ApprovalPatchPropertiesInput {
-  /** Parameter for optimizing query results */
-  parentResourceId?: string;
-  /** Parameter for optimizing query results */
-  grandparentResourceId?: string;
-  /** List of approvers for the approval request */
-  approvers?: ApprovalPatchPropertiesInputApproversList;
-  /** Ticket ID for the approval request */
-  ticketId?: string;
-  /** Approval request creation time */
-  createdAt?: string;
-  /** Approval request state change time, time at which approval request state changed from pending to approved or rejected. */
-  stateChangedAt?: string;
-  /** Request metadata for the approval request. */
-  requestMetadata?: RequestMetadataUpdatableProperties;
-}
-export const ApprovalPatchPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    parentResourceId: S.optional(S.String),
-    grandparentResourceId: S.optional(S.String),
-    approvers: S.optional(ApprovalPatchPropertiesInputApproversList),
-    ticketId: S.optional(S.String),
-    createdAt: S.optional(S.String),
-    stateChangedAt: S.optional(S.String),
-    requestMetadata: S.optional(RequestMetadataUpdatableProperties),
-  }),
-).annotate({
-  identifier: "ApprovalPatchPropertiesInput",
-}) as any as S.Schema<ApprovalPatchPropertiesInput>;
-
-export interface ApprovalUpdateRequest {
-  /** The fully qualified Azure Resource manager identifier of the resource. */
-  resourceUri: string;
-  /** The name of the approvals resource. */
-  approvalName: string;
-  /** Approval Patch properties */
-  properties?: ApprovalPatchPropertiesInput;
-}
-export const ApprovalUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    resourceUri: S.String.pipe(T.Label()),
-    approvalName: S.String.pipe(T.Label()),
-    properties: S.optional(ApprovalPatchPropertiesInput),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/{resourceUri}/providers/Microsoft.Mission/approvals/{approvalName}",
-      code: 200,
-      apiVersion: "2026-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "ApprovalUpdateRequest",
-}) as any as S.Schema<ApprovalUpdateRequest>;
-
-export interface ApprovalUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: ApprovalProperties;
-}
-export const ApprovalUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ApprovalProperties),
-  }),
-).annotate({
-  identifier: "ApprovalUpdateResponse",
-}) as any as S.Schema<ApprovalUpdateResponse>;
-
 /** Subnet Configuration */
 export interface SubnetConfigurationInput {
   /** Subnet name. */
@@ -671,7 +368,7 @@ export const EnclaveVirtualNetworkModelInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "EnclaveVirtualNetworkModelInput",
 }) as any as S.Schema<EnclaveVirtualNetworkModelInput>;
 
-export interface CommunityCheckAddressSpaceAvailabilityRequest {
+export interface CheckCommunityAddressSpaceAvailabilityRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -683,7 +380,7 @@ export interface CommunityCheckAddressSpaceAvailabilityRequest {
   /** Information about the enclave virtual network */
   enclaveVirtualNetwork: EnclaveVirtualNetworkModelInput;
 }
-export const CommunityCheckAddressSpaceAvailabilityRequest =
+export const CheckCommunityAddressSpaceAvailabilityRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -700,8 +397,8 @@ export const CommunityCheckAddressSpaceAvailabilityRequest =
       }),
     ),
   ).annotate({
-    identifier: "CommunityCheckAddressSpaceAvailabilityRequest",
-  }) as any as S.Schema<CommunityCheckAddressSpaceAvailabilityRequest>;
+    identifier: "CheckCommunityAddressSpaceAvailabilityRequest",
+  }) as any as S.Schema<CheckCommunityAddressSpaceAvailabilityRequest>;
 
 /** Response of availability of the requested address space. */
 export interface CheckAddressSpaceAvailabilityResponse {
@@ -1499,38 +1196,6 @@ export const CommunityCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CommunityCreateOrUpdateResponse",
 }) as any as S.Schema<CommunityCreateOrUpdateResponse>;
 
-export interface CommunityDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the communityResource Resource */
-  communityName: string;
-}
-export const CommunityDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    communityName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/communities/{communityName}",
-      code: 200,
-      apiVersion: "2026-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "CommunityDeleteRequest",
-}) as any as S.Schema<CommunityDeleteRequest>;
-
-export interface CommunityDeleteResponse {}
-export const CommunityDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "CommunityDeleteResponse",
-}) as any as S.Schema<CommunityDeleteResponse>;
-
 /** Resource tags. */
 export type CommunityEndpointsCreateOrUpdateRequestTagsMap = {
   [key: string]: string | undefined;
@@ -1745,108 +1410,6 @@ export const CommunityEndpointsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
   identifier: "CommunityEndpointsCreateOrUpdateResponse",
 }) as any as S.Schema<CommunityEndpointsCreateOrUpdateResponse>;
 
-export interface CommunityEndpointsDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the communityResource Resource */
-  communityName: string;
-  /** The name of the Community Endpoint Resource */
-  communityEndpointName: string;
-}
-export const CommunityEndpointsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    communityName: S.String.pipe(T.Label()),
-    communityEndpointName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/communities/{communityName}/communityEndpoints/{communityEndpointName}",
-      code: 200,
-      apiVersion: "2026-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "CommunityEndpointsDeleteRequest",
-}) as any as S.Schema<CommunityEndpointsDeleteRequest>;
-
-export interface CommunityEndpointsDeleteResponse {}
-export const CommunityEndpointsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "CommunityEndpointsDeleteResponse",
-}) as any as S.Schema<CommunityEndpointsDeleteResponse>;
-
-export interface CommunityEndpointsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the communityResource Resource */
-  communityName: string;
-  /** The name of the Community Endpoint Resource */
-  communityEndpointName: string;
-}
-export const CommunityEndpointsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    communityName: S.String.pipe(T.Label()),
-    communityEndpointName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/communities/{communityName}/communityEndpoints/{communityEndpointName}",
-      code: 200,
-      apiVersion: "2026-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "CommunityEndpointsGetRequest",
-}) as any as S.Schema<CommunityEndpointsGetRequest>;
-
-/** Resource tags. */
-export type CommunityEndpointsGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const CommunityEndpointsGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<CommunityEndpointsGetResponseTagsMap>;
-
-export interface CommunityEndpointsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: CommunityEndpointsGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: CommunityEndpointProperties;
-}
-export const CommunityEndpointsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(CommunityEndpointsGetResponseTagsMap),
-    location: S.String,
-    properties: S.optional(CommunityEndpointProperties),
-  }),
-).annotate({
-  identifier: "CommunityEndpointsGetResponse",
-}) as any as S.Schema<CommunityEndpointsGetResponse>;
-
 /** Resource request action indicating action which needed to be performed upon calling approval-callback post action */
 export type CommunityEndpointsHandleApprovalCreationRequestResourceRequestAction =
   | "Create"
@@ -1907,6 +1470,19 @@ export const CommunityEndpointsHandleApprovalCreationRequest =
     identifier: "CommunityEndpointsHandleApprovalCreationRequest",
   }) as any as S.Schema<CommunityEndpointsHandleApprovalCreationRequest>;
 
+/** Response body after handling of approvalCallbackRequest */
+export interface ApprovalActionResponse {
+  /** Confirmation message indicating the result of the operation. */
+  message: string;
+}
+export const ApprovalActionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    message: S.String,
+  }),
+).annotate({
+  identifier: "ApprovalActionResponse",
+}) as any as S.Schema<ApprovalActionResponse>;
+
 /** Resource request action indicating action which needed to be performed upon calling approval-deletion-callback post action */
 export type CommunityEndpointsHandleApprovalDeletionRequestResourceRequestAction =
   | "Create"
@@ -1950,43 +1526,75 @@ export const CommunityEndpointsHandleApprovalDeletionRequest =
     identifier: "CommunityEndpointsHandleApprovalDeletionRequest",
   }) as any as S.Schema<CommunityEndpointsHandleApprovalDeletionRequest>;
 
-export interface CommunityEndpointsListByCommunityResourceRequest {
+/** Resource tags. */
+export type DedicatedHubCreateOrUpdateRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const DedicatedHubCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<DedicatedHubCreateOrUpdateRequestTagsMap>;
+
+/** Describes the properties of a Dedicated Hub. */
+export interface DedicatedHubPropertiesInput {
+  /** Designation of hub resource allocation (Pooled or Reserved) */
+  designation?: Designation | (string & {});
+}
+export const DedicatedHubPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    designation: S.optional(Designation),
+  }),
+).annotate({
+  identifier: "DedicatedHubPropertiesInput",
+}) as any as S.Schema<DedicatedHubPropertiesInput>;
+
+export interface DedicatedHubCreateOrUpdateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of the communityResource Resource */
   communityName: string;
+  /** The name of the Dedicated Hub Resource */
+  dedicatedHubName: string;
+  /** Resource tags. */
+  tags?: DedicatedHubCreateOrUpdateRequestTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: DedicatedHubPropertiesInput;
 }
-export const CommunityEndpointsListByCommunityResourceRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      communityName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/communities/{communityName}/communityEndpoints",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "CommunityEndpointsListByCommunityResourceRequest",
-  }) as any as S.Schema<CommunityEndpointsListByCommunityResourceRequest>;
+export const DedicatedHubCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    communityName: S.String.pipe(T.Label()),
+    dedicatedHubName: S.String.pipe(T.Label()),
+    tags: S.optional(DedicatedHubCreateOrUpdateRequestTagsMap),
+    location: S.String,
+    properties: S.optional(DedicatedHubPropertiesInput),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/communities/{communityName}/dedicatedHubs/{dedicatedHubName}",
+      code: 200,
+      apiVersion: "2026-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "DedicatedHubCreateOrUpdateRequest",
+}) as any as S.Schema<DedicatedHubCreateOrUpdateRequest>;
 
 /** Resource tags. */
-export type CommunityEndpointResourceTagsMap = {
+export type DedicatedHubCreateOrUpdateResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const CommunityEndpointResourceTagsMap = /*@__PURE__*/ S.Record(
+export const DedicatedHubCreateOrUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<CommunityEndpointResourceTagsMap>;
+) as any as S.Schema<DedicatedHubCreateOrUpdateResponseTagsMap>;
 
-/** CommunityEndpoint Model Resource */
-export interface CommunityEndpointResource {
+export interface DedicatedHubCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -1996,109 +1604,88 @@ export interface CommunityEndpointResource {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: CommunityEndpointResourceTagsMap;
+  tags?: DedicatedHubCreateOrUpdateResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
-  properties?: CommunityEndpointProperties;
+  properties?: DedicatedHubProperties;
 }
-export const CommunityEndpointResource = /*@__PURE__*/ S.suspend(() =>
+export const DedicatedHubCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(CommunityEndpointResourceTagsMap),
+    tags: S.optional(DedicatedHubCreateOrUpdateResponseTagsMap),
     location: S.String,
-    properties: S.optional(CommunityEndpointProperties),
+    properties: S.optional(DedicatedHubProperties),
   }),
 ).annotate({
-  identifier: "CommunityEndpointResource",
-}) as any as S.Schema<CommunityEndpointResource>;
+  identifier: "DedicatedHubCreateOrUpdateResponse",
+}) as any as S.Schema<DedicatedHubCreateOrUpdateResponse>;
 
-/** The CommunityEndpointResource items on this page */
-export type CommunityEndpointResourceListResultValueList =
-  Array<CommunityEndpointResource>;
-export const CommunityEndpointResourceListResultValueList =
-  /*@__PURE__*/ S.Array(
-    CommunityEndpointResource,
-  ) as any as S.Schema<CommunityEndpointResourceListResultValueList>;
-
-/** The response of a CommunityEndpointResource list operation. */
-export interface CommunityEndpointResourceListResult {
-  /** The CommunityEndpointResource items on this page */
-  value: CommunityEndpointResourceListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
+export interface DeleteApprovalRequest {
+  /** The fully qualified Azure Resource manager identifier of the resource. */
+  resourceUri: string;
+  /** The name of the approvals resource. */
+  approvalName: string;
 }
-export const CommunityEndpointResourceListResult = /*@__PURE__*/ S.suspend(() =>
+export const DeleteApprovalRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: CommunityEndpointResourceListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
+    resourceUri: S.String.pipe(T.Label()),
+    approvalName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/{resourceUri}/providers/Microsoft.Mission/approvals/{approvalName}",
+      code: 200,
+      apiVersion: "2026-04-01",
+    }),
+  ),
 ).annotate({
-  identifier: "CommunityEndpointResourceListResult",
-}) as any as S.Schema<CommunityEndpointResourceListResult>;
+  identifier: "DeleteApprovalRequest",
+}) as any as S.Schema<DeleteApprovalRequest>;
 
-export interface CommunityEndpointsListBySubscriptionRequest {
+export interface DeleteApprovalResponse {}
+export const DeleteApprovalResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteApprovalResponse",
+}) as any as S.Schema<DeleteApprovalResponse>;
+
+export interface DeleteCommunityRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
   /** The name of the communityResource Resource */
   communityName: string;
 }
-export const CommunityEndpointsListBySubscriptionRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      communityName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Mission/communities/{communityName}/communityEndpoints",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "CommunityEndpointsListBySubscriptionRequest",
-  }) as any as S.Schema<CommunityEndpointsListBySubscriptionRequest>;
-
-/** Community Endpoint Rule Collection. */
-export type CommunityEndpointPatchPropertiesRuleCollectionList =
-  Array<CommunityEndpointDestinationRule>;
-export const CommunityEndpointPatchPropertiesRuleCollectionList =
-  /*@__PURE__*/ S.Array(
-    CommunityEndpointDestinationRule,
-  ) as any as S.Schema<CommunityEndpointPatchPropertiesRuleCollectionList>;
-
-/** Community Endpoint patchable Properties */
-export interface CommunityEndpointPatchProperties {
-  /** Community Endpoint Rule Collection. */
-  ruleCollection?: CommunityEndpointPatchPropertiesRuleCollectionList;
-  /** Whether update mode is automatic or manual. */
-  updateMode?: UpdateMode | (string & {});
-}
-export const CommunityEndpointPatchProperties = /*@__PURE__*/ S.suspend(() =>
+export const DeleteCommunityRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    ruleCollection: S.optional(
-      CommunityEndpointPatchPropertiesRuleCollectionList,
-    ),
-    updateMode: S.optional(UpdateMode),
-  }),
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    communityName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/communities/{communityName}",
+      code: 200,
+      apiVersion: "2026-04-01",
+    }),
+  ),
 ).annotate({
-  identifier: "CommunityEndpointPatchProperties",
-}) as any as S.Schema<CommunityEndpointPatchProperties>;
+  identifier: "DeleteCommunityRequest",
+}) as any as S.Schema<DeleteCommunityRequest>;
 
-/** Resource tags. */
-export type CommunityEndpointsUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const CommunityEndpointsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<CommunityEndpointsUpdateRequestTagsMap>;
+export interface DeleteCommunityResponse {}
+export const DeleteCommunityResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteCommunityResponse",
+}) as any as S.Schema<DeleteCommunityResponse>;
 
-export interface CommunityEndpointsUpdateRequest {
+export interface DeleteCommunityEndpointRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2107,41 +1694,368 @@ export interface CommunityEndpointsUpdateRequest {
   communityName: string;
   /** The name of the Community Endpoint Resource */
   communityEndpointName: string;
-  /** Community Endpoint Patch properties */
-  properties?: CommunityEndpointPatchProperties;
-  /** Resource tags. */
-  tags?: CommunityEndpointsUpdateRequestTagsMap;
 }
-export const CommunityEndpointsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteCommunityEndpointRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     communityName: S.String.pipe(T.Label()),
     communityEndpointName: S.String.pipe(T.Label()),
-    properties: S.optional(CommunityEndpointPatchProperties),
-    tags: S.optional(CommunityEndpointsUpdateRequestTagsMap),
   }).pipe(
     T.Http({
-      method: "PATCH",
+      method: "DELETE",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/communities/{communityName}/communityEndpoints/{communityEndpointName}",
       code: 200,
       apiVersion: "2026-04-01",
     }),
   ),
 ).annotate({
-  identifier: "CommunityEndpointsUpdateRequest",
-}) as any as S.Schema<CommunityEndpointsUpdateRequest>;
+  identifier: "DeleteCommunityEndpointRequest",
+}) as any as S.Schema<DeleteCommunityEndpointRequest>;
+
+export interface DeleteCommunityEndpointResponse {}
+export const DeleteCommunityEndpointResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteCommunityEndpointResponse",
+}) as any as S.Schema<DeleteCommunityEndpointResponse>;
+
+export interface DeleteDedicatedHubRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the communityResource Resource */
+  communityName: string;
+  /** The name of the Dedicated Hub Resource */
+  dedicatedHubName: string;
+}
+export const DeleteDedicatedHubRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    communityName: S.String.pipe(T.Label()),
+    dedicatedHubName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/communities/{communityName}/dedicatedHubs/{dedicatedHubName}",
+      code: 200,
+      apiVersion: "2026-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteDedicatedHubRequest",
+}) as any as S.Schema<DeleteDedicatedHubRequest>;
+
+export interface DeleteDedicatedHubResponse {}
+export const DeleteDedicatedHubResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteDedicatedHubResponse",
+}) as any as S.Schema<DeleteDedicatedHubResponse>;
+
+export interface DeleteEnclaveConnectionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Enclave Connection Resource */
+  enclaveConnectionName: string;
+}
+export const DeleteEnclaveConnectionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    enclaveConnectionName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/enclaveConnections/{enclaveConnectionName}",
+      code: 200,
+      apiVersion: "2026-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteEnclaveConnectionRequest",
+}) as any as S.Schema<DeleteEnclaveConnectionRequest>;
+
+export interface DeleteEnclaveConnectionResponse {}
+export const DeleteEnclaveConnectionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteEnclaveConnectionResponse",
+}) as any as S.Schema<DeleteEnclaveConnectionResponse>;
+
+export interface DeleteEnclaveEndpointRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the enclaveResource Resource */
+  virtualEnclaveName: string;
+  /** The name of the Enclave Endpoint Resource */
+  enclaveEndpointName: string;
+}
+export const DeleteEnclaveEndpointRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    virtualEnclaveName: S.String.pipe(T.Label()),
+    enclaveEndpointName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/virtualEnclaves/{virtualEnclaveName}/enclaveEndpoints/{enclaveEndpointName}",
+      code: 200,
+      apiVersion: "2026-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteEnclaveEndpointRequest",
+}) as any as S.Schema<DeleteEnclaveEndpointRequest>;
+
+export interface DeleteEnclaveEndpointResponse {}
+export const DeleteEnclaveEndpointResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteEnclaveEndpointResponse",
+}) as any as S.Schema<DeleteEnclaveEndpointResponse>;
+
+export interface DeleteTransitHubRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the communityResource Resource */
+  communityName: string;
+  /** The name of the TransitHub Resource */
+  transitHubName: string;
+}
+export const DeleteTransitHubRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    communityName: S.String.pipe(T.Label()),
+    transitHubName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/communities/{communityName}/transitHubs/{transitHubName}",
+      code: 200,
+      apiVersion: "2026-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteTransitHubRequest",
+}) as any as S.Schema<DeleteTransitHubRequest>;
+
+export interface DeleteTransitHubResponse {}
+export const DeleteTransitHubResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteTransitHubResponse",
+}) as any as S.Schema<DeleteTransitHubResponse>;
+
+export interface DeleteVirtualEnclaveRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the enclaveResource Resource */
+  virtualEnclaveName: string;
+}
+export const DeleteVirtualEnclaveRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    virtualEnclaveName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/virtualEnclaves/{virtualEnclaveName}",
+      code: 200,
+      apiVersion: "2026-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteVirtualEnclaveRequest",
+}) as any as S.Schema<DeleteVirtualEnclaveRequest>;
+
+export interface DeleteVirtualEnclaveResponse {}
+export const DeleteVirtualEnclaveResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteVirtualEnclaveResponse",
+}) as any as S.Schema<DeleteVirtualEnclaveResponse>;
+
+export interface DeleteWorkloadRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the enclaveResource Resource */
+  virtualEnclaveName: string;
+  /** The name of the workloadResource Resource */
+  workloadName: string;
+}
+export const DeleteWorkloadRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    virtualEnclaveName: S.String.pipe(T.Label()),
+    workloadName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/virtualEnclaves/{virtualEnclaveName}/workloads/{workloadName}",
+      code: 200,
+      apiVersion: "2026-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteWorkloadRequest",
+}) as any as S.Schema<DeleteWorkloadRequest>;
+
+export interface DeleteWorkloadResponse {}
+export const DeleteWorkloadResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteWorkloadResponse",
+}) as any as S.Schema<DeleteWorkloadResponse>;
 
 /** Resource tags. */
-export type CommunityEndpointsUpdateResponseTagsMap = {
+export type EnclaveConnectionCreateOrUpdateRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const CommunityEndpointsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<CommunityEndpointsUpdateResponseTagsMap>;
+export const EnclaveConnectionCreateOrUpdateRequestTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<EnclaveConnectionCreateOrUpdateRequestTagsMap>;
 
-export interface CommunityEndpointsUpdateResponse {
+/** Enclave Connection Resource properties */
+export interface EnclaveConnectionPropertiesInput {
+  /** Community Resource Id. */
+  communityResourceId: string;
+  /** Source Resource Id. */
+  sourceResourceId: string;
+  /** Source CIDR. */
+  sourceCidr?: string;
+  /** Destination Endpoint Resource Id. */
+  destinationEndpointId: string;
+}
+export const EnclaveConnectionPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    communityResourceId: S.String,
+    sourceResourceId: S.String,
+    sourceCidr: S.optional(S.String),
+    destinationEndpointId: S.String,
+  }),
+).annotate({
+  identifier: "EnclaveConnectionPropertiesInput",
+}) as any as S.Schema<EnclaveConnectionPropertiesInput>;
+
+export interface EnclaveConnectionCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Enclave Connection Resource */
+  enclaveConnectionName: string;
+  /** Resource tags. */
+  tags?: EnclaveConnectionCreateOrUpdateRequestTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: EnclaveConnectionPropertiesInput;
+}
+export const EnclaveConnectionCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      enclaveConnectionName: S.String.pipe(T.Label()),
+      tags: S.optional(EnclaveConnectionCreateOrUpdateRequestTagsMap),
+      location: S.String,
+      properties: S.optional(EnclaveConnectionPropertiesInput),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/enclaveConnections/{enclaveConnectionName}",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+).annotate({
+  identifier: "EnclaveConnectionCreateOrUpdateRequest",
+}) as any as S.Schema<EnclaveConnectionCreateOrUpdateRequest>;
+
+/** Resource tags. */
+export type EnclaveConnectionCreateOrUpdateResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const EnclaveConnectionCreateOrUpdateResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<EnclaveConnectionCreateOrUpdateResponseTagsMap>;
+
+/** Specifies the state of the enclave connection. */
+export type EnclaveConnectionState =
+  | "PendingApproval"
+  | "PendingUpdate"
+  | "Approved"
+  | "Active"
+  | "Failed"
+  | "Connected"
+  | "Disconnected";
+export const EnclaveConnectionState = /*@__PURE__*/ S.String;
+
+/** List of resource ids modified by enclave Connections. */
+export type EnclaveConnectionPropertiesResourceCollectionList = Array<string>;
+export const EnclaveConnectionPropertiesResourceCollectionList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<EnclaveConnectionPropertiesResourceCollectionList>;
+
+/** Enclave Connection Resource properties */
+export interface EnclaveConnectionProperties {
+  /** The state of the enclaveConnection. */
+  state?: EnclaveConnectionState;
+  /** Community Resource Id. */
+  communityResourceId: string;
+  /** Source Resource Id. */
+  sourceResourceId: string;
+  /** Source CIDR. */
+  sourceCidr?: string;
+  /** Destination Endpoint Resource Id. */
+  destinationEndpointId: string;
+  /** Provisioning State. */
+  provisioningState?: ProvisioningState;
+  /** List of resource ids modified by enclave Connections. */
+  resourceCollection?: EnclaveConnectionPropertiesResourceCollectionList;
+  /** Destination Endpoint supports automatic or manual updates. */
+  updateMode?: UpdateMode;
+}
+export const EnclaveConnectionProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    state: S.optional(EnclaveConnectionState),
+    communityResourceId: S.String,
+    sourceResourceId: S.String,
+    sourceCidr: S.optional(S.String),
+    destinationEndpointId: S.String,
+    provisioningState: S.optional(ProvisioningState),
+    resourceCollection: S.optional(
+      EnclaveConnectionPropertiesResourceCollectionList,
+    ),
+    updateMode: S.optional(UpdateMode),
+  }),
+).annotate({
+  identifier: "EnclaveConnectionProperties",
+}) as any as S.Schema<EnclaveConnectionProperties>;
+
+export interface EnclaveConnectionCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -2151,27 +2065,467 @@ export interface CommunityEndpointsUpdateResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: CommunityEndpointsUpdateResponseTagsMap;
+  tags?: EnclaveConnectionCreateOrUpdateResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
-  properties?: CommunityEndpointProperties;
+  properties?: EnclaveConnectionProperties;
 }
-export const CommunityEndpointsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const EnclaveConnectionCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      tags: S.optional(EnclaveConnectionCreateOrUpdateResponseTagsMap),
+      location: S.String,
+      properties: S.optional(EnclaveConnectionProperties),
+    }),
+).annotate({
+  identifier: "EnclaveConnectionCreateOrUpdateResponse",
+}) as any as S.Schema<EnclaveConnectionCreateOrUpdateResponse>;
+
+/** Resource request action indicating action which needed to be performed upon calling approval-callback post action */
+export type EnclaveConnectionHandleApprovalCreationRequestResourceRequestAction =
+  | "Create"
+  | "Delete"
+  | "Update"
+  | "Reset";
+export const EnclaveConnectionHandleApprovalCreationRequestResourceRequestAction =
+  /*@__PURE__*/ S.String;
+
+/** Approval status indicating 'Approved' or 'Rejected' */
+export type EnclaveConnectionHandleApprovalCreationRequestApprovalStatus =
+  | "Approved"
+  | "Rejected";
+export const EnclaveConnectionHandleApprovalCreationRequestApprovalStatus =
+  /*@__PURE__*/ S.String;
+
+export interface EnclaveConnectionHandleApprovalCreationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Enclave Connection Resource */
+  enclaveConnectionName: string;
+  /** Resource request action indicating action which needed to be performed upon calling approval-callback post action */
+  resourceRequestAction:
+    | EnclaveConnectionHandleApprovalCreationRequestResourceRequestAction
+    | (string & {});
+  /** Approval status indicating 'Approved' or 'Rejected' */
+  approvalStatus:
+    | EnclaveConnectionHandleApprovalCreationRequestApprovalStatus
+    | (string & {});
+  /** Payload requested by client upon approval action */
+  approvalCallbackPayload?: string;
+}
+export const EnclaveConnectionHandleApprovalCreationRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      enclaveConnectionName: S.String.pipe(T.Label()),
+      resourceRequestAction:
+        EnclaveConnectionHandleApprovalCreationRequestResourceRequestAction,
+      approvalStatus:
+        EnclaveConnectionHandleApprovalCreationRequestApprovalStatus,
+      approvalCallbackPayload: S.optional(S.String),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/enclaveConnections/{enclaveConnectionName}/handleApprovalCreation",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "EnclaveConnectionHandleApprovalCreationRequest",
+  }) as any as S.Schema<EnclaveConnectionHandleApprovalCreationRequest>;
+
+/** Resource request action indicating action which needed to be performed upon calling approval-deletion-callback post action */
+export type EnclaveConnectionHandleApprovalDeletionRequestResourceRequestAction =
+  | "Create"
+  | "Delete"
+  | "Update";
+export const EnclaveConnectionHandleApprovalDeletionRequestResourceRequestAction =
+  /*@__PURE__*/ S.String;
+
+export interface EnclaveConnectionHandleApprovalDeletionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Enclave Connection Resource */
+  enclaveConnectionName: string;
+  /** Resource request action indicating action which needed to be performed upon calling approval-deletion-callback post action */
+  resourceRequestAction:
+    | EnclaveConnectionHandleApprovalDeletionRequestResourceRequestAction
+    | (string & {});
+}
+export const EnclaveConnectionHandleApprovalDeletionRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      enclaveConnectionName: S.String.pipe(T.Label()),
+      resourceRequestAction:
+        EnclaveConnectionHandleApprovalDeletionRequestResourceRequestAction,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/enclaveConnections/{enclaveConnectionName}/handleApprovalDeletion",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "EnclaveConnectionHandleApprovalDeletionRequest",
+  }) as any as S.Schema<EnclaveConnectionHandleApprovalDeletionRequest>;
+
+/** Resource tags. */
+export type EnclaveEndpointsCreateOrUpdateRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const EnclaveEndpointsCreateOrUpdateRequestTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<EnclaveEndpointsCreateOrUpdateRequestTagsMap>;
+
+/** Enclave Endpoint Protocol Enum */
+export type EnclaveEndpointProtocol =
+  | "ANY"
+  | "TCP"
+  | "UDP"
+  | "ICMP"
+  | "ESP"
+  | "AH";
+export const EnclaveEndpointProtocol = /*@__PURE__*/ S.String;
+
+/** Protocols. Options specified by Endpoint Protocol Enum. */
+export type EnclaveEndpointDestinationRuleProtocolsList = Array<
+  EnclaveEndpointProtocol | (string & {})
+>;
+export const EnclaveEndpointDestinationRuleProtocolsList =
+  /*@__PURE__*/ S.Array(
+    EnclaveEndpointProtocol,
+  ) as any as S.Schema<EnclaveEndpointDestinationRuleProtocolsList>;
+
+/** Enclave Endpoint Rule Properties */
+export interface EnclaveEndpointDestinationRule {
+  /** Protocols. Options specified by Endpoint Protocol Enum. */
+  protocols?: EnclaveEndpointDestinationRuleProtocolsList;
+  /** Endpoint Rule Name. */
+  endpointRuleName?: string;
+  /** Destination address. Can include multiple CIDR/IP Addresses or fqdn tags or fqdns (for community endpoint) separated by commas. */
+  destination?: string;
+  /** Port. Can include multiple ports separated by commas or a range indicated by a hyphen. */
+  ports?: string;
+}
+export const EnclaveEndpointDestinationRule = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    protocols: S.optional(EnclaveEndpointDestinationRuleProtocolsList),
+    endpointRuleName: S.optional(S.String),
+    destination: S.optional(S.String),
+    ports: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "EnclaveEndpointDestinationRule",
+}) as any as S.Schema<EnclaveEndpointDestinationRule>;
+
+/** Enclave Endpoint Rule Collection. */
+export type EnclaveEndpointPropertiesInputRuleCollectionList =
+  Array<EnclaveEndpointDestinationRule>;
+export const EnclaveEndpointPropertiesInputRuleCollectionList =
+  /*@__PURE__*/ S.Array(
+    EnclaveEndpointDestinationRule,
+  ) as any as S.Schema<EnclaveEndpointPropertiesInputRuleCollectionList>;
+
+/** Enclave Endpoint Resource properties */
+export interface EnclaveEndpointPropertiesInput {
+  /** Enclave Endpoint Rule Collection. */
+  ruleCollection: EnclaveEndpointPropertiesInputRuleCollectionList;
+  /** Whether update mode is automatic or manual. */
+  updateMode?: UpdateMode | (string & {});
+}
+export const EnclaveEndpointPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ruleCollection: EnclaveEndpointPropertiesInputRuleCollectionList,
+    updateMode: S.optional(UpdateMode),
+  }),
+).annotate({
+  identifier: "EnclaveEndpointPropertiesInput",
+}) as any as S.Schema<EnclaveEndpointPropertiesInput>;
+
+export interface EnclaveEndpointsCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the enclaveResource Resource */
+  virtualEnclaveName: string;
+  /** The name of the Enclave Endpoint Resource */
+  enclaveEndpointName: string;
+  /** Resource tags. */
+  tags?: EnclaveEndpointsCreateOrUpdateRequestTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: EnclaveEndpointPropertiesInput;
+}
+export const EnclaveEndpointsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      virtualEnclaveName: S.String.pipe(T.Label()),
+      enclaveEndpointName: S.String.pipe(T.Label()),
+      tags: S.optional(EnclaveEndpointsCreateOrUpdateRequestTagsMap),
+      location: S.String,
+      properties: S.optional(EnclaveEndpointPropertiesInput),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/virtualEnclaves/{virtualEnclaveName}/enclaveEndpoints/{enclaveEndpointName}",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+).annotate({
+  identifier: "EnclaveEndpointsCreateOrUpdateRequest",
+}) as any as S.Schema<EnclaveEndpointsCreateOrUpdateRequest>;
+
+/** Resource tags. */
+export type EnclaveEndpointsCreateOrUpdateResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const EnclaveEndpointsCreateOrUpdateResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<EnclaveEndpointsCreateOrUpdateResponseTagsMap>;
+
+/** Enclave Endpoint Rule Collection. */
+export type EnclaveEndpointPropertiesRuleCollectionList =
+  Array<EnclaveEndpointDestinationRule>;
+export const EnclaveEndpointPropertiesRuleCollectionList =
+  /*@__PURE__*/ S.Array(
+    EnclaveEndpointDestinationRule,
+  ) as any as S.Schema<EnclaveEndpointPropertiesRuleCollectionList>;
+
+/** List of resource ids created by community endpoint. */
+export type EnclaveEndpointPropertiesResourceCollectionList = Array<string>;
+export const EnclaveEndpointPropertiesResourceCollectionList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<EnclaveEndpointPropertiesResourceCollectionList>;
+
+/** Enclave Endpoint Resource properties */
+export interface EnclaveEndpointProperties {
+  /** Enclave Endpoint Rule Collection. */
+  ruleCollection: EnclaveEndpointPropertiesRuleCollectionList;
+  /** List of resource ids created by community endpoint. */
+  resourceCollection?: EnclaveEndpointPropertiesResourceCollectionList;
+  /** Provisioning State. */
+  provisioningState?: ProvisioningState;
+  /** Whether update mode is automatic or manual. */
+  updateMode?: UpdateMode;
+}
+export const EnclaveEndpointProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ruleCollection: EnclaveEndpointPropertiesRuleCollectionList,
+    resourceCollection: S.optional(
+      EnclaveEndpointPropertiesResourceCollectionList,
+    ),
+    provisioningState: S.optional(ProvisioningState),
+    updateMode: S.optional(UpdateMode),
+  }),
+).annotate({
+  identifier: "EnclaveEndpointProperties",
+}) as any as S.Schema<EnclaveEndpointProperties>;
+
+export interface EnclaveEndpointsCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: EnclaveEndpointsCreateOrUpdateResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: EnclaveEndpointProperties;
+}
+export const EnclaveEndpointsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      tags: S.optional(EnclaveEndpointsCreateOrUpdateResponseTagsMap),
+      location: S.String,
+      properties: S.optional(EnclaveEndpointProperties),
+    }),
+).annotate({
+  identifier: "EnclaveEndpointsCreateOrUpdateResponse",
+}) as any as S.Schema<EnclaveEndpointsCreateOrUpdateResponse>;
+
+/** Resource request action indicating action which needed to be performed upon calling approval-callback post action */
+export type EnclaveEndpointsHandleApprovalCreationRequestResourceRequestAction =
+  | "Create"
+  | "Delete"
+  | "Update"
+  | "Reset";
+export const EnclaveEndpointsHandleApprovalCreationRequestResourceRequestAction =
+  /*@__PURE__*/ S.String;
+
+/** Approval status indicating 'Approved' or 'Rejected' */
+export type EnclaveEndpointsHandleApprovalCreationRequestApprovalStatus =
+  | "Approved"
+  | "Rejected";
+export const EnclaveEndpointsHandleApprovalCreationRequestApprovalStatus =
+  /*@__PURE__*/ S.String;
+
+export interface EnclaveEndpointsHandleApprovalCreationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the enclaveResource Resource */
+  virtualEnclaveName: string;
+  /** The name of the Enclave Endpoint Resource */
+  enclaveEndpointName: string;
+  /** Resource request action indicating action which needed to be performed upon calling approval-callback post action */
+  resourceRequestAction:
+    | EnclaveEndpointsHandleApprovalCreationRequestResourceRequestAction
+    | (string & {});
+  /** Approval status indicating 'Approved' or 'Rejected' */
+  approvalStatus:
+    | EnclaveEndpointsHandleApprovalCreationRequestApprovalStatus
+    | (string & {});
+  /** Payload requested by client upon approval action */
+  approvalCallbackPayload?: string;
+}
+export const EnclaveEndpointsHandleApprovalCreationRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      virtualEnclaveName: S.String.pipe(T.Label()),
+      enclaveEndpointName: S.String.pipe(T.Label()),
+      resourceRequestAction:
+        EnclaveEndpointsHandleApprovalCreationRequestResourceRequestAction,
+      approvalStatus:
+        EnclaveEndpointsHandleApprovalCreationRequestApprovalStatus,
+      approvalCallbackPayload: S.optional(S.String),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/virtualEnclaves/{virtualEnclaveName}/enclaveEndpoints/{enclaveEndpointName}/handleApprovalCreation",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "EnclaveEndpointsHandleApprovalCreationRequest",
+  }) as any as S.Schema<EnclaveEndpointsHandleApprovalCreationRequest>;
+
+/** Resource request action indicating action which needed to be performed upon calling approval-deletion-callback post action */
+export type EnclaveEndpointsHandleApprovalDeletionRequestResourceRequestAction =
+  | "Create"
+  | "Delete"
+  | "Update";
+export const EnclaveEndpointsHandleApprovalDeletionRequestResourceRequestAction =
+  /*@__PURE__*/ S.String;
+
+export interface EnclaveEndpointsHandleApprovalDeletionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the enclaveResource Resource */
+  virtualEnclaveName: string;
+  /** The name of the Enclave Endpoint Resource */
+  enclaveEndpointName: string;
+  /** Resource request action indicating action which needed to be performed upon calling approval-deletion-callback post action */
+  resourceRequestAction:
+    | EnclaveEndpointsHandleApprovalDeletionRequestResourceRequestAction
+    | (string & {});
+}
+export const EnclaveEndpointsHandleApprovalDeletionRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      virtualEnclaveName: S.String.pipe(T.Label()),
+      enclaveEndpointName: S.String.pipe(T.Label()),
+      resourceRequestAction:
+        EnclaveEndpointsHandleApprovalDeletionRequestResourceRequestAction,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/virtualEnclaves/{virtualEnclaveName}/enclaveEndpoints/{enclaveEndpointName}/handleApprovalDeletion",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "EnclaveEndpointsHandleApprovalDeletionRequest",
+  }) as any as S.Schema<EnclaveEndpointsHandleApprovalDeletionRequest>;
+
+export interface GetApprovalRequest {
+  /** The fully qualified Azure Resource manager identifier of the resource. */
+  resourceUri: string;
+  /** The name of the approvals resource. */
+  approvalName: string;
+}
+export const GetApprovalRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    resourceUri: S.String.pipe(T.Label()),
+    approvalName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/{resourceUri}/providers/Microsoft.Mission/approvals/{approvalName}",
+      code: 200,
+      apiVersion: "2026-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetApprovalRequest",
+}) as any as S.Schema<GetApprovalRequest>;
+
+export interface GetApprovalResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: ApprovalProperties;
+}
+export const GetApprovalResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(CommunityEndpointsUpdateResponseTagsMap),
-    location: S.String,
-    properties: S.optional(CommunityEndpointProperties),
+    properties: S.optional(ApprovalProperties),
   }),
 ).annotate({
-  identifier: "CommunityEndpointsUpdateResponse",
-}) as any as S.Schema<CommunityEndpointsUpdateResponse>;
+  identifier: "GetApprovalResponse",
+}) as any as S.Schema<GetApprovalResponse>;
 
-export interface CommunityGetRequest {
+export interface GetCommunityRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2179,7 +2533,7 @@ export interface CommunityGetRequest {
   /** The name of the communityResource Resource */
   communityName: string;
 }
-export const CommunityGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetCommunityRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -2193,23 +2547,23 @@ export const CommunityGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "CommunityGetRequest",
-}) as any as S.Schema<CommunityGetRequest>;
+  identifier: "GetCommunityRequest",
+}) as any as S.Schema<GetCommunityRequest>;
 
 /** Resource tags. */
-export type CommunityGetResponseTagsMap = { [key: string]: string | undefined };
-export const CommunityGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetCommunityResponseTagsMap = { [key: string]: string | undefined };
+export const GetCommunityResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<CommunityGetResponseTagsMap>;
+) as any as S.Schema<GetCommunityResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type CommunityGetResponseIdentity =
+export type GetCommunityResponseIdentity =
   CommunityCreateOrUpdateResponseIdentity;
-export const CommunityGetResponseIdentity =
+export const GetCommunityResponseIdentity =
   CommunityCreateOrUpdateResponseIdentity;
 
-export interface CommunityGetResponse {
+export interface GetCommunityResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -2219,7 +2573,7 @@ export interface CommunityGetResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: CommunityGetResponseTagsMap;
+  tags?: GetCommunityResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -2227,28 +2581,981 @@ export interface CommunityGetResponse {
   /** Managed service identity (system assigned and/or user assigned identities) */
   identity?: CommunityCreateOrUpdateResponseIdentity;
 }
-export const CommunityGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetCommunityResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(CommunityGetResponseTagsMap),
+    tags: S.optional(GetCommunityResponseTagsMap),
     location: S.String,
     properties: S.optional(CommunityProperties),
     identity: S.optional(CommunityCreateOrUpdateResponseIdentity),
   }),
 ).annotate({
-  identifier: "CommunityGetResponse",
-}) as any as S.Schema<CommunityGetResponse>;
+  identifier: "GetCommunityResponse",
+}) as any as S.Schema<GetCommunityResponse>;
 
-export interface CommunityListByResourceGroupRequest {
+export interface GetCommunityEndpointRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the communityResource Resource */
+  communityName: string;
+  /** The name of the Community Endpoint Resource */
+  communityEndpointName: string;
+}
+export const GetCommunityEndpointRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    communityName: S.String.pipe(T.Label()),
+    communityEndpointName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/communities/{communityName}/communityEndpoints/{communityEndpointName}",
+      code: 200,
+      apiVersion: "2026-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetCommunityEndpointRequest",
+}) as any as S.Schema<GetCommunityEndpointRequest>;
+
+/** Resource tags. */
+export type GetCommunityEndpointResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetCommunityEndpointResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetCommunityEndpointResponseTagsMap>;
+
+export interface GetCommunityEndpointResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetCommunityEndpointResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: CommunityEndpointProperties;
+}
+export const GetCommunityEndpointResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetCommunityEndpointResponseTagsMap),
+    location: S.String,
+    properties: S.optional(CommunityEndpointProperties),
+  }),
+).annotate({
+  identifier: "GetCommunityEndpointResponse",
+}) as any as S.Schema<GetCommunityEndpointResponse>;
+
+export interface GetDedicatedHubRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the communityResource Resource */
+  communityName: string;
+  /** The name of the Dedicated Hub Resource */
+  dedicatedHubName: string;
+}
+export const GetDedicatedHubRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    communityName: S.String.pipe(T.Label()),
+    dedicatedHubName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/communities/{communityName}/dedicatedHubs/{dedicatedHubName}",
+      code: 200,
+      apiVersion: "2026-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetDedicatedHubRequest",
+}) as any as S.Schema<GetDedicatedHubRequest>;
+
+/** Resource tags. */
+export type GetDedicatedHubResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetDedicatedHubResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetDedicatedHubResponseTagsMap>;
+
+export interface GetDedicatedHubResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetDedicatedHubResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: DedicatedHubProperties;
+}
+export const GetDedicatedHubResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetDedicatedHubResponseTagsMap),
+    location: S.String,
+    properties: S.optional(DedicatedHubProperties),
+  }),
+).annotate({
+  identifier: "GetDedicatedHubResponse",
+}) as any as S.Schema<GetDedicatedHubResponse>;
+
+export interface GetEnclaveConnectionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Enclave Connection Resource */
+  enclaveConnectionName: string;
+}
+export const GetEnclaveConnectionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    enclaveConnectionName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/enclaveConnections/{enclaveConnectionName}",
+      code: 200,
+      apiVersion: "2026-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetEnclaveConnectionRequest",
+}) as any as S.Schema<GetEnclaveConnectionRequest>;
+
+/** Resource tags. */
+export type GetEnclaveConnectionResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetEnclaveConnectionResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetEnclaveConnectionResponseTagsMap>;
+
+export interface GetEnclaveConnectionResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetEnclaveConnectionResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: EnclaveConnectionProperties;
+}
+export const GetEnclaveConnectionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetEnclaveConnectionResponseTagsMap),
+    location: S.String,
+    properties: S.optional(EnclaveConnectionProperties),
+  }),
+).annotate({
+  identifier: "GetEnclaveConnectionResponse",
+}) as any as S.Schema<GetEnclaveConnectionResponse>;
+
+export interface GetEnclaveEndpointRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the enclaveResource Resource */
+  virtualEnclaveName: string;
+  /** The name of the Enclave Endpoint Resource */
+  enclaveEndpointName: string;
+}
+export const GetEnclaveEndpointRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    virtualEnclaveName: S.String.pipe(T.Label()),
+    enclaveEndpointName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/virtualEnclaves/{virtualEnclaveName}/enclaveEndpoints/{enclaveEndpointName}",
+      code: 200,
+      apiVersion: "2026-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetEnclaveEndpointRequest",
+}) as any as S.Schema<GetEnclaveEndpointRequest>;
+
+/** Resource tags. */
+export type GetEnclaveEndpointResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetEnclaveEndpointResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetEnclaveEndpointResponseTagsMap>;
+
+export interface GetEnclaveEndpointResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetEnclaveEndpointResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: EnclaveEndpointProperties;
+}
+export const GetEnclaveEndpointResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetEnclaveEndpointResponseTagsMap),
+    location: S.String,
+    properties: S.optional(EnclaveEndpointProperties),
+  }),
+).annotate({
+  identifier: "GetEnclaveEndpointResponse",
+}) as any as S.Schema<GetEnclaveEndpointResponse>;
+
+export interface GetTransitHubRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the communityResource Resource */
+  communityName: string;
+  /** The name of the TransitHub Resource */
+  transitHubName: string;
+}
+export const GetTransitHubRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    communityName: S.String.pipe(T.Label()),
+    transitHubName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/communities/{communityName}/transitHubs/{transitHubName}",
+      code: 200,
+      apiVersion: "2026-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetTransitHubRequest",
+}) as any as S.Schema<GetTransitHubRequest>;
+
+/** Resource tags. */
+export type GetTransitHubResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetTransitHubResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetTransitHubResponseTagsMap>;
+
+/** Specifies the state of the transitHub. */
+export type TransitHubState =
+  | "PendingApproval"
+  | "Approved"
+  | "PendingUpdate"
+  | "Active"
+  | "Failed";
+export const TransitHubState = /*@__PURE__*/ S.String;
+
+/** Specifies the type of the transitOption. */
+export type TransitOptionType = "ExpressRoute" | "Gateway" | "Peering";
+export const TransitOptionType = /*@__PURE__*/ S.String;
+
+/** TransitOptionParams Properties */
+export interface TransitOptionParams {
+  /** Transit Option Params scaleUnits. */
+  scaleUnits?: number;
+  /** Transit Option Params remoteVirtualNetworkId. */
+  remoteVirtualNetworkId?: string;
+}
+export const TransitOptionParams = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    scaleUnits: S.optional(S.Number),
+    remoteVirtualNetworkId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "TransitOptionParams",
+}) as any as S.Schema<TransitOptionParams>;
+
+/** TransitOption Properties */
+export interface TransitOption {
+  /** Transit Option Type. */
+  type?: TransitOptionType | (string & {});
+  /** Transit Option Params */
+  params?: TransitOptionParams;
+}
+export const TransitOption = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: S.optional(TransitOptionType),
+    params: S.optional(TransitOptionParams),
+  }),
+).annotate({ identifier: "TransitOption" }) as any as S.Schema<TransitOption>;
+
+/** List of resource ids modified by transitHubs. */
+export type TransitHubPropertiesResourceCollectionList = Array<string>;
+export const TransitHubPropertiesResourceCollectionList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<TransitHubPropertiesResourceCollectionList>;
+
+/** Specifies the security provider for the transit hub. */
+export type SecurityProvider = "None" | "AzureFirewall";
+export const SecurityProvider = /*@__PURE__*/ S.String;
+
+/** Describes the properties of an Transit Hub. */
+export interface TransitHubProperties {
+  /** The status of the last operation. */
+  provisioningState?: ProvisioningState;
+  /** The state of the transitHub. */
+  state?: TransitHubState;
+  /** The TransitOption of the transitHub. */
+  transitOption?: TransitOption;
+  /** List of resource ids modified by transitHubs. */
+  resourceCollection?: TransitHubPropertiesResourceCollectionList;
+  /** Specifies the security provider for the transit hub. */
+  securityProvider?: SecurityProvider;
+}
+export const TransitHubProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provisioningState: S.optional(ProvisioningState),
+    state: S.optional(TransitHubState),
+    transitOption: S.optional(TransitOption),
+    resourceCollection: S.optional(TransitHubPropertiesResourceCollectionList),
+    securityProvider: S.optional(SecurityProvider),
+  }),
+).annotate({
+  identifier: "TransitHubProperties",
+}) as any as S.Schema<TransitHubProperties>;
+
+export interface GetTransitHubResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetTransitHubResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: TransitHubProperties;
+}
+export const GetTransitHubResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetTransitHubResponseTagsMap),
+    location: S.String,
+    properties: S.optional(TransitHubProperties),
+  }),
+).annotate({
+  identifier: "GetTransitHubResponse",
+}) as any as S.Schema<GetTransitHubResponse>;
+
+export interface GetVirtualEnclaveRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the enclaveResource Resource */
+  virtualEnclaveName: string;
+}
+export const GetVirtualEnclaveRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    virtualEnclaveName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/virtualEnclaves/{virtualEnclaveName}",
+      code: 200,
+      apiVersion: "2026-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetVirtualEnclaveRequest",
+}) as any as S.Schema<GetVirtualEnclaveRequest>;
+
+/** Resource tags. */
+export type GetVirtualEnclaveResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetVirtualEnclaveResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetVirtualEnclaveResponseTagsMap>;
+
+/** Subnet Configuration */
+export interface SubnetConfiguration {
+  /** Subnet name. */
+  subnetName: string;
+  /** Subnet Resource ID. */
+  subnetResourceId?: string;
+  /** Network prefix size. */
+  networkPrefixSize: number;
+  /** Subnet delegation. */
+  subnetDelegation?: string;
+  /** Address prefix. */
+  addressPrefix?: string;
+  /** Network security group ID. */
+  networkSecurityGroupResourceId?: string;
+}
+export const SubnetConfiguration = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subnetName: S.String,
+    subnetResourceId: S.optional(S.String),
+    networkPrefixSize: S.Number,
+    subnetDelegation: S.optional(S.String),
+    addressPrefix: S.optional(S.String),
+    networkSecurityGroupResourceId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "SubnetConfiguration",
+}) as any as S.Schema<SubnetConfiguration>;
+
+/** Subnet Configurations. */
+export type EnclaveVirtualNetworkModelSubnetConfigurationsList =
+  Array<SubnetConfiguration>;
+export const EnclaveVirtualNetworkModelSubnetConfigurationsList =
+  /*@__PURE__*/ S.Array(
+    SubnetConfiguration,
+  ) as any as S.Schema<EnclaveVirtualNetworkModelSubnetConfigurationsList>;
+
+/** Enclave Virtual Network Properties */
+export interface EnclaveVirtualNetworkModel {
+  /** Network Name. */
+  networkName?: string;
+  /** Network Size. */
+  networkSize?: string;
+  /** Custom CIDR Range. */
+  customCidrRange?: string;
+  /** Subnet Configurations. */
+  subnetConfigurations?: EnclaveVirtualNetworkModelSubnetConfigurationsList;
+  /** Allow Subnet Communication. */
+  allowSubnetCommunication?: boolean;
+}
+export const EnclaveVirtualNetworkModel = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    networkName: S.optional(S.String),
+    networkSize: S.optional(S.String),
+    customCidrRange: S.optional(S.String),
+    subnetConfigurations: S.optional(
+      EnclaveVirtualNetworkModelSubnetConfigurationsList,
+    ),
+    allowSubnetCommunication: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "EnclaveVirtualNetworkModel",
+}) as any as S.Schema<EnclaveVirtualNetworkModel>;
+
+/** Enclave Address Spaces */
+export interface EnclaveAddressSpacesModel {
+  /** Enclave Address Space */
+  enclaveAddressSpace?: string;
+  /** Managed Address Space */
+  managedAddressSpace?: string;
+}
+export const EnclaveAddressSpacesModel = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    enclaveAddressSpace: S.optional(S.String),
+    managedAddressSpace: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "EnclaveAddressSpacesModel",
+}) as any as S.Schema<EnclaveAddressSpacesModel>;
+
+/** List of resource ids created by Virtual Enclave. */
+export type VirtualEnclavePropertiesResourceCollectionList = Array<string>;
+export const VirtualEnclavePropertiesResourceCollectionList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<VirtualEnclavePropertiesResourceCollectionList>;
+
+/** Managed-On-Behalf-Of broker resources */
+export type VirtualEnclavePropertiesManagedOnBehalfOfConfigurationMoboBrokerResourcesList =
+  Array<MoboBrokerResource>;
+export const VirtualEnclavePropertiesManagedOnBehalfOfConfigurationMoboBrokerResourcesList =
+  /*@__PURE__*/ S.Array(
+    MoboBrokerResource,
+  ) as any as S.Schema<VirtualEnclavePropertiesManagedOnBehalfOfConfigurationMoboBrokerResourcesList>;
+
+/** Managed-On-Behalf-Of configuration properties. This configuration exists for the resources where a resource provider manages those resources on behalf of the resource owner. */
+export interface VirtualEnclavePropertiesManagedOnBehalfOfConfiguration {
+  /** Managed-On-Behalf-Of broker resources */
+  moboBrokerResources?: VirtualEnclavePropertiesManagedOnBehalfOfConfigurationMoboBrokerResourcesList;
+}
+export const VirtualEnclavePropertiesManagedOnBehalfOfConfiguration =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      moboBrokerResources: S.optional(
+        VirtualEnclavePropertiesManagedOnBehalfOfConfigurationMoboBrokerResourcesList,
+      ),
+    }),
+  ).annotate({
+    identifier: "VirtualEnclavePropertiesManagedOnBehalfOfConfiguration",
+  }) as any as S.Schema<VirtualEnclavePropertiesManagedOnBehalfOfConfiguration>;
+
+/** Specifies whether resources in the workload resource group(s) are visible through standard RBAC */
+export type VirtualEnclavePropertiesWorkloadResourceVisibility =
+  | "Enabled"
+  | "Disabled";
+export const VirtualEnclavePropertiesWorkloadResourceVisibility =
+  /*@__PURE__*/ S.String;
+
+/** Controls whether standard Azure RBAC role inheritance applies to the workload resource group(s) */
+export type VirtualEnclavePropertiesRbacInheritance = "Enabled" | "Disabled";
+export const VirtualEnclavePropertiesRbacInheritance = /*@__PURE__*/ S.String;
+
+/** Enclave role assignments */
+export type VirtualEnclavePropertiesEnclaveRoleAssignmentsList =
+  Array<RoleAssignmentItem>;
+export const VirtualEnclavePropertiesEnclaveRoleAssignmentsList =
+  /*@__PURE__*/ S.Array(
+    RoleAssignmentItem,
+  ) as any as S.Schema<VirtualEnclavePropertiesEnclaveRoleAssignmentsList>;
+
+/** Workload role assignments */
+export type VirtualEnclavePropertiesWorkloadRoleAssignmentsList =
+  Array<RoleAssignmentItem>;
+export const VirtualEnclavePropertiesWorkloadRoleAssignmentsList =
+  /*@__PURE__*/ S.Array(
+    RoleAssignmentItem,
+  ) as any as S.Schema<VirtualEnclavePropertiesWorkloadRoleAssignmentsList>;
+
+/** Enclave specific policies */
+export type VirtualEnclavePropertiesGovernedServiceListList =
+  Array<GovernedServiceItem>;
+export const VirtualEnclavePropertiesGovernedServiceListList =
+  /*@__PURE__*/ S.Array(
+    GovernedServiceItem,
+  ) as any as S.Schema<VirtualEnclavePropertiesGovernedServiceListList>;
+
+/** Log Analytics Resource Ids. */
+export type EnclaveDefaultSettingsModelLogAnalyticsResourceIdCollectionList =
+  Array<string>;
+export const EnclaveDefaultSettingsModelLogAnalyticsResourceIdCollectionList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<EnclaveDefaultSettingsModelLogAnalyticsResourceIdCollectionList>;
+
+/** Diagnostic Destination. */
+export type EnclaveDefaultSettingsModelDiagnosticDestination =
+  | "CommunityOnly"
+  | "EnclaveOnly"
+  | "Both";
+export const EnclaveDefaultSettingsModelDiagnosticDestination =
+  /*@__PURE__*/ S.String;
+
+/** Virtual Enclave Default Settings */
+export interface EnclaveDefaultSettingsModel {
+  /** Key Vault Resource Id. */
+  keyVaultResourceId?: string;
+  /** Storage Account Resource Id. */
+  storageAccountResourceId?: string;
+  /** Log Analytics Resource Ids. */
+  logAnalyticsResourceIdCollection?: EnclaveDefaultSettingsModelLogAnalyticsResourceIdCollectionList;
+  /** Diagnostic Destination. */
+  diagnosticDestination?: EnclaveDefaultSettingsModelDiagnosticDestination;
+}
+export const EnclaveDefaultSettingsModel = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    keyVaultResourceId: S.optional(S.String),
+    storageAccountResourceId: S.optional(S.String),
+    logAnalyticsResourceIdCollection: S.optional(
+      EnclaveDefaultSettingsModelLogAnalyticsResourceIdCollectionList,
+    ),
+    diagnosticDestination: S.optional(
+      EnclaveDefaultSettingsModelDiagnosticDestination,
+    ),
+  }),
+).annotate({
+  identifier: "EnclaveDefaultSettingsModel",
+}) as any as S.Schema<EnclaveDefaultSettingsModel>;
+
+/** Virtual Enclave ApprovalSettings Properties for 2025-11-01-preview and later versions */
+export interface VirtualEnclaveApprovalSettings {
+  /** Approval configuration for enclave endpoint updates. */
+  enclaveEndpointUpdate?: ApprovalSettingConfiguration;
+  /** Approval configuration for connection creation. */
+  connectionCreation?: ApprovalSettingConfiguration;
+  /** Approval configuration for connection updates. */
+  connectionUpdate?: ApprovalSettingConfiguration;
+  /** Approval configuration for enclave maintenance mode. */
+  enclaveMaintenanceMode?: ApprovalSettingConfiguration;
+}
+export const VirtualEnclaveApprovalSettings = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    enclaveEndpointUpdate: S.optional(ApprovalSettingConfiguration),
+    connectionCreation: S.optional(ApprovalSettingConfiguration),
+    connectionUpdate: S.optional(ApprovalSettingConfiguration),
+    enclaveMaintenanceMode: S.optional(ApprovalSettingConfiguration),
+  }),
+).annotate({
+  identifier: "VirtualEnclaveApprovalSettings",
+}) as any as S.Schema<VirtualEnclaveApprovalSettings>;
+
+/** Virtual Enclave Resource properties */
+export interface VirtualEnclaveProperties {
+  /** Provisioning State. */
+  provisioningState?: ProvisioningState;
+  /** Virtual Network. */
+  enclaveVirtualNetwork: EnclaveVirtualNetworkModel;
+  /** Enclave Address Spaces */
+  enclaveAddressSpaces?: EnclaveAddressSpacesModel;
+  /** Community Resource Id. */
+  communityResourceId: string;
+  /** List of resource ids created by Virtual Enclave. */
+  resourceCollection?: VirtualEnclavePropertiesResourceCollectionList;
+  /** Managed resource group name. */
+  managedResourceGroupName?: string;
+  /** Managed-On-Behalf-Of configuration properties. This configuration exists for the resources where a resource provider manages those resources on behalf of the resource owner. */
+  managedOnBehalfOfConfiguration?: VirtualEnclavePropertiesManagedOnBehalfOfConfiguration;
+  /** Deploy Bastion service (True or False). */
+  bastionEnabled?: boolean;
+  /** Specifies whether resources in the workload resource group(s) are visible through standard RBAC */
+  workloadResourceVisibility?: VirtualEnclavePropertiesWorkloadResourceVisibility;
+  /** Controls whether standard Azure RBAC role inheritance applies to the workload resource group(s) */
+  rbacInheritance?: VirtualEnclavePropertiesRbacInheritance;
+  /** Enclave role assignments */
+  enclaveRoleAssignments?: VirtualEnclavePropertiesEnclaveRoleAssignmentsList;
+  /** Workload role assignments */
+  workloadRoleAssignments?: VirtualEnclavePropertiesWorkloadRoleAssignmentsList;
+  /** Enclave specific policies */
+  governedServiceList?: VirtualEnclavePropertiesGovernedServiceListList;
+  /** Enclave default settings. */
+  enclaveDefaultSettings?: EnclaveDefaultSettingsModel;
+  /** Maintenance Mode configuration. */
+  maintenanceModeConfiguration?: MaintenanceModeConfigurationModel;
+  /** DedicatedHub Resource ID. */
+  dedicatedHubResourceId?: string;
+  /** Approval requirements for various actions on the enclave's resources. */
+  approvalSettings?: VirtualEnclaveApprovalSettings;
+  /** Virtual Enclave Monitoring Settings for diagnostic and virtual network flow logs */
+  monitoringSettings?: MonitoringSettingsModel;
+}
+export const VirtualEnclaveProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provisioningState: S.optional(ProvisioningState),
+    enclaveVirtualNetwork: EnclaveVirtualNetworkModel,
+    enclaveAddressSpaces: S.optional(EnclaveAddressSpacesModel),
+    communityResourceId: S.String,
+    resourceCollection: S.optional(
+      VirtualEnclavePropertiesResourceCollectionList,
+    ),
+    managedResourceGroupName: S.optional(S.String),
+    managedOnBehalfOfConfiguration: S.optional(
+      VirtualEnclavePropertiesManagedOnBehalfOfConfiguration,
+    ),
+    bastionEnabled: S.optional(S.Boolean),
+    workloadResourceVisibility: S.optional(
+      VirtualEnclavePropertiesWorkloadResourceVisibility,
+    ),
+    rbacInheritance: S.optional(VirtualEnclavePropertiesRbacInheritance),
+    enclaveRoleAssignments: S.optional(
+      VirtualEnclavePropertiesEnclaveRoleAssignmentsList,
+    ),
+    workloadRoleAssignments: S.optional(
+      VirtualEnclavePropertiesWorkloadRoleAssignmentsList,
+    ),
+    governedServiceList: S.optional(
+      VirtualEnclavePropertiesGovernedServiceListList,
+    ),
+    enclaveDefaultSettings: S.optional(EnclaveDefaultSettingsModel),
+    maintenanceModeConfiguration: S.optional(MaintenanceModeConfigurationModel),
+    dedicatedHubResourceId: S.optional(S.String),
+    approvalSettings: S.optional(VirtualEnclaveApprovalSettings),
+    monitoringSettings: S.optional(MonitoringSettingsModel),
+  }),
+).annotate({
+  identifier: "VirtualEnclaveProperties",
+}) as any as S.Schema<VirtualEnclaveProperties>;
+
+/** Managed service identity (system assigned and/or user assigned identities) */
+export type GetVirtualEnclaveResponseIdentity =
+  CommunityCreateOrUpdateResponseIdentity;
+export const GetVirtualEnclaveResponseIdentity =
+  CommunityCreateOrUpdateResponseIdentity;
+
+export interface GetVirtualEnclaveResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetVirtualEnclaveResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: VirtualEnclaveProperties;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: CommunityCreateOrUpdateResponseIdentity;
+}
+export const GetVirtualEnclaveResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetVirtualEnclaveResponseTagsMap),
+    location: S.String,
+    properties: S.optional(VirtualEnclaveProperties),
+    identity: S.optional(CommunityCreateOrUpdateResponseIdentity),
+  }),
+).annotate({
+  identifier: "GetVirtualEnclaveResponse",
+}) as any as S.Schema<GetVirtualEnclaveResponse>;
+
+export interface GetWorkloadRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the enclaveResource Resource */
+  virtualEnclaveName: string;
+  /** The name of the workloadResource Resource */
+  workloadName: string;
+}
+export const GetWorkloadRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    virtualEnclaveName: S.String.pipe(T.Label()),
+    workloadName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/virtualEnclaves/{virtualEnclaveName}/workloads/{workloadName}",
+      code: 200,
+      apiVersion: "2026-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetWorkloadRequest",
+}) as any as S.Schema<GetWorkloadRequest>;
+
+/** Resource tags. */
+export type GetWorkloadResponseTagsMap = { [key: string]: string | undefined };
+export const GetWorkloadResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetWorkloadResponseTagsMap>;
+
+/** List of resource group ids. */
+export type WorkloadPropertiesResourceGroupCollectionList = Array<string>;
+export const WorkloadPropertiesResourceGroupCollectionList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<WorkloadPropertiesResourceGroupCollectionList>;
+
+/** Managed-On-Behalf-Of broker resources */
+export type WorkloadPropertiesManagedOnBehalfOfConfigurationMoboBrokerResourcesList =
+  Array<MoboBrokerResource>;
+export const WorkloadPropertiesManagedOnBehalfOfConfigurationMoboBrokerResourcesList =
+  /*@__PURE__*/ S.Array(
+    MoboBrokerResource,
+  ) as any as S.Schema<WorkloadPropertiesManagedOnBehalfOfConfigurationMoboBrokerResourcesList>;
+
+/** Managed-On-Behalf-Of configuration properties. This configuration exists for the resources where a resource provider manages those resources on behalf of the resource owner. */
+export interface WorkloadPropertiesManagedOnBehalfOfConfiguration {
+  /** Managed-On-Behalf-Of broker resources */
+  moboBrokerResources?: WorkloadPropertiesManagedOnBehalfOfConfigurationMoboBrokerResourcesList;
+}
+export const WorkloadPropertiesManagedOnBehalfOfConfiguration =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      moboBrokerResources: S.optional(
+        WorkloadPropertiesManagedOnBehalfOfConfigurationMoboBrokerResourcesList,
+      ),
+    }),
+  ).annotate({
+    identifier: "WorkloadPropertiesManagedOnBehalfOfConfiguration",
+  }) as any as S.Schema<WorkloadPropertiesManagedOnBehalfOfConfiguration>;
+
+/** Workload Resource properties */
+export interface WorkloadProperties {
+  /** Provisioning State. */
+  provisioningState?: ProvisioningState;
+  /** List of resource group ids. */
+  resourceGroupCollection?: WorkloadPropertiesResourceGroupCollectionList;
+  /** Managed-On-Behalf-Of configuration properties. This configuration exists for the resources where a resource provider manages those resources on behalf of the resource owner. */
+  managedOnBehalfOfConfiguration?: WorkloadPropertiesManagedOnBehalfOfConfiguration;
+}
+export const WorkloadProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provisioningState: S.optional(ProvisioningState),
+    resourceGroupCollection: S.optional(
+      WorkloadPropertiesResourceGroupCollectionList,
+    ),
+    managedOnBehalfOfConfiguration: S.optional(
+      WorkloadPropertiesManagedOnBehalfOfConfiguration,
+    ),
+  }),
+).annotate({
+  identifier: "WorkloadProperties",
+}) as any as S.Schema<WorkloadProperties>;
+
+export interface GetWorkloadResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetWorkloadResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: WorkloadProperties;
+}
+export const GetWorkloadResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetWorkloadResponseTagsMap),
+    location: S.String,
+    properties: S.optional(WorkloadProperties),
+  }),
+).annotate({
+  identifier: "GetWorkloadResponse",
+}) as any as S.Schema<GetWorkloadResponse>;
+
+export interface ListApprovalByParentRequest {
+  /** The fully qualified Azure Resource manager identifier of the resource. */
+  resourceUri: string;
+}
+export const ListApprovalByParentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    resourceUri: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/{resourceUri}/providers/Microsoft.Mission/approvals",
+      code: 200,
+      apiVersion: "2026-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListApprovalByParentRequest",
+}) as any as S.Schema<ListApprovalByParentRequest>;
+
+/** Approval Model Resource */
+export interface ApprovalResource {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: ApprovalProperties;
+}
+export const ApprovalResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ApprovalProperties),
+  }),
+).annotate({
+  identifier: "ApprovalResource",
+}) as any as S.Schema<ApprovalResource>;
+
+/** The ApprovalResource items on this page */
+export type ApprovalResourceListResultValueList = Array<ApprovalResource>;
+export const ApprovalResourceListResultValueList = /*@__PURE__*/ S.Array(
+  ApprovalResource,
+) as any as S.Schema<ApprovalResourceListResultValueList>;
+
+/** The response of a ApprovalResource list operation. */
+export interface ApprovalResourceListResult {
+  /** The ApprovalResource items on this page */
+  value: ApprovalResourceListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const ApprovalResourceListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: ApprovalResourceListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ApprovalResourceListResult",
+}) as any as S.Schema<ApprovalResourceListResult>;
+
+export interface ListCommunityByResourceGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
 }
-export const CommunityListByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListCommunityByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -2261,8 +3568,8 @@ export const CommunityListByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "CommunityListByResourceGroupRequest",
-}) as any as S.Schema<CommunityListByResourceGroupRequest>;
+  identifier: "ListCommunityByResourceGroupRequest",
+}) as any as S.Schema<ListCommunityByResourceGroupRequest>;
 
 /** Resource tags. */
 export type CommunityResourceTagsMap = { [key: string]: string | undefined };
@@ -2332,11 +3639,11 @@ export const CommunityResourceListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "CommunityResourceListResult",
 }) as any as S.Schema<CommunityResourceListResult>;
 
-export interface CommunityListBySubscriptionRequest {
+export interface ListCommunityBySubscriptionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
 }
-export const CommunityListBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListCommunityBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
   }).pipe(
@@ -2348,8 +3655,1079 @@ export const CommunityListBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "CommunityListBySubscriptionRequest",
-}) as any as S.Schema<CommunityListBySubscriptionRequest>;
+  identifier: "ListCommunityBySubscriptionRequest",
+}) as any as S.Schema<ListCommunityBySubscriptionRequest>;
+
+export interface ListCommunityEndpointByCommunityResourceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the communityResource Resource */
+  communityName: string;
+}
+export const ListCommunityEndpointByCommunityResourceRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      communityName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/communities/{communityName}/communityEndpoints",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListCommunityEndpointByCommunityResourceRequest",
+  }) as any as S.Schema<ListCommunityEndpointByCommunityResourceRequest>;
+
+/** Resource tags. */
+export type CommunityEndpointResourceTagsMap = {
+  [key: string]: string | undefined;
+};
+export const CommunityEndpointResourceTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<CommunityEndpointResourceTagsMap>;
+
+/** CommunityEndpoint Model Resource */
+export interface CommunityEndpointResource {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: CommunityEndpointResourceTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: CommunityEndpointProperties;
+}
+export const CommunityEndpointResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(CommunityEndpointResourceTagsMap),
+    location: S.String,
+    properties: S.optional(CommunityEndpointProperties),
+  }),
+).annotate({
+  identifier: "CommunityEndpointResource",
+}) as any as S.Schema<CommunityEndpointResource>;
+
+/** The CommunityEndpointResource items on this page */
+export type CommunityEndpointResourceListResultValueList =
+  Array<CommunityEndpointResource>;
+export const CommunityEndpointResourceListResultValueList =
+  /*@__PURE__*/ S.Array(
+    CommunityEndpointResource,
+  ) as any as S.Schema<CommunityEndpointResourceListResultValueList>;
+
+/** The response of a CommunityEndpointResource list operation. */
+export interface CommunityEndpointResourceListResult {
+  /** The CommunityEndpointResource items on this page */
+  value: CommunityEndpointResourceListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const CommunityEndpointResourceListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: CommunityEndpointResourceListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "CommunityEndpointResourceListResult",
+}) as any as S.Schema<CommunityEndpointResourceListResult>;
+
+export interface ListCommunityEndpointBySubscriptionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the communityResource Resource */
+  communityName: string;
+}
+export const ListCommunityEndpointBySubscriptionRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      communityName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Mission/communities/{communityName}/communityEndpoints",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListCommunityEndpointBySubscriptionRequest",
+  }) as any as S.Schema<ListCommunityEndpointBySubscriptionRequest>;
+
+export interface ListDedicatedHubByCommunityResourceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the communityResource Resource */
+  communityName: string;
+}
+export const ListDedicatedHubByCommunityResourceRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      communityName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/communities/{communityName}/dedicatedHubs",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListDedicatedHubByCommunityResourceRequest",
+  }) as any as S.Schema<ListDedicatedHubByCommunityResourceRequest>;
+
+/** The DedicatedHubResource items on this page */
+export type DedicatedHubResourceListResultValueList =
+  Array<DedicatedHubResource>;
+export const DedicatedHubResourceListResultValueList = /*@__PURE__*/ S.Array(
+  DedicatedHubResource,
+) as any as S.Schema<DedicatedHubResourceListResultValueList>;
+
+/** The response of a DedicatedHubResource list operation. */
+export interface DedicatedHubResourceListResult {
+  /** The DedicatedHubResource items on this page */
+  value: DedicatedHubResourceListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const DedicatedHubResourceListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: DedicatedHubResourceListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DedicatedHubResourceListResult",
+}) as any as S.Schema<DedicatedHubResourceListResult>;
+
+export interface ListDedicatedHubBySubscriptionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the communityResource Resource */
+  communityName: string;
+}
+export const ListDedicatedHubBySubscriptionRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      communityName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Mission/communities/{communityName}/dedicatedHubs",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListDedicatedHubBySubscriptionRequest",
+}) as any as S.Schema<ListDedicatedHubBySubscriptionRequest>;
+
+export interface ListEnclaveConnectionByResourceGroupRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+}
+export const ListEnclaveConnectionByResourceGroupRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/enclaveConnections",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListEnclaveConnectionByResourceGroupRequest",
+  }) as any as S.Schema<ListEnclaveConnectionByResourceGroupRequest>;
+
+/** Resource tags. */
+export type EnclaveConnectionResourceTagsMap = {
+  [key: string]: string | undefined;
+};
+export const EnclaveConnectionResourceTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<EnclaveConnectionResourceTagsMap>;
+
+/** EnclaveConnection Model Resource */
+export interface EnclaveConnectionResource {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: EnclaveConnectionResourceTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: EnclaveConnectionProperties;
+}
+export const EnclaveConnectionResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(EnclaveConnectionResourceTagsMap),
+    location: S.String,
+    properties: S.optional(EnclaveConnectionProperties),
+  }),
+).annotate({
+  identifier: "EnclaveConnectionResource",
+}) as any as S.Schema<EnclaveConnectionResource>;
+
+/** The EnclaveConnectionResource items on this page */
+export type EnclaveConnectionResourceListResultValueList =
+  Array<EnclaveConnectionResource>;
+export const EnclaveConnectionResourceListResultValueList =
+  /*@__PURE__*/ S.Array(
+    EnclaveConnectionResource,
+  ) as any as S.Schema<EnclaveConnectionResourceListResultValueList>;
+
+/** The response of a EnclaveConnectionResource list operation. */
+export interface EnclaveConnectionResourceListResult {
+  /** The EnclaveConnectionResource items on this page */
+  value: EnclaveConnectionResourceListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const EnclaveConnectionResourceListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: EnclaveConnectionResourceListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "EnclaveConnectionResourceListResult",
+}) as any as S.Schema<EnclaveConnectionResourceListResult>;
+
+export interface ListEnclaveConnectionBySubscriptionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+}
+export const ListEnclaveConnectionBySubscriptionRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Mission/enclaveConnections",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListEnclaveConnectionBySubscriptionRequest",
+  }) as any as S.Schema<ListEnclaveConnectionBySubscriptionRequest>;
+
+export interface ListEnclaveEndpointByEnclaveResourceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the enclaveResource Resource */
+  virtualEnclaveName: string;
+}
+export const ListEnclaveEndpointByEnclaveResourceRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      virtualEnclaveName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/virtualEnclaves/{virtualEnclaveName}/enclaveEndpoints",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListEnclaveEndpointByEnclaveResourceRequest",
+  }) as any as S.Schema<ListEnclaveEndpointByEnclaveResourceRequest>;
+
+/** Resource tags. */
+export type EnclaveEndpointResourceTagsMap = {
+  [key: string]: string | undefined;
+};
+export const EnclaveEndpointResourceTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<EnclaveEndpointResourceTagsMap>;
+
+/** EnclaveEndpoint Model Resource */
+export interface EnclaveEndpointResource {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: EnclaveEndpointResourceTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: EnclaveEndpointProperties;
+}
+export const EnclaveEndpointResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(EnclaveEndpointResourceTagsMap),
+    location: S.String,
+    properties: S.optional(EnclaveEndpointProperties),
+  }),
+).annotate({
+  identifier: "EnclaveEndpointResource",
+}) as any as S.Schema<EnclaveEndpointResource>;
+
+/** The EnclaveEndpointResource items on this page */
+export type EnclaveEndpointResourceListResultValueList =
+  Array<EnclaveEndpointResource>;
+export const EnclaveEndpointResourceListResultValueList = /*@__PURE__*/ S.Array(
+  EnclaveEndpointResource,
+) as any as S.Schema<EnclaveEndpointResourceListResultValueList>;
+
+/** The response of a EnclaveEndpointResource list operation. */
+export interface EnclaveEndpointResourceListResult {
+  /** The EnclaveEndpointResource items on this page */
+  value: EnclaveEndpointResourceListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const EnclaveEndpointResourceListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: EnclaveEndpointResourceListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "EnclaveEndpointResourceListResult",
+}) as any as S.Schema<EnclaveEndpointResourceListResult>;
+
+export interface ListEnclaveEndpointBySubscriptionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the enclaveResource Resource */
+  virtualEnclaveName: string;
+}
+export const ListEnclaveEndpointBySubscriptionRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      virtualEnclaveName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Mission/virtualEnclaves/{virtualEnclaveName}/enclaveEndpoints",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListEnclaveEndpointBySubscriptionRequest",
+}) as any as S.Schema<ListEnclaveEndpointBySubscriptionRequest>;
+
+export interface ListOperationsRequest {}
+export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/providers/Microsoft.Mission/operations",
+      code: 200,
+      apiVersion: "2026-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListOperationsRequest",
+}) as any as S.Schema<ListOperationsRequest>;
+
+/** Localized display information for this particular operation. */
+export interface OperationDisplay {
+  /** The localized friendly form of the resource provider name, e.g. "Microsoft Monitoring Insights" or "Microsoft Compute". */
+  provider?: string;
+  /** The localized friendly name of the resource type related to this operation. E.g. "Virtual Machines" or "Job Schedule Collections". */
+  resource?: string;
+  /** The concise, localized friendly name for the operation; suitable for dropdowns. E.g. "Create or Update Virtual Machine", "Restart Virtual Machine". */
+  operation?: string;
+  /** The short, localized friendly description of the operation; suitable for tool tips and detailed views. */
+  description?: string;
+}
+export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provider: S.optional(S.String),
+    resource: S.optional(S.String),
+    operation: S.optional(S.String),
+    description: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "OperationDisplay",
+}) as any as S.Schema<OperationDisplay>;
+
+/** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
+export type OperationOrigin = "user" | "system" | "user,system";
+export const OperationOrigin = /*@__PURE__*/ S.String;
+
+/** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
+export type OperationActionType = "Internal";
+export const OperationActionType = /*@__PURE__*/ S.String;
+
+/** Details of a REST API operation, returned from the Resource Provider Operations API */
+export interface Operation {
+  /** The name of the operation, as per Resource-Based Access Control (RBAC). Examples: "Microsoft.Compute/virtualMachines/write", "Microsoft.Compute/virtualMachines/capture/action" */
+  name?: string;
+  /** Whether the operation applies to data-plane. This is "true" for data-plane operations and "false" for ARM/control-plane operations. */
+  isDataAction?: boolean;
+  /** Localized display information for this particular operation. */
+  display?: OperationDisplay;
+  /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
+  origin?: OperationOrigin;
+  /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
+  actionType?: OperationActionType;
+}
+export const Operation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    isDataAction: S.optional(S.Boolean),
+    display: S.optional(OperationDisplay),
+    origin: S.optional(OperationOrigin),
+    actionType: S.optional(OperationActionType),
+  }),
+).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
+
+/** List of operations supported by the resource provider */
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
+  Operation,
+) as any as S.Schema<ListOperationsResponseValueList>;
+
+export interface ListOperationsResponse {
+  /** List of operations supported by the resource provider */
+  value?: ListOperationsResponseValueList;
+  /** URL to get the next set of operation list results (if there are any). */
+  nextLink?: string;
+}
+export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(ListOperationsResponseValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ListOperationsResponse",
+}) as any as S.Schema<ListOperationsResponse>;
+
+export interface ListTransitHubByCommunityResourceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the communityResource Resource */
+  communityName: string;
+}
+export const ListTransitHubByCommunityResourceRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      communityName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/communities/{communityName}/transitHubs",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListTransitHubByCommunityResourceRequest",
+}) as any as S.Schema<ListTransitHubByCommunityResourceRequest>;
+
+/** Resource tags. */
+export type TransitHubResourceTagsMap = { [key: string]: string | undefined };
+export const TransitHubResourceTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<TransitHubResourceTagsMap>;
+
+/** TransitHub Model Resource */
+export interface TransitHubResource {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: TransitHubResourceTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: TransitHubProperties;
+}
+export const TransitHubResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(TransitHubResourceTagsMap),
+    location: S.String,
+    properties: S.optional(TransitHubProperties),
+  }),
+).annotate({
+  identifier: "TransitHubResource",
+}) as any as S.Schema<TransitHubResource>;
+
+/** The TransitHubResource items on this page */
+export type TransitHubResourceListResultValueList = Array<TransitHubResource>;
+export const TransitHubResourceListResultValueList = /*@__PURE__*/ S.Array(
+  TransitHubResource,
+) as any as S.Schema<TransitHubResourceListResultValueList>;
+
+/** The response of a TransitHubResource list operation. */
+export interface TransitHubResourceListResult {
+  /** The TransitHubResource items on this page */
+  value: TransitHubResourceListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const TransitHubResourceListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: TransitHubResourceListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "TransitHubResourceListResult",
+}) as any as S.Schema<TransitHubResourceListResult>;
+
+export interface ListTransitHubBySubscriptionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the communityResource Resource */
+  communityName: string;
+}
+export const ListTransitHubBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    communityName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Mission/communities/{communityName}/transitHubs",
+      code: 200,
+      apiVersion: "2026-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListTransitHubBySubscriptionRequest",
+}) as any as S.Schema<ListTransitHubBySubscriptionRequest>;
+
+export interface ListVirtualEnclaveByResourceGroupRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+}
+export const ListVirtualEnclaveByResourceGroupRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/virtualEnclaves",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListVirtualEnclaveByResourceGroupRequest",
+}) as any as S.Schema<ListVirtualEnclaveByResourceGroupRequest>;
+
+/** Resource tags. */
+export type EnclaveResourceTagsMap = { [key: string]: string | undefined };
+export const EnclaveResourceTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<EnclaveResourceTagsMap>;
+
+/** Managed service identity (system assigned and/or user assigned identities) */
+export type EnclaveResourceIdentity = CommunityCreateOrUpdateResponseIdentity;
+export const EnclaveResourceIdentity = CommunityCreateOrUpdateResponseIdentity;
+
+/** Virtual Enclave Model Resource */
+export interface EnclaveResource {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: EnclaveResourceTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: VirtualEnclaveProperties;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: CommunityCreateOrUpdateResponseIdentity;
+}
+export const EnclaveResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(EnclaveResourceTagsMap),
+    location: S.String,
+    properties: S.optional(VirtualEnclaveProperties),
+    identity: S.optional(CommunityCreateOrUpdateResponseIdentity),
+  }),
+).annotate({
+  identifier: "EnclaveResource",
+}) as any as S.Schema<EnclaveResource>;
+
+/** The EnclaveResource items on this page */
+export type EnclaveResourceListResultValueList = Array<EnclaveResource>;
+export const EnclaveResourceListResultValueList = /*@__PURE__*/ S.Array(
+  EnclaveResource,
+) as any as S.Schema<EnclaveResourceListResultValueList>;
+
+/** The response of a EnclaveResource list operation. */
+export interface EnclaveResourceListResult {
+  /** The EnclaveResource items on this page */
+  value: EnclaveResourceListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const EnclaveResourceListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: EnclaveResourceListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "EnclaveResourceListResult",
+}) as any as S.Schema<EnclaveResourceListResult>;
+
+export interface ListVirtualEnclaveBySubscriptionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+}
+export const ListVirtualEnclaveBySubscriptionRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Mission/virtualEnclaves",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListVirtualEnclaveBySubscriptionRequest",
+}) as any as S.Schema<ListVirtualEnclaveBySubscriptionRequest>;
+
+export interface ListWorkloadByEnclaveResourceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the enclaveResource Resource */
+  virtualEnclaveName: string;
+}
+export const ListWorkloadByEnclaveResourceRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      virtualEnclaveName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/virtualEnclaves/{virtualEnclaveName}/workloads",
+        code: 200,
+        apiVersion: "2026-04-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListWorkloadByEnclaveResourceRequest",
+}) as any as S.Schema<ListWorkloadByEnclaveResourceRequest>;
+
+/** Resource tags. */
+export type WorkloadResourceTagsMap = { [key: string]: string | undefined };
+export const WorkloadResourceTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<WorkloadResourceTagsMap>;
+
+/** Workload Model Resource */
+export interface WorkloadResource {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: WorkloadResourceTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: WorkloadProperties;
+}
+export const WorkloadResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(WorkloadResourceTagsMap),
+    location: S.String,
+    properties: S.optional(WorkloadProperties),
+  }),
+).annotate({
+  identifier: "WorkloadResource",
+}) as any as S.Schema<WorkloadResource>;
+
+/** The WorkloadResource items on this page */
+export type WorkloadResourceListResultValueList = Array<WorkloadResource>;
+export const WorkloadResourceListResultValueList = /*@__PURE__*/ S.Array(
+  WorkloadResource,
+) as any as S.Schema<WorkloadResourceListResultValueList>;
+
+/** The response of a WorkloadResource list operation. */
+export interface WorkloadResourceListResult {
+  /** The WorkloadResource items on this page */
+  value: WorkloadResourceListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const WorkloadResourceListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: WorkloadResourceListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "WorkloadResourceListResult",
+}) as any as S.Schema<WorkloadResourceListResult>;
+
+export interface ListWorkloadBySubscriptionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the enclaveResource Resource */
+  virtualEnclaveName: string;
+}
+export const ListWorkloadBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    virtualEnclaveName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Mission/virtualEnclaves/{virtualEnclaveName}/workloads",
+      code: 200,
+      apiVersion: "2026-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListWorkloadBySubscriptionRequest",
+}) as any as S.Schema<ListWorkloadBySubscriptionRequest>;
+
+/** Approval status indicating 'Approved' or 'Rejected' */
+export type NotifyApprovalInitiatorRequestApprovalStatus =
+  | "Approved"
+  | "Rejected";
+export const NotifyApprovalInitiatorRequestApprovalStatus =
+  /*@__PURE__*/ S.String;
+
+export interface NotifyApprovalInitiatorRequest {
+  /** The fully qualified Azure Resource manager identifier of the resource. */
+  resourceUri: string;
+  /** The name of the approvals resource. */
+  approvalName: string;
+  /** Approval status indicating 'Approved' or 'Rejected' */
+  approvalStatus: NotifyApprovalInitiatorRequestApprovalStatus | (string & {});
+}
+export const NotifyApprovalInitiatorRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    resourceUri: S.String.pipe(T.Label()),
+    approvalName: S.String.pipe(T.Label()),
+    approvalStatus: NotifyApprovalInitiatorRequestApprovalStatus,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/{resourceUri}/providers/Microsoft.Mission/approvals/{approvalName}/notifyInitiator",
+      code: 200,
+      apiVersion: "2026-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "NotifyApprovalInitiatorRequest",
+}) as any as S.Schema<NotifyApprovalInitiatorRequest>;
+
+/** Resource tags. */
+export type TransitHubCreateOrUpdateRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const TransitHubCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<TransitHubCreateOrUpdateRequestTagsMap>;
+
+/** Describes the properties of an Transit Hub. */
+export interface TransitHubPropertiesInput {
+  /** The state of the transitHub. */
+  state?: TransitHubState | (string & {});
+  /** The TransitOption of the transitHub. */
+  transitOption?: TransitOption;
+  /** Specifies the security provider for the transit hub. */
+  securityProvider?: SecurityProvider | (string & {});
+}
+export const TransitHubPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    state: S.optional(TransitHubState),
+    transitOption: S.optional(TransitOption),
+    securityProvider: S.optional(SecurityProvider),
+  }),
+).annotate({
+  identifier: "TransitHubPropertiesInput",
+}) as any as S.Schema<TransitHubPropertiesInput>;
+
+export interface TransitHubCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the communityResource Resource */
+  communityName: string;
+  /** The name of the TransitHub Resource */
+  transitHubName: string;
+  /** Resource tags. */
+  tags?: TransitHubCreateOrUpdateRequestTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: TransitHubPropertiesInput;
+}
+export const TransitHubCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    communityName: S.String.pipe(T.Label()),
+    transitHubName: S.String.pipe(T.Label()),
+    tags: S.optional(TransitHubCreateOrUpdateRequestTagsMap),
+    location: S.String,
+    properties: S.optional(TransitHubPropertiesInput),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/communities/{communityName}/transitHubs/{transitHubName}",
+      code: 200,
+      apiVersion: "2026-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "TransitHubCreateOrUpdateRequest",
+}) as any as S.Schema<TransitHubCreateOrUpdateRequest>;
+
+/** Resource tags. */
+export type TransitHubCreateOrUpdateResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const TransitHubCreateOrUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<TransitHubCreateOrUpdateResponseTagsMap>;
+
+export interface TransitHubCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: TransitHubCreateOrUpdateResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: TransitHubProperties;
+}
+export const TransitHubCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(TransitHubCreateOrUpdateResponseTagsMap),
+    location: S.String,
+    properties: S.optional(TransitHubProperties),
+  }),
+).annotate({
+  identifier: "TransitHubCreateOrUpdateResponse",
+}) as any as S.Schema<TransitHubCreateOrUpdateResponse>;
+
+/** List of approvers for the approval request */
+export type ApprovalPatchPropertiesInputApproversList = Array<ApproverInput>;
+export const ApprovalPatchPropertiesInputApproversList = /*@__PURE__*/ S.Array(
+  ApproverInput,
+) as any as S.Schema<ApprovalPatchPropertiesInputApproversList>;
+
+/** Approval Status. It can be Approved, Rejected, Pending, Deleted or Expired. */
+export type ApprovalStatus =
+  | "Approved"
+  | "Rejected"
+  | "Pending"
+  | "Deleted"
+  | "Expired";
+export const ApprovalStatus = /*@__PURE__*/ S.String;
+
+/** Request Metadata patch properties. */
+export interface RequestMetadataUpdatableProperties {
+  /** Resource Action of the item being approved or declined. */
+  resourceAction?: string;
+  /** Route name for the approval callback */
+  approvalCallbackRoute?: string;
+  /** Payload to be sent upon any action on approval request */
+  approvalCallbackPayload?: string;
+  /** Status of the approval. Uses ApprovalStatus enum. */
+  approvalStatus?: ApprovalStatus | (string & {});
+}
+export const RequestMetadataUpdatableProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    resourceAction: S.optional(S.String),
+    approvalCallbackRoute: S.optional(S.String),
+    approvalCallbackPayload: S.optional(S.String),
+    approvalStatus: S.optional(ApprovalStatus),
+  }),
+).annotate({
+  identifier: "RequestMetadataUpdatableProperties",
+}) as any as S.Schema<RequestMetadataUpdatableProperties>;
+
+/** Approvals patch properties. */
+export interface ApprovalPatchPropertiesInput {
+  /** Parameter for optimizing query results */
+  parentResourceId?: string;
+  /** Parameter for optimizing query results */
+  grandparentResourceId?: string;
+  /** List of approvers for the approval request */
+  approvers?: ApprovalPatchPropertiesInputApproversList;
+  /** Ticket ID for the approval request */
+  ticketId?: string;
+  /** Approval request creation time */
+  createdAt?: string;
+  /** Approval request state change time, time at which approval request state changed from pending to approved or rejected. */
+  stateChangedAt?: string;
+  /** Request metadata for the approval request. */
+  requestMetadata?: RequestMetadataUpdatableProperties;
+}
+export const ApprovalPatchPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    parentResourceId: S.optional(S.String),
+    grandparentResourceId: S.optional(S.String),
+    approvers: S.optional(ApprovalPatchPropertiesInputApproversList),
+    ticketId: S.optional(S.String),
+    createdAt: S.optional(S.String),
+    stateChangedAt: S.optional(S.String),
+    requestMetadata: S.optional(RequestMetadataUpdatableProperties),
+  }),
+).annotate({
+  identifier: "ApprovalPatchPropertiesInput",
+}) as any as S.Schema<ApprovalPatchPropertiesInput>;
+
+export interface UpdateApprovalRequest {
+  /** The fully qualified Azure Resource manager identifier of the resource. */
+  resourceUri: string;
+  /** The name of the approvals resource. */
+  approvalName: string;
+  /** Approval Patch properties */
+  properties?: ApprovalPatchPropertiesInput;
+}
+export const UpdateApprovalRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    resourceUri: S.String.pipe(T.Label()),
+    approvalName: S.String.pipe(T.Label()),
+    properties: S.optional(ApprovalPatchPropertiesInput),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/{resourceUri}/providers/Microsoft.Mission/approvals/{approvalName}",
+      code: 200,
+      apiVersion: "2026-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateApprovalRequest",
+}) as any as S.Schema<UpdateApprovalRequest>;
+
+export interface UpdateApprovalResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: ApprovalProperties;
+}
+export const UpdateApprovalResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ApprovalProperties),
+  }),
+).annotate({
+  identifier: "UpdateApprovalResponse",
+}) as any as S.Schema<UpdateApprovalResponse>;
 
 /** DNS Servers. */
 export type CommunityPatchPropertiesInputDnsServersList = Array<string>;
@@ -2562,13 +4940,13 @@ export const CommunityPatchPropertiesInput = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CommunityPatchPropertiesInput>;
 
 /** Resource tags. */
-export type CommunityUpdateRequestTagsMap = {
+export type UpdateCommunityRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const CommunityUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateCommunityRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<CommunityUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateCommunityRequestTagsMap>;
 
 /** Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed). */
 export type AzureResourceManagerCommonTypesManagedServiceIdentityUpdateInputType =
@@ -2618,7 +4996,7 @@ export const AzureResourceManagerCommonTypesManagedServiceIdentityUpdateInput =
       "AzureResourceManagerCommonTypesManagedServiceIdentityUpdateInput",
   }) as any as S.Schema<AzureResourceManagerCommonTypesManagedServiceIdentityUpdateInput>;
 
-export interface CommunityUpdateRequest {
+export interface UpdateCommunityRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2628,17 +5006,17 @@ export interface CommunityUpdateRequest {
   /** Community Patch properties */
   properties?: CommunityPatchPropertiesInput;
   /** Resource tags. */
-  tags?: CommunityUpdateRequestTagsMap;
+  tags?: UpdateCommunityRequestTagsMap;
   /** The managed service identities assigned to this resource. */
   identity?: AzureResourceManagerCommonTypesManagedServiceIdentityUpdateInput;
 }
-export const CommunityUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateCommunityRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     communityName: S.String.pipe(T.Label()),
     properties: S.optional(CommunityPatchPropertiesInput),
-    tags: S.optional(CommunityUpdateRequestTagsMap),
+    tags: S.optional(UpdateCommunityRequestTagsMap),
     identity: S.optional(
       AzureResourceManagerCommonTypesManagedServiceIdentityUpdateInput,
     ),
@@ -2651,25 +5029,25 @@ export const CommunityUpdateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "CommunityUpdateRequest",
-}) as any as S.Schema<CommunityUpdateRequest>;
+  identifier: "UpdateCommunityRequest",
+}) as any as S.Schema<UpdateCommunityRequest>;
 
 /** Resource tags. */
-export type CommunityUpdateResponseTagsMap = {
+export type UpdateCommunityResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const CommunityUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateCommunityResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<CommunityUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateCommunityResponseTagsMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type CommunityUpdateResponseIdentity =
+export type UpdateCommunityResponseIdentity =
   CommunityCreateOrUpdateResponseIdentity;
-export const CommunityUpdateResponseIdentity =
+export const UpdateCommunityResponseIdentity =
   CommunityCreateOrUpdateResponseIdentity;
 
-export interface CommunityUpdateResponse {
+export interface UpdateCommunityResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -2679,7 +5057,7 @@ export interface CommunityUpdateResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: CommunityUpdateResponseTagsMap;
+  tags?: UpdateCommunityResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -2687,90 +5065,100 @@ export interface CommunityUpdateResponse {
   /** Managed service identity (system assigned and/or user assigned identities) */
   identity?: CommunityCreateOrUpdateResponseIdentity;
 }
-export const CommunityUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateCommunityResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(CommunityUpdateResponseTagsMap),
+    tags: S.optional(UpdateCommunityResponseTagsMap),
     location: S.String,
     properties: S.optional(CommunityProperties),
     identity: S.optional(CommunityCreateOrUpdateResponseIdentity),
   }),
 ).annotate({
-  identifier: "CommunityUpdateResponse",
-}) as any as S.Schema<CommunityUpdateResponse>;
+  identifier: "UpdateCommunityResponse",
+}) as any as S.Schema<UpdateCommunityResponse>;
 
-/** Resource tags. */
-export type DedicatedHubCreateOrUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const DedicatedHubCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<DedicatedHubCreateOrUpdateRequestTagsMap>;
+/** Community Endpoint Rule Collection. */
+export type CommunityEndpointPatchPropertiesRuleCollectionList =
+  Array<CommunityEndpointDestinationRule>;
+export const CommunityEndpointPatchPropertiesRuleCollectionList =
+  /*@__PURE__*/ S.Array(
+    CommunityEndpointDestinationRule,
+  ) as any as S.Schema<CommunityEndpointPatchPropertiesRuleCollectionList>;
 
-/** Describes the properties of a Dedicated Hub. */
-export interface DedicatedHubPropertiesInput {
-  /** Designation of hub resource allocation (Pooled or Reserved) */
-  designation?: Designation | (string & {});
+/** Community Endpoint patchable Properties */
+export interface CommunityEndpointPatchProperties {
+  /** Community Endpoint Rule Collection. */
+  ruleCollection?: CommunityEndpointPatchPropertiesRuleCollectionList;
+  /** Whether update mode is automatic or manual. */
+  updateMode?: UpdateMode | (string & {});
 }
-export const DedicatedHubPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+export const CommunityEndpointPatchProperties = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    designation: S.optional(Designation),
+    ruleCollection: S.optional(
+      CommunityEndpointPatchPropertiesRuleCollectionList,
+    ),
+    updateMode: S.optional(UpdateMode),
   }),
 ).annotate({
-  identifier: "DedicatedHubPropertiesInput",
-}) as any as S.Schema<DedicatedHubPropertiesInput>;
+  identifier: "CommunityEndpointPatchProperties",
+}) as any as S.Schema<CommunityEndpointPatchProperties>;
 
-export interface DedicatedHubCreateOrUpdateRequest {
+/** Resource tags. */
+export type UpdateCommunityEndpointRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateCommunityEndpointRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateCommunityEndpointRequestTagsMap>;
+
+export interface UpdateCommunityEndpointRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of the communityResource Resource */
   communityName: string;
-  /** The name of the Dedicated Hub Resource */
-  dedicatedHubName: string;
+  /** The name of the Community Endpoint Resource */
+  communityEndpointName: string;
+  /** Community Endpoint Patch properties */
+  properties?: CommunityEndpointPatchProperties;
   /** Resource tags. */
-  tags?: DedicatedHubCreateOrUpdateRequestTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: DedicatedHubPropertiesInput;
+  tags?: UpdateCommunityEndpointRequestTagsMap;
 }
-export const DedicatedHubCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateCommunityEndpointRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     communityName: S.String.pipe(T.Label()),
-    dedicatedHubName: S.String.pipe(T.Label()),
-    tags: S.optional(DedicatedHubCreateOrUpdateRequestTagsMap),
-    location: S.String,
-    properties: S.optional(DedicatedHubPropertiesInput),
+    communityEndpointName: S.String.pipe(T.Label()),
+    properties: S.optional(CommunityEndpointPatchProperties),
+    tags: S.optional(UpdateCommunityEndpointRequestTagsMap),
   }).pipe(
     T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/communities/{communityName}/dedicatedHubs/{dedicatedHubName}",
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/communities/{communityName}/communityEndpoints/{communityEndpointName}",
       code: 200,
       apiVersion: "2026-04-01",
     }),
   ),
 ).annotate({
-  identifier: "DedicatedHubCreateOrUpdateRequest",
-}) as any as S.Schema<DedicatedHubCreateOrUpdateRequest>;
+  identifier: "UpdateCommunityEndpointRequest",
+}) as any as S.Schema<UpdateCommunityEndpointRequest>;
 
 /** Resource tags. */
-export type DedicatedHubCreateOrUpdateResponseTagsMap = {
+export type UpdateCommunityEndpointResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const DedicatedHubCreateOrUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateCommunityEndpointResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<DedicatedHubCreateOrUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateCommunityEndpointResponseTagsMap>;
 
-export interface DedicatedHubCreateOrUpdateResponse {
+export interface UpdateCommunityEndpointResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -2780,214 +5168,40 @@ export interface DedicatedHubCreateOrUpdateResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: DedicatedHubCreateOrUpdateResponseTagsMap;
+  tags?: UpdateCommunityEndpointResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
-  properties?: DedicatedHubProperties;
+  properties?: CommunityEndpointProperties;
 }
-export const DedicatedHubCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateCommunityEndpointResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(DedicatedHubCreateOrUpdateResponseTagsMap),
+    tags: S.optional(UpdateCommunityEndpointResponseTagsMap),
     location: S.String,
-    properties: S.optional(DedicatedHubProperties),
+    properties: S.optional(CommunityEndpointProperties),
   }),
 ).annotate({
-  identifier: "DedicatedHubCreateOrUpdateResponse",
-}) as any as S.Schema<DedicatedHubCreateOrUpdateResponse>;
-
-export interface DedicatedHubDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the communityResource Resource */
-  communityName: string;
-  /** The name of the Dedicated Hub Resource */
-  dedicatedHubName: string;
-}
-export const DedicatedHubDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    communityName: S.String.pipe(T.Label()),
-    dedicatedHubName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/communities/{communityName}/dedicatedHubs/{dedicatedHubName}",
-      code: 200,
-      apiVersion: "2026-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "DedicatedHubDeleteRequest",
-}) as any as S.Schema<DedicatedHubDeleteRequest>;
-
-export interface DedicatedHubDeleteResponse {}
-export const DedicatedHubDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DedicatedHubDeleteResponse",
-}) as any as S.Schema<DedicatedHubDeleteResponse>;
-
-export interface DedicatedHubGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the communityResource Resource */
-  communityName: string;
-  /** The name of the Dedicated Hub Resource */
-  dedicatedHubName: string;
-}
-export const DedicatedHubGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    communityName: S.String.pipe(T.Label()),
-    dedicatedHubName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/communities/{communityName}/dedicatedHubs/{dedicatedHubName}",
-      code: 200,
-      apiVersion: "2026-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "DedicatedHubGetRequest",
-}) as any as S.Schema<DedicatedHubGetRequest>;
-
-/** Resource tags. */
-export type DedicatedHubGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const DedicatedHubGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<DedicatedHubGetResponseTagsMap>;
-
-export interface DedicatedHubGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: DedicatedHubGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: DedicatedHubProperties;
-}
-export const DedicatedHubGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(DedicatedHubGetResponseTagsMap),
-    location: S.String,
-    properties: S.optional(DedicatedHubProperties),
-  }),
-).annotate({
-  identifier: "DedicatedHubGetResponse",
-}) as any as S.Schema<DedicatedHubGetResponse>;
-
-export interface DedicatedHubListByCommunityResourceRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the communityResource Resource */
-  communityName: string;
-}
-export const DedicatedHubListByCommunityResourceRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      communityName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/communities/{communityName}/dedicatedHubs",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "DedicatedHubListByCommunityResourceRequest",
-  }) as any as S.Schema<DedicatedHubListByCommunityResourceRequest>;
-
-/** The DedicatedHubResource items on this page */
-export type DedicatedHubResourceListResultValueList =
-  Array<DedicatedHubResource>;
-export const DedicatedHubResourceListResultValueList = /*@__PURE__*/ S.Array(
-  DedicatedHubResource,
-) as any as S.Schema<DedicatedHubResourceListResultValueList>;
-
-/** The response of a DedicatedHubResource list operation. */
-export interface DedicatedHubResourceListResult {
-  /** The DedicatedHubResource items on this page */
-  value: DedicatedHubResourceListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const DedicatedHubResourceListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: DedicatedHubResourceListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DedicatedHubResourceListResult",
-}) as any as S.Schema<DedicatedHubResourceListResult>;
-
-export interface DedicatedHubListBySubscriptionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the communityResource Resource */
-  communityName: string;
-}
-export const DedicatedHubListBySubscriptionRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      communityName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Mission/communities/{communityName}/dedicatedHubs",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-).annotate({
-  identifier: "DedicatedHubListBySubscriptionRequest",
-}) as any as S.Schema<DedicatedHubListBySubscriptionRequest>;
+  identifier: "UpdateCommunityEndpointResponse",
+}) as any as S.Schema<UpdateCommunityEndpointResponse>;
 
 /** Dedicated Hub patchable Properties */
 export type DedicatedHubPatchProperties = DedicatedHubPropertiesInput;
 export const DedicatedHubPatchProperties = DedicatedHubPropertiesInput;
 
 /** Resource tags. */
-export type DedicatedHubUpdateRequestTagsMap = {
+export type UpdateDedicatedHubRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const DedicatedHubUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateDedicatedHubRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<DedicatedHubUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateDedicatedHubRequestTagsMap>;
 
-export interface DedicatedHubUpdateRequest {
+export interface UpdateDedicatedHubRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2999,16 +5213,16 @@ export interface DedicatedHubUpdateRequest {
   /** The DedicatedHub resource. */
   properties?: DedicatedHubPropertiesInput;
   /** Resource tags. */
-  tags?: DedicatedHubUpdateRequestTagsMap;
+  tags?: UpdateDedicatedHubRequestTagsMap;
 }
-export const DedicatedHubUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateDedicatedHubRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     communityName: S.String.pipe(T.Label()),
     dedicatedHubName: S.String.pipe(T.Label()),
     properties: S.optional(DedicatedHubPropertiesInput),
-    tags: S.optional(DedicatedHubUpdateRequestTagsMap),
+    tags: S.optional(UpdateDedicatedHubRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -3018,19 +5232,19 @@ export const DedicatedHubUpdateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DedicatedHubUpdateRequest",
-}) as any as S.Schema<DedicatedHubUpdateRequest>;
+  identifier: "UpdateDedicatedHubRequest",
+}) as any as S.Schema<UpdateDedicatedHubRequest>;
 
 /** Resource tags. */
-export type DedicatedHubUpdateResponseTagsMap = {
+export type UpdateDedicatedHubResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const DedicatedHubUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateDedicatedHubResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<DedicatedHubUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateDedicatedHubResponseTagsMap>;
 
-export interface DedicatedHubUpdateResponse {
+export interface UpdateDedicatedHubResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -3040,487 +5254,25 @@ export interface DedicatedHubUpdateResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: DedicatedHubUpdateResponseTagsMap;
+  tags?: UpdateDedicatedHubResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: DedicatedHubProperties;
 }
-export const DedicatedHubUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateDedicatedHubResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(DedicatedHubUpdateResponseTagsMap),
+    tags: S.optional(UpdateDedicatedHubResponseTagsMap),
     location: S.String,
     properties: S.optional(DedicatedHubProperties),
   }),
 ).annotate({
-  identifier: "DedicatedHubUpdateResponse",
-}) as any as S.Schema<DedicatedHubUpdateResponse>;
-
-/** Resource tags. */
-export type EnclaveConnectionCreateOrUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const EnclaveConnectionCreateOrUpdateRequestTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<EnclaveConnectionCreateOrUpdateRequestTagsMap>;
-
-/** Enclave Connection Resource properties */
-export interface EnclaveConnectionPropertiesInput {
-  /** Community Resource Id. */
-  communityResourceId: string;
-  /** Source Resource Id. */
-  sourceResourceId: string;
-  /** Source CIDR. */
-  sourceCidr?: string;
-  /** Destination Endpoint Resource Id. */
-  destinationEndpointId: string;
-}
-export const EnclaveConnectionPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    communityResourceId: S.String,
-    sourceResourceId: S.String,
-    sourceCidr: S.optional(S.String),
-    destinationEndpointId: S.String,
-  }),
-).annotate({
-  identifier: "EnclaveConnectionPropertiesInput",
-}) as any as S.Schema<EnclaveConnectionPropertiesInput>;
-
-export interface EnclaveConnectionCreateOrUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Enclave Connection Resource */
-  enclaveConnectionName: string;
-  /** Resource tags. */
-  tags?: EnclaveConnectionCreateOrUpdateRequestTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: EnclaveConnectionPropertiesInput;
-}
-export const EnclaveConnectionCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      enclaveConnectionName: S.String.pipe(T.Label()),
-      tags: S.optional(EnclaveConnectionCreateOrUpdateRequestTagsMap),
-      location: S.String,
-      properties: S.optional(EnclaveConnectionPropertiesInput),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/enclaveConnections/{enclaveConnectionName}",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-).annotate({
-  identifier: "EnclaveConnectionCreateOrUpdateRequest",
-}) as any as S.Schema<EnclaveConnectionCreateOrUpdateRequest>;
-
-/** Resource tags. */
-export type EnclaveConnectionCreateOrUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const EnclaveConnectionCreateOrUpdateResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<EnclaveConnectionCreateOrUpdateResponseTagsMap>;
-
-/** Specifies the state of the enclave connection. */
-export type EnclaveConnectionState =
-  | "PendingApproval"
-  | "PendingUpdate"
-  | "Approved"
-  | "Active"
-  | "Failed"
-  | "Connected"
-  | "Disconnected";
-export const EnclaveConnectionState = /*@__PURE__*/ S.String;
-
-/** List of resource ids modified by enclave Connections. */
-export type EnclaveConnectionPropertiesResourceCollectionList = Array<string>;
-export const EnclaveConnectionPropertiesResourceCollectionList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<EnclaveConnectionPropertiesResourceCollectionList>;
-
-/** Enclave Connection Resource properties */
-export interface EnclaveConnectionProperties {
-  /** The state of the enclaveConnection. */
-  state?: EnclaveConnectionState;
-  /** Community Resource Id. */
-  communityResourceId: string;
-  /** Source Resource Id. */
-  sourceResourceId: string;
-  /** Source CIDR. */
-  sourceCidr?: string;
-  /** Destination Endpoint Resource Id. */
-  destinationEndpointId: string;
-  /** Provisioning State. */
-  provisioningState?: ProvisioningState;
-  /** List of resource ids modified by enclave Connections. */
-  resourceCollection?: EnclaveConnectionPropertiesResourceCollectionList;
-  /** Destination Endpoint supports automatic or manual updates. */
-  updateMode?: UpdateMode;
-}
-export const EnclaveConnectionProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    state: S.optional(EnclaveConnectionState),
-    communityResourceId: S.String,
-    sourceResourceId: S.String,
-    sourceCidr: S.optional(S.String),
-    destinationEndpointId: S.String,
-    provisioningState: S.optional(ProvisioningState),
-    resourceCollection: S.optional(
-      EnclaveConnectionPropertiesResourceCollectionList,
-    ),
-    updateMode: S.optional(UpdateMode),
-  }),
-).annotate({
-  identifier: "EnclaveConnectionProperties",
-}) as any as S.Schema<EnclaveConnectionProperties>;
-
-export interface EnclaveConnectionCreateOrUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: EnclaveConnectionCreateOrUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: EnclaveConnectionProperties;
-}
-export const EnclaveConnectionCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      tags: S.optional(EnclaveConnectionCreateOrUpdateResponseTagsMap),
-      location: S.String,
-      properties: S.optional(EnclaveConnectionProperties),
-    }),
-).annotate({
-  identifier: "EnclaveConnectionCreateOrUpdateResponse",
-}) as any as S.Schema<EnclaveConnectionCreateOrUpdateResponse>;
-
-export interface EnclaveConnectionDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Enclave Connection Resource */
-  enclaveConnectionName: string;
-}
-export const EnclaveConnectionDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    enclaveConnectionName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/enclaveConnections/{enclaveConnectionName}",
-      code: 200,
-      apiVersion: "2026-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "EnclaveConnectionDeleteRequest",
-}) as any as S.Schema<EnclaveConnectionDeleteRequest>;
-
-export interface EnclaveConnectionDeleteResponse {}
-export const EnclaveConnectionDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "EnclaveConnectionDeleteResponse",
-}) as any as S.Schema<EnclaveConnectionDeleteResponse>;
-
-export interface EnclaveConnectionGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Enclave Connection Resource */
-  enclaveConnectionName: string;
-}
-export const EnclaveConnectionGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    enclaveConnectionName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/enclaveConnections/{enclaveConnectionName}",
-      code: 200,
-      apiVersion: "2026-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "EnclaveConnectionGetRequest",
-}) as any as S.Schema<EnclaveConnectionGetRequest>;
-
-/** Resource tags. */
-export type EnclaveConnectionGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const EnclaveConnectionGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<EnclaveConnectionGetResponseTagsMap>;
-
-export interface EnclaveConnectionGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: EnclaveConnectionGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: EnclaveConnectionProperties;
-}
-export const EnclaveConnectionGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(EnclaveConnectionGetResponseTagsMap),
-    location: S.String,
-    properties: S.optional(EnclaveConnectionProperties),
-  }),
-).annotate({
-  identifier: "EnclaveConnectionGetResponse",
-}) as any as S.Schema<EnclaveConnectionGetResponse>;
-
-/** Resource request action indicating action which needed to be performed upon calling approval-callback post action */
-export type EnclaveConnectionHandleApprovalCreationRequestResourceRequestAction =
-  | "Create"
-  | "Delete"
-  | "Update"
-  | "Reset";
-export const EnclaveConnectionHandleApprovalCreationRequestResourceRequestAction =
-  /*@__PURE__*/ S.String;
-
-/** Approval status indicating 'Approved' or 'Rejected' */
-export type EnclaveConnectionHandleApprovalCreationRequestApprovalStatus =
-  | "Approved"
-  | "Rejected";
-export const EnclaveConnectionHandleApprovalCreationRequestApprovalStatus =
-  /*@__PURE__*/ S.String;
-
-export interface EnclaveConnectionHandleApprovalCreationRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Enclave Connection Resource */
-  enclaveConnectionName: string;
-  /** Resource request action indicating action which needed to be performed upon calling approval-callback post action */
-  resourceRequestAction:
-    | EnclaveConnectionHandleApprovalCreationRequestResourceRequestAction
-    | (string & {});
-  /** Approval status indicating 'Approved' or 'Rejected' */
-  approvalStatus:
-    | EnclaveConnectionHandleApprovalCreationRequestApprovalStatus
-    | (string & {});
-  /** Payload requested by client upon approval action */
-  approvalCallbackPayload?: string;
-}
-export const EnclaveConnectionHandleApprovalCreationRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      enclaveConnectionName: S.String.pipe(T.Label()),
-      resourceRequestAction:
-        EnclaveConnectionHandleApprovalCreationRequestResourceRequestAction,
-      approvalStatus:
-        EnclaveConnectionHandleApprovalCreationRequestApprovalStatus,
-      approvalCallbackPayload: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/enclaveConnections/{enclaveConnectionName}/handleApprovalCreation",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "EnclaveConnectionHandleApprovalCreationRequest",
-  }) as any as S.Schema<EnclaveConnectionHandleApprovalCreationRequest>;
-
-/** Resource request action indicating action which needed to be performed upon calling approval-deletion-callback post action */
-export type EnclaveConnectionHandleApprovalDeletionRequestResourceRequestAction =
-  | "Create"
-  | "Delete"
-  | "Update";
-export const EnclaveConnectionHandleApprovalDeletionRequestResourceRequestAction =
-  /*@__PURE__*/ S.String;
-
-export interface EnclaveConnectionHandleApprovalDeletionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Enclave Connection Resource */
-  enclaveConnectionName: string;
-  /** Resource request action indicating action which needed to be performed upon calling approval-deletion-callback post action */
-  resourceRequestAction:
-    | EnclaveConnectionHandleApprovalDeletionRequestResourceRequestAction
-    | (string & {});
-}
-export const EnclaveConnectionHandleApprovalDeletionRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      enclaveConnectionName: S.String.pipe(T.Label()),
-      resourceRequestAction:
-        EnclaveConnectionHandleApprovalDeletionRequestResourceRequestAction,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/enclaveConnections/{enclaveConnectionName}/handleApprovalDeletion",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "EnclaveConnectionHandleApprovalDeletionRequest",
-  }) as any as S.Schema<EnclaveConnectionHandleApprovalDeletionRequest>;
-
-export interface EnclaveConnectionListByResourceGroupRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-}
-export const EnclaveConnectionListByResourceGroupRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/enclaveConnections",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "EnclaveConnectionListByResourceGroupRequest",
-  }) as any as S.Schema<EnclaveConnectionListByResourceGroupRequest>;
-
-/** Resource tags. */
-export type EnclaveConnectionResourceTagsMap = {
-  [key: string]: string | undefined;
-};
-export const EnclaveConnectionResourceTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<EnclaveConnectionResourceTagsMap>;
-
-/** EnclaveConnection Model Resource */
-export interface EnclaveConnectionResource {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: EnclaveConnectionResourceTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: EnclaveConnectionProperties;
-}
-export const EnclaveConnectionResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(EnclaveConnectionResourceTagsMap),
-    location: S.String,
-    properties: S.optional(EnclaveConnectionProperties),
-  }),
-).annotate({
-  identifier: "EnclaveConnectionResource",
-}) as any as S.Schema<EnclaveConnectionResource>;
-
-/** The EnclaveConnectionResource items on this page */
-export type EnclaveConnectionResourceListResultValueList =
-  Array<EnclaveConnectionResource>;
-export const EnclaveConnectionResourceListResultValueList =
-  /*@__PURE__*/ S.Array(
-    EnclaveConnectionResource,
-  ) as any as S.Schema<EnclaveConnectionResourceListResultValueList>;
-
-/** The response of a EnclaveConnectionResource list operation. */
-export interface EnclaveConnectionResourceListResult {
-  /** The EnclaveConnectionResource items on this page */
-  value: EnclaveConnectionResourceListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const EnclaveConnectionResourceListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: EnclaveConnectionResourceListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "EnclaveConnectionResourceListResult",
-}) as any as S.Schema<EnclaveConnectionResourceListResult>;
-
-export interface EnclaveConnectionListBySubscriptionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-}
-export const EnclaveConnectionListBySubscriptionRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Mission/enclaveConnections",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "EnclaveConnectionListBySubscriptionRequest",
-  }) as any as S.Schema<EnclaveConnectionListBySubscriptionRequest>;
+  identifier: "UpdateDedicatedHubResponse",
+}) as any as S.Schema<UpdateDedicatedHubResponse>;
 
 /** Enclave Connection patchable Properties */
 export interface EnclaveConnectionPatchProperties {
@@ -3536,15 +5288,15 @@ export const EnclaveConnectionPatchProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<EnclaveConnectionPatchProperties>;
 
 /** Resource tags. */
-export type EnclaveConnectionUpdateRequestTagsMap = {
+export type UpdateEnclaveConnectionRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const EnclaveConnectionUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateEnclaveConnectionRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<EnclaveConnectionUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateEnclaveConnectionRequestTagsMap>;
 
-export interface EnclaveConnectionUpdateRequest {
+export interface UpdateEnclaveConnectionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -3554,15 +5306,15 @@ export interface EnclaveConnectionUpdateRequest {
   /** Enclave Connection Patch properties */
   properties?: EnclaveConnectionPatchProperties;
   /** Resource tags. */
-  tags?: EnclaveConnectionUpdateRequestTagsMap;
+  tags?: UpdateEnclaveConnectionRequestTagsMap;
 }
-export const EnclaveConnectionUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateEnclaveConnectionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     enclaveConnectionName: S.String.pipe(T.Label()),
     properties: S.optional(EnclaveConnectionPatchProperties),
-    tags: S.optional(EnclaveConnectionUpdateRequestTagsMap),
+    tags: S.optional(UpdateEnclaveConnectionRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -3572,19 +5324,19 @@ export const EnclaveConnectionUpdateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "EnclaveConnectionUpdateRequest",
-}) as any as S.Schema<EnclaveConnectionUpdateRequest>;
+  identifier: "UpdateEnclaveConnectionRequest",
+}) as any as S.Schema<UpdateEnclaveConnectionRequest>;
 
 /** Resource tags. */
-export type EnclaveConnectionUpdateResponseTagsMap = {
+export type UpdateEnclaveConnectionResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const EnclaveConnectionUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateEnclaveConnectionResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<EnclaveConnectionUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateEnclaveConnectionResponseTagsMap>;
 
-export interface EnclaveConnectionUpdateResponse {
+export interface UpdateEnclaveConnectionResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -3594,535 +5346,25 @@ export interface EnclaveConnectionUpdateResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: EnclaveConnectionUpdateResponseTagsMap;
+  tags?: UpdateEnclaveConnectionResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: EnclaveConnectionProperties;
 }
-export const EnclaveConnectionUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateEnclaveConnectionResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(EnclaveConnectionUpdateResponseTagsMap),
+    tags: S.optional(UpdateEnclaveConnectionResponseTagsMap),
     location: S.String,
     properties: S.optional(EnclaveConnectionProperties),
   }),
 ).annotate({
-  identifier: "EnclaveConnectionUpdateResponse",
-}) as any as S.Schema<EnclaveConnectionUpdateResponse>;
-
-/** Resource tags. */
-export type EnclaveEndpointsCreateOrUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const EnclaveEndpointsCreateOrUpdateRequestTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<EnclaveEndpointsCreateOrUpdateRequestTagsMap>;
-
-/** Enclave Endpoint Protocol Enum */
-export type EnclaveEndpointProtocol =
-  | "ANY"
-  | "TCP"
-  | "UDP"
-  | "ICMP"
-  | "ESP"
-  | "AH";
-export const EnclaveEndpointProtocol = /*@__PURE__*/ S.String;
-
-/** Protocols. Options specified by Endpoint Protocol Enum. */
-export type EnclaveEndpointDestinationRuleProtocolsList = Array<
-  EnclaveEndpointProtocol | (string & {})
->;
-export const EnclaveEndpointDestinationRuleProtocolsList =
-  /*@__PURE__*/ S.Array(
-    EnclaveEndpointProtocol,
-  ) as any as S.Schema<EnclaveEndpointDestinationRuleProtocolsList>;
-
-/** Enclave Endpoint Rule Properties */
-export interface EnclaveEndpointDestinationRule {
-  /** Protocols. Options specified by Endpoint Protocol Enum. */
-  protocols?: EnclaveEndpointDestinationRuleProtocolsList;
-  /** Endpoint Rule Name. */
-  endpointRuleName?: string;
-  /** Destination address. Can include multiple CIDR/IP Addresses or fqdn tags or fqdns (for community endpoint) separated by commas. */
-  destination?: string;
-  /** Port. Can include multiple ports separated by commas or a range indicated by a hyphen. */
-  ports?: string;
-}
-export const EnclaveEndpointDestinationRule = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    protocols: S.optional(EnclaveEndpointDestinationRuleProtocolsList),
-    endpointRuleName: S.optional(S.String),
-    destination: S.optional(S.String),
-    ports: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "EnclaveEndpointDestinationRule",
-}) as any as S.Schema<EnclaveEndpointDestinationRule>;
-
-/** Enclave Endpoint Rule Collection. */
-export type EnclaveEndpointPropertiesInputRuleCollectionList =
-  Array<EnclaveEndpointDestinationRule>;
-export const EnclaveEndpointPropertiesInputRuleCollectionList =
-  /*@__PURE__*/ S.Array(
-    EnclaveEndpointDestinationRule,
-  ) as any as S.Schema<EnclaveEndpointPropertiesInputRuleCollectionList>;
-
-/** Enclave Endpoint Resource properties */
-export interface EnclaveEndpointPropertiesInput {
-  /** Enclave Endpoint Rule Collection. */
-  ruleCollection: EnclaveEndpointPropertiesInputRuleCollectionList;
-  /** Whether update mode is automatic or manual. */
-  updateMode?: UpdateMode | (string & {});
-}
-export const EnclaveEndpointPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ruleCollection: EnclaveEndpointPropertiesInputRuleCollectionList,
-    updateMode: S.optional(UpdateMode),
-  }),
-).annotate({
-  identifier: "EnclaveEndpointPropertiesInput",
-}) as any as S.Schema<EnclaveEndpointPropertiesInput>;
-
-export interface EnclaveEndpointsCreateOrUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the enclaveResource Resource */
-  virtualEnclaveName: string;
-  /** The name of the Enclave Endpoint Resource */
-  enclaveEndpointName: string;
-  /** Resource tags. */
-  tags?: EnclaveEndpointsCreateOrUpdateRequestTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: EnclaveEndpointPropertiesInput;
-}
-export const EnclaveEndpointsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      virtualEnclaveName: S.String.pipe(T.Label()),
-      enclaveEndpointName: S.String.pipe(T.Label()),
-      tags: S.optional(EnclaveEndpointsCreateOrUpdateRequestTagsMap),
-      location: S.String,
-      properties: S.optional(EnclaveEndpointPropertiesInput),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/virtualEnclaves/{virtualEnclaveName}/enclaveEndpoints/{enclaveEndpointName}",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-).annotate({
-  identifier: "EnclaveEndpointsCreateOrUpdateRequest",
-}) as any as S.Schema<EnclaveEndpointsCreateOrUpdateRequest>;
-
-/** Resource tags. */
-export type EnclaveEndpointsCreateOrUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const EnclaveEndpointsCreateOrUpdateResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<EnclaveEndpointsCreateOrUpdateResponseTagsMap>;
-
-/** Enclave Endpoint Rule Collection. */
-export type EnclaveEndpointPropertiesRuleCollectionList =
-  Array<EnclaveEndpointDestinationRule>;
-export const EnclaveEndpointPropertiesRuleCollectionList =
-  /*@__PURE__*/ S.Array(
-    EnclaveEndpointDestinationRule,
-  ) as any as S.Schema<EnclaveEndpointPropertiesRuleCollectionList>;
-
-/** List of resource ids created by community endpoint. */
-export type EnclaveEndpointPropertiesResourceCollectionList = Array<string>;
-export const EnclaveEndpointPropertiesResourceCollectionList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<EnclaveEndpointPropertiesResourceCollectionList>;
-
-/** Enclave Endpoint Resource properties */
-export interface EnclaveEndpointProperties {
-  /** Enclave Endpoint Rule Collection. */
-  ruleCollection: EnclaveEndpointPropertiesRuleCollectionList;
-  /** List of resource ids created by community endpoint. */
-  resourceCollection?: EnclaveEndpointPropertiesResourceCollectionList;
-  /** Provisioning State. */
-  provisioningState?: ProvisioningState;
-  /** Whether update mode is automatic or manual. */
-  updateMode?: UpdateMode;
-}
-export const EnclaveEndpointProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ruleCollection: EnclaveEndpointPropertiesRuleCollectionList,
-    resourceCollection: S.optional(
-      EnclaveEndpointPropertiesResourceCollectionList,
-    ),
-    provisioningState: S.optional(ProvisioningState),
-    updateMode: S.optional(UpdateMode),
-  }),
-).annotate({
-  identifier: "EnclaveEndpointProperties",
-}) as any as S.Schema<EnclaveEndpointProperties>;
-
-export interface EnclaveEndpointsCreateOrUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: EnclaveEndpointsCreateOrUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: EnclaveEndpointProperties;
-}
-export const EnclaveEndpointsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      tags: S.optional(EnclaveEndpointsCreateOrUpdateResponseTagsMap),
-      location: S.String,
-      properties: S.optional(EnclaveEndpointProperties),
-    }),
-).annotate({
-  identifier: "EnclaveEndpointsCreateOrUpdateResponse",
-}) as any as S.Schema<EnclaveEndpointsCreateOrUpdateResponse>;
-
-export interface EnclaveEndpointsDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the enclaveResource Resource */
-  virtualEnclaveName: string;
-  /** The name of the Enclave Endpoint Resource */
-  enclaveEndpointName: string;
-}
-export const EnclaveEndpointsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    virtualEnclaveName: S.String.pipe(T.Label()),
-    enclaveEndpointName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/virtualEnclaves/{virtualEnclaveName}/enclaveEndpoints/{enclaveEndpointName}",
-      code: 200,
-      apiVersion: "2026-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "EnclaveEndpointsDeleteRequest",
-}) as any as S.Schema<EnclaveEndpointsDeleteRequest>;
-
-export interface EnclaveEndpointsDeleteResponse {}
-export const EnclaveEndpointsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "EnclaveEndpointsDeleteResponse",
-}) as any as S.Schema<EnclaveEndpointsDeleteResponse>;
-
-export interface EnclaveEndpointsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the enclaveResource Resource */
-  virtualEnclaveName: string;
-  /** The name of the Enclave Endpoint Resource */
-  enclaveEndpointName: string;
-}
-export const EnclaveEndpointsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    virtualEnclaveName: S.String.pipe(T.Label()),
-    enclaveEndpointName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/virtualEnclaves/{virtualEnclaveName}/enclaveEndpoints/{enclaveEndpointName}",
-      code: 200,
-      apiVersion: "2026-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "EnclaveEndpointsGetRequest",
-}) as any as S.Schema<EnclaveEndpointsGetRequest>;
-
-/** Resource tags. */
-export type EnclaveEndpointsGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const EnclaveEndpointsGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<EnclaveEndpointsGetResponseTagsMap>;
-
-export interface EnclaveEndpointsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: EnclaveEndpointsGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: EnclaveEndpointProperties;
-}
-export const EnclaveEndpointsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(EnclaveEndpointsGetResponseTagsMap),
-    location: S.String,
-    properties: S.optional(EnclaveEndpointProperties),
-  }),
-).annotate({
-  identifier: "EnclaveEndpointsGetResponse",
-}) as any as S.Schema<EnclaveEndpointsGetResponse>;
-
-/** Resource request action indicating action which needed to be performed upon calling approval-callback post action */
-export type EnclaveEndpointsHandleApprovalCreationRequestResourceRequestAction =
-  | "Create"
-  | "Delete"
-  | "Update"
-  | "Reset";
-export const EnclaveEndpointsHandleApprovalCreationRequestResourceRequestAction =
-  /*@__PURE__*/ S.String;
-
-/** Approval status indicating 'Approved' or 'Rejected' */
-export type EnclaveEndpointsHandleApprovalCreationRequestApprovalStatus =
-  | "Approved"
-  | "Rejected";
-export const EnclaveEndpointsHandleApprovalCreationRequestApprovalStatus =
-  /*@__PURE__*/ S.String;
-
-export interface EnclaveEndpointsHandleApprovalCreationRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the enclaveResource Resource */
-  virtualEnclaveName: string;
-  /** The name of the Enclave Endpoint Resource */
-  enclaveEndpointName: string;
-  /** Resource request action indicating action which needed to be performed upon calling approval-callback post action */
-  resourceRequestAction:
-    | EnclaveEndpointsHandleApprovalCreationRequestResourceRequestAction
-    | (string & {});
-  /** Approval status indicating 'Approved' or 'Rejected' */
-  approvalStatus:
-    | EnclaveEndpointsHandleApprovalCreationRequestApprovalStatus
-    | (string & {});
-  /** Payload requested by client upon approval action */
-  approvalCallbackPayload?: string;
-}
-export const EnclaveEndpointsHandleApprovalCreationRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      virtualEnclaveName: S.String.pipe(T.Label()),
-      enclaveEndpointName: S.String.pipe(T.Label()),
-      resourceRequestAction:
-        EnclaveEndpointsHandleApprovalCreationRequestResourceRequestAction,
-      approvalStatus:
-        EnclaveEndpointsHandleApprovalCreationRequestApprovalStatus,
-      approvalCallbackPayload: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/virtualEnclaves/{virtualEnclaveName}/enclaveEndpoints/{enclaveEndpointName}/handleApprovalCreation",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "EnclaveEndpointsHandleApprovalCreationRequest",
-  }) as any as S.Schema<EnclaveEndpointsHandleApprovalCreationRequest>;
-
-/** Resource request action indicating action which needed to be performed upon calling approval-deletion-callback post action */
-export type EnclaveEndpointsHandleApprovalDeletionRequestResourceRequestAction =
-  | "Create"
-  | "Delete"
-  | "Update";
-export const EnclaveEndpointsHandleApprovalDeletionRequestResourceRequestAction =
-  /*@__PURE__*/ S.String;
-
-export interface EnclaveEndpointsHandleApprovalDeletionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the enclaveResource Resource */
-  virtualEnclaveName: string;
-  /** The name of the Enclave Endpoint Resource */
-  enclaveEndpointName: string;
-  /** Resource request action indicating action which needed to be performed upon calling approval-deletion-callback post action */
-  resourceRequestAction:
-    | EnclaveEndpointsHandleApprovalDeletionRequestResourceRequestAction
-    | (string & {});
-}
-export const EnclaveEndpointsHandleApprovalDeletionRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      virtualEnclaveName: S.String.pipe(T.Label()),
-      enclaveEndpointName: S.String.pipe(T.Label()),
-      resourceRequestAction:
-        EnclaveEndpointsHandleApprovalDeletionRequestResourceRequestAction,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/virtualEnclaves/{virtualEnclaveName}/enclaveEndpoints/{enclaveEndpointName}/handleApprovalDeletion",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "EnclaveEndpointsHandleApprovalDeletionRequest",
-  }) as any as S.Schema<EnclaveEndpointsHandleApprovalDeletionRequest>;
-
-export interface EnclaveEndpointsListByEnclaveResourceRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the enclaveResource Resource */
-  virtualEnclaveName: string;
-}
-export const EnclaveEndpointsListByEnclaveResourceRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      virtualEnclaveName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/virtualEnclaves/{virtualEnclaveName}/enclaveEndpoints",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "EnclaveEndpointsListByEnclaveResourceRequest",
-  }) as any as S.Schema<EnclaveEndpointsListByEnclaveResourceRequest>;
-
-/** Resource tags. */
-export type EnclaveEndpointResourceTagsMap = {
-  [key: string]: string | undefined;
-};
-export const EnclaveEndpointResourceTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<EnclaveEndpointResourceTagsMap>;
-
-/** EnclaveEndpoint Model Resource */
-export interface EnclaveEndpointResource {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: EnclaveEndpointResourceTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: EnclaveEndpointProperties;
-}
-export const EnclaveEndpointResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(EnclaveEndpointResourceTagsMap),
-    location: S.String,
-    properties: S.optional(EnclaveEndpointProperties),
-  }),
-).annotate({
-  identifier: "EnclaveEndpointResource",
-}) as any as S.Schema<EnclaveEndpointResource>;
-
-/** The EnclaveEndpointResource items on this page */
-export type EnclaveEndpointResourceListResultValueList =
-  Array<EnclaveEndpointResource>;
-export const EnclaveEndpointResourceListResultValueList = /*@__PURE__*/ S.Array(
-  EnclaveEndpointResource,
-) as any as S.Schema<EnclaveEndpointResourceListResultValueList>;
-
-/** The response of a EnclaveEndpointResource list operation. */
-export interface EnclaveEndpointResourceListResult {
-  /** The EnclaveEndpointResource items on this page */
-  value: EnclaveEndpointResourceListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const EnclaveEndpointResourceListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: EnclaveEndpointResourceListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "EnclaveEndpointResourceListResult",
-}) as any as S.Schema<EnclaveEndpointResourceListResult>;
-
-export interface EnclaveEndpointsListBySubscriptionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the enclaveResource Resource */
-  virtualEnclaveName: string;
-}
-export const EnclaveEndpointsListBySubscriptionRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      virtualEnclaveName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Mission/virtualEnclaves/{virtualEnclaveName}/enclaveEndpoints",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "EnclaveEndpointsListBySubscriptionRequest",
-  }) as any as S.Schema<EnclaveEndpointsListBySubscriptionRequest>;
+  identifier: "UpdateEnclaveConnectionResponse",
+}) as any as S.Schema<UpdateEnclaveConnectionResponse>;
 
 /** Enclave Endpoint Rule Collection. */
 export type EnclaveEndpointPatchPropertiesRuleCollectionList =
@@ -4151,15 +5393,15 @@ export const EnclaveEndpointPatchProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<EnclaveEndpointPatchProperties>;
 
 /** Resource tags. */
-export type EnclaveEndpointsUpdateRequestTagsMap = {
+export type UpdateEnclaveEndpointRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const EnclaveEndpointsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateEnclaveEndpointRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<EnclaveEndpointsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateEnclaveEndpointRequestTagsMap>;
 
-export interface EnclaveEndpointsUpdateRequest {
+export interface UpdateEnclaveEndpointRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -4171,16 +5413,16 @@ export interface EnclaveEndpointsUpdateRequest {
   /** Enclave Endpoint Patch properties */
   properties?: EnclaveEndpointPatchProperties;
   /** Resource tags. */
-  tags?: EnclaveEndpointsUpdateRequestTagsMap;
+  tags?: UpdateEnclaveEndpointRequestTagsMap;
 }
-export const EnclaveEndpointsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateEnclaveEndpointRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     virtualEnclaveName: S.String.pipe(T.Label()),
     enclaveEndpointName: S.String.pipe(T.Label()),
     properties: S.optional(EnclaveEndpointPatchProperties),
-    tags: S.optional(EnclaveEndpointsUpdateRequestTagsMap),
+    tags: S.optional(UpdateEnclaveEndpointRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -4190,19 +5432,19 @@ export const EnclaveEndpointsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "EnclaveEndpointsUpdateRequest",
-}) as any as S.Schema<EnclaveEndpointsUpdateRequest>;
+  identifier: "UpdateEnclaveEndpointRequest",
+}) as any as S.Schema<UpdateEnclaveEndpointRequest>;
 
 /** Resource tags. */
-export type EnclaveEndpointsUpdateResponseTagsMap = {
+export type UpdateEnclaveEndpointResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const EnclaveEndpointsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateEnclaveEndpointResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<EnclaveEndpointsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateEnclaveEndpointResponseTagsMap>;
 
-export interface EnclaveEndpointsUpdateResponse {
+export interface UpdateEnclaveEndpointResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -4212,520 +5454,40 @@ export interface EnclaveEndpointsUpdateResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: EnclaveEndpointsUpdateResponseTagsMap;
+  tags?: UpdateEnclaveEndpointResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: EnclaveEndpointProperties;
 }
-export const EnclaveEndpointsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateEnclaveEndpointResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(EnclaveEndpointsUpdateResponseTagsMap),
+    tags: S.optional(UpdateEnclaveEndpointResponseTagsMap),
     location: S.String,
     properties: S.optional(EnclaveEndpointProperties),
   }),
 ).annotate({
-  identifier: "EnclaveEndpointsUpdateResponse",
-}) as any as S.Schema<EnclaveEndpointsUpdateResponse>;
-
-export interface OperationsListRequest {}
-export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/providers/Microsoft.Mission/operations",
-      code: 200,
-      apiVersion: "2026-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "OperationsListRequest",
-}) as any as S.Schema<OperationsListRequest>;
-
-/** Localized display information for this particular operation. */
-export interface OperationDisplay {
-  /** The localized friendly form of the resource provider name, e.g. "Microsoft Monitoring Insights" or "Microsoft Compute". */
-  provider?: string;
-  /** The localized friendly name of the resource type related to this operation. E.g. "Virtual Machines" or "Job Schedule Collections". */
-  resource?: string;
-  /** The concise, localized friendly name for the operation; suitable for dropdowns. E.g. "Create or Update Virtual Machine", "Restart Virtual Machine". */
-  operation?: string;
-  /** The short, localized friendly description of the operation; suitable for tool tips and detailed views. */
-  description?: string;
-}
-export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provider: S.optional(S.String),
-    resource: S.optional(S.String),
-    operation: S.optional(S.String),
-    description: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OperationDisplay",
-}) as any as S.Schema<OperationDisplay>;
-
-/** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
-export type OperationOrigin = "user" | "system" | "user,system";
-export const OperationOrigin = /*@__PURE__*/ S.String;
-
-/** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
-export type OperationActionType = "Internal";
-export const OperationActionType = /*@__PURE__*/ S.String;
-
-/** Details of a REST API operation, returned from the Resource Provider Operations API */
-export interface Operation {
-  /** The name of the operation, as per Resource-Based Access Control (RBAC). Examples: "Microsoft.Compute/virtualMachines/write", "Microsoft.Compute/virtualMachines/capture/action" */
-  name?: string;
-  /** Whether the operation applies to data-plane. This is "true" for data-plane operations and "false" for ARM/control-plane operations. */
-  isDataAction?: boolean;
-  /** Localized display information for this particular operation. */
-  display?: OperationDisplay;
-  /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
-  origin?: OperationOrigin;
-  /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
-  actionType?: OperationActionType;
-}
-export const Operation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    isDataAction: S.optional(S.Boolean),
-    display: S.optional(OperationDisplay),
-    origin: S.optional(OperationOrigin),
-    actionType: S.optional(OperationActionType),
-  }),
-).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
-
-/** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
-  Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
-
-export interface OperationsListResponse {
-  /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
-  /** URL to get the next set of operation list results (if there are any). */
-  nextLink?: string;
-}
-export const OperationsListResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(OperationsListResponseValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OperationsListResponse",
-}) as any as S.Schema<OperationsListResponse>;
-
-/** Resource tags. */
-export type TransitHubCreateOrUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const TransitHubCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<TransitHubCreateOrUpdateRequestTagsMap>;
-
-/** Specifies the state of the transitHub. */
-export type TransitHubState =
-  | "PendingApproval"
-  | "Approved"
-  | "PendingUpdate"
-  | "Active"
-  | "Failed";
-export const TransitHubState = /*@__PURE__*/ S.String;
-
-/** Specifies the type of the transitOption. */
-export type TransitOptionType = "ExpressRoute" | "Gateway" | "Peering";
-export const TransitOptionType = /*@__PURE__*/ S.String;
-
-/** TransitOptionParams Properties */
-export interface TransitOptionParams {
-  /** Transit Option Params scaleUnits. */
-  scaleUnits?: number;
-  /** Transit Option Params remoteVirtualNetworkId. */
-  remoteVirtualNetworkId?: string;
-}
-export const TransitOptionParams = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    scaleUnits: S.optional(S.Number),
-    remoteVirtualNetworkId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "TransitOptionParams",
-}) as any as S.Schema<TransitOptionParams>;
-
-/** TransitOption Properties */
-export interface TransitOption {
-  /** Transit Option Type. */
-  type?: TransitOptionType | (string & {});
-  /** Transit Option Params */
-  params?: TransitOptionParams;
-}
-export const TransitOption = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: S.optional(TransitOptionType),
-    params: S.optional(TransitOptionParams),
-  }),
-).annotate({ identifier: "TransitOption" }) as any as S.Schema<TransitOption>;
-
-/** Specifies the security provider for the transit hub. */
-export type SecurityProvider = "None" | "AzureFirewall";
-export const SecurityProvider = /*@__PURE__*/ S.String;
-
-/** Describes the properties of an Transit Hub. */
-export interface TransitHubPropertiesInput {
-  /** The state of the transitHub. */
-  state?: TransitHubState | (string & {});
-  /** The TransitOption of the transitHub. */
-  transitOption?: TransitOption;
-  /** Specifies the security provider for the transit hub. */
-  securityProvider?: SecurityProvider | (string & {});
-}
-export const TransitHubPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    state: S.optional(TransitHubState),
-    transitOption: S.optional(TransitOption),
-    securityProvider: S.optional(SecurityProvider),
-  }),
-).annotate({
-  identifier: "TransitHubPropertiesInput",
-}) as any as S.Schema<TransitHubPropertiesInput>;
-
-export interface TransitHubCreateOrUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the communityResource Resource */
-  communityName: string;
-  /** The name of the TransitHub Resource */
-  transitHubName: string;
-  /** Resource tags. */
-  tags?: TransitHubCreateOrUpdateRequestTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: TransitHubPropertiesInput;
-}
-export const TransitHubCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    communityName: S.String.pipe(T.Label()),
-    transitHubName: S.String.pipe(T.Label()),
-    tags: S.optional(TransitHubCreateOrUpdateRequestTagsMap),
-    location: S.String,
-    properties: S.optional(TransitHubPropertiesInput),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/communities/{communityName}/transitHubs/{transitHubName}",
-      code: 200,
-      apiVersion: "2026-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "TransitHubCreateOrUpdateRequest",
-}) as any as S.Schema<TransitHubCreateOrUpdateRequest>;
-
-/** Resource tags. */
-export type TransitHubCreateOrUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const TransitHubCreateOrUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<TransitHubCreateOrUpdateResponseTagsMap>;
-
-/** List of resource ids modified by transitHubs. */
-export type TransitHubPropertiesResourceCollectionList = Array<string>;
-export const TransitHubPropertiesResourceCollectionList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<TransitHubPropertiesResourceCollectionList>;
-
-/** Describes the properties of an Transit Hub. */
-export interface TransitHubProperties {
-  /** The status of the last operation. */
-  provisioningState?: ProvisioningState;
-  /** The state of the transitHub. */
-  state?: TransitHubState;
-  /** The TransitOption of the transitHub. */
-  transitOption?: TransitOption;
-  /** List of resource ids modified by transitHubs. */
-  resourceCollection?: TransitHubPropertiesResourceCollectionList;
-  /** Specifies the security provider for the transit hub. */
-  securityProvider?: SecurityProvider;
-}
-export const TransitHubProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provisioningState: S.optional(ProvisioningState),
-    state: S.optional(TransitHubState),
-    transitOption: S.optional(TransitOption),
-    resourceCollection: S.optional(TransitHubPropertiesResourceCollectionList),
-    securityProvider: S.optional(SecurityProvider),
-  }),
-).annotate({
-  identifier: "TransitHubProperties",
-}) as any as S.Schema<TransitHubProperties>;
-
-export interface TransitHubCreateOrUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: TransitHubCreateOrUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: TransitHubProperties;
-}
-export const TransitHubCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(TransitHubCreateOrUpdateResponseTagsMap),
-    location: S.String,
-    properties: S.optional(TransitHubProperties),
-  }),
-).annotate({
-  identifier: "TransitHubCreateOrUpdateResponse",
-}) as any as S.Schema<TransitHubCreateOrUpdateResponse>;
-
-export interface TransitHubDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the communityResource Resource */
-  communityName: string;
-  /** The name of the TransitHub Resource */
-  transitHubName: string;
-}
-export const TransitHubDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    communityName: S.String.pipe(T.Label()),
-    transitHubName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/communities/{communityName}/transitHubs/{transitHubName}",
-      code: 200,
-      apiVersion: "2026-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "TransitHubDeleteRequest",
-}) as any as S.Schema<TransitHubDeleteRequest>;
-
-export interface TransitHubDeleteResponse {}
-export const TransitHubDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "TransitHubDeleteResponse",
-}) as any as S.Schema<TransitHubDeleteResponse>;
-
-export interface TransitHubGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the communityResource Resource */
-  communityName: string;
-  /** The name of the TransitHub Resource */
-  transitHubName: string;
-}
-export const TransitHubGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    communityName: S.String.pipe(T.Label()),
-    transitHubName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/communities/{communityName}/transitHubs/{transitHubName}",
-      code: 200,
-      apiVersion: "2026-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "TransitHubGetRequest",
-}) as any as S.Schema<TransitHubGetRequest>;
-
-/** Resource tags. */
-export type TransitHubGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const TransitHubGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<TransitHubGetResponseTagsMap>;
-
-export interface TransitHubGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: TransitHubGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: TransitHubProperties;
-}
-export const TransitHubGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(TransitHubGetResponseTagsMap),
-    location: S.String,
-    properties: S.optional(TransitHubProperties),
-  }),
-).annotate({
-  identifier: "TransitHubGetResponse",
-}) as any as S.Schema<TransitHubGetResponse>;
-
-export interface TransitHubListByCommunityResourceRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the communityResource Resource */
-  communityName: string;
-}
-export const TransitHubListByCommunityResourceRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      communityName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/communities/{communityName}/transitHubs",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-).annotate({
-  identifier: "TransitHubListByCommunityResourceRequest",
-}) as any as S.Schema<TransitHubListByCommunityResourceRequest>;
-
-/** Resource tags. */
-export type TransitHubResourceTagsMap = { [key: string]: string | undefined };
-export const TransitHubResourceTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<TransitHubResourceTagsMap>;
-
-/** TransitHub Model Resource */
-export interface TransitHubResource {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: TransitHubResourceTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: TransitHubProperties;
-}
-export const TransitHubResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(TransitHubResourceTagsMap),
-    location: S.String,
-    properties: S.optional(TransitHubProperties),
-  }),
-).annotate({
-  identifier: "TransitHubResource",
-}) as any as S.Schema<TransitHubResource>;
-
-/** The TransitHubResource items on this page */
-export type TransitHubResourceListResultValueList = Array<TransitHubResource>;
-export const TransitHubResourceListResultValueList = /*@__PURE__*/ S.Array(
-  TransitHubResource,
-) as any as S.Schema<TransitHubResourceListResultValueList>;
-
-/** The response of a TransitHubResource list operation. */
-export interface TransitHubResourceListResult {
-  /** The TransitHubResource items on this page */
-  value: TransitHubResourceListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const TransitHubResourceListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: TransitHubResourceListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "TransitHubResourceListResult",
-}) as any as S.Schema<TransitHubResourceListResult>;
-
-export interface TransitHubListBySubscriptionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the communityResource Resource */
-  communityName: string;
-}
-export const TransitHubListBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    communityName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Mission/communities/{communityName}/transitHubs",
-      code: 200,
-      apiVersion: "2026-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "TransitHubListBySubscriptionRequest",
-}) as any as S.Schema<TransitHubListBySubscriptionRequest>;
+  identifier: "UpdateEnclaveEndpointResponse",
+}) as any as S.Schema<UpdateEnclaveEndpointResponse>;
 
 /** Transit Hub patchable Properties */
 export type TransitHubPatchProperties = TransitHubPropertiesInput;
 export const TransitHubPatchProperties = TransitHubPropertiesInput;
 
 /** Resource tags. */
-export type TransitHubUpdateRequestTagsMap = {
+export type UpdateTransitHubRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const TransitHubUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateTransitHubRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<TransitHubUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateTransitHubRequestTagsMap>;
 
-export interface TransitHubUpdateRequest {
+export interface UpdateTransitHubRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -4737,16 +5499,16 @@ export interface TransitHubUpdateRequest {
   /** The TransitHub resource. */
   properties?: TransitHubPropertiesInput;
   /** Resource tags. */
-  tags?: TransitHubUpdateRequestTagsMap;
+  tags?: UpdateTransitHubRequestTagsMap;
 }
-export const TransitHubUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateTransitHubRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     communityName: S.String.pipe(T.Label()),
     transitHubName: S.String.pipe(T.Label()),
     properties: S.optional(TransitHubPropertiesInput),
-    tags: S.optional(TransitHubUpdateRequestTagsMap),
+    tags: S.optional(UpdateTransitHubRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -4756,19 +5518,19 @@ export const TransitHubUpdateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "TransitHubUpdateRequest",
-}) as any as S.Schema<TransitHubUpdateRequest>;
+  identifier: "UpdateTransitHubRequest",
+}) as any as S.Schema<UpdateTransitHubRequest>;
 
 /** Resource tags. */
-export type TransitHubUpdateResponseTagsMap = {
+export type UpdateTransitHubResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const TransitHubUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateTransitHubResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<TransitHubUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateTransitHubResponseTagsMap>;
 
-export interface TransitHubUpdateResponse {
+export interface UpdateTransitHubResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -4778,25 +5540,331 @@ export interface TransitHubUpdateResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: TransitHubUpdateResponseTagsMap;
+  tags?: UpdateTransitHubResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: TransitHubProperties;
 }
-export const TransitHubUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateTransitHubResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(TransitHubUpdateResponseTagsMap),
+    tags: S.optional(UpdateTransitHubResponseTagsMap),
     location: S.String,
     properties: S.optional(TransitHubProperties),
   }),
 ).annotate({
-  identifier: "TransitHubUpdateResponse",
-}) as any as S.Schema<TransitHubUpdateResponse>;
+  identifier: "UpdateTransitHubResponse",
+}) as any as S.Schema<UpdateTransitHubResponse>;
+
+/** Resource Visibility Mode */
+export type ResourceVisibilityMode = "Enabled" | "Disabled";
+export const ResourceVisibilityMode = /*@__PURE__*/ S.String;
+
+/** Rbac Inheritance Mode */
+export type RbacInheritanceMode = "Enabled" | "Disabled";
+export const RbacInheritanceMode = /*@__PURE__*/ S.String;
+
+/** Enclave role assignments */
+export type VirtualEnclavePatchPropertiesInputEnclaveRoleAssignmentsList =
+  Array<RoleAssignmentItem>;
+export const VirtualEnclavePatchPropertiesInputEnclaveRoleAssignmentsList =
+  /*@__PURE__*/ S.Array(
+    RoleAssignmentItem,
+  ) as any as S.Schema<VirtualEnclavePatchPropertiesInputEnclaveRoleAssignmentsList>;
+
+/** Workload role assignments */
+export type VirtualEnclavePatchPropertiesInputWorkloadRoleAssignmentsList =
+  Array<RoleAssignmentItem>;
+export const VirtualEnclavePatchPropertiesInputWorkloadRoleAssignmentsList =
+  /*@__PURE__*/ S.Array(
+    RoleAssignmentItem,
+  ) as any as S.Schema<VirtualEnclavePatchPropertiesInputWorkloadRoleAssignmentsList>;
+
+/** Enclave specific policies */
+export type VirtualEnclavePatchPropertiesInputGovernedServiceListList =
+  Array<GovernedServiceItemInput>;
+export const VirtualEnclavePatchPropertiesInputGovernedServiceListList =
+  /*@__PURE__*/ S.Array(
+    GovernedServiceItemInput,
+  ) as any as S.Schema<VirtualEnclavePatchPropertiesInputGovernedServiceListList>;
+
+/** Specifies the destination of where to store diagnostic logs. */
+export type DiagnosticDestination = "CommunityOnly" | "EnclaveOnly" | "Both";
+export const DiagnosticDestination = /*@__PURE__*/ S.String;
+
+/** Virtual Enclave Default Settings */
+export interface EnclaveDefaultSettingsPatchModel {
+  /** Diagnostic Destination. */
+  diagnosticDestination?: DiagnosticDestination | (string & {});
+}
+export const EnclaveDefaultSettingsPatchModel = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    diagnosticDestination: S.optional(DiagnosticDestination),
+  }),
+).annotate({
+  identifier: "EnclaveDefaultSettingsPatchModel",
+}) as any as S.Schema<EnclaveDefaultSettingsPatchModel>;
+
+/** Virtual Enclave ApprovalSettings Patch Properties */
+export type VirtualEnclaveApprovalSettingsPatchProperties =
+  VirtualEnclaveApprovalSettings;
+export const VirtualEnclaveApprovalSettingsPatchProperties =
+  VirtualEnclaveApprovalSettings;
+
+/** Virtual Enclave Patchable Properties */
+export interface VirtualEnclavePatchPropertiesInput {
+  /** Virtual Network. */
+  enclaveVirtualNetwork?: EnclaveVirtualNetworkModelInput;
+  /** Deploy Bastion service (True or False). */
+  bastionEnabled?: boolean;
+  /** Specifies whether resources in the workload resource group(s) are visible through standard RBAC */
+  workloadResourceVisibility?: ResourceVisibilityMode | (string & {});
+  /** Controls whether standard Azure RBAC role inheritance applies to the workload resource group(s) */
+  rbacInheritance?: RbacInheritanceMode | (string & {});
+  /** Enclave role assignments */
+  enclaveRoleAssignments?: VirtualEnclavePatchPropertiesInputEnclaveRoleAssignmentsList;
+  /** Workload role assignments */
+  workloadRoleAssignments?: VirtualEnclavePatchPropertiesInputWorkloadRoleAssignmentsList;
+  /** Enclave specific policies */
+  governedServiceList?: VirtualEnclavePatchPropertiesInputGovernedServiceListList;
+  /** Enclave default settings. */
+  enclaveDefaultSettings?: EnclaveDefaultSettingsPatchModel;
+  /** Maintenance Mode configuration. */
+  maintenanceModeConfiguration?: MaintenanceModeConfigurationPatchModel;
+  /** DedicatedHub Resource ID. */
+  dedicatedHubResourceId?: string;
+  /** Approval requirements for various actions on the enclave's resources. */
+  approvalSettings?: VirtualEnclaveApprovalSettings;
+  /** Virtual Enclave Monitoring Settings for diagnostic and virtual network flow logs */
+  monitoringSettings?: MonitoringSettingsPatchModel;
+}
+export const VirtualEnclavePatchPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    enclaveVirtualNetwork: S.optional(EnclaveVirtualNetworkModelInput),
+    bastionEnabled: S.optional(S.Boolean),
+    workloadResourceVisibility: S.optional(ResourceVisibilityMode),
+    rbacInheritance: S.optional(RbacInheritanceMode),
+    enclaveRoleAssignments: S.optional(
+      VirtualEnclavePatchPropertiesInputEnclaveRoleAssignmentsList,
+    ),
+    workloadRoleAssignments: S.optional(
+      VirtualEnclavePatchPropertiesInputWorkloadRoleAssignmentsList,
+    ),
+    governedServiceList: S.optional(
+      VirtualEnclavePatchPropertiesInputGovernedServiceListList,
+    ),
+    enclaveDefaultSettings: S.optional(EnclaveDefaultSettingsPatchModel),
+    maintenanceModeConfiguration: S.optional(
+      MaintenanceModeConfigurationPatchModel,
+    ),
+    dedicatedHubResourceId: S.optional(S.String),
+    approvalSettings: S.optional(VirtualEnclaveApprovalSettings),
+    monitoringSettings: S.optional(MonitoringSettingsPatchModel),
+  }),
+).annotate({
+  identifier: "VirtualEnclavePatchPropertiesInput",
+}) as any as S.Schema<VirtualEnclavePatchPropertiesInput>;
+
+/** Resource tags. */
+export type UpdateVirtualEnclaveRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateVirtualEnclaveRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateVirtualEnclaveRequestTagsMap>;
+
+export interface UpdateVirtualEnclaveRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the enclaveResource Resource */
+  virtualEnclaveName: string;
+  /** Virtual Enclave Patch properties */
+  properties?: VirtualEnclavePatchPropertiesInput;
+  /** The managed service identities assigned to this resource. */
+  identity?: AzureResourceManagerCommonTypesManagedServiceIdentityUpdateInput;
+  /** Resource tags. */
+  tags?: UpdateVirtualEnclaveRequestTagsMap;
+}
+export const UpdateVirtualEnclaveRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    virtualEnclaveName: S.String.pipe(T.Label()),
+    properties: S.optional(VirtualEnclavePatchPropertiesInput),
+    identity: S.optional(
+      AzureResourceManagerCommonTypesManagedServiceIdentityUpdateInput,
+    ),
+    tags: S.optional(UpdateVirtualEnclaveRequestTagsMap),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/virtualEnclaves/{virtualEnclaveName}",
+      code: 200,
+      apiVersion: "2026-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateVirtualEnclaveRequest",
+}) as any as S.Schema<UpdateVirtualEnclaveRequest>;
+
+/** Resource tags. */
+export type UpdateVirtualEnclaveResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateVirtualEnclaveResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateVirtualEnclaveResponseTagsMap>;
+
+/** Managed service identity (system assigned and/or user assigned identities) */
+export type UpdateVirtualEnclaveResponseIdentity =
+  CommunityCreateOrUpdateResponseIdentity;
+export const UpdateVirtualEnclaveResponseIdentity =
+  CommunityCreateOrUpdateResponseIdentity;
+
+export interface UpdateVirtualEnclaveResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateVirtualEnclaveResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: VirtualEnclaveProperties;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: CommunityCreateOrUpdateResponseIdentity;
+}
+export const UpdateVirtualEnclaveResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateVirtualEnclaveResponseTagsMap),
+    location: S.String,
+    properties: S.optional(VirtualEnclaveProperties),
+    identity: S.optional(CommunityCreateOrUpdateResponseIdentity),
+  }),
+).annotate({
+  identifier: "UpdateVirtualEnclaveResponse",
+}) as any as S.Schema<UpdateVirtualEnclaveResponse>;
+
+/** List of resource group ids. */
+export type WorkloadPatchPropertiesResourceGroupCollectionList = Array<string>;
+export const WorkloadPatchPropertiesResourceGroupCollectionList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<WorkloadPatchPropertiesResourceGroupCollectionList>;
+
+/** Workload patchable Properties */
+export interface WorkloadPatchProperties {
+  /** List of resource group ids. */
+  resourceGroupCollection?: WorkloadPatchPropertiesResourceGroupCollectionList;
+}
+export const WorkloadPatchProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    resourceGroupCollection: S.optional(
+      WorkloadPatchPropertiesResourceGroupCollectionList,
+    ),
+  }),
+).annotate({
+  identifier: "WorkloadPatchProperties",
+}) as any as S.Schema<WorkloadPatchProperties>;
+
+/** Resource tags. */
+export type UpdateWorkloadRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateWorkloadRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateWorkloadRequestTagsMap>;
+
+export interface UpdateWorkloadRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the enclaveResource Resource */
+  virtualEnclaveName: string;
+  /** The name of the workloadResource Resource */
+  workloadName: string;
+  /** Workload Patch properties */
+  properties?: WorkloadPatchProperties;
+  /** Resource tags. */
+  tags?: UpdateWorkloadRequestTagsMap;
+}
+export const UpdateWorkloadRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    virtualEnclaveName: S.String.pipe(T.Label()),
+    workloadName: S.String.pipe(T.Label()),
+    properties: S.optional(WorkloadPatchProperties),
+    tags: S.optional(UpdateWorkloadRequestTagsMap),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/virtualEnclaves/{virtualEnclaveName}/workloads/{workloadName}",
+      code: 200,
+      apiVersion: "2026-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateWorkloadRequest",
+}) as any as S.Schema<UpdateWorkloadRequest>;
+
+/** Resource tags. */
+export type UpdateWorkloadResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateWorkloadResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateWorkloadResponseTagsMap>;
+
+export interface UpdateWorkloadResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateWorkloadResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: WorkloadProperties;
+}
+export const UpdateWorkloadResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateWorkloadResponseTagsMap),
+    location: S.String,
+    properties: S.optional(WorkloadProperties),
+  }),
+).annotate({
+  identifier: "UpdateWorkloadResponse",
+}) as any as S.Schema<UpdateWorkloadResponse>;
 
 /** Resource tags. */
 export type VirtualEnclaveCreateOrUpdateRequestTagsMap = {
@@ -4870,28 +5938,6 @@ export const EnclaveDefaultSettingsModelInput = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "EnclaveDefaultSettingsModelInput",
 }) as any as S.Schema<EnclaveDefaultSettingsModelInput>;
-
-/** Virtual Enclave ApprovalSettings Properties for 2025-11-01-preview and later versions */
-export interface VirtualEnclaveApprovalSettings {
-  /** Approval configuration for enclave endpoint updates. */
-  enclaveEndpointUpdate?: ApprovalSettingConfiguration;
-  /** Approval configuration for connection creation. */
-  connectionCreation?: ApprovalSettingConfiguration;
-  /** Approval configuration for connection updates. */
-  connectionUpdate?: ApprovalSettingConfiguration;
-  /** Approval configuration for enclave maintenance mode. */
-  enclaveMaintenanceMode?: ApprovalSettingConfiguration;
-}
-export const VirtualEnclaveApprovalSettings = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    enclaveEndpointUpdate: S.optional(ApprovalSettingConfiguration),
-    connectionCreation: S.optional(ApprovalSettingConfiguration),
-    connectionUpdate: S.optional(ApprovalSettingConfiguration),
-    enclaveMaintenanceMode: S.optional(ApprovalSettingConfiguration),
-  }),
-).annotate({
-  identifier: "VirtualEnclaveApprovalSettings",
-}) as any as S.Schema<VirtualEnclaveApprovalSettings>;
 
 /** Virtual Enclave Resource properties */
 export interface VirtualEnclavePropertiesInput {
@@ -5007,269 +6053,6 @@ export const VirtualEnclaveCreateOrUpdateResponseTagsMap =
     S.String,
   ) as any as S.Schema<VirtualEnclaveCreateOrUpdateResponseTagsMap>;
 
-/** Subnet Configuration */
-export interface SubnetConfiguration {
-  /** Subnet name. */
-  subnetName: string;
-  /** Subnet Resource ID. */
-  subnetResourceId?: string;
-  /** Network prefix size. */
-  networkPrefixSize: number;
-  /** Subnet delegation. */
-  subnetDelegation?: string;
-  /** Address prefix. */
-  addressPrefix?: string;
-  /** Network security group ID. */
-  networkSecurityGroupResourceId?: string;
-}
-export const SubnetConfiguration = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subnetName: S.String,
-    subnetResourceId: S.optional(S.String),
-    networkPrefixSize: S.Number,
-    subnetDelegation: S.optional(S.String),
-    addressPrefix: S.optional(S.String),
-    networkSecurityGroupResourceId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SubnetConfiguration",
-}) as any as S.Schema<SubnetConfiguration>;
-
-/** Subnet Configurations. */
-export type EnclaveVirtualNetworkModelSubnetConfigurationsList =
-  Array<SubnetConfiguration>;
-export const EnclaveVirtualNetworkModelSubnetConfigurationsList =
-  /*@__PURE__*/ S.Array(
-    SubnetConfiguration,
-  ) as any as S.Schema<EnclaveVirtualNetworkModelSubnetConfigurationsList>;
-
-/** Enclave Virtual Network Properties */
-export interface EnclaveVirtualNetworkModel {
-  /** Network Name. */
-  networkName?: string;
-  /** Network Size. */
-  networkSize?: string;
-  /** Custom CIDR Range. */
-  customCidrRange?: string;
-  /** Subnet Configurations. */
-  subnetConfigurations?: EnclaveVirtualNetworkModelSubnetConfigurationsList;
-  /** Allow Subnet Communication. */
-  allowSubnetCommunication?: boolean;
-}
-export const EnclaveVirtualNetworkModel = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    networkName: S.optional(S.String),
-    networkSize: S.optional(S.String),
-    customCidrRange: S.optional(S.String),
-    subnetConfigurations: S.optional(
-      EnclaveVirtualNetworkModelSubnetConfigurationsList,
-    ),
-    allowSubnetCommunication: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "EnclaveVirtualNetworkModel",
-}) as any as S.Schema<EnclaveVirtualNetworkModel>;
-
-/** Enclave Address Spaces */
-export interface EnclaveAddressSpacesModel {
-  /** Enclave Address Space */
-  enclaveAddressSpace?: string;
-  /** Managed Address Space */
-  managedAddressSpace?: string;
-}
-export const EnclaveAddressSpacesModel = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    enclaveAddressSpace: S.optional(S.String),
-    managedAddressSpace: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "EnclaveAddressSpacesModel",
-}) as any as S.Schema<EnclaveAddressSpacesModel>;
-
-/** List of resource ids created by Virtual Enclave. */
-export type VirtualEnclavePropertiesResourceCollectionList = Array<string>;
-export const VirtualEnclavePropertiesResourceCollectionList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<VirtualEnclavePropertiesResourceCollectionList>;
-
-/** Managed-On-Behalf-Of broker resources */
-export type VirtualEnclavePropertiesManagedOnBehalfOfConfigurationMoboBrokerResourcesList =
-  Array<MoboBrokerResource>;
-export const VirtualEnclavePropertiesManagedOnBehalfOfConfigurationMoboBrokerResourcesList =
-  /*@__PURE__*/ S.Array(
-    MoboBrokerResource,
-  ) as any as S.Schema<VirtualEnclavePropertiesManagedOnBehalfOfConfigurationMoboBrokerResourcesList>;
-
-/** Managed-On-Behalf-Of configuration properties. This configuration exists for the resources where a resource provider manages those resources on behalf of the resource owner. */
-export interface VirtualEnclavePropertiesManagedOnBehalfOfConfiguration {
-  /** Managed-On-Behalf-Of broker resources */
-  moboBrokerResources?: VirtualEnclavePropertiesManagedOnBehalfOfConfigurationMoboBrokerResourcesList;
-}
-export const VirtualEnclavePropertiesManagedOnBehalfOfConfiguration =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      moboBrokerResources: S.optional(
-        VirtualEnclavePropertiesManagedOnBehalfOfConfigurationMoboBrokerResourcesList,
-      ),
-    }),
-  ).annotate({
-    identifier: "VirtualEnclavePropertiesManagedOnBehalfOfConfiguration",
-  }) as any as S.Schema<VirtualEnclavePropertiesManagedOnBehalfOfConfiguration>;
-
-/** Specifies whether resources in the workload resource group(s) are visible through standard RBAC */
-export type VirtualEnclavePropertiesWorkloadResourceVisibility =
-  | "Enabled"
-  | "Disabled";
-export const VirtualEnclavePropertiesWorkloadResourceVisibility =
-  /*@__PURE__*/ S.String;
-
-/** Controls whether standard Azure RBAC role inheritance applies to the workload resource group(s) */
-export type VirtualEnclavePropertiesRbacInheritance = "Enabled" | "Disabled";
-export const VirtualEnclavePropertiesRbacInheritance = /*@__PURE__*/ S.String;
-
-/** Enclave role assignments */
-export type VirtualEnclavePropertiesEnclaveRoleAssignmentsList =
-  Array<RoleAssignmentItem>;
-export const VirtualEnclavePropertiesEnclaveRoleAssignmentsList =
-  /*@__PURE__*/ S.Array(
-    RoleAssignmentItem,
-  ) as any as S.Schema<VirtualEnclavePropertiesEnclaveRoleAssignmentsList>;
-
-/** Workload role assignments */
-export type VirtualEnclavePropertiesWorkloadRoleAssignmentsList =
-  Array<RoleAssignmentItem>;
-export const VirtualEnclavePropertiesWorkloadRoleAssignmentsList =
-  /*@__PURE__*/ S.Array(
-    RoleAssignmentItem,
-  ) as any as S.Schema<VirtualEnclavePropertiesWorkloadRoleAssignmentsList>;
-
-/** Enclave specific policies */
-export type VirtualEnclavePropertiesGovernedServiceListList =
-  Array<GovernedServiceItem>;
-export const VirtualEnclavePropertiesGovernedServiceListList =
-  /*@__PURE__*/ S.Array(
-    GovernedServiceItem,
-  ) as any as S.Schema<VirtualEnclavePropertiesGovernedServiceListList>;
-
-/** Log Analytics Resource Ids. */
-export type EnclaveDefaultSettingsModelLogAnalyticsResourceIdCollectionList =
-  Array<string>;
-export const EnclaveDefaultSettingsModelLogAnalyticsResourceIdCollectionList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<EnclaveDefaultSettingsModelLogAnalyticsResourceIdCollectionList>;
-
-/** Diagnostic Destination. */
-export type EnclaveDefaultSettingsModelDiagnosticDestination =
-  | "CommunityOnly"
-  | "EnclaveOnly"
-  | "Both";
-export const EnclaveDefaultSettingsModelDiagnosticDestination =
-  /*@__PURE__*/ S.String;
-
-/** Virtual Enclave Default Settings */
-export interface EnclaveDefaultSettingsModel {
-  /** Key Vault Resource Id. */
-  keyVaultResourceId?: string;
-  /** Storage Account Resource Id. */
-  storageAccountResourceId?: string;
-  /** Log Analytics Resource Ids. */
-  logAnalyticsResourceIdCollection?: EnclaveDefaultSettingsModelLogAnalyticsResourceIdCollectionList;
-  /** Diagnostic Destination. */
-  diagnosticDestination?: EnclaveDefaultSettingsModelDiagnosticDestination;
-}
-export const EnclaveDefaultSettingsModel = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    keyVaultResourceId: S.optional(S.String),
-    storageAccountResourceId: S.optional(S.String),
-    logAnalyticsResourceIdCollection: S.optional(
-      EnclaveDefaultSettingsModelLogAnalyticsResourceIdCollectionList,
-    ),
-    diagnosticDestination: S.optional(
-      EnclaveDefaultSettingsModelDiagnosticDestination,
-    ),
-  }),
-).annotate({
-  identifier: "EnclaveDefaultSettingsModel",
-}) as any as S.Schema<EnclaveDefaultSettingsModel>;
-
-/** Virtual Enclave Resource properties */
-export interface VirtualEnclaveProperties {
-  /** Provisioning State. */
-  provisioningState?: ProvisioningState;
-  /** Virtual Network. */
-  enclaveVirtualNetwork: EnclaveVirtualNetworkModel;
-  /** Enclave Address Spaces */
-  enclaveAddressSpaces?: EnclaveAddressSpacesModel;
-  /** Community Resource Id. */
-  communityResourceId: string;
-  /** List of resource ids created by Virtual Enclave. */
-  resourceCollection?: VirtualEnclavePropertiesResourceCollectionList;
-  /** Managed resource group name. */
-  managedResourceGroupName?: string;
-  /** Managed-On-Behalf-Of configuration properties. This configuration exists for the resources where a resource provider manages those resources on behalf of the resource owner. */
-  managedOnBehalfOfConfiguration?: VirtualEnclavePropertiesManagedOnBehalfOfConfiguration;
-  /** Deploy Bastion service (True or False). */
-  bastionEnabled?: boolean;
-  /** Specifies whether resources in the workload resource group(s) are visible through standard RBAC */
-  workloadResourceVisibility?: VirtualEnclavePropertiesWorkloadResourceVisibility;
-  /** Controls whether standard Azure RBAC role inheritance applies to the workload resource group(s) */
-  rbacInheritance?: VirtualEnclavePropertiesRbacInheritance;
-  /** Enclave role assignments */
-  enclaveRoleAssignments?: VirtualEnclavePropertiesEnclaveRoleAssignmentsList;
-  /** Workload role assignments */
-  workloadRoleAssignments?: VirtualEnclavePropertiesWorkloadRoleAssignmentsList;
-  /** Enclave specific policies */
-  governedServiceList?: VirtualEnclavePropertiesGovernedServiceListList;
-  /** Enclave default settings. */
-  enclaveDefaultSettings?: EnclaveDefaultSettingsModel;
-  /** Maintenance Mode configuration. */
-  maintenanceModeConfiguration?: MaintenanceModeConfigurationModel;
-  /** DedicatedHub Resource ID. */
-  dedicatedHubResourceId?: string;
-  /** Approval requirements for various actions on the enclave's resources. */
-  approvalSettings?: VirtualEnclaveApprovalSettings;
-  /** Virtual Enclave Monitoring Settings for diagnostic and virtual network flow logs */
-  monitoringSettings?: MonitoringSettingsModel;
-}
-export const VirtualEnclaveProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provisioningState: S.optional(ProvisioningState),
-    enclaveVirtualNetwork: EnclaveVirtualNetworkModel,
-    enclaveAddressSpaces: S.optional(EnclaveAddressSpacesModel),
-    communityResourceId: S.String,
-    resourceCollection: S.optional(
-      VirtualEnclavePropertiesResourceCollectionList,
-    ),
-    managedResourceGroupName: S.optional(S.String),
-    managedOnBehalfOfConfiguration: S.optional(
-      VirtualEnclavePropertiesManagedOnBehalfOfConfiguration,
-    ),
-    bastionEnabled: S.optional(S.Boolean),
-    workloadResourceVisibility: S.optional(
-      VirtualEnclavePropertiesWorkloadResourceVisibility,
-    ),
-    rbacInheritance: S.optional(VirtualEnclavePropertiesRbacInheritance),
-    enclaveRoleAssignments: S.optional(
-      VirtualEnclavePropertiesEnclaveRoleAssignmentsList,
-    ),
-    workloadRoleAssignments: S.optional(
-      VirtualEnclavePropertiesWorkloadRoleAssignmentsList,
-    ),
-    governedServiceList: S.optional(
-      VirtualEnclavePropertiesGovernedServiceListList,
-    ),
-    enclaveDefaultSettings: S.optional(EnclaveDefaultSettingsModel),
-    maintenanceModeConfiguration: S.optional(MaintenanceModeConfigurationModel),
-    dedicatedHubResourceId: S.optional(S.String),
-    approvalSettings: S.optional(VirtualEnclaveApprovalSettings),
-    monitoringSettings: S.optional(MonitoringSettingsModel),
-  }),
-).annotate({
-  identifier: "VirtualEnclaveProperties",
-}) as any as S.Schema<VirtualEnclaveProperties>;
-
 /** Managed service identity (system assigned and/or user assigned identities) */
 export type VirtualEnclaveCreateOrUpdateResponseIdentity =
   CommunityCreateOrUpdateResponseIdentity;
@@ -5309,111 +6092,6 @@ export const VirtualEnclaveCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
 ).annotate({
   identifier: "VirtualEnclaveCreateOrUpdateResponse",
 }) as any as S.Schema<VirtualEnclaveCreateOrUpdateResponse>;
-
-export interface VirtualEnclaveDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the enclaveResource Resource */
-  virtualEnclaveName: string;
-}
-export const VirtualEnclaveDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    virtualEnclaveName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/virtualEnclaves/{virtualEnclaveName}",
-      code: 200,
-      apiVersion: "2026-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "VirtualEnclaveDeleteRequest",
-}) as any as S.Schema<VirtualEnclaveDeleteRequest>;
-
-export interface VirtualEnclaveDeleteResponse {}
-export const VirtualEnclaveDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "VirtualEnclaveDeleteResponse",
-}) as any as S.Schema<VirtualEnclaveDeleteResponse>;
-
-export interface VirtualEnclaveGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the enclaveResource Resource */
-  virtualEnclaveName: string;
-}
-export const VirtualEnclaveGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    virtualEnclaveName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/virtualEnclaves/{virtualEnclaveName}",
-      code: 200,
-      apiVersion: "2026-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "VirtualEnclaveGetRequest",
-}) as any as S.Schema<VirtualEnclaveGetRequest>;
-
-/** Resource tags. */
-export type VirtualEnclaveGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const VirtualEnclaveGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<VirtualEnclaveGetResponseTagsMap>;
-
-/** Managed service identity (system assigned and/or user assigned identities) */
-export type VirtualEnclaveGetResponseIdentity =
-  CommunityCreateOrUpdateResponseIdentity;
-export const VirtualEnclaveGetResponseIdentity =
-  CommunityCreateOrUpdateResponseIdentity;
-
-export interface VirtualEnclaveGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: VirtualEnclaveGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: VirtualEnclaveProperties;
-  /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: CommunityCreateOrUpdateResponseIdentity;
-}
-export const VirtualEnclaveGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(VirtualEnclaveGetResponseTagsMap),
-    location: S.String,
-    properties: S.optional(VirtualEnclaveProperties),
-    identity: S.optional(CommunityCreateOrUpdateResponseIdentity),
-  }),
-).annotate({
-  identifier: "VirtualEnclaveGetResponse",
-}) as any as S.Schema<VirtualEnclaveGetResponse>;
 
 /** Resource request action indicating action which needed to be performed upon calling approval-callback post action */
 export type VirtualEnclaveHandleApprovalCreationRequestResourceRequestAction =
@@ -5511,318 +6189,6 @@ export const VirtualEnclaveHandleApprovalDeletionRequest =
     identifier: "VirtualEnclaveHandleApprovalDeletionRequest",
   }) as any as S.Schema<VirtualEnclaveHandleApprovalDeletionRequest>;
 
-export interface VirtualEnclaveListByResourceGroupRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-}
-export const VirtualEnclaveListByResourceGroupRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/virtualEnclaves",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-).annotate({
-  identifier: "VirtualEnclaveListByResourceGroupRequest",
-}) as any as S.Schema<VirtualEnclaveListByResourceGroupRequest>;
-
-/** Resource tags. */
-export type EnclaveResourceTagsMap = { [key: string]: string | undefined };
-export const EnclaveResourceTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<EnclaveResourceTagsMap>;
-
-/** Managed service identity (system assigned and/or user assigned identities) */
-export type EnclaveResourceIdentity = CommunityCreateOrUpdateResponseIdentity;
-export const EnclaveResourceIdentity = CommunityCreateOrUpdateResponseIdentity;
-
-/** Virtual Enclave Model Resource */
-export interface EnclaveResource {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: EnclaveResourceTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: VirtualEnclaveProperties;
-  /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: CommunityCreateOrUpdateResponseIdentity;
-}
-export const EnclaveResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(EnclaveResourceTagsMap),
-    location: S.String,
-    properties: S.optional(VirtualEnclaveProperties),
-    identity: S.optional(CommunityCreateOrUpdateResponseIdentity),
-  }),
-).annotate({
-  identifier: "EnclaveResource",
-}) as any as S.Schema<EnclaveResource>;
-
-/** The EnclaveResource items on this page */
-export type EnclaveResourceListResultValueList = Array<EnclaveResource>;
-export const EnclaveResourceListResultValueList = /*@__PURE__*/ S.Array(
-  EnclaveResource,
-) as any as S.Schema<EnclaveResourceListResultValueList>;
-
-/** The response of a EnclaveResource list operation. */
-export interface EnclaveResourceListResult {
-  /** The EnclaveResource items on this page */
-  value: EnclaveResourceListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const EnclaveResourceListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: EnclaveResourceListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "EnclaveResourceListResult",
-}) as any as S.Schema<EnclaveResourceListResult>;
-
-export interface VirtualEnclaveListBySubscriptionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-}
-export const VirtualEnclaveListBySubscriptionRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Mission/virtualEnclaves",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-).annotate({
-  identifier: "VirtualEnclaveListBySubscriptionRequest",
-}) as any as S.Schema<VirtualEnclaveListBySubscriptionRequest>;
-
-/** Resource Visibility Mode */
-export type ResourceVisibilityMode = "Enabled" | "Disabled";
-export const ResourceVisibilityMode = /*@__PURE__*/ S.String;
-
-/** Rbac Inheritance Mode */
-export type RbacInheritanceMode = "Enabled" | "Disabled";
-export const RbacInheritanceMode = /*@__PURE__*/ S.String;
-
-/** Enclave role assignments */
-export type VirtualEnclavePatchPropertiesInputEnclaveRoleAssignmentsList =
-  Array<RoleAssignmentItem>;
-export const VirtualEnclavePatchPropertiesInputEnclaveRoleAssignmentsList =
-  /*@__PURE__*/ S.Array(
-    RoleAssignmentItem,
-  ) as any as S.Schema<VirtualEnclavePatchPropertiesInputEnclaveRoleAssignmentsList>;
-
-/** Workload role assignments */
-export type VirtualEnclavePatchPropertiesInputWorkloadRoleAssignmentsList =
-  Array<RoleAssignmentItem>;
-export const VirtualEnclavePatchPropertiesInputWorkloadRoleAssignmentsList =
-  /*@__PURE__*/ S.Array(
-    RoleAssignmentItem,
-  ) as any as S.Schema<VirtualEnclavePatchPropertiesInputWorkloadRoleAssignmentsList>;
-
-/** Enclave specific policies */
-export type VirtualEnclavePatchPropertiesInputGovernedServiceListList =
-  Array<GovernedServiceItemInput>;
-export const VirtualEnclavePatchPropertiesInputGovernedServiceListList =
-  /*@__PURE__*/ S.Array(
-    GovernedServiceItemInput,
-  ) as any as S.Schema<VirtualEnclavePatchPropertiesInputGovernedServiceListList>;
-
-/** Specifies the destination of where to store diagnostic logs. */
-export type DiagnosticDestination = "CommunityOnly" | "EnclaveOnly" | "Both";
-export const DiagnosticDestination = /*@__PURE__*/ S.String;
-
-/** Virtual Enclave Default Settings */
-export interface EnclaveDefaultSettingsPatchModel {
-  /** Diagnostic Destination. */
-  diagnosticDestination?: DiagnosticDestination | (string & {});
-}
-export const EnclaveDefaultSettingsPatchModel = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    diagnosticDestination: S.optional(DiagnosticDestination),
-  }),
-).annotate({
-  identifier: "EnclaveDefaultSettingsPatchModel",
-}) as any as S.Schema<EnclaveDefaultSettingsPatchModel>;
-
-/** Virtual Enclave ApprovalSettings Patch Properties */
-export type VirtualEnclaveApprovalSettingsPatchProperties =
-  VirtualEnclaveApprovalSettings;
-export const VirtualEnclaveApprovalSettingsPatchProperties =
-  VirtualEnclaveApprovalSettings;
-
-/** Virtual Enclave Patchable Properties */
-export interface VirtualEnclavePatchPropertiesInput {
-  /** Virtual Network. */
-  enclaveVirtualNetwork?: EnclaveVirtualNetworkModelInput;
-  /** Deploy Bastion service (True or False). */
-  bastionEnabled?: boolean;
-  /** Specifies whether resources in the workload resource group(s) are visible through standard RBAC */
-  workloadResourceVisibility?: ResourceVisibilityMode | (string & {});
-  /** Controls whether standard Azure RBAC role inheritance applies to the workload resource group(s) */
-  rbacInheritance?: RbacInheritanceMode | (string & {});
-  /** Enclave role assignments */
-  enclaveRoleAssignments?: VirtualEnclavePatchPropertiesInputEnclaveRoleAssignmentsList;
-  /** Workload role assignments */
-  workloadRoleAssignments?: VirtualEnclavePatchPropertiesInputWorkloadRoleAssignmentsList;
-  /** Enclave specific policies */
-  governedServiceList?: VirtualEnclavePatchPropertiesInputGovernedServiceListList;
-  /** Enclave default settings. */
-  enclaveDefaultSettings?: EnclaveDefaultSettingsPatchModel;
-  /** Maintenance Mode configuration. */
-  maintenanceModeConfiguration?: MaintenanceModeConfigurationPatchModel;
-  /** DedicatedHub Resource ID. */
-  dedicatedHubResourceId?: string;
-  /** Approval requirements for various actions on the enclave's resources. */
-  approvalSettings?: VirtualEnclaveApprovalSettings;
-  /** Virtual Enclave Monitoring Settings for diagnostic and virtual network flow logs */
-  monitoringSettings?: MonitoringSettingsPatchModel;
-}
-export const VirtualEnclavePatchPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    enclaveVirtualNetwork: S.optional(EnclaveVirtualNetworkModelInput),
-    bastionEnabled: S.optional(S.Boolean),
-    workloadResourceVisibility: S.optional(ResourceVisibilityMode),
-    rbacInheritance: S.optional(RbacInheritanceMode),
-    enclaveRoleAssignments: S.optional(
-      VirtualEnclavePatchPropertiesInputEnclaveRoleAssignmentsList,
-    ),
-    workloadRoleAssignments: S.optional(
-      VirtualEnclavePatchPropertiesInputWorkloadRoleAssignmentsList,
-    ),
-    governedServiceList: S.optional(
-      VirtualEnclavePatchPropertiesInputGovernedServiceListList,
-    ),
-    enclaveDefaultSettings: S.optional(EnclaveDefaultSettingsPatchModel),
-    maintenanceModeConfiguration: S.optional(
-      MaintenanceModeConfigurationPatchModel,
-    ),
-    dedicatedHubResourceId: S.optional(S.String),
-    approvalSettings: S.optional(VirtualEnclaveApprovalSettings),
-    monitoringSettings: S.optional(MonitoringSettingsPatchModel),
-  }),
-).annotate({
-  identifier: "VirtualEnclavePatchPropertiesInput",
-}) as any as S.Schema<VirtualEnclavePatchPropertiesInput>;
-
-/** Resource tags. */
-export type VirtualEnclaveUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const VirtualEnclaveUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<VirtualEnclaveUpdateRequestTagsMap>;
-
-export interface VirtualEnclaveUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the enclaveResource Resource */
-  virtualEnclaveName: string;
-  /** Virtual Enclave Patch properties */
-  properties?: VirtualEnclavePatchPropertiesInput;
-  /** The managed service identities assigned to this resource. */
-  identity?: AzureResourceManagerCommonTypesManagedServiceIdentityUpdateInput;
-  /** Resource tags. */
-  tags?: VirtualEnclaveUpdateRequestTagsMap;
-}
-export const VirtualEnclaveUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    virtualEnclaveName: S.String.pipe(T.Label()),
-    properties: S.optional(VirtualEnclavePatchPropertiesInput),
-    identity: S.optional(
-      AzureResourceManagerCommonTypesManagedServiceIdentityUpdateInput,
-    ),
-    tags: S.optional(VirtualEnclaveUpdateRequestTagsMap),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/virtualEnclaves/{virtualEnclaveName}",
-      code: 200,
-      apiVersion: "2026-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "VirtualEnclaveUpdateRequest",
-}) as any as S.Schema<VirtualEnclaveUpdateRequest>;
-
-/** Resource tags. */
-export type VirtualEnclaveUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const VirtualEnclaveUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<VirtualEnclaveUpdateResponseTagsMap>;
-
-/** Managed service identity (system assigned and/or user assigned identities) */
-export type VirtualEnclaveUpdateResponseIdentity =
-  CommunityCreateOrUpdateResponseIdentity;
-export const VirtualEnclaveUpdateResponseIdentity =
-  CommunityCreateOrUpdateResponseIdentity;
-
-export interface VirtualEnclaveUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: VirtualEnclaveUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: VirtualEnclaveProperties;
-  /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: CommunityCreateOrUpdateResponseIdentity;
-}
-export const VirtualEnclaveUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(VirtualEnclaveUpdateResponseTagsMap),
-    location: S.String,
-    properties: S.optional(VirtualEnclaveProperties),
-    identity: S.optional(CommunityCreateOrUpdateResponseIdentity),
-  }),
-).annotate({
-  identifier: "VirtualEnclaveUpdateResponse",
-}) as any as S.Schema<VirtualEnclaveUpdateResponse>;
-
 /** Resource tags. */
 export type WorkloadCreateOrUpdateRequestTagsMap = {
   [key: string]: string | undefined;
@@ -5900,60 +6266,6 @@ export const WorkloadCreateOrUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
 ) as any as S.Schema<WorkloadCreateOrUpdateResponseTagsMap>;
 
-/** List of resource group ids. */
-export type WorkloadPropertiesResourceGroupCollectionList = Array<string>;
-export const WorkloadPropertiesResourceGroupCollectionList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<WorkloadPropertiesResourceGroupCollectionList>;
-
-/** Managed-On-Behalf-Of broker resources */
-export type WorkloadPropertiesManagedOnBehalfOfConfigurationMoboBrokerResourcesList =
-  Array<MoboBrokerResource>;
-export const WorkloadPropertiesManagedOnBehalfOfConfigurationMoboBrokerResourcesList =
-  /*@__PURE__*/ S.Array(
-    MoboBrokerResource,
-  ) as any as S.Schema<WorkloadPropertiesManagedOnBehalfOfConfigurationMoboBrokerResourcesList>;
-
-/** Managed-On-Behalf-Of configuration properties. This configuration exists for the resources where a resource provider manages those resources on behalf of the resource owner. */
-export interface WorkloadPropertiesManagedOnBehalfOfConfiguration {
-  /** Managed-On-Behalf-Of broker resources */
-  moboBrokerResources?: WorkloadPropertiesManagedOnBehalfOfConfigurationMoboBrokerResourcesList;
-}
-export const WorkloadPropertiesManagedOnBehalfOfConfiguration =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      moboBrokerResources: S.optional(
-        WorkloadPropertiesManagedOnBehalfOfConfigurationMoboBrokerResourcesList,
-      ),
-    }),
-  ).annotate({
-    identifier: "WorkloadPropertiesManagedOnBehalfOfConfiguration",
-  }) as any as S.Schema<WorkloadPropertiesManagedOnBehalfOfConfiguration>;
-
-/** Workload Resource properties */
-export interface WorkloadProperties {
-  /** Provisioning State. */
-  provisioningState?: ProvisioningState;
-  /** List of resource group ids. */
-  resourceGroupCollection?: WorkloadPropertiesResourceGroupCollectionList;
-  /** Managed-On-Behalf-Of configuration properties. This configuration exists for the resources where a resource provider manages those resources on behalf of the resource owner. */
-  managedOnBehalfOfConfiguration?: WorkloadPropertiesManagedOnBehalfOfConfiguration;
-}
-export const WorkloadProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provisioningState: S.optional(ProvisioningState),
-    resourceGroupCollection: S.optional(
-      WorkloadPropertiesResourceGroupCollectionList,
-    ),
-    managedOnBehalfOfConfiguration: S.optional(
-      WorkloadPropertiesManagedOnBehalfOfConfiguration,
-    ),
-  }),
-).annotate({
-  identifier: "WorkloadProperties",
-}) as any as S.Schema<WorkloadProperties>;
-
 export interface WorkloadCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
@@ -5984,318 +6296,6 @@ export const WorkloadCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "WorkloadCreateOrUpdateResponse",
 }) as any as S.Schema<WorkloadCreateOrUpdateResponse>;
 
-export interface WorkloadDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the enclaveResource Resource */
-  virtualEnclaveName: string;
-  /** The name of the workloadResource Resource */
-  workloadName: string;
-}
-export const WorkloadDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    virtualEnclaveName: S.String.pipe(T.Label()),
-    workloadName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/virtualEnclaves/{virtualEnclaveName}/workloads/{workloadName}",
-      code: 200,
-      apiVersion: "2026-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "WorkloadDeleteRequest",
-}) as any as S.Schema<WorkloadDeleteRequest>;
-
-export interface WorkloadDeleteResponse {}
-export const WorkloadDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "WorkloadDeleteResponse",
-}) as any as S.Schema<WorkloadDeleteResponse>;
-
-export interface WorkloadGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the enclaveResource Resource */
-  virtualEnclaveName: string;
-  /** The name of the workloadResource Resource */
-  workloadName: string;
-}
-export const WorkloadGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    virtualEnclaveName: S.String.pipe(T.Label()),
-    workloadName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/virtualEnclaves/{virtualEnclaveName}/workloads/{workloadName}",
-      code: 200,
-      apiVersion: "2026-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "WorkloadGetRequest",
-}) as any as S.Schema<WorkloadGetRequest>;
-
-/** Resource tags. */
-export type WorkloadGetResponseTagsMap = { [key: string]: string | undefined };
-export const WorkloadGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<WorkloadGetResponseTagsMap>;
-
-export interface WorkloadGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: WorkloadGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: WorkloadProperties;
-}
-export const WorkloadGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(WorkloadGetResponseTagsMap),
-    location: S.String,
-    properties: S.optional(WorkloadProperties),
-  }),
-).annotate({
-  identifier: "WorkloadGetResponse",
-}) as any as S.Schema<WorkloadGetResponse>;
-
-export interface WorkloadListByEnclaveResourceRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the enclaveResource Resource */
-  virtualEnclaveName: string;
-}
-export const WorkloadListByEnclaveResourceRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      virtualEnclaveName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/virtualEnclaves/{virtualEnclaveName}/workloads",
-        code: 200,
-        apiVersion: "2026-04-01",
-      }),
-    ),
-).annotate({
-  identifier: "WorkloadListByEnclaveResourceRequest",
-}) as any as S.Schema<WorkloadListByEnclaveResourceRequest>;
-
-/** Resource tags. */
-export type WorkloadResourceTagsMap = { [key: string]: string | undefined };
-export const WorkloadResourceTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<WorkloadResourceTagsMap>;
-
-/** Workload Model Resource */
-export interface WorkloadResource {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: WorkloadResourceTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: WorkloadProperties;
-}
-export const WorkloadResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(WorkloadResourceTagsMap),
-    location: S.String,
-    properties: S.optional(WorkloadProperties),
-  }),
-).annotate({
-  identifier: "WorkloadResource",
-}) as any as S.Schema<WorkloadResource>;
-
-/** The WorkloadResource items on this page */
-export type WorkloadResourceListResultValueList = Array<WorkloadResource>;
-export const WorkloadResourceListResultValueList = /*@__PURE__*/ S.Array(
-  WorkloadResource,
-) as any as S.Schema<WorkloadResourceListResultValueList>;
-
-/** The response of a WorkloadResource list operation. */
-export interface WorkloadResourceListResult {
-  /** The WorkloadResource items on this page */
-  value: WorkloadResourceListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const WorkloadResourceListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: WorkloadResourceListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "WorkloadResourceListResult",
-}) as any as S.Schema<WorkloadResourceListResult>;
-
-export interface WorkloadListBySubscriptionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the enclaveResource Resource */
-  virtualEnclaveName: string;
-}
-export const WorkloadListBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    virtualEnclaveName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Mission/virtualEnclaves/{virtualEnclaveName}/workloads",
-      code: 200,
-      apiVersion: "2026-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "WorkloadListBySubscriptionRequest",
-}) as any as S.Schema<WorkloadListBySubscriptionRequest>;
-
-/** List of resource group ids. */
-export type WorkloadPatchPropertiesResourceGroupCollectionList = Array<string>;
-export const WorkloadPatchPropertiesResourceGroupCollectionList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<WorkloadPatchPropertiesResourceGroupCollectionList>;
-
-/** Workload patchable Properties */
-export interface WorkloadPatchProperties {
-  /** List of resource group ids. */
-  resourceGroupCollection?: WorkloadPatchPropertiesResourceGroupCollectionList;
-}
-export const WorkloadPatchProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    resourceGroupCollection: S.optional(
-      WorkloadPatchPropertiesResourceGroupCollectionList,
-    ),
-  }),
-).annotate({
-  identifier: "WorkloadPatchProperties",
-}) as any as S.Schema<WorkloadPatchProperties>;
-
-/** Resource tags. */
-export type WorkloadUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const WorkloadUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<WorkloadUpdateRequestTagsMap>;
-
-export interface WorkloadUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the enclaveResource Resource */
-  virtualEnclaveName: string;
-  /** The name of the workloadResource Resource */
-  workloadName: string;
-  /** Workload Patch properties */
-  properties?: WorkloadPatchProperties;
-  /** Resource tags. */
-  tags?: WorkloadUpdateRequestTagsMap;
-}
-export const WorkloadUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    virtualEnclaveName: S.String.pipe(T.Label()),
-    workloadName: S.String.pipe(T.Label()),
-    properties: S.optional(WorkloadPatchProperties),
-    tags: S.optional(WorkloadUpdateRequestTagsMap),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/virtualEnclaves/{virtualEnclaveName}/workloads/{workloadName}",
-      code: 200,
-      apiVersion: "2026-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "WorkloadUpdateRequest",
-}) as any as S.Schema<WorkloadUpdateRequest>;
-
-/** Resource tags. */
-export type WorkloadUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const WorkloadUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<WorkloadUpdateResponseTagsMap>;
-
-export interface WorkloadUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: WorkloadUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: WorkloadProperties;
-}
-export const WorkloadUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(WorkloadUpdateResponseTagsMap),
-    location: S.String,
-    properties: S.optional(WorkloadProperties),
-  }),
-).annotate({
-  identifier: "WorkloadUpdateResponse",
-}) as any as S.Schema<WorkloadUpdateResponse>;
-
 export type ApprovalCreateOrUpdateError = AzureOpError;
 /** Create a ApprovalResource */
 export const ApprovalCreateOrUpdate: API.OperationMethod<
@@ -6311,90 +6311,15 @@ export const ApprovalCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ApprovalDeleteError = AzureOpError;
-/** Delete a ApprovalResource */
-export const ApprovalDelete: API.OperationMethod<
-  ApprovalDeleteRequest,
-  ApprovalDeleteResponse,
-  ApprovalDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApprovalDeleteRequest,
-  output: ApprovalDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApprovalGetError = AzureOpError;
-/** Get a ApprovalResource */
-export const ApprovalGet: API.OperationMethod<
-  ApprovalGetRequest,
-  ApprovalGetResponse,
-  ApprovalGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApprovalGetRequest,
-  output: ApprovalGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApprovalListByParentError = AzureOpError;
-/** List ApprovalResource resources by parent */
-export const ApprovalListByParent: API.OperationMethod<
-  ApprovalListByParentRequest,
-  ApprovalResourceListResult,
-  ApprovalListByParentError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApprovalListByParentRequest,
-  output: ApprovalResourceListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApprovalNotifyInitiatorError = AzureOpError;
-/** Upon receiving approval or rejection from approver, this facilitates actions on approval resource */
-export const ApprovalNotifyInitiator: API.OperationMethod<
-  ApprovalNotifyInitiatorRequest,
-  ApprovalActionResponse,
-  ApprovalNotifyInitiatorError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApprovalNotifyInitiatorRequest,
-  output: ApprovalActionResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ApprovalUpdateError = AzureOpError;
-/** Update a ApprovalResource */
-export const ApprovalUpdate: API.OperationMethod<
-  ApprovalUpdateRequest,
-  ApprovalUpdateResponse,
-  ApprovalUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ApprovalUpdateRequest,
-  output: ApprovalUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CommunityCheckAddressSpaceAvailabilityError = AzureOpError;
+export type CheckCommunityAddressSpaceAvailabilityError = AzureOpError;
 /** Checks that the IP Address Space to be allocated for this Community is available. */
-export const CommunityCheckAddressSpaceAvailability: API.OperationMethod<
-  CommunityCheckAddressSpaceAvailabilityRequest,
+export const CheckCommunityAddressSpaceAvailability: API.OperationMethod<
+  CheckCommunityAddressSpaceAvailabilityRequest,
   CheckAddressSpaceAvailabilityResponse,
-  CommunityCheckAddressSpaceAvailabilityError,
+  CheckCommunityAddressSpaceAvailabilityError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CommunityCheckAddressSpaceAvailabilityRequest,
+  input: CheckCommunityAddressSpaceAvailabilityRequest,
   output: CheckAddressSpaceAvailabilityResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -6416,21 +6341,6 @@ export const CommunityCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CommunityDeleteError = AzureOpError;
-/** Delete a CommunityResource */
-export const CommunityDelete: API.OperationMethod<
-  CommunityDeleteRequest,
-  CommunityDeleteResponse,
-  CommunityDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CommunityDeleteRequest,
-  output: CommunityDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type CommunityEndpointsCreateOrUpdateError = AzureOpError;
 /** Create a CommunityEndpointResource */
 export const CommunityEndpointsCreateOrUpdate: API.OperationMethod<
@@ -6441,36 +6351,6 @@ export const CommunityEndpointsCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: CommunityEndpointsCreateOrUpdateRequest,
   output: CommunityEndpointsCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CommunityEndpointsDeleteError = AzureOpError;
-/** Delete a CommunityEndpointResource */
-export const CommunityEndpointsDelete: API.OperationMethod<
-  CommunityEndpointsDeleteRequest,
-  CommunityEndpointsDeleteResponse,
-  CommunityEndpointsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CommunityEndpointsDeleteRequest,
-  output: CommunityEndpointsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CommunityEndpointsGetError = AzureOpError;
-/** Get a CommunityEndpointResource */
-export const CommunityEndpointsGet: API.OperationMethod<
-  CommunityEndpointsGetRequest,
-  CommunityEndpointsGetResponse,
-  CommunityEndpointsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CommunityEndpointsGetRequest,
-  output: CommunityEndpointsGetResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -6506,111 +6386,6 @@ export const CommunityEndpointsHandleApprovalDeletion: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CommunityEndpointsListByCommunityResourceError = AzureOpError;
-/** List CommunityEndpointResource resources by CommunityResource */
-export const CommunityEndpointsListByCommunityResource: API.OperationMethod<
-  CommunityEndpointsListByCommunityResourceRequest,
-  CommunityEndpointResourceListResult,
-  CommunityEndpointsListByCommunityResourceError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CommunityEndpointsListByCommunityResourceRequest,
-  output: CommunityEndpointResourceListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CommunityEndpointsListBySubscriptionError = AzureOpError;
-/** List CommunityEndpointResource resources by subscription ID */
-export const CommunityEndpointsListBySubscription: API.OperationMethod<
-  CommunityEndpointsListBySubscriptionRequest,
-  CommunityEndpointResourceListResult,
-  CommunityEndpointsListBySubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CommunityEndpointsListBySubscriptionRequest,
-  output: CommunityEndpointResourceListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CommunityEndpointsUpdateError = AzureOpError;
-/** Update a CommunityEndpointResource */
-export const CommunityEndpointsUpdate: API.OperationMethod<
-  CommunityEndpointsUpdateRequest,
-  CommunityEndpointsUpdateResponse,
-  CommunityEndpointsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CommunityEndpointsUpdateRequest,
-  output: CommunityEndpointsUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CommunityGetError = AzureOpError;
-/** Get a CommunityResource */
-export const CommunityGet: API.OperationMethod<
-  CommunityGetRequest,
-  CommunityGetResponse,
-  CommunityGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CommunityGetRequest,
-  output: CommunityGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CommunityListByResourceGroupError = AzureOpError;
-/** List CommunityResource resources by resource group */
-export const CommunityListByResourceGroup: API.OperationMethod<
-  CommunityListByResourceGroupRequest,
-  CommunityResourceListResult,
-  CommunityListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CommunityListByResourceGroupRequest,
-  output: CommunityResourceListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CommunityListBySubscriptionError = AzureOpError;
-/** List CommunityResource resources by subscription ID */
-export const CommunityListBySubscription: API.OperationMethod<
-  CommunityListBySubscriptionRequest,
-  CommunityResourceListResult,
-  CommunityListBySubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CommunityListBySubscriptionRequest,
-  output: CommunityResourceListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CommunityUpdateError = AzureOpError;
-/** Update a CommunityResource */
-export const CommunityUpdate: API.OperationMethod<
-  CommunityUpdateRequest,
-  CommunityUpdateResponse,
-  CommunityUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CommunityUpdateRequest,
-  output: CommunityUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type DedicatedHubCreateOrUpdateError = AzureOpError;
 /** Create a DedicatedHubResource */
 export const DedicatedHubCreateOrUpdate: API.OperationMethod<
@@ -6626,76 +6401,136 @@ export const DedicatedHubCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DedicatedHubDeleteError = AzureOpError;
+export type DeleteApprovalError = AzureOpError;
+/** Delete a ApprovalResource */
+export const DeleteApproval: API.OperationMethod<
+  DeleteApprovalRequest,
+  DeleteApprovalResponse,
+  DeleteApprovalError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteApprovalRequest,
+  output: DeleteApprovalResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteCommunityError = AzureOpError;
+/** Delete a CommunityResource */
+export const DeleteCommunity: API.OperationMethod<
+  DeleteCommunityRequest,
+  DeleteCommunityResponse,
+  DeleteCommunityError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteCommunityRequest,
+  output: DeleteCommunityResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteCommunityEndpointError = AzureOpError;
+/** Delete a CommunityEndpointResource */
+export const DeleteCommunityEndpoint: API.OperationMethod<
+  DeleteCommunityEndpointRequest,
+  DeleteCommunityEndpointResponse,
+  DeleteCommunityEndpointError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteCommunityEndpointRequest,
+  output: DeleteCommunityEndpointResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteDedicatedHubError = AzureOpError;
 /** Delete a DedicatedHubResource */
-export const DedicatedHubDelete: API.OperationMethod<
-  DedicatedHubDeleteRequest,
-  DedicatedHubDeleteResponse,
-  DedicatedHubDeleteError,
+export const DeleteDedicatedHub: API.OperationMethod<
+  DeleteDedicatedHubRequest,
+  DeleteDedicatedHubResponse,
+  DeleteDedicatedHubError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DedicatedHubDeleteRequest,
-  output: DedicatedHubDeleteResponse,
+  input: DeleteDedicatedHubRequest,
+  output: DeleteDedicatedHubResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DedicatedHubGetError = AzureOpError;
-/** Get a DedicatedHubResource */
-export const DedicatedHubGet: API.OperationMethod<
-  DedicatedHubGetRequest,
-  DedicatedHubGetResponse,
-  DedicatedHubGetError,
+export type DeleteEnclaveConnectionError = AzureOpError;
+/** Delete a EnclaveConnectionResource */
+export const DeleteEnclaveConnection: API.OperationMethod<
+  DeleteEnclaveConnectionRequest,
+  DeleteEnclaveConnectionResponse,
+  DeleteEnclaveConnectionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DedicatedHubGetRequest,
-  output: DedicatedHubGetResponse,
+  input: DeleteEnclaveConnectionRequest,
+  output: DeleteEnclaveConnectionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DedicatedHubListByCommunityResourceError = AzureOpError;
-/** List DedicatedHubResource resources by CommunityResource */
-export const DedicatedHubListByCommunityResource: API.OperationMethod<
-  DedicatedHubListByCommunityResourceRequest,
-  DedicatedHubResourceListResult,
-  DedicatedHubListByCommunityResourceError,
+export type DeleteEnclaveEndpointError = AzureOpError;
+/** Delete a EnclaveEndpointResource */
+export const DeleteEnclaveEndpoint: API.OperationMethod<
+  DeleteEnclaveEndpointRequest,
+  DeleteEnclaveEndpointResponse,
+  DeleteEnclaveEndpointError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DedicatedHubListByCommunityResourceRequest,
-  output: DedicatedHubResourceListResult,
+  input: DeleteEnclaveEndpointRequest,
+  output: DeleteEnclaveEndpointResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DedicatedHubListBySubscriptionError = AzureOpError;
-/** List DedicatedHubResource resources by subscription ID */
-export const DedicatedHubListBySubscription: API.OperationMethod<
-  DedicatedHubListBySubscriptionRequest,
-  DedicatedHubResourceListResult,
-  DedicatedHubListBySubscriptionError,
+export type DeleteTransitHubError = AzureOpError;
+/** Delete a TransitHubResource */
+export const DeleteTransitHub: API.OperationMethod<
+  DeleteTransitHubRequest,
+  DeleteTransitHubResponse,
+  DeleteTransitHubError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DedicatedHubListBySubscriptionRequest,
-  output: DedicatedHubResourceListResult,
+  input: DeleteTransitHubRequest,
+  output: DeleteTransitHubResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DedicatedHubUpdateError = AzureOpError;
-/** Update a DedicatedHubResource */
-export const DedicatedHubUpdate: API.OperationMethod<
-  DedicatedHubUpdateRequest,
-  DedicatedHubUpdateResponse,
-  DedicatedHubUpdateError,
+export type DeleteVirtualEnclaveError = AzureOpError;
+/** Delete a EnclaveResource */
+export const DeleteVirtualEnclave: API.OperationMethod<
+  DeleteVirtualEnclaveRequest,
+  DeleteVirtualEnclaveResponse,
+  DeleteVirtualEnclaveError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DedicatedHubUpdateRequest,
-  output: DedicatedHubUpdateResponse,
+  input: DeleteVirtualEnclaveRequest,
+  output: DeleteVirtualEnclaveResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteWorkloadError = AzureOpError;
+/** Delete a WorkloadResource */
+export const DeleteWorkload: API.OperationMethod<
+  DeleteWorkloadRequest,
+  DeleteWorkloadResponse,
+  DeleteWorkloadError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteWorkloadRequest,
+  output: DeleteWorkloadResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -6711,36 +6546,6 @@ export const EnclaveConnectionCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: EnclaveConnectionCreateOrUpdateRequest,
   output: EnclaveConnectionCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type EnclaveConnectionDeleteError = AzureOpError;
-/** Delete a EnclaveConnectionResource */
-export const EnclaveConnectionDelete: API.OperationMethod<
-  EnclaveConnectionDeleteRequest,
-  EnclaveConnectionDeleteResponse,
-  EnclaveConnectionDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: EnclaveConnectionDeleteRequest,
-  output: EnclaveConnectionDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type EnclaveConnectionGetError = AzureOpError;
-/** Get a EnclaveConnectionResource */
-export const EnclaveConnectionGet: API.OperationMethod<
-  EnclaveConnectionGetRequest,
-  EnclaveConnectionGetResponse,
-  EnclaveConnectionGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: EnclaveConnectionGetRequest,
-  output: EnclaveConnectionGetResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -6776,51 +6581,6 @@ export const EnclaveConnectionHandleApprovalDeletion: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type EnclaveConnectionListByResourceGroupError = AzureOpError;
-/** List EnclaveConnectionResource resources by resource group */
-export const EnclaveConnectionListByResourceGroup: API.OperationMethod<
-  EnclaveConnectionListByResourceGroupRequest,
-  EnclaveConnectionResourceListResult,
-  EnclaveConnectionListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: EnclaveConnectionListByResourceGroupRequest,
-  output: EnclaveConnectionResourceListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type EnclaveConnectionListBySubscriptionError = AzureOpError;
-/** List EnclaveConnectionResource resources by subscription ID */
-export const EnclaveConnectionListBySubscription: API.OperationMethod<
-  EnclaveConnectionListBySubscriptionRequest,
-  EnclaveConnectionResourceListResult,
-  EnclaveConnectionListBySubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: EnclaveConnectionListBySubscriptionRequest,
-  output: EnclaveConnectionResourceListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type EnclaveConnectionUpdateError = AzureOpError;
-/** Update a EnclaveConnectionResource */
-export const EnclaveConnectionUpdate: API.OperationMethod<
-  EnclaveConnectionUpdateRequest,
-  EnclaveConnectionUpdateResponse,
-  EnclaveConnectionUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: EnclaveConnectionUpdateRequest,
-  output: EnclaveConnectionUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type EnclaveEndpointsCreateOrUpdateError = AzureOpError;
 /** Create a EnclaveEndpointResource */
 export const EnclaveEndpointsCreateOrUpdate: API.OperationMethod<
@@ -6831,36 +6591,6 @@ export const EnclaveEndpointsCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: EnclaveEndpointsCreateOrUpdateRequest,
   output: EnclaveEndpointsCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type EnclaveEndpointsDeleteError = AzureOpError;
-/** Delete a EnclaveEndpointResource */
-export const EnclaveEndpointsDelete: API.OperationMethod<
-  EnclaveEndpointsDeleteRequest,
-  EnclaveEndpointsDeleteResponse,
-  EnclaveEndpointsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: EnclaveEndpointsDeleteRequest,
-  output: EnclaveEndpointsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type EnclaveEndpointsGetError = AzureOpError;
-/** Get a EnclaveEndpointResource */
-export const EnclaveEndpointsGet: API.OperationMethod<
-  EnclaveEndpointsGetRequest,
-  EnclaveEndpointsGetResponse,
-  EnclaveEndpointsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: EnclaveEndpointsGetRequest,
-  output: EnclaveEndpointsGetResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -6896,61 +6626,421 @@ export const EnclaveEndpointsHandleApprovalDeletion: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type EnclaveEndpointsListByEnclaveResourceError = AzureOpError;
+export type GetApprovalError = AzureOpError;
+/** Get a ApprovalResource */
+export const GetApproval: API.OperationMethod<
+  GetApprovalRequest,
+  GetApprovalResponse,
+  GetApprovalError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetApprovalRequest,
+  output: GetApprovalResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetCommunityError = AzureOpError;
+/** Get a CommunityResource */
+export const GetCommunity: API.OperationMethod<
+  GetCommunityRequest,
+  GetCommunityResponse,
+  GetCommunityError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCommunityRequest,
+  output: GetCommunityResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetCommunityEndpointError = AzureOpError;
+/** Get a CommunityEndpointResource */
+export const GetCommunityEndpoint: API.OperationMethod<
+  GetCommunityEndpointRequest,
+  GetCommunityEndpointResponse,
+  GetCommunityEndpointError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCommunityEndpointRequest,
+  output: GetCommunityEndpointResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDedicatedHubError = AzureOpError;
+/** Get a DedicatedHubResource */
+export const GetDedicatedHub: API.OperationMethod<
+  GetDedicatedHubRequest,
+  GetDedicatedHubResponse,
+  GetDedicatedHubError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDedicatedHubRequest,
+  output: GetDedicatedHubResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetEnclaveConnectionError = AzureOpError;
+/** Get a EnclaveConnectionResource */
+export const GetEnclaveConnection: API.OperationMethod<
+  GetEnclaveConnectionRequest,
+  GetEnclaveConnectionResponse,
+  GetEnclaveConnectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetEnclaveConnectionRequest,
+  output: GetEnclaveConnectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetEnclaveEndpointError = AzureOpError;
+/** Get a EnclaveEndpointResource */
+export const GetEnclaveEndpoint: API.OperationMethod<
+  GetEnclaveEndpointRequest,
+  GetEnclaveEndpointResponse,
+  GetEnclaveEndpointError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetEnclaveEndpointRequest,
+  output: GetEnclaveEndpointResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetTransitHubError = AzureOpError;
+/** Get a TransitHubResource */
+export const GetTransitHub: API.OperationMethod<
+  GetTransitHubRequest,
+  GetTransitHubResponse,
+  GetTransitHubError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetTransitHubRequest,
+  output: GetTransitHubResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetVirtualEnclaveError = AzureOpError;
+/** Get a EnclaveResource */
+export const GetVirtualEnclave: API.OperationMethod<
+  GetVirtualEnclaveRequest,
+  GetVirtualEnclaveResponse,
+  GetVirtualEnclaveError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetVirtualEnclaveRequest,
+  output: GetVirtualEnclaveResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetWorkloadError = AzureOpError;
+/** Get a WorkloadResource */
+export const GetWorkload: API.OperationMethod<
+  GetWorkloadRequest,
+  GetWorkloadResponse,
+  GetWorkloadError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetWorkloadRequest,
+  output: GetWorkloadResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListApprovalByParentError = AzureOpError;
+/** List ApprovalResource resources by parent */
+export const ListApprovalByParent: API.OperationMethod<
+  ListApprovalByParentRequest,
+  ApprovalResourceListResult,
+  ListApprovalByParentError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListApprovalByParentRequest,
+  output: ApprovalResourceListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListCommunityByResourceGroupError = AzureOpError;
+/** List CommunityResource resources by resource group */
+export const ListCommunityByResourceGroup: API.OperationMethod<
+  ListCommunityByResourceGroupRequest,
+  CommunityResourceListResult,
+  ListCommunityByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListCommunityByResourceGroupRequest,
+  output: CommunityResourceListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListCommunityBySubscriptionError = AzureOpError;
+/** List CommunityResource resources by subscription ID */
+export const ListCommunityBySubscription: API.OperationMethod<
+  ListCommunityBySubscriptionRequest,
+  CommunityResourceListResult,
+  ListCommunityBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListCommunityBySubscriptionRequest,
+  output: CommunityResourceListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListCommunityEndpointByCommunityResourceError = AzureOpError;
+/** List CommunityEndpointResource resources by CommunityResource */
+export const ListCommunityEndpointByCommunityResource: API.OperationMethod<
+  ListCommunityEndpointByCommunityResourceRequest,
+  CommunityEndpointResourceListResult,
+  ListCommunityEndpointByCommunityResourceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListCommunityEndpointByCommunityResourceRequest,
+  output: CommunityEndpointResourceListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListCommunityEndpointBySubscriptionError = AzureOpError;
+/** List CommunityEndpointResource resources by subscription ID */
+export const ListCommunityEndpointBySubscription: API.OperationMethod<
+  ListCommunityEndpointBySubscriptionRequest,
+  CommunityEndpointResourceListResult,
+  ListCommunityEndpointBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListCommunityEndpointBySubscriptionRequest,
+  output: CommunityEndpointResourceListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDedicatedHubByCommunityResourceError = AzureOpError;
+/** List DedicatedHubResource resources by CommunityResource */
+export const ListDedicatedHubByCommunityResource: API.OperationMethod<
+  ListDedicatedHubByCommunityResourceRequest,
+  DedicatedHubResourceListResult,
+  ListDedicatedHubByCommunityResourceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDedicatedHubByCommunityResourceRequest,
+  output: DedicatedHubResourceListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDedicatedHubBySubscriptionError = AzureOpError;
+/** List DedicatedHubResource resources by subscription ID */
+export const ListDedicatedHubBySubscription: API.OperationMethod<
+  ListDedicatedHubBySubscriptionRequest,
+  DedicatedHubResourceListResult,
+  ListDedicatedHubBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDedicatedHubBySubscriptionRequest,
+  output: DedicatedHubResourceListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListEnclaveConnectionByResourceGroupError = AzureOpError;
+/** List EnclaveConnectionResource resources by resource group */
+export const ListEnclaveConnectionByResourceGroup: API.OperationMethod<
+  ListEnclaveConnectionByResourceGroupRequest,
+  EnclaveConnectionResourceListResult,
+  ListEnclaveConnectionByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListEnclaveConnectionByResourceGroupRequest,
+  output: EnclaveConnectionResourceListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListEnclaveConnectionBySubscriptionError = AzureOpError;
+/** List EnclaveConnectionResource resources by subscription ID */
+export const ListEnclaveConnectionBySubscription: API.OperationMethod<
+  ListEnclaveConnectionBySubscriptionRequest,
+  EnclaveConnectionResourceListResult,
+  ListEnclaveConnectionBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListEnclaveConnectionBySubscriptionRequest,
+  output: EnclaveConnectionResourceListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListEnclaveEndpointByEnclaveResourceError = AzureOpError;
 /** List EnclaveEndpointResource resources by EnclaveResource */
-export const EnclaveEndpointsListByEnclaveResource: API.OperationMethod<
-  EnclaveEndpointsListByEnclaveResourceRequest,
+export const ListEnclaveEndpointByEnclaveResource: API.OperationMethod<
+  ListEnclaveEndpointByEnclaveResourceRequest,
   EnclaveEndpointResourceListResult,
-  EnclaveEndpointsListByEnclaveResourceError,
+  ListEnclaveEndpointByEnclaveResourceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: EnclaveEndpointsListByEnclaveResourceRequest,
+  input: ListEnclaveEndpointByEnclaveResourceRequest,
   output: EnclaveEndpointResourceListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type EnclaveEndpointsListBySubscriptionError = AzureOpError;
+export type ListEnclaveEndpointBySubscriptionError = AzureOpError;
 /** List EnclaveEndpointResource resources by subscription ID */
-export const EnclaveEndpointsListBySubscription: API.OperationMethod<
-  EnclaveEndpointsListBySubscriptionRequest,
+export const ListEnclaveEndpointBySubscription: API.OperationMethod<
+  ListEnclaveEndpointBySubscriptionRequest,
   EnclaveEndpointResourceListResult,
-  EnclaveEndpointsListBySubscriptionError,
+  ListEnclaveEndpointBySubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: EnclaveEndpointsListBySubscriptionRequest,
+  input: ListEnclaveEndpointBySubscriptionRequest,
   output: EnclaveEndpointResourceListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type EnclaveEndpointsUpdateError = AzureOpError;
-/** Update a EnclaveEndpointResource */
-export const EnclaveEndpointsUpdate: API.OperationMethod<
-  EnclaveEndpointsUpdateRequest,
-  EnclaveEndpointsUpdateResponse,
-  EnclaveEndpointsUpdateError,
+export type ListOperationsError = AzureOpError;
+/** List the operations for the provider */
+export const ListOperations: API.OperationMethod<
+  ListOperationsRequest,
+  ListOperationsResponse,
+  ListOperationsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: EnclaveEndpointsUpdateRequest,
-  output: EnclaveEndpointsUpdateResponse,
+  input: ListOperationsRequest,
+  output: ListOperationsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type OperationsListError = AzureOpError;
-/** List the operations for the provider */
-export const OperationsList: API.OperationMethod<
-  OperationsListRequest,
-  OperationsListResponse,
-  OperationsListError,
+export type ListTransitHubByCommunityResourceError = AzureOpError;
+/** List TransitHubResource resources by CommunityResource */
+export const ListTransitHubByCommunityResource: API.OperationMethod<
+  ListTransitHubByCommunityResourceRequest,
+  TransitHubResourceListResult,
+  ListTransitHubByCommunityResourceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OperationsListRequest,
-  output: OperationsListResponse,
+  input: ListTransitHubByCommunityResourceRequest,
+  output: TransitHubResourceListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListTransitHubBySubscriptionError = AzureOpError;
+/** List TransitHubResource resources by subscription ID */
+export const ListTransitHubBySubscription: API.OperationMethod<
+  ListTransitHubBySubscriptionRequest,
+  TransitHubResourceListResult,
+  ListTransitHubBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListTransitHubBySubscriptionRequest,
+  output: TransitHubResourceListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListVirtualEnclaveByResourceGroupError = AzureOpError;
+/** List EnclaveResource resources by resource group */
+export const ListVirtualEnclaveByResourceGroup: API.OperationMethod<
+  ListVirtualEnclaveByResourceGroupRequest,
+  EnclaveResourceListResult,
+  ListVirtualEnclaveByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListVirtualEnclaveByResourceGroupRequest,
+  output: EnclaveResourceListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListVirtualEnclaveBySubscriptionError = AzureOpError;
+/** List EnclaveResource resources by subscription ID */
+export const ListVirtualEnclaveBySubscription: API.OperationMethod<
+  ListVirtualEnclaveBySubscriptionRequest,
+  EnclaveResourceListResult,
+  ListVirtualEnclaveBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListVirtualEnclaveBySubscriptionRequest,
+  output: EnclaveResourceListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListWorkloadByEnclaveResourceError = AzureOpError;
+/** List WorkloadResource resources by EnclaveResource */
+export const ListWorkloadByEnclaveResource: API.OperationMethod<
+  ListWorkloadByEnclaveResourceRequest,
+  WorkloadResourceListResult,
+  ListWorkloadByEnclaveResourceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListWorkloadByEnclaveResourceRequest,
+  output: WorkloadResourceListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListWorkloadBySubscriptionError = AzureOpError;
+/** List WorkloadResource resources by subscription ID */
+export const ListWorkloadBySubscription: API.OperationMethod<
+  ListWorkloadBySubscriptionRequest,
+  WorkloadResourceListResult,
+  ListWorkloadBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListWorkloadBySubscriptionRequest,
+  output: WorkloadResourceListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type NotifyApprovalInitiatorError = AzureOpError;
+/** Upon receiving approval or rejection from approver, this facilitates actions on approval resource */
+export const NotifyApprovalInitiator: API.OperationMethod<
+  NotifyApprovalInitiatorRequest,
+  ApprovalActionResponse,
+  NotifyApprovalInitiatorError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: NotifyApprovalInitiatorRequest,
+  output: ApprovalActionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -6971,76 +7061,136 @@ export const TransitHubCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type TransitHubDeleteError = AzureOpError;
-/** Delete a TransitHubResource */
-export const TransitHubDelete: API.OperationMethod<
-  TransitHubDeleteRequest,
-  TransitHubDeleteResponse,
-  TransitHubDeleteError,
+export type UpdateApprovalError = AzureOpError;
+/** Update a ApprovalResource */
+export const UpdateApproval: API.OperationMethod<
+  UpdateApprovalRequest,
+  UpdateApprovalResponse,
+  UpdateApprovalError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: TransitHubDeleteRequest,
-  output: TransitHubDeleteResponse,
+  input: UpdateApprovalRequest,
+  output: UpdateApprovalResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type TransitHubGetError = AzureOpError;
-/** Get a TransitHubResource */
-export const TransitHubGet: API.OperationMethod<
-  TransitHubGetRequest,
-  TransitHubGetResponse,
-  TransitHubGetError,
+export type UpdateCommunityError = AzureOpError;
+/** Update a CommunityResource */
+export const UpdateCommunity: API.OperationMethod<
+  UpdateCommunityRequest,
+  UpdateCommunityResponse,
+  UpdateCommunityError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: TransitHubGetRequest,
-  output: TransitHubGetResponse,
+  input: UpdateCommunityRequest,
+  output: UpdateCommunityResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type TransitHubListByCommunityResourceError = AzureOpError;
-/** List TransitHubResource resources by CommunityResource */
-export const TransitHubListByCommunityResource: API.OperationMethod<
-  TransitHubListByCommunityResourceRequest,
-  TransitHubResourceListResult,
-  TransitHubListByCommunityResourceError,
+export type UpdateCommunityEndpointError = AzureOpError;
+/** Update a CommunityEndpointResource */
+export const UpdateCommunityEndpoint: API.OperationMethod<
+  UpdateCommunityEndpointRequest,
+  UpdateCommunityEndpointResponse,
+  UpdateCommunityEndpointError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: TransitHubListByCommunityResourceRequest,
-  output: TransitHubResourceListResult,
+  input: UpdateCommunityEndpointRequest,
+  output: UpdateCommunityEndpointResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type TransitHubListBySubscriptionError = AzureOpError;
-/** List TransitHubResource resources by subscription ID */
-export const TransitHubListBySubscription: API.OperationMethod<
-  TransitHubListBySubscriptionRequest,
-  TransitHubResourceListResult,
-  TransitHubListBySubscriptionError,
+export type UpdateDedicatedHubError = AzureOpError;
+/** Update a DedicatedHubResource */
+export const UpdateDedicatedHub: API.OperationMethod<
+  UpdateDedicatedHubRequest,
+  UpdateDedicatedHubResponse,
+  UpdateDedicatedHubError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: TransitHubListBySubscriptionRequest,
-  output: TransitHubResourceListResult,
+  input: UpdateDedicatedHubRequest,
+  output: UpdateDedicatedHubResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type TransitHubUpdateError = AzureOpError;
+export type UpdateEnclaveConnectionError = AzureOpError;
+/** Update a EnclaveConnectionResource */
+export const UpdateEnclaveConnection: API.OperationMethod<
+  UpdateEnclaveConnectionRequest,
+  UpdateEnclaveConnectionResponse,
+  UpdateEnclaveConnectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateEnclaveConnectionRequest,
+  output: UpdateEnclaveConnectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateEnclaveEndpointError = AzureOpError;
+/** Update a EnclaveEndpointResource */
+export const UpdateEnclaveEndpoint: API.OperationMethod<
+  UpdateEnclaveEndpointRequest,
+  UpdateEnclaveEndpointResponse,
+  UpdateEnclaveEndpointError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateEnclaveEndpointRequest,
+  output: UpdateEnclaveEndpointResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateTransitHubError = AzureOpError;
 /** Update a TransitHubResource */
-export const TransitHubUpdate: API.OperationMethod<
-  TransitHubUpdateRequest,
-  TransitHubUpdateResponse,
-  TransitHubUpdateError,
+export const UpdateTransitHub: API.OperationMethod<
+  UpdateTransitHubRequest,
+  UpdateTransitHubResponse,
+  UpdateTransitHubError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: TransitHubUpdateRequest,
-  output: TransitHubUpdateResponse,
+  input: UpdateTransitHubRequest,
+  output: UpdateTransitHubResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateVirtualEnclaveError = AzureOpError;
+/** Update a EnclaveResource */
+export const UpdateVirtualEnclave: API.OperationMethod<
+  UpdateVirtualEnclaveRequest,
+  UpdateVirtualEnclaveResponse,
+  UpdateVirtualEnclaveError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateVirtualEnclaveRequest,
+  output: UpdateVirtualEnclaveResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateWorkloadError = AzureOpError;
+/** Update a WorkloadResource */
+export const UpdateWorkload: API.OperationMethod<
+  UpdateWorkloadRequest,
+  UpdateWorkloadResponse,
+  UpdateWorkloadError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateWorkloadRequest,
+  output: UpdateWorkloadResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -7056,36 +7206,6 @@ export const VirtualEnclaveCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: VirtualEnclaveCreateOrUpdateRequest,
   output: VirtualEnclaveCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualEnclaveDeleteError = AzureOpError;
-/** Delete a EnclaveResource */
-export const VirtualEnclaveDelete: API.OperationMethod<
-  VirtualEnclaveDeleteRequest,
-  VirtualEnclaveDeleteResponse,
-  VirtualEnclaveDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualEnclaveDeleteRequest,
-  output: VirtualEnclaveDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualEnclaveGetError = AzureOpError;
-/** Get a EnclaveResource */
-export const VirtualEnclaveGet: API.OperationMethod<
-  VirtualEnclaveGetRequest,
-  VirtualEnclaveGetResponse,
-  VirtualEnclaveGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualEnclaveGetRequest,
-  output: VirtualEnclaveGetResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -7121,51 +7241,6 @@ export const VirtualEnclaveHandleApprovalDeletion: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type VirtualEnclaveListByResourceGroupError = AzureOpError;
-/** List EnclaveResource resources by resource group */
-export const VirtualEnclaveListByResourceGroup: API.OperationMethod<
-  VirtualEnclaveListByResourceGroupRequest,
-  EnclaveResourceListResult,
-  VirtualEnclaveListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualEnclaveListByResourceGroupRequest,
-  output: EnclaveResourceListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualEnclaveListBySubscriptionError = AzureOpError;
-/** List EnclaveResource resources by subscription ID */
-export const VirtualEnclaveListBySubscription: API.OperationMethod<
-  VirtualEnclaveListBySubscriptionRequest,
-  EnclaveResourceListResult,
-  VirtualEnclaveListBySubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualEnclaveListBySubscriptionRequest,
-  output: EnclaveResourceListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualEnclaveUpdateError = AzureOpError;
-/** Update a EnclaveResource */
-export const VirtualEnclaveUpdate: API.OperationMethod<
-  VirtualEnclaveUpdateRequest,
-  VirtualEnclaveUpdateResponse,
-  VirtualEnclaveUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualEnclaveUpdateRequest,
-  output: VirtualEnclaveUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type WorkloadCreateOrUpdateError = AzureOpError;
 /** Create a WorkloadResource */
 export const WorkloadCreateOrUpdate: API.OperationMethod<
@@ -7176,81 +7251,6 @@ export const WorkloadCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: WorkloadCreateOrUpdateRequest,
   output: WorkloadCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkloadDeleteError = AzureOpError;
-/** Delete a WorkloadResource */
-export const WorkloadDelete: API.OperationMethod<
-  WorkloadDeleteRequest,
-  WorkloadDeleteResponse,
-  WorkloadDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkloadDeleteRequest,
-  output: WorkloadDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkloadGetError = AzureOpError;
-/** Get a WorkloadResource */
-export const WorkloadGet: API.OperationMethod<
-  WorkloadGetRequest,
-  WorkloadGetResponse,
-  WorkloadGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkloadGetRequest,
-  output: WorkloadGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkloadListByEnclaveResourceError = AzureOpError;
-/** List WorkloadResource resources by EnclaveResource */
-export const WorkloadListByEnclaveResource: API.OperationMethod<
-  WorkloadListByEnclaveResourceRequest,
-  WorkloadResourceListResult,
-  WorkloadListByEnclaveResourceError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkloadListByEnclaveResourceRequest,
-  output: WorkloadResourceListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkloadListBySubscriptionError = AzureOpError;
-/** List WorkloadResource resources by subscription ID */
-export const WorkloadListBySubscription: API.OperationMethod<
-  WorkloadListBySubscriptionRequest,
-  WorkloadResourceListResult,
-  WorkloadListBySubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkloadListBySubscriptionRequest,
-  output: WorkloadResourceListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkloadUpdateError = AzureOpError;
-/** Update a WorkloadResource */
-export const WorkloadUpdate: API.OperationMethod<
-  WorkloadUpdateRequest,
-  WorkloadUpdateResponse,
-  WorkloadUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkloadUpdateRequest,
-  output: WorkloadUpdateResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

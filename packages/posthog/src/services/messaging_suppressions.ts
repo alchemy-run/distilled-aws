@@ -11,31 +11,35 @@ import * as Retry from "../retry.ts";
 
 export type { PosthogOpError, PosthogOpContext };
 
-export interface MessagingSuppressionsAddSuppressionCreateRequest {
+export interface GetMessagingSuppressionsSuppressionRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
-  /** The email address to suppress. Will not receive any messages until removed. */
-  identifier: string;
+  page?: number;
+  page_size?: number;
+  /** Case-insensitive substring match on the recipient email address. */
+  search?: string;
 }
-export const MessagingSuppressionsAddSuppressionCreateRequest =
+export const GetMessagingSuppressionsSuppressionRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
-      identifier: S.String,
+      page: S.optional(S.Number.pipe(T.Query())),
+      page_size: S.optional(S.Number.pipe(T.Query())),
+      search: S.optional(S.String.pipe(T.Query())),
     }).pipe(
       T.Http({
-        method: "POST",
-        uri: "/api/projects/{project_id}/messaging_suppressions/add_suppression/",
+        method: "GET",
+        uri: "/api/projects/{project_id}/messaging_suppressions/suppressions/",
         code: 200,
       }),
     ),
   ).annotate({
-    identifier: "MessagingSuppressionsAddSuppressionCreateRequest",
-  }) as any as S.Schema<MessagingSuppressionsAddSuppressionCreateRequest>;
+    identifier: "GetMessagingSuppressionsSuppressionRequest",
+  }) as any as S.Schema<GetMessagingSuppressionsSuppressionRequest>;
 
 /** * `BOUNCE` - Bounce * `MANUAL` - Manual * `COMPLAINT` - Complaint */
-export type MessageSuppressionSourceEnum = "BOUNCE" | "MANUAL" | "COMPLAINT";
-export const MessageSuppressionSourceEnum = /*@__PURE__*/ S.String;
+export type SuppressionSourceEnum = "BOUNCE" | "MANUAL" | "COMPLAINT";
+export const SuppressionSourceEnum = /*@__PURE__*/ S.String;
 
 export interface MessageSuppression {
   /** Server-assigned UUID for this suppression entry. */
@@ -43,7 +47,7 @@ export interface MessageSuppression {
   /** Normalized recipient email address. Suppression is keyed on this value, per team. */
   identifier: string;
   /** How the entry landed on the list: `BOUNCE` for automatic (bounce-driven), `COMPLAINT` for automatic (the recipient reported a message as spam), `MANUAL` for user-added via the UI/API. * `BOUNCE` - Bounce * `MANUAL` - Manual * `COMPLAINT` - Complaint */
-  source: MessageSuppressionSourceEnum;
+  source: SuppressionSourceEnum;
   /** Human-readable reason for the suppression (e.g. 'Auto-suppressed after 5 consecutive soft bounces'). */
   reason: string | null;
   /** Rolling count of consecutive soft bounces with no successful delivery in between. Reset to 0 on any successful delivery. Ignored for MANUAL entries. */
@@ -65,7 +69,7 @@ export const MessageSuppression = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String,
     identifier: S.String,
-    source: MessageSuppressionSourceEnum,
+    source: SuppressionSourceEnum,
     reason: S.NullOr(S.String),
     transient_bounce_count: S.Number,
     last_bounce_at: S.NullOr(S.String),
@@ -78,6 +82,54 @@ export const MessageSuppression = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "MessageSuppression",
 }) as any as S.Schema<MessageSuppression>;
+
+export type PaginatedMessageSuppressionResultsList = Array<MessageSuppression>;
+export const PaginatedMessageSuppressionResultsList = /*@__PURE__*/ S.Array(
+  MessageSuppression,
+) as any as S.Schema<PaginatedMessageSuppressionResultsList>;
+
+/** OpenAPI shape for the paginated suppressions response. Declared so drf-spectacular emits the {count, next, previous, results} envelope on the generated client, rather than a bare array — which the frontend actually receives at runtime. */
+export interface PaginatedMessageSuppression {
+  /** Total number of suppressed recipients for the team. */
+  count: number;
+  /** URL for the next page, or null on the last page. */
+  next: string | null;
+  /** URL for the previous page, or null on the first page. */
+  previous: string | null;
+  results: PaginatedMessageSuppressionResultsList;
+}
+export const PaginatedMessageSuppression = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    count: S.Number,
+    next: S.NullOr(S.String),
+    previous: S.NullOr(S.String),
+    results: PaginatedMessageSuppressionResultsList,
+  }),
+).annotate({
+  identifier: "PaginatedMessageSuppression",
+}) as any as S.Schema<PaginatedMessageSuppression>;
+
+export interface MessagingSuppressionsAddSuppressionCreateRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** The email address to suppress. Will not receive any messages until removed. */
+  identifier: string;
+}
+export const MessagingSuppressionsAddSuppressionCreateRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      identifier: S.String,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/projects/{project_id}/messaging_suppressions/add_suppression/",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "MessagingSuppressionsAddSuppressionCreateRequest",
+  }) as any as S.Schema<MessagingSuppressionsAddSuppressionCreateRequest>;
 
 export interface MessagingSuppressionsRemoveSuppressionCreateRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -107,57 +159,20 @@ export const MessagingSuppressionsRemoveSuppressionCreateResponse =
     identifier: "MessagingSuppressionsRemoveSuppressionCreateResponse",
   }) as any as S.Schema<MessagingSuppressionsRemoveSuppressionCreateResponse>;
 
-export interface MessagingSuppressionsSuppressionsRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  page?: number;
-  page_size?: number;
-  /** Case-insensitive substring match on the recipient email address. */
-  search?: string;
-}
-export const MessagingSuppressionsSuppressionsRetrieveRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      page: S.optional(S.Number.pipe(T.Query())),
-      page_size: S.optional(S.Number.pipe(T.Query())),
-      search: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/messaging_suppressions/suppressions/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "MessagingSuppressionsSuppressionsRetrieveRequest",
-  }) as any as S.Schema<MessagingSuppressionsSuppressionsRetrieveRequest>;
-
-export type PaginatedMessageSuppressionResultsList = Array<MessageSuppression>;
-export const PaginatedMessageSuppressionResultsList = /*@__PURE__*/ S.Array(
-  MessageSuppression,
-) as any as S.Schema<PaginatedMessageSuppressionResultsList>;
-
-/** OpenAPI shape for the paginated suppressions response. Declared so drf-spectacular emits the {count, next, previous, results} envelope on the generated client, rather than a bare array — which the frontend actually receives at runtime. */
-export interface PaginatedMessageSuppression {
-  /** Total number of suppressed recipients for the team. */
-  count: number;
-  /** URL for the next page, or null on the last page. */
-  next: string | null;
-  /** URL for the previous page, or null on the first page. */
-  previous: string | null;
-  results: PaginatedMessageSuppressionResultsList;
-}
-export const PaginatedMessageSuppression = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    count: S.Number,
-    next: S.NullOr(S.String),
-    previous: S.NullOr(S.String),
-    results: PaginatedMessageSuppressionResultsList,
-  }),
-).annotate({
-  identifier: "PaginatedMessageSuppression",
-}) as any as S.Schema<PaginatedMessageSuppression>;
+export type GetMessagingSuppressionsSuppressionError = PosthogOpError;
+/** List suppressed email addresses for the team List suppressed recipients for the team, most recently updated first. */
+export const getMessagingSuppressionsSuppression: API.OperationMethod<
+  GetMessagingSuppressionsSuppressionRequest,
+  PaginatedMessageSuppression,
+  GetMessagingSuppressionsSuppressionError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetMessagingSuppressionsSuppressionRequest,
+  output: PaginatedMessageSuppression,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
 
 export type MessagingSuppressionsAddSuppressionCreateError = PosthogOpError;
 /** Manually add an email address to the suppression list Manually suppress an email address so no workflow sends to it. */
@@ -184,21 +199,6 @@ export const messagingSuppressionsRemoveSuppressionCreate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: MessagingSuppressionsRemoveSuppressionCreateRequest,
   output: MessagingSuppressionsRemoveSuppressionCreateResponse,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type MessagingSuppressionsSuppressionsRetrieveError = PosthogOpError;
-/** List suppressed email addresses for the team List suppressed recipients for the team, most recently updated first. */
-export const messagingSuppressionsSuppressionsRetrieve: API.OperationMethod<
-  MessagingSuppressionsSuppressionsRetrieveRequest,
-  PaginatedMessageSuppression,
-  MessagingSuppressionsSuppressionsRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: MessagingSuppressionsSuppressionsRetrieveRequest,
-  output: PaginatedMessageSuppression,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,

@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.whop.api_keys#ListApiKeysRequestResourceType": {
@@ -1214,7 +1215,7 @@
         "smithy.api#documentation": "List the Permission Catalog\n\nLists the catalog of permission actions that can be granted to users, apps, and API keys — the source for the dashboard's permission pickers. Small and returned in full on one page."
       }
     },
-    "com.whop.api_keys#RetrieveApiKeyRequest": {
+    "com.whop.api_keys#GetApiKeyRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -1230,10 +1231,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.whop.api_keys#RetrieveApiKey": {
+    "com.whop.api_keys#GetApiKey": {
       "type": "operation",
       "input": {
-        "target": "com.whop.api_keys#RetrieveApiKeyRequest"
+        "target": "com.whop.api_keys#GetApiKeyRequest"
       },
       "output": {
         "target": "com.whop.api_keys#ApiKey"
@@ -1818,7 +1819,7 @@
           "target": "com.whop.api_keys#ListApiKeyPermissions"
         },
         {
-          "target": "com.whop.api_keys#RetrieveApiKey"
+          "target": "com.whop.api_keys#GetApiKey"
         },
         {
           "target": "com.whop.api_keys#UpdateApiKey"

@@ -5,6 +5,7 @@
  *   machines  OpenAPI  specs/spec-mirror-fly-io/specs/openapi.json
  *             → .generated-specs/machines.json
  *             patches: patches/*.patch.json then patches/machines/*.patch.json
+ *             operationNaming: verbNoun (not JSON-pointer patches)
  *
  *   sprites   OpenAPI  specs/sprites/openapi.json (hand-authored; no
  *             published OpenAPI at api.sprites.dev)
@@ -21,8 +22,8 @@
  *             → .generated-specs/addons.json
  *             patches: patches/addons/*.patch.json (Smithy)
  *
- * `scripts/generate.ts` also runs with `patchesDir: false` — OpenAPI and
- * GraphQL patches apply here.
+ * `scripts/generate.ts` only compiles `.generated-specs`; every patch and
+ * model stamp applies here.
  */
 import * as fs from "node:fs/promises";
 import * as path from "node:path";
@@ -34,33 +35,15 @@ import {
   readIntrospection,
 } from "@distilled.cloud/core/codegen/graphql";
 import {
-  applyOperation,
-  isStaleTargetError,
-  type PatchFile,
-} from "@distilled.cloud/core/json-patch";
+  applyRfc6902Files,
+  finalizeConvert,
+  listRfc6902PatchFiles,
+} from "@distilled.cloud/core/codegen/patches";
+import { MACHINES_OPERATION_NAMES } from "./machines-operation-ids.ts";
 
 const root = `${import.meta.dir}/..`;
 const patchesRoot = path.join(root, "patches");
 const generatedDir = path.join(root, ".generated-specs");
-
-const listPatchFiles = async (dir: string): Promise<string[]> => {
-  try {
-    return (await fs.readdir(dir))
-      .filter((f) => f.endsWith(".patch.json"))
-      .sort((a, b) => a.localeCompare(b))
-      .map((f) => path.join(dir, f));
-  } catch (e) {
-    if ((e as NodeJS.ErrnoException).code === "ENOENT") return [];
-    throw e;
-  }
-};
-
-const loadPatch = async (
-  file: string,
-): Promise<{ file: string; parsed: PatchFile }> => ({
-  file,
-  parsed: JSON.parse(await fs.readFile(file, "utf8")) as PatchFile,
-});
 
 const STATUS_TO_ERROR = {
   400: "BadRequest",
@@ -77,11 +60,15 @@ const DEFAULT_ERROR_STATUSES = ["401", "429", "500", "502", "503", "504"];
 // machines — existing dual-layer OpenAPI patch walk
 // ---------------------------------------------------------------------------
 
+// Flat `patches/*.patch.json` are Machines-wide error responses; the
+// per-operation ones live under `patches/machines/`. Both are OpenAPI
+// pointers into the `/v1/…` spec-mirror paths.
 const machinesPatchFiles = [
-  ...(await listPatchFiles(patchesRoot)),
-  ...(await listPatchFiles(path.join(patchesRoot, "machines"))),
+  ...(await listRfc6902PatchFiles(patchesRoot)).filter((f) =>
+    f.endsWith(".patch.json"),
+  ),
+  ...(await listRfc6902PatchFiles(path.join(patchesRoot, "machines"))),
 ];
-const machinesPatches = await Promise.all(machinesPatchFiles.map(loadPatch));
 
 await runOpenApiConvert({
   root,
@@ -89,51 +76,32 @@ await runOpenApiConvert({
     {
       name: "machines",
       specPath: "specs/spec-mirror-fly-io/specs/openapi.json",
-      preprocess: (spec) => {
-        let staleOps = 0;
-        const badPatches: string[] = [];
-        for (const { file, parsed } of machinesPatches) {
-          const label = path.relative(patchesRoot, file);
-          for (const patchOp of parsed.patches ?? []) {
-            try {
-              applyOperation(spec, patchOp);
-            } catch (e) {
-              const msg = e instanceof Error ? e.message : String(e);
-              if (isStaleTargetError(msg)) {
-                staleOps++;
-                console.warn(
-                  `   ⚠️  stale: machines/${label} [${patchOp.op} ${patchOp.path}]`,
-                );
-              } else {
-                badPatches.push(
-                  `${label} [${patchOp.op} ${patchOp.path}]: ${msg}`,
-                );
-              }
-            }
-          }
-        }
-        if (badPatches.length) {
-          for (const b of badPatches) console.error(`❌ bad patch: ${b}`);
+      preprocess: async (spec) => {
+        const applied = await applyRfc6902Files(spec, machinesPatchFiles, {
+          label: (f) => path.relative(patchesRoot, f),
+        });
+        if (applied.errors.length) {
+          for (const b of applied.errors) console.error(`❌ bad patch: ${b}`);
           throw new Error(
-            `${badPatches.length} malformed patch operation(s) — fix or remove them`,
+            `${applied.errors.length} machines patch operation(s) failed — fix the JSON pointers (paths are /v1/… on the spec-mirror) or delete the patch`,
           );
         }
-        if (machinesPatches.length > 0) {
-          console.log(
-            `   applied ${machinesPatches.length} OpenAPI patch file(s) (flat + patches/machines)` +
-              (staleOps ? `, ${staleOps} stale op(s) skipped` : ""),
-          );
-        }
+        console.log(
+          `   applied ${applied.files} OpenAPI patch file(s) (flat + patches/machines)`,
+        );
       },
     },
   ],
   patchesDir: false,
+  finalize: false,
   options: {
     namespace: "com.flyio.machines",
     serviceName: "FlyMachines",
     statusToErrorClass: STATUS_TO_ERROR,
     defaultErrorStatuses: DEFAULT_ERROR_STATUSES,
     skipDeprecated: true,
+    operationNaming: "verbNoun",
+    operationNames: MACHINES_OPERATION_NAMES,
   },
 });
 
@@ -187,6 +155,7 @@ await runOpenApiConvert({
     },
   ],
   patchesDir: "patches",
+  finalize: false,
   options: {
     namespace: "com.flyio",
     serviceName: "Fly",
@@ -302,27 +271,6 @@ const addonsResult = convertGraphQLToSmithy({
   relay: { after: "after", first: "first" },
 });
 
-{
-  const addonsPatchFiles = await listPatchFiles(
-    path.join(patchesRoot, "addons"),
-  );
-  for (const file of addonsPatchFiles) {
-    const { parsed } = await loadPatch(file);
-    for (const op of parsed.patches ?? []) {
-      try {
-        applyOperation(addonsResult.model, op);
-      } catch (error) {
-        const msg = error instanceof Error ? error.message : String(error);
-        if (isStaleTargetError(msg)) {
-          console.warn(`   ⚠️  stale addons patch ${file}: ${msg}`);
-          continue;
-        }
-        throw error;
-      }
-    }
-  }
-}
-
 const addonsOut = path.join(generatedDir, "addons.json");
 await fs.mkdir(generatedDir, { recursive: true });
 await fs.writeFile(
@@ -334,3 +282,25 @@ console.log(
     `(${addonsResult.paginated} paginated, ${addonsResult.failed} failed, ` +
     `${addonsResult.shapeCount} shapes) → ${addonsOut}`,
 );
+
+await finalizeConvert({
+  root,
+  transform: (model, resource) => {
+    if (resource !== "addons") return;
+    let n = 0;
+    for (const def of Object.values(model.shapes ?? {}) as any[]) {
+      if (def?.type !== "structure") continue;
+      for (const [name, member] of Object.entries(def.members ?? {}) as any[]) {
+        if (name === "password" || name === "publicUrl") {
+          member.traits = {
+            ...(member.traits ?? {}),
+            "smithy.api#sensitive": {},
+          };
+          n++;
+        }
+      }
+    }
+    if (n)
+      return `stamped smithy.api#sensitive on ${n} add-on secret member(s)`;
+  },
+});

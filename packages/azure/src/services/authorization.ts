@@ -12,13 +12,481 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
-export interface DenyAssignmentsGetRequest {
+/** The principal type of the assigned principal ID. */
+export type RoleAssignmentPropertiesInputPrincipalType =
+  | "User"
+  | "Group"
+  | "ServicePrincipal"
+  | "ForeignGroup"
+  | "Device"
+  | "AgentUser"
+  | "AgentServicePrincipal";
+export const RoleAssignmentPropertiesInputPrincipalType =
+  /*@__PURE__*/ S.String;
+
+/** Role assignment properties. */
+export interface RoleAssignmentPropertiesInput {
+  /** The role definition ID. */
+  roleDefinitionId: string;
+  /** The principal ID. */
+  principalId: string;
+  /** The principal type of the assigned principal ID. */
+  principalType?: RoleAssignmentPropertiesInputPrincipalType | (string & {});
+  /** Description of role assignment */
+  description?: string;
+  /** The conditions on the role assignment. This limits the resources it can be assigned to. e.g.: @Resource[Microsoft.Storage/storageAccounts/blobServices/containers:ContainerName] StringEqualsIgnoreCase 'foo_storage_container' */
+  condition?: string;
+  /** Version of the condition. Currently the only accepted value is '2.0' */
+  conditionVersion?: string;
+  /** Id of the delegated managed identity resource */
+  delegatedManagedIdentityResourceId?: string;
+}
+export const RoleAssignmentPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    roleDefinitionId: S.String,
+    principalId: S.String,
+    principalType: S.optional(RoleAssignmentPropertiesInputPrincipalType),
+    description: S.optional(S.String),
+    condition: S.optional(S.String),
+    conditionVersion: S.optional(S.String),
+    delegatedManagedIdentityResourceId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "RoleAssignmentPropertiesInput",
+}) as any as S.Schema<RoleAssignmentPropertiesInput>;
+
+export interface CreateRoleAssignmentRequest {
+  /** The fully qualified Azure Resource manager identifier of the resource. */
+  scope: string;
+  /** The name of the role assignment. It can be any valid GUID. */
+  roleAssignmentName: string;
+  /** Role assignment properties. */
+  properties: RoleAssignmentPropertiesInput;
+}
+export const CreateRoleAssignmentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    scope: S.String.pipe(T.Label()),
+    roleAssignmentName: S.String.pipe(T.Label()),
+    properties: RoleAssignmentPropertiesInput,
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/{scope}/providers/Microsoft.Authorization/roleAssignments/{roleAssignmentName}",
+      code: 200,
+      apiVersion: "2022-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "CreateRoleAssignmentRequest",
+}) as any as S.Schema<CreateRoleAssignmentRequest>;
+
+/** The type of identity that created the resource. */
+export type SystemDataCreatedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+
+/** The type of identity that last modified the resource. */
+export type SystemDataLastModifiedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+
+/** Metadata pertaining to creation and last modification of the resource. */
+export interface SystemData {
+  /** The identity that created the resource. */
+  createdBy?: string;
+  /** The type of identity that created the resource. */
+  createdByType?: SystemDataCreatedByType;
+  /** The timestamp of resource creation (UTC). */
+  createdAt?: string;
+  /** The identity that last modified the resource. */
+  lastModifiedBy?: string;
+  /** The type of identity that last modified the resource. */
+  lastModifiedByType?: SystemDataLastModifiedByType;
+  /** The timestamp of resource last modification (UTC) */
+  lastModifiedAt?: string;
+}
+export const SystemData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    createdBy: S.optional(S.String),
+    createdByType: S.optional(SystemDataCreatedByType),
+    createdAt: S.optional(S.String),
+    lastModifiedBy: S.optional(S.String),
+    lastModifiedByType: S.optional(SystemDataLastModifiedByType),
+    lastModifiedAt: S.optional(S.String),
+  }),
+).annotate({ identifier: "SystemData" }) as any as S.Schema<SystemData>;
+
+/** The principal type of the assigned principal ID. */
+export type RoleAssignmentPropertiesPrincipalType =
+  | "User"
+  | "Group"
+  | "ServicePrincipal"
+  | "ForeignGroup"
+  | "Device"
+  | "AgentUser"
+  | "AgentServicePrincipal";
+export const RoleAssignmentPropertiesPrincipalType = /*@__PURE__*/ S.String;
+
+/** Role assignment properties. */
+export interface RoleAssignmentProperties {
+  /** The role assignment scope. */
+  scope?: string;
+  /** The role definition ID. */
+  roleDefinitionId: string;
+  /** The principal ID. */
+  principalId: string;
+  /** The principal type of the assigned principal ID. */
+  principalType?: RoleAssignmentPropertiesPrincipalType;
+  /** Description of role assignment */
+  description?: string;
+  /** The conditions on the role assignment. This limits the resources it can be assigned to. e.g.: @Resource[Microsoft.Storage/storageAccounts/blobServices/containers:ContainerName] StringEqualsIgnoreCase 'foo_storage_container' */
+  condition?: string;
+  /** Version of the condition. Currently the only accepted value is '2.0' */
+  conditionVersion?: string;
+  /** Time it was created */
+  createdOn?: string;
+  /** Time it was updated */
+  updatedOn?: string;
+  /** Id of the user who created the assignment */
+  createdBy?: string;
+  /** Id of the user who updated the assignment */
+  updatedBy?: string;
+  /** Id of the delegated managed identity resource */
+  delegatedManagedIdentityResourceId?: string;
+}
+export const RoleAssignmentProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    scope: S.optional(S.String),
+    roleDefinitionId: S.String,
+    principalId: S.String,
+    principalType: S.optional(RoleAssignmentPropertiesPrincipalType),
+    description: S.optional(S.String),
+    condition: S.optional(S.String),
+    conditionVersion: S.optional(S.String),
+    createdOn: S.optional(S.String),
+    updatedOn: S.optional(S.String),
+    createdBy: S.optional(S.String),
+    updatedBy: S.optional(S.String),
+    delegatedManagedIdentityResourceId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "RoleAssignmentProperties",
+}) as any as S.Schema<RoleAssignmentProperties>;
+
+export interface CreateRoleAssignmentResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Role assignment properties. */
+  properties?: RoleAssignmentProperties;
+}
+export const CreateRoleAssignmentResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(RoleAssignmentProperties),
+  }),
+).annotate({
+  identifier: "CreateRoleAssignmentResponse",
+}) as any as S.Schema<CreateRoleAssignmentResponse>;
+
+export interface CreateRoleAssignmentByIdRequest {
+  /** The fully qualified ID of the role assignment including scope, resource name, and resource type. Format: /{scope}/providers/Microsoft.Authorization/roleAssignments/{roleAssignmentName}. Example: /subscriptions/<SUB_ID>/resourcegroups/<RESOURCE_GROUP>/providers/Microsoft.Authorization/roleAssignments/<ROLE_ASSIGNMENT_NAME> */
+  roleAssignmentId: string;
+  /** Role assignment properties. */
+  properties: RoleAssignmentPropertiesInput;
+}
+export const CreateRoleAssignmentByIdRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    roleAssignmentId: S.String.pipe(T.Label()),
+    properties: RoleAssignmentPropertiesInput,
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/{roleAssignmentId}",
+      code: 200,
+      apiVersion: "2022-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "CreateRoleAssignmentByIdRequest",
+}) as any as S.Schema<CreateRoleAssignmentByIdRequest>;
+
+export interface CreateRoleAssignmentByIdResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Role assignment properties. */
+  properties?: RoleAssignmentProperties;
+}
+export const CreateRoleAssignmentByIdResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(RoleAssignmentProperties),
+  }),
+).annotate({
+  identifier: "CreateRoleAssignmentByIdResponse",
+}) as any as S.Schema<CreateRoleAssignmentByIdResponse>;
+
+export interface DeleteRoleAssignmentRequest {
+  /** The fully qualified Azure Resource manager identifier of the resource. */
+  scope: string;
+  /** The name of the role assignment. It can be any valid GUID. */
+  roleAssignmentName: string;
+  /** Tenant ID for cross-tenant request */
+  tenantId?: string;
+}
+export const DeleteRoleAssignmentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    scope: S.String.pipe(T.Label()),
+    roleAssignmentName: S.String.pipe(T.Label()),
+    tenantId: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/{scope}/providers/Microsoft.Authorization/roleAssignments/{roleAssignmentName}",
+      code: 200,
+      apiVersion: "2022-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteRoleAssignmentRequest",
+}) as any as S.Schema<DeleteRoleAssignmentRequest>;
+
+export interface DeleteRoleAssignmentResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Role assignment properties. */
+  properties?: RoleAssignmentProperties;
+}
+export const DeleteRoleAssignmentResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(RoleAssignmentProperties),
+  }),
+).annotate({
+  identifier: "DeleteRoleAssignmentResponse",
+}) as any as S.Schema<DeleteRoleAssignmentResponse>;
+
+export interface DeleteRoleAssignmentByIdRequest {
+  /** The fully qualified ID of the role assignment including scope, resource name, and resource type. Format: /{scope}/providers/Microsoft.Authorization/roleAssignments/{roleAssignmentName}. Example: /subscriptions/<SUB_ID>/resourcegroups/<RESOURCE_GROUP>/providers/Microsoft.Authorization/roleAssignments/<ROLE_ASSIGNMENT_NAME> */
+  roleAssignmentId: string;
+  /** Tenant ID for cross-tenant request */
+  tenantId?: string;
+}
+export const DeleteRoleAssignmentByIdRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    roleAssignmentId: S.String.pipe(T.Label()),
+    tenantId: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/{roleAssignmentId}",
+      code: 200,
+      apiVersion: "2022-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteRoleAssignmentByIdRequest",
+}) as any as S.Schema<DeleteRoleAssignmentByIdRequest>;
+
+export interface DeleteRoleAssignmentByIdResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Role assignment properties. */
+  properties?: RoleAssignmentProperties;
+}
+export const DeleteRoleAssignmentByIdResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(RoleAssignmentProperties),
+  }),
+).annotate({
+  identifier: "DeleteRoleAssignmentByIdResponse",
+}) as any as S.Schema<DeleteRoleAssignmentByIdResponse>;
+
+export interface DeleteRoleDefinitionRequest {
+  /** The scope of the role definition. */
+  scope: string;
+  /** The ID of the role definition to delete. */
+  roleDefinitionId: string;
+}
+export const DeleteRoleDefinitionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    scope: S.String.pipe(T.Label()),
+    roleDefinitionId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/{scope}/providers/Microsoft.Authorization/roleDefinitions/{roleDefinitionId}",
+      code: 200,
+      apiVersion: "2022-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteRoleDefinitionRequest",
+}) as any as S.Schema<DeleteRoleDefinitionRequest>;
+
+/** Allowed actions. */
+export type PermissionActionsList = Array<string>;
+export const PermissionActionsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<PermissionActionsList>;
+
+/** Denied actions. */
+export type PermissionNotActionsList = Array<string>;
+export const PermissionNotActionsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<PermissionNotActionsList>;
+
+/** Allowed Data actions. */
+export type PermissionDataActionsList = Array<string>;
+export const PermissionDataActionsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<PermissionDataActionsList>;
+
+/** Denied Data actions. */
+export type PermissionNotDataActionsList = Array<string>;
+export const PermissionNotDataActionsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<PermissionNotDataActionsList>;
+
+/** Role definition permissions. */
+export interface Permission {
+  /** Allowed actions. */
+  actions?: PermissionActionsList;
+  /** Denied actions. */
+  notActions?: PermissionNotActionsList;
+  /** Allowed Data actions. */
+  dataActions?: PermissionDataActionsList;
+  /** Denied Data actions. */
+  notDataActions?: PermissionNotDataActionsList;
+}
+export const Permission = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    actions: S.optional(PermissionActionsList),
+    notActions: S.optional(PermissionNotActionsList),
+    dataActions: S.optional(PermissionDataActionsList),
+    notDataActions: S.optional(PermissionNotDataActionsList),
+  }),
+).annotate({ identifier: "Permission" }) as any as S.Schema<Permission>;
+
+/** Role definition permissions. */
+export type RoleDefinitionPropertiesPermissionsList = Array<Permission>;
+export const RoleDefinitionPropertiesPermissionsList = /*@__PURE__*/ S.Array(
+  Permission,
+) as any as S.Schema<RoleDefinitionPropertiesPermissionsList>;
+
+/** Role definition assignable scopes. */
+export type RoleDefinitionPropertiesAssignableScopesList = Array<string>;
+export const RoleDefinitionPropertiesAssignableScopesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<RoleDefinitionPropertiesAssignableScopesList>;
+
+/** Role definition properties. */
+export interface RoleDefinitionProperties {
+  /** The role name. */
+  roleName?: string;
+  /** The role definition description. */
+  description?: string;
+  /** The role type. */
+  type?: string;
+  /** Role definition permissions. */
+  permissions?: RoleDefinitionPropertiesPermissionsList;
+  /** Role definition assignable scopes. */
+  assignableScopes?: RoleDefinitionPropertiesAssignableScopesList;
+  /** Time it was created */
+  createdOn?: string;
+  /** Time it was updated */
+  updatedOn?: string;
+  /** Id of the user who created the assignment */
+  createdBy?: string;
+  /** Id of the user who updated the assignment */
+  updatedBy?: string;
+}
+export const RoleDefinitionProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    roleName: S.optional(S.String),
+    description: S.optional(S.String),
+    type: S.optional(S.String),
+    permissions: S.optional(RoleDefinitionPropertiesPermissionsList),
+    assignableScopes: S.optional(RoleDefinitionPropertiesAssignableScopesList),
+    createdOn: S.optional(S.String),
+    updatedOn: S.optional(S.String),
+    createdBy: S.optional(S.String),
+    updatedBy: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "RoleDefinitionProperties",
+}) as any as S.Schema<RoleDefinitionProperties>;
+
+/** Role definition. */
+export interface RoleDefinition {
+  /** The role definition ID. */
+  id?: string;
+  /** The role definition name. */
+  name?: string;
+  /** The role definition type. */
+  type?: string;
+  /** Role definition properties. */
+  properties?: RoleDefinitionProperties;
+}
+export const RoleDefinition = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    properties: S.optional(RoleDefinitionProperties),
+  }),
+).annotate({ identifier: "RoleDefinition" }) as any as S.Schema<RoleDefinition>;
+
+export interface GetDenyAssignmentRequest {
   /** The scope of the deny assignment. */
   scope: string;
   /** The ID of the deny assignment to get. */
   denyAssignmentId: string;
 }
-export const DenyAssignmentsGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetDenyAssignmentRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     scope: S.String.pipe(T.Label()),
     denyAssignmentId: S.String.pipe(T.Label()),
@@ -31,8 +499,8 @@ export const DenyAssignmentsGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DenyAssignmentsGetRequest",
-}) as any as S.Schema<DenyAssignmentsGetRequest>;
+  identifier: "GetDenyAssignmentRequest",
+}) as any as S.Schema<GetDenyAssignmentRequest>;
 
 /** Actions to which the deny assignment does not grant access. */
 export type DenyAssignmentPermissionActionsList = Array<string>;
@@ -211,11 +679,11 @@ export const DenyAssignment = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "DenyAssignment" }) as any as S.Schema<DenyAssignment>;
 
-export interface DenyAssignmentsGetByIdRequest {
+export interface GetDenyAssignmentByIdRequest {
   /** The fully qualified deny assignment ID. For example, use the format, /subscriptions/{guid}/providers/Microsoft.Authorization/denyAssignments/{denyAssignmentId} for subscription level deny assignments, or /providers/Microsoft.Authorization/denyAssignments/{denyAssignmentId} for tenant level deny assignments. */
   denyAssignmentId: string;
 }
-export const DenyAssignmentsGetByIdRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetDenyAssignmentByIdRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     denyAssignmentId: S.String.pipe(T.Label()),
   }).pipe(
@@ -227,269 +695,16 @@ export const DenyAssignmentsGetByIdRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DenyAssignmentsGetByIdRequest",
-}) as any as S.Schema<DenyAssignmentsGetByIdRequest>;
+  identifier: "GetDenyAssignmentByIdRequest",
+}) as any as S.Schema<GetDenyAssignmentByIdRequest>;
 
-export interface DenyAssignmentsListRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The filter to apply on the operation. Use $filter=atScope() to return all deny assignments at or above the scope. Use $filter=denyAssignmentName eq '{name}' to search deny assignments by name at specified scope. Use $filter=principalId eq '{id}' to return all deny assignments at, above and below the scope for the specified principal. Use $filter=gdprExportPrincipalId eq '{id}' to return all deny assignments at, above and below the scope for the specified principal. This filter is different from the principalId filter as it returns not only those deny assignments that contain the specified principal is the Principals list but also those deny assignments that contain the specified principal is the ExcludePrincipals list. Additionally, when gdprExportPrincipalId filter is used, only the deny assignment name and description properties are returned. */
-  _filter?: string;
-}
-export const DenyAssignmentsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/denyAssignments",
-      code: 200,
-      apiVersion: "2022-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "DenyAssignmentsListRequest",
-}) as any as S.Schema<DenyAssignmentsListRequest>;
-
-/** Deny assignment list. */
-export type DenyAssignmentListResultValueList = Array<DenyAssignment>;
-export const DenyAssignmentListResultValueList = /*@__PURE__*/ S.Array(
-  DenyAssignment,
-) as any as S.Schema<DenyAssignmentListResultValueList>;
-
-/** Deny assignment list operation result. */
-export interface DenyAssignmentListResult {
-  /** Deny assignment list. */
-  value?: DenyAssignmentListResultValueList;
-  /** The URL to use for getting the next set of results. */
-  nextLink?: string;
-}
-export const DenyAssignmentListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(DenyAssignmentListResultValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DenyAssignmentListResult",
-}) as any as S.Schema<DenyAssignmentListResult>;
-
-export interface DenyAssignmentsListForResourceRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace of the resource provider. */
-  resourceProviderNamespace: string;
-  /** The parent resource identity. */
-  parentResourcePath: string;
-  /** The resource type of the resource. */
-  resourceType: string;
-  /** The name of the resource to get deny assignments for. */
-  resourceName: string;
-  /** The filter to apply on the operation. Use $filter=atScope() to return all deny assignments at or above the scope. Use $filter=denyAssignmentName eq '{name}' to search deny assignments by name at specified scope. Use $filter=principalId eq '{id}' to return all deny assignments at, above and below the scope for the specified principal. Use $filter=gdprExportPrincipalId eq '{id}' to return all deny assignments at, above and below the scope for the specified principal. This filter is different from the principalId filter as it returns not only those deny assignments that contain the specified principal is the Principals list but also those deny assignments that contain the specified principal is the ExcludePrincipals list. Additionally, when gdprExportPrincipalId filter is used, only the deny assignment name and description properties are returned. */
-  _filter?: string;
-}
-export const DenyAssignmentsListForResourceRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceProviderNamespace: S.String.pipe(T.Label()),
-      parentResourcePath: S.String.pipe(T.Label()),
-      resourceType: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-      _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{parentResourcePath}/{resourceType}/{resourceName}/providers/Microsoft.Authorization/denyAssignments",
-        code: 200,
-        apiVersion: "2022-04-01",
-      }),
-    ),
-).annotate({
-  identifier: "DenyAssignmentsListForResourceRequest",
-}) as any as S.Schema<DenyAssignmentsListForResourceRequest>;
-
-export interface DenyAssignmentsListForResourceGroupRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The filter to apply on the operation. Use $filter=atScope() to return all deny assignments at or above the scope. Use $filter=denyAssignmentName eq '{name}' to search deny assignments by name at specified scope. Use $filter=principalId eq '{id}' to return all deny assignments at, above and below the scope for the specified principal. Use $filter=gdprExportPrincipalId eq '{id}' to return all deny assignments at, above and below the scope for the specified principal. This filter is different from the principalId filter as it returns not only those deny assignments that contain the specified principal is the Principals list but also those deny assignments that contain the specified principal is the ExcludePrincipals list. Additionally, when gdprExportPrincipalId filter is used, only the deny assignment name and description properties are returned. */
-  _filter?: string;
-}
-export const DenyAssignmentsListForResourceGroupRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Authorization/denyAssignments",
-        code: 200,
-        apiVersion: "2022-04-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "DenyAssignmentsListForResourceGroupRequest",
-  }) as any as S.Schema<DenyAssignmentsListForResourceGroupRequest>;
-
-export interface DenyAssignmentsListForScopeRequest {
-  /** The scope of the deny assignments. */
-  scope: string;
-  /** The filter to apply on the operation. Use $filter=atScope() to return all deny assignments at or above the scope. Use $filter=denyAssignmentName eq '{name}' to search deny assignments by name at specified scope. Use $filter=principalId eq '{id}' to return all deny assignments at, above and below the scope for the specified principal. Use $filter=gdprExportPrincipalId eq '{id}' to return all deny assignments at, above and below the scope for the specified principal. This filter is different from the principalId filter as it returns not only those deny assignments that contain the specified principal is the Principals list but also those deny assignments that contain the specified principal is the ExcludePrincipals list. Additionally, when gdprExportPrincipalId filter is used, only the deny assignment name and description properties are returned. */
-  _filter?: string;
-}
-export const DenyAssignmentsListForScopeRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    scope: S.String.pipe(T.Label()),
-    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/{scope}/providers/Microsoft.Authorization/denyAssignments",
-      code: 200,
-      apiVersion: "2022-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "DenyAssignmentsListForScopeRequest",
-}) as any as S.Schema<DenyAssignmentsListForScopeRequest>;
-
-export interface PermissionsListForResourceRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace of the resource provider. */
-  resourceProviderNamespace: string;
-  /** The parent resource identity. */
-  parentResourcePath: string;
-  /** The resource type of the resource. */
-  resourceType: string;
-  /** The name of the resource to get the permissions for. */
-  resourceName: string;
-}
-export const PermissionsListForResourceRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    resourceProviderNamespace: S.String.pipe(T.Label()),
-    parentResourcePath: S.String.pipe(T.Label()),
-    resourceType: S.String.pipe(T.Label()),
-    resourceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{parentResourcePath}/{resourceType}/{resourceName}/providers/Microsoft.Authorization/permissions",
-      code: 200,
-      apiVersion: "2022-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "PermissionsListForResourceRequest",
-}) as any as S.Schema<PermissionsListForResourceRequest>;
-
-/** Allowed actions. */
-export type PermissionActionsList = Array<string>;
-export const PermissionActionsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<PermissionActionsList>;
-
-/** Denied actions. */
-export type PermissionNotActionsList = Array<string>;
-export const PermissionNotActionsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<PermissionNotActionsList>;
-
-/** Allowed Data actions. */
-export type PermissionDataActionsList = Array<string>;
-export const PermissionDataActionsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<PermissionDataActionsList>;
-
-/** Denied Data actions. */
-export type PermissionNotDataActionsList = Array<string>;
-export const PermissionNotDataActionsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<PermissionNotDataActionsList>;
-
-/** Role definition permissions. */
-export interface Permission {
-  /** Allowed actions. */
-  actions?: PermissionActionsList;
-  /** Denied actions. */
-  notActions?: PermissionNotActionsList;
-  /** Allowed Data actions. */
-  dataActions?: PermissionDataActionsList;
-  /** Denied Data actions. */
-  notDataActions?: PermissionNotDataActionsList;
-}
-export const Permission = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    actions: S.optional(PermissionActionsList),
-    notActions: S.optional(PermissionNotActionsList),
-    dataActions: S.optional(PermissionDataActionsList),
-    notDataActions: S.optional(PermissionNotDataActionsList),
-  }),
-).annotate({ identifier: "Permission" }) as any as S.Schema<Permission>;
-
-/** An array of permissions. */
-export type PermissionGetResultValueList = Array<Permission>;
-export const PermissionGetResultValueList = /*@__PURE__*/ S.Array(
-  Permission,
-) as any as S.Schema<PermissionGetResultValueList>;
-
-/** Permissions information. */
-export interface PermissionGetResult {
-  /** An array of permissions. */
-  value?: PermissionGetResultValueList;
-  /** The URL to use for getting the next set of results. */
-  nextLink?: string;
-}
-export const PermissionGetResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(PermissionGetResultValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PermissionGetResult",
-}) as any as S.Schema<PermissionGetResult>;
-
-export interface PermissionsListForResourceGroupRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-}
-export const PermissionsListForResourceGroupRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Authorization/permissions",
-        code: 200,
-        apiVersion: "2022-04-01",
-      }),
-    ),
-).annotate({
-  identifier: "PermissionsListForResourceGroupRequest",
-}) as any as S.Schema<PermissionsListForResourceGroupRequest>;
-
-export interface ProviderOperationsMetadataGetRequest {
+export interface GetProviderOperationsMetadataRequest {
   /** The namespace of the resource provider. */
   resourceProviderNamespace: string;
   /** Specifies whether to expand the values. */
   _expand?: string;
 }
-export const ProviderOperationsMetadataGetRequest = /*@__PURE__*/ S.suspend(
+export const GetProviderOperationsMetadataRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       resourceProviderNamespace: S.String.pipe(T.Label()),
@@ -503,8 +718,8 @@ export const ProviderOperationsMetadataGetRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "ProviderOperationsMetadataGetRequest",
-}) as any as S.Schema<ProviderOperationsMetadataGetRequest>;
+  identifier: "GetProviderOperationsMetadataRequest",
+}) as any as S.Schema<GetProviderOperationsMetadataRequest>;
 
 /** Operation */
 export interface ProviderOperation {
@@ -558,22 +773,22 @@ export const ResourceType = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "ResourceType" }) as any as S.Schema<ResourceType>;
 
 /** The provider resource types */
-export type ProviderOperationsMetadataGetResponseResourceTypesList =
+export type GetProviderOperationsMetadataResponseResourceTypesList =
   Array<ResourceType>;
-export const ProviderOperationsMetadataGetResponseResourceTypesList =
+export const GetProviderOperationsMetadataResponseResourceTypesList =
   /*@__PURE__*/ S.Array(
     ResourceType,
-  ) as any as S.Schema<ProviderOperationsMetadataGetResponseResourceTypesList>;
+  ) as any as S.Schema<GetProviderOperationsMetadataResponseResourceTypesList>;
 
 /** The provider operations. */
-export type ProviderOperationsMetadataGetResponseOperationsList =
+export type GetProviderOperationsMetadataResponseOperationsList =
   Array<ProviderOperation>;
-export const ProviderOperationsMetadataGetResponseOperationsList =
+export const GetProviderOperationsMetadataResponseOperationsList =
   /*@__PURE__*/ S.Array(
     ProviderOperation,
-  ) as any as S.Schema<ProviderOperationsMetadataGetResponseOperationsList>;
+  ) as any as S.Schema<GetProviderOperationsMetadataResponseOperationsList>;
 
-export interface ProviderOperationsMetadataGetResponse {
+export interface GetProviderOperationsMetadataResponse {
   /** The provider ID. */
   id?: string;
   /** The provider name. */
@@ -583,11 +798,11 @@ export interface ProviderOperationsMetadataGetResponse {
   /** The provider display name. */
   displayName?: string;
   /** The provider resource types */
-  resourceTypes?: ProviderOperationsMetadataGetResponseResourceTypesList;
+  resourceTypes?: GetProviderOperationsMetadataResponseResourceTypesList;
   /** The provider operations. */
-  operations?: ProviderOperationsMetadataGetResponseOperationsList;
+  operations?: GetProviderOperationsMetadataResponseOperationsList;
 }
-export const ProviderOperationsMetadataGetResponse = /*@__PURE__*/ S.suspend(
+export const GetProviderOperationsMetadataResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
@@ -595,21 +810,347 @@ export const ProviderOperationsMetadataGetResponse = /*@__PURE__*/ S.suspend(
       type: S.optional(S.String),
       displayName: S.optional(S.String),
       resourceTypes: S.optional(
-        ProviderOperationsMetadataGetResponseResourceTypesList,
+        GetProviderOperationsMetadataResponseResourceTypesList,
       ),
       operations: S.optional(
-        ProviderOperationsMetadataGetResponseOperationsList,
+        GetProviderOperationsMetadataResponseOperationsList,
       ),
     }),
 ).annotate({
-  identifier: "ProviderOperationsMetadataGetResponse",
-}) as any as S.Schema<ProviderOperationsMetadataGetResponse>;
+  identifier: "GetProviderOperationsMetadataResponse",
+}) as any as S.Schema<GetProviderOperationsMetadataResponse>;
 
-export interface ProviderOperationsMetadataListRequest {
+export interface GetRoleAssignmentRequest {
+  /** The fully qualified Azure Resource manager identifier of the resource. */
+  scope: string;
+  /** The name of the role assignment. It can be any valid GUID. */
+  roleAssignmentName: string;
+  /** Tenant ID for cross-tenant request */
+  tenantId?: string;
+}
+export const GetRoleAssignmentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    scope: S.String.pipe(T.Label()),
+    roleAssignmentName: S.String.pipe(T.Label()),
+    tenantId: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/{scope}/providers/Microsoft.Authorization/roleAssignments/{roleAssignmentName}",
+      code: 200,
+      apiVersion: "2022-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetRoleAssignmentRequest",
+}) as any as S.Schema<GetRoleAssignmentRequest>;
+
+export interface GetRoleAssignmentResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Role assignment properties. */
+  properties?: RoleAssignmentProperties;
+}
+export const GetRoleAssignmentResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(RoleAssignmentProperties),
+  }),
+).annotate({
+  identifier: "GetRoleAssignmentResponse",
+}) as any as S.Schema<GetRoleAssignmentResponse>;
+
+export interface GetRoleAssignmentByIdRequest {
+  /** The fully qualified ID of the role assignment including scope, resource name, and resource type. Format: /{scope}/providers/Microsoft.Authorization/roleAssignments/{roleAssignmentName}. Example: /subscriptions/<SUB_ID>/resourcegroups/<RESOURCE_GROUP>/providers/Microsoft.Authorization/roleAssignments/<ROLE_ASSIGNMENT_NAME> */
+  roleAssignmentId: string;
+  /** Tenant ID for cross-tenant request */
+  tenantId?: string;
+}
+export const GetRoleAssignmentByIdRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    roleAssignmentId: S.String.pipe(T.Label()),
+    tenantId: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/{roleAssignmentId}",
+      code: 200,
+      apiVersion: "2022-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetRoleAssignmentByIdRequest",
+}) as any as S.Schema<GetRoleAssignmentByIdRequest>;
+
+export interface GetRoleAssignmentByIdResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Role assignment properties. */
+  properties?: RoleAssignmentProperties;
+}
+export const GetRoleAssignmentByIdResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(RoleAssignmentProperties),
+  }),
+).annotate({
+  identifier: "GetRoleAssignmentByIdResponse",
+}) as any as S.Schema<GetRoleAssignmentByIdResponse>;
+
+export interface GetRoleDefinitionRequest {
+  /** The scope of the role definition. */
+  scope: string;
+  /** The ID of the role definition. */
+  roleDefinitionId: string;
+}
+export const GetRoleDefinitionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    scope: S.String.pipe(T.Label()),
+    roleDefinitionId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/{scope}/providers/Microsoft.Authorization/roleDefinitions/{roleDefinitionId}",
+      code: 200,
+      apiVersion: "2022-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetRoleDefinitionRequest",
+}) as any as S.Schema<GetRoleDefinitionRequest>;
+
+export interface ListDenyAssignmentForResourceRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace of the resource provider. */
+  resourceProviderNamespace: string;
+  /** The parent resource identity. */
+  parentResourcePath: string;
+  /** The resource type of the resource. */
+  resourceType: string;
+  /** The name of the resource to get deny assignments for. */
+  resourceName: string;
+  /** The filter to apply on the operation. Use $filter=atScope() to return all deny assignments at or above the scope. Use $filter=denyAssignmentName eq '{name}' to search deny assignments by name at specified scope. Use $filter=principalId eq '{id}' to return all deny assignments at, above and below the scope for the specified principal. Use $filter=gdprExportPrincipalId eq '{id}' to return all deny assignments at, above and below the scope for the specified principal. This filter is different from the principalId filter as it returns not only those deny assignments that contain the specified principal is the Principals list but also those deny assignments that contain the specified principal is the ExcludePrincipals list. Additionally, when gdprExportPrincipalId filter is used, only the deny assignment name and description properties are returned. */
+  _filter?: string;
+}
+export const ListDenyAssignmentForResourceRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      resourceProviderNamespace: S.String.pipe(T.Label()),
+      parentResourcePath: S.String.pipe(T.Label()),
+      resourceType: S.String.pipe(T.Label()),
+      resourceName: S.String.pipe(T.Label()),
+      _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{parentResourcePath}/{resourceType}/{resourceName}/providers/Microsoft.Authorization/denyAssignments",
+        code: 200,
+        apiVersion: "2022-04-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListDenyAssignmentForResourceRequest",
+}) as any as S.Schema<ListDenyAssignmentForResourceRequest>;
+
+/** Deny assignment list. */
+export type DenyAssignmentListResultValueList = Array<DenyAssignment>;
+export const DenyAssignmentListResultValueList = /*@__PURE__*/ S.Array(
+  DenyAssignment,
+) as any as S.Schema<DenyAssignmentListResultValueList>;
+
+/** Deny assignment list operation result. */
+export interface DenyAssignmentListResult {
+  /** Deny assignment list. */
+  value?: DenyAssignmentListResultValueList;
+  /** The URL to use for getting the next set of results. */
+  nextLink?: string;
+}
+export const DenyAssignmentListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(DenyAssignmentListResultValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DenyAssignmentListResult",
+}) as any as S.Schema<DenyAssignmentListResult>;
+
+export interface ListDenyAssignmentForResourceGroupRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The filter to apply on the operation. Use $filter=atScope() to return all deny assignments at or above the scope. Use $filter=denyAssignmentName eq '{name}' to search deny assignments by name at specified scope. Use $filter=principalId eq '{id}' to return all deny assignments at, above and below the scope for the specified principal. Use $filter=gdprExportPrincipalId eq '{id}' to return all deny assignments at, above and below the scope for the specified principal. This filter is different from the principalId filter as it returns not only those deny assignments that contain the specified principal is the Principals list but also those deny assignments that contain the specified principal is the ExcludePrincipals list. Additionally, when gdprExportPrincipalId filter is used, only the deny assignment name and description properties are returned. */
+  _filter?: string;
+}
+export const ListDenyAssignmentForResourceGroupRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Authorization/denyAssignments",
+        code: 200,
+        apiVersion: "2022-04-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListDenyAssignmentForResourceGroupRequest",
+  }) as any as S.Schema<ListDenyAssignmentForResourceGroupRequest>;
+
+export interface ListDenyAssignmentForScopeRequest {
+  /** The scope of the deny assignments. */
+  scope: string;
+  /** The filter to apply on the operation. Use $filter=atScope() to return all deny assignments at or above the scope. Use $filter=denyAssignmentName eq '{name}' to search deny assignments by name at specified scope. Use $filter=principalId eq '{id}' to return all deny assignments at, above and below the scope for the specified principal. Use $filter=gdprExportPrincipalId eq '{id}' to return all deny assignments at, above and below the scope for the specified principal. This filter is different from the principalId filter as it returns not only those deny assignments that contain the specified principal is the Principals list but also those deny assignments that contain the specified principal is the ExcludePrincipals list. Additionally, when gdprExportPrincipalId filter is used, only the deny assignment name and description properties are returned. */
+  _filter?: string;
+}
+export const ListDenyAssignmentForScopeRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    scope: S.String.pipe(T.Label()),
+    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/{scope}/providers/Microsoft.Authorization/denyAssignments",
+      code: 200,
+      apiVersion: "2022-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListDenyAssignmentForScopeRequest",
+}) as any as S.Schema<ListDenyAssignmentForScopeRequest>;
+
+export interface ListDenyAssignmentsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The filter to apply on the operation. Use $filter=atScope() to return all deny assignments at or above the scope. Use $filter=denyAssignmentName eq '{name}' to search deny assignments by name at specified scope. Use $filter=principalId eq '{id}' to return all deny assignments at, above and below the scope for the specified principal. Use $filter=gdprExportPrincipalId eq '{id}' to return all deny assignments at, above and below the scope for the specified principal. This filter is different from the principalId filter as it returns not only those deny assignments that contain the specified principal is the Principals list but also those deny assignments that contain the specified principal is the ExcludePrincipals list. Additionally, when gdprExportPrincipalId filter is used, only the deny assignment name and description properties are returned. */
+  _filter?: string;
+}
+export const ListDenyAssignmentsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/denyAssignments",
+      code: 200,
+      apiVersion: "2022-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListDenyAssignmentsRequest",
+}) as any as S.Schema<ListDenyAssignmentsRequest>;
+
+export interface ListPermissionsForResourceRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace of the resource provider. */
+  resourceProviderNamespace: string;
+  /** The parent resource identity. */
+  parentResourcePath: string;
+  /** The resource type of the resource. */
+  resourceType: string;
+  /** The name of the resource to get the permissions for. */
+  resourceName: string;
+}
+export const ListPermissionsForResourceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    resourceProviderNamespace: S.String.pipe(T.Label()),
+    parentResourcePath: S.String.pipe(T.Label()),
+    resourceType: S.String.pipe(T.Label()),
+    resourceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{parentResourcePath}/{resourceType}/{resourceName}/providers/Microsoft.Authorization/permissions",
+      code: 200,
+      apiVersion: "2022-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListPermissionsForResourceRequest",
+}) as any as S.Schema<ListPermissionsForResourceRequest>;
+
+/** An array of permissions. */
+export type PermissionGetResultValueList = Array<Permission>;
+export const PermissionGetResultValueList = /*@__PURE__*/ S.Array(
+  Permission,
+) as any as S.Schema<PermissionGetResultValueList>;
+
+/** Permissions information. */
+export interface PermissionGetResult {
+  /** An array of permissions. */
+  value?: PermissionGetResultValueList;
+  /** The URL to use for getting the next set of results. */
+  nextLink?: string;
+}
+export const PermissionGetResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(PermissionGetResultValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PermissionGetResult",
+}) as any as S.Schema<PermissionGetResult>;
+
+export interface ListPermissionsForResourceGroupRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+}
+export const ListPermissionsForResourceGroupRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Authorization/permissions",
+        code: 200,
+        apiVersion: "2022-04-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListPermissionsForResourceGroupRequest",
+}) as any as S.Schema<ListPermissionsForResourceGroupRequest>;
+
+export interface ListProviderOperationsMetadataRequest {
   /** Specifies whether to expand the values. */
   _expand?: string;
 }
-export const ProviderOperationsMetadataListRequest = /*@__PURE__*/ S.suspend(
+export const ListProviderOperationsMetadataRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       _expand: S.optional(S.String.pipe(T.Query("$expand"))),
@@ -622,8 +1163,8 @@ export const ProviderOperationsMetadataListRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "ProviderOperationsMetadataListRequest",
-}) as any as S.Schema<ProviderOperationsMetadataListRequest>;
+  identifier: "ListProviderOperationsMetadataRequest",
+}) as any as S.Schema<ListProviderOperationsMetadataRequest>;
 
 /** The provider resource types */
 export type ProviderOperationsMetadataResourceTypesList = Array<ResourceType>;
@@ -691,434 +1232,7 @@ export const ProviderOperationsMetadataListResult = /*@__PURE__*/ S.suspend(
   identifier: "ProviderOperationsMetadataListResult",
 }) as any as S.Schema<ProviderOperationsMetadataListResult>;
 
-/** The principal type of the assigned principal ID. */
-export type RoleAssignmentPropertiesInputPrincipalType =
-  | "User"
-  | "Group"
-  | "ServicePrincipal"
-  | "ForeignGroup"
-  | "Device"
-  | "AgentUser"
-  | "AgentServicePrincipal";
-export const RoleAssignmentPropertiesInputPrincipalType =
-  /*@__PURE__*/ S.String;
-
-/** Role assignment properties. */
-export interface RoleAssignmentPropertiesInput {
-  /** The role definition ID. */
-  roleDefinitionId: string;
-  /** The principal ID. */
-  principalId: string;
-  /** The principal type of the assigned principal ID. */
-  principalType?: RoleAssignmentPropertiesInputPrincipalType | (string & {});
-  /** Description of role assignment */
-  description?: string;
-  /** The conditions on the role assignment. This limits the resources it can be assigned to. e.g.: @Resource[Microsoft.Storage/storageAccounts/blobServices/containers:ContainerName] StringEqualsIgnoreCase 'foo_storage_container' */
-  condition?: string;
-  /** Version of the condition. Currently the only accepted value is '2.0' */
-  conditionVersion?: string;
-  /** Id of the delegated managed identity resource */
-  delegatedManagedIdentityResourceId?: string;
-}
-export const RoleAssignmentPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    roleDefinitionId: S.String,
-    principalId: S.String,
-    principalType: S.optional(RoleAssignmentPropertiesInputPrincipalType),
-    description: S.optional(S.String),
-    condition: S.optional(S.String),
-    conditionVersion: S.optional(S.String),
-    delegatedManagedIdentityResourceId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "RoleAssignmentPropertiesInput",
-}) as any as S.Schema<RoleAssignmentPropertiesInput>;
-
-export interface RoleAssignmentsCreateRequest {
-  /** The fully qualified Azure Resource manager identifier of the resource. */
-  scope: string;
-  /** The name of the role assignment. It can be any valid GUID. */
-  roleAssignmentName: string;
-  /** Role assignment properties. */
-  properties: RoleAssignmentPropertiesInput;
-}
-export const RoleAssignmentsCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    scope: S.String.pipe(T.Label()),
-    roleAssignmentName: S.String.pipe(T.Label()),
-    properties: RoleAssignmentPropertiesInput,
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/{scope}/providers/Microsoft.Authorization/roleAssignments/{roleAssignmentName}",
-      code: 200,
-      apiVersion: "2022-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "RoleAssignmentsCreateRequest",
-}) as any as S.Schema<RoleAssignmentsCreateRequest>;
-
-/** The type of identity that created the resource. */
-export type SystemDataCreatedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
-
-/** The type of identity that last modified the resource. */
-export type SystemDataLastModifiedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
-
-/** Metadata pertaining to creation and last modification of the resource. */
-export interface SystemData {
-  /** The identity that created the resource. */
-  createdBy?: string;
-  /** The type of identity that created the resource. */
-  createdByType?: SystemDataCreatedByType;
-  /** The timestamp of resource creation (UTC). */
-  createdAt?: string;
-  /** The identity that last modified the resource. */
-  lastModifiedBy?: string;
-  /** The type of identity that last modified the resource. */
-  lastModifiedByType?: SystemDataLastModifiedByType;
-  /** The timestamp of resource last modification (UTC) */
-  lastModifiedAt?: string;
-}
-export const SystemData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    createdBy: S.optional(S.String),
-    createdByType: S.optional(SystemDataCreatedByType),
-    createdAt: S.optional(S.String),
-    lastModifiedBy: S.optional(S.String),
-    lastModifiedByType: S.optional(SystemDataLastModifiedByType),
-    lastModifiedAt: S.optional(S.String),
-  }),
-).annotate({ identifier: "SystemData" }) as any as S.Schema<SystemData>;
-
-/** The principal type of the assigned principal ID. */
-export type RoleAssignmentPropertiesPrincipalType =
-  | "User"
-  | "Group"
-  | "ServicePrincipal"
-  | "ForeignGroup"
-  | "Device"
-  | "AgentUser"
-  | "AgentServicePrincipal";
-export const RoleAssignmentPropertiesPrincipalType = /*@__PURE__*/ S.String;
-
-/** Role assignment properties. */
-export interface RoleAssignmentProperties {
-  /** The role assignment scope. */
-  scope?: string;
-  /** The role definition ID. */
-  roleDefinitionId: string;
-  /** The principal ID. */
-  principalId: string;
-  /** The principal type of the assigned principal ID. */
-  principalType?: RoleAssignmentPropertiesPrincipalType;
-  /** Description of role assignment */
-  description?: string;
-  /** The conditions on the role assignment. This limits the resources it can be assigned to. e.g.: @Resource[Microsoft.Storage/storageAccounts/blobServices/containers:ContainerName] StringEqualsIgnoreCase 'foo_storage_container' */
-  condition?: string;
-  /** Version of the condition. Currently the only accepted value is '2.0' */
-  conditionVersion?: string;
-  /** Time it was created */
-  createdOn?: string;
-  /** Time it was updated */
-  updatedOn?: string;
-  /** Id of the user who created the assignment */
-  createdBy?: string;
-  /** Id of the user who updated the assignment */
-  updatedBy?: string;
-  /** Id of the delegated managed identity resource */
-  delegatedManagedIdentityResourceId?: string;
-}
-export const RoleAssignmentProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    scope: S.optional(S.String),
-    roleDefinitionId: S.String,
-    principalId: S.String,
-    principalType: S.optional(RoleAssignmentPropertiesPrincipalType),
-    description: S.optional(S.String),
-    condition: S.optional(S.String),
-    conditionVersion: S.optional(S.String),
-    createdOn: S.optional(S.String),
-    updatedOn: S.optional(S.String),
-    createdBy: S.optional(S.String),
-    updatedBy: S.optional(S.String),
-    delegatedManagedIdentityResourceId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "RoleAssignmentProperties",
-}) as any as S.Schema<RoleAssignmentProperties>;
-
-export interface RoleAssignmentsCreateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Role assignment properties. */
-  properties?: RoleAssignmentProperties;
-}
-export const RoleAssignmentsCreateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(RoleAssignmentProperties),
-  }),
-).annotate({
-  identifier: "RoleAssignmentsCreateResponse",
-}) as any as S.Schema<RoleAssignmentsCreateResponse>;
-
-export interface RoleAssignmentsCreateByIdRequest {
-  /** The fully qualified ID of the role assignment including scope, resource name, and resource type. Format: /{scope}/providers/Microsoft.Authorization/roleAssignments/{roleAssignmentName}. Example: /subscriptions/<SUB_ID>/resourcegroups/<RESOURCE_GROUP>/providers/Microsoft.Authorization/roleAssignments/<ROLE_ASSIGNMENT_NAME> */
-  roleAssignmentId: string;
-  /** Role assignment properties. */
-  properties: RoleAssignmentPropertiesInput;
-}
-export const RoleAssignmentsCreateByIdRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    roleAssignmentId: S.String.pipe(T.Label()),
-    properties: RoleAssignmentPropertiesInput,
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/{roleAssignmentId}",
-      code: 200,
-      apiVersion: "2022-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "RoleAssignmentsCreateByIdRequest",
-}) as any as S.Schema<RoleAssignmentsCreateByIdRequest>;
-
-export interface RoleAssignmentsCreateByIdResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Role assignment properties. */
-  properties?: RoleAssignmentProperties;
-}
-export const RoleAssignmentsCreateByIdResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(RoleAssignmentProperties),
-  }),
-).annotate({
-  identifier: "RoleAssignmentsCreateByIdResponse",
-}) as any as S.Schema<RoleAssignmentsCreateByIdResponse>;
-
-export interface RoleAssignmentsDeleteRequest {
-  /** The fully qualified Azure Resource manager identifier of the resource. */
-  scope: string;
-  /** The name of the role assignment. It can be any valid GUID. */
-  roleAssignmentName: string;
-  /** Tenant ID for cross-tenant request */
-  tenantId?: string;
-}
-export const RoleAssignmentsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    scope: S.String.pipe(T.Label()),
-    roleAssignmentName: S.String.pipe(T.Label()),
-    tenantId: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/{scope}/providers/Microsoft.Authorization/roleAssignments/{roleAssignmentName}",
-      code: 200,
-      apiVersion: "2022-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "RoleAssignmentsDeleteRequest",
-}) as any as S.Schema<RoleAssignmentsDeleteRequest>;
-
-export interface RoleAssignmentsDeleteResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Role assignment properties. */
-  properties?: RoleAssignmentProperties;
-}
-export const RoleAssignmentsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(RoleAssignmentProperties),
-  }),
-).annotate({
-  identifier: "RoleAssignmentsDeleteResponse",
-}) as any as S.Schema<RoleAssignmentsDeleteResponse>;
-
-export interface RoleAssignmentsDeleteByIdRequest {
-  /** The fully qualified ID of the role assignment including scope, resource name, and resource type. Format: /{scope}/providers/Microsoft.Authorization/roleAssignments/{roleAssignmentName}. Example: /subscriptions/<SUB_ID>/resourcegroups/<RESOURCE_GROUP>/providers/Microsoft.Authorization/roleAssignments/<ROLE_ASSIGNMENT_NAME> */
-  roleAssignmentId: string;
-  /** Tenant ID for cross-tenant request */
-  tenantId?: string;
-}
-export const RoleAssignmentsDeleteByIdRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    roleAssignmentId: S.String.pipe(T.Label()),
-    tenantId: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/{roleAssignmentId}",
-      code: 200,
-      apiVersion: "2022-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "RoleAssignmentsDeleteByIdRequest",
-}) as any as S.Schema<RoleAssignmentsDeleteByIdRequest>;
-
-export interface RoleAssignmentsDeleteByIdResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Role assignment properties. */
-  properties?: RoleAssignmentProperties;
-}
-export const RoleAssignmentsDeleteByIdResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(RoleAssignmentProperties),
-  }),
-).annotate({
-  identifier: "RoleAssignmentsDeleteByIdResponse",
-}) as any as S.Schema<RoleAssignmentsDeleteByIdResponse>;
-
-export interface RoleAssignmentsGetRequest {
-  /** The fully qualified Azure Resource manager identifier of the resource. */
-  scope: string;
-  /** The name of the role assignment. It can be any valid GUID. */
-  roleAssignmentName: string;
-  /** Tenant ID for cross-tenant request */
-  tenantId?: string;
-}
-export const RoleAssignmentsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    scope: S.String.pipe(T.Label()),
-    roleAssignmentName: S.String.pipe(T.Label()),
-    tenantId: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/{scope}/providers/Microsoft.Authorization/roleAssignments/{roleAssignmentName}",
-      code: 200,
-      apiVersion: "2022-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "RoleAssignmentsGetRequest",
-}) as any as S.Schema<RoleAssignmentsGetRequest>;
-
-export interface RoleAssignmentsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Role assignment properties. */
-  properties?: RoleAssignmentProperties;
-}
-export const RoleAssignmentsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(RoleAssignmentProperties),
-  }),
-).annotate({
-  identifier: "RoleAssignmentsGetResponse",
-}) as any as S.Schema<RoleAssignmentsGetResponse>;
-
-export interface RoleAssignmentsGetByIdRequest {
-  /** The fully qualified ID of the role assignment including scope, resource name, and resource type. Format: /{scope}/providers/Microsoft.Authorization/roleAssignments/{roleAssignmentName}. Example: /subscriptions/<SUB_ID>/resourcegroups/<RESOURCE_GROUP>/providers/Microsoft.Authorization/roleAssignments/<ROLE_ASSIGNMENT_NAME> */
-  roleAssignmentId: string;
-  /** Tenant ID for cross-tenant request */
-  tenantId?: string;
-}
-export const RoleAssignmentsGetByIdRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    roleAssignmentId: S.String.pipe(T.Label()),
-    tenantId: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/{roleAssignmentId}",
-      code: 200,
-      apiVersion: "2022-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "RoleAssignmentsGetByIdRequest",
-}) as any as S.Schema<RoleAssignmentsGetByIdRequest>;
-
-export interface RoleAssignmentsGetByIdResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Role assignment properties. */
-  properties?: RoleAssignmentProperties;
-}
-export const RoleAssignmentsGetByIdResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(RoleAssignmentProperties),
-  }),
-).annotate({
-  identifier: "RoleAssignmentsGetByIdResponse",
-}) as any as S.Schema<RoleAssignmentsGetByIdResponse>;
-
-export interface RoleAssignmentsListForResourceRequest {
+export interface ListRoleAssignmentForResourceRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1134,7 +1248,7 @@ export interface RoleAssignmentsListForResourceRequest {
   /** Tenant ID for cross-tenant request */
   tenantId?: string;
 }
-export const RoleAssignmentsListForResourceRequest = /*@__PURE__*/ S.suspend(
+export const ListRoleAssignmentForResourceRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -1153,8 +1267,8 @@ export const RoleAssignmentsListForResourceRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "RoleAssignmentsListForResourceRequest",
-}) as any as S.Schema<RoleAssignmentsListForResourceRequest>;
+  identifier: "ListRoleAssignmentForResourceRequest",
+}) as any as S.Schema<ListRoleAssignmentForResourceRequest>;
 
 /** Role Assignments */
 export interface RoleAssignment {
@@ -1201,7 +1315,7 @@ export const RoleAssignmentListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "RoleAssignmentListResult",
 }) as any as S.Schema<RoleAssignmentListResult>;
 
-export interface RoleAssignmentsListForResourceGroupRequest {
+export interface ListRoleAssignmentForResourceGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1211,7 +1325,7 @@ export interface RoleAssignmentsListForResourceGroupRequest {
   /** Tenant ID for cross-tenant request */
   tenantId?: string;
 }
-export const RoleAssignmentsListForResourceGroupRequest =
+export const ListRoleAssignmentForResourceGroupRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -1227,10 +1341,10 @@ export const RoleAssignmentsListForResourceGroupRequest =
       }),
     ),
   ).annotate({
-    identifier: "RoleAssignmentsListForResourceGroupRequest",
-  }) as any as S.Schema<RoleAssignmentsListForResourceGroupRequest>;
+    identifier: "ListRoleAssignmentForResourceGroupRequest",
+  }) as any as S.Schema<ListRoleAssignmentForResourceGroupRequest>;
 
-export interface RoleAssignmentsListForScopeRequest {
+export interface ListRoleAssignmentForScopeRequest {
   /** The fully qualified Azure Resource manager identifier of the resource. */
   scope: string;
   /** The filter to apply on the operation. Use $filter=atScope() to return all role assignments at or above the scope. Use $filter=principalId eq {id} to return all role assignments at, above or below the scope for the specified principal. */
@@ -1240,7 +1354,7 @@ export interface RoleAssignmentsListForScopeRequest {
   /** The skipToken to apply on the operation. Use $skipToken={skiptoken} to return paged role assignments following the skipToken passed. Only supported on provider level calls. */
   _skipToken?: string;
 }
-export const RoleAssignmentsListForScopeRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListRoleAssignmentForScopeRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     scope: S.String.pipe(T.Label()),
     _filter: S.optional(S.String.pipe(T.Query("$filter"))),
@@ -1255,10 +1369,10 @@ export const RoleAssignmentsListForScopeRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "RoleAssignmentsListForScopeRequest",
-}) as any as S.Schema<RoleAssignmentsListForScopeRequest>;
+  identifier: "ListRoleAssignmentForScopeRequest",
+}) as any as S.Schema<ListRoleAssignmentForScopeRequest>;
 
-export interface RoleAssignmentsListForSubscriptionRequest {
+export interface ListRoleAssignmentForSubscriptionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The filter to apply on the operation. Use $filter=atScope() to return all role assignments at or above the scope. Use $filter=principalId eq {id} to return all role assignments at, above or below the scope for the specified principal. */
@@ -1266,8 +1380,8 @@ export interface RoleAssignmentsListForSubscriptionRequest {
   /** Tenant ID for cross-tenant request */
   tenantId?: string;
 }
-export const RoleAssignmentsListForSubscriptionRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const ListRoleAssignmentForSubscriptionRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       _filter: S.optional(S.String.pipe(T.Query("$filter"))),
@@ -1280,9 +1394,53 @@ export const RoleAssignmentsListForSubscriptionRequest =
         apiVersion: "2022-04-01",
       }),
     ),
-  ).annotate({
-    identifier: "RoleAssignmentsListForSubscriptionRequest",
-  }) as any as S.Schema<RoleAssignmentsListForSubscriptionRequest>;
+).annotate({
+  identifier: "ListRoleAssignmentForSubscriptionRequest",
+}) as any as S.Schema<ListRoleAssignmentForSubscriptionRequest>;
+
+export interface ListRoleDefinitionsRequest {
+  /** The scope of the role definition. */
+  scope: string;
+  /** The filter to apply on the operation. Use atScopeAndBelow filter to search below the given scope as well. */
+  _filter?: string;
+}
+export const ListRoleDefinitionsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    scope: S.String.pipe(T.Label()),
+    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/{scope}/providers/Microsoft.Authorization/roleDefinitions",
+      code: 200,
+      apiVersion: "2022-04-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListRoleDefinitionsRequest",
+}) as any as S.Schema<ListRoleDefinitionsRequest>;
+
+/** Role definition list. */
+export type RoleDefinitionListResultValueList = Array<RoleDefinition>;
+export const RoleDefinitionListResultValueList = /*@__PURE__*/ S.Array(
+  RoleDefinition,
+) as any as S.Schema<RoleDefinitionListResultValueList>;
+
+/** Role definition list operation result. */
+export interface RoleDefinitionListResult {
+  /** Role definition list. */
+  value?: RoleDefinitionListResultValueList;
+  /** The URL to use for getting the next set of results. */
+  nextLink?: string;
+}
+export const RoleDefinitionListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(RoleDefinitionListResultValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "RoleDefinitionListResult",
+}) as any as S.Schema<RoleDefinitionListResult>;
 
 /** Role definition permissions. */
 export type RoleDefinitionPropertiesInputPermissionsList = Array<Permission>;
@@ -1351,459 +1509,346 @@ export const RoleDefinitionsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
   identifier: "RoleDefinitionsCreateOrUpdateRequest",
 }) as any as S.Schema<RoleDefinitionsCreateOrUpdateRequest>;
 
-/** Role definition permissions. */
-export type RoleDefinitionPropertiesPermissionsList = Array<Permission>;
-export const RoleDefinitionPropertiesPermissionsList = /*@__PURE__*/ S.Array(
-  Permission,
-) as any as S.Schema<RoleDefinitionPropertiesPermissionsList>;
+export type CreateRoleAssignmentError = AzureOpError;
+/** Create or update a role assignment by scope and name. */
+export const CreateRoleAssignment: API.OperationMethod<
+  CreateRoleAssignmentRequest,
+  CreateRoleAssignmentResponse,
+  CreateRoleAssignmentError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateRoleAssignmentRequest,
+  output: CreateRoleAssignmentResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
-/** Role definition assignable scopes. */
-export type RoleDefinitionPropertiesAssignableScopesList = Array<string>;
-export const RoleDefinitionPropertiesAssignableScopesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<RoleDefinitionPropertiesAssignableScopesList>;
+export type CreateRoleAssignmentByIdError = AzureOpError;
+/** Create or update a role assignment by ID. */
+export const CreateRoleAssignmentById: API.OperationMethod<
+  CreateRoleAssignmentByIdRequest,
+  CreateRoleAssignmentByIdResponse,
+  CreateRoleAssignmentByIdError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateRoleAssignmentByIdRequest,
+  output: CreateRoleAssignmentByIdResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
-/** Role definition properties. */
-export interface RoleDefinitionProperties {
-  /** The role name. */
-  roleName?: string;
-  /** The role definition description. */
-  description?: string;
-  /** The role type. */
-  type?: string;
-  /** Role definition permissions. */
-  permissions?: RoleDefinitionPropertiesPermissionsList;
-  /** Role definition assignable scopes. */
-  assignableScopes?: RoleDefinitionPropertiesAssignableScopesList;
-  /** Time it was created */
-  createdOn?: string;
-  /** Time it was updated */
-  updatedOn?: string;
-  /** Id of the user who created the assignment */
-  createdBy?: string;
-  /** Id of the user who updated the assignment */
-  updatedBy?: string;
-}
-export const RoleDefinitionProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    roleName: S.optional(S.String),
-    description: S.optional(S.String),
-    type: S.optional(S.String),
-    permissions: S.optional(RoleDefinitionPropertiesPermissionsList),
-    assignableScopes: S.optional(RoleDefinitionPropertiesAssignableScopesList),
-    createdOn: S.optional(S.String),
-    updatedOn: S.optional(S.String),
-    createdBy: S.optional(S.String),
-    updatedBy: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "RoleDefinitionProperties",
-}) as any as S.Schema<RoleDefinitionProperties>;
+export type DeleteRoleAssignmentError = AzureOpError;
+/** Delete a role assignment by scope and name. */
+export const DeleteRoleAssignment: API.OperationMethod<
+  DeleteRoleAssignmentRequest,
+  DeleteRoleAssignmentResponse,
+  DeleteRoleAssignmentError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteRoleAssignmentRequest,
+  output: DeleteRoleAssignmentResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
-/** Role definition. */
-export interface RoleDefinition {
-  /** The role definition ID. */
-  id?: string;
-  /** The role definition name. */
-  name?: string;
-  /** The role definition type. */
-  type?: string;
-  /** Role definition properties. */
-  properties?: RoleDefinitionProperties;
-}
-export const RoleDefinition = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    properties: S.optional(RoleDefinitionProperties),
-  }),
-).annotate({ identifier: "RoleDefinition" }) as any as S.Schema<RoleDefinition>;
+export type DeleteRoleAssignmentByIdError = AzureOpError;
+/** Delete a role assignment by ID. */
+export const DeleteRoleAssignmentById: API.OperationMethod<
+  DeleteRoleAssignmentByIdRequest,
+  DeleteRoleAssignmentByIdResponse,
+  DeleteRoleAssignmentByIdError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteRoleAssignmentByIdRequest,
+  output: DeleteRoleAssignmentByIdResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
-export interface RoleDefinitionsDeleteRequest {
-  /** The scope of the role definition. */
-  scope: string;
-  /** The ID of the role definition to delete. */
-  roleDefinitionId: string;
-}
-export const RoleDefinitionsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    scope: S.String.pipe(T.Label()),
-    roleDefinitionId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/{scope}/providers/Microsoft.Authorization/roleDefinitions/{roleDefinitionId}",
-      code: 200,
-      apiVersion: "2022-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "RoleDefinitionsDeleteRequest",
-}) as any as S.Schema<RoleDefinitionsDeleteRequest>;
-
-export interface RoleDefinitionsGetRequest {
-  /** The scope of the role definition. */
-  scope: string;
-  /** The ID of the role definition. */
-  roleDefinitionId: string;
-}
-export const RoleDefinitionsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    scope: S.String.pipe(T.Label()),
-    roleDefinitionId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/{scope}/providers/Microsoft.Authorization/roleDefinitions/{roleDefinitionId}",
-      code: 200,
-      apiVersion: "2022-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "RoleDefinitionsGetRequest",
-}) as any as S.Schema<RoleDefinitionsGetRequest>;
-
-export interface RoleDefinitionsListRequest {
-  /** The scope of the role definition. */
-  scope: string;
-  /** The filter to apply on the operation. Use atScopeAndBelow filter to search below the given scope as well. */
-  _filter?: string;
-}
-export const RoleDefinitionsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    scope: S.String.pipe(T.Label()),
-    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/{scope}/providers/Microsoft.Authorization/roleDefinitions",
-      code: 200,
-      apiVersion: "2022-04-01",
-    }),
-  ),
-).annotate({
-  identifier: "RoleDefinitionsListRequest",
-}) as any as S.Schema<RoleDefinitionsListRequest>;
-
-/** Role definition list. */
-export type RoleDefinitionListResultValueList = Array<RoleDefinition>;
-export const RoleDefinitionListResultValueList = /*@__PURE__*/ S.Array(
+export type DeleteRoleDefinitionError = AzureOpError;
+/** Deletes a role definition. */
+export const DeleteRoleDefinition: API.OperationMethod<
+  DeleteRoleDefinitionRequest,
   RoleDefinition,
-) as any as S.Schema<RoleDefinitionListResultValueList>;
+  DeleteRoleDefinitionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteRoleDefinitionRequest,
+  output: RoleDefinition,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
-/** Role definition list operation result. */
-export interface RoleDefinitionListResult {
-  /** Role definition list. */
-  value?: RoleDefinitionListResultValueList;
-  /** The URL to use for getting the next set of results. */
-  nextLink?: string;
-}
-export const RoleDefinitionListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(RoleDefinitionListResultValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "RoleDefinitionListResult",
-}) as any as S.Schema<RoleDefinitionListResult>;
-
-export type DenyAssignmentsGetError = AzureOpError;
+export type GetDenyAssignmentError = AzureOpError;
 /** Get the specified deny assignment. */
-export const DenyAssignmentsGet: API.OperationMethod<
-  DenyAssignmentsGetRequest,
+export const GetDenyAssignment: API.OperationMethod<
+  GetDenyAssignmentRequest,
   DenyAssignment,
-  DenyAssignmentsGetError,
+  GetDenyAssignmentError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DenyAssignmentsGetRequest,
+  input: GetDenyAssignmentRequest,
   output: DenyAssignment,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DenyAssignmentsGetByIdError = AzureOpError;
+export type GetDenyAssignmentByIdError = AzureOpError;
 /** Gets a deny assignment by ID. */
-export const DenyAssignmentsGetById: API.OperationMethod<
-  DenyAssignmentsGetByIdRequest,
+export const GetDenyAssignmentById: API.OperationMethod<
+  GetDenyAssignmentByIdRequest,
   DenyAssignment,
-  DenyAssignmentsGetByIdError,
+  GetDenyAssignmentByIdError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DenyAssignmentsGetByIdRequest,
+  input: GetDenyAssignmentByIdRequest,
   output: DenyAssignment,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DenyAssignmentsListError = AzureOpError;
-/** Gets all deny assignments for the subscription. */
-export const DenyAssignmentsList: API.OperationMethod<
-  DenyAssignmentsListRequest,
-  DenyAssignmentListResult,
-  DenyAssignmentsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DenyAssignmentsListRequest,
-  output: DenyAssignmentListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DenyAssignmentsListForResourceError = AzureOpError;
-/** Gets deny assignments for a resource. */
-export const DenyAssignmentsListForResource: API.OperationMethod<
-  DenyAssignmentsListForResourceRequest,
-  DenyAssignmentListResult,
-  DenyAssignmentsListForResourceError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DenyAssignmentsListForResourceRequest,
-  output: DenyAssignmentListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DenyAssignmentsListForResourceGroupError = AzureOpError;
-/** Gets deny assignments for a resource group. */
-export const DenyAssignmentsListForResourceGroup: API.OperationMethod<
-  DenyAssignmentsListForResourceGroupRequest,
-  DenyAssignmentListResult,
-  DenyAssignmentsListForResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DenyAssignmentsListForResourceGroupRequest,
-  output: DenyAssignmentListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DenyAssignmentsListForScopeError = AzureOpError;
-/** Gets deny assignments for a scope. */
-export const DenyAssignmentsListForScope: API.OperationMethod<
-  DenyAssignmentsListForScopeRequest,
-  DenyAssignmentListResult,
-  DenyAssignmentsListForScopeError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DenyAssignmentsListForScopeRequest,
-  output: DenyAssignmentListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PermissionsListForResourceError = AzureOpError;
-/** Gets all permissions the caller has for a resource. */
-export const PermissionsListForResource: API.OperationMethod<
-  PermissionsListForResourceRequest,
-  PermissionGetResult,
-  PermissionsListForResourceError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PermissionsListForResourceRequest,
-  output: PermissionGetResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PermissionsListForResourceGroupError = AzureOpError;
-/** Gets all permissions the caller has for a resource group. */
-export const PermissionsListForResourceGroup: API.OperationMethod<
-  PermissionsListForResourceGroupRequest,
-  PermissionGetResult,
-  PermissionsListForResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PermissionsListForResourceGroupRequest,
-  output: PermissionGetResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ProviderOperationsMetadataGetError = AzureOpError;
+export type GetProviderOperationsMetadataError = AzureOpError;
 /** Gets provider operations metadata for the specified resource provider. */
-export const ProviderOperationsMetadataGet: API.OperationMethod<
-  ProviderOperationsMetadataGetRequest,
-  ProviderOperationsMetadataGetResponse,
-  ProviderOperationsMetadataGetError,
+export const GetProviderOperationsMetadata: API.OperationMethod<
+  GetProviderOperationsMetadataRequest,
+  GetProviderOperationsMetadataResponse,
+  GetProviderOperationsMetadataError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ProviderOperationsMetadataGetRequest,
-  output: ProviderOperationsMetadataGetResponse,
+  input: GetProviderOperationsMetadataRequest,
+  output: GetProviderOperationsMetadataResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ProviderOperationsMetadataListError = AzureOpError;
-/** Gets provider operations metadata for all resource providers. */
-export const ProviderOperationsMetadataList: API.OperationMethod<
-  ProviderOperationsMetadataListRequest,
-  ProviderOperationsMetadataListResult,
-  ProviderOperationsMetadataListError,
+export type GetRoleAssignmentError = AzureOpError;
+/** Get a role assignment by scope and name. */
+export const GetRoleAssignment: API.OperationMethod<
+  GetRoleAssignmentRequest,
+  GetRoleAssignmentResponse,
+  GetRoleAssignmentError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ProviderOperationsMetadataListRequest,
+  input: GetRoleAssignmentRequest,
+  output: GetRoleAssignmentResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetRoleAssignmentByIdError = AzureOpError;
+/** Get a role assignment by ID. */
+export const GetRoleAssignmentById: API.OperationMethod<
+  GetRoleAssignmentByIdRequest,
+  GetRoleAssignmentByIdResponse,
+  GetRoleAssignmentByIdError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetRoleAssignmentByIdRequest,
+  output: GetRoleAssignmentByIdResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetRoleDefinitionError = AzureOpError;
+/** Get role definition by name (GUID). */
+export const GetRoleDefinition: API.OperationMethod<
+  GetRoleDefinitionRequest,
+  RoleDefinition,
+  GetRoleDefinitionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetRoleDefinitionRequest,
+  output: RoleDefinition,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDenyAssignmentForResourceError = AzureOpError;
+/** Gets deny assignments for a resource. */
+export const ListDenyAssignmentForResource: API.OperationMethod<
+  ListDenyAssignmentForResourceRequest,
+  DenyAssignmentListResult,
+  ListDenyAssignmentForResourceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDenyAssignmentForResourceRequest,
+  output: DenyAssignmentListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDenyAssignmentForResourceGroupError = AzureOpError;
+/** Gets deny assignments for a resource group. */
+export const ListDenyAssignmentForResourceGroup: API.OperationMethod<
+  ListDenyAssignmentForResourceGroupRequest,
+  DenyAssignmentListResult,
+  ListDenyAssignmentForResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDenyAssignmentForResourceGroupRequest,
+  output: DenyAssignmentListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDenyAssignmentForScopeError = AzureOpError;
+/** Gets deny assignments for a scope. */
+export const ListDenyAssignmentForScope: API.OperationMethod<
+  ListDenyAssignmentForScopeRequest,
+  DenyAssignmentListResult,
+  ListDenyAssignmentForScopeError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDenyAssignmentForScopeRequest,
+  output: DenyAssignmentListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDenyAssignmentsError = AzureOpError;
+/** Gets all deny assignments for the subscription. */
+export const ListDenyAssignments: API.OperationMethod<
+  ListDenyAssignmentsRequest,
+  DenyAssignmentListResult,
+  ListDenyAssignmentsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDenyAssignmentsRequest,
+  output: DenyAssignmentListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListPermissionsForResourceError = AzureOpError;
+/** Gets all permissions the caller has for a resource. */
+export const ListPermissionsForResource: API.OperationMethod<
+  ListPermissionsForResourceRequest,
+  PermissionGetResult,
+  ListPermissionsForResourceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListPermissionsForResourceRequest,
+  output: PermissionGetResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListPermissionsForResourceGroupError = AzureOpError;
+/** Gets all permissions the caller has for a resource group. */
+export const ListPermissionsForResourceGroup: API.OperationMethod<
+  ListPermissionsForResourceGroupRequest,
+  PermissionGetResult,
+  ListPermissionsForResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListPermissionsForResourceGroupRequest,
+  output: PermissionGetResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListProviderOperationsMetadataError = AzureOpError;
+/** Gets provider operations metadata for all resource providers. */
+export const ListProviderOperationsMetadata: API.OperationMethod<
+  ListProviderOperationsMetadataRequest,
+  ProviderOperationsMetadataListResult,
+  ListProviderOperationsMetadataError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListProviderOperationsMetadataRequest,
   output: ProviderOperationsMetadataListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type RoleAssignmentsCreateError = AzureOpError;
-/** Create or update a role assignment by scope and name. */
-export const RoleAssignmentsCreate: API.OperationMethod<
-  RoleAssignmentsCreateRequest,
-  RoleAssignmentsCreateResponse,
-  RoleAssignmentsCreateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RoleAssignmentsCreateRequest,
-  output: RoleAssignmentsCreateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RoleAssignmentsCreateByIdError = AzureOpError;
-/** Create or update a role assignment by ID. */
-export const RoleAssignmentsCreateById: API.OperationMethod<
-  RoleAssignmentsCreateByIdRequest,
-  RoleAssignmentsCreateByIdResponse,
-  RoleAssignmentsCreateByIdError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RoleAssignmentsCreateByIdRequest,
-  output: RoleAssignmentsCreateByIdResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RoleAssignmentsDeleteError = AzureOpError;
-/** Delete a role assignment by scope and name. */
-export const RoleAssignmentsDelete: API.OperationMethod<
-  RoleAssignmentsDeleteRequest,
-  RoleAssignmentsDeleteResponse,
-  RoleAssignmentsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RoleAssignmentsDeleteRequest,
-  output: RoleAssignmentsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RoleAssignmentsDeleteByIdError = AzureOpError;
-/** Delete a role assignment by ID. */
-export const RoleAssignmentsDeleteById: API.OperationMethod<
-  RoleAssignmentsDeleteByIdRequest,
-  RoleAssignmentsDeleteByIdResponse,
-  RoleAssignmentsDeleteByIdError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RoleAssignmentsDeleteByIdRequest,
-  output: RoleAssignmentsDeleteByIdResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RoleAssignmentsGetError = AzureOpError;
-/** Get a role assignment by scope and name. */
-export const RoleAssignmentsGet: API.OperationMethod<
-  RoleAssignmentsGetRequest,
-  RoleAssignmentsGetResponse,
-  RoleAssignmentsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RoleAssignmentsGetRequest,
-  output: RoleAssignmentsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RoleAssignmentsGetByIdError = AzureOpError;
-/** Get a role assignment by ID. */
-export const RoleAssignmentsGetById: API.OperationMethod<
-  RoleAssignmentsGetByIdRequest,
-  RoleAssignmentsGetByIdResponse,
-  RoleAssignmentsGetByIdError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RoleAssignmentsGetByIdRequest,
-  output: RoleAssignmentsGetByIdResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RoleAssignmentsListForResourceError = AzureOpError;
+export type ListRoleAssignmentForResourceError = AzureOpError;
 /** List all role assignments that apply to a resource. */
-export const RoleAssignmentsListForResource: API.OperationMethod<
-  RoleAssignmentsListForResourceRequest,
+export const ListRoleAssignmentForResource: API.OperationMethod<
+  ListRoleAssignmentForResourceRequest,
   RoleAssignmentListResult,
-  RoleAssignmentsListForResourceError,
+  ListRoleAssignmentForResourceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: RoleAssignmentsListForResourceRequest,
+  input: ListRoleAssignmentForResourceRequest,
   output: RoleAssignmentListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type RoleAssignmentsListForResourceGroupError = AzureOpError;
+export type ListRoleAssignmentForResourceGroupError = AzureOpError;
 /** List all role assignments that apply to a resource group. */
-export const RoleAssignmentsListForResourceGroup: API.OperationMethod<
-  RoleAssignmentsListForResourceGroupRequest,
+export const ListRoleAssignmentForResourceGroup: API.OperationMethod<
+  ListRoleAssignmentForResourceGroupRequest,
   RoleAssignmentListResult,
-  RoleAssignmentsListForResourceGroupError,
+  ListRoleAssignmentForResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: RoleAssignmentsListForResourceGroupRequest,
+  input: ListRoleAssignmentForResourceGroupRequest,
   output: RoleAssignmentListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type RoleAssignmentsListForScopeError = AzureOpError;
+export type ListRoleAssignmentForScopeError = AzureOpError;
 /** List all role assignments that apply to a scope. */
-export const RoleAssignmentsListForScope: API.OperationMethod<
-  RoleAssignmentsListForScopeRequest,
+export const ListRoleAssignmentForScope: API.OperationMethod<
+  ListRoleAssignmentForScopeRequest,
   RoleAssignmentListResult,
-  RoleAssignmentsListForScopeError,
+  ListRoleAssignmentForScopeError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: RoleAssignmentsListForScopeRequest,
+  input: ListRoleAssignmentForScopeRequest,
   output: RoleAssignmentListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type RoleAssignmentsListForSubscriptionError = AzureOpError;
+export type ListRoleAssignmentForSubscriptionError = AzureOpError;
 /** List all role assignments that apply to a subscription. */
-export const RoleAssignmentsListForSubscription: API.OperationMethod<
-  RoleAssignmentsListForSubscriptionRequest,
+export const ListRoleAssignmentForSubscription: API.OperationMethod<
+  ListRoleAssignmentForSubscriptionRequest,
   RoleAssignmentListResult,
-  RoleAssignmentsListForSubscriptionError,
+  ListRoleAssignmentForSubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: RoleAssignmentsListForSubscriptionRequest,
+  input: ListRoleAssignmentForSubscriptionRequest,
   output: RoleAssignmentListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListRoleDefinitionsError = AzureOpError;
+/** Get all role definitions that are applicable at scope and above. */
+export const ListRoleDefinitions: API.OperationMethod<
+  ListRoleDefinitionsRequest,
+  RoleDefinitionListResult,
+  ListRoleDefinitionsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListRoleDefinitionsRequest,
+  output: RoleDefinitionListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -1819,51 +1864,6 @@ export const RoleDefinitionsCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: RoleDefinitionsCreateOrUpdateRequest,
   output: RoleDefinition,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RoleDefinitionsDeleteError = AzureOpError;
-/** Deletes a role definition. */
-export const RoleDefinitionsDelete: API.OperationMethod<
-  RoleDefinitionsDeleteRequest,
-  RoleDefinition,
-  RoleDefinitionsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RoleDefinitionsDeleteRequest,
-  output: RoleDefinition,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RoleDefinitionsGetError = AzureOpError;
-/** Get role definition by name (GUID). */
-export const RoleDefinitionsGet: API.OperationMethod<
-  RoleDefinitionsGetRequest,
-  RoleDefinition,
-  RoleDefinitionsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RoleDefinitionsGetRequest,
-  output: RoleDefinition,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RoleDefinitionsListError = AzureOpError;
-/** Get all role definitions that are applicable at scope and above. */
-export const RoleDefinitionsList: API.OperationMethod<
-  RoleDefinitionsListRequest,
-  RoleDefinitionListResult,
-  RoleDefinitionsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RoleDefinitionsListRequest,
-  output: RoleDefinitionListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

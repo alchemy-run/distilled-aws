@@ -324,6 +324,54 @@ export const CreateOriginTlsClientAuthResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateOriginTlsClientAuthResponse",
 }) as any as S.Schema<CreateOriginTlsClientAuthResponse>;
 
+export interface CreateZoneCertificateRequest {
+  /** Identifier. */
+  zoneId: string;
+  /** The zone's leaf certificate. */
+  certificate: string;
+  /** The zone's private key. */
+  privateKey: string;
+}
+export const CreateZoneCertificateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    zoneId: S.String.pipe(T.Label("zone_id")),
+    certificate: S.String,
+    privateKey: S.String.pipe(T.Body("private_key")),
+  })
+    .pipe(
+      T.Http({
+        method: "POST",
+        uri: "/zones/{zone_id}/origin_tls_client_auth",
+        code: 200,
+      }),
+    )
+    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "CreateZoneCertificateRequest",
+}) as any as S.Schema<CreateZoneCertificateRequest>;
+
+/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
+export interface CreateZoneCertificateResponse {
+  /** Identifier. */
+  id?: string | null;
+  /** The zone's leaf certificate. */
+  certificate?: string | null;
+  /** Indicates whether zone-level authenticated origin pulls is enabled. */
+  enabled?: boolean | null;
+  /** The zone's private key. */
+  privateKey?: string | null;
+}
+export const CreateZoneCertificateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.NullOr(S.String)),
+    certificate: S.optional(S.NullOr(S.String)),
+    enabled: S.optional(S.NullOr(S.Boolean)),
+    privateKey: S.optional(S.NullOr(S.String).pipe(T.Body("private_key"))),
+  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "CreateZoneCertificateResponse",
+}) as any as S.Schema<CreateZoneCertificateResponse>;
+
 export interface DeleteHostnameCertificateRequest {
   /** Identifier. */
   zoneId: string;
@@ -435,6 +483,51 @@ export const DeleteOriginTlsClientAuthResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "DeleteOriginTlsClientAuthResponse",
 }) as any as S.Schema<DeleteOriginTlsClientAuthResponse>;
+
+export interface DeleteZoneCertificateRequest {
+  /** Identifier. */
+  zoneId: string;
+  /** Identifier. */
+  certificateId: string;
+}
+export const DeleteZoneCertificateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    zoneId: S.String.pipe(T.Label("zone_id")),
+    certificateId: S.String.pipe(T.Label("certificate_id")),
+  })
+    .pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/zones/{zone_id}/origin_tls_client_auth/{certificate_id}",
+        code: 200,
+      }),
+    )
+    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "DeleteZoneCertificateRequest",
+}) as any as S.Schema<DeleteZoneCertificateRequest>;
+
+/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
+export interface DeleteZoneCertificateResponse {
+  /** Identifier. */
+  id?: string | null;
+  /** The zone's leaf certificate. */
+  certificate?: string | null;
+  /** Indicates whether zone-level authenticated origin pulls is enabled. */
+  enabled?: boolean | null;
+  /** The zone's private key. */
+  privateKey?: string | null;
+}
+export const DeleteZoneCertificateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.NullOr(S.String)),
+    certificate: S.optional(S.NullOr(S.String)),
+    enabled: S.optional(S.NullOr(S.Boolean)),
+    privateKey: S.optional(S.NullOr(S.String).pipe(T.Body("private_key"))),
+  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "DeleteZoneCertificateResponse",
+}) as any as S.Schema<DeleteZoneCertificateResponse>;
 
 export interface GetHostnameRequest {
   /** Identifier. */
@@ -692,6 +785,51 @@ export const GetSettingResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetSettingResponse",
 }) as any as S.Schema<GetSettingResponse>;
 
+export interface GetZoneCertificateRequest {
+  /** Identifier. */
+  zoneId: string;
+  /** Identifier. */
+  certificateId: string;
+}
+export const GetZoneCertificateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    zoneId: S.String.pipe(T.Label("zone_id")),
+    certificateId: S.String.pipe(T.Label("certificate_id")),
+  })
+    .pipe(
+      T.Http({
+        method: "GET",
+        uri: "/zones/{zone_id}/origin_tls_client_auth/{certificate_id}",
+        code: 200,
+      }),
+    )
+    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "GetZoneCertificateRequest",
+}) as any as S.Schema<GetZoneCertificateRequest>;
+
+/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
+export interface GetZoneCertificateResponse {
+  /** Identifier. */
+  id?: string | null;
+  /** The zone's leaf certificate. */
+  certificate?: string | null;
+  /** Indicates whether zone-level authenticated origin pulls is enabled. */
+  enabled?: boolean | null;
+  /** The zone's private key. */
+  privateKey?: string | null;
+}
+export const GetZoneCertificateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.NullOr(S.String)),
+    certificate: S.optional(S.NullOr(S.String)),
+    enabled: S.optional(S.NullOr(S.Boolean)),
+    privateKey: S.optional(S.NullOr(S.String).pipe(T.Body("private_key"))),
+  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "GetZoneCertificateResponse",
+}) as any as S.Schema<GetZoneCertificateResponse>;
+
 export interface ListHostnameCertificatesRequest {
   /** Identifier. */
   zoneId: string;
@@ -845,6 +983,68 @@ export const ListOriginTlsClientAuthsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListOriginTlsClientAuthsResponse",
 }) as any as S.Schema<ListOriginTlsClientAuthsResponse>;
 
+export interface ListZoneCertificatesRequest {
+  /** Identifier. */
+  zoneId: string;
+}
+export const ListZoneCertificatesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    zoneId: S.String.pipe(T.Label("zone_id")),
+  })
+    .pipe(
+      T.Http({
+        method: "GET",
+        uri: "/zones/{zone_id}/origin_tls_client_auth",
+        code: 200,
+      }),
+    )
+    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "ListZoneCertificatesRequest",
+}) as any as S.Schema<ListZoneCertificatesRequest>;
+
+export interface ListZoneCertificatesResultItem {
+  /** Identifier. */
+  id?: string | null;
+  /** The zone's leaf certificate. */
+  certificate?: string | null;
+  /** Indicates whether zone-level authenticated origin pulls is enabled. */
+  enabled?: boolean | null;
+  /** The zone's private key. */
+  privateKey?: string | null;
+}
+export const ListZoneCertificatesResultItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.NullOr(S.String)),
+    certificate: S.optional(S.NullOr(S.String)),
+    enabled: S.optional(S.NullOr(S.Boolean)),
+    privateKey: S.optional(S.NullOr(S.String).pipe(T.Body("private_key"))),
+  }),
+).annotate({
+  identifier: "ListZoneCertificatesResultItem",
+}) as any as S.Schema<ListZoneCertificatesResultItem>;
+
+export type ListZoneCertificatesResultList =
+  Array<ListZoneCertificatesResultItem>;
+export const ListZoneCertificatesResultList = /*@__PURE__*/ S.Array(
+  ListZoneCertificatesResultItem,
+) as any as S.Schema<ListZoneCertificatesResultList>;
+
+export interface ListZoneCertificatesResponse {
+  /** The unwrapped `result` payload of the v4 response envelope. */
+  result: ListZoneCertificatesResultList;
+  /** Pagination info from the envelope's `result_info`. */
+  resultInfo?: ResultInfo | null;
+}
+export const ListZoneCertificatesResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    result: ListZoneCertificatesResultList.pipe(T.EnvelopePayload()),
+    resultInfo: S.optional(S.NullOr(ResultInfo).pipe(T.ResultInfo())),
+  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "ListZoneCertificatesResponse",
+}) as any as S.Schema<ListZoneCertificatesResponse>;
+
 export interface HostnamesUpdateRequestConfigItem {
   /** Certificate identifier tag. */
   certId?: string;
@@ -974,206 +1174,6 @@ export const PutSettingResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "PutSettingResponse",
 }) as any as S.Schema<PutSettingResponse>;
 
-export interface ZoneCertificatesCreateRequest {
-  /** Identifier. */
-  zoneId: string;
-  /** The zone's leaf certificate. */
-  certificate: string;
-  /** The zone's private key. */
-  privateKey: string;
-}
-export const ZoneCertificatesCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    zoneId: S.String.pipe(T.Label("zone_id")),
-    certificate: S.String,
-    privateKey: S.String.pipe(T.Body("private_key")),
-  })
-    .pipe(
-      T.Http({
-        method: "POST",
-        uri: "/zones/{zone_id}/origin_tls_client_auth",
-        code: 200,
-      }),
-    )
-    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "ZoneCertificatesCreateRequest",
-}) as any as S.Schema<ZoneCertificatesCreateRequest>;
-
-/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
-export interface ZoneCertificatesCreateResponse {
-  /** Identifier. */
-  id?: string | null;
-  /** The zone's leaf certificate. */
-  certificate?: string | null;
-  /** Indicates whether zone-level authenticated origin pulls is enabled. */
-  enabled?: boolean | null;
-  /** The zone's private key. */
-  privateKey?: string | null;
-}
-export const ZoneCertificatesCreateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.NullOr(S.String)),
-    certificate: S.optional(S.NullOr(S.String)),
-    enabled: S.optional(S.NullOr(S.Boolean)),
-    privateKey: S.optional(S.NullOr(S.String).pipe(T.Body("private_key"))),
-  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "ZoneCertificatesCreateResponse",
-}) as any as S.Schema<ZoneCertificatesCreateResponse>;
-
-export interface ZoneCertificatesDeleteRequest {
-  /** Identifier. */
-  zoneId: string;
-  /** Identifier. */
-  certificateId: string;
-}
-export const ZoneCertificatesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    zoneId: S.String.pipe(T.Label("zone_id")),
-    certificateId: S.String.pipe(T.Label("certificate_id")),
-  })
-    .pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/zones/{zone_id}/origin_tls_client_auth/{certificate_id}",
-        code: 200,
-      }),
-    )
-    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "ZoneCertificatesDeleteRequest",
-}) as any as S.Schema<ZoneCertificatesDeleteRequest>;
-
-/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
-export interface ZoneCertificatesDeleteResponse {
-  /** Identifier. */
-  id?: string | null;
-  /** The zone's leaf certificate. */
-  certificate?: string | null;
-  /** Indicates whether zone-level authenticated origin pulls is enabled. */
-  enabled?: boolean | null;
-  /** The zone's private key. */
-  privateKey?: string | null;
-}
-export const ZoneCertificatesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.NullOr(S.String)),
-    certificate: S.optional(S.NullOr(S.String)),
-    enabled: S.optional(S.NullOr(S.Boolean)),
-    privateKey: S.optional(S.NullOr(S.String).pipe(T.Body("private_key"))),
-  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "ZoneCertificatesDeleteResponse",
-}) as any as S.Schema<ZoneCertificatesDeleteResponse>;
-
-export interface ZoneCertificatesGetRequest {
-  /** Identifier. */
-  zoneId: string;
-  /** Identifier. */
-  certificateId: string;
-}
-export const ZoneCertificatesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    zoneId: S.String.pipe(T.Label("zone_id")),
-    certificateId: S.String.pipe(T.Label("certificate_id")),
-  })
-    .pipe(
-      T.Http({
-        method: "GET",
-        uri: "/zones/{zone_id}/origin_tls_client_auth/{certificate_id}",
-        code: 200,
-      }),
-    )
-    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "ZoneCertificatesGetRequest",
-}) as any as S.Schema<ZoneCertificatesGetRequest>;
-
-/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
-export interface ZoneCertificatesGetResponse {
-  /** Identifier. */
-  id?: string | null;
-  /** The zone's leaf certificate. */
-  certificate?: string | null;
-  /** Indicates whether zone-level authenticated origin pulls is enabled. */
-  enabled?: boolean | null;
-  /** The zone's private key. */
-  privateKey?: string | null;
-}
-export const ZoneCertificatesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.NullOr(S.String)),
-    certificate: S.optional(S.NullOr(S.String)),
-    enabled: S.optional(S.NullOr(S.Boolean)),
-    privateKey: S.optional(S.NullOr(S.String).pipe(T.Body("private_key"))),
-  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "ZoneCertificatesGetResponse",
-}) as any as S.Schema<ZoneCertificatesGetResponse>;
-
-export interface ZoneCertificatesListRequest {
-  /** Identifier. */
-  zoneId: string;
-}
-export const ZoneCertificatesListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    zoneId: S.String.pipe(T.Label("zone_id")),
-  })
-    .pipe(
-      T.Http({
-        method: "GET",
-        uri: "/zones/{zone_id}/origin_tls_client_auth",
-        code: 200,
-      }),
-    )
-    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "ZoneCertificatesListRequest",
-}) as any as S.Schema<ZoneCertificatesListRequest>;
-
-export interface ZoneCertificatesListResultItem {
-  /** Identifier. */
-  id?: string | null;
-  /** The zone's leaf certificate. */
-  certificate?: string | null;
-  /** Indicates whether zone-level authenticated origin pulls is enabled. */
-  enabled?: boolean | null;
-  /** The zone's private key. */
-  privateKey?: string | null;
-}
-export const ZoneCertificatesListResultItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.NullOr(S.String)),
-    certificate: S.optional(S.NullOr(S.String)),
-    enabled: S.optional(S.NullOr(S.Boolean)),
-    privateKey: S.optional(S.NullOr(S.String).pipe(T.Body("private_key"))),
-  }),
-).annotate({
-  identifier: "ZoneCertificatesListResultItem",
-}) as any as S.Schema<ZoneCertificatesListResultItem>;
-
-export type ZoneCertificatesListResultList =
-  Array<ZoneCertificatesListResultItem>;
-export const ZoneCertificatesListResultList = /*@__PURE__*/ S.Array(
-  ZoneCertificatesListResultItem,
-) as any as S.Schema<ZoneCertificatesListResultList>;
-
-export interface ZoneCertificatesListResponse {
-  /** The unwrapped `result` payload of the v4 response envelope. */
-  result: ZoneCertificatesListResultList;
-  /** Pagination info from the envelope's `result_info`. */
-  resultInfo?: ResultInfo | null;
-}
-export const ZoneCertificatesListResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    result: ZoneCertificatesListResultList.pipe(T.EnvelopePayload()),
-    resultInfo: S.optional(S.NullOr(ResultInfo).pipe(T.ResultInfo())),
-  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "ZoneCertificatesListResponse",
-}) as any as S.Schema<ZoneCertificatesListResponse>;
-
 export type CreateHostnameCertificateError =
   | CertificateAlreadyExists
   | InvalidCertificate
@@ -1214,6 +1214,33 @@ export const createOriginTlsClientAuth: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: CreateOriginTlsClientAuthRequest,
   output: CreateOriginTlsClientAuthResponse,
+  errors: [
+    CertificateAlreadyExists,
+    InvalidCertificate,
+    ZoneClientCertConflict,
+    Forbidden,
+    CloudflareRateLimited,
+    CloudflareError,
+  ],
+  protocol: CloudflareProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateZoneCertificateError =
+  | CertificateAlreadyExists
+  | InvalidCertificate
+  | ZoneClientCertConflict
+  | Forbidden
+  | CloudflareOpError;
+/** Upload your own certificate you want Cloudflare to use for edge-to-origin communication to override the shared certificate. Please note that it is important to keep only one certificate active. Also, make sure to enable zone-level authenticated origin pulls by making a PUT call to settings endpoint to see the uploaded certificate in use. */
+export const createZoneCertificate: API.OperationMethod<
+  CreateZoneCertificateRequest,
+  CreateZoneCertificateResponse,
+  CreateZoneCertificateError,
+  CloudflareOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateZoneCertificateRequest,
+  output: CreateZoneCertificateResponse,
   errors: [
     CertificateAlreadyExists,
     InvalidCertificate,
@@ -1273,6 +1300,35 @@ export const deleteOriginTlsClientAuth: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: DeleteOriginTlsClientAuthRequest,
   output: DeleteOriginTlsClientAuthResponse,
+  errors: [
+    CertificateNotFound,
+    Forbidden,
+    CertificateAlreadyDeleted,
+    CertificatePendingDeployment,
+    ZoneClientCertConflict,
+    CloudflareRateLimited,
+    CloudflareError,
+  ],
+  protocol: CloudflareProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteZoneCertificateError =
+  | CertificateNotFound
+  | Forbidden
+  | CertificateAlreadyDeleted
+  | CertificatePendingDeployment
+  | ZoneClientCertConflict
+  | CloudflareOpError;
+/** Removes a client certificate used for zone-level authenticated origin pulls. */
+export const deleteZoneCertificate: API.OperationMethod<
+  DeleteZoneCertificateRequest,
+  DeleteZoneCertificateResponse,
+  DeleteZoneCertificateError,
+  CloudflareOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteZoneCertificateRequest,
+  output: DeleteZoneCertificateResponse,
   errors: [
     CertificateNotFound,
     Forbidden,
@@ -1370,6 +1426,29 @@ export const getSetting: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetZoneCertificateError =
+  | CertificateNotFound
+  | Forbidden
+  | CloudflareOpError;
+/** Retrieves details for a specific client certificate used in zone-level authenticated origin pulls. */
+export const getZoneCertificate: API.OperationMethod<
+  GetZoneCertificateRequest,
+  GetZoneCertificateResponse,
+  GetZoneCertificateError,
+  CloudflareOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetZoneCertificateRequest,
+  output: GetZoneCertificateResponse,
+  errors: [
+    CertificateNotFound,
+    Forbidden,
+    CloudflareRateLimited,
+    CloudflareError,
+  ],
+  protocol: CloudflareProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListHostnameCertificatesError = Forbidden | CloudflareOpError;
 /** Lists all client certificates configured for per-hostname authenticated origin pulls on the zone. */
 export const listHostnameCertificates: API.PaginatedOperationMethod<
@@ -1402,6 +1481,26 @@ export const listOriginTlsClientAuths: API.PaginatedOperationMethod<
   () => ({
     input: ListOriginTlsClientAuthsRequest,
     output: ListOriginTlsClientAuthsResponse,
+    errors: [Forbidden, CloudflareRateLimited, CloudflareError],
+    protocol: CloudflarePaginatedProtocol,
+    retry: Retry.Retry,
+    pagination: { mode: "single", items: "result" } as const,
+  }),
+  cloudflarePaginate,
+) as any;
+
+export type ListZoneCertificatesError = Forbidden | CloudflareOpError;
+/** Lists all client certificates configured for zone-level authenticated origin pulls. */
+export const listZoneCertificates: API.PaginatedOperationMethod<
+  ListZoneCertificatesRequest,
+  ListZoneCertificatesResponse,
+  ListZoneCertificatesError,
+  CloudflareOpContext,
+  ListZoneCertificatesResultItem
+> = /*@__PURE__*/ API.makePaginated(
+  () => ({
+    input: ListZoneCertificatesRequest,
+    output: ListZoneCertificatesResponse,
     errors: [Forbidden, CloudflareRateLimited, CloudflareError],
     protocol: CloudflarePaginatedProtocol,
     retry: Retry.Retry,
@@ -1454,126 +1553,3 @@ export const putSetting: API.OperationMethod<
   protocol: CloudflareProtocol,
   retry: Retry.Retry,
 }));
-
-export type ZoneCertificatesCreateError =
-  | CertificateAlreadyExists
-  | InvalidCertificate
-  | ZoneClientCertConflict
-  | Forbidden
-  | CloudflareOpError;
-/** Upload your own certificate you want Cloudflare to use for edge-to-origin communication to override the shared certificate. Please note that it is important to keep only one certificate active. Also, make sure to enable zone-level authenticated origin pulls by making a PUT call to settings endpoint to see the uploaded certificate in use. */
-export const zoneCertificatesCreate: API.OperationMethod<
-  ZoneCertificatesCreateRequest,
-  ZoneCertificatesCreateResponse,
-  ZoneCertificatesCreateError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ZoneCertificatesCreateRequest,
-  output: ZoneCertificatesCreateResponse,
-  errors: [
-    CertificateAlreadyExists,
-    InvalidCertificate,
-    ZoneClientCertConflict,
-    Forbidden,
-    CloudflareRateLimited,
-    CloudflareError,
-  ],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ZoneCertificatesDeleteError =
-  | CertificateNotFound
-  | Forbidden
-  | CertificateAlreadyDeleted
-  | CertificatePendingDeployment
-  | ZoneClientCertConflict
-  | CloudflareOpError;
-/** Removes a client certificate used for zone-level authenticated origin pulls. */
-export const zoneCertificatesDelete: API.OperationMethod<
-  ZoneCertificatesDeleteRequest,
-  ZoneCertificatesDeleteResponse,
-  ZoneCertificatesDeleteError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ZoneCertificatesDeleteRequest,
-  output: ZoneCertificatesDeleteResponse,
-  errors: [
-    CertificateNotFound,
-    Forbidden,
-    CertificateAlreadyDeleted,
-    CertificatePendingDeployment,
-    ZoneClientCertConflict,
-    CloudflareRateLimited,
-    CloudflareError,
-  ],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ZoneCertificatesGetError =
-  | CertificateNotFound
-  | Forbidden
-  | CloudflareOpError;
-/** Retrieves details for a specific client certificate used in zone-level authenticated origin pulls. */
-export const zoneCertificatesGet: API.OperationMethod<
-  ZoneCertificatesGetRequest,
-  ZoneCertificatesGetResponse,
-  ZoneCertificatesGetError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ZoneCertificatesGetRequest,
-  output: ZoneCertificatesGetResponse,
-  errors: [
-    CertificateNotFound,
-    Forbidden,
-    CloudflareRateLimited,
-    CloudflareError,
-  ],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ZoneCertificatesListError = Forbidden | CloudflareOpError;
-/** Lists all client certificates configured for zone-level authenticated origin pulls. */
-export const zoneCertificatesList: API.PaginatedOperationMethod<
-  ZoneCertificatesListRequest,
-  ZoneCertificatesListResponse,
-  ZoneCertificatesListError,
-  CloudflareOpContext,
-  ZoneCertificatesListResultItem
-> = /*@__PURE__*/ API.makePaginated(
-  () => ({
-    input: ZoneCertificatesListRequest,
-    output: ZoneCertificatesListResponse,
-    errors: [Forbidden, CloudflareRateLimited, CloudflareError],
-    protocol: CloudflarePaginatedProtocol,
-    retry: Retry.Retry,
-    pagination: { mode: "single", items: "result" } as const,
-  }),
-  cloudflarePaginate,
-) as any;
-
-// Alias of createOriginTlsClientAuth (same route, alternate export name upstream).
-export const createZoneCertificate = createOriginTlsClientAuth;
-export type CreateZoneCertificateRequest = CreateOriginTlsClientAuthRequest;
-export type CreateZoneCertificateResponse = CreateOriginTlsClientAuthResponse;
-export type CreateZoneCertificateError = CreateOriginTlsClientAuthError;
-
-// Alias of deleteOriginTlsClientAuth (same route, alternate export name upstream).
-export const deleteZoneCertificate = deleteOriginTlsClientAuth;
-export type DeleteZoneCertificateRequest = DeleteOriginTlsClientAuthRequest;
-export type DeleteZoneCertificateResponse = DeleteOriginTlsClientAuthResponse;
-export type DeleteZoneCertificateError = DeleteOriginTlsClientAuthError;
-
-// Alias of getOriginTlsClientAuth (same route, alternate export name upstream).
-export const getZoneCertificate = getOriginTlsClientAuth;
-export type GetZoneCertificateRequest = GetOriginTlsClientAuthRequest;
-export type GetZoneCertificateResponse = GetOriginTlsClientAuthResponse;
-export type GetZoneCertificateError = GetOriginTlsClientAuthError;
-
-// Alias of listOriginTlsClientAuths (same route, alternate export name upstream).
-export const listZoneCertificates = listOriginTlsClientAuths;
-export type ListZoneCertificatesRequest = ListOriginTlsClientAuthsRequest;
-export type ListZoneCertificatesResponse = ListOriginTlsClientAuthsResponse;
-export type ListZoneCertificatesError = ListOriginTlsClientAuthsError;

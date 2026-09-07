@@ -348,6 +348,18 @@ export const ForumPost = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "ForumPost" }) as any as S.Schema<ForumPost>;
 
+export interface GetForumPostRequest {
+  /** The unique identifier of the forum post to retrieve. */
+  id: string;
+}
+export const GetForumPostRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/forum_posts/{id}", code: 200 })),
+).annotate({
+  identifier: "GetForumPostRequest",
+}) as any as S.Schema<GetForumPostRequest>;
+
 export interface ListForumPostRequest {
   after?: string;
   before?: string;
@@ -480,18 +492,6 @@ export const ListForumPostResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListForumPostResponse",
 }) as any as S.Schema<ListForumPostResponse>;
 
-export interface RetrieveForumPostRequest {
-  /** The unique identifier of the forum post to retrieve. */
-  id: string;
-}
-export const RetrieveForumPostRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/forum_posts/{id}", code: 200 })),
-).annotate({
-  identifier: "RetrieveForumPostRequest",
-}) as any as S.Schema<RetrieveForumPostRequest>;
-
 /** Input for an attachment */
 export type UpdateForumPostRequestAttachmentsItem =
   CreateForumPostRequestAttachmentsItem;
@@ -552,6 +552,26 @@ export const createForumPost: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetForumPostError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | UnprocessableEntity
+  | WhopOpError;
+/** Retrieve forum post [Legacy API — https://docs.whop.com/api-reference] Retrieves the details of an existing forum post. Required permissions: - `forum:read` */
+export const getForumPost: API.OperationMethod<
+  GetForumPostRequest,
+  ForumPost,
+  GetForumPostError,
+  WhopOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetForumPostRequest,
+  output: ForumPost,
+  errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
+  protocol: WhopProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListForumPostError =
   | BadRequest
   | Forbidden
@@ -583,26 +603,6 @@ export const listForumPost: API.PaginatedOperationMethod<
   }),
   paginateRelay,
 ) as any;
-
-export type RetrieveForumPostError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | UnprocessableEntity
-  | WhopOpError;
-/** Retrieve forum post [Legacy API — https://docs.whop.com/api-reference] Retrieves the details of an existing forum post. Required permissions: - `forum:read` */
-export const retrieveForumPost: API.OperationMethod<
-  RetrieveForumPostRequest,
-  ForumPost,
-  RetrieveForumPostError,
-  WhopOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveForumPostRequest,
-  output: ForumPost,
-  errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
-  protocol: WhopProtocol,
-  retry: Retry.Retry,
-}));
 
 export type UpdateForumPostError =
   | BadRequest

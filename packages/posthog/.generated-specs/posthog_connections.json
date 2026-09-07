@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.posthog.posthog_connections#PostHogConnectionForwardMethodEnum": {
@@ -55,7 +56,7 @@
         "smithy.api#documentation": "* `GET` - GET\n* `POST` - POST\n* `PUT` - PUT\n* `PATCH` - PATCH\n* `DELETE` - DELETE"
       }
     },
-    "com.posthog.posthog_connections#PosthogConnectionsForwardCreateRequestQueryMap": {
+    "com.posthog.posthog_connections#CreatePosthogConnectionsForwardRequestQueryMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -67,7 +68,7 @@
         "smithy.api#documentation": "Query parameters to send to the target."
       }
     },
-    "com.posthog.posthog_connections#PosthogConnectionsForwardCreateRequest": {
+    "com.posthog.posthog_connections#CreatePosthogConnectionsForwardRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -100,7 +101,7 @@
           }
         },
         "query": {
-          "target": "com.posthog.posthog_connections#PosthogConnectionsForwardCreateRequestQueryMap",
+          "target": "com.posthog.posthog_connections#CreatePosthogConnectionsForwardRequestQueryMap",
           "traits": {
             "smithy.api#documentation": "Query parameters to send to the target."
           }
@@ -136,10 +137,10 @@
       },
       "traits": {}
     },
-    "com.posthog.posthog_connections#PosthogConnectionsForwardCreate": {
+    "com.posthog.posthog_connections#CreatePosthogConnectionsForward": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.posthog_connections#PosthogConnectionsForwardCreateRequest"
+        "target": "com.posthog.posthog_connections#CreatePosthogConnectionsForwardRequest"
       },
       "output": {
         "target": "com.posthog.posthog_connections#PostHogConnectionForwardResponse"
@@ -153,7 +154,7 @@
         "smithy.api#documentation": "Forward a request through a PostHog connection\n\nReplay an API request against the connected PostHog project. The server injects the connection's token; the response is passed through."
       }
     },
-    "com.posthog.posthog_connections#PosthogConnectionsTargetRetrieveRequest": {
+    "com.posthog.posthog_connections#GetPosthogConnectionsTargetRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -224,10 +225,10 @@
       },
       "traits": {}
     },
-    "com.posthog.posthog_connections#PosthogConnectionsTargetRetrieve": {
+    "com.posthog.posthog_connections#GetPosthogConnectionsTarget": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.posthog_connections#PosthogConnectionsTargetRetrieveRequest"
+        "target": "com.posthog.posthog_connections#GetPosthogConnectionsTargetRequest"
       },
       "output": {
         "target": "com.posthog.posthog_connections#PostHogConnectionTarget"
@@ -246,10 +247,10 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.posthog_connections#PosthogConnectionsForwardCreate"
+          "target": "com.posthog.posthog_connections#CreatePosthogConnectionsForward"
         },
         {
-          "target": "com.posthog.posthog_connections#PosthogConnectionsTargetRetrieve"
+          "target": "com.posthog.posthog_connections#GetPosthogConnectionsTarget"
         }
       ],
       "traits": {

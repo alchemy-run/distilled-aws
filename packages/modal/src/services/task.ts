@@ -12,6 +12,58 @@ import * as Retry from "../retry.ts";
 
 export type { ModalOpError, ModalOpContext };
 
+export interface ListTaskRequest {
+  environmentName?: string;
+  appId?: string;
+}
+export const ListTaskRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    environmentName: S.optional(S.String),
+    appId: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/modal.client.ModalClient/TaskList",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListTaskRequest",
+}) as any as S.Schema<ListTaskRequest>;
+
+export interface TaskStats {
+  taskId?: string;
+  appId?: string;
+  appDescription?: string;
+  startedAt?: number;
+  enqueuedAt?: number;
+}
+export const TaskStats = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    taskId: S.optional(S.String),
+    appId: S.optional(S.String),
+    appDescription: S.optional(S.String),
+    startedAt: S.optional(S.Number),
+    enqueuedAt: S.optional(S.Number),
+  }),
+).annotate({ identifier: "TaskStats" }) as any as S.Schema<TaskStats>;
+
+export type TaskStatsList = Array<TaskStats>;
+export const TaskStatsList = /*@__PURE__*/ S.Array(
+  TaskStats,
+) as any as S.Schema<TaskStatsList>;
+
+export interface ListTaskResponse {
+  tasks?: TaskStatsList;
+}
+export const ListTaskResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    tasks: S.optional(TaskStatsList),
+  }),
+).annotate({
+  identifier: "ListTaskResponse",
+}) as any as S.Schema<ListTaskResponse>;
+
 export interface TaskClusterHelloRequest {
   taskId?: string;
   containerIp?: string;
@@ -254,58 +306,6 @@ export const TaskGetInfoResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "TaskGetInfoResponse",
 }) as any as S.Schema<TaskGetInfoResponse>;
 
-export interface TaskListRequest {
-  environmentName?: string;
-  appId?: string;
-}
-export const TaskListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    environmentName: S.optional(S.String),
-    appId: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/modal.client.ModalClient/TaskList",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "TaskListRequest",
-}) as any as S.Schema<TaskListRequest>;
-
-export interface TaskStats {
-  taskId?: string;
-  appId?: string;
-  appDescription?: string;
-  startedAt?: number;
-  enqueuedAt?: number;
-}
-export const TaskStats = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    taskId: S.optional(S.String),
-    appId: S.optional(S.String),
-    appDescription: S.optional(S.String),
-    startedAt: S.optional(S.Number),
-    enqueuedAt: S.optional(S.Number),
-  }),
-).annotate({ identifier: "TaskStats" }) as any as S.Schema<TaskStats>;
-
-export type TaskStatsList = Array<TaskStats>;
-export const TaskStatsList = /*@__PURE__*/ S.Array(
-  TaskStats,
-) as any as S.Schema<TaskStatsList>;
-
-export interface TaskListResponse {
-  tasks?: TaskStatsList;
-}
-export const TaskListResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    tasks: S.optional(TaskStatsList),
-  }),
-).annotate({
-  identifier: "TaskListResponse",
-}) as any as S.Schema<TaskListResponse>;
-
 export interface TaskResultRequest {
   result?: GenericResult;
 }
@@ -329,6 +329,20 @@ export const TaskResultResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "TaskResultResponse",
 }) as any as S.Schema<TaskResultResponse>;
+
+export type ListTaskError = ModalOpError;
+export const listTask: API.OperationMethod<
+  ListTaskRequest,
+  ListTaskResponse,
+  ListTaskError,
+  ModalOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListTaskRequest,
+  output: ListTaskResponse,
+  errors: [UnknownModalError],
+  protocol: ModalProtocol,
+  retry: Retry.Retry,
+}));
 
 export type TaskClusterHelloError = ModalOpError;
 /** Tasks */
@@ -382,20 +396,6 @@ export const taskGetInfo: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: TaskGetInfoRequest,
   output: TaskGetInfoResponse,
-  errors: [UnknownModalError],
-  protocol: ModalProtocol,
-  retry: Retry.Retry,
-}));
-
-export type TaskListError = ModalOpError;
-export const taskList: API.OperationMethod<
-  TaskListRequest,
-  TaskListResponse,
-  TaskListError,
-  ModalOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TaskListRequest,
-  output: TaskListResponse,
   errors: [UnknownModalError],
   protocol: ModalProtocol,
   retry: Retry.Retry,

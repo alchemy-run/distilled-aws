@@ -14,13 +14,14 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.msi#FederatedIdentityCredentialsDelete": {
+    "com.azure.msi#DeleteFederatedIdentityCredentials": {
       "type": "operation",
       "input": {
-        "target": "com.azure.msi#FederatedIdentityCredentialsDeleteRequest"
+        "target": "com.azure.msi#DeleteFederatedIdentityCredentialsRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -36,7 +37,7 @@
         "com.distilled.openapi#apiVersion": "2024-11-30"
       }
     },
-    "com.azure.msi#FederatedIdentityCredentialsDeleteRequest": {
+    "com.azure.msi#DeleteFederatedIdentityCredentialsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -325,13 +326,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.msi#FederatedIdentityCredentialsGet": {
+    "com.azure.msi#GetFederatedIdentityCredentials": {
       "type": "operation",
       "input": {
-        "target": "com.azure.msi#FederatedIdentityCredentialsGetRequest"
+        "target": "com.azure.msi#GetFederatedIdentityCredentialsRequest"
       },
       "output": {
-        "target": "com.azure.msi#FederatedIdentityCredentialsGetResponse"
+        "target": "com.azure.msi#GetFederatedIdentityCredentialsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -344,7 +345,7 @@
         "com.distilled.openapi#apiVersion": "2024-11-30"
       }
     },
-    "com.azure.msi#FederatedIdentityCredentialsGetResponse": {
+    "com.azure.msi#GetFederatedIdentityCredentialsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -382,7 +383,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.msi#FederatedIdentityCredentialsGetRequest": {
+    "com.azure.msi#GetFederatedIdentityCredentialsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -422,10 +423,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.msi#FederatedIdentityCredentialsList": {
+    "com.azure.msi#ListFederatedIdentityCredentials": {
       "type": "operation",
       "input": {
-        "target": "com.azure.msi#FederatedIdentityCredentialsListRequest"
+        "target": "com.azure.msi#ListFederatedIdentityCredentialsRequest"
       },
       "output": {
         "target": "com.azure.msi#FederatedIdentityCredentialsListResult"
@@ -509,7 +510,7 @@
         "smithy.api#documentation": "Describes a federated identity credential."
       }
     },
-    "com.azure.msi#FederatedIdentityCredentialsListRequest": {
+    "com.azure.msi#ListFederatedIdentityCredentialsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -555,10 +556,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.msi#UserAssignedIdentitiesDelete": {
+    "com.azure.msi#DeleteUserAssignedIdentity": {
       "type": "operation",
       "input": {
-        "target": "com.azure.msi#UserAssignedIdentitiesDeleteRequest"
+        "target": "com.azure.msi#DeleteUserAssignedIdentityRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -574,7 +575,7 @@
         "com.distilled.openapi#apiVersion": "2024-11-30"
       }
     },
-    "com.azure.msi#UserAssignedIdentitiesDeleteRequest": {
+    "com.azure.msi#DeleteUserAssignedIdentityRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -606,13 +607,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.msi#UserAssignedIdentitiesUpdate": {
+    "com.azure.msi#UpdateUserAssignedIdentity": {
       "type": "operation",
       "input": {
-        "target": "com.azure.msi#UserAssignedIdentitiesUpdateRequest"
+        "target": "com.azure.msi#UpdateUserAssignedIdentityRequest"
       },
       "output": {
-        "target": "com.azure.msi#UserAssignedIdentitiesUpdateResponse"
+        "target": "com.azure.msi#UpdateUserAssignedIdentityResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -625,7 +626,7 @@
         "com.distilled.openapi#apiVersion": "2024-11-30"
       }
     },
-    "com.azure.msi#UserAssignedIdentitiesUpdateResponse": {
+    "com.azure.msi#UpdateUserAssignedIdentityResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -653,7 +654,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.msi#UserAssignedIdentitiesUpdateResponseTagsMap",
+          "target": "com.azure.msi#UpdateUserAssignedIdentityResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -728,7 +729,7 @@
         "smithy.api#documentation": "Enum to configure regional restrictions on identity assignment, as necessary."
       }
     },
-    "com.azure.msi#UserAssignedIdentitiesUpdateResponseTagsMap": {
+    "com.azure.msi#UpdateUserAssignedIdentityResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -740,7 +741,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.msi#UserAssignedIdentitiesUpdateRequest": {
+    "com.azure.msi#UpdateUserAssignedIdentityRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -774,7 +775,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.msi#UserAssignedIdentitiesUpdateRequestTagsMap",
+          "target": "com.azure.msi#UpdateUserAssignedIdentityRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags"
           }
@@ -790,7 +791,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.msi#UserAssignedIdentitiesUpdateRequestTagsMap": {
+    "com.azure.msi#UpdateUserAssignedIdentityRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -947,13 +948,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.msi#UserAssignedIdentitiesGet": {
+    "com.azure.msi#GetUserAssignedIdentity": {
       "type": "operation",
       "input": {
-        "target": "com.azure.msi#UserAssignedIdentitiesGetRequest"
+        "target": "com.azure.msi#GetUserAssignedIdentityRequest"
       },
       "output": {
-        "target": "com.azure.msi#UserAssignedIdentitiesGetResponse"
+        "target": "com.azure.msi#GetUserAssignedIdentityResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -966,7 +967,7 @@
         "com.distilled.openapi#apiVersion": "2024-11-30"
       }
     },
-    "com.azure.msi#UserAssignedIdentitiesGetResponse": {
+    "com.azure.msi#GetUserAssignedIdentityResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -994,7 +995,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.msi#UserAssignedIdentitiesGetResponseTagsMap",
+          "target": "com.azure.msi#GetUserAssignedIdentityResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1017,7 +1018,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.msi#UserAssignedIdentitiesGetResponseTagsMap": {
+    "com.azure.msi#GetUserAssignedIdentityResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1029,7 +1030,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.msi#UserAssignedIdentitiesGetRequest": {
+    "com.azure.msi#GetUserAssignedIdentityRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1061,10 +1062,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.msi#UserAssignedIdentitiesListByResourceGroup": {
+    "com.azure.msi#ListUserAssignedIdentityByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.msi#UserAssignedIdentitiesListByResourceGroupRequest"
+        "target": "com.azure.msi#ListUserAssignedIdentityByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.msi#UserAssignedIdentitiesListResult"
@@ -1173,7 +1174,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.msi#UserAssignedIdentitiesListByResourceGroupRequest": {
+    "com.azure.msi#ListUserAssignedIdentityByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1197,10 +1198,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.msi#UserAssignedIdentitiesListBySubscription": {
+    "com.azure.msi#ListUserAssignedIdentityBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.msi#UserAssignedIdentitiesListBySubscriptionRequest"
+        "target": "com.azure.msi#ListUserAssignedIdentityBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.msi#UserAssignedIdentitiesListResult"
@@ -1216,7 +1217,7 @@
         "com.distilled.openapi#apiVersion": "2024-11-30"
       }
     },
-    "com.azure.msi#UserAssignedIdentitiesListBySubscriptionRequest": {
+    "com.azure.msi#ListUserAssignedIdentityBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1232,7 +1233,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.msi#OperationsList": {
+    "com.azure.msi#ListOperations": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -1333,13 +1334,13 @@
         "smithy.api#documentation": "Localized display information for and operation."
       }
     },
-    "com.azure.msi#SystemAssignedIdentitiesGetByScope": {
+    "com.azure.msi#GetSystemAssignedIdentityByScope": {
       "type": "operation",
       "input": {
-        "target": "com.azure.msi#SystemAssignedIdentitiesGetByScopeRequest"
+        "target": "com.azure.msi#GetSystemAssignedIdentityByScopeRequest"
       },
       "output": {
-        "target": "com.azure.msi#SystemAssignedIdentitiesGetByScopeResponse"
+        "target": "com.azure.msi#GetSystemAssignedIdentityByScopeResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1352,7 +1353,7 @@
         "com.distilled.openapi#apiVersion": "2024-11-30"
       }
     },
-    "com.azure.msi#SystemAssignedIdentitiesGetByScopeResponse": {
+    "com.azure.msi#GetSystemAssignedIdentityByScopeResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1392,14 +1393,14 @@
           }
         },
         "tags": {
-          "target": "com.azure.msi#SystemAssignedIdentitiesGetByScopeResponseTagsMap"
+          "target": "com.azure.msi#GetSystemAssignedIdentityByScopeResponseTagsMap"
         }
       },
       "traits": {
         "smithy.api#output": {}
       }
     },
-    "com.azure.msi#SystemAssignedIdentitiesGetByScopeResponseTagsMap": {
+    "com.azure.msi#GetSystemAssignedIdentityByScopeResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1441,7 +1442,7 @@
         "smithy.api#documentation": "The properties associated with the system assigned identity."
       }
     },
-    "com.azure.msi#SystemAssignedIdentitiesGetByScopeRequest": {
+    "com.azure.msi#GetSystemAssignedIdentityByScopeRequest": {
       "type": "structure",
       "members": {
         "scope": {
@@ -1462,40 +1463,40 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.msi#FederatedIdentityCredentialsDelete"
+          "target": "com.azure.msi#DeleteFederatedIdentityCredentials"
         },
         {
           "target": "com.azure.msi#FederatedIdentityCredentialsCreateOrUpdate"
         },
         {
-          "target": "com.azure.msi#FederatedIdentityCredentialsGet"
+          "target": "com.azure.msi#GetFederatedIdentityCredentials"
         },
         {
-          "target": "com.azure.msi#FederatedIdentityCredentialsList"
+          "target": "com.azure.msi#ListFederatedIdentityCredentials"
         },
         {
-          "target": "com.azure.msi#UserAssignedIdentitiesDelete"
+          "target": "com.azure.msi#DeleteUserAssignedIdentity"
         },
         {
-          "target": "com.azure.msi#UserAssignedIdentitiesUpdate"
+          "target": "com.azure.msi#UpdateUserAssignedIdentity"
         },
         {
           "target": "com.azure.msi#UserAssignedIdentitiesCreateOrUpdate"
         },
         {
-          "target": "com.azure.msi#UserAssignedIdentitiesGet"
+          "target": "com.azure.msi#GetUserAssignedIdentity"
         },
         {
-          "target": "com.azure.msi#UserAssignedIdentitiesListByResourceGroup"
+          "target": "com.azure.msi#ListUserAssignedIdentityByResourceGroup"
         },
         {
-          "target": "com.azure.msi#UserAssignedIdentitiesListBySubscription"
+          "target": "com.azure.msi#ListUserAssignedIdentityBySubscription"
         },
         {
-          "target": "com.azure.msi#OperationsList"
+          "target": "com.azure.msi#ListOperations"
         },
         {
-          "target": "com.azure.msi#SystemAssignedIdentitiesGetByScope"
+          "target": "com.azure.msi#GetSystemAssignedIdentityByScope"
         }
       ],
       "traits": {

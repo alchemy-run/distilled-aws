@@ -3,7 +3,7 @@
   "patches": [
     {
       "op": "replace",
-      "path": "/shapes/com.railway.api#VariableUpsertRequest/traits/com.railway.graphql#operation/query",
+      "path": "/shapes/com.railway.api#UpsertVariableRequest/traits/com.railway.graphql#operation/query",
       "value": "mutation variableUpsert($input: VariableUpsertInput!) {\n  variableUpsert(input: $input)\n}"
     }
   ]

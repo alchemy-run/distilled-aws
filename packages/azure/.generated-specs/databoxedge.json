@@ -14,13 +14,14 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.databoxedge#UsersDelete": {
+    "com.azure.databoxedge#DeleteUser": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databoxedge#UsersDeleteRequest"
+        "target": "com.azure.databoxedge#DeleteUserRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -36,7 +37,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.databoxedge#UsersDeleteRequest": {
+    "com.azure.databoxedge#DeleteUserRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -474,13 +475,13 @@
         "smithy.api#documentation": "The user properties."
       }
     },
-    "com.azure.databoxedge#UsersGet": {
+    "com.azure.databoxedge#GetUser": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databoxedge#UsersGetRequest"
+        "target": "com.azure.databoxedge#GetUserRequest"
       },
       "output": {
-        "target": "com.azure.databoxedge#UsersGetResponse"
+        "target": "com.azure.databoxedge#GetUserResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -493,7 +494,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.databoxedge#UsersGetResponse": {
+    "com.azure.databoxedge#GetUserResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -532,7 +533,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.databoxedge#UsersGetRequest": {
+    "com.azure.databoxedge#GetUserRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -572,10 +573,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databoxedge#UsersListByDataBoxEdgeDevice": {
+    "com.azure.databoxedge#ListUserByDataBoxEdgeDevice": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databoxedge#UsersListByDataBoxEdgeDeviceRequest"
+        "target": "com.azure.databoxedge#ListUserByDataBoxEdgeDeviceRequest"
       },
       "output": {
         "target": "com.azure.databoxedge#UserList"
@@ -660,7 +661,7 @@
         "smithy.api#documentation": "Represents a user who has access to one or more shares on the Data Box Edge/Gateway device."
       }
     },
-    "com.azure.databoxedge#UsersListByDataBoxEdgeDeviceRequest": {
+    "com.azure.databoxedge#ListUserByDataBoxEdgeDeviceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -699,10 +700,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databoxedge#DevicesUploadCertificate": {
+    "com.azure.databoxedge#UploadDeviceCertificate": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databoxedge#DevicesUploadCertificateRequest"
+        "target": "com.azure.databoxedge#UploadDeviceCertificateRequest"
       },
       "output": {
         "target": "com.azure.databoxedge#UploadCertificateResponse"
@@ -794,7 +795,7 @@
         "smithy.api#documentation": "The authentication type."
       }
     },
-    "com.azure.databoxedge#DevicesUploadCertificateRequest": {
+    "com.azure.databoxedge#UploadDeviceCertificateRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1379,13 +1380,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databoxedge#DevicesUpdateExtendedInformation": {
+    "com.azure.databoxedge#UpdateDeviceExtendedInformation": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databoxedge#DevicesUpdateExtendedInformationRequest"
+        "target": "com.azure.databoxedge#UpdateDeviceExtendedInformationRequest"
       },
       "output": {
-        "target": "com.azure.databoxedge#DevicesUpdateExtendedInformationResponse"
+        "target": "com.azure.databoxedge#UpdateDeviceExtendedInformationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1398,7 +1399,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.databoxedge#DevicesUpdateExtendedInformationResponse": {
+    "com.azure.databoxedge#UpdateDeviceExtendedInformationResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1426,7 +1427,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.databoxedge#DevicesUpdateExtendedInformationResponseSystemData",
+          "target": "com.azure.databoxedge#UpdateDeviceExtendedInformationResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -1436,7 +1437,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.databoxedge#DevicesUpdateExtendedInformationResponseSystemData": {
+    "com.azure.databoxedge#UpdateDeviceExtendedInformationResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -1446,7 +1447,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.databoxedge#DevicesUpdateExtendedInformationResponseSystemDataCreatedByType",
+          "target": "com.azure.databoxedge#UpdateDeviceExtendedInformationResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -1464,7 +1465,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.databoxedge#DevicesUpdateExtendedInformationResponseSystemDataLastModifiedByType",
+          "target": "com.azure.databoxedge#UpdateDeviceExtendedInformationResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -1480,7 +1481,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.databoxedge#DevicesUpdateExtendedInformationResponseSystemDataLastModifiedByType": {
+    "com.azure.databoxedge#UpdateDeviceExtendedInformationResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -1512,7 +1513,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.databoxedge#DevicesUpdateExtendedInformationResponseSystemDataCreatedByType": {
+    "com.azure.databoxedge#UpdateDeviceExtendedInformationResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -1744,7 +1745,7 @@
         "smithy.api#documentation": "For changing or to initiate the resync to key-vault set the status to KeyVaultSyncPending, rest of the status will not be applicable."
       }
     },
-    "com.azure.databoxedge#DevicesUpdateExtendedInformationRequest": {
+    "com.azure.databoxedge#UpdateDeviceExtendedInformationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1806,10 +1807,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databoxedge#TriggersDelete": {
+    "com.azure.databoxedge#DeleteTrigger": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databoxedge#TriggersDeleteRequest"
+        "target": "com.azure.databoxedge#DeleteTriggerRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1825,7 +1826,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.databoxedge#TriggersDeleteRequest": {
+    "com.azure.databoxedge#DeleteTriggerRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1990,13 +1991,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databoxedge#TriggersGet": {
+    "com.azure.databoxedge#GetTrigger": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databoxedge#TriggersGetRequest"
+        "target": "com.azure.databoxedge#GetTriggerRequest"
       },
       "output": {
-        "target": "com.azure.databoxedge#TriggersGetResponse"
+        "target": "com.azure.databoxedge#GetTriggerResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2009,7 +2010,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.databoxedge#TriggersGetResponse": {
+    "com.azure.databoxedge#GetTriggerResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2048,7 +2049,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.databoxedge#TriggersGetRequest": {
+    "com.azure.databoxedge#GetTriggerRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2088,10 +2089,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databoxedge#TriggersListByDataBoxEdgeDevice": {
+    "com.azure.databoxedge#ListTriggerByDataBoxEdgeDevice": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databoxedge#TriggersListByDataBoxEdgeDeviceRequest"
+        "target": "com.azure.databoxedge#ListTriggerByDataBoxEdgeDeviceRequest"
       },
       "output": {
         "target": "com.azure.databoxedge#TriggerList"
@@ -2176,7 +2177,7 @@
         "smithy.api#documentation": "Trigger details."
       }
     },
-    "com.azure.databoxedge#TriggersListByDataBoxEdgeDeviceRequest": {
+    "com.azure.databoxedge#ListTriggerByDataBoxEdgeDeviceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2215,10 +2216,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databoxedge#SupportPackagesTriggerSupportPackage": {
+    "com.azure.databoxedge#TriggerSupportPackageSupportPackage": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databoxedge#SupportPackagesTriggerSupportPackageRequest"
+        "target": "com.azure.databoxedge#TriggerSupportPackageSupportPackageRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2234,7 +2235,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.databoxedge#SupportPackagesTriggerSupportPackageRequest": {
+    "com.azure.databoxedge#TriggerSupportPackageSupportPackageRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2299,10 +2300,10 @@
         "smithy.api#documentation": "The share properties."
       }
     },
-    "com.azure.databoxedge#ContainersRefresh": {
+    "com.azure.databoxedge#RefreshContainer": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databoxedge#ContainersRefreshRequest"
+        "target": "com.azure.databoxedge#RefreshContainerRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2318,7 +2319,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.databoxedge#ContainersRefreshRequest": {
+    "com.azure.databoxedge#RefreshContainerRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2366,10 +2367,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databoxedge#ContainersDelete": {
+    "com.azure.databoxedge#DeleteContainer": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databoxedge#ContainersDeleteRequest"
+        "target": "com.azure.databoxedge#DeleteContainerRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2385,7 +2386,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.databoxedge#ContainersDeleteRequest": {
+    "com.azure.databoxedge#DeleteContainerRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2690,13 +2691,13 @@
         "smithy.api#documentation": "The container properties."
       }
     },
-    "com.azure.databoxedge#ContainersGet": {
+    "com.azure.databoxedge#GetContainer": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databoxedge#ContainersGetRequest"
+        "target": "com.azure.databoxedge#GetContainerRequest"
       },
       "output": {
-        "target": "com.azure.databoxedge#ContainersGetResponse"
+        "target": "com.azure.databoxedge#GetContainerResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2709,7 +2710,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.databoxedge#ContainersGetResponse": {
+    "com.azure.databoxedge#GetContainerResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2748,7 +2749,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.databoxedge#ContainersGetRequest": {
+    "com.azure.databoxedge#GetContainerRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2796,10 +2797,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databoxedge#ContainersListByStorageAccount": {
+    "com.azure.databoxedge#ListContainerByStorageAccount": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databoxedge#ContainersListByStorageAccountRequest"
+        "target": "com.azure.databoxedge#ListContainerByStorageAccountRequest"
       },
       "output": {
         "target": "com.azure.databoxedge#ContainerList"
@@ -2884,7 +2885,7 @@
         "smithy.api#documentation": "Represents a container on the  Data Box Edge/Gateway device."
       }
     },
-    "com.azure.databoxedge#ContainersListByStorageAccountRequest": {
+    "com.azure.databoxedge#ListContainerByStorageAccountRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2924,10 +2925,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databoxedge#StorageAccountsDelete": {
+    "com.azure.databoxedge#DeleteStorageAccount": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databoxedge#StorageAccountsDeleteRequest"
+        "target": "com.azure.databoxedge#DeleteStorageAccountRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2943,7 +2944,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.databoxedge#StorageAccountsDeleteRequest": {
+    "com.azure.databoxedge#DeleteStorageAccountRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3224,13 +3225,13 @@
         "smithy.api#documentation": "The storage account properties."
       }
     },
-    "com.azure.databoxedge#StorageAccountsGet": {
+    "com.azure.databoxedge#GetStorageAccount": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databoxedge#StorageAccountsGetRequest"
+        "target": "com.azure.databoxedge#GetStorageAccountRequest"
       },
       "output": {
-        "target": "com.azure.databoxedge#StorageAccountsGetResponse"
+        "target": "com.azure.databoxedge#GetStorageAccountResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3243,7 +3244,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.databoxedge#StorageAccountsGetResponse": {
+    "com.azure.databoxedge#GetStorageAccountResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3282,7 +3283,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.databoxedge#StorageAccountsGetRequest": {
+    "com.azure.databoxedge#GetStorageAccountRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3322,10 +3323,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databoxedge#StorageAccountsListByDataBoxEdgeDevice": {
+    "com.azure.databoxedge#ListStorageAccountByDataBoxEdgeDevice": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databoxedge#StorageAccountsListByDataBoxEdgeDeviceRequest"
+        "target": "com.azure.databoxedge#ListStorageAccountByDataBoxEdgeDeviceRequest"
       },
       "output": {
         "target": "com.azure.databoxedge#StorageAccountList"
@@ -3410,7 +3411,7 @@
         "smithy.api#documentation": "Represents a Storage Account on the  Data Box Edge/Gateway device."
       }
     },
-    "com.azure.databoxedge#StorageAccountsListByDataBoxEdgeDeviceRequest": {
+    "com.azure.databoxedge#ListStorageAccountByDataBoxEdgeDeviceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3442,10 +3443,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databoxedge#StorageAccountCredentialsDelete": {
+    "com.azure.databoxedge#DeleteStorageAccountCredentials": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databoxedge#StorageAccountCredentialsDeleteRequest"
+        "target": "com.azure.databoxedge#DeleteStorageAccountCredentialsRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3461,7 +3462,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.databoxedge#StorageAccountCredentialsDeleteRequest": {
+    "com.azure.databoxedge#DeleteStorageAccountCredentialsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3706,13 +3707,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databoxedge#StorageAccountCredentialsGet": {
+    "com.azure.databoxedge#GetStorageAccountCredentials": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databoxedge#StorageAccountCredentialsGetRequest"
+        "target": "com.azure.databoxedge#GetStorageAccountCredentialsRequest"
       },
       "output": {
-        "target": "com.azure.databoxedge#StorageAccountCredentialsGetResponse"
+        "target": "com.azure.databoxedge#GetStorageAccountCredentialsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3725,7 +3726,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.databoxedge#StorageAccountCredentialsGetResponse": {
+    "com.azure.databoxedge#GetStorageAccountCredentialsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3764,7 +3765,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.databoxedge#StorageAccountCredentialsGetRequest": {
+    "com.azure.databoxedge#GetStorageAccountCredentialsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3804,10 +3805,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databoxedge#StorageAccountCredentialsListByDataBoxEdgeDevice": {
+    "com.azure.databoxedge#ListStorageAccountCredentialsByDataBoxEdgeDevice": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databoxedge#StorageAccountCredentialsListByDataBoxEdgeDeviceRequest"
+        "target": "com.azure.databoxedge#ListStorageAccountCredentialsByDataBoxEdgeDeviceRequest"
       },
       "output": {
         "target": "com.azure.databoxedge#StorageAccountCredentialList"
@@ -3892,7 +3893,7 @@
         "smithy.api#documentation": "The storage account credential."
       }
     },
-    "com.azure.databoxedge#StorageAccountCredentialsListByDataBoxEdgeDeviceRequest": {
+    "com.azure.databoxedge#ListStorageAccountCredentialsByDataBoxEdgeDeviceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3924,10 +3925,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databoxedge#SharesRefresh": {
+    "com.azure.databoxedge#RefreshShare": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databoxedge#SharesRefreshRequest"
+        "target": "com.azure.databoxedge#RefreshShareRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3943,7 +3944,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.databoxedge#SharesRefreshRequest": {
+    "com.azure.databoxedge#RefreshShareRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3983,10 +3984,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databoxedge#SharesDelete": {
+    "com.azure.databoxedge#DeleteShare": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databoxedge#SharesDeleteRequest"
+        "target": "com.azure.databoxedge#DeleteShareRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4002,7 +4003,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.databoxedge#SharesDeleteRequest": {
+    "com.azure.databoxedge#DeleteShareRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4612,13 +4613,13 @@
         "smithy.api#documentation": "Mapping of users and corresponding access rights on the share (required for SMB protocol)."
       }
     },
-    "com.azure.databoxedge#SharesGet": {
+    "com.azure.databoxedge#GetShare": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databoxedge#SharesGetRequest"
+        "target": "com.azure.databoxedge#GetShareRequest"
       },
       "output": {
-        "target": "com.azure.databoxedge#SharesGetResponse"
+        "target": "com.azure.databoxedge#GetShareResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4631,7 +4632,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.databoxedge#SharesGetResponse": {
+    "com.azure.databoxedge#GetShareResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -4670,7 +4671,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.databoxedge#SharesGetRequest": {
+    "com.azure.databoxedge#GetShareRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4710,10 +4711,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databoxedge#SharesListByDataBoxEdgeDevice": {
+    "com.azure.databoxedge#ListShareByDataBoxEdgeDevice": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databoxedge#SharesListByDataBoxEdgeDeviceRequest"
+        "target": "com.azure.databoxedge#ListShareByDataBoxEdgeDeviceRequest"
       },
       "output": {
         "target": "com.azure.databoxedge#ShareList"
@@ -4798,7 +4799,7 @@
         "smithy.api#documentation": "Represents a share on the  Data Box Edge/Gateway device."
       }
     },
-    "com.azure.databoxedge#SharesListByDataBoxEdgeDeviceRequest": {
+    "com.azure.databoxedge#ListShareByDataBoxEdgeDeviceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4954,10 +4955,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databoxedge#MonitoringConfigDelete": {
+    "com.azure.databoxedge#DeleteMonitoringConfig": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databoxedge#MonitoringConfigDeleteRequest"
+        "target": "com.azure.databoxedge#DeleteMonitoringConfigRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4973,7 +4974,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.databoxedge#MonitoringConfigDeleteRequest": {
+    "com.azure.databoxedge#DeleteMonitoringConfigRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5282,13 +5283,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databoxedge#MonitoringConfigGet": {
+    "com.azure.databoxedge#GetMonitoringConfig": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databoxedge#MonitoringConfigGetRequest"
+        "target": "com.azure.databoxedge#GetMonitoringConfigRequest"
       },
       "output": {
-        "target": "com.azure.databoxedge#MonitoringConfigGetResponse"
+        "target": "com.azure.databoxedge#GetMonitoringConfigResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5301,7 +5302,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.databoxedge#MonitoringConfigGetResponse": {
+    "com.azure.databoxedge#GetMonitoringConfigResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -5340,7 +5341,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.databoxedge#MonitoringConfigGetRequest": {
+    "com.azure.databoxedge#GetMonitoringConfigRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5380,10 +5381,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databoxedge#MonitoringConfigList": {
+    "com.azure.databoxedge#ListMonitoringConfig": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databoxedge#MonitoringConfigListRequest"
+        "target": "com.azure.databoxedge#ListMonitoringConfigRequest"
       },
       "output": {
         "target": "com.azure.databoxedge#MonitoringMetricConfigurationList"
@@ -5468,7 +5469,7 @@
         "smithy.api#documentation": "The metric setting details for the role"
       }
     },
-    "com.azure.databoxedge#MonitoringConfigListRequest": {
+    "com.azure.databoxedge#ListMonitoringConfigRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5508,10 +5509,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databoxedge#AddonsDelete": {
+    "com.azure.databoxedge#DeleteAddon": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databoxedge#AddonsDeleteRequest"
+        "target": "com.azure.databoxedge#DeleteAddonRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -5527,7 +5528,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.databoxedge#AddonsDeleteRequest": {
+    "com.azure.databoxedge#DeleteAddonRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5708,13 +5709,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databoxedge#AddonsGet": {
+    "com.azure.databoxedge#GetAddon": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databoxedge#AddonsGetRequest"
+        "target": "com.azure.databoxedge#GetAddonRequest"
       },
       "output": {
-        "target": "com.azure.databoxedge#AddonsGetResponse"
+        "target": "com.azure.databoxedge#GetAddonResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5727,7 +5728,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.databoxedge#AddonsGetResponse": {
+    "com.azure.databoxedge#GetAddonResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -5766,7 +5767,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.databoxedge#AddonsGetRequest": {
+    "com.azure.databoxedge#GetAddonRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5814,10 +5815,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databoxedge#AddonsListByRole": {
+    "com.azure.databoxedge#ListAddonByRole": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databoxedge#AddonsListByRoleRequest"
+        "target": "com.azure.databoxedge#ListAddonByRoleRequest"
       },
       "output": {
         "target": "com.azure.databoxedge#AddonList"
@@ -5902,7 +5903,7 @@
         "smithy.api#documentation": "Role Addon"
       }
     },
-    "com.azure.databoxedge#AddonsListByRoleRequest": {
+    "com.azure.databoxedge#ListAddonByRoleRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5942,10 +5943,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databoxedge#RolesDelete": {
+    "com.azure.databoxedge#DeleteRole": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databoxedge#RolesDeleteRequest"
+        "target": "com.azure.databoxedge#DeleteRoleRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -5961,7 +5962,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.databoxedge#RolesDeleteRequest": {
+    "com.azure.databoxedge#DeleteRoleRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6106,13 +6107,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databoxedge#RolesGet": {
+    "com.azure.databoxedge#GetRole": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databoxedge#RolesGetRequest"
+        "target": "com.azure.databoxedge#GetRoleRequest"
       },
       "output": {
-        "target": "com.azure.databoxedge#RolesGetResponse"
+        "target": "com.azure.databoxedge#GetRoleResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6125,7 +6126,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.databoxedge#RolesGetResponse": {
+    "com.azure.databoxedge#GetRoleResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -6164,7 +6165,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.databoxedge#RolesGetRequest": {
+    "com.azure.databoxedge#GetRoleRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6204,10 +6205,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databoxedge#RolesListByDataBoxEdgeDevice": {
+    "com.azure.databoxedge#ListRoleByDataBoxEdgeDevice": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databoxedge#RolesListByDataBoxEdgeDeviceRequest"
+        "target": "com.azure.databoxedge#ListRoleByDataBoxEdgeDeviceRequest"
       },
       "output": {
         "target": "com.azure.databoxedge#RoleList"
@@ -6292,7 +6293,7 @@
         "smithy.api#documentation": "Compute role."
       }
     },
-    "com.azure.databoxedge#RolesListByDataBoxEdgeDeviceRequest": {
+    "com.azure.databoxedge#ListRoleByDataBoxEdgeDeviceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6324,10 +6325,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databoxedge#OrdersListDCAccessCode": {
+    "com.azure.databoxedge#ListOrderDCAccessCode": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databoxedge#OrdersListDCAccessCodeRequest"
+        "target": "com.azure.databoxedge#ListOrderDCAccessCodeRequest"
       },
       "output": {
         "target": "com.azure.databoxedge#DCAccessCode"
@@ -6371,7 +6372,7 @@
         "smithy.api#documentation": "DCAccessCode Properties."
       }
     },
-    "com.azure.databoxedge#OrdersListDCAccessCodeRequest": {
+    "com.azure.databoxedge#ListOrderDCAccessCodeRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6403,10 +6404,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databoxedge#OrdersDelete": {
+    "com.azure.databoxedge#DeleteOrder": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databoxedge#OrdersDeleteRequest"
+        "target": "com.azure.databoxedge#DeleteOrderRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -6422,7 +6423,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.databoxedge#OrdersDeleteRequest": {
+    "com.azure.databoxedge#DeleteOrderRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6985,13 +6986,13 @@
         "smithy.api#documentation": "Order properties."
       }
     },
-    "com.azure.databoxedge#OrdersGet": {
+    "com.azure.databoxedge#GetOrder": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databoxedge#OrdersGetRequest"
+        "target": "com.azure.databoxedge#GetOrderRequest"
       },
       "output": {
-        "target": "com.azure.databoxedge#OrdersGetResponse"
+        "target": "com.azure.databoxedge#GetOrderResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7004,7 +7005,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.databoxedge#OrdersGetResponse": {
+    "com.azure.databoxedge#GetOrderResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -7048,7 +7049,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.databoxedge#OrdersGetRequest": {
+    "com.azure.databoxedge#GetOrderRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7080,10 +7081,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databoxedge#OrdersListByDataBoxEdgeDevice": {
+    "com.azure.databoxedge#ListOrderByDataBoxEdgeDevice": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databoxedge#OrdersListByDataBoxEdgeDeviceRequest"
+        "target": "com.azure.databoxedge#ListOrderByDataBoxEdgeDeviceRequest"
       },
       "output": {
         "target": "com.azure.databoxedge#OrderList"
@@ -7173,7 +7174,7 @@
         "smithy.api#documentation": "The order details."
       }
     },
-    "com.azure.databoxedge#OrdersListByDataBoxEdgeDeviceRequest": {
+    "com.azure.databoxedge#ListOrderByDataBoxEdgeDeviceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7205,13 +7206,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databoxedge#OperationsStatusGet": {
+    "com.azure.databoxedge#GetOperationsStatus": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databoxedge#OperationsStatusGetRequest"
+        "target": "com.azure.databoxedge#GetOperationsStatusRequest"
       },
       "output": {
-        "target": "com.azure.databoxedge#OperationsStatusGetResponse"
+        "target": "com.azure.databoxedge#GetOperationsStatusResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7224,7 +7225,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.databoxedge#OperationsStatusGetResponse": {
+    "com.azure.databoxedge#GetOperationsStatusResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -7692,7 +7693,7 @@
         "smithy.api#documentation": "The type of the job."
       }
     },
-    "com.azure.databoxedge#OperationsStatusGetRequest": {
+    "com.azure.databoxedge#GetOperationsStatusRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7732,10 +7733,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databoxedge#NodesListByDataBoxEdgeDevice": {
+    "com.azure.databoxedge#ListNodeByDataBoxEdgeDevice": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databoxedge#NodesListByDataBoxEdgeDeviceRequest"
+        "target": "com.azure.databoxedge#ListNodeByDataBoxEdgeDeviceRequest"
       },
       "output": {
         "target": "com.azure.databoxedge#NodeList"
@@ -7901,7 +7902,7 @@
         "smithy.api#documentation": "The current status of the individual node"
       }
     },
-    "com.azure.databoxedge#NodesListByDataBoxEdgeDeviceRequest": {
+    "com.azure.databoxedge#ListNodeByDataBoxEdgeDeviceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7933,13 +7934,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databoxedge#DevicesGetNetworkSettings": {
+    "com.azure.databoxedge#GetDeviceNetworkSettings": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databoxedge#DevicesGetNetworkSettingsRequest"
+        "target": "com.azure.databoxedge#GetDeviceNetworkSettingsRequest"
       },
       "output": {
-        "target": "com.azure.databoxedge#DevicesGetNetworkSettingsResponse"
+        "target": "com.azure.databoxedge#GetDeviceNetworkSettingsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7952,7 +7953,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.databoxedge#DevicesGetNetworkSettingsResponse": {
+    "com.azure.databoxedge#GetDeviceNetworkSettingsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -8278,7 +8279,7 @@
         "smithy.api#documentation": "The network group."
       }
     },
-    "com.azure.databoxedge#DevicesGetNetworkSettingsRequest": {
+    "com.azure.databoxedge#GetDeviceNetworkSettingsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8310,13 +8311,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databoxedge#JobsGet": {
+    "com.azure.databoxedge#GetJob": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databoxedge#JobsGetRequest"
+        "target": "com.azure.databoxedge#GetJobRequest"
       },
       "output": {
-        "target": "com.azure.databoxedge#JobsGetResponse"
+        "target": "com.azure.databoxedge#GetJobResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -8329,7 +8330,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.databoxedge#JobsGetResponse": {
+    "com.azure.databoxedge#GetJobResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -8397,7 +8398,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.databoxedge#JobsGetRequest": {
+    "com.azure.databoxedge#GetJobRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8437,10 +8438,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databoxedge#DevicesInstallUpdates": {
+    "com.azure.databoxedge#InstallDeviceUpdates": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databoxedge#DevicesInstallUpdatesRequest"
+        "target": "com.azure.databoxedge#InstallDeviceUpdatesRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -8456,7 +8457,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.databoxedge#DevicesInstallUpdatesRequest": {
+    "com.azure.databoxedge#InstallDeviceUpdatesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8488,13 +8489,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databoxedge#DevicesGetExtendedInformation": {
+    "com.azure.databoxedge#GetDeviceExtendedInformation": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databoxedge#DevicesGetExtendedInformationRequest"
+        "target": "com.azure.databoxedge#GetDeviceExtendedInformationRequest"
       },
       "output": {
-        "target": "com.azure.databoxedge#DevicesGetExtendedInformationResponse"
+        "target": "com.azure.databoxedge#GetDeviceExtendedInformationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -8507,7 +8508,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.databoxedge#DevicesGetExtendedInformationResponse": {
+    "com.azure.databoxedge#GetDeviceExtendedInformationResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -8535,7 +8536,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.databoxedge#DevicesGetExtendedInformationResponseSystemData",
+          "target": "com.azure.databoxedge#GetDeviceExtendedInformationResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -8545,7 +8546,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.databoxedge#DevicesGetExtendedInformationResponseSystemData": {
+    "com.azure.databoxedge#GetDeviceExtendedInformationResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -8555,7 +8556,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.databoxedge#DevicesGetExtendedInformationResponseSystemDataCreatedByType",
+          "target": "com.azure.databoxedge#GetDeviceExtendedInformationResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -8573,7 +8574,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.databoxedge#DevicesGetExtendedInformationResponseSystemDataLastModifiedByType",
+          "target": "com.azure.databoxedge#GetDeviceExtendedInformationResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -8589,7 +8590,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.databoxedge#DevicesGetExtendedInformationResponseSystemDataLastModifiedByType": {
+    "com.azure.databoxedge#GetDeviceExtendedInformationResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -8621,7 +8622,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.databoxedge#DevicesGetExtendedInformationResponseSystemDataCreatedByType": {
+    "com.azure.databoxedge#GetDeviceExtendedInformationResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -8653,7 +8654,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.databoxedge#DevicesGetExtendedInformationRequest": {
+    "com.azure.databoxedge#GetDeviceExtendedInformationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8685,10 +8686,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databoxedge#DevicesGenerateCertificate": {
+    "com.azure.databoxedge#GenerateDeviceCertificate": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databoxedge#DevicesGenerateCertificateRequest"
+        "target": "com.azure.databoxedge#GenerateDeviceCertificateRequest"
       },
       "output": {
         "target": "com.azure.databoxedge#GenerateCertResponse"
@@ -8731,7 +8732,7 @@
         "smithy.api#documentation": "Used in activation key generation flow."
       }
     },
-    "com.azure.databoxedge#DevicesGenerateCertificateRequest": {
+    "com.azure.databoxedge#GenerateDeviceCertificateRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8763,10 +8764,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databoxedge#DevicesDownloadUpdates": {
+    "com.azure.databoxedge#DownloadDeviceUpdates": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databoxedge#DevicesDownloadUpdatesRequest"
+        "target": "com.azure.databoxedge#DownloadDeviceUpdatesRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -8782,7 +8783,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.databoxedge#DevicesDownloadUpdatesRequest": {
+    "com.azure.databoxedge#DownloadDeviceUpdatesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8814,13 +8815,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databoxedge#DiagnosticSettingsUpdateDiagnosticRemoteSupportSettings": {
+    "com.azure.databoxedge#UpdateDiagnosticSettingsDiagnosticRemoteSupportSettings": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databoxedge#DiagnosticSettingsUpdateDiagnosticRemoteSupportSettingsRequest"
+        "target": "com.azure.databoxedge#UpdateDiagnosticSettingsDiagnosticRemoteSupportSettingsRequest"
       },
       "output": {
-        "target": "com.azure.databoxedge#DiagnosticSettingsUpdateDiagnosticRemoteSupportSettingsResponse"
+        "target": "com.azure.databoxedge#UpdateDiagnosticSettingsDiagnosticRemoteSupportSettingsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -8833,7 +8834,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.databoxedge#DiagnosticSettingsUpdateDiagnosticRemoteSupportSettingsResponse": {
+    "com.azure.databoxedge#UpdateDiagnosticSettingsDiagnosticRemoteSupportSettingsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -8985,7 +8986,7 @@
         "smithy.api#documentation": "Remote application type"
       }
     },
-    "com.azure.databoxedge#DiagnosticSettingsUpdateDiagnosticRemoteSupportSettingsRequest": {
+    "com.azure.databoxedge#UpdateDiagnosticSettingsDiagnosticRemoteSupportSettingsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9024,13 +9025,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databoxedge#DiagnosticSettingsGetDiagnosticRemoteSupportSettings": {
+    "com.azure.databoxedge#GetDiagnosticSettingsDiagnosticRemoteSupportSettings": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databoxedge#DiagnosticSettingsGetDiagnosticRemoteSupportSettingsRequest"
+        "target": "com.azure.databoxedge#GetDiagnosticSettingsDiagnosticRemoteSupportSettingsRequest"
       },
       "output": {
-        "target": "com.azure.databoxedge#DiagnosticSettingsGetDiagnosticRemoteSupportSettingsResponse"
+        "target": "com.azure.databoxedge#GetDiagnosticSettingsDiagnosticRemoteSupportSettingsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -9043,7 +9044,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.databoxedge#DiagnosticSettingsGetDiagnosticRemoteSupportSettingsResponse": {
+    "com.azure.databoxedge#GetDiagnosticSettingsDiagnosticRemoteSupportSettingsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -9082,7 +9083,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.databoxedge#DiagnosticSettingsGetDiagnosticRemoteSupportSettingsRequest": {
+    "com.azure.databoxedge#GetDiagnosticSettingsDiagnosticRemoteSupportSettingsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9114,13 +9115,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databoxedge#DiagnosticSettingsUpdateDiagnosticProactiveLogCollectionSettings": {
+    "com.azure.databoxedge#UpdateDiagnosticSettingsDiagnosticProactiveLogCollectionSettings": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databoxedge#DiagnosticSettingsUpdateDiagnosticProactiveLogCollectionSettingsRequest"
+        "target": "com.azure.databoxedge#UpdateDiagnosticSettingsDiagnosticProactiveLogCollectionSettingsRequest"
       },
       "output": {
-        "target": "com.azure.databoxedge#DiagnosticSettingsUpdateDiagnosticProactiveLogCollectionSettingsResponse"
+        "target": "com.azure.databoxedge#UpdateDiagnosticSettingsDiagnosticProactiveLogCollectionSettingsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -9133,7 +9134,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.databoxedge#DiagnosticSettingsUpdateDiagnosticProactiveLogCollectionSettingsResponse": {
+    "com.azure.databoxedge#UpdateDiagnosticSettingsDiagnosticProactiveLogCollectionSettingsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -9207,7 +9208,7 @@
         "smithy.api#documentation": "Proactive diagnostic collection consent flag"
       }
     },
-    "com.azure.databoxedge#DiagnosticSettingsUpdateDiagnosticProactiveLogCollectionSettingsRequest": {
+    "com.azure.databoxedge#UpdateDiagnosticSettingsDiagnosticProactiveLogCollectionSettingsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9246,13 +9247,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databoxedge#DiagnosticSettingsGetDiagnosticProactiveLogCollectionSettings": {
+    "com.azure.databoxedge#GetDiagnosticSettingsDiagnosticProactiveLogCollectionSettings": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databoxedge#DiagnosticSettingsGetDiagnosticProactiveLogCollectionSettingsRequest"
+        "target": "com.azure.databoxedge#GetDiagnosticSettingsDiagnosticProactiveLogCollectionSettingsRequest"
       },
       "output": {
-        "target": "com.azure.databoxedge#DiagnosticSettingsGetDiagnosticProactiveLogCollectionSettingsResponse"
+        "target": "com.azure.databoxedge#GetDiagnosticSettingsDiagnosticProactiveLogCollectionSettingsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -9265,7 +9266,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.databoxedge#DiagnosticSettingsGetDiagnosticProactiveLogCollectionSettingsResponse": {
+    "com.azure.databoxedge#GetDiagnosticSettingsDiagnosticProactiveLogCollectionSettingsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -9304,7 +9305,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.databoxedge#DiagnosticSettingsGetDiagnosticProactiveLogCollectionSettingsRequest": {
+    "com.azure.databoxedge#GetDiagnosticSettingsDiagnosticProactiveLogCollectionSettingsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9336,13 +9337,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databoxedge#DeviceCapacityInfoGetDeviceCapacityInfo": {
+    "com.azure.databoxedge#GetDeviceCapacityInfoDeviceCapacityInfo": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databoxedge#DeviceCapacityInfoGetDeviceCapacityInfoRequest"
+        "target": "com.azure.databoxedge#GetDeviceCapacityInfoDeviceCapacityInfoRequest"
       },
       "output": {
-        "target": "com.azure.databoxedge#DeviceCapacityInfoGetDeviceCapacityInfoResponse"
+        "target": "com.azure.databoxedge#GetDeviceCapacityInfoDeviceCapacityInfoResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -9355,7 +9356,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.databoxedge#DeviceCapacityInfoGetDeviceCapacityInfoResponse": {
+    "com.azure.databoxedge#GetDeviceCapacityInfoDeviceCapacityInfoResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -9757,7 +9758,7 @@
         "smithy.api#documentation": "Cluster Storage Data."
       }
     },
-    "com.azure.databoxedge#DeviceCapacityInfoGetDeviceCapacityInfoRequest": {
+    "com.azure.databoxedge#GetDeviceCapacityInfoDeviceCapacityInfoRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9789,10 +9790,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databoxedge#DeviceCapacityCheckCheckResourceCreationFeasibility": {
+    "com.azure.databoxedge#CheckDeviceCapacityCheckResourceCreationFeasibility": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databoxedge#DeviceCapacityCheckCheckResourceCreationFeasibilityRequest"
+        "target": "com.azure.databoxedge#CheckDeviceCapacityCheckResourceCreationFeasibilityRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -9808,7 +9809,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.databoxedge#DeviceCapacityCheckCheckResourceCreationFeasibilityRequest": {
+    "com.azure.databoxedge#CheckDeviceCapacityCheckResourceCreationFeasibilityRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9941,10 +9942,10 @@
       },
       "traits": {}
     },
-    "com.azure.databoxedge#BandwidthSchedulesDelete": {
+    "com.azure.databoxedge#DeleteBandwidthSchedule": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databoxedge#BandwidthSchedulesDeleteRequest"
+        "target": "com.azure.databoxedge#DeleteBandwidthScheduleRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -9960,7 +9961,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.databoxedge#BandwidthSchedulesDeleteRequest": {
+    "com.azure.databoxedge#DeleteBandwidthScheduleRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10198,13 +10199,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databoxedge#BandwidthSchedulesGet": {
+    "com.azure.databoxedge#GetBandwidthSchedule": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databoxedge#BandwidthSchedulesGetRequest"
+        "target": "com.azure.databoxedge#GetBandwidthScheduleRequest"
       },
       "output": {
-        "target": "com.azure.databoxedge#BandwidthSchedulesGetResponse"
+        "target": "com.azure.databoxedge#GetBandwidthScheduleResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -10217,7 +10218,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.databoxedge#BandwidthSchedulesGetResponse": {
+    "com.azure.databoxedge#GetBandwidthScheduleResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -10256,7 +10257,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.databoxedge#BandwidthSchedulesGetRequest": {
+    "com.azure.databoxedge#GetBandwidthScheduleRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10296,10 +10297,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databoxedge#BandwidthSchedulesListByDataBoxEdgeDevice": {
+    "com.azure.databoxedge#ListBandwidthScheduleByDataBoxEdgeDevice": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databoxedge#BandwidthSchedulesListByDataBoxEdgeDeviceRequest"
+        "target": "com.azure.databoxedge#ListBandwidthScheduleByDataBoxEdgeDeviceRequest"
       },
       "output": {
         "target": "com.azure.databoxedge#BandwidthSchedulesList"
@@ -10384,7 +10385,7 @@
         "smithy.api#documentation": "The bandwidth schedule details."
       }
     },
-    "com.azure.databoxedge#BandwidthSchedulesListByDataBoxEdgeDeviceRequest": {
+    "com.azure.databoxedge#ListBandwidthScheduleByDataBoxEdgeDeviceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10416,13 +10417,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databoxedge#AlertsGet": {
+    "com.azure.databoxedge#GetAlert": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databoxedge#AlertsGetRequest"
+        "target": "com.azure.databoxedge#GetAlertRequest"
       },
       "output": {
-        "target": "com.azure.databoxedge#AlertsGetResponse"
+        "target": "com.azure.databoxedge#GetAlertResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -10435,7 +10436,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.databoxedge#AlertsGetResponse": {
+    "com.azure.databoxedge#GetAlertResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -10587,7 +10588,7 @@
         "smithy.api#documentation": "Severity of the alert."
       }
     },
-    "com.azure.databoxedge#AlertsGetRequest": {
+    "com.azure.databoxedge#GetAlertRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10627,10 +10628,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databoxedge#AlertsListByDataBoxEdgeDevice": {
+    "com.azure.databoxedge#ListAlertByDataBoxEdgeDevice": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databoxedge#AlertsListByDataBoxEdgeDeviceRequest"
+        "target": "com.azure.databoxedge#ListAlertByDataBoxEdgeDeviceRequest"
       },
       "output": {
         "target": "com.azure.databoxedge#AlertList"
@@ -10714,7 +10715,7 @@
         "smithy.api#documentation": "Alert on the data box edge/gateway device."
       }
     },
-    "com.azure.databoxedge#AlertsListByDataBoxEdgeDeviceRequest": {
+    "com.azure.databoxedge#ListAlertByDataBoxEdgeDeviceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10746,10 +10747,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databoxedge#DevicesDelete": {
+    "com.azure.databoxedge#DeleteDevice": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databoxedge#DevicesDeleteRequest"
+        "target": "com.azure.databoxedge#DeleteDeviceRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -10765,7 +10766,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.databoxedge#DevicesDeleteRequest": {
+    "com.azure.databoxedge#DeleteDeviceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10797,13 +10798,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databoxedge#DevicesUpdate": {
+    "com.azure.databoxedge#UpdateDevice": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databoxedge#DevicesUpdateRequest"
+        "target": "com.azure.databoxedge#UpdateDeviceRequest"
       },
       "output": {
-        "target": "com.azure.databoxedge#DevicesUpdateResponse"
+        "target": "com.azure.databoxedge#UpdateDeviceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -10816,7 +10817,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.databoxedge#DevicesUpdateResponse": {
+    "com.azure.databoxedge#UpdateDeviceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -10844,7 +10845,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.databoxedge#DevicesUpdateResponseTagsMap",
+          "target": "com.azure.databoxedge#UpdateDeviceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -11696,7 +11697,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.databoxedge#DevicesUpdateResponseTagsMap": {
+    "com.azure.databoxedge#UpdateDeviceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -11708,7 +11709,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.databoxedge#DevicesUpdateRequest": {
+    "com.azure.databoxedge#UpdateDeviceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11736,7 +11737,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.databoxedge#DevicesUpdateRequestTagsMap",
+          "target": "com.azure.databoxedge#UpdateDeviceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "The tags attached to the Data Box Edge/Gateway resource."
           }
@@ -11814,7 +11815,7 @@
         "smithy.api#documentation": "Msi identity details of the resource"
       }
     },
-    "com.azure.databoxedge#DevicesUpdateRequestTagsMap": {
+    "com.azure.databoxedge#UpdateDeviceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -12027,13 +12028,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.databoxedge#DevicesGet": {
+    "com.azure.databoxedge#GetDevice": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databoxedge#DevicesGetRequest"
+        "target": "com.azure.databoxedge#GetDeviceRequest"
       },
       "output": {
-        "target": "com.azure.databoxedge#DevicesGetResponse"
+        "target": "com.azure.databoxedge#GetDeviceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -12046,7 +12047,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.databoxedge#DevicesGetResponse": {
+    "com.azure.databoxedge#GetDeviceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -12074,7 +12075,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.databoxedge#DevicesGetResponseTagsMap",
+          "target": "com.azure.databoxedge#GetDeviceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -12121,7 +12122,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.databoxedge#DevicesGetResponseTagsMap": {
+    "com.azure.databoxedge#GetDeviceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -12133,7 +12134,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.databoxedge#DevicesGetRequest": {
+    "com.azure.databoxedge#GetDeviceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -12165,10 +12166,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databoxedge#DevicesListByResourceGroup": {
+    "com.azure.databoxedge#ListDeviceByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databoxedge#DevicesListByResourceGroupRequest"
+        "target": "com.azure.databoxedge#ListDeviceByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.databoxedge#DataBoxEdgeDeviceList"
@@ -12301,7 +12302,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.databoxedge#DevicesListByResourceGroupRequest": {
+    "com.azure.databoxedge#ListDeviceByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -12332,10 +12333,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databoxedge#DevicesListBySubscription": {
+    "com.azure.databoxedge#ListDeviceBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databoxedge#DevicesListBySubscriptionRequest"
+        "target": "com.azure.databoxedge#ListDeviceBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.databoxedge#DataBoxEdgeDeviceList"
@@ -12351,7 +12352,7 @@
         "com.distilled.openapi#apiVersion": "2023-12-01"
       }
     },
-    "com.azure.databoxedge#DevicesListBySubscriptionRequest": {
+    "com.azure.databoxedge#ListDeviceBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -12374,10 +12375,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databoxedge#AvailableSkusList": {
+    "com.azure.databoxedge#ListAvailableSkus": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databoxedge#AvailableSkusListRequest"
+        "target": "com.azure.databoxedge#ListAvailableSkusRequest"
       },
       "output": {
         "target": "com.azure.databoxedge#DataBoxEdgeSkuList"
@@ -12725,7 +12726,7 @@
         "smithy.api#documentation": "Availability of the Sku for the region."
       }
     },
-    "com.azure.databoxedge#AvailableSkusListRequest": {
+    "com.azure.databoxedge#ListAvailableSkusRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -12741,7 +12742,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databoxedge#OperationsList2": {
+    "com.azure.databoxedge#ListOperations": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -13204,94 +13205,94 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.databoxedge#UsersDelete"
+          "target": "com.azure.databoxedge#DeleteUser"
         },
         {
           "target": "com.azure.databoxedge#UsersCreateOrUpdate"
         },
         {
-          "target": "com.azure.databoxedge#UsersGet"
+          "target": "com.azure.databoxedge#GetUser"
         },
         {
-          "target": "com.azure.databoxedge#UsersListByDataBoxEdgeDevice"
+          "target": "com.azure.databoxedge#ListUserByDataBoxEdgeDevice"
         },
         {
-          "target": "com.azure.databoxedge#DevicesUploadCertificate"
+          "target": "com.azure.databoxedge#UploadDeviceCertificate"
         },
         {
           "target": "com.azure.databoxedge#DevicesGetUpdateSummary"
         },
         {
-          "target": "com.azure.databoxedge#DevicesUpdateExtendedInformation"
+          "target": "com.azure.databoxedge#UpdateDeviceExtendedInformation"
         },
         {
-          "target": "com.azure.databoxedge#TriggersDelete"
+          "target": "com.azure.databoxedge#DeleteTrigger"
         },
         {
           "target": "com.azure.databoxedge#TriggersCreateOrUpdate"
         },
         {
-          "target": "com.azure.databoxedge#TriggersGet"
+          "target": "com.azure.databoxedge#GetTrigger"
         },
         {
-          "target": "com.azure.databoxedge#TriggersListByDataBoxEdgeDevice"
+          "target": "com.azure.databoxedge#ListTriggerByDataBoxEdgeDevice"
         },
         {
-          "target": "com.azure.databoxedge#SupportPackagesTriggerSupportPackage"
+          "target": "com.azure.databoxedge#TriggerSupportPackageSupportPackage"
         },
         {
-          "target": "com.azure.databoxedge#ContainersRefresh"
+          "target": "com.azure.databoxedge#RefreshContainer"
         },
         {
-          "target": "com.azure.databoxedge#ContainersDelete"
+          "target": "com.azure.databoxedge#DeleteContainer"
         },
         {
           "target": "com.azure.databoxedge#ContainersCreateOrUpdate"
         },
         {
-          "target": "com.azure.databoxedge#ContainersGet"
+          "target": "com.azure.databoxedge#GetContainer"
         },
         {
-          "target": "com.azure.databoxedge#ContainersListByStorageAccount"
+          "target": "com.azure.databoxedge#ListContainerByStorageAccount"
         },
         {
-          "target": "com.azure.databoxedge#StorageAccountsDelete"
+          "target": "com.azure.databoxedge#DeleteStorageAccount"
         },
         {
           "target": "com.azure.databoxedge#StorageAccountsCreateOrUpdate"
         },
         {
-          "target": "com.azure.databoxedge#StorageAccountsGet"
+          "target": "com.azure.databoxedge#GetStorageAccount"
         },
         {
-          "target": "com.azure.databoxedge#StorageAccountsListByDataBoxEdgeDevice"
+          "target": "com.azure.databoxedge#ListStorageAccountByDataBoxEdgeDevice"
         },
         {
-          "target": "com.azure.databoxedge#StorageAccountCredentialsDelete"
+          "target": "com.azure.databoxedge#DeleteStorageAccountCredentials"
         },
         {
           "target": "com.azure.databoxedge#StorageAccountCredentialsCreateOrUpdate"
         },
         {
-          "target": "com.azure.databoxedge#StorageAccountCredentialsGet"
+          "target": "com.azure.databoxedge#GetStorageAccountCredentials"
         },
         {
-          "target": "com.azure.databoxedge#StorageAccountCredentialsListByDataBoxEdgeDevice"
+          "target": "com.azure.databoxedge#ListStorageAccountCredentialsByDataBoxEdgeDevice"
         },
         {
-          "target": "com.azure.databoxedge#SharesRefresh"
+          "target": "com.azure.databoxedge#RefreshShare"
         },
         {
-          "target": "com.azure.databoxedge#SharesDelete"
+          "target": "com.azure.databoxedge#DeleteShare"
         },
         {
           "target": "com.azure.databoxedge#SharesCreateOrUpdate"
         },
         {
-          "target": "com.azure.databoxedge#SharesGet"
+          "target": "com.azure.databoxedge#GetShare"
         },
         {
-          "target": "com.azure.databoxedge#SharesListByDataBoxEdgeDevice"
+          "target": "com.azure.databoxedge#ListShareByDataBoxEdgeDevice"
         },
         {
           "target": "com.azure.databoxedge#DevicesCreateOrUpdateSecuritySettings"
@@ -13300,139 +13301,139 @@
           "target": "com.azure.databoxedge#DevicesScanForUpdates"
         },
         {
-          "target": "com.azure.databoxedge#MonitoringConfigDelete"
+          "target": "com.azure.databoxedge#DeleteMonitoringConfig"
         },
         {
           "target": "com.azure.databoxedge#MonitoringConfigCreateOrUpdate"
         },
         {
-          "target": "com.azure.databoxedge#MonitoringConfigGet"
+          "target": "com.azure.databoxedge#GetMonitoringConfig"
         },
         {
-          "target": "com.azure.databoxedge#MonitoringConfigList"
+          "target": "com.azure.databoxedge#ListMonitoringConfig"
         },
         {
-          "target": "com.azure.databoxedge#AddonsDelete"
+          "target": "com.azure.databoxedge#DeleteAddon"
         },
         {
           "target": "com.azure.databoxedge#AddonsCreateOrUpdate"
         },
         {
-          "target": "com.azure.databoxedge#AddonsGet"
+          "target": "com.azure.databoxedge#GetAddon"
         },
         {
-          "target": "com.azure.databoxedge#AddonsListByRole"
+          "target": "com.azure.databoxedge#ListAddonByRole"
         },
         {
-          "target": "com.azure.databoxedge#RolesDelete"
+          "target": "com.azure.databoxedge#DeleteRole"
         },
         {
           "target": "com.azure.databoxedge#RolesCreateOrUpdate"
         },
         {
-          "target": "com.azure.databoxedge#RolesGet"
+          "target": "com.azure.databoxedge#GetRole"
         },
         {
-          "target": "com.azure.databoxedge#RolesListByDataBoxEdgeDevice"
+          "target": "com.azure.databoxedge#ListRoleByDataBoxEdgeDevice"
         },
         {
-          "target": "com.azure.databoxedge#OrdersListDCAccessCode"
+          "target": "com.azure.databoxedge#ListOrderDCAccessCode"
         },
         {
-          "target": "com.azure.databoxedge#OrdersDelete"
+          "target": "com.azure.databoxedge#DeleteOrder"
         },
         {
           "target": "com.azure.databoxedge#OrdersCreateOrUpdate"
         },
         {
-          "target": "com.azure.databoxedge#OrdersGet"
+          "target": "com.azure.databoxedge#GetOrder"
         },
         {
-          "target": "com.azure.databoxedge#OrdersListByDataBoxEdgeDevice"
+          "target": "com.azure.databoxedge#ListOrderByDataBoxEdgeDevice"
         },
         {
-          "target": "com.azure.databoxedge#OperationsStatusGet"
+          "target": "com.azure.databoxedge#GetOperationsStatus"
         },
         {
-          "target": "com.azure.databoxedge#NodesListByDataBoxEdgeDevice"
+          "target": "com.azure.databoxedge#ListNodeByDataBoxEdgeDevice"
         },
         {
-          "target": "com.azure.databoxedge#DevicesGetNetworkSettings"
+          "target": "com.azure.databoxedge#GetDeviceNetworkSettings"
         },
         {
-          "target": "com.azure.databoxedge#JobsGet"
+          "target": "com.azure.databoxedge#GetJob"
         },
         {
-          "target": "com.azure.databoxedge#DevicesInstallUpdates"
+          "target": "com.azure.databoxedge#InstallDeviceUpdates"
         },
         {
-          "target": "com.azure.databoxedge#DevicesGetExtendedInformation"
+          "target": "com.azure.databoxedge#GetDeviceExtendedInformation"
         },
         {
-          "target": "com.azure.databoxedge#DevicesGenerateCertificate"
+          "target": "com.azure.databoxedge#GenerateDeviceCertificate"
         },
         {
-          "target": "com.azure.databoxedge#DevicesDownloadUpdates"
+          "target": "com.azure.databoxedge#DownloadDeviceUpdates"
         },
         {
-          "target": "com.azure.databoxedge#DiagnosticSettingsUpdateDiagnosticRemoteSupportSettings"
+          "target": "com.azure.databoxedge#UpdateDiagnosticSettingsDiagnosticRemoteSupportSettings"
         },
         {
-          "target": "com.azure.databoxedge#DiagnosticSettingsGetDiagnosticRemoteSupportSettings"
+          "target": "com.azure.databoxedge#GetDiagnosticSettingsDiagnosticRemoteSupportSettings"
         },
         {
-          "target": "com.azure.databoxedge#DiagnosticSettingsUpdateDiagnosticProactiveLogCollectionSettings"
+          "target": "com.azure.databoxedge#UpdateDiagnosticSettingsDiagnosticProactiveLogCollectionSettings"
         },
         {
-          "target": "com.azure.databoxedge#DiagnosticSettingsGetDiagnosticProactiveLogCollectionSettings"
+          "target": "com.azure.databoxedge#GetDiagnosticSettingsDiagnosticProactiveLogCollectionSettings"
         },
         {
-          "target": "com.azure.databoxedge#DeviceCapacityInfoGetDeviceCapacityInfo"
+          "target": "com.azure.databoxedge#GetDeviceCapacityInfoDeviceCapacityInfo"
         },
         {
-          "target": "com.azure.databoxedge#DeviceCapacityCheckCheckResourceCreationFeasibility"
+          "target": "com.azure.databoxedge#CheckDeviceCapacityCheckResourceCreationFeasibility"
         },
         {
-          "target": "com.azure.databoxedge#BandwidthSchedulesDelete"
+          "target": "com.azure.databoxedge#DeleteBandwidthSchedule"
         },
         {
           "target": "com.azure.databoxedge#BandwidthSchedulesCreateOrUpdate"
         },
         {
-          "target": "com.azure.databoxedge#BandwidthSchedulesGet"
+          "target": "com.azure.databoxedge#GetBandwidthSchedule"
         },
         {
-          "target": "com.azure.databoxedge#BandwidthSchedulesListByDataBoxEdgeDevice"
+          "target": "com.azure.databoxedge#ListBandwidthScheduleByDataBoxEdgeDevice"
         },
         {
-          "target": "com.azure.databoxedge#AlertsGet"
+          "target": "com.azure.databoxedge#GetAlert"
         },
         {
-          "target": "com.azure.databoxedge#AlertsListByDataBoxEdgeDevice"
+          "target": "com.azure.databoxedge#ListAlertByDataBoxEdgeDevice"
         },
         {
-          "target": "com.azure.databoxedge#DevicesDelete"
+          "target": "com.azure.databoxedge#DeleteDevice"
         },
         {
-          "target": "com.azure.databoxedge#DevicesUpdate"
+          "target": "com.azure.databoxedge#UpdateDevice"
         },
         {
           "target": "com.azure.databoxedge#DevicesCreateOrUpdate"
         },
         {
-          "target": "com.azure.databoxedge#DevicesGet"
+          "target": "com.azure.databoxedge#GetDevice"
         },
         {
-          "target": "com.azure.databoxedge#DevicesListByResourceGroup"
+          "target": "com.azure.databoxedge#ListDeviceByResourceGroup"
         },
         {
-          "target": "com.azure.databoxedge#DevicesListBySubscription"
+          "target": "com.azure.databoxedge#ListDeviceBySubscription"
         },
         {
-          "target": "com.azure.databoxedge#AvailableSkusList"
+          "target": "com.azure.databoxedge#ListAvailableSkus"
         },
         {
-          "target": "com.azure.databoxedge#OperationsList2"
+          "target": "com.azure.databoxedge#ListOperations"
         }
       ],
       "traits": {

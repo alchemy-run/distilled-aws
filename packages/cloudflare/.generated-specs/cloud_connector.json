@@ -14,25 +14,10 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.cloudflare.cloud_connector#RulesListRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.cloud_connector#RulesListResultItemParameters": {
       "type": "structure",
       "members": {
@@ -106,39 +91,6 @@
       "type": "list",
       "member": {
         "target": "com.cloudflare.cloud_connector#RulesListResultItem"
-      }
-    },
-    "com.cloudflare.cloud_connector#RulesListResponse": {
-      "type": "structure",
-      "members": {
-        "result": {
-          "target": "com.cloudflare.cloud_connector#RulesListResultList",
-          "traits": {
-            "com.cloudflare.protocols#envelopePayload": {},
-            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.cloud_connector#RulesList": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.cloud_connector#RulesListRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.cloud_connector#RulesListResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/zones/{zone_id}/cloud_connector/rules",
-          "code": 200
-        },
-        "smithy.api#documentation": "Retrieves the Cloud Connector rules configured for a zone. Rules define how traffic is routed to cloud services.",
-        "smithy.api#readonly": {}
       }
     },
     "com.cloudflare.cloud_connector#RulesUpdateRequestRulesItemParameters": {
@@ -216,25 +168,6 @@
         "target": "com.cloudflare.cloud_connector#RulesUpdateRequestRulesItem"
       }
     },
-    "com.cloudflare.cloud_connector#RulesUpdateRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "rules": {
-          "target": "com.cloudflare.cloud_connector#RulesUpdateRequestRulesList"
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.cloud_connector#RulesUpdateResultItemParameters": {
       "type": "structure",
       "members": {
@@ -310,7 +243,175 @@
         "target": "com.cloudflare.cloud_connector#RulesUpdateResultItem"
       }
     },
-    "com.cloudflare.cloud_connector#RulesUpdateResponse": {
+    "com.cloudflare.cloud_connector#CloudConnector": {
+      "type": "service",
+      "version": "4.0",
+      "operations": [
+        {
+          "target": "com.cloudflare.cloud_connector#ListRules"
+        },
+        {
+          "target": "com.cloudflare.cloud_connector#PutRule"
+        }
+      ],
+      "traits": {
+        "com.cloudflare.protocols#v4Json": {},
+        "smithy.api#title": "Cloudflare CloudConnector",
+        "smithy.api#documentation": "Cloudflare API — cloud_connector resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+      }
+    },
+    "com.cloudflare.cloud_connector#CloudConnectorRulesNotFound": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "code": 10003,
+            "message": {
+              "includes": "could not find entrypoint ruleset"
+            }
+          }
+        ]
+      }
+    },
+    "com.cloudflare.cloud_connector#Forbidden": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.cloudflare.cloud_connector#ListRules": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.cloud_connector#ListRulesRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.cloud_connector#ListRulesResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/cloud_connector/rules",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieves the Cloud Connector rules configured for a zone. Rules define how traffic is routed to cloud services.",
+        "smithy.api#readonly": {},
+        "smithy.api#paginated": {
+          "mode": "single",
+          "items": "result"
+        }
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.cloud_connector#Forbidden"
+        },
+        {
+          "target": "com.cloudflare.cloud_connector#CloudConnectorRulesNotFound"
+        }
+      ]
+    },
+    "com.cloudflare.cloud_connector#ListRulesRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.cloud_connector#ListRulesResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.cloud_connector#RulesListResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.cloud_connector#PutRule": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.cloud_connector#PutRuleRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.cloud_connector#PutRuleResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/zones/{zone_id}/cloud_connector/rules",
+          "code": 200
+        },
+        "smithy.api#documentation": "Updates Cloud Connector rules for a zone, replacing the existing rule configuration.",
+        "smithy.api#idempotent": {},
+        "smithy.api#paginated": {
+          "mode": "single",
+          "items": "result"
+        }
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.cloud_connector#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.cloud_connector#PutRuleRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "rules": {
+          "target": "com.cloudflare.cloud_connector#RulesUpdateRequestRulesList",
+          "traits": {
+            "smithy.api#httpPayload": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.cloud_connector#PutRuleResponse": {
       "type": "structure",
       "members": {
         "result": {
@@ -323,41 +424,6 @@
       },
       "traits": {
         "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.cloud_connector#RulesUpdate": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.cloud_connector#RulesUpdateRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.cloud_connector#RulesUpdateResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "PUT",
-          "uri": "/zones/{zone_id}/cloud_connector/rules",
-          "code": 200
-        },
-        "smithy.api#documentation": "Updates Cloud Connector rules for a zone, replacing the existing rule configuration.",
-        "smithy.api#idempotent": {}
-      }
-    },
-    "com.cloudflare.cloud_connector#CloudConnector": {
-      "type": "service",
-      "version": "4.0",
-      "operations": [
-        {
-          "target": "com.cloudflare.cloud_connector#RulesList"
-        },
-        {
-          "target": "com.cloudflare.cloud_connector#RulesUpdate"
-        }
-      ],
-      "traits": {
-        "com.cloudflare.protocols#v4Json": {},
-        "smithy.api#title": "Cloudflare CloudConnector",
-        "smithy.api#documentation": "Cloudflare API — cloud_connector resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
       }
     }
   }

@@ -4,9 +4,109 @@
     "service": "parallelstore",
     "version": "v1beta",
     "title": "Parallelstore API",
-    "baseUrl": "https://parallelstore.googleapis.com/"
+    "baseUrl": "https://parallelstore.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
+    "com.gcp.parallelstore_v1beta#ReconciliationOperationMetadata": {
+      "type": "structure",
+      "members": {
+        "deleteResource": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "DEPRECATED. Use exclusive_action instead."
+          }
+        },
+        "exclusiveAction": {
+          "target": "com.gcp.parallelstore_v1beta#ReconciliationOperationMetadataExclusiveActionEnum",
+          "traits": {
+            "smithy.api#documentation": "Excluisive action returned by the CLH."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Operation metadata returned by the CLH during resource state reconciliation."
+      }
+    },
+    "com.gcp.parallelstore_v1beta#ReconciliationOperationMetadataExclusiveActionEnum": {
+      "type": "enum",
+      "members": {
+        "UNKNOWN_REPAIR_ACTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNKNOWN_REPAIR_ACTION"
+          }
+        },
+        "DELETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELETE"
+          }
+        },
+        "RETRY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RETRY"
+          }
+        }
+      }
+    },
+    "com.gcp.parallelstore_v1beta#Location": {
+      "type": "structure",
+      "members": {
+        "locationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The canonical id for this location. For example: `\"us-east1\"`."
+          }
+        },
+        "labels": {
+          "target": "com.gcp.parallelstore_v1beta#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Cross-service attributes for the location. For example {\"cloud.googleapis.com/region\": \"us-east1\"}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name for the location, which may vary between implementations. For example: `\"projects/example-project/locations/us-east1\"`"
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The friendly name for this location, typically a nearby city name. For example, \"Tokyo\"."
+          }
+        },
+        "metadata": {
+          "target": "com.gcp.parallelstore_v1beta#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Service-specific metadata. For example the available capacity at the given location."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A resource that represents a Google Cloud location."
+      }
+    },
+    "com.gcp.parallelstore_v1beta#StringMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.parallelstore_v1beta#DocumentMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      }
+    },
     "com.gcp.parallelstore_v1beta#DestinationParallelstore": {
       "type": "structure",
       "members": {
@@ -21,25 +121,246 @@
         "smithy.api#documentation": "Parallelstore as the destination of a data transfer."
       }
     },
+    "com.gcp.parallelstore_v1beta#ListInstancesResponse": {
+      "type": "structure",
+      "members": {
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A token identifying a page of results the server should return."
+          }
+        },
+        "instances": {
+          "target": "com.gcp.parallelstore_v1beta#InstanceList",
+          "traits": {
+            "smithy.api#documentation": "The list of Parallelstore instances."
+          }
+        },
+        "unreachable": {
+          "target": "com.gcp.parallelstore_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "Locations that could not be reached."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response from ListInstances."
+      }
+    },
+    "com.gcp.parallelstore_v1beta#InstanceList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.parallelstore_v1beta#Instance"
+      }
+    },
+    "com.gcp.parallelstore_v1beta#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.parallelstore_v1beta#ExportDataRequest": {
+      "type": "structure",
+      "members": {
+        "sourceParallelstore": {
+          "target": "com.gcp.parallelstore_v1beta#SourceParallelstore",
+          "traits": {
+            "smithy.api#documentation": "Parallelstore source."
+          }
+        },
+        "destinationGcsBucket": {
+          "target": "com.gcp.parallelstore_v1beta#DestinationGcsBucket",
+          "traits": {
+            "smithy.api#documentation": "Cloud Storage destination."
+          }
+        },
+        "serviceAccount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. User-specified Service Account (SA) credentials to be used when performing the transfer. Use one of the following formats: * `{EMAIL_ADDRESS_OR_UNIQUE_ID}` * `projects/{PROJECT_ID_OR_NUMBER}/serviceAccounts/{EMAIL_ADDRESS_OR_UNIQUE_ID}` * `projects/-/serviceAccounts/{EMAIL_ADDRESS_OR_UNIQUE_ID}` If unspecified, the Parallelstore service agent is used: `service-@gcp-sa-parallelstore.iam.gserviceaccount.com`"
+          }
+        },
+        "metadataOptions": {
+          "target": "com.gcp.parallelstore_v1beta#TransferMetadataOptions",
+          "traits": {
+            "smithy.api#documentation": "Optional. The metadata options for the export data."
+          }
+        },
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Export data from Parallelstore to Cloud Storage."
+      }
+    },
+    "com.gcp.parallelstore_v1beta#SourceGcsBucket": {
+      "type": "structure",
+      "members": {
+        "uri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. URI to a Cloud Storage bucket in the format: `gs:///`. The path inside the bucket is optional."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Cloud Storage as the source of a data transfer."
+      }
+    },
+    "com.gcp.parallelstore_v1beta#GoogleProtobufEmpty": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+      }
+    },
+    "com.gcp.parallelstore_v1beta#SourceParallelstore": {
+      "type": "structure",
+      "members": {
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Root directory path to the Paralellstore filesystem, starting with `/`. Defaults to `/` if unset."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Parallelstore as the source of a data transfer."
+      }
+    },
+    "com.gcp.parallelstore_v1beta#ListLocationsResponse": {
+      "type": "structure",
+      "members": {
+        "locations": {
+          "target": "com.gcp.parallelstore_v1beta#LocationList",
+          "traits": {
+            "smithy.api#documentation": "A list of locations that matches the specified filter in the request."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard List next-page token."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response message for Locations.ListLocations."
+      }
+    },
+    "com.gcp.parallelstore_v1beta#LocationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.parallelstore_v1beta#Location"
+      }
+    },
+    "com.gcp.parallelstore_v1beta#DestinationGcsBucket": {
+      "type": "structure",
+      "members": {
+        "uri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. URI to a Cloud Storage bucket in the format: `gs:///`. The path inside the bucket is optional."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Cloud Storage as the destination of a data transfer."
+      }
+    },
+    "com.gcp.parallelstore_v1beta#Operation": {
+      "type": "structure",
+      "members": {
+        "response": {
+          "target": "com.gcp.parallelstore_v1beta#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
+          }
+        },
+        "error": {
+          "target": "com.gcp.parallelstore_v1beta#Status",
+          "traits": {
+            "smithy.api#documentation": "The error result of the operation in case of failure or cancellation."
+          }
+        },
+        "done": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
+          }
+        },
+        "metadata": {
+          "target": "com.gcp.parallelstore_v1beta#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "This resource represents a long-running operation that is the result of a network API call."
+      }
+    },
+    "com.gcp.parallelstore_v1beta#ImportDataRequest": {
+      "type": "structure",
+      "members": {
+        "serviceAccount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. User-specified service account credentials to be used when performing the transfer. Use one of the following formats: * `{EMAIL_ADDRESS_OR_UNIQUE_ID}` * `projects/{PROJECT_ID_OR_NUMBER}/serviceAccounts/{EMAIL_ADDRESS_OR_UNIQUE_ID}` * `projects/-/serviceAccounts/{EMAIL_ADDRESS_OR_UNIQUE_ID}` If unspecified, the Parallelstore service agent is used: `service-@gcp-sa-parallelstore.iam.gserviceaccount.com`"
+          }
+        },
+        "metadataOptions": {
+          "target": "com.gcp.parallelstore_v1beta#TransferMetadataOptions",
+          "traits": {
+            "smithy.api#documentation": "Optional. The transfer metadata options for the import data."
+          }
+        },
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000)."
+          }
+        },
+        "destinationParallelstore": {
+          "target": "com.gcp.parallelstore_v1beta#DestinationParallelstore",
+          "traits": {
+            "smithy.api#documentation": "Parallelstore destination."
+          }
+        },
+        "sourceGcsBucket": {
+          "target": "com.gcp.parallelstore_v1beta#SourceGcsBucket",
+          "traits": {
+            "smithy.api#documentation": "The Cloud Storage source bucket and, optionally, path inside the bucket."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Import data from Cloud Storage into a Parallelstore instance."
+      }
+    },
     "com.gcp.parallelstore_v1beta#Instance": {
       "type": "structure",
       "members": {
-        "capacityGib": {
+        "network": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Required. Immutable. The instance's storage capacity in Gibibytes (GiB). Allowed values are between 12000 and 100000, in multiples of 4000; e.g., 12000, 16000, 20000, ..."
+            "smithy.api#documentation": "Optional. Immutable. The name of the Compute Engine [VPC network](https://cloud.google.com/vpc/docs/vpc) to which the instance is connected."
           }
         },
-        "state": {
-          "target": "com.gcp.parallelstore_v1beta#InstanceStateEnum",
+        "deploymentType": {
+          "target": "com.gcp.parallelstore_v1beta#InstanceDeploymentTypeEnum",
           "traits": {
-            "smithy.api#documentation": "Output only. The instance state."
-          }
-        },
-        "createTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The time when the instance was created."
+            "smithy.api#documentation": "Optional. Immutable. The deployment type of the instance. Allowed values are: * `SCRATCH`: the instance is a scratch instance. * `PERSISTENT`: the instance is a persistent instance."
           }
         },
         "directoryStripeLevel": {
@@ -48,16 +369,22 @@
             "smithy.api#documentation": "Optional. Immutable. Stripe level for directories. Allowed values are: * `DIRECTORY_STRIPE_LEVEL_MIN`: recommended when directories contain a small number of files. * `DIRECTORY_STRIPE_LEVEL_BALANCED`: balances performance for workloads involving a mix of small and large directories. * `DIRECTORY_STRIPE_LEVEL_MAX`: recommended for directories with a large number of files."
           }
         },
-        "network": {
+        "daosVersion": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Optional. Immutable. The name of the Compute Engine [VPC network](https://cloud.google.com/vpc/docs/vpc) to which the instance is connected."
+            "smithy.api#documentation": "Output only. Deprecated: The version of DAOS software running in the instance."
           }
         },
-        "effectiveReservedIpRange": {
+        "description": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Output only. Immutable. The ID of the IP address range being used by the instance's VPC network. This field is populated by the service and contains the value currently used by the service."
+            "smithy.api#documentation": "Optional. The description of the instance. 2048 characters or less."
+          }
+        },
+        "reservedIpRange": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Immutable. The ID of the IP address range being used by the instance's VPC network. See [Configure a VPC network](https://cloud.google.com/parallelstore/docs/vpc#create_and_configure_the_vpc). If no ID is provided, all ranges are considered."
           }
         },
         "accessPoints": {
@@ -72,28 +399,22 @@
             "smithy.api#documentation": "Output only. The time when the instance was updated."
           }
         },
-        "reservedIpRange": {
+        "labels": {
+          "target": "com.gcp.parallelstore_v1beta#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Optional. Cloud Labels are a flexible and lightweight mechanism for organizing cloud resources into groups that reflect a customer's organizational needs and deployment strategies. See https://cloud.google.com/resource-manager/docs/labels-overview for details."
+          }
+        },
+        "effectiveReservedIpRange": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Optional. Immutable. The ID of the IP address range being used by the instance's VPC network. See [Configure a VPC network](https://cloud.google.com/parallelstore/docs/vpc#create_and_configure_the_vpc). If no ID is provided, all ranges are considered."
+            "smithy.api#documentation": "Output only. Immutable. The ID of the IP address range being used by the instance's VPC network. This field is populated by the service and contains the value currently used by the service."
           }
         },
-        "fileStripeLevel": {
-          "target": "com.gcp.parallelstore_v1beta#InstanceFileStripeLevelEnum",
+        "state": {
+          "target": "com.gcp.parallelstore_v1beta#InstanceStateEnum",
           "traits": {
-            "smithy.api#documentation": "Optional. Immutable. Stripe level for files. Allowed values are: * `FILE_STRIPE_LEVEL_MIN`: offers the best performance for small size files. * `FILE_STRIPE_LEVEL_BALANCED`: balances performance for workloads involving a mix of small and large files. * `FILE_STRIPE_LEVEL_MAX`: higher throughput performance for larger files."
-          }
-        },
-        "daosVersion": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Deprecated: The version of DAOS software running in the instance."
-          }
-        },
-        "deploymentType": {
-          "target": "com.gcp.parallelstore_v1beta#InstanceDeploymentTypeEnum",
-          "traits": {
-            "smithy.api#documentation": "Optional. Immutable. The deployment type of the instance. Allowed values are: * `SCRATCH`: the instance is a scratch instance. * `PERSISTENT`: the instance is a persistent instance."
+            "smithy.api#documentation": "Output only. The instance state."
           }
         },
         "name": {
@@ -102,21 +423,79 @@
             "smithy.api#documentation": "Identifier. The resource name of the instance, in the format `projects/{project}/locations/{location}/instances/{instance_id}`."
           }
         },
-        "description": {
+        "createTime": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Optional. The description of the instance. 2048 characters or less."
+            "smithy.api#documentation": "Output only. The time when the instance was created."
           }
         },
-        "labels": {
-          "target": "com.gcp.parallelstore_v1beta#StringMap",
+        "fileStripeLevel": {
+          "target": "com.gcp.parallelstore_v1beta#InstanceFileStripeLevelEnum",
           "traits": {
-            "smithy.api#documentation": "Optional. Cloud Labels are a flexible and lightweight mechanism for organizing cloud resources into groups that reflect a customer's organizational needs and deployment strategies. See https://cloud.google.com/resource-manager/docs/labels-overview for details."
+            "smithy.api#documentation": "Optional. Immutable. Stripe level for files. Allowed values are: * `FILE_STRIPE_LEVEL_MIN`: offers the best performance for small size files. * `FILE_STRIPE_LEVEL_BALANCED`: balances performance for workloads involving a mix of small and large files. * `FILE_STRIPE_LEVEL_MAX`: higher throughput performance for larger files."
+          }
+        },
+        "capacityGib": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Immutable. The instance's storage capacity in Gibibytes (GiB). Allowed values are between 12000 and 100000, in multiples of 4000; e.g., 12000, 16000, 20000, ..."
           }
         }
       },
       "traits": {
         "smithy.api#documentation": "A Parallelstore instance."
+      }
+    },
+    "com.gcp.parallelstore_v1beta#InstanceDeploymentTypeEnum": {
+      "type": "enum",
+      "members": {
+        "DEPLOYMENT_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEPLOYMENT_TYPE_UNSPECIFIED"
+          }
+        },
+        "SCRATCH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SCRATCH"
+          }
+        },
+        "PERSISTENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PERSISTENT"
+          }
+        }
+      }
+    },
+    "com.gcp.parallelstore_v1beta#InstanceDirectoryStripeLevelEnum": {
+      "type": "enum",
+      "members": {
+        "DIRECTORY_STRIPE_LEVEL_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DIRECTORY_STRIPE_LEVEL_UNSPECIFIED"
+          }
+        },
+        "DIRECTORY_STRIPE_LEVEL_MIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DIRECTORY_STRIPE_LEVEL_MIN"
+          }
+        },
+        "DIRECTORY_STRIPE_LEVEL_BALANCED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DIRECTORY_STRIPE_LEVEL_BALANCED"
+          }
+        },
+        "DIRECTORY_STRIPE_LEVEL_MAX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DIRECTORY_STRIPE_LEVEL_MAX"
+          }
+        }
       }
     },
     "com.gcp.parallelstore_v1beta#InstanceStateEnum": {
@@ -166,41 +545,6 @@
         }
       }
     },
-    "com.gcp.parallelstore_v1beta#InstanceDirectoryStripeLevelEnum": {
-      "type": "enum",
-      "members": {
-        "DIRECTORY_STRIPE_LEVEL_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "DIRECTORY_STRIPE_LEVEL_UNSPECIFIED"
-          }
-        },
-        "DIRECTORY_STRIPE_LEVEL_MIN": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "DIRECTORY_STRIPE_LEVEL_MIN"
-          }
-        },
-        "DIRECTORY_STRIPE_LEVEL_BALANCED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "DIRECTORY_STRIPE_LEVEL_BALANCED"
-          }
-        },
-        "DIRECTORY_STRIPE_LEVEL_MAX": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "DIRECTORY_STRIPE_LEVEL_MAX"
-          }
-        }
-      }
-    },
-    "com.gcp.parallelstore_v1beta#StringList": {
-      "type": "list",
-      "member": {
-        "target": "smithy.api#String"
-      }
-    },
     "com.gcp.parallelstore_v1beta#InstanceFileStripeLevelEnum": {
       "type": "enum",
       "members": {
@@ -230,247 +574,19 @@
         }
       }
     },
-    "com.gcp.parallelstore_v1beta#InstanceDeploymentTypeEnum": {
-      "type": "enum",
-      "members": {
-        "DEPLOYMENT_TYPE_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "DEPLOYMENT_TYPE_UNSPECIFIED"
-          }
-        },
-        "SCRATCH": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "SCRATCH"
-          }
-        },
-        "PERSISTENT": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "PERSISTENT"
-          }
-        }
-      }
-    },
-    "com.gcp.parallelstore_v1beta#StringMap": {
-      "type": "map",
-      "key": {
-        "target": "smithy.api#String"
-      },
-      "value": {
-        "target": "smithy.api#String"
-      }
-    },
-    "com.gcp.parallelstore_v1beta#Location": {
+    "com.gcp.parallelstore_v1beta#ListOperationsResponse": {
       "type": "structure",
       "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Resource name for the location, which may vary between implementations. For example: `\"projects/example-project/locations/us-east1\"`"
-          }
-        },
-        "labels": {
-          "target": "com.gcp.parallelstore_v1beta#StringMap",
-          "traits": {
-            "smithy.api#documentation": "Cross-service attributes for the location. For example {\"cloud.googleapis.com/region\": \"us-east1\"}"
-          }
-        },
-        "metadata": {
-          "target": "com.gcp.parallelstore_v1beta#DocumentMap",
-          "traits": {
-            "smithy.api#documentation": "Service-specific metadata. For example the available capacity at the given location."
-          }
-        },
-        "locationId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The canonical id for this location. For example: `\"us-east1\"`."
-          }
-        },
-        "displayName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The friendly name for this location, typically a nearby city name. For example, \"Tokyo\"."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A resource that represents a Google Cloud location."
-      }
-    },
-    "com.gcp.parallelstore_v1beta#DocumentMap": {
-      "type": "map",
-      "key": {
-        "target": "smithy.api#String"
-      },
-      "value": {
-        "target": "smithy.api#Document"
-      }
-    },
-    "com.gcp.parallelstore_v1beta#ImportDataRequest": {
-      "type": "structure",
-      "members": {
-        "requestId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000)."
-          }
-        },
-        "metadataOptions": {
-          "target": "com.gcp.parallelstore_v1beta#TransferMetadataOptions",
-          "traits": {
-            "smithy.api#documentation": "Optional. The transfer metadata options for the import data."
-          }
-        },
-        "sourceGcsBucket": {
-          "target": "com.gcp.parallelstore_v1beta#SourceGcsBucket",
-          "traits": {
-            "smithy.api#documentation": "The Cloud Storage source bucket and, optionally, path inside the bucket."
-          }
-        },
-        "destinationParallelstore": {
-          "target": "com.gcp.parallelstore_v1beta#DestinationParallelstore",
-          "traits": {
-            "smithy.api#documentation": "Parallelstore destination."
-          }
-        },
-        "serviceAccount": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. User-specified service account credentials to be used when performing the transfer. Use one of the following formats: * `{EMAIL_ADDRESS_OR_UNIQUE_ID}` * `projects/{PROJECT_ID_OR_NUMBER}/serviceAccounts/{EMAIL_ADDRESS_OR_UNIQUE_ID}` * `projects/-/serviceAccounts/{EMAIL_ADDRESS_OR_UNIQUE_ID}` If unspecified, the Parallelstore service agent is used: `service-@gcp-sa-parallelstore.iam.gserviceaccount.com`"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Import data from Cloud Storage into a Parallelstore instance."
-      }
-    },
-    "com.gcp.parallelstore_v1beta#ListLocationsResponse": {
-      "type": "structure",
-      "members": {
-        "locations": {
-          "target": "com.gcp.parallelstore_v1beta#LocationList",
-          "traits": {
-            "smithy.api#documentation": "A list of locations that matches the specified filter in the request."
-          }
-        },
         "nextPageToken": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "The standard List next-page token."
           }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The response message for Locations.ListLocations."
-      }
-    },
-    "com.gcp.parallelstore_v1beta#LocationList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.parallelstore_v1beta#Location"
-      }
-    },
-    "com.gcp.parallelstore_v1beta#DestinationGcsBucket": {
-      "type": "structure",
-      "members": {
-        "uri": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. URI to a Cloud Storage bucket in the format: `gs:///`. The path inside the bucket is optional."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Cloud Storage as the destination of a data transfer."
-      }
-    },
-    "com.gcp.parallelstore_v1beta#OperationMetadata": {
-      "type": "structure",
-      "members": {
-        "apiVersion": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. API version used to start the operation."
-          }
         },
-        "createTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The time the operation was created."
-          }
-        },
-        "verb": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Name of the verb executed by the operation."
-          }
-        },
-        "statusMessage": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Human-readable status of the operation, if any."
-          }
-        },
-        "endTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The time the operation finished running."
-          }
-        },
-        "target": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Server-defined resource path for the target of the operation."
-          }
-        },
-        "requestedCancellation": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have been cancelled successfully have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Long-running operation metadata."
-      }
-    },
-    "com.gcp.parallelstore_v1beta#GoogleProtobufEmpty": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
-      }
-    },
-    "com.gcp.parallelstore_v1beta#SourceGcsBucket": {
-      "type": "structure",
-      "members": {
-        "uri": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. URI to a Cloud Storage bucket in the format: `gs:///`. The path inside the bucket is optional."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Cloud Storage as the source of a data transfer."
-      }
-    },
-    "com.gcp.parallelstore_v1beta#ListOperationsResponse": {
-      "type": "structure",
-      "members": {
         "unreachable": {
           "target": "com.gcp.parallelstore_v1beta#StringList",
           "traits": {
             "smithy.api#documentation": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections e.g. when attempting to list all resources across all supported locations."
-          }
-        },
-        "nextPageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The standard List next-page token."
           }
         },
         "operations": {
@@ -490,58 +606,6 @@
         "target": "com.gcp.parallelstore_v1beta#Operation"
       }
     },
-    "com.gcp.parallelstore_v1beta#SourceParallelstore": {
-      "type": "structure",
-      "members": {
-        "path": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Root directory path to the Paralellstore filesystem, starting with `/`. Defaults to `/` if unset."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Parallelstore as the source of a data transfer."
-      }
-    },
-    "com.gcp.parallelstore_v1beta#Operation": {
-      "type": "structure",
-      "members": {
-        "metadata": {
-          "target": "com.gcp.parallelstore_v1beta#DocumentMap",
-          "traits": {
-            "smithy.api#documentation": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any."
-          }
-        },
-        "done": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
-          }
-        },
-        "response": {
-          "target": "com.gcp.parallelstore_v1beta#DocumentMap",
-          "traits": {
-            "smithy.api#documentation": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
-          }
-        },
-        "error": {
-          "target": "com.gcp.parallelstore_v1beta#Status",
-          "traits": {
-            "smithy.api#documentation": "The error result of the operation in case of failure or cancellation."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "This resource represents a long-running operation that is the result of a network API call."
-      }
-    },
     "com.gcp.parallelstore_v1beta#Status": {
       "type": "structure",
       "members": {
@@ -551,16 +615,16 @@
             "smithy.api#documentation": "The status code, which should be an enum value of google.rpc.Code."
           }
         },
-        "message": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
-          }
-        },
         "details": {
           "target": "com.gcp.parallelstore_v1beta#DocumentMapList",
           "traits": {
             "smithy.api#documentation": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
           }
         }
       },
@@ -574,122 +638,15 @@
         "target": "com.gcp.parallelstore_v1beta#DocumentMap"
       }
     },
-    "com.gcp.parallelstore_v1beta#ExportDataRequest": {
-      "type": "structure",
-      "members": {
-        "requestId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000)."
-          }
-        },
-        "sourceParallelstore": {
-          "target": "com.gcp.parallelstore_v1beta#SourceParallelstore",
-          "traits": {
-            "smithy.api#documentation": "Parallelstore source."
-          }
-        },
-        "metadataOptions": {
-          "target": "com.gcp.parallelstore_v1beta#TransferMetadataOptions",
-          "traits": {
-            "smithy.api#documentation": "Optional. The metadata options for the export data."
-          }
-        },
-        "destinationGcsBucket": {
-          "target": "com.gcp.parallelstore_v1beta#DestinationGcsBucket",
-          "traits": {
-            "smithy.api#documentation": "Cloud Storage destination."
-          }
-        },
-        "serviceAccount": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. User-specified Service Account (SA) credentials to be used when performing the transfer. Use one of the following formats: * `{EMAIL_ADDRESS_OR_UNIQUE_ID}` * `projects/{PROJECT_ID_OR_NUMBER}/serviceAccounts/{EMAIL_ADDRESS_OR_UNIQUE_ID}` * `projects/-/serviceAccounts/{EMAIL_ADDRESS_OR_UNIQUE_ID}` If unspecified, the Parallelstore service agent is used: `service-@gcp-sa-parallelstore.iam.gserviceaccount.com`"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Export data from Parallelstore to Cloud Storage."
-      }
-    },
-    "com.gcp.parallelstore_v1beta#ListInstancesResponse": {
-      "type": "structure",
-      "members": {
-        "instances": {
-          "target": "com.gcp.parallelstore_v1beta#InstanceList",
-          "traits": {
-            "smithy.api#documentation": "The list of Parallelstore instances."
-          }
-        },
-        "nextPageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A token identifying a page of results the server should return."
-          }
-        },
-        "unreachable": {
-          "target": "com.gcp.parallelstore_v1beta#StringList",
-          "traits": {
-            "smithy.api#documentation": "Locations that could not be reached."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Response from ListInstances."
-      }
-    },
-    "com.gcp.parallelstore_v1beta#InstanceList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.parallelstore_v1beta#Instance"
-      }
-    },
-    "com.gcp.parallelstore_v1beta#ReconciliationOperationMetadata": {
-      "type": "structure",
-      "members": {
-        "deleteResource": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "DEPRECATED. Use exclusive_action instead."
-          }
-        },
-        "exclusiveAction": {
-          "target": "com.gcp.parallelstore_v1beta#ReconciliationOperationMetadataExclusiveActionEnum",
-          "traits": {
-            "smithy.api#documentation": "Excluisive action returned by the CLH."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Operation metadata returned by the CLH during resource state reconciliation."
-      }
-    },
-    "com.gcp.parallelstore_v1beta#ReconciliationOperationMetadataExclusiveActionEnum": {
-      "type": "enum",
-      "members": {
-        "UNKNOWN_REPAIR_ACTION": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "UNKNOWN_REPAIR_ACTION"
-          }
-        },
-        "DELETE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "DELETE"
-          }
-        },
-        "RETRY": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "RETRY"
-          }
-        }
-      }
-    },
     "com.gcp.parallelstore_v1beta#TransferMetadataOptions": {
       "type": "structure",
       "members": {
+        "uid": {
+          "target": "com.gcp.parallelstore_v1beta#TransferMetadataOptionsUidEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. The UID preservation behavior."
+          }
+        },
         "mode": {
           "target": "com.gcp.parallelstore_v1beta#TransferMetadataOptionsModeEnum",
           "traits": {
@@ -701,16 +658,33 @@
           "traits": {
             "smithy.api#documentation": "Optional. The GID preservation behavior."
           }
-        },
-        "uid": {
-          "target": "com.gcp.parallelstore_v1beta#TransferMetadataOptionsUidEnum",
-          "traits": {
-            "smithy.api#documentation": "Optional. The UID preservation behavior."
-          }
         }
       },
       "traits": {
         "smithy.api#documentation": "Transfer metadata options for the instance."
+      }
+    },
+    "com.gcp.parallelstore_v1beta#TransferMetadataOptionsUidEnum": {
+      "type": "enum",
+      "members": {
+        "UID_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UID_UNSPECIFIED"
+          }
+        },
+        "UID_SKIP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UID_SKIP"
+          }
+        },
+        "UID_NUMBER_PRESERVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UID_NUMBER_PRESERVE"
+          }
+        }
       }
     },
     "com.gcp.parallelstore_v1beta#TransferMetadataOptionsModeEnum": {
@@ -759,32 +733,73 @@
         }
       }
     },
-    "com.gcp.parallelstore_v1beta#TransferMetadataOptionsUidEnum": {
-      "type": "enum",
+    "com.gcp.parallelstore_v1beta#OperationMetadata": {
+      "type": "structure",
       "members": {
-        "UID_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
+        "createTime": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#enumValue": "UID_UNSPECIFIED"
+            "smithy.api#documentation": "Output only. The time the operation was created."
           }
         },
-        "UID_SKIP": {
-          "target": "smithy.api#Unit",
+        "statusMessage": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#enumValue": "UID_SKIP"
+            "smithy.api#documentation": "Output only. Human-readable status of the operation, if any."
           }
         },
-        "UID_NUMBER_PRESERVE": {
-          "target": "smithy.api#Unit",
+        "endTime": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#enumValue": "UID_NUMBER_PRESERVE"
+            "smithy.api#documentation": "Output only. The time the operation finished running."
+          }
+        },
+        "requestedCancellation": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have been cancelled successfully have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`."
+          }
+        },
+        "target": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Server-defined resource path for the target of the operation."
+          }
+        },
+        "verb": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Name of the verb executed by the operation."
+          }
+        },
+        "apiVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. API version used to start the operation."
           }
         }
+      },
+      "traits": {
+        "smithy.api#documentation": "Long-running operation metadata."
       }
     },
     "com.gcp.parallelstore_v1beta#ListProjectsLocationsRequest": {
       "type": "structure",
       "members": {
+        "extraLocationTypes": {
+          "target": "com.gcp.parallelstore_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
+            "smithy.api#httpQuery": "extraLocationTypes"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
         "filter": {
           "target": "smithy.api#String",
           "traits": {
@@ -800,25 +815,11 @@
             "smithy.api#required": {}
           }
         },
-        "extraLocationTypes": {
-          "target": "com.gcp.parallelstore_v1beta#StringList",
-          "traits": {
-            "smithy.api#documentation": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
-            "smithy.api#httpQuery": "extraLocationTypes"
-          }
-        },
         "pageSize": {
           "target": "smithy.api#Integer",
           "traits": {
             "smithy.api#documentation": "The maximum number of results to return. If not set, the service selects a default.",
             "smithy.api#httpQuery": "pageSize"
-          }
-        },
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.",
-            "smithy.api#httpQuery": "pageToken"
           }
         }
       }
@@ -914,388 +915,6 @@
         "smithy.api#documentation": "Gets information about a location."
       }
     },
-    "com.gcp.parallelstore_v1beta#GetProjectsLocationsOperationsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name of the operation resource.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.parallelstore_v1beta#GetProjectsLocationsOperations": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.parallelstore_v1beta#GetProjectsLocationsOperationsRequest"
-      },
-      "output": {
-        "target": "com.gcp.parallelstore_v1beta#Operation"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.parallelstore_v1beta#NotFound"
-        },
-        {
-          "target": "com.gcp.parallelstore_v1beta#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1beta/{+name}"
-        },
-        "smithy.api#documentation": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service."
-      }
-    },
-    "com.gcp.parallelstore_v1beta#DeleteProjectsLocationsOperationsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name of the operation resource to be deleted.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.parallelstore_v1beta#BadRequest": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#error": "client",
-        "smithy.api#httpError": 400,
-        "com.gcp.protocols#errorMatchers": [
-          {
-            "status": 400
-          }
-        ]
-      }
-    },
-    "com.gcp.parallelstore_v1beta#Conflict": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#error": "client",
-        "smithy.api#httpError": 409,
-        "com.gcp.protocols#errorMatchers": [
-          {
-            "status": 409
-          }
-        ]
-      }
-    },
-    "com.gcp.parallelstore_v1beta#DeleteProjectsLocationsOperations": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.parallelstore_v1beta#DeleteProjectsLocationsOperationsRequest"
-      },
-      "output": {
-        "target": "com.gcp.parallelstore_v1beta#GoogleProtobufEmpty"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.parallelstore_v1beta#NotFound"
-        },
-        {
-          "target": "com.gcp.parallelstore_v1beta#Forbidden"
-        },
-        {
-          "target": "com.gcp.parallelstore_v1beta#BadRequest"
-        },
-        {
-          "target": "com.gcp.parallelstore_v1beta#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "v1beta/{+name}"
-        },
-        "smithy.api#documentation": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`."
-      }
-    },
-    "com.gcp.parallelstore_v1beta#CancelProjectsLocationsOperationsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name of the operation resource to be cancelled.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.parallelstore_v1beta#CancelProjectsLocationsOperations": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.parallelstore_v1beta#CancelProjectsLocationsOperationsRequest"
-      },
-      "output": {
-        "target": "com.gcp.parallelstore_v1beta#GoogleProtobufEmpty"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.parallelstore_v1beta#NotFound"
-        },
-        {
-          "target": "com.gcp.parallelstore_v1beta#Forbidden"
-        },
-        {
-          "target": "com.gcp.parallelstore_v1beta#BadRequest"
-        },
-        {
-          "target": "com.gcp.parallelstore_v1beta#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1beta/{+name}:cancel"
-        },
-        "smithy.api#documentation": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`."
-      }
-    },
-    "com.gcp.parallelstore_v1beta#ListProjectsLocationsOperationsRequest": {
-      "type": "structure",
-      "members": {
-        "filter": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The standard list filter.",
-            "smithy.api#httpQuery": "filter"
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name of the operation's parent resource.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "returnPartialSuccess": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
-            "smithy.api#httpQuery": "returnPartialSuccess"
-          }
-        },
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The standard list page size.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        },
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The standard list page token.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        }
-      }
-    },
-    "com.gcp.parallelstore_v1beta#ListProjectsLocationsOperations": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.parallelstore_v1beta#ListProjectsLocationsOperationsRequest"
-      },
-      "output": {
-        "target": "com.gcp.parallelstore_v1beta#ListOperationsResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.parallelstore_v1beta#NotFound"
-        },
-        {
-          "target": "com.gcp.parallelstore_v1beta#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1beta/{+name}/operations"
-        },
-        "smithy.api#documentation": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
-        "smithy.api#paginated": {
-          "inputToken": "pageToken",
-          "outputToken": "nextPageToken"
-        }
-      }
-    },
-    "com.gcp.parallelstore_v1beta#PatchProjectsLocationsInstancesRequest": {
-      "type": "structure",
-      "members": {
-        "requestId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
-            "smithy.api#httpQuery": "requestId"
-          }
-        },
-        "updateMask": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Mask of fields to update. Field mask is used to specify the fields to be overwritten in the Instance resource by the update. At least one path must be supplied in this field. The fields specified in the update_mask are relative to the resource, not the full request.",
-            "smithy.api#httpQuery": "updateMask"
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier. The resource name of the instance, in the format `projects/{project}/locations/{location}/instances/{instance_id}`.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.parallelstore_v1beta#Instance",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.parallelstore_v1beta#PatchProjectsLocationsInstances": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.parallelstore_v1beta#PatchProjectsLocationsInstancesRequest"
-      },
-      "output": {
-        "target": "com.gcp.parallelstore_v1beta#Operation"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.parallelstore_v1beta#NotFound"
-        },
-        {
-          "target": "com.gcp.parallelstore_v1beta#Forbidden"
-        },
-        {
-          "target": "com.gcp.parallelstore_v1beta#BadRequest"
-        },
-        {
-          "target": "com.gcp.parallelstore_v1beta#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "PATCH",
-          "uri": "v1beta/{+name}"
-        },
-        "smithy.api#documentation": "Updates the parameters of a single instance."
-      }
-    },
-    "com.gcp.parallelstore_v1beta#DeleteProjectsLocationsInstancesRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Name of the resource",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "requestId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
-            "smithy.api#httpQuery": "requestId"
-          }
-        }
-      }
-    },
-    "com.gcp.parallelstore_v1beta#DeleteProjectsLocationsInstances": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.parallelstore_v1beta#DeleteProjectsLocationsInstancesRequest"
-      },
-      "output": {
-        "target": "com.gcp.parallelstore_v1beta#Operation"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.parallelstore_v1beta#NotFound"
-        },
-        {
-          "target": "com.gcp.parallelstore_v1beta#Forbidden"
-        },
-        {
-          "target": "com.gcp.parallelstore_v1beta#BadRequest"
-        },
-        {
-          "target": "com.gcp.parallelstore_v1beta#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "v1beta/{+name}"
-        },
-        "smithy.api#documentation": "Deletes a single instance."
-      }
-    },
-    "com.gcp.parallelstore_v1beta#ExportDataProjectsLocationsInstancesRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Name of the resource.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.parallelstore_v1beta#ExportDataRequest",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.parallelstore_v1beta#ExportDataProjectsLocationsInstances": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.parallelstore_v1beta#ExportDataProjectsLocationsInstancesRequest"
-      },
-      "output": {
-        "target": "com.gcp.parallelstore_v1beta#Operation"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.parallelstore_v1beta#NotFound"
-        },
-        {
-          "target": "com.gcp.parallelstore_v1beta#Forbidden"
-        },
-        {
-          "target": "com.gcp.parallelstore_v1beta#BadRequest"
-        },
-        {
-          "target": "com.gcp.parallelstore_v1beta#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1beta/{+name}:exportData"
-        },
-        "smithy.api#documentation": "Copies data from Parallelstore to Cloud Storage."
-      }
-    },
     "com.gcp.parallelstore_v1beta#ListProjectsLocationsInstancesRequest": {
       "type": "structure",
       "members": {
@@ -1306,19 +925,19 @@
             "smithy.api#httpQuery": "orderBy"
           }
         },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A token identifying a page of results the server should return.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
         "parent": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Required. The project and location for which to retrieve instance information, in the format `projects/{project_id}/locations/{location}`. To retrieve instance information for all locations, use \"-\" as the value of `{location}`.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
-          }
-        },
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. A token identifying a page of results the server should return.",
-            "smithy.api#httpQuery": "pageToken"
           }
         },
         "pageSize": {
@@ -1436,6 +1055,32 @@
         }
       }
     },
+    "com.gcp.parallelstore_v1beta#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.gcp.parallelstore_v1beta#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
     "com.gcp.parallelstore_v1beta#CreateProjectsLocationsInstances": {
       "type": "operation",
       "input": {
@@ -1464,6 +1109,70 @@
           "uri": "v1beta/{+parent}/instances"
         },
         "smithy.api#documentation": "Creates a Parallelstore instance in a given project and location."
+      }
+    },
+    "com.gcp.parallelstore_v1beta#PatchProjectsLocationsInstancesRequest": {
+      "type": "structure",
+      "members": {
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Mask of fields to update. Field mask is used to specify the fields to be overwritten in the Instance resource by the update. At least one path must be supplied in this field. The fields specified in the update_mask are relative to the resource, not the full request.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+            "smithy.api#httpQuery": "requestId"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. The resource name of the instance, in the format `projects/{project}/locations/{location}/instances/{instance_id}`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.parallelstore_v1beta#Instance",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.parallelstore_v1beta#PatchProjectsLocationsInstances": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.parallelstore_v1beta#PatchProjectsLocationsInstancesRequest"
+      },
+      "output": {
+        "target": "com.gcp.parallelstore_v1beta#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.parallelstore_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.parallelstore_v1beta#Forbidden"
+        },
+        {
+          "target": "com.gcp.parallelstore_v1beta#BadRequest"
+        },
+        {
+          "target": "com.gcp.parallelstore_v1beta#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1beta/{+name}"
+        },
+        "smithy.api#documentation": "Updates the parameters of a single instance."
       }
     },
     "com.gcp.parallelstore_v1beta#ImportDataProjectsLocationsInstancesRequest": {
@@ -1514,6 +1223,298 @@
           "uri": "v1beta/{+name}:importData"
         },
         "smithy.api#documentation": "Copies data from Cloud Storage to Parallelstore."
+      }
+    },
+    "com.gcp.parallelstore_v1beta#ExportDataProjectsLocationsInstancesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.parallelstore_v1beta#ExportDataRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.parallelstore_v1beta#ExportDataProjectsLocationsInstances": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.parallelstore_v1beta#ExportDataProjectsLocationsInstancesRequest"
+      },
+      "output": {
+        "target": "com.gcp.parallelstore_v1beta#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.parallelstore_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.parallelstore_v1beta#Forbidden"
+        },
+        {
+          "target": "com.gcp.parallelstore_v1beta#BadRequest"
+        },
+        {
+          "target": "com.gcp.parallelstore_v1beta#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta/{+name}:exportData"
+        },
+        "smithy.api#documentation": "Copies data from Parallelstore to Cloud Storage."
+      }
+    },
+    "com.gcp.parallelstore_v1beta#DeleteProjectsLocationsInstancesRequest": {
+      "type": "structure",
+      "members": {
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+            "smithy.api#httpQuery": "requestId"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the resource",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.parallelstore_v1beta#DeleteProjectsLocationsInstances": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.parallelstore_v1beta#DeleteProjectsLocationsInstancesRequest"
+      },
+      "output": {
+        "target": "com.gcp.parallelstore_v1beta#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.parallelstore_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.parallelstore_v1beta#Forbidden"
+        },
+        {
+          "target": "com.gcp.parallelstore_v1beta#BadRequest"
+        },
+        {
+          "target": "com.gcp.parallelstore_v1beta#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1beta/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a single instance."
+      }
+    },
+    "com.gcp.parallelstore_v1beta#CancelProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource to be cancelled.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.parallelstore_v1beta#CancelProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.parallelstore_v1beta#CancelProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.parallelstore_v1beta#GoogleProtobufEmpty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.parallelstore_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.parallelstore_v1beta#Forbidden"
+        },
+        {
+          "target": "com.gcp.parallelstore_v1beta#BadRequest"
+        },
+        {
+          "target": "com.gcp.parallelstore_v1beta#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta/{+name}:cancel"
+        },
+        "smithy.api#documentation": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`."
+      }
+    },
+    "com.gcp.parallelstore_v1beta#GetProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.parallelstore_v1beta#GetProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.parallelstore_v1beta#GetProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.parallelstore_v1beta#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.parallelstore_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.parallelstore_v1beta#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta/{+name}"
+        },
+        "smithy.api#documentation": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service."
+      }
+    },
+    "com.gcp.parallelstore_v1beta#ListProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "returnPartialSuccess": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the [ListOperationsResponse.unreachable] field. This can only be `true` when reading across collections e.g. when `parent` is set to `\"projects/example/locations/-\"`. This field is not by default supported and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+            "smithy.api#httpQuery": "returnPartialSuccess"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard list filter.",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation's parent resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The standard list page size.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard list page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.parallelstore_v1beta#ListProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.parallelstore_v1beta#ListProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.parallelstore_v1beta#ListOperationsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.parallelstore_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.parallelstore_v1beta#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta/{+name}/operations"
+        },
+        "smithy.api#documentation": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.parallelstore_v1beta#DeleteProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource to be deleted.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.parallelstore_v1beta#DeleteProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.parallelstore_v1beta#DeleteProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.parallelstore_v1beta#GoogleProtobufEmpty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.parallelstore_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.parallelstore_v1beta#Forbidden"
+        },
+        {
+          "target": "com.gcp.parallelstore_v1beta#BadRequest"
+        },
+        {
+          "target": "com.gcp.parallelstore_v1beta#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1beta/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`."
       }
     }
   }

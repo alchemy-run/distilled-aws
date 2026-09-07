@@ -54,7 +54,7 @@ export const AddonsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
       method: "PUT",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/addons/{addonName}",
       code: 200,
-      apiVersion: "2025-09-01",
+      apiVersion: "2026-03-01",
     }),
   ),
 ).annotate({
@@ -154,161 +154,6 @@ export const AddonsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "AddonsCreateOrUpdateResponse",
 }) as any as S.Schema<AddonsCreateOrUpdateResponse>;
 
-export interface AddonsDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-  /** Name of the addon. */
-  addonName: string;
-}
-export const AddonsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    privateCloudName: S.String.pipe(T.Label()),
-    addonName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/addons/{addonName}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "AddonsDeleteRequest",
-}) as any as S.Schema<AddonsDeleteRequest>;
-
-export interface AddonsDeleteResponse {}
-export const AddonsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "AddonsDeleteResponse",
-}) as any as S.Schema<AddonsDeleteResponse>;
-
-export interface AddonsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-  /** Name of the addon. */
-  addonName: string;
-}
-export const AddonsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    privateCloudName: S.String.pipe(T.Label()),
-    addonName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/addons/{addonName}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "AddonsGetRequest",
-}) as any as S.Schema<AddonsGetRequest>;
-
-export interface AddonsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: AddonProperties;
-}
-export const AddonsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(AddonProperties),
-  }),
-).annotate({
-  identifier: "AddonsGetResponse",
-}) as any as S.Schema<AddonsGetResponse>;
-
-export interface AddonsListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-}
-export const AddonsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    privateCloudName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/addons",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "AddonsListRequest",
-}) as any as S.Schema<AddonsListRequest>;
-
-/** An addon resource */
-export interface Addon {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: AddonProperties;
-}
-export const Addon = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(AddonProperties),
-  }),
-).annotate({ identifier: "Addon" }) as any as S.Schema<Addon>;
-
-/** The Addon items on this page */
-export type AddonListValueList = Array<Addon>;
-export const AddonListValueList = /*@__PURE__*/ S.Array(
-  Addon,
-) as any as S.Schema<AddonListValueList>;
-
-/** The response of a Addon list operation. */
-export interface AddonList {
-  /** The Addon items on this page */
-  value: AddonListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const AddonList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: AddonListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({ identifier: "AddonList" }) as any as S.Schema<AddonList>;
-
 /** The properties of an ExpressRoute Circuit Authorization resource */
 export interface ExpressRouteAuthorizationPropertiesInput {
   /** The ID of the ExpressRoute Circuit */
@@ -347,7 +192,7 @@ export const AuthorizationsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
       method: "PUT",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/authorizations/{authorizationName}",
       code: 200,
-      apiVersion: "2025-09-01",
+      apiVersion: "2026-03-01",
     }),
   ),
 ).annotate({
@@ -410,165 +255,144 @@ export const AuthorizationsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
   identifier: "AuthorizationsCreateOrUpdateResponse",
 }) as any as S.Schema<AuthorizationsCreateOrUpdateResponse>;
 
-export interface AuthorizationsDeleteRequest {
+export interface CheckLocationQuotaAvailabilityRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-  /** Name of the ExpressRoute Circuit Authorization */
-  authorizationName: string;
+  /** The name of the Azure region. */
+  location: string;
 }
-export const AuthorizationsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const CheckLocationQuotaAvailabilityRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      location: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.AVS/locations/{location}/checkQuotaAvailability",
+        code: 200,
+        apiVersion: "2026-03-01",
+      }),
+    ),
+).annotate({
+  identifier: "CheckLocationQuotaAvailabilityRequest",
+}) as any as S.Schema<CheckLocationQuotaAvailabilityRequest>;
+
+/** Remaining hosts quota by sku type */
+export type QuotaHostsRemainingMap = { [key: string]: number | undefined };
+export const QuotaHostsRemainingMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Number,
+) as any as S.Schema<QuotaHostsRemainingMap>;
+
+/** quota enabled */
+export type QuotaEnabled = "Enabled" | "Disabled";
+export const QuotaEnabled = /*@__PURE__*/ S.String;
+
+/** Subscription quotas */
+export interface Quota {
+  /** Remaining hosts quota by sku type */
+  hostsRemaining?: QuotaHostsRemainingMap;
+  /** Host quota is active for current subscription */
+  quotaEnabled?: QuotaEnabled;
+}
+export const Quota = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    privateCloudName: S.String.pipe(T.Label()),
-    authorizationName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/authorizations/{authorizationName}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "AuthorizationsDeleteRequest",
-}) as any as S.Schema<AuthorizationsDeleteRequest>;
+    hostsRemaining: S.optional(QuotaHostsRemainingMap),
+    quotaEnabled: S.optional(QuotaEnabled),
+  }),
+).annotate({ identifier: "Quota" }) as any as S.Schema<Quota>;
 
-export interface AuthorizationsDeleteResponse {}
-export const AuthorizationsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "AuthorizationsDeleteResponse",
-}) as any as S.Schema<AuthorizationsDeleteResponse>;
+/** This field is required to be implemented by the Resource Provider if the service has more than one tier, but is not required on a PUT. */
+export type SkuTier = "Free" | "Basic" | "Standard" | "Premium";
+export const SkuTier = /*@__PURE__*/ S.String;
 
-export interface AuthorizationsGetRequest {
+export interface CheckLocationTrialAvailabilityRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-  /** Name of the ExpressRoute Circuit Authorization */
-  authorizationName: string;
+  /** The name of the Azure region. */
+  location: string;
+  /** The name of the SKU. E.g. P3. It is typically a letter+number code */
+  name: string;
+  tier?: SkuTier | (string & {});
+  /** The SKU size. When the name field is the combination of tier and some other value, this would be the standalone code. */
+  size?: string;
+  /** If the service has different generations of hardware, for the same SKU, then that can be captured here. */
+  family?: string;
+  /** If the SKU supports scale out/in then the capacity integer should be included. If scale out/in is not possible for the resource this may be omitted. */
+  capacity?: number;
 }
-export const AuthorizationsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    privateCloudName: S.String.pipe(T.Label()),
-    authorizationName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/authorizations/{authorizationName}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
+export const CheckLocationTrialAvailabilityRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      location: S.String.pipe(T.Label()),
+      name: S.String,
+      tier: S.optional(SkuTier),
+      size: S.optional(S.String),
+      family: S.optional(S.String),
+      capacity: S.optional(S.Number),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.AVS/locations/{location}/checkTrialAvailability",
+        code: 200,
+        apiVersion: "2026-03-01",
+      }),
+    ),
 ).annotate({
-  identifier: "AuthorizationsGetRequest",
-}) as any as S.Schema<AuthorizationsGetRequest>;
+  identifier: "CheckLocationTrialAvailabilityRequest",
+}) as any as S.Schema<CheckLocationTrialAvailabilityRequest>;
 
-export interface AuthorizationsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: ExpressRouteAuthorizationProperties;
+/** trial status */
+export type TrialStatus = "TrialAvailable" | "TrialUsed" | "TrialDisabled";
+export const TrialStatus = /*@__PURE__*/ S.String;
+
+/** Subscription trial availability */
+export interface Trial {
+  /** Trial status */
+  status?: TrialStatus;
+  /** Number of trial hosts available */
+  availableHosts?: number;
 }
-export const AuthorizationsGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const Trial = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ExpressRouteAuthorizationProperties),
+    status: S.optional(TrialStatus),
+    availableHosts: S.optional(S.Number),
   }),
-).annotate({
-  identifier: "AuthorizationsGetResponse",
-}) as any as S.Schema<AuthorizationsGetResponse>;
+).annotate({ identifier: "Trial" }) as any as S.Schema<Trial>;
 
-export interface AuthorizationsListRequest {
+export interface CheckServiceComponentAvailabilityRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
+  /** The name of the Azure region. */
+  location: string;
+  /** A service component */
+  serviceComponentName: string;
 }
-export const AuthorizationsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    privateCloudName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/authorizations",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
+export const CheckServiceComponentAvailabilityRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      location: S.String.pipe(T.Label()),
+      serviceComponentName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.AVS/locations/{location}/serviceComponents/{serviceComponentName}/checkAvailability",
+        code: 200,
+        apiVersion: "2026-03-01",
+      }),
+    ),
 ).annotate({
-  identifier: "AuthorizationsListRequest",
-}) as any as S.Schema<AuthorizationsListRequest>;
+  identifier: "CheckServiceComponentAvailabilityRequest",
+}) as any as S.Schema<CheckServiceComponentAvailabilityRequest>;
 
-/** ExpressRoute Circuit Authorization */
-export interface ExpressRouteAuthorization {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: ExpressRouteAuthorizationProperties;
-}
-export const ExpressRouteAuthorization = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ExpressRouteAuthorizationProperties),
-  }),
-).annotate({
-  identifier: "ExpressRouteAuthorization",
-}) as any as S.Schema<ExpressRouteAuthorization>;
-
-/** The ExpressRouteAuthorization items on this page */
-export type ExpressRouteAuthorizationListValueList =
-  Array<ExpressRouteAuthorization>;
-export const ExpressRouteAuthorizationListValueList = /*@__PURE__*/ S.Array(
-  ExpressRouteAuthorization,
-) as any as S.Schema<ExpressRouteAuthorizationListValueList>;
-
-/** The response of a ExpressRouteAuthorization list operation. */
-export interface ExpressRouteAuthorizationList {
-  /** The ExpressRouteAuthorization items on this page */
-  value: ExpressRouteAuthorizationListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const ExpressRouteAuthorizationList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: ExpressRouteAuthorizationListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ExpressRouteAuthorizationList",
-}) as any as S.Schema<ExpressRouteAuthorizationList>;
+export interface CheckServiceComponentAvailabilityResponse {}
+export const CheckServiceComponentAvailabilityResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "CheckServiceComponentAvailabilityResponse",
+  }) as any as S.Schema<CheckServiceComponentAvailabilityResponse>;
 
 /** The properties of a cloud link. */
 export interface CloudLinkPropertiesInput {
@@ -607,7 +431,7 @@ export const CloudLinksCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
       method: "PUT",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/cloudLinks/{cloudLinkName}",
       code: 200,
-      apiVersion: "2025-09-01",
+      apiVersion: "2026-03-01",
     }),
   ),
 ).annotate({
@@ -670,161 +494,6 @@ export const CloudLinksCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CloudLinksCreateOrUpdateResponse",
 }) as any as S.Schema<CloudLinksCreateOrUpdateResponse>;
 
-export interface CloudLinksDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-  /** Name of the cloud link. */
-  cloudLinkName: string;
-}
-export const CloudLinksDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    privateCloudName: S.String.pipe(T.Label()),
-    cloudLinkName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/cloudLinks/{cloudLinkName}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "CloudLinksDeleteRequest",
-}) as any as S.Schema<CloudLinksDeleteRequest>;
-
-export interface CloudLinksDeleteResponse {}
-export const CloudLinksDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "CloudLinksDeleteResponse",
-}) as any as S.Schema<CloudLinksDeleteResponse>;
-
-export interface CloudLinksGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-  /** Name of the cloud link. */
-  cloudLinkName: string;
-}
-export const CloudLinksGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    privateCloudName: S.String.pipe(T.Label()),
-    cloudLinkName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/cloudLinks/{cloudLinkName}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "CloudLinksGetRequest",
-}) as any as S.Schema<CloudLinksGetRequest>;
-
-export interface CloudLinksGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: CloudLinkProperties;
-}
-export const CloudLinksGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(CloudLinkProperties),
-  }),
-).annotate({
-  identifier: "CloudLinksGetResponse",
-}) as any as S.Schema<CloudLinksGetResponse>;
-
-export interface CloudLinksListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-}
-export const CloudLinksListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    privateCloudName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/cloudLinks",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "CloudLinksListRequest",
-}) as any as S.Schema<CloudLinksListRequest>;
-
-/** A cloud link resource */
-export interface CloudLink {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: CloudLinkProperties;
-}
-export const CloudLink = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(CloudLinkProperties),
-  }),
-).annotate({ identifier: "CloudLink" }) as any as S.Schema<CloudLink>;
-
-/** The CloudLink items on this page */
-export type CloudLinkListValueList = Array<CloudLink>;
-export const CloudLinkListValueList = /*@__PURE__*/ S.Array(
-  CloudLink,
-) as any as S.Schema<CloudLinkListValueList>;
-
-/** The response of a CloudLink list operation. */
-export interface CloudLinkList {
-  /** The CloudLink items on this page */
-  value: CloudLinkListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const CloudLinkList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: CloudLinkListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({ identifier: "CloudLinkList" }) as any as S.Schema<CloudLinkList>;
-
 /** The hosts */
 export type ClusterPropertiesInputHostsList = Array<string>;
 export const ClusterPropertiesInputHostsList = /*@__PURE__*/ S.Array(
@@ -849,10 +518,6 @@ export const ClusterPropertiesInput = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ClusterPropertiesInput",
 }) as any as S.Schema<ClusterPropertiesInput>;
-
-/** This field is required to be implemented by the Resource Provider if the service has more than one tier, but is not required on a PUT. */
-export type SkuTier = "Free" | "Basic" | "Standard" | "Premium";
-export const SkuTier = /*@__PURE__*/ S.String;
 
 /** The resource model definition representing SKU */
 export interface ClustersCreateOrUpdateRequestSku {
@@ -905,7 +570,7 @@ export const ClustersCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
       method: "PUT",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}",
       code: 200,
-      apiVersion: "2025-09-01",
+      apiVersion: "2026-03-01",
     }),
   ),
 ).annotate({
@@ -1004,307 +669,102 @@ export const ClustersCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ClustersCreateOrUpdateResponse",
 }) as any as S.Schema<ClustersCreateOrUpdateResponse>;
 
-export interface ClustersDeleteRequest {
+/** Type of DHCP: SERVER or RELAY. */
+export type DhcpTypeEnum = "SERVER" | "RELAY";
+export const DhcpTypeEnum = /*@__PURE__*/ S.String;
+
+/** Base class for WorkloadNetworkDhcpServer and WorkloadNetworkDhcpRelay to inherit from */
+export interface WorkloadNetworkDhcpEntityInput {
+  /** Type of DHCP: SERVER or RELAY. */
+  dhcpType: DhcpTypeEnum | (string & {});
+  /** Display name of the DHCP entity. */
+  displayName?: string;
+  /** NSX revision number. */
+  revision?: number;
+}
+export const WorkloadNetworkDhcpEntityInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    dhcpType: DhcpTypeEnum,
+    displayName: S.optional(S.String),
+    revision: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "WorkloadNetworkDhcpEntityInput",
+}) as any as S.Schema<WorkloadNetworkDhcpEntityInput>;
+
+export interface CreateWorkloadNetworkDhcpRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** Name of the private cloud */
   privateCloudName: string;
-  /** Name of the cluster */
-  clusterName: string;
-}
-export const ClustersDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    privateCloudName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "ClustersDeleteRequest",
-}) as any as S.Schema<ClustersDeleteRequest>;
-
-export interface ClustersDeleteResponse {}
-export const ClustersDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ClustersDeleteResponse",
-}) as any as S.Schema<ClustersDeleteResponse>;
-
-export interface ClustersGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-  /** Name of the cluster */
-  clusterName: string;
-}
-export const ClustersGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    privateCloudName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "ClustersGetRequest",
-}) as any as S.Schema<ClustersGetRequest>;
-
-/** The resource model definition representing SKU */
-export type ClustersGetResponseSku = ClustersCreateOrUpdateResponseSku;
-export const ClustersGetResponseSku = ClustersCreateOrUpdateResponseSku;
-
-export interface ClustersGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
+  /** The ID of the DHCP configuration */
+  dhcpId: string;
   /** The resource-specific properties for this resource. */
-  properties?: ClusterProperties;
-  /** The resource model definition representing SKU */
-  sku: ClustersCreateOrUpdateResponseSku;
+  properties?: WorkloadNetworkDhcpEntityInput;
 }
-export const ClustersGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ClusterProperties),
-    sku: ClustersCreateOrUpdateResponseSku,
-  }),
-).annotate({
-  identifier: "ClustersGetResponse",
-}) as any as S.Schema<ClustersGetResponse>;
-
-export interface ClustersListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-}
-export const ClustersListRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateWorkloadNetworkDhcpRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     privateCloudName: S.String.pipe(T.Label()),
+    dhcpId: S.String.pipe(T.Label()),
+    properties: S.optional(WorkloadNetworkDhcpEntityInput),
   }).pipe(
     T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters",
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dhcpConfigurations/{dhcpId}",
       code: 200,
-      apiVersion: "2025-09-01",
+      apiVersion: "2026-03-01",
     }),
   ),
 ).annotate({
-  identifier: "ClustersListRequest",
-}) as any as S.Schema<ClustersListRequest>;
+  identifier: "CreateWorkloadNetworkDhcpRequest",
+}) as any as S.Schema<CreateWorkloadNetworkDhcpRequest>;
 
-/** The resource model definition representing SKU */
-export type ClusterSku = ClustersCreateOrUpdateResponseSku;
-export const ClusterSku = ClustersCreateOrUpdateResponseSku;
-
-/** A cluster resource */
-export interface Cluster {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: ClusterProperties;
-  /** The resource model definition representing SKU */
-  sku: ClustersCreateOrUpdateResponseSku;
-}
-export const Cluster = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ClusterProperties),
-    sku: ClustersCreateOrUpdateResponseSku,
-  }),
-).annotate({ identifier: "Cluster" }) as any as S.Schema<Cluster>;
-
-/** The Cluster items on this page */
-export type ClusterListValueList = Array<Cluster>;
-export const ClusterListValueList = /*@__PURE__*/ S.Array(
-  Cluster,
-) as any as S.Schema<ClusterListValueList>;
-
-/** The response of a Cluster list operation. */
-export interface ClusterList {
-  /** The Cluster items on this page */
-  value: ClusterListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const ClusterList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: ClusterListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({ identifier: "ClusterList" }) as any as S.Schema<ClusterList>;
-
-export interface ClustersListZonesRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-  /** Name of the cluster */
-  clusterName: string;
-}
-export const ClustersListZonesRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    privateCloudName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}/listZones",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "ClustersListZonesRequest",
-}) as any as S.Schema<ClustersListZonesRequest>;
-
-/** List of hosts belonging to the availability zone in a cluster */
-export type ClusterZoneHostsList = Array<string>;
-export const ClusterZoneHostsList = /*@__PURE__*/ S.Array(
+/** NSX Segments consuming DHCP. */
+export type WorkloadNetworkDhcpEntitySegmentsList = Array<string>;
+export const WorkloadNetworkDhcpEntitySegmentsList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<ClusterZoneHostsList>;
+) as any as S.Schema<WorkloadNetworkDhcpEntitySegmentsList>;
 
-/** Zone and associated hosts info */
-export interface ClusterZone {
-  /** List of hosts belonging to the availability zone in a cluster */
-  hosts?: ClusterZoneHostsList;
-  /** Availability zone identifier */
-  zone?: string;
+/** Workload Network DHCP provisioning state */
+export type WorkloadNetworkDhcpProvisioningState =
+  | "Succeeded"
+  | "Failed"
+  | "Canceled"
+  | "Building"
+  | "Deleting"
+  | "Updating";
+export const WorkloadNetworkDhcpProvisioningState = /*@__PURE__*/ S.String;
+
+/** Base class for WorkloadNetworkDhcpServer and WorkloadNetworkDhcpRelay to inherit from */
+export interface WorkloadNetworkDhcpEntity {
+  /** Type of DHCP: SERVER or RELAY. */
+  dhcpType: DhcpTypeEnum;
+  /** Display name of the DHCP entity. */
+  displayName?: string;
+  /** NSX Segments consuming DHCP. */
+  segments?: WorkloadNetworkDhcpEntitySegmentsList;
+  /** The provisioning state */
+  provisioningState?: WorkloadNetworkDhcpProvisioningState;
+  /** NSX revision number. */
+  revision?: number;
 }
-export const ClusterZone = /*@__PURE__*/ S.suspend(() =>
+export const WorkloadNetworkDhcpEntity = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    hosts: S.optional(ClusterZoneHostsList),
-    zone: S.optional(S.String),
-  }),
-).annotate({ identifier: "ClusterZone" }) as any as S.Schema<ClusterZone>;
-
-/** Zone and associated hosts info */
-export type ClusterZoneListZonesList = Array<ClusterZone>;
-export const ClusterZoneListZonesList = /*@__PURE__*/ S.Array(
-  ClusterZone,
-) as any as S.Schema<ClusterZoneListZonesList>;
-
-/** List of all zones and associated hosts for a cluster */
-export interface ClusterZoneList {
-  /** Zone and associated hosts info */
-  zones?: ClusterZoneListZonesList;
-}
-export const ClusterZoneList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    zones: S.optional(ClusterZoneListZonesList),
-  }),
-).annotate({
-  identifier: "ClusterZoneList",
-}) as any as S.Schema<ClusterZoneList>;
-
-/** The resource model definition representing SKU */
-export type ClustersUpdateRequestSku = ClustersCreateOrUpdateRequestSku;
-export const ClustersUpdateRequestSku = ClustersCreateOrUpdateRequestSku;
-
-/** The hosts */
-export type ClusterUpdatePropertiesHostsList = Array<string>;
-export const ClusterUpdatePropertiesHostsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ClusterUpdatePropertiesHostsList>;
-
-/** The properties of a cluster that may be updated */
-export interface ClusterUpdateProperties {
-  /** The cluster size */
-  clusterSize?: number;
-  /** The hosts */
-  hosts?: ClusterUpdatePropertiesHostsList;
-}
-export const ClusterUpdateProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    clusterSize: S.optional(S.Number),
-    hosts: S.optional(ClusterUpdatePropertiesHostsList),
+    dhcpType: DhcpTypeEnum,
+    displayName: S.optional(S.String),
+    segments: S.optional(WorkloadNetworkDhcpEntitySegmentsList),
+    provisioningState: S.optional(WorkloadNetworkDhcpProvisioningState),
+    revision: S.optional(S.Number),
   }),
 ).annotate({
-  identifier: "ClusterUpdateProperties",
-}) as any as S.Schema<ClusterUpdateProperties>;
+  identifier: "WorkloadNetworkDhcpEntity",
+}) as any as S.Schema<WorkloadNetworkDhcpEntity>;
 
-export interface ClustersUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-  /** Name of the cluster */
-  clusterName: string;
-  /** The resource model definition representing SKU */
-  sku?: ClustersCreateOrUpdateRequestSku;
-  /** The properties of a cluster resource that may be updated */
-  properties?: ClusterUpdateProperties;
-}
-export const ClustersUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    privateCloudName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    sku: S.optional(ClustersCreateOrUpdateRequestSku),
-    properties: S.optional(ClusterUpdateProperties),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "ClustersUpdateRequest",
-}) as any as S.Schema<ClustersUpdateRequest>;
-
-/** The resource model definition representing SKU */
-export type ClustersUpdateResponseSku = ClustersCreateOrUpdateResponseSku;
-export const ClustersUpdateResponseSku = ClustersCreateOrUpdateResponseSku;
-
-export interface ClustersUpdateResponse {
+export interface CreateWorkloadNetworkDhcpResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -1314,22 +774,875 @@ export interface ClustersUpdateResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** The resource-specific properties for this resource. */
-  properties?: ClusterProperties;
-  /** The resource model definition representing SKU */
-  sku: ClustersCreateOrUpdateResponseSku;
+  properties?: WorkloadNetworkDhcpEntity;
 }
-export const ClustersUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const CreateWorkloadNetworkDhcpResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    properties: S.optional(ClusterProperties),
-    sku: ClustersCreateOrUpdateResponseSku,
+    properties: S.optional(WorkloadNetworkDhcpEntity),
   }),
 ).annotate({
-  identifier: "ClustersUpdateResponse",
-}) as any as S.Schema<ClustersUpdateResponse>;
+  identifier: "CreateWorkloadNetworkDhcpResponse",
+}) as any as S.Schema<CreateWorkloadNetworkDhcpResponse>;
+
+/** FQDN zones of the DNS Service. */
+export type WorkloadNetworkDnsServicePropertiesInputFqdnZonesList =
+  Array<string>;
+export const WorkloadNetworkDnsServicePropertiesInputFqdnZonesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<WorkloadNetworkDnsServicePropertiesInputFqdnZonesList>;
+
+/** DNS service log level */
+export type DnsServiceLogLevelEnum =
+  | "DEBUG"
+  | "INFO"
+  | "WARNING"
+  | "ERROR"
+  | "FATAL";
+export const DnsServiceLogLevelEnum = /*@__PURE__*/ S.String;
+
+/** NSX DNS Service Properties */
+export interface WorkloadNetworkDnsServicePropertiesInput {
+  /** Display name of the DNS Service. */
+  displayName?: string;
+  /** DNS service IP of the DNS Service. */
+  dnsServiceIp?: string;
+  /** Default DNS zone of the DNS Service. */
+  defaultDnsZone?: string;
+  /** FQDN zones of the DNS Service. */
+  fqdnZones?: WorkloadNetworkDnsServicePropertiesInputFqdnZonesList;
+  /** DNS Service log level. */
+  logLevel?: DnsServiceLogLevelEnum | (string & {});
+  /** NSX revision number. */
+  revision?: number;
+}
+export const WorkloadNetworkDnsServicePropertiesInput = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      displayName: S.optional(S.String),
+      dnsServiceIp: S.optional(S.String),
+      defaultDnsZone: S.optional(S.String),
+      fqdnZones: S.optional(
+        WorkloadNetworkDnsServicePropertiesInputFqdnZonesList,
+      ),
+      logLevel: S.optional(DnsServiceLogLevelEnum),
+      revision: S.optional(S.Number),
+    }),
+).annotate({
+  identifier: "WorkloadNetworkDnsServicePropertiesInput",
+}) as any as S.Schema<WorkloadNetworkDnsServicePropertiesInput>;
+
+export interface CreateWorkloadNetworkDnsServiceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+  /** ID of the DNS service. */
+  dnsServiceId: string;
+  /** The resource-specific properties for this resource. */
+  properties?: WorkloadNetworkDnsServicePropertiesInput;
+}
+export const CreateWorkloadNetworkDnsServiceRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      privateCloudName: S.String.pipe(T.Label()),
+      dnsServiceId: S.String.pipe(T.Label()),
+      properties: S.optional(WorkloadNetworkDnsServicePropertiesInput),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dnsServices/{dnsServiceId}",
+        code: 200,
+        apiVersion: "2026-03-01",
+      }),
+    ),
+).annotate({
+  identifier: "CreateWorkloadNetworkDnsServiceRequest",
+}) as any as S.Schema<CreateWorkloadNetworkDnsServiceRequest>;
+
+/** FQDN zones of the DNS Service. */
+export type WorkloadNetworkDnsServicePropertiesFqdnZonesList = Array<string>;
+export const WorkloadNetworkDnsServicePropertiesFqdnZonesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<WorkloadNetworkDnsServicePropertiesFqdnZonesList>;
+
+/** DNS service status */
+export type DnsServiceStatusEnum = "SUCCESS" | "FAILURE";
+export const DnsServiceStatusEnum = /*@__PURE__*/ S.String;
+
+/** Workload Network DNS Service provisioning state */
+export type WorkloadNetworkDnsServiceProvisioningState =
+  | "Succeeded"
+  | "Failed"
+  | "Canceled"
+  | "Building"
+  | "Deleting"
+  | "Updating";
+export const WorkloadNetworkDnsServiceProvisioningState =
+  /*@__PURE__*/ S.String;
+
+/** NSX DNS Service Properties */
+export interface WorkloadNetworkDnsServiceProperties {
+  /** Display name of the DNS Service. */
+  displayName?: string;
+  /** DNS service IP of the DNS Service. */
+  dnsServiceIp?: string;
+  /** Default DNS zone of the DNS Service. */
+  defaultDnsZone?: string;
+  /** FQDN zones of the DNS Service. */
+  fqdnZones?: WorkloadNetworkDnsServicePropertiesFqdnZonesList;
+  /** DNS Service log level. */
+  logLevel?: DnsServiceLogLevelEnum;
+  /** DNS Service status. */
+  status?: DnsServiceStatusEnum;
+  /** The provisioning state */
+  provisioningState?: WorkloadNetworkDnsServiceProvisioningState;
+  /** NSX revision number. */
+  revision?: number;
+}
+export const WorkloadNetworkDnsServiceProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    displayName: S.optional(S.String),
+    dnsServiceIp: S.optional(S.String),
+    defaultDnsZone: S.optional(S.String),
+    fqdnZones: S.optional(WorkloadNetworkDnsServicePropertiesFqdnZonesList),
+    logLevel: S.optional(DnsServiceLogLevelEnum),
+    status: S.optional(DnsServiceStatusEnum),
+    provisioningState: S.optional(WorkloadNetworkDnsServiceProvisioningState),
+    revision: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "WorkloadNetworkDnsServiceProperties",
+}) as any as S.Schema<WorkloadNetworkDnsServiceProperties>;
+
+export interface CreateWorkloadNetworkDnsServiceResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: WorkloadNetworkDnsServiceProperties;
+}
+export const CreateWorkloadNetworkDnsServiceResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(WorkloadNetworkDnsServiceProperties),
+    }),
+).annotate({
+  identifier: "CreateWorkloadNetworkDnsServiceResponse",
+}) as any as S.Schema<CreateWorkloadNetworkDnsServiceResponse>;
+
+/** Domain names of the DNS Zone. */
+export type WorkloadNetworkDnsZonePropertiesInputDomainList = Array<string>;
+export const WorkloadNetworkDnsZonePropertiesInputDomainList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<WorkloadNetworkDnsZonePropertiesInputDomainList>;
+
+/** DNS Server IP array of the DNS Zone. */
+export type WorkloadNetworkDnsZonePropertiesInputDnsServerIpsList =
+  Array<string>;
+export const WorkloadNetworkDnsZonePropertiesInputDnsServerIpsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<WorkloadNetworkDnsZonePropertiesInputDnsServerIpsList>;
+
+/** NSX DNS Zone Properties */
+export interface WorkloadNetworkDnsZonePropertiesInput {
+  /** Display name of the DNS Zone. */
+  displayName?: string;
+  /** Domain names of the DNS Zone. */
+  domain?: WorkloadNetworkDnsZonePropertiesInputDomainList;
+  /** DNS Server IP array of the DNS Zone. */
+  dnsServerIps?: WorkloadNetworkDnsZonePropertiesInputDnsServerIpsList;
+  /** Source IP of the DNS Zone. */
+  sourceIp?: string;
+  /** Number of DNS Services using the DNS zone. */
+  dnsServices?: number;
+  /** NSX revision number. */
+  revision?: number;
+}
+export const WorkloadNetworkDnsZonePropertiesInput = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      displayName: S.optional(S.String),
+      domain: S.optional(WorkloadNetworkDnsZonePropertiesInputDomainList),
+      dnsServerIps: S.optional(
+        WorkloadNetworkDnsZonePropertiesInputDnsServerIpsList,
+      ),
+      sourceIp: S.optional(S.String),
+      dnsServices: S.optional(S.Number),
+      revision: S.optional(S.Number),
+    }),
+).annotate({
+  identifier: "WorkloadNetworkDnsZonePropertiesInput",
+}) as any as S.Schema<WorkloadNetworkDnsZonePropertiesInput>;
+
+export interface CreateWorkloadNetworkDnsZoneRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+  /** ID of the DNS zone. */
+  dnsZoneId: string;
+  /** The resource-specific properties for this resource. */
+  properties?: WorkloadNetworkDnsZonePropertiesInput;
+}
+export const CreateWorkloadNetworkDnsZoneRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    privateCloudName: S.String.pipe(T.Label()),
+    dnsZoneId: S.String.pipe(T.Label()),
+    properties: S.optional(WorkloadNetworkDnsZonePropertiesInput),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dnsZones/{dnsZoneId}",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "CreateWorkloadNetworkDnsZoneRequest",
+}) as any as S.Schema<CreateWorkloadNetworkDnsZoneRequest>;
+
+/** Domain names of the DNS Zone. */
+export type WorkloadNetworkDnsZonePropertiesDomainList = Array<string>;
+export const WorkloadNetworkDnsZonePropertiesDomainList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<WorkloadNetworkDnsZonePropertiesDomainList>;
+
+/** DNS Server IP array of the DNS Zone. */
+export type WorkloadNetworkDnsZonePropertiesDnsServerIpsList = Array<string>;
+export const WorkloadNetworkDnsZonePropertiesDnsServerIpsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<WorkloadNetworkDnsZonePropertiesDnsServerIpsList>;
+
+/** Workload Network DNS Zone provisioning state */
+export type WorkloadNetworkDnsZoneProvisioningState =
+  | "Succeeded"
+  | "Failed"
+  | "Canceled"
+  | "Building"
+  | "Deleting"
+  | "Updating";
+export const WorkloadNetworkDnsZoneProvisioningState = /*@__PURE__*/ S.String;
+
+/** NSX DNS Zone Properties */
+export interface WorkloadNetworkDnsZoneProperties {
+  /** Display name of the DNS Zone. */
+  displayName?: string;
+  /** Domain names of the DNS Zone. */
+  domain?: WorkloadNetworkDnsZonePropertiesDomainList;
+  /** DNS Server IP array of the DNS Zone. */
+  dnsServerIps?: WorkloadNetworkDnsZonePropertiesDnsServerIpsList;
+  /** Source IP of the DNS Zone. */
+  sourceIp?: string;
+  /** Number of DNS Services using the DNS zone. */
+  dnsServices?: number;
+  /** The provisioning state */
+  provisioningState?: WorkloadNetworkDnsZoneProvisioningState;
+  /** NSX revision number. */
+  revision?: number;
+}
+export const WorkloadNetworkDnsZoneProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    displayName: S.optional(S.String),
+    domain: S.optional(WorkloadNetworkDnsZonePropertiesDomainList),
+    dnsServerIps: S.optional(WorkloadNetworkDnsZonePropertiesDnsServerIpsList),
+    sourceIp: S.optional(S.String),
+    dnsServices: S.optional(S.Number),
+    provisioningState: S.optional(WorkloadNetworkDnsZoneProvisioningState),
+    revision: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "WorkloadNetworkDnsZoneProperties",
+}) as any as S.Schema<WorkloadNetworkDnsZoneProperties>;
+
+export interface CreateWorkloadNetworkDnsZoneResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: WorkloadNetworkDnsZoneProperties;
+}
+export const CreateWorkloadNetworkDnsZoneResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(WorkloadNetworkDnsZoneProperties),
+    }),
+).annotate({
+  identifier: "CreateWorkloadNetworkDnsZoneResponse",
+}) as any as S.Schema<CreateWorkloadNetworkDnsZoneResponse>;
+
+/** Port Mirroring Direction */
+export type PortMirroringDirectionEnum = "INGRESS" | "EGRESS" | "BIDIRECTIONAL";
+export const PortMirroringDirectionEnum = /*@__PURE__*/ S.String;
+
+/** NSX Port Mirroring Properties */
+export interface WorkloadNetworkPortMirroringPropertiesInput {
+  /** Display name of the port mirroring profile. */
+  displayName?: string;
+  /** Direction of port mirroring profile. */
+  direction?: PortMirroringDirectionEnum | (string & {});
+  /** Source VM Group. */
+  source?: string;
+  /** Destination VM Group. */
+  destination?: string;
+  /** NSX revision number. */
+  revision?: number;
+}
+export const WorkloadNetworkPortMirroringPropertiesInput =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      displayName: S.optional(S.String),
+      direction: S.optional(PortMirroringDirectionEnum),
+      source: S.optional(S.String),
+      destination: S.optional(S.String),
+      revision: S.optional(S.Number),
+    }),
+  ).annotate({
+    identifier: "WorkloadNetworkPortMirroringPropertiesInput",
+  }) as any as S.Schema<WorkloadNetworkPortMirroringPropertiesInput>;
+
+export interface CreateWorkloadNetworkPortMirroringRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+  /** ID of the NSX port mirroring profile. */
+  portMirroringId: string;
+  /** The resource-specific properties for this resource. */
+  properties?: WorkloadNetworkPortMirroringPropertiesInput;
+}
+export const CreateWorkloadNetworkPortMirroringRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      privateCloudName: S.String.pipe(T.Label()),
+      portMirroringId: S.String.pipe(T.Label()),
+      properties: S.optional(WorkloadNetworkPortMirroringPropertiesInput),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/portMirroringProfiles/{portMirroringId}",
+        code: 200,
+        apiVersion: "2026-03-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "CreateWorkloadNetworkPortMirroringRequest",
+  }) as any as S.Schema<CreateWorkloadNetworkPortMirroringRequest>;
+
+/** Port Mirroring status */
+export type PortMirroringStatusEnum = "SUCCESS" | "FAILURE";
+export const PortMirroringStatusEnum = /*@__PURE__*/ S.String;
+
+/** Workload Network Port Mirroring provisioning state */
+export type WorkloadNetworkPortMirroringProvisioningState =
+  | "Succeeded"
+  | "Failed"
+  | "Canceled"
+  | "Building"
+  | "Deleting"
+  | "Updating";
+export const WorkloadNetworkPortMirroringProvisioningState =
+  /*@__PURE__*/ S.String;
+
+/** NSX Port Mirroring Properties */
+export interface WorkloadNetworkPortMirroringProperties {
+  /** Display name of the port mirroring profile. */
+  displayName?: string;
+  /** Direction of port mirroring profile. */
+  direction?: PortMirroringDirectionEnum;
+  /** Source VM Group. */
+  source?: string;
+  /** Destination VM Group. */
+  destination?: string;
+  /** Port Mirroring Status. */
+  status?: PortMirroringStatusEnum;
+  /** The provisioning state */
+  provisioningState?: WorkloadNetworkPortMirroringProvisioningState;
+  /** NSX revision number. */
+  revision?: number;
+}
+export const WorkloadNetworkPortMirroringProperties = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      displayName: S.optional(S.String),
+      direction: S.optional(PortMirroringDirectionEnum),
+      source: S.optional(S.String),
+      destination: S.optional(S.String),
+      status: S.optional(PortMirroringStatusEnum),
+      provisioningState: S.optional(
+        WorkloadNetworkPortMirroringProvisioningState,
+      ),
+      revision: S.optional(S.Number),
+    }),
+).annotate({
+  identifier: "WorkloadNetworkPortMirroringProperties",
+}) as any as S.Schema<WorkloadNetworkPortMirroringProperties>;
+
+export interface CreateWorkloadNetworkPortMirroringResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: WorkloadNetworkPortMirroringProperties;
+}
+export const CreateWorkloadNetworkPortMirroringResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(WorkloadNetworkPortMirroringProperties),
+    }),
+  ).annotate({
+    identifier: "CreateWorkloadNetworkPortMirroringResponse",
+  }) as any as S.Schema<CreateWorkloadNetworkPortMirroringResponse>;
+
+/** NSX Public IP Block Properties */
+export interface WorkloadNetworkPublicIPPropertiesInput {
+  /** Display name of the Public IP Block. */
+  displayName?: string;
+  /** Number of Public IPs requested. */
+  numberOfPublicIPs?: number;
+}
+export const WorkloadNetworkPublicIPPropertiesInput = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      displayName: S.optional(S.String),
+      numberOfPublicIPs: S.optional(S.Number),
+    }),
+).annotate({
+  identifier: "WorkloadNetworkPublicIPPropertiesInput",
+}) as any as S.Schema<WorkloadNetworkPublicIPPropertiesInput>;
+
+export interface CreateWorkloadNetworkPublicIPRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+  /** ID of the DNS zone. */
+  publicIPId: string;
+  /** The resource-specific properties for this resource. */
+  properties?: WorkloadNetworkPublicIPPropertiesInput;
+}
+export const CreateWorkloadNetworkPublicIPRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      privateCloudName: S.String.pipe(T.Label()),
+      publicIPId: S.String.pipe(T.Label()),
+      properties: S.optional(WorkloadNetworkPublicIPPropertiesInput),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/publicIPs/{publicIPId}",
+        code: 200,
+        apiVersion: "2026-03-01",
+      }),
+    ),
+).annotate({
+  identifier: "CreateWorkloadNetworkPublicIPRequest",
+}) as any as S.Schema<CreateWorkloadNetworkPublicIPRequest>;
+
+/** Workload Network Public IP provisioning state */
+export type WorkloadNetworkPublicIPProvisioningState =
+  | "Succeeded"
+  | "Failed"
+  | "Canceled"
+  | "Building"
+  | "Deleting"
+  | "Updating";
+export const WorkloadNetworkPublicIPProvisioningState = /*@__PURE__*/ S.String;
+
+/** NSX Public IP Block Properties */
+export interface WorkloadNetworkPublicIPProperties {
+  /** Display name of the Public IP Block. */
+  displayName?: string;
+  /** Number of Public IPs requested. */
+  numberOfPublicIPs?: number;
+  /** CIDR Block of the Public IP Block. */
+  publicIPBlock?: string;
+  /** The provisioning state */
+  provisioningState?: WorkloadNetworkPublicIPProvisioningState;
+}
+export const WorkloadNetworkPublicIPProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    displayName: S.optional(S.String),
+    numberOfPublicIPs: S.optional(S.Number),
+    publicIPBlock: S.optional(S.String),
+    provisioningState: S.optional(WorkloadNetworkPublicIPProvisioningState),
+  }),
+).annotate({
+  identifier: "WorkloadNetworkPublicIPProperties",
+}) as any as S.Schema<WorkloadNetworkPublicIPProperties>;
+
+export interface CreateWorkloadNetworkPublicIPResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: WorkloadNetworkPublicIPProperties;
+}
+export const CreateWorkloadNetworkPublicIPResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(WorkloadNetworkPublicIPProperties),
+    }),
+).annotate({
+  identifier: "CreateWorkloadNetworkPublicIPResponse",
+}) as any as S.Schema<CreateWorkloadNetworkPublicIPResponse>;
+
+/** DHCP Range assigned for subnet. */
+export type WorkloadNetworkSegmentSubnetDhcpRangesList = Array<string>;
+export const WorkloadNetworkSegmentSubnetDhcpRangesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<WorkloadNetworkSegmentSubnetDhcpRangesList>;
+
+/** Subnet configuration for segment */
+export interface WorkloadNetworkSegmentSubnet {
+  /** DHCP Range assigned for subnet. */
+  dhcpRanges?: WorkloadNetworkSegmentSubnetDhcpRangesList;
+  /** Gateway address. */
+  gatewayAddress?: string;
+}
+export const WorkloadNetworkSegmentSubnet = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    dhcpRanges: S.optional(WorkloadNetworkSegmentSubnetDhcpRangesList),
+    gatewayAddress: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "WorkloadNetworkSegmentSubnet",
+}) as any as S.Schema<WorkloadNetworkSegmentSubnet>;
+
+/** NSX Segment Properties */
+export interface WorkloadNetworkSegmentPropertiesInput {
+  /** Display name of the segment. */
+  displayName?: string;
+  /** Gateway which to connect segment to. */
+  connectedGateway?: string;
+  /** Subnet which to connect segment to. */
+  subnet?: WorkloadNetworkSegmentSubnet;
+  /** NSX revision number. */
+  revision?: number;
+}
+export const WorkloadNetworkSegmentPropertiesInput = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      displayName: S.optional(S.String),
+      connectedGateway: S.optional(S.String),
+      subnet: S.optional(WorkloadNetworkSegmentSubnet),
+      revision: S.optional(S.Number),
+    }),
+).annotate({
+  identifier: "WorkloadNetworkSegmentPropertiesInput",
+}) as any as S.Schema<WorkloadNetworkSegmentPropertiesInput>;
+
+export interface CreateWorkloadNetworkSegmentsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+  /** The ID of the NSX Segment */
+  segmentId: string;
+  /** The resource-specific properties for this resource. */
+  properties?: WorkloadNetworkSegmentPropertiesInput;
+}
+export const CreateWorkloadNetworkSegmentsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      privateCloudName: S.String.pipe(T.Label()),
+      segmentId: S.String.pipe(T.Label()),
+      properties: S.optional(WorkloadNetworkSegmentPropertiesInput),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/segments/{segmentId}",
+        code: 200,
+        apiVersion: "2026-03-01",
+      }),
+    ),
+).annotate({
+  identifier: "CreateWorkloadNetworkSegmentsRequest",
+}) as any as S.Schema<CreateWorkloadNetworkSegmentsRequest>;
+
+/** Ports and any VIF attached to segment. */
+export interface WorkloadNetworkSegmentPortVif {
+  /** Name of port or VIF attached to segment. */
+  portName?: string;
+}
+export const WorkloadNetworkSegmentPortVif = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    portName: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "WorkloadNetworkSegmentPortVif",
+}) as any as S.Schema<WorkloadNetworkSegmentPortVif>;
+
+/** Port Vif which segment is associated with. */
+export type WorkloadNetworkSegmentPropertiesPortVifList =
+  Array<WorkloadNetworkSegmentPortVif>;
+export const WorkloadNetworkSegmentPropertiesPortVifList =
+  /*@__PURE__*/ S.Array(
+    WorkloadNetworkSegmentPortVif,
+  ) as any as S.Schema<WorkloadNetworkSegmentPropertiesPortVifList>;
+
+/** Segment status */
+export type SegmentStatusEnum = "SUCCESS" | "FAILURE";
+export const SegmentStatusEnum = /*@__PURE__*/ S.String;
+
+/** Workload Network Segment provisioning state */
+export type WorkloadNetworkSegmentProvisioningState =
+  | "Succeeded"
+  | "Failed"
+  | "Canceled"
+  | "Building"
+  | "Deleting"
+  | "Updating";
+export const WorkloadNetworkSegmentProvisioningState = /*@__PURE__*/ S.String;
+
+/** NSX Segment Properties */
+export interface WorkloadNetworkSegmentProperties {
+  /** Display name of the segment. */
+  displayName?: string;
+  /** Gateway which to connect segment to. */
+  connectedGateway?: string;
+  /** Subnet which to connect segment to. */
+  subnet?: WorkloadNetworkSegmentSubnet;
+  /** Port Vif which segment is associated with. */
+  portVif?: WorkloadNetworkSegmentPropertiesPortVifList;
+  /** Segment status. */
+  status?: SegmentStatusEnum;
+  /** The provisioning state */
+  provisioningState?: WorkloadNetworkSegmentProvisioningState;
+  /** NSX revision number. */
+  revision?: number;
+}
+export const WorkloadNetworkSegmentProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    displayName: S.optional(S.String),
+    connectedGateway: S.optional(S.String),
+    subnet: S.optional(WorkloadNetworkSegmentSubnet),
+    portVif: S.optional(WorkloadNetworkSegmentPropertiesPortVifList),
+    status: S.optional(SegmentStatusEnum),
+    provisioningState: S.optional(WorkloadNetworkSegmentProvisioningState),
+    revision: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "WorkloadNetworkSegmentProperties",
+}) as any as S.Schema<WorkloadNetworkSegmentProperties>;
+
+export interface CreateWorkloadNetworkSegmentsResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: WorkloadNetworkSegmentProperties;
+}
+export const CreateWorkloadNetworkSegmentsResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(WorkloadNetworkSegmentProperties),
+    }),
+).annotate({
+  identifier: "CreateWorkloadNetworkSegmentsResponse",
+}) as any as S.Schema<CreateWorkloadNetworkSegmentsResponse>;
+
+/** Virtual machine members of this group. */
+export type WorkloadNetworkVMGroupPropertiesInputMembersList = Array<string>;
+export const WorkloadNetworkVMGroupPropertiesInputMembersList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<WorkloadNetworkVMGroupPropertiesInputMembersList>;
+
+/** NSX VM Group Properties */
+export interface WorkloadNetworkVMGroupPropertiesInput {
+  /** Display name of the VM group. */
+  displayName?: string;
+  /** Virtual machine members of this group. */
+  members?: WorkloadNetworkVMGroupPropertiesInputMembersList;
+  /** NSX revision number. */
+  revision?: number;
+}
+export const WorkloadNetworkVMGroupPropertiesInput = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      displayName: S.optional(S.String),
+      members: S.optional(WorkloadNetworkVMGroupPropertiesInputMembersList),
+      revision: S.optional(S.Number),
+    }),
+).annotate({
+  identifier: "WorkloadNetworkVMGroupPropertiesInput",
+}) as any as S.Schema<WorkloadNetworkVMGroupPropertiesInput>;
+
+export interface CreateWorkloadNetworkVMGroupRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+  /** ID of the VM group. */
+  vmGroupId: string;
+  /** The resource-specific properties for this resource. */
+  properties?: WorkloadNetworkVMGroupPropertiesInput;
+}
+export const CreateWorkloadNetworkVMGroupRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    privateCloudName: S.String.pipe(T.Label()),
+    vmGroupId: S.String.pipe(T.Label()),
+    properties: S.optional(WorkloadNetworkVMGroupPropertiesInput),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/vmGroups/{vmGroupId}",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "CreateWorkloadNetworkVMGroupRequest",
+}) as any as S.Schema<CreateWorkloadNetworkVMGroupRequest>;
+
+/** Virtual machine members of this group. */
+export type WorkloadNetworkVMGroupPropertiesMembersList = Array<string>;
+export const WorkloadNetworkVMGroupPropertiesMembersList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<WorkloadNetworkVMGroupPropertiesMembersList>;
+
+/** VM group status */
+export type VMGroupStatusEnum = "SUCCESS" | "FAILURE";
+export const VMGroupStatusEnum = /*@__PURE__*/ S.String;
+
+/** Workload Network VM Group provisioning state */
+export type WorkloadNetworkVMGroupProvisioningState =
+  | "Succeeded"
+  | "Failed"
+  | "Canceled"
+  | "Building"
+  | "Deleting"
+  | "Updating";
+export const WorkloadNetworkVMGroupProvisioningState = /*@__PURE__*/ S.String;
+
+/** NSX VM Group Properties */
+export interface WorkloadNetworkVMGroupProperties {
+  /** Display name of the VM group. */
+  displayName?: string;
+  /** Virtual machine members of this group. */
+  members?: WorkloadNetworkVMGroupPropertiesMembersList;
+  /** VM Group status. */
+  status?: VMGroupStatusEnum;
+  /** The provisioning state */
+  provisioningState?: WorkloadNetworkVMGroupProvisioningState;
+  /** NSX revision number. */
+  revision?: number;
+}
+export const WorkloadNetworkVMGroupProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    displayName: S.optional(S.String),
+    members: S.optional(WorkloadNetworkVMGroupPropertiesMembersList),
+    status: S.optional(VMGroupStatusEnum),
+    provisioningState: S.optional(WorkloadNetworkVMGroupProvisioningState),
+    revision: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "WorkloadNetworkVMGroupProperties",
+}) as any as S.Schema<WorkloadNetworkVMGroupProperties>;
+
+export interface CreateWorkloadNetworkVMGroupResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: WorkloadNetworkVMGroupProperties;
+}
+export const CreateWorkloadNetworkVMGroupResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(WorkloadNetworkVMGroupProperties),
+    }),
+).annotate({
+  identifier: "CreateWorkloadNetworkVMGroupResponse",
+}) as any as S.Schema<CreateWorkloadNetworkVMGroupResponse>;
 
 /** An Azure NetApp Files volume from Microsoft.NetApp provider */
 export interface NetAppVolume {
@@ -1443,7 +1756,7 @@ export const DatastoresCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
       method: "PUT",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}/datastores/{datastoreName}",
       code: 200,
-      apiVersion: "2025-09-01",
+      apiVersion: "2026-03-01",
     }),
   ),
 ).annotate({
@@ -1549,7 +1862,147 @@ export const DatastoresCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DatastoresCreateOrUpdateResponse",
 }) as any as S.Schema<DatastoresCreateOrUpdateResponse>;
 
-export interface DatastoresDeleteRequest {
+export interface DeleteAddonRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+  /** Name of the addon. */
+  addonName: string;
+}
+export const DeleteAddonRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    privateCloudName: S.String.pipe(T.Label()),
+    addonName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/addons/{addonName}",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteAddonRequest",
+}) as any as S.Schema<DeleteAddonRequest>;
+
+export interface DeleteAddonResponse {}
+export const DeleteAddonResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteAddonResponse",
+}) as any as S.Schema<DeleteAddonResponse>;
+
+export interface DeleteAuthorizationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+  /** Name of the ExpressRoute Circuit Authorization */
+  authorizationName: string;
+}
+export const DeleteAuthorizationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    privateCloudName: S.String.pipe(T.Label()),
+    authorizationName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/authorizations/{authorizationName}",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteAuthorizationRequest",
+}) as any as S.Schema<DeleteAuthorizationRequest>;
+
+export interface DeleteAuthorizationResponse {}
+export const DeleteAuthorizationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteAuthorizationResponse",
+}) as any as S.Schema<DeleteAuthorizationResponse>;
+
+export interface DeleteCloudLinkRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+  /** Name of the cloud link. */
+  cloudLinkName: string;
+}
+export const DeleteCloudLinkRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    privateCloudName: S.String.pipe(T.Label()),
+    cloudLinkName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/cloudLinks/{cloudLinkName}",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteCloudLinkRequest",
+}) as any as S.Schema<DeleteCloudLinkRequest>;
+
+export interface DeleteCloudLinkResponse {}
+export const DeleteCloudLinkResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteCloudLinkResponse",
+}) as any as S.Schema<DeleteCloudLinkResponse>;
+
+export interface DeleteClusterRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+  /** Name of the cluster */
+  clusterName: string;
+}
+export const DeleteClusterRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    privateCloudName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteClusterRequest",
+}) as any as S.Schema<DeleteClusterRequest>;
+
+export interface DeleteClusterResponse {}
+export const DeleteClusterResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteClusterResponse",
+}) as any as S.Schema<DeleteClusterResponse>;
+
+export interface DeleteDatastoreRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1561,7 +2014,7 @@ export interface DatastoresDeleteRequest {
   /** Name of the datastore */
   datastoreName: string;
 }
-export const DatastoresDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteDatastoreRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1573,21 +2026,763 @@ export const DatastoresDeleteRequest = /*@__PURE__*/ S.suspend(() =>
       method: "DELETE",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}/datastores/{datastoreName}",
       code: 200,
-      apiVersion: "2025-09-01",
+      apiVersion: "2026-03-01",
     }),
   ),
 ).annotate({
-  identifier: "DatastoresDeleteRequest",
-}) as any as S.Schema<DatastoresDeleteRequest>;
+  identifier: "DeleteDatastoreRequest",
+}) as any as S.Schema<DeleteDatastoreRequest>;
 
-export interface DatastoresDeleteResponse {}
-export const DatastoresDeleteResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteDatastoreResponse {}
+export const DeleteDatastoreResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DatastoresDeleteResponse",
-}) as any as S.Schema<DatastoresDeleteResponse>;
+  identifier: "DeleteDatastoreResponse",
+}) as any as S.Schema<DeleteDatastoreResponse>;
 
-export interface DatastoresGetRequest {
+export interface DeleteGlobalReachConnectionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+  /** Name of the global reach connection */
+  globalReachConnectionName: string;
+}
+export const DeleteGlobalReachConnectionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    privateCloudName: S.String.pipe(T.Label()),
+    globalReachConnectionName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/globalReachConnections/{globalReachConnectionName}",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteGlobalReachConnectionRequest",
+}) as any as S.Schema<DeleteGlobalReachConnectionRequest>;
+
+export interface DeleteGlobalReachConnectionResponse {}
+export const DeleteGlobalReachConnectionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteGlobalReachConnectionResponse",
+}) as any as S.Schema<DeleteGlobalReachConnectionResponse>;
+
+export interface DeleteHcxEnterpriseSiteRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+  /** Name of the HCX Enterprise Site */
+  hcxEnterpriseSiteName: string;
+}
+export const DeleteHcxEnterpriseSiteRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    privateCloudName: S.String.pipe(T.Label()),
+    hcxEnterpriseSiteName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/hcxEnterpriseSites/{hcxEnterpriseSiteName}",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteHcxEnterpriseSiteRequest",
+}) as any as S.Schema<DeleteHcxEnterpriseSiteRequest>;
+
+export interface DeleteHcxEnterpriseSiteResponse {}
+export const DeleteHcxEnterpriseSiteResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteHcxEnterpriseSiteResponse",
+}) as any as S.Schema<DeleteHcxEnterpriseSiteResponse>;
+
+export interface DeleteIscsiPathRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+}
+export const DeleteIscsiPathRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    privateCloudName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/iscsiPaths/default",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteIscsiPathRequest",
+}) as any as S.Schema<DeleteIscsiPathRequest>;
+
+export interface DeleteIscsiPathResponse {}
+export const DeleteIscsiPathResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteIscsiPathResponse",
+}) as any as S.Schema<DeleteIscsiPathResponse>;
+
+export type DeleteLicenseRequestLicenseName = "VmwareFirewall";
+export const DeleteLicenseRequestLicenseName = /*@__PURE__*/ S.String;
+
+export interface DeleteLicenseRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+  /** Name of the license. */
+  licenseName: DeleteLicenseRequestLicenseName | (string & {});
+}
+export const DeleteLicenseRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    privateCloudName: S.String.pipe(T.Label()),
+    licenseName: DeleteLicenseRequestLicenseName.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/licenses/{licenseName}",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteLicenseRequest",
+}) as any as S.Schema<DeleteLicenseRequest>;
+
+export interface DeleteLicenseResponse {}
+export const DeleteLicenseResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteLicenseResponse",
+}) as any as S.Schema<DeleteLicenseResponse>;
+
+export interface DeletePlacementPolicyRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+  /** Name of the cluster */
+  clusterName: string;
+  /** Name of the placement policy. */
+  placementPolicyName: string;
+}
+export const DeletePlacementPolicyRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    privateCloudName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    placementPolicyName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}/placementPolicies/{placementPolicyName}",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeletePlacementPolicyRequest",
+}) as any as S.Schema<DeletePlacementPolicyRequest>;
+
+export interface DeletePlacementPolicyResponse {}
+export const DeletePlacementPolicyResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeletePlacementPolicyResponse",
+}) as any as S.Schema<DeletePlacementPolicyResponse>;
+
+export interface DeletePrivateCloudRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+}
+export const DeletePrivateCloudRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    privateCloudName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeletePrivateCloudRequest",
+}) as any as S.Schema<DeletePrivateCloudRequest>;
+
+export interface DeletePrivateCloudResponse {}
+export const DeletePrivateCloudResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeletePrivateCloudResponse",
+}) as any as S.Schema<DeletePrivateCloudResponse>;
+
+export interface DeletePureStoragePolicyRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+  /** Name of the storage policy. */
+  storagePolicyName: string;
+}
+export const DeletePureStoragePolicyRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    privateCloudName: S.String.pipe(T.Label()),
+    storagePolicyName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/pureStoragePolicies/{storagePolicyName}",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeletePureStoragePolicyRequest",
+}) as any as S.Schema<DeletePureStoragePolicyRequest>;
+
+export interface DeletePureStoragePolicyResponse {}
+export const DeletePureStoragePolicyResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeletePureStoragePolicyResponse",
+}) as any as S.Schema<DeletePureStoragePolicyResponse>;
+
+export interface DeleteScriptExecutionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+  /** Name of the script cmdlet. */
+  scriptExecutionName: string;
+}
+export const DeleteScriptExecutionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    privateCloudName: S.String.pipe(T.Label()),
+    scriptExecutionName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/scriptExecutions/{scriptExecutionName}",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteScriptExecutionRequest",
+}) as any as S.Schema<DeleteScriptExecutionRequest>;
+
+export interface DeleteScriptExecutionResponse {}
+export const DeleteScriptExecutionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteScriptExecutionResponse",
+}) as any as S.Schema<DeleteScriptExecutionResponse>;
+
+export interface DeleteWorkloadNetworkDhcpRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+  /** The ID of the DHCP configuration */
+  dhcpId: string;
+}
+export const DeleteWorkloadNetworkDhcpRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    privateCloudName: S.String.pipe(T.Label()),
+    dhcpId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dhcpConfigurations/{dhcpId}",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteWorkloadNetworkDhcpRequest",
+}) as any as S.Schema<DeleteWorkloadNetworkDhcpRequest>;
+
+export interface DeleteWorkloadNetworkDhcpResponse {}
+export const DeleteWorkloadNetworkDhcpResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteWorkloadNetworkDhcpResponse",
+}) as any as S.Schema<DeleteWorkloadNetworkDhcpResponse>;
+
+export interface DeleteWorkloadNetworkDnsServiceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+  /** ID of the DNS service. */
+  dnsServiceId: string;
+}
+export const DeleteWorkloadNetworkDnsServiceRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      privateCloudName: S.String.pipe(T.Label()),
+      dnsServiceId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dnsServices/{dnsServiceId}",
+        code: 200,
+        apiVersion: "2026-03-01",
+      }),
+    ),
+).annotate({
+  identifier: "DeleteWorkloadNetworkDnsServiceRequest",
+}) as any as S.Schema<DeleteWorkloadNetworkDnsServiceRequest>;
+
+export interface DeleteWorkloadNetworkDnsServiceResponse {}
+export const DeleteWorkloadNetworkDnsServiceResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "DeleteWorkloadNetworkDnsServiceResponse",
+}) as any as S.Schema<DeleteWorkloadNetworkDnsServiceResponse>;
+
+export interface DeleteWorkloadNetworkDnsZoneRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+  /** ID of the DNS zone. */
+  dnsZoneId: string;
+}
+export const DeleteWorkloadNetworkDnsZoneRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    privateCloudName: S.String.pipe(T.Label()),
+    dnsZoneId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dnsZones/{dnsZoneId}",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteWorkloadNetworkDnsZoneRequest",
+}) as any as S.Schema<DeleteWorkloadNetworkDnsZoneRequest>;
+
+export interface DeleteWorkloadNetworkDnsZoneResponse {}
+export const DeleteWorkloadNetworkDnsZoneResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "DeleteWorkloadNetworkDnsZoneResponse",
+}) as any as S.Schema<DeleteWorkloadNetworkDnsZoneResponse>;
+
+export interface DeleteWorkloadNetworkPortMirroringRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+  /** ID of the NSX port mirroring profile. */
+  portMirroringId: string;
+}
+export const DeleteWorkloadNetworkPortMirroringRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      privateCloudName: S.String.pipe(T.Label()),
+      portMirroringId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/portMirroringProfiles/{portMirroringId}",
+        code: 200,
+        apiVersion: "2026-03-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "DeleteWorkloadNetworkPortMirroringRequest",
+  }) as any as S.Schema<DeleteWorkloadNetworkPortMirroringRequest>;
+
+export interface DeleteWorkloadNetworkPortMirroringResponse {}
+export const DeleteWorkloadNetworkPortMirroringResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "DeleteWorkloadNetworkPortMirroringResponse",
+  }) as any as S.Schema<DeleteWorkloadNetworkPortMirroringResponse>;
+
+export interface DeleteWorkloadNetworkPublicIPRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+  /** ID of the DNS zone. */
+  publicIPId: string;
+}
+export const DeleteWorkloadNetworkPublicIPRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      privateCloudName: S.String.pipe(T.Label()),
+      publicIPId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/publicIPs/{publicIPId}",
+        code: 200,
+        apiVersion: "2026-03-01",
+      }),
+    ),
+).annotate({
+  identifier: "DeleteWorkloadNetworkPublicIPRequest",
+}) as any as S.Schema<DeleteWorkloadNetworkPublicIPRequest>;
+
+export interface DeleteWorkloadNetworkPublicIPResponse {}
+export const DeleteWorkloadNetworkPublicIPResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "DeleteWorkloadNetworkPublicIPResponse",
+}) as any as S.Schema<DeleteWorkloadNetworkPublicIPResponse>;
+
+export interface DeleteWorkloadNetworkSegmentRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+  /** The ID of the NSX Segment */
+  segmentId: string;
+}
+export const DeleteWorkloadNetworkSegmentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    privateCloudName: S.String.pipe(T.Label()),
+    segmentId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/segments/{segmentId}",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteWorkloadNetworkSegmentRequest",
+}) as any as S.Schema<DeleteWorkloadNetworkSegmentRequest>;
+
+export interface DeleteWorkloadNetworkSegmentResponse {}
+export const DeleteWorkloadNetworkSegmentResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "DeleteWorkloadNetworkSegmentResponse",
+}) as any as S.Schema<DeleteWorkloadNetworkSegmentResponse>;
+
+export interface DeleteWorkloadNetworkVMGroupRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+  /** ID of the VM group. */
+  vmGroupId: string;
+}
+export const DeleteWorkloadNetworkVMGroupRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    privateCloudName: S.String.pipe(T.Label()),
+    vmGroupId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/vmGroups/{vmGroupId}",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteWorkloadNetworkVMGroupRequest",
+}) as any as S.Schema<DeleteWorkloadNetworkVMGroupRequest>;
+
+export interface DeleteWorkloadNetworkVMGroupResponse {}
+export const DeleteWorkloadNetworkVMGroupResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "DeleteWorkloadNetworkVMGroupResponse",
+}) as any as S.Schema<DeleteWorkloadNetworkVMGroupResponse>;
+
+export interface GetAddonRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+  /** Name of the addon. */
+  addonName: string;
+}
+export const GetAddonRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    privateCloudName: S.String.pipe(T.Label()),
+    addonName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/addons/{addonName}",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetAddonRequest",
+}) as any as S.Schema<GetAddonRequest>;
+
+export interface GetAddonResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: AddonProperties;
+}
+export const GetAddonResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(AddonProperties),
+  }),
+).annotate({
+  identifier: "GetAddonResponse",
+}) as any as S.Schema<GetAddonResponse>;
+
+export interface GetAuthorizationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+  /** Name of the ExpressRoute Circuit Authorization */
+  authorizationName: string;
+}
+export const GetAuthorizationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    privateCloudName: S.String.pipe(T.Label()),
+    authorizationName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/authorizations/{authorizationName}",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetAuthorizationRequest",
+}) as any as S.Schema<GetAuthorizationRequest>;
+
+export interface GetAuthorizationResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: ExpressRouteAuthorizationProperties;
+}
+export const GetAuthorizationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ExpressRouteAuthorizationProperties),
+  }),
+).annotate({
+  identifier: "GetAuthorizationResponse",
+}) as any as S.Schema<GetAuthorizationResponse>;
+
+export interface GetCloudLinkRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+  /** Name of the cloud link. */
+  cloudLinkName: string;
+}
+export const GetCloudLinkRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    privateCloudName: S.String.pipe(T.Label()),
+    cloudLinkName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/cloudLinks/{cloudLinkName}",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetCloudLinkRequest",
+}) as any as S.Schema<GetCloudLinkRequest>;
+
+export interface GetCloudLinkResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: CloudLinkProperties;
+}
+export const GetCloudLinkResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(CloudLinkProperties),
+  }),
+).annotate({
+  identifier: "GetCloudLinkResponse",
+}) as any as S.Schema<GetCloudLinkResponse>;
+
+export interface GetClusterRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+  /** Name of the cluster */
+  clusterName: string;
+}
+export const GetClusterRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    privateCloudName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetClusterRequest",
+}) as any as S.Schema<GetClusterRequest>;
+
+/** The resource model definition representing SKU */
+export type GetClusterResponseSku = ClustersCreateOrUpdateResponseSku;
+export const GetClusterResponseSku = ClustersCreateOrUpdateResponseSku;
+
+export interface GetClusterResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: ClusterProperties;
+  /** The resource model definition representing SKU */
+  sku: ClustersCreateOrUpdateResponseSku;
+}
+export const GetClusterResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ClusterProperties),
+    sku: ClustersCreateOrUpdateResponseSku,
+  }),
+).annotate({
+  identifier: "GetClusterResponse",
+}) as any as S.Schema<GetClusterResponse>;
+
+export interface GetDatastoreRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1599,7 +2794,7 @@ export interface DatastoresGetRequest {
   /** Name of the datastore */
   datastoreName: string;
 }
-export const DatastoresGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetDatastoreRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1611,14 +2806,14 @@ export const DatastoresGetRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}/datastores/{datastoreName}",
       code: 200,
-      apiVersion: "2025-09-01",
+      apiVersion: "2026-03-01",
     }),
   ),
 ).annotate({
-  identifier: "DatastoresGetRequest",
-}) as any as S.Schema<DatastoresGetRequest>;
+  identifier: "GetDatastoreRequest",
+}) as any as S.Schema<GetDatastoreRequest>;
 
-export interface DatastoresGetResponse {
+export interface GetDatastoreResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -1630,7 +2825,7 @@ export interface DatastoresGetResponse {
   /** The resource-specific properties for this resource. */
   properties?: DatastoreProperties;
 }
-export const DatastoresGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetDatastoreResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -1639,101 +2834,10 @@ export const DatastoresGetResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(DatastoreProperties),
   }),
 ).annotate({
-  identifier: "DatastoresGetResponse",
-}) as any as S.Schema<DatastoresGetResponse>;
+  identifier: "GetDatastoreResponse",
+}) as any as S.Schema<GetDatastoreResponse>;
 
-export interface DatastoresListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-  /** Name of the cluster */
-  clusterName: string;
-}
-export const DatastoresListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    privateCloudName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}/datastores",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "DatastoresListRequest",
-}) as any as S.Schema<DatastoresListRequest>;
-
-/** A datastore resource */
-export interface Datastore {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: DatastoreProperties;
-}
-export const Datastore = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(DatastoreProperties),
-  }),
-).annotate({ identifier: "Datastore" }) as any as S.Schema<Datastore>;
-
-/** The Datastore items on this page */
-export type DatastoreListValueList = Array<Datastore>;
-export const DatastoreListValueList = /*@__PURE__*/ S.Array(
-  Datastore,
-) as any as S.Schema<DatastoreListValueList>;
-
-/** The response of a Datastore list operation. */
-export interface DatastoreList {
-  /** The Datastore items on this page */
-  value: DatastoreListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const DatastoreList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: DatastoreListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({ identifier: "DatastoreList" }) as any as S.Schema<DatastoreList>;
-
-/** The properties of a global reach connection */
-export interface GlobalReachConnectionPropertiesInput {
-  /** Authorization key from the peer express route used for the global reach connection */
-  authorizationKey?: string;
-  /** Identifier of the ExpressRoute Circuit to peer with in the global reach connection */
-  peerExpressRouteCircuit?: string;
-  /** The ID of the Private Cloud's ExpressRoute Circuit that is participating in the global reach connection */
-  expressRouteId?: string;
-}
-export const GlobalReachConnectionPropertiesInput = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      authorizationKey: S.optional(S.String),
-      peerExpressRouteCircuit: S.optional(S.String),
-      expressRouteId: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "GlobalReachConnectionPropertiesInput",
-}) as any as S.Schema<GlobalReachConnectionPropertiesInput>;
-
-export interface GlobalReachConnectionsCreateOrUpdateRequest {
+export interface GetGlobalReachConnectionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1742,28 +2846,24 @@ export interface GlobalReachConnectionsCreateOrUpdateRequest {
   privateCloudName: string;
   /** Name of the global reach connection */
   globalReachConnectionName: string;
-  /** The resource-specific properties for this resource. */
-  properties?: GlobalReachConnectionPropertiesInput;
 }
-export const GlobalReachConnectionsCreateOrUpdateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      privateCloudName: S.String.pipe(T.Label()),
-      globalReachConnectionName: S.String.pipe(T.Label()),
-      properties: S.optional(GlobalReachConnectionPropertiesInput),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/globalReachConnections/{globalReachConnectionName}",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "GlobalReachConnectionsCreateOrUpdateRequest",
-  }) as any as S.Schema<GlobalReachConnectionsCreateOrUpdateRequest>;
+export const GetGlobalReachConnectionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    privateCloudName: S.String.pipe(T.Label()),
+    globalReachConnectionName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/globalReachConnections/{globalReachConnectionName}",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetGlobalReachConnectionRequest",
+}) as any as S.Schema<GetGlobalReachConnectionRequest>;
 
 /** Global Reach Connection provisioning state */
 export type GlobalReachConnectionProvisioningState =
@@ -1808,7 +2908,7 @@ export const GlobalReachConnectionProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "GlobalReachConnectionProperties",
 }) as any as S.Schema<GlobalReachConnectionProperties>;
 
-export interface GlobalReachConnectionsCreateOrUpdateResponse {
+export interface GetGlobalReachConnectionResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -1820,95 +2920,7 @@ export interface GlobalReachConnectionsCreateOrUpdateResponse {
   /** The resource-specific properties for this resource. */
   properties?: GlobalReachConnectionProperties;
 }
-export const GlobalReachConnectionsCreateOrUpdateResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(GlobalReachConnectionProperties),
-    }),
-  ).annotate({
-    identifier: "GlobalReachConnectionsCreateOrUpdateResponse",
-  }) as any as S.Schema<GlobalReachConnectionsCreateOrUpdateResponse>;
-
-export interface GlobalReachConnectionsDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-  /** Name of the global reach connection */
-  globalReachConnectionName: string;
-}
-export const GlobalReachConnectionsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    privateCloudName: S.String.pipe(T.Label()),
-    globalReachConnectionName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/globalReachConnections/{globalReachConnectionName}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "GlobalReachConnectionsDeleteRequest",
-}) as any as S.Schema<GlobalReachConnectionsDeleteRequest>;
-
-export interface GlobalReachConnectionsDeleteResponse {}
-export const GlobalReachConnectionsDeleteResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "GlobalReachConnectionsDeleteResponse",
-}) as any as S.Schema<GlobalReachConnectionsDeleteResponse>;
-
-export interface GlobalReachConnectionsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-  /** Name of the global reach connection */
-  globalReachConnectionName: string;
-}
-export const GlobalReachConnectionsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    privateCloudName: S.String.pipe(T.Label()),
-    globalReachConnectionName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/globalReachConnections/{globalReachConnectionName}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "GlobalReachConnectionsGetRequest",
-}) as any as S.Schema<GlobalReachConnectionsGetRequest>;
-
-export interface GlobalReachConnectionsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: GlobalReachConnectionProperties;
-}
-export const GlobalReachConnectionsGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetGlobalReachConnectionResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -1917,90 +2929,10 @@ export const GlobalReachConnectionsGetResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(GlobalReachConnectionProperties),
   }),
 ).annotate({
-  identifier: "GlobalReachConnectionsGetResponse",
-}) as any as S.Schema<GlobalReachConnectionsGetResponse>;
+  identifier: "GetGlobalReachConnectionResponse",
+}) as any as S.Schema<GetGlobalReachConnectionResponse>;
 
-export interface GlobalReachConnectionsListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-}
-export const GlobalReachConnectionsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    privateCloudName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/globalReachConnections",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "GlobalReachConnectionsListRequest",
-}) as any as S.Schema<GlobalReachConnectionsListRequest>;
-
-/** A global reach connection resource */
-export interface GlobalReachConnection {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: GlobalReachConnectionProperties;
-}
-export const GlobalReachConnection = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(GlobalReachConnectionProperties),
-  }),
-).annotate({
-  identifier: "GlobalReachConnection",
-}) as any as S.Schema<GlobalReachConnection>;
-
-/** The GlobalReachConnection items on this page */
-export type GlobalReachConnectionListValueList = Array<GlobalReachConnection>;
-export const GlobalReachConnectionListValueList = /*@__PURE__*/ S.Array(
-  GlobalReachConnection,
-) as any as S.Schema<GlobalReachConnectionListValueList>;
-
-/** The response of a GlobalReachConnection list operation. */
-export interface GlobalReachConnectionList {
-  /** The GlobalReachConnection items on this page */
-  value: GlobalReachConnectionListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const GlobalReachConnectionList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: GlobalReachConnectionListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "GlobalReachConnectionList",
-}) as any as S.Schema<GlobalReachConnectionList>;
-
-/** The properties of an HCX Enterprise Site */
-export interface HcxEnterpriseSitePropertiesInput {}
-export const HcxEnterpriseSitePropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "HcxEnterpriseSitePropertiesInput",
-}) as any as S.Schema<HcxEnterpriseSitePropertiesInput>;
-
-export interface HcxEnterpriseSitesCreateOrUpdateRequest {
+export interface GetHcxEnterpriseSiteRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2009,28 +2941,24 @@ export interface HcxEnterpriseSitesCreateOrUpdateRequest {
   privateCloudName: string;
   /** Name of the HCX Enterprise Site */
   hcxEnterpriseSiteName: string;
-  /** The resource-specific properties for this resource. */
-  properties?: HcxEnterpriseSitePropertiesInput;
 }
-export const HcxEnterpriseSitesCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      privateCloudName: S.String.pipe(T.Label()),
-      hcxEnterpriseSiteName: S.String.pipe(T.Label()),
-      properties: S.optional(HcxEnterpriseSitePropertiesInput),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/hcxEnterpriseSites/{hcxEnterpriseSiteName}",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
+export const GetHcxEnterpriseSiteRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    privateCloudName: S.String.pipe(T.Label()),
+    hcxEnterpriseSiteName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/hcxEnterpriseSites/{hcxEnterpriseSiteName}",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
 ).annotate({
-  identifier: "HcxEnterpriseSitesCreateOrUpdateRequest",
-}) as any as S.Schema<HcxEnterpriseSitesCreateOrUpdateRequest>;
+  identifier: "GetHcxEnterpriseSiteRequest",
+}) as any as S.Schema<GetHcxEnterpriseSiteRequest>;
 
 /** HCX Enterprise Site provisioning state */
 export type HcxEnterpriseSiteProvisioningState =
@@ -2066,7 +2994,7 @@ export const HcxEnterpriseSiteProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "HcxEnterpriseSiteProperties",
 }) as any as S.Schema<HcxEnterpriseSiteProperties>;
 
-export interface HcxEnterpriseSitesCreateOrUpdateResponse {
+export interface GetHcxEnterpriseSiteResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -2078,95 +3006,7 @@ export interface HcxEnterpriseSitesCreateOrUpdateResponse {
   /** The resource-specific properties for this resource. */
   properties?: HcxEnterpriseSiteProperties;
 }
-export const HcxEnterpriseSitesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(HcxEnterpriseSiteProperties),
-    }),
-).annotate({
-  identifier: "HcxEnterpriseSitesCreateOrUpdateResponse",
-}) as any as S.Schema<HcxEnterpriseSitesCreateOrUpdateResponse>;
-
-export interface HcxEnterpriseSitesDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-  /** Name of the HCX Enterprise Site */
-  hcxEnterpriseSiteName: string;
-}
-export const HcxEnterpriseSitesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    privateCloudName: S.String.pipe(T.Label()),
-    hcxEnterpriseSiteName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/hcxEnterpriseSites/{hcxEnterpriseSiteName}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "HcxEnterpriseSitesDeleteRequest",
-}) as any as S.Schema<HcxEnterpriseSitesDeleteRequest>;
-
-export interface HcxEnterpriseSitesDeleteResponse {}
-export const HcxEnterpriseSitesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "HcxEnterpriseSitesDeleteResponse",
-}) as any as S.Schema<HcxEnterpriseSitesDeleteResponse>;
-
-export interface HcxEnterpriseSitesGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-  /** Name of the HCX Enterprise Site */
-  hcxEnterpriseSiteName: string;
-}
-export const HcxEnterpriseSitesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    privateCloudName: S.String.pipe(T.Label()),
-    hcxEnterpriseSiteName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/hcxEnterpriseSites/{hcxEnterpriseSiteName}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "HcxEnterpriseSitesGetRequest",
-}) as any as S.Schema<HcxEnterpriseSitesGetRequest>;
-
-export interface HcxEnterpriseSitesGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: HcxEnterpriseSiteProperties;
-}
-export const HcxEnterpriseSitesGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetHcxEnterpriseSiteResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -2175,82 +3015,10 @@ export const HcxEnterpriseSitesGetResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(HcxEnterpriseSiteProperties),
   }),
 ).annotate({
-  identifier: "HcxEnterpriseSitesGetResponse",
-}) as any as S.Schema<HcxEnterpriseSitesGetResponse>;
+  identifier: "GetHcxEnterpriseSiteResponse",
+}) as any as S.Schema<GetHcxEnterpriseSiteResponse>;
 
-export interface HcxEnterpriseSitesListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-}
-export const HcxEnterpriseSitesListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    privateCloudName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/hcxEnterpriseSites",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "HcxEnterpriseSitesListRequest",
-}) as any as S.Schema<HcxEnterpriseSitesListRequest>;
-
-/** An HCX Enterprise Site resource */
-export interface HcxEnterpriseSite {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: HcxEnterpriseSiteProperties;
-}
-export const HcxEnterpriseSite = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(HcxEnterpriseSiteProperties),
-  }),
-).annotate({
-  identifier: "HcxEnterpriseSite",
-}) as any as S.Schema<HcxEnterpriseSite>;
-
-/** The HcxEnterpriseSite items on this page */
-export type HcxEnterpriseSiteListValueList = Array<HcxEnterpriseSite>;
-export const HcxEnterpriseSiteListValueList = /*@__PURE__*/ S.Array(
-  HcxEnterpriseSite,
-) as any as S.Schema<HcxEnterpriseSiteListValueList>;
-
-/** The response of a HcxEnterpriseSite list operation. */
-export interface HcxEnterpriseSiteList {
-  /** The HcxEnterpriseSite items on this page */
-  value: HcxEnterpriseSiteListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const HcxEnterpriseSiteList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: HcxEnterpriseSiteListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "HcxEnterpriseSiteList",
-}) as any as S.Schema<HcxEnterpriseSiteList>;
-
-export interface HostsGetRequest {
+export interface GetHostRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2262,7 +3030,7 @@ export interface HostsGetRequest {
   /** The host identifier. */
   hostId: string;
 }
-export const HostsGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetHostRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -2274,12 +3042,10 @@ export const HostsGetRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}/hosts/{hostId}",
       code: 200,
-      apiVersion: "2025-09-01",
+      apiVersion: "2026-03-01",
     }),
   ),
-).annotate({
-  identifier: "HostsGetRequest",
-}) as any as S.Schema<HostsGetRequest>;
+).annotate({ identifier: "GetHostRequest" }) as any as S.Schema<GetHostRequest>;
 
 /** The kind of host. */
 export type HostKind = "General" | "Specialized";
@@ -2292,6 +3058,27 @@ export const HostProvisioningState = /*@__PURE__*/ S.String;
 /** The reason for host maintenance. */
 export type HostMaintenance = "Replacement" | "Upgrade";
 export const HostMaintenance = /*@__PURE__*/ S.String;
+
+/** The kind of host license. */
+export type HostLicenseKind = "WindowsServer";
+export const HostLicenseKind = /*@__PURE__*/ S.String;
+
+/** A license assigned to a host. */
+export interface HostLicense {
+  /** License kind */
+  kind: HostLicenseKind | (string & {});
+}
+export const HostLicense = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    kind: HostLicenseKind,
+  }),
+).annotate({ identifier: "HostLicense" }) as any as S.Schema<HostLicense>;
+
+/** The licenses assigned to the host. */
+export type HostPropertiesLicensesList = Array<HostLicense>;
+export const HostPropertiesLicensesList = /*@__PURE__*/ S.Array(
+  HostLicense,
+) as any as S.Schema<HostPropertiesLicensesList>;
 
 /** The properties of a host. */
 export interface HostProperties {
@@ -2308,6 +3095,8 @@ export interface HostProperties {
   /** If provided, the host is in maintenance. The value is the reason for maintenance. */
   maintenance?: HostMaintenance;
   faultDomain?: string;
+  /** The licenses assigned to the host. */
+  licenses?: HostPropertiesLicensesList;
 }
 export const HostProperties = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -2318,20 +3107,21 @@ export const HostProperties = /*@__PURE__*/ S.suspend(() =>
     fqdn: S.optional(S.String),
     maintenance: S.optional(HostMaintenance),
     faultDomain: S.optional(S.String),
+    licenses: S.optional(HostPropertiesLicensesList),
   }),
 ).annotate({ identifier: "HostProperties" }) as any as S.Schema<HostProperties>;
 
 /** The availability zones. */
-export type HostsGetResponseZonesList = Array<string>;
-export const HostsGetResponseZonesList = /*@__PURE__*/ S.Array(
+export type GetHostResponseZonesList = Array<string>;
+export const GetHostResponseZonesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<HostsGetResponseZonesList>;
+) as any as S.Schema<GetHostResponseZonesList>;
 
 /** The resource model definition representing SKU */
-export type HostsGetResponseSku = ClustersCreateOrUpdateResponseSku;
-export const HostsGetResponseSku = ClustersCreateOrUpdateResponseSku;
+export type GetHostResponseSku = ClustersCreateOrUpdateResponseSku;
+export const GetHostResponseSku = ClustersCreateOrUpdateResponseSku;
 
-export interface HostsGetResponse {
+export interface GetHostResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -2343,151 +3133,48 @@ export interface HostsGetResponse {
   /** The resource-specific properties for this resource. */
   properties?: HostProperties;
   /** The availability zones. */
-  zones?: HostsGetResponseZonesList;
+  zones?: GetHostResponseZonesList;
   /** The resource model definition representing SKU */
   sku?: ClustersCreateOrUpdateResponseSku;
 }
-export const HostsGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetHostResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(HostProperties),
-    zones: S.optional(HostsGetResponseZonesList),
+    zones: S.optional(GetHostResponseZonesList),
     sku: S.optional(ClustersCreateOrUpdateResponseSku),
   }),
 ).annotate({
-  identifier: "HostsGetResponse",
-}) as any as S.Schema<HostsGetResponse>;
+  identifier: "GetHostResponse",
+}) as any as S.Schema<GetHostResponse>;
 
-export interface HostsListRequest {
+export interface GetIscsiPathRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** Name of the private cloud */
   privateCloudName: string;
-  /** Name of the cluster */
-  clusterName: string;
 }
-export const HostsListRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetIscsiPathRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     privateCloudName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}/hosts",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "HostsListRequest",
-}) as any as S.Schema<HostsListRequest>;
-
-/** The availability zones. */
-export type HostZonesList = Array<string>;
-export const HostZonesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<HostZonesList>;
-
-/** The resource model definition representing SKU */
-export type HostSku = ClustersCreateOrUpdateResponseSku;
-export const HostSku = ClustersCreateOrUpdateResponseSku;
-
-/** A host resource */
-export interface Host {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: HostProperties;
-  /** The availability zones. */
-  zones?: HostZonesList;
-  /** The resource model definition representing SKU */
-  sku?: ClustersCreateOrUpdateResponseSku;
-}
-export const Host = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(HostProperties),
-    zones: S.optional(HostZonesList),
-    sku: S.optional(ClustersCreateOrUpdateResponseSku),
-  }),
-).annotate({ identifier: "Host" }) as any as S.Schema<Host>;
-
-/** The Host items on this page */
-export type HostListResultValueList = Array<Host>;
-export const HostListResultValueList = /*@__PURE__*/ S.Array(
-  Host,
-) as any as S.Schema<HostListResultValueList>;
-
-/** The response of a Host list operation. */
-export interface HostListResult {
-  /** The Host items on this page */
-  value: HostListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const HostListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: HostListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({ identifier: "HostListResult" }) as any as S.Schema<HostListResult>;
-
-/** The properties of an iSCSI path resource */
-export interface IscsiPathPropertiesInput {
-  /** CIDR Block for iSCSI path. */
-  networkBlock: string;
-}
-export const IscsiPathPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    networkBlock: S.String,
-  }),
-).annotate({
-  identifier: "IscsiPathPropertiesInput",
-}) as any as S.Schema<IscsiPathPropertiesInput>;
-
-export interface IscsiPathsCreateOrUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-  /** The resource-specific properties for this resource. */
-  properties?: IscsiPathPropertiesInput;
-}
-export const IscsiPathsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    privateCloudName: S.String.pipe(T.Label()),
-    properties: S.optional(IscsiPathPropertiesInput),
-  }).pipe(
-    T.Http({
-      method: "PUT",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/iscsiPaths/default",
       code: 200,
-      apiVersion: "2025-09-01",
+      apiVersion: "2026-03-01",
     }),
   ),
 ).annotate({
-  identifier: "IscsiPathsCreateOrUpdateRequest",
-}) as any as S.Schema<IscsiPathsCreateOrUpdateRequest>;
+  identifier: "GetIscsiPathRequest",
+}) as any as S.Schema<GetIscsiPathRequest>;
 
 /** private cloud provisioning state */
 export type IscsiPathProvisioningState =
@@ -2516,7 +3203,7 @@ export const IscsiPathProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "IscsiPathProperties",
 }) as any as S.Schema<IscsiPathProperties>;
 
-export interface IscsiPathsCreateOrUpdateResponse {
+export interface GetIscsiPathResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -2528,7 +3215,7 @@ export interface IscsiPathsCreateOrUpdateResponse {
   /** The resource-specific properties for this resource. */
   properties?: IscsiPathProperties;
 }
-export const IscsiPathsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetIscsiPathResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -2537,181 +3224,13 @@ export const IscsiPathsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(IscsiPathProperties),
   }),
 ).annotate({
-  identifier: "IscsiPathsCreateOrUpdateResponse",
-}) as any as S.Schema<IscsiPathsCreateOrUpdateResponse>;
+  identifier: "GetIscsiPathResponse",
+}) as any as S.Schema<GetIscsiPathResponse>;
 
-export interface IscsiPathsDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-}
-export const IscsiPathsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    privateCloudName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/iscsiPaths/default",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "IscsiPathsDeleteRequest",
-}) as any as S.Schema<IscsiPathsDeleteRequest>;
+export type GetLicenseRequestLicenseName = "VmwareFirewall";
+export const GetLicenseRequestLicenseName = /*@__PURE__*/ S.String;
 
-export interface IscsiPathsDeleteResponse {}
-export const IscsiPathsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "IscsiPathsDeleteResponse",
-}) as any as S.Schema<IscsiPathsDeleteResponse>;
-
-export interface IscsiPathsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-}
-export const IscsiPathsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    privateCloudName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/iscsiPaths/default",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "IscsiPathsGetRequest",
-}) as any as S.Schema<IscsiPathsGetRequest>;
-
-export interface IscsiPathsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: IscsiPathProperties;
-}
-export const IscsiPathsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(IscsiPathProperties),
-  }),
-).annotate({
-  identifier: "IscsiPathsGetResponse",
-}) as any as S.Schema<IscsiPathsGetResponse>;
-
-export interface IscsiPathsListByPrivateCloudRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-}
-export const IscsiPathsListByPrivateCloudRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    privateCloudName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/iscsiPaths",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "IscsiPathsListByPrivateCloudRequest",
-}) as any as S.Schema<IscsiPathsListByPrivateCloudRequest>;
-
-/** An iSCSI path resource */
-export interface IscsiPath {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: IscsiPathProperties;
-}
-export const IscsiPath = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(IscsiPathProperties),
-  }),
-).annotate({ identifier: "IscsiPath" }) as any as S.Schema<IscsiPath>;
-
-/** The IscsiPath items on this page */
-export type IscsiPathListResultValueList = Array<IscsiPath>;
-export const IscsiPathListResultValueList = /*@__PURE__*/ S.Array(
-  IscsiPath,
-) as any as S.Schema<IscsiPathListResultValueList>;
-
-/** The response of a IscsiPath list operation. */
-export interface IscsiPathListResult {
-  /** The IscsiPath items on this page */
-  value: IscsiPathListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const IscsiPathListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: IscsiPathListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "IscsiPathListResult",
-}) as any as S.Schema<IscsiPathListResult>;
-
-export type LicensesCreateOrUpdateRequestLicenseName = "VmwareFirewall";
-export const LicensesCreateOrUpdateRequestLicenseName = /*@__PURE__*/ S.String;
-
-/** The kind of license. */
-export type LicenseKind = "VmwareFirewall";
-export const LicenseKind = /*@__PURE__*/ S.String;
-
-/** The properties of a license */
-export interface LicensePropertiesInput {
-  /** License kind */
-  kind: LicenseKind | (string & {});
-}
-export const LicensePropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    kind: LicenseKind,
-  }),
-).annotate({
-  identifier: "LicensePropertiesInput",
-}) as any as S.Schema<LicensePropertiesInput>;
-
-export interface LicensesCreateOrUpdateRequest {
+export interface GetLicenseRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2719,28 +3238,29 @@ export interface LicensesCreateOrUpdateRequest {
   /** Name of the private cloud */
   privateCloudName: string;
   /** Name of the license. */
-  licenseName: LicensesCreateOrUpdateRequestLicenseName | (string & {});
-  /** The resource-specific properties for this resource. */
-  properties?: LicensePropertiesInput;
+  licenseName: GetLicenseRequestLicenseName | (string & {});
 }
-export const LicensesCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetLicenseRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     privateCloudName: S.String.pipe(T.Label()),
-    licenseName: LicensesCreateOrUpdateRequestLicenseName.pipe(T.Label()),
-    properties: S.optional(LicensePropertiesInput),
+    licenseName: GetLicenseRequestLicenseName.pipe(T.Label()),
   }).pipe(
     T.Http({
-      method: "PUT",
+      method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/licenses/{licenseName}",
       code: 200,
-      apiVersion: "2025-09-01",
+      apiVersion: "2026-03-01",
     }),
   ),
 ).annotate({
-  identifier: "LicensesCreateOrUpdateRequest",
-}) as any as S.Schema<LicensesCreateOrUpdateRequest>;
+  identifier: "GetLicenseRequest",
+}) as any as S.Schema<GetLicenseRequest>;
+
+/** The kind of license. */
+export type LicenseKind = "VmwareFirewall";
+export const LicenseKind = /*@__PURE__*/ S.String;
 
 /** provisioning state of the license */
 export type LicenseProvisioningState = "Succeeded" | "Failed" | "Canceled";
@@ -2762,7 +3282,7 @@ export const LicenseProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "LicenseProperties",
 }) as any as S.Schema<LicenseProperties>;
 
-export interface LicensesCreateOrUpdateResponse {
+export interface GetLicenseResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -2774,7 +3294,7 @@ export interface LicensesCreateOrUpdateResponse {
   /** The resource-specific properties for this resource. */
   properties?: LicenseProperties;
 }
-export const LicensesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetLicenseResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -2783,13 +3303,13 @@ export const LicensesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(LicenseProperties),
   }),
 ).annotate({
-  identifier: "LicensesCreateOrUpdateResponse",
-}) as any as S.Schema<LicensesCreateOrUpdateResponse>;
+  identifier: "GetLicenseResponse",
+}) as any as S.Schema<GetLicenseResponse>;
 
-export type LicensesDeleteRequestLicenseName = "VmwareFirewall";
-export const LicensesDeleteRequestLicenseName = /*@__PURE__*/ S.String;
+export type GetLicensePropertiesRequestLicenseName = "VmwareFirewall";
+export const GetLicensePropertiesRequestLicenseName = /*@__PURE__*/ S.String;
 
-export interface LicensesDeleteRequest {
+export interface GetLicensePropertiesRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2797,293 +3317,27 @@ export interface LicensesDeleteRequest {
   /** Name of the private cloud */
   privateCloudName: string;
   /** Name of the license. */
-  licenseName: LicensesDeleteRequestLicenseName | (string & {});
+  licenseName: GetLicensePropertiesRequestLicenseName | (string & {});
 }
-export const LicensesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetLicensePropertiesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     privateCloudName: S.String.pipe(T.Label()),
-    licenseName: LicensesDeleteRequestLicenseName.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/licenses/{licenseName}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "LicensesDeleteRequest",
-}) as any as S.Schema<LicensesDeleteRequest>;
-
-export interface LicensesDeleteResponse {}
-export const LicensesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "LicensesDeleteResponse",
-}) as any as S.Schema<LicensesDeleteResponse>;
-
-export type LicensesGetRequestLicenseName = "VmwareFirewall";
-export const LicensesGetRequestLicenseName = /*@__PURE__*/ S.String;
-
-export interface LicensesGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-  /** Name of the license. */
-  licenseName: LicensesGetRequestLicenseName | (string & {});
-}
-export const LicensesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    privateCloudName: S.String.pipe(T.Label()),
-    licenseName: LicensesGetRequestLicenseName.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/licenses/{licenseName}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "LicensesGetRequest",
-}) as any as S.Schema<LicensesGetRequest>;
-
-export interface LicensesGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: LicenseProperties;
-}
-export const LicensesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(LicenseProperties),
-  }),
-).annotate({
-  identifier: "LicensesGetResponse",
-}) as any as S.Schema<LicensesGetResponse>;
-
-export type LicensesGetPropertiesRequestLicenseName = "VmwareFirewall";
-export const LicensesGetPropertiesRequestLicenseName = /*@__PURE__*/ S.String;
-
-export interface LicensesGetPropertiesRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-  /** Name of the license. */
-  licenseName: LicensesGetPropertiesRequestLicenseName | (string & {});
-}
-export const LicensesGetPropertiesRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    privateCloudName: S.String.pipe(T.Label()),
-    licenseName: LicensesGetPropertiesRequestLicenseName.pipe(T.Label()),
+    licenseName: GetLicensePropertiesRequestLicenseName.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "POST",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/licenses/{licenseName}/getProperties",
       code: 200,
-      apiVersion: "2025-09-01",
+      apiVersion: "2026-03-01",
     }),
   ),
 ).annotate({
-  identifier: "LicensesGetPropertiesRequest",
-}) as any as S.Schema<LicensesGetPropertiesRequest>;
+  identifier: "GetLicensePropertiesRequest",
+}) as any as S.Schema<GetLicensePropertiesRequest>;
 
-export interface LicensesListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-}
-export const LicensesListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    privateCloudName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/licenses",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "LicensesListRequest",
-}) as any as S.Schema<LicensesListRequest>;
-
-/** A license resource */
-export interface License {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: LicenseProperties;
-}
-export const License = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(LicenseProperties),
-  }),
-).annotate({ identifier: "License" }) as any as S.Schema<License>;
-
-/** The License items on this page */
-export type LicenseListResultValueList = Array<License>;
-export const LicenseListResultValueList = /*@__PURE__*/ S.Array(
-  License,
-) as any as S.Schema<LicenseListResultValueList>;
-
-/** The response of a License list operation. */
-export interface LicenseListResult {
-  /** The License items on this page */
-  value: LicenseListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const LicenseListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: LicenseListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "LicenseListResult",
-}) as any as S.Schema<LicenseListResult>;
-
-export interface LocationsCheckQuotaAvailabilityRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the Azure region. */
-  location: string;
-}
-export const LocationsCheckQuotaAvailabilityRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      location: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.AVS/locations/{location}/checkQuotaAvailability",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
-).annotate({
-  identifier: "LocationsCheckQuotaAvailabilityRequest",
-}) as any as S.Schema<LocationsCheckQuotaAvailabilityRequest>;
-
-/** Remaining hosts quota by sku type */
-export type QuotaHostsRemainingMap = { [key: string]: number | undefined };
-export const QuotaHostsRemainingMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Number,
-) as any as S.Schema<QuotaHostsRemainingMap>;
-
-/** quota enabled */
-export type QuotaEnabled = "Enabled" | "Disabled";
-export const QuotaEnabled = /*@__PURE__*/ S.String;
-
-/** Subscription quotas */
-export interface Quota {
-  /** Remaining hosts quota by sku type */
-  hostsRemaining?: QuotaHostsRemainingMap;
-  /** Host quota is active for current subscription */
-  quotaEnabled?: QuotaEnabled;
-}
-export const Quota = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    hostsRemaining: S.optional(QuotaHostsRemainingMap),
-    quotaEnabled: S.optional(QuotaEnabled),
-  }),
-).annotate({ identifier: "Quota" }) as any as S.Schema<Quota>;
-
-export interface LocationsCheckTrialAvailabilityRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the Azure region. */
-  location: string;
-  /** The name of the SKU. E.g. P3. It is typically a letter+number code */
-  name: string;
-  tier?: SkuTier | (string & {});
-  /** The SKU size. When the name field is the combination of tier and some other value, this would be the standalone code. */
-  size?: string;
-  /** If the service has different generations of hardware, for the same SKU, then that can be captured here. */
-  family?: string;
-  /** If the SKU supports scale out/in then the capacity integer should be included. If scale out/in is not possible for the resource this may be omitted. */
-  capacity?: number;
-}
-export const LocationsCheckTrialAvailabilityRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      location: S.String.pipe(T.Label()),
-      name: S.String,
-      tier: S.optional(SkuTier),
-      size: S.optional(S.String),
-      family: S.optional(S.String),
-      capacity: S.optional(S.Number),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.AVS/locations/{location}/checkTrialAvailability",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
-).annotate({
-  identifier: "LocationsCheckTrialAvailabilityRequest",
-}) as any as S.Schema<LocationsCheckTrialAvailabilityRequest>;
-
-/** trial status */
-export type TrialStatus = "TrialAvailable" | "TrialUsed" | "TrialDisabled";
-export const TrialStatus = /*@__PURE__*/ S.String;
-
-/** Subscription trial availability */
-export interface Trial {
-  /** Trial status */
-  status?: TrialStatus;
-  /** Number of trial hosts available */
-  availableHosts?: number;
-}
-export const Trial = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    status: S.optional(TrialStatus),
-    availableHosts: S.optional(S.Number),
-  }),
-).annotate({ identifier: "Trial" }) as any as S.Schema<Trial>;
-
-export interface MaintenancesGetRequest {
+export interface GetMaintenanceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -3093,7 +3347,7 @@ export interface MaintenancesGetRequest {
   /** Name of the maintenance */
   maintenanceName: string;
 }
-export const MaintenancesGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetMaintenanceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -3104,16 +3358,106 @@ export const MaintenancesGetRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/maintenances/{maintenanceName}",
       code: 200,
-      apiVersion: "2025-09-01",
+      apiVersion: "2026-03-01",
     }),
   ),
 ).annotate({
-  identifier: "MaintenancesGetRequest",
-}) as any as S.Schema<MaintenancesGetRequest>;
+  identifier: "GetMaintenanceRequest",
+}) as any as S.Schema<GetMaintenanceRequest>;
 
 /** type of the maintenance */
 export type MaintenanceType = "VCSA" | "ESXI" | "NSXT";
 export const MaintenanceType = /*@__PURE__*/ S.String;
+
+/** Defines the type of maintenance activity */
+export type MaintenanceActivityKind =
+  | "Upgrade"
+  | "Downgrade"
+  | "CertificateRotation"
+  | "Backup";
+export const MaintenanceActivityKind = /*@__PURE__*/ S.String;
+
+/** Represents a maintenance activity performed as part of an operation */
+export interface MaintenanceActivity {
+  /** The type of activity */
+  kind: MaintenanceActivityKind;
+  /** The component on which the activity is performed */
+  component: string;
+  /** Target version of the component */
+  version: string;
+  /** Optional link containing more details about the activity */
+  infoLink?: string;
+  /** Describes impact of the activity */
+  impact?: string;
+}
+export const MaintenanceActivity = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    kind: MaintenanceActivityKind,
+    component: S.String,
+    version: S.String,
+    infoLink: S.optional(S.String),
+    impact: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "MaintenanceActivity",
+}) as any as S.Schema<MaintenanceActivity>;
+
+/** Activities performed as part of maintenance */
+export type MaintenancePropertiesActivitiesList = Array<MaintenanceActivity>;
+export const MaintenancePropertiesActivitiesList = /*@__PURE__*/ S.Array(
+  MaintenanceActivity,
+) as any as S.Schema<MaintenancePropertiesActivitiesList>;
+
+/** Defines the kind of group */
+export type MaintenanceGroupKind = "Logical" | "Consolidation";
+export const MaintenanceGroupKind = /*@__PURE__*/ S.String;
+
+/** Represents a maintenance group */
+export interface MaintenanceGroup {
+  /** Unique identifier of the group */
+  id: string;
+  /** Display name of the group */
+  name: string;
+  /** Type of the group */
+  kind: MaintenanceGroupKind;
+}
+export const MaintenanceGroup = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    name: S.String,
+    kind: MaintenanceGroupKind,
+  }),
+).annotate({
+  identifier: "MaintenanceGroup",
+}) as any as S.Schema<MaintenanceGroup>;
+
+/** List of dependent group identifiers */
+export type MaintenanceRelationshipsDependenciesList = Array<string>;
+export const MaintenanceRelationshipsDependenciesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<MaintenanceRelationshipsDependenciesList>;
+
+/** List of prerequisite group identifiers */
+export type MaintenanceRelationshipsPrerequisitesList = Array<string>;
+export const MaintenanceRelationshipsPrerequisitesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<MaintenanceRelationshipsPrerequisitesList>;
+
+/** Defines relationship details between maintenance groups */
+export interface MaintenanceRelationships {
+  /** List of dependent group identifiers */
+  dependencies?: MaintenanceRelationshipsDependenciesList;
+  /** List of prerequisite group identifiers */
+  prerequisites?: MaintenanceRelationshipsPrerequisitesList;
+}
+export const MaintenanceRelationships = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    dependencies: S.optional(MaintenanceRelationshipsDependenciesList),
+    prerequisites: S.optional(MaintenanceRelationshipsPrerequisitesList),
+  }),
+).annotate({
+  identifier: "MaintenanceRelationships",
+}) as any as S.Schema<MaintenanceRelationships>;
 
 /** Customer presentable maintenance state */
 export type MaintenanceStateName =
@@ -3315,6 +3659,12 @@ export interface MaintenanceProperties {
   displayName?: string;
   /** Cluster ID for on which maintenance will be applied. Empty if maintenance is at private cloud level */
   clusterId?: number;
+  /** Activities performed as part of maintenance */
+  activities?: MaintenancePropertiesActivitiesList;
+  /** Group details if maintenance is part of a group */
+  group?: MaintenanceGroup;
+  /** Relationships with other maintenances like dependencies and prerequisites */
+  relationships?: MaintenanceRelationships;
   /** Link to maintenance info */
   infoLink?: string;
   /** Impact on the resource during maintenance period */
@@ -3339,6 +3689,9 @@ export const MaintenanceProperties = /*@__PURE__*/ S.suspend(() =>
     component: S.optional(MaintenanceType),
     displayName: S.optional(S.String),
     clusterId: S.optional(S.Number),
+    activities: S.optional(MaintenancePropertiesActivitiesList),
+    group: S.optional(MaintenanceGroup),
+    relationships: S.optional(MaintenanceRelationships),
     infoLink: S.optional(S.String),
     impact: S.optional(S.String),
     scheduledByMicrosoft: S.optional(S.Boolean),
@@ -3353,7 +3706,7 @@ export const MaintenanceProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "MaintenanceProperties",
 }) as any as S.Schema<MaintenanceProperties>;
 
-export interface MaintenancesGetResponse {
+export interface GetMaintenanceResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -3365,7 +3718,7 @@ export interface MaintenancesGetResponse {
   /** The resource-specific properties for this resource. */
   properties?: MaintenanceProperties;
 }
-export const MaintenancesGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetMaintenanceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -3374,387 +3727,10 @@ export const MaintenancesGetResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(MaintenanceProperties),
   }),
 ).annotate({
-  identifier: "MaintenancesGetResponse",
-}) as any as S.Schema<MaintenancesGetResponse>;
+  identifier: "GetMaintenanceResponse",
+}) as any as S.Schema<GetMaintenanceResponse>;
 
-export interface MaintenancesInitiateChecksRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-  /** Name of the maintenance */
-  maintenanceName: string;
-}
-export const MaintenancesInitiateChecksRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    privateCloudName: S.String.pipe(T.Label()),
-    maintenanceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/maintenances/{maintenanceName}/initiateChecks",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "MaintenancesInitiateChecksRequest",
-}) as any as S.Schema<MaintenancesInitiateChecksRequest>;
-
-export interface MaintenancesInitiateChecksResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: MaintenanceProperties;
-}
-export const MaintenancesInitiateChecksResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(MaintenanceProperties),
-  }),
-).annotate({
-  identifier: "MaintenancesInitiateChecksResponse",
-}) as any as S.Schema<MaintenancesInitiateChecksResponse>;
-
-export type MaintenancesListRequestStateName =
-  | "NotScheduled"
-  | "Scheduled"
-  | "InProgress"
-  | "Success"
-  | "Failed"
-  | "Canceled";
-export const MaintenancesListRequestStateName = /*@__PURE__*/ S.String;
-
-export type MaintenancesListRequestStatus = "Active" | "Inactive";
-export const MaintenancesListRequestStatus = /*@__PURE__*/ S.String;
-
-export interface MaintenancesListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-  /** Filter maintenances based on state */
-  stateName?: MaintenancesListRequestStateName | (string & {});
-  /** Filter active or inactive maintenances */
-  status?: MaintenancesListRequestStatus | (string & {});
-  /** date from which result should be returned. ie. scheduledStartTime >= from */
-  from?: string;
-  /** date till which result should be returned. i.e. scheduledStartTime <= to */
-  to?: string;
-}
-export const MaintenancesListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    privateCloudName: S.String.pipe(T.Label()),
-    stateName: S.optional(MaintenancesListRequestStateName.pipe(T.Query())),
-    status: S.optional(MaintenancesListRequestStatus.pipe(T.Query())),
-    from: S.optional(S.String.pipe(T.Query())),
-    to: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/maintenances",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "MaintenancesListRequest",
-}) as any as S.Schema<MaintenancesListRequest>;
-
-/** A cluster resource */
-export interface Maintenance {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: MaintenanceProperties;
-}
-export const Maintenance = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(MaintenanceProperties),
-  }),
-).annotate({ identifier: "Maintenance" }) as any as S.Schema<Maintenance>;
-
-/** The Maintenance items on this page */
-export type MaintenanceListResultValueList = Array<Maintenance>;
-export const MaintenanceListResultValueList = /*@__PURE__*/ S.Array(
-  Maintenance,
-) as any as S.Schema<MaintenanceListResultValueList>;
-
-/** The response of a Maintenance list operation. */
-export interface MaintenanceListResult {
-  /** The Maintenance items on this page */
-  value: MaintenanceListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const MaintenanceListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: MaintenanceListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "MaintenanceListResult",
-}) as any as S.Schema<MaintenanceListResult>;
-
-export interface MaintenancesRescheduleRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-  /** Name of the maintenance */
-  maintenanceName: string;
-  /** reschedule time */
-  rescheduleTime?: string;
-  /** rescheduling reason */
-  message?: string;
-}
-export const MaintenancesRescheduleRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    privateCloudName: S.String.pipe(T.Label()),
-    maintenanceName: S.String.pipe(T.Label()),
-    rescheduleTime: S.optional(S.String),
-    message: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/maintenances/{maintenanceName}/reschedule",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "MaintenancesRescheduleRequest",
-}) as any as S.Schema<MaintenancesRescheduleRequest>;
-
-export interface MaintenancesRescheduleResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: MaintenanceProperties;
-}
-export const MaintenancesRescheduleResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(MaintenanceProperties),
-  }),
-).annotate({
-  identifier: "MaintenancesRescheduleResponse",
-}) as any as S.Schema<MaintenancesRescheduleResponse>;
-
-export interface MaintenancesScheduleRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-  /** Name of the maintenance */
-  maintenanceName: string;
-  /** schedule time */
-  scheduleTime?: string;
-  /** scheduling message */
-  message?: string;
-}
-export const MaintenancesScheduleRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    privateCloudName: S.String.pipe(T.Label()),
-    maintenanceName: S.String.pipe(T.Label()),
-    scheduleTime: S.optional(S.String),
-    message: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/maintenances/{maintenanceName}/schedule",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "MaintenancesScheduleRequest",
-}) as any as S.Schema<MaintenancesScheduleRequest>;
-
-export interface MaintenancesScheduleResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: MaintenanceProperties;
-}
-export const MaintenancesScheduleResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(MaintenanceProperties),
-  }),
-).annotate({
-  identifier: "MaintenancesScheduleResponse",
-}) as any as S.Schema<MaintenancesScheduleResponse>;
-
-export interface OperationsListRequest {}
-export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/providers/Microsoft.AVS/operations",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "OperationsListRequest",
-}) as any as S.Schema<OperationsListRequest>;
-
-/** Localized display information for this particular operation. */
-export interface OperationDisplay {
-  /** The localized friendly form of the resource provider name, e.g. "Microsoft Monitoring Insights" or "Microsoft Compute". */
-  provider?: string;
-  /** The localized friendly name of the resource type related to this operation. E.g. "Virtual Machines" or "Job Schedule Collections". */
-  resource?: string;
-  /** The concise, localized friendly name for the operation; suitable for dropdowns. E.g. "Create or Update Virtual Machine", "Restart Virtual Machine". */
-  operation?: string;
-  /** The short, localized friendly description of the operation; suitable for tool tips and detailed views. */
-  description?: string;
-}
-export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provider: S.optional(S.String),
-    resource: S.optional(S.String),
-    operation: S.optional(S.String),
-    description: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OperationDisplay",
-}) as any as S.Schema<OperationDisplay>;
-
-/** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
-export type OperationOrigin = "user" | "system" | "user,system";
-export const OperationOrigin = /*@__PURE__*/ S.String;
-
-/** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
-export type OperationActionType = "Internal";
-export const OperationActionType = /*@__PURE__*/ S.String;
-
-/** Details of a REST API operation, returned from the Resource Provider Operations API */
-export interface Operation {
-  /** The name of the operation, as per Resource-Based Access Control (RBAC). Examples: "Microsoft.Compute/virtualMachines/write", "Microsoft.Compute/virtualMachines/capture/action" */
-  name?: string;
-  /** Whether the operation applies to data-plane. This is "true" for data-plane operations and "false" for ARM/control-plane operations. */
-  isDataAction?: boolean;
-  /** Localized display information for this particular operation. */
-  display?: OperationDisplay;
-  /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
-  origin?: OperationOrigin;
-  /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
-  actionType?: OperationActionType;
-}
-export const Operation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    isDataAction: S.optional(S.Boolean),
-    display: S.optional(OperationDisplay),
-    origin: S.optional(OperationOrigin),
-    actionType: S.optional(OperationActionType),
-  }),
-).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
-
-/** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
-  Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
-
-export interface OperationsListResponse {
-  /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
-  /** URL to get the next set of operation list results (if there are any). */
-  nextLink?: string;
-}
-export const OperationsListResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(OperationsListResponseValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OperationsListResponse",
-}) as any as S.Schema<OperationsListResponse>;
-
-/** Placement Policy type */
-export type PlacementPolicyType = "VmVm" | "VmHost";
-export const PlacementPolicyType = /*@__PURE__*/ S.String;
-
-/** Placement Policy state */
-export type PlacementPolicyState = "Enabled" | "Disabled";
-export const PlacementPolicyState = /*@__PURE__*/ S.String;
-
-/** Abstract placement policy properties */
-export interface PlacementPolicyPropertiesInput {
-  /** Placement Policy type */
-  type: PlacementPolicyType | (string & {});
-  /** Whether the placement policy is enabled or disabled */
-  state?: PlacementPolicyState | (string & {});
-  /** Display name of the placement policy */
-  displayName?: string;
-}
-export const PlacementPolicyPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: PlacementPolicyType,
-    state: S.optional(PlacementPolicyState),
-    displayName: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PlacementPolicyPropertiesInput",
-}) as any as S.Schema<PlacementPolicyPropertiesInput>;
-
-export interface PlacementPoliciesCreateOrUpdateRequest {
+export interface GetPlacementPolicyRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -3765,29 +3741,33 @@ export interface PlacementPoliciesCreateOrUpdateRequest {
   clusterName: string;
   /** Name of the placement policy. */
   placementPolicyName: string;
-  /** The resource-specific properties for this resource. */
-  properties?: PlacementPolicyPropertiesInput;
 }
-export const PlacementPoliciesCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      privateCloudName: S.String.pipe(T.Label()),
-      clusterName: S.String.pipe(T.Label()),
-      placementPolicyName: S.String.pipe(T.Label()),
-      properties: S.optional(PlacementPolicyPropertiesInput),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}/placementPolicies/{placementPolicyName}",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
+export const GetPlacementPolicyRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    privateCloudName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    placementPolicyName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}/placementPolicies/{placementPolicyName}",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
 ).annotate({
-  identifier: "PlacementPoliciesCreateOrUpdateRequest",
-}) as any as S.Schema<PlacementPoliciesCreateOrUpdateRequest>;
+  identifier: "GetPlacementPolicyRequest",
+}) as any as S.Schema<GetPlacementPolicyRequest>;
+
+/** Placement Policy type */
+export type PlacementPolicyType = "VmVm" | "VmHost";
+export const PlacementPolicyType = /*@__PURE__*/ S.String;
+
+/** Placement Policy state */
+export type PlacementPolicyState = "Enabled" | "Disabled";
+export const PlacementPolicyState = /*@__PURE__*/ S.String;
 
 /** Placement Policy provisioning state */
 export type PlacementPolicyProvisioningState =
@@ -3821,7 +3801,7 @@ export const PlacementPolicyProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "PlacementPolicyProperties",
 }) as any as S.Schema<PlacementPolicyProperties>;
 
-export interface PlacementPoliciesCreateOrUpdateResponse {
+export interface GetPlacementPolicyResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -3833,329 +3813,86 @@ export interface PlacementPoliciesCreateOrUpdateResponse {
   /** The resource-specific properties for this resource. */
   properties?: PlacementPolicyProperties;
 }
-export const PlacementPoliciesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(PlacementPolicyProperties),
-    }),
+export const GetPlacementPolicyResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(PlacementPolicyProperties),
+  }),
 ).annotate({
-  identifier: "PlacementPoliciesCreateOrUpdateResponse",
-}) as any as S.Schema<PlacementPoliciesCreateOrUpdateResponse>;
+  identifier: "GetPlacementPolicyResponse",
+}) as any as S.Schema<GetPlacementPolicyResponse>;
 
-export interface PlacementPoliciesDeleteRequest {
+export interface GetPrivateCloudRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** Name of the private cloud */
   privateCloudName: string;
-  /** Name of the cluster */
-  clusterName: string;
-  /** Name of the placement policy. */
-  placementPolicyName: string;
 }
-export const PlacementPoliciesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetPrivateCloudRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     privateCloudName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    placementPolicyName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}/placementPolicies/{placementPolicyName}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "PlacementPoliciesDeleteRequest",
-}) as any as S.Schema<PlacementPoliciesDeleteRequest>;
-
-export interface PlacementPoliciesDeleteResponse {}
-export const PlacementPoliciesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "PlacementPoliciesDeleteResponse",
-}) as any as S.Schema<PlacementPoliciesDeleteResponse>;
-
-export interface PlacementPoliciesGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-  /** Name of the cluster */
-  clusterName: string;
-  /** Name of the placement policy. */
-  placementPolicyName: string;
-}
-export const PlacementPoliciesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    privateCloudName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    placementPolicyName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}/placementPolicies/{placementPolicyName}",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}",
       code: 200,
-      apiVersion: "2025-09-01",
+      apiVersion: "2026-03-01",
     }),
   ),
 ).annotate({
-  identifier: "PlacementPoliciesGetRequest",
-}) as any as S.Schema<PlacementPoliciesGetRequest>;
-
-export interface PlacementPoliciesGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: PlacementPolicyProperties;
-}
-export const PlacementPoliciesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(PlacementPolicyProperties),
-  }),
-).annotate({
-  identifier: "PlacementPoliciesGetResponse",
-}) as any as S.Schema<PlacementPoliciesGetResponse>;
-
-export interface PlacementPoliciesListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-  /** Name of the cluster */
-  clusterName: string;
-}
-export const PlacementPoliciesListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    privateCloudName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}/placementPolicies",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "PlacementPoliciesListRequest",
-}) as any as S.Schema<PlacementPoliciesListRequest>;
-
-/** A vSphere Distributed Resource Scheduler (DRS) placement policy */
-export interface PlacementPolicy {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: PlacementPolicyProperties;
-}
-export const PlacementPolicy = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(PlacementPolicyProperties),
-  }),
-).annotate({
-  identifier: "PlacementPolicy",
-}) as any as S.Schema<PlacementPolicy>;
-
-/** The PlacementPolicy items on this page */
-export type PlacementPoliciesListValueList = Array<PlacementPolicy>;
-export const PlacementPoliciesListValueList = /*@__PURE__*/ S.Array(
-  PlacementPolicy,
-) as any as S.Schema<PlacementPoliciesListValueList>;
-
-/** The response of a PlacementPolicy list operation. */
-export interface PlacementPoliciesList {
-  /** The PlacementPolicy items on this page */
-  value: PlacementPoliciesListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const PlacementPoliciesList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: PlacementPoliciesListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PlacementPoliciesList",
-}) as any as S.Schema<PlacementPoliciesList>;
-
-/** Virtual machine members list */
-export type PlacementPolicyUpdatePropertiesVmMembersList = Array<string>;
-export const PlacementPolicyUpdatePropertiesVmMembersList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PlacementPolicyUpdatePropertiesVmMembersList>;
-
-/** Host members list */
-export type PlacementPolicyUpdatePropertiesHostMembersList = Array<string>;
-export const PlacementPolicyUpdatePropertiesHostMembersList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PlacementPolicyUpdatePropertiesHostMembersList>;
-
-/** Affinity Strength */
-export type AffinityStrength = "Should" | "Must";
-export const AffinityStrength = /*@__PURE__*/ S.String;
-
-/** Azure Hybrid Benefit type */
-export type AzureHybridBenefitType = "SqlHost" | "None";
-export const AzureHybridBenefitType = /*@__PURE__*/ S.String;
-
-/** The properties of a placement policy resource that may be updated */
-export interface PlacementPolicyUpdateProperties {
-  /** Whether the placement policy is enabled or disabled */
-  state?: PlacementPolicyState | (string & {});
-  /** Virtual machine members list */
-  vmMembers?: PlacementPolicyUpdatePropertiesVmMembersList;
-  /** Host members list */
-  hostMembers?: PlacementPolicyUpdatePropertiesHostMembersList;
-  /** vm-host placement policy affinity strength (should/must) */
-  affinityStrength?: AffinityStrength | (string & {});
-  /** placement policy azure hybrid benefit opt-in type */
-  azureHybridBenefitType?: AzureHybridBenefitType | (string & {});
-}
-export const PlacementPolicyUpdateProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    state: S.optional(PlacementPolicyState),
-    vmMembers: S.optional(PlacementPolicyUpdatePropertiesVmMembersList),
-    hostMembers: S.optional(PlacementPolicyUpdatePropertiesHostMembersList),
-    affinityStrength: S.optional(AffinityStrength),
-    azureHybridBenefitType: S.optional(AzureHybridBenefitType),
-  }),
-).annotate({
-  identifier: "PlacementPolicyUpdateProperties",
-}) as any as S.Schema<PlacementPolicyUpdateProperties>;
-
-export interface PlacementPoliciesUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-  /** Name of the cluster */
-  clusterName: string;
-  /** Name of the placement policy. */
-  placementPolicyName: string;
-  /** The properties of a placement policy resource that may be updated */
-  properties?: PlacementPolicyUpdateProperties;
-}
-export const PlacementPoliciesUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    privateCloudName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    placementPolicyName: S.String.pipe(T.Label()),
-    properties: S.optional(PlacementPolicyUpdateProperties),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}/placementPolicies/{placementPolicyName}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "PlacementPoliciesUpdateRequest",
-}) as any as S.Schema<PlacementPoliciesUpdateRequest>;
-
-export interface PlacementPoliciesUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: PlacementPolicyProperties;
-}
-export const PlacementPoliciesUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(PlacementPolicyProperties),
-  }),
-).annotate({
-  identifier: "PlacementPoliciesUpdateResponse",
-}) as any as S.Schema<PlacementPoliciesUpdateResponse>;
+  identifier: "GetPrivateCloudRequest",
+}) as any as S.Schema<GetPrivateCloudRequest>;
 
 /** Resource tags. */
-export type PrivateCloudsCreateOrUpdateRequestTagsMap = {
+export type GetPrivateCloudResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const PrivateCloudsCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const GetPrivateCloudResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<PrivateCloudsCreateOrUpdateRequestTagsMap>;
+) as any as S.Schema<GetPrivateCloudResponseTagsMap>;
 
 /** The hosts */
-export type ManagementClusterInputHostsList = Array<string>;
-export const ManagementClusterInputHostsList = /*@__PURE__*/ S.Array(
+export type ManagementClusterHostsList = Array<string>;
+export const ManagementClusterHostsList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<ManagementClusterInputHostsList>;
+) as any as S.Schema<ManagementClusterHostsList>;
 
 /** The properties of a management cluster */
-export interface ManagementClusterInput {
+export interface ManagementCluster {
   /** The cluster size */
   clusterSize?: number;
+  /** The state of the cluster provisioning */
+  provisioningState?: ClusterProvisioningState;
+  /** The identity */
+  clusterId?: number;
   /** The hosts */
-  hosts?: ManagementClusterInputHostsList;
+  hosts?: ManagementClusterHostsList;
   /** Name of the vsan datastore associated with the cluster */
   vsanDatastoreName?: string;
 }
-export const ManagementClusterInput = /*@__PURE__*/ S.suspend(() =>
+export const ManagementCluster = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     clusterSize: S.optional(S.Number),
-    hosts: S.optional(ManagementClusterInputHostsList),
+    provisioningState: S.optional(ClusterProvisioningState),
+    clusterId: S.optional(S.Number),
+    hosts: S.optional(ManagementClusterHostsList),
     vsanDatastoreName: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ManagementClusterInput",
-}) as any as S.Schema<ManagementClusterInput>;
+  identifier: "ManagementCluster",
+}) as any as S.Schema<ManagementCluster>;
 
 /** Connectivity to internet is enabled or disabled */
-export type PrivateCloudPropertiesInputInternet = "Enabled" | "Disabled";
-export const PrivateCloudPropertiesInputInternet = /*@__PURE__*/ S.String;
+export type PrivateCloudPropertiesInternet = "Enabled" | "Disabled";
+export const PrivateCloudPropertiesInternet = /*@__PURE__*/ S.String;
 
 /** Whether SSL is enabled or disabled */
 export type SslEnum = "Enabled" | "Disabled";
@@ -4200,12 +3937,10 @@ export const IdentitySource = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "IdentitySource" }) as any as S.Schema<IdentitySource>;
 
 /** vCenter Single Sign On Identity Sources */
-export type PrivateCloudPropertiesInputIdentitySourcesList =
-  Array<IdentitySource>;
-export const PrivateCloudPropertiesInputIdentitySourcesList =
-  /*@__PURE__*/ S.Array(
-    IdentitySource,
-  ) as any as S.Schema<PrivateCloudPropertiesInputIdentitySourcesList>;
+export type PrivateCloudPropertiesIdentitySourcesList = Array<IdentitySource>;
+export const PrivateCloudPropertiesIdentitySourcesList = /*@__PURE__*/ S.Array(
+  IdentitySource,
+) as any as S.Schema<PrivateCloudPropertiesIdentitySourcesList>;
 
 /** Whether the private clouds is available in a single zone or two zones */
 export type AvailabilityStrategy = "SingleZone" | "DualZone";
@@ -4233,252 +3968,6 @@ export const AvailabilityProperties = /*@__PURE__*/ S.suspend(() =>
 /** Whether encryption is enabled or disabled */
 export type EncryptionState = "Enabled" | "Disabled";
 export const EncryptionState = /*@__PURE__*/ S.String;
-
-/** An Encryption Key */
-export interface EncryptionKeyVaultPropertiesInput {
-  /** The name of the key. */
-  keyName?: string;
-  /** The version of the key. */
-  keyVersion?: string;
-  /** The URL of the vault. */
-  keyVaultUrl?: string;
-}
-export const EncryptionKeyVaultPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    keyName: S.optional(S.String),
-    keyVersion: S.optional(S.String),
-    keyVaultUrl: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "EncryptionKeyVaultPropertiesInput",
-}) as any as S.Schema<EncryptionKeyVaultPropertiesInput>;
-
-/** The properties of customer managed encryption key */
-export interface EncryptionInput {
-  /** Status of customer managed encryption key */
-  status?: EncryptionState | (string & {});
-  /** The key vault where the encryption key is stored */
-  keyVaultProperties?: EncryptionKeyVaultPropertiesInput;
-}
-export const EncryptionInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    status: S.optional(EncryptionState),
-    keyVaultProperties: S.optional(EncryptionKeyVaultPropertiesInput),
-  }),
-).annotate({
-  identifier: "EncryptionInput",
-}) as any as S.Schema<EncryptionInput>;
-
-/** Array of additional networks noncontiguous with networkBlock. Networks must be unique and non-overlapping across VNet in your subscription, on-premise, and this privateCloud networkBlock attribute. Make sure the CIDR format conforms to (A.B.C.D/X). */
-export type PrivateCloudPropertiesInputExtendedNetworkBlocksList =
-  Array<string>;
-export const PrivateCloudPropertiesInputExtendedNetworkBlocksList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PrivateCloudPropertiesInputExtendedNetworkBlocksList>;
-
-/** An ExpressRoute Circuit */
-export type CircuitInput = HcxEnterpriseSitePropertiesInput;
-export const CircuitInput = HcxEnterpriseSitePropertiesInput;
-
-/** The type of DNS zone. */
-export type DnsZoneType = "Public" | "Private";
-export const DnsZoneType = /*@__PURE__*/ S.String;
-
-/** The kind of license. */
-export type VcfLicenseKind = "vcf5";
-export const VcfLicenseKind = /*@__PURE__*/ S.String;
-
-/** A VMware Cloud Foundation license */
-export interface VcfLicenseInput {
-  /** License kind */
-  kind: VcfLicenseKind | (string & {});
-}
-export const VcfLicenseInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    kind: VcfLicenseKind,
-  }),
-).annotate({
-  identifier: "VcfLicenseInput",
-}) as any as S.Schema<VcfLicenseInput>;
-
-/** The properties of a private cloud resource */
-export interface PrivateCloudPropertiesInput {
-  /** The default cluster used for management */
-  managementCluster: ManagementClusterInput;
-  /** Connectivity to internet is enabled or disabled */
-  internet?: PrivateCloudPropertiesInputInternet | (string & {});
-  /** vCenter Single Sign On Identity Sources */
-  identitySources?: PrivateCloudPropertiesInputIdentitySourcesList;
-  /** Properties describing how the cloud is distributed across availability zones */
-  availability?: AvailabilityProperties;
-  /** Customer managed key encryption, can be enabled or disabled */
-  encryption?: EncryptionInput;
-  /** Array of additional networks noncontiguous with networkBlock. Networks must be unique and non-overlapping across VNet in your subscription, on-premise, and this privateCloud networkBlock attribute. Make sure the CIDR format conforms to (A.B.C.D/X). */
-  extendedNetworkBlocks?: PrivateCloudPropertiesInputExtendedNetworkBlocksList;
-  /** An ExpressRoute Circuit */
-  circuit?: HcxEnterpriseSitePropertiesInput;
-  /** The block of addresses should be unique across VNet in your subscription as well as on-premise. Make sure the CIDR format is conformed to (A.B.C.D/X) where A,B,C,D are between 0 and 255, and X is between 0 and 22 */
-  networkBlock: string;
-  /** Optionally, set the vCenter admin password when the private cloud is created */
-  vcenterPassword?: string | Redacted.Redacted<string>;
-  /** Optionally, set the NSX-T Manager password when the private cloud is created */
-  nsxtPassword?: string | Redacted.Redacted<string>;
-  /** A secondary expressRoute circuit from a separate AZ. Only present in a stretched private cloud */
-  secondaryCircuit?: HcxEnterpriseSitePropertiesInput;
-  /** Azure resource ID of the virtual network */
-  virtualNetworkId?: string;
-  /** The type of DNS zone to use. */
-  dnsZoneType?: DnsZoneType | (string & {});
-  /** The private cloud license */
-  vcfLicense?: VcfLicenseInput;
-}
-export const PrivateCloudPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    managementCluster: ManagementClusterInput,
-    internet: S.optional(PrivateCloudPropertiesInputInternet),
-    identitySources: S.optional(PrivateCloudPropertiesInputIdentitySourcesList),
-    availability: S.optional(AvailabilityProperties),
-    encryption: S.optional(EncryptionInput),
-    extendedNetworkBlocks: S.optional(
-      PrivateCloudPropertiesInputExtendedNetworkBlocksList,
-    ),
-    circuit: S.optional(HcxEnterpriseSitePropertiesInput),
-    networkBlock: S.String,
-    vcenterPassword: S.optional(S.String.pipe(T.SensitiveValue({}))),
-    nsxtPassword: S.optional(S.String.pipe(T.SensitiveValue({}))),
-    secondaryCircuit: S.optional(HcxEnterpriseSitePropertiesInput),
-    virtualNetworkId: S.optional(S.String),
-    dnsZoneType: S.optional(DnsZoneType),
-    vcfLicense: S.optional(VcfLicenseInput),
-  }),
-).annotate({
-  identifier: "PrivateCloudPropertiesInput",
-}) as any as S.Schema<PrivateCloudPropertiesInput>;
-
-/** The resource model definition representing SKU */
-export type PrivateCloudsCreateOrUpdateRequestSku =
-  ClustersCreateOrUpdateRequestSku;
-export const PrivateCloudsCreateOrUpdateRequestSku =
-  ClustersCreateOrUpdateRequestSku;
-
-/** Type of managed service identity (either system assigned, or none). */
-export type SystemAssignedServiceIdentityType = "None" | "SystemAssigned";
-export const SystemAssignedServiceIdentityType = /*@__PURE__*/ S.String;
-
-/** Managed service identity (either system assigned, or none) */
-export interface PrivateCloudsCreateOrUpdateRequestIdentity {
-  type: SystemAssignedServiceIdentityType | (string & {});
-}
-export const PrivateCloudsCreateOrUpdateRequestIdentity =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      type: SystemAssignedServiceIdentityType,
-    }),
-  ).annotate({
-    identifier: "PrivateCloudsCreateOrUpdateRequestIdentity",
-  }) as any as S.Schema<PrivateCloudsCreateOrUpdateRequestIdentity>;
-
-/** The availability zones. */
-export type PrivateCloudsCreateOrUpdateRequestZonesList = Array<string>;
-export const PrivateCloudsCreateOrUpdateRequestZonesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PrivateCloudsCreateOrUpdateRequestZonesList>;
-
-export interface PrivateCloudsCreateOrUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-  /** Resource tags. */
-  tags?: PrivateCloudsCreateOrUpdateRequestTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: PrivateCloudPropertiesInput;
-  /** The resource model definition representing SKU */
-  sku: ClustersCreateOrUpdateRequestSku;
-  /** Managed service identity (either system assigned, or none) */
-  identity?: PrivateCloudsCreateOrUpdateRequestIdentity;
-  /** The availability zones. */
-  zones?: PrivateCloudsCreateOrUpdateRequestZonesList;
-}
-export const PrivateCloudsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    privateCloudName: S.String.pipe(T.Label()),
-    tags: S.optional(PrivateCloudsCreateOrUpdateRequestTagsMap),
-    location: S.String,
-    properties: S.optional(PrivateCloudPropertiesInput),
-    sku: ClustersCreateOrUpdateRequestSku,
-    identity: S.optional(PrivateCloudsCreateOrUpdateRequestIdentity),
-    zones: S.optional(PrivateCloudsCreateOrUpdateRequestZonesList),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "PrivateCloudsCreateOrUpdateRequest",
-}) as any as S.Schema<PrivateCloudsCreateOrUpdateRequest>;
-
-/** Resource tags. */
-export type PrivateCloudsCreateOrUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const PrivateCloudsCreateOrUpdateResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<PrivateCloudsCreateOrUpdateResponseTagsMap>;
-
-/** The hosts */
-export type ManagementClusterHostsList = Array<string>;
-export const ManagementClusterHostsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ManagementClusterHostsList>;
-
-/** The properties of a management cluster */
-export interface ManagementCluster {
-  /** The cluster size */
-  clusterSize?: number;
-  /** The state of the cluster provisioning */
-  provisioningState?: ClusterProvisioningState;
-  /** The identity */
-  clusterId?: number;
-  /** The hosts */
-  hosts?: ManagementClusterHostsList;
-  /** Name of the vsan datastore associated with the cluster */
-  vsanDatastoreName?: string;
-}
-export const ManagementCluster = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    clusterSize: S.optional(S.Number),
-    provisioningState: S.optional(ClusterProvisioningState),
-    clusterId: S.optional(S.Number),
-    hosts: S.optional(ManagementClusterHostsList),
-    vsanDatastoreName: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ManagementCluster",
-}) as any as S.Schema<ManagementCluster>;
-
-/** Connectivity to internet is enabled or disabled */
-export type PrivateCloudPropertiesInternet = "Enabled" | "Disabled";
-export const PrivateCloudPropertiesInternet = /*@__PURE__*/ S.String;
-
-/** vCenter Single Sign On Identity Sources */
-export type PrivateCloudPropertiesIdentitySourcesList = Array<IdentitySource>;
-export const PrivateCloudPropertiesIdentitySourcesList = /*@__PURE__*/ S.Array(
-  IdentitySource,
-) as any as S.Schema<PrivateCloudPropertiesIdentitySourcesList>;
 
 /** Whether the the encryption key is connected or access denied */
 export type EncryptionKeyStatus = "Connected" | "AccessDenied";
@@ -4606,6 +4095,14 @@ export const PrivateCloudPropertiesExternalCloudLinksList =
 export type NsxPublicIpQuotaRaisedEnum = "Enabled" | "Disabled";
 export const NsxPublicIpQuotaRaisedEnum = /*@__PURE__*/ S.String;
 
+/** The type of DNS zone. */
+export type DnsZoneType = "Public" | "Private";
+export const DnsZoneType = /*@__PURE__*/ S.String;
+
+/** The kind of license. */
+export type VcfLicenseKind = "vcf5";
+export const VcfLicenseKind = /*@__PURE__*/ S.String;
+
 /** A VMware Cloud Foundation license */
 export interface VcfLicense {
   /** License kind */
@@ -4704,38 +4201,38 @@ export const PrivateCloudProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PrivateCloudProperties>;
 
 /** The resource model definition representing SKU */
-export type PrivateCloudsCreateOrUpdateResponseSku =
-  ClustersCreateOrUpdateResponseSku;
-export const PrivateCloudsCreateOrUpdateResponseSku =
-  ClustersCreateOrUpdateResponseSku;
+export type GetPrivateCloudResponseSku = ClustersCreateOrUpdateResponseSku;
+export const GetPrivateCloudResponseSku = ClustersCreateOrUpdateResponseSku;
+
+/** Type of managed service identity (either system assigned, or none). */
+export type SystemAssignedServiceIdentityType = "None" | "SystemAssigned";
+export const SystemAssignedServiceIdentityType = /*@__PURE__*/ S.String;
 
 /** Managed service identity (either system assigned, or none) */
-export interface PrivateCloudsCreateOrUpdateResponseIdentity {
+export interface GetPrivateCloudResponseIdentity {
   /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   principalId?: string;
   /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   tenantId?: string;
   type: SystemAssignedServiceIdentityType;
 }
-export const PrivateCloudsCreateOrUpdateResponseIdentity =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      principalId: S.optional(S.String),
-      tenantId: S.optional(S.String),
-      type: SystemAssignedServiceIdentityType,
-    }),
-  ).annotate({
-    identifier: "PrivateCloudsCreateOrUpdateResponseIdentity",
-  }) as any as S.Schema<PrivateCloudsCreateOrUpdateResponseIdentity>;
+export const GetPrivateCloudResponseIdentity = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    principalId: S.optional(S.String),
+    tenantId: S.optional(S.String),
+    type: SystemAssignedServiceIdentityType,
+  }),
+).annotate({
+  identifier: "GetPrivateCloudResponseIdentity",
+}) as any as S.Schema<GetPrivateCloudResponseIdentity>;
 
 /** The availability zones. */
-export type PrivateCloudsCreateOrUpdateResponseZonesList = Array<string>;
-export const PrivateCloudsCreateOrUpdateResponseZonesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PrivateCloudsCreateOrUpdateResponseZonesList>;
+export type GetPrivateCloudResponseZonesList = Array<string>;
+export const GetPrivateCloudResponseZonesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<GetPrivateCloudResponseZonesList>;
 
-export interface PrivateCloudsCreateOrUpdateResponse {
+export interface GetPrivateCloudResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -4745,7 +4242,7 @@ export interface PrivateCloudsCreateOrUpdateResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: PrivateCloudsCreateOrUpdateResponseTagsMap;
+  tags?: GetPrivateCloudResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
@@ -4753,28 +4250,28 @@ export interface PrivateCloudsCreateOrUpdateResponse {
   /** The resource model definition representing SKU */
   sku: ClustersCreateOrUpdateResponseSku;
   /** Managed service identity (either system assigned, or none) */
-  identity?: PrivateCloudsCreateOrUpdateResponseIdentity;
+  identity?: GetPrivateCloudResponseIdentity;
   /** The availability zones. */
-  zones?: PrivateCloudsCreateOrUpdateResponseZonesList;
+  zones?: GetPrivateCloudResponseZonesList;
 }
-export const PrivateCloudsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetPrivateCloudResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(PrivateCloudsCreateOrUpdateResponseTagsMap),
+    tags: S.optional(GetPrivateCloudResponseTagsMap),
     location: S.String,
     properties: S.optional(PrivateCloudProperties),
     sku: ClustersCreateOrUpdateResponseSku,
-    identity: S.optional(PrivateCloudsCreateOrUpdateResponseIdentity),
-    zones: S.optional(PrivateCloudsCreateOrUpdateResponseZonesList),
+    identity: S.optional(GetPrivateCloudResponseIdentity),
+    zones: S.optional(GetPrivateCloudResponseZonesList),
   }),
 ).annotate({
-  identifier: "PrivateCloudsCreateOrUpdateResponse",
-}) as any as S.Schema<PrivateCloudsCreateOrUpdateResponse>;
+  identifier: "GetPrivateCloudResponse",
+}) as any as S.Schema<GetPrivateCloudResponse>;
 
-export interface PrivateCloudsDeleteRequest {
+export interface GetPrivateCloudVcfLicenseRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -4782,128 +4279,7 @@ export interface PrivateCloudsDeleteRequest {
   /** Name of the private cloud */
   privateCloudName: string;
 }
-export const PrivateCloudsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    privateCloudName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "PrivateCloudsDeleteRequest",
-}) as any as S.Schema<PrivateCloudsDeleteRequest>;
-
-export interface PrivateCloudsDeleteResponse {}
-export const PrivateCloudsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "PrivateCloudsDeleteResponse",
-}) as any as S.Schema<PrivateCloudsDeleteResponse>;
-
-export interface PrivateCloudsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-}
-export const PrivateCloudsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    privateCloudName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "PrivateCloudsGetRequest",
-}) as any as S.Schema<PrivateCloudsGetRequest>;
-
-/** Resource tags. */
-export type PrivateCloudsGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const PrivateCloudsGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<PrivateCloudsGetResponseTagsMap>;
-
-/** The resource model definition representing SKU */
-export type PrivateCloudsGetResponseSku = ClustersCreateOrUpdateResponseSku;
-export const PrivateCloudsGetResponseSku = ClustersCreateOrUpdateResponseSku;
-
-/** Managed service identity (either system assigned, or none) */
-export type PrivateCloudsGetResponseIdentity =
-  PrivateCloudsCreateOrUpdateResponseIdentity;
-export const PrivateCloudsGetResponseIdentity =
-  PrivateCloudsCreateOrUpdateResponseIdentity;
-
-/** The availability zones. */
-export type PrivateCloudsGetResponseZonesList = Array<string>;
-export const PrivateCloudsGetResponseZonesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<PrivateCloudsGetResponseZonesList>;
-
-export interface PrivateCloudsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: PrivateCloudsGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: PrivateCloudProperties;
-  /** The resource model definition representing SKU */
-  sku: ClustersCreateOrUpdateResponseSku;
-  /** Managed service identity (either system assigned, or none) */
-  identity?: PrivateCloudsCreateOrUpdateResponseIdentity;
-  /** The availability zones. */
-  zones?: PrivateCloudsGetResponseZonesList;
-}
-export const PrivateCloudsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(PrivateCloudsGetResponseTagsMap),
-    location: S.String,
-    properties: S.optional(PrivateCloudProperties),
-    sku: ClustersCreateOrUpdateResponseSku,
-    identity: S.optional(PrivateCloudsCreateOrUpdateResponseIdentity),
-    zones: S.optional(PrivateCloudsGetResponseZonesList),
-  }),
-).annotate({
-  identifier: "PrivateCloudsGetResponse",
-}) as any as S.Schema<PrivateCloudsGetResponse>;
-
-export interface PrivateCloudsGetVcfLicenseRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-}
-export const PrivateCloudsGetVcfLicenseRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetPrivateCloudVcfLicenseRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -4913,425 +4289,14 @@ export const PrivateCloudsGetVcfLicenseRequest = /*@__PURE__*/ S.suspend(() =>
       method: "POST",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/getVcfLicense",
       code: 200,
-      apiVersion: "2025-09-01",
+      apiVersion: "2026-03-01",
     }),
   ),
 ).annotate({
-  identifier: "PrivateCloudsGetVcfLicenseRequest",
-}) as any as S.Schema<PrivateCloudsGetVcfLicenseRequest>;
+  identifier: "GetPrivateCloudVcfLicenseRequest",
+}) as any as S.Schema<GetPrivateCloudVcfLicenseRequest>;
 
-export interface PrivateCloudsListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-}
-export const PrivateCloudsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "PrivateCloudsListRequest",
-}) as any as S.Schema<PrivateCloudsListRequest>;
-
-/** Resource tags. */
-export type PrivateCloudTagsMap = { [key: string]: string | undefined };
-export const PrivateCloudTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<PrivateCloudTagsMap>;
-
-/** The resource model definition representing SKU */
-export type PrivateCloudSku = ClustersCreateOrUpdateResponseSku;
-export const PrivateCloudSku = ClustersCreateOrUpdateResponseSku;
-
-/** Managed service identity (either system assigned, or none) */
-export type PrivateCloudIdentity = PrivateCloudsCreateOrUpdateResponseIdentity;
-export const PrivateCloudIdentity = PrivateCloudsCreateOrUpdateResponseIdentity;
-
-/** The availability zones. */
-export type PrivateCloudZonesList = Array<string>;
-export const PrivateCloudZonesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<PrivateCloudZonesList>;
-
-/** A private cloud resource */
-export interface PrivateCloud {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: PrivateCloudTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: PrivateCloudProperties;
-  /** The resource model definition representing SKU */
-  sku: ClustersCreateOrUpdateResponseSku;
-  /** Managed service identity (either system assigned, or none) */
-  identity?: PrivateCloudsCreateOrUpdateResponseIdentity;
-  /** The availability zones. */
-  zones?: PrivateCloudZonesList;
-}
-export const PrivateCloud = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(PrivateCloudTagsMap),
-    location: S.String,
-    properties: S.optional(PrivateCloudProperties),
-    sku: ClustersCreateOrUpdateResponseSku,
-    identity: S.optional(PrivateCloudsCreateOrUpdateResponseIdentity),
-    zones: S.optional(PrivateCloudZonesList),
-  }),
-).annotate({ identifier: "PrivateCloud" }) as any as S.Schema<PrivateCloud>;
-
-/** The PrivateCloud items on this page */
-export type PrivateCloudListValueList = Array<PrivateCloud>;
-export const PrivateCloudListValueList = /*@__PURE__*/ S.Array(
-  PrivateCloud,
-) as any as S.Schema<PrivateCloudListValueList>;
-
-/** The response of a PrivateCloud list operation. */
-export interface PrivateCloudList {
-  /** The PrivateCloud items on this page */
-  value: PrivateCloudListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const PrivateCloudList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: PrivateCloudListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PrivateCloudList",
-}) as any as S.Schema<PrivateCloudList>;
-
-export interface PrivateCloudsListAdminCredentialsRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-}
-export const PrivateCloudsListAdminCredentialsRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      privateCloudName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/listAdminCredentials",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
-).annotate({
-  identifier: "PrivateCloudsListAdminCredentialsRequest",
-}) as any as S.Schema<PrivateCloudsListAdminCredentialsRequest>;
-
-/** Administrative credentials for accessing vCenter and NSX-T */
-export interface AdminCredentials {
-  /** NSX-T Manager username */
-  nsxtUsername?: string;
-  /** NSX-T Manager password */
-  nsxtPassword?: string | Redacted.Redacted<string>;
-  /** vCenter admin username */
-  vcenterUsername?: string;
-  /** vCenter admin password */
-  vcenterPassword?: string | Redacted.Redacted<string>;
-}
-export const AdminCredentials = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    nsxtUsername: S.optional(S.String),
-    nsxtPassword: S.optional(S.String.pipe(T.SensitiveValue({}))),
-    vcenterUsername: S.optional(S.String),
-    vcenterPassword: S.optional(S.String.pipe(T.SensitiveValue({}))),
-  }),
-).annotate({
-  identifier: "AdminCredentials",
-}) as any as S.Schema<AdminCredentials>;
-
-export interface PrivateCloudsListInSubscriptionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-}
-export const PrivateCloudsListInSubscriptionRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.AVS/privateClouds",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
-).annotate({
-  identifier: "PrivateCloudsListInSubscriptionRequest",
-}) as any as S.Schema<PrivateCloudsListInSubscriptionRequest>;
-
-export interface PrivateCloudsRotateNsxtPasswordRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-}
-export const PrivateCloudsRotateNsxtPasswordRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      privateCloudName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/rotateNsxtPassword",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
-).annotate({
-  identifier: "PrivateCloudsRotateNsxtPasswordRequest",
-}) as any as S.Schema<PrivateCloudsRotateNsxtPasswordRequest>;
-
-export interface PrivateCloudsRotateNsxtPasswordResponse {}
-export const PrivateCloudsRotateNsxtPasswordResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "PrivateCloudsRotateNsxtPasswordResponse",
-}) as any as S.Schema<PrivateCloudsRotateNsxtPasswordResponse>;
-
-export interface PrivateCloudsRotateVcenterPasswordRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-}
-export const PrivateCloudsRotateVcenterPasswordRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      privateCloudName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/rotateVcenterPassword",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "PrivateCloudsRotateVcenterPasswordRequest",
-  }) as any as S.Schema<PrivateCloudsRotateVcenterPasswordRequest>;
-
-export interface PrivateCloudsRotateVcenterPasswordResponse {}
-export const PrivateCloudsRotateVcenterPasswordResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "PrivateCloudsRotateVcenterPasswordResponse",
-  }) as any as S.Schema<PrivateCloudsRotateVcenterPasswordResponse>;
-
-/** Resource tags. */
-export type PrivateCloudsUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const PrivateCloudsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<PrivateCloudsUpdateRequestTagsMap>;
-
-/** The resource model definition representing SKU */
-export type PrivateCloudsUpdateRequestSku = ClustersCreateOrUpdateRequestSku;
-export const PrivateCloudsUpdateRequestSku = ClustersCreateOrUpdateRequestSku;
-
-/** Managed service identity (either system assigned, or none) */
-export type PrivateCloudsUpdateRequestIdentity =
-  PrivateCloudsCreateOrUpdateRequestIdentity;
-export const PrivateCloudsUpdateRequestIdentity =
-  PrivateCloudsCreateOrUpdateRequestIdentity;
-
-/** Whether internet is enabled or disabled */
-export type InternetEnum = "Enabled" | "Disabled";
-export const InternetEnum = /*@__PURE__*/ S.String;
-
-/** vCenter Single Sign On Identity Sources */
-export type PrivateCloudUpdatePropertiesInputIdentitySourcesList =
-  Array<IdentitySource>;
-export const PrivateCloudUpdatePropertiesInputIdentitySourcesList =
-  /*@__PURE__*/ S.Array(
-    IdentitySource,
-  ) as any as S.Schema<PrivateCloudUpdatePropertiesInputIdentitySourcesList>;
-
-/** Array of additional networks noncontiguous with networkBlock. Networks must be unique and non-overlapping across VNet in your subscription, on-premise, and this privateCloud networkBlock attribute. Make sure the CIDR format conforms to (A.B.C.D/X). */
-export type PrivateCloudUpdatePropertiesInputExtendedNetworkBlocksList =
-  Array<string>;
-export const PrivateCloudUpdatePropertiesInputExtendedNetworkBlocksList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PrivateCloudUpdatePropertiesInputExtendedNetworkBlocksList>;
-
-/** The properties of a private cloud resource that may be updated */
-export interface PrivateCloudUpdatePropertiesInput {
-  /** The default cluster used for management */
-  managementCluster?: ManagementClusterInput;
-  /** Connectivity to internet is enabled or disabled */
-  internet?: InternetEnum | (string & {});
-  /** vCenter Single Sign On Identity Sources */
-  identitySources?: PrivateCloudUpdatePropertiesInputIdentitySourcesList;
-  /** Properties describing how the cloud is distributed across availability zones */
-  availability?: AvailabilityProperties;
-  /** Customer managed key encryption, can be enabled or disabled */
-  encryption?: EncryptionInput;
-  /** Array of additional networks noncontiguous with networkBlock. Networks must be unique and non-overlapping across VNet in your subscription, on-premise, and this privateCloud networkBlock attribute. Make sure the CIDR format conforms to (A.B.C.D/X). */
-  extendedNetworkBlocks?: PrivateCloudUpdatePropertiesInputExtendedNetworkBlocksList;
-  /** The type of DNS zone to use. */
-  dnsZoneType?: DnsZoneType | (string & {});
-}
-export const PrivateCloudUpdatePropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    managementCluster: S.optional(ManagementClusterInput),
-    internet: S.optional(InternetEnum),
-    identitySources: S.optional(
-      PrivateCloudUpdatePropertiesInputIdentitySourcesList,
-    ),
-    availability: S.optional(AvailabilityProperties),
-    encryption: S.optional(EncryptionInput),
-    extendedNetworkBlocks: S.optional(
-      PrivateCloudUpdatePropertiesInputExtendedNetworkBlocksList,
-    ),
-    dnsZoneType: S.optional(DnsZoneType),
-  }),
-).annotate({
-  identifier: "PrivateCloudUpdatePropertiesInput",
-}) as any as S.Schema<PrivateCloudUpdatePropertiesInput>;
-
-export interface PrivateCloudsUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-  /** Resource tags. */
-  tags?: PrivateCloudsUpdateRequestTagsMap;
-  /** The resource model definition representing SKU */
-  sku?: ClustersCreateOrUpdateRequestSku;
-  /** Managed service identity (either system assigned, or none) */
-  identity?: PrivateCloudsCreateOrUpdateRequestIdentity;
-  /** The updatable properties of a private cloud resource */
-  properties?: PrivateCloudUpdatePropertiesInput;
-}
-export const PrivateCloudsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    privateCloudName: S.String.pipe(T.Label()),
-    tags: S.optional(PrivateCloudsUpdateRequestTagsMap),
-    sku: S.optional(ClustersCreateOrUpdateRequestSku),
-    identity: S.optional(PrivateCloudsCreateOrUpdateRequestIdentity),
-    properties: S.optional(PrivateCloudUpdatePropertiesInput),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "PrivateCloudsUpdateRequest",
-}) as any as S.Schema<PrivateCloudsUpdateRequest>;
-
-/** Resource tags. */
-export type PrivateCloudsUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const PrivateCloudsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<PrivateCloudsUpdateResponseTagsMap>;
-
-/** The resource model definition representing SKU */
-export type PrivateCloudsUpdateResponseSku = ClustersCreateOrUpdateResponseSku;
-export const PrivateCloudsUpdateResponseSku = ClustersCreateOrUpdateResponseSku;
-
-/** Managed service identity (either system assigned, or none) */
-export type PrivateCloudsUpdateResponseIdentity =
-  PrivateCloudsCreateOrUpdateResponseIdentity;
-export const PrivateCloudsUpdateResponseIdentity =
-  PrivateCloudsCreateOrUpdateResponseIdentity;
-
-/** The availability zones. */
-export type PrivateCloudsUpdateResponseZonesList = Array<string>;
-export const PrivateCloudsUpdateResponseZonesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<PrivateCloudsUpdateResponseZonesList>;
-
-export interface PrivateCloudsUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: PrivateCloudsUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: PrivateCloudProperties;
-  /** The resource model definition representing SKU */
-  sku: ClustersCreateOrUpdateResponseSku;
-  /** Managed service identity (either system assigned, or none) */
-  identity?: PrivateCloudsCreateOrUpdateResponseIdentity;
-  /** The availability zones. */
-  zones?: PrivateCloudsUpdateResponseZonesList;
-}
-export const PrivateCloudsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(PrivateCloudsUpdateResponseTagsMap),
-    location: S.String,
-    properties: S.optional(PrivateCloudProperties),
-    sku: ClustersCreateOrUpdateResponseSku,
-    identity: S.optional(PrivateCloudsCreateOrUpdateResponseIdentity),
-    zones: S.optional(PrivateCloudsUpdateResponseZonesList),
-  }),
-).annotate({
-  identifier: "PrivateCloudsUpdateResponse",
-}) as any as S.Schema<PrivateCloudsUpdateResponse>;
-
-export interface ProvisionedNetworksGetRequest {
+export interface GetProvisionedNetworkRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -5341,7 +4306,7 @@ export interface ProvisionedNetworksGetRequest {
   /** Name of the cloud link. */
   provisionedNetworkName: string;
 }
-export const ProvisionedNetworksGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetProvisionedNetworkRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -5352,12 +4317,12 @@ export const ProvisionedNetworksGetRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/provisionedNetworks/{provisionedNetworkName}",
       code: 200,
-      apiVersion: "2025-09-01",
+      apiVersion: "2026-03-01",
     }),
   ),
 ).annotate({
-  identifier: "ProvisionedNetworksGetRequest",
-}) as any as S.Schema<ProvisionedNetworksGetRequest>;
+  identifier: "GetProvisionedNetworkRequest",
+}) as any as S.Schema<GetProvisionedNetworkRequest>;
 
 /** provisioned network provisioning state */
 export type ProvisionedNetworkProvisioningState =
@@ -5396,7 +4361,7 @@ export const ProvisionedNetworkProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "ProvisionedNetworkProperties",
 }) as any as S.Schema<ProvisionedNetworkProperties>;
 
-export interface ProvisionedNetworksGetResponse {
+export interface GetProvisionedNetworkResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -5408,7 +4373,7 @@ export interface ProvisionedNetworksGetResponse {
   /** The resource-specific properties for this resource. */
   properties?: ProvisionedNetworkProperties;
 }
-export const ProvisionedNetworksGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetProvisionedNetworkResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -5417,98 +4382,10 @@ export const ProvisionedNetworksGetResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(ProvisionedNetworkProperties),
   }),
 ).annotate({
-  identifier: "ProvisionedNetworksGetResponse",
-}) as any as S.Schema<ProvisionedNetworksGetResponse>;
+  identifier: "GetProvisionedNetworkResponse",
+}) as any as S.Schema<GetProvisionedNetworkResponse>;
 
-export interface ProvisionedNetworksListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-}
-export const ProvisionedNetworksListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    privateCloudName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/provisionedNetworks",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "ProvisionedNetworksListRequest",
-}) as any as S.Schema<ProvisionedNetworksListRequest>;
-
-/** A provisioned network resource */
-export interface ProvisionedNetwork {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: ProvisionedNetworkProperties;
-}
-export const ProvisionedNetwork = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ProvisionedNetworkProperties),
-  }),
-).annotate({
-  identifier: "ProvisionedNetwork",
-}) as any as S.Schema<ProvisionedNetwork>;
-
-/** The ProvisionedNetwork items on this page */
-export type ProvisionedNetworkListResultValueList = Array<ProvisionedNetwork>;
-export const ProvisionedNetworkListResultValueList = /*@__PURE__*/ S.Array(
-  ProvisionedNetwork,
-) as any as S.Schema<ProvisionedNetworkListResultValueList>;
-
-/** The response of a ProvisionedNetwork list operation. */
-export interface ProvisionedNetworkListResult {
-  /** The ProvisionedNetwork items on this page */
-  value: ProvisionedNetworkListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const ProvisionedNetworkListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: ProvisionedNetworkListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ProvisionedNetworkListResult",
-}) as any as S.Schema<ProvisionedNetworkListResult>;
-
-/** Properties of a Pure Storage Policy Based Management policy */
-export interface PureStoragePolicyPropertiesInput {
-  /** Definition of a Pure Storage Policy Based Management policy */
-  storagePolicyDefinition: string;
-  /** Azure resource ID of the Pure Storage Pool associated with the storage policy */
-  storagePoolId: string;
-}
-export const PureStoragePolicyPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    storagePolicyDefinition: S.String,
-    storagePoolId: S.String,
-  }),
-).annotate({
-  identifier: "PureStoragePolicyPropertiesInput",
-}) as any as S.Schema<PureStoragePolicyPropertiesInput>;
-
-export interface PureStoragePoliciesCreateOrUpdateRequest {
+export interface GetPureStoragePolicyRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -5517,28 +4394,24 @@ export interface PureStoragePoliciesCreateOrUpdateRequest {
   privateCloudName: string;
   /** Name of the storage policy. */
   storagePolicyName: string;
-  /** The resource-specific properties for this resource. */
-  properties?: PureStoragePolicyPropertiesInput;
 }
-export const PureStoragePoliciesCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      privateCloudName: S.String.pipe(T.Label()),
-      storagePolicyName: S.String.pipe(T.Label()),
-      properties: S.optional(PureStoragePolicyPropertiesInput),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/pureStoragePolicies/{storagePolicyName}",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
+export const GetPureStoragePolicyRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    privateCloudName: S.String.pipe(T.Label()),
+    storagePolicyName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/pureStoragePolicies/{storagePolicyName}",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
 ).annotate({
-  identifier: "PureStoragePoliciesCreateOrUpdateRequest",
-}) as any as S.Schema<PureStoragePoliciesCreateOrUpdateRequest>;
+  identifier: "GetPureStoragePolicyRequest",
+}) as any as S.Schema<GetPureStoragePolicyRequest>;
 
 /** Pure Storage Policy Based Management policy provisioning state */
 export type PureStoragePolicyProvisioningState =
@@ -5568,7 +4441,7 @@ export const PureStoragePolicyProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "PureStoragePolicyProperties",
 }) as any as S.Schema<PureStoragePolicyProperties>;
 
-export interface PureStoragePoliciesCreateOrUpdateResponse {
+export interface GetPureStoragePolicyResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -5580,95 +4453,7 @@ export interface PureStoragePoliciesCreateOrUpdateResponse {
   /** The resource-specific properties for this resource. */
   properties?: PureStoragePolicyProperties;
 }
-export const PureStoragePoliciesCreateOrUpdateResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(PureStoragePolicyProperties),
-    }),
-  ).annotate({
-    identifier: "PureStoragePoliciesCreateOrUpdateResponse",
-  }) as any as S.Schema<PureStoragePoliciesCreateOrUpdateResponse>;
-
-export interface PureStoragePoliciesDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-  /** Name of the storage policy. */
-  storagePolicyName: string;
-}
-export const PureStoragePoliciesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    privateCloudName: S.String.pipe(T.Label()),
-    storagePolicyName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/pureStoragePolicies/{storagePolicyName}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "PureStoragePoliciesDeleteRequest",
-}) as any as S.Schema<PureStoragePoliciesDeleteRequest>;
-
-export interface PureStoragePoliciesDeleteResponse {}
-export const PureStoragePoliciesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "PureStoragePoliciesDeleteResponse",
-}) as any as S.Schema<PureStoragePoliciesDeleteResponse>;
-
-export interface PureStoragePoliciesGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-  /** Name of the storage policy. */
-  storagePolicyName: string;
-}
-export const PureStoragePoliciesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    privateCloudName: S.String.pipe(T.Label()),
-    storagePolicyName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/pureStoragePolicies/{storagePolicyName}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "PureStoragePoliciesGetRequest",
-}) as any as S.Schema<PureStoragePoliciesGetRequest>;
-
-export interface PureStoragePoliciesGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: PureStoragePolicyProperties;
-}
-export const PureStoragePoliciesGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetPureStoragePolicyResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -5677,82 +4462,10 @@ export const PureStoragePoliciesGetResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(PureStoragePolicyProperties),
   }),
 ).annotate({
-  identifier: "PureStoragePoliciesGetResponse",
-}) as any as S.Schema<PureStoragePoliciesGetResponse>;
+  identifier: "GetPureStoragePolicyResponse",
+}) as any as S.Schema<GetPureStoragePolicyResponse>;
 
-export interface PureStoragePoliciesListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-}
-export const PureStoragePoliciesListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    privateCloudName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/pureStoragePolicies",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "PureStoragePoliciesListRequest",
-}) as any as S.Schema<PureStoragePoliciesListRequest>;
-
-/** An instance describing a Pure Storage Policy Based Management policy */
-export interface PureStoragePolicy {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: PureStoragePolicyProperties;
-}
-export const PureStoragePolicy = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(PureStoragePolicyProperties),
-  }),
-).annotate({
-  identifier: "PureStoragePolicy",
-}) as any as S.Schema<PureStoragePolicy>;
-
-/** The PureStoragePolicy items on this page */
-export type PureStoragePolicyListResultValueList = Array<PureStoragePolicy>;
-export const PureStoragePolicyListResultValueList = /*@__PURE__*/ S.Array(
-  PureStoragePolicy,
-) as any as S.Schema<PureStoragePolicyListResultValueList>;
-
-/** The response of a PureStoragePolicy list operation. */
-export interface PureStoragePolicyListResult {
-  /** The PureStoragePolicy items on this page */
-  value: PureStoragePolicyListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const PureStoragePolicyListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: PureStoragePolicyListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PureStoragePolicyListResult",
-}) as any as S.Schema<PureStoragePolicyListResult>;
-
-export interface ScriptCmdletsGetRequest {
+export interface GetScriptCmdletRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -5764,7 +4477,7 @@ export interface ScriptCmdletsGetRequest {
   /** Name of the script cmdlet. */
   scriptCmdletName: string;
 }
-export const ScriptCmdletsGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetScriptCmdletRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -5776,12 +4489,12 @@ export const ScriptCmdletsGetRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/scriptPackages/{scriptPackageName}/scriptCmdlets/{scriptCmdletName}",
       code: 200,
-      apiVersion: "2025-09-01",
+      apiVersion: "2026-03-01",
     }),
   ),
 ).annotate({
-  identifier: "ScriptCmdletsGetRequest",
-}) as any as S.Schema<ScriptCmdletsGetRequest>;
+  identifier: "GetScriptCmdletRequest",
+}) as any as S.Schema<GetScriptCmdletRequest>;
 
 /** A script cmdlet provisioning state */
 export type ScriptCmdletProvisioningState = "Succeeded" | "Failed" | "Canceled";
@@ -5865,7 +4578,7 @@ export const ScriptCmdletProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "ScriptCmdletProperties",
 }) as any as S.Schema<ScriptCmdletProperties>;
 
-export interface ScriptCmdletsGetResponse {
+export interface GetScriptCmdletResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -5877,7 +4590,7 @@ export interface ScriptCmdletsGetResponse {
   /** The resource-specific properties for this resource. */
   properties?: ScriptCmdletProperties;
 }
-export const ScriptCmdletsGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetScriptCmdletResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -5886,81 +4599,36 @@ export const ScriptCmdletsGetResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(ScriptCmdletProperties),
   }),
 ).annotate({
-  identifier: "ScriptCmdletsGetResponse",
-}) as any as S.Schema<ScriptCmdletsGetResponse>;
+  identifier: "GetScriptCmdletResponse",
+}) as any as S.Schema<GetScriptCmdletResponse>;
 
-export interface ScriptCmdletsListRequest {
+export interface GetScriptExecutionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** Name of the private cloud */
   privateCloudName: string;
-  /** Name of the script package. */
-  scriptPackageName: string;
+  /** Name of the script cmdlet. */
+  scriptExecutionName: string;
 }
-export const ScriptCmdletsListRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetScriptExecutionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     privateCloudName: S.String.pipe(T.Label()),
-    scriptPackageName: S.String.pipe(T.Label()),
+    scriptExecutionName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/scriptPackages/{scriptPackageName}/scriptCmdlets",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/scriptExecutions/{scriptExecutionName}",
       code: 200,
-      apiVersion: "2025-09-01",
+      apiVersion: "2026-03-01",
     }),
   ),
 ).annotate({
-  identifier: "ScriptCmdletsListRequest",
-}) as any as S.Schema<ScriptCmdletsListRequest>;
-
-/** A cmdlet available for script execution */
-export interface ScriptCmdlet {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: ScriptCmdletProperties;
-}
-export const ScriptCmdlet = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ScriptCmdletProperties),
-  }),
-).annotate({ identifier: "ScriptCmdlet" }) as any as S.Schema<ScriptCmdlet>;
-
-/** The ScriptCmdlet items on this page */
-export type ScriptCmdletsListValueList = Array<ScriptCmdlet>;
-export const ScriptCmdletsListValueList = /*@__PURE__*/ S.Array(
-  ScriptCmdlet,
-) as any as S.Schema<ScriptCmdletsListValueList>;
-
-/** The response of a ScriptCmdlet list operation. */
-export interface ScriptCmdletsList {
-  /** The ScriptCmdlet items on this page */
-  value: ScriptCmdletsListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const ScriptCmdletsList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: ScriptCmdletsListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ScriptCmdletsList",
-}) as any as S.Schema<ScriptCmdletsList>;
+  identifier: "GetScriptExecutionRequest",
+}) as any as S.Schema<GetScriptExecutionRequest>;
 
 /** script execution parameter type */
 export type ScriptExecutionParameterType =
@@ -5984,106 +4652,6 @@ export const ScriptExecutionParameter = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ScriptExecutionParameter",
 }) as any as S.Schema<ScriptExecutionParameter>;
-
-/** Parameters the script will accept */
-export type ScriptExecutionPropertiesInputParametersList =
-  Array<ScriptExecutionParameter>;
-export const ScriptExecutionPropertiesInputParametersList =
-  /*@__PURE__*/ S.Array(
-    ScriptExecutionParameter,
-  ) as any as S.Schema<ScriptExecutionPropertiesInputParametersList>;
-
-/** Parameters that will be hidden/not visible to ARM, such as passwords and credentials */
-export type ScriptExecutionPropertiesInputHiddenParametersList =
-  Array<ScriptExecutionParameter>;
-export const ScriptExecutionPropertiesInputHiddenParametersList =
-  /*@__PURE__*/ S.Array(
-    ScriptExecutionParameter,
-  ) as any as S.Schema<ScriptExecutionPropertiesInputHiddenParametersList>;
-
-/** Standard output stream from the powershell execution */
-export type ScriptExecutionPropertiesInputOutputList = Array<string>;
-export const ScriptExecutionPropertiesInputOutputList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ScriptExecutionPropertiesInputOutputList>;
-
-/** User-defined dictionary. */
-export type ScriptExecutionPropertiesInputNamedOutputsMap = {
-  [key: string]: unknown | undefined;
-};
-export const ScriptExecutionPropertiesInputNamedOutputsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.Unknown,
-  ) as any as S.Schema<ScriptExecutionPropertiesInputNamedOutputsMap>;
-
-/** Properties of a user-invoked script */
-export interface ScriptExecutionPropertiesInput {
-  /** A reference to the script cmdlet resource if user is running a AVS script */
-  scriptCmdletId?: string;
-  /** Parameters the script will accept */
-  parameters?: ScriptExecutionPropertiesInputParametersList;
-  /** Parameters that will be hidden/not visible to ARM, such as passwords and credentials */
-  hiddenParameters?: ScriptExecutionPropertiesInputHiddenParametersList;
-  /** Error message if the script was able to run, but if the script itself had errors or powershell threw an exception */
-  failureReason?: string;
-  /** Time limit for execution */
-  timeout: string;
-  /** Time to live for the resource. If not provided, will be available for 60 days */
-  retention?: string;
-  /** Standard output stream from the powershell execution */
-  output?: ScriptExecutionPropertiesInputOutputList;
-  /** User-defined dictionary. */
-  namedOutputs?: ScriptExecutionPropertiesInputNamedOutputsMap;
-}
-export const ScriptExecutionPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    scriptCmdletId: S.optional(S.String),
-    parameters: S.optional(ScriptExecutionPropertiesInputParametersList),
-    hiddenParameters: S.optional(
-      ScriptExecutionPropertiesInputHiddenParametersList,
-    ),
-    failureReason: S.optional(S.String),
-    timeout: S.String,
-    retention: S.optional(S.String),
-    output: S.optional(ScriptExecutionPropertiesInputOutputList),
-    namedOutputs: S.optional(ScriptExecutionPropertiesInputNamedOutputsMap),
-  }),
-).annotate({
-  identifier: "ScriptExecutionPropertiesInput",
-}) as any as S.Schema<ScriptExecutionPropertiesInput>;
-
-export interface ScriptExecutionsCreateOrUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-  /** Name of the script cmdlet. */
-  scriptExecutionName: string;
-  /** The resource-specific properties for this resource. */
-  properties?: ScriptExecutionPropertiesInput;
-}
-export const ScriptExecutionsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      privateCloudName: S.String.pipe(T.Label()),
-      scriptExecutionName: S.String.pipe(T.Label()),
-      properties: S.optional(ScriptExecutionPropertiesInput),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/scriptExecutions/{scriptExecutionName}",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
-).annotate({
-  identifier: "ScriptExecutionsCreateOrUpdateRequest",
-}) as any as S.Schema<ScriptExecutionsCreateOrUpdateRequest>;
 
 /** Parameters the script will accept */
 export type ScriptExecutionPropertiesParametersList =
@@ -6200,7 +4768,7 @@ export const ScriptExecutionProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "ScriptExecutionProperties",
 }) as any as S.Schema<ScriptExecutionProperties>;
 
-export interface ScriptExecutionsCreateOrUpdateResponse {
+export interface GetScriptExecutionResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -6212,95 +4780,7 @@ export interface ScriptExecutionsCreateOrUpdateResponse {
   /** The resource-specific properties for this resource. */
   properties?: ScriptExecutionProperties;
 }
-export const ScriptExecutionsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(ScriptExecutionProperties),
-    }),
-).annotate({
-  identifier: "ScriptExecutionsCreateOrUpdateResponse",
-}) as any as S.Schema<ScriptExecutionsCreateOrUpdateResponse>;
-
-export interface ScriptExecutionsDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-  /** Name of the script cmdlet. */
-  scriptExecutionName: string;
-}
-export const ScriptExecutionsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    privateCloudName: S.String.pipe(T.Label()),
-    scriptExecutionName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/scriptExecutions/{scriptExecutionName}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "ScriptExecutionsDeleteRequest",
-}) as any as S.Schema<ScriptExecutionsDeleteRequest>;
-
-export interface ScriptExecutionsDeleteResponse {}
-export const ScriptExecutionsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ScriptExecutionsDeleteResponse",
-}) as any as S.Schema<ScriptExecutionsDeleteResponse>;
-
-export interface ScriptExecutionsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-  /** Name of the script cmdlet. */
-  scriptExecutionName: string;
-}
-export const ScriptExecutionsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    privateCloudName: S.String.pipe(T.Label()),
-    scriptExecutionName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/scriptExecutions/{scriptExecutionName}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "ScriptExecutionsGetRequest",
-}) as any as S.Schema<ScriptExecutionsGetRequest>;
-
-export interface ScriptExecutionsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: ScriptExecutionProperties;
-}
-export const ScriptExecutionsGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetScriptExecutionResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -6309,8 +4789,8 @@ export const ScriptExecutionsGetResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(ScriptExecutionProperties),
   }),
 ).annotate({
-  identifier: "ScriptExecutionsGetResponse",
-}) as any as S.Schema<ScriptExecutionsGetResponse>;
+  identifier: "GetScriptExecutionResponse",
+}) as any as S.Schema<GetScriptExecutionResponse>;
 
 /** Script Output Stream type */
 export type ScriptOutputStreamType =
@@ -6320,15 +4800,15 @@ export type ScriptOutputStreamType =
   | "Error";
 export const ScriptOutputStreamType = /*@__PURE__*/ S.String;
 
-export type ScriptExecutionsGetExecutionLogsRequestBodyList = Array<
+export type GetScriptExecutionExecutionLogsRequestBodyList = Array<
   ScriptOutputStreamType | (string & {})
 >;
-export const ScriptExecutionsGetExecutionLogsRequestBodyList =
+export const GetScriptExecutionExecutionLogsRequestBodyList =
   /*@__PURE__*/ S.Array(
     ScriptOutputStreamType,
-  ) as any as S.Schema<ScriptExecutionsGetExecutionLogsRequestBodyList>;
+  ) as any as S.Schema<GetScriptExecutionExecutionLogsRequestBodyList>;
 
-export interface ScriptExecutionsGetExecutionLogsRequest {
+export interface GetScriptExecutionExecutionLogsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -6337,9 +4817,9 @@ export interface ScriptExecutionsGetExecutionLogsRequest {
   privateCloudName: string;
   /** Name of the script cmdlet. */
   scriptExecutionName: string;
-  body?: ScriptExecutionsGetExecutionLogsRequestBodyList;
+  body?: GetScriptExecutionExecutionLogsRequestBodyList;
 }
-export const ScriptExecutionsGetExecutionLogsRequest = /*@__PURE__*/ S.suspend(
+export const GetScriptExecutionExecutionLogsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -6347,21 +4827,21 @@ export const ScriptExecutionsGetExecutionLogsRequest = /*@__PURE__*/ S.suspend(
       privateCloudName: S.String.pipe(T.Label()),
       scriptExecutionName: S.String.pipe(T.Label()),
       body: S.optional(
-        ScriptExecutionsGetExecutionLogsRequestBodyList.pipe(T.HttpBody()),
+        GetScriptExecutionExecutionLogsRequestBodyList.pipe(T.HttpBody()),
       ),
     }).pipe(
       T.Http({
         method: "POST",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/scriptExecutions/{scriptExecutionName}/getExecutionLogs",
         code: 200,
-        apiVersion: "2025-09-01",
+        apiVersion: "2026-03-01",
       }),
     ),
 ).annotate({
-  identifier: "ScriptExecutionsGetExecutionLogsRequest",
-}) as any as S.Schema<ScriptExecutionsGetExecutionLogsRequest>;
+  identifier: "GetScriptExecutionExecutionLogsRequest",
+}) as any as S.Schema<GetScriptExecutionExecutionLogsRequest>;
 
-export interface ScriptExecutionsGetExecutionLogsResponse {
+export interface GetScriptExecutionExecutionLogsResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -6373,7 +4853,7 @@ export interface ScriptExecutionsGetExecutionLogsResponse {
   /** The resource-specific properties for this resource. */
   properties?: ScriptExecutionProperties;
 }
-export const ScriptExecutionsGetExecutionLogsResponse = /*@__PURE__*/ S.suspend(
+export const GetScriptExecutionExecutionLogsResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
@@ -6383,10 +4863,185 @@ export const ScriptExecutionsGetExecutionLogsResponse = /*@__PURE__*/ S.suspend(
       properties: S.optional(ScriptExecutionProperties),
     }),
 ).annotate({
-  identifier: "ScriptExecutionsGetExecutionLogsResponse",
-}) as any as S.Schema<ScriptExecutionsGetExecutionLogsResponse>;
+  identifier: "GetScriptExecutionExecutionLogsResponse",
+}) as any as S.Schema<GetScriptExecutionExecutionLogsResponse>;
 
-export interface ScriptExecutionsListRequest {
+export interface GetScriptPackageRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+  /** Name of the script package. */
+  scriptPackageName: string;
+}
+export const GetScriptPackageRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    privateCloudName: S.String.pipe(T.Label()),
+    scriptPackageName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/scriptPackages/{scriptPackageName}",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetScriptPackageRequest",
+}) as any as S.Schema<GetScriptPackageRequest>;
+
+/** Script Package provisioning state */
+export type ScriptPackageProvisioningState =
+  | "Succeeded"
+  | "Failed"
+  | "Canceled";
+export const ScriptPackageProvisioningState = /*@__PURE__*/ S.String;
+
+/** Properties of a Script Package subresource */
+export interface ScriptPackageProperties {
+  /** The provisioning state of the resource. */
+  provisioningState?: ScriptPackageProvisioningState;
+  /** User friendly description of the package */
+  description?: string;
+  /** Module version */
+  version?: string;
+  /** Company that created and supports the package */
+  company?: string;
+  /** Link to support by the package vendor */
+  uri?: string;
+}
+export const ScriptPackageProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provisioningState: S.optional(ScriptPackageProvisioningState),
+    description: S.optional(S.String),
+    version: S.optional(S.String),
+    company: S.optional(S.String),
+    uri: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ScriptPackageProperties",
+}) as any as S.Schema<ScriptPackageProperties>;
+
+export interface GetScriptPackageResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: ScriptPackageProperties;
+}
+export const GetScriptPackageResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ScriptPackageProperties),
+  }),
+).annotate({
+  identifier: "GetScriptPackageResponse",
+}) as any as S.Schema<GetScriptPackageResponse>;
+
+export interface GetVirtualMachineRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+  /** Name of the cluster */
+  clusterName: string;
+  /** ID of the virtual machine. */
+  virtualMachineId: string;
+}
+export const GetVirtualMachineRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    privateCloudName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    virtualMachineId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}/virtualMachines/{virtualMachineId}",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetVirtualMachineRequest",
+}) as any as S.Schema<GetVirtualMachineRequest>;
+
+/** Virtual Machine provisioning state */
+export type VirtualMachineProvisioningState =
+  | "Succeeded"
+  | "Failed"
+  | "Canceled";
+export const VirtualMachineProvisioningState = /*@__PURE__*/ S.String;
+
+/** Virtual Machine Restrict Movement state */
+export type VirtualMachineRestrictMovementState = "Enabled" | "Disabled";
+export const VirtualMachineRestrictMovementState = /*@__PURE__*/ S.String;
+
+/** Virtual Machine Properties */
+export interface VirtualMachineProperties {
+  /** The provisioning state of the resource. */
+  provisioningState?: VirtualMachineProvisioningState;
+  /** Display name of the VM. */
+  displayName?: string;
+  /** vCenter managed object reference ID of the virtual machine */
+  moRefId?: string;
+  /** Path to virtual machine's folder starting from datacenter virtual machine folder */
+  folderPath?: string;
+  /** Whether VM DRS-driven movement is restricted (enabled) or not (disabled) */
+  restrictMovement?: VirtualMachineRestrictMovementState;
+}
+export const VirtualMachineProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provisioningState: S.optional(VirtualMachineProvisioningState),
+    displayName: S.optional(S.String),
+    moRefId: S.optional(S.String),
+    folderPath: S.optional(S.String),
+    restrictMovement: S.optional(VirtualMachineRestrictMovementState),
+  }),
+).annotate({
+  identifier: "VirtualMachineProperties",
+}) as any as S.Schema<VirtualMachineProperties>;
+
+export interface GetVirtualMachineResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: VirtualMachineProperties;
+}
+export const GetVirtualMachineResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(VirtualMachineProperties),
+  }),
+).annotate({
+  identifier: "GetVirtualMachineResponse",
+}) as any as S.Schema<GetVirtualMachineResponse>;
+
+export interface GetWorkloadNetworkRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -6394,7 +5049,2311 @@ export interface ScriptExecutionsListRequest {
   /** Name of the private cloud */
   privateCloudName: string;
 }
-export const ScriptExecutionsListRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetWorkloadNetworkRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    privateCloudName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetWorkloadNetworkRequest",
+}) as any as S.Schema<GetWorkloadNetworkRequest>;
+
+/** base Workload Network provisioning state */
+export type WorkloadNetworkProvisioningState =
+  | "Succeeded"
+  | "Failed"
+  | "Canceled"
+  | "Building"
+  | "Deleting"
+  | "Updating";
+export const WorkloadNetworkProvisioningState = /*@__PURE__*/ S.String;
+
+/** The properties of a workload network */
+export interface WorkloadNetworkProperties {
+  /** The provisioning state of the resource. */
+  provisioningState?: WorkloadNetworkProvisioningState;
+}
+export const WorkloadNetworkProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provisioningState: S.optional(WorkloadNetworkProvisioningState),
+  }),
+).annotate({
+  identifier: "WorkloadNetworkProperties",
+}) as any as S.Schema<WorkloadNetworkProperties>;
+
+export interface GetWorkloadNetworkResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: WorkloadNetworkProperties;
+}
+export const GetWorkloadNetworkResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(WorkloadNetworkProperties),
+  }),
+).annotate({
+  identifier: "GetWorkloadNetworkResponse",
+}) as any as S.Schema<GetWorkloadNetworkResponse>;
+
+export interface GetWorkloadNetworkDhcpRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+  /** The ID of the DHCP configuration */
+  dhcpId: string;
+}
+export const GetWorkloadNetworkDhcpRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    privateCloudName: S.String.pipe(T.Label()),
+    dhcpId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dhcpConfigurations/{dhcpId}",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetWorkloadNetworkDhcpRequest",
+}) as any as S.Schema<GetWorkloadNetworkDhcpRequest>;
+
+export interface GetWorkloadNetworkDhcpResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: WorkloadNetworkDhcpEntity;
+}
+export const GetWorkloadNetworkDhcpResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(WorkloadNetworkDhcpEntity),
+  }),
+).annotate({
+  identifier: "GetWorkloadNetworkDhcpResponse",
+}) as any as S.Schema<GetWorkloadNetworkDhcpResponse>;
+
+export interface GetWorkloadNetworkDnsServiceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+  /** ID of the DNS service. */
+  dnsServiceId: string;
+}
+export const GetWorkloadNetworkDnsServiceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    privateCloudName: S.String.pipe(T.Label()),
+    dnsServiceId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dnsServices/{dnsServiceId}",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetWorkloadNetworkDnsServiceRequest",
+}) as any as S.Schema<GetWorkloadNetworkDnsServiceRequest>;
+
+export interface GetWorkloadNetworkDnsServiceResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: WorkloadNetworkDnsServiceProperties;
+}
+export const GetWorkloadNetworkDnsServiceResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(WorkloadNetworkDnsServiceProperties),
+    }),
+).annotate({
+  identifier: "GetWorkloadNetworkDnsServiceResponse",
+}) as any as S.Schema<GetWorkloadNetworkDnsServiceResponse>;
+
+export interface GetWorkloadNetworkDnsZoneRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+  /** ID of the DNS zone. */
+  dnsZoneId: string;
+}
+export const GetWorkloadNetworkDnsZoneRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    privateCloudName: S.String.pipe(T.Label()),
+    dnsZoneId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dnsZones/{dnsZoneId}",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetWorkloadNetworkDnsZoneRequest",
+}) as any as S.Schema<GetWorkloadNetworkDnsZoneRequest>;
+
+export interface GetWorkloadNetworkDnsZoneResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: WorkloadNetworkDnsZoneProperties;
+}
+export const GetWorkloadNetworkDnsZoneResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(WorkloadNetworkDnsZoneProperties),
+  }),
+).annotate({
+  identifier: "GetWorkloadNetworkDnsZoneResponse",
+}) as any as S.Schema<GetWorkloadNetworkDnsZoneResponse>;
+
+export interface GetWorkloadNetworkGatewayRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+  /** The ID of the NSX Gateway */
+  gatewayId: string;
+}
+export const GetWorkloadNetworkGatewayRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    privateCloudName: S.String.pipe(T.Label()),
+    gatewayId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/gateways/{gatewayId}",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetWorkloadNetworkGatewayRequest",
+}) as any as S.Schema<GetWorkloadNetworkGatewayRequest>;
+
+/** Properties of a NSX Gateway. */
+export interface WorkloadNetworkGatewayProperties {
+  /** The provisioning state of the resource. */
+  provisioningState?: WorkloadNetworkProvisioningState;
+  /** Display name of the DHCP entity. */
+  displayName?: string;
+  /** NSX Gateway Path. */
+  path?: string;
+}
+export const WorkloadNetworkGatewayProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provisioningState: S.optional(WorkloadNetworkProvisioningState),
+    displayName: S.optional(S.String),
+    path: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "WorkloadNetworkGatewayProperties",
+}) as any as S.Schema<WorkloadNetworkGatewayProperties>;
+
+export interface GetWorkloadNetworkGatewayResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: WorkloadNetworkGatewayProperties;
+}
+export const GetWorkloadNetworkGatewayResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(WorkloadNetworkGatewayProperties),
+  }),
+).annotate({
+  identifier: "GetWorkloadNetworkGatewayResponse",
+}) as any as S.Schema<GetWorkloadNetworkGatewayResponse>;
+
+export interface GetWorkloadNetworkPortMirroringRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+  /** ID of the NSX port mirroring profile. */
+  portMirroringId: string;
+}
+export const GetWorkloadNetworkPortMirroringRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      privateCloudName: S.String.pipe(T.Label()),
+      portMirroringId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/portMirroringProfiles/{portMirroringId}",
+        code: 200,
+        apiVersion: "2026-03-01",
+      }),
+    ),
+).annotate({
+  identifier: "GetWorkloadNetworkPortMirroringRequest",
+}) as any as S.Schema<GetWorkloadNetworkPortMirroringRequest>;
+
+export interface GetWorkloadNetworkPortMirroringResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: WorkloadNetworkPortMirroringProperties;
+}
+export const GetWorkloadNetworkPortMirroringResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(WorkloadNetworkPortMirroringProperties),
+    }),
+).annotate({
+  identifier: "GetWorkloadNetworkPortMirroringResponse",
+}) as any as S.Schema<GetWorkloadNetworkPortMirroringResponse>;
+
+export interface GetWorkloadNetworkPublicIPRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+  /** ID of the DNS zone. */
+  publicIPId: string;
+}
+export const GetWorkloadNetworkPublicIPRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    privateCloudName: S.String.pipe(T.Label()),
+    publicIPId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/publicIPs/{publicIPId}",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetWorkloadNetworkPublicIPRequest",
+}) as any as S.Schema<GetWorkloadNetworkPublicIPRequest>;
+
+export interface GetWorkloadNetworkPublicIPResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: WorkloadNetworkPublicIPProperties;
+}
+export const GetWorkloadNetworkPublicIPResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(WorkloadNetworkPublicIPProperties),
+  }),
+).annotate({
+  identifier: "GetWorkloadNetworkPublicIPResponse",
+}) as any as S.Schema<GetWorkloadNetworkPublicIPResponse>;
+
+export interface GetWorkloadNetworkSegmentRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+  /** The ID of the NSX Segment */
+  segmentId: string;
+}
+export const GetWorkloadNetworkSegmentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    privateCloudName: S.String.pipe(T.Label()),
+    segmentId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/segments/{segmentId}",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetWorkloadNetworkSegmentRequest",
+}) as any as S.Schema<GetWorkloadNetworkSegmentRequest>;
+
+export interface GetWorkloadNetworkSegmentResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: WorkloadNetworkSegmentProperties;
+}
+export const GetWorkloadNetworkSegmentResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(WorkloadNetworkSegmentProperties),
+  }),
+).annotate({
+  identifier: "GetWorkloadNetworkSegmentResponse",
+}) as any as S.Schema<GetWorkloadNetworkSegmentResponse>;
+
+export interface GetWorkloadNetworkVirtualMachineRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+  /** ID of the virtual machine. */
+  virtualMachineId: string;
+}
+export const GetWorkloadNetworkVirtualMachineRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      privateCloudName: S.String.pipe(T.Label()),
+      virtualMachineId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/virtualMachines/{virtualMachineId}",
+        code: 200,
+        apiVersion: "2026-03-01",
+      }),
+    ),
+).annotate({
+  identifier: "GetWorkloadNetworkVirtualMachineRequest",
+}) as any as S.Schema<GetWorkloadNetworkVirtualMachineRequest>;
+
+/** VM type */
+export type VMTypeEnum = "REGULAR" | "EDGE" | "SERVICE";
+export const VMTypeEnum = /*@__PURE__*/ S.String;
+
+/** NSX Virtual Machine Properties */
+export interface WorkloadNetworkVirtualMachineProperties {
+  /** The provisioning state of the resource. */
+  provisioningState?: WorkloadNetworkProvisioningState;
+  /** Display name of the VM. */
+  displayName?: string;
+  /** Virtual machine type. */
+  vmType?: VMTypeEnum;
+}
+export const WorkloadNetworkVirtualMachineProperties = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      provisioningState: S.optional(WorkloadNetworkProvisioningState),
+      displayName: S.optional(S.String),
+      vmType: S.optional(VMTypeEnum),
+    }),
+).annotate({
+  identifier: "WorkloadNetworkVirtualMachineProperties",
+}) as any as S.Schema<WorkloadNetworkVirtualMachineProperties>;
+
+export interface GetWorkloadNetworkVirtualMachineResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: WorkloadNetworkVirtualMachineProperties;
+}
+export const GetWorkloadNetworkVirtualMachineResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(WorkloadNetworkVirtualMachineProperties),
+    }),
+).annotate({
+  identifier: "GetWorkloadNetworkVirtualMachineResponse",
+}) as any as S.Schema<GetWorkloadNetworkVirtualMachineResponse>;
+
+export interface GetWorkloadNetworkVMGroupRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+  /** ID of the VM group. */
+  vmGroupId: string;
+}
+export const GetWorkloadNetworkVMGroupRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    privateCloudName: S.String.pipe(T.Label()),
+    vmGroupId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/vmGroups/{vmGroupId}",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetWorkloadNetworkVMGroupRequest",
+}) as any as S.Schema<GetWorkloadNetworkVMGroupRequest>;
+
+export interface GetWorkloadNetworkVMGroupResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: WorkloadNetworkVMGroupProperties;
+}
+export const GetWorkloadNetworkVMGroupResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(WorkloadNetworkVMGroupProperties),
+  }),
+).annotate({
+  identifier: "GetWorkloadNetworkVMGroupResponse",
+}) as any as S.Schema<GetWorkloadNetworkVMGroupResponse>;
+
+/** The properties of a global reach connection */
+export interface GlobalReachConnectionPropertiesInput {
+  /** Authorization key from the peer express route used for the global reach connection */
+  authorizationKey?: string;
+  /** Identifier of the ExpressRoute Circuit to peer with in the global reach connection */
+  peerExpressRouteCircuit?: string;
+  /** The ID of the Private Cloud's ExpressRoute Circuit that is participating in the global reach connection */
+  expressRouteId?: string;
+}
+export const GlobalReachConnectionPropertiesInput = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      authorizationKey: S.optional(S.String),
+      peerExpressRouteCircuit: S.optional(S.String),
+      expressRouteId: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "GlobalReachConnectionPropertiesInput",
+}) as any as S.Schema<GlobalReachConnectionPropertiesInput>;
+
+export interface GlobalReachConnectionsCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+  /** Name of the global reach connection */
+  globalReachConnectionName: string;
+  /** The resource-specific properties for this resource. */
+  properties?: GlobalReachConnectionPropertiesInput;
+}
+export const GlobalReachConnectionsCreateOrUpdateRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      privateCloudName: S.String.pipe(T.Label()),
+      globalReachConnectionName: S.String.pipe(T.Label()),
+      properties: S.optional(GlobalReachConnectionPropertiesInput),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/globalReachConnections/{globalReachConnectionName}",
+        code: 200,
+        apiVersion: "2026-03-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "GlobalReachConnectionsCreateOrUpdateRequest",
+  }) as any as S.Schema<GlobalReachConnectionsCreateOrUpdateRequest>;
+
+export interface GlobalReachConnectionsCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: GlobalReachConnectionProperties;
+}
+export const GlobalReachConnectionsCreateOrUpdateResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(GlobalReachConnectionProperties),
+    }),
+  ).annotate({
+    identifier: "GlobalReachConnectionsCreateOrUpdateResponse",
+  }) as any as S.Schema<GlobalReachConnectionsCreateOrUpdateResponse>;
+
+/** The properties of an HCX Enterprise Site */
+export interface HcxEnterpriseSitePropertiesInput {}
+export const HcxEnterpriseSitePropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "HcxEnterpriseSitePropertiesInput",
+}) as any as S.Schema<HcxEnterpriseSitePropertiesInput>;
+
+export interface HcxEnterpriseSitesCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+  /** Name of the HCX Enterprise Site */
+  hcxEnterpriseSiteName: string;
+  /** The resource-specific properties for this resource. */
+  properties?: HcxEnterpriseSitePropertiesInput;
+}
+export const HcxEnterpriseSitesCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      privateCloudName: S.String.pipe(T.Label()),
+      hcxEnterpriseSiteName: S.String.pipe(T.Label()),
+      properties: S.optional(HcxEnterpriseSitePropertiesInput),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/hcxEnterpriseSites/{hcxEnterpriseSiteName}",
+        code: 200,
+        apiVersion: "2026-03-01",
+      }),
+    ),
+).annotate({
+  identifier: "HcxEnterpriseSitesCreateOrUpdateRequest",
+}) as any as S.Schema<HcxEnterpriseSitesCreateOrUpdateRequest>;
+
+export interface HcxEnterpriseSitesCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: HcxEnterpriseSiteProperties;
+}
+export const HcxEnterpriseSitesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(HcxEnterpriseSiteProperties),
+    }),
+).annotate({
+  identifier: "HcxEnterpriseSitesCreateOrUpdateResponse",
+}) as any as S.Schema<HcxEnterpriseSitesCreateOrUpdateResponse>;
+
+/** The properties of an iSCSI path resource */
+export interface IscsiPathPropertiesInput {
+  /** CIDR Block for iSCSI path. */
+  networkBlock: string;
+}
+export const IscsiPathPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    networkBlock: S.String,
+  }),
+).annotate({
+  identifier: "IscsiPathPropertiesInput",
+}) as any as S.Schema<IscsiPathPropertiesInput>;
+
+export interface IscsiPathsCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+  /** The resource-specific properties for this resource. */
+  properties?: IscsiPathPropertiesInput;
+}
+export const IscsiPathsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    privateCloudName: S.String.pipe(T.Label()),
+    properties: S.optional(IscsiPathPropertiesInput),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/iscsiPaths/default",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "IscsiPathsCreateOrUpdateRequest",
+}) as any as S.Schema<IscsiPathsCreateOrUpdateRequest>;
+
+export interface IscsiPathsCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: IscsiPathProperties;
+}
+export const IscsiPathsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(IscsiPathProperties),
+  }),
+).annotate({
+  identifier: "IscsiPathsCreateOrUpdateResponse",
+}) as any as S.Schema<IscsiPathsCreateOrUpdateResponse>;
+
+export type LicensesCreateOrUpdateRequestLicenseName = "VmwareFirewall";
+export const LicensesCreateOrUpdateRequestLicenseName = /*@__PURE__*/ S.String;
+
+/** The properties of a license */
+export interface LicensePropertiesInput {
+  /** License kind */
+  kind: LicenseKind | (string & {});
+}
+export const LicensePropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    kind: LicenseKind,
+  }),
+).annotate({
+  identifier: "LicensePropertiesInput",
+}) as any as S.Schema<LicensePropertiesInput>;
+
+export interface LicensesCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+  /** Name of the license. */
+  licenseName: LicensesCreateOrUpdateRequestLicenseName | (string & {});
+  /** The resource-specific properties for this resource. */
+  properties?: LicensePropertiesInput;
+}
+export const LicensesCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    privateCloudName: S.String.pipe(T.Label()),
+    licenseName: LicensesCreateOrUpdateRequestLicenseName.pipe(T.Label()),
+    properties: S.optional(LicensePropertiesInput),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/licenses/{licenseName}",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "LicensesCreateOrUpdateRequest",
+}) as any as S.Schema<LicensesCreateOrUpdateRequest>;
+
+export interface LicensesCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: LicenseProperties;
+}
+export const LicensesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(LicenseProperties),
+  }),
+).annotate({
+  identifier: "LicensesCreateOrUpdateResponse",
+}) as any as S.Schema<LicensesCreateOrUpdateResponse>;
+
+export interface ListAddonsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+}
+export const ListAddonsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    privateCloudName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/addons",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListAddonsRequest",
+}) as any as S.Schema<ListAddonsRequest>;
+
+/** An addon resource */
+export interface Addon {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: AddonProperties;
+}
+export const Addon = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(AddonProperties),
+  }),
+).annotate({ identifier: "Addon" }) as any as S.Schema<Addon>;
+
+/** The Addon items on this page */
+export type AddonListValueList = Array<Addon>;
+export const AddonListValueList = /*@__PURE__*/ S.Array(
+  Addon,
+) as any as S.Schema<AddonListValueList>;
+
+/** The response of a Addon list operation. */
+export interface AddonList {
+  /** The Addon items on this page */
+  value: AddonListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const AddonList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: AddonListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({ identifier: "AddonList" }) as any as S.Schema<AddonList>;
+
+export interface ListAuthorizationsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+}
+export const ListAuthorizationsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    privateCloudName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/authorizations",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListAuthorizationsRequest",
+}) as any as S.Schema<ListAuthorizationsRequest>;
+
+/** ExpressRoute Circuit Authorization */
+export interface ExpressRouteAuthorization {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: ExpressRouteAuthorizationProperties;
+}
+export const ExpressRouteAuthorization = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ExpressRouteAuthorizationProperties),
+  }),
+).annotate({
+  identifier: "ExpressRouteAuthorization",
+}) as any as S.Schema<ExpressRouteAuthorization>;
+
+/** The ExpressRouteAuthorization items on this page */
+export type ExpressRouteAuthorizationListValueList =
+  Array<ExpressRouteAuthorization>;
+export const ExpressRouteAuthorizationListValueList = /*@__PURE__*/ S.Array(
+  ExpressRouteAuthorization,
+) as any as S.Schema<ExpressRouteAuthorizationListValueList>;
+
+/** The response of a ExpressRouteAuthorization list operation. */
+export interface ExpressRouteAuthorizationList {
+  /** The ExpressRouteAuthorization items on this page */
+  value: ExpressRouteAuthorizationListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const ExpressRouteAuthorizationList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: ExpressRouteAuthorizationListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ExpressRouteAuthorizationList",
+}) as any as S.Schema<ExpressRouteAuthorizationList>;
+
+export interface ListCloudLinksRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+}
+export const ListCloudLinksRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    privateCloudName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/cloudLinks",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListCloudLinksRequest",
+}) as any as S.Schema<ListCloudLinksRequest>;
+
+/** A cloud link resource */
+export interface CloudLink {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: CloudLinkProperties;
+}
+export const CloudLink = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(CloudLinkProperties),
+  }),
+).annotate({ identifier: "CloudLink" }) as any as S.Schema<CloudLink>;
+
+/** The CloudLink items on this page */
+export type CloudLinkListValueList = Array<CloudLink>;
+export const CloudLinkListValueList = /*@__PURE__*/ S.Array(
+  CloudLink,
+) as any as S.Schema<CloudLinkListValueList>;
+
+/** The response of a CloudLink list operation. */
+export interface CloudLinkList {
+  /** The CloudLink items on this page */
+  value: CloudLinkListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const CloudLinkList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: CloudLinkListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({ identifier: "CloudLinkList" }) as any as S.Schema<CloudLinkList>;
+
+export interface ListClustersRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+}
+export const ListClustersRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    privateCloudName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListClustersRequest",
+}) as any as S.Schema<ListClustersRequest>;
+
+/** The resource model definition representing SKU */
+export type ClusterSku = ClustersCreateOrUpdateResponseSku;
+export const ClusterSku = ClustersCreateOrUpdateResponseSku;
+
+/** A cluster resource */
+export interface Cluster {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: ClusterProperties;
+  /** The resource model definition representing SKU */
+  sku: ClustersCreateOrUpdateResponseSku;
+}
+export const Cluster = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ClusterProperties),
+    sku: ClustersCreateOrUpdateResponseSku,
+  }),
+).annotate({ identifier: "Cluster" }) as any as S.Schema<Cluster>;
+
+/** The Cluster items on this page */
+export type ClusterListValueList = Array<Cluster>;
+export const ClusterListValueList = /*@__PURE__*/ S.Array(
+  Cluster,
+) as any as S.Schema<ClusterListValueList>;
+
+/** The response of a Cluster list operation. */
+export interface ClusterList {
+  /** The Cluster items on this page */
+  value: ClusterListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const ClusterList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: ClusterListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({ identifier: "ClusterList" }) as any as S.Schema<ClusterList>;
+
+export interface ListClusterZonesRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+  /** Name of the cluster */
+  clusterName: string;
+}
+export const ListClusterZonesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    privateCloudName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}/listZones",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListClusterZonesRequest",
+}) as any as S.Schema<ListClusterZonesRequest>;
+
+/** List of hosts belonging to the availability zone in a cluster */
+export type ClusterZoneHostsList = Array<string>;
+export const ClusterZoneHostsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ClusterZoneHostsList>;
+
+/** Zone and associated hosts info */
+export interface ClusterZone {
+  /** List of hosts belonging to the availability zone in a cluster */
+  hosts?: ClusterZoneHostsList;
+  /** Availability zone identifier */
+  zone?: string;
+}
+export const ClusterZone = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    hosts: S.optional(ClusterZoneHostsList),
+    zone: S.optional(S.String),
+  }),
+).annotate({ identifier: "ClusterZone" }) as any as S.Schema<ClusterZone>;
+
+/** Zone and associated hosts info */
+export type ClusterZoneListZonesList = Array<ClusterZone>;
+export const ClusterZoneListZonesList = /*@__PURE__*/ S.Array(
+  ClusterZone,
+) as any as S.Schema<ClusterZoneListZonesList>;
+
+/** List of all zones and associated hosts for a cluster */
+export interface ClusterZoneList {
+  /** Zone and associated hosts info */
+  zones?: ClusterZoneListZonesList;
+}
+export const ClusterZoneList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    zones: S.optional(ClusterZoneListZonesList),
+  }),
+).annotate({
+  identifier: "ClusterZoneList",
+}) as any as S.Schema<ClusterZoneList>;
+
+export interface ListDatastoresRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+  /** Name of the cluster */
+  clusterName: string;
+}
+export const ListDatastoresRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    privateCloudName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}/datastores",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListDatastoresRequest",
+}) as any as S.Schema<ListDatastoresRequest>;
+
+/** A datastore resource */
+export interface Datastore {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: DatastoreProperties;
+}
+export const Datastore = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(DatastoreProperties),
+  }),
+).annotate({ identifier: "Datastore" }) as any as S.Schema<Datastore>;
+
+/** The Datastore items on this page */
+export type DatastoreListValueList = Array<Datastore>;
+export const DatastoreListValueList = /*@__PURE__*/ S.Array(
+  Datastore,
+) as any as S.Schema<DatastoreListValueList>;
+
+/** The response of a Datastore list operation. */
+export interface DatastoreList {
+  /** The Datastore items on this page */
+  value: DatastoreListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const DatastoreList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: DatastoreListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({ identifier: "DatastoreList" }) as any as S.Schema<DatastoreList>;
+
+export interface ListGlobalReachConnectionsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+}
+export const ListGlobalReachConnectionsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    privateCloudName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/globalReachConnections",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListGlobalReachConnectionsRequest",
+}) as any as S.Schema<ListGlobalReachConnectionsRequest>;
+
+/** A global reach connection resource */
+export interface GlobalReachConnection {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: GlobalReachConnectionProperties;
+}
+export const GlobalReachConnection = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(GlobalReachConnectionProperties),
+  }),
+).annotate({
+  identifier: "GlobalReachConnection",
+}) as any as S.Schema<GlobalReachConnection>;
+
+/** The GlobalReachConnection items on this page */
+export type GlobalReachConnectionListValueList = Array<GlobalReachConnection>;
+export const GlobalReachConnectionListValueList = /*@__PURE__*/ S.Array(
+  GlobalReachConnection,
+) as any as S.Schema<GlobalReachConnectionListValueList>;
+
+/** The response of a GlobalReachConnection list operation. */
+export interface GlobalReachConnectionList {
+  /** The GlobalReachConnection items on this page */
+  value: GlobalReachConnectionListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const GlobalReachConnectionList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: GlobalReachConnectionListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GlobalReachConnectionList",
+}) as any as S.Schema<GlobalReachConnectionList>;
+
+export interface ListHcxEnterpriseSitesRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+}
+export const ListHcxEnterpriseSitesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    privateCloudName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/hcxEnterpriseSites",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListHcxEnterpriseSitesRequest",
+}) as any as S.Schema<ListHcxEnterpriseSitesRequest>;
+
+/** An HCX Enterprise Site resource */
+export interface HcxEnterpriseSite {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: HcxEnterpriseSiteProperties;
+}
+export const HcxEnterpriseSite = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(HcxEnterpriseSiteProperties),
+  }),
+).annotate({
+  identifier: "HcxEnterpriseSite",
+}) as any as S.Schema<HcxEnterpriseSite>;
+
+/** The HcxEnterpriseSite items on this page */
+export type HcxEnterpriseSiteListValueList = Array<HcxEnterpriseSite>;
+export const HcxEnterpriseSiteListValueList = /*@__PURE__*/ S.Array(
+  HcxEnterpriseSite,
+) as any as S.Schema<HcxEnterpriseSiteListValueList>;
+
+/** The response of a HcxEnterpriseSite list operation. */
+export interface HcxEnterpriseSiteList {
+  /** The HcxEnterpriseSite items on this page */
+  value: HcxEnterpriseSiteListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const HcxEnterpriseSiteList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: HcxEnterpriseSiteListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "HcxEnterpriseSiteList",
+}) as any as S.Schema<HcxEnterpriseSiteList>;
+
+export interface ListHostsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+  /** Name of the cluster */
+  clusterName: string;
+}
+export const ListHostsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    privateCloudName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}/hosts",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListHostsRequest",
+}) as any as S.Schema<ListHostsRequest>;
+
+/** The availability zones. */
+export type HostZonesList = Array<string>;
+export const HostZonesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<HostZonesList>;
+
+/** The resource model definition representing SKU */
+export type HostSku = ClustersCreateOrUpdateResponseSku;
+export const HostSku = ClustersCreateOrUpdateResponseSku;
+
+/** A host resource */
+export interface Host {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: HostProperties;
+  /** The availability zones. */
+  zones?: HostZonesList;
+  /** The resource model definition representing SKU */
+  sku?: ClustersCreateOrUpdateResponseSku;
+}
+export const Host = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(HostProperties),
+    zones: S.optional(HostZonesList),
+    sku: S.optional(ClustersCreateOrUpdateResponseSku),
+  }),
+).annotate({ identifier: "Host" }) as any as S.Schema<Host>;
+
+/** The Host items on this page */
+export type HostListResultValueList = Array<Host>;
+export const HostListResultValueList = /*@__PURE__*/ S.Array(
+  Host,
+) as any as S.Schema<HostListResultValueList>;
+
+/** The response of a Host list operation. */
+export interface HostListResult {
+  /** The Host items on this page */
+  value: HostListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const HostListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: HostListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({ identifier: "HostListResult" }) as any as S.Schema<HostListResult>;
+
+export interface ListIscsiPathByPrivateCloudRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+}
+export const ListIscsiPathByPrivateCloudRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    privateCloudName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/iscsiPaths",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListIscsiPathByPrivateCloudRequest",
+}) as any as S.Schema<ListIscsiPathByPrivateCloudRequest>;
+
+/** An iSCSI path resource */
+export interface IscsiPath {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: IscsiPathProperties;
+}
+export const IscsiPath = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(IscsiPathProperties),
+  }),
+).annotate({ identifier: "IscsiPath" }) as any as S.Schema<IscsiPath>;
+
+/** The IscsiPath items on this page */
+export type IscsiPathListResultValueList = Array<IscsiPath>;
+export const IscsiPathListResultValueList = /*@__PURE__*/ S.Array(
+  IscsiPath,
+) as any as S.Schema<IscsiPathListResultValueList>;
+
+/** The response of a IscsiPath list operation. */
+export interface IscsiPathListResult {
+  /** The IscsiPath items on this page */
+  value: IscsiPathListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const IscsiPathListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: IscsiPathListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "IscsiPathListResult",
+}) as any as S.Schema<IscsiPathListResult>;
+
+export interface ListLicensesRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+}
+export const ListLicensesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    privateCloudName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/licenses",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListLicensesRequest",
+}) as any as S.Schema<ListLicensesRequest>;
+
+/** A license resource */
+export interface License {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: LicenseProperties;
+}
+export const License = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(LicenseProperties),
+  }),
+).annotate({ identifier: "License" }) as any as S.Schema<License>;
+
+/** The License items on this page */
+export type LicenseListResultValueList = Array<License>;
+export const LicenseListResultValueList = /*@__PURE__*/ S.Array(
+  License,
+) as any as S.Schema<LicenseListResultValueList>;
+
+/** The response of a License list operation. */
+export interface LicenseListResult {
+  /** The License items on this page */
+  value: LicenseListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const LicenseListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: LicenseListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "LicenseListResult",
+}) as any as S.Schema<LicenseListResult>;
+
+export type ListMaintenancesRequestStateName =
+  | "NotScheduled"
+  | "Scheduled"
+  | "InProgress"
+  | "Success"
+  | "Failed"
+  | "Canceled";
+export const ListMaintenancesRequestStateName = /*@__PURE__*/ S.String;
+
+export type ListMaintenancesRequestStatus = "Active" | "Inactive";
+export const ListMaintenancesRequestStatus = /*@__PURE__*/ S.String;
+
+export interface ListMaintenancesRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+  /** Filter maintenances based on state */
+  stateName?: ListMaintenancesRequestStateName | (string & {});
+  /** Filter active or inactive maintenances */
+  status?: ListMaintenancesRequestStatus | (string & {});
+  /** date from which result should be returned. ie. scheduledStartTime >= from */
+  from?: string;
+  /** date till which result should be returned. i.e. scheduledStartTime <= to */
+  to?: string;
+}
+export const ListMaintenancesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    privateCloudName: S.String.pipe(T.Label()),
+    stateName: S.optional(ListMaintenancesRequestStateName.pipe(T.Query())),
+    status: S.optional(ListMaintenancesRequestStatus.pipe(T.Query())),
+    from: S.optional(S.String.pipe(T.Query())),
+    to: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/maintenances",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListMaintenancesRequest",
+}) as any as S.Schema<ListMaintenancesRequest>;
+
+/** A cluster resource */
+export interface Maintenance {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: MaintenanceProperties;
+}
+export const Maintenance = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(MaintenanceProperties),
+  }),
+).annotate({ identifier: "Maintenance" }) as any as S.Schema<Maintenance>;
+
+/** The Maintenance items on this page */
+export type MaintenanceListResultValueList = Array<Maintenance>;
+export const MaintenanceListResultValueList = /*@__PURE__*/ S.Array(
+  Maintenance,
+) as any as S.Schema<MaintenanceListResultValueList>;
+
+/** The response of a Maintenance list operation. */
+export interface MaintenanceListResult {
+  /** The Maintenance items on this page */
+  value: MaintenanceListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const MaintenanceListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: MaintenanceListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "MaintenanceListResult",
+}) as any as S.Schema<MaintenanceListResult>;
+
+export interface ListOperationsRequest {}
+export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/providers/Microsoft.AVS/operations",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListOperationsRequest",
+}) as any as S.Schema<ListOperationsRequest>;
+
+/** Localized display information for this particular operation. */
+export interface OperationDisplay {
+  /** The localized friendly form of the resource provider name, e.g. "Microsoft Monitoring Insights" or "Microsoft Compute". */
+  provider?: string;
+  /** The localized friendly name of the resource type related to this operation. E.g. "Virtual Machines" or "Job Schedule Collections". */
+  resource?: string;
+  /** The concise, localized friendly name for the operation; suitable for dropdowns. E.g. "Create or Update Virtual Machine", "Restart Virtual Machine". */
+  operation?: string;
+  /** The short, localized friendly description of the operation; suitable for tool tips and detailed views. */
+  description?: string;
+}
+export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provider: S.optional(S.String),
+    resource: S.optional(S.String),
+    operation: S.optional(S.String),
+    description: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "OperationDisplay",
+}) as any as S.Schema<OperationDisplay>;
+
+/** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
+export type OperationOrigin = "user" | "system" | "user,system";
+export const OperationOrigin = /*@__PURE__*/ S.String;
+
+/** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
+export type OperationActionType = "Internal";
+export const OperationActionType = /*@__PURE__*/ S.String;
+
+/** Details of a REST API operation, returned from the Resource Provider Operations API */
+export interface Operation {
+  /** The name of the operation, as per Resource-Based Access Control (RBAC). Examples: "Microsoft.Compute/virtualMachines/write", "Microsoft.Compute/virtualMachines/capture/action" */
+  name?: string;
+  /** Whether the operation applies to data-plane. This is "true" for data-plane operations and "false" for ARM/control-plane operations. */
+  isDataAction?: boolean;
+  /** Localized display information for this particular operation. */
+  display?: OperationDisplay;
+  /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
+  origin?: OperationOrigin;
+  /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
+  actionType?: OperationActionType;
+}
+export const Operation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    isDataAction: S.optional(S.Boolean),
+    display: S.optional(OperationDisplay),
+    origin: S.optional(OperationOrigin),
+    actionType: S.optional(OperationActionType),
+  }),
+).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
+
+/** List of operations supported by the resource provider */
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
+  Operation,
+) as any as S.Schema<ListOperationsResponseValueList>;
+
+export interface ListOperationsResponse {
+  /** List of operations supported by the resource provider */
+  value?: ListOperationsResponseValueList;
+  /** URL to get the next set of operation list results (if there are any). */
+  nextLink?: string;
+}
+export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(ListOperationsResponseValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ListOperationsResponse",
+}) as any as S.Schema<ListOperationsResponse>;
+
+export interface ListPlacementPoliciesRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+  /** Name of the cluster */
+  clusterName: string;
+}
+export const ListPlacementPoliciesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    privateCloudName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}/placementPolicies",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListPlacementPoliciesRequest",
+}) as any as S.Schema<ListPlacementPoliciesRequest>;
+
+/** A vSphere Distributed Resource Scheduler (DRS) placement policy */
+export interface PlacementPolicy {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: PlacementPolicyProperties;
+}
+export const PlacementPolicy = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(PlacementPolicyProperties),
+  }),
+).annotate({
+  identifier: "PlacementPolicy",
+}) as any as S.Schema<PlacementPolicy>;
+
+/** The PlacementPolicy items on this page */
+export type PlacementPoliciesListValueList = Array<PlacementPolicy>;
+export const PlacementPoliciesListValueList = /*@__PURE__*/ S.Array(
+  PlacementPolicy,
+) as any as S.Schema<PlacementPoliciesListValueList>;
+
+/** The response of a PlacementPolicy list operation. */
+export interface PlacementPoliciesList {
+  /** The PlacementPolicy items on this page */
+  value: PlacementPoliciesListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const PlacementPoliciesList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: PlacementPoliciesListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PlacementPoliciesList",
+}) as any as S.Schema<PlacementPoliciesList>;
+
+export interface ListPrivateCloudAdminCredentialsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+}
+export const ListPrivateCloudAdminCredentialsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      privateCloudName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/listAdminCredentials",
+        code: 200,
+        apiVersion: "2026-03-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListPrivateCloudAdminCredentialsRequest",
+}) as any as S.Schema<ListPrivateCloudAdminCredentialsRequest>;
+
+/** Administrative credentials for accessing vCenter and NSX-T */
+export interface AdminCredentials {
+  /** NSX-T Manager username */
+  nsxtUsername?: string;
+  /** NSX-T Manager password */
+  nsxtPassword?: string | Redacted.Redacted<string>;
+  /** vCenter admin username */
+  vcenterUsername?: string;
+  /** vCenter admin password */
+  vcenterPassword?: string | Redacted.Redacted<string>;
+}
+export const AdminCredentials = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nsxtUsername: S.optional(S.String),
+    nsxtPassword: S.optional(S.String.pipe(T.SensitiveValue({}))),
+    vcenterUsername: S.optional(S.String),
+    vcenterPassword: S.optional(S.String.pipe(T.SensitiveValue({}))),
+  }),
+).annotate({
+  identifier: "AdminCredentials",
+}) as any as S.Schema<AdminCredentials>;
+
+export interface ListPrivateCloudInSubscriptionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+}
+export const ListPrivateCloudInSubscriptionRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.AVS/privateClouds",
+        code: 200,
+        apiVersion: "2026-03-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListPrivateCloudInSubscriptionRequest",
+}) as any as S.Schema<ListPrivateCloudInSubscriptionRequest>;
+
+/** Resource tags. */
+export type PrivateCloudTagsMap = { [key: string]: string | undefined };
+export const PrivateCloudTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<PrivateCloudTagsMap>;
+
+/** The resource model definition representing SKU */
+export type PrivateCloudSku = ClustersCreateOrUpdateResponseSku;
+export const PrivateCloudSku = ClustersCreateOrUpdateResponseSku;
+
+/** Managed service identity (either system assigned, or none) */
+export type PrivateCloudIdentity = GetPrivateCloudResponseIdentity;
+export const PrivateCloudIdentity = GetPrivateCloudResponseIdentity;
+
+/** The availability zones. */
+export type PrivateCloudZonesList = Array<string>;
+export const PrivateCloudZonesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<PrivateCloudZonesList>;
+
+/** A private cloud resource */
+export interface PrivateCloud {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: PrivateCloudTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: PrivateCloudProperties;
+  /** The resource model definition representing SKU */
+  sku: ClustersCreateOrUpdateResponseSku;
+  /** Managed service identity (either system assigned, or none) */
+  identity?: GetPrivateCloudResponseIdentity;
+  /** The availability zones. */
+  zones?: PrivateCloudZonesList;
+}
+export const PrivateCloud = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(PrivateCloudTagsMap),
+    location: S.String,
+    properties: S.optional(PrivateCloudProperties),
+    sku: ClustersCreateOrUpdateResponseSku,
+    identity: S.optional(GetPrivateCloudResponseIdentity),
+    zones: S.optional(PrivateCloudZonesList),
+  }),
+).annotate({ identifier: "PrivateCloud" }) as any as S.Schema<PrivateCloud>;
+
+/** The PrivateCloud items on this page */
+export type PrivateCloudListValueList = Array<PrivateCloud>;
+export const PrivateCloudListValueList = /*@__PURE__*/ S.Array(
+  PrivateCloud,
+) as any as S.Schema<PrivateCloudListValueList>;
+
+/** The response of a PrivateCloud list operation. */
+export interface PrivateCloudList {
+  /** The PrivateCloud items on this page */
+  value: PrivateCloudListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const PrivateCloudList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: PrivateCloudListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PrivateCloudList",
+}) as any as S.Schema<PrivateCloudList>;
+
+export interface ListPrivateCloudsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+}
+export const ListPrivateCloudsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListPrivateCloudsRequest",
+}) as any as S.Schema<ListPrivateCloudsRequest>;
+
+export interface ListProvisionedNetworksRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+}
+export const ListProvisionedNetworksRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    privateCloudName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/provisionedNetworks",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListProvisionedNetworksRequest",
+}) as any as S.Schema<ListProvisionedNetworksRequest>;
+
+/** A provisioned network resource */
+export interface ProvisionedNetwork {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: ProvisionedNetworkProperties;
+}
+export const ProvisionedNetwork = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ProvisionedNetworkProperties),
+  }),
+).annotate({
+  identifier: "ProvisionedNetwork",
+}) as any as S.Schema<ProvisionedNetwork>;
+
+/** The ProvisionedNetwork items on this page */
+export type ProvisionedNetworkListResultValueList = Array<ProvisionedNetwork>;
+export const ProvisionedNetworkListResultValueList = /*@__PURE__*/ S.Array(
+  ProvisionedNetwork,
+) as any as S.Schema<ProvisionedNetworkListResultValueList>;
+
+/** The response of a ProvisionedNetwork list operation. */
+export interface ProvisionedNetworkListResult {
+  /** The ProvisionedNetwork items on this page */
+  value: ProvisionedNetworkListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const ProvisionedNetworkListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: ProvisionedNetworkListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ProvisionedNetworkListResult",
+}) as any as S.Schema<ProvisionedNetworkListResult>;
+
+export interface ListPureStoragePoliciesRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+}
+export const ListPureStoragePoliciesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    privateCloudName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/pureStoragePolicies",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListPureStoragePoliciesRequest",
+}) as any as S.Schema<ListPureStoragePoliciesRequest>;
+
+/** An instance describing a Pure Storage Policy Based Management policy */
+export interface PureStoragePolicy {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: PureStoragePolicyProperties;
+}
+export const PureStoragePolicy = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(PureStoragePolicyProperties),
+  }),
+).annotate({
+  identifier: "PureStoragePolicy",
+}) as any as S.Schema<PureStoragePolicy>;
+
+/** The PureStoragePolicy items on this page */
+export type PureStoragePolicyListResultValueList = Array<PureStoragePolicy>;
+export const PureStoragePolicyListResultValueList = /*@__PURE__*/ S.Array(
+  PureStoragePolicy,
+) as any as S.Schema<PureStoragePolicyListResultValueList>;
+
+/** The response of a PureStoragePolicy list operation. */
+export interface PureStoragePolicyListResult {
+  /** The PureStoragePolicy items on this page */
+  value: PureStoragePolicyListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const PureStoragePolicyListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: PureStoragePolicyListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PureStoragePolicyListResult",
+}) as any as S.Schema<PureStoragePolicyListResult>;
+
+export interface ListScriptCmdletsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+  /** Name of the script package. */
+  scriptPackageName: string;
+}
+export const ListScriptCmdletsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    privateCloudName: S.String.pipe(T.Label()),
+    scriptPackageName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/scriptPackages/{scriptPackageName}/scriptCmdlets",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListScriptCmdletsRequest",
+}) as any as S.Schema<ListScriptCmdletsRequest>;
+
+/** A cmdlet available for script execution */
+export interface ScriptCmdlet {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: ScriptCmdletProperties;
+}
+export const ScriptCmdlet = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ScriptCmdletProperties),
+  }),
+).annotate({ identifier: "ScriptCmdlet" }) as any as S.Schema<ScriptCmdlet>;
+
+/** The ScriptCmdlet items on this page */
+export type ScriptCmdletsListValueList = Array<ScriptCmdlet>;
+export const ScriptCmdletsListValueList = /*@__PURE__*/ S.Array(
+  ScriptCmdlet,
+) as any as S.Schema<ScriptCmdletsListValueList>;
+
+/** The response of a ScriptCmdlet list operation. */
+export interface ScriptCmdletsList {
+  /** The ScriptCmdlet items on this page */
+  value: ScriptCmdletsListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const ScriptCmdletsList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: ScriptCmdletsListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ScriptCmdletsList",
+}) as any as S.Schema<ScriptCmdletsList>;
+
+export interface ListScriptExecutionsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+}
+export const ListScriptExecutionsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -6404,12 +7363,12 @@ export const ScriptExecutionsListRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/scriptExecutions",
       code: 200,
-      apiVersion: "2025-09-01",
+      apiVersion: "2026-03-01",
     }),
   ),
 ).annotate({
-  identifier: "ScriptExecutionsListRequest",
-}) as any as S.Schema<ScriptExecutionsListRequest>;
+  identifier: "ListScriptExecutionsRequest",
+}) as any as S.Schema<ListScriptExecutionsRequest>;
 
 /** An instance of a script executed by a user - custom or AVS */
 export interface ScriptExecution {
@@ -6458,91 +7417,7 @@ export const ScriptExecutionsList = /*@__PURE__*/ S.suspend(() =>
   identifier: "ScriptExecutionsList",
 }) as any as S.Schema<ScriptExecutionsList>;
 
-export interface ScriptPackagesGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-  /** Name of the script package. */
-  scriptPackageName: string;
-}
-export const ScriptPackagesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    privateCloudName: S.String.pipe(T.Label()),
-    scriptPackageName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/scriptPackages/{scriptPackageName}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "ScriptPackagesGetRequest",
-}) as any as S.Schema<ScriptPackagesGetRequest>;
-
-/** Script Package provisioning state */
-export type ScriptPackageProvisioningState =
-  | "Succeeded"
-  | "Failed"
-  | "Canceled";
-export const ScriptPackageProvisioningState = /*@__PURE__*/ S.String;
-
-/** Properties of a Script Package subresource */
-export interface ScriptPackageProperties {
-  /** The provisioning state of the resource. */
-  provisioningState?: ScriptPackageProvisioningState;
-  /** User friendly description of the package */
-  description?: string;
-  /** Module version */
-  version?: string;
-  /** Company that created and supports the package */
-  company?: string;
-  /** Link to support by the package vendor */
-  uri?: string;
-}
-export const ScriptPackageProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provisioningState: S.optional(ScriptPackageProvisioningState),
-    description: S.optional(S.String),
-    version: S.optional(S.String),
-    company: S.optional(S.String),
-    uri: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ScriptPackageProperties",
-}) as any as S.Schema<ScriptPackageProperties>;
-
-export interface ScriptPackagesGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: ScriptPackageProperties;
-}
-export const ScriptPackagesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ScriptPackageProperties),
-  }),
-).annotate({
-  identifier: "ScriptPackagesGetResponse",
-}) as any as S.Schema<ScriptPackagesGetResponse>;
-
-export interface ScriptPackagesListRequest {
+export interface ListScriptPackagesRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -6550,7 +7425,7 @@ export interface ScriptPackagesListRequest {
   /** Name of the private cloud */
   privateCloudName: string;
 }
-export const ScriptPackagesListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListScriptPackagesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -6560,12 +7435,12 @@ export const ScriptPackagesListRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/scriptPackages",
       code: 200,
-      apiVersion: "2025-09-01",
+      apiVersion: "2026-03-01",
     }),
   ),
 ).annotate({
-  identifier: "ScriptPackagesListRequest",
-}) as any as S.Schema<ScriptPackagesListRequest>;
+  identifier: "ListScriptPackagesRequest",
+}) as any as S.Schema<ListScriptPackagesRequest>;
 
 /** Script Package resources available for execution */
 export interface ScriptPackage {
@@ -6612,43 +7487,11 @@ export const ScriptPackagesList = /*@__PURE__*/ S.suspend(() =>
   identifier: "ScriptPackagesList",
 }) as any as S.Schema<ScriptPackagesList>;
 
-export interface ServiceComponentsCheckAvailabilityRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the Azure region. */
-  location: string;
-  /** A service component */
-  serviceComponentName: string;
-}
-export const ServiceComponentsCheckAvailabilityRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      location: S.String.pipe(T.Label()),
-      serviceComponentName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.AVS/locations/{location}/serviceComponents/{serviceComponentName}/checkAvailability",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ServiceComponentsCheckAvailabilityRequest",
-  }) as any as S.Schema<ServiceComponentsCheckAvailabilityRequest>;
-
-export interface ServiceComponentsCheckAvailabilityResponse {}
-export const ServiceComponentsCheckAvailabilityResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "ServiceComponentsCheckAvailabilityResponse",
-  }) as any as S.Schema<ServiceComponentsCheckAvailabilityResponse>;
-
-export interface SkusListRequest {
+export interface ListSkusRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
 }
-export const SkusListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListSkusRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
   }).pipe(
@@ -6656,12 +7499,12 @@ export const SkusListRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/providers/Microsoft.AVS/skus",
       code: 200,
-      apiVersion: "2025-09-01",
+      apiVersion: "2026-03-01",
     }),
   ),
 ).annotate({
-  identifier: "SkusListRequest",
-}) as any as S.Schema<SkusListRequest>;
+  identifier: "ListSkusRequest",
+}) as any as S.Schema<ListSkusRequest>;
 
 /** Describes the type of resource the SKU applies to. */
 export type ResourceSkuResourceType =
@@ -6893,98 +7736,7 @@ export const PagedResourceSku = /*@__PURE__*/ S.suspend(() =>
   identifier: "PagedResourceSku",
 }) as any as S.Schema<PagedResourceSku>;
 
-export interface VirtualMachinesGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-  /** Name of the cluster */
-  clusterName: string;
-  /** ID of the virtual machine. */
-  virtualMachineId: string;
-}
-export const VirtualMachinesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    privateCloudName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    virtualMachineId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}/virtualMachines/{virtualMachineId}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "VirtualMachinesGetRequest",
-}) as any as S.Schema<VirtualMachinesGetRequest>;
-
-/** Virtual Machine provisioning state */
-export type VirtualMachineProvisioningState =
-  | "Succeeded"
-  | "Failed"
-  | "Canceled";
-export const VirtualMachineProvisioningState = /*@__PURE__*/ S.String;
-
-/** Virtual Machine Restrict Movement state */
-export type VirtualMachineRestrictMovementState = "Enabled" | "Disabled";
-export const VirtualMachineRestrictMovementState = /*@__PURE__*/ S.String;
-
-/** Virtual Machine Properties */
-export interface VirtualMachineProperties {
-  /** The provisioning state of the resource. */
-  provisioningState?: VirtualMachineProvisioningState;
-  /** Display name of the VM. */
-  displayName?: string;
-  /** vCenter managed object reference ID of the virtual machine */
-  moRefId?: string;
-  /** Path to virtual machine's folder starting from datacenter virtual machine folder */
-  folderPath?: string;
-  /** Whether VM DRS-driven movement is restricted (enabled) or not (disabled) */
-  restrictMovement?: VirtualMachineRestrictMovementState;
-}
-export const VirtualMachineProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provisioningState: S.optional(VirtualMachineProvisioningState),
-    displayName: S.optional(S.String),
-    moRefId: S.optional(S.String),
-    folderPath: S.optional(S.String),
-    restrictMovement: S.optional(VirtualMachineRestrictMovementState),
-  }),
-).annotate({
-  identifier: "VirtualMachineProperties",
-}) as any as S.Schema<VirtualMachineProperties>;
-
-export interface VirtualMachinesGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: VirtualMachineProperties;
-}
-export const VirtualMachinesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(VirtualMachineProperties),
-  }),
-).annotate({
-  identifier: "VirtualMachinesGetResponse",
-}) as any as S.Schema<VirtualMachinesGetResponse>;
-
-export interface VirtualMachinesListRequest {
+export interface ListVirtualMachinesRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -6994,7 +7746,7 @@ export interface VirtualMachinesListRequest {
   /** Name of the cluster */
   clusterName: string;
 }
-export const VirtualMachinesListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListVirtualMachinesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -7005,12 +7757,12 @@ export const VirtualMachinesListRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}/virtualMachines",
       code: 200,
-      apiVersion: "2025-09-01",
+      apiVersion: "2026-03-01",
     }),
   ),
 ).annotate({
-  identifier: "VirtualMachinesListRequest",
-}) as any as S.Schema<VirtualMachinesListRequest>;
+  identifier: "ListVirtualMachinesRequest",
+}) as any as S.Schema<ListVirtualMachinesRequest>;
 
 /** Virtual Machine */
 export interface VirtualMachine {
@@ -7057,1276 +7809,7 @@ export const VirtualMachinesList = /*@__PURE__*/ S.suspend(() =>
   identifier: "VirtualMachinesList",
 }) as any as S.Schema<VirtualMachinesList>;
 
-export interface VirtualMachinesRestrictMovementRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-  /** Name of the cluster */
-  clusterName: string;
-  /** ID of the virtual machine. */
-  virtualMachineId: string;
-  /** Whether VM DRS-driven movement is restricted (enabled) or not (disabled) */
-  restrictMovement?: VirtualMachineRestrictMovementState | (string & {});
-}
-export const VirtualMachinesRestrictMovementRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      privateCloudName: S.String.pipe(T.Label()),
-      clusterName: S.String.pipe(T.Label()),
-      virtualMachineId: S.String.pipe(T.Label()),
-      restrictMovement: S.optional(VirtualMachineRestrictMovementState),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}/virtualMachines/{virtualMachineId}/restrictMovement",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
-).annotate({
-  identifier: "VirtualMachinesRestrictMovementRequest",
-}) as any as S.Schema<VirtualMachinesRestrictMovementRequest>;
-
-export interface VirtualMachinesRestrictMovementResponse {}
-export const VirtualMachinesRestrictMovementResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "VirtualMachinesRestrictMovementResponse",
-}) as any as S.Schema<VirtualMachinesRestrictMovementResponse>;
-
-/** Type of DHCP: SERVER or RELAY. */
-export type DhcpTypeEnum = "SERVER" | "RELAY";
-export const DhcpTypeEnum = /*@__PURE__*/ S.String;
-
-/** Base class for WorkloadNetworkDhcpServer and WorkloadNetworkDhcpRelay to inherit from */
-export interface WorkloadNetworkDhcpEntityInput {
-  /** Type of DHCP: SERVER or RELAY. */
-  dhcpType: DhcpTypeEnum | (string & {});
-  /** Display name of the DHCP entity. */
-  displayName?: string;
-  /** NSX revision number. */
-  revision?: number;
-}
-export const WorkloadNetworkDhcpEntityInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    dhcpType: DhcpTypeEnum,
-    displayName: S.optional(S.String),
-    revision: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "WorkloadNetworkDhcpEntityInput",
-}) as any as S.Schema<WorkloadNetworkDhcpEntityInput>;
-
-export interface WorkloadNetworksCreateDhcpRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-  /** The ID of the DHCP configuration */
-  dhcpId: string;
-  /** The resource-specific properties for this resource. */
-  properties?: WorkloadNetworkDhcpEntityInput;
-}
-export const WorkloadNetworksCreateDhcpRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    privateCloudName: S.String.pipe(T.Label()),
-    dhcpId: S.String.pipe(T.Label()),
-    properties: S.optional(WorkloadNetworkDhcpEntityInput),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dhcpConfigurations/{dhcpId}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "WorkloadNetworksCreateDhcpRequest",
-}) as any as S.Schema<WorkloadNetworksCreateDhcpRequest>;
-
-/** NSX Segments consuming DHCP. */
-export type WorkloadNetworkDhcpEntitySegmentsList = Array<string>;
-export const WorkloadNetworkDhcpEntitySegmentsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<WorkloadNetworkDhcpEntitySegmentsList>;
-
-/** Workload Network DHCP provisioning state */
-export type WorkloadNetworkDhcpProvisioningState =
-  | "Succeeded"
-  | "Failed"
-  | "Canceled"
-  | "Building"
-  | "Deleting"
-  | "Updating";
-export const WorkloadNetworkDhcpProvisioningState = /*@__PURE__*/ S.String;
-
-/** Base class for WorkloadNetworkDhcpServer and WorkloadNetworkDhcpRelay to inherit from */
-export interface WorkloadNetworkDhcpEntity {
-  /** Type of DHCP: SERVER or RELAY. */
-  dhcpType: DhcpTypeEnum;
-  /** Display name of the DHCP entity. */
-  displayName?: string;
-  /** NSX Segments consuming DHCP. */
-  segments?: WorkloadNetworkDhcpEntitySegmentsList;
-  /** The provisioning state */
-  provisioningState?: WorkloadNetworkDhcpProvisioningState;
-  /** NSX revision number. */
-  revision?: number;
-}
-export const WorkloadNetworkDhcpEntity = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    dhcpType: DhcpTypeEnum,
-    displayName: S.optional(S.String),
-    segments: S.optional(WorkloadNetworkDhcpEntitySegmentsList),
-    provisioningState: S.optional(WorkloadNetworkDhcpProvisioningState),
-    revision: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "WorkloadNetworkDhcpEntity",
-}) as any as S.Schema<WorkloadNetworkDhcpEntity>;
-
-export interface WorkloadNetworksCreateDhcpResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: WorkloadNetworkDhcpEntity;
-}
-export const WorkloadNetworksCreateDhcpResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(WorkloadNetworkDhcpEntity),
-  }),
-).annotate({
-  identifier: "WorkloadNetworksCreateDhcpResponse",
-}) as any as S.Schema<WorkloadNetworksCreateDhcpResponse>;
-
-/** FQDN zones of the DNS Service. */
-export type WorkloadNetworkDnsServicePropertiesInputFqdnZonesList =
-  Array<string>;
-export const WorkloadNetworkDnsServicePropertiesInputFqdnZonesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<WorkloadNetworkDnsServicePropertiesInputFqdnZonesList>;
-
-/** DNS service log level */
-export type DnsServiceLogLevelEnum =
-  | "DEBUG"
-  | "INFO"
-  | "WARNING"
-  | "ERROR"
-  | "FATAL";
-export const DnsServiceLogLevelEnum = /*@__PURE__*/ S.String;
-
-/** NSX DNS Service Properties */
-export interface WorkloadNetworkDnsServicePropertiesInput {
-  /** Display name of the DNS Service. */
-  displayName?: string;
-  /** DNS service IP of the DNS Service. */
-  dnsServiceIp?: string;
-  /** Default DNS zone of the DNS Service. */
-  defaultDnsZone?: string;
-  /** FQDN zones of the DNS Service. */
-  fqdnZones?: WorkloadNetworkDnsServicePropertiesInputFqdnZonesList;
-  /** DNS Service log level. */
-  logLevel?: DnsServiceLogLevelEnum | (string & {});
-  /** NSX revision number. */
-  revision?: number;
-}
-export const WorkloadNetworkDnsServicePropertiesInput = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      displayName: S.optional(S.String),
-      dnsServiceIp: S.optional(S.String),
-      defaultDnsZone: S.optional(S.String),
-      fqdnZones: S.optional(
-        WorkloadNetworkDnsServicePropertiesInputFqdnZonesList,
-      ),
-      logLevel: S.optional(DnsServiceLogLevelEnum),
-      revision: S.optional(S.Number),
-    }),
-).annotate({
-  identifier: "WorkloadNetworkDnsServicePropertiesInput",
-}) as any as S.Schema<WorkloadNetworkDnsServicePropertiesInput>;
-
-export interface WorkloadNetworksCreateDnsServiceRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-  /** ID of the DNS service. */
-  dnsServiceId: string;
-  /** The resource-specific properties for this resource. */
-  properties?: WorkloadNetworkDnsServicePropertiesInput;
-}
-export const WorkloadNetworksCreateDnsServiceRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      privateCloudName: S.String.pipe(T.Label()),
-      dnsServiceId: S.String.pipe(T.Label()),
-      properties: S.optional(WorkloadNetworkDnsServicePropertiesInput),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dnsServices/{dnsServiceId}",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
-).annotate({
-  identifier: "WorkloadNetworksCreateDnsServiceRequest",
-}) as any as S.Schema<WorkloadNetworksCreateDnsServiceRequest>;
-
-/** FQDN zones of the DNS Service. */
-export type WorkloadNetworkDnsServicePropertiesFqdnZonesList = Array<string>;
-export const WorkloadNetworkDnsServicePropertiesFqdnZonesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<WorkloadNetworkDnsServicePropertiesFqdnZonesList>;
-
-/** DNS service status */
-export type DnsServiceStatusEnum = "SUCCESS" | "FAILURE";
-export const DnsServiceStatusEnum = /*@__PURE__*/ S.String;
-
-/** Workload Network DNS Service provisioning state */
-export type WorkloadNetworkDnsServiceProvisioningState =
-  | "Succeeded"
-  | "Failed"
-  | "Canceled"
-  | "Building"
-  | "Deleting"
-  | "Updating";
-export const WorkloadNetworkDnsServiceProvisioningState =
-  /*@__PURE__*/ S.String;
-
-/** NSX DNS Service Properties */
-export interface WorkloadNetworkDnsServiceProperties {
-  /** Display name of the DNS Service. */
-  displayName?: string;
-  /** DNS service IP of the DNS Service. */
-  dnsServiceIp?: string;
-  /** Default DNS zone of the DNS Service. */
-  defaultDnsZone?: string;
-  /** FQDN zones of the DNS Service. */
-  fqdnZones?: WorkloadNetworkDnsServicePropertiesFqdnZonesList;
-  /** DNS Service log level. */
-  logLevel?: DnsServiceLogLevelEnum;
-  /** DNS Service status. */
-  status?: DnsServiceStatusEnum;
-  /** The provisioning state */
-  provisioningState?: WorkloadNetworkDnsServiceProvisioningState;
-  /** NSX revision number. */
-  revision?: number;
-}
-export const WorkloadNetworkDnsServiceProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    displayName: S.optional(S.String),
-    dnsServiceIp: S.optional(S.String),
-    defaultDnsZone: S.optional(S.String),
-    fqdnZones: S.optional(WorkloadNetworkDnsServicePropertiesFqdnZonesList),
-    logLevel: S.optional(DnsServiceLogLevelEnum),
-    status: S.optional(DnsServiceStatusEnum),
-    provisioningState: S.optional(WorkloadNetworkDnsServiceProvisioningState),
-    revision: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "WorkloadNetworkDnsServiceProperties",
-}) as any as S.Schema<WorkloadNetworkDnsServiceProperties>;
-
-export interface WorkloadNetworksCreateDnsServiceResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: WorkloadNetworkDnsServiceProperties;
-}
-export const WorkloadNetworksCreateDnsServiceResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(WorkloadNetworkDnsServiceProperties),
-    }),
-).annotate({
-  identifier: "WorkloadNetworksCreateDnsServiceResponse",
-}) as any as S.Schema<WorkloadNetworksCreateDnsServiceResponse>;
-
-/** Domain names of the DNS Zone. */
-export type WorkloadNetworkDnsZonePropertiesInputDomainList = Array<string>;
-export const WorkloadNetworkDnsZonePropertiesInputDomainList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<WorkloadNetworkDnsZonePropertiesInputDomainList>;
-
-/** DNS Server IP array of the DNS Zone. */
-export type WorkloadNetworkDnsZonePropertiesInputDnsServerIpsList =
-  Array<string>;
-export const WorkloadNetworkDnsZonePropertiesInputDnsServerIpsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<WorkloadNetworkDnsZonePropertiesInputDnsServerIpsList>;
-
-/** NSX DNS Zone Properties */
-export interface WorkloadNetworkDnsZonePropertiesInput {
-  /** Display name of the DNS Zone. */
-  displayName?: string;
-  /** Domain names of the DNS Zone. */
-  domain?: WorkloadNetworkDnsZonePropertiesInputDomainList;
-  /** DNS Server IP array of the DNS Zone. */
-  dnsServerIps?: WorkloadNetworkDnsZonePropertiesInputDnsServerIpsList;
-  /** Source IP of the DNS Zone. */
-  sourceIp?: string;
-  /** Number of DNS Services using the DNS zone. */
-  dnsServices?: number;
-  /** NSX revision number. */
-  revision?: number;
-}
-export const WorkloadNetworkDnsZonePropertiesInput = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      displayName: S.optional(S.String),
-      domain: S.optional(WorkloadNetworkDnsZonePropertiesInputDomainList),
-      dnsServerIps: S.optional(
-        WorkloadNetworkDnsZonePropertiesInputDnsServerIpsList,
-      ),
-      sourceIp: S.optional(S.String),
-      dnsServices: S.optional(S.Number),
-      revision: S.optional(S.Number),
-    }),
-).annotate({
-  identifier: "WorkloadNetworkDnsZonePropertiesInput",
-}) as any as S.Schema<WorkloadNetworkDnsZonePropertiesInput>;
-
-export interface WorkloadNetworksCreateDnsZoneRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-  /** ID of the DNS zone. */
-  dnsZoneId: string;
-  /** The resource-specific properties for this resource. */
-  properties?: WorkloadNetworkDnsZonePropertiesInput;
-}
-export const WorkloadNetworksCreateDnsZoneRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      privateCloudName: S.String.pipe(T.Label()),
-      dnsZoneId: S.String.pipe(T.Label()),
-      properties: S.optional(WorkloadNetworkDnsZonePropertiesInput),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dnsZones/{dnsZoneId}",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
-).annotate({
-  identifier: "WorkloadNetworksCreateDnsZoneRequest",
-}) as any as S.Schema<WorkloadNetworksCreateDnsZoneRequest>;
-
-/** Domain names of the DNS Zone. */
-export type WorkloadNetworkDnsZonePropertiesDomainList = Array<string>;
-export const WorkloadNetworkDnsZonePropertiesDomainList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<WorkloadNetworkDnsZonePropertiesDomainList>;
-
-/** DNS Server IP array of the DNS Zone. */
-export type WorkloadNetworkDnsZonePropertiesDnsServerIpsList = Array<string>;
-export const WorkloadNetworkDnsZonePropertiesDnsServerIpsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<WorkloadNetworkDnsZonePropertiesDnsServerIpsList>;
-
-/** Workload Network DNS Zone provisioning state */
-export type WorkloadNetworkDnsZoneProvisioningState =
-  | "Succeeded"
-  | "Failed"
-  | "Canceled"
-  | "Building"
-  | "Deleting"
-  | "Updating";
-export const WorkloadNetworkDnsZoneProvisioningState = /*@__PURE__*/ S.String;
-
-/** NSX DNS Zone Properties */
-export interface WorkloadNetworkDnsZoneProperties {
-  /** Display name of the DNS Zone. */
-  displayName?: string;
-  /** Domain names of the DNS Zone. */
-  domain?: WorkloadNetworkDnsZonePropertiesDomainList;
-  /** DNS Server IP array of the DNS Zone. */
-  dnsServerIps?: WorkloadNetworkDnsZonePropertiesDnsServerIpsList;
-  /** Source IP of the DNS Zone. */
-  sourceIp?: string;
-  /** Number of DNS Services using the DNS zone. */
-  dnsServices?: number;
-  /** The provisioning state */
-  provisioningState?: WorkloadNetworkDnsZoneProvisioningState;
-  /** NSX revision number. */
-  revision?: number;
-}
-export const WorkloadNetworkDnsZoneProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    displayName: S.optional(S.String),
-    domain: S.optional(WorkloadNetworkDnsZonePropertiesDomainList),
-    dnsServerIps: S.optional(WorkloadNetworkDnsZonePropertiesDnsServerIpsList),
-    sourceIp: S.optional(S.String),
-    dnsServices: S.optional(S.Number),
-    provisioningState: S.optional(WorkloadNetworkDnsZoneProvisioningState),
-    revision: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "WorkloadNetworkDnsZoneProperties",
-}) as any as S.Schema<WorkloadNetworkDnsZoneProperties>;
-
-export interface WorkloadNetworksCreateDnsZoneResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: WorkloadNetworkDnsZoneProperties;
-}
-export const WorkloadNetworksCreateDnsZoneResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(WorkloadNetworkDnsZoneProperties),
-    }),
-).annotate({
-  identifier: "WorkloadNetworksCreateDnsZoneResponse",
-}) as any as S.Schema<WorkloadNetworksCreateDnsZoneResponse>;
-
-/** Port Mirroring Direction */
-export type PortMirroringDirectionEnum = "INGRESS" | "EGRESS" | "BIDIRECTIONAL";
-export const PortMirroringDirectionEnum = /*@__PURE__*/ S.String;
-
-/** NSX Port Mirroring Properties */
-export interface WorkloadNetworkPortMirroringPropertiesInput {
-  /** Display name of the port mirroring profile. */
-  displayName?: string;
-  /** Direction of port mirroring profile. */
-  direction?: PortMirroringDirectionEnum | (string & {});
-  /** Source VM Group. */
-  source?: string;
-  /** Destination VM Group. */
-  destination?: string;
-  /** NSX revision number. */
-  revision?: number;
-}
-export const WorkloadNetworkPortMirroringPropertiesInput =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      displayName: S.optional(S.String),
-      direction: S.optional(PortMirroringDirectionEnum),
-      source: S.optional(S.String),
-      destination: S.optional(S.String),
-      revision: S.optional(S.Number),
-    }),
-  ).annotate({
-    identifier: "WorkloadNetworkPortMirroringPropertiesInput",
-  }) as any as S.Schema<WorkloadNetworkPortMirroringPropertiesInput>;
-
-export interface WorkloadNetworksCreatePortMirroringRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-  /** ID of the NSX port mirroring profile. */
-  portMirroringId: string;
-  /** The resource-specific properties for this resource. */
-  properties?: WorkloadNetworkPortMirroringPropertiesInput;
-}
-export const WorkloadNetworksCreatePortMirroringRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      privateCloudName: S.String.pipe(T.Label()),
-      portMirroringId: S.String.pipe(T.Label()),
-      properties: S.optional(WorkloadNetworkPortMirroringPropertiesInput),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/portMirroringProfiles/{portMirroringId}",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "WorkloadNetworksCreatePortMirroringRequest",
-  }) as any as S.Schema<WorkloadNetworksCreatePortMirroringRequest>;
-
-/** Port Mirroring status */
-export type PortMirroringStatusEnum = "SUCCESS" | "FAILURE";
-export const PortMirroringStatusEnum = /*@__PURE__*/ S.String;
-
-/** Workload Network Port Mirroring provisioning state */
-export type WorkloadNetworkPortMirroringProvisioningState =
-  | "Succeeded"
-  | "Failed"
-  | "Canceled"
-  | "Building"
-  | "Deleting"
-  | "Updating";
-export const WorkloadNetworkPortMirroringProvisioningState =
-  /*@__PURE__*/ S.String;
-
-/** NSX Port Mirroring Properties */
-export interface WorkloadNetworkPortMirroringProperties {
-  /** Display name of the port mirroring profile. */
-  displayName?: string;
-  /** Direction of port mirroring profile. */
-  direction?: PortMirroringDirectionEnum;
-  /** Source VM Group. */
-  source?: string;
-  /** Destination VM Group. */
-  destination?: string;
-  /** Port Mirroring Status. */
-  status?: PortMirroringStatusEnum;
-  /** The provisioning state */
-  provisioningState?: WorkloadNetworkPortMirroringProvisioningState;
-  /** NSX revision number. */
-  revision?: number;
-}
-export const WorkloadNetworkPortMirroringProperties = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      displayName: S.optional(S.String),
-      direction: S.optional(PortMirroringDirectionEnum),
-      source: S.optional(S.String),
-      destination: S.optional(S.String),
-      status: S.optional(PortMirroringStatusEnum),
-      provisioningState: S.optional(
-        WorkloadNetworkPortMirroringProvisioningState,
-      ),
-      revision: S.optional(S.Number),
-    }),
-).annotate({
-  identifier: "WorkloadNetworkPortMirroringProperties",
-}) as any as S.Schema<WorkloadNetworkPortMirroringProperties>;
-
-export interface WorkloadNetworksCreatePortMirroringResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: WorkloadNetworkPortMirroringProperties;
-}
-export const WorkloadNetworksCreatePortMirroringResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(WorkloadNetworkPortMirroringProperties),
-    }),
-  ).annotate({
-    identifier: "WorkloadNetworksCreatePortMirroringResponse",
-  }) as any as S.Schema<WorkloadNetworksCreatePortMirroringResponse>;
-
-/** NSX Public IP Block Properties */
-export interface WorkloadNetworkPublicIPPropertiesInput {
-  /** Display name of the Public IP Block. */
-  displayName?: string;
-  /** Number of Public IPs requested. */
-  numberOfPublicIPs?: number;
-}
-export const WorkloadNetworkPublicIPPropertiesInput = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      displayName: S.optional(S.String),
-      numberOfPublicIPs: S.optional(S.Number),
-    }),
-).annotate({
-  identifier: "WorkloadNetworkPublicIPPropertiesInput",
-}) as any as S.Schema<WorkloadNetworkPublicIPPropertiesInput>;
-
-export interface WorkloadNetworksCreatePublicIPRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-  /** ID of the DNS zone. */
-  publicIPId: string;
-  /** The resource-specific properties for this resource. */
-  properties?: WorkloadNetworkPublicIPPropertiesInput;
-}
-export const WorkloadNetworksCreatePublicIPRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      privateCloudName: S.String.pipe(T.Label()),
-      publicIPId: S.String.pipe(T.Label()),
-      properties: S.optional(WorkloadNetworkPublicIPPropertiesInput),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/publicIPs/{publicIPId}",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
-).annotate({
-  identifier: "WorkloadNetworksCreatePublicIPRequest",
-}) as any as S.Schema<WorkloadNetworksCreatePublicIPRequest>;
-
-/** Workload Network Public IP provisioning state */
-export type WorkloadNetworkPublicIPProvisioningState =
-  | "Succeeded"
-  | "Failed"
-  | "Canceled"
-  | "Building"
-  | "Deleting"
-  | "Updating";
-export const WorkloadNetworkPublicIPProvisioningState = /*@__PURE__*/ S.String;
-
-/** NSX Public IP Block Properties */
-export interface WorkloadNetworkPublicIPProperties {
-  /** Display name of the Public IP Block. */
-  displayName?: string;
-  /** Number of Public IPs requested. */
-  numberOfPublicIPs?: number;
-  /** CIDR Block of the Public IP Block. */
-  publicIPBlock?: string;
-  /** The provisioning state */
-  provisioningState?: WorkloadNetworkPublicIPProvisioningState;
-}
-export const WorkloadNetworkPublicIPProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    displayName: S.optional(S.String),
-    numberOfPublicIPs: S.optional(S.Number),
-    publicIPBlock: S.optional(S.String),
-    provisioningState: S.optional(WorkloadNetworkPublicIPProvisioningState),
-  }),
-).annotate({
-  identifier: "WorkloadNetworkPublicIPProperties",
-}) as any as S.Schema<WorkloadNetworkPublicIPProperties>;
-
-export interface WorkloadNetworksCreatePublicIPResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: WorkloadNetworkPublicIPProperties;
-}
-export const WorkloadNetworksCreatePublicIPResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(WorkloadNetworkPublicIPProperties),
-    }),
-).annotate({
-  identifier: "WorkloadNetworksCreatePublicIPResponse",
-}) as any as S.Schema<WorkloadNetworksCreatePublicIPResponse>;
-
-/** DHCP Range assigned for subnet. */
-export type WorkloadNetworkSegmentSubnetDhcpRangesList = Array<string>;
-export const WorkloadNetworkSegmentSubnetDhcpRangesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<WorkloadNetworkSegmentSubnetDhcpRangesList>;
-
-/** Subnet configuration for segment */
-export interface WorkloadNetworkSegmentSubnet {
-  /** DHCP Range assigned for subnet. */
-  dhcpRanges?: WorkloadNetworkSegmentSubnetDhcpRangesList;
-  /** Gateway address. */
-  gatewayAddress?: string;
-}
-export const WorkloadNetworkSegmentSubnet = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    dhcpRanges: S.optional(WorkloadNetworkSegmentSubnetDhcpRangesList),
-    gatewayAddress: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "WorkloadNetworkSegmentSubnet",
-}) as any as S.Schema<WorkloadNetworkSegmentSubnet>;
-
-/** NSX Segment Properties */
-export interface WorkloadNetworkSegmentPropertiesInput {
-  /** Display name of the segment. */
-  displayName?: string;
-  /** Gateway which to connect segment to. */
-  connectedGateway?: string;
-  /** Subnet which to connect segment to. */
-  subnet?: WorkloadNetworkSegmentSubnet;
-  /** NSX revision number. */
-  revision?: number;
-}
-export const WorkloadNetworkSegmentPropertiesInput = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      displayName: S.optional(S.String),
-      connectedGateway: S.optional(S.String),
-      subnet: S.optional(WorkloadNetworkSegmentSubnet),
-      revision: S.optional(S.Number),
-    }),
-).annotate({
-  identifier: "WorkloadNetworkSegmentPropertiesInput",
-}) as any as S.Schema<WorkloadNetworkSegmentPropertiesInput>;
-
-export interface WorkloadNetworksCreateSegmentsRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-  /** The ID of the NSX Segment */
-  segmentId: string;
-  /** The resource-specific properties for this resource. */
-  properties?: WorkloadNetworkSegmentPropertiesInput;
-}
-export const WorkloadNetworksCreateSegmentsRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      privateCloudName: S.String.pipe(T.Label()),
-      segmentId: S.String.pipe(T.Label()),
-      properties: S.optional(WorkloadNetworkSegmentPropertiesInput),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/segments/{segmentId}",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
-).annotate({
-  identifier: "WorkloadNetworksCreateSegmentsRequest",
-}) as any as S.Schema<WorkloadNetworksCreateSegmentsRequest>;
-
-/** Ports and any VIF attached to segment. */
-export interface WorkloadNetworkSegmentPortVif {
-  /** Name of port or VIF attached to segment. */
-  portName?: string;
-}
-export const WorkloadNetworkSegmentPortVif = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    portName: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "WorkloadNetworkSegmentPortVif",
-}) as any as S.Schema<WorkloadNetworkSegmentPortVif>;
-
-/** Port Vif which segment is associated with. */
-export type WorkloadNetworkSegmentPropertiesPortVifList =
-  Array<WorkloadNetworkSegmentPortVif>;
-export const WorkloadNetworkSegmentPropertiesPortVifList =
-  /*@__PURE__*/ S.Array(
-    WorkloadNetworkSegmentPortVif,
-  ) as any as S.Schema<WorkloadNetworkSegmentPropertiesPortVifList>;
-
-/** Segment status */
-export type SegmentStatusEnum = "SUCCESS" | "FAILURE";
-export const SegmentStatusEnum = /*@__PURE__*/ S.String;
-
-/** Workload Network Segment provisioning state */
-export type WorkloadNetworkSegmentProvisioningState =
-  | "Succeeded"
-  | "Failed"
-  | "Canceled"
-  | "Building"
-  | "Deleting"
-  | "Updating";
-export const WorkloadNetworkSegmentProvisioningState = /*@__PURE__*/ S.String;
-
-/** NSX Segment Properties */
-export interface WorkloadNetworkSegmentProperties {
-  /** Display name of the segment. */
-  displayName?: string;
-  /** Gateway which to connect segment to. */
-  connectedGateway?: string;
-  /** Subnet which to connect segment to. */
-  subnet?: WorkloadNetworkSegmentSubnet;
-  /** Port Vif which segment is associated with. */
-  portVif?: WorkloadNetworkSegmentPropertiesPortVifList;
-  /** Segment status. */
-  status?: SegmentStatusEnum;
-  /** The provisioning state */
-  provisioningState?: WorkloadNetworkSegmentProvisioningState;
-  /** NSX revision number. */
-  revision?: number;
-}
-export const WorkloadNetworkSegmentProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    displayName: S.optional(S.String),
-    connectedGateway: S.optional(S.String),
-    subnet: S.optional(WorkloadNetworkSegmentSubnet),
-    portVif: S.optional(WorkloadNetworkSegmentPropertiesPortVifList),
-    status: S.optional(SegmentStatusEnum),
-    provisioningState: S.optional(WorkloadNetworkSegmentProvisioningState),
-    revision: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "WorkloadNetworkSegmentProperties",
-}) as any as S.Schema<WorkloadNetworkSegmentProperties>;
-
-export interface WorkloadNetworksCreateSegmentsResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: WorkloadNetworkSegmentProperties;
-}
-export const WorkloadNetworksCreateSegmentsResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(WorkloadNetworkSegmentProperties),
-    }),
-).annotate({
-  identifier: "WorkloadNetworksCreateSegmentsResponse",
-}) as any as S.Schema<WorkloadNetworksCreateSegmentsResponse>;
-
-/** Virtual machine members of this group. */
-export type WorkloadNetworkVMGroupPropertiesInputMembersList = Array<string>;
-export const WorkloadNetworkVMGroupPropertiesInputMembersList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<WorkloadNetworkVMGroupPropertiesInputMembersList>;
-
-/** NSX VM Group Properties */
-export interface WorkloadNetworkVMGroupPropertiesInput {
-  /** Display name of the VM group. */
-  displayName?: string;
-  /** Virtual machine members of this group. */
-  members?: WorkloadNetworkVMGroupPropertiesInputMembersList;
-  /** NSX revision number. */
-  revision?: number;
-}
-export const WorkloadNetworkVMGroupPropertiesInput = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      displayName: S.optional(S.String),
-      members: S.optional(WorkloadNetworkVMGroupPropertiesInputMembersList),
-      revision: S.optional(S.Number),
-    }),
-).annotate({
-  identifier: "WorkloadNetworkVMGroupPropertiesInput",
-}) as any as S.Schema<WorkloadNetworkVMGroupPropertiesInput>;
-
-export interface WorkloadNetworksCreateVMGroupRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-  /** ID of the VM group. */
-  vmGroupId: string;
-  /** The resource-specific properties for this resource. */
-  properties?: WorkloadNetworkVMGroupPropertiesInput;
-}
-export const WorkloadNetworksCreateVMGroupRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      privateCloudName: S.String.pipe(T.Label()),
-      vmGroupId: S.String.pipe(T.Label()),
-      properties: S.optional(WorkloadNetworkVMGroupPropertiesInput),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/vmGroups/{vmGroupId}",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
-).annotate({
-  identifier: "WorkloadNetworksCreateVMGroupRequest",
-}) as any as S.Schema<WorkloadNetworksCreateVMGroupRequest>;
-
-/** Virtual machine members of this group. */
-export type WorkloadNetworkVMGroupPropertiesMembersList = Array<string>;
-export const WorkloadNetworkVMGroupPropertiesMembersList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<WorkloadNetworkVMGroupPropertiesMembersList>;
-
-/** VM group status */
-export type VMGroupStatusEnum = "SUCCESS" | "FAILURE";
-export const VMGroupStatusEnum = /*@__PURE__*/ S.String;
-
-/** Workload Network VM Group provisioning state */
-export type WorkloadNetworkVMGroupProvisioningState =
-  | "Succeeded"
-  | "Failed"
-  | "Canceled"
-  | "Building"
-  | "Deleting"
-  | "Updating";
-export const WorkloadNetworkVMGroupProvisioningState = /*@__PURE__*/ S.String;
-
-/** NSX VM Group Properties */
-export interface WorkloadNetworkVMGroupProperties {
-  /** Display name of the VM group. */
-  displayName?: string;
-  /** Virtual machine members of this group. */
-  members?: WorkloadNetworkVMGroupPropertiesMembersList;
-  /** VM Group status. */
-  status?: VMGroupStatusEnum;
-  /** The provisioning state */
-  provisioningState?: WorkloadNetworkVMGroupProvisioningState;
-  /** NSX revision number. */
-  revision?: number;
-}
-export const WorkloadNetworkVMGroupProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    displayName: S.optional(S.String),
-    members: S.optional(WorkloadNetworkVMGroupPropertiesMembersList),
-    status: S.optional(VMGroupStatusEnum),
-    provisioningState: S.optional(WorkloadNetworkVMGroupProvisioningState),
-    revision: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "WorkloadNetworkVMGroupProperties",
-}) as any as S.Schema<WorkloadNetworkVMGroupProperties>;
-
-export interface WorkloadNetworksCreateVMGroupResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: WorkloadNetworkVMGroupProperties;
-}
-export const WorkloadNetworksCreateVMGroupResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(WorkloadNetworkVMGroupProperties),
-    }),
-).annotate({
-  identifier: "WorkloadNetworksCreateVMGroupResponse",
-}) as any as S.Schema<WorkloadNetworksCreateVMGroupResponse>;
-
-export interface WorkloadNetworksDeleteDhcpRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-  /** The ID of the DHCP configuration */
-  dhcpId: string;
-}
-export const WorkloadNetworksDeleteDhcpRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    privateCloudName: S.String.pipe(T.Label()),
-    dhcpId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dhcpConfigurations/{dhcpId}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "WorkloadNetworksDeleteDhcpRequest",
-}) as any as S.Schema<WorkloadNetworksDeleteDhcpRequest>;
-
-export interface WorkloadNetworksDeleteDhcpResponse {}
-export const WorkloadNetworksDeleteDhcpResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "WorkloadNetworksDeleteDhcpResponse",
-}) as any as S.Schema<WorkloadNetworksDeleteDhcpResponse>;
-
-export interface WorkloadNetworksDeleteDnsServiceRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-  /** ID of the DNS service. */
-  dnsServiceId: string;
-}
-export const WorkloadNetworksDeleteDnsServiceRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      privateCloudName: S.String.pipe(T.Label()),
-      dnsServiceId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dnsServices/{dnsServiceId}",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
-).annotate({
-  identifier: "WorkloadNetworksDeleteDnsServiceRequest",
-}) as any as S.Schema<WorkloadNetworksDeleteDnsServiceRequest>;
-
-export interface WorkloadNetworksDeleteDnsServiceResponse {}
-export const WorkloadNetworksDeleteDnsServiceResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "WorkloadNetworksDeleteDnsServiceResponse",
-}) as any as S.Schema<WorkloadNetworksDeleteDnsServiceResponse>;
-
-export interface WorkloadNetworksDeleteDnsZoneRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-  /** ID of the DNS zone. */
-  dnsZoneId: string;
-}
-export const WorkloadNetworksDeleteDnsZoneRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      privateCloudName: S.String.pipe(T.Label()),
-      dnsZoneId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dnsZones/{dnsZoneId}",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
-).annotate({
-  identifier: "WorkloadNetworksDeleteDnsZoneRequest",
-}) as any as S.Schema<WorkloadNetworksDeleteDnsZoneRequest>;
-
-export interface WorkloadNetworksDeleteDnsZoneResponse {}
-export const WorkloadNetworksDeleteDnsZoneResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "WorkloadNetworksDeleteDnsZoneResponse",
-}) as any as S.Schema<WorkloadNetworksDeleteDnsZoneResponse>;
-
-export interface WorkloadNetworksDeletePortMirroringRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-  /** ID of the NSX port mirroring profile. */
-  portMirroringId: string;
-}
-export const WorkloadNetworksDeletePortMirroringRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      privateCloudName: S.String.pipe(T.Label()),
-      portMirroringId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/portMirroringProfiles/{portMirroringId}",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "WorkloadNetworksDeletePortMirroringRequest",
-  }) as any as S.Schema<WorkloadNetworksDeletePortMirroringRequest>;
-
-export interface WorkloadNetworksDeletePortMirroringResponse {}
-export const WorkloadNetworksDeletePortMirroringResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "WorkloadNetworksDeletePortMirroringResponse",
-  }) as any as S.Schema<WorkloadNetworksDeletePortMirroringResponse>;
-
-export interface WorkloadNetworksDeletePublicIPRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-  /** ID of the DNS zone. */
-  publicIPId: string;
-}
-export const WorkloadNetworksDeletePublicIPRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      privateCloudName: S.String.pipe(T.Label()),
-      publicIPId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/publicIPs/{publicIPId}",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
-).annotate({
-  identifier: "WorkloadNetworksDeletePublicIPRequest",
-}) as any as S.Schema<WorkloadNetworksDeletePublicIPRequest>;
-
-export interface WorkloadNetworksDeletePublicIPResponse {}
-export const WorkloadNetworksDeletePublicIPResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "WorkloadNetworksDeletePublicIPResponse",
-}) as any as S.Schema<WorkloadNetworksDeletePublicIPResponse>;
-
-export interface WorkloadNetworksDeleteSegmentRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-  /** The ID of the NSX Segment */
-  segmentId: string;
-}
-export const WorkloadNetworksDeleteSegmentRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      privateCloudName: S.String.pipe(T.Label()),
-      segmentId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/segments/{segmentId}",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
-).annotate({
-  identifier: "WorkloadNetworksDeleteSegmentRequest",
-}) as any as S.Schema<WorkloadNetworksDeleteSegmentRequest>;
-
-export interface WorkloadNetworksDeleteSegmentResponse {}
-export const WorkloadNetworksDeleteSegmentResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "WorkloadNetworksDeleteSegmentResponse",
-}) as any as S.Schema<WorkloadNetworksDeleteSegmentResponse>;
-
-export interface WorkloadNetworksDeleteVMGroupRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-  /** ID of the VM group. */
-  vmGroupId: string;
-}
-export const WorkloadNetworksDeleteVMGroupRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      privateCloudName: S.String.pipe(T.Label()),
-      vmGroupId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/vmGroups/{vmGroupId}",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
-).annotate({
-  identifier: "WorkloadNetworksDeleteVMGroupRequest",
-}) as any as S.Schema<WorkloadNetworksDeleteVMGroupRequest>;
-
-export interface WorkloadNetworksDeleteVMGroupResponse {}
-export const WorkloadNetworksDeleteVMGroupResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "WorkloadNetworksDeleteVMGroupResponse",
-}) as any as S.Schema<WorkloadNetworksDeleteVMGroupResponse>;
-
-export interface WorkloadNetworksGetRequest {
+export interface ListWorkloadNetworkDhcpRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -8334,668 +7817,7 @@ export interface WorkloadNetworksGetRequest {
   /** Name of the private cloud */
   privateCloudName: string;
 }
-export const WorkloadNetworksGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    privateCloudName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "WorkloadNetworksGetRequest",
-}) as any as S.Schema<WorkloadNetworksGetRequest>;
-
-/** base Workload Network provisioning state */
-export type WorkloadNetworkProvisioningState =
-  | "Succeeded"
-  | "Failed"
-  | "Canceled"
-  | "Building"
-  | "Deleting"
-  | "Updating";
-export const WorkloadNetworkProvisioningState = /*@__PURE__*/ S.String;
-
-/** The properties of a workload network */
-export interface WorkloadNetworkProperties {
-  /** The provisioning state of the resource. */
-  provisioningState?: WorkloadNetworkProvisioningState;
-}
-export const WorkloadNetworkProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provisioningState: S.optional(WorkloadNetworkProvisioningState),
-  }),
-).annotate({
-  identifier: "WorkloadNetworkProperties",
-}) as any as S.Schema<WorkloadNetworkProperties>;
-
-export interface WorkloadNetworksGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: WorkloadNetworkProperties;
-}
-export const WorkloadNetworksGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(WorkloadNetworkProperties),
-  }),
-).annotate({
-  identifier: "WorkloadNetworksGetResponse",
-}) as any as S.Schema<WorkloadNetworksGetResponse>;
-
-export interface WorkloadNetworksGetDhcpRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-  /** The ID of the DHCP configuration */
-  dhcpId: string;
-}
-export const WorkloadNetworksGetDhcpRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    privateCloudName: S.String.pipe(T.Label()),
-    dhcpId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dhcpConfigurations/{dhcpId}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "WorkloadNetworksGetDhcpRequest",
-}) as any as S.Schema<WorkloadNetworksGetDhcpRequest>;
-
-export interface WorkloadNetworksGetDhcpResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: WorkloadNetworkDhcpEntity;
-}
-export const WorkloadNetworksGetDhcpResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(WorkloadNetworkDhcpEntity),
-  }),
-).annotate({
-  identifier: "WorkloadNetworksGetDhcpResponse",
-}) as any as S.Schema<WorkloadNetworksGetDhcpResponse>;
-
-export interface WorkloadNetworksGetDnsServiceRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-  /** ID of the DNS service. */
-  dnsServiceId: string;
-}
-export const WorkloadNetworksGetDnsServiceRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      privateCloudName: S.String.pipe(T.Label()),
-      dnsServiceId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dnsServices/{dnsServiceId}",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
-).annotate({
-  identifier: "WorkloadNetworksGetDnsServiceRequest",
-}) as any as S.Schema<WorkloadNetworksGetDnsServiceRequest>;
-
-export interface WorkloadNetworksGetDnsServiceResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: WorkloadNetworkDnsServiceProperties;
-}
-export const WorkloadNetworksGetDnsServiceResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(WorkloadNetworkDnsServiceProperties),
-    }),
-).annotate({
-  identifier: "WorkloadNetworksGetDnsServiceResponse",
-}) as any as S.Schema<WorkloadNetworksGetDnsServiceResponse>;
-
-export interface WorkloadNetworksGetDnsZoneRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-  /** ID of the DNS zone. */
-  dnsZoneId: string;
-}
-export const WorkloadNetworksGetDnsZoneRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    privateCloudName: S.String.pipe(T.Label()),
-    dnsZoneId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dnsZones/{dnsZoneId}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "WorkloadNetworksGetDnsZoneRequest",
-}) as any as S.Schema<WorkloadNetworksGetDnsZoneRequest>;
-
-export interface WorkloadNetworksGetDnsZoneResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: WorkloadNetworkDnsZoneProperties;
-}
-export const WorkloadNetworksGetDnsZoneResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(WorkloadNetworkDnsZoneProperties),
-  }),
-).annotate({
-  identifier: "WorkloadNetworksGetDnsZoneResponse",
-}) as any as S.Schema<WorkloadNetworksGetDnsZoneResponse>;
-
-export interface WorkloadNetworksGetGatewayRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-  /** The ID of the NSX Gateway */
-  gatewayId: string;
-}
-export const WorkloadNetworksGetGatewayRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    privateCloudName: S.String.pipe(T.Label()),
-    gatewayId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/gateways/{gatewayId}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "WorkloadNetworksGetGatewayRequest",
-}) as any as S.Schema<WorkloadNetworksGetGatewayRequest>;
-
-/** Properties of a NSX Gateway. */
-export interface WorkloadNetworkGatewayProperties {
-  /** The provisioning state of the resource. */
-  provisioningState?: WorkloadNetworkProvisioningState;
-  /** Display name of the DHCP entity. */
-  displayName?: string;
-  /** NSX Gateway Path. */
-  path?: string;
-}
-export const WorkloadNetworkGatewayProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provisioningState: S.optional(WorkloadNetworkProvisioningState),
-    displayName: S.optional(S.String),
-    path: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "WorkloadNetworkGatewayProperties",
-}) as any as S.Schema<WorkloadNetworkGatewayProperties>;
-
-export interface WorkloadNetworksGetGatewayResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: WorkloadNetworkGatewayProperties;
-}
-export const WorkloadNetworksGetGatewayResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(WorkloadNetworkGatewayProperties),
-  }),
-).annotate({
-  identifier: "WorkloadNetworksGetGatewayResponse",
-}) as any as S.Schema<WorkloadNetworksGetGatewayResponse>;
-
-export interface WorkloadNetworksGetPortMirroringRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-  /** ID of the NSX port mirroring profile. */
-  portMirroringId: string;
-}
-export const WorkloadNetworksGetPortMirroringRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      privateCloudName: S.String.pipe(T.Label()),
-      portMirroringId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/portMirroringProfiles/{portMirroringId}",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
-).annotate({
-  identifier: "WorkloadNetworksGetPortMirroringRequest",
-}) as any as S.Schema<WorkloadNetworksGetPortMirroringRequest>;
-
-export interface WorkloadNetworksGetPortMirroringResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: WorkloadNetworkPortMirroringProperties;
-}
-export const WorkloadNetworksGetPortMirroringResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(WorkloadNetworkPortMirroringProperties),
-    }),
-).annotate({
-  identifier: "WorkloadNetworksGetPortMirroringResponse",
-}) as any as S.Schema<WorkloadNetworksGetPortMirroringResponse>;
-
-export interface WorkloadNetworksGetPublicIPRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-  /** ID of the DNS zone. */
-  publicIPId: string;
-}
-export const WorkloadNetworksGetPublicIPRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    privateCloudName: S.String.pipe(T.Label()),
-    publicIPId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/publicIPs/{publicIPId}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "WorkloadNetworksGetPublicIPRequest",
-}) as any as S.Schema<WorkloadNetworksGetPublicIPRequest>;
-
-export interface WorkloadNetworksGetPublicIPResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: WorkloadNetworkPublicIPProperties;
-}
-export const WorkloadNetworksGetPublicIPResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(WorkloadNetworkPublicIPProperties),
-  }),
-).annotate({
-  identifier: "WorkloadNetworksGetPublicIPResponse",
-}) as any as S.Schema<WorkloadNetworksGetPublicIPResponse>;
-
-export interface WorkloadNetworksGetSegmentRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-  /** The ID of the NSX Segment */
-  segmentId: string;
-}
-export const WorkloadNetworksGetSegmentRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    privateCloudName: S.String.pipe(T.Label()),
-    segmentId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/segments/{segmentId}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "WorkloadNetworksGetSegmentRequest",
-}) as any as S.Schema<WorkloadNetworksGetSegmentRequest>;
-
-export interface WorkloadNetworksGetSegmentResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: WorkloadNetworkSegmentProperties;
-}
-export const WorkloadNetworksGetSegmentResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(WorkloadNetworkSegmentProperties),
-  }),
-).annotate({
-  identifier: "WorkloadNetworksGetSegmentResponse",
-}) as any as S.Schema<WorkloadNetworksGetSegmentResponse>;
-
-export interface WorkloadNetworksGetVirtualMachineRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-  /** ID of the virtual machine. */
-  virtualMachineId: string;
-}
-export const WorkloadNetworksGetVirtualMachineRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      privateCloudName: S.String.pipe(T.Label()),
-      virtualMachineId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/virtualMachines/{virtualMachineId}",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
-).annotate({
-  identifier: "WorkloadNetworksGetVirtualMachineRequest",
-}) as any as S.Schema<WorkloadNetworksGetVirtualMachineRequest>;
-
-/** VM type */
-export type VMTypeEnum = "REGULAR" | "EDGE" | "SERVICE";
-export const VMTypeEnum = /*@__PURE__*/ S.String;
-
-/** NSX Virtual Machine Properties */
-export interface WorkloadNetworkVirtualMachineProperties {
-  /** The provisioning state of the resource. */
-  provisioningState?: WorkloadNetworkProvisioningState;
-  /** Display name of the VM. */
-  displayName?: string;
-  /** Virtual machine type. */
-  vmType?: VMTypeEnum;
-}
-export const WorkloadNetworkVirtualMachineProperties = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      provisioningState: S.optional(WorkloadNetworkProvisioningState),
-      displayName: S.optional(S.String),
-      vmType: S.optional(VMTypeEnum),
-    }),
-).annotate({
-  identifier: "WorkloadNetworkVirtualMachineProperties",
-}) as any as S.Schema<WorkloadNetworkVirtualMachineProperties>;
-
-export interface WorkloadNetworksGetVirtualMachineResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: WorkloadNetworkVirtualMachineProperties;
-}
-export const WorkloadNetworksGetVirtualMachineResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(WorkloadNetworkVirtualMachineProperties),
-    }),
-  ).annotate({
-    identifier: "WorkloadNetworksGetVirtualMachineResponse",
-  }) as any as S.Schema<WorkloadNetworksGetVirtualMachineResponse>;
-
-export interface WorkloadNetworksGetVMGroupRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-  /** ID of the VM group. */
-  vmGroupId: string;
-}
-export const WorkloadNetworksGetVMGroupRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    privateCloudName: S.String.pipe(T.Label()),
-    vmGroupId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/vmGroups/{vmGroupId}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "WorkloadNetworksGetVMGroupRequest",
-}) as any as S.Schema<WorkloadNetworksGetVMGroupRequest>;
-
-export interface WorkloadNetworksGetVMGroupResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: WorkloadNetworkVMGroupProperties;
-}
-export const WorkloadNetworksGetVMGroupResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(WorkloadNetworkVMGroupProperties),
-  }),
-).annotate({
-  identifier: "WorkloadNetworksGetVMGroupResponse",
-}) as any as S.Schema<WorkloadNetworksGetVMGroupResponse>;
-
-export interface WorkloadNetworksListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-}
-export const WorkloadNetworksListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    privateCloudName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "WorkloadNetworksListRequest",
-}) as any as S.Schema<WorkloadNetworksListRequest>;
-
-/** Workload Network */
-export interface WorkloadNetwork {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: WorkloadNetworkProperties;
-}
-export const WorkloadNetwork = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(WorkloadNetworkProperties),
-  }),
-).annotate({
-  identifier: "WorkloadNetwork",
-}) as any as S.Schema<WorkloadNetwork>;
-
-/** The WorkloadNetwork items on this page */
-export type WorkloadNetworkListValueList = Array<WorkloadNetwork>;
-export const WorkloadNetworkListValueList = /*@__PURE__*/ S.Array(
-  WorkloadNetwork,
-) as any as S.Schema<WorkloadNetworkListValueList>;
-
-/** The response of a WorkloadNetwork list operation. */
-export interface WorkloadNetworkList {
-  /** The WorkloadNetwork items on this page */
-  value: WorkloadNetworkListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const WorkloadNetworkList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: WorkloadNetworkListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "WorkloadNetworkList",
-}) as any as S.Schema<WorkloadNetworkList>;
-
-export interface WorkloadNetworksListDhcpRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the private cloud */
-  privateCloudName: string;
-}
-export const WorkloadNetworksListDhcpRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListWorkloadNetworkDhcpRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -9005,12 +7827,12 @@ export const WorkloadNetworksListDhcpRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dhcpConfigurations",
       code: 200,
-      apiVersion: "2025-09-01",
+      apiVersion: "2026-03-01",
     }),
   ),
 ).annotate({
-  identifier: "WorkloadNetworksListDhcpRequest",
-}) as any as S.Schema<WorkloadNetworksListDhcpRequest>;
+  identifier: "ListWorkloadNetworkDhcpRequest",
+}) as any as S.Schema<ListWorkloadNetworkDhcpRequest>;
 
 /** NSX DHCP */
 export interface WorkloadNetworkDhcp {
@@ -9059,7 +7881,7 @@ export const WorkloadNetworkDhcpList = /*@__PURE__*/ S.suspend(() =>
   identifier: "WorkloadNetworkDhcpList",
 }) as any as S.Schema<WorkloadNetworkDhcpList>;
 
-export interface WorkloadNetworksListDnsServicesRequest {
+export interface ListWorkloadNetworkDnsServicesRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -9067,7 +7889,7 @@ export interface WorkloadNetworksListDnsServicesRequest {
   /** Name of the private cloud */
   privateCloudName: string;
 }
-export const WorkloadNetworksListDnsServicesRequest = /*@__PURE__*/ S.suspend(
+export const ListWorkloadNetworkDnsServicesRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -9078,12 +7900,12 @@ export const WorkloadNetworksListDnsServicesRequest = /*@__PURE__*/ S.suspend(
         method: "GET",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dnsServices",
         code: 200,
-        apiVersion: "2025-09-01",
+        apiVersion: "2026-03-01",
       }),
     ),
 ).annotate({
-  identifier: "WorkloadNetworksListDnsServicesRequest",
-}) as any as S.Schema<WorkloadNetworksListDnsServicesRequest>;
+  identifier: "ListWorkloadNetworkDnsServicesRequest",
+}) as any as S.Schema<ListWorkloadNetworkDnsServicesRequest>;
 
 /** NSX DNS Service */
 export interface WorkloadNetworkDnsService {
@@ -9133,7 +7955,7 @@ export const WorkloadNetworkDnsServicesList = /*@__PURE__*/ S.suspend(() =>
   identifier: "WorkloadNetworkDnsServicesList",
 }) as any as S.Schema<WorkloadNetworkDnsServicesList>;
 
-export interface WorkloadNetworksListDnsZonesRequest {
+export interface ListWorkloadNetworkDnsZonesRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -9141,7 +7963,7 @@ export interface WorkloadNetworksListDnsZonesRequest {
   /** Name of the private cloud */
   privateCloudName: string;
 }
-export const WorkloadNetworksListDnsZonesRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListWorkloadNetworkDnsZonesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -9151,12 +7973,12 @@ export const WorkloadNetworksListDnsZonesRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dnsZones",
       code: 200,
-      apiVersion: "2025-09-01",
+      apiVersion: "2026-03-01",
     }),
   ),
 ).annotate({
-  identifier: "WorkloadNetworksListDnsZonesRequest",
-}) as any as S.Schema<WorkloadNetworksListDnsZonesRequest>;
+  identifier: "ListWorkloadNetworkDnsZonesRequest",
+}) as any as S.Schema<ListWorkloadNetworkDnsZonesRequest>;
 
 /** NSX DNS Zone */
 export interface WorkloadNetworkDnsZone {
@@ -9206,7 +8028,7 @@ export const WorkloadNetworkDnsZonesList = /*@__PURE__*/ S.suspend(() =>
   identifier: "WorkloadNetworkDnsZonesList",
 }) as any as S.Schema<WorkloadNetworkDnsZonesList>;
 
-export interface WorkloadNetworksListGatewaysRequest {
+export interface ListWorkloadNetworkGatewaysRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -9214,7 +8036,7 @@ export interface WorkloadNetworksListGatewaysRequest {
   /** Name of the private cloud */
   privateCloudName: string;
 }
-export const WorkloadNetworksListGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListWorkloadNetworkGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -9224,12 +8046,12 @@ export const WorkloadNetworksListGatewaysRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/gateways",
       code: 200,
-      apiVersion: "2025-09-01",
+      apiVersion: "2026-03-01",
     }),
   ),
 ).annotate({
-  identifier: "WorkloadNetworksListGatewaysRequest",
-}) as any as S.Schema<WorkloadNetworksListGatewaysRequest>;
+  identifier: "ListWorkloadNetworkGatewaysRequest",
+}) as any as S.Schema<ListWorkloadNetworkGatewaysRequest>;
 
 /** NSX Gateway. */
 export interface WorkloadNetworkGateway {
@@ -9278,7 +8100,7 @@ export const WorkloadNetworkGatewayList = /*@__PURE__*/ S.suspend(() =>
   identifier: "WorkloadNetworkGatewayList",
 }) as any as S.Schema<WorkloadNetworkGatewayList>;
 
-export interface WorkloadNetworksListPortMirroringRequest {
+export interface ListWorkloadNetworkPortMirroringRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -9286,7 +8108,7 @@ export interface WorkloadNetworksListPortMirroringRequest {
   /** Name of the private cloud */
   privateCloudName: string;
 }
-export const WorkloadNetworksListPortMirroringRequest = /*@__PURE__*/ S.suspend(
+export const ListWorkloadNetworkPortMirroringRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -9297,12 +8119,12 @@ export const WorkloadNetworksListPortMirroringRequest = /*@__PURE__*/ S.suspend(
         method: "GET",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/portMirroringProfiles",
         code: 200,
-        apiVersion: "2025-09-01",
+        apiVersion: "2026-03-01",
       }),
     ),
 ).annotate({
-  identifier: "WorkloadNetworksListPortMirroringRequest",
-}) as any as S.Schema<WorkloadNetworksListPortMirroringRequest>;
+  identifier: "ListWorkloadNetworkPortMirroringRequest",
+}) as any as S.Schema<ListWorkloadNetworkPortMirroringRequest>;
 
 /** NSX Port Mirroring */
 export interface WorkloadNetworkPortMirroring {
@@ -9352,7 +8174,7 @@ export const WorkloadNetworkPortMirroringList = /*@__PURE__*/ S.suspend(() =>
   identifier: "WorkloadNetworkPortMirroringList",
 }) as any as S.Schema<WorkloadNetworkPortMirroringList>;
 
-export interface WorkloadNetworksListPublicIPsRequest {
+export interface ListWorkloadNetworkPublicIPsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -9360,23 +8182,22 @@ export interface WorkloadNetworksListPublicIPsRequest {
   /** Name of the private cloud */
   privateCloudName: string;
 }
-export const WorkloadNetworksListPublicIPsRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      privateCloudName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/publicIPs",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
+export const ListWorkloadNetworkPublicIPsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    privateCloudName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/publicIPs",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
 ).annotate({
-  identifier: "WorkloadNetworksListPublicIPsRequest",
-}) as any as S.Schema<WorkloadNetworksListPublicIPsRequest>;
+  identifier: "ListWorkloadNetworkPublicIPsRequest",
+}) as any as S.Schema<ListWorkloadNetworkPublicIPsRequest>;
 
 /** NSX Public IP Block */
 export interface WorkloadNetworkPublicIP {
@@ -9426,7 +8247,7 @@ export const WorkloadNetworkPublicIPsList = /*@__PURE__*/ S.suspend(() =>
   identifier: "WorkloadNetworkPublicIPsList",
 }) as any as S.Schema<WorkloadNetworkPublicIPsList>;
 
-export interface WorkloadNetworksListSegmentsRequest {
+export interface ListWorkloadNetworksRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -9434,7 +8255,79 @@ export interface WorkloadNetworksListSegmentsRequest {
   /** Name of the private cloud */
   privateCloudName: string;
 }
-export const WorkloadNetworksListSegmentsRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListWorkloadNetworksRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    privateCloudName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListWorkloadNetworksRequest",
+}) as any as S.Schema<ListWorkloadNetworksRequest>;
+
+/** Workload Network */
+export interface WorkloadNetwork {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: WorkloadNetworkProperties;
+}
+export const WorkloadNetwork = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(WorkloadNetworkProperties),
+  }),
+).annotate({
+  identifier: "WorkloadNetwork",
+}) as any as S.Schema<WorkloadNetwork>;
+
+/** The WorkloadNetwork items on this page */
+export type WorkloadNetworkListValueList = Array<WorkloadNetwork>;
+export const WorkloadNetworkListValueList = /*@__PURE__*/ S.Array(
+  WorkloadNetwork,
+) as any as S.Schema<WorkloadNetworkListValueList>;
+
+/** The response of a WorkloadNetwork list operation. */
+export interface WorkloadNetworkList {
+  /** The WorkloadNetwork items on this page */
+  value: WorkloadNetworkListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const WorkloadNetworkList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: WorkloadNetworkListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "WorkloadNetworkList",
+}) as any as S.Schema<WorkloadNetworkList>;
+
+export interface ListWorkloadNetworkSegmentsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+}
+export const ListWorkloadNetworkSegmentsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -9444,12 +8337,12 @@ export const WorkloadNetworksListSegmentsRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/segments",
       code: 200,
-      apiVersion: "2025-09-01",
+      apiVersion: "2026-03-01",
     }),
   ),
 ).annotate({
-  identifier: "WorkloadNetworksListSegmentsRequest",
-}) as any as S.Schema<WorkloadNetworksListSegmentsRequest>;
+  identifier: "ListWorkloadNetworkSegmentsRequest",
+}) as any as S.Schema<ListWorkloadNetworkSegmentsRequest>;
 
 /** NSX Segment */
 export interface WorkloadNetworkSegment {
@@ -9499,7 +8392,7 @@ export const WorkloadNetworkSegmentsList = /*@__PURE__*/ S.suspend(() =>
   identifier: "WorkloadNetworkSegmentsList",
 }) as any as S.Schema<WorkloadNetworkSegmentsList>;
 
-export interface WorkloadNetworksListVirtualMachinesRequest {
+export interface ListWorkloadNetworkVirtualMachinesRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -9507,7 +8400,7 @@ export interface WorkloadNetworksListVirtualMachinesRequest {
   /** Name of the private cloud */
   privateCloudName: string;
 }
-export const WorkloadNetworksListVirtualMachinesRequest =
+export const ListWorkloadNetworkVirtualMachinesRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -9518,12 +8411,12 @@ export const WorkloadNetworksListVirtualMachinesRequest =
         method: "GET",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/virtualMachines",
         code: 200,
-        apiVersion: "2025-09-01",
+        apiVersion: "2026-03-01",
       }),
     ),
   ).annotate({
-    identifier: "WorkloadNetworksListVirtualMachinesRequest",
-  }) as any as S.Schema<WorkloadNetworksListVirtualMachinesRequest>;
+    identifier: "ListWorkloadNetworkVirtualMachinesRequest",
+  }) as any as S.Schema<ListWorkloadNetworkVirtualMachinesRequest>;
 
 /** NSX Virtual Machine */
 export interface WorkloadNetworkVirtualMachine {
@@ -9574,7 +8467,7 @@ export const WorkloadNetworkVirtualMachinesList = /*@__PURE__*/ S.suspend(() =>
   identifier: "WorkloadNetworkVirtualMachinesList",
 }) as any as S.Schema<WorkloadNetworkVirtualMachinesList>;
 
-export interface WorkloadNetworksListVMGroupsRequest {
+export interface ListWorkloadNetworkVMGroupsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -9582,7 +8475,7 @@ export interface WorkloadNetworksListVMGroupsRequest {
   /** Name of the private cloud */
   privateCloudName: string;
 }
-export const WorkloadNetworksListVMGroupsRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListWorkloadNetworkVMGroupsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -9592,12 +8485,12 @@ export const WorkloadNetworksListVMGroupsRequest = /*@__PURE__*/ S.suspend(() =>
       method: "GET",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/vmGroups",
       code: 200,
-      apiVersion: "2025-09-01",
+      apiVersion: "2026-03-01",
     }),
   ),
 ).annotate({
-  identifier: "WorkloadNetworksListVMGroupsRequest",
-}) as any as S.Schema<WorkloadNetworksListVMGroupsRequest>;
+  identifier: "ListWorkloadNetworkVMGroupsRequest",
+}) as any as S.Schema<ListWorkloadNetworkVMGroupsRequest>;
 
 /** NSX VM Group */
 export interface WorkloadNetworkVMGroup {
@@ -9647,7 +8540,1278 @@ export const WorkloadNetworkVMGroupsList = /*@__PURE__*/ S.suspend(() =>
   identifier: "WorkloadNetworkVMGroupsList",
 }) as any as S.Schema<WorkloadNetworkVMGroupsList>;
 
-export interface WorkloadNetworksUpdateDhcpRequest {
+export interface MaintenancesInitiateChecksRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+  /** Name of the maintenance */
+  maintenanceName: string;
+}
+export const MaintenancesInitiateChecksRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    privateCloudName: S.String.pipe(T.Label()),
+    maintenanceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/maintenances/{maintenanceName}/initiateChecks",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "MaintenancesInitiateChecksRequest",
+}) as any as S.Schema<MaintenancesInitiateChecksRequest>;
+
+export interface MaintenancesInitiateChecksResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: MaintenanceProperties;
+}
+export const MaintenancesInitiateChecksResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(MaintenanceProperties),
+  }),
+).annotate({
+  identifier: "MaintenancesInitiateChecksResponse",
+}) as any as S.Schema<MaintenancesInitiateChecksResponse>;
+
+export interface MaintenancesRescheduleRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+  /** Name of the maintenance */
+  maintenanceName: string;
+  /** reschedule time */
+  rescheduleTime?: string;
+  /** rescheduling reason */
+  message?: string;
+}
+export const MaintenancesRescheduleRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    privateCloudName: S.String.pipe(T.Label()),
+    maintenanceName: S.String.pipe(T.Label()),
+    rescheduleTime: S.optional(S.String),
+    message: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/maintenances/{maintenanceName}/reschedule",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "MaintenancesRescheduleRequest",
+}) as any as S.Schema<MaintenancesRescheduleRequest>;
+
+export interface MaintenancesRescheduleResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: MaintenanceProperties;
+}
+export const MaintenancesRescheduleResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(MaintenanceProperties),
+  }),
+).annotate({
+  identifier: "MaintenancesRescheduleResponse",
+}) as any as S.Schema<MaintenancesRescheduleResponse>;
+
+export interface MaintenancesScheduleRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+  /** Name of the maintenance */
+  maintenanceName: string;
+  /** schedule time */
+  scheduleTime?: string;
+  /** scheduling message */
+  message?: string;
+}
+export const MaintenancesScheduleRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    privateCloudName: S.String.pipe(T.Label()),
+    maintenanceName: S.String.pipe(T.Label()),
+    scheduleTime: S.optional(S.String),
+    message: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/maintenances/{maintenanceName}/schedule",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "MaintenancesScheduleRequest",
+}) as any as S.Schema<MaintenancesScheduleRequest>;
+
+export interface MaintenancesScheduleResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: MaintenanceProperties;
+}
+export const MaintenancesScheduleResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(MaintenanceProperties),
+  }),
+).annotate({
+  identifier: "MaintenancesScheduleResponse",
+}) as any as S.Schema<MaintenancesScheduleResponse>;
+
+/** Abstract placement policy properties */
+export interface PlacementPolicyPropertiesInput {
+  /** Placement Policy type */
+  type: PlacementPolicyType | (string & {});
+  /** Whether the placement policy is enabled or disabled */
+  state?: PlacementPolicyState | (string & {});
+  /** Display name of the placement policy */
+  displayName?: string;
+}
+export const PlacementPolicyPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: PlacementPolicyType,
+    state: S.optional(PlacementPolicyState),
+    displayName: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PlacementPolicyPropertiesInput",
+}) as any as S.Schema<PlacementPolicyPropertiesInput>;
+
+export interface PlacementPoliciesCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+  /** Name of the cluster */
+  clusterName: string;
+  /** Name of the placement policy. */
+  placementPolicyName: string;
+  /** The resource-specific properties for this resource. */
+  properties?: PlacementPolicyPropertiesInput;
+}
+export const PlacementPoliciesCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      privateCloudName: S.String.pipe(T.Label()),
+      clusterName: S.String.pipe(T.Label()),
+      placementPolicyName: S.String.pipe(T.Label()),
+      properties: S.optional(PlacementPolicyPropertiesInput),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}/placementPolicies/{placementPolicyName}",
+        code: 200,
+        apiVersion: "2026-03-01",
+      }),
+    ),
+).annotate({
+  identifier: "PlacementPoliciesCreateOrUpdateRequest",
+}) as any as S.Schema<PlacementPoliciesCreateOrUpdateRequest>;
+
+export interface PlacementPoliciesCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: PlacementPolicyProperties;
+}
+export const PlacementPoliciesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(PlacementPolicyProperties),
+    }),
+).annotate({
+  identifier: "PlacementPoliciesCreateOrUpdateResponse",
+}) as any as S.Schema<PlacementPoliciesCreateOrUpdateResponse>;
+
+/** Resource tags. */
+export type PrivateCloudsCreateOrUpdateRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const PrivateCloudsCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<PrivateCloudsCreateOrUpdateRequestTagsMap>;
+
+/** The hosts */
+export type ManagementClusterInputHostsList = Array<string>;
+export const ManagementClusterInputHostsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ManagementClusterInputHostsList>;
+
+/** The properties of a management cluster */
+export interface ManagementClusterInput {
+  /** The cluster size */
+  clusterSize?: number;
+  /** The hosts */
+  hosts?: ManagementClusterInputHostsList;
+  /** Name of the vsan datastore associated with the cluster */
+  vsanDatastoreName?: string;
+}
+export const ManagementClusterInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    clusterSize: S.optional(S.Number),
+    hosts: S.optional(ManagementClusterInputHostsList),
+    vsanDatastoreName: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ManagementClusterInput",
+}) as any as S.Schema<ManagementClusterInput>;
+
+/** Connectivity to internet is enabled or disabled */
+export type PrivateCloudPropertiesInputInternet = "Enabled" | "Disabled";
+export const PrivateCloudPropertiesInputInternet = /*@__PURE__*/ S.String;
+
+/** vCenter Single Sign On Identity Sources */
+export type PrivateCloudPropertiesInputIdentitySourcesList =
+  Array<IdentitySource>;
+export const PrivateCloudPropertiesInputIdentitySourcesList =
+  /*@__PURE__*/ S.Array(
+    IdentitySource,
+  ) as any as S.Schema<PrivateCloudPropertiesInputIdentitySourcesList>;
+
+/** An Encryption Key */
+export interface EncryptionKeyVaultPropertiesInput {
+  /** The name of the key. */
+  keyName?: string;
+  /** The version of the key. */
+  keyVersion?: string;
+  /** The URL of the vault. */
+  keyVaultUrl?: string;
+}
+export const EncryptionKeyVaultPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    keyName: S.optional(S.String),
+    keyVersion: S.optional(S.String),
+    keyVaultUrl: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "EncryptionKeyVaultPropertiesInput",
+}) as any as S.Schema<EncryptionKeyVaultPropertiesInput>;
+
+/** The properties of customer managed encryption key */
+export interface EncryptionInput {
+  /** Status of customer managed encryption key */
+  status?: EncryptionState | (string & {});
+  /** The key vault where the encryption key is stored */
+  keyVaultProperties?: EncryptionKeyVaultPropertiesInput;
+}
+export const EncryptionInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: S.optional(EncryptionState),
+    keyVaultProperties: S.optional(EncryptionKeyVaultPropertiesInput),
+  }),
+).annotate({
+  identifier: "EncryptionInput",
+}) as any as S.Schema<EncryptionInput>;
+
+/** Array of additional networks noncontiguous with networkBlock. Networks must be unique and non-overlapping across VNet in your subscription, on-premise, and this privateCloud networkBlock attribute. Make sure the CIDR format conforms to (A.B.C.D/X). */
+export type PrivateCloudPropertiesInputExtendedNetworkBlocksList =
+  Array<string>;
+export const PrivateCloudPropertiesInputExtendedNetworkBlocksList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<PrivateCloudPropertiesInputExtendedNetworkBlocksList>;
+
+/** An ExpressRoute Circuit */
+export type CircuitInput = HcxEnterpriseSitePropertiesInput;
+export const CircuitInput = HcxEnterpriseSitePropertiesInput;
+
+/** A VMware Cloud Foundation license */
+export interface VcfLicenseInput {
+  /** License kind */
+  kind: VcfLicenseKind | (string & {});
+}
+export const VcfLicenseInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    kind: VcfLicenseKind,
+  }),
+).annotate({
+  identifier: "VcfLicenseInput",
+}) as any as S.Schema<VcfLicenseInput>;
+
+/** The properties of a private cloud resource */
+export interface PrivateCloudPropertiesInput {
+  /** The default cluster used for management */
+  managementCluster: ManagementClusterInput;
+  /** Connectivity to internet is enabled or disabled */
+  internet?: PrivateCloudPropertiesInputInternet | (string & {});
+  /** vCenter Single Sign On Identity Sources */
+  identitySources?: PrivateCloudPropertiesInputIdentitySourcesList;
+  /** Properties describing how the cloud is distributed across availability zones */
+  availability?: AvailabilityProperties;
+  /** Customer managed key encryption, can be enabled or disabled */
+  encryption?: EncryptionInput;
+  /** Array of additional networks noncontiguous with networkBlock. Networks must be unique and non-overlapping across VNet in your subscription, on-premise, and this privateCloud networkBlock attribute. Make sure the CIDR format conforms to (A.B.C.D/X). */
+  extendedNetworkBlocks?: PrivateCloudPropertiesInputExtendedNetworkBlocksList;
+  /** An ExpressRoute Circuit */
+  circuit?: HcxEnterpriseSitePropertiesInput;
+  /** The block of addresses should be unique across VNet in your subscription as well as on-premise. Make sure the CIDR format is conformed to (A.B.C.D/X) where A,B,C,D are between 0 and 255, and X is between 0 and 22 */
+  networkBlock: string;
+  /** Optionally, set the vCenter admin password when the private cloud is created */
+  vcenterPassword?: string | Redacted.Redacted<string>;
+  /** Optionally, set the NSX-T Manager password when the private cloud is created */
+  nsxtPassword?: string | Redacted.Redacted<string>;
+  /** A secondary expressRoute circuit from a separate AZ. Only present in a stretched private cloud */
+  secondaryCircuit?: HcxEnterpriseSitePropertiesInput;
+  /** Azure resource ID of the virtual network */
+  virtualNetworkId?: string;
+  /** The type of DNS zone to use. */
+  dnsZoneType?: DnsZoneType | (string & {});
+  /** The private cloud license */
+  vcfLicense?: VcfLicenseInput;
+}
+export const PrivateCloudPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    managementCluster: ManagementClusterInput,
+    internet: S.optional(PrivateCloudPropertiesInputInternet),
+    identitySources: S.optional(PrivateCloudPropertiesInputIdentitySourcesList),
+    availability: S.optional(AvailabilityProperties),
+    encryption: S.optional(EncryptionInput),
+    extendedNetworkBlocks: S.optional(
+      PrivateCloudPropertiesInputExtendedNetworkBlocksList,
+    ),
+    circuit: S.optional(HcxEnterpriseSitePropertiesInput),
+    networkBlock: S.String,
+    vcenterPassword: S.optional(S.String.pipe(T.SensitiveValue({}))),
+    nsxtPassword: S.optional(S.String.pipe(T.SensitiveValue({}))),
+    secondaryCircuit: S.optional(HcxEnterpriseSitePropertiesInput),
+    virtualNetworkId: S.optional(S.String),
+    dnsZoneType: S.optional(DnsZoneType),
+    vcfLicense: S.optional(VcfLicenseInput),
+  }),
+).annotate({
+  identifier: "PrivateCloudPropertiesInput",
+}) as any as S.Schema<PrivateCloudPropertiesInput>;
+
+/** The resource model definition representing SKU */
+export type PrivateCloudsCreateOrUpdateRequestSku =
+  ClustersCreateOrUpdateRequestSku;
+export const PrivateCloudsCreateOrUpdateRequestSku =
+  ClustersCreateOrUpdateRequestSku;
+
+/** Managed service identity (either system assigned, or none) */
+export interface PrivateCloudsCreateOrUpdateRequestIdentity {
+  type: SystemAssignedServiceIdentityType | (string & {});
+}
+export const PrivateCloudsCreateOrUpdateRequestIdentity =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      type: SystemAssignedServiceIdentityType,
+    }),
+  ).annotate({
+    identifier: "PrivateCloudsCreateOrUpdateRequestIdentity",
+  }) as any as S.Schema<PrivateCloudsCreateOrUpdateRequestIdentity>;
+
+/** The availability zones. */
+export type PrivateCloudsCreateOrUpdateRequestZonesList = Array<string>;
+export const PrivateCloudsCreateOrUpdateRequestZonesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<PrivateCloudsCreateOrUpdateRequestZonesList>;
+
+export interface PrivateCloudsCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+  /** Resource tags. */
+  tags?: PrivateCloudsCreateOrUpdateRequestTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: PrivateCloudPropertiesInput;
+  /** The resource model definition representing SKU */
+  sku: ClustersCreateOrUpdateRequestSku;
+  /** Managed service identity (either system assigned, or none) */
+  identity?: PrivateCloudsCreateOrUpdateRequestIdentity;
+  /** The availability zones. */
+  zones?: PrivateCloudsCreateOrUpdateRequestZonesList;
+}
+export const PrivateCloudsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    privateCloudName: S.String.pipe(T.Label()),
+    tags: S.optional(PrivateCloudsCreateOrUpdateRequestTagsMap),
+    location: S.String,
+    properties: S.optional(PrivateCloudPropertiesInput),
+    sku: ClustersCreateOrUpdateRequestSku,
+    identity: S.optional(PrivateCloudsCreateOrUpdateRequestIdentity),
+    zones: S.optional(PrivateCloudsCreateOrUpdateRequestZonesList),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "PrivateCloudsCreateOrUpdateRequest",
+}) as any as S.Schema<PrivateCloudsCreateOrUpdateRequest>;
+
+/** Resource tags. */
+export type PrivateCloudsCreateOrUpdateResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const PrivateCloudsCreateOrUpdateResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<PrivateCloudsCreateOrUpdateResponseTagsMap>;
+
+/** The resource model definition representing SKU */
+export type PrivateCloudsCreateOrUpdateResponseSku =
+  ClustersCreateOrUpdateResponseSku;
+export const PrivateCloudsCreateOrUpdateResponseSku =
+  ClustersCreateOrUpdateResponseSku;
+
+/** Managed service identity (either system assigned, or none) */
+export type PrivateCloudsCreateOrUpdateResponseIdentity =
+  GetPrivateCloudResponseIdentity;
+export const PrivateCloudsCreateOrUpdateResponseIdentity =
+  GetPrivateCloudResponseIdentity;
+
+/** The availability zones. */
+export type PrivateCloudsCreateOrUpdateResponseZonesList = Array<string>;
+export const PrivateCloudsCreateOrUpdateResponseZonesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<PrivateCloudsCreateOrUpdateResponseZonesList>;
+
+export interface PrivateCloudsCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: PrivateCloudsCreateOrUpdateResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: PrivateCloudProperties;
+  /** The resource model definition representing SKU */
+  sku: ClustersCreateOrUpdateResponseSku;
+  /** Managed service identity (either system assigned, or none) */
+  identity?: GetPrivateCloudResponseIdentity;
+  /** The availability zones. */
+  zones?: PrivateCloudsCreateOrUpdateResponseZonesList;
+}
+export const PrivateCloudsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(PrivateCloudsCreateOrUpdateResponseTagsMap),
+    location: S.String,
+    properties: S.optional(PrivateCloudProperties),
+    sku: ClustersCreateOrUpdateResponseSku,
+    identity: S.optional(GetPrivateCloudResponseIdentity),
+    zones: S.optional(PrivateCloudsCreateOrUpdateResponseZonesList),
+  }),
+).annotate({
+  identifier: "PrivateCloudsCreateOrUpdateResponse",
+}) as any as S.Schema<PrivateCloudsCreateOrUpdateResponse>;
+
+/** Properties of a Pure Storage Policy Based Management policy */
+export interface PureStoragePolicyPropertiesInput {
+  /** Definition of a Pure Storage Policy Based Management policy */
+  storagePolicyDefinition: string;
+  /** Azure resource ID of the Pure Storage Pool associated with the storage policy */
+  storagePoolId: string;
+}
+export const PureStoragePolicyPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    storagePolicyDefinition: S.String,
+    storagePoolId: S.String,
+  }),
+).annotate({
+  identifier: "PureStoragePolicyPropertiesInput",
+}) as any as S.Schema<PureStoragePolicyPropertiesInput>;
+
+export interface PureStoragePoliciesCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+  /** Name of the storage policy. */
+  storagePolicyName: string;
+  /** The resource-specific properties for this resource. */
+  properties?: PureStoragePolicyPropertiesInput;
+}
+export const PureStoragePoliciesCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      privateCloudName: S.String.pipe(T.Label()),
+      storagePolicyName: S.String.pipe(T.Label()),
+      properties: S.optional(PureStoragePolicyPropertiesInput),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/pureStoragePolicies/{storagePolicyName}",
+        code: 200,
+        apiVersion: "2026-03-01",
+      }),
+    ),
+).annotate({
+  identifier: "PureStoragePoliciesCreateOrUpdateRequest",
+}) as any as S.Schema<PureStoragePoliciesCreateOrUpdateRequest>;
+
+export interface PureStoragePoliciesCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: PureStoragePolicyProperties;
+}
+export const PureStoragePoliciesCreateOrUpdateResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(PureStoragePolicyProperties),
+    }),
+  ).annotate({
+    identifier: "PureStoragePoliciesCreateOrUpdateResponse",
+  }) as any as S.Schema<PureStoragePoliciesCreateOrUpdateResponse>;
+
+export interface RotatePrivateCloudNsxtPasswordRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+}
+export const RotatePrivateCloudNsxtPasswordRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      privateCloudName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/rotateNsxtPassword",
+        code: 200,
+        apiVersion: "2026-03-01",
+      }),
+    ),
+).annotate({
+  identifier: "RotatePrivateCloudNsxtPasswordRequest",
+}) as any as S.Schema<RotatePrivateCloudNsxtPasswordRequest>;
+
+export interface RotatePrivateCloudNsxtPasswordResponse {}
+export const RotatePrivateCloudNsxtPasswordResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "RotatePrivateCloudNsxtPasswordResponse",
+}) as any as S.Schema<RotatePrivateCloudNsxtPasswordResponse>;
+
+export interface RotatePrivateCloudVcenterPasswordRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+}
+export const RotatePrivateCloudVcenterPasswordRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      privateCloudName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/rotateVcenterPassword",
+        code: 200,
+        apiVersion: "2026-03-01",
+      }),
+    ),
+).annotate({
+  identifier: "RotatePrivateCloudVcenterPasswordRequest",
+}) as any as S.Schema<RotatePrivateCloudVcenterPasswordRequest>;
+
+export interface RotatePrivateCloudVcenterPasswordResponse {}
+export const RotatePrivateCloudVcenterPasswordResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "RotatePrivateCloudVcenterPasswordResponse",
+  }) as any as S.Schema<RotatePrivateCloudVcenterPasswordResponse>;
+
+/** Parameters the script will accept */
+export type ScriptExecutionPropertiesInputParametersList =
+  Array<ScriptExecutionParameter>;
+export const ScriptExecutionPropertiesInputParametersList =
+  /*@__PURE__*/ S.Array(
+    ScriptExecutionParameter,
+  ) as any as S.Schema<ScriptExecutionPropertiesInputParametersList>;
+
+/** Parameters that will be hidden/not visible to ARM, such as passwords and credentials */
+export type ScriptExecutionPropertiesInputHiddenParametersList =
+  Array<ScriptExecutionParameter>;
+export const ScriptExecutionPropertiesInputHiddenParametersList =
+  /*@__PURE__*/ S.Array(
+    ScriptExecutionParameter,
+  ) as any as S.Schema<ScriptExecutionPropertiesInputHiddenParametersList>;
+
+/** Standard output stream from the powershell execution */
+export type ScriptExecutionPropertiesInputOutputList = Array<string>;
+export const ScriptExecutionPropertiesInputOutputList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ScriptExecutionPropertiesInputOutputList>;
+
+/** User-defined dictionary. */
+export type ScriptExecutionPropertiesInputNamedOutputsMap = {
+  [key: string]: unknown | undefined;
+};
+export const ScriptExecutionPropertiesInputNamedOutputsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.Unknown,
+  ) as any as S.Schema<ScriptExecutionPropertiesInputNamedOutputsMap>;
+
+/** Properties of a user-invoked script */
+export interface ScriptExecutionPropertiesInput {
+  /** A reference to the script cmdlet resource if user is running a AVS script */
+  scriptCmdletId?: string;
+  /** Parameters the script will accept */
+  parameters?: ScriptExecutionPropertiesInputParametersList;
+  /** Parameters that will be hidden/not visible to ARM, such as passwords and credentials */
+  hiddenParameters?: ScriptExecutionPropertiesInputHiddenParametersList;
+  /** Error message if the script was able to run, but if the script itself had errors or powershell threw an exception */
+  failureReason?: string;
+  /** Time limit for execution */
+  timeout: string;
+  /** Time to live for the resource. If not provided, will be available for 60 days */
+  retention?: string;
+  /** Standard output stream from the powershell execution */
+  output?: ScriptExecutionPropertiesInputOutputList;
+  /** User-defined dictionary. */
+  namedOutputs?: ScriptExecutionPropertiesInputNamedOutputsMap;
+}
+export const ScriptExecutionPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    scriptCmdletId: S.optional(S.String),
+    parameters: S.optional(ScriptExecutionPropertiesInputParametersList),
+    hiddenParameters: S.optional(
+      ScriptExecutionPropertiesInputHiddenParametersList,
+    ),
+    failureReason: S.optional(S.String),
+    timeout: S.String,
+    retention: S.optional(S.String),
+    output: S.optional(ScriptExecutionPropertiesInputOutputList),
+    namedOutputs: S.optional(ScriptExecutionPropertiesInputNamedOutputsMap),
+  }),
+).annotate({
+  identifier: "ScriptExecutionPropertiesInput",
+}) as any as S.Schema<ScriptExecutionPropertiesInput>;
+
+export interface ScriptExecutionsCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+  /** Name of the script cmdlet. */
+  scriptExecutionName: string;
+  /** The resource-specific properties for this resource. */
+  properties?: ScriptExecutionPropertiesInput;
+}
+export const ScriptExecutionsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      privateCloudName: S.String.pipe(T.Label()),
+      scriptExecutionName: S.String.pipe(T.Label()),
+      properties: S.optional(ScriptExecutionPropertiesInput),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/scriptExecutions/{scriptExecutionName}",
+        code: 200,
+        apiVersion: "2026-03-01",
+      }),
+    ),
+).annotate({
+  identifier: "ScriptExecutionsCreateOrUpdateRequest",
+}) as any as S.Schema<ScriptExecutionsCreateOrUpdateRequest>;
+
+export interface ScriptExecutionsCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: ScriptExecutionProperties;
+}
+export const ScriptExecutionsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(ScriptExecutionProperties),
+    }),
+).annotate({
+  identifier: "ScriptExecutionsCreateOrUpdateResponse",
+}) as any as S.Schema<ScriptExecutionsCreateOrUpdateResponse>;
+
+/** The resource model definition representing SKU */
+export type UpdateClusterRequestSku = ClustersCreateOrUpdateRequestSku;
+export const UpdateClusterRequestSku = ClustersCreateOrUpdateRequestSku;
+
+/** The hosts */
+export type ClusterUpdatePropertiesHostsList = Array<string>;
+export const ClusterUpdatePropertiesHostsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ClusterUpdatePropertiesHostsList>;
+
+/** The properties of a cluster that may be updated */
+export interface ClusterUpdateProperties {
+  /** The cluster size */
+  clusterSize?: number;
+  /** The hosts */
+  hosts?: ClusterUpdatePropertiesHostsList;
+}
+export const ClusterUpdateProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    clusterSize: S.optional(S.Number),
+    hosts: S.optional(ClusterUpdatePropertiesHostsList),
+  }),
+).annotate({
+  identifier: "ClusterUpdateProperties",
+}) as any as S.Schema<ClusterUpdateProperties>;
+
+export interface UpdateClusterRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+  /** Name of the cluster */
+  clusterName: string;
+  /** The resource model definition representing SKU */
+  sku?: ClustersCreateOrUpdateRequestSku;
+  /** The properties of a cluster resource that may be updated */
+  properties?: ClusterUpdateProperties;
+}
+export const UpdateClusterRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    privateCloudName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    sku: S.optional(ClustersCreateOrUpdateRequestSku),
+    properties: S.optional(ClusterUpdateProperties),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateClusterRequest",
+}) as any as S.Schema<UpdateClusterRequest>;
+
+/** The resource model definition representing SKU */
+export type UpdateClusterResponseSku = ClustersCreateOrUpdateResponseSku;
+export const UpdateClusterResponseSku = ClustersCreateOrUpdateResponseSku;
+
+export interface UpdateClusterResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: ClusterProperties;
+  /** The resource model definition representing SKU */
+  sku: ClustersCreateOrUpdateResponseSku;
+}
+export const UpdateClusterResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ClusterProperties),
+    sku: ClustersCreateOrUpdateResponseSku,
+  }),
+).annotate({
+  identifier: "UpdateClusterResponse",
+}) as any as S.Schema<UpdateClusterResponse>;
+
+/** The licenses assigned to the host. */
+export type HostUpdatePropertiesLicensesList = Array<HostLicense>;
+export const HostUpdatePropertiesLicensesList = /*@__PURE__*/ S.Array(
+  HostLicense,
+) as any as S.Schema<HostUpdatePropertiesLicensesList>;
+
+/** The properties for updating a host. */
+export interface HostUpdateProperties {
+  /** The licenses assigned to the host. */
+  licenses?: HostUpdatePropertiesLicensesList;
+}
+export const HostUpdateProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    licenses: S.optional(HostUpdatePropertiesLicensesList),
+  }),
+).annotate({
+  identifier: "HostUpdateProperties",
+}) as any as S.Schema<HostUpdateProperties>;
+
+export interface UpdateHostRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+  /** Name of the cluster */
+  clusterName: string;
+  /** The host identifier. */
+  hostId: string;
+  /** The properties of a host resource that may be updated */
+  properties?: HostUpdateProperties;
+}
+export const UpdateHostRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    privateCloudName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    hostId: S.String.pipe(T.Label()),
+    properties: S.optional(HostUpdateProperties),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}/hosts/{hostId}",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateHostRequest",
+}) as any as S.Schema<UpdateHostRequest>;
+
+/** The availability zones. */
+export type UpdateHostResponseZonesList = Array<string>;
+export const UpdateHostResponseZonesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<UpdateHostResponseZonesList>;
+
+/** The resource model definition representing SKU */
+export type UpdateHostResponseSku = ClustersCreateOrUpdateResponseSku;
+export const UpdateHostResponseSku = ClustersCreateOrUpdateResponseSku;
+
+export interface UpdateHostResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: HostProperties;
+  /** The availability zones. */
+  zones?: UpdateHostResponseZonesList;
+  /** The resource model definition representing SKU */
+  sku?: ClustersCreateOrUpdateResponseSku;
+}
+export const UpdateHostResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(HostProperties),
+    zones: S.optional(UpdateHostResponseZonesList),
+    sku: S.optional(ClustersCreateOrUpdateResponseSku),
+  }),
+).annotate({
+  identifier: "UpdateHostResponse",
+}) as any as S.Schema<UpdateHostResponse>;
+
+/** Virtual machine members list */
+export type PlacementPolicyUpdatePropertiesVmMembersList = Array<string>;
+export const PlacementPolicyUpdatePropertiesVmMembersList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<PlacementPolicyUpdatePropertiesVmMembersList>;
+
+/** Host members list */
+export type PlacementPolicyUpdatePropertiesHostMembersList = Array<string>;
+export const PlacementPolicyUpdatePropertiesHostMembersList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<PlacementPolicyUpdatePropertiesHostMembersList>;
+
+/** Affinity Strength */
+export type AffinityStrength = "Should" | "Must";
+export const AffinityStrength = /*@__PURE__*/ S.String;
+
+/** Azure Hybrid Benefit type */
+export type AzureHybridBenefitType = "SqlHost" | "None";
+export const AzureHybridBenefitType = /*@__PURE__*/ S.String;
+
+/** The properties of a placement policy resource that may be updated */
+export interface PlacementPolicyUpdateProperties {
+  /** Whether the placement policy is enabled or disabled */
+  state?: PlacementPolicyState | (string & {});
+  /** Virtual machine members list */
+  vmMembers?: PlacementPolicyUpdatePropertiesVmMembersList;
+  /** Host members list */
+  hostMembers?: PlacementPolicyUpdatePropertiesHostMembersList;
+  /** vm-host placement policy affinity strength (should/must) */
+  affinityStrength?: AffinityStrength | (string & {});
+  /** placement policy azure hybrid benefit opt-in type */
+  azureHybridBenefitType?: AzureHybridBenefitType | (string & {});
+}
+export const PlacementPolicyUpdateProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    state: S.optional(PlacementPolicyState),
+    vmMembers: S.optional(PlacementPolicyUpdatePropertiesVmMembersList),
+    hostMembers: S.optional(PlacementPolicyUpdatePropertiesHostMembersList),
+    affinityStrength: S.optional(AffinityStrength),
+    azureHybridBenefitType: S.optional(AzureHybridBenefitType),
+  }),
+).annotate({
+  identifier: "PlacementPolicyUpdateProperties",
+}) as any as S.Schema<PlacementPolicyUpdateProperties>;
+
+export interface UpdatePlacementPolicyRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+  /** Name of the cluster */
+  clusterName: string;
+  /** Name of the placement policy. */
+  placementPolicyName: string;
+  /** The properties of a placement policy resource that may be updated */
+  properties?: PlacementPolicyUpdateProperties;
+}
+export const UpdatePlacementPolicyRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    privateCloudName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    placementPolicyName: S.String.pipe(T.Label()),
+    properties: S.optional(PlacementPolicyUpdateProperties),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}/placementPolicies/{placementPolicyName}",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdatePlacementPolicyRequest",
+}) as any as S.Schema<UpdatePlacementPolicyRequest>;
+
+export interface UpdatePlacementPolicyResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: PlacementPolicyProperties;
+}
+export const UpdatePlacementPolicyResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(PlacementPolicyProperties),
+  }),
+).annotate({
+  identifier: "UpdatePlacementPolicyResponse",
+}) as any as S.Schema<UpdatePlacementPolicyResponse>;
+
+/** Resource tags. */
+export type UpdatePrivateCloudRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdatePrivateCloudRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdatePrivateCloudRequestTagsMap>;
+
+/** The resource model definition representing SKU */
+export type UpdatePrivateCloudRequestSku = ClustersCreateOrUpdateRequestSku;
+export const UpdatePrivateCloudRequestSku = ClustersCreateOrUpdateRequestSku;
+
+/** Managed service identity (either system assigned, or none) */
+export type UpdatePrivateCloudRequestIdentity =
+  PrivateCloudsCreateOrUpdateRequestIdentity;
+export const UpdatePrivateCloudRequestIdentity =
+  PrivateCloudsCreateOrUpdateRequestIdentity;
+
+/** Whether internet is enabled or disabled */
+export type InternetEnum = "Enabled" | "Disabled";
+export const InternetEnum = /*@__PURE__*/ S.String;
+
+/** vCenter Single Sign On Identity Sources */
+export type PrivateCloudUpdatePropertiesInputIdentitySourcesList =
+  Array<IdentitySource>;
+export const PrivateCloudUpdatePropertiesInputIdentitySourcesList =
+  /*@__PURE__*/ S.Array(
+    IdentitySource,
+  ) as any as S.Schema<PrivateCloudUpdatePropertiesInputIdentitySourcesList>;
+
+/** Array of additional networks noncontiguous with networkBlock. Networks must be unique and non-overlapping across VNet in your subscription, on-premise, and this privateCloud networkBlock attribute. Make sure the CIDR format conforms to (A.B.C.D/X). */
+export type PrivateCloudUpdatePropertiesInputExtendedNetworkBlocksList =
+  Array<string>;
+export const PrivateCloudUpdatePropertiesInputExtendedNetworkBlocksList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<PrivateCloudUpdatePropertiesInputExtendedNetworkBlocksList>;
+
+/** The properties of a private cloud resource that may be updated */
+export interface PrivateCloudUpdatePropertiesInput {
+  /** The default cluster used for management */
+  managementCluster?: ManagementClusterInput;
+  /** Connectivity to internet is enabled or disabled */
+  internet?: InternetEnum | (string & {});
+  /** vCenter Single Sign On Identity Sources */
+  identitySources?: PrivateCloudUpdatePropertiesInputIdentitySourcesList;
+  /** Properties describing how the cloud is distributed across availability zones */
+  availability?: AvailabilityProperties;
+  /** Customer managed key encryption, can be enabled or disabled */
+  encryption?: EncryptionInput;
+  /** Array of additional networks noncontiguous with networkBlock. Networks must be unique and non-overlapping across VNet in your subscription, on-premise, and this privateCloud networkBlock attribute. Make sure the CIDR format conforms to (A.B.C.D/X). */
+  extendedNetworkBlocks?: PrivateCloudUpdatePropertiesInputExtendedNetworkBlocksList;
+  /** The type of DNS zone to use. */
+  dnsZoneType?: DnsZoneType | (string & {});
+}
+export const PrivateCloudUpdatePropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    managementCluster: S.optional(ManagementClusterInput),
+    internet: S.optional(InternetEnum),
+    identitySources: S.optional(
+      PrivateCloudUpdatePropertiesInputIdentitySourcesList,
+    ),
+    availability: S.optional(AvailabilityProperties),
+    encryption: S.optional(EncryptionInput),
+    extendedNetworkBlocks: S.optional(
+      PrivateCloudUpdatePropertiesInputExtendedNetworkBlocksList,
+    ),
+    dnsZoneType: S.optional(DnsZoneType),
+  }),
+).annotate({
+  identifier: "PrivateCloudUpdatePropertiesInput",
+}) as any as S.Schema<PrivateCloudUpdatePropertiesInput>;
+
+export interface UpdatePrivateCloudRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+  /** Resource tags. */
+  tags?: UpdatePrivateCloudRequestTagsMap;
+  /** The resource model definition representing SKU */
+  sku?: ClustersCreateOrUpdateRequestSku;
+  /** Managed service identity (either system assigned, or none) */
+  identity?: PrivateCloudsCreateOrUpdateRequestIdentity;
+  /** The updatable properties of a private cloud resource */
+  properties?: PrivateCloudUpdatePropertiesInput;
+}
+export const UpdatePrivateCloudRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    privateCloudName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdatePrivateCloudRequestTagsMap),
+    sku: S.optional(ClustersCreateOrUpdateRequestSku),
+    identity: S.optional(PrivateCloudsCreateOrUpdateRequestIdentity),
+    properties: S.optional(PrivateCloudUpdatePropertiesInput),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdatePrivateCloudRequest",
+}) as any as S.Schema<UpdatePrivateCloudRequest>;
+
+/** Resource tags. */
+export type UpdatePrivateCloudResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdatePrivateCloudResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdatePrivateCloudResponseTagsMap>;
+
+/** The resource model definition representing SKU */
+export type UpdatePrivateCloudResponseSku = ClustersCreateOrUpdateResponseSku;
+export const UpdatePrivateCloudResponseSku = ClustersCreateOrUpdateResponseSku;
+
+/** Managed service identity (either system assigned, or none) */
+export type UpdatePrivateCloudResponseIdentity =
+  GetPrivateCloudResponseIdentity;
+export const UpdatePrivateCloudResponseIdentity =
+  GetPrivateCloudResponseIdentity;
+
+/** The availability zones. */
+export type UpdatePrivateCloudResponseZonesList = Array<string>;
+export const UpdatePrivateCloudResponseZonesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<UpdatePrivateCloudResponseZonesList>;
+
+export interface UpdatePrivateCloudResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdatePrivateCloudResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: PrivateCloudProperties;
+  /** The resource model definition representing SKU */
+  sku: ClustersCreateOrUpdateResponseSku;
+  /** Managed service identity (either system assigned, or none) */
+  identity?: GetPrivateCloudResponseIdentity;
+  /** The availability zones. */
+  zones?: UpdatePrivateCloudResponseZonesList;
+}
+export const UpdatePrivateCloudResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdatePrivateCloudResponseTagsMap),
+    location: S.String,
+    properties: S.optional(PrivateCloudProperties),
+    sku: ClustersCreateOrUpdateResponseSku,
+    identity: S.optional(GetPrivateCloudResponseIdentity),
+    zones: S.optional(UpdatePrivateCloudResponseZonesList),
+  }),
+).annotate({
+  identifier: "UpdatePrivateCloudResponse",
+}) as any as S.Schema<UpdatePrivateCloudResponse>;
+
+export interface UpdateWorkloadNetworkDhcpRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -9659,7 +9823,7 @@ export interface WorkloadNetworksUpdateDhcpRequest {
   /** The resource-specific properties for this resource. */
   properties?: WorkloadNetworkDhcpEntityInput;
 }
-export const WorkloadNetworksUpdateDhcpRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateWorkloadNetworkDhcpRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -9671,14 +9835,14 @@ export const WorkloadNetworksUpdateDhcpRequest = /*@__PURE__*/ S.suspend(() =>
       method: "PATCH",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dhcpConfigurations/{dhcpId}",
       code: 200,
-      apiVersion: "2025-09-01",
+      apiVersion: "2026-03-01",
     }),
   ),
 ).annotate({
-  identifier: "WorkloadNetworksUpdateDhcpRequest",
-}) as any as S.Schema<WorkloadNetworksUpdateDhcpRequest>;
+  identifier: "UpdateWorkloadNetworkDhcpRequest",
+}) as any as S.Schema<UpdateWorkloadNetworkDhcpRequest>;
 
-export interface WorkloadNetworksUpdateDhcpResponse {
+export interface UpdateWorkloadNetworkDhcpResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -9690,7 +9854,7 @@ export interface WorkloadNetworksUpdateDhcpResponse {
   /** The resource-specific properties for this resource. */
   properties?: WorkloadNetworkDhcpEntity;
 }
-export const WorkloadNetworksUpdateDhcpResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateWorkloadNetworkDhcpResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -9699,10 +9863,10 @@ export const WorkloadNetworksUpdateDhcpResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(WorkloadNetworkDhcpEntity),
   }),
 ).annotate({
-  identifier: "WorkloadNetworksUpdateDhcpResponse",
-}) as any as S.Schema<WorkloadNetworksUpdateDhcpResponse>;
+  identifier: "UpdateWorkloadNetworkDhcpResponse",
+}) as any as S.Schema<UpdateWorkloadNetworkDhcpResponse>;
 
-export interface WorkloadNetworksUpdateDnsServiceRequest {
+export interface UpdateWorkloadNetworkDnsServiceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -9714,7 +9878,7 @@ export interface WorkloadNetworksUpdateDnsServiceRequest {
   /** The resource-specific properties for this resource. */
   properties?: WorkloadNetworkDnsServicePropertiesInput;
 }
-export const WorkloadNetworksUpdateDnsServiceRequest = /*@__PURE__*/ S.suspend(
+export const UpdateWorkloadNetworkDnsServiceRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -9727,14 +9891,14 @@ export const WorkloadNetworksUpdateDnsServiceRequest = /*@__PURE__*/ S.suspend(
         method: "PATCH",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dnsServices/{dnsServiceId}",
         code: 200,
-        apiVersion: "2025-09-01",
+        apiVersion: "2026-03-01",
       }),
     ),
 ).annotate({
-  identifier: "WorkloadNetworksUpdateDnsServiceRequest",
-}) as any as S.Schema<WorkloadNetworksUpdateDnsServiceRequest>;
+  identifier: "UpdateWorkloadNetworkDnsServiceRequest",
+}) as any as S.Schema<UpdateWorkloadNetworkDnsServiceRequest>;
 
-export interface WorkloadNetworksUpdateDnsServiceResponse {
+export interface UpdateWorkloadNetworkDnsServiceResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -9746,7 +9910,7 @@ export interface WorkloadNetworksUpdateDnsServiceResponse {
   /** The resource-specific properties for this resource. */
   properties?: WorkloadNetworkDnsServiceProperties;
 }
-export const WorkloadNetworksUpdateDnsServiceResponse = /*@__PURE__*/ S.suspend(
+export const UpdateWorkloadNetworkDnsServiceResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
@@ -9756,10 +9920,10 @@ export const WorkloadNetworksUpdateDnsServiceResponse = /*@__PURE__*/ S.suspend(
       properties: S.optional(WorkloadNetworkDnsServiceProperties),
     }),
 ).annotate({
-  identifier: "WorkloadNetworksUpdateDnsServiceResponse",
-}) as any as S.Schema<WorkloadNetworksUpdateDnsServiceResponse>;
+  identifier: "UpdateWorkloadNetworkDnsServiceResponse",
+}) as any as S.Schema<UpdateWorkloadNetworkDnsServiceResponse>;
 
-export interface WorkloadNetworksUpdateDnsZoneRequest {
+export interface UpdateWorkloadNetworkDnsZoneRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -9771,27 +9935,26 @@ export interface WorkloadNetworksUpdateDnsZoneRequest {
   /** The resource-specific properties for this resource. */
   properties?: WorkloadNetworkDnsZonePropertiesInput;
 }
-export const WorkloadNetworksUpdateDnsZoneRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      privateCloudName: S.String.pipe(T.Label()),
-      dnsZoneId: S.String.pipe(T.Label()),
-      properties: S.optional(WorkloadNetworkDnsZonePropertiesInput),
-    }).pipe(
-      T.Http({
-        method: "PATCH",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dnsZones/{dnsZoneId}",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
+export const UpdateWorkloadNetworkDnsZoneRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    privateCloudName: S.String.pipe(T.Label()),
+    dnsZoneId: S.String.pipe(T.Label()),
+    properties: S.optional(WorkloadNetworkDnsZonePropertiesInput),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/dnsZones/{dnsZoneId}",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
 ).annotate({
-  identifier: "WorkloadNetworksUpdateDnsZoneRequest",
-}) as any as S.Schema<WorkloadNetworksUpdateDnsZoneRequest>;
+  identifier: "UpdateWorkloadNetworkDnsZoneRequest",
+}) as any as S.Schema<UpdateWorkloadNetworkDnsZoneRequest>;
 
-export interface WorkloadNetworksUpdateDnsZoneResponse {
+export interface UpdateWorkloadNetworkDnsZoneResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -9803,7 +9966,7 @@ export interface WorkloadNetworksUpdateDnsZoneResponse {
   /** The resource-specific properties for this resource. */
   properties?: WorkloadNetworkDnsZoneProperties;
 }
-export const WorkloadNetworksUpdateDnsZoneResponse = /*@__PURE__*/ S.suspend(
+export const UpdateWorkloadNetworkDnsZoneResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
@@ -9813,10 +9976,10 @@ export const WorkloadNetworksUpdateDnsZoneResponse = /*@__PURE__*/ S.suspend(
       properties: S.optional(WorkloadNetworkDnsZoneProperties),
     }),
 ).annotate({
-  identifier: "WorkloadNetworksUpdateDnsZoneResponse",
-}) as any as S.Schema<WorkloadNetworksUpdateDnsZoneResponse>;
+  identifier: "UpdateWorkloadNetworkDnsZoneResponse",
+}) as any as S.Schema<UpdateWorkloadNetworkDnsZoneResponse>;
 
-export interface WorkloadNetworksUpdatePortMirroringRequest {
+export interface UpdateWorkloadNetworkPortMirroringRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -9828,7 +9991,7 @@ export interface WorkloadNetworksUpdatePortMirroringRequest {
   /** The resource-specific properties for this resource. */
   properties?: WorkloadNetworkPortMirroringPropertiesInput;
 }
-export const WorkloadNetworksUpdatePortMirroringRequest =
+export const UpdateWorkloadNetworkPortMirroringRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -9841,14 +10004,14 @@ export const WorkloadNetworksUpdatePortMirroringRequest =
         method: "PATCH",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/portMirroringProfiles/{portMirroringId}",
         code: 200,
-        apiVersion: "2025-09-01",
+        apiVersion: "2026-03-01",
       }),
     ),
   ).annotate({
-    identifier: "WorkloadNetworksUpdatePortMirroringRequest",
-  }) as any as S.Schema<WorkloadNetworksUpdatePortMirroringRequest>;
+    identifier: "UpdateWorkloadNetworkPortMirroringRequest",
+  }) as any as S.Schema<UpdateWorkloadNetworkPortMirroringRequest>;
 
-export interface WorkloadNetworksUpdatePortMirroringResponse {
+export interface UpdateWorkloadNetworkPortMirroringResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -9860,7 +10023,7 @@ export interface WorkloadNetworksUpdatePortMirroringResponse {
   /** The resource-specific properties for this resource. */
   properties?: WorkloadNetworkPortMirroringProperties;
 }
-export const WorkloadNetworksUpdatePortMirroringResponse =
+export const UpdateWorkloadNetworkPortMirroringResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
@@ -9870,10 +10033,10 @@ export const WorkloadNetworksUpdatePortMirroringResponse =
       properties: S.optional(WorkloadNetworkPortMirroringProperties),
     }),
   ).annotate({
-    identifier: "WorkloadNetworksUpdatePortMirroringResponse",
-  }) as any as S.Schema<WorkloadNetworksUpdatePortMirroringResponse>;
+    identifier: "UpdateWorkloadNetworkPortMirroringResponse",
+  }) as any as S.Schema<UpdateWorkloadNetworkPortMirroringResponse>;
 
-export interface WorkloadNetworksUpdateSegmentsRequest {
+export interface UpdateWorkloadNetworkSegmentsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -9885,7 +10048,7 @@ export interface WorkloadNetworksUpdateSegmentsRequest {
   /** The resource-specific properties for this resource. */
   properties?: WorkloadNetworkSegmentPropertiesInput;
 }
-export const WorkloadNetworksUpdateSegmentsRequest = /*@__PURE__*/ S.suspend(
+export const UpdateWorkloadNetworkSegmentsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -9898,14 +10061,14 @@ export const WorkloadNetworksUpdateSegmentsRequest = /*@__PURE__*/ S.suspend(
         method: "PATCH",
         uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/segments/{segmentId}",
         code: 200,
-        apiVersion: "2025-09-01",
+        apiVersion: "2026-03-01",
       }),
     ),
 ).annotate({
-  identifier: "WorkloadNetworksUpdateSegmentsRequest",
-}) as any as S.Schema<WorkloadNetworksUpdateSegmentsRequest>;
+  identifier: "UpdateWorkloadNetworkSegmentsRequest",
+}) as any as S.Schema<UpdateWorkloadNetworkSegmentsRequest>;
 
-export interface WorkloadNetworksUpdateSegmentsResponse {
+export interface UpdateWorkloadNetworkSegmentsResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -9917,7 +10080,7 @@ export interface WorkloadNetworksUpdateSegmentsResponse {
   /** The resource-specific properties for this resource. */
   properties?: WorkloadNetworkSegmentProperties;
 }
-export const WorkloadNetworksUpdateSegmentsResponse = /*@__PURE__*/ S.suspend(
+export const UpdateWorkloadNetworkSegmentsResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
@@ -9927,10 +10090,10 @@ export const WorkloadNetworksUpdateSegmentsResponse = /*@__PURE__*/ S.suspend(
       properties: S.optional(WorkloadNetworkSegmentProperties),
     }),
 ).annotate({
-  identifier: "WorkloadNetworksUpdateSegmentsResponse",
-}) as any as S.Schema<WorkloadNetworksUpdateSegmentsResponse>;
+  identifier: "UpdateWorkloadNetworkSegmentsResponse",
+}) as any as S.Schema<UpdateWorkloadNetworkSegmentsResponse>;
 
-export interface WorkloadNetworksUpdateVMGroupRequest {
+export interface UpdateWorkloadNetworkVMGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -9942,27 +10105,26 @@ export interface WorkloadNetworksUpdateVMGroupRequest {
   /** The resource-specific properties for this resource. */
   properties?: WorkloadNetworkVMGroupPropertiesInput;
 }
-export const WorkloadNetworksUpdateVMGroupRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      privateCloudName: S.String.pipe(T.Label()),
-      vmGroupId: S.String.pipe(T.Label()),
-      properties: S.optional(WorkloadNetworkVMGroupPropertiesInput),
-    }).pipe(
-      T.Http({
-        method: "PATCH",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/vmGroups/{vmGroupId}",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
+export const UpdateWorkloadNetworkVMGroupRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    privateCloudName: S.String.pipe(T.Label()),
+    vmGroupId: S.String.pipe(T.Label()),
+    properties: S.optional(WorkloadNetworkVMGroupPropertiesInput),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/workloadNetworks/default/vmGroups/{vmGroupId}",
+      code: 200,
+      apiVersion: "2026-03-01",
+    }),
+  ),
 ).annotate({
-  identifier: "WorkloadNetworksUpdateVMGroupRequest",
-}) as any as S.Schema<WorkloadNetworksUpdateVMGroupRequest>;
+  identifier: "UpdateWorkloadNetworkVMGroupRequest",
+}) as any as S.Schema<UpdateWorkloadNetworkVMGroupRequest>;
 
-export interface WorkloadNetworksUpdateVMGroupResponse {
+export interface UpdateWorkloadNetworkVMGroupResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -9974,7 +10136,7 @@ export interface WorkloadNetworksUpdateVMGroupResponse {
   /** The resource-specific properties for this resource. */
   properties?: WorkloadNetworkVMGroupProperties;
 }
-export const WorkloadNetworksUpdateVMGroupResponse = /*@__PURE__*/ S.suspend(
+export const UpdateWorkloadNetworkVMGroupResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
@@ -9984,8 +10146,50 @@ export const WorkloadNetworksUpdateVMGroupResponse = /*@__PURE__*/ S.suspend(
       properties: S.optional(WorkloadNetworkVMGroupProperties),
     }),
 ).annotate({
-  identifier: "WorkloadNetworksUpdateVMGroupResponse",
-}) as any as S.Schema<WorkloadNetworksUpdateVMGroupResponse>;
+  identifier: "UpdateWorkloadNetworkVMGroupResponse",
+}) as any as S.Schema<UpdateWorkloadNetworkVMGroupResponse>;
+
+export interface VirtualMachinesRestrictMovementRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the private cloud */
+  privateCloudName: string;
+  /** Name of the cluster */
+  clusterName: string;
+  /** ID of the virtual machine. */
+  virtualMachineId: string;
+  /** Whether VM DRS-driven movement is restricted (enabled) or not (disabled) */
+  restrictMovement?: VirtualMachineRestrictMovementState | (string & {});
+}
+export const VirtualMachinesRestrictMovementRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      privateCloudName: S.String.pipe(T.Label()),
+      clusterName: S.String.pipe(T.Label()),
+      virtualMachineId: S.String.pipe(T.Label()),
+      restrictMovement: S.optional(VirtualMachineRestrictMovementState),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}/virtualMachines/{virtualMachineId}/restrictMovement",
+        code: 200,
+        apiVersion: "2026-03-01",
+      }),
+    ),
+).annotate({
+  identifier: "VirtualMachinesRestrictMovementRequest",
+}) as any as S.Schema<VirtualMachinesRestrictMovementRequest>;
+
+export interface VirtualMachinesRestrictMovementResponse {}
+export const VirtualMachinesRestrictMovementResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "VirtualMachinesRestrictMovementResponse",
+}) as any as S.Schema<VirtualMachinesRestrictMovementResponse>;
 
 export type AddonsCreateOrUpdateError = AzureOpError;
 /** Create a Addon */
@@ -9997,51 +10201,6 @@ export const AddonsCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: AddonsCreateOrUpdateRequest,
   output: AddonsCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AddonsDeleteError = AzureOpError;
-/** Delete a Addon */
-export const AddonsDelete: API.OperationMethod<
-  AddonsDeleteRequest,
-  AddonsDeleteResponse,
-  AddonsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AddonsDeleteRequest,
-  output: AddonsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AddonsGetError = AzureOpError;
-/** Get a Addon */
-export const AddonsGet: API.OperationMethod<
-  AddonsGetRequest,
-  AddonsGetResponse,
-  AddonsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AddonsGetRequest,
-  output: AddonsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AddonsListError = AzureOpError;
-/** List Addon resources by PrivateCloud */
-export const AddonsList: API.OperationMethod<
-  AddonsListRequest,
-  AddonList,
-  AddonsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AddonsListRequest,
-  output: AddonList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -10062,46 +10221,46 @@ export const AuthorizationsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type AuthorizationsDeleteError = AzureOpError;
-/** Delete a ExpressRouteAuthorization */
-export const AuthorizationsDelete: API.OperationMethod<
-  AuthorizationsDeleteRequest,
-  AuthorizationsDeleteResponse,
-  AuthorizationsDeleteError,
+export type CheckLocationQuotaAvailabilityError = AzureOpError;
+/** Return quota for subscription by region */
+export const CheckLocationQuotaAvailability: API.OperationMethod<
+  CheckLocationQuotaAvailabilityRequest,
+  Quota,
+  CheckLocationQuotaAvailabilityError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AuthorizationsDeleteRequest,
-  output: AuthorizationsDeleteResponse,
+  input: CheckLocationQuotaAvailabilityRequest,
+  output: Quota,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type AuthorizationsGetError = AzureOpError;
-/** Get a ExpressRouteAuthorization */
-export const AuthorizationsGet: API.OperationMethod<
-  AuthorizationsGetRequest,
-  AuthorizationsGetResponse,
-  AuthorizationsGetError,
+export type CheckLocationTrialAvailabilityError = AzureOpError;
+/** Return trial status for subscription by region */
+export const CheckLocationTrialAvailability: API.OperationMethod<
+  CheckLocationTrialAvailabilityRequest,
+  Trial,
+  CheckLocationTrialAvailabilityError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AuthorizationsGetRequest,
-  output: AuthorizationsGetResponse,
+  input: CheckLocationTrialAvailabilityRequest,
+  output: Trial,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type AuthorizationsListError = AzureOpError;
-/** List ExpressRouteAuthorization resources by PrivateCloud */
-export const AuthorizationsList: API.OperationMethod<
-  AuthorizationsListRequest,
-  ExpressRouteAuthorizationList,
-  AuthorizationsListError,
+export type CheckServiceComponentAvailabilityError = AzureOpError;
+/** Return service component availability */
+export const CheckServiceComponentAvailability: API.OperationMethod<
+  CheckServiceComponentAvailabilityRequest,
+  CheckServiceComponentAvailabilityResponse,
+  CheckServiceComponentAvailabilityError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AuthorizationsListRequest,
-  output: ExpressRouteAuthorizationList,
+  input: CheckServiceComponentAvailabilityRequest,
+  output: CheckServiceComponentAvailabilityResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -10122,51 +10281,6 @@ export const CloudLinksCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CloudLinksDeleteError = AzureOpError;
-/** Delete a CloudLink */
-export const CloudLinksDelete: API.OperationMethod<
-  CloudLinksDeleteRequest,
-  CloudLinksDeleteResponse,
-  CloudLinksDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CloudLinksDeleteRequest,
-  output: CloudLinksDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CloudLinksGetError = AzureOpError;
-/** Get a CloudLink */
-export const CloudLinksGet: API.OperationMethod<
-  CloudLinksGetRequest,
-  CloudLinksGetResponse,
-  CloudLinksGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CloudLinksGetRequest,
-  output: CloudLinksGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CloudLinksListError = AzureOpError;
-/** List CloudLink resources by PrivateCloud */
-export const CloudLinksList: API.OperationMethod<
-  CloudLinksListRequest,
-  CloudLinkList,
-  CloudLinksListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CloudLinksListRequest,
-  output: CloudLinkList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ClustersCreateOrUpdateError = AzureOpError;
 /** Create a Cluster */
 export const ClustersCreateOrUpdate: API.OperationMethod<
@@ -10182,76 +10296,106 @@ export const ClustersCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ClustersDeleteError = AzureOpError;
-/** Delete a Cluster */
-export const ClustersDelete: API.OperationMethod<
-  ClustersDeleteRequest,
-  ClustersDeleteResponse,
-  ClustersDeleteError,
+export type CreateWorkloadNetworkDhcpError = AzureOpError;
+/** Create a WorkloadNetworkDhcp */
+export const CreateWorkloadNetworkDhcp: API.OperationMethod<
+  CreateWorkloadNetworkDhcpRequest,
+  CreateWorkloadNetworkDhcpResponse,
+  CreateWorkloadNetworkDhcpError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ClustersDeleteRequest,
-  output: ClustersDeleteResponse,
+  input: CreateWorkloadNetworkDhcpRequest,
+  output: CreateWorkloadNetworkDhcpResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ClustersGetError = AzureOpError;
-/** Get a Cluster */
-export const ClustersGet: API.OperationMethod<
-  ClustersGetRequest,
-  ClustersGetResponse,
-  ClustersGetError,
+export type CreateWorkloadNetworkDnsServiceError = AzureOpError;
+/** Create a WorkloadNetworkDnsService */
+export const CreateWorkloadNetworkDnsService: API.OperationMethod<
+  CreateWorkloadNetworkDnsServiceRequest,
+  CreateWorkloadNetworkDnsServiceResponse,
+  CreateWorkloadNetworkDnsServiceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ClustersGetRequest,
-  output: ClustersGetResponse,
+  input: CreateWorkloadNetworkDnsServiceRequest,
+  output: CreateWorkloadNetworkDnsServiceResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ClustersListError = AzureOpError;
-/** List Cluster resources by PrivateCloud */
-export const ClustersList: API.OperationMethod<
-  ClustersListRequest,
-  ClusterList,
-  ClustersListError,
+export type CreateWorkloadNetworkDnsZoneError = AzureOpError;
+/** Create a WorkloadNetworkDnsZone */
+export const CreateWorkloadNetworkDnsZone: API.OperationMethod<
+  CreateWorkloadNetworkDnsZoneRequest,
+  CreateWorkloadNetworkDnsZoneResponse,
+  CreateWorkloadNetworkDnsZoneError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ClustersListRequest,
-  output: ClusterList,
+  input: CreateWorkloadNetworkDnsZoneRequest,
+  output: CreateWorkloadNetworkDnsZoneResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ClustersListZonesError = AzureOpError;
-/** List hosts by zone in a cluster */
-export const ClustersListZones: API.OperationMethod<
-  ClustersListZonesRequest,
-  ClusterZoneList,
-  ClustersListZonesError,
+export type CreateWorkloadNetworkPortMirroringError = AzureOpError;
+/** Create a WorkloadNetworkPortMirroring */
+export const CreateWorkloadNetworkPortMirroring: API.OperationMethod<
+  CreateWorkloadNetworkPortMirroringRequest,
+  CreateWorkloadNetworkPortMirroringResponse,
+  CreateWorkloadNetworkPortMirroringError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ClustersListZonesRequest,
-  output: ClusterZoneList,
+  input: CreateWorkloadNetworkPortMirroringRequest,
+  output: CreateWorkloadNetworkPortMirroringResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ClustersUpdateError = AzureOpError;
-/** Update a Cluster */
-export const ClustersUpdate: API.OperationMethod<
-  ClustersUpdateRequest,
-  ClustersUpdateResponse,
-  ClustersUpdateError,
+export type CreateWorkloadNetworkPublicIPError = AzureOpError;
+/** Create a WorkloadNetworkPublicIP */
+export const CreateWorkloadNetworkPublicIP: API.OperationMethod<
+  CreateWorkloadNetworkPublicIPRequest,
+  CreateWorkloadNetworkPublicIPResponse,
+  CreateWorkloadNetworkPublicIPError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ClustersUpdateRequest,
-  output: ClustersUpdateResponse,
+  input: CreateWorkloadNetworkPublicIPRequest,
+  output: CreateWorkloadNetworkPublicIPResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateWorkloadNetworkSegmentsError = AzureOpError;
+/** Create a WorkloadNetworkSegment */
+export const CreateWorkloadNetworkSegments: API.OperationMethod<
+  CreateWorkloadNetworkSegmentsRequest,
+  CreateWorkloadNetworkSegmentsResponse,
+  CreateWorkloadNetworkSegmentsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateWorkloadNetworkSegmentsRequest,
+  output: CreateWorkloadNetworkSegmentsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateWorkloadNetworkVMGroupError = AzureOpError;
+/** Create a WorkloadNetworkVMGroup */
+export const CreateWorkloadNetworkVMGroup: API.OperationMethod<
+  CreateWorkloadNetworkVMGroupRequest,
+  CreateWorkloadNetworkVMGroupResponse,
+  CreateWorkloadNetworkVMGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateWorkloadNetworkVMGroupRequest,
+  output: CreateWorkloadNetworkVMGroupResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -10272,46 +10416,781 @@ export const DatastoresCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DatastoresDeleteError = AzureOpError;
+export type DeleteAddonError = AzureOpError;
+/** Delete a Addon */
+export const DeleteAddon: API.OperationMethod<
+  DeleteAddonRequest,
+  DeleteAddonResponse,
+  DeleteAddonError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteAddonRequest,
+  output: DeleteAddonResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteAuthorizationError = AzureOpError;
+/** Delete a ExpressRouteAuthorization */
+export const DeleteAuthorization: API.OperationMethod<
+  DeleteAuthorizationRequest,
+  DeleteAuthorizationResponse,
+  DeleteAuthorizationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteAuthorizationRequest,
+  output: DeleteAuthorizationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteCloudLinkError = AzureOpError;
+/** Delete a CloudLink */
+export const DeleteCloudLink: API.OperationMethod<
+  DeleteCloudLinkRequest,
+  DeleteCloudLinkResponse,
+  DeleteCloudLinkError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteCloudLinkRequest,
+  output: DeleteCloudLinkResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteClusterError = AzureOpError;
+/** Delete a Cluster */
+export const DeleteCluster: API.OperationMethod<
+  DeleteClusterRequest,
+  DeleteClusterResponse,
+  DeleteClusterError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteClusterRequest,
+  output: DeleteClusterResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteDatastoreError = AzureOpError;
 /** Delete a Datastore */
-export const DatastoresDelete: API.OperationMethod<
-  DatastoresDeleteRequest,
-  DatastoresDeleteResponse,
-  DatastoresDeleteError,
+export const DeleteDatastore: API.OperationMethod<
+  DeleteDatastoreRequest,
+  DeleteDatastoreResponse,
+  DeleteDatastoreError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DatastoresDeleteRequest,
-  output: DatastoresDeleteResponse,
+  input: DeleteDatastoreRequest,
+  output: DeleteDatastoreResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DatastoresGetError = AzureOpError;
+export type DeleteGlobalReachConnectionError = AzureOpError;
+/** Delete a GlobalReachConnection */
+export const DeleteGlobalReachConnection: API.OperationMethod<
+  DeleteGlobalReachConnectionRequest,
+  DeleteGlobalReachConnectionResponse,
+  DeleteGlobalReachConnectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteGlobalReachConnectionRequest,
+  output: DeleteGlobalReachConnectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteHcxEnterpriseSiteError = AzureOpError;
+/** Delete a HcxEnterpriseSite */
+export const DeleteHcxEnterpriseSite: API.OperationMethod<
+  DeleteHcxEnterpriseSiteRequest,
+  DeleteHcxEnterpriseSiteResponse,
+  DeleteHcxEnterpriseSiteError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteHcxEnterpriseSiteRequest,
+  output: DeleteHcxEnterpriseSiteResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteIscsiPathError = AzureOpError;
+/** Delete a IscsiPath */
+export const DeleteIscsiPath: API.OperationMethod<
+  DeleteIscsiPathRequest,
+  DeleteIscsiPathResponse,
+  DeleteIscsiPathError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteIscsiPathRequest,
+  output: DeleteIscsiPathResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteLicenseError = AzureOpError;
+/** Delete a License */
+export const DeleteLicense: API.OperationMethod<
+  DeleteLicenseRequest,
+  DeleteLicenseResponse,
+  DeleteLicenseError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteLicenseRequest,
+  output: DeleteLicenseResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeletePlacementPolicyError = AzureOpError;
+/** Delete a PlacementPolicy */
+export const DeletePlacementPolicy: API.OperationMethod<
+  DeletePlacementPolicyRequest,
+  DeletePlacementPolicyResponse,
+  DeletePlacementPolicyError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeletePlacementPolicyRequest,
+  output: DeletePlacementPolicyResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeletePrivateCloudError = AzureOpError;
+/** Delete a PrivateCloud */
+export const DeletePrivateCloud: API.OperationMethod<
+  DeletePrivateCloudRequest,
+  DeletePrivateCloudResponse,
+  DeletePrivateCloudError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeletePrivateCloudRequest,
+  output: DeletePrivateCloudResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeletePureStoragePolicyError = AzureOpError;
+/** Delete a PureStoragePolicy */
+export const DeletePureStoragePolicy: API.OperationMethod<
+  DeletePureStoragePolicyRequest,
+  DeletePureStoragePolicyResponse,
+  DeletePureStoragePolicyError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeletePureStoragePolicyRequest,
+  output: DeletePureStoragePolicyResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteScriptExecutionError = AzureOpError;
+/** Delete a ScriptExecution */
+export const DeleteScriptExecution: API.OperationMethod<
+  DeleteScriptExecutionRequest,
+  DeleteScriptExecutionResponse,
+  DeleteScriptExecutionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteScriptExecutionRequest,
+  output: DeleteScriptExecutionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteWorkloadNetworkDhcpError = AzureOpError;
+/** Delete a WorkloadNetworkDhcp */
+export const DeleteWorkloadNetworkDhcp: API.OperationMethod<
+  DeleteWorkloadNetworkDhcpRequest,
+  DeleteWorkloadNetworkDhcpResponse,
+  DeleteWorkloadNetworkDhcpError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteWorkloadNetworkDhcpRequest,
+  output: DeleteWorkloadNetworkDhcpResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteWorkloadNetworkDnsServiceError = AzureOpError;
+/** Delete a WorkloadNetworkDnsService */
+export const DeleteWorkloadNetworkDnsService: API.OperationMethod<
+  DeleteWorkloadNetworkDnsServiceRequest,
+  DeleteWorkloadNetworkDnsServiceResponse,
+  DeleteWorkloadNetworkDnsServiceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteWorkloadNetworkDnsServiceRequest,
+  output: DeleteWorkloadNetworkDnsServiceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteWorkloadNetworkDnsZoneError = AzureOpError;
+/** Delete a WorkloadNetworkDnsZone */
+export const DeleteWorkloadNetworkDnsZone: API.OperationMethod<
+  DeleteWorkloadNetworkDnsZoneRequest,
+  DeleteWorkloadNetworkDnsZoneResponse,
+  DeleteWorkloadNetworkDnsZoneError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteWorkloadNetworkDnsZoneRequest,
+  output: DeleteWorkloadNetworkDnsZoneResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteWorkloadNetworkPortMirroringError = AzureOpError;
+/** Delete a WorkloadNetworkPortMirroring */
+export const DeleteWorkloadNetworkPortMirroring: API.OperationMethod<
+  DeleteWorkloadNetworkPortMirroringRequest,
+  DeleteWorkloadNetworkPortMirroringResponse,
+  DeleteWorkloadNetworkPortMirroringError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteWorkloadNetworkPortMirroringRequest,
+  output: DeleteWorkloadNetworkPortMirroringResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteWorkloadNetworkPublicIPError = AzureOpError;
+/** Delete a WorkloadNetworkPublicIP */
+export const DeleteWorkloadNetworkPublicIP: API.OperationMethod<
+  DeleteWorkloadNetworkPublicIPRequest,
+  DeleteWorkloadNetworkPublicIPResponse,
+  DeleteWorkloadNetworkPublicIPError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteWorkloadNetworkPublicIPRequest,
+  output: DeleteWorkloadNetworkPublicIPResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteWorkloadNetworkSegmentError = AzureOpError;
+/** Delete a WorkloadNetworkSegment */
+export const DeleteWorkloadNetworkSegment: API.OperationMethod<
+  DeleteWorkloadNetworkSegmentRequest,
+  DeleteWorkloadNetworkSegmentResponse,
+  DeleteWorkloadNetworkSegmentError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteWorkloadNetworkSegmentRequest,
+  output: DeleteWorkloadNetworkSegmentResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteWorkloadNetworkVMGroupError = AzureOpError;
+/** Delete a WorkloadNetworkVMGroup */
+export const DeleteWorkloadNetworkVMGroup: API.OperationMethod<
+  DeleteWorkloadNetworkVMGroupRequest,
+  DeleteWorkloadNetworkVMGroupResponse,
+  DeleteWorkloadNetworkVMGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteWorkloadNetworkVMGroupRequest,
+  output: DeleteWorkloadNetworkVMGroupResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetAddonError = AzureOpError;
+/** Get a Addon */
+export const GetAddon: API.OperationMethod<
+  GetAddonRequest,
+  GetAddonResponse,
+  GetAddonError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetAddonRequest,
+  output: GetAddonResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetAuthorizationError = AzureOpError;
+/** Get a ExpressRouteAuthorization */
+export const GetAuthorization: API.OperationMethod<
+  GetAuthorizationRequest,
+  GetAuthorizationResponse,
+  GetAuthorizationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetAuthorizationRequest,
+  output: GetAuthorizationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetCloudLinkError = AzureOpError;
+/** Get a CloudLink */
+export const GetCloudLink: API.OperationMethod<
+  GetCloudLinkRequest,
+  GetCloudLinkResponse,
+  GetCloudLinkError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCloudLinkRequest,
+  output: GetCloudLinkResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetClusterError = AzureOpError;
+/** Get a Cluster */
+export const GetCluster: API.OperationMethod<
+  GetClusterRequest,
+  GetClusterResponse,
+  GetClusterError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetClusterRequest,
+  output: GetClusterResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDatastoreError = AzureOpError;
 /** Get a Datastore */
-export const DatastoresGet: API.OperationMethod<
-  DatastoresGetRequest,
-  DatastoresGetResponse,
-  DatastoresGetError,
+export const GetDatastore: API.OperationMethod<
+  GetDatastoreRequest,
+  GetDatastoreResponse,
+  GetDatastoreError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DatastoresGetRequest,
-  output: DatastoresGetResponse,
+  input: GetDatastoreRequest,
+  output: GetDatastoreResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DatastoresListError = AzureOpError;
-/** List Datastore resources by Cluster */
-export const DatastoresList: API.OperationMethod<
-  DatastoresListRequest,
-  DatastoreList,
-  DatastoresListError,
+export type GetGlobalReachConnectionError = AzureOpError;
+/** Get a GlobalReachConnection */
+export const GetGlobalReachConnection: API.OperationMethod<
+  GetGlobalReachConnectionRequest,
+  GetGlobalReachConnectionResponse,
+  GetGlobalReachConnectionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DatastoresListRequest,
-  output: DatastoreList,
+  input: GetGlobalReachConnectionRequest,
+  output: GetGlobalReachConnectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetHcxEnterpriseSiteError = AzureOpError;
+/** Get a HcxEnterpriseSite */
+export const GetHcxEnterpriseSite: API.OperationMethod<
+  GetHcxEnterpriseSiteRequest,
+  GetHcxEnterpriseSiteResponse,
+  GetHcxEnterpriseSiteError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetHcxEnterpriseSiteRequest,
+  output: GetHcxEnterpriseSiteResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetHostError = AzureOpError;
+/** Get a Host */
+export const GetHost: API.OperationMethod<
+  GetHostRequest,
+  GetHostResponse,
+  GetHostError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetHostRequest,
+  output: GetHostResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetIscsiPathError = AzureOpError;
+/** Get a IscsiPath */
+export const GetIscsiPath: API.OperationMethod<
+  GetIscsiPathRequest,
+  GetIscsiPathResponse,
+  GetIscsiPathError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetIscsiPathRequest,
+  output: GetIscsiPathResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetLicenseError = AzureOpError;
+/** Get a License */
+export const GetLicense: API.OperationMethod<
+  GetLicenseRequest,
+  GetLicenseResponse,
+  GetLicenseError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetLicenseRequest,
+  output: GetLicenseResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetLicensePropertiesError = AzureOpError;
+/** Just like ArmResourceActionSync, but with no request body. */
+export const GetLicenseProperties: API.OperationMethod<
+  GetLicensePropertiesRequest,
+  LicenseProperties,
+  GetLicensePropertiesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetLicensePropertiesRequest,
+  output: LicenseProperties,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetMaintenanceError = AzureOpError;
+/** Get a Maintenance */
+export const GetMaintenance: API.OperationMethod<
+  GetMaintenanceRequest,
+  GetMaintenanceResponse,
+  GetMaintenanceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetMaintenanceRequest,
+  output: GetMaintenanceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetPlacementPolicyError = AzureOpError;
+/** Get a PlacementPolicy */
+export const GetPlacementPolicy: API.OperationMethod<
+  GetPlacementPolicyRequest,
+  GetPlacementPolicyResponse,
+  GetPlacementPolicyError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPlacementPolicyRequest,
+  output: GetPlacementPolicyResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetPrivateCloudError = AzureOpError;
+/** Get a PrivateCloud */
+export const GetPrivateCloud: API.OperationMethod<
+  GetPrivateCloudRequest,
+  GetPrivateCloudResponse,
+  GetPrivateCloudError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPrivateCloudRequest,
+  output: GetPrivateCloudResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetPrivateCloudVcfLicenseError = AzureOpError;
+/** Get the license for the private cloud */
+export const GetPrivateCloudVcfLicense: API.OperationMethod<
+  GetPrivateCloudVcfLicenseRequest,
+  VcfLicense,
+  GetPrivateCloudVcfLicenseError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPrivateCloudVcfLicenseRequest,
+  output: VcfLicense,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetProvisionedNetworkError = AzureOpError;
+/** Get a ProvisionedNetwork */
+export const GetProvisionedNetwork: API.OperationMethod<
+  GetProvisionedNetworkRequest,
+  GetProvisionedNetworkResponse,
+  GetProvisionedNetworkError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetProvisionedNetworkRequest,
+  output: GetProvisionedNetworkResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetPureStoragePolicyError = AzureOpError;
+/** Get a PureStoragePolicy */
+export const GetPureStoragePolicy: API.OperationMethod<
+  GetPureStoragePolicyRequest,
+  GetPureStoragePolicyResponse,
+  GetPureStoragePolicyError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPureStoragePolicyRequest,
+  output: GetPureStoragePolicyResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetScriptCmdletError = AzureOpError;
+/** Get a ScriptCmdlet */
+export const GetScriptCmdlet: API.OperationMethod<
+  GetScriptCmdletRequest,
+  GetScriptCmdletResponse,
+  GetScriptCmdletError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetScriptCmdletRequest,
+  output: GetScriptCmdletResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetScriptExecutionError = AzureOpError;
+/** Get a ScriptExecution */
+export const GetScriptExecution: API.OperationMethod<
+  GetScriptExecutionRequest,
+  GetScriptExecutionResponse,
+  GetScriptExecutionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetScriptExecutionRequest,
+  output: GetScriptExecutionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetScriptExecutionExecutionLogsError = AzureOpError;
+/** Return the logs for a script execution resource */
+export const GetScriptExecutionExecutionLogs: API.OperationMethod<
+  GetScriptExecutionExecutionLogsRequest,
+  GetScriptExecutionExecutionLogsResponse,
+  GetScriptExecutionExecutionLogsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetScriptExecutionExecutionLogsRequest,
+  output: GetScriptExecutionExecutionLogsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetScriptPackageError = AzureOpError;
+/** Get a ScriptPackage */
+export const GetScriptPackage: API.OperationMethod<
+  GetScriptPackageRequest,
+  GetScriptPackageResponse,
+  GetScriptPackageError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetScriptPackageRequest,
+  output: GetScriptPackageResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetVirtualMachineError = AzureOpError;
+/** Get a VirtualMachine */
+export const GetVirtualMachine: API.OperationMethod<
+  GetVirtualMachineRequest,
+  GetVirtualMachineResponse,
+  GetVirtualMachineError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetVirtualMachineRequest,
+  output: GetVirtualMachineResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetWorkloadNetworkError = AzureOpError;
+/** Get a WorkloadNetwork */
+export const GetWorkloadNetwork: API.OperationMethod<
+  GetWorkloadNetworkRequest,
+  GetWorkloadNetworkResponse,
+  GetWorkloadNetworkError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetWorkloadNetworkRequest,
+  output: GetWorkloadNetworkResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetWorkloadNetworkDhcpError = AzureOpError;
+/** Get a WorkloadNetworkDhcp */
+export const GetWorkloadNetworkDhcp: API.OperationMethod<
+  GetWorkloadNetworkDhcpRequest,
+  GetWorkloadNetworkDhcpResponse,
+  GetWorkloadNetworkDhcpError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetWorkloadNetworkDhcpRequest,
+  output: GetWorkloadNetworkDhcpResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetWorkloadNetworkDnsServiceError = AzureOpError;
+/** Get a WorkloadNetworkDnsService */
+export const GetWorkloadNetworkDnsService: API.OperationMethod<
+  GetWorkloadNetworkDnsServiceRequest,
+  GetWorkloadNetworkDnsServiceResponse,
+  GetWorkloadNetworkDnsServiceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetWorkloadNetworkDnsServiceRequest,
+  output: GetWorkloadNetworkDnsServiceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetWorkloadNetworkDnsZoneError = AzureOpError;
+/** Get a WorkloadNetworkDnsZone */
+export const GetWorkloadNetworkDnsZone: API.OperationMethod<
+  GetWorkloadNetworkDnsZoneRequest,
+  GetWorkloadNetworkDnsZoneResponse,
+  GetWorkloadNetworkDnsZoneError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetWorkloadNetworkDnsZoneRequest,
+  output: GetWorkloadNetworkDnsZoneResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetWorkloadNetworkGatewayError = AzureOpError;
+/** Get a WorkloadNetworkGateway */
+export const GetWorkloadNetworkGateway: API.OperationMethod<
+  GetWorkloadNetworkGatewayRequest,
+  GetWorkloadNetworkGatewayResponse,
+  GetWorkloadNetworkGatewayError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetWorkloadNetworkGatewayRequest,
+  output: GetWorkloadNetworkGatewayResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetWorkloadNetworkPortMirroringError = AzureOpError;
+/** Get a WorkloadNetworkPortMirroring */
+export const GetWorkloadNetworkPortMirroring: API.OperationMethod<
+  GetWorkloadNetworkPortMirroringRequest,
+  GetWorkloadNetworkPortMirroringResponse,
+  GetWorkloadNetworkPortMirroringError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetWorkloadNetworkPortMirroringRequest,
+  output: GetWorkloadNetworkPortMirroringResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetWorkloadNetworkPublicIPError = AzureOpError;
+/** Get a WorkloadNetworkPublicIP */
+export const GetWorkloadNetworkPublicIP: API.OperationMethod<
+  GetWorkloadNetworkPublicIPRequest,
+  GetWorkloadNetworkPublicIPResponse,
+  GetWorkloadNetworkPublicIPError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetWorkloadNetworkPublicIPRequest,
+  output: GetWorkloadNetworkPublicIPResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetWorkloadNetworkSegmentError = AzureOpError;
+/** Get a WorkloadNetworkSegment */
+export const GetWorkloadNetworkSegment: API.OperationMethod<
+  GetWorkloadNetworkSegmentRequest,
+  GetWorkloadNetworkSegmentResponse,
+  GetWorkloadNetworkSegmentError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetWorkloadNetworkSegmentRequest,
+  output: GetWorkloadNetworkSegmentResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetWorkloadNetworkVirtualMachineError = AzureOpError;
+/** Get a WorkloadNetworkVirtualMachine */
+export const GetWorkloadNetworkVirtualMachine: API.OperationMethod<
+  GetWorkloadNetworkVirtualMachineRequest,
+  GetWorkloadNetworkVirtualMachineResponse,
+  GetWorkloadNetworkVirtualMachineError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetWorkloadNetworkVirtualMachineRequest,
+  output: GetWorkloadNetworkVirtualMachineResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetWorkloadNetworkVMGroupError = AzureOpError;
+/** Get a WorkloadNetworkVMGroup */
+export const GetWorkloadNetworkVMGroup: API.OperationMethod<
+  GetWorkloadNetworkVMGroupRequest,
+  GetWorkloadNetworkVMGroupResponse,
+  GetWorkloadNetworkVMGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetWorkloadNetworkVMGroupRequest,
+  output: GetWorkloadNetworkVMGroupResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -10332,51 +11211,6 @@ export const GlobalReachConnectionsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GlobalReachConnectionsDeleteError = AzureOpError;
-/** Delete a GlobalReachConnection */
-export const GlobalReachConnectionsDelete: API.OperationMethod<
-  GlobalReachConnectionsDeleteRequest,
-  GlobalReachConnectionsDeleteResponse,
-  GlobalReachConnectionsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GlobalReachConnectionsDeleteRequest,
-  output: GlobalReachConnectionsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GlobalReachConnectionsGetError = AzureOpError;
-/** Get a GlobalReachConnection */
-export const GlobalReachConnectionsGet: API.OperationMethod<
-  GlobalReachConnectionsGetRequest,
-  GlobalReachConnectionsGetResponse,
-  GlobalReachConnectionsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GlobalReachConnectionsGetRequest,
-  output: GlobalReachConnectionsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GlobalReachConnectionsListError = AzureOpError;
-/** List GlobalReachConnection resources by PrivateCloud */
-export const GlobalReachConnectionsList: API.OperationMethod<
-  GlobalReachConnectionsListRequest,
-  GlobalReachConnectionList,
-  GlobalReachConnectionsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GlobalReachConnectionsListRequest,
-  output: GlobalReachConnectionList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type HcxEnterpriseSitesCreateOrUpdateError = AzureOpError;
 /** Create a HcxEnterpriseSite */
 export const HcxEnterpriseSitesCreateOrUpdate: API.OperationMethod<
@@ -10387,81 +11221,6 @@ export const HcxEnterpriseSitesCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: HcxEnterpriseSitesCreateOrUpdateRequest,
   output: HcxEnterpriseSitesCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type HcxEnterpriseSitesDeleteError = AzureOpError;
-/** Delete a HcxEnterpriseSite */
-export const HcxEnterpriseSitesDelete: API.OperationMethod<
-  HcxEnterpriseSitesDeleteRequest,
-  HcxEnterpriseSitesDeleteResponse,
-  HcxEnterpriseSitesDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: HcxEnterpriseSitesDeleteRequest,
-  output: HcxEnterpriseSitesDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type HcxEnterpriseSitesGetError = AzureOpError;
-/** Get a HcxEnterpriseSite */
-export const HcxEnterpriseSitesGet: API.OperationMethod<
-  HcxEnterpriseSitesGetRequest,
-  HcxEnterpriseSitesGetResponse,
-  HcxEnterpriseSitesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: HcxEnterpriseSitesGetRequest,
-  output: HcxEnterpriseSitesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type HcxEnterpriseSitesListError = AzureOpError;
-/** List HcxEnterpriseSite resources by PrivateCloud */
-export const HcxEnterpriseSitesList: API.OperationMethod<
-  HcxEnterpriseSitesListRequest,
-  HcxEnterpriseSiteList,
-  HcxEnterpriseSitesListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: HcxEnterpriseSitesListRequest,
-  output: HcxEnterpriseSiteList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type HostsGetError = AzureOpError;
-/** Get a Host */
-export const HostsGet: API.OperationMethod<
-  HostsGetRequest,
-  HostsGetResponse,
-  HostsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: HostsGetRequest,
-  output: HostsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type HostsListError = AzureOpError;
-/** List Host resources by Cluster */
-export const HostsList: API.OperationMethod<
-  HostsListRequest,
-  HostListResult,
-  HostsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: HostsListRequest,
-  output: HostListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -10482,51 +11241,6 @@ export const IscsiPathsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type IscsiPathsDeleteError = AzureOpError;
-/** Delete a IscsiPath */
-export const IscsiPathsDelete: API.OperationMethod<
-  IscsiPathsDeleteRequest,
-  IscsiPathsDeleteResponse,
-  IscsiPathsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IscsiPathsDeleteRequest,
-  output: IscsiPathsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IscsiPathsGetError = AzureOpError;
-/** Get a IscsiPath */
-export const IscsiPathsGet: API.OperationMethod<
-  IscsiPathsGetRequest,
-  IscsiPathsGetResponse,
-  IscsiPathsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IscsiPathsGetRequest,
-  output: IscsiPathsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IscsiPathsListByPrivateCloudError = AzureOpError;
-/** List IscsiPath resources by PrivateCloud */
-export const IscsiPathsListByPrivateCloud: API.OperationMethod<
-  IscsiPathsListByPrivateCloudRequest,
-  IscsiPathListResult,
-  IscsiPathsListByPrivateCloudError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IscsiPathsListByPrivateCloudRequest,
-  output: IscsiPathListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type LicensesCreateOrUpdateError = AzureOpError;
 /** Create a License */
 export const LicensesCreateOrUpdate: API.OperationMethod<
@@ -10542,106 +11256,511 @@ export const LicensesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type LicensesDeleteError = AzureOpError;
-/** Delete a License */
-export const LicensesDelete: API.OperationMethod<
-  LicensesDeleteRequest,
-  LicensesDeleteResponse,
-  LicensesDeleteError,
+export type ListAddonsError = AzureOpError;
+/** List Addon resources by PrivateCloud */
+export const ListAddons: API.OperationMethod<
+  ListAddonsRequest,
+  AddonList,
+  ListAddonsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: LicensesDeleteRequest,
-  output: LicensesDeleteResponse,
+  input: ListAddonsRequest,
+  output: AddonList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type LicensesGetError = AzureOpError;
-/** Get a License */
-export const LicensesGet: API.OperationMethod<
-  LicensesGetRequest,
-  LicensesGetResponse,
-  LicensesGetError,
+export type ListAuthorizationsError = AzureOpError;
+/** List ExpressRouteAuthorization resources by PrivateCloud */
+export const ListAuthorizations: API.OperationMethod<
+  ListAuthorizationsRequest,
+  ExpressRouteAuthorizationList,
+  ListAuthorizationsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: LicensesGetRequest,
-  output: LicensesGetResponse,
+  input: ListAuthorizationsRequest,
+  output: ExpressRouteAuthorizationList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type LicensesGetPropertiesError = AzureOpError;
-/** Just like ArmResourceActionSync, but with no request body. */
-export const LicensesGetProperties: API.OperationMethod<
-  LicensesGetPropertiesRequest,
-  LicenseProperties,
-  LicensesGetPropertiesError,
+export type ListCloudLinksError = AzureOpError;
+/** List CloudLink resources by PrivateCloud */
+export const ListCloudLinks: API.OperationMethod<
+  ListCloudLinksRequest,
+  CloudLinkList,
+  ListCloudLinksError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: LicensesGetPropertiesRequest,
-  output: LicenseProperties,
+  input: ListCloudLinksRequest,
+  output: CloudLinkList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type LicensesListError = AzureOpError;
+export type ListClustersError = AzureOpError;
+/** List Cluster resources by PrivateCloud */
+export const ListClusters: API.OperationMethod<
+  ListClustersRequest,
+  ClusterList,
+  ListClustersError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListClustersRequest,
+  output: ClusterList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListClusterZonesError = AzureOpError;
+/** List hosts by zone in a cluster */
+export const ListClusterZones: API.OperationMethod<
+  ListClusterZonesRequest,
+  ClusterZoneList,
+  ListClusterZonesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListClusterZonesRequest,
+  output: ClusterZoneList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDatastoresError = AzureOpError;
+/** List Datastore resources by Cluster */
+export const ListDatastores: API.OperationMethod<
+  ListDatastoresRequest,
+  DatastoreList,
+  ListDatastoresError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDatastoresRequest,
+  output: DatastoreList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListGlobalReachConnectionsError = AzureOpError;
+/** List GlobalReachConnection resources by PrivateCloud */
+export const ListGlobalReachConnections: API.OperationMethod<
+  ListGlobalReachConnectionsRequest,
+  GlobalReachConnectionList,
+  ListGlobalReachConnectionsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListGlobalReachConnectionsRequest,
+  output: GlobalReachConnectionList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListHcxEnterpriseSitesError = AzureOpError;
+/** List HcxEnterpriseSite resources by PrivateCloud */
+export const ListHcxEnterpriseSites: API.OperationMethod<
+  ListHcxEnterpriseSitesRequest,
+  HcxEnterpriseSiteList,
+  ListHcxEnterpriseSitesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListHcxEnterpriseSitesRequest,
+  output: HcxEnterpriseSiteList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListHostsError = AzureOpError;
+/** List Host resources by Cluster */
+export const ListHosts: API.OperationMethod<
+  ListHostsRequest,
+  HostListResult,
+  ListHostsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListHostsRequest,
+  output: HostListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListIscsiPathByPrivateCloudError = AzureOpError;
+/** List IscsiPath resources by PrivateCloud */
+export const ListIscsiPathByPrivateCloud: API.OperationMethod<
+  ListIscsiPathByPrivateCloudRequest,
+  IscsiPathListResult,
+  ListIscsiPathByPrivateCloudError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListIscsiPathByPrivateCloudRequest,
+  output: IscsiPathListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListLicensesError = AzureOpError;
 /** List License resources by PrivateCloud */
-export const LicensesList: API.OperationMethod<
-  LicensesListRequest,
+export const ListLicenses: API.OperationMethod<
+  ListLicensesRequest,
   LicenseListResult,
-  LicensesListError,
+  ListLicensesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: LicensesListRequest,
+  input: ListLicensesRequest,
   output: LicenseListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type LocationsCheckQuotaAvailabilityError = AzureOpError;
-/** Return quota for subscription by region */
-export const LocationsCheckQuotaAvailability: API.OperationMethod<
-  LocationsCheckQuotaAvailabilityRequest,
-  Quota,
-  LocationsCheckQuotaAvailabilityError,
+export type ListMaintenancesError = AzureOpError;
+/** List Maintenance resources by subscription ID */
+export const ListMaintenances: API.OperationMethod<
+  ListMaintenancesRequest,
+  MaintenanceListResult,
+  ListMaintenancesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: LocationsCheckQuotaAvailabilityRequest,
-  output: Quota,
+  input: ListMaintenancesRequest,
+  output: MaintenanceListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type LocationsCheckTrialAvailabilityError = AzureOpError;
-/** Return trial status for subscription by region */
-export const LocationsCheckTrialAvailability: API.OperationMethod<
-  LocationsCheckTrialAvailabilityRequest,
-  Trial,
-  LocationsCheckTrialAvailabilityError,
+export type ListOperationsError = AzureOpError;
+/** List the operations for the provider */
+export const ListOperations: API.OperationMethod<
+  ListOperationsRequest,
+  ListOperationsResponse,
+  ListOperationsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: LocationsCheckTrialAvailabilityRequest,
-  output: Trial,
+  input: ListOperationsRequest,
+  output: ListOperationsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type MaintenancesGetError = AzureOpError;
-/** Get a Maintenance */
-export const MaintenancesGet: API.OperationMethod<
-  MaintenancesGetRequest,
-  MaintenancesGetResponse,
-  MaintenancesGetError,
+export type ListPlacementPoliciesError = AzureOpError;
+/** List PlacementPolicy resources by Cluster */
+export const ListPlacementPolicies: API.OperationMethod<
+  ListPlacementPoliciesRequest,
+  PlacementPoliciesList,
+  ListPlacementPoliciesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: MaintenancesGetRequest,
-  output: MaintenancesGetResponse,
+  input: ListPlacementPoliciesRequest,
+  output: PlacementPoliciesList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListPrivateCloudAdminCredentialsError = AzureOpError;
+/** List the admin credentials for the private cloud */
+export const ListPrivateCloudAdminCredentials: API.OperationMethod<
+  ListPrivateCloudAdminCredentialsRequest,
+  AdminCredentials,
+  ListPrivateCloudAdminCredentialsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListPrivateCloudAdminCredentialsRequest,
+  output: AdminCredentials,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListPrivateCloudInSubscriptionError = AzureOpError;
+/** List PrivateCloud resources by subscription ID */
+export const ListPrivateCloudInSubscription: API.OperationMethod<
+  ListPrivateCloudInSubscriptionRequest,
+  PrivateCloudList,
+  ListPrivateCloudInSubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListPrivateCloudInSubscriptionRequest,
+  output: PrivateCloudList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListPrivateCloudsError = AzureOpError;
+/** List PrivateCloud resources by resource group */
+export const ListPrivateClouds: API.OperationMethod<
+  ListPrivateCloudsRequest,
+  PrivateCloudList,
+  ListPrivateCloudsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListPrivateCloudsRequest,
+  output: PrivateCloudList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListProvisionedNetworksError = AzureOpError;
+/** List ProvisionedNetwork resources by PrivateCloud */
+export const ListProvisionedNetworks: API.OperationMethod<
+  ListProvisionedNetworksRequest,
+  ProvisionedNetworkListResult,
+  ListProvisionedNetworksError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListProvisionedNetworksRequest,
+  output: ProvisionedNetworkListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListPureStoragePoliciesError = AzureOpError;
+/** List PureStoragePolicy resources by PrivateCloud */
+export const ListPureStoragePolicies: API.OperationMethod<
+  ListPureStoragePoliciesRequest,
+  PureStoragePolicyListResult,
+  ListPureStoragePoliciesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListPureStoragePoliciesRequest,
+  output: PureStoragePolicyListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListScriptCmdletsError = AzureOpError;
+/** List ScriptCmdlet resources by ScriptPackage */
+export const ListScriptCmdlets: API.OperationMethod<
+  ListScriptCmdletsRequest,
+  ScriptCmdletsList,
+  ListScriptCmdletsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListScriptCmdletsRequest,
+  output: ScriptCmdletsList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListScriptExecutionsError = AzureOpError;
+/** List ScriptExecution resources by PrivateCloud */
+export const ListScriptExecutions: API.OperationMethod<
+  ListScriptExecutionsRequest,
+  ScriptExecutionsList,
+  ListScriptExecutionsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListScriptExecutionsRequest,
+  output: ScriptExecutionsList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListScriptPackagesError = AzureOpError;
+/** List ScriptPackage resources by PrivateCloud */
+export const ListScriptPackages: API.OperationMethod<
+  ListScriptPackagesRequest,
+  ScriptPackagesList,
+  ListScriptPackagesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListScriptPackagesRequest,
+  output: ScriptPackagesList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSkusError = AzureOpError;
+/** A list of SKUs. */
+export const ListSkus: API.OperationMethod<
+  ListSkusRequest,
+  PagedResourceSku,
+  ListSkusError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSkusRequest,
+  output: PagedResourceSku,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListVirtualMachinesError = AzureOpError;
+/** List VirtualMachine resources by Cluster */
+export const ListVirtualMachines: API.OperationMethod<
+  ListVirtualMachinesRequest,
+  VirtualMachinesList,
+  ListVirtualMachinesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListVirtualMachinesRequest,
+  output: VirtualMachinesList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListWorkloadNetworkDhcpError = AzureOpError;
+/** List WorkloadNetworkDhcp resources by WorkloadNetwork */
+export const ListWorkloadNetworkDhcp: API.OperationMethod<
+  ListWorkloadNetworkDhcpRequest,
+  WorkloadNetworkDhcpList,
+  ListWorkloadNetworkDhcpError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListWorkloadNetworkDhcpRequest,
+  output: WorkloadNetworkDhcpList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListWorkloadNetworkDnsServicesError = AzureOpError;
+/** List WorkloadNetworkDnsService resources by WorkloadNetwork */
+export const ListWorkloadNetworkDnsServices: API.OperationMethod<
+  ListWorkloadNetworkDnsServicesRequest,
+  WorkloadNetworkDnsServicesList,
+  ListWorkloadNetworkDnsServicesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListWorkloadNetworkDnsServicesRequest,
+  output: WorkloadNetworkDnsServicesList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListWorkloadNetworkDnsZonesError = AzureOpError;
+/** List WorkloadNetworkDnsZone resources by WorkloadNetwork */
+export const ListWorkloadNetworkDnsZones: API.OperationMethod<
+  ListWorkloadNetworkDnsZonesRequest,
+  WorkloadNetworkDnsZonesList,
+  ListWorkloadNetworkDnsZonesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListWorkloadNetworkDnsZonesRequest,
+  output: WorkloadNetworkDnsZonesList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListWorkloadNetworkGatewaysError = AzureOpError;
+/** List WorkloadNetworkGateway resources by WorkloadNetwork */
+export const ListWorkloadNetworkGateways: API.OperationMethod<
+  ListWorkloadNetworkGatewaysRequest,
+  WorkloadNetworkGatewayList,
+  ListWorkloadNetworkGatewaysError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListWorkloadNetworkGatewaysRequest,
+  output: WorkloadNetworkGatewayList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListWorkloadNetworkPortMirroringError = AzureOpError;
+/** List WorkloadNetworkPortMirroring resources by WorkloadNetwork */
+export const ListWorkloadNetworkPortMirroring: API.OperationMethod<
+  ListWorkloadNetworkPortMirroringRequest,
+  WorkloadNetworkPortMirroringList,
+  ListWorkloadNetworkPortMirroringError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListWorkloadNetworkPortMirroringRequest,
+  output: WorkloadNetworkPortMirroringList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListWorkloadNetworkPublicIPsError = AzureOpError;
+/** List WorkloadNetworkPublicIP resources by WorkloadNetwork */
+export const ListWorkloadNetworkPublicIPs: API.OperationMethod<
+  ListWorkloadNetworkPublicIPsRequest,
+  WorkloadNetworkPublicIPsList,
+  ListWorkloadNetworkPublicIPsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListWorkloadNetworkPublicIPsRequest,
+  output: WorkloadNetworkPublicIPsList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListWorkloadNetworksError = AzureOpError;
+/** List WorkloadNetwork resources by PrivateCloud */
+export const ListWorkloadNetworks: API.OperationMethod<
+  ListWorkloadNetworksRequest,
+  WorkloadNetworkList,
+  ListWorkloadNetworksError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListWorkloadNetworksRequest,
+  output: WorkloadNetworkList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListWorkloadNetworkSegmentsError = AzureOpError;
+/** List WorkloadNetworkSegment resources by WorkloadNetwork */
+export const ListWorkloadNetworkSegments: API.OperationMethod<
+  ListWorkloadNetworkSegmentsRequest,
+  WorkloadNetworkSegmentsList,
+  ListWorkloadNetworkSegmentsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListWorkloadNetworkSegmentsRequest,
+  output: WorkloadNetworkSegmentsList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListWorkloadNetworkVirtualMachinesError = AzureOpError;
+/** List WorkloadNetworkVirtualMachine resources by WorkloadNetwork */
+export const ListWorkloadNetworkVirtualMachines: API.OperationMethod<
+  ListWorkloadNetworkVirtualMachinesRequest,
+  WorkloadNetworkVirtualMachinesList,
+  ListWorkloadNetworkVirtualMachinesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListWorkloadNetworkVirtualMachinesRequest,
+  output: WorkloadNetworkVirtualMachinesList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListWorkloadNetworkVMGroupsError = AzureOpError;
+/** List WorkloadNetworkVMGroup resources by WorkloadNetwork */
+export const ListWorkloadNetworkVMGroups: API.OperationMethod<
+  ListWorkloadNetworkVMGroupsRequest,
+  WorkloadNetworkVMGroupsList,
+  ListWorkloadNetworkVMGroupsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListWorkloadNetworkVMGroupsRequest,
+  output: WorkloadNetworkVMGroupsList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -10657,21 +11776,6 @@ export const MaintenancesInitiateChecks: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: MaintenancesInitiateChecksRequest,
   output: MaintenancesInitiateChecksResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type MaintenancesListError = AzureOpError;
-/** List Maintenance resources by subscription ID */
-export const MaintenancesList: API.OperationMethod<
-  MaintenancesListRequest,
-  MaintenanceListResult,
-  MaintenancesListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: MaintenancesListRequest,
-  output: MaintenanceListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -10707,21 +11811,6 @@ export const MaintenancesSchedule: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type OperationsListError = AzureOpError;
-/** List the operations for the provider */
-export const OperationsList: API.OperationMethod<
-  OperationsListRequest,
-  OperationsListResponse,
-  OperationsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: OperationsListRequest,
-  output: OperationsListResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type PlacementPoliciesCreateOrUpdateError = AzureOpError;
 /** Create a PlacementPolicy */
 export const PlacementPoliciesCreateOrUpdate: API.OperationMethod<
@@ -10732,66 +11821,6 @@ export const PlacementPoliciesCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: PlacementPoliciesCreateOrUpdateRequest,
   output: PlacementPoliciesCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PlacementPoliciesDeleteError = AzureOpError;
-/** Delete a PlacementPolicy */
-export const PlacementPoliciesDelete: API.OperationMethod<
-  PlacementPoliciesDeleteRequest,
-  PlacementPoliciesDeleteResponse,
-  PlacementPoliciesDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PlacementPoliciesDeleteRequest,
-  output: PlacementPoliciesDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PlacementPoliciesGetError = AzureOpError;
-/** Get a PlacementPolicy */
-export const PlacementPoliciesGet: API.OperationMethod<
-  PlacementPoliciesGetRequest,
-  PlacementPoliciesGetResponse,
-  PlacementPoliciesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PlacementPoliciesGetRequest,
-  output: PlacementPoliciesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PlacementPoliciesList2Error = AzureOpError;
-/** List PlacementPolicy resources by Cluster */
-export const PlacementPoliciesList2: API.OperationMethod<
-  PlacementPoliciesListRequest,
-  PlacementPoliciesList,
-  PlacementPoliciesList2Error,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PlacementPoliciesListRequest,
-  output: PlacementPoliciesList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PlacementPoliciesUpdateError = AzureOpError;
-/** Update a PlacementPolicy */
-export const PlacementPoliciesUpdate: API.OperationMethod<
-  PlacementPoliciesUpdateRequest,
-  PlacementPoliciesUpdateResponse,
-  PlacementPoliciesUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PlacementPoliciesUpdateRequest,
-  output: PlacementPoliciesUpdateResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -10812,171 +11841,6 @@ export const PrivateCloudsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type PrivateCloudsDeleteError = AzureOpError;
-/** Delete a PrivateCloud */
-export const PrivateCloudsDelete: API.OperationMethod<
-  PrivateCloudsDeleteRequest,
-  PrivateCloudsDeleteResponse,
-  PrivateCloudsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateCloudsDeleteRequest,
-  output: PrivateCloudsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateCloudsGetError = AzureOpError;
-/** Get a PrivateCloud */
-export const PrivateCloudsGet: API.OperationMethod<
-  PrivateCloudsGetRequest,
-  PrivateCloudsGetResponse,
-  PrivateCloudsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateCloudsGetRequest,
-  output: PrivateCloudsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateCloudsGetVcfLicenseError = AzureOpError;
-/** Get the license for the private cloud */
-export const PrivateCloudsGetVcfLicense: API.OperationMethod<
-  PrivateCloudsGetVcfLicenseRequest,
-  VcfLicense,
-  PrivateCloudsGetVcfLicenseError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateCloudsGetVcfLicenseRequest,
-  output: VcfLicense,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateCloudsListError = AzureOpError;
-/** List PrivateCloud resources by resource group */
-export const PrivateCloudsList: API.OperationMethod<
-  PrivateCloudsListRequest,
-  PrivateCloudList,
-  PrivateCloudsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateCloudsListRequest,
-  output: PrivateCloudList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateCloudsListAdminCredentialsError = AzureOpError;
-/** List the admin credentials for the private cloud */
-export const PrivateCloudsListAdminCredentials: API.OperationMethod<
-  PrivateCloudsListAdminCredentialsRequest,
-  AdminCredentials,
-  PrivateCloudsListAdminCredentialsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateCloudsListAdminCredentialsRequest,
-  output: AdminCredentials,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateCloudsListInSubscriptionError = AzureOpError;
-/** List PrivateCloud resources by subscription ID */
-export const PrivateCloudsListInSubscription: API.OperationMethod<
-  PrivateCloudsListInSubscriptionRequest,
-  PrivateCloudList,
-  PrivateCloudsListInSubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateCloudsListInSubscriptionRequest,
-  output: PrivateCloudList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateCloudsRotateNsxtPasswordError = AzureOpError;
-/** Rotate the NSX-T Manager password */
-export const PrivateCloudsRotateNsxtPassword: API.OperationMethod<
-  PrivateCloudsRotateNsxtPasswordRequest,
-  PrivateCloudsRotateNsxtPasswordResponse,
-  PrivateCloudsRotateNsxtPasswordError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateCloudsRotateNsxtPasswordRequest,
-  output: PrivateCloudsRotateNsxtPasswordResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateCloudsRotateVcenterPasswordError = AzureOpError;
-/** Rotate the vCenter password */
-export const PrivateCloudsRotateVcenterPassword: API.OperationMethod<
-  PrivateCloudsRotateVcenterPasswordRequest,
-  PrivateCloudsRotateVcenterPasswordResponse,
-  PrivateCloudsRotateVcenterPasswordError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateCloudsRotateVcenterPasswordRequest,
-  output: PrivateCloudsRotateVcenterPasswordResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateCloudsUpdateError = AzureOpError;
-/** Update a PrivateCloud */
-export const PrivateCloudsUpdate: API.OperationMethod<
-  PrivateCloudsUpdateRequest,
-  PrivateCloudsUpdateResponse,
-  PrivateCloudsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateCloudsUpdateRequest,
-  output: PrivateCloudsUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ProvisionedNetworksGetError = AzureOpError;
-/** Get a ProvisionedNetwork */
-export const ProvisionedNetworksGet: API.OperationMethod<
-  ProvisionedNetworksGetRequest,
-  ProvisionedNetworksGetResponse,
-  ProvisionedNetworksGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ProvisionedNetworksGetRequest,
-  output: ProvisionedNetworksGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ProvisionedNetworksListError = AzureOpError;
-/** List ProvisionedNetwork resources by PrivateCloud */
-export const ProvisionedNetworksList: API.OperationMethod<
-  ProvisionedNetworksListRequest,
-  ProvisionedNetworkListResult,
-  ProvisionedNetworksListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ProvisionedNetworksListRequest,
-  output: ProvisionedNetworkListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type PureStoragePoliciesCreateOrUpdateError = AzureOpError;
 /** Create a PureStoragePolicy */
 export const PureStoragePoliciesCreateOrUpdate: API.OperationMethod<
@@ -10992,76 +11856,31 @@ export const PureStoragePoliciesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type PureStoragePoliciesDeleteError = AzureOpError;
-/** Delete a PureStoragePolicy */
-export const PureStoragePoliciesDelete: API.OperationMethod<
-  PureStoragePoliciesDeleteRequest,
-  PureStoragePoliciesDeleteResponse,
-  PureStoragePoliciesDeleteError,
+export type RotatePrivateCloudNsxtPasswordError = AzureOpError;
+/** Rotate the NSX-T Manager password */
+export const RotatePrivateCloudNsxtPassword: API.OperationMethod<
+  RotatePrivateCloudNsxtPasswordRequest,
+  RotatePrivateCloudNsxtPasswordResponse,
+  RotatePrivateCloudNsxtPasswordError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PureStoragePoliciesDeleteRequest,
-  output: PureStoragePoliciesDeleteResponse,
+  input: RotatePrivateCloudNsxtPasswordRequest,
+  output: RotatePrivateCloudNsxtPasswordResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type PureStoragePoliciesGetError = AzureOpError;
-/** Get a PureStoragePolicy */
-export const PureStoragePoliciesGet: API.OperationMethod<
-  PureStoragePoliciesGetRequest,
-  PureStoragePoliciesGetResponse,
-  PureStoragePoliciesGetError,
+export type RotatePrivateCloudVcenterPasswordError = AzureOpError;
+/** Rotate the vCenter password */
+export const RotatePrivateCloudVcenterPassword: API.OperationMethod<
+  RotatePrivateCloudVcenterPasswordRequest,
+  RotatePrivateCloudVcenterPasswordResponse,
+  RotatePrivateCloudVcenterPasswordError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PureStoragePoliciesGetRequest,
-  output: PureStoragePoliciesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PureStoragePoliciesListError = AzureOpError;
-/** List PureStoragePolicy resources by PrivateCloud */
-export const PureStoragePoliciesList: API.OperationMethod<
-  PureStoragePoliciesListRequest,
-  PureStoragePolicyListResult,
-  PureStoragePoliciesListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PureStoragePoliciesListRequest,
-  output: PureStoragePolicyListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ScriptCmdletsGetError = AzureOpError;
-/** Get a ScriptCmdlet */
-export const ScriptCmdletsGet: API.OperationMethod<
-  ScriptCmdletsGetRequest,
-  ScriptCmdletsGetResponse,
-  ScriptCmdletsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ScriptCmdletsGetRequest,
-  output: ScriptCmdletsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ScriptCmdletsList2Error = AzureOpError;
-/** List ScriptCmdlet resources by ScriptPackage */
-export const ScriptCmdletsList2: API.OperationMethod<
-  ScriptCmdletsListRequest,
-  ScriptCmdletsList,
-  ScriptCmdletsList2Error,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ScriptCmdletsListRequest,
-  output: ScriptCmdletsList,
+  input: RotatePrivateCloudVcenterPasswordRequest,
+  output: RotatePrivateCloudVcenterPasswordResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -11082,151 +11901,151 @@ export const ScriptExecutionsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ScriptExecutionsDeleteError = AzureOpError;
-/** Delete a ScriptExecution */
-export const ScriptExecutionsDelete: API.OperationMethod<
-  ScriptExecutionsDeleteRequest,
-  ScriptExecutionsDeleteResponse,
-  ScriptExecutionsDeleteError,
+export type UpdateClusterError = AzureOpError;
+/** Update a Cluster */
+export const UpdateCluster: API.OperationMethod<
+  UpdateClusterRequest,
+  UpdateClusterResponse,
+  UpdateClusterError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ScriptExecutionsDeleteRequest,
-  output: ScriptExecutionsDeleteResponse,
+  input: UpdateClusterRequest,
+  output: UpdateClusterResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ScriptExecutionsGetError = AzureOpError;
-/** Get a ScriptExecution */
-export const ScriptExecutionsGet: API.OperationMethod<
-  ScriptExecutionsGetRequest,
-  ScriptExecutionsGetResponse,
-  ScriptExecutionsGetError,
+export type UpdateHostError = AzureOpError;
+/** Update a Host */
+export const UpdateHost: API.OperationMethod<
+  UpdateHostRequest,
+  UpdateHostResponse,
+  UpdateHostError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ScriptExecutionsGetRequest,
-  output: ScriptExecutionsGetResponse,
+  input: UpdateHostRequest,
+  output: UpdateHostResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ScriptExecutionsGetExecutionLogsError = AzureOpError;
-/** Return the logs for a script execution resource */
-export const ScriptExecutionsGetExecutionLogs: API.OperationMethod<
-  ScriptExecutionsGetExecutionLogsRequest,
-  ScriptExecutionsGetExecutionLogsResponse,
-  ScriptExecutionsGetExecutionLogsError,
+export type UpdatePlacementPolicyError = AzureOpError;
+/** Update a PlacementPolicy */
+export const UpdatePlacementPolicy: API.OperationMethod<
+  UpdatePlacementPolicyRequest,
+  UpdatePlacementPolicyResponse,
+  UpdatePlacementPolicyError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ScriptExecutionsGetExecutionLogsRequest,
-  output: ScriptExecutionsGetExecutionLogsResponse,
+  input: UpdatePlacementPolicyRequest,
+  output: UpdatePlacementPolicyResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ScriptExecutionsList2Error = AzureOpError;
-/** List ScriptExecution resources by PrivateCloud */
-export const ScriptExecutionsList2: API.OperationMethod<
-  ScriptExecutionsListRequest,
-  ScriptExecutionsList,
-  ScriptExecutionsList2Error,
+export type UpdatePrivateCloudError = AzureOpError;
+/** Update a PrivateCloud */
+export const UpdatePrivateCloud: API.OperationMethod<
+  UpdatePrivateCloudRequest,
+  UpdatePrivateCloudResponse,
+  UpdatePrivateCloudError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ScriptExecutionsListRequest,
-  output: ScriptExecutionsList,
+  input: UpdatePrivateCloudRequest,
+  output: UpdatePrivateCloudResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ScriptPackagesGetError = AzureOpError;
-/** Get a ScriptPackage */
-export const ScriptPackagesGet: API.OperationMethod<
-  ScriptPackagesGetRequest,
-  ScriptPackagesGetResponse,
-  ScriptPackagesGetError,
+export type UpdateWorkloadNetworkDhcpError = AzureOpError;
+/** Update a WorkloadNetworkDhcp */
+export const UpdateWorkloadNetworkDhcp: API.OperationMethod<
+  UpdateWorkloadNetworkDhcpRequest,
+  UpdateWorkloadNetworkDhcpResponse,
+  UpdateWorkloadNetworkDhcpError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ScriptPackagesGetRequest,
-  output: ScriptPackagesGetResponse,
+  input: UpdateWorkloadNetworkDhcpRequest,
+  output: UpdateWorkloadNetworkDhcpResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ScriptPackagesList2Error = AzureOpError;
-/** List ScriptPackage resources by PrivateCloud */
-export const ScriptPackagesList2: API.OperationMethod<
-  ScriptPackagesListRequest,
-  ScriptPackagesList,
-  ScriptPackagesList2Error,
+export type UpdateWorkloadNetworkDnsServiceError = AzureOpError;
+/** Update a WorkloadNetworkDnsService */
+export const UpdateWorkloadNetworkDnsService: API.OperationMethod<
+  UpdateWorkloadNetworkDnsServiceRequest,
+  UpdateWorkloadNetworkDnsServiceResponse,
+  UpdateWorkloadNetworkDnsServiceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ScriptPackagesListRequest,
-  output: ScriptPackagesList,
+  input: UpdateWorkloadNetworkDnsServiceRequest,
+  output: UpdateWorkloadNetworkDnsServiceResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ServiceComponentsCheckAvailabilityError = AzureOpError;
-/** Return service component availability */
-export const ServiceComponentsCheckAvailability: API.OperationMethod<
-  ServiceComponentsCheckAvailabilityRequest,
-  ServiceComponentsCheckAvailabilityResponse,
-  ServiceComponentsCheckAvailabilityError,
+export type UpdateWorkloadNetworkDnsZoneError = AzureOpError;
+/** Update a WorkloadNetworkDnsZone */
+export const UpdateWorkloadNetworkDnsZone: API.OperationMethod<
+  UpdateWorkloadNetworkDnsZoneRequest,
+  UpdateWorkloadNetworkDnsZoneResponse,
+  UpdateWorkloadNetworkDnsZoneError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ServiceComponentsCheckAvailabilityRequest,
-  output: ServiceComponentsCheckAvailabilityResponse,
+  input: UpdateWorkloadNetworkDnsZoneRequest,
+  output: UpdateWorkloadNetworkDnsZoneResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type SkusListError = AzureOpError;
-/** A list of SKUs. */
-export const SkusList: API.OperationMethod<
-  SkusListRequest,
-  PagedResourceSku,
-  SkusListError,
+export type UpdateWorkloadNetworkPortMirroringError = AzureOpError;
+/** Update a WorkloadNetworkPortMirroring */
+export const UpdateWorkloadNetworkPortMirroring: API.OperationMethod<
+  UpdateWorkloadNetworkPortMirroringRequest,
+  UpdateWorkloadNetworkPortMirroringResponse,
+  UpdateWorkloadNetworkPortMirroringError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SkusListRequest,
-  output: PagedResourceSku,
+  input: UpdateWorkloadNetworkPortMirroringRequest,
+  output: UpdateWorkloadNetworkPortMirroringResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type VirtualMachinesGetError = AzureOpError;
-/** Get a VirtualMachine */
-export const VirtualMachinesGet: API.OperationMethod<
-  VirtualMachinesGetRequest,
-  VirtualMachinesGetResponse,
-  VirtualMachinesGetError,
+export type UpdateWorkloadNetworkSegmentsError = AzureOpError;
+/** Update a WorkloadNetworkSegment */
+export const UpdateWorkloadNetworkSegments: API.OperationMethod<
+  UpdateWorkloadNetworkSegmentsRequest,
+  UpdateWorkloadNetworkSegmentsResponse,
+  UpdateWorkloadNetworkSegmentsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachinesGetRequest,
-  output: VirtualMachinesGetResponse,
+  input: UpdateWorkloadNetworkSegmentsRequest,
+  output: UpdateWorkloadNetworkSegmentsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type VirtualMachinesList2Error = AzureOpError;
-/** List VirtualMachine resources by Cluster */
-export const VirtualMachinesList2: API.OperationMethod<
-  VirtualMachinesListRequest,
-  VirtualMachinesList,
-  VirtualMachinesList2Error,
+export type UpdateWorkloadNetworkVMGroupError = AzureOpError;
+/** Update a WorkloadNetworkVMGroup */
+export const UpdateWorkloadNetworkVMGroup: API.OperationMethod<
+  UpdateWorkloadNetworkVMGroupRequest,
+  UpdateWorkloadNetworkVMGroupResponse,
+  UpdateWorkloadNetworkVMGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: VirtualMachinesListRequest,
-  output: VirtualMachinesList,
+  input: UpdateWorkloadNetworkVMGroupRequest,
+  output: UpdateWorkloadNetworkVMGroupResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -11242,606 +12061,6 @@ export const VirtualMachinesRestrictMovement: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: VirtualMachinesRestrictMovementRequest,
   output: VirtualMachinesRestrictMovementResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkloadNetworksCreateDhcpError = AzureOpError;
-/** Create a WorkloadNetworkDhcp */
-export const WorkloadNetworksCreateDhcp: API.OperationMethod<
-  WorkloadNetworksCreateDhcpRequest,
-  WorkloadNetworksCreateDhcpResponse,
-  WorkloadNetworksCreateDhcpError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkloadNetworksCreateDhcpRequest,
-  output: WorkloadNetworksCreateDhcpResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkloadNetworksCreateDnsServiceError = AzureOpError;
-/** Create a WorkloadNetworkDnsService */
-export const WorkloadNetworksCreateDnsService: API.OperationMethod<
-  WorkloadNetworksCreateDnsServiceRequest,
-  WorkloadNetworksCreateDnsServiceResponse,
-  WorkloadNetworksCreateDnsServiceError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkloadNetworksCreateDnsServiceRequest,
-  output: WorkloadNetworksCreateDnsServiceResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkloadNetworksCreateDnsZoneError = AzureOpError;
-/** Create a WorkloadNetworkDnsZone */
-export const WorkloadNetworksCreateDnsZone: API.OperationMethod<
-  WorkloadNetworksCreateDnsZoneRequest,
-  WorkloadNetworksCreateDnsZoneResponse,
-  WorkloadNetworksCreateDnsZoneError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkloadNetworksCreateDnsZoneRequest,
-  output: WorkloadNetworksCreateDnsZoneResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkloadNetworksCreatePortMirroringError = AzureOpError;
-/** Create a WorkloadNetworkPortMirroring */
-export const WorkloadNetworksCreatePortMirroring: API.OperationMethod<
-  WorkloadNetworksCreatePortMirroringRequest,
-  WorkloadNetworksCreatePortMirroringResponse,
-  WorkloadNetworksCreatePortMirroringError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkloadNetworksCreatePortMirroringRequest,
-  output: WorkloadNetworksCreatePortMirroringResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkloadNetworksCreatePublicIPError = AzureOpError;
-/** Create a WorkloadNetworkPublicIP */
-export const WorkloadNetworksCreatePublicIP: API.OperationMethod<
-  WorkloadNetworksCreatePublicIPRequest,
-  WorkloadNetworksCreatePublicIPResponse,
-  WorkloadNetworksCreatePublicIPError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkloadNetworksCreatePublicIPRequest,
-  output: WorkloadNetworksCreatePublicIPResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkloadNetworksCreateSegmentsError = AzureOpError;
-/** Create a WorkloadNetworkSegment */
-export const WorkloadNetworksCreateSegments: API.OperationMethod<
-  WorkloadNetworksCreateSegmentsRequest,
-  WorkloadNetworksCreateSegmentsResponse,
-  WorkloadNetworksCreateSegmentsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkloadNetworksCreateSegmentsRequest,
-  output: WorkloadNetworksCreateSegmentsResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkloadNetworksCreateVMGroupError = AzureOpError;
-/** Create a WorkloadNetworkVMGroup */
-export const WorkloadNetworksCreateVMGroup: API.OperationMethod<
-  WorkloadNetworksCreateVMGroupRequest,
-  WorkloadNetworksCreateVMGroupResponse,
-  WorkloadNetworksCreateVMGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkloadNetworksCreateVMGroupRequest,
-  output: WorkloadNetworksCreateVMGroupResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkloadNetworksDeleteDhcpError = AzureOpError;
-/** Delete a WorkloadNetworkDhcp */
-export const WorkloadNetworksDeleteDhcp: API.OperationMethod<
-  WorkloadNetworksDeleteDhcpRequest,
-  WorkloadNetworksDeleteDhcpResponse,
-  WorkloadNetworksDeleteDhcpError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkloadNetworksDeleteDhcpRequest,
-  output: WorkloadNetworksDeleteDhcpResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkloadNetworksDeleteDnsServiceError = AzureOpError;
-/** Delete a WorkloadNetworkDnsService */
-export const WorkloadNetworksDeleteDnsService: API.OperationMethod<
-  WorkloadNetworksDeleteDnsServiceRequest,
-  WorkloadNetworksDeleteDnsServiceResponse,
-  WorkloadNetworksDeleteDnsServiceError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkloadNetworksDeleteDnsServiceRequest,
-  output: WorkloadNetworksDeleteDnsServiceResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkloadNetworksDeleteDnsZoneError = AzureOpError;
-/** Delete a WorkloadNetworkDnsZone */
-export const WorkloadNetworksDeleteDnsZone: API.OperationMethod<
-  WorkloadNetworksDeleteDnsZoneRequest,
-  WorkloadNetworksDeleteDnsZoneResponse,
-  WorkloadNetworksDeleteDnsZoneError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkloadNetworksDeleteDnsZoneRequest,
-  output: WorkloadNetworksDeleteDnsZoneResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkloadNetworksDeletePortMirroringError = AzureOpError;
-/** Delete a WorkloadNetworkPortMirroring */
-export const WorkloadNetworksDeletePortMirroring: API.OperationMethod<
-  WorkloadNetworksDeletePortMirroringRequest,
-  WorkloadNetworksDeletePortMirroringResponse,
-  WorkloadNetworksDeletePortMirroringError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkloadNetworksDeletePortMirroringRequest,
-  output: WorkloadNetworksDeletePortMirroringResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkloadNetworksDeletePublicIPError = AzureOpError;
-/** Delete a WorkloadNetworkPublicIP */
-export const WorkloadNetworksDeletePublicIP: API.OperationMethod<
-  WorkloadNetworksDeletePublicIPRequest,
-  WorkloadNetworksDeletePublicIPResponse,
-  WorkloadNetworksDeletePublicIPError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkloadNetworksDeletePublicIPRequest,
-  output: WorkloadNetworksDeletePublicIPResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkloadNetworksDeleteSegmentError = AzureOpError;
-/** Delete a WorkloadNetworkSegment */
-export const WorkloadNetworksDeleteSegment: API.OperationMethod<
-  WorkloadNetworksDeleteSegmentRequest,
-  WorkloadNetworksDeleteSegmentResponse,
-  WorkloadNetworksDeleteSegmentError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkloadNetworksDeleteSegmentRequest,
-  output: WorkloadNetworksDeleteSegmentResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkloadNetworksDeleteVMGroupError = AzureOpError;
-/** Delete a WorkloadNetworkVMGroup */
-export const WorkloadNetworksDeleteVMGroup: API.OperationMethod<
-  WorkloadNetworksDeleteVMGroupRequest,
-  WorkloadNetworksDeleteVMGroupResponse,
-  WorkloadNetworksDeleteVMGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkloadNetworksDeleteVMGroupRequest,
-  output: WorkloadNetworksDeleteVMGroupResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkloadNetworksGetError = AzureOpError;
-/** Get a WorkloadNetwork */
-export const WorkloadNetworksGet: API.OperationMethod<
-  WorkloadNetworksGetRequest,
-  WorkloadNetworksGetResponse,
-  WorkloadNetworksGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkloadNetworksGetRequest,
-  output: WorkloadNetworksGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkloadNetworksGetDhcpError = AzureOpError;
-/** Get a WorkloadNetworkDhcp */
-export const WorkloadNetworksGetDhcp: API.OperationMethod<
-  WorkloadNetworksGetDhcpRequest,
-  WorkloadNetworksGetDhcpResponse,
-  WorkloadNetworksGetDhcpError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkloadNetworksGetDhcpRequest,
-  output: WorkloadNetworksGetDhcpResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkloadNetworksGetDnsServiceError = AzureOpError;
-/** Get a WorkloadNetworkDnsService */
-export const WorkloadNetworksGetDnsService: API.OperationMethod<
-  WorkloadNetworksGetDnsServiceRequest,
-  WorkloadNetworksGetDnsServiceResponse,
-  WorkloadNetworksGetDnsServiceError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkloadNetworksGetDnsServiceRequest,
-  output: WorkloadNetworksGetDnsServiceResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkloadNetworksGetDnsZoneError = AzureOpError;
-/** Get a WorkloadNetworkDnsZone */
-export const WorkloadNetworksGetDnsZone: API.OperationMethod<
-  WorkloadNetworksGetDnsZoneRequest,
-  WorkloadNetworksGetDnsZoneResponse,
-  WorkloadNetworksGetDnsZoneError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkloadNetworksGetDnsZoneRequest,
-  output: WorkloadNetworksGetDnsZoneResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkloadNetworksGetGatewayError = AzureOpError;
-/** Get a WorkloadNetworkGateway */
-export const WorkloadNetworksGetGateway: API.OperationMethod<
-  WorkloadNetworksGetGatewayRequest,
-  WorkloadNetworksGetGatewayResponse,
-  WorkloadNetworksGetGatewayError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkloadNetworksGetGatewayRequest,
-  output: WorkloadNetworksGetGatewayResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkloadNetworksGetPortMirroringError = AzureOpError;
-/** Get a WorkloadNetworkPortMirroring */
-export const WorkloadNetworksGetPortMirroring: API.OperationMethod<
-  WorkloadNetworksGetPortMirroringRequest,
-  WorkloadNetworksGetPortMirroringResponse,
-  WorkloadNetworksGetPortMirroringError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkloadNetworksGetPortMirroringRequest,
-  output: WorkloadNetworksGetPortMirroringResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkloadNetworksGetPublicIPError = AzureOpError;
-/** Get a WorkloadNetworkPublicIP */
-export const WorkloadNetworksGetPublicIP: API.OperationMethod<
-  WorkloadNetworksGetPublicIPRequest,
-  WorkloadNetworksGetPublicIPResponse,
-  WorkloadNetworksGetPublicIPError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkloadNetworksGetPublicIPRequest,
-  output: WorkloadNetworksGetPublicIPResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkloadNetworksGetSegmentError = AzureOpError;
-/** Get a WorkloadNetworkSegment */
-export const WorkloadNetworksGetSegment: API.OperationMethod<
-  WorkloadNetworksGetSegmentRequest,
-  WorkloadNetworksGetSegmentResponse,
-  WorkloadNetworksGetSegmentError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkloadNetworksGetSegmentRequest,
-  output: WorkloadNetworksGetSegmentResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkloadNetworksGetVirtualMachineError = AzureOpError;
-/** Get a WorkloadNetworkVirtualMachine */
-export const WorkloadNetworksGetVirtualMachine: API.OperationMethod<
-  WorkloadNetworksGetVirtualMachineRequest,
-  WorkloadNetworksGetVirtualMachineResponse,
-  WorkloadNetworksGetVirtualMachineError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkloadNetworksGetVirtualMachineRequest,
-  output: WorkloadNetworksGetVirtualMachineResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkloadNetworksGetVMGroupError = AzureOpError;
-/** Get a WorkloadNetworkVMGroup */
-export const WorkloadNetworksGetVMGroup: API.OperationMethod<
-  WorkloadNetworksGetVMGroupRequest,
-  WorkloadNetworksGetVMGroupResponse,
-  WorkloadNetworksGetVMGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkloadNetworksGetVMGroupRequest,
-  output: WorkloadNetworksGetVMGroupResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkloadNetworksListError = AzureOpError;
-/** List WorkloadNetwork resources by PrivateCloud */
-export const WorkloadNetworksList: API.OperationMethod<
-  WorkloadNetworksListRequest,
-  WorkloadNetworkList,
-  WorkloadNetworksListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkloadNetworksListRequest,
-  output: WorkloadNetworkList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkloadNetworksListDhcpError = AzureOpError;
-/** List WorkloadNetworkDhcp resources by WorkloadNetwork */
-export const WorkloadNetworksListDhcp: API.OperationMethod<
-  WorkloadNetworksListDhcpRequest,
-  WorkloadNetworkDhcpList,
-  WorkloadNetworksListDhcpError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkloadNetworksListDhcpRequest,
-  output: WorkloadNetworkDhcpList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkloadNetworksListDnsServicesError = AzureOpError;
-/** List WorkloadNetworkDnsService resources by WorkloadNetwork */
-export const WorkloadNetworksListDnsServices: API.OperationMethod<
-  WorkloadNetworksListDnsServicesRequest,
-  WorkloadNetworkDnsServicesList,
-  WorkloadNetworksListDnsServicesError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkloadNetworksListDnsServicesRequest,
-  output: WorkloadNetworkDnsServicesList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkloadNetworksListDnsZonesError = AzureOpError;
-/** List WorkloadNetworkDnsZone resources by WorkloadNetwork */
-export const WorkloadNetworksListDnsZones: API.OperationMethod<
-  WorkloadNetworksListDnsZonesRequest,
-  WorkloadNetworkDnsZonesList,
-  WorkloadNetworksListDnsZonesError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkloadNetworksListDnsZonesRequest,
-  output: WorkloadNetworkDnsZonesList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkloadNetworksListGatewaysError = AzureOpError;
-/** List WorkloadNetworkGateway resources by WorkloadNetwork */
-export const WorkloadNetworksListGateways: API.OperationMethod<
-  WorkloadNetworksListGatewaysRequest,
-  WorkloadNetworkGatewayList,
-  WorkloadNetworksListGatewaysError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkloadNetworksListGatewaysRequest,
-  output: WorkloadNetworkGatewayList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkloadNetworksListPortMirroringError = AzureOpError;
-/** List WorkloadNetworkPortMirroring resources by WorkloadNetwork */
-export const WorkloadNetworksListPortMirroring: API.OperationMethod<
-  WorkloadNetworksListPortMirroringRequest,
-  WorkloadNetworkPortMirroringList,
-  WorkloadNetworksListPortMirroringError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkloadNetworksListPortMirroringRequest,
-  output: WorkloadNetworkPortMirroringList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkloadNetworksListPublicIPsError = AzureOpError;
-/** List WorkloadNetworkPublicIP resources by WorkloadNetwork */
-export const WorkloadNetworksListPublicIPs: API.OperationMethod<
-  WorkloadNetworksListPublicIPsRequest,
-  WorkloadNetworkPublicIPsList,
-  WorkloadNetworksListPublicIPsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkloadNetworksListPublicIPsRequest,
-  output: WorkloadNetworkPublicIPsList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkloadNetworksListSegmentsError = AzureOpError;
-/** List WorkloadNetworkSegment resources by WorkloadNetwork */
-export const WorkloadNetworksListSegments: API.OperationMethod<
-  WorkloadNetworksListSegmentsRequest,
-  WorkloadNetworkSegmentsList,
-  WorkloadNetworksListSegmentsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkloadNetworksListSegmentsRequest,
-  output: WorkloadNetworkSegmentsList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkloadNetworksListVirtualMachinesError = AzureOpError;
-/** List WorkloadNetworkVirtualMachine resources by WorkloadNetwork */
-export const WorkloadNetworksListVirtualMachines: API.OperationMethod<
-  WorkloadNetworksListVirtualMachinesRequest,
-  WorkloadNetworkVirtualMachinesList,
-  WorkloadNetworksListVirtualMachinesError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkloadNetworksListVirtualMachinesRequest,
-  output: WorkloadNetworkVirtualMachinesList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkloadNetworksListVMGroupsError = AzureOpError;
-/** List WorkloadNetworkVMGroup resources by WorkloadNetwork */
-export const WorkloadNetworksListVMGroups: API.OperationMethod<
-  WorkloadNetworksListVMGroupsRequest,
-  WorkloadNetworkVMGroupsList,
-  WorkloadNetworksListVMGroupsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkloadNetworksListVMGroupsRequest,
-  output: WorkloadNetworkVMGroupsList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkloadNetworksUpdateDhcpError = AzureOpError;
-/** Update a WorkloadNetworkDhcp */
-export const WorkloadNetworksUpdateDhcp: API.OperationMethod<
-  WorkloadNetworksUpdateDhcpRequest,
-  WorkloadNetworksUpdateDhcpResponse,
-  WorkloadNetworksUpdateDhcpError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkloadNetworksUpdateDhcpRequest,
-  output: WorkloadNetworksUpdateDhcpResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkloadNetworksUpdateDnsServiceError = AzureOpError;
-/** Update a WorkloadNetworkDnsService */
-export const WorkloadNetworksUpdateDnsService: API.OperationMethod<
-  WorkloadNetworksUpdateDnsServiceRequest,
-  WorkloadNetworksUpdateDnsServiceResponse,
-  WorkloadNetworksUpdateDnsServiceError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkloadNetworksUpdateDnsServiceRequest,
-  output: WorkloadNetworksUpdateDnsServiceResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkloadNetworksUpdateDnsZoneError = AzureOpError;
-/** Update a WorkloadNetworkDnsZone */
-export const WorkloadNetworksUpdateDnsZone: API.OperationMethod<
-  WorkloadNetworksUpdateDnsZoneRequest,
-  WorkloadNetworksUpdateDnsZoneResponse,
-  WorkloadNetworksUpdateDnsZoneError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkloadNetworksUpdateDnsZoneRequest,
-  output: WorkloadNetworksUpdateDnsZoneResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkloadNetworksUpdatePortMirroringError = AzureOpError;
-/** Update a WorkloadNetworkPortMirroring */
-export const WorkloadNetworksUpdatePortMirroring: API.OperationMethod<
-  WorkloadNetworksUpdatePortMirroringRequest,
-  WorkloadNetworksUpdatePortMirroringResponse,
-  WorkloadNetworksUpdatePortMirroringError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkloadNetworksUpdatePortMirroringRequest,
-  output: WorkloadNetworksUpdatePortMirroringResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkloadNetworksUpdateSegmentsError = AzureOpError;
-/** Update a WorkloadNetworkSegment */
-export const WorkloadNetworksUpdateSegments: API.OperationMethod<
-  WorkloadNetworksUpdateSegmentsRequest,
-  WorkloadNetworksUpdateSegmentsResponse,
-  WorkloadNetworksUpdateSegmentsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkloadNetworksUpdateSegmentsRequest,
-  output: WorkloadNetworksUpdateSegmentsResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkloadNetworksUpdateVMGroupError = AzureOpError;
-/** Update a WorkloadNetworkVMGroup */
-export const WorkloadNetworksUpdateVMGroup: API.OperationMethod<
-  WorkloadNetworksUpdateVMGroupRequest,
-  WorkloadNetworksUpdateVMGroupResponse,
-  WorkloadNetworksUpdateVMGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkloadNetworksUpdateVMGroupRequest,
-  output: WorkloadNetworksUpdateVMGroupResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

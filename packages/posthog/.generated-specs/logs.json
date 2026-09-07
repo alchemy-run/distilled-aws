@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.logs#LogsAlertsListRequest": {
+    "com.posthog.logs#ListLogsAlertsRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -112,7 +113,7 @@
           }
         },
         "threshold_operator": {
-          "target": "com.posthog.logs#LogsAlertThresholdOperatorEnum",
+          "target": "com.posthog.logs#LogsAlertConfigurationThresholdOperatorEnum",
           "traits": {
             "smithy.api#documentation": "Whether the alert fires when the count is above or below the threshold.\n\n* `above` - Above\n* `below` - Below"
           }
@@ -2479,7 +2480,7 @@
       },
       "traits": {}
     },
-    "com.posthog.logs#LogsAlertThresholdOperatorEnum": {
+    "com.posthog.logs#LogsAlertConfigurationThresholdOperatorEnum": {
       "type": "enum",
       "members": {
         "ABOVE": {
@@ -2804,10 +2805,10 @@
       },
       "traits": {}
     },
-    "com.posthog.logs#LogsAlertsList": {
+    "com.posthog.logs#ListLogsAlerts": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.logs#LogsAlertsListRequest"
+        "target": "com.posthog.logs#ListLogsAlertsRequest"
       },
       "output": {
         "target": "com.posthog.logs#PaginatedLogsAlertConfigurationList"
@@ -2831,7 +2832,7 @@
         }
       }
     },
-    "com.posthog.logs#LogsAlertsCreateRequest": {
+    "com.posthog.logs#CreateLogsAlertRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2867,7 +2868,7 @@
           }
         },
         "threshold_operator": {
-          "target": "com.posthog.logs#LogsAlertThresholdOperatorEnum",
+          "target": "com.posthog.logs#LogsAlertConfigurationThresholdOperatorEnum",
           "traits": {
             "smithy.api#documentation": "Whether the alert fires when the count is above or below the threshold.\n\n* `above` - Above\n* `below` - Below"
           }
@@ -2915,10 +2916,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.logs#LogsAlertsCreate": {
+    "com.posthog.logs#CreateLogsAlert": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.logs#LogsAlertsCreateRequest"
+        "target": "com.posthog.logs#CreateLogsAlertRequest"
       },
       "output": {
         "target": "com.posthog.logs#LogsAlertConfiguration"
@@ -2942,7 +2943,7 @@
         }
       }
     },
-    "com.posthog.logs#LogsAlertsRetrieveRequest": {
+    "com.posthog.logs#GetLogsAlertRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -3001,7 +3002,7 @@
           }
         },
         "threshold_operator": {
-          "target": "com.posthog.logs#LogsAlertThresholdOperatorEnum",
+          "target": "com.posthog.logs#LogsAlertConfigurationThresholdOperatorEnum",
           "traits": {
             "smithy.api#documentation": "Whether the alert fires when the count is above or below the threshold.\n\n* `above` - Above\n* `below` - Below"
           }
@@ -3224,10 +3225,10 @@
         "smithy.api#documentation": "This alert's notification destinations, one entry per destination. Each carries the HogFunction IDs that delete it as a group, and its configuration with credential-bearing URL components removed."
       }
     },
-    "com.posthog.logs#LogsAlertsRetrieve": {
+    "com.posthog.logs#GetLogsAlert": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.logs#LogsAlertsRetrieveRequest"
+        "target": "com.posthog.logs#GetLogsAlertRequest"
       },
       "output": {
         "target": "com.posthog.logs#LogsAlertConfigurationDetail"
@@ -3248,7 +3249,7 @@
         }
       }
     },
-    "com.posthog.logs#LogsAlertsUpdateRequest": {
+    "com.posthog.logs#UpdateLogsAlertRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -3292,7 +3293,7 @@
           }
         },
         "threshold_operator": {
-          "target": "com.posthog.logs#LogsAlertThresholdOperatorEnum",
+          "target": "com.posthog.logs#LogsAlertConfigurationThresholdOperatorEnum",
           "traits": {
             "smithy.api#documentation": "Whether the alert fires when the count is above or below the threshold.\n\n* `above` - Above\n* `below` - Below"
           }
@@ -3340,10 +3341,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.logs#LogsAlertsUpdate": {
+    "com.posthog.logs#UpdateLogsAlert": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.logs#LogsAlertsUpdateRequest"
+        "target": "com.posthog.logs#UpdateLogsAlertRequest"
       },
       "output": {
         "target": "com.posthog.logs#LogsAlertConfiguration"
@@ -3367,7 +3368,7 @@
         }
       }
     },
-    "com.posthog.logs#LogsAlertsPartialUpdateRequest": {
+    "com.posthog.logs#UpdateLogsAlertsPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -3411,7 +3412,7 @@
           }
         },
         "threshold_operator": {
-          "target": "com.posthog.logs#LogsAlertThresholdOperatorEnum",
+          "target": "com.posthog.logs#LogsAlertConfigurationThresholdOperatorEnum",
           "traits": {
             "smithy.api#documentation": "Whether the alert fires when the count is above or below the threshold.\n\n* `above` - Above\n* `below` - Below"
           }
@@ -3459,10 +3460,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.logs#LogsAlertsPartialUpdate": {
+    "com.posthog.logs#UpdateLogsAlertsPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.logs#LogsAlertsPartialUpdateRequest"
+        "target": "com.posthog.logs#UpdateLogsAlertsPartialRequest"
       },
       "output": {
         "target": "com.posthog.logs#LogsAlertConfiguration"
@@ -3534,7 +3535,7 @@
         }
       }
     },
-    "com.posthog.logs#LogsAlertsDestinationsCreateRequest": {
+    "com.posthog.logs#CreateLogsAlertsDestinationRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -3604,10 +3605,10 @@
       },
       "traits": {}
     },
-    "com.posthog.logs#LogsAlertsDestinationsCreate": {
+    "com.posthog.logs#CreateLogsAlertsDestination": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.logs#LogsAlertsDestinationsCreateRequest"
+        "target": "com.posthog.logs#CreateLogsAlertsDestinationRequest"
       },
       "output": {
         "target": "com.posthog.logs#LogsAlertDestinationResponse"
@@ -3699,7 +3700,7 @@
         "smithy.api#documentation": "Delete a notification destination by deleting its HogFunction group atomically."
       }
     },
-    "com.posthog.logs#LogsAlertsEventsListRequest": {
+    "com.posthog.logs#ListLogsAlertsEventsRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -3866,10 +3867,10 @@
       },
       "traits": {}
     },
-    "com.posthog.logs#LogsAlertsEventsList": {
+    "com.posthog.logs#ListLogsAlertsEvents": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.logs#LogsAlertsEventsListRequest"
+        "target": "com.posthog.logs#ListLogsAlertsEventsRequest"
       },
       "output": {
         "target": "com.posthog.logs#PaginatedLogsAlertEventList"
@@ -3943,7 +3944,7 @@
         "smithy.api#documentation": "Reset a broken alert. Clears the consecutive-failure counter and schedules an immediate recheck."
       }
     },
-    "com.posthog.logs#LogsAlertsSimulateCreateRequest": {
+    "com.posthog.logs#CreateLogsAlertsSimulateRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -3967,7 +3968,7 @@
           }
         },
         "threshold_operator": {
-          "target": "com.posthog.logs#LogsAlertThresholdOperatorEnum",
+          "target": "com.posthog.logs#LogsAlertConfigurationThresholdOperatorEnum",
           "traits": {
             "smithy.api#documentation": "Whether the alert fires when the count is above or below the threshold.\n\n* `above` - Above\n* `below` - Below"
           }
@@ -4106,10 +4107,10 @@
         "smithy.api#documentation": "Time-bucketed counts with full state machine evaluation."
       }
     },
-    "com.posthog.logs#LogsAlertsSimulateCreate": {
+    "com.posthog.logs#CreateLogsAlertsSimulate": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.logs#LogsAlertsSimulateCreateRequest"
+        "target": "com.posthog.logs#CreateLogsAlertsSimulateRequest"
       },
       "output": {
         "target": "com.posthog.logs#LogsAlertSimulateResponse"
@@ -4154,7 +4155,7 @@
       },
       "traits": {}
     },
-    "com.posthog.logs#LogsAnomaliesScanCreateRequest": {
+    "com.posthog.logs#CreateLogsAnomaliesScanRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -4656,10 +4657,10 @@
         "smithy.api#documentation": "Anomaly issues that opened during the evaluation window, oldest first."
       }
     },
-    "com.posthog.logs#LogsAnomaliesScanCreate": {
+    "com.posthog.logs#CreateLogsAnomaliesScan": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.logs#LogsAnomaliesScanCreateRequest"
+        "target": "com.posthog.logs#CreateLogsAnomaliesScanRequest"
       },
       "output": {
         "target": "com.posthog.logs#LogsAnomalyScanResponse"
@@ -4678,6 +4679,26 @@
         "smithy.api#documentation": "Scan a service's logs for volume anomalies\n\nRuns anomaly detection on demand over one service's log volume for the given window. Learns per severity baselines from up to 6 weeks of history and returns per bucket expected bands plus any spike, drop, or silence issues. Synchronous and read only."
       }
     },
+    "com.posthog.logs#SeriesBandsDateRange": {
+      "type": "structure",
+      "members": {
+        "date_from": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Start of the window. Accepts ISO 8601 timestamps or relative formats: -7d, -1h, -1wStart, etc.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "date_to": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "End of the window. Same format as date_from. Omit or null for \"now\".",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
     "com.posthog.logs#IntervalMinutesEnum": {
       "type": "intEnum",
       "members": {
@@ -4692,7 +4713,7 @@
         "smithy.api#documentation": "* `60` - 60"
       }
     },
-    "com.posthog.logs#LogsAnomaliesSeriesBandsCreateRequest": {
+    "com.posthog.logs#CreateLogsAnomaliesSeriesBandRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -4708,6 +4729,12 @@
           "traits": {
             "smithy.api#documentation": "Service whose per-series volume to chart (the log record's service_name).",
             "smithy.api#required": {}
+          }
+        },
+        "dateRange": {
+          "target": "com.posthog.logs#SeriesBandsDateRange",
+          "traits": {
+            "smithy.api#documentation": "Window to chart. Defaults to the last 7 days. It may span at most 7 days and start at most 35 days ago, past which the volume rollup no longer reaches."
           }
         },
         "intervalMinutes": {
@@ -4807,6 +4834,21 @@
             "smithy.api#required": {}
           }
         },
+        "history_start": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Earliest bucket with data inside the fetched lookback.",
+            "smithy.api#required": {}
+          }
+        },
+        "band_ready_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When this series gains its band, so a learning series can count down to it. Null once the band is drawn.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
         "buckets": {
           "target": "com.posthog.logs#LogsSeriesBandSeriesBucketsList",
           "traits": {
@@ -4871,15 +4913,18 @@
         "smithy.api#documentation": "One entry per (namespace, environment, severity) series, ordered by observed volume descending."
       }
     },
-    "com.posthog.logs#LogsAnomaliesSeriesBandsCreate": {
+    "com.posthog.logs#CreateLogsAnomaliesSeriesBand": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.logs#LogsAnomaliesSeriesBandsCreateRequest"
+        "target": "com.posthog.logs#CreateLogsAnomaliesSeriesBandRequest"
       },
       "output": {
         "target": "com.posthog.logs#LogsSeriesBandsResponse"
       },
       "errors": [
+        {
+          "target": "com.posthog.logs#BadRequest"
+        },
         {
           "target": "com.posthog.logs#UnprocessableEntity"
         }
@@ -4890,10 +4935,10 @@
           "uri": "/api/projects/{project_id}/logs/anomalies/series_bands/",
           "code": 200
         },
-        "smithy.api#documentation": "Per-series log volume with expected bands\n\nReturns the last 7 days of log volume for every (namespace, environment, severity) series of one service, with a time-of-week expected band derived from the prior weeks of the volume rollup. Synchronous and read only."
+        "smithy.api#documentation": "Per-series log volume with expected bands\n\nReturns log volume over the requested window for every (namespace, environment, severity) series of one service, with a time-of-week expected band derived from the prior weeks of the volume rollup. The window defaults to the last 7 days and may span at most 7 days. Synchronous and read only."
       }
     },
-    "com.posthog.logs#LogsAttributesRetrieveRequestAttributeType": {
+    "com.posthog.logs#GetLogsAttributeRequestAttributeType": {
       "type": "enum",
       "members": {
         "LOG": {
@@ -5097,21 +5142,21 @@
         "smithy.api#documentation": "* `exact` - exact\n* `is_not` - is_not\n* `icontains` - icontains\n* `not_icontains` - not_icontains\n* `starts_with` - starts_with\n* `not_starts_with` - not_starts_with\n* `ends_with` - ends_with\n* `not_ends_with` - not_ends_with\n* `regex` - regex\n* `not_regex` - not_regex\n* `gt` - gt\n* `lt` - lt\n* `is_date_exact` - is_date_exact\n* `is_date_before` - is_date_before\n* `is_date_after` - is_date_after\n* `is_set` - is_set\n* `is_not_set` - is_not_set"
       }
     },
-    "com.posthog.logs#LogsAttributesRetrieveRequestFilterGroupList": {
+    "com.posthog.logs#GetLogsAttributeRequestFilterGroupList": {
       "type": "list",
       "member": {
         "target": "com.posthog.logs#LogPropertyFilter2"
       },
       "traits": {}
     },
-    "com.posthog.logs#LogsAttributesRetrieveRequestServiceNamesList": {
+    "com.posthog.logs#GetLogsAttributeRequestServiceNamesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.posthog.logs#LogsAttributesRetrieveRequest": {
+    "com.posthog.logs#GetLogsAttributeRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -5123,7 +5168,7 @@
           }
         },
         "attribute_type": {
-          "target": "com.posthog.logs#LogsAttributesRetrieveRequestAttributeType",
+          "target": "com.posthog.logs#GetLogsAttributeRequestAttributeType",
           "traits": {
             "smithy.api#httpQuery": "attribute_type",
             "smithy.api#documentation": "Type of attributes: \"log\" for log attributes, \"resource\" for resource attributes. Defaults to \"log\".\n\n* `log` - log\n* `resource` - resource"
@@ -5137,7 +5182,7 @@
           }
         },
         "filterGroup": {
-          "target": "com.posthog.logs#LogsAttributesRetrieveRequestFilterGroupList",
+          "target": "com.posthog.logs#GetLogsAttributeRequestFilterGroupList",
           "traits": {
             "smithy.api#httpQuery": "filterGroup",
             "smithy.api#documentation": "Property filters to narrow which logs are scanned for attributes."
@@ -5172,7 +5217,7 @@
           }
         },
         "serviceNames": {
-          "target": "com.posthog.logs#LogsAttributesRetrieveRequestServiceNamesList",
+          "target": "com.posthog.logs#GetLogsAttributeRequestServiceNamesList",
           "traits": {
             "smithy.api#httpQuery": "serviceNames",
             "smithy.api#documentation": "Filter attributes to those appearing in logs from these services."
@@ -5258,10 +5303,10 @@
         "smithy.api#documentation": "Available attribute keys matching the filters."
       }
     },
-    "com.posthog.logs#LogsAttributesRetrieve": {
+    "com.posthog.logs#GetLogsAttribute": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.logs#LogsAttributesRetrieveRequest"
+        "target": "com.posthog.logs#GetLogsAttributeRequest"
       },
       "output": {
         "target": "com.posthog.logs#LogsAttributesResponse"
@@ -5392,7 +5437,7 @@
         "smithy.api#documentation": "Property filters for the query."
       }
     },
-    "com.posthog.logs#LogsCountCreateRequest": {
+    "com.posthog.logs#CreateLogsCountRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -5426,10 +5471,10 @@
       },
       "traits": {}
     },
-    "com.posthog.logs#LogsCountCreate": {
+    "com.posthog.logs#CreateLogsCount": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.logs#LogsCountCreateRequest"
+        "target": "com.posthog.logs#CreateLogsCountRequest"
       },
       "output": {
         "target": "com.posthog.logs#LogsCountResponse"
@@ -5522,7 +5567,7 @@
         "smithy.api#documentation": "Property filters applied before bucketing. Same shape as `query-logs`."
       }
     },
-    "com.posthog.logs#LogsCountRangesCreateRequest": {
+    "com.posthog.logs#CreateLogsCountRangeRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -5601,10 +5646,10 @@
         "smithy.api#documentation": "Buckets ordered by `date_from` ascending. Empty buckets are omitted — infer gaps by comparing each bucket's `date_to` to the next bucket's `date_from`."
       }
     },
-    "com.posthog.logs#LogsCountRangesCreate": {
+    "com.posthog.logs#CreateLogsCountRange": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.logs#LogsCountRangesCreateRequest"
+        "target": "com.posthog.logs#CreateLogsCountRangeRequest"
       },
       "output": {
         "target": "com.posthog.logs#LogsCountRangesResponse"
@@ -5617,7 +5662,7 @@
         }
       }
     },
-    "com.posthog.logs#LogsExplainLogWithAICreateRequest": {
+    "com.posthog.logs#CreateLogsExplainLogWithAIRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -5675,10 +5720,10 @@
       },
       "traits": {}
     },
-    "com.posthog.logs#LogsExplainLogWithAICreate": {
+    "com.posthog.logs#CreateLogsExplainLogWithAI": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.logs#LogsExplainLogWithAICreateRequest"
+        "target": "com.posthog.logs#CreateLogsExplainLogWithAIRequest"
       },
       "output": {
         "target": "com.posthog.logs#ExplainRequest"
@@ -5873,7 +5918,7 @@
         "smithy.api#documentation": "Property filters for the query."
       }
     },
-    "com.posthog.logs#LogsFacetValuesCreateRequest": {
+    "com.posthog.logs#CreateLogsFacetValueRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -5938,10 +5983,10 @@
         "smithy.api#documentation": "Facet values with cross-filtered counts, ordered by count descending."
       }
     },
-    "com.posthog.logs#LogsFacetValuesCreate": {
+    "com.posthog.logs#CreateLogsFacetValue": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.logs#LogsFacetValuesCreateRequest"
+        "target": "com.posthog.logs#CreateLogsFacetValueRequest"
       },
       "output": {
         "target": "com.posthog.logs#LogsFacetValuesResponse"
@@ -6127,7 +6172,7 @@
         "smithy.api#documentation": "* `log_count` - log_count\n* `error_count` - error_count\n* `last_seen` - last_seen"
       }
     },
-    "com.posthog.logs#LogsGroupByCreateRequest": {
+    "com.posthog.logs#CreateLogsGroupByRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -6243,10 +6288,10 @@
         "smithy.api#documentation": "Top groups ordered by the requested aggregate, descending. Capped at `limit`."
       }
     },
-    "com.posthog.logs#LogsGroupByCreate": {
+    "com.posthog.logs#CreateLogsGroupBy": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.logs#LogsGroupByCreateRequest"
+        "target": "com.posthog.logs#CreateLogsGroupByRequest"
       },
       "output": {
         "target": "com.posthog.logs#LogsGroupByResponse"
@@ -6259,7 +6304,7 @@
         }
       }
     },
-    "com.posthog.logs#LogsHasLogsRetrieveRequest": {
+    "com.posthog.logs#GetLogsHasLogRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -6275,7 +6320,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.logs#LogsHasLogsRetrieveResponseBodyMap": {
+    "com.posthog.logs#GetLogsHasLogResponseBodyMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6285,11 +6330,11 @@
       },
       "traits": {}
     },
-    "com.posthog.logs#LogsHasLogsRetrieveResponse": {
+    "com.posthog.logs#GetLogsHasLogResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.posthog.logs#LogsHasLogsRetrieveResponseBodyMap",
+          "target": "com.posthog.logs#GetLogsHasLogResponseBodyMap",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -6300,13 +6345,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.posthog.logs#LogsHasLogsRetrieve": {
+    "com.posthog.logs#GetLogsHasLog": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.logs#LogsHasLogsRetrieveRequest"
+        "target": "com.posthog.logs#GetLogsHasLogRequest"
       },
       "output": {
-        "target": "com.posthog.logs#LogsHasLogsRetrieveResponse"
+        "target": "com.posthog.logs#GetLogsHasLogResponse"
       },
       "errors": [
         {
@@ -6324,7 +6369,7 @@
         }
       }
     },
-    "com.posthog.logs#LogsMetricRulesListRequest": {
+    "com.posthog.logs#ListLogsMetricRulesRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -6478,10 +6523,10 @@
       },
       "traits": {}
     },
-    "com.posthog.logs#LogsMetricRulesList": {
+    "com.posthog.logs#ListLogsMetricRules": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.logs#LogsMetricRulesListRequest"
+        "target": "com.posthog.logs#ListLogsMetricRulesRequest"
       },
       "output": {
         "target": "com.posthog.logs#PaginatedLogsMetricRuleList"
@@ -6494,7 +6539,7 @@
         }
       }
     },
-    "com.posthog.logs#LogsMetricRulesCreateRequestGroupByList": {
+    "com.posthog.logs#CreateLogsMetricRuleRequestGroupByList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -6503,7 +6548,7 @@
         "smithy.api#documentation": "Up to 5 dimension keys; each distinct value combination becomes its own metric series. Allowed: service_name, severity_text, event_name, or map keys prefixed with `attributes.` / `resource_attributes.`. Avoid high-cardinality keys (user IDs, request IDs) — excess series are dropped at ingestion."
       }
     },
-    "com.posthog.logs#LogsMetricRulesCreateRequest": {
+    "com.posthog.logs#CreateLogsMetricRuleRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -6548,7 +6593,7 @@
           }
         },
         "group_by": {
-          "target": "com.posthog.logs#LogsMetricRulesCreateRequestGroupByList",
+          "target": "com.posthog.logs#CreateLogsMetricRuleRequestGroupByList",
           "traits": {
             "smithy.api#documentation": "Up to 5 dimension keys; each distinct value combination becomes its own metric series. Allowed: service_name, severity_text, event_name, or map keys prefixed with `attributes.` / `resource_attributes.`. Avoid high-cardinality keys (user IDs, request IDs) — excess series are dropped at ingestion."
           }
@@ -6558,10 +6603,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.logs#LogsMetricRulesCreate": {
+    "com.posthog.logs#CreateLogsMetricRule": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.logs#LogsMetricRulesCreateRequest"
+        "target": "com.posthog.logs#CreateLogsMetricRuleRequest"
       },
       "output": {
         "target": "com.posthog.logs#LogsMetricRule"
@@ -6574,7 +6619,7 @@
         }
       }
     },
-    "com.posthog.logs#LogsMetricRulesRetrieveRequest": {
+    "com.posthog.logs#GetLogsMetricRuleRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -6598,10 +6643,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.logs#LogsMetricRulesRetrieve": {
+    "com.posthog.logs#GetLogsMetricRule": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.logs#LogsMetricRulesRetrieveRequest"
+        "target": "com.posthog.logs#GetLogsMetricRuleRequest"
       },
       "output": {
         "target": "com.posthog.logs#LogsMetricRule"
@@ -6614,7 +6659,7 @@
         }
       }
     },
-    "com.posthog.logs#LogsMetricRulesUpdateRequestGroupByList": {
+    "com.posthog.logs#UpdateLogsMetricRuleRequestGroupByList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -6623,7 +6668,7 @@
         "smithy.api#documentation": "Up to 5 dimension keys; each distinct value combination becomes its own metric series. Allowed: service_name, severity_text, event_name, or map keys prefixed with `attributes.` / `resource_attributes.`. Avoid high-cardinality keys (user IDs, request IDs) — excess series are dropped at ingestion."
       }
     },
-    "com.posthog.logs#LogsMetricRulesUpdateRequest": {
+    "com.posthog.logs#UpdateLogsMetricRuleRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -6676,7 +6721,7 @@
           }
         },
         "group_by": {
-          "target": "com.posthog.logs#LogsMetricRulesUpdateRequestGroupByList",
+          "target": "com.posthog.logs#UpdateLogsMetricRuleRequestGroupByList",
           "traits": {
             "smithy.api#documentation": "Up to 5 dimension keys; each distinct value combination becomes its own metric series. Allowed: service_name, severity_text, event_name, or map keys prefixed with `attributes.` / `resource_attributes.`. Avoid high-cardinality keys (user IDs, request IDs) — excess series are dropped at ingestion."
           }
@@ -6686,10 +6731,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.logs#LogsMetricRulesUpdate": {
+    "com.posthog.logs#UpdateLogsMetricRule": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.logs#LogsMetricRulesUpdateRequest"
+        "target": "com.posthog.logs#UpdateLogsMetricRuleRequest"
       },
       "output": {
         "target": "com.posthog.logs#LogsMetricRule"
@@ -6702,7 +6747,7 @@
         }
       }
     },
-    "com.posthog.logs#LogsMetricRulesPartialUpdateRequestGroupByList": {
+    "com.posthog.logs#UpdateLogsMetricRulesPartialRequestGroupByList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -6711,7 +6756,7 @@
         "smithy.api#documentation": "Up to 5 dimension keys; each distinct value combination becomes its own metric series. Allowed: service_name, severity_text, event_name, or map keys prefixed with `attributes.` / `resource_attributes.`. Avoid high-cardinality keys (user IDs, request IDs) — excess series are dropped at ingestion."
       }
     },
-    "com.posthog.logs#LogsMetricRulesPartialUpdateRequest": {
+    "com.posthog.logs#UpdateLogsMetricRulesPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -6762,7 +6807,7 @@
           }
         },
         "group_by": {
-          "target": "com.posthog.logs#LogsMetricRulesPartialUpdateRequestGroupByList",
+          "target": "com.posthog.logs#UpdateLogsMetricRulesPartialRequestGroupByList",
           "traits": {
             "smithy.api#documentation": "Up to 5 dimension keys; each distinct value combination becomes its own metric series. Allowed: service_name, severity_text, event_name, or map keys prefixed with `attributes.` / `resource_attributes.`. Avoid high-cardinality keys (user IDs, request IDs) — excess series are dropped at ingestion."
           }
@@ -6772,10 +6817,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.logs#LogsMetricRulesPartialUpdate": {
+    "com.posthog.logs#UpdateLogsMetricRulesPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.logs#LogsMetricRulesPartialUpdateRequest"
+        "target": "com.posthog.logs#UpdateLogsMetricRulesPartialRequest"
       },
       "output": {
         "target": "com.posthog.logs#LogsMetricRule"
@@ -6891,7 +6936,7 @@
         "smithy.api#documentation": "Property filters applied before mining. Same shape as the query-logs endpoint."
       }
     },
-    "com.posthog.logs#LogsPatternsCreateRequest": {
+    "com.posthog.logs#CreateLogsPatternRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -7179,10 +7224,10 @@
         "smithy.api#documentation": "Time buckets that every pattern's `sparkline` aligns to. When the scan was bounded to time slices, the buckets are the slices themselves (evenly spaced, gaps between them were never eligible for sampling); otherwise they divide the window uniformly."
       }
     },
-    "com.posthog.logs#LogsPatternsCreate": {
+    "com.posthog.logs#CreateLogsPattern": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.logs#LogsPatternsCreateRequest"
+        "target": "com.posthog.logs#CreateLogsPatternRequest"
       },
       "output": {
         "target": "com.posthog.logs#LogsPatternsResponse"
@@ -7195,7 +7240,7 @@
         }
       }
     },
-    "com.posthog.logs#LogsPatternsDiffCreateRequest": {
+    "com.posthog.logs#CreateLogsPatternsDiffRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -7384,10 +7429,10 @@
       },
       "traits": {}
     },
-    "com.posthog.logs#LogsPatternsDiffCreate": {
+    "com.posthog.logs#CreateLogsPatternsDiff": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.logs#LogsPatternsDiffCreateRequest"
+        "target": "com.posthog.logs#CreateLogsPatternsDiffRequest"
       },
       "output": {
         "target": "com.posthog.logs#LogsPatternsDiffResponse"
@@ -7528,7 +7573,7 @@
         "smithy.api#documentation": "Custom column expressions evaluated per log row. Each entry is either a source-prefixed shorthand (`attributes.<key>`, `resource_attributes.<key>`, `body.<json.path>`) or a scalar HogQL expression (`upper(level)`, `coalesce(attributes['a'], attributes['b'])`). Aggregations and subqueries are rejected. Values come back on each result row keyed by the aliases echoed in the response `columns` field."
       }
     },
-    "com.posthog.logs#LogsQueryCreateRequest": {
+    "com.posthog.logs#CreateLogsQueryRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -7726,10 +7771,10 @@
         "smithy.api#documentation": "Aliases for the requested `customColumns`, in request order. Each result row carries its custom column values under these keys. Null when no custom columns were requested."
       }
     },
-    "com.posthog.logs#LogsQueryCreate": {
+    "com.posthog.logs#CreateLogsQuery": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.logs#LogsQueryCreateRequest"
+        "target": "com.posthog.logs#CreateLogsQueryRequest"
       },
       "output": {
         "target": "com.posthog.logs#LogsQueryResponse"
@@ -7753,7 +7798,7 @@
         }
       }
     },
-    "com.posthog.logs#LogsRetentionRulesListRequest": {
+    "com.posthog.logs#ListLogsRetentionRulesRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -7886,10 +7931,10 @@
       },
       "traits": {}
     },
-    "com.posthog.logs#LogsRetentionRulesList": {
+    "com.posthog.logs#ListLogsRetentionRules": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.logs#LogsRetentionRulesListRequest"
+        "target": "com.posthog.logs#ListLogsRetentionRulesRequest"
       },
       "output": {
         "target": "com.posthog.logs#PaginatedLogsRetentionRuleList"
@@ -7902,7 +7947,7 @@
         }
       }
     },
-    "com.posthog.logs#LogsRetentionRulesCreateRequest": {
+    "com.posthog.logs#CreateLogsRetentionRuleRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -7945,10 +7990,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.logs#LogsRetentionRulesCreate": {
+    "com.posthog.logs#CreateLogsRetentionRule": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.logs#LogsRetentionRulesCreateRequest"
+        "target": "com.posthog.logs#CreateLogsRetentionRuleRequest"
       },
       "output": {
         "target": "com.posthog.logs#LogsRetentionRule"
@@ -7961,7 +8006,7 @@
         }
       }
     },
-    "com.posthog.logs#LogsRetentionRulesRetrieveRequest": {
+    "com.posthog.logs#GetLogsRetentionRuleRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -7985,10 +8030,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.logs#LogsRetentionRulesRetrieve": {
+    "com.posthog.logs#GetLogsRetentionRule": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.logs#LogsRetentionRulesRetrieveRequest"
+        "target": "com.posthog.logs#GetLogsRetentionRuleRequest"
       },
       "output": {
         "target": "com.posthog.logs#LogsRetentionRule"
@@ -8001,7 +8046,7 @@
         }
       }
     },
-    "com.posthog.logs#LogsRetentionRulesUpdateRequest": {
+    "com.posthog.logs#UpdateLogsRetentionRuleRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -8052,10 +8097,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.logs#LogsRetentionRulesUpdate": {
+    "com.posthog.logs#UpdateLogsRetentionRule": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.logs#LogsRetentionRulesUpdateRequest"
+        "target": "com.posthog.logs#UpdateLogsRetentionRuleRequest"
       },
       "output": {
         "target": "com.posthog.logs#LogsRetentionRule"
@@ -8068,7 +8113,7 @@
         }
       }
     },
-    "com.posthog.logs#LogsRetentionRulesPartialUpdateRequest": {
+    "com.posthog.logs#UpdateLogsRetentionRulesPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -8117,10 +8162,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.logs#LogsRetentionRulesPartialUpdate": {
+    "com.posthog.logs#UpdateLogsRetentionRulesPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.logs#LogsRetentionRulesPartialUpdateRequest"
+        "target": "com.posthog.logs#UpdateLogsRetentionRulesPartialRequest"
       },
       "output": {
         "target": "com.posthog.logs#LogsRetentionRule"
@@ -8173,7 +8218,7 @@
         }
       }
     },
-    "com.posthog.logs#LogsRetentionRulesReorderCreateRequestOrderedIdsList": {
+    "com.posthog.logs#CreateLogsRetentionRulesReorderRequestOrderedIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -8182,7 +8227,7 @@
         "smithy.api#documentation": "Rule IDs in the desired evaluation order (first element is highest priority / lowest order index)."
       }
     },
-    "com.posthog.logs#LogsRetentionRulesReorderCreateRequest": {
+    "com.posthog.logs#CreateLogsRetentionRulesReorderRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -8208,7 +8253,7 @@
           }
         },
         "ordered_ids": {
-          "target": "com.posthog.logs#LogsRetentionRulesReorderCreateRequestOrderedIdsList",
+          "target": "com.posthog.logs#CreateLogsRetentionRulesReorderRequestOrderedIdsList",
           "traits": {
             "smithy.api#documentation": "Rule IDs in the desired evaluation order (first element is highest priority / lowest order index).",
             "smithy.api#required": {}
@@ -8219,10 +8264,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.logs#LogsRetentionRulesReorderCreate": {
+    "com.posthog.logs#CreateLogsRetentionRulesReorder": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.logs#LogsRetentionRulesReorderCreateRequest"
+        "target": "com.posthog.logs#CreateLogsRetentionRulesReorderRequest"
       },
       "output": {
         "target": "com.posthog.logs#PaginatedLogsRetentionRuleList"
@@ -8236,7 +8281,7 @@
         "smithy.api#documentation": "Atomically reassign priorities so the given ID order maps to ascending priorities (0..n-1)."
       }
     },
-    "com.posthog.logs#LogsRetentionRulesSuggestNameCreateRequest": {
+    "com.posthog.logs#CreateLogsRetentionRulesSuggestNameRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -8279,10 +8324,10 @@
       },
       "traits": {}
     },
-    "com.posthog.logs#LogsRetentionRulesSuggestNameCreate": {
+    "com.posthog.logs#CreateLogsRetentionRulesSuggestName": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.logs#LogsRetentionRulesSuggestNameCreateRequest"
+        "target": "com.posthog.logs#CreateLogsRetentionRulesSuggestNameRequest"
       },
       "output": {
         "target": "com.posthog.logs#LogsRetentionRuleNameSuggestion"
@@ -8296,7 +8341,7 @@
         "smithy.api#documentation": "Suggest a human-readable name for a retention rule from its retention tier and filter group. Used by the create form as an auto-suggest; nothing is persisted. Returns an empty name when a suggestion can't be generated."
       }
     },
-    "com.posthog.logs#LogsSamplingRulesListRequest": {
+    "com.posthog.logs#ListLogsSamplingRulesRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -8387,7 +8432,7 @@
           }
         },
         "rule_type": {
-          "target": "com.posthog.logs#RuleTypeEnum",
+          "target": "com.posthog.logs#LogsExclusionRuleRuleTypeEnum",
           "traits": {
             "smithy.api#documentation": "Rule kind: severity_sampling, path_drop, or rate_limit (caps matching log volume at ingestion).\n\n* `severity_sampling` - Severity-based reduction\n* `path_drop` - Path exclusion\n* `rate_limit` - Rate limit",
             "smithy.api#required": {}
@@ -8449,7 +8494,7 @@
       },
       "traits": {}
     },
-    "com.posthog.logs#RuleTypeEnum": {
+    "com.posthog.logs#LogsExclusionRuleRuleTypeEnum": {
       "type": "enum",
       "members": {
         "SEVERITY_SAMPLING": {
@@ -8501,10 +8546,10 @@
       },
       "traits": {}
     },
-    "com.posthog.logs#LogsSamplingRulesList": {
+    "com.posthog.logs#ListLogsSamplingRules": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.logs#LogsSamplingRulesListRequest"
+        "target": "com.posthog.logs#ListLogsSamplingRulesRequest"
       },
       "output": {
         "target": "com.posthog.logs#PaginatedLogsSamplingRuleList"
@@ -8517,7 +8562,7 @@
         }
       }
     },
-    "com.posthog.logs#LogsSamplingRulesCreateRequestScopeAttributeFiltersItemMap": {
+    "com.posthog.logs#CreateLogsSamplingRuleRequestScopeAttributeFiltersItemMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8527,16 +8572,16 @@
       },
       "traits": {}
     },
-    "com.posthog.logs#LogsSamplingRulesCreateRequestScopeAttributeFiltersList": {
+    "com.posthog.logs#CreateLogsSamplingRuleRequestScopeAttributeFiltersList": {
       "type": "list",
       "member": {
-        "target": "com.posthog.logs#LogsSamplingRulesCreateRequestScopeAttributeFiltersItemMap"
+        "target": "com.posthog.logs#CreateLogsSamplingRuleRequestScopeAttributeFiltersItemMap"
       },
       "traits": {
         "smithy.api#documentation": "Optional list of predicates over string attributes, e.g. [{\"key\":\"http.route\",\"op\":\"eq\",\"value\":\"/api\"}]."
       }
     },
-    "com.posthog.logs#LogsSamplingRulesCreateRequest": {
+    "com.posthog.logs#CreateLogsSamplingRuleRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -8568,7 +8613,7 @@
           }
         },
         "rule_type": {
-          "target": "com.posthog.logs#RuleTypeEnum",
+          "target": "com.posthog.logs#LogsExclusionRuleRuleTypeEnum",
           "traits": {
             "smithy.api#documentation": "Rule kind: severity_sampling, path_drop, or rate_limit (caps matching log volume at ingestion).\n\n* `severity_sampling` - Severity-based reduction\n* `path_drop` - Path exclusion\n* `rate_limit` - Rate limit",
             "smithy.api#required": {}
@@ -8589,7 +8634,7 @@
           }
         },
         "scope_attribute_filters": {
-          "target": "com.posthog.logs#LogsSamplingRulesCreateRequestScopeAttributeFiltersList",
+          "target": "com.posthog.logs#CreateLogsSamplingRuleRequestScopeAttributeFiltersList",
           "traits": {
             "smithy.api#documentation": "Optional list of predicates over string attributes, e.g. [{\"key\":\"http.route\",\"op\":\"eq\",\"value\":\"/api\"}]."
           }
@@ -8606,10 +8651,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.logs#LogsSamplingRulesCreate": {
+    "com.posthog.logs#CreateLogsSamplingRule": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.logs#LogsSamplingRulesCreateRequest"
+        "target": "com.posthog.logs#CreateLogsSamplingRuleRequest"
       },
       "output": {
         "target": "com.posthog.logs#LogsSamplingRule"
@@ -8622,7 +8667,7 @@
         }
       }
     },
-    "com.posthog.logs#LogsSamplingRulesRetrieveRequest": {
+    "com.posthog.logs#GetLogsSamplingRuleRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -8646,10 +8691,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.logs#LogsSamplingRulesRetrieve": {
+    "com.posthog.logs#GetLogsSamplingRule": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.logs#LogsSamplingRulesRetrieveRequest"
+        "target": "com.posthog.logs#GetLogsSamplingRuleRequest"
       },
       "output": {
         "target": "com.posthog.logs#LogsSamplingRule"
@@ -8662,7 +8707,7 @@
         }
       }
     },
-    "com.posthog.logs#LogsSamplingRulesUpdateRequestScopeAttributeFiltersItemMap": {
+    "com.posthog.logs#UpdateLogsSamplingRuleRequestScopeAttributeFiltersItemMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8672,16 +8717,16 @@
       },
       "traits": {}
     },
-    "com.posthog.logs#LogsSamplingRulesUpdateRequestScopeAttributeFiltersList": {
+    "com.posthog.logs#UpdateLogsSamplingRuleRequestScopeAttributeFiltersList": {
       "type": "list",
       "member": {
-        "target": "com.posthog.logs#LogsSamplingRulesUpdateRequestScopeAttributeFiltersItemMap"
+        "target": "com.posthog.logs#UpdateLogsSamplingRuleRequestScopeAttributeFiltersItemMap"
       },
       "traits": {
         "smithy.api#documentation": "Optional list of predicates over string attributes, e.g. [{\"key\":\"http.route\",\"op\":\"eq\",\"value\":\"/api\"}]."
       }
     },
-    "com.posthog.logs#LogsSamplingRulesUpdateRequest": {
+    "com.posthog.logs#UpdateLogsSamplingRuleRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -8721,7 +8766,7 @@
           }
         },
         "rule_type": {
-          "target": "com.posthog.logs#RuleTypeEnum",
+          "target": "com.posthog.logs#LogsExclusionRuleRuleTypeEnum",
           "traits": {
             "smithy.api#documentation": "Rule kind: severity_sampling, path_drop, or rate_limit (caps matching log volume at ingestion).\n\n* `severity_sampling` - Severity-based reduction\n* `path_drop` - Path exclusion\n* `rate_limit` - Rate limit",
             "smithy.api#required": {}
@@ -8742,7 +8787,7 @@
           }
         },
         "scope_attribute_filters": {
-          "target": "com.posthog.logs#LogsSamplingRulesUpdateRequestScopeAttributeFiltersList",
+          "target": "com.posthog.logs#UpdateLogsSamplingRuleRequestScopeAttributeFiltersList",
           "traits": {
             "smithy.api#documentation": "Optional list of predicates over string attributes, e.g. [{\"key\":\"http.route\",\"op\":\"eq\",\"value\":\"/api\"}]."
           }
@@ -8759,10 +8804,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.logs#LogsSamplingRulesUpdate": {
+    "com.posthog.logs#UpdateLogsSamplingRule": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.logs#LogsSamplingRulesUpdateRequest"
+        "target": "com.posthog.logs#UpdateLogsSamplingRuleRequest"
       },
       "output": {
         "target": "com.posthog.logs#LogsSamplingRule"
@@ -8775,7 +8820,7 @@
         }
       }
     },
-    "com.posthog.logs#LogsSamplingRulesPartialUpdateRequestScopeAttributeFiltersItemMap": {
+    "com.posthog.logs#UpdateLogsSamplingRulesPartialRequestScopeAttributeFiltersItemMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8785,16 +8830,16 @@
       },
       "traits": {}
     },
-    "com.posthog.logs#LogsSamplingRulesPartialUpdateRequestScopeAttributeFiltersList": {
+    "com.posthog.logs#UpdateLogsSamplingRulesPartialRequestScopeAttributeFiltersList": {
       "type": "list",
       "member": {
-        "target": "com.posthog.logs#LogsSamplingRulesPartialUpdateRequestScopeAttributeFiltersItemMap"
+        "target": "com.posthog.logs#UpdateLogsSamplingRulesPartialRequestScopeAttributeFiltersItemMap"
       },
       "traits": {
         "smithy.api#documentation": "Optional list of predicates over string attributes, e.g. [{\"key\":\"http.route\",\"op\":\"eq\",\"value\":\"/api\"}]."
       }
     },
-    "com.posthog.logs#LogsSamplingRulesPartialUpdateRequest": {
+    "com.posthog.logs#UpdateLogsSamplingRulesPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -8833,7 +8878,7 @@
           }
         },
         "rule_type": {
-          "target": "com.posthog.logs#RuleTypeEnum",
+          "target": "com.posthog.logs#LogsExclusionRuleRuleTypeEnum",
           "traits": {
             "smithy.api#documentation": "Rule kind: severity_sampling, path_drop, or rate_limit (caps matching log volume at ingestion).\n\n* `severity_sampling` - Severity-based reduction\n* `path_drop` - Path exclusion\n* `rate_limit` - Rate limit"
           }
@@ -8853,7 +8898,7 @@
           }
         },
         "scope_attribute_filters": {
-          "target": "com.posthog.logs#LogsSamplingRulesPartialUpdateRequestScopeAttributeFiltersList",
+          "target": "com.posthog.logs#UpdateLogsSamplingRulesPartialRequestScopeAttributeFiltersList",
           "traits": {
             "smithy.api#documentation": "Optional list of predicates over string attributes, e.g. [{\"key\":\"http.route\",\"op\":\"eq\",\"value\":\"/api\"}]."
           }
@@ -8869,10 +8914,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.logs#LogsSamplingRulesPartialUpdate": {
+    "com.posthog.logs#UpdateLogsSamplingRulesPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.logs#LogsSamplingRulesPartialUpdateRequest"
+        "target": "com.posthog.logs#UpdateLogsSamplingRulesPartialRequest"
       },
       "output": {
         "target": "com.posthog.logs#LogsSamplingRule"
@@ -8925,7 +8970,7 @@
         }
       }
     },
-    "com.posthog.logs#LogsSamplingRulesSimulateCreateRequest": {
+    "com.posthog.logs#CreateLogsSamplingRulesSimulateRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -8969,10 +9014,10 @@
       },
       "traits": {}
     },
-    "com.posthog.logs#LogsSamplingRulesSimulateCreate": {
+    "com.posthog.logs#CreateLogsSamplingRulesSimulate": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.logs#LogsSamplingRulesSimulateCreateRequest"
+        "target": "com.posthog.logs#CreateLogsSamplingRulesSimulateRequest"
       },
       "output": {
         "target": "com.posthog.logs#LogsSamplingRuleSimulateResponse"
@@ -8986,7 +9031,7 @@
         "smithy.api#documentation": "Dry-run estimate for how much volume this rule would remove (placeholder response until CH-backed simulation is wired)."
       }
     },
-    "com.posthog.logs#LogsSamplingRulesReorderCreateRequestOrderedIdsList": {
+    "com.posthog.logs#CreateLogsSamplingRulesReorderRequestOrderedIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -8995,7 +9040,7 @@
         "smithy.api#documentation": "Rule IDs in the desired evaluation order (first element is highest priority / lowest order index)."
       }
     },
-    "com.posthog.logs#LogsSamplingRulesReorderCreateRequest": {
+    "com.posthog.logs#CreateLogsSamplingRulesReorderRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -9021,7 +9066,7 @@
           }
         },
         "ordered_ids": {
-          "target": "com.posthog.logs#LogsSamplingRulesReorderCreateRequestOrderedIdsList",
+          "target": "com.posthog.logs#CreateLogsSamplingRulesReorderRequestOrderedIdsList",
           "traits": {
             "smithy.api#documentation": "Rule IDs in the desired evaluation order (first element is highest priority / lowest order index).",
             "smithy.api#required": {}
@@ -9032,10 +9077,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.logs#LogsSamplingRulesReorderCreate": {
+    "com.posthog.logs#CreateLogsSamplingRulesReorder": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.logs#LogsSamplingRulesReorderCreateRequest"
+        "target": "com.posthog.logs#CreateLogsSamplingRulesReorderRequest"
       },
       "output": {
         "target": "com.posthog.logs#PaginatedLogsSamplingRuleList"
@@ -9118,7 +9163,7 @@
         "smithy.api#documentation": "Property filters for the query."
       }
     },
-    "com.posthog.logs#LogsServicesCreateRequest": {
+    "com.posthog.logs#CreateLogsServiceRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -9337,10 +9382,10 @@
       },
       "traits": {}
     },
-    "com.posthog.logs#LogsServicesCreate": {
+    "com.posthog.logs#CreateLogsService": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.logs#LogsServicesCreateRequest"
+        "target": "com.posthog.logs#CreateLogsServiceRequest"
       },
       "output": {
         "target": "com.posthog.logs#LogsServicesResponse"
@@ -9485,7 +9530,7 @@
         "smithy.api#documentation": "* `count` - count\n* `bytes` - bytes"
       }
     },
-    "com.posthog.logs#LogsSparklineCreateRequest": {
+    "com.posthog.logs#CreateLogsSparklineRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -9561,10 +9606,10 @@
         "smithy.api#documentation": "Time-bucketed log counts. Each bucket carries either `severity` or `service` depending on breakdown."
       }
     },
-    "com.posthog.logs#LogsSparklineCreate": {
+    "com.posthog.logs#CreateLogsSparkline": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.logs#LogsSparklineCreateRequest"
+        "target": "com.posthog.logs#CreateLogsSparklineRequest"
       },
       "output": {
         "target": "com.posthog.logs#LogsSparklineResponse"
@@ -9588,7 +9633,7 @@
         }
       }
     },
-    "com.posthog.logs#LogsValuesRetrieveRequestAttributeType": {
+    "com.posthog.logs#GetLogsValueRequestAttributeType": {
       "type": "enum",
       "members": {
         "LOG": {
@@ -9606,21 +9651,21 @@
       },
       "traits": {}
     },
-    "com.posthog.logs#LogsValuesRetrieveRequestFilterGroupList": {
+    "com.posthog.logs#GetLogsValueRequestFilterGroupList": {
       "type": "list",
       "member": {
         "target": "com.posthog.logs#LogPropertyFilter2"
       },
       "traits": {}
     },
-    "com.posthog.logs#LogsValuesRetrieveRequestServiceNamesList": {
+    "com.posthog.logs#GetLogsValueRequestServiceNamesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.posthog.logs#LogsValuesRetrieveRequest": {
+    "com.posthog.logs#GetLogsValueRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -9632,7 +9677,7 @@
           }
         },
         "attribute_type": {
-          "target": "com.posthog.logs#LogsValuesRetrieveRequestAttributeType",
+          "target": "com.posthog.logs#GetLogsValueRequestAttributeType",
           "traits": {
             "smithy.api#httpQuery": "attribute_type",
             "smithy.api#documentation": "Type of attribute: \"log\" or \"resource\". Defaults to \"log\".\n\n* `log` - log\n* `resource` - resource"
@@ -9646,7 +9691,7 @@
           }
         },
         "filterGroup": {
-          "target": "com.posthog.logs#LogsValuesRetrieveRequestFilterGroupList",
+          "target": "com.posthog.logs#GetLogsValueRequestFilterGroupList",
           "traits": {
             "smithy.api#httpQuery": "filterGroup",
             "smithy.api#documentation": "Property filters to narrow which logs are scanned for values."
@@ -9661,7 +9706,7 @@
           }
         },
         "serviceNames": {
-          "target": "com.posthog.logs#LogsValuesRetrieveRequestServiceNamesList",
+          "target": "com.posthog.logs#GetLogsValueRequestServiceNamesList",
           "traits": {
             "smithy.api#httpQuery": "serviceNames",
             "smithy.api#documentation": "Filter values to those appearing in logs from these services."
@@ -9730,10 +9775,10 @@
         "smithy.api#documentation": "Distinct values observed for the requested attribute."
       }
     },
-    "com.posthog.logs#LogsValuesRetrieve": {
+    "com.posthog.logs#GetLogsValue": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.logs#LogsValuesRetrieveRequest"
+        "target": "com.posthog.logs#GetLogsValueRequest"
       },
       "output": {
         "target": "com.posthog.logs#LogsValuesResponse"
@@ -9757,7 +9802,7 @@
         }
       }
     },
-    "com.posthog.logs#LogsViewsListRequest": {
+    "com.posthog.logs#ListLogsViewsRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -9882,7 +9927,7 @@
         "type": {
           "target": "com.posthog.logs#LogsViewColumnTypeEnum",
           "traits": {
-            "smithy.api#documentation": "Column type. Built-in types resolve client-side from log row fields; `custom` columns are computed server-side from `expression`.\n\n* `timestamp` - timestamp\n* `level` - level\n* `source` - source\n* `trace_id` - trace_id\n* `span_id` - span_id\n* `message` - message\n* `custom` - custom",
+            "smithy.api#documentation": "Column type. Most built-in types resolve client-side from log row fields; `pattern` and `custom` columns are computed server-side, the latter from `expression`.\n\n* `timestamp` - timestamp\n* `level` - level\n* `source` - source\n* `trace_id` - trace_id\n* `span_id` - span_id\n* `pattern` - pattern\n* `message` - message\n* `custom` - custom",
             "smithy.api#required": {}
           }
         },
@@ -9940,6 +9985,12 @@
             "smithy.api#enumValue": "span_id"
           }
         },
+        "PATTERN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pattern"
+          }
+        },
         "MESSAGE": {
           "target": "smithy.api#Unit",
           "traits": {
@@ -9954,7 +10005,7 @@
         }
       },
       "traits": {
-        "smithy.api#documentation": "* `timestamp` - timestamp\n* `level` - level\n* `source` - source\n* `trace_id` - trace_id\n* `span_id` - span_id\n* `message` - message\n* `custom` - custom"
+        "smithy.api#documentation": "* `timestamp` - timestamp\n* `level` - level\n* `source` - source\n* `trace_id` - trace_id\n* `span_id` - span_id\n* `pattern` - pattern\n* `message` - message\n* `custom` - custom"
       }
     },
     "com.posthog.logs#LogsViewColumnsList": {
@@ -9973,10 +10024,10 @@
       },
       "traits": {}
     },
-    "com.posthog.logs#LogsViewsList": {
+    "com.posthog.logs#ListLogsViews": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.logs#LogsViewsListRequest"
+        "target": "com.posthog.logs#ListLogsViewsRequest"
       },
       "output": {
         "target": "com.posthog.logs#PaginatedLogsViewList"
@@ -9989,7 +10040,7 @@
         }
       }
     },
-    "com.posthog.logs#LogsViewsCreateRequestFiltersMap": {
+    "com.posthog.logs#CreateLogsViewRequestFiltersMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -10001,7 +10052,7 @@
         "smithy.api#documentation": "Filter criteria — subset of LogsViewerFilters. May contain severityLevels, serviceNames, searchTerm, filterGroup, dateRange, and other keys."
       }
     },
-    "com.posthog.logs#LogsViewsCreateRequestColumnsList": {
+    "com.posthog.logs#CreateLogsViewRequestColumnsList": {
       "type": "list",
       "member": {
         "target": "com.posthog.logs#LogsViewColumn"
@@ -10010,7 +10061,7 @@
         "smithy.api#documentation": "Ordered column configuration for the logs table (LogsColumnConfig[]). Order is array index. Null means the view has no column preference and the client renders its default column set. Omitting the field on update leaves the saved configuration unchanged; send null to clear it."
       }
     },
-    "com.posthog.logs#LogsViewsCreateRequest": {
+    "com.posthog.logs#CreateLogsViewRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -10025,13 +10076,13 @@
           "target": "smithy.api#String"
         },
         "filters": {
-          "target": "com.posthog.logs#LogsViewsCreateRequestFiltersMap",
+          "target": "com.posthog.logs#CreateLogsViewRequestFiltersMap",
           "traits": {
             "smithy.api#documentation": "Filter criteria — subset of LogsViewerFilters. May contain severityLevels, serviceNames, searchTerm, filterGroup, dateRange, and other keys."
           }
         },
         "columns": {
-          "target": "com.posthog.logs#LogsViewsCreateRequestColumnsList",
+          "target": "com.posthog.logs#CreateLogsViewRequestColumnsList",
           "traits": {
             "smithy.api#documentation": "Ordered column configuration for the logs table (LogsColumnConfig[]). Order is array index. Null means the view has no column preference and the client renders its default column set. Omitting the field on update leaves the saved configuration unchanged; send null to clear it.",
             "com.distilled.openapi#nullable": {}
@@ -10045,10 +10096,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.logs#LogsViewsCreate": {
+    "com.posthog.logs#CreateLogsView": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.logs#LogsViewsCreateRequest"
+        "target": "com.posthog.logs#CreateLogsViewRequest"
       },
       "output": {
         "target": "com.posthog.logs#LogsView"
@@ -10061,7 +10112,7 @@
         }
       }
     },
-    "com.posthog.logs#LogsViewsRetrieveRequest": {
+    "com.posthog.logs#GetLogsViewRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -10084,10 +10135,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.logs#LogsViewsRetrieve": {
+    "com.posthog.logs#GetLogsView": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.logs#LogsViewsRetrieveRequest"
+        "target": "com.posthog.logs#GetLogsViewRequest"
       },
       "output": {
         "target": "com.posthog.logs#LogsView"
@@ -10100,7 +10151,7 @@
         }
       }
     },
-    "com.posthog.logs#LogsViewsUpdateRequestFiltersMap": {
+    "com.posthog.logs#UpdateLogsViewRequestFiltersMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -10112,7 +10163,7 @@
         "smithy.api#documentation": "Filter criteria — subset of LogsViewerFilters. May contain severityLevels, serviceNames, searchTerm, filterGroup, dateRange, and other keys."
       }
     },
-    "com.posthog.logs#LogsViewsUpdateRequestColumnsList": {
+    "com.posthog.logs#UpdateLogsViewRequestColumnsList": {
       "type": "list",
       "member": {
         "target": "com.posthog.logs#LogsViewColumn"
@@ -10121,7 +10172,7 @@
         "smithy.api#documentation": "Ordered column configuration for the logs table (LogsColumnConfig[]). Order is array index. Null means the view has no column preference and the client renders its default column set. Omitting the field on update leaves the saved configuration unchanged; send null to clear it."
       }
     },
-    "com.posthog.logs#LogsViewsUpdateRequest": {
+    "com.posthog.logs#UpdateLogsViewRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -10143,13 +10194,13 @@
           "target": "smithy.api#String"
         },
         "filters": {
-          "target": "com.posthog.logs#LogsViewsUpdateRequestFiltersMap",
+          "target": "com.posthog.logs#UpdateLogsViewRequestFiltersMap",
           "traits": {
             "smithy.api#documentation": "Filter criteria — subset of LogsViewerFilters. May contain severityLevels, serviceNames, searchTerm, filterGroup, dateRange, and other keys."
           }
         },
         "columns": {
-          "target": "com.posthog.logs#LogsViewsUpdateRequestColumnsList",
+          "target": "com.posthog.logs#UpdateLogsViewRequestColumnsList",
           "traits": {
             "smithy.api#documentation": "Ordered column configuration for the logs table (LogsColumnConfig[]). Order is array index. Null means the view has no column preference and the client renders its default column set. Omitting the field on update leaves the saved configuration unchanged; send null to clear it.",
             "com.distilled.openapi#nullable": {}
@@ -10163,10 +10214,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.logs#LogsViewsUpdate": {
+    "com.posthog.logs#UpdateLogsView": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.logs#LogsViewsUpdateRequest"
+        "target": "com.posthog.logs#UpdateLogsViewRequest"
       },
       "output": {
         "target": "com.posthog.logs#LogsView"
@@ -10179,7 +10230,7 @@
         }
       }
     },
-    "com.posthog.logs#LogsViewsPartialUpdateRequestFiltersMap": {
+    "com.posthog.logs#UpdateLogsViewsPartialRequestFiltersMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -10191,7 +10242,7 @@
         "smithy.api#documentation": "Filter criteria — subset of LogsViewerFilters. May contain severityLevels, serviceNames, searchTerm, filterGroup, dateRange, and other keys."
       }
     },
-    "com.posthog.logs#LogsViewsPartialUpdateRequestColumnsList": {
+    "com.posthog.logs#UpdateLogsViewsPartialRequestColumnsList": {
       "type": "list",
       "member": {
         "target": "com.posthog.logs#LogsViewColumn"
@@ -10200,7 +10251,7 @@
         "smithy.api#documentation": "Ordered column configuration for the logs table (LogsColumnConfig[]). Order is array index. Null means the view has no column preference and the client renders its default column set. Omitting the field on update leaves the saved configuration unchanged; send null to clear it."
       }
     },
-    "com.posthog.logs#LogsViewsPartialUpdateRequest": {
+    "com.posthog.logs#UpdateLogsViewsPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -10222,13 +10273,13 @@
           "target": "smithy.api#String"
         },
         "filters": {
-          "target": "com.posthog.logs#LogsViewsPartialUpdateRequestFiltersMap",
+          "target": "com.posthog.logs#UpdateLogsViewsPartialRequestFiltersMap",
           "traits": {
             "smithy.api#documentation": "Filter criteria — subset of LogsViewerFilters. May contain severityLevels, serviceNames, searchTerm, filterGroup, dateRange, and other keys."
           }
         },
         "columns": {
-          "target": "com.posthog.logs#LogsViewsPartialUpdateRequestColumnsList",
+          "target": "com.posthog.logs#UpdateLogsViewsPartialRequestColumnsList",
           "traits": {
             "smithy.api#documentation": "Ordered column configuration for the logs table (LogsColumnConfig[]). Order is array index. Null means the view has no column preference and the client renders its default column set. Omitting the field on update leaves the saved configuration unchanged; send null to clear it.",
             "com.distilled.openapi#nullable": {}
@@ -10242,10 +10293,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.logs#LogsViewsPartialUpdate": {
+    "com.posthog.logs#UpdateLogsViewsPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.logs#LogsViewsPartialUpdateRequest"
+        "target": "com.posthog.logs#UpdateLogsViewsPartialRequest"
       },
       "output": {
         "target": "com.posthog.logs#LogsView"
@@ -10354,166 +10405,166 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.logs#LogsAlertsList"
+          "target": "com.posthog.logs#ListLogsAlerts"
         },
         {
-          "target": "com.posthog.logs#LogsAlertsCreate"
+          "target": "com.posthog.logs#CreateLogsAlert"
         },
         {
-          "target": "com.posthog.logs#LogsAlertsRetrieve"
+          "target": "com.posthog.logs#GetLogsAlert"
         },
         {
-          "target": "com.posthog.logs#LogsAlertsUpdate"
+          "target": "com.posthog.logs#UpdateLogsAlert"
         },
         {
-          "target": "com.posthog.logs#LogsAlertsPartialUpdate"
+          "target": "com.posthog.logs#UpdateLogsAlertsPartial"
         },
         {
           "target": "com.posthog.logs#LogsAlertsDestroy"
         },
         {
-          "target": "com.posthog.logs#LogsAlertsDestinationsCreate"
+          "target": "com.posthog.logs#CreateLogsAlertsDestination"
         },
         {
           "target": "com.posthog.logs#LogsAlertsDestinationsDeleteCreate"
         },
         {
-          "target": "com.posthog.logs#LogsAlertsEventsList"
+          "target": "com.posthog.logs#ListLogsAlertsEvents"
         },
         {
           "target": "com.posthog.logs#LogsAlertsResetCreate"
         },
         {
-          "target": "com.posthog.logs#LogsAlertsSimulateCreate"
+          "target": "com.posthog.logs#CreateLogsAlertsSimulate"
         },
         {
-          "target": "com.posthog.logs#LogsAnomaliesScanCreate"
+          "target": "com.posthog.logs#CreateLogsAnomaliesScan"
         },
         {
-          "target": "com.posthog.logs#LogsAnomaliesSeriesBandsCreate"
+          "target": "com.posthog.logs#CreateLogsAnomaliesSeriesBand"
         },
         {
-          "target": "com.posthog.logs#LogsAttributesRetrieve"
+          "target": "com.posthog.logs#GetLogsAttribute"
         },
         {
-          "target": "com.posthog.logs#LogsCountCreate"
+          "target": "com.posthog.logs#CreateLogsCount"
         },
         {
-          "target": "com.posthog.logs#LogsCountRangesCreate"
+          "target": "com.posthog.logs#CreateLogsCountRange"
         },
         {
-          "target": "com.posthog.logs#LogsExplainLogWithAICreate"
+          "target": "com.posthog.logs#CreateLogsExplainLogWithAI"
         },
         {
           "target": "com.posthog.logs#LogsExportCreate"
         },
         {
-          "target": "com.posthog.logs#LogsFacetValuesCreate"
+          "target": "com.posthog.logs#CreateLogsFacetValue"
         },
         {
-          "target": "com.posthog.logs#LogsGroupByCreate"
+          "target": "com.posthog.logs#CreateLogsGroupBy"
         },
         {
-          "target": "com.posthog.logs#LogsHasLogsRetrieve"
+          "target": "com.posthog.logs#GetLogsHasLog"
         },
         {
-          "target": "com.posthog.logs#LogsMetricRulesList"
+          "target": "com.posthog.logs#ListLogsMetricRules"
         },
         {
-          "target": "com.posthog.logs#LogsMetricRulesCreate"
+          "target": "com.posthog.logs#CreateLogsMetricRule"
         },
         {
-          "target": "com.posthog.logs#LogsMetricRulesRetrieve"
+          "target": "com.posthog.logs#GetLogsMetricRule"
         },
         {
-          "target": "com.posthog.logs#LogsMetricRulesUpdate"
+          "target": "com.posthog.logs#UpdateLogsMetricRule"
         },
         {
-          "target": "com.posthog.logs#LogsMetricRulesPartialUpdate"
+          "target": "com.posthog.logs#UpdateLogsMetricRulesPartial"
         },
         {
           "target": "com.posthog.logs#LogsMetricRulesDestroy"
         },
         {
-          "target": "com.posthog.logs#LogsPatternsCreate"
+          "target": "com.posthog.logs#CreateLogsPattern"
         },
         {
-          "target": "com.posthog.logs#LogsPatternsDiffCreate"
+          "target": "com.posthog.logs#CreateLogsPatternsDiff"
         },
         {
-          "target": "com.posthog.logs#LogsQueryCreate"
+          "target": "com.posthog.logs#CreateLogsQuery"
         },
         {
-          "target": "com.posthog.logs#LogsRetentionRulesList"
+          "target": "com.posthog.logs#ListLogsRetentionRules"
         },
         {
-          "target": "com.posthog.logs#LogsRetentionRulesCreate"
+          "target": "com.posthog.logs#CreateLogsRetentionRule"
         },
         {
-          "target": "com.posthog.logs#LogsRetentionRulesRetrieve"
+          "target": "com.posthog.logs#GetLogsRetentionRule"
         },
         {
-          "target": "com.posthog.logs#LogsRetentionRulesUpdate"
+          "target": "com.posthog.logs#UpdateLogsRetentionRule"
         },
         {
-          "target": "com.posthog.logs#LogsRetentionRulesPartialUpdate"
+          "target": "com.posthog.logs#UpdateLogsRetentionRulesPartial"
         },
         {
           "target": "com.posthog.logs#LogsRetentionRulesDestroy"
         },
         {
-          "target": "com.posthog.logs#LogsRetentionRulesReorderCreate"
+          "target": "com.posthog.logs#CreateLogsRetentionRulesReorder"
         },
         {
-          "target": "com.posthog.logs#LogsRetentionRulesSuggestNameCreate"
+          "target": "com.posthog.logs#CreateLogsRetentionRulesSuggestName"
         },
         {
-          "target": "com.posthog.logs#LogsSamplingRulesList"
+          "target": "com.posthog.logs#ListLogsSamplingRules"
         },
         {
-          "target": "com.posthog.logs#LogsSamplingRulesCreate"
+          "target": "com.posthog.logs#CreateLogsSamplingRule"
         },
         {
-          "target": "com.posthog.logs#LogsSamplingRulesRetrieve"
+          "target": "com.posthog.logs#GetLogsSamplingRule"
         },
         {
-          "target": "com.posthog.logs#LogsSamplingRulesUpdate"
+          "target": "com.posthog.logs#UpdateLogsSamplingRule"
         },
         {
-          "target": "com.posthog.logs#LogsSamplingRulesPartialUpdate"
+          "target": "com.posthog.logs#UpdateLogsSamplingRulesPartial"
         },
         {
           "target": "com.posthog.logs#LogsSamplingRulesDestroy"
         },
         {
-          "target": "com.posthog.logs#LogsSamplingRulesSimulateCreate"
+          "target": "com.posthog.logs#CreateLogsSamplingRulesSimulate"
         },
         {
-          "target": "com.posthog.logs#LogsSamplingRulesReorderCreate"
+          "target": "com.posthog.logs#CreateLogsSamplingRulesReorder"
         },
         {
-          "target": "com.posthog.logs#LogsServicesCreate"
+          "target": "com.posthog.logs#CreateLogsService"
         },
         {
-          "target": "com.posthog.logs#LogsSparklineCreate"
+          "target": "com.posthog.logs#CreateLogsSparkline"
         },
         {
-          "target": "com.posthog.logs#LogsValuesRetrieve"
+          "target": "com.posthog.logs#GetLogsValue"
         },
         {
-          "target": "com.posthog.logs#LogsViewsList"
+          "target": "com.posthog.logs#ListLogsViews"
         },
         {
-          "target": "com.posthog.logs#LogsViewsCreate"
+          "target": "com.posthog.logs#CreateLogsView"
         },
         {
-          "target": "com.posthog.logs#LogsViewsRetrieve"
+          "target": "com.posthog.logs#GetLogsView"
         },
         {
-          "target": "com.posthog.logs#LogsViewsUpdate"
+          "target": "com.posthog.logs#UpdateLogsView"
         },
         {
-          "target": "com.posthog.logs#LogsViewsPartialUpdate"
+          "target": "com.posthog.logs#UpdateLogsViewsPartial"
         },
         {
           "target": "com.posthog.logs#LogsViewsDestroy"

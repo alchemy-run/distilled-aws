@@ -4,62 +4,13 @@
     "service": "admin",
     "version": "datatransfer_v1",
     "title": "Admin SDK API",
-    "baseUrl": "https://admin.googleapis.com/"
+    "baseUrl": "https://admin.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.gcp.admin_datatransfer_v1#ApplicationsListResponse": {
-      "type": "structure",
-      "members": {
-        "etag": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "ETag of the resource."
-          }
-        },
-        "nextPageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Token to specify the next page in the list."
-          }
-        },
-        "applications": {
-          "target": "com.gcp.admin_datatransfer_v1#ApplicationList",
-          "traits": {
-            "smithy.api#documentation": "The list of applications that support data transfer and are also installed for the customer."
-          }
-        },
-        "kind": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifies the resource as a collection of Applications."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Template for a collection of Applications."
-      }
-    },
-    "com.gcp.admin_datatransfer_v1#ApplicationList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.admin_datatransfer_v1#Application"
-      }
-    },
     "com.gcp.admin_datatransfer_v1#Application": {
       "type": "structure",
       "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The application's ID. Retrievable by using the [`applications.list()`](https://developers.google.com/workspace/admin/data-transfer/reference/rest/v1/applications/list) method."
-          }
-        },
-        "etag": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Etag of the resource."
-          }
-        },
         "transferParams": {
           "target": "com.gcp.admin_datatransfer_v1#ApplicationTransferParamList",
           "traits": {
@@ -77,6 +28,18 @@
           "traits": {
             "smithy.api#documentation": "Identifies the resource as a DataTransfer Application Resource."
           }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Etag of the resource."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The application's ID. Retrievable by using the [`applications.list()`](https://developers.google.com/workspace/admin/data-transfer/reference/rest/v1/applications/list) method."
+          }
         }
       },
       "traits": {
@@ -89,51 +52,25 @@
         "target": "com.gcp.admin_datatransfer_v1#ApplicationTransferParam"
       }
     },
-    "com.gcp.admin_datatransfer_v1#ApplicationDataTransfer": {
-      "type": "structure",
-      "members": {
-        "applicationId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The application's ID."
-          }
-        },
-        "applicationTransferParams": {
-          "target": "com.gcp.admin_datatransfer_v1#ApplicationTransferParamList",
-          "traits": {
-            "smithy.api#documentation": "The transfer parameters for the application. These parameters are used to select the data which will get transferred in context of this application. For more information about the specific values available for each application, see the [Transfer parameters](https://developers.google.com/workspace/admin/data-transfer/v1/parameters) reference."
-          }
-        },
-        "applicationTransferStatus": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Read-only. Current status of transfer for this application."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Template to map fields of ApplicationDataTransfer resource."
-      }
-    },
     "com.gcp.admin_datatransfer_v1#DataTransfer": {
       "type": "structure",
       "members": {
-        "overallTransferStatusCode": {
+        "oldOwnerUserId": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Read-only. Overall transfer status."
+            "smithy.api#documentation": "ID of the user whose data is being transferred."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Read-only. The transfer's ID."
           }
         },
         "kind": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Identifies the resource as a DataTransfer request."
-          }
-        },
-        "requestTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Read-only. The time at which the data transfer was requested."
           }
         },
         "etag": {
@@ -148,22 +85,22 @@
             "smithy.api#documentation": "The list of per-application data transfer resources. It contains details of the applications associated with this transfer resource, and also specifies the applications for which data transfer has to be done at the time of the transfer resource creation."
           }
         },
-        "oldOwnerUserId": {
+        "requestTime": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "ID of the user whose data is being transferred."
+            "smithy.api#documentation": "Read-only. The time at which the data transfer was requested."
+          }
+        },
+        "overallTransferStatusCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Read-only. Overall transfer status."
           }
         },
         "newOwnerUserId": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "ID of the user to whom the data is being transferred."
-          }
-        },
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Read-only. The transfer's ID."
           }
         }
       },
@@ -175,44 +112,6 @@
       "type": "list",
       "member": {
         "target": "com.gcp.admin_datatransfer_v1#ApplicationDataTransfer"
-      }
-    },
-    "com.gcp.admin_datatransfer_v1#DataTransfersListResponse": {
-      "type": "structure",
-      "members": {
-        "dataTransfers": {
-          "target": "com.gcp.admin_datatransfer_v1#DataTransferList",
-          "traits": {
-            "smithy.api#documentation": "List of data transfer requests."
-          }
-        },
-        "nextPageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Token to specify the next page in the list."
-          }
-        },
-        "etag": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "ETag of the resource."
-          }
-        },
-        "kind": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifies the resource as a collection of data transfer requests."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Template for a collection of DataTransfer resources."
-      }
-    },
-    "com.gcp.admin_datatransfer_v1#DataTransferList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.admin_datatransfer_v1#DataTransfer"
       }
     },
     "com.gcp.admin_datatransfer_v1#ApplicationTransferParam": {
@@ -241,28 +140,117 @@
         "target": "smithy.api#String"
       }
     },
-    "com.gcp.admin_datatransfer_v1#ListApplicationsRequest": {
+    "com.gcp.admin_datatransfer_v1#ApplicationDataTransfer": {
       "type": "structure",
       "members": {
-        "pageToken": {
+        "applicationTransferStatus": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Token to specify next page in the list.",
-            "smithy.api#httpQuery": "pageToken"
+            "smithy.api#documentation": "Read-only. Current status of transfer for this application."
           }
         },
-        "customerId": {
+        "applicationTransferParams": {
+          "target": "com.gcp.admin_datatransfer_v1#ApplicationTransferParamList",
+          "traits": {
+            "smithy.api#documentation": "The transfer parameters for the application. These parameters are used to select the data which will get transferred in context of this application. For more information about the specific values available for each application, see the [Transfer parameters](https://developers.google.com/workspace/admin/data-transfer/v1/parameters) reference."
+          }
+        },
+        "applicationId": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Immutable ID of the Google Workspace account.",
-            "smithy.api#httpQuery": "customerId"
+            "smithy.api#documentation": "The application's ID."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Template to map fields of ApplicationDataTransfer resource."
+      }
+    },
+    "com.gcp.admin_datatransfer_v1#DataTransfersListResponse": {
+      "type": "structure",
+      "members": {
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Token to specify the next page in the list."
           }
         },
-        "maxResults": {
-          "target": "smithy.api#Integer",
+        "dataTransfers": {
+          "target": "com.gcp.admin_datatransfer_v1#DataTransferList",
           "traits": {
-            "smithy.api#documentation": "Maximum number of results to return. Default is 100.",
-            "smithy.api#httpQuery": "maxResults"
+            "smithy.api#documentation": "List of data transfer requests."
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifies the resource as a collection of data transfer requests."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ETag of the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Template for a collection of DataTransfer resources."
+      }
+    },
+    "com.gcp.admin_datatransfer_v1#DataTransferList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.admin_datatransfer_v1#DataTransfer"
+      }
+    },
+    "com.gcp.admin_datatransfer_v1#ApplicationsListResponse": {
+      "type": "structure",
+      "members": {
+        "applications": {
+          "target": "com.gcp.admin_datatransfer_v1#ApplicationList",
+          "traits": {
+            "smithy.api#documentation": "The list of applications that support data transfer and are also installed for the customer."
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifies the resource as a collection of Applications."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ETag of the resource."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Token to specify the next page in the list."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Template for a collection of Applications."
+      }
+    },
+    "com.gcp.admin_datatransfer_v1#ApplicationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.admin_datatransfer_v1#Application"
+      }
+    },
+    "com.gcp.admin_datatransfer_v1#GetTransfersRequest": {
+      "type": "structure",
+      "members": {
+        "dataTransferId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the resource to be retrieved. This is returned in the response from the insert method.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
           }
         }
       }
@@ -293,13 +281,13 @@
         ]
       }
     },
-    "com.gcp.admin_datatransfer_v1#ListApplications": {
+    "com.gcp.admin_datatransfer_v1#GetTransfers": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.admin_datatransfer_v1#ListApplicationsRequest"
+        "target": "com.gcp.admin_datatransfer_v1#GetTransfersRequest"
       },
       "output": {
-        "target": "com.gcp.admin_datatransfer_v1#ApplicationsListResponse"
+        "target": "com.gcp.admin_datatransfer_v1#DataTransfer"
       },
       "errors": [
         {
@@ -312,81 +300,19 @@
       "traits": {
         "smithy.api#http": {
           "method": "GET",
-          "uri": "admin/datatransfer/v1/applications"
+          "uri": "admin/datatransfer/v1/transfers/{dataTransferId}"
         },
-        "smithy.api#documentation": "Lists the applications available for data transfer for a customer.",
-        "smithy.api#paginated": {
-          "inputToken": "pageToken",
-          "outputToken": "nextPageToken"
-        }
-      }
-    },
-    "com.gcp.admin_datatransfer_v1#GetApplicationsRequest": {
-      "type": "structure",
-      "members": {
-        "applicationId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "ID of the application resource to be retrieved.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.admin_datatransfer_v1#GetApplications": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.admin_datatransfer_v1#GetApplicationsRequest"
-      },
-      "output": {
-        "target": "com.gcp.admin_datatransfer_v1#Application"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.admin_datatransfer_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.admin_datatransfer_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "admin/datatransfer/v1/applications/{applicationId}"
-        },
-        "smithy.api#documentation": "Retrieves information about an application for the given application ID."
+        "smithy.api#documentation": "Retrieves a data transfer request by its resource ID."
       }
     },
     "com.gcp.admin_datatransfer_v1#ListTransfersRequest": {
       "type": "structure",
       "members": {
-        "newOwnerUserId": {
+        "status": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Destination user's profile ID.",
-            "smithy.api#httpQuery": "newOwnerUserId"
-          }
-        },
-        "oldOwnerUserId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Source user's profile ID.",
-            "smithy.api#httpQuery": "oldOwnerUserId"
-          }
-        },
-        "customerId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Immutable ID of the Google Workspace account.",
-            "smithy.api#httpQuery": "customerId"
-          }
-        },
-        "maxResults": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Maximum number of results to return. Default is 100.",
-            "smithy.api#httpQuery": "maxResults"
+            "smithy.api#documentation": "Status of the transfer.",
+            "smithy.api#httpQuery": "status"
           }
         },
         "pageToken": {
@@ -396,11 +322,32 @@
             "smithy.api#httpQuery": "pageToken"
           }
         },
-        "status": {
+        "oldOwnerUserId": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Status of the transfer.",
-            "smithy.api#httpQuery": "status"
+            "smithy.api#documentation": "Source user's profile ID.",
+            "smithy.api#httpQuery": "oldOwnerUserId"
+          }
+        },
+        "maxResults": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum number of results to return. Default is 100.",
+            "smithy.api#httpQuery": "maxResults"
+          }
+        },
+        "customerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Immutable ID of the Google Workspace account.",
+            "smithy.api#httpQuery": "customerId"
+          }
+        },
+        "newOwnerUserId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Destination user's profile ID.",
+            "smithy.api#httpQuery": "newOwnerUserId"
           }
         }
       }
@@ -431,43 +378,6 @@
           "inputToken": "pageToken",
           "outputToken": "nextPageToken"
         }
-      }
-    },
-    "com.gcp.admin_datatransfer_v1#GetTransfersRequest": {
-      "type": "structure",
-      "members": {
-        "dataTransferId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "ID of the resource to be retrieved. This is returned in the response from the insert method.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.admin_datatransfer_v1#GetTransfers": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.admin_datatransfer_v1#GetTransfersRequest"
-      },
-      "output": {
-        "target": "com.gcp.admin_datatransfer_v1#DataTransfer"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.admin_datatransfer_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.admin_datatransfer_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "admin/datatransfer/v1/transfers/{dataTransferId}"
-        },
-        "smithy.api#documentation": "Retrieves a data transfer request by its resource ID."
       }
     },
     "com.gcp.admin_datatransfer_v1#InsertTransfersRequest": {
@@ -536,6 +446,97 @@
           "uri": "admin/datatransfer/v1/transfers"
         },
         "smithy.api#documentation": "Inserts a data transfer request. See the [Transfer parameters](https://developers.google.com/workspace/admin/data-transfer/v1/parameters) reference for specific application requirements."
+      }
+    },
+    "com.gcp.admin_datatransfer_v1#ListApplicationsRequest": {
+      "type": "structure",
+      "members": {
+        "customerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Immutable ID of the Google Workspace account.",
+            "smithy.api#httpQuery": "customerId"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Token to specify next page in the list.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "maxResults": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum number of results to return. Default is 100.",
+            "smithy.api#httpQuery": "maxResults"
+          }
+        }
+      }
+    },
+    "com.gcp.admin_datatransfer_v1#ListApplications": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.admin_datatransfer_v1#ListApplicationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.admin_datatransfer_v1#ApplicationsListResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.admin_datatransfer_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.admin_datatransfer_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "admin/datatransfer/v1/applications"
+        },
+        "smithy.api#documentation": "Lists the applications available for data transfer for a customer.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.admin_datatransfer_v1#GetApplicationsRequest": {
+      "type": "structure",
+      "members": {
+        "applicationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the application resource to be retrieved.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.admin_datatransfer_v1#GetApplications": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.admin_datatransfer_v1#GetApplicationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.admin_datatransfer_v1#Application"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.admin_datatransfer_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.admin_datatransfer_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "admin/datatransfer/v1/applications/{applicationId}"
+        },
+        "smithy.api#documentation": "Retrieves information about an application for the given application ID."
       }
     }
   }

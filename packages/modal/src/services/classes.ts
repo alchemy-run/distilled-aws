@@ -221,14 +221,14 @@ export const ClassMethodList = /*@__PURE__*/ S.Array(
   ClassMethod,
 ) as any as S.Schema<ClassMethodList>;
 
-export interface ClassCreateRequest {
+export interface CreateClassRequest {
   appId?: string;
   existingClassId?: string;
   methods?: ClassMethodList;
   /** removed class_function_id */
   onlyClassFunction?: boolean;
 }
-export const ClassCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateClassRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     appId: S.optional(S.String),
     existingClassId: S.optional(S.String),
@@ -242,8 +242,8 @@ export const ClassCreateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ClassCreateRequest",
-}) as any as S.Schema<ClassCreateRequest>;
+  identifier: "CreateClassRequest",
+}) as any as S.Schema<CreateClassRequest>;
 
 export interface ClassHandleMetadata {
   methods?: ClassMethodList;
@@ -260,20 +260,20 @@ export const ClassHandleMetadata = /*@__PURE__*/ S.suspend(() =>
   identifier: "ClassHandleMetadata",
 }) as any as S.Schema<ClassHandleMetadata>;
 
-export interface ClassCreateResponse {
+export interface CreateClassResponse {
   classId?: string;
   handleMetadata?: ClassHandleMetadata;
 }
-export const ClassCreateResponse = /*@__PURE__*/ S.suspend(() =>
+export const CreateClassResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     classId: S.optional(S.String),
     handleMetadata: S.optional(ClassHandleMetadata),
   }),
 ).annotate({
-  identifier: "ClassCreateResponse",
-}) as any as S.Schema<ClassCreateResponse>;
+  identifier: "CreateClassResponse",
+}) as any as S.Schema<CreateClassResponse>;
 
-export interface ClassGetRequest {
+export interface GetClassRequest {
   appName?: string;
   objectTag?: string;
   /** removed namespace */
@@ -283,7 +283,7 @@ export interface ClassGetRequest {
   /** True starting with 0.67.x clients, which don't create method placeholder functions */
   appVersion?: number;
 }
-export const ClassGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetClassRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     appName: S.optional(S.String),
     objectTag: S.optional(S.String),
@@ -298,8 +298,8 @@ export const ClassGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ClassGetRequest",
-}) as any as S.Schema<ClassGetRequest>;
+  identifier: "GetClassRequest",
+}) as any as S.Schema<GetClassRequest>;
 
 export type WarningWarningType =
   | "WARNING_TYPE_UNSPECIFIED"
@@ -324,45 +324,45 @@ export const WarningList = /*@__PURE__*/ S.Array(
   Warning,
 ) as any as S.Schema<WarningList>;
 
-export interface ClassGetResponse {
+export interface GetClassResponse {
   classId?: string;
   handleMetadata?: ClassHandleMetadata;
   serverWarnings?: WarningList;
 }
-export const ClassGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetClassResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     classId: S.optional(S.String),
     handleMetadata: S.optional(ClassHandleMetadata),
     serverWarnings: S.optional(WarningList),
   }),
 ).annotate({
-  identifier: "ClassGetResponse",
-}) as any as S.Schema<ClassGetResponse>;
+  identifier: "GetClassResponse",
+}) as any as S.Schema<GetClassResponse>;
 
-export type ClassCreateError = ModalOpError;
+export type CreateClassError = ModalOpError;
 /** Classes */
-export const classCreate: API.OperationMethod<
-  ClassCreateRequest,
-  ClassCreateResponse,
-  ClassCreateError,
+export const createClass: API.OperationMethod<
+  CreateClassRequest,
+  CreateClassResponse,
+  CreateClassError,
   ModalOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ClassCreateRequest,
-  output: ClassCreateResponse,
+  input: CreateClassRequest,
+  output: CreateClassResponse,
   errors: [UnknownModalError],
   protocol: ModalProtocol,
   retry: Retry.Retry,
 }));
 
-export type ClassGetError = ModalOpError;
-export const classGet: API.OperationMethod<
-  ClassGetRequest,
-  ClassGetResponse,
-  ClassGetError,
+export type GetClassError = ModalOpError;
+export const getClass: API.OperationMethod<
+  GetClassRequest,
+  GetClassResponse,
+  GetClassError,
   ModalOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ClassGetRequest,
-  output: ClassGetResponse,
+  input: GetClassRequest,
+  output: GetClassResponse,
   errors: [UnknownModalError],
   protocol: ModalProtocol,
   retry: Retry.Retry,

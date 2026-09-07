@@ -14,35 +14,34 @@ import * as Retry from "../retry.ts";
 export type { AzureOpError, AzureOpContext };
 
 /** Resource type used for verification. */
-export type ClustersCheckNameAvailabilityRequestType =
+export type CheckClusterNameAvailabilityRequestType =
   "Microsoft.DBforPostgreSQL/serverGroupsv2";
-export const ClustersCheckNameAvailabilityRequestType = /*@__PURE__*/ S.String;
+export const CheckClusterNameAvailabilityRequestType = /*@__PURE__*/ S.String;
 
-export interface ClustersCheckNameAvailabilityRequest {
+export interface CheckClusterNameAvailabilityRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** Cluster name to verify. */
   name: string;
   /** Resource type used for verification. */
-  type: ClustersCheckNameAvailabilityRequestType | (string & {});
+  type: CheckClusterNameAvailabilityRequestType | (string & {});
 }
-export const ClustersCheckNameAvailabilityRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      name: S.String,
-      type: ClustersCheckNameAvailabilityRequestType,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.DBforPostgreSQL/checkNameAvailability",
-        code: 200,
-        apiVersion: "2022-11-08",
-      }),
-    ),
+export const CheckClusterNameAvailabilityRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    name: S.String,
+    type: CheckClusterNameAvailabilityRequestType,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.DBforPostgreSQL/checkNameAvailability",
+      code: 200,
+      apiVersion: "2022-11-08",
+    }),
+  ),
 ).annotate({
-  identifier: "ClustersCheckNameAvailabilityRequest",
-}) as any as S.Schema<ClustersCheckNameAvailabilityRequest>;
+  identifier: "CheckClusterNameAvailabilityRequest",
+}) as any as S.Schema<CheckClusterNameAvailabilityRequest>;
 
 /** Represents cluster name availability. */
 export interface NameAvailability {
@@ -66,14 +65,44 @@ export const NameAvailability = /*@__PURE__*/ S.suspend(() =>
   identifier: "NameAvailability",
 }) as any as S.Schema<NameAvailability>;
 
+export interface ClustersPromoteReadReplicaRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+}
+export const ClustersPromoteReadReplicaRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/{clusterName}/promote",
+      code: 200,
+      apiVersion: "2022-11-08",
+    }),
+  ),
+).annotate({
+  identifier: "ClustersPromoteReadReplicaRequest",
+}) as any as S.Schema<ClustersPromoteReadReplicaRequest>;
+
+export interface ClustersPromoteReadReplicaResponse {}
+export const ClustersPromoteReadReplicaResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "ClustersPromoteReadReplicaResponse",
+}) as any as S.Schema<ClustersPromoteReadReplicaResponse>;
+
 /** Resource tags. */
-export type ClustersCreateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ClustersCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type CreateClusterRequestTagsMap = { [key: string]: string | undefined };
+export const CreateClusterRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ClustersCreateRequestTagsMap>;
+) as any as S.Schema<CreateClusterRequestTagsMap>;
 
 /** Schedule settings for regular cluster updates. */
 export interface MaintenanceWindow {
@@ -164,7 +193,7 @@ export const ClusterPropertiesInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "ClusterPropertiesInput",
 }) as any as S.Schema<ClusterPropertiesInput>;
 
-export interface ClustersCreateRequest {
+export interface CreateClusterRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -172,18 +201,18 @@ export interface ClustersCreateRequest {
   /** The name of the cluster. */
   clusterName: string;
   /** Resource tags. */
-  tags?: ClustersCreateRequestTagsMap;
+  tags?: CreateClusterRequestTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties of the cluster. */
   properties?: ClusterPropertiesInput;
 }
-export const ClustersCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateClusterRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     clusterName: S.String.pipe(T.Label()),
-    tags: S.optional(ClustersCreateRequestTagsMap),
+    tags: S.optional(CreateClusterRequestTagsMap),
     location: S.String,
     properties: S.optional(ClusterPropertiesInput),
   }).pipe(
@@ -195,8 +224,8 @@ export const ClustersCreateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ClustersCreateRequest",
-}) as any as S.Schema<ClustersCreateRequest>;
+  identifier: "CreateClusterRequest",
+}) as any as S.Schema<CreateClusterRequest>;
 
 /** The type of identity that created the resource. */
 export type SystemDataCreatedByType =
@@ -241,13 +270,13 @@ export const SystemData = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "SystemData" }) as any as S.Schema<SystemData>;
 
 /** Resource tags. */
-export type ClustersCreateResponseTagsMap = {
+export type CreateClusterResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ClustersCreateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const CreateClusterResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ClustersCreateResponseTagsMap>;
+) as any as S.Schema<CreateClusterResponseTagsMap>;
 
 /** The name object for a server. */
 export interface ServerNameItem {
@@ -471,7 +500,7 @@ export const ClusterProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "ClusterProperties",
 }) as any as S.Schema<ClusterProperties>;
 
-export interface ClustersCreateResponse {
+export interface CreateClusterResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -481,27 +510,117 @@ export interface ClustersCreateResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ClustersCreateResponseTagsMap;
+  tags?: CreateClusterResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties of the cluster. */
   properties?: ClusterProperties;
 }
-export const ClustersCreateResponse = /*@__PURE__*/ S.suspend(() =>
+export const CreateClusterResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ClustersCreateResponseTagsMap),
+    tags: S.optional(CreateClusterResponseTagsMap),
     location: S.String,
     properties: S.optional(ClusterProperties),
   }),
 ).annotate({
-  identifier: "ClustersCreateResponse",
-}) as any as S.Schema<ClustersCreateResponse>;
+  identifier: "CreateClusterResponse",
+}) as any as S.Schema<CreateClusterResponse>;
 
-export interface ClustersDeleteRequest {
+/** The properties of a cluster role. */
+export interface RolePropertiesInput {
+  /** The password of the cluster role. */
+  password: string | Redacted.Redacted<string>;
+}
+export const RolePropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    password: S.String.pipe(T.SensitiveValue({})),
+  }),
+).annotate({
+  identifier: "RolePropertiesInput",
+}) as any as S.Schema<RolePropertiesInput>;
+
+export interface CreateRoleRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+  /** The name of the cluster role. */
+  roleName: string;
+  /** The properties of a role. */
+  properties: RolePropertiesInput;
+}
+export const CreateRoleRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    roleName: S.String.pipe(T.Label()),
+    properties: RolePropertiesInput,
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/{clusterName}/roles/{roleName}",
+      code: 200,
+      apiVersion: "2022-11-08",
+    }),
+  ),
+).annotate({
+  identifier: "CreateRoleRequest",
+}) as any as S.Schema<CreateRoleRequest>;
+
+/** The current provisioning state. */
+export type ProvisioningState =
+  | "Succeeded"
+  | "Canceled"
+  | "InProgress"
+  | "Failed";
+export const ProvisioningState = /*@__PURE__*/ S.String;
+
+/** The properties of a cluster role. */
+export interface RoleProperties {
+  /** The password of the cluster role. */
+  password: string | Redacted.Redacted<string>;
+  /** Provisioning state of the role */
+  provisioningState?: ProvisioningState;
+}
+export const RoleProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    password: S.String.pipe(T.SensitiveValue({})),
+    provisioningState: S.optional(ProvisioningState),
+  }),
+).annotate({ identifier: "RoleProperties" }) as any as S.Schema<RoleProperties>;
+
+export interface CreateRoleResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of a role. */
+  properties: RoleProperties;
+}
+export const CreateRoleResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: RoleProperties,
+  }),
+).annotate({
+  identifier: "CreateRoleResponse",
+}) as any as S.Schema<CreateRoleResponse>;
+
+export interface DeleteClusterRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -509,7 +628,7 @@ export interface ClustersDeleteRequest {
   /** The name of the cluster. */
   clusterName: string;
 }
-export const ClustersDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteClusterRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -523,986 +642,121 @@ export const ClustersDeleteRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ClustersDeleteRequest",
-}) as any as S.Schema<ClustersDeleteRequest>;
+  identifier: "DeleteClusterRequest",
+}) as any as S.Schema<DeleteClusterRequest>;
 
-export interface ClustersDeleteResponse {}
-export const ClustersDeleteResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteClusterResponse {}
+export const DeleteClusterResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "ClustersDeleteResponse",
-}) as any as S.Schema<ClustersDeleteResponse>;
+  identifier: "DeleteClusterResponse",
+}) as any as S.Schema<DeleteClusterResponse>;
 
-export interface ClustersGetRequest {
+export interface DeleteFirewallRuleRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of the cluster. */
   clusterName: string;
+  /** The name of the cluster firewall rule. */
+  firewallRuleName: string;
 }
-export const ClustersGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteFirewallRuleRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     clusterName: S.String.pipe(T.Label()),
+    firewallRuleName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/{clusterName}",
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/{clusterName}/firewallRules/{firewallRuleName}",
       code: 200,
       apiVersion: "2022-11-08",
     }),
   ),
 ).annotate({
-  identifier: "ClustersGetRequest",
-}) as any as S.Schema<ClustersGetRequest>;
+  identifier: "DeleteFirewallRuleRequest",
+}) as any as S.Schema<DeleteFirewallRuleRequest>;
 
-/** Resource tags. */
-export type ClustersGetResponseTagsMap = { [key: string]: string | undefined };
-export const ClustersGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ClustersGetResponseTagsMap>;
-
-export interface ClustersGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: ClustersGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Properties of the cluster. */
-  properties?: ClusterProperties;
-}
-export const ClustersGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(ClustersGetResponseTagsMap),
-    location: S.String,
-    properties: S.optional(ClusterProperties),
-  }),
-).annotate({
-  identifier: "ClustersGetResponse",
-}) as any as S.Schema<ClustersGetResponse>;
-
-export interface ClustersListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-}
-export const ClustersListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.DBforPostgreSQL/serverGroupsv2",
-      code: 200,
-      apiVersion: "2022-11-08",
-    }),
-  ),
-).annotate({
-  identifier: "ClustersListRequest",
-}) as any as S.Schema<ClustersListRequest>;
-
-/** Resource tags. */
-export type ClusterTagsMap = { [key: string]: string | undefined };
-export const ClusterTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ClusterTagsMap>;
-
-/** Represents a cluster. */
-export interface Cluster {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: ClusterTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Properties of the cluster. */
-  properties?: ClusterProperties;
-}
-export const Cluster = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(ClusterTagsMap),
-    location: S.String,
-    properties: S.optional(ClusterProperties),
-  }),
-).annotate({ identifier: "Cluster" }) as any as S.Schema<Cluster>;
-
-/** The list of clusters */
-export type ClusterListResultValueList = Array<Cluster>;
-export const ClusterListResultValueList = /*@__PURE__*/ S.Array(
-  Cluster,
-) as any as S.Schema<ClusterListResultValueList>;
-
-/** A list of clusters. */
-export interface ClusterListResult {
-  /** The list of clusters */
-  value?: ClusterListResultValueList;
-  /** The link used to get the next page of cluster list. */
-  nextLink?: string;
-}
-export const ClusterListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(ClusterListResultValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ClusterListResult",
-}) as any as S.Schema<ClusterListResult>;
-
-export interface ClustersListByResourceGroupRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-}
-export const ClustersListByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/serverGroupsv2",
-      code: 200,
-      apiVersion: "2022-11-08",
-    }),
-  ),
-).annotate({
-  identifier: "ClustersListByResourceGroupRequest",
-}) as any as S.Schema<ClustersListByResourceGroupRequest>;
-
-export interface ClustersPromoteReadReplicaRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-}
-export const ClustersPromoteReadReplicaRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/{clusterName}/promote",
-      code: 200,
-      apiVersion: "2022-11-08",
-    }),
-  ),
-).annotate({
-  identifier: "ClustersPromoteReadReplicaRequest",
-}) as any as S.Schema<ClustersPromoteReadReplicaRequest>;
-
-export interface ClustersPromoteReadReplicaResponse {}
-export const ClustersPromoteReadReplicaResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteFirewallRuleResponse {}
+export const DeleteFirewallRuleResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "ClustersPromoteReadReplicaResponse",
-}) as any as S.Schema<ClustersPromoteReadReplicaResponse>;
+  identifier: "DeleteFirewallRuleResponse",
+}) as any as S.Schema<DeleteFirewallRuleResponse>;
 
-export interface ClustersRestartRequest {
+export interface DeletePrivateEndpointConnectionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of the cluster. */
   clusterName: string;
+  /** The name of the private endpoint connection associated with the cluster. */
+  privateEndpointConnectionName: string;
 }
-export const ClustersRestartRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/{clusterName}/restart",
-      code: 200,
-      apiVersion: "2022-11-08",
-    }),
-  ),
-).annotate({
-  identifier: "ClustersRestartRequest",
-}) as any as S.Schema<ClustersRestartRequest>;
-
-export interface ClustersRestartResponse {}
-export const ClustersRestartResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ClustersRestartResponse",
-}) as any as S.Schema<ClustersRestartResponse>;
-
-export interface ClustersStartRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-}
-export const ClustersStartRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/{clusterName}/start",
-      code: 200,
-      apiVersion: "2022-11-08",
-    }),
-  ),
-).annotate({
-  identifier: "ClustersStartRequest",
-}) as any as S.Schema<ClustersStartRequest>;
-
-export interface ClustersStartResponse {}
-export const ClustersStartResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ClustersStartResponse",
-}) as any as S.Schema<ClustersStartResponse>;
-
-export interface ClustersStopRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-}
-export const ClustersStopRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/{clusterName}/stop",
-      code: 200,
-      apiVersion: "2022-11-08",
-    }),
-  ),
-).annotate({
-  identifier: "ClustersStopRequest",
-}) as any as S.Schema<ClustersStopRequest>;
-
-export interface ClustersStopResponse {}
-export const ClustersStopResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ClustersStopResponse",
-}) as any as S.Schema<ClustersStopResponse>;
-
-/** The properties used to update a cluster. */
-export interface ClusterPropertiesForUpdateInput {
-  /** The password of the administrator login. Each cluster is created with pre-defined administrative role called ‘citus’. */
-  administratorLoginPassword?: string | Redacted.Redacted<string>;
-  /** The major PostgreSQL version on all cluster servers. */
-  postgresqlVersion?: string;
-  /** The Citus extension version on all cluster servers. */
-  citusVersion?: string;
-  /** If distributed tables are placed on coordinator or not. Should be set to 'true' on single node clusters. Requires shard rebalancing after value is changed. */
-  enableShardsOnCoordinator?: boolean;
-  /** If high availability (HA) is enabled or not for the cluster. */
-  enableHa?: boolean;
-  /** Preferred primary availability zone (AZ) for all cluster servers. */
-  preferredPrimaryZone?: string;
-  /** The edition of the coordinator (default: GeneralPurpose). */
-  coordinatorServerEdition?: string;
-  /** The storage of the coordinator in MB. */
-  coordinatorStorageQuotaInMb?: number;
-  /** The vCores count of the coordinator (max: 96). */
-  coordinatorVCores?: number;
-  /** If public access is enabled on coordinator. */
-  coordinatorEnablePublicIpAccess?: boolean;
-  /** The edition of a node (default: MemoryOptimized). */
-  nodeServerEdition?: string;
-  /** Worker node count of the cluster. When node count is 0, it represents a single node configuration with the ability to create distributed tables on that node. 2 or more worker nodes represent multi-node configuration. Node count value cannot be 1. */
-  nodeCount?: number;
-  /** The storage in MB on each worker node. */
-  nodeStorageQuotaInMb?: number;
-  /** The compute in vCores on each worker node (max: 104). */
-  nodeVCores?: number;
-  /** Maintenance window of a cluster. */
-  maintenanceWindow?: MaintenanceWindow;
-}
-export const ClusterPropertiesForUpdateInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    administratorLoginPassword: S.optional(S.String.pipe(T.SensitiveValue({}))),
-    postgresqlVersion: S.optional(S.String),
-    citusVersion: S.optional(S.String),
-    enableShardsOnCoordinator: S.optional(S.Boolean),
-    enableHa: S.optional(S.Boolean),
-    preferredPrimaryZone: S.optional(S.String),
-    coordinatorServerEdition: S.optional(S.String),
-    coordinatorStorageQuotaInMb: S.optional(S.Number),
-    coordinatorVCores: S.optional(S.Number),
-    coordinatorEnablePublicIpAccess: S.optional(S.Boolean),
-    nodeServerEdition: S.optional(S.String),
-    nodeCount: S.optional(S.Number),
-    nodeStorageQuotaInMb: S.optional(S.Number),
-    nodeVCores: S.optional(S.Number),
-    maintenanceWindow: S.optional(MaintenanceWindow),
-  }),
-).annotate({
-  identifier: "ClusterPropertiesForUpdateInput",
-}) as any as S.Schema<ClusterPropertiesForUpdateInput>;
-
-/** Application-specific metadata in the form of key-value pairs. */
-export type ClustersUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ClustersUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ClustersUpdateRequestTagsMap>;
-
-export interface ClustersUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-  /** Properties of the cluster. */
-  properties?: ClusterPropertiesForUpdateInput;
-  /** Application-specific metadata in the form of key-value pairs. */
-  tags?: ClustersUpdateRequestTagsMap;
-}
-export const ClustersUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    properties: S.optional(ClusterPropertiesForUpdateInput),
-    tags: S.optional(ClustersUpdateRequestTagsMap),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/{clusterName}",
-      code: 200,
-      apiVersion: "2022-11-08",
-    }),
-  ),
-).annotate({
-  identifier: "ClustersUpdateRequest",
-}) as any as S.Schema<ClustersUpdateRequest>;
-
-/** Resource tags. */
-export type ClustersUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ClustersUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ClustersUpdateResponseTagsMap>;
-
-export interface ClustersUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: ClustersUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Properties of the cluster. */
-  properties?: ClusterProperties;
-}
-export const ClustersUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(ClustersUpdateResponseTagsMap),
-    location: S.String,
-    properties: S.optional(ClusterProperties),
-  }),
-).annotate({
-  identifier: "ClustersUpdateResponse",
-}) as any as S.Schema<ClustersUpdateResponse>;
-
-export interface ConfigurationsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-  /** The name of the cluster configuration. */
-  configurationName: string;
-}
-export const ConfigurationsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    configurationName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/{clusterName}/configurations/{configurationName}",
-      code: 200,
-      apiVersion: "2022-11-08",
-    }),
-  ),
-).annotate({
-  identifier: "ConfigurationsGetRequest",
-}) as any as S.Schema<ConfigurationsGetRequest>;
-
-/** Data type of the configuration. */
-export type ConfigurationPropertiesDataType =
-  | "Boolean"
-  | "Numeric"
-  | "Integer"
-  | "Enumeration";
-export const ConfigurationPropertiesDataType = /*@__PURE__*/ S.String;
-
-/** The role of a server. */
-export type ServerRole = "Coordinator" | "Worker";
-export const ServerRole = /*@__PURE__*/ S.String;
-
-/** Represents server role group configuration value. */
-export interface ServerRoleGroupConfiguration {
-  /** The role of servers in the server role group. */
-  role: ServerRole;
-  /** Value of the configuration. */
-  value: string;
-  /** Default value of the configuration. */
-  defaultValue?: string;
-  /** Source of the configuration. */
-  source?: string;
-}
-export const ServerRoleGroupConfiguration = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    role: ServerRole,
-    value: S.String,
-    defaultValue: S.optional(S.String),
-    source: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ServerRoleGroupConfiguration",
-}) as any as S.Schema<ServerRoleGroupConfiguration>;
-
-/** The list of server role group configuration values. */
-export type ConfigurationPropertiesServerRoleGroupConfigurationsList =
-  Array<ServerRoleGroupConfiguration>;
-export const ConfigurationPropertiesServerRoleGroupConfigurationsList =
-  /*@__PURE__*/ S.Array(
-    ServerRoleGroupConfiguration,
-  ) as any as S.Schema<ConfigurationPropertiesServerRoleGroupConfigurationsList>;
-
-/** The current provisioning state. */
-export type ProvisioningState =
-  | "Succeeded"
-  | "Canceled"
-  | "InProgress"
-  | "Failed";
-export const ProvisioningState = /*@__PURE__*/ S.String;
-
-/** The properties of configuration. */
-export interface ConfigurationProperties {
-  /** Description of the configuration. */
-  description?: string;
-  /** Data type of the configuration. */
-  dataType?: ConfigurationPropertiesDataType;
-  /** Allowed values of the configuration. */
-  allowedValues?: string;
-  /** If configuration change requires restart. */
-  requiresRestart?: boolean;
-  /** The list of server role group configuration values. */
-  serverRoleGroupConfigurations: ConfigurationPropertiesServerRoleGroupConfigurationsList;
-  /** Provisioning state of the configuration */
-  provisioningState?: ProvisioningState;
-}
-export const ConfigurationProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    description: S.optional(S.String),
-    dataType: S.optional(ConfigurationPropertiesDataType),
-    allowedValues: S.optional(S.String),
-    requiresRestart: S.optional(S.Boolean),
-    serverRoleGroupConfigurations:
-      ConfigurationPropertiesServerRoleGroupConfigurationsList,
-    provisioningState: S.optional(ProvisioningState),
-  }),
-).annotate({
-  identifier: "ConfigurationProperties",
-}) as any as S.Schema<ConfigurationProperties>;
-
-export interface ConfigurationsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties of configuration. */
-  properties?: ConfigurationProperties;
-}
-export const ConfigurationsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ConfigurationProperties),
-  }),
-).annotate({
-  identifier: "ConfigurationsGetResponse",
-}) as any as S.Schema<ConfigurationsGetResponse>;
-
-export interface ConfigurationsGetCoordinatorRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-  /** The name of the cluster configuration. */
-  configurationName: string;
-}
-export const ConfigurationsGetCoordinatorRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    configurationName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/{clusterName}/coordinatorConfigurations/{configurationName}",
-      code: 200,
-      apiVersion: "2022-11-08",
-    }),
-  ),
-).annotate({
-  identifier: "ConfigurationsGetCoordinatorRequest",
-}) as any as S.Schema<ConfigurationsGetCoordinatorRequest>;
-
-/** Data type of the configuration. */
-export type ServerConfigurationPropertiesDataType =
-  | "Boolean"
-  | "Numeric"
-  | "Integer"
-  | "Enumeration";
-export const ServerConfigurationPropertiesDataType = /*@__PURE__*/ S.String;
-
-/** The properties of a configuration. */
-export interface ServerConfigurationProperties {
-  /** Value of the configuration. */
-  value: string;
-  /** Source of the configuration. */
-  source?: string;
-  /** Description of the configuration. */
-  description?: string;
-  /** Default value of the configuration. */
-  defaultValue?: string;
-  /** Data type of the configuration. */
-  dataType?: ServerConfigurationPropertiesDataType;
-  /** Allowed values of the configuration. */
-  allowedValues?: string;
-  /** If configuration change requires restart. */
-  requiresRestart?: boolean;
-  /** Provisioning state of the configuration. */
-  provisioningState?: ProvisioningState;
-}
-export const ServerConfigurationProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.String,
-    source: S.optional(S.String),
-    description: S.optional(S.String),
-    defaultValue: S.optional(S.String),
-    dataType: S.optional(ServerConfigurationPropertiesDataType),
-    allowedValues: S.optional(S.String),
-    requiresRestart: S.optional(S.Boolean),
-    provisioningState: S.optional(ProvisioningState),
-  }),
-).annotate({
-  identifier: "ServerConfigurationProperties",
-}) as any as S.Schema<ServerConfigurationProperties>;
-
-export interface ConfigurationsGetCoordinatorResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties of a configuration. */
-  properties?: ServerConfigurationProperties;
-}
-export const ConfigurationsGetCoordinatorResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(ServerConfigurationProperties),
-    }),
-).annotate({
-  identifier: "ConfigurationsGetCoordinatorResponse",
-}) as any as S.Schema<ConfigurationsGetCoordinatorResponse>;
-
-export interface ConfigurationsGetNodeRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-  /** The name of the cluster configuration. */
-  configurationName: string;
-}
-export const ConfigurationsGetNodeRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    configurationName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/{clusterName}/nodeConfigurations/{configurationName}",
-      code: 200,
-      apiVersion: "2022-11-08",
-    }),
-  ),
-).annotate({
-  identifier: "ConfigurationsGetNodeRequest",
-}) as any as S.Schema<ConfigurationsGetNodeRequest>;
-
-export interface ConfigurationsGetNodeResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties of a configuration. */
-  properties?: ServerConfigurationProperties;
-}
-export const ConfigurationsGetNodeResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ServerConfigurationProperties),
-  }),
-).annotate({
-  identifier: "ConfigurationsGetNodeResponse",
-}) as any as S.Schema<ConfigurationsGetNodeResponse>;
-
-export interface ConfigurationsListByClusterRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-}
-export const ConfigurationsListByClusterRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/{clusterName}/configurations",
-      code: 200,
-      apiVersion: "2022-11-08",
-    }),
-  ),
-).annotate({
-  identifier: "ConfigurationsListByClusterRequest",
-}) as any as S.Schema<ConfigurationsListByClusterRequest>;
-
-/** Represents configuration details for coordinator and node. */
-export interface Configuration {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties of configuration. */
-  properties?: ConfigurationProperties;
-}
-export const Configuration = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ConfigurationProperties),
-  }),
-).annotate({ identifier: "Configuration" }) as any as S.Schema<Configuration>;
-
-/** The list of cluster configurations. */
-export type ClusterConfigurationListResultValueList = Array<Configuration>;
-export const ClusterConfigurationListResultValueList = /*@__PURE__*/ S.Array(
-  Configuration,
-) as any as S.Schema<ClusterConfigurationListResultValueList>;
-
-/** A list of cluster configurations. */
-export interface ClusterConfigurationListResult {
-  /** The list of cluster configurations. */
-  value?: ClusterConfigurationListResultValueList;
-  /** Link to retrieve next page of results. */
-  nextLink?: string;
-}
-export const ClusterConfigurationListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(ClusterConfigurationListResultValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ClusterConfigurationListResult",
-}) as any as S.Schema<ClusterConfigurationListResult>;
-
-export interface ConfigurationsListByServerRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-  /** The name of the server. */
-  serverName: string;
-}
-export const ConfigurationsListByServerRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    serverName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/{clusterName}/servers/{serverName}/configurations",
-      code: 200,
-      apiVersion: "2022-11-08",
-    }),
-  ),
-).annotate({
-  identifier: "ConfigurationsListByServerRequest",
-}) as any as S.Schema<ConfigurationsListByServerRequest>;
-
-/** Represents a configuration. */
-export interface ServerConfiguration {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties of a configuration. */
-  properties?: ServerConfigurationProperties;
-}
-export const ServerConfiguration = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ServerConfigurationProperties),
-  }),
-).annotate({
-  identifier: "ServerConfiguration",
-}) as any as S.Schema<ServerConfiguration>;
-
-/** The list of server configurations. */
-export type ServerConfigurationListResultValueList = Array<ServerConfiguration>;
-export const ServerConfigurationListResultValueList = /*@__PURE__*/ S.Array(
-  ServerConfiguration,
-) as any as S.Schema<ServerConfigurationListResultValueList>;
-
-/** A list of server configurations. */
-export interface ServerConfigurationListResult {
-  /** The list of server configurations. */
-  value?: ServerConfigurationListResultValueList;
-  /** Link to retrieve next page of results. */
-  nextLink?: string;
-}
-export const ServerConfigurationListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(ServerConfigurationListResultValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ServerConfigurationListResult",
-}) as any as S.Schema<ServerConfigurationListResult>;
-
-/** The properties of a configuration. */
-export interface ServerConfigurationPropertiesInput {
-  /** Value of the configuration. */
-  value: string;
-}
-export const ServerConfigurationPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.String,
-  }),
-).annotate({
-  identifier: "ServerConfigurationPropertiesInput",
-}) as any as S.Schema<ServerConfigurationPropertiesInput>;
-
-export interface ConfigurationsUpdateOnCoordinatorRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-  /** The name of the cluster configuration. */
-  configurationName: string;
-  /** The properties of a configuration. */
-  properties?: ServerConfigurationPropertiesInput;
-}
-export const ConfigurationsUpdateOnCoordinatorRequest = /*@__PURE__*/ S.suspend(
+export const DeletePrivateEndpointConnectionRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       clusterName: S.String.pipe(T.Label()),
-      configurationName: S.String.pipe(T.Label()),
-      properties: S.optional(ServerConfigurationPropertiesInput),
+      privateEndpointConnectionName: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/{clusterName}/coordinatorConfigurations/{configurationName}",
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/{clusterName}/privateEndpointConnections/{privateEndpointConnectionName}",
         code: 200,
         apiVersion: "2022-11-08",
       }),
     ),
 ).annotate({
-  identifier: "ConfigurationsUpdateOnCoordinatorRequest",
-}) as any as S.Schema<ConfigurationsUpdateOnCoordinatorRequest>;
+  identifier: "DeletePrivateEndpointConnectionRequest",
+}) as any as S.Schema<DeletePrivateEndpointConnectionRequest>;
 
-export interface ConfigurationsUpdateOnCoordinatorResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties of a configuration. */
-  properties?: ServerConfigurationProperties;
-}
-export const ConfigurationsUpdateOnCoordinatorResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(ServerConfigurationProperties),
-    }),
-  ).annotate({
-    identifier: "ConfigurationsUpdateOnCoordinatorResponse",
-  }) as any as S.Schema<ConfigurationsUpdateOnCoordinatorResponse>;
+export interface DeletePrivateEndpointConnectionResponse {}
+export const DeletePrivateEndpointConnectionResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "DeletePrivateEndpointConnectionResponse",
+}) as any as S.Schema<DeletePrivateEndpointConnectionResponse>;
 
-export interface ConfigurationsUpdateOnNodeRequest {
+export interface DeleteRoleRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of the cluster. */
   clusterName: string;
-  /** The name of the cluster configuration. */
-  configurationName: string;
-  /** The properties of a configuration. */
-  properties?: ServerConfigurationPropertiesInput;
+  /** The name of the cluster role. */
+  roleName: string;
 }
-export const ConfigurationsUpdateOnNodeRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteRoleRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     clusterName: S.String.pipe(T.Label()),
-    configurationName: S.String.pipe(T.Label()),
-    properties: S.optional(ServerConfigurationPropertiesInput),
+    roleName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/{clusterName}/nodeConfigurations/{configurationName}",
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/{clusterName}/roles/{roleName}",
       code: 200,
       apiVersion: "2022-11-08",
     }),
   ),
 ).annotate({
-  identifier: "ConfigurationsUpdateOnNodeRequest",
-}) as any as S.Schema<ConfigurationsUpdateOnNodeRequest>;
+  identifier: "DeleteRoleRequest",
+}) as any as S.Schema<DeleteRoleRequest>;
 
-export interface ConfigurationsUpdateOnNodeResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties of a configuration. */
-  properties?: ServerConfigurationProperties;
-}
-export const ConfigurationsUpdateOnNodeResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ServerConfigurationProperties),
-  }),
+export interface DeleteRoleResponse {}
+export const DeleteRoleResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
 ).annotate({
-  identifier: "ConfigurationsUpdateOnNodeResponse",
-}) as any as S.Schema<ConfigurationsUpdateOnNodeResponse>;
+  identifier: "DeleteRoleResponse",
+}) as any as S.Schema<DeleteRoleResponse>;
 
 /** The properties of a cluster firewall rule. */
 export interface FirewallRulePropertiesInput {
@@ -1594,42 +848,338 @@ export const FirewallRulesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "FirewallRulesCreateOrUpdateResponse",
 }) as any as S.Schema<FirewallRulesCreateOrUpdateResponse>;
 
-export interface FirewallRulesDeleteRequest {
+export interface GetClusterRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of the cluster. */
   clusterName: string;
-  /** The name of the cluster firewall rule. */
-  firewallRuleName: string;
 }
-export const FirewallRulesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetClusterRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     clusterName: S.String.pipe(T.Label()),
-    firewallRuleName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/{clusterName}/firewallRules/{firewallRuleName}",
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/{clusterName}",
       code: 200,
       apiVersion: "2022-11-08",
     }),
   ),
 ).annotate({
-  identifier: "FirewallRulesDeleteRequest",
-}) as any as S.Schema<FirewallRulesDeleteRequest>;
+  identifier: "GetClusterRequest",
+}) as any as S.Schema<GetClusterRequest>;
 
-export interface FirewallRulesDeleteResponse {}
-export const FirewallRulesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
+/** Resource tags. */
+export type GetClusterResponseTagsMap = { [key: string]: string | undefined };
+export const GetClusterResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetClusterResponseTagsMap>;
+
+export interface GetClusterResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetClusterResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Properties of the cluster. */
+  properties?: ClusterProperties;
+}
+export const GetClusterResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetClusterResponseTagsMap),
+    location: S.String,
+    properties: S.optional(ClusterProperties),
+  }),
 ).annotate({
-  identifier: "FirewallRulesDeleteResponse",
-}) as any as S.Schema<FirewallRulesDeleteResponse>;
+  identifier: "GetClusterResponse",
+}) as any as S.Schema<GetClusterResponse>;
 
-export interface FirewallRulesGetRequest {
+export interface GetConfigurationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+  /** The name of the cluster configuration. */
+  configurationName: string;
+}
+export const GetConfigurationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    configurationName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/{clusterName}/configurations/{configurationName}",
+      code: 200,
+      apiVersion: "2022-11-08",
+    }),
+  ),
+).annotate({
+  identifier: "GetConfigurationRequest",
+}) as any as S.Schema<GetConfigurationRequest>;
+
+/** Data type of the configuration. */
+export type ConfigurationPropertiesDataType =
+  | "Boolean"
+  | "Numeric"
+  | "Integer"
+  | "Enumeration";
+export const ConfigurationPropertiesDataType = /*@__PURE__*/ S.String;
+
+/** The role of a server. */
+export type ServerRole = "Coordinator" | "Worker";
+export const ServerRole = /*@__PURE__*/ S.String;
+
+/** Represents server role group configuration value. */
+export interface ServerRoleGroupConfiguration {
+  /** The role of servers in the server role group. */
+  role: ServerRole;
+  /** Value of the configuration. */
+  value: string;
+  /** Default value of the configuration. */
+  defaultValue?: string;
+  /** Source of the configuration. */
+  source?: string;
+}
+export const ServerRoleGroupConfiguration = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    role: ServerRole,
+    value: S.String,
+    defaultValue: S.optional(S.String),
+    source: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ServerRoleGroupConfiguration",
+}) as any as S.Schema<ServerRoleGroupConfiguration>;
+
+/** The list of server role group configuration values. */
+export type ConfigurationPropertiesServerRoleGroupConfigurationsList =
+  Array<ServerRoleGroupConfiguration>;
+export const ConfigurationPropertiesServerRoleGroupConfigurationsList =
+  /*@__PURE__*/ S.Array(
+    ServerRoleGroupConfiguration,
+  ) as any as S.Schema<ConfigurationPropertiesServerRoleGroupConfigurationsList>;
+
+/** The properties of configuration. */
+export interface ConfigurationProperties {
+  /** Description of the configuration. */
+  description?: string;
+  /** Data type of the configuration. */
+  dataType?: ConfigurationPropertiesDataType;
+  /** Allowed values of the configuration. */
+  allowedValues?: string;
+  /** If configuration change requires restart. */
+  requiresRestart?: boolean;
+  /** The list of server role group configuration values. */
+  serverRoleGroupConfigurations: ConfigurationPropertiesServerRoleGroupConfigurationsList;
+  /** Provisioning state of the configuration */
+  provisioningState?: ProvisioningState;
+}
+export const ConfigurationProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    description: S.optional(S.String),
+    dataType: S.optional(ConfigurationPropertiesDataType),
+    allowedValues: S.optional(S.String),
+    requiresRestart: S.optional(S.Boolean),
+    serverRoleGroupConfigurations:
+      ConfigurationPropertiesServerRoleGroupConfigurationsList,
+    provisioningState: S.optional(ProvisioningState),
+  }),
+).annotate({
+  identifier: "ConfigurationProperties",
+}) as any as S.Schema<ConfigurationProperties>;
+
+export interface GetConfigurationResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of configuration. */
+  properties?: ConfigurationProperties;
+}
+export const GetConfigurationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ConfigurationProperties),
+  }),
+).annotate({
+  identifier: "GetConfigurationResponse",
+}) as any as S.Schema<GetConfigurationResponse>;
+
+export interface GetConfigurationCoordinatorRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+  /** The name of the cluster configuration. */
+  configurationName: string;
+}
+export const GetConfigurationCoordinatorRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    configurationName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/{clusterName}/coordinatorConfigurations/{configurationName}",
+      code: 200,
+      apiVersion: "2022-11-08",
+    }),
+  ),
+).annotate({
+  identifier: "GetConfigurationCoordinatorRequest",
+}) as any as S.Schema<GetConfigurationCoordinatorRequest>;
+
+/** Data type of the configuration. */
+export type ServerConfigurationPropertiesDataType =
+  | "Boolean"
+  | "Numeric"
+  | "Integer"
+  | "Enumeration";
+export const ServerConfigurationPropertiesDataType = /*@__PURE__*/ S.String;
+
+/** The properties of a configuration. */
+export interface ServerConfigurationProperties {
+  /** Value of the configuration. */
+  value: string;
+  /** Source of the configuration. */
+  source?: string;
+  /** Description of the configuration. */
+  description?: string;
+  /** Default value of the configuration. */
+  defaultValue?: string;
+  /** Data type of the configuration. */
+  dataType?: ServerConfigurationPropertiesDataType;
+  /** Allowed values of the configuration. */
+  allowedValues?: string;
+  /** If configuration change requires restart. */
+  requiresRestart?: boolean;
+  /** Provisioning state of the configuration. */
+  provisioningState?: ProvisioningState;
+}
+export const ServerConfigurationProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.String,
+    source: S.optional(S.String),
+    description: S.optional(S.String),
+    defaultValue: S.optional(S.String),
+    dataType: S.optional(ServerConfigurationPropertiesDataType),
+    allowedValues: S.optional(S.String),
+    requiresRestart: S.optional(S.Boolean),
+    provisioningState: S.optional(ProvisioningState),
+  }),
+).annotate({
+  identifier: "ServerConfigurationProperties",
+}) as any as S.Schema<ServerConfigurationProperties>;
+
+export interface GetConfigurationCoordinatorResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of a configuration. */
+  properties?: ServerConfigurationProperties;
+}
+export const GetConfigurationCoordinatorResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ServerConfigurationProperties),
+  }),
+).annotate({
+  identifier: "GetConfigurationCoordinatorResponse",
+}) as any as S.Schema<GetConfigurationCoordinatorResponse>;
+
+export interface GetConfigurationNodeRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+  /** The name of the cluster configuration. */
+  configurationName: string;
+}
+export const GetConfigurationNodeRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    configurationName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/{clusterName}/nodeConfigurations/{configurationName}",
+      code: 200,
+      apiVersion: "2022-11-08",
+    }),
+  ),
+).annotate({
+  identifier: "GetConfigurationNodeRequest",
+}) as any as S.Schema<GetConfigurationNodeRequest>;
+
+export interface GetConfigurationNodeResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of a configuration. */
+  properties?: ServerConfigurationProperties;
+}
+export const GetConfigurationNodeResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ServerConfigurationProperties),
+  }),
+).annotate({
+  identifier: "GetConfigurationNodeResponse",
+}) as any as S.Schema<GetConfigurationNodeResponse>;
+
+export interface GetFirewallRuleRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1639,7 +1189,7 @@ export interface FirewallRulesGetRequest {
   /** The name of the cluster firewall rule. */
   firewallRuleName: string;
 }
-export const FirewallRulesGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetFirewallRuleRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1654,10 +1204,10 @@ export const FirewallRulesGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "FirewallRulesGetRequest",
-}) as any as S.Schema<FirewallRulesGetRequest>;
+  identifier: "GetFirewallRuleRequest",
+}) as any as S.Schema<GetFirewallRuleRequest>;
 
-export interface FirewallRulesGetResponse {
+export interface GetFirewallRuleResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -1669,7 +1219,7 @@ export interface FirewallRulesGetResponse {
   /** The properties of a firewall rule. */
   properties: FirewallRuleProperties;
 }
-export const FirewallRulesGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetFirewallRuleResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -1678,10 +1228,475 @@ export const FirewallRulesGetResponse = /*@__PURE__*/ S.suspend(() =>
     properties: FirewallRuleProperties,
   }),
 ).annotate({
-  identifier: "FirewallRulesGetResponse",
-}) as any as S.Schema<FirewallRulesGetResponse>;
+  identifier: "GetFirewallRuleResponse",
+}) as any as S.Schema<GetFirewallRuleResponse>;
 
-export interface FirewallRulesListByClusterRequest {
+export interface GetPrivateEndpointConnectionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+  /** The name of the private endpoint connection associated with the cluster. */
+  privateEndpointConnectionName: string;
+}
+export const GetPrivateEndpointConnectionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    privateEndpointConnectionName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/{clusterName}/privateEndpointConnections/{privateEndpointConnectionName}",
+      code: 200,
+      apiVersion: "2022-11-08",
+    }),
+  ),
+).annotate({
+  identifier: "GetPrivateEndpointConnectionRequest",
+}) as any as S.Schema<GetPrivateEndpointConnectionRequest>;
+
+/** The group ids for the private endpoint resource. */
+export type PrivateEndpointConnectionPropertiesGroupIdsList = Array<string>;
+export const PrivateEndpointConnectionPropertiesGroupIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<PrivateEndpointConnectionPropertiesGroupIdsList>;
+
+/** The private endpoint resource. */
+export interface PrivateEndpoint {
+  /** The ARM identifier for private endpoint. */
+  id?: string;
+}
+export const PrivateEndpoint = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PrivateEndpoint",
+}) as any as S.Schema<PrivateEndpoint>;
+
+/** A collection of information about the state of the connection between service consumer and provider. */
+export interface PrivateLinkServiceConnectionState {
+  /** Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service. */
+  status?: PrivateEndpointServiceConnectionStatus | (string & {});
+  /** The reason for approval/rejection of the connection. */
+  description?: string;
+  /** A message indicating if changes on the service provider require any updates on the consumer. */
+  actionsRequired?: string;
+}
+export const PrivateLinkServiceConnectionState = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    status: S.optional(PrivateEndpointServiceConnectionStatus),
+    description: S.optional(S.String),
+    actionsRequired: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PrivateLinkServiceConnectionState",
+}) as any as S.Schema<PrivateLinkServiceConnectionState>;
+
+/** The current provisioning state. */
+export type PrivateEndpointConnectionProvisioningState =
+  | "Succeeded"
+  | "Creating"
+  | "Deleting"
+  | "Failed";
+export const PrivateEndpointConnectionProvisioningState =
+  /*@__PURE__*/ S.String;
+
+/** Properties of the private endpoint connection. */
+export interface PrivateEndpointConnectionProperties {
+  /** The group ids for the private endpoint resource. */
+  groupIds?: PrivateEndpointConnectionPropertiesGroupIdsList;
+  /** The private endpoint resource. */
+  privateEndpoint?: PrivateEndpoint;
+  /** A collection of information about the state of the connection between service consumer and provider. */
+  privateLinkServiceConnectionState: PrivateLinkServiceConnectionState;
+  /** The provisioning state of the private endpoint connection resource. */
+  provisioningState?: PrivateEndpointConnectionProvisioningState;
+}
+export const PrivateEndpointConnectionProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    groupIds: S.optional(PrivateEndpointConnectionPropertiesGroupIdsList),
+    privateEndpoint: S.optional(PrivateEndpoint),
+    privateLinkServiceConnectionState: PrivateLinkServiceConnectionState,
+    provisioningState: S.optional(PrivateEndpointConnectionProvisioningState),
+  }),
+).annotate({
+  identifier: "PrivateEndpointConnectionProperties",
+}) as any as S.Schema<PrivateEndpointConnectionProperties>;
+
+export interface GetPrivateEndpointConnectionResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource properties. */
+  properties?: PrivateEndpointConnectionProperties;
+}
+export const GetPrivateEndpointConnectionResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(PrivateEndpointConnectionProperties),
+    }),
+).annotate({
+  identifier: "GetPrivateEndpointConnectionResponse",
+}) as any as S.Schema<GetPrivateEndpointConnectionResponse>;
+
+export interface GetPrivateLinkResourceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+  /** The name of the private link resource. */
+  privateLinkResourceName: string;
+}
+export const GetPrivateLinkResourceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    privateLinkResourceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/{clusterName}/privateLinkResources/{privateLinkResourceName}",
+      code: 200,
+      apiVersion: "2022-11-08",
+    }),
+  ),
+).annotate({
+  identifier: "GetPrivateLinkResourceRequest",
+}) as any as S.Schema<GetPrivateLinkResourceRequest>;
+
+/** The private link resource required member names. */
+export type PrivateLinkResourcePropertiesRequiredMembersList = Array<string>;
+export const PrivateLinkResourcePropertiesRequiredMembersList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<PrivateLinkResourcePropertiesRequiredMembersList>;
+
+/** The private link resource private link DNS zone name. */
+export type PrivateLinkResourcePropertiesRequiredZoneNamesList = Array<string>;
+export const PrivateLinkResourcePropertiesRequiredZoneNamesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<PrivateLinkResourcePropertiesRequiredZoneNamesList>;
+
+/** Properties of a private link resource. */
+export interface PrivateLinkResourceProperties {
+  /** The private link resource group id. */
+  groupId?: string;
+  /** The private link resource required member names. */
+  requiredMembers?: PrivateLinkResourcePropertiesRequiredMembersList;
+  /** The private link resource private link DNS zone name. */
+  requiredZoneNames?: PrivateLinkResourcePropertiesRequiredZoneNamesList;
+}
+export const PrivateLinkResourceProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    groupId: S.optional(S.String),
+    requiredMembers: S.optional(
+      PrivateLinkResourcePropertiesRequiredMembersList,
+    ),
+    requiredZoneNames: S.optional(
+      PrivateLinkResourcePropertiesRequiredZoneNamesList,
+    ),
+  }),
+).annotate({
+  identifier: "PrivateLinkResourceProperties",
+}) as any as S.Schema<PrivateLinkResourceProperties>;
+
+export interface GetPrivateLinkResourceResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource properties. */
+  properties?: PrivateLinkResourceProperties;
+}
+export const GetPrivateLinkResourceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(PrivateLinkResourceProperties),
+  }),
+).annotate({
+  identifier: "GetPrivateLinkResourceResponse",
+}) as any as S.Schema<GetPrivateLinkResourceResponse>;
+
+export interface GetRoleRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+  /** The name of the cluster role. */
+  roleName: string;
+}
+export const GetRoleRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    roleName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/{clusterName}/roles/{roleName}",
+      code: 200,
+      apiVersion: "2022-11-08",
+    }),
+  ),
+).annotate({ identifier: "GetRoleRequest" }) as any as S.Schema<GetRoleRequest>;
+
+export interface GetRoleResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of a role. */
+  properties: RoleProperties;
+}
+export const GetRoleResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: RoleProperties,
+  }),
+).annotate({
+  identifier: "GetRoleResponse",
+}) as any as S.Schema<GetRoleResponse>;
+
+export interface GetServerRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+  /** The name of the server. */
+  serverName: string;
+}
+export const GetServerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    serverName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/{clusterName}/servers/{serverName}",
+      code: 200,
+      apiVersion: "2022-11-08",
+    }),
+  ),
+).annotate({
+  identifier: "GetServerRequest",
+}) as any as S.Schema<GetServerRequest>;
+
+/** The properties of a server in cluster. */
+export interface ClusterServerProperties {
+  /** The edition of a server. */
+  serverEdition?: string;
+  /** The storage of a server in MB. */
+  storageQuotaInMb?: number;
+  /** The vCores count of a server. */
+  vCores?: number;
+  /** If high availability (HA) is enabled or not for the server. */
+  enableHa?: boolean;
+  /** If public access is enabled on server. */
+  enablePublicIpAccess?: boolean;
+  /** If server database is set to read-only by system maintenance depending on high disk space usage. */
+  isReadOnly?: boolean;
+  /** The administrator's login name of the servers in the cluster. */
+  administratorLogin?: string;
+  /** The fully qualified domain name of a server. */
+  fullyQualifiedDomainName?: string;
+  /** The role of server in the cluster. */
+  role?: ServerRole;
+  /** A state of a cluster/server that is visible to user. */
+  state?: string;
+  /** A state of HA feature for the cluster. */
+  haState?: string;
+  /** Availability Zone information of the server. */
+  availabilityZone?: string;
+  /** The major PostgreSQL version of server. */
+  postgresqlVersion?: string;
+  /** The Citus extension version of server. */
+  citusVersion?: string;
+}
+export const ClusterServerProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serverEdition: S.optional(S.String),
+    storageQuotaInMb: S.optional(S.Number),
+    vCores: S.optional(S.Number),
+    enableHa: S.optional(S.Boolean),
+    enablePublicIpAccess: S.optional(S.Boolean),
+    isReadOnly: S.optional(S.Boolean),
+    administratorLogin: S.optional(S.String),
+    fullyQualifiedDomainName: S.optional(S.String),
+    role: S.optional(ServerRole),
+    state: S.optional(S.String),
+    haState: S.optional(S.String),
+    availabilityZone: S.optional(S.String),
+    postgresqlVersion: S.optional(S.String),
+    citusVersion: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ClusterServerProperties",
+}) as any as S.Schema<ClusterServerProperties>;
+
+export interface GetServerResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of a server in a cluster. */
+  properties?: ClusterServerProperties;
+}
+export const GetServerResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ClusterServerProperties),
+  }),
+).annotate({
+  identifier: "GetServerResponse",
+}) as any as S.Schema<GetServerResponse>;
+
+export interface ListClusterByResourceGroupRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+}
+export const ListClusterByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/serverGroupsv2",
+      code: 200,
+      apiVersion: "2022-11-08",
+    }),
+  ),
+).annotate({
+  identifier: "ListClusterByResourceGroupRequest",
+}) as any as S.Schema<ListClusterByResourceGroupRequest>;
+
+/** Resource tags. */
+export type ClusterTagsMap = { [key: string]: string | undefined };
+export const ClusterTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<ClusterTagsMap>;
+
+/** Represents a cluster. */
+export interface Cluster {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: ClusterTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Properties of the cluster. */
+  properties?: ClusterProperties;
+}
+export const Cluster = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(ClusterTagsMap),
+    location: S.String,
+    properties: S.optional(ClusterProperties),
+  }),
+).annotate({ identifier: "Cluster" }) as any as S.Schema<Cluster>;
+
+/** The list of clusters */
+export type ClusterListResultValueList = Array<Cluster>;
+export const ClusterListResultValueList = /*@__PURE__*/ S.Array(
+  Cluster,
+) as any as S.Schema<ClusterListResultValueList>;
+
+/** A list of clusters. */
+export interface ClusterListResult {
+  /** The list of clusters */
+  value?: ClusterListResultValueList;
+  /** The link used to get the next page of cluster list. */
+  nextLink?: string;
+}
+export const ClusterListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(ClusterListResultValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ClusterListResult",
+}) as any as S.Schema<ClusterListResult>;
+
+export interface ListClustersRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+}
+export const ListClustersRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.DBforPostgreSQL/serverGroupsv2",
+      code: 200,
+      apiVersion: "2022-11-08",
+    }),
+  ),
+).annotate({
+  identifier: "ListClustersRequest",
+}) as any as S.Schema<ListClustersRequest>;
+
+export interface ListConfigurationByClusterRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1689,7 +1704,152 @@ export interface FirewallRulesListByClusterRequest {
   /** The name of the cluster. */
   clusterName: string;
 }
-export const FirewallRulesListByClusterRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListConfigurationByClusterRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/{clusterName}/configurations",
+      code: 200,
+      apiVersion: "2022-11-08",
+    }),
+  ),
+).annotate({
+  identifier: "ListConfigurationByClusterRequest",
+}) as any as S.Schema<ListConfigurationByClusterRequest>;
+
+/** Represents configuration details for coordinator and node. */
+export interface Configuration {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of configuration. */
+  properties?: ConfigurationProperties;
+}
+export const Configuration = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ConfigurationProperties),
+  }),
+).annotate({ identifier: "Configuration" }) as any as S.Schema<Configuration>;
+
+/** The list of cluster configurations. */
+export type ClusterConfigurationListResultValueList = Array<Configuration>;
+export const ClusterConfigurationListResultValueList = /*@__PURE__*/ S.Array(
+  Configuration,
+) as any as S.Schema<ClusterConfigurationListResultValueList>;
+
+/** A list of cluster configurations. */
+export interface ClusterConfigurationListResult {
+  /** The list of cluster configurations. */
+  value?: ClusterConfigurationListResultValueList;
+  /** Link to retrieve next page of results. */
+  nextLink?: string;
+}
+export const ClusterConfigurationListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(ClusterConfigurationListResultValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ClusterConfigurationListResult",
+}) as any as S.Schema<ClusterConfigurationListResult>;
+
+export interface ListConfigurationByServerRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+  /** The name of the server. */
+  serverName: string;
+}
+export const ListConfigurationByServerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    serverName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/{clusterName}/servers/{serverName}/configurations",
+      code: 200,
+      apiVersion: "2022-11-08",
+    }),
+  ),
+).annotate({
+  identifier: "ListConfigurationByServerRequest",
+}) as any as S.Schema<ListConfigurationByServerRequest>;
+
+/** Represents a configuration. */
+export interface ServerConfiguration {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of a configuration. */
+  properties?: ServerConfigurationProperties;
+}
+export const ServerConfiguration = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ServerConfigurationProperties),
+  }),
+).annotate({
+  identifier: "ServerConfiguration",
+}) as any as S.Schema<ServerConfiguration>;
+
+/** The list of server configurations. */
+export type ServerConfigurationListResultValueList = Array<ServerConfiguration>;
+export const ServerConfigurationListResultValueList = /*@__PURE__*/ S.Array(
+  ServerConfiguration,
+) as any as S.Schema<ServerConfigurationListResultValueList>;
+
+/** A list of server configurations. */
+export interface ServerConfigurationListResult {
+  /** The list of server configurations. */
+  value?: ServerConfigurationListResultValueList;
+  /** Link to retrieve next page of results. */
+  nextLink?: string;
+}
+export const ServerConfigurationListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(ServerConfigurationListResultValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ServerConfigurationListResult",
+}) as any as S.Schema<ServerConfigurationListResult>;
+
+export interface ListFirewallRuleByClusterRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+}
+export const ListFirewallRuleByClusterRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1703,8 +1863,8 @@ export const FirewallRulesListByClusterRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "FirewallRulesListByClusterRequest",
-}) as any as S.Schema<FirewallRulesListByClusterRequest>;
+  identifier: "ListFirewallRuleByClusterRequest",
+}) as any as S.Schema<ListFirewallRuleByClusterRequest>;
 
 /** Represents a cluster firewall rule. */
 export interface FirewallRule {
@@ -1748,8 +1908,8 @@ export const FirewallRuleListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "FirewallRuleListResult",
 }) as any as S.Schema<FirewallRuleListResult>;
 
-export interface OperationsListRequest {}
-export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
+export interface ListOperationsRequest {}
+export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
     T.Http({
       method: "GET",
@@ -1759,8 +1919,8 @@ export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "OperationsListRequest",
-}) as any as S.Schema<OperationsListRequest>;
+  identifier: "ListOperationsRequest",
+}) as any as S.Schema<ListOperationsRequest>;
 
 /** Display metadata associated with the operation. */
 export interface OperationDisplay {
@@ -1840,6 +2000,283 @@ export const OperationListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "OperationListResult",
 }) as any as S.Schema<OperationListResult>;
 
+export interface ListPrivateEndpointConnectionByClusterRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+}
+export const ListPrivateEndpointConnectionByClusterRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      clusterName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/{clusterName}/privateEndpointConnections",
+        code: 200,
+        apiVersion: "2022-11-08",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListPrivateEndpointConnectionByClusterRequest",
+  }) as any as S.Schema<ListPrivateEndpointConnectionByClusterRequest>;
+
+/** The private endpoint connection resource. */
+export interface PrivateEndpointConnectionListResultValueItem {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource properties. */
+  properties?: PrivateEndpointConnectionProperties;
+}
+export const PrivateEndpointConnectionListResultValueItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(PrivateEndpointConnectionProperties),
+    }),
+  ).annotate({
+    identifier: "PrivateEndpointConnectionListResultValueItem",
+  }) as any as S.Schema<PrivateEndpointConnectionListResultValueItem>;
+
+/** Array of private endpoint connections. */
+export type PrivateEndpointConnectionListResultValueList =
+  Array<PrivateEndpointConnectionListResultValueItem>;
+export const PrivateEndpointConnectionListResultValueList =
+  /*@__PURE__*/ S.Array(
+    PrivateEndpointConnectionListResultValueItem,
+  ) as any as S.Schema<PrivateEndpointConnectionListResultValueList>;
+
+/** List of private endpoint connections associated with the specified resource. */
+export interface PrivateEndpointConnectionListResult {
+  /** Array of private endpoint connections. */
+  value?: PrivateEndpointConnectionListResultValueList;
+}
+export const PrivateEndpointConnectionListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(PrivateEndpointConnectionListResultValueList),
+  }),
+).annotate({
+  identifier: "PrivateEndpointConnectionListResult",
+}) as any as S.Schema<PrivateEndpointConnectionListResult>;
+
+export interface ListPrivateLinkResourceByClusterRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+}
+export const ListPrivateLinkResourceByClusterRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      clusterName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/{clusterName}/privateLinkResources",
+        code: 200,
+        apiVersion: "2022-11-08",
+      }),
+    ),
+).annotate({
+  identifier: "ListPrivateLinkResourceByClusterRequest",
+}) as any as S.Schema<ListPrivateLinkResourceByClusterRequest>;
+
+/** A private link resource. */
+export interface PrivateLinkResourceListResultValueItem {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource properties. */
+  properties?: PrivateLinkResourceProperties;
+}
+export const PrivateLinkResourceListResultValueItem = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(PrivateLinkResourceProperties),
+    }),
+).annotate({
+  identifier: "PrivateLinkResourceListResultValueItem",
+}) as any as S.Schema<PrivateLinkResourceListResultValueItem>;
+
+/** Array of private link resources */
+export type PrivateLinkResourceListResultValueList =
+  Array<PrivateLinkResourceListResultValueItem>;
+export const PrivateLinkResourceListResultValueList = /*@__PURE__*/ S.Array(
+  PrivateLinkResourceListResultValueItem,
+) as any as S.Schema<PrivateLinkResourceListResultValueList>;
+
+/** A list of private link resources. */
+export interface PrivateLinkResourceListResult {
+  /** Array of private link resources */
+  value?: PrivateLinkResourceListResultValueList;
+}
+export const PrivateLinkResourceListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(PrivateLinkResourceListResultValueList),
+  }),
+).annotate({
+  identifier: "PrivateLinkResourceListResult",
+}) as any as S.Schema<PrivateLinkResourceListResult>;
+
+export interface ListRoleByClusterRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+}
+export const ListRoleByClusterRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/{clusterName}/roles",
+      code: 200,
+      apiVersion: "2022-11-08",
+    }),
+  ),
+).annotate({
+  identifier: "ListRoleByClusterRequest",
+}) as any as S.Schema<ListRoleByClusterRequest>;
+
+/** Represents a cluster role. */
+export interface Role {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of a role. */
+  properties: RoleProperties;
+}
+export const Role = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: RoleProperties,
+  }),
+).annotate({ identifier: "Role" }) as any as S.Schema<Role>;
+
+/** The list of roles in a cluster. */
+export type RoleListResultValueList = Array<Role>;
+export const RoleListResultValueList = /*@__PURE__*/ S.Array(
+  Role,
+) as any as S.Schema<RoleListResultValueList>;
+
+/** A list of roles. */
+export interface RoleListResult {
+  /** The list of roles in a cluster. */
+  value?: RoleListResultValueList;
+}
+export const RoleListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(RoleListResultValueList),
+  }),
+).annotate({ identifier: "RoleListResult" }) as any as S.Schema<RoleListResult>;
+
+export interface ListServerByClusterRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+}
+export const ListServerByClusterRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/{clusterName}/servers",
+      code: 200,
+      apiVersion: "2022-11-08",
+    }),
+  ),
+).annotate({
+  identifier: "ListServerByClusterRequest",
+}) as any as S.Schema<ListServerByClusterRequest>;
+
+/** Represents a server in a cluster. */
+export interface ClusterServer {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of a server in a cluster. */
+  properties?: ClusterServerProperties;
+}
+export const ClusterServer = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ClusterServerProperties),
+  }),
+).annotate({ identifier: "ClusterServer" }) as any as S.Schema<ClusterServer>;
+
+/** The list of servers in a cluster. */
+export type ClusterServerListResultValueList = Array<ClusterServer>;
+export const ClusterServerListResultValueList = /*@__PURE__*/ S.Array(
+  ClusterServer,
+) as any as S.Schema<ClusterServerListResultValueList>;
+
+/** A list of servers in a cluster. */
+export interface ClusterServerListResult {
+  /** The list of servers in a cluster. */
+  value?: ClusterServerListResultValueList;
+}
+export const ClusterServerListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(ClusterServerListResultValueList),
+  }),
+).annotate({
+  identifier: "ClusterServerListResult",
+}) as any as S.Schema<ClusterServerListResult>;
+
 /** The private endpoint resource. */
 export interface PrivateEndpointInput {}
 export const PrivateEndpointInput = /*@__PURE__*/ S.suspend(() =>
@@ -1847,25 +2284,6 @@ export const PrivateEndpointInput = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "PrivateEndpointInput",
 }) as any as S.Schema<PrivateEndpointInput>;
-
-/** A collection of information about the state of the connection between service consumer and provider. */
-export interface PrivateLinkServiceConnectionState {
-  /** Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service. */
-  status?: PrivateEndpointServiceConnectionStatus | (string & {});
-  /** The reason for approval/rejection of the connection. */
-  description?: string;
-  /** A message indicating if changes on the service provider require any updates on the consumer. */
-  actionsRequired?: string;
-}
-export const PrivateLinkServiceConnectionState = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    status: S.optional(PrivateEndpointServiceConnectionStatus),
-    description: S.optional(S.String),
-    actionsRequired: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PrivateLinkServiceConnectionState",
-}) as any as S.Schema<PrivateLinkServiceConnectionState>;
 
 /** Properties of the private endpoint connection. */
 export interface PrivateEndpointConnectionPropertiesInput {
@@ -1916,57 +2334,6 @@ export const PrivateEndpointConnectionsCreateOrUpdateRequest =
     identifier: "PrivateEndpointConnectionsCreateOrUpdateRequest",
   }) as any as S.Schema<PrivateEndpointConnectionsCreateOrUpdateRequest>;
 
-/** The group ids for the private endpoint resource. */
-export type PrivateEndpointConnectionPropertiesGroupIdsList = Array<string>;
-export const PrivateEndpointConnectionPropertiesGroupIdsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PrivateEndpointConnectionPropertiesGroupIdsList>;
-
-/** The private endpoint resource. */
-export interface PrivateEndpoint {
-  /** The ARM identifier for private endpoint. */
-  id?: string;
-}
-export const PrivateEndpoint = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PrivateEndpoint",
-}) as any as S.Schema<PrivateEndpoint>;
-
-/** The current provisioning state. */
-export type PrivateEndpointConnectionProvisioningState =
-  | "Succeeded"
-  | "Creating"
-  | "Deleting"
-  | "Failed";
-export const PrivateEndpointConnectionProvisioningState =
-  /*@__PURE__*/ S.String;
-
-/** Properties of the private endpoint connection. */
-export interface PrivateEndpointConnectionProperties {
-  /** The group ids for the private endpoint resource. */
-  groupIds?: PrivateEndpointConnectionPropertiesGroupIdsList;
-  /** The private endpoint resource. */
-  privateEndpoint?: PrivateEndpoint;
-  /** A collection of information about the state of the connection between service consumer and provider. */
-  privateLinkServiceConnectionState: PrivateLinkServiceConnectionState;
-  /** The provisioning state of the private endpoint connection resource. */
-  provisioningState?: PrivateEndpointConnectionProvisioningState;
-}
-export const PrivateEndpointConnectionProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    groupIds: S.optional(PrivateEndpointConnectionPropertiesGroupIdsList),
-    privateEndpoint: S.optional(PrivateEndpoint),
-    privateLinkServiceConnectionState: PrivateLinkServiceConnectionState,
-    provisioningState: S.optional(PrivateEndpointConnectionProvisioningState),
-  }),
-).annotate({
-  identifier: "PrivateEndpointConnectionProperties",
-}) as any as S.Schema<PrivateEndpointConnectionProperties>;
-
 export interface PrivateEndpointConnectionsCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
@@ -1992,97 +2359,7 @@ export const PrivateEndpointConnectionsCreateOrUpdateResponse =
     identifier: "PrivateEndpointConnectionsCreateOrUpdateResponse",
   }) as any as S.Schema<PrivateEndpointConnectionsCreateOrUpdateResponse>;
 
-export interface PrivateEndpointConnectionsDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-  /** The name of the private endpoint connection associated with the cluster. */
-  privateEndpointConnectionName: string;
-}
-export const PrivateEndpointConnectionsDeleteRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      clusterName: S.String.pipe(T.Label()),
-      privateEndpointConnectionName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/{clusterName}/privateEndpointConnections/{privateEndpointConnectionName}",
-        code: 200,
-        apiVersion: "2022-11-08",
-      }),
-    ),
-).annotate({
-  identifier: "PrivateEndpointConnectionsDeleteRequest",
-}) as any as S.Schema<PrivateEndpointConnectionsDeleteRequest>;
-
-export interface PrivateEndpointConnectionsDeleteResponse {}
-export const PrivateEndpointConnectionsDeleteResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "PrivateEndpointConnectionsDeleteResponse",
-}) as any as S.Schema<PrivateEndpointConnectionsDeleteResponse>;
-
-export interface PrivateEndpointConnectionsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-  /** The name of the private endpoint connection associated with the cluster. */
-  privateEndpointConnectionName: string;
-}
-export const PrivateEndpointConnectionsGetRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      clusterName: S.String.pipe(T.Label()),
-      privateEndpointConnectionName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/{clusterName}/privateEndpointConnections/{privateEndpointConnectionName}",
-        code: 200,
-        apiVersion: "2022-11-08",
-      }),
-    ),
-).annotate({
-  identifier: "PrivateEndpointConnectionsGetRequest",
-}) as any as S.Schema<PrivateEndpointConnectionsGetRequest>;
-
-export interface PrivateEndpointConnectionsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource properties. */
-  properties?: PrivateEndpointConnectionProperties;
-}
-export const PrivateEndpointConnectionsGetResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(PrivateEndpointConnectionProperties),
-    }),
-).annotate({
-  identifier: "PrivateEndpointConnectionsGetResponse",
-}) as any as S.Schema<PrivateEndpointConnectionsGetResponse>;
-
-export interface PrivateEndpointConnectionsListByClusterRequest {
+export interface RestartClusterRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2090,161 +2367,31 @@ export interface PrivateEndpointConnectionsListByClusterRequest {
   /** The name of the cluster. */
   clusterName: string;
 }
-export const PrivateEndpointConnectionsListByClusterRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      clusterName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/{clusterName}/privateEndpointConnections",
-        code: 200,
-        apiVersion: "2022-11-08",
-      }),
-    ),
-  ).annotate({
-    identifier: "PrivateEndpointConnectionsListByClusterRequest",
-  }) as any as S.Schema<PrivateEndpointConnectionsListByClusterRequest>;
-
-/** The private endpoint connection resource. */
-export interface PrivateEndpointConnectionListResultValueItem {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource properties. */
-  properties?: PrivateEndpointConnectionProperties;
-}
-export const PrivateEndpointConnectionListResultValueItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(PrivateEndpointConnectionProperties),
-    }),
-  ).annotate({
-    identifier: "PrivateEndpointConnectionListResultValueItem",
-  }) as any as S.Schema<PrivateEndpointConnectionListResultValueItem>;
-
-/** Array of private endpoint connections. */
-export type PrivateEndpointConnectionListResultValueList =
-  Array<PrivateEndpointConnectionListResultValueItem>;
-export const PrivateEndpointConnectionListResultValueList =
-  /*@__PURE__*/ S.Array(
-    PrivateEndpointConnectionListResultValueItem,
-  ) as any as S.Schema<PrivateEndpointConnectionListResultValueList>;
-
-/** List of private endpoint connections associated with the specified resource. */
-export interface PrivateEndpointConnectionListResult {
-  /** Array of private endpoint connections. */
-  value?: PrivateEndpointConnectionListResultValueList;
-}
-export const PrivateEndpointConnectionListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(PrivateEndpointConnectionListResultValueList),
-  }),
-).annotate({
-  identifier: "PrivateEndpointConnectionListResult",
-}) as any as S.Schema<PrivateEndpointConnectionListResult>;
-
-export interface PrivateLinkResourcesGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-  /** The name of the private link resource. */
-  privateLinkResourceName: string;
-}
-export const PrivateLinkResourcesGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const RestartClusterRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     clusterName: S.String.pipe(T.Label()),
-    privateLinkResourceName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/{clusterName}/privateLinkResources/{privateLinkResourceName}",
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/{clusterName}/restart",
       code: 200,
       apiVersion: "2022-11-08",
     }),
   ),
 ).annotate({
-  identifier: "PrivateLinkResourcesGetRequest",
-}) as any as S.Schema<PrivateLinkResourcesGetRequest>;
+  identifier: "RestartClusterRequest",
+}) as any as S.Schema<RestartClusterRequest>;
 
-/** The private link resource required member names. */
-export type PrivateLinkResourcePropertiesRequiredMembersList = Array<string>;
-export const PrivateLinkResourcePropertiesRequiredMembersList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PrivateLinkResourcePropertiesRequiredMembersList>;
-
-/** The private link resource private link DNS zone name. */
-export type PrivateLinkResourcePropertiesRequiredZoneNamesList = Array<string>;
-export const PrivateLinkResourcePropertiesRequiredZoneNamesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PrivateLinkResourcePropertiesRequiredZoneNamesList>;
-
-/** Properties of a private link resource. */
-export interface PrivateLinkResourceProperties {
-  /** The private link resource group id. */
-  groupId?: string;
-  /** The private link resource required member names. */
-  requiredMembers?: PrivateLinkResourcePropertiesRequiredMembersList;
-  /** The private link resource private link DNS zone name. */
-  requiredZoneNames?: PrivateLinkResourcePropertiesRequiredZoneNamesList;
-}
-export const PrivateLinkResourceProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    groupId: S.optional(S.String),
-    requiredMembers: S.optional(
-      PrivateLinkResourcePropertiesRequiredMembersList,
-    ),
-    requiredZoneNames: S.optional(
-      PrivateLinkResourcePropertiesRequiredZoneNamesList,
-    ),
-  }),
+export interface RestartClusterResponse {}
+export const RestartClusterResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
 ).annotate({
-  identifier: "PrivateLinkResourceProperties",
-}) as any as S.Schema<PrivateLinkResourceProperties>;
+  identifier: "RestartClusterResponse",
+}) as any as S.Schema<RestartClusterResponse>;
 
-export interface PrivateLinkResourcesGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource properties. */
-  properties?: PrivateLinkResourceProperties;
-}
-export const PrivateLinkResourcesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(PrivateLinkResourceProperties),
-  }),
-).annotate({
-  identifier: "PrivateLinkResourcesGetResponse",
-}) as any as S.Schema<PrivateLinkResourcesGetResponse>;
-
-export interface PrivateLinkResourcesListByClusterRequest {
+export interface StartClusterRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2252,26 +2399,165 @@ export interface PrivateLinkResourcesListByClusterRequest {
   /** The name of the cluster. */
   clusterName: string;
 }
-export const PrivateLinkResourcesListByClusterRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      clusterName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/{clusterName}/privateLinkResources",
-        code: 200,
-        apiVersion: "2022-11-08",
-      }),
-    ),
+export const StartClusterRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/{clusterName}/start",
+      code: 200,
+      apiVersion: "2022-11-08",
+    }),
+  ),
 ).annotate({
-  identifier: "PrivateLinkResourcesListByClusterRequest",
-}) as any as S.Schema<PrivateLinkResourcesListByClusterRequest>;
+  identifier: "StartClusterRequest",
+}) as any as S.Schema<StartClusterRequest>;
 
-/** A private link resource. */
-export interface PrivateLinkResourceListResultValueItem {
+export interface StartClusterResponse {}
+export const StartClusterResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "StartClusterResponse",
+}) as any as S.Schema<StartClusterResponse>;
+
+export interface StopClusterRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+}
+export const StopClusterRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/{clusterName}/stop",
+      code: 200,
+      apiVersion: "2022-11-08",
+    }),
+  ),
+).annotate({
+  identifier: "StopClusterRequest",
+}) as any as S.Schema<StopClusterRequest>;
+
+export interface StopClusterResponse {}
+export const StopClusterResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "StopClusterResponse",
+}) as any as S.Schema<StopClusterResponse>;
+
+/** The properties used to update a cluster. */
+export interface ClusterPropertiesForUpdateInput {
+  /** The password of the administrator login. Each cluster is created with pre-defined administrative role called ‘citus’. */
+  administratorLoginPassword?: string | Redacted.Redacted<string>;
+  /** The major PostgreSQL version on all cluster servers. */
+  postgresqlVersion?: string;
+  /** The Citus extension version on all cluster servers. */
+  citusVersion?: string;
+  /** If distributed tables are placed on coordinator or not. Should be set to 'true' on single node clusters. Requires shard rebalancing after value is changed. */
+  enableShardsOnCoordinator?: boolean;
+  /** If high availability (HA) is enabled or not for the cluster. */
+  enableHa?: boolean;
+  /** Preferred primary availability zone (AZ) for all cluster servers. */
+  preferredPrimaryZone?: string;
+  /** The edition of the coordinator (default: GeneralPurpose). */
+  coordinatorServerEdition?: string;
+  /** The storage of the coordinator in MB. */
+  coordinatorStorageQuotaInMb?: number;
+  /** The vCores count of the coordinator (max: 96). */
+  coordinatorVCores?: number;
+  /** If public access is enabled on coordinator. */
+  coordinatorEnablePublicIpAccess?: boolean;
+  /** The edition of a node (default: MemoryOptimized). */
+  nodeServerEdition?: string;
+  /** Worker node count of the cluster. When node count is 0, it represents a single node configuration with the ability to create distributed tables on that node. 2 or more worker nodes represent multi-node configuration. Node count value cannot be 1. */
+  nodeCount?: number;
+  /** The storage in MB on each worker node. */
+  nodeStorageQuotaInMb?: number;
+  /** The compute in vCores on each worker node (max: 104). */
+  nodeVCores?: number;
+  /** Maintenance window of a cluster. */
+  maintenanceWindow?: MaintenanceWindow;
+}
+export const ClusterPropertiesForUpdateInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    administratorLoginPassword: S.optional(S.String.pipe(T.SensitiveValue({}))),
+    postgresqlVersion: S.optional(S.String),
+    citusVersion: S.optional(S.String),
+    enableShardsOnCoordinator: S.optional(S.Boolean),
+    enableHa: S.optional(S.Boolean),
+    preferredPrimaryZone: S.optional(S.String),
+    coordinatorServerEdition: S.optional(S.String),
+    coordinatorStorageQuotaInMb: S.optional(S.Number),
+    coordinatorVCores: S.optional(S.Number),
+    coordinatorEnablePublicIpAccess: S.optional(S.Boolean),
+    nodeServerEdition: S.optional(S.String),
+    nodeCount: S.optional(S.Number),
+    nodeStorageQuotaInMb: S.optional(S.Number),
+    nodeVCores: S.optional(S.Number),
+    maintenanceWindow: S.optional(MaintenanceWindow),
+  }),
+).annotate({
+  identifier: "ClusterPropertiesForUpdateInput",
+}) as any as S.Schema<ClusterPropertiesForUpdateInput>;
+
+/** Application-specific metadata in the form of key-value pairs. */
+export type UpdateClusterRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateClusterRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateClusterRequestTagsMap>;
+
+export interface UpdateClusterRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+  /** Properties of the cluster. */
+  properties?: ClusterPropertiesForUpdateInput;
+  /** Application-specific metadata in the form of key-value pairs. */
+  tags?: UpdateClusterRequestTagsMap;
+}
+export const UpdateClusterRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    properties: S.optional(ClusterPropertiesForUpdateInput),
+    tags: S.optional(UpdateClusterRequestTagsMap),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/{clusterName}",
+      code: 200,
+      apiVersion: "2022-11-08",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateClusterRequest",
+}) as any as S.Schema<UpdateClusterRequest>;
+
+/** Resource tags. */
+export type UpdateClusterResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateClusterResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateClusterResponseTagsMap>;
+
+export interface UpdateClusterResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -2280,101 +2566,129 @@ export interface PrivateLinkResourceListResultValueItem {
   type?: string;
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
-  /** Resource properties. */
-  properties?: PrivateLinkResourceProperties;
+  /** Resource tags. */
+  tags?: UpdateClusterResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Properties of the cluster. */
+  properties?: ClusterProperties;
 }
-export const PrivateLinkResourceListResultValueItem = /*@__PURE__*/ S.suspend(
+export const UpdateClusterResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateClusterResponseTagsMap),
+    location: S.String,
+    properties: S.optional(ClusterProperties),
+  }),
+).annotate({
+  identifier: "UpdateClusterResponse",
+}) as any as S.Schema<UpdateClusterResponse>;
+
+/** The properties of a configuration. */
+export interface ServerConfigurationPropertiesInput {
+  /** Value of the configuration. */
+  value: string;
+}
+export const ServerConfigurationPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.String,
+  }),
+).annotate({
+  identifier: "ServerConfigurationPropertiesInput",
+}) as any as S.Schema<ServerConfigurationPropertiesInput>;
+
+export interface UpdateConfigurationOnCoordinatorRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the cluster. */
+  clusterName: string;
+  /** The name of the cluster configuration. */
+  configurationName: string;
+  /** The properties of a configuration. */
+  properties?: ServerConfigurationPropertiesInput;
+}
+export const UpdateConfigurationOnCoordinatorRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      clusterName: S.String.pipe(T.Label()),
+      configurationName: S.String.pipe(T.Label()),
+      properties: S.optional(ServerConfigurationPropertiesInput),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/{clusterName}/coordinatorConfigurations/{configurationName}",
+        code: 200,
+        apiVersion: "2022-11-08",
+      }),
+    ),
+).annotate({
+  identifier: "UpdateConfigurationOnCoordinatorRequest",
+}) as any as S.Schema<UpdateConfigurationOnCoordinatorRequest>;
+
+export interface UpdateConfigurationOnCoordinatorResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of a configuration. */
+  properties?: ServerConfigurationProperties;
+}
+export const UpdateConfigurationOnCoordinatorResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
       name: S.optional(S.String),
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
-      properties: S.optional(PrivateLinkResourceProperties),
+      properties: S.optional(ServerConfigurationProperties),
     }),
 ).annotate({
-  identifier: "PrivateLinkResourceListResultValueItem",
-}) as any as S.Schema<PrivateLinkResourceListResultValueItem>;
+  identifier: "UpdateConfigurationOnCoordinatorResponse",
+}) as any as S.Schema<UpdateConfigurationOnCoordinatorResponse>;
 
-/** Array of private link resources */
-export type PrivateLinkResourceListResultValueList =
-  Array<PrivateLinkResourceListResultValueItem>;
-export const PrivateLinkResourceListResultValueList = /*@__PURE__*/ S.Array(
-  PrivateLinkResourceListResultValueItem,
-) as any as S.Schema<PrivateLinkResourceListResultValueList>;
-
-/** A list of private link resources. */
-export interface PrivateLinkResourceListResult {
-  /** Array of private link resources */
-  value?: PrivateLinkResourceListResultValueList;
-}
-export const PrivateLinkResourceListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(PrivateLinkResourceListResultValueList),
-  }),
-).annotate({
-  identifier: "PrivateLinkResourceListResult",
-}) as any as S.Schema<PrivateLinkResourceListResult>;
-
-/** The properties of a cluster role. */
-export interface RolePropertiesInput {
-  /** The password of the cluster role. */
-  password: string | Redacted.Redacted<string>;
-}
-export const RolePropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    password: S.String.pipe(T.SensitiveValue({})),
-  }),
-).annotate({
-  identifier: "RolePropertiesInput",
-}) as any as S.Schema<RolePropertiesInput>;
-
-export interface RolesCreateRequest {
+export interface UpdateConfigurationOnNodeRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of the cluster. */
   clusterName: string;
-  /** The name of the cluster role. */
-  roleName: string;
-  /** The properties of a role. */
-  properties: RolePropertiesInput;
+  /** The name of the cluster configuration. */
+  configurationName: string;
+  /** The properties of a configuration. */
+  properties?: ServerConfigurationPropertiesInput;
 }
-export const RolesCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateConfigurationOnNodeRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     clusterName: S.String.pipe(T.Label()),
-    roleName: S.String.pipe(T.Label()),
-    properties: RolePropertiesInput,
+    configurationName: S.String.pipe(T.Label()),
+    properties: S.optional(ServerConfigurationPropertiesInput),
   }).pipe(
     T.Http({
       method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/{clusterName}/roles/{roleName}",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/{clusterName}/nodeConfigurations/{configurationName}",
       code: 200,
       apiVersion: "2022-11-08",
     }),
   ),
 ).annotate({
-  identifier: "RolesCreateRequest",
-}) as any as S.Schema<RolesCreateRequest>;
+  identifier: "UpdateConfigurationOnNodeRequest",
+}) as any as S.Schema<UpdateConfigurationOnNodeRequest>;
 
-/** The properties of a cluster role. */
-export interface RoleProperties {
-  /** The password of the cluster role. */
-  password: string | Redacted.Redacted<string>;
-  /** Provisioning state of the role */
-  provisioningState?: ProvisioningState;
-}
-export const RoleProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    password: S.String.pipe(T.SensitiveValue({})),
-    provisioningState: S.optional(ProvisioningState),
-  }),
-).annotate({ identifier: "RoleProperties" }) as any as S.Schema<RoleProperties>;
-
-export interface RolesCreateResponse {
+export interface UpdateConfigurationOnNodeResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -2383,429 +2697,31 @@ export interface RolesCreateResponse {
   type?: string;
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
-  /** The properties of a role. */
-  properties: RoleProperties;
+  /** The properties of a configuration. */
+  properties?: ServerConfigurationProperties;
 }
-export const RolesCreateResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateConfigurationOnNodeResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    properties: RoleProperties,
+    properties: S.optional(ServerConfigurationProperties),
   }),
 ).annotate({
-  identifier: "RolesCreateResponse",
-}) as any as S.Schema<RolesCreateResponse>;
+  identifier: "UpdateConfigurationOnNodeResponse",
+}) as any as S.Schema<UpdateConfigurationOnNodeResponse>;
 
-export interface RolesDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-  /** The name of the cluster role. */
-  roleName: string;
-}
-export const RolesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    roleName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/{clusterName}/roles/{roleName}",
-      code: 200,
-      apiVersion: "2022-11-08",
-    }),
-  ),
-).annotate({
-  identifier: "RolesDeleteRequest",
-}) as any as S.Schema<RolesDeleteRequest>;
-
-export interface RolesDeleteResponse {}
-export const RolesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "RolesDeleteResponse",
-}) as any as S.Schema<RolesDeleteResponse>;
-
-export interface RolesGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-  /** The name of the cluster role. */
-  roleName: string;
-}
-export const RolesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    roleName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/{clusterName}/roles/{roleName}",
-      code: 200,
-      apiVersion: "2022-11-08",
-    }),
-  ),
-).annotate({
-  identifier: "RolesGetRequest",
-}) as any as S.Schema<RolesGetRequest>;
-
-export interface RolesGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties of a role. */
-  properties: RoleProperties;
-}
-export const RolesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: RoleProperties,
-  }),
-).annotate({
-  identifier: "RolesGetResponse",
-}) as any as S.Schema<RolesGetResponse>;
-
-export interface RolesListByClusterRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-}
-export const RolesListByClusterRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/{clusterName}/roles",
-      code: 200,
-      apiVersion: "2022-11-08",
-    }),
-  ),
-).annotate({
-  identifier: "RolesListByClusterRequest",
-}) as any as S.Schema<RolesListByClusterRequest>;
-
-/** Represents a cluster role. */
-export interface Role {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties of a role. */
-  properties: RoleProperties;
-}
-export const Role = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: RoleProperties,
-  }),
-).annotate({ identifier: "Role" }) as any as S.Schema<Role>;
-
-/** The list of roles in a cluster. */
-export type RoleListResultValueList = Array<Role>;
-export const RoleListResultValueList = /*@__PURE__*/ S.Array(
-  Role,
-) as any as S.Schema<RoleListResultValueList>;
-
-/** A list of roles. */
-export interface RoleListResult {
-  /** The list of roles in a cluster. */
-  value?: RoleListResultValueList;
-}
-export const RoleListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(RoleListResultValueList),
-  }),
-).annotate({ identifier: "RoleListResult" }) as any as S.Schema<RoleListResult>;
-
-export interface ServersGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-  /** The name of the server. */
-  serverName: string;
-}
-export const ServersGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    serverName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/{clusterName}/servers/{serverName}",
-      code: 200,
-      apiVersion: "2022-11-08",
-    }),
-  ),
-).annotate({
-  identifier: "ServersGetRequest",
-}) as any as S.Schema<ServersGetRequest>;
-
-/** The properties of a server in cluster. */
-export interface ClusterServerProperties {
-  /** The edition of a server. */
-  serverEdition?: string;
-  /** The storage of a server in MB. */
-  storageQuotaInMb?: number;
-  /** The vCores count of a server. */
-  vCores?: number;
-  /** If high availability (HA) is enabled or not for the server. */
-  enableHa?: boolean;
-  /** If public access is enabled on server. */
-  enablePublicIpAccess?: boolean;
-  /** If server database is set to read-only by system maintenance depending on high disk space usage. */
-  isReadOnly?: boolean;
-  /** The administrator's login name of the servers in the cluster. */
-  administratorLogin?: string;
-  /** The fully qualified domain name of a server. */
-  fullyQualifiedDomainName?: string;
-  /** The role of server in the cluster. */
-  role?: ServerRole;
-  /** A state of a cluster/server that is visible to user. */
-  state?: string;
-  /** A state of HA feature for the cluster. */
-  haState?: string;
-  /** Availability Zone information of the server. */
-  availabilityZone?: string;
-  /** The major PostgreSQL version of server. */
-  postgresqlVersion?: string;
-  /** The Citus extension version of server. */
-  citusVersion?: string;
-}
-export const ClusterServerProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    serverEdition: S.optional(S.String),
-    storageQuotaInMb: S.optional(S.Number),
-    vCores: S.optional(S.Number),
-    enableHa: S.optional(S.Boolean),
-    enablePublicIpAccess: S.optional(S.Boolean),
-    isReadOnly: S.optional(S.Boolean),
-    administratorLogin: S.optional(S.String),
-    fullyQualifiedDomainName: S.optional(S.String),
-    role: S.optional(ServerRole),
-    state: S.optional(S.String),
-    haState: S.optional(S.String),
-    availabilityZone: S.optional(S.String),
-    postgresqlVersion: S.optional(S.String),
-    citusVersion: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ClusterServerProperties",
-}) as any as S.Schema<ClusterServerProperties>;
-
-export interface ServersGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties of a server in a cluster. */
-  properties?: ClusterServerProperties;
-}
-export const ServersGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ClusterServerProperties),
-  }),
-).annotate({
-  identifier: "ServersGetResponse",
-}) as any as S.Schema<ServersGetResponse>;
-
-export interface ServersListByClusterRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the cluster. */
-  clusterName: string;
-}
-export const ServersListByClusterRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DBforPostgreSQL/serverGroupsv2/{clusterName}/servers",
-      code: 200,
-      apiVersion: "2022-11-08",
-    }),
-  ),
-).annotate({
-  identifier: "ServersListByClusterRequest",
-}) as any as S.Schema<ServersListByClusterRequest>;
-
-/** Represents a server in a cluster. */
-export interface ClusterServer {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties of a server in a cluster. */
-  properties?: ClusterServerProperties;
-}
-export const ClusterServer = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ClusterServerProperties),
-  }),
-).annotate({ identifier: "ClusterServer" }) as any as S.Schema<ClusterServer>;
-
-/** The list of servers in a cluster. */
-export type ClusterServerListResultValueList = Array<ClusterServer>;
-export const ClusterServerListResultValueList = /*@__PURE__*/ S.Array(
-  ClusterServer,
-) as any as S.Schema<ClusterServerListResultValueList>;
-
-/** A list of servers in a cluster. */
-export interface ClusterServerListResult {
-  /** The list of servers in a cluster. */
-  value?: ClusterServerListResultValueList;
-}
-export const ClusterServerListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(ClusterServerListResultValueList),
-  }),
-).annotate({
-  identifier: "ClusterServerListResult",
-}) as any as S.Schema<ClusterServerListResult>;
-
-export type ClustersCheckNameAvailabilityError = AzureOpError;
+export type CheckClusterNameAvailabilityError = AzureOpError;
 /** Checks availability of a cluster name. Cluster names should be globally unique; at least 3 characters and at most 40 characters long; they must only contain lowercase letters, numbers, and hyphens; and must not start or end with a hyphen. */
-export const ClustersCheckNameAvailability: API.OperationMethod<
-  ClustersCheckNameAvailabilityRequest,
+export const CheckClusterNameAvailability: API.OperationMethod<
+  CheckClusterNameAvailabilityRequest,
   NameAvailability,
-  ClustersCheckNameAvailabilityError,
+  CheckClusterNameAvailabilityError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ClustersCheckNameAvailabilityRequest,
+  input: CheckClusterNameAvailabilityRequest,
   output: NameAvailability,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ClustersCreateError = AzureOpError;
-/** Creates a new cluster with servers. */
-export const ClustersCreate: API.OperationMethod<
-  ClustersCreateRequest,
-  ClustersCreateResponse,
-  ClustersCreateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ClustersCreateRequest,
-  output: ClustersCreateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ClustersDeleteError = AzureOpError;
-/** Deletes a cluster together with servers in it. */
-export const ClustersDelete: API.OperationMethod<
-  ClustersDeleteRequest,
-  ClustersDeleteResponse,
-  ClustersDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ClustersDeleteRequest,
-  output: ClustersDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ClustersGetError = AzureOpError;
-/** Gets information about a cluster such as compute and storage configuration and cluster lifecycle metadata such as cluster creation date and time. */
-export const ClustersGet: API.OperationMethod<
-  ClustersGetRequest,
-  ClustersGetResponse,
-  ClustersGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ClustersGetRequest,
-  output: ClustersGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ClustersListError = AzureOpError;
-/** Lists all clusters in a subscription. */
-export const ClustersList: API.OperationMethod<
-  ClustersListRequest,
-  ClusterListResult,
-  ClustersListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ClustersListRequest,
-  output: ClusterListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ClustersListByResourceGroupError = AzureOpError;
-/** Lists all clusters in a resource group. */
-export const ClustersListByResourceGroup: API.OperationMethod<
-  ClustersListByResourceGroupRequest,
-  ClusterListResult,
-  ClustersListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ClustersListByResourceGroupRequest,
-  output: ClusterListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -2826,166 +2742,91 @@ export const ClustersPromoteReadReplica: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ClustersRestartError = AzureOpError;
-/** Restarts all nodes in the cluster. */
-export const ClustersRestart: API.OperationMethod<
-  ClustersRestartRequest,
-  ClustersRestartResponse,
-  ClustersRestartError,
+export type CreateClusterError = AzureOpError;
+/** Creates a new cluster with servers. */
+export const CreateCluster: API.OperationMethod<
+  CreateClusterRequest,
+  CreateClusterResponse,
+  CreateClusterError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ClustersRestartRequest,
-  output: ClustersRestartResponse,
+  input: CreateClusterRequest,
+  output: CreateClusterResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ClustersStartError = AzureOpError;
-/** Starts stopped compute on all cluster nodes. */
-export const ClustersStart: API.OperationMethod<
-  ClustersStartRequest,
-  ClustersStartResponse,
-  ClustersStartError,
+export type CreateRoleError = AzureOpError;
+/** Creates a new role or updates an existing role. */
+export const CreateRole: API.OperationMethod<
+  CreateRoleRequest,
+  CreateRoleResponse,
+  CreateRoleError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ClustersStartRequest,
-  output: ClustersStartResponse,
+  input: CreateRoleRequest,
+  output: CreateRoleResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ClustersStopError = AzureOpError;
-/** Stops compute on all cluster nodes. */
-export const ClustersStop: API.OperationMethod<
-  ClustersStopRequest,
-  ClustersStopResponse,
-  ClustersStopError,
+export type DeleteClusterError = AzureOpError;
+/** Deletes a cluster together with servers in it. */
+export const DeleteCluster: API.OperationMethod<
+  DeleteClusterRequest,
+  DeleteClusterResponse,
+  DeleteClusterError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ClustersStopRequest,
-  output: ClustersStopResponse,
+  input: DeleteClusterRequest,
+  output: DeleteClusterResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ClustersUpdateError = AzureOpError;
-/** Updates an existing cluster. The request body can contain one or several properties from the cluster definition. */
-export const ClustersUpdate: API.OperationMethod<
-  ClustersUpdateRequest,
-  ClustersUpdateResponse,
-  ClustersUpdateError,
+export type DeleteFirewallRuleError = AzureOpError;
+/** Deletes a cluster firewall rule. */
+export const DeleteFirewallRule: API.OperationMethod<
+  DeleteFirewallRuleRequest,
+  DeleteFirewallRuleResponse,
+  DeleteFirewallRuleError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ClustersUpdateRequest,
-  output: ClustersUpdateResponse,
+  input: DeleteFirewallRuleRequest,
+  output: DeleteFirewallRuleResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ConfigurationsGetError = AzureOpError;
-/** Gets information of a configuration for coordinator and nodes. */
-export const ConfigurationsGet: API.OperationMethod<
-  ConfigurationsGetRequest,
-  ConfigurationsGetResponse,
-  ConfigurationsGetError,
+export type DeletePrivateEndpointConnectionError = AzureOpError;
+/** Deletes a private endpoint connection with a given name. */
+export const DeletePrivateEndpointConnection: API.OperationMethod<
+  DeletePrivateEndpointConnectionRequest,
+  DeletePrivateEndpointConnectionResponse,
+  DeletePrivateEndpointConnectionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ConfigurationsGetRequest,
-  output: ConfigurationsGetResponse,
+  input: DeletePrivateEndpointConnectionRequest,
+  output: DeletePrivateEndpointConnectionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ConfigurationsGetCoordinatorError = AzureOpError;
-/** Gets information of a configuration for coordinator. */
-export const ConfigurationsGetCoordinator: API.OperationMethod<
-  ConfigurationsGetCoordinatorRequest,
-  ConfigurationsGetCoordinatorResponse,
-  ConfigurationsGetCoordinatorError,
+export type DeleteRoleError = AzureOpError;
+/** Deletes a cluster role. */
+export const DeleteRole: API.OperationMethod<
+  DeleteRoleRequest,
+  DeleteRoleResponse,
+  DeleteRoleError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ConfigurationsGetCoordinatorRequest,
-  output: ConfigurationsGetCoordinatorResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ConfigurationsGetNodeError = AzureOpError;
-/** Gets information of a configuration for worker nodes. */
-export const ConfigurationsGetNode: API.OperationMethod<
-  ConfigurationsGetNodeRequest,
-  ConfigurationsGetNodeResponse,
-  ConfigurationsGetNodeError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ConfigurationsGetNodeRequest,
-  output: ConfigurationsGetNodeResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ConfigurationsListByClusterError = AzureOpError;
-/** List all the configurations of a cluster. */
-export const ConfigurationsListByCluster: API.OperationMethod<
-  ConfigurationsListByClusterRequest,
-  ClusterConfigurationListResult,
-  ConfigurationsListByClusterError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ConfigurationsListByClusterRequest,
-  output: ClusterConfigurationListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ConfigurationsListByServerError = AzureOpError;
-/** List all the configurations of a server in cluster. */
-export const ConfigurationsListByServer: API.OperationMethod<
-  ConfigurationsListByServerRequest,
-  ServerConfigurationListResult,
-  ConfigurationsListByServerError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ConfigurationsListByServerRequest,
-  output: ServerConfigurationListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ConfigurationsUpdateOnCoordinatorError = AzureOpError;
-/** Updates configuration of coordinator in a cluster */
-export const ConfigurationsUpdateOnCoordinator: API.OperationMethod<
-  ConfigurationsUpdateOnCoordinatorRequest,
-  ConfigurationsUpdateOnCoordinatorResponse,
-  ConfigurationsUpdateOnCoordinatorError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ConfigurationsUpdateOnCoordinatorRequest,
-  output: ConfigurationsUpdateOnCoordinatorResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ConfigurationsUpdateOnNodeError = AzureOpError;
-/** Updates configuration of worker nodes in a cluster */
-export const ConfigurationsUpdateOnNode: API.OperationMethod<
-  ConfigurationsUpdateOnNodeRequest,
-  ConfigurationsUpdateOnNodeResponse,
-  ConfigurationsUpdateOnNodeError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ConfigurationsUpdateOnNodeRequest,
-  output: ConfigurationsUpdateOnNodeResponse,
+  input: DeleteRoleRequest,
+  output: DeleteRoleResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -3006,61 +2847,286 @@ export const FirewallRulesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type FirewallRulesDeleteError = AzureOpError;
-/** Deletes a cluster firewall rule. */
-export const FirewallRulesDelete: API.OperationMethod<
-  FirewallRulesDeleteRequest,
-  FirewallRulesDeleteResponse,
-  FirewallRulesDeleteError,
+export type GetClusterError = AzureOpError;
+/** Gets information about a cluster such as compute and storage configuration and cluster lifecycle metadata such as cluster creation date and time. */
+export const GetCluster: API.OperationMethod<
+  GetClusterRequest,
+  GetClusterResponse,
+  GetClusterError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FirewallRulesDeleteRequest,
-  output: FirewallRulesDeleteResponse,
+  input: GetClusterRequest,
+  output: GetClusterResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type FirewallRulesGetError = AzureOpError;
+export type GetConfigurationError = AzureOpError;
+/** Gets information of a configuration for coordinator and nodes. */
+export const GetConfiguration: API.OperationMethod<
+  GetConfigurationRequest,
+  GetConfigurationResponse,
+  GetConfigurationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetConfigurationRequest,
+  output: GetConfigurationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetConfigurationCoordinatorError = AzureOpError;
+/** Gets information of a configuration for coordinator. */
+export const GetConfigurationCoordinator: API.OperationMethod<
+  GetConfigurationCoordinatorRequest,
+  GetConfigurationCoordinatorResponse,
+  GetConfigurationCoordinatorError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetConfigurationCoordinatorRequest,
+  output: GetConfigurationCoordinatorResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetConfigurationNodeError = AzureOpError;
+/** Gets information of a configuration for worker nodes. */
+export const GetConfigurationNode: API.OperationMethod<
+  GetConfigurationNodeRequest,
+  GetConfigurationNodeResponse,
+  GetConfigurationNodeError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetConfigurationNodeRequest,
+  output: GetConfigurationNodeResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetFirewallRuleError = AzureOpError;
 /** Gets information about a cluster firewall rule. */
-export const FirewallRulesGet: API.OperationMethod<
-  FirewallRulesGetRequest,
-  FirewallRulesGetResponse,
-  FirewallRulesGetError,
+export const GetFirewallRule: API.OperationMethod<
+  GetFirewallRuleRequest,
+  GetFirewallRuleResponse,
+  GetFirewallRuleError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FirewallRulesGetRequest,
-  output: FirewallRulesGetResponse,
+  input: GetFirewallRuleRequest,
+  output: GetFirewallRuleResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type FirewallRulesListByClusterError = AzureOpError;
-/** Lists all the firewall rules on cluster. */
-export const FirewallRulesListByCluster: API.OperationMethod<
-  FirewallRulesListByClusterRequest,
-  FirewallRuleListResult,
-  FirewallRulesListByClusterError,
+export type GetPrivateEndpointConnectionError = AzureOpError;
+/** Gets private endpoint connection. */
+export const GetPrivateEndpointConnection: API.OperationMethod<
+  GetPrivateEndpointConnectionRequest,
+  GetPrivateEndpointConnectionResponse,
+  GetPrivateEndpointConnectionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FirewallRulesListByClusterRequest,
+  input: GetPrivateEndpointConnectionRequest,
+  output: GetPrivateEndpointConnectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetPrivateLinkResourceError = AzureOpError;
+/** Gets a private link resource for cluster. */
+export const GetPrivateLinkResource: API.OperationMethod<
+  GetPrivateLinkResourceRequest,
+  GetPrivateLinkResourceResponse,
+  GetPrivateLinkResourceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPrivateLinkResourceRequest,
+  output: GetPrivateLinkResourceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetRoleError = AzureOpError;
+/** Gets information about a cluster role. */
+export const GetRole: API.OperationMethod<
+  GetRoleRequest,
+  GetRoleResponse,
+  GetRoleError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetRoleRequest,
+  output: GetRoleResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetServerError = AzureOpError;
+/** Gets information about a server in cluster. */
+export const GetServer: API.OperationMethod<
+  GetServerRequest,
+  GetServerResponse,
+  GetServerError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetServerRequest,
+  output: GetServerResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListClusterByResourceGroupError = AzureOpError;
+/** Lists all clusters in a resource group. */
+export const ListClusterByResourceGroup: API.OperationMethod<
+  ListClusterByResourceGroupRequest,
+  ClusterListResult,
+  ListClusterByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListClusterByResourceGroupRequest,
+  output: ClusterListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListClustersError = AzureOpError;
+/** Lists all clusters in a subscription. */
+export const ListClusters: API.OperationMethod<
+  ListClustersRequest,
+  ClusterListResult,
+  ListClustersError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListClustersRequest,
+  output: ClusterListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListConfigurationByClusterError = AzureOpError;
+/** List all the configurations of a cluster. */
+export const ListConfigurationByCluster: API.OperationMethod<
+  ListConfigurationByClusterRequest,
+  ClusterConfigurationListResult,
+  ListConfigurationByClusterError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListConfigurationByClusterRequest,
+  output: ClusterConfigurationListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListConfigurationByServerError = AzureOpError;
+/** List all the configurations of a server in cluster. */
+export const ListConfigurationByServer: API.OperationMethod<
+  ListConfigurationByServerRequest,
+  ServerConfigurationListResult,
+  ListConfigurationByServerError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListConfigurationByServerRequest,
+  output: ServerConfigurationListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListFirewallRuleByClusterError = AzureOpError;
+/** Lists all the firewall rules on cluster. */
+export const ListFirewallRuleByCluster: API.OperationMethod<
+  ListFirewallRuleByClusterRequest,
+  FirewallRuleListResult,
+  ListFirewallRuleByClusterError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListFirewallRuleByClusterRequest,
   output: FirewallRuleListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type OperationsListError = AzureOpError;
+export type ListOperationsError = AzureOpError;
 /** Lists all of the available REST API operations. */
-export const OperationsList: API.OperationMethod<
-  OperationsListRequest,
+export const ListOperations: API.OperationMethod<
+  ListOperationsRequest,
   OperationListResult,
-  OperationsListError,
+  ListOperationsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OperationsListRequest,
+  input: ListOperationsRequest,
   output: OperationListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListPrivateEndpointConnectionByClusterError = AzureOpError;
+/** Gets list of private endpoint connections on a cluster. */
+export const ListPrivateEndpointConnectionByCluster: API.OperationMethod<
+  ListPrivateEndpointConnectionByClusterRequest,
+  PrivateEndpointConnectionListResult,
+  ListPrivateEndpointConnectionByClusterError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListPrivateEndpointConnectionByClusterRequest,
+  output: PrivateEndpointConnectionListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListPrivateLinkResourceByClusterError = AzureOpError;
+/** Gets the private link resources for cluster. */
+export const ListPrivateLinkResourceByCluster: API.OperationMethod<
+  ListPrivateLinkResourceByClusterRequest,
+  PrivateLinkResourceListResult,
+  ListPrivateLinkResourceByClusterError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListPrivateLinkResourceByClusterRequest,
+  output: PrivateLinkResourceListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListRoleByClusterError = AzureOpError;
+/** List all the roles in a given cluster. */
+export const ListRoleByCluster: API.OperationMethod<
+  ListRoleByClusterRequest,
+  RoleListResult,
+  ListRoleByClusterError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListRoleByClusterRequest,
+  output: RoleListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListServerByClusterError = AzureOpError;
+/** Lists servers of a cluster. */
+export const ListServerByCluster: API.OperationMethod<
+  ListServerByClusterRequest,
+  ClusterServerListResult,
+  ListServerByClusterError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListServerByClusterRequest,
+  output: ClusterServerListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -3081,166 +3147,91 @@ export const PrivateEndpointConnectionsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type PrivateEndpointConnectionsDeleteError = AzureOpError;
-/** Deletes a private endpoint connection with a given name. */
-export const PrivateEndpointConnectionsDelete: API.OperationMethod<
-  PrivateEndpointConnectionsDeleteRequest,
-  PrivateEndpointConnectionsDeleteResponse,
-  PrivateEndpointConnectionsDeleteError,
+export type RestartClusterError = AzureOpError;
+/** Restarts all nodes in the cluster. */
+export const RestartCluster: API.OperationMethod<
+  RestartClusterRequest,
+  RestartClusterResponse,
+  RestartClusterError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PrivateEndpointConnectionsDeleteRequest,
-  output: PrivateEndpointConnectionsDeleteResponse,
+  input: RestartClusterRequest,
+  output: RestartClusterResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type PrivateEndpointConnectionsGetError = AzureOpError;
-/** Gets private endpoint connection. */
-export const PrivateEndpointConnectionsGet: API.OperationMethod<
-  PrivateEndpointConnectionsGetRequest,
-  PrivateEndpointConnectionsGetResponse,
-  PrivateEndpointConnectionsGetError,
+export type StartClusterError = AzureOpError;
+/** Starts stopped compute on all cluster nodes. */
+export const StartCluster: API.OperationMethod<
+  StartClusterRequest,
+  StartClusterResponse,
+  StartClusterError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PrivateEndpointConnectionsGetRequest,
-  output: PrivateEndpointConnectionsGetResponse,
+  input: StartClusterRequest,
+  output: StartClusterResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type PrivateEndpointConnectionsListByClusterError = AzureOpError;
-/** Gets list of private endpoint connections on a cluster. */
-export const PrivateEndpointConnectionsListByCluster: API.OperationMethod<
-  PrivateEndpointConnectionsListByClusterRequest,
-  PrivateEndpointConnectionListResult,
-  PrivateEndpointConnectionsListByClusterError,
+export type StopClusterError = AzureOpError;
+/** Stops compute on all cluster nodes. */
+export const StopCluster: API.OperationMethod<
+  StopClusterRequest,
+  StopClusterResponse,
+  StopClusterError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PrivateEndpointConnectionsListByClusterRequest,
-  output: PrivateEndpointConnectionListResult,
+  input: StopClusterRequest,
+  output: StopClusterResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type PrivateLinkResourcesGetError = AzureOpError;
-/** Gets a private link resource for cluster. */
-export const PrivateLinkResourcesGet: API.OperationMethod<
-  PrivateLinkResourcesGetRequest,
-  PrivateLinkResourcesGetResponse,
-  PrivateLinkResourcesGetError,
+export type UpdateClusterError = AzureOpError;
+/** Updates an existing cluster. The request body can contain one or several properties from the cluster definition. */
+export const UpdateCluster: API.OperationMethod<
+  UpdateClusterRequest,
+  UpdateClusterResponse,
+  UpdateClusterError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PrivateLinkResourcesGetRequest,
-  output: PrivateLinkResourcesGetResponse,
+  input: UpdateClusterRequest,
+  output: UpdateClusterResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type PrivateLinkResourcesListByClusterError = AzureOpError;
-/** Gets the private link resources for cluster. */
-export const PrivateLinkResourcesListByCluster: API.OperationMethod<
-  PrivateLinkResourcesListByClusterRequest,
-  PrivateLinkResourceListResult,
-  PrivateLinkResourcesListByClusterError,
+export type UpdateConfigurationOnCoordinatorError = AzureOpError;
+/** Updates configuration of coordinator in a cluster */
+export const UpdateConfigurationOnCoordinator: API.OperationMethod<
+  UpdateConfigurationOnCoordinatorRequest,
+  UpdateConfigurationOnCoordinatorResponse,
+  UpdateConfigurationOnCoordinatorError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PrivateLinkResourcesListByClusterRequest,
-  output: PrivateLinkResourceListResult,
+  input: UpdateConfigurationOnCoordinatorRequest,
+  output: UpdateConfigurationOnCoordinatorResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type RolesCreateError = AzureOpError;
-/** Creates a new role or updates an existing role. */
-export const RolesCreate: API.OperationMethod<
-  RolesCreateRequest,
-  RolesCreateResponse,
-  RolesCreateError,
+export type UpdateConfigurationOnNodeError = AzureOpError;
+/** Updates configuration of worker nodes in a cluster */
+export const UpdateConfigurationOnNode: API.OperationMethod<
+  UpdateConfigurationOnNodeRequest,
+  UpdateConfigurationOnNodeResponse,
+  UpdateConfigurationOnNodeError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: RolesCreateRequest,
-  output: RolesCreateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RolesDeleteError = AzureOpError;
-/** Deletes a cluster role. */
-export const RolesDelete: API.OperationMethod<
-  RolesDeleteRequest,
-  RolesDeleteResponse,
-  RolesDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RolesDeleteRequest,
-  output: RolesDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RolesGetError = AzureOpError;
-/** Gets information about a cluster role. */
-export const RolesGet: API.OperationMethod<
-  RolesGetRequest,
-  RolesGetResponse,
-  RolesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RolesGetRequest,
-  output: RolesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RolesListByClusterError = AzureOpError;
-/** List all the roles in a given cluster. */
-export const RolesListByCluster: API.OperationMethod<
-  RolesListByClusterRequest,
-  RoleListResult,
-  RolesListByClusterError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RolesListByClusterRequest,
-  output: RoleListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ServersGetError = AzureOpError;
-/** Gets information about a server in cluster. */
-export const ServersGet: API.OperationMethod<
-  ServersGetRequest,
-  ServersGetResponse,
-  ServersGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ServersGetRequest,
-  output: ServersGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ServersListByClusterError = AzureOpError;
-/** Lists servers of a cluster. */
-export const ServersListByCluster: API.OperationMethod<
-  ServersListByClusterRequest,
-  ClusterServerListResult,
-  ServersListByClusterError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ServersListByClusterRequest,
-  output: ClusterServerListResult,
+  input: UpdateConfigurationOnNodeRequest,
+  output: UpdateConfigurationOnNodeResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

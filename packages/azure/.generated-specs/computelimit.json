@@ -14,16 +14,17 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.computelimit#VmFamiliesGet": {
+    "com.azure.computelimit#GetVmFamily": {
       "type": "operation",
       "input": {
-        "target": "com.azure.computelimit#VmFamiliesGetRequest"
+        "target": "com.azure.computelimit#GetVmFamilyRequest"
       },
       "output": {
-        "target": "com.azure.computelimit#VmFamiliesGetResponse"
+        "target": "com.azure.computelimit#GetVmFamilyResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -36,7 +37,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-31"
       }
     },
-    "com.azure.computelimit#VmFamiliesGetResponse": {
+    "com.azure.computelimit#GetVmFamilyResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -228,7 +229,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.computelimit#VmFamiliesGetRequest": {
+    "com.azure.computelimit#GetVmFamilyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -260,10 +261,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.computelimit#VmFamiliesListBySubscriptionLocationResource": {
+    "com.azure.computelimit#ListVmFamilyBySubscriptionLocationResource": {
       "type": "operation",
       "input": {
-        "target": "com.azure.computelimit#VmFamiliesListBySubscriptionLocationResourceRequest"
+        "target": "com.azure.computelimit#ListVmFamilyBySubscriptionLocationResourceRequest"
       },
       "output": {
         "target": "com.azure.computelimit#VmFamilyListResult"
@@ -347,7 +348,7 @@
         "smithy.api#documentation": "VM family resource representing a virtual machine family and its category."
       }
     },
-    "com.azure.computelimit#VmFamiliesListBySubscriptionLocationResourceRequest": {
+    "com.azure.computelimit#ListVmFamilyBySubscriptionLocationResourceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -378,10 +379,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.computelimit#TrustedHostSubscriptionsDelete": {
+    "com.azure.computelimit#DeleteTrustedHostSubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.computelimit#TrustedHostSubscriptionsDeleteRequest"
+        "target": "com.azure.computelimit#DeleteTrustedHostSubscriptionRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -397,7 +398,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-31"
       }
     },
-    "com.azure.computelimit#TrustedHostSubscriptionsDeleteRequest": {
+    "com.azure.computelimit#DeleteTrustedHostSubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -429,13 +430,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.computelimit#TrustedHostSubscriptionsCreate": {
+    "com.azure.computelimit#CreateTrustedHostSubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.computelimit#TrustedHostSubscriptionsCreateRequest"
+        "target": "com.azure.computelimit#CreateTrustedHostSubscriptionRequest"
       },
       "output": {
-        "target": "com.azure.computelimit#TrustedHostSubscriptionsCreateResponse"
+        "target": "com.azure.computelimit#CreateTrustedHostSubscriptionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -448,7 +449,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-31"
       }
     },
-    "com.azure.computelimit#TrustedHostSubscriptionsCreateResponse": {
+    "com.azure.computelimit#CreateTrustedHostSubscriptionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -480,7 +481,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.computelimit#TrustedHostSubscriptionsCreateRequest": {
+    "com.azure.computelimit#CreateTrustedHostSubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -512,13 +513,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.computelimit#TrustedHostSubscriptionsGet": {
+    "com.azure.computelimit#GetTrustedHostSubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.computelimit#TrustedHostSubscriptionsGetRequest"
+        "target": "com.azure.computelimit#GetTrustedHostSubscriptionRequest"
       },
       "output": {
-        "target": "com.azure.computelimit#TrustedHostSubscriptionsGetResponse"
+        "target": "com.azure.computelimit#GetTrustedHostSubscriptionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -531,7 +532,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-31"
       }
     },
-    "com.azure.computelimit#TrustedHostSubscriptionsGetResponse": {
+    "com.azure.computelimit#GetTrustedHostSubscriptionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -563,7 +564,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.computelimit#TrustedHostSubscriptionsGetRequest": {
+    "com.azure.computelimit#GetTrustedHostSubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -595,10 +596,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.computelimit#TrustedHostSubscriptionsListBySubscriptionLocationResource": {
+    "com.azure.computelimit#ListTrustedHostSubscriptionBySubscriptionLocationResource": {
       "type": "operation",
       "input": {
-        "target": "com.azure.computelimit#TrustedHostSubscriptionsListBySubscriptionLocationResourceRequest"
+        "target": "com.azure.computelimit#ListTrustedHostSubscriptionBySubscriptionLocationResourceRequest"
       },
       "output": {
         "target": "com.azure.computelimit#TrustedHostSubscriptionListResult"
@@ -676,7 +677,7 @@
         "smithy.api#documentation": "Common fields that are returned in the response for all Azure Resource Manager resources"
       }
     },
-    "com.azure.computelimit#TrustedHostSubscriptionsListBySubscriptionLocationResourceRequest": {
+    "com.azure.computelimit#ListTrustedHostSubscriptionBySubscriptionLocationResourceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -700,10 +701,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.computelimit#SharedLimitsDelete": {
+    "com.azure.computelimit#DeleteSharedLimit": {
       "type": "operation",
       "input": {
-        "target": "com.azure.computelimit#SharedLimitsDeleteRequest"
+        "target": "com.azure.computelimit#DeleteSharedLimitRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -719,7 +720,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-31"
       }
     },
-    "com.azure.computelimit#SharedLimitsDeleteRequest": {
+    "com.azure.computelimit#DeleteSharedLimitRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -751,13 +752,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.computelimit#SharedLimitsCreate": {
+    "com.azure.computelimit#CreateSharedLimit": {
       "type": "operation",
       "input": {
-        "target": "com.azure.computelimit#SharedLimitsCreateRequest"
+        "target": "com.azure.computelimit#CreateSharedLimitRequest"
       },
       "output": {
-        "target": "com.azure.computelimit#SharedLimitsCreateResponse"
+        "target": "com.azure.computelimit#CreateSharedLimitResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -770,7 +771,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-31"
       }
     },
-    "com.azure.computelimit#SharedLimitsCreateResponse": {
+    "com.azure.computelimit#CreateSharedLimitResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -861,7 +862,7 @@
         "smithy.api#documentation": "Properties of the limit name."
       }
     },
-    "com.azure.computelimit#SharedLimitsCreateRequest": {
+    "com.azure.computelimit#CreateSharedLimitRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -906,13 +907,13 @@
         "smithy.api#documentation": "Properties of the compute shared limit."
       }
     },
-    "com.azure.computelimit#SharedLimitsGet": {
+    "com.azure.computelimit#GetSharedLimit": {
       "type": "operation",
       "input": {
-        "target": "com.azure.computelimit#SharedLimitsGetRequest"
+        "target": "com.azure.computelimit#GetSharedLimitRequest"
       },
       "output": {
-        "target": "com.azure.computelimit#SharedLimitsGetResponse"
+        "target": "com.azure.computelimit#GetSharedLimitResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -925,7 +926,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-31"
       }
     },
-    "com.azure.computelimit#SharedLimitsGetResponse": {
+    "com.azure.computelimit#GetSharedLimitResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -963,7 +964,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.computelimit#SharedLimitsGetRequest": {
+    "com.azure.computelimit#GetSharedLimitRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -995,10 +996,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.computelimit#SharedLimitsListBySubscriptionLocationResource": {
+    "com.azure.computelimit#ListSharedLimitBySubscriptionLocationResource": {
       "type": "operation",
       "input": {
-        "target": "com.azure.computelimit#SharedLimitsListBySubscriptionLocationResourceRequest"
+        "target": "com.azure.computelimit#ListSharedLimitBySubscriptionLocationResourceRequest"
       },
       "output": {
         "target": "com.azure.computelimit#SharedLimitListResult"
@@ -1082,7 +1083,7 @@
         "smithy.api#documentation": "Compute limits shared by the subscription."
       }
     },
-    "com.azure.computelimit#SharedLimitsListBySubscriptionLocationResourceRequest": {
+    "com.azure.computelimit#ListSharedLimitBySubscriptionLocationResourceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1106,10 +1107,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.computelimit#SharedLimitCapsSetMemberCapOverrides": {
+    "com.azure.computelimit#SetSharedLimitCapMemberCapOverrides": {
       "type": "operation",
       "input": {
-        "target": "com.azure.computelimit#SharedLimitCapsSetMemberCapOverridesRequest"
+        "target": "com.azure.computelimit#SetSharedLimitCapMemberCapOverridesRequest"
       },
       "output": {
         "target": "com.azure.computelimit#SetMemberCapOverridesResult"
@@ -1171,7 +1172,7 @@
         "smithy.api#documentation": "Per-member cap override. Pairs a member subscription with its cap value."
       }
     },
-    "com.azure.computelimit#SharedLimitCapsSetMemberCapOverridesRequest": {
+    "com.azure.computelimit#SetSharedLimitCapMemberCapOverridesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1199,7 +1200,7 @@
           }
         },
         "memberCapOverrides": {
-          "target": "com.azure.computelimit#SharedLimitCapsSetMemberCapOverridesRequestMemberCapOverridesList",
+          "target": "com.azure.computelimit#SetSharedLimitCapMemberCapOverridesRequestMemberCapOverridesList",
           "traits": {
             "smithy.api#documentation": "The full set of per-member cap overrides to persist for this resource.\nThis call replaces the existing set entirely; supply an empty array\n(`[]`) to clear all overrides.",
             "smithy.api#required": {}
@@ -1210,7 +1211,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.computelimit#SharedLimitCapsSetMemberCapOverridesRequestMemberCapOverridesList": {
+    "com.azure.computelimit#SetSharedLimitCapMemberCapOverridesRequestMemberCapOverridesList": {
       "type": "list",
       "member": {
         "target": "com.azure.computelimit#MemberCap"
@@ -1219,10 +1220,10 @@
         "smithy.api#documentation": "The full set of per-member cap overrides to persist for this resource.\nThis call replaces the existing set entirely; supply an empty array\n(`[]`) to clear all overrides."
       }
     },
-    "com.azure.computelimit#MemberCapOverridesDelete": {
+    "com.azure.computelimit#DeleteMemberCapOverride": {
       "type": "operation",
       "input": {
-        "target": "com.azure.computelimit#MemberCapOverridesDeleteRequest"
+        "target": "com.azure.computelimit#DeleteMemberCapOverrideRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1238,7 +1239,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-31"
       }
     },
-    "com.azure.computelimit#MemberCapOverridesDeleteRequest": {
+    "com.azure.computelimit#DeleteMemberCapOverrideRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1417,13 +1418,13 @@
         "smithy.api#documentation": "Properties of a per-member cap override."
       }
     },
-    "com.azure.computelimit#MemberCapOverridesGet": {
+    "com.azure.computelimit#GetMemberCapOverride": {
       "type": "operation",
       "input": {
-        "target": "com.azure.computelimit#MemberCapOverridesGetRequest"
+        "target": "com.azure.computelimit#GetMemberCapOverrideRequest"
       },
       "output": {
-        "target": "com.azure.computelimit#MemberCapOverridesGetResponse"
+        "target": "com.azure.computelimit#GetMemberCapOverrideResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1436,7 +1437,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-31"
       }
     },
-    "com.azure.computelimit#MemberCapOverridesGetResponse": {
+    "com.azure.computelimit#GetMemberCapOverrideResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1474,7 +1475,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.computelimit#MemberCapOverridesGetRequest": {
+    "com.azure.computelimit#GetMemberCapOverrideRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1514,10 +1515,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.computelimit#MemberCapOverridesListByParent": {
+    "com.azure.computelimit#ListMemberCapOverrideByParent": {
       "type": "operation",
       "input": {
-        "target": "com.azure.computelimit#MemberCapOverridesListByParentRequest"
+        "target": "com.azure.computelimit#ListMemberCapOverrideByParentRequest"
       },
       "output": {
         "target": "com.azure.computelimit#MemberCapOverrideListResult"
@@ -1601,7 +1602,7 @@
         "smithy.api#documentation": "Member cap override as a standalone child resource of `SharedLimitCap`.\nUse this resource to read or modify a single member's cap without\nresending the entire `memberCapOverrides` array on the parent."
       }
     },
-    "com.azure.computelimit#MemberCapOverridesListByParentRequest": {
+    "com.azure.computelimit#ListMemberCapOverrideByParentRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1633,10 +1634,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.computelimit#SharedLimitCapsDelete": {
+    "com.azure.computelimit#DeleteSharedLimitCap": {
       "type": "operation",
       "input": {
-        "target": "com.azure.computelimit#SharedLimitCapsDeleteRequest"
+        "target": "com.azure.computelimit#DeleteSharedLimitCapRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1652,7 +1653,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-31"
       }
     },
-    "com.azure.computelimit#SharedLimitCapsDeleteRequest": {
+    "com.azure.computelimit#DeleteSharedLimitCapRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1827,13 +1828,13 @@
         "smithy.api#documentation": "Properties of a shared limit cap resource."
       }
     },
-    "com.azure.computelimit#SharedLimitCapsGet": {
+    "com.azure.computelimit#GetSharedLimitCap": {
       "type": "operation",
       "input": {
-        "target": "com.azure.computelimit#SharedLimitCapsGetRequest"
+        "target": "com.azure.computelimit#GetSharedLimitCapRequest"
       },
       "output": {
-        "target": "com.azure.computelimit#SharedLimitCapsGetResponse"
+        "target": "com.azure.computelimit#GetSharedLimitCapResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1846,7 +1847,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-31"
       }
     },
-    "com.azure.computelimit#SharedLimitCapsGetResponse": {
+    "com.azure.computelimit#GetSharedLimitCapResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1884,7 +1885,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.computelimit#SharedLimitCapsGetRequest": {
+    "com.azure.computelimit#GetSharedLimitCapRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1916,10 +1917,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.computelimit#SharedLimitCapsListBySubscriptionLocationResource": {
+    "com.azure.computelimit#ListSharedLimitCapBySubscriptionLocationResource": {
       "type": "operation",
       "input": {
-        "target": "com.azure.computelimit#SharedLimitCapsListBySubscriptionLocationResourceRequest"
+        "target": "com.azure.computelimit#ListSharedLimitCapBySubscriptionLocationResourceRequest"
       },
       "output": {
         "target": "com.azure.computelimit#SharedLimitCapListResult"
@@ -2003,7 +2004,7 @@
         "smithy.api#documentation": "Shared limit cap configuration for a VM family, owned by a host subscription\nand propagated to its member subscriptions. The same resource type is\nreadable by host and member subscriptions, but write operations (PUT/DELETE)\nare scoped to the caller's subscription as the host."
       }
     },
-    "com.azure.computelimit#SharedLimitCapsListBySubscriptionLocationResourceRequest": {
+    "com.azure.computelimit#ListSharedLimitCapBySubscriptionLocationResourceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2027,10 +2028,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.computelimit#GuestSubscriptionsDelete": {
+    "com.azure.computelimit#DeleteGuestSubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.computelimit#GuestSubscriptionsDeleteRequest"
+        "target": "com.azure.computelimit#DeleteGuestSubscriptionRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2046,7 +2047,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-31"
       }
     },
-    "com.azure.computelimit#GuestSubscriptionsDeleteRequest": {
+    "com.azure.computelimit#DeleteGuestSubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2078,13 +2079,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.computelimit#GuestSubscriptionsCreate": {
+    "com.azure.computelimit#CreateGuestSubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.computelimit#GuestSubscriptionsCreateRequest"
+        "target": "com.azure.computelimit#CreateGuestSubscriptionRequest"
       },
       "output": {
-        "target": "com.azure.computelimit#GuestSubscriptionsCreateResponse"
+        "target": "com.azure.computelimit#CreateGuestSubscriptionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2097,7 +2098,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-31"
       }
     },
-    "com.azure.computelimit#GuestSubscriptionsCreateResponse": {
+    "com.azure.computelimit#CreateGuestSubscriptionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2149,7 +2150,7 @@
         "smithy.api#documentation": "Properties for guest subscription."
       }
     },
-    "com.azure.computelimit#GuestSubscriptionsCreateRequest": {
+    "com.azure.computelimit#CreateGuestSubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2194,13 +2195,13 @@
         "smithy.api#documentation": "Properties for guest subscription."
       }
     },
-    "com.azure.computelimit#GuestSubscriptionsGet": {
+    "com.azure.computelimit#GetGuestSubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.computelimit#GuestSubscriptionsGetRequest"
+        "target": "com.azure.computelimit#GetGuestSubscriptionRequest"
       },
       "output": {
-        "target": "com.azure.computelimit#GuestSubscriptionsGetResponse"
+        "target": "com.azure.computelimit#GetGuestSubscriptionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2213,7 +2214,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-31"
       }
     },
-    "com.azure.computelimit#GuestSubscriptionsGetResponse": {
+    "com.azure.computelimit#GetGuestSubscriptionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2251,7 +2252,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.computelimit#GuestSubscriptionsGetRequest": {
+    "com.azure.computelimit#GetGuestSubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2283,10 +2284,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.computelimit#GuestSubscriptionsListBySubscriptionLocationResource": {
+    "com.azure.computelimit#ListGuestSubscriptionBySubscriptionLocationResource": {
       "type": "operation",
       "input": {
-        "target": "com.azure.computelimit#GuestSubscriptionsListBySubscriptionLocationResourceRequest"
+        "target": "com.azure.computelimit#ListGuestSubscriptionBySubscriptionLocationResourceRequest"
       },
       "output": {
         "target": "com.azure.computelimit#GuestSubscriptionListResult"
@@ -2370,7 +2371,7 @@
         "smithy.api#documentation": "Guest subscription that consumes shared compute limits."
       }
     },
-    "com.azure.computelimit#GuestSubscriptionsListBySubscriptionLocationResourceRequest": {
+    "com.azure.computelimit#ListGuestSubscriptionBySubscriptionLocationResourceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2394,13 +2395,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.computelimit#FeaturesEnable": {
+    "com.azure.computelimit#EnableFeature": {
       "type": "operation",
       "input": {
-        "target": "com.azure.computelimit#FeaturesEnableRequest"
+        "target": "com.azure.computelimit#EnableFeatureRequest"
       },
       "output": {
-        "target": "com.azure.computelimit#FeaturesEnableResponse"
+        "target": "com.azure.computelimit#EnableFeatureResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2413,7 +2414,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-31"
       }
     },
-    "com.azure.computelimit#FeaturesEnableResponse": {
+    "com.azure.computelimit#EnableFeatureResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2460,7 +2461,7 @@
           }
         },
         "operations": {
-          "target": "com.azure.computelimit#FeaturesEnableResponseOperationsList",
+          "target": "com.azure.computelimit#EnableFeatureResponseOperationsList",
           "traits": {
             "smithy.api#documentation": "The operations list."
           }
@@ -2552,7 +2553,7 @@
         "smithy.api#documentation": "The error details."
       }
     },
-    "com.azure.computelimit#FeaturesEnableResponseOperationsList": {
+    "com.azure.computelimit#EnableFeatureResponseOperationsList": {
       "type": "list",
       "member": {
         "target": "com.azure.computelimit#OperationStatusResult"
@@ -2633,7 +2634,7 @@
         "smithy.api#documentation": "The operations list."
       }
     },
-    "com.azure.computelimit#FeaturesEnableRequest": {
+    "com.azure.computelimit#EnableFeatureRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2671,13 +2672,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.computelimit#FeaturesDisable": {
+    "com.azure.computelimit#DisableFeature": {
       "type": "operation",
       "input": {
-        "target": "com.azure.computelimit#FeaturesDisableRequest"
+        "target": "com.azure.computelimit#DisableFeatureRequest"
       },
       "output": {
-        "target": "com.azure.computelimit#FeaturesDisableResponse"
+        "target": "com.azure.computelimit#DisableFeatureResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2690,7 +2691,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-31"
       }
     },
-    "com.azure.computelimit#FeaturesDisableResponse": {
+    "com.azure.computelimit#DisableFeatureResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2737,7 +2738,7 @@
           }
         },
         "operations": {
-          "target": "com.azure.computelimit#FeaturesDisableResponseOperationsList",
+          "target": "com.azure.computelimit#DisableFeatureResponseOperationsList",
           "traits": {
             "smithy.api#documentation": "The operations list."
           }
@@ -2753,7 +2754,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.computelimit#FeaturesDisableResponseOperationsList": {
+    "com.azure.computelimit#DisableFeatureResponseOperationsList": {
       "type": "list",
       "member": {
         "target": "com.azure.computelimit#OperationStatusResult"
@@ -2762,7 +2763,7 @@
         "smithy.api#documentation": "The operations list."
       }
     },
-    "com.azure.computelimit#FeaturesDisableRequest": {
+    "com.azure.computelimit#DisableFeatureRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2794,13 +2795,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.computelimit#FeaturesGet": {
+    "com.azure.computelimit#GetFeature": {
       "type": "operation",
       "input": {
-        "target": "com.azure.computelimit#FeaturesGetRequest"
+        "target": "com.azure.computelimit#GetFeatureRequest"
       },
       "output": {
-        "target": "com.azure.computelimit#FeaturesGetResponse"
+        "target": "com.azure.computelimit#GetFeatureResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2813,7 +2814,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-31"
       }
     },
-    "com.azure.computelimit#FeaturesGetResponse": {
+    "com.azure.computelimit#GetFeatureResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2891,7 +2892,7 @@
         "smithy.api#documentation": "The allowed states for a compute limit feature."
       }
     },
-    "com.azure.computelimit#FeaturesGetRequest": {
+    "com.azure.computelimit#GetFeatureRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2923,10 +2924,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.computelimit#FeaturesListBySubscriptionLocationResource": {
+    "com.azure.computelimit#ListFeatureBySubscriptionLocationResource": {
       "type": "operation",
       "input": {
-        "target": "com.azure.computelimit#FeaturesListBySubscriptionLocationResourceRequest"
+        "target": "com.azure.computelimit#ListFeatureBySubscriptionLocationResourceRequest"
       },
       "output": {
         "target": "com.azure.computelimit#FeatureListResult"
@@ -3010,7 +3011,7 @@
         "smithy.api#documentation": "Compute limit feature."
       }
     },
-    "com.azure.computelimit#FeaturesListBySubscriptionLocationResourceRequest": {
+    "com.azure.computelimit#ListFeatureBySubscriptionLocationResourceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3034,13 +3035,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.computelimit#OperationsList": {
+    "com.azure.computelimit#ListOperations": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
       },
       "output": {
-        "target": "com.azure.computelimit#OperationsListResponse"
+        "target": "com.azure.computelimit#ListOperationsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3053,11 +3054,11 @@
         "com.distilled.openapi#apiVersion": "2026-07-31"
       }
     },
-    "com.azure.computelimit#OperationsListResponse": {
+    "com.azure.computelimit#ListOperationsResponse": {
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.computelimit#OperationsListResponseValueList",
+          "target": "com.azure.computelimit#ListOperationsResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of operations supported by the resource provider"
           }
@@ -3073,7 +3074,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.computelimit#OperationsListResponseValueList": {
+    "com.azure.computelimit#ListOperationsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.computelimit#Operation"
@@ -3197,88 +3198,88 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.computelimit#VmFamiliesGet"
+          "target": "com.azure.computelimit#GetVmFamily"
         },
         {
-          "target": "com.azure.computelimit#VmFamiliesListBySubscriptionLocationResource"
+          "target": "com.azure.computelimit#ListVmFamilyBySubscriptionLocationResource"
         },
         {
-          "target": "com.azure.computelimit#TrustedHostSubscriptionsDelete"
+          "target": "com.azure.computelimit#DeleteTrustedHostSubscription"
         },
         {
-          "target": "com.azure.computelimit#TrustedHostSubscriptionsCreate"
+          "target": "com.azure.computelimit#CreateTrustedHostSubscription"
         },
         {
-          "target": "com.azure.computelimit#TrustedHostSubscriptionsGet"
+          "target": "com.azure.computelimit#GetTrustedHostSubscription"
         },
         {
-          "target": "com.azure.computelimit#TrustedHostSubscriptionsListBySubscriptionLocationResource"
+          "target": "com.azure.computelimit#ListTrustedHostSubscriptionBySubscriptionLocationResource"
         },
         {
-          "target": "com.azure.computelimit#SharedLimitsDelete"
+          "target": "com.azure.computelimit#DeleteSharedLimit"
         },
         {
-          "target": "com.azure.computelimit#SharedLimitsCreate"
+          "target": "com.azure.computelimit#CreateSharedLimit"
         },
         {
-          "target": "com.azure.computelimit#SharedLimitsGet"
+          "target": "com.azure.computelimit#GetSharedLimit"
         },
         {
-          "target": "com.azure.computelimit#SharedLimitsListBySubscriptionLocationResource"
+          "target": "com.azure.computelimit#ListSharedLimitBySubscriptionLocationResource"
         },
         {
-          "target": "com.azure.computelimit#SharedLimitCapsSetMemberCapOverrides"
+          "target": "com.azure.computelimit#SetSharedLimitCapMemberCapOverrides"
         },
         {
-          "target": "com.azure.computelimit#MemberCapOverridesDelete"
+          "target": "com.azure.computelimit#DeleteMemberCapOverride"
         },
         {
           "target": "com.azure.computelimit#MemberCapOverridesCreateOrUpdate"
         },
         {
-          "target": "com.azure.computelimit#MemberCapOverridesGet"
+          "target": "com.azure.computelimit#GetMemberCapOverride"
         },
         {
-          "target": "com.azure.computelimit#MemberCapOverridesListByParent"
+          "target": "com.azure.computelimit#ListMemberCapOverrideByParent"
         },
         {
-          "target": "com.azure.computelimit#SharedLimitCapsDelete"
+          "target": "com.azure.computelimit#DeleteSharedLimitCap"
         },
         {
           "target": "com.azure.computelimit#SharedLimitCapsCreateOrUpdate"
         },
         {
-          "target": "com.azure.computelimit#SharedLimitCapsGet"
+          "target": "com.azure.computelimit#GetSharedLimitCap"
         },
         {
-          "target": "com.azure.computelimit#SharedLimitCapsListBySubscriptionLocationResource"
+          "target": "com.azure.computelimit#ListSharedLimitCapBySubscriptionLocationResource"
         },
         {
-          "target": "com.azure.computelimit#GuestSubscriptionsDelete"
+          "target": "com.azure.computelimit#DeleteGuestSubscription"
         },
         {
-          "target": "com.azure.computelimit#GuestSubscriptionsCreate"
+          "target": "com.azure.computelimit#CreateGuestSubscription"
         },
         {
-          "target": "com.azure.computelimit#GuestSubscriptionsGet"
+          "target": "com.azure.computelimit#GetGuestSubscription"
         },
         {
-          "target": "com.azure.computelimit#GuestSubscriptionsListBySubscriptionLocationResource"
+          "target": "com.azure.computelimit#ListGuestSubscriptionBySubscriptionLocationResource"
         },
         {
-          "target": "com.azure.computelimit#FeaturesEnable"
+          "target": "com.azure.computelimit#EnableFeature"
         },
         {
-          "target": "com.azure.computelimit#FeaturesDisable"
+          "target": "com.azure.computelimit#DisableFeature"
         },
         {
-          "target": "com.azure.computelimit#FeaturesGet"
+          "target": "com.azure.computelimit#GetFeature"
         },
         {
-          "target": "com.azure.computelimit#FeaturesListBySubscriptionLocationResource"
+          "target": "com.azure.computelimit#ListFeatureBySubscriptionLocationResource"
         },
         {
-          "target": "com.azure.computelimit#OperationsList"
+          "target": "com.azure.computelimit#ListOperations"
         }
       ],
       "traits": {

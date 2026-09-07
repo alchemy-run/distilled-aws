@@ -14,13 +14,14 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesDelete": {
+    "com.azure.baremetalinfrastructure#DeleteAzureBareMetalStorageInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesDeleteRequest"
+        "target": "com.azure.baremetalinfrastructure#DeleteAzureBareMetalStorageInstanceRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -36,7 +37,7 @@
         "com.distilled.openapi#apiVersion": "2023-04-06"
       }
     },
-    "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesDeleteRequest": {
+    "com.azure.baremetalinfrastructure#DeleteAzureBareMetalStorageInstanceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -68,13 +69,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesUpdate": {
+    "com.azure.baremetalinfrastructure#UpdateAzureBareMetalStorageInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesUpdateRequest"
+        "target": "com.azure.baremetalinfrastructure#UpdateAzureBareMetalStorageInstanceRequest"
       },
       "output": {
-        "target": "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesUpdateResponse"
+        "target": "com.azure.baremetalinfrastructure#UpdateAzureBareMetalStorageInstanceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -87,7 +88,7 @@
         "com.distilled.openapi#apiVersion": "2023-04-06"
       }
     },
-    "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesUpdateResponse": {
+    "com.azure.baremetalinfrastructure#UpdateAzureBareMetalStorageInstanceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -109,7 +110,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesUpdateResponseTagsMap",
+          "target": "com.azure.baremetalinfrastructure#UpdateAzureBareMetalStorageInstanceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -128,7 +129,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesUpdateResponseSystemData",
+          "target": "com.azure.baremetalinfrastructure#UpdateAzureBareMetalStorageInstanceResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -138,7 +139,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesUpdateResponseSystemData": {
+    "com.azure.baremetalinfrastructure#UpdateAzureBareMetalStorageInstanceResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -148,7 +149,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesUpdateResponseSystemDataCreatedByType",
+          "target": "com.azure.baremetalinfrastructure#UpdateAzureBareMetalStorageInstanceResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -166,7 +167,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesUpdateResponseSystemDataLastModifiedByType",
+          "target": "com.azure.baremetalinfrastructure#UpdateAzureBareMetalStorageInstanceResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -182,7 +183,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesUpdateResponseSystemDataLastModifiedByType": {
+    "com.azure.baremetalinfrastructure#UpdateAzureBareMetalStorageInstanceResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -214,7 +215,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesUpdateResponseSystemDataCreatedByType": {
+    "com.azure.baremetalinfrastructure#UpdateAzureBareMetalStorageInstanceResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -392,7 +393,7 @@
         "smithy.api#documentation": "State of provisioning of the AzureBareMetalStorageInstance"
       }
     },
-    "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesUpdateResponseTagsMap": {
+    "com.azure.baremetalinfrastructure#UpdateAzureBareMetalStorageInstanceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -404,7 +405,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesUpdateRequest": {
+    "com.azure.baremetalinfrastructure#UpdateAzureBareMetalStorageInstanceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -432,7 +433,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesUpdateRequestTagsMap",
+          "target": "com.azure.baremetalinfrastructure#UpdateAzureBareMetalStorageInstanceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Tags field of the AzureBareMetal/AzureBareMetaStorage instance."
           }
@@ -442,7 +443,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesUpdateRequestTagsMap": {
+    "com.azure.baremetalinfrastructure#UpdateAzureBareMetalStorageInstanceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -454,13 +455,13 @@
         "smithy.api#documentation": "Tags field of the AzureBareMetal/AzureBareMetaStorage instance."
       }
     },
-    "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesCreate": {
+    "com.azure.baremetalinfrastructure#CreateAzureBareMetalStorageInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesCreateRequest"
+        "target": "com.azure.baremetalinfrastructure#CreateAzureBareMetalStorageInstanceRequest"
       },
       "output": {
-        "target": "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesCreateResponse"
+        "target": "com.azure.baremetalinfrastructure#CreateAzureBareMetalStorageInstanceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -473,7 +474,7 @@
         "com.distilled.openapi#apiVersion": "2023-04-06"
       }
     },
-    "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesCreateResponse": {
+    "com.azure.baremetalinfrastructure#CreateAzureBareMetalStorageInstanceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -495,7 +496,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesCreateResponseTagsMap",
+          "target": "com.azure.baremetalinfrastructure#CreateAzureBareMetalStorageInstanceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -514,7 +515,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesCreateResponseSystemData",
+          "target": "com.azure.baremetalinfrastructure#CreateAzureBareMetalStorageInstanceResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -524,7 +525,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesCreateResponseSystemData": {
+    "com.azure.baremetalinfrastructure#CreateAzureBareMetalStorageInstanceResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -534,7 +535,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesCreateResponseSystemDataCreatedByType",
+          "target": "com.azure.baremetalinfrastructure#CreateAzureBareMetalStorageInstanceResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -552,7 +553,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesCreateResponseSystemDataLastModifiedByType",
+          "target": "com.azure.baremetalinfrastructure#CreateAzureBareMetalStorageInstanceResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -568,7 +569,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesCreateResponseSystemDataLastModifiedByType": {
+    "com.azure.baremetalinfrastructure#CreateAzureBareMetalStorageInstanceResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -600,7 +601,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesCreateResponseSystemDataCreatedByType": {
+    "com.azure.baremetalinfrastructure#CreateAzureBareMetalStorageInstanceResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -632,7 +633,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesCreateResponseTagsMap": {
+    "com.azure.baremetalinfrastructure#CreateAzureBareMetalStorageInstanceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -644,7 +645,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesCreateRequest": {
+    "com.azure.baremetalinfrastructure#CreateAzureBareMetalStorageInstanceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -672,7 +673,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesCreateRequestTagsMap",
+          "target": "com.azure.baremetalinfrastructure#CreateAzureBareMetalStorageInstanceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -695,7 +696,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesCreateRequestTagsMap": {
+    "com.azure.baremetalinfrastructure#CreateAzureBareMetalStorageInstanceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -707,13 +708,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesGet": {
+    "com.azure.baremetalinfrastructure#GetAzureBareMetalStorageInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesGetRequest"
+        "target": "com.azure.baremetalinfrastructure#GetAzureBareMetalStorageInstanceRequest"
       },
       "output": {
-        "target": "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesGetResponse"
+        "target": "com.azure.baremetalinfrastructure#GetAzureBareMetalStorageInstanceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -726,7 +727,7 @@
         "com.distilled.openapi#apiVersion": "2023-04-06"
       }
     },
-    "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesGetResponse": {
+    "com.azure.baremetalinfrastructure#GetAzureBareMetalStorageInstanceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -748,7 +749,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesGetResponseTagsMap",
+          "target": "com.azure.baremetalinfrastructure#GetAzureBareMetalStorageInstanceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -767,7 +768,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesGetResponseSystemData",
+          "target": "com.azure.baremetalinfrastructure#GetAzureBareMetalStorageInstanceResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -777,7 +778,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesGetResponseSystemData": {
+    "com.azure.baremetalinfrastructure#GetAzureBareMetalStorageInstanceResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -787,7 +788,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesGetResponseSystemDataCreatedByType",
+          "target": "com.azure.baremetalinfrastructure#GetAzureBareMetalStorageInstanceResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -805,7 +806,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesGetResponseSystemDataLastModifiedByType",
+          "target": "com.azure.baremetalinfrastructure#GetAzureBareMetalStorageInstanceResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -821,7 +822,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesGetResponseSystemDataLastModifiedByType": {
+    "com.azure.baremetalinfrastructure#GetAzureBareMetalStorageInstanceResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -853,7 +854,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesGetResponseSystemDataCreatedByType": {
+    "com.azure.baremetalinfrastructure#GetAzureBareMetalStorageInstanceResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -885,7 +886,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesGetResponseTagsMap": {
+    "com.azure.baremetalinfrastructure#GetAzureBareMetalStorageInstanceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -897,7 +898,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesGetRequest": {
+    "com.azure.baremetalinfrastructure#GetAzureBareMetalStorageInstanceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -929,10 +930,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesListByResourceGroup": {
+    "com.azure.baremetalinfrastructure#ListAzureBareMetalStorageInstanceByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesListByResourceGroupRequest"
+        "target": "com.azure.baremetalinfrastructure#ListAzureBareMetalStorageInstanceByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesListResult"
@@ -1148,7 +1149,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesListByResourceGroupRequest": {
+    "com.azure.baremetalinfrastructure#ListAzureBareMetalStorageInstanceByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1172,10 +1173,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesListBySubscription": {
+    "com.azure.baremetalinfrastructure#ListAzureBareMetalStorageInstanceBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesListBySubscriptionRequest"
+        "target": "com.azure.baremetalinfrastructure#ListAzureBareMetalStorageInstanceBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesListResult"
@@ -1191,7 +1192,7 @@
         "com.distilled.openapi#apiVersion": "2023-04-06"
       }
     },
-    "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesListBySubscriptionRequest": {
+    "com.azure.baremetalinfrastructure#ListAzureBareMetalStorageInstanceBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1207,13 +1208,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.baremetalinfrastructure#AzureBareMetalInstancesUpdate": {
+    "com.azure.baremetalinfrastructure#UpdateAzureBareMetalInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.baremetalinfrastructure#AzureBareMetalInstancesUpdateRequest"
+        "target": "com.azure.baremetalinfrastructure#UpdateAzureBareMetalInstanceRequest"
       },
       "output": {
-        "target": "com.azure.baremetalinfrastructure#AzureBareMetalInstancesUpdateResponse"
+        "target": "com.azure.baremetalinfrastructure#UpdateAzureBareMetalInstanceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1226,7 +1227,7 @@
         "com.distilled.openapi#apiVersion": "2023-04-06"
       }
     },
-    "com.azure.baremetalinfrastructure#AzureBareMetalInstancesUpdateResponse": {
+    "com.azure.baremetalinfrastructure#UpdateAzureBareMetalInstanceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1248,7 +1249,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.baremetalinfrastructure#AzureBareMetalInstancesUpdateResponseTagsMap",
+          "target": "com.azure.baremetalinfrastructure#UpdateAzureBareMetalInstanceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1267,7 +1268,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.baremetalinfrastructure#AzureBareMetalInstancesUpdateResponseSystemData",
+          "target": "com.azure.baremetalinfrastructure#UpdateAzureBareMetalInstanceResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -1277,7 +1278,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.baremetalinfrastructure#AzureBareMetalInstancesUpdateResponseSystemData": {
+    "com.azure.baremetalinfrastructure#UpdateAzureBareMetalInstanceResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -1287,7 +1288,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.baremetalinfrastructure#AzureBareMetalInstancesUpdateResponseSystemDataCreatedByType",
+          "target": "com.azure.baremetalinfrastructure#UpdateAzureBareMetalInstanceResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -1305,7 +1306,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.baremetalinfrastructure#AzureBareMetalInstancesUpdateResponseSystemDataLastModifiedByType",
+          "target": "com.azure.baremetalinfrastructure#UpdateAzureBareMetalInstanceResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -1321,7 +1322,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.baremetalinfrastructure#AzureBareMetalInstancesUpdateResponseSystemDataLastModifiedByType": {
+    "com.azure.baremetalinfrastructure#UpdateAzureBareMetalInstanceResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -1353,7 +1354,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.baremetalinfrastructure#AzureBareMetalInstancesUpdateResponseSystemDataCreatedByType": {
+    "com.azure.baremetalinfrastructure#UpdateAzureBareMetalInstanceResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -1983,7 +1984,7 @@
         "smithy.api#documentation": "Name of the hardware type (vendor and/or their product name)"
       }
     },
-    "com.azure.baremetalinfrastructure#AzureBareMetalInstancesUpdateResponseTagsMap": {
+    "com.azure.baremetalinfrastructure#UpdateAzureBareMetalInstanceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1995,7 +1996,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.baremetalinfrastructure#AzureBareMetalInstancesUpdateRequest": {
+    "com.azure.baremetalinfrastructure#UpdateAzureBareMetalInstanceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2023,7 +2024,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.baremetalinfrastructure#AzureBareMetalInstancesUpdateRequestTagsMap",
+          "target": "com.azure.baremetalinfrastructure#UpdateAzureBareMetalInstanceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Tags field of the AzureBareMetal/AzureBareMetaStorage instance."
           }
@@ -2033,7 +2034,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.baremetalinfrastructure#AzureBareMetalInstancesUpdateRequestTagsMap": {
+    "com.azure.baremetalinfrastructure#UpdateAzureBareMetalInstanceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2045,13 +2046,13 @@
         "smithy.api#documentation": "Tags field of the AzureBareMetal/AzureBareMetaStorage instance."
       }
     },
-    "com.azure.baremetalinfrastructure#AzureBareMetalInstancesGet": {
+    "com.azure.baremetalinfrastructure#GetAzureBareMetalInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.baremetalinfrastructure#AzureBareMetalInstancesGetRequest"
+        "target": "com.azure.baremetalinfrastructure#GetAzureBareMetalInstanceRequest"
       },
       "output": {
-        "target": "com.azure.baremetalinfrastructure#AzureBareMetalInstancesGetResponse"
+        "target": "com.azure.baremetalinfrastructure#GetAzureBareMetalInstanceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2064,7 +2065,7 @@
         "com.distilled.openapi#apiVersion": "2023-04-06"
       }
     },
-    "com.azure.baremetalinfrastructure#AzureBareMetalInstancesGetResponse": {
+    "com.azure.baremetalinfrastructure#GetAzureBareMetalInstanceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2086,7 +2087,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.baremetalinfrastructure#AzureBareMetalInstancesGetResponseTagsMap",
+          "target": "com.azure.baremetalinfrastructure#GetAzureBareMetalInstanceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2105,7 +2106,7 @@
           }
         },
         "systemData": {
-          "target": "com.azure.baremetalinfrastructure#AzureBareMetalInstancesGetResponseSystemData",
+          "target": "com.azure.baremetalinfrastructure#GetAzureBareMetalInstanceResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -2115,7 +2116,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.baremetalinfrastructure#AzureBareMetalInstancesGetResponseSystemData": {
+    "com.azure.baremetalinfrastructure#GetAzureBareMetalInstanceResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -2125,7 +2126,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.baremetalinfrastructure#AzureBareMetalInstancesGetResponseSystemDataCreatedByType",
+          "target": "com.azure.baremetalinfrastructure#GetAzureBareMetalInstanceResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -2143,7 +2144,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.baremetalinfrastructure#AzureBareMetalInstancesGetResponseSystemDataLastModifiedByType",
+          "target": "com.azure.baremetalinfrastructure#GetAzureBareMetalInstanceResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -2159,7 +2160,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.baremetalinfrastructure#AzureBareMetalInstancesGetResponseSystemDataLastModifiedByType": {
+    "com.azure.baremetalinfrastructure#GetAzureBareMetalInstanceResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -2191,7 +2192,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.baremetalinfrastructure#AzureBareMetalInstancesGetResponseSystemDataCreatedByType": {
+    "com.azure.baremetalinfrastructure#GetAzureBareMetalInstanceResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -2223,7 +2224,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.baremetalinfrastructure#AzureBareMetalInstancesGetResponseTagsMap": {
+    "com.azure.baremetalinfrastructure#GetAzureBareMetalInstanceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2235,7 +2236,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.baremetalinfrastructure#AzureBareMetalInstancesGetRequest": {
+    "com.azure.baremetalinfrastructure#GetAzureBareMetalInstanceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2267,7 +2268,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.baremetalinfrastructure#OperationsList": {
+    "com.azure.baremetalinfrastructure#ListOperations": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -2367,10 +2368,10 @@
         "smithy.api#documentation": "Detailed BareMetal operation information"
       }
     },
-    "com.azure.baremetalinfrastructure#AzureBareMetalInstancesListByResourceGroup": {
+    "com.azure.baremetalinfrastructure#ListAzureBareMetalInstanceByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.baremetalinfrastructure#AzureBareMetalInstancesListByResourceGroupRequest"
+        "target": "com.azure.baremetalinfrastructure#ListAzureBareMetalInstanceByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.baremetalinfrastructure#AzureBareMetalInstancesListResult"
@@ -2586,7 +2587,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.baremetalinfrastructure#AzureBareMetalInstancesListByResourceGroupRequest": {
+    "com.azure.baremetalinfrastructure#ListAzureBareMetalInstanceByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2610,10 +2611,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.baremetalinfrastructure#AzureBareMetalInstancesListBySubscription": {
+    "com.azure.baremetalinfrastructure#ListAzureBareMetalInstanceBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.baremetalinfrastructure#AzureBareMetalInstancesListBySubscriptionRequest"
+        "target": "com.azure.baremetalinfrastructure#ListAzureBareMetalInstanceBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.baremetalinfrastructure#AzureBareMetalInstancesListResult"
@@ -2629,7 +2630,7 @@
         "com.distilled.openapi#apiVersion": "2023-04-06"
       }
     },
-    "com.azure.baremetalinfrastructure#AzureBareMetalInstancesListBySubscriptionRequest": {
+    "com.azure.baremetalinfrastructure#ListAzureBareMetalInstanceBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2650,37 +2651,37 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesDelete"
+          "target": "com.azure.baremetalinfrastructure#DeleteAzureBareMetalStorageInstance"
         },
         {
-          "target": "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesUpdate"
+          "target": "com.azure.baremetalinfrastructure#UpdateAzureBareMetalStorageInstance"
         },
         {
-          "target": "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesCreate"
+          "target": "com.azure.baremetalinfrastructure#CreateAzureBareMetalStorageInstance"
         },
         {
-          "target": "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesGet"
+          "target": "com.azure.baremetalinfrastructure#GetAzureBareMetalStorageInstance"
         },
         {
-          "target": "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesListByResourceGroup"
+          "target": "com.azure.baremetalinfrastructure#ListAzureBareMetalStorageInstanceByResourceGroup"
         },
         {
-          "target": "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesListBySubscription"
+          "target": "com.azure.baremetalinfrastructure#ListAzureBareMetalStorageInstanceBySubscription"
         },
         {
-          "target": "com.azure.baremetalinfrastructure#AzureBareMetalInstancesUpdate"
+          "target": "com.azure.baremetalinfrastructure#UpdateAzureBareMetalInstance"
         },
         {
-          "target": "com.azure.baremetalinfrastructure#AzureBareMetalInstancesGet"
+          "target": "com.azure.baremetalinfrastructure#GetAzureBareMetalInstance"
         },
         {
-          "target": "com.azure.baremetalinfrastructure#OperationsList"
+          "target": "com.azure.baremetalinfrastructure#ListOperations"
         },
         {
-          "target": "com.azure.baremetalinfrastructure#AzureBareMetalInstancesListByResourceGroup"
+          "target": "com.azure.baremetalinfrastructure#ListAzureBareMetalInstanceByResourceGroup"
         },
         {
-          "target": "com.azure.baremetalinfrastructure#AzureBareMetalInstancesListBySubscription"
+          "target": "com.azure.baremetalinfrastructure#ListAzureBareMetalInstanceBySubscription"
         }
       ],
       "traits": {

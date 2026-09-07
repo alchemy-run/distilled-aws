@@ -12,71 +12,301 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
-/** The type of resource, for instance Microsoft.Kusto/clusters/attachedDatabaseConfigurations. */
-export type AttachedDatabaseConfigurationsCheckNameAvailabilityRequestType =
-  "Microsoft.Kusto/clusters/attachedDatabaseConfigurations";
-export const AttachedDatabaseConfigurationsCheckNameAvailabilityRequestType =
-  /*@__PURE__*/ S.String;
+/** Type of the callout service, specifying the kind of external resource or service being accessed. */
+export type CalloutType =
+  | "kusto"
+  | "sql"
+  | "cosmosdb"
+  | "external_data"
+  | "azure_digital_twins"
+  | "sandbox_artifacts"
+  | "webapi"
+  | "mysql"
+  | "postgresql"
+  | "genevametrics"
+  | "azure_openai";
+export const CalloutType = /*@__PURE__*/ S.String;
 
-export interface AttachedDatabaseConfigurationsCheckNameAvailabilityRequest {
+/** Indicates whether outbound access is permitted for the specified URI pattern. */
+export type OutboundAccess = "Allow" | "Deny";
+export const OutboundAccess = /*@__PURE__*/ S.String;
+
+/** Configuration for external callout policies, including URI patterns, access types, and service types. */
+export interface CalloutPolicyInput {
+  /** Regular expression or FQDN pattern for the callout URI. */
+  calloutUriRegex?: string;
+  /** Type of the callout service, specifying the kind of external resource or service being accessed. */
+  calloutType?: CalloutType | (string & {});
+  /** Indicates whether outbound access is permitted for the specified URI pattern. */
+  outboundAccess?: OutboundAccess | (string & {});
+}
+export const CalloutPolicyInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    calloutUriRegex: S.optional(S.String),
+    calloutType: S.optional(CalloutType),
+    outboundAccess: S.optional(OutboundAccess),
+  }),
+).annotate({
+  identifier: "CalloutPolicyInput",
+}) as any as S.Schema<CalloutPolicyInput>;
+
+/** The CalloutPolicy items on this page */
+export type AddClusterCalloutPoliciesRequestValueList =
+  Array<CalloutPolicyInput>;
+export const AddClusterCalloutPoliciesRequestValueList = /*@__PURE__*/ S.Array(
+  CalloutPolicyInput,
+) as any as S.Schema<AddClusterCalloutPoliciesRequestValueList>;
+
+export interface AddClusterCalloutPoliciesRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of the Kusto cluster. */
   clusterName: string;
-  /** Attached database resource name. */
-  name: string;
-  /** The type of resource, for instance Microsoft.Kusto/clusters/attachedDatabaseConfigurations. */
-  type:
-    | AttachedDatabaseConfigurationsCheckNameAvailabilityRequestType
-    | (string & {});
+  /** The CalloutPolicy items on this page */
+  value: AddClusterCalloutPoliciesRequestValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
 }
-export const AttachedDatabaseConfigurationsCheckNameAvailabilityRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      clusterName: S.String.pipe(T.Label()),
-      name: S.String,
-      type: AttachedDatabaseConfigurationsCheckNameAvailabilityRequestType,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/attachedDatabaseConfigurationCheckNameAvailability",
-        code: 200,
-        apiVersion: "2025-02-14",
-      }),
-    ),
-  ).annotate({
-    identifier: "AttachedDatabaseConfigurationsCheckNameAvailabilityRequest",
-  }) as any as S.Schema<AttachedDatabaseConfigurationsCheckNameAvailabilityRequest>;
-
-/** Message providing the reason why the given name is invalid. */
-export type Reason = "Invalid" | "AlreadyExists";
-export const Reason = /*@__PURE__*/ S.String;
-
-/** The result returned from a check name availability request. */
-export interface CheckNameResult {
-  /** Specifies a Boolean value that indicates if the name is available. */
-  nameAvailable?: boolean;
-  /** The name that was checked. */
-  name?: string;
-  /** Message indicating an unavailable name due to a conflict, or a description of the naming rules that are violated. */
-  message?: string;
-  /** Message providing the reason why the given name is invalid. */
-  reason?: Reason;
-}
-export const CheckNameResult = /*@__PURE__*/ S.suspend(() =>
+export const AddClusterCalloutPoliciesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    nameAvailable: S.optional(S.Boolean),
-    name: S.optional(S.String),
-    message: S.optional(S.String),
-    reason: S.optional(Reason),
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    value: AddClusterCalloutPoliciesRequestValueList,
+    nextLink: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/addCalloutPolicies",
+      code: 200,
+      apiVersion: "2025-02-14",
+    }),
+  ),
+).annotate({
+  identifier: "AddClusterCalloutPoliciesRequest",
+}) as any as S.Schema<AddClusterCalloutPoliciesRequest>;
+
+export interface AddClusterCalloutPoliciesResponse {}
+export const AddClusterCalloutPoliciesResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "AddClusterCalloutPoliciesResponse",
+}) as any as S.Schema<AddClusterCalloutPoliciesResponse>;
+
+/** Language extension that can run within KQL query. */
+export type LanguageExtensionName = "PYTHON" | "R";
+export const LanguageExtensionName = /*@__PURE__*/ S.String;
+
+/** Language extension image name. */
+export type LanguageExtensionImageName =
+  | "R"
+  | "Python3_6_5"
+  | "Python3_10_8"
+  | "Python3_10_8_DL"
+  | "PythonCustomImage"
+  | "Python3_11_7"
+  | "Python3_11_7_DL";
+export const LanguageExtensionImageName = /*@__PURE__*/ S.String;
+
+/** The language extension object. */
+export interface LanguageExtension {
+  /** The language extension name. */
+  languageExtensionName?: LanguageExtensionName | (string & {});
+  /** The language extension image name. */
+  languageExtensionImageName?: LanguageExtensionImageName | (string & {});
+  /** The sandbox custom image name that should be enabled as the active language extension. Sandbox custom image is a cluster sub resource. When this property is set, LanguageExtensionImageName should be set to 'PythonCustomImage'. */
+  languageExtensionCustomImageName?: string;
+}
+export const LanguageExtension = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    languageExtensionName: S.optional(LanguageExtensionName),
+    languageExtensionImageName: S.optional(LanguageExtensionImageName),
+    languageExtensionCustomImageName: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "CheckNameResult",
-}) as any as S.Schema<CheckNameResult>;
+  identifier: "LanguageExtension",
+}) as any as S.Schema<LanguageExtension>;
+
+/** The list of language extensions. */
+export type AddClusterLanguageExtensionsRequestValueList =
+  Array<LanguageExtension>;
+export const AddClusterLanguageExtensionsRequestValueList =
+  /*@__PURE__*/ S.Array(
+    LanguageExtension,
+  ) as any as S.Schema<AddClusterLanguageExtensionsRequestValueList>;
+
+export interface AddClusterLanguageExtensionsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Kusto cluster. */
+  clusterName: string;
+  /** The list of language extensions. */
+  value?: AddClusterLanguageExtensionsRequestValueList;
+  /** The link to the next page of resources. */
+  nextLink?: string;
+}
+export const AddClusterLanguageExtensionsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    value: S.optional(AddClusterLanguageExtensionsRequestValueList),
+    nextLink: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/addLanguageExtensions",
+      code: 200,
+      apiVersion: "2025-02-14",
+    }),
+  ),
+).annotate({
+  identifier: "AddClusterLanguageExtensionsRequest",
+}) as any as S.Schema<AddClusterLanguageExtensionsRequest>;
+
+export interface AddClusterLanguageExtensionsResponse {}
+export const AddClusterLanguageExtensionsResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "AddClusterLanguageExtensionsResponse",
+}) as any as S.Schema<AddClusterLanguageExtensionsResponse>;
+
+/** Database principal role. */
+export type DatabasePrincipalRole =
+  | "Admin"
+  | "Ingestor"
+  | "Monitor"
+  | "User"
+  | "UnrestrictedViewer"
+  | "Viewer";
+export const DatabasePrincipalRole = /*@__PURE__*/ S.String;
+
+/** Database principal type. */
+export type DatabasePrincipalType = "App" | "Group" | "User";
+export const DatabasePrincipalType = /*@__PURE__*/ S.String;
+
+/** A class representing database principal entity. */
+export interface DatabasePrincipalInput {
+  /** Database principal role. */
+  role: DatabasePrincipalRole | (string & {});
+  /** Database principal name. */
+  name: string;
+  /** Database principal type. */
+  type: DatabasePrincipalType | (string & {});
+  /** Database principal fully qualified name. */
+  fqn?: string;
+  /** Database principal email if exists. */
+  email?: string;
+  /** Application id - relevant only for application principal type. */
+  appId?: string;
+}
+export const DatabasePrincipalInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    role: DatabasePrincipalRole,
+    name: S.String,
+    type: DatabasePrincipalType,
+    fqn: S.optional(S.String),
+    email: S.optional(S.String),
+    appId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DatabasePrincipalInput",
+}) as any as S.Schema<DatabasePrincipalInput>;
+
+/** The list of Kusto database principals. */
+export type AddDatabasePrincipalsRequestValueList =
+  Array<DatabasePrincipalInput>;
+export const AddDatabasePrincipalsRequestValueList = /*@__PURE__*/ S.Array(
+  DatabasePrincipalInput,
+) as any as S.Schema<AddDatabasePrincipalsRequestValueList>;
+
+export interface AddDatabasePrincipalsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Kusto cluster. */
+  clusterName: string;
+  /** The name of the database in the Kusto cluster. */
+  databaseName: string;
+  /** The list of Kusto database principals. */
+  value?: AddDatabasePrincipalsRequestValueList;
+}
+export const AddDatabasePrincipalsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    databaseName: S.String.pipe(T.Label()),
+    value: S.optional(AddDatabasePrincipalsRequestValueList),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/databases/{databaseName}/addPrincipals",
+      code: 200,
+      apiVersion: "2025-02-14",
+    }),
+  ),
+).annotate({
+  identifier: "AddDatabasePrincipalsRequest",
+}) as any as S.Schema<AddDatabasePrincipalsRequest>;
+
+/** A class representing database principal entity. */
+export interface DatabasePrincipal {
+  /** Database principal role. */
+  role: DatabasePrincipalRole;
+  /** Database principal name. */
+  name: string;
+  /** Database principal type. */
+  type: DatabasePrincipalType;
+  /** Database principal fully qualified name. */
+  fqn?: string;
+  /** Database principal email if exists. */
+  email?: string;
+  /** Application id - relevant only for application principal type. */
+  appId?: string;
+  /** The tenant name of the principal */
+  tenantName?: string;
+}
+export const DatabasePrincipal = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    role: DatabasePrincipalRole,
+    name: S.String,
+    type: DatabasePrincipalType,
+    fqn: S.optional(S.String),
+    email: S.optional(S.String),
+    appId: S.optional(S.String),
+    tenantName: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DatabasePrincipal",
+}) as any as S.Schema<DatabasePrincipal>;
+
+/** The list of Kusto database principals. */
+export type DatabasePrincipalListResultValueList = Array<DatabasePrincipal>;
+export const DatabasePrincipalListResultValueList = /*@__PURE__*/ S.Array(
+  DatabasePrincipal,
+) as any as S.Schema<DatabasePrincipalListResultValueList>;
+
+/** The list Kusto database principals operation response. */
+export interface DatabasePrincipalListResult {
+  /** The list of Kusto database principals. */
+  value?: DatabasePrincipalListResultValueList;
+  /** Link to the next page of results. */
+  nextLink?: string;
+}
+export const DatabasePrincipalListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(DatabasePrincipalListResultValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DatabasePrincipalListResult",
+}) as any as S.Schema<DatabasePrincipalListResult>;
 
 /** The default principals modification kind */
 export type DefaultPrincipalsModificationKind = "Union" | "Replace" | "None";
@@ -380,184 +610,112 @@ export const AttachedDatabaseConfigurationsCreateOrUpdateResponse =
     identifier: "AttachedDatabaseConfigurationsCreateOrUpdateResponse",
   }) as any as S.Schema<AttachedDatabaseConfigurationsCreateOrUpdateResponse>;
 
-export interface AttachedDatabaseConfigurationsDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Kusto cluster. */
-  clusterName: string;
-  /** The name of the attached database configuration. */
-  attachedDatabaseConfigurationName: string;
-}
-export const AttachedDatabaseConfigurationsDeleteRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      clusterName: S.String.pipe(T.Label()),
-      attachedDatabaseConfigurationName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/attachedDatabaseConfigurations/{attachedDatabaseConfigurationName}",
-        code: 200,
-        apiVersion: "2025-02-14",
-      }),
-    ),
-  ).annotate({
-    identifier: "AttachedDatabaseConfigurationsDeleteRequest",
-  }) as any as S.Schema<AttachedDatabaseConfigurationsDeleteRequest>;
-
-export interface AttachedDatabaseConfigurationsDeleteResponse {}
-export const AttachedDatabaseConfigurationsDeleteResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "AttachedDatabaseConfigurationsDeleteResponse",
-  }) as any as S.Schema<AttachedDatabaseConfigurationsDeleteResponse>;
-
-export interface AttachedDatabaseConfigurationsGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Kusto cluster. */
-  clusterName: string;
-  /** The name of the attached database configuration. */
-  attachedDatabaseConfigurationName: string;
-}
-export const AttachedDatabaseConfigurationsGetRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      clusterName: S.String.pipe(T.Label()),
-      attachedDatabaseConfigurationName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/attachedDatabaseConfigurations/{attachedDatabaseConfigurationName}",
-        code: 200,
-        apiVersion: "2025-02-14",
-      }),
-    ),
-).annotate({
-  identifier: "AttachedDatabaseConfigurationsGetRequest",
-}) as any as S.Schema<AttachedDatabaseConfigurationsGetRequest>;
-
-export interface AttachedDatabaseConfigurationsGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties of the attached database configuration. */
-  properties?: AttachedDatabaseConfigurationProperties;
-  /** Resource location. */
-  location?: string;
-}
-export const AttachedDatabaseConfigurationsGetResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(AttachedDatabaseConfigurationProperties),
-      location: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "AttachedDatabaseConfigurationsGetResponse",
-  }) as any as S.Schema<AttachedDatabaseConfigurationsGetResponse>;
-
-export interface AttachedDatabaseConfigurationsListByClusterRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Kusto cluster. */
-  clusterName: string;
-}
-export const AttachedDatabaseConfigurationsListByClusterRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      clusterName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/attachedDatabaseConfigurations",
-        code: 200,
-        apiVersion: "2025-02-14",
-      }),
-    ),
-  ).annotate({
-    identifier: "AttachedDatabaseConfigurationsListByClusterRequest",
-  }) as any as S.Schema<AttachedDatabaseConfigurationsListByClusterRequest>;
-
-/** Class representing an attached database configuration. */
-export interface AttachedDatabaseConfiguration {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties of the attached database configuration. */
-  properties?: AttachedDatabaseConfigurationProperties;
-  /** Resource location. */
-  location?: string;
-}
-export const AttachedDatabaseConfiguration = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(AttachedDatabaseConfigurationProperties),
-    location: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AttachedDatabaseConfiguration",
-}) as any as S.Schema<AttachedDatabaseConfiguration>;
-
-/** The list of attached database configurations. */
-export type AttachedDatabaseConfigurationListResultValueList =
-  Array<AttachedDatabaseConfiguration>;
-export const AttachedDatabaseConfigurationListResultValueList =
-  /*@__PURE__*/ S.Array(
-    AttachedDatabaseConfiguration,
-  ) as any as S.Schema<AttachedDatabaseConfigurationListResultValueList>;
-
-/** The list attached database configurations operation response. */
-export interface AttachedDatabaseConfigurationListResult {
-  /** The list of attached database configurations. */
-  value?: AttachedDatabaseConfigurationListResultValueList;
-  /** Link to the next page of results. */
-  nextLink?: string;
-}
-export const AttachedDatabaseConfigurationListResult = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      value: S.optional(AttachedDatabaseConfigurationListResultValueList),
-      nextLink: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "AttachedDatabaseConfigurationListResult",
-}) as any as S.Schema<AttachedDatabaseConfigurationListResult>;
-
-/** The type of resource, Microsoft.Kusto/clusters/principalAssignments. */
-export type ClusterPrincipalAssignmentsCheckNameAvailabilityRequestType =
-  "Microsoft.Kusto/clusters/principalAssignments";
-export const ClusterPrincipalAssignmentsCheckNameAvailabilityRequestType =
+/** The type of resource, for instance Microsoft.Kusto/clusters/attachedDatabaseConfigurations. */
+export type CheckAttachedDatabaseConfigurationNameAvailabilityRequestType =
+  "Microsoft.Kusto/clusters/attachedDatabaseConfigurations";
+export const CheckAttachedDatabaseConfigurationNameAvailabilityRequestType =
   /*@__PURE__*/ S.String;
 
-export interface ClusterPrincipalAssignmentsCheckNameAvailabilityRequest {
+export interface CheckAttachedDatabaseConfigurationNameAvailabilityRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Kusto cluster. */
+  clusterName: string;
+  /** Attached database resource name. */
+  name: string;
+  /** The type of resource, for instance Microsoft.Kusto/clusters/attachedDatabaseConfigurations. */
+  type:
+    | CheckAttachedDatabaseConfigurationNameAvailabilityRequestType
+    | (string & {});
+}
+export const CheckAttachedDatabaseConfigurationNameAvailabilityRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      clusterName: S.String.pipe(T.Label()),
+      name: S.String,
+      type: CheckAttachedDatabaseConfigurationNameAvailabilityRequestType,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/attachedDatabaseConfigurationCheckNameAvailability",
+        code: 200,
+        apiVersion: "2025-02-14",
+      }),
+    ),
+  ).annotate({
+    identifier: "CheckAttachedDatabaseConfigurationNameAvailabilityRequest",
+  }) as any as S.Schema<CheckAttachedDatabaseConfigurationNameAvailabilityRequest>;
+
+/** Message providing the reason why the given name is invalid. */
+export type Reason = "Invalid" | "AlreadyExists";
+export const Reason = /*@__PURE__*/ S.String;
+
+/** The result returned from a check name availability request. */
+export interface CheckNameResult {
+  /** Specifies a Boolean value that indicates if the name is available. */
+  nameAvailable?: boolean;
+  /** The name that was checked. */
+  name?: string;
+  /** Message indicating an unavailable name due to a conflict, or a description of the naming rules that are violated. */
+  message?: string;
+  /** Message providing the reason why the given name is invalid. */
+  reason?: Reason;
+}
+export const CheckNameResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nameAvailable: S.optional(S.Boolean),
+    name: S.optional(S.String),
+    message: S.optional(S.String),
+    reason: S.optional(Reason),
+  }),
+).annotate({
+  identifier: "CheckNameResult",
+}) as any as S.Schema<CheckNameResult>;
+
+/** The type of resource, Microsoft.Kusto/clusters. */
+export type CheckClusterNameAvailabilityRequestType =
+  "Microsoft.Kusto/clusters";
+export const CheckClusterNameAvailabilityRequestType = /*@__PURE__*/ S.String;
+
+export interface CheckClusterNameAvailabilityRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of Azure region. */
+  location: string;
+  /** Cluster name. */
+  name: string;
+  /** The type of resource, Microsoft.Kusto/clusters. */
+  type: CheckClusterNameAvailabilityRequestType | (string & {});
+}
+export const CheckClusterNameAvailabilityRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    location: S.String.pipe(T.Label()),
+    name: S.String,
+    type: CheckClusterNameAvailabilityRequestType,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Kusto/locations/{location}/checkNameAvailability",
+      code: 200,
+      apiVersion: "2025-02-14",
+    }),
+  ),
+).annotate({
+  identifier: "CheckClusterNameAvailabilityRequest",
+}) as any as S.Schema<CheckClusterNameAvailabilityRequest>;
+
+/** The type of resource, Microsoft.Kusto/clusters/principalAssignments. */
+export type CheckClusterPrincipalAssignmentNameAvailabilityRequestType =
+  "Microsoft.Kusto/clusters/principalAssignments";
+export const CheckClusterPrincipalAssignmentNameAvailabilityRequestType =
+  /*@__PURE__*/ S.String;
+
+export interface CheckClusterPrincipalAssignmentNameAvailabilityRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -568,17 +726,17 @@ export interface ClusterPrincipalAssignmentsCheckNameAvailabilityRequest {
   name: string;
   /** The type of resource, Microsoft.Kusto/clusters/principalAssignments. */
   type:
-    | ClusterPrincipalAssignmentsCheckNameAvailabilityRequestType
+    | CheckClusterPrincipalAssignmentNameAvailabilityRequestType
     | (string & {});
 }
-export const ClusterPrincipalAssignmentsCheckNameAvailabilityRequest =
+export const CheckClusterPrincipalAssignmentNameAvailabilityRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       clusterName: S.String.pipe(T.Label()),
       name: S.String,
-      type: ClusterPrincipalAssignmentsCheckNameAvailabilityRequestType,
+      type: CheckClusterPrincipalAssignmentNameAvailabilityRequestType,
     }).pipe(
       T.Http({
         method: "POST",
@@ -588,8 +746,245 @@ export const ClusterPrincipalAssignmentsCheckNameAvailabilityRequest =
       }),
     ),
   ).annotate({
-    identifier: "ClusterPrincipalAssignmentsCheckNameAvailabilityRequest",
-  }) as any as S.Schema<ClusterPrincipalAssignmentsCheckNameAvailabilityRequest>;
+    identifier: "CheckClusterPrincipalAssignmentNameAvailabilityRequest",
+  }) as any as S.Schema<CheckClusterPrincipalAssignmentNameAvailabilityRequest>;
+
+/** The type of resource, for instance Microsoft.Kusto/clusters/databases. */
+export type Type =
+  | "Microsoft.Kusto/clusters/databases"
+  | "Microsoft.Kusto/clusters/attachedDatabaseConfigurations";
+export const Type = /*@__PURE__*/ S.String;
+
+export interface CheckDatabaseNameAvailabilityRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Kusto cluster. */
+  clusterName: string;
+  /** Resource name. */
+  name: string;
+  /** The type of resource, for instance Microsoft.Kusto/clusters/databases. */
+  type: Type | (string & {});
+}
+export const CheckDatabaseNameAvailabilityRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      clusterName: S.String.pipe(T.Label()),
+      name: S.String,
+      type: Type,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/checkNameAvailability",
+        code: 200,
+        apiVersion: "2025-02-14",
+      }),
+    ),
+).annotate({
+  identifier: "CheckDatabaseNameAvailabilityRequest",
+}) as any as S.Schema<CheckDatabaseNameAvailabilityRequest>;
+
+/** The type of resource, Microsoft.Kusto/clusters/databases/principalAssignments. */
+export type CheckDatabasePrincipalAssignmentNameAvailabilityRequestType =
+  "Microsoft.Kusto/clusters/databases/principalAssignments";
+export const CheckDatabasePrincipalAssignmentNameAvailabilityRequestType =
+  /*@__PURE__*/ S.String;
+
+export interface CheckDatabasePrincipalAssignmentNameAvailabilityRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Kusto cluster. */
+  clusterName: string;
+  /** The name of the database in the Kusto cluster. */
+  databaseName: string;
+  /** Principal Assignment resource name. */
+  name: string;
+  /** The type of resource, Microsoft.Kusto/clusters/databases/principalAssignments. */
+  type:
+    | CheckDatabasePrincipalAssignmentNameAvailabilityRequestType
+    | (string & {});
+}
+export const CheckDatabasePrincipalAssignmentNameAvailabilityRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      clusterName: S.String.pipe(T.Label()),
+      databaseName: S.String.pipe(T.Label()),
+      name: S.String,
+      type: CheckDatabasePrincipalAssignmentNameAvailabilityRequestType,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/databases/{databaseName}/checkPrincipalAssignmentNameAvailability",
+        code: 200,
+        apiVersion: "2025-02-14",
+      }),
+    ),
+  ).annotate({
+    identifier: "CheckDatabasePrincipalAssignmentNameAvailabilityRequest",
+  }) as any as S.Schema<CheckDatabasePrincipalAssignmentNameAvailabilityRequest>;
+
+/** The type of resource, Microsoft.Kusto/clusters/databases/dataConnections. */
+export type CheckDataConnectionNameAvailabilityRequestType =
+  "Microsoft.Kusto/clusters/databases/dataConnections";
+export const CheckDataConnectionNameAvailabilityRequestType =
+  /*@__PURE__*/ S.String;
+
+export interface CheckDataConnectionNameAvailabilityRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Kusto cluster. */
+  clusterName: string;
+  /** The name of the database in the Kusto cluster. */
+  databaseName: string;
+  /** Data Connection name. */
+  name: string;
+  /** The type of resource, Microsoft.Kusto/clusters/databases/dataConnections. */
+  type: CheckDataConnectionNameAvailabilityRequestType | (string & {});
+}
+export const CheckDataConnectionNameAvailabilityRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      clusterName: S.String.pipe(T.Label()),
+      databaseName: S.String.pipe(T.Label()),
+      name: S.String,
+      type: CheckDataConnectionNameAvailabilityRequestType,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/databases/{databaseName}/checkNameAvailability",
+        code: 200,
+        apiVersion: "2025-02-14",
+      }),
+    ),
+  ).annotate({
+    identifier: "CheckDataConnectionNameAvailabilityRequest",
+  }) as any as S.Schema<CheckDataConnectionNameAvailabilityRequest>;
+
+/** The type of resource, for instance Microsoft.Kusto/clusters/managedPrivateEndpoints. */
+export type CheckManagedPrivateEndpointNameAvailabilityRequestType =
+  "Microsoft.Kusto/clusters/managedPrivateEndpoints";
+export const CheckManagedPrivateEndpointNameAvailabilityRequestType =
+  /*@__PURE__*/ S.String;
+
+export interface CheckManagedPrivateEndpointNameAvailabilityRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Kusto cluster. */
+  clusterName: string;
+  /** Managed private endpoint resource name. */
+  name: string;
+  /** The type of resource, for instance Microsoft.Kusto/clusters/managedPrivateEndpoints. */
+  type: CheckManagedPrivateEndpointNameAvailabilityRequestType | (string & {});
+}
+export const CheckManagedPrivateEndpointNameAvailabilityRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      clusterName: S.String.pipe(T.Label()),
+      name: S.String,
+      type: CheckManagedPrivateEndpointNameAvailabilityRequestType,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/managedPrivateEndpointsCheckNameAvailability",
+        code: 200,
+        apiVersion: "2025-02-14",
+      }),
+    ),
+  ).annotate({
+    identifier: "CheckManagedPrivateEndpointNameAvailabilityRequest",
+  }) as any as S.Schema<CheckManagedPrivateEndpointNameAvailabilityRequest>;
+
+/** The type of resource, for instance Microsoft.Kusto/clusters/sandboxCustomImages. */
+export type CheckSandboxCustomImageNameAvailabilityRequestType =
+  "Microsoft.Kusto/clusters/sandboxCustomImages";
+export const CheckSandboxCustomImageNameAvailabilityRequestType =
+  /*@__PURE__*/ S.String;
+
+export interface CheckSandboxCustomImageNameAvailabilityRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Kusto cluster. */
+  clusterName: string;
+  /** Sandbox custom image resource name. */
+  name: string;
+  /** The type of resource, for instance Microsoft.Kusto/clusters/sandboxCustomImages. */
+  type: CheckSandboxCustomImageNameAvailabilityRequestType | (string & {});
+}
+export const CheckSandboxCustomImageNameAvailabilityRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      clusterName: S.String.pipe(T.Label()),
+      name: S.String,
+      type: CheckSandboxCustomImageNameAvailabilityRequestType,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/sandboxCustomImagesCheckNameAvailability",
+        code: 200,
+        apiVersion: "2025-02-14",
+      }),
+    ),
+  ).annotate({
+    identifier: "CheckSandboxCustomImageNameAvailabilityRequest",
+  }) as any as S.Schema<CheckSandboxCustomImageNameAvailabilityRequest>;
+
+/** The type of resource, Microsoft.Kusto/clusters/databases/scripts. */
+export type CheckScriptNameAvailabilityRequestType =
+  "Microsoft.Kusto/clusters/databases/scripts";
+export const CheckScriptNameAvailabilityRequestType = /*@__PURE__*/ S.String;
+
+export interface CheckScriptNameAvailabilityRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Kusto cluster. */
+  clusterName: string;
+  /** The name of the database in the Kusto cluster. */
+  databaseName: string;
+  /** Script name. */
+  name: string;
+  /** The type of resource, Microsoft.Kusto/clusters/databases/scripts. */
+  type: CheckScriptNameAvailabilityRequestType | (string & {});
+}
+export const CheckScriptNameAvailabilityRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    databaseName: S.String.pipe(T.Label()),
+    name: S.String,
+    type: CheckScriptNameAvailabilityRequestType,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/databases/{databaseName}/scriptsCheckNameAvailability",
+      code: 200,
+      apiVersion: "2025-02-14",
+    }),
+  ),
+).annotate({
+  identifier: "CheckScriptNameAvailabilityRequest",
+}) as any as S.Schema<CheckScriptNameAvailabilityRequest>;
 
 /** Cluster principal role. */
 export type ClusterPrincipalRole =
@@ -714,369 +1109,6 @@ export const ClusterPrincipalAssignmentsCreateOrUpdateResponse =
   ).annotate({
     identifier: "ClusterPrincipalAssignmentsCreateOrUpdateResponse",
   }) as any as S.Schema<ClusterPrincipalAssignmentsCreateOrUpdateResponse>;
-
-export interface ClusterPrincipalAssignmentsDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Kusto cluster. */
-  clusterName: string;
-  /** The name of the Kusto principalAssignment. */
-  principalAssignmentName: string;
-}
-export const ClusterPrincipalAssignmentsDeleteRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      clusterName: S.String.pipe(T.Label()),
-      principalAssignmentName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/principalAssignments/{principalAssignmentName}",
-        code: 200,
-        apiVersion: "2025-02-14",
-      }),
-    ),
-).annotate({
-  identifier: "ClusterPrincipalAssignmentsDeleteRequest",
-}) as any as S.Schema<ClusterPrincipalAssignmentsDeleteRequest>;
-
-export interface ClusterPrincipalAssignmentsDeleteResponse {}
-export const ClusterPrincipalAssignmentsDeleteResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "ClusterPrincipalAssignmentsDeleteResponse",
-  }) as any as S.Schema<ClusterPrincipalAssignmentsDeleteResponse>;
-
-export interface ClusterPrincipalAssignmentsGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Kusto cluster. */
-  clusterName: string;
-  /** The name of the Kusto principalAssignment. */
-  principalAssignmentName: string;
-}
-export const ClusterPrincipalAssignmentsGetRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      clusterName: S.String.pipe(T.Label()),
-      principalAssignmentName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/principalAssignments/{principalAssignmentName}",
-        code: 200,
-        apiVersion: "2025-02-14",
-      }),
-    ),
-).annotate({
-  identifier: "ClusterPrincipalAssignmentsGetRequest",
-}) as any as S.Schema<ClusterPrincipalAssignmentsGetRequest>;
-
-export interface ClusterPrincipalAssignmentsGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The cluster principal. */
-  properties?: ClusterPrincipalProperties;
-}
-export const ClusterPrincipalAssignmentsGetResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(ClusterPrincipalProperties),
-    }),
-).annotate({
-  identifier: "ClusterPrincipalAssignmentsGetResponse",
-}) as any as S.Schema<ClusterPrincipalAssignmentsGetResponse>;
-
-export interface ClusterPrincipalAssignmentsListRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Kusto cluster. */
-  clusterName: string;
-}
-export const ClusterPrincipalAssignmentsListRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      clusterName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/principalAssignments",
-        code: 200,
-        apiVersion: "2025-02-14",
-      }),
-    ),
-).annotate({
-  identifier: "ClusterPrincipalAssignmentsListRequest",
-}) as any as S.Schema<ClusterPrincipalAssignmentsListRequest>;
-
-/** Class representing a cluster principal assignment. */
-export interface ClusterPrincipalAssignment {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The cluster principal. */
-  properties?: ClusterPrincipalProperties;
-}
-export const ClusterPrincipalAssignment = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ClusterPrincipalProperties),
-  }),
-).annotate({
-  identifier: "ClusterPrincipalAssignment",
-}) as any as S.Schema<ClusterPrincipalAssignment>;
-
-/** The list of Kusto cluster principal assignments. */
-export type ClusterPrincipalAssignmentListResultValueList =
-  Array<ClusterPrincipalAssignment>;
-export const ClusterPrincipalAssignmentListResultValueList =
-  /*@__PURE__*/ S.Array(
-    ClusterPrincipalAssignment,
-  ) as any as S.Schema<ClusterPrincipalAssignmentListResultValueList>;
-
-/** The list Kusto cluster principal assignments operation response. */
-export interface ClusterPrincipalAssignmentListResult {
-  /** The list of Kusto cluster principal assignments. */
-  value?: ClusterPrincipalAssignmentListResultValueList;
-  /** Link to the next page of results. */
-  nextLink?: string;
-}
-export const ClusterPrincipalAssignmentListResult = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      value: S.optional(ClusterPrincipalAssignmentListResultValueList),
-      nextLink: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "ClusterPrincipalAssignmentListResult",
-}) as any as S.Schema<ClusterPrincipalAssignmentListResult>;
-
-/** Type of the callout service, specifying the kind of external resource or service being accessed. */
-export type CalloutType =
-  | "kusto"
-  | "sql"
-  | "cosmosdb"
-  | "external_data"
-  | "azure_digital_twins"
-  | "sandbox_artifacts"
-  | "webapi"
-  | "mysql"
-  | "postgresql"
-  | "genevametrics"
-  | "azure_openai";
-export const CalloutType = /*@__PURE__*/ S.String;
-
-/** Indicates whether outbound access is permitted for the specified URI pattern. */
-export type OutboundAccess = "Allow" | "Deny";
-export const OutboundAccess = /*@__PURE__*/ S.String;
-
-/** Configuration for external callout policies, including URI patterns, access types, and service types. */
-export interface CalloutPolicyInput {
-  /** Regular expression or FQDN pattern for the callout URI. */
-  calloutUriRegex?: string;
-  /** Type of the callout service, specifying the kind of external resource or service being accessed. */
-  calloutType?: CalloutType | (string & {});
-  /** Indicates whether outbound access is permitted for the specified URI pattern. */
-  outboundAccess?: OutboundAccess | (string & {});
-}
-export const CalloutPolicyInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    calloutUriRegex: S.optional(S.String),
-    calloutType: S.optional(CalloutType),
-    outboundAccess: S.optional(OutboundAccess),
-  }),
-).annotate({
-  identifier: "CalloutPolicyInput",
-}) as any as S.Schema<CalloutPolicyInput>;
-
-/** The CalloutPolicy items on this page */
-export type ClustersAddCalloutPoliciesRequestValueList =
-  Array<CalloutPolicyInput>;
-export const ClustersAddCalloutPoliciesRequestValueList = /*@__PURE__*/ S.Array(
-  CalloutPolicyInput,
-) as any as S.Schema<ClustersAddCalloutPoliciesRequestValueList>;
-
-export interface ClustersAddCalloutPoliciesRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Kusto cluster. */
-  clusterName: string;
-  /** The CalloutPolicy items on this page */
-  value: ClustersAddCalloutPoliciesRequestValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const ClustersAddCalloutPoliciesRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    value: ClustersAddCalloutPoliciesRequestValueList,
-    nextLink: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/addCalloutPolicies",
-      code: 200,
-      apiVersion: "2025-02-14",
-    }),
-  ),
-).annotate({
-  identifier: "ClustersAddCalloutPoliciesRequest",
-}) as any as S.Schema<ClustersAddCalloutPoliciesRequest>;
-
-export interface ClustersAddCalloutPoliciesResponse {}
-export const ClustersAddCalloutPoliciesResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ClustersAddCalloutPoliciesResponse",
-}) as any as S.Schema<ClustersAddCalloutPoliciesResponse>;
-
-/** Language extension that can run within KQL query. */
-export type LanguageExtensionName = "PYTHON" | "R";
-export const LanguageExtensionName = /*@__PURE__*/ S.String;
-
-/** Language extension image name. */
-export type LanguageExtensionImageName =
-  | "R"
-  | "Python3_6_5"
-  | "Python3_10_8"
-  | "Python3_10_8_DL"
-  | "PythonCustomImage"
-  | "Python3_11_7"
-  | "Python3_11_7_DL";
-export const LanguageExtensionImageName = /*@__PURE__*/ S.String;
-
-/** The language extension object. */
-export interface LanguageExtension {
-  /** The language extension name. */
-  languageExtensionName?: LanguageExtensionName | (string & {});
-  /** The language extension image name. */
-  languageExtensionImageName?: LanguageExtensionImageName | (string & {});
-  /** The sandbox custom image name that should be enabled as the active language extension. Sandbox custom image is a cluster sub resource. When this property is set, LanguageExtensionImageName should be set to 'PythonCustomImage'. */
-  languageExtensionCustomImageName?: string;
-}
-export const LanguageExtension = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    languageExtensionName: S.optional(LanguageExtensionName),
-    languageExtensionImageName: S.optional(LanguageExtensionImageName),
-    languageExtensionCustomImageName: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "LanguageExtension",
-}) as any as S.Schema<LanguageExtension>;
-
-/** The list of language extensions. */
-export type ClustersAddLanguageExtensionsRequestValueList =
-  Array<LanguageExtension>;
-export const ClustersAddLanguageExtensionsRequestValueList =
-  /*@__PURE__*/ S.Array(
-    LanguageExtension,
-  ) as any as S.Schema<ClustersAddLanguageExtensionsRequestValueList>;
-
-export interface ClustersAddLanguageExtensionsRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Kusto cluster. */
-  clusterName: string;
-  /** The list of language extensions. */
-  value?: ClustersAddLanguageExtensionsRequestValueList;
-  /** The link to the next page of resources. */
-  nextLink?: string;
-}
-export const ClustersAddLanguageExtensionsRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      clusterName: S.String.pipe(T.Label()),
-      value: S.optional(ClustersAddLanguageExtensionsRequestValueList),
-      nextLink: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/addLanguageExtensions",
-        code: 200,
-        apiVersion: "2025-02-14",
-      }),
-    ),
-).annotate({
-  identifier: "ClustersAddLanguageExtensionsRequest",
-}) as any as S.Schema<ClustersAddLanguageExtensionsRequest>;
-
-export interface ClustersAddLanguageExtensionsResponse {}
-export const ClustersAddLanguageExtensionsResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "ClustersAddLanguageExtensionsResponse",
-}) as any as S.Schema<ClustersAddLanguageExtensionsResponse>;
-
-/** The type of resource, Microsoft.Kusto/clusters. */
-export type ClustersCheckNameAvailabilityRequestType =
-  "Microsoft.Kusto/clusters";
-export const ClustersCheckNameAvailabilityRequestType = /*@__PURE__*/ S.String;
-
-export interface ClustersCheckNameAvailabilityRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of Azure region. */
-  location: string;
-  /** Cluster name. */
-  name: string;
-  /** The type of resource, Microsoft.Kusto/clusters. */
-  type: ClustersCheckNameAvailabilityRequestType | (string & {});
-}
-export const ClustersCheckNameAvailabilityRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      location: S.String.pipe(T.Label()),
-      name: S.String,
-      type: ClustersCheckNameAvailabilityRequestType,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Kusto/locations/{location}/checkNameAvailability",
-        code: 200,
-        apiVersion: "2025-02-14",
-      }),
-    ),
-).annotate({
-  identifier: "ClustersCheckNameAvailabilityRequest",
-}) as any as S.Schema<ClustersCheckNameAvailabilityRequest>;
 
 /** Resource tags. */
 export type ClustersCreateOrUpdateRequestTagsMap = {
@@ -1930,77 +1962,6 @@ export const ClustersCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ClustersCreateOrUpdateResponse",
 }) as any as S.Schema<ClustersCreateOrUpdateResponse>;
 
-export interface ClustersDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Kusto cluster. */
-  clusterName: string;
-}
-export const ClustersDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}",
-      code: 200,
-      apiVersion: "2025-02-14",
-    }),
-  ),
-).annotate({
-  identifier: "ClustersDeleteRequest",
-}) as any as S.Schema<ClustersDeleteRequest>;
-
-export interface ClustersDeleteResponse {}
-export const ClustersDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ClustersDeleteResponse",
-}) as any as S.Schema<ClustersDeleteResponse>;
-
-export interface ClustersDetachFollowerDatabasesRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Kusto cluster. */
-  clusterName: string;
-  /** Resource id of the cluster that follows a database owned by this cluster. */
-  clusterResourceId: string;
-  /** Resource name of the attached database configuration in the follower cluster. */
-  attachedDatabaseConfigurationName: string;
-}
-export const ClustersDetachFollowerDatabasesRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      clusterName: S.String.pipe(T.Label()),
-      clusterResourceId: S.String,
-      attachedDatabaseConfigurationName: S.String,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/detachFollowerDatabases",
-        code: 200,
-        apiVersion: "2025-02-14",
-      }),
-    ),
-).annotate({
-  identifier: "ClustersDetachFollowerDatabasesRequest",
-}) as any as S.Schema<ClustersDetachFollowerDatabasesRequest>;
-
-export interface ClustersDetachFollowerDatabasesResponse {}
-export const ClustersDetachFollowerDatabasesResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "ClustersDetachFollowerDatabasesResponse",
-}) as any as S.Schema<ClustersDetachFollowerDatabasesResponse>;
-
 export interface ClustersDiagnoseVirtualNetworkRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
@@ -2045,328 +2006,6 @@ export const DiagnoseVirtualNetworkResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "DiagnoseVirtualNetworkResult",
 }) as any as S.Schema<DiagnoseVirtualNetworkResult>;
 
-export interface ClustersGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Kusto cluster. */
-  clusterName: string;
-}
-export const ClustersGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}",
-      code: 200,
-      apiVersion: "2025-02-14",
-    }),
-  ),
-).annotate({
-  identifier: "ClustersGetRequest",
-}) as any as S.Schema<ClustersGetRequest>;
-
-/** Resource tags. */
-export type ClustersGetResponseTagsMap = { [key: string]: string | undefined };
-export const ClustersGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ClustersGetResponseTagsMap>;
-
-/** The availability zones. */
-export type ClustersGetResponseZonesList = Array<string>;
-export const ClustersGetResponseZonesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ClustersGetResponseZonesList>;
-
-export interface ClustersGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: ClustersGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The cluster properties. */
-  properties?: ClusterProperties;
-  /** The SKU of the cluster. */
-  sku: AzureSku;
-  /** The availability zones. */
-  zones?: ClustersGetResponseZonesList;
-  /** The identity of the cluster, if configured. */
-  identity?: Identity;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-}
-export const ClustersGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(ClustersGetResponseTagsMap),
-    location: S.String,
-    properties: S.optional(ClusterProperties),
-    sku: AzureSku,
-    zones: S.optional(ClustersGetResponseZonesList),
-    identity: S.optional(Identity),
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ClustersGetResponse",
-}) as any as S.Schema<ClustersGetResponse>;
-
-export interface ClustersListRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-}
-export const ClustersListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Kusto/clusters",
-      code: 200,
-      apiVersion: "2025-02-14",
-    }),
-  ),
-).annotate({
-  identifier: "ClustersListRequest",
-}) as any as S.Schema<ClustersListRequest>;
-
-/** Resource tags. */
-export type ClusterTagsMap = { [key: string]: string | undefined };
-export const ClusterTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ClusterTagsMap>;
-
-/** The availability zones. */
-export type ClusterZonesList = Array<string>;
-export const ClusterZonesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ClusterZonesList>;
-
-/** Class representing a Kusto cluster. */
-export interface Cluster {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: ClusterTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The cluster properties. */
-  properties?: ClusterProperties;
-  /** The SKU of the cluster. */
-  sku: AzureSku;
-  /** The availability zones. */
-  zones?: ClusterZonesList;
-  /** The identity of the cluster, if configured. */
-  identity?: Identity;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-}
-export const Cluster = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(ClusterTagsMap),
-    location: S.String,
-    properties: S.optional(ClusterProperties),
-    sku: AzureSku,
-    zones: S.optional(ClusterZonesList),
-    identity: S.optional(Identity),
-    etag: S.optional(S.String),
-  }),
-).annotate({ identifier: "Cluster" }) as any as S.Schema<Cluster>;
-
-/** The list of Kusto clusters. */
-export type ClusterListResultValueList = Array<Cluster>;
-export const ClusterListResultValueList = /*@__PURE__*/ S.Array(
-  Cluster,
-) as any as S.Schema<ClusterListResultValueList>;
-
-/** The list Kusto clusters operation response. */
-export interface ClusterListResult {
-  /** The list of Kusto clusters. */
-  value?: ClusterListResultValueList;
-  /** Link to the next page of results. */
-  nextLink?: string;
-}
-export const ClusterListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(ClusterListResultValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ClusterListResult",
-}) as any as S.Schema<ClusterListResult>;
-
-export interface ClustersListByResourceGroupRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-}
-export const ClustersListByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters",
-      code: 200,
-      apiVersion: "2025-02-14",
-    }),
-  ),
-).annotate({
-  identifier: "ClustersListByResourceGroupRequest",
-}) as any as S.Schema<ClustersListByResourceGroupRequest>;
-
-export interface ClustersListCalloutPoliciesRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Kusto cluster. */
-  clusterName: string;
-}
-export const ClustersListCalloutPoliciesRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/listCalloutPolicies",
-      code: 200,
-      apiVersion: "2025-02-14",
-    }),
-  ),
-).annotate({
-  identifier: "ClustersListCalloutPoliciesRequest",
-}) as any as S.Schema<ClustersListCalloutPoliciesRequest>;
-
-/** The CalloutPolicy items on this page */
-export type CalloutPoliciesListValueList = Array<CalloutPolicy>;
-export const CalloutPoliciesListValueList = /*@__PURE__*/ S.Array(
-  CalloutPolicy,
-) as any as S.Schema<CalloutPoliciesListValueList>;
-
-/** A list of the service's callout policy objects. */
-export interface CalloutPoliciesList {
-  /** The CalloutPolicy items on this page */
-  value: CalloutPoliciesListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const CalloutPoliciesList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: CalloutPoliciesListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "CalloutPoliciesList",
-}) as any as S.Schema<CalloutPoliciesList>;
-
-export interface ClustersListFollowerDatabasesRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Kusto cluster. */
-  clusterName: string;
-}
-export const ClustersListFollowerDatabasesRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      clusterName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/listFollowerDatabases",
-        code: 200,
-        apiVersion: "2025-02-14",
-      }),
-    ),
-).annotate({
-  identifier: "ClustersListFollowerDatabasesRequest",
-}) as any as S.Schema<ClustersListFollowerDatabasesRequest>;
-
-/** The origin of the following setup. */
-export type DatabaseShareOrigin = "Direct" | "DataShare" | "Other";
-export const DatabaseShareOrigin = /*@__PURE__*/ S.String;
-
-/** A class representing follower database request. */
-export interface FollowerDatabaseDefinition {
-  /** Resource id of the cluster that follows a database owned by this cluster. */
-  clusterResourceId: string;
-  /** Resource name of the attached database configuration in the follower cluster. */
-  attachedDatabaseConfigurationName: string;
-  /** The database name owned by this cluster that was followed. * in case following all databases. */
-  databaseName?: string;
-  /** Table level sharing specifications */
-  tableLevelSharingProperties?: TableLevelSharingProperties;
-  /** The origin of the following setup. */
-  databaseShareOrigin?: DatabaseShareOrigin;
-}
-export const FollowerDatabaseDefinition = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    clusterResourceId: S.String,
-    attachedDatabaseConfigurationName: S.String,
-    databaseName: S.optional(S.String),
-    tableLevelSharingProperties: S.optional(TableLevelSharingProperties),
-    databaseShareOrigin: S.optional(DatabaseShareOrigin),
-  }),
-).annotate({
-  identifier: "FollowerDatabaseDefinition",
-}) as any as S.Schema<FollowerDatabaseDefinition>;
-
-/** The list of follower database result. */
-export type FollowerDatabaseListResultValueList =
-  Array<FollowerDatabaseDefinition>;
-export const FollowerDatabaseListResultValueList = /*@__PURE__*/ S.Array(
-  FollowerDatabaseDefinition,
-) as any as S.Schema<FollowerDatabaseListResultValueList>;
-
-/** The list Kusto database principals operation response. */
-export interface FollowerDatabaseListResult {
-  /** The list of follower database result. */
-  value?: FollowerDatabaseListResultValueList;
-  /** Link to the next page of results. */
-  nextLink?: string;
-}
-export const FollowerDatabaseListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(FollowerDatabaseListResultValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "FollowerDatabaseListResult",
-}) as any as S.Schema<FollowerDatabaseListResult>;
-
 export interface ClustersListFollowerDatabasesGetRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
@@ -2393,18 +2032,43 @@ export const ClustersListFollowerDatabasesGetRequest = /*@__PURE__*/ S.suspend(
   identifier: "ClustersListFollowerDatabasesGetRequest",
 }) as any as S.Schema<ClustersListFollowerDatabasesGetRequest>;
 
+/** The origin of the following setup. */
+export type DatabaseShareOrigin = "Direct" | "DataShare" | "Other";
+export const DatabaseShareOrigin = /*@__PURE__*/ S.String;
+
 /** A class representing the properties of a follower database object. */
-export type FollowerDatabaseProperties = FollowerDatabaseDefinition;
-export const FollowerDatabaseProperties = FollowerDatabaseDefinition;
+export interface FollowerDatabaseProperties {
+  /** Resource id of the cluster that follows a database owned by this cluster. */
+  clusterResourceId: string;
+  /** Resource name of the attached database configuration in the follower cluster. */
+  attachedDatabaseConfigurationName: string;
+  /** The database name owned by this cluster that was followed. * in case following all databases. */
+  databaseName?: string;
+  /** Table level sharing specifications */
+  tableLevelSharingProperties?: TableLevelSharingProperties;
+  /** The origin of the following setup. */
+  databaseShareOrigin?: DatabaseShareOrigin;
+}
+export const FollowerDatabaseProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    clusterResourceId: S.String,
+    attachedDatabaseConfigurationName: S.String,
+    databaseName: S.optional(S.String),
+    tableLevelSharingProperties: S.optional(TableLevelSharingProperties),
+    databaseShareOrigin: S.optional(DatabaseShareOrigin),
+  }),
+).annotate({
+  identifier: "FollowerDatabaseProperties",
+}) as any as S.Schema<FollowerDatabaseProperties>;
 
 /** A class representing follower database object. */
 export interface FollowerDatabaseDefinitionGet {
   /** Follower database definition. */
-  properties?: FollowerDatabaseDefinition;
+  properties?: FollowerDatabaseProperties;
 }
 export const FollowerDatabaseDefinitionGet = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    properties: S.optional(FollowerDatabaseDefinition),
+    properties: S.optional(FollowerDatabaseProperties),
   }),
 ).annotate({
   identifier: "FollowerDatabaseDefinitionGet",
@@ -2432,824 +2096,6 @@ export const FollowerDatabaseListResultGet = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "FollowerDatabaseListResultGet",
 }) as any as S.Schema<FollowerDatabaseListResultGet>;
-
-export interface ClustersListLanguageExtensionsRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Kusto cluster. */
-  clusterName: string;
-}
-export const ClustersListLanguageExtensionsRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      clusterName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/listLanguageExtensions",
-        code: 200,
-        apiVersion: "2025-02-14",
-      }),
-    ),
-).annotate({
-  identifier: "ClustersListLanguageExtensionsRequest",
-}) as any as S.Schema<ClustersListLanguageExtensionsRequest>;
-
-export interface ClustersListOutboundNetworkDependenciesEndpointsRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Kusto cluster. */
-  clusterName: string;
-}
-export const ClustersListOutboundNetworkDependenciesEndpointsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      clusterName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/outboundNetworkDependenciesEndpoints",
-        code: 200,
-        apiVersion: "2025-02-14",
-      }),
-    ),
-  ).annotate({
-    identifier: "ClustersListOutboundNetworkDependenciesEndpointsRequest",
-  }) as any as S.Schema<ClustersListOutboundNetworkDependenciesEndpointsRequest>;
-
-/** Current TCP connectivity information from the Kusto cluster to a single endpoint. */
-export interface EndpointDetail {
-  /** The port an endpoint is connected to. */
-  port?: number;
-  /** The ip address of the endpoint. */
-  ipAddress?: string;
-}
-export const EndpointDetail = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    port: S.optional(S.Number),
-    ipAddress: S.optional(S.String),
-  }),
-).annotate({ identifier: "EndpointDetail" }) as any as S.Schema<EndpointDetail>;
-
-/** The ports used when connecting to DomainName. */
-export type EndpointDependencyEndpointDetailsList = Array<EndpointDetail>;
-export const EndpointDependencyEndpointDetailsList = /*@__PURE__*/ S.Array(
-  EndpointDetail,
-) as any as S.Schema<EndpointDependencyEndpointDetailsList>;
-
-/** A domain name that a service is reached at, including details of the current connection status. */
-export interface EndpointDependency {
-  /** The domain name of the dependency. */
-  domainName?: string;
-  /** The ports used when connecting to DomainName. */
-  endpointDetails?: EndpointDependencyEndpointDetailsList;
-}
-export const EndpointDependency = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    domainName: S.optional(S.String),
-    endpointDetails: S.optional(EndpointDependencyEndpointDetailsList),
-  }),
-).annotate({
-  identifier: "EndpointDependency",
-}) as any as S.Schema<EndpointDependency>;
-
-/** The endpoints that the Kusto Service Environment reaches the service at. */
-export type OutboundNetworkDependenciesEndpointPropertiesEndpointsList =
-  Array<EndpointDependency>;
-export const OutboundNetworkDependenciesEndpointPropertiesEndpointsList =
-  /*@__PURE__*/ S.Array(
-    EndpointDependency,
-  ) as any as S.Schema<OutboundNetworkDependenciesEndpointPropertiesEndpointsList>;
-
-/** Endpoints accessed for a common purpose that the Kusto Service Environment requires outbound network access to. */
-export interface OutboundNetworkDependenciesEndpointProperties {
-  /** The type of service accessed by the Kusto Service Environment, e.g., Azure Storage, Azure SQL Database, and Azure Active Directory. */
-  category?: string;
-  /** The endpoints that the Kusto Service Environment reaches the service at. */
-  endpoints?: OutboundNetworkDependenciesEndpointPropertiesEndpointsList;
-  /** The provisioned state of the resource. */
-  provisioningState?: ProvisioningState;
-}
-export const OutboundNetworkDependenciesEndpointProperties =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      category: S.optional(S.String),
-      endpoints: S.optional(
-        OutboundNetworkDependenciesEndpointPropertiesEndpointsList,
-      ),
-      provisioningState: S.optional(ProvisioningState),
-    }),
-  ).annotate({
-    identifier: "OutboundNetworkDependenciesEndpointProperties",
-  }) as any as S.Schema<OutboundNetworkDependenciesEndpointProperties>;
-
-/** Endpoints accessed for a common purpose that the Kusto Service Environment requires outbound network access to. */
-export interface OutboundNetworkDependenciesEndpoint {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The outbound environment endpoint properties. */
-  properties?: OutboundNetworkDependenciesEndpointProperties;
-  /** A unique read-only string that changes whenever the resource is updated. */
-  etag?: string;
-}
-export const OutboundNetworkDependenciesEndpoint = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(OutboundNetworkDependenciesEndpointProperties),
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OutboundNetworkDependenciesEndpoint",
-}) as any as S.Schema<OutboundNetworkDependenciesEndpoint>;
-
-/** The OutboundNetworkDependenciesEndpoint items on this page */
-export type OutboundNetworkDependenciesEndpointListResultValueList =
-  Array<OutboundNetworkDependenciesEndpoint>;
-export const OutboundNetworkDependenciesEndpointListResultValueList =
-  /*@__PURE__*/ S.Array(
-    OutboundNetworkDependenciesEndpoint,
-  ) as any as S.Schema<OutboundNetworkDependenciesEndpointListResultValueList>;
-
-/** The response of a OutboundNetworkDependenciesEndpoint list operation. */
-export interface OutboundNetworkDependenciesEndpointListResult {
-  /** The OutboundNetworkDependenciesEndpoint items on this page */
-  value: OutboundNetworkDependenciesEndpointListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const OutboundNetworkDependenciesEndpointListResult =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      value: OutboundNetworkDependenciesEndpointListResultValueList,
-      nextLink: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "OutboundNetworkDependenciesEndpointListResult",
-  }) as any as S.Schema<OutboundNetworkDependenciesEndpointListResult>;
-
-export interface ClustersListSkusRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-}
-export const ClustersListSkusRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Kusto/skus",
-      code: 200,
-      apiVersion: "2025-02-14",
-    }),
-  ),
-).annotate({
-  identifier: "ClustersListSkusRequest",
-}) as any as S.Schema<ClustersListSkusRequest>;
-
-/** The set of locations that the SKU is available */
-export type SkuDescriptionLocationsList = Array<string>;
-export const SkuDescriptionLocationsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<SkuDescriptionLocationsList>;
-
-/** The available zone of the SKU. */
-export type SkuLocationInfoItemZonesList = Array<string>;
-export const SkuLocationInfoItemZonesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<SkuLocationInfoItemZonesList>;
-
-/** The set of zones that the SKU is available in with the specified capabilities. */
-export type ResourceSkuZoneDetailsNameList = Array<string>;
-export const ResourceSkuZoneDetailsNameList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ResourceSkuZoneDetailsNameList>;
-
-/** Describes The SKU capabilities object. */
-export interface ResourceSkuCapabilities {
-  /** An invariant to describe the feature. */
-  name?: string;
-  /** An invariant if the feature is measured by quantity. */
-  value?: string;
-}
-export const ResourceSkuCapabilities = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    value: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ResourceSkuCapabilities",
-}) as any as S.Schema<ResourceSkuCapabilities>;
-
-/** A list of capabilities that are available for the SKU in the specified list of zones. */
-export type ResourceSkuZoneDetailsCapabilitiesList =
-  Array<ResourceSkuCapabilities>;
-export const ResourceSkuZoneDetailsCapabilitiesList = /*@__PURE__*/ S.Array(
-  ResourceSkuCapabilities,
-) as any as S.Schema<ResourceSkuZoneDetailsCapabilitiesList>;
-
-/** Describes The zonal capabilities of a SKU. */
-export interface ResourceSkuZoneDetails {
-  /** The set of zones that the SKU is available in with the specified capabilities. */
-  name?: ResourceSkuZoneDetailsNameList;
-  /** A list of capabilities that are available for the SKU in the specified list of zones. */
-  capabilities?: ResourceSkuZoneDetailsCapabilitiesList;
-}
-export const ResourceSkuZoneDetails = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(ResourceSkuZoneDetailsNameList),
-    capabilities: S.optional(ResourceSkuZoneDetailsCapabilitiesList),
-  }),
-).annotate({
-  identifier: "ResourceSkuZoneDetails",
-}) as any as S.Schema<ResourceSkuZoneDetails>;
-
-/** Gets details of capabilities available to a SKU in specific zones. */
-export type SkuLocationInfoItemZoneDetailsList = Array<ResourceSkuZoneDetails>;
-export const SkuLocationInfoItemZoneDetailsList = /*@__PURE__*/ S.Array(
-  ResourceSkuZoneDetails,
-) as any as S.Schema<SkuLocationInfoItemZoneDetailsList>;
-
-/** The locations and zones info for SKU. */
-export interface SkuLocationInfoItem {
-  /** The available location of the SKU. */
-  location: string;
-  /** The available zone of the SKU. */
-  zones?: SkuLocationInfoItemZonesList;
-  /** Gets details of capabilities available to a SKU in specific zones. */
-  zoneDetails?: SkuLocationInfoItemZoneDetailsList;
-}
-export const SkuLocationInfoItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    location: S.String,
-    zones: S.optional(SkuLocationInfoItemZonesList),
-    zoneDetails: S.optional(SkuLocationInfoItemZoneDetailsList),
-  }),
-).annotate({
-  identifier: "SkuLocationInfoItem",
-}) as any as S.Schema<SkuLocationInfoItem>;
-
-/** Locations and zones */
-export type SkuDescriptionLocationInfoList = Array<SkuLocationInfoItem>;
-export const SkuDescriptionLocationInfoList = /*@__PURE__*/ S.Array(
-  SkuLocationInfoItem,
-) as any as S.Schema<SkuDescriptionLocationInfoList>;
-
-/** The restrictions because of which SKU cannot be used */
-export type SkuDescriptionRestrictionsList = Array<unknown>;
-export const SkuDescriptionRestrictionsList = /*@__PURE__*/ S.Array(
-  S.Unknown,
-) as any as S.Schema<SkuDescriptionRestrictionsList>;
-
-/** The Kusto SKU description of given resource type */
-export interface SkuDescription {
-  /** The resource type */
-  resourceType?: string;
-  /** The name of the SKU */
-  name?: string;
-  /** The tier of the SKU */
-  tier?: string;
-  /** The set of locations that the SKU is available */
-  locations?: SkuDescriptionLocationsList;
-  /** Locations and zones */
-  locationInfo?: SkuDescriptionLocationInfoList;
-  /** The restrictions because of which SKU cannot be used */
-  restrictions?: SkuDescriptionRestrictionsList;
-}
-export const SkuDescription = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    resourceType: S.optional(S.String),
-    name: S.optional(S.String),
-    tier: S.optional(S.String),
-    locations: S.optional(SkuDescriptionLocationsList),
-    locationInfo: S.optional(SkuDescriptionLocationInfoList),
-    restrictions: S.optional(SkuDescriptionRestrictionsList),
-  }),
-).annotate({ identifier: "SkuDescription" }) as any as S.Schema<SkuDescription>;
-
-/** SKU descriptions */
-export type SkuDescriptionListValueList = Array<SkuDescription>;
-export const SkuDescriptionListValueList = /*@__PURE__*/ S.Array(
-  SkuDescription,
-) as any as S.Schema<SkuDescriptionListValueList>;
-
-/** The list of the EngagementFabric SKU descriptions */
-export interface SkuDescriptionList {
-  /** SKU descriptions */
-  value?: SkuDescriptionListValueList;
-  /** Link to the next page of results. */
-  nextLink?: string;
-}
-export const SkuDescriptionList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(SkuDescriptionListValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SkuDescriptionList",
-}) as any as S.Schema<SkuDescriptionList>;
-
-export interface ClustersListSkusByResourceRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Kusto cluster. */
-  clusterName: string;
-}
-export const ClustersListSkusByResourceRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/skus",
-      code: 200,
-      apiVersion: "2025-02-14",
-    }),
-  ),
-).annotate({
-  identifier: "ClustersListSkusByResourceRequest",
-}) as any as S.Schema<ClustersListSkusByResourceRequest>;
-
-/** Scale type. */
-export type AzureScaleType = "automatic" | "manual" | "none";
-export const AzureScaleType = /*@__PURE__*/ S.String;
-
-/** Azure capacity definition. */
-export interface AzureCapacity {
-  /** Scale type. */
-  scaleType: AzureScaleType;
-  /** Minimum allowed capacity. */
-  minimum: number;
-  /** Maximum allowed capacity. */
-  maximum: number;
-  /** The default capacity that would be used. */
-  default: number;
-}
-export const AzureCapacity = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    scaleType: AzureScaleType,
-    minimum: S.Number,
-    maximum: S.Number,
-    default: S.Number,
-  }),
-).annotate({ identifier: "AzureCapacity" }) as any as S.Schema<AzureCapacity>;
-
-/** Azure resource SKU definition. */
-export interface AzureResourceSku {
-  /** Resource Namespace and Type. */
-  resourceType?: string;
-  /** The SKU details. */
-  sku?: AzureSku;
-  /** The number of instances of the cluster. */
-  capacity?: AzureCapacity;
-}
-export const AzureResourceSku = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    resourceType: S.optional(S.String),
-    sku: S.optional(AzureSku),
-    capacity: S.optional(AzureCapacity),
-  }),
-).annotate({
-  identifier: "AzureResourceSku",
-}) as any as S.Schema<AzureResourceSku>;
-
-/** The collection of available SKUs for an existing resource. */
-export type ListResourceSkusResultValueList = Array<AzureResourceSku>;
-export const ListResourceSkusResultValueList = /*@__PURE__*/ S.Array(
-  AzureResourceSku,
-) as any as S.Schema<ListResourceSkusResultValueList>;
-
-/** List of available SKUs for a Kusto Cluster. */
-export interface ListResourceSkusResult {
-  /** The collection of available SKUs for an existing resource. */
-  value?: ListResourceSkusResultValueList;
-  /** Link to the next page of results. */
-  nextLink?: string;
-}
-export const ListResourceSkusResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(ListResourceSkusResultValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ListResourceSkusResult",
-}) as any as S.Schema<ListResourceSkusResult>;
-
-export interface ClustersMigrateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Kusto cluster. */
-  clusterName: string;
-  /** Resource ID of the destination cluster or kusto pool. */
-  clusterResourceId: string;
-}
-export const ClustersMigrateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    clusterResourceId: S.String,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/migrate",
-      code: 200,
-      apiVersion: "2025-02-14",
-    }),
-  ),
-).annotate({
-  identifier: "ClustersMigrateRequest",
-}) as any as S.Schema<ClustersMigrateRequest>;
-
-export interface ClustersMigrateResponse {}
-export const ClustersMigrateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ClustersMigrateResponse",
-}) as any as S.Schema<ClustersMigrateResponse>;
-
-export interface ClustersRemoveCalloutPolicyRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Kusto cluster. */
-  clusterName: string;
-  /** Unique identifier for the callout configuration. */
-  calloutId?: string;
-}
-export const ClustersRemoveCalloutPolicyRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    calloutId: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/removeCalloutPolicy",
-      code: 200,
-      apiVersion: "2025-02-14",
-    }),
-  ),
-).annotate({
-  identifier: "ClustersRemoveCalloutPolicyRequest",
-}) as any as S.Schema<ClustersRemoveCalloutPolicyRequest>;
-
-export interface ClustersRemoveCalloutPolicyResponse {}
-export const ClustersRemoveCalloutPolicyResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ClustersRemoveCalloutPolicyResponse",
-}) as any as S.Schema<ClustersRemoveCalloutPolicyResponse>;
-
-/** The list of language extensions. */
-export type ClustersRemoveLanguageExtensionsRequestValueList =
-  Array<LanguageExtension>;
-export const ClustersRemoveLanguageExtensionsRequestValueList =
-  /*@__PURE__*/ S.Array(
-    LanguageExtension,
-  ) as any as S.Schema<ClustersRemoveLanguageExtensionsRequestValueList>;
-
-export interface ClustersRemoveLanguageExtensionsRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Kusto cluster. */
-  clusterName: string;
-  /** The list of language extensions. */
-  value?: ClustersRemoveLanguageExtensionsRequestValueList;
-  /** The link to the next page of resources. */
-  nextLink?: string;
-}
-export const ClustersRemoveLanguageExtensionsRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      clusterName: S.String.pipe(T.Label()),
-      value: S.optional(ClustersRemoveLanguageExtensionsRequestValueList),
-      nextLink: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/removeLanguageExtensions",
-        code: 200,
-        apiVersion: "2025-02-14",
-      }),
-    ),
-).annotate({
-  identifier: "ClustersRemoveLanguageExtensionsRequest",
-}) as any as S.Schema<ClustersRemoveLanguageExtensionsRequest>;
-
-export interface ClustersRemoveLanguageExtensionsResponse {}
-export const ClustersRemoveLanguageExtensionsResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "ClustersRemoveLanguageExtensionsResponse",
-}) as any as S.Schema<ClustersRemoveLanguageExtensionsResponse>;
-
-export interface ClustersStartRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Kusto cluster. */
-  clusterName: string;
-}
-export const ClustersStartRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/start",
-      code: 200,
-      apiVersion: "2025-02-14",
-    }),
-  ),
-).annotate({
-  identifier: "ClustersStartRequest",
-}) as any as S.Schema<ClustersStartRequest>;
-
-export interface ClustersStartResponse {}
-export const ClustersStartResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ClustersStartResponse",
-}) as any as S.Schema<ClustersStartResponse>;
-
-export interface ClustersStopRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Kusto cluster. */
-  clusterName: string;
-}
-export const ClustersStopRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/stop",
-      code: 200,
-      apiVersion: "2025-02-14",
-    }),
-  ),
-).annotate({
-  identifier: "ClustersStopRequest",
-}) as any as S.Schema<ClustersStopRequest>;
-
-export interface ClustersStopResponse {}
-export const ClustersStopResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ClustersStopResponse",
-}) as any as S.Schema<ClustersStopResponse>;
-
-/** Resource tags. */
-export type ClustersUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ClustersUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ClustersUpdateRequestTagsMap>;
-
-/** The availability zones of the cluster. */
-export type ClustersUpdateRequestZonesList = Array<string>;
-export const ClustersUpdateRequestZonesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ClustersUpdateRequestZonesList>;
-
-export interface ClustersUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Kusto cluster. */
-  clusterName: string;
-  /** Resource tags. */
-  tags?: ClustersUpdateRequestTagsMap;
-  /** Resource location. */
-  location?: string;
-  /** The SKU of the cluster. */
-  sku?: AzureSku;
-  /** The availability zones of the cluster. */
-  zones?: ClustersUpdateRequestZonesList;
-  /** The identity of the cluster, if configured. */
-  identity?: IdentityInput;
-  /** The cluster properties. */
-  properties?: ClusterPropertiesInput;
-}
-export const ClustersUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    tags: S.optional(ClustersUpdateRequestTagsMap),
-    location: S.optional(S.String),
-    sku: S.optional(AzureSku),
-    zones: S.optional(ClustersUpdateRequestZonesList),
-    identity: S.optional(IdentityInput),
-    properties: S.optional(ClusterPropertiesInput),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}",
-      code: 200,
-      apiVersion: "2025-02-14",
-    }),
-  ),
-).annotate({
-  identifier: "ClustersUpdateRequest",
-}) as any as S.Schema<ClustersUpdateRequest>;
-
-/** Resource tags. */
-export type ClustersUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ClustersUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ClustersUpdateResponseTagsMap>;
-
-/** The availability zones. */
-export type ClustersUpdateResponseZonesList = Array<string>;
-export const ClustersUpdateResponseZonesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ClustersUpdateResponseZonesList>;
-
-export interface ClustersUpdateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: ClustersUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The cluster properties. */
-  properties?: ClusterProperties;
-  /** The SKU of the cluster. */
-  sku: AzureSku;
-  /** The availability zones. */
-  zones?: ClustersUpdateResponseZonesList;
-  /** The identity of the cluster, if configured. */
-  identity?: Identity;
-  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
-  etag?: string;
-}
-export const ClustersUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(ClustersUpdateResponseTagsMap),
-    location: S.String,
-    properties: S.optional(ClusterProperties),
-    sku: AzureSku,
-    zones: S.optional(ClustersUpdateResponseZonesList),
-    identity: S.optional(Identity),
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ClustersUpdateResponse",
-}) as any as S.Schema<ClustersUpdateResponse>;
-
-export interface DatabaseInviteFollowerRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Kusto cluster. */
-  clusterName: string;
-  /** The name of the database in the Kusto cluster. */
-  databaseName: string;
-  /** The email of the invited user for which the follower invitation is generated. */
-  inviteeEmail: string;
-  /** Table level sharing specifications */
-  tableLevelSharingProperties?: TableLevelSharingProperties;
-}
-export const DatabaseInviteFollowerRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    databaseName: S.String.pipe(T.Label()),
-    inviteeEmail: S.String,
-    tableLevelSharingProperties: S.optional(TableLevelSharingProperties),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/databases/{databaseName}/inviteFollower",
-      code: 200,
-      apiVersion: "2025-02-14",
-    }),
-  ),
-).annotate({
-  identifier: "DatabaseInviteFollowerRequest",
-}) as any as S.Schema<DatabaseInviteFollowerRequest>;
-
-/** The result returned from a follower invitation generation request. */
-export interface DatabaseInviteFollowerResult {
-  /** The generated invitation token. */
-  generatedInvitation?: string;
-}
-export const DatabaseInviteFollowerResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    generatedInvitation: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DatabaseInviteFollowerResult",
-}) as any as S.Schema<DatabaseInviteFollowerResult>;
-
-/** The type of resource, Microsoft.Kusto/clusters/databases/principalAssignments. */
-export type DatabasePrincipalAssignmentsCheckNameAvailabilityRequestType =
-  "Microsoft.Kusto/clusters/databases/principalAssignments";
-export const DatabasePrincipalAssignmentsCheckNameAvailabilityRequestType =
-  /*@__PURE__*/ S.String;
-
-export interface DatabasePrincipalAssignmentsCheckNameAvailabilityRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Kusto cluster. */
-  clusterName: string;
-  /** The name of the database in the Kusto cluster. */
-  databaseName: string;
-  /** Principal Assignment resource name. */
-  name: string;
-  /** The type of resource, Microsoft.Kusto/clusters/databases/principalAssignments. */
-  type:
-    | DatabasePrincipalAssignmentsCheckNameAvailabilityRequestType
-    | (string & {});
-}
-export const DatabasePrincipalAssignmentsCheckNameAvailabilityRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      clusterName: S.String.pipe(T.Label()),
-      databaseName: S.String.pipe(T.Label()),
-      name: S.String,
-      type: DatabasePrincipalAssignmentsCheckNameAvailabilityRequestType,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/databases/{databaseName}/checkPrincipalAssignmentNameAvailability",
-        code: 200,
-        apiVersion: "2025-02-14",
-      }),
-    ),
-  ).annotate({
-    identifier: "DatabasePrincipalAssignmentsCheckNameAvailabilityRequest",
-  }) as any as S.Schema<DatabasePrincipalAssignmentsCheckNameAvailabilityRequest>;
-
-/** Database principal role. */
-export type DatabasePrincipalRole =
-  | "Admin"
-  | "Ingestor"
-  | "Monitor"
-  | "User"
-  | "UnrestrictedViewer"
-  | "Viewer";
-export const DatabasePrincipalRole = /*@__PURE__*/ S.String;
 
 /** A class representing database principal property. */
 export interface DatabasePrincipalPropertiesInput {
@@ -3367,341 +2213,6 @@ export const DatabasePrincipalAssignmentsCreateOrUpdateResponse =
     identifier: "DatabasePrincipalAssignmentsCreateOrUpdateResponse",
   }) as any as S.Schema<DatabasePrincipalAssignmentsCreateOrUpdateResponse>;
 
-export interface DatabasePrincipalAssignmentsDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Kusto cluster. */
-  clusterName: string;
-  /** The name of the database in the Kusto cluster. */
-  databaseName: string;
-  /** The name of the Kusto principalAssignment. */
-  principalAssignmentName: string;
-}
-export const DatabasePrincipalAssignmentsDeleteRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      clusterName: S.String.pipe(T.Label()),
-      databaseName: S.String.pipe(T.Label()),
-      principalAssignmentName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/databases/{databaseName}/principalAssignments/{principalAssignmentName}",
-        code: 200,
-        apiVersion: "2025-02-14",
-      }),
-    ),
-  ).annotate({
-    identifier: "DatabasePrincipalAssignmentsDeleteRequest",
-  }) as any as S.Schema<DatabasePrincipalAssignmentsDeleteRequest>;
-
-export interface DatabasePrincipalAssignmentsDeleteResponse {}
-export const DatabasePrincipalAssignmentsDeleteResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "DatabasePrincipalAssignmentsDeleteResponse",
-  }) as any as S.Schema<DatabasePrincipalAssignmentsDeleteResponse>;
-
-export interface DatabasePrincipalAssignmentsGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Kusto cluster. */
-  clusterName: string;
-  /** The name of the database in the Kusto cluster. */
-  databaseName: string;
-  /** The name of the Kusto principalAssignment. */
-  principalAssignmentName: string;
-}
-export const DatabasePrincipalAssignmentsGetRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      clusterName: S.String.pipe(T.Label()),
-      databaseName: S.String.pipe(T.Label()),
-      principalAssignmentName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/databases/{databaseName}/principalAssignments/{principalAssignmentName}",
-        code: 200,
-        apiVersion: "2025-02-14",
-      }),
-    ),
-).annotate({
-  identifier: "DatabasePrincipalAssignmentsGetRequest",
-}) as any as S.Schema<DatabasePrincipalAssignmentsGetRequest>;
-
-export interface DatabasePrincipalAssignmentsGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The database principal. */
-  properties?: DatabasePrincipalProperties;
-}
-export const DatabasePrincipalAssignmentsGetResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(DatabasePrincipalProperties),
-    }),
-).annotate({
-  identifier: "DatabasePrincipalAssignmentsGetResponse",
-}) as any as S.Schema<DatabasePrincipalAssignmentsGetResponse>;
-
-export interface DatabasePrincipalAssignmentsListRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Kusto cluster. */
-  clusterName: string;
-  /** The name of the database in the Kusto cluster. */
-  databaseName: string;
-}
-export const DatabasePrincipalAssignmentsListRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      clusterName: S.String.pipe(T.Label()),
-      databaseName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/databases/{databaseName}/principalAssignments",
-        code: 200,
-        apiVersion: "2025-02-14",
-      }),
-    ),
-).annotate({
-  identifier: "DatabasePrincipalAssignmentsListRequest",
-}) as any as S.Schema<DatabasePrincipalAssignmentsListRequest>;
-
-/** Class representing a database principal assignment. */
-export interface DatabasePrincipalAssignment {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The database principal. */
-  properties?: DatabasePrincipalProperties;
-}
-export const DatabasePrincipalAssignment = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(DatabasePrincipalProperties),
-  }),
-).annotate({
-  identifier: "DatabasePrincipalAssignment",
-}) as any as S.Schema<DatabasePrincipalAssignment>;
-
-/** The list of Kusto database principal assignments. */
-export type DatabasePrincipalAssignmentListResultValueList =
-  Array<DatabasePrincipalAssignment>;
-export const DatabasePrincipalAssignmentListResultValueList =
-  /*@__PURE__*/ S.Array(
-    DatabasePrincipalAssignment,
-  ) as any as S.Schema<DatabasePrincipalAssignmentListResultValueList>;
-
-/** The list Kusto database principal assignments operation response. */
-export interface DatabasePrincipalAssignmentListResult {
-  /** The list of Kusto database principal assignments. */
-  value?: DatabasePrincipalAssignmentListResultValueList;
-  /** Link to the next page of results. */
-  nextLink?: string;
-}
-export const DatabasePrincipalAssignmentListResult = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      value: S.optional(DatabasePrincipalAssignmentListResultValueList),
-      nextLink: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "DatabasePrincipalAssignmentListResult",
-}) as any as S.Schema<DatabasePrincipalAssignmentListResult>;
-
-/** Database principal type. */
-export type DatabasePrincipalType = "App" | "Group" | "User";
-export const DatabasePrincipalType = /*@__PURE__*/ S.String;
-
-/** A class representing database principal entity. */
-export interface DatabasePrincipalInput {
-  /** Database principal role. */
-  role: DatabasePrincipalRole | (string & {});
-  /** Database principal name. */
-  name: string;
-  /** Database principal type. */
-  type: DatabasePrincipalType | (string & {});
-  /** Database principal fully qualified name. */
-  fqn?: string;
-  /** Database principal email if exists. */
-  email?: string;
-  /** Application id - relevant only for application principal type. */
-  appId?: string;
-}
-export const DatabasePrincipalInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    role: DatabasePrincipalRole,
-    name: S.String,
-    type: DatabasePrincipalType,
-    fqn: S.optional(S.String),
-    email: S.optional(S.String),
-    appId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DatabasePrincipalInput",
-}) as any as S.Schema<DatabasePrincipalInput>;
-
-/** The list of Kusto database principals. */
-export type DatabasesAddPrincipalsRequestValueList =
-  Array<DatabasePrincipalInput>;
-export const DatabasesAddPrincipalsRequestValueList = /*@__PURE__*/ S.Array(
-  DatabasePrincipalInput,
-) as any as S.Schema<DatabasesAddPrincipalsRequestValueList>;
-
-export interface DatabasesAddPrincipalsRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Kusto cluster. */
-  clusterName: string;
-  /** The name of the database in the Kusto cluster. */
-  databaseName: string;
-  /** The list of Kusto database principals. */
-  value?: DatabasesAddPrincipalsRequestValueList;
-}
-export const DatabasesAddPrincipalsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    databaseName: S.String.pipe(T.Label()),
-    value: S.optional(DatabasesAddPrincipalsRequestValueList),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/databases/{databaseName}/addPrincipals",
-      code: 200,
-      apiVersion: "2025-02-14",
-    }),
-  ),
-).annotate({
-  identifier: "DatabasesAddPrincipalsRequest",
-}) as any as S.Schema<DatabasesAddPrincipalsRequest>;
-
-/** A class representing database principal entity. */
-export interface DatabasePrincipal {
-  /** Database principal role. */
-  role: DatabasePrincipalRole;
-  /** Database principal name. */
-  name: string;
-  /** Database principal type. */
-  type: DatabasePrincipalType;
-  /** Database principal fully qualified name. */
-  fqn?: string;
-  /** Database principal email if exists. */
-  email?: string;
-  /** Application id - relevant only for application principal type. */
-  appId?: string;
-  /** The tenant name of the principal */
-  tenantName?: string;
-}
-export const DatabasePrincipal = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    role: DatabasePrincipalRole,
-    name: S.String,
-    type: DatabasePrincipalType,
-    fqn: S.optional(S.String),
-    email: S.optional(S.String),
-    appId: S.optional(S.String),
-    tenantName: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DatabasePrincipal",
-}) as any as S.Schema<DatabasePrincipal>;
-
-/** The list of Kusto database principals. */
-export type DatabasePrincipalListResultValueList = Array<DatabasePrincipal>;
-export const DatabasePrincipalListResultValueList = /*@__PURE__*/ S.Array(
-  DatabasePrincipal,
-) as any as S.Schema<DatabasePrincipalListResultValueList>;
-
-/** The list Kusto database principals operation response. */
-export interface DatabasePrincipalListResult {
-  /** The list of Kusto database principals. */
-  value?: DatabasePrincipalListResultValueList;
-  /** Link to the next page of results. */
-  nextLink?: string;
-}
-export const DatabasePrincipalListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(DatabasePrincipalListResultValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DatabasePrincipalListResult",
-}) as any as S.Schema<DatabasePrincipalListResult>;
-
-/** The type of resource, for instance Microsoft.Kusto/clusters/databases. */
-export type Type =
-  | "Microsoft.Kusto/clusters/databases"
-  | "Microsoft.Kusto/clusters/attachedDatabaseConfigurations";
-export const Type = /*@__PURE__*/ S.String;
-
-export interface DatabasesCheckNameAvailabilityRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Kusto cluster. */
-  clusterName: string;
-  /** Resource name. */
-  name: string;
-  /** The type of resource, for instance Microsoft.Kusto/clusters/databases. */
-  type: Type | (string & {});
-}
-export const DatabasesCheckNameAvailabilityRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      clusterName: S.String.pipe(T.Label()),
-      name: S.String,
-      type: Type,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/checkNameAvailability",
-        code: 200,
-        apiVersion: "2025-02-14",
-      }),
-    ),
-).annotate({
-  identifier: "DatabasesCheckNameAvailabilityRequest",
-}) as any as S.Schema<DatabasesCheckNameAvailabilityRequest>;
-
 export type DatabasesCreateOrUpdateRequestCallerRole = "Admin" | "None";
 export const DatabasesCreateOrUpdateRequestCallerRole = /*@__PURE__*/ S.String;
 
@@ -3774,349 +2285,6 @@ export const DatabasesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "DatabasesCreateOrUpdateResponse",
 }) as any as S.Schema<DatabasesCreateOrUpdateResponse>;
-
-export interface DatabasesDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Kusto cluster. */
-  clusterName: string;
-  /** The name of the database in the Kusto cluster. */
-  databaseName: string;
-}
-export const DatabasesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    databaseName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/databases/{databaseName}",
-      code: 200,
-      apiVersion: "2025-02-14",
-    }),
-  ),
-).annotate({
-  identifier: "DatabasesDeleteRequest",
-}) as any as S.Schema<DatabasesDeleteRequest>;
-
-export interface DatabasesDeleteResponse {}
-export const DatabasesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DatabasesDeleteResponse",
-}) as any as S.Schema<DatabasesDeleteResponse>;
-
-export interface DatabasesGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Kusto cluster. */
-  clusterName: string;
-  /** The name of the database in the Kusto cluster. */
-  databaseName: string;
-}
-export const DatabasesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    databaseName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/databases/{databaseName}",
-      code: 200,
-      apiVersion: "2025-02-14",
-    }),
-  ),
-).annotate({
-  identifier: "DatabasesGetRequest",
-}) as any as S.Schema<DatabasesGetRequest>;
-
-export interface DatabasesGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource location. */
-  location?: string;
-  /** Kind of the database */
-  kind: Kind;
-}
-export const DatabasesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    location: S.optional(S.String),
-    kind: Kind,
-  }),
-).annotate({
-  identifier: "DatabasesGetResponse",
-}) as any as S.Schema<DatabasesGetResponse>;
-
-export interface DatabasesListByClusterRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Kusto cluster. */
-  clusterName: string;
-  /** limit the number of results */
-  _top?: number;
-  /** Skiptoken is only used if a previous operation returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a skiptoken parameter that specifies a starting point to use for subsequent calls. */
-  _skiptoken?: string;
-}
-export const DatabasesListByClusterRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    _top: S.optional(S.Number.pipe(T.Query("$top"))),
-    _skiptoken: S.optional(S.String.pipe(T.Query("$skiptoken"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/databases",
-      code: 200,
-      apiVersion: "2025-02-14",
-    }),
-  ),
-).annotate({
-  identifier: "DatabasesListByClusterRequest",
-}) as any as S.Schema<DatabasesListByClusterRequest>;
-
-/** Class representing a Kusto database. */
-export interface Database {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource location. */
-  location?: string;
-  /** Kind of the database */
-  kind: Kind;
-}
-export const Database = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    location: S.optional(S.String),
-    kind: Kind,
-  }),
-).annotate({ identifier: "Database" }) as any as S.Schema<Database>;
-
-/** The Database items on this page */
-export type DatabaseListResultValueList = Array<Database>;
-export const DatabaseListResultValueList = /*@__PURE__*/ S.Array(
-  Database,
-) as any as S.Schema<DatabaseListResultValueList>;
-
-/** The response of a Database list operation. */
-export interface DatabaseListResult {
-  /** The Database items on this page */
-  value: DatabaseListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const DatabaseListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: DatabaseListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DatabaseListResult",
-}) as any as S.Schema<DatabaseListResult>;
-
-export interface DatabasesListPrincipalsRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Kusto cluster. */
-  clusterName: string;
-  /** The name of the database in the Kusto cluster. */
-  databaseName: string;
-}
-export const DatabasesListPrincipalsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    databaseName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/databases/{databaseName}/listPrincipals",
-      code: 200,
-      apiVersion: "2025-02-14",
-    }),
-  ),
-).annotate({
-  identifier: "DatabasesListPrincipalsRequest",
-}) as any as S.Schema<DatabasesListPrincipalsRequest>;
-
-/** The list of Kusto database principals. */
-export type DatabasesRemovePrincipalsRequestValueList =
-  Array<DatabasePrincipalInput>;
-export const DatabasesRemovePrincipalsRequestValueList = /*@__PURE__*/ S.Array(
-  DatabasePrincipalInput,
-) as any as S.Schema<DatabasesRemovePrincipalsRequestValueList>;
-
-export interface DatabasesRemovePrincipalsRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Kusto cluster. */
-  clusterName: string;
-  /** The name of the database in the Kusto cluster. */
-  databaseName: string;
-  /** The list of Kusto database principals. */
-  value?: DatabasesRemovePrincipalsRequestValueList;
-}
-export const DatabasesRemovePrincipalsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    databaseName: S.String.pipe(T.Label()),
-    value: S.optional(DatabasesRemovePrincipalsRequestValueList),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/databases/{databaseName}/removePrincipals",
-      code: 200,
-      apiVersion: "2025-02-14",
-    }),
-  ),
-).annotate({
-  identifier: "DatabasesRemovePrincipalsRequest",
-}) as any as S.Schema<DatabasesRemovePrincipalsRequest>;
-
-export type DatabasesUpdateRequestCallerRole = "Admin" | "None";
-export const DatabasesUpdateRequestCallerRole = /*@__PURE__*/ S.String;
-
-export interface DatabasesUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Kusto cluster. */
-  clusterName: string;
-  /** The name of the database in the Kusto cluster. */
-  databaseName: string;
-  /** By default, any user who run operation on a database become an Admin on it. This property allows the caller to exclude the caller from Admins list. */
-  callerRole?: DatabasesUpdateRequestCallerRole | (string & {});
-  /** Resource location. */
-  location?: string;
-  /** Kind of the database */
-  kind: Kind | (string & {});
-}
-export const DatabasesUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    databaseName: S.String.pipe(T.Label()),
-    callerRole: S.optional(DatabasesUpdateRequestCallerRole.pipe(T.Query())),
-    location: S.optional(S.String),
-    kind: Kind,
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/databases/{databaseName}",
-      code: 200,
-      apiVersion: "2025-02-14",
-    }),
-  ),
-).annotate({
-  identifier: "DatabasesUpdateRequest",
-}) as any as S.Schema<DatabasesUpdateRequest>;
-
-export interface DatabasesUpdateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource location. */
-  location?: string;
-  /** Kind of the database */
-  kind: Kind;
-}
-export const DatabasesUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    location: S.optional(S.String),
-    kind: Kind,
-  }),
-).annotate({
-  identifier: "DatabasesUpdateResponse",
-}) as any as S.Schema<DatabasesUpdateResponse>;
-
-/** The type of resource, Microsoft.Kusto/clusters/databases/dataConnections. */
-export type DataConnectionsCheckNameAvailabilityRequestType =
-  "Microsoft.Kusto/clusters/databases/dataConnections";
-export const DataConnectionsCheckNameAvailabilityRequestType =
-  /*@__PURE__*/ S.String;
-
-export interface DataConnectionsCheckNameAvailabilityRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Kusto cluster. */
-  clusterName: string;
-  /** The name of the database in the Kusto cluster. */
-  databaseName: string;
-  /** Data Connection name. */
-  name: string;
-  /** The type of resource, Microsoft.Kusto/clusters/databases/dataConnections. */
-  type: DataConnectionsCheckNameAvailabilityRequestType | (string & {});
-}
-export const DataConnectionsCheckNameAvailabilityRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      clusterName: S.String.pipe(T.Label()),
-      databaseName: S.String.pipe(T.Label()),
-      name: S.String,
-      type: DataConnectionsCheckNameAvailabilityRequestType,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/databases/{databaseName}/checkNameAvailability",
-        code: 200,
-        apiVersion: "2025-02-14",
-      }),
-    ),
-  ).annotate({
-    identifier: "DataConnectionsCheckNameAvailabilityRequest",
-  }) as any as S.Schema<DataConnectionsCheckNameAvailabilityRequest>;
 
 /** Kind of the endpoint for the data connection */
 export type DataConnectionKind =
@@ -4279,7 +2447,183 @@ export const DataConnectionValidationListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "DataConnectionValidationListResult",
 }) as any as S.Schema<DataConnectionValidationListResult>;
 
-export interface DataConnectionsDeleteRequest {
+export interface DeleteAttachedDatabaseConfigurationRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Kusto cluster. */
+  clusterName: string;
+  /** The name of the attached database configuration. */
+  attachedDatabaseConfigurationName: string;
+}
+export const DeleteAttachedDatabaseConfigurationRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      clusterName: S.String.pipe(T.Label()),
+      attachedDatabaseConfigurationName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/attachedDatabaseConfigurations/{attachedDatabaseConfigurationName}",
+        code: 200,
+        apiVersion: "2025-02-14",
+      }),
+    ),
+  ).annotate({
+    identifier: "DeleteAttachedDatabaseConfigurationRequest",
+  }) as any as S.Schema<DeleteAttachedDatabaseConfigurationRequest>;
+
+export interface DeleteAttachedDatabaseConfigurationResponse {}
+export const DeleteAttachedDatabaseConfigurationResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "DeleteAttachedDatabaseConfigurationResponse",
+  }) as any as S.Schema<DeleteAttachedDatabaseConfigurationResponse>;
+
+export interface DeleteClusterRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Kusto cluster. */
+  clusterName: string;
+}
+export const DeleteClusterRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}",
+      code: 200,
+      apiVersion: "2025-02-14",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteClusterRequest",
+}) as any as S.Schema<DeleteClusterRequest>;
+
+export interface DeleteClusterResponse {}
+export const DeleteClusterResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteClusterResponse",
+}) as any as S.Schema<DeleteClusterResponse>;
+
+export interface DeleteClusterPrincipalAssignmentRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Kusto cluster. */
+  clusterName: string;
+  /** The name of the Kusto principalAssignment. */
+  principalAssignmentName: string;
+}
+export const DeleteClusterPrincipalAssignmentRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      clusterName: S.String.pipe(T.Label()),
+      principalAssignmentName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/principalAssignments/{principalAssignmentName}",
+        code: 200,
+        apiVersion: "2025-02-14",
+      }),
+    ),
+).annotate({
+  identifier: "DeleteClusterPrincipalAssignmentRequest",
+}) as any as S.Schema<DeleteClusterPrincipalAssignmentRequest>;
+
+export interface DeleteClusterPrincipalAssignmentResponse {}
+export const DeleteClusterPrincipalAssignmentResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "DeleteClusterPrincipalAssignmentResponse",
+}) as any as S.Schema<DeleteClusterPrincipalAssignmentResponse>;
+
+export interface DeleteDatabaseRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Kusto cluster. */
+  clusterName: string;
+  /** The name of the database in the Kusto cluster. */
+  databaseName: string;
+}
+export const DeleteDatabaseRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    databaseName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/databases/{databaseName}",
+      code: 200,
+      apiVersion: "2025-02-14",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteDatabaseRequest",
+}) as any as S.Schema<DeleteDatabaseRequest>;
+
+export interface DeleteDatabaseResponse {}
+export const DeleteDatabaseResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteDatabaseResponse",
+}) as any as S.Schema<DeleteDatabaseResponse>;
+
+export interface DeleteDatabasePrincipalAssignmentRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Kusto cluster. */
+  clusterName: string;
+  /** The name of the database in the Kusto cluster. */
+  databaseName: string;
+  /** The name of the Kusto principalAssignment. */
+  principalAssignmentName: string;
+}
+export const DeleteDatabasePrincipalAssignmentRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      clusterName: S.String.pipe(T.Label()),
+      databaseName: S.String.pipe(T.Label()),
+      principalAssignmentName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/databases/{databaseName}/principalAssignments/{principalAssignmentName}",
+        code: 200,
+        apiVersion: "2025-02-14",
+      }),
+    ),
+).annotate({
+  identifier: "DeleteDatabasePrincipalAssignmentRequest",
+}) as any as S.Schema<DeleteDatabasePrincipalAssignmentRequest>;
+
+export interface DeleteDatabasePrincipalAssignmentResponse {}
+export const DeleteDatabasePrincipalAssignmentResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "DeleteDatabasePrincipalAssignmentResponse",
+  }) as any as S.Schema<DeleteDatabasePrincipalAssignmentResponse>;
+
+export interface DeleteDataConnectionRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -4291,7 +2635,7 @@ export interface DataConnectionsDeleteRequest {
   /** The name of the data connection. */
   dataConnectionName: string;
 }
-export const DataConnectionsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteDataConnectionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -4307,17 +2651,503 @@ export const DataConnectionsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DataConnectionsDeleteRequest",
-}) as any as S.Schema<DataConnectionsDeleteRequest>;
+  identifier: "DeleteDataConnectionRequest",
+}) as any as S.Schema<DeleteDataConnectionRequest>;
 
-export interface DataConnectionsDeleteResponse {}
-export const DataConnectionsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteDataConnectionResponse {}
+export const DeleteDataConnectionResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DataConnectionsDeleteResponse",
-}) as any as S.Schema<DataConnectionsDeleteResponse>;
+  identifier: "DeleteDataConnectionResponse",
+}) as any as S.Schema<DeleteDataConnectionResponse>;
 
-export interface DataConnectionsGetRequest {
+export interface DeleteManagedPrivateEndpointRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Kusto cluster. */
+  clusterName: string;
+  /** The name of the managed private endpoint. */
+  managedPrivateEndpointName: string;
+}
+export const DeleteManagedPrivateEndpointRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    managedPrivateEndpointName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/managedPrivateEndpoints/{managedPrivateEndpointName}",
+      code: 200,
+      apiVersion: "2025-02-14",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteManagedPrivateEndpointRequest",
+}) as any as S.Schema<DeleteManagedPrivateEndpointRequest>;
+
+export interface DeleteManagedPrivateEndpointResponse {}
+export const DeleteManagedPrivateEndpointResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "DeleteManagedPrivateEndpointResponse",
+}) as any as S.Schema<DeleteManagedPrivateEndpointResponse>;
+
+export interface DeletePrivateEndpointConnectionRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Kusto cluster. */
+  clusterName: string;
+  /** The name of the private endpoint connection. */
+  privateEndpointConnectionName: string;
+}
+export const DeletePrivateEndpointConnectionRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      clusterName: S.String.pipe(T.Label()),
+      privateEndpointConnectionName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/privateEndpointConnections/{privateEndpointConnectionName}",
+        code: 200,
+        apiVersion: "2025-02-14",
+      }),
+    ),
+).annotate({
+  identifier: "DeletePrivateEndpointConnectionRequest",
+}) as any as S.Schema<DeletePrivateEndpointConnectionRequest>;
+
+export interface DeletePrivateEndpointConnectionResponse {}
+export const DeletePrivateEndpointConnectionResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "DeletePrivateEndpointConnectionResponse",
+}) as any as S.Schema<DeletePrivateEndpointConnectionResponse>;
+
+export interface DeleteSandboxCustomImageRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Kusto cluster. */
+  clusterName: string;
+  /** The name of the sandbox custom image. */
+  sandboxCustomImageName: string;
+}
+export const DeleteSandboxCustomImageRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    sandboxCustomImageName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/sandboxCustomImages/{sandboxCustomImageName}",
+      code: 200,
+      apiVersion: "2025-02-14",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteSandboxCustomImageRequest",
+}) as any as S.Schema<DeleteSandboxCustomImageRequest>;
+
+export interface DeleteSandboxCustomImageResponse {}
+export const DeleteSandboxCustomImageResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteSandboxCustomImageResponse",
+}) as any as S.Schema<DeleteSandboxCustomImageResponse>;
+
+export interface DeleteScriptRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Kusto cluster. */
+  clusterName: string;
+  /** The name of the database in the Kusto cluster. */
+  databaseName: string;
+  /** The name of the Kusto database script. */
+  scriptName: string;
+}
+export const DeleteScriptRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    databaseName: S.String.pipe(T.Label()),
+    scriptName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/databases/{databaseName}/scripts/{scriptName}",
+      code: 200,
+      apiVersion: "2025-02-14",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteScriptRequest",
+}) as any as S.Schema<DeleteScriptRequest>;
+
+export interface DeleteScriptResponse {}
+export const DeleteScriptResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteScriptResponse",
+}) as any as S.Schema<DeleteScriptResponse>;
+
+export interface DetachClusterFollowerDatabasesRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Kusto cluster. */
+  clusterName: string;
+  /** Resource id of the cluster that follows a database owned by this cluster. */
+  clusterResourceId: string;
+  /** Resource name of the attached database configuration in the follower cluster. */
+  attachedDatabaseConfigurationName: string;
+}
+export const DetachClusterFollowerDatabasesRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      clusterName: S.String.pipe(T.Label()),
+      clusterResourceId: S.String,
+      attachedDatabaseConfigurationName: S.String,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/detachFollowerDatabases",
+        code: 200,
+        apiVersion: "2025-02-14",
+      }),
+    ),
+).annotate({
+  identifier: "DetachClusterFollowerDatabasesRequest",
+}) as any as S.Schema<DetachClusterFollowerDatabasesRequest>;
+
+export interface DetachClusterFollowerDatabasesResponse {}
+export const DetachClusterFollowerDatabasesResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "DetachClusterFollowerDatabasesResponse",
+}) as any as S.Schema<DetachClusterFollowerDatabasesResponse>;
+
+export interface GetAttachedDatabaseConfigurationRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Kusto cluster. */
+  clusterName: string;
+  /** The name of the attached database configuration. */
+  attachedDatabaseConfigurationName: string;
+}
+export const GetAttachedDatabaseConfigurationRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      clusterName: S.String.pipe(T.Label()),
+      attachedDatabaseConfigurationName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/attachedDatabaseConfigurations/{attachedDatabaseConfigurationName}",
+        code: 200,
+        apiVersion: "2025-02-14",
+      }),
+    ),
+).annotate({
+  identifier: "GetAttachedDatabaseConfigurationRequest",
+}) as any as S.Schema<GetAttachedDatabaseConfigurationRequest>;
+
+export interface GetAttachedDatabaseConfigurationResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of the attached database configuration. */
+  properties?: AttachedDatabaseConfigurationProperties;
+  /** Resource location. */
+  location?: string;
+}
+export const GetAttachedDatabaseConfigurationResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(AttachedDatabaseConfigurationProperties),
+      location: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "GetAttachedDatabaseConfigurationResponse",
+}) as any as S.Schema<GetAttachedDatabaseConfigurationResponse>;
+
+export interface GetClusterRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Kusto cluster. */
+  clusterName: string;
+}
+export const GetClusterRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}",
+      code: 200,
+      apiVersion: "2025-02-14",
+    }),
+  ),
+).annotate({
+  identifier: "GetClusterRequest",
+}) as any as S.Schema<GetClusterRequest>;
+
+/** Resource tags. */
+export type GetClusterResponseTagsMap = { [key: string]: string | undefined };
+export const GetClusterResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetClusterResponseTagsMap>;
+
+/** The availability zones. */
+export type GetClusterResponseZonesList = Array<string>;
+export const GetClusterResponseZonesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<GetClusterResponseZonesList>;
+
+export interface GetClusterResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetClusterResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The cluster properties. */
+  properties?: ClusterProperties;
+  /** The SKU of the cluster. */
+  sku: AzureSku;
+  /** The availability zones. */
+  zones?: GetClusterResponseZonesList;
+  /** The identity of the cluster, if configured. */
+  identity?: Identity;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+}
+export const GetClusterResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetClusterResponseTagsMap),
+    location: S.String,
+    properties: S.optional(ClusterProperties),
+    sku: AzureSku,
+    zones: S.optional(GetClusterResponseZonesList),
+    identity: S.optional(Identity),
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetClusterResponse",
+}) as any as S.Schema<GetClusterResponse>;
+
+export interface GetClusterPrincipalAssignmentRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Kusto cluster. */
+  clusterName: string;
+  /** The name of the Kusto principalAssignment. */
+  principalAssignmentName: string;
+}
+export const GetClusterPrincipalAssignmentRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      clusterName: S.String.pipe(T.Label()),
+      principalAssignmentName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/principalAssignments/{principalAssignmentName}",
+        code: 200,
+        apiVersion: "2025-02-14",
+      }),
+    ),
+).annotate({
+  identifier: "GetClusterPrincipalAssignmentRequest",
+}) as any as S.Schema<GetClusterPrincipalAssignmentRequest>;
+
+export interface GetClusterPrincipalAssignmentResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The cluster principal. */
+  properties?: ClusterPrincipalProperties;
+}
+export const GetClusterPrincipalAssignmentResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(ClusterPrincipalProperties),
+    }),
+).annotate({
+  identifier: "GetClusterPrincipalAssignmentResponse",
+}) as any as S.Schema<GetClusterPrincipalAssignmentResponse>;
+
+export interface GetDatabaseRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Kusto cluster. */
+  clusterName: string;
+  /** The name of the database in the Kusto cluster. */
+  databaseName: string;
+}
+export const GetDatabaseRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    databaseName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/databases/{databaseName}",
+      code: 200,
+      apiVersion: "2025-02-14",
+    }),
+  ),
+).annotate({
+  identifier: "GetDatabaseRequest",
+}) as any as S.Schema<GetDatabaseRequest>;
+
+export interface GetDatabaseResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource location. */
+  location?: string;
+  /** Kind of the database */
+  kind: Kind;
+}
+export const GetDatabaseResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    location: S.optional(S.String),
+    kind: Kind,
+  }),
+).annotate({
+  identifier: "GetDatabaseResponse",
+}) as any as S.Schema<GetDatabaseResponse>;
+
+export interface GetDatabasePrincipalAssignmentRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Kusto cluster. */
+  clusterName: string;
+  /** The name of the database in the Kusto cluster. */
+  databaseName: string;
+  /** The name of the Kusto principalAssignment. */
+  principalAssignmentName: string;
+}
+export const GetDatabasePrincipalAssignmentRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      clusterName: S.String.pipe(T.Label()),
+      databaseName: S.String.pipe(T.Label()),
+      principalAssignmentName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/databases/{databaseName}/principalAssignments/{principalAssignmentName}",
+        code: 200,
+        apiVersion: "2025-02-14",
+      }),
+    ),
+).annotate({
+  identifier: "GetDatabasePrincipalAssignmentRequest",
+}) as any as S.Schema<GetDatabasePrincipalAssignmentRequest>;
+
+export interface GetDatabasePrincipalAssignmentResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The database principal. */
+  properties?: DatabasePrincipalProperties;
+}
+export const GetDatabasePrincipalAssignmentResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(DatabasePrincipalProperties),
+    }),
+).annotate({
+  identifier: "GetDatabasePrincipalAssignmentResponse",
+}) as any as S.Schema<GetDatabasePrincipalAssignmentResponse>;
+
+export interface GetDataConnectionRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -4329,7 +3159,7 @@ export interface DataConnectionsGetRequest {
   /** The name of the data connection. */
   dataConnectionName: string;
 }
-export const DataConnectionsGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetDataConnectionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -4345,10 +3175,10 @@ export const DataConnectionsGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DataConnectionsGetRequest",
-}) as any as S.Schema<DataConnectionsGetRequest>;
+  identifier: "GetDataConnectionRequest",
+}) as any as S.Schema<GetDataConnectionRequest>;
 
-export interface DataConnectionsGetResponse {
+export interface GetDataConnectionResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -4362,7 +3192,7 @@ export interface DataConnectionsGetResponse {
   /** Kind of the endpoint for the data connection */
   kind: DataConnectionKind;
 }
-export const DataConnectionsGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetDataConnectionResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -4372,187 +3202,36 @@ export const DataConnectionsGetResponse = /*@__PURE__*/ S.suspend(() =>
     kind: DataConnectionKind,
   }),
 ).annotate({
-  identifier: "DataConnectionsGetResponse",
-}) as any as S.Schema<DataConnectionsGetResponse>;
+  identifier: "GetDataConnectionResponse",
+}) as any as S.Schema<GetDataConnectionResponse>;
 
-export interface DataConnectionsListByDatabaseRequest {
+export interface GetManagedPrivateEndpointRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of the Kusto cluster. */
   clusterName: string;
-  /** The name of the database in the Kusto cluster. */
-  databaseName: string;
+  /** The name of the managed private endpoint. */
+  managedPrivateEndpointName: string;
 }
-export const DataConnectionsListByDatabaseRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      clusterName: S.String.pipe(T.Label()),
-      databaseName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/databases/{databaseName}/dataConnections",
-        code: 200,
-        apiVersion: "2025-02-14",
-      }),
-    ),
-).annotate({
-  identifier: "DataConnectionsListByDatabaseRequest",
-}) as any as S.Schema<DataConnectionsListByDatabaseRequest>;
-
-/** Class representing an data connection. */
-export interface DataConnection {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource location. */
-  location?: string;
-  /** Kind of the endpoint for the data connection */
-  kind: DataConnectionKind;
-}
-export const DataConnection = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    location: S.optional(S.String),
-    kind: DataConnectionKind,
-  }),
-).annotate({ identifier: "DataConnection" }) as any as S.Schema<DataConnection>;
-
-/** The list of Kusto data connections. */
-export type DataConnectionListResultValueList = Array<DataConnection>;
-export const DataConnectionListResultValueList = /*@__PURE__*/ S.Array(
-  DataConnection,
-) as any as S.Schema<DataConnectionListResultValueList>;
-
-/** The list Kusto data connections operation response. */
-export interface DataConnectionListResult {
-  /** The list of Kusto data connections. */
-  value?: DataConnectionListResultValueList;
-  /** Link to the next page of results. */
-  nextLink?: string;
-}
-export const DataConnectionListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(DataConnectionListResultValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DataConnectionListResult",
-}) as any as S.Schema<DataConnectionListResult>;
-
-export interface DataConnectionsUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Kusto cluster. */
-  clusterName: string;
-  /** The name of the database in the Kusto cluster. */
-  databaseName: string;
-  /** The name of the data connection. */
-  dataConnectionName: string;
-  /** Resource location. */
-  location?: string;
-  /** Kind of the endpoint for the data connection */
-  kind: DataConnectionKind | (string & {});
-}
-export const DataConnectionsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetManagedPrivateEndpointRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     clusterName: S.String.pipe(T.Label()),
-    databaseName: S.String.pipe(T.Label()),
-    dataConnectionName: S.String.pipe(T.Label()),
-    location: S.optional(S.String),
-    kind: DataConnectionKind,
+    managedPrivateEndpointName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/databases/{databaseName}/dataConnections/{dataConnectionName}",
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/managedPrivateEndpoints/{managedPrivateEndpointName}",
       code: 200,
       apiVersion: "2025-02-14",
     }),
   ),
 ).annotate({
-  identifier: "DataConnectionsUpdateRequest",
-}) as any as S.Schema<DataConnectionsUpdateRequest>;
-
-export interface DataConnectionsUpdateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource location. */
-  location?: string;
-  /** Kind of the endpoint for the data connection */
-  kind: DataConnectionKind;
-}
-export const DataConnectionsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    location: S.optional(S.String),
-    kind: DataConnectionKind,
-  }),
-).annotate({
-  identifier: "DataConnectionsUpdateResponse",
-}) as any as S.Schema<DataConnectionsUpdateResponse>;
-
-/** The type of resource, for instance Microsoft.Kusto/clusters/managedPrivateEndpoints. */
-export type ManagedPrivateEndpointsCheckNameAvailabilityRequestType =
-  "Microsoft.Kusto/clusters/managedPrivateEndpoints";
-export const ManagedPrivateEndpointsCheckNameAvailabilityRequestType =
-  /*@__PURE__*/ S.String;
-
-export interface ManagedPrivateEndpointsCheckNameAvailabilityRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Kusto cluster. */
-  clusterName: string;
-  /** Managed private endpoint resource name. */
-  name: string;
-  /** The type of resource, for instance Microsoft.Kusto/clusters/managedPrivateEndpoints. */
-  type: ManagedPrivateEndpointsCheckNameAvailabilityRequestType | (string & {});
-}
-export const ManagedPrivateEndpointsCheckNameAvailabilityRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      clusterName: S.String.pipe(T.Label()),
-      name: S.String,
-      type: ManagedPrivateEndpointsCheckNameAvailabilityRequestType,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/managedPrivateEndpointsCheckNameAvailability",
-        code: 200,
-        apiVersion: "2025-02-14",
-      }),
-    ),
-  ).annotate({
-    identifier: "ManagedPrivateEndpointsCheckNameAvailabilityRequest",
-  }) as any as S.Schema<ManagedPrivateEndpointsCheckNameAvailabilityRequest>;
+  identifier: "GetManagedPrivateEndpointRequest",
+}) as any as S.Schema<GetManagedPrivateEndpointRequest>;
 
 /** A class representing the properties of a managed private endpoint object. */
 export interface ManagedPrivateEndpointProperties {
@@ -4579,39 +3258,7 @@ export const ManagedPrivateEndpointProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "ManagedPrivateEndpointProperties",
 }) as any as S.Schema<ManagedPrivateEndpointProperties>;
 
-export interface ManagedPrivateEndpointsCreateOrUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Kusto cluster. */
-  clusterName: string;
-  /** The name of the managed private endpoint. */
-  managedPrivateEndpointName: string;
-  /** A managed private endpoint. */
-  properties?: ManagedPrivateEndpointProperties;
-}
-export const ManagedPrivateEndpointsCreateOrUpdateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      clusterName: S.String.pipe(T.Label()),
-      managedPrivateEndpointName: S.String.pipe(T.Label()),
-      properties: S.optional(ManagedPrivateEndpointProperties),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/managedPrivateEndpoints/{managedPrivateEndpointName}",
-        code: 200,
-        apiVersion: "2025-02-14",
-      }),
-    ),
-  ).annotate({
-    identifier: "ManagedPrivateEndpointsCreateOrUpdateRequest",
-  }) as any as S.Schema<ManagedPrivateEndpointsCreateOrUpdateRequest>;
-
-export interface ManagedPrivateEndpointsCreateOrUpdateResponse {
+export interface GetManagedPrivateEndpointResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -4623,96 +3270,7 @@ export interface ManagedPrivateEndpointsCreateOrUpdateResponse {
   /** A managed private endpoint. */
   properties?: ManagedPrivateEndpointProperties;
 }
-export const ManagedPrivateEndpointsCreateOrUpdateResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(ManagedPrivateEndpointProperties),
-    }),
-  ).annotate({
-    identifier: "ManagedPrivateEndpointsCreateOrUpdateResponse",
-  }) as any as S.Schema<ManagedPrivateEndpointsCreateOrUpdateResponse>;
-
-export interface ManagedPrivateEndpointsDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Kusto cluster. */
-  clusterName: string;
-  /** The name of the managed private endpoint. */
-  managedPrivateEndpointName: string;
-}
-export const ManagedPrivateEndpointsDeleteRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      clusterName: S.String.pipe(T.Label()),
-      managedPrivateEndpointName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/managedPrivateEndpoints/{managedPrivateEndpointName}",
-        code: 200,
-        apiVersion: "2025-02-14",
-      }),
-    ),
-).annotate({
-  identifier: "ManagedPrivateEndpointsDeleteRequest",
-}) as any as S.Schema<ManagedPrivateEndpointsDeleteRequest>;
-
-export interface ManagedPrivateEndpointsDeleteResponse {}
-export const ManagedPrivateEndpointsDeleteResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "ManagedPrivateEndpointsDeleteResponse",
-}) as any as S.Schema<ManagedPrivateEndpointsDeleteResponse>;
-
-export interface ManagedPrivateEndpointsGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Kusto cluster. */
-  clusterName: string;
-  /** The name of the managed private endpoint. */
-  managedPrivateEndpointName: string;
-}
-export const ManagedPrivateEndpointsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    managedPrivateEndpointName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/managedPrivateEndpoints/{managedPrivateEndpointName}",
-      code: 200,
-      apiVersion: "2025-02-14",
-    }),
-  ),
-).annotate({
-  identifier: "ManagedPrivateEndpointsGetRequest",
-}) as any as S.Schema<ManagedPrivateEndpointsGetRequest>;
-
-export interface ManagedPrivateEndpointsGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** A managed private endpoint. */
-  properties?: ManagedPrivateEndpointProperties;
-}
-export const ManagedPrivateEndpointsGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetManagedPrivateEndpointResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -4721,218 +3279,10 @@ export const ManagedPrivateEndpointsGetResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(ManagedPrivateEndpointProperties),
   }),
 ).annotate({
-  identifier: "ManagedPrivateEndpointsGetResponse",
-}) as any as S.Schema<ManagedPrivateEndpointsGetResponse>;
+  identifier: "GetManagedPrivateEndpointResponse",
+}) as any as S.Schema<GetManagedPrivateEndpointResponse>;
 
-export interface ManagedPrivateEndpointsListRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Kusto cluster. */
-  clusterName: string;
-}
-export const ManagedPrivateEndpointsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/managedPrivateEndpoints",
-      code: 200,
-      apiVersion: "2025-02-14",
-    }),
-  ),
-).annotate({
-  identifier: "ManagedPrivateEndpointsListRequest",
-}) as any as S.Schema<ManagedPrivateEndpointsListRequest>;
-
-/** Class representing a managed private endpoint. */
-export interface ManagedPrivateEndpoint {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** A managed private endpoint. */
-  properties?: ManagedPrivateEndpointProperties;
-}
-export const ManagedPrivateEndpoint = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ManagedPrivateEndpointProperties),
-  }),
-).annotate({
-  identifier: "ManagedPrivateEndpoint",
-}) as any as S.Schema<ManagedPrivateEndpoint>;
-
-/** The list of managed private endpoints. */
-export type ManagedPrivateEndpointListResultValueList =
-  Array<ManagedPrivateEndpoint>;
-export const ManagedPrivateEndpointListResultValueList = /*@__PURE__*/ S.Array(
-  ManagedPrivateEndpoint,
-) as any as S.Schema<ManagedPrivateEndpointListResultValueList>;
-
-/** The list managed private endpoints operation response. */
-export interface ManagedPrivateEndpointListResult {
-  /** The list of managed private endpoints. */
-  value?: ManagedPrivateEndpointListResultValueList;
-  /** Link to the next page of results. */
-  nextLink?: string;
-}
-export const ManagedPrivateEndpointListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(ManagedPrivateEndpointListResultValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ManagedPrivateEndpointListResult",
-}) as any as S.Schema<ManagedPrivateEndpointListResult>;
-
-export interface ManagedPrivateEndpointsUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Kusto cluster. */
-  clusterName: string;
-  /** The name of the managed private endpoint. */
-  managedPrivateEndpointName: string;
-  /** A managed private endpoint. */
-  properties?: ManagedPrivateEndpointProperties;
-}
-export const ManagedPrivateEndpointsUpdateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      clusterName: S.String.pipe(T.Label()),
-      managedPrivateEndpointName: S.String.pipe(T.Label()),
-      properties: S.optional(ManagedPrivateEndpointProperties),
-    }).pipe(
-      T.Http({
-        method: "PATCH",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/managedPrivateEndpoints/{managedPrivateEndpointName}",
-        code: 200,
-        apiVersion: "2025-02-14",
-      }),
-    ),
-).annotate({
-  identifier: "ManagedPrivateEndpointsUpdateRequest",
-}) as any as S.Schema<ManagedPrivateEndpointsUpdateRequest>;
-
-export interface ManagedPrivateEndpointsUpdateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** A managed private endpoint. */
-  properties?: ManagedPrivateEndpointProperties;
-}
-export const ManagedPrivateEndpointsUpdateResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(ManagedPrivateEndpointProperties),
-    }),
-).annotate({
-  identifier: "ManagedPrivateEndpointsUpdateResponse",
-}) as any as S.Schema<ManagedPrivateEndpointsUpdateResponse>;
-
-export interface OperationsListRequest {}
-export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/providers/Microsoft.Kusto/operations",
-      code: 200,
-      apiVersion: "2025-02-14",
-    }),
-  ),
-).annotate({
-  identifier: "OperationsListRequest",
-}) as any as S.Schema<OperationsListRequest>;
-
-/** The object that describes the operation. */
-export interface OperationDisplay {
-  /** Friendly name of the resource provider. */
-  provider?: string;
-  /** For example: read, write, delete. */
-  operation?: string;
-  /** The resource type on which the operation is performed. */
-  resource?: string;
-  /** The friendly name of the operation. */
-  description?: string;
-}
-export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provider: S.optional(S.String),
-    operation: S.optional(S.String),
-    resource: S.optional(S.String),
-    description: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OperationDisplay",
-}) as any as S.Schema<OperationDisplay>;
-
-/** A REST API operation */
-export interface Operation {
-  /** This is of the format {provider}/{resource}/{operation}. */
-  name?: string;
-  /** The object that describes the operation. */
-  display?: OperationDisplay;
-  /** The intended executor of the operation. */
-  origin?: string;
-  /** Properties of the operation. */
-  properties?: unknown;
-}
-export const Operation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    display: S.optional(OperationDisplay),
-    origin: S.optional(S.String),
-    properties: S.optional(S.Unknown),
-  }),
-).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
-
-/** The list of operations supported by the resource provider. */
-export type OperationListResultValueList = Array<Operation>;
-export const OperationListResultValueList = /*@__PURE__*/ S.Array(
-  Operation,
-) as any as S.Schema<OperationListResultValueList>;
-
-/** Result of the request to list REST API operations. It contains a list of operations and a URL nextLink to get the next set of results. */
-export interface OperationListResult {
-  /** The list of operations supported by the resource provider. */
-  value?: OperationListResultValueList;
-  /** Link to the next page of results. */
-  nextLink?: string;
-}
-export const OperationListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(OperationListResultValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OperationListResult",
-}) as any as S.Schema<OperationListResult>;
-
-export interface OperationsResultsGetRequest {
+export interface GetOperationsResultRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of Azure region. */
@@ -4940,7 +3290,7 @@ export interface OperationsResultsGetRequest {
   /** The ID of an ongoing async operation. */
   operationId: string;
 }
-export const OperationsResultsGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetOperationsResultRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     location: S.String.pipe(T.Label()),
@@ -4954,8 +3304,8 @@ export const OperationsResultsGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "OperationsResultsGetRequest",
-}) as any as S.Schema<OperationsResultsGetRequest>;
+  identifier: "GetOperationsResultRequest",
+}) as any as S.Schema<GetOperationsResultRequest>;
 
 /** The status of operation. */
 export type Status = "Succeeded" | "Canceled" | "Failed" | "Running";
@@ -5029,6 +3379,1966 @@ export const OperationResult = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "OperationResult",
 }) as any as S.Schema<OperationResult>;
+
+export interface GetPrivateEndpointConnectionRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Kusto cluster. */
+  clusterName: string;
+  /** The name of the private endpoint connection. */
+  privateEndpointConnectionName: string;
+}
+export const GetPrivateEndpointConnectionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    privateEndpointConnectionName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/privateEndpointConnections/{privateEndpointConnectionName}",
+      code: 200,
+      apiVersion: "2025-02-14",
+    }),
+  ),
+).annotate({
+  identifier: "GetPrivateEndpointConnectionRequest",
+}) as any as S.Schema<GetPrivateEndpointConnectionRequest>;
+
+export interface GetPrivateEndpointConnectionResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource properties. */
+  properties?: PrivateEndpointConnectionProperties;
+}
+export const GetPrivateEndpointConnectionResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(PrivateEndpointConnectionProperties),
+    }),
+).annotate({
+  identifier: "GetPrivateEndpointConnectionResponse",
+}) as any as S.Schema<GetPrivateEndpointConnectionResponse>;
+
+export interface GetPrivateLinkResourceRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Kusto cluster. */
+  clusterName: string;
+  /** The name of the private link resource. */
+  privateLinkResourceName: string;
+}
+export const GetPrivateLinkResourceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    privateLinkResourceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/privateLinkResources/{privateLinkResourceName}",
+      code: 200,
+      apiVersion: "2025-02-14",
+    }),
+  ),
+).annotate({
+  identifier: "GetPrivateLinkResourceRequest",
+}) as any as S.Schema<GetPrivateLinkResourceRequest>;
+
+/** The private link resource required member names. */
+export type PrivateLinkResourcePropertiesRequiredMembersList = Array<string>;
+export const PrivateLinkResourcePropertiesRequiredMembersList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<PrivateLinkResourcePropertiesRequiredMembersList>;
+
+/** The private link resource required zone names. */
+export type PrivateLinkResourcePropertiesRequiredZoneNamesList = Array<string>;
+export const PrivateLinkResourcePropertiesRequiredZoneNamesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<PrivateLinkResourcePropertiesRequiredZoneNamesList>;
+
+/** Properties of a private link resource. */
+export interface PrivateLinkResourceProperties {
+  /** The private link resource group id. */
+  groupId?: string;
+  /** The private link resource required member names. */
+  requiredMembers?: PrivateLinkResourcePropertiesRequiredMembersList;
+  /** The private link resource required zone names. */
+  requiredZoneNames?: PrivateLinkResourcePropertiesRequiredZoneNamesList;
+}
+export const PrivateLinkResourceProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    groupId: S.optional(S.String),
+    requiredMembers: S.optional(
+      PrivateLinkResourcePropertiesRequiredMembersList,
+    ),
+    requiredZoneNames: S.optional(
+      PrivateLinkResourcePropertiesRequiredZoneNamesList,
+    ),
+  }),
+).annotate({
+  identifier: "PrivateLinkResourceProperties",
+}) as any as S.Schema<PrivateLinkResourceProperties>;
+
+export interface GetPrivateLinkResourceResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource properties. */
+  properties?: PrivateLinkResourceProperties;
+}
+export const GetPrivateLinkResourceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(PrivateLinkResourceProperties),
+  }),
+).annotate({
+  identifier: "GetPrivateLinkResourceResponse",
+}) as any as S.Schema<GetPrivateLinkResourceResponse>;
+
+export interface GetSandboxCustomImageRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Kusto cluster. */
+  clusterName: string;
+  /** The name of the sandbox custom image. */
+  sandboxCustomImageName: string;
+}
+export const GetSandboxCustomImageRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    sandboxCustomImageName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/sandboxCustomImages/{sandboxCustomImageName}",
+      code: 200,
+      apiVersion: "2025-02-14",
+    }),
+  ),
+).annotate({
+  identifier: "GetSandboxCustomImageRequest",
+}) as any as S.Schema<GetSandboxCustomImageRequest>;
+
+/** The language name, for example Python. */
+export type Language = "Python";
+export const Language = /*@__PURE__*/ S.String;
+
+/** A class representing the properties of a sandbox custom image object. */
+export interface SandboxCustomImageProperties {
+  /** The language name, for example Python. */
+  language: Language | (string & {});
+  /** The version of the language. Either this property or baseImageName should be specified. */
+  languageVersion?: string;
+  /** The base image name on which the custom image is built on top of. It can be one of the LanguageExtensionImageName (e.g.: 'Python3_10_8', 'Python3_10_8_DL') or the name of an existing custom image. Either this property or languageVersion should be specified. */
+  baseImageName?: string;
+  /** The requirements file content. */
+  requirementsFileContent?: string;
+  /** The provisioned state of the resource. */
+  provisioningState?: ProvisioningState | (string & {});
+}
+export const SandboxCustomImageProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    language: Language,
+    languageVersion: S.optional(S.String),
+    baseImageName: S.optional(S.String),
+    requirementsFileContent: S.optional(S.String),
+    provisioningState: S.optional(ProvisioningState),
+  }),
+).annotate({
+  identifier: "SandboxCustomImageProperties",
+}) as any as S.Schema<SandboxCustomImageProperties>;
+
+export interface GetSandboxCustomImageResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** A sandbox custom image. */
+  properties?: SandboxCustomImageProperties;
+}
+export const GetSandboxCustomImageResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(SandboxCustomImageProperties),
+  }),
+).annotate({
+  identifier: "GetSandboxCustomImageResponse",
+}) as any as S.Schema<GetSandboxCustomImageResponse>;
+
+export interface GetScriptRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Kusto cluster. */
+  clusterName: string;
+  /** The name of the database in the Kusto cluster. */
+  databaseName: string;
+  /** The name of the Kusto database script. */
+  scriptName: string;
+}
+export const GetScriptRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    databaseName: S.String.pipe(T.Label()),
+    scriptName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/databases/{databaseName}/scripts/{scriptName}",
+      code: 200,
+      apiVersion: "2025-02-14",
+    }),
+  ),
+).annotate({
+  identifier: "GetScriptRequest",
+}) as any as S.Schema<GetScriptRequest>;
+
+/** Differentiates between the type of script commands included - Database or Cluster. The default is Database. */
+export type ScriptLevel = "Database" | "Cluster";
+export const ScriptLevel = /*@__PURE__*/ S.String;
+
+/** Indicates if the permissions for the script caller are kept following completion of the script. */
+export type PrincipalPermissionsAction =
+  | "RetainPermissionOnScriptCompletion"
+  | "RemovePermissionOnScriptCompletion";
+export const PrincipalPermissionsAction = /*@__PURE__*/ S.String;
+
+/** A class representing database script property. */
+export interface ScriptProperties {
+  /** The url to the KQL script blob file. Must not be used together with scriptContent property */
+  scriptUrl?: string;
+  /** The SaS token that provide read access to the file which contain the script. Must be provided when using scriptUrl property. */
+  scriptUrlSasToken?: string;
+  /** The script content. This property should be used when the script is provide inline and not through file in a SA. Must not be used together with scriptUrl and scriptUrlSasToken properties. */
+  scriptContent?: string;
+  /** A unique string. If changed the script will be applied again. */
+  forceUpdateTag?: string;
+  /** Flag that indicates whether to continue if one of the command fails. */
+  continueOnErrors?: boolean;
+  /** The provisioned state of the resource. */
+  provisioningState?: ProvisioningState | (string & {});
+  /** Differentiates between the type of script commands included - Database or Cluster. The default is Database. */
+  scriptLevel?: ScriptLevel | (string & {});
+  /** Indicates if the permissions for the script caller are kept following completion of the script. */
+  principalPermissionsAction?: PrincipalPermissionsAction | (string & {});
+  /** The resource identifier of the managed identity to be used. When provided, the managed identity will be used to read the script content from the scriptUrl. */
+  managedIdentityResourceId?: string;
+}
+export const ScriptProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    scriptUrl: S.optional(S.String),
+    scriptUrlSasToken: S.optional(S.String),
+    scriptContent: S.optional(S.String),
+    forceUpdateTag: S.optional(S.String),
+    continueOnErrors: S.optional(S.Boolean),
+    provisioningState: S.optional(ProvisioningState),
+    scriptLevel: S.optional(ScriptLevel),
+    principalPermissionsAction: S.optional(PrincipalPermissionsAction),
+    managedIdentityResourceId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ScriptProperties",
+}) as any as S.Schema<ScriptProperties>;
+
+export interface GetScriptResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The database script. */
+  properties?: ScriptProperties;
+}
+export const GetScriptResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ScriptProperties),
+  }),
+).annotate({
+  identifier: "GetScriptResponse",
+}) as any as S.Schema<GetScriptResponse>;
+
+export interface InviteDatabaseFollowerRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Kusto cluster. */
+  clusterName: string;
+  /** The name of the database in the Kusto cluster. */
+  databaseName: string;
+  /** The email of the invited user for which the follower invitation is generated. */
+  inviteeEmail: string;
+  /** Table level sharing specifications */
+  tableLevelSharingProperties?: TableLevelSharingProperties;
+}
+export const InviteDatabaseFollowerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    databaseName: S.String.pipe(T.Label()),
+    inviteeEmail: S.String,
+    tableLevelSharingProperties: S.optional(TableLevelSharingProperties),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/databases/{databaseName}/inviteFollower",
+      code: 200,
+      apiVersion: "2025-02-14",
+    }),
+  ),
+).annotate({
+  identifier: "InviteDatabaseFollowerRequest",
+}) as any as S.Schema<InviteDatabaseFollowerRequest>;
+
+/** The result returned from a follower invitation generation request. */
+export interface DatabaseInviteFollowerResult {
+  /** The generated invitation token. */
+  generatedInvitation?: string;
+}
+export const DatabaseInviteFollowerResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    generatedInvitation: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DatabaseInviteFollowerResult",
+}) as any as S.Schema<DatabaseInviteFollowerResult>;
+
+export interface ListAttachedDatabaseConfigurationByClusterRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Kusto cluster. */
+  clusterName: string;
+}
+export const ListAttachedDatabaseConfigurationByClusterRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      clusterName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/attachedDatabaseConfigurations",
+        code: 200,
+        apiVersion: "2025-02-14",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListAttachedDatabaseConfigurationByClusterRequest",
+  }) as any as S.Schema<ListAttachedDatabaseConfigurationByClusterRequest>;
+
+/** Class representing an attached database configuration. */
+export interface AttachedDatabaseConfiguration {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of the attached database configuration. */
+  properties?: AttachedDatabaseConfigurationProperties;
+  /** Resource location. */
+  location?: string;
+}
+export const AttachedDatabaseConfiguration = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(AttachedDatabaseConfigurationProperties),
+    location: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "AttachedDatabaseConfiguration",
+}) as any as S.Schema<AttachedDatabaseConfiguration>;
+
+/** The list of attached database configurations. */
+export type AttachedDatabaseConfigurationListResultValueList =
+  Array<AttachedDatabaseConfiguration>;
+export const AttachedDatabaseConfigurationListResultValueList =
+  /*@__PURE__*/ S.Array(
+    AttachedDatabaseConfiguration,
+  ) as any as S.Schema<AttachedDatabaseConfigurationListResultValueList>;
+
+/** The list attached database configurations operation response. */
+export interface AttachedDatabaseConfigurationListResult {
+  /** The list of attached database configurations. */
+  value?: AttachedDatabaseConfigurationListResultValueList;
+  /** Link to the next page of results. */
+  nextLink?: string;
+}
+export const AttachedDatabaseConfigurationListResult = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      value: S.optional(AttachedDatabaseConfigurationListResultValueList),
+      nextLink: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "AttachedDatabaseConfigurationListResult",
+}) as any as S.Schema<AttachedDatabaseConfigurationListResult>;
+
+export interface ListClusterByResourceGroupRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+}
+export const ListClusterByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters",
+      code: 200,
+      apiVersion: "2025-02-14",
+    }),
+  ),
+).annotate({
+  identifier: "ListClusterByResourceGroupRequest",
+}) as any as S.Schema<ListClusterByResourceGroupRequest>;
+
+/** Resource tags. */
+export type ClusterTagsMap = { [key: string]: string | undefined };
+export const ClusterTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<ClusterTagsMap>;
+
+/** The availability zones. */
+export type ClusterZonesList = Array<string>;
+export const ClusterZonesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ClusterZonesList>;
+
+/** Class representing a Kusto cluster. */
+export interface Cluster {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: ClusterTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The cluster properties. */
+  properties?: ClusterProperties;
+  /** The SKU of the cluster. */
+  sku: AzureSku;
+  /** The availability zones. */
+  zones?: ClusterZonesList;
+  /** The identity of the cluster, if configured. */
+  identity?: Identity;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+}
+export const Cluster = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(ClusterTagsMap),
+    location: S.String,
+    properties: S.optional(ClusterProperties),
+    sku: AzureSku,
+    zones: S.optional(ClusterZonesList),
+    identity: S.optional(Identity),
+    etag: S.optional(S.String),
+  }),
+).annotate({ identifier: "Cluster" }) as any as S.Schema<Cluster>;
+
+/** The list of Kusto clusters. */
+export type ClusterListResultValueList = Array<Cluster>;
+export const ClusterListResultValueList = /*@__PURE__*/ S.Array(
+  Cluster,
+) as any as S.Schema<ClusterListResultValueList>;
+
+/** The list Kusto clusters operation response. */
+export interface ClusterListResult {
+  /** The list of Kusto clusters. */
+  value?: ClusterListResultValueList;
+  /** Link to the next page of results. */
+  nextLink?: string;
+}
+export const ClusterListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(ClusterListResultValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ClusterListResult",
+}) as any as S.Schema<ClusterListResult>;
+
+export interface ListClusterCalloutPoliciesRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Kusto cluster. */
+  clusterName: string;
+}
+export const ListClusterCalloutPoliciesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/listCalloutPolicies",
+      code: 200,
+      apiVersion: "2025-02-14",
+    }),
+  ),
+).annotate({
+  identifier: "ListClusterCalloutPoliciesRequest",
+}) as any as S.Schema<ListClusterCalloutPoliciesRequest>;
+
+/** The CalloutPolicy items on this page */
+export type CalloutPoliciesListValueList = Array<CalloutPolicy>;
+export const CalloutPoliciesListValueList = /*@__PURE__*/ S.Array(
+  CalloutPolicy,
+) as any as S.Schema<CalloutPoliciesListValueList>;
+
+/** A list of the service's callout policy objects. */
+export interface CalloutPoliciesList {
+  /** The CalloutPolicy items on this page */
+  value: CalloutPoliciesListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const CalloutPoliciesList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: CalloutPoliciesListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "CalloutPoliciesList",
+}) as any as S.Schema<CalloutPoliciesList>;
+
+export interface ListClusterFollowerDatabasesRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Kusto cluster. */
+  clusterName: string;
+}
+export const ListClusterFollowerDatabasesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/listFollowerDatabases",
+      code: 200,
+      apiVersion: "2025-02-14",
+    }),
+  ),
+).annotate({
+  identifier: "ListClusterFollowerDatabasesRequest",
+}) as any as S.Schema<ListClusterFollowerDatabasesRequest>;
+
+/** A class representing follower database request. */
+export type FollowerDatabaseDefinition = FollowerDatabaseProperties;
+export const FollowerDatabaseDefinition = FollowerDatabaseProperties;
+
+/** The list of follower database result. */
+export type FollowerDatabaseListResultValueList =
+  Array<FollowerDatabaseProperties>;
+export const FollowerDatabaseListResultValueList = /*@__PURE__*/ S.Array(
+  FollowerDatabaseProperties,
+) as any as S.Schema<FollowerDatabaseListResultValueList>;
+
+/** The list Kusto database principals operation response. */
+export interface FollowerDatabaseListResult {
+  /** The list of follower database result. */
+  value?: FollowerDatabaseListResultValueList;
+  /** Link to the next page of results. */
+  nextLink?: string;
+}
+export const FollowerDatabaseListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(FollowerDatabaseListResultValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "FollowerDatabaseListResult",
+}) as any as S.Schema<FollowerDatabaseListResult>;
+
+export interface ListClusterLanguageExtensionsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Kusto cluster. */
+  clusterName: string;
+}
+export const ListClusterLanguageExtensionsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      clusterName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/listLanguageExtensions",
+        code: 200,
+        apiVersion: "2025-02-14",
+      }),
+    ),
+).annotate({
+  identifier: "ListClusterLanguageExtensionsRequest",
+}) as any as S.Schema<ListClusterLanguageExtensionsRequest>;
+
+export interface ListClusterOutboundNetworkDependenciesEndpointsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Kusto cluster. */
+  clusterName: string;
+}
+export const ListClusterOutboundNetworkDependenciesEndpointsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      clusterName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/outboundNetworkDependenciesEndpoints",
+        code: 200,
+        apiVersion: "2025-02-14",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListClusterOutboundNetworkDependenciesEndpointsRequest",
+  }) as any as S.Schema<ListClusterOutboundNetworkDependenciesEndpointsRequest>;
+
+/** Current TCP connectivity information from the Kusto cluster to a single endpoint. */
+export interface EndpointDetail {
+  /** The port an endpoint is connected to. */
+  port?: number;
+  /** The ip address of the endpoint. */
+  ipAddress?: string;
+}
+export const EndpointDetail = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    port: S.optional(S.Number),
+    ipAddress: S.optional(S.String),
+  }),
+).annotate({ identifier: "EndpointDetail" }) as any as S.Schema<EndpointDetail>;
+
+/** The ports used when connecting to DomainName. */
+export type EndpointDependencyEndpointDetailsList = Array<EndpointDetail>;
+export const EndpointDependencyEndpointDetailsList = /*@__PURE__*/ S.Array(
+  EndpointDetail,
+) as any as S.Schema<EndpointDependencyEndpointDetailsList>;
+
+/** A domain name that a service is reached at, including details of the current connection status. */
+export interface EndpointDependency {
+  /** The domain name of the dependency. */
+  domainName?: string;
+  /** The ports used when connecting to DomainName. */
+  endpointDetails?: EndpointDependencyEndpointDetailsList;
+}
+export const EndpointDependency = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    domainName: S.optional(S.String),
+    endpointDetails: S.optional(EndpointDependencyEndpointDetailsList),
+  }),
+).annotate({
+  identifier: "EndpointDependency",
+}) as any as S.Schema<EndpointDependency>;
+
+/** The endpoints that the Kusto Service Environment reaches the service at. */
+export type OutboundNetworkDependenciesEndpointPropertiesEndpointsList =
+  Array<EndpointDependency>;
+export const OutboundNetworkDependenciesEndpointPropertiesEndpointsList =
+  /*@__PURE__*/ S.Array(
+    EndpointDependency,
+  ) as any as S.Schema<OutboundNetworkDependenciesEndpointPropertiesEndpointsList>;
+
+/** Endpoints accessed for a common purpose that the Kusto Service Environment requires outbound network access to. */
+export interface OutboundNetworkDependenciesEndpointProperties {
+  /** The type of service accessed by the Kusto Service Environment, e.g., Azure Storage, Azure SQL Database, and Azure Active Directory. */
+  category?: string;
+  /** The endpoints that the Kusto Service Environment reaches the service at. */
+  endpoints?: OutboundNetworkDependenciesEndpointPropertiesEndpointsList;
+  /** The provisioned state of the resource. */
+  provisioningState?: ProvisioningState;
+}
+export const OutboundNetworkDependenciesEndpointProperties =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      category: S.optional(S.String),
+      endpoints: S.optional(
+        OutboundNetworkDependenciesEndpointPropertiesEndpointsList,
+      ),
+      provisioningState: S.optional(ProvisioningState),
+    }),
+  ).annotate({
+    identifier: "OutboundNetworkDependenciesEndpointProperties",
+  }) as any as S.Schema<OutboundNetworkDependenciesEndpointProperties>;
+
+/** Endpoints accessed for a common purpose that the Kusto Service Environment requires outbound network access to. */
+export interface OutboundNetworkDependenciesEndpoint {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The outbound environment endpoint properties. */
+  properties?: OutboundNetworkDependenciesEndpointProperties;
+  /** A unique read-only string that changes whenever the resource is updated. */
+  etag?: string;
+}
+export const OutboundNetworkDependenciesEndpoint = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(OutboundNetworkDependenciesEndpointProperties),
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "OutboundNetworkDependenciesEndpoint",
+}) as any as S.Schema<OutboundNetworkDependenciesEndpoint>;
+
+/** The OutboundNetworkDependenciesEndpoint items on this page */
+export type OutboundNetworkDependenciesEndpointListResultValueList =
+  Array<OutboundNetworkDependenciesEndpoint>;
+export const OutboundNetworkDependenciesEndpointListResultValueList =
+  /*@__PURE__*/ S.Array(
+    OutboundNetworkDependenciesEndpoint,
+  ) as any as S.Schema<OutboundNetworkDependenciesEndpointListResultValueList>;
+
+/** The response of a OutboundNetworkDependenciesEndpoint list operation. */
+export interface OutboundNetworkDependenciesEndpointListResult {
+  /** The OutboundNetworkDependenciesEndpoint items on this page */
+  value: OutboundNetworkDependenciesEndpointListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const OutboundNetworkDependenciesEndpointListResult =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      value: OutboundNetworkDependenciesEndpointListResultValueList,
+      nextLink: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "OutboundNetworkDependenciesEndpointListResult",
+  }) as any as S.Schema<OutboundNetworkDependenciesEndpointListResult>;
+
+export interface ListClusterPrincipalAssignmentsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Kusto cluster. */
+  clusterName: string;
+}
+export const ListClusterPrincipalAssignmentsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      clusterName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/principalAssignments",
+        code: 200,
+        apiVersion: "2025-02-14",
+      }),
+    ),
+).annotate({
+  identifier: "ListClusterPrincipalAssignmentsRequest",
+}) as any as S.Schema<ListClusterPrincipalAssignmentsRequest>;
+
+/** Class representing a cluster principal assignment. */
+export interface ClusterPrincipalAssignment {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The cluster principal. */
+  properties?: ClusterPrincipalProperties;
+}
+export const ClusterPrincipalAssignment = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ClusterPrincipalProperties),
+  }),
+).annotate({
+  identifier: "ClusterPrincipalAssignment",
+}) as any as S.Schema<ClusterPrincipalAssignment>;
+
+/** The list of Kusto cluster principal assignments. */
+export type ClusterPrincipalAssignmentListResultValueList =
+  Array<ClusterPrincipalAssignment>;
+export const ClusterPrincipalAssignmentListResultValueList =
+  /*@__PURE__*/ S.Array(
+    ClusterPrincipalAssignment,
+  ) as any as S.Schema<ClusterPrincipalAssignmentListResultValueList>;
+
+/** The list Kusto cluster principal assignments operation response. */
+export interface ClusterPrincipalAssignmentListResult {
+  /** The list of Kusto cluster principal assignments. */
+  value?: ClusterPrincipalAssignmentListResultValueList;
+  /** Link to the next page of results. */
+  nextLink?: string;
+}
+export const ClusterPrincipalAssignmentListResult = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      value: S.optional(ClusterPrincipalAssignmentListResultValueList),
+      nextLink: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "ClusterPrincipalAssignmentListResult",
+}) as any as S.Schema<ClusterPrincipalAssignmentListResult>;
+
+export interface ListClustersRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+}
+export const ListClustersRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Kusto/clusters",
+      code: 200,
+      apiVersion: "2025-02-14",
+    }),
+  ),
+).annotate({
+  identifier: "ListClustersRequest",
+}) as any as S.Schema<ListClustersRequest>;
+
+export interface ListClusterSkusRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+}
+export const ListClusterSkusRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Kusto/skus",
+      code: 200,
+      apiVersion: "2025-02-14",
+    }),
+  ),
+).annotate({
+  identifier: "ListClusterSkusRequest",
+}) as any as S.Schema<ListClusterSkusRequest>;
+
+/** The set of locations that the SKU is available */
+export type SkuDescriptionLocationsList = Array<string>;
+export const SkuDescriptionLocationsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<SkuDescriptionLocationsList>;
+
+/** The available zone of the SKU. */
+export type SkuLocationInfoItemZonesList = Array<string>;
+export const SkuLocationInfoItemZonesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<SkuLocationInfoItemZonesList>;
+
+/** The set of zones that the SKU is available in with the specified capabilities. */
+export type ResourceSkuZoneDetailsNameList = Array<string>;
+export const ResourceSkuZoneDetailsNameList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ResourceSkuZoneDetailsNameList>;
+
+/** Describes The SKU capabilities object. */
+export interface ResourceSkuCapabilities {
+  /** An invariant to describe the feature. */
+  name?: string;
+  /** An invariant if the feature is measured by quantity. */
+  value?: string;
+}
+export const ResourceSkuCapabilities = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    value: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ResourceSkuCapabilities",
+}) as any as S.Schema<ResourceSkuCapabilities>;
+
+/** A list of capabilities that are available for the SKU in the specified list of zones. */
+export type ResourceSkuZoneDetailsCapabilitiesList =
+  Array<ResourceSkuCapabilities>;
+export const ResourceSkuZoneDetailsCapabilitiesList = /*@__PURE__*/ S.Array(
+  ResourceSkuCapabilities,
+) as any as S.Schema<ResourceSkuZoneDetailsCapabilitiesList>;
+
+/** Describes The zonal capabilities of a SKU. */
+export interface ResourceSkuZoneDetails {
+  /** The set of zones that the SKU is available in with the specified capabilities. */
+  name?: ResourceSkuZoneDetailsNameList;
+  /** A list of capabilities that are available for the SKU in the specified list of zones. */
+  capabilities?: ResourceSkuZoneDetailsCapabilitiesList;
+}
+export const ResourceSkuZoneDetails = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(ResourceSkuZoneDetailsNameList),
+    capabilities: S.optional(ResourceSkuZoneDetailsCapabilitiesList),
+  }),
+).annotate({
+  identifier: "ResourceSkuZoneDetails",
+}) as any as S.Schema<ResourceSkuZoneDetails>;
+
+/** Gets details of capabilities available to a SKU in specific zones. */
+export type SkuLocationInfoItemZoneDetailsList = Array<ResourceSkuZoneDetails>;
+export const SkuLocationInfoItemZoneDetailsList = /*@__PURE__*/ S.Array(
+  ResourceSkuZoneDetails,
+) as any as S.Schema<SkuLocationInfoItemZoneDetailsList>;
+
+/** The locations and zones info for SKU. */
+export interface SkuLocationInfoItem {
+  /** The available location of the SKU. */
+  location: string;
+  /** The available zone of the SKU. */
+  zones?: SkuLocationInfoItemZonesList;
+  /** Gets details of capabilities available to a SKU in specific zones. */
+  zoneDetails?: SkuLocationInfoItemZoneDetailsList;
+}
+export const SkuLocationInfoItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    location: S.String,
+    zones: S.optional(SkuLocationInfoItemZonesList),
+    zoneDetails: S.optional(SkuLocationInfoItemZoneDetailsList),
+  }),
+).annotate({
+  identifier: "SkuLocationInfoItem",
+}) as any as S.Schema<SkuLocationInfoItem>;
+
+/** Locations and zones */
+export type SkuDescriptionLocationInfoList = Array<SkuLocationInfoItem>;
+export const SkuDescriptionLocationInfoList = /*@__PURE__*/ S.Array(
+  SkuLocationInfoItem,
+) as any as S.Schema<SkuDescriptionLocationInfoList>;
+
+/** The restrictions because of which SKU cannot be used */
+export type SkuDescriptionRestrictionsList = Array<unknown>;
+export const SkuDescriptionRestrictionsList = /*@__PURE__*/ S.Array(
+  S.Unknown,
+) as any as S.Schema<SkuDescriptionRestrictionsList>;
+
+/** The Kusto SKU description of given resource type */
+export interface SkuDescription {
+  /** The resource type */
+  resourceType?: string;
+  /** The name of the SKU */
+  name?: string;
+  /** The tier of the SKU */
+  tier?: string;
+  /** The set of locations that the SKU is available */
+  locations?: SkuDescriptionLocationsList;
+  /** Locations and zones */
+  locationInfo?: SkuDescriptionLocationInfoList;
+  /** The restrictions because of which SKU cannot be used */
+  restrictions?: SkuDescriptionRestrictionsList;
+}
+export const SkuDescription = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    resourceType: S.optional(S.String),
+    name: S.optional(S.String),
+    tier: S.optional(S.String),
+    locations: S.optional(SkuDescriptionLocationsList),
+    locationInfo: S.optional(SkuDescriptionLocationInfoList),
+    restrictions: S.optional(SkuDescriptionRestrictionsList),
+  }),
+).annotate({ identifier: "SkuDescription" }) as any as S.Schema<SkuDescription>;
+
+/** SKU descriptions */
+export type SkuDescriptionListValueList = Array<SkuDescription>;
+export const SkuDescriptionListValueList = /*@__PURE__*/ S.Array(
+  SkuDescription,
+) as any as S.Schema<SkuDescriptionListValueList>;
+
+/** The list of the EngagementFabric SKU descriptions */
+export interface SkuDescriptionList {
+  /** SKU descriptions */
+  value?: SkuDescriptionListValueList;
+  /** Link to the next page of results. */
+  nextLink?: string;
+}
+export const SkuDescriptionList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(SkuDescriptionListValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "SkuDescriptionList",
+}) as any as S.Schema<SkuDescriptionList>;
+
+export interface ListClusterSkusByResourceRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Kusto cluster. */
+  clusterName: string;
+}
+export const ListClusterSkusByResourceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/skus",
+      code: 200,
+      apiVersion: "2025-02-14",
+    }),
+  ),
+).annotate({
+  identifier: "ListClusterSkusByResourceRequest",
+}) as any as S.Schema<ListClusterSkusByResourceRequest>;
+
+/** Scale type. */
+export type AzureScaleType = "automatic" | "manual" | "none";
+export const AzureScaleType = /*@__PURE__*/ S.String;
+
+/** Azure capacity definition. */
+export interface AzureCapacity {
+  /** Scale type. */
+  scaleType: AzureScaleType;
+  /** Minimum allowed capacity. */
+  minimum: number;
+  /** Maximum allowed capacity. */
+  maximum: number;
+  /** The default capacity that would be used. */
+  default: number;
+}
+export const AzureCapacity = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    scaleType: AzureScaleType,
+    minimum: S.Number,
+    maximum: S.Number,
+    default: S.Number,
+  }),
+).annotate({ identifier: "AzureCapacity" }) as any as S.Schema<AzureCapacity>;
+
+/** Azure resource SKU definition. */
+export interface AzureResourceSku {
+  /** Resource Namespace and Type. */
+  resourceType?: string;
+  /** The SKU details. */
+  sku?: AzureSku;
+  /** The number of instances of the cluster. */
+  capacity?: AzureCapacity;
+}
+export const AzureResourceSku = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    resourceType: S.optional(S.String),
+    sku: S.optional(AzureSku),
+    capacity: S.optional(AzureCapacity),
+  }),
+).annotate({
+  identifier: "AzureResourceSku",
+}) as any as S.Schema<AzureResourceSku>;
+
+/** The collection of available SKUs for an existing resource. */
+export type ListResourceSkusResultValueList = Array<AzureResourceSku>;
+export const ListResourceSkusResultValueList = /*@__PURE__*/ S.Array(
+  AzureResourceSku,
+) as any as S.Schema<ListResourceSkusResultValueList>;
+
+/** List of available SKUs for a Kusto Cluster. */
+export interface ListResourceSkusResult {
+  /** The collection of available SKUs for an existing resource. */
+  value?: ListResourceSkusResultValueList;
+  /** Link to the next page of results. */
+  nextLink?: string;
+}
+export const ListResourceSkusResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(ListResourceSkusResultValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ListResourceSkusResult",
+}) as any as S.Schema<ListResourceSkusResult>;
+
+export interface ListDatabaseByClusterRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Kusto cluster. */
+  clusterName: string;
+  /** limit the number of results */
+  _top?: number;
+  /** Skiptoken is only used if a previous operation returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a skiptoken parameter that specifies a starting point to use for subsequent calls. */
+  _skiptoken?: string;
+}
+export const ListDatabaseByClusterRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    _top: S.optional(S.Number.pipe(T.Query("$top"))),
+    _skiptoken: S.optional(S.String.pipe(T.Query("$skiptoken"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/databases",
+      code: 200,
+      apiVersion: "2025-02-14",
+    }),
+  ),
+).annotate({
+  identifier: "ListDatabaseByClusterRequest",
+}) as any as S.Schema<ListDatabaseByClusterRequest>;
+
+/** Class representing a Kusto database. */
+export interface Database {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource location. */
+  location?: string;
+  /** Kind of the database */
+  kind: Kind;
+}
+export const Database = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    location: S.optional(S.String),
+    kind: Kind,
+  }),
+).annotate({ identifier: "Database" }) as any as S.Schema<Database>;
+
+/** The Database items on this page */
+export type DatabaseListResultValueList = Array<Database>;
+export const DatabaseListResultValueList = /*@__PURE__*/ S.Array(
+  Database,
+) as any as S.Schema<DatabaseListResultValueList>;
+
+/** The response of a Database list operation. */
+export interface DatabaseListResult {
+  /** The Database items on this page */
+  value: DatabaseListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const DatabaseListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: DatabaseListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DatabaseListResult",
+}) as any as S.Schema<DatabaseListResult>;
+
+export interface ListDatabasePrincipalAssignmentsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Kusto cluster. */
+  clusterName: string;
+  /** The name of the database in the Kusto cluster. */
+  databaseName: string;
+}
+export const ListDatabasePrincipalAssignmentsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      clusterName: S.String.pipe(T.Label()),
+      databaseName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/databases/{databaseName}/principalAssignments",
+        code: 200,
+        apiVersion: "2025-02-14",
+      }),
+    ),
+).annotate({
+  identifier: "ListDatabasePrincipalAssignmentsRequest",
+}) as any as S.Schema<ListDatabasePrincipalAssignmentsRequest>;
+
+/** Class representing a database principal assignment. */
+export interface DatabasePrincipalAssignment {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The database principal. */
+  properties?: DatabasePrincipalProperties;
+}
+export const DatabasePrincipalAssignment = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(DatabasePrincipalProperties),
+  }),
+).annotate({
+  identifier: "DatabasePrincipalAssignment",
+}) as any as S.Schema<DatabasePrincipalAssignment>;
+
+/** The list of Kusto database principal assignments. */
+export type DatabasePrincipalAssignmentListResultValueList =
+  Array<DatabasePrincipalAssignment>;
+export const DatabasePrincipalAssignmentListResultValueList =
+  /*@__PURE__*/ S.Array(
+    DatabasePrincipalAssignment,
+  ) as any as S.Schema<DatabasePrincipalAssignmentListResultValueList>;
+
+/** The list Kusto database principal assignments operation response. */
+export interface DatabasePrincipalAssignmentListResult {
+  /** The list of Kusto database principal assignments. */
+  value?: DatabasePrincipalAssignmentListResultValueList;
+  /** Link to the next page of results. */
+  nextLink?: string;
+}
+export const DatabasePrincipalAssignmentListResult = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      value: S.optional(DatabasePrincipalAssignmentListResultValueList),
+      nextLink: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "DatabasePrincipalAssignmentListResult",
+}) as any as S.Schema<DatabasePrincipalAssignmentListResult>;
+
+export interface ListDatabasePrincipalsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Kusto cluster. */
+  clusterName: string;
+  /** The name of the database in the Kusto cluster. */
+  databaseName: string;
+}
+export const ListDatabasePrincipalsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    databaseName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/databases/{databaseName}/listPrincipals",
+      code: 200,
+      apiVersion: "2025-02-14",
+    }),
+  ),
+).annotate({
+  identifier: "ListDatabasePrincipalsRequest",
+}) as any as S.Schema<ListDatabasePrincipalsRequest>;
+
+export interface ListDataConnectionByDatabaseRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Kusto cluster. */
+  clusterName: string;
+  /** The name of the database in the Kusto cluster. */
+  databaseName: string;
+}
+export const ListDataConnectionByDatabaseRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    databaseName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/databases/{databaseName}/dataConnections",
+      code: 200,
+      apiVersion: "2025-02-14",
+    }),
+  ),
+).annotate({
+  identifier: "ListDataConnectionByDatabaseRequest",
+}) as any as S.Schema<ListDataConnectionByDatabaseRequest>;
+
+/** Class representing an data connection. */
+export interface DataConnection {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource location. */
+  location?: string;
+  /** Kind of the endpoint for the data connection */
+  kind: DataConnectionKind;
+}
+export const DataConnection = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    location: S.optional(S.String),
+    kind: DataConnectionKind,
+  }),
+).annotate({ identifier: "DataConnection" }) as any as S.Schema<DataConnection>;
+
+/** The list of Kusto data connections. */
+export type DataConnectionListResultValueList = Array<DataConnection>;
+export const DataConnectionListResultValueList = /*@__PURE__*/ S.Array(
+  DataConnection,
+) as any as S.Schema<DataConnectionListResultValueList>;
+
+/** The list Kusto data connections operation response. */
+export interface DataConnectionListResult {
+  /** The list of Kusto data connections. */
+  value?: DataConnectionListResultValueList;
+  /** Link to the next page of results. */
+  nextLink?: string;
+}
+export const DataConnectionListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(DataConnectionListResultValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DataConnectionListResult",
+}) as any as S.Schema<DataConnectionListResult>;
+
+export interface ListManagedPrivateEndpointsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Kusto cluster. */
+  clusterName: string;
+}
+export const ListManagedPrivateEndpointsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/managedPrivateEndpoints",
+      code: 200,
+      apiVersion: "2025-02-14",
+    }),
+  ),
+).annotate({
+  identifier: "ListManagedPrivateEndpointsRequest",
+}) as any as S.Schema<ListManagedPrivateEndpointsRequest>;
+
+/** Class representing a managed private endpoint. */
+export interface ManagedPrivateEndpoint {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** A managed private endpoint. */
+  properties?: ManagedPrivateEndpointProperties;
+}
+export const ManagedPrivateEndpoint = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ManagedPrivateEndpointProperties),
+  }),
+).annotate({
+  identifier: "ManagedPrivateEndpoint",
+}) as any as S.Schema<ManagedPrivateEndpoint>;
+
+/** The list of managed private endpoints. */
+export type ManagedPrivateEndpointListResultValueList =
+  Array<ManagedPrivateEndpoint>;
+export const ManagedPrivateEndpointListResultValueList = /*@__PURE__*/ S.Array(
+  ManagedPrivateEndpoint,
+) as any as S.Schema<ManagedPrivateEndpointListResultValueList>;
+
+/** The list managed private endpoints operation response. */
+export interface ManagedPrivateEndpointListResult {
+  /** The list of managed private endpoints. */
+  value?: ManagedPrivateEndpointListResultValueList;
+  /** Link to the next page of results. */
+  nextLink?: string;
+}
+export const ManagedPrivateEndpointListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(ManagedPrivateEndpointListResultValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ManagedPrivateEndpointListResult",
+}) as any as S.Schema<ManagedPrivateEndpointListResult>;
+
+export interface ListOperationsRequest {}
+export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/providers/Microsoft.Kusto/operations",
+      code: 200,
+      apiVersion: "2025-02-14",
+    }),
+  ),
+).annotate({
+  identifier: "ListOperationsRequest",
+}) as any as S.Schema<ListOperationsRequest>;
+
+/** The object that describes the operation. */
+export interface OperationDisplay {
+  /** Friendly name of the resource provider. */
+  provider?: string;
+  /** For example: read, write, delete. */
+  operation?: string;
+  /** The resource type on which the operation is performed. */
+  resource?: string;
+  /** The friendly name of the operation. */
+  description?: string;
+}
+export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provider: S.optional(S.String),
+    operation: S.optional(S.String),
+    resource: S.optional(S.String),
+    description: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "OperationDisplay",
+}) as any as S.Schema<OperationDisplay>;
+
+/** A REST API operation */
+export interface Operation {
+  /** This is of the format {provider}/{resource}/{operation}. */
+  name?: string;
+  /** The object that describes the operation. */
+  display?: OperationDisplay;
+  /** The intended executor of the operation. */
+  origin?: string;
+  /** Properties of the operation. */
+  properties?: unknown;
+}
+export const Operation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    display: S.optional(OperationDisplay),
+    origin: S.optional(S.String),
+    properties: S.optional(S.Unknown),
+  }),
+).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
+
+/** The list of operations supported by the resource provider. */
+export type OperationListResultValueList = Array<Operation>;
+export const OperationListResultValueList = /*@__PURE__*/ S.Array(
+  Operation,
+) as any as S.Schema<OperationListResultValueList>;
+
+/** Result of the request to list REST API operations. It contains a list of operations and a URL nextLink to get the next set of results. */
+export interface OperationListResult {
+  /** The list of operations supported by the resource provider. */
+  value?: OperationListResultValueList;
+  /** Link to the next page of results. */
+  nextLink?: string;
+}
+export const OperationListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(OperationListResultValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "OperationListResult",
+}) as any as S.Schema<OperationListResult>;
+
+export interface ListPrivateEndpointConnectionsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Kusto cluster. */
+  clusterName: string;
+}
+export const ListPrivateEndpointConnectionsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      clusterName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/privateEndpointConnections",
+        code: 200,
+        apiVersion: "2025-02-14",
+      }),
+    ),
+).annotate({
+  identifier: "ListPrivateEndpointConnectionsRequest",
+}) as any as S.Schema<ListPrivateEndpointConnectionsRequest>;
+
+/** Array of private endpoint connections */
+export type PrivateEndpointConnectionListResultValueList =
+  Array<PrivateEndpointConnection>;
+export const PrivateEndpointConnectionListResultValueList =
+  /*@__PURE__*/ S.Array(
+    PrivateEndpointConnection,
+  ) as any as S.Schema<PrivateEndpointConnectionListResultValueList>;
+
+/** A list of private endpoint connections */
+export interface PrivateEndpointConnectionListResult {
+  /** Array of private endpoint connections */
+  value?: PrivateEndpointConnectionListResultValueList;
+  /** Link to the next page of results. */
+  nextLink?: string;
+}
+export const PrivateEndpointConnectionListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(PrivateEndpointConnectionListResultValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PrivateEndpointConnectionListResult",
+}) as any as S.Schema<PrivateEndpointConnectionListResult>;
+
+export interface ListPrivateLinkResourcesRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Kusto cluster. */
+  clusterName: string;
+}
+export const ListPrivateLinkResourcesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/privateLinkResources",
+      code: 200,
+      apiVersion: "2025-02-14",
+    }),
+  ),
+).annotate({
+  identifier: "ListPrivateLinkResourcesRequest",
+}) as any as S.Schema<ListPrivateLinkResourcesRequest>;
+
+/** A private link resource */
+export interface PrivateLinkResource {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource properties. */
+  properties?: PrivateLinkResourceProperties;
+}
+export const PrivateLinkResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(PrivateLinkResourceProperties),
+  }),
+).annotate({
+  identifier: "PrivateLinkResource",
+}) as any as S.Schema<PrivateLinkResource>;
+
+/** Array of private link resources */
+export type PrivateLinkResourceListResultValueList = Array<PrivateLinkResource>;
+export const PrivateLinkResourceListResultValueList = /*@__PURE__*/ S.Array(
+  PrivateLinkResource,
+) as any as S.Schema<PrivateLinkResourceListResultValueList>;
+
+/** A list of private link resources */
+export interface PrivateLinkResourceListResult {
+  /** Array of private link resources */
+  value?: PrivateLinkResourceListResultValueList;
+  /** Link to the next page of results. */
+  nextLink?: string;
+}
+export const PrivateLinkResourceListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(PrivateLinkResourceListResultValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PrivateLinkResourceListResult",
+}) as any as S.Schema<PrivateLinkResourceListResult>;
+
+export interface ListSandboxCustomImageByClusterRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Kusto cluster. */
+  clusterName: string;
+}
+export const ListSandboxCustomImageByClusterRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      clusterName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/sandboxCustomImages",
+        code: 200,
+        apiVersion: "2025-02-14",
+      }),
+    ),
+).annotate({
+  identifier: "ListSandboxCustomImageByClusterRequest",
+}) as any as S.Schema<ListSandboxCustomImageByClusterRequest>;
+
+/** Class representing a Kusto sandbox custom image. */
+export interface SandboxCustomImage {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** A sandbox custom image. */
+  properties?: SandboxCustomImageProperties;
+}
+export const SandboxCustomImage = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(SandboxCustomImageProperties),
+  }),
+).annotate({
+  identifier: "SandboxCustomImage",
+}) as any as S.Schema<SandboxCustomImage>;
+
+/** The SandboxCustomImage items on this page */
+export type SandboxCustomImagesListResultValueList = Array<SandboxCustomImage>;
+export const SandboxCustomImagesListResultValueList = /*@__PURE__*/ S.Array(
+  SandboxCustomImage,
+) as any as S.Schema<SandboxCustomImagesListResultValueList>;
+
+/** The list Kusto sandbox custom images operation response. */
+export interface SandboxCustomImagesListResult {
+  /** The SandboxCustomImage items on this page */
+  value: SandboxCustomImagesListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const SandboxCustomImagesListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: SandboxCustomImagesListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "SandboxCustomImagesListResult",
+}) as any as S.Schema<SandboxCustomImagesListResult>;
+
+export interface ListScriptByDatabaseRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Kusto cluster. */
+  clusterName: string;
+  /** The name of the database in the Kusto cluster. */
+  databaseName: string;
+}
+export const ListScriptByDatabaseRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    databaseName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/databases/{databaseName}/scripts",
+      code: 200,
+      apiVersion: "2025-02-14",
+    }),
+  ),
+).annotate({
+  identifier: "ListScriptByDatabaseRequest",
+}) as any as S.Schema<ListScriptByDatabaseRequest>;
+
+/** Class representing a database script. */
+export interface Script {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The database script. */
+  properties?: ScriptProperties;
+}
+export const Script = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ScriptProperties),
+  }),
+).annotate({ identifier: "Script" }) as any as S.Schema<Script>;
+
+/** The list of Kusto scripts. */
+export type ScriptListResultValueList = Array<Script>;
+export const ScriptListResultValueList = /*@__PURE__*/ S.Array(
+  Script,
+) as any as S.Schema<ScriptListResultValueList>;
+
+/** The list Kusto database script operation response. */
+export interface ScriptListResult {
+  /** The list of Kusto scripts. */
+  value?: ScriptListResultValueList;
+  /** Link to the next page of results. */
+  nextLink?: string;
+}
+export const ScriptListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(ScriptListResultValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ScriptListResult",
+}) as any as S.Schema<ScriptListResult>;
+
+export interface ListSkusRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of Azure region. */
+  location: string;
+}
+export const ListSkusRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    location: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Kusto/locations/{location}/skus",
+      code: 200,
+      apiVersion: "2025-02-14",
+    }),
+  ),
+).annotate({
+  identifier: "ListSkusRequest",
+}) as any as S.Schema<ListSkusRequest>;
+
+export interface ManagedPrivateEndpointsCreateOrUpdateRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Kusto cluster. */
+  clusterName: string;
+  /** The name of the managed private endpoint. */
+  managedPrivateEndpointName: string;
+  /** A managed private endpoint. */
+  properties?: ManagedPrivateEndpointProperties;
+}
+export const ManagedPrivateEndpointsCreateOrUpdateRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      clusterName: S.String.pipe(T.Label()),
+      managedPrivateEndpointName: S.String.pipe(T.Label()),
+      properties: S.optional(ManagedPrivateEndpointProperties),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/managedPrivateEndpoints/{managedPrivateEndpointName}",
+        code: 200,
+        apiVersion: "2025-02-14",
+      }),
+    ),
+  ).annotate({
+    identifier: "ManagedPrivateEndpointsCreateOrUpdateRequest",
+  }) as any as S.Schema<ManagedPrivateEndpointsCreateOrUpdateRequest>;
+
+export interface ManagedPrivateEndpointsCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** A managed private endpoint. */
+  properties?: ManagedPrivateEndpointProperties;
+}
+export const ManagedPrivateEndpointsCreateOrUpdateResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(ManagedPrivateEndpointProperties),
+    }),
+  ).annotate({
+    identifier: "ManagedPrivateEndpointsCreateOrUpdateResponse",
+  }) as any as S.Schema<ManagedPrivateEndpointsCreateOrUpdateResponse>;
+
+export interface MigrateClusterRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Kusto cluster. */
+  clusterName: string;
+  /** Resource ID of the destination cluster or kusto pool. */
+  clusterResourceId: string;
+}
+export const MigrateClusterRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    clusterResourceId: S.String,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/migrate",
+      code: 200,
+      apiVersion: "2025-02-14",
+    }),
+  ),
+).annotate({
+  identifier: "MigrateClusterRequest",
+}) as any as S.Schema<MigrateClusterRequest>;
+
+export interface MigrateClusterResponse {}
+export const MigrateClusterResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "MigrateClusterResponse",
+}) as any as S.Schema<MigrateClusterResponse>;
 
 /** Connection State of the Private Endpoint Connection. */
 export interface PrivateLinkServiceConnectionStatePropertyInput {
@@ -5119,373 +5429,125 @@ export const PrivateEndpointConnectionsCreateOrUpdateResponse =
     identifier: "PrivateEndpointConnectionsCreateOrUpdateResponse",
   }) as any as S.Schema<PrivateEndpointConnectionsCreateOrUpdateResponse>;
 
-export interface PrivateEndpointConnectionsDeleteRequest {
+export interface RemoveClusterCalloutPolicyRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of the Kusto cluster. */
   clusterName: string;
-  /** The name of the private endpoint connection. */
-  privateEndpointConnectionName: string;
+  /** Unique identifier for the callout configuration. */
+  calloutId?: string;
 }
-export const PrivateEndpointConnectionsDeleteRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      clusterName: S.String.pipe(T.Label()),
-      privateEndpointConnectionName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/privateEndpointConnections/{privateEndpointConnectionName}",
-        code: 200,
-        apiVersion: "2025-02-14",
-      }),
-    ),
-).annotate({
-  identifier: "PrivateEndpointConnectionsDeleteRequest",
-}) as any as S.Schema<PrivateEndpointConnectionsDeleteRequest>;
-
-export interface PrivateEndpointConnectionsDeleteResponse {}
-export const PrivateEndpointConnectionsDeleteResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "PrivateEndpointConnectionsDeleteResponse",
-}) as any as S.Schema<PrivateEndpointConnectionsDeleteResponse>;
-
-export interface PrivateEndpointConnectionsGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Kusto cluster. */
-  clusterName: string;
-  /** The name of the private endpoint connection. */
-  privateEndpointConnectionName: string;
-}
-export const PrivateEndpointConnectionsGetRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      clusterName: S.String.pipe(T.Label()),
-      privateEndpointConnectionName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/privateEndpointConnections/{privateEndpointConnectionName}",
-        code: 200,
-        apiVersion: "2025-02-14",
-      }),
-    ),
-).annotate({
-  identifier: "PrivateEndpointConnectionsGetRequest",
-}) as any as S.Schema<PrivateEndpointConnectionsGetRequest>;
-
-export interface PrivateEndpointConnectionsGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource properties. */
-  properties?: PrivateEndpointConnectionProperties;
-}
-export const PrivateEndpointConnectionsGetResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(PrivateEndpointConnectionProperties),
-    }),
-).annotate({
-  identifier: "PrivateEndpointConnectionsGetResponse",
-}) as any as S.Schema<PrivateEndpointConnectionsGetResponse>;
-
-export interface PrivateEndpointConnectionsListRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Kusto cluster. */
-  clusterName: string;
-}
-export const PrivateEndpointConnectionsListRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      clusterName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/privateEndpointConnections",
-        code: 200,
-        apiVersion: "2025-02-14",
-      }),
-    ),
-).annotate({
-  identifier: "PrivateEndpointConnectionsListRequest",
-}) as any as S.Schema<PrivateEndpointConnectionsListRequest>;
-
-/** Array of private endpoint connections */
-export type PrivateEndpointConnectionListResultValueList =
-  Array<PrivateEndpointConnection>;
-export const PrivateEndpointConnectionListResultValueList =
-  /*@__PURE__*/ S.Array(
-    PrivateEndpointConnection,
-  ) as any as S.Schema<PrivateEndpointConnectionListResultValueList>;
-
-/** A list of private endpoint connections */
-export interface PrivateEndpointConnectionListResult {
-  /** Array of private endpoint connections */
-  value?: PrivateEndpointConnectionListResultValueList;
-  /** Link to the next page of results. */
-  nextLink?: string;
-}
-export const PrivateEndpointConnectionListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(PrivateEndpointConnectionListResultValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PrivateEndpointConnectionListResult",
-}) as any as S.Schema<PrivateEndpointConnectionListResult>;
-
-export interface PrivateLinkResourcesGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Kusto cluster. */
-  clusterName: string;
-  /** The name of the private link resource. */
-  privateLinkResourceName: string;
-}
-export const PrivateLinkResourcesGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const RemoveClusterCalloutPolicyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     clusterName: S.String.pipe(T.Label()),
-    privateLinkResourceName: S.String.pipe(T.Label()),
+    calloutId: S.optional(S.String),
   }).pipe(
     T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/privateLinkResources/{privateLinkResourceName}",
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/removeCalloutPolicy",
       code: 200,
       apiVersion: "2025-02-14",
     }),
   ),
 ).annotate({
-  identifier: "PrivateLinkResourcesGetRequest",
-}) as any as S.Schema<PrivateLinkResourcesGetRequest>;
+  identifier: "RemoveClusterCalloutPolicyRequest",
+}) as any as S.Schema<RemoveClusterCalloutPolicyRequest>;
 
-/** The private link resource required member names. */
-export type PrivateLinkResourcePropertiesRequiredMembersList = Array<string>;
-export const PrivateLinkResourcePropertiesRequiredMembersList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PrivateLinkResourcePropertiesRequiredMembersList>;
-
-/** The private link resource required zone names. */
-export type PrivateLinkResourcePropertiesRequiredZoneNamesList = Array<string>;
-export const PrivateLinkResourcePropertiesRequiredZoneNamesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PrivateLinkResourcePropertiesRequiredZoneNamesList>;
-
-/** Properties of a private link resource. */
-export interface PrivateLinkResourceProperties {
-  /** The private link resource group id. */
-  groupId?: string;
-  /** The private link resource required member names. */
-  requiredMembers?: PrivateLinkResourcePropertiesRequiredMembersList;
-  /** The private link resource required zone names. */
-  requiredZoneNames?: PrivateLinkResourcePropertiesRequiredZoneNamesList;
-}
-export const PrivateLinkResourceProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    groupId: S.optional(S.String),
-    requiredMembers: S.optional(
-      PrivateLinkResourcePropertiesRequiredMembersList,
-    ),
-    requiredZoneNames: S.optional(
-      PrivateLinkResourcePropertiesRequiredZoneNamesList,
-    ),
-  }),
+export interface RemoveClusterCalloutPolicyResponse {}
+export const RemoveClusterCalloutPolicyResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
 ).annotate({
-  identifier: "PrivateLinkResourceProperties",
-}) as any as S.Schema<PrivateLinkResourceProperties>;
+  identifier: "RemoveClusterCalloutPolicyResponse",
+}) as any as S.Schema<RemoveClusterCalloutPolicyResponse>;
 
-export interface PrivateLinkResourcesGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource properties. */
-  properties?: PrivateLinkResourceProperties;
-}
-export const PrivateLinkResourcesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(PrivateLinkResourceProperties),
-  }),
-).annotate({
-  identifier: "PrivateLinkResourcesGetResponse",
-}) as any as S.Schema<PrivateLinkResourcesGetResponse>;
+/** The list of language extensions. */
+export type RemoveClusterLanguageExtensionsRequestValueList =
+  Array<LanguageExtension>;
+export const RemoveClusterLanguageExtensionsRequestValueList =
+  /*@__PURE__*/ S.Array(
+    LanguageExtension,
+  ) as any as S.Schema<RemoveClusterLanguageExtensionsRequestValueList>;
 
-export interface PrivateLinkResourcesListRequest {
+export interface RemoveClusterLanguageExtensionsRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of the Kusto cluster. */
   clusterName: string;
-}
-export const PrivateLinkResourcesListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/privateLinkResources",
-      code: 200,
-      apiVersion: "2025-02-14",
-    }),
-  ),
-).annotate({
-  identifier: "PrivateLinkResourcesListRequest",
-}) as any as S.Schema<PrivateLinkResourcesListRequest>;
-
-/** A private link resource */
-export interface PrivateLinkResource {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource properties. */
-  properties?: PrivateLinkResourceProperties;
-}
-export const PrivateLinkResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(PrivateLinkResourceProperties),
-  }),
-).annotate({
-  identifier: "PrivateLinkResource",
-}) as any as S.Schema<PrivateLinkResource>;
-
-/** Array of private link resources */
-export type PrivateLinkResourceListResultValueList = Array<PrivateLinkResource>;
-export const PrivateLinkResourceListResultValueList = /*@__PURE__*/ S.Array(
-  PrivateLinkResource,
-) as any as S.Schema<PrivateLinkResourceListResultValueList>;
-
-/** A list of private link resources */
-export interface PrivateLinkResourceListResult {
-  /** Array of private link resources */
-  value?: PrivateLinkResourceListResultValueList;
-  /** Link to the next page of results. */
+  /** The list of language extensions. */
+  value?: RemoveClusterLanguageExtensionsRequestValueList;
+  /** The link to the next page of resources. */
   nextLink?: string;
 }
-export const PrivateLinkResourceListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(PrivateLinkResourceListResultValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PrivateLinkResourceListResult",
-}) as any as S.Schema<PrivateLinkResourceListResult>;
-
-/** The type of resource, for instance Microsoft.Kusto/clusters/sandboxCustomImages. */
-export type SandboxCustomImagesCheckNameAvailabilityRequestType =
-  "Microsoft.Kusto/clusters/sandboxCustomImages";
-export const SandboxCustomImagesCheckNameAvailabilityRequestType =
-  /*@__PURE__*/ S.String;
-
-export interface SandboxCustomImagesCheckNameAvailabilityRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Kusto cluster. */
-  clusterName: string;
-  /** Sandbox custom image resource name. */
-  name: string;
-  /** The type of resource, for instance Microsoft.Kusto/clusters/sandboxCustomImages. */
-  type: SandboxCustomImagesCheckNameAvailabilityRequestType | (string & {});
-}
-export const SandboxCustomImagesCheckNameAvailabilityRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const RemoveClusterLanguageExtensionsRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       clusterName: S.String.pipe(T.Label()),
-      name: S.String,
-      type: SandboxCustomImagesCheckNameAvailabilityRequestType,
+      value: S.optional(RemoveClusterLanguageExtensionsRequestValueList),
+      nextLink: S.optional(S.String),
     }).pipe(
       T.Http({
         method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/sandboxCustomImagesCheckNameAvailability",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/removeLanguageExtensions",
         code: 200,
         apiVersion: "2025-02-14",
       }),
     ),
-  ).annotate({
-    identifier: "SandboxCustomImagesCheckNameAvailabilityRequest",
-  }) as any as S.Schema<SandboxCustomImagesCheckNameAvailabilityRequest>;
-
-/** The language name, for example Python. */
-export type Language = "Python";
-export const Language = /*@__PURE__*/ S.String;
-
-/** A class representing the properties of a sandbox custom image object. */
-export interface SandboxCustomImageProperties {
-  /** The language name, for example Python. */
-  language: Language | (string & {});
-  /** The version of the language. Either this property or baseImageName should be specified. */
-  languageVersion?: string;
-  /** The base image name on which the custom image is built on top of. It can be one of the LanguageExtensionImageName (e.g.: 'Python3_10_8', 'Python3_10_8_DL') or the name of an existing custom image. Either this property or languageVersion should be specified. */
-  baseImageName?: string;
-  /** The requirements file content. */
-  requirementsFileContent?: string;
-  /** The provisioned state of the resource. */
-  provisioningState?: ProvisioningState | (string & {});
-}
-export const SandboxCustomImageProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    language: Language,
-    languageVersion: S.optional(S.String),
-    baseImageName: S.optional(S.String),
-    requirementsFileContent: S.optional(S.String),
-    provisioningState: S.optional(ProvisioningState),
-  }),
 ).annotate({
-  identifier: "SandboxCustomImageProperties",
-}) as any as S.Schema<SandboxCustomImageProperties>;
+  identifier: "RemoveClusterLanguageExtensionsRequest",
+}) as any as S.Schema<RemoveClusterLanguageExtensionsRequest>;
+
+export interface RemoveClusterLanguageExtensionsResponse {}
+export const RemoveClusterLanguageExtensionsResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "RemoveClusterLanguageExtensionsResponse",
+}) as any as S.Schema<RemoveClusterLanguageExtensionsResponse>;
+
+/** The list of Kusto database principals. */
+export type RemoveDatabasePrincipalsRequestValueList =
+  Array<DatabasePrincipalInput>;
+export const RemoveDatabasePrincipalsRequestValueList = /*@__PURE__*/ S.Array(
+  DatabasePrincipalInput,
+) as any as S.Schema<RemoveDatabasePrincipalsRequestValueList>;
+
+export interface RemoveDatabasePrincipalsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Kusto cluster. */
+  clusterName: string;
+  /** The name of the database in the Kusto cluster. */
+  databaseName: string;
+  /** The list of Kusto database principals. */
+  value?: RemoveDatabasePrincipalsRequestValueList;
+}
+export const RemoveDatabasePrincipalsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    databaseName: S.String.pipe(T.Label()),
+    value: S.optional(RemoveDatabasePrincipalsRequestValueList),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/databases/{databaseName}/removePrincipals",
+      code: 200,
+      apiVersion: "2025-02-14",
+    }),
+  ),
+).annotate({
+  identifier: "RemoveDatabasePrincipalsRequest",
+}) as any as S.Schema<RemoveDatabasePrincipalsRequest>;
 
 export interface SandboxCustomImagesCreateOrUpdateRequest {
   /** The ID of the target subscription. */
@@ -5543,307 +5605,6 @@ export const SandboxCustomImagesCreateOrUpdateResponse =
   ).annotate({
     identifier: "SandboxCustomImagesCreateOrUpdateResponse",
   }) as any as S.Schema<SandboxCustomImagesCreateOrUpdateResponse>;
-
-export interface SandboxCustomImagesDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Kusto cluster. */
-  clusterName: string;
-  /** The name of the sandbox custom image. */
-  sandboxCustomImageName: string;
-}
-export const SandboxCustomImagesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    sandboxCustomImageName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/sandboxCustomImages/{sandboxCustomImageName}",
-      code: 200,
-      apiVersion: "2025-02-14",
-    }),
-  ),
-).annotate({
-  identifier: "SandboxCustomImagesDeleteRequest",
-}) as any as S.Schema<SandboxCustomImagesDeleteRequest>;
-
-export interface SandboxCustomImagesDeleteResponse {}
-export const SandboxCustomImagesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "SandboxCustomImagesDeleteResponse",
-}) as any as S.Schema<SandboxCustomImagesDeleteResponse>;
-
-export interface SandboxCustomImagesGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Kusto cluster. */
-  clusterName: string;
-  /** The name of the sandbox custom image. */
-  sandboxCustomImageName: string;
-}
-export const SandboxCustomImagesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    sandboxCustomImageName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/sandboxCustomImages/{sandboxCustomImageName}",
-      code: 200,
-      apiVersion: "2025-02-14",
-    }),
-  ),
-).annotate({
-  identifier: "SandboxCustomImagesGetRequest",
-}) as any as S.Schema<SandboxCustomImagesGetRequest>;
-
-export interface SandboxCustomImagesGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** A sandbox custom image. */
-  properties?: SandboxCustomImageProperties;
-}
-export const SandboxCustomImagesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(SandboxCustomImageProperties),
-  }),
-).annotate({
-  identifier: "SandboxCustomImagesGetResponse",
-}) as any as S.Schema<SandboxCustomImagesGetResponse>;
-
-export interface SandboxCustomImagesListByClusterRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Kusto cluster. */
-  clusterName: string;
-}
-export const SandboxCustomImagesListByClusterRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      clusterName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/sandboxCustomImages",
-        code: 200,
-        apiVersion: "2025-02-14",
-      }),
-    ),
-).annotate({
-  identifier: "SandboxCustomImagesListByClusterRequest",
-}) as any as S.Schema<SandboxCustomImagesListByClusterRequest>;
-
-/** Class representing a Kusto sandbox custom image. */
-export interface SandboxCustomImage {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** A sandbox custom image. */
-  properties?: SandboxCustomImageProperties;
-}
-export const SandboxCustomImage = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(SandboxCustomImageProperties),
-  }),
-).annotate({
-  identifier: "SandboxCustomImage",
-}) as any as S.Schema<SandboxCustomImage>;
-
-/** The SandboxCustomImage items on this page */
-export type SandboxCustomImagesListResultValueList = Array<SandboxCustomImage>;
-export const SandboxCustomImagesListResultValueList = /*@__PURE__*/ S.Array(
-  SandboxCustomImage,
-) as any as S.Schema<SandboxCustomImagesListResultValueList>;
-
-/** The list Kusto sandbox custom images operation response. */
-export interface SandboxCustomImagesListResult {
-  /** The SandboxCustomImage items on this page */
-  value: SandboxCustomImagesListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const SandboxCustomImagesListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: SandboxCustomImagesListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SandboxCustomImagesListResult",
-}) as any as S.Schema<SandboxCustomImagesListResult>;
-
-export interface SandboxCustomImagesUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Kusto cluster. */
-  clusterName: string;
-  /** The name of the sandbox custom image. */
-  sandboxCustomImageName: string;
-  /** A sandbox custom image. */
-  properties?: SandboxCustomImageProperties;
-}
-export const SandboxCustomImagesUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    sandboxCustomImageName: S.String.pipe(T.Label()),
-    properties: S.optional(SandboxCustomImageProperties),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/sandboxCustomImages/{sandboxCustomImageName}",
-      code: 200,
-      apiVersion: "2025-02-14",
-    }),
-  ),
-).annotate({
-  identifier: "SandboxCustomImagesUpdateRequest",
-}) as any as S.Schema<SandboxCustomImagesUpdateRequest>;
-
-export interface SandboxCustomImagesUpdateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** A sandbox custom image. */
-  properties?: SandboxCustomImageProperties;
-}
-export const SandboxCustomImagesUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(SandboxCustomImageProperties),
-  }),
-).annotate({
-  identifier: "SandboxCustomImagesUpdateResponse",
-}) as any as S.Schema<SandboxCustomImagesUpdateResponse>;
-
-/** The type of resource, Microsoft.Kusto/clusters/databases/scripts. */
-export type ScriptsCheckNameAvailabilityRequestType =
-  "Microsoft.Kusto/clusters/databases/scripts";
-export const ScriptsCheckNameAvailabilityRequestType = /*@__PURE__*/ S.String;
-
-export interface ScriptsCheckNameAvailabilityRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Kusto cluster. */
-  clusterName: string;
-  /** The name of the database in the Kusto cluster. */
-  databaseName: string;
-  /** Script name. */
-  name: string;
-  /** The type of resource, Microsoft.Kusto/clusters/databases/scripts. */
-  type: ScriptsCheckNameAvailabilityRequestType | (string & {});
-}
-export const ScriptsCheckNameAvailabilityRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    databaseName: S.String.pipe(T.Label()),
-    name: S.String,
-    type: ScriptsCheckNameAvailabilityRequestType,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/databases/{databaseName}/scriptsCheckNameAvailability",
-      code: 200,
-      apiVersion: "2025-02-14",
-    }),
-  ),
-).annotate({
-  identifier: "ScriptsCheckNameAvailabilityRequest",
-}) as any as S.Schema<ScriptsCheckNameAvailabilityRequest>;
-
-/** Differentiates between the type of script commands included - Database or Cluster. The default is Database. */
-export type ScriptLevel = "Database" | "Cluster";
-export const ScriptLevel = /*@__PURE__*/ S.String;
-
-/** Indicates if the permissions for the script caller are kept following completion of the script. */
-export type PrincipalPermissionsAction =
-  | "RetainPermissionOnScriptCompletion"
-  | "RemovePermissionOnScriptCompletion";
-export const PrincipalPermissionsAction = /*@__PURE__*/ S.String;
-
-/** A class representing database script property. */
-export interface ScriptProperties {
-  /** The url to the KQL script blob file. Must not be used together with scriptContent property */
-  scriptUrl?: string;
-  /** The SaS token that provide read access to the file which contain the script. Must be provided when using scriptUrl property. */
-  scriptUrlSasToken?: string;
-  /** The script content. This property should be used when the script is provide inline and not through file in a SA. Must not be used together with scriptUrl and scriptUrlSasToken properties. */
-  scriptContent?: string;
-  /** A unique string. If changed the script will be applied again. */
-  forceUpdateTag?: string;
-  /** Flag that indicates whether to continue if one of the command fails. */
-  continueOnErrors?: boolean;
-  /** The provisioned state of the resource. */
-  provisioningState?: ProvisioningState | (string & {});
-  /** Differentiates between the type of script commands included - Database or Cluster. The default is Database. */
-  scriptLevel?: ScriptLevel | (string & {});
-  /** Indicates if the permissions for the script caller are kept following completion of the script. */
-  principalPermissionsAction?: PrincipalPermissionsAction | (string & {});
-  /** The resource identifier of the managed identity to be used. When provided, the managed identity will be used to read the script content from the scriptUrl. */
-  managedIdentityResourceId?: string;
-}
-export const ScriptProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    scriptUrl: S.optional(S.String),
-    scriptUrlSasToken: S.optional(S.String),
-    scriptContent: S.optional(S.String),
-    forceUpdateTag: S.optional(S.String),
-    continueOnErrors: S.optional(S.Boolean),
-    provisioningState: S.optional(ProvisioningState),
-    scriptLevel: S.optional(ScriptLevel),
-    principalPermissionsAction: S.optional(PrincipalPermissionsAction),
-    managedIdentityResourceId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ScriptProperties",
-}) as any as S.Schema<ScriptProperties>;
 
 export interface ScriptsCreateOrUpdateRequest {
   /** The ID of the target subscription. */
@@ -5903,45 +5664,426 @@ export const ScriptsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ScriptsCreateOrUpdateResponse",
 }) as any as S.Schema<ScriptsCreateOrUpdateResponse>;
 
-export interface ScriptsDeleteRequest {
+export interface StartClusterRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of the Kusto cluster. */
   clusterName: string;
-  /** The name of the database in the Kusto cluster. */
-  databaseName: string;
-  /** The name of the Kusto database script. */
-  scriptName: string;
 }
-export const ScriptsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const StartClusterRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     clusterName: S.String.pipe(T.Label()),
-    databaseName: S.String.pipe(T.Label()),
-    scriptName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/databases/{databaseName}/scripts/{scriptName}",
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/start",
       code: 200,
       apiVersion: "2025-02-14",
     }),
   ),
 ).annotate({
-  identifier: "ScriptsDeleteRequest",
-}) as any as S.Schema<ScriptsDeleteRequest>;
+  identifier: "StartClusterRequest",
+}) as any as S.Schema<StartClusterRequest>;
 
-export interface ScriptsDeleteResponse {}
-export const ScriptsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
+export interface StartClusterResponse {}
+export const StartClusterResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "ScriptsDeleteResponse",
-}) as any as S.Schema<ScriptsDeleteResponse>;
+  identifier: "StartClusterResponse",
+}) as any as S.Schema<StartClusterResponse>;
 
-export interface ScriptsGetRequest {
+export interface StopClusterRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Kusto cluster. */
+  clusterName: string;
+}
+export const StopClusterRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/stop",
+      code: 200,
+      apiVersion: "2025-02-14",
+    }),
+  ),
+).annotate({
+  identifier: "StopClusterRequest",
+}) as any as S.Schema<StopClusterRequest>;
+
+export interface StopClusterResponse {}
+export const StopClusterResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "StopClusterResponse",
+}) as any as S.Schema<StopClusterResponse>;
+
+/** Resource tags. */
+export type UpdateClusterRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateClusterRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateClusterRequestTagsMap>;
+
+/** The availability zones of the cluster. */
+export type UpdateClusterRequestZonesList = Array<string>;
+export const UpdateClusterRequestZonesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<UpdateClusterRequestZonesList>;
+
+export interface UpdateClusterRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Kusto cluster. */
+  clusterName: string;
+  /** Resource tags. */
+  tags?: UpdateClusterRequestTagsMap;
+  /** Resource location. */
+  location?: string;
+  /** The SKU of the cluster. */
+  sku?: AzureSku;
+  /** The availability zones of the cluster. */
+  zones?: UpdateClusterRequestZonesList;
+  /** The identity of the cluster, if configured. */
+  identity?: IdentityInput;
+  /** The cluster properties. */
+  properties?: ClusterPropertiesInput;
+}
+export const UpdateClusterRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateClusterRequestTagsMap),
+    location: S.optional(S.String),
+    sku: S.optional(AzureSku),
+    zones: S.optional(UpdateClusterRequestZonesList),
+    identity: S.optional(IdentityInput),
+    properties: S.optional(ClusterPropertiesInput),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}",
+      code: 200,
+      apiVersion: "2025-02-14",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateClusterRequest",
+}) as any as S.Schema<UpdateClusterRequest>;
+
+/** Resource tags. */
+export type UpdateClusterResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateClusterResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateClusterResponseTagsMap>;
+
+/** The availability zones. */
+export type UpdateClusterResponseZonesList = Array<string>;
+export const UpdateClusterResponseZonesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<UpdateClusterResponseZonesList>;
+
+export interface UpdateClusterResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateClusterResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The cluster properties. */
+  properties?: ClusterProperties;
+  /** The SKU of the cluster. */
+  sku: AzureSku;
+  /** The availability zones. */
+  zones?: UpdateClusterResponseZonesList;
+  /** The identity of the cluster, if configured. */
+  identity?: Identity;
+  /** "If etag is provided in the response body, it may also be provided as a header per the normal etag convention. Entity tags are used for comparing two or more entities from the same requested resource. HTTP/1.1 uses entity tags in the etag (section 14.19), If-Match (section 14.24), If-None-Match (section 14.26), and If-Range (section 14.27) header fields.") */
+  etag?: string;
+}
+export const UpdateClusterResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateClusterResponseTagsMap),
+    location: S.String,
+    properties: S.optional(ClusterProperties),
+    sku: AzureSku,
+    zones: S.optional(UpdateClusterResponseZonesList),
+    identity: S.optional(Identity),
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "UpdateClusterResponse",
+}) as any as S.Schema<UpdateClusterResponse>;
+
+export type UpdateDatabaseRequestCallerRole = "Admin" | "None";
+export const UpdateDatabaseRequestCallerRole = /*@__PURE__*/ S.String;
+
+export interface UpdateDatabaseRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Kusto cluster. */
+  clusterName: string;
+  /** The name of the database in the Kusto cluster. */
+  databaseName: string;
+  /** By default, any user who run operation on a database become an Admin on it. This property allows the caller to exclude the caller from Admins list. */
+  callerRole?: UpdateDatabaseRequestCallerRole | (string & {});
+  /** Resource location. */
+  location?: string;
+  /** Kind of the database */
+  kind: Kind | (string & {});
+}
+export const UpdateDatabaseRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    databaseName: S.String.pipe(T.Label()),
+    callerRole: S.optional(UpdateDatabaseRequestCallerRole.pipe(T.Query())),
+    location: S.optional(S.String),
+    kind: Kind,
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/databases/{databaseName}",
+      code: 200,
+      apiVersion: "2025-02-14",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateDatabaseRequest",
+}) as any as S.Schema<UpdateDatabaseRequest>;
+
+export interface UpdateDatabaseResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource location. */
+  location?: string;
+  /** Kind of the database */
+  kind: Kind;
+}
+export const UpdateDatabaseResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    location: S.optional(S.String),
+    kind: Kind,
+  }),
+).annotate({
+  identifier: "UpdateDatabaseResponse",
+}) as any as S.Schema<UpdateDatabaseResponse>;
+
+export interface UpdateDataConnectionRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Kusto cluster. */
+  clusterName: string;
+  /** The name of the database in the Kusto cluster. */
+  databaseName: string;
+  /** The name of the data connection. */
+  dataConnectionName: string;
+  /** Resource location. */
+  location?: string;
+  /** Kind of the endpoint for the data connection */
+  kind: DataConnectionKind | (string & {});
+}
+export const UpdateDataConnectionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    databaseName: S.String.pipe(T.Label()),
+    dataConnectionName: S.String.pipe(T.Label()),
+    location: S.optional(S.String),
+    kind: DataConnectionKind,
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/databases/{databaseName}/dataConnections/{dataConnectionName}",
+      code: 200,
+      apiVersion: "2025-02-14",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateDataConnectionRequest",
+}) as any as S.Schema<UpdateDataConnectionRequest>;
+
+export interface UpdateDataConnectionResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource location. */
+  location?: string;
+  /** Kind of the endpoint for the data connection */
+  kind: DataConnectionKind;
+}
+export const UpdateDataConnectionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    location: S.optional(S.String),
+    kind: DataConnectionKind,
+  }),
+).annotate({
+  identifier: "UpdateDataConnectionResponse",
+}) as any as S.Schema<UpdateDataConnectionResponse>;
+
+export interface UpdateManagedPrivateEndpointRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Kusto cluster. */
+  clusterName: string;
+  /** The name of the managed private endpoint. */
+  managedPrivateEndpointName: string;
+  /** A managed private endpoint. */
+  properties?: ManagedPrivateEndpointProperties;
+}
+export const UpdateManagedPrivateEndpointRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    managedPrivateEndpointName: S.String.pipe(T.Label()),
+    properties: S.optional(ManagedPrivateEndpointProperties),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/managedPrivateEndpoints/{managedPrivateEndpointName}",
+      code: 200,
+      apiVersion: "2025-02-14",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateManagedPrivateEndpointRequest",
+}) as any as S.Schema<UpdateManagedPrivateEndpointRequest>;
+
+export interface UpdateManagedPrivateEndpointResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** A managed private endpoint. */
+  properties?: ManagedPrivateEndpointProperties;
+}
+export const UpdateManagedPrivateEndpointResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(ManagedPrivateEndpointProperties),
+    }),
+).annotate({
+  identifier: "UpdateManagedPrivateEndpointResponse",
+}) as any as S.Schema<UpdateManagedPrivateEndpointResponse>;
+
+export interface UpdateSandboxCustomImageRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Kusto cluster. */
+  clusterName: string;
+  /** The name of the sandbox custom image. */
+  sandboxCustomImageName: string;
+  /** A sandbox custom image. */
+  properties?: SandboxCustomImageProperties;
+}
+export const UpdateSandboxCustomImageRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    sandboxCustomImageName: S.String.pipe(T.Label()),
+    properties: S.optional(SandboxCustomImageProperties),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/sandboxCustomImages/{sandboxCustomImageName}",
+      code: 200,
+      apiVersion: "2025-02-14",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateSandboxCustomImageRequest",
+}) as any as S.Schema<UpdateSandboxCustomImageRequest>;
+
+export interface UpdateSandboxCustomImageResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** A sandbox custom image. */
+  properties?: SandboxCustomImageProperties;
+}
+export const UpdateSandboxCustomImageResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(SandboxCustomImageProperties),
+  }),
+).annotate({
+  identifier: "UpdateSandboxCustomImageResponse",
+}) as any as S.Schema<UpdateSandboxCustomImageResponse>;
+
+export interface UpdateScriptRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -5952,138 +6094,10 @@ export interface ScriptsGetRequest {
   databaseName: string;
   /** The name of the Kusto database script. */
   scriptName: string;
-}
-export const ScriptsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    databaseName: S.String.pipe(T.Label()),
-    scriptName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/databases/{databaseName}/scripts/{scriptName}",
-      code: 200,
-      apiVersion: "2025-02-14",
-    }),
-  ),
-).annotate({
-  identifier: "ScriptsGetRequest",
-}) as any as S.Schema<ScriptsGetRequest>;
-
-export interface ScriptsGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
   /** The database script. */
   properties?: ScriptProperties;
 }
-export const ScriptsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ScriptProperties),
-  }),
-).annotate({
-  identifier: "ScriptsGetResponse",
-}) as any as S.Schema<ScriptsGetResponse>;
-
-export interface ScriptsListByDatabaseRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Kusto cluster. */
-  clusterName: string;
-  /** The name of the database in the Kusto cluster. */
-  databaseName: string;
-}
-export const ScriptsListByDatabaseRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    databaseName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kusto/clusters/{clusterName}/databases/{databaseName}/scripts",
-      code: 200,
-      apiVersion: "2025-02-14",
-    }),
-  ),
-).annotate({
-  identifier: "ScriptsListByDatabaseRequest",
-}) as any as S.Schema<ScriptsListByDatabaseRequest>;
-
-/** Class representing a database script. */
-export interface Script {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The database script. */
-  properties?: ScriptProperties;
-}
-export const Script = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ScriptProperties),
-  }),
-).annotate({ identifier: "Script" }) as any as S.Schema<Script>;
-
-/** The list of Kusto scripts. */
-export type ScriptListResultValueList = Array<Script>;
-export const ScriptListResultValueList = /*@__PURE__*/ S.Array(
-  Script,
-) as any as S.Schema<ScriptListResultValueList>;
-
-/** The list Kusto database script operation response. */
-export interface ScriptListResult {
-  /** The list of Kusto scripts. */
-  value?: ScriptListResultValueList;
-  /** Link to the next page of results. */
-  nextLink?: string;
-}
-export const ScriptListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(ScriptListResultValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ScriptListResult",
-}) as any as S.Schema<ScriptListResult>;
-
-export interface ScriptsUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Kusto cluster. */
-  clusterName: string;
-  /** The name of the database in the Kusto cluster. */
-  databaseName: string;
-  /** The name of the Kusto database script. */
-  scriptName: string;
-  /** The database script. */
-  properties?: ScriptProperties;
-}
-export const ScriptsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateScriptRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -6100,10 +6114,10 @@ export const ScriptsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ScriptsUpdateRequest",
-}) as any as S.Schema<ScriptsUpdateRequest>;
+  identifier: "UpdateScriptRequest",
+}) as any as S.Schema<UpdateScriptRequest>;
 
-export interface ScriptsUpdateResponse {
+export interface UpdateScriptResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -6115,7 +6129,7 @@ export interface ScriptsUpdateResponse {
   /** The database script. */
   properties?: ScriptProperties;
 }
-export const ScriptsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateScriptResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -6124,42 +6138,49 @@ export const ScriptsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(ScriptProperties),
   }),
 ).annotate({
-  identifier: "ScriptsUpdateResponse",
-}) as any as S.Schema<ScriptsUpdateResponse>;
+  identifier: "UpdateScriptResponse",
+}) as any as S.Schema<UpdateScriptResponse>;
 
-export interface SkusListRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of Azure region. */
-  location: string;
-}
-export const SkusListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    location: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Kusto/locations/{location}/skus",
-      code: 200,
-      apiVersion: "2025-02-14",
-    }),
-  ),
-).annotate({
-  identifier: "SkusListRequest",
-}) as any as S.Schema<SkusListRequest>;
-
-export type AttachedDatabaseConfigurationsCheckNameAvailabilityError =
-  AzureOpError;
-/** Checks that the attached database configuration resource name is valid and is not already in use. */
-export const AttachedDatabaseConfigurationsCheckNameAvailability: API.OperationMethod<
-  AttachedDatabaseConfigurationsCheckNameAvailabilityRequest,
-  CheckNameResult,
-  AttachedDatabaseConfigurationsCheckNameAvailabilityError,
+export type AddClusterCalloutPoliciesError = AzureOpError;
+/** Adds a list of callout policies for engine services. */
+export const AddClusterCalloutPolicies: API.OperationMethod<
+  AddClusterCalloutPoliciesRequest,
+  AddClusterCalloutPoliciesResponse,
+  AddClusterCalloutPoliciesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AttachedDatabaseConfigurationsCheckNameAvailabilityRequest,
-  output: CheckNameResult,
+  input: AddClusterCalloutPoliciesRequest,
+  output: AddClusterCalloutPoliciesResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type AddClusterLanguageExtensionsError = AzureOpError;
+/** Add a list of language extensions that can run within KQL queries. */
+export const AddClusterLanguageExtensions: API.OperationMethod<
+  AddClusterLanguageExtensionsRequest,
+  AddClusterLanguageExtensionsResponse,
+  AddClusterLanguageExtensionsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: AddClusterLanguageExtensionsRequest,
+  output: AddClusterLanguageExtensionsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type AddDatabasePrincipalsError = AzureOpError;
+/** Add Database principals permissions. */
+export const AddDatabasePrincipals: API.OperationMethod<
+  AddDatabasePrincipalsRequest,
+  DatabasePrincipalListResult,
+  AddDatabasePrincipalsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: AddDatabasePrincipalsRequest,
+  output: DatabasePrincipalListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -6180,61 +6201,137 @@ export const AttachedDatabaseConfigurationsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type AttachedDatabaseConfigurationsDeleteError = AzureOpError;
-/** Deletes the attached database configuration with the given name. */
-export const AttachedDatabaseConfigurationsDelete: API.OperationMethod<
-  AttachedDatabaseConfigurationsDeleteRequest,
-  AttachedDatabaseConfigurationsDeleteResponse,
-  AttachedDatabaseConfigurationsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AttachedDatabaseConfigurationsDeleteRequest,
-  output: AttachedDatabaseConfigurationsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AttachedDatabaseConfigurationsGetError = AzureOpError;
-/** Returns an attached database configuration. */
-export const AttachedDatabaseConfigurationsGet: API.OperationMethod<
-  AttachedDatabaseConfigurationsGetRequest,
-  AttachedDatabaseConfigurationsGetResponse,
-  AttachedDatabaseConfigurationsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AttachedDatabaseConfigurationsGetRequest,
-  output: AttachedDatabaseConfigurationsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AttachedDatabaseConfigurationsListByClusterError = AzureOpError;
-/** Returns the list of attached database configurations of the given Kusto cluster. */
-export const AttachedDatabaseConfigurationsListByCluster: API.OperationMethod<
-  AttachedDatabaseConfigurationsListByClusterRequest,
-  AttachedDatabaseConfigurationListResult,
-  AttachedDatabaseConfigurationsListByClusterError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AttachedDatabaseConfigurationsListByClusterRequest,
-  output: AttachedDatabaseConfigurationListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ClusterPrincipalAssignmentsCheckNameAvailabilityError =
+export type CheckAttachedDatabaseConfigurationNameAvailabilityError =
   AzureOpError;
-/** Checks that the principal assignment name is valid and is not already in use. */
-export const ClusterPrincipalAssignmentsCheckNameAvailability: API.OperationMethod<
-  ClusterPrincipalAssignmentsCheckNameAvailabilityRequest,
+/** Checks that the attached database configuration resource name is valid and is not already in use. */
+export const CheckAttachedDatabaseConfigurationNameAvailability: API.OperationMethod<
+  CheckAttachedDatabaseConfigurationNameAvailabilityRequest,
   CheckNameResult,
-  ClusterPrincipalAssignmentsCheckNameAvailabilityError,
+  CheckAttachedDatabaseConfigurationNameAvailabilityError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ClusterPrincipalAssignmentsCheckNameAvailabilityRequest,
+  input: CheckAttachedDatabaseConfigurationNameAvailabilityRequest,
+  output: CheckNameResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CheckClusterNameAvailabilityError = AzureOpError;
+/** Checks that the cluster name is valid and is not already in use. */
+export const CheckClusterNameAvailability: API.OperationMethod<
+  CheckClusterNameAvailabilityRequest,
+  CheckNameResult,
+  CheckClusterNameAvailabilityError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CheckClusterNameAvailabilityRequest,
+  output: CheckNameResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CheckClusterPrincipalAssignmentNameAvailabilityError = AzureOpError;
+/** Checks that the principal assignment name is valid and is not already in use. */
+export const CheckClusterPrincipalAssignmentNameAvailability: API.OperationMethod<
+  CheckClusterPrincipalAssignmentNameAvailabilityRequest,
+  CheckNameResult,
+  CheckClusterPrincipalAssignmentNameAvailabilityError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CheckClusterPrincipalAssignmentNameAvailabilityRequest,
+  output: CheckNameResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CheckDatabaseNameAvailabilityError = AzureOpError;
+/** Checks that the databases resource name is valid and is not already in use. */
+export const CheckDatabaseNameAvailability: API.OperationMethod<
+  CheckDatabaseNameAvailabilityRequest,
+  CheckNameResult,
+  CheckDatabaseNameAvailabilityError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CheckDatabaseNameAvailabilityRequest,
+  output: CheckNameResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CheckDatabasePrincipalAssignmentNameAvailabilityError =
+  AzureOpError;
+/** Checks that the database principal assignment is valid and is not already in use. */
+export const CheckDatabasePrincipalAssignmentNameAvailability: API.OperationMethod<
+  CheckDatabasePrincipalAssignmentNameAvailabilityRequest,
+  CheckNameResult,
+  CheckDatabasePrincipalAssignmentNameAvailabilityError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CheckDatabasePrincipalAssignmentNameAvailabilityRequest,
+  output: CheckNameResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CheckDataConnectionNameAvailabilityError = AzureOpError;
+/** Checks that the data connection name is valid and is not already in use. */
+export const CheckDataConnectionNameAvailability: API.OperationMethod<
+  CheckDataConnectionNameAvailabilityRequest,
+  CheckNameResult,
+  CheckDataConnectionNameAvailabilityError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CheckDataConnectionNameAvailabilityRequest,
+  output: CheckNameResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CheckManagedPrivateEndpointNameAvailabilityError = AzureOpError;
+/** Checks that the managed private endpoints resource name is valid and is not already in use. */
+export const CheckManagedPrivateEndpointNameAvailability: API.OperationMethod<
+  CheckManagedPrivateEndpointNameAvailabilityRequest,
+  CheckNameResult,
+  CheckManagedPrivateEndpointNameAvailabilityError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CheckManagedPrivateEndpointNameAvailabilityRequest,
+  output: CheckNameResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CheckSandboxCustomImageNameAvailabilityError = AzureOpError;
+/** Checks that the sandbox custom image resource name is valid and is not already in use. */
+export const CheckSandboxCustomImageNameAvailability: API.OperationMethod<
+  CheckSandboxCustomImageNameAvailabilityRequest,
+  CheckNameResult,
+  CheckSandboxCustomImageNameAvailabilityError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CheckSandboxCustomImageNameAvailabilityRequest,
+  output: CheckNameResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CheckScriptNameAvailabilityError = AzureOpError;
+/** Checks that the script name is valid and is not already in use. */
+export const CheckScriptNameAvailability: API.OperationMethod<
+  CheckScriptNameAvailabilityRequest,
+  CheckNameResult,
+  CheckScriptNameAvailabilityError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CheckScriptNameAvailabilityRequest,
   output: CheckNameResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
@@ -6256,96 +6353,6 @@ export const ClusterPrincipalAssignmentsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ClusterPrincipalAssignmentsDeleteError = AzureOpError;
-/** Deletes a Kusto cluster principalAssignment. */
-export const ClusterPrincipalAssignmentsDelete: API.OperationMethod<
-  ClusterPrincipalAssignmentsDeleteRequest,
-  ClusterPrincipalAssignmentsDeleteResponse,
-  ClusterPrincipalAssignmentsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ClusterPrincipalAssignmentsDeleteRequest,
-  output: ClusterPrincipalAssignmentsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ClusterPrincipalAssignmentsGetError = AzureOpError;
-/** Gets a Kusto cluster principalAssignment. */
-export const ClusterPrincipalAssignmentsGet: API.OperationMethod<
-  ClusterPrincipalAssignmentsGetRequest,
-  ClusterPrincipalAssignmentsGetResponse,
-  ClusterPrincipalAssignmentsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ClusterPrincipalAssignmentsGetRequest,
-  output: ClusterPrincipalAssignmentsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ClusterPrincipalAssignmentsListError = AzureOpError;
-/** Lists all Kusto cluster principalAssignments. */
-export const ClusterPrincipalAssignmentsList: API.OperationMethod<
-  ClusterPrincipalAssignmentsListRequest,
-  ClusterPrincipalAssignmentListResult,
-  ClusterPrincipalAssignmentsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ClusterPrincipalAssignmentsListRequest,
-  output: ClusterPrincipalAssignmentListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ClustersAddCalloutPoliciesError = AzureOpError;
-/** Adds a list of callout policies for engine services. */
-export const ClustersAddCalloutPolicies: API.OperationMethod<
-  ClustersAddCalloutPoliciesRequest,
-  ClustersAddCalloutPoliciesResponse,
-  ClustersAddCalloutPoliciesError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ClustersAddCalloutPoliciesRequest,
-  output: ClustersAddCalloutPoliciesResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ClustersAddLanguageExtensionsError = AzureOpError;
-/** Add a list of language extensions that can run within KQL queries. */
-export const ClustersAddLanguageExtensions: API.OperationMethod<
-  ClustersAddLanguageExtensionsRequest,
-  ClustersAddLanguageExtensionsResponse,
-  ClustersAddLanguageExtensionsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ClustersAddLanguageExtensionsRequest,
-  output: ClustersAddLanguageExtensionsResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ClustersCheckNameAvailabilityError = AzureOpError;
-/** Checks that the cluster name is valid and is not already in use. */
-export const ClustersCheckNameAvailability: API.OperationMethod<
-  ClustersCheckNameAvailabilityRequest,
-  CheckNameResult,
-  ClustersCheckNameAvailabilityError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ClustersCheckNameAvailabilityRequest,
-  output: CheckNameResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ClustersCreateOrUpdateError = AzureOpError;
 /** Create or update a Kusto cluster. */
 export const ClustersCreateOrUpdate: API.OperationMethod<
@@ -6356,36 +6363,6 @@ export const ClustersCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ClustersCreateOrUpdateRequest,
   output: ClustersCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ClustersDeleteError = AzureOpError;
-/** Deletes a Kusto cluster. */
-export const ClustersDelete: API.OperationMethod<
-  ClustersDeleteRequest,
-  ClustersDeleteResponse,
-  ClustersDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ClustersDeleteRequest,
-  output: ClustersDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ClustersDetachFollowerDatabasesError = AzureOpError;
-/** Detaches all followers of a database owned by this cluster. */
-export const ClustersDetachFollowerDatabases: API.OperationMethod<
-  ClustersDetachFollowerDatabasesRequest,
-  ClustersDetachFollowerDatabasesResponse,
-  ClustersDetachFollowerDatabasesError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ClustersDetachFollowerDatabasesRequest,
-  output: ClustersDetachFollowerDatabasesResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -6406,81 +6383,6 @@ export const ClustersDiagnoseVirtualNetwork: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ClustersGetError = AzureOpError;
-/** Gets a Kusto cluster. */
-export const ClustersGet: API.OperationMethod<
-  ClustersGetRequest,
-  ClustersGetResponse,
-  ClustersGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ClustersGetRequest,
-  output: ClustersGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ClustersListError = AzureOpError;
-/** Lists all Kusto clusters within a subscription. */
-export const ClustersList: API.OperationMethod<
-  ClustersListRequest,
-  ClusterListResult,
-  ClustersListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ClustersListRequest,
-  output: ClusterListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ClustersListByResourceGroupError = AzureOpError;
-/** Lists all Kusto clusters within a resource group. */
-export const ClustersListByResourceGroup: API.OperationMethod<
-  ClustersListByResourceGroupRequest,
-  ClusterListResult,
-  ClustersListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ClustersListByResourceGroupRequest,
-  output: ClusterListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ClustersListCalloutPoliciesError = AzureOpError;
-/** Returns the allowed callout policies for the specified service. */
-export const ClustersListCalloutPolicies: API.OperationMethod<
-  ClustersListCalloutPoliciesRequest,
-  CalloutPoliciesList,
-  ClustersListCalloutPoliciesError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ClustersListCalloutPoliciesRequest,
-  output: CalloutPoliciesList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ClustersListFollowerDatabasesError = AzureOpError;
-/** Returns a list of databases that are owned by this cluster and were followed by another cluster. */
-export const ClustersListFollowerDatabases: API.OperationMethod<
-  ClustersListFollowerDatabasesRequest,
-  FollowerDatabaseListResult,
-  ClustersListFollowerDatabasesError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ClustersListFollowerDatabasesRequest,
-  output: FollowerDatabaseListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ClustersListFollowerDatabasesGetError = AzureOpError;
 /** Returns a list of databases that are owned by this cluster and were followed by another cluster. */
 export const ClustersListFollowerDatabasesGet: API.OperationMethod<
@@ -6491,188 +6393,6 @@ export const ClustersListFollowerDatabasesGet: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ClustersListFollowerDatabasesGetRequest,
   output: FollowerDatabaseListResultGet,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ClustersListLanguageExtensionsError = AzureOpError;
-/** Returns a list of language extensions that can run within KQL queries. */
-export const ClustersListLanguageExtensions: API.OperationMethod<
-  ClustersListLanguageExtensionsRequest,
-  LanguageExtensionsList,
-  ClustersListLanguageExtensionsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ClustersListLanguageExtensionsRequest,
-  output: LanguageExtensionsList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ClustersListOutboundNetworkDependenciesEndpointsError =
-  AzureOpError;
-/** Gets the network endpoints of all outbound dependencies of a Kusto cluster */
-export const ClustersListOutboundNetworkDependenciesEndpoints: API.OperationMethod<
-  ClustersListOutboundNetworkDependenciesEndpointsRequest,
-  OutboundNetworkDependenciesEndpointListResult,
-  ClustersListOutboundNetworkDependenciesEndpointsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ClustersListOutboundNetworkDependenciesEndpointsRequest,
-  output: OutboundNetworkDependenciesEndpointListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ClustersListSkusError = AzureOpError;
-/** Lists eligible SKUs for Kusto resource provider. */
-export const ClustersListSkus: API.OperationMethod<
-  ClustersListSkusRequest,
-  SkuDescriptionList,
-  ClustersListSkusError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ClustersListSkusRequest,
-  output: SkuDescriptionList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ClustersListSkusByResourceError = AzureOpError;
-/** Returns the SKUs available for the provided resource. */
-export const ClustersListSkusByResource: API.OperationMethod<
-  ClustersListSkusByResourceRequest,
-  ListResourceSkusResult,
-  ClustersListSkusByResourceError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ClustersListSkusByResourceRequest,
-  output: ListResourceSkusResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ClustersMigrateError = AzureOpError;
-/** Migrate data from a Kusto cluster to another cluster. */
-export const ClustersMigrate: API.OperationMethod<
-  ClustersMigrateRequest,
-  ClustersMigrateResponse,
-  ClustersMigrateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ClustersMigrateRequest,
-  output: ClustersMigrateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ClustersRemoveCalloutPolicyError = AzureOpError;
-/** Removes callout policy for engine services. */
-export const ClustersRemoveCalloutPolicy: API.OperationMethod<
-  ClustersRemoveCalloutPolicyRequest,
-  ClustersRemoveCalloutPolicyResponse,
-  ClustersRemoveCalloutPolicyError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ClustersRemoveCalloutPolicyRequest,
-  output: ClustersRemoveCalloutPolicyResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ClustersRemoveLanguageExtensionsError = AzureOpError;
-/** Remove a list of language extensions that can run within KQL queries. */
-export const ClustersRemoveLanguageExtensions: API.OperationMethod<
-  ClustersRemoveLanguageExtensionsRequest,
-  ClustersRemoveLanguageExtensionsResponse,
-  ClustersRemoveLanguageExtensionsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ClustersRemoveLanguageExtensionsRequest,
-  output: ClustersRemoveLanguageExtensionsResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ClustersStartError = AzureOpError;
-/** Starts a Kusto cluster. */
-export const ClustersStart: API.OperationMethod<
-  ClustersStartRequest,
-  ClustersStartResponse,
-  ClustersStartError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ClustersStartRequest,
-  output: ClustersStartResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ClustersStopError = AzureOpError;
-/** Stops a Kusto cluster. */
-export const ClustersStop: API.OperationMethod<
-  ClustersStopRequest,
-  ClustersStopResponse,
-  ClustersStopError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ClustersStopRequest,
-  output: ClustersStopResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ClustersUpdateError = AzureOpError;
-/** Update a Kusto cluster. */
-export const ClustersUpdate: API.OperationMethod<
-  ClustersUpdateRequest,
-  ClustersUpdateResponse,
-  ClustersUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ClustersUpdateRequest,
-  output: ClustersUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DatabaseInviteFollowerError = AzureOpError;
-/** Generates an invitation token that allows attaching a follower database to this database. */
-export const DatabaseInviteFollower: API.OperationMethod<
-  DatabaseInviteFollowerRequest,
-  DatabaseInviteFollowerResult,
-  DatabaseInviteFollowerError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DatabaseInviteFollowerRequest,
-  output: DatabaseInviteFollowerResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DatabasePrincipalAssignmentsCheckNameAvailabilityError =
-  AzureOpError;
-/** Checks that the database principal assignment is valid and is not already in use. */
-export const DatabasePrincipalAssignmentsCheckNameAvailability: API.OperationMethod<
-  DatabasePrincipalAssignmentsCheckNameAvailabilityRequest,
-  CheckNameResult,
-  DatabasePrincipalAssignmentsCheckNameAvailabilityError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DatabasePrincipalAssignmentsCheckNameAvailabilityRequest,
-  output: CheckNameResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -6693,81 +6413,6 @@ export const DatabasePrincipalAssignmentsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DatabasePrincipalAssignmentsDeleteError = AzureOpError;
-/** Deletes a Kusto principalAssignment. */
-export const DatabasePrincipalAssignmentsDelete: API.OperationMethod<
-  DatabasePrincipalAssignmentsDeleteRequest,
-  DatabasePrincipalAssignmentsDeleteResponse,
-  DatabasePrincipalAssignmentsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DatabasePrincipalAssignmentsDeleteRequest,
-  output: DatabasePrincipalAssignmentsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DatabasePrincipalAssignmentsGetError = AzureOpError;
-/** Gets a Kusto cluster database principalAssignment. */
-export const DatabasePrincipalAssignmentsGet: API.OperationMethod<
-  DatabasePrincipalAssignmentsGetRequest,
-  DatabasePrincipalAssignmentsGetResponse,
-  DatabasePrincipalAssignmentsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DatabasePrincipalAssignmentsGetRequest,
-  output: DatabasePrincipalAssignmentsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DatabasePrincipalAssignmentsListError = AzureOpError;
-/** Lists all Kusto cluster database principalAssignments. */
-export const DatabasePrincipalAssignmentsList: API.OperationMethod<
-  DatabasePrincipalAssignmentsListRequest,
-  DatabasePrincipalAssignmentListResult,
-  DatabasePrincipalAssignmentsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DatabasePrincipalAssignmentsListRequest,
-  output: DatabasePrincipalAssignmentListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DatabasesAddPrincipalsError = AzureOpError;
-/** Add Database principals permissions. */
-export const DatabasesAddPrincipals: API.OperationMethod<
-  DatabasesAddPrincipalsRequest,
-  DatabasePrincipalListResult,
-  DatabasesAddPrincipalsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DatabasesAddPrincipalsRequest,
-  output: DatabasePrincipalListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DatabasesCheckNameAvailabilityError = AzureOpError;
-/** Checks that the databases resource name is valid and is not already in use. */
-export const DatabasesCheckNameAvailability: API.OperationMethod<
-  DatabasesCheckNameAvailabilityRequest,
-  CheckNameResult,
-  DatabasesCheckNameAvailabilityError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DatabasesCheckNameAvailabilityRequest,
-  output: CheckNameResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type DatabasesCreateOrUpdateError = AzureOpError;
 /** Creates or updates a database. */
 export const DatabasesCreateOrUpdate: API.OperationMethod<
@@ -6778,111 +6423,6 @@ export const DatabasesCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: DatabasesCreateOrUpdateRequest,
   output: DatabasesCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DatabasesDeleteError = AzureOpError;
-/** Deletes the database with the given name. */
-export const DatabasesDelete: API.OperationMethod<
-  DatabasesDeleteRequest,
-  DatabasesDeleteResponse,
-  DatabasesDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DatabasesDeleteRequest,
-  output: DatabasesDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DatabasesGetError = AzureOpError;
-/** Returns a database. */
-export const DatabasesGet: API.OperationMethod<
-  DatabasesGetRequest,
-  DatabasesGetResponse,
-  DatabasesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DatabasesGetRequest,
-  output: DatabasesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DatabasesListByClusterError = AzureOpError;
-/** Returns the list of databases of the given Kusto cluster. */
-export const DatabasesListByCluster: API.OperationMethod<
-  DatabasesListByClusterRequest,
-  DatabaseListResult,
-  DatabasesListByClusterError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DatabasesListByClusterRequest,
-  output: DatabaseListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DatabasesListPrincipalsError = AzureOpError;
-/** Returns a list of database principals of the given Kusto cluster and database. */
-export const DatabasesListPrincipals: API.OperationMethod<
-  DatabasesListPrincipalsRequest,
-  DatabasePrincipalListResult,
-  DatabasesListPrincipalsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DatabasesListPrincipalsRequest,
-  output: DatabasePrincipalListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DatabasesRemovePrincipalsError = AzureOpError;
-/** Remove Database principals permissions. */
-export const DatabasesRemovePrincipals: API.OperationMethod<
-  DatabasesRemovePrincipalsRequest,
-  DatabasePrincipalListResult,
-  DatabasesRemovePrincipalsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DatabasesRemovePrincipalsRequest,
-  output: DatabasePrincipalListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DatabasesUpdateError = AzureOpError;
-/** Updates a database. */
-export const DatabasesUpdate: API.OperationMethod<
-  DatabasesUpdateRequest,
-  DatabasesUpdateResponse,
-  DatabasesUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DatabasesUpdateRequest,
-  output: DatabasesUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DataConnectionsCheckNameAvailabilityError = AzureOpError;
-/** Checks that the data connection name is valid and is not already in use. */
-export const DataConnectionsCheckNameAvailability: API.OperationMethod<
-  DataConnectionsCheckNameAvailabilityRequest,
-  CheckNameResult,
-  DataConnectionsCheckNameAvailabilityError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DataConnectionsCheckNameAvailabilityRequest,
-  output: CheckNameResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -6918,76 +6458,676 @@ export const DataConnectionsDataConnectionValidation: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DataConnectionsDeleteError = AzureOpError;
+export type DeleteAttachedDatabaseConfigurationError = AzureOpError;
+/** Deletes the attached database configuration with the given name. */
+export const DeleteAttachedDatabaseConfiguration: API.OperationMethod<
+  DeleteAttachedDatabaseConfigurationRequest,
+  DeleteAttachedDatabaseConfigurationResponse,
+  DeleteAttachedDatabaseConfigurationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteAttachedDatabaseConfigurationRequest,
+  output: DeleteAttachedDatabaseConfigurationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteClusterError = AzureOpError;
+/** Deletes a Kusto cluster. */
+export const DeleteCluster: API.OperationMethod<
+  DeleteClusterRequest,
+  DeleteClusterResponse,
+  DeleteClusterError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteClusterRequest,
+  output: DeleteClusterResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteClusterPrincipalAssignmentError = AzureOpError;
+/** Deletes a Kusto cluster principalAssignment. */
+export const DeleteClusterPrincipalAssignment: API.OperationMethod<
+  DeleteClusterPrincipalAssignmentRequest,
+  DeleteClusterPrincipalAssignmentResponse,
+  DeleteClusterPrincipalAssignmentError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteClusterPrincipalAssignmentRequest,
+  output: DeleteClusterPrincipalAssignmentResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteDatabaseError = AzureOpError;
+/** Deletes the database with the given name. */
+export const DeleteDatabase: API.OperationMethod<
+  DeleteDatabaseRequest,
+  DeleteDatabaseResponse,
+  DeleteDatabaseError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteDatabaseRequest,
+  output: DeleteDatabaseResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteDatabasePrincipalAssignmentError = AzureOpError;
+/** Deletes a Kusto principalAssignment. */
+export const DeleteDatabasePrincipalAssignment: API.OperationMethod<
+  DeleteDatabasePrincipalAssignmentRequest,
+  DeleteDatabasePrincipalAssignmentResponse,
+  DeleteDatabasePrincipalAssignmentError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteDatabasePrincipalAssignmentRequest,
+  output: DeleteDatabasePrincipalAssignmentResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteDataConnectionError = AzureOpError;
 /** Deletes the data connection with the given name. */
-export const DataConnectionsDelete: API.OperationMethod<
-  DataConnectionsDeleteRequest,
-  DataConnectionsDeleteResponse,
-  DataConnectionsDeleteError,
+export const DeleteDataConnection: API.OperationMethod<
+  DeleteDataConnectionRequest,
+  DeleteDataConnectionResponse,
+  DeleteDataConnectionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DataConnectionsDeleteRequest,
-  output: DataConnectionsDeleteResponse,
+  input: DeleteDataConnectionRequest,
+  output: DeleteDataConnectionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DataConnectionsGetError = AzureOpError;
+export type DeleteManagedPrivateEndpointError = AzureOpError;
+/** Deletes a managed private endpoint. */
+export const DeleteManagedPrivateEndpoint: API.OperationMethod<
+  DeleteManagedPrivateEndpointRequest,
+  DeleteManagedPrivateEndpointResponse,
+  DeleteManagedPrivateEndpointError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteManagedPrivateEndpointRequest,
+  output: DeleteManagedPrivateEndpointResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeletePrivateEndpointConnectionError = AzureOpError;
+/** Deletes a private endpoint connection with a given name. */
+export const DeletePrivateEndpointConnection: API.OperationMethod<
+  DeletePrivateEndpointConnectionRequest,
+  DeletePrivateEndpointConnectionResponse,
+  DeletePrivateEndpointConnectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeletePrivateEndpointConnectionRequest,
+  output: DeletePrivateEndpointConnectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteSandboxCustomImageError = AzureOpError;
+/** Deletes a sandbox custom image. */
+export const DeleteSandboxCustomImage: API.OperationMethod<
+  DeleteSandboxCustomImageRequest,
+  DeleteSandboxCustomImageResponse,
+  DeleteSandboxCustomImageError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteSandboxCustomImageRequest,
+  output: DeleteSandboxCustomImageResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteScriptError = AzureOpError;
+/** Deletes a Kusto database script. */
+export const DeleteScript: API.OperationMethod<
+  DeleteScriptRequest,
+  DeleteScriptResponse,
+  DeleteScriptError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteScriptRequest,
+  output: DeleteScriptResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DetachClusterFollowerDatabasesError = AzureOpError;
+/** Detaches all followers of a database owned by this cluster. */
+export const DetachClusterFollowerDatabases: API.OperationMethod<
+  DetachClusterFollowerDatabasesRequest,
+  DetachClusterFollowerDatabasesResponse,
+  DetachClusterFollowerDatabasesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DetachClusterFollowerDatabasesRequest,
+  output: DetachClusterFollowerDatabasesResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetAttachedDatabaseConfigurationError = AzureOpError;
+/** Returns an attached database configuration. */
+export const GetAttachedDatabaseConfiguration: API.OperationMethod<
+  GetAttachedDatabaseConfigurationRequest,
+  GetAttachedDatabaseConfigurationResponse,
+  GetAttachedDatabaseConfigurationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetAttachedDatabaseConfigurationRequest,
+  output: GetAttachedDatabaseConfigurationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetClusterError = AzureOpError;
+/** Gets a Kusto cluster. */
+export const GetCluster: API.OperationMethod<
+  GetClusterRequest,
+  GetClusterResponse,
+  GetClusterError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetClusterRequest,
+  output: GetClusterResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetClusterPrincipalAssignmentError = AzureOpError;
+/** Gets a Kusto cluster principalAssignment. */
+export const GetClusterPrincipalAssignment: API.OperationMethod<
+  GetClusterPrincipalAssignmentRequest,
+  GetClusterPrincipalAssignmentResponse,
+  GetClusterPrincipalAssignmentError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetClusterPrincipalAssignmentRequest,
+  output: GetClusterPrincipalAssignmentResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDatabaseError = AzureOpError;
+/** Returns a database. */
+export const GetDatabase: API.OperationMethod<
+  GetDatabaseRequest,
+  GetDatabaseResponse,
+  GetDatabaseError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDatabaseRequest,
+  output: GetDatabaseResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDatabasePrincipalAssignmentError = AzureOpError;
+/** Gets a Kusto cluster database principalAssignment. */
+export const GetDatabasePrincipalAssignment: API.OperationMethod<
+  GetDatabasePrincipalAssignmentRequest,
+  GetDatabasePrincipalAssignmentResponse,
+  GetDatabasePrincipalAssignmentError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDatabasePrincipalAssignmentRequest,
+  output: GetDatabasePrincipalAssignmentResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDataConnectionError = AzureOpError;
 /** Returns a data connection. */
-export const DataConnectionsGet: API.OperationMethod<
-  DataConnectionsGetRequest,
-  DataConnectionsGetResponse,
-  DataConnectionsGetError,
+export const GetDataConnection: API.OperationMethod<
+  GetDataConnectionRequest,
+  GetDataConnectionResponse,
+  GetDataConnectionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DataConnectionsGetRequest,
-  output: DataConnectionsGetResponse,
+  input: GetDataConnectionRequest,
+  output: GetDataConnectionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DataConnectionsListByDatabaseError = AzureOpError;
-/** Returns the list of data connections of the given Kusto database. */
-export const DataConnectionsListByDatabase: API.OperationMethod<
-  DataConnectionsListByDatabaseRequest,
-  DataConnectionListResult,
-  DataConnectionsListByDatabaseError,
+export type GetManagedPrivateEndpointError = AzureOpError;
+/** Gets a managed private endpoint. */
+export const GetManagedPrivateEndpoint: API.OperationMethod<
+  GetManagedPrivateEndpointRequest,
+  GetManagedPrivateEndpointResponse,
+  GetManagedPrivateEndpointError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DataConnectionsListByDatabaseRequest,
+  input: GetManagedPrivateEndpointRequest,
+  output: GetManagedPrivateEndpointResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetOperationsResultError = AzureOpError;
+/** Returns operation results. */
+export const GetOperationsResult: API.OperationMethod<
+  GetOperationsResultRequest,
+  OperationResult,
+  GetOperationsResultError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetOperationsResultRequest,
+  output: OperationResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetPrivateEndpointConnectionError = AzureOpError;
+/** Gets a private endpoint connection. */
+export const GetPrivateEndpointConnection: API.OperationMethod<
+  GetPrivateEndpointConnectionRequest,
+  GetPrivateEndpointConnectionResponse,
+  GetPrivateEndpointConnectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPrivateEndpointConnectionRequest,
+  output: GetPrivateEndpointConnectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetPrivateLinkResourceError = AzureOpError;
+/** Gets a private link resource. */
+export const GetPrivateLinkResource: API.OperationMethod<
+  GetPrivateLinkResourceRequest,
+  GetPrivateLinkResourceResponse,
+  GetPrivateLinkResourceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPrivateLinkResourceRequest,
+  output: GetPrivateLinkResourceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSandboxCustomImageError = AzureOpError;
+/** Returns a sandbox custom image */
+export const GetSandboxCustomImage: API.OperationMethod<
+  GetSandboxCustomImageRequest,
+  GetSandboxCustomImageResponse,
+  GetSandboxCustomImageError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSandboxCustomImageRequest,
+  output: GetSandboxCustomImageResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetScriptError = AzureOpError;
+/** Gets a Kusto cluster database script. */
+export const GetScript: API.OperationMethod<
+  GetScriptRequest,
+  GetScriptResponse,
+  GetScriptError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetScriptRequest,
+  output: GetScriptResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type InviteDatabaseFollowerError = AzureOpError;
+/** Generates an invitation token that allows attaching a follower database to this database. */
+export const InviteDatabaseFollower: API.OperationMethod<
+  InviteDatabaseFollowerRequest,
+  DatabaseInviteFollowerResult,
+  InviteDatabaseFollowerError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: InviteDatabaseFollowerRequest,
+  output: DatabaseInviteFollowerResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListAttachedDatabaseConfigurationByClusterError = AzureOpError;
+/** Returns the list of attached database configurations of the given Kusto cluster. */
+export const ListAttachedDatabaseConfigurationByCluster: API.OperationMethod<
+  ListAttachedDatabaseConfigurationByClusterRequest,
+  AttachedDatabaseConfigurationListResult,
+  ListAttachedDatabaseConfigurationByClusterError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListAttachedDatabaseConfigurationByClusterRequest,
+  output: AttachedDatabaseConfigurationListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListClusterByResourceGroupError = AzureOpError;
+/** Lists all Kusto clusters within a resource group. */
+export const ListClusterByResourceGroup: API.OperationMethod<
+  ListClusterByResourceGroupRequest,
+  ClusterListResult,
+  ListClusterByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListClusterByResourceGroupRequest,
+  output: ClusterListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListClusterCalloutPoliciesError = AzureOpError;
+/** Returns the allowed callout policies for the specified service. */
+export const ListClusterCalloutPolicies: API.OperationMethod<
+  ListClusterCalloutPoliciesRequest,
+  CalloutPoliciesList,
+  ListClusterCalloutPoliciesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListClusterCalloutPoliciesRequest,
+  output: CalloutPoliciesList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListClusterFollowerDatabasesError = AzureOpError;
+/** Returns a list of databases that are owned by this cluster and were followed by another cluster. */
+export const ListClusterFollowerDatabases: API.OperationMethod<
+  ListClusterFollowerDatabasesRequest,
+  FollowerDatabaseListResult,
+  ListClusterFollowerDatabasesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListClusterFollowerDatabasesRequest,
+  output: FollowerDatabaseListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListClusterLanguageExtensionsError = AzureOpError;
+/** Returns a list of language extensions that can run within KQL queries. */
+export const ListClusterLanguageExtensions: API.OperationMethod<
+  ListClusterLanguageExtensionsRequest,
+  LanguageExtensionsList,
+  ListClusterLanguageExtensionsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListClusterLanguageExtensionsRequest,
+  output: LanguageExtensionsList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListClusterOutboundNetworkDependenciesEndpointsError = AzureOpError;
+/** Gets the network endpoints of all outbound dependencies of a Kusto cluster */
+export const ListClusterOutboundNetworkDependenciesEndpoints: API.OperationMethod<
+  ListClusterOutboundNetworkDependenciesEndpointsRequest,
+  OutboundNetworkDependenciesEndpointListResult,
+  ListClusterOutboundNetworkDependenciesEndpointsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListClusterOutboundNetworkDependenciesEndpointsRequest,
+  output: OutboundNetworkDependenciesEndpointListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListClusterPrincipalAssignmentsError = AzureOpError;
+/** Lists all Kusto cluster principalAssignments. */
+export const ListClusterPrincipalAssignments: API.OperationMethod<
+  ListClusterPrincipalAssignmentsRequest,
+  ClusterPrincipalAssignmentListResult,
+  ListClusterPrincipalAssignmentsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListClusterPrincipalAssignmentsRequest,
+  output: ClusterPrincipalAssignmentListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListClustersError = AzureOpError;
+/** Lists all Kusto clusters within a subscription. */
+export const ListClusters: API.OperationMethod<
+  ListClustersRequest,
+  ClusterListResult,
+  ListClustersError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListClustersRequest,
+  output: ClusterListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListClusterSkusError = AzureOpError;
+/** Lists eligible SKUs for Kusto resource provider. */
+export const ListClusterSkus: API.OperationMethod<
+  ListClusterSkusRequest,
+  SkuDescriptionList,
+  ListClusterSkusError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListClusterSkusRequest,
+  output: SkuDescriptionList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListClusterSkusByResourceError = AzureOpError;
+/** Returns the SKUs available for the provided resource. */
+export const ListClusterSkusByResource: API.OperationMethod<
+  ListClusterSkusByResourceRequest,
+  ListResourceSkusResult,
+  ListClusterSkusByResourceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListClusterSkusByResourceRequest,
+  output: ListResourceSkusResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDatabaseByClusterError = AzureOpError;
+/** Returns the list of databases of the given Kusto cluster. */
+export const ListDatabaseByCluster: API.OperationMethod<
+  ListDatabaseByClusterRequest,
+  DatabaseListResult,
+  ListDatabaseByClusterError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDatabaseByClusterRequest,
+  output: DatabaseListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDatabasePrincipalAssignmentsError = AzureOpError;
+/** Lists all Kusto cluster database principalAssignments. */
+export const ListDatabasePrincipalAssignments: API.OperationMethod<
+  ListDatabasePrincipalAssignmentsRequest,
+  DatabasePrincipalAssignmentListResult,
+  ListDatabasePrincipalAssignmentsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDatabasePrincipalAssignmentsRequest,
+  output: DatabasePrincipalAssignmentListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDatabasePrincipalsError = AzureOpError;
+/** Returns a list of database principals of the given Kusto cluster and database. */
+export const ListDatabasePrincipals: API.OperationMethod<
+  ListDatabasePrincipalsRequest,
+  DatabasePrincipalListResult,
+  ListDatabasePrincipalsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDatabasePrincipalsRequest,
+  output: DatabasePrincipalListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDataConnectionByDatabaseError = AzureOpError;
+/** Returns the list of data connections of the given Kusto database. */
+export const ListDataConnectionByDatabase: API.OperationMethod<
+  ListDataConnectionByDatabaseRequest,
+  DataConnectionListResult,
+  ListDataConnectionByDatabaseError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDataConnectionByDatabaseRequest,
   output: DataConnectionListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DataConnectionsUpdateError = AzureOpError;
-/** Updates a data connection. */
-export const DataConnectionsUpdate: API.OperationMethod<
-  DataConnectionsUpdateRequest,
-  DataConnectionsUpdateResponse,
-  DataConnectionsUpdateError,
+export type ListManagedPrivateEndpointsError = AzureOpError;
+/** Returns the list of managed private endpoints. */
+export const ListManagedPrivateEndpoints: API.OperationMethod<
+  ListManagedPrivateEndpointsRequest,
+  ManagedPrivateEndpointListResult,
+  ListManagedPrivateEndpointsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DataConnectionsUpdateRequest,
-  output: DataConnectionsUpdateResponse,
+  input: ListManagedPrivateEndpointsRequest,
+  output: ManagedPrivateEndpointListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ManagedPrivateEndpointsCheckNameAvailabilityError = AzureOpError;
-/** Checks that the managed private endpoints resource name is valid and is not already in use. */
-export const ManagedPrivateEndpointsCheckNameAvailability: API.OperationMethod<
-  ManagedPrivateEndpointsCheckNameAvailabilityRequest,
-  CheckNameResult,
-  ManagedPrivateEndpointsCheckNameAvailabilityError,
+export type ListOperationsError = AzureOpError;
+/** List the operations for the provider */
+export const ListOperations: API.OperationMethod<
+  ListOperationsRequest,
+  OperationListResult,
+  ListOperationsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ManagedPrivateEndpointsCheckNameAvailabilityRequest,
-  output: CheckNameResult,
+  input: ListOperationsRequest,
+  output: OperationListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListPrivateEndpointConnectionsError = AzureOpError;
+/** Returns the list of private endpoint connections. */
+export const ListPrivateEndpointConnections: API.OperationMethod<
+  ListPrivateEndpointConnectionsRequest,
+  PrivateEndpointConnectionListResult,
+  ListPrivateEndpointConnectionsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListPrivateEndpointConnectionsRequest,
+  output: PrivateEndpointConnectionListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListPrivateLinkResourcesError = AzureOpError;
+/** Returns the list of private link resources. */
+export const ListPrivateLinkResources: API.OperationMethod<
+  ListPrivateLinkResourcesRequest,
+  PrivateLinkResourceListResult,
+  ListPrivateLinkResourcesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListPrivateLinkResourcesRequest,
+  output: PrivateLinkResourceListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSandboxCustomImageByClusterError = AzureOpError;
+/** Returns the list of the existing sandbox custom images of the given Kusto cluster. */
+export const ListSandboxCustomImageByCluster: API.OperationMethod<
+  ListSandboxCustomImageByClusterRequest,
+  SandboxCustomImagesListResult,
+  ListSandboxCustomImageByClusterError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSandboxCustomImageByClusterRequest,
+  output: SandboxCustomImagesListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListScriptByDatabaseError = AzureOpError;
+/** Returns the list of database scripts for given database. */
+export const ListScriptByDatabase: API.OperationMethod<
+  ListScriptByDatabaseRequest,
+  ScriptListResult,
+  ListScriptByDatabaseError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListScriptByDatabaseRequest,
+  output: ScriptListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSkusError = AzureOpError;
+/** Lists eligible region SKUs for Kusto resource provider by Azure region. */
+export const ListSkus: API.OperationMethod<
+  ListSkusRequest,
+  SkuDescriptionList,
+  ListSkusError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSkusRequest,
+  output: SkuDescriptionList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -7008,91 +7148,16 @@ export const ManagedPrivateEndpointsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ManagedPrivateEndpointsDeleteError = AzureOpError;
-/** Deletes a managed private endpoint. */
-export const ManagedPrivateEndpointsDelete: API.OperationMethod<
-  ManagedPrivateEndpointsDeleteRequest,
-  ManagedPrivateEndpointsDeleteResponse,
-  ManagedPrivateEndpointsDeleteError,
+export type MigrateClusterError = AzureOpError;
+/** Migrate data from a Kusto cluster to another cluster. */
+export const MigrateCluster: API.OperationMethod<
+  MigrateClusterRequest,
+  MigrateClusterResponse,
+  MigrateClusterError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ManagedPrivateEndpointsDeleteRequest,
-  output: ManagedPrivateEndpointsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ManagedPrivateEndpointsGetError = AzureOpError;
-/** Gets a managed private endpoint. */
-export const ManagedPrivateEndpointsGet: API.OperationMethod<
-  ManagedPrivateEndpointsGetRequest,
-  ManagedPrivateEndpointsGetResponse,
-  ManagedPrivateEndpointsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ManagedPrivateEndpointsGetRequest,
-  output: ManagedPrivateEndpointsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ManagedPrivateEndpointsListError = AzureOpError;
-/** Returns the list of managed private endpoints. */
-export const ManagedPrivateEndpointsList: API.OperationMethod<
-  ManagedPrivateEndpointsListRequest,
-  ManagedPrivateEndpointListResult,
-  ManagedPrivateEndpointsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ManagedPrivateEndpointsListRequest,
-  output: ManagedPrivateEndpointListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ManagedPrivateEndpointsUpdateError = AzureOpError;
-/** Updates a managed private endpoint. */
-export const ManagedPrivateEndpointsUpdate: API.OperationMethod<
-  ManagedPrivateEndpointsUpdateRequest,
-  ManagedPrivateEndpointsUpdateResponse,
-  ManagedPrivateEndpointsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ManagedPrivateEndpointsUpdateRequest,
-  output: ManagedPrivateEndpointsUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type OperationsListError = AzureOpError;
-/** List the operations for the provider */
-export const OperationsList: API.OperationMethod<
-  OperationsListRequest,
-  OperationListResult,
-  OperationsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: OperationsListRequest,
-  output: OperationListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type OperationsResultsGetError = AzureOpError;
-/** Returns operation results. */
-export const OperationsResultsGet: API.OperationMethod<
-  OperationsResultsGetRequest,
-  OperationResult,
-  OperationsResultsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: OperationsResultsGetRequest,
-  output: OperationResult,
+  input: MigrateClusterRequest,
+  output: MigrateClusterResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -7113,91 +7178,46 @@ export const PrivateEndpointConnectionsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type PrivateEndpointConnectionsDeleteError = AzureOpError;
-/** Deletes a private endpoint connection with a given name. */
-export const PrivateEndpointConnectionsDelete: API.OperationMethod<
-  PrivateEndpointConnectionsDeleteRequest,
-  PrivateEndpointConnectionsDeleteResponse,
-  PrivateEndpointConnectionsDeleteError,
+export type RemoveClusterCalloutPolicyError = AzureOpError;
+/** Removes callout policy for engine services. */
+export const RemoveClusterCalloutPolicy: API.OperationMethod<
+  RemoveClusterCalloutPolicyRequest,
+  RemoveClusterCalloutPolicyResponse,
+  RemoveClusterCalloutPolicyError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PrivateEndpointConnectionsDeleteRequest,
-  output: PrivateEndpointConnectionsDeleteResponse,
+  input: RemoveClusterCalloutPolicyRequest,
+  output: RemoveClusterCalloutPolicyResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type PrivateEndpointConnectionsGetError = AzureOpError;
-/** Gets a private endpoint connection. */
-export const PrivateEndpointConnectionsGet: API.OperationMethod<
-  PrivateEndpointConnectionsGetRequest,
-  PrivateEndpointConnectionsGetResponse,
-  PrivateEndpointConnectionsGetError,
+export type RemoveClusterLanguageExtensionsError = AzureOpError;
+/** Remove a list of language extensions that can run within KQL queries. */
+export const RemoveClusterLanguageExtensions: API.OperationMethod<
+  RemoveClusterLanguageExtensionsRequest,
+  RemoveClusterLanguageExtensionsResponse,
+  RemoveClusterLanguageExtensionsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PrivateEndpointConnectionsGetRequest,
-  output: PrivateEndpointConnectionsGetResponse,
+  input: RemoveClusterLanguageExtensionsRequest,
+  output: RemoveClusterLanguageExtensionsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type PrivateEndpointConnectionsListError = AzureOpError;
-/** Returns the list of private endpoint connections. */
-export const PrivateEndpointConnectionsList: API.OperationMethod<
-  PrivateEndpointConnectionsListRequest,
-  PrivateEndpointConnectionListResult,
-  PrivateEndpointConnectionsListError,
+export type RemoveDatabasePrincipalsError = AzureOpError;
+/** Remove Database principals permissions. */
+export const RemoveDatabasePrincipals: API.OperationMethod<
+  RemoveDatabasePrincipalsRequest,
+  DatabasePrincipalListResult,
+  RemoveDatabasePrincipalsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PrivateEndpointConnectionsListRequest,
-  output: PrivateEndpointConnectionListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateLinkResourcesGetError = AzureOpError;
-/** Gets a private link resource. */
-export const PrivateLinkResourcesGet: API.OperationMethod<
-  PrivateLinkResourcesGetRequest,
-  PrivateLinkResourcesGetResponse,
-  PrivateLinkResourcesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateLinkResourcesGetRequest,
-  output: PrivateLinkResourcesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateLinkResourcesListError = AzureOpError;
-/** Returns the list of private link resources. */
-export const PrivateLinkResourcesList: API.OperationMethod<
-  PrivateLinkResourcesListRequest,
-  PrivateLinkResourceListResult,
-  PrivateLinkResourcesListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateLinkResourcesListRequest,
-  output: PrivateLinkResourceListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SandboxCustomImagesCheckNameAvailabilityError = AzureOpError;
-/** Checks that the sandbox custom image resource name is valid and is not already in use. */
-export const SandboxCustomImagesCheckNameAvailability: API.OperationMethod<
-  SandboxCustomImagesCheckNameAvailabilityRequest,
-  CheckNameResult,
-  SandboxCustomImagesCheckNameAvailabilityError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SandboxCustomImagesCheckNameAvailabilityRequest,
-  output: CheckNameResult,
+  input: RemoveDatabasePrincipalsRequest,
+  output: DatabasePrincipalListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -7218,81 +7238,6 @@ export const SandboxCustomImagesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type SandboxCustomImagesDeleteError = AzureOpError;
-/** Deletes a sandbox custom image. */
-export const SandboxCustomImagesDelete: API.OperationMethod<
-  SandboxCustomImagesDeleteRequest,
-  SandboxCustomImagesDeleteResponse,
-  SandboxCustomImagesDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SandboxCustomImagesDeleteRequest,
-  output: SandboxCustomImagesDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SandboxCustomImagesGetError = AzureOpError;
-/** Returns a sandbox custom image */
-export const SandboxCustomImagesGet: API.OperationMethod<
-  SandboxCustomImagesGetRequest,
-  SandboxCustomImagesGetResponse,
-  SandboxCustomImagesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SandboxCustomImagesGetRequest,
-  output: SandboxCustomImagesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SandboxCustomImagesListByClusterError = AzureOpError;
-/** Returns the list of the existing sandbox custom images of the given Kusto cluster. */
-export const SandboxCustomImagesListByCluster: API.OperationMethod<
-  SandboxCustomImagesListByClusterRequest,
-  SandboxCustomImagesListResult,
-  SandboxCustomImagesListByClusterError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SandboxCustomImagesListByClusterRequest,
-  output: SandboxCustomImagesListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SandboxCustomImagesUpdateError = AzureOpError;
-/** Updates a sandbox custom image. */
-export const SandboxCustomImagesUpdate: API.OperationMethod<
-  SandboxCustomImagesUpdateRequest,
-  SandboxCustomImagesUpdateResponse,
-  SandboxCustomImagesUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SandboxCustomImagesUpdateRequest,
-  output: SandboxCustomImagesUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ScriptsCheckNameAvailabilityError = AzureOpError;
-/** Checks that the script name is valid and is not already in use. */
-export const ScriptsCheckNameAvailability: API.OperationMethod<
-  ScriptsCheckNameAvailabilityRequest,
-  CheckNameResult,
-  ScriptsCheckNameAvailabilityError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ScriptsCheckNameAvailabilityRequest,
-  output: CheckNameResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ScriptsCreateOrUpdateError = AzureOpError;
 /** Creates a Kusto database script. */
 export const ScriptsCreateOrUpdate: API.OperationMethod<
@@ -7308,76 +7253,121 @@ export const ScriptsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ScriptsDeleteError = AzureOpError;
-/** Deletes a Kusto database script. */
-export const ScriptsDelete: API.OperationMethod<
-  ScriptsDeleteRequest,
-  ScriptsDeleteResponse,
-  ScriptsDeleteError,
+export type StartClusterError = AzureOpError;
+/** Starts a Kusto cluster. */
+export const StartCluster: API.OperationMethod<
+  StartClusterRequest,
+  StartClusterResponse,
+  StartClusterError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ScriptsDeleteRequest,
-  output: ScriptsDeleteResponse,
+  input: StartClusterRequest,
+  output: StartClusterResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ScriptsGetError = AzureOpError;
-/** Gets a Kusto cluster database script. */
-export const ScriptsGet: API.OperationMethod<
-  ScriptsGetRequest,
-  ScriptsGetResponse,
-  ScriptsGetError,
+export type StopClusterError = AzureOpError;
+/** Stops a Kusto cluster. */
+export const StopCluster: API.OperationMethod<
+  StopClusterRequest,
+  StopClusterResponse,
+  StopClusterError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ScriptsGetRequest,
-  output: ScriptsGetResponse,
+  input: StopClusterRequest,
+  output: StopClusterResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ScriptsListByDatabaseError = AzureOpError;
-/** Returns the list of database scripts for given database. */
-export const ScriptsListByDatabase: API.OperationMethod<
-  ScriptsListByDatabaseRequest,
-  ScriptListResult,
-  ScriptsListByDatabaseError,
+export type UpdateClusterError = AzureOpError;
+/** Update a Kusto cluster. */
+export const UpdateCluster: API.OperationMethod<
+  UpdateClusterRequest,
+  UpdateClusterResponse,
+  UpdateClusterError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ScriptsListByDatabaseRequest,
-  output: ScriptListResult,
+  input: UpdateClusterRequest,
+  output: UpdateClusterResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ScriptsUpdateError = AzureOpError;
+export type UpdateDatabaseError = AzureOpError;
+/** Updates a database. */
+export const UpdateDatabase: API.OperationMethod<
+  UpdateDatabaseRequest,
+  UpdateDatabaseResponse,
+  UpdateDatabaseError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateDatabaseRequest,
+  output: UpdateDatabaseResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateDataConnectionError = AzureOpError;
+/** Updates a data connection. */
+export const UpdateDataConnection: API.OperationMethod<
+  UpdateDataConnectionRequest,
+  UpdateDataConnectionResponse,
+  UpdateDataConnectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateDataConnectionRequest,
+  output: UpdateDataConnectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateManagedPrivateEndpointError = AzureOpError;
+/** Updates a managed private endpoint. */
+export const UpdateManagedPrivateEndpoint: API.OperationMethod<
+  UpdateManagedPrivateEndpointRequest,
+  UpdateManagedPrivateEndpointResponse,
+  UpdateManagedPrivateEndpointError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateManagedPrivateEndpointRequest,
+  output: UpdateManagedPrivateEndpointResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateSandboxCustomImageError = AzureOpError;
+/** Updates a sandbox custom image. */
+export const UpdateSandboxCustomImage: API.OperationMethod<
+  UpdateSandboxCustomImageRequest,
+  UpdateSandboxCustomImageResponse,
+  UpdateSandboxCustomImageError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateSandboxCustomImageRequest,
+  output: UpdateSandboxCustomImageResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateScriptError = AzureOpError;
 /** Updates a database script. */
-export const ScriptsUpdate: API.OperationMethod<
-  ScriptsUpdateRequest,
-  ScriptsUpdateResponse,
-  ScriptsUpdateError,
+export const UpdateScript: API.OperationMethod<
+  UpdateScriptRequest,
+  UpdateScriptResponse,
+  UpdateScriptError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ScriptsUpdateRequest,
-  output: ScriptsUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SkusListError = AzureOpError;
-/** Lists eligible region SKUs for Kusto resource provider by Azure region. */
-export const SkusList: API.OperationMethod<
-  SkusListRequest,
-  SkuDescriptionList,
-  SkusListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SkusListRequest,
-  output: SkuDescriptionList,
+  input: UpdateScriptRequest,
+  output: UpdateScriptResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

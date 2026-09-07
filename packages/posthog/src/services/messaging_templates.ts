@@ -105,7 +105,7 @@ export const MessageTemplateContent = /*@__PURE__*/ S.suspend(() =>
   identifier: "MessageTemplateContent",
 }) as any as S.Schema<MessageTemplateContent>;
 
-export interface MessagingTemplatesCreateRequest {
+export interface CreateMessagingTemplateRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** Human-readable template name shown in the library. */
@@ -121,7 +121,7 @@ export interface MessagingTemplatesCreateRequest {
   /** Soft-delete flag. Set true to remove the template from the library. */
   deleted?: boolean;
 }
-export const MessagingTemplatesCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateMessagingTemplateRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     name: S.String,
@@ -138,8 +138,8 @@ export const MessagingTemplatesCreateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "MessagingTemplatesCreateRequest",
-}) as any as S.Schema<MessagingTemplatesCreateRequest>;
+  identifier: "CreateMessagingTemplateRequest",
+}) as any as S.Schema<CreateMessagingTemplateRequest>;
 
 export type UserBasicHedgehogConfigMap = { [key: string]: unknown | undefined };
 export const UserBasicHedgehogConfigMap = /*@__PURE__*/ S.Record(
@@ -227,6 +227,140 @@ export const MessageTemplate = /*@__PURE__*/ S.suspend(() =>
   identifier: "MessageTemplate",
 }) as any as S.Schema<MessageTemplate>;
 
+export interface GetMessagingTemplateRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this message template. */
+  id: string;
+}
+export const GetMessagingTemplateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/messaging_templates/{id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetMessagingTemplateRequest",
+}) as any as S.Schema<GetMessagingTemplateRequest>;
+
+export interface ListMessagingTemplatesRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** Number of results to return per page. */
+  limit?: number;
+  /** The initial index from which to return the results. */
+  offset?: number;
+}
+export const ListMessagingTemplatesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    offset: S.optional(S.Number.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/messaging_templates/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListMessagingTemplatesRequest",
+}) as any as S.Schema<ListMessagingTemplatesRequest>;
+
+export type PaginatedMessageTemplateListResultsList = Array<MessageTemplate>;
+export const PaginatedMessageTemplateListResultsList = /*@__PURE__*/ S.Array(
+  MessageTemplate,
+) as any as S.Schema<PaginatedMessageTemplateListResultsList>;
+
+export interface PaginatedMessageTemplateList {
+  count: number;
+  next?: string | null;
+  previous?: string | null;
+  results: PaginatedMessageTemplateListResultsList;
+}
+export const PaginatedMessageTemplateList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    count: S.Number,
+    next: S.optional(S.NullOr(S.String)),
+    previous: S.optional(S.NullOr(S.String)),
+    results: PaginatedMessageTemplateListResultsList,
+  }),
+).annotate({
+  identifier: "PaginatedMessageTemplateList",
+}) as any as S.Schema<PaginatedMessageTemplateList>;
+
+export interface MessagingTemplatesDestroyRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this message template. */
+  id: string;
+}
+export const MessagingTemplatesDestroyRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/api/projects/{project_id}/messaging_templates/{id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "MessagingTemplatesDestroyRequest",
+}) as any as S.Schema<MessagingTemplatesDestroyRequest>;
+
+export interface MessagingTemplatesDestroyResponse {}
+export const MessagingTemplatesDestroyResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "MessagingTemplatesDestroyResponse",
+}) as any as S.Schema<MessagingTemplatesDestroyResponse>;
+
+export interface UpdateMessagingTemplateRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this message template. */
+  id: string;
+  /** Human-readable template name shown in the library. */
+  name: string;
+  /** What the template is for and when to use it. */
+  description?: string;
+  /** Template content keyed by channel. Replaced as a whole on update, not merged. */
+  content?: MessageTemplateContent;
+  /** Message channel of the template. Currently 'email'. */
+  type?: string;
+  /** Message category ID to file the template under. Must belong to the same project. */
+  message_category?: string | null;
+  /** Soft-delete flag. Set true to remove the template from the library. */
+  deleted?: boolean;
+}
+export const UpdateMessagingTemplateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+    name: S.String,
+    description: S.optional(S.String),
+    content: S.optional(MessageTemplateContent),
+    type: S.optional(S.String),
+    message_category: S.optional(S.NullOr(S.String)),
+    deleted: S.optional(S.Boolean),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/api/projects/{project_id}/messaging_templates/{id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "UpdateMessagingTemplateRequest",
+}) as any as S.Schema<UpdateMessagingTemplateRequest>;
+
 /** * `update_content` - update_content * `update_column` - update_column * `update_row` - update_row * `update_body` - update_body * `add_content` - add_content * `remove_content` - remove_content * `move_content` - move_content * `add_row` - add_row * `remove_row` - remove_row */
 export type EmailTemplateDesignOperationEnum =
   | "update_content"
@@ -271,28 +405,28 @@ export const DesignOperation = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<DesignOperation>;
 
 /** Ordered edits applied atomically to a template's Unlayer design: the stored design is read, the ops are applied in order, the result is validated and re-rendered to HTML, and it's saved only if valid — otherwise the template is unchanged. Reference blocks by id so you never resend the whole design. */
-export type MessagingTemplatesDesignPartialUpdateRequestOperationsList =
+export type UpdateMessagingTemplatesDesignPartialRequestOperationsList =
   Array<DesignOperation>;
-export const MessagingTemplatesDesignPartialUpdateRequestOperationsList =
+export const UpdateMessagingTemplatesDesignPartialRequestOperationsList =
   /*@__PURE__*/ S.Array(
     DesignOperation,
-  ) as any as S.Schema<MessagingTemplatesDesignPartialUpdateRequestOperationsList>;
+  ) as any as S.Schema<UpdateMessagingTemplatesDesignPartialRequestOperationsList>;
 
-export interface MessagingTemplatesDesignPartialUpdateRequest {
+export interface UpdateMessagingTemplatesDesignPartialRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A UUID string identifying this message template. */
   id: string;
   /** Ordered edits applied atomically to a template's Unlayer design: the stored design is read, the ops are applied in order, the result is validated and re-rendered to HTML, and it's saved only if valid — otherwise the template is unchanged. Reference blocks by id so you never resend the whole design. */
-  operations?: MessagingTemplatesDesignPartialUpdateRequestOperationsList;
+  operations?: UpdateMessagingTemplatesDesignPartialRequestOperationsList;
 }
-export const MessagingTemplatesDesignPartialUpdateRequest =
+export const UpdateMessagingTemplatesDesignPartialRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
       id: S.String.pipe(T.Label()),
       operations: S.optional(
-        MessagingTemplatesDesignPartialUpdateRequestOperationsList,
+        UpdateMessagingTemplatesDesignPartialRequestOperationsList,
       ),
     }).pipe(
       T.Http({
@@ -302,84 +436,10 @@ export const MessagingTemplatesDesignPartialUpdateRequest =
       }),
     ),
   ).annotate({
-    identifier: "MessagingTemplatesDesignPartialUpdateRequest",
-  }) as any as S.Schema<MessagingTemplatesDesignPartialUpdateRequest>;
+    identifier: "UpdateMessagingTemplatesDesignPartialRequest",
+  }) as any as S.Schema<UpdateMessagingTemplatesDesignPartialRequest>;
 
-export interface MessagingTemplatesDestroyRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this message template. */
-  id: string;
-}
-export const MessagingTemplatesDestroyRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/api/projects/{project_id}/messaging_templates/{id}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "MessagingTemplatesDestroyRequest",
-}) as any as S.Schema<MessagingTemplatesDestroyRequest>;
-
-export interface MessagingTemplatesDestroyResponse {}
-export const MessagingTemplatesDestroyResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "MessagingTemplatesDestroyResponse",
-}) as any as S.Schema<MessagingTemplatesDestroyResponse>;
-
-export interface MessagingTemplatesListRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** Number of results to return per page. */
-  limit?: number;
-  /** The initial index from which to return the results. */
-  offset?: number;
-}
-export const MessagingTemplatesListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    offset: S.optional(S.Number.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/messaging_templates/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "MessagingTemplatesListRequest",
-}) as any as S.Schema<MessagingTemplatesListRequest>;
-
-export type PaginatedMessageTemplateListResultsList = Array<MessageTemplate>;
-export const PaginatedMessageTemplateListResultsList = /*@__PURE__*/ S.Array(
-  MessageTemplate,
-) as any as S.Schema<PaginatedMessageTemplateListResultsList>;
-
-export interface PaginatedMessageTemplateList {
-  count: number;
-  next?: string | null;
-  previous?: string | null;
-  results: PaginatedMessageTemplateListResultsList;
-}
-export const PaginatedMessageTemplateList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    count: S.Number,
-    next: S.optional(S.NullOr(S.String)),
-    previous: S.optional(S.NullOr(S.String)),
-    results: PaginatedMessageTemplateListResultsList,
-  }),
-).annotate({
-  identifier: "PaginatedMessageTemplateList",
-}) as any as S.Schema<PaginatedMessageTemplateList>;
-
-export interface MessagingTemplatesPartialUpdateRequest {
+export interface UpdateMessagingTemplatesPartialRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A UUID string identifying this message template. */
@@ -397,7 +457,7 @@ export interface MessagingTemplatesPartialUpdateRequest {
   /** Soft-delete flag. Set true to remove the template from the library. */
   deleted?: boolean;
 }
-export const MessagingTemplatesPartialUpdateRequest = /*@__PURE__*/ S.suspend(
+export const UpdateMessagingTemplatesPartialRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
@@ -416,92 +476,46 @@ export const MessagingTemplatesPartialUpdateRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "MessagingTemplatesPartialUpdateRequest",
-}) as any as S.Schema<MessagingTemplatesPartialUpdateRequest>;
+  identifier: "UpdateMessagingTemplatesPartialRequest",
+}) as any as S.Schema<UpdateMessagingTemplatesPartialRequest>;
 
-export interface MessagingTemplatesRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this message template. */
-  id: string;
-}
-export const MessagingTemplatesRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/messaging_templates/{id}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "MessagingTemplatesRetrieveRequest",
-}) as any as S.Schema<MessagingTemplatesRetrieveRequest>;
-
-export interface MessagingTemplatesUpdateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this message template. */
-  id: string;
-  /** Human-readable template name shown in the library. */
-  name: string;
-  /** What the template is for and when to use it. */
-  description?: string;
-  /** Template content keyed by channel. Replaced as a whole on update, not merged. */
-  content?: MessageTemplateContent;
-  /** Message channel of the template. Currently 'email'. */
-  type?: string;
-  /** Message category ID to file the template under. Must belong to the same project. */
-  message_category?: string | null;
-  /** Soft-delete flag. Set true to remove the template from the library. */
-  deleted?: boolean;
-}
-export const MessagingTemplatesUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-    name: S.String,
-    description: S.optional(S.String),
-    content: S.optional(MessageTemplateContent),
-    type: S.optional(S.String),
-    message_category: S.optional(S.NullOr(S.String)),
-    deleted: S.optional(S.Boolean),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/api/projects/{project_id}/messaging_templates/{id}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "MessagingTemplatesUpdateRequest",
-}) as any as S.Schema<MessagingTemplatesUpdateRequest>;
-
-export type MessagingTemplatesCreateError = PosthogOpError;
-export const messagingTemplatesCreate: API.OperationMethod<
-  MessagingTemplatesCreateRequest,
+export type CreateMessagingTemplateError = PosthogOpError;
+export const createMessagingTemplate: API.OperationMethod<
+  CreateMessagingTemplateRequest,
   MessageTemplate,
-  MessagingTemplatesCreateError,
+  CreateMessagingTemplateError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: MessagingTemplatesCreateRequest,
+  input: CreateMessagingTemplateRequest,
   output: MessageTemplate,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type MessagingTemplatesDesignPartialUpdateError = PosthogOpError;
-export const messagingTemplatesDesignPartialUpdate: API.OperationMethod<
-  MessagingTemplatesDesignPartialUpdateRequest,
+export type GetMessagingTemplateError = PosthogOpError;
+export const getMessagingTemplate: API.OperationMethod<
+  GetMessagingTemplateRequest,
   MessageTemplate,
-  MessagingTemplatesDesignPartialUpdateError,
+  GetMessagingTemplateError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: MessagingTemplatesDesignPartialUpdateRequest,
+  input: GetMessagingTemplateRequest,
   output: MessageTemplate,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListMessagingTemplatesError = PosthogOpError;
+export const listMessagingTemplates: API.OperationMethod<
+  ListMessagingTemplatesRequest,
+  PaginatedMessageTemplateList,
+  ListMessagingTemplatesError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListMessagingTemplatesRequest,
+  output: PaginatedMessageTemplateList,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
@@ -522,56 +536,42 @@ export const messagingTemplatesDestroy: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type MessagingTemplatesListError = PosthogOpError;
-export const messagingTemplatesList: API.OperationMethod<
-  MessagingTemplatesListRequest,
-  PaginatedMessageTemplateList,
-  MessagingTemplatesListError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: MessagingTemplatesListRequest,
-  output: PaginatedMessageTemplateList,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type MessagingTemplatesPartialUpdateError = PosthogOpError;
-export const messagingTemplatesPartialUpdate: API.OperationMethod<
-  MessagingTemplatesPartialUpdateRequest,
+export type UpdateMessagingTemplateError = PosthogOpError;
+export const updateMessagingTemplate: API.OperationMethod<
+  UpdateMessagingTemplateRequest,
   MessageTemplate,
-  MessagingTemplatesPartialUpdateError,
+  UpdateMessagingTemplateError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: MessagingTemplatesPartialUpdateRequest,
+  input: UpdateMessagingTemplateRequest,
   output: MessageTemplate,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type MessagingTemplatesRetrieveError = PosthogOpError;
-export const messagingTemplatesRetrieve: API.OperationMethod<
-  MessagingTemplatesRetrieveRequest,
+export type UpdateMessagingTemplatesDesignPartialError = PosthogOpError;
+export const updateMessagingTemplatesDesignPartial: API.OperationMethod<
+  UpdateMessagingTemplatesDesignPartialRequest,
   MessageTemplate,
-  MessagingTemplatesRetrieveError,
+  UpdateMessagingTemplatesDesignPartialError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: MessagingTemplatesRetrieveRequest,
+  input: UpdateMessagingTemplatesDesignPartialRequest,
   output: MessageTemplate,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type MessagingTemplatesUpdateError = PosthogOpError;
-export const messagingTemplatesUpdate: API.OperationMethod<
-  MessagingTemplatesUpdateRequest,
+export type UpdateMessagingTemplatesPartialError = PosthogOpError;
+export const updateMessagingTemplatesPartial: API.OperationMethod<
+  UpdateMessagingTemplatesPartialRequest,
   MessageTemplate,
-  MessagingTemplatesUpdateError,
+  UpdateMessagingTemplatesPartialError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: MessagingTemplatesUpdateRequest,
+  input: UpdateMessagingTemplatesPartialRequest,
   output: MessageTemplate,
   errors: [],
   protocol: PosthogProtocol,

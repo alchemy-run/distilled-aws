@@ -14,47 +14,84 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "keyDictionary": {
+      "accountCreation": "account_creation",
+      "accountDeletion": "account_deletion",
+      "accountMigration": "account_migration",
+      "accountMobility": "account_mobility",
+      "accountType": "account_type",
+      "businessAddress": "business_address",
+      "businessEmail": "business_email",
+      "businessName": "business_name",
+      "businessPhone": "business_phone",
+      "cardExpiryMonth": "card_expiry_month",
+      "cardExpiryYear": "card_expiry_year",
+      "cardNumber": "card_number",
+      "createTime": "create_time",
+      "createdOn": "created_on",
+      "currentPeriodEnd": "current_period_end",
+      "currentPeriodStart": "current_period_start",
+      "deviceData": "device_data",
+      "editedOn": "edited_on",
+      "enterpriseBillingEmail": "enterprise_billing_email",
+      "enterprisePrimaryEmail": "enterprise_primary_email",
+      "expiresOn": "expires_on",
+      "externalMetadata": "external_metadata",
+      "externallyManaged": "externally_managed",
+      "firstName": "first_name",
+      "hasBusinessZones": "has_business_zones",
+      "hasEnterpriseZones": "has_enterprise_zones",
+      "hasProZones": "has_pro_zones",
+      "hierarchyTags": "hierarchy_tags",
+      "invitedBy": "invited_by",
+      "invitedMemberEmail": "invited_member_email",
+      "invitedMemberId": "invited_member_id",
+      "invitedOn": "invited_on",
+      "isContract": "is_contract",
+      "isPartner": "is_partner",
+      "issuedOn": "issued_on",
+      "lastName": "last_name",
+      "lastUsedOn": "last_used_on",
+      "managedBy": "managed_by",
+      "modifiedOn": "modified_on",
+      "nextBillDate": "next_bill_date",
+      "notBefore": "not_before",
+      "notIn": "not_in",
+      "occurredAt": "occurred_at",
+      "organizationId": "organization_id",
+      "organizationIsEnforcingTwofactor": "organization_is_enforcing_twofactor",
+      "organizationName": "organization_name",
+      "paymentAddress": "payment_address",
+      "paymentAddress2": "payment_address2",
+      "paymentCity": "payment_city",
+      "paymentCountry": "payment_country",
+      "paymentEmail": "payment_email",
+      "paymentFirstName": "payment_first_name",
+      "paymentGateway": "payment_gateway",
+      "paymentLastName": "payment_last_name",
+      "paymentNonce": "payment_nonce",
+      "paymentState": "payment_state",
+      "paymentZipcode": "payment_zipcode",
+      "perPage": "per_page",
+      "permissionGroups": "permission_groups",
+      "primaryEmail": "primary_email",
+      "publicName": "public_name",
+      "ratePlan": "rate_plan",
+      "requestIp": "request_ip",
+      "resultInfo": "result_info",
+      "subOrgCreation": "sub_org_creation",
+      "subscriptionId": "subscription_id",
+      "taxIdType": "tax_id_type",
+      "totalCount": "total_count",
+      "twoFactorAuthenticationEnabled": "two_factor_authentication_enabled",
+      "twoFactorAuthenticationLocked": "two_factor_authentication_locked",
+      "useLegacy": "use_legacy",
+      "validationCode": "validation_code"
+    },
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.cloudflare.user#EditRequest": {
-      "type": "structure",
-      "members": {
-        "country": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The country in which the user lives."
-          }
-        },
-        "first_name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "User's first name"
-          }
-        },
-        "last_name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "User's last name"
-          }
-        },
-        "telephone": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "User's telephone number"
-          }
-        },
-        "zipcode": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The zipcode or postal code where the user lives."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.user#EditResponseBetasList": {
       "type": "list",
       "member": {
@@ -129,121 +166,6 @@
       "type": "list",
       "member": {
         "target": "com.cloudflare.user#EditResponseOrganizationsItem"
-      }
-    },
-    "com.cloudflare.user#EditResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier of the user.",
-            "smithy.api#required": {}
-          }
-        },
-        "email": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Current email address of the user.",
-            "smithy.api#required": {}
-          }
-        },
-        "betas": {
-          "target": "com.cloudflare.user#EditResponseBetasList",
-          "traits": {
-            "smithy.api#documentation": "Lists the betas that the user is participating in."
-          }
-        },
-        "country": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The country in which the user lives."
-          }
-        },
-        "first_name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "User's first name"
-          }
-        },
-        "has_business_zones": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Indicates whether user has any business zones"
-          }
-        },
-        "has_enterprise_zones": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Indicates whether user has any enterprise zones"
-          }
-        },
-        "has_pro_zones": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Indicates whether user has any pro zones"
-          }
-        },
-        "last_name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "User's last name"
-          }
-        },
-        "organizations": {
-          "target": "com.cloudflare.user#EditResponseOrganizationsList"
-        },
-        "suspended": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Indicates whether user has been suspended"
-          }
-        },
-        "telephone": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "User's telephone number"
-          }
-        },
-        "two_factor_authentication_enabled": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Indicates whether two-factor authentication is enabled for the user account. Does not apply to API authentication."
-          }
-        },
-        "two_factor_authentication_locked": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Indicates whether two-factor authentication is required by one of the accounts that the user is a member of."
-          }
-        },
-        "zipcode": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The zipcode or postal code where the user lives."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.user#Edit": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.user#EditRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.user#EditResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "PATCH",
-          "uri": "/user",
-          "code": 200
-        },
-        "smithy.api#documentation": "Edit part of your user details."
       }
     },
     "com.cloudflare.user#GetResponseBetasList": {
@@ -322,122 +244,6 @@
         "target": "com.cloudflare.user#GetResponseOrganizationsItem"
       }
     },
-    "com.cloudflare.user#GetResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier of the user.",
-            "smithy.api#required": {}
-          }
-        },
-        "email": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Current email address of the user.",
-            "smithy.api#required": {}
-          }
-        },
-        "betas": {
-          "target": "com.cloudflare.user#GetResponseBetasList",
-          "traits": {
-            "smithy.api#documentation": "Lists the betas that the user is participating in."
-          }
-        },
-        "country": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The country in which the user lives."
-          }
-        },
-        "first_name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "User's first name"
-          }
-        },
-        "has_business_zones": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Indicates whether user has any business zones"
-          }
-        },
-        "has_enterprise_zones": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Indicates whether user has any enterprise zones"
-          }
-        },
-        "has_pro_zones": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Indicates whether user has any pro zones"
-          }
-        },
-        "last_name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "User's last name"
-          }
-        },
-        "organizations": {
-          "target": "com.cloudflare.user#GetResponseOrganizationsList"
-        },
-        "suspended": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Indicates whether user has been suspended"
-          }
-        },
-        "telephone": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "User's telephone number"
-          }
-        },
-        "two_factor_authentication_enabled": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Indicates whether two-factor authentication is enabled for the user account. Does not apply to API authentication."
-          }
-        },
-        "two_factor_authentication_locked": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Indicates whether two-factor authentication is required by one of the accounts that the user is a member of."
-          }
-        },
-        "zipcode": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The zipcode or postal code where the user lives."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.user#Get": {
-      "type": "operation",
-      "input": {
-        "target": "smithy.api#Unit"
-      },
-      "output": {
-        "target": "com.cloudflare.user#GetResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/user",
-          "code": 200
-        },
-        "smithy.api#documentation": "Retrieves detailed information about the currently authenticated user, including email, name, and account memberships.",
-        "smithy.api#readonly": {}
-      }
-    },
     "com.cloudflare.user#AuditLogsListRequestAction": {
       "type": "structure",
       "members": {
@@ -492,88 +298,6 @@
             "smithy.api#documentation": "Filters by the name of the zone associated to the change."
           }
         }
-      }
-    },
-    "com.cloudflare.user#AuditLogsListRequest": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Finds a specific log by its ID.",
-            "smithy.api#httpQuery": "id"
-          }
-        },
-        "action": {
-          "target": "com.cloudflare.user#AuditLogsListRequestAction",
-          "traits": {
-            "com.cloudflare.protocols#deepQuery": "action"
-          }
-        },
-        "actor": {
-          "target": "com.cloudflare.user#AuditLogsListRequestActor",
-          "traits": {
-            "com.cloudflare.protocols#deepQuery": "actor"
-          }
-        },
-        "before": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Limits the returned results to logs older than the specified date. A `full-date` that conforms to RFC3339.",
-            "smithy.api#httpQuery": "before"
-          }
-        },
-        "direction": {
-          "target": "com.cloudflare.user#AuditLogsListRequestDirection",
-          "traits": {
-            "smithy.api#documentation": "Changes the direction of the chronological sorting.",
-            "smithy.api#httpQuery": "direction"
-          }
-        },
-        "export": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Indicates that this request is an export of logs in CSV format.",
-            "smithy.api#httpQuery": "export"
-          }
-        },
-        "hide_user_logs": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Indicates whether or not to hide user level audit logs.",
-            "smithy.api#httpQuery": "hide_user_logs"
-          }
-        },
-        "page": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Defines which page of results to return.",
-            "smithy.api#httpQuery": "page"
-          }
-        },
-        "per_page": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Sets the number of results to return per page.",
-            "smithy.api#httpQuery": "per_page"
-          }
-        },
-        "since": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Limits the returned results to logs newer than the specified date. A `full-date` that conforms to RFC3339.",
-            "smithy.api#httpQuery": "since"
-          }
-        },
-        "zone": {
-          "target": "com.cloudflare.user#AuditLogsListRequestZone",
-          "traits": {
-            "com.cloudflare.protocols#deepQuery": "zone"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.user#AuditLogsListResultItemAction": {
@@ -732,39 +456,6 @@
         "target": "com.cloudflare.user#AuditLogsListResultItem"
       }
     },
-    "com.cloudflare.user#AuditLogsListResponse": {
-      "type": "structure",
-      "members": {
-        "result": {
-          "target": "com.cloudflare.user#AuditLogsListResultList",
-          "traits": {
-            "com.cloudflare.protocols#envelopePayload": {},
-            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.user#AuditLogsList": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.user#AuditLogsListRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.user#AuditLogsListResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/user/audit_logs",
-          "code": 200
-        },
-        "smithy.api#documentation": "Gets a list of audit logs for a user account. Can be filtered by who made the change, on which zone, and the timeframe of the change.",
-        "smithy.api#readonly": {}
-      }
-    },
     "com.cloudflare.user#BillingHistoryListRequestOrder": {
       "type": "enum",
       "members": {
@@ -786,56 +477,6 @@
             "smithy.api#enumValue": "action"
           }
         }
-      }
-    },
-    "com.cloudflare.user#BillingHistoryListRequest": {
-      "type": "structure",
-      "members": {
-        "action": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The billing item action.",
-            "smithy.api#httpQuery": "action"
-          }
-        },
-        "occurred_at": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "When the billing item was created.",
-            "smithy.api#httpQuery": "occurred_at"
-          }
-        },
-        "order": {
-          "target": "com.cloudflare.user#BillingHistoryListRequestOrder",
-          "traits": {
-            "smithy.api#documentation": "Field to order billing history by.",
-            "smithy.api#httpQuery": "order"
-          }
-        },
-        "page": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Page number of paginated results.",
-            "smithy.api#httpQuery": "page"
-          }
-        },
-        "per_page": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Number of items per page.",
-            "smithy.api#httpQuery": "per_page"
-          }
-        },
-        "type": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The billing item type.",
-            "smithy.api#httpQuery": "type"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.user#BillingHistoryListResultItemZone": {
@@ -912,186 +553,6 @@
         "target": "com.cloudflare.user#BillingHistoryListResultItem"
       }
     },
-    "com.cloudflare.user#BillingHistoryListResponse": {
-      "type": "structure",
-      "members": {
-        "result": {
-          "target": "com.cloudflare.user#BillingHistoryListResultList",
-          "traits": {
-            "com.cloudflare.protocols#envelopePayload": {},
-            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.user#BillingHistoryList": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.user#BillingHistoryListRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.user#BillingHistoryListResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/user/billing/history",
-          "code": 200
-        },
-        "smithy.api#documentation": "Accesses your billing history object.",
-        "smithy.api#readonly": {}
-      }
-    },
-    "com.cloudflare.user#BillingProfileGetResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Billing item identifier tag."
-          }
-        },
-        "account_type": {
-          "target": "smithy.api#String"
-        },
-        "address": {
-          "target": "smithy.api#String"
-        },
-        "address2": {
-          "target": "smithy.api#String"
-        },
-        "balance": {
-          "target": "smithy.api#String"
-        },
-        "card_expiry_month": {
-          "target": "smithy.api#Double"
-        },
-        "card_expiry_year": {
-          "target": "smithy.api#Double"
-        },
-        "card_number": {
-          "target": "smithy.api#String"
-        },
-        "city": {
-          "target": "smithy.api#String"
-        },
-        "company": {
-          "target": "smithy.api#String"
-        },
-        "country": {
-          "target": "smithy.api#String"
-        },
-        "created_on": {
-          "target": "smithy.api#String"
-        },
-        "device_data": {
-          "target": "smithy.api#String"
-        },
-        "edited_on": {
-          "target": "smithy.api#String"
-        },
-        "enterprise_billing_email": {
-          "target": "smithy.api#String"
-        },
-        "enterprise_primary_email": {
-          "target": "smithy.api#String"
-        },
-        "first_name": {
-          "target": "smithy.api#String"
-        },
-        "is_partner": {
-          "target": "smithy.api#Boolean"
-        },
-        "last_name": {
-          "target": "smithy.api#String"
-        },
-        "next_bill_date": {
-          "target": "smithy.api#String"
-        },
-        "payment_address": {
-          "target": "smithy.api#String"
-        },
-        "payment_address2": {
-          "target": "smithy.api#String"
-        },
-        "payment_city": {
-          "target": "smithy.api#String"
-        },
-        "payment_country": {
-          "target": "smithy.api#String"
-        },
-        "payment_email": {
-          "target": "smithy.api#String"
-        },
-        "payment_first_name": {
-          "target": "smithy.api#String"
-        },
-        "payment_gateway": {
-          "target": "smithy.api#String"
-        },
-        "payment_last_name": {
-          "target": "smithy.api#String"
-        },
-        "payment_nonce": {
-          "target": "smithy.api#String"
-        },
-        "payment_state": {
-          "target": "smithy.api#String"
-        },
-        "payment_zipcode": {
-          "target": "smithy.api#String"
-        },
-        "primary_email": {
-          "target": "smithy.api#String"
-        },
-        "state": {
-          "target": "smithy.api#String"
-        },
-        "tax_id_type": {
-          "target": "smithy.api#String"
-        },
-        "telephone": {
-          "target": "smithy.api#String"
-        },
-        "use_legacy": {
-          "target": "smithy.api#Boolean"
-        },
-        "validation_code": {
-          "target": "smithy.api#String"
-        },
-        "vat": {
-          "target": "smithy.api#String"
-        },
-        "zipcode": {
-          "target": "smithy.api#String"
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.user#BillingProfileGet": {
-      "type": "operation",
-      "input": {
-        "target": "smithy.api#Unit"
-      },
-      "output": {
-        "target": "com.cloudflare.user#BillingProfileGetResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/user/billing/profile",
-          "code": 200
-        },
-        "smithy.api#documentation": "Accesses your billing profile object.",
-        "smithy.api#readonly": {}
-      }
-    },
     "com.cloudflare.user#InvitesEditRequestStatus": {
       "type": "enum",
       "members": {
@@ -1107,29 +568,6 @@
             "smithy.api#enumValue": "rejected"
           }
         }
-      }
-    },
-    "com.cloudflare.user#InvitesEditRequest": {
-      "type": "structure",
-      "members": {
-        "invite_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Invite identifier tag.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "status": {
-          "target": "com.cloudflare.user#InvitesEditRequestStatus",
-          "traits": {
-            "smithy.api#documentation": "Status of your response to the invitation (rejected or accepted).",
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.user#InvitesEditResponseRolesList": {
@@ -1167,113 +605,6 @@
         }
       }
     },
-    "com.cloudflare.user#InvitesEditResponse": {
-      "type": "structure",
-      "members": {
-        "invited_member_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "ID of the user to add to the organization.",
-            "smithy.api#required": {}
-          }
-        },
-        "organization_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "ID of the organization the user will be added to.",
-            "smithy.api#required": {}
-          }
-        },
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Invite identifier tag."
-          }
-        },
-        "expires_on": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "When the invite is no longer active."
-          }
-        },
-        "invited_by": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The email address of the user who created the invite."
-          }
-        },
-        "invited_member_email": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Email address of the user to add to the organization."
-          }
-        },
-        "invited_on": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "When the invite was sent."
-          }
-        },
-        "organization_is_enforcing_twofactor": {
-          "target": "smithy.api#Boolean"
-        },
-        "organization_name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Organization name."
-          }
-        },
-        "roles": {
-          "target": "com.cloudflare.user#InvitesEditResponseRolesList",
-          "traits": {
-            "smithy.api#documentation": "List of role names the membership has for this account."
-          }
-        },
-        "status": {
-          "target": "com.cloudflare.user#InvitesEditResponseStatus",
-          "traits": {
-            "smithy.api#documentation": "Current status of the invitation."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.user#InvitesEdit": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.user#InvitesEditRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.user#InvitesEditResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "PATCH",
-          "uri": "/user/invites/{invite_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Responds to an invitation."
-      }
-    },
-    "com.cloudflare.user#InvitesGetRequest": {
-      "type": "structure",
-      "members": {
-        "invite_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Invite identifier tag.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.user#InvitesGetResponseRolesList": {
       "type": "list",
       "member": {
@@ -1307,98 +638,6 @@
             "smithy.api#enumValue": "expired"
           }
         }
-      }
-    },
-    "com.cloudflare.user#InvitesGetResponse": {
-      "type": "structure",
-      "members": {
-        "invited_member_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "ID of the user to add to the organization.",
-            "smithy.api#required": {}
-          }
-        },
-        "organization_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "ID of the organization the user will be added to.",
-            "smithy.api#required": {}
-          }
-        },
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Invite identifier tag."
-          }
-        },
-        "expires_on": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "When the invite is no longer active."
-          }
-        },
-        "invited_by": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The email address of the user who created the invite."
-          }
-        },
-        "invited_member_email": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Email address of the user to add to the organization."
-          }
-        },
-        "invited_on": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "When the invite was sent."
-          }
-        },
-        "organization_is_enforcing_twofactor": {
-          "target": "smithy.api#Boolean"
-        },
-        "organization_name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Organization name."
-          }
-        },
-        "roles": {
-          "target": "com.cloudflare.user#InvitesGetResponseRolesList",
-          "traits": {
-            "smithy.api#documentation": "List of role names the membership has for this account."
-          }
-        },
-        "status": {
-          "target": "com.cloudflare.user#InvitesGetResponseStatus",
-          "traits": {
-            "smithy.api#documentation": "Current status of the invitation."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.user#InvitesGet": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.user#InvitesGetRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.user#InvitesGetResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/user/invites/{invite_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Gets the details of an invitation.",
-        "smithy.api#readonly": {}
       }
     },
     "com.cloudflare.user#InvitesListResultItemRolesList": {
@@ -1512,137 +751,6 @@
         "target": "com.cloudflare.user#InvitesListResultItem"
       }
     },
-    "com.cloudflare.user#InvitesListResponse": {
-      "type": "structure",
-      "members": {
-        "result": {
-          "target": "com.cloudflare.user#InvitesListResultList",
-          "traits": {
-            "com.cloudflare.protocols#envelopePayload": {},
-            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.user#InvitesList": {
-      "type": "operation",
-      "input": {
-        "target": "smithy.api#Unit"
-      },
-      "output": {
-        "target": "com.cloudflare.user#InvitesListResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/user/invites",
-          "code": 200
-        },
-        "smithy.api#documentation": "Lists all invitations associated with my user.",
-        "smithy.api#readonly": {}
-      }
-    },
-    "com.cloudflare.user#OrganizationsDeleteRequest": {
-      "type": "structure",
-      "members": {
-        "organization_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.user#OrganizationsDeleteResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Raw response payload (operation does not use the standard v4 result envelope)."
-      }
-    },
-    "com.cloudflare.user#OrganizationsDelete": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.user#OrganizationsDeleteRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.user#OrganizationsDeleteResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "/user/organizations/{organization_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Removes association to an organization.",
-        "smithy.api#idempotent": {}
-      }
-    },
-    "com.cloudflare.user#OrganizationsGetRequest": {
-      "type": "structure",
-      "members": {
-        "organization_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.user#OrganizationsGetResponse": {
-      "type": "structure",
-      "members": {
-        "result": {
-          "target": "smithy.api#Document",
-          "traits": {
-            "com.cloudflare.protocols#envelopePayload": {},
-            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.user#OrganizationsGet": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.user#OrganizationsGetRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.user#OrganizationsGetResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/user/organizations/{organization_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Gets a specific organization the user is associated with.",
-        "smithy.api#readonly": {}
-      }
-    },
     "com.cloudflare.user#OrganizationsListRequestDirection": {
       "type": "enum",
       "members": {
@@ -1717,63 +825,6 @@
         }
       }
     },
-    "com.cloudflare.user#OrganizationsListRequest": {
-      "type": "structure",
-      "members": {
-        "direction": {
-          "target": "com.cloudflare.user#OrganizationsListRequestDirection",
-          "traits": {
-            "smithy.api#documentation": "Direction to order organizations.",
-            "smithy.api#httpQuery": "direction"
-          }
-        },
-        "match": {
-          "target": "com.cloudflare.user#OrganizationsListRequestMatch",
-          "traits": {
-            "smithy.api#documentation": "Whether to match all search requirements or at least one (any).",
-            "smithy.api#httpQuery": "match"
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Organization name.",
-            "smithy.api#httpQuery": "name"
-          }
-        },
-        "order": {
-          "target": "com.cloudflare.user#OrganizationsListRequestOrder",
-          "traits": {
-            "smithy.api#documentation": "Field to order organizations by.",
-            "smithy.api#httpQuery": "order"
-          }
-        },
-        "page": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Page number of paginated results.",
-            "smithy.api#httpQuery": "page"
-          }
-        },
-        "per_page": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Number of organizations per page.",
-            "smithy.api#httpQuery": "per_page"
-          }
-        },
-        "status": {
-          "target": "com.cloudflare.user#OrganizationsListRequestStatus",
-          "traits": {
-            "smithy.api#documentation": "Whether the user is a member of the organization or has an inivitation pending.",
-            "smithy.api#httpQuery": "status"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.user#OrganizationsListResultItemPermissionsList": {
       "type": "list",
       "member": {
@@ -1842,88 +893,6 @@
       "type": "list",
       "member": {
         "target": "com.cloudflare.user#OrganizationsListResultItem"
-      }
-    },
-    "com.cloudflare.user#OrganizationsListResponse": {
-      "type": "structure",
-      "members": {
-        "result": {
-          "target": "com.cloudflare.user#OrganizationsListResultList",
-          "traits": {
-            "com.cloudflare.protocols#envelopePayload": {},
-            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.user#OrganizationsList": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.user#OrganizationsListRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.user#OrganizationsListResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/user/organizations",
-          "code": 200
-        },
-        "smithy.api#documentation": "Lists organizations the user is associated with.",
-        "smithy.api#readonly": {}
-      }
-    },
-    "com.cloudflare.user#SubscriptionsDeleteRequest": {
-      "type": "structure",
-      "members": {
-        "identifier": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Subscription identifier tag.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.user#SubscriptionsDeleteResponse": {
-      "type": "structure",
-      "members": {
-        "subscription_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Subscription identifier tag."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Raw response payload (operation does not use the standard v4 result envelope)."
-      }
-    },
-    "com.cloudflare.user#SubscriptionsDelete": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.user#SubscriptionsDeleteRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.user#SubscriptionsDeleteResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "/user/subscriptions/{identifier}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Deletes a user's subscription.",
-        "smithy.api#idempotent": {}
       }
     },
     "com.cloudflare.user#SubscriptionsGetResultItemFrequency": {
@@ -2179,39 +1148,6 @@
         "target": "com.cloudflare.user#SubscriptionsGetResultItem"
       }
     },
-    "com.cloudflare.user#SubscriptionsGetResponse": {
-      "type": "structure",
-      "members": {
-        "result": {
-          "target": "com.cloudflare.user#SubscriptionsGetResultList",
-          "traits": {
-            "com.cloudflare.protocols#envelopePayload": {},
-            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.user#SubscriptionsGet": {
-      "type": "operation",
-      "input": {
-        "target": "smithy.api#Unit"
-      },
-      "output": {
-        "target": "com.cloudflare.user#SubscriptionsGetResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/user/subscriptions",
-          "code": 200
-        },
-        "smithy.api#documentation": "Lists all of a user's subscriptions.",
-        "smithy.api#readonly": {}
-      }
-    },
     "com.cloudflare.user#SubscriptionsUpdateRequestFrequency": {
       "type": "enum",
       "members": {
@@ -2357,67 +1293,6 @@
             "smithy.api#documentation": "The list of sets this rate plan applies to. Returns array of strings."
           }
         }
-      }
-    },
-    "com.cloudflare.user#SubscriptionsUpdateRequest": {
-      "type": "structure",
-      "members": {
-        "identifier": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Subscription identifier tag.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "frequency": {
-          "target": "com.cloudflare.user#SubscriptionsUpdateRequestFrequency",
-          "traits": {
-            "smithy.api#documentation": "How often the subscription is renewed automatically."
-          }
-        },
-        "rate_plan": {
-          "target": "com.cloudflare.user#SubscriptionsUpdateRequestRatePlan",
-          "traits": {
-            "smithy.api#documentation": "The rate plan applied to the subscription."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.user#SubscriptionsUpdateResponse": {
-      "type": "structure",
-      "members": {
-        "result": {
-          "target": "smithy.api#Document",
-          "traits": {
-            "com.cloudflare.protocols#envelopePayload": {},
-            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.user#SubscriptionsUpdate": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.user#SubscriptionsUpdateRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.user#SubscriptionsUpdateResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "PUT",
-          "uri": "/user/subscriptions/{identifier}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Updates a user's subscriptions.",
-        "smithy.api#idempotent": {}
       }
     },
     "com.cloudflare.user#TenantsListResultItemMetaFlags": {
@@ -2574,39 +1449,6 @@
         "target": "com.cloudflare.user#TenantsListResultItem"
       }
     },
-    "com.cloudflare.user#TenantsListResponse": {
-      "type": "structure",
-      "members": {
-        "result": {
-          "target": "com.cloudflare.user#TenantsListResultList",
-          "traits": {
-            "com.cloudflare.protocols#envelopePayload": {},
-            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.user#TenantsList": {
-      "type": "operation",
-      "input": {
-        "target": "smithy.api#Unit"
-      },
-      "output": {
-        "target": "com.cloudflare.user#TenantsListResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/user/tenants",
-          "code": 200
-        },
-        "smithy.api#documentation": "Retrieves list of tenants the authenticated user / method has access to.",
-        "smithy.api#readonly": {}
-      }
-    },
     "com.cloudflare.user#TokensCreateRequestPoliciesItemEffect": {
       "type": "enum",
       "members": {
@@ -2715,13 +1557,6 @@
     "com.cloudflare.user#TokensCreateRequestPoliciesItem": {
       "type": "structure",
       "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Policy identifier.",
-            "smithy.api#required": {}
-          }
-        },
         "effect": {
           "target": "com.cloudflare.user#TokensCreateRequestPoliciesItemEffect",
           "traits": {
@@ -2754,13 +1589,13 @@
     "com.cloudflare.user#TokensCreateRequestConditionRequestIpInList": {
       "type": "list",
       "member": {
-        "target": "smithy.api#Document"
+        "target": "smithy.api#String"
       }
     },
     "com.cloudflare.user#TokensCreateRequestConditionRequestIpNotInList": {
       "type": "list",
       "member": {
-        "target": "smithy.api#Document"
+        "target": "smithy.api#String"
       }
     },
     "com.cloudflare.user#TokensCreateRequestConditionRequestIp": {
@@ -2791,53 +1626,16 @@
         }
       }
     },
-    "com.cloudflare.user#TokensCreateRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Token name.",
-            "smithy.api#required": {}
-          }
-        },
-        "policies": {
-          "target": "com.cloudflare.user#TokensCreateRequestPoliciesList",
-          "traits": {
-            "smithy.api#documentation": "List of access policies assigned to the token.",
-            "smithy.api#required": {}
-          }
-        },
-        "condition": {
-          "target": "com.cloudflare.user#TokensCreateRequestCondition"
-        },
-        "expires_on": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The expiration time on or after which the JWT MUST NOT be accepted for processing."
-          }
-        },
-        "not_before": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The time before which the token MUST NOT be accepted for processing."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.user#TokensCreateResponseConditionRequestIpInList": {
       "type": "list",
       "member": {
-        "target": "smithy.api#Document"
+        "target": "smithy.api#String"
       }
     },
     "com.cloudflare.user#TokensCreateResponseConditionRequestIpNotInList": {
       "type": "list",
       "member": {
-        "target": "smithy.api#Document"
+        "target": "smithy.api#String"
       }
     },
     "com.cloudflare.user#TokensCreateResponseConditionRequestIp": {
@@ -3035,171 +1833,16 @@
         }
       }
     },
-    "com.cloudflare.user#TokensCreateResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Token identifier tag."
-          }
-        },
-        "condition": {
-          "target": "com.cloudflare.user#TokensCreateResponseCondition"
-        },
-        "expires_on": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The expiration time on or after which the JWT MUST NOT be accepted for processing."
-          }
-        },
-        "issued_on": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The time on which the token was created."
-          }
-        },
-        "last_used_on": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Last time the token was used."
-          }
-        },
-        "modified_on": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Last time the token was modified."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Token name."
-          }
-        },
-        "not_before": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The time before which the token MUST NOT be accepted for processing."
-          }
-        },
-        "policies": {
-          "target": "com.cloudflare.user#TokensCreateResponsePoliciesList",
-          "traits": {
-            "smithy.api#documentation": "List of access policies assigned to the token."
-          }
-        },
-        "status": {
-          "target": "com.cloudflare.user#TokensCreateResponseStatus",
-          "traits": {
-            "smithy.api#documentation": "Status of the token."
-          }
-        },
-        "value": {
-          "target": "smithy.api#Document",
-          "traits": {
-            "smithy.api#documentation": "The token value."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.user#TokensCreate": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.user#TokensCreateRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.user#TokensCreateResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "/user/tokens",
-          "code": 200
-        },
-        "smithy.api#documentation": "Create a new access token."
-      }
-    },
-    "com.cloudflare.user#TokensDeleteRequest": {
-      "type": "structure",
-      "members": {
-        "token_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Token identifier tag.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.user#TokensDeleteResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier",
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.user#TokensDelete": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.user#TokensDeleteRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.user#TokensDeleteResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "/user/tokens/{token_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Destroy a token.",
-        "smithy.api#idempotent": {}
-      }
-    },
-    "com.cloudflare.user#TokensGetRequest": {
-      "type": "structure",
-      "members": {
-        "token_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Token identifier tag.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.user#TokensGetResponseConditionRequestIpInList": {
       "type": "list",
       "member": {
-        "target": "smithy.api#Document"
+        "target": "smithy.api#String"
       }
     },
     "com.cloudflare.user#TokensGetResponseConditionRequestIpNotInList": {
       "type": "list",
       "member": {
-        "target": "smithy.api#Document"
+        "target": "smithy.api#String"
       }
     },
     "com.cloudflare.user#TokensGetResponseConditionRequestIp": {
@@ -3397,90 +2040,6 @@
         }
       }
     },
-    "com.cloudflare.user#TokensGetResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Token identifier tag."
-          }
-        },
-        "condition": {
-          "target": "com.cloudflare.user#TokensGetResponseCondition"
-        },
-        "expires_on": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The expiration time on or after which the JWT MUST NOT be accepted for processing."
-          }
-        },
-        "issued_on": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The time on which the token was created."
-          }
-        },
-        "last_used_on": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Last time the token was used."
-          }
-        },
-        "modified_on": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Last time the token was modified."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Token name."
-          }
-        },
-        "not_before": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The time before which the token MUST NOT be accepted for processing."
-          }
-        },
-        "policies": {
-          "target": "com.cloudflare.user#TokensGetResponsePoliciesList",
-          "traits": {
-            "smithy.api#documentation": "List of access policies assigned to the token."
-          }
-        },
-        "status": {
-          "target": "com.cloudflare.user#TokensGetResponseStatus",
-          "traits": {
-            "smithy.api#documentation": "Status of the token."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.user#TokensGet": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.user#TokensGetRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.user#TokensGetResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/user/tokens/{token_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Get information about a specific token.",
-        "smithy.api#readonly": {}
-      }
-    },
     "com.cloudflare.user#TokensListRequestDirection": {
       "type": "enum",
       "members": {
@@ -3498,45 +2057,16 @@
         }
       }
     },
-    "com.cloudflare.user#TokensListRequest": {
-      "type": "structure",
-      "members": {
-        "direction": {
-          "target": "com.cloudflare.user#TokensListRequestDirection",
-          "traits": {
-            "smithy.api#documentation": "Direction to order results.",
-            "smithy.api#httpQuery": "direction"
-          }
-        },
-        "page": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Page number of paginated results.",
-            "smithy.api#httpQuery": "page"
-          }
-        },
-        "per_page": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Maximum number of results per page.",
-            "smithy.api#httpQuery": "per_page"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.user#TokensListResultItemConditionRequestIpInList": {
       "type": "list",
       "member": {
-        "target": "smithy.api#Document"
+        "target": "smithy.api#String"
       }
     },
     "com.cloudflare.user#TokensListResultItemConditionRequestIpNotInList": {
       "type": "list",
       "member": {
-        "target": "smithy.api#Document"
+        "target": "smithy.api#String"
       }
     },
     "com.cloudflare.user#TokensListResultItemConditionRequestIp": {
@@ -3802,39 +2332,6 @@
         "target": "com.cloudflare.user#TokensListResultItem"
       }
     },
-    "com.cloudflare.user#TokensListResponse": {
-      "type": "structure",
-      "members": {
-        "result": {
-          "target": "com.cloudflare.user#TokensListResultList",
-          "traits": {
-            "com.cloudflare.protocols#envelopePayload": {},
-            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.user#TokensList": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.user#TokensListRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.user#TokensListResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/user/tokens",
-          "code": 200
-        },
-        "smithy.api#documentation": "List all access tokens you created.",
-        "smithy.api#readonly": {}
-      }
-    },
     "com.cloudflare.user#TokensUpdateRequestPoliciesItemEffect": {
       "type": "enum",
       "members": {
@@ -3943,13 +2440,6 @@
     "com.cloudflare.user#TokensUpdateRequestPoliciesItem": {
       "type": "structure",
       "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Policy identifier.",
-            "smithy.api#required": {}
-          }
-        },
         "effect": {
           "target": "com.cloudflare.user#TokensUpdateRequestPoliciesItemEffect",
           "traits": {
@@ -3982,13 +2472,13 @@
     "com.cloudflare.user#TokensUpdateRequestConditionRequestIpInList": {
       "type": "list",
       "member": {
-        "target": "smithy.api#Document"
+        "target": "smithy.api#String"
       }
     },
     "com.cloudflare.user#TokensUpdateRequestConditionRequestIpNotInList": {
       "type": "list",
       "member": {
-        "target": "smithy.api#Document"
+        "target": "smithy.api#String"
       }
     },
     "com.cloudflare.user#TokensUpdateRequestConditionRequestIp": {
@@ -4042,67 +2532,16 @@
         }
       }
     },
-    "com.cloudflare.user#TokensUpdateRequest": {
-      "type": "structure",
-      "members": {
-        "token_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Token identifier tag.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Token name.",
-            "smithy.api#required": {}
-          }
-        },
-        "policies": {
-          "target": "com.cloudflare.user#TokensUpdateRequestPoliciesList",
-          "traits": {
-            "smithy.api#documentation": "List of access policies assigned to the token.",
-            "smithy.api#required": {}
-          }
-        },
-        "condition": {
-          "target": "com.cloudflare.user#TokensUpdateRequestCondition"
-        },
-        "expires_on": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The expiration time on or after which the JWT MUST NOT be accepted for processing."
-          }
-        },
-        "not_before": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The time before which the token MUST NOT be accepted for processing."
-          }
-        },
-        "status": {
-          "target": "com.cloudflare.user#TokensUpdateRequestStatus",
-          "traits": {
-            "smithy.api#documentation": "Status of the token."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.user#TokensUpdateResponseConditionRequestIpInList": {
       "type": "list",
       "member": {
-        "target": "smithy.api#Document"
+        "target": "smithy.api#String"
       }
     },
     "com.cloudflare.user#TokensUpdateResponseConditionRequestIpNotInList": {
       "type": "list",
       "member": {
-        "target": "smithy.api#Document"
+        "target": "smithy.api#String"
       }
     },
     "com.cloudflare.user#TokensUpdateResponseConditionRequestIp": {
@@ -4300,90 +2739,6 @@
         }
       }
     },
-    "com.cloudflare.user#TokensUpdateResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Token identifier tag."
-          }
-        },
-        "condition": {
-          "target": "com.cloudflare.user#TokensUpdateResponseCondition"
-        },
-        "expires_on": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The expiration time on or after which the JWT MUST NOT be accepted for processing."
-          }
-        },
-        "issued_on": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The time on which the token was created."
-          }
-        },
-        "last_used_on": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Last time the token was used."
-          }
-        },
-        "modified_on": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Last time the token was modified."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Token name."
-          }
-        },
-        "not_before": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The time before which the token MUST NOT be accepted for processing."
-          }
-        },
-        "policies": {
-          "target": "com.cloudflare.user#TokensUpdateResponsePoliciesList",
-          "traits": {
-            "smithy.api#documentation": "List of access policies assigned to the token."
-          }
-        },
-        "status": {
-          "target": "com.cloudflare.user#TokensUpdateResponseStatus",
-          "traits": {
-            "smithy.api#documentation": "Status of the token."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.user#TokensUpdate": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.user#TokensUpdateRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.user#TokensUpdateResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "PUT",
-          "uri": "/user/tokens/{token_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Update an existing token.",
-        "smithy.api#idempotent": {}
-      }
-    },
     "com.cloudflare.user#TokensVerifyResponseStatus": {
       "type": "enum",
       "members": {
@@ -4405,81 +2760,6 @@
             "smithy.api#enumValue": "expired"
           }
         }
-      }
-    },
-    "com.cloudflare.user#TokensVerifyResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Token identifier tag.",
-            "smithy.api#required": {}
-          }
-        },
-        "status": {
-          "target": "com.cloudflare.user#TokensVerifyResponseStatus",
-          "traits": {
-            "smithy.api#documentation": "Status of the token.",
-            "smithy.api#required": {}
-          }
-        },
-        "expires_on": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The expiration time on or after which the JWT MUST NOT be accepted for processing."
-          }
-        },
-        "not_before": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The time before which the token MUST NOT be accepted for processing."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.user#TokensVerify": {
-      "type": "operation",
-      "input": {
-        "target": "smithy.api#Unit"
-      },
-      "output": {
-        "target": "com.cloudflare.user#TokensVerifyResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/user/tokens/verify",
-          "code": 200
-        },
-        "smithy.api#documentation": "Test whether a token works.",
-        "smithy.api#readonly": {}
-      }
-    },
-    "com.cloudflare.user#TokensPermissionGroupsListRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Filter by the name of the permission group.",
-            "smithy.api#httpQuery": "name"
-          }
-        },
-        "scope": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Filter by the scope of the permission group.",
-            "smithy.api#httpQuery": "scope"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.user#TokensPermissionGroupsListResultItemCategory": {
@@ -4635,40 +2915,471 @@
         "target": "com.cloudflare.user#TokensPermissionGroupsListResultItem"
       }
     },
-    "com.cloudflare.user#TokensPermissionGroupsListResponse": {
+    "com.cloudflare.user#User": {
+      "type": "service",
+      "version": "4.0",
+      "operations": [
+        {
+          "target": "com.cloudflare.user#CreateToken"
+        },
+        {
+          "target": "com.cloudflare.user#DeleteOrganization"
+        },
+        {
+          "target": "com.cloudflare.user#DeleteSubscription"
+        },
+        {
+          "target": "com.cloudflare.user#DeleteToken"
+        },
+        {
+          "target": "com.cloudflare.user#GetBillingProfile"
+        },
+        {
+          "target": "com.cloudflare.user#GetInvite"
+        },
+        {
+          "target": "com.cloudflare.user#GetOrganization"
+        },
+        {
+          "target": "com.cloudflare.user#GetSubscription"
+        },
+        {
+          "target": "com.cloudflare.user#GetToken"
+        },
+        {
+          "target": "com.cloudflare.user#GetUser"
+        },
+        {
+          "target": "com.cloudflare.user#ListAuditLogs"
+        },
+        {
+          "target": "com.cloudflare.user#ListBillingHistories"
+        },
+        {
+          "target": "com.cloudflare.user#ListInvites"
+        },
+        {
+          "target": "com.cloudflare.user#ListOrganizations"
+        },
+        {
+          "target": "com.cloudflare.user#ListTenants"
+        },
+        {
+          "target": "com.cloudflare.user#ListTokenPermissionGroups"
+        },
+        {
+          "target": "com.cloudflare.user#ListTokens"
+        },
+        {
+          "target": "com.cloudflare.user#PatchInvite"
+        },
+        {
+          "target": "com.cloudflare.user#PatchUser"
+        },
+        {
+          "target": "com.cloudflare.user#PutSubscription"
+        },
+        {
+          "target": "com.cloudflare.user#PutTokenValue"
+        },
+        {
+          "target": "com.cloudflare.user#UpdateToken"
+        },
+        {
+          "target": "com.cloudflare.user#VerifyToken"
+        }
+      ],
+      "traits": {
+        "com.cloudflare.protocols#v4Json": {},
+        "smithy.api#title": "Cloudflare User",
+        "smithy.api#documentation": "Cloudflare API — user resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+      }
+    },
+    "com.cloudflare.user#Forbidden": {
       "type": "structure",
       "members": {
-        "result": {
-          "target": "com.cloudflare.user#TokensPermissionGroupsListResultList",
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.cloudflare.user#InvalidRoute": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "code": 7003
+          }
+        ]
+      }
+    },
+    "com.cloudflare.user#InvalidTokenName": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "code": 400,
+            "message": {
+              "includes": "name must have a length"
+            }
+          }
+        ]
+      }
+    },
+    "com.cloudflare.user#MethodNotAllowed": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "code": 7001
+          }
+        ]
+      }
+    },
+    "com.cloudflare.user#PermissionGroupNotFound": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "code": 1001,
+            "message": {
+              "includes": "Permission group"
+            }
+          }
+        ]
+      }
+    },
+    "com.cloudflare.user#TokenNotFound": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "code": 1003
+          }
+        ]
+      }
+    },
+    "com.cloudflare.user#CreateToken": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.user#CreateTokenRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.user#CreateTokenResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/user/tokens",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a new access token."
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.user#InvalidRoute"
+        },
+        {
+          "target": "com.cloudflare.user#InvalidTokenName"
+        },
+        {
+          "target": "com.cloudflare.user#PermissionGroupNotFound"
+        }
+      ]
+    },
+    "com.cloudflare.user#CreateTokenRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
           "traits": {
-            "com.cloudflare.protocols#envelopePayload": {},
-            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+            "smithy.api#documentation": "Token name.",
+            "smithy.api#required": {}
+          }
+        },
+        "policies": {
+          "target": "com.cloudflare.user#TokensCreateRequestPoliciesList",
+          "traits": {
+            "smithy.api#documentation": "List of access policies assigned to the token.",
+            "smithy.api#required": {}
+          }
+        },
+        "condition": {
+          "target": "com.cloudflare.user#TokensCreateRequestCondition"
+        },
+        "expires_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The expiration time on or after which the JWT MUST NOT be accepted for processing."
+          }
+        },
+        "not_before": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time before which the token MUST NOT be accepted for processing."
           }
         }
       },
       "traits": {
-        "smithy.api#output": {}
+        "smithy.api#input": {}
       }
     },
-    "com.cloudflare.user#TokensPermissionGroupsList": {
+    "com.cloudflare.user#CreateTokenResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Token identifier tag."
+          }
+        },
+        "condition": {
+          "target": "com.cloudflare.user#TokensCreateResponseCondition"
+        },
+        "expires_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The expiration time on or after which the JWT MUST NOT be accepted for processing."
+          }
+        },
+        "issued_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time on which the token was created."
+          }
+        },
+        "last_used_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last time the token was used."
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last time the token was modified."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Token name."
+          }
+        },
+        "not_before": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time before which the token MUST NOT be accepted for processing."
+          }
+        },
+        "policies": {
+          "target": "com.cloudflare.user#TokensCreateResponsePoliciesList",
+          "traits": {
+            "smithy.api#documentation": "List of access policies assigned to the token."
+          }
+        },
+        "status": {
+          "target": "com.cloudflare.user#TokensCreateResponseStatus",
+          "traits": {
+            "smithy.api#documentation": "Status of the token."
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The token value."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.user#DeleteOrganization": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.user#TokensPermissionGroupsListRequest"
+        "target": "com.cloudflare.user#DeleteOrganizationRequest"
       },
       "output": {
-        "target": "com.cloudflare.user#TokensPermissionGroupsListResponse"
+        "target": "com.cloudflare.user#DeleteOrganizationResponse"
       },
       "traits": {
         "smithy.api#http": {
-          "method": "GET",
-          "uri": "/user/tokens/permission_groups",
+          "method": "DELETE",
+          "uri": "/user/organizations/{organization_id}",
           "code": 200
         },
-        "smithy.api#documentation": "Find all available permission groups for API Tokens.",
-        "smithy.api#readonly": {}
+        "smithy.api#documentation": "Removes association to an organization.",
+        "smithy.api#idempotent": {}
       }
     },
-    "com.cloudflare.user#TokensValueUpdateRequest": {
+    "com.cloudflare.user#DeleteOrganizationRequest": {
+      "type": "structure",
+      "members": {
+        "organization_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.user#DeleteOrganizationResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Raw response payload (operation does not use the standard v4 result envelope)."
+      }
+    },
+    "com.cloudflare.user#DeleteSubscription": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.user#DeleteSubscriptionRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.user#DeleteSubscriptionResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/user/subscriptions/{identifier}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Deletes a user's subscription.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.user#DeleteSubscriptionRequest": {
+      "type": "structure",
+      "members": {
+        "identifier": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Subscription identifier tag.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.user#DeleteSubscriptionResponse": {
+      "type": "structure",
+      "members": {
+        "subscription_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Subscription identifier tag."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Raw response payload (operation does not use the standard v4 result envelope)."
+      }
+    },
+    "com.cloudflare.user#DeleteToken": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.user#DeleteTokenRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.user#DeleteTokenResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/user/tokens/{token_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Destroy a token.",
+        "smithy.api#idempotent": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.user#InvalidRoute"
+        },
+        {
+          "target": "com.cloudflare.user#MethodNotAllowed"
+        },
+        {
+          "target": "com.cloudflare.user#TokenNotFound"
+        }
+      ]
+    },
+    "com.cloudflare.user#DeleteTokenRequest": {
       "type": "structure",
       "members": {
         "token_id": {
@@ -4684,7 +3395,312 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.user#TokensValueUpdateResponse": {
+    "com.cloudflare.user#DeleteTokenResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.user#GetBillingProfile": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.cloudflare.user#GetBillingProfileResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/user/billing/profile",
+          "code": 200
+        },
+        "smithy.api#documentation": "Accesses your billing profile object.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.user#GetBillingProfileResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Billing item identifier tag."
+          }
+        },
+        "account_type": {
+          "target": "smithy.api#String"
+        },
+        "address": {
+          "target": "smithy.api#String"
+        },
+        "address2": {
+          "target": "smithy.api#String"
+        },
+        "balance": {
+          "target": "smithy.api#String"
+        },
+        "card_expiry_month": {
+          "target": "smithy.api#Double"
+        },
+        "card_expiry_year": {
+          "target": "smithy.api#Double"
+        },
+        "card_number": {
+          "target": "smithy.api#String"
+        },
+        "city": {
+          "target": "smithy.api#String"
+        },
+        "company": {
+          "target": "smithy.api#String"
+        },
+        "country": {
+          "target": "smithy.api#String"
+        },
+        "created_on": {
+          "target": "smithy.api#String"
+        },
+        "device_data": {
+          "target": "smithy.api#String"
+        },
+        "edited_on": {
+          "target": "smithy.api#String"
+        },
+        "enterprise_billing_email": {
+          "target": "smithy.api#String"
+        },
+        "enterprise_primary_email": {
+          "target": "smithy.api#String"
+        },
+        "first_name": {
+          "target": "smithy.api#String"
+        },
+        "is_partner": {
+          "target": "smithy.api#Boolean"
+        },
+        "last_name": {
+          "target": "smithy.api#String"
+        },
+        "next_bill_date": {
+          "target": "smithy.api#String"
+        },
+        "payment_address": {
+          "target": "smithy.api#String"
+        },
+        "payment_address2": {
+          "target": "smithy.api#String"
+        },
+        "payment_city": {
+          "target": "smithy.api#String"
+        },
+        "payment_country": {
+          "target": "smithy.api#String"
+        },
+        "payment_email": {
+          "target": "smithy.api#String"
+        },
+        "payment_first_name": {
+          "target": "smithy.api#String"
+        },
+        "payment_gateway": {
+          "target": "smithy.api#String"
+        },
+        "payment_last_name": {
+          "target": "smithy.api#String"
+        },
+        "payment_nonce": {
+          "target": "smithy.api#String"
+        },
+        "payment_state": {
+          "target": "smithy.api#String"
+        },
+        "payment_zipcode": {
+          "target": "smithy.api#String"
+        },
+        "primary_email": {
+          "target": "smithy.api#String"
+        },
+        "state": {
+          "target": "smithy.api#String"
+        },
+        "tax_id_type": {
+          "target": "smithy.api#String"
+        },
+        "telephone": {
+          "target": "smithy.api#String"
+        },
+        "use_legacy": {
+          "target": "smithy.api#Boolean"
+        },
+        "validation_code": {
+          "target": "smithy.api#String"
+        },
+        "vat": {
+          "target": "smithy.api#String"
+        },
+        "zipcode": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.user#GetInvite": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.user#GetInviteRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.user#GetInviteResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/user/invites/{invite_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Gets the details of an invitation.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.user#GetInviteRequest": {
+      "type": "structure",
+      "members": {
+        "invite_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Invite identifier tag.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.user#GetInviteResponse": {
+      "type": "structure",
+      "members": {
+        "invited_member_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the user to add to the organization.",
+            "smithy.api#required": {}
+          }
+        },
+        "organization_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the organization the user will be added to.",
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Invite identifier tag."
+          }
+        },
+        "expires_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the invite is no longer active."
+          }
+        },
+        "invited_by": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The email address of the user who created the invite."
+          }
+        },
+        "invited_member_email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Email address of the user to add to the organization."
+          }
+        },
+        "invited_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the invite was sent."
+          }
+        },
+        "organization_is_enforcing_twofactor": {
+          "target": "smithy.api#Boolean"
+        },
+        "organization_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Organization name."
+          }
+        },
+        "roles": {
+          "target": "com.cloudflare.user#InvitesGetResponseRolesList",
+          "traits": {
+            "smithy.api#documentation": "List of role names the membership has for this account."
+          }
+        },
+        "status": {
+          "target": "com.cloudflare.user#InvitesGetResponseStatus",
+          "traits": {
+            "smithy.api#documentation": "Current status of the invitation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.user#GetOrganization": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.user#GetOrganizationRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.user#GetOrganizationResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/user/organizations/{organization_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Gets a specific organization the user is associated with.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.user#GetOrganizationRequest": {
+      "type": "structure",
+      "members": {
+        "organization_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.user#GetOrganizationResponse": {
       "type": "structure",
       "members": {
         "result": {
@@ -4699,13 +3715,1113 @@
         "smithy.api#output": {}
       }
     },
-    "com.cloudflare.user#TokensValueUpdate": {
+    "com.cloudflare.user#GetSubscription": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.user#TokensValueUpdateRequest"
+        "target": "smithy.api#Unit"
       },
       "output": {
-        "target": "com.cloudflare.user#TokensValueUpdateResponse"
+        "target": "com.cloudflare.user#GetSubscriptionResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/user/subscriptions",
+          "code": 200
+        },
+        "smithy.api#documentation": "Lists all of a user's subscriptions.",
+        "smithy.api#readonly": {},
+        "smithy.api#paginated": {
+          "mode": "single",
+          "items": "result"
+        }
+      }
+    },
+    "com.cloudflare.user#GetSubscriptionResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.user#SubscriptionsGetResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.user#GetToken": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.user#GetTokenRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.user#GetTokenResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/user/tokens/{token_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get information about a specific token.",
+        "smithy.api#readonly": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.user#InvalidRoute"
+        },
+        {
+          "target": "com.cloudflare.user#TokenNotFound"
+        }
+      ]
+    },
+    "com.cloudflare.user#GetTokenRequest": {
+      "type": "structure",
+      "members": {
+        "token_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Token identifier tag.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.user#GetTokenResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Token identifier tag."
+          }
+        },
+        "condition": {
+          "target": "com.cloudflare.user#TokensGetResponseCondition"
+        },
+        "expires_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The expiration time on or after which the JWT MUST NOT be accepted for processing."
+          }
+        },
+        "issued_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time on which the token was created."
+          }
+        },
+        "last_used_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last time the token was used."
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last time the token was modified."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Token name."
+          }
+        },
+        "not_before": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time before which the token MUST NOT be accepted for processing."
+          }
+        },
+        "policies": {
+          "target": "com.cloudflare.user#TokensGetResponsePoliciesList",
+          "traits": {
+            "smithy.api#documentation": "List of access policies assigned to the token."
+          }
+        },
+        "status": {
+          "target": "com.cloudflare.user#TokensGetResponseStatus",
+          "traits": {
+            "smithy.api#documentation": "Status of the token."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.user#GetUser": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.cloudflare.user#GetUserResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/user",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieves detailed information about the currently authenticated user, including email, name, and account memberships.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.user#GetUserResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier of the user.",
+            "smithy.api#required": {}
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Current email address of the user.",
+            "smithy.api#required": {}
+          }
+        },
+        "betas": {
+          "target": "com.cloudflare.user#GetResponseBetasList",
+          "traits": {
+            "smithy.api#documentation": "Lists the betas that the user is participating in."
+          }
+        },
+        "country": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The country in which the user lives."
+          }
+        },
+        "first_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "User's first name"
+          }
+        },
+        "has_business_zones": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether user has any business zones"
+          }
+        },
+        "has_enterprise_zones": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether user has any enterprise zones"
+          }
+        },
+        "has_pro_zones": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether user has any pro zones"
+          }
+        },
+        "last_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "User's last name"
+          }
+        },
+        "organizations": {
+          "target": "com.cloudflare.user#GetResponseOrganizationsList"
+        },
+        "suspended": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether user has been suspended"
+          }
+        },
+        "telephone": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "User's telephone number"
+          }
+        },
+        "two_factor_authentication_enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether two-factor authentication is enabled for the user account. Does not apply to API authentication."
+          }
+        },
+        "two_factor_authentication_locked": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether two-factor authentication is required by one of the accounts that the user is a member of."
+          }
+        },
+        "zipcode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The zipcode or postal code where the user lives."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.user#ListAuditLogs": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.user#ListAuditLogsRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.user#ListAuditLogsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/user/audit_logs",
+          "code": 200
+        },
+        "smithy.api#documentation": "Gets a list of audit logs for a user account. Can be filtered by who made the change, on which zone, and the timeframe of the change.",
+        "smithy.api#readonly": {},
+        "smithy.api#paginated": {
+          "mode": "page",
+          "inputToken": "page",
+          "outputToken": "resultInfo.page",
+          "items": "result",
+          "pageSize": "perPage"
+        }
+      }
+    },
+    "com.cloudflare.user#ListAuditLogsRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Finds a specific log by its ID.",
+            "smithy.api#httpQuery": "id"
+          }
+        },
+        "action": {
+          "target": "com.cloudflare.user#AuditLogsListRequestAction",
+          "traits": {
+            "com.cloudflare.protocols#deepQuery": "action"
+          }
+        },
+        "actor": {
+          "target": "com.cloudflare.user#AuditLogsListRequestActor",
+          "traits": {
+            "com.cloudflare.protocols#deepQuery": "actor"
+          }
+        },
+        "before": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Limits the returned results to logs older than the specified date. A `full-date` that conforms to RFC3339.",
+            "smithy.api#httpQuery": "before"
+          }
+        },
+        "direction": {
+          "target": "com.cloudflare.user#AuditLogsListRequestDirection",
+          "traits": {
+            "smithy.api#documentation": "Changes the direction of the chronological sorting.",
+            "smithy.api#httpQuery": "direction"
+          }
+        },
+        "export": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates that this request is an export of logs in CSV format.",
+            "smithy.api#httpQuery": "export"
+          }
+        },
+        "hide_user_logs": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether or not to hide user level audit logs.",
+            "smithy.api#httpQuery": "hide_user_logs"
+          }
+        },
+        "page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Defines which page of results to return.",
+            "smithy.api#httpQuery": "page"
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Sets the number of results to return per page.",
+            "smithy.api#httpQuery": "per_page"
+          }
+        },
+        "since": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Limits the returned results to logs newer than the specified date. A `full-date` that conforms to RFC3339.",
+            "smithy.api#httpQuery": "since"
+          }
+        },
+        "zone": {
+          "target": "com.cloudflare.user#AuditLogsListRequestZone",
+          "traits": {
+            "com.cloudflare.protocols#deepQuery": "zone"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.user#ListAuditLogsResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.user#AuditLogsListResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.user#ListBillingHistories": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.user#ListBillingHistoriesRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.user#ListBillingHistoriesResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/user/billing/history",
+          "code": 200
+        },
+        "smithy.api#documentation": "Accesses your billing history object.",
+        "smithy.api#readonly": {},
+        "smithy.api#paginated": {
+          "mode": "page",
+          "inputToken": "page",
+          "outputToken": "resultInfo.page",
+          "items": "result",
+          "pageSize": "perPage"
+        }
+      }
+    },
+    "com.cloudflare.user#ListBillingHistoriesRequest": {
+      "type": "structure",
+      "members": {
+        "action": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The billing item action.",
+            "smithy.api#httpQuery": "action"
+          }
+        },
+        "occurred_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the billing item was created.",
+            "smithy.api#httpQuery": "occurred_at"
+          }
+        },
+        "order": {
+          "target": "com.cloudflare.user#BillingHistoryListRequestOrder",
+          "traits": {
+            "smithy.api#documentation": "Field to order billing history by.",
+            "smithy.api#httpQuery": "order"
+          }
+        },
+        "page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Page number of paginated results.",
+            "smithy.api#httpQuery": "page"
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Number of items per page.",
+            "smithy.api#httpQuery": "per_page"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The billing item type.",
+            "smithy.api#httpQuery": "type"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.user#ListBillingHistoriesResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.user#BillingHistoryListResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.user#ListInvites": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.cloudflare.user#ListInvitesResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/user/invites",
+          "code": 200
+        },
+        "smithy.api#documentation": "Lists all invitations associated with my user.",
+        "smithy.api#readonly": {},
+        "smithy.api#paginated": {
+          "mode": "single",
+          "items": "result"
+        }
+      }
+    },
+    "com.cloudflare.user#ListInvitesResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.user#InvitesListResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.user#ListOrganizations": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.user#ListOrganizationsRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.user#ListOrganizationsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/user/organizations",
+          "code": 200
+        },
+        "smithy.api#documentation": "Lists organizations the user is associated with.",
+        "smithy.api#readonly": {},
+        "smithy.api#paginated": {
+          "mode": "page",
+          "inputToken": "page",
+          "outputToken": "resultInfo.page",
+          "items": "result",
+          "pageSize": "perPage"
+        }
+      }
+    },
+    "com.cloudflare.user#ListOrganizationsRequest": {
+      "type": "structure",
+      "members": {
+        "direction": {
+          "target": "com.cloudflare.user#OrganizationsListRequestDirection",
+          "traits": {
+            "smithy.api#documentation": "Direction to order organizations.",
+            "smithy.api#httpQuery": "direction"
+          }
+        },
+        "match": {
+          "target": "com.cloudflare.user#OrganizationsListRequestMatch",
+          "traits": {
+            "smithy.api#documentation": "Whether to match all search requirements or at least one (any).",
+            "smithy.api#httpQuery": "match"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Organization name.",
+            "smithy.api#httpQuery": "name"
+          }
+        },
+        "order": {
+          "target": "com.cloudflare.user#OrganizationsListRequestOrder",
+          "traits": {
+            "smithy.api#documentation": "Field to order organizations by.",
+            "smithy.api#httpQuery": "order"
+          }
+        },
+        "page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Page number of paginated results.",
+            "smithy.api#httpQuery": "page"
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Number of organizations per page.",
+            "smithy.api#httpQuery": "per_page"
+          }
+        },
+        "status": {
+          "target": "com.cloudflare.user#OrganizationsListRequestStatus",
+          "traits": {
+            "smithy.api#documentation": "Whether the user is a member of the organization or has an inivitation pending.",
+            "smithy.api#httpQuery": "status"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.user#ListOrganizationsResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.user#OrganizationsListResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.user#ListTenants": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.cloudflare.user#ListTenantsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/user/tenants",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieves list of tenants the authenticated user / method has access to.",
+        "smithy.api#readonly": {},
+        "smithy.api#paginated": {
+          "mode": "single",
+          "items": "result"
+        }
+      }
+    },
+    "com.cloudflare.user#ListTenantsResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.user#TenantsListResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.user#ListTokenPermissionGroups": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.user#ListTokenPermissionGroupsRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.user#ListTokenPermissionGroupsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/user/tokens/permission_groups",
+          "code": 200
+        },
+        "smithy.api#documentation": "Find all available permission groups for API Tokens.",
+        "smithy.api#readonly": {},
+        "smithy.api#paginated": {
+          "mode": "single",
+          "items": "result"
+        }
+      }
+    },
+    "com.cloudflare.user#ListTokenPermissionGroupsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Filter by the name of the permission group.",
+            "smithy.api#httpQuery": "name"
+          }
+        },
+        "scope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Filter by the scope of the permission group.",
+            "smithy.api#httpQuery": "scope"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.user#ListTokenPermissionGroupsResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.user#TokensPermissionGroupsListResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.user#ListTokens": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.user#ListTokensRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.user#ListTokensResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/user/tokens",
+          "code": 200
+        },
+        "smithy.api#documentation": "List all access tokens you created.",
+        "smithy.api#readonly": {},
+        "smithy.api#paginated": {
+          "mode": "page",
+          "inputToken": "page",
+          "outputToken": "resultInfo.page",
+          "items": "result",
+          "pageSize": "perPage"
+        }
+      }
+    },
+    "com.cloudflare.user#ListTokensRequest": {
+      "type": "structure",
+      "members": {
+        "direction": {
+          "target": "com.cloudflare.user#TokensListRequestDirection",
+          "traits": {
+            "smithy.api#documentation": "Direction to order results.",
+            "smithy.api#httpQuery": "direction"
+          }
+        },
+        "page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Page number of paginated results.",
+            "smithy.api#httpQuery": "page"
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Maximum number of results per page.",
+            "smithy.api#httpQuery": "per_page"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.user#ListTokensResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.user#TokensListResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.user#PatchInvite": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.user#PatchInviteRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.user#PatchInviteResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/user/invites/{invite_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Responds to an invitation."
+      }
+    },
+    "com.cloudflare.user#PatchInviteRequest": {
+      "type": "structure",
+      "members": {
+        "invite_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Invite identifier tag.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.cloudflare.user#InvitesEditRequestStatus",
+          "traits": {
+            "smithy.api#documentation": "Status of your response to the invitation (rejected or accepted).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.user#PatchInviteResponse": {
+      "type": "structure",
+      "members": {
+        "invited_member_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the user to add to the organization.",
+            "smithy.api#required": {}
+          }
+        },
+        "organization_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the organization the user will be added to.",
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Invite identifier tag."
+          }
+        },
+        "expires_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the invite is no longer active."
+          }
+        },
+        "invited_by": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The email address of the user who created the invite."
+          }
+        },
+        "invited_member_email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Email address of the user to add to the organization."
+          }
+        },
+        "invited_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the invite was sent."
+          }
+        },
+        "organization_is_enforcing_twofactor": {
+          "target": "smithy.api#Boolean"
+        },
+        "organization_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Organization name."
+          }
+        },
+        "roles": {
+          "target": "com.cloudflare.user#InvitesEditResponseRolesList",
+          "traits": {
+            "smithy.api#documentation": "List of role names the membership has for this account."
+          }
+        },
+        "status": {
+          "target": "com.cloudflare.user#InvitesEditResponseStatus",
+          "traits": {
+            "smithy.api#documentation": "Current status of the invitation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.user#PatchUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.user#PatchUserRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.user#PatchUserResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/user",
+          "code": 200
+        },
+        "smithy.api#documentation": "Edit part of your user details."
+      }
+    },
+    "com.cloudflare.user#PatchUserRequest": {
+      "type": "structure",
+      "members": {
+        "country": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The country in which the user lives."
+          }
+        },
+        "first_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "User's first name"
+          }
+        },
+        "last_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "User's last name"
+          }
+        },
+        "telephone": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "User's telephone number"
+          }
+        },
+        "zipcode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The zipcode or postal code where the user lives."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.user#PatchUserResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier of the user.",
+            "smithy.api#required": {}
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Current email address of the user.",
+            "smithy.api#required": {}
+          }
+        },
+        "betas": {
+          "target": "com.cloudflare.user#EditResponseBetasList",
+          "traits": {
+            "smithy.api#documentation": "Lists the betas that the user is participating in."
+          }
+        },
+        "country": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The country in which the user lives."
+          }
+        },
+        "first_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "User's first name"
+          }
+        },
+        "has_business_zones": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether user has any business zones"
+          }
+        },
+        "has_enterprise_zones": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether user has any enterprise zones"
+          }
+        },
+        "has_pro_zones": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether user has any pro zones"
+          }
+        },
+        "last_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "User's last name"
+          }
+        },
+        "organizations": {
+          "target": "com.cloudflare.user#EditResponseOrganizationsList"
+        },
+        "suspended": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether user has been suspended"
+          }
+        },
+        "telephone": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "User's telephone number"
+          }
+        },
+        "two_factor_authentication_enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether two-factor authentication is enabled for the user account. Does not apply to API authentication."
+          }
+        },
+        "two_factor_authentication_locked": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether two-factor authentication is required by one of the accounts that the user is a member of."
+          }
+        },
+        "zipcode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The zipcode or postal code where the user lives."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.user#PutSubscription": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.user#PutSubscriptionRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.user#PutSubscriptionResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/user/subscriptions/{identifier}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Updates a user's subscriptions.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.user#PutSubscriptionRequest": {
+      "type": "structure",
+      "members": {
+        "identifier": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Subscription identifier tag.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "frequency": {
+          "target": "com.cloudflare.user#SubscriptionsUpdateRequestFrequency",
+          "traits": {
+            "smithy.api#documentation": "How often the subscription is renewed automatically."
+          }
+        },
+        "rate_plan": {
+          "target": "com.cloudflare.user#SubscriptionsUpdateRequestRatePlan",
+          "traits": {
+            "smithy.api#documentation": "The rate plan applied to the subscription."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.user#PutSubscriptionResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.user#PutTokenValue": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.user#PutTokenValueRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.user#PutTokenValueResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4715,86 +4831,252 @@
         },
         "smithy.api#documentation": "Roll the token secret.",
         "smithy.api#idempotent": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.user#InvalidRoute"
+        },
+        {
+          "target": "com.cloudflare.user#TokenNotFound"
+        }
+      ]
+    },
+    "com.cloudflare.user#PutTokenValueRequest": {
+      "type": "structure",
+      "members": {
+        "token_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Token identifier tag.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
       }
     },
-    "com.cloudflare.user#User": {
-      "type": "service",
-      "version": "4.0",
-      "operations": [
-        {
-          "target": "com.cloudflare.user#Edit"
-        },
-        {
-          "target": "com.cloudflare.user#Get"
-        },
-        {
-          "target": "com.cloudflare.user#AuditLogsList"
-        },
-        {
-          "target": "com.cloudflare.user#BillingHistoryList"
-        },
-        {
-          "target": "com.cloudflare.user#BillingProfileGet"
-        },
-        {
-          "target": "com.cloudflare.user#InvitesEdit"
-        },
-        {
-          "target": "com.cloudflare.user#InvitesGet"
-        },
-        {
-          "target": "com.cloudflare.user#InvitesList"
-        },
-        {
-          "target": "com.cloudflare.user#OrganizationsDelete"
-        },
-        {
-          "target": "com.cloudflare.user#OrganizationsGet"
-        },
-        {
-          "target": "com.cloudflare.user#OrganizationsList"
-        },
-        {
-          "target": "com.cloudflare.user#SubscriptionsDelete"
-        },
-        {
-          "target": "com.cloudflare.user#SubscriptionsGet"
-        },
-        {
-          "target": "com.cloudflare.user#SubscriptionsUpdate"
-        },
-        {
-          "target": "com.cloudflare.user#TenantsList"
-        },
-        {
-          "target": "com.cloudflare.user#TokensCreate"
-        },
-        {
-          "target": "com.cloudflare.user#TokensDelete"
-        },
-        {
-          "target": "com.cloudflare.user#TokensGet"
-        },
-        {
-          "target": "com.cloudflare.user#TokensList"
-        },
-        {
-          "target": "com.cloudflare.user#TokensUpdate"
-        },
-        {
-          "target": "com.cloudflare.user#TokensVerify"
-        },
-        {
-          "target": "com.cloudflare.user#TokensPermissionGroupsList"
-        },
-        {
-          "target": "com.cloudflare.user#TokensValueUpdate"
+    "com.cloudflare.user#PutTokenValueResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
         }
-      ],
+      },
       "traits": {
-        "com.cloudflare.protocols#v4Json": {},
-        "smithy.api#title": "Cloudflare User",
-        "smithy.api#documentation": "Cloudflare API — user resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.user#UpdateToken": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.user#UpdateTokenRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.user#UpdateTokenResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/user/tokens/{token_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update an existing token.",
+        "smithy.api#idempotent": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.user#InvalidRoute"
+        },
+        {
+          "target": "com.cloudflare.user#MethodNotAllowed"
+        },
+        {
+          "target": "com.cloudflare.user#TokenNotFound"
+        },
+        {
+          "target": "com.cloudflare.user#PermissionGroupNotFound"
+        }
+      ]
+    },
+    "com.cloudflare.user#UpdateTokenRequest": {
+      "type": "structure",
+      "members": {
+        "token_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Token identifier tag.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Token name.",
+            "smithy.api#required": {}
+          }
+        },
+        "policies": {
+          "target": "com.cloudflare.user#TokensUpdateRequestPoliciesList",
+          "traits": {
+            "smithy.api#documentation": "List of access policies assigned to the token.",
+            "smithy.api#required": {}
+          }
+        },
+        "condition": {
+          "target": "com.cloudflare.user#TokensUpdateRequestCondition"
+        },
+        "expires_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The expiration time on or after which the JWT MUST NOT be accepted for processing."
+          }
+        },
+        "not_before": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time before which the token MUST NOT be accepted for processing."
+          }
+        },
+        "status": {
+          "target": "com.cloudflare.user#TokensUpdateRequestStatus",
+          "traits": {
+            "smithy.api#documentation": "Status of the token."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.user#UpdateTokenResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Token identifier tag."
+          }
+        },
+        "condition": {
+          "target": "com.cloudflare.user#TokensUpdateResponseCondition"
+        },
+        "expires_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The expiration time on or after which the JWT MUST NOT be accepted for processing."
+          }
+        },
+        "issued_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time on which the token was created."
+          }
+        },
+        "last_used_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last time the token was used."
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last time the token was modified."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Token name."
+          }
+        },
+        "not_before": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time before which the token MUST NOT be accepted for processing."
+          }
+        },
+        "policies": {
+          "target": "com.cloudflare.user#TokensUpdateResponsePoliciesList",
+          "traits": {
+            "smithy.api#documentation": "List of access policies assigned to the token."
+          }
+        },
+        "status": {
+          "target": "com.cloudflare.user#TokensUpdateResponseStatus",
+          "traits": {
+            "smithy.api#documentation": "Status of the token."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.user#VerifyToken": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.cloudflare.user#VerifyTokenResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/user/tokens/verify",
+          "code": 200
+        },
+        "smithy.api#documentation": "Test whether a token works.",
+        "smithy.api#readonly": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.user#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.user#VerifyTokenResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Token identifier tag.",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.cloudflare.user#TokensVerifyResponseStatus",
+          "traits": {
+            "smithy.api#documentation": "Status of the token.",
+            "smithy.api#required": {}
+          }
+        },
+        "expires_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The expiration time on or after which the JWT MUST NOT be accepted for processing."
+          }
+        },
+        "not_before": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time before which the token MUST NOT be accepted for processing."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
       }
     }
   }

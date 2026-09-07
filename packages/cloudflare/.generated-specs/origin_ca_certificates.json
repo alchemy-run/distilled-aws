@@ -14,7 +14,17 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "keyDictionary": {
+      "expiresOn": "expires_on",
+      "perPage": "per_page",
+      "requestType": "request_type",
+      "requestedValidity": "requested_validity",
+      "resultInfo": "result_info",
+      "revokedAt": "revoked_at",
+      "totalCount": "total_count"
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.origin_ca_certificates#CreateRequestHostnamesList": {
@@ -93,41 +103,6 @@
         }
       }
     },
-    "com.cloudflare.origin_ca_certificates#CreateRequest": {
-      "type": "structure",
-      "members": {
-        "csr": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The Certificate Signing Request (CSR). Must be newline-encoded.",
-            "smithy.api#required": {}
-          }
-        },
-        "hostnames": {
-          "target": "com.cloudflare.origin_ca_certificates#CreateRequestHostnamesList",
-          "traits": {
-            "smithy.api#documentation": "Array of hostnames or wildcard names bound to the certificate.",
-            "smithy.api#required": {}
-          }
-        },
-        "request_type": {
-          "target": "com.cloudflare.origin_ca_certificates#CreateRequestRequestType",
-          "traits": {
-            "smithy.api#documentation": "Signature type desired on certificate (\"origin-rsa\" (rsa), \"origin-ecc\" (ecdsa), or \"keyless-certificate\" (for Keyless SSL servers).",
-            "smithy.api#required": {}
-          }
-        },
-        "requested_validity": {
-          "target": "com.cloudflare.origin_ca_certificates#CreateRequestRequestedValidity",
-          "traits": {
-            "smithy.api#documentation": "The number of days for which the certificate should be valid."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.origin_ca_certificates#CreateResponseHostnamesList": {
       "type": "list",
       "member": {
@@ -204,149 +179,6 @@
         }
       }
     },
-    "com.cloudflare.origin_ca_certificates#CreateResponse": {
-      "type": "structure",
-      "members": {
-        "csr": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The Certificate Signing Request (CSR). Must be newline-encoded.",
-            "smithy.api#required": {}
-          }
-        },
-        "hostnames": {
-          "target": "com.cloudflare.origin_ca_certificates#CreateResponseHostnamesList",
-          "traits": {
-            "smithy.api#documentation": "Array of hostnames or wildcard names bound to the certificate.",
-            "smithy.api#required": {}
-          }
-        },
-        "request_type": {
-          "target": "com.cloudflare.origin_ca_certificates#CreateResponseRequestType",
-          "traits": {
-            "smithy.api#documentation": "Signature type desired on certificate (\"origin-rsa\" (rsa), \"origin-ecc\" (ecdsa), or \"keyless-certificate\" (for Keyless SSL servers).",
-            "smithy.api#required": {}
-          }
-        },
-        "requested_validity": {
-          "target": "com.cloudflare.origin_ca_certificates#CreateResponseRequestedValidity",
-          "traits": {
-            "smithy.api#documentation": "The number of days for which the certificate should be valid.",
-            "smithy.api#required": {}
-          }
-        },
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier."
-          }
-        },
-        "certificate": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The Origin CA certificate. Will be newline-encoded."
-          }
-        },
-        "expires_on": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "When the certificate will expire."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.origin_ca_certificates#Create": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.origin_ca_certificates#CreateRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.origin_ca_certificates#CreateResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "/certificates",
-          "code": 200
-        },
-        "smithy.api#documentation": "Create an Origin CA certificate. You can use an Origin CA Key as your User Service Key or an API token when calling this endpoint ([see above](#requests))."
-      }
-    },
-    "com.cloudflare.origin_ca_certificates#DeleteRequest": {
-      "type": "structure",
-      "members": {
-        "certificate_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.origin_ca_certificates#DeleteResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier."
-          }
-        },
-        "revoked_at": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "When the certificate was revoked."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.origin_ca_certificates#Delete": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.origin_ca_certificates#DeleteRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.origin_ca_certificates#DeleteResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "/certificates/{certificate_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Revoke an existing Origin CA certificate by its serial number. You can use an Origin CA Key as your User Service Key or an API token when calling this endpoint ([see above](#requests)).",
-        "smithy.api#idempotent": {}
-      }
-    },
-    "com.cloudflare.origin_ca_certificates#GetRequest": {
-      "type": "structure",
-      "members": {
-        "certificate_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.origin_ca_certificates#GetResponseHostnamesList": {
       "type": "list",
       "member": {
@@ -421,123 +253,6 @@
             "smithy.api#enumValue": 5475
           }
         }
-      }
-    },
-    "com.cloudflare.origin_ca_certificates#GetResponse": {
-      "type": "structure",
-      "members": {
-        "csr": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The Certificate Signing Request (CSR). Must be newline-encoded.",
-            "smithy.api#required": {}
-          }
-        },
-        "hostnames": {
-          "target": "com.cloudflare.origin_ca_certificates#GetResponseHostnamesList",
-          "traits": {
-            "smithy.api#documentation": "Array of hostnames or wildcard names bound to the certificate.",
-            "smithy.api#required": {}
-          }
-        },
-        "request_type": {
-          "target": "com.cloudflare.origin_ca_certificates#GetResponseRequestType",
-          "traits": {
-            "smithy.api#documentation": "Signature type desired on certificate (\"origin-rsa\" (rsa), \"origin-ecc\" (ecdsa), or \"keyless-certificate\" (for Keyless SSL servers).",
-            "smithy.api#required": {}
-          }
-        },
-        "requested_validity": {
-          "target": "com.cloudflare.origin_ca_certificates#GetResponseRequestedValidity",
-          "traits": {
-            "smithy.api#documentation": "The number of days for which the certificate should be valid.",
-            "smithy.api#required": {}
-          }
-        },
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier."
-          }
-        },
-        "certificate": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The Origin CA certificate. Will be newline-encoded."
-          }
-        },
-        "expires_on": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "When the certificate will expire."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.origin_ca_certificates#Get": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.origin_ca_certificates#GetRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.origin_ca_certificates#GetResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/certificates/{certificate_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Get an existing Origin CA certificate by its serial number. You can use an Origin CA Key as your User Service Key or an API token when calling this endpoint ([see above](#requests)).",
-        "smithy.api#readonly": {}
-      }
-    },
-    "com.cloudflare.origin_ca_certificates#ListRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpQuery": "zone_id",
-            "smithy.api#required": {}
-          }
-        },
-        "limit": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Limit to the number of records returned.",
-            "smithy.api#httpQuery": "limit"
-          }
-        },
-        "offset": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Offset the results.",
-            "smithy.api#httpQuery": "offset"
-          }
-        },
-        "page": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Page number of paginated results.",
-            "smithy.api#httpQuery": "page"
-          }
-        },
-        "per_page": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Number of records per page.",
-            "smithy.api#httpQuery": "per_page"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.origin_ca_certificates#ListResultItemHostnamesList": {
@@ -664,6 +379,12 @@
           "traits": {
             "smithy.api#documentation": "When the certificate will expire."
           }
+        },
+        "revoked_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the certificate was revoked; absent while the certificate is live."
+          }
         }
       }
     },
@@ -673,7 +394,492 @@
         "target": "com.cloudflare.origin_ca_certificates#ListResultItem"
       }
     },
-    "com.cloudflare.origin_ca_certificates#ListResponse": {
+    "com.cloudflare.origin_ca_certificates#OriginCaCertificates": {
+      "type": "service",
+      "version": "4.0",
+      "operations": [
+        {
+          "target": "com.cloudflare.origin_ca_certificates#CreateOriginCaCertificate"
+        },
+        {
+          "target": "com.cloudflare.origin_ca_certificates#DeleteOriginCaCertificate"
+        },
+        {
+          "target": "com.cloudflare.origin_ca_certificates#GetOriginCaCertificate"
+        },
+        {
+          "target": "com.cloudflare.origin_ca_certificates#ListOriginCaCertificates"
+        }
+      ],
+      "traits": {
+        "com.cloudflare.protocols#v4Json": {},
+        "smithy.api#title": "Cloudflare OriginCaCertificates",
+        "smithy.api#documentation": "Cloudflare API — origin_ca_certificates resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+      }
+    },
+    "com.cloudflare.origin_ca_certificates#CertificateAlreadyRevoked": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "code": 1014
+          }
+        ]
+      }
+    },
+    "com.cloudflare.origin_ca_certificates#CertificateNotFound": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "code": 1101
+          }
+        ]
+      }
+    },
+    "com.cloudflare.origin_ca_certificates#CertificateRevocationFailed": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "code": 1000
+          }
+        ]
+      }
+    },
+    "com.cloudflare.origin_ca_certificates#Forbidden": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.cloudflare.origin_ca_certificates#HostnameNotAuthorized": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "code": 1010
+          }
+        ]
+      }
+    },
+    "com.cloudflare.origin_ca_certificates#CreateOriginCaCertificate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.origin_ca_certificates#CreateOriginCaCertificateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.origin_ca_certificates#CreateOriginCaCertificateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/certificates",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create an Origin CA certificate. You can use an Origin CA Key as your User Service Key or an API token when calling this endpoint ([see above](#requests))."
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.origin_ca_certificates#HostnameNotAuthorized"
+        },
+        {
+          "target": "com.cloudflare.origin_ca_certificates#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.origin_ca_certificates#CreateOriginCaCertificateRequest": {
+      "type": "structure",
+      "members": {
+        "csr": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Certificate Signing Request (CSR). Must be newline-encoded.",
+            "smithy.api#required": {}
+          }
+        },
+        "hostnames": {
+          "target": "com.cloudflare.origin_ca_certificates#CreateRequestHostnamesList",
+          "traits": {
+            "smithy.api#documentation": "Array of hostnames or wildcard names bound to the certificate.",
+            "smithy.api#required": {}
+          }
+        },
+        "request_type": {
+          "target": "com.cloudflare.origin_ca_certificates#CreateRequestRequestType",
+          "traits": {
+            "smithy.api#documentation": "Signature type desired on certificate (\"origin-rsa\" (rsa), \"origin-ecc\" (ecdsa), or \"keyless-certificate\" (for Keyless SSL servers).",
+            "smithy.api#required": {}
+          }
+        },
+        "requested_validity": {
+          "target": "com.cloudflare.origin_ca_certificates#CreateRequestRequestedValidity",
+          "traits": {
+            "smithy.api#documentation": "The number of days for which the certificate should be valid."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.origin_ca_certificates#CreateOriginCaCertificateResponse": {
+      "type": "structure",
+      "members": {
+        "csr": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Certificate Signing Request (CSR). Must be newline-encoded.",
+            "smithy.api#required": {}
+          }
+        },
+        "hostnames": {
+          "target": "com.cloudflare.origin_ca_certificates#CreateResponseHostnamesList",
+          "traits": {
+            "smithy.api#documentation": "Array of hostnames or wildcard names bound to the certificate.",
+            "smithy.api#required": {}
+          }
+        },
+        "request_type": {
+          "target": "com.cloudflare.origin_ca_certificates#CreateResponseRequestType",
+          "traits": {
+            "smithy.api#documentation": "Signature type desired on certificate (\"origin-rsa\" (rsa), \"origin-ecc\" (ecdsa), or \"keyless-certificate\" (for Keyless SSL servers).",
+            "smithy.api#required": {}
+          }
+        },
+        "requested_validity": {
+          "target": "com.cloudflare.origin_ca_certificates#CreateResponseRequestedValidity",
+          "traits": {
+            "smithy.api#documentation": "The number of days for which the certificate should be valid.",
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier."
+          }
+        },
+        "certificate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Origin CA certificate. Will be newline-encoded."
+          }
+        },
+        "expires_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the certificate will expire."
+          }
+        },
+        "revoked_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the certificate was revoked; absent while the certificate is live."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.origin_ca_certificates#DeleteOriginCaCertificate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.origin_ca_certificates#DeleteOriginCaCertificateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.origin_ca_certificates#DeleteOriginCaCertificateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/certificates/{certificate_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Revoke an existing Origin CA certificate by its serial number. You can use an Origin CA Key as your User Service Key or an API token when calling this endpoint ([see above](#requests)).",
+        "smithy.api#idempotent": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.origin_ca_certificates#CertificateNotFound"
+        },
+        {
+          "target": "com.cloudflare.origin_ca_certificates#CertificateAlreadyRevoked"
+        },
+        {
+          "target": "com.cloudflare.origin_ca_certificates#CertificateRevocationFailed"
+        },
+        {
+          "target": "com.cloudflare.origin_ca_certificates#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.origin_ca_certificates#DeleteOriginCaCertificateRequest": {
+      "type": "structure",
+      "members": {
+        "certificate_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.origin_ca_certificates#DeleteOriginCaCertificateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier."
+          }
+        },
+        "revoked_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the certificate was revoked."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.origin_ca_certificates#GetOriginCaCertificate": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.origin_ca_certificates#GetOriginCaCertificateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.origin_ca_certificates#GetOriginCaCertificateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/certificates/{certificate_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get an existing Origin CA certificate by its serial number. You can use an Origin CA Key as your User Service Key or an API token when calling this endpoint ([see above](#requests)).",
+        "smithy.api#readonly": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.origin_ca_certificates#CertificateNotFound"
+        },
+        {
+          "target": "com.cloudflare.origin_ca_certificates#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.origin_ca_certificates#GetOriginCaCertificateRequest": {
+      "type": "structure",
+      "members": {
+        "certificate_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.origin_ca_certificates#GetOriginCaCertificateResponse": {
+      "type": "structure",
+      "members": {
+        "csr": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Certificate Signing Request (CSR). Must be newline-encoded.",
+            "smithy.api#required": {}
+          }
+        },
+        "hostnames": {
+          "target": "com.cloudflare.origin_ca_certificates#GetResponseHostnamesList",
+          "traits": {
+            "smithy.api#documentation": "Array of hostnames or wildcard names bound to the certificate.",
+            "smithy.api#required": {}
+          }
+        },
+        "request_type": {
+          "target": "com.cloudflare.origin_ca_certificates#GetResponseRequestType",
+          "traits": {
+            "smithy.api#documentation": "Signature type desired on certificate (\"origin-rsa\" (rsa), \"origin-ecc\" (ecdsa), or \"keyless-certificate\" (for Keyless SSL servers).",
+            "smithy.api#required": {}
+          }
+        },
+        "requested_validity": {
+          "target": "com.cloudflare.origin_ca_certificates#GetResponseRequestedValidity",
+          "traits": {
+            "smithy.api#documentation": "The number of days for which the certificate should be valid.",
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier."
+          }
+        },
+        "certificate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Origin CA certificate. Will be newline-encoded."
+          }
+        },
+        "expires_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the certificate will expire."
+          }
+        },
+        "revoked_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the certificate was revoked; absent while the certificate is live."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.origin_ca_certificates#ListOriginCaCertificates": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.origin_ca_certificates#ListOriginCaCertificatesRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.origin_ca_certificates#ListOriginCaCertificatesResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/certificates",
+          "code": 200
+        },
+        "smithy.api#documentation": "List all existing Origin CA certificates for a given zone. You can use an Origin CA Key as your User Service Key or an API token when calling this endpoint ([see above](#requests)).",
+        "smithy.api#readonly": {},
+        "smithy.api#paginated": {
+          "mode": "page",
+          "inputToken": "page",
+          "outputToken": "resultInfo.page",
+          "items": "result",
+          "pageSize": "perPage"
+        }
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.origin_ca_certificates#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.origin_ca_certificates#ListOriginCaCertificatesRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpQuery": "zone_id",
+            "smithy.api#required": {}
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Limit to the number of records returned.",
+            "smithy.api#httpQuery": "limit"
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Offset the results.",
+            "smithy.api#httpQuery": "offset"
+          }
+        },
+        "page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Page number of paginated results.",
+            "smithy.api#httpQuery": "page"
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Number of records per page.",
+            "smithy.api#httpQuery": "per_page"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.origin_ca_certificates#ListOriginCaCertificatesResponse": {
       "type": "structure",
       "members": {
         "result": {
@@ -686,47 +892,6 @@
       },
       "traits": {
         "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.origin_ca_certificates#List": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.origin_ca_certificates#ListRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.origin_ca_certificates#ListResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/certificates",
-          "code": 200
-        },
-        "smithy.api#documentation": "List all existing Origin CA certificates for a given zone. You can use an Origin CA Key as your User Service Key or an API token when calling this endpoint ([see above](#requests)).",
-        "smithy.api#readonly": {}
-      }
-    },
-    "com.cloudflare.origin_ca_certificates#OriginCaCertificates": {
-      "type": "service",
-      "version": "4.0",
-      "operations": [
-        {
-          "target": "com.cloudflare.origin_ca_certificates#Create"
-        },
-        {
-          "target": "com.cloudflare.origin_ca_certificates#Delete"
-        },
-        {
-          "target": "com.cloudflare.origin_ca_certificates#Get"
-        },
-        {
-          "target": "com.cloudflare.origin_ca_certificates#List"
-        }
-      ],
-      "traits": {
-        "com.cloudflare.protocols#v4Json": {},
-        "smithy.api#title": "Cloudflare OriginCaCertificates",
-        "smithy.api#documentation": "Cloudflare API — origin_ca_certificates resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
       }
     }
   }

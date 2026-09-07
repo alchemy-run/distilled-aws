@@ -14,13 +14,14 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.confidentialledger#LedgerFilesExport": {
+    "com.azure.confidentialledger#ExportLedgerFile": {
       "type": "operation",
       "input": {
-        "target": "com.azure.confidentialledger#LedgerFilesExportRequest"
+        "target": "com.azure.confidentialledger#ExportLedgerFileRequest"
       },
       "output": {
         "target": "com.azure.confidentialledger#ConfidentialLedgerFilesExportResponse"
@@ -50,7 +51,7 @@
         "smithy.api#documentation": "Object representing the files export response of a Confidential Ledger Resource."
       }
     },
-    "com.azure.confidentialledger#LedgerFilesExportRequest": {
+    "com.azure.confidentialledger#ExportLedgerFileRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -95,10 +96,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.confidentialledger#LedgerDelete": {
+    "com.azure.confidentialledger#DeleteLedger": {
       "type": "operation",
       "input": {
-        "target": "com.azure.confidentialledger#LedgerDeleteRequest"
+        "target": "com.azure.confidentialledger#DeleteLedgerRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -114,7 +115,7 @@
         "com.distilled.openapi#apiVersion": "2026-02-23"
       }
     },
-    "com.azure.confidentialledger#LedgerDeleteRequest": {
+    "com.azure.confidentialledger#DeleteLedgerRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -146,13 +147,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.confidentialledger#LedgerUpdate": {
+    "com.azure.confidentialledger#UpdateLedger": {
       "type": "operation",
       "input": {
-        "target": "com.azure.confidentialledger#LedgerUpdateRequest"
+        "target": "com.azure.confidentialledger#UpdateLedgerRequest"
       },
       "output": {
-        "target": "com.azure.confidentialledger#LedgerUpdateResponse"
+        "target": "com.azure.confidentialledger#UpdateLedgerResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -165,7 +166,7 @@
         "com.distilled.openapi#apiVersion": "2026-02-23"
       }
     },
-    "com.azure.confidentialledger#LedgerUpdateResponse": {
+    "com.azure.confidentialledger#UpdateLedgerResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -193,7 +194,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.confidentialledger#LedgerUpdateResponseTagsMap",
+          "target": "com.azure.confidentialledger#UpdateLedgerResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -608,7 +609,7 @@
         "smithy.api#documentation": "Object representing RunningState for Confidential Ledger."
       }
     },
-    "com.azure.confidentialledger#LedgerUpdateResponseTagsMap": {
+    "com.azure.confidentialledger#UpdateLedgerResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -728,7 +729,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.confidentialledger#LedgerUpdateRequest": {
+    "com.azure.confidentialledger#UpdateLedgerRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -756,7 +757,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.confidentialledger#LedgerUpdateRequestTagsMap",
+          "target": "com.azure.confidentialledger#UpdateLedgerRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -883,7 +884,7 @@
         "smithy.api#documentation": "Array of all AAD based Security Principals."
       }
     },
-    "com.azure.confidentialledger#LedgerUpdateRequestTagsMap": {
+    "com.azure.confidentialledger#UpdateLedgerRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -895,13 +896,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.confidentialledger#LedgerCreate": {
+    "com.azure.confidentialledger#CreateLedger": {
       "type": "operation",
       "input": {
-        "target": "com.azure.confidentialledger#LedgerCreateRequest"
+        "target": "com.azure.confidentialledger#CreateLedgerRequest"
       },
       "output": {
-        "target": "com.azure.confidentialledger#LedgerCreateResponse"
+        "target": "com.azure.confidentialledger#CreateLedgerResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -914,7 +915,7 @@
         "com.distilled.openapi#apiVersion": "2026-02-23"
       }
     },
-    "com.azure.confidentialledger#LedgerCreateResponse": {
+    "com.azure.confidentialledger#CreateLedgerResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -942,7 +943,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.confidentialledger#LedgerCreateResponseTagsMap",
+          "target": "com.azure.confidentialledger#CreateLedgerResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -965,7 +966,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.confidentialledger#LedgerCreateResponseTagsMap": {
+    "com.azure.confidentialledger#CreateLedgerResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -977,7 +978,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.confidentialledger#LedgerCreateRequest": {
+    "com.azure.confidentialledger#CreateLedgerRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1005,7 +1006,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.confidentialledger#LedgerCreateRequestTagsMap",
+          "target": "com.azure.confidentialledger#CreateLedgerRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1028,7 +1029,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.confidentialledger#LedgerCreateRequestTagsMap": {
+    "com.azure.confidentialledger#CreateLedgerRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1040,13 +1041,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.confidentialledger#LedgerGet": {
+    "com.azure.confidentialledger#GetLedger": {
       "type": "operation",
       "input": {
-        "target": "com.azure.confidentialledger#LedgerGetRequest"
+        "target": "com.azure.confidentialledger#GetLedgerRequest"
       },
       "output": {
-        "target": "com.azure.confidentialledger#LedgerGetResponse"
+        "target": "com.azure.confidentialledger#GetLedgerResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1059,7 +1060,7 @@
         "com.distilled.openapi#apiVersion": "2026-02-23"
       }
     },
-    "com.azure.confidentialledger#LedgerGetResponse": {
+    "com.azure.confidentialledger#GetLedgerResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1087,7 +1088,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.confidentialledger#LedgerGetResponseTagsMap",
+          "target": "com.azure.confidentialledger#GetLedgerResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1110,7 +1111,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.confidentialledger#LedgerGetResponseTagsMap": {
+    "com.azure.confidentialledger#GetLedgerResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1122,7 +1123,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.confidentialledger#LedgerGetRequest": {
+    "com.azure.confidentialledger#GetLedgerRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1154,10 +1155,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.confidentialledger#LedgerListByResourceGroup": {
+    "com.azure.confidentialledger#ListLedgerByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.confidentialledger#LedgerListByResourceGroupRequest"
+        "target": "com.azure.confidentialledger#ListLedgerByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.confidentialledger#ConfidentialLedgerList"
@@ -1266,7 +1267,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.confidentialledger#LedgerListByResourceGroupRequest": {
+    "com.azure.confidentialledger#ListLedgerByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1297,10 +1298,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.confidentialledger#LedgerListBySubscription": {
+    "com.azure.confidentialledger#ListLedgerBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.confidentialledger#LedgerListBySubscriptionRequest"
+        "target": "com.azure.confidentialledger#ListLedgerBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.confidentialledger#ConfidentialLedgerList"
@@ -1316,7 +1317,7 @@
         "com.distilled.openapi#apiVersion": "2026-02-23"
       }
     },
-    "com.azure.confidentialledger#LedgerListBySubscriptionRequest": {
+    "com.azure.confidentialledger#ListLedgerBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1432,7 +1433,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.confidentialledger#OperationsList": {
+    "com.azure.confidentialledger#ListOperations": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -1543,31 +1544,31 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.confidentialledger#LedgerFilesExport"
+          "target": "com.azure.confidentialledger#ExportLedgerFile"
         },
         {
-          "target": "com.azure.confidentialledger#LedgerDelete"
+          "target": "com.azure.confidentialledger#DeleteLedger"
         },
         {
-          "target": "com.azure.confidentialledger#LedgerUpdate"
+          "target": "com.azure.confidentialledger#UpdateLedger"
         },
         {
-          "target": "com.azure.confidentialledger#LedgerCreate"
+          "target": "com.azure.confidentialledger#CreateLedger"
         },
         {
-          "target": "com.azure.confidentialledger#LedgerGet"
+          "target": "com.azure.confidentialledger#GetLedger"
         },
         {
-          "target": "com.azure.confidentialledger#LedgerListByResourceGroup"
+          "target": "com.azure.confidentialledger#ListLedgerByResourceGroup"
         },
         {
-          "target": "com.azure.confidentialledger#LedgerListBySubscription"
+          "target": "com.azure.confidentialledger#ListLedgerBySubscription"
         },
         {
           "target": "com.azure.confidentialledger#CheckNameAvailability"
         },
         {
-          "target": "com.azure.confidentialledger#OperationsList"
+          "target": "com.azure.confidentialledger#ListOperations"
         }
       ],
       "traits": {

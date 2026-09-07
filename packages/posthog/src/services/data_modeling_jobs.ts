@@ -11,31 +11,26 @@ import * as Retry from "../retry.ts";
 
 export type { PosthogOpError, PosthogOpContext };
 
-export interface DataModelingJobsListRequest {
+export interface GetDataModelingJobRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
-  /** Number of results to return per page. */
-  limit?: number;
-  /** The initial index from which to return the results. */
-  offset?: number;
-  saved_query_id?: string;
+  /** A UUID string identifying this data modeling job. */
+  id: string;
 }
-export const DataModelingJobsListRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetDataModelingJobRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    offset: S.optional(S.Number.pipe(T.Query())),
-    saved_query_id: S.optional(S.String.pipe(T.Query())),
+    id: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/api/projects/{project_id}/data_modeling_jobs/",
+      uri: "/api/projects/{project_id}/data_modeling_jobs/{id}/",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "DataModelingJobsListRequest",
-}) as any as S.Schema<DataModelingJobsListRequest>;
+  identifier: "GetDataModelingJobRequest",
+}) as any as S.Schema<GetDataModelingJobRequest>;
 
 /** * `Cancelled` - Cancelled * `Completed` - Completed * `Failed` - Failed * `Running` - Running * `Skipped` - Skipped */
 export type DataModelingJobStatusEnum =
@@ -86,6 +81,68 @@ export const DataModelingJob = /*@__PURE__*/ S.suspend(() =>
   identifier: "DataModelingJob",
 }) as any as S.Schema<DataModelingJob>;
 
+export interface GetDataModelingJobsRecentRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+}
+export const GetDataModelingJobsRecentRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/data_modeling_jobs/recent/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetDataModelingJobsRecentRequest",
+}) as any as S.Schema<GetDataModelingJobsRecentRequest>;
+
+export interface GetDataModelingJobsRunningRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+}
+export const GetDataModelingJobsRunningRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/data_modeling_jobs/running/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetDataModelingJobsRunningRequest",
+}) as any as S.Schema<GetDataModelingJobsRunningRequest>;
+
+export interface ListDataModelingJobsRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** Number of results to return per page. */
+  limit?: number;
+  /** The initial index from which to return the results. */
+  offset?: number;
+  saved_query_id?: string;
+}
+export const ListDataModelingJobsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    offset: S.optional(S.Number.pipe(T.Query())),
+    saved_query_id: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/data_modeling_jobs/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListDataModelingJobsRequest",
+}) as any as S.Schema<ListDataModelingJobsRequest>;
+
 export type PaginatedDataModelingJobListResultsList = Array<DataModelingJob>;
 export const PaginatedDataModelingJobListResultsList = /*@__PURE__*/ S.Array(
   DataModelingJob,
@@ -108,120 +165,61 @@ export const PaginatedDataModelingJobList = /*@__PURE__*/ S.suspend(() =>
   identifier: "PaginatedDataModelingJobList",
 }) as any as S.Schema<PaginatedDataModelingJobList>;
 
-export interface DataModelingJobsRecentRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-}
-export const DataModelingJobsRecentRetrieveRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/data_modeling_jobs/recent/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "DataModelingJobsRecentRetrieveRequest",
-}) as any as S.Schema<DataModelingJobsRecentRetrieveRequest>;
-
-export interface DataModelingJobsRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this data modeling job. */
-  id: string;
-}
-export const DataModelingJobsRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/data_modeling_jobs/{id}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "DataModelingJobsRetrieveRequest",
-}) as any as S.Schema<DataModelingJobsRetrieveRequest>;
-
-export interface DataModelingJobsRunningRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-}
-export const DataModelingJobsRunningRetrieveRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/data_modeling_jobs/running/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "DataModelingJobsRunningRetrieveRequest",
-}) as any as S.Schema<DataModelingJobsRunningRetrieveRequest>;
-
-export type DataModelingJobsListError = PosthogOpError;
+export type GetDataModelingJobError = PosthogOpError;
 /** List data modeling jobs which are "runs" for our saved queries. */
-export const dataModelingJobsList: API.OperationMethod<
-  DataModelingJobsListRequest,
-  PaginatedDataModelingJobList,
-  DataModelingJobsListError,
+export const getDataModelingJob: API.OperationMethod<
+  GetDataModelingJobRequest,
+  DataModelingJob,
+  GetDataModelingJobError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DataModelingJobsListRequest,
-  output: PaginatedDataModelingJobList,
+  input: GetDataModelingJobRequest,
+  output: DataModelingJob,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type DataModelingJobsRecentRetrieveError = PosthogOpError;
+export type GetDataModelingJobsRecentError = PosthogOpError;
 /** Get the most recent non-running job for each saved query from the v2 backend. */
-export const dataModelingJobsRecentRetrieve: API.OperationMethod<
-  DataModelingJobsRecentRetrieveRequest,
+export const getDataModelingJobsRecent: API.OperationMethod<
+  GetDataModelingJobsRecentRequest,
   DataModelingJob,
-  DataModelingJobsRecentRetrieveError,
+  GetDataModelingJobsRecentError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DataModelingJobsRecentRetrieveRequest,
+  input: GetDataModelingJobsRecentRequest,
   output: DataModelingJob,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type DataModelingJobsRetrieveError = PosthogOpError;
-/** List data modeling jobs which are "runs" for our saved queries. */
-export const dataModelingJobsRetrieve: API.OperationMethod<
-  DataModelingJobsRetrieveRequest,
-  DataModelingJob,
-  DataModelingJobsRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DataModelingJobsRetrieveRequest,
-  output: DataModelingJob,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DataModelingJobsRunningRetrieveError = PosthogOpError;
+export type GetDataModelingJobsRunningError = PosthogOpError;
 /** Get all currently running jobs from the v2 backend. */
-export const dataModelingJobsRunningRetrieve: API.OperationMethod<
-  DataModelingJobsRunningRetrieveRequest,
+export const getDataModelingJobsRunning: API.OperationMethod<
+  GetDataModelingJobsRunningRequest,
   DataModelingJob,
-  DataModelingJobsRunningRetrieveError,
+  GetDataModelingJobsRunningError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DataModelingJobsRunningRetrieveRequest,
+  input: GetDataModelingJobsRunningRequest,
   output: DataModelingJob,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDataModelingJobsError = PosthogOpError;
+/** List data modeling jobs which are "runs" for our saved queries. */
+export const listDataModelingJobs: API.OperationMethod<
+  ListDataModelingJobsRequest,
+  PaginatedDataModelingJobList,
+  ListDataModelingJobsError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListDataModelingJobsRequest,
+  output: PaginatedDataModelingJobList,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,

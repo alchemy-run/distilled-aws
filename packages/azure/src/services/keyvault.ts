@@ -12,14 +12,108 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
+export interface CheckManagedHsmMhsmNameAvailabilityRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The managed hsm name. */
+  name: string;
+}
+export const CheckManagedHsmMhsmNameAvailabilityRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      name: S.String,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.KeyVault/checkMhsmNameAvailability",
+        code: 200,
+        apiVersion: "2026-02-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "CheckManagedHsmMhsmNameAvailabilityRequest",
+  }) as any as S.Schema<CheckManagedHsmMhsmNameAvailabilityRequest>;
+
+/** The reason that a vault name could not be used. The Reason element is only returned if NameAvailable is false. */
+export type Reason = "AccountNameInvalid" | "AlreadyExists";
+export const Reason = /*@__PURE__*/ S.String;
+
+/** The CheckMhsmNameAvailability operation response. */
+export interface CheckMhsmNameAvailabilityResult {
+  /** A boolean value that indicates whether the name is available for you to use. If true, the name is available. If false, the name has already been taken or is invalid and cannot be used. */
+  nameAvailable?: boolean;
+  /** The reason that a managed hsm name could not be used. The reason element is only returned if NameAvailable is false. */
+  reason?: Reason;
+  /** An error message explaining the Reason value in more detail. */
+  message?: string;
+}
+export const CheckMhsmNameAvailabilityResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nameAvailable: S.optional(S.Boolean),
+    reason: S.optional(Reason),
+    message: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "CheckMhsmNameAvailabilityResult",
+}) as any as S.Schema<CheckMhsmNameAvailabilityResult>;
+
+/** The type of resource, Microsoft.KeyVault/vaults */
+export type CheckVaultNameAvailabilityRequestType = "Microsoft.KeyVault/vaults";
+export const CheckVaultNameAvailabilityRequestType = /*@__PURE__*/ S.String;
+
+export interface CheckVaultNameAvailabilityRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The vault name. */
+  name: string;
+  /** The type of resource, Microsoft.KeyVault/vaults */
+  type: CheckVaultNameAvailabilityRequestType | (string & {});
+}
+export const CheckVaultNameAvailabilityRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    name: S.String,
+    type: CheckVaultNameAvailabilityRequestType,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.KeyVault/checkNameAvailability",
+      code: 200,
+      apiVersion: "2026-02-01",
+    }),
+  ),
+).annotate({
+  identifier: "CheckVaultNameAvailabilityRequest",
+}) as any as S.Schema<CheckVaultNameAvailabilityRequest>;
+
+/** The CheckNameAvailability operation response. */
+export interface CheckNameAvailabilityResult {
+  /** A boolean value that indicates whether the name is available for you to use. If true, the name is available. If false, the name has already been taken or is invalid and cannot be used. */
+  nameAvailable?: boolean;
+  /** The reason that a vault name could not be used. The Reason element is only returned if NameAvailable is false. */
+  reason?: Reason;
+  /** An error message explaining the Reason value in more detail. */
+  message?: string;
+}
+export const CheckNameAvailabilityResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nameAvailable: S.optional(S.Boolean),
+    reason: S.optional(Reason),
+    message: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "CheckNameAvailabilityResult",
+}) as any as S.Schema<CheckNameAvailabilityResult>;
+
 /** The tags that will be assigned to the key. */
-export type KeysCreateIfNotExistRequestTagsMap = {
+export type CreateKeysIfNotExistRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const KeysCreateIfNotExistRequestTagsMap = /*@__PURE__*/ S.Record(
+export const CreateKeysIfNotExistRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<KeysCreateIfNotExistRequestTagsMap>;
+) as any as S.Schema<CreateKeysIfNotExistRequestTagsMap>;
 
 /** The object attributes managed by the Azure Key Vault service. */
 export interface KeyAttributesInput {
@@ -188,7 +282,7 @@ export const KeyPropertiesInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "KeyPropertiesInput",
 }) as any as S.Schema<KeyPropertiesInput>;
 
-export interface KeysCreateIfNotExistRequest {
+export interface CreateKeysIfNotExistRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -198,17 +292,17 @@ export interface KeysCreateIfNotExistRequest {
   /** The name of the key to be retrieved. */
   keyName: string;
   /** The tags that will be assigned to the key. */
-  tags?: KeysCreateIfNotExistRequestTagsMap;
+  tags?: CreateKeysIfNotExistRequestTagsMap;
   /** The properties of the key to be created. */
   properties: KeyPropertiesInput;
 }
-export const KeysCreateIfNotExistRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateKeysIfNotExistRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     vaultName: S.String.pipe(T.Label()),
     keyName: S.String.pipe(T.Label()),
-    tags: S.optional(KeysCreateIfNotExistRequestTagsMap),
+    tags: S.optional(CreateKeysIfNotExistRequestTagsMap),
     properties: KeyPropertiesInput,
   }).pipe(
     T.Http({
@@ -219,8 +313,8 @@ export const KeysCreateIfNotExistRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "KeysCreateIfNotExistRequest",
-}) as any as S.Schema<KeysCreateIfNotExistRequest>;
+  identifier: "CreateKeysIfNotExistRequest",
+}) as any as S.Schema<CreateKeysIfNotExistRequest>;
 
 /** The type of identity that created the resource. */
 export type SystemDataCreatedByType =
@@ -378,15 +472,15 @@ export const KeyProperties = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "KeyProperties" }) as any as S.Schema<KeyProperties>;
 
 /** Resource tags */
-export type KeysCreateIfNotExistResponseTagsMap = {
+export type CreateKeysIfNotExistResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const KeysCreateIfNotExistResponseTagsMap = /*@__PURE__*/ S.Record(
+export const CreateKeysIfNotExistResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<KeysCreateIfNotExistResponseTagsMap>;
+) as any as S.Schema<CreateKeysIfNotExistResponseTagsMap>;
 
-export interface KeysCreateIfNotExistResponse {
+export interface CreateKeysIfNotExistResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -400,9 +494,9 @@ export interface KeysCreateIfNotExistResponse {
   /** The supported Azure location where the managed HSM Pool should be created. */
   location?: string;
   /** Resource tags */
-  tags?: KeysCreateIfNotExistResponseTagsMap;
+  tags?: CreateKeysIfNotExistResponseTagsMap;
 }
-export const KeysCreateIfNotExistResponse = /*@__PURE__*/ S.suspend(() =>
+export const CreateKeysIfNotExistResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -410,263 +504,21 @@ export const KeysCreateIfNotExistResponse = /*@__PURE__*/ S.suspend(() =>
     systemData: S.optional(SystemData),
     properties: KeyProperties,
     location: S.optional(S.String),
-    tags: S.optional(KeysCreateIfNotExistResponseTagsMap),
+    tags: S.optional(CreateKeysIfNotExistResponseTagsMap),
   }),
 ).annotate({
-  identifier: "KeysCreateIfNotExistResponse",
-}) as any as S.Schema<KeysCreateIfNotExistResponse>;
-
-export interface KeysGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the vault which contains the key to be retrieved. */
-  vaultName: string;
-  /** The name of the key to be retrieved. */
-  keyName: string;
-}
-export const KeysGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    vaultName: S.String.pipe(T.Label()),
-    keyName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.KeyVault/vaults/{vaultName}/keys/{keyName}",
-      code: 200,
-      apiVersion: "2026-02-01",
-    }),
-  ),
-).annotate({ identifier: "KeysGetRequest" }) as any as S.Schema<KeysGetRequest>;
-
-/** Resource tags */
-export type KeysGetResponseTagsMap = { [key: string]: string | undefined };
-export const KeysGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<KeysGetResponseTagsMap>;
-
-export interface KeysGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties of the key. */
-  properties: KeyProperties;
-  /** The supported Azure location where the managed HSM Pool should be created. */
-  location?: string;
-  /** Resource tags */
-  tags?: KeysGetResponseTagsMap;
-}
-export const KeysGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: KeyProperties,
-    location: S.optional(S.String),
-    tags: S.optional(KeysGetResponseTagsMap),
-  }),
-).annotate({
-  identifier: "KeysGetResponse",
-}) as any as S.Schema<KeysGetResponse>;
-
-export interface KeysGetVersionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the vault which contains the key version to be retrieved. */
-  vaultName: string;
-  /** The name of the key version to be retrieved. */
-  keyName: string;
-  /** The version of the key to be retrieved. */
-  keyVersion: string;
-}
-export const KeysGetVersionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    vaultName: S.String.pipe(T.Label()),
-    keyName: S.String.pipe(T.Label()),
-    keyVersion: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.KeyVault/vaults/{vaultName}/keys/{keyName}/versions/{keyVersion}",
-      code: 200,
-      apiVersion: "2026-02-01",
-    }),
-  ),
-).annotate({
-  identifier: "KeysGetVersionRequest",
-}) as any as S.Schema<KeysGetVersionRequest>;
-
-/** Resource tags */
-export type KeysGetVersionResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const KeysGetVersionResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<KeysGetVersionResponseTagsMap>;
-
-export interface KeysGetVersionResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties of the key. */
-  properties: KeyProperties;
-  /** The supported Azure location where the managed HSM Pool should be created. */
-  location?: string;
-  /** Resource tags */
-  tags?: KeysGetVersionResponseTagsMap;
-}
-export const KeysGetVersionResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: KeyProperties,
-    location: S.optional(S.String),
-    tags: S.optional(KeysGetVersionResponseTagsMap),
-  }),
-).annotate({
-  identifier: "KeysGetVersionResponse",
-}) as any as S.Schema<KeysGetVersionResponse>;
-
-export interface KeysListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the vault which contains the key to be retrieved. */
-  vaultName: string;
-}
-export const KeysListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    vaultName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.KeyVault/vaults/{vaultName}/keys",
-      code: 200,
-      apiVersion: "2026-02-01",
-    }),
-  ),
-).annotate({
-  identifier: "KeysListRequest",
-}) as any as S.Schema<KeysListRequest>;
-
-/** Resource tags */
-export type KeyTagsMap = { [key: string]: string | undefined };
-export const KeyTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<KeyTagsMap>;
-
-/** The key resource. */
-export interface Key {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties of the key. */
-  properties: KeyProperties;
-  /** The supported Azure location where the managed HSM Pool should be created. */
-  location?: string;
-  /** Resource tags */
-  tags?: KeyTagsMap;
-}
-export const Key = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: KeyProperties,
-    location: S.optional(S.String),
-    tags: S.optional(KeyTagsMap),
-  }),
-).annotate({ identifier: "Key" }) as any as S.Schema<Key>;
-
-/** The Key items on this page */
-export type KeyListResultValueList = Array<Key>;
-export const KeyListResultValueList = /*@__PURE__*/ S.Array(
-  Key,
-) as any as S.Schema<KeyListResultValueList>;
-
-/** The response of a Key list operation. */
-export interface KeyListResult {
-  /** The Key items on this page */
-  value: KeyListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const KeyListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: KeyListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({ identifier: "KeyListResult" }) as any as S.Schema<KeyListResult>;
-
-export interface KeysListVersionsRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the vault which contains the key version to be retrieved. */
-  vaultName: string;
-  /** The name of the key version to be retrieved. */
-  keyName: string;
-}
-export const KeysListVersionsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    vaultName: S.String.pipe(T.Label()),
-    keyName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.KeyVault/vaults/{vaultName}/keys/{keyName}/versions",
-      code: 200,
-      apiVersion: "2026-02-01",
-    }),
-  ),
-).annotate({
-  identifier: "KeysListVersionsRequest",
-}) as any as S.Schema<KeysListVersionsRequest>;
+  identifier: "CreateKeysIfNotExistResponse",
+}) as any as S.Schema<CreateKeysIfNotExistResponse>;
 
 /** The tags that will be assigned to the key. */
-export type ManagedHsmKeysCreateIfNotExistRequestTagsMap = {
+export type CreateManagedHsmKeysIfNotExistRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const ManagedHsmKeysCreateIfNotExistRequestTagsMap =
+export const CreateManagedHsmKeysIfNotExistRequestTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<ManagedHsmKeysCreateIfNotExistRequestTagsMap>;
+  ) as any as S.Schema<CreateManagedHsmKeysIfNotExistRequestTagsMap>;
 
 /** The object attributes managed by the Azure Key Vault service. */
 export type ManagedHsmKeyAttributesInput = KeyAttributesInput;
@@ -751,7 +603,7 @@ export const ManagedHsmKeyPropertiesInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "ManagedHsmKeyPropertiesInput",
 }) as any as S.Schema<ManagedHsmKeyPropertiesInput>;
 
-export interface ManagedHsmKeysCreateIfNotExistRequest {
+export interface CreateManagedHsmKeysIfNotExistRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -761,18 +613,18 @@ export interface ManagedHsmKeysCreateIfNotExistRequest {
   /** The name of the key to be created. The value you provide may be copied globally for the purpose of running the service. The value provided should not include personally identifiable or sensitive information. */
   keyName: string;
   /** The tags that will be assigned to the key. */
-  tags?: ManagedHsmKeysCreateIfNotExistRequestTagsMap;
+  tags?: CreateManagedHsmKeysIfNotExistRequestTagsMap;
   /** The properties of the key to be created. */
   properties: ManagedHsmKeyPropertiesInput;
 }
-export const ManagedHsmKeysCreateIfNotExistRequest = /*@__PURE__*/ S.suspend(
+export const CreateManagedHsmKeysIfNotExistRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       name: S.String.pipe(T.Label()),
       keyName: S.String.pipe(T.Label()),
-      tags: S.optional(ManagedHsmKeysCreateIfNotExistRequestTagsMap),
+      tags: S.optional(CreateManagedHsmKeysIfNotExistRequestTagsMap),
       properties: ManagedHsmKeyPropertiesInput,
     }).pipe(
       T.Http({
@@ -783,8 +635,8 @@ export const ManagedHsmKeysCreateIfNotExistRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "ManagedHsmKeysCreateIfNotExistRequest",
-}) as any as S.Schema<ManagedHsmKeysCreateIfNotExistRequest>;
+  identifier: "CreateManagedHsmKeysIfNotExistRequest",
+}) as any as S.Schema<CreateManagedHsmKeysIfNotExistRequest>;
 
 /** The object attributes managed by the Azure Key Vault service. */
 export type ManagedHsmKeyAttributes = KeyAttributes;
@@ -858,16 +710,16 @@ export const ManagedHsmKeyProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ManagedHsmKeyProperties>;
 
 /** Resource tags */
-export type ManagedHsmKeysCreateIfNotExistResponseTagsMap = {
+export type CreateManagedHsmKeysIfNotExistResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ManagedHsmKeysCreateIfNotExistResponseTagsMap =
+export const CreateManagedHsmKeysIfNotExistResponseTagsMap =
   /*@__PURE__*/ S.Record(
     S.String,
     S.String,
-  ) as any as S.Schema<ManagedHsmKeysCreateIfNotExistResponseTagsMap>;
+  ) as any as S.Schema<CreateManagedHsmKeysIfNotExistResponseTagsMap>;
 
-export interface ManagedHsmKeysCreateIfNotExistResponse {
+export interface CreateManagedHsmKeysIfNotExistResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -879,9 +731,9 @@ export interface ManagedHsmKeysCreateIfNotExistResponse {
   /** The properties of the key. */
   properties: ManagedHsmKeyProperties;
   /** Resource tags */
-  tags?: ManagedHsmKeysCreateIfNotExistResponseTagsMap;
+  tags?: CreateManagedHsmKeysIfNotExistResponseTagsMap;
 }
-export const ManagedHsmKeysCreateIfNotExistResponse = /*@__PURE__*/ S.suspend(
+export const CreateManagedHsmKeysIfNotExistResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
@@ -889,307 +741,583 @@ export const ManagedHsmKeysCreateIfNotExistResponse = /*@__PURE__*/ S.suspend(
       type: S.optional(S.String),
       systemData: S.optional(SystemData),
       properties: ManagedHsmKeyProperties,
-      tags: S.optional(ManagedHsmKeysCreateIfNotExistResponseTagsMap),
+      tags: S.optional(CreateManagedHsmKeysIfNotExistResponseTagsMap),
     }),
 ).annotate({
-  identifier: "ManagedHsmKeysCreateIfNotExistResponse",
-}) as any as S.Schema<ManagedHsmKeysCreateIfNotExistResponse>;
+  identifier: "CreateManagedHsmKeysIfNotExistResponse",
+}) as any as S.Schema<CreateManagedHsmKeysIfNotExistResponse>;
 
-export interface ManagedHsmKeysGetRequest {
+export interface DeleteManagedHsmRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
-  /** The name of the Managed HSM Pool within the specified resource group. */
-  name: string;
-  /** The name of the key to be created. The value you provide may be copied globally for the purpose of running the service. The value provided should not include personally identifiable or sensitive information. */
-  keyName: string;
-}
-export const ManagedHsmKeysGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    name: S.String.pipe(T.Label()),
-    keyName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.KeyVault/managedHSMs/{name}/keys/{keyName}",
-      code: 200,
-      apiVersion: "2026-02-01",
-    }),
-  ),
-).annotate({
-  identifier: "ManagedHsmKeysGetRequest",
-}) as any as S.Schema<ManagedHsmKeysGetRequest>;
-
-/** Resource tags */
-export type ManagedHsmKeysGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ManagedHsmKeysGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ManagedHsmKeysGetResponseTagsMap>;
-
-export interface ManagedHsmKeysGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties of the key. */
-  properties: ManagedHsmKeyProperties;
-  /** Resource tags */
-  tags?: ManagedHsmKeysGetResponseTagsMap;
-}
-export const ManagedHsmKeysGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: ManagedHsmKeyProperties,
-    tags: S.optional(ManagedHsmKeysGetResponseTagsMap),
-  }),
-).annotate({
-  identifier: "ManagedHsmKeysGetResponse",
-}) as any as S.Schema<ManagedHsmKeysGetResponse>;
-
-export interface ManagedHsmKeysGetVersionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Managed HSM Pool within the specified resource group. */
-  name: string;
-  /** The name of the key to be created. The value you provide may be copied globally for the purpose of running the service. The value provided should not include personally identifiable or sensitive information. */
-  keyName: string;
-  /** The version of the key to be retrieved. */
-  keyVersion: string;
-}
-export const ManagedHsmKeysGetVersionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    name: S.String.pipe(T.Label()),
-    keyName: S.String.pipe(T.Label()),
-    keyVersion: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.KeyVault/managedHSMs/{name}/keys/{keyName}/versions/{keyVersion}",
-      code: 200,
-      apiVersion: "2026-02-01",
-    }),
-  ),
-).annotate({
-  identifier: "ManagedHsmKeysGetVersionRequest",
-}) as any as S.Schema<ManagedHsmKeysGetVersionRequest>;
-
-/** Resource tags */
-export type ManagedHsmKeysGetVersionResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ManagedHsmKeysGetVersionResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ManagedHsmKeysGetVersionResponseTagsMap>;
-
-export interface ManagedHsmKeysGetVersionResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties of the key. */
-  properties: ManagedHsmKeyProperties;
-  /** Resource tags */
-  tags?: ManagedHsmKeysGetVersionResponseTagsMap;
-}
-export const ManagedHsmKeysGetVersionResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: ManagedHsmKeyProperties,
-    tags: S.optional(ManagedHsmKeysGetVersionResponseTagsMap),
-  }),
-).annotate({
-  identifier: "ManagedHsmKeysGetVersionResponse",
-}) as any as S.Schema<ManagedHsmKeysGetVersionResponse>;
-
-export interface ManagedHsmKeysListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Managed HSM Pool within the specified resource group. */
+  /** The name of the managed HSM Pool. */
   name: string;
 }
-export const ManagedHsmKeysListRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteManagedHsmRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     name: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.KeyVault/managedHSMs/{name}/keys",
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.KeyVault/managedHSMs/{name}",
       code: 200,
       apiVersion: "2026-02-01",
     }),
   ),
 ).annotate({
-  identifier: "ManagedHsmKeysListRequest",
-}) as any as S.Schema<ManagedHsmKeysListRequest>;
+  identifier: "DeleteManagedHsmRequest",
+}) as any as S.Schema<DeleteManagedHsmRequest>;
 
-/** Resource tags */
-export type ManagedHsmKeyTagsMap = { [key: string]: string | undefined };
-export const ManagedHsmKeyTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ManagedHsmKeyTagsMap>;
-
-/** The key resource. */
-export interface ManagedHsmKey {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties of the key. */
-  properties: ManagedHsmKeyProperties;
-  /** Resource tags */
-  tags?: ManagedHsmKeyTagsMap;
-}
-export const ManagedHsmKey = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: ManagedHsmKeyProperties,
-    tags: S.optional(ManagedHsmKeyTagsMap),
-  }),
-).annotate({ identifier: "ManagedHsmKey" }) as any as S.Schema<ManagedHsmKey>;
-
-/** The ManagedHsmKey items on this page */
-export type ManagedHsmKeyListResultValueList = Array<ManagedHsmKey>;
-export const ManagedHsmKeyListResultValueList = /*@__PURE__*/ S.Array(
-  ManagedHsmKey,
-) as any as S.Schema<ManagedHsmKeyListResultValueList>;
-
-/** The response of a ManagedHsmKey list operation. */
-export interface ManagedHsmKeyListResult {
-  /** The ManagedHsmKey items on this page */
-  value: ManagedHsmKeyListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const ManagedHsmKeyListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: ManagedHsmKeyListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
+export interface DeleteManagedHsmResponse {}
+export const DeleteManagedHsmResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
 ).annotate({
-  identifier: "ManagedHsmKeyListResult",
-}) as any as S.Schema<ManagedHsmKeyListResult>;
+  identifier: "DeleteManagedHsmResponse",
+}) as any as S.Schema<DeleteManagedHsmResponse>;
 
-export interface ManagedHsmKeysListVersionsRequest {
+export interface DeleteMHSMPrivateEndpointConnectionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
-  /** The name of the Managed HSM Pool within the specified resource group. */
+  /** The name of the managed HSM Pool. */
   name: string;
-  /** The name of the key to be created. The value you provide may be copied globally for the purpose of running the service. The value provided should not include personally identifiable or sensitive information. */
-  keyName: string;
+  /** Name of the private endpoint connection associated with the managed hsm pool. */
+  privateEndpointConnectionName: string;
 }
-export const ManagedHsmKeysListVersionsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    name: S.String.pipe(T.Label()),
-    keyName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.KeyVault/managedHSMs/{name}/keys/{keyName}/versions",
-      code: 200,
-      apiVersion: "2026-02-01",
-    }),
-  ),
-).annotate({
-  identifier: "ManagedHsmKeysListVersionsRequest",
-}) as any as S.Schema<ManagedHsmKeysListVersionsRequest>;
-
-export interface ManagedHsmsCheckMhsmNameAvailabilityRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The managed hsm name. */
-  name: string;
-}
-export const ManagedHsmsCheckMhsmNameAvailabilityRequest =
+export const DeleteMHSMPrivateEndpointConnectionRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
-      name: S.String,
+      resourceGroupName: S.String.pipe(T.Label()),
+      name: S.String.pipe(T.Label()),
+      privateEndpointConnectionName: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.KeyVault/checkMhsmNameAvailability",
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.KeyVault/managedHSMs/{name}/privateEndpointConnections/{privateEndpointConnectionName}",
         code: 200,
         apiVersion: "2026-02-01",
       }),
     ),
   ).annotate({
-    identifier: "ManagedHsmsCheckMhsmNameAvailabilityRequest",
-  }) as any as S.Schema<ManagedHsmsCheckMhsmNameAvailabilityRequest>;
+    identifier: "DeleteMHSMPrivateEndpointConnectionRequest",
+  }) as any as S.Schema<DeleteMHSMPrivateEndpointConnectionRequest>;
 
-/** The reason that a vault name could not be used. The Reason element is only returned if NameAvailable is false. */
-export type Reason = "AccountNameInvalid" | "AlreadyExists";
-export const Reason = /*@__PURE__*/ S.String;
-
-/** The CheckMhsmNameAvailability operation response. */
-export interface CheckMhsmNameAvailabilityResult {
-  /** A boolean value that indicates whether the name is available for you to use. If true, the name is available. If false, the name has already been taken or is invalid and cannot be used. */
-  nameAvailable?: boolean;
-  /** The reason that a managed hsm name could not be used. The reason element is only returned if NameAvailable is false. */
-  reason?: Reason;
-  /** An error message explaining the Reason value in more detail. */
-  message?: string;
+/** Private endpoint object properties. */
+export interface MHSMPrivateEndpoint {
+  /** Full identifier of the private endpoint resource. */
+  id?: string;
 }
-export const CheckMhsmNameAvailabilityResult = /*@__PURE__*/ S.suspend(() =>
+export const MHSMPrivateEndpoint = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    nameAvailable: S.optional(S.Boolean),
-    reason: S.optional(Reason),
-    message: S.optional(S.String),
+    id: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "CheckMhsmNameAvailabilityResult",
-}) as any as S.Schema<CheckMhsmNameAvailabilityResult>;
+  identifier: "MHSMPrivateEndpoint",
+}) as any as S.Schema<MHSMPrivateEndpoint>;
+
+/** The private endpoint connection status. */
+export type PrivateEndpointServiceConnectionStatus =
+  | "Pending"
+  | "Approved"
+  | "Rejected"
+  | "Disconnected";
+export const PrivateEndpointServiceConnectionStatus = /*@__PURE__*/ S.String;
+
+/** A message indicating if changes on the service provider require any updates on the consumer. */
+export type ActionsRequired = "None";
+export const ActionsRequired = /*@__PURE__*/ S.String;
+
+/** An object that represents the approval state of the private link connection. */
+export interface MHSMPrivateLinkServiceConnectionState {
+  /** Indicates whether the connection has been approved, rejected or removed by the key vault owner. */
+  status?: PrivateEndpointServiceConnectionStatus | (string & {});
+  /** The reason for approval or rejection. */
+  description?: string;
+  /** A message indicating if changes on the service provider require any updates on the consumer. */
+  actionsRequired?: ActionsRequired | (string & {});
+}
+export const MHSMPrivateLinkServiceConnectionState = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      status: S.optional(PrivateEndpointServiceConnectionStatus),
+      description: S.optional(S.String),
+      actionsRequired: S.optional(ActionsRequired),
+    }),
+).annotate({
+  identifier: "MHSMPrivateLinkServiceConnectionState",
+}) as any as S.Schema<MHSMPrivateLinkServiceConnectionState>;
+
+/** The current provisioning state. */
+export type PrivateEndpointConnectionProvisioningState =
+  | "Succeeded"
+  | "Creating"
+  | "Updating"
+  | "Deleting"
+  | "Failed"
+  | "Disconnected";
+export const PrivateEndpointConnectionProvisioningState =
+  /*@__PURE__*/ S.String;
+
+/** Properties of the private endpoint connection resource. */
+export interface MHSMPrivateEndpointConnectionProperties {
+  /** Properties of the private endpoint object. */
+  privateEndpoint?: MHSMPrivateEndpoint;
+  /** Approval state of the private link connection. */
+  privateLinkServiceConnectionState?: MHSMPrivateLinkServiceConnectionState;
+  /** Provisioning state of the private endpoint connection. */
+  provisioningState?: PrivateEndpointConnectionProvisioningState;
+}
+export const MHSMPrivateEndpointConnectionProperties = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      privateEndpoint: S.optional(MHSMPrivateEndpoint),
+      privateLinkServiceConnectionState: S.optional(
+        MHSMPrivateLinkServiceConnectionState,
+      ),
+      provisioningState: S.optional(PrivateEndpointConnectionProvisioningState),
+    }),
+).annotate({
+  identifier: "MHSMPrivateEndpointConnectionProperties",
+}) as any as S.Schema<MHSMPrivateEndpointConnectionProperties>;
+
+/** SKU Family of the managed HSM Pool */
+export type ManagedHsmSkuFamily = "B" | "C";
+export const ManagedHsmSkuFamily = /*@__PURE__*/ S.String;
+
+/** SKU of the managed HSM Pool */
+export type ManagedHsmSkuName =
+  | "Standard_B1"
+  | "Custom_B32"
+  | "Custom_B6"
+  | "Custom_C42"
+  | "Custom_C10";
+export const ManagedHsmSkuName = /*@__PURE__*/ S.String;
+
+/** SKU details */
+export interface ManagedHsmSku {
+  /** SKU Family of the managed HSM Pool */
+  family: ManagedHsmSkuFamily | (string & {});
+  /** SKU of the managed HSM Pool */
+  name: ManagedHsmSkuName | (string & {});
+}
+export const ManagedHsmSku = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    family: ManagedHsmSkuFamily,
+    name: ManagedHsmSkuName,
+  }),
+).annotate({ identifier: "ManagedHsmSku" }) as any as S.Schema<ManagedHsmSku>;
+
+/** Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed). */
+export type ManagedServiceIdentityType =
+  | "None"
+  | "SystemAssigned"
+  | "UserAssigned"
+  | "SystemAssigned,UserAssigned";
+export const ManagedServiceIdentityType = /*@__PURE__*/ S.String;
+
+/** User assigned identity properties */
+export interface UserAssignedIdentity {
+  /** The principal ID of the assigned identity. */
+  principalId?: string;
+  /** The client ID of the assigned identity. */
+  clientId?: string;
+}
+export const UserAssignedIdentity = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    principalId: S.optional(S.String),
+    clientId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "UserAssignedIdentity",
+}) as any as S.Schema<UserAssignedIdentity>;
+
+/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+export type UserAssignedIdentities = {
+  [key: string]: UserAssignedIdentity | undefined;
+};
+export const UserAssignedIdentities = /*@__PURE__*/ S.Record(
+  S.String,
+  UserAssignedIdentity,
+) as any as S.Schema<UserAssignedIdentities>;
+
+/** Managed service identity (system assigned and/or user assigned identities) */
+export interface DeleteMHSMPrivateEndpointConnectionResponseIdentity {
+  /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
+  principalId?: string;
+  /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
+  tenantId?: string;
+  type: ManagedServiceIdentityType;
+  userAssignedIdentities?: UserAssignedIdentities;
+}
+export const DeleteMHSMPrivateEndpointConnectionResponseIdentity =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      principalId: S.optional(S.String),
+      tenantId: S.optional(S.String),
+      type: ManagedServiceIdentityType,
+      userAssignedIdentities: S.optional(UserAssignedIdentities),
+    }),
+  ).annotate({
+    identifier: "DeleteMHSMPrivateEndpointConnectionResponseIdentity",
+  }) as any as S.Schema<DeleteMHSMPrivateEndpointConnectionResponseIdentity>;
+
+/** Resource tags. */
+export type DeleteMHSMPrivateEndpointConnectionResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const DeleteMHSMPrivateEndpointConnectionResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<DeleteMHSMPrivateEndpointConnectionResponseTagsMap>;
+
+export interface DeleteMHSMPrivateEndpointConnectionResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource properties. */
+  properties?: MHSMPrivateEndpointConnectionProperties;
+  /** SKU details */
+  sku?: ManagedHsmSku;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: DeleteMHSMPrivateEndpointConnectionResponseIdentity;
+  /** Modified whenever there is a change in the state of private endpoint connection. */
+  etag?: string;
+  /** The geo-location where the resource lives */
+  location?: string;
+  /** Resource tags. */
+  tags?: DeleteMHSMPrivateEndpointConnectionResponseTagsMap;
+}
+export const DeleteMHSMPrivateEndpointConnectionResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(MHSMPrivateEndpointConnectionProperties),
+      sku: S.optional(ManagedHsmSku),
+      identity: S.optional(DeleteMHSMPrivateEndpointConnectionResponseIdentity),
+      etag: S.optional(S.String),
+      location: S.optional(S.String),
+      tags: S.optional(DeleteMHSMPrivateEndpointConnectionResponseTagsMap),
+    }),
+  ).annotate({
+    identifier: "DeleteMHSMPrivateEndpointConnectionResponse",
+  }) as any as S.Schema<DeleteMHSMPrivateEndpointConnectionResponse>;
+
+export interface DeletePrivateEndpointConnectionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the vault. */
+  vaultName: string;
+  /** Name of the private endpoint connection associated with the key vault. */
+  privateEndpointConnectionName: string;
+}
+export const DeletePrivateEndpointConnectionRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      vaultName: S.String.pipe(T.Label()),
+      privateEndpointConnectionName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.KeyVault/vaults/{vaultName}/privateEndpointConnections/{privateEndpointConnectionName}",
+        code: 200,
+        apiVersion: "2026-02-01",
+      }),
+    ),
+).annotate({
+  identifier: "DeletePrivateEndpointConnectionRequest",
+}) as any as S.Schema<DeletePrivateEndpointConnectionRequest>;
+
+/** Private endpoint object properties. */
+export type PrivateEndpoint = MHSMPrivateEndpoint;
+export const PrivateEndpoint = MHSMPrivateEndpoint;
+
+/** An object that represents the approval state of the private link connection. */
+export type PrivateLinkServiceConnectionState =
+  MHSMPrivateLinkServiceConnectionState;
+export const PrivateLinkServiceConnectionState =
+  MHSMPrivateLinkServiceConnectionState;
+
+/** Properties of the private endpoint connection resource. */
+export type PrivateEndpointConnectionProperties =
+  MHSMPrivateEndpointConnectionProperties;
+export const PrivateEndpointConnectionProperties =
+  MHSMPrivateEndpointConnectionProperties;
+
+/** Tags assigned to the key vault resource. */
+export type DeletePrivateEndpointConnectionResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const DeletePrivateEndpointConnectionResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<DeletePrivateEndpointConnectionResponseTagsMap>;
+
+export interface DeletePrivateEndpointConnectionResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource properties. */
+  properties?: MHSMPrivateEndpointConnectionProperties;
+  /** Azure location of the key vault resource. */
+  location?: string;
+  /** Tags assigned to the key vault resource. */
+  tags?: DeletePrivateEndpointConnectionResponseTagsMap;
+  /** Modified whenever there is a change in the state of private endpoint connection. */
+  etag?: string;
+}
+export const DeletePrivateEndpointConnectionResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(MHSMPrivateEndpointConnectionProperties),
+      location: S.optional(S.String),
+      tags: S.optional(DeletePrivateEndpointConnectionResponseTagsMap),
+      etag: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "DeletePrivateEndpointConnectionResponse",
+}) as any as S.Schema<DeletePrivateEndpointConnectionResponse>;
+
+export interface DeleteVaultRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the vault. */
+  vaultName: string;
+}
+export const DeleteVaultRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    vaultName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.KeyVault/vaults/{vaultName}",
+      code: 200,
+      apiVersion: "2026-02-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteVaultRequest",
+}) as any as S.Schema<DeleteVaultRequest>;
+
+export interface DeleteVaultResponse {}
+export const DeleteVaultResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteVaultResponse",
+}) as any as S.Schema<DeleteVaultResponse>;
+
+export interface GetKeysRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the vault which contains the key to be retrieved. */
+  vaultName: string;
+  /** The name of the key to be retrieved. */
+  keyName: string;
+}
+export const GetKeysRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    vaultName: S.String.pipe(T.Label()),
+    keyName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.KeyVault/vaults/{vaultName}/keys/{keyName}",
+      code: 200,
+      apiVersion: "2026-02-01",
+    }),
+  ),
+).annotate({ identifier: "GetKeysRequest" }) as any as S.Schema<GetKeysRequest>;
+
+/** Resource tags */
+export type GetKeysResponseTagsMap = { [key: string]: string | undefined };
+export const GetKeysResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetKeysResponseTagsMap>;
+
+export interface GetKeysResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of the key. */
+  properties: KeyProperties;
+  /** The supported Azure location where the managed HSM Pool should be created. */
+  location?: string;
+  /** Resource tags */
+  tags?: GetKeysResponseTagsMap;
+}
+export const GetKeysResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: KeyProperties,
+    location: S.optional(S.String),
+    tags: S.optional(GetKeysResponseTagsMap),
+  }),
+).annotate({
+  identifier: "GetKeysResponse",
+}) as any as S.Schema<GetKeysResponse>;
+
+export interface GetKeysVersionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the vault which contains the key version to be retrieved. */
+  vaultName: string;
+  /** The name of the key version to be retrieved. */
+  keyName: string;
+  /** The version of the key to be retrieved. */
+  keyVersion: string;
+}
+export const GetKeysVersionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    vaultName: S.String.pipe(T.Label()),
+    keyName: S.String.pipe(T.Label()),
+    keyVersion: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.KeyVault/vaults/{vaultName}/keys/{keyName}/versions/{keyVersion}",
+      code: 200,
+      apiVersion: "2026-02-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetKeysVersionRequest",
+}) as any as S.Schema<GetKeysVersionRequest>;
+
+/** Resource tags */
+export type GetKeysVersionResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetKeysVersionResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetKeysVersionResponseTagsMap>;
+
+export interface GetKeysVersionResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of the key. */
+  properties: KeyProperties;
+  /** The supported Azure location where the managed HSM Pool should be created. */
+  location?: string;
+  /** Resource tags */
+  tags?: GetKeysVersionResponseTagsMap;
+}
+export const GetKeysVersionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: KeyProperties,
+    location: S.optional(S.String),
+    tags: S.optional(GetKeysVersionResponseTagsMap),
+  }),
+).annotate({
+  identifier: "GetKeysVersionResponse",
+}) as any as S.Schema<GetKeysVersionResponse>;
+
+export interface GetManagedHsmRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the managed HSM Pool. */
+  name: string;
+}
+export const GetManagedHsmRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    name: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.KeyVault/managedHSMs/{name}",
+      code: 200,
+      apiVersion: "2026-02-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetManagedHsmRequest",
+}) as any as S.Schema<GetManagedHsmRequest>;
 
 /** Array of initial administrators object ids for this managed hsm pool. */
-export type ManagedHsmPropertiesInputInitialAdminObjectIdsList = Array<string>;
-export const ManagedHsmPropertiesInputInitialAdminObjectIdsList =
+export type ManagedHsmPropertiesInitialAdminObjectIdsList = Array<string>;
+export const ManagedHsmPropertiesInitialAdminObjectIdsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<ManagedHsmPropertiesInputInitialAdminObjectIdsList>;
+  ) as any as S.Schema<ManagedHsmPropertiesInitialAdminObjectIdsList>;
 
 /** The vault's create mode to indicate whether the vault need to be recovered or not. */
 export type CreateMode = "recover" | "default";
 export const CreateMode = /*@__PURE__*/ S.String;
+
+/** Provisioning state. */
+export type ProvisioningState =
+  | "Succeeded"
+  | "Provisioning"
+  | "Failed"
+  | "Updating"
+  | "Deleting"
+  | "Activated"
+  | "SecurityDomainRestore"
+  | "Restoring";
+export const ProvisioningState = /*@__PURE__*/ S.String;
 
 /** Tells what traffic can bypass network rules. This can be 'AzureServices' or 'None'. If not specified the default is 'AzureServices'. */
 export type NetworkRuleBypassOptions = "AzureServices" | "None";
@@ -1280,214 +1408,6 @@ export const MHSMNetworkRuleSet = /*@__PURE__*/ S.suspend(() =>
   identifier: "MHSMNetworkRuleSet",
 }) as any as S.Schema<MHSMNetworkRuleSet>;
 
-/** A region that this managed HSM Pool has been extended to. */
-export interface MHSMGeoReplicatedRegionInput {
-  /** Name of the geo replicated region. */
-  name?: string;
-  /** A boolean value that indicates whether the region is the primary region or a secondary region. */
-  isPrimary?: boolean;
-}
-export const MHSMGeoReplicatedRegionInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    isPrimary: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "MHSMGeoReplicatedRegionInput",
-}) as any as S.Schema<MHSMGeoReplicatedRegionInput>;
-
-/** List of all regions associated with the managed hsm pool. */
-export type ManagedHsmPropertiesInputRegionsList =
-  Array<MHSMGeoReplicatedRegionInput>;
-export const ManagedHsmPropertiesInputRegionsList = /*@__PURE__*/ S.Array(
-  MHSMGeoReplicatedRegionInput,
-) as any as S.Schema<ManagedHsmPropertiesInputRegionsList>;
-
-/** Control permission to the managed HSM from public networks. */
-export type ManagedHsmPropertiesInputPublicNetworkAccess =
-  | "Enabled"
-  | "Disabled";
-export const ManagedHsmPropertiesInputPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
-
-/** Properties of the managed HSM Pool */
-export interface ManagedHsmPropertiesInput {
-  /** The Azure Active Directory tenant ID that should be used for authenticating requests to the managed HSM pool. */
-  tenantId?: string;
-  /** Array of initial administrators object ids for this managed hsm pool. */
-  initialAdminObjectIds?: ManagedHsmPropertiesInputInitialAdminObjectIdsList;
-  /** Property to specify whether the 'soft delete' functionality is enabled for this managed HSM pool. Soft delete is enabled by default for all managed HSMs and is immutable. */
-  enableSoftDelete?: boolean;
-  /** Soft deleted data retention days. When you delete an HSM or a key, it will remain recoverable for the configured retention period or for a default period of 90 days. It accepts values between 7 and 90. */
-  softDeleteRetentionInDays?: number;
-  /** Property specifying whether protection against purge is enabled for this managed HSM pool. Setting this property to true activates protection against purge for this managed HSM pool and its content - only the Managed HSM service may initiate a hard, irrecoverable deletion. Enabling this functionality is irreversible. */
-  enablePurgeProtection?: boolean;
-  /** The create mode to indicate whether the resource is being created or is being recovered from a deleted resource. */
-  createMode?: CreateMode | (string & {});
-  /** Rules governing the accessibility of the key vault from specific network locations. */
-  networkAcls?: MHSMNetworkRuleSet;
-  /** List of all regions associated with the managed hsm pool. */
-  regions?: ManagedHsmPropertiesInputRegionsList;
-  /** Control permission to the managed HSM from public networks. */
-  publicNetworkAccess?:
-    | ManagedHsmPropertiesInputPublicNetworkAccess
-    | (string & {});
-}
-export const ManagedHsmPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    tenantId: S.optional(S.String),
-    initialAdminObjectIds: S.optional(
-      ManagedHsmPropertiesInputInitialAdminObjectIdsList,
-    ),
-    enableSoftDelete: S.optional(S.Boolean),
-    softDeleteRetentionInDays: S.optional(S.Number),
-    enablePurgeProtection: S.optional(S.Boolean),
-    createMode: S.optional(CreateMode),
-    networkAcls: S.optional(MHSMNetworkRuleSet),
-    regions: S.optional(ManagedHsmPropertiesInputRegionsList),
-    publicNetworkAccess: S.optional(
-      ManagedHsmPropertiesInputPublicNetworkAccess,
-    ),
-  }),
-).annotate({
-  identifier: "ManagedHsmPropertiesInput",
-}) as any as S.Schema<ManagedHsmPropertiesInput>;
-
-/** SKU Family of the managed HSM Pool */
-export type ManagedHsmSkuFamily = "B" | "C";
-export const ManagedHsmSkuFamily = /*@__PURE__*/ S.String;
-
-/** SKU of the managed HSM Pool */
-export type ManagedHsmSkuName =
-  | "Standard_B1"
-  | "Custom_B32"
-  | "Custom_B6"
-  | "Custom_C42"
-  | "Custom_C10";
-export const ManagedHsmSkuName = /*@__PURE__*/ S.String;
-
-/** SKU details */
-export interface ManagedHsmSku {
-  /** SKU Family of the managed HSM Pool */
-  family: ManagedHsmSkuFamily | (string & {});
-  /** SKU of the managed HSM Pool */
-  name: ManagedHsmSkuName | (string & {});
-}
-export const ManagedHsmSku = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    family: ManagedHsmSkuFamily,
-    name: ManagedHsmSkuName,
-  }),
-).annotate({ identifier: "ManagedHsmSku" }) as any as S.Schema<ManagedHsmSku>;
-
-/** Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed). */
-export type ManagedServiceIdentityType =
-  | "None"
-  | "SystemAssigned"
-  | "UserAssigned"
-  | "SystemAssigned,UserAssigned";
-export const ManagedServiceIdentityType = /*@__PURE__*/ S.String;
-
-/** User assigned identity properties */
-export interface UserAssignedIdentityInput {}
-export const UserAssignedIdentityInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "UserAssignedIdentityInput",
-}) as any as S.Schema<UserAssignedIdentityInput>;
-
-/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-export type UserAssignedIdentitiesInput = {
-  [key: string]: UserAssignedIdentityInput | undefined;
-};
-export const UserAssignedIdentitiesInput = /*@__PURE__*/ S.Record(
-  S.String,
-  UserAssignedIdentityInput,
-) as any as S.Schema<UserAssignedIdentitiesInput>;
-
-/** Managed service identity (system assigned and/or user assigned identities) */
-export interface ManagedHsmsCreateOrUpdateRequestIdentity {
-  type: ManagedServiceIdentityType | (string & {});
-  userAssignedIdentities?: UserAssignedIdentitiesInput;
-}
-export const ManagedHsmsCreateOrUpdateRequestIdentity = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      type: ManagedServiceIdentityType,
-      userAssignedIdentities: S.optional(UserAssignedIdentitiesInput),
-    }),
-).annotate({
-  identifier: "ManagedHsmsCreateOrUpdateRequestIdentity",
-}) as any as S.Schema<ManagedHsmsCreateOrUpdateRequestIdentity>;
-
-/** Resource tags. */
-export type ManagedHsmsCreateOrUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ManagedHsmsCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ManagedHsmsCreateOrUpdateRequestTagsMap>;
-
-export interface ManagedHsmsCreateOrUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the managed HSM Pool. */
-  name: string;
-  /** Properties of the managed HSM */
-  properties?: ManagedHsmPropertiesInput;
-  /** SKU details */
-  sku?: ManagedHsmSku;
-  /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: ManagedHsmsCreateOrUpdateRequestIdentity;
-  /** The geo-location where the resource lives */
-  location?: string;
-  /** Resource tags. */
-  tags?: ManagedHsmsCreateOrUpdateRequestTagsMap;
-}
-export const ManagedHsmsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    name: S.String.pipe(T.Label()),
-    properties: S.optional(ManagedHsmPropertiesInput),
-    sku: S.optional(ManagedHsmSku),
-    identity: S.optional(ManagedHsmsCreateOrUpdateRequestIdentity),
-    location: S.optional(S.String),
-    tags: S.optional(ManagedHsmsCreateOrUpdateRequestTagsMap),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.KeyVault/managedHSMs/{name}",
-      code: 200,
-      apiVersion: "2026-02-01",
-    }),
-  ),
-).annotate({
-  identifier: "ManagedHsmsCreateOrUpdateRequest",
-}) as any as S.Schema<ManagedHsmsCreateOrUpdateRequest>;
-
-/** Array of initial administrators object ids for this managed hsm pool. */
-export type ManagedHsmPropertiesInitialAdminObjectIdsList = Array<string>;
-export const ManagedHsmPropertiesInitialAdminObjectIdsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ManagedHsmPropertiesInitialAdminObjectIdsList>;
-
-/** Provisioning state. */
-export type ProvisioningState =
-  | "Succeeded"
-  | "Provisioning"
-  | "Failed"
-  | "Updating"
-  | "Deleting"
-  | "Activated"
-  | "SecurityDomainRestore"
-  | "Restoring";
-export const ProvisioningState = /*@__PURE__*/ S.String;
-
 /** The current provisioning state. */
 export type GeoReplicationRegionProvisioningState =
   | "Preprovisioning"
@@ -1522,84 +1442,6 @@ export type ManagedHsmPropertiesRegionsList = Array<MHSMGeoReplicatedRegion>;
 export const ManagedHsmPropertiesRegionsList = /*@__PURE__*/ S.Array(
   MHSMGeoReplicatedRegion,
 ) as any as S.Schema<ManagedHsmPropertiesRegionsList>;
-
-/** Private endpoint object properties. */
-export interface MHSMPrivateEndpoint {
-  /** Full identifier of the private endpoint resource. */
-  id?: string;
-}
-export const MHSMPrivateEndpoint = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "MHSMPrivateEndpoint",
-}) as any as S.Schema<MHSMPrivateEndpoint>;
-
-/** The private endpoint connection status. */
-export type PrivateEndpointServiceConnectionStatus =
-  | "Pending"
-  | "Approved"
-  | "Rejected"
-  | "Disconnected";
-export const PrivateEndpointServiceConnectionStatus = /*@__PURE__*/ S.String;
-
-/** A message indicating if changes on the service provider require any updates on the consumer. */
-export type ActionsRequired = "None";
-export const ActionsRequired = /*@__PURE__*/ S.String;
-
-/** An object that represents the approval state of the private link connection. */
-export interface MHSMPrivateLinkServiceConnectionState {
-  /** Indicates whether the connection has been approved, rejected or removed by the key vault owner. */
-  status?: PrivateEndpointServiceConnectionStatus | (string & {});
-  /** The reason for approval or rejection. */
-  description?: string;
-  /** A message indicating if changes on the service provider require any updates on the consumer. */
-  actionsRequired?: ActionsRequired | (string & {});
-}
-export const MHSMPrivateLinkServiceConnectionState = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      status: S.optional(PrivateEndpointServiceConnectionStatus),
-      description: S.optional(S.String),
-      actionsRequired: S.optional(ActionsRequired),
-    }),
-).annotate({
-  identifier: "MHSMPrivateLinkServiceConnectionState",
-}) as any as S.Schema<MHSMPrivateLinkServiceConnectionState>;
-
-/** The current provisioning state. */
-export type PrivateEndpointConnectionProvisioningState =
-  | "Succeeded"
-  | "Creating"
-  | "Updating"
-  | "Deleting"
-  | "Failed"
-  | "Disconnected";
-export const PrivateEndpointConnectionProvisioningState =
-  /*@__PURE__*/ S.String;
-
-/** Properties of the private endpoint connection resource. */
-export interface MHSMPrivateEndpointConnectionProperties {
-  /** Properties of the private endpoint object. */
-  privateEndpoint?: MHSMPrivateEndpoint;
-  /** Approval state of the private link connection. */
-  privateLinkServiceConnectionState?: MHSMPrivateLinkServiceConnectionState;
-  /** Provisioning state of the private endpoint connection. */
-  provisioningState?: PrivateEndpointConnectionProvisioningState;
-}
-export const MHSMPrivateEndpointConnectionProperties = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      privateEndpoint: S.optional(MHSMPrivateEndpoint),
-      privateLinkServiceConnectionState: S.optional(
-        MHSMPrivateLinkServiceConnectionState,
-      ),
-      provisioningState: S.optional(PrivateEndpointConnectionProvisioningState),
-    }),
-).annotate({
-  identifier: "MHSMPrivateEndpointConnectionProperties",
-}) as any as S.Schema<MHSMPrivateEndpointConnectionProperties>;
 
 /** Private endpoint connection item. */
 export interface MHSMPrivateEndpointConnectionItem {
@@ -1711,62 +1553,22 @@ export const ManagedHsmProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "ManagedHsmProperties",
 }) as any as S.Schema<ManagedHsmProperties>;
 
-/** User assigned identity properties */
-export interface UserAssignedIdentity {
-  /** The principal ID of the assigned identity. */
-  principalId?: string;
-  /** The client ID of the assigned identity. */
-  clientId?: string;
-}
-export const UserAssignedIdentity = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    principalId: S.optional(S.String),
-    clientId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "UserAssignedIdentity",
-}) as any as S.Schema<UserAssignedIdentity>;
-
-/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-export type UserAssignedIdentities = {
-  [key: string]: UserAssignedIdentity | undefined;
-};
-export const UserAssignedIdentities = /*@__PURE__*/ S.Record(
-  S.String,
-  UserAssignedIdentity,
-) as any as S.Schema<UserAssignedIdentities>;
-
 /** Managed service identity (system assigned and/or user assigned identities) */
-export interface ManagedHsmsCreateOrUpdateResponseIdentity {
-  /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
-  principalId?: string;
-  /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
-  tenantId?: string;
-  type: ManagedServiceIdentityType;
-  userAssignedIdentities?: UserAssignedIdentities;
-}
-export const ManagedHsmsCreateOrUpdateResponseIdentity =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      principalId: S.optional(S.String),
-      tenantId: S.optional(S.String),
-      type: ManagedServiceIdentityType,
-      userAssignedIdentities: S.optional(UserAssignedIdentities),
-    }),
-  ).annotate({
-    identifier: "ManagedHsmsCreateOrUpdateResponseIdentity",
-  }) as any as S.Schema<ManagedHsmsCreateOrUpdateResponseIdentity>;
+export type GetManagedHsmResponseIdentity =
+  DeleteMHSMPrivateEndpointConnectionResponseIdentity;
+export const GetManagedHsmResponseIdentity =
+  DeleteMHSMPrivateEndpointConnectionResponseIdentity;
 
 /** Resource tags. */
-export type ManagedHsmsCreateOrUpdateResponseTagsMap = {
+export type GetManagedHsmResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ManagedHsmsCreateOrUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetManagedHsmResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ManagedHsmsCreateOrUpdateResponseTagsMap>;
+) as any as S.Schema<GetManagedHsmResponseTagsMap>;
 
-export interface ManagedHsmsCreateOrUpdateResponse {
+export interface GetManagedHsmResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -1780,13 +1582,13 @@ export interface ManagedHsmsCreateOrUpdateResponse {
   /** SKU details */
   sku?: ManagedHsmSku;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: ManagedHsmsCreateOrUpdateResponseIdentity;
+  identity?: DeleteMHSMPrivateEndpointConnectionResponseIdentity;
   /** The geo-location where the resource lives */
   location?: string;
   /** Resource tags. */
-  tags?: ManagedHsmsCreateOrUpdateResponseTagsMap;
+  tags?: GetManagedHsmResponseTagsMap;
 }
-export const ManagedHsmsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetManagedHsmResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -1794,123 +1596,15 @@ export const ManagedHsmsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
     systemData: S.optional(SystemData),
     properties: S.optional(ManagedHsmProperties),
     sku: S.optional(ManagedHsmSku),
-    identity: S.optional(ManagedHsmsCreateOrUpdateResponseIdentity),
+    identity: S.optional(DeleteMHSMPrivateEndpointConnectionResponseIdentity),
     location: S.optional(S.String),
-    tags: S.optional(ManagedHsmsCreateOrUpdateResponseTagsMap),
+    tags: S.optional(GetManagedHsmResponseTagsMap),
   }),
 ).annotate({
-  identifier: "ManagedHsmsCreateOrUpdateResponse",
-}) as any as S.Schema<ManagedHsmsCreateOrUpdateResponse>;
+  identifier: "GetManagedHsmResponse",
+}) as any as S.Schema<GetManagedHsmResponse>;
 
-export interface ManagedHsmsDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the managed HSM Pool. */
-  name: string;
-}
-export const ManagedHsmsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    name: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.KeyVault/managedHSMs/{name}",
-      code: 200,
-      apiVersion: "2026-02-01",
-    }),
-  ),
-).annotate({
-  identifier: "ManagedHsmsDeleteRequest",
-}) as any as S.Schema<ManagedHsmsDeleteRequest>;
-
-export interface ManagedHsmsDeleteResponse {}
-export const ManagedHsmsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ManagedHsmsDeleteResponse",
-}) as any as S.Schema<ManagedHsmsDeleteResponse>;
-
-export interface ManagedHsmsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the managed HSM Pool. */
-  name: string;
-}
-export const ManagedHsmsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    name: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.KeyVault/managedHSMs/{name}",
-      code: 200,
-      apiVersion: "2026-02-01",
-    }),
-  ),
-).annotate({
-  identifier: "ManagedHsmsGetRequest",
-}) as any as S.Schema<ManagedHsmsGetRequest>;
-
-/** Managed service identity (system assigned and/or user assigned identities) */
-export type ManagedHsmsGetResponseIdentity =
-  ManagedHsmsCreateOrUpdateResponseIdentity;
-export const ManagedHsmsGetResponseIdentity =
-  ManagedHsmsCreateOrUpdateResponseIdentity;
-
-/** Resource tags. */
-export type ManagedHsmsGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ManagedHsmsGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ManagedHsmsGetResponseTagsMap>;
-
-export interface ManagedHsmsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of the managed HSM */
-  properties?: ManagedHsmProperties;
-  /** SKU details */
-  sku?: ManagedHsmSku;
-  /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: ManagedHsmsCreateOrUpdateResponseIdentity;
-  /** The geo-location where the resource lives */
-  location?: string;
-  /** Resource tags. */
-  tags?: ManagedHsmsGetResponseTagsMap;
-}
-export const ManagedHsmsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ManagedHsmProperties),
-    sku: S.optional(ManagedHsmSku),
-    identity: S.optional(ManagedHsmsCreateOrUpdateResponseIdentity),
-    location: S.optional(S.String),
-    tags: S.optional(ManagedHsmsGetResponseTagsMap),
-  }),
-).annotate({
-  identifier: "ManagedHsmsGetResponse",
-}) as any as S.Schema<ManagedHsmsGetResponse>;
-
-export interface ManagedHsmsGetDeletedRequest {
+export interface GetManagedHsmDeletedRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the Azure region. */
@@ -1918,7 +1612,7 @@ export interface ManagedHsmsGetDeletedRequest {
   /** The name of the deleted managed HSM. */
   name: string;
 }
-export const ManagedHsmsGetDeletedRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetManagedHsmDeletedRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     location: S.String.pipe(T.Label()),
@@ -1932,8 +1626,8 @@ export const ManagedHsmsGetDeletedRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ManagedHsmsGetDeletedRequest",
-}) as any as S.Schema<ManagedHsmsGetDeletedRequest>;
+  identifier: "GetManagedHsmDeletedRequest",
+}) as any as S.Schema<GetManagedHsmDeletedRequest>;
 
 /** Tags of the original managed HSM. */
 export type DeletedManagedHsmPropertiesTagsMap = {
@@ -1972,7 +1666,7 @@ export const DeletedManagedHsmProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeletedManagedHsmProperties",
 }) as any as S.Schema<DeletedManagedHsmProperties>;
 
-export interface ManagedHsmsGetDeletedResponse {
+export interface GetManagedHsmDeletedResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -1984,7 +1678,7 @@ export interface ManagedHsmsGetDeletedResponse {
   /** Properties of the deleted managed HSM */
   properties?: DeletedManagedHsmProperties;
 }
-export const ManagedHsmsGetDeletedResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetManagedHsmDeletedResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -1993,10 +1687,969 @@ export const ManagedHsmsGetDeletedResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(DeletedManagedHsmProperties),
   }),
 ).annotate({
-  identifier: "ManagedHsmsGetDeletedResponse",
-}) as any as S.Schema<ManagedHsmsGetDeletedResponse>;
+  identifier: "GetManagedHsmDeletedResponse",
+}) as any as S.Schema<GetManagedHsmDeletedResponse>;
 
-export interface ManagedHsmsListByResourceGroupRequest {
+export interface GetManagedHsmKeysRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Managed HSM Pool within the specified resource group. */
+  name: string;
+  /** The name of the key to be created. The value you provide may be copied globally for the purpose of running the service. The value provided should not include personally identifiable or sensitive information. */
+  keyName: string;
+}
+export const GetManagedHsmKeysRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    name: S.String.pipe(T.Label()),
+    keyName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.KeyVault/managedHSMs/{name}/keys/{keyName}",
+      code: 200,
+      apiVersion: "2026-02-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetManagedHsmKeysRequest",
+}) as any as S.Schema<GetManagedHsmKeysRequest>;
+
+/** Resource tags */
+export type GetManagedHsmKeysResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetManagedHsmKeysResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetManagedHsmKeysResponseTagsMap>;
+
+export interface GetManagedHsmKeysResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of the key. */
+  properties: ManagedHsmKeyProperties;
+  /** Resource tags */
+  tags?: GetManagedHsmKeysResponseTagsMap;
+}
+export const GetManagedHsmKeysResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: ManagedHsmKeyProperties,
+    tags: S.optional(GetManagedHsmKeysResponseTagsMap),
+  }),
+).annotate({
+  identifier: "GetManagedHsmKeysResponse",
+}) as any as S.Schema<GetManagedHsmKeysResponse>;
+
+export interface GetManagedHsmKeysVersionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Managed HSM Pool within the specified resource group. */
+  name: string;
+  /** The name of the key to be created. The value you provide may be copied globally for the purpose of running the service. The value provided should not include personally identifiable or sensitive information. */
+  keyName: string;
+  /** The version of the key to be retrieved. */
+  keyVersion: string;
+}
+export const GetManagedHsmKeysVersionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    name: S.String.pipe(T.Label()),
+    keyName: S.String.pipe(T.Label()),
+    keyVersion: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.KeyVault/managedHSMs/{name}/keys/{keyName}/versions/{keyVersion}",
+      code: 200,
+      apiVersion: "2026-02-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetManagedHsmKeysVersionRequest",
+}) as any as S.Schema<GetManagedHsmKeysVersionRequest>;
+
+/** Resource tags */
+export type GetManagedHsmKeysVersionResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetManagedHsmKeysVersionResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetManagedHsmKeysVersionResponseTagsMap>;
+
+export interface GetManagedHsmKeysVersionResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of the key. */
+  properties: ManagedHsmKeyProperties;
+  /** Resource tags */
+  tags?: GetManagedHsmKeysVersionResponseTagsMap;
+}
+export const GetManagedHsmKeysVersionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: ManagedHsmKeyProperties,
+    tags: S.optional(GetManagedHsmKeysVersionResponseTagsMap),
+  }),
+).annotate({
+  identifier: "GetManagedHsmKeysVersionResponse",
+}) as any as S.Schema<GetManagedHsmKeysVersionResponse>;
+
+export interface GetMHSMPrivateEndpointConnectionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the managed HSM Pool. */
+  name: string;
+  /** Name of the private endpoint connection associated with the managed hsm pool. */
+  privateEndpointConnectionName: string;
+}
+export const GetMHSMPrivateEndpointConnectionRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      name: S.String.pipe(T.Label()),
+      privateEndpointConnectionName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.KeyVault/managedHSMs/{name}/privateEndpointConnections/{privateEndpointConnectionName}",
+        code: 200,
+        apiVersion: "2026-02-01",
+      }),
+    ),
+).annotate({
+  identifier: "GetMHSMPrivateEndpointConnectionRequest",
+}) as any as S.Schema<GetMHSMPrivateEndpointConnectionRequest>;
+
+/** Managed service identity (system assigned and/or user assigned identities) */
+export type GetMHSMPrivateEndpointConnectionResponseIdentity =
+  DeleteMHSMPrivateEndpointConnectionResponseIdentity;
+export const GetMHSMPrivateEndpointConnectionResponseIdentity =
+  DeleteMHSMPrivateEndpointConnectionResponseIdentity;
+
+/** Resource tags. */
+export type GetMHSMPrivateEndpointConnectionResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetMHSMPrivateEndpointConnectionResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<GetMHSMPrivateEndpointConnectionResponseTagsMap>;
+
+export interface GetMHSMPrivateEndpointConnectionResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource properties. */
+  properties?: MHSMPrivateEndpointConnectionProperties;
+  /** SKU details */
+  sku?: ManagedHsmSku;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: DeleteMHSMPrivateEndpointConnectionResponseIdentity;
+  /** Modified whenever there is a change in the state of private endpoint connection. */
+  etag?: string;
+  /** The geo-location where the resource lives */
+  location?: string;
+  /** Resource tags. */
+  tags?: GetMHSMPrivateEndpointConnectionResponseTagsMap;
+}
+export const GetMHSMPrivateEndpointConnectionResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(MHSMPrivateEndpointConnectionProperties),
+      sku: S.optional(ManagedHsmSku),
+      identity: S.optional(DeleteMHSMPrivateEndpointConnectionResponseIdentity),
+      etag: S.optional(S.String),
+      location: S.optional(S.String),
+      tags: S.optional(GetMHSMPrivateEndpointConnectionResponseTagsMap),
+    }),
+).annotate({
+  identifier: "GetMHSMPrivateEndpointConnectionResponse",
+}) as any as S.Schema<GetMHSMPrivateEndpointConnectionResponse>;
+
+export interface GetPrivateEndpointConnectionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the vault. */
+  vaultName: string;
+  /** Name of the private endpoint connection associated with the key vault. */
+  privateEndpointConnectionName: string;
+}
+export const GetPrivateEndpointConnectionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    vaultName: S.String.pipe(T.Label()),
+    privateEndpointConnectionName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.KeyVault/vaults/{vaultName}/privateEndpointConnections/{privateEndpointConnectionName}",
+      code: 200,
+      apiVersion: "2026-02-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetPrivateEndpointConnectionRequest",
+}) as any as S.Schema<GetPrivateEndpointConnectionRequest>;
+
+/** Tags assigned to the key vault resource. */
+export type GetPrivateEndpointConnectionResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetPrivateEndpointConnectionResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<GetPrivateEndpointConnectionResponseTagsMap>;
+
+export interface GetPrivateEndpointConnectionResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource properties. */
+  properties?: MHSMPrivateEndpointConnectionProperties;
+  /** Azure location of the key vault resource. */
+  location?: string;
+  /** Tags assigned to the key vault resource. */
+  tags?: GetPrivateEndpointConnectionResponseTagsMap;
+  /** Modified whenever there is a change in the state of private endpoint connection. */
+  etag?: string;
+}
+export const GetPrivateEndpointConnectionResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(MHSMPrivateEndpointConnectionProperties),
+      location: S.optional(S.String),
+      tags: S.optional(GetPrivateEndpointConnectionResponseTagsMap),
+      etag: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "GetPrivateEndpointConnectionResponse",
+}) as any as S.Schema<GetPrivateEndpointConnectionResponse>;
+
+export interface GetSecretRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the vault. */
+  vaultName: string;
+  /** The name of the secret. */
+  secretName: string;
+}
+export const GetSecretRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    vaultName: S.String.pipe(T.Label()),
+    secretName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.KeyVault/vaults/{vaultName}/secrets/{secretName}",
+      code: 200,
+      apiVersion: "2026-02-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetSecretRequest",
+}) as any as S.Schema<GetSecretRequest>;
+
+/** The object attributes managed by the KeyVault service. */
+export interface Attributes {
+  /** Determines whether the object is enabled. */
+  enabled?: boolean;
+  /** Not before date in seconds since 1970-01-01T00:00:00Z. */
+  nbf?: number;
+  /** Expiry date in seconds since 1970-01-01T00:00:00Z. */
+  exp?: number;
+  /** Creation time in seconds since 1970-01-01T00:00:00Z. */
+  created?: number;
+  /** Last updated time in seconds since 1970-01-01T00:00:00Z. */
+  updated?: number;
+}
+export const Attributes = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    enabled: S.optional(S.Boolean),
+    nbf: S.optional(S.Number),
+    exp: S.optional(S.Number),
+    created: S.optional(S.Number),
+    updated: S.optional(S.Number),
+  }),
+).annotate({ identifier: "Attributes" }) as any as S.Schema<Attributes>;
+
+/** Properties of the secret */
+export interface SecretProperties {
+  /** The value of the secret. NOTE: 'value' will never be returned from the service, as APIs using this model are is intended for internal use in ARM deployments. Users should use the data-plane REST service for interaction with vault secrets. */
+  value?: string;
+  /** The content type of the secret. */
+  contentType?: string;
+  /** The attributes of the secret. */
+  attributes?: Attributes;
+  /** The URI to retrieve the current version of the secret. */
+  secretUri?: string;
+  /** The URI to retrieve the specific version of the secret. */
+  secretUriWithVersion?: string;
+}
+export const SecretProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(S.String),
+    contentType: S.optional(S.String),
+    attributes: S.optional(Attributes),
+    secretUri: S.optional(S.String),
+    secretUriWithVersion: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "SecretProperties",
+}) as any as S.Schema<SecretProperties>;
+
+/** Tags assigned to the key vault resource. */
+export type GetSecretResponseTagsMap = { [key: string]: string | undefined };
+export const GetSecretResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetSecretResponseTagsMap>;
+
+export interface GetSecretResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of the secret */
+  properties: SecretProperties;
+  /** Azure location of the key vault resource. */
+  location?: string;
+  /** Tags assigned to the key vault resource. */
+  tags?: GetSecretResponseTagsMap;
+}
+export const GetSecretResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: SecretProperties,
+    location: S.optional(S.String),
+    tags: S.optional(GetSecretResponseTagsMap),
+  }),
+).annotate({
+  identifier: "GetSecretResponse",
+}) as any as S.Schema<GetSecretResponse>;
+
+export interface GetVaultRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the vault. */
+  vaultName: string;
+}
+export const GetVaultRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    vaultName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.KeyVault/vaults/{vaultName}",
+      code: 200,
+      apiVersion: "2026-02-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetVaultRequest",
+}) as any as S.Schema<GetVaultRequest>;
+
+/** SKU family name */
+export type SkuFamily = "A";
+export const SkuFamily = /*@__PURE__*/ S.String;
+
+/** SKU name to specify whether the key vault is a standard vault or a premium vault. */
+export type SkuName = "standard" | "premium";
+export const SkuName = /*@__PURE__*/ S.String;
+
+/** SKU details */
+export interface Sku {
+  /** SKU family name */
+  family: SkuFamily | (string & {});
+  /** SKU name to specify whether the key vault is a standard vault or a premium vault. */
+  name: SkuName | (string & {});
+}
+export const Sku = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    family: SkuFamily,
+    name: SkuName,
+  }),
+).annotate({ identifier: "Sku" }) as any as S.Schema<Sku>;
+
+export type KeyPermissions =
+  | "all"
+  | "encrypt"
+  | "decrypt"
+  | "wrapKey"
+  | "unwrapKey"
+  | "sign"
+  | "verify"
+  | "get"
+  | "list"
+  | "create"
+  | "update"
+  | "import"
+  | "delete"
+  | "backup"
+  | "restore"
+  | "recover"
+  | "purge"
+  | "release"
+  | "rotate"
+  | "getrotationpolicy"
+  | "setrotationpolicy";
+export const KeyPermissions = /*@__PURE__*/ S.String;
+
+/** Permissions to keys */
+export type PermissionsKeysList = Array<KeyPermissions | (string & {})>;
+export const PermissionsKeysList = /*@__PURE__*/ S.Array(
+  KeyPermissions,
+) as any as S.Schema<PermissionsKeysList>;
+
+export type SecretPermissions =
+  | "all"
+  | "get"
+  | "list"
+  | "set"
+  | "delete"
+  | "backup"
+  | "restore"
+  | "recover"
+  | "purge";
+export const SecretPermissions = /*@__PURE__*/ S.String;
+
+/** Permissions to secrets */
+export type PermissionsSecretsList = Array<SecretPermissions | (string & {})>;
+export const PermissionsSecretsList = /*@__PURE__*/ S.Array(
+  SecretPermissions,
+) as any as S.Schema<PermissionsSecretsList>;
+
+export type CertificatePermissions =
+  | "all"
+  | "get"
+  | "list"
+  | "delete"
+  | "create"
+  | "import"
+  | "update"
+  | "managecontacts"
+  | "getissuers"
+  | "listissuers"
+  | "setissuers"
+  | "deleteissuers"
+  | "manageissuers"
+  | "recover"
+  | "purge"
+  | "backup"
+  | "restore";
+export const CertificatePermissions = /*@__PURE__*/ S.String;
+
+/** Permissions to certificates */
+export type PermissionsCertificatesList = Array<
+  CertificatePermissions | (string & {})
+>;
+export const PermissionsCertificatesList = /*@__PURE__*/ S.Array(
+  CertificatePermissions,
+) as any as S.Schema<PermissionsCertificatesList>;
+
+export type StoragePermissions =
+  | "all"
+  | "get"
+  | "list"
+  | "delete"
+  | "set"
+  | "update"
+  | "regeneratekey"
+  | "recover"
+  | "purge"
+  | "backup"
+  | "restore"
+  | "setsas"
+  | "listsas"
+  | "getsas"
+  | "deletesas";
+export const StoragePermissions = /*@__PURE__*/ S.String;
+
+/** Permissions to storage accounts */
+export type PermissionsStorageList = Array<StoragePermissions | (string & {})>;
+export const PermissionsStorageList = /*@__PURE__*/ S.Array(
+  StoragePermissions,
+) as any as S.Schema<PermissionsStorageList>;
+
+/** Permissions the identity has for keys, secrets, certificates and storage. */
+export interface Permissions {
+  /** Permissions to keys */
+  keys?: PermissionsKeysList;
+  /** Permissions to secrets */
+  secrets?: PermissionsSecretsList;
+  /** Permissions to certificates */
+  certificates?: PermissionsCertificatesList;
+  /** Permissions to storage accounts */
+  storage?: PermissionsStorageList;
+}
+export const Permissions = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    keys: S.optional(PermissionsKeysList),
+    secrets: S.optional(PermissionsSecretsList),
+    certificates: S.optional(PermissionsCertificatesList),
+    storage: S.optional(PermissionsStorageList),
+  }),
+).annotate({ identifier: "Permissions" }) as any as S.Schema<Permissions>;
+
+/** An identity that have access to the key vault. All identities in the array must use the same tenant ID as the key vault's tenant ID. */
+export interface AccessPolicyEntry {
+  /** The Azure Active Directory tenant ID that should be used for authenticating requests to the key vault. */
+  tenantId: string;
+  /** The object ID of a user, service principal or security group in the Azure Active Directory tenant for the vault. The object ID must be unique for the list of access policies. */
+  objectId: string;
+  /** Application ID of the client making request on behalf of a principal */
+  applicationId?: string;
+  /** Permissions the identity has for keys, secrets and certificates. */
+  permissions: Permissions;
+}
+export const AccessPolicyEntry = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    tenantId: S.String,
+    objectId: S.String,
+    applicationId: S.optional(S.String),
+    permissions: Permissions,
+  }),
+).annotate({
+  identifier: "AccessPolicyEntry",
+}) as any as S.Schema<AccessPolicyEntry>;
+
+/** An array of 0 to 1024 identities that have access to the key vault. All identities in the array must use the same tenant ID as the key vault's tenant ID. When `createMode` is set to `recover`, access policies are not required. Otherwise, access policies are required. */
+export type VaultPropertiesAccessPoliciesList = Array<AccessPolicyEntry>;
+export const VaultPropertiesAccessPoliciesList = /*@__PURE__*/ S.Array(
+  AccessPolicyEntry,
+) as any as S.Schema<VaultPropertiesAccessPoliciesList>;
+
+/** A rule governing the accessibility of a vault from a specific ip address or ip range. */
+export type IPRule = MHSMIPRule;
+export const IPRule = MHSMIPRule;
+
+/** The list of IP address rules. */
+export type NetworkRuleSetIpRulesList = Array<MHSMIPRule>;
+export const NetworkRuleSetIpRulesList = /*@__PURE__*/ S.Array(
+  MHSMIPRule,
+) as any as S.Schema<NetworkRuleSetIpRulesList>;
+
+/** A rule governing the accessibility of a vault from a specific virtual network. */
+export interface VirtualNetworkRule {
+  /** Full resource id of a vnet subnet, such as '/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualNetworks/test-vnet/subnets/subnet1'. */
+  id: string;
+  /** Property to specify whether NRP will ignore the check if parent subnet has serviceEndpoints configured. */
+  ignoreMissingVnetServiceEndpoint?: boolean;
+}
+export const VirtualNetworkRule = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    ignoreMissingVnetServiceEndpoint: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "VirtualNetworkRule",
+}) as any as S.Schema<VirtualNetworkRule>;
+
+/** The list of virtual network rules. */
+export type NetworkRuleSetVirtualNetworkRulesList = Array<VirtualNetworkRule>;
+export const NetworkRuleSetVirtualNetworkRulesList = /*@__PURE__*/ S.Array(
+  VirtualNetworkRule,
+) as any as S.Schema<NetworkRuleSetVirtualNetworkRulesList>;
+
+/** A set of rules governing the network accessibility of a vault. */
+export interface NetworkRuleSet {
+  /** Tells what traffic can bypass network rules. This can be 'AzureServices' or 'None'. If not specified the default is 'AzureServices'. */
+  bypass?: NetworkRuleBypassOptions | (string & {});
+  /** The default action when no rule from ipRules and from virtualNetworkRules match. This is only used after the bypass property has been evaluated. */
+  defaultAction?: NetworkRuleAction | (string & {});
+  /** The list of IP address rules. */
+  ipRules?: NetworkRuleSetIpRulesList;
+  /** The list of virtual network rules. */
+  virtualNetworkRules?: NetworkRuleSetVirtualNetworkRulesList;
+}
+export const NetworkRuleSet = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    bypass: S.optional(NetworkRuleBypassOptions),
+    defaultAction: S.optional(NetworkRuleAction),
+    ipRules: S.optional(NetworkRuleSetIpRulesList),
+    virtualNetworkRules: S.optional(NetworkRuleSetVirtualNetworkRulesList),
+  }),
+).annotate({ identifier: "NetworkRuleSet" }) as any as S.Schema<NetworkRuleSet>;
+
+/** Provisioning state of the vault. */
+export type VaultProvisioningState = "Succeeded" | "RegisteringDns";
+export const VaultProvisioningState = /*@__PURE__*/ S.String;
+
+/** Private endpoint connection item. */
+export type PrivateEndpointConnectionItem = MHSMPrivateEndpointConnectionItem;
+export const PrivateEndpointConnectionItem = MHSMPrivateEndpointConnectionItem;
+
+/** List of private endpoint connections associated with the key vault. */
+export type VaultPropertiesPrivateEndpointConnectionsList =
+  Array<MHSMPrivateEndpointConnectionItem>;
+export const VaultPropertiesPrivateEndpointConnectionsList =
+  /*@__PURE__*/ S.Array(
+    MHSMPrivateEndpointConnectionItem,
+  ) as any as S.Schema<VaultPropertiesPrivateEndpointConnectionsList>;
+
+/** Properties of the vault */
+export interface VaultProperties {
+  /** The Azure Active Directory tenant ID that should be used for authenticating requests to the key vault. */
+  tenantId: string;
+  /** SKU details */
+  sku: Sku;
+  /** An array of 0 to 1024 identities that have access to the key vault. All identities in the array must use the same tenant ID as the key vault's tenant ID. When `createMode` is set to `recover`, access policies are not required. Otherwise, access policies are required. */
+  accessPolicies?: VaultPropertiesAccessPoliciesList;
+  /** The URI of the vault for performing operations on keys and secrets. */
+  vaultUri?: string;
+  /** The resource id of HSM Pool. */
+  hsmPoolResourceId?: string;
+  /** Property to specify whether Azure Virtual Machines are permitted to retrieve certificates stored as secrets from the key vault. */
+  enabledForDeployment?: boolean;
+  /** Property to specify whether Azure Disk Encryption is permitted to retrieve secrets from the vault and unwrap keys. */
+  enabledForDiskEncryption?: boolean;
+  /** Property to specify whether Azure Resource Manager is permitted to retrieve secrets from the key vault. */
+  enabledForTemplateDeployment?: boolean;
+  /** Property to specify whether the 'soft delete' functionality is enabled for this key vault. If it's not set to any value(true or false) when creating new key vault, it will be set to true by default. Once set to true, it cannot be reverted to false. */
+  enableSoftDelete?: boolean;
+  /** softDelete data retention days. It accepts >=7 and <=90. */
+  softDeleteRetentionInDays?: number;
+  /** Property that controls how data actions are authorized. When true, the key vault will use Role Based Access Control (RBAC) for authorization of data actions, and the access policies specified in vault properties will be ignored. When false, the key vault will use the access policies specified in vault properties, and any policy stored on Azure Resource Manager will be ignored. If null or not specified, the vault is created with the default value of false. Note that management actions are always authorized with RBAC. */
+  enableRbacAuthorization?: boolean;
+  /** The vault's create mode to indicate whether the vault need to be recovered or not. */
+  createMode?: CreateMode;
+  /** Property specifying whether protection against purge is enabled for this vault. Setting this property to true activates protection against purge for this vault and its content - only the Key Vault service may initiate a hard, irrecoverable deletion. The setting is effective only if soft delete is also enabled. Enabling this functionality is irreversible - that is, the property does not accept false as its value. */
+  enablePurgeProtection?: boolean;
+  /** Rules governing the accessibility of the key vault from specific network locations. */
+  networkAcls?: NetworkRuleSet;
+  /** Provisioning state of the vault. */
+  provisioningState?: VaultProvisioningState;
+  /** List of private endpoint connections associated with the key vault. */
+  privateEndpointConnections?: VaultPropertiesPrivateEndpointConnectionsList;
+  /** Property to specify whether the vault will accept traffic from public internet. If set to 'disabled' all traffic except private endpoint traffic and that that originates from trusted services will be blocked. This will override the set firewall rules, meaning that even if the firewall rules are present we will not honor the rules. */
+  publicNetworkAccess?: string;
+}
+export const VaultProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    tenantId: S.String,
+    sku: Sku,
+    accessPolicies: S.optional(VaultPropertiesAccessPoliciesList),
+    vaultUri: S.optional(S.String),
+    hsmPoolResourceId: S.optional(S.String),
+    enabledForDeployment: S.optional(S.Boolean),
+    enabledForDiskEncryption: S.optional(S.Boolean),
+    enabledForTemplateDeployment: S.optional(S.Boolean),
+    enableSoftDelete: S.optional(S.Boolean),
+    softDeleteRetentionInDays: S.optional(S.Number),
+    enableRbacAuthorization: S.optional(S.Boolean),
+    createMode: S.optional(CreateMode),
+    enablePurgeProtection: S.optional(S.Boolean),
+    networkAcls: S.optional(NetworkRuleSet),
+    provisioningState: S.optional(VaultProvisioningState),
+    privateEndpointConnections: S.optional(
+      VaultPropertiesPrivateEndpointConnectionsList,
+    ),
+    publicNetworkAccess: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "VaultProperties",
+}) as any as S.Schema<VaultProperties>;
+
+/** Tags assigned to the key vault resource. */
+export type GetVaultResponseTagsMap = { [key: string]: string | undefined };
+export const GetVaultResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetVaultResponseTagsMap>;
+
+export interface GetVaultResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of the vault */
+  properties: VaultProperties;
+  /** Azure location of the key vault resource. */
+  location?: string;
+  /** Tags assigned to the key vault resource. */
+  tags?: GetVaultResponseTagsMap;
+}
+export const GetVaultResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: VaultProperties,
+    location: S.optional(S.String),
+    tags: S.optional(GetVaultResponseTagsMap),
+  }),
+).annotate({
+  identifier: "GetVaultResponse",
+}) as any as S.Schema<GetVaultResponse>;
+
+export interface GetVaultDeletedRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the Azure region. */
+  location: string;
+  /** The name of the vault. */
+  vaultName: string;
+}
+export const GetVaultDeletedRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    location: S.String.pipe(T.Label()),
+    vaultName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.KeyVault/locations/{location}/deletedVaults/{vaultName}",
+      code: 200,
+      apiVersion: "2026-02-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetVaultDeletedRequest",
+}) as any as S.Schema<GetVaultDeletedRequest>;
+
+/** Tags of the original vault. */
+export type DeletedVaultPropertiesTagsMap = {
+  [key: string]: string | undefined;
+};
+export const DeletedVaultPropertiesTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<DeletedVaultPropertiesTagsMap>;
+
+/** Properties of the deleted vault. */
+export interface DeletedVaultProperties {
+  /** The resource id of the original vault. */
+  vaultId?: string;
+  /** The location of the original vault. */
+  location?: string;
+  /** The deleted date. */
+  deletionDate?: string;
+  /** The scheduled purged date. */
+  scheduledPurgeDate?: string;
+  /** Tags of the original vault. */
+  tags?: DeletedVaultPropertiesTagsMap;
+  /** Purge protection status of the original vault. */
+  purgeProtectionEnabled?: boolean;
+}
+export const DeletedVaultProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    vaultId: S.optional(S.String),
+    location: S.optional(S.String),
+    deletionDate: S.optional(S.String),
+    scheduledPurgeDate: S.optional(S.String),
+    tags: S.optional(DeletedVaultPropertiesTagsMap),
+    purgeProtectionEnabled: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "DeletedVaultProperties",
+}) as any as S.Schema<DeletedVaultProperties>;
+
+export interface GetVaultDeletedResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of the vault */
+  properties?: DeletedVaultProperties;
+}
+export const GetVaultDeletedResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(DeletedVaultProperties),
+  }),
+).annotate({
+  identifier: "GetVaultDeletedResponse",
+}) as any as S.Schema<GetVaultDeletedResponse>;
+
+export interface ListKeysRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the vault which contains the key to be retrieved. */
+  vaultName: string;
+}
+export const ListKeysRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    vaultName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.KeyVault/vaults/{vaultName}/keys",
+      code: 200,
+      apiVersion: "2026-02-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListKeysRequest",
+}) as any as S.Schema<ListKeysRequest>;
+
+/** Resource tags */
+export type KeyTagsMap = { [key: string]: string | undefined };
+export const KeyTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<KeyTagsMap>;
+
+/** The key resource. */
+export interface Key {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of the key. */
+  properties: KeyProperties;
+  /** The supported Azure location where the managed HSM Pool should be created. */
+  location?: string;
+  /** Resource tags */
+  tags?: KeyTagsMap;
+}
+export const Key = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: KeyProperties,
+    location: S.optional(S.String),
+    tags: S.optional(KeyTagsMap),
+  }),
+).annotate({ identifier: "Key" }) as any as S.Schema<Key>;
+
+/** The Key items on this page */
+export type KeyListResultValueList = Array<Key>;
+export const KeyListResultValueList = /*@__PURE__*/ S.Array(
+  Key,
+) as any as S.Schema<KeyListResultValueList>;
+
+/** The response of a Key list operation. */
+export interface KeyListResult {
+  /** The Key items on this page */
+  value: KeyListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const KeyListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: KeyListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({ identifier: "KeyListResult" }) as any as S.Schema<KeyListResult>;
+
+export interface ListKeysVersionsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the vault which contains the key version to be retrieved. */
+  vaultName: string;
+  /** The name of the key version to be retrieved. */
+  keyName: string;
+}
+export const ListKeysVersionsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    vaultName: S.String.pipe(T.Label()),
+    keyName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.KeyVault/vaults/{vaultName}/keys/{keyName}/versions",
+      code: 200,
+      apiVersion: "2026-02-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListKeysVersionsRequest",
+}) as any as S.Schema<ListKeysVersionsRequest>;
+
+export interface ListManagedHsmByResourceGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2004,7 +2657,7 @@ export interface ManagedHsmsListByResourceGroupRequest {
   /** Maximum number of results to return. */
   _top?: number;
 }
-export const ManagedHsmsListByResourceGroupRequest = /*@__PURE__*/ S.suspend(
+export const ListManagedHsmByResourceGroupRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -2019,12 +2672,14 @@ export const ManagedHsmsListByResourceGroupRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "ManagedHsmsListByResourceGroupRequest",
-}) as any as S.Schema<ManagedHsmsListByResourceGroupRequest>;
+  identifier: "ListManagedHsmByResourceGroupRequest",
+}) as any as S.Schema<ListManagedHsmByResourceGroupRequest>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export type ManagedHsmIdentity = ManagedHsmsCreateOrUpdateResponseIdentity;
-export const ManagedHsmIdentity = ManagedHsmsCreateOrUpdateResponseIdentity;
+export type ManagedHsmIdentity =
+  DeleteMHSMPrivateEndpointConnectionResponseIdentity;
+export const ManagedHsmIdentity =
+  DeleteMHSMPrivateEndpointConnectionResponseIdentity;
 
 /** Resource tags. */
 export type ManagedHsmTagsMap = { [key: string]: string | undefined };
@@ -2048,7 +2703,7 @@ export interface ManagedHsm {
   /** SKU details */
   sku?: ManagedHsmSku;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: ManagedHsmsCreateOrUpdateResponseIdentity;
+  identity?: DeleteMHSMPrivateEndpointConnectionResponseIdentity;
   /** The geo-location where the resource lives */
   location?: string;
   /** Resource tags. */
@@ -2062,7 +2717,7 @@ export const ManagedHsm = /*@__PURE__*/ S.suspend(() =>
     systemData: S.optional(SystemData),
     properties: S.optional(ManagedHsmProperties),
     sku: S.optional(ManagedHsmSku),
-    identity: S.optional(ManagedHsmsCreateOrUpdateResponseIdentity),
+    identity: S.optional(DeleteMHSMPrivateEndpointConnectionResponseIdentity),
     location: S.optional(S.String),
     tags: S.optional(ManagedHsmTagsMap),
   }),
@@ -2090,34 +2745,33 @@ export const ManagedHsmListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "ManagedHsmListResult",
 }) as any as S.Schema<ManagedHsmListResult>;
 
-export interface ManagedHsmsListBySubscriptionRequest {
+export interface ListManagedHsmBySubscriptionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** Maximum number of results to return. */
   _top?: number;
 }
-export const ManagedHsmsListBySubscriptionRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      _top: S.optional(S.Number.pipe(T.Query("$top"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.KeyVault/managedHSMs",
-        code: 200,
-        apiVersion: "2026-02-01",
-      }),
-    ),
+export const ListManagedHsmBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    _top: S.optional(S.Number.pipe(T.Query("$top"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.KeyVault/managedHSMs",
+      code: 200,
+      apiVersion: "2026-02-01",
+    }),
+  ),
 ).annotate({
-  identifier: "ManagedHsmsListBySubscriptionRequest",
-}) as any as S.Schema<ManagedHsmsListBySubscriptionRequest>;
+  identifier: "ListManagedHsmBySubscriptionRequest",
+}) as any as S.Schema<ListManagedHsmBySubscriptionRequest>;
 
-export interface ManagedHsmsListDeletedRequest {
+export interface ListManagedHsmDeletedRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
 }
-export const ManagedHsmsListDeletedRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListManagedHsmDeletedRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
   }).pipe(
@@ -2129,8 +2783,8 @@ export const ManagedHsmsListDeletedRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ManagedHsmsListDeletedRequest",
-}) as any as S.Schema<ManagedHsmsListDeletedRequest>;
+  identifier: "ListManagedHsmDeletedRequest",
+}) as any as S.Schema<ListManagedHsmDeletedRequest>;
 
 /** Concrete proxy resource types can be created by aliasing this type using a specific property type. */
 export interface DeletedManagedHsm {
@@ -2179,109 +2833,40 @@ export const DeletedManagedHsmListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeletedManagedHsmListResult",
 }) as any as S.Schema<DeletedManagedHsmListResult>;
 
-export interface ManagedHsmsPurgeDeletedRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the Azure region. */
-  location: string;
-  /** The name of the deleted managed HSM. */
-  name: string;
-}
-export const ManagedHsmsPurgeDeletedRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    location: S.String.pipe(T.Label()),
-    name: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.KeyVault/locations/{location}/deletedManagedHSMs/{name}/purge",
-      code: 200,
-      apiVersion: "2026-02-01",
-    }),
-  ),
-).annotate({
-  identifier: "ManagedHsmsPurgeDeletedRequest",
-}) as any as S.Schema<ManagedHsmsPurgeDeletedRequest>;
-
-export interface ManagedHsmsPurgeDeletedResponse {}
-export const ManagedHsmsPurgeDeletedResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ManagedHsmsPurgeDeletedResponse",
-}) as any as S.Schema<ManagedHsmsPurgeDeletedResponse>;
-
-/** Managed service identity (system assigned and/or user assigned identities) */
-export type ManagedHsmsUpdateRequestIdentity =
-  ManagedHsmsCreateOrUpdateRequestIdentity;
-export const ManagedHsmsUpdateRequestIdentity =
-  ManagedHsmsCreateOrUpdateRequestIdentity;
-
-/** Resource tags. */
-export type ManagedHsmsUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ManagedHsmsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ManagedHsmsUpdateRequestTagsMap>;
-
-export interface ManagedHsmsUpdateRequest {
+export interface ListManagedHsmKeysRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
-  /** The name of the managed HSM Pool. */
+  /** The name of the Managed HSM Pool within the specified resource group. */
   name: string;
-  /** Properties of the managed HSM */
-  properties?: ManagedHsmPropertiesInput;
-  /** SKU details */
-  sku?: ManagedHsmSku;
-  /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: ManagedHsmsCreateOrUpdateRequestIdentity;
-  /** The geo-location where the resource lives */
-  location?: string;
-  /** Resource tags. */
-  tags?: ManagedHsmsUpdateRequestTagsMap;
 }
-export const ManagedHsmsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListManagedHsmKeysRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     name: S.String.pipe(T.Label()),
-    properties: S.optional(ManagedHsmPropertiesInput),
-    sku: S.optional(ManagedHsmSku),
-    identity: S.optional(ManagedHsmsCreateOrUpdateRequestIdentity),
-    location: S.optional(S.String),
-    tags: S.optional(ManagedHsmsUpdateRequestTagsMap),
   }).pipe(
     T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.KeyVault/managedHSMs/{name}",
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.KeyVault/managedHSMs/{name}/keys",
       code: 200,
       apiVersion: "2026-02-01",
     }),
   ),
 ).annotate({
-  identifier: "ManagedHsmsUpdateRequest",
-}) as any as S.Schema<ManagedHsmsUpdateRequest>;
+  identifier: "ListManagedHsmKeysRequest",
+}) as any as S.Schema<ListManagedHsmKeysRequest>;
 
-/** Managed service identity (system assigned and/or user assigned identities) */
-export type ManagedHsmsUpdateResponseIdentity =
-  ManagedHsmsCreateOrUpdateResponseIdentity;
-export const ManagedHsmsUpdateResponseIdentity =
-  ManagedHsmsCreateOrUpdateResponseIdentity;
-
-/** Resource tags. */
-export type ManagedHsmsUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ManagedHsmsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+/** Resource tags */
+export type ManagedHsmKeyTagsMap = { [key: string]: string | undefined };
+export const ManagedHsmKeyTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ManagedHsmsUpdateResponseTagsMap>;
+) as any as S.Schema<ManagedHsmKeyTagsMap>;
 
-export interface ManagedHsmsUpdateResponse {
+/** The key resource. */
+export interface ManagedHsmKey {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -2290,204 +2875,73 @@ export interface ManagedHsmsUpdateResponse {
   type?: string;
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
-  /** Properties of the managed HSM */
-  properties?: ManagedHsmProperties;
-  /** SKU details */
-  sku?: ManagedHsmSku;
-  /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: ManagedHsmsCreateOrUpdateResponseIdentity;
-  /** The geo-location where the resource lives */
-  location?: string;
-  /** Resource tags. */
-  tags?: ManagedHsmsUpdateResponseTagsMap;
+  /** The properties of the key. */
+  properties: ManagedHsmKeyProperties;
+  /** Resource tags */
+  tags?: ManagedHsmKeyTagsMap;
 }
-export const ManagedHsmsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const ManagedHsmKey = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    properties: S.optional(ManagedHsmProperties),
-    sku: S.optional(ManagedHsmSku),
-    identity: S.optional(ManagedHsmsCreateOrUpdateResponseIdentity),
-    location: S.optional(S.String),
-    tags: S.optional(ManagedHsmsUpdateResponseTagsMap),
+    properties: ManagedHsmKeyProperties,
+    tags: S.optional(ManagedHsmKeyTagsMap),
+  }),
+).annotate({ identifier: "ManagedHsmKey" }) as any as S.Schema<ManagedHsmKey>;
+
+/** The ManagedHsmKey items on this page */
+export type ManagedHsmKeyListResultValueList = Array<ManagedHsmKey>;
+export const ManagedHsmKeyListResultValueList = /*@__PURE__*/ S.Array(
+  ManagedHsmKey,
+) as any as S.Schema<ManagedHsmKeyListResultValueList>;
+
+/** The response of a ManagedHsmKey list operation. */
+export interface ManagedHsmKeyListResult {
+  /** The ManagedHsmKey items on this page */
+  value: ManagedHsmKeyListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const ManagedHsmKeyListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: ManagedHsmKeyListResultValueList,
+    nextLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ManagedHsmsUpdateResponse",
-}) as any as S.Schema<ManagedHsmsUpdateResponse>;
+  identifier: "ManagedHsmKeyListResult",
+}) as any as S.Schema<ManagedHsmKeyListResult>;
 
-export interface MHSMPrivateEndpointConnectionsDeleteRequest {
+export interface ListManagedHsmKeysVersionsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
-  /** The name of the managed HSM Pool. */
+  /** The name of the Managed HSM Pool within the specified resource group. */
   name: string;
-  /** Name of the private endpoint connection associated with the managed hsm pool. */
-  privateEndpointConnectionName: string;
+  /** The name of the key to be created. The value you provide may be copied globally for the purpose of running the service. The value provided should not include personally identifiable or sensitive information. */
+  keyName: string;
 }
-export const MHSMPrivateEndpointConnectionsDeleteRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      name: S.String.pipe(T.Label()),
-      privateEndpointConnectionName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.KeyVault/managedHSMs/{name}/privateEndpointConnections/{privateEndpointConnectionName}",
-        code: 200,
-        apiVersion: "2026-02-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "MHSMPrivateEndpointConnectionsDeleteRequest",
-  }) as any as S.Schema<MHSMPrivateEndpointConnectionsDeleteRequest>;
-
-/** Managed service identity (system assigned and/or user assigned identities) */
-export type MHSMPrivateEndpointConnectionsDeleteResponseIdentity =
-  ManagedHsmsCreateOrUpdateResponseIdentity;
-export const MHSMPrivateEndpointConnectionsDeleteResponseIdentity =
-  ManagedHsmsCreateOrUpdateResponseIdentity;
-
-/** Resource tags. */
-export type MHSMPrivateEndpointConnectionsDeleteResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const MHSMPrivateEndpointConnectionsDeleteResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<MHSMPrivateEndpointConnectionsDeleteResponseTagsMap>;
-
-export interface MHSMPrivateEndpointConnectionsDeleteResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource properties. */
-  properties?: MHSMPrivateEndpointConnectionProperties;
-  /** SKU details */
-  sku?: ManagedHsmSku;
-  /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: ManagedHsmsCreateOrUpdateResponseIdentity;
-  /** Modified whenever there is a change in the state of private endpoint connection. */
-  etag?: string;
-  /** The geo-location where the resource lives */
-  location?: string;
-  /** Resource tags. */
-  tags?: MHSMPrivateEndpointConnectionsDeleteResponseTagsMap;
-}
-export const MHSMPrivateEndpointConnectionsDeleteResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(MHSMPrivateEndpointConnectionProperties),
-      sku: S.optional(ManagedHsmSku),
-      identity: S.optional(ManagedHsmsCreateOrUpdateResponseIdentity),
-      etag: S.optional(S.String),
-      location: S.optional(S.String),
-      tags: S.optional(MHSMPrivateEndpointConnectionsDeleteResponseTagsMap),
+export const ListManagedHsmKeysVersionsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    name: S.String.pipe(T.Label()),
+    keyName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.KeyVault/managedHSMs/{name}/keys/{keyName}/versions",
+      code: 200,
+      apiVersion: "2026-02-01",
     }),
-  ).annotate({
-    identifier: "MHSMPrivateEndpointConnectionsDeleteResponse",
-  }) as any as S.Schema<MHSMPrivateEndpointConnectionsDeleteResponse>;
-
-export interface MHSMPrivateEndpointConnectionsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the managed HSM Pool. */
-  name: string;
-  /** Name of the private endpoint connection associated with the managed hsm pool. */
-  privateEndpointConnectionName: string;
-}
-export const MHSMPrivateEndpointConnectionsGetRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      name: S.String.pipe(T.Label()),
-      privateEndpointConnectionName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.KeyVault/managedHSMs/{name}/privateEndpointConnections/{privateEndpointConnectionName}",
-        code: 200,
-        apiVersion: "2026-02-01",
-      }),
-    ),
+  ),
 ).annotate({
-  identifier: "MHSMPrivateEndpointConnectionsGetRequest",
-}) as any as S.Schema<MHSMPrivateEndpointConnectionsGetRequest>;
+  identifier: "ListManagedHsmKeysVersionsRequest",
+}) as any as S.Schema<ListManagedHsmKeysVersionsRequest>;
 
-/** Managed service identity (system assigned and/or user assigned identities) */
-export type MHSMPrivateEndpointConnectionsGetResponseIdentity =
-  ManagedHsmsCreateOrUpdateResponseIdentity;
-export const MHSMPrivateEndpointConnectionsGetResponseIdentity =
-  ManagedHsmsCreateOrUpdateResponseIdentity;
-
-/** Resource tags. */
-export type MHSMPrivateEndpointConnectionsGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const MHSMPrivateEndpointConnectionsGetResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<MHSMPrivateEndpointConnectionsGetResponseTagsMap>;
-
-export interface MHSMPrivateEndpointConnectionsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource properties. */
-  properties?: MHSMPrivateEndpointConnectionProperties;
-  /** SKU details */
-  sku?: ManagedHsmSku;
-  /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: ManagedHsmsCreateOrUpdateResponseIdentity;
-  /** Modified whenever there is a change in the state of private endpoint connection. */
-  etag?: string;
-  /** The geo-location where the resource lives */
-  location?: string;
-  /** Resource tags. */
-  tags?: MHSMPrivateEndpointConnectionsGetResponseTagsMap;
-}
-export const MHSMPrivateEndpointConnectionsGetResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(MHSMPrivateEndpointConnectionProperties),
-      sku: S.optional(ManagedHsmSku),
-      identity: S.optional(ManagedHsmsCreateOrUpdateResponseIdentity),
-      etag: S.optional(S.String),
-      location: S.optional(S.String),
-      tags: S.optional(MHSMPrivateEndpointConnectionsGetResponseTagsMap),
-    }),
-  ).annotate({
-    identifier: "MHSMPrivateEndpointConnectionsGetResponse",
-  }) as any as S.Schema<MHSMPrivateEndpointConnectionsGetResponse>;
-
-export interface MHSMPrivateEndpointConnectionsListByResourceRequest {
+export interface ListMHSMPrivateEndpointConnectionByResourceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2495,7 +2949,7 @@ export interface MHSMPrivateEndpointConnectionsListByResourceRequest {
   /** The name of the managed HSM Pool. */
   name: string;
 }
-export const MHSMPrivateEndpointConnectionsListByResourceRequest =
+export const ListMHSMPrivateEndpointConnectionByResourceRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -2510,14 +2964,14 @@ export const MHSMPrivateEndpointConnectionsListByResourceRequest =
       }),
     ),
   ).annotate({
-    identifier: "MHSMPrivateEndpointConnectionsListByResourceRequest",
-  }) as any as S.Schema<MHSMPrivateEndpointConnectionsListByResourceRequest>;
+    identifier: "ListMHSMPrivateEndpointConnectionByResourceRequest",
+  }) as any as S.Schema<ListMHSMPrivateEndpointConnectionByResourceRequest>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
 export type MHSMPrivateEndpointConnectionIdentity =
-  ManagedHsmsCreateOrUpdateResponseIdentity;
+  DeleteMHSMPrivateEndpointConnectionResponseIdentity;
 export const MHSMPrivateEndpointConnectionIdentity =
-  ManagedHsmsCreateOrUpdateResponseIdentity;
+  DeleteMHSMPrivateEndpointConnectionResponseIdentity;
 
 /** Resource tags. */
 export type MHSMPrivateEndpointConnectionTagsMap = {
@@ -2543,7 +2997,7 @@ export interface MHSMPrivateEndpointConnection {
   /** SKU details */
   sku?: ManagedHsmSku;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: ManagedHsmsCreateOrUpdateResponseIdentity;
+  identity?: DeleteMHSMPrivateEndpointConnectionResponseIdentity;
   /** Modified whenever there is a change in the state of private endpoint connection. */
   etag?: string;
   /** The geo-location where the resource lives */
@@ -2559,7 +3013,7 @@ export const MHSMPrivateEndpointConnection = /*@__PURE__*/ S.suspend(() =>
     systemData: S.optional(SystemData),
     properties: S.optional(MHSMPrivateEndpointConnectionProperties),
     sku: S.optional(ManagedHsmSku),
-    identity: S.optional(ManagedHsmsCreateOrUpdateResponseIdentity),
+    identity: S.optional(DeleteMHSMPrivateEndpointConnectionResponseIdentity),
     etag: S.optional(S.String),
     location: S.optional(S.String),
     tags: S.optional(MHSMPrivateEndpointConnectionTagsMap),
@@ -2593,149 +3047,7 @@ export const MHSMPrivateEndpointConnectionsListResult = /*@__PURE__*/ S.suspend(
   identifier: "MHSMPrivateEndpointConnectionsListResult",
 }) as any as S.Schema<MHSMPrivateEndpointConnectionsListResult>;
 
-/** Private endpoint object properties. */
-export type MHSMPrivateEndpointInput = UserAssignedIdentityInput;
-export const MHSMPrivateEndpointInput = UserAssignedIdentityInput;
-
-/** Properties of the private endpoint connection resource. */
-export interface MHSMPrivateEndpointConnectionPropertiesInput {
-  /** Properties of the private endpoint object. */
-  privateEndpoint?: UserAssignedIdentityInput;
-  /** Approval state of the private link connection. */
-  privateLinkServiceConnectionState?: MHSMPrivateLinkServiceConnectionState;
-}
-export const MHSMPrivateEndpointConnectionPropertiesInput =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      privateEndpoint: S.optional(UserAssignedIdentityInput),
-      privateLinkServiceConnectionState: S.optional(
-        MHSMPrivateLinkServiceConnectionState,
-      ),
-    }),
-  ).annotate({
-    identifier: "MHSMPrivateEndpointConnectionPropertiesInput",
-  }) as any as S.Schema<MHSMPrivateEndpointConnectionPropertiesInput>;
-
-/** Managed service identity (system assigned and/or user assigned identities) */
-export type MHSMPrivateEndpointConnectionsPutRequestIdentity =
-  ManagedHsmsCreateOrUpdateRequestIdentity;
-export const MHSMPrivateEndpointConnectionsPutRequestIdentity =
-  ManagedHsmsCreateOrUpdateRequestIdentity;
-
-/** Resource tags. */
-export type MHSMPrivateEndpointConnectionsPutRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const MHSMPrivateEndpointConnectionsPutRequestTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<MHSMPrivateEndpointConnectionsPutRequestTagsMap>;
-
-export interface MHSMPrivateEndpointConnectionsPutRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the managed HSM Pool. */
-  name: string;
-  /** Name of the private endpoint connection associated with the managed hsm pool. */
-  privateEndpointConnectionName: string;
-  /** Resource properties. */
-  properties?: MHSMPrivateEndpointConnectionPropertiesInput;
-  /** SKU details */
-  sku?: ManagedHsmSku;
-  /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: ManagedHsmsCreateOrUpdateRequestIdentity;
-  /** Modified whenever there is a change in the state of private endpoint connection. */
-  etag?: string;
-  /** The geo-location where the resource lives */
-  location?: string;
-  /** Resource tags. */
-  tags?: MHSMPrivateEndpointConnectionsPutRequestTagsMap;
-}
-export const MHSMPrivateEndpointConnectionsPutRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      name: S.String.pipe(T.Label()),
-      privateEndpointConnectionName: S.String.pipe(T.Label()),
-      properties: S.optional(MHSMPrivateEndpointConnectionPropertiesInput),
-      sku: S.optional(ManagedHsmSku),
-      identity: S.optional(ManagedHsmsCreateOrUpdateRequestIdentity),
-      etag: S.optional(S.String),
-      location: S.optional(S.String),
-      tags: S.optional(MHSMPrivateEndpointConnectionsPutRequestTagsMap),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.KeyVault/managedHSMs/{name}/privateEndpointConnections/{privateEndpointConnectionName}",
-        code: 200,
-        apiVersion: "2026-02-01",
-      }),
-    ),
-).annotate({
-  identifier: "MHSMPrivateEndpointConnectionsPutRequest",
-}) as any as S.Schema<MHSMPrivateEndpointConnectionsPutRequest>;
-
-/** Managed service identity (system assigned and/or user assigned identities) */
-export type MHSMPrivateEndpointConnectionsPutResponseIdentity =
-  ManagedHsmsCreateOrUpdateResponseIdentity;
-export const MHSMPrivateEndpointConnectionsPutResponseIdentity =
-  ManagedHsmsCreateOrUpdateResponseIdentity;
-
-/** Resource tags. */
-export type MHSMPrivateEndpointConnectionsPutResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const MHSMPrivateEndpointConnectionsPutResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<MHSMPrivateEndpointConnectionsPutResponseTagsMap>;
-
-export interface MHSMPrivateEndpointConnectionsPutResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource properties. */
-  properties?: MHSMPrivateEndpointConnectionProperties;
-  /** SKU details */
-  sku?: ManagedHsmSku;
-  /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: ManagedHsmsCreateOrUpdateResponseIdentity;
-  /** Modified whenever there is a change in the state of private endpoint connection. */
-  etag?: string;
-  /** The geo-location where the resource lives */
-  location?: string;
-  /** Resource tags. */
-  tags?: MHSMPrivateEndpointConnectionsPutResponseTagsMap;
-}
-export const MHSMPrivateEndpointConnectionsPutResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(MHSMPrivateEndpointConnectionProperties),
-      sku: S.optional(ManagedHsmSku),
-      identity: S.optional(ManagedHsmsCreateOrUpdateResponseIdentity),
-      etag: S.optional(S.String),
-      location: S.optional(S.String),
-      tags: S.optional(MHSMPrivateEndpointConnectionsPutResponseTagsMap),
-    }),
-  ).annotate({
-    identifier: "MHSMPrivateEndpointConnectionsPutResponse",
-  }) as any as S.Schema<MHSMPrivateEndpointConnectionsPutResponse>;
-
-export interface MHSMPrivateLinkResourcesListByMHSMResourceRequest {
+export interface ListMHSMPrivateLinkResourceByMHSMResourceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2743,7 +3055,7 @@ export interface MHSMPrivateLinkResourcesListByMHSMResourceRequest {
   /** The name of the managed HSM Pool. */
   name: string;
 }
-export const MHSMPrivateLinkResourcesListByMHSMResourceRequest =
+export const ListMHSMPrivateLinkResourceByMHSMResourceRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -2758,8 +3070,8 @@ export const MHSMPrivateLinkResourcesListByMHSMResourceRequest =
       }),
     ),
   ).annotate({
-    identifier: "MHSMPrivateLinkResourcesListByMHSMResourceRequest",
-  }) as any as S.Schema<MHSMPrivateLinkResourcesListByMHSMResourceRequest>;
+    identifier: "ListMHSMPrivateLinkResourceByMHSMResourceRequest",
+  }) as any as S.Schema<ListMHSMPrivateLinkResourceByMHSMResourceRequest>;
 
 /** Resource tags. */
 export type MHSMPrivateLinkResourceTagsMap = {
@@ -2811,9 +3123,9 @@ export const MHSMPrivateLinkResourceProperties = /*@__PURE__*/ S.suspend(() =>
 
 /** Managed service identity (system assigned and/or user assigned identities) */
 export type MHSMPrivateLinkResourceIdentity =
-  ManagedHsmsCreateOrUpdateResponseIdentity;
+  DeleteMHSMPrivateEndpointConnectionResponseIdentity;
 export const MHSMPrivateLinkResourceIdentity =
-  ManagedHsmsCreateOrUpdateResponseIdentity;
+  DeleteMHSMPrivateEndpointConnectionResponseIdentity;
 
 /** A private link resource */
 export interface MHSMPrivateLinkResource {
@@ -2834,7 +3146,7 @@ export interface MHSMPrivateLinkResource {
   /** SKU details */
   sku?: ManagedHsmSku;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: ManagedHsmsCreateOrUpdateResponseIdentity;
+  identity?: DeleteMHSMPrivateEndpointConnectionResponseIdentity;
 }
 export const MHSMPrivateLinkResource = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -2846,7 +3158,7 @@ export const MHSMPrivateLinkResource = /*@__PURE__*/ S.suspend(() =>
     location: S.String,
     properties: S.optional(MHSMPrivateLinkResourceProperties),
     sku: S.optional(ManagedHsmSku),
-    identity: S.optional(ManagedHsmsCreateOrUpdateResponseIdentity),
+    identity: S.optional(DeleteMHSMPrivateEndpointConnectionResponseIdentity),
   }),
 ).annotate({
   identifier: "MHSMPrivateLinkResource",
@@ -2872,7 +3184,7 @@ export const MHSMPrivateLinkResourceListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "MHSMPrivateLinkResourceListResult",
 }) as any as S.Schema<MHSMPrivateLinkResourceListResult>;
 
-export interface MHSMRegionsListByResourceRequest {
+export interface ListMHSMRegionByResourceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2880,7 +3192,7 @@ export interface MHSMRegionsListByResourceRequest {
   /** The name of the managed HSM Pool. */
   name: string;
 }
-export const MHSMRegionsListByResourceRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListMHSMRegionByResourceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -2894,8 +3206,8 @@ export const MHSMRegionsListByResourceRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "MHSMRegionsListByResourceRequest",
-}) as any as S.Schema<MHSMRegionsListByResourceRequest>;
+  identifier: "ListMHSMRegionByResourceRequest",
+}) as any as S.Schema<ListMHSMRegionByResourceRequest>;
 
 /** The MhsmGeoReplicatedRegion items on this page */
 export type MHSMRegionsListResultValueList = Array<MHSMGeoReplicatedRegion>;
@@ -2919,8 +3231,8 @@ export const MHSMRegionsListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "MHSMRegionsListResult",
 }) as any as S.Schema<MHSMRegionsListResult>;
 
-export interface OperationsListRequest {}
-export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
+export interface ListOperationsRequest {}
+export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
     T.Http({
       method: "GET",
@@ -2930,8 +3242,8 @@ export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "OperationsListRequest",
-}) as any as S.Schema<OperationsListRequest>;
+  identifier: "ListOperationsRequest",
+}) as any as S.Schema<ListOperationsRequest>;
 
 /** Display metadata associated with the operation. */
 export interface OperationDisplay {
@@ -3150,169 +3462,7 @@ export const OperationListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "OperationListResult",
 }) as any as S.Schema<OperationListResult>;
 
-export interface PrivateEndpointConnectionsDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the vault. */
-  vaultName: string;
-  /** Name of the private endpoint connection associated with the key vault. */
-  privateEndpointConnectionName: string;
-}
-export const PrivateEndpointConnectionsDeleteRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      vaultName: S.String.pipe(T.Label()),
-      privateEndpointConnectionName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.KeyVault/vaults/{vaultName}/privateEndpointConnections/{privateEndpointConnectionName}",
-        code: 200,
-        apiVersion: "2026-02-01",
-      }),
-    ),
-).annotate({
-  identifier: "PrivateEndpointConnectionsDeleteRequest",
-}) as any as S.Schema<PrivateEndpointConnectionsDeleteRequest>;
-
-/** Private endpoint object properties. */
-export type PrivateEndpoint = MHSMPrivateEndpoint;
-export const PrivateEndpoint = MHSMPrivateEndpoint;
-
-/** An object that represents the approval state of the private link connection. */
-export type PrivateLinkServiceConnectionState =
-  MHSMPrivateLinkServiceConnectionState;
-export const PrivateLinkServiceConnectionState =
-  MHSMPrivateLinkServiceConnectionState;
-
-/** Properties of the private endpoint connection resource. */
-export type PrivateEndpointConnectionProperties =
-  MHSMPrivateEndpointConnectionProperties;
-export const PrivateEndpointConnectionProperties =
-  MHSMPrivateEndpointConnectionProperties;
-
-/** Tags assigned to the key vault resource. */
-export type PrivateEndpointConnectionsDeleteResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const PrivateEndpointConnectionsDeleteResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<PrivateEndpointConnectionsDeleteResponseTagsMap>;
-
-export interface PrivateEndpointConnectionsDeleteResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource properties. */
-  properties?: MHSMPrivateEndpointConnectionProperties;
-  /** Azure location of the key vault resource. */
-  location?: string;
-  /** Tags assigned to the key vault resource. */
-  tags?: PrivateEndpointConnectionsDeleteResponseTagsMap;
-  /** Modified whenever there is a change in the state of private endpoint connection. */
-  etag?: string;
-}
-export const PrivateEndpointConnectionsDeleteResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(MHSMPrivateEndpointConnectionProperties),
-      location: S.optional(S.String),
-      tags: S.optional(PrivateEndpointConnectionsDeleteResponseTagsMap),
-      etag: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "PrivateEndpointConnectionsDeleteResponse",
-}) as any as S.Schema<PrivateEndpointConnectionsDeleteResponse>;
-
-export interface PrivateEndpointConnectionsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the vault. */
-  vaultName: string;
-  /** Name of the private endpoint connection associated with the key vault. */
-  privateEndpointConnectionName: string;
-}
-export const PrivateEndpointConnectionsGetRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      vaultName: S.String.pipe(T.Label()),
-      privateEndpointConnectionName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.KeyVault/vaults/{vaultName}/privateEndpointConnections/{privateEndpointConnectionName}",
-        code: 200,
-        apiVersion: "2026-02-01",
-      }),
-    ),
-).annotate({
-  identifier: "PrivateEndpointConnectionsGetRequest",
-}) as any as S.Schema<PrivateEndpointConnectionsGetRequest>;
-
-/** Tags assigned to the key vault resource. */
-export type PrivateEndpointConnectionsGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const PrivateEndpointConnectionsGetResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<PrivateEndpointConnectionsGetResponseTagsMap>;
-
-export interface PrivateEndpointConnectionsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource properties. */
-  properties?: MHSMPrivateEndpointConnectionProperties;
-  /** Azure location of the key vault resource. */
-  location?: string;
-  /** Tags assigned to the key vault resource. */
-  tags?: PrivateEndpointConnectionsGetResponseTagsMap;
-  /** Modified whenever there is a change in the state of private endpoint connection. */
-  etag?: string;
-}
-export const PrivateEndpointConnectionsGetResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(MHSMPrivateEndpointConnectionProperties),
-      location: S.optional(S.String),
-      tags: S.optional(PrivateEndpointConnectionsGetResponseTagsMap),
-      etag: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "PrivateEndpointConnectionsGetResponse",
-}) as any as S.Schema<PrivateEndpointConnectionsGetResponse>;
-
-export interface PrivateEndpointConnectionsListByResourceRequest {
+export interface ListPrivateEndpointConnectionByResourceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -3320,7 +3470,7 @@ export interface PrivateEndpointConnectionsListByResourceRequest {
   /** The name of the vault. */
   vaultName: string;
 }
-export const PrivateEndpointConnectionsListByResourceRequest =
+export const ListPrivateEndpointConnectionByResourceRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -3335,8 +3485,8 @@ export const PrivateEndpointConnectionsListByResourceRequest =
       }),
     ),
   ).annotate({
-    identifier: "PrivateEndpointConnectionsListByResourceRequest",
-  }) as any as S.Schema<PrivateEndpointConnectionsListByResourceRequest>;
+    identifier: "ListPrivateEndpointConnectionByResourceRequest",
+  }) as any as S.Schema<ListPrivateEndpointConnectionByResourceRequest>;
 
 /** Tags assigned to the key vault resource. */
 export type PrivateEndpointConnectionTagsMap = {
@@ -3405,96 +3555,7 @@ export const PrivateEndpointConnectionListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "PrivateEndpointConnectionListResult",
 }) as any as S.Schema<PrivateEndpointConnectionListResult>;
 
-/** Private endpoint object properties. */
-export type PrivateEndpointInput = UserAssignedIdentityInput;
-export const PrivateEndpointInput = UserAssignedIdentityInput;
-
-/** Properties of the private endpoint connection resource. */
-export type PrivateEndpointConnectionPropertiesInput =
-  MHSMPrivateEndpointConnectionPropertiesInput;
-export const PrivateEndpointConnectionPropertiesInput =
-  MHSMPrivateEndpointConnectionPropertiesInput;
-
-export interface PrivateEndpointConnectionsPutRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the vault. */
-  vaultName: string;
-  /** Name of the private endpoint connection associated with the key vault. */
-  privateEndpointConnectionName: string;
-  /** Resource properties. */
-  properties?: MHSMPrivateEndpointConnectionPropertiesInput;
-  /** Modified whenever there is a change in the state of private endpoint connection. */
-  etag?: string;
-}
-export const PrivateEndpointConnectionsPutRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      vaultName: S.String.pipe(T.Label()),
-      privateEndpointConnectionName: S.String.pipe(T.Label()),
-      properties: S.optional(MHSMPrivateEndpointConnectionPropertiesInput),
-      etag: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.KeyVault/vaults/{vaultName}/privateEndpointConnections/{privateEndpointConnectionName}",
-        code: 200,
-        apiVersion: "2026-02-01",
-      }),
-    ),
-).annotate({
-  identifier: "PrivateEndpointConnectionsPutRequest",
-}) as any as S.Schema<PrivateEndpointConnectionsPutRequest>;
-
-/** Tags assigned to the key vault resource. */
-export type PrivateEndpointConnectionsPutResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const PrivateEndpointConnectionsPutResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<PrivateEndpointConnectionsPutResponseTagsMap>;
-
-export interface PrivateEndpointConnectionsPutResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource properties. */
-  properties?: MHSMPrivateEndpointConnectionProperties;
-  /** Azure location of the key vault resource. */
-  location?: string;
-  /** Tags assigned to the key vault resource. */
-  tags?: PrivateEndpointConnectionsPutResponseTagsMap;
-  /** Modified whenever there is a change in the state of private endpoint connection. */
-  etag?: string;
-}
-export const PrivateEndpointConnectionsPutResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(MHSMPrivateEndpointConnectionProperties),
-      location: S.optional(S.String),
-      tags: S.optional(PrivateEndpointConnectionsPutResponseTagsMap),
-      etag: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "PrivateEndpointConnectionsPutResponse",
-}) as any as S.Schema<PrivateEndpointConnectionsPutResponse>;
-
-export interface PrivateLinkResourcesListByVaultRequest {
+export interface ListPrivateLinkResourceByVaultRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -3502,7 +3563,7 @@ export interface PrivateLinkResourcesListByVaultRequest {
   /** The name of the vault. */
   vaultName: string;
 }
-export const PrivateLinkResourcesListByVaultRequest = /*@__PURE__*/ S.suspend(
+export const ListPrivateLinkResourceByVaultRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -3517,8 +3578,8 @@ export const PrivateLinkResourcesListByVaultRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "PrivateLinkResourcesListByVaultRequest",
-}) as any as S.Schema<PrivateLinkResourcesListByVaultRequest>;
+  identifier: "ListPrivateLinkResourceByVaultRequest",
+}) as any as S.Schema<ListPrivateLinkResourceByVaultRequest>;
 
 /** Required member names of private link resource. */
 export type PrivateLinkResourcePropertiesRequiredMembersList = Array<string>;
@@ -3614,6 +3675,855 @@ export const PrivateLinkResourceListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "PrivateLinkResourceListResult",
 }) as any as S.Schema<PrivateLinkResourceListResult>;
 
+export interface ListSecretsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the vault. */
+  vaultName: string;
+  /** Maximum number of results to return. */
+  _top?: number;
+}
+export const ListSecretsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    vaultName: S.String.pipe(T.Label()),
+    _top: S.optional(S.Number.pipe(T.Query("$top"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.KeyVault/vaults/{vaultName}/secrets",
+      code: 200,
+      apiVersion: "2026-02-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListSecretsRequest",
+}) as any as S.Schema<ListSecretsRequest>;
+
+/** Tags assigned to the key vault resource. */
+export type SecretTagsMap = { [key: string]: string | undefined };
+export const SecretTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<SecretTagsMap>;
+
+/** Resource information with extended details. */
+export interface Secret {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of the secret */
+  properties: SecretProperties;
+  /** Azure location of the key vault resource. */
+  location?: string;
+  /** Tags assigned to the key vault resource. */
+  tags?: SecretTagsMap;
+}
+export const Secret = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: SecretProperties,
+    location: S.optional(S.String),
+    tags: S.optional(SecretTagsMap),
+  }),
+).annotate({ identifier: "Secret" }) as any as S.Schema<Secret>;
+
+/** The Secret items on this page */
+export type SecretListResultValueList = Array<Secret>;
+export const SecretListResultValueList = /*@__PURE__*/ S.Array(
+  Secret,
+) as any as S.Schema<SecretListResultValueList>;
+
+/** The response of a Secret list operation. */
+export interface SecretListResult {
+  /** The Secret items on this page */
+  value: SecretListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const SecretListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: SecretListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "SecretListResult",
+}) as any as S.Schema<SecretListResult>;
+
+export interface ListVaultByResourceGroupRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Maximum number of results to return. */
+  _top?: number;
+}
+export const ListVaultByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    _top: S.optional(S.Number.pipe(T.Query("$top"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.KeyVault/vaults",
+      code: 200,
+      apiVersion: "2026-02-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListVaultByResourceGroupRequest",
+}) as any as S.Schema<ListVaultByResourceGroupRequest>;
+
+/** Tags assigned to the key vault resource. */
+export type VaultTagsMap = { [key: string]: string | undefined };
+export const VaultTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<VaultTagsMap>;
+
+/** Resource information with extended details. */
+export interface Vault {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of the vault */
+  properties: VaultProperties;
+  /** Azure location of the key vault resource. */
+  location?: string;
+  /** Tags assigned to the key vault resource. */
+  tags?: VaultTagsMap;
+}
+export const Vault = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: VaultProperties,
+    location: S.optional(S.String),
+    tags: S.optional(VaultTagsMap),
+  }),
+).annotate({ identifier: "Vault" }) as any as S.Schema<Vault>;
+
+/** The Vault items on this page */
+export type VaultListResultValueList = Array<Vault>;
+export const VaultListResultValueList = /*@__PURE__*/ S.Array(
+  Vault,
+) as any as S.Schema<VaultListResultValueList>;
+
+/** The response of a Vault list operation. */
+export interface VaultListResult {
+  /** The Vault items on this page */
+  value: VaultListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const VaultListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: VaultListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "VaultListResult",
+}) as any as S.Schema<VaultListResult>;
+
+export interface ListVaultBySubscriptionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** Maximum number of results to return. */
+  _top?: number;
+}
+export const ListVaultBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    _top: S.optional(S.Number.pipe(T.Query("$top"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.KeyVault/vaults",
+      code: 200,
+      apiVersion: "2026-02-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListVaultBySubscriptionRequest",
+}) as any as S.Schema<ListVaultBySubscriptionRequest>;
+
+export interface ListVaultDeletedRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+}
+export const ListVaultDeletedRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.KeyVault/deletedVaults",
+      code: 200,
+      apiVersion: "2026-02-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListVaultDeletedRequest",
+}) as any as S.Schema<ListVaultDeletedRequest>;
+
+/** Deleted vault information with extended details. */
+export interface DeletedVault {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of the vault */
+  properties?: DeletedVaultProperties;
+}
+export const DeletedVault = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(DeletedVaultProperties),
+  }),
+).annotate({ identifier: "DeletedVault" }) as any as S.Schema<DeletedVault>;
+
+/** The DeletedVault items on this page */
+export type DeletedVaultListResultValueList = Array<DeletedVault>;
+export const DeletedVaultListResultValueList = /*@__PURE__*/ S.Array(
+  DeletedVault,
+) as any as S.Schema<DeletedVaultListResultValueList>;
+
+/** The response of a DeletedVault list operation. */
+export interface DeletedVaultListResult {
+  /** The DeletedVault items on this page */
+  value: DeletedVaultListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const DeletedVaultListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: DeletedVaultListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DeletedVaultListResult",
+}) as any as S.Schema<DeletedVaultListResult>;
+
+export type ListVaultsRequestFilter =
+  "resourceType eq 'Microsoft.KeyVault/vaults'";
+export const ListVaultsRequestFilter = /*@__PURE__*/ S.String;
+
+export interface ListVaultsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The filter to apply on the operation. */
+  _filter: ListVaultsRequestFilter | (string & {});
+  /** Maximum number of results to return. */
+  _top?: number;
+}
+export const ListVaultsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    _filter: ListVaultsRequestFilter.pipe(T.Query("$filter")),
+    _top: S.optional(S.Number.pipe(T.Query("$top"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resources",
+      code: 200,
+      apiVersion: "2026-02-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListVaultsRequest",
+}) as any as S.Schema<ListVaultsRequest>;
+
+/** Resource tags. */
+export type ResourceListResultValueItemTagsMap = {
+  [key: string]: string | undefined;
+};
+export const ResourceListResultValueItemTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<ResourceListResultValueItemTagsMap>;
+
+/** The resource model definition for an Azure Resource Manager tracked top level resource which has 'tags' and a 'location' */
+export interface ResourceListResultValueItem {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: ResourceListResultValueItemTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+}
+export const ResourceListResultValueItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(ResourceListResultValueItemTagsMap),
+    location: S.String,
+  }),
+).annotate({
+  identifier: "ResourceListResultValueItem",
+}) as any as S.Schema<ResourceListResultValueItem>;
+
+/** The list of vault resources. */
+export type ResourceListResultValueList = Array<ResourceListResultValueItem>;
+export const ResourceListResultValueList = /*@__PURE__*/ S.Array(
+  ResourceListResultValueItem,
+) as any as S.Schema<ResourceListResultValueList>;
+
+/** The list of vault resources. */
+export interface ResourceListResult {
+  /** The list of vault resources. */
+  value: ResourceListResultValueList;
+  /** The URL to get the next set of vault resources. */
+  nextLink?: string;
+}
+export const ResourceListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: ResourceListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ResourceListResult",
+}) as any as S.Schema<ResourceListResult>;
+
+/** Array of initial administrators object ids for this managed hsm pool. */
+export type ManagedHsmPropertiesInputInitialAdminObjectIdsList = Array<string>;
+export const ManagedHsmPropertiesInputInitialAdminObjectIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ManagedHsmPropertiesInputInitialAdminObjectIdsList>;
+
+/** A region that this managed HSM Pool has been extended to. */
+export interface MHSMGeoReplicatedRegionInput {
+  /** Name of the geo replicated region. */
+  name?: string;
+  /** A boolean value that indicates whether the region is the primary region or a secondary region. */
+  isPrimary?: boolean;
+}
+export const MHSMGeoReplicatedRegionInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    isPrimary: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "MHSMGeoReplicatedRegionInput",
+}) as any as S.Schema<MHSMGeoReplicatedRegionInput>;
+
+/** List of all regions associated with the managed hsm pool. */
+export type ManagedHsmPropertiesInputRegionsList =
+  Array<MHSMGeoReplicatedRegionInput>;
+export const ManagedHsmPropertiesInputRegionsList = /*@__PURE__*/ S.Array(
+  MHSMGeoReplicatedRegionInput,
+) as any as S.Schema<ManagedHsmPropertiesInputRegionsList>;
+
+/** Control permission to the managed HSM from public networks. */
+export type ManagedHsmPropertiesInputPublicNetworkAccess =
+  | "Enabled"
+  | "Disabled";
+export const ManagedHsmPropertiesInputPublicNetworkAccess =
+  /*@__PURE__*/ S.String;
+
+/** Properties of the managed HSM Pool */
+export interface ManagedHsmPropertiesInput {
+  /** The Azure Active Directory tenant ID that should be used for authenticating requests to the managed HSM pool. */
+  tenantId?: string;
+  /** Array of initial administrators object ids for this managed hsm pool. */
+  initialAdminObjectIds?: ManagedHsmPropertiesInputInitialAdminObjectIdsList;
+  /** Property to specify whether the 'soft delete' functionality is enabled for this managed HSM pool. Soft delete is enabled by default for all managed HSMs and is immutable. */
+  enableSoftDelete?: boolean;
+  /** Soft deleted data retention days. When you delete an HSM or a key, it will remain recoverable for the configured retention period or for a default period of 90 days. It accepts values between 7 and 90. */
+  softDeleteRetentionInDays?: number;
+  /** Property specifying whether protection against purge is enabled for this managed HSM pool. Setting this property to true activates protection against purge for this managed HSM pool and its content - only the Managed HSM service may initiate a hard, irrecoverable deletion. Enabling this functionality is irreversible. */
+  enablePurgeProtection?: boolean;
+  /** The create mode to indicate whether the resource is being created or is being recovered from a deleted resource. */
+  createMode?: CreateMode | (string & {});
+  /** Rules governing the accessibility of the key vault from specific network locations. */
+  networkAcls?: MHSMNetworkRuleSet;
+  /** List of all regions associated with the managed hsm pool. */
+  regions?: ManagedHsmPropertiesInputRegionsList;
+  /** Control permission to the managed HSM from public networks. */
+  publicNetworkAccess?:
+    | ManagedHsmPropertiesInputPublicNetworkAccess
+    | (string & {});
+}
+export const ManagedHsmPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    tenantId: S.optional(S.String),
+    initialAdminObjectIds: S.optional(
+      ManagedHsmPropertiesInputInitialAdminObjectIdsList,
+    ),
+    enableSoftDelete: S.optional(S.Boolean),
+    softDeleteRetentionInDays: S.optional(S.Number),
+    enablePurgeProtection: S.optional(S.Boolean),
+    createMode: S.optional(CreateMode),
+    networkAcls: S.optional(MHSMNetworkRuleSet),
+    regions: S.optional(ManagedHsmPropertiesInputRegionsList),
+    publicNetworkAccess: S.optional(
+      ManagedHsmPropertiesInputPublicNetworkAccess,
+    ),
+  }),
+).annotate({
+  identifier: "ManagedHsmPropertiesInput",
+}) as any as S.Schema<ManagedHsmPropertiesInput>;
+
+/** User assigned identity properties */
+export interface UserAssignedIdentityInput {}
+export const UserAssignedIdentityInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "UserAssignedIdentityInput",
+}) as any as S.Schema<UserAssignedIdentityInput>;
+
+/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+export type UserAssignedIdentitiesInput = {
+  [key: string]: UserAssignedIdentityInput | undefined;
+};
+export const UserAssignedIdentitiesInput = /*@__PURE__*/ S.Record(
+  S.String,
+  UserAssignedIdentityInput,
+) as any as S.Schema<UserAssignedIdentitiesInput>;
+
+/** Managed service identity (system assigned and/or user assigned identities) */
+export interface ManagedHsmsCreateOrUpdateRequestIdentity {
+  type: ManagedServiceIdentityType | (string & {});
+  userAssignedIdentities?: UserAssignedIdentitiesInput;
+}
+export const ManagedHsmsCreateOrUpdateRequestIdentity = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      type: ManagedServiceIdentityType,
+      userAssignedIdentities: S.optional(UserAssignedIdentitiesInput),
+    }),
+).annotate({
+  identifier: "ManagedHsmsCreateOrUpdateRequestIdentity",
+}) as any as S.Schema<ManagedHsmsCreateOrUpdateRequestIdentity>;
+
+/** Resource tags. */
+export type ManagedHsmsCreateOrUpdateRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const ManagedHsmsCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<ManagedHsmsCreateOrUpdateRequestTagsMap>;
+
+export interface ManagedHsmsCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the managed HSM Pool. */
+  name: string;
+  /** Properties of the managed HSM */
+  properties?: ManagedHsmPropertiesInput;
+  /** SKU details */
+  sku?: ManagedHsmSku;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: ManagedHsmsCreateOrUpdateRequestIdentity;
+  /** The geo-location where the resource lives */
+  location?: string;
+  /** Resource tags. */
+  tags?: ManagedHsmsCreateOrUpdateRequestTagsMap;
+}
+export const ManagedHsmsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    name: S.String.pipe(T.Label()),
+    properties: S.optional(ManagedHsmPropertiesInput),
+    sku: S.optional(ManagedHsmSku),
+    identity: S.optional(ManagedHsmsCreateOrUpdateRequestIdentity),
+    location: S.optional(S.String),
+    tags: S.optional(ManagedHsmsCreateOrUpdateRequestTagsMap),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.KeyVault/managedHSMs/{name}",
+      code: 200,
+      apiVersion: "2026-02-01",
+    }),
+  ),
+).annotate({
+  identifier: "ManagedHsmsCreateOrUpdateRequest",
+}) as any as S.Schema<ManagedHsmsCreateOrUpdateRequest>;
+
+/** Managed service identity (system assigned and/or user assigned identities) */
+export type ManagedHsmsCreateOrUpdateResponseIdentity =
+  DeleteMHSMPrivateEndpointConnectionResponseIdentity;
+export const ManagedHsmsCreateOrUpdateResponseIdentity =
+  DeleteMHSMPrivateEndpointConnectionResponseIdentity;
+
+/** Resource tags. */
+export type ManagedHsmsCreateOrUpdateResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const ManagedHsmsCreateOrUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<ManagedHsmsCreateOrUpdateResponseTagsMap>;
+
+export interface ManagedHsmsCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of the managed HSM */
+  properties?: ManagedHsmProperties;
+  /** SKU details */
+  sku?: ManagedHsmSku;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: DeleteMHSMPrivateEndpointConnectionResponseIdentity;
+  /** The geo-location where the resource lives */
+  location?: string;
+  /** Resource tags. */
+  tags?: ManagedHsmsCreateOrUpdateResponseTagsMap;
+}
+export const ManagedHsmsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ManagedHsmProperties),
+    sku: S.optional(ManagedHsmSku),
+    identity: S.optional(DeleteMHSMPrivateEndpointConnectionResponseIdentity),
+    location: S.optional(S.String),
+    tags: S.optional(ManagedHsmsCreateOrUpdateResponseTagsMap),
+  }),
+).annotate({
+  identifier: "ManagedHsmsCreateOrUpdateResponse",
+}) as any as S.Schema<ManagedHsmsCreateOrUpdateResponse>;
+
+export interface PurgeManagedHsmDeletedRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the Azure region. */
+  location: string;
+  /** The name of the deleted managed HSM. */
+  name: string;
+}
+export const PurgeManagedHsmDeletedRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    location: S.String.pipe(T.Label()),
+    name: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.KeyVault/locations/{location}/deletedManagedHSMs/{name}/purge",
+      code: 200,
+      apiVersion: "2026-02-01",
+    }),
+  ),
+).annotate({
+  identifier: "PurgeManagedHsmDeletedRequest",
+}) as any as S.Schema<PurgeManagedHsmDeletedRequest>;
+
+export interface PurgeManagedHsmDeletedResponse {}
+export const PurgeManagedHsmDeletedResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "PurgeManagedHsmDeletedResponse",
+}) as any as S.Schema<PurgeManagedHsmDeletedResponse>;
+
+export interface PurgeVaultDeletedRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the Azure region. */
+  location: string;
+  /** The name of the vault. */
+  vaultName: string;
+}
+export const PurgeVaultDeletedRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    location: S.String.pipe(T.Label()),
+    vaultName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.KeyVault/locations/{location}/deletedVaults/{vaultName}/purge",
+      code: 200,
+      apiVersion: "2026-02-01",
+    }),
+  ),
+).annotate({
+  identifier: "PurgeVaultDeletedRequest",
+}) as any as S.Schema<PurgeVaultDeletedRequest>;
+
+export interface PurgeVaultDeletedResponse {}
+export const PurgeVaultDeletedResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "PurgeVaultDeletedResponse",
+}) as any as S.Schema<PurgeVaultDeletedResponse>;
+
+/** Private endpoint object properties. */
+export type MHSMPrivateEndpointInput = UserAssignedIdentityInput;
+export const MHSMPrivateEndpointInput = UserAssignedIdentityInput;
+
+/** Properties of the private endpoint connection resource. */
+export interface MHSMPrivateEndpointConnectionPropertiesInput {
+  /** Properties of the private endpoint object. */
+  privateEndpoint?: UserAssignedIdentityInput;
+  /** Approval state of the private link connection. */
+  privateLinkServiceConnectionState?: MHSMPrivateLinkServiceConnectionState;
+}
+export const MHSMPrivateEndpointConnectionPropertiesInput =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      privateEndpoint: S.optional(UserAssignedIdentityInput),
+      privateLinkServiceConnectionState: S.optional(
+        MHSMPrivateLinkServiceConnectionState,
+      ),
+    }),
+  ).annotate({
+    identifier: "MHSMPrivateEndpointConnectionPropertiesInput",
+  }) as any as S.Schema<MHSMPrivateEndpointConnectionPropertiesInput>;
+
+/** Managed service identity (system assigned and/or user assigned identities) */
+export type PutMHSMPrivateEndpointConnectionRequestIdentity =
+  ManagedHsmsCreateOrUpdateRequestIdentity;
+export const PutMHSMPrivateEndpointConnectionRequestIdentity =
+  ManagedHsmsCreateOrUpdateRequestIdentity;
+
+/** Resource tags. */
+export type PutMHSMPrivateEndpointConnectionRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const PutMHSMPrivateEndpointConnectionRequestTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<PutMHSMPrivateEndpointConnectionRequestTagsMap>;
+
+export interface PutMHSMPrivateEndpointConnectionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the managed HSM Pool. */
+  name: string;
+  /** Name of the private endpoint connection associated with the managed hsm pool. */
+  privateEndpointConnectionName: string;
+  /** Resource properties. */
+  properties?: MHSMPrivateEndpointConnectionPropertiesInput;
+  /** SKU details */
+  sku?: ManagedHsmSku;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: ManagedHsmsCreateOrUpdateRequestIdentity;
+  /** Modified whenever there is a change in the state of private endpoint connection. */
+  etag?: string;
+  /** The geo-location where the resource lives */
+  location?: string;
+  /** Resource tags. */
+  tags?: PutMHSMPrivateEndpointConnectionRequestTagsMap;
+}
+export const PutMHSMPrivateEndpointConnectionRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      name: S.String.pipe(T.Label()),
+      privateEndpointConnectionName: S.String.pipe(T.Label()),
+      properties: S.optional(MHSMPrivateEndpointConnectionPropertiesInput),
+      sku: S.optional(ManagedHsmSku),
+      identity: S.optional(ManagedHsmsCreateOrUpdateRequestIdentity),
+      etag: S.optional(S.String),
+      location: S.optional(S.String),
+      tags: S.optional(PutMHSMPrivateEndpointConnectionRequestTagsMap),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.KeyVault/managedHSMs/{name}/privateEndpointConnections/{privateEndpointConnectionName}",
+        code: 200,
+        apiVersion: "2026-02-01",
+      }),
+    ),
+).annotate({
+  identifier: "PutMHSMPrivateEndpointConnectionRequest",
+}) as any as S.Schema<PutMHSMPrivateEndpointConnectionRequest>;
+
+/** Managed service identity (system assigned and/or user assigned identities) */
+export type PutMHSMPrivateEndpointConnectionResponseIdentity =
+  DeleteMHSMPrivateEndpointConnectionResponseIdentity;
+export const PutMHSMPrivateEndpointConnectionResponseIdentity =
+  DeleteMHSMPrivateEndpointConnectionResponseIdentity;
+
+/** Resource tags. */
+export type PutMHSMPrivateEndpointConnectionResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const PutMHSMPrivateEndpointConnectionResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<PutMHSMPrivateEndpointConnectionResponseTagsMap>;
+
+export interface PutMHSMPrivateEndpointConnectionResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource properties. */
+  properties?: MHSMPrivateEndpointConnectionProperties;
+  /** SKU details */
+  sku?: ManagedHsmSku;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: DeleteMHSMPrivateEndpointConnectionResponseIdentity;
+  /** Modified whenever there is a change in the state of private endpoint connection. */
+  etag?: string;
+  /** The geo-location where the resource lives */
+  location?: string;
+  /** Resource tags. */
+  tags?: PutMHSMPrivateEndpointConnectionResponseTagsMap;
+}
+export const PutMHSMPrivateEndpointConnectionResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(MHSMPrivateEndpointConnectionProperties),
+      sku: S.optional(ManagedHsmSku),
+      identity: S.optional(DeleteMHSMPrivateEndpointConnectionResponseIdentity),
+      etag: S.optional(S.String),
+      location: S.optional(S.String),
+      tags: S.optional(PutMHSMPrivateEndpointConnectionResponseTagsMap),
+    }),
+).annotate({
+  identifier: "PutMHSMPrivateEndpointConnectionResponse",
+}) as any as S.Schema<PutMHSMPrivateEndpointConnectionResponse>;
+
+/** Private endpoint object properties. */
+export type PrivateEndpointInput = UserAssignedIdentityInput;
+export const PrivateEndpointInput = UserAssignedIdentityInput;
+
+/** Properties of the private endpoint connection resource. */
+export type PrivateEndpointConnectionPropertiesInput =
+  MHSMPrivateEndpointConnectionPropertiesInput;
+export const PrivateEndpointConnectionPropertiesInput =
+  MHSMPrivateEndpointConnectionPropertiesInput;
+
+export interface PutPrivateEndpointConnectionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the vault. */
+  vaultName: string;
+  /** Name of the private endpoint connection associated with the key vault. */
+  privateEndpointConnectionName: string;
+  /** Resource properties. */
+  properties?: MHSMPrivateEndpointConnectionPropertiesInput;
+  /** Modified whenever there is a change in the state of private endpoint connection. */
+  etag?: string;
+}
+export const PutPrivateEndpointConnectionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    vaultName: S.String.pipe(T.Label()),
+    privateEndpointConnectionName: S.String.pipe(T.Label()),
+    properties: S.optional(MHSMPrivateEndpointConnectionPropertiesInput),
+    etag: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.KeyVault/vaults/{vaultName}/privateEndpointConnections/{privateEndpointConnectionName}",
+      code: 200,
+      apiVersion: "2026-02-01",
+    }),
+  ),
+).annotate({
+  identifier: "PutPrivateEndpointConnectionRequest",
+}) as any as S.Schema<PutPrivateEndpointConnectionRequest>;
+
+/** Tags assigned to the key vault resource. */
+export type PutPrivateEndpointConnectionResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const PutPrivateEndpointConnectionResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<PutPrivateEndpointConnectionResponseTagsMap>;
+
+export interface PutPrivateEndpointConnectionResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource properties. */
+  properties?: MHSMPrivateEndpointConnectionProperties;
+  /** Azure location of the key vault resource. */
+  location?: string;
+  /** Tags assigned to the key vault resource. */
+  tags?: PutPrivateEndpointConnectionResponseTagsMap;
+  /** Modified whenever there is a change in the state of private endpoint connection. */
+  etag?: string;
+}
+export const PutPrivateEndpointConnectionResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(MHSMPrivateEndpointConnectionProperties),
+      location: S.optional(S.String),
+      tags: S.optional(PutPrivateEndpointConnectionResponseTagsMap),
+      etag: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "PutPrivateEndpointConnectionResponse",
+}) as any as S.Schema<PutPrivateEndpointConnectionResponse>;
+
 /** The tags that will be assigned to the secret. */
 export type SecretsCreateOrUpdateRequestTagsMap = {
   [key: string]: string | undefined;
@@ -3695,54 +4605,6 @@ export const SecretsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "SecretsCreateOrUpdateRequest",
 }) as any as S.Schema<SecretsCreateOrUpdateRequest>;
 
-/** The object attributes managed by the KeyVault service. */
-export interface Attributes {
-  /** Determines whether the object is enabled. */
-  enabled?: boolean;
-  /** Not before date in seconds since 1970-01-01T00:00:00Z. */
-  nbf?: number;
-  /** Expiry date in seconds since 1970-01-01T00:00:00Z. */
-  exp?: number;
-  /** Creation time in seconds since 1970-01-01T00:00:00Z. */
-  created?: number;
-  /** Last updated time in seconds since 1970-01-01T00:00:00Z. */
-  updated?: number;
-}
-export const Attributes = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    enabled: S.optional(S.Boolean),
-    nbf: S.optional(S.Number),
-    exp: S.optional(S.Number),
-    created: S.optional(S.Number),
-    updated: S.optional(S.Number),
-  }),
-).annotate({ identifier: "Attributes" }) as any as S.Schema<Attributes>;
-
-/** Properties of the secret */
-export interface SecretProperties {
-  /** The value of the secret. NOTE: 'value' will never be returned from the service, as APIs using this model are is intended for internal use in ARM deployments. Users should use the data-plane REST service for interaction with vault secrets. */
-  value?: string;
-  /** The content type of the secret. */
-  contentType?: string;
-  /** The attributes of the secret. */
-  attributes?: Attributes;
-  /** The URI to retrieve the current version of the secret. */
-  secretUri?: string;
-  /** The URI to retrieve the specific version of the secret. */
-  secretUriWithVersion?: string;
-}
-export const SecretProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(S.String),
-    contentType: S.optional(S.String),
-    attributes: S.optional(Attributes),
-    secretUri: S.optional(S.String),
-    secretUriWithVersion: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SecretProperties",
-}) as any as S.Schema<SecretProperties>;
-
 /** Tags assigned to the key vault resource. */
 export type SecretsCreateOrUpdateResponseTagsMap = {
   [key: string]: string | undefined;
@@ -3782,42 +4644,77 @@ export const SecretsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "SecretsCreateOrUpdateResponse",
 }) as any as S.Schema<SecretsCreateOrUpdateResponse>;
 
-export interface SecretsGetRequest {
+/** Managed service identity (system assigned and/or user assigned identities) */
+export type UpdateManagedHsmRequestIdentity =
+  ManagedHsmsCreateOrUpdateRequestIdentity;
+export const UpdateManagedHsmRequestIdentity =
+  ManagedHsmsCreateOrUpdateRequestIdentity;
+
+/** Resource tags. */
+export type UpdateManagedHsmRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateManagedHsmRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateManagedHsmRequestTagsMap>;
+
+export interface UpdateManagedHsmRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
-  /** The name of the vault. */
-  vaultName: string;
-  /** The name of the secret. */
-  secretName: string;
+  /** The name of the managed HSM Pool. */
+  name: string;
+  /** Properties of the managed HSM */
+  properties?: ManagedHsmPropertiesInput;
+  /** SKU details */
+  sku?: ManagedHsmSku;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: ManagedHsmsCreateOrUpdateRequestIdentity;
+  /** The geo-location where the resource lives */
+  location?: string;
+  /** Resource tags. */
+  tags?: UpdateManagedHsmRequestTagsMap;
 }
-export const SecretsGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateManagedHsmRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
-    vaultName: S.String.pipe(T.Label()),
-    secretName: S.String.pipe(T.Label()),
+    name: S.String.pipe(T.Label()),
+    properties: S.optional(ManagedHsmPropertiesInput),
+    sku: S.optional(ManagedHsmSku),
+    identity: S.optional(ManagedHsmsCreateOrUpdateRequestIdentity),
+    location: S.optional(S.String),
+    tags: S.optional(UpdateManagedHsmRequestTagsMap),
   }).pipe(
     T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.KeyVault/vaults/{vaultName}/secrets/{secretName}",
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.KeyVault/managedHSMs/{name}",
       code: 200,
       apiVersion: "2026-02-01",
     }),
   ),
 ).annotate({
-  identifier: "SecretsGetRequest",
-}) as any as S.Schema<SecretsGetRequest>;
+  identifier: "UpdateManagedHsmRequest",
+}) as any as S.Schema<UpdateManagedHsmRequest>;
 
-/** Tags assigned to the key vault resource. */
-export type SecretsGetResponseTagsMap = { [key: string]: string | undefined };
-export const SecretsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+/** Managed service identity (system assigned and/or user assigned identities) */
+export type UpdateManagedHsmResponseIdentity =
+  DeleteMHSMPrivateEndpointConnectionResponseIdentity;
+export const UpdateManagedHsmResponseIdentity =
+  DeleteMHSMPrivateEndpointConnectionResponseIdentity;
+
+/** Resource tags. */
+export type UpdateManagedHsmResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateManagedHsmResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<SecretsGetResponseTagsMap>;
+) as any as S.Schema<UpdateManagedHsmResponseTagsMap>;
 
-export interface SecretsGetResponse {
+export interface UpdateManagedHsmResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -3826,119 +4723,39 @@ export interface SecretsGetResponse {
   type?: string;
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
-  /** Properties of the secret */
-  properties: SecretProperties;
-  /** Azure location of the key vault resource. */
+  /** Properties of the managed HSM */
+  properties?: ManagedHsmProperties;
+  /** SKU details */
+  sku?: ManagedHsmSku;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: DeleteMHSMPrivateEndpointConnectionResponseIdentity;
+  /** The geo-location where the resource lives */
   location?: string;
-  /** Tags assigned to the key vault resource. */
-  tags?: SecretsGetResponseTagsMap;
+  /** Resource tags. */
+  tags?: UpdateManagedHsmResponseTagsMap;
 }
-export const SecretsGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateManagedHsmResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    properties: SecretProperties,
+    properties: S.optional(ManagedHsmProperties),
+    sku: S.optional(ManagedHsmSku),
+    identity: S.optional(DeleteMHSMPrivateEndpointConnectionResponseIdentity),
     location: S.optional(S.String),
-    tags: S.optional(SecretsGetResponseTagsMap),
+    tags: S.optional(UpdateManagedHsmResponseTagsMap),
   }),
 ).annotate({
-  identifier: "SecretsGetResponse",
-}) as any as S.Schema<SecretsGetResponse>;
-
-export interface SecretsListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the vault. */
-  vaultName: string;
-  /** Maximum number of results to return. */
-  _top?: number;
-}
-export const SecretsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    vaultName: S.String.pipe(T.Label()),
-    _top: S.optional(S.Number.pipe(T.Query("$top"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.KeyVault/vaults/{vaultName}/secrets",
-      code: 200,
-      apiVersion: "2026-02-01",
-    }),
-  ),
-).annotate({
-  identifier: "SecretsListRequest",
-}) as any as S.Schema<SecretsListRequest>;
-
-/** Tags assigned to the key vault resource. */
-export type SecretTagsMap = { [key: string]: string | undefined };
-export const SecretTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<SecretTagsMap>;
-
-/** Resource information with extended details. */
-export interface Secret {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of the secret */
-  properties: SecretProperties;
-  /** Azure location of the key vault resource. */
-  location?: string;
-  /** Tags assigned to the key vault resource. */
-  tags?: SecretTagsMap;
-}
-export const Secret = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: SecretProperties,
-    location: S.optional(S.String),
-    tags: S.optional(SecretTagsMap),
-  }),
-).annotate({ identifier: "Secret" }) as any as S.Schema<Secret>;
-
-/** The Secret items on this page */
-export type SecretListResultValueList = Array<Secret>;
-export const SecretListResultValueList = /*@__PURE__*/ S.Array(
-  Secret,
-) as any as S.Schema<SecretListResultValueList>;
-
-/** The response of a Secret list operation. */
-export interface SecretListResult {
-  /** The Secret items on this page */
-  value: SecretListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const SecretListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: SecretListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SecretListResult",
-}) as any as S.Schema<SecretListResult>;
+  identifier: "UpdateManagedHsmResponse",
+}) as any as S.Schema<UpdateManagedHsmResponse>;
 
 /** The tags that will be assigned to the secret. */
-export type SecretsUpdateRequestTagsMap = { [key: string]: string | undefined };
-export const SecretsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateSecretRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateSecretRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<SecretsUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateSecretRequestTagsMap>;
 
 /** Properties of the secret */
 export interface SecretPatchPropertiesInput {
@@ -3959,7 +4776,7 @@ export const SecretPatchPropertiesInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "SecretPatchPropertiesInput",
 }) as any as S.Schema<SecretPatchPropertiesInput>;
 
-export interface SecretsUpdateRequest {
+export interface UpdateSecretRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -3969,17 +4786,17 @@ export interface SecretsUpdateRequest {
   /** The name of the secret. */
   secretName: string;
   /** The tags that will be assigned to the secret. */
-  tags?: SecretsUpdateRequestTagsMap;
+  tags?: UpdateSecretRequestTagsMap;
   /** Properties of the secret */
   properties?: SecretPatchPropertiesInput;
 }
-export const SecretsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateSecretRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     vaultName: S.String.pipe(T.Label()),
     secretName: S.String.pipe(T.Label()),
-    tags: S.optional(SecretsUpdateRequestTagsMap),
+    tags: S.optional(UpdateSecretRequestTagsMap),
     properties: S.optional(SecretPatchPropertiesInput),
   }).pipe(
     T.Http({
@@ -3990,19 +4807,17 @@ export const SecretsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "SecretsUpdateRequest",
-}) as any as S.Schema<SecretsUpdateRequest>;
+  identifier: "UpdateSecretRequest",
+}) as any as S.Schema<UpdateSecretRequest>;
 
 /** Tags assigned to the key vault resource. */
-export type SecretsUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const SecretsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateSecretResponseTagsMap = { [key: string]: string | undefined };
+export const UpdateSecretResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<SecretsUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateSecretResponseTagsMap>;
 
-export interface SecretsUpdateResponse {
+export interface UpdateSecretResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -4016,9 +4831,9 @@ export interface SecretsUpdateResponse {
   /** Azure location of the key vault resource. */
   location?: string;
   /** Tags assigned to the key vault resource. */
-  tags?: SecretsUpdateResponseTagsMap;
+  tags?: UpdateSecretResponseTagsMap;
 }
-export const SecretsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateSecretResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -4026,60 +4841,225 @@ export const SecretsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
     systemData: S.optional(SystemData),
     properties: SecretProperties,
     location: S.optional(S.String),
-    tags: S.optional(SecretsUpdateResponseTagsMap),
+    tags: S.optional(UpdateSecretResponseTagsMap),
   }),
 ).annotate({
-  identifier: "SecretsUpdateResponse",
-}) as any as S.Schema<SecretsUpdateResponse>;
+  identifier: "UpdateSecretResponse",
+}) as any as S.Schema<UpdateSecretResponse>;
 
-/** The type of resource, Microsoft.KeyVault/vaults */
-export type VaultsCheckNameAvailabilityRequestType =
-  "Microsoft.KeyVault/vaults";
-export const VaultsCheckNameAvailabilityRequestType = /*@__PURE__*/ S.String;
+/** The tags that will be assigned to the key vault. */
+export type UpdateVaultRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateVaultRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateVaultRequestTagsMap>;
 
-export interface VaultsCheckNameAvailabilityRequest {
+/** An array of 0 to 16 identities that have access to the key vault. All identities in the array must use the same tenant ID as the key vault's tenant ID. */
+export type VaultPatchPropertiesAccessPoliciesList = Array<AccessPolicyEntry>;
+export const VaultPatchPropertiesAccessPoliciesList = /*@__PURE__*/ S.Array(
+  AccessPolicyEntry,
+) as any as S.Schema<VaultPatchPropertiesAccessPoliciesList>;
+
+/** Properties of the vault */
+export interface VaultPatchProperties {
+  /** The Azure Active Directory tenant ID that should be used for authenticating requests to the key vault. */
+  tenantId?: string;
+  /** SKU details */
+  sku?: Sku;
+  /** An array of 0 to 16 identities that have access to the key vault. All identities in the array must use the same tenant ID as the key vault's tenant ID. */
+  accessPolicies?: VaultPatchPropertiesAccessPoliciesList;
+  /** Property to specify whether Azure Virtual Machines are permitted to retrieve certificates stored as secrets from the key vault. */
+  enabledForDeployment?: boolean;
+  /** Property to specify whether Azure Disk Encryption is permitted to retrieve secrets from the vault and unwrap keys. */
+  enabledForDiskEncryption?: boolean;
+  /** Property to specify whether Azure Resource Manager is permitted to retrieve secrets from the key vault. */
+  enabledForTemplateDeployment?: boolean;
+  /** Property to specify whether the 'soft delete' functionality is enabled for this key vault. Once set to true, it cannot be reverted to false. */
+  enableSoftDelete?: boolean;
+  /** Property that controls how data actions are authorized. When true, the key vault will use Role Based Access Control (RBAC) for authorization of data actions, and the access policies specified in vault properties will be ignored. When false, the key vault will use the access policies specified in vault properties, and any policy stored on Azure Resource Manager will be ignored. If null or not specified, the value of this property will not change. */
+  enableRbacAuthorization?: boolean;
+  /** softDelete data retention days. It accepts >=7 and <=90. */
+  softDeleteRetentionInDays?: number;
+  /** The vault's create mode to indicate whether the vault need to be recovered or not. */
+  createMode?: CreateMode | (string & {});
+  /** Property specifying whether protection against purge is enabled for this vault. Setting this property to true activates protection against purge for this vault and its content - only the Key Vault service may initiate a hard, irrecoverable deletion. The setting is effective only if soft delete is also enabled. Enabling this functionality is irreversible - that is, the property does not accept false as its value. */
+  enablePurgeProtection?: boolean;
+  /** A collection of rules governing the accessibility of the vault from specific network locations. */
+  networkAcls?: NetworkRuleSet;
+  /** Property to specify whether the vault will accept traffic from public internet. If set to 'disabled' all traffic except private endpoint traffic and that that originates from trusted services will be blocked. This will override the set firewall rules, meaning that even if the firewall rules are present we will not honor the rules. */
+  publicNetworkAccess?: string;
+}
+export const VaultPatchProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    tenantId: S.optional(S.String),
+    sku: S.optional(Sku),
+    accessPolicies: S.optional(VaultPatchPropertiesAccessPoliciesList),
+    enabledForDeployment: S.optional(S.Boolean),
+    enabledForDiskEncryption: S.optional(S.Boolean),
+    enabledForTemplateDeployment: S.optional(S.Boolean),
+    enableSoftDelete: S.optional(S.Boolean),
+    enableRbacAuthorization: S.optional(S.Boolean),
+    softDeleteRetentionInDays: S.optional(S.Number),
+    createMode: S.optional(CreateMode),
+    enablePurgeProtection: S.optional(S.Boolean),
+    networkAcls: S.optional(NetworkRuleSet),
+    publicNetworkAccess: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "VaultPatchProperties",
+}) as any as S.Schema<VaultPatchProperties>;
+
+export interface UpdateVaultRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
-  /** The vault name. */
-  name: string;
-  /** The type of resource, Microsoft.KeyVault/vaults */
-  type: VaultsCheckNameAvailabilityRequestType | (string & {});
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the vault. */
+  vaultName: string;
+  /** The tags that will be assigned to the key vault. */
+  tags?: UpdateVaultRequestTagsMap;
+  /** Properties of the vault */
+  properties?: VaultPatchProperties;
 }
-export const VaultsCheckNameAvailabilityRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateVaultRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
-    name: S.String,
-    type: VaultsCheckNameAvailabilityRequestType,
+    resourceGroupName: S.String.pipe(T.Label()),
+    vaultName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateVaultRequestTagsMap),
+    properties: S.optional(VaultPatchProperties),
   }).pipe(
     T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.KeyVault/checkNameAvailability",
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.KeyVault/vaults/{vaultName}",
       code: 200,
       apiVersion: "2026-02-01",
     }),
   ),
 ).annotate({
-  identifier: "VaultsCheckNameAvailabilityRequest",
-}) as any as S.Schema<VaultsCheckNameAvailabilityRequest>;
+  identifier: "UpdateVaultRequest",
+}) as any as S.Schema<UpdateVaultRequest>;
 
-/** The CheckNameAvailability operation response. */
-export interface CheckNameAvailabilityResult {
-  /** A boolean value that indicates whether the name is available for you to use. If true, the name is available. If false, the name has already been taken or is invalid and cannot be used. */
-  nameAvailable?: boolean;
-  /** The reason that a vault name could not be used. The Reason element is only returned if NameAvailable is false. */
-  reason?: Reason;
-  /** An error message explaining the Reason value in more detail. */
-  message?: string;
+/** Tags assigned to the key vault resource. */
+export type UpdateVaultResponseTagsMap = { [key: string]: string | undefined };
+export const UpdateVaultResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateVaultResponseTagsMap>;
+
+export interface UpdateVaultResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of the vault */
+  properties: VaultProperties;
+  /** Azure location of the key vault resource. */
+  location?: string;
+  /** Tags assigned to the key vault resource. */
+  tags?: UpdateVaultResponseTagsMap;
 }
-export const CheckNameAvailabilityResult = /*@__PURE__*/ S.suspend(() =>
+export const UpdateVaultResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    nameAvailable: S.optional(S.Boolean),
-    reason: S.optional(Reason),
-    message: S.optional(S.String),
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: VaultProperties,
+    location: S.optional(S.String),
+    tags: S.optional(UpdateVaultResponseTagsMap),
   }),
 ).annotate({
-  identifier: "CheckNameAvailabilityResult",
-}) as any as S.Schema<CheckNameAvailabilityResult>;
+  identifier: "UpdateVaultResponse",
+}) as any as S.Schema<UpdateVaultResponse>;
+
+export type UpdateVaultAccessPolicyRequestOperationKind =
+  | "add"
+  | "replace"
+  | "remove";
+export const UpdateVaultAccessPolicyRequestOperationKind =
+  /*@__PURE__*/ S.String;
+
+/** An array of 0 to 16 identities that have access to the key vault. All identities in the array must use the same tenant ID as the key vault's tenant ID. */
+export type VaultAccessPolicyPropertiesAccessPoliciesList =
+  Array<AccessPolicyEntry>;
+export const VaultAccessPolicyPropertiesAccessPoliciesList =
+  /*@__PURE__*/ S.Array(
+    AccessPolicyEntry,
+  ) as any as S.Schema<VaultAccessPolicyPropertiesAccessPoliciesList>;
+
+/** Properties of the vault access policy */
+export interface VaultAccessPolicyProperties {
+  /** An array of 0 to 16 identities that have access to the key vault. All identities in the array must use the same tenant ID as the key vault's tenant ID. */
+  accessPolicies: VaultAccessPolicyPropertiesAccessPoliciesList;
+}
+export const VaultAccessPolicyProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    accessPolicies: VaultAccessPolicyPropertiesAccessPoliciesList,
+  }),
+).annotate({
+  identifier: "VaultAccessPolicyProperties",
+}) as any as S.Schema<VaultAccessPolicyProperties>;
+
+export interface UpdateVaultAccessPolicyRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the vault */
+  vaultName: string;
+  /** Name of the operation */
+  operationKind: UpdateVaultAccessPolicyRequestOperationKind | (string & {});
+  /** Properties of the access policy */
+  properties: VaultAccessPolicyProperties;
+}
+export const UpdateVaultAccessPolicyRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    vaultName: S.String.pipe(T.Label()),
+    operationKind: UpdateVaultAccessPolicyRequestOperationKind.pipe(T.Label()),
+    properties: VaultAccessPolicyProperties,
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.KeyVault/vaults/{vaultName}/accessPolicies/{operationKind}",
+      code: 200,
+      apiVersion: "2026-02-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateVaultAccessPolicyRequest",
+}) as any as S.Schema<UpdateVaultAccessPolicyRequest>;
+
+/** Parameters for updating the access policy in a vault */
+export interface VaultAccessPolicyParameters {
+  /** The resource id of the access policy. */
+  id?: string;
+  /** The resource name of the access policy. */
+  name?: string;
+  /** The resource name of the access policy. */
+  type?: string;
+  /** The resource type of the access policy. */
+  location?: string;
+  /** Properties of the access policy */
+  properties: VaultAccessPolicyProperties;
+}
+export const VaultAccessPolicyParameters = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    location: S.optional(S.String),
+    properties: VaultAccessPolicyProperties,
+  }),
+).annotate({
+  identifier: "VaultAccessPolicyParameters",
+}) as any as S.Schema<VaultAccessPolicyParameters>;
 
 /** The tags that will be assigned to the key vault. */
 export type VaultsCreateOrUpdateRequestTagsMap = {
@@ -4090,231 +5070,11 @@ export const VaultsCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
 ) as any as S.Schema<VaultsCreateOrUpdateRequestTagsMap>;
 
-/** SKU family name */
-export type SkuFamily = "A";
-export const SkuFamily = /*@__PURE__*/ S.String;
-
-/** SKU name to specify whether the key vault is a standard vault or a premium vault. */
-export type SkuName = "standard" | "premium";
-export const SkuName = /*@__PURE__*/ S.String;
-
-/** SKU details */
-export interface Sku {
-  /** SKU family name */
-  family: SkuFamily | (string & {});
-  /** SKU name to specify whether the key vault is a standard vault or a premium vault. */
-  name: SkuName | (string & {});
-}
-export const Sku = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    family: SkuFamily,
-    name: SkuName,
-  }),
-).annotate({ identifier: "Sku" }) as any as S.Schema<Sku>;
-
-export type KeyPermissions =
-  | "all"
-  | "encrypt"
-  | "decrypt"
-  | "wrapKey"
-  | "unwrapKey"
-  | "sign"
-  | "verify"
-  | "get"
-  | "list"
-  | "create"
-  | "update"
-  | "import"
-  | "delete"
-  | "backup"
-  | "restore"
-  | "recover"
-  | "purge"
-  | "release"
-  | "rotate"
-  | "getrotationpolicy"
-  | "setrotationpolicy";
-export const KeyPermissions = /*@__PURE__*/ S.String;
-
-/** Permissions to keys */
-export type PermissionsKeysList = Array<KeyPermissions | (string & {})>;
-export const PermissionsKeysList = /*@__PURE__*/ S.Array(
-  KeyPermissions,
-) as any as S.Schema<PermissionsKeysList>;
-
-export type SecretPermissions =
-  | "all"
-  | "get"
-  | "list"
-  | "set"
-  | "delete"
-  | "backup"
-  | "restore"
-  | "recover"
-  | "purge";
-export const SecretPermissions = /*@__PURE__*/ S.String;
-
-/** Permissions to secrets */
-export type PermissionsSecretsList = Array<SecretPermissions | (string & {})>;
-export const PermissionsSecretsList = /*@__PURE__*/ S.Array(
-  SecretPermissions,
-) as any as S.Schema<PermissionsSecretsList>;
-
-export type CertificatePermissions =
-  | "all"
-  | "get"
-  | "list"
-  | "delete"
-  | "create"
-  | "import"
-  | "update"
-  | "managecontacts"
-  | "getissuers"
-  | "listissuers"
-  | "setissuers"
-  | "deleteissuers"
-  | "manageissuers"
-  | "recover"
-  | "purge"
-  | "backup"
-  | "restore";
-export const CertificatePermissions = /*@__PURE__*/ S.String;
-
-/** Permissions to certificates */
-export type PermissionsCertificatesList = Array<
-  CertificatePermissions | (string & {})
->;
-export const PermissionsCertificatesList = /*@__PURE__*/ S.Array(
-  CertificatePermissions,
-) as any as S.Schema<PermissionsCertificatesList>;
-
-export type StoragePermissions =
-  | "all"
-  | "get"
-  | "list"
-  | "delete"
-  | "set"
-  | "update"
-  | "regeneratekey"
-  | "recover"
-  | "purge"
-  | "backup"
-  | "restore"
-  | "setsas"
-  | "listsas"
-  | "getsas"
-  | "deletesas";
-export const StoragePermissions = /*@__PURE__*/ S.String;
-
-/** Permissions to storage accounts */
-export type PermissionsStorageList = Array<StoragePermissions | (string & {})>;
-export const PermissionsStorageList = /*@__PURE__*/ S.Array(
-  StoragePermissions,
-) as any as S.Schema<PermissionsStorageList>;
-
-/** Permissions the identity has for keys, secrets, certificates and storage. */
-export interface Permissions {
-  /** Permissions to keys */
-  keys?: PermissionsKeysList;
-  /** Permissions to secrets */
-  secrets?: PermissionsSecretsList;
-  /** Permissions to certificates */
-  certificates?: PermissionsCertificatesList;
-  /** Permissions to storage accounts */
-  storage?: PermissionsStorageList;
-}
-export const Permissions = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    keys: S.optional(PermissionsKeysList),
-    secrets: S.optional(PermissionsSecretsList),
-    certificates: S.optional(PermissionsCertificatesList),
-    storage: S.optional(PermissionsStorageList),
-  }),
-).annotate({ identifier: "Permissions" }) as any as S.Schema<Permissions>;
-
-/** An identity that have access to the key vault. All identities in the array must use the same tenant ID as the key vault's tenant ID. */
-export interface AccessPolicyEntry {
-  /** The Azure Active Directory tenant ID that should be used for authenticating requests to the key vault. */
-  tenantId: string;
-  /** The object ID of a user, service principal or security group in the Azure Active Directory tenant for the vault. The object ID must be unique for the list of access policies. */
-  objectId: string;
-  /** Application ID of the client making request on behalf of a principal */
-  applicationId?: string;
-  /** Permissions the identity has for keys, secrets and certificates. */
-  permissions: Permissions;
-}
-export const AccessPolicyEntry = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    tenantId: S.String,
-    objectId: S.String,
-    applicationId: S.optional(S.String),
-    permissions: Permissions,
-  }),
-).annotate({
-  identifier: "AccessPolicyEntry",
-}) as any as S.Schema<AccessPolicyEntry>;
-
 /** An array of 0 to 1024 identities that have access to the key vault. All identities in the array must use the same tenant ID as the key vault's tenant ID. When `createMode` is set to `recover`, access policies are not required. Otherwise, access policies are required. */
 export type VaultPropertiesInputAccessPoliciesList = Array<AccessPolicyEntry>;
 export const VaultPropertiesInputAccessPoliciesList = /*@__PURE__*/ S.Array(
   AccessPolicyEntry,
 ) as any as S.Schema<VaultPropertiesInputAccessPoliciesList>;
-
-/** A rule governing the accessibility of a vault from a specific ip address or ip range. */
-export type IPRule = MHSMIPRule;
-export const IPRule = MHSMIPRule;
-
-/** The list of IP address rules. */
-export type NetworkRuleSetIpRulesList = Array<MHSMIPRule>;
-export const NetworkRuleSetIpRulesList = /*@__PURE__*/ S.Array(
-  MHSMIPRule,
-) as any as S.Schema<NetworkRuleSetIpRulesList>;
-
-/** A rule governing the accessibility of a vault from a specific virtual network. */
-export interface VirtualNetworkRule {
-  /** Full resource id of a vnet subnet, such as '/subscriptions/subid/resourceGroups/rg1/providers/Microsoft.Network/virtualNetworks/test-vnet/subnets/subnet1'. */
-  id: string;
-  /** Property to specify whether NRP will ignore the check if parent subnet has serviceEndpoints configured. */
-  ignoreMissingVnetServiceEndpoint?: boolean;
-}
-export const VirtualNetworkRule = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    ignoreMissingVnetServiceEndpoint: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "VirtualNetworkRule",
-}) as any as S.Schema<VirtualNetworkRule>;
-
-/** The list of virtual network rules. */
-export type NetworkRuleSetVirtualNetworkRulesList = Array<VirtualNetworkRule>;
-export const NetworkRuleSetVirtualNetworkRulesList = /*@__PURE__*/ S.Array(
-  VirtualNetworkRule,
-) as any as S.Schema<NetworkRuleSetVirtualNetworkRulesList>;
-
-/** A set of rules governing the network accessibility of a vault. */
-export interface NetworkRuleSet {
-  /** Tells what traffic can bypass network rules. This can be 'AzureServices' or 'None'. If not specified the default is 'AzureServices'. */
-  bypass?: NetworkRuleBypassOptions | (string & {});
-  /** The default action when no rule from ipRules and from virtualNetworkRules match. This is only used after the bypass property has been evaluated. */
-  defaultAction?: NetworkRuleAction | (string & {});
-  /** The list of IP address rules. */
-  ipRules?: NetworkRuleSetIpRulesList;
-  /** The list of virtual network rules. */
-  virtualNetworkRules?: NetworkRuleSetVirtualNetworkRulesList;
-}
-export const NetworkRuleSet = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    bypass: S.optional(NetworkRuleBypassOptions),
-    defaultAction: S.optional(NetworkRuleAction),
-    ipRules: S.optional(NetworkRuleSetIpRulesList),
-    virtualNetworkRules: S.optional(NetworkRuleSetVirtualNetworkRulesList),
-  }),
-).annotate({ identifier: "NetworkRuleSet" }) as any as S.Schema<NetworkRuleSet>;
-
-/** Provisioning state of the vault. */
-export type VaultProvisioningState = "Succeeded" | "RegisteringDns";
-export const VaultProvisioningState = /*@__PURE__*/ S.String;
 
 /** Properties of the vault */
 export interface VaultPropertiesInput {
@@ -4405,87 +5165,6 @@ export const VaultsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "VaultsCreateOrUpdateRequest",
 }) as any as S.Schema<VaultsCreateOrUpdateRequest>;
 
-/** An array of 0 to 1024 identities that have access to the key vault. All identities in the array must use the same tenant ID as the key vault's tenant ID. When `createMode` is set to `recover`, access policies are not required. Otherwise, access policies are required. */
-export type VaultPropertiesAccessPoliciesList = Array<AccessPolicyEntry>;
-export const VaultPropertiesAccessPoliciesList = /*@__PURE__*/ S.Array(
-  AccessPolicyEntry,
-) as any as S.Schema<VaultPropertiesAccessPoliciesList>;
-
-/** Private endpoint connection item. */
-export type PrivateEndpointConnectionItem = MHSMPrivateEndpointConnectionItem;
-export const PrivateEndpointConnectionItem = MHSMPrivateEndpointConnectionItem;
-
-/** List of private endpoint connections associated with the key vault. */
-export type VaultPropertiesPrivateEndpointConnectionsList =
-  Array<MHSMPrivateEndpointConnectionItem>;
-export const VaultPropertiesPrivateEndpointConnectionsList =
-  /*@__PURE__*/ S.Array(
-    MHSMPrivateEndpointConnectionItem,
-  ) as any as S.Schema<VaultPropertiesPrivateEndpointConnectionsList>;
-
-/** Properties of the vault */
-export interface VaultProperties {
-  /** The Azure Active Directory tenant ID that should be used for authenticating requests to the key vault. */
-  tenantId: string;
-  /** SKU details */
-  sku: Sku;
-  /** An array of 0 to 1024 identities that have access to the key vault. All identities in the array must use the same tenant ID as the key vault's tenant ID. When `createMode` is set to `recover`, access policies are not required. Otherwise, access policies are required. */
-  accessPolicies?: VaultPropertiesAccessPoliciesList;
-  /** The URI of the vault for performing operations on keys and secrets. */
-  vaultUri?: string;
-  /** The resource id of HSM Pool. */
-  hsmPoolResourceId?: string;
-  /** Property to specify whether Azure Virtual Machines are permitted to retrieve certificates stored as secrets from the key vault. */
-  enabledForDeployment?: boolean;
-  /** Property to specify whether Azure Disk Encryption is permitted to retrieve secrets from the vault and unwrap keys. */
-  enabledForDiskEncryption?: boolean;
-  /** Property to specify whether Azure Resource Manager is permitted to retrieve secrets from the key vault. */
-  enabledForTemplateDeployment?: boolean;
-  /** Property to specify whether the 'soft delete' functionality is enabled for this key vault. If it's not set to any value(true or false) when creating new key vault, it will be set to true by default. Once set to true, it cannot be reverted to false. */
-  enableSoftDelete?: boolean;
-  /** softDelete data retention days. It accepts >=7 and <=90. */
-  softDeleteRetentionInDays?: number;
-  /** Property that controls how data actions are authorized. When true, the key vault will use Role Based Access Control (RBAC) for authorization of data actions, and the access policies specified in vault properties will be ignored. When false, the key vault will use the access policies specified in vault properties, and any policy stored on Azure Resource Manager will be ignored. If null or not specified, the vault is created with the default value of false. Note that management actions are always authorized with RBAC. */
-  enableRbacAuthorization?: boolean;
-  /** The vault's create mode to indicate whether the vault need to be recovered or not. */
-  createMode?: CreateMode;
-  /** Property specifying whether protection against purge is enabled for this vault. Setting this property to true activates protection against purge for this vault and its content - only the Key Vault service may initiate a hard, irrecoverable deletion. The setting is effective only if soft delete is also enabled. Enabling this functionality is irreversible - that is, the property does not accept false as its value. */
-  enablePurgeProtection?: boolean;
-  /** Rules governing the accessibility of the key vault from specific network locations. */
-  networkAcls?: NetworkRuleSet;
-  /** Provisioning state of the vault. */
-  provisioningState?: VaultProvisioningState;
-  /** List of private endpoint connections associated with the key vault. */
-  privateEndpointConnections?: VaultPropertiesPrivateEndpointConnectionsList;
-  /** Property to specify whether the vault will accept traffic from public internet. If set to 'disabled' all traffic except private endpoint traffic and that that originates from trusted services will be blocked. This will override the set firewall rules, meaning that even if the firewall rules are present we will not honor the rules. */
-  publicNetworkAccess?: string;
-}
-export const VaultProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    tenantId: S.String,
-    sku: Sku,
-    accessPolicies: S.optional(VaultPropertiesAccessPoliciesList),
-    vaultUri: S.optional(S.String),
-    hsmPoolResourceId: S.optional(S.String),
-    enabledForDeployment: S.optional(S.Boolean),
-    enabledForDiskEncryption: S.optional(S.Boolean),
-    enabledForTemplateDeployment: S.optional(S.Boolean),
-    enableSoftDelete: S.optional(S.Boolean),
-    softDeleteRetentionInDays: S.optional(S.Number),
-    enableRbacAuthorization: S.optional(S.Boolean),
-    createMode: S.optional(CreateMode),
-    enablePurgeProtection: S.optional(S.Boolean),
-    networkAcls: S.optional(NetworkRuleSet),
-    provisioningState: S.optional(VaultProvisioningState),
-    privateEndpointConnections: S.optional(
-      VaultPropertiesPrivateEndpointConnectionsList,
-    ),
-    publicNetworkAccess: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "VaultProperties",
-}) as any as S.Schema<VaultProperties>;
-
 /** Tags assigned to the key vault resource. */
 export type VaultsCreateOrUpdateResponseTagsMap = {
   [key: string]: string | undefined;
@@ -4525,849 +5204,556 @@ export const VaultsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "VaultsCreateOrUpdateResponse",
 }) as any as S.Schema<VaultsCreateOrUpdateResponse>;
 
-export interface VaultsDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the vault. */
-  vaultName: string;
-}
-export const VaultsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    vaultName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.KeyVault/vaults/{vaultName}",
-      code: 200,
-      apiVersion: "2026-02-01",
-    }),
-  ),
-).annotate({
-  identifier: "VaultsDeleteRequest",
-}) as any as S.Schema<VaultsDeleteRequest>;
-
-export interface VaultsDeleteResponse {}
-export const VaultsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "VaultsDeleteResponse",
-}) as any as S.Schema<VaultsDeleteResponse>;
-
-export interface VaultsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the vault. */
-  vaultName: string;
-}
-export const VaultsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    vaultName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.KeyVault/vaults/{vaultName}",
-      code: 200,
-      apiVersion: "2026-02-01",
-    }),
-  ),
-).annotate({
-  identifier: "VaultsGetRequest",
-}) as any as S.Schema<VaultsGetRequest>;
-
-/** Tags assigned to the key vault resource. */
-export type VaultsGetResponseTagsMap = { [key: string]: string | undefined };
-export const VaultsGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<VaultsGetResponseTagsMap>;
-
-export interface VaultsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of the vault */
-  properties: VaultProperties;
-  /** Azure location of the key vault resource. */
-  location?: string;
-  /** Tags assigned to the key vault resource. */
-  tags?: VaultsGetResponseTagsMap;
-}
-export const VaultsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: VaultProperties,
-    location: S.optional(S.String),
-    tags: S.optional(VaultsGetResponseTagsMap),
-  }),
-).annotate({
-  identifier: "VaultsGetResponse",
-}) as any as S.Schema<VaultsGetResponse>;
-
-export interface VaultsGetDeletedRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the Azure region. */
-  location: string;
-  /** The name of the vault. */
-  vaultName: string;
-}
-export const VaultsGetDeletedRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    location: S.String.pipe(T.Label()),
-    vaultName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.KeyVault/locations/{location}/deletedVaults/{vaultName}",
-      code: 200,
-      apiVersion: "2026-02-01",
-    }),
-  ),
-).annotate({
-  identifier: "VaultsGetDeletedRequest",
-}) as any as S.Schema<VaultsGetDeletedRequest>;
-
-/** Tags of the original vault. */
-export type DeletedVaultPropertiesTagsMap = {
-  [key: string]: string | undefined;
-};
-export const DeletedVaultPropertiesTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<DeletedVaultPropertiesTagsMap>;
-
-/** Properties of the deleted vault. */
-export interface DeletedVaultProperties {
-  /** The resource id of the original vault. */
-  vaultId?: string;
-  /** The location of the original vault. */
-  location?: string;
-  /** The deleted date. */
-  deletionDate?: string;
-  /** The scheduled purged date. */
-  scheduledPurgeDate?: string;
-  /** Tags of the original vault. */
-  tags?: DeletedVaultPropertiesTagsMap;
-  /** Purge protection status of the original vault. */
-  purgeProtectionEnabled?: boolean;
-}
-export const DeletedVaultProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    vaultId: S.optional(S.String),
-    location: S.optional(S.String),
-    deletionDate: S.optional(S.String),
-    scheduledPurgeDate: S.optional(S.String),
-    tags: S.optional(DeletedVaultPropertiesTagsMap),
-    purgeProtectionEnabled: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "DeletedVaultProperties",
-}) as any as S.Schema<DeletedVaultProperties>;
-
-export interface VaultsGetDeletedResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of the vault */
-  properties?: DeletedVaultProperties;
-}
-export const VaultsGetDeletedResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(DeletedVaultProperties),
-  }),
-).annotate({
-  identifier: "VaultsGetDeletedResponse",
-}) as any as S.Schema<VaultsGetDeletedResponse>;
-
-export type VaultsListRequestFilter =
-  "resourceType eq 'Microsoft.KeyVault/vaults'";
-export const VaultsListRequestFilter = /*@__PURE__*/ S.String;
-
-export interface VaultsListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The filter to apply on the operation. */
-  _filter: VaultsListRequestFilter | (string & {});
-  /** Maximum number of results to return. */
-  _top?: number;
-}
-export const VaultsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    _filter: VaultsListRequestFilter.pipe(T.Query("$filter")),
-    _top: S.optional(S.Number.pipe(T.Query("$top"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resources",
-      code: 200,
-      apiVersion: "2026-02-01",
-    }),
-  ),
-).annotate({
-  identifier: "VaultsListRequest",
-}) as any as S.Schema<VaultsListRequest>;
-
-/** Resource tags. */
-export type ResourceListResultValueItemTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ResourceListResultValueItemTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ResourceListResultValueItemTagsMap>;
-
-/** The resource model definition for an Azure Resource Manager tracked top level resource which has 'tags' and a 'location' */
-export interface ResourceListResultValueItem {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: ResourceListResultValueItemTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-}
-export const ResourceListResultValueItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(ResourceListResultValueItemTagsMap),
-    location: S.String,
-  }),
-).annotate({
-  identifier: "ResourceListResultValueItem",
-}) as any as S.Schema<ResourceListResultValueItem>;
-
-/** The list of vault resources. */
-export type ResourceListResultValueList = Array<ResourceListResultValueItem>;
-export const ResourceListResultValueList = /*@__PURE__*/ S.Array(
-  ResourceListResultValueItem,
-) as any as S.Schema<ResourceListResultValueList>;
-
-/** The list of vault resources. */
-export interface ResourceListResult {
-  /** The list of vault resources. */
-  value: ResourceListResultValueList;
-  /** The URL to get the next set of vault resources. */
-  nextLink?: string;
-}
-export const ResourceListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: ResourceListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ResourceListResult",
-}) as any as S.Schema<ResourceListResult>;
-
-export interface VaultsListByResourceGroupRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Maximum number of results to return. */
-  _top?: number;
-}
-export const VaultsListByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    _top: S.optional(S.Number.pipe(T.Query("$top"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.KeyVault/vaults",
-      code: 200,
-      apiVersion: "2026-02-01",
-    }),
-  ),
-).annotate({
-  identifier: "VaultsListByResourceGroupRequest",
-}) as any as S.Schema<VaultsListByResourceGroupRequest>;
-
-/** Tags assigned to the key vault resource. */
-export type VaultTagsMap = { [key: string]: string | undefined };
-export const VaultTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<VaultTagsMap>;
-
-/** Resource information with extended details. */
-export interface Vault {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of the vault */
-  properties: VaultProperties;
-  /** Azure location of the key vault resource. */
-  location?: string;
-  /** Tags assigned to the key vault resource. */
-  tags?: VaultTagsMap;
-}
-export const Vault = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: VaultProperties,
-    location: S.optional(S.String),
-    tags: S.optional(VaultTagsMap),
-  }),
-).annotate({ identifier: "Vault" }) as any as S.Schema<Vault>;
-
-/** The Vault items on this page */
-export type VaultListResultValueList = Array<Vault>;
-export const VaultListResultValueList = /*@__PURE__*/ S.Array(
-  Vault,
-) as any as S.Schema<VaultListResultValueList>;
-
-/** The response of a Vault list operation. */
-export interface VaultListResult {
-  /** The Vault items on this page */
-  value: VaultListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const VaultListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: VaultListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "VaultListResult",
-}) as any as S.Schema<VaultListResult>;
-
-export interface VaultsListBySubscriptionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** Maximum number of results to return. */
-  _top?: number;
-}
-export const VaultsListBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    _top: S.optional(S.Number.pipe(T.Query("$top"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.KeyVault/vaults",
-      code: 200,
-      apiVersion: "2026-02-01",
-    }),
-  ),
-).annotate({
-  identifier: "VaultsListBySubscriptionRequest",
-}) as any as S.Schema<VaultsListBySubscriptionRequest>;
-
-export interface VaultsListDeletedRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-}
-export const VaultsListDeletedRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.KeyVault/deletedVaults",
-      code: 200,
-      apiVersion: "2026-02-01",
-    }),
-  ),
-).annotate({
-  identifier: "VaultsListDeletedRequest",
-}) as any as S.Schema<VaultsListDeletedRequest>;
-
-/** Deleted vault information with extended details. */
-export interface DeletedVault {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of the vault */
-  properties?: DeletedVaultProperties;
-}
-export const DeletedVault = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(DeletedVaultProperties),
-  }),
-).annotate({ identifier: "DeletedVault" }) as any as S.Schema<DeletedVault>;
-
-/** The DeletedVault items on this page */
-export type DeletedVaultListResultValueList = Array<DeletedVault>;
-export const DeletedVaultListResultValueList = /*@__PURE__*/ S.Array(
-  DeletedVault,
-) as any as S.Schema<DeletedVaultListResultValueList>;
-
-/** The response of a DeletedVault list operation. */
-export interface DeletedVaultListResult {
-  /** The DeletedVault items on this page */
-  value: DeletedVaultListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const DeletedVaultListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: DeletedVaultListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DeletedVaultListResult",
-}) as any as S.Schema<DeletedVaultListResult>;
-
-export interface VaultsPurgeDeletedRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the Azure region. */
-  location: string;
-  /** The name of the vault. */
-  vaultName: string;
-}
-export const VaultsPurgeDeletedRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    location: S.String.pipe(T.Label()),
-    vaultName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.KeyVault/locations/{location}/deletedVaults/{vaultName}/purge",
-      code: 200,
-      apiVersion: "2026-02-01",
-    }),
-  ),
-).annotate({
-  identifier: "VaultsPurgeDeletedRequest",
-}) as any as S.Schema<VaultsPurgeDeletedRequest>;
-
-export interface VaultsPurgeDeletedResponse {}
-export const VaultsPurgeDeletedResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "VaultsPurgeDeletedResponse",
-}) as any as S.Schema<VaultsPurgeDeletedResponse>;
-
-/** The tags that will be assigned to the key vault. */
-export type VaultsUpdateRequestTagsMap = { [key: string]: string | undefined };
-export const VaultsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<VaultsUpdateRequestTagsMap>;
-
-/** An array of 0 to 16 identities that have access to the key vault. All identities in the array must use the same tenant ID as the key vault's tenant ID. */
-export type VaultPatchPropertiesAccessPoliciesList = Array<AccessPolicyEntry>;
-export const VaultPatchPropertiesAccessPoliciesList = /*@__PURE__*/ S.Array(
-  AccessPolicyEntry,
-) as any as S.Schema<VaultPatchPropertiesAccessPoliciesList>;
-
-/** Properties of the vault */
-export interface VaultPatchProperties {
-  /** The Azure Active Directory tenant ID that should be used for authenticating requests to the key vault. */
-  tenantId?: string;
-  /** SKU details */
-  sku?: Sku;
-  /** An array of 0 to 16 identities that have access to the key vault. All identities in the array must use the same tenant ID as the key vault's tenant ID. */
-  accessPolicies?: VaultPatchPropertiesAccessPoliciesList;
-  /** Property to specify whether Azure Virtual Machines are permitted to retrieve certificates stored as secrets from the key vault. */
-  enabledForDeployment?: boolean;
-  /** Property to specify whether Azure Disk Encryption is permitted to retrieve secrets from the vault and unwrap keys. */
-  enabledForDiskEncryption?: boolean;
-  /** Property to specify whether Azure Resource Manager is permitted to retrieve secrets from the key vault. */
-  enabledForTemplateDeployment?: boolean;
-  /** Property to specify whether the 'soft delete' functionality is enabled for this key vault. Once set to true, it cannot be reverted to false. */
-  enableSoftDelete?: boolean;
-  /** Property that controls how data actions are authorized. When true, the key vault will use Role Based Access Control (RBAC) for authorization of data actions, and the access policies specified in vault properties will be ignored. When false, the key vault will use the access policies specified in vault properties, and any policy stored on Azure Resource Manager will be ignored. If null or not specified, the value of this property will not change. */
-  enableRbacAuthorization?: boolean;
-  /** softDelete data retention days. It accepts >=7 and <=90. */
-  softDeleteRetentionInDays?: number;
-  /** The vault's create mode to indicate whether the vault need to be recovered or not. */
-  createMode?: CreateMode | (string & {});
-  /** Property specifying whether protection against purge is enabled for this vault. Setting this property to true activates protection against purge for this vault and its content - only the Key Vault service may initiate a hard, irrecoverable deletion. The setting is effective only if soft delete is also enabled. Enabling this functionality is irreversible - that is, the property does not accept false as its value. */
-  enablePurgeProtection?: boolean;
-  /** A collection of rules governing the accessibility of the vault from specific network locations. */
-  networkAcls?: NetworkRuleSet;
-  /** Property to specify whether the vault will accept traffic from public internet. If set to 'disabled' all traffic except private endpoint traffic and that that originates from trusted services will be blocked. This will override the set firewall rules, meaning that even if the firewall rules are present we will not honor the rules. */
-  publicNetworkAccess?: string;
-}
-export const VaultPatchProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    tenantId: S.optional(S.String),
-    sku: S.optional(Sku),
-    accessPolicies: S.optional(VaultPatchPropertiesAccessPoliciesList),
-    enabledForDeployment: S.optional(S.Boolean),
-    enabledForDiskEncryption: S.optional(S.Boolean),
-    enabledForTemplateDeployment: S.optional(S.Boolean),
-    enableSoftDelete: S.optional(S.Boolean),
-    enableRbacAuthorization: S.optional(S.Boolean),
-    softDeleteRetentionInDays: S.optional(S.Number),
-    createMode: S.optional(CreateMode),
-    enablePurgeProtection: S.optional(S.Boolean),
-    networkAcls: S.optional(NetworkRuleSet),
-    publicNetworkAccess: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "VaultPatchProperties",
-}) as any as S.Schema<VaultPatchProperties>;
-
-export interface VaultsUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the vault. */
-  vaultName: string;
-  /** The tags that will be assigned to the key vault. */
-  tags?: VaultsUpdateRequestTagsMap;
-  /** Properties of the vault */
-  properties?: VaultPatchProperties;
-}
-export const VaultsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    vaultName: S.String.pipe(T.Label()),
-    tags: S.optional(VaultsUpdateRequestTagsMap),
-    properties: S.optional(VaultPatchProperties),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.KeyVault/vaults/{vaultName}",
-      code: 200,
-      apiVersion: "2026-02-01",
-    }),
-  ),
-).annotate({
-  identifier: "VaultsUpdateRequest",
-}) as any as S.Schema<VaultsUpdateRequest>;
-
-/** Tags assigned to the key vault resource. */
-export type VaultsUpdateResponseTagsMap = { [key: string]: string | undefined };
-export const VaultsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<VaultsUpdateResponseTagsMap>;
-
-export interface VaultsUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of the vault */
-  properties: VaultProperties;
-  /** Azure location of the key vault resource. */
-  location?: string;
-  /** Tags assigned to the key vault resource. */
-  tags?: VaultsUpdateResponseTagsMap;
-}
-export const VaultsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: VaultProperties,
-    location: S.optional(S.String),
-    tags: S.optional(VaultsUpdateResponseTagsMap),
-  }),
-).annotate({
-  identifier: "VaultsUpdateResponse",
-}) as any as S.Schema<VaultsUpdateResponse>;
-
-export type VaultsUpdateAccessPolicyRequestOperationKind =
-  | "add"
-  | "replace"
-  | "remove";
-export const VaultsUpdateAccessPolicyRequestOperationKind =
-  /*@__PURE__*/ S.String;
-
-/** An array of 0 to 16 identities that have access to the key vault. All identities in the array must use the same tenant ID as the key vault's tenant ID. */
-export type VaultAccessPolicyPropertiesAccessPoliciesList =
-  Array<AccessPolicyEntry>;
-export const VaultAccessPolicyPropertiesAccessPoliciesList =
-  /*@__PURE__*/ S.Array(
-    AccessPolicyEntry,
-  ) as any as S.Schema<VaultAccessPolicyPropertiesAccessPoliciesList>;
-
-/** Properties of the vault access policy */
-export interface VaultAccessPolicyProperties {
-  /** An array of 0 to 16 identities that have access to the key vault. All identities in the array must use the same tenant ID as the key vault's tenant ID. */
-  accessPolicies: VaultAccessPolicyPropertiesAccessPoliciesList;
-}
-export const VaultAccessPolicyProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    accessPolicies: VaultAccessPolicyPropertiesAccessPoliciesList,
-  }),
-).annotate({
-  identifier: "VaultAccessPolicyProperties",
-}) as any as S.Schema<VaultAccessPolicyProperties>;
-
-export interface VaultsUpdateAccessPolicyRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the vault */
-  vaultName: string;
-  /** Name of the operation */
-  operationKind: VaultsUpdateAccessPolicyRequestOperationKind | (string & {});
-  /** Properties of the access policy */
-  properties: VaultAccessPolicyProperties;
-}
-export const VaultsUpdateAccessPolicyRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    vaultName: S.String.pipe(T.Label()),
-    operationKind: VaultsUpdateAccessPolicyRequestOperationKind.pipe(T.Label()),
-    properties: VaultAccessPolicyProperties,
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.KeyVault/vaults/{vaultName}/accessPolicies/{operationKind}",
-      code: 200,
-      apiVersion: "2026-02-01",
-    }),
-  ),
-).annotate({
-  identifier: "VaultsUpdateAccessPolicyRequest",
-}) as any as S.Schema<VaultsUpdateAccessPolicyRequest>;
-
-/** Parameters for updating the access policy in a vault */
-export interface VaultAccessPolicyParameters {
-  /** The resource id of the access policy. */
-  id?: string;
-  /** The resource name of the access policy. */
-  name?: string;
-  /** The resource name of the access policy. */
-  type?: string;
-  /** The resource type of the access policy. */
-  location?: string;
-  /** Properties of the access policy */
-  properties: VaultAccessPolicyProperties;
-}
-export const VaultAccessPolicyParameters = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    location: S.optional(S.String),
-    properties: VaultAccessPolicyProperties,
-  }),
-).annotate({
-  identifier: "VaultAccessPolicyParameters",
-}) as any as S.Schema<VaultAccessPolicyParameters>;
-
-export type KeysCreateIfNotExistError = AzureOpError;
-/** Creates the first version of a new key if it does not exist. If it already exists, then the existing key is returned without any write operations being performed. This API does not create subsequent versions, and does not update existing keys. */
-export const KeysCreateIfNotExist: API.OperationMethod<
-  KeysCreateIfNotExistRequest,
-  KeysCreateIfNotExistResponse,
-  KeysCreateIfNotExistError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: KeysCreateIfNotExistRequest,
-  output: KeysCreateIfNotExistResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type KeysGetError = AzureOpError;
-/** Gets the current version of the specified key from the specified key vault. */
-export const KeysGet: API.OperationMethod<
-  KeysGetRequest,
-  KeysGetResponse,
-  KeysGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: KeysGetRequest,
-  output: KeysGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type KeysGetVersionError = AzureOpError;
-/** Gets the specified version of the specified key in the specified key vault. */
-export const KeysGetVersion: API.OperationMethod<
-  KeysGetVersionRequest,
-  KeysGetVersionResponse,
-  KeysGetVersionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: KeysGetVersionRequest,
-  output: KeysGetVersionResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type KeysListError = AzureOpError;
-/** Lists the keys in the specified key vault. */
-export const KeysList: API.OperationMethod<
-  KeysListRequest,
-  KeyListResult,
-  KeysListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: KeysListRequest,
-  output: KeyListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type KeysListVersionsError = AzureOpError;
-/** Lists the keys in the specified key vault. */
-export const KeysListVersions: API.OperationMethod<
-  KeysListVersionsRequest,
-  KeyListResult,
-  KeysListVersionsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: KeysListVersionsRequest,
-  output: KeyListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ManagedHsmKeysCreateIfNotExistError = AzureOpError;
-/** Creates the first version of a new key if it does not exist. If it already exists, then the existing key is returned without any write operations being performed. This API does not create subsequent versions, and does not update existing keys. */
-export const ManagedHsmKeysCreateIfNotExist: API.OperationMethod<
-  ManagedHsmKeysCreateIfNotExistRequest,
-  ManagedHsmKeysCreateIfNotExistResponse,
-  ManagedHsmKeysCreateIfNotExistError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ManagedHsmKeysCreateIfNotExistRequest,
-  output: ManagedHsmKeysCreateIfNotExistResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ManagedHsmKeysGetError = AzureOpError;
-/** Gets the current version of the specified key from the specified managed HSM. */
-export const ManagedHsmKeysGet: API.OperationMethod<
-  ManagedHsmKeysGetRequest,
-  ManagedHsmKeysGetResponse,
-  ManagedHsmKeysGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ManagedHsmKeysGetRequest,
-  output: ManagedHsmKeysGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ManagedHsmKeysGetVersionError = AzureOpError;
-/** Gets the specified version of the specified key in the specified managed HSM. */
-export const ManagedHsmKeysGetVersion: API.OperationMethod<
-  ManagedHsmKeysGetVersionRequest,
-  ManagedHsmKeysGetVersionResponse,
-  ManagedHsmKeysGetVersionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ManagedHsmKeysGetVersionRequest,
-  output: ManagedHsmKeysGetVersionResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ManagedHsmKeysListError = AzureOpError;
-/** Lists the keys in the specified managed HSM. */
-export const ManagedHsmKeysList: API.OperationMethod<
-  ManagedHsmKeysListRequest,
-  ManagedHsmKeyListResult,
-  ManagedHsmKeysListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ManagedHsmKeysListRequest,
-  output: ManagedHsmKeyListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ManagedHsmKeysListVersionsError = AzureOpError;
-/** Lists the keys in the specified managed HSM. */
-export const ManagedHsmKeysListVersions: API.OperationMethod<
-  ManagedHsmKeysListVersionsRequest,
-  ManagedHsmKeyListResult,
-  ManagedHsmKeysListVersionsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ManagedHsmKeysListVersionsRequest,
-  output: ManagedHsmKeyListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ManagedHsmsCheckMhsmNameAvailabilityError = AzureOpError;
+export type CheckManagedHsmMhsmNameAvailabilityError = AzureOpError;
 /** Checks that the managed hsm name is valid and is not already in use. */
-export const ManagedHsmsCheckMhsmNameAvailability: API.OperationMethod<
-  ManagedHsmsCheckMhsmNameAvailabilityRequest,
+export const CheckManagedHsmMhsmNameAvailability: API.OperationMethod<
+  CheckManagedHsmMhsmNameAvailabilityRequest,
   CheckMhsmNameAvailabilityResult,
-  ManagedHsmsCheckMhsmNameAvailabilityError,
+  CheckManagedHsmMhsmNameAvailabilityError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ManagedHsmsCheckMhsmNameAvailabilityRequest,
+  input: CheckManagedHsmMhsmNameAvailabilityRequest,
   output: CheckMhsmNameAvailabilityResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CheckVaultNameAvailabilityError = AzureOpError;
+/** Checks that the vault name is valid and is not already in use. */
+export const CheckVaultNameAvailability: API.OperationMethod<
+  CheckVaultNameAvailabilityRequest,
+  CheckNameAvailabilityResult,
+  CheckVaultNameAvailabilityError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CheckVaultNameAvailabilityRequest,
+  output: CheckNameAvailabilityResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateKeysIfNotExistError = AzureOpError;
+/** Creates the first version of a new key if it does not exist. If it already exists, then the existing key is returned without any write operations being performed. This API does not create subsequent versions, and does not update existing keys. */
+export const CreateKeysIfNotExist: API.OperationMethod<
+  CreateKeysIfNotExistRequest,
+  CreateKeysIfNotExistResponse,
+  CreateKeysIfNotExistError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateKeysIfNotExistRequest,
+  output: CreateKeysIfNotExistResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateManagedHsmKeysIfNotExistError = AzureOpError;
+/** Creates the first version of a new key if it does not exist. If it already exists, then the existing key is returned without any write operations being performed. This API does not create subsequent versions, and does not update existing keys. */
+export const CreateManagedHsmKeysIfNotExist: API.OperationMethod<
+  CreateManagedHsmKeysIfNotExistRequest,
+  CreateManagedHsmKeysIfNotExistResponse,
+  CreateManagedHsmKeysIfNotExistError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateManagedHsmKeysIfNotExistRequest,
+  output: CreateManagedHsmKeysIfNotExistResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteManagedHsmError = AzureOpError;
+/** Deletes the specified managed HSM Pool. */
+export const DeleteManagedHsm: API.OperationMethod<
+  DeleteManagedHsmRequest,
+  DeleteManagedHsmResponse,
+  DeleteManagedHsmError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteManagedHsmRequest,
+  output: DeleteManagedHsmResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteMHSMPrivateEndpointConnectionError = AzureOpError;
+/** Deletes the specified private endpoint connection associated with the managed hsm pool. */
+export const DeleteMHSMPrivateEndpointConnection: API.OperationMethod<
+  DeleteMHSMPrivateEndpointConnectionRequest,
+  DeleteMHSMPrivateEndpointConnectionResponse,
+  DeleteMHSMPrivateEndpointConnectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteMHSMPrivateEndpointConnectionRequest,
+  output: DeleteMHSMPrivateEndpointConnectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeletePrivateEndpointConnectionError = AzureOpError;
+/** Deletes the specified private endpoint connection associated with the key vault. */
+export const DeletePrivateEndpointConnection: API.OperationMethod<
+  DeletePrivateEndpointConnectionRequest,
+  DeletePrivateEndpointConnectionResponse,
+  DeletePrivateEndpointConnectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeletePrivateEndpointConnectionRequest,
+  output: DeletePrivateEndpointConnectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteVaultError = AzureOpError;
+/** Deletes the specified Azure key vault. */
+export const DeleteVault: API.OperationMethod<
+  DeleteVaultRequest,
+  DeleteVaultResponse,
+  DeleteVaultError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteVaultRequest,
+  output: DeleteVaultResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetKeysError = AzureOpError;
+/** Gets the current version of the specified key from the specified key vault. */
+export const GetKeys: API.OperationMethod<
+  GetKeysRequest,
+  GetKeysResponse,
+  GetKeysError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetKeysRequest,
+  output: GetKeysResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetKeysVersionError = AzureOpError;
+/** Gets the specified version of the specified key in the specified key vault. */
+export const GetKeysVersion: API.OperationMethod<
+  GetKeysVersionRequest,
+  GetKeysVersionResponse,
+  GetKeysVersionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetKeysVersionRequest,
+  output: GetKeysVersionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetManagedHsmError = AzureOpError;
+/** Gets the specified managed HSM Pool. */
+export const GetManagedHsm: API.OperationMethod<
+  GetManagedHsmRequest,
+  GetManagedHsmResponse,
+  GetManagedHsmError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetManagedHsmRequest,
+  output: GetManagedHsmResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetManagedHsmDeletedError = AzureOpError;
+/** Gets the specified deleted managed HSM. */
+export const GetManagedHsmDeleted: API.OperationMethod<
+  GetManagedHsmDeletedRequest,
+  GetManagedHsmDeletedResponse,
+  GetManagedHsmDeletedError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetManagedHsmDeletedRequest,
+  output: GetManagedHsmDeletedResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetManagedHsmKeysError = AzureOpError;
+/** Gets the current version of the specified key from the specified managed HSM. */
+export const GetManagedHsmKeys: API.OperationMethod<
+  GetManagedHsmKeysRequest,
+  GetManagedHsmKeysResponse,
+  GetManagedHsmKeysError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetManagedHsmKeysRequest,
+  output: GetManagedHsmKeysResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetManagedHsmKeysVersionError = AzureOpError;
+/** Gets the specified version of the specified key in the specified managed HSM. */
+export const GetManagedHsmKeysVersion: API.OperationMethod<
+  GetManagedHsmKeysVersionRequest,
+  GetManagedHsmKeysVersionResponse,
+  GetManagedHsmKeysVersionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetManagedHsmKeysVersionRequest,
+  output: GetManagedHsmKeysVersionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetMHSMPrivateEndpointConnectionError = AzureOpError;
+/** Gets the specified private endpoint connection associated with the managed HSM Pool. */
+export const GetMHSMPrivateEndpointConnection: API.OperationMethod<
+  GetMHSMPrivateEndpointConnectionRequest,
+  GetMHSMPrivateEndpointConnectionResponse,
+  GetMHSMPrivateEndpointConnectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetMHSMPrivateEndpointConnectionRequest,
+  output: GetMHSMPrivateEndpointConnectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetPrivateEndpointConnectionError = AzureOpError;
+/** Gets the specified private endpoint connection associated with the key vault. */
+export const GetPrivateEndpointConnection: API.OperationMethod<
+  GetPrivateEndpointConnectionRequest,
+  GetPrivateEndpointConnectionResponse,
+  GetPrivateEndpointConnectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPrivateEndpointConnectionRequest,
+  output: GetPrivateEndpointConnectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSecretError = AzureOpError;
+/** Gets the specified secret. NOTE: This API is intended for internal use in ARM deployments. Users should use the data-plane REST service for interaction with vault secrets. */
+export const GetSecret: API.OperationMethod<
+  GetSecretRequest,
+  GetSecretResponse,
+  GetSecretError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSecretRequest,
+  output: GetSecretResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetVaultError = AzureOpError;
+/** Gets the specified Azure key vault. */
+export const GetVault: API.OperationMethod<
+  GetVaultRequest,
+  GetVaultResponse,
+  GetVaultError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetVaultRequest,
+  output: GetVaultResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetVaultDeletedError = AzureOpError;
+/** Gets the deleted Azure key vault. */
+export const GetVaultDeleted: API.OperationMethod<
+  GetVaultDeletedRequest,
+  GetVaultDeletedResponse,
+  GetVaultDeletedError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetVaultDeletedRequest,
+  output: GetVaultDeletedResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListKeysError = AzureOpError;
+/** Lists the keys in the specified key vault. */
+export const ListKeys: API.OperationMethod<
+  ListKeysRequest,
+  KeyListResult,
+  ListKeysError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListKeysRequest,
+  output: KeyListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListKeysVersionsError = AzureOpError;
+/** Lists the keys in the specified key vault. */
+export const ListKeysVersions: API.OperationMethod<
+  ListKeysVersionsRequest,
+  KeyListResult,
+  ListKeysVersionsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListKeysVersionsRequest,
+  output: KeyListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListManagedHsmByResourceGroupError = AzureOpError;
+/** The List operation gets information about the managed HSM Pools associated with the subscription and within the specified resource group. */
+export const ListManagedHsmByResourceGroup: API.OperationMethod<
+  ListManagedHsmByResourceGroupRequest,
+  ManagedHsmListResult,
+  ListManagedHsmByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListManagedHsmByResourceGroupRequest,
+  output: ManagedHsmListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListManagedHsmBySubscriptionError = AzureOpError;
+/** The List operation gets information about the managed HSM Pools associated with the subscription. */
+export const ListManagedHsmBySubscription: API.OperationMethod<
+  ListManagedHsmBySubscriptionRequest,
+  ManagedHsmListResult,
+  ListManagedHsmBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListManagedHsmBySubscriptionRequest,
+  output: ManagedHsmListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListManagedHsmDeletedError = AzureOpError;
+/** The List operation gets information about the deleted managed HSMs associated with the subscription. */
+export const ListManagedHsmDeleted: API.OperationMethod<
+  ListManagedHsmDeletedRequest,
+  DeletedManagedHsmListResult,
+  ListManagedHsmDeletedError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListManagedHsmDeletedRequest,
+  output: DeletedManagedHsmListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListManagedHsmKeysError = AzureOpError;
+/** Lists the keys in the specified managed HSM. */
+export const ListManagedHsmKeys: API.OperationMethod<
+  ListManagedHsmKeysRequest,
+  ManagedHsmKeyListResult,
+  ListManagedHsmKeysError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListManagedHsmKeysRequest,
+  output: ManagedHsmKeyListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListManagedHsmKeysVersionsError = AzureOpError;
+/** Lists the keys in the specified managed HSM. */
+export const ListManagedHsmKeysVersions: API.OperationMethod<
+  ListManagedHsmKeysVersionsRequest,
+  ManagedHsmKeyListResult,
+  ListManagedHsmKeysVersionsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListManagedHsmKeysVersionsRequest,
+  output: ManagedHsmKeyListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListMHSMPrivateEndpointConnectionByResourceError = AzureOpError;
+/** The List operation gets information about the private endpoint connections associated with the managed HSM Pool. */
+export const ListMHSMPrivateEndpointConnectionByResource: API.OperationMethod<
+  ListMHSMPrivateEndpointConnectionByResourceRequest,
+  MHSMPrivateEndpointConnectionsListResult,
+  ListMHSMPrivateEndpointConnectionByResourceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListMHSMPrivateEndpointConnectionByResourceRequest,
+  output: MHSMPrivateEndpointConnectionsListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListMHSMPrivateLinkResourceByMHSMResourceError = AzureOpError;
+/** Gets the private link resources supported for the managed hsm pool. */
+export const ListMHSMPrivateLinkResourceByMHSMResource: API.OperationMethod<
+  ListMHSMPrivateLinkResourceByMHSMResourceRequest,
+  MHSMPrivateLinkResourceListResult,
+  ListMHSMPrivateLinkResourceByMHSMResourceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListMHSMPrivateLinkResourceByMHSMResourceRequest,
+  output: MHSMPrivateLinkResourceListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListMHSMRegionByResourceError = AzureOpError;
+/** The List operation gets information about the regions associated with the managed HSM Pool. */
+export const ListMHSMRegionByResource: API.OperationMethod<
+  ListMHSMRegionByResourceRequest,
+  MHSMRegionsListResult,
+  ListMHSMRegionByResourceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListMHSMRegionByResourceRequest,
+  output: MHSMRegionsListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListOperationsError = AzureOpError;
+/** List the operations for the provider */
+export const ListOperations: API.OperationMethod<
+  ListOperationsRequest,
+  OperationListResult,
+  ListOperationsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListOperationsRequest,
+  output: OperationListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListPrivateEndpointConnectionByResourceError = AzureOpError;
+/** The List operation gets information about the private endpoint connections associated with the vault. */
+export const ListPrivateEndpointConnectionByResource: API.OperationMethod<
+  ListPrivateEndpointConnectionByResourceRequest,
+  PrivateEndpointConnectionListResult,
+  ListPrivateEndpointConnectionByResourceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListPrivateEndpointConnectionByResourceRequest,
+  output: PrivateEndpointConnectionListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListPrivateLinkResourceByVaultError = AzureOpError;
+/** Gets the private link resources supported for the key vault. */
+export const ListPrivateLinkResourceByVault: API.OperationMethod<
+  ListPrivateLinkResourceByVaultRequest,
+  PrivateLinkResourceListResult,
+  ListPrivateLinkResourceByVaultError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListPrivateLinkResourceByVaultRequest,
+  output: PrivateLinkResourceListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSecretsError = AzureOpError;
+/** The List operation gets information about the secrets in a vault. NOTE: This API is intended for internal use in ARM deployments. Users should use the data-plane REST service for interaction with vault secrets. */
+export const ListSecrets: API.OperationMethod<
+  ListSecretsRequest,
+  SecretListResult,
+  ListSecretsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSecretsRequest,
+  output: SecretListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListVaultByResourceGroupError = AzureOpError;
+/** The List operation gets information about the vaults associated with the subscription and within the specified resource group. */
+export const ListVaultByResourceGroup: API.OperationMethod<
+  ListVaultByResourceGroupRequest,
+  VaultListResult,
+  ListVaultByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListVaultByResourceGroupRequest,
+  output: VaultListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListVaultBySubscriptionError = AzureOpError;
+/** The List operation gets information about the vaults associated with the subscription. */
+export const ListVaultBySubscription: API.OperationMethod<
+  ListVaultBySubscriptionRequest,
+  VaultListResult,
+  ListVaultBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListVaultBySubscriptionRequest,
+  output: VaultListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListVaultDeletedError = AzureOpError;
+/** Gets information about the deleted vaults in a subscription. */
+export const ListVaultDeleted: API.OperationMethod<
+  ListVaultDeletedRequest,
+  DeletedVaultListResult,
+  ListVaultDeletedError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListVaultDeletedRequest,
+  output: DeletedVaultListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListVaultsError = AzureOpError;
+/** The List operation gets information about the vaults associated with the subscription. */
+export const ListVaults: API.OperationMethod<
+  ListVaultsRequest,
+  ResourceListResult,
+  ListVaultsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListVaultsRequest,
+  output: ResourceListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -5388,301 +5774,61 @@ export const ManagedHsmsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ManagedHsmsDeleteError = AzureOpError;
-/** Deletes the specified managed HSM Pool. */
-export const ManagedHsmsDelete: API.OperationMethod<
-  ManagedHsmsDeleteRequest,
-  ManagedHsmsDeleteResponse,
-  ManagedHsmsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ManagedHsmsDeleteRequest,
-  output: ManagedHsmsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ManagedHsmsGetError = AzureOpError;
-/** Gets the specified managed HSM Pool. */
-export const ManagedHsmsGet: API.OperationMethod<
-  ManagedHsmsGetRequest,
-  ManagedHsmsGetResponse,
-  ManagedHsmsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ManagedHsmsGetRequest,
-  output: ManagedHsmsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ManagedHsmsGetDeletedError = AzureOpError;
-/** Gets the specified deleted managed HSM. */
-export const ManagedHsmsGetDeleted: API.OperationMethod<
-  ManagedHsmsGetDeletedRequest,
-  ManagedHsmsGetDeletedResponse,
-  ManagedHsmsGetDeletedError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ManagedHsmsGetDeletedRequest,
-  output: ManagedHsmsGetDeletedResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ManagedHsmsListByResourceGroupError = AzureOpError;
-/** The List operation gets information about the managed HSM Pools associated with the subscription and within the specified resource group. */
-export const ManagedHsmsListByResourceGroup: API.OperationMethod<
-  ManagedHsmsListByResourceGroupRequest,
-  ManagedHsmListResult,
-  ManagedHsmsListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ManagedHsmsListByResourceGroupRequest,
-  output: ManagedHsmListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ManagedHsmsListBySubscriptionError = AzureOpError;
-/** The List operation gets information about the managed HSM Pools associated with the subscription. */
-export const ManagedHsmsListBySubscription: API.OperationMethod<
-  ManagedHsmsListBySubscriptionRequest,
-  ManagedHsmListResult,
-  ManagedHsmsListBySubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ManagedHsmsListBySubscriptionRequest,
-  output: ManagedHsmListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ManagedHsmsListDeletedError = AzureOpError;
-/** The List operation gets information about the deleted managed HSMs associated with the subscription. */
-export const ManagedHsmsListDeleted: API.OperationMethod<
-  ManagedHsmsListDeletedRequest,
-  DeletedManagedHsmListResult,
-  ManagedHsmsListDeletedError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ManagedHsmsListDeletedRequest,
-  output: DeletedManagedHsmListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ManagedHsmsPurgeDeletedError = AzureOpError;
+export type PurgeManagedHsmDeletedError = AzureOpError;
 /** Permanently deletes the specified managed HSM. */
-export const ManagedHsmsPurgeDeleted: API.OperationMethod<
-  ManagedHsmsPurgeDeletedRequest,
-  ManagedHsmsPurgeDeletedResponse,
-  ManagedHsmsPurgeDeletedError,
+export const PurgeManagedHsmDeleted: API.OperationMethod<
+  PurgeManagedHsmDeletedRequest,
+  PurgeManagedHsmDeletedResponse,
+  PurgeManagedHsmDeletedError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ManagedHsmsPurgeDeletedRequest,
-  output: ManagedHsmsPurgeDeletedResponse,
+  input: PurgeManagedHsmDeletedRequest,
+  output: PurgeManagedHsmDeletedResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ManagedHsmsUpdateError = AzureOpError;
-/** Update a managed HSM Pool in the specified subscription. */
-export const ManagedHsmsUpdate: API.OperationMethod<
-  ManagedHsmsUpdateRequest,
-  ManagedHsmsUpdateResponse,
-  ManagedHsmsUpdateError,
+export type PurgeVaultDeletedError = AzureOpError;
+/** Permanently deletes the specified vault. aka Purges the deleted Azure key vault. */
+export const PurgeVaultDeleted: API.OperationMethod<
+  PurgeVaultDeletedRequest,
+  PurgeVaultDeletedResponse,
+  PurgeVaultDeletedError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ManagedHsmsUpdateRequest,
-  output: ManagedHsmsUpdateResponse,
+  input: PurgeVaultDeletedRequest,
+  output: PurgeVaultDeletedResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type MHSMPrivateEndpointConnectionsDeleteError = AzureOpError;
-/** Deletes the specified private endpoint connection associated with the managed hsm pool. */
-export const MHSMPrivateEndpointConnectionsDelete: API.OperationMethod<
-  MHSMPrivateEndpointConnectionsDeleteRequest,
-  MHSMPrivateEndpointConnectionsDeleteResponse,
-  MHSMPrivateEndpointConnectionsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: MHSMPrivateEndpointConnectionsDeleteRequest,
-  output: MHSMPrivateEndpointConnectionsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type MHSMPrivateEndpointConnectionsGetError = AzureOpError;
-/** Gets the specified private endpoint connection associated with the managed HSM Pool. */
-export const MHSMPrivateEndpointConnectionsGet: API.OperationMethod<
-  MHSMPrivateEndpointConnectionsGetRequest,
-  MHSMPrivateEndpointConnectionsGetResponse,
-  MHSMPrivateEndpointConnectionsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: MHSMPrivateEndpointConnectionsGetRequest,
-  output: MHSMPrivateEndpointConnectionsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type MHSMPrivateEndpointConnectionsListByResourceError = AzureOpError;
-/** The List operation gets information about the private endpoint connections associated with the managed HSM Pool. */
-export const MHSMPrivateEndpointConnectionsListByResource: API.OperationMethod<
-  MHSMPrivateEndpointConnectionsListByResourceRequest,
-  MHSMPrivateEndpointConnectionsListResult,
-  MHSMPrivateEndpointConnectionsListByResourceError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: MHSMPrivateEndpointConnectionsListByResourceRequest,
-  output: MHSMPrivateEndpointConnectionsListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type MHSMPrivateEndpointConnectionsPutError = AzureOpError;
+export type PutMHSMPrivateEndpointConnectionError = AzureOpError;
 /** Updates the specified private endpoint connection associated with the managed hsm pool. */
-export const MHSMPrivateEndpointConnectionsPut: API.OperationMethod<
-  MHSMPrivateEndpointConnectionsPutRequest,
-  MHSMPrivateEndpointConnectionsPutResponse,
-  MHSMPrivateEndpointConnectionsPutError,
+export const PutMHSMPrivateEndpointConnection: API.OperationMethod<
+  PutMHSMPrivateEndpointConnectionRequest,
+  PutMHSMPrivateEndpointConnectionResponse,
+  PutMHSMPrivateEndpointConnectionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: MHSMPrivateEndpointConnectionsPutRequest,
-  output: MHSMPrivateEndpointConnectionsPutResponse,
+  input: PutMHSMPrivateEndpointConnectionRequest,
+  output: PutMHSMPrivateEndpointConnectionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type MHSMPrivateLinkResourcesListByMHSMResourceError = AzureOpError;
-/** Gets the private link resources supported for the managed hsm pool. */
-export const MHSMPrivateLinkResourcesListByMHSMResource: API.OperationMethod<
-  MHSMPrivateLinkResourcesListByMHSMResourceRequest,
-  MHSMPrivateLinkResourceListResult,
-  MHSMPrivateLinkResourcesListByMHSMResourceError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: MHSMPrivateLinkResourcesListByMHSMResourceRequest,
-  output: MHSMPrivateLinkResourceListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type MHSMRegionsListByResourceError = AzureOpError;
-/** The List operation gets information about the regions associated with the managed HSM Pool. */
-export const MHSMRegionsListByResource: API.OperationMethod<
-  MHSMRegionsListByResourceRequest,
-  MHSMRegionsListResult,
-  MHSMRegionsListByResourceError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: MHSMRegionsListByResourceRequest,
-  output: MHSMRegionsListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type OperationsListError = AzureOpError;
-/** List the operations for the provider */
-export const OperationsList: API.OperationMethod<
-  OperationsListRequest,
-  OperationListResult,
-  OperationsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: OperationsListRequest,
-  output: OperationListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateEndpointConnectionsDeleteError = AzureOpError;
-/** Deletes the specified private endpoint connection associated with the key vault. */
-export const PrivateEndpointConnectionsDelete: API.OperationMethod<
-  PrivateEndpointConnectionsDeleteRequest,
-  PrivateEndpointConnectionsDeleteResponse,
-  PrivateEndpointConnectionsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateEndpointConnectionsDeleteRequest,
-  output: PrivateEndpointConnectionsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateEndpointConnectionsGetError = AzureOpError;
-/** Gets the specified private endpoint connection associated with the key vault. */
-export const PrivateEndpointConnectionsGet: API.OperationMethod<
-  PrivateEndpointConnectionsGetRequest,
-  PrivateEndpointConnectionsGetResponse,
-  PrivateEndpointConnectionsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateEndpointConnectionsGetRequest,
-  output: PrivateEndpointConnectionsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateEndpointConnectionsListByResourceError = AzureOpError;
-/** The List operation gets information about the private endpoint connections associated with the vault. */
-export const PrivateEndpointConnectionsListByResource: API.OperationMethod<
-  PrivateEndpointConnectionsListByResourceRequest,
-  PrivateEndpointConnectionListResult,
-  PrivateEndpointConnectionsListByResourceError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateEndpointConnectionsListByResourceRequest,
-  output: PrivateEndpointConnectionListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateEndpointConnectionsPutError = AzureOpError;
+export type PutPrivateEndpointConnectionError = AzureOpError;
 /** Updates the specified private endpoint connection associated with the key vault. */
-export const PrivateEndpointConnectionsPut: API.OperationMethod<
-  PrivateEndpointConnectionsPutRequest,
-  PrivateEndpointConnectionsPutResponse,
-  PrivateEndpointConnectionsPutError,
+export const PutPrivateEndpointConnection: API.OperationMethod<
+  PutPrivateEndpointConnectionRequest,
+  PutPrivateEndpointConnectionResponse,
+  PutPrivateEndpointConnectionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PrivateEndpointConnectionsPutRequest,
-  output: PrivateEndpointConnectionsPutResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateLinkResourcesListByVaultError = AzureOpError;
-/** Gets the private link resources supported for the key vault. */
-export const PrivateLinkResourcesListByVault: API.OperationMethod<
-  PrivateLinkResourcesListByVaultRequest,
-  PrivateLinkResourceListResult,
-  PrivateLinkResourcesListByVaultError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateLinkResourcesListByVaultRequest,
-  output: PrivateLinkResourceListResult,
+  input: PutPrivateEndpointConnectionRequest,
+  output: PutPrivateEndpointConnectionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -5703,61 +5849,61 @@ export const SecretsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type SecretsGetError = AzureOpError;
-/** Gets the specified secret. NOTE: This API is intended for internal use in ARM deployments. Users should use the data-plane REST service for interaction with vault secrets. */
-export const SecretsGet: API.OperationMethod<
-  SecretsGetRequest,
-  SecretsGetResponse,
-  SecretsGetError,
+export type UpdateManagedHsmError = AzureOpError;
+/** Update a managed HSM Pool in the specified subscription. */
+export const UpdateManagedHsm: API.OperationMethod<
+  UpdateManagedHsmRequest,
+  UpdateManagedHsmResponse,
+  UpdateManagedHsmError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SecretsGetRequest,
-  output: SecretsGetResponse,
+  input: UpdateManagedHsmRequest,
+  output: UpdateManagedHsmResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type SecretsListError = AzureOpError;
-/** The List operation gets information about the secrets in a vault. NOTE: This API is intended for internal use in ARM deployments. Users should use the data-plane REST service for interaction with vault secrets. */
-export const SecretsList: API.OperationMethod<
-  SecretsListRequest,
-  SecretListResult,
-  SecretsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SecretsListRequest,
-  output: SecretListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SecretsUpdateError = AzureOpError;
+export type UpdateSecretError = AzureOpError;
 /** Update a secret in the specified subscription. NOTE: This API is intended for internal use in ARM deployments. Users should use the data-plane REST service for interaction with vault secrets. */
-export const SecretsUpdate: API.OperationMethod<
-  SecretsUpdateRequest,
-  SecretsUpdateResponse,
-  SecretsUpdateError,
+export const UpdateSecret: API.OperationMethod<
+  UpdateSecretRequest,
+  UpdateSecretResponse,
+  UpdateSecretError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SecretsUpdateRequest,
-  output: SecretsUpdateResponse,
+  input: UpdateSecretRequest,
+  output: UpdateSecretResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type VaultsCheckNameAvailabilityError = AzureOpError;
-/** Checks that the vault name is valid and is not already in use. */
-export const VaultsCheckNameAvailability: API.OperationMethod<
-  VaultsCheckNameAvailabilityRequest,
-  CheckNameAvailabilityResult,
-  VaultsCheckNameAvailabilityError,
+export type UpdateVaultError = AzureOpError;
+/** Update a key vault in the specified subscription. */
+export const UpdateVault: API.OperationMethod<
+  UpdateVaultRequest,
+  UpdateVaultResponse,
+  UpdateVaultError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: VaultsCheckNameAvailabilityRequest,
-  output: CheckNameAvailabilityResult,
+  input: UpdateVaultRequest,
+  output: UpdateVaultResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateVaultAccessPolicyError = AzureOpError;
+/** Update access policies in a key vault in the specified subscription. */
+export const UpdateVaultAccessPolicy: API.OperationMethod<
+  UpdateVaultAccessPolicyRequest,
+  VaultAccessPolicyParameters,
+  UpdateVaultAccessPolicyError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateVaultAccessPolicyRequest,
+  output: VaultAccessPolicyParameters,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -5773,156 +5919,6 @@ export const VaultsCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: VaultsCreateOrUpdateRequest,
   output: VaultsCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VaultsDeleteError = AzureOpError;
-/** Deletes the specified Azure key vault. */
-export const VaultsDelete: API.OperationMethod<
-  VaultsDeleteRequest,
-  VaultsDeleteResponse,
-  VaultsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VaultsDeleteRequest,
-  output: VaultsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VaultsGetError = AzureOpError;
-/** Gets the specified Azure key vault. */
-export const VaultsGet: API.OperationMethod<
-  VaultsGetRequest,
-  VaultsGetResponse,
-  VaultsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VaultsGetRequest,
-  output: VaultsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VaultsGetDeletedError = AzureOpError;
-/** Gets the deleted Azure key vault. */
-export const VaultsGetDeleted: API.OperationMethod<
-  VaultsGetDeletedRequest,
-  VaultsGetDeletedResponse,
-  VaultsGetDeletedError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VaultsGetDeletedRequest,
-  output: VaultsGetDeletedResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VaultsListError = AzureOpError;
-/** The List operation gets information about the vaults associated with the subscription. */
-export const VaultsList: API.OperationMethod<
-  VaultsListRequest,
-  ResourceListResult,
-  VaultsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VaultsListRequest,
-  output: ResourceListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VaultsListByResourceGroupError = AzureOpError;
-/** The List operation gets information about the vaults associated with the subscription and within the specified resource group. */
-export const VaultsListByResourceGroup: API.OperationMethod<
-  VaultsListByResourceGroupRequest,
-  VaultListResult,
-  VaultsListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VaultsListByResourceGroupRequest,
-  output: VaultListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VaultsListBySubscriptionError = AzureOpError;
-/** The List operation gets information about the vaults associated with the subscription. */
-export const VaultsListBySubscription: API.OperationMethod<
-  VaultsListBySubscriptionRequest,
-  VaultListResult,
-  VaultsListBySubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VaultsListBySubscriptionRequest,
-  output: VaultListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VaultsListDeletedError = AzureOpError;
-/** Gets information about the deleted vaults in a subscription. */
-export const VaultsListDeleted: API.OperationMethod<
-  VaultsListDeletedRequest,
-  DeletedVaultListResult,
-  VaultsListDeletedError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VaultsListDeletedRequest,
-  output: DeletedVaultListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VaultsPurgeDeletedError = AzureOpError;
-/** Permanently deletes the specified vault. aka Purges the deleted Azure key vault. */
-export const VaultsPurgeDeleted: API.OperationMethod<
-  VaultsPurgeDeletedRequest,
-  VaultsPurgeDeletedResponse,
-  VaultsPurgeDeletedError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VaultsPurgeDeletedRequest,
-  output: VaultsPurgeDeletedResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VaultsUpdateError = AzureOpError;
-/** Update a key vault in the specified subscription. */
-export const VaultsUpdate: API.OperationMethod<
-  VaultsUpdateRequest,
-  VaultsUpdateResponse,
-  VaultsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VaultsUpdateRequest,
-  output: VaultsUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VaultsUpdateAccessPolicyError = AzureOpError;
-/** Update access policies in a key vault in the specified subscription. */
-export const VaultsUpdateAccessPolicy: API.OperationMethod<
-  VaultsUpdateAccessPolicyRequest,
-  VaultAccessPolicyParameters,
-  VaultsUpdateAccessPolicyError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VaultsUpdateAccessPolicyRequest,
-  output: VaultAccessPolicyParameters,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

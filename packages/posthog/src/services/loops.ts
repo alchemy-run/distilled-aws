@@ -64,10 +64,10 @@ export const LoopRepositoryEntry = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<LoopRepositoryEntry>;
 
 /** Repositories this loop operates on, ordered. Capped at 1 until multi-repo execution ships. May be empty for report-only loops. */
-export type LoopsCreateRequestRepositoriesList = Array<LoopRepositoryEntry>;
-export const LoopsCreateRequestRepositoriesList = /*@__PURE__*/ S.Array(
+export type CreateLoopRequestRepositoriesList = Array<LoopRepositoryEntry>;
+export const CreateLoopRequestRepositoriesList = /*@__PURE__*/ S.Array(
   LoopRepositoryEntry,
-) as any as S.Schema<LoopsCreateRequestRepositoriesList>;
+) as any as S.Schema<CreateLoopRequestRepositoriesList>;
 
 /** * `skip` - skip * `allow` - allow * `cancel_previous` - cancel_previous */
 export type OverlapPolicyEnum = "skip" | "allow" | "cancel_previous";
@@ -238,12 +238,12 @@ export const LoopTriggerWrite = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<LoopTriggerWrite>;
 
 /** Full desired trigger list, id-stable: entries with a matching `id` are updated in place, entries without one are created, and existing triggers absent from this list are deleted. Omit the field entirely to leave triggers untouched. At most 25 triggers per loop. */
-export type LoopsCreateRequestTriggersList = Array<LoopTriggerWrite>;
-export const LoopsCreateRequestTriggersList = /*@__PURE__*/ S.Array(
+export type CreateLoopRequestTriggersList = Array<LoopTriggerWrite>;
+export const CreateLoopRequestTriggersList = /*@__PURE__*/ S.Array(
   LoopTriggerWrite,
-) as any as S.Schema<LoopsCreateRequestTriggersList>;
+) as any as S.Schema<CreateLoopRequestTriggersList>;
 
-export interface LoopsCreateRequest {
+export interface CreateLoopRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** Display name for the loop. */
@@ -263,7 +263,7 @@ export interface LoopsCreateRequest {
   /** Reasoning effort, validated against `runtime_adapter`/`model`'s supported set. * `low` - low * `medium` - medium * `high` - high * `xhigh` - xhigh * `max` - max * `ultracode` - ultracode */
   reasoning_effort?: ReasoningEffortEnum | (string & {}) | null;
   /** Repositories this loop operates on, ordered. Capped at 1 until multi-repo execution ships. May be empty for report-only loops. */
-  repositories?: LoopsCreateRequestRepositoriesList;
+  repositories?: CreateLoopRequestRepositoriesList;
   /** Sandbox environment carrying encrypted env vars and the network allowlist into every run. */
   sandbox_environment?: string | null;
   /** Whether the loop's triggers are active. Pausing disables all triggers. */
@@ -279,9 +279,9 @@ export interface LoopsCreateRequest {
   /** Context (channel) this loop is attached to, or null to detach. Drives feed placement and the context.md / canvas it keeps up to date. */
   context_target?: LoopContextTargetWrite | null;
   /** Full desired trigger list, id-stable: entries with a matching `id` are updated in place, entries without one are created, and existing triggers absent from this list are deleted. Omit the field entirely to leave triggers untouched. At most 25 triggers per loop. */
-  triggers?: LoopsCreateRequestTriggersList;
+  triggers?: CreateLoopRequestTriggersList;
 }
-export const LoopsCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateLoopRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     name: S.String,
@@ -292,7 +292,7 @@ export const LoopsCreateRequest = /*@__PURE__*/ S.suspend(() =>
     runtime_adapter: RuntimeAdapterEnum,
     model: S.optional(S.String),
     reasoning_effort: S.optional(S.NullOr(ReasoningEffortEnum)),
-    repositories: S.optional(LoopsCreateRequestRepositoriesList),
+    repositories: S.optional(CreateLoopRequestRepositoriesList),
     sandbox_environment: S.optional(S.NullOr(S.String)),
     enabled: S.optional(S.Boolean),
     overlap_policy: S.optional(OverlapPolicyEnum),
@@ -300,7 +300,7 @@ export const LoopsCreateRequest = /*@__PURE__*/ S.suspend(() =>
     connectors: S.optional(LoopConnectors),
     notifications: S.optional(LoopNotifications),
     context_target: S.optional(S.NullOr(LoopContextTargetWrite)),
-    triggers: S.optional(LoopsCreateRequestTriggersList),
+    triggers: S.optional(CreateLoopRequestTriggersList),
   }).pipe(
     T.Http({
       method: "POST",
@@ -309,8 +309,8 @@ export const LoopsCreateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "LoopsCreateRequest",
-}) as any as S.Schema<LoopsCreateRequest>;
+  identifier: "CreateLoopRequest",
+}) as any as S.Schema<CreateLoopRequest>;
 
 export interface LoopRepositoryEntryDTO {
   github_integration_id: number;
@@ -578,170 +578,7 @@ export const LoopDTO = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "LoopDTO" }) as any as S.Schema<LoopDTO>;
 
-export interface LoopsDestroyRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  id: string;
-}
-export const LoopsDestroyRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/api/projects/{project_id}/loops/{id}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "LoopsDestroyRequest",
-}) as any as S.Schema<LoopsDestroyRequest>;
-
-export interface LoopsDestroyResponse {}
-export const LoopsDestroyResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "LoopsDestroyResponse",
-}) as any as S.Schema<LoopsDestroyResponse>;
-
-export interface LoopsListRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** Number of results to return per page. */
-  limit?: number;
-  /** The initial index from which to return the results. */
-  offset?: number;
-}
-export const LoopsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    offset: S.optional(S.Number.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/loops/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "LoopsListRequest",
-}) as any as S.Schema<LoopsListRequest>;
-
-export type PaginatedLoopDTOListResultsList = Array<LoopDTO>;
-export const PaginatedLoopDTOListResultsList = /*@__PURE__*/ S.Array(
-  LoopDTO,
-) as any as S.Schema<PaginatedLoopDTOListResultsList>;
-
-export interface PaginatedLoopDTOList {
-  count: number;
-  next?: string | null;
-  previous?: string | null;
-  results: PaginatedLoopDTOListResultsList;
-  /** Hard cap on non-deleted loops per project. Creating a loop beyond this returns a 429 with `error: loop_safety_limit`. Authoritative — read this rather than assuming a value. */
-  max_loops_per_team?: number;
-  /** Current number of non-deleted, user-facing loops in this project, counted against `max_loops_per_team`. At or above the cap, creation is blocked. */
-  total_loop_count?: number;
-}
-export const PaginatedLoopDTOList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    count: S.Number,
-    next: S.optional(S.NullOr(S.String)),
-    previous: S.optional(S.NullOr(S.String)),
-    results: PaginatedLoopDTOListResultsList,
-    max_loops_per_team: S.optional(S.Number),
-    total_loop_count: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "PaginatedLoopDTOList",
-}) as any as S.Schema<PaginatedLoopDTOList>;
-
-/** Repositories this loop operates on, ordered. Capped at 1 until multi-repo execution ships. May be empty for report-only loops. */
-export type LoopsPartialUpdateRequestRepositoriesList =
-  Array<LoopRepositoryEntry>;
-export const LoopsPartialUpdateRequestRepositoriesList = /*@__PURE__*/ S.Array(
-  LoopRepositoryEntry,
-) as any as S.Schema<LoopsPartialUpdateRequestRepositoriesList>;
-
-/** Full desired trigger list, id-stable: entries with a matching `id` are updated in place, entries without one are created, and existing triggers absent from this list are deleted. Omit the field entirely to leave triggers untouched. At most 25 triggers per loop. */
-export type LoopsPartialUpdateRequestTriggersList = Array<LoopTriggerWrite>;
-export const LoopsPartialUpdateRequestTriggersList = /*@__PURE__*/ S.Array(
-  LoopTriggerWrite,
-) as any as S.Schema<LoopsPartialUpdateRequestTriggersList>;
-
-export interface LoopsPartialUpdateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  id: string;
-  /** Display name for the loop. */
-  name?: string;
-  /** Free-form description of what this loop does. */
-  description?: string;
-  /** On a team loop, claim ownership as part of this update so you can edit identity-bearing config (instructions, model, triggers, ...) that only the owner may change. Ignored on personal loops and on create. */
-  take_ownership?: boolean;
-  /** `personal` (owner-only) or `team` (visible and fireable by any team member). * `personal` - personal * `team` - team */
-  visibility?: VisibilityEnum | (string & {});
-  /** The prompt delivered to the agent on every run. */
-  instructions?: string;
-  /** Runtime adapter: 'claude' or 'codex'. * `claude` - claude * `codex` - codex */
-  runtime_adapter?: RuntimeAdapterEnum | (string & {});
-  /** LLM model identifier, validated against `runtime_adapter`'s catalog. Leave blank to let PostHog pick a sensible default at run time. */
-  model?: string;
-  /** Reasoning effort, validated against `runtime_adapter`/`model`'s supported set. * `low` - low * `medium` - medium * `high` - high * `xhigh` - xhigh * `max` - max * `ultracode` - ultracode */
-  reasoning_effort?: ReasoningEffortEnum | (string & {}) | null;
-  /** Repositories this loop operates on, ordered. Capped at 1 until multi-repo execution ships. May be empty for report-only loops. */
-  repositories?: LoopsPartialUpdateRequestRepositoriesList;
-  /** Sandbox environment carrying encrypted env vars and the network allowlist into every run. */
-  sandbox_environment?: string | null;
-  /** Whether the loop's triggers are active. Pausing disables all triggers. */
-  enabled?: boolean;
-  /** What happens when a trigger fires while a run is already active: 'skip', 'allow', or 'cancel_previous'. * `skip` - skip * `allow` - allow * `cancel_previous` - cancel_previous */
-  overlap_policy?: OverlapPolicyEnum | (string & {});
-  /** PR / CI-follow-up behavior configuration. */
-  behaviors?: LoopBehaviors;
-  /** MCP connector configuration for this loop's runs. */
-  connectors?: LoopConnectors;
-  /** Per-channel notification configuration. */
-  notifications?: LoopNotifications;
-  /** Context (channel) this loop is attached to, or null to detach. Drives feed placement and the context.md / canvas it keeps up to date. */
-  context_target?: LoopContextTargetWrite | null;
-  /** Full desired trigger list, id-stable: entries with a matching `id` are updated in place, entries without one are created, and existing triggers absent from this list are deleted. Omit the field entirely to leave triggers untouched. At most 25 triggers per loop. */
-  triggers?: LoopsPartialUpdateRequestTriggersList;
-}
-export const LoopsPartialUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-    name: S.optional(S.String),
-    description: S.optional(S.String),
-    take_ownership: S.optional(S.Boolean),
-    visibility: S.optional(VisibilityEnum),
-    instructions: S.optional(S.String),
-    runtime_adapter: S.optional(RuntimeAdapterEnum),
-    model: S.optional(S.String),
-    reasoning_effort: S.optional(S.NullOr(ReasoningEffortEnum)),
-    repositories: S.optional(LoopsPartialUpdateRequestRepositoriesList),
-    sandbox_environment: S.optional(S.NullOr(S.String)),
-    enabled: S.optional(S.Boolean),
-    overlap_policy: S.optional(OverlapPolicyEnum),
-    behaviors: S.optional(LoopBehaviors),
-    connectors: S.optional(LoopConnectors),
-    notifications: S.optional(LoopNotifications),
-    context_target: S.optional(S.NullOr(LoopContextTargetWrite)),
-    triggers: S.optional(LoopsPartialUpdateRequestTriggersList),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/api/projects/{project_id}/loops/{id}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "LoopsPartialUpdateRequest",
-}) as any as S.Schema<LoopsPartialUpdateRequest>;
-
-export interface LoopsPreviewCreateRequest {
+export interface CreateLoopsPreviewRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   id: string;
@@ -750,7 +587,7 @@ export interface LoopsPreviewCreateRequest {
   /** Sample trigger payload, e.g. a GitHub webhook body or an API trigger body, to render into context. */
   payload?: unknown;
 }
-export const LoopsPreviewCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateLoopsPreviewRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     id: S.String.pipe(T.Label()),
@@ -764,8 +601,8 @@ export const LoopsPreviewCreateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "LoopsPreviewCreateRequest",
-}) as any as S.Schema<LoopsPreviewCreateRequest>;
+  identifier: "CreateLoopsPreviewRequest",
+}) as any as S.Schema<CreateLoopsPreviewRequest>;
 
 export interface LoopPreviewDTO {
   instructions: string;
@@ -780,32 +617,12 @@ export const LoopPreviewDTO = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "LoopPreviewDTO" }) as any as S.Schema<LoopPreviewDTO>;
 
-export interface LoopsRetrieveRequest {
+export interface CreateLoopsRunRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   id: string;
 }
-export const LoopsRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/loops/{id}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "LoopsRetrieveRequest",
-}) as any as S.Schema<LoopsRetrieveRequest>;
-
-export interface LoopsRunCreateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  id: string;
-}
-export const LoopsRunCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateLoopsRunRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     id: S.String.pipe(T.Label()),
@@ -817,8 +634,8 @@ export const LoopsRunCreateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "LoopsRunCreateRequest",
-}) as any as S.Schema<LoopsRunCreateRequest>;
+  identifier: "CreateLoopsRunRequest",
+}) as any as S.Schema<CreateLoopsRunRequest>;
 
 /** * `created` - created * `deduped` - deduped * `overlap_skipped` - overlap_skipped * `rate_capped` - rate_capped * `team_rate_capped` - team_rate_capped * `disabled` - disabled * `gate_blocked` - gate_blocked * `owner_inactive` - owner_inactive * `owner_changed` - owner_changed */
 export type LoopFireResultReasonEnum =
@@ -852,7 +669,25 @@ export const LoopFireResult = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "LoopFireResult" }) as any as S.Schema<LoopFireResult>;
 
-export interface LoopsRunsRetrieveRequest {
+export interface GetLoopRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  id: string;
+}
+export const GetLoopRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/loops/{id}/",
+      code: 200,
+    }),
+  ),
+).annotate({ identifier: "GetLoopRequest" }) as any as S.Schema<GetLoopRequest>;
+
+export interface GetLoopsRunRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   id: string;
@@ -861,7 +696,7 @@ export interface LoopsRunsRetrieveRequest {
   /** Max results per page (default 50, max 100). */
   limit?: number;
 }
-export const LoopsRunsRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetLoopsRunRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     id: S.String.pipe(T.Label()),
@@ -875,8 +710,8 @@ export const LoopsRunsRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "LoopsRunsRetrieveRequest",
-}) as any as S.Schema<LoopsRunsRetrieveRequest>;
+  identifier: "GetLoopsRunRequest",
+}) as any as S.Schema<GetLoopsRunRequest>;
 
 export type LoopRunDTOOutputMap = { [key: string]: unknown | undefined };
 export const LoopRunDTOOutputMap = /*@__PURE__*/ S.Record(
@@ -931,6 +766,199 @@ export const LoopRunPage = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "LoopRunPage" }) as any as S.Schema<LoopRunPage>;
 
+export interface ListLoopsRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** Number of results to return per page. */
+  limit?: number;
+  /** The initial index from which to return the results. */
+  offset?: number;
+}
+export const ListLoopsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    offset: S.optional(S.Number.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/loops/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListLoopsRequest",
+}) as any as S.Schema<ListLoopsRequest>;
+
+export type PaginatedLoopDTOListResultsList = Array<LoopDTO>;
+export const PaginatedLoopDTOListResultsList = /*@__PURE__*/ S.Array(
+  LoopDTO,
+) as any as S.Schema<PaginatedLoopDTOListResultsList>;
+
+export interface PaginatedLoopDTOList {
+  count: number;
+  next?: string | null;
+  previous?: string | null;
+  results: PaginatedLoopDTOListResultsList;
+  /** Hard cap on non-deleted loops per project. Creating a loop beyond this returns a 429 with `error: loop_safety_limit`. Authoritative — read this rather than assuming a value. */
+  max_loops_per_team?: number;
+  /** Current number of non-deleted, user-facing loops in this project, counted against `max_loops_per_team`. At or above the cap, creation is blocked. */
+  total_loop_count?: number;
+}
+export const PaginatedLoopDTOList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    count: S.Number,
+    next: S.optional(S.NullOr(S.String)),
+    previous: S.optional(S.NullOr(S.String)),
+    results: PaginatedLoopDTOListResultsList,
+    max_loops_per_team: S.optional(S.Number),
+    total_loop_count: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "PaginatedLoopDTOList",
+}) as any as S.Schema<PaginatedLoopDTOList>;
+
+export interface LoopsDestroyRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  id: string;
+}
+export const LoopsDestroyRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/api/projects/{project_id}/loops/{id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "LoopsDestroyRequest",
+}) as any as S.Schema<LoopsDestroyRequest>;
+
+export interface LoopsDestroyResponse {}
+export const LoopsDestroyResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "LoopsDestroyResponse",
+}) as any as S.Schema<LoopsDestroyResponse>;
+
+export type LoopsTriggerCreateRequestBodyMap = {
+  [key: string]: unknown | undefined;
+};
+export const LoopsTriggerCreateRequestBodyMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.Unknown,
+) as any as S.Schema<LoopsTriggerCreateRequestBodyMap>;
+
+export interface LoopsTriggerCreateRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  id: string;
+  body?: LoopsTriggerCreateRequestBodyMap;
+}
+export const LoopsTriggerCreateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+    body: S.optional(LoopsTriggerCreateRequestBodyMap.pipe(T.HttpBody())),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/api/projects/{project_id}/loops/{id}/trigger/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "LoopsTriggerCreateRequest",
+}) as any as S.Schema<LoopsTriggerCreateRequest>;
+
+/** Repositories this loop operates on, ordered. Capped at 1 until multi-repo execution ships. May be empty for report-only loops. */
+export type UpdateLoopsPartialRequestRepositoriesList =
+  Array<LoopRepositoryEntry>;
+export const UpdateLoopsPartialRequestRepositoriesList = /*@__PURE__*/ S.Array(
+  LoopRepositoryEntry,
+) as any as S.Schema<UpdateLoopsPartialRequestRepositoriesList>;
+
+/** Full desired trigger list, id-stable: entries with a matching `id` are updated in place, entries without one are created, and existing triggers absent from this list are deleted. Omit the field entirely to leave triggers untouched. At most 25 triggers per loop. */
+export type UpdateLoopsPartialRequestTriggersList = Array<LoopTriggerWrite>;
+export const UpdateLoopsPartialRequestTriggersList = /*@__PURE__*/ S.Array(
+  LoopTriggerWrite,
+) as any as S.Schema<UpdateLoopsPartialRequestTriggersList>;
+
+export interface UpdateLoopsPartialRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  id: string;
+  /** Display name for the loop. */
+  name?: string;
+  /** Free-form description of what this loop does. */
+  description?: string;
+  /** On a team loop, claim ownership as part of this update so you can edit identity-bearing config (instructions, model, triggers, ...) that only the owner may change. Ignored on personal loops and on create. */
+  take_ownership?: boolean;
+  /** `personal` (owner-only) or `team` (visible and fireable by any team member). * `personal` - personal * `team` - team */
+  visibility?: VisibilityEnum | (string & {});
+  /** The prompt delivered to the agent on every run. */
+  instructions?: string;
+  /** Runtime adapter: 'claude' or 'codex'. * `claude` - claude * `codex` - codex */
+  runtime_adapter?: RuntimeAdapterEnum | (string & {});
+  /** LLM model identifier, validated against `runtime_adapter`'s catalog. Leave blank to let PostHog pick a sensible default at run time. */
+  model?: string;
+  /** Reasoning effort, validated against `runtime_adapter`/`model`'s supported set. * `low` - low * `medium` - medium * `high` - high * `xhigh` - xhigh * `max` - max * `ultracode` - ultracode */
+  reasoning_effort?: ReasoningEffortEnum | (string & {}) | null;
+  /** Repositories this loop operates on, ordered. Capped at 1 until multi-repo execution ships. May be empty for report-only loops. */
+  repositories?: UpdateLoopsPartialRequestRepositoriesList;
+  /** Sandbox environment carrying encrypted env vars and the network allowlist into every run. */
+  sandbox_environment?: string | null;
+  /** Whether the loop's triggers are active. Pausing disables all triggers. */
+  enabled?: boolean;
+  /** What happens when a trigger fires while a run is already active: 'skip', 'allow', or 'cancel_previous'. * `skip` - skip * `allow` - allow * `cancel_previous` - cancel_previous */
+  overlap_policy?: OverlapPolicyEnum | (string & {});
+  /** PR / CI-follow-up behavior configuration. */
+  behaviors?: LoopBehaviors;
+  /** MCP connector configuration for this loop's runs. */
+  connectors?: LoopConnectors;
+  /** Per-channel notification configuration. */
+  notifications?: LoopNotifications;
+  /** Context (channel) this loop is attached to, or null to detach. Drives feed placement and the context.md / canvas it keeps up to date. */
+  context_target?: LoopContextTargetWrite | null;
+  /** Full desired trigger list, id-stable: entries with a matching `id` are updated in place, entries without one are created, and existing triggers absent from this list are deleted. Omit the field entirely to leave triggers untouched. At most 25 triggers per loop. */
+  triggers?: UpdateLoopsPartialRequestTriggersList;
+}
+export const UpdateLoopsPartialRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+    name: S.optional(S.String),
+    description: S.optional(S.String),
+    take_ownership: S.optional(S.Boolean),
+    visibility: S.optional(VisibilityEnum),
+    instructions: S.optional(S.String),
+    runtime_adapter: S.optional(RuntimeAdapterEnum),
+    model: S.optional(S.String),
+    reasoning_effort: S.optional(S.NullOr(ReasoningEffortEnum)),
+    repositories: S.optional(UpdateLoopsPartialRequestRepositoriesList),
+    sandbox_environment: S.optional(S.NullOr(S.String)),
+    enabled: S.optional(S.Boolean),
+    overlap_policy: S.optional(OverlapPolicyEnum),
+    behaviors: S.optional(LoopBehaviors),
+    connectors: S.optional(LoopConnectors),
+    notifications: S.optional(LoopNotifications),
+    context_target: S.optional(S.NullOr(LoopContextTargetWrite)),
+    triggers: S.optional(UpdateLoopsPartialRequestTriggersList),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/api/projects/{project_id}/loops/{id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "UpdateLoopsPartialRequest",
+}) as any as S.Schema<UpdateLoopsPartialRequest>;
+
 /** * `user` - user * `repo` - repo * `marketplace` - marketplace * `codex` - codex */
 export type SkillSourceEnum = "user" | "repo" | "marketplace" | "codex";
 export const SkillSourceEnum = /*@__PURE__*/ S.String;
@@ -967,23 +995,23 @@ export const LoopSkillBundleUpload = /*@__PURE__*/ S.suspend(() =>
   identifier: "LoopSkillBundleUpload",
 }) as any as S.Schema<LoopSkillBundleUpload>;
 
-export type LoopsSkillBundlesUpdateRequestBundlesList =
+export type UpdateLoopsSkillBundleRequestBundlesList =
   Array<LoopSkillBundleUpload>;
-export const LoopsSkillBundlesUpdateRequestBundlesList = /*@__PURE__*/ S.Array(
+export const UpdateLoopsSkillBundleRequestBundlesList = /*@__PURE__*/ S.Array(
   LoopSkillBundleUpload,
-) as any as S.Schema<LoopsSkillBundlesUpdateRequestBundlesList>;
+) as any as S.Schema<UpdateLoopsSkillBundleRequestBundlesList>;
 
-export interface LoopsSkillBundlesUpdateRequest {
+export interface UpdateLoopsSkillBundleRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   id: string;
-  bundles: LoopsSkillBundlesUpdateRequestBundlesList;
+  bundles: UpdateLoopsSkillBundleRequestBundlesList;
 }
-export const LoopsSkillBundlesUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateLoopsSkillBundleRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     id: S.String.pipe(T.Label()),
-    bundles: LoopsSkillBundlesUpdateRequestBundlesList,
+    bundles: UpdateLoopsSkillBundleRequestBundlesList,
   }).pipe(
     T.Http({
       method: "PUT",
@@ -992,49 +1020,94 @@ export const LoopsSkillBundlesUpdateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "LoopsSkillBundlesUpdateRequest",
-}) as any as S.Schema<LoopsSkillBundlesUpdateRequest>;
+  identifier: "UpdateLoopsSkillBundleRequest",
+}) as any as S.Schema<UpdateLoopsSkillBundleRequest>;
 
-export type LoopsTriggerCreateRequestBodyMap = {
-  [key: string]: unknown | undefined;
-};
-export const LoopsTriggerCreateRequestBodyMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.Unknown,
-) as any as S.Schema<LoopsTriggerCreateRequestBodyMap>;
-
-export interface LoopsTriggerCreateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  id: string;
-  body?: LoopsTriggerCreateRequestBodyMap;
-}
-export const LoopsTriggerCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-    body: S.optional(LoopsTriggerCreateRequestBodyMap.pipe(T.HttpBody())),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/api/projects/{project_id}/loops/{id}/trigger/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "LoopsTriggerCreateRequest",
-}) as any as S.Schema<LoopsTriggerCreateRequest>;
-
-export type LoopsCreateError = PosthogOpError;
+export type CreateLoopError = PosthogOpError;
 /** Create a loop API for managing loops — named, cloud-executed agent automations triggered by schedule, GitHub events or authenticated API calls. See `products/tasks/docs/LOOPS.md`. */
-export const loopsCreate: API.OperationMethod<
-  LoopsCreateRequest,
+export const createLoop: API.OperationMethod<
+  CreateLoopRequest,
   LoopDTO,
-  LoopsCreateError,
+  CreateLoopError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: LoopsCreateRequest,
+  input: CreateLoopRequest,
   output: LoopDTO,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateLoopsPreviewError = NotFound | PosthogOpError;
+/** Preview a loop fire Dry run: renders the assembled instructions and trigger context for a supplied sample payload (or a synthetic schedule fire when omitted), without creating a task, run, or any other side effect. */
+export const createLoopsPreview: API.OperationMethod<
+  CreateLoopsPreviewRequest,
+  LoopPreviewDTO,
+  CreateLoopsPreviewError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateLoopsPreviewRequest,
+  output: LoopPreviewDTO,
+  errors: [NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateLoopsRunError = Forbidden | NotFound | PosthogOpError;
+/** Run a loop manually Manual fire from the UI. Owner-only for personal loops; any team member for team loops. */
+export const createLoopsRun: API.OperationMethod<
+  CreateLoopsRunRequest,
+  LoopFireResult,
+  CreateLoopsRunError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateLoopsRunRequest,
+  output: LoopFireResult,
+  errors: [Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetLoopError = NotFound | PosthogOpError;
+/** Get a loop API for managing loops — named, cloud-executed agent automations triggered by schedule, GitHub events or authenticated API calls. See `products/tasks/docs/LOOPS.md`. */
+export const getLoop: API.OperationMethod<
+  GetLoopRequest,
+  LoopDTO,
+  GetLoopError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetLoopRequest,
+  output: LoopDTO,
+  errors: [NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetLoopsRunError = NotFound | PosthogOpError;
+/** List loop runs Run history for a loop, newest first, cursor-paginated. */
+export const getLoopsRun: API.OperationMethod<
+  GetLoopsRunRequest,
+  LoopRunPage,
+  GetLoopsRunError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetLoopsRunRequest,
+  output: LoopRunPage,
+  errors: [NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListLoopsError = PosthogOpError;
+/** List loops List loops visible to the caller: personal loops they own, plus every team loop. The response also carries `max_loops_per_team` and `total_loop_count` so a client can show remaining capacity and disable creation at the cap without hardcoding the limit. */
+export const listLoops: API.OperationMethod<
+  ListLoopsRequest,
+  PaginatedLoopDTOList,
+  ListLoopsError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListLoopsRequest,
+  output: PaginatedLoopDTOList,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
@@ -1055,114 +1128,6 @@ export const loopsDestroy: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type LoopsListError = PosthogOpError;
-/** List loops List loops visible to the caller: personal loops they own, plus every team loop. The response also carries `max_loops_per_team` and `total_loop_count` so a client can show remaining capacity and disable creation at the cap without hardcoding the limit. */
-export const loopsList: API.OperationMethod<
-  LoopsListRequest,
-  PaginatedLoopDTOList,
-  LoopsListError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: LoopsListRequest,
-  output: PaginatedLoopDTOList,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type LoopsPartialUpdateError = Forbidden | NotFound | PosthogOpError;
-/** Update a loop Partial update. Identity-bearing fields (instructions, repositories, connectors, behaviors, model config, triggers) are owner-only on team loops; name, description, notifications and enable/pause are editable by any team member. */
-export const loopsPartialUpdate: API.OperationMethod<
-  LoopsPartialUpdateRequest,
-  LoopDTO,
-  LoopsPartialUpdateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: LoopsPartialUpdateRequest,
-  output: LoopDTO,
-  errors: [Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type LoopsPreviewCreateError = NotFound | PosthogOpError;
-/** Preview a loop fire Dry run: renders the assembled instructions and trigger context for a supplied sample payload (or a synthetic schedule fire when omitted), without creating a task, run, or any other side effect. */
-export const loopsPreviewCreate: API.OperationMethod<
-  LoopsPreviewCreateRequest,
-  LoopPreviewDTO,
-  LoopsPreviewCreateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: LoopsPreviewCreateRequest,
-  output: LoopPreviewDTO,
-  errors: [NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type LoopsRetrieveError = NotFound | PosthogOpError;
-/** Get a loop API for managing loops — named, cloud-executed agent automations triggered by schedule, GitHub events or authenticated API calls. See `products/tasks/docs/LOOPS.md`. */
-export const loopsRetrieve: API.OperationMethod<
-  LoopsRetrieveRequest,
-  LoopDTO,
-  LoopsRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: LoopsRetrieveRequest,
-  output: LoopDTO,
-  errors: [NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type LoopsRunCreateError = Forbidden | NotFound | PosthogOpError;
-/** Run a loop manually Manual fire from the UI. Owner-only for personal loops; any team member for team loops. */
-export const loopsRunCreate: API.OperationMethod<
-  LoopsRunCreateRequest,
-  LoopFireResult,
-  LoopsRunCreateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: LoopsRunCreateRequest,
-  output: LoopFireResult,
-  errors: [Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type LoopsRunsRetrieveError = NotFound | PosthogOpError;
-/** List loop runs Run history for a loop, newest first, cursor-paginated. */
-export const loopsRunsRetrieve: API.OperationMethod<
-  LoopsRunsRetrieveRequest,
-  LoopRunPage,
-  LoopsRunsRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: LoopsRunsRetrieveRequest,
-  output: LoopRunPage,
-  errors: [NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type LoopsSkillBundlesUpdateError =
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** Replace a loop's skill bundles Replaces the loop's attached skill bundles wholesale: zipped local skills whose contents are seeded into every fired run's sandbox. Send an empty list to detach every skill. Owner-only on team loops, like other identity-bearing configuration. */
-export const loopsSkillBundlesUpdate: API.OperationMethod<
-  LoopsSkillBundlesUpdateRequest,
-  LoopDTO,
-  LoopsSkillBundlesUpdateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: LoopsSkillBundlesUpdateRequest,
-  output: LoopDTO,
-  errors: [Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
 export type LoopsTriggerCreateError = NotFound | PosthogOpError;
 /** Fire a loop externally Authenticated POST trigger for `type=api` triggers. Project secret API key auth (`loop:write` scope), project-wide. Request body (JSON, capped at 64 KB) becomes run context. Send an `Idempotency-Key` header to dedupe retries. */
 export const loopsTriggerCreate: API.OperationMethod<
@@ -1174,6 +1139,36 @@ export const loopsTriggerCreate: API.OperationMethod<
   input: LoopsTriggerCreateRequest,
   output: LoopFireResult,
   errors: [NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateLoopsPartialError = Forbidden | NotFound | PosthogOpError;
+/** Update a loop Partial update. Identity-bearing fields (instructions, repositories, connectors, behaviors, model config, triggers) are owner-only on team loops; name, description, notifications and enable/pause are editable by any team member. */
+export const updateLoopsPartial: API.OperationMethod<
+  UpdateLoopsPartialRequest,
+  LoopDTO,
+  UpdateLoopsPartialError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateLoopsPartialRequest,
+  output: LoopDTO,
+  errors: [Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateLoopsSkillBundleError = Forbidden | NotFound | PosthogOpError;
+/** Replace a loop's skill bundles Replaces the loop's attached skill bundles wholesale: zipped local skills whose contents are seeded into every fired run's sandbox. Send an empty list to detach every skill. Owner-only on team loops, like other identity-bearing configuration. */
+export const updateLoopsSkillBundle: API.OperationMethod<
+  UpdateLoopsSkillBundleRequest,
+  LoopDTO,
+  UpdateLoopsSkillBundleError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateLoopsSkillBundleRequest,
+  output: LoopDTO,
+  errors: [Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));

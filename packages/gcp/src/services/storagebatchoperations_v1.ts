@@ -143,21 +143,165 @@ export const Empty = /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
   identifier: "Empty",
 }) as any as S.Schema<Empty>;
 
+export type JobStateEnum =
+  | "STATE_UNSPECIFIED"
+  | "RUNNING"
+  | "SUCCEEDED"
+  | "CANCELED"
+  | "FAILED"
+  | "QUEUED";
+export const JobStateEnum = /*@__PURE__*/ S.String;
+
+export type RewriteObjectStorageClassEnum =
+  | "STORAGE_CLASS_UNSPECIFIED"
+  | "STANDARD"
+  | "NEARLINE"
+  | "COLDLINE"
+  | "ARCHIVE";
+export const RewriteObjectStorageClassEnum = /*@__PURE__*/ S.String;
+
+/** Describes options for object rewrite. */
+export interface RewriteObject {
+  /** Optional. Rewrites the object to the specified storage class. Setting this field will perform a full byte copy of the object if the storage class is different from the object's current storage class. If Autoclass is enabled on the bucket, storage class changes are ignored by Cloud Storage. */
+  storageClass?: RewriteObjectStorageClassEnum | (string & {});
+  /** Optional. Resource name of the Cloud KMS key that is used to encrypt the object. The Cloud KMS key must be located in same location as the object. For details, see https://cloud.google.com/storage/docs/encryption/using-customer-managed-keys#add-object-key Format: `projects/{project_id}/locations/{location}/keyRings/{keyring}/cryptoKeys/{key}` For example: `projects/123456/locations/us-central1/keyRings/my-keyring/cryptoKeys/my-key`. The object will be rewritten and set with the specified KMS key. */
+  kmsKey?: string;
+}
+export const RewriteObject = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    storageClass: S.optional(RewriteObjectStorageClassEnum),
+    kmsKey: S.optional(S.String),
+  }),
+).annotate({ identifier: "RewriteObject" }) as any as S.Schema<RewriteObject>;
+
+/** Describes details about the progress of the job. */
+export interface Counters {
+  /** Output only. Number of object custom contexts created. This field is only populated for jobs with the UpdateObjectCustomContext transformation. */
+  objectCustomContextsCreated?: string;
+  /** Output only. The number of objects that failed due to user errors or service errors. */
+  failedObjectCount?: string;
+  /** Output only. Number of bytes found from source. This field is only populated for jobs with a prefix list object configuration. */
+  totalBytesFound?: string;
+  /** Output only. Number of object custom contexts deleted. This field is only populated for jobs with the UpdateObjectCustomContext transformation. */
+  objectCustomContextsDeleted?: string;
+  /** Output only. Number of object custom contexts updated. This counter tracks custom contexts where the key already existed, but the payload was modified. This field is only populated for jobs with the UpdateObjectCustomContext transformation. */
+  objectCustomContextsUpdated?: string;
+  /** Output only. The total number of bytes affected by the transformation. For example, this counts bytes deleted for `DeleteObject` operations and bytes rewritten for `RewriteObject` operations. */
+  totalBytesTransformed?: string;
+  /** Output only. Number of objects completed. */
+  succeededObjectCount?: string;
+  /** Output only. Number of objects listed. */
+  totalObjectCount?: string;
+}
+export const Counters = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    objectCustomContextsCreated: S.optional(S.String),
+    failedObjectCount: S.optional(S.String),
+    totalBytesFound: S.optional(S.String),
+    objectCustomContextsDeleted: S.optional(S.String),
+    objectCustomContextsUpdated: S.optional(S.String),
+    totalBytesTransformed: S.optional(S.String),
+    succeededObjectCount: S.optional(S.String),
+    totalObjectCount: S.optional(S.String),
+  }),
+).annotate({ identifier: "Counters" }) as any as S.Schema<Counters>;
+
 export type StringList = Array<string>;
 export const StringList = /*@__PURE__*/ S.Array(
   S.String,
 ) as any as S.Schema<StringList>;
 
-/** Describes prefixes of objects to be transformed. */
-export interface PrefixList {
-  /** Optional. Specify one or more object prefixes. For example: * To match one object, use a single prefix, `prefix1`. * To match multiple objects, use comma-separated prefixes, `prefix1, prefix2`. * To match all objects, use an empty prefix, `''` */
-  includedObjectPrefixes?: StringList;
+/** Describes the payload of a user-defined object custom context. */
+export interface ObjectCustomContextPayload {
+  /** The value of the object custom context. If set, `value` can't be an empty string because it is a required field in custom context. If unset, `value` is ignored and no changes are made to the `value` field of the custom context payload. */
+  value?: string;
 }
-export const PrefixList = /*@__PURE__*/ S.suspend(() =>
+export const ObjectCustomContextPayload = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    includedObjectPrefixes: S.optional(StringList),
+    value: S.optional(S.String),
   }),
-).annotate({ identifier: "PrefixList" }) as any as S.Schema<PrefixList>;
+).annotate({
+  identifier: "ObjectCustomContextPayload",
+}) as any as S.Schema<ObjectCustomContextPayload>;
+
+export type ObjectCustomContextPayloadMap = {
+  [key: string]: ObjectCustomContextPayload | undefined;
+};
+export const ObjectCustomContextPayloadMap = /*@__PURE__*/ S.Record(
+  S.String,
+  ObjectCustomContextPayload,
+) as any as S.Schema<ObjectCustomContextPayloadMap>;
+
+/** Describes a collection of updates to apply to custom contexts identified by key. */
+export interface CustomContextUpdates {
+  /** Optional. Custom contexts to clear by key. A key can't be present in both `updates` and `keys_to_clear`. */
+  keysToClear?: StringList;
+  /** Optional. Insert or update the existing custom contexts. */
+  updates?: ObjectCustomContextPayloadMap;
+}
+export const CustomContextUpdates = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    keysToClear: S.optional(StringList),
+    updates: S.optional(ObjectCustomContextPayloadMap),
+  }),
+).annotate({
+  identifier: "CustomContextUpdates",
+}) as any as S.Schema<CustomContextUpdates>;
+
+/** Describes options to update object custom contexts. */
+export interface UpdateObjectCustomContext {
+  /** A collection of updates to apply to specific custom contexts. Use this to add, update or delete individual contexts by key. */
+  customContextUpdates?: CustomContextUpdates;
+  /** If set, must be set to true and all existing object custom contexts are deleted. */
+  clearAll?: boolean;
+}
+export const UpdateObjectCustomContext = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    customContextUpdates: S.optional(CustomContextUpdates),
+    clearAll: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "UpdateObjectCustomContext",
+}) as any as S.Schema<UpdateObjectCustomContext>;
+
+export type LoggingConfigLogActionsItemEnum =
+  | "LOGGABLE_ACTION_UNSPECIFIED"
+  | "TRANSFORM";
+export const LoggingConfigLogActionsItemEnum = /*@__PURE__*/ S.String;
+
+export type LoggingConfigLogActionsItemEnumList = Array<
+  LoggingConfigLogActionsItemEnum | (string & {})
+>;
+export const LoggingConfigLogActionsItemEnumList = /*@__PURE__*/ S.Array(
+  LoggingConfigLogActionsItemEnum,
+) as any as S.Schema<LoggingConfigLogActionsItemEnumList>;
+
+export type LoggingConfigLogActionStatesItemEnum =
+  | "LOGGABLE_ACTION_STATE_UNSPECIFIED"
+  | "SUCCEEDED"
+  | "FAILED";
+export const LoggingConfigLogActionStatesItemEnum = /*@__PURE__*/ S.String;
+
+export type LoggingConfigLogActionStatesItemEnumList = Array<
+  LoggingConfigLogActionStatesItemEnum | (string & {})
+>;
+export const LoggingConfigLogActionStatesItemEnumList = /*@__PURE__*/ S.Array(
+  LoggingConfigLogActionStatesItemEnum,
+) as any as S.Schema<LoggingConfigLogActionStatesItemEnumList>;
+
+/** Specifies the Cloud Logging behavior. */
+export interface LoggingConfig {
+  /** Required. Specifies the actions to be logged. */
+  logActions?: LoggingConfigLogActionsItemEnumList;
+  /** Required. States in which Action are logged.If empty, no logs are generated. */
+  logActionStates?: LoggingConfigLogActionStatesItemEnumList;
+}
+export const LoggingConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    logActions: S.optional(LoggingConfigLogActionsItemEnumList),
+    logActionStates: S.optional(LoggingConfigLogActionStatesItemEnumList),
+  }),
+).annotate({ identifier: "LoggingConfig" }) as any as S.Schema<LoggingConfig>;
 
 /** Describes list of objects to be transformed. */
 export interface Manifest {
@@ -170,20 +314,31 @@ export const Manifest = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "Manifest" }) as any as S.Schema<Manifest>;
 
+/** Describes prefixes of objects to be transformed. */
+export interface PrefixList {
+  /** Optional. Specify one or more object prefixes. For example: * To match one object, use a single prefix, `prefix1`. * To match multiple objects, use comma-separated prefixes, `prefix1, prefix2`. * To match all objects, use an empty prefix, `''` */
+  includedObjectPrefixes?: StringList;
+}
+export const PrefixList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    includedObjectPrefixes: S.optional(StringList),
+  }),
+).annotate({ identifier: "PrefixList" }) as any as S.Schema<PrefixList>;
+
 /** Describes configuration of a single bucket and its objects to be transformed. */
 export interface Bucket {
-  /** Specifies objects matching a prefix set. */
-  prefixList?: PrefixList;
-  /** Required. Bucket name for the objects to be transformed. */
-  bucket?: string;
   /** Specifies objects in a manifest file. */
   manifest?: Manifest;
+  /** Required. Bucket name for the objects to be transformed. */
+  bucket?: string;
+  /** Specifies objects matching a prefix set. */
+  prefixList?: PrefixList;
 }
 export const Bucket = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    prefixList: S.optional(PrefixList),
-    bucket: S.optional(S.String),
     manifest: S.optional(Manifest),
+    bucket: S.optional(S.String),
+    prefixList: S.optional(PrefixList),
   }),
 ).annotate({ identifier: "Bucket" }) as any as S.Schema<Bucket>;
 
@@ -202,6 +357,142 @@ export const BucketList = /*@__PURE__*/ S.suspend(() =>
     buckets: S.optional(BucketList_),
   }),
 ).annotate({ identifier: "BucketList" }) as any as S.Schema<BucketList>;
+
+/** Describes options to delete an object. */
+export interface DeleteObject {
+  /** Required. Controls deletion behavior when versioning is enabled for the object's bucket. If true, both live and noncurrent objects will be permanently deleted. Otherwise live objects in versioned buckets will become noncurrent and objects that were already noncurrent will be skipped. This setting doesn't have any impact on the Soft Delete feature. All objects deleted by this service can be be restored for the duration of the Soft Delete retention duration if enabled. If enabled and the manifest doesn't specify an object's generation, a `GetObjectMetadata` call is made to determine the live object generation. */
+  permanentObjectDeletionEnabled?: boolean;
+}
+export const DeleteObject = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    permanentObjectDeletionEnabled: S.optional(S.Boolean),
+  }),
+).annotate({ identifier: "DeleteObject" }) as any as S.Schema<DeleteObject>;
+
+/** Describes the Cloud Storage locations to include in a ProjectSource job. */
+export interface TargetLocations {
+  /** Optional. OPTIONAL. The exact Storage Insights snapshot timestamp to use for the job compatible with the RFC 3339 format (e.g., `2024-01-02T03:04:05Z`). If specified, this exact snapshot must exist in BOTH the `object_attributes_view` and `bucket_attributes_view` for every location listed in `locations`. If the snapshot is missing from either view in any of the locations, the job fails. */
+  snapshotTime?: string;
+  /** Required. REQUIRED. A list of Cloud Storage locations (e.g., `us-central1`) to include in the job. If `snapshot_time` is omitted, the job automatically defaults to the most recent snapshot timestamp that is successfully populated in BOTH the `object_attributes_view` and `bucket_attributes_view` across ALL specified locations. For details on Storage Insights dataset snapshots and views, see: https://docs.cloud.google.com/storage/docs/insights/dataset-tables-and-schemas#schema */
+  locations?: StringList;
+}
+export const TargetLocations = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    snapshotTime: S.optional(S.String),
+    locations: S.optional(StringList),
+  }),
+).annotate({
+  identifier: "TargetLocations",
+}) as any as S.Schema<TargetLocations>;
+
+/** Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information. */
+export interface Expr {
+  /** Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression. */
+  title?: string;
+  /** Textual representation of an expression in Common Expression Language syntax. */
+  expression?: string;
+  /** Optional. String indicating the location of the expression for error reporting, e.g. a file name and a position in the file. */
+  location?: string;
+  /** Optional. Description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI. */
+  description?: string;
+}
+export const Expr = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    title: S.optional(S.String),
+    expression: S.optional(S.String),
+    location: S.optional(S.String),
+    description: S.optional(S.String),
+  }),
+).annotate({ identifier: "Expr" }) as any as S.Schema<Expr>;
+
+/** Describes the project source where the objects satisfying the filters will be transformed. */
+export interface ProjectSource {
+  /** Required. The resource identifier of the Storage Insights dataset configuration. Storage batch operations uses the latest snapshot from this dataset as the source to list and filter target objects. Format: `projects/{project_id}/locations/{location}/datasetConfigs/{dataset_config}`. */
+  insightsDatasetConfig?: string;
+  /** Optional. Specifies the Cloud Storage locations to include in the job. If provided, only buckets and objects within these locations will be discovered from the Storage Insights dataset as configured in the `insights_dataset_config`. If omitted, the job will discover buckets and objects from all locations configured in the `insights_dataset_config`. */
+  targetLocations?: TargetLocations;
+  /** Optional. Filters expressed in Common Expression Language (CEL) to apply to buckets to identify buckets with objects to be transformed. */
+  bucketFilters?: Expr;
+  /** Output only. The snapshot time used by the job to read the Storage Insights dataset for bucket and object discovery. This field is populated by the service and reflects the exact timestamp of the dataset snapshot used. */
+  snapshotTime?: string;
+  /** Required. Project name of the objects to be transformed. e.g. projects/my-project or projects/123456. */
+  project?: string;
+  /** Optional. The unique identifier of a dry run job to use as the baseline for the current job. Specifying this ID ensures the job is executed against the same set of objects validated during the dry run. The value corresponds to the {job_id} segment of the resource name: `projects/{project_id}/locations/{location}/jobs/{job_id}`. */
+  dryRunJobId?: string;
+  /** Optional. Filters expressed in Common Expression Language (CEL) to apply to objects to identify objects to be transformed. */
+  objectFilters?: Expr;
+}
+export const ProjectSource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    insightsDatasetConfig: S.optional(S.String),
+    targetLocations: S.optional(TargetLocations),
+    bucketFilters: S.optional(Expr),
+    snapshotTime: S.optional(S.String),
+    project: S.optional(S.String),
+    dryRunJobId: S.optional(S.String),
+    objectFilters: S.optional(Expr),
+  }),
+).annotate({ identifier: "ProjectSource" }) as any as S.Schema<ProjectSource>;
+
+export type StringMap = { [key: string]: string | undefined };
+export const StringMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<StringMap>;
+
+export type ObjectRetentionRetentionModeEnum =
+  | "RETENTION_MODE_UNSPECIFIED"
+  | "LOCKED"
+  | "UNLOCKED";
+export const ObjectRetentionRetentionModeEnum = /*@__PURE__*/ S.String;
+
+/** Describes options for object retention update. */
+export interface ObjectRetention {
+  /** Required. The object's retention expiration time, during which, the object is protected from being deleted or overwritten. The time must be specified in RFC 3339 format, for example `YYYY-MM-DD'T'HH:MM:SS'Z'` or `YYYY-MM-DD'T'HH:MM:SS.SS'Z'`. To clear an object's retention, both `retentionMode` and `retainUntilTime` must be left unset (omitted). Setting `retentionMode` to `RETENTION_MODE_UNSPECIFIED` is treated as a no-op. Unlike an unset field, it doesn't modify or clear the retention settings. */
+  retainUntilTime?: string;
+  /** Required. The retention mode. */
+  retentionMode?: ObjectRetentionRetentionModeEnum | (string & {});
+}
+export const ObjectRetention = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    retainUntilTime: S.optional(S.String),
+    retentionMode: S.optional(ObjectRetentionRetentionModeEnum),
+  }),
+).annotate({
+  identifier: "ObjectRetention",
+}) as any as S.Schema<ObjectRetention>;
+
+/** Describes options for object metadata update. */
+export interface PutMetadata {
+  /** Optional. Updates the objects `Content-Language` fixed metadata. Metadata values must use ISO 639-1 language codes. The maximum length for metadata values is 100 characters. Unset values in the request are ignored. To clear the metadata, set an empty value. For details, see [Content-Language](https://cloud.google.com/storage/docs/metadata#content-language). */
+  contentLanguage?: string;
+  /** Optional. Updates objects `Content-Disposition` fixed metadata. Unset values in the request are ignored. To clear the metadata, set an empty value. For details, see [Content-Disposition](https://cloud.google.com/storage/docs/metadata#content-disposition). */
+  contentDisposition?: string;
+  /** Optional. Updates the objects `Cache-Control` fixed metadata. Unset values in the request are ignored. To clear the metadata, set an empty value. Additionally, the value for `Custom-Time` can't decrease. For details, see [Cache-Control](https://cloud.google.com/storage/docs/metadata#caching_data). */
+  cacheControl?: string;
+  /** Optional. Updates the object's custom metadata. This operation adds or sets individual custom metadata key-value pairs. Keys specified with empty values have their values cleared. Existing custom metadata keys not included in the request remain unchanged. For details, see [Custom metadata](https://cloud.google.com/storage/docs/metadata#custom-metadata). */
+  customMetadata?: StringMap;
+  /** Optional. Updates the objects `Custom-Time` fixed metadata. Unset values in the request are ignored. To clear the metadata, set an empty value. The time must be specified in RFC 3339 format, for example `YYYY-MM-DD'T'HH:MM:SS'Z'` or `YYYY-MM-DD'T'HH:MM:SS.SS'Z'`. For details, see [Custom-Time](https://cloud.google.com/storage/docs/metadata#custom-time). */
+  customTime?: string;
+  /** Optional. Updates objects `Content-Type` fixed metadata. Unset values in the request are ignored. To clear the metadata, set an empty value. For details, see [Content-Type](https://cloud.google.com/storage/docs/metadata#content-type). */
+  contentType?: string;
+  /** Optional. Updates an object's retention configuration. To clear an object's retention, both `retentionMode` and `retainUntilTime` must be left unset (omitted). Setting `retentionMode` to `RETENTION_MODE_UNSPECIFIED` is treated as a no-op. Unlike an unset field, it doesn't modify or clear the retention settings. An object with `LOCKED` retention mode can't have its retention cleared or its `retainUntilTime` reduced. For more information, see [Object retention](https://cloud.google.com/storage/docs/batch-operations/create-manage-batch-operation-jobs#retain-until-time). */
+  objectRetention?: ObjectRetention;
+  /** Optional. Updates the objects `Content-Encoding` fixed metadata. Unset values in the request are ignored. To clear the metadata, set an empty value. For details, see [Content-Encoding](https://cloud.google.com/storage/docs/metadata#content-encoding). */
+  contentEncoding?: string;
+}
+export const PutMetadata = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    contentLanguage: S.optional(S.String),
+    contentDisposition: S.optional(S.String),
+    cacheControl: S.optional(S.String),
+    customMetadata: S.optional(StringMap),
+    customTime: S.optional(S.String),
+    contentType: S.optional(S.String),
+    objectRetention: S.optional(ObjectRetention),
+    contentEncoding: S.optional(S.String),
+  }),
+).annotate({ identifier: "PutMetadata" }) as any as S.Schema<PutMetadata>;
 
 /** Represents an access control entry on an object. */
 export interface ObjectAccessControl {
@@ -226,15 +517,15 @@ export const ObjectAccessControlList = /*@__PURE__*/ S.Array(
 
 /** Represents updates to existing access-control entries on an object. */
 export interface AccessControlsUpdates {
-  /** Optional. Entities for which all grants should be removed. An entity can't be in both `grants` and `remove_entities`. */
-  removeEntities?: StringList;
   /** Optional. Grants to add or update. If a grant for same entity exists, its role is updated. */
   grants?: ObjectAccessControlList;
+  /** Optional. Entities for which all grants should be removed. An entity can't be in both `grants` and `remove_entities`. */
+  removeEntities?: StringList;
 }
 export const AccessControlsUpdates = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    removeEntities: S.optional(StringList),
     grants: S.optional(ObjectAccessControlList),
+    removeEntities: S.optional(StringList),
   }),
 ).annotate({
   identifier: "AccessControlsUpdates",
@@ -250,86 +541,6 @@ export const SetObjectAcls = /*@__PURE__*/ S.suspend(() =>
     accessControlsUpdates: S.optional(AccessControlsUpdates),
   }),
 ).annotate({ identifier: "SetObjectAcls" }) as any as S.Schema<SetObjectAcls>;
-
-/** Describes options to delete an object. */
-export interface DeleteObject {
-  /** Required. Controls deletion behavior when versioning is enabled for the object's bucket. If true, both live and noncurrent objects will be permanently deleted. Otherwise live objects in versioned buckets will become noncurrent and objects that were already noncurrent will be skipped. This setting doesn't have any impact on the Soft Delete feature. All objects deleted by this service can be be restored for the duration of the Soft Delete retention duration if enabled. If enabled and the manifest doesn't specify an object's generation, a `GetObjectMetadata` call is made to determine the live object generation. */
-  permanentObjectDeletionEnabled?: boolean;
-}
-export const DeleteObject = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    permanentObjectDeletionEnabled: S.optional(S.Boolean),
-  }),
-).annotate({ identifier: "DeleteObject" }) as any as S.Schema<DeleteObject>;
-
-export type StringMap = { [key: string]: string | undefined };
-export const StringMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<StringMap>;
-
-export type ObjectRetentionRetentionModeEnum =
-  | "RETENTION_MODE_UNSPECIFIED"
-  | "LOCKED"
-  | "UNLOCKED";
-export const ObjectRetentionRetentionModeEnum = /*@__PURE__*/ S.String;
-
-/** Describes options for object retention update. */
-export interface ObjectRetention {
-  /** Required. The retention mode. */
-  retentionMode?: ObjectRetentionRetentionModeEnum | (string & {});
-  /** Required. The object's retention expiration time, during which, the object is protected from being deleted or overwritten. The time must be specified in RFC 3339 format, for example `YYYY-MM-DD'T'HH:MM:SS'Z'` or `YYYY-MM-DD'T'HH:MM:SS.SS'Z'`. To clear an object's retention, both `retentionMode` and `retainUntilTime` must be left unset (omitted). Setting `retentionMode` to `RETENTION_MODE_UNSPECIFIED` is treated as a no-op. Unlike an unset field, it doesn't modify or clear the retention settings. */
-  retainUntilTime?: string;
-}
-export const ObjectRetention = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    retentionMode: S.optional(ObjectRetentionRetentionModeEnum),
-    retainUntilTime: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ObjectRetention",
-}) as any as S.Schema<ObjectRetention>;
-
-/** Describes options for object metadata update. */
-export interface PutMetadata {
-  /** Optional. Updates the object's custom metadata. This operation adds or sets individual custom metadata key-value pairs. Keys specified with empty values have their values cleared. Existing custom metadata keys not included in the request remain unchanged. For details, see [Custom metadata](https://cloud.google.com/storage/docs/metadata#custom-metadata). */
-  customMetadata?: StringMap;
-  /** Optional. Updates the objects `Content-Language` fixed metadata. Metadata values must use ISO 639-1 language codes. The maximum length for metadata values is 100 characters. Unset values in the request are ignored. To clear the metadata, set an empty value. For details, see [Content-Language](https://cloud.google.com/storage/docs/metadata#content-language). */
-  contentLanguage?: string;
-  /** Optional. Updates the objects `Custom-Time` fixed metadata. Unset values in the request are ignored. To clear the metadata, set an empty value. The time must be specified in RFC 3339 format, for example `YYYY-MM-DD'T'HH:MM:SS'Z'` or `YYYY-MM-DD'T'HH:MM:SS.SS'Z'`. For details, see [Custom-Time](https://cloud.google.com/storage/docs/metadata#custom-time). */
-  customTime?: string;
-  /** Optional. Updates an object's retention configuration. To clear an object's retention, both `retentionMode` and `retainUntilTime` must be left unset (omitted). Setting `retentionMode` to `RETENTION_MODE_UNSPECIFIED` is treated as a no-op. Unlike an unset field, it doesn't modify or clear the retention settings. An object with `LOCKED` retention mode can't have its retention cleared or its `retainUntilTime` reduced. For more information, see [Object retention](https://cloud.google.com/storage/docs/batch-operations/create-manage-batch-operation-jobs#retain-until-time). */
-  objectRetention?: ObjectRetention;
-  /** Optional. Updates the objects `Cache-Control` fixed metadata. Unset values in the request are ignored. To clear the metadata, set an empty value. Additionally, the value for `Custom-Time` can't decrease. For details, see [Cache-Control](https://cloud.google.com/storage/docs/metadata#caching_data). */
-  cacheControl?: string;
-  /** Optional. Updates objects `Content-Type` fixed metadata. Unset values in the request are ignored. To clear the metadata, set an empty value. For details, see [Content-Type](https://cloud.google.com/storage/docs/metadata#content-type). */
-  contentType?: string;
-  /** Optional. Updates the objects `Content-Encoding` fixed metadata. Unset values in the request are ignored. To clear the metadata, set an empty value. For details, see [Content-Encoding](https://cloud.google.com/storage/docs/metadata#content-encoding). */
-  contentEncoding?: string;
-  /** Optional. Updates objects `Content-Disposition` fixed metadata. Unset values in the request are ignored. To clear the metadata, set an empty value. For details, see [Content-Disposition](https://cloud.google.com/storage/docs/metadata#content-disposition). */
-  contentDisposition?: string;
-}
-export const PutMetadata = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    customMetadata: S.optional(StringMap),
-    contentLanguage: S.optional(S.String),
-    customTime: S.optional(S.String),
-    objectRetention: S.optional(ObjectRetention),
-    cacheControl: S.optional(S.String),
-    contentType: S.optional(S.String),
-    contentEncoding: S.optional(S.String),
-    contentDisposition: S.optional(S.String),
-  }),
-).annotate({ identifier: "PutMetadata" }) as any as S.Schema<PutMetadata>;
-
-export type JobStateEnum =
-  | "STATE_UNSPECIFIED"
-  | "RUNNING"
-  | "SUCCEEDED"
-  | "CANCELED"
-  | "FAILED"
-  | "QUEUED";
-export const JobStateEnum = /*@__PURE__*/ S.String;
 
 export type PutObjectHoldEventBasedHoldEnum =
   | "HOLD_STATUS_UNSPECIFIED"
@@ -357,177 +568,24 @@ export const PutObjectHold = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "PutObjectHold" }) as any as S.Schema<PutObjectHold>;
 
-/** Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information. */
-export interface Expr {
-  /** Optional. String indicating the location of the expression for error reporting, e.g. a file name and a position in the file. */
-  location?: string;
-  /** Optional. Description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI. */
-  description?: string;
-  /** Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression. */
-  title?: string;
-  /** Textual representation of an expression in Common Expression Language syntax. */
-  expression?: string;
+/** An entry describing an error that has occurred. */
+export interface ErrorLogEntry {
+  /** Required. Output only. Object URL. e.g. gs://my_bucket/object.txt */
+  objectUri?: string;
+  /** Optional. Output only. At most 5 error log entries are recorded for a given error code for a job. */
+  errorDetails?: StringList;
 }
-export const Expr = /*@__PURE__*/ S.suspend(() =>
+export const ErrorLogEntry = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    location: S.optional(S.String),
-    description: S.optional(S.String),
-    title: S.optional(S.String),
-    expression: S.optional(S.String),
+    objectUri: S.optional(S.String),
+    errorDetails: S.optional(StringList),
   }),
-).annotate({ identifier: "Expr" }) as any as S.Schema<Expr>;
+).annotate({ identifier: "ErrorLogEntry" }) as any as S.Schema<ErrorLogEntry>;
 
-/** Describes the Cloud Storage locations to include in a ProjectSource job. */
-export interface TargetLocations {
-  /** Required. REQUIRED. A list of Cloud Storage locations (e.g., `us-central1`) to include in the job. If `snapshot_time` is omitted, the job automatically defaults to the most recent snapshot timestamp that is successfully populated in BOTH the `object_attributes_view` and `bucket_attributes_view` across ALL specified locations. For details on Storage Insights dataset snapshots and views, see: https://docs.cloud.google.com/storage/docs/insights/dataset-tables-and-schemas#schema */
-  locations?: StringList;
-  /** Optional. OPTIONAL. The exact Storage Insights snapshot timestamp to use for the job compatible with the RFC 3339 format (e.g., `2024-01-02T03:04:05Z`). If specified, this exact snapshot must exist in BOTH the `object_attributes_view` and `bucket_attributes_view` for every location listed in `locations`. If the snapshot is missing from either view in any of the locations, the job fails. */
-  snapshotTime?: string;
-}
-export const TargetLocations = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    locations: S.optional(StringList),
-    snapshotTime: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "TargetLocations",
-}) as any as S.Schema<TargetLocations>;
-
-/** Describes the project source where the objects satisfying the filters will be transformed. */
-export interface ProjectSource {
-  /** Optional. Filters expressed in Common Expression Language (CEL) to apply to objects to identify objects to be transformed. */
-  objectFilters?: Expr;
-  /** Optional. Filters expressed in Common Expression Language (CEL) to apply to buckets to identify buckets with objects to be transformed. */
-  bucketFilters?: Expr;
-  /** Required. Project name of the objects to be transformed. e.g. projects/my-project or projects/123456. */
-  project?: string;
-  /** Output only. The snapshot time used by the job to read the Storage Insights dataset for bucket and object discovery. This field is populated by the service and reflects the exact timestamp of the dataset snapshot used. */
-  snapshotTime?: string;
-  /** Required. The resource identifier of the Storage Insights dataset configuration. Storage batch operations uses the latest snapshot from this dataset as the source to list and filter target objects. Format: `projects/{project_id}/locations/{location}/datasetConfigs/{dataset_config}`. */
-  insightsDatasetConfig?: string;
-  /** Optional. Specifies the Cloud Storage locations to include in the job. If provided, only buckets and objects within these locations will be discovered from the Storage Insights dataset as configured in the `insights_dataset_config`. If omitted, the job will discover buckets and objects from all locations configured in the `insights_dataset_config`. */
-  targetLocations?: TargetLocations;
-  /** Optional. The unique identifier of a dry run job to use as the baseline for the current job. Specifying this ID ensures the job is executed against the same set of objects validated during the dry run. The value corresponds to the {job_id} segment of the resource name: `projects/{project_id}/locations/{location}/jobs/{job_id}`. */
-  dryRunJobId?: string;
-}
-export const ProjectSource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    objectFilters: S.optional(Expr),
-    bucketFilters: S.optional(Expr),
-    project: S.optional(S.String),
-    snapshotTime: S.optional(S.String),
-    insightsDatasetConfig: S.optional(S.String),
-    targetLocations: S.optional(TargetLocations),
-    dryRunJobId: S.optional(S.String),
-  }),
-).annotate({ identifier: "ProjectSource" }) as any as S.Schema<ProjectSource>;
-
-export type RewriteObjectStorageClassEnum =
-  | "STORAGE_CLASS_UNSPECIFIED"
-  | "STANDARD"
-  | "NEARLINE"
-  | "COLDLINE"
-  | "ARCHIVE";
-export const RewriteObjectStorageClassEnum = /*@__PURE__*/ S.String;
-
-/** Describes options for object rewrite. */
-export interface RewriteObject {
-  /** Optional. Rewrites the object to the specified storage class. Setting this field will perform a full byte copy of the object if the storage class is different from the object's current storage class. If Autoclass is enabled on the bucket, storage class changes are ignored by Cloud Storage. */
-  storageClass?: RewriteObjectStorageClassEnum | (string & {});
-  /** Optional. Resource name of the Cloud KMS key that is used to encrypt the object. The Cloud KMS key must be located in same location as the object. For details, see https://cloud.google.com/storage/docs/encryption/using-customer-managed-keys#add-object-key Format: `projects/{project_id}/locations/{location}/keyRings/{keyring}/cryptoKeys/{key}` For example: `projects/123456/locations/us-central1/keyRings/my-keyring/cryptoKeys/my-key`. The object will be rewritten and set with the specified KMS key. */
-  kmsKey?: string;
-}
-export const RewriteObject = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    storageClass: S.optional(RewriteObjectStorageClassEnum),
-    kmsKey: S.optional(S.String),
-  }),
-).annotate({ identifier: "RewriteObject" }) as any as S.Schema<RewriteObject>;
-
-/** Describes details about the progress of the job. */
-export interface Counters {
-  /** Output only. Number of objects listed. */
-  totalObjectCount?: string;
-  /** Output only. The total number of bytes affected by the transformation. For example, this counts bytes deleted for `DeleteObject` operations and bytes rewritten for `RewriteObject` operations. */
-  totalBytesTransformed?: string;
-  /** Output only. Number of object custom contexts deleted. This field is only populated for jobs with the UpdateObjectCustomContext transformation. */
-  objectCustomContextsDeleted?: string;
-  /** Output only. Number of object custom contexts updated. This counter tracks custom contexts where the key already existed, but the payload was modified. This field is only populated for jobs with the UpdateObjectCustomContext transformation. */
-  objectCustomContextsUpdated?: string;
-  /** Output only. The number of objects that failed due to user errors or service errors. */
-  failedObjectCount?: string;
-  /** Output only. Number of object custom contexts created. This field is only populated for jobs with the UpdateObjectCustomContext transformation. */
-  objectCustomContextsCreated?: string;
-  /** Output only. Number of bytes found from source. This field is only populated for jobs with a prefix list object configuration. */
-  totalBytesFound?: string;
-  /** Output only. Number of objects completed. */
-  succeededObjectCount?: string;
-}
-export const Counters = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    totalObjectCount: S.optional(S.String),
-    totalBytesTransformed: S.optional(S.String),
-    objectCustomContextsDeleted: S.optional(S.String),
-    objectCustomContextsUpdated: S.optional(S.String),
-    failedObjectCount: S.optional(S.String),
-    objectCustomContextsCreated: S.optional(S.String),
-    totalBytesFound: S.optional(S.String),
-    succeededObjectCount: S.optional(S.String),
-  }),
-).annotate({ identifier: "Counters" }) as any as S.Schema<Counters>;
-
-/** Describes the payload of a user-defined object custom context. */
-export interface ObjectCustomContextPayload {
-  /** The value of the object custom context. If set, `value` can't be an empty string because it is a required field in custom context. If unset, `value` is ignored and no changes are made to the `value` field of the custom context payload. */
-  value?: string;
-}
-export const ObjectCustomContextPayload = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ObjectCustomContextPayload",
-}) as any as S.Schema<ObjectCustomContextPayload>;
-
-export type ObjectCustomContextPayloadMap = {
-  [key: string]: ObjectCustomContextPayload | undefined;
-};
-export const ObjectCustomContextPayloadMap = /*@__PURE__*/ S.Record(
-  S.String,
-  ObjectCustomContextPayload,
-) as any as S.Schema<ObjectCustomContextPayloadMap>;
-
-/** Describes a collection of updates to apply to custom contexts identified by key. */
-export interface CustomContextUpdates {
-  /** Optional. Insert or update the existing custom contexts. */
-  updates?: ObjectCustomContextPayloadMap;
-  /** Optional. Custom contexts to clear by key. A key can't be present in both `updates` and `keys_to_clear`. */
-  keysToClear?: StringList;
-}
-export const CustomContextUpdates = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    updates: S.optional(ObjectCustomContextPayloadMap),
-    keysToClear: S.optional(StringList),
-  }),
-).annotate({
-  identifier: "CustomContextUpdates",
-}) as any as S.Schema<CustomContextUpdates>;
-
-/** Describes options to update object custom contexts. */
-export interface UpdateObjectCustomContext {
-  /** If set, must be set to true and all existing object custom contexts are deleted. */
-  clearAll?: boolean;
-  /** A collection of updates to apply to specific custom contexts. Use this to add, update or delete individual contexts by key. */
-  customContextUpdates?: CustomContextUpdates;
-}
-export const UpdateObjectCustomContext = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    clearAll: S.optional(S.Boolean),
-    customContextUpdates: S.optional(CustomContextUpdates),
-  }),
-).annotate({
-  identifier: "UpdateObjectCustomContext",
-}) as any as S.Schema<UpdateObjectCustomContext>;
+export type ErrorLogEntryList = Array<ErrorLogEntry>;
+export const ErrorLogEntryList = /*@__PURE__*/ S.Array(
+  ErrorLogEntry,
+) as any as S.Schema<ErrorLogEntryList>;
 
 export type ErrorSummaryErrorCodeEnum =
   | "OK"
@@ -549,39 +607,20 @@ export type ErrorSummaryErrorCodeEnum =
   | "DATA_LOSS";
 export const ErrorSummaryErrorCodeEnum = /*@__PURE__*/ S.String;
 
-/** An entry describing an error that has occurred. */
-export interface ErrorLogEntry {
-  /** Optional. Output only. At most 5 error log entries are recorded for a given error code for a job. */
-  errorDetails?: StringList;
-  /** Required. Output only. Object URL. e.g. gs://my_bucket/object.txt */
-  objectUri?: string;
-}
-export const ErrorLogEntry = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    errorDetails: S.optional(StringList),
-    objectUri: S.optional(S.String),
-  }),
-).annotate({ identifier: "ErrorLogEntry" }) as any as S.Schema<ErrorLogEntry>;
-
-export type ErrorLogEntryList = Array<ErrorLogEntry>;
-export const ErrorLogEntryList = /*@__PURE__*/ S.Array(
-  ErrorLogEntry,
-) as any as S.Schema<ErrorLogEntryList>;
-
 /** A summary of errors by error code, plus a count and sample error log entries. */
 export interface ErrorSummary {
-  /** Required. Number of errors encountered per `error_code`. */
-  errorCount?: string;
-  /** Required. The canonical error code. */
-  errorCode?: ErrorSummaryErrorCodeEnum | (string & {});
   /** Required. Sample error logs. */
   errorLogEntries?: ErrorLogEntryList;
+  /** Required. The canonical error code. */
+  errorCode?: ErrorSummaryErrorCodeEnum | (string & {});
+  /** Required. Number of errors encountered per `error_code`. */
+  errorCount?: string;
 }
 export const ErrorSummary = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    errorCount: S.optional(S.String),
-    errorCode: S.optional(ErrorSummaryErrorCodeEnum),
     errorLogEntries: S.optional(ErrorLogEntryList),
+    errorCode: S.optional(ErrorSummaryErrorCodeEnum),
+    errorCount: S.optional(S.String),
   }),
 ).annotate({ identifier: "ErrorSummary" }) as any as S.Schema<ErrorSummary>;
 
@@ -590,107 +629,68 @@ export const ErrorSummaryList = /*@__PURE__*/ S.Array(
   ErrorSummary,
 ) as any as S.Schema<ErrorSummaryList>;
 
-export type LoggingConfigLogActionStatesItemEnum =
-  | "LOGGABLE_ACTION_STATE_UNSPECIFIED"
-  | "SUCCEEDED"
-  | "FAILED";
-export const LoggingConfigLogActionStatesItemEnum = /*@__PURE__*/ S.String;
-
-export type LoggingConfigLogActionStatesItemEnumList = Array<
-  LoggingConfigLogActionStatesItemEnum | (string & {})
->;
-export const LoggingConfigLogActionStatesItemEnumList = /*@__PURE__*/ S.Array(
-  LoggingConfigLogActionStatesItemEnum,
-) as any as S.Schema<LoggingConfigLogActionStatesItemEnumList>;
-
-export type LoggingConfigLogActionsItemEnum =
-  | "LOGGABLE_ACTION_UNSPECIFIED"
-  | "TRANSFORM";
-export const LoggingConfigLogActionsItemEnum = /*@__PURE__*/ S.String;
-
-export type LoggingConfigLogActionsItemEnumList = Array<
-  LoggingConfigLogActionsItemEnum | (string & {})
->;
-export const LoggingConfigLogActionsItemEnumList = /*@__PURE__*/ S.Array(
-  LoggingConfigLogActionsItemEnum,
-) as any as S.Schema<LoggingConfigLogActionsItemEnumList>;
-
-/** Specifies the Cloud Logging behavior. */
-export interface LoggingConfig {
-  /** Required. States in which Action are logged.If empty, no logs are generated. */
-  logActionStates?: LoggingConfigLogActionStatesItemEnumList;
-  /** Required. Specifies the actions to be logged. */
-  logActions?: LoggingConfigLogActionsItemEnumList;
-}
-export const LoggingConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    logActionStates: S.optional(LoggingConfigLogActionStatesItemEnumList),
-    logActions: S.optional(LoggingConfigLogActionsItemEnumList),
-  }),
-).annotate({ identifier: "LoggingConfig" }) as any as S.Schema<LoggingConfig>;
-
 /** The storage batch operations job description. */
 export interface Job {
+  /** Output only. The time that the job was created. */
+  createTime?: string;
+  /** Output only. State of the job. */
+  state?: JobStateEnum | (string & {});
+  /** Rewrite the object and updates metadata like KMS key. */
+  rewriteObject?: RewriteObject;
+  /** Output only. Information about the progress of the job. */
+  counters?: Counters;
+  /** Update object custom context. */
+  updateObjectCustomContext?: UpdateObjectCustomContext;
+  /** Identifier. The resource name of the job. Format: `projects/{project_id}/locations/global/jobs/{job_id}`. For example: `projects/123456/locations/global/jobs/job01`. `job_id` is unique in a given project. */
+  name?: string;
+  /** Optional. Logging configuration. */
+  loggingConfig?: LoggingConfig;
   /** Specifies a list of buckets and their objects to be transformed. */
   bucketList?: BucketList;
+  /** Delete objects. */
+  deleteObject?: DeleteObject;
+  /** Specifies a project source and filters to identify objects to be transformed. */
+  projectSource?: ProjectSource;
+  /** Output only. The time that the job was scheduled. */
+  scheduleTime?: string;
+  /** Updates object metadata. Allows updating fixed-key and custom metadata. For example, `Cache-Control`, `Content-Disposition`, `Content-Encoding`, `Content-Language`, `Content-Type`, `Custom-Time`, and `Retention configuration`. */
+  putMetadata?: PutMetadata;
   /** Optional. If true, the job runs in dry run mode, returning the total object count and, if the object configuration is a prefix list, the bytes found from source. No transformations are performed. */
   dryRun?: boolean;
   /** Output only. The time that the job was completed. */
   completeTime?: string;
-  /** Updates object ACLs. */
-  setObjectAcls?: SetObjectAcls;
-  /** Delete objects. */
-  deleteObject?: DeleteObject;
-  /** Updates object metadata. Allows updating fixed-key and custom metadata. For example, `Cache-Control`, `Content-Disposition`, `Content-Encoding`, `Content-Language`, `Content-Type`, `Custom-Time`, and `Retention configuration`. */
-  putMetadata?: PutMetadata;
-  /** Output only. State of the job. */
-  state?: JobStateEnum | (string & {});
-  /** Changes object hold status. */
-  putObjectHold?: PutObjectHold;
-  /** Specifies a project source and filters to identify objects to be transformed. */
-  projectSource?: ProjectSource;
-  /** Rewrite the object and updates metadata like KMS key. */
-  rewriteObject?: RewriteObject;
-  /** Identifier. The resource name of the job. Format: `projects/{project_id}/locations/global/jobs/{job_id}`. For example: `projects/123456/locations/global/jobs/job01`. `job_id` is unique in a given project. */
-  name?: string;
-  /** Output only. Information about the progress of the job. */
-  counters?: Counters;
-  /** Output only. If true, this job operates on multiple buckets. Multi-bucket jobs are subject to different quota limits than single-bucket jobs. */
-  isMultiBucketJob?: boolean;
-  /** Output only. The time that the job was created. */
-  createTime?: string;
-  /** Update object custom context. */
-  updateObjectCustomContext?: UpdateObjectCustomContext;
-  /** Output only. The time that the job was scheduled. */
-  scheduleTime?: string;
-  /** Output only. Summarizes errors encountered with sample error log entries. */
-  errorSummaries?: ErrorSummaryList;
-  /** Optional. Logging configuration. */
-  loggingConfig?: LoggingConfig;
   /** Optional. A user-provided description for the job. Maximum length: 1024 bytes when unicode-encoded. */
   description?: string;
+  /** Updates object ACLs. */
+  setObjectAcls?: SetObjectAcls;
+  /** Changes object hold status. */
+  putObjectHold?: PutObjectHold;
+  /** Output only. If true, this job operates on multiple buckets. Multi-bucket jobs are subject to different quota limits than single-bucket jobs. */
+  isMultiBucketJob?: boolean;
+  /** Output only. Summarizes errors encountered with sample error log entries. */
+  errorSummaries?: ErrorSummaryList;
 }
 export const Job = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    createTime: S.optional(S.String),
+    state: S.optional(JobStateEnum),
+    rewriteObject: S.optional(RewriteObject),
+    counters: S.optional(Counters),
+    updateObjectCustomContext: S.optional(UpdateObjectCustomContext),
+    name: S.optional(S.String),
+    loggingConfig: S.optional(LoggingConfig),
     bucketList: S.optional(BucketList),
+    deleteObject: S.optional(DeleteObject),
+    projectSource: S.optional(ProjectSource),
+    scheduleTime: S.optional(S.String),
+    putMetadata: S.optional(PutMetadata),
     dryRun: S.optional(S.Boolean),
     completeTime: S.optional(S.String),
-    setObjectAcls: S.optional(SetObjectAcls),
-    deleteObject: S.optional(DeleteObject),
-    putMetadata: S.optional(PutMetadata),
-    state: S.optional(JobStateEnum),
-    putObjectHold: S.optional(PutObjectHold),
-    projectSource: S.optional(ProjectSource),
-    rewriteObject: S.optional(RewriteObject),
-    name: S.optional(S.String),
-    counters: S.optional(Counters),
-    isMultiBucketJob: S.optional(S.Boolean),
-    createTime: S.optional(S.String),
-    updateObjectCustomContext: S.optional(UpdateObjectCustomContext),
-    scheduleTime: S.optional(S.String),
-    errorSummaries: S.optional(ErrorSummaryList),
-    loggingConfig: S.optional(LoggingConfig),
     description: S.optional(S.String),
+    setObjectAcls: S.optional(SetObjectAcls),
+    putObjectHold: S.optional(PutObjectHold),
+    isMultiBucketJob: S.optional(S.Boolean),
+    errorSummaries: S.optional(ErrorSummaryList),
   }),
 ).annotate({ identifier: "Job" }) as any as S.Schema<Job>;
 
@@ -734,57 +734,57 @@ export const DocumentMapList = /*@__PURE__*/ S.Array(
 
 /** The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors). */
 export interface Status {
-  /** A list of messages that carry the error details. There is a common set of message types for APIs to use. */
-  details?: DocumentMapList;
   /** The status code, which should be an enum value of google.rpc.Code. */
   code?: number;
   /** A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client. */
   message?: string;
+  /** A list of messages that carry the error details. There is a common set of message types for APIs to use. */
+  details?: DocumentMapList;
 }
 export const Status = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    details: S.optional(DocumentMapList),
     code: S.optional(S.Number),
     message: S.optional(S.String),
+    details: S.optional(DocumentMapList),
   }),
 ).annotate({ identifier: "Status" }) as any as S.Schema<Status>;
 
 /** This resource represents a long-running operation that is the result of a network API call. */
 export interface Operation {
-  /** The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`. */
-  name?: string;
-  /** If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available. */
-  done?: boolean;
   /** The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`. */
   response?: DocumentMap;
   /** Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any. */
   metadata?: DocumentMap;
+  /** The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`. */
+  name?: string;
   /** The error result of the operation in case of failure or cancellation. */
   error?: Status;
+  /** If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available. */
+  done?: boolean;
 }
 export const Operation = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    name: S.optional(S.String),
-    done: S.optional(S.Boolean),
     response: S.optional(DocumentMap),
     metadata: S.optional(DocumentMap),
+    name: S.optional(S.String),
     error: S.optional(Status),
+    done: S.optional(S.Boolean),
   }),
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 export interface DeleteProjectsLocationsJobsRequest {
-  /** Required. The `name` of the job to delete. Format: `projects/{project_id}/locations/global/jobs/{job_id}`. */
-  name: string;
   /** Optional. An optional request ID to identify requests. Specify a unique request ID in case you need to retry your request. Requests with same `request_id` are ignored for at least 60 minutes since the first request. The request ID must be a valid UUID with the exception that zero UUID isn't supported (00000000-0000-0000-0000-000000000000). */
   requestId?: string;
   /** Optional. If set to true, any child bucket operations of the job are deleted. We recommend setting this to `true`. You can't mutate bucket operations directly, so only the `jobs.delete` permission is required to delete a job (and its child bucket operations). */
   force?: boolean;
+  /** Required. The `name` of the job to delete. Format: `projects/{project_id}/locations/global/jobs/{job_id}`. */
+  name: string;
 }
 export const DeleteProjectsLocationsJobsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    name: S.String.pipe(T.Label()),
     requestId: S.optional(S.String.pipe(T.Query())),
     force: S.optional(S.Boolean.pipe(T.Query())),
+    name: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "DELETE",
@@ -835,8 +835,6 @@ export const GetProjectsLocationsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** A resource that represents a Google Cloud location. */
 export interface Location {
-  /** The canonical id for this location. For example: `"us-east1"`. */
-  locationId?: string;
   /** Resource name for the location, which may vary between implementations. For example: `"projects/example-project/locations/us-east1"` */
   name?: string;
   /** Cross-service attributes for the location. For example {"cloud.googleapis.com/region": "us-east1"} */
@@ -845,14 +843,16 @@ export interface Location {
   displayName?: string;
   /** Service-specific metadata. For example the available capacity at the given location. */
   metadata?: DocumentMap;
+  /** The canonical id for this location. For example: `"us-east1"`. */
+  locationId?: string;
 }
 export const Location = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    locationId: S.optional(S.String),
     name: S.optional(S.String),
     labels: S.optional(StringMap),
     displayName: S.optional(S.String),
     metadata: S.optional(DocumentMap),
+    locationId: S.optional(S.String),
   }),
 ).annotate({ identifier: "Location" }) as any as S.Schema<Location>;
 
@@ -904,60 +904,60 @@ export const BucketOperationStateEnum = /*@__PURE__*/ S.String;
 
 /** BucketOperation represents a bucket-level breakdown of a Job. */
 export interface BucketOperation {
-  /** Updates object ACLs. */
-  setObjectAcls?: SetObjectAcls;
   /** Output only. The time that the BucketOperation was started. */
   startTime?: string;
-  /** Updates object metadata. Allows updating fixed-key and custom metadata and fixed-key metadata i.e. Cache-Control, Content-Disposition, Content-Encoding, Content-Language, Content-Type, Custom-Time. */
-  putMetadata?: PutMetadata;
+  /** Updates object ACLs. */
+  setObjectAcls?: SetObjectAcls;
+  /** The bucket name of the objects to be transformed in the BucketOperation. */
+  bucketName?: string;
+  /** Changes object hold status. */
+  putObjectHold?: PutObjectHold;
   /** Output only. State of the BucketOperation. */
   state?: BucketOperationStateEnum;
-  /** Output only. Summarizes errors encountered with sample error log entries. */
-  errorSummaries?: ErrorSummaryList;
-  /** Output only. The time that the BucketOperation was created. */
-  createTime?: string;
+  /** Output only. Information about the progress of the bucket operation. */
+  counters?: Counters;
   /** Output only. The time that the BucketOperation was completed. */
   completeTime?: string;
-  /** Delete objects. */
-  deleteObject?: DeleteObject;
+  /** Output only. Summarizes errors encountered with sample error log entries. */
+  errorSummaries?: ErrorSummaryList;
   /** Identifier. The resource name of the BucketOperation. This is defined by the service. Format: `projects/{project_id}/locations/global/jobs/{job_id}/bucketOperations/{bucket_operation}`. */
   name?: string;
+  /** Updates object metadata. Allows updating fixed-key and custom metadata and fixed-key metadata i.e. Cache-Control, Content-Disposition, Content-Encoding, Content-Language, Content-Type, Custom-Time. */
+  putMetadata?: PutMetadata;
   /** Specifies objects in a manifest file. */
   manifest?: Manifest;
   /** Specifies objects matching a prefix set. */
   prefixList?: PrefixList;
   /** Specifies objects matching the object filters in a project source. */
   projectSource?: ProjectSource;
-  /** Rewrite the object and updates metadata like KMS key. */
-  rewriteObject?: RewriteObject;
   /** Update object custom context. */
   updateObjectCustomContext?: UpdateObjectCustomContext;
-  /** The bucket name of the objects to be transformed in the BucketOperation. */
-  bucketName?: string;
-  /** Output only. Information about the progress of the bucket operation. */
-  counters?: Counters;
-  /** Changes object hold status. */
-  putObjectHold?: PutObjectHold;
+  /** Output only. The time that the BucketOperation was created. */
+  createTime?: string;
+  /** Delete objects. */
+  deleteObject?: DeleteObject;
+  /** Rewrite the object and updates metadata like KMS key. */
+  rewriteObject?: RewriteObject;
 }
 export const BucketOperation = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    setObjectAcls: S.optional(SetObjectAcls),
     startTime: S.optional(S.String),
-    putMetadata: S.optional(PutMetadata),
+    setObjectAcls: S.optional(SetObjectAcls),
+    bucketName: S.optional(S.String),
+    putObjectHold: S.optional(PutObjectHold),
     state: S.optional(BucketOperationStateEnum),
-    errorSummaries: S.optional(ErrorSummaryList),
-    createTime: S.optional(S.String),
+    counters: S.optional(Counters),
     completeTime: S.optional(S.String),
-    deleteObject: S.optional(DeleteObject),
+    errorSummaries: S.optional(ErrorSummaryList),
     name: S.optional(S.String),
+    putMetadata: S.optional(PutMetadata),
     manifest: S.optional(Manifest),
     prefixList: S.optional(PrefixList),
     projectSource: S.optional(ProjectSource),
-    rewriteObject: S.optional(RewriteObject),
     updateObjectCustomContext: S.optional(UpdateObjectCustomContext),
-    bucketName: S.optional(S.String),
-    counters: S.optional(Counters),
-    putObjectHold: S.optional(PutObjectHold),
+    createTime: S.optional(S.String),
+    deleteObject: S.optional(DeleteObject),
+    rewriteObject: S.optional(RewriteObject),
   }),
 ).annotate({
   identifier: "BucketOperation",
@@ -983,24 +983,24 @@ export const GetProjectsLocationsOperationsRequest = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<GetProjectsLocationsOperationsRequest>;
 
 export interface ListProjectsLocationsRequest {
-  /** Optional. Do not use this field unless explicitly documented otherwise. This is primarily for internal usage. */
-  extraLocationTypes?: StringList;
-  /** A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page. */
-  pageToken?: string;
-  /** The maximum number of results to return. If not set, the service selects a default. */
-  pageSize?: number;
   /** The resource that owns the locations collection, if applicable. */
   name: string;
   /** A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160). */
   filter?: string;
+  /** A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page. */
+  pageToken?: string;
+  /** Optional. Do not use this field unless explicitly documented otherwise. This is primarily for internal usage. */
+  extraLocationTypes?: StringList;
+  /** The maximum number of results to return. If not set, the service selects a default. */
+  pageSize?: number;
 }
 export const ListProjectsLocationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    extraLocationTypes: S.optional(StringList.pipe(T.Query())),
-    pageToken: S.optional(S.String.pipe(T.Query())),
-    pageSize: S.optional(S.Number.pipe(T.Query())),
     name: S.String.pipe(T.Label()),
     filter: S.optional(S.String.pipe(T.Query())),
+    pageToken: S.optional(S.String.pipe(T.Query())),
+    extraLocationTypes: S.optional(StringList.pipe(T.Query())),
+    pageSize: S.optional(S.Number.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -1034,24 +1034,24 @@ export const ListLocationsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListLocationsResponse>;
 
 export interface ListProjectsLocationsJobsRequest {
-  /** Optional. The list page token. */
-  pageToken?: string;
-  /** Optional. Filters results as defined by https://google.aip.dev/160. */
-  filter?: string;
   /** Optional. The list page size. The default page size is 100. */
   pageSize?: number;
   /** Required. Format: projects/{project_id}/locations/global. */
   parent: string;
   /** Optional. Field to sort by. Supported fields are `name` and `create_time`. */
   orderBy?: string;
+  /** Optional. The list page token. */
+  pageToken?: string;
+  /** Optional. Filters results as defined by https://google.aip.dev/160. */
+  filter?: string;
 }
 export const ListProjectsLocationsJobsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    pageToken: S.optional(S.String.pipe(T.Query())),
-    filter: S.optional(S.String.pipe(T.Query())),
     pageSize: S.optional(S.Number.pipe(T.Query())),
     parent: S.String.pipe(T.Label()),
     orderBy: S.optional(S.String.pipe(T.Query())),
+    pageToken: S.optional(S.String.pipe(T.Query())),
+    filter: S.optional(S.String.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -1068,43 +1068,43 @@ export const JobList = /*@__PURE__*/ S.Array(Job) as any as S.Schema<JobList>;
 
 /** Message for response to listing Jobs */
 export interface ListJobsResponse {
+  /** A list of storage batch jobs. */
+  jobs?: JobList;
   /** Locations that could not be reached. */
   unreachable?: StringList;
   /** A token identifying a page of results. */
   nextPageToken?: string;
-  /** A list of storage batch jobs. */
-  jobs?: JobList;
 }
 export const ListJobsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    jobs: S.optional(JobList),
     unreachable: S.optional(StringList),
     nextPageToken: S.optional(S.String),
-    jobs: S.optional(JobList),
   }),
 ).annotate({
   identifier: "ListJobsResponse",
 }) as any as S.Schema<ListJobsResponse>;
 
 export interface ListProjectsLocationsJobsBucketOperationsRequest {
-  /** Optional. Field to sort by. Supported fields are `name` and `create_time`. */
-  orderBy?: string;
-  /** Optional. The list page size. Default page size is 100. */
-  pageSize?: number;
-  /** Optional. The list page token. */
-  pageToken?: string;
-  /** Required. Format: `projects/{project_id}/locations/global/jobs/{job_id}`. */
-  parent: string;
   /** Optional. Filters results as defined by https://google.aip.dev/160. */
   filter?: string;
+  /** Optional. The list page size. Default page size is 100. */
+  pageSize?: number;
+  /** Required. Format: `projects/{project_id}/locations/global/jobs/{job_id}`. */
+  parent: string;
+  /** Optional. Field to sort by. Supported fields are `name` and `create_time`. */
+  orderBy?: string;
+  /** Optional. The list page token. */
+  pageToken?: string;
 }
 export const ListProjectsLocationsJobsBucketOperationsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      orderBy: S.optional(S.String.pipe(T.Query())),
-      pageSize: S.optional(S.Number.pipe(T.Query())),
-      pageToken: S.optional(S.String.pipe(T.Query())),
-      parent: S.String.pipe(T.Label()),
       filter: S.optional(S.String.pipe(T.Query())),
+      pageSize: S.optional(S.Number.pipe(T.Query())),
+      parent: S.String.pipe(T.Label()),
+      orderBy: S.optional(S.String.pipe(T.Query())),
+      pageToken: S.optional(S.String.pipe(T.Query())),
     }).pipe(
       T.Http({
         method: "GET",
@@ -1141,25 +1141,25 @@ export const ListBucketOperationsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListBucketOperationsResponse>;
 
 export interface ListProjectsLocationsOperationsRequest {
-  /** The standard list page token. */
-  pageToken?: string;
-  /** The standard list page size. */
-  pageSize?: number;
-  /** The name of the operation's parent resource. */
-  name: string;
   /** When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation. */
   returnPartialSuccess?: boolean;
   /** The standard list filter. */
   filter?: string;
+  /** The standard list page size. */
+  pageSize?: number;
+  /** The standard list page token. */
+  pageToken?: string;
+  /** The name of the operation's parent resource. */
+  name: string;
 }
 export const ListProjectsLocationsOperationsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      pageToken: S.optional(S.String.pipe(T.Query())),
-      pageSize: S.optional(S.Number.pipe(T.Query())),
-      name: S.String.pipe(T.Label()),
       returnPartialSuccess: S.optional(S.Boolean.pipe(T.Query())),
       filter: S.optional(S.String.pipe(T.Query())),
+      pageSize: S.optional(S.Number.pipe(T.Query())),
+      pageToken: S.optional(S.String.pipe(T.Query())),
+      name: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
         method: "GET",

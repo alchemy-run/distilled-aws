@@ -12,30 +12,161 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
-export interface ImageVersionsListByImageRequest {
+/** The type of resource. */
+export type DevOpsInfrastructureResourceType =
+  "Microsoft.DevOpsInfrastructure/pools";
+export const DevOpsInfrastructureResourceType = /*@__PURE__*/ S.String;
+
+export interface CheckPoolNameAvailabilityRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the image. */
-  imageName: string;
+  /** The name of the resource. */
+  name: string;
+  /** The type of resource that is used as the scope of the availability check. */
+  type: DevOpsInfrastructureResourceType | (string & {});
 }
-export const ImageVersionsListByImageRequest = /*@__PURE__*/ S.suspend(() =>
+export const CheckPoolNameAvailabilityRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    imageName: S.String.pipe(T.Label()),
+    name: S.String,
+    type: DevOpsInfrastructureResourceType,
   }).pipe(
     T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevOpsInfrastructure/images/{imageName}/versions",
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.DevOpsInfrastructure/checkNameAvailability",
       code: 200,
       apiVersion: "2026-06-02",
     }),
   ),
 ).annotate({
-  identifier: "ImageVersionsListByImageRequest",
-}) as any as S.Schema<ImageVersionsListByImageRequest>;
+  identifier: "CheckPoolNameAvailabilityRequest",
+}) as any as S.Schema<CheckPoolNameAvailabilityRequest>;
+
+/** AvailabilityStatus of a name. */
+export type AvailabilityStatus = "Available" | "Unavailable";
+export const AvailabilityStatus = /*@__PURE__*/ S.String;
+
+/** The reason code explaining why the name is unavailable. Will be null if the name is available. */
+export type CheckNameAvailabilityReason = "Invalid" | "AlreadyExists";
+export const CheckNameAvailabilityReason = /*@__PURE__*/ S.String;
+
+/** The CheckNameAvailability operation response. */
+export interface CheckNameAvailabilityResult {
+  /** Availability status of the name. */
+  available: AvailabilityStatus;
+  /** A message explaining why the name is unavailable. Will be null if the name is available. */
+  message: string;
+  /** The name whose availability was checked. */
+  name: string;
+  /** The reason code explaining why the name is unavailable. Will be null if the name is available. */
+  reason: CheckNameAvailabilityReason;
+}
+export const CheckNameAvailabilityResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    available: AvailabilityStatus,
+    message: S.String,
+    name: S.String,
+    reason: CheckNameAvailabilityReason,
+  }),
+).annotate({
+  identifier: "CheckNameAvailabilityResult",
+}) as any as S.Schema<CheckNameAvailabilityResult>;
+
+export interface DeletePoolRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the pool. It needs to be globally unique. */
+  poolName: string;
+}
+export const DeletePoolRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    poolName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevOpsInfrastructure/pools/{poolName}",
+      code: 200,
+      apiVersion: "2026-06-02",
+    }),
+  ),
+).annotate({
+  identifier: "DeletePoolRequest",
+}) as any as S.Schema<DeletePoolRequest>;
+
+export interface DeletePoolResponse {}
+export const DeletePoolResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeletePoolResponse",
+}) as any as S.Schema<DeletePoolResponse>;
+
+/** List of resource IDs to delete. */
+export type DeletePoolResourcesRequestResourceIdsList = Array<string>;
+export const DeletePoolResourcesRequestResourceIdsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<DeletePoolResourcesRequestResourceIdsList>;
+
+export interface DeletePoolResourcesRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the pool. It needs to be globally unique. */
+  poolName: string;
+  /** List of resource IDs to delete. */
+  resourceIds: DeletePoolResourcesRequestResourceIdsList;
+}
+export const DeletePoolResourcesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    poolName: S.String.pipe(T.Label()),
+    resourceIds: DeletePoolResourcesRequestResourceIdsList,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevOpsInfrastructure/pools/{poolName}/resources",
+      code: 200,
+      apiVersion: "2026-06-02",
+    }),
+  ),
+).annotate({
+  identifier: "DeletePoolResourcesRequest",
+}) as any as S.Schema<DeletePoolResourcesRequest>;
+
+export interface DeletePoolResourcesResponse {}
+export const DeletePoolResourcesResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeletePoolResourcesResponse",
+}) as any as S.Schema<DeletePoolResourcesResponse>;
+
+export interface GetPoolRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the pool. It needs to be globally unique. */
+  poolName: string;
+}
+export const GetPoolRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    poolName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevOpsInfrastructure/pools/{poolName}",
+      code: 200,
+      apiVersion: "2026-06-02",
+    }),
+  ),
+).annotate({ identifier: "GetPoolRequest" }) as any as S.Schema<GetPoolRequest>;
 
 /** The type of identity that created the resource. */
 export type SystemDataCreatedByType =
@@ -79,220 +210,12 @@ export const SystemData = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "SystemData" }) as any as S.Schema<SystemData>;
 
-/** Details of the ImageVersionProperties. */
-export interface ImageVersionProperties {
-  /** Version of the image. */
-  version: string;
-}
-export const ImageVersionProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    version: S.String,
-  }),
-).annotate({
-  identifier: "ImageVersionProperties",
-}) as any as S.Schema<ImageVersionProperties>;
-
-/** An image version object */
-export interface ImageVersion {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: ImageVersionProperties;
-}
-export const ImageVersion = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ImageVersionProperties),
-  }),
-).annotate({ identifier: "ImageVersion" }) as any as S.Schema<ImageVersion>;
-
-/** The ImageVersion items on this page */
-export type ImageVersionListResultValueList = Array<ImageVersion>;
-export const ImageVersionListResultValueList = /*@__PURE__*/ S.Array(
-  ImageVersion,
-) as any as S.Schema<ImageVersionListResultValueList>;
-
-/** The response of a ImageVersion list operation. */
-export interface ImageVersionListResult {
-  /** The ImageVersion items on this page */
-  value: ImageVersionListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const ImageVersionListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: ImageVersionListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ImageVersionListResult",
-}) as any as S.Schema<ImageVersionListResult>;
-
-export interface OperationsListRequest {}
-export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/providers/Microsoft.DevOpsInfrastructure/operations",
-      code: 200,
-      apiVersion: "2026-06-02",
-    }),
-  ),
-).annotate({
-  identifier: "OperationsListRequest",
-}) as any as S.Schema<OperationsListRequest>;
-
-/** Localized display information for this particular operation. */
-export interface OperationDisplay {
-  /** The localized friendly form of the resource provider name, e.g. "Microsoft Monitoring Insights" or "Microsoft Compute". */
-  provider?: string;
-  /** The localized friendly name of the resource type related to this operation. E.g. "Virtual Machines" or "Job Schedule Collections". */
-  resource?: string;
-  /** The concise, localized friendly name for the operation; suitable for dropdowns. E.g. "Create or Update Virtual Machine", "Restart Virtual Machine". */
-  operation?: string;
-  /** The short, localized friendly description of the operation; suitable for tool tips and detailed views. */
-  description?: string;
-}
-export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provider: S.optional(S.String),
-    resource: S.optional(S.String),
-    operation: S.optional(S.String),
-    description: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OperationDisplay",
-}) as any as S.Schema<OperationDisplay>;
-
-/** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
-export type OperationOrigin = "user" | "system" | "user,system";
-export const OperationOrigin = /*@__PURE__*/ S.String;
-
-/** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
-export type OperationActionType = "Internal";
-export const OperationActionType = /*@__PURE__*/ S.String;
-
-/** Details of a REST API operation, returned from the Resource Provider Operations API */
-export interface Operation {
-  /** The name of the operation, as per Resource-Based Access Control (RBAC). Examples: "Microsoft.Compute/virtualMachines/write", "Microsoft.Compute/virtualMachines/capture/action" */
-  name?: string;
-  /** Whether the operation applies to data-plane. This is "true" for data-plane operations and "false" for ARM/control-plane operations. */
-  isDataAction?: boolean;
-  /** Localized display information for this particular operation. */
-  display?: OperationDisplay;
-  /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
-  origin?: OperationOrigin;
-  /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
-  actionType?: OperationActionType;
-}
-export const Operation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    isDataAction: S.optional(S.Boolean),
-    display: S.optional(OperationDisplay),
-    origin: S.optional(OperationOrigin),
-    actionType: S.optional(OperationActionType),
-  }),
-).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
-
-/** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
-  Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
-
-export interface OperationsListResponse {
-  /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
-  /** URL to get the next set of operation list results (if there are any). */
-  nextLink?: string;
-}
-export const OperationsListResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(OperationsListResponseValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OperationsListResponse",
-}) as any as S.Schema<OperationsListResponse>;
-
-/** The type of resource. */
-export type DevOpsInfrastructureResourceType =
-  "Microsoft.DevOpsInfrastructure/pools";
-export const DevOpsInfrastructureResourceType = /*@__PURE__*/ S.String;
-
-export interface PoolsCheckNameAvailabilityRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource. */
-  name: string;
-  /** The type of resource that is used as the scope of the availability check. */
-  type: DevOpsInfrastructureResourceType | (string & {});
-}
-export const PoolsCheckNameAvailabilityRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    name: S.String,
-    type: DevOpsInfrastructureResourceType,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.DevOpsInfrastructure/checkNameAvailability",
-      code: 200,
-      apiVersion: "2026-06-02",
-    }),
-  ),
-).annotate({
-  identifier: "PoolsCheckNameAvailabilityRequest",
-}) as any as S.Schema<PoolsCheckNameAvailabilityRequest>;
-
-/** AvailabilityStatus of a name. */
-export type AvailabilityStatus = "Available" | "Unavailable";
-export const AvailabilityStatus = /*@__PURE__*/ S.String;
-
-/** The reason code explaining why the name is unavailable. Will be null if the name is available. */
-export type CheckNameAvailabilityReason = "Invalid" | "AlreadyExists";
-export const CheckNameAvailabilityReason = /*@__PURE__*/ S.String;
-
-/** The CheckNameAvailability operation response. */
-export interface CheckNameAvailabilityResult {
-  /** Availability status of the name. */
-  available: AvailabilityStatus;
-  /** A message explaining why the name is unavailable. Will be null if the name is available. */
-  message: string;
-  /** The name whose availability was checked. */
-  name: string;
-  /** The reason code explaining why the name is unavailable. Will be null if the name is available. */
-  reason: CheckNameAvailabilityReason;
-}
-export const CheckNameAvailabilityResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    available: AvailabilityStatus,
-    message: S.String,
-    name: S.String,
-    reason: CheckNameAvailabilityReason,
-  }),
-).annotate({
-  identifier: "CheckNameAvailabilityResult",
-}) as any as S.Schema<CheckNameAvailabilityResult>;
-
 /** Resource tags. */
-export type PoolsCreateOrUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const PoolsCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type GetPoolResponseTagsMap = { [key: string]: string | undefined };
+export const GetPoolResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<PoolsCreateOrUpdateRequestTagsMap>;
+) as any as S.Schema<GetPoolResponseTagsMap>;
 
 /** The status of the current operation. */
 export type ProvisioningState =
@@ -414,87 +337,6 @@ export type ManagedServiceIdentityType =
 export const ManagedServiceIdentityType = /*@__PURE__*/ S.String;
 
 /** User assigned identity properties */
-export interface UserAssignedIdentityInput {}
-export const UserAssignedIdentityInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "UserAssignedIdentityInput",
-}) as any as S.Schema<UserAssignedIdentityInput>;
-
-/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-export type PoolsCreateOrUpdateRequestIdentityUserAssignedIdentitiesMap = {
-  [key: string]: UserAssignedIdentityInput | undefined;
-};
-export const PoolsCreateOrUpdateRequestIdentityUserAssignedIdentitiesMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    UserAssignedIdentityInput,
-  ) as any as S.Schema<PoolsCreateOrUpdateRequestIdentityUserAssignedIdentitiesMap>;
-
-/** Managed service identity (system assigned and/or user assigned identities) */
-export interface PoolsCreateOrUpdateRequestIdentity {
-  type: ManagedServiceIdentityType | (string & {});
-  /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-  userAssignedIdentities?: PoolsCreateOrUpdateRequestIdentityUserAssignedIdentitiesMap;
-}
-export const PoolsCreateOrUpdateRequestIdentity = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: ManagedServiceIdentityType,
-    userAssignedIdentities: S.optional(
-      PoolsCreateOrUpdateRequestIdentityUserAssignedIdentitiesMap,
-    ),
-  }),
-).annotate({
-  identifier: "PoolsCreateOrUpdateRequestIdentity",
-}) as any as S.Schema<PoolsCreateOrUpdateRequestIdentity>;
-
-export interface PoolsCreateOrUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the pool. It needs to be globally unique. */
-  poolName: string;
-  /** Resource tags. */
-  tags?: PoolsCreateOrUpdateRequestTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: PoolProperties;
-  /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: PoolsCreateOrUpdateRequestIdentity;
-}
-export const PoolsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    poolName: S.String.pipe(T.Label()),
-    tags: S.optional(PoolsCreateOrUpdateRequestTagsMap),
-    location: S.String,
-    properties: S.optional(PoolProperties),
-    identity: S.optional(PoolsCreateOrUpdateRequestIdentity),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevOpsInfrastructure/pools/{poolName}",
-      code: 200,
-      apiVersion: "2026-06-02",
-    }),
-  ),
-).annotate({
-  identifier: "PoolsCreateOrUpdateRequest",
-}) as any as S.Schema<PoolsCreateOrUpdateRequest>;
-
-/** Resource tags. */
-export type PoolsCreateOrUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const PoolsCreateOrUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<PoolsCreateOrUpdateResponseTagsMap>;
-
-/** User assigned identity properties */
 export interface UserAssignedIdentity {
   /** The principal ID of the assigned identity. */
   principalId?: string;
@@ -511,39 +353,39 @@ export const UserAssignedIdentity = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<UserAssignedIdentity>;
 
 /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-export type PoolsCreateOrUpdateResponseIdentityUserAssignedIdentitiesMap = {
+export type GetPoolResponseIdentityUserAssignedIdentitiesMap = {
   [key: string]: UserAssignedIdentity | undefined;
 };
-export const PoolsCreateOrUpdateResponseIdentityUserAssignedIdentitiesMap =
+export const GetPoolResponseIdentityUserAssignedIdentitiesMap =
   /*@__PURE__*/ S.Record(
     S.String,
     UserAssignedIdentity,
-  ) as any as S.Schema<PoolsCreateOrUpdateResponseIdentityUserAssignedIdentitiesMap>;
+  ) as any as S.Schema<GetPoolResponseIdentityUserAssignedIdentitiesMap>;
 
 /** Managed service identity (system assigned and/or user assigned identities) */
-export interface PoolsCreateOrUpdateResponseIdentity {
+export interface GetPoolResponseIdentity {
   /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   principalId?: string;
   /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
   tenantId?: string;
   type: ManagedServiceIdentityType;
   /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-  userAssignedIdentities?: PoolsCreateOrUpdateResponseIdentityUserAssignedIdentitiesMap;
+  userAssignedIdentities?: GetPoolResponseIdentityUserAssignedIdentitiesMap;
 }
-export const PoolsCreateOrUpdateResponseIdentity = /*@__PURE__*/ S.suspend(() =>
+export const GetPoolResponseIdentity = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     principalId: S.optional(S.String),
     tenantId: S.optional(S.String),
     type: ManagedServiceIdentityType,
     userAssignedIdentities: S.optional(
-      PoolsCreateOrUpdateResponseIdentityUserAssignedIdentitiesMap,
+      GetPoolResponseIdentityUserAssignedIdentitiesMap,
     ),
   }),
 ).annotate({
-  identifier: "PoolsCreateOrUpdateResponseIdentity",
-}) as any as S.Schema<PoolsCreateOrUpdateResponseIdentity>;
+  identifier: "GetPoolResponseIdentity",
+}) as any as S.Schema<GetPoolResponseIdentity>;
 
-export interface PoolsCreateOrUpdateResponse {
+export interface GetPoolResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -553,168 +395,69 @@ export interface PoolsCreateOrUpdateResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: PoolsCreateOrUpdateResponseTagsMap;
+  tags?: GetPoolResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: PoolProperties;
   /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: PoolsCreateOrUpdateResponseIdentity;
+  identity?: GetPoolResponseIdentity;
 }
-export const PoolsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetPoolResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(PoolsCreateOrUpdateResponseTagsMap),
+    tags: S.optional(GetPoolResponseTagsMap),
     location: S.String,
     properties: S.optional(PoolProperties),
-    identity: S.optional(PoolsCreateOrUpdateResponseIdentity),
+    identity: S.optional(GetPoolResponseIdentity),
   }),
 ).annotate({
-  identifier: "PoolsCreateOrUpdateResponse",
-}) as any as S.Schema<PoolsCreateOrUpdateResponse>;
+  identifier: "GetPoolResponse",
+}) as any as S.Schema<GetPoolResponse>;
 
-export interface PoolsDeleteRequest {
+export interface ListImageVersionByImageRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
-  /** Name of the pool. It needs to be globally unique. */
-  poolName: string;
+  /** Name of the image. */
+  imageName: string;
 }
-export const PoolsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListImageVersionByImageRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
-    poolName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevOpsInfrastructure/pools/{poolName}",
-      code: 200,
-      apiVersion: "2026-06-02",
-    }),
-  ),
-).annotate({
-  identifier: "PoolsDeleteRequest",
-}) as any as S.Schema<PoolsDeleteRequest>;
-
-export interface PoolsDeleteResponse {}
-export const PoolsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "PoolsDeleteResponse",
-}) as any as S.Schema<PoolsDeleteResponse>;
-
-/** List of resource IDs to delete. */
-export type PoolsDeleteResourcesRequestResourceIdsList = Array<string>;
-export const PoolsDeleteResourcesRequestResourceIdsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<PoolsDeleteResourcesRequestResourceIdsList>;
-
-export interface PoolsDeleteResourcesRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the pool. It needs to be globally unique. */
-  poolName: string;
-  /** List of resource IDs to delete. */
-  resourceIds: PoolsDeleteResourcesRequestResourceIdsList;
-}
-export const PoolsDeleteResourcesRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    poolName: S.String.pipe(T.Label()),
-    resourceIds: PoolsDeleteResourcesRequestResourceIdsList,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevOpsInfrastructure/pools/{poolName}/resources",
-      code: 200,
-      apiVersion: "2026-06-02",
-    }),
-  ),
-).annotate({
-  identifier: "PoolsDeleteResourcesRequest",
-}) as any as S.Schema<PoolsDeleteResourcesRequest>;
-
-export interface PoolsDeleteResourcesResponse {}
-export const PoolsDeleteResourcesResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "PoolsDeleteResourcesResponse",
-}) as any as S.Schema<PoolsDeleteResourcesResponse>;
-
-export interface PoolsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the pool. It needs to be globally unique. */
-  poolName: string;
-}
-export const PoolsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    poolName: S.String.pipe(T.Label()),
+    imageName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevOpsInfrastructure/pools/{poolName}",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevOpsInfrastructure/images/{imageName}/versions",
       code: 200,
       apiVersion: "2026-06-02",
     }),
   ),
 ).annotate({
-  identifier: "PoolsGetRequest",
-}) as any as S.Schema<PoolsGetRequest>;
+  identifier: "ListImageVersionByImageRequest",
+}) as any as S.Schema<ListImageVersionByImageRequest>;
 
-/** Resource tags. */
-export type PoolsGetResponseTagsMap = { [key: string]: string | undefined };
-export const PoolsGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<PoolsGetResponseTagsMap>;
-
-/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-export type PoolsGetResponseIdentityUserAssignedIdentitiesMap = {
-  [key: string]: UserAssignedIdentity | undefined;
-};
-export const PoolsGetResponseIdentityUserAssignedIdentitiesMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    UserAssignedIdentity,
-  ) as any as S.Schema<PoolsGetResponseIdentityUserAssignedIdentitiesMap>;
-
-/** Managed service identity (system assigned and/or user assigned identities) */
-export interface PoolsGetResponseIdentity {
-  /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
-  principalId?: string;
-  /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
-  tenantId?: string;
-  type: ManagedServiceIdentityType;
-  /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-  userAssignedIdentities?: PoolsGetResponseIdentityUserAssignedIdentitiesMap;
+/** Details of the ImageVersionProperties. */
+export interface ImageVersionProperties {
+  /** Version of the image. */
+  version: string;
 }
-export const PoolsGetResponseIdentity = /*@__PURE__*/ S.suspend(() =>
+export const ImageVersionProperties = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    principalId: S.optional(S.String),
-    tenantId: S.optional(S.String),
-    type: ManagedServiceIdentityType,
-    userAssignedIdentities: S.optional(
-      PoolsGetResponseIdentityUserAssignedIdentitiesMap,
-    ),
+    version: S.String,
   }),
 ).annotate({
-  identifier: "PoolsGetResponseIdentity",
-}) as any as S.Schema<PoolsGetResponseIdentity>;
+  identifier: "ImageVersionProperties",
+}) as any as S.Schema<ImageVersionProperties>;
 
-export interface PoolsGetResponse {
+/** An image version object */
+export interface ImageVersion {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -723,37 +466,136 @@ export interface PoolsGetResponse {
   type?: string;
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
-  /** Resource tags. */
-  tags?: PoolsGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
   /** The resource-specific properties for this resource. */
-  properties?: PoolProperties;
-  /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: PoolsGetResponseIdentity;
+  properties?: ImageVersionProperties;
 }
-export const PoolsGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const ImageVersion = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(PoolsGetResponseTagsMap),
-    location: S.String,
-    properties: S.optional(PoolProperties),
-    identity: S.optional(PoolsGetResponseIdentity),
+    properties: S.optional(ImageVersionProperties),
+  }),
+).annotate({ identifier: "ImageVersion" }) as any as S.Schema<ImageVersion>;
+
+/** The ImageVersion items on this page */
+export type ImageVersionListResultValueList = Array<ImageVersion>;
+export const ImageVersionListResultValueList = /*@__PURE__*/ S.Array(
+  ImageVersion,
+) as any as S.Schema<ImageVersionListResultValueList>;
+
+/** The response of a ImageVersion list operation. */
+export interface ImageVersionListResult {
+  /** The ImageVersion items on this page */
+  value: ImageVersionListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const ImageVersionListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: ImageVersionListResultValueList,
+    nextLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "PoolsGetResponse",
-}) as any as S.Schema<PoolsGetResponse>;
+  identifier: "ImageVersionListResult",
+}) as any as S.Schema<ImageVersionListResult>;
 
-export interface PoolsListByResourceGroupRequest {
+export interface ListOperationsRequest {}
+export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/providers/Microsoft.DevOpsInfrastructure/operations",
+      code: 200,
+      apiVersion: "2026-06-02",
+    }),
+  ),
+).annotate({
+  identifier: "ListOperationsRequest",
+}) as any as S.Schema<ListOperationsRequest>;
+
+/** Localized display information for this particular operation. */
+export interface OperationDisplay {
+  /** The localized friendly form of the resource provider name, e.g. "Microsoft Monitoring Insights" or "Microsoft Compute". */
+  provider?: string;
+  /** The localized friendly name of the resource type related to this operation. E.g. "Virtual Machines" or "Job Schedule Collections". */
+  resource?: string;
+  /** The concise, localized friendly name for the operation; suitable for dropdowns. E.g. "Create or Update Virtual Machine", "Restart Virtual Machine". */
+  operation?: string;
+  /** The short, localized friendly description of the operation; suitable for tool tips and detailed views. */
+  description?: string;
+}
+export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provider: S.optional(S.String),
+    resource: S.optional(S.String),
+    operation: S.optional(S.String),
+    description: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "OperationDisplay",
+}) as any as S.Schema<OperationDisplay>;
+
+/** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
+export type OperationOrigin = "user" | "system" | "user,system";
+export const OperationOrigin = /*@__PURE__*/ S.String;
+
+/** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
+export type OperationActionType = "Internal";
+export const OperationActionType = /*@__PURE__*/ S.String;
+
+/** Details of a REST API operation, returned from the Resource Provider Operations API */
+export interface Operation {
+  /** The name of the operation, as per Resource-Based Access Control (RBAC). Examples: "Microsoft.Compute/virtualMachines/write", "Microsoft.Compute/virtualMachines/capture/action" */
+  name?: string;
+  /** Whether the operation applies to data-plane. This is "true" for data-plane operations and "false" for ARM/control-plane operations. */
+  isDataAction?: boolean;
+  /** Localized display information for this particular operation. */
+  display?: OperationDisplay;
+  /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
+  origin?: OperationOrigin;
+  /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
+  actionType?: OperationActionType;
+}
+export const Operation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    isDataAction: S.optional(S.Boolean),
+    display: S.optional(OperationDisplay),
+    origin: S.optional(OperationOrigin),
+    actionType: S.optional(OperationActionType),
+  }),
+).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
+
+/** List of operations supported by the resource provider */
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
+  Operation,
+) as any as S.Schema<ListOperationsResponseValueList>;
+
+export interface ListOperationsResponse {
+  /** List of operations supported by the resource provider */
+  value?: ListOperationsResponseValueList;
+  /** URL to get the next set of operation list results (if there are any). */
+  nextLink?: string;
+}
+export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(ListOperationsResponseValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ListOperationsResponse",
+}) as any as S.Schema<ListOperationsResponse>;
+
+export interface ListPoolByResourceGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
 }
-export const PoolsListByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListPoolByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -766,8 +608,8 @@ export const PoolsListByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "PoolsListByResourceGroupRequest",
-}) as any as S.Schema<PoolsListByResourceGroupRequest>;
+  identifier: "ListPoolByResourceGroupRequest",
+}) as any as S.Schema<ListPoolByResourceGroupRequest>;
 
 /** Resource tags. */
 export type PoolTagsMap = { [key: string]: string | undefined };
@@ -856,11 +698,11 @@ export const PoolListResult = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "PoolListResult" }) as any as S.Schema<PoolListResult>;
 
-export interface PoolsListBySubscriptionRequest {
+export interface ListPoolBySubscriptionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
 }
-export const PoolsListBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListPoolBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
   }).pipe(
@@ -872,182 +714,10 @@ export const PoolsListBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "PoolsListBySubscriptionRequest",
-}) as any as S.Schema<PoolsListBySubscriptionRequest>;
+  identifier: "ListPoolBySubscriptionRequest",
+}) as any as S.Schema<ListPoolBySubscriptionRequest>;
 
-/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-export type PoolsUpdateRequestIdentityUserAssignedIdentitiesMap = {
-  [key: string]: UserAssignedIdentityInput | undefined;
-};
-export const PoolsUpdateRequestIdentityUserAssignedIdentitiesMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    UserAssignedIdentityInput,
-  ) as any as S.Schema<PoolsUpdateRequestIdentityUserAssignedIdentitiesMap>;
-
-/** Managed service identity (system assigned and/or user assigned identities) */
-export interface PoolsUpdateRequestIdentity {
-  type: ManagedServiceIdentityType | (string & {});
-  /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-  userAssignedIdentities?: PoolsUpdateRequestIdentityUserAssignedIdentitiesMap;
-}
-export const PoolsUpdateRequestIdentity = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: ManagedServiceIdentityType,
-    userAssignedIdentities: S.optional(
-      PoolsUpdateRequestIdentityUserAssignedIdentitiesMap,
-    ),
-  }),
-).annotate({
-  identifier: "PoolsUpdateRequestIdentity",
-}) as any as S.Schema<PoolsUpdateRequestIdentity>;
-
-/** Resource tags. */
-export type PoolsUpdateRequestTagsMap = { [key: string]: string | undefined };
-export const PoolsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<PoolsUpdateRequestTagsMap>;
-
-/** The updatable properties of the Pool. */
-export interface PoolUpdateProperties {
-  /** The status of the current operation. */
-  provisioningState?: ProvisioningState | (string & {});
-  /** Defines how many resources can there be created at any given time. */
-  maximumConcurrency?: number;
-  /** Defines the organization in which the pool will be used. */
-  organizationProfile?: OrganizationProfile;
-  /** Defines how the machine will be handled once it executed a job. */
-  agentProfile?: AgentProfile;
-  /** Defines the type of fabric the agent will run on. */
-  fabricProfile?: FabricProfile;
-  /** The resource id of the DevCenter Project the pool belongs to. */
-  devCenterProjectResourceId?: string;
-  /** The runtime configuration of the pool. */
-  runtimeConfiguration?: RuntimeConfiguration;
-}
-export const PoolUpdateProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provisioningState: S.optional(ProvisioningState),
-    maximumConcurrency: S.optional(S.Number),
-    organizationProfile: S.optional(OrganizationProfile),
-    agentProfile: S.optional(AgentProfile),
-    fabricProfile: S.optional(FabricProfile),
-    devCenterProjectResourceId: S.optional(S.String),
-    runtimeConfiguration: S.optional(RuntimeConfiguration),
-  }),
-).annotate({
-  identifier: "PoolUpdateProperties",
-}) as any as S.Schema<PoolUpdateProperties>;
-
-export interface PoolsUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Name of the pool. It needs to be globally unique. */
-  poolName: string;
-  /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: PoolsUpdateRequestIdentity;
-  /** Resource tags. */
-  tags?: PoolsUpdateRequestTagsMap;
-  /** The resource-specific properties for this resource. */
-  properties?: PoolUpdateProperties;
-}
-export const PoolsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    poolName: S.String.pipe(T.Label()),
-    identity: S.optional(PoolsUpdateRequestIdentity),
-    tags: S.optional(PoolsUpdateRequestTagsMap),
-    properties: S.optional(PoolUpdateProperties),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevOpsInfrastructure/pools/{poolName}",
-      code: 200,
-      apiVersion: "2026-06-02",
-    }),
-  ),
-).annotate({
-  identifier: "PoolsUpdateRequest",
-}) as any as S.Schema<PoolsUpdateRequest>;
-
-/** Resource tags. */
-export type PoolsUpdateResponseTagsMap = { [key: string]: string | undefined };
-export const PoolsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<PoolsUpdateResponseTagsMap>;
-
-/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-export type PoolsUpdateResponseIdentityUserAssignedIdentitiesMap = {
-  [key: string]: UserAssignedIdentity | undefined;
-};
-export const PoolsUpdateResponseIdentityUserAssignedIdentitiesMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    UserAssignedIdentity,
-  ) as any as S.Schema<PoolsUpdateResponseIdentityUserAssignedIdentitiesMap>;
-
-/** Managed service identity (system assigned and/or user assigned identities) */
-export interface PoolsUpdateResponseIdentity {
-  /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
-  principalId?: string;
-  /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
-  tenantId?: string;
-  type: ManagedServiceIdentityType;
-  /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
-  userAssignedIdentities?: PoolsUpdateResponseIdentityUserAssignedIdentitiesMap;
-}
-export const PoolsUpdateResponseIdentity = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    principalId: S.optional(S.String),
-    tenantId: S.optional(S.String),
-    type: ManagedServiceIdentityType,
-    userAssignedIdentities: S.optional(
-      PoolsUpdateResponseIdentityUserAssignedIdentitiesMap,
-    ),
-  }),
-).annotate({
-  identifier: "PoolsUpdateResponseIdentity",
-}) as any as S.Schema<PoolsUpdateResponseIdentity>;
-
-export interface PoolsUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: PoolsUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: PoolProperties;
-  /** Managed service identity (system assigned and/or user assigned identities) */
-  identity?: PoolsUpdateResponseIdentity;
-}
-export const PoolsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(PoolsUpdateResponseTagsMap),
-    location: S.String,
-    properties: S.optional(PoolProperties),
-    identity: S.optional(PoolsUpdateResponseIdentity),
-  }),
-).annotate({
-  identifier: "PoolsUpdateResponse",
-}) as any as S.Schema<PoolsUpdateResponse>;
-
-export interface ResourceDetailsListByPoolRequest {
+export interface ListResourceDetailByPoolRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1055,7 +725,7 @@ export interface ResourceDetailsListByPoolRequest {
   /** Name of the pool. It needs to be globally unique. */
   poolName: string;
 }
-export const ResourceDetailsListByPoolRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListResourceDetailByPoolRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1069,8 +739,8 @@ export const ResourceDetailsListByPoolRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ResourceDetailsListByPoolRequest",
-}) as any as S.Schema<ResourceDetailsListByPoolRequest>;
+  identifier: "ListResourceDetailByPoolRequest",
+}) as any as S.Schema<ListResourceDetailByPoolRequest>;
 
 /** The status of the machine resource. */
 export type ResourceStatus =
@@ -1154,13 +824,13 @@ export const ResourceDetailsObjectListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "ResourceDetailsObjectListResult",
 }) as any as S.Schema<ResourceDetailsObjectListResult>;
 
-export interface SkuListByLocationRequest {
+export interface ListSkuByLocationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** Name of the location. */
   locationName: string;
 }
-export const SkuListByLocationRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListSkuByLocationRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     locationName: S.String.pipe(T.Label()),
@@ -1173,8 +843,8 @@ export const SkuListByLocationRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "SkuListByLocationRequest",
-}) as any as S.Schema<SkuListByLocationRequest>;
+  identifier: "ListSkuByLocationRequest",
+}) as any as S.Schema<ListSkuByLocationRequest>;
 
 /** The set of locations that the SKU is available. */
 export type ResourceSkuPropertiesLocationsList = Array<string>;
@@ -1425,6 +1095,162 @@ export const ResourceSkuListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "ResourceSkuListResult",
 }) as any as S.Schema<ResourceSkuListResult>;
 
+/** Resource tags. */
+export type PoolsCreateOrUpdateRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const PoolsCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<PoolsCreateOrUpdateRequestTagsMap>;
+
+/** User assigned identity properties */
+export interface UserAssignedIdentityInput {}
+export const UserAssignedIdentityInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "UserAssignedIdentityInput",
+}) as any as S.Schema<UserAssignedIdentityInput>;
+
+/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+export type PoolsCreateOrUpdateRequestIdentityUserAssignedIdentitiesMap = {
+  [key: string]: UserAssignedIdentityInput | undefined;
+};
+export const PoolsCreateOrUpdateRequestIdentityUserAssignedIdentitiesMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    UserAssignedIdentityInput,
+  ) as any as S.Schema<PoolsCreateOrUpdateRequestIdentityUserAssignedIdentitiesMap>;
+
+/** Managed service identity (system assigned and/or user assigned identities) */
+export interface PoolsCreateOrUpdateRequestIdentity {
+  type: ManagedServiceIdentityType | (string & {});
+  /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+  userAssignedIdentities?: PoolsCreateOrUpdateRequestIdentityUserAssignedIdentitiesMap;
+}
+export const PoolsCreateOrUpdateRequestIdentity = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: ManagedServiceIdentityType,
+    userAssignedIdentities: S.optional(
+      PoolsCreateOrUpdateRequestIdentityUserAssignedIdentitiesMap,
+    ),
+  }),
+).annotate({
+  identifier: "PoolsCreateOrUpdateRequestIdentity",
+}) as any as S.Schema<PoolsCreateOrUpdateRequestIdentity>;
+
+export interface PoolsCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the pool. It needs to be globally unique. */
+  poolName: string;
+  /** Resource tags. */
+  tags?: PoolsCreateOrUpdateRequestTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: PoolProperties;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: PoolsCreateOrUpdateRequestIdentity;
+}
+export const PoolsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    poolName: S.String.pipe(T.Label()),
+    tags: S.optional(PoolsCreateOrUpdateRequestTagsMap),
+    location: S.String,
+    properties: S.optional(PoolProperties),
+    identity: S.optional(PoolsCreateOrUpdateRequestIdentity),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevOpsInfrastructure/pools/{poolName}",
+      code: 200,
+      apiVersion: "2026-06-02",
+    }),
+  ),
+).annotate({
+  identifier: "PoolsCreateOrUpdateRequest",
+}) as any as S.Schema<PoolsCreateOrUpdateRequest>;
+
+/** Resource tags. */
+export type PoolsCreateOrUpdateResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const PoolsCreateOrUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<PoolsCreateOrUpdateResponseTagsMap>;
+
+/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+export type PoolsCreateOrUpdateResponseIdentityUserAssignedIdentitiesMap = {
+  [key: string]: UserAssignedIdentity | undefined;
+};
+export const PoolsCreateOrUpdateResponseIdentityUserAssignedIdentitiesMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    UserAssignedIdentity,
+  ) as any as S.Schema<PoolsCreateOrUpdateResponseIdentityUserAssignedIdentitiesMap>;
+
+/** Managed service identity (system assigned and/or user assigned identities) */
+export interface PoolsCreateOrUpdateResponseIdentity {
+  /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
+  principalId?: string;
+  /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
+  tenantId?: string;
+  type: ManagedServiceIdentityType;
+  /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+  userAssignedIdentities?: PoolsCreateOrUpdateResponseIdentityUserAssignedIdentitiesMap;
+}
+export const PoolsCreateOrUpdateResponseIdentity = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    principalId: S.optional(S.String),
+    tenantId: S.optional(S.String),
+    type: ManagedServiceIdentityType,
+    userAssignedIdentities: S.optional(
+      PoolsCreateOrUpdateResponseIdentityUserAssignedIdentitiesMap,
+    ),
+  }),
+).annotate({
+  identifier: "PoolsCreateOrUpdateResponseIdentity",
+}) as any as S.Schema<PoolsCreateOrUpdateResponseIdentity>;
+
+export interface PoolsCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: PoolsCreateOrUpdateResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: PoolProperties;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: PoolsCreateOrUpdateResponseIdentity;
+}
+export const PoolsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(PoolsCreateOrUpdateResponseTagsMap),
+    location: S.String,
+    properties: S.optional(PoolProperties),
+    identity: S.optional(PoolsCreateOrUpdateResponseIdentity),
+  }),
+).annotate({
+  identifier: "PoolsCreateOrUpdateResponse",
+}) as any as S.Schema<PoolsCreateOrUpdateResponse>;
+
 export interface SubscriptionUsagesUsagesRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
@@ -1504,46 +1330,323 @@ export const PagedQuota = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "PagedQuota" }) as any as S.Schema<PagedQuota>;
 
-export type ImageVersionsListByImageError = AzureOpError;
-/** List ImageVersion resources by Image */
-export const ImageVersionsListByImage: API.OperationMethod<
-  ImageVersionsListByImageRequest,
-  ImageVersionListResult,
-  ImageVersionsListByImageError,
+/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+export type UpdatePoolRequestIdentityUserAssignedIdentitiesMap = {
+  [key: string]: UserAssignedIdentityInput | undefined;
+};
+export const UpdatePoolRequestIdentityUserAssignedIdentitiesMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    UserAssignedIdentityInput,
+  ) as any as S.Schema<UpdatePoolRequestIdentityUserAssignedIdentitiesMap>;
+
+/** Managed service identity (system assigned and/or user assigned identities) */
+export interface UpdatePoolRequestIdentity {
+  type: ManagedServiceIdentityType | (string & {});
+  /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+  userAssignedIdentities?: UpdatePoolRequestIdentityUserAssignedIdentitiesMap;
+}
+export const UpdatePoolRequestIdentity = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: ManagedServiceIdentityType,
+    userAssignedIdentities: S.optional(
+      UpdatePoolRequestIdentityUserAssignedIdentitiesMap,
+    ),
+  }),
+).annotate({
+  identifier: "UpdatePoolRequestIdentity",
+}) as any as S.Schema<UpdatePoolRequestIdentity>;
+
+/** Resource tags. */
+export type UpdatePoolRequestTagsMap = { [key: string]: string | undefined };
+export const UpdatePoolRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdatePoolRequestTagsMap>;
+
+/** The updatable properties of the Pool. */
+export interface PoolUpdateProperties {
+  /** The status of the current operation. */
+  provisioningState?: ProvisioningState | (string & {});
+  /** Defines how many resources can there be created at any given time. */
+  maximumConcurrency?: number;
+  /** Defines the organization in which the pool will be used. */
+  organizationProfile?: OrganizationProfile;
+  /** Defines how the machine will be handled once it executed a job. */
+  agentProfile?: AgentProfile;
+  /** Defines the type of fabric the agent will run on. */
+  fabricProfile?: FabricProfile;
+  /** The resource id of the DevCenter Project the pool belongs to. */
+  devCenterProjectResourceId?: string;
+  /** The runtime configuration of the pool. */
+  runtimeConfiguration?: RuntimeConfiguration;
+}
+export const PoolUpdateProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provisioningState: S.optional(ProvisioningState),
+    maximumConcurrency: S.optional(S.Number),
+    organizationProfile: S.optional(OrganizationProfile),
+    agentProfile: S.optional(AgentProfile),
+    fabricProfile: S.optional(FabricProfile),
+    devCenterProjectResourceId: S.optional(S.String),
+    runtimeConfiguration: S.optional(RuntimeConfiguration),
+  }),
+).annotate({
+  identifier: "PoolUpdateProperties",
+}) as any as S.Schema<PoolUpdateProperties>;
+
+export interface UpdatePoolRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Name of the pool. It needs to be globally unique. */
+  poolName: string;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: UpdatePoolRequestIdentity;
+  /** Resource tags. */
+  tags?: UpdatePoolRequestTagsMap;
+  /** The resource-specific properties for this resource. */
+  properties?: PoolUpdateProperties;
+}
+export const UpdatePoolRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    poolName: S.String.pipe(T.Label()),
+    identity: S.optional(UpdatePoolRequestIdentity),
+    tags: S.optional(UpdatePoolRequestTagsMap),
+    properties: S.optional(PoolUpdateProperties),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevOpsInfrastructure/pools/{poolName}",
+      code: 200,
+      apiVersion: "2026-06-02",
+    }),
+  ),
+).annotate({
+  identifier: "UpdatePoolRequest",
+}) as any as S.Schema<UpdatePoolRequest>;
+
+/** Resource tags. */
+export type UpdatePoolResponseTagsMap = { [key: string]: string | undefined };
+export const UpdatePoolResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdatePoolResponseTagsMap>;
+
+/** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+export type UpdatePoolResponseIdentityUserAssignedIdentitiesMap = {
+  [key: string]: UserAssignedIdentity | undefined;
+};
+export const UpdatePoolResponseIdentityUserAssignedIdentitiesMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    UserAssignedIdentity,
+  ) as any as S.Schema<UpdatePoolResponseIdentityUserAssignedIdentitiesMap>;
+
+/** Managed service identity (system assigned and/or user assigned identities) */
+export interface UpdatePoolResponseIdentity {
+  /** The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity. */
+  principalId?: string;
+  /** The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity. */
+  tenantId?: string;
+  type: ManagedServiceIdentityType;
+  /** The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests. */
+  userAssignedIdentities?: UpdatePoolResponseIdentityUserAssignedIdentitiesMap;
+}
+export const UpdatePoolResponseIdentity = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    principalId: S.optional(S.String),
+    tenantId: S.optional(S.String),
+    type: ManagedServiceIdentityType,
+    userAssignedIdentities: S.optional(
+      UpdatePoolResponseIdentityUserAssignedIdentitiesMap,
+    ),
+  }),
+).annotate({
+  identifier: "UpdatePoolResponseIdentity",
+}) as any as S.Schema<UpdatePoolResponseIdentity>;
+
+export interface UpdatePoolResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdatePoolResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: PoolProperties;
+  /** Managed service identity (system assigned and/or user assigned identities) */
+  identity?: UpdatePoolResponseIdentity;
+}
+export const UpdatePoolResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdatePoolResponseTagsMap),
+    location: S.String,
+    properties: S.optional(PoolProperties),
+    identity: S.optional(UpdatePoolResponseIdentity),
+  }),
+).annotate({
+  identifier: "UpdatePoolResponse",
+}) as any as S.Schema<UpdatePoolResponse>;
+
+export type CheckPoolNameAvailabilityError = AzureOpError;
+/** Checks that the pool name is valid and is not already in use. */
+export const CheckPoolNameAvailability: API.OperationMethod<
+  CheckPoolNameAvailabilityRequest,
+  CheckNameAvailabilityResult,
+  CheckPoolNameAvailabilityError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ImageVersionsListByImageRequest,
+  input: CheckPoolNameAvailabilityRequest,
+  output: CheckNameAvailabilityResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeletePoolError = AzureOpError;
+/** Delete a Pool */
+export const DeletePool: API.OperationMethod<
+  DeletePoolRequest,
+  DeletePoolResponse,
+  DeletePoolError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeletePoolRequest,
+  output: DeletePoolResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeletePoolResourcesError = AzureOpError;
+/** A synchronous resource action. */
+export const DeletePoolResources: API.OperationMethod<
+  DeletePoolResourcesRequest,
+  DeletePoolResourcesResponse,
+  DeletePoolResourcesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeletePoolResourcesRequest,
+  output: DeletePoolResourcesResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetPoolError = AzureOpError;
+/** Get a Pool */
+export const GetPool: API.OperationMethod<
+  GetPoolRequest,
+  GetPoolResponse,
+  GetPoolError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPoolRequest,
+  output: GetPoolResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListImageVersionByImageError = AzureOpError;
+/** List ImageVersion resources by Image */
+export const ListImageVersionByImage: API.OperationMethod<
+  ListImageVersionByImageRequest,
+  ImageVersionListResult,
+  ListImageVersionByImageError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListImageVersionByImageRequest,
   output: ImageVersionListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type OperationsListError = AzureOpError;
+export type ListOperationsError = AzureOpError;
 /** List the operations for the provider */
-export const OperationsList: API.OperationMethod<
-  OperationsListRequest,
-  OperationsListResponse,
-  OperationsListError,
+export const ListOperations: API.OperationMethod<
+  ListOperationsRequest,
+  ListOperationsResponse,
+  ListOperationsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OperationsListRequest,
-  output: OperationsListResponse,
+  input: ListOperationsRequest,
+  output: ListOperationsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type PoolsCheckNameAvailabilityError = AzureOpError;
-/** Checks that the pool name is valid and is not already in use. */
-export const PoolsCheckNameAvailability: API.OperationMethod<
-  PoolsCheckNameAvailabilityRequest,
-  CheckNameAvailabilityResult,
-  PoolsCheckNameAvailabilityError,
+export type ListPoolByResourceGroupError = AzureOpError;
+/** List Pool resources by resource group */
+export const ListPoolByResourceGroup: API.OperationMethod<
+  ListPoolByResourceGroupRequest,
+  PoolListResult,
+  ListPoolByResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PoolsCheckNameAvailabilityRequest,
-  output: CheckNameAvailabilityResult,
+  input: ListPoolByResourceGroupRequest,
+  output: PoolListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListPoolBySubscriptionError = AzureOpError;
+/** List Pool resources by subscription ID */
+export const ListPoolBySubscription: API.OperationMethod<
+  ListPoolBySubscriptionRequest,
+  PoolListResult,
+  ListPoolBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListPoolBySubscriptionRequest,
+  output: PoolListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListResourceDetailByPoolError = AzureOpError;
+/** List ResourceDetailsObject resources by Pool */
+export const ListResourceDetailByPool: API.OperationMethod<
+  ListResourceDetailByPoolRequest,
+  ResourceDetailsObjectListResult,
+  ListResourceDetailByPoolError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListResourceDetailByPoolRequest,
+  output: ResourceDetailsObjectListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSkuByLocationError = AzureOpError;
+/** List ResourceSku resources by subscription ID */
+export const ListSkuByLocation: API.OperationMethod<
+  ListSkuByLocationRequest,
+  ResourceSkuListResult,
+  ListSkuByLocationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSkuByLocationRequest,
+  output: ResourceSkuListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -1564,126 +1667,6 @@ export const PoolsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type PoolsDeleteError = AzureOpError;
-/** Delete a Pool */
-export const PoolsDelete: API.OperationMethod<
-  PoolsDeleteRequest,
-  PoolsDeleteResponse,
-  PoolsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PoolsDeleteRequest,
-  output: PoolsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PoolsDeleteResourcesError = AzureOpError;
-/** A synchronous resource action. */
-export const PoolsDeleteResources: API.OperationMethod<
-  PoolsDeleteResourcesRequest,
-  PoolsDeleteResourcesResponse,
-  PoolsDeleteResourcesError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PoolsDeleteResourcesRequest,
-  output: PoolsDeleteResourcesResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PoolsGetError = AzureOpError;
-/** Get a Pool */
-export const PoolsGet: API.OperationMethod<
-  PoolsGetRequest,
-  PoolsGetResponse,
-  PoolsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PoolsGetRequest,
-  output: PoolsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PoolsListByResourceGroupError = AzureOpError;
-/** List Pool resources by resource group */
-export const PoolsListByResourceGroup: API.OperationMethod<
-  PoolsListByResourceGroupRequest,
-  PoolListResult,
-  PoolsListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PoolsListByResourceGroupRequest,
-  output: PoolListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PoolsListBySubscriptionError = AzureOpError;
-/** List Pool resources by subscription ID */
-export const PoolsListBySubscription: API.OperationMethod<
-  PoolsListBySubscriptionRequest,
-  PoolListResult,
-  PoolsListBySubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PoolsListBySubscriptionRequest,
-  output: PoolListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PoolsUpdateError = AzureOpError;
-/** Update a Pool */
-export const PoolsUpdate: API.OperationMethod<
-  PoolsUpdateRequest,
-  PoolsUpdateResponse,
-  PoolsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PoolsUpdateRequest,
-  output: PoolsUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ResourceDetailsListByPoolError = AzureOpError;
-/** List ResourceDetailsObject resources by Pool */
-export const ResourceDetailsListByPool: API.OperationMethod<
-  ResourceDetailsListByPoolRequest,
-  ResourceDetailsObjectListResult,
-  ResourceDetailsListByPoolError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ResourceDetailsListByPoolRequest,
-  output: ResourceDetailsObjectListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SkuListByLocationError = AzureOpError;
-/** List ResourceSku resources by subscription ID */
-export const SkuListByLocation: API.OperationMethod<
-  SkuListByLocationRequest,
-  ResourceSkuListResult,
-  SkuListByLocationError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SkuListByLocationRequest,
-  output: ResourceSkuListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type SubscriptionUsagesUsagesError = AzureOpError;
 /** List Quota resources by subscription ID */
 export const SubscriptionUsagesUsages: API.OperationMethod<
@@ -1694,6 +1677,21 @@ export const SubscriptionUsagesUsages: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: SubscriptionUsagesUsagesRequest,
   output: PagedQuota,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdatePoolError = AzureOpError;
+/** Update a Pool */
+export const UpdatePool: API.OperationMethod<
+  UpdatePoolRequest,
+  UpdatePoolResponse,
+  UpdatePoolError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdatePoolRequest,
+  output: UpdatePoolResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.modal.user#EnvironmentRole": {
@@ -46,7 +47,7 @@
         }
       }
     },
-    "com.modal.user#UserGroupEnvironmentSetRequest": {
+    "com.modal.user#SetUserGroupEnvironmentRequest": {
       "type": "structure",
       "members": {
         "environmentId": {
@@ -63,10 +64,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.modal.user#UserGroupEnvironmentSet": {
+    "com.modal.user#SetUserGroupEnvironment": {
       "type": "operation",
       "input": {
-        "target": "com.modal.user#UserGroupEnvironmentSetRequest"
+        "target": "com.modal.user#SetUserGroupEnvironmentRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -85,7 +86,7 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.modal.user#UserGroupEnvironmentSet"
+          "target": "com.modal.user#SetUserGroupEnvironment"
         }
       ],
       "traits": {

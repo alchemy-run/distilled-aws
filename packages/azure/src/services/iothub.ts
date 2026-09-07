@@ -114,273 +114,13 @@ export const CertificateDescription = /*@__PURE__*/ S.suspend(() =>
   identifier: "CertificateDescription",
 }) as any as S.Schema<CertificateDescription>;
 
-export interface CertificatesDeleteRequest {
-  /** The subscription identifier. */
-  subscriptionId: string;
-  /** The name of the resource group that contains the IoT hub. */
-  resourceGroupName: string;
-  /** The name of the IoT hub. */
-  resourceName: string;
-  /** The name of the certificate */
-  certificateName: string;
-}
-export const CertificatesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    resourceName: S.String.pipe(T.Label()),
-    certificateName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/IotHubs/{resourceName}/certificates/{certificateName}",
-      code: 200,
-      apiVersion: "2023-06-30",
-    }),
-  ),
-).annotate({
-  identifier: "CertificatesDeleteRequest",
-}) as any as S.Schema<CertificatesDeleteRequest>;
-
-export interface CertificatesDeleteResponse {}
-export const CertificatesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "CertificatesDeleteResponse",
-}) as any as S.Schema<CertificatesDeleteResponse>;
-
-export interface CertificatesGenerateVerificationCodeRequest {
-  /** The subscription identifier. */
-  subscriptionId: string;
-  /** The name of the resource group that contains the IoT hub. */
-  resourceGroupName: string;
-  /** The name of the IoT hub. */
-  resourceName: string;
-  /** The name of the certificate */
-  certificateName: string;
-}
-export const CertificatesGenerateVerificationCodeRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-      certificateName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/IotHubs/{resourceName}/certificates/{certificateName}/generateVerificationCode",
-        code: 200,
-        apiVersion: "2023-06-30",
-      }),
-    ),
-  ).annotate({
-    identifier: "CertificatesGenerateVerificationCodeRequest",
-  }) as any as S.Schema<CertificatesGenerateVerificationCodeRequest>;
-
-/** The description of an X509 CA Certificate including the challenge nonce issued for the Proof-Of-Possession flow. */
-export interface CertificatePropertiesWithNonce {
-  /** The certificate's subject name. */
-  subject?: string;
-  /** The certificate's expiration date and time. */
-  expiry?: string;
-  /** The certificate's thumbprint. */
-  thumbprint?: string;
-  /** Determines whether certificate has been verified. */
-  isVerified?: boolean;
-  /** The certificate's create date and time. */
-  created?: string;
-  /** The certificate's last update date and time. */
-  updated?: string;
-  /** The certificate's verification code that will be used for proof of possession. */
-  verificationCode?: string;
-  /** The certificate content */
-  certificate?: string;
-}
-export const CertificatePropertiesWithNonce = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subject: S.optional(S.String),
-    expiry: S.optional(S.String),
-    thumbprint: S.optional(S.String),
-    isVerified: S.optional(S.Boolean),
-    created: S.optional(S.String),
-    updated: S.optional(S.String),
-    verificationCode: S.optional(S.String),
-    certificate: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "CertificatePropertiesWithNonce",
-}) as any as S.Schema<CertificatePropertiesWithNonce>;
-
-/** The X509 Certificate. */
-export interface CertificateWithNonceDescription {
-  properties?: CertificatePropertiesWithNonce;
-  /** The resource identifier. */
-  id?: string;
-  /** The name of the certificate. */
-  name?: string;
-  /** The entity tag. */
-  etag?: string;
-  /** The resource type. */
-  type?: string;
-}
-export const CertificateWithNonceDescription = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    properties: S.optional(CertificatePropertiesWithNonce),
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    etag: S.optional(S.String),
-    type: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "CertificateWithNonceDescription",
-}) as any as S.Schema<CertificateWithNonceDescription>;
-
-export interface CertificatesGetRequest {
-  /** The subscription identifier. */
-  subscriptionId: string;
-  /** The name of the resource group that contains the IoT hub. */
-  resourceGroupName: string;
-  /** The name of the IoT hub. */
-  resourceName: string;
-  /** The name of the certificate */
-  certificateName: string;
-}
-export const CertificatesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    resourceName: S.String.pipe(T.Label()),
-    certificateName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/IotHubs/{resourceName}/certificates/{certificateName}",
-      code: 200,
-      apiVersion: "2023-06-30",
-    }),
-  ),
-).annotate({
-  identifier: "CertificatesGetRequest",
-}) as any as S.Schema<CertificatesGetRequest>;
-
-export interface CertificatesListByIotHubRequest {
-  /** The subscription identifier. */
-  subscriptionId: string;
-  /** The name of the resource group that contains the IoT hub. */
-  resourceGroupName: string;
-  /** The name of the IoT hub. */
-  resourceName: string;
-}
-export const CertificatesListByIotHubRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    resourceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/IotHubs/{resourceName}/certificates",
-      code: 200,
-      apiVersion: "2023-06-30",
-    }),
-  ),
-).annotate({
-  identifier: "CertificatesListByIotHubRequest",
-}) as any as S.Schema<CertificatesListByIotHubRequest>;
-
-/** The array of Certificate objects. */
-export type CertificateListDescriptionValueList = Array<CertificateDescription>;
-export const CertificateListDescriptionValueList = /*@__PURE__*/ S.Array(
-  CertificateDescription,
-) as any as S.Schema<CertificateListDescriptionValueList>;
-
-/** The JSON-serialized array of Certificate objects. */
-export interface CertificateListDescription {
-  /** The array of Certificate objects. */
-  value?: CertificateListDescriptionValueList;
-}
-export const CertificateListDescription = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(CertificateListDescriptionValueList),
-  }),
-).annotate({
-  identifier: "CertificateListDescription",
-}) as any as S.Schema<CertificateListDescription>;
-
-export interface CertificatesVerifyRequest {
-  /** The subscription identifier. */
-  subscriptionId: string;
-  /** The name of the resource group that contains the IoT hub. */
-  resourceGroupName: string;
-  /** The name of the IoT hub. */
-  resourceName: string;
-  /** The name of the certificate */
-  certificateName: string;
-  /** base-64 representation of X509 certificate .cer file or just .pem file content. */
-  certificate?: string;
-}
-export const CertificatesVerifyRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    resourceName: S.String.pipe(T.Label()),
-    certificateName: S.String.pipe(T.Label()),
-    certificate: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/IotHubs/{resourceName}/certificates/{certificateName}/verify",
-      code: 200,
-      apiVersion: "2023-06-30",
-    }),
-  ),
-).annotate({
-  identifier: "CertificatesVerifyRequest",
-}) as any as S.Schema<CertificatesVerifyRequest>;
-
-export interface IotHubManualFailoverRequest {
-  /** The subscription identifier. */
-  subscriptionId: string;
-  /** Name of the resource group containing the IoT hub resource */
-  resourceGroupName: string;
-  /** Name of the IoT hub to failover */
-  iotHubName: string;
-  /** Region the hub will be failed over to */
-  failoverRegion: string;
-}
-export const IotHubManualFailoverRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    iotHubName: S.String.pipe(T.Label()),
-    failoverRegion: S.String,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/IotHubs/{iotHubName}/failover",
-      code: 200,
-      apiVersion: "2023-06-30",
-    }),
-  ),
-).annotate({
-  identifier: "IotHubManualFailoverRequest",
-}) as any as S.Schema<IotHubManualFailoverRequest>;
-
-export interface IotHubManualFailoverResponse {}
-export const IotHubManualFailoverResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "IotHubManualFailoverResponse",
-}) as any as S.Schema<IotHubManualFailoverResponse>;
-
-export interface IotHubResourceCheckNameAvailabilityRequest {
+export interface CheckIotHubResourceNameAvailabilityRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the IoT hub to check. */
   name: string;
 }
-export const IotHubResourceCheckNameAvailabilityRequest =
+export const CheckIotHubResourceNameAvailabilityRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -394,8 +134,8 @@ export const IotHubResourceCheckNameAvailabilityRequest =
       }),
     ),
   ).annotate({
-    identifier: "IotHubResourceCheckNameAvailabilityRequest",
-  }) as any as S.Schema<IotHubResourceCheckNameAvailabilityRequest>;
+    identifier: "CheckIotHubResourceNameAvailabilityRequest",
+  }) as any as S.Schema<CheckIotHubResourceNameAvailabilityRequest>;
 
 /** The reason for unavailability. */
 export type IotHubNameAvailabilityInfoReason = "Invalid" | "AlreadyExists";
@@ -433,7 +173,7 @@ export const EventHubConsumerGroupName = /*@__PURE__*/ S.suspend(() =>
   identifier: "EventHubConsumerGroupName",
 }) as any as S.Schema<EventHubConsumerGroupName>;
 
-export interface IotHubResourceCreateEventHubConsumerGroupRequest {
+export interface CreateIotHubResourceEventHubConsumerGroupRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the IoT hub. */
@@ -446,7 +186,7 @@ export interface IotHubResourceCreateEventHubConsumerGroupRequest {
   name: string;
   properties: EventHubConsumerGroupName;
 }
-export const IotHubResourceCreateEventHubConsumerGroupRequest =
+export const CreateIotHubResourceEventHubConsumerGroupRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -464,8 +204,8 @@ export const IotHubResourceCreateEventHubConsumerGroupRequest =
       }),
     ),
   ).annotate({
-    identifier: "IotHubResourceCreateEventHubConsumerGroupRequest",
-  }) as any as S.Schema<IotHubResourceCreateEventHubConsumerGroupRequest>;
+    identifier: "CreateIotHubResourceEventHubConsumerGroupRequest",
+  }) as any as S.Schema<CreateIotHubResourceEventHubConsumerGroupRequest>;
 
 /** The tags. */
 export type EventHubConsumerGroupInfoPropertiesMap = {
@@ -501,15 +241,74 @@ export const EventHubConsumerGroupInfo = /*@__PURE__*/ S.suspend(() =>
   identifier: "EventHubConsumerGroupInfo",
 }) as any as S.Schema<EventHubConsumerGroupInfo>;
 
+export interface DeleteCertificateRequest {
+  /** The subscription identifier. */
+  subscriptionId: string;
+  /** The name of the resource group that contains the IoT hub. */
+  resourceGroupName: string;
+  /** The name of the IoT hub. */
+  resourceName: string;
+  /** The name of the certificate */
+  certificateName: string;
+}
+export const DeleteCertificateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    resourceName: S.String.pipe(T.Label()),
+    certificateName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/IotHubs/{resourceName}/certificates/{certificateName}",
+      code: 200,
+      apiVersion: "2023-06-30",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteCertificateRequest",
+}) as any as S.Schema<DeleteCertificateRequest>;
+
+export interface DeleteCertificateResponse {}
+export const DeleteCertificateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteCertificateResponse",
+}) as any as S.Schema<DeleteCertificateResponse>;
+
+export interface DeleteIotHubResourceRequest {
+  /** The subscription identifier. */
+  subscriptionId: string;
+  /** The name of the resource group that contains the IoT hub. */
+  resourceGroupName: string;
+  /** The name of the IoT hub. */
+  resourceName: string;
+}
+export const DeleteIotHubResourceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    resourceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/IotHubs/{resourceName}",
+      code: 200,
+      apiVersion: "2023-06-30",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteIotHubResourceRequest",
+}) as any as S.Schema<DeleteIotHubResourceRequest>;
+
 /** The resource tags. */
-export type IotHubResourceCreateOrUpdateRequestTagsMap = {
+export type DeleteIotHubResourceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const IotHubResourceCreateOrUpdateRequestTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<IotHubResourceCreateOrUpdateRequestTagsMap>;
+export const DeleteIotHubResourceResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<DeleteIotHubResourceResponseTagsMap>;
 
 /** The permissions assigned to the shared access policy. */
 export type SharedAccessSignatureAuthorizationRuleRights =
@@ -555,22 +354,21 @@ export const SharedAccessSignatureAuthorizationRule = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<SharedAccessSignatureAuthorizationRule>;
 
 /** The shared access policies you can use to secure a connection to the IoT hub. */
-export type IotHubPropertiesInputAuthorizationPoliciesList =
+export type IotHubPropertiesAuthorizationPoliciesList =
   Array<SharedAccessSignatureAuthorizationRule>;
-export const IotHubPropertiesInputAuthorizationPoliciesList =
-  /*@__PURE__*/ S.Array(
-    SharedAccessSignatureAuthorizationRule,
-  ) as any as S.Schema<IotHubPropertiesInputAuthorizationPoliciesList>;
+export const IotHubPropertiesAuthorizationPoliciesList = /*@__PURE__*/ S.Array(
+  SharedAccessSignatureAuthorizationRule,
+) as any as S.Schema<IotHubPropertiesAuthorizationPoliciesList>;
 
 /** List of allowed FQDNs(Fully Qualified Domain Name) for egress from Iot Hub. */
-export type IotHubPropertiesInputAllowedFqdnListList = Array<string>;
-export const IotHubPropertiesInputAllowedFqdnListList = /*@__PURE__*/ S.Array(
+export type IotHubPropertiesAllowedFqdnListList = Array<string>;
+export const IotHubPropertiesAllowedFqdnListList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<IotHubPropertiesInputAllowedFqdnListList>;
+) as any as S.Schema<IotHubPropertiesAllowedFqdnListList>;
 
 /** Whether requests from Public Network are allowed */
-export type IotHubPropertiesInputPublicNetworkAccess = "Enabled" | "Disabled";
-export const IotHubPropertiesInputPublicNetworkAccess = /*@__PURE__*/ S.String;
+export type IotHubPropertiesPublicNetworkAccess = "Enabled" | "Disabled";
+export const IotHubPropertiesPublicNetworkAccess = /*@__PURE__*/ S.String;
 
 /** The desired action for requests captured by this rule. */
 export type IpFilterRuleAction = "Accept" | "Reject";
@@ -594,10 +392,10 @@ export const IpFilterRule = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "IpFilterRule" }) as any as S.Schema<IpFilterRule>;
 
 /** The IP filter rules. */
-export type IotHubPropertiesInputIpFilterRulesList = Array<IpFilterRule>;
-export const IotHubPropertiesInputIpFilterRulesList = /*@__PURE__*/ S.Array(
+export type IotHubPropertiesIpFilterRulesList = Array<IpFilterRule>;
+export const IotHubPropertiesIpFilterRulesList = /*@__PURE__*/ S.Array(
   IpFilterRule,
-) as any as S.Schema<IotHubPropertiesInputIpFilterRulesList>;
+) as any as S.Schema<IotHubPropertiesIpFilterRulesList>;
 
 /** Default Action for Network Rule Set */
 export type NetworkRuleSetPropertiesDefaultAction = "Deny" | "Allow";
@@ -652,12 +450,17 @@ export const NetworkRuleSetProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<NetworkRuleSetProperties>;
 
 /** The private endpoint property of a private endpoint connection */
-export interface PrivateEndpointInput {}
-export const PrivateEndpointInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
+export interface PrivateEndpoint {
+  /** The resource identifier. */
+  id?: string;
+}
+export const PrivateEndpoint = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+  }),
 ).annotate({
-  identifier: "PrivateEndpointInput",
-}) as any as S.Schema<PrivateEndpointInput>;
+  identifier: "PrivateEndpoint",
+}) as any as S.Schema<PrivateEndpoint>;
 
 /** The status of a private endpoint connection */
 export type PrivateLinkServiceConnectionStateStatus =
@@ -685,882 +488,6 @@ export const PrivateLinkServiceConnectionState = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "PrivateLinkServiceConnectionState",
 }) as any as S.Schema<PrivateLinkServiceConnectionState>;
-
-/** The properties of a private endpoint connection */
-export interface PrivateEndpointConnectionPropertiesInput {
-  privateEndpoint?: PrivateEndpointInput;
-  privateLinkServiceConnectionState: PrivateLinkServiceConnectionState;
-}
-export const PrivateEndpointConnectionPropertiesInput = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      privateEndpoint: S.optional(PrivateEndpointInput),
-      privateLinkServiceConnectionState: PrivateLinkServiceConnectionState,
-    }),
-).annotate({
-  identifier: "PrivateEndpointConnectionPropertiesInput",
-}) as any as S.Schema<PrivateEndpointConnectionPropertiesInput>;
-
-/** The private endpoint connection of an IotHub */
-export interface PrivateEndpointConnectionInput {
-  properties: PrivateEndpointConnectionPropertiesInput;
-}
-export const PrivateEndpointConnectionInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    properties: PrivateEndpointConnectionPropertiesInput,
-  }),
-).annotate({
-  identifier: "PrivateEndpointConnectionInput",
-}) as any as S.Schema<PrivateEndpointConnectionInput>;
-
-/** Private endpoint connections created on this IotHub */
-export type IotHubPropertiesInputPrivateEndpointConnectionsList =
-  Array<PrivateEndpointConnectionInput>;
-export const IotHubPropertiesInputPrivateEndpointConnectionsList =
-  /*@__PURE__*/ S.Array(
-    PrivateEndpointConnectionInput,
-  ) as any as S.Schema<IotHubPropertiesInputPrivateEndpointConnectionsList>;
-
-/** The properties of the provisioned Event Hub-compatible endpoint used by the IoT hub. */
-export interface EventHubPropertiesInput {
-  /** The retention time for device-to-cloud messages in days. See: https://docs.microsoft.com/azure/iot-hub/iot-hub-devguide-messaging#device-to-cloud-messages */
-  retentionTimeInDays?: number;
-  /** The number of partitions for receiving device-to-cloud messages in the Event Hub-compatible endpoint. See: https://docs.microsoft.com/azure/iot-hub/iot-hub-devguide-messaging#device-to-cloud-messages. */
-  partitionCount?: number;
-}
-export const EventHubPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    retentionTimeInDays: S.optional(S.Number),
-    partitionCount: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "EventHubPropertiesInput",
-}) as any as S.Schema<EventHubPropertiesInput>;
-
-/** The Event Hub-compatible endpoint properties. The only possible keys to this dictionary is events. This key has to be present in the dictionary while making create or update calls for the IoT hub. */
-export type IotHubPropertiesInputEventHubEndpointsMap = {
-  [key: string]: EventHubPropertiesInput | undefined;
-};
-export const IotHubPropertiesInputEventHubEndpointsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  EventHubPropertiesInput,
-) as any as S.Schema<IotHubPropertiesInputEventHubEndpointsMap>;
-
-/** Method used to authenticate against the service bus queue endpoint */
-export type RoutingServiceBusQueueEndpointPropertiesAuthenticationType =
-  | "keyBased"
-  | "identityBased";
-export const RoutingServiceBusQueueEndpointPropertiesAuthenticationType =
-  /*@__PURE__*/ S.String;
-
-/** The properties of the Managed identity. */
-export interface ManagedIdentity {
-  /** The user assigned identity. */
-  userAssignedIdentity?: string;
-}
-export const ManagedIdentity = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    userAssignedIdentity: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ManagedIdentity",
-}) as any as S.Schema<ManagedIdentity>;
-
-/** The properties related to service bus queue endpoint types. */
-export interface RoutingServiceBusQueueEndpointProperties {
-  /** Id of the service bus queue endpoint */
-  id?: string;
-  /** The connection string of the service bus queue endpoint. */
-  connectionString?: string | Redacted.Redacted<string>;
-  /** The url of the service bus queue endpoint. It must include the protocol sb:// */
-  endpointUri?: string;
-  /** Queue name on the service bus namespace */
-  entityPath?: string;
-  /** Method used to authenticate against the service bus queue endpoint */
-  authenticationType?:
-    | RoutingServiceBusQueueEndpointPropertiesAuthenticationType
-    | (string & {});
-  /** Managed identity properties of routing service bus queue endpoint. */
-  identity?: ManagedIdentity;
-  /** The name that identifies this endpoint. The name can only include alphanumeric characters, periods, underscores, hyphens and has a maximum length of 64 characters. The following names are reserved: events, fileNotifications, $default. Endpoint names must be unique across endpoint types. The name need not be the same as the actual queue name. */
-  name: string;
-  /** The subscription identifier of the service bus queue endpoint. */
-  subscriptionId?: string;
-  /** The name of the resource group of the service bus queue endpoint. */
-  resourceGroup?: string;
-}
-export const RoutingServiceBusQueueEndpointProperties = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      connectionString: S.optional(S.String.pipe(T.SensitiveValue({}))),
-      endpointUri: S.optional(S.String),
-      entityPath: S.optional(S.String),
-      authenticationType: S.optional(
-        RoutingServiceBusQueueEndpointPropertiesAuthenticationType,
-      ),
-      identity: S.optional(ManagedIdentity),
-      name: S.String,
-      subscriptionId: S.optional(S.String),
-      resourceGroup: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "RoutingServiceBusQueueEndpointProperties",
-}) as any as S.Schema<RoutingServiceBusQueueEndpointProperties>;
-
-/** The list of Service Bus queue endpoints that IoT hub routes the messages to, based on the routing rules. */
-export type RoutingEndpointsInputServiceBusQueuesList =
-  Array<RoutingServiceBusQueueEndpointProperties>;
-export const RoutingEndpointsInputServiceBusQueuesList = /*@__PURE__*/ S.Array(
-  RoutingServiceBusQueueEndpointProperties,
-) as any as S.Schema<RoutingEndpointsInputServiceBusQueuesList>;
-
-/** Method used to authenticate against the service bus topic endpoint */
-export type RoutingServiceBusTopicEndpointPropertiesAuthenticationType =
-  | "keyBased"
-  | "identityBased";
-export const RoutingServiceBusTopicEndpointPropertiesAuthenticationType =
-  /*@__PURE__*/ S.String;
-
-/** The properties related to service bus topic endpoint types. */
-export interface RoutingServiceBusTopicEndpointProperties {
-  /** Id of the service bus topic endpoint */
-  id?: string;
-  /** The connection string of the service bus topic endpoint. */
-  connectionString?: string | Redacted.Redacted<string>;
-  /** The url of the service bus topic endpoint. It must include the protocol sb:// */
-  endpointUri?: string;
-  /** Queue name on the service bus topic */
-  entityPath?: string;
-  /** Method used to authenticate against the service bus topic endpoint */
-  authenticationType?:
-    | RoutingServiceBusTopicEndpointPropertiesAuthenticationType
-    | (string & {});
-  /** Managed identity properties of routing service bus topic endpoint. */
-  identity?: ManagedIdentity;
-  /** The name that identifies this endpoint. The name can only include alphanumeric characters, periods, underscores, hyphens and has a maximum length of 64 characters. The following names are reserved: events, fileNotifications, $default. Endpoint names must be unique across endpoint types. The name need not be the same as the actual topic name. */
-  name: string;
-  /** The subscription identifier of the service bus topic endpoint. */
-  subscriptionId?: string;
-  /** The name of the resource group of the service bus topic endpoint. */
-  resourceGroup?: string;
-}
-export const RoutingServiceBusTopicEndpointProperties = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      connectionString: S.optional(S.String.pipe(T.SensitiveValue({}))),
-      endpointUri: S.optional(S.String),
-      entityPath: S.optional(S.String),
-      authenticationType: S.optional(
-        RoutingServiceBusTopicEndpointPropertiesAuthenticationType,
-      ),
-      identity: S.optional(ManagedIdentity),
-      name: S.String,
-      subscriptionId: S.optional(S.String),
-      resourceGroup: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "RoutingServiceBusTopicEndpointProperties",
-}) as any as S.Schema<RoutingServiceBusTopicEndpointProperties>;
-
-/** The list of Service Bus topic endpoints that the IoT hub routes the messages to, based on the routing rules. */
-export type RoutingEndpointsInputServiceBusTopicsList =
-  Array<RoutingServiceBusTopicEndpointProperties>;
-export const RoutingEndpointsInputServiceBusTopicsList = /*@__PURE__*/ S.Array(
-  RoutingServiceBusTopicEndpointProperties,
-) as any as S.Schema<RoutingEndpointsInputServiceBusTopicsList>;
-
-/** Method used to authenticate against the event hub endpoint */
-export type RoutingEventHubPropertiesAuthenticationType =
-  | "keyBased"
-  | "identityBased";
-export const RoutingEventHubPropertiesAuthenticationType =
-  /*@__PURE__*/ S.String;
-
-/** The properties related to an event hub endpoint. */
-export interface RoutingEventHubProperties {
-  /** Id of the event hub endpoint */
-  id?: string;
-  /** The connection string of the event hub endpoint. */
-  connectionString?: string | Redacted.Redacted<string>;
-  /** The url of the event hub endpoint. It must include the protocol sb:// */
-  endpointUri?: string;
-  /** Event hub name on the event hub namespace */
-  entityPath?: string;
-  /** Method used to authenticate against the event hub endpoint */
-  authenticationType?:
-    | RoutingEventHubPropertiesAuthenticationType
-    | (string & {});
-  /** Managed identity properties of routing event hub endpoint. */
-  identity?: ManagedIdentity;
-  /** The name that identifies this endpoint. The name can only include alphanumeric characters, periods, underscores, hyphens and has a maximum length of 64 characters. The following names are reserved: events, fileNotifications, $default. Endpoint names must be unique across endpoint types. */
-  name: string;
-  /** The subscription identifier of the event hub endpoint. */
-  subscriptionId?: string;
-  /** The name of the resource group of the event hub endpoint. */
-  resourceGroup?: string;
-}
-export const RoutingEventHubProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    connectionString: S.optional(S.String.pipe(T.SensitiveValue({}))),
-    endpointUri: S.optional(S.String),
-    entityPath: S.optional(S.String),
-    authenticationType: S.optional(RoutingEventHubPropertiesAuthenticationType),
-    identity: S.optional(ManagedIdentity),
-    name: S.String,
-    subscriptionId: S.optional(S.String),
-    resourceGroup: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "RoutingEventHubProperties",
-}) as any as S.Schema<RoutingEventHubProperties>;
-
-/** The list of Event Hubs endpoints that IoT hub routes messages to, based on the routing rules. This list does not include the built-in Event Hubs endpoint. */
-export type RoutingEndpointsInputEventHubsList =
-  Array<RoutingEventHubProperties>;
-export const RoutingEndpointsInputEventHubsList = /*@__PURE__*/ S.Array(
-  RoutingEventHubProperties,
-) as any as S.Schema<RoutingEndpointsInputEventHubsList>;
-
-/** Method used to authenticate against the storage endpoint */
-export type RoutingStorageContainerPropertiesAuthenticationType =
-  | "keyBased"
-  | "identityBased";
-export const RoutingStorageContainerPropertiesAuthenticationType =
-  /*@__PURE__*/ S.String;
-
-/** Encoding that is used to serialize messages to blobs. Supported values are 'avro', 'avrodeflate', and 'JSON'. Default value is 'avro'. */
-export type RoutingStorageContainerPropertiesEncoding =
-  | "Avro"
-  | "AvroDeflate"
-  | "JSON";
-export const RoutingStorageContainerPropertiesEncoding = /*@__PURE__*/ S.String;
-
-/** The properties related to a storage container endpoint. */
-export interface RoutingStorageContainerProperties {
-  /** Id of the storage container endpoint */
-  id?: string;
-  /** The connection string of the storage account. */
-  connectionString?: string | Redacted.Redacted<string>;
-  /** The url of the storage endpoint. It must include the protocol https:// */
-  endpointUri?: string;
-  /** Method used to authenticate against the storage endpoint */
-  authenticationType?:
-    | RoutingStorageContainerPropertiesAuthenticationType
-    | (string & {});
-  /** Managed identity properties of routing storage endpoint. */
-  identity?: ManagedIdentity;
-  /** The name that identifies this endpoint. The name can only include alphanumeric characters, periods, underscores, hyphens and has a maximum length of 64 characters. The following names are reserved: events, fileNotifications, $default. Endpoint names must be unique across endpoint types. */
-  name: string;
-  /** The subscription identifier of the storage account. */
-  subscriptionId?: string;
-  /** The name of the resource group of the storage account. */
-  resourceGroup?: string;
-  /** The name of storage container in the storage account. */
-  containerName: string;
-  /** File name format for the blob. Default format is {iothub}/{partition}/{YYYY}/{MM}/{DD}/{HH}/{mm}. All parameters are mandatory but can be reordered. */
-  fileNameFormat?: string;
-  /** Time interval at which blobs are written to storage. Value should be between 60 and 720 seconds. Default value is 300 seconds. */
-  batchFrequencyInSeconds?: number;
-  /** Maximum number of bytes for each blob written to storage. Value should be between 10485760(10MB) and 524288000(500MB). Default value is 314572800(300MB). */
-  maxChunkSizeInBytes?: number;
-  /** Encoding that is used to serialize messages to blobs. Supported values are 'avro', 'avrodeflate', and 'JSON'. Default value is 'avro'. */
-  encoding?: RoutingStorageContainerPropertiesEncoding | (string & {});
-}
-export const RoutingStorageContainerProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    connectionString: S.optional(S.String.pipe(T.SensitiveValue({}))),
-    endpointUri: S.optional(S.String),
-    authenticationType: S.optional(
-      RoutingStorageContainerPropertiesAuthenticationType,
-    ),
-    identity: S.optional(ManagedIdentity),
-    name: S.String,
-    subscriptionId: S.optional(S.String),
-    resourceGroup: S.optional(S.String),
-    containerName: S.String,
-    fileNameFormat: S.optional(S.String),
-    batchFrequencyInSeconds: S.optional(S.Number),
-    maxChunkSizeInBytes: S.optional(S.Number),
-    encoding: S.optional(RoutingStorageContainerPropertiesEncoding),
-  }),
-).annotate({
-  identifier: "RoutingStorageContainerProperties",
-}) as any as S.Schema<RoutingStorageContainerProperties>;
-
-/** The list of storage container endpoints that IoT hub routes messages to, based on the routing rules. */
-export type RoutingEndpointsInputStorageContainersList =
-  Array<RoutingStorageContainerProperties>;
-export const RoutingEndpointsInputStorageContainersList = /*@__PURE__*/ S.Array(
-  RoutingStorageContainerProperties,
-) as any as S.Schema<RoutingEndpointsInputStorageContainersList>;
-
-/** Method used to authenticate against the cosmos DB sql container endpoint */
-export type RoutingCosmosDBSqlApiPropertiesInputAuthenticationType =
-  | "keyBased"
-  | "identityBased";
-export const RoutingCosmosDBSqlApiPropertiesInputAuthenticationType =
-  /*@__PURE__*/ S.String;
-
-/** The properties related to a cosmos DB sql container endpoint. */
-export interface RoutingCosmosDBSqlApiPropertiesInput {
-  /** The name that identifies this endpoint. The name can only include alphanumeric characters, periods, underscores, hyphens and has a maximum length of 64 characters. The following names are reserved: events, fileNotifications, $default. Endpoint names must be unique across endpoint types. */
-  name: string;
-  /** The subscription identifier of the cosmos DB account. */
-  subscriptionId?: string;
-  /** The name of the resource group of the cosmos DB account. */
-  resourceGroup?: string;
-  /** The url of the cosmos DB account. It must include the protocol https:// */
-  endpointUri: string;
-  /** Method used to authenticate against the cosmos DB sql container endpoint */
-  authenticationType?:
-    | RoutingCosmosDBSqlApiPropertiesInputAuthenticationType
-    | (string & {});
-  /** Managed identity properties of routing cosmos DB container endpoint. */
-  identity?: ManagedIdentity;
-  /** The primary key of the cosmos DB account. */
-  primaryKey?: string;
-  /** The secondary key of the cosmos DB account. */
-  secondaryKey?: string;
-  /** The name of the cosmos DB database in the cosmos DB account. */
-  databaseName: string;
-  /** The name of the cosmos DB sql container in the cosmos DB database. */
-  containerName: string;
-  /** The name of the partition key associated with this cosmos DB sql container if one exists. This is an optional parameter. */
-  partitionKeyName?: string;
-  /** The template for generating a synthetic partition key value for use with this cosmos DB sql container. The template must include at least one of the following placeholders: {iothub}, {deviceid}, {DD}, {MM}, and {YYYY}. Any one placeholder may be specified at most once, but order and non-placeholder components are arbitrary. This parameter is only required if PartitionKeyName is specified. */
-  partitionKeyTemplate?: string;
-}
-export const RoutingCosmosDBSqlApiPropertiesInput = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      name: S.String,
-      subscriptionId: S.optional(S.String),
-      resourceGroup: S.optional(S.String),
-      endpointUri: S.String,
-      authenticationType: S.optional(
-        RoutingCosmosDBSqlApiPropertiesInputAuthenticationType,
-      ),
-      identity: S.optional(ManagedIdentity),
-      primaryKey: S.optional(S.String),
-      secondaryKey: S.optional(S.String),
-      databaseName: S.String,
-      containerName: S.String,
-      partitionKeyName: S.optional(S.String),
-      partitionKeyTemplate: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "RoutingCosmosDBSqlApiPropertiesInput",
-}) as any as S.Schema<RoutingCosmosDBSqlApiPropertiesInput>;
-
-/** The list of Cosmos DB container endpoints that IoT hub routes messages to, based on the routing rules. */
-export type RoutingEndpointsInputCosmosDBSqlContainersList =
-  Array<RoutingCosmosDBSqlApiPropertiesInput>;
-export const RoutingEndpointsInputCosmosDBSqlContainersList =
-  /*@__PURE__*/ S.Array(
-    RoutingCosmosDBSqlApiPropertiesInput,
-  ) as any as S.Schema<RoutingEndpointsInputCosmosDBSqlContainersList>;
-
-/** The properties related to the custom endpoints to which your IoT hub routes messages based on the routing rules. A maximum of 10 custom endpoints are allowed across all endpoint types for paid hubs and only 1 custom endpoint is allowed across all endpoint types for free hubs. */
-export interface RoutingEndpointsInput {
-  /** The list of Service Bus queue endpoints that IoT hub routes the messages to, based on the routing rules. */
-  serviceBusQueues?: RoutingEndpointsInputServiceBusQueuesList;
-  /** The list of Service Bus topic endpoints that the IoT hub routes the messages to, based on the routing rules. */
-  serviceBusTopics?: RoutingEndpointsInputServiceBusTopicsList;
-  /** The list of Event Hubs endpoints that IoT hub routes messages to, based on the routing rules. This list does not include the built-in Event Hubs endpoint. */
-  eventHubs?: RoutingEndpointsInputEventHubsList;
-  /** The list of storage container endpoints that IoT hub routes messages to, based on the routing rules. */
-  storageContainers?: RoutingEndpointsInputStorageContainersList;
-  /** The list of Cosmos DB container endpoints that IoT hub routes messages to, based on the routing rules. */
-  cosmosDBSqlContainers?: RoutingEndpointsInputCosmosDBSqlContainersList;
-}
-export const RoutingEndpointsInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    serviceBusQueues: S.optional(RoutingEndpointsInputServiceBusQueuesList),
-    serviceBusTopics: S.optional(RoutingEndpointsInputServiceBusTopicsList),
-    eventHubs: S.optional(RoutingEndpointsInputEventHubsList),
-    storageContainers: S.optional(RoutingEndpointsInputStorageContainersList),
-    cosmosDBSqlContainers: S.optional(
-      RoutingEndpointsInputCosmosDBSqlContainersList,
-    ),
-  }),
-).annotate({
-  identifier: "RoutingEndpointsInput",
-}) as any as S.Schema<RoutingEndpointsInput>;
-
-/** The source that the routing rule is to be applied to, such as DeviceMessages. */
-export type RoutePropertiesSource =
-  | "Invalid"
-  | "DeviceMessages"
-  | "TwinChangeEvents"
-  | "DeviceLifecycleEvents"
-  | "DeviceJobLifecycleEvents"
-  | "DeviceConnectionStateEvents";
-export const RoutePropertiesSource = /*@__PURE__*/ S.String;
-
-/** The list of endpoints to which messages that satisfy the condition are routed. Currently only one endpoint is allowed. */
-export type RoutePropertiesEndpointNamesList = Array<string>;
-export const RoutePropertiesEndpointNamesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<RoutePropertiesEndpointNamesList>;
-
-/** The properties of a routing rule that your IoT hub uses to route messages to endpoints. */
-export interface RouteProperties {
-  /** The name of the route. The name can only include alphanumeric characters, periods, underscores, hyphens, has a maximum length of 64 characters, and must be unique. */
-  name: string;
-  /** The source that the routing rule is to be applied to, such as DeviceMessages. */
-  source: RoutePropertiesSource | (string & {});
-  /** The condition that is evaluated to apply the routing rule. If no condition is provided, it evaluates to true by default. For grammar, see: https://docs.microsoft.com/azure/iot-hub/iot-hub-devguide-query-language */
-  condition?: string;
-  /** The list of endpoints to which messages that satisfy the condition are routed. Currently only one endpoint is allowed. */
-  endpointNames: RoutePropertiesEndpointNamesList;
-  /** Used to specify whether a route is enabled. */
-  isEnabled: boolean;
-}
-export const RouteProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String,
-    source: RoutePropertiesSource,
-    condition: S.optional(S.String),
-    endpointNames: RoutePropertiesEndpointNamesList,
-    isEnabled: S.Boolean,
-  }),
-).annotate({
-  identifier: "RouteProperties",
-}) as any as S.Schema<RouteProperties>;
-
-/** The list of user-provided routing rules that the IoT hub uses to route messages to built-in and custom endpoints. A maximum of 100 routing rules are allowed for paid hubs and a maximum of 5 routing rules are allowed for free hubs. */
-export type RoutingPropertiesInputRoutesList = Array<RouteProperties>;
-export const RoutingPropertiesInputRoutesList = /*@__PURE__*/ S.Array(
-  RouteProperties,
-) as any as S.Schema<RoutingPropertiesInputRoutesList>;
-
-/** The source to which the routing rule is to be applied to. For example, DeviceMessages */
-export type FallbackRoutePropertiesSource = "DeviceMessages";
-export const FallbackRoutePropertiesSource = /*@__PURE__*/ S.String;
-
-/** The list of endpoints to which the messages that satisfy the condition are routed to. Currently only 1 endpoint is allowed. */
-export type FallbackRoutePropertiesEndpointNamesList = Array<string>;
-export const FallbackRoutePropertiesEndpointNamesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<FallbackRoutePropertiesEndpointNamesList>;
-
-/** The properties of the fallback route. IoT Hub uses these properties when it routes messages to the fallback endpoint. */
-export interface FallbackRouteProperties {
-  /** The name of the route. The name can only include alphanumeric characters, periods, underscores, hyphens, has a maximum length of 64 characters, and must be unique. */
-  name?: string;
-  /** The source to which the routing rule is to be applied to. For example, DeviceMessages */
-  source: FallbackRoutePropertiesSource | (string & {});
-  /** The condition which is evaluated in order to apply the fallback route. If the condition is not provided it will evaluate to true by default. For grammar, See: https://docs.microsoft.com/azure/iot-hub/iot-hub-devguide-query-language */
-  condition?: string;
-  /** The list of endpoints to which the messages that satisfy the condition are routed to. Currently only 1 endpoint is allowed. */
-  endpointNames: FallbackRoutePropertiesEndpointNamesList;
-  /** Used to specify whether the fallback route is enabled. */
-  isEnabled: boolean;
-}
-export const FallbackRouteProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    source: FallbackRoutePropertiesSource,
-    condition: S.optional(S.String),
-    endpointNames: FallbackRoutePropertiesEndpointNamesList,
-    isEnabled: S.Boolean,
-  }),
-).annotate({
-  identifier: "FallbackRouteProperties",
-}) as any as S.Schema<FallbackRouteProperties>;
-
-/** The list of endpoints for which the enrichment is applied to the message. */
-export type EnrichmentPropertiesEndpointNamesList = Array<string>;
-export const EnrichmentPropertiesEndpointNamesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<EnrichmentPropertiesEndpointNamesList>;
-
-/** The properties of an enrichment that your IoT hub applies to messages delivered to endpoints. */
-export interface EnrichmentProperties {
-  /** The key or name for the enrichment property. */
-  key: string;
-  /** The value for the enrichment property. */
-  value: string;
-  /** The list of endpoints for which the enrichment is applied to the message. */
-  endpointNames: EnrichmentPropertiesEndpointNamesList;
-}
-export const EnrichmentProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    key: S.String,
-    value: S.String,
-    endpointNames: EnrichmentPropertiesEndpointNamesList,
-  }),
-).annotate({
-  identifier: "EnrichmentProperties",
-}) as any as S.Schema<EnrichmentProperties>;
-
-/** The list of user-provided enrichments that the IoT hub applies to messages to be delivered to built-in and custom endpoints. See: https://aka.ms/telemetryoneventgrid */
-export type RoutingPropertiesInputEnrichmentsList = Array<EnrichmentProperties>;
-export const RoutingPropertiesInputEnrichmentsList = /*@__PURE__*/ S.Array(
-  EnrichmentProperties,
-) as any as S.Schema<RoutingPropertiesInputEnrichmentsList>;
-
-/** The routing related properties of the IoT hub. See: https://docs.microsoft.com/azure/iot-hub/iot-hub-devguide-messaging */
-export interface RoutingPropertiesInput {
-  endpoints?: RoutingEndpointsInput;
-  /** The list of user-provided routing rules that the IoT hub uses to route messages to built-in and custom endpoints. A maximum of 100 routing rules are allowed for paid hubs and a maximum of 5 routing rules are allowed for free hubs. */
-  routes?: RoutingPropertiesInputRoutesList;
-  /** The properties of the route that is used as a fall-back route when none of the conditions specified in the 'routes' section are met. This is an optional parameter. When this property is not present in the template, the fallback route is disabled by default. */
-  fallbackRoute?: FallbackRouteProperties;
-  /** The list of user-provided enrichments that the IoT hub applies to messages to be delivered to built-in and custom endpoints. See: https://aka.ms/telemetryoneventgrid */
-  enrichments?: RoutingPropertiesInputEnrichmentsList;
-}
-export const RoutingPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    endpoints: S.optional(RoutingEndpointsInput),
-    routes: S.optional(RoutingPropertiesInputRoutesList),
-    fallbackRoute: S.optional(FallbackRouteProperties),
-    enrichments: S.optional(RoutingPropertiesInputEnrichmentsList),
-  }),
-).annotate({
-  identifier: "RoutingPropertiesInput",
-}) as any as S.Schema<RoutingPropertiesInput>;
-
-/** Specifies authentication type being used for connecting to the storage account. */
-export type StorageEndpointPropertiesAuthenticationType =
-  | "keyBased"
-  | "identityBased";
-export const StorageEndpointPropertiesAuthenticationType =
-  /*@__PURE__*/ S.String;
-
-/** The properties of the Azure Storage endpoint for file upload. */
-export interface StorageEndpointProperties {
-  /** The period of time for which the SAS URI generated by IoT Hub for file upload is valid. See: https://docs.microsoft.com/azure/iot-hub/iot-hub-devguide-file-upload#file-upload-notification-configuration-options. */
-  sasTtlAsIso8601?: string;
-  /** The connection string for the Azure Storage account to which files are uploaded. */
-  connectionString: string | Redacted.Redacted<string>;
-  /** The name of the root container where you upload files. The container need not exist but should be creatable using the connectionString specified. */
-  containerName: string;
-  /** Specifies authentication type being used for connecting to the storage account. */
-  authenticationType?:
-    | StorageEndpointPropertiesAuthenticationType
-    | (string & {});
-  /** Managed identity properties of storage endpoint for file upload. */
-  identity?: ManagedIdentity;
-}
-export const StorageEndpointProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    sasTtlAsIso8601: S.optional(S.String),
-    connectionString: S.String.pipe(T.SensitiveValue({})),
-    containerName: S.String,
-    authenticationType: S.optional(StorageEndpointPropertiesAuthenticationType),
-    identity: S.optional(ManagedIdentity),
-  }),
-).annotate({
-  identifier: "StorageEndpointProperties",
-}) as any as S.Schema<StorageEndpointProperties>;
-
-/** The list of Azure Storage endpoints where you can upload files. Currently you can configure only one Azure Storage account and that MUST have its key as $default. Specifying more than one storage account causes an error to be thrown. Not specifying a value for this property when the enableFileUploadNotifications property is set to True, causes an error to be thrown. */
-export type IotHubPropertiesInputStorageEndpointsMap = {
-  [key: string]: StorageEndpointProperties | undefined;
-};
-export const IotHubPropertiesInputStorageEndpointsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  StorageEndpointProperties,
-) as any as S.Schema<IotHubPropertiesInputStorageEndpointsMap>;
-
-/** The properties of the messaging endpoints used by this IoT hub. */
-export interface MessagingEndpointProperties {
-  /** The lock duration. See: https://docs.microsoft.com/azure/iot-hub/iot-hub-devguide-file-upload. */
-  lockDurationAsIso8601?: string;
-  /** The period of time for which a message is available to consume before it is expired by the IoT hub. See: https://docs.microsoft.com/azure/iot-hub/iot-hub-devguide-file-upload. */
-  ttlAsIso8601?: string;
-  /** The number of times the IoT hub attempts to deliver a message. See: https://docs.microsoft.com/azure/iot-hub/iot-hub-devguide-file-upload. */
-  maxDeliveryCount?: number;
-}
-export const MessagingEndpointProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    lockDurationAsIso8601: S.optional(S.String),
-    ttlAsIso8601: S.optional(S.String),
-    maxDeliveryCount: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "MessagingEndpointProperties",
-}) as any as S.Schema<MessagingEndpointProperties>;
-
-/** The messaging endpoint properties for the file upload notification queue. */
-export type IotHubPropertiesInputMessagingEndpointsMap = {
-  [key: string]: MessagingEndpointProperties | undefined;
-};
-export const IotHubPropertiesInputMessagingEndpointsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    MessagingEndpointProperties,
-  ) as any as S.Schema<IotHubPropertiesInputMessagingEndpointsMap>;
-
-/** The properties of the feedback queue for cloud-to-device messages. */
-export interface FeedbackProperties {
-  /** The lock duration for the feedback queue. See: https://docs.microsoft.com/azure/iot-hub/iot-hub-devguide-messaging#cloud-to-device-messages. */
-  lockDurationAsIso8601?: string;
-  /** The period of time for which a message is available to consume before it is expired by the IoT hub. See: https://docs.microsoft.com/azure/iot-hub/iot-hub-devguide-messaging#cloud-to-device-messages. */
-  ttlAsIso8601?: string;
-  /** The number of times the IoT hub attempts to deliver a message on the feedback queue. See: https://docs.microsoft.com/azure/iot-hub/iot-hub-devguide-messaging#cloud-to-device-messages. */
-  maxDeliveryCount?: number;
-}
-export const FeedbackProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    lockDurationAsIso8601: S.optional(S.String),
-    ttlAsIso8601: S.optional(S.String),
-    maxDeliveryCount: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "FeedbackProperties",
-}) as any as S.Schema<FeedbackProperties>;
-
-/** The IoT hub cloud-to-device messaging properties. */
-export interface CloudToDeviceProperties {
-  /** The max delivery count for cloud-to-device messages in the device queue. See: https://docs.microsoft.com/azure/iot-hub/iot-hub-devguide-messaging#cloud-to-device-messages. */
-  maxDeliveryCount?: number;
-  /** The default time to live for cloud-to-device messages in the device queue. See: https://docs.microsoft.com/azure/iot-hub/iot-hub-devguide-messaging#cloud-to-device-messages. */
-  defaultTtlAsIso8601?: string;
-  feedback?: FeedbackProperties;
-}
-export const CloudToDeviceProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    maxDeliveryCount: S.optional(S.Number),
-    defaultTtlAsIso8601: S.optional(S.String),
-    feedback: S.optional(FeedbackProperties),
-  }),
-).annotate({
-  identifier: "CloudToDeviceProperties",
-}) as any as S.Schema<CloudToDeviceProperties>;
-
-/** The capabilities and features enabled for the IoT hub. */
-export type IotHubPropertiesInputFeatures = "None" | "DeviceManagement";
-export const IotHubPropertiesInputFeatures = /*@__PURE__*/ S.String;
-
-/** The properties of an IoT hub. */
-export interface IotHubPropertiesInput {
-  /** The shared access policies you can use to secure a connection to the IoT hub. */
-  authorizationPolicies?: IotHubPropertiesInputAuthorizationPoliciesList;
-  /** If true, SAS tokens with Iot hub scoped SAS keys cannot be used for authentication. */
-  disableLocalAuth?: boolean;
-  /** If true, all device(including Edge devices but excluding modules) scoped SAS keys cannot be used for authentication. */
-  disableDeviceSAS?: boolean;
-  /** If true, all module scoped SAS keys cannot be used for authentication. */
-  disableModuleSAS?: boolean;
-  /** If true, egress from IotHub will be restricted to only the allowed FQDNs that are configured via allowedFqdnList. */
-  restrictOutboundNetworkAccess?: boolean;
-  /** List of allowed FQDNs(Fully Qualified Domain Name) for egress from Iot Hub. */
-  allowedFqdnList?: IotHubPropertiesInputAllowedFqdnListList;
-  /** Whether requests from Public Network are allowed */
-  publicNetworkAccess?:
-    | IotHubPropertiesInputPublicNetworkAccess
-    | (string & {});
-  /** The IP filter rules. */
-  ipFilterRules?: IotHubPropertiesInputIpFilterRulesList;
-  networkRuleSets?: NetworkRuleSetProperties;
-  /** Specifies the minimum TLS version to support for this hub. Can be set to "1.2" to have clients that use a TLS version below 1.2 to be rejected. */
-  minTlsVersion?: string;
-  /** Private endpoint connections created on this IotHub */
-  privateEndpointConnections?: IotHubPropertiesInputPrivateEndpointConnectionsList;
-  /** The Event Hub-compatible endpoint properties. The only possible keys to this dictionary is events. This key has to be present in the dictionary while making create or update calls for the IoT hub. */
-  eventHubEndpoints?: IotHubPropertiesInputEventHubEndpointsMap;
-  routing?: RoutingPropertiesInput;
-  /** The list of Azure Storage endpoints where you can upload files. Currently you can configure only one Azure Storage account and that MUST have its key as $default. Specifying more than one storage account causes an error to be thrown. Not specifying a value for this property when the enableFileUploadNotifications property is set to True, causes an error to be thrown. */
-  storageEndpoints?: IotHubPropertiesInputStorageEndpointsMap;
-  /** The messaging endpoint properties for the file upload notification queue. */
-  messagingEndpoints?: IotHubPropertiesInputMessagingEndpointsMap;
-  /** If True, file upload notifications are enabled. */
-  enableFileUploadNotifications?: boolean;
-  cloudToDevice?: CloudToDeviceProperties;
-  /** IoT hub comments. */
-  comments?: string;
-  /** The capabilities and features enabled for the IoT hub. */
-  features?: IotHubPropertiesInputFeatures | (string & {});
-  /** This property when set to true, will enable data residency, thus, disabling disaster recovery. */
-  enableDataResidency?: boolean;
-}
-export const IotHubPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    authorizationPolicies: S.optional(
-      IotHubPropertiesInputAuthorizationPoliciesList,
-    ),
-    disableLocalAuth: S.optional(S.Boolean),
-    disableDeviceSAS: S.optional(S.Boolean),
-    disableModuleSAS: S.optional(S.Boolean),
-    restrictOutboundNetworkAccess: S.optional(S.Boolean),
-    allowedFqdnList: S.optional(IotHubPropertiesInputAllowedFqdnListList),
-    publicNetworkAccess: S.optional(IotHubPropertiesInputPublicNetworkAccess),
-    ipFilterRules: S.optional(IotHubPropertiesInputIpFilterRulesList),
-    networkRuleSets: S.optional(NetworkRuleSetProperties),
-    minTlsVersion: S.optional(S.String),
-    privateEndpointConnections: S.optional(
-      IotHubPropertiesInputPrivateEndpointConnectionsList,
-    ),
-    eventHubEndpoints: S.optional(IotHubPropertiesInputEventHubEndpointsMap),
-    routing: S.optional(RoutingPropertiesInput),
-    storageEndpoints: S.optional(IotHubPropertiesInputStorageEndpointsMap),
-    messagingEndpoints: S.optional(IotHubPropertiesInputMessagingEndpointsMap),
-    enableFileUploadNotifications: S.optional(S.Boolean),
-    cloudToDevice: S.optional(CloudToDeviceProperties),
-    comments: S.optional(S.String),
-    features: S.optional(IotHubPropertiesInputFeatures),
-    enableDataResidency: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "IotHubPropertiesInput",
-}) as any as S.Schema<IotHubPropertiesInput>;
-
-/** The name of the SKU. */
-export type IotHubSkuInfoInputName =
-  | "F1"
-  | "S1"
-  | "S2"
-  | "S3"
-  | "B1"
-  | "B2"
-  | "B3";
-export const IotHubSkuInfoInputName = /*@__PURE__*/ S.String;
-
-/** Information about the SKU of the IoT hub. */
-export interface IotHubSkuInfoInput {
-  /** The name of the SKU. */
-  name: IotHubSkuInfoInputName | (string & {});
-  /** The number of provisioned IoT Hub units. See: https://docs.microsoft.com/azure/azure-subscription-service-limits#iot-hub-limits. */
-  capacity?: number;
-}
-export const IotHubSkuInfoInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: IotHubSkuInfoInputName,
-    capacity: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "IotHubSkuInfoInput",
-}) as any as S.Schema<IotHubSkuInfoInput>;
-
-/** The type of identity used for the resource. The type 'SystemAssigned, UserAssigned' includes both an implicitly created identity and a set of user assigned identities. The type 'None' will remove any identities from the service. */
-export type ArmIdentityInputType =
-  | "SystemAssigned"
-  | "UserAssigned"
-  | "SystemAssigned, UserAssigned"
-  | "None";
-export const ArmIdentityInputType = /*@__PURE__*/ S.String;
-
-export type ArmUserIdentityInput = PrivateEndpointInput;
-export const ArmUserIdentityInput = PrivateEndpointInput;
-
-export type ArmIdentityInputUserAssignedIdentitiesMap = {
-  [key: string]: PrivateEndpointInput | undefined;
-};
-export const ArmIdentityInputUserAssignedIdentitiesMap = /*@__PURE__*/ S.Record(
-  S.String,
-  PrivateEndpointInput,
-) as any as S.Schema<ArmIdentityInputUserAssignedIdentitiesMap>;
-
-export interface ArmIdentityInput {
-  /** The type of identity used for the resource. The type 'SystemAssigned, UserAssigned' includes both an implicitly created identity and a set of user assigned identities. The type 'None' will remove any identities from the service. */
-  type?: ArmIdentityInputType | (string & {});
-  userAssignedIdentities?: ArmIdentityInputUserAssignedIdentitiesMap;
-}
-export const ArmIdentityInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: S.optional(ArmIdentityInputType),
-    userAssignedIdentities: S.optional(
-      ArmIdentityInputUserAssignedIdentitiesMap,
-    ),
-  }),
-).annotate({
-  identifier: "ArmIdentityInput",
-}) as any as S.Schema<ArmIdentityInput>;
-
-export interface IotHubResourceCreateOrUpdateRequest {
-  /** The subscription identifier. */
-  subscriptionId: string;
-  /** The name of the resource group that contains the IoT hub. */
-  resourceGroupName: string;
-  /** The name of the IoT hub. */
-  resourceName: string;
-  /** The resource location. */
-  location: string;
-  /** The resource tags. */
-  tags?: IotHubResourceCreateOrUpdateRequestTagsMap;
-  /** The Etag field is *not* required. If it is provided in the response body, it must also be provided as a header per the normal ETag convention. */
-  etag?: string;
-  /** IotHub properties */
-  properties?: IotHubPropertiesInput;
-  /** IotHub SKU info */
-  sku: IotHubSkuInfoInput;
-  /** The managed identities for the IotHub. */
-  identity?: ArmIdentityInput;
-}
-export const IotHubResourceCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    resourceName: S.String.pipe(T.Label()),
-    location: S.String,
-    tags: S.optional(IotHubResourceCreateOrUpdateRequestTagsMap),
-    etag: S.optional(S.String),
-    properties: S.optional(IotHubPropertiesInput),
-    sku: IotHubSkuInfoInput,
-    identity: S.optional(ArmIdentityInput),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/IotHubs/{resourceName}",
-      code: 200,
-      apiVersion: "2023-06-30",
-    }),
-  ),
-).annotate({
-  identifier: "IotHubResourceCreateOrUpdateRequest",
-}) as any as S.Schema<IotHubResourceCreateOrUpdateRequest>;
-
-/** The resource tags. */
-export type IotHubResourceCreateOrUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const IotHubResourceCreateOrUpdateResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<IotHubResourceCreateOrUpdateResponseTagsMap>;
-
-/** The shared access policies you can use to secure a connection to the IoT hub. */
-export type IotHubPropertiesAuthorizationPoliciesList =
-  Array<SharedAccessSignatureAuthorizationRule>;
-export const IotHubPropertiesAuthorizationPoliciesList = /*@__PURE__*/ S.Array(
-  SharedAccessSignatureAuthorizationRule,
-) as any as S.Schema<IotHubPropertiesAuthorizationPoliciesList>;
-
-/** List of allowed FQDNs(Fully Qualified Domain Name) for egress from Iot Hub. */
-export type IotHubPropertiesAllowedFqdnListList = Array<string>;
-export const IotHubPropertiesAllowedFqdnListList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<IotHubPropertiesAllowedFqdnListList>;
-
-/** Whether requests from Public Network are allowed */
-export type IotHubPropertiesPublicNetworkAccess = "Enabled" | "Disabled";
-export const IotHubPropertiesPublicNetworkAccess = /*@__PURE__*/ S.String;
-
-/** The IP filter rules. */
-export type IotHubPropertiesIpFilterRulesList = Array<IpFilterRule>;
-export const IotHubPropertiesIpFilterRulesList = /*@__PURE__*/ S.Array(
-  IpFilterRule,
-) as any as S.Schema<IotHubPropertiesIpFilterRulesList>;
-
-/** The private endpoint property of a private endpoint connection */
-export interface PrivateEndpoint {
-  /** The resource identifier. */
-  id?: string;
-}
-export const PrivateEndpoint = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PrivateEndpoint",
-}) as any as S.Schema<PrivateEndpoint>;
 
 /** The properties of a private endpoint connection */
 export interface PrivateEndpointConnectionProperties {
@@ -1645,12 +572,123 @@ export const IotHubPropertiesEventHubEndpointsMap = /*@__PURE__*/ S.Record(
   EventHubProperties,
 ) as any as S.Schema<IotHubPropertiesEventHubEndpointsMap>;
 
+/** Method used to authenticate against the service bus queue endpoint */
+export type RoutingServiceBusQueueEndpointPropertiesAuthenticationType =
+  | "keyBased"
+  | "identityBased";
+export const RoutingServiceBusQueueEndpointPropertiesAuthenticationType =
+  /*@__PURE__*/ S.String;
+
+/** The properties of the Managed identity. */
+export interface ManagedIdentity {
+  /** The user assigned identity. */
+  userAssignedIdentity?: string;
+}
+export const ManagedIdentity = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    userAssignedIdentity: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ManagedIdentity",
+}) as any as S.Schema<ManagedIdentity>;
+
+/** The properties related to service bus queue endpoint types. */
+export interface RoutingServiceBusQueueEndpointProperties {
+  /** Id of the service bus queue endpoint */
+  id?: string;
+  /** The connection string of the service bus queue endpoint. */
+  connectionString?: string | Redacted.Redacted<string>;
+  /** The url of the service bus queue endpoint. It must include the protocol sb:// */
+  endpointUri?: string;
+  /** Queue name on the service bus namespace */
+  entityPath?: string;
+  /** Method used to authenticate against the service bus queue endpoint */
+  authenticationType?:
+    | RoutingServiceBusQueueEndpointPropertiesAuthenticationType
+    | (string & {});
+  /** Managed identity properties of routing service bus queue endpoint. */
+  identity?: ManagedIdentity;
+  /** The name that identifies this endpoint. The name can only include alphanumeric characters, periods, underscores, hyphens and has a maximum length of 64 characters. The following names are reserved: events, fileNotifications, $default. Endpoint names must be unique across endpoint types. The name need not be the same as the actual queue name. */
+  name: string;
+  /** The subscription identifier of the service bus queue endpoint. */
+  subscriptionId?: string;
+  /** The name of the resource group of the service bus queue endpoint. */
+  resourceGroup?: string;
+}
+export const RoutingServiceBusQueueEndpointProperties = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      connectionString: S.optional(S.String.pipe(T.SensitiveValue({}))),
+      endpointUri: S.optional(S.String),
+      entityPath: S.optional(S.String),
+      authenticationType: S.optional(
+        RoutingServiceBusQueueEndpointPropertiesAuthenticationType,
+      ),
+      identity: S.optional(ManagedIdentity),
+      name: S.String,
+      subscriptionId: S.optional(S.String),
+      resourceGroup: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "RoutingServiceBusQueueEndpointProperties",
+}) as any as S.Schema<RoutingServiceBusQueueEndpointProperties>;
+
 /** The list of Service Bus queue endpoints that IoT hub routes the messages to, based on the routing rules. */
 export type RoutingEndpointsServiceBusQueuesList =
   Array<RoutingServiceBusQueueEndpointProperties>;
 export const RoutingEndpointsServiceBusQueuesList = /*@__PURE__*/ S.Array(
   RoutingServiceBusQueueEndpointProperties,
 ) as any as S.Schema<RoutingEndpointsServiceBusQueuesList>;
+
+/** Method used to authenticate against the service bus topic endpoint */
+export type RoutingServiceBusTopicEndpointPropertiesAuthenticationType =
+  | "keyBased"
+  | "identityBased";
+export const RoutingServiceBusTopicEndpointPropertiesAuthenticationType =
+  /*@__PURE__*/ S.String;
+
+/** The properties related to service bus topic endpoint types. */
+export interface RoutingServiceBusTopicEndpointProperties {
+  /** Id of the service bus topic endpoint */
+  id?: string;
+  /** The connection string of the service bus topic endpoint. */
+  connectionString?: string | Redacted.Redacted<string>;
+  /** The url of the service bus topic endpoint. It must include the protocol sb:// */
+  endpointUri?: string;
+  /** Queue name on the service bus topic */
+  entityPath?: string;
+  /** Method used to authenticate against the service bus topic endpoint */
+  authenticationType?:
+    | RoutingServiceBusTopicEndpointPropertiesAuthenticationType
+    | (string & {});
+  /** Managed identity properties of routing service bus topic endpoint. */
+  identity?: ManagedIdentity;
+  /** The name that identifies this endpoint. The name can only include alphanumeric characters, periods, underscores, hyphens and has a maximum length of 64 characters. The following names are reserved: events, fileNotifications, $default. Endpoint names must be unique across endpoint types. The name need not be the same as the actual topic name. */
+  name: string;
+  /** The subscription identifier of the service bus topic endpoint. */
+  subscriptionId?: string;
+  /** The name of the resource group of the service bus topic endpoint. */
+  resourceGroup?: string;
+}
+export const RoutingServiceBusTopicEndpointProperties = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      connectionString: S.optional(S.String.pipe(T.SensitiveValue({}))),
+      endpointUri: S.optional(S.String),
+      entityPath: S.optional(S.String),
+      authenticationType: S.optional(
+        RoutingServiceBusTopicEndpointPropertiesAuthenticationType,
+      ),
+      identity: S.optional(ManagedIdentity),
+      name: S.String,
+      subscriptionId: S.optional(S.String),
+      resourceGroup: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "RoutingServiceBusTopicEndpointProperties",
+}) as any as S.Schema<RoutingServiceBusTopicEndpointProperties>;
 
 /** The list of Service Bus topic endpoints that the IoT hub routes the messages to, based on the routing rules. */
 export type RoutingEndpointsServiceBusTopicsList =
@@ -1659,11 +697,124 @@ export const RoutingEndpointsServiceBusTopicsList = /*@__PURE__*/ S.Array(
   RoutingServiceBusTopicEndpointProperties,
 ) as any as S.Schema<RoutingEndpointsServiceBusTopicsList>;
 
+/** Method used to authenticate against the event hub endpoint */
+export type RoutingEventHubPropertiesAuthenticationType =
+  | "keyBased"
+  | "identityBased";
+export const RoutingEventHubPropertiesAuthenticationType =
+  /*@__PURE__*/ S.String;
+
+/** The properties related to an event hub endpoint. */
+export interface RoutingEventHubProperties {
+  /** Id of the event hub endpoint */
+  id?: string;
+  /** The connection string of the event hub endpoint. */
+  connectionString?: string | Redacted.Redacted<string>;
+  /** The url of the event hub endpoint. It must include the protocol sb:// */
+  endpointUri?: string;
+  /** Event hub name on the event hub namespace */
+  entityPath?: string;
+  /** Method used to authenticate against the event hub endpoint */
+  authenticationType?:
+    | RoutingEventHubPropertiesAuthenticationType
+    | (string & {});
+  /** Managed identity properties of routing event hub endpoint. */
+  identity?: ManagedIdentity;
+  /** The name that identifies this endpoint. The name can only include alphanumeric characters, periods, underscores, hyphens and has a maximum length of 64 characters. The following names are reserved: events, fileNotifications, $default. Endpoint names must be unique across endpoint types. */
+  name: string;
+  /** The subscription identifier of the event hub endpoint. */
+  subscriptionId?: string;
+  /** The name of the resource group of the event hub endpoint. */
+  resourceGroup?: string;
+}
+export const RoutingEventHubProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    connectionString: S.optional(S.String.pipe(T.SensitiveValue({}))),
+    endpointUri: S.optional(S.String),
+    entityPath: S.optional(S.String),
+    authenticationType: S.optional(RoutingEventHubPropertiesAuthenticationType),
+    identity: S.optional(ManagedIdentity),
+    name: S.String,
+    subscriptionId: S.optional(S.String),
+    resourceGroup: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "RoutingEventHubProperties",
+}) as any as S.Schema<RoutingEventHubProperties>;
+
 /** The list of Event Hubs endpoints that IoT hub routes messages to, based on the routing rules. This list does not include the built-in Event Hubs endpoint. */
 export type RoutingEndpointsEventHubsList = Array<RoutingEventHubProperties>;
 export const RoutingEndpointsEventHubsList = /*@__PURE__*/ S.Array(
   RoutingEventHubProperties,
 ) as any as S.Schema<RoutingEndpointsEventHubsList>;
+
+/** Method used to authenticate against the storage endpoint */
+export type RoutingStorageContainerPropertiesAuthenticationType =
+  | "keyBased"
+  | "identityBased";
+export const RoutingStorageContainerPropertiesAuthenticationType =
+  /*@__PURE__*/ S.String;
+
+/** Encoding that is used to serialize messages to blobs. Supported values are 'avro', 'avrodeflate', and 'JSON'. Default value is 'avro'. */
+export type RoutingStorageContainerPropertiesEncoding =
+  | "Avro"
+  | "AvroDeflate"
+  | "JSON";
+export const RoutingStorageContainerPropertiesEncoding = /*@__PURE__*/ S.String;
+
+/** The properties related to a storage container endpoint. */
+export interface RoutingStorageContainerProperties {
+  /** Id of the storage container endpoint */
+  id?: string;
+  /** The connection string of the storage account. */
+  connectionString?: string | Redacted.Redacted<string>;
+  /** The url of the storage endpoint. It must include the protocol https:// */
+  endpointUri?: string;
+  /** Method used to authenticate against the storage endpoint */
+  authenticationType?:
+    | RoutingStorageContainerPropertiesAuthenticationType
+    | (string & {});
+  /** Managed identity properties of routing storage endpoint. */
+  identity?: ManagedIdentity;
+  /** The name that identifies this endpoint. The name can only include alphanumeric characters, periods, underscores, hyphens and has a maximum length of 64 characters. The following names are reserved: events, fileNotifications, $default. Endpoint names must be unique across endpoint types. */
+  name: string;
+  /** The subscription identifier of the storage account. */
+  subscriptionId?: string;
+  /** The name of the resource group of the storage account. */
+  resourceGroup?: string;
+  /** The name of storage container in the storage account. */
+  containerName: string;
+  /** File name format for the blob. Default format is {iothub}/{partition}/{YYYY}/{MM}/{DD}/{HH}/{mm}. All parameters are mandatory but can be reordered. */
+  fileNameFormat?: string;
+  /** Time interval at which blobs are written to storage. Value should be between 60 and 720 seconds. Default value is 300 seconds. */
+  batchFrequencyInSeconds?: number;
+  /** Maximum number of bytes for each blob written to storage. Value should be between 10485760(10MB) and 524288000(500MB). Default value is 314572800(300MB). */
+  maxChunkSizeInBytes?: number;
+  /** Encoding that is used to serialize messages to blobs. Supported values are 'avro', 'avrodeflate', and 'JSON'. Default value is 'avro'. */
+  encoding?: RoutingStorageContainerPropertiesEncoding | (string & {});
+}
+export const RoutingStorageContainerProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    connectionString: S.optional(S.String.pipe(T.SensitiveValue({}))),
+    endpointUri: S.optional(S.String),
+    authenticationType: S.optional(
+      RoutingStorageContainerPropertiesAuthenticationType,
+    ),
+    identity: S.optional(ManagedIdentity),
+    name: S.String,
+    subscriptionId: S.optional(S.String),
+    resourceGroup: S.optional(S.String),
+    containerName: S.String,
+    fileNameFormat: S.optional(S.String),
+    batchFrequencyInSeconds: S.optional(S.Number),
+    maxChunkSizeInBytes: S.optional(S.Number),
+    encoding: S.optional(RoutingStorageContainerPropertiesEncoding),
+  }),
+).annotate({
+  identifier: "RoutingStorageContainerProperties",
+}) as any as S.Schema<RoutingStorageContainerProperties>;
 
 /** The list of storage container endpoints that IoT hub routes messages to, based on the routing rules. */
 export type RoutingEndpointsStorageContainersList =
@@ -1764,11 +915,112 @@ export const RoutingEndpoints = /*@__PURE__*/ S.suspend(() =>
   identifier: "RoutingEndpoints",
 }) as any as S.Schema<RoutingEndpoints>;
 
+/** The source that the routing rule is to be applied to, such as DeviceMessages. */
+export type RoutePropertiesSource =
+  | "Invalid"
+  | "DeviceMessages"
+  | "TwinChangeEvents"
+  | "DeviceLifecycleEvents"
+  | "DeviceJobLifecycleEvents"
+  | "DeviceConnectionStateEvents";
+export const RoutePropertiesSource = /*@__PURE__*/ S.String;
+
+/** The list of endpoints to which messages that satisfy the condition are routed. Currently only one endpoint is allowed. */
+export type RoutePropertiesEndpointNamesList = Array<string>;
+export const RoutePropertiesEndpointNamesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<RoutePropertiesEndpointNamesList>;
+
+/** The properties of a routing rule that your IoT hub uses to route messages to endpoints. */
+export interface RouteProperties {
+  /** The name of the route. The name can only include alphanumeric characters, periods, underscores, hyphens, has a maximum length of 64 characters, and must be unique. */
+  name: string;
+  /** The source that the routing rule is to be applied to, such as DeviceMessages. */
+  source: RoutePropertiesSource | (string & {});
+  /** The condition that is evaluated to apply the routing rule. If no condition is provided, it evaluates to true by default. For grammar, see: https://docs.microsoft.com/azure/iot-hub/iot-hub-devguide-query-language */
+  condition?: string;
+  /** The list of endpoints to which messages that satisfy the condition are routed. Currently only one endpoint is allowed. */
+  endpointNames: RoutePropertiesEndpointNamesList;
+  /** Used to specify whether a route is enabled. */
+  isEnabled: boolean;
+}
+export const RouteProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String,
+    source: RoutePropertiesSource,
+    condition: S.optional(S.String),
+    endpointNames: RoutePropertiesEndpointNamesList,
+    isEnabled: S.Boolean,
+  }),
+).annotate({
+  identifier: "RouteProperties",
+}) as any as S.Schema<RouteProperties>;
+
 /** The list of user-provided routing rules that the IoT hub uses to route messages to built-in and custom endpoints. A maximum of 100 routing rules are allowed for paid hubs and a maximum of 5 routing rules are allowed for free hubs. */
 export type RoutingPropertiesRoutesList = Array<RouteProperties>;
 export const RoutingPropertiesRoutesList = /*@__PURE__*/ S.Array(
   RouteProperties,
 ) as any as S.Schema<RoutingPropertiesRoutesList>;
+
+/** The source to which the routing rule is to be applied to. For example, DeviceMessages */
+export type FallbackRoutePropertiesSource = "DeviceMessages";
+export const FallbackRoutePropertiesSource = /*@__PURE__*/ S.String;
+
+/** The list of endpoints to which the messages that satisfy the condition are routed to. Currently only 1 endpoint is allowed. */
+export type FallbackRoutePropertiesEndpointNamesList = Array<string>;
+export const FallbackRoutePropertiesEndpointNamesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<FallbackRoutePropertiesEndpointNamesList>;
+
+/** The properties of the fallback route. IoT Hub uses these properties when it routes messages to the fallback endpoint. */
+export interface FallbackRouteProperties {
+  /** The name of the route. The name can only include alphanumeric characters, periods, underscores, hyphens, has a maximum length of 64 characters, and must be unique. */
+  name?: string;
+  /** The source to which the routing rule is to be applied to. For example, DeviceMessages */
+  source: FallbackRoutePropertiesSource | (string & {});
+  /** The condition which is evaluated in order to apply the fallback route. If the condition is not provided it will evaluate to true by default. For grammar, See: https://docs.microsoft.com/azure/iot-hub/iot-hub-devguide-query-language */
+  condition?: string;
+  /** The list of endpoints to which the messages that satisfy the condition are routed to. Currently only 1 endpoint is allowed. */
+  endpointNames: FallbackRoutePropertiesEndpointNamesList;
+  /** Used to specify whether the fallback route is enabled. */
+  isEnabled: boolean;
+}
+export const FallbackRouteProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    source: FallbackRoutePropertiesSource,
+    condition: S.optional(S.String),
+    endpointNames: FallbackRoutePropertiesEndpointNamesList,
+    isEnabled: S.Boolean,
+  }),
+).annotate({
+  identifier: "FallbackRouteProperties",
+}) as any as S.Schema<FallbackRouteProperties>;
+
+/** The list of endpoints for which the enrichment is applied to the message. */
+export type EnrichmentPropertiesEndpointNamesList = Array<string>;
+export const EnrichmentPropertiesEndpointNamesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<EnrichmentPropertiesEndpointNamesList>;
+
+/** The properties of an enrichment that your IoT hub applies to messages delivered to endpoints. */
+export interface EnrichmentProperties {
+  /** The key or name for the enrichment property. */
+  key: string;
+  /** The value for the enrichment property. */
+  value: string;
+  /** The list of endpoints for which the enrichment is applied to the message. */
+  endpointNames: EnrichmentPropertiesEndpointNamesList;
+}
+export const EnrichmentProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    key: S.String,
+    value: S.String,
+    endpointNames: EnrichmentPropertiesEndpointNamesList,
+  }),
+).annotate({
+  identifier: "EnrichmentProperties",
+}) as any as S.Schema<EnrichmentProperties>;
 
 /** The list of user-provided enrichments that the IoT hub applies to messages to be delivered to built-in and custom endpoints. See: https://aka.ms/telemetryoneventgrid */
 export type RoutingPropertiesEnrichmentsList = Array<EnrichmentProperties>;
@@ -1797,6 +1049,40 @@ export const RoutingProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "RoutingProperties",
 }) as any as S.Schema<RoutingProperties>;
 
+/** Specifies authentication type being used for connecting to the storage account. */
+export type StorageEndpointPropertiesAuthenticationType =
+  | "keyBased"
+  | "identityBased";
+export const StorageEndpointPropertiesAuthenticationType =
+  /*@__PURE__*/ S.String;
+
+/** The properties of the Azure Storage endpoint for file upload. */
+export interface StorageEndpointProperties {
+  /** The period of time for which the SAS URI generated by IoT Hub for file upload is valid. See: https://docs.microsoft.com/azure/iot-hub/iot-hub-devguide-file-upload#file-upload-notification-configuration-options. */
+  sasTtlAsIso8601?: string;
+  /** The connection string for the Azure Storage account to which files are uploaded. */
+  connectionString: string | Redacted.Redacted<string>;
+  /** The name of the root container where you upload files. The container need not exist but should be creatable using the connectionString specified. */
+  containerName: string;
+  /** Specifies authentication type being used for connecting to the storage account. */
+  authenticationType?:
+    | StorageEndpointPropertiesAuthenticationType
+    | (string & {});
+  /** Managed identity properties of storage endpoint for file upload. */
+  identity?: ManagedIdentity;
+}
+export const StorageEndpointProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    sasTtlAsIso8601: S.optional(S.String),
+    connectionString: S.String.pipe(T.SensitiveValue({})),
+    containerName: S.String,
+    authenticationType: S.optional(StorageEndpointPropertiesAuthenticationType),
+    identity: S.optional(ManagedIdentity),
+  }),
+).annotate({
+  identifier: "StorageEndpointProperties",
+}) as any as S.Schema<StorageEndpointProperties>;
+
 /** The list of Azure Storage endpoints where you can upload files. Currently you can configure only one Azure Storage account and that MUST have its key as $default. Specifying more than one storage account causes an error to be thrown. Not specifying a value for this property when the enableFileUploadNotifications property is set to True, causes an error to be thrown. */
 export type IotHubPropertiesStorageEndpointsMap = {
   [key: string]: StorageEndpointProperties | undefined;
@@ -1806,6 +1092,25 @@ export const IotHubPropertiesStorageEndpointsMap = /*@__PURE__*/ S.Record(
   StorageEndpointProperties,
 ) as any as S.Schema<IotHubPropertiesStorageEndpointsMap>;
 
+/** The properties of the messaging endpoints used by this IoT hub. */
+export interface MessagingEndpointProperties {
+  /** The lock duration. See: https://docs.microsoft.com/azure/iot-hub/iot-hub-devguide-file-upload. */
+  lockDurationAsIso8601?: string;
+  /** The period of time for which a message is available to consume before it is expired by the IoT hub. See: https://docs.microsoft.com/azure/iot-hub/iot-hub-devguide-file-upload. */
+  ttlAsIso8601?: string;
+  /** The number of times the IoT hub attempts to deliver a message. See: https://docs.microsoft.com/azure/iot-hub/iot-hub-devguide-file-upload. */
+  maxDeliveryCount?: number;
+}
+export const MessagingEndpointProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    lockDurationAsIso8601: S.optional(S.String),
+    ttlAsIso8601: S.optional(S.String),
+    maxDeliveryCount: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "MessagingEndpointProperties",
+}) as any as S.Schema<MessagingEndpointProperties>;
+
 /** The messaging endpoint properties for the file upload notification queue. */
 export type IotHubPropertiesMessagingEndpointsMap = {
   [key: string]: MessagingEndpointProperties | undefined;
@@ -1814,6 +1119,43 @@ export const IotHubPropertiesMessagingEndpointsMap = /*@__PURE__*/ S.Record(
   S.String,
   MessagingEndpointProperties,
 ) as any as S.Schema<IotHubPropertiesMessagingEndpointsMap>;
+
+/** The properties of the feedback queue for cloud-to-device messages. */
+export interface FeedbackProperties {
+  /** The lock duration for the feedback queue. See: https://docs.microsoft.com/azure/iot-hub/iot-hub-devguide-messaging#cloud-to-device-messages. */
+  lockDurationAsIso8601?: string;
+  /** The period of time for which a message is available to consume before it is expired by the IoT hub. See: https://docs.microsoft.com/azure/iot-hub/iot-hub-devguide-messaging#cloud-to-device-messages. */
+  ttlAsIso8601?: string;
+  /** The number of times the IoT hub attempts to deliver a message on the feedback queue. See: https://docs.microsoft.com/azure/iot-hub/iot-hub-devguide-messaging#cloud-to-device-messages. */
+  maxDeliveryCount?: number;
+}
+export const FeedbackProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    lockDurationAsIso8601: S.optional(S.String),
+    ttlAsIso8601: S.optional(S.String),
+    maxDeliveryCount: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "FeedbackProperties",
+}) as any as S.Schema<FeedbackProperties>;
+
+/** The IoT hub cloud-to-device messaging properties. */
+export interface CloudToDeviceProperties {
+  /** The max delivery count for cloud-to-device messages in the device queue. See: https://docs.microsoft.com/azure/iot-hub/iot-hub-devguide-messaging#cloud-to-device-messages. */
+  maxDeliveryCount?: number;
+  /** The default time to live for cloud-to-device messages in the device queue. See: https://docs.microsoft.com/azure/iot-hub/iot-hub-devguide-messaging#cloud-to-device-messages. */
+  defaultTtlAsIso8601?: string;
+  feedback?: FeedbackProperties;
+}
+export const CloudToDeviceProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    maxDeliveryCount: S.optional(S.Number),
+    defaultTtlAsIso8601: S.optional(S.String),
+    feedback: S.optional(FeedbackProperties),
+  }),
+).annotate({
+  identifier: "CloudToDeviceProperties",
+}) as any as S.Schema<CloudToDeviceProperties>;
 
 /** The capabilities and features enabled for the IoT hub. */
 export type IotHubPropertiesFeatures = "None" | "DeviceManagement";
@@ -2042,7 +1384,7 @@ export const SystemData = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "SystemData" }) as any as S.Schema<SystemData>;
 
-export interface IotHubResourceCreateOrUpdateResponse {
+export interface DeleteIotHubResourceResponse {
   /** The resource identifier. */
   id?: string;
   /** The resource name. */
@@ -2052,7 +1394,7 @@ export interface IotHubResourceCreateOrUpdateResponse {
   /** The resource location. */
   location: string;
   /** The resource tags. */
-  tags?: IotHubResourceCreateOrUpdateResponseTagsMap;
+  tags?: DeleteIotHubResourceResponseTagsMap;
   /** The Etag field is *not* required. If it is provided in the response body, it must also be provided as a header per the normal ETag convention. */
   etag?: string;
   /** IotHub properties */
@@ -2064,87 +1406,13 @@ export interface IotHubResourceCreateOrUpdateResponse {
   /** The system meta data relating to this resource. */
   systemData?: SystemData;
 }
-export const IotHubResourceCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      location: S.String,
-      tags: S.optional(IotHubResourceCreateOrUpdateResponseTagsMap),
-      etag: S.optional(S.String),
-      properties: S.optional(IotHubProperties),
-      sku: IotHubSkuInfo,
-      identity: S.optional(ArmIdentity),
-      systemData: S.optional(SystemData),
-    }),
-).annotate({
-  identifier: "IotHubResourceCreateOrUpdateResponse",
-}) as any as S.Schema<IotHubResourceCreateOrUpdateResponse>;
-
-export interface IotHubResourceDeleteRequest {
-  /** The subscription identifier. */
-  subscriptionId: string;
-  /** The name of the resource group that contains the IoT hub. */
-  resourceGroupName: string;
-  /** The name of the IoT hub. */
-  resourceName: string;
-}
-export const IotHubResourceDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    resourceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/IotHubs/{resourceName}",
-      code: 200,
-      apiVersion: "2023-06-30",
-    }),
-  ),
-).annotate({
-  identifier: "IotHubResourceDeleteRequest",
-}) as any as S.Schema<IotHubResourceDeleteRequest>;
-
-/** The resource tags. */
-export type IotHubResourceDeleteResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const IotHubResourceDeleteResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<IotHubResourceDeleteResponseTagsMap>;
-
-export interface IotHubResourceDeleteResponse {
-  /** The resource identifier. */
-  id?: string;
-  /** The resource name. */
-  name?: string;
-  /** The resource type. */
-  type?: string;
-  /** The resource location. */
-  location: string;
-  /** The resource tags. */
-  tags?: IotHubResourceDeleteResponseTagsMap;
-  /** The Etag field is *not* required. If it is provided in the response body, it must also be provided as a header per the normal ETag convention. */
-  etag?: string;
-  /** IotHub properties */
-  properties?: IotHubProperties;
-  /** IotHub SKU info */
-  sku: IotHubSkuInfo;
-  /** The managed identities for the IotHub. */
-  identity?: ArmIdentity;
-  /** The system meta data relating to this resource. */
-  systemData?: SystemData;
-}
-export const IotHubResourceDeleteResponse = /*@__PURE__*/ S.suspend(() =>
+export const DeleteIotHubResourceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.String,
-    tags: S.optional(IotHubResourceDeleteResponseTagsMap),
+    tags: S.optional(DeleteIotHubResourceResponseTagsMap),
     etag: S.optional(S.String),
     properties: S.optional(IotHubProperties),
     sku: IotHubSkuInfo,
@@ -2152,10 +1420,10 @@ export const IotHubResourceDeleteResponse = /*@__PURE__*/ S.suspend(() =>
     systemData: S.optional(SystemData),
   }),
 ).annotate({
-  identifier: "IotHubResourceDeleteResponse",
-}) as any as S.Schema<IotHubResourceDeleteResponse>;
+  identifier: "DeleteIotHubResourceResponse",
+}) as any as S.Schema<DeleteIotHubResourceResponse>;
 
-export interface IotHubResourceDeleteEventHubConsumerGroupRequest {
+export interface DeleteIotHubResourceEventHubConsumerGroupRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the IoT hub. */
@@ -2167,7 +1435,7 @@ export interface IotHubResourceDeleteEventHubConsumerGroupRequest {
   /** The name of the consumer group to delete. */
   name: string;
 }
-export const IotHubResourceDeleteEventHubConsumerGroupRequest =
+export const DeleteIotHubResourceEventHubConsumerGroupRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -2184,23 +1452,52 @@ export const IotHubResourceDeleteEventHubConsumerGroupRequest =
       }),
     ),
   ).annotate({
-    identifier: "IotHubResourceDeleteEventHubConsumerGroupRequest",
-  }) as any as S.Schema<IotHubResourceDeleteEventHubConsumerGroupRequest>;
+    identifier: "DeleteIotHubResourceEventHubConsumerGroupRequest",
+  }) as any as S.Schema<DeleteIotHubResourceEventHubConsumerGroupRequest>;
 
-export interface IotHubResourceDeleteEventHubConsumerGroupResponse {}
-export const IotHubResourceDeleteEventHubConsumerGroupResponse =
+export interface DeleteIotHubResourceEventHubConsumerGroupResponse {}
+export const DeleteIotHubResourceEventHubConsumerGroupResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "IotHubResourceDeleteEventHubConsumerGroupResponse",
-  }) as any as S.Schema<IotHubResourceDeleteEventHubConsumerGroupResponse>;
+    identifier: "DeleteIotHubResourceEventHubConsumerGroupResponse",
+  }) as any as S.Schema<DeleteIotHubResourceEventHubConsumerGroupResponse>;
+
+export interface DeletePrivateEndpointConnectionRequest {
+  /** The subscription identifier. */
+  subscriptionId: string;
+  /** The name of the resource group that contains the IoT hub. */
+  resourceGroupName: string;
+  /** The name of the IoT hub. */
+  resourceName: string;
+  /** The name of the private endpoint connection */
+  privateEndpointConnectionName: string;
+}
+export const DeletePrivateEndpointConnectionRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      resourceName: S.String.pipe(T.Label()),
+      privateEndpointConnectionName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/iotHubs/{resourceName}/privateEndpointConnections/{privateEndpointConnectionName}",
+        code: 200,
+        apiVersion: "2023-06-30",
+      }),
+    ),
+).annotate({
+  identifier: "DeletePrivateEndpointConnectionRequest",
+}) as any as S.Schema<DeletePrivateEndpointConnectionRequest>;
 
 /** Specifies authentication type being used for connecting to the storage account. */
-export type IotHubResourceExportDevicesRequestAuthenticationType =
+export type ExportIotHubResourceDevicesRequestAuthenticationType =
   | "keyBased"
   | "identityBased";
-export const IotHubResourceExportDevicesRequestAuthenticationType =
+export const ExportIotHubResourceDevicesRequestAuthenticationType =
   /*@__PURE__*/ S.String;
 
-export interface IotHubResourceExportDevicesRequest {
+export interface ExportIotHubResourceDevicesRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the IoT hub. */
@@ -2215,7 +1512,7 @@ export interface IotHubResourceExportDevicesRequest {
   exportBlobName?: string;
   /** Specifies authentication type being used for connecting to the storage account. */
   authenticationType?:
-    | IotHubResourceExportDevicesRequestAuthenticationType
+    | ExportIotHubResourceDevicesRequestAuthenticationType
     | (string & {});
   /** Managed identity properties of storage endpoint for export devices. */
   identity?: ManagedIdentity;
@@ -2224,7 +1521,7 @@ export interface IotHubResourceExportDevicesRequest {
   /** The name of the blob that will be created in the provided output blob container. This blob will contain the exported configurations for the Iot Hub. */
   configurationsBlobName?: string;
 }
-export const IotHubResourceExportDevicesRequest = /*@__PURE__*/ S.suspend(() =>
+export const ExportIotHubResourceDevicesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -2233,7 +1530,7 @@ export const IotHubResourceExportDevicesRequest = /*@__PURE__*/ S.suspend(() =>
     excludeKeys: S.Boolean,
     exportBlobName: S.optional(S.String),
     authenticationType: S.optional(
-      IotHubResourceExportDevicesRequestAuthenticationType,
+      ExportIotHubResourceDevicesRequestAuthenticationType,
     ),
     identity: S.optional(ManagedIdentity),
     includeConfigurations: S.optional(S.Boolean),
@@ -2247,8 +1544,8 @@ export const IotHubResourceExportDevicesRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "IotHubResourceExportDevicesRequest",
-}) as any as S.Schema<IotHubResourceExportDevicesRequest>;
+  identifier: "ExportIotHubResourceDevicesRequest",
+}) as any as S.Schema<ExportIotHubResourceDevicesRequest>;
 
 /** The type of the job. */
 export type JobResponseType =
@@ -2306,7 +1603,122 @@ export const JobResponse = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "JobResponse" }) as any as S.Schema<JobResponse>;
 
-export interface IotHubResourceGetRequest {
+export interface GenerateCertificateVerificationCodeRequest {
+  /** The subscription identifier. */
+  subscriptionId: string;
+  /** The name of the resource group that contains the IoT hub. */
+  resourceGroupName: string;
+  /** The name of the IoT hub. */
+  resourceName: string;
+  /** The name of the certificate */
+  certificateName: string;
+}
+export const GenerateCertificateVerificationCodeRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      resourceName: S.String.pipe(T.Label()),
+      certificateName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/IotHubs/{resourceName}/certificates/{certificateName}/generateVerificationCode",
+        code: 200,
+        apiVersion: "2023-06-30",
+      }),
+    ),
+  ).annotate({
+    identifier: "GenerateCertificateVerificationCodeRequest",
+  }) as any as S.Schema<GenerateCertificateVerificationCodeRequest>;
+
+/** The description of an X509 CA Certificate including the challenge nonce issued for the Proof-Of-Possession flow. */
+export interface CertificatePropertiesWithNonce {
+  /** The certificate's subject name. */
+  subject?: string;
+  /** The certificate's expiration date and time. */
+  expiry?: string;
+  /** The certificate's thumbprint. */
+  thumbprint?: string;
+  /** Determines whether certificate has been verified. */
+  isVerified?: boolean;
+  /** The certificate's create date and time. */
+  created?: string;
+  /** The certificate's last update date and time. */
+  updated?: string;
+  /** The certificate's verification code that will be used for proof of possession. */
+  verificationCode?: string;
+  /** The certificate content */
+  certificate?: string;
+}
+export const CertificatePropertiesWithNonce = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subject: S.optional(S.String),
+    expiry: S.optional(S.String),
+    thumbprint: S.optional(S.String),
+    isVerified: S.optional(S.Boolean),
+    created: S.optional(S.String),
+    updated: S.optional(S.String),
+    verificationCode: S.optional(S.String),
+    certificate: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "CertificatePropertiesWithNonce",
+}) as any as S.Schema<CertificatePropertiesWithNonce>;
+
+/** The X509 Certificate. */
+export interface CertificateWithNonceDescription {
+  properties?: CertificatePropertiesWithNonce;
+  /** The resource identifier. */
+  id?: string;
+  /** The name of the certificate. */
+  name?: string;
+  /** The entity tag. */
+  etag?: string;
+  /** The resource type. */
+  type?: string;
+}
+export const CertificateWithNonceDescription = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    properties: S.optional(CertificatePropertiesWithNonce),
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    etag: S.optional(S.String),
+    type: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "CertificateWithNonceDescription",
+}) as any as S.Schema<CertificateWithNonceDescription>;
+
+export interface GetCertificateRequest {
+  /** The subscription identifier. */
+  subscriptionId: string;
+  /** The name of the resource group that contains the IoT hub. */
+  resourceGroupName: string;
+  /** The name of the IoT hub. */
+  resourceName: string;
+  /** The name of the certificate */
+  certificateName: string;
+}
+export const GetCertificateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    resourceName: S.String.pipe(T.Label()),
+    certificateName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/IotHubs/{resourceName}/certificates/{certificateName}",
+      code: 200,
+      apiVersion: "2023-06-30",
+    }),
+  ),
+).annotate({
+  identifier: "GetCertificateRequest",
+}) as any as S.Schema<GetCertificateRequest>;
+
+export interface GetIotHubResourceRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the IoT hub. */
@@ -2314,7 +1726,7 @@ export interface IotHubResourceGetRequest {
   /** The name of the IoT hub. */
   resourceName: string;
 }
-export const IotHubResourceGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetIotHubResourceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -2328,19 +1740,19 @@ export const IotHubResourceGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "IotHubResourceGetRequest",
-}) as any as S.Schema<IotHubResourceGetRequest>;
+  identifier: "GetIotHubResourceRequest",
+}) as any as S.Schema<GetIotHubResourceRequest>;
 
 /** The resource tags. */
-export type IotHubResourceGetResponseTagsMap = {
+export type GetIotHubResourceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const IotHubResourceGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetIotHubResourceResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<IotHubResourceGetResponseTagsMap>;
+) as any as S.Schema<GetIotHubResourceResponseTagsMap>;
 
-export interface IotHubResourceGetResponse {
+export interface GetIotHubResourceResponse {
   /** The resource identifier. */
   id?: string;
   /** The resource name. */
@@ -2350,7 +1762,7 @@ export interface IotHubResourceGetResponse {
   /** The resource location. */
   location: string;
   /** The resource tags. */
-  tags?: IotHubResourceGetResponseTagsMap;
+  tags?: GetIotHubResourceResponseTagsMap;
   /** The Etag field is *not* required. If it is provided in the response body, it must also be provided as a header per the normal ETag convention. */
   etag?: string;
   /** IotHub properties */
@@ -2362,13 +1774,13 @@ export interface IotHubResourceGetResponse {
   /** The system meta data relating to this resource. */
   systemData?: SystemData;
 }
-export const IotHubResourceGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetIotHubResourceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.String,
-    tags: S.optional(IotHubResourceGetResponseTagsMap),
+    tags: S.optional(GetIotHubResourceResponseTagsMap),
     etag: S.optional(S.String),
     properties: S.optional(IotHubProperties),
     sku: IotHubSkuInfo,
@@ -2376,16 +1788,16 @@ export const IotHubResourceGetResponse = /*@__PURE__*/ S.suspend(() =>
     systemData: S.optional(SystemData),
   }),
 ).annotate({
-  identifier: "IotHubResourceGetResponse",
-}) as any as S.Schema<IotHubResourceGetResponse>;
+  identifier: "GetIotHubResourceResponse",
+}) as any as S.Schema<GetIotHubResourceResponse>;
 
-export interface IotHubResourceGetEndpointHealthRequest {
+export interface GetIotHubResourceEndpointHealthRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   resourceGroupName: string;
   iotHubName: string;
 }
-export const IotHubResourceGetEndpointHealthRequest = /*@__PURE__*/ S.suspend(
+export const GetIotHubResourceEndpointHealthRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -2400,8 +1812,8 @@ export const IotHubResourceGetEndpointHealthRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "IotHubResourceGetEndpointHealthRequest",
-}) as any as S.Schema<IotHubResourceGetEndpointHealthRequest>;
+  identifier: "GetIotHubResourceEndpointHealthRequest",
+}) as any as S.Schema<GetIotHubResourceEndpointHealthRequest>;
 
 /** Health statuses have following meanings. The 'healthy' status shows that the endpoint is accepting messages as expected. The 'unhealthy' status shows that the endpoint is not accepting messages as expected and IoT Hub is retrying to send data to this endpoint. The status of an unhealthy endpoint will be updated to healthy when IoT Hub has established an eventually consistent state of health. The 'dead' status shows that the endpoint is not accepting messages, after IoT Hub retried sending messages for the retrial period. See IoT Hub metrics to identify errors and monitor issues with endpoints. The 'unknown' status shows that the IoT Hub has not established a connection with the endpoint. No messages have been delivered to or rejected from this endpoint */
 export type EndpointHealthDataHealthStatus =
@@ -2462,7 +1874,7 @@ export const EndpointHealthDataListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "EndpointHealthDataListResult",
 }) as any as S.Schema<EndpointHealthDataListResult>;
 
-export interface IotHubResourceGetEventHubConsumerGroupRequest {
+export interface GetIotHubResourceEventHubConsumerGroupRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the IoT hub. */
@@ -2474,7 +1886,7 @@ export interface IotHubResourceGetEventHubConsumerGroupRequest {
   /** The name of the consumer group to retrieve. */
   name: string;
 }
-export const IotHubResourceGetEventHubConsumerGroupRequest =
+export const GetIotHubResourceEventHubConsumerGroupRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -2491,10 +1903,10 @@ export const IotHubResourceGetEventHubConsumerGroupRequest =
       }),
     ),
   ).annotate({
-    identifier: "IotHubResourceGetEventHubConsumerGroupRequest",
-  }) as any as S.Schema<IotHubResourceGetEventHubConsumerGroupRequest>;
+    identifier: "GetIotHubResourceEventHubConsumerGroupRequest",
+  }) as any as S.Schema<GetIotHubResourceEventHubConsumerGroupRequest>;
 
-export interface IotHubResourceGetJobRequest {
+export interface GetIotHubResourceJobRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the IoT hub. */
@@ -2504,7 +1916,7 @@ export interface IotHubResourceGetJobRequest {
   /** The job identifier. */
   jobId: string;
 }
-export const IotHubResourceGetJobRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetIotHubResourceJobRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -2519,10 +1931,10 @@ export const IotHubResourceGetJobRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "IotHubResourceGetJobRequest",
-}) as any as S.Schema<IotHubResourceGetJobRequest>;
+  identifier: "GetIotHubResourceJobRequest",
+}) as any as S.Schema<GetIotHubResourceJobRequest>;
 
-export interface IotHubResourceGetKeysForKeyNameRequest {
+export interface GetIotHubResourceKeysForKeyNameRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the IoT hub. */
@@ -2532,7 +1944,7 @@ export interface IotHubResourceGetKeysForKeyNameRequest {
   /** The name of the shared access policy. */
   keyName: string;
 }
-export const IotHubResourceGetKeysForKeyNameRequest = /*@__PURE__*/ S.suspend(
+export const GetIotHubResourceKeysForKeyNameRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -2548,10 +1960,10 @@ export const IotHubResourceGetKeysForKeyNameRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "IotHubResourceGetKeysForKeyNameRequest",
-}) as any as S.Schema<IotHubResourceGetKeysForKeyNameRequest>;
+  identifier: "GetIotHubResourceKeysForKeyNameRequest",
+}) as any as S.Schema<GetIotHubResourceKeysForKeyNameRequest>;
 
-export interface IotHubResourceGetQuotaMetricsRequest {
+export interface GetIotHubResourceQuotaMetricsRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the IoT hub. */
@@ -2559,7 +1971,7 @@ export interface IotHubResourceGetQuotaMetricsRequest {
   /** The name of the IoT hub. */
   resourceName: string;
 }
-export const IotHubResourceGetQuotaMetricsRequest = /*@__PURE__*/ S.suspend(
+export const GetIotHubResourceQuotaMetricsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -2574,8 +1986,8 @@ export const IotHubResourceGetQuotaMetricsRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "IotHubResourceGetQuotaMetricsRequest",
-}) as any as S.Schema<IotHubResourceGetQuotaMetricsRequest>;
+  identifier: "GetIotHubResourceQuotaMetricsRequest",
+}) as any as S.Schema<GetIotHubResourceQuotaMetricsRequest>;
 
 /** Quota metrics properties. */
 export interface IotHubQuotaMetricInfo {
@@ -2619,7 +2031,7 @@ export const IotHubQuotaMetricInfoListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "IotHubQuotaMetricInfoListResult",
 }) as any as S.Schema<IotHubQuotaMetricInfoListResult>;
 
-export interface IotHubResourceGetStatsRequest {
+export interface GetIotHubResourceStatsRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the IoT hub. */
@@ -2627,7 +2039,7 @@ export interface IotHubResourceGetStatsRequest {
   /** The name of the IoT hub. */
   resourceName: string;
 }
-export const IotHubResourceGetStatsRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetIotHubResourceStatsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -2641,8 +2053,8 @@ export const IotHubResourceGetStatsRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "IotHubResourceGetStatsRequest",
-}) as any as S.Schema<IotHubResourceGetStatsRequest>;
+  identifier: "GetIotHubResourceStatsRequest",
+}) as any as S.Schema<GetIotHubResourceStatsRequest>;
 
 /** Identity registry statistics. */
 export interface RegistryStatistics {
@@ -2663,7 +2075,7 @@ export const RegistryStatistics = /*@__PURE__*/ S.suspend(() =>
   identifier: "RegistryStatistics",
 }) as any as S.Schema<RegistryStatistics>;
 
-export interface IotHubResourceGetValidSkusRequest {
+export interface GetIotHubResourceValidSkusRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the IoT hub. */
@@ -2671,7 +2083,7 @@ export interface IotHubResourceGetValidSkusRequest {
   /** The name of the IoT hub. */
   resourceName: string;
 }
-export const IotHubResourceGetValidSkusRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetIotHubResourceValidSkusRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -2685,8 +2097,8 @@ export const IotHubResourceGetValidSkusRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "IotHubResourceGetValidSkusRequest",
-}) as any as S.Schema<IotHubResourceGetValidSkusRequest>;
+  identifier: "GetIotHubResourceValidSkusRequest",
+}) as any as S.Schema<GetIotHubResourceValidSkusRequest>;
 
 /** The type of the scaling enabled. */
 export type IotHubCapacityScaleType = "Automatic" | "Manual" | "None";
@@ -2754,14 +2166,210 @@ export const IotHubSkuDescriptionListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "IotHubSkuDescriptionListResult",
 }) as any as S.Schema<IotHubSkuDescriptionListResult>;
 
+export interface GetPrivateEndpointConnectionRequest {
+  /** The subscription identifier. */
+  subscriptionId: string;
+  /** The name of the resource group that contains the IoT hub. */
+  resourceGroupName: string;
+  /** The name of the IoT hub. */
+  resourceName: string;
+  /** The name of the private endpoint connection */
+  privateEndpointConnectionName: string;
+}
+export const GetPrivateEndpointConnectionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    resourceName: S.String.pipe(T.Label()),
+    privateEndpointConnectionName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/iotHubs/{resourceName}/privateEndpointConnections/{privateEndpointConnectionName}",
+      code: 200,
+      apiVersion: "2023-06-30",
+    }),
+  ),
+).annotate({
+  identifier: "GetPrivateEndpointConnectionRequest",
+}) as any as S.Schema<GetPrivateEndpointConnectionRequest>;
+
+export interface GetPrivateLinkResourceRequest {
+  /** The subscription identifier. */
+  subscriptionId: string;
+  /** The name of the resource group that contains the IoT hub. */
+  resourceGroupName: string;
+  /** The name of the IoT hub. */
+  resourceName: string;
+  /** The name of the private link resource */
+  groupId: string;
+}
+export const GetPrivateLinkResourceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    resourceName: S.String.pipe(T.Label()),
+    groupId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/iotHubs/{resourceName}/privateLinkResources/{groupId}",
+      code: 200,
+      apiVersion: "2023-06-30",
+    }),
+  ),
+).annotate({
+  identifier: "GetPrivateLinkResourceRequest",
+}) as any as S.Schema<GetPrivateLinkResourceRequest>;
+
+/** The required members for a specific group id */
+export type GroupIdInformationPropertiesRequiredMembersList = Array<string>;
+export const GroupIdInformationPropertiesRequiredMembersList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<GroupIdInformationPropertiesRequiredMembersList>;
+
+/** The required DNS zones for a specific group id */
+export type GroupIdInformationPropertiesRequiredZoneNamesList = Array<string>;
+export const GroupIdInformationPropertiesRequiredZoneNamesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<GroupIdInformationPropertiesRequiredZoneNamesList>;
+
+/** The properties for a group information object */
+export interface GroupIdInformationProperties {
+  /** The group id */
+  groupId?: string;
+  /** The required members for a specific group id */
+  requiredMembers?: GroupIdInformationPropertiesRequiredMembersList;
+  /** The required DNS zones for a specific group id */
+  requiredZoneNames?: GroupIdInformationPropertiesRequiredZoneNamesList;
+}
+export const GroupIdInformationProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    groupId: S.optional(S.String),
+    requiredMembers: S.optional(
+      GroupIdInformationPropertiesRequiredMembersList,
+    ),
+    requiredZoneNames: S.optional(
+      GroupIdInformationPropertiesRequiredZoneNamesList,
+    ),
+  }),
+).annotate({
+  identifier: "GroupIdInformationProperties",
+}) as any as S.Schema<GroupIdInformationProperties>;
+
+/** The group information for creating a private endpoint on an IotHub */
+export interface GroupIdInformation {
+  /** The resource identifier. */
+  id?: string;
+  /** The resource name. */
+  name?: string;
+  /** The resource type. */
+  type?: string;
+  properties: GroupIdInformationProperties;
+}
+export const GroupIdInformation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    properties: GroupIdInformationProperties,
+  }),
+).annotate({
+  identifier: "GroupIdInformation",
+}) as any as S.Schema<GroupIdInformation>;
+
+export interface GetResourceProviderCommonSubscriptionQuotaRequest {
+  /** The subscription identifier. */
+  subscriptionId: string;
+}
+export const GetResourceProviderCommonSubscriptionQuotaRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Devices/usages",
+        code: 200,
+        apiVersion: "2023-06-30",
+      }),
+    ),
+  ).annotate({
+    identifier: "GetResourceProviderCommonSubscriptionQuotaRequest",
+  }) as any as S.Schema<GetResourceProviderCommonSubscriptionQuotaRequest>;
+
+/** Name of Iot Hub type */
+export interface Name {
+  /** IotHub type */
+  value?: string;
+  /** Localized value of name */
+  localizedValue?: string;
+}
+export const Name = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(S.String),
+    localizedValue: S.optional(S.String),
+  }),
+).annotate({ identifier: "Name" }) as any as S.Schema<Name>;
+
+/** User subscription quota response */
+export interface UserSubscriptionQuota {
+  /** IotHub type id */
+  id?: string;
+  /** Response type */
+  type?: string;
+  /** Unit of IotHub type */
+  unit?: string;
+  /** Current number of IotHub type */
+  currentValue?: number;
+  /** Numerical limit on IotHub type */
+  limit?: number;
+  /** IotHub type */
+  name?: Name;
+}
+export const UserSubscriptionQuota = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    type: S.optional(S.String),
+    unit: S.optional(S.String),
+    currentValue: S.optional(S.Number),
+    limit: S.optional(S.Number),
+    name: S.optional(Name),
+  }),
+).annotate({
+  identifier: "UserSubscriptionQuota",
+}) as any as S.Schema<UserSubscriptionQuota>;
+
+export type UserSubscriptionQuotaListResultValueList =
+  Array<UserSubscriptionQuota>;
+export const UserSubscriptionQuotaListResultValueList = /*@__PURE__*/ S.Array(
+  UserSubscriptionQuota,
+) as any as S.Schema<UserSubscriptionQuotaListResultValueList>;
+
+/** Json-serialized array of User subscription quota response */
+export interface UserSubscriptionQuotaListResult {
+  value?: UserSubscriptionQuotaListResultValueList;
+  nextLink?: string;
+}
+export const UserSubscriptionQuotaListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(UserSubscriptionQuotaListResultValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "UserSubscriptionQuotaListResult",
+}) as any as S.Schema<UserSubscriptionQuotaListResult>;
+
 /** Specifies authentication type being used for connecting to the storage account. */
-export type IotHubResourceImportDevicesRequestAuthenticationType =
+export type ImportIotHubResourceDevicesRequestAuthenticationType =
   | "keyBased"
   | "identityBased";
-export const IotHubResourceImportDevicesRequestAuthenticationType =
+export const ImportIotHubResourceDevicesRequestAuthenticationType =
   /*@__PURE__*/ S.String;
 
-export interface IotHubResourceImportDevicesRequest {
+export interface ImportIotHubResourceDevicesRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the IoT hub. */
@@ -2778,7 +2386,7 @@ export interface IotHubResourceImportDevicesRequest {
   outputBlobName?: string;
   /** Specifies authentication type being used for connecting to the storage account. */
   authenticationType?:
-    | IotHubResourceImportDevicesRequestAuthenticationType
+    | ImportIotHubResourceDevicesRequestAuthenticationType
     | (string & {});
   /** Managed identity properties of storage endpoint for import devices. */
   identity?: ManagedIdentity;
@@ -2787,7 +2395,7 @@ export interface IotHubResourceImportDevicesRequest {
   /** The blob name to be used when importing configurations from the provided input blob container. */
   configurationsBlobName?: string;
 }
-export const IotHubResourceImportDevicesRequest = /*@__PURE__*/ S.suspend(() =>
+export const ImportIotHubResourceDevicesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -2797,7 +2405,7 @@ export const IotHubResourceImportDevicesRequest = /*@__PURE__*/ S.suspend(() =>
     inputBlobName: S.optional(S.String),
     outputBlobName: S.optional(S.String),
     authenticationType: S.optional(
-      IotHubResourceImportDevicesRequestAuthenticationType,
+      ImportIotHubResourceDevicesRequestAuthenticationType,
     ),
     identity: S.optional(ManagedIdentity),
     includeConfigurations: S.optional(S.Boolean),
@@ -2811,16 +2419,602 @@ export const IotHubResourceImportDevicesRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "IotHubResourceImportDevicesRequest",
-}) as any as S.Schema<IotHubResourceImportDevicesRequest>;
+  identifier: "ImportIotHubResourceDevicesRequest",
+}) as any as S.Schema<ImportIotHubResourceDevicesRequest>;
 
-export interface IotHubResourceListByResourceGroupRequest {
+export interface IotHubManualFailoverRequest {
+  /** The subscription identifier. */
+  subscriptionId: string;
+  /** Name of the resource group containing the IoT hub resource */
+  resourceGroupName: string;
+  /** Name of the IoT hub to failover */
+  iotHubName: string;
+  /** Region the hub will be failed over to */
+  failoverRegion: string;
+}
+export const IotHubManualFailoverRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    iotHubName: S.String.pipe(T.Label()),
+    failoverRegion: S.String,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/IotHubs/{iotHubName}/failover",
+      code: 200,
+      apiVersion: "2023-06-30",
+    }),
+  ),
+).annotate({
+  identifier: "IotHubManualFailoverRequest",
+}) as any as S.Schema<IotHubManualFailoverRequest>;
+
+export interface IotHubManualFailoverResponse {}
+export const IotHubManualFailoverResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "IotHubManualFailoverResponse",
+}) as any as S.Schema<IotHubManualFailoverResponse>;
+
+/** The resource tags. */
+export type IotHubResourceCreateOrUpdateRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const IotHubResourceCreateOrUpdateRequestTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<IotHubResourceCreateOrUpdateRequestTagsMap>;
+
+/** The shared access policies you can use to secure a connection to the IoT hub. */
+export type IotHubPropertiesInputAuthorizationPoliciesList =
+  Array<SharedAccessSignatureAuthorizationRule>;
+export const IotHubPropertiesInputAuthorizationPoliciesList =
+  /*@__PURE__*/ S.Array(
+    SharedAccessSignatureAuthorizationRule,
+  ) as any as S.Schema<IotHubPropertiesInputAuthorizationPoliciesList>;
+
+/** List of allowed FQDNs(Fully Qualified Domain Name) for egress from Iot Hub. */
+export type IotHubPropertiesInputAllowedFqdnListList = Array<string>;
+export const IotHubPropertiesInputAllowedFqdnListList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<IotHubPropertiesInputAllowedFqdnListList>;
+
+/** Whether requests from Public Network are allowed */
+export type IotHubPropertiesInputPublicNetworkAccess = "Enabled" | "Disabled";
+export const IotHubPropertiesInputPublicNetworkAccess = /*@__PURE__*/ S.String;
+
+/** The IP filter rules. */
+export type IotHubPropertiesInputIpFilterRulesList = Array<IpFilterRule>;
+export const IotHubPropertiesInputIpFilterRulesList = /*@__PURE__*/ S.Array(
+  IpFilterRule,
+) as any as S.Schema<IotHubPropertiesInputIpFilterRulesList>;
+
+/** The private endpoint property of a private endpoint connection */
+export interface PrivateEndpointInput {}
+export const PrivateEndpointInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "PrivateEndpointInput",
+}) as any as S.Schema<PrivateEndpointInput>;
+
+/** The properties of a private endpoint connection */
+export interface PrivateEndpointConnectionPropertiesInput {
+  privateEndpoint?: PrivateEndpointInput;
+  privateLinkServiceConnectionState: PrivateLinkServiceConnectionState;
+}
+export const PrivateEndpointConnectionPropertiesInput = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      privateEndpoint: S.optional(PrivateEndpointInput),
+      privateLinkServiceConnectionState: PrivateLinkServiceConnectionState,
+    }),
+).annotate({
+  identifier: "PrivateEndpointConnectionPropertiesInput",
+}) as any as S.Schema<PrivateEndpointConnectionPropertiesInput>;
+
+/** The private endpoint connection of an IotHub */
+export interface PrivateEndpointConnectionInput {
+  properties: PrivateEndpointConnectionPropertiesInput;
+}
+export const PrivateEndpointConnectionInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    properties: PrivateEndpointConnectionPropertiesInput,
+  }),
+).annotate({
+  identifier: "PrivateEndpointConnectionInput",
+}) as any as S.Schema<PrivateEndpointConnectionInput>;
+
+/** Private endpoint connections created on this IotHub */
+export type IotHubPropertiesInputPrivateEndpointConnectionsList =
+  Array<PrivateEndpointConnectionInput>;
+export const IotHubPropertiesInputPrivateEndpointConnectionsList =
+  /*@__PURE__*/ S.Array(
+    PrivateEndpointConnectionInput,
+  ) as any as S.Schema<IotHubPropertiesInputPrivateEndpointConnectionsList>;
+
+/** The properties of the provisioned Event Hub-compatible endpoint used by the IoT hub. */
+export interface EventHubPropertiesInput {
+  /** The retention time for device-to-cloud messages in days. See: https://docs.microsoft.com/azure/iot-hub/iot-hub-devguide-messaging#device-to-cloud-messages */
+  retentionTimeInDays?: number;
+  /** The number of partitions for receiving device-to-cloud messages in the Event Hub-compatible endpoint. See: https://docs.microsoft.com/azure/iot-hub/iot-hub-devguide-messaging#device-to-cloud-messages. */
+  partitionCount?: number;
+}
+export const EventHubPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    retentionTimeInDays: S.optional(S.Number),
+    partitionCount: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "EventHubPropertiesInput",
+}) as any as S.Schema<EventHubPropertiesInput>;
+
+/** The Event Hub-compatible endpoint properties. The only possible keys to this dictionary is events. This key has to be present in the dictionary while making create or update calls for the IoT hub. */
+export type IotHubPropertiesInputEventHubEndpointsMap = {
+  [key: string]: EventHubPropertiesInput | undefined;
+};
+export const IotHubPropertiesInputEventHubEndpointsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  EventHubPropertiesInput,
+) as any as S.Schema<IotHubPropertiesInputEventHubEndpointsMap>;
+
+/** The list of Service Bus queue endpoints that IoT hub routes the messages to, based on the routing rules. */
+export type RoutingEndpointsInputServiceBusQueuesList =
+  Array<RoutingServiceBusQueueEndpointProperties>;
+export const RoutingEndpointsInputServiceBusQueuesList = /*@__PURE__*/ S.Array(
+  RoutingServiceBusQueueEndpointProperties,
+) as any as S.Schema<RoutingEndpointsInputServiceBusQueuesList>;
+
+/** The list of Service Bus topic endpoints that the IoT hub routes the messages to, based on the routing rules. */
+export type RoutingEndpointsInputServiceBusTopicsList =
+  Array<RoutingServiceBusTopicEndpointProperties>;
+export const RoutingEndpointsInputServiceBusTopicsList = /*@__PURE__*/ S.Array(
+  RoutingServiceBusTopicEndpointProperties,
+) as any as S.Schema<RoutingEndpointsInputServiceBusTopicsList>;
+
+/** The list of Event Hubs endpoints that IoT hub routes messages to, based on the routing rules. This list does not include the built-in Event Hubs endpoint. */
+export type RoutingEndpointsInputEventHubsList =
+  Array<RoutingEventHubProperties>;
+export const RoutingEndpointsInputEventHubsList = /*@__PURE__*/ S.Array(
+  RoutingEventHubProperties,
+) as any as S.Schema<RoutingEndpointsInputEventHubsList>;
+
+/** The list of storage container endpoints that IoT hub routes messages to, based on the routing rules. */
+export type RoutingEndpointsInputStorageContainersList =
+  Array<RoutingStorageContainerProperties>;
+export const RoutingEndpointsInputStorageContainersList = /*@__PURE__*/ S.Array(
+  RoutingStorageContainerProperties,
+) as any as S.Schema<RoutingEndpointsInputStorageContainersList>;
+
+/** Method used to authenticate against the cosmos DB sql container endpoint */
+export type RoutingCosmosDBSqlApiPropertiesInputAuthenticationType =
+  | "keyBased"
+  | "identityBased";
+export const RoutingCosmosDBSqlApiPropertiesInputAuthenticationType =
+  /*@__PURE__*/ S.String;
+
+/** The properties related to a cosmos DB sql container endpoint. */
+export interface RoutingCosmosDBSqlApiPropertiesInput {
+  /** The name that identifies this endpoint. The name can only include alphanumeric characters, periods, underscores, hyphens and has a maximum length of 64 characters. The following names are reserved: events, fileNotifications, $default. Endpoint names must be unique across endpoint types. */
+  name: string;
+  /** The subscription identifier of the cosmos DB account. */
+  subscriptionId?: string;
+  /** The name of the resource group of the cosmos DB account. */
+  resourceGroup?: string;
+  /** The url of the cosmos DB account. It must include the protocol https:// */
+  endpointUri: string;
+  /** Method used to authenticate against the cosmos DB sql container endpoint */
+  authenticationType?:
+    | RoutingCosmosDBSqlApiPropertiesInputAuthenticationType
+    | (string & {});
+  /** Managed identity properties of routing cosmos DB container endpoint. */
+  identity?: ManagedIdentity;
+  /** The primary key of the cosmos DB account. */
+  primaryKey?: string;
+  /** The secondary key of the cosmos DB account. */
+  secondaryKey?: string;
+  /** The name of the cosmos DB database in the cosmos DB account. */
+  databaseName: string;
+  /** The name of the cosmos DB sql container in the cosmos DB database. */
+  containerName: string;
+  /** The name of the partition key associated with this cosmos DB sql container if one exists. This is an optional parameter. */
+  partitionKeyName?: string;
+  /** The template for generating a synthetic partition key value for use with this cosmos DB sql container. The template must include at least one of the following placeholders: {iothub}, {deviceid}, {DD}, {MM}, and {YYYY}. Any one placeholder may be specified at most once, but order and non-placeholder components are arbitrary. This parameter is only required if PartitionKeyName is specified. */
+  partitionKeyTemplate?: string;
+}
+export const RoutingCosmosDBSqlApiPropertiesInput = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      name: S.String,
+      subscriptionId: S.optional(S.String),
+      resourceGroup: S.optional(S.String),
+      endpointUri: S.String,
+      authenticationType: S.optional(
+        RoutingCosmosDBSqlApiPropertiesInputAuthenticationType,
+      ),
+      identity: S.optional(ManagedIdentity),
+      primaryKey: S.optional(S.String),
+      secondaryKey: S.optional(S.String),
+      databaseName: S.String,
+      containerName: S.String,
+      partitionKeyName: S.optional(S.String),
+      partitionKeyTemplate: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "RoutingCosmosDBSqlApiPropertiesInput",
+}) as any as S.Schema<RoutingCosmosDBSqlApiPropertiesInput>;
+
+/** The list of Cosmos DB container endpoints that IoT hub routes messages to, based on the routing rules. */
+export type RoutingEndpointsInputCosmosDBSqlContainersList =
+  Array<RoutingCosmosDBSqlApiPropertiesInput>;
+export const RoutingEndpointsInputCosmosDBSqlContainersList =
+  /*@__PURE__*/ S.Array(
+    RoutingCosmosDBSqlApiPropertiesInput,
+  ) as any as S.Schema<RoutingEndpointsInputCosmosDBSqlContainersList>;
+
+/** The properties related to the custom endpoints to which your IoT hub routes messages based on the routing rules. A maximum of 10 custom endpoints are allowed across all endpoint types for paid hubs and only 1 custom endpoint is allowed across all endpoint types for free hubs. */
+export interface RoutingEndpointsInput {
+  /** The list of Service Bus queue endpoints that IoT hub routes the messages to, based on the routing rules. */
+  serviceBusQueues?: RoutingEndpointsInputServiceBusQueuesList;
+  /** The list of Service Bus topic endpoints that the IoT hub routes the messages to, based on the routing rules. */
+  serviceBusTopics?: RoutingEndpointsInputServiceBusTopicsList;
+  /** The list of Event Hubs endpoints that IoT hub routes messages to, based on the routing rules. This list does not include the built-in Event Hubs endpoint. */
+  eventHubs?: RoutingEndpointsInputEventHubsList;
+  /** The list of storage container endpoints that IoT hub routes messages to, based on the routing rules. */
+  storageContainers?: RoutingEndpointsInputStorageContainersList;
+  /** The list of Cosmos DB container endpoints that IoT hub routes messages to, based on the routing rules. */
+  cosmosDBSqlContainers?: RoutingEndpointsInputCosmosDBSqlContainersList;
+}
+export const RoutingEndpointsInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    serviceBusQueues: S.optional(RoutingEndpointsInputServiceBusQueuesList),
+    serviceBusTopics: S.optional(RoutingEndpointsInputServiceBusTopicsList),
+    eventHubs: S.optional(RoutingEndpointsInputEventHubsList),
+    storageContainers: S.optional(RoutingEndpointsInputStorageContainersList),
+    cosmosDBSqlContainers: S.optional(
+      RoutingEndpointsInputCosmosDBSqlContainersList,
+    ),
+  }),
+).annotate({
+  identifier: "RoutingEndpointsInput",
+}) as any as S.Schema<RoutingEndpointsInput>;
+
+/** The list of user-provided routing rules that the IoT hub uses to route messages to built-in and custom endpoints. A maximum of 100 routing rules are allowed for paid hubs and a maximum of 5 routing rules are allowed for free hubs. */
+export type RoutingPropertiesInputRoutesList = Array<RouteProperties>;
+export const RoutingPropertiesInputRoutesList = /*@__PURE__*/ S.Array(
+  RouteProperties,
+) as any as S.Schema<RoutingPropertiesInputRoutesList>;
+
+/** The list of user-provided enrichments that the IoT hub applies to messages to be delivered to built-in and custom endpoints. See: https://aka.ms/telemetryoneventgrid */
+export type RoutingPropertiesInputEnrichmentsList = Array<EnrichmentProperties>;
+export const RoutingPropertiesInputEnrichmentsList = /*@__PURE__*/ S.Array(
+  EnrichmentProperties,
+) as any as S.Schema<RoutingPropertiesInputEnrichmentsList>;
+
+/** The routing related properties of the IoT hub. See: https://docs.microsoft.com/azure/iot-hub/iot-hub-devguide-messaging */
+export interface RoutingPropertiesInput {
+  endpoints?: RoutingEndpointsInput;
+  /** The list of user-provided routing rules that the IoT hub uses to route messages to built-in and custom endpoints. A maximum of 100 routing rules are allowed for paid hubs and a maximum of 5 routing rules are allowed for free hubs. */
+  routes?: RoutingPropertiesInputRoutesList;
+  /** The properties of the route that is used as a fall-back route when none of the conditions specified in the 'routes' section are met. This is an optional parameter. When this property is not present in the template, the fallback route is disabled by default. */
+  fallbackRoute?: FallbackRouteProperties;
+  /** The list of user-provided enrichments that the IoT hub applies to messages to be delivered to built-in and custom endpoints. See: https://aka.ms/telemetryoneventgrid */
+  enrichments?: RoutingPropertiesInputEnrichmentsList;
+}
+export const RoutingPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    endpoints: S.optional(RoutingEndpointsInput),
+    routes: S.optional(RoutingPropertiesInputRoutesList),
+    fallbackRoute: S.optional(FallbackRouteProperties),
+    enrichments: S.optional(RoutingPropertiesInputEnrichmentsList),
+  }),
+).annotate({
+  identifier: "RoutingPropertiesInput",
+}) as any as S.Schema<RoutingPropertiesInput>;
+
+/** The list of Azure Storage endpoints where you can upload files. Currently you can configure only one Azure Storage account and that MUST have its key as $default. Specifying more than one storage account causes an error to be thrown. Not specifying a value for this property when the enableFileUploadNotifications property is set to True, causes an error to be thrown. */
+export type IotHubPropertiesInputStorageEndpointsMap = {
+  [key: string]: StorageEndpointProperties | undefined;
+};
+export const IotHubPropertiesInputStorageEndpointsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  StorageEndpointProperties,
+) as any as S.Schema<IotHubPropertiesInputStorageEndpointsMap>;
+
+/** The messaging endpoint properties for the file upload notification queue. */
+export type IotHubPropertiesInputMessagingEndpointsMap = {
+  [key: string]: MessagingEndpointProperties | undefined;
+};
+export const IotHubPropertiesInputMessagingEndpointsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    MessagingEndpointProperties,
+  ) as any as S.Schema<IotHubPropertiesInputMessagingEndpointsMap>;
+
+/** The capabilities and features enabled for the IoT hub. */
+export type IotHubPropertiesInputFeatures = "None" | "DeviceManagement";
+export const IotHubPropertiesInputFeatures = /*@__PURE__*/ S.String;
+
+/** The properties of an IoT hub. */
+export interface IotHubPropertiesInput {
+  /** The shared access policies you can use to secure a connection to the IoT hub. */
+  authorizationPolicies?: IotHubPropertiesInputAuthorizationPoliciesList;
+  /** If true, SAS tokens with Iot hub scoped SAS keys cannot be used for authentication. */
+  disableLocalAuth?: boolean;
+  /** If true, all device(including Edge devices but excluding modules) scoped SAS keys cannot be used for authentication. */
+  disableDeviceSAS?: boolean;
+  /** If true, all module scoped SAS keys cannot be used for authentication. */
+  disableModuleSAS?: boolean;
+  /** If true, egress from IotHub will be restricted to only the allowed FQDNs that are configured via allowedFqdnList. */
+  restrictOutboundNetworkAccess?: boolean;
+  /** List of allowed FQDNs(Fully Qualified Domain Name) for egress from Iot Hub. */
+  allowedFqdnList?: IotHubPropertiesInputAllowedFqdnListList;
+  /** Whether requests from Public Network are allowed */
+  publicNetworkAccess?:
+    | IotHubPropertiesInputPublicNetworkAccess
+    | (string & {});
+  /** The IP filter rules. */
+  ipFilterRules?: IotHubPropertiesInputIpFilterRulesList;
+  networkRuleSets?: NetworkRuleSetProperties;
+  /** Specifies the minimum TLS version to support for this hub. Can be set to "1.2" to have clients that use a TLS version below 1.2 to be rejected. */
+  minTlsVersion?: string;
+  /** Private endpoint connections created on this IotHub */
+  privateEndpointConnections?: IotHubPropertiesInputPrivateEndpointConnectionsList;
+  /** The Event Hub-compatible endpoint properties. The only possible keys to this dictionary is events. This key has to be present in the dictionary while making create or update calls for the IoT hub. */
+  eventHubEndpoints?: IotHubPropertiesInputEventHubEndpointsMap;
+  routing?: RoutingPropertiesInput;
+  /** The list of Azure Storage endpoints where you can upload files. Currently you can configure only one Azure Storage account and that MUST have its key as $default. Specifying more than one storage account causes an error to be thrown. Not specifying a value for this property when the enableFileUploadNotifications property is set to True, causes an error to be thrown. */
+  storageEndpoints?: IotHubPropertiesInputStorageEndpointsMap;
+  /** The messaging endpoint properties for the file upload notification queue. */
+  messagingEndpoints?: IotHubPropertiesInputMessagingEndpointsMap;
+  /** If True, file upload notifications are enabled. */
+  enableFileUploadNotifications?: boolean;
+  cloudToDevice?: CloudToDeviceProperties;
+  /** IoT hub comments. */
+  comments?: string;
+  /** The capabilities and features enabled for the IoT hub. */
+  features?: IotHubPropertiesInputFeatures | (string & {});
+  /** This property when set to true, will enable data residency, thus, disabling disaster recovery. */
+  enableDataResidency?: boolean;
+}
+export const IotHubPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    authorizationPolicies: S.optional(
+      IotHubPropertiesInputAuthorizationPoliciesList,
+    ),
+    disableLocalAuth: S.optional(S.Boolean),
+    disableDeviceSAS: S.optional(S.Boolean),
+    disableModuleSAS: S.optional(S.Boolean),
+    restrictOutboundNetworkAccess: S.optional(S.Boolean),
+    allowedFqdnList: S.optional(IotHubPropertiesInputAllowedFqdnListList),
+    publicNetworkAccess: S.optional(IotHubPropertiesInputPublicNetworkAccess),
+    ipFilterRules: S.optional(IotHubPropertiesInputIpFilterRulesList),
+    networkRuleSets: S.optional(NetworkRuleSetProperties),
+    minTlsVersion: S.optional(S.String),
+    privateEndpointConnections: S.optional(
+      IotHubPropertiesInputPrivateEndpointConnectionsList,
+    ),
+    eventHubEndpoints: S.optional(IotHubPropertiesInputEventHubEndpointsMap),
+    routing: S.optional(RoutingPropertiesInput),
+    storageEndpoints: S.optional(IotHubPropertiesInputStorageEndpointsMap),
+    messagingEndpoints: S.optional(IotHubPropertiesInputMessagingEndpointsMap),
+    enableFileUploadNotifications: S.optional(S.Boolean),
+    cloudToDevice: S.optional(CloudToDeviceProperties),
+    comments: S.optional(S.String),
+    features: S.optional(IotHubPropertiesInputFeatures),
+    enableDataResidency: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "IotHubPropertiesInput",
+}) as any as S.Schema<IotHubPropertiesInput>;
+
+/** The name of the SKU. */
+export type IotHubSkuInfoInputName =
+  | "F1"
+  | "S1"
+  | "S2"
+  | "S3"
+  | "B1"
+  | "B2"
+  | "B3";
+export const IotHubSkuInfoInputName = /*@__PURE__*/ S.String;
+
+/** Information about the SKU of the IoT hub. */
+export interface IotHubSkuInfoInput {
+  /** The name of the SKU. */
+  name: IotHubSkuInfoInputName | (string & {});
+  /** The number of provisioned IoT Hub units. See: https://docs.microsoft.com/azure/azure-subscription-service-limits#iot-hub-limits. */
+  capacity?: number;
+}
+export const IotHubSkuInfoInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: IotHubSkuInfoInputName,
+    capacity: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "IotHubSkuInfoInput",
+}) as any as S.Schema<IotHubSkuInfoInput>;
+
+/** The type of identity used for the resource. The type 'SystemAssigned, UserAssigned' includes both an implicitly created identity and a set of user assigned identities. The type 'None' will remove any identities from the service. */
+export type ArmIdentityInputType =
+  | "SystemAssigned"
+  | "UserAssigned"
+  | "SystemAssigned, UserAssigned"
+  | "None";
+export const ArmIdentityInputType = /*@__PURE__*/ S.String;
+
+export type ArmUserIdentityInput = PrivateEndpointInput;
+export const ArmUserIdentityInput = PrivateEndpointInput;
+
+export type ArmIdentityInputUserAssignedIdentitiesMap = {
+  [key: string]: PrivateEndpointInput | undefined;
+};
+export const ArmIdentityInputUserAssignedIdentitiesMap = /*@__PURE__*/ S.Record(
+  S.String,
+  PrivateEndpointInput,
+) as any as S.Schema<ArmIdentityInputUserAssignedIdentitiesMap>;
+
+export interface ArmIdentityInput {
+  /** The type of identity used for the resource. The type 'SystemAssigned, UserAssigned' includes both an implicitly created identity and a set of user assigned identities. The type 'None' will remove any identities from the service. */
+  type?: ArmIdentityInputType | (string & {});
+  userAssignedIdentities?: ArmIdentityInputUserAssignedIdentitiesMap;
+}
+export const ArmIdentityInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: S.optional(ArmIdentityInputType),
+    userAssignedIdentities: S.optional(
+      ArmIdentityInputUserAssignedIdentitiesMap,
+    ),
+  }),
+).annotate({
+  identifier: "ArmIdentityInput",
+}) as any as S.Schema<ArmIdentityInput>;
+
+export interface IotHubResourceCreateOrUpdateRequest {
+  /** The subscription identifier. */
+  subscriptionId: string;
+  /** The name of the resource group that contains the IoT hub. */
+  resourceGroupName: string;
+  /** The name of the IoT hub. */
+  resourceName: string;
+  /** The resource location. */
+  location: string;
+  /** The resource tags. */
+  tags?: IotHubResourceCreateOrUpdateRequestTagsMap;
+  /** The Etag field is *not* required. If it is provided in the response body, it must also be provided as a header per the normal ETag convention. */
+  etag?: string;
+  /** IotHub properties */
+  properties?: IotHubPropertiesInput;
+  /** IotHub SKU info */
+  sku: IotHubSkuInfoInput;
+  /** The managed identities for the IotHub. */
+  identity?: ArmIdentityInput;
+}
+export const IotHubResourceCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    resourceName: S.String.pipe(T.Label()),
+    location: S.String,
+    tags: S.optional(IotHubResourceCreateOrUpdateRequestTagsMap),
+    etag: S.optional(S.String),
+    properties: S.optional(IotHubPropertiesInput),
+    sku: IotHubSkuInfoInput,
+    identity: S.optional(ArmIdentityInput),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/IotHubs/{resourceName}",
+      code: 200,
+      apiVersion: "2023-06-30",
+    }),
+  ),
+).annotate({
+  identifier: "IotHubResourceCreateOrUpdateRequest",
+}) as any as S.Schema<IotHubResourceCreateOrUpdateRequest>;
+
+/** The resource tags. */
+export type IotHubResourceCreateOrUpdateResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const IotHubResourceCreateOrUpdateResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<IotHubResourceCreateOrUpdateResponseTagsMap>;
+
+export interface IotHubResourceCreateOrUpdateResponse {
+  /** The resource identifier. */
+  id?: string;
+  /** The resource name. */
+  name?: string;
+  /** The resource type. */
+  type?: string;
+  /** The resource location. */
+  location: string;
+  /** The resource tags. */
+  tags?: IotHubResourceCreateOrUpdateResponseTagsMap;
+  /** The Etag field is *not* required. If it is provided in the response body, it must also be provided as a header per the normal ETag convention. */
+  etag?: string;
+  /** IotHub properties */
+  properties?: IotHubProperties;
+  /** IotHub SKU info */
+  sku: IotHubSkuInfo;
+  /** The managed identities for the IotHub. */
+  identity?: ArmIdentity;
+  /** The system meta data relating to this resource. */
+  systemData?: SystemData;
+}
+export const IotHubResourceCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      location: S.String,
+      tags: S.optional(IotHubResourceCreateOrUpdateResponseTagsMap),
+      etag: S.optional(S.String),
+      properties: S.optional(IotHubProperties),
+      sku: IotHubSkuInfo,
+      identity: S.optional(ArmIdentity),
+      systemData: S.optional(SystemData),
+    }),
+).annotate({
+  identifier: "IotHubResourceCreateOrUpdateResponse",
+}) as any as S.Schema<IotHubResourceCreateOrUpdateResponse>;
+
+export interface ListCertificateByIotHubRequest {
+  /** The subscription identifier. */
+  subscriptionId: string;
+  /** The name of the resource group that contains the IoT hub. */
+  resourceGroupName: string;
+  /** The name of the IoT hub. */
+  resourceName: string;
+}
+export const ListCertificateByIotHubRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    resourceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/IotHubs/{resourceName}/certificates",
+      code: 200,
+      apiVersion: "2023-06-30",
+    }),
+  ),
+).annotate({
+  identifier: "ListCertificateByIotHubRequest",
+}) as any as S.Schema<ListCertificateByIotHubRequest>;
+
+/** The array of Certificate objects. */
+export type CertificateListDescriptionValueList = Array<CertificateDescription>;
+export const CertificateListDescriptionValueList = /*@__PURE__*/ S.Array(
+  CertificateDescription,
+) as any as S.Schema<CertificateListDescriptionValueList>;
+
+/** The JSON-serialized array of Certificate objects. */
+export interface CertificateListDescription {
+  /** The array of Certificate objects. */
+  value?: CertificateListDescriptionValueList;
+}
+export const CertificateListDescription = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(CertificateListDescriptionValueList),
+  }),
+).annotate({
+  identifier: "CertificateListDescription",
+}) as any as S.Schema<CertificateListDescription>;
+
+export interface ListIotHubResourceByResourceGroupRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the IoT hub. */
   resourceGroupName: string;
 }
-export const IotHubResourceListByResourceGroupRequest = /*@__PURE__*/ S.suspend(
+export const ListIotHubResourceByResourceGroupRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -2834,8 +3028,8 @@ export const IotHubResourceListByResourceGroupRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "IotHubResourceListByResourceGroupRequest",
-}) as any as S.Schema<IotHubResourceListByResourceGroupRequest>;
+  identifier: "ListIotHubResourceByResourceGroupRequest",
+}) as any as S.Schema<ListIotHubResourceByResourceGroupRequest>;
 
 /** The resource tags. */
 export type IotHubDescriptionTagsMap = { [key: string]: string | undefined };
@@ -2906,11 +3100,11 @@ export const IotHubDescriptionListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "IotHubDescriptionListResult",
 }) as any as S.Schema<IotHubDescriptionListResult>;
 
-export interface IotHubResourceListBySubscriptionRequest {
+export interface ListIotHubResourceBySubscriptionRequest {
   /** The subscription identifier. */
   subscriptionId: string;
 }
-export const IotHubResourceListBySubscriptionRequest = /*@__PURE__*/ S.suspend(
+export const ListIotHubResourceBySubscriptionRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -2923,10 +3117,10 @@ export const IotHubResourceListBySubscriptionRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "IotHubResourceListBySubscriptionRequest",
-}) as any as S.Schema<IotHubResourceListBySubscriptionRequest>;
+  identifier: "ListIotHubResourceBySubscriptionRequest",
+}) as any as S.Schema<ListIotHubResourceBySubscriptionRequest>;
 
-export interface IotHubResourceListEventHubConsumerGroupsRequest {
+export interface ListIotHubResourceEventHubConsumerGroupsRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the IoT hub. */
@@ -2936,7 +3130,7 @@ export interface IotHubResourceListEventHubConsumerGroupsRequest {
   /** The name of the Event Hub-compatible endpoint. */
   eventHubEndpointName: string;
 }
-export const IotHubResourceListEventHubConsumerGroupsRequest =
+export const ListIotHubResourceEventHubConsumerGroupsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -2952,8 +3146,8 @@ export const IotHubResourceListEventHubConsumerGroupsRequest =
       }),
     ),
   ).annotate({
-    identifier: "IotHubResourceListEventHubConsumerGroupsRequest",
-  }) as any as S.Schema<IotHubResourceListEventHubConsumerGroupsRequest>;
+    identifier: "ListIotHubResourceEventHubConsumerGroupsRequest",
+  }) as any as S.Schema<ListIotHubResourceEventHubConsumerGroupsRequest>;
 
 /** List of consumer groups objects */
 export type EventHubConsumerGroupsListResultValueList =
@@ -2978,7 +3172,7 @@ export const EventHubConsumerGroupsListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "EventHubConsumerGroupsListResult",
 }) as any as S.Schema<EventHubConsumerGroupsListResult>;
 
-export interface IotHubResourceListJobsRequest {
+export interface ListIotHubResourceJobsRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the IoT hub. */
@@ -2986,7 +3180,7 @@ export interface IotHubResourceListJobsRequest {
   /** The name of the IoT hub. */
   resourceName: string;
 }
-export const IotHubResourceListJobsRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListIotHubResourceJobsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -3000,8 +3194,8 @@ export const IotHubResourceListJobsRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "IotHubResourceListJobsRequest",
-}) as any as S.Schema<IotHubResourceListJobsRequest>;
+  identifier: "ListIotHubResourceJobsRequest",
+}) as any as S.Schema<ListIotHubResourceJobsRequest>;
 
 /** The array of JobResponse objects. */
 export type JobResponseListResultValueList = Array<JobResponse>;
@@ -3025,7 +3219,7 @@ export const JobResponseListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "JobResponseListResult",
 }) as any as S.Schema<JobResponseListResult>;
 
-export interface IotHubResourceListKeysRequest {
+export interface ListIotHubResourceKeysRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the IoT hub. */
@@ -3033,7 +3227,7 @@ export interface IotHubResourceListKeysRequest {
   /** The name of the IoT hub. */
   resourceName: string;
 }
-export const IotHubResourceListKeysRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListIotHubResourceKeysRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -3047,8 +3241,8 @@ export const IotHubResourceListKeysRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "IotHubResourceListKeysRequest",
-}) as any as S.Schema<IotHubResourceListKeysRequest>;
+  identifier: "ListIotHubResourceKeysRequest",
+}) as any as S.Schema<ListIotHubResourceKeysRequest>;
 
 /** The list of shared access policies. */
 export type SharedAccessSignatureAuthorizationRuleListResultValueList =
@@ -3077,15 +3271,171 @@ export const SharedAccessSignatureAuthorizationRuleListResult =
     identifier: "SharedAccessSignatureAuthorizationRuleListResult",
   }) as any as S.Schema<SharedAccessSignatureAuthorizationRuleListResult>;
 
+export interface ListOperationsRequest {}
+export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/providers/Microsoft.Devices/operations",
+      code: 200,
+      apiVersion: "2023-06-30",
+    }),
+  ),
+).annotate({
+  identifier: "ListOperationsRequest",
+}) as any as S.Schema<ListOperationsRequest>;
+
+/** The object that represents the operation. */
+export interface OperationDisplay {
+  /** Service provider: Microsoft Devices */
+  provider?: string;
+  /** Resource Type: IotHubs */
+  resource?: string;
+  /** Name of the operation */
+  operation?: string;
+  /** Description of the operation */
+  description?: string;
+}
+export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provider: S.optional(S.String),
+    resource: S.optional(S.String),
+    operation: S.optional(S.String),
+    description: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "OperationDisplay",
+}) as any as S.Schema<OperationDisplay>;
+
+/** IoT Hub REST API operation */
+export interface Operation {
+  /** Operation name: {provider}/{resource}/{read | write | action | delete} */
+  name?: string;
+  /** The object that represents the operation. */
+  display?: OperationDisplay;
+}
+export const Operation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    display: S.optional(OperationDisplay),
+  }),
+).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
+
+/** List of IoT Hub operations supported by the Microsoft.Devices resource provider. */
+export type OperationListResultValueList = Array<Operation>;
+export const OperationListResultValueList = /*@__PURE__*/ S.Array(
+  Operation,
+) as any as S.Schema<OperationListResultValueList>;
+
+/** Result of the request to list IoT Hub operations. It contains a list of operations and a URL link to get the next set of results. */
+export interface OperationListResult {
+  /** List of IoT Hub operations supported by the Microsoft.Devices resource provider. */
+  value?: OperationListResultValueList;
+  /** URL to get the next set of operation list results if there are any. */
+  nextLink?: string;
+}
+export const OperationListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(OperationListResultValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "OperationListResult",
+}) as any as S.Schema<OperationListResult>;
+
+export interface ListPrivateEndpointConnectionsRequest {
+  /** The subscription identifier. */
+  subscriptionId: string;
+  /** The name of the resource group that contains the IoT hub. */
+  resourceGroupName: string;
+  /** The name of the IoT hub. */
+  resourceName: string;
+}
+export const ListPrivateEndpointConnectionsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      resourceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/iotHubs/{resourceName}/privateEndpointConnections",
+        code: 200,
+        apiVersion: "2023-06-30",
+      }),
+    ),
+).annotate({
+  identifier: "ListPrivateEndpointConnectionsRequest",
+}) as any as S.Schema<ListPrivateEndpointConnectionsRequest>;
+
+/** The list of private endpoint connections for an IotHub */
+export type PrivateEndpointConnectionsList = Array<PrivateEndpointConnection>;
+export const PrivateEndpointConnectionsList = /*@__PURE__*/ S.Array(
+  PrivateEndpointConnection,
+) as any as S.Schema<PrivateEndpointConnectionsList>;
+
+export type ListPrivateEndpointConnectionsResponse =
+  PrivateEndpointConnectionsList;
+export const ListPrivateEndpointConnectionsResponse = /*@__PURE__*/ S.suspend(
+  () => PrivateEndpointConnectionsList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "ListPrivateEndpointConnectionsResponse",
+}) as any as S.Schema<ListPrivateEndpointConnectionsResponse>;
+
+export interface ListPrivateLinkResourcesRequest {
+  /** The subscription identifier. */
+  subscriptionId: string;
+  /** The name of the resource group that contains the IoT hub. */
+  resourceGroupName: string;
+  /** The name of the IoT hub. */
+  resourceName: string;
+}
+export const ListPrivateLinkResourcesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    resourceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/iotHubs/{resourceName}/privateLinkResources",
+      code: 200,
+      apiVersion: "2023-06-30",
+    }),
+  ),
+).annotate({
+  identifier: "ListPrivateLinkResourcesRequest",
+}) as any as S.Schema<ListPrivateLinkResourcesRequest>;
+
+/** The list of available private link resources for an IotHub */
+export type PrivateLinkResourcesValueList = Array<GroupIdInformation>;
+export const PrivateLinkResourcesValueList = /*@__PURE__*/ S.Array(
+  GroupIdInformation,
+) as any as S.Schema<PrivateLinkResourcesValueList>;
+
+/** The available private link resources for an IotHub */
+export interface PrivateLinkResources {
+  /** The list of available private link resources for an IotHub */
+  value?: PrivateLinkResourcesValueList;
+}
+export const PrivateLinkResources = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(PrivateLinkResourcesValueList),
+  }),
+).annotate({
+  identifier: "PrivateLinkResources",
+}) as any as S.Schema<PrivateLinkResources>;
+
 /** Routing source */
-export type IotHubResourceTestAllRoutesRequestRoutingSource =
+export type TestIotHubResourceAllRoutesRequestRoutingSource =
   | "Invalid"
   | "DeviceMessages"
   | "TwinChangeEvents"
   | "DeviceLifecycleEvents"
   | "DeviceJobLifecycleEvents"
   | "DeviceConnectionStateEvents";
-export const IotHubResourceTestAllRoutesRequestRoutingSource =
+export const TestIotHubResourceAllRoutesRequestRoutingSource =
   /*@__PURE__*/ S.String;
 
 /** App properties */
@@ -3151,7 +3501,7 @@ export const RoutingTwin = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "RoutingTwin" }) as any as S.Schema<RoutingTwin>;
 
-export interface IotHubResourceTestAllRoutesRequest {
+export interface TestIotHubResourceAllRoutesRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** resource group which Iot Hub belongs to */
@@ -3160,19 +3510,19 @@ export interface IotHubResourceTestAllRoutesRequest {
   iotHubName: string;
   /** Routing source */
   routingSource?:
-    | IotHubResourceTestAllRoutesRequestRoutingSource
+    | TestIotHubResourceAllRoutesRequestRoutingSource
     | (string & {});
   /** Routing message */
   message?: RoutingMessage;
   /** Routing Twin Reference */
   twin?: RoutingTwin;
 }
-export const IotHubResourceTestAllRoutesRequest = /*@__PURE__*/ S.suspend(() =>
+export const TestIotHubResourceAllRoutesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     iotHubName: S.String.pipe(T.Label()),
-    routingSource: S.optional(IotHubResourceTestAllRoutesRequestRoutingSource),
+    routingSource: S.optional(TestIotHubResourceAllRoutesRequestRoutingSource),
     message: S.optional(RoutingMessage),
     twin: S.optional(RoutingTwin),
   }).pipe(
@@ -3184,8 +3534,8 @@ export const IotHubResourceTestAllRoutesRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "IotHubResourceTestAllRoutesRequest",
-}) as any as S.Schema<IotHubResourceTestAllRoutesRequest>;
+  identifier: "TestIotHubResourceAllRoutesRequest",
+}) as any as S.Schema<TestIotHubResourceAllRoutesRequest>;
 
 /** Routes that matched */
 export interface MatchedRoute {
@@ -3217,7 +3567,7 @@ export const TestAllRoutesResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "TestAllRoutesResult",
 }) as any as S.Schema<TestAllRoutesResult>;
 
-export interface IotHubResourceTestRouteRequest {
+export interface TestIotHubResourceRouteRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** resource group which Iot Hub belongs to */
@@ -3231,7 +3581,7 @@ export interface IotHubResourceTestRouteRequest {
   /** Routing Twin Reference */
   twin?: RoutingTwin;
 }
-export const IotHubResourceTestRouteRequest = /*@__PURE__*/ S.suspend(() =>
+export const TestIotHubResourceRouteRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -3248,8 +3598,8 @@ export const IotHubResourceTestRouteRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "IotHubResourceTestRouteRequest",
-}) as any as S.Schema<IotHubResourceTestRouteRequest>;
+  identifier: "TestIotHubResourceRouteRequest",
+}) as any as S.Schema<TestIotHubResourceRouteRequest>;
 
 /** Result of testing route */
 export type TestRouteResultResult = "undefined" | "false" | "true";
@@ -3348,15 +3698,15 @@ export const TestRouteResult = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<TestRouteResult>;
 
 /** Resource tags */
-export type IotHubResourceUpdateRequestTagsMap = {
+export type UpdateIotHubResourceRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const IotHubResourceUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateIotHubResourceRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<IotHubResourceUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateIotHubResourceRequestTagsMap>;
 
-export interface IotHubResourceUpdateRequest {
+export interface UpdateIotHubResourceRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** Resource group identifier. */
@@ -3364,14 +3714,14 @@ export interface IotHubResourceUpdateRequest {
   /** Name of iot hub to update. */
   resourceName: string;
   /** Resource tags */
-  tags?: IotHubResourceUpdateRequestTagsMap;
+  tags?: UpdateIotHubResourceRequestTagsMap;
 }
-export const IotHubResourceUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateIotHubResourceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     resourceName: S.String.pipe(T.Label()),
-    tags: S.optional(IotHubResourceUpdateRequestTagsMap),
+    tags: S.optional(UpdateIotHubResourceRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -3381,19 +3731,19 @@ export const IotHubResourceUpdateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "IotHubResourceUpdateRequest",
-}) as any as S.Schema<IotHubResourceUpdateRequest>;
+  identifier: "UpdateIotHubResourceRequest",
+}) as any as S.Schema<UpdateIotHubResourceRequest>;
 
 /** The resource tags. */
-export type IotHubResourceUpdateResponseTagsMap = {
+export type UpdateIotHubResourceResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const IotHubResourceUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateIotHubResourceResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<IotHubResourceUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateIotHubResourceResponseTagsMap>;
 
-export interface IotHubResourceUpdateResponse {
+export interface UpdateIotHubResourceResponse {
   /** The resource identifier. */
   id?: string;
   /** The resource name. */
@@ -3403,7 +3753,7 @@ export interface IotHubResourceUpdateResponse {
   /** The resource location. */
   location: string;
   /** The resource tags. */
-  tags?: IotHubResourceUpdateResponseTagsMap;
+  tags?: UpdateIotHubResourceResponseTagsMap;
   /** The Etag field is *not* required. If it is provided in the response body, it must also be provided as a header per the normal ETag convention. */
   etag?: string;
   /** IotHub properties */
@@ -3415,13 +3765,13 @@ export interface IotHubResourceUpdateResponse {
   /** The system meta data relating to this resource. */
   systemData?: SystemData;
 }
-export const IotHubResourceUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateIotHubResourceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.String,
-    tags: S.optional(IotHubResourceUpdateResponseTagsMap),
+    tags: S.optional(UpdateIotHubResourceResponseTagsMap),
     etag: S.optional(S.String),
     properties: S.optional(IotHubProperties),
     sku: IotHubSkuInfo,
@@ -3429,180 +3779,10 @@ export const IotHubResourceUpdateResponse = /*@__PURE__*/ S.suspend(() =>
     systemData: S.optional(SystemData),
   }),
 ).annotate({
-  identifier: "IotHubResourceUpdateResponse",
-}) as any as S.Schema<IotHubResourceUpdateResponse>;
+  identifier: "UpdateIotHubResourceResponse",
+}) as any as S.Schema<UpdateIotHubResourceResponse>;
 
-export interface OperationsListRequest {}
-export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/providers/Microsoft.Devices/operations",
-      code: 200,
-      apiVersion: "2023-06-30",
-    }),
-  ),
-).annotate({
-  identifier: "OperationsListRequest",
-}) as any as S.Schema<OperationsListRequest>;
-
-/** The object that represents the operation. */
-export interface OperationDisplay {
-  /** Service provider: Microsoft Devices */
-  provider?: string;
-  /** Resource Type: IotHubs */
-  resource?: string;
-  /** Name of the operation */
-  operation?: string;
-  /** Description of the operation */
-  description?: string;
-}
-export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provider: S.optional(S.String),
-    resource: S.optional(S.String),
-    operation: S.optional(S.String),
-    description: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OperationDisplay",
-}) as any as S.Schema<OperationDisplay>;
-
-/** IoT Hub REST API operation */
-export interface Operation {
-  /** Operation name: {provider}/{resource}/{read | write | action | delete} */
-  name?: string;
-  /** The object that represents the operation. */
-  display?: OperationDisplay;
-}
-export const Operation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    display: S.optional(OperationDisplay),
-  }),
-).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
-
-/** List of IoT Hub operations supported by the Microsoft.Devices resource provider. */
-export type OperationListResultValueList = Array<Operation>;
-export const OperationListResultValueList = /*@__PURE__*/ S.Array(
-  Operation,
-) as any as S.Schema<OperationListResultValueList>;
-
-/** Result of the request to list IoT Hub operations. It contains a list of operations and a URL link to get the next set of results. */
-export interface OperationListResult {
-  /** List of IoT Hub operations supported by the Microsoft.Devices resource provider. */
-  value?: OperationListResultValueList;
-  /** URL to get the next set of operation list results if there are any. */
-  nextLink?: string;
-}
-export const OperationListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(OperationListResultValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OperationListResult",
-}) as any as S.Schema<OperationListResult>;
-
-export interface PrivateEndpointConnectionsDeleteRequest {
-  /** The subscription identifier. */
-  subscriptionId: string;
-  /** The name of the resource group that contains the IoT hub. */
-  resourceGroupName: string;
-  /** The name of the IoT hub. */
-  resourceName: string;
-  /** The name of the private endpoint connection */
-  privateEndpointConnectionName: string;
-}
-export const PrivateEndpointConnectionsDeleteRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-      privateEndpointConnectionName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/iotHubs/{resourceName}/privateEndpointConnections/{privateEndpointConnectionName}",
-        code: 200,
-        apiVersion: "2023-06-30",
-      }),
-    ),
-).annotate({
-  identifier: "PrivateEndpointConnectionsDeleteRequest",
-}) as any as S.Schema<PrivateEndpointConnectionsDeleteRequest>;
-
-export interface PrivateEndpointConnectionsGetRequest {
-  /** The subscription identifier. */
-  subscriptionId: string;
-  /** The name of the resource group that contains the IoT hub. */
-  resourceGroupName: string;
-  /** The name of the IoT hub. */
-  resourceName: string;
-  /** The name of the private endpoint connection */
-  privateEndpointConnectionName: string;
-}
-export const PrivateEndpointConnectionsGetRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-      privateEndpointConnectionName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/iotHubs/{resourceName}/privateEndpointConnections/{privateEndpointConnectionName}",
-        code: 200,
-        apiVersion: "2023-06-30",
-      }),
-    ),
-).annotate({
-  identifier: "PrivateEndpointConnectionsGetRequest",
-}) as any as S.Schema<PrivateEndpointConnectionsGetRequest>;
-
-export interface PrivateEndpointConnectionsListRequest {
-  /** The subscription identifier. */
-  subscriptionId: string;
-  /** The name of the resource group that contains the IoT hub. */
-  resourceGroupName: string;
-  /** The name of the IoT hub. */
-  resourceName: string;
-}
-export const PrivateEndpointConnectionsListRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      resourceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/iotHubs/{resourceName}/privateEndpointConnections",
-        code: 200,
-        apiVersion: "2023-06-30",
-      }),
-    ),
-).annotate({
-  identifier: "PrivateEndpointConnectionsListRequest",
-}) as any as S.Schema<PrivateEndpointConnectionsListRequest>;
-
-/** The list of private endpoint connections for an IotHub */
-export type PrivateEndpointConnectionsList = Array<PrivateEndpointConnection>;
-export const PrivateEndpointConnectionsList = /*@__PURE__*/ S.Array(
-  PrivateEndpointConnection,
-) as any as S.Schema<PrivateEndpointConnectionsList>;
-
-export type PrivateEndpointConnectionsListResponse =
-  PrivateEndpointConnectionsList;
-export const PrivateEndpointConnectionsListResponse = /*@__PURE__*/ S.suspend(
-  () => PrivateEndpointConnectionsList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "PrivateEndpointConnectionsListResponse",
-}) as any as S.Schema<PrivateEndpointConnectionsListResponse>;
-
-export interface PrivateEndpointConnectionsUpdateRequest {
+export interface UpdatePrivateEndpointConnectionRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the IoT hub. */
@@ -3613,7 +3793,7 @@ export interface PrivateEndpointConnectionsUpdateRequest {
   privateEndpointConnectionName: string;
   properties: PrivateEndpointConnectionPropertiesInput;
 }
-export const PrivateEndpointConnectionsUpdateRequest = /*@__PURE__*/ S.suspend(
+export const UpdatePrivateEndpointConnectionRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -3630,220 +3810,39 @@ export const PrivateEndpointConnectionsUpdateRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "PrivateEndpointConnectionsUpdateRequest",
-}) as any as S.Schema<PrivateEndpointConnectionsUpdateRequest>;
+  identifier: "UpdatePrivateEndpointConnectionRequest",
+}) as any as S.Schema<UpdatePrivateEndpointConnectionRequest>;
 
-export interface PrivateLinkResourcesGetRequest {
+export interface VerifyCertificateRequest {
   /** The subscription identifier. */
   subscriptionId: string;
   /** The name of the resource group that contains the IoT hub. */
   resourceGroupName: string;
   /** The name of the IoT hub. */
   resourceName: string;
-  /** The name of the private link resource */
-  groupId: string;
+  /** The name of the certificate */
+  certificateName: string;
+  /** base-64 representation of X509 certificate .cer file or just .pem file content. */
+  certificate?: string;
 }
-export const PrivateLinkResourcesGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const VerifyCertificateRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     resourceName: S.String.pipe(T.Label()),
-    groupId: S.String.pipe(T.Label()),
+    certificateName: S.String.pipe(T.Label()),
+    certificate: S.optional(S.String),
   }).pipe(
     T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/iotHubs/{resourceName}/privateLinkResources/{groupId}",
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/IotHubs/{resourceName}/certificates/{certificateName}/verify",
       code: 200,
       apiVersion: "2023-06-30",
     }),
   ),
 ).annotate({
-  identifier: "PrivateLinkResourcesGetRequest",
-}) as any as S.Schema<PrivateLinkResourcesGetRequest>;
-
-/** The required members for a specific group id */
-export type GroupIdInformationPropertiesRequiredMembersList = Array<string>;
-export const GroupIdInformationPropertiesRequiredMembersList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<GroupIdInformationPropertiesRequiredMembersList>;
-
-/** The required DNS zones for a specific group id */
-export type GroupIdInformationPropertiesRequiredZoneNamesList = Array<string>;
-export const GroupIdInformationPropertiesRequiredZoneNamesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<GroupIdInformationPropertiesRequiredZoneNamesList>;
-
-/** The properties for a group information object */
-export interface GroupIdInformationProperties {
-  /** The group id */
-  groupId?: string;
-  /** The required members for a specific group id */
-  requiredMembers?: GroupIdInformationPropertiesRequiredMembersList;
-  /** The required DNS zones for a specific group id */
-  requiredZoneNames?: GroupIdInformationPropertiesRequiredZoneNamesList;
-}
-export const GroupIdInformationProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    groupId: S.optional(S.String),
-    requiredMembers: S.optional(
-      GroupIdInformationPropertiesRequiredMembersList,
-    ),
-    requiredZoneNames: S.optional(
-      GroupIdInformationPropertiesRequiredZoneNamesList,
-    ),
-  }),
-).annotate({
-  identifier: "GroupIdInformationProperties",
-}) as any as S.Schema<GroupIdInformationProperties>;
-
-/** The group information for creating a private endpoint on an IotHub */
-export interface GroupIdInformation {
-  /** The resource identifier. */
-  id?: string;
-  /** The resource name. */
-  name?: string;
-  /** The resource type. */
-  type?: string;
-  properties: GroupIdInformationProperties;
-}
-export const GroupIdInformation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    properties: GroupIdInformationProperties,
-  }),
-).annotate({
-  identifier: "GroupIdInformation",
-}) as any as S.Schema<GroupIdInformation>;
-
-export interface PrivateLinkResourcesListRequest {
-  /** The subscription identifier. */
-  subscriptionId: string;
-  /** The name of the resource group that contains the IoT hub. */
-  resourceGroupName: string;
-  /** The name of the IoT hub. */
-  resourceName: string;
-}
-export const PrivateLinkResourcesListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    resourceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Devices/iotHubs/{resourceName}/privateLinkResources",
-      code: 200,
-      apiVersion: "2023-06-30",
-    }),
-  ),
-).annotate({
-  identifier: "PrivateLinkResourcesListRequest",
-}) as any as S.Schema<PrivateLinkResourcesListRequest>;
-
-/** The list of available private link resources for an IotHub */
-export type PrivateLinkResourcesValueList = Array<GroupIdInformation>;
-export const PrivateLinkResourcesValueList = /*@__PURE__*/ S.Array(
-  GroupIdInformation,
-) as any as S.Schema<PrivateLinkResourcesValueList>;
-
-/** The available private link resources for an IotHub */
-export interface PrivateLinkResources {
-  /** The list of available private link resources for an IotHub */
-  value?: PrivateLinkResourcesValueList;
-}
-export const PrivateLinkResources = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(PrivateLinkResourcesValueList),
-  }),
-).annotate({
-  identifier: "PrivateLinkResources",
-}) as any as S.Schema<PrivateLinkResources>;
-
-export interface ResourceProviderCommonGetSubscriptionQuotaRequest {
-  /** The subscription identifier. */
-  subscriptionId: string;
-}
-export const ResourceProviderCommonGetSubscriptionQuotaRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Devices/usages",
-        code: 200,
-        apiVersion: "2023-06-30",
-      }),
-    ),
-  ).annotate({
-    identifier: "ResourceProviderCommonGetSubscriptionQuotaRequest",
-  }) as any as S.Schema<ResourceProviderCommonGetSubscriptionQuotaRequest>;
-
-/** Name of Iot Hub type */
-export interface Name {
-  /** IotHub type */
-  value?: string;
-  /** Localized value of name */
-  localizedValue?: string;
-}
-export const Name = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(S.String),
-    localizedValue: S.optional(S.String),
-  }),
-).annotate({ identifier: "Name" }) as any as S.Schema<Name>;
-
-/** User subscription quota response */
-export interface UserSubscriptionQuota {
-  /** IotHub type id */
-  id?: string;
-  /** Response type */
-  type?: string;
-  /** Unit of IotHub type */
-  unit?: string;
-  /** Current number of IotHub type */
-  currentValue?: number;
-  /** Numerical limit on IotHub type */
-  limit?: number;
-  /** IotHub type */
-  name?: Name;
-}
-export const UserSubscriptionQuota = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    type: S.optional(S.String),
-    unit: S.optional(S.String),
-    currentValue: S.optional(S.Number),
-    limit: S.optional(S.Number),
-    name: S.optional(Name),
-  }),
-).annotate({
-  identifier: "UserSubscriptionQuota",
-}) as any as S.Schema<UserSubscriptionQuota>;
-
-export type UserSubscriptionQuotaListResultValueList =
-  Array<UserSubscriptionQuota>;
-export const UserSubscriptionQuotaListResultValueList = /*@__PURE__*/ S.Array(
-  UserSubscriptionQuota,
-) as any as S.Schema<UserSubscriptionQuotaListResultValueList>;
-
-/** Json-serialized array of User subscription quota response */
-export interface UserSubscriptionQuotaListResult {
-  value?: UserSubscriptionQuotaListResultValueList;
-  nextLink?: string;
-}
-export const UserSubscriptionQuotaListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(UserSubscriptionQuotaListResultValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "UserSubscriptionQuotaListResult",
-}) as any as S.Schema<UserSubscriptionQuotaListResult>;
+  identifier: "VerifyCertificateRequest",
+}) as any as S.Schema<VerifyCertificateRequest>;
 
 export type CertificatesCreateOrUpdateError = AzureOpError;
 /** Upload the certificate to the IoT hub. Adds new or replaces existing certificate. */
@@ -3860,76 +3859,316 @@ export const CertificatesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CertificatesDeleteError = AzureOpError;
-/** Delete an X509 certificate. Deletes an existing X509 certificate or does nothing if it does not exist. */
-export const CertificatesDelete: API.OperationMethod<
-  CertificatesDeleteRequest,
-  CertificatesDeleteResponse,
-  CertificatesDeleteError,
+export type CheckIotHubResourceNameAvailabilityError = AzureOpError;
+/** Check if an IoT hub name is available Check if an IoT hub name is available. */
+export const CheckIotHubResourceNameAvailability: API.OperationMethod<
+  CheckIotHubResourceNameAvailabilityRequest,
+  IotHubNameAvailabilityInfo,
+  CheckIotHubResourceNameAvailabilityError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CertificatesDeleteRequest,
-  output: CertificatesDeleteResponse,
+  input: CheckIotHubResourceNameAvailabilityRequest,
+  output: IotHubNameAvailabilityInfo,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type CertificatesGenerateVerificationCodeError = AzureOpError;
-/** Generate verification code for proof of possession flow. Generates verification code for proof of possession flow. The verification code will be used to generate a leaf certificate. */
-export const CertificatesGenerateVerificationCode: API.OperationMethod<
-  CertificatesGenerateVerificationCodeRequest,
-  CertificateWithNonceDescription,
-  CertificatesGenerateVerificationCodeError,
+export type CreateIotHubResourceEventHubConsumerGroupError = AzureOpError;
+/** Add a consumer group to an Event Hub-compatible endpoint in an IoT hub Add a consumer group to an Event Hub-compatible endpoint in an IoT hub. */
+export const CreateIotHubResourceEventHubConsumerGroup: API.OperationMethod<
+  CreateIotHubResourceEventHubConsumerGroupRequest,
+  EventHubConsumerGroupInfo,
+  CreateIotHubResourceEventHubConsumerGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CertificatesGenerateVerificationCodeRequest,
+  input: CreateIotHubResourceEventHubConsumerGroupRequest,
+  output: EventHubConsumerGroupInfo,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteCertificateError = AzureOpError;
+/** Delete an X509 certificate. Deletes an existing X509 certificate or does nothing if it does not exist. */
+export const DeleteCertificate: API.OperationMethod<
+  DeleteCertificateRequest,
+  DeleteCertificateResponse,
+  DeleteCertificateError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteCertificateRequest,
+  output: DeleteCertificateResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteIotHubResourceError = AzureOpError;
+/** Delete an IoT hub Delete an IoT hub. */
+export const DeleteIotHubResource: API.OperationMethod<
+  DeleteIotHubResourceRequest,
+  DeleteIotHubResourceResponse,
+  DeleteIotHubResourceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteIotHubResourceRequest,
+  output: DeleteIotHubResourceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteIotHubResourceEventHubConsumerGroupError = AzureOpError;
+/** Delete a consumer group from an Event Hub-compatible endpoint in an IoT hub Delete a consumer group from an Event Hub-compatible endpoint in an IoT hub. */
+export const DeleteIotHubResourceEventHubConsumerGroup: API.OperationMethod<
+  DeleteIotHubResourceEventHubConsumerGroupRequest,
+  DeleteIotHubResourceEventHubConsumerGroupResponse,
+  DeleteIotHubResourceEventHubConsumerGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteIotHubResourceEventHubConsumerGroupRequest,
+  output: DeleteIotHubResourceEventHubConsumerGroupResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeletePrivateEndpointConnectionError = AzureOpError;
+/** Delete private endpoint connection Delete private endpoint connection with the specified name */
+export const DeletePrivateEndpointConnection: API.OperationMethod<
+  DeletePrivateEndpointConnectionRequest,
+  PrivateEndpointConnection,
+  DeletePrivateEndpointConnectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeletePrivateEndpointConnectionRequest,
+  output: PrivateEndpointConnection,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ExportIotHubResourceDevicesError = AzureOpError;
+/** Exports all the device identities in the IoT hub identity registry to an Azure Storage blob container. For more information, see: https://docs.microsoft.com/azure/iot-hub/iot-hub-devguide-identity-registry#import-and-export-device-identities Exports all the device identities in the IoT hub identity registry to an Azure Storage blob container. For more information, see: https://docs.microsoft.com/azure/iot-hub/iot-hub-devguide-identity-registry#import-and-export-device-identities. */
+export const ExportIotHubResourceDevices: API.OperationMethod<
+  ExportIotHubResourceDevicesRequest,
+  JobResponse,
+  ExportIotHubResourceDevicesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ExportIotHubResourceDevicesRequest,
+  output: JobResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GenerateCertificateVerificationCodeError = AzureOpError;
+/** Generate verification code for proof of possession flow. Generates verification code for proof of possession flow. The verification code will be used to generate a leaf certificate. */
+export const GenerateCertificateVerificationCode: API.OperationMethod<
+  GenerateCertificateVerificationCodeRequest,
+  CertificateWithNonceDescription,
+  GenerateCertificateVerificationCodeError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GenerateCertificateVerificationCodeRequest,
   output: CertificateWithNonceDescription,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type CertificatesGetError = AzureOpError;
+export type GetCertificateError = AzureOpError;
 /** Get the certificate. Returns the certificate. */
-export const CertificatesGet: API.OperationMethod<
-  CertificatesGetRequest,
+export const GetCertificate: API.OperationMethod<
+  GetCertificateRequest,
   CertificateDescription,
-  CertificatesGetError,
+  GetCertificateError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CertificatesGetRequest,
+  input: GetCertificateRequest,
   output: CertificateDescription,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type CertificatesListByIotHubError = AzureOpError;
-/** Get the certificate list. Returns the list of certificates. */
-export const CertificatesListByIotHub: API.OperationMethod<
-  CertificatesListByIotHubRequest,
-  CertificateListDescription,
-  CertificatesListByIotHubError,
+export type GetIotHubResourceError = AzureOpError;
+/** Get the non-security related metadata of an IoT hub Get the non-security related metadata of an IoT hub. */
+export const GetIotHubResource: API.OperationMethod<
+  GetIotHubResourceRequest,
+  GetIotHubResourceResponse,
+  GetIotHubResourceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CertificatesListByIotHubRequest,
-  output: CertificateListDescription,
+  input: GetIotHubResourceRequest,
+  output: GetIotHubResourceResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type CertificatesVerifyError = AzureOpError;
-/** Verify certificate's private key possession. Verifies the certificate's private key possession by providing the leaf cert issued by the verifying pre uploaded certificate. */
-export const CertificatesVerify: API.OperationMethod<
-  CertificatesVerifyRequest,
-  CertificateDescription,
-  CertificatesVerifyError,
+export type GetIotHubResourceEndpointHealthError = AzureOpError;
+/** Get the health for routing endpoints Get the health for routing endpoints. */
+export const GetIotHubResourceEndpointHealth: API.OperationMethod<
+  GetIotHubResourceEndpointHealthRequest,
+  EndpointHealthDataListResult,
+  GetIotHubResourceEndpointHealthError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CertificatesVerifyRequest,
-  output: CertificateDescription,
+  input: GetIotHubResourceEndpointHealthRequest,
+  output: EndpointHealthDataListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetIotHubResourceEventHubConsumerGroupError = AzureOpError;
+/** Get a consumer group from the Event Hub-compatible device-to-cloud endpoint for an IoT hub Get a consumer group from the Event Hub-compatible device-to-cloud endpoint for an IoT hub. */
+export const GetIotHubResourceEventHubConsumerGroup: API.OperationMethod<
+  GetIotHubResourceEventHubConsumerGroupRequest,
+  EventHubConsumerGroupInfo,
+  GetIotHubResourceEventHubConsumerGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetIotHubResourceEventHubConsumerGroupRequest,
+  output: EventHubConsumerGroupInfo,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetIotHubResourceJobError = AzureOpError;
+/** Get the details of a job from an IoT hub. For more information, see: https://docs.microsoft.com/azure/iot-hub/iot-hub-devguide-identity-registry Get the details of a job from an IoT hub. For more information, see: https://docs.microsoft.com/azure/iot-hub/iot-hub-devguide-identity-registry. */
+export const GetIotHubResourceJob: API.OperationMethod<
+  GetIotHubResourceJobRequest,
+  JobResponse,
+  GetIotHubResourceJobError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetIotHubResourceJobRequest,
+  output: JobResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetIotHubResourceKeysForKeyNameError = AzureOpError;
+/** Get a shared access policy by name from an IoT hub. For more information, see: https://docs.microsoft.com/azure/iot-hub/iot-hub-devguide-security Get a shared access policy by name from an IoT hub. For more information, see: https://docs.microsoft.com/azure/iot-hub/iot-hub-devguide-security. */
+export const GetIotHubResourceKeysForKeyName: API.OperationMethod<
+  GetIotHubResourceKeysForKeyNameRequest,
+  SharedAccessSignatureAuthorizationRule,
+  GetIotHubResourceKeysForKeyNameError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetIotHubResourceKeysForKeyNameRequest,
+  output: SharedAccessSignatureAuthorizationRule,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetIotHubResourceQuotaMetricsError = AzureOpError;
+/** Get the quota metrics for an IoT hub Get the quota metrics for an IoT hub. */
+export const GetIotHubResourceQuotaMetrics: API.OperationMethod<
+  GetIotHubResourceQuotaMetricsRequest,
+  IotHubQuotaMetricInfoListResult,
+  GetIotHubResourceQuotaMetricsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetIotHubResourceQuotaMetricsRequest,
+  output: IotHubQuotaMetricInfoListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetIotHubResourceStatsError = AzureOpError;
+/** Get the statistics from an IoT hub Get the statistics from an IoT hub. */
+export const GetIotHubResourceStats: API.OperationMethod<
+  GetIotHubResourceStatsRequest,
+  RegistryStatistics,
+  GetIotHubResourceStatsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetIotHubResourceStatsRequest,
+  output: RegistryStatistics,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetIotHubResourceValidSkusError = AzureOpError;
+/** Get the list of valid SKUs for an IoT hub Get the list of valid SKUs for an IoT hub. */
+export const GetIotHubResourceValidSkus: API.OperationMethod<
+  GetIotHubResourceValidSkusRequest,
+  IotHubSkuDescriptionListResult,
+  GetIotHubResourceValidSkusError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetIotHubResourceValidSkusRequest,
+  output: IotHubSkuDescriptionListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetPrivateEndpointConnectionError = AzureOpError;
+/** Get private endpoint connection Get private endpoint connection properties */
+export const GetPrivateEndpointConnection: API.OperationMethod<
+  GetPrivateEndpointConnectionRequest,
+  PrivateEndpointConnection,
+  GetPrivateEndpointConnectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPrivateEndpointConnectionRequest,
+  output: PrivateEndpointConnection,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetPrivateLinkResourceError = AzureOpError;
+/** Get the specified private link resource Get the specified private link resource for the given IotHub */
+export const GetPrivateLinkResource: API.OperationMethod<
+  GetPrivateLinkResourceRequest,
+  GroupIdInformation,
+  GetPrivateLinkResourceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPrivateLinkResourceRequest,
+  output: GroupIdInformation,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetResourceProviderCommonSubscriptionQuotaError = AzureOpError;
+/** Get the number of iot hubs in the subscription Get the number of free and paid iot hubs in the subscription */
+export const GetResourceProviderCommonSubscriptionQuota: API.OperationMethod<
+  GetResourceProviderCommonSubscriptionQuotaRequest,
+  UserSubscriptionQuotaListResult,
+  GetResourceProviderCommonSubscriptionQuotaError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetResourceProviderCommonSubscriptionQuotaRequest,
+  output: UserSubscriptionQuotaListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ImportIotHubResourceDevicesError = AzureOpError;
+/** Import, update, or delete device identities in the IoT hub identity registry from a blob. For more information, see: https://docs.microsoft.com/azure/iot-hub/iot-hub-devguide-identity-registry#import-and-export-device-identities Import, update, or delete device identities in the IoT hub identity registry from a blob. For more information, see: https://docs.microsoft.com/azure/iot-hub/iot-hub-devguide-identity-registry#import-and-export-device-identities. */
+export const ImportIotHubResourceDevices: API.OperationMethod<
+  ImportIotHubResourceDevicesRequest,
+  JobResponse,
+  ImportIotHubResourceDevicesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ImportIotHubResourceDevicesRequest,
+  output: JobResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -3950,36 +4189,6 @@ export const IotHubManualFailover: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type IotHubResourceCheckNameAvailabilityError = AzureOpError;
-/** Check if an IoT hub name is available Check if an IoT hub name is available. */
-export const IotHubResourceCheckNameAvailability: API.OperationMethod<
-  IotHubResourceCheckNameAvailabilityRequest,
-  IotHubNameAvailabilityInfo,
-  IotHubResourceCheckNameAvailabilityError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IotHubResourceCheckNameAvailabilityRequest,
-  output: IotHubNameAvailabilityInfo,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IotHubResourceCreateEventHubConsumerGroupError = AzureOpError;
-/** Add a consumer group to an Event Hub-compatible endpoint in an IoT hub Add a consumer group to an Event Hub-compatible endpoint in an IoT hub. */
-export const IotHubResourceCreateEventHubConsumerGroup: API.OperationMethod<
-  IotHubResourceCreateEventHubConsumerGroupRequest,
-  EventHubConsumerGroupInfo,
-  IotHubResourceCreateEventHubConsumerGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IotHubResourceCreateEventHubConsumerGroupRequest,
-  output: EventHubConsumerGroupInfo,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type IotHubResourceCreateOrUpdateError = AzureOpError;
 /** Create or update the metadata of an IoT hub. Create or update the metadata of an Iot hub. The usual pattern to modify a property is to retrieve the IoT hub metadata and security metadata, and then combine them with the modified values in a new body to update the IoT hub. If certain properties are missing in the JSON, updating IoT Hub may cause these values to fallback to default, which may lead to unexpected behavior. */
 export const IotHubResourceCreateOrUpdate: API.OperationMethod<
@@ -3995,421 +4204,211 @@ export const IotHubResourceCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type IotHubResourceDeleteError = AzureOpError;
-/** Delete an IoT hub Delete an IoT hub. */
-export const IotHubResourceDelete: API.OperationMethod<
-  IotHubResourceDeleteRequest,
-  IotHubResourceDeleteResponse,
-  IotHubResourceDeleteError,
+export type ListCertificateByIotHubError = AzureOpError;
+/** Get the certificate list. Returns the list of certificates. */
+export const ListCertificateByIotHub: API.OperationMethod<
+  ListCertificateByIotHubRequest,
+  CertificateListDescription,
+  ListCertificateByIotHubError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: IotHubResourceDeleteRequest,
-  output: IotHubResourceDeleteResponse,
+  input: ListCertificateByIotHubRequest,
+  output: CertificateListDescription,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type IotHubResourceDeleteEventHubConsumerGroupError = AzureOpError;
-/** Delete a consumer group from an Event Hub-compatible endpoint in an IoT hub Delete a consumer group from an Event Hub-compatible endpoint in an IoT hub. */
-export const IotHubResourceDeleteEventHubConsumerGroup: API.OperationMethod<
-  IotHubResourceDeleteEventHubConsumerGroupRequest,
-  IotHubResourceDeleteEventHubConsumerGroupResponse,
-  IotHubResourceDeleteEventHubConsumerGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IotHubResourceDeleteEventHubConsumerGroupRequest,
-  output: IotHubResourceDeleteEventHubConsumerGroupResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IotHubResourceExportDevicesError = AzureOpError;
-/** Exports all the device identities in the IoT hub identity registry to an Azure Storage blob container. For more information, see: https://docs.microsoft.com/azure/iot-hub/iot-hub-devguide-identity-registry#import-and-export-device-identities Exports all the device identities in the IoT hub identity registry to an Azure Storage blob container. For more information, see: https://docs.microsoft.com/azure/iot-hub/iot-hub-devguide-identity-registry#import-and-export-device-identities. */
-export const IotHubResourceExportDevices: API.OperationMethod<
-  IotHubResourceExportDevicesRequest,
-  JobResponse,
-  IotHubResourceExportDevicesError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IotHubResourceExportDevicesRequest,
-  output: JobResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IotHubResourceGetError = AzureOpError;
-/** Get the non-security related metadata of an IoT hub Get the non-security related metadata of an IoT hub. */
-export const IotHubResourceGet: API.OperationMethod<
-  IotHubResourceGetRequest,
-  IotHubResourceGetResponse,
-  IotHubResourceGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IotHubResourceGetRequest,
-  output: IotHubResourceGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IotHubResourceGetEndpointHealthError = AzureOpError;
-/** Get the health for routing endpoints Get the health for routing endpoints. */
-export const IotHubResourceGetEndpointHealth: API.OperationMethod<
-  IotHubResourceGetEndpointHealthRequest,
-  EndpointHealthDataListResult,
-  IotHubResourceGetEndpointHealthError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IotHubResourceGetEndpointHealthRequest,
-  output: EndpointHealthDataListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IotHubResourceGetEventHubConsumerGroupError = AzureOpError;
-/** Get a consumer group from the Event Hub-compatible device-to-cloud endpoint for an IoT hub Get a consumer group from the Event Hub-compatible device-to-cloud endpoint for an IoT hub. */
-export const IotHubResourceGetEventHubConsumerGroup: API.OperationMethod<
-  IotHubResourceGetEventHubConsumerGroupRequest,
-  EventHubConsumerGroupInfo,
-  IotHubResourceGetEventHubConsumerGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IotHubResourceGetEventHubConsumerGroupRequest,
-  output: EventHubConsumerGroupInfo,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IotHubResourceGetJobError = AzureOpError;
-/** Get the details of a job from an IoT hub. For more information, see: https://docs.microsoft.com/azure/iot-hub/iot-hub-devguide-identity-registry Get the details of a job from an IoT hub. For more information, see: https://docs.microsoft.com/azure/iot-hub/iot-hub-devguide-identity-registry. */
-export const IotHubResourceGetJob: API.OperationMethod<
-  IotHubResourceGetJobRequest,
-  JobResponse,
-  IotHubResourceGetJobError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IotHubResourceGetJobRequest,
-  output: JobResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IotHubResourceGetKeysForKeyNameError = AzureOpError;
-/** Get a shared access policy by name from an IoT hub. For more information, see: https://docs.microsoft.com/azure/iot-hub/iot-hub-devguide-security Get a shared access policy by name from an IoT hub. For more information, see: https://docs.microsoft.com/azure/iot-hub/iot-hub-devguide-security. */
-export const IotHubResourceGetKeysForKeyName: API.OperationMethod<
-  IotHubResourceGetKeysForKeyNameRequest,
-  SharedAccessSignatureAuthorizationRule,
-  IotHubResourceGetKeysForKeyNameError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IotHubResourceGetKeysForKeyNameRequest,
-  output: SharedAccessSignatureAuthorizationRule,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IotHubResourceGetQuotaMetricsError = AzureOpError;
-/** Get the quota metrics for an IoT hub Get the quota metrics for an IoT hub. */
-export const IotHubResourceGetQuotaMetrics: API.OperationMethod<
-  IotHubResourceGetQuotaMetricsRequest,
-  IotHubQuotaMetricInfoListResult,
-  IotHubResourceGetQuotaMetricsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IotHubResourceGetQuotaMetricsRequest,
-  output: IotHubQuotaMetricInfoListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IotHubResourceGetStatsError = AzureOpError;
-/** Get the statistics from an IoT hub Get the statistics from an IoT hub. */
-export const IotHubResourceGetStats: API.OperationMethod<
-  IotHubResourceGetStatsRequest,
-  RegistryStatistics,
-  IotHubResourceGetStatsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IotHubResourceGetStatsRequest,
-  output: RegistryStatistics,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IotHubResourceGetValidSkusError = AzureOpError;
-/** Get the list of valid SKUs for an IoT hub Get the list of valid SKUs for an IoT hub. */
-export const IotHubResourceGetValidSkus: API.OperationMethod<
-  IotHubResourceGetValidSkusRequest,
-  IotHubSkuDescriptionListResult,
-  IotHubResourceGetValidSkusError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IotHubResourceGetValidSkusRequest,
-  output: IotHubSkuDescriptionListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IotHubResourceImportDevicesError = AzureOpError;
-/** Import, update, or delete device identities in the IoT hub identity registry from a blob. For more information, see: https://docs.microsoft.com/azure/iot-hub/iot-hub-devguide-identity-registry#import-and-export-device-identities Import, update, or delete device identities in the IoT hub identity registry from a blob. For more information, see: https://docs.microsoft.com/azure/iot-hub/iot-hub-devguide-identity-registry#import-and-export-device-identities. */
-export const IotHubResourceImportDevices: API.OperationMethod<
-  IotHubResourceImportDevicesRequest,
-  JobResponse,
-  IotHubResourceImportDevicesError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IotHubResourceImportDevicesRequest,
-  output: JobResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IotHubResourceListByResourceGroupError = AzureOpError;
+export type ListIotHubResourceByResourceGroupError = AzureOpError;
 /** Get all the IoT hubs in a resource group Get all the IoT hubs in a resource group. */
-export const IotHubResourceListByResourceGroup: API.OperationMethod<
-  IotHubResourceListByResourceGroupRequest,
+export const ListIotHubResourceByResourceGroup: API.OperationMethod<
+  ListIotHubResourceByResourceGroupRequest,
   IotHubDescriptionListResult,
-  IotHubResourceListByResourceGroupError,
+  ListIotHubResourceByResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: IotHubResourceListByResourceGroupRequest,
+  input: ListIotHubResourceByResourceGroupRequest,
   output: IotHubDescriptionListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type IotHubResourceListBySubscriptionError = AzureOpError;
+export type ListIotHubResourceBySubscriptionError = AzureOpError;
 /** Get all the IoT hubs in a subscription Get all the IoT hubs in a subscription. */
-export const IotHubResourceListBySubscription: API.OperationMethod<
-  IotHubResourceListBySubscriptionRequest,
+export const ListIotHubResourceBySubscription: API.OperationMethod<
+  ListIotHubResourceBySubscriptionRequest,
   IotHubDescriptionListResult,
-  IotHubResourceListBySubscriptionError,
+  ListIotHubResourceBySubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: IotHubResourceListBySubscriptionRequest,
+  input: ListIotHubResourceBySubscriptionRequest,
   output: IotHubDescriptionListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type IotHubResourceListEventHubConsumerGroupsError = AzureOpError;
+export type ListIotHubResourceEventHubConsumerGroupsError = AzureOpError;
 /** Get a list of the consumer groups in the Event Hub-compatible device-to-cloud endpoint in an IoT hub Get a list of the consumer groups in the Event Hub-compatible device-to-cloud endpoint in an IoT hub. */
-export const IotHubResourceListEventHubConsumerGroups: API.OperationMethod<
-  IotHubResourceListEventHubConsumerGroupsRequest,
+export const ListIotHubResourceEventHubConsumerGroups: API.OperationMethod<
+  ListIotHubResourceEventHubConsumerGroupsRequest,
   EventHubConsumerGroupsListResult,
-  IotHubResourceListEventHubConsumerGroupsError,
+  ListIotHubResourceEventHubConsumerGroupsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: IotHubResourceListEventHubConsumerGroupsRequest,
+  input: ListIotHubResourceEventHubConsumerGroupsRequest,
   output: EventHubConsumerGroupsListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type IotHubResourceListJobsError = AzureOpError;
+export type ListIotHubResourceJobsError = AzureOpError;
 /** Get a list of all the jobs in an IoT hub. For more information, see: https://docs.microsoft.com/azure/iot-hub/iot-hub-devguide-identity-registry Get a list of all the jobs in an IoT hub. For more information, see: https://docs.microsoft.com/azure/iot-hub/iot-hub-devguide-identity-registry. */
-export const IotHubResourceListJobs: API.OperationMethod<
-  IotHubResourceListJobsRequest,
+export const ListIotHubResourceJobs: API.OperationMethod<
+  ListIotHubResourceJobsRequest,
   JobResponseListResult,
-  IotHubResourceListJobsError,
+  ListIotHubResourceJobsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: IotHubResourceListJobsRequest,
+  input: ListIotHubResourceJobsRequest,
   output: JobResponseListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type IotHubResourceListKeysError = AzureOpError;
+export type ListIotHubResourceKeysError = AzureOpError;
 /** Get the security metadata for an IoT hub. For more information, see: https://docs.microsoft.com/azure/iot-hub/iot-hub-devguide-security Get the security metadata for an IoT hub. For more information, see: https://docs.microsoft.com/azure/iot-hub/iot-hub-devguide-security. */
-export const IotHubResourceListKeys: API.OperationMethod<
-  IotHubResourceListKeysRequest,
+export const ListIotHubResourceKeys: API.OperationMethod<
+  ListIotHubResourceKeysRequest,
   SharedAccessSignatureAuthorizationRuleListResult,
-  IotHubResourceListKeysError,
+  ListIotHubResourceKeysError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: IotHubResourceListKeysRequest,
+  input: ListIotHubResourceKeysRequest,
   output: SharedAccessSignatureAuthorizationRuleListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type IotHubResourceTestAllRoutesError = AzureOpError;
-/** Test all routes Test all routes configured in this Iot Hub */
-export const IotHubResourceTestAllRoutes: API.OperationMethod<
-  IotHubResourceTestAllRoutesRequest,
-  TestAllRoutesResult,
-  IotHubResourceTestAllRoutesError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IotHubResourceTestAllRoutesRequest,
-  output: TestAllRoutesResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IotHubResourceTestRouteError = AzureOpError;
-/** Test the new route Test the new route for this Iot Hub */
-export const IotHubResourceTestRoute: API.OperationMethod<
-  IotHubResourceTestRouteRequest,
-  TestRouteResult,
-  IotHubResourceTestRouteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IotHubResourceTestRouteRequest,
-  output: TestRouteResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type IotHubResourceUpdateError = AzureOpError;
-/** Update an existing IoT Hubs tags. Update an existing IoT Hub tags. to update other fields use the CreateOrUpdate method */
-export const IotHubResourceUpdate: API.OperationMethod<
-  IotHubResourceUpdateRequest,
-  IotHubResourceUpdateResponse,
-  IotHubResourceUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: IotHubResourceUpdateRequest,
-  output: IotHubResourceUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type OperationsListError = AzureOpError;
+export type ListOperationsError = AzureOpError;
 /** Lists all of the available IoT Hub REST API operations. */
-export const OperationsList: API.OperationMethod<
-  OperationsListRequest,
+export const ListOperations: API.OperationMethod<
+  ListOperationsRequest,
   OperationListResult,
-  OperationsListError,
+  ListOperationsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OperationsListRequest,
+  input: ListOperationsRequest,
   output: OperationListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type PrivateEndpointConnectionsDeleteError = AzureOpError;
-/** Delete private endpoint connection Delete private endpoint connection with the specified name */
-export const PrivateEndpointConnectionsDelete: API.OperationMethod<
-  PrivateEndpointConnectionsDeleteRequest,
-  PrivateEndpointConnection,
-  PrivateEndpointConnectionsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateEndpointConnectionsDeleteRequest,
-  output: PrivateEndpointConnection,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateEndpointConnectionsGetError = AzureOpError;
-/** Get private endpoint connection Get private endpoint connection properties */
-export const PrivateEndpointConnectionsGet: API.OperationMethod<
-  PrivateEndpointConnectionsGetRequest,
-  PrivateEndpointConnection,
-  PrivateEndpointConnectionsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateEndpointConnectionsGetRequest,
-  output: PrivateEndpointConnection,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateEndpointConnectionsList2Error = AzureOpError;
+export type ListPrivateEndpointConnectionsError = AzureOpError;
 /** List private endpoint connections List private endpoint connection properties */
-export const PrivateEndpointConnectionsList2: API.OperationMethod<
-  PrivateEndpointConnectionsListRequest,
-  PrivateEndpointConnectionsListResponse,
-  PrivateEndpointConnectionsList2Error,
+export const ListPrivateEndpointConnections: API.OperationMethod<
+  ListPrivateEndpointConnectionsRequest,
+  ListPrivateEndpointConnectionsResponse,
+  ListPrivateEndpointConnectionsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PrivateEndpointConnectionsListRequest,
-  output: PrivateEndpointConnectionsListResponse,
+  input: ListPrivateEndpointConnectionsRequest,
+  output: ListPrivateEndpointConnectionsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type PrivateEndpointConnectionsUpdateError = AzureOpError;
-/** Update private endpoint connection Update the status of a private endpoint connection with the specified name */
-export const PrivateEndpointConnectionsUpdate: API.OperationMethod<
-  PrivateEndpointConnectionsUpdateRequest,
-  PrivateEndpointConnection,
-  PrivateEndpointConnectionsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateEndpointConnectionsUpdateRequest,
-  output: PrivateEndpointConnection,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateLinkResourcesGetError = AzureOpError;
-/** Get the specified private link resource Get the specified private link resource for the given IotHub */
-export const PrivateLinkResourcesGet: API.OperationMethod<
-  PrivateLinkResourcesGetRequest,
-  GroupIdInformation,
-  PrivateLinkResourcesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateLinkResourcesGetRequest,
-  output: GroupIdInformation,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateLinkResourcesListError = AzureOpError;
+export type ListPrivateLinkResourcesError = AzureOpError;
 /** List private link resources List private link resources for the given IotHub */
-export const PrivateLinkResourcesList: API.OperationMethod<
-  PrivateLinkResourcesListRequest,
+export const ListPrivateLinkResources: API.OperationMethod<
+  ListPrivateLinkResourcesRequest,
   PrivateLinkResources,
-  PrivateLinkResourcesListError,
+  ListPrivateLinkResourcesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PrivateLinkResourcesListRequest,
+  input: ListPrivateLinkResourcesRequest,
   output: PrivateLinkResources,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ResourceProviderCommonGetSubscriptionQuotaError = AzureOpError;
-/** Get the number of iot hubs in the subscription Get the number of free and paid iot hubs in the subscription */
-export const ResourceProviderCommonGetSubscriptionQuota: API.OperationMethod<
-  ResourceProviderCommonGetSubscriptionQuotaRequest,
-  UserSubscriptionQuotaListResult,
-  ResourceProviderCommonGetSubscriptionQuotaError,
+export type TestIotHubResourceAllRoutesError = AzureOpError;
+/** Test all routes Test all routes configured in this Iot Hub */
+export const TestIotHubResourceAllRoutes: API.OperationMethod<
+  TestIotHubResourceAllRoutesRequest,
+  TestAllRoutesResult,
+  TestIotHubResourceAllRoutesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ResourceProviderCommonGetSubscriptionQuotaRequest,
-  output: UserSubscriptionQuotaListResult,
+  input: TestIotHubResourceAllRoutesRequest,
+  output: TestAllRoutesResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type TestIotHubResourceRouteError = AzureOpError;
+/** Test the new route Test the new route for this Iot Hub */
+export const TestIotHubResourceRoute: API.OperationMethod<
+  TestIotHubResourceRouteRequest,
+  TestRouteResult,
+  TestIotHubResourceRouteError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: TestIotHubResourceRouteRequest,
+  output: TestRouteResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateIotHubResourceError = AzureOpError;
+/** Update an existing IoT Hubs tags. Update an existing IoT Hub tags. to update other fields use the CreateOrUpdate method */
+export const UpdateIotHubResource: API.OperationMethod<
+  UpdateIotHubResourceRequest,
+  UpdateIotHubResourceResponse,
+  UpdateIotHubResourceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateIotHubResourceRequest,
+  output: UpdateIotHubResourceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdatePrivateEndpointConnectionError = AzureOpError;
+/** Update private endpoint connection Update the status of a private endpoint connection with the specified name */
+export const UpdatePrivateEndpointConnection: API.OperationMethod<
+  UpdatePrivateEndpointConnectionRequest,
+  PrivateEndpointConnection,
+  UpdatePrivateEndpointConnectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdatePrivateEndpointConnectionRequest,
+  output: PrivateEndpointConnection,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type VerifyCertificateError = AzureOpError;
+/** Verify certificate's private key possession. Verifies the certificate's private key possession by providing the leaf cert issued by the verifying pre uploaded certificate. */
+export const VerifyCertificate: API.OperationMethod<
+  VerifyCertificateRequest,
+  CertificateDescription,
+  VerifyCertificateError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: VerifyCertificateRequest,
+  output: CertificateDescription,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.feature_request_product_areas#FeatureRequestProductAreasListRequest": {
+    "com.posthog.feature_request_product_areas#ListFeatureRequestProductAreasRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -86,18 +87,18 @@
       },
       "traits": {}
     },
-    "com.posthog.feature_request_product_areas#FeatureRequestProductAreasListResponseBodyList": {
+    "com.posthog.feature_request_product_areas#ListFeatureRequestProductAreasResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.posthog.feature_request_product_areas#FeatureRequestProductArea"
       },
       "traits": {}
     },
-    "com.posthog.feature_request_product_areas#FeatureRequestProductAreasListResponse": {
+    "com.posthog.feature_request_product_areas#ListFeatureRequestProductAreasResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.posthog.feature_request_product_areas#FeatureRequestProductAreasListResponseBodyList",
+          "target": "com.posthog.feature_request_product_areas#ListFeatureRequestProductAreasResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -108,13 +109,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.posthog.feature_request_product_areas#FeatureRequestProductAreasList": {
+    "com.posthog.feature_request_product_areas#ListFeatureRequestProductAreas": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.feature_request_product_areas#FeatureRequestProductAreasListRequest"
+        "target": "com.posthog.feature_request_product_areas#ListFeatureRequestProductAreasRequest"
       },
       "output": {
-        "target": "com.posthog.feature_request_product_areas#FeatureRequestProductAreasListResponse"
+        "target": "com.posthog.feature_request_product_areas#ListFeatureRequestProductAreasResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -124,7 +125,7 @@
         }
       }
     },
-    "com.posthog.feature_request_product_areas#FeatureRequestProductAreasCreateRequest": {
+    "com.posthog.feature_request_product_areas#CreateFeatureRequestProductAreasRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -159,10 +160,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.feature_request_product_areas#FeatureRequestProductAreasCreate": {
+    "com.posthog.feature_request_product_areas#CreateFeatureRequestProductAreas": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.feature_request_product_areas#FeatureRequestProductAreasCreateRequest"
+        "target": "com.posthog.feature_request_product_areas#CreateFeatureRequestProductAreasRequest"
       },
       "output": {
         "target": "com.posthog.feature_request_product_areas#FeatureRequestProductArea"
@@ -175,7 +176,7 @@
         }
       }
     },
-    "com.posthog.feature_request_product_areas#FeatureRequestProductAreasUpdateRequest": {
+    "com.posthog.feature_request_product_areas#UpdateFeatureRequestProductAreasRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -217,10 +218,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.feature_request_product_areas#FeatureRequestProductAreasUpdate": {
+    "com.posthog.feature_request_product_areas#UpdateFeatureRequestProductAreas": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.feature_request_product_areas#FeatureRequestProductAreasUpdateRequest"
+        "target": "com.posthog.feature_request_product_areas#UpdateFeatureRequestProductAreasRequest"
       },
       "output": {
         "target": "com.posthog.feature_request_product_areas#FeatureRequestProductArea"
@@ -233,7 +234,7 @@
         }
       }
     },
-    "com.posthog.feature_request_product_areas#FeatureRequestProductAreasPartialUpdateRequest": {
+    "com.posthog.feature_request_product_areas#UpdateFeatureRequestProductAreasPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -274,10 +275,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.feature_request_product_areas#FeatureRequestProductAreasPartialUpdate": {
+    "com.posthog.feature_request_product_areas#UpdateFeatureRequestProductAreasPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.feature_request_product_areas#FeatureRequestProductAreasPartialUpdateRequest"
+        "target": "com.posthog.feature_request_product_areas#UpdateFeatureRequestProductAreasPartialRequest"
       },
       "output": {
         "target": "com.posthog.feature_request_product_areas#FeatureRequestProductArea"
@@ -295,16 +296,16 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.feature_request_product_areas#FeatureRequestProductAreasList"
+          "target": "com.posthog.feature_request_product_areas#ListFeatureRequestProductAreas"
         },
         {
-          "target": "com.posthog.feature_request_product_areas#FeatureRequestProductAreasCreate"
+          "target": "com.posthog.feature_request_product_areas#CreateFeatureRequestProductAreas"
         },
         {
-          "target": "com.posthog.feature_request_product_areas#FeatureRequestProductAreasUpdate"
+          "target": "com.posthog.feature_request_product_areas#UpdateFeatureRequestProductAreas"
         },
         {
-          "target": "com.posthog.feature_request_product_areas#FeatureRequestProductAreasPartialUpdate"
+          "target": "com.posthog.feature_request_product_areas#UpdateFeatureRequestProductAreasPartial"
         }
       ],
       "traits": {

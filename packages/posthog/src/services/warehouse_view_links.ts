@@ -21,7 +21,7 @@ export class BadRequest
     [{ status: 400 }],
   ) {}
 
-export interface WarehouseViewLinksCreateRequest {
+export interface CreateWarehouseViewLinkRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** Whether this join has been soft-deleted. */
@@ -39,7 +39,7 @@ export interface WarehouseViewLinksCreateRequest {
   /** Optional join configuration, for example experiments optimization flags. */
   configuration?: unknown;
 }
-export const WarehouseViewLinksCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateWarehouseViewLinkRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     deleted: S.optional(S.NullOr(S.Boolean)),
@@ -57,8 +57,8 @@ export const WarehouseViewLinksCreateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "WarehouseViewLinksCreateRequest",
-}) as any as S.Schema<WarehouseViewLinksCreateRequest>;
+  identifier: "CreateWarehouseViewLinkRequest",
+}) as any as S.Schema<CreateWarehouseViewLinkRequest>;
 
 export type UserBasicHedgehogConfigMap = { [key: string]: unknown | undefined };
 export const UserBasicHedgehogConfigMap = /*@__PURE__*/ S.Record(
@@ -145,6 +145,161 @@ export const ViewLink = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "ViewLink" }) as any as S.Schema<ViewLink>;
 
+export interface GetWarehouseViewLinkRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this data warehouse join. */
+  id: string;
+}
+export const GetWarehouseViewLinkRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/warehouse_view_links/{id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetWarehouseViewLinkRequest",
+}) as any as S.Schema<GetWarehouseViewLinkRequest>;
+
+export interface ListWarehouseViewLinksRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** Number of results to return per page. */
+  limit?: number;
+  /** The initial index from which to return the results. */
+  offset?: number;
+  /** A search term. */
+  search?: string;
+}
+export const ListWarehouseViewLinksRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    offset: S.optional(S.Number.pipe(T.Query())),
+    search: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/warehouse_view_links/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListWarehouseViewLinksRequest",
+}) as any as S.Schema<ListWarehouseViewLinksRequest>;
+
+export type PaginatedViewLinkListResultsList = Array<ViewLink>;
+export const PaginatedViewLinkListResultsList = /*@__PURE__*/ S.Array(
+  ViewLink,
+) as any as S.Schema<PaginatedViewLinkListResultsList>;
+
+export interface PaginatedViewLinkList {
+  count: number;
+  next?: string | null;
+  previous?: string | null;
+  results: PaginatedViewLinkListResultsList;
+}
+export const PaginatedViewLinkList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    count: S.Number,
+    next: S.optional(S.NullOr(S.String)),
+    previous: S.optional(S.NullOr(S.String)),
+    results: PaginatedViewLinkListResultsList,
+  }),
+).annotate({
+  identifier: "PaginatedViewLinkList",
+}) as any as S.Schema<PaginatedViewLinkList>;
+
+export interface UpdateWarehouseViewLinkRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this data warehouse join. */
+  id: string;
+  /** Whether this join has been soft-deleted. */
+  deleted?: boolean | null;
+  /** Name of the table the join starts from, for example events. */
+  source_table_name: string;
+  /** Column or HogQL expression on the source table used as the join key. */
+  source_table_key: string;
+  /** Name of the table or view being joined onto the source table. */
+  joining_table_name: string;
+  /** Column or HogQL expression on the joining table used as the join key. */
+  joining_table_key: string;
+  /** Accessor added to the source table to reach the joined rows, for example person in events.person. */
+  field_name: string;
+  /** Optional join configuration, for example experiments optimization flags. */
+  configuration?: unknown;
+}
+export const UpdateWarehouseViewLinkRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+    deleted: S.optional(S.NullOr(S.Boolean)),
+    source_table_name: S.String,
+    source_table_key: S.String,
+    joining_table_name: S.String,
+    joining_table_key: S.String,
+    field_name: S.String,
+    configuration: S.optional(S.Unknown),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/api/projects/{project_id}/warehouse_view_links/{id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "UpdateWarehouseViewLinkRequest",
+}) as any as S.Schema<UpdateWarehouseViewLinkRequest>;
+
+export interface UpdateWarehouseViewLinksPartialRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this data warehouse join. */
+  id: string;
+  /** Whether this join has been soft-deleted. */
+  deleted?: boolean | null;
+  /** Name of the table the join starts from, for example events. */
+  source_table_name?: string;
+  /** Column or HogQL expression on the source table used as the join key. */
+  source_table_key?: string;
+  /** Name of the table or view being joined onto the source table. */
+  joining_table_name?: string;
+  /** Column or HogQL expression on the joining table used as the join key. */
+  joining_table_key?: string;
+  /** Accessor added to the source table to reach the joined rows, for example person in events.person. */
+  field_name?: string;
+  /** Optional join configuration, for example experiments optimization flags. */
+  configuration?: unknown;
+}
+export const UpdateWarehouseViewLinksPartialRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      id: S.String.pipe(T.Label()),
+      deleted: S.optional(S.NullOr(S.Boolean)),
+      source_table_name: S.optional(S.String),
+      source_table_key: S.optional(S.String),
+      joining_table_name: S.optional(S.String),
+      joining_table_key: S.optional(S.String),
+      field_name: S.optional(S.String),
+      configuration: S.optional(S.Unknown),
+    }).pipe(
+      T.Http({
+        method: "PATCH",
+        uri: "/api/projects/{project_id}/warehouse_view_links/{id}/",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "UpdateWarehouseViewLinksPartialRequest",
+}) as any as S.Schema<UpdateWarehouseViewLinksPartialRequest>;
+
 export interface WarehouseViewLinksDestroyRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
@@ -172,161 +327,6 @@ export const WarehouseViewLinksDestroyResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "WarehouseViewLinksDestroyResponse",
 }) as any as S.Schema<WarehouseViewLinksDestroyResponse>;
-
-export interface WarehouseViewLinksListRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** Number of results to return per page. */
-  limit?: number;
-  /** The initial index from which to return the results. */
-  offset?: number;
-  /** A search term. */
-  search?: string;
-}
-export const WarehouseViewLinksListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    offset: S.optional(S.Number.pipe(T.Query())),
-    search: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/warehouse_view_links/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "WarehouseViewLinksListRequest",
-}) as any as S.Schema<WarehouseViewLinksListRequest>;
-
-export type PaginatedViewLinkListResultsList = Array<ViewLink>;
-export const PaginatedViewLinkListResultsList = /*@__PURE__*/ S.Array(
-  ViewLink,
-) as any as S.Schema<PaginatedViewLinkListResultsList>;
-
-export interface PaginatedViewLinkList {
-  count: number;
-  next?: string | null;
-  previous?: string | null;
-  results: PaginatedViewLinkListResultsList;
-}
-export const PaginatedViewLinkList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    count: S.Number,
-    next: S.optional(S.NullOr(S.String)),
-    previous: S.optional(S.NullOr(S.String)),
-    results: PaginatedViewLinkListResultsList,
-  }),
-).annotate({
-  identifier: "PaginatedViewLinkList",
-}) as any as S.Schema<PaginatedViewLinkList>;
-
-export interface WarehouseViewLinksPartialUpdateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this data warehouse join. */
-  id: string;
-  /** Whether this join has been soft-deleted. */
-  deleted?: boolean | null;
-  /** Name of the table the join starts from, for example events. */
-  source_table_name?: string;
-  /** Column or HogQL expression on the source table used as the join key. */
-  source_table_key?: string;
-  /** Name of the table or view being joined onto the source table. */
-  joining_table_name?: string;
-  /** Column or HogQL expression on the joining table used as the join key. */
-  joining_table_key?: string;
-  /** Accessor added to the source table to reach the joined rows, for example person in events.person. */
-  field_name?: string;
-  /** Optional join configuration, for example experiments optimization flags. */
-  configuration?: unknown;
-}
-export const WarehouseViewLinksPartialUpdateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-      deleted: S.optional(S.NullOr(S.Boolean)),
-      source_table_name: S.optional(S.String),
-      source_table_key: S.optional(S.String),
-      joining_table_name: S.optional(S.String),
-      joining_table_key: S.optional(S.String),
-      field_name: S.optional(S.String),
-      configuration: S.optional(S.Unknown),
-    }).pipe(
-      T.Http({
-        method: "PATCH",
-        uri: "/api/projects/{project_id}/warehouse_view_links/{id}/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "WarehouseViewLinksPartialUpdateRequest",
-}) as any as S.Schema<WarehouseViewLinksPartialUpdateRequest>;
-
-export interface WarehouseViewLinksRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this data warehouse join. */
-  id: string;
-}
-export const WarehouseViewLinksRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/warehouse_view_links/{id}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "WarehouseViewLinksRetrieveRequest",
-}) as any as S.Schema<WarehouseViewLinksRetrieveRequest>;
-
-export interface WarehouseViewLinksUpdateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this data warehouse join. */
-  id: string;
-  /** Whether this join has been soft-deleted. */
-  deleted?: boolean | null;
-  /** Name of the table the join starts from, for example events. */
-  source_table_name: string;
-  /** Column or HogQL expression on the source table used as the join key. */
-  source_table_key: string;
-  /** Name of the table or view being joined onto the source table. */
-  joining_table_name: string;
-  /** Column or HogQL expression on the joining table used as the join key. */
-  joining_table_key: string;
-  /** Accessor added to the source table to reach the joined rows, for example person in events.person. */
-  field_name: string;
-  /** Optional join configuration, for example experiments optimization flags. */
-  configuration?: unknown;
-}
-export const WarehouseViewLinksUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-    deleted: S.optional(S.NullOr(S.Boolean)),
-    source_table_name: S.String,
-    source_table_key: S.String,
-    joining_table_name: S.String,
-    joining_table_key: S.String,
-    field_name: S.String,
-    configuration: S.optional(S.Unknown),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/api/projects/{project_id}/warehouse_view_links/{id}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "WarehouseViewLinksUpdateRequest",
-}) as any as S.Schema<WarehouseViewLinksUpdateRequest>;
 
 export interface WarehouseViewLinksValidateCreateRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
@@ -410,15 +410,75 @@ export const ViewLinkValidationResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ViewLinkValidationResponse",
 }) as any as S.Schema<ViewLinkValidationResponse>;
 
-export type WarehouseViewLinksCreateError = PosthogOpError;
+export type CreateWarehouseViewLinkError = PosthogOpError;
 /** Create, Read, Update and Delete View Columns. */
-export const warehouseViewLinksCreate: API.OperationMethod<
-  WarehouseViewLinksCreateRequest,
+export const createWarehouseViewLink: API.OperationMethod<
+  CreateWarehouseViewLinkRequest,
   ViewLink,
-  WarehouseViewLinksCreateError,
+  CreateWarehouseViewLinkError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: WarehouseViewLinksCreateRequest,
+  input: CreateWarehouseViewLinkRequest,
+  output: ViewLink,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetWarehouseViewLinkError = PosthogOpError;
+/** Create, Read, Update and Delete View Columns. */
+export const getWarehouseViewLink: API.OperationMethod<
+  GetWarehouseViewLinkRequest,
+  ViewLink,
+  GetWarehouseViewLinkError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetWarehouseViewLinkRequest,
+  output: ViewLink,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListWarehouseViewLinksError = PosthogOpError;
+/** Create, Read, Update and Delete View Columns. */
+export const listWarehouseViewLinks: API.OperationMethod<
+  ListWarehouseViewLinksRequest,
+  PaginatedViewLinkList,
+  ListWarehouseViewLinksError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListWarehouseViewLinksRequest,
+  output: PaginatedViewLinkList,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateWarehouseViewLinkError = PosthogOpError;
+/** Create, Read, Update and Delete View Columns. */
+export const updateWarehouseViewLink: API.OperationMethod<
+  UpdateWarehouseViewLinkRequest,
+  ViewLink,
+  UpdateWarehouseViewLinkError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateWarehouseViewLinkRequest,
+  output: ViewLink,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateWarehouseViewLinksPartialError = PosthogOpError;
+/** Create, Read, Update and Delete View Columns. */
+export const updateWarehouseViewLinksPartial: API.OperationMethod<
+  UpdateWarehouseViewLinksPartialRequest,
+  ViewLink,
+  UpdateWarehouseViewLinksPartialError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateWarehouseViewLinksPartialRequest,
   output: ViewLink,
   errors: [],
   protocol: PosthogProtocol,
@@ -435,66 +495,6 @@ export const warehouseViewLinksDestroy: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: WarehouseViewLinksDestroyRequest,
   output: WarehouseViewLinksDestroyResponse,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WarehouseViewLinksListError = PosthogOpError;
-/** Create, Read, Update and Delete View Columns. */
-export const warehouseViewLinksList: API.OperationMethod<
-  WarehouseViewLinksListRequest,
-  PaginatedViewLinkList,
-  WarehouseViewLinksListError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WarehouseViewLinksListRequest,
-  output: PaginatedViewLinkList,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WarehouseViewLinksPartialUpdateError = PosthogOpError;
-/** Create, Read, Update and Delete View Columns. */
-export const warehouseViewLinksPartialUpdate: API.OperationMethod<
-  WarehouseViewLinksPartialUpdateRequest,
-  ViewLink,
-  WarehouseViewLinksPartialUpdateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WarehouseViewLinksPartialUpdateRequest,
-  output: ViewLink,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WarehouseViewLinksRetrieveError = PosthogOpError;
-/** Create, Read, Update and Delete View Columns. */
-export const warehouseViewLinksRetrieve: API.OperationMethod<
-  WarehouseViewLinksRetrieveRequest,
-  ViewLink,
-  WarehouseViewLinksRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WarehouseViewLinksRetrieveRequest,
-  output: ViewLink,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WarehouseViewLinksUpdateError = PosthogOpError;
-/** Create, Read, Update and Delete View Columns. */
-export const warehouseViewLinksUpdate: API.OperationMethod<
-  WarehouseViewLinksUpdateRequest,
-  ViewLink,
-  WarehouseViewLinksUpdateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WarehouseViewLinksUpdateRequest,
-  output: ViewLink,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,

@@ -14,7 +14,44 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "keyDictionary": {
+      "acceptedUrlCount": "accepted_url_count",
+      "activeCount": "active_count",
+      "agentName": "agent_name",
+      "destinationIps": "destination_ips",
+      "effectiveDate": "effective_date",
+      "entityId": "entity_id",
+      "entityType": "entity_type",
+      "externalHostNotified": "external_host_notified",
+      "hostNotification": "host_notification",
+      "inReviewCount": "in_review_count",
+      "mitigationSummary": "mitigation_summary",
+      "ncmecNotification": "ncmec_notification",
+      "ncseiSubjectRepresentation": "ncsei_subject_representation",
+      "originalWork": "original_work",
+      "ownerNotification": "owner_notification",
+      "pendingCount": "pending_count",
+      "perPage": "per_page",
+      "portsProtocols": "ports_protocols",
+      "regWhoAuthorizationStatement": "reg_who_authorization_statement",
+      "regWhoGoodFaithAffirmation": "reg_who_good_faith_affirmation",
+      "regWhoLawfulProcessingAgreement": "reg_who_lawful_processing_agreement",
+      "regWhoLegalBasis": "reg_who_legal_basis",
+      "regWhoRequest": "reg_who_request",
+      "regWhoRequestType": "reg_who_request_type",
+      "regWhoRequestedDataElements": "reg_who_requested_data_elements",
+      "regWhoRequestorType": "reg_who_requestor_type",
+      "reportedCountry": "reported_country",
+      "reportedUserAgent": "reported_user_agent",
+      "resultInfo": "result_info",
+      "sourceIps": "source_ips",
+      "totalCount": "total_count",
+      "trademarkNumber": "trademark_number",
+      "trademarkOffice": "trademark_office",
+      "trademarkSymbol": "trademark_symbol"
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.abuse_reports#CreateRequestAct": {
@@ -407,253 +444,6 @@
         }
       }
     },
-    "com.cloudflare.abuse_reports#CreateRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "report_param": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The report type for submitted reports.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "act": {
-          "target": "com.cloudflare.abuse_reports#CreateRequestAct",
-          "traits": {
-            "smithy.api#documentation": "The report type for submitted reports.",
-            "smithy.api#required": {}
-          }
-        },
-        "address1": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Text not exceeding 100 characters. This field may be released by Cloudflare to third parties such as the Lumen Database (https://lumendatabase.org/)."
-          }
-        },
-        "agent_name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name of the copyright holder. Text not exceeding 60 characters. This field may be released by Cloudflare to third parties such as the Lumen Database (https://lumendatabase.org/)."
-          }
-        },
-        "agree": {
-          "target": "com.cloudflare.abuse_reports#CreateRequestAgree",
-          "traits": {
-            "smithy.api#documentation": "Can be `0` for false or `1` for true. Must be value: 1 for DMCA reports"
-          }
-        },
-        "city": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Text not exceeding 255 characters. This field may be released by Cloudflare to third parties such as the Lumen Database (https://lumendatabase.org/)."
-          }
-        },
-        "country": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Text not exceeding 255 characters. This field may be released by Cloudflare to third parties such as the Lumen Database (https://lumendatabase.org/)."
-          }
-        },
-        "email": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A valid email of the abuse reporter. This field may be released by Cloudflare to third parties such as the Lumen Database (https://lumendatabase.org/).",
-            "smithy.api#required": {}
-          }
-        },
-        "email2": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Should match the value provided in `email`",
-            "smithy.api#required": {}
-          }
-        },
-        "host_notification": {
-          "target": "com.cloudflare.abuse_reports#CreateRequestHostNotification",
-          "traits": {
-            "smithy.api#documentation": "Notification type based on the abuse type. NOTE: Copyright (DMCA) and Trademark reports cannot be anonymous."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Text not exceeding 255 characters. This field may be released by Cloudflare to third parties such as the Lumen Database (https://lumendatabase.org/).",
-            "smithy.api#required": {}
-          }
-        },
-        "original_work": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Text not exceeding 255 characters. This field may be released by Cloudflare to third parties such as the Lumen Database (https://lumendatabase.org/)."
-          }
-        },
-        "owner_notification": {
-          "target": "com.cloudflare.abuse_reports#CreateRequestOwnerNotification",
-          "traits": {
-            "smithy.api#documentation": "Notification type based on the abuse type. NOTE: Copyright (DMCA) and Trademark reports cannot be anonymous.",
-            "smithy.api#required": {}
-          }
-        },
-        "signature": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required for DMCA reports, should be same as Name. An affirmation that all information in the report is true and accurate while agreeing to the policies of Cloudflare's abuse reports"
-          }
-        },
-        "state": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Text not exceeding 255 characters. This field may be released by Cloudflare to third parties such as the Lumen Database (https://lumendatabase.org/)."
-          }
-        },
-        "urls": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A list of valid URLs separated by ‘\\n’ (new line character). The list of the URLs should not exceed 250 URLs. All URLs should have the same hostname. Each URL should be unique. This field may be released by Cloudflare to third parties such as the Lumen Database (https://lumendatabase.org/).",
-            "smithy.api#required": {}
-          }
-        },
-        "comments": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Any additional comments about the infringement not exceeding 2000 characters"
-          }
-        },
-        "company": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Text not exceeding 100 characters. This field may be released by Cloudflare to third parties such as the Lumen Database (https://lumendatabase.org/)."
-          }
-        },
-        "reported_country": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Text containing 2 characters"
-          }
-        },
-        "reported_user_agent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Text not exceeding 255 characters"
-          }
-        },
-        "tele": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Text not exceeding 20 characters. This field may be released by Cloudflare to third parties such as the Lumen Database (https://lumendatabase.org/)."
-          }
-        },
-        "title": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Text not exceeding 255 characters"
-          }
-        },
-        "justification": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A detailed description of the infringement, including any necessary access details and the exact steps needed to view the content, not exceeding 5000 characters."
-          }
-        },
-        "trademark_number": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Text not exceeding 1000 characters"
-          }
-        },
-        "trademark_office": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Text not exceeding 1000 characters"
-          }
-        },
-        "trademark_symbol": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Text not exceeding 1000 characters"
-          }
-        },
-        "destination_ips": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A list of IP addresses separated by ‘\\n’ (new line character). The list of destination IPs should not exceed 30 IP addresses. Each one of the IP addresses ought to be unique."
-          }
-        },
-        "ports_protocols": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A comma separated list of ports and protocols e.g. 80/TCP, 22/UDP. The total size of the field should not exceed 2000 characters. Each individual port/protocol should not exceed 100 characters. The list should not have more than 30 unique ports and protocols."
-          }
-        },
-        "source_ips": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A list of IP addresses separated by ‘\\n’ (new line character). The list of source IPs should not exceed 30 IP addresses. Each one of the IP addresses ought to be unique."
-          }
-        },
-        "ncmec_notification": {
-          "target": "com.cloudflare.abuse_reports#CreateRequestNcmecNotification",
-          "traits": {
-            "smithy.api#documentation": "Notification type based on the abuse type. NOTE: Copyright (DMCA) and Trademark reports cannot be anonymous."
-          }
-        },
-        "reg_who_request": {
-          "target": "com.cloudflare.abuse_reports#CreateRequestRegWhoRequest",
-          "traits": {
-            "smithy.api#documentation": "RDP-mandated fields for registrar WHOIS data disclosure requests."
-          }
-        },
-        "ncsei_subject_representation": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "If the submitter is the target of NCSEI in the URLs of the abuse report."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.abuse_reports#CreateResponse": {
-      "type": "structure",
-      "members": {
-        "result": {
-          "target": "smithy.api#String",
-          "traits": {
-            "com.cloudflare.protocols#envelopePayload": {},
-            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.abuse_reports#Create": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.abuse_reports#CreateRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.abuse_reports#CreateResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "/accounts/{account_id}/abuse-reports/{report_param}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Submit the Abuse Report of a particular type"
-      }
-    },
     "com.cloudflare.abuse_reports#GetRequest": {
       "type": "structure",
       "members": {
@@ -1016,84 +806,6 @@
         }
       }
     },
-    "com.cloudflare.abuse_reports#ListRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "created_after": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Returns reports created after the specified date",
-            "smithy.api#httpQuery": "created_after"
-          }
-        },
-        "created_before": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Returns reports created before the specified date",
-            "smithy.api#httpQuery": "created_before"
-          }
-        },
-        "domain": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Filter by domain name related to the abuse report",
-            "smithy.api#httpQuery": "domain"
-          }
-        },
-        "mitigation_status": {
-          "target": "com.cloudflare.abuse_reports#ListRequestMitigationStatus",
-          "traits": {
-            "smithy.api#documentation": "Filter reports that have any mitigations in the given status.",
-            "smithy.api#httpQuery": "mitigation_status"
-          }
-        },
-        "page": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Where in pagination to start listing abuse reports",
-            "smithy.api#httpQuery": "page"
-          }
-        },
-        "per_page": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "How many abuse reports per page to list",
-            "smithy.api#httpQuery": "per_page"
-          }
-        },
-        "sort": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A property to sort by, followed by the order (id, cdate, domain, type, status)",
-            "smithy.api#httpQuery": "sort"
-          }
-        },
-        "status": {
-          "target": "com.cloudflare.abuse_reports#ListRequestStatus",
-          "traits": {
-            "smithy.api#documentation": "Filter by the status of the report.",
-            "smithy.api#httpQuery": "status"
-          }
-        },
-        "type": {
-          "target": "com.cloudflare.abuse_reports#ListRequestType",
-          "traits": {
-            "smithy.api#documentation": "Filter by the type of the report.",
-            "smithy.api#httpQuery": "type"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.abuse_reports#ListResponseReportsItemMitigationSummary": {
       "type": "structure",
       "members": {
@@ -1305,39 +1017,6 @@
       "type": "list",
       "member": {
         "target": "com.cloudflare.abuse_reports#ListResponseReportsItem"
-      }
-    },
-    "com.cloudflare.abuse_reports#ListResponse": {
-      "type": "structure",
-      "members": {
-        "reports": {
-          "target": "com.cloudflare.abuse_reports#ListResponseReportsList",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.abuse_reports#List": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.abuse_reports#ListRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.abuse_reports#ListResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/accounts/{account_id}/abuse-reports",
-          "code": 200
-        },
-        "smithy.api#documentation": "List the abuse reports for a given account",
-        "smithy.api#readonly": {}
       }
     },
     "com.cloudflare.abuse_reports#MitigationsListRequestEntityType": {
@@ -1570,84 +1249,6 @@
         }
       }
     },
-    "com.cloudflare.abuse_reports#MitigationsListRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "report_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "effective_after": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Returns mitigation that were dispatched after the given date",
-            "smithy.api#httpQuery": "effective_after"
-          }
-        },
-        "effective_before": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Returns mitigations that were dispatched before the given date",
-            "smithy.api#httpQuery": "effective_before"
-          }
-        },
-        "entity_type": {
-          "target": "com.cloudflare.abuse_reports#MitigationsListRequestEntityType",
-          "traits": {
-            "smithy.api#documentation": "Filter by the type of entity the mitigation impacts.",
-            "smithy.api#httpQuery": "entity_type"
-          }
-        },
-        "page": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Where in pagination to start listing abuse reports",
-            "smithy.api#httpQuery": "page"
-          }
-        },
-        "per_page": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "How many abuse reports per page to list",
-            "smithy.api#httpQuery": "per_page"
-          }
-        },
-        "sort": {
-          "target": "com.cloudflare.abuse_reports#MitigationsListRequestSort",
-          "traits": {
-            "smithy.api#documentation": "A property to sort by, followed by the order",
-            "smithy.api#httpQuery": "sort"
-          }
-        },
-        "status": {
-          "target": "com.cloudflare.abuse_reports#MitigationsListRequestStatus",
-          "traits": {
-            "smithy.api#documentation": "Filter by the status of the mitigation.",
-            "smithy.api#httpQuery": "status"
-          }
-        },
-        "type": {
-          "target": "com.cloudflare.abuse_reports#MitigationsListRequestType",
-          "traits": {
-            "smithy.api#documentation": "Filter by the type of mitigation. This filter parameter can be specified multiple times to include multiple types of mitigations in the result set, e.g. ?type=rate_limit_cache&type=legal_block.",
-            "smithy.api#httpQuery": "type"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.abuse_reports#MitigationsListResponseMitigationsItemEntityType": {
       "type": "enum",
       "members": {
@@ -1877,39 +1478,6 @@
         "target": "com.cloudflare.abuse_reports#MitigationsListResponseMitigationsItem"
       }
     },
-    "com.cloudflare.abuse_reports#MitigationsListResponse": {
-      "type": "structure",
-      "members": {
-        "mitigations": {
-          "target": "com.cloudflare.abuse_reports#MitigationsListResponseMitigationsList",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.abuse_reports#MitigationsList": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.abuse_reports#MitigationsListRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.abuse_reports#MitigationsListResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/accounts/{account_id}/abuse-reports/{report_id}/mitigations",
-          "code": 200
-        },
-        "smithy.api#documentation": "List mitigations done to remediate the abuse report.",
-        "smithy.api#readonly": {}
-      }
-    },
     "com.cloudflare.abuse_reports#MitigationsReviewRequestAppealsItemReason": {
       "type": "enum",
       "members": {
@@ -1950,35 +1518,6 @@
       "type": "list",
       "member": {
         "target": "com.cloudflare.abuse_reports#MitigationsReviewRequestAppealsItem"
-      }
-    },
-    "com.cloudflare.abuse_reports#MitigationsReviewRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "report_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "appeals": {
-          "target": "com.cloudflare.abuse_reports#MitigationsReviewRequestAppealsList",
-          "traits": {
-            "smithy.api#documentation": "List of mitigations to appeal.",
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.abuse_reports#MitigationsReviewResultItemEntityType": {
@@ -2210,7 +1749,616 @@
         "target": "com.cloudflare.abuse_reports#MitigationsReviewResultItem"
       }
     },
-    "com.cloudflare.abuse_reports#MitigationsReviewResponse": {
+    "com.cloudflare.abuse_reports#AbuseReports": {
+      "type": "service",
+      "version": "4.0",
+      "operations": [
+        {
+          "target": "com.cloudflare.abuse_reports#Get"
+        },
+        {
+          "target": "com.cloudflare.abuse_reports#CreateAbuseReport"
+        },
+        {
+          "target": "com.cloudflare.abuse_reports#ListAbuseReports"
+        },
+        {
+          "target": "com.cloudflare.abuse_reports#ListMitigations"
+        },
+        {
+          "target": "com.cloudflare.abuse_reports#ReviewMitigation"
+        }
+      ],
+      "traits": {
+        "com.cloudflare.protocols#v4Json": {},
+        "smithy.api#title": "Cloudflare AbuseReports",
+        "smithy.api#documentation": "Cloudflare API — abuse_reports resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+      }
+    },
+    "com.cloudflare.abuse_reports#InvalidAccountId": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "code": 7003
+          }
+        ],
+        "smithy.api#httpError": 400
+      }
+    },
+    "com.cloudflare.abuse_reports#InvalidRequest": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "code": 7003
+          }
+        ],
+        "smithy.api#httpError": 400
+      }
+    },
+    "com.cloudflare.abuse_reports#CreateAbuseReport": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.abuse_reports#CreateAbuseReportRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.abuse_reports#CreateAbuseReportResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/abuse-reports/{report_param}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Submit the Abuse Report of a particular type"
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.abuse_reports#InvalidRequest"
+        }
+      ]
+    },
+    "com.cloudflare.abuse_reports#CreateAbuseReportRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "report_param": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The report type for submitted reports.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "act": {
+          "target": "com.cloudflare.abuse_reports#CreateRequestAct",
+          "traits": {
+            "smithy.api#documentation": "The report type for submitted reports.",
+            "smithy.api#required": {}
+          }
+        },
+        "address1": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Text not exceeding 100 characters. This field may be released by Cloudflare to third parties such as the Lumen Database (https://lumendatabase.org/)."
+          }
+        },
+        "agent_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the copyright holder. Text not exceeding 60 characters. This field may be released by Cloudflare to third parties such as the Lumen Database (https://lumendatabase.org/)."
+          }
+        },
+        "agree": {
+          "target": "com.cloudflare.abuse_reports#CreateRequestAgree",
+          "traits": {
+            "smithy.api#documentation": "Can be `0` for false or `1` for true. Must be value: 1 for DMCA reports"
+          }
+        },
+        "city": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Text not exceeding 255 characters. This field may be released by Cloudflare to third parties such as the Lumen Database (https://lumendatabase.org/)."
+          }
+        },
+        "country": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Text not exceeding 255 characters. This field may be released by Cloudflare to third parties such as the Lumen Database (https://lumendatabase.org/)."
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A valid email of the abuse reporter. This field may be released by Cloudflare to third parties such as the Lumen Database (https://lumendatabase.org/).",
+            "smithy.api#required": {}
+          }
+        },
+        "email2": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Should match the value provided in `email`",
+            "smithy.api#required": {}
+          }
+        },
+        "host_notification": {
+          "target": "com.cloudflare.abuse_reports#CreateRequestHostNotification",
+          "traits": {
+            "smithy.api#documentation": "Notification type based on the abuse type. NOTE: Copyright (DMCA) and Trademark reports cannot be anonymous."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Text not exceeding 255 characters. This field may be released by Cloudflare to third parties such as the Lumen Database (https://lumendatabase.org/).",
+            "smithy.api#required": {}
+          }
+        },
+        "original_work": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Text not exceeding 255 characters. This field may be released by Cloudflare to third parties such as the Lumen Database (https://lumendatabase.org/)."
+          }
+        },
+        "owner_notification": {
+          "target": "com.cloudflare.abuse_reports#CreateRequestOwnerNotification",
+          "traits": {
+            "smithy.api#documentation": "Notification type based on the abuse type. NOTE: Copyright (DMCA) and Trademark reports cannot be anonymous.",
+            "smithy.api#required": {}
+          }
+        },
+        "signature": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required for DMCA reports, should be same as Name. An affirmation that all information in the report is true and accurate while agreeing to the policies of Cloudflare's abuse reports"
+          }
+        },
+        "state": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Text not exceeding 255 characters. This field may be released by Cloudflare to third parties such as the Lumen Database (https://lumendatabase.org/)."
+          }
+        },
+        "urls": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A list of valid URLs separated by ‘\\n’ (new line character). The list of the URLs should not exceed 250 URLs. All URLs should have the same hostname. Each URL should be unique. This field may be released by Cloudflare to third parties such as the Lumen Database (https://lumendatabase.org/).",
+            "smithy.api#required": {}
+          }
+        },
+        "comments": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Any additional comments about the infringement not exceeding 2000 characters"
+          }
+        },
+        "company": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Text not exceeding 100 characters. This field may be released by Cloudflare to third parties such as the Lumen Database (https://lumendatabase.org/)."
+          }
+        },
+        "reported_country": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Text containing 2 characters"
+          }
+        },
+        "reported_user_agent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Text not exceeding 255 characters"
+          }
+        },
+        "tele": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Text not exceeding 20 characters. This field may be released by Cloudflare to third parties such as the Lumen Database (https://lumendatabase.org/)."
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Text not exceeding 255 characters"
+          }
+        },
+        "justification": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A detailed description of the infringement, including any necessary access details and the exact steps needed to view the content, not exceeding 5000 characters."
+          }
+        },
+        "trademark_number": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Text not exceeding 1000 characters"
+          }
+        },
+        "trademark_office": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Text not exceeding 1000 characters"
+          }
+        },
+        "trademark_symbol": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Text not exceeding 1000 characters"
+          }
+        },
+        "destination_ips": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A list of IP addresses separated by ‘\\n’ (new line character). The list of destination IPs should not exceed 30 IP addresses. Each one of the IP addresses ought to be unique."
+          }
+        },
+        "ports_protocols": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A comma separated list of ports and protocols e.g. 80/TCP, 22/UDP. The total size of the field should not exceed 2000 characters. Each individual port/protocol should not exceed 100 characters. The list should not have more than 30 unique ports and protocols."
+          }
+        },
+        "source_ips": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A list of IP addresses separated by ‘\\n’ (new line character). The list of source IPs should not exceed 30 IP addresses. Each one of the IP addresses ought to be unique."
+          }
+        },
+        "ncmec_notification": {
+          "target": "com.cloudflare.abuse_reports#CreateRequestNcmecNotification",
+          "traits": {
+            "smithy.api#documentation": "Notification type based on the abuse type. NOTE: Copyright (DMCA) and Trademark reports cannot be anonymous."
+          }
+        },
+        "reg_who_request": {
+          "target": "com.cloudflare.abuse_reports#CreateRequestRegWhoRequest",
+          "traits": {
+            "smithy.api#documentation": "RDP-mandated fields for registrar WHOIS data disclosure requests."
+          }
+        },
+        "ncsei_subject_representation": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If the submitter is the target of NCSEI in the URLs of the abuse report."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.abuse_reports#CreateAbuseReportResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.abuse_reports#ListAbuseReports": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.abuse_reports#ListAbuseReportsRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.abuse_reports#ListAbuseReportsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/abuse-reports",
+          "code": 200
+        },
+        "smithy.api#documentation": "List the abuse reports for a given account",
+        "smithy.api#readonly": {},
+        "smithy.api#paginated": {
+          "mode": "page",
+          "inputToken": "page",
+          "outputToken": "resultInfo.page",
+          "items": "result.items",
+          "pageSize": "perPage"
+        }
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.abuse_reports#InvalidAccountId"
+        }
+      ]
+    },
+    "com.cloudflare.abuse_reports#ListAbuseReportsRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "created_after": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Returns reports created after the specified date",
+            "smithy.api#httpQuery": "created_after"
+          }
+        },
+        "created_before": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Returns reports created before the specified date",
+            "smithy.api#httpQuery": "created_before"
+          }
+        },
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Filter by domain name related to the abuse report",
+            "smithy.api#httpQuery": "domain"
+          }
+        },
+        "mitigation_status": {
+          "target": "com.cloudflare.abuse_reports#ListRequestMitigationStatus",
+          "traits": {
+            "smithy.api#documentation": "Filter reports that have any mitigations in the given status.",
+            "smithy.api#httpQuery": "mitigation_status"
+          }
+        },
+        "page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Where in pagination to start listing abuse reports",
+            "smithy.api#httpQuery": "page"
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "How many abuse reports per page to list",
+            "smithy.api#httpQuery": "per_page"
+          }
+        },
+        "sort": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A property to sort by, followed by the order (id, cdate, domain, type, status)",
+            "smithy.api#httpQuery": "sort"
+          }
+        },
+        "status": {
+          "target": "com.cloudflare.abuse_reports#ListRequestStatus",
+          "traits": {
+            "smithy.api#documentation": "Filter by the status of the report.",
+            "smithy.api#httpQuery": "status"
+          }
+        },
+        "type": {
+          "target": "com.cloudflare.abuse_reports#ListRequestType",
+          "traits": {
+            "smithy.api#documentation": "Filter by the type of the report.",
+            "smithy.api#httpQuery": "type"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.abuse_reports#ListAbuseReportsResponse": {
+      "type": "structure",
+      "members": {
+        "reports": {
+          "target": "com.cloudflare.abuse_reports#ListResponseReportsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.abuse_reports#ListMitigations": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.abuse_reports#ListMitigationsRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.abuse_reports#ListMitigationsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/abuse-reports/{report_id}/mitigations",
+          "code": 200
+        },
+        "smithy.api#documentation": "List mitigations done to remediate the abuse report.",
+        "smithy.api#readonly": {},
+        "smithy.api#paginated": {
+          "mode": "page",
+          "inputToken": "page",
+          "outputToken": "resultInfo.page",
+          "items": "result.items",
+          "pageSize": "perPage"
+        }
+      }
+    },
+    "com.cloudflare.abuse_reports#ListMitigationsRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "report_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "effective_after": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Returns mitigation that were dispatched after the given date",
+            "smithy.api#httpQuery": "effective_after"
+          }
+        },
+        "effective_before": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Returns mitigations that were dispatched before the given date",
+            "smithy.api#httpQuery": "effective_before"
+          }
+        },
+        "entity_type": {
+          "target": "com.cloudflare.abuse_reports#MitigationsListRequestEntityType",
+          "traits": {
+            "smithy.api#documentation": "Filter by the type of entity the mitigation impacts.",
+            "smithy.api#httpQuery": "entity_type"
+          }
+        },
+        "page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Where in pagination to start listing abuse reports",
+            "smithy.api#httpQuery": "page"
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "How many abuse reports per page to list",
+            "smithy.api#httpQuery": "per_page"
+          }
+        },
+        "sort": {
+          "target": "com.cloudflare.abuse_reports#MitigationsListRequestSort",
+          "traits": {
+            "smithy.api#documentation": "A property to sort by, followed by the order",
+            "smithy.api#httpQuery": "sort"
+          }
+        },
+        "status": {
+          "target": "com.cloudflare.abuse_reports#MitigationsListRequestStatus",
+          "traits": {
+            "smithy.api#documentation": "Filter by the status of the mitigation.",
+            "smithy.api#httpQuery": "status"
+          }
+        },
+        "type": {
+          "target": "com.cloudflare.abuse_reports#MitigationsListRequestType",
+          "traits": {
+            "smithy.api#documentation": "Filter by the type of mitigation. This filter parameter can be specified multiple times to include multiple types of mitigations in the result set, e.g. ?type=rate_limit_cache&type=legal_block.",
+            "smithy.api#httpQuery": "type"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.abuse_reports#ListMitigationsResponse": {
+      "type": "structure",
+      "members": {
+        "mitigations": {
+          "target": "com.cloudflare.abuse_reports#MitigationsListResponseMitigationsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.abuse_reports#ReviewMitigation": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.abuse_reports#ReviewMitigationRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.abuse_reports#ReviewMitigationResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/abuse-reports/{report_id}/mitigations/appeal",
+          "code": 200
+        },
+        "smithy.api#documentation": "Request a review for mitigations on an account.",
+        "smithy.api#paginated": {
+          "mode": "single",
+          "items": "result"
+        }
+      }
+    },
+    "com.cloudflare.abuse_reports#ReviewMitigationRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "report_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "appeals": {
+          "target": "com.cloudflare.abuse_reports#MitigationsReviewRequestAppealsList",
+          "traits": {
+            "smithy.api#documentation": "List of mitigations to appeal.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.abuse_reports#ReviewMitigationResponse": {
       "type": "structure",
       "members": {
         "result": {
@@ -2223,49 +2371,6 @@
       },
       "traits": {
         "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.abuse_reports#MitigationsReview": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.abuse_reports#MitigationsReviewRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.abuse_reports#MitigationsReviewResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "/accounts/{account_id}/abuse-reports/{report_id}/mitigations/appeal",
-          "code": 200
-        },
-        "smithy.api#documentation": "Request a review for mitigations on an account."
-      }
-    },
-    "com.cloudflare.abuse_reports#AbuseReports": {
-      "type": "service",
-      "version": "4.0",
-      "operations": [
-        {
-          "target": "com.cloudflare.abuse_reports#Create"
-        },
-        {
-          "target": "com.cloudflare.abuse_reports#Get"
-        },
-        {
-          "target": "com.cloudflare.abuse_reports#List"
-        },
-        {
-          "target": "com.cloudflare.abuse_reports#MitigationsList"
-        },
-        {
-          "target": "com.cloudflare.abuse_reports#MitigationsReview"
-        }
-      ],
-      "traits": {
-        "com.cloudflare.protocols#v4Json": {},
-        "smithy.api#title": "Cloudflare AbuseReports",
-        "smithy.api#documentation": "Cloudflare API — abuse_reports resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
       }
     }
   }

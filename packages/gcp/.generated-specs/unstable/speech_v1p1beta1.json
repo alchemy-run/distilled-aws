@@ -4,53 +4,251 @@
     "service": "speech",
     "version": "v1p1beta1",
     "title": "Cloud Speech-to-Text API",
-    "baseUrl": "https://speech.googleapis.com/"
+    "baseUrl": "https://speech.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.gcp.speech_v1p1beta1#ClassItem": {
+    "com.gcp.speech_v1p1beta1#SpeechRecognitionAlternative": {
       "type": "structure",
       "members": {
-        "value": {
+        "transcript": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The class item's value."
+            "smithy.api#documentation": "Transcript text representing the words that the user spoke. In languages that use spaces to separate words, the transcript might have a leading space if it isn't the first result. You can concatenate each result to obtain the full transcript without using a separator."
+          }
+        },
+        "words": {
+          "target": "com.gcp.speech_v1p1beta1#WordInfoList",
+          "traits": {
+            "smithy.api#documentation": "A list of word-specific information for each recognized word. Note: When `enable_speaker_diarization` is true, you will see all the words from the beginning of the audio."
+          }
+        },
+        "confidence": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The confidence estimate between 0.0 and 1.0. A higher number indicates an estimated greater likelihood that the recognized words are correct. This field is set only for the top alternative of a non-streaming result or, of a streaming result where `is_final=true`. This field is not guaranteed to be accurate and users should not rely on it to be always provided. The default of 0.0 is a sentinel value indicating `confidence` was not set."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "An item of the class."
+        "smithy.api#documentation": "Alternative hypotheses (a.k.a. n-best list)."
       }
     },
-    "com.gcp.speech_v1p1beta1#ListOperationsResponse": {
-      "type": "structure",
-      "members": {
-        "operations": {
-          "target": "com.gcp.speech_v1p1beta1#OperationList",
-          "traits": {
-            "smithy.api#documentation": "A list of operations that matches the specified filter in the request."
-          }
-        },
-        "nextPageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The standard List next-page token."
-          }
-        },
-        "unreachable": {
-          "target": "com.gcp.speech_v1p1beta1#StringList",
-          "traits": {
-            "smithy.api#documentation": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The response message for Operations.ListOperations."
-      }
-    },
-    "com.gcp.speech_v1p1beta1#OperationList": {
+    "com.gcp.speech_v1p1beta1#WordInfoList": {
       "type": "list",
       "member": {
-        "target": "com.gcp.speech_v1p1beta1#Operation"
+        "target": "com.gcp.speech_v1p1beta1#WordInfo"
+      }
+    },
+    "com.gcp.speech_v1p1beta1#PhraseSet": {
+      "type": "structure",
+      "members": {
+        "kmsKeyVersionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The [KMS key version name](https://cloud.google.com/kms/docs/resource-hierarchy#key_versions) with which content of the PhraseSet is encrypted. The expected format is `projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}`."
+          }
+        },
+        "expireTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time at which this resource will be purged. This field is not used."
+          }
+        },
+        "kmsKeyName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The [KMS key name](https://cloud.google.com/kms/docs/resource-hierarchy#keys) with which the content of the PhraseSet is encrypted. The expected format is `projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}`."
+          }
+        },
+        "boost": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Hint Boost. Positive value will increase the probability that a specific phrase will be recognized over other similar sounding phrases. The higher the boost, the higher the chance of false positive recognition as well. Negative boost values would correspond to anti-biasing. Anti-biasing is not enabled, so negative boost will simply be ignored. Though `boost` can accept a wide range of positive values, most use cases are best served with values between 0 (exclusive) and 20. We recommend using a binary search approach to finding the optimal value for your use case as well as adding phrases both with and without boost to your requests."
+          }
+        },
+        "phrases": {
+          "target": "com.gcp.speech_v1p1beta1#PhraseList",
+          "traits": {
+            "smithy.api#documentation": "A list of word and phrases."
+          }
+        },
+        "deleteTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time at which this resource was requested for deletion. This field is not used."
+          }
+        },
+        "uid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. System-assigned unique identifier for the PhraseSet. This field is not used."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name of the phrase set."
+          }
+        },
+        "reconciling": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Whether or not this PhraseSet is in the process of being updated. This field is not used."
+          }
+        },
+        "annotations": {
+          "target": "com.gcp.speech_v1p1beta1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Output only. Allows users to store small amounts of arbitrary data. Both the key and the value must be 63 characters or less each. At most 100 annotations. This field is not used."
+          }
+        },
+        "state": {
+          "target": "com.gcp.speech_v1p1beta1#PhraseSetStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The CustomClass lifecycle state. This field is not used."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. User-settable, human-readable name for the PhraseSet. Must be 63 characters or less. This field is not used."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. This checksum is computed by the server based on the value of other fields. This may be sent on update, undelete, and delete requests to ensure the client has an up-to-date value before proceeding. This field is not used."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Provides \"hints\" to the speech recognizer to favor specific words and phrases in the results."
+      }
+    },
+    "com.gcp.speech_v1p1beta1#PhraseList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.speech_v1p1beta1#Phrase"
+      }
+    },
+    "com.gcp.speech_v1p1beta1#StringMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.speech_v1p1beta1#PhraseSetStateEnum": {
+      "type": "enum",
+      "members": {
+        "STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_UNSPECIFIED"
+          }
+        },
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACTIVE"
+          }
+        },
+        "DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELETED"
+          }
+        }
+      }
+    },
+    "com.gcp.speech_v1p1beta1#RecognizeResponse": {
+      "type": "structure",
+      "members": {
+        "totalBilledTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When available, billed audio seconds for the corresponding request."
+          }
+        },
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID associated with the request. This is a unique ID specific only to the given request."
+          }
+        },
+        "usingLegacyModels": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether request used legacy asr models (was not automatically migrated to use conformer models)."
+          }
+        },
+        "speechAdaptationInfo": {
+          "target": "com.gcp.speech_v1p1beta1#SpeechAdaptationInfo",
+          "traits": {
+            "smithy.api#documentation": "Provides information on adaptation behavior in response"
+          }
+        },
+        "results": {
+          "target": "com.gcp.speech_v1p1beta1#SpeechRecognitionResultList",
+          "traits": {
+            "smithy.api#documentation": "Sequential list of transcription results corresponding to sequential portions of audio."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The only message returned to the client by the `Recognize` method. It contains the result as zero or more sequential `SpeechRecognitionResult` messages."
+      }
+    },
+    "com.gcp.speech_v1p1beta1#SpeechRecognitionResultList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.speech_v1p1beta1#SpeechRecognitionResult"
+      }
+    },
+    "com.gcp.speech_v1p1beta1#SpeakerDiarizationConfig": {
+      "type": "structure",
+      "members": {
+        "enableSpeakerDiarization": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If 'true', enables speaker detection for each recognized word in the top alternative of the recognition result using a speaker_label provided in the WordInfo."
+          }
+        },
+        "minSpeakerCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Minimum number of speakers in the conversation. This range gives you more flexibility by allowing the system to automatically determine the correct number of speakers. If not set, the default value is 2."
+          }
+        },
+        "maxSpeakerCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum number of speakers in the conversation. This range gives you more flexibility by allowing the system to automatically determine the correct number of speakers. If not set, the default value is 6."
+          }
+        },
+        "speakerTag": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Output only. Unused."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Config to enable speaker diarization."
+      }
+    },
+    "com.gcp.speech_v1p1beta1#ABNFGrammar": {
+      "type": "structure",
+      "members": {
+        "abnfStrings": {
+          "target": "com.gcp.speech_v1p1beta1#StringList",
+          "traits": {
+            "smithy.api#documentation": "All declarations and rules of an ABNF grammar broken up into multiple strings that will end up concatenated."
+          }
+        }
       }
     },
     "com.gcp.speech_v1p1beta1#StringList": {
@@ -59,77 +257,114 @@
         "target": "smithy.api#String"
       }
     },
-    "com.gcp.speech_v1p1beta1#ListPhraseSetResponse": {
+    "com.gcp.speech_v1p1beta1#LongRunningRecognizeResponse": {
       "type": "structure",
       "members": {
-        "nextPageToken": {
+        "requestId": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages."
+            "smithy.api#documentation": "The ID associated with the request. This is a unique ID specific only to the given request."
           }
         },
-        "phraseSets": {
-          "target": "com.gcp.speech_v1p1beta1#PhraseSetList",
+        "results": {
+          "target": "com.gcp.speech_v1p1beta1#SpeechRecognitionResultList",
           "traits": {
-            "smithy.api#documentation": "The phrase set."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Message returned to the client by the `ListPhraseSet` method."
-      }
-    },
-    "com.gcp.speech_v1p1beta1#PhraseSetList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.speech_v1p1beta1#PhraseSet"
-      }
-    },
-    "com.gcp.speech_v1p1beta1#Operation": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
+            "smithy.api#documentation": "Sequential list of transcription results corresponding to sequential portions of audio."
           }
         },
-        "metadata": {
-          "target": "com.gcp.speech_v1p1beta1#DocumentMap",
+        "outputConfig": {
+          "target": "com.gcp.speech_v1p1beta1#TranscriptOutputConfig",
           "traits": {
-            "smithy.api#documentation": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any."
+            "smithy.api#documentation": "Original output config if present in the request."
           }
         },
-        "done": {
-          "target": "smithy.api#Boolean",
+        "speechAdaptationInfo": {
+          "target": "com.gcp.speech_v1p1beta1#SpeechAdaptationInfo",
           "traits": {
-            "smithy.api#documentation": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
+            "smithy.api#documentation": "Provides information on speech adaptation behavior in response"
           }
         },
-        "error": {
+        "outputError": {
           "target": "com.gcp.speech_v1p1beta1#Status",
           "traits": {
-            "smithy.api#documentation": "The error result of the operation in case of failure or cancellation."
+            "smithy.api#documentation": "If the transcript output fails this field contains the relevant error."
           }
         },
-        "response": {
-          "target": "com.gcp.speech_v1p1beta1#DocumentMap",
+        "totalBilledTime": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`."
+            "smithy.api#documentation": "When available, billed audio seconds for the corresponding request."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "This resource represents a long-running operation that is the result of a network API call."
+        "smithy.api#documentation": "The only message returned to the client by the `LongRunningRecognize` method. It contains the result as zero or more sequential `SpeechRecognitionResult` messages. It is included in the `result.response` field of the `Operation` returned by the `GetOperation` call of the `google::longrunning::Operations` service."
       }
     },
-    "com.gcp.speech_v1p1beta1#DocumentMap": {
-      "type": "map",
-      "key": {
-        "target": "smithy.api#String"
+    "com.gcp.speech_v1p1beta1#Entry": {
+      "type": "structure",
+      "members": {
+        "replace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "What to replace with. Max length is 100 characters."
+          }
+        },
+        "caseSensitive": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the search is case sensitive."
+          }
+        },
+        "search": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "What to replace. Max length is 100 characters."
+          }
+        }
       },
-      "value": {
-        "target": "smithy.api#Document"
+      "traits": {
+        "smithy.api#documentation": "A single replacement configuration."
+      }
+    },
+    "com.gcp.speech_v1p1beta1#RecognizeRequest": {
+      "type": "structure",
+      "members": {
+        "config": {
+          "target": "com.gcp.speech_v1p1beta1#RecognitionConfig",
+          "traits": {
+            "smithy.api#documentation": "Required. Provides information to the recognizer that specifies how to process the request."
+          }
+        },
+        "audio": {
+          "target": "com.gcp.speech_v1p1beta1#RecognitionAudio",
+          "traits": {
+            "smithy.api#documentation": "Required. The audio data to be recognized."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The top-level message sent by the client for the `Recognize` method."
+      }
+    },
+    "com.gcp.speech_v1p1beta1#TranscriptNormalization": {
+      "type": "structure",
+      "members": {
+        "entries": {
+          "target": "com.gcp.speech_v1p1beta1#EntryList",
+          "traits": {
+            "smithy.api#documentation": "A list of replacement entries. We will perform replacement with one entry at a time. For example, the second entry in [\"cat\" => \"dog\", \"mountain cat\" => \"mountain dog\"] will never be applied because we will always process the first entry before it. At most 100 entries."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Transcription normalization configuration. Use transcription normalization to automatically replace parts of the transcript with phrases of your choosing. For StreamingRecognize, this normalization only applies to stable partial transcripts (stability > 0.8) and final transcripts."
+      }
+    },
+    "com.gcp.speech_v1p1beta1#EntryList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.speech_v1p1beta1#Entry"
       }
     },
     "com.gcp.speech_v1p1beta1#ListCustomClassesResponse": {
@@ -178,354 +413,30 @@
         "smithy.api#documentation": "Provides \"hints\" to the speech recognizer to favor specific words and phrases in the results."
       }
     },
-    "com.gcp.speech_v1p1beta1#SpeechRecognitionResult": {
+    "com.gcp.speech_v1p1beta1#LongRunningRecognizeRequest": {
       "type": "structure",
       "members": {
-        "resultEndTime": {
-          "target": "smithy.api#String",
+        "config": {
+          "target": "com.gcp.speech_v1p1beta1#RecognitionConfig",
           "traits": {
-            "smithy.api#documentation": "Time offset of the end of this result relative to the beginning of the audio."
+            "smithy.api#documentation": "Required. Provides information to the recognizer that specifies how to process the request."
           }
         },
-        "languageCode": {
-          "target": "smithy.api#String",
+        "audio": {
+          "target": "com.gcp.speech_v1p1beta1#RecognitionAudio",
           "traits": {
-            "smithy.api#documentation": "Output only. The [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag of the language in this result. This language code was detected to have the most likelihood of being spoken in the audio."
+            "smithy.api#documentation": "Required. The audio data to be recognized."
           }
         },
-        "alternatives": {
-          "target": "com.gcp.speech_v1p1beta1#SpeechRecognitionAlternativeList",
-          "traits": {
-            "smithy.api#documentation": "May contain one or more recognition hypotheses (up to the maximum specified in `max_alternatives`). These alternatives are ordered in terms of accuracy, with the top (first) alternative being the most probable, as ranked by the recognizer."
-          }
-        },
-        "channelTag": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "For multi-channel audio, this is the channel number corresponding to the recognized result for the audio from that channel. For audio_channel_count = N, its output values can range from '1' to 'N'."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A speech recognition result corresponding to a portion of the audio."
-      }
-    },
-    "com.gcp.speech_v1p1beta1#SpeechRecognitionAlternativeList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.speech_v1p1beta1#SpeechRecognitionAlternative"
-      }
-    },
-    "com.gcp.speech_v1p1beta1#Entry": {
-      "type": "structure",
-      "members": {
-        "replace": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "What to replace with. Max length is 100 characters."
-          }
-        },
-        "search": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "What to replace. Max length is 100 characters."
-          }
-        },
-        "caseSensitive": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether the search is case sensitive."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A single replacement configuration."
-      }
-    },
-    "com.gcp.speech_v1p1beta1#TranscriptNormalization": {
-      "type": "structure",
-      "members": {
-        "entries": {
-          "target": "com.gcp.speech_v1p1beta1#EntryList",
-          "traits": {
-            "smithy.api#documentation": "A list of replacement entries. We will perform replacement with one entry at a time. For example, the second entry in [\"cat\" => \"dog\", \"mountain cat\" => \"mountain dog\"] will never be applied because we will always process the first entry before it. At most 100 entries."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Transcription normalization configuration. Use transcription normalization to automatically replace parts of the transcript with phrases of your choosing. For StreamingRecognize, this normalization only applies to stable partial transcripts (stability > 0.8) and final transcripts."
-      }
-    },
-    "com.gcp.speech_v1p1beta1#EntryList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.speech_v1p1beta1#Entry"
-      }
-    },
-    "com.gcp.speech_v1p1beta1#LongRunningRecognizeResponse": {
-      "type": "structure",
-      "members": {
         "outputConfig": {
           "target": "com.gcp.speech_v1p1beta1#TranscriptOutputConfig",
           "traits": {
-            "smithy.api#documentation": "Original output config if present in the request."
-          }
-        },
-        "requestId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The ID associated with the request. This is a unique ID specific only to the given request."
-          }
-        },
-        "results": {
-          "target": "com.gcp.speech_v1p1beta1#SpeechRecognitionResultList",
-          "traits": {
-            "smithy.api#documentation": "Sequential list of transcription results corresponding to sequential portions of audio."
-          }
-        },
-        "outputError": {
-          "target": "com.gcp.speech_v1p1beta1#Status",
-          "traits": {
-            "smithy.api#documentation": "If the transcript output fails this field contains the relevant error."
-          }
-        },
-        "speechAdaptationInfo": {
-          "target": "com.gcp.speech_v1p1beta1#SpeechAdaptationInfo",
-          "traits": {
-            "smithy.api#documentation": "Provides information on speech adaptation behavior in response"
-          }
-        },
-        "totalBilledTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "When available, billed audio seconds for the corresponding request."
+            "smithy.api#documentation": "Optional. Specifies an optional destination for the recognition results."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "The only message returned to the client by the `LongRunningRecognize` method. It contains the result as zero or more sequential `SpeechRecognitionResult` messages. It is included in the `result.response` field of the `Operation` returned by the `GetOperation` call of the `google::longrunning::Operations` service."
-      }
-    },
-    "com.gcp.speech_v1p1beta1#SpeechRecognitionResultList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.speech_v1p1beta1#SpeechRecognitionResult"
-      }
-    },
-    "com.gcp.speech_v1p1beta1#CreatePhraseSetRequest": {
-      "type": "structure",
-      "members": {
-        "phraseSetId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The ID to use for the phrase set, which will become the final component of the phrase set's resource name. This value should restrict to letters, numbers, and hyphens, with the first character a letter, the last a letter or a number, and be 4-63 characters."
-          }
-        },
-        "phraseSet": {
-          "target": "com.gcp.speech_v1p1beta1#PhraseSet",
-          "traits": {
-            "smithy.api#documentation": "Required. The phrase set to create."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Message sent by the client for the `CreatePhraseSet` method."
-      }
-    },
-    "com.gcp.speech_v1p1beta1#CreateCustomClassRequest": {
-      "type": "structure",
-      "members": {
-        "customClass": {
-          "target": "com.gcp.speech_v1p1beta1#CustomClass",
-          "traits": {
-            "smithy.api#documentation": "Required. The custom class to create."
-          }
-        },
-        "customClassId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The ID to use for the custom class, which will become the final component of the custom class' resource name. This value should restrict to letters, numbers, and hyphens, with the first character a letter, the last a letter or a number, and be 4-63 characters."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Message sent by the client for the `CreateCustomClass` method."
-      }
-    },
-    "com.gcp.speech_v1p1beta1#CustomClass": {
-      "type": "structure",
-      "members": {
-        "deleteTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The time at which this resource was requested for deletion. This field is not used."
-          }
-        },
-        "displayName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. User-settable, human-readable name for the CustomClass. Must be 63 characters or less. This field is not used."
-          }
-        },
-        "uid": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. System-assigned unique identifier for the CustomClass. This field is not used."
-          }
-        },
-        "expireTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The time at which this resource will be purged. This field is not used."
-          }
-        },
-        "reconciling": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Output only. Whether or not this CustomClass is in the process of being updated. This field is not used."
-          }
-        },
-        "state": {
-          "target": "com.gcp.speech_v1p1beta1#CustomClassStateEnum",
-          "traits": {
-            "smithy.api#documentation": "Output only. The CustomClass lifecycle state. This field is not used."
-          }
-        },
-        "kmsKeyName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The [KMS key name](https://cloud.google.com/kms/docs/resource-hierarchy#keys) with which the content of the ClassItem is encrypted. The expected format is `projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}`."
-          }
-        },
-        "annotations": {
-          "target": "com.gcp.speech_v1p1beta1#StringMap",
-          "traits": {
-            "smithy.api#documentation": "Output only. Allows users to store small amounts of arbitrary data. Both the key and the value must be 63 characters or less each. At most 100 annotations. This field is not used."
-          }
-        },
-        "items": {
-          "target": "com.gcp.speech_v1p1beta1#ClassItemList",
-          "traits": {
-            "smithy.api#documentation": "A collection of class items."
-          }
-        },
-        "kmsKeyVersionName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The [KMS key version name](https://cloud.google.com/kms/docs/resource-hierarchy#key_versions) with which content of the ClassItem is encrypted. The expected format is `projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}`."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The resource name of the custom class."
-          }
-        },
-        "etag": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. This checksum is computed by the server based on the value of other fields. This may be sent on update, undelete, and delete requests to ensure the client has an up-to-date value before proceeding. This field is not used."
-          }
-        },
-        "customClassId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "If this custom class is a resource, the custom_class_id is the resource id of the CustomClass. Case sensitive."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A set of words or phrases that represents a common concept likely to appear in your audio, for example a list of passenger ship names. CustomClass items can be substituted into placeholders that you set in PhraseSet phrases."
-      }
-    },
-    "com.gcp.speech_v1p1beta1#CustomClassStateEnum": {
-      "type": "enum",
-      "members": {
-        "STATE_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "STATE_UNSPECIFIED"
-          }
-        },
-        "ACTIVE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "ACTIVE"
-          }
-        },
-        "DELETED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "DELETED"
-          }
-        }
-      }
-    },
-    "com.gcp.speech_v1p1beta1#StringMap": {
-      "type": "map",
-      "key": {
-        "target": "smithy.api#String"
-      },
-      "value": {
-        "target": "smithy.api#String"
-      }
-    },
-    "com.gcp.speech_v1p1beta1#ClassItemList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.speech_v1p1beta1#ClassItem"
-      }
-    },
-    "com.gcp.speech_v1p1beta1#SpeechAdaptation": {
-      "type": "structure",
-      "members": {
-        "customClasses": {
-          "target": "com.gcp.speech_v1p1beta1#CustomClassList",
-          "traits": {
-            "smithy.api#documentation": "A collection of custom classes. To specify the classes inline, leave the class' `name` blank and fill in the rest of its fields, giving it a unique `custom_class_id`. Refer to the inline defined class in phrase hints by its `custom_class_id`."
-          }
-        },
-        "phraseSetReferences": {
-          "target": "com.gcp.speech_v1p1beta1#StringList",
-          "traits": {
-            "smithy.api#documentation": "A collection of phrase set resource names to use."
-          }
-        },
-        "phraseSets": {
-          "target": "com.gcp.speech_v1p1beta1#PhraseSetList",
-          "traits": {
-            "smithy.api#documentation": "A collection of phrase sets. To specify the hints inline, leave the phrase set's `name` blank and fill in the rest of its fields. Any phrase set can use any custom class."
-          }
-        },
-        "abnfGrammar": {
-          "target": "com.gcp.speech_v1p1beta1#ABNFGrammar",
-          "traits": {
-            "smithy.api#documentation": "Augmented Backus-Naur form (ABNF) is a standardized grammar notation comprised by a set of derivation rules. See specifications: https://www.w3.org/TR/speech-grammar"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Speech adaptation configuration."
-      }
-    },
-    "com.gcp.speech_v1p1beta1#Phrase": {
-      "type": "structure",
-      "members": {
-        "value": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The phrase itself."
-          }
-        },
-        "boost": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Hint Boost. Overrides the boost set at the phrase set level. Positive value will increase the probability that a specific phrase will be recognized over other similar sounding phrases. The higher the boost, the higher the chance of false positive recognition as well. Negative boost will simply be ignored. Though `boost` can accept a wide range of positive values, most use cases are best served with values between 0 and 20. We recommend using a binary search approach to finding the optimal value for your use case as well as adding phrases both with and without boost to your requests."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A phrases containing words and phrase \"hints\" so that the speech recognition is more likely to recognize them. This can be used to improve the accuracy for specific words and phrases, for example, if specific commands are typically spoken by the user. This can also be used to add additional words to the vocabulary of the recognizer. See [usage limits](https://cloud.google.com/speech-to-text/quotas#content). List items can also include pre-built or custom classes containing groups of words that represent common concepts that occur in natural language. For example, rather than providing a phrase hint for every month of the year (e.g. \"i was born in january\", \"i was born in febuary\", ...), use the pre-built `$MONTH` class improves the likelihood of correctly transcribing audio that includes months (e.g. \"i was born in $month\"). To refer to pre-built classes, use the class' symbol prepended with `$` e.g. `$MONTH`. To refer to custom classes that were defined inline in the request, set the class's `custom_class_id` to a string unique to all class resources and inline classes. Then use the class' id wrapped in $`{...}` e.g. \"${my-months}\". To refer to custom classes resources, use the class' id wrapped in `${}` (e.g. `${my-months}`). Speech-to-Text supports three locations: `global`, `us` (US North America), and `eu` (Europe). If you are calling the `speech.googleapis.com` endpoint, use the `global` location. To specify a region, use a [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints) with matching `us` or `eu` location value."
+        "smithy.api#documentation": "The top-level message sent by the client for the `LongRunningRecognize` method."
       }
     },
     "com.gcp.speech_v1p1beta1#RecognitionMetadata": {
@@ -535,12 +446,6 @@
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Obfuscated (privacy-protected) ID of the user, to identify number of unique users using the service."
-          }
-        },
-        "originalMimeType": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Mime type of the original audio file. For example `audio/m4a`, `audio/x-alaw-basic`, `audio/mp3`, `audio/3gpp`. A list of possible audio mime types is maintained at http://www.iana.org/assignments/media-types/media-types.xhtml#audio"
           }
         },
         "recordingDeviceName": {
@@ -555,10 +460,10 @@
             "smithy.api#documentation": "The use case most closely describing the audio content to be recognized."
           }
         },
-        "originalMediaType": {
-          "target": "com.gcp.speech_v1p1beta1#RecognitionMetadataOriginalMediaTypeEnum",
+        "microphoneDistance": {
+          "target": "com.gcp.speech_v1p1beta1#RecognitionMetadataMicrophoneDistanceEnum",
           "traits": {
-            "smithy.api#documentation": "The original media the speech was recorded on."
+            "smithy.api#documentation": "The audio type that most closely describes the audio being recognized."
           }
         },
         "recordingDeviceType": {
@@ -567,10 +472,10 @@
             "smithy.api#documentation": "The type of device the speech was recorded with."
           }
         },
-        "microphoneDistance": {
-          "target": "com.gcp.speech_v1p1beta1#RecognitionMetadataMicrophoneDistanceEnum",
+        "industryNaicsCodeOfAudio": {
+          "target": "smithy.api#Integer",
           "traits": {
-            "smithy.api#documentation": "The audio type that most closely describes the audio being recognized."
+            "smithy.api#documentation": "The industry vertical to which this speech recognition request most closely applies. This is most indicative of the topics contained in the audio. Use the 6-digit NAICS code to identify the industry vertical - see https://www.naics.com/search/."
           }
         },
         "audioTopic": {
@@ -579,10 +484,16 @@
             "smithy.api#documentation": "Description of the content. Eg. \"Recordings of federal supreme court hearings from 2012\"."
           }
         },
-        "industryNaicsCodeOfAudio": {
-          "target": "smithy.api#Integer",
+        "originalMimeType": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The industry vertical to which this speech recognition request most closely applies. This is most indicative of the topics contained in the audio. Use the 6-digit NAICS code to identify the industry vertical - see https://www.naics.com/search/."
+            "smithy.api#documentation": "Mime type of the original audio file. For example `audio/m4a`, `audio/x-alaw-basic`, `audio/mp3`, `audio/3gpp`. A list of possible audio mime types is maintained at http://www.iana.org/assignments/media-types/media-types.xhtml#audio"
+          }
+        },
+        "originalMediaType": {
+          "target": "com.gcp.speech_v1p1beta1#RecognitionMetadataOriginalMediaTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "The original media the speech was recorded on."
           }
         }
       },
@@ -649,25 +560,31 @@
         }
       }
     },
-    "com.gcp.speech_v1p1beta1#RecognitionMetadataOriginalMediaTypeEnum": {
+    "com.gcp.speech_v1p1beta1#RecognitionMetadataMicrophoneDistanceEnum": {
       "type": "enum",
       "members": {
-        "ORIGINAL_MEDIA_TYPE_UNSPECIFIED": {
+        "MICROPHONE_DISTANCE_UNSPECIFIED": {
           "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#enumValue": "ORIGINAL_MEDIA_TYPE_UNSPECIFIED"
+            "smithy.api#enumValue": "MICROPHONE_DISTANCE_UNSPECIFIED"
           }
         },
-        "AUDIO": {
+        "NEARFIELD": {
           "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#enumValue": "AUDIO"
+            "smithy.api#enumValue": "NEARFIELD"
           }
         },
-        "VIDEO": {
+        "MIDFIELD": {
           "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#enumValue": "VIDEO"
+            "smithy.api#enumValue": "MIDFIELD"
+          }
+        },
+        "FARFIELD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FARFIELD"
           }
         }
       }
@@ -719,128 +636,209 @@
         }
       }
     },
-    "com.gcp.speech_v1p1beta1#RecognitionMetadataMicrophoneDistanceEnum": {
+    "com.gcp.speech_v1p1beta1#RecognitionMetadataOriginalMediaTypeEnum": {
       "type": "enum",
       "members": {
-        "MICROPHONE_DISTANCE_UNSPECIFIED": {
+        "ORIGINAL_MEDIA_TYPE_UNSPECIFIED": {
           "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#enumValue": "MICROPHONE_DISTANCE_UNSPECIFIED"
+            "smithy.api#enumValue": "ORIGINAL_MEDIA_TYPE_UNSPECIFIED"
           }
         },
-        "NEARFIELD": {
+        "AUDIO": {
           "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#enumValue": "NEARFIELD"
+            "smithy.api#enumValue": "AUDIO"
           }
         },
-        "MIDFIELD": {
+        "VIDEO": {
           "target": "smithy.api#Unit",
           "traits": {
-            "smithy.api#enumValue": "MIDFIELD"
-          }
-        },
-        "FARFIELD": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "FARFIELD"
+            "smithy.api#enumValue": "VIDEO"
           }
         }
       }
     },
-    "com.gcp.speech_v1p1beta1#SpeechRecognitionAlternative": {
+    "com.gcp.speech_v1p1beta1#CreatePhraseSetRequest": {
       "type": "structure",
       "members": {
-        "confidence": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The confidence estimate between 0.0 and 1.0. A higher number indicates an estimated greater likelihood that the recognized words are correct. This field is set only for the top alternative of a non-streaming result or, of a streaming result where `is_final=true`. This field is not guaranteed to be accurate and users should not rely on it to be always provided. The default of 0.0 is a sentinel value indicating `confidence` was not set."
-          }
-        },
-        "words": {
-          "target": "com.gcp.speech_v1p1beta1#WordInfoList",
-          "traits": {
-            "smithy.api#documentation": "A list of word-specific information for each recognized word. Note: When `enable_speaker_diarization` is true, you will see all the words from the beginning of the audio."
-          }
-        },
-        "transcript": {
+        "phraseSetId": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Transcript text representing the words that the user spoke. In languages that use spaces to separate words, the transcript might have a leading space if it isn't the first result. You can concatenate each result to obtain the full transcript without using a separator."
+            "smithy.api#documentation": "Required. The ID to use for the phrase set, which will become the final component of the phrase set's resource name. This value should restrict to letters, numbers, and hyphens, with the first character a letter, the last a letter or a number, and be 4-63 characters."
+          }
+        },
+        "phraseSet": {
+          "target": "com.gcp.speech_v1p1beta1#PhraseSet",
+          "traits": {
+            "smithy.api#documentation": "Required. The phrase set to create."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Alternative hypotheses (a.k.a. n-best list)."
+        "smithy.api#documentation": "Message sent by the client for the `CreatePhraseSet` method."
       }
     },
-    "com.gcp.speech_v1p1beta1#WordInfoList": {
+    "com.gcp.speech_v1p1beta1#LongRunningRecognizeMetadata": {
+      "type": "structure",
+      "members": {
+        "uri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The URI of the audio file being transcribed. Empty if the audio was sent as byte content."
+          }
+        },
+        "progressPercent": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Approximate percentage of audio processed thus far. Guaranteed to be 100 when the audio is fully processed and the results are available."
+          }
+        },
+        "outputConfig": {
+          "target": "com.gcp.speech_v1p1beta1#TranscriptOutputConfig",
+          "traits": {
+            "smithy.api#documentation": "Output only. A copy of the TranscriptOutputConfig if it was set in the request."
+          }
+        },
+        "lastUpdateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Time of the most recent processing update."
+          }
+        },
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Time when the request was received."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes the progress of a long-running `LongRunningRecognize` call. It is included in the `metadata` field of the `Operation` returned by the `GetOperation` call of the `google::longrunning::Operations` service."
+      }
+    },
+    "com.gcp.speech_v1p1beta1#CustomClass": {
+      "type": "structure",
+      "members": {
+        "uid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. System-assigned unique identifier for the CustomClass. This field is not used."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. User-settable, human-readable name for the CustomClass. Must be 63 characters or less. This field is not used."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name of the custom class."
+          }
+        },
+        "kmsKeyVersionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The [KMS key version name](https://cloud.google.com/kms/docs/resource-hierarchy#key_versions) with which content of the ClassItem is encrypted. The expected format is `projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}`."
+          }
+        },
+        "annotations": {
+          "target": "com.gcp.speech_v1p1beta1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Output only. Allows users to store small amounts of arbitrary data. Both the key and the value must be 63 characters or less each. At most 100 annotations. This field is not used."
+          }
+        },
+        "reconciling": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Whether or not this CustomClass is in the process of being updated. This field is not used."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. This checksum is computed by the server based on the value of other fields. This may be sent on update, undelete, and delete requests to ensure the client has an up-to-date value before proceeding. This field is not used."
+          }
+        },
+        "deleteTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time at which this resource was requested for deletion. This field is not used."
+          }
+        },
+        "customClassId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If this custom class is a resource, the custom_class_id is the resource id of the CustomClass. Case sensitive."
+          }
+        },
+        "state": {
+          "target": "com.gcp.speech_v1p1beta1#CustomClassStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The CustomClass lifecycle state. This field is not used."
+          }
+        },
+        "expireTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time at which this resource will be purged. This field is not used."
+          }
+        },
+        "kmsKeyName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The [KMS key name](https://cloud.google.com/kms/docs/resource-hierarchy#keys) with which the content of the ClassItem is encrypted. The expected format is `projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}`."
+          }
+        },
+        "items": {
+          "target": "com.gcp.speech_v1p1beta1#ClassItemList",
+          "traits": {
+            "smithy.api#documentation": "A collection of class items."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A set of words or phrases that represents a common concept likely to appear in your audio, for example a list of passenger ship names. CustomClass items can be substituted into placeholders that you set in PhraseSet phrases."
+      }
+    },
+    "com.gcp.speech_v1p1beta1#CustomClassStateEnum": {
+      "type": "enum",
+      "members": {
+        "STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_UNSPECIFIED"
+          }
+        },
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACTIVE"
+          }
+        },
+        "DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELETED"
+          }
+        }
+      }
+    },
+    "com.gcp.speech_v1p1beta1#ClassItemList": {
       "type": "list",
       "member": {
-        "target": "com.gcp.speech_v1p1beta1#WordInfo"
+        "target": "com.gcp.speech_v1p1beta1#ClassItem"
       }
     },
     "com.gcp.speech_v1p1beta1#RecognitionConfig": {
       "type": "structure",
       "members": {
-        "metadata": {
-          "target": "com.gcp.speech_v1p1beta1#RecognitionMetadata",
-          "traits": {
-            "smithy.api#documentation": "Metadata regarding this request."
-          }
-        },
-        "languageCode": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The language of the supplied audio as a [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag. Example: \"en-US\". See [Language Support](https://cloud.google.com/speech-to-text/docs/languages) for a list of the currently supported language codes."
-          }
-        },
         "enableSpokenPunctuation": {
           "target": "smithy.api#Boolean",
           "traits": {
             "smithy.api#documentation": "The spoken punctuation behavior for the call If not set, uses default behavior based on model of choice e.g. command_and_search will enable spoken punctuation by default If 'true', replaces spoken punctuation with the corresponding symbols in the request. For example, \"how are you question mark\" becomes \"how are you?\". See https://cloud.google.com/speech-to-text/docs/spoken-punctuation for support. If 'false', spoken punctuation is not replaced."
-          }
-        },
-        "diarizationConfig": {
-          "target": "com.gcp.speech_v1p1beta1#SpeakerDiarizationConfig",
-          "traits": {
-            "smithy.api#documentation": "Config to enable speaker diarization and set additional parameters to make diarization better suited for your application. Note: When this is enabled, we send all the words from the beginning of the audio for the top alternative in every consecutive STREAMING responses. This is done in order to improve our speaker tags as our models learn to identify the speakers in the conversation over time. For non-streaming requests, the diarization results will be provided only in the top alternative of the FINAL SpeechRecognitionResult."
-          }
-        },
-        "sampleRateHertz": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Sample rate in Hertz of the audio data sent in all `RecognitionAudio` messages. Valid values are: 8000-48000. 16000 is optimal. For best results, set the sampling rate of the audio source to 16000 Hz. If that's not possible, use the native sample rate of the audio source (instead of re-sampling). This field is optional for FLAC and WAV audio files, but is required for all other audio formats. For details, see AudioEncoding."
-          }
-        },
-        "alternativeLanguageCodes": {
-          "target": "com.gcp.speech_v1p1beta1#StringList",
-          "traits": {
-            "smithy.api#documentation": "A list of up to 3 additional [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tags, listing possible alternative languages of the supplied audio. See [Language Support](https://cloud.google.com/speech-to-text/docs/languages) for a list of the currently supported language codes. If alternative languages are listed, recognition result will contain recognition in the most likely language detected including the main language_code. The recognition result will include the language tag of the language detected in the audio. Note: This feature is only supported for Voice Command and Voice Search use cases and performance may vary for other use cases (e.g., phone call transcription)."
-          }
-        },
-        "speechContexts": {
-          "target": "com.gcp.speech_v1p1beta1#SpeechContextList",
-          "traits": {
-            "smithy.api#documentation": "Array of SpeechContext. A means to provide context to assist the speech recognition. For more information, see [speech adaptation](https://cloud.google.com/speech-to-text/docs/adaptation)."
-          }
-        },
-        "enableSeparateRecognitionPerChannel": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "This needs to be set to `true` explicitly and `audio_channel_count` > 1 to get each channel recognized separately. The recognition result will contain a `channel_tag` field to state which channel that result belongs to. If this is not true, we will only recognize the first channel. The request is billed cumulatively for all channels recognized: `audio_channel_count` multiplied by the length of the audio."
-          }
-        },
-        "encoding": {
-          "target": "com.gcp.speech_v1p1beta1#RecognitionConfigEncodingEnum",
-          "traits": {
-            "smithy.api#documentation": "Encoding of audio data sent in all `RecognitionAudio` messages. This field is optional for `FLAC` and `WAV` audio files and required for all other audio formats. For details, see AudioEncoding."
-          }
-        },
-        "enableSpeakerDiarization": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "If 'true', enables speaker detection for each recognized word in the top alternative of the recognition result using a speaker_label provided in the WordInfo. Note: Use diarization_config instead."
           }
         },
         "diarizationSpeakerCount": {
@@ -849,10 +847,70 @@
             "smithy.api#documentation": "If set, specifies the estimated number of speakers in the conversation. Defaults to '2'. Ignored unless enable_speaker_diarization is set to true. Note: Use diarization_config instead."
           }
         },
+        "transcriptNormalization": {
+          "target": "com.gcp.speech_v1p1beta1#TranscriptNormalization",
+          "traits": {
+            "smithy.api#documentation": "Optional. Use transcription normalization to automatically replace parts of the transcript with phrases of your choosing. For StreamingRecognize, this normalization only applies to stable partial transcripts (stability > 0.8) and final transcripts."
+          }
+        },
+        "enableWordConfidence": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If `true`, the top result includes a list of words and the confidence for those words. If `false`, no word-level confidence information is returned. The default is `false`."
+          }
+        },
+        "diarizationConfig": {
+          "target": "com.gcp.speech_v1p1beta1#SpeakerDiarizationConfig",
+          "traits": {
+            "smithy.api#documentation": "Config to enable speaker diarization and set additional parameters to make diarization better suited for your application. Note: When this is enabled, we send all the words from the beginning of the audio for the top alternative in every consecutive STREAMING responses. This is done in order to improve our speaker tags as our models learn to identify the speakers in the conversation over time. For non-streaming requests, the diarization results will be provided only in the top alternative of the FINAL SpeechRecognitionResult."
+          }
+        },
+        "alternativeLanguageCodes": {
+          "target": "com.gcp.speech_v1p1beta1#StringList",
+          "traits": {
+            "smithy.api#documentation": "A list of up to 3 additional [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tags, listing possible alternative languages of the supplied audio. See [Language Support](https://cloud.google.com/speech-to-text/docs/languages) for a list of the currently supported language codes. If alternative languages are listed, recognition result will contain recognition in the most likely language detected including the main language_code. The recognition result will include the language tag of the language detected in the audio. Note: This feature is only supported for Voice Command and Voice Search use cases and performance may vary for other use cases (e.g., phone call transcription)."
+          }
+        },
+        "encoding": {
+          "target": "com.gcp.speech_v1p1beta1#RecognitionConfigEncodingEnum",
+          "traits": {
+            "smithy.api#documentation": "Encoding of audio data sent in all `RecognitionAudio` messages. This field is optional for `FLAC` and `WAV` audio files and required for all other audio formats. For details, see AudioEncoding."
+          }
+        },
+        "adaptation": {
+          "target": "com.gcp.speech_v1p1beta1#SpeechAdaptation",
+          "traits": {
+            "smithy.api#documentation": "Speech adaptation configuration improves the accuracy of speech recognition. For more information, see the [speech adaptation](https://cloud.google.com/speech-to-text/docs/adaptation) documentation. When speech adaptation is set it supersedes the `speech_contexts` field."
+          }
+        },
+        "speechContexts": {
+          "target": "com.gcp.speech_v1p1beta1#SpeechContextList",
+          "traits": {
+            "smithy.api#documentation": "Array of SpeechContext. A means to provide context to assist the speech recognition. For more information, see [speech adaptation](https://cloud.google.com/speech-to-text/docs/adaptation)."
+          }
+        },
+        "model": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Which model to select for the given request. Select the model best suited to your domain to get best results. If a model is not explicitly specified, then we auto-select a model based on the parameters in the RecognitionConfig. *Model* *Description* latest_long Best for long form content like media or conversation. latest_short Best for short form content like commands or single shot directed speech. command_and_search Best for short queries such as voice commands or voice search. phone_call Best for audio that originated from a phone call (typically recorded at an 8khz sampling rate). video Best for audio that originated from video or includes multiple speakers. Ideally the audio is recorded at a 16khz or greater sampling rate. This is a premium model that costs more than the standard rate. default Best for audio that is not one of the specific audio models. For example, long-form audio. Ideally the audio is high-fidelity, recorded at a 16khz or greater sampling rate. medical_conversation Best for audio that originated from a conversation between a medical provider and patient. medical_dictation Best for audio that originated from dictation notes by a medical provider. "
+          }
+        },
+        "useEnhanced": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Set to true to use an enhanced model for speech recognition. If `use_enhanced` is set to true and the `model` field is not set, then an appropriate enhanced model is chosen if an enhanced model exists for the audio. If `use_enhanced` is true and an enhanced version of the specified model does not exist, then the speech is recognized using the standard version of the specified model."
+          }
+        },
         "profanityFilter": {
           "target": "smithy.api#Boolean",
           "traits": {
             "smithy.api#documentation": "If set to `true`, the server will attempt to filter out profanities, replacing all but the initial character in each filtered word with asterisks, e.g. \"f***\". If set to `false` or omitted, profanities won't be filtered out."
+          }
+        },
+        "enableSpeakerDiarization": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If 'true', enables speaker detection for each recognized word in the top alternative of the recognition result using a speaker_label provided in the WordInfo. Note: Use diarization_config instead."
           }
         },
         "enableAutomaticPunctuation": {
@@ -867,22 +925,28 @@
             "smithy.api#documentation": "The spoken emoji behavior for the call If not set, uses default behavior based on model of choice If 'true', adds spoken emoji formatting for the request. This will replace spoken emojis with the corresponding Unicode symbols in the final transcript. If 'false', spoken emojis are not replaced."
           }
         },
-        "audioChannelCount": {
+        "enableWordTimeOffsets": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If `true`, the top result includes a list of words and the start and end time offsets (timestamps) for those words. If `false`, no word-level time offset information is returned. The default is `false`."
+          }
+        },
+        "sampleRateHertz": {
           "target": "smithy.api#Integer",
           "traits": {
-            "smithy.api#documentation": "The number of channels in the input audio data. ONLY set this for MULTI-CHANNEL recognition. Valid values for LINEAR16, OGG_OPUS and FLAC are `1`-`8`. Valid value for MULAW, AMR, AMR_WB and SPEEX_WITH_HEADER_BYTE is only `1`. If `0` or omitted, defaults to one channel (mono). Note: We only recognize the first channel by default. To perform independent recognition on each channel set `enable_separate_recognition_per_channel` to 'true'."
+            "smithy.api#documentation": "Sample rate in Hertz of the audio data sent in all `RecognitionAudio` messages. Valid values are: 8000-48000. 16000 is optimal. For best results, set the sampling rate of the audio source to 16000 Hz. If that's not possible, use the native sample rate of the audio source (instead of re-sampling). This field is optional for FLAC and WAV audio files, but is required for all other audio formats. For details, see AudioEncoding."
           }
         },
-        "adaptation": {
-          "target": "com.gcp.speech_v1p1beta1#SpeechAdaptation",
+        "enableSeparateRecognitionPerChannel": {
+          "target": "smithy.api#Boolean",
           "traits": {
-            "smithy.api#documentation": "Speech adaptation configuration improves the accuracy of speech recognition. For more information, see the [speech adaptation](https://cloud.google.com/speech-to-text/docs/adaptation) documentation. When speech adaptation is set it supersedes the `speech_contexts` field."
+            "smithy.api#documentation": "This needs to be set to `true` explicitly and `audio_channel_count` > 1 to get each channel recognized separately. The recognition result will contain a `channel_tag` field to state which channel that result belongs to. If this is not true, we will only recognize the first channel. The request is billed cumulatively for all channels recognized: `audio_channel_count` multiplied by the length of the audio."
           }
         },
-        "model": {
+        "languageCode": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Which model to select for the given request. Select the model best suited to your domain to get best results. If a model is not explicitly specified, then we auto-select a model based on the parameters in the RecognitionConfig. *Model* *Description* latest_long Best for long form content like media or conversation. latest_short Best for short form content like commands or single shot directed speech. command_and_search Best for short queries such as voice commands or voice search. phone_call Best for audio that originated from a phone call (typically recorded at an 8khz sampling rate). video Best for audio that originated from video or includes multiple speakers. Ideally the audio is recorded at a 16khz or greater sampling rate. This is a premium model that costs more than the standard rate. default Best for audio that is not one of the specific audio models. For example, long-form audio. Ideally the audio is high-fidelity, recorded at a 16khz or greater sampling rate. medical_conversation Best for audio that originated from a conversation between a medical provider and patient. medical_dictation Best for audio that originated from dictation notes by a medical provider. "
+            "smithy.api#documentation": "Required. The language of the supplied audio as a [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag. Example: \"en-US\". See [Language Support](https://cloud.google.com/speech-to-text/docs/languages) for a list of the currently supported language codes."
           }
         },
         "maxAlternatives": {
@@ -891,39 +955,21 @@
             "smithy.api#documentation": "Maximum number of recognition hypotheses to be returned. Specifically, the maximum number of `SpeechRecognitionAlternative` messages within each `SpeechRecognitionResult`. The server may return fewer than `max_alternatives`. Valid values are `0`-`30`. A value of `0` or `1` will return a maximum of one. If omitted, will return a maximum of one."
           }
         },
-        "enableWordConfidence": {
-          "target": "smithy.api#Boolean",
+        "metadata": {
+          "target": "com.gcp.speech_v1p1beta1#RecognitionMetadata",
           "traits": {
-            "smithy.api#documentation": "If `true`, the top result includes a list of words and the confidence for those words. If `false`, no word-level confidence information is returned. The default is `false`."
+            "smithy.api#documentation": "Metadata regarding this request."
           }
         },
-        "enableWordTimeOffsets": {
-          "target": "smithy.api#Boolean",
+        "audioChannelCount": {
+          "target": "smithy.api#Integer",
           "traits": {
-            "smithy.api#documentation": "If `true`, the top result includes a list of words and the start and end time offsets (timestamps) for those words. If `false`, no word-level time offset information is returned. The default is `false`."
-          }
-        },
-        "transcriptNormalization": {
-          "target": "com.gcp.speech_v1p1beta1#TranscriptNormalization",
-          "traits": {
-            "smithy.api#documentation": "Optional. Use transcription normalization to automatically replace parts of the transcript with phrases of your choosing. For StreamingRecognize, this normalization only applies to stable partial transcripts (stability > 0.8) and final transcripts."
-          }
-        },
-        "useEnhanced": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Set to true to use an enhanced model for speech recognition. If `use_enhanced` is set to true and the `model` field is not set, then an appropriate enhanced model is chosen if an enhanced model exists for the audio. If `use_enhanced` is true and an enhanced version of the specified model does not exist, then the speech is recognized using the standard version of the specified model."
+            "smithy.api#documentation": "The number of channels in the input audio data. ONLY set this for MULTI-CHANNEL recognition. Valid values for LINEAR16, OGG_OPUS and FLAC are `1`-`8`. Valid value for MULAW, AMR, AMR_WB and SPEEX_WITH_HEADER_BYTE is only `1`. If `0` or omitted, defaults to one channel (mono). Note: We only recognize the first channel by default. To perform independent recognition on each channel set `enable_separate_recognition_per_channel` to 'true'."
           }
         }
       },
       "traits": {
         "smithy.api#documentation": "Provides information to the recognizer that specifies how to process the request."
-      }
-    },
-    "com.gcp.speech_v1p1beta1#SpeechContextList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.speech_v1p1beta1#SpeechContext"
       }
     },
     "com.gcp.speech_v1p1beta1#RecognitionConfigEncodingEnum": {
@@ -997,80 +1043,249 @@
         }
       }
     },
-    "com.gcp.speech_v1p1beta1#Empty": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+    "com.gcp.speech_v1p1beta1#SpeechContextList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.speech_v1p1beta1#SpeechContext"
       }
     },
-    "com.gcp.speech_v1p1beta1#RecognizeResponse": {
+    "com.gcp.speech_v1p1beta1#SpeechRecognitionResult": {
       "type": "structure",
       "members": {
-        "totalBilledTime": {
+        "alternatives": {
+          "target": "com.gcp.speech_v1p1beta1#SpeechRecognitionAlternativeList",
+          "traits": {
+            "smithy.api#documentation": "May contain one or more recognition hypotheses (up to the maximum specified in `max_alternatives`). These alternatives are ordered in terms of accuracy, with the top (first) alternative being the most probable, as ranked by the recognizer."
+          }
+        },
+        "channelTag": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "For multi-channel audio, this is the channel number corresponding to the recognized result for the audio from that channel. For audio_channel_count = N, its output values can range from '1' to 'N'."
+          }
+        },
+        "resultEndTime": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "When available, billed audio seconds for the corresponding request."
+            "smithy.api#documentation": "Time offset of the end of this result relative to the beginning of the audio."
           }
         },
-        "results": {
-          "target": "com.gcp.speech_v1p1beta1#SpeechRecognitionResultList",
-          "traits": {
-            "smithy.api#documentation": "Sequential list of transcription results corresponding to sequential portions of audio."
-          }
-        },
-        "speechAdaptationInfo": {
-          "target": "com.gcp.speech_v1p1beta1#SpeechAdaptationInfo",
-          "traits": {
-            "smithy.api#documentation": "Provides information on adaptation behavior in response"
-          }
-        },
-        "requestId": {
+        "languageCode": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The ID associated with the request. This is a unique ID specific only to the given request."
-          }
-        },
-        "usingLegacyModels": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether request used legacy asr models (was not automatically migrated to use conformer models)."
+            "smithy.api#documentation": "Output only. The [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag of the language in this result. This language code was detected to have the most likelihood of being spoken in the audio."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "The only message returned to the client by the `Recognize` method. It contains the result as zero or more sequential `SpeechRecognitionResult` messages."
+        "smithy.api#documentation": "A speech recognition result corresponding to a portion of the audio."
       }
     },
-    "com.gcp.speech_v1p1beta1#RecognitionAudio": {
+    "com.gcp.speech_v1p1beta1#SpeechRecognitionAlternativeList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.speech_v1p1beta1#SpeechRecognitionAlternative"
+      }
+    },
+    "com.gcp.speech_v1p1beta1#CreateCustomClassRequest": {
       "type": "structure",
       "members": {
-        "content": {
-          "target": "smithy.api#String",
+        "customClass": {
+          "target": "com.gcp.speech_v1p1beta1#CustomClass",
           "traits": {
-            "smithy.api#documentation": "The audio data bytes encoded as specified in `RecognitionConfig`. Note: as with all bytes fields, proto buffers use a pure binary representation, whereas JSON representations use base64."
+            "smithy.api#documentation": "Required. The custom class to create."
           }
         },
-        "uri": {
+        "customClassId": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "URI that points to a file that contains audio data bytes as specified in `RecognitionConfig`. The file must not be compressed (for example, gzip). Currently, only Google Cloud Storage URIs are supported, which must be specified in the following format: `gs://bucket_name/object_name` (other URI formats return google.rpc.Code.INVALID_ARGUMENT). For more information, see [Request URIs](https://cloud.google.com/storage/docs/reference-uris)."
+            "smithy.api#documentation": "Required. The ID to use for the custom class, which will become the final component of the custom class' resource name. This value should restrict to letters, numbers, and hyphens, with the first character a letter, the last a letter or a number, and be 4-63 characters."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Contains audio data in the encoding specified in the `RecognitionConfig`. Either `content` or `uri` must be supplied. Supplying both or neither returns google.rpc.Code.INVALID_ARGUMENT. See [content limits](https://cloud.google.com/speech-to-text/quotas#content)."
+        "smithy.api#documentation": "Message sent by the client for the `CreateCustomClass` method."
       }
     },
-    "com.gcp.speech_v1p1beta1#ABNFGrammar": {
+    "com.gcp.speech_v1p1beta1#SpeechAdaptation": {
       "type": "structure",
       "members": {
-        "abnfStrings": {
+        "abnfGrammar": {
+          "target": "com.gcp.speech_v1p1beta1#ABNFGrammar",
+          "traits": {
+            "smithy.api#documentation": "Augmented Backus-Naur form (ABNF) is a standardized grammar notation comprised by a set of derivation rules. See specifications: https://www.w3.org/TR/speech-grammar"
+          }
+        },
+        "phraseSets": {
+          "target": "com.gcp.speech_v1p1beta1#PhraseSetList",
+          "traits": {
+            "smithy.api#documentation": "A collection of phrase sets. To specify the hints inline, leave the phrase set's `name` blank and fill in the rest of its fields. Any phrase set can use any custom class."
+          }
+        },
+        "phraseSetReferences": {
           "target": "com.gcp.speech_v1p1beta1#StringList",
           "traits": {
-            "smithy.api#documentation": "All declarations and rules of an ABNF grammar broken up into multiple strings that will end up concatenated."
+            "smithy.api#documentation": "A collection of phrase set resource names to use."
+          }
+        },
+        "customClasses": {
+          "target": "com.gcp.speech_v1p1beta1#CustomClassList",
+          "traits": {
+            "smithy.api#documentation": "A collection of custom classes. To specify the classes inline, leave the class' `name` blank and fill in the rest of its fields, giving it a unique `custom_class_id`. Refer to the inline defined class in phrase hints by its `custom_class_id`."
           }
         }
+      },
+      "traits": {
+        "smithy.api#documentation": "Speech adaptation configuration."
+      }
+    },
+    "com.gcp.speech_v1p1beta1#PhraseSetList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.speech_v1p1beta1#PhraseSet"
+      }
+    },
+    "com.gcp.speech_v1p1beta1#ListPhraseSetResponse": {
+      "type": "structure",
+      "members": {
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages."
+          }
+        },
+        "phraseSets": {
+          "target": "com.gcp.speech_v1p1beta1#PhraseSetList",
+          "traits": {
+            "smithy.api#documentation": "The phrase set."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Message returned to the client by the `ListPhraseSet` method."
+      }
+    },
+    "com.gcp.speech_v1p1beta1#Operation": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
+          }
+        },
+        "error": {
+          "target": "com.gcp.speech_v1p1beta1#Status",
+          "traits": {
+            "smithy.api#documentation": "The error result of the operation in case of failure or cancellation."
+          }
+        },
+        "done": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
+          }
+        },
+        "metadata": {
+          "target": "com.gcp.speech_v1p1beta1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any."
+          }
+        },
+        "response": {
+          "target": "com.gcp.speech_v1p1beta1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "This resource represents a long-running operation that is the result of a network API call."
+      }
+    },
+    "com.gcp.speech_v1p1beta1#DocumentMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.gcp.speech_v1p1beta1#WordInfo": {
+      "type": "structure",
+      "members": {
+        "speakerLabel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. A label value assigned for every unique speaker within the audio. This field specifies which speaker was detected to have spoken this word. For some models, like medical_conversation this can be actual speaker role, for example \"patient\" or \"provider\", but generally this would be a number identifying a speaker. This field is only set if enable_speaker_diarization = 'true' and only for the top alternative."
+          }
+        },
+        "confidence": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The confidence estimate between 0.0 and 1.0. A higher number indicates an estimated greater likelihood that the recognized words are correct. This field is set only for the top alternative of a non-streaming result or, of a streaming result where `is_final=true`. This field is not guaranteed to be accurate and users should not rely on it to be always provided. The default of 0.0 is a sentinel value indicating `confidence` was not set."
+          }
+        },
+        "speakerTag": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Output only. A distinct integer value is assigned for every speaker within the audio. This field specifies which one of those speakers was detected to have spoken this word. Value ranges from '1' to diarization_speaker_count. speaker_tag is set if enable_speaker_diarization = 'true' and only for the top alternative. Note: Use speaker_label instead."
+          }
+        },
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Time offset relative to the beginning of the audio, and corresponding to the start of the spoken word. This field is only set if `enable_word_time_offsets=true` and only in the top hypothesis. This is an experimental feature and the accuracy of the time offset can vary."
+          }
+        },
+        "word": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The word corresponding to this set of information."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Time offset relative to the beginning of the audio, and corresponding to the end of the spoken word. This field is only set if `enable_word_time_offsets=true` and only in the top hypothesis. This is an experimental feature and the accuracy of the time offset can vary."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Word-specific information for recognized words."
+      }
+    },
+    "com.gcp.speech_v1p1beta1#ListOperationsResponse": {
+      "type": "structure",
+      "members": {
+        "operations": {
+          "target": "com.gcp.speech_v1p1beta1#OperationList",
+          "traits": {
+            "smithy.api#documentation": "A list of operations that matches the specified filter in the request."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard List next-page token."
+          }
+        },
+        "unreachable": {
+          "target": "com.gcp.speech_v1p1beta1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response message for Operations.ListOperations."
+      }
+    },
+    "com.gcp.speech_v1p1beta1#OperationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.speech_v1p1beta1#Operation"
       }
     },
     "com.gcp.speech_v1p1beta1#Status": {
@@ -1105,6 +1320,33 @@
         "target": "com.gcp.speech_v1p1beta1#DocumentMap"
       }
     },
+    "com.gcp.speech_v1p1beta1#SpeechAdaptationInfo": {
+      "type": "structure",
+      "members": {
+        "timeoutMessage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If set, returns a message specifying which part of the speech adaptation request timed out."
+          }
+        },
+        "adaptationTimeout": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether there was a timeout when applying speech adaptation. If true, adaptation had no effect in the response transcript."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information on speech adaptation use in results"
+      }
+    },
+    "com.gcp.speech_v1p1beta1#Empty": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+      }
+    },
     "com.gcp.speech_v1p1beta1#TranscriptOutputConfig": {
       "type": "structure",
       "members": {
@@ -1119,317 +1361,96 @@
         "smithy.api#documentation": "Specifies an optional destination for the recognition results."
       }
     },
-    "com.gcp.speech_v1p1beta1#LongRunningRecognizeMetadata": {
+    "com.gcp.speech_v1p1beta1#ClassItem": {
       "type": "structure",
       "members": {
-        "outputConfig": {
-          "target": "com.gcp.speech_v1p1beta1#TranscriptOutputConfig",
-          "traits": {
-            "smithy.api#documentation": "Output only. A copy of the TranscriptOutputConfig if it was set in the request."
-          }
-        },
-        "progressPercent": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Approximate percentage of audio processed thus far. Guaranteed to be 100 when the audio is fully processed and the results are available."
-          }
-        },
-        "startTime": {
+        "value": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Time when the request was received."
+            "smithy.api#documentation": "The class item's value."
           }
-        },
-        "lastUpdateTime": {
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An item of the class."
+      }
+    },
+    "com.gcp.speech_v1p1beta1#RecognitionAudio": {
+      "type": "structure",
+      "members": {
+        "content": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Time of the most recent processing update."
+            "smithy.api#documentation": "The audio data bytes encoded as specified in `RecognitionConfig`. Note: as with all bytes fields, proto buffers use a pure binary representation, whereas JSON representations use base64."
           }
         },
         "uri": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Output only. The URI of the audio file being transcribed. Empty if the audio was sent as byte content."
+            "smithy.api#documentation": "URI that points to a file that contains audio data bytes as specified in `RecognitionConfig`. The file must not be compressed (for example, gzip). Currently, only Google Cloud Storage URIs are supported, which must be specified in the following format: `gs://bucket_name/object_name` (other URI formats return google.rpc.Code.INVALID_ARGUMENT). For more information, see [Request URIs](https://cloud.google.com/storage/docs/reference-uris)."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Describes the progress of a long-running `LongRunningRecognize` call. It is included in the `metadata` field of the `Operation` returned by the `GetOperation` call of the `google::longrunning::Operations` service."
+        "smithy.api#documentation": "Contains audio data in the encoding specified in the `RecognitionConfig`. Either `content` or `uri` must be supplied. Supplying both or neither returns google.rpc.Code.INVALID_ARGUMENT. See [content limits](https://cloud.google.com/speech-to-text/quotas#content)."
       }
     },
-    "com.gcp.speech_v1p1beta1#SpeakerDiarizationConfig": {
+    "com.gcp.speech_v1p1beta1#Phrase": {
       "type": "structure",
       "members": {
-        "maxSpeakerCount": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Maximum number of speakers in the conversation. This range gives you more flexibility by allowing the system to automatically determine the correct number of speakers. If not set, the default value is 6."
-          }
-        },
-        "enableSpeakerDiarization": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "If 'true', enables speaker detection for each recognized word in the top alternative of the recognition result using a speaker_label provided in the WordInfo."
-          }
-        },
-        "minSpeakerCount": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Minimum number of speakers in the conversation. This range gives you more flexibility by allowing the system to automatically determine the correct number of speakers. If not set, the default value is 2."
-          }
-        },
-        "speakerTag": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Output only. Unused."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Config to enable speaker diarization."
-      }
-    },
-    "com.gcp.speech_v1p1beta1#RecognizeRequest": {
-      "type": "structure",
-      "members": {
-        "config": {
-          "target": "com.gcp.speech_v1p1beta1#RecognitionConfig",
-          "traits": {
-            "smithy.api#documentation": "Required. Provides information to the recognizer that specifies how to process the request."
-          }
-        },
-        "audio": {
-          "target": "com.gcp.speech_v1p1beta1#RecognitionAudio",
-          "traits": {
-            "smithy.api#documentation": "Required. The audio data to be recognized."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The top-level message sent by the client for the `Recognize` method."
-      }
-    },
-    "com.gcp.speech_v1p1beta1#WordInfo": {
-      "type": "structure",
-      "members": {
-        "word": {
+        "value": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The word corresponding to this set of information."
-          }
-        },
-        "endTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Time offset relative to the beginning of the audio, and corresponding to the end of the spoken word. This field is only set if `enable_word_time_offsets=true` and only in the top hypothesis. This is an experimental feature and the accuracy of the time offset can vary."
-          }
-        },
-        "speakerTag": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Output only. A distinct integer value is assigned for every speaker within the audio. This field specifies which one of those speakers was detected to have spoken this word. Value ranges from '1' to diarization_speaker_count. speaker_tag is set if enable_speaker_diarization = 'true' and only for the top alternative. Note: Use speaker_label instead."
-          }
-        },
-        "speakerLabel": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. A label value assigned for every unique speaker within the audio. This field specifies which speaker was detected to have spoken this word. For some models, like medical_conversation this can be actual speaker role, for example \"patient\" or \"provider\", but generally this would be a number identifying a speaker. This field is only set if enable_speaker_diarization = 'true' and only for the top alternative."
-          }
-        },
-        "confidence": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The confidence estimate between 0.0 and 1.0. A higher number indicates an estimated greater likelihood that the recognized words are correct. This field is set only for the top alternative of a non-streaming result or, of a streaming result where `is_final=true`. This field is not guaranteed to be accurate and users should not rely on it to be always provided. The default of 0.0 is a sentinel value indicating `confidence` was not set."
-          }
-        },
-        "startTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Time offset relative to the beginning of the audio, and corresponding to the start of the spoken word. This field is only set if `enable_word_time_offsets=true` and only in the top hypothesis. This is an experimental feature and the accuracy of the time offset can vary."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Word-specific information for recognized words."
-      }
-    },
-    "com.gcp.speech_v1p1beta1#SpeechAdaptationInfo": {
-      "type": "structure",
-      "members": {
-        "adaptationTimeout": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether there was a timeout when applying speech adaptation. If true, adaptation had no effect in the response transcript."
-          }
-        },
-        "timeoutMessage": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "If set, returns a message specifying which part of the speech adaptation request timed out."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Information on speech adaptation use in results"
-      }
-    },
-    "com.gcp.speech_v1p1beta1#PhraseSet": {
-      "type": "structure",
-      "members": {
-        "kmsKeyVersionName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The [KMS key version name](https://cloud.google.com/kms/docs/resource-hierarchy#key_versions) with which content of the PhraseSet is encrypted. The expected format is `projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}/cryptoKeyVersions/{crypto_key_version}`."
-          }
-        },
-        "annotations": {
-          "target": "com.gcp.speech_v1p1beta1#StringMap",
-          "traits": {
-            "smithy.api#documentation": "Output only. Allows users to store small amounts of arbitrary data. Both the key and the value must be 63 characters or less each. At most 100 annotations. This field is not used."
+            "smithy.api#documentation": "The phrase itself."
           }
         },
         "boost": {
           "target": "smithy.api#Double",
           "traits": {
-            "smithy.api#documentation": "Hint Boost. Positive value will increase the probability that a specific phrase will be recognized over other similar sounding phrases. The higher the boost, the higher the chance of false positive recognition as well. Negative boost values would correspond to anti-biasing. Anti-biasing is not enabled, so negative boost will simply be ignored. Though `boost` can accept a wide range of positive values, most use cases are best served with values between 0 (exclusive) and 20. We recommend using a binary search approach to finding the optimal value for your use case as well as adding phrases both with and without boost to your requests."
+            "smithy.api#documentation": "Hint Boost. Overrides the boost set at the phrase set level. Positive value will increase the probability that a specific phrase will be recognized over other similar sounding phrases. The higher the boost, the higher the chance of false positive recognition as well. Negative boost will simply be ignored. Though `boost` can accept a wide range of positive values, most use cases are best served with values between 0 and 20. We recommend using a binary search approach to finding the optimal value for your use case as well as adding phrases both with and without boost to your requests."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A phrases containing words and phrase \"hints\" so that the speech recognition is more likely to recognize them. This can be used to improve the accuracy for specific words and phrases, for example, if specific commands are typically spoken by the user. This can also be used to add additional words to the vocabulary of the recognizer. See [usage limits](https://cloud.google.com/speech-to-text/quotas#content). List items can also include pre-built or custom classes containing groups of words that represent common concepts that occur in natural language. For example, rather than providing a phrase hint for every month of the year (e.g. \"i was born in january\", \"i was born in febuary\", ...), use the pre-built `$MONTH` class improves the likelihood of correctly transcribing audio that includes months (e.g. \"i was born in $month\"). To refer to pre-built classes, use the class' symbol prepended with `$` e.g. `$MONTH`. To refer to custom classes that were defined inline in the request, set the class's `custom_class_id` to a string unique to all class resources and inline classes. Then use the class' id wrapped in $`{...}` e.g. \"${my-months}\". To refer to custom classes resources, use the class' id wrapped in `${}` (e.g. `${my-months}`). Speech-to-Text supports three locations: `global`, `us` (US North America), and `eu` (Europe). If you are calling the `speech.googleapis.com` endpoint, use the `global` location. To specify a region, use a [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints) with matching `us` or `eu` location value."
+      }
+    },
+    "com.gcp.speech_v1p1beta1#ListOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard list page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The standard list page size.",
+            "smithy.api#httpQuery": "pageSize"
           }
         },
         "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The resource name of the phrase set."
+            "smithy.api#documentation": "The name of the operation's parent resource.",
+            "smithy.api#httpQuery": "name"
           }
         },
-        "etag": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. This checksum is computed by the server based on the value of other fields. This may be sent on update, undelete, and delete requests to ensure the client has an up-to-date value before proceeding. This field is not used."
-          }
-        },
-        "uid": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. System-assigned unique identifier for the PhraseSet. This field is not used."
-          }
-        },
-        "deleteTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The time at which this resource was requested for deletion. This field is not used."
-          }
-        },
-        "phrases": {
-          "target": "com.gcp.speech_v1p1beta1#PhraseList",
-          "traits": {
-            "smithy.api#documentation": "A list of word and phrases."
-          }
-        },
-        "displayName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. User-settable, human-readable name for the PhraseSet. Must be 63 characters or less. This field is not used."
-          }
-        },
-        "kmsKeyName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The [KMS key name](https://cloud.google.com/kms/docs/resource-hierarchy#keys) with which the content of the PhraseSet is encrypted. The expected format is `projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}`."
-          }
-        },
-        "reconciling": {
+        "returnPartialSuccess": {
           "target": "smithy.api#Boolean",
           "traits": {
-            "smithy.api#documentation": "Output only. Whether or not this PhraseSet is in the process of being updated. This field is not used."
+            "smithy.api#documentation": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+            "smithy.api#httpQuery": "returnPartialSuccess"
           }
         },
-        "expireTime": {
+        "filter": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Output only. The time at which this resource will be purged. This field is not used."
-          }
-        },
-        "state": {
-          "target": "com.gcp.speech_v1p1beta1#PhraseSetStateEnum",
-          "traits": {
-            "smithy.api#documentation": "Output only. The CustomClass lifecycle state. This field is not used."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Provides \"hints\" to the speech recognizer to favor specific words and phrases in the results."
-      }
-    },
-    "com.gcp.speech_v1p1beta1#PhraseList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.speech_v1p1beta1#Phrase"
-      }
-    },
-    "com.gcp.speech_v1p1beta1#PhraseSetStateEnum": {
-      "type": "enum",
-      "members": {
-        "STATE_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "STATE_UNSPECIFIED"
-          }
-        },
-        "ACTIVE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "ACTIVE"
-          }
-        },
-        "DELETED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "DELETED"
-          }
-        }
-      }
-    },
-    "com.gcp.speech_v1p1beta1#LongRunningRecognizeRequest": {
-      "type": "structure",
-      "members": {
-        "outputConfig": {
-          "target": "com.gcp.speech_v1p1beta1#TranscriptOutputConfig",
-          "traits": {
-            "smithy.api#documentation": "Optional. Specifies an optional destination for the recognition results."
-          }
-        },
-        "audio": {
-          "target": "com.gcp.speech_v1p1beta1#RecognitionAudio",
-          "traits": {
-            "smithy.api#documentation": "Required. The audio data to be recognized."
-          }
-        },
-        "config": {
-          "target": "com.gcp.speech_v1p1beta1#RecognitionConfig",
-          "traits": {
-            "smithy.api#documentation": "Required. Provides information to the recognizer that specifies how to process the request."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The top-level message sent by the client for the `LongRunningRecognize` method."
-      }
-    },
-    "com.gcp.speech_v1p1beta1#CreateProjectsLocationsPhraseSetsRequest": {
-      "type": "structure",
-      "members": {
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The parent resource where this phrase set will be created. Format: `projects/{project}/locations/{location}` Speech-to-Text supports three locations: `global`, `us` (US North America), and `eu` (Europe). If you are calling the `speech.googleapis.com` endpoint, use the `global` location. To specify a region, use a [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints) with matching `us` or `eu` location value.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.speech_v1p1beta1#CreatePhraseSetRequest",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
+            "smithy.api#documentation": "The standard list filter.",
+            "smithy.api#httpQuery": "filter"
           }
         }
       }
@@ -1460,6 +1481,83 @@
         ]
       }
     },
+    "com.gcp.speech_v1p1beta1#ListOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.speech_v1p1beta1#ListOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.speech_v1p1beta1#ListOperationsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.speech_v1p1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.speech_v1p1beta1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1p1beta1/operations"
+        },
+        "smithy.api#documentation": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.speech_v1p1beta1#GetOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.speech_v1p1beta1#GetOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.speech_v1p1beta1#GetOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.speech_v1p1beta1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.speech_v1p1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.speech_v1p1beta1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1p1beta1/operations/{+name}"
+        },
+        "smithy.api#documentation": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service."
+      }
+    },
+    "com.gcp.speech_v1p1beta1#RecognizeSpeechRequest": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.gcp.speech_v1p1beta1#RecognizeRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
     "com.gcp.speech_v1p1beta1#BadRequest": {
       "type": "structure",
       "members": {},
@@ -1486,13 +1584,13 @@
         ]
       }
     },
-    "com.gcp.speech_v1p1beta1#CreateProjectsLocationsPhraseSets": {
+    "com.gcp.speech_v1p1beta1#RecognizeSpeech": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.speech_v1p1beta1#CreateProjectsLocationsPhraseSetsRequest"
+        "target": "com.gcp.speech_v1p1beta1#RecognizeSpeechRequest"
       },
       "output": {
-        "target": "com.gcp.speech_v1p1beta1#PhraseSet"
+        "target": "com.gcp.speech_v1p1beta1#RecognizeResponse"
       },
       "errors": [
         {
@@ -1511,45 +1609,30 @@
       "traits": {
         "smithy.api#http": {
           "method": "POST",
-          "uri": "v1p1beta1/{+parent}/phraseSets"
+          "uri": "v1p1beta1/speech:recognize"
         },
-        "smithy.api#documentation": "Create a set of phrase hints. Each item in the set can be a single word or a multi-word phrase. The items in the PhraseSet are favored by the recognition model when you send a call that includes the PhraseSet."
+        "smithy.api#documentation": "Performs synchronous speech recognition: receive results after all audio has been sent and processed."
       }
     },
-    "com.gcp.speech_v1p1beta1#ListProjectsLocationsPhraseSetsRequest": {
+    "com.gcp.speech_v1p1beta1#LongrunningrecognizeSpeechRequest": {
       "type": "structure",
       "members": {
-        "pageSize": {
-          "target": "smithy.api#Integer",
+        "body": {
+          "target": "com.gcp.speech_v1p1beta1#LongRunningRecognizeRequest",
           "traits": {
-            "smithy.api#documentation": "The maximum number of phrase sets to return. The service may return fewer than this value. If unspecified, at most 50 phrase sets will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        },
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The parent, which owns this collection of phrase set. Format: `projects/{project}/locations/{location}` Speech-to-Text supports three locations: `global`, `us` (US North America), and `eu` (Europe). If you are calling the `speech.googleapis.com` endpoint, use the `global` location. To specify a region, use a [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints) with matching `us` or `eu` location value.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A page token, received from a previous `ListPhraseSet` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListPhraseSet` must match the call that provided the page token.",
-            "smithy.api#httpQuery": "pageToken"
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
           }
         }
       }
     },
-    "com.gcp.speech_v1p1beta1#ListProjectsLocationsPhraseSets": {
+    "com.gcp.speech_v1p1beta1#LongrunningrecognizeSpeech": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.speech_v1p1beta1#ListProjectsLocationsPhraseSetsRequest"
+        "target": "com.gcp.speech_v1p1beta1#LongrunningrecognizeSpeechRequest"
       },
       "output": {
-        "target": "com.gcp.speech_v1p1beta1#ListPhraseSetResponse"
+        "target": "com.gcp.speech_v1p1beta1#Operation"
       },
       "errors": [
         {
@@ -1557,18 +1640,20 @@
         },
         {
           "target": "com.gcp.speech_v1p1beta1#Forbidden"
+        },
+        {
+          "target": "com.gcp.speech_v1p1beta1#BadRequest"
+        },
+        {
+          "target": "com.gcp.speech_v1p1beta1#Conflict"
         }
       ],
       "traits": {
         "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1p1beta1/{+parent}/phraseSets"
+          "method": "POST",
+          "uri": "v1p1beta1/speech:longrunningrecognize"
         },
-        "smithy.api#documentation": "List phrase sets.",
-        "smithy.api#paginated": {
-          "inputToken": "pageToken",
-          "outputToken": "nextPageToken"
-        }
+        "smithy.api#documentation": "Performs asynchronous speech recognition: receive results via the google.longrunning.Operations interface. Returns either an `Operation.error` or an `Operation.response` which contains a `LongRunningRecognizeResponse` message. For more information on asynchronous speech recognition, see the [how-to](https://cloud.google.com/speech-to-text/docs/async-recognize)."
       }
     },
     "com.gcp.speech_v1p1beta1#DeleteProjectsLocationsPhraseSetsRequest": {
@@ -1708,6 +1793,191 @@
         "smithy.api#documentation": "Update a phrase set."
       }
     },
+    "com.gcp.speech_v1p1beta1#ListProjectsLocationsPhraseSetsRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of phrase sets to return. The service may return fewer than this value. If unspecified, at most 50 phrase sets will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent, which owns this collection of phrase set. Format: `projects/{project}/locations/{location}` Speech-to-Text supports three locations: `global`, `us` (US North America), and `eu` (Europe). If you are calling the `speech.googleapis.com` endpoint, use the `global` location. To specify a region, use a [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints) with matching `us` or `eu` location value.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A page token, received from a previous `ListPhraseSet` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListPhraseSet` must match the call that provided the page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.speech_v1p1beta1#ListProjectsLocationsPhraseSets": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.speech_v1p1beta1#ListProjectsLocationsPhraseSetsRequest"
+      },
+      "output": {
+        "target": "com.gcp.speech_v1p1beta1#ListPhraseSetResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.speech_v1p1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.speech_v1p1beta1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1p1beta1/{+parent}/phraseSets"
+        },
+        "smithy.api#documentation": "List phrase sets.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.speech_v1p1beta1#CreateProjectsLocationsPhraseSetsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent resource where this phrase set will be created. Format: `projects/{project}/locations/{location}` Speech-to-Text supports three locations: `global`, `us` (US North America), and `eu` (Europe). If you are calling the `speech.googleapis.com` endpoint, use the `global` location. To specify a region, use a [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints) with matching `us` or `eu` location value.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.speech_v1p1beta1#CreatePhraseSetRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.speech_v1p1beta1#CreateProjectsLocationsPhraseSets": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.speech_v1p1beta1#CreateProjectsLocationsPhraseSetsRequest"
+      },
+      "output": {
+        "target": "com.gcp.speech_v1p1beta1#PhraseSet"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.speech_v1p1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.speech_v1p1beta1#Forbidden"
+        },
+        {
+          "target": "com.gcp.speech_v1p1beta1#BadRequest"
+        },
+        {
+          "target": "com.gcp.speech_v1p1beta1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1p1beta1/{+parent}/phraseSets"
+        },
+        "smithy.api#documentation": "Create a set of phrase hints. Each item in the set can be a single word or a multi-word phrase. The items in the PhraseSet are favored by the recognition model when you send a call that includes the PhraseSet."
+      }
+    },
+    "com.gcp.speech_v1p1beta1#DeleteProjectsLocationsCustomClassesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the custom class to delete. Format: `projects/{project}/locations/{location}/customClasses/{custom_class}` Speech-to-Text supports three locations: `global`, `us` (US North America), and `eu` (Europe). If you are calling the `speech.googleapis.com` endpoint, use the `global` location. To specify a region, use a [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints) with matching `us` or `eu` location value.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.speech_v1p1beta1#DeleteProjectsLocationsCustomClasses": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.speech_v1p1beta1#DeleteProjectsLocationsCustomClassesRequest"
+      },
+      "output": {
+        "target": "com.gcp.speech_v1p1beta1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.speech_v1p1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.speech_v1p1beta1#Forbidden"
+        },
+        {
+          "target": "com.gcp.speech_v1p1beta1#BadRequest"
+        },
+        {
+          "target": "com.gcp.speech_v1p1beta1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1p1beta1/{+name}"
+        },
+        "smithy.api#documentation": "Delete a custom class."
+      }
+    },
+    "com.gcp.speech_v1p1beta1#GetProjectsLocationsCustomClassesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the custom class to retrieve. Format: `projects/{project}/locations/{location}/customClasses/{custom_class}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.speech_v1p1beta1#GetProjectsLocationsCustomClasses": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.speech_v1p1beta1#GetProjectsLocationsCustomClassesRequest"
+      },
+      "output": {
+        "target": "com.gcp.speech_v1p1beta1#CustomClass"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.speech_v1p1beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.speech_v1p1beta1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1p1beta1/{+name}"
+        },
+        "smithy.api#documentation": "Get a custom class."
+      }
+    },
     "com.gcp.speech_v1p1beta1#ListProjectsLocationsCustomClassesRequest": {
       "type": "structure",
       "members": {
@@ -1761,136 +2031,6 @@
           "inputToken": "pageToken",
           "outputToken": "nextPageToken"
         }
-      }
-    },
-    "com.gcp.speech_v1p1beta1#DeleteProjectsLocationsCustomClassesRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The name of the custom class to delete. Format: `projects/{project}/locations/{location}/customClasses/{custom_class}` Speech-to-Text supports three locations: `global`, `us` (US North America), and `eu` (Europe). If you are calling the `speech.googleapis.com` endpoint, use the `global` location. To specify a region, use a [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints) with matching `us` or `eu` location value.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.speech_v1p1beta1#DeleteProjectsLocationsCustomClasses": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.speech_v1p1beta1#DeleteProjectsLocationsCustomClassesRequest"
-      },
-      "output": {
-        "target": "com.gcp.speech_v1p1beta1#Empty"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.speech_v1p1beta1#NotFound"
-        },
-        {
-          "target": "com.gcp.speech_v1p1beta1#Forbidden"
-        },
-        {
-          "target": "com.gcp.speech_v1p1beta1#BadRequest"
-        },
-        {
-          "target": "com.gcp.speech_v1p1beta1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "v1p1beta1/{+name}"
-        },
-        "smithy.api#documentation": "Delete a custom class."
-      }
-    },
-    "com.gcp.speech_v1p1beta1#CreateProjectsLocationsCustomClassesRequest": {
-      "type": "structure",
-      "members": {
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The parent resource where this custom class will be created. Format: `projects/{project}/locations/{location}/customClasses` Speech-to-Text supports three locations: `global`, `us` (US North America), and `eu` (Europe). If you are calling the `speech.googleapis.com` endpoint, use the `global` location. To specify a region, use a [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints) with matching `us` or `eu` location value.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.speech_v1p1beta1#CreateCustomClassRequest",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.speech_v1p1beta1#CreateProjectsLocationsCustomClasses": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.speech_v1p1beta1#CreateProjectsLocationsCustomClassesRequest"
-      },
-      "output": {
-        "target": "com.gcp.speech_v1p1beta1#CustomClass"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.speech_v1p1beta1#NotFound"
-        },
-        {
-          "target": "com.gcp.speech_v1p1beta1#Forbidden"
-        },
-        {
-          "target": "com.gcp.speech_v1p1beta1#BadRequest"
-        },
-        {
-          "target": "com.gcp.speech_v1p1beta1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1p1beta1/{+parent}/customClasses"
-        },
-        "smithy.api#documentation": "Create a custom class."
-      }
-    },
-    "com.gcp.speech_v1p1beta1#GetProjectsLocationsCustomClassesRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The name of the custom class to retrieve. Format: `projects/{project}/locations/{location}/customClasses/{custom_class}`",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.speech_v1p1beta1#GetProjectsLocationsCustomClasses": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.speech_v1p1beta1#GetProjectsLocationsCustomClassesRequest"
-      },
-      "output": {
-        "target": "com.gcp.speech_v1p1beta1#CustomClass"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.speech_v1p1beta1#NotFound"
-        },
-        {
-          "target": "com.gcp.speech_v1p1beta1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1p1beta1/{+name}"
-        },
-        "smithy.api#documentation": "Get a custom class."
       }
     },
     "com.gcp.speech_v1p1beta1#PatchProjectsLocationsCustomClassesRequest": {
@@ -1950,178 +2090,33 @@
         "smithy.api#documentation": "Update a custom class."
       }
     },
-    "com.gcp.speech_v1p1beta1#RecognizeSpeechRequest": {
+    "com.gcp.speech_v1p1beta1#CreateProjectsLocationsCustomClassesRequest": {
       "type": "structure",
       "members": {
-        "body": {
-          "target": "com.gcp.speech_v1p1beta1#RecognizeRequest",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.speech_v1p1beta1#RecognizeSpeech": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.speech_v1p1beta1#RecognizeSpeechRequest"
-      },
-      "output": {
-        "target": "com.gcp.speech_v1p1beta1#RecognizeResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.speech_v1p1beta1#NotFound"
-        },
-        {
-          "target": "com.gcp.speech_v1p1beta1#Forbidden"
-        },
-        {
-          "target": "com.gcp.speech_v1p1beta1#BadRequest"
-        },
-        {
-          "target": "com.gcp.speech_v1p1beta1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1p1beta1/speech:recognize"
-        },
-        "smithy.api#documentation": "Performs synchronous speech recognition: receive results after all audio has been sent and processed."
-      }
-    },
-    "com.gcp.speech_v1p1beta1#LongrunningrecognizeSpeechRequest": {
-      "type": "structure",
-      "members": {
-        "body": {
-          "target": "com.gcp.speech_v1p1beta1#LongRunningRecognizeRequest",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.speech_v1p1beta1#LongrunningrecognizeSpeech": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.speech_v1p1beta1#LongrunningrecognizeSpeechRequest"
-      },
-      "output": {
-        "target": "com.gcp.speech_v1p1beta1#Operation"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.speech_v1p1beta1#NotFound"
-        },
-        {
-          "target": "com.gcp.speech_v1p1beta1#Forbidden"
-        },
-        {
-          "target": "com.gcp.speech_v1p1beta1#BadRequest"
-        },
-        {
-          "target": "com.gcp.speech_v1p1beta1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1p1beta1/speech:longrunningrecognize"
-        },
-        "smithy.api#documentation": "Performs asynchronous speech recognition: receive results via the google.longrunning.Operations interface. Returns either an `Operation.error` or an `Operation.response` which contains a `LongRunningRecognizeResponse` message. For more information on asynchronous speech recognition, see the [how-to](https://cloud.google.com/speech-to-text/docs/async-recognize)."
-      }
-    },
-    "com.gcp.speech_v1p1beta1#ListOperationsRequest": {
-      "type": "structure",
-      "members": {
-        "returnPartialSuccess": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
-            "smithy.api#httpQuery": "returnPartialSuccess"
-          }
-        },
-        "name": {
+        "parent": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The name of the operation's parent resource.",
-            "smithy.api#httpQuery": "name"
-          }
-        },
-        "filter": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The standard list filter.",
-            "smithy.api#httpQuery": "filter"
-          }
-        },
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The standard list page token.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        },
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The standard list page size.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        }
-      }
-    },
-    "com.gcp.speech_v1p1beta1#ListOperations": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.speech_v1p1beta1#ListOperationsRequest"
-      },
-      "output": {
-        "target": "com.gcp.speech_v1p1beta1#ListOperationsResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.speech_v1p1beta1#NotFound"
-        },
-        {
-          "target": "com.gcp.speech_v1p1beta1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1p1beta1/operations"
-        },
-        "smithy.api#documentation": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
-        "smithy.api#paginated": {
-          "inputToken": "pageToken",
-          "outputToken": "nextPageToken"
-        }
-      }
-    },
-    "com.gcp.speech_v1p1beta1#GetOperationsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name of the operation resource.",
+            "smithy.api#documentation": "Required. The parent resource where this custom class will be created. Format: `projects/{project}/locations/{location}/customClasses` Speech-to-Text supports three locations: `global`, `us` (US North America), and `eu` (Europe). If you are calling the `speech.googleapis.com` endpoint, use the `global` location. To specify a region, use a [regional endpoint](https://cloud.google.com/speech-to-text/docs/endpoints) with matching `us` or `eu` location value.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
           }
+        },
+        "body": {
+          "target": "com.gcp.speech_v1p1beta1#CreateCustomClassRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
         }
       }
     },
-    "com.gcp.speech_v1p1beta1#GetOperations": {
+    "com.gcp.speech_v1p1beta1#CreateProjectsLocationsCustomClasses": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.speech_v1p1beta1#GetOperationsRequest"
+        "target": "com.gcp.speech_v1p1beta1#CreateProjectsLocationsCustomClassesRequest"
       },
       "output": {
-        "target": "com.gcp.speech_v1p1beta1#Operation"
+        "target": "com.gcp.speech_v1p1beta1#CustomClass"
       },
       "errors": [
         {
@@ -2129,14 +2124,20 @@
         },
         {
           "target": "com.gcp.speech_v1p1beta1#Forbidden"
+        },
+        {
+          "target": "com.gcp.speech_v1p1beta1#BadRequest"
+        },
+        {
+          "target": "com.gcp.speech_v1p1beta1#Conflict"
         }
       ],
       "traits": {
         "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1p1beta1/operations/{+name}"
+          "method": "POST",
+          "uri": "v1p1beta1/{+parent}/customClasses"
         },
-        "smithy.api#documentation": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service."
+        "smithy.api#documentation": "Create a custom class."
       }
     }
   }

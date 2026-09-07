@@ -11,6 +11,13 @@ import * as Retry from "../retry.ts";
 
 export type { PosthogOpError, PosthogOpContext };
 
+/** One or more active product area IDs. Duplicate IDs are ignored. */
+export type CreateFeatureRequestRequestProductAreaIdsList = Array<string>;
+export const CreateFeatureRequestRequestProductAreaIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CreateFeatureRequestRequestProductAreaIdsList>;
+
 /** Uploaded image IDs from this project to attach in display order. */
 export type FeatureRequestEvidencePayloadImageIdsList = Array<string>;
 export const FeatureRequestEvidencePayloadImageIdsList = /*@__PURE__*/ S.Array(
@@ -44,35 +51,41 @@ export const FeatureRequestEvidencePayload = /*@__PURE__*/ S.suspend(() =>
   identifier: "FeatureRequestEvidencePayload",
 }) as any as S.Schema<FeatureRequestEvidencePayload>;
 
-export interface FeatureRequestsAddAccountCreateRequest {
+export interface CreateFeatureRequestRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
-  id: string;
-  /** Request version loaded by the editor. Stale versions return 409 Conflict. */
-  expected_version: number;
-  /** Accessible account to link to this feature request. */
+  /** Required customer-facing request title. */
+  title: string;
+  /** Optional customer-facing request description in Markdown. */
+  description?: string;
+  /** ID of the affected Customer Analytics account. */
   account_id: string;
-  /** Optional first evidence item to create for the account in the same change. */
+  /** One or more active product area IDs. Duplicate IDs are ignored. */
+  product_area_ids: CreateFeatureRequestRequestProductAreaIdsList;
+  /** Client-generated key that makes retries return the original request instead of creating a duplicate. */
+  idempotency_key: string;
+  /** Optional first evidence item to create for the selected account. */
   evidence?: FeatureRequestEvidencePayload | null;
 }
-export const FeatureRequestsAddAccountCreateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-      expected_version: S.Number,
-      account_id: S.String,
-      evidence: S.optional(S.NullOr(FeatureRequestEvidencePayload)),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/api/projects/{project_id}/feature_requests/{id}/add_account/",
-        code: 200,
-      }),
-    ),
+export const CreateFeatureRequestRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    title: S.String,
+    description: S.optional(S.String),
+    account_id: S.String,
+    product_area_ids: CreateFeatureRequestRequestProductAreaIdsList,
+    idempotency_key: S.String,
+    evidence: S.optional(S.NullOr(FeatureRequestEvidencePayload)),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/api/projects/{project_id}/feature_requests/",
+      code: 200,
+    }),
+  ),
 ).annotate({
-  identifier: "FeatureRequestsAddAccountCreateRequest",
-}) as any as S.Schema<FeatureRequestsAddAccountCreateRequest>;
+  identifier: "CreateFeatureRequestRequest",
+}) as any as S.Schema<CreateFeatureRequestRequest>;
 
 /** * `requested` - Requested * `planned` - Planned * `completed` - Completed * `wont_fix` - Won't fix * `duplicate` - Duplicate */
 export type FeatureRequestStatusEnum =
@@ -84,8 +97,8 @@ export type FeatureRequestStatusEnum =
 export const FeatureRequestStatusEnum = /*@__PURE__*/ S.String;
 
 /** * `high` - High * `medium` - Medium * `low` - Low */
-export type RequestPriorityEnum = "high" | "medium" | "low";
-export const RequestPriorityEnum = /*@__PURE__*/ S.String;
+export type FeatureRequestPriorityEnum = "high" | "medium" | "low";
+export const FeatureRequestPriorityEnum = /*@__PURE__*/ S.String;
 
 export interface FeatureRequestAccount {
   /** ID of the affected Customer Analytics account. */
@@ -233,7 +246,7 @@ export interface FeatureRequest {
   /** Current customer-facing lifecycle status. * `requested` - Requested * `planned` - Planned * `completed` - Completed * `wont_fix` - Won't fix * `duplicate` - Duplicate */
   request_status: FeatureRequestStatusEnum;
   /** Manual request priority. Null means no priority. * `high` - High * `medium` - Medium * `low` - Low */
-  request_priority: RequestPriorityEnum | null;
+  request_priority: FeatureRequestPriorityEnum | null;
   /** Whether the request is archived. */
   is_archived: boolean;
   /** When the request was archived, or null while active. */
@@ -267,7 +280,7 @@ export const FeatureRequest = /*@__PURE__*/ S.suspend(() =>
     title: S.String,
     description: S.String,
     request_status: FeatureRequestStatusEnum,
-    request_priority: S.NullOr(RequestPriorityEnum),
+    request_priority: S.NullOr(FeatureRequestPriorityEnum),
     is_archived: S.Boolean,
     archived_at: S.NullOr(S.String),
     archived_by: S.NullOr(S.Number),
@@ -283,6 +296,36 @@ export const FeatureRequest = /*@__PURE__*/ S.suspend(() =>
     updated_at: S.String,
   }),
 ).annotate({ identifier: "FeatureRequest" }) as any as S.Schema<FeatureRequest>;
+
+export interface FeatureRequestsAddAccountCreateRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  id: string;
+  /** Request version loaded by the editor. Stale versions return 409 Conflict. */
+  expected_version: number;
+  /** Accessible account to link to this feature request. */
+  account_id: string;
+  /** Optional first evidence item to create for the account in the same change. */
+  evidence?: FeatureRequestEvidencePayload | null;
+}
+export const FeatureRequestsAddAccountCreateRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      id: S.String.pipe(T.Label()),
+      expected_version: S.Number,
+      account_id: S.String,
+      evidence: S.optional(S.NullOr(FeatureRequestEvidencePayload)),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/projects/{project_id}/feature_requests/{id}/add_account/",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "FeatureRequestsAddAccountCreateRequest",
+}) as any as S.Schema<FeatureRequestsAddAccountCreateRequest>;
 
 /** Uploaded image IDs from this project to attach in display order. */
 export type FeatureRequestsAddEvidenceCreateRequestImageIdsList = Array<string>;
@@ -361,55 +404,295 @@ export const FeatureRequestsArchiveCreateRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "FeatureRequestsArchiveCreateRequest",
 }) as any as S.Schema<FeatureRequestsArchiveCreateRequest>;
 
-/** One or more active product area IDs. Duplicate IDs are ignored. */
-export type FeatureRequestsCreateRequestProductAreaIdsList = Array<string>;
-export const FeatureRequestsCreateRequestProductAreaIdsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<FeatureRequestsCreateRequestProductAreaIdsList>;
-
-export interface FeatureRequestsCreateRequest {
+export interface FeatureRequestsRemoveEvidenceCreateRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
-  /** Required customer-facing request title. */
-  title: string;
-  /** Optional customer-facing request description in Markdown. */
-  description?: string;
-  /** ID of the affected Customer Analytics account. */
-  account_id: string;
-  /** One or more active product area IDs. Duplicate IDs are ignored. */
-  product_area_ids: FeatureRequestsCreateRequestProductAreaIdsList;
-  /** Client-generated key that makes retries return the original request instead of creating a duplicate. */
-  idempotency_key: string;
-  /** Optional first evidence item to create for the selected account. */
-  evidence?: FeatureRequestEvidencePayload | null;
+  id: string;
+  /** Request version loaded by the editor. Stale versions return 409 Conflict. */
+  expected_version: number;
+  /** Evidence item to delete. */
+  evidence_id: string;
 }
-export const FeatureRequestsCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const FeatureRequestsRemoveEvidenceCreateRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      id: S.String.pipe(T.Label()),
+      expected_version: S.Number,
+      evidence_id: S.String,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/projects/{project_id}/feature_requests/{id}/remove_evidence/",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "FeatureRequestsRemoveEvidenceCreateRequest",
+  }) as any as S.Schema<FeatureRequestsRemoveEvidenceCreateRequest>;
+
+export interface FeatureRequestsRestoreCreateRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  id: string;
+  /** Request version loaded by the editor. Stale versions return 409 Conflict. */
+  expected_version: number;
+}
+export const FeatureRequestsRestoreCreateRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
-    title: S.String,
-    description: S.optional(S.String),
-    account_id: S.String,
-    product_area_ids: FeatureRequestsCreateRequestProductAreaIdsList,
-    idempotency_key: S.String,
-    evidence: S.optional(S.NullOr(FeatureRequestEvidencePayload)),
+    id: S.String.pipe(T.Label()),
+    expected_version: S.Number,
   }).pipe(
     T.Http({
       method: "POST",
+      uri: "/api/projects/{project_id}/feature_requests/{id}/restore/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "FeatureRequestsRestoreCreateRequest",
+}) as any as S.Schema<FeatureRequestsRestoreCreateRequest>;
+
+/** Uploaded image IDs from this project to attach in display order. */
+export type FeatureRequestsUpdateEvidenceCreateRequestImageIdsList =
+  Array<string>;
+export const FeatureRequestsUpdateEvidenceCreateRequestImageIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<FeatureRequestsUpdateEvidenceCreateRequestImageIdsList>;
+
+export interface FeatureRequestsUpdateEvidenceCreateRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  id: string;
+  /** Internal summary of this account's request evidence. */
+  summary?: string;
+  /** Customer quote kept with this evidence item. */
+  customer_quote?: string;
+  /** Free-form name of the source where this evidence was recorded. */
+  evidence_source: string;
+  /** Optional HTTP or HTTPS link to the source. */
+  source_url?: string;
+  /** Date the account made the request, or null when unknown. */
+  requested_on?: string | null;
+  /** Uploaded image IDs from this project to attach in display order. */
+  image_ids?: FeatureRequestsUpdateEvidenceCreateRequestImageIdsList;
+  /** Request version loaded by the editor. Stale versions return 409 Conflict. */
+  expected_version: number;
+  /** Evidence item to replace. */
+  evidence_id: string;
+}
+export const FeatureRequestsUpdateEvidenceCreateRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      id: S.String.pipe(T.Label()),
+      summary: S.optional(S.String),
+      customer_quote: S.optional(S.String),
+      evidence_source: S.String,
+      source_url: S.optional(S.String),
+      requested_on: S.optional(S.NullOr(S.String)),
+      image_ids: S.optional(
+        FeatureRequestsUpdateEvidenceCreateRequestImageIdsList,
+      ),
+      expected_version: S.Number,
+      evidence_id: S.String,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/projects/{project_id}/feature_requests/{id}/update_evidence/",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "FeatureRequestsUpdateEvidenceCreateRequest",
+  }) as any as S.Schema<FeatureRequestsUpdateEvidenceCreateRequest>;
+
+export interface GetFeatureRequestRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  id: string;
+}
+export const GetFeatureRequestRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/feature_requests/{id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetFeatureRequestRequest",
+}) as any as S.Schema<GetFeatureRequestRequest>;
+
+export type ListFeatureRequestsRequestAccountIdsList = Array<string>;
+export const ListFeatureRequestsRequestAccountIdsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ListFeatureRequestsRequestAccountIdsList>;
+
+export type ListFeatureRequestsRequestArchiveState =
+  | "active"
+  | "archived"
+  | "all";
+export const ListFeatureRequestsRequestArchiveState = /*@__PURE__*/ S.String;
+
+export type ListFeatureRequestsRequestCreatedByIdsList = Array<number>;
+export const ListFeatureRequestsRequestCreatedByIdsList = /*@__PURE__*/ S.Array(
+  S.Number,
+) as any as S.Schema<ListFeatureRequestsRequestCreatedByIdsList>;
+
+/** * `high` - High * `medium` - Medium * `low` - Low * `none` - No priority */
+export type ListFeatureRequestsRequestPrioritiesItem =
+  | "high"
+  | "medium"
+  | "low"
+  | "none";
+export const ListFeatureRequestsRequestPrioritiesItem = /*@__PURE__*/ S.String;
+
+export type ListFeatureRequestsRequestPrioritiesList = Array<
+  ListFeatureRequestsRequestPrioritiesItem | (string & {})
+>;
+export const ListFeatureRequestsRequestPrioritiesList = /*@__PURE__*/ S.Array(
+  ListFeatureRequestsRequestPrioritiesItem,
+) as any as S.Schema<ListFeatureRequestsRequestPrioritiesList>;
+
+export type ListFeatureRequestsRequestProductAreaIdsList = Array<string>;
+export const ListFeatureRequestsRequestProductAreaIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ListFeatureRequestsRequestProductAreaIdsList>;
+
+export type ListFeatureRequestsRequestRequestOrdering =
+  | "-updated_at"
+  | "updated_at"
+  | "-created_at"
+  | "created_at"
+  | "-priority"
+  | "priority"
+  | "title"
+  | "-title"
+  | "account"
+  | "-account"
+  | "product_area"
+  | "-product_area"
+  | "status"
+  | "-status"
+  | "created_by"
+  | "-created_by"
+  | "evidence_count"
+  | "-evidence_count";
+export const ListFeatureRequestsRequestRequestOrdering = /*@__PURE__*/ S.String;
+
+/** * `requested` - Requested * `planned` - Planned * `completed` - Completed * `wont_fix` - Won't fix * `duplicate` - Duplicate */
+export type ListFeatureRequestsRequestStatusesItem =
+  | "requested"
+  | "planned"
+  | "completed"
+  | "wont_fix"
+  | "duplicate";
+export const ListFeatureRequestsRequestStatusesItem = /*@__PURE__*/ S.String;
+
+export type ListFeatureRequestsRequestStatusesList = Array<
+  ListFeatureRequestsRequestStatusesItem | (string & {})
+>;
+export const ListFeatureRequestsRequestStatusesList = /*@__PURE__*/ S.Array(
+  ListFeatureRequestsRequestStatusesItem,
+) as any as S.Schema<ListFeatureRequestsRequestStatusesList>;
+
+export interface ListFeatureRequestsRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** Accessible account IDs to include. Multiple values use OR semantics. */
+  account_ids?: ListFeatureRequestsRequestAccountIdsList;
+  /** Whether to return active requests, archived requests, or all requests. * `active` - Active * `archived` - Archived * `all` - All */
+  archive_state?: ListFeatureRequestsRequestArchiveState | (string & {});
+  /** Creator user IDs to include. Multiple values use OR semantics. */
+  created_by_ids?: ListFeatureRequestsRequestCreatedByIdsList;
+  /** Number of results to return per page. */
+  limit?: number;
+  /** The initial index from which to return the results. */
+  offset?: number;
+  /** Priorities to include. Use none for requests without a priority. */
+  priorities?: ListFeatureRequestsRequestPrioritiesList;
+  /** Product area IDs to include. Multiple values use OR semantics. */
+  product_area_ids?: ListFeatureRequestsRequestProductAreaIdsList;
+  /** Stable ordering for the result list. * `-updated_at` - Last updated: newest * `updated_at` - Last updated: oldest * `-created_at` - Date created: newest * `created_at` - Date created: oldest * `-priority` - Priority: high to low * `priority` - Priority: low to high * `title` - Title: A to Z * `-title` - Title: Z to A * `account` - Accounts: A to Z * `-account` - Accounts: Z to A * `product_area` - Product areas: A to Z * `-product_area` - Product areas: Z to A * `status` - Status: A to Z * `-status` - Status: Z to A * `created_by` - Created by: A to Z * `-created_by` - Created by: Z to A * `evidence_count` - Evidence: low to high * `-evidence_count` - Evidence: high to low */
+  request_ordering?: ListFeatureRequestsRequestRequestOrdering | (string & {});
+  /** Case-insensitive text to find in request titles and descriptions. */
+  search?: string;
+  /** Lifecycle statuses to include. Multiple values use OR semantics. */
+  statuses?: ListFeatureRequestsRequestStatusesList;
+}
+export const ListFeatureRequestsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    account_ids: S.optional(
+      ListFeatureRequestsRequestAccountIdsList.pipe(T.Query()),
+    ),
+    archive_state: S.optional(
+      ListFeatureRequestsRequestArchiveState.pipe(T.Query()),
+    ),
+    created_by_ids: S.optional(
+      ListFeatureRequestsRequestCreatedByIdsList.pipe(T.Query()),
+    ),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    offset: S.optional(S.Number.pipe(T.Query())),
+    priorities: S.optional(
+      ListFeatureRequestsRequestPrioritiesList.pipe(T.Query()),
+    ),
+    product_area_ids: S.optional(
+      ListFeatureRequestsRequestProductAreaIdsList.pipe(T.Query()),
+    ),
+    request_ordering: S.optional(
+      ListFeatureRequestsRequestRequestOrdering.pipe(T.Query()),
+    ),
+    search: S.optional(S.String.pipe(T.Query())),
+    statuses: S.optional(
+      ListFeatureRequestsRequestStatusesList.pipe(T.Query()),
+    ),
+  }).pipe(
+    T.Http({
+      method: "GET",
       uri: "/api/projects/{project_id}/feature_requests/",
       code: 200,
     }),
   ),
 ).annotate({
-  identifier: "FeatureRequestsCreateRequest",
-}) as any as S.Schema<FeatureRequestsCreateRequest>;
+  identifier: "ListFeatureRequestsRequest",
+}) as any as S.Schema<ListFeatureRequestsRequest>;
 
-export interface FeatureRequestsHistoryListRequest {
+export type PaginatedFeatureRequestListResultsList = Array<FeatureRequest>;
+export const PaginatedFeatureRequestListResultsList = /*@__PURE__*/ S.Array(
+  FeatureRequest,
+) as any as S.Schema<PaginatedFeatureRequestListResultsList>;
+
+export interface PaginatedFeatureRequestList {
+  count: number;
+  next?: string | null;
+  previous?: string | null;
+  results: PaginatedFeatureRequestListResultsList;
+}
+export const PaginatedFeatureRequestList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    count: S.Number,
+    next: S.optional(S.NullOr(S.String)),
+    previous: S.optional(S.NullOr(S.String)),
+    results: PaginatedFeatureRequestListResultsList,
+  }),
+).annotate({
+  identifier: "PaginatedFeatureRequestList",
+}) as any as S.Schema<PaginatedFeatureRequestList>;
+
+export interface ListFeatureRequestsHistoryRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   id: string;
 }
-export const FeatureRequestsHistoryListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListFeatureRequestsHistoryRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     id: S.String.pipe(T.Label()),
@@ -421,8 +704,8 @@ export const FeatureRequestsHistoryListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "FeatureRequestsHistoryListRequest",
-}) as any as S.Schema<FeatureRequestsHistoryListRequest>;
+  identifier: "ListFeatureRequestsHistoryRequest",
+}) as any as S.Schema<ListFeatureRequestsHistoryRequest>;
 
 /** * `status` - Status * `priority` - Priority * `account` - Account * `accounts` - Accounts * `evidence` - Evidence * `product_areas` - Product areas */
 export type FeatureRequestHistoryChangeFieldEnum =
@@ -602,8 +885,8 @@ export const FeatureRequestHistoryChangesList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<FeatureRequestHistoryChangesList>;
 
 /** * `manual` - Manual */
-export type ChangeSourceEnum = "manual";
-export const ChangeSourceEnum = /*@__PURE__*/ S.String;
+export type FeatureRequestHistorySourceEnum = "manual";
+export const FeatureRequestHistorySourceEnum = /*@__PURE__*/ S.String;
 
 export interface FeatureRequestHistory {
   /** Stable request history entry ID. */
@@ -613,7 +896,7 @@ export interface FeatureRequestHistory {
   /** Whether this entry records the request's initial values. */
   is_initial: boolean;
   /** System that recorded the request change. * `manual` - Manual */
-  change_source: ChangeSourceEnum;
+  change_source: FeatureRequestHistorySourceEnum;
   /** ID of the user who changed the request, if known. */
   actor_id: number | null;
   /** Display name of the user who changed the request, if known. */
@@ -626,7 +909,7 @@ export const FeatureRequestHistory = /*@__PURE__*/ S.suspend(() =>
     id: S.String,
     changes: FeatureRequestHistoryChangesList,
     is_initial: S.Boolean,
-    change_source: ChangeSourceEnum,
+    change_source: FeatureRequestHistorySourceEnum,
     actor_id: S.NullOr(S.Number),
     actor_name: S.NullOr(S.String),
     changed_at: S.String,
@@ -635,315 +918,26 @@ export const FeatureRequestHistory = /*@__PURE__*/ S.suspend(() =>
   identifier: "FeatureRequestHistory",
 }) as any as S.Schema<FeatureRequestHistory>;
 
-export type FeatureRequestsHistoryListResponseBodyList =
+export type ListFeatureRequestsHistoryResponseBodyList =
   Array<FeatureRequestHistory>;
-export const FeatureRequestsHistoryListResponseBodyList = /*@__PURE__*/ S.Array(
+export const ListFeatureRequestsHistoryResponseBodyList = /*@__PURE__*/ S.Array(
   FeatureRequestHistory,
-) as any as S.Schema<FeatureRequestsHistoryListResponseBodyList>;
+) as any as S.Schema<ListFeatureRequestsHistoryResponseBodyList>;
 
-export type FeatureRequestsHistoryListResponse =
-  FeatureRequestsHistoryListResponseBodyList;
-export const FeatureRequestsHistoryListResponse = /*@__PURE__*/ S.suspend(() =>
-  FeatureRequestsHistoryListResponseBodyList.pipe(T.RawResponseRoot()),
+export type ListFeatureRequestsHistoryResponse =
+  ListFeatureRequestsHistoryResponseBodyList;
+export const ListFeatureRequestsHistoryResponse = /*@__PURE__*/ S.suspend(() =>
+  ListFeatureRequestsHistoryResponseBodyList.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "FeatureRequestsHistoryListResponse",
-}) as any as S.Schema<FeatureRequestsHistoryListResponse>;
+  identifier: "ListFeatureRequestsHistoryResponse",
+}) as any as S.Schema<ListFeatureRequestsHistoryResponse>;
 
-export type FeatureRequestsListRequestAccountIdsList = Array<string>;
-export const FeatureRequestsListRequestAccountIdsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<FeatureRequestsListRequestAccountIdsList>;
-
-export type FeatureRequestsListRequestArchiveState =
-  | "active"
-  | "archived"
-  | "all";
-export const FeatureRequestsListRequestArchiveState = /*@__PURE__*/ S.String;
-
-export type FeatureRequestsListRequestCreatedByIdsList = Array<number>;
-export const FeatureRequestsListRequestCreatedByIdsList = /*@__PURE__*/ S.Array(
-  S.Number,
-) as any as S.Schema<FeatureRequestsListRequestCreatedByIdsList>;
-
-/** * `high` - High * `medium` - Medium * `low` - Low * `none` - No priority */
-export type FeatureRequestsListRequestPrioritiesItem =
-  | "high"
-  | "medium"
-  | "low"
-  | "none";
-export const FeatureRequestsListRequestPrioritiesItem = /*@__PURE__*/ S.String;
-
-export type FeatureRequestsListRequestPrioritiesList = Array<
-  FeatureRequestsListRequestPrioritiesItem | (string & {})
->;
-export const FeatureRequestsListRequestPrioritiesList = /*@__PURE__*/ S.Array(
-  FeatureRequestsListRequestPrioritiesItem,
-) as any as S.Schema<FeatureRequestsListRequestPrioritiesList>;
-
-export type FeatureRequestsListRequestProductAreaIdsList = Array<string>;
-export const FeatureRequestsListRequestProductAreaIdsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<FeatureRequestsListRequestProductAreaIdsList>;
-
-export type FeatureRequestsListRequestRequestOrdering =
-  | "-updated_at"
-  | "updated_at"
-  | "-created_at"
-  | "created_at"
-  | "-priority"
-  | "priority"
-  | "title"
-  | "-title"
-  | "account"
-  | "-account"
-  | "product_area"
-  | "-product_area"
-  | "status"
-  | "-status"
-  | "created_by"
-  | "-created_by"
-  | "evidence_count"
-  | "-evidence_count";
-export const FeatureRequestsListRequestRequestOrdering = /*@__PURE__*/ S.String;
-
-/** * `requested` - Requested * `planned` - Planned * `completed` - Completed * `wont_fix` - Won't fix * `duplicate` - Duplicate */
-export type FeatureRequestsListRequestStatusesItem =
-  | "requested"
-  | "planned"
-  | "completed"
-  | "wont_fix"
-  | "duplicate";
-export const FeatureRequestsListRequestStatusesItem = /*@__PURE__*/ S.String;
-
-export type FeatureRequestsListRequestStatusesList = Array<
-  FeatureRequestsListRequestStatusesItem | (string & {})
->;
-export const FeatureRequestsListRequestStatusesList = /*@__PURE__*/ S.Array(
-  FeatureRequestsListRequestStatusesItem,
-) as any as S.Schema<FeatureRequestsListRequestStatusesList>;
-
-export interface FeatureRequestsListRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** Accessible account IDs to include. Multiple values use OR semantics. */
-  account_ids?: FeatureRequestsListRequestAccountIdsList;
-  /** Whether to return active requests, archived requests, or all requests. * `active` - Active * `archived` - Archived * `all` - All */
-  archive_state?: FeatureRequestsListRequestArchiveState | (string & {});
-  /** Creator user IDs to include. Multiple values use OR semantics. */
-  created_by_ids?: FeatureRequestsListRequestCreatedByIdsList;
-  /** Number of results to return per page. */
-  limit?: number;
-  /** The initial index from which to return the results. */
-  offset?: number;
-  /** Priorities to include. Use none for requests without a priority. */
-  priorities?: FeatureRequestsListRequestPrioritiesList;
-  /** Product area IDs to include. Multiple values use OR semantics. */
-  product_area_ids?: FeatureRequestsListRequestProductAreaIdsList;
-  /** Stable ordering for the result list. * `-updated_at` - Last updated: newest * `updated_at` - Last updated: oldest * `-created_at` - Date created: newest * `created_at` - Date created: oldest * `-priority` - Priority: high to low * `priority` - Priority: low to high * `title` - Title: A to Z * `-title` - Title: Z to A * `account` - Accounts: A to Z * `-account` - Accounts: Z to A * `product_area` - Product areas: A to Z * `-product_area` - Product areas: Z to A * `status` - Status: A to Z * `-status` - Status: Z to A * `created_by` - Created by: A to Z * `-created_by` - Created by: Z to A * `evidence_count` - Evidence: low to high * `-evidence_count` - Evidence: high to low */
-  request_ordering?: FeatureRequestsListRequestRequestOrdering | (string & {});
-  /** Case-insensitive text to find in request titles and descriptions. */
-  search?: string;
-  /** Lifecycle statuses to include. Multiple values use OR semantics. */
-  statuses?: FeatureRequestsListRequestStatusesList;
-}
-export const FeatureRequestsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    account_ids: S.optional(
-      FeatureRequestsListRequestAccountIdsList.pipe(T.Query()),
-    ),
-    archive_state: S.optional(
-      FeatureRequestsListRequestArchiveState.pipe(T.Query()),
-    ),
-    created_by_ids: S.optional(
-      FeatureRequestsListRequestCreatedByIdsList.pipe(T.Query()),
-    ),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    offset: S.optional(S.Number.pipe(T.Query())),
-    priorities: S.optional(
-      FeatureRequestsListRequestPrioritiesList.pipe(T.Query()),
-    ),
-    product_area_ids: S.optional(
-      FeatureRequestsListRequestProductAreaIdsList.pipe(T.Query()),
-    ),
-    request_ordering: S.optional(
-      FeatureRequestsListRequestRequestOrdering.pipe(T.Query()),
-    ),
-    search: S.optional(S.String.pipe(T.Query())),
-    statuses: S.optional(
-      FeatureRequestsListRequestStatusesList.pipe(T.Query()),
-    ),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/feature_requests/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "FeatureRequestsListRequest",
-}) as any as S.Schema<FeatureRequestsListRequest>;
-
-export type PaginatedFeatureRequestListResultsList = Array<FeatureRequest>;
-export const PaginatedFeatureRequestListResultsList = /*@__PURE__*/ S.Array(
-  FeatureRequest,
-) as any as S.Schema<PaginatedFeatureRequestListResultsList>;
-
-export interface PaginatedFeatureRequestList {
-  count: number;
-  next?: string | null;
-  previous?: string | null;
-  results: PaginatedFeatureRequestListResultsList;
-}
-export const PaginatedFeatureRequestList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    count: S.Number,
-    next: S.optional(S.NullOr(S.String)),
-    previous: S.optional(S.NullOr(S.String)),
-    results: PaginatedFeatureRequestListResultsList,
-  }),
-).annotate({
-  identifier: "PaginatedFeatureRequestList",
-}) as any as S.Schema<PaginatedFeatureRequestList>;
-
-/** One or more affected account IDs. Removed accounts are unlinked without deleting their evidence. */
-export type FeatureRequestsPartialUpdateRequestAccountIdsList = Array<string>;
-export const FeatureRequestsPartialUpdateRequestAccountIdsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<FeatureRequestsPartialUpdateRequestAccountIdsList>;
-
-/** One or more product area IDs. Existing inactive areas can remain linked. */
-export type FeatureRequestsPartialUpdateRequestProductAreaIdsList =
-  Array<string>;
-export const FeatureRequestsPartialUpdateRequestProductAreaIdsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<FeatureRequestsPartialUpdateRequestProductAreaIdsList>;
-
-export interface FeatureRequestsPartialUpdateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  id: string;
-  /** Request version loaded by the editor. Stale versions return 409 Conflict. */
-  expected_version?: number;
-  /** Updated customer-facing request title. */
-  title?: string;
-  /** Updated optional customer-facing request description in Markdown. */
-  description?: string;
-  /** Deprecated single affected account ID. Use account_ids. */
-  account_id?: string;
-  /** One or more affected account IDs. Removed accounts are unlinked without deleting their evidence. */
-  account_ids?: FeatureRequestsPartialUpdateRequestAccountIdsList;
-  /** One or more product area IDs. Existing inactive areas can remain linked. */
-  product_area_ids?: FeatureRequestsPartialUpdateRequestProductAreaIdsList;
-  /** Updated customer-facing lifecycle status. * `requested` - Requested * `planned` - Planned * `completed` - Completed * `wont_fix` - Won't fix * `duplicate` - Duplicate */
-  request_status?: FeatureRequestStatusEnum | (string & {});
-  /** Updated manual priority. Pass null to remove the priority. * `high` - High * `medium` - Medium * `low` - Low */
-  request_priority?: RequestPriorityEnum | (string & {}) | null;
-}
-export const FeatureRequestsPartialUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-    expected_version: S.optional(S.Number),
-    title: S.optional(S.String),
-    description: S.optional(S.String),
-    account_id: S.optional(S.String),
-    account_ids: S.optional(FeatureRequestsPartialUpdateRequestAccountIdsList),
-    product_area_ids: S.optional(
-      FeatureRequestsPartialUpdateRequestProductAreaIdsList,
-    ),
-    request_status: S.optional(FeatureRequestStatusEnum),
-    request_priority: S.optional(S.NullOr(RequestPriorityEnum)),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/api/projects/{project_id}/feature_requests/{id}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "FeatureRequestsPartialUpdateRequest",
-}) as any as S.Schema<FeatureRequestsPartialUpdateRequest>;
-
-export interface FeatureRequestsRemoveEvidenceCreateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  id: string;
-  /** Request version loaded by the editor. Stale versions return 409 Conflict. */
-  expected_version: number;
-  /** Evidence item to delete. */
-  evidence_id: string;
-}
-export const FeatureRequestsRemoveEvidenceCreateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-      expected_version: S.Number,
-      evidence_id: S.String,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/api/projects/{project_id}/feature_requests/{id}/remove_evidence/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "FeatureRequestsRemoveEvidenceCreateRequest",
-  }) as any as S.Schema<FeatureRequestsRemoveEvidenceCreateRequest>;
-
-export interface FeatureRequestsRestoreCreateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  id: string;
-  /** Request version loaded by the editor. Stale versions return 409 Conflict. */
-  expected_version: number;
-}
-export const FeatureRequestsRestoreCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-    expected_version: S.Number,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/api/projects/{project_id}/feature_requests/{id}/restore/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "FeatureRequestsRestoreCreateRequest",
-}) as any as S.Schema<FeatureRequestsRestoreCreateRequest>;
-
-export interface FeatureRequestsRetrieveRequest {
+export interface ListFeatureRequestsStatusHistoryRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   id: string;
 }
-export const FeatureRequestsRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/feature_requests/{id}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "FeatureRequestsRetrieveRequest",
-}) as any as S.Schema<FeatureRequestsRetrieveRequest>;
-
-export interface FeatureRequestsStatusHistoryListRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  id: string;
-}
-export const FeatureRequestsStatusHistoryListRequest = /*@__PURE__*/ S.suspend(
+export const ListFeatureRequestsStatusHistoryRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
@@ -956,8 +950,8 @@ export const FeatureRequestsStatusHistoryListRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "FeatureRequestsStatusHistoryListRequest",
-}) as any as S.Schema<FeatureRequestsStatusHistoryListRequest>;
+  identifier: "ListFeatureRequestsStatusHistoryRequest",
+}) as any as S.Schema<ListFeatureRequestsStatusHistoryRequest>;
 
 export interface FeatureRequestStatusHistory {
   /** Stable status history entry ID. */
@@ -967,7 +961,7 @@ export interface FeatureRequestStatusHistory {
   /** Status after this change. * `requested` - Requested * `planned` - Planned * `completed` - Completed * `wont_fix` - Won't fix * `duplicate` - Duplicate */
   request_status: FeatureRequestStatusEnum;
   /** System that recorded the status change. * `manual` - Manual */
-  change_source: ChangeSourceEnum;
+  change_source: FeatureRequestHistorySourceEnum;
   /** ID of the user who changed the status, if known. */
   actor_id: number | null;
   /** Display name of the user who changed the status, if known. */
@@ -980,7 +974,7 @@ export const FeatureRequestStatusHistory = /*@__PURE__*/ S.suspend(() =>
     id: S.String,
     previous_status: S.NullOr(FeatureRequestStatusEnum),
     request_status: FeatureRequestStatusEnum,
-    change_source: ChangeSourceEnum,
+    change_source: FeatureRequestHistorySourceEnum,
     actor_id: S.NullOr(S.Number),
     actor_name: S.NullOr(S.String),
     changed_at: S.String,
@@ -989,36 +983,36 @@ export const FeatureRequestStatusHistory = /*@__PURE__*/ S.suspend(() =>
   identifier: "FeatureRequestStatusHistory",
 }) as any as S.Schema<FeatureRequestStatusHistory>;
 
-export type FeatureRequestsStatusHistoryListResponseBodyList =
+export type ListFeatureRequestsStatusHistoryResponseBodyList =
   Array<FeatureRequestStatusHistory>;
-export const FeatureRequestsStatusHistoryListResponseBodyList =
+export const ListFeatureRequestsStatusHistoryResponseBodyList =
   /*@__PURE__*/ S.Array(
     FeatureRequestStatusHistory,
-  ) as any as S.Schema<FeatureRequestsStatusHistoryListResponseBodyList>;
+  ) as any as S.Schema<ListFeatureRequestsStatusHistoryResponseBodyList>;
 
-export type FeatureRequestsStatusHistoryListResponse =
-  FeatureRequestsStatusHistoryListResponseBodyList;
-export const FeatureRequestsStatusHistoryListResponse = /*@__PURE__*/ S.suspend(
+export type ListFeatureRequestsStatusHistoryResponse =
+  ListFeatureRequestsStatusHistoryResponseBodyList;
+export const ListFeatureRequestsStatusHistoryResponse = /*@__PURE__*/ S.suspend(
   () =>
-    FeatureRequestsStatusHistoryListResponseBodyList.pipe(T.RawResponseRoot()),
+    ListFeatureRequestsStatusHistoryResponseBodyList.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "FeatureRequestsStatusHistoryListResponse",
-}) as any as S.Schema<FeatureRequestsStatusHistoryListResponse>;
+  identifier: "ListFeatureRequestsStatusHistoryResponse",
+}) as any as S.Schema<ListFeatureRequestsStatusHistoryResponse>;
 
 /** One or more affected account IDs. Removed accounts are unlinked without deleting their evidence. */
-export type FeatureRequestsUpdateRequestAccountIdsList = Array<string>;
-export const FeatureRequestsUpdateRequestAccountIdsList = /*@__PURE__*/ S.Array(
+export type UpdateFeatureRequestRequestAccountIdsList = Array<string>;
+export const UpdateFeatureRequestRequestAccountIdsList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<FeatureRequestsUpdateRequestAccountIdsList>;
+) as any as S.Schema<UpdateFeatureRequestRequestAccountIdsList>;
 
 /** One or more product area IDs. Existing inactive areas can remain linked. */
-export type FeatureRequestsUpdateRequestProductAreaIdsList = Array<string>;
-export const FeatureRequestsUpdateRequestProductAreaIdsList =
+export type UpdateFeatureRequestRequestProductAreaIdsList = Array<string>;
+export const UpdateFeatureRequestRequestProductAreaIdsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<FeatureRequestsUpdateRequestProductAreaIdsList>;
+  ) as any as S.Schema<UpdateFeatureRequestRequestProductAreaIdsList>;
 
-export interface FeatureRequestsUpdateRequest {
+export interface UpdateFeatureRequestRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   id: string;
@@ -1031,15 +1025,15 @@ export interface FeatureRequestsUpdateRequest {
   /** Deprecated single affected account ID. Use account_ids. */
   account_id?: string;
   /** One or more affected account IDs. Removed accounts are unlinked without deleting their evidence. */
-  account_ids?: FeatureRequestsUpdateRequestAccountIdsList;
+  account_ids?: UpdateFeatureRequestRequestAccountIdsList;
   /** One or more product area IDs. Existing inactive areas can remain linked. */
-  product_area_ids?: FeatureRequestsUpdateRequestProductAreaIdsList;
+  product_area_ids?: UpdateFeatureRequestRequestProductAreaIdsList;
   /** Updated customer-facing lifecycle status. * `requested` - Requested * `planned` - Planned * `completed` - Completed * `wont_fix` - Won't fix * `duplicate` - Duplicate */
   request_status?: FeatureRequestStatusEnum | (string & {});
   /** Updated manual priority. Pass null to remove the priority. * `high` - High * `medium` - Medium * `low` - Low */
-  request_priority?: RequestPriorityEnum | (string & {}) | null;
+  request_priority?: FeatureRequestPriorityEnum | (string & {}) | null;
 }
-export const FeatureRequestsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateFeatureRequestRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     id: S.String.pipe(T.Label()),
@@ -1047,12 +1041,10 @@ export const FeatureRequestsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
     title: S.optional(S.String),
     description: S.optional(S.String),
     account_id: S.optional(S.String),
-    account_ids: S.optional(FeatureRequestsUpdateRequestAccountIdsList),
-    product_area_ids: S.optional(
-      FeatureRequestsUpdateRequestProductAreaIdsList,
-    ),
+    account_ids: S.optional(UpdateFeatureRequestRequestAccountIdsList),
+    product_area_ids: S.optional(UpdateFeatureRequestRequestProductAreaIdsList),
     request_status: S.optional(FeatureRequestStatusEnum),
-    request_priority: S.optional(S.NullOr(RequestPriorityEnum)),
+    request_priority: S.optional(S.NullOr(FeatureRequestPriorityEnum)),
   }).pipe(
     T.Http({
       method: "PUT",
@@ -1061,63 +1053,83 @@ export const FeatureRequestsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "FeatureRequestsUpdateRequest",
-}) as any as S.Schema<FeatureRequestsUpdateRequest>;
+  identifier: "UpdateFeatureRequestRequest",
+}) as any as S.Schema<UpdateFeatureRequestRequest>;
 
-/** Uploaded image IDs from this project to attach in display order. */
-export type FeatureRequestsUpdateEvidenceCreateRequestImageIdsList =
-  Array<string>;
-export const FeatureRequestsUpdateEvidenceCreateRequestImageIdsList =
+/** One or more affected account IDs. Removed accounts are unlinked without deleting their evidence. */
+export type UpdateFeatureRequestsPartialRequestAccountIdsList = Array<string>;
+export const UpdateFeatureRequestsPartialRequestAccountIdsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<FeatureRequestsUpdateEvidenceCreateRequestImageIdsList>;
+  ) as any as S.Schema<UpdateFeatureRequestsPartialRequestAccountIdsList>;
 
-export interface FeatureRequestsUpdateEvidenceCreateRequest {
+/** One or more product area IDs. Existing inactive areas can remain linked. */
+export type UpdateFeatureRequestsPartialRequestProductAreaIdsList =
+  Array<string>;
+export const UpdateFeatureRequestsPartialRequestProductAreaIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<UpdateFeatureRequestsPartialRequestProductAreaIdsList>;
+
+export interface UpdateFeatureRequestsPartialRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   id: string;
-  /** Internal summary of this account's request evidence. */
-  summary?: string;
-  /** Customer quote kept with this evidence item. */
-  customer_quote?: string;
-  /** Free-form name of the source where this evidence was recorded. */
-  evidence_source: string;
-  /** Optional HTTP or HTTPS link to the source. */
-  source_url?: string;
-  /** Date the account made the request, or null when unknown. */
-  requested_on?: string | null;
-  /** Uploaded image IDs from this project to attach in display order. */
-  image_ids?: FeatureRequestsUpdateEvidenceCreateRequestImageIdsList;
   /** Request version loaded by the editor. Stale versions return 409 Conflict. */
-  expected_version: number;
-  /** Evidence item to replace. */
-  evidence_id: string;
+  expected_version?: number;
+  /** Updated customer-facing request title. */
+  title?: string;
+  /** Updated optional customer-facing request description in Markdown. */
+  description?: string;
+  /** Deprecated single affected account ID. Use account_ids. */
+  account_id?: string;
+  /** One or more affected account IDs. Removed accounts are unlinked without deleting their evidence. */
+  account_ids?: UpdateFeatureRequestsPartialRequestAccountIdsList;
+  /** One or more product area IDs. Existing inactive areas can remain linked. */
+  product_area_ids?: UpdateFeatureRequestsPartialRequestProductAreaIdsList;
+  /** Updated customer-facing lifecycle status. * `requested` - Requested * `planned` - Planned * `completed` - Completed * `wont_fix` - Won't fix * `duplicate` - Duplicate */
+  request_status?: FeatureRequestStatusEnum | (string & {});
+  /** Updated manual priority. Pass null to remove the priority. * `high` - High * `medium` - Medium * `low` - Low */
+  request_priority?: FeatureRequestPriorityEnum | (string & {}) | null;
 }
-export const FeatureRequestsUpdateEvidenceCreateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-      summary: S.optional(S.String),
-      customer_quote: S.optional(S.String),
-      evidence_source: S.String,
-      source_url: S.optional(S.String),
-      requested_on: S.optional(S.NullOr(S.String)),
-      image_ids: S.optional(
-        FeatureRequestsUpdateEvidenceCreateRequestImageIdsList,
-      ),
-      expected_version: S.Number,
-      evidence_id: S.String,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/api/projects/{project_id}/feature_requests/{id}/update_evidence/",
-        code: 200,
-      }),
+export const UpdateFeatureRequestsPartialRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+    expected_version: S.optional(S.Number),
+    title: S.optional(S.String),
+    description: S.optional(S.String),
+    account_id: S.optional(S.String),
+    account_ids: S.optional(UpdateFeatureRequestsPartialRequestAccountIdsList),
+    product_area_ids: S.optional(
+      UpdateFeatureRequestsPartialRequestProductAreaIdsList,
     ),
-  ).annotate({
-    identifier: "FeatureRequestsUpdateEvidenceCreateRequest",
-  }) as any as S.Schema<FeatureRequestsUpdateEvidenceCreateRequest>;
+    request_status: S.optional(FeatureRequestStatusEnum),
+    request_priority: S.optional(S.NullOr(FeatureRequestPriorityEnum)),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/api/projects/{project_id}/feature_requests/{id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "UpdateFeatureRequestsPartialRequest",
+}) as any as S.Schema<UpdateFeatureRequestsPartialRequest>;
+
+export type CreateFeatureRequestError = PosthogOpError;
+export const createFeatureRequest: API.OperationMethod<
+  CreateFeatureRequestRequest,
+  FeatureRequest,
+  CreateFeatureRequestError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateFeatureRequestRequest,
+  output: FeatureRequest,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
 
 export type FeatureRequestsAddAccountCreateError = PosthogOpError;
 export const featureRequestsAddAccountCreate: API.OperationMethod<
@@ -1161,62 +1173,6 @@ export const featureRequestsArchiveCreate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type FeatureRequestsCreateError = PosthogOpError;
-export const featureRequestsCreate: API.OperationMethod<
-  FeatureRequestsCreateRequest,
-  FeatureRequest,
-  FeatureRequestsCreateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FeatureRequestsCreateRequest,
-  output: FeatureRequest,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type FeatureRequestsHistoryListError = PosthogOpError;
-export const featureRequestsHistoryList: API.OperationMethod<
-  FeatureRequestsHistoryListRequest,
-  FeatureRequestsHistoryListResponse,
-  FeatureRequestsHistoryListError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FeatureRequestsHistoryListRequest,
-  output: FeatureRequestsHistoryListResponse,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type FeatureRequestsListError = PosthogOpError;
-export const featureRequestsList: API.OperationMethod<
-  FeatureRequestsListRequest,
-  PaginatedFeatureRequestList,
-  FeatureRequestsListError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FeatureRequestsListRequest,
-  output: PaginatedFeatureRequestList,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type FeatureRequestsPartialUpdateError = PosthogOpError;
-export const featureRequestsPartialUpdate: API.OperationMethod<
-  FeatureRequestsPartialUpdateRequest,
-  FeatureRequest,
-  FeatureRequestsPartialUpdateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FeatureRequestsPartialUpdateRequest,
-  output: FeatureRequest,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
 export type FeatureRequestsRemoveEvidenceCreateError = PosthogOpError;
 export const featureRequestsRemoveEvidenceCreate: API.OperationMethod<
   FeatureRequestsRemoveEvidenceCreateRequest,
@@ -1245,48 +1201,6 @@ export const featureRequestsRestoreCreate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type FeatureRequestsRetrieveError = PosthogOpError;
-export const featureRequestsRetrieve: API.OperationMethod<
-  FeatureRequestsRetrieveRequest,
-  FeatureRequest,
-  FeatureRequestsRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FeatureRequestsRetrieveRequest,
-  output: FeatureRequest,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type FeatureRequestsStatusHistoryListError = PosthogOpError;
-export const featureRequestsStatusHistoryList: API.OperationMethod<
-  FeatureRequestsStatusHistoryListRequest,
-  FeatureRequestsStatusHistoryListResponse,
-  FeatureRequestsStatusHistoryListError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FeatureRequestsStatusHistoryListRequest,
-  output: FeatureRequestsStatusHistoryListResponse,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type FeatureRequestsUpdateError = PosthogOpError;
-export const featureRequestsUpdate: API.OperationMethod<
-  FeatureRequestsUpdateRequest,
-  FeatureRequest,
-  FeatureRequestsUpdateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FeatureRequestsUpdateRequest,
-  output: FeatureRequest,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
 export type FeatureRequestsUpdateEvidenceCreateError = PosthogOpError;
 export const featureRequestsUpdateEvidenceCreate: API.OperationMethod<
   FeatureRequestsUpdateEvidenceCreateRequest,
@@ -1295,6 +1209,90 @@ export const featureRequestsUpdateEvidenceCreate: API.OperationMethod<
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: FeatureRequestsUpdateEvidenceCreateRequest,
+  output: FeatureRequest,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetFeatureRequestError = PosthogOpError;
+export const getFeatureRequest: API.OperationMethod<
+  GetFeatureRequestRequest,
+  FeatureRequest,
+  GetFeatureRequestError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetFeatureRequestRequest,
+  output: FeatureRequest,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListFeatureRequestsError = PosthogOpError;
+export const listFeatureRequests: API.OperationMethod<
+  ListFeatureRequestsRequest,
+  PaginatedFeatureRequestList,
+  ListFeatureRequestsError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListFeatureRequestsRequest,
+  output: PaginatedFeatureRequestList,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListFeatureRequestsHistoryError = PosthogOpError;
+export const listFeatureRequestsHistory: API.OperationMethod<
+  ListFeatureRequestsHistoryRequest,
+  ListFeatureRequestsHistoryResponse,
+  ListFeatureRequestsHistoryError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListFeatureRequestsHistoryRequest,
+  output: ListFeatureRequestsHistoryResponse,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListFeatureRequestsStatusHistoryError = PosthogOpError;
+export const listFeatureRequestsStatusHistory: API.OperationMethod<
+  ListFeatureRequestsStatusHistoryRequest,
+  ListFeatureRequestsStatusHistoryResponse,
+  ListFeatureRequestsStatusHistoryError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListFeatureRequestsStatusHistoryRequest,
+  output: ListFeatureRequestsStatusHistoryResponse,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateFeatureRequestError = PosthogOpError;
+export const updateFeatureRequest: API.OperationMethod<
+  UpdateFeatureRequestRequest,
+  FeatureRequest,
+  UpdateFeatureRequestError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateFeatureRequestRequest,
+  output: FeatureRequest,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateFeatureRequestsPartialError = PosthogOpError;
+export const updateFeatureRequestsPartial: API.OperationMethod<
+  UpdateFeatureRequestsPartialRequest,
+  FeatureRequest,
+  UpdateFeatureRequestsPartialError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateFeatureRequestsPartialRequest,
   output: FeatureRequest,
   errors: [],
   protocol: PosthogProtocol,

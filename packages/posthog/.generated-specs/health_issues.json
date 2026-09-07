@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.health_issues#HealthIssuesListRequest": {
+    "com.posthog.health_issues#ListHealthIssuesRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -232,10 +233,10 @@
       },
       "traits": {}
     },
-    "com.posthog.health_issues#HealthIssuesList": {
+    "com.posthog.health_issues#ListHealthIssues": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.health_issues#HealthIssuesListRequest"
+        "target": "com.posthog.health_issues#ListHealthIssuesRequest"
       },
       "output": {
         "target": "com.posthog.health_issues#PaginatedHealthIssueList"
@@ -249,7 +250,7 @@
         "smithy.api#documentation": "List health issues\n\nLists health issues detected across all of this project's PostHog health checks (outdated SDKs, data warehouse sync failures, missing web analytics events, ingestion warnings, and more). Filter by status, severity, kind, or dismissed state."
       }
     },
-    "com.posthog.health_issues#HealthIssuesRetrieveRequest": {
+    "com.posthog.health_issues#GetHealthIssueRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -412,10 +413,10 @@
       },
       "traits": {}
     },
-    "com.posthog.health_issues#HealthIssuesRetrieve": {
+    "com.posthog.health_issues#GetHealthIssue": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.health_issues#HealthIssuesRetrieveRequest"
+        "target": "com.posthog.health_issues#GetHealthIssueRequest"
       },
       "output": {
         "target": "com.posthog.health_issues#HealthIssueDetail"
@@ -429,7 +430,7 @@
         "smithy.api#documentation": "Get a health issue\n\nFetches a single health issue, enriched with the owning check's rendered explanation: a title, a one-line summary of what's wrong, a deep link to the relevant page, and remediation guidance for how to fix it."
       }
     },
-    "com.posthog.health_issues#HealthIssuesPartialUpdateRequest": {
+    "com.posthog.health_issues#UpdateHealthIssuesPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -466,10 +467,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.health_issues#HealthIssuesPartialUpdate": {
+    "com.posthog.health_issues#UpdateHealthIssuesPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.health_issues#HealthIssuesPartialUpdateRequest"
+        "target": "com.posthog.health_issues#UpdateHealthIssuesPartialRequest"
       },
       "output": {
         "target": "com.posthog.health_issues#HealthIssue"
@@ -482,7 +483,7 @@
         }
       }
     },
-    "com.posthog.health_issues#HealthIssuesResolveCreateRequest": {
+    "com.posthog.health_issues#CreateHealthIssuesResolveRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -519,10 +520,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.health_issues#HealthIssuesResolveCreate": {
+    "com.posthog.health_issues#CreateHealthIssuesResolve": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.health_issues#HealthIssuesResolveCreateRequest"
+        "target": "com.posthog.health_issues#CreateHealthIssuesResolveRequest"
       },
       "output": {
         "target": "com.posthog.health_issues#HealthIssue"
@@ -567,7 +568,7 @@
         }
       }
     },
-    "com.posthog.health_issues#HealthIssuesSummaryRetrieveRequest": {
+    "com.posthog.health_issues#GetHealthIssuesSummaryRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -654,10 +655,10 @@
         "smithy.api#documentation": "Count of issues in this group keyed by check kind (e.g. 'sdk_outdated')."
       }
     },
-    "com.posthog.health_issues#HealthIssuesSummaryRetrieve": {
+    "com.posthog.health_issues#GetHealthIssuesSummary": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.health_issues#HealthIssuesSummaryRetrieveRequest"
+        "target": "com.posthog.health_issues#GetHealthIssuesSummaryRequest"
       },
       "output": {
         "target": "com.posthog.health_issues#HealthIssueSummary"
@@ -676,22 +677,22 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.health_issues#HealthIssuesList"
+          "target": "com.posthog.health_issues#ListHealthIssues"
         },
         {
-          "target": "com.posthog.health_issues#HealthIssuesRetrieve"
+          "target": "com.posthog.health_issues#GetHealthIssue"
         },
         {
-          "target": "com.posthog.health_issues#HealthIssuesPartialUpdate"
+          "target": "com.posthog.health_issues#UpdateHealthIssuesPartial"
         },
         {
-          "target": "com.posthog.health_issues#HealthIssuesResolveCreate"
+          "target": "com.posthog.health_issues#CreateHealthIssuesResolve"
         },
         {
           "target": "com.posthog.health_issues#HealthIssuesRefreshCreate"
         },
         {
-          "target": "com.posthog.health_issues#HealthIssuesSummaryRetrieve"
+          "target": "com.posthog.health_issues#GetHealthIssuesSummary"
         }
       ],
       "traits": {

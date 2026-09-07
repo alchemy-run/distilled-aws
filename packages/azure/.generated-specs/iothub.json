@@ -14,13 +14,14 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.iothub#PrivateEndpointConnectionsDelete": {
+    "com.azure.iothub#DeletePrivateEndpointConnection": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iothub#PrivateEndpointConnectionsDeleteRequest"
+        "target": "com.azure.iothub#DeletePrivateEndpointConnectionRequest"
       },
       "output": {
         "target": "com.azure.iothub#PrivateEndpointConnection"
@@ -159,7 +160,7 @@
         "smithy.api#documentation": "The private endpoint property of a private endpoint connection"
       }
     },
-    "com.azure.iothub#PrivateEndpointConnectionsDeleteRequest": {
+    "com.azure.iothub#DeletePrivateEndpointConnectionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -199,10 +200,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.iothub#PrivateEndpointConnectionsUpdate": {
+    "com.azure.iothub#UpdatePrivateEndpointConnection": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iothub#PrivateEndpointConnectionsUpdateRequest"
+        "target": "com.azure.iothub#UpdatePrivateEndpointConnectionRequest"
       },
       "output": {
         "target": "com.azure.iothub#PrivateEndpointConnection"
@@ -218,7 +219,7 @@
         "com.distilled.openapi#apiVersion": "2023-06-30"
       }
     },
-    "com.azure.iothub#PrivateEndpointConnectionsUpdateRequest": {
+    "com.azure.iothub#UpdatePrivateEndpointConnectionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -288,10 +289,10 @@
         "smithy.api#documentation": "The private endpoint property of a private endpoint connection"
       }
     },
-    "com.azure.iothub#PrivateEndpointConnectionsGet": {
+    "com.azure.iothub#GetPrivateEndpointConnection": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iothub#PrivateEndpointConnectionsGetRequest"
+        "target": "com.azure.iothub#GetPrivateEndpointConnectionRequest"
       },
       "output": {
         "target": "com.azure.iothub#PrivateEndpointConnection"
@@ -307,7 +308,7 @@
         "com.distilled.openapi#apiVersion": "2023-06-30"
       }
     },
-    "com.azure.iothub#PrivateEndpointConnectionsGetRequest": {
+    "com.azure.iothub#GetPrivateEndpointConnectionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -347,13 +348,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.iothub#PrivateEndpointConnectionsList2": {
+    "com.azure.iothub#ListPrivateEndpointConnections": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iothub#PrivateEndpointConnectionsListRequest"
+        "target": "com.azure.iothub#ListPrivateEndpointConnectionsRequest"
       },
       "output": {
-        "target": "com.azure.iothub#PrivateEndpointConnectionsListResponse"
+        "target": "com.azure.iothub#ListPrivateEndpointConnectionsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -366,7 +367,7 @@
         "com.distilled.openapi#apiVersion": "2023-06-30"
       }
     },
-    "com.azure.iothub#PrivateEndpointConnectionsListResponse": {
+    "com.azure.iothub#ListPrivateEndpointConnectionsResponse": {
       "type": "structure",
       "members": {
         "body": {
@@ -390,7 +391,7 @@
         "smithy.api#documentation": "The list of private endpoint connections for an IotHub"
       }
     },
-    "com.azure.iothub#PrivateEndpointConnectionsListRequest": {
+    "com.azure.iothub#ListPrivateEndpointConnectionsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -422,10 +423,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.iothub#PrivateLinkResourcesGet": {
+    "com.azure.iothub#GetPrivateLinkResource": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iothub#PrivateLinkResourcesGetRequest"
+        "target": "com.azure.iothub#GetPrivateLinkResourceRequest"
       },
       "output": {
         "target": "com.azure.iothub#GroupIdInformation"
@@ -517,7 +518,7 @@
         "smithy.api#documentation": "The required members for a specific group id"
       }
     },
-    "com.azure.iothub#PrivateLinkResourcesGetRequest": {
+    "com.azure.iothub#GetPrivateLinkResourceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -557,10 +558,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.iothub#PrivateLinkResourcesList": {
+    "com.azure.iothub#ListPrivateLinkResources": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iothub#PrivateLinkResourcesListRequest"
+        "target": "com.azure.iothub#ListPrivateLinkResourcesRequest"
       },
       "output": {
         "target": "com.azure.iothub#PrivateLinkResources"
@@ -599,7 +600,7 @@
         "smithy.api#documentation": "The list of available private link resources for an IotHub"
       }
     },
-    "com.azure.iothub#PrivateLinkResourcesListRequest": {
+    "com.azure.iothub#ListPrivateLinkResourcesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -689,10 +690,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.iothub#CertificatesVerify": {
+    "com.azure.iothub#VerifyCertificate": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iothub#CertificatesVerifyRequest"
+        "target": "com.azure.iothub#VerifyCertificateRequest"
       },
       "output": {
         "target": "com.azure.iothub#CertificateDescription"
@@ -793,7 +794,7 @@
         "smithy.api#documentation": "The description of an X509 CA Certificate."
       }
     },
-    "com.azure.iothub#CertificatesVerifyRequest": {
+    "com.azure.iothub#VerifyCertificateRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -839,10 +840,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.iothub#CertificatesGenerateVerificationCode": {
+    "com.azure.iothub#GenerateCertificateVerificationCode": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iothub#CertificatesGenerateVerificationCodeRequest"
+        "target": "com.azure.iothub#GenerateCertificateVerificationCodeRequest"
       },
       "output": {
         "target": "com.azure.iothub#CertificateWithNonceDescription"
@@ -949,7 +950,7 @@
         "smithy.api#documentation": "The description of an X509 CA Certificate including the challenge nonce issued for the Proof-Of-Possession flow."
       }
     },
-    "com.azure.iothub#CertificatesGenerateVerificationCodeRequest": {
+    "com.azure.iothub#GenerateCertificateVerificationCodeRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -989,10 +990,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.iothub#CertificatesDelete": {
+    "com.azure.iothub#DeleteCertificate": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iothub#CertificatesDeleteRequest"
+        "target": "com.azure.iothub#DeleteCertificateRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1008,7 +1009,7 @@
         "com.distilled.openapi#apiVersion": "2023-06-30"
       }
     },
-    "com.azure.iothub#CertificatesDeleteRequest": {
+    "com.azure.iothub#DeleteCertificateRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1130,10 +1131,10 @@
         "smithy.api#documentation": "The description of an X509 CA Certificate."
       }
     },
-    "com.azure.iothub#CertificatesGet": {
+    "com.azure.iothub#GetCertificate": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iothub#CertificatesGetRequest"
+        "target": "com.azure.iothub#GetCertificateRequest"
       },
       "output": {
         "target": "com.azure.iothub#CertificateDescription"
@@ -1149,7 +1150,7 @@
         "com.distilled.openapi#apiVersion": "2023-06-30"
       }
     },
-    "com.azure.iothub#CertificatesGetRequest": {
+    "com.azure.iothub#GetCertificateRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1189,10 +1190,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.iothub#CertificatesListByIotHub": {
+    "com.azure.iothub#ListCertificateByIotHub": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iothub#CertificatesListByIotHubRequest"
+        "target": "com.azure.iothub#ListCertificateByIotHubRequest"
       },
       "output": {
         "target": "com.azure.iothub#CertificateListDescription"
@@ -1231,7 +1232,7 @@
         "smithy.api#documentation": "The array of Certificate objects."
       }
     },
-    "com.azure.iothub#CertificatesListByIotHubRequest": {
+    "com.azure.iothub#ListCertificateByIotHubRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1263,10 +1264,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.iothub#IotHubResourceImportDevices": {
+    "com.azure.iothub#ImportIotHubResourceDevices": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iothub#IotHubResourceImportDevicesRequest"
+        "target": "com.azure.iothub#ImportIotHubResourceDevicesRequest"
       },
       "output": {
         "target": "com.azure.iothub#JobResponse"
@@ -1450,7 +1451,7 @@
         "smithy.api#documentation": "The type of the job."
       }
     },
-    "com.azure.iothub#IotHubResourceImportDevicesRequest": {
+    "com.azure.iothub#ImportIotHubResourceDevicesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1504,7 +1505,7 @@
           }
         },
         "authenticationType": {
-          "target": "com.azure.iothub#IotHubResourceImportDevicesRequestAuthenticationType",
+          "target": "com.azure.iothub#ImportIotHubResourceDevicesRequestAuthenticationType",
           "traits": {
             "smithy.api#documentation": "Specifies authentication type being used for connecting to the storage account."
           }
@@ -1546,7 +1547,7 @@
         "smithy.api#documentation": "The properties of the Managed identity."
       }
     },
-    "com.azure.iothub#IotHubResourceImportDevicesRequestAuthenticationType": {
+    "com.azure.iothub#ImportIotHubResourceDevicesRequestAuthenticationType": {
       "type": "enum",
       "members": {
         "KEYBASED": {
@@ -1566,10 +1567,10 @@
         "smithy.api#documentation": "Specifies authentication type being used for connecting to the storage account."
       }
     },
-    "com.azure.iothub#IotHubResourceExportDevices": {
+    "com.azure.iothub#ExportIotHubResourceDevices": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iothub#IotHubResourceExportDevicesRequest"
+        "target": "com.azure.iothub#ExportIotHubResourceDevicesRequest"
       },
       "output": {
         "target": "com.azure.iothub#JobResponse"
@@ -1585,7 +1586,7 @@
         "com.distilled.openapi#apiVersion": "2023-06-30"
       }
     },
-    "com.azure.iothub#IotHubResourceExportDevicesRequest": {
+    "com.azure.iothub#ExportIotHubResourceDevicesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1633,7 +1634,7 @@
           }
         },
         "authenticationType": {
-          "target": "com.azure.iothub#IotHubResourceExportDevicesRequestAuthenticationType",
+          "target": "com.azure.iothub#ExportIotHubResourceDevicesRequestAuthenticationType",
           "traits": {
             "smithy.api#documentation": "Specifies authentication type being used for connecting to the storage account."
           }
@@ -1661,7 +1662,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.iothub#IotHubResourceExportDevicesRequestAuthenticationType": {
+    "com.azure.iothub#ExportIotHubResourceDevicesRequestAuthenticationType": {
       "type": "enum",
       "members": {
         "KEYBASED": {
@@ -1681,10 +1682,10 @@
         "smithy.api#documentation": "Specifies authentication type being used for connecting to the storage account."
       }
     },
-    "com.azure.iothub#IotHubResourceGetKeysForKeyName": {
+    "com.azure.iothub#GetIotHubResourceKeysForKeyName": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iothub#IotHubResourceGetKeysForKeyNameRequest"
+        "target": "com.azure.iothub#GetIotHubResourceKeysForKeyNameRequest"
       },
       "output": {
         "target": "com.azure.iothub#SharedAccessSignatureAuthorizationRule"
@@ -1832,7 +1833,7 @@
         "smithy.api#documentation": "The permissions assigned to the shared access policy."
       }
     },
-    "com.azure.iothub#IotHubResourceGetKeysForKeyNameRequest": {
+    "com.azure.iothub#GetIotHubResourceKeysForKeyNameRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1872,10 +1873,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.iothub#IotHubResourceListKeys": {
+    "com.azure.iothub#ListIotHubResourceKeys": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iothub#IotHubResourceListKeysRequest"
+        "target": "com.azure.iothub#ListIotHubResourceKeysRequest"
       },
       "output": {
         "target": "com.azure.iothub#SharedAccessSignatureAuthorizationRuleListResult"
@@ -1920,7 +1921,7 @@
         "smithy.api#documentation": "The list of shared access policies."
       }
     },
-    "com.azure.iothub#IotHubResourceListKeysRequest": {
+    "com.azure.iothub#ListIotHubResourceKeysRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1952,10 +1953,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.iothub#IotHubResourceTestRoute": {
+    "com.azure.iothub#TestIotHubResourceRoute": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iothub#IotHubResourceTestRouteRequest"
+        "target": "com.azure.iothub#TestIotHubResourceRouteRequest"
       },
       "output": {
         "target": "com.azure.iothub#TestRouteResult"
@@ -2126,7 +2127,7 @@
         "smithy.api#documentation": "Result of testing route"
       }
     },
-    "com.azure.iothub#IotHubResourceTestRouteRequest": {
+    "com.azure.iothub#TestIotHubResourceRouteRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2357,10 +2358,10 @@
         "smithy.api#documentation": "App properties"
       }
     },
-    "com.azure.iothub#IotHubResourceTestAllRoutes": {
+    "com.azure.iothub#TestIotHubResourceAllRoutes": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iothub#IotHubResourceTestAllRoutesRequest"
+        "target": "com.azure.iothub#TestIotHubResourceAllRoutesRequest"
       },
       "output": {
         "target": "com.azure.iothub#TestAllRoutesResult"
@@ -2413,7 +2414,7 @@
         "smithy.api#documentation": "Routes that matched"
       }
     },
-    "com.azure.iothub#IotHubResourceTestAllRoutesRequest": {
+    "com.azure.iothub#TestIotHubResourceAllRoutesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2441,7 +2442,7 @@
           }
         },
         "routingSource": {
-          "target": "com.azure.iothub#IotHubResourceTestAllRoutesRequestRoutingSource",
+          "target": "com.azure.iothub#TestIotHubResourceAllRoutesRequestRoutingSource",
           "traits": {
             "smithy.api#documentation": "Routing source"
           }
@@ -2463,7 +2464,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.iothub#IotHubResourceTestAllRoutesRequestRoutingSource": {
+    "com.azure.iothub#TestIotHubResourceAllRoutesRequestRoutingSource": {
       "type": "enum",
       "members": {
         "INVALID": {
@@ -2507,10 +2508,10 @@
         "smithy.api#documentation": "Routing source"
       }
     },
-    "com.azure.iothub#ResourceProviderCommonGetSubscriptionQuota": {
+    "com.azure.iothub#GetResourceProviderCommonSubscriptionQuota": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iothub#ResourceProviderCommonGetSubscriptionQuotaRequest"
+        "target": "com.azure.iothub#GetResourceProviderCommonSubscriptionQuotaRequest"
       },
       "output": {
         "target": "com.azure.iothub#UserSubscriptionQuotaListResult"
@@ -2611,7 +2612,7 @@
         "smithy.api#documentation": "Name of Iot Hub type"
       }
     },
-    "com.azure.iothub#ResourceProviderCommonGetSubscriptionQuotaRequest": {
+    "com.azure.iothub#GetResourceProviderCommonSubscriptionQuotaRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2627,10 +2628,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.iothub#IotHubResourceCheckNameAvailability": {
+    "com.azure.iothub#CheckIotHubResourceNameAvailability": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iothub#IotHubResourceCheckNameAvailabilityRequest"
+        "target": "com.azure.iothub#CheckIotHubResourceNameAvailabilityRequest"
       },
       "output": {
         "target": "com.azure.iothub#IotHubNameAvailabilityInfo"
@@ -2692,7 +2693,7 @@
         "smithy.api#documentation": "The reason for unavailability."
       }
     },
-    "com.azure.iothub#IotHubResourceCheckNameAvailabilityRequest": {
+    "com.azure.iothub#CheckIotHubResourceNameAvailabilityRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2715,10 +2716,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.iothub#IotHubResourceGetEndpointHealth": {
+    "com.azure.iothub#GetIotHubResourceEndpointHealth": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iothub#IotHubResourceGetEndpointHealthRequest"
+        "target": "com.azure.iothub#GetIotHubResourceEndpointHealthRequest"
       },
       "output": {
         "target": "com.azure.iothub#EndpointHealthDataListResult"
@@ -2845,7 +2846,7 @@
         "smithy.api#documentation": "Health statuses have following meanings. The 'healthy' status shows that the endpoint is accepting messages as expected. The 'unhealthy' status shows that the endpoint is not accepting messages as expected and IoT Hub is retrying to send data to this endpoint. The status of an unhealthy endpoint will be updated to healthy when IoT Hub has established an eventually consistent state of health. The 'dead' status shows that the endpoint is not accepting messages, after IoT Hub retried sending messages for the retrial period. See IoT Hub metrics to identify errors and monitor issues with endpoints. The 'unknown' status shows that the IoT Hub has not established a connection with the endpoint. No messages have been delivered to or rejected from this endpoint"
       }
     },
-    "com.azure.iothub#IotHubResourceGetEndpointHealthRequest": {
+    "com.azure.iothub#GetIotHubResourceEndpointHealthRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2875,10 +2876,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.iothub#IotHubResourceGetQuotaMetrics": {
+    "com.azure.iothub#GetIotHubResourceQuotaMetrics": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iothub#IotHubResourceGetQuotaMetricsRequest"
+        "target": "com.azure.iothub#GetIotHubResourceQuotaMetricsRequest"
       },
       "output": {
         "target": "com.azure.iothub#IotHubQuotaMetricInfoListResult"
@@ -2949,7 +2950,7 @@
         "smithy.api#documentation": "Quota metrics properties."
       }
     },
-    "com.azure.iothub#IotHubResourceGetQuotaMetricsRequest": {
+    "com.azure.iothub#GetIotHubResourceQuotaMetricsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2981,10 +2982,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.iothub#IotHubResourceGetJob": {
+    "com.azure.iothub#GetIotHubResourceJob": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iothub#IotHubResourceGetJobRequest"
+        "target": "com.azure.iothub#GetIotHubResourceJobRequest"
       },
       "output": {
         "target": "com.azure.iothub#JobResponse"
@@ -3000,7 +3001,7 @@
         "com.distilled.openapi#apiVersion": "2023-06-30"
       }
     },
-    "com.azure.iothub#IotHubResourceGetJobRequest": {
+    "com.azure.iothub#GetIotHubResourceJobRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3040,10 +3041,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.iothub#IotHubResourceListJobs": {
+    "com.azure.iothub#ListIotHubResourceJobs": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iothub#IotHubResourceListJobsRequest"
+        "target": "com.azure.iothub#ListIotHubResourceJobsRequest"
       },
       "output": {
         "target": "com.azure.iothub#JobResponseListResult"
@@ -3088,7 +3089,7 @@
         "smithy.api#documentation": "The array of JobResponse objects."
       }
     },
-    "com.azure.iothub#IotHubResourceListJobsRequest": {
+    "com.azure.iothub#ListIotHubResourceJobsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3120,10 +3121,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.iothub#IotHubResourceDeleteEventHubConsumerGroup": {
+    "com.azure.iothub#DeleteIotHubResourceEventHubConsumerGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iothub#IotHubResourceDeleteEventHubConsumerGroupRequest"
+        "target": "com.azure.iothub#DeleteIotHubResourceEventHubConsumerGroupRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3139,7 +3140,7 @@
         "com.distilled.openapi#apiVersion": "2023-06-30"
       }
     },
-    "com.azure.iothub#IotHubResourceDeleteEventHubConsumerGroupRequest": {
+    "com.azure.iothub#DeleteIotHubResourceEventHubConsumerGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3187,10 +3188,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.iothub#IotHubResourceCreateEventHubConsumerGroup": {
+    "com.azure.iothub#CreateIotHubResourceEventHubConsumerGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iothub#IotHubResourceCreateEventHubConsumerGroupRequest"
+        "target": "com.azure.iothub#CreateIotHubResourceEventHubConsumerGroupRequest"
       },
       "output": {
         "target": "com.azure.iothub#EventHubConsumerGroupInfo"
@@ -3256,7 +3257,7 @@
         "smithy.api#documentation": "The tags."
       }
     },
-    "com.azure.iothub#IotHubResourceCreateEventHubConsumerGroupRequest": {
+    "com.azure.iothub#CreateIotHubResourceEventHubConsumerGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3325,10 +3326,10 @@
         "smithy.api#documentation": "The EventHub consumer group name."
       }
     },
-    "com.azure.iothub#IotHubResourceGetEventHubConsumerGroup": {
+    "com.azure.iothub#GetIotHubResourceEventHubConsumerGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iothub#IotHubResourceGetEventHubConsumerGroupRequest"
+        "target": "com.azure.iothub#GetIotHubResourceEventHubConsumerGroupRequest"
       },
       "output": {
         "target": "com.azure.iothub#EventHubConsumerGroupInfo"
@@ -3344,7 +3345,7 @@
         "com.distilled.openapi#apiVersion": "2023-06-30"
       }
     },
-    "com.azure.iothub#IotHubResourceGetEventHubConsumerGroupRequest": {
+    "com.azure.iothub#GetIotHubResourceEventHubConsumerGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3392,10 +3393,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.iothub#IotHubResourceListEventHubConsumerGroups": {
+    "com.azure.iothub#ListIotHubResourceEventHubConsumerGroups": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iothub#IotHubResourceListEventHubConsumerGroupsRequest"
+        "target": "com.azure.iothub#ListIotHubResourceEventHubConsumerGroupsRequest"
       },
       "output": {
         "target": "com.azure.iothub#EventHubConsumerGroupsListResult"
@@ -3440,7 +3441,7 @@
         "smithy.api#documentation": "List of consumer groups objects"
       }
     },
-    "com.azure.iothub#IotHubResourceListEventHubConsumerGroupsRequest": {
+    "com.azure.iothub#ListIotHubResourceEventHubConsumerGroupsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3480,10 +3481,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.iothub#IotHubResourceGetValidSkus": {
+    "com.azure.iothub#GetIotHubResourceValidSkus": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iothub#IotHubResourceGetValidSkusRequest"
+        "target": "com.azure.iothub#GetIotHubResourceValidSkusRequest"
       },
       "output": {
         "target": "com.azure.iothub#IotHubSkuDescriptionListResult"
@@ -3717,7 +3718,7 @@
         "smithy.api#documentation": "The name of the SKU."
       }
     },
-    "com.azure.iothub#IotHubResourceGetValidSkusRequest": {
+    "com.azure.iothub#GetIotHubResourceValidSkusRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3749,10 +3750,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.iothub#IotHubResourceGetStats": {
+    "com.azure.iothub#GetIotHubResourceStats": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iothub#IotHubResourceGetStatsRequest"
+        "target": "com.azure.iothub#GetIotHubResourceStatsRequest"
       },
       "output": {
         "target": "com.azure.iothub#RegistryStatistics"
@@ -3794,7 +3795,7 @@
         "smithy.api#documentation": "Identity registry statistics."
       }
     },
-    "com.azure.iothub#IotHubResourceGetStatsRequest": {
+    "com.azure.iothub#GetIotHubResourceStatsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3826,10 +3827,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.iothub#IotHubResourceListByResourceGroup": {
+    "com.azure.iothub#ListIotHubResourceByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iothub#IotHubResourceListByResourceGroupRequest"
+        "target": "com.azure.iothub#ListIotHubResourceByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.iothub#IotHubDescriptionListResult"
@@ -5509,7 +5510,7 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.iothub#IotHubResourceListByResourceGroupRequest": {
+    "com.azure.iothub#ListIotHubResourceByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5533,10 +5534,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.iothub#IotHubResourceListBySubscription": {
+    "com.azure.iothub#ListIotHubResourceBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iothub#IotHubResourceListBySubscriptionRequest"
+        "target": "com.azure.iothub#ListIotHubResourceBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.iothub#IotHubDescriptionListResult"
@@ -5552,7 +5553,7 @@
         "com.distilled.openapi#apiVersion": "2023-06-30"
       }
     },
-    "com.azure.iothub#IotHubResourceListBySubscriptionRequest": {
+    "com.azure.iothub#ListIotHubResourceBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5568,13 +5569,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.iothub#IotHubResourceDelete": {
+    "com.azure.iothub#DeleteIotHubResource": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iothub#IotHubResourceDeleteRequest"
+        "target": "com.azure.iothub#DeleteIotHubResourceRequest"
       },
       "output": {
-        "target": "com.azure.iothub#IotHubResourceDeleteResponse"
+        "target": "com.azure.iothub#DeleteIotHubResourceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5587,7 +5588,7 @@
         "com.distilled.openapi#apiVersion": "2023-06-30"
       }
     },
-    "com.azure.iothub#IotHubResourceDeleteResponse": {
+    "com.azure.iothub#DeleteIotHubResourceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -5616,7 +5617,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.iothub#IotHubResourceDeleteResponseTagsMap",
+          "target": "com.azure.iothub#DeleteIotHubResourceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags."
           }
@@ -5657,7 +5658,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.iothub#IotHubResourceDeleteResponseTagsMap": {
+    "com.azure.iothub#DeleteIotHubResourceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5669,7 +5670,7 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.iothub#IotHubResourceDeleteRequest": {
+    "com.azure.iothub#DeleteIotHubResourceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5701,13 +5702,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.iothub#IotHubResourceUpdate": {
+    "com.azure.iothub#UpdateIotHubResource": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iothub#IotHubResourceUpdateRequest"
+        "target": "com.azure.iothub#UpdateIotHubResourceRequest"
       },
       "output": {
-        "target": "com.azure.iothub#IotHubResourceUpdateResponse"
+        "target": "com.azure.iothub#UpdateIotHubResourceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5720,7 +5721,7 @@
         "com.distilled.openapi#apiVersion": "2023-06-30"
       }
     },
-    "com.azure.iothub#IotHubResourceUpdateResponse": {
+    "com.azure.iothub#UpdateIotHubResourceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -5749,7 +5750,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.iothub#IotHubResourceUpdateResponseTagsMap",
+          "target": "com.azure.iothub#UpdateIotHubResourceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags."
           }
@@ -5790,7 +5791,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.iothub#IotHubResourceUpdateResponseTagsMap": {
+    "com.azure.iothub#UpdateIotHubResourceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5802,7 +5803,7 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.iothub#IotHubResourceUpdateRequest": {
+    "com.azure.iothub#UpdateIotHubResourceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5830,7 +5831,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.iothub#IotHubResourceUpdateRequestTagsMap",
+          "target": "com.azure.iothub#UpdateIotHubResourceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags"
           }
@@ -5840,7 +5841,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.iothub#IotHubResourceUpdateRequestTagsMap": {
+    "com.azure.iothub#UpdateIotHubResourceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6667,13 +6668,13 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.iothub#IotHubResourceGet": {
+    "com.azure.iothub#GetIotHubResource": {
       "type": "operation",
       "input": {
-        "target": "com.azure.iothub#IotHubResourceGetRequest"
+        "target": "com.azure.iothub#GetIotHubResourceRequest"
       },
       "output": {
-        "target": "com.azure.iothub#IotHubResourceGetResponse"
+        "target": "com.azure.iothub#GetIotHubResourceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6686,7 +6687,7 @@
         "com.distilled.openapi#apiVersion": "2023-06-30"
       }
     },
-    "com.azure.iothub#IotHubResourceGetResponse": {
+    "com.azure.iothub#GetIotHubResourceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -6715,7 +6716,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.iothub#IotHubResourceGetResponseTagsMap",
+          "target": "com.azure.iothub#GetIotHubResourceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The resource tags."
           }
@@ -6756,7 +6757,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.iothub#IotHubResourceGetResponseTagsMap": {
+    "com.azure.iothub#GetIotHubResourceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6768,7 +6769,7 @@
         "smithy.api#documentation": "The resource tags."
       }
     },
-    "com.azure.iothub#IotHubResourceGetRequest": {
+    "com.azure.iothub#GetIotHubResourceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6800,7 +6801,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.iothub#OperationsList": {
+    "com.azure.iothub#ListOperations": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -6905,118 +6906,118 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.iothub#PrivateEndpointConnectionsDelete"
+          "target": "com.azure.iothub#DeletePrivateEndpointConnection"
         },
         {
-          "target": "com.azure.iothub#PrivateEndpointConnectionsUpdate"
+          "target": "com.azure.iothub#UpdatePrivateEndpointConnection"
         },
         {
-          "target": "com.azure.iothub#PrivateEndpointConnectionsGet"
+          "target": "com.azure.iothub#GetPrivateEndpointConnection"
         },
         {
-          "target": "com.azure.iothub#PrivateEndpointConnectionsList2"
+          "target": "com.azure.iothub#ListPrivateEndpointConnections"
         },
         {
-          "target": "com.azure.iothub#PrivateLinkResourcesGet"
+          "target": "com.azure.iothub#GetPrivateLinkResource"
         },
         {
-          "target": "com.azure.iothub#PrivateLinkResourcesList"
+          "target": "com.azure.iothub#ListPrivateLinkResources"
         },
         {
           "target": "com.azure.iothub#IotHubManualFailover"
         },
         {
-          "target": "com.azure.iothub#CertificatesVerify"
+          "target": "com.azure.iothub#VerifyCertificate"
         },
         {
-          "target": "com.azure.iothub#CertificatesGenerateVerificationCode"
+          "target": "com.azure.iothub#GenerateCertificateVerificationCode"
         },
         {
-          "target": "com.azure.iothub#CertificatesDelete"
+          "target": "com.azure.iothub#DeleteCertificate"
         },
         {
           "target": "com.azure.iothub#CertificatesCreateOrUpdate"
         },
         {
-          "target": "com.azure.iothub#CertificatesGet"
+          "target": "com.azure.iothub#GetCertificate"
         },
         {
-          "target": "com.azure.iothub#CertificatesListByIotHub"
+          "target": "com.azure.iothub#ListCertificateByIotHub"
         },
         {
-          "target": "com.azure.iothub#IotHubResourceImportDevices"
+          "target": "com.azure.iothub#ImportIotHubResourceDevices"
         },
         {
-          "target": "com.azure.iothub#IotHubResourceExportDevices"
+          "target": "com.azure.iothub#ExportIotHubResourceDevices"
         },
         {
-          "target": "com.azure.iothub#IotHubResourceGetKeysForKeyName"
+          "target": "com.azure.iothub#GetIotHubResourceKeysForKeyName"
         },
         {
-          "target": "com.azure.iothub#IotHubResourceListKeys"
+          "target": "com.azure.iothub#ListIotHubResourceKeys"
         },
         {
-          "target": "com.azure.iothub#IotHubResourceTestRoute"
+          "target": "com.azure.iothub#TestIotHubResourceRoute"
         },
         {
-          "target": "com.azure.iothub#IotHubResourceTestAllRoutes"
+          "target": "com.azure.iothub#TestIotHubResourceAllRoutes"
         },
         {
-          "target": "com.azure.iothub#ResourceProviderCommonGetSubscriptionQuota"
+          "target": "com.azure.iothub#GetResourceProviderCommonSubscriptionQuota"
         },
         {
-          "target": "com.azure.iothub#IotHubResourceCheckNameAvailability"
+          "target": "com.azure.iothub#CheckIotHubResourceNameAvailability"
         },
         {
-          "target": "com.azure.iothub#IotHubResourceGetEndpointHealth"
+          "target": "com.azure.iothub#GetIotHubResourceEndpointHealth"
         },
         {
-          "target": "com.azure.iothub#IotHubResourceGetQuotaMetrics"
+          "target": "com.azure.iothub#GetIotHubResourceQuotaMetrics"
         },
         {
-          "target": "com.azure.iothub#IotHubResourceGetJob"
+          "target": "com.azure.iothub#GetIotHubResourceJob"
         },
         {
-          "target": "com.azure.iothub#IotHubResourceListJobs"
+          "target": "com.azure.iothub#ListIotHubResourceJobs"
         },
         {
-          "target": "com.azure.iothub#IotHubResourceDeleteEventHubConsumerGroup"
+          "target": "com.azure.iothub#DeleteIotHubResourceEventHubConsumerGroup"
         },
         {
-          "target": "com.azure.iothub#IotHubResourceCreateEventHubConsumerGroup"
+          "target": "com.azure.iothub#CreateIotHubResourceEventHubConsumerGroup"
         },
         {
-          "target": "com.azure.iothub#IotHubResourceGetEventHubConsumerGroup"
+          "target": "com.azure.iothub#GetIotHubResourceEventHubConsumerGroup"
         },
         {
-          "target": "com.azure.iothub#IotHubResourceListEventHubConsumerGroups"
+          "target": "com.azure.iothub#ListIotHubResourceEventHubConsumerGroups"
         },
         {
-          "target": "com.azure.iothub#IotHubResourceGetValidSkus"
+          "target": "com.azure.iothub#GetIotHubResourceValidSkus"
         },
         {
-          "target": "com.azure.iothub#IotHubResourceGetStats"
+          "target": "com.azure.iothub#GetIotHubResourceStats"
         },
         {
-          "target": "com.azure.iothub#IotHubResourceListByResourceGroup"
+          "target": "com.azure.iothub#ListIotHubResourceByResourceGroup"
         },
         {
-          "target": "com.azure.iothub#IotHubResourceListBySubscription"
+          "target": "com.azure.iothub#ListIotHubResourceBySubscription"
         },
         {
-          "target": "com.azure.iothub#IotHubResourceDelete"
+          "target": "com.azure.iothub#DeleteIotHubResource"
         },
         {
-          "target": "com.azure.iothub#IotHubResourceUpdate"
+          "target": "com.azure.iothub#UpdateIotHubResource"
         },
         {
           "target": "com.azure.iothub#IotHubResourceCreateOrUpdate"
         },
         {
-          "target": "com.azure.iothub#IotHubResourceGet"
+          "target": "com.azure.iothub#GetIotHubResource"
         },
         {
-          "target": "com.azure.iothub#OperationsList"
+          "target": "com.azure.iothub#ListOperations"
         }
       ],
       "traits": {

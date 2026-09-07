@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.whop.courses#ListCourseRequest": {
@@ -1114,7 +1115,7 @@
         "smithy.api#documentation": "Create course\n\n[Legacy API — https://docs.whop.com/api-reference]\n\nCreate a new course within an experience, with optional chapters, lessons, and a certificate.\n\nRequired permissions:\n - `courses:update`"
       }
     },
-    "com.whop.courses#RetrieveCourseRequest": {
+    "com.whop.courses#GetCourseRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -1130,10 +1131,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.whop.courses#RetrieveCourse": {
+    "com.whop.courses#GetCourse": {
       "type": "operation",
       "input": {
-        "target": "com.whop.courses#RetrieveCourseRequest"
+        "target": "com.whop.courses#GetCourseRequest"
       },
       "output": {
         "target": "com.whop.courses#Course"
@@ -1508,7 +1509,7 @@
           "target": "com.whop.courses#CreateCourse"
         },
         {
-          "target": "com.whop.courses#RetrieveCourse"
+          "target": "com.whop.courses#GetCourse"
         },
         {
           "target": "com.whop.courses#UpdateCourse"

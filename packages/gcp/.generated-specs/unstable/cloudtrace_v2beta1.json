@@ -4,18 +4,13 @@
     "service": "cloudtrace",
     "version": "v2beta1",
     "title": "Cloud Trace API",
-    "baseUrl": "https://cloudtrace.googleapis.com/"
+    "baseUrl": "https://cloudtrace.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
     "com.gcp.cloudtrace_v2beta1#TraceSink": {
       "type": "structure",
       "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier. The canonical sink resource name, unique within the project. Must be of the form: projects/[PROJECT_NUMBER]/traceSinks/[SINK_ID]. E.g.: `\"projects/12345/traceSinks/my-project-trace-sink\"`. Sink identifiers are limited to 256 characters and can include only the following characters: upper and lower-case alphanumeric characters, underscores, hyphens, and periods."
-          }
-        },
         "writerIdentity": {
           "target": "smithy.api#String",
           "traits": {
@@ -27,24 +22,23 @@
           "traits": {
             "smithy.api#documentation": "Required. The export destination."
           }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. The canonical sink resource name, unique within the project. Must be of the form: projects/[PROJECT_NUMBER]/traceSinks/[SINK_ID]. E.g.: `\"projects/12345/traceSinks/my-project-trace-sink\"`. Sink identifiers are limited to 256 characters and can include only the following characters: upper and lower-case alphanumeric characters, underscores, hyphens, and periods."
+          }
         }
       },
       "traits": {
         "smithy.api#documentation": "Describes a sink used to export traces to a BigQuery dataset. The sink must be created within a project."
       }
     },
-    "com.gcp.cloudtrace_v2beta1#OutputConfig": {
+    "com.gcp.cloudtrace_v2beta1#Empty": {
       "type": "structure",
-      "members": {
-        "destination": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The destination for writing trace data. Supported formats include: \"bigquery.googleapis.com/projects/[PROJECT_ID]/datasets/[DATASET]\""
-          }
-        }
-      },
+      "members": {},
       "traits": {
-        "smithy.api#documentation": "OutputConfig contains a destination for writing trace data."
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
       }
     },
     "com.gcp.cloudtrace_v2beta1#ListTraceSinksResponse": {
@@ -73,29 +67,29 @@
         "target": "com.gcp.cloudtrace_v2beta1#TraceSink"
       }
     },
-    "com.gcp.cloudtrace_v2beta1#Empty": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
-      }
-    },
-    "com.gcp.cloudtrace_v2beta1#PatchProjectsTraceSinksRequest": {
+    "com.gcp.cloudtrace_v2beta1#OutputConfig": {
       "type": "structure",
       "members": {
-        "name": {
+        "destination": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Required. The full resource name of the sink to update, including the parent resource and the sink identifier: \"projects/[PROJECT_NUMBER]/traceSinks/[SINK_ID]\" Example: `\"projects/12345/traceSinks/my-sink-id\"`.",
+            "smithy.api#documentation": "Required. The destination for writing trace data. Supported formats include: \"bigquery.googleapis.com/projects/[PROJECT_ID]/datasets/[DATASET]\""
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "OutputConfig contains a destination for writing trace data."
+      }
+    },
+    "com.gcp.cloudtrace_v2beta1#CreateProjectsTraceSinksRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource in which to create the sink (currently only project sinks are supported): \"projects/[PROJECT_ID]\" Examples: `\"projects/my-trace-project\"`, `\"projects/123456789\"`.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
-          }
-        },
-        "updateMask": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Field mask that specifies the fields in `trace_sink` that are to be updated. A sink field is overwritten if, and only if, it is in the update mask. `name` and `writer_identity` fields cannot be updated. An empty `update_mask` is considered an error. For a detailed `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask Example: `updateMask=output_config`.",
-            "smithy.api#httpQuery": "updateMask"
           }
         },
         "body": {
@@ -159,6 +153,63 @@
         ]
       }
     },
+    "com.gcp.cloudtrace_v2beta1#CreateProjectsTraceSinks": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.cloudtrace_v2beta1#CreateProjectsTraceSinksRequest"
+      },
+      "output": {
+        "target": "com.gcp.cloudtrace_v2beta1#TraceSink"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.cloudtrace_v2beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.cloudtrace_v2beta1#Forbidden"
+        },
+        {
+          "target": "com.gcp.cloudtrace_v2beta1#BadRequest"
+        },
+        {
+          "target": "com.gcp.cloudtrace_v2beta1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v2beta1/{+parent}/traceSinks"
+        },
+        "smithy.api#documentation": "Creates a sink that exports trace spans to a destination. The export of newly-ingested traces begins immediately, unless the sink's `writer_identity` is not permitted to write to the destination. A sink can export traces only from the resource owning the sink (the 'parent')."
+      }
+    },
+    "com.gcp.cloudtrace_v2beta1#PatchProjectsTraceSinksRequest": {
+      "type": "structure",
+      "members": {
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Field mask that specifies the fields in `trace_sink` that are to be updated. A sink field is overwritten if, and only if, it is in the update mask. `name` and `writer_identity` fields cannot be updated. An empty `update_mask` is considered an error. For a detailed `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask Example: `updateMask=output_config`.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The full resource name of the sink to update, including the parent resource and the sink identifier: \"projects/[PROJECT_NUMBER]/traceSinks/[SINK_ID]\" Example: `\"projects/12345/traceSinks/my-sink-id\"`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.cloudtrace_v2beta1#TraceSink",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
     "com.gcp.cloudtrace_v2beta1#PatchProjectsTraceSinks": {
       "type": "operation",
       "input": {
@@ -189,22 +240,65 @@
         "smithy.api#documentation": "Updates a sink. This method updates fields in the existing sink according to the provided update mask. The sink's name cannot be changed nor any output-only fields (e.g. the writer_identity)."
       }
     },
+    "com.gcp.cloudtrace_v2beta1#DeleteProjectsTraceSinksRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The full resource name of the sink to delete, including the parent resource and the sink identifier: \"projects/[PROJECT_NUMBER]/traceSinks/[SINK_ID]\" Example: `\"projects/12345/traceSinks/my-sink-id\"`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.cloudtrace_v2beta1#DeleteProjectsTraceSinks": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.cloudtrace_v2beta1#DeleteProjectsTraceSinksRequest"
+      },
+      "output": {
+        "target": "com.gcp.cloudtrace_v2beta1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.cloudtrace_v2beta1#NotFound"
+        },
+        {
+          "target": "com.gcp.cloudtrace_v2beta1#Forbidden"
+        },
+        {
+          "target": "com.gcp.cloudtrace_v2beta1#BadRequest"
+        },
+        {
+          "target": "com.gcp.cloudtrace_v2beta1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v2beta1/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a sink."
+      }
+    },
     "com.gcp.cloudtrace_v2beta1#ListProjectsTraceSinksRequest": {
       "type": "structure",
       "members": {
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. If present, then retrieve the next batch of results from the preceding call to this method. `page_token` must be the value of `next_page_token` from the previous response. The values of other method parameters should be identical to those in the previous call.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        },
         "parent": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Required. The parent resource whose sinks are to be listed (currently only project parent resources are supported): \"projects/[PROJECT_ID]\"",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. If present, then retrieve the next batch of results from the preceding call to this method. `page_token` must be the value of `next_page_token` from the previous response. The values of other method parameters should be identical to those in the previous call.",
+            "smithy.api#httpQuery": "pageToken"
           }
         },
         "pageSize": {
@@ -279,99 +373,6 @@
           "uri": "v2beta1/{+name}"
         },
         "smithy.api#documentation": "Get a trace sink by name under the parent resource (GCP project)."
-      }
-    },
-    "com.gcp.cloudtrace_v2beta1#CreateProjectsTraceSinksRequest": {
-      "type": "structure",
-      "members": {
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The resource in which to create the sink (currently only project sinks are supported): \"projects/[PROJECT_ID]\" Examples: `\"projects/my-trace-project\"`, `\"projects/123456789\"`.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.cloudtrace_v2beta1#TraceSink",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.cloudtrace_v2beta1#CreateProjectsTraceSinks": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.cloudtrace_v2beta1#CreateProjectsTraceSinksRequest"
-      },
-      "output": {
-        "target": "com.gcp.cloudtrace_v2beta1#TraceSink"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.cloudtrace_v2beta1#NotFound"
-        },
-        {
-          "target": "com.gcp.cloudtrace_v2beta1#Forbidden"
-        },
-        {
-          "target": "com.gcp.cloudtrace_v2beta1#BadRequest"
-        },
-        {
-          "target": "com.gcp.cloudtrace_v2beta1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v2beta1/{+parent}/traceSinks"
-        },
-        "smithy.api#documentation": "Creates a sink that exports trace spans to a destination. The export of newly-ingested traces begins immediately, unless the sink's `writer_identity` is not permitted to write to the destination. A sink can export traces only from the resource owning the sink (the 'parent')."
-      }
-    },
-    "com.gcp.cloudtrace_v2beta1#DeleteProjectsTraceSinksRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The full resource name of the sink to delete, including the parent resource and the sink identifier: \"projects/[PROJECT_NUMBER]/traceSinks/[SINK_ID]\" Example: `\"projects/12345/traceSinks/my-sink-id\"`.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.cloudtrace_v2beta1#DeleteProjectsTraceSinks": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.cloudtrace_v2beta1#DeleteProjectsTraceSinksRequest"
-      },
-      "output": {
-        "target": "com.gcp.cloudtrace_v2beta1#Empty"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.cloudtrace_v2beta1#NotFound"
-        },
-        {
-          "target": "com.gcp.cloudtrace_v2beta1#Forbidden"
-        },
-        {
-          "target": "com.gcp.cloudtrace_v2beta1#BadRequest"
-        },
-        {
-          "target": "com.gcp.cloudtrace_v2beta1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "v2beta1/{+name}"
-        },
-        "smithy.api#documentation": "Deletes a sink."
       }
     }
   }

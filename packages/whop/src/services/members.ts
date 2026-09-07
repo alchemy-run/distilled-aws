@@ -40,6 +40,88 @@ export class NotFound
     [{ status: 404 }],
   ) {}
 
+export interface GetMemberRequest {
+  /** Member ID (`mber_` tag). */
+  id: string;
+}
+export const GetMemberRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/members/{id}", code: 200 })),
+).annotate({
+  identifier: "GetMemberRequest",
+}) as any as S.Schema<GetMemberRequest>;
+
+/** What the member can reach on the account: `customer` for paying members, `admin` for team members, `no_access` once every grant has lapsed. */
+export type MemberAccessLevel = "no_access" | "admin" | "customer";
+export const MemberAccessLevel = /*@__PURE__*/ S.String;
+
+/** `joined` while the member is part of the account, `left` after they leave. */
+export type MemberStatus = "joined" | "left";
+export const MemberStatus = /*@__PURE__*/ S.String;
+
+export interface UserProfilePicture {
+  /** Avatar image URL. Always present — a generated placeholder when the user set no picture. */
+  url: string;
+}
+export const UserProfilePicture = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    url: S.String,
+  }),
+).annotate({
+  identifier: "UserProfilePicture",
+}) as any as S.Schema<UserProfilePicture>;
+
+export interface UserSummary {
+  /** User ID, prefixed `user_`. */
+  id: string;
+  /** Display name. */
+  name: string | null;
+  /** Avatar wrapper; its `url` is always present, using a generated placeholder when the user set no picture. */
+  profile_picture: UserProfilePicture;
+  /** Public username. */
+  username: string;
+}
+export const UserSummary = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    name: S.NullOr(S.String),
+    profile_picture: UserProfilePicture,
+    username: S.String,
+  }),
+).annotate({ identifier: "UserSummary" }) as any as S.Schema<UserSummary>;
+
+export interface Member {
+  /** What the member can reach on the account: `customer` for paying members, `admin` for team members, `no_access` once every grant has lapsed. */
+  access_level: MemberAccessLevel;
+  /** The account this member belongs to, prefixed `biz_`. */
+  account_id: string;
+  /** When the member record was created, as an ISO 8601 timestamp. */
+  created_at: string;
+  /** Member ID, prefixed `mber_`. */
+  id: string;
+  /** When the member first joined the account, as an ISO 8601 timestamp. */
+  joined_at: string;
+  /** When the member last opened the account's content, as an ISO 8601 timestamp. `null` if they never have. */
+  last_accessed_at: string | null;
+  /** `joined` while the member is part of the account, `left` after they leave. */
+  status: MemberStatus;
+  /** The user behind this member. `null` when the buyer is another business rather than a person. */
+  user: UserSummary | null;
+}
+export const Member = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    access_level: MemberAccessLevel,
+    account_id: S.String,
+    created_at: S.String,
+    id: S.String,
+    joined_at: S.String,
+    last_accessed_at: S.NullOr(S.String),
+    status: MemberStatus,
+    user: S.NullOr(UserSummary),
+  }),
+).annotate({ identifier: "Member" }) as any as S.Schema<Member>;
+
 export interface ListMemberLogsRequest {
   /** Member ID (`mber_` tag). */
   id: string;
@@ -191,76 +273,6 @@ export const ListMembersRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListMembersRequest",
 }) as any as S.Schema<ListMembersRequest>;
 
-/** What the member can reach on the account: `customer` for paying members, `admin` for team members, `no_access` once every grant has lapsed. */
-export type MemberAccessLevel = "no_access" | "admin" | "customer";
-export const MemberAccessLevel = /*@__PURE__*/ S.String;
-
-/** `joined` while the member is part of the account, `left` after they leave. */
-export type MemberStatus = "joined" | "left";
-export const MemberStatus = /*@__PURE__*/ S.String;
-
-export interface UserProfilePicture {
-  /** Avatar image URL. Always present — a generated placeholder when the user set no picture. */
-  url: string;
-}
-export const UserProfilePicture = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    url: S.String,
-  }),
-).annotate({
-  identifier: "UserProfilePicture",
-}) as any as S.Schema<UserProfilePicture>;
-
-export interface UserSummary {
-  /** User ID, prefixed `user_`. */
-  id: string;
-  /** Display name. */
-  name: string | null;
-  /** Avatar wrapper; its `url` is always present, using a generated placeholder when the user set no picture. */
-  profile_picture: UserProfilePicture;
-  /** Public username. */
-  username: string;
-}
-export const UserSummary = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    name: S.NullOr(S.String),
-    profile_picture: UserProfilePicture,
-    username: S.String,
-  }),
-).annotate({ identifier: "UserSummary" }) as any as S.Schema<UserSummary>;
-
-export interface Member {
-  /** What the member can reach on the account: `customer` for paying members, `admin` for team members, `no_access` once every grant has lapsed. */
-  access_level: MemberAccessLevel;
-  /** The account this member belongs to, prefixed `biz_`. */
-  account_id: string;
-  /** When the member record was created, as an ISO 8601 timestamp. */
-  created_at: string;
-  /** Member ID, prefixed `mber_`. */
-  id: string;
-  /** When the member first joined the account, as an ISO 8601 timestamp. */
-  joined_at: string;
-  /** When the member last opened the account's content, as an ISO 8601 timestamp. `null` if they never have. */
-  last_accessed_at: string | null;
-  /** `joined` while the member is part of the account, `left` after they leave. */
-  status: MemberStatus;
-  /** The user behind this member. `null` when the buyer is another business rather than a person. */
-  user: UserSummary | null;
-}
-export const Member = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    access_level: MemberAccessLevel,
-    account_id: S.String,
-    created_at: S.String,
-    id: S.String,
-    joined_at: S.String,
-    last_accessed_at: S.NullOr(S.String),
-    status: MemberStatus,
-    user: S.NullOr(UserSummary),
-  }),
-).annotate({ identifier: "Member" }) as any as S.Schema<Member>;
-
 export type ListMembersResponseDataList = Array<Member>;
 export const ListMembersResponseDataList = /*@__PURE__*/ S.Array(
   Member,
@@ -282,17 +294,20 @@ export const ListMembersResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListMembersResponse",
 }) as any as S.Schema<ListMembersResponse>;
 
-export interface RetrieveMemberRequest {
-  /** Member ID (`mber_` tag). */
-  id: string;
-}
-export const RetrieveMemberRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/members/{id}", code: 200 })),
-).annotate({
-  identifier: "RetrieveMemberRequest",
-}) as any as S.Schema<RetrieveMemberRequest>;
+export type GetMemberError = Forbidden | NotFound | WhopOpError;
+/** Retrieve Member Retrieves a member by ID. Accessible to the account and to the member's own user. */
+export const getMember: API.OperationMethod<
+  GetMemberRequest,
+  Member,
+  GetMemberError,
+  WhopOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetMemberRequest,
+  output: Member,
+  errors: [Forbidden, NotFound],
+  protocol: WhopProtocol,
+  retry: Retry.Retry,
+}));
 
 export type ListMemberLogsError = Forbidden | NotFound | WhopOpError;
 /** List Member Logs Lists activity for a member and all of their non-drafted memberships, most recent first. */
@@ -347,18 +362,3 @@ export const listMembers: API.PaginatedOperationMethod<
   }),
   paginateRelay,
 ) as any;
-
-export type RetrieveMemberError = Forbidden | NotFound | WhopOpError;
-/** Retrieve Member Retrieves a member by ID. Accessible to the account and to the member's own user. */
-export const retrieveMember: API.OperationMethod<
-  RetrieveMemberRequest,
-  Member,
-  RetrieveMemberError,
-  WhopOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveMemberRequest,
-  output: Member,
-  errors: [Forbidden, NotFound],
-  protocol: WhopProtocol,
-  retry: Retry.Retry,
-}));

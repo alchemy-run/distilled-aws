@@ -3,7 +3,7 @@
   "patches": [
     {
       "op": "replace",
-      "path": "/shapes/com.railway.api#CustomDomainDeleteRequest/traits/com.railway.graphql#operation/query",
+      "path": "/shapes/com.railway.api#DeleteCustomDomainRequest/traits/com.railway.graphql#operation/query",
       "value": "mutation customDomainDelete($id: String!) {\n  customDomainDelete(id: $id)\n}"
     }
   ]

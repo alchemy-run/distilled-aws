@@ -14,16 +14,17 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.kubernetesconfiguration#OperationStatusGet": {
+    "com.azure.kubernetesconfiguration#GetOperationStatus": {
       "type": "operation",
       "input": {
-        "target": "com.azure.kubernetesconfiguration#OperationStatusGetRequest"
+        "target": "com.azure.kubernetesconfiguration#GetOperationStatusRequest"
       },
       "output": {
-        "target": "com.azure.kubernetesconfiguration#OperationStatusGetResponse"
+        "target": "com.azure.kubernetesconfiguration#GetOperationStatusResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -36,7 +37,7 @@
         "com.distilled.openapi#apiVersion": "2023-05-01"
       }
     },
-    "com.azure.kubernetesconfiguration#OperationStatusGetResponse": {
+    "com.azure.kubernetesconfiguration#GetOperationStatusResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -59,14 +60,14 @@
           }
         },
         "properties": {
-          "target": "com.azure.kubernetesconfiguration#OperationStatusGetResponsePropertiesMap",
+          "target": "com.azure.kubernetesconfiguration#GetOperationStatusResponsePropertiesMap",
           "traits": {
             "smithy.api#documentation": "Additional information, if available.",
             "com.distilled.openapi#nullable": {}
           }
         },
         "error": {
-          "target": "com.azure.kubernetesconfiguration#OperationStatusGetResponseError",
+          "target": "com.azure.kubernetesconfiguration#GetOperationStatusResponseError",
           "traits": {
             "smithy.api#documentation": "The error detail."
           }
@@ -76,7 +77,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.kubernetesconfiguration#OperationStatusGetResponseError": {
+    "com.azure.kubernetesconfiguration#GetOperationStatusResponseError": {
       "type": "structure",
       "members": {
         "code": {
@@ -98,13 +99,13 @@
           }
         },
         "details": {
-          "target": "com.azure.kubernetesconfiguration#OperationStatusGetResponseErrorDetailsList",
+          "target": "com.azure.kubernetesconfiguration#GetOperationStatusResponseErrorDetailsList",
           "traits": {
             "smithy.api#documentation": "The error details."
           }
         },
         "additionalInfo": {
-          "target": "com.azure.kubernetesconfiguration#OperationStatusGetResponseErrorAdditionalInfoList",
+          "target": "com.azure.kubernetesconfiguration#GetOperationStatusResponseErrorAdditionalInfoList",
           "traits": {
             "smithy.api#documentation": "The error additional info."
           }
@@ -114,7 +115,7 @@
         "smithy.api#documentation": "The error detail."
       }
     },
-    "com.azure.kubernetesconfiguration#OperationStatusGetResponseErrorAdditionalInfoList": {
+    "com.azure.kubernetesconfiguration#GetOperationStatusResponseErrorAdditionalInfoList": {
       "type": "list",
       "member": {
         "target": "com.azure.kubernetesconfiguration#ErrorAdditionalInfo"
@@ -143,7 +144,7 @@
         "smithy.api#documentation": "The resource management error additional info."
       }
     },
-    "com.azure.kubernetesconfiguration#OperationStatusGetResponseErrorDetailsList": {
+    "com.azure.kubernetesconfiguration#GetOperationStatusResponseErrorDetailsList": {
       "type": "list",
       "member": {
         "target": "com.azure.kubernetesconfiguration#ErrorDetail"
@@ -208,7 +209,7 @@
         "smithy.api#documentation": "The error details."
       }
     },
-    "com.azure.kubernetesconfiguration#OperationStatusGetResponsePropertiesMap": {
+    "com.azure.kubernetesconfiguration#GetOperationStatusResponsePropertiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -220,7 +221,7 @@
         "smithy.api#documentation": "Additional information, if available."
       }
     },
-    "com.azure.kubernetesconfiguration#OperationStatusGetRequest": {
+    "com.azure.kubernetesconfiguration#GetOperationStatusRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -284,10 +285,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsList2": {
+    "com.azure.kubernetesconfiguration#ListExtensions": {
       "type": "operation",
       "input": {
-        "target": "com.azure.kubernetesconfiguration#ExtensionsListRequest"
+        "target": "com.azure.kubernetesconfiguration#ListExtensionsRequest"
       },
       "output": {
         "target": "com.azure.kubernetesconfiguration#ExtensionsList"
@@ -982,7 +983,7 @@
         "smithy.api#documentation": "Specifies that the scope of the extension is Cluster"
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsListRequest": {
+    "com.azure.kubernetesconfiguration#ListExtensionsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1030,10 +1031,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsDelete": {
+    "com.azure.kubernetesconfiguration#DeleteExtension": {
       "type": "operation",
       "input": {
-        "target": "com.azure.kubernetesconfiguration#ExtensionsDeleteRequest"
+        "target": "com.azure.kubernetesconfiguration#DeleteExtensionRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1049,7 +1050,7 @@
         "com.distilled.openapi#apiVersion": "2023-05-01"
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsDeleteRequest": {
+    "com.azure.kubernetesconfiguration#DeleteExtensionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1112,13 +1113,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsUpdate": {
+    "com.azure.kubernetesconfiguration#UpdateExtension": {
       "type": "operation",
       "input": {
-        "target": "com.azure.kubernetesconfiguration#ExtensionsUpdateRequest"
+        "target": "com.azure.kubernetesconfiguration#UpdateExtensionRequest"
       },
       "output": {
-        "target": "com.azure.kubernetesconfiguration#ExtensionsUpdateResponse"
+        "target": "com.azure.kubernetesconfiguration#UpdateExtensionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1131,7 +1132,7 @@
         "com.distilled.openapi#apiVersion": "2023-05-01"
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsUpdateResponse": {
+    "com.azure.kubernetesconfiguration#UpdateExtensionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1153,25 +1154,25 @@
           }
         },
         "properties": {
-          "target": "com.azure.kubernetesconfiguration#ExtensionsUpdateResponseProperties",
+          "target": "com.azure.kubernetesconfiguration#UpdateExtensionResponseProperties",
           "traits": {
             "smithy.api#documentation": "Properties of an Extension resource"
           }
         },
         "identity": {
-          "target": "com.azure.kubernetesconfiguration#ExtensionsUpdateResponseIdentity",
+          "target": "com.azure.kubernetesconfiguration#UpdateExtensionResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Identity for the resource."
           }
         },
         "systemData": {
-          "target": "com.azure.kubernetesconfiguration#ExtensionsUpdateResponseSystemData",
+          "target": "com.azure.kubernetesconfiguration#UpdateExtensionResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
         },
         "plan": {
-          "target": "com.azure.kubernetesconfiguration#ExtensionsUpdateResponsePlan",
+          "target": "com.azure.kubernetesconfiguration#UpdateExtensionResponsePlan",
           "traits": {
             "smithy.api#documentation": "Plan for the resource."
           }
@@ -1181,7 +1182,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsUpdateResponsePlan": {
+    "com.azure.kubernetesconfiguration#UpdateExtensionResponsePlan": {
       "type": "structure",
       "members": {
         "name": {
@@ -1222,7 +1223,7 @@
         "smithy.api#documentation": "Plan for the resource."
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsUpdateResponseSystemData": {
+    "com.azure.kubernetesconfiguration#UpdateExtensionResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -1232,7 +1233,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.kubernetesconfiguration#ExtensionsUpdateResponseSystemDataCreatedByType",
+          "target": "com.azure.kubernetesconfiguration#UpdateExtensionResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -1250,7 +1251,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.kubernetesconfiguration#ExtensionsUpdateResponseSystemDataLastModifiedByType",
+          "target": "com.azure.kubernetesconfiguration#UpdateExtensionResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -1266,7 +1267,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsUpdateResponseSystemDataLastModifiedByType": {
+    "com.azure.kubernetesconfiguration#UpdateExtensionResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -1298,7 +1299,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsUpdateResponseSystemDataCreatedByType": {
+    "com.azure.kubernetesconfiguration#UpdateExtensionResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -1330,7 +1331,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsUpdateResponseIdentity": {
+    "com.azure.kubernetesconfiguration#UpdateExtensionResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -1346,7 +1347,7 @@
           }
         },
         "type": {
-          "target": "com.azure.kubernetesconfiguration#ExtensionsUpdateResponseIdentityType",
+          "target": "com.azure.kubernetesconfiguration#UpdateExtensionResponseIdentityType",
           "traits": {
             "smithy.api#documentation": "The identity type."
           }
@@ -1356,7 +1357,7 @@
         "smithy.api#documentation": "Identity for the resource."
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsUpdateResponseIdentityType": {
+    "com.azure.kubernetesconfiguration#UpdateExtensionResponseIdentityType": {
       "type": "enum",
       "members": {
         "SYSTEMASSIGNED": {
@@ -1370,7 +1371,7 @@
         "smithy.api#documentation": "The identity type."
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsUpdateResponseProperties": {
+    "com.azure.kubernetesconfiguration#UpdateExtensionResponseProperties": {
       "type": "structure",
       "members": {
         "extensionType": {
@@ -1405,14 +1406,14 @@
           }
         },
         "configurationSettings": {
-          "target": "com.azure.kubernetesconfiguration#ExtensionsUpdateResponsePropertiesConfigurationSettingsMap",
+          "target": "com.azure.kubernetesconfiguration#UpdateExtensionResponsePropertiesConfigurationSettingsMap",
           "traits": {
             "smithy.api#documentation": "Configuration settings, as name-value pairs for configuring this extension.",
             "com.distilled.openapi#nullable": {}
           }
         },
         "configurationProtectedSettings": {
-          "target": "com.azure.kubernetesconfiguration#ExtensionsUpdateResponsePropertiesConfigurationProtectedSettingsMap",
+          "target": "com.azure.kubernetesconfiguration#UpdateExtensionResponsePropertiesConfigurationProtectedSettingsMap",
           "traits": {
             "smithy.api#documentation": "Configuration settings that are sensitive, as name-value pairs for configuring this extension.",
             "com.distilled.openapi#nullable": {}
@@ -1426,26 +1427,26 @@
           }
         },
         "provisioningState": {
-          "target": "com.azure.kubernetesconfiguration#ExtensionsUpdateResponsePropertiesProvisioningState",
+          "target": "com.azure.kubernetesconfiguration#UpdateExtensionResponsePropertiesProvisioningState",
           "traits": {
             "smithy.api#documentation": "The provisioning state of the resource."
           }
         },
         "statuses": {
-          "target": "com.azure.kubernetesconfiguration#ExtensionsUpdateResponsePropertiesStatusesList",
+          "target": "com.azure.kubernetesconfiguration#UpdateExtensionResponsePropertiesStatusesList",
           "traits": {
             "smithy.api#documentation": "Status from this extension.",
             "com.distilled.openapi#nullable": {}
           }
         },
         "errorInfo": {
-          "target": "com.azure.kubernetesconfiguration#ExtensionsUpdateResponsePropertiesErrorInfo",
+          "target": "com.azure.kubernetesconfiguration#UpdateExtensionResponsePropertiesErrorInfo",
           "traits": {
             "smithy.api#documentation": "The error detail."
           }
         },
         "customLocationSettings": {
-          "target": "com.azure.kubernetesconfiguration#ExtensionsUpdateResponsePropertiesCustomLocationSettingsMap",
+          "target": "com.azure.kubernetesconfiguration#UpdateExtensionResponsePropertiesCustomLocationSettingsMap",
           "traits": {
             "smithy.api#documentation": "Custom Location settings properties.",
             "com.distilled.openapi#nullable": {}
@@ -1459,7 +1460,7 @@
           }
         },
         "aksAssignedIdentity": {
-          "target": "com.azure.kubernetesconfiguration#ExtensionsUpdateResponsePropertiesAksAssignedIdentity",
+          "target": "com.azure.kubernetesconfiguration#UpdateExtensionResponsePropertiesAksAssignedIdentity",
           "traits": {
             "smithy.api#documentation": "Identity of the Extension resource in an AKS cluster",
             "com.distilled.openapi#nullable": {}
@@ -1476,7 +1477,7 @@
         "smithy.api#documentation": "Properties of an Extension resource"
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsUpdateResponsePropertiesAksAssignedIdentity": {
+    "com.azure.kubernetesconfiguration#UpdateExtensionResponsePropertiesAksAssignedIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -1492,7 +1493,7 @@
           }
         },
         "type": {
-          "target": "com.azure.kubernetesconfiguration#ExtensionsUpdateResponsePropertiesAksAssignedIdentityType",
+          "target": "com.azure.kubernetesconfiguration#UpdateExtensionResponsePropertiesAksAssignedIdentityType",
           "traits": {
             "smithy.api#documentation": "The identity type."
           }
@@ -1502,7 +1503,7 @@
         "smithy.api#documentation": "Identity of the Extension resource in an AKS cluster"
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsUpdateResponsePropertiesAksAssignedIdentityType": {
+    "com.azure.kubernetesconfiguration#UpdateExtensionResponsePropertiesAksAssignedIdentityType": {
       "type": "enum",
       "members": {
         "SYSTEMASSIGNED": {
@@ -1522,7 +1523,7 @@
         "smithy.api#documentation": "The identity type."
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsUpdateResponsePropertiesCustomLocationSettingsMap": {
+    "com.azure.kubernetesconfiguration#UpdateExtensionResponsePropertiesCustomLocationSettingsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1534,7 +1535,7 @@
         "smithy.api#documentation": "Custom Location settings properties."
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsUpdateResponsePropertiesErrorInfo": {
+    "com.azure.kubernetesconfiguration#UpdateExtensionResponsePropertiesErrorInfo": {
       "type": "structure",
       "members": {
         "code": {
@@ -1556,13 +1557,13 @@
           }
         },
         "details": {
-          "target": "com.azure.kubernetesconfiguration#ExtensionsUpdateResponsePropertiesErrorInfoDetailsList",
+          "target": "com.azure.kubernetesconfiguration#UpdateExtensionResponsePropertiesErrorInfoDetailsList",
           "traits": {
             "smithy.api#documentation": "The error details."
           }
         },
         "additionalInfo": {
-          "target": "com.azure.kubernetesconfiguration#ExtensionsUpdateResponsePropertiesErrorInfoAdditionalInfoList",
+          "target": "com.azure.kubernetesconfiguration#UpdateExtensionResponsePropertiesErrorInfoAdditionalInfoList",
           "traits": {
             "smithy.api#documentation": "The error additional info."
           }
@@ -1572,7 +1573,7 @@
         "smithy.api#documentation": "The error detail."
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsUpdateResponsePropertiesErrorInfoAdditionalInfoList": {
+    "com.azure.kubernetesconfiguration#UpdateExtensionResponsePropertiesErrorInfoAdditionalInfoList": {
       "type": "list",
       "member": {
         "target": "com.azure.kubernetesconfiguration#ErrorAdditionalInfo"
@@ -1581,7 +1582,7 @@
         "smithy.api#documentation": "The error additional info."
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsUpdateResponsePropertiesErrorInfoDetailsList": {
+    "com.azure.kubernetesconfiguration#UpdateExtensionResponsePropertiesErrorInfoDetailsList": {
       "type": "list",
       "member": {
         "target": "com.azure.kubernetesconfiguration#ErrorDetail"
@@ -1590,7 +1591,7 @@
         "smithy.api#documentation": "The error details."
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsUpdateResponsePropertiesStatusesList": {
+    "com.azure.kubernetesconfiguration#UpdateExtensionResponsePropertiesStatusesList": {
       "type": "list",
       "member": {
         "target": "com.azure.kubernetesconfiguration#ExtensionStatus"
@@ -1599,7 +1600,7 @@
         "smithy.api#documentation": "Status from this extension."
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsUpdateResponsePropertiesProvisioningState": {
+    "com.azure.kubernetesconfiguration#UpdateExtensionResponsePropertiesProvisioningState": {
       "type": "enum",
       "members": {
         "SUCCEEDED": {
@@ -1643,7 +1644,7 @@
         "smithy.api#documentation": "The provisioning state of the resource."
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsUpdateResponsePropertiesConfigurationProtectedSettingsMap": {
+    "com.azure.kubernetesconfiguration#UpdateExtensionResponsePropertiesConfigurationProtectedSettingsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1655,7 +1656,7 @@
         "smithy.api#documentation": "Configuration settings that are sensitive, as name-value pairs for configuring this extension."
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsUpdateResponsePropertiesConfigurationSettingsMap": {
+    "com.azure.kubernetesconfiguration#UpdateExtensionResponsePropertiesConfigurationSettingsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1667,7 +1668,7 @@
         "smithy.api#documentation": "Configuration settings, as name-value pairs for configuring this extension."
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsUpdateRequest": {
+    "com.azure.kubernetesconfiguration#UpdateExtensionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1719,7 +1720,7 @@
           }
         },
         "properties": {
-          "target": "com.azure.kubernetesconfiguration#ExtensionsUpdateRequestProperties",
+          "target": "com.azure.kubernetesconfiguration#UpdateExtensionRequestProperties",
           "traits": {
             "smithy.api#documentation": "Updatable properties of an Extension Patch Request"
           }
@@ -1729,7 +1730,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsUpdateRequestProperties": {
+    "com.azure.kubernetesconfiguration#UpdateExtensionRequestProperties": {
       "type": "structure",
       "members": {
         "autoUpgradeMinorVersion": {
@@ -1752,14 +1753,14 @@
           }
         },
         "configurationSettings": {
-          "target": "com.azure.kubernetesconfiguration#ExtensionsUpdateRequestPropertiesConfigurationSettingsMap",
+          "target": "com.azure.kubernetesconfiguration#UpdateExtensionRequestPropertiesConfigurationSettingsMap",
           "traits": {
             "smithy.api#documentation": "Configuration settings, as name-value pairs for configuring this extension.",
             "com.distilled.openapi#nullable": {}
           }
         },
         "configurationProtectedSettings": {
-          "target": "com.azure.kubernetesconfiguration#ExtensionsUpdateRequestPropertiesConfigurationProtectedSettingsMap",
+          "target": "com.azure.kubernetesconfiguration#UpdateExtensionRequestPropertiesConfigurationProtectedSettingsMap",
           "traits": {
             "smithy.api#documentation": "Configuration settings that are sensitive, as name-value pairs for configuring this extension.",
             "com.distilled.openapi#nullable": {}
@@ -1770,7 +1771,7 @@
         "smithy.api#documentation": "Updatable properties of an Extension Patch Request"
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsUpdateRequestPropertiesConfigurationProtectedSettingsMap": {
+    "com.azure.kubernetesconfiguration#UpdateExtensionRequestPropertiesConfigurationProtectedSettingsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1782,7 +1783,7 @@
         "smithy.api#documentation": "Configuration settings that are sensitive, as name-value pairs for configuring this extension."
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsUpdateRequestPropertiesConfigurationSettingsMap": {
+    "com.azure.kubernetesconfiguration#UpdateExtensionRequestPropertiesConfigurationSettingsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1794,13 +1795,13 @@
         "smithy.api#documentation": "Configuration settings, as name-value pairs for configuring this extension."
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsCreate": {
+    "com.azure.kubernetesconfiguration#CreateExtension": {
       "type": "operation",
       "input": {
-        "target": "com.azure.kubernetesconfiguration#ExtensionsCreateRequest"
+        "target": "com.azure.kubernetesconfiguration#CreateExtensionRequest"
       },
       "output": {
-        "target": "com.azure.kubernetesconfiguration#ExtensionsCreateResponse"
+        "target": "com.azure.kubernetesconfiguration#CreateExtensionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1813,7 +1814,7 @@
         "com.distilled.openapi#apiVersion": "2023-05-01"
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsCreateResponse": {
+    "com.azure.kubernetesconfiguration#CreateExtensionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1835,25 +1836,25 @@
           }
         },
         "properties": {
-          "target": "com.azure.kubernetesconfiguration#ExtensionsCreateResponseProperties",
+          "target": "com.azure.kubernetesconfiguration#CreateExtensionResponseProperties",
           "traits": {
             "smithy.api#documentation": "Properties of an Extension resource"
           }
         },
         "identity": {
-          "target": "com.azure.kubernetesconfiguration#ExtensionsCreateResponseIdentity",
+          "target": "com.azure.kubernetesconfiguration#CreateExtensionResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Identity for the resource."
           }
         },
         "systemData": {
-          "target": "com.azure.kubernetesconfiguration#ExtensionsCreateResponseSystemData",
+          "target": "com.azure.kubernetesconfiguration#CreateExtensionResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
         },
         "plan": {
-          "target": "com.azure.kubernetesconfiguration#ExtensionsCreateResponsePlan",
+          "target": "com.azure.kubernetesconfiguration#CreateExtensionResponsePlan",
           "traits": {
             "smithy.api#documentation": "Plan for the resource."
           }
@@ -1863,7 +1864,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsCreateResponsePlan": {
+    "com.azure.kubernetesconfiguration#CreateExtensionResponsePlan": {
       "type": "structure",
       "members": {
         "name": {
@@ -1904,7 +1905,7 @@
         "smithy.api#documentation": "Plan for the resource."
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsCreateResponseSystemData": {
+    "com.azure.kubernetesconfiguration#CreateExtensionResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -1914,7 +1915,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.kubernetesconfiguration#ExtensionsCreateResponseSystemDataCreatedByType",
+          "target": "com.azure.kubernetesconfiguration#CreateExtensionResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -1932,7 +1933,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.kubernetesconfiguration#ExtensionsCreateResponseSystemDataLastModifiedByType",
+          "target": "com.azure.kubernetesconfiguration#CreateExtensionResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -1948,7 +1949,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsCreateResponseSystemDataLastModifiedByType": {
+    "com.azure.kubernetesconfiguration#CreateExtensionResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -1980,7 +1981,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsCreateResponseSystemDataCreatedByType": {
+    "com.azure.kubernetesconfiguration#CreateExtensionResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -2012,7 +2013,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsCreateResponseIdentity": {
+    "com.azure.kubernetesconfiguration#CreateExtensionResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -2028,7 +2029,7 @@
           }
         },
         "type": {
-          "target": "com.azure.kubernetesconfiguration#ExtensionsCreateResponseIdentityType",
+          "target": "com.azure.kubernetesconfiguration#CreateExtensionResponseIdentityType",
           "traits": {
             "smithy.api#documentation": "The identity type."
           }
@@ -2038,7 +2039,7 @@
         "smithy.api#documentation": "Identity for the resource."
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsCreateResponseIdentityType": {
+    "com.azure.kubernetesconfiguration#CreateExtensionResponseIdentityType": {
       "type": "enum",
       "members": {
         "SYSTEMASSIGNED": {
@@ -2052,7 +2053,7 @@
         "smithy.api#documentation": "The identity type."
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsCreateResponseProperties": {
+    "com.azure.kubernetesconfiguration#CreateExtensionResponseProperties": {
       "type": "structure",
       "members": {
         "extensionType": {
@@ -2087,14 +2088,14 @@
           }
         },
         "configurationSettings": {
-          "target": "com.azure.kubernetesconfiguration#ExtensionsCreateResponsePropertiesConfigurationSettingsMap",
+          "target": "com.azure.kubernetesconfiguration#CreateExtensionResponsePropertiesConfigurationSettingsMap",
           "traits": {
             "smithy.api#documentation": "Configuration settings, as name-value pairs for configuring this extension.",
             "com.distilled.openapi#nullable": {}
           }
         },
         "configurationProtectedSettings": {
-          "target": "com.azure.kubernetesconfiguration#ExtensionsCreateResponsePropertiesConfigurationProtectedSettingsMap",
+          "target": "com.azure.kubernetesconfiguration#CreateExtensionResponsePropertiesConfigurationProtectedSettingsMap",
           "traits": {
             "smithy.api#documentation": "Configuration settings that are sensitive, as name-value pairs for configuring this extension.",
             "com.distilled.openapi#nullable": {}
@@ -2108,26 +2109,26 @@
           }
         },
         "provisioningState": {
-          "target": "com.azure.kubernetesconfiguration#ExtensionsCreateResponsePropertiesProvisioningState",
+          "target": "com.azure.kubernetesconfiguration#CreateExtensionResponsePropertiesProvisioningState",
           "traits": {
             "smithy.api#documentation": "The provisioning state of the resource."
           }
         },
         "statuses": {
-          "target": "com.azure.kubernetesconfiguration#ExtensionsCreateResponsePropertiesStatusesList",
+          "target": "com.azure.kubernetesconfiguration#CreateExtensionResponsePropertiesStatusesList",
           "traits": {
             "smithy.api#documentation": "Status from this extension.",
             "com.distilled.openapi#nullable": {}
           }
         },
         "errorInfo": {
-          "target": "com.azure.kubernetesconfiguration#ExtensionsCreateResponsePropertiesErrorInfo",
+          "target": "com.azure.kubernetesconfiguration#CreateExtensionResponsePropertiesErrorInfo",
           "traits": {
             "smithy.api#documentation": "The error detail."
           }
         },
         "customLocationSettings": {
-          "target": "com.azure.kubernetesconfiguration#ExtensionsCreateResponsePropertiesCustomLocationSettingsMap",
+          "target": "com.azure.kubernetesconfiguration#CreateExtensionResponsePropertiesCustomLocationSettingsMap",
           "traits": {
             "smithy.api#documentation": "Custom Location settings properties.",
             "com.distilled.openapi#nullable": {}
@@ -2141,7 +2142,7 @@
           }
         },
         "aksAssignedIdentity": {
-          "target": "com.azure.kubernetesconfiguration#ExtensionsCreateResponsePropertiesAksAssignedIdentity",
+          "target": "com.azure.kubernetesconfiguration#CreateExtensionResponsePropertiesAksAssignedIdentity",
           "traits": {
             "smithy.api#documentation": "Identity of the Extension resource in an AKS cluster",
             "com.distilled.openapi#nullable": {}
@@ -2158,7 +2159,7 @@
         "smithy.api#documentation": "Properties of an Extension resource"
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsCreateResponsePropertiesAksAssignedIdentity": {
+    "com.azure.kubernetesconfiguration#CreateExtensionResponsePropertiesAksAssignedIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -2174,7 +2175,7 @@
           }
         },
         "type": {
-          "target": "com.azure.kubernetesconfiguration#ExtensionsCreateResponsePropertiesAksAssignedIdentityType",
+          "target": "com.azure.kubernetesconfiguration#CreateExtensionResponsePropertiesAksAssignedIdentityType",
           "traits": {
             "smithy.api#documentation": "The identity type."
           }
@@ -2184,7 +2185,7 @@
         "smithy.api#documentation": "Identity of the Extension resource in an AKS cluster"
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsCreateResponsePropertiesAksAssignedIdentityType": {
+    "com.azure.kubernetesconfiguration#CreateExtensionResponsePropertiesAksAssignedIdentityType": {
       "type": "enum",
       "members": {
         "SYSTEMASSIGNED": {
@@ -2204,7 +2205,7 @@
         "smithy.api#documentation": "The identity type."
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsCreateResponsePropertiesCustomLocationSettingsMap": {
+    "com.azure.kubernetesconfiguration#CreateExtensionResponsePropertiesCustomLocationSettingsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2216,7 +2217,7 @@
         "smithy.api#documentation": "Custom Location settings properties."
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsCreateResponsePropertiesErrorInfo": {
+    "com.azure.kubernetesconfiguration#CreateExtensionResponsePropertiesErrorInfo": {
       "type": "structure",
       "members": {
         "code": {
@@ -2238,13 +2239,13 @@
           }
         },
         "details": {
-          "target": "com.azure.kubernetesconfiguration#ExtensionsCreateResponsePropertiesErrorInfoDetailsList",
+          "target": "com.azure.kubernetesconfiguration#CreateExtensionResponsePropertiesErrorInfoDetailsList",
           "traits": {
             "smithy.api#documentation": "The error details."
           }
         },
         "additionalInfo": {
-          "target": "com.azure.kubernetesconfiguration#ExtensionsCreateResponsePropertiesErrorInfoAdditionalInfoList",
+          "target": "com.azure.kubernetesconfiguration#CreateExtensionResponsePropertiesErrorInfoAdditionalInfoList",
           "traits": {
             "smithy.api#documentation": "The error additional info."
           }
@@ -2254,7 +2255,7 @@
         "smithy.api#documentation": "The error detail."
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsCreateResponsePropertiesErrorInfoAdditionalInfoList": {
+    "com.azure.kubernetesconfiguration#CreateExtensionResponsePropertiesErrorInfoAdditionalInfoList": {
       "type": "list",
       "member": {
         "target": "com.azure.kubernetesconfiguration#ErrorAdditionalInfo"
@@ -2263,7 +2264,7 @@
         "smithy.api#documentation": "The error additional info."
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsCreateResponsePropertiesErrorInfoDetailsList": {
+    "com.azure.kubernetesconfiguration#CreateExtensionResponsePropertiesErrorInfoDetailsList": {
       "type": "list",
       "member": {
         "target": "com.azure.kubernetesconfiguration#ErrorDetail"
@@ -2272,7 +2273,7 @@
         "smithy.api#documentation": "The error details."
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsCreateResponsePropertiesStatusesList": {
+    "com.azure.kubernetesconfiguration#CreateExtensionResponsePropertiesStatusesList": {
       "type": "list",
       "member": {
         "target": "com.azure.kubernetesconfiguration#ExtensionStatus"
@@ -2281,7 +2282,7 @@
         "smithy.api#documentation": "Status from this extension."
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsCreateResponsePropertiesProvisioningState": {
+    "com.azure.kubernetesconfiguration#CreateExtensionResponsePropertiesProvisioningState": {
       "type": "enum",
       "members": {
         "SUCCEEDED": {
@@ -2325,7 +2326,7 @@
         "smithy.api#documentation": "The provisioning state of the resource."
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsCreateResponsePropertiesConfigurationProtectedSettingsMap": {
+    "com.azure.kubernetesconfiguration#CreateExtensionResponsePropertiesConfigurationProtectedSettingsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2337,7 +2338,7 @@
         "smithy.api#documentation": "Configuration settings that are sensitive, as name-value pairs for configuring this extension."
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsCreateResponsePropertiesConfigurationSettingsMap": {
+    "com.azure.kubernetesconfiguration#CreateExtensionResponsePropertiesConfigurationSettingsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2349,7 +2350,7 @@
         "smithy.api#documentation": "Configuration settings, as name-value pairs for configuring this extension."
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsCreateRequest": {
+    "com.azure.kubernetesconfiguration#CreateExtensionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2401,19 +2402,19 @@
           }
         },
         "properties": {
-          "target": "com.azure.kubernetesconfiguration#ExtensionsCreateRequestProperties",
+          "target": "com.azure.kubernetesconfiguration#CreateExtensionRequestProperties",
           "traits": {
             "smithy.api#documentation": "Properties of an Extension resource"
           }
         },
         "identity": {
-          "target": "com.azure.kubernetesconfiguration#ExtensionsCreateRequestIdentity",
+          "target": "com.azure.kubernetesconfiguration#CreateExtensionRequestIdentity",
           "traits": {
             "smithy.api#documentation": "Identity for the resource."
           }
         },
         "plan": {
-          "target": "com.azure.kubernetesconfiguration#ExtensionsCreateRequestPlan",
+          "target": "com.azure.kubernetesconfiguration#CreateExtensionRequestPlan",
           "traits": {
             "smithy.api#documentation": "Plan for the resource."
           }
@@ -2423,7 +2424,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsCreateRequestPlan": {
+    "com.azure.kubernetesconfiguration#CreateExtensionRequestPlan": {
       "type": "structure",
       "members": {
         "name": {
@@ -2464,11 +2465,11 @@
         "smithy.api#documentation": "Plan for the resource."
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsCreateRequestIdentity": {
+    "com.azure.kubernetesconfiguration#CreateExtensionRequestIdentity": {
       "type": "structure",
       "members": {
         "type": {
-          "target": "com.azure.kubernetesconfiguration#ExtensionsCreateRequestIdentityType",
+          "target": "com.azure.kubernetesconfiguration#CreateExtensionRequestIdentityType",
           "traits": {
             "smithy.api#documentation": "The identity type."
           }
@@ -2478,7 +2479,7 @@
         "smithy.api#documentation": "Identity for the resource."
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsCreateRequestIdentityType": {
+    "com.azure.kubernetesconfiguration#CreateExtensionRequestIdentityType": {
       "type": "enum",
       "members": {
         "SYSTEMASSIGNED": {
@@ -2492,7 +2493,7 @@
         "smithy.api#documentation": "The identity type."
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsCreateRequestProperties": {
+    "com.azure.kubernetesconfiguration#CreateExtensionRequestProperties": {
       "type": "structure",
       "members": {
         "extensionType": {
@@ -2527,34 +2528,34 @@
           }
         },
         "configurationSettings": {
-          "target": "com.azure.kubernetesconfiguration#ExtensionsCreateRequestPropertiesConfigurationSettingsMap",
+          "target": "com.azure.kubernetesconfiguration#CreateExtensionRequestPropertiesConfigurationSettingsMap",
           "traits": {
             "smithy.api#documentation": "Configuration settings, as name-value pairs for configuring this extension.",
             "com.distilled.openapi#nullable": {}
           }
         },
         "configurationProtectedSettings": {
-          "target": "com.azure.kubernetesconfiguration#ExtensionsCreateRequestPropertiesConfigurationProtectedSettingsMap",
+          "target": "com.azure.kubernetesconfiguration#CreateExtensionRequestPropertiesConfigurationProtectedSettingsMap",
           "traits": {
             "smithy.api#documentation": "Configuration settings that are sensitive, as name-value pairs for configuring this extension.",
             "com.distilled.openapi#nullable": {}
           }
         },
         "statuses": {
-          "target": "com.azure.kubernetesconfiguration#ExtensionsCreateRequestPropertiesStatusesList",
+          "target": "com.azure.kubernetesconfiguration#CreateExtensionRequestPropertiesStatusesList",
           "traits": {
             "smithy.api#documentation": "Status from this extension.",
             "com.distilled.openapi#nullable": {}
           }
         },
         "errorInfo": {
-          "target": "com.azure.kubernetesconfiguration#ExtensionsCreateRequestPropertiesErrorInfo",
+          "target": "com.azure.kubernetesconfiguration#CreateExtensionRequestPropertiesErrorInfo",
           "traits": {
             "smithy.api#documentation": "The error detail."
           }
         },
         "aksAssignedIdentity": {
-          "target": "com.azure.kubernetesconfiguration#ExtensionsCreateRequestPropertiesAksAssignedIdentity",
+          "target": "com.azure.kubernetesconfiguration#CreateExtensionRequestPropertiesAksAssignedIdentity",
           "traits": {
             "smithy.api#documentation": "Identity of the Extension resource in an AKS cluster",
             "com.distilled.openapi#nullable": {}
@@ -2565,11 +2566,11 @@
         "smithy.api#documentation": "Properties of an Extension resource"
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsCreateRequestPropertiesAksAssignedIdentity": {
+    "com.azure.kubernetesconfiguration#CreateExtensionRequestPropertiesAksAssignedIdentity": {
       "type": "structure",
       "members": {
         "type": {
-          "target": "com.azure.kubernetesconfiguration#ExtensionsCreateRequestPropertiesAksAssignedIdentityType",
+          "target": "com.azure.kubernetesconfiguration#CreateExtensionRequestPropertiesAksAssignedIdentityType",
           "traits": {
             "smithy.api#documentation": "The identity type."
           }
@@ -2579,7 +2580,7 @@
         "smithy.api#documentation": "Identity of the Extension resource in an AKS cluster"
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsCreateRequestPropertiesAksAssignedIdentityType": {
+    "com.azure.kubernetesconfiguration#CreateExtensionRequestPropertiesAksAssignedIdentityType": {
       "type": "enum",
       "members": {
         "SYSTEMASSIGNED": {
@@ -2599,14 +2600,14 @@
         "smithy.api#documentation": "The identity type."
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsCreateRequestPropertiesErrorInfo": {
+    "com.azure.kubernetesconfiguration#CreateExtensionRequestPropertiesErrorInfo": {
       "type": "structure",
       "members": {},
       "traits": {
         "smithy.api#documentation": "The error detail."
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsCreateRequestPropertiesStatusesList": {
+    "com.azure.kubernetesconfiguration#CreateExtensionRequestPropertiesStatusesList": {
       "type": "list",
       "member": {
         "target": "com.azure.kubernetesconfiguration#ExtensionStatusInput"
@@ -2679,7 +2680,7 @@
         "smithy.api#documentation": "Level of the status."
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsCreateRequestPropertiesConfigurationProtectedSettingsMap": {
+    "com.azure.kubernetesconfiguration#CreateExtensionRequestPropertiesConfigurationProtectedSettingsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2691,7 +2692,7 @@
         "smithy.api#documentation": "Configuration settings that are sensitive, as name-value pairs for configuring this extension."
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsCreateRequestPropertiesConfigurationSettingsMap": {
+    "com.azure.kubernetesconfiguration#CreateExtensionRequestPropertiesConfigurationSettingsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2703,13 +2704,13 @@
         "smithy.api#documentation": "Configuration settings, as name-value pairs for configuring this extension."
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsGet": {
+    "com.azure.kubernetesconfiguration#GetExtension": {
       "type": "operation",
       "input": {
-        "target": "com.azure.kubernetesconfiguration#ExtensionsGetRequest"
+        "target": "com.azure.kubernetesconfiguration#GetExtensionRequest"
       },
       "output": {
-        "target": "com.azure.kubernetesconfiguration#ExtensionsGetResponse"
+        "target": "com.azure.kubernetesconfiguration#GetExtensionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2722,7 +2723,7 @@
         "com.distilled.openapi#apiVersion": "2023-05-01"
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsGetResponse": {
+    "com.azure.kubernetesconfiguration#GetExtensionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2744,25 +2745,25 @@
           }
         },
         "properties": {
-          "target": "com.azure.kubernetesconfiguration#ExtensionsGetResponseProperties",
+          "target": "com.azure.kubernetesconfiguration#GetExtensionResponseProperties",
           "traits": {
             "smithy.api#documentation": "Properties of an Extension resource"
           }
         },
         "identity": {
-          "target": "com.azure.kubernetesconfiguration#ExtensionsGetResponseIdentity",
+          "target": "com.azure.kubernetesconfiguration#GetExtensionResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Identity for the resource."
           }
         },
         "systemData": {
-          "target": "com.azure.kubernetesconfiguration#ExtensionsGetResponseSystemData",
+          "target": "com.azure.kubernetesconfiguration#GetExtensionResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
         },
         "plan": {
-          "target": "com.azure.kubernetesconfiguration#ExtensionsGetResponsePlan",
+          "target": "com.azure.kubernetesconfiguration#GetExtensionResponsePlan",
           "traits": {
             "smithy.api#documentation": "Plan for the resource."
           }
@@ -2772,7 +2773,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsGetResponsePlan": {
+    "com.azure.kubernetesconfiguration#GetExtensionResponsePlan": {
       "type": "structure",
       "members": {
         "name": {
@@ -2813,7 +2814,7 @@
         "smithy.api#documentation": "Plan for the resource."
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsGetResponseSystemData": {
+    "com.azure.kubernetesconfiguration#GetExtensionResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -2823,7 +2824,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.kubernetesconfiguration#ExtensionsGetResponseSystemDataCreatedByType",
+          "target": "com.azure.kubernetesconfiguration#GetExtensionResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -2841,7 +2842,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.kubernetesconfiguration#ExtensionsGetResponseSystemDataLastModifiedByType",
+          "target": "com.azure.kubernetesconfiguration#GetExtensionResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -2857,7 +2858,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsGetResponseSystemDataLastModifiedByType": {
+    "com.azure.kubernetesconfiguration#GetExtensionResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -2889,7 +2890,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsGetResponseSystemDataCreatedByType": {
+    "com.azure.kubernetesconfiguration#GetExtensionResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -2921,7 +2922,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsGetResponseIdentity": {
+    "com.azure.kubernetesconfiguration#GetExtensionResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -2937,7 +2938,7 @@
           }
         },
         "type": {
-          "target": "com.azure.kubernetesconfiguration#ExtensionsGetResponseIdentityType",
+          "target": "com.azure.kubernetesconfiguration#GetExtensionResponseIdentityType",
           "traits": {
             "smithy.api#documentation": "The identity type."
           }
@@ -2947,7 +2948,7 @@
         "smithy.api#documentation": "Identity for the resource."
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsGetResponseIdentityType": {
+    "com.azure.kubernetesconfiguration#GetExtensionResponseIdentityType": {
       "type": "enum",
       "members": {
         "SYSTEMASSIGNED": {
@@ -2961,7 +2962,7 @@
         "smithy.api#documentation": "The identity type."
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsGetResponseProperties": {
+    "com.azure.kubernetesconfiguration#GetExtensionResponseProperties": {
       "type": "structure",
       "members": {
         "extensionType": {
@@ -2996,14 +2997,14 @@
           }
         },
         "configurationSettings": {
-          "target": "com.azure.kubernetesconfiguration#ExtensionsGetResponsePropertiesConfigurationSettingsMap",
+          "target": "com.azure.kubernetesconfiguration#GetExtensionResponsePropertiesConfigurationSettingsMap",
           "traits": {
             "smithy.api#documentation": "Configuration settings, as name-value pairs for configuring this extension.",
             "com.distilled.openapi#nullable": {}
           }
         },
         "configurationProtectedSettings": {
-          "target": "com.azure.kubernetesconfiguration#ExtensionsGetResponsePropertiesConfigurationProtectedSettingsMap",
+          "target": "com.azure.kubernetesconfiguration#GetExtensionResponsePropertiesConfigurationProtectedSettingsMap",
           "traits": {
             "smithy.api#documentation": "Configuration settings that are sensitive, as name-value pairs for configuring this extension.",
             "com.distilled.openapi#nullable": {}
@@ -3017,26 +3018,26 @@
           }
         },
         "provisioningState": {
-          "target": "com.azure.kubernetesconfiguration#ExtensionsGetResponsePropertiesProvisioningState",
+          "target": "com.azure.kubernetesconfiguration#GetExtensionResponsePropertiesProvisioningState",
           "traits": {
             "smithy.api#documentation": "The provisioning state of the resource."
           }
         },
         "statuses": {
-          "target": "com.azure.kubernetesconfiguration#ExtensionsGetResponsePropertiesStatusesList",
+          "target": "com.azure.kubernetesconfiguration#GetExtensionResponsePropertiesStatusesList",
           "traits": {
             "smithy.api#documentation": "Status from this extension.",
             "com.distilled.openapi#nullable": {}
           }
         },
         "errorInfo": {
-          "target": "com.azure.kubernetesconfiguration#ExtensionsGetResponsePropertiesErrorInfo",
+          "target": "com.azure.kubernetesconfiguration#GetExtensionResponsePropertiesErrorInfo",
           "traits": {
             "smithy.api#documentation": "The error detail."
           }
         },
         "customLocationSettings": {
-          "target": "com.azure.kubernetesconfiguration#ExtensionsGetResponsePropertiesCustomLocationSettingsMap",
+          "target": "com.azure.kubernetesconfiguration#GetExtensionResponsePropertiesCustomLocationSettingsMap",
           "traits": {
             "smithy.api#documentation": "Custom Location settings properties.",
             "com.distilled.openapi#nullable": {}
@@ -3050,7 +3051,7 @@
           }
         },
         "aksAssignedIdentity": {
-          "target": "com.azure.kubernetesconfiguration#ExtensionsGetResponsePropertiesAksAssignedIdentity",
+          "target": "com.azure.kubernetesconfiguration#GetExtensionResponsePropertiesAksAssignedIdentity",
           "traits": {
             "smithy.api#documentation": "Identity of the Extension resource in an AKS cluster",
             "com.distilled.openapi#nullable": {}
@@ -3067,7 +3068,7 @@
         "smithy.api#documentation": "Properties of an Extension resource"
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsGetResponsePropertiesAksAssignedIdentity": {
+    "com.azure.kubernetesconfiguration#GetExtensionResponsePropertiesAksAssignedIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -3083,7 +3084,7 @@
           }
         },
         "type": {
-          "target": "com.azure.kubernetesconfiguration#ExtensionsGetResponsePropertiesAksAssignedIdentityType",
+          "target": "com.azure.kubernetesconfiguration#GetExtensionResponsePropertiesAksAssignedIdentityType",
           "traits": {
             "smithy.api#documentation": "The identity type."
           }
@@ -3093,7 +3094,7 @@
         "smithy.api#documentation": "Identity of the Extension resource in an AKS cluster"
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsGetResponsePropertiesAksAssignedIdentityType": {
+    "com.azure.kubernetesconfiguration#GetExtensionResponsePropertiesAksAssignedIdentityType": {
       "type": "enum",
       "members": {
         "SYSTEMASSIGNED": {
@@ -3113,7 +3114,7 @@
         "smithy.api#documentation": "The identity type."
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsGetResponsePropertiesCustomLocationSettingsMap": {
+    "com.azure.kubernetesconfiguration#GetExtensionResponsePropertiesCustomLocationSettingsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3125,7 +3126,7 @@
         "smithy.api#documentation": "Custom Location settings properties."
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsGetResponsePropertiesErrorInfo": {
+    "com.azure.kubernetesconfiguration#GetExtensionResponsePropertiesErrorInfo": {
       "type": "structure",
       "members": {
         "code": {
@@ -3147,13 +3148,13 @@
           }
         },
         "details": {
-          "target": "com.azure.kubernetesconfiguration#ExtensionsGetResponsePropertiesErrorInfoDetailsList",
+          "target": "com.azure.kubernetesconfiguration#GetExtensionResponsePropertiesErrorInfoDetailsList",
           "traits": {
             "smithy.api#documentation": "The error details."
           }
         },
         "additionalInfo": {
-          "target": "com.azure.kubernetesconfiguration#ExtensionsGetResponsePropertiesErrorInfoAdditionalInfoList",
+          "target": "com.azure.kubernetesconfiguration#GetExtensionResponsePropertiesErrorInfoAdditionalInfoList",
           "traits": {
             "smithy.api#documentation": "The error additional info."
           }
@@ -3163,7 +3164,7 @@
         "smithy.api#documentation": "The error detail."
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsGetResponsePropertiesErrorInfoAdditionalInfoList": {
+    "com.azure.kubernetesconfiguration#GetExtensionResponsePropertiesErrorInfoAdditionalInfoList": {
       "type": "list",
       "member": {
         "target": "com.azure.kubernetesconfiguration#ErrorAdditionalInfo"
@@ -3172,7 +3173,7 @@
         "smithy.api#documentation": "The error additional info."
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsGetResponsePropertiesErrorInfoDetailsList": {
+    "com.azure.kubernetesconfiguration#GetExtensionResponsePropertiesErrorInfoDetailsList": {
       "type": "list",
       "member": {
         "target": "com.azure.kubernetesconfiguration#ErrorDetail"
@@ -3181,7 +3182,7 @@
         "smithy.api#documentation": "The error details."
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsGetResponsePropertiesStatusesList": {
+    "com.azure.kubernetesconfiguration#GetExtensionResponsePropertiesStatusesList": {
       "type": "list",
       "member": {
         "target": "com.azure.kubernetesconfiguration#ExtensionStatus"
@@ -3190,7 +3191,7 @@
         "smithy.api#documentation": "Status from this extension."
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsGetResponsePropertiesProvisioningState": {
+    "com.azure.kubernetesconfiguration#GetExtensionResponsePropertiesProvisioningState": {
       "type": "enum",
       "members": {
         "SUCCEEDED": {
@@ -3234,7 +3235,7 @@
         "smithy.api#documentation": "The provisioning state of the resource."
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsGetResponsePropertiesConfigurationProtectedSettingsMap": {
+    "com.azure.kubernetesconfiguration#GetExtensionResponsePropertiesConfigurationProtectedSettingsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3246,7 +3247,7 @@
         "smithy.api#documentation": "Configuration settings that are sensitive, as name-value pairs for configuring this extension."
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsGetResponsePropertiesConfigurationSettingsMap": {
+    "com.azure.kubernetesconfiguration#GetExtensionResponsePropertiesConfigurationSettingsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3258,7 +3259,7 @@
         "smithy.api#documentation": "Configuration settings, as name-value pairs for configuring this extension."
       }
     },
-    "com.azure.kubernetesconfiguration#ExtensionsGetRequest": {
+    "com.azure.kubernetesconfiguration#GetExtensionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3314,13 +3315,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.kubernetesconfiguration#FluxConfigOperationStatusGet": {
+    "com.azure.kubernetesconfiguration#GetFluxConfigOperationStatus": {
       "type": "operation",
       "input": {
-        "target": "com.azure.kubernetesconfiguration#FluxConfigOperationStatusGetRequest"
+        "target": "com.azure.kubernetesconfiguration#GetFluxConfigOperationStatusRequest"
       },
       "output": {
-        "target": "com.azure.kubernetesconfiguration#FluxConfigOperationStatusGetResponse"
+        "target": "com.azure.kubernetesconfiguration#GetFluxConfigOperationStatusResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3333,7 +3334,7 @@
         "com.distilled.openapi#apiVersion": "2023-05-01"
       }
     },
-    "com.azure.kubernetesconfiguration#FluxConfigOperationStatusGetResponse": {
+    "com.azure.kubernetesconfiguration#GetFluxConfigOperationStatusResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3356,14 +3357,14 @@
           }
         },
         "properties": {
-          "target": "com.azure.kubernetesconfiguration#FluxConfigOperationStatusGetResponsePropertiesMap",
+          "target": "com.azure.kubernetesconfiguration#GetFluxConfigOperationStatusResponsePropertiesMap",
           "traits": {
             "smithy.api#documentation": "Additional information, if available.",
             "com.distilled.openapi#nullable": {}
           }
         },
         "error": {
-          "target": "com.azure.kubernetesconfiguration#FluxConfigOperationStatusGetResponseError",
+          "target": "com.azure.kubernetesconfiguration#GetFluxConfigOperationStatusResponseError",
           "traits": {
             "smithy.api#documentation": "The error detail."
           }
@@ -3373,7 +3374,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.kubernetesconfiguration#FluxConfigOperationStatusGetResponseError": {
+    "com.azure.kubernetesconfiguration#GetFluxConfigOperationStatusResponseError": {
       "type": "structure",
       "members": {
         "code": {
@@ -3395,13 +3396,13 @@
           }
         },
         "details": {
-          "target": "com.azure.kubernetesconfiguration#FluxConfigOperationStatusGetResponseErrorDetailsList",
+          "target": "com.azure.kubernetesconfiguration#GetFluxConfigOperationStatusResponseErrorDetailsList",
           "traits": {
             "smithy.api#documentation": "The error details."
           }
         },
         "additionalInfo": {
-          "target": "com.azure.kubernetesconfiguration#FluxConfigOperationStatusGetResponseErrorAdditionalInfoList",
+          "target": "com.azure.kubernetesconfiguration#GetFluxConfigOperationStatusResponseErrorAdditionalInfoList",
           "traits": {
             "smithy.api#documentation": "The error additional info."
           }
@@ -3411,7 +3412,7 @@
         "smithy.api#documentation": "The error detail."
       }
     },
-    "com.azure.kubernetesconfiguration#FluxConfigOperationStatusGetResponseErrorAdditionalInfoList": {
+    "com.azure.kubernetesconfiguration#GetFluxConfigOperationStatusResponseErrorAdditionalInfoList": {
       "type": "list",
       "member": {
         "target": "com.azure.kubernetesconfiguration#ErrorAdditionalInfo"
@@ -3420,7 +3421,7 @@
         "smithy.api#documentation": "The error additional info."
       }
     },
-    "com.azure.kubernetesconfiguration#FluxConfigOperationStatusGetResponseErrorDetailsList": {
+    "com.azure.kubernetesconfiguration#GetFluxConfigOperationStatusResponseErrorDetailsList": {
       "type": "list",
       "member": {
         "target": "com.azure.kubernetesconfiguration#ErrorDetail"
@@ -3429,7 +3430,7 @@
         "smithy.api#documentation": "The error details."
       }
     },
-    "com.azure.kubernetesconfiguration#FluxConfigOperationStatusGetResponsePropertiesMap": {
+    "com.azure.kubernetesconfiguration#GetFluxConfigOperationStatusResponsePropertiesMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3441,7 +3442,7 @@
         "smithy.api#documentation": "Additional information, if available."
       }
     },
-    "com.azure.kubernetesconfiguration#FluxConfigOperationStatusGetRequest": {
+    "com.azure.kubernetesconfiguration#GetFluxConfigOperationStatusRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3505,10 +3506,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.kubernetesconfiguration#FluxConfigurationsList2": {
+    "com.azure.kubernetesconfiguration#ListFluxConfigurations": {
       "type": "operation",
       "input": {
-        "target": "com.azure.kubernetesconfiguration#FluxConfigurationsListRequest"
+        "target": "com.azure.kubernetesconfiguration#ListFluxConfigurationsRequest"
       },
       "output": {
         "target": "com.azure.kubernetesconfiguration#FluxConfigurationsList"
@@ -4600,7 +4601,7 @@
         "smithy.api#documentation": "Scope at which the configuration will be installed."
       }
     },
-    "com.azure.kubernetesconfiguration#FluxConfigurationsListRequest": {
+    "com.azure.kubernetesconfiguration#ListFluxConfigurationsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4648,10 +4649,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.kubernetesconfiguration#FluxConfigurationsDelete": {
+    "com.azure.kubernetesconfiguration#DeleteFluxConfiguration": {
       "type": "operation",
       "input": {
-        "target": "com.azure.kubernetesconfiguration#FluxConfigurationsDeleteRequest"
+        "target": "com.azure.kubernetesconfiguration#DeleteFluxConfigurationRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4667,7 +4668,7 @@
         "com.distilled.openapi#apiVersion": "2023-05-01"
       }
     },
-    "com.azure.kubernetesconfiguration#FluxConfigurationsDeleteRequest": {
+    "com.azure.kubernetesconfiguration#DeleteFluxConfigurationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4730,13 +4731,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.kubernetesconfiguration#FluxConfigurationsUpdate": {
+    "com.azure.kubernetesconfiguration#UpdateFluxConfiguration": {
       "type": "operation",
       "input": {
-        "target": "com.azure.kubernetesconfiguration#FluxConfigurationsUpdateRequest"
+        "target": "com.azure.kubernetesconfiguration#UpdateFluxConfigurationRequest"
       },
       "output": {
-        "target": "com.azure.kubernetesconfiguration#FluxConfigurationsUpdateResponse"
+        "target": "com.azure.kubernetesconfiguration#UpdateFluxConfigurationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4749,7 +4750,7 @@
         "com.distilled.openapi#apiVersion": "2023-05-01"
       }
     },
-    "com.azure.kubernetesconfiguration#FluxConfigurationsUpdateResponse": {
+    "com.azure.kubernetesconfiguration#UpdateFluxConfigurationResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -4771,13 +4772,13 @@
           }
         },
         "properties": {
-          "target": "com.azure.kubernetesconfiguration#FluxConfigurationsUpdateResponseProperties",
+          "target": "com.azure.kubernetesconfiguration#UpdateFluxConfigurationResponseProperties",
           "traits": {
             "smithy.api#documentation": "Properties to create a Flux Configuration resource"
           }
         },
         "systemData": {
-          "target": "com.azure.kubernetesconfiguration#FluxConfigurationsUpdateResponseSystemData",
+          "target": "com.azure.kubernetesconfiguration#UpdateFluxConfigurationResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -4787,7 +4788,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.kubernetesconfiguration#FluxConfigurationsUpdateResponseSystemData": {
+    "com.azure.kubernetesconfiguration#UpdateFluxConfigurationResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -4797,7 +4798,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.kubernetesconfiguration#FluxConfigurationsUpdateResponseSystemDataCreatedByType",
+          "target": "com.azure.kubernetesconfiguration#UpdateFluxConfigurationResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -4815,7 +4816,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.kubernetesconfiguration#FluxConfigurationsUpdateResponseSystemDataLastModifiedByType",
+          "target": "com.azure.kubernetesconfiguration#UpdateFluxConfigurationResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -4831,7 +4832,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.kubernetesconfiguration#FluxConfigurationsUpdateResponseSystemDataLastModifiedByType": {
+    "com.azure.kubernetesconfiguration#UpdateFluxConfigurationResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -4863,7 +4864,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.kubernetesconfiguration#FluxConfigurationsUpdateResponseSystemDataCreatedByType": {
+    "com.azure.kubernetesconfiguration#UpdateFluxConfigurationResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -4895,7 +4896,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.kubernetesconfiguration#FluxConfigurationsUpdateResponseProperties": {
+    "com.azure.kubernetesconfiguration#UpdateFluxConfigurationResponseProperties": {
       "type": "structure",
       "members": {
         "scope": {
@@ -4944,21 +4945,21 @@
           }
         },
         "kustomizations": {
-          "target": "com.azure.kubernetesconfiguration#FluxConfigurationsUpdateResponsePropertiesKustomizationsMap",
+          "target": "com.azure.kubernetesconfiguration#UpdateFluxConfigurationResponsePropertiesKustomizationsMap",
           "traits": {
             "smithy.api#documentation": "Array of kustomizations used to reconcile the artifact pulled by the source type on the cluster.",
             "com.distilled.openapi#nullable": {}
           }
         },
         "configurationProtectedSettings": {
-          "target": "com.azure.kubernetesconfiguration#FluxConfigurationsUpdateResponsePropertiesConfigurationProtectedSettingsMap",
+          "target": "com.azure.kubernetesconfiguration#UpdateFluxConfigurationResponsePropertiesConfigurationProtectedSettingsMap",
           "traits": {
             "smithy.api#documentation": "Key-value pairs of protected configuration settings for the configuration",
             "com.distilled.openapi#nullable": {}
           }
         },
         "statuses": {
-          "target": "com.azure.kubernetesconfiguration#FluxConfigurationsUpdateResponsePropertiesStatusesList",
+          "target": "com.azure.kubernetesconfiguration#UpdateFluxConfigurationResponsePropertiesStatusesList",
           "traits": {
             "smithy.api#documentation": "Statuses of the Flux Kubernetes resources created by the fluxConfiguration or created by the managed objects provisioned by the fluxConfiguration.",
             "com.distilled.openapi#nullable": {}
@@ -5013,7 +5014,7 @@
           }
         },
         "provisioningState": {
-          "target": "com.azure.kubernetesconfiguration#FluxConfigurationsUpdateResponsePropertiesProvisioningState",
+          "target": "com.azure.kubernetesconfiguration#UpdateFluxConfigurationResponsePropertiesProvisioningState",
           "traits": {
             "smithy.api#documentation": "The provisioning state of the resource."
           }
@@ -5030,7 +5031,7 @@
         "smithy.api#documentation": "Properties to create a Flux Configuration resource"
       }
     },
-    "com.azure.kubernetesconfiguration#FluxConfigurationsUpdateResponsePropertiesProvisioningState": {
+    "com.azure.kubernetesconfiguration#UpdateFluxConfigurationResponsePropertiesProvisioningState": {
       "type": "enum",
       "members": {
         "SUCCEEDED": {
@@ -5074,7 +5075,7 @@
         "smithy.api#documentation": "The provisioning state of the resource."
       }
     },
-    "com.azure.kubernetesconfiguration#FluxConfigurationsUpdateResponsePropertiesStatusesList": {
+    "com.azure.kubernetesconfiguration#UpdateFluxConfigurationResponsePropertiesStatusesList": {
       "type": "list",
       "member": {
         "target": "com.azure.kubernetesconfiguration#ObjectStatusDefinition"
@@ -5083,7 +5084,7 @@
         "smithy.api#documentation": "Statuses of the Flux Kubernetes resources created by the fluxConfiguration or created by the managed objects provisioned by the fluxConfiguration."
       }
     },
-    "com.azure.kubernetesconfiguration#FluxConfigurationsUpdateResponsePropertiesConfigurationProtectedSettingsMap": {
+    "com.azure.kubernetesconfiguration#UpdateFluxConfigurationResponsePropertiesConfigurationProtectedSettingsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5095,7 +5096,7 @@
         "smithy.api#documentation": "Key-value pairs of protected configuration settings for the configuration"
       }
     },
-    "com.azure.kubernetesconfiguration#FluxConfigurationsUpdateResponsePropertiesKustomizationsMap": {
+    "com.azure.kubernetesconfiguration#UpdateFluxConfigurationResponsePropertiesKustomizationsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5107,7 +5108,7 @@
         "smithy.api#documentation": "Array of kustomizations used to reconcile the artifact pulled by the source type on the cluster."
       }
     },
-    "com.azure.kubernetesconfiguration#FluxConfigurationsUpdateRequest": {
+    "com.azure.kubernetesconfiguration#UpdateFluxConfigurationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5159,7 +5160,7 @@
           }
         },
         "properties": {
-          "target": "com.azure.kubernetesconfiguration#FluxConfigurationsUpdateRequestProperties",
+          "target": "com.azure.kubernetesconfiguration#UpdateFluxConfigurationRequestProperties",
           "traits": {
             "smithy.api#documentation": "Updatable properties of an Flux Configuration Patch Request"
           }
@@ -5169,7 +5170,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.kubernetesconfiguration#FluxConfigurationsUpdateRequestProperties": {
+    "com.azure.kubernetesconfiguration#UpdateFluxConfigurationRequestProperties": {
       "type": "structure",
       "members": {
         "sourceKind": {
@@ -5208,14 +5209,14 @@
           }
         },
         "kustomizations": {
-          "target": "com.azure.kubernetesconfiguration#FluxConfigurationsUpdateRequestPropertiesKustomizationsMap",
+          "target": "com.azure.kubernetesconfiguration#UpdateFluxConfigurationRequestPropertiesKustomizationsMap",
           "traits": {
             "smithy.api#documentation": "Array of kustomizations used to reconcile the artifact pulled by the source type on the cluster.",
             "com.distilled.openapi#nullable": {}
           }
         },
         "configurationProtectedSettings": {
-          "target": "com.azure.kubernetesconfiguration#FluxConfigurationsUpdateRequestPropertiesConfigurationProtectedSettingsMap",
+          "target": "com.azure.kubernetesconfiguration#UpdateFluxConfigurationRequestPropertiesConfigurationProtectedSettingsMap",
           "traits": {
             "smithy.api#documentation": "Key-value pairs of protected configuration settings for the configuration",
             "com.distilled.openapi#nullable": {}
@@ -5226,7 +5227,7 @@
         "smithy.api#documentation": "Updatable properties of an Flux Configuration Patch Request"
       }
     },
-    "com.azure.kubernetesconfiguration#FluxConfigurationsUpdateRequestPropertiesConfigurationProtectedSettingsMap": {
+    "com.azure.kubernetesconfiguration#UpdateFluxConfigurationRequestPropertiesConfigurationProtectedSettingsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5238,7 +5239,7 @@
         "smithy.api#documentation": "Key-value pairs of protected configuration settings for the configuration"
       }
     },
-    "com.azure.kubernetesconfiguration#FluxConfigurationsUpdateRequestPropertiesKustomizationsMap": {
+    "com.azure.kubernetesconfiguration#UpdateFluxConfigurationRequestPropertiesKustomizationsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6208,13 +6209,13 @@
         "smithy.api#documentation": "Specifies other Kustomizations that this Kustomization depends on. This Kustomization will not reconcile until all dependencies have completed their reconciliation."
       }
     },
-    "com.azure.kubernetesconfiguration#FluxConfigurationsGet": {
+    "com.azure.kubernetesconfiguration#GetFluxConfiguration": {
       "type": "operation",
       "input": {
-        "target": "com.azure.kubernetesconfiguration#FluxConfigurationsGetRequest"
+        "target": "com.azure.kubernetesconfiguration#GetFluxConfigurationRequest"
       },
       "output": {
-        "target": "com.azure.kubernetesconfiguration#FluxConfigurationsGetResponse"
+        "target": "com.azure.kubernetesconfiguration#GetFluxConfigurationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6227,7 +6228,7 @@
         "com.distilled.openapi#apiVersion": "2023-05-01"
       }
     },
-    "com.azure.kubernetesconfiguration#FluxConfigurationsGetResponse": {
+    "com.azure.kubernetesconfiguration#GetFluxConfigurationResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -6249,13 +6250,13 @@
           }
         },
         "properties": {
-          "target": "com.azure.kubernetesconfiguration#FluxConfigurationsGetResponseProperties",
+          "target": "com.azure.kubernetesconfiguration#GetFluxConfigurationResponseProperties",
           "traits": {
             "smithy.api#documentation": "Properties to create a Flux Configuration resource"
           }
         },
         "systemData": {
-          "target": "com.azure.kubernetesconfiguration#FluxConfigurationsGetResponseSystemData",
+          "target": "com.azure.kubernetesconfiguration#GetFluxConfigurationResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -6265,7 +6266,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.kubernetesconfiguration#FluxConfigurationsGetResponseSystemData": {
+    "com.azure.kubernetesconfiguration#GetFluxConfigurationResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -6275,7 +6276,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.kubernetesconfiguration#FluxConfigurationsGetResponseSystemDataCreatedByType",
+          "target": "com.azure.kubernetesconfiguration#GetFluxConfigurationResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -6293,7 +6294,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.kubernetesconfiguration#FluxConfigurationsGetResponseSystemDataLastModifiedByType",
+          "target": "com.azure.kubernetesconfiguration#GetFluxConfigurationResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -6309,7 +6310,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.kubernetesconfiguration#FluxConfigurationsGetResponseSystemDataLastModifiedByType": {
+    "com.azure.kubernetesconfiguration#GetFluxConfigurationResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -6341,7 +6342,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.kubernetesconfiguration#FluxConfigurationsGetResponseSystemDataCreatedByType": {
+    "com.azure.kubernetesconfiguration#GetFluxConfigurationResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -6373,7 +6374,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.kubernetesconfiguration#FluxConfigurationsGetResponseProperties": {
+    "com.azure.kubernetesconfiguration#GetFluxConfigurationResponseProperties": {
       "type": "structure",
       "members": {
         "scope": {
@@ -6422,21 +6423,21 @@
           }
         },
         "kustomizations": {
-          "target": "com.azure.kubernetesconfiguration#FluxConfigurationsGetResponsePropertiesKustomizationsMap",
+          "target": "com.azure.kubernetesconfiguration#GetFluxConfigurationResponsePropertiesKustomizationsMap",
           "traits": {
             "smithy.api#documentation": "Array of kustomizations used to reconcile the artifact pulled by the source type on the cluster.",
             "com.distilled.openapi#nullable": {}
           }
         },
         "configurationProtectedSettings": {
-          "target": "com.azure.kubernetesconfiguration#FluxConfigurationsGetResponsePropertiesConfigurationProtectedSettingsMap",
+          "target": "com.azure.kubernetesconfiguration#GetFluxConfigurationResponsePropertiesConfigurationProtectedSettingsMap",
           "traits": {
             "smithy.api#documentation": "Key-value pairs of protected configuration settings for the configuration",
             "com.distilled.openapi#nullable": {}
           }
         },
         "statuses": {
-          "target": "com.azure.kubernetesconfiguration#FluxConfigurationsGetResponsePropertiesStatusesList",
+          "target": "com.azure.kubernetesconfiguration#GetFluxConfigurationResponsePropertiesStatusesList",
           "traits": {
             "smithy.api#documentation": "Statuses of the Flux Kubernetes resources created by the fluxConfiguration or created by the managed objects provisioned by the fluxConfiguration.",
             "com.distilled.openapi#nullable": {}
@@ -6491,7 +6492,7 @@
           }
         },
         "provisioningState": {
-          "target": "com.azure.kubernetesconfiguration#FluxConfigurationsGetResponsePropertiesProvisioningState",
+          "target": "com.azure.kubernetesconfiguration#GetFluxConfigurationResponsePropertiesProvisioningState",
           "traits": {
             "smithy.api#documentation": "The provisioning state of the resource."
           }
@@ -6508,7 +6509,7 @@
         "smithy.api#documentation": "Properties to create a Flux Configuration resource"
       }
     },
-    "com.azure.kubernetesconfiguration#FluxConfigurationsGetResponsePropertiesProvisioningState": {
+    "com.azure.kubernetesconfiguration#GetFluxConfigurationResponsePropertiesProvisioningState": {
       "type": "enum",
       "members": {
         "SUCCEEDED": {
@@ -6552,7 +6553,7 @@
         "smithy.api#documentation": "The provisioning state of the resource."
       }
     },
-    "com.azure.kubernetesconfiguration#FluxConfigurationsGetResponsePropertiesStatusesList": {
+    "com.azure.kubernetesconfiguration#GetFluxConfigurationResponsePropertiesStatusesList": {
       "type": "list",
       "member": {
         "target": "com.azure.kubernetesconfiguration#ObjectStatusDefinition"
@@ -6561,7 +6562,7 @@
         "smithy.api#documentation": "Statuses of the Flux Kubernetes resources created by the fluxConfiguration or created by the managed objects provisioned by the fluxConfiguration."
       }
     },
-    "com.azure.kubernetesconfiguration#FluxConfigurationsGetResponsePropertiesConfigurationProtectedSettingsMap": {
+    "com.azure.kubernetesconfiguration#GetFluxConfigurationResponsePropertiesConfigurationProtectedSettingsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6573,7 +6574,7 @@
         "smithy.api#documentation": "Key-value pairs of protected configuration settings for the configuration"
       }
     },
-    "com.azure.kubernetesconfiguration#FluxConfigurationsGetResponsePropertiesKustomizationsMap": {
+    "com.azure.kubernetesconfiguration#GetFluxConfigurationResponsePropertiesKustomizationsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6585,7 +6586,7 @@
         "smithy.api#documentation": "Array of kustomizations used to reconcile the artifact pulled by the source type on the cluster."
       }
     },
-    "com.azure.kubernetesconfiguration#FluxConfigurationsGetRequest": {
+    "com.azure.kubernetesconfiguration#GetFluxConfigurationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6641,10 +6642,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.kubernetesconfiguration#SourceControlConfigurationsList": {
+    "com.azure.kubernetesconfiguration#ListSourceControlConfigurations": {
       "type": "operation",
       "input": {
-        "target": "com.azure.kubernetesconfiguration#SourceControlConfigurationsListRequest"
+        "target": "com.azure.kubernetesconfiguration#ListSourceControlConfigurationsRequest"
       },
       "output": {
         "target": "com.azure.kubernetesconfiguration#SourceControlConfigurationList"
@@ -7121,7 +7122,7 @@
         "smithy.api#documentation": "Type of the operator"
       }
     },
-    "com.azure.kubernetesconfiguration#SourceControlConfigurationsListRequest": {
+    "com.azure.kubernetesconfiguration#ListSourceControlConfigurationsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7169,10 +7170,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.kubernetesconfiguration#SourceControlConfigurationsDelete": {
+    "com.azure.kubernetesconfiguration#DeleteSourceControlConfiguration": {
       "type": "operation",
       "input": {
-        "target": "com.azure.kubernetesconfiguration#SourceControlConfigurationsDeleteRequest"
+        "target": "com.azure.kubernetesconfiguration#DeleteSourceControlConfigurationRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -7188,7 +7189,7 @@
         "com.distilled.openapi#apiVersion": "2023-05-01"
       }
     },
-    "com.azure.kubernetesconfiguration#SourceControlConfigurationsDeleteRequest": {
+    "com.azure.kubernetesconfiguration#DeleteSourceControlConfigurationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7663,13 +7664,13 @@
         "smithy.api#documentation": "Properties to create a Source Control Configuration resource"
       }
     },
-    "com.azure.kubernetesconfiguration#SourceControlConfigurationsGet": {
+    "com.azure.kubernetesconfiguration#GetSourceControlConfiguration": {
       "type": "operation",
       "input": {
-        "target": "com.azure.kubernetesconfiguration#SourceControlConfigurationsGetRequest"
+        "target": "com.azure.kubernetesconfiguration#GetSourceControlConfigurationRequest"
       },
       "output": {
-        "target": "com.azure.kubernetesconfiguration#SourceControlConfigurationsGetResponse"
+        "target": "com.azure.kubernetesconfiguration#GetSourceControlConfigurationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7682,7 +7683,7 @@
         "com.distilled.openapi#apiVersion": "2023-05-01"
       }
     },
-    "com.azure.kubernetesconfiguration#SourceControlConfigurationsGetResponse": {
+    "com.azure.kubernetesconfiguration#GetSourceControlConfigurationResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -7704,13 +7705,13 @@
           }
         },
         "properties": {
-          "target": "com.azure.kubernetesconfiguration#SourceControlConfigurationsGetResponseProperties",
+          "target": "com.azure.kubernetesconfiguration#GetSourceControlConfigurationResponseProperties",
           "traits": {
             "smithy.api#documentation": "Properties to create a Source Control Configuration resource"
           }
         },
         "systemData": {
-          "target": "com.azure.kubernetesconfiguration#SourceControlConfigurationsGetResponseSystemData",
+          "target": "com.azure.kubernetesconfiguration#GetSourceControlConfigurationResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
@@ -7720,7 +7721,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.kubernetesconfiguration#SourceControlConfigurationsGetResponseSystemData": {
+    "com.azure.kubernetesconfiguration#GetSourceControlConfigurationResponseSystemData": {
       "type": "structure",
       "members": {
         "createdBy": {
@@ -7730,7 +7731,7 @@
           }
         },
         "createdByType": {
-          "target": "com.azure.kubernetesconfiguration#SourceControlConfigurationsGetResponseSystemDataCreatedByType",
+          "target": "com.azure.kubernetesconfiguration#GetSourceControlConfigurationResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -7748,7 +7749,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.kubernetesconfiguration#SourceControlConfigurationsGetResponseSystemDataLastModifiedByType",
+          "target": "com.azure.kubernetesconfiguration#GetSourceControlConfigurationResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -7764,7 +7765,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.kubernetesconfiguration#SourceControlConfigurationsGetResponseSystemDataLastModifiedByType": {
+    "com.azure.kubernetesconfiguration#GetSourceControlConfigurationResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -7796,7 +7797,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.kubernetesconfiguration#SourceControlConfigurationsGetResponseSystemDataCreatedByType": {
+    "com.azure.kubernetesconfiguration#GetSourceControlConfigurationResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -7828,7 +7829,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.kubernetesconfiguration#SourceControlConfigurationsGetResponseProperties": {
+    "com.azure.kubernetesconfiguration#GetSourceControlConfigurationResponseProperties": {
       "type": "structure",
       "members": {
         "repositoryUrl": {
@@ -7898,7 +7899,7 @@
           }
         },
         "provisioningState": {
-          "target": "com.azure.kubernetesconfiguration#SourceControlConfigurationsGetResponsePropertiesProvisioningState",
+          "target": "com.azure.kubernetesconfiguration#GetSourceControlConfigurationResponsePropertiesProvisioningState",
           "traits": {
             "smithy.api#documentation": "The provisioning state of the resource provider."
           }
@@ -7914,7 +7915,7 @@
         "smithy.api#documentation": "Properties to create a Source Control Configuration resource"
       }
     },
-    "com.azure.kubernetesconfiguration#SourceControlConfigurationsGetResponsePropertiesProvisioningState": {
+    "com.azure.kubernetesconfiguration#GetSourceControlConfigurationResponsePropertiesProvisioningState": {
       "type": "enum",
       "members": {
         "ACCEPTED": {
@@ -7952,7 +7953,7 @@
         "smithy.api#documentation": "The provisioning state of the resource provider."
       }
     },
-    "com.azure.kubernetesconfiguration#SourceControlConfigurationsGetRequest": {
+    "com.azure.kubernetesconfiguration#GetSourceControlConfigurationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8008,13 +8009,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.kubernetesconfiguration#OperationsList": {
+    "com.azure.kubernetesconfiguration#ListOperations": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
       },
       "output": {
-        "target": "com.azure.kubernetesconfiguration#OperationsListResponse"
+        "target": "com.azure.kubernetesconfiguration#ListOperationsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -8027,11 +8028,11 @@
         "com.distilled.openapi#apiVersion": "2023-05-01"
       }
     },
-    "com.azure.kubernetesconfiguration#OperationsListResponse": {
+    "com.azure.kubernetesconfiguration#ListOperationsResponse": {
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.kubernetesconfiguration#OperationsListResponseValueList",
+          "target": "com.azure.kubernetesconfiguration#ListOperationsResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of operations supported by this resource provider."
           }
@@ -8047,7 +8048,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.kubernetesconfiguration#OperationsListResponseValueList": {
+    "com.azure.kubernetesconfiguration#ListOperationsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.kubernetesconfiguration#ResourceProviderOperation"
@@ -8120,13 +8121,13 @@
         "smithy.api#documentation": "Display metadata associated with the operation."
       }
     },
-    "com.azure.kubernetesconfiguration#OperationStatusList": {
+    "com.azure.kubernetesconfiguration#ListOperationStatus": {
       "type": "operation",
       "input": {
-        "target": "com.azure.kubernetesconfiguration#OperationStatusListRequest"
+        "target": "com.azure.kubernetesconfiguration#ListOperationStatusRequest"
       },
       "output": {
-        "target": "com.azure.kubernetesconfiguration#OperationStatusListResponse"
+        "target": "com.azure.kubernetesconfiguration#ListOperationStatusResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -8139,11 +8140,11 @@
         "com.distilled.openapi#apiVersion": "2023-05-01"
       }
     },
-    "com.azure.kubernetesconfiguration#OperationStatusListResponse": {
+    "com.azure.kubernetesconfiguration#ListOperationStatusResponse": {
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.kubernetesconfiguration#OperationStatusListResponseValueList",
+          "target": "com.azure.kubernetesconfiguration#ListOperationStatusResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of async operations in progress, in the cluster."
           }
@@ -8159,7 +8160,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.kubernetesconfiguration#OperationStatusListResponseValueList": {
+    "com.azure.kubernetesconfiguration#ListOperationStatusResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.kubernetesconfiguration#OperationStatusResult"
@@ -8276,7 +8277,7 @@
         "smithy.api#documentation": "Additional information, if available."
       }
     },
-    "com.azure.kubernetesconfiguration#OperationStatusListRequest": {
+    "com.azure.kubernetesconfiguration#ListOperationStatusRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8324,162 +8325,63 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.kubernetesconfiguration#OperationStatusList2": {
-      "type": "operation",
-      "input": {
-        "target": "com.azure.kubernetesconfiguration#OperationStatusListRequest_2"
-      },
-      "output": {
-        "target": "com.azure.kubernetesconfiguration#OperationStatusList_2"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{clusterRp}/{clusterResourceName}/{clusterName}/providers/Microsoft.KubernetesConfiguration/operations",
-          "code": 200,
-          "apiVersion": "2025-04-01"
-        },
-        "smithy.api#documentation": "List Async Operations, currently in progress, in a cluster",
-        "com.distilled.openapi#apiVersion": "2025-04-01"
-      }
-    },
-    "com.azure.kubernetesconfiguration#OperationStatusList_2": {
-      "type": "structure",
-      "members": {
-        "value": {
-          "target": "com.azure.kubernetesconfiguration#OperationStatusListValueList",
-          "traits": {
-            "smithy.api#documentation": "List of async operations in progress, in the cluster."
-          }
-        },
-        "nextLink": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "URL to get the next set of Operation Result objects, if any."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The async operations in progress, in the cluster."
-      }
-    },
-    "com.azure.kubernetesconfiguration#OperationStatusListValueList": {
-      "type": "list",
-      "member": {
-        "target": "com.azure.kubernetesconfiguration#OperationStatusResult"
-      },
-      "traits": {
-        "smithy.api#documentation": "List of async operations in progress, in the cluster."
-      }
-    },
-    "com.azure.kubernetesconfiguration#OperationStatusListRequest_2": {
-      "type": "structure",
-      "members": {
-        "subscriptionId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {},
-            "smithy.api#documentation": "The ID of the target subscription."
-          }
-        },
-        "resourceGroupName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {},
-            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
-          }
-        },
-        "clusterRp": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {},
-            "smithy.api#documentation": "The Kubernetes cluster RP - i.e. Microsoft.ContainerService, Microsoft.Kubernetes, Microsoft.HybridContainerService."
-          }
-        },
-        "clusterResourceName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {},
-            "smithy.api#documentation": "The Kubernetes cluster resource name - i.e. managedClusters, connectedClusters, provisionedClusters, appliances."
-          }
-        },
-        "clusterName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {},
-            "smithy.api#documentation": "The name of the kubernetes cluster."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.azure.kubernetesconfiguration#Kubernetesconfiguration": {
       "type": "service",
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.kubernetesconfiguration#OperationStatusGet"
+          "target": "com.azure.kubernetesconfiguration#GetOperationStatus"
         },
         {
-          "target": "com.azure.kubernetesconfiguration#ExtensionsList2"
+          "target": "com.azure.kubernetesconfiguration#ListExtensions"
         },
         {
-          "target": "com.azure.kubernetesconfiguration#ExtensionsDelete"
+          "target": "com.azure.kubernetesconfiguration#DeleteExtension"
         },
         {
-          "target": "com.azure.kubernetesconfiguration#ExtensionsUpdate"
+          "target": "com.azure.kubernetesconfiguration#UpdateExtension"
         },
         {
-          "target": "com.azure.kubernetesconfiguration#ExtensionsCreate"
+          "target": "com.azure.kubernetesconfiguration#CreateExtension"
         },
         {
-          "target": "com.azure.kubernetesconfiguration#ExtensionsGet"
+          "target": "com.azure.kubernetesconfiguration#GetExtension"
         },
         {
-          "target": "com.azure.kubernetesconfiguration#FluxConfigOperationStatusGet"
+          "target": "com.azure.kubernetesconfiguration#GetFluxConfigOperationStatus"
         },
         {
-          "target": "com.azure.kubernetesconfiguration#FluxConfigurationsList2"
+          "target": "com.azure.kubernetesconfiguration#ListFluxConfigurations"
         },
         {
-          "target": "com.azure.kubernetesconfiguration#FluxConfigurationsDelete"
+          "target": "com.azure.kubernetesconfiguration#DeleteFluxConfiguration"
         },
         {
-          "target": "com.azure.kubernetesconfiguration#FluxConfigurationsUpdate"
+          "target": "com.azure.kubernetesconfiguration#UpdateFluxConfiguration"
         },
         {
           "target": "com.azure.kubernetesconfiguration#FluxConfigurationsCreateOrUpdate"
         },
         {
-          "target": "com.azure.kubernetesconfiguration#FluxConfigurationsGet"
+          "target": "com.azure.kubernetesconfiguration#GetFluxConfiguration"
         },
         {
-          "target": "com.azure.kubernetesconfiguration#SourceControlConfigurationsList"
+          "target": "com.azure.kubernetesconfiguration#ListSourceControlConfigurations"
         },
         {
-          "target": "com.azure.kubernetesconfiguration#SourceControlConfigurationsDelete"
+          "target": "com.azure.kubernetesconfiguration#DeleteSourceControlConfiguration"
         },
         {
           "target": "com.azure.kubernetesconfiguration#SourceControlConfigurationsCreateOrUpdate"
         },
         {
-          "target": "com.azure.kubernetesconfiguration#SourceControlConfigurationsGet"
+          "target": "com.azure.kubernetesconfiguration#GetSourceControlConfiguration"
         },
         {
-          "target": "com.azure.kubernetesconfiguration#OperationsList"
+          "target": "com.azure.kubernetesconfiguration#ListOperations"
         },
         {
-          "target": "com.azure.kubernetesconfiguration#OperationStatusList"
-        },
-        {
-          "target": "com.azure.kubernetesconfiguration#OperationStatusList2"
+          "target": "com.azure.kubernetesconfiguration#ListOperationStatus"
         }
       ],
       "traits": {

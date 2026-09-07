@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.elements#ElementsListRequest": {
+    "com.posthog.elements#ListElementsRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -142,10 +143,10 @@
       },
       "traits": {}
     },
-    "com.posthog.elements#ElementsList": {
+    "com.posthog.elements#ListElements": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.elements#ElementsListRequest"
+        "target": "com.posthog.elements#ListElementsRequest"
       },
       "output": {
         "target": "com.posthog.elements#PaginatedElementList"
@@ -169,14 +170,14 @@
         }
       }
     },
-    "com.posthog.elements#ElementsCreateRequestAttrClassList": {
+    "com.posthog.elements#CreateElementRequestAttrClassList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.posthog.elements#ElementsCreateRequest": {
+    "com.posthog.elements#CreateElementRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -200,7 +201,7 @@
           }
         },
         "attr_class": {
-          "target": "com.posthog.elements#ElementsCreateRequestAttrClassList",
+          "target": "com.posthog.elements#CreateElementRequestAttrClassList",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
@@ -243,10 +244,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.elements#ElementsCreate": {
+    "com.posthog.elements#CreateElement": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.elements#ElementsCreateRequest"
+        "target": "com.posthog.elements#CreateElementRequest"
       },
       "output": {
         "target": "com.posthog.elements#Element"
@@ -270,7 +271,7 @@
         }
       }
     },
-    "com.posthog.elements#ElementsRetrieveRequest": {
+    "com.posthog.elements#GetElementRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -294,10 +295,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.elements#ElementsRetrieve": {
+    "com.posthog.elements#GetElement": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.elements#ElementsRetrieveRequest"
+        "target": "com.posthog.elements#GetElementRequest"
       },
       "output": {
         "target": "com.posthog.elements#Element"
@@ -318,14 +319,14 @@
         }
       }
     },
-    "com.posthog.elements#ElementsUpdateRequestAttrClassList": {
+    "com.posthog.elements#UpdateElementRequestAttrClassList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.posthog.elements#ElementsUpdateRequest": {
+    "com.posthog.elements#UpdateElementRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -357,7 +358,7 @@
           }
         },
         "attr_class": {
-          "target": "com.posthog.elements#ElementsUpdateRequestAttrClassList",
+          "target": "com.posthog.elements#UpdateElementRequestAttrClassList",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
@@ -400,10 +401,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.elements#ElementsUpdate": {
+    "com.posthog.elements#UpdateElement": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.elements#ElementsUpdateRequest"
+        "target": "com.posthog.elements#UpdateElementRequest"
       },
       "output": {
         "target": "com.posthog.elements#Element"
@@ -427,14 +428,14 @@
         }
       }
     },
-    "com.posthog.elements#ElementsPartialUpdateRequestAttrClassList": {
+    "com.posthog.elements#UpdateElementsPartialRequestAttrClassList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.posthog.elements#ElementsPartialUpdateRequest": {
+    "com.posthog.elements#UpdateElementsPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -466,7 +467,7 @@
           }
         },
         "attr_class": {
-          "target": "com.posthog.elements#ElementsPartialUpdateRequestAttrClassList",
+          "target": "com.posthog.elements#UpdateElementsPartialRequestAttrClassList",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
@@ -509,10 +510,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.elements#ElementsPartialUpdate": {
+    "com.posthog.elements#UpdateElementsPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.elements#ElementsPartialUpdateRequest"
+        "target": "com.posthog.elements#UpdateElementsPartialRequest"
       },
       "output": {
         "target": "com.posthog.elements#Element"
@@ -584,14 +585,14 @@
         }
       }
     },
-    "com.posthog.elements#ElementsStatsRetrieveRequestIncludeList": {
+    "com.posthog.elements#GetElementsStatRequestIncludeList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.posthog.elements#ElementsStatsRetrieveRequest": {
+    "com.posthog.elements#GetElementsStatRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -631,7 +632,7 @@
           }
         },
         "include": {
-          "target": "com.posthog.elements#ElementsStatsRetrieveRequestIncludeList",
+          "target": "com.posthog.elements#GetElementsStatRequestIncludeList",
           "traits": {
             "smithy.api#httpQuery": "include",
             "smithy.api#documentation": "Event types to include: $autocapture, $rageclick, $dead_click. Defaults to all three. Accepts repeated parameters, a JSON array, or a comma-separated list."
@@ -712,7 +713,7 @@
         "hash": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Stable identity of the raw element chain (hash computed before any attribute filtering), for deduplicating rows across pages",
+            "smithy.api#documentation": "Hash of the chain as the server grouped it; combine with type to deduplicate rows across pages",
             "smithy.api#required": {},
             "com.distilled.openapi#nullable": {}
           }
@@ -752,10 +753,10 @@
         "smithy.api#documentation": "Element chains with event counts, ordered by count"
       }
     },
-    "com.posthog.elements#ElementsStatsRetrieve": {
+    "com.posthog.elements#GetElementsStat": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.elements#ElementsStatsRetrieveRequest"
+        "target": "com.posthog.elements#GetElementsStatRequest"
       },
       "output": {
         "target": "com.posthog.elements#ElementStatsResponse"
@@ -777,7 +778,7 @@
         "smithy.api#documentation": "Counts of $autocapture, $rageclick, and $dead_click events grouped by the element chain\nthey occurred on, ordered by count. Defaults to all three event types; narrow with the\ninclude parameter."
       }
     },
-    "com.posthog.elements#ElementsValuesListRequest": {
+    "com.posthog.elements#ListElementsValuesRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -821,18 +822,18 @@
       },
       "traits": {}
     },
-    "com.posthog.elements#ElementsValuesListResponseBodyList": {
+    "com.posthog.elements#ListElementsValuesResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.posthog.elements#ElementValue"
       },
       "traits": {}
     },
-    "com.posthog.elements#ElementsValuesListResponse": {
+    "com.posthog.elements#ListElementsValuesResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.posthog.elements#ElementsValuesListResponseBodyList",
+          "target": "com.posthog.elements#ListElementsValuesResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -843,13 +844,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.posthog.elements#ElementsValuesList": {
+    "com.posthog.elements#ListElementsValues": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.elements#ElementsValuesListRequest"
+        "target": "com.posthog.elements#ListElementsValuesRequest"
       },
       "output": {
-        "target": "com.posthog.elements#ElementsValuesListResponse"
+        "target": "com.posthog.elements#ListElementsValuesResponse"
       },
       "errors": [
         {
@@ -911,28 +912,28 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.elements#ElementsList"
+          "target": "com.posthog.elements#ListElements"
         },
         {
-          "target": "com.posthog.elements#ElementsCreate"
+          "target": "com.posthog.elements#CreateElement"
         },
         {
-          "target": "com.posthog.elements#ElementsRetrieve"
+          "target": "com.posthog.elements#GetElement"
         },
         {
-          "target": "com.posthog.elements#ElementsUpdate"
+          "target": "com.posthog.elements#UpdateElement"
         },
         {
-          "target": "com.posthog.elements#ElementsPartialUpdate"
+          "target": "com.posthog.elements#UpdateElementsPartial"
         },
         {
           "target": "com.posthog.elements#ElementsDestroy"
         },
         {
-          "target": "com.posthog.elements#ElementsStatsRetrieve"
+          "target": "com.posthog.elements#GetElementsStat"
         },
         {
-          "target": "com.posthog.elements#ElementsValuesList"
+          "target": "com.posthog.elements#ListElementsValues"
         }
       ],
       "traits": {

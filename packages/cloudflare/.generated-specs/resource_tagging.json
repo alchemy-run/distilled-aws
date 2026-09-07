@@ -14,7 +14,16 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "keyDictionary": {
+      "accessApplicationId": "access_application_id",
+      "resourceId": "resource_id",
+      "resourceType": "resource_type",
+      "resultInfo": "result_info",
+      "workerId": "worker_id",
+      "zoneId": "zone_id"
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.resource_tagging#ListRequestTagList": {
@@ -194,43 +203,6 @@
       "type": "list",
       "member": {
         "target": "com.cloudflare.resource_tagging#ListRequestType"
-      }
-    },
-    "com.cloudflare.resource_tagging#ListRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "cursor": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Cursor for pagination.",
-            "smithy.api#httpQuery": "cursor"
-          }
-        },
-        "tag": {
-          "target": "com.cloudflare.resource_tagging#ListRequestTagList",
-          "traits": {
-            "smithy.api#documentation": "Filter resources by tag criteria. This parameter can be repeated multiple times, with AND logic between parameters.",
-            "smithy.api#httpQuery": "tag"
-          }
-        },
-        "type": {
-          "target": "com.cloudflare.resource_tagging#ListRequestTypeList",
-          "traits": {
-            "smithy.api#documentation": "Filter by resource type. Can be repeated to filter by multiple types (OR logic). Example: ?type=zone&type=worker",
-            "smithy.api#httpQuery": "type"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.resource_tagging#ListResultItemAccessApplicationTagsMap": {
@@ -1981,79 +1953,6 @@
         "target": "com.cloudflare.resource_tagging#ListResultItem"
       }
     },
-    "com.cloudflare.resource_tagging#ListResponse": {
-      "type": "structure",
-      "members": {
-        "result": {
-          "target": "com.cloudflare.resource_tagging#ListResultList",
-          "traits": {
-            "com.cloudflare.protocols#envelopePayload": {},
-            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.resource_tagging#List": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.resource_tagging#ListRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.resource_tagging#ListResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/accounts/{account_id}/tags/resources",
-          "code": 200
-        },
-        "smithy.api#documentation": "Lists all tagged resources for an account.",
-        "smithy.api#readonly": {}
-      }
-    },
-    "com.cloudflare.resource_tagging#AccountTagsDeleteRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "If_Match": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#httpHeader": "If-Match"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.resource_tagging#AccountTagsDelete": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.resource_tagging#AccountTagsDeleteRequest"
-      },
-      "output": {
-        "target": "smithy.api#Unit"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "/accounts/{account_id}/tags",
-          "code": 200
-        },
-        "smithy.api#documentation": "Removes all tags from a specific account-level resource.",
-        "smithy.api#idempotent": {}
-      }
-    },
     "com.cloudflare.resource_tagging#AccountTagsGetRequestResourceType": {
       "type": "enum",
       "members": {
@@ -2177,45 +2076,6 @@
             "smithy.api#enumValue": "worker_version"
           }
         }
-      }
-    },
-    "com.cloudflare.resource_tagging#AccountTagsGetRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "resource_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The ID of the resource to retrieve tags for.",
-            "smithy.api#httpQuery": "resource_id",
-            "smithy.api#required": {}
-          }
-        },
-        "resource_type": {
-          "target": "com.cloudflare.resource_tagging#AccountTagsGetRequestResourceType",
-          "traits": {
-            "smithy.api#documentation": "The type of the resource.",
-            "smithy.api#httpQuery": "resource_type",
-            "smithy.api#required": {}
-          }
-        },
-        "worker_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Worker identifier. Required for worker_version resources.",
-            "smithy.api#httpQuery": "worker_id"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.resource_tagging#AccountTagsGetResultAccessApplicationTagsMap": {
@@ -3960,39 +3820,6 @@
         }
       }
     },
-    "com.cloudflare.resource_tagging#AccountTagsGetResponse": {
-      "type": "structure",
-      "members": {
-        "result": {
-          "target": "com.cloudflare.resource_tagging#AccountTagsGetResult",
-          "traits": {
-            "com.cloudflare.protocols#envelopePayload": {},
-            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.resource_tagging#AccountTagsGet": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.resource_tagging#AccountTagsGetRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.resource_tagging#AccountTagsGetResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/accounts/{account_id}/tags",
-          "code": 200
-        },
-        "smithy.api#documentation": "Retrieves tags for a specific account-level resource.",
-        "smithy.api#readonly": {}
-      }
-    },
     "com.cloudflare.resource_tagging#AccountTagsUpdateRequestResourceTypeResourceTaggingSetTagsRequestAccountLevelWorkerVersion": {
       "type": "enum",
       "members": {
@@ -4255,54 +4082,6 @@
       },
       "value": {
         "target": "smithy.api#String"
-      }
-    },
-    "com.cloudflare.resource_tagging#AccountTagsUpdateRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "If_Match": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#httpHeader": "If-Match"
-          }
-        },
-        "resource_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifies the unique resource.",
-            "smithy.api#required": {}
-          }
-        },
-        "resource_type": {
-          "target": "com.cloudflare.resource_tagging#AccountTagsUpdateRequestResourceType",
-          "traits": {
-            "smithy.api#documentation": "Enum for base account-level resource types (those with no extra required fields).",
-            "smithy.api#required": {}
-          }
-        },
-        "worker_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Worker ID is required only for worker_version resources"
-          }
-        },
-        "tags": {
-          "target": "com.cloudflare.resource_tagging#AccountTagsUpdateRequestTagsMap",
-          "traits": {
-            "smithy.api#documentation": "Contains key-value pairs of tags."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.resource_tagging#AccountTagsUpdateResultAccessApplicationTagsMap": {
@@ -6047,99 +5826,10 @@
         }
       }
     },
-    "com.cloudflare.resource_tagging#AccountTagsUpdateResponse": {
-      "type": "structure",
-      "members": {
-        "result": {
-          "target": "com.cloudflare.resource_tagging#AccountTagsUpdateResult",
-          "traits": {
-            "com.cloudflare.protocols#envelopePayload": {},
-            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.resource_tagging#AccountTagsUpdate": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.resource_tagging#AccountTagsUpdateRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.resource_tagging#AccountTagsUpdateResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "PUT",
-          "uri": "/accounts/{account_id}/tags",
-          "code": 200
-        },
-        "smithy.api#documentation": "Creates or updates tags for a specific account-level resource.",
-        "smithy.api#idempotent": {}
-      }
-    },
-    "com.cloudflare.resource_tagging#KeysListRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "cursor": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Cursor for pagination.",
-            "smithy.api#httpQuery": "cursor"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.resource_tagging#KeysListResultList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
-      }
-    },
-    "com.cloudflare.resource_tagging#KeysListResponse": {
-      "type": "structure",
-      "members": {
-        "result": {
-          "target": "com.cloudflare.resource_tagging#KeysListResultList",
-          "traits": {
-            "com.cloudflare.protocols#envelopePayload": {},
-            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.resource_tagging#KeysList": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.resource_tagging#KeysListRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.resource_tagging#KeysListResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/accounts/{account_id}/tags/keys",
-          "code": 200
-        },
-        "smithy.api#documentation": "Lists all distinct tag keys used across resources in an account.",
-        "smithy.api#readonly": {}
       }
     },
     "com.cloudflare.resource_tagging#ValuesListRequestType": {
@@ -6309,120 +5999,10 @@
         }
       }
     },
-    "com.cloudflare.resource_tagging#ValuesListRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "tag_key": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "cursor": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Cursor for pagination.",
-            "smithy.api#httpQuery": "cursor"
-          }
-        },
-        "type": {
-          "target": "com.cloudflare.resource_tagging#ValuesListRequestType",
-          "traits": {
-            "smithy.api#documentation": "Filter by resource type.",
-            "smithy.api#httpQuery": "type"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.resource_tagging#ValuesListResultList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
-      }
-    },
-    "com.cloudflare.resource_tagging#ValuesListResponse": {
-      "type": "structure",
-      "members": {
-        "result": {
-          "target": "com.cloudflare.resource_tagging#ValuesListResultList",
-          "traits": {
-            "com.cloudflare.protocols#envelopePayload": {},
-            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.resource_tagging#ValuesList": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.resource_tagging#ValuesListRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.resource_tagging#ValuesListResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/accounts/{account_id}/tags/values/{tag_key}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Lists all distinct values for a given tag key, optionally filtered by resource type.",
-        "smithy.api#readonly": {}
-      }
-    },
-    "com.cloudflare.resource_tagging#ZoneTagsDeleteRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Zone ID is required only for zone-level resources",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "If_Match": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#httpHeader": "If-Match"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.resource_tagging#ZoneTagsDelete": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.resource_tagging#ZoneTagsDeleteRequest"
-      },
-      "output": {
-        "target": "smithy.api#Unit"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "/zones/{zone_id}/tags",
-          "code": 200
-        },
-        "smithy.api#documentation": "Removes all tags from a specific zone-level resource.",
-        "smithy.api#idempotent": {}
       }
     },
     "com.cloudflare.resource_tagging#ZoneTagsGetRequestResourceType": {
@@ -6470,45 +6050,6 @@
             "smithy.api#enumValue": "zone"
           }
         }
-      }
-    },
-    "com.cloudflare.resource_tagging#ZoneTagsGetRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Zone ID is required only for zone-level resources",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "resource_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The ID of the resource to retrieve tags for.",
-            "smithy.api#httpQuery": "resource_id",
-            "smithy.api#required": {}
-          }
-        },
-        "resource_type": {
-          "target": "com.cloudflare.resource_tagging#ZoneTagsGetRequestResourceType",
-          "traits": {
-            "smithy.api#documentation": "The type of the resource.",
-            "smithy.api#httpQuery": "resource_type",
-            "smithy.api#required": {}
-          }
-        },
-        "access_application_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Access application ID identifier. Required for access_application_policy resources.",
-            "smithy.api#httpQuery": "access_application_id"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.resource_tagging#ZoneTagsGetResultAccessApplicationTagsMap": {
@@ -8253,39 +7794,6 @@
         }
       }
     },
-    "com.cloudflare.resource_tagging#ZoneTagsGetResponse": {
-      "type": "structure",
-      "members": {
-        "result": {
-          "target": "com.cloudflare.resource_tagging#ZoneTagsGetResult",
-          "traits": {
-            "com.cloudflare.protocols#envelopePayload": {},
-            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.resource_tagging#ZoneTagsGet": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.resource_tagging#ZoneTagsGetRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.resource_tagging#ZoneTagsGetResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/zones/{zone_id}/tags",
-          "code": 200
-        },
-        "smithy.api#documentation": "Retrieves tags for a specific zone-level resource.",
-        "smithy.api#readonly": {}
-      }
-    },
     "com.cloudflare.resource_tagging#ZoneTagsUpdateRequestResourceTypeResourceTaggingSetTagsRequestZoneLevelBase": {
       "type": "enum",
       "members": {
@@ -8392,54 +7900,6 @@
       },
       "value": {
         "target": "smithy.api#String"
-      }
-    },
-    "com.cloudflare.resource_tagging#ZoneTagsUpdateRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Zone ID is required only for zone-level resources",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "If_Match": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#httpHeader": "If-Match"
-          }
-        },
-        "resource_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifies the unique resource.",
-            "smithy.api#required": {}
-          }
-        },
-        "resource_type": {
-          "target": "com.cloudflare.resource_tagging#ZoneTagsUpdateRequestResourceType",
-          "traits": {
-            "smithy.api#documentation": "Enum for base zone-level resource types (those with no extra required fields).",
-            "smithy.api#required": {}
-          }
-        },
-        "tags": {
-          "target": "com.cloudflare.resource_tagging#ZoneTagsUpdateRequestTagsMap",
-          "traits": {
-            "smithy.api#documentation": "Contains key-value pairs of tags."
-          }
-        },
-        "access_application_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Access application ID is required only for access_application_policy resources"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.resource_tagging#ZoneTagsUpdateResultAccessApplicationTagsMap": {
@@ -10184,7 +9644,771 @@
         }
       }
     },
-    "com.cloudflare.resource_tagging#ZoneTagsUpdateResponse": {
+    "com.cloudflare.resource_tagging#ResourceTagging": {
+      "type": "service",
+      "version": "4.0",
+      "operations": [
+        {
+          "target": "com.cloudflare.resource_tagging#DeleteAccountTag"
+        },
+        {
+          "target": "com.cloudflare.resource_tagging#DeleteZoneTag"
+        },
+        {
+          "target": "com.cloudflare.resource_tagging#GetAccountTag"
+        },
+        {
+          "target": "com.cloudflare.resource_tagging#GetZoneTag"
+        },
+        {
+          "target": "com.cloudflare.resource_tagging#ListKeys"
+        },
+        {
+          "target": "com.cloudflare.resource_tagging#ListResourceTaggings"
+        },
+        {
+          "target": "com.cloudflare.resource_tagging#ListValues"
+        },
+        {
+          "target": "com.cloudflare.resource_tagging#PutAccountTag"
+        },
+        {
+          "target": "com.cloudflare.resource_tagging#PutZoneTag"
+        }
+      ],
+      "traits": {
+        "com.cloudflare.protocols#v4Json": {},
+        "smithy.api#title": "Cloudflare ResourceTagging",
+        "smithy.api#documentation": "Cloudflare API — resource_tagging resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+      }
+    },
+    "com.cloudflare.resource_tagging#Forbidden": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.cloudflare.resource_tagging#TagPreconditionFailed": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "status": 412
+          }
+        ]
+      }
+    },
+    "com.cloudflare.resource_tagging#ZoneTagResourceNotFound": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.cloudflare.resource_tagging#DeleteAccountTag": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.resource_tagging#DeleteAccountTagRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/accounts/{account_id}/tags",
+          "code": 200
+        },
+        "smithy.api#documentation": "Removes all tags from a specific account-level resource.",
+        "smithy.api#idempotent": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.resource_tagging#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.resource_tagging#DeleteAccountTagRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "ifMatch": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "If-Match"
+          }
+        },
+        "resource_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier of the resource to remove tags from.",
+            "smithy.api#jsonName": "resource_id"
+          }
+        },
+        "resource_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of the resource to remove tags from.",
+            "smithy.api#jsonName": "resource_type"
+          }
+        },
+        "worker_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier of the Worker to remove tags from.",
+            "smithy.api#jsonName": "worker_id"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.resource_tagging#DeleteZoneTag": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.resource_tagging#DeleteZoneTagRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/zones/{zone_id}/tags",
+          "code": 200
+        },
+        "smithy.api#documentation": "Removes all tags from a specific zone-level resource.",
+        "smithy.api#idempotent": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.resource_tagging#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.resource_tagging#DeleteZoneTagRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Zone ID is required only for zone-level resources",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "ifMatch": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "If-Match"
+          }
+        },
+        "resource_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier of the resource to remove tags from.",
+            "smithy.api#jsonName": "resource_id"
+          }
+        },
+        "resource_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of the resource to remove tags from.",
+            "smithy.api#jsonName": "resource_type"
+          }
+        },
+        "access_application_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier of the Access application to remove tags from.",
+            "smithy.api#jsonName": "access_application_id"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.resource_tagging#GetAccountTag": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.resource_tagging#GetAccountTagRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.resource_tagging#GetAccountTagResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/tags",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieves tags for a specific account-level resource.",
+        "smithy.api#readonly": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.resource_tagging#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.resource_tagging#GetAccountTagRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "resource_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the resource to retrieve tags for.",
+            "smithy.api#httpQuery": "resource_id",
+            "smithy.api#required": {}
+          }
+        },
+        "resource_type": {
+          "target": "com.cloudflare.resource_tagging#AccountTagsGetRequestResourceType",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource.",
+            "smithy.api#httpQuery": "resource_type",
+            "smithy.api#required": {}
+          }
+        },
+        "worker_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Worker identifier. Required for worker_version resources.",
+            "smithy.api#httpQuery": "worker_id"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.resource_tagging#GetAccountTagResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.resource_tagging#AccountTagsGetResult",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.resource_tagging#GetZoneTag": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.resource_tagging#GetZoneTagRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.resource_tagging#GetZoneTagResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/tags",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieves tags for a specific zone-level resource.",
+        "smithy.api#readonly": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.resource_tagging#ZoneTagResourceNotFound"
+        },
+        {
+          "target": "com.cloudflare.resource_tagging#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.resource_tagging#GetZoneTagRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Zone ID is required only for zone-level resources",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "resource_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the resource to retrieve tags for.",
+            "smithy.api#httpQuery": "resource_id",
+            "smithy.api#required": {}
+          }
+        },
+        "resource_type": {
+          "target": "com.cloudflare.resource_tagging#ZoneTagsGetRequestResourceType",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource.",
+            "smithy.api#httpQuery": "resource_type",
+            "smithy.api#required": {}
+          }
+        },
+        "access_application_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Access application ID identifier. Required for access_application_policy resources.",
+            "smithy.api#httpQuery": "access_application_id"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.resource_tagging#GetZoneTagResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.resource_tagging#ZoneTagsGetResult",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.resource_tagging#ListKeys": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.resource_tagging#ListKeysRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.resource_tagging#ListKeysResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/tags/keys",
+          "code": 200
+        },
+        "smithy.api#documentation": "Lists all distinct tag keys used across resources in an account.",
+        "smithy.api#readonly": {},
+        "smithy.api#paginated": {
+          "mode": "cursor",
+          "inputToken": "cursor",
+          "outputToken": "resultInfo.cursors.after",
+          "items": "result"
+        }
+      }
+    },
+    "com.cloudflare.resource_tagging#ListKeysRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Cursor for pagination.",
+            "smithy.api#httpQuery": "cursor"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.resource_tagging#ListKeysResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.resource_tagging#KeysListResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.resource_tagging#ListResourceTaggings": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.resource_tagging#ListResourceTaggingsRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.resource_tagging#ListResourceTaggingsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/tags/resources",
+          "code": 200
+        },
+        "smithy.api#documentation": "Lists all tagged resources for an account.",
+        "smithy.api#readonly": {},
+        "smithy.api#paginated": {
+          "mode": "cursor",
+          "inputToken": "cursor",
+          "outputToken": "resultInfo.cursors.after",
+          "items": "result"
+        }
+      }
+    },
+    "com.cloudflare.resource_tagging#ListResourceTaggingsRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Cursor for pagination.",
+            "smithy.api#httpQuery": "cursor"
+          }
+        },
+        "tag": {
+          "target": "com.cloudflare.resource_tagging#ListRequestTagList",
+          "traits": {
+            "smithy.api#documentation": "Filter resources by tag criteria. This parameter can be repeated multiple times, with AND logic between parameters.",
+            "smithy.api#httpQuery": "tag"
+          }
+        },
+        "type": {
+          "target": "com.cloudflare.resource_tagging#ListRequestTypeList",
+          "traits": {
+            "smithy.api#documentation": "Filter by resource type. Can be repeated to filter by multiple types (OR logic). Example: ?type=zone&type=worker",
+            "smithy.api#httpQuery": "type"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.resource_tagging#ListResourceTaggingsResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.resource_tagging#ListResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.resource_tagging#ListValues": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.resource_tagging#ListValuesRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.resource_tagging#ListValuesResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/tags/values/{tag_key}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Lists all distinct values for a given tag key, optionally filtered by resource type.",
+        "smithy.api#readonly": {},
+        "smithy.api#paginated": {
+          "mode": "cursor",
+          "inputToken": "cursor",
+          "outputToken": "resultInfo.cursors.after",
+          "items": "result"
+        }
+      }
+    },
+    "com.cloudflare.resource_tagging#ListValuesRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "tag_key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Cursor for pagination.",
+            "smithy.api#httpQuery": "cursor"
+          }
+        },
+        "type": {
+          "target": "com.cloudflare.resource_tagging#ValuesListRequestType",
+          "traits": {
+            "smithy.api#documentation": "Filter by resource type.",
+            "smithy.api#httpQuery": "type"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.resource_tagging#ListValuesResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.resource_tagging#ValuesListResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.resource_tagging#PutAccountTag": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.resource_tagging#PutAccountTagRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.resource_tagging#PutAccountTagResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/accounts/{account_id}/tags",
+          "code": 200
+        },
+        "smithy.api#documentation": "Creates or updates tags for a specific account-level resource.",
+        "smithy.api#idempotent": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.resource_tagging#Forbidden"
+        },
+        {
+          "target": "com.cloudflare.resource_tagging#TagPreconditionFailed"
+        }
+      ]
+    },
+    "com.cloudflare.resource_tagging#PutAccountTagRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "resource_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifies the unique resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "resource_type": {
+          "target": "com.cloudflare.resource_tagging#AccountTagsUpdateRequestResourceType",
+          "traits": {
+            "smithy.api#documentation": "Enum for base account-level resource types (those with no extra required fields).",
+            "smithy.api#required": {}
+          }
+        },
+        "worker_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Worker ID is required only for worker_version resources"
+          }
+        },
+        "tags": {
+          "target": "com.cloudflare.resource_tagging#AccountTagsUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Contains key-value pairs of tags."
+          }
+        },
+        "ifMatch": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "If-Match"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.resource_tagging#PutAccountTagResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.resource_tagging#AccountTagsUpdateResult",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.resource_tagging#PutZoneTag": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.resource_tagging#PutZoneTagRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.resource_tagging#PutZoneTagResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/zones/{zone_id}/tags",
+          "code": 200
+        },
+        "smithy.api#documentation": "Creates or updates tags for a specific zone-level resource. Replaces all existing tags for the resource.",
+        "smithy.api#idempotent": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.resource_tagging#ZoneTagResourceNotFound"
+        },
+        {
+          "target": "com.cloudflare.resource_tagging#Forbidden"
+        },
+        {
+          "target": "com.cloudflare.resource_tagging#TagPreconditionFailed"
+        }
+      ]
+    },
+    "com.cloudflare.resource_tagging#PutZoneTagRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Zone ID is required only for zone-level resources",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "resource_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifies the unique resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "resource_type": {
+          "target": "com.cloudflare.resource_tagging#ZoneTagsUpdateRequestResourceType",
+          "traits": {
+            "smithy.api#documentation": "Enum for base zone-level resource types (those with no extra required fields).",
+            "smithy.api#required": {}
+          }
+        },
+        "tags": {
+          "target": "com.cloudflare.resource_tagging#ZoneTagsUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Contains key-value pairs of tags."
+          }
+        },
+        "access_application_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Access application ID is required only for access_application_policy resources"
+          }
+        },
+        "ifMatch": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpHeader": "If-Match"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.resource_tagging#PutZoneTagResponse": {
       "type": "structure",
       "members": {
         "result": {
@@ -10197,62 +10421,6 @@
       },
       "traits": {
         "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.resource_tagging#ZoneTagsUpdate": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.resource_tagging#ZoneTagsUpdateRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.resource_tagging#ZoneTagsUpdateResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "PUT",
-          "uri": "/zones/{zone_id}/tags",
-          "code": 200
-        },
-        "smithy.api#documentation": "Creates or updates tags for a specific zone-level resource. Replaces all existing tags for the resource.",
-        "smithy.api#idempotent": {}
-      }
-    },
-    "com.cloudflare.resource_tagging#ResourceTagging": {
-      "type": "service",
-      "version": "4.0",
-      "operations": [
-        {
-          "target": "com.cloudflare.resource_tagging#List"
-        },
-        {
-          "target": "com.cloudflare.resource_tagging#AccountTagsDelete"
-        },
-        {
-          "target": "com.cloudflare.resource_tagging#AccountTagsGet"
-        },
-        {
-          "target": "com.cloudflare.resource_tagging#AccountTagsUpdate"
-        },
-        {
-          "target": "com.cloudflare.resource_tagging#KeysList"
-        },
-        {
-          "target": "com.cloudflare.resource_tagging#ValuesList"
-        },
-        {
-          "target": "com.cloudflare.resource_tagging#ZoneTagsDelete"
-        },
-        {
-          "target": "com.cloudflare.resource_tagging#ZoneTagsGet"
-        },
-        {
-          "target": "com.cloudflare.resource_tagging#ZoneTagsUpdate"
-        }
-      ],
-      "traits": {
-        "com.cloudflare.protocols#v4Json": {},
-        "smithy.api#title": "Cloudflare ResourceTagging",
-        "smithy.api#documentation": "Cloudflare API — resource_tagging resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
       }
     }
   }

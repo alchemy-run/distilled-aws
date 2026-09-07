@@ -3,7 +3,7 @@
   "patches": [
     {
       "op": "replace",
-      "path": "/shapes/com.railway.api#VolumeDeleteRequest/traits/com.railway.graphql#operation/query",
+      "path": "/shapes/com.railway.api#DeleteVolumeRequest/traits/com.railway.graphql#operation/query",
       "value": "mutation volumeDelete($volumeId: String!) {\n  volumeDelete(volumeId: $volumeId)\n}"
     }
   ]

@@ -3,7 +3,7 @@
   "patches": [
     {
       "op": "replace",
-      "path": "/shapes/com.railway.api#ServiceDomainUpdateRequest/traits/com.railway.graphql#operation/query",
+      "path": "/shapes/com.railway.api#UpdateServiceDomainRequest/traits/com.railway.graphql#operation/query",
       "value": "mutation serviceDomainUpdate($input: ServiceDomainUpdateInput!) {\n  serviceDomainUpdate(input: $input)\n}"
     }
   ]

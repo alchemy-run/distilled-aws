@@ -591,6 +591,16 @@ export const DeployAppRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeployAppRequest",
 }) as any as S.Schema<DeployAppRequest>;
 
+export interface GetAppRequest {
+  /** App ID (prefixed `app_`), the app's claimed route, or its proxy domain id. */
+  id: string;
+}
+export const GetAppRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/apps/{id}", code: 200 })),
+).annotate({ identifier: "GetAppRequest" }) as any as S.Schema<GetAppRequest>;
+
 export type ListAppLogsRequestLevel =
   | "log"
   | "debug"
@@ -925,18 +935,6 @@ export const ListAppsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListAppsResponse",
 }) as any as S.Schema<ListAppsResponse>;
 
-export interface RetrieveAppRequest {
-  /** App ID (prefixed `app_`), the app's claimed route, or its proxy domain id. */
-  id: string;
-}
-export const RetrieveAppRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/apps/{id}", code: 200 })),
-).annotate({
-  identifier: "RetrieveAppRequest",
-}) as any as S.Schema<RetrieveAppRequest>;
-
 /** The type of end-user the app is built for. Cannot be changed on an app whose type is already `website`. */
 export type UpdateAppRequestAppType =
   | "b2b_app"
@@ -1188,6 +1186,21 @@ export const deployApp: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetAppError = NotFound | WhopOpError;
+/** Retrieve App Retrieves an app by ID, claimed route, or proxy domain id. Credential fields (api_key, default_api_key, secrets) render `null` unless the caller has the corresponding developer permission on the owning account. */
+export const getApp: API.OperationMethod<
+  GetAppRequest,
+  App,
+  GetAppError,
+  WhopOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetAppRequest,
+  output: App,
+  errors: [NotFound],
+  protocol: WhopProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListAppLogsError = Forbidden | NotFound | WhopOpError;
 /** List App Logs Lists a hosted app's server runtime logs, most recent first: console output, uncaught exceptions, and failed-request summaries captured on whop.app hosting. Logs are retained for 7 days. */
 export const listAppLogs: API.PaginatedOperationMethod<
@@ -1241,21 +1254,6 @@ export const listApps: API.PaginatedOperationMethod<
   }),
   paginateRelay,
 ) as any;
-
-export type RetrieveAppError = NotFound | WhopOpError;
-/** Retrieve App Retrieves an app by ID, claimed route, or proxy domain id. Credential fields (api_key, default_api_key, secrets) render `null` unless the caller has the corresponding developer permission on the owning account. */
-export const retrieveApp: API.OperationMethod<
-  RetrieveAppRequest,
-  App,
-  RetrieveAppError,
-  WhopOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveAppRequest,
-  output: App,
-  errors: [NotFound],
-  protocol: WhopProtocol,
-  retry: Retry.Retry,
-}));
 
 export type UpdateAppError = BadRequest | Forbidden | NotFound | WhopOpError;
 /** Update App Updates the settings, metadata, or status of an app. Fields that are omitted keep their current value. */

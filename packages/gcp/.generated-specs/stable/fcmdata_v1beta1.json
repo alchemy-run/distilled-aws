@@ -4,9 +4,208 @@
     "service": "fcmdata",
     "version": "v1beta1",
     "title": "Firebase Cloud Messaging Data API",
-    "baseUrl": "https://fcmdata.googleapis.com/"
+    "baseUrl": "https://fcmdata.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
+    "com.gcp.fcmdata_v1beta1#GoogleFirebaseFcmDataV1beta1ProxyNotificationInsightPercents": {
+      "type": "structure",
+      "members": {
+        "skippedUnsupported": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The percentage of accepted notifications that were skipped because proxy notification is unsupported for the recipient."
+          }
+        },
+        "skippedNotThrottled": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The percentage of accepted notifications that were skipped because the messages were not throttled."
+          }
+        },
+        "skippedUnconfigured": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The percentage of accepted notifications that were skipped because configurations required for notifications to be proxied were missing."
+          }
+        },
+        "proxied": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The percentage of accepted notifications that were successfully proxied by [Google Play services](https://developers.google.com/android/guides/overview)."
+          }
+        },
+        "failed": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The percentage of accepted notifications that failed to be proxied. This is usually caused by exceptions that occurred while calling [notifyAsPackage](https://developer.android.com/reference/android/app/NotificationManager#notifyAsPackage%28java.lang.String,%20java.lang.String,%20int,%20android.app.Notification%29)."
+          }
+        },
+        "skippedOptedOut": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The percentage of accepted notifications that were skipped because the app disallowed these messages to be proxied."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Additional information about [proxy notification](https://firebase.google.com/docs/cloud-messaging/android/message-priority#proxy) delivery. All percentages are calculated with countNotificationsAccepted as the denominator."
+      }
+    },
+    "com.gcp.fcmdata_v1beta1#GoogleFirebaseFcmDataV1beta1AndroidDeliveryData": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "com.gcp.fcmdata_v1beta1#GoogleFirebaseFcmDataV1beta1Data",
+          "traits": {
+            "smithy.api#documentation": "The data for the specified appId, date, and analyticsLabel."
+          }
+        },
+        "appId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The app ID to which the messages were sent."
+          }
+        },
+        "date": {
+          "target": "com.gcp.fcmdata_v1beta1#GoogleTypeDate",
+          "traits": {
+            "smithy.api#documentation": "The date represented by this entry."
+          }
+        },
+        "analyticsLabel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The analytics label associated with the messages sent. All messages sent without an analytics label will be grouped together in a single entry."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Message delivery data for a given date, app, and analytics label combination."
+      }
+    },
+    "com.gcp.fcmdata_v1beta1#GoogleFirebaseFcmDataV1beta1Data": {
+      "type": "structure",
+      "members": {
+        "proxyNotificationInsightPercents": {
+          "target": "com.gcp.fcmdata_v1beta1#GoogleFirebaseFcmDataV1beta1ProxyNotificationInsightPercents",
+          "traits": {
+            "smithy.api#documentation": "Additional insights about proxy notification delivery."
+          }
+        },
+        "countMessagesAccepted": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Count of messages accepted by FCM intended for Android devices. The targeted device must have opted in to the collection of usage and diagnostic information."
+          }
+        },
+        "deliveryPerformancePercents": {
+          "target": "com.gcp.fcmdata_v1beta1#GoogleFirebaseFcmDataV1beta1DeliveryPerformancePercents",
+          "traits": {
+            "smithy.api#documentation": "Additional information about delivery performance for messages that were successfully delivered."
+          }
+        },
+        "messageOutcomePercents": {
+          "target": "com.gcp.fcmdata_v1beta1#GoogleFirebaseFcmDataV1beta1MessageOutcomePercents",
+          "traits": {
+            "smithy.api#documentation": "Mutually exclusive breakdown of message delivery outcomes."
+          }
+        },
+        "messageInsightPercents": {
+          "target": "com.gcp.fcmdata_v1beta1#GoogleFirebaseFcmDataV1beta1MessageInsightPercents",
+          "traits": {
+            "smithy.api#documentation": "Additional general insights about message delivery."
+          }
+        },
+        "countNotificationsAccepted": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Count of notifications accepted by FCM intended for Android devices. The targeted device must have opted in to the collection of usage and diagnostic information."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Data detailing messaging delivery"
+      }
+    },
+    "com.gcp.fcmdata_v1beta1#GoogleTypeDate": {
+      "type": "structure",
+      "members": {
+        "month": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day."
+          }
+        },
+        "day": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant."
+          }
+        },
+        "year": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp"
+      }
+    },
+    "com.gcp.fcmdata_v1beta1#GoogleFirebaseFcmDataV1beta1DeliveryPerformancePercents": {
+      "type": "structure",
+      "members": {
+        "delayedDeviceDoze": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The percentage of accepted messages that were delayed because the device was in doze mode. Only [normal priority messages](https://firebase.google.com/docs/cloud-messaging/concept-options#setting-the-priority-of-a-message) should be delayed due to doze mode."
+          }
+        },
+        "delayedDeviceOffline": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The percentage of accepted messages that were delayed because the target device was not connected at the time of sending. These messages were eventually delivered when the device reconnected."
+          }
+        },
+        "delayedUserStopped": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The percentage of accepted messages that were delayed because the intended device user-profile was [stopped](https://firebase.google.com/docs/cloud-messaging/android/receive#handling_messages) on the target device at the time of the send. The messages were eventually delivered when the user-profile was started again."
+          }
+        },
+        "deliveredNoDelay": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The percentage of accepted messages that were delivered to the device without delay from the FCM system."
+          }
+        },
+        "delayedMessageThrottled": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The percentage of accepted messages that were delayed due to message throttling, such as [collapsible message throttling](https://firebase.google.com/docs/cloud-messaging/concept-options#collapsible_throttling)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Overview of delivery performance for messages that were successfully delivered. All percentages are calculated with countMessagesAccepted as the denominator. These categories are not mutually exclusive; a message can be delayed for multiple reasons."
+      }
+    },
+    "com.gcp.fcmdata_v1beta1#GoogleFirebaseFcmDataV1beta1MessageInsightPercents": {
+      "type": "structure",
+      "members": {
+        "priorityLowered": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The percentage of accepted messages that had their priority lowered from high to normal. See [documentation for setting message priority](https://firebase.google.com/docs/cloud-messaging/android/message-priority)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Additional information about message delivery. All percentages are calculated with countMessagesAccepted as the denominator."
+      }
+    },
     "com.gcp.fcmdata_v1beta1#GoogleFirebaseFcmDataV1beta1ListAndroidDeliveryDataResponse": {
       "type": "structure",
       "members": {
@@ -33,71 +232,19 @@
         "target": "com.gcp.fcmdata_v1beta1#GoogleFirebaseFcmDataV1beta1AndroidDeliveryData"
       }
     },
-    "com.gcp.fcmdata_v1beta1#GoogleFirebaseFcmDataV1beta1MessageInsightPercents": {
-      "type": "structure",
-      "members": {
-        "priorityLowered": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The percentage of accepted messages that had their priority lowered from high to normal. See [documentation for setting message priority](https://firebase.google.com/docs/cloud-messaging/android/message-priority)."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Additional information about message delivery. All percentages are calculated with countMessagesAccepted as the denominator."
-      }
-    },
-    "com.gcp.fcmdata_v1beta1#GoogleFirebaseFcmDataV1beta1Data": {
-      "type": "structure",
-      "members": {
-        "messageOutcomePercents": {
-          "target": "com.gcp.fcmdata_v1beta1#GoogleFirebaseFcmDataV1beta1MessageOutcomePercents",
-          "traits": {
-            "smithy.api#documentation": "Mutually exclusive breakdown of message delivery outcomes."
-          }
-        },
-        "deliveryPerformancePercents": {
-          "target": "com.gcp.fcmdata_v1beta1#GoogleFirebaseFcmDataV1beta1DeliveryPerformancePercents",
-          "traits": {
-            "smithy.api#documentation": "Additional information about delivery performance for messages that were successfully delivered."
-          }
-        },
-        "countMessagesAccepted": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Count of messages accepted by FCM intended for Android devices. The targeted device must have opted in to the collection of usage and diagnostic information."
-          }
-        },
-        "proxyNotificationInsightPercents": {
-          "target": "com.gcp.fcmdata_v1beta1#GoogleFirebaseFcmDataV1beta1ProxyNotificationInsightPercents",
-          "traits": {
-            "smithy.api#documentation": "Additional insights about proxy notification delivery."
-          }
-        },
-        "messageInsightPercents": {
-          "target": "com.gcp.fcmdata_v1beta1#GoogleFirebaseFcmDataV1beta1MessageInsightPercents",
-          "traits": {
-            "smithy.api#documentation": "Additional general insights about message delivery."
-          }
-        },
-        "countNotificationsAccepted": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Count of notifications accepted by FCM intended for Android devices. The targeted device must have opted in to the collection of usage and diagnostic information."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Data detailing messaging delivery"
-      }
-    },
     "com.gcp.fcmdata_v1beta1#GoogleFirebaseFcmDataV1beta1MessageOutcomePercents": {
       "type": "structure",
       "members": {
-        "droppedTooManyPendingMessages": {
+        "droppedDeviceInactive": {
           "target": "smithy.api#Double",
           "traits": {
-            "smithy.api#documentation": "The percentage of accepted messages that were dropped due to [too many undelivered non-collapsible messages](https://firebase.google.com/docs/cloud-messaging/concept-options#collapsible_and_non-collapsible_messages). Specifically, each app instance can only have 100 pending messages stored on our servers for a device which is disconnected. When that device reconnects, those messages are delivered. When there are more than the maximum pending messages, we call [OnDeletedMessages()](https://firebase.google.com/docs/cloud-messaging/android/receive#override-ondeletedmessages) in our SDK instead of delivering the messages."
+            "smithy.api#documentation": "The percentage of accepted messages that were dropped because the target device is inactive. FCM will drop messages if the target device is deemed inactive by our servers. If a device does reconnect, we call [OnDeletedMessages()](https://firebase.google.com/docs/cloud-messaging/android/receive#override-ondeletedmessages) in our SDK instead of delivering the messages."
+          }
+        },
+        "delivered": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The percentage of all accepted messages that were successfully delivered to the device."
           }
         },
         "collapsed": {
@@ -118,22 +265,16 @@
             "smithy.api#documentation": "The percentage of accepted messages that were dropped because the application was force stopped on the device at the time of delivery and retries were unsuccessful."
           }
         },
+        "droppedTooManyPendingMessages": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The percentage of accepted messages that were dropped due to [too many undelivered non-collapsible messages](https://firebase.google.com/docs/cloud-messaging/concept-options#collapsible_and_non-collapsible_messages). Specifically, each app instance can only have 100 pending messages stored on our servers for a device which is disconnected. When that device reconnects, those messages are delivered. When there are more than the maximum pending messages, we call [OnDeletedMessages()](https://firebase.google.com/docs/cloud-messaging/android/receive#override-ondeletedmessages) in our SDK instead of delivering the messages."
+          }
+        },
         "pending": {
           "target": "smithy.api#Double",
           "traits": {
             "smithy.api#documentation": "The percentage of messages accepted on this day that were not dropped and not delivered, due to the device being disconnected (as of the end of the America/Los_Angeles day when the message was sent to FCM). A portion of these messages will be delivered the next day when the device connects but others may be destined to devices that ultimately never reconnect."
-          }
-        },
-        "delivered": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The percentage of all accepted messages that were successfully delivered to the device."
-          }
-        },
-        "droppedDeviceInactive": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The percentage of accepted messages that were dropped because the target device is inactive. FCM will drop messages if the target device is deemed inactive by our servers. If a device does reconnect, we call [OnDeletedMessages()](https://firebase.google.com/docs/cloud-messaging/android/receive#override-ondeletedmessages) in our SDK instead of delivering the messages."
           }
         }
       },
@@ -141,149 +282,16 @@
         "smithy.api#documentation": "Percentage breakdown of message delivery outcomes. These categories are mutually exclusive. All percentages are calculated with countMessagesAccepted as the denominator. These categories may not account for all message outcomes."
       }
     },
-    "com.gcp.fcmdata_v1beta1#GoogleFirebaseFcmDataV1beta1ProxyNotificationInsightPercents": {
-      "type": "structure",
-      "members": {
-        "skippedUnsupported": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The percentage of accepted notifications that were skipped because proxy notification is unsupported for the recipient."
-          }
-        },
-        "proxied": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The percentage of accepted notifications that were successfully proxied by [Google Play services](https://developers.google.com/android/guides/overview)."
-          }
-        },
-        "skippedUnconfigured": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The percentage of accepted notifications that were skipped because configurations required for notifications to be proxied were missing."
-          }
-        },
-        "failed": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The percentage of accepted notifications that failed to be proxied. This is usually caused by exceptions that occurred while calling [notifyAsPackage](https://developer.android.com/reference/android/app/NotificationManager#notifyAsPackage%28java.lang.String,%20java.lang.String,%20int,%20android.app.Notification%29)."
-          }
-        },
-        "skippedOptedOut": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The percentage of accepted notifications that were skipped because the app disallowed these messages to be proxied."
-          }
-        },
-        "skippedNotThrottled": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The percentage of accepted notifications that were skipped because the messages were not throttled."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Additional information about [proxy notification](https://firebase.google.com/docs/cloud-messaging/android/message-priority#proxy) delivery. All percentages are calculated with countNotificationsAccepted as the denominator."
-      }
-    },
-    "com.gcp.fcmdata_v1beta1#GoogleFirebaseFcmDataV1beta1AndroidDeliveryData": {
-      "type": "structure",
-      "members": {
-        "data": {
-          "target": "com.gcp.fcmdata_v1beta1#GoogleFirebaseFcmDataV1beta1Data",
-          "traits": {
-            "smithy.api#documentation": "The data for the specified appId, date, and analyticsLabel."
-          }
-        },
-        "date": {
-          "target": "com.gcp.fcmdata_v1beta1#GoogleTypeDate",
-          "traits": {
-            "smithy.api#documentation": "The date represented by this entry."
-          }
-        },
-        "appId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The app ID to which the messages were sent."
-          }
-        },
-        "analyticsLabel": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The analytics label associated with the messages sent. All messages sent without an analytics label will be grouped together in a single entry."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Message delivery data for a given date, app, and analytics label combination."
-      }
-    },
-    "com.gcp.fcmdata_v1beta1#GoogleTypeDate": {
-      "type": "structure",
-      "members": {
-        "month": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day."
-          }
-        },
-        "year": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year."
-          }
-        },
-        "day": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp"
-      }
-    },
-    "com.gcp.fcmdata_v1beta1#GoogleFirebaseFcmDataV1beta1DeliveryPerformancePercents": {
-      "type": "structure",
-      "members": {
-        "delayedDeviceOffline": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The percentage of accepted messages that were delayed because the target device was not connected at the time of sending. These messages were eventually delivered when the device reconnected."
-          }
-        },
-        "delayedDeviceDoze": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The percentage of accepted messages that were delayed because the device was in doze mode. Only [normal priority messages](https://firebase.google.com/docs/cloud-messaging/concept-options#setting-the-priority-of-a-message) should be delayed due to doze mode."
-          }
-        },
-        "delayedMessageThrottled": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The percentage of accepted messages that were delayed due to message throttling, such as [collapsible message throttling](https://firebase.google.com/docs/cloud-messaging/concept-options#collapsible_throttling)."
-          }
-        },
-        "delayedUserStopped": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The percentage of accepted messages that were delayed because the intended device user-profile was [stopped](https://firebase.google.com/docs/cloud-messaging/android/receive#handling_messages) on the target device at the time of the send. The messages were eventually delivered when the user-profile was started again."
-          }
-        },
-        "deliveredNoDelay": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The percentage of accepted messages that were delivered to the device without delay from the FCM system."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Overview of delivery performance for messages that were successfully delivered. All percentages are calculated with countMessagesAccepted as the denominator. These categories are not mutually exclusive; a message can be delayed for multiple reasons."
-      }
-    },
     "com.gcp.fcmdata_v1beta1#ListProjectsAndroidAppsDeliveryDataRequest": {
       "type": "structure",
       "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of entries to return. The service may return fewer than this value. If unspecified, at most 1,000 entries will be returned. The maximum value is 10,000; values above 10,000 will be capped to 10,000. This default may change over time.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
         "pageToken": {
           "target": "smithy.api#String",
           "traits": {
@@ -297,13 +305,6 @@
             "smithy.api#documentation": "Required. The application for which to list delivery data. Format: `projects/{project_id}/androidApps/{app_id}`",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
-          }
-        },
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The maximum number of entries to return. The service may return fewer than this value. If unspecified, at most 1,000 entries will be returned. The maximum value is 10,000; values above 10,000 will be capped to 10,000. This default may change over time.",
-            "smithy.api#httpQuery": "pageSize"
           }
         }
       }

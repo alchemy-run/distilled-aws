@@ -11,7 +11,7 @@ import * as Retry from "../retry.ts";
 
 export type { PosthogOpError, PosthogOpContext };
 
-export interface McpServersListRequest {
+export interface ListMcpServersRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** Number of results to return per page. */
@@ -19,7 +19,7 @@ export interface McpServersListRequest {
   /** The initial index from which to return the results. */
   offset?: number;
 }
-export const McpServersListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListMcpServersRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     limit: S.optional(S.Number.pipe(T.Query())),
@@ -32,8 +32,8 @@ export const McpServersListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "McpServersListRequest",
-}) as any as S.Schema<McpServersListRequest>;
+  identifier: "ListMcpServersRequest",
+}) as any as S.Schema<ListMcpServersRequest>;
 
 /** * `api_key` - API Key * `oauth` - OAuth */
 export type MCPAuthTypeEnum = "api_key" | "oauth";
@@ -101,15 +101,15 @@ export const PaginatedMCPServerTemplateList = /*@__PURE__*/ S.suspend(() =>
   identifier: "PaginatedMCPServerTemplateList",
 }) as any as S.Schema<PaginatedMCPServerTemplateList>;
 
-export type McpServersListError = PosthogOpError;
+export type ListMcpServersError = PosthogOpError;
 /** Lists curated MCP server templates that users can install with one click. Templates are seeded by PostHog operators and carry shared, encrypted OAuth client credentials. Inactive templates are hidden from the catalog. */
-export const mcpServersList: API.OperationMethod<
-  McpServersListRequest,
+export const listMcpServers: API.OperationMethod<
+  ListMcpServersRequest,
   PaginatedMCPServerTemplateList,
-  McpServersListError,
+  ListMcpServersError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: McpServersListRequest,
+  input: ListMcpServersRequest,
   output: PaginatedMCPServerTemplateList,
   errors: [],
   protocol: PosthogProtocol,

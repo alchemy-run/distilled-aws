@@ -14,7 +14,19 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "keyDictionary": {
+      "endTs": "end_ts",
+      "modifiedOn": "modified_on",
+      "obtainedCodes": "obtained_codes",
+      "originIp": "origin_ip",
+      "perPage": "per_page",
+      "purgeEverything": "purge_everything",
+      "resultInfo": "result_info",
+      "startTs": "start_ts",
+      "totalCount": "total_count"
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.cache#PurgeRequestTagsList": {
@@ -75,82 +87,6 @@
         },
         "CachePurgeSingleFileWithURLAndHeaders": {
           "target": "com.cloudflare.cache#PurgeRequestFilesCachePurgeSingleFileWithURLAndHeadersList"
-        }
-      }
-    },
-    "com.cloudflare.cache#PurgeRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "tags": {
-          "target": "com.cloudflare.cache#PurgeRequestTagsList",
-          "traits": {
-            "smithy.api#documentation": "For more information on cache tags and purging by tags, please refer to [purge by cache-tags documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-tags/)."
-          }
-        },
-        "hosts": {
-          "target": "com.cloudflare.cache#PurgeRequestHostsList",
-          "traits": {
-            "smithy.api#documentation": "For more information purging by hostnames, please refer to [purge by hostname documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-hostname/)."
-          }
-        },
-        "prefixes": {
-          "target": "com.cloudflare.cache#PurgeRequestPrefixesList",
-          "traits": {
-            "smithy.api#documentation": "For more information on purging by prefixes, please refer to [purge by prefix documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/purge_by_prefix/)."
-          }
-        },
-        "purge_everything": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "For more information, please refer to [purge everything documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-everything/)."
-          }
-        },
-        "files": {
-          "target": "com.cloudflare.cache#PurgeRequestFiles",
-          "traits": {
-            "smithy.api#documentation": "For more information on purging files, please refer to [purge by single-file documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-single-file/)."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.cache#PurgeResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.cache#Purge": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.cache#PurgeRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.cache#PurgeResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "/zones/{zone_id}/purge_cache",
-          "code": 200
         }
       }
     },
@@ -215,106 +151,6 @@
         }
       }
     },
-    "com.cloudflare.cache#PurgeEnvironmentRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "environment_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "tags": {
-          "target": "com.cloudflare.cache#PurgeEnvironmentRequestTagsList",
-          "traits": {
-            "smithy.api#documentation": "For more information on cache tags and purging by tags, please refer to [purge by cache-tags documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-tags/)."
-          }
-        },
-        "hosts": {
-          "target": "com.cloudflare.cache#PurgeEnvironmentRequestHostsList",
-          "traits": {
-            "smithy.api#documentation": "For more information purging by hostnames, please refer to [purge by hostname documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-hostname/)."
-          }
-        },
-        "prefixes": {
-          "target": "com.cloudflare.cache#PurgeEnvironmentRequestPrefixesList",
-          "traits": {
-            "smithy.api#documentation": "For more information on purging by prefixes, please refer to [purge by prefix documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/purge_by_prefix/)."
-          }
-        },
-        "purge_everything": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "For more information, please refer to [purge everything documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-everything/)."
-          }
-        },
-        "files": {
-          "target": "com.cloudflare.cache#PurgeEnvironmentRequestFiles",
-          "traits": {
-            "smithy.api#documentation": "For more information on purging files, please refer to [purge by single-file documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-single-file/)."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.cache#PurgeEnvironmentResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.cache#PurgeEnvironment": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.cache#PurgeEnvironmentRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.cache#PurgeEnvironmentResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "/zones/{zone_id}/environments/{environment_id}/purge_cache",
-          "code": 200
-        },
-        "smithy.api#documentation": "Purge cached content scoped to a specific environment. Supports the same purge types as the zone-level endpoint (purge everything, by URL, by tag, host, or prefix)."
-      }
-    },
-    "com.cloudflare.cache#CacheReserveClearRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.cache#CacheReserveClearResponseId": {
       "type": "enum",
       "members": {
@@ -343,65 +179,6 @@
         }
       }
     },
-    "com.cloudflare.cache#CacheReserveClearResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "com.cloudflare.cache#CacheReserveClearResponseId",
-          "traits": {
-            "smithy.api#documentation": "ID of the zone setting.",
-            "smithy.api#required": {}
-          }
-        },
-        "start_ts": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The time that the latest Cache Reserve Clear operation started.",
-            "smithy.api#required": {}
-          }
-        },
-        "state": {
-          "target": "com.cloudflare.cache#CacheReserveClearResponseState",
-          "traits": {
-            "smithy.api#documentation": "The current state of the Cache Reserve Clear operation.",
-            "smithy.api#required": {}
-          }
-        },
-        "end_ts": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The time that the latest Cache Reserve Clear operation completed."
-          }
-        },
-        "modified_on": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Last time this setting was modified."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.cache#CacheReserveClear": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.cache#CacheReserveClearRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.cache#CacheReserveClearResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "/zones/{zone_id}/cache/cache_reserve_clear",
-          "code": 200
-        },
-        "smithy.api#documentation": "You can use Cache Reserve Clear to clear your Cache Reserve, but you must first disable Cache Reserve. In most cases, this will be accomplished within 24 hours. You cannot re-enable Cache Reserve while this process is ongoing. Keep in mind that you cannot undo or cancel this operation."
-      }
-    },
     "com.cloudflare.cache#CacheReserveEditRequestValue": {
       "type": "enum",
       "members": {
@@ -417,29 +194,6 @@
             "smithy.api#enumValue": "off"
           }
         }
-      }
-    },
-    "com.cloudflare.cache#CacheReserveEditRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "value": {
-          "target": "com.cloudflare.cache#CacheReserveEditRequestValue",
-          "traits": {
-            "smithy.api#documentation": "Value of the Cache Reserve zone setting.",
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.cache#CacheReserveEditResponseId": {
@@ -470,75 +224,6 @@
         }
       }
     },
-    "com.cloudflare.cache#CacheReserveEditResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "com.cloudflare.cache#CacheReserveEditResponseId",
-          "traits": {
-            "smithy.api#documentation": "The identifier of the caching setting.",
-            "smithy.api#required": {}
-          }
-        },
-        "editable": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether the setting is editable.",
-            "smithy.api#required": {}
-          }
-        },
-        "value": {
-          "target": "com.cloudflare.cache#CacheReserveEditResponseValue",
-          "traits": {
-            "smithy.api#documentation": "Value of the Cache Reserve zone setting.",
-            "smithy.api#required": {}
-          }
-        },
-        "modified_on": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Last time this setting was modified."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.cache#CacheReserveEdit": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.cache#CacheReserveEditRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.cache#CacheReserveEditResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "PATCH",
-          "uri": "/zones/{zone_id}/cache/cache_reserve",
-          "code": 200
-        },
-        "smithy.api#documentation": "Increase cache lifetimes by automatically storing all cacheable files into Cloudflare's persistent object storage buckets. Requires Cache Reserve subscription. Note: using Tiered Cache with Cache Reserve is highly recommended to reduce Reserve operations costs. See the [developer docs](https://developers.cloudflare.com/cache/about/cache-reserve) for more information."
-      }
-    },
-    "com.cloudflare.cache#CacheReserveGetRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.cache#CacheReserveGetResponseId": {
       "type": "enum",
       "members": {
@@ -567,76 +252,6 @@
         }
       }
     },
-    "com.cloudflare.cache#CacheReserveGetResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "com.cloudflare.cache#CacheReserveGetResponseId",
-          "traits": {
-            "smithy.api#documentation": "The identifier of the caching setting.",
-            "smithy.api#required": {}
-          }
-        },
-        "editable": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether the setting is editable.",
-            "smithy.api#required": {}
-          }
-        },
-        "value": {
-          "target": "com.cloudflare.cache#CacheReserveGetResponseValue",
-          "traits": {
-            "smithy.api#documentation": "Value of the Cache Reserve zone setting.",
-            "smithy.api#required": {}
-          }
-        },
-        "modified_on": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Last time this setting was modified."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.cache#CacheReserveGet": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.cache#CacheReserveGetRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.cache#CacheReserveGetResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/zones/{zone_id}/cache/cache_reserve",
-          "code": 200
-        },
-        "smithy.api#documentation": "Increase cache lifetimes by automatically storing all cacheable files into Cloudflare's persistent object storage buckets. Requires Cache Reserve subscription. Note: using Tiered Cache with Cache Reserve is highly recommended to reduce Reserve operations costs. See the [developer docs](https://developers.cloudflare.com/cache/about/cache-reserve) for more information.",
-        "smithy.api#readonly": {}
-      }
-    },
-    "com.cloudflare.cache#CacheReserveStatusRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.cache#CacheReserveStatusResponseId": {
       "type": "enum",
       "members": {
@@ -663,82 +278,6 @@
             "smithy.api#enumValue": "Completed"
           }
         }
-      }
-    },
-    "com.cloudflare.cache#CacheReserveStatusResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "com.cloudflare.cache#CacheReserveStatusResponseId",
-          "traits": {
-            "smithy.api#documentation": "ID of the zone setting.",
-            "smithy.api#required": {}
-          }
-        },
-        "start_ts": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The time that the latest Cache Reserve Clear operation started.",
-            "smithy.api#required": {}
-          }
-        },
-        "state": {
-          "target": "com.cloudflare.cache#CacheReserveStatusResponseState",
-          "traits": {
-            "smithy.api#documentation": "The current state of the Cache Reserve Clear operation.",
-            "smithy.api#required": {}
-          }
-        },
-        "end_ts": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The time that the latest Cache Reserve Clear operation completed."
-          }
-        },
-        "modified_on": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Last time this setting was modified."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.cache#CacheReserveStatus": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.cache#CacheReserveStatusRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.cache#CacheReserveStatusResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/zones/{zone_id}/cache/cache_reserve_clear",
-          "code": 200
-        },
-        "smithy.api#documentation": "You can use Cache Reserve Clear to clear your Cache Reserve, but you must first disable Cache Reserve. In most cases, this will be accomplished within 24 hours. You cannot re-enable Cache Reserve while this process is ongoing. Keep in mind that you cannot undo or cancel this operation.",
-        "smithy.api#readonly": {}
-      }
-    },
-    "com.cloudflare.cache#OriginCloudRegionsBulkDeleteRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.cache#OriginCloudRegionsBulkDeleteResponseFailedItem": {
@@ -811,47 +350,6 @@
       "type": "list",
       "member": {
         "target": "com.cloudflare.cache#OriginCloudRegionsBulkDeleteResponseSucceededItem"
-      }
-    },
-    "com.cloudflare.cache#OriginCloudRegionsBulkDeleteResponse": {
-      "type": "structure",
-      "members": {
-        "failed": {
-          "target": "com.cloudflare.cache#OriginCloudRegionsBulkDeleteResponseFailedList",
-          "traits": {
-            "smithy.api#documentation": "Items that could not be applied, with error details.",
-            "smithy.api#required": {}
-          }
-        },
-        "succeeded": {
-          "target": "com.cloudflare.cache#OriginCloudRegionsBulkDeleteResponseSucceededList",
-          "traits": {
-            "smithy.api#documentation": "Items that were successfully applied.",
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.cache#OriginCloudRegionsBulkDelete": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.cache#OriginCloudRegionsBulkDeleteRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.cache#OriginCloudRegionsBulkDeleteResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "/zones/{zone_id}/origin/cloud_regions/batch",
-          "code": 200
-        },
-        "smithy.api#documentation": "Removes up to 100 IP-to-cloud-region mappings in a single request. Each IP is validated independently — successfully deleted items are returned in the `succeeded` array and IPs that could not be found or are invalid are returned in the `failed` array.",
-        "smithy.api#idempotent": {}
       }
     },
     "com.cloudflare.cache#OriginCloudRegionsBulkDeleteV1Request": {
@@ -1326,29 +824,6 @@
         "target": "com.cloudflare.cache#OriginCloudRegionsBulkUpdateRequestBodyItem"
       }
     },
-    "com.cloudflare.cache#OriginCloudRegionsBulkUpdateRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.cloudflare.cache#OriginCloudRegionsBulkUpdateRequestBodyList",
-          "traits": {
-            "smithy.api#required": {},
-            "smithy.api#httpPayload": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.cache#OriginCloudRegionsBulkUpdateResponseFailedItem": {
       "type": "structure",
       "members": {
@@ -1419,47 +894,6 @@
       "type": "list",
       "member": {
         "target": "com.cloudflare.cache#OriginCloudRegionsBulkUpdateResponseSucceededItem"
-      }
-    },
-    "com.cloudflare.cache#OriginCloudRegionsBulkUpdateResponse": {
-      "type": "structure",
-      "members": {
-        "failed": {
-          "target": "com.cloudflare.cache#OriginCloudRegionsBulkUpdateResponseFailedList",
-          "traits": {
-            "smithy.api#documentation": "Items that could not be applied, with error details.",
-            "smithy.api#required": {}
-          }
-        },
-        "succeeded": {
-          "target": "com.cloudflare.cache#OriginCloudRegionsBulkUpdateResponseSucceededList",
-          "traits": {
-            "smithy.api#documentation": "Items that were successfully applied.",
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.cache#OriginCloudRegionsBulkUpdate": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.cache#OriginCloudRegionsBulkUpdateRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.cache#OriginCloudRegionsBulkUpdateResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "PUT",
-          "uri": "/zones/{zone_id}/origin/cloud_regions/batch",
-          "code": 200
-        },
-        "smithy.api#documentation": "Upserts up to 100 IP-to-cloud-region mappings in a single request. Items in the request body are created or replaced; mappings not included in the request body are preserved unchanged (this is a merge operation, not a full collection replacement). Each item is validated independently — valid items are applied and invalid items are returned in the `failed` array. The vendor and region for every item are validated against the list from `GET /zones/{zone_id}/origin/cloud_regions/supported_regions`.",
-        "smithy.api#idempotent": {}
       }
     },
     "com.cloudflare.cache#OriginCloudRegionsCreateV1RequestVendor": {
@@ -1651,63 +1085,6 @@
           "code": 200
         },
         "smithy.api#documentation": "Adds a single IP-to-cloud-region mapping for the zone. The IP must be a valid IPv4 or IPv6 address and is normalized to canonical form before storage (RFC 5952 for IPv6). Returns 400 (code 1145) if a mapping for that IP already exists — use PATCH to update an existing entry. The vendor and region are validated against the list from `GET /zones/{zone_id}/cache/origin_cloud_regions/supported_regions`."
-      }
-    },
-    "com.cloudflare.cache#OriginCloudRegionsDeleteRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "origin_ip": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.cache#OriginCloudRegionsDeleteResponse": {
-      "type": "structure",
-      "members": {
-        "origin_ip": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The origin IP address whose mapping was deleted.",
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.cache#OriginCloudRegionsDelete": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.cache#OriginCloudRegionsDeleteRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.cache#OriginCloudRegionsDeleteResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "/zones/{zone_id}/origin/cloud_regions/{origin_ip}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Removes the cloud region mapping for a single origin IP address. The IP path parameter is normalized before lookup. Returns the deleted IP on success. Returns 404 if no mapping exists for the specified IP. When the last mapping for the zone is removed the underlying rule record is also deleted.",
-        "smithy.api#idempotent": {}
       }
     },
     "com.cloudflare.cache#OriginCloudRegionsDeleteV1Request": {
@@ -2055,29 +1432,6 @@
         "smithy.api#documentation": "Adds or updates a single IP-to-cloud-region mapping for the zone. Unlike POST, this operation is idempotent — if a mapping for the IP already exists it is overwritten. Returns the complete updated list of all mappings for the zone. Returns 403 (code 1164) when the zone has reached the limit of 3,500 IP mappings."
       }
     },
-    "com.cloudflare.cache#OriginCloudRegionsGetRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "origin_ip": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.cache#OriginCloudRegionsGetResponseVendor": {
       "type": "enum",
       "members": {
@@ -2105,60 +1459,6 @@
             "smithy.api#enumValue": "oci"
           }
         }
-      }
-    },
-    "com.cloudflare.cache#OriginCloudRegionsGetResponse": {
-      "type": "structure",
-      "members": {
-        "origin_ip": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The origin IP address (IPv4 or IPv6). Normalized to canonical form (RFC 5952 for IPv6).",
-            "smithy.api#required": {}
-          }
-        },
-        "region": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Cloud vendor region identifier.",
-            "smithy.api#required": {}
-          }
-        },
-        "vendor": {
-          "target": "com.cloudflare.cache#OriginCloudRegionsGetResponseVendor",
-          "traits": {
-            "smithy.api#documentation": "Cloud vendor hosting the origin.",
-            "smithy.api#required": {}
-          }
-        },
-        "modified_on": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Time this mapping was last modified."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.cache#OriginCloudRegionsGet": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.cache#OriginCloudRegionsGetRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.cache#OriginCloudRegionsGetResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/zones/{zone_id}/origin/cloud_regions/{origin_ip}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Returns the cloud region mapping for a single origin IP address. The IP path parameter is normalized before lookup (RFC 5952 for IPv6). Returns 404 if the zone has no mappings or if the specified IP has no mapping.",
-        "smithy.api#readonly": {}
       }
     },
     "com.cloudflare.cache#OriginCloudRegionsGetV1Request": {
@@ -2310,36 +1610,6 @@
         "smithy.api#readonly": {}
       }
     },
-    "com.cloudflare.cache#OriginCloudRegionsListRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "page": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Page number of paginated results.",
-            "smithy.api#httpQuery": "page"
-          }
-        },
-        "per_page": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Number of items per page.",
-            "smithy.api#httpQuery": "per_page"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.cache#OriginCloudRegionsListResultItemVendor": {
       "type": "enum",
       "members": {
@@ -2405,39 +1675,6 @@
       "type": "list",
       "member": {
         "target": "com.cloudflare.cache#OriginCloudRegionsListResultItem"
-      }
-    },
-    "com.cloudflare.cache#OriginCloudRegionsListResponse": {
-      "type": "structure",
-      "members": {
-        "result": {
-          "target": "com.cloudflare.cache#OriginCloudRegionsListResultList",
-          "traits": {
-            "com.cloudflare.protocols#envelopePayload": {},
-            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.cache#OriginCloudRegionsList": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.cache#OriginCloudRegionsListRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.cache#OriginCloudRegionsListResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/zones/{zone_id}/origin/cloud_regions",
-          "code": 200
-        },
-        "smithy.api#documentation": "Returns all IP-to-cloud-region mappings configured for the zone with pagination support. Each mapping tells Cloudflare which cloud vendor and region hosts the origin at that IP, enabling the edge to route via the nearest Tiered Cache upper-tier co-located with that cloud provider. Returns an empty array when no mappings exist.",
-        "smithy.api#readonly": {}
       }
     },
     "com.cloudflare.cache#OriginCloudRegionsListV1Request": {
@@ -2587,22 +1824,6 @@
         "smithy.api#readonly": {}
       }
     },
-    "com.cloudflare.cache#OriginCloudRegionsSupportedRegionsRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.cache#OriginCloudRegionsSupportedRegionsResponseVendorsValueItemUpperTierColosList": {
       "type": "list",
       "member": {
@@ -2641,47 +1862,6 @@
       },
       "value": {
         "target": "com.cloudflare.cache#OriginCloudRegionsSupportedRegionsResponseVendorsValueList"
-      }
-    },
-    "com.cloudflare.cache#OriginCloudRegionsSupportedRegionsResponse": {
-      "type": "structure",
-      "members": {
-        "obtained_codes": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether Cloudflare airport codes (IATA colo identifiers) were successfully resolved for the `upper_tier_colos` field on each region. When `false`, the `upper_tier_colos` arrays may be empty or incomplete.",
-            "smithy.api#required": {}
-          }
-        },
-        "vendors": {
-          "target": "com.cloudflare.cache#OriginCloudRegionsSupportedRegionsResponseVendorsMap",
-          "traits": {
-            "smithy.api#documentation": "Map of vendor name to list of supported regions.",
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.cache#OriginCloudRegionsSupportedRegions": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.cache#OriginCloudRegionsSupportedRegionsRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.cache#OriginCloudRegionsSupportedRegionsResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/zones/{zone_id}/origin/cloud_regions/supported_regions",
-          "code": 200
-        },
-        "smithy.api#documentation": "Returns the cloud vendors and regions that are valid values for origin cloud region mappings. Each region includes the Tiered Cache upper-tier colocation codes that will be used for cache routing when a mapping targeting that region is active. Requires the zone to have Tiered Cache enabled.",
-        "smithy.api#readonly": {}
       }
     },
     "com.cloudflare.cache#OriginCloudRegionsSupportedRegionsV1Request": {
@@ -2810,51 +1990,6 @@
         }
       }
     },
-    "com.cloudflare.cache#OriginCloudRegionsUpdateRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "origin_ip": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "origin_ip_2": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Origin IP address (IPv4 or IPv6). For the single PUT endpoint (`PUT /origin/cloud_regions/{origin_ip}`), this field must match the path parameter or the request will be rejected with a 400 error. For the batch PUT endpoint, this field identifies which mapping to upsert.",
-            "smithy.api#required": {},
-            "smithy.api#jsonName": "origin_ip"
-          }
-        },
-        "region": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Cloud vendor region identifier. Must be a valid region for the specified vendor as returned by the supported_regions endpoint.",
-            "smithy.api#required": {}
-          }
-        },
-        "vendor": {
-          "target": "com.cloudflare.cache#OriginCloudRegionsUpdateRequestVendor",
-          "traits": {
-            "smithy.api#documentation": "Cloud vendor hosting the origin. Must be one of the supported vendors.",
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.cache#OriginCloudRegionsUpdateResponseVendor": {
       "type": "enum",
       "members": {
@@ -2884,60 +2019,6 @@
         }
       }
     },
-    "com.cloudflare.cache#OriginCloudRegionsUpdateResponse": {
-      "type": "structure",
-      "members": {
-        "origin_ip": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The origin IP address (IPv4 or IPv6). Normalized to canonical form (RFC 5952 for IPv6).",
-            "smithy.api#required": {}
-          }
-        },
-        "region": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Cloud vendor region identifier.",
-            "smithy.api#required": {}
-          }
-        },
-        "vendor": {
-          "target": "com.cloudflare.cache#OriginCloudRegionsUpdateResponseVendor",
-          "traits": {
-            "smithy.api#documentation": "Cloud vendor hosting the origin.",
-            "smithy.api#required": {}
-          }
-        },
-        "modified_on": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Time this mapping was last modified."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.cache#OriginCloudRegionsUpdate": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.cache#OriginCloudRegionsUpdateRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.cache#OriginCloudRegionsUpdateResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "PUT",
-          "uri": "/zones/{zone_id}/origin/cloud_regions/{origin_ip}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Creates a new IP-to-cloud-region mapping or replaces the existing mapping for the specified IP. PUT is idempotent — calling it repeatedly with the same body produces the same result. The IP path parameter is normalized to canonical form (RFC 5952 for IPv6) before storage. The vendor and region are validated against the list from `GET /zones/{zone_id}/origin/cloud_regions/supported_regions`. Returns 400 if the `origin_ip` in the body does not match the URL path parameter. Returns 403 (code 1164) when the zone has reached the limit of 3,500 IP mappings.",
-        "smithy.api#idempotent": {}
-      }
-    },
     "com.cloudflare.cache#RegionalTieredCacheEditRequestValue": {
       "type": "enum",
       "members": {
@@ -2953,29 +2034,6 @@
             "smithy.api#enumValue": "off"
           }
         }
-      }
-    },
-    "com.cloudflare.cache#RegionalTieredCacheEditRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "value": {
-          "target": "com.cloudflare.cache#RegionalTieredCacheEditRequestValue",
-          "traits": {
-            "smithy.api#documentation": "Value of the Regional Tiered Cache zone setting.",
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.cache#RegionalTieredCacheEditResponseId": {
@@ -3006,75 +2064,6 @@
         }
       }
     },
-    "com.cloudflare.cache#RegionalTieredCacheEditResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "com.cloudflare.cache#RegionalTieredCacheEditResponseId",
-          "traits": {
-            "smithy.api#documentation": "The identifier of the caching setting.",
-            "smithy.api#required": {}
-          }
-        },
-        "editable": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether the setting is editable.",
-            "smithy.api#required": {}
-          }
-        },
-        "value": {
-          "target": "com.cloudflare.cache#RegionalTieredCacheEditResponseValue",
-          "traits": {
-            "smithy.api#documentation": "Value of the Regional Tiered Cache zone setting.",
-            "smithy.api#required": {}
-          }
-        },
-        "modified_on": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Last time this setting was modified."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.cache#RegionalTieredCacheEdit": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.cache#RegionalTieredCacheEditRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.cache#RegionalTieredCacheEditResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "PATCH",
-          "uri": "/zones/{zone_id}/cache/regional_tiered_cache",
-          "code": 200
-        },
-        "smithy.api#documentation": "Instructs Cloudflare to check a regional hub data center on the way to your upper tier. This can help improve performance for smart and custom tiered cache topologies."
-      }
-    },
-    "com.cloudflare.cache#RegionalTieredCacheGetRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.cache#RegionalTieredCacheGetResponseId": {
       "type": "enum",
       "members": {
@@ -3103,60 +2092,6 @@
         }
       }
     },
-    "com.cloudflare.cache#RegionalTieredCacheGetResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "com.cloudflare.cache#RegionalTieredCacheGetResponseId",
-          "traits": {
-            "smithy.api#documentation": "The identifier of the caching setting.",
-            "smithy.api#required": {}
-          }
-        },
-        "editable": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether the setting is editable.",
-            "smithy.api#required": {}
-          }
-        },
-        "value": {
-          "target": "com.cloudflare.cache#RegionalTieredCacheGetResponseValue",
-          "traits": {
-            "smithy.api#documentation": "Value of the Regional Tiered Cache zone setting.",
-            "smithy.api#required": {}
-          }
-        },
-        "modified_on": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Last time this setting was modified."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.cache#RegionalTieredCacheGet": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.cache#RegionalTieredCacheGetRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.cache#RegionalTieredCacheGetResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/zones/{zone_id}/cache/regional_tiered_cache",
-          "code": 200
-        },
-        "smithy.api#documentation": "Instructs Cloudflare to check a regional hub data center on the way to your upper tier. This can help improve performance for smart and custom tiered cache topologies.",
-        "smithy.api#readonly": {}
-      }
-    },
     "com.cloudflare.cache#SmartTieredCacheCreateRequestValue": {
       "type": "enum",
       "members": {
@@ -3172,29 +2107,6 @@
             "smithy.api#enumValue": "off"
           }
         }
-      }
-    },
-    "com.cloudflare.cache#SmartTieredCacheCreateRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "value": {
-          "target": "com.cloudflare.cache#SmartTieredCacheCreateRequestValue",
-          "traits": {
-            "smithy.api#documentation": "Enable or disable the Smart Tiered Cache.",
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.cache#SmartTieredCacheCreateResponseId": {
@@ -3225,75 +2137,6 @@
         }
       }
     },
-    "com.cloudflare.cache#SmartTieredCacheCreateResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "com.cloudflare.cache#SmartTieredCacheCreateResponseId",
-          "traits": {
-            "smithy.api#documentation": "The identifier of the caching setting.",
-            "smithy.api#required": {}
-          }
-        },
-        "editable": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether the setting is editable.",
-            "smithy.api#required": {}
-          }
-        },
-        "value": {
-          "target": "com.cloudflare.cache#SmartTieredCacheCreateResponseValue",
-          "traits": {
-            "smithy.api#documentation": "Value of the Smart Tiered Cache zone setting.",
-            "smithy.api#required": {}
-          }
-        },
-        "modified_on": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Last time this setting was modified."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.cache#SmartTieredCacheCreate": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.cache#SmartTieredCacheCreateRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.cache#SmartTieredCacheCreateResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "/zones/{zone_id}/cache/tiered_cache_smart_topology_enable",
-          "code": 200
-        },
-        "smithy.api#documentation": "Smart Tiered Cache dynamically selects the single closest upper tier for each of your website's origins with no configuration required, using our in-house performance and routing data. Cloudflare collects latency data for each request to an origin, and uses the latency data to determine how well any upper-tier data center is connected with an origin. As a result, Cloudflare can select the data center with the lowest latency to be the upper-tier for an origin."
-      }
-    },
-    "com.cloudflare.cache#SmartTieredCacheDeleteRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.cache#SmartTieredCacheDeleteResponseId": {
       "type": "enum",
       "members": {
@@ -3303,53 +2146,6 @@
             "smithy.api#enumValue": "tiered_cache_smart_topology_enable"
           }
         }
-      }
-    },
-    "com.cloudflare.cache#SmartTieredCacheDeleteResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "com.cloudflare.cache#SmartTieredCacheDeleteResponseId",
-          "traits": {
-            "smithy.api#documentation": "The identifier of the caching setting.",
-            "smithy.api#required": {}
-          }
-        },
-        "editable": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether the setting is editable.",
-            "smithy.api#required": {}
-          }
-        },
-        "modified_on": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Last time this setting was modified."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.cache#SmartTieredCacheDelete": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.cache#SmartTieredCacheDeleteRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.cache#SmartTieredCacheDeleteResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "/zones/{zone_id}/cache/tiered_cache_smart_topology_enable",
-          "code": 200
-        },
-        "smithy.api#documentation": "Smart Tiered Cache dynamically selects the single closest upper tier for each of your website’s origins with no configuration required, using our in-house performance and routing data. Cloudflare collects latency data for each request to an origin, and uses the latency data to determine how well any upper-tier data center is connected with an origin. As a result, Cloudflare can select the data center with the lowest latency to be the upper-tier for an origin.",
-        "smithy.api#idempotent": {}
       }
     },
     "com.cloudflare.cache#SmartTieredCacheEditRequestValue": {
@@ -3367,29 +2163,6 @@
             "smithy.api#enumValue": "off"
           }
         }
-      }
-    },
-    "com.cloudflare.cache#SmartTieredCacheEditRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "value": {
-          "target": "com.cloudflare.cache#SmartTieredCacheEditRequestValue",
-          "traits": {
-            "smithy.api#documentation": "Enable or disable the Smart Tiered Cache.",
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.cache#SmartTieredCacheEditResponseId": {
@@ -3420,75 +2193,6 @@
         }
       }
     },
-    "com.cloudflare.cache#SmartTieredCacheEditResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "com.cloudflare.cache#SmartTieredCacheEditResponseId",
-          "traits": {
-            "smithy.api#documentation": "The identifier of the caching setting.",
-            "smithy.api#required": {}
-          }
-        },
-        "editable": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether the setting is editable.",
-            "smithy.api#required": {}
-          }
-        },
-        "value": {
-          "target": "com.cloudflare.cache#SmartTieredCacheEditResponseValue",
-          "traits": {
-            "smithy.api#documentation": "Value of the Smart Tiered Cache zone setting.",
-            "smithy.api#required": {}
-          }
-        },
-        "modified_on": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Last time this setting was modified."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.cache#SmartTieredCacheEdit": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.cache#SmartTieredCacheEditRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.cache#SmartTieredCacheEditResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "PATCH",
-          "uri": "/zones/{zone_id}/cache/tiered_cache_smart_topology_enable",
-          "code": 200
-        },
-        "smithy.api#documentation": "Smart Tiered Cache dynamically selects the single closest upper tier for each of your website’s origins with no configuration required, using our in-house performance and routing data. Cloudflare collects latency data for each request to an origin, and uses the latency data to determine how well any upper-tier data center is connected with an origin. As a result, Cloudflare can select the data center with the lowest latency to be the upper-tier for an origin."
-      }
-    },
-    "com.cloudflare.cache#SmartTieredCacheGetRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.cache#SmartTieredCacheGetResponseId": {
       "type": "enum",
       "members": {
@@ -3517,76 +2221,6 @@
         }
       }
     },
-    "com.cloudflare.cache#SmartTieredCacheGetResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "com.cloudflare.cache#SmartTieredCacheGetResponseId",
-          "traits": {
-            "smithy.api#documentation": "The identifier of the caching setting.",
-            "smithy.api#required": {}
-          }
-        },
-        "editable": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether the setting is editable.",
-            "smithy.api#required": {}
-          }
-        },
-        "value": {
-          "target": "com.cloudflare.cache#SmartTieredCacheGetResponseValue",
-          "traits": {
-            "smithy.api#documentation": "Value of the Smart Tiered Cache zone setting.",
-            "smithy.api#required": {}
-          }
-        },
-        "modified_on": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Last time this setting was modified."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.cache#SmartTieredCacheGet": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.cache#SmartTieredCacheGetRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.cache#SmartTieredCacheGetResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/zones/{zone_id}/cache/tiered_cache_smart_topology_enable",
-          "code": 200
-        },
-        "smithy.api#documentation": "Smart Tiered Cache dynamically selects the single closest upper tier for each of your website’s origins with no configuration required, using our in-house performance and routing data. Cloudflare collects latency data for each request to an origin, and uses the latency data to determine how well any upper-tier data center is connected with an origin. As a result, Cloudflare can select the data center with the lowest latency to be the upper-tier for an origin.",
-        "smithy.api#readonly": {}
-      }
-    },
-    "com.cloudflare.cache#VariantsDeleteRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.cache#VariantsDeleteResponseId": {
       "type": "enum",
       "members": {
@@ -3596,53 +2230,6 @@
             "smithy.api#enumValue": "variants"
           }
         }
-      }
-    },
-    "com.cloudflare.cache#VariantsDeleteResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "com.cloudflare.cache#VariantsDeleteResponseId",
-          "traits": {
-            "smithy.api#documentation": "The identifier of the caching setting.",
-            "smithy.api#required": {}
-          }
-        },
-        "editable": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether the setting is editable.",
-            "smithy.api#required": {}
-          }
-        },
-        "modified_on": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Last time this setting was modified."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.cache#VariantsDelete": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.cache#VariantsDeleteRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.cache#VariantsDeleteResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "/zones/{zone_id}/cache/variants",
-          "code": 200
-        },
-        "smithy.api#documentation": "Variant support enables caching variants of images with certain file extensions in addition to the original. This only applies when the origin server sends the 'Vary: Accept' response header. If the origin server sends 'Vary: Accept' but does not serve the variant requested, the response will not be cached. This will be indicated with BYPASS cache status in the response headers.",
-        "smithy.api#idempotent": {}
       }
     },
     "com.cloudflare.cache#VariantsEditRequestValueAvifList": {
@@ -3780,29 +2367,6 @@
             "smithy.api#documentation": "List of strings with the MIME types of all the variants that should be served for webp."
           }
         }
-      }
-    },
-    "com.cloudflare.cache#VariantsEditRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "value": {
-          "target": "com.cloudflare.cache#VariantsEditRequestValue",
-          "traits": {
-            "smithy.api#documentation": "Value of the zone setting.",
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.cache#VariantsEditResponseId": {
@@ -3953,75 +2517,6 @@
         }
       }
     },
-    "com.cloudflare.cache#VariantsEditResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "com.cloudflare.cache#VariantsEditResponseId",
-          "traits": {
-            "smithy.api#documentation": "The identifier of the caching setting.",
-            "smithy.api#required": {}
-          }
-        },
-        "editable": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether the setting is editable.",
-            "smithy.api#required": {}
-          }
-        },
-        "value": {
-          "target": "com.cloudflare.cache#VariantsEditResponseValue",
-          "traits": {
-            "smithy.api#documentation": "Value of the zone setting.",
-            "smithy.api#required": {}
-          }
-        },
-        "modified_on": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Last time this setting was modified."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.cache#VariantsEdit": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.cache#VariantsEditRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.cache#VariantsEditResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "PATCH",
-          "uri": "/zones/{zone_id}/cache/variants",
-          "code": 200
-        },
-        "smithy.api#documentation": "Variant support enables caching variants of images with certain file extensions in addition to the original. This only applies when the origin server sends the 'Vary: Accept' response header. If the origin server sends 'Vary: Accept' but does not serve the variant requested, the response will not be cached. This will be indicated with BYPASS cache status in the response headers."
-      }
-    },
-    "com.cloudflare.cache#VariantsGetRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.cache#VariantsGetResponseId": {
       "type": "enum",
       "members": {
@@ -4170,7 +2665,1047 @@
         }
       }
     },
-    "com.cloudflare.cache#VariantsGetResponse": {
+    "com.cloudflare.cache#Cache": {
+      "type": "service",
+      "version": "4.0",
+      "operations": [
+        {
+          "target": "com.cloudflare.cache#OriginCloudRegionsBulkDeleteV1"
+        },
+        {
+          "target": "com.cloudflare.cache#OriginCloudRegionsBulkEditV1"
+        },
+        {
+          "target": "com.cloudflare.cache#OriginCloudRegionsCreateV1"
+        },
+        {
+          "target": "com.cloudflare.cache#OriginCloudRegionsDeleteV1"
+        },
+        {
+          "target": "com.cloudflare.cache#OriginCloudRegionsEditV1"
+        },
+        {
+          "target": "com.cloudflare.cache#OriginCloudRegionsGetV1"
+        },
+        {
+          "target": "com.cloudflare.cache#OriginCloudRegionsListV1"
+        },
+        {
+          "target": "com.cloudflare.cache#OriginCloudRegionsSupportedRegionsV1"
+        },
+        {
+          "target": "com.cloudflare.cache#BulkDeleteOriginCloudRegions"
+        },
+        {
+          "target": "com.cloudflare.cache#BulkPutOriginCloudRegions"
+        },
+        {
+          "target": "com.cloudflare.cache#ClearCacheReserve"
+        },
+        {
+          "target": "com.cloudflare.cache#CreateSmartTieredCache"
+        },
+        {
+          "target": "com.cloudflare.cache#DeleteOriginCloudRegion"
+        },
+        {
+          "target": "com.cloudflare.cache#DeleteSmartTieredCache"
+        },
+        {
+          "target": "com.cloudflare.cache#DeleteVariant"
+        },
+        {
+          "target": "com.cloudflare.cache#GetCacheReserve"
+        },
+        {
+          "target": "com.cloudflare.cache#GetOriginCloudRegion"
+        },
+        {
+          "target": "com.cloudflare.cache#GetRegionalTieredCache"
+        },
+        {
+          "target": "com.cloudflare.cache#GetSmartTieredCache"
+        },
+        {
+          "target": "com.cloudflare.cache#GetVariant"
+        },
+        {
+          "target": "com.cloudflare.cache#ListOriginCloudRegions"
+        },
+        {
+          "target": "com.cloudflare.cache#PatchCacheReserve"
+        },
+        {
+          "target": "com.cloudflare.cache#PatchRegionalTieredCache"
+        },
+        {
+          "target": "com.cloudflare.cache#PatchSmartTieredCache"
+        },
+        {
+          "target": "com.cloudflare.cache#PatchVariant"
+        },
+        {
+          "target": "com.cloudflare.cache#PurgeCache"
+        },
+        {
+          "target": "com.cloudflare.cache#PurgeEnvironmentCache"
+        },
+        {
+          "target": "com.cloudflare.cache#PutOriginCloudRegion"
+        },
+        {
+          "target": "com.cloudflare.cache#StatusCacheReserve"
+        },
+        {
+          "target": "com.cloudflare.cache#SupportedRegionsOriginCloudRegion"
+        }
+      ],
+      "traits": {
+        "com.cloudflare.protocols#v4Json": {},
+        "smithy.api#title": "Cloudflare Cache",
+        "smithy.api#documentation": "Cloudflare API — cache resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+      }
+    },
+    "com.cloudflare.cache#Forbidden": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.cloudflare.cache#OriginCloudRegionNotFound": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.cloudflare.cache#SettingUnavailableForPlan": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "status": 403,
+            "message": {
+              "includes": "not available for your plan"
+            }
+          },
+          {
+            "code": 1135,
+            "message": {
+              "includes": "not available for your plan"
+            }
+          }
+        ]
+      }
+    },
+    "com.cloudflare.cache#Unauthorized": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "status": 401
+          }
+        ]
+      }
+    },
+    "com.cloudflare.cache#VariantsNotConfigured": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "status": 404,
+            "message": {
+              "includes": "zone setting does not exist"
+            }
+          }
+        ]
+      }
+    },
+    "com.cloudflare.cache#BulkDeleteOriginCloudRegions": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.cache#BulkDeleteOriginCloudRegionsRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.cache#BulkDeleteOriginCloudRegionsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/zones/{zone_id}/origin/cloud_regions/batch",
+          "code": 200
+        },
+        "smithy.api#documentation": "Removes up to 100 IP-to-cloud-region mappings in a single request. Each IP is validated independently — successfully deleted items are returned in the `succeeded` array and IPs that could not be found or are invalid are returned in the `failed` array.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.cache#BulkDeleteOriginCloudRegionsRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.cache#BulkDeleteOriginCloudRegionsResponse": {
+      "type": "structure",
+      "members": {
+        "failed": {
+          "target": "com.cloudflare.cache#OriginCloudRegionsBulkDeleteResponseFailedList",
+          "traits": {
+            "smithy.api#documentation": "Items that could not be applied, with error details.",
+            "smithy.api#required": {}
+          }
+        },
+        "succeeded": {
+          "target": "com.cloudflare.cache#OriginCloudRegionsBulkDeleteResponseSucceededList",
+          "traits": {
+            "smithy.api#documentation": "Items that were successfully applied.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.cache#BulkPutOriginCloudRegions": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.cache#BulkPutOriginCloudRegionsRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.cache#BulkPutOriginCloudRegionsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/zones/{zone_id}/origin/cloud_regions/batch",
+          "code": 200
+        },
+        "smithy.api#documentation": "Upserts up to 100 IP-to-cloud-region mappings in a single request. Items in the request body are created or replaced; mappings not included in the request body are preserved unchanged (this is a merge operation, not a full collection replacement). Each item is validated independently — valid items are applied and invalid items are returned in the `failed` array. The vendor and region for every item are validated against the list from `GET /zones/{zone_id}/origin/cloud_regions/supported_regions`.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.cache#BulkPutOriginCloudRegionsRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.cloudflare.cache#OriginCloudRegionsBulkUpdateRequestBodyList",
+          "traits": {
+            "smithy.api#required": {},
+            "smithy.api#httpPayload": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.cache#BulkPutOriginCloudRegionsResponse": {
+      "type": "structure",
+      "members": {
+        "failed": {
+          "target": "com.cloudflare.cache#OriginCloudRegionsBulkUpdateResponseFailedList",
+          "traits": {
+            "smithy.api#documentation": "Items that could not be applied, with error details.",
+            "smithy.api#required": {}
+          }
+        },
+        "succeeded": {
+          "target": "com.cloudflare.cache#OriginCloudRegionsBulkUpdateResponseSucceededList",
+          "traits": {
+            "smithy.api#documentation": "Items that were successfully applied.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.cache#ClearCacheReserve": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.cache#ClearCacheReserveRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.cache#ClearCacheReserveResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/zones/{zone_id}/cache/cache_reserve_clear",
+          "code": 200
+        },
+        "smithy.api#documentation": "You can use Cache Reserve Clear to clear your Cache Reserve, but you must first disable Cache Reserve. In most cases, this will be accomplished within 24 hours. You cannot re-enable Cache Reserve while this process is ongoing. Keep in mind that you cannot undo or cancel this operation."
+      }
+    },
+    "com.cloudflare.cache#ClearCacheReserveRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.cache#ClearCacheReserveResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "com.cloudflare.cache#CacheReserveClearResponseId",
+          "traits": {
+            "smithy.api#documentation": "ID of the zone setting.",
+            "smithy.api#required": {}
+          }
+        },
+        "start_ts": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time that the latest Cache Reserve Clear operation started.",
+            "smithy.api#required": {}
+          }
+        },
+        "state": {
+          "target": "com.cloudflare.cache#CacheReserveClearResponseState",
+          "traits": {
+            "smithy.api#documentation": "The current state of the Cache Reserve Clear operation.",
+            "smithy.api#required": {}
+          }
+        },
+        "end_ts": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time that the latest Cache Reserve Clear operation completed."
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last time this setting was modified."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.cache#CreateSmartTieredCache": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.cache#CreateSmartTieredCacheRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.cache#CreateSmartTieredCacheResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/zones/{zone_id}/cache/tiered_cache_smart_topology_enable",
+          "code": 200
+        },
+        "smithy.api#documentation": "Smart Tiered Cache dynamically selects the single closest upper tier for each of your website's origins with no configuration required, using our in-house performance and routing data. Cloudflare collects latency data for each request to an origin, and uses the latency data to determine how well any upper-tier data center is connected with an origin. As a result, Cloudflare can select the data center with the lowest latency to be the upper-tier for an origin."
+      }
+    },
+    "com.cloudflare.cache#CreateSmartTieredCacheRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "value": {
+          "target": "com.cloudflare.cache#SmartTieredCacheCreateRequestValue",
+          "traits": {
+            "smithy.api#documentation": "Enable or disable the Smart Tiered Cache.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.cache#CreateSmartTieredCacheResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "com.cloudflare.cache#SmartTieredCacheCreateResponseId",
+          "traits": {
+            "smithy.api#documentation": "The identifier of the caching setting.",
+            "smithy.api#required": {}
+          }
+        },
+        "editable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the setting is editable.",
+            "smithy.api#required": {}
+          }
+        },
+        "value": {
+          "target": "com.cloudflare.cache#SmartTieredCacheCreateResponseValue",
+          "traits": {
+            "smithy.api#documentation": "Value of the Smart Tiered Cache zone setting.",
+            "smithy.api#required": {}
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last time this setting was modified."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.cache#DeleteOriginCloudRegion": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.cache#DeleteOriginCloudRegionRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.cache#DeleteOriginCloudRegionResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/zones/{zone_id}/origin/cloud_regions/{originIP}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Removes the cloud region mapping for a single origin IP address. The IP path parameter is normalized before lookup. Returns the deleted IP on success. Returns 404 if no mapping exists for the specified IP. When the last mapping for the zone is removed the underlying rule record is also deleted.",
+        "smithy.api#idempotent": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.cache#OriginCloudRegionNotFound"
+        },
+        {
+          "target": "com.cloudflare.cache#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.cache#DeleteOriginCloudRegionRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "originIP": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.cache#DeleteOriginCloudRegionResponse": {
+      "type": "structure",
+      "members": {
+        "origin_ip": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The origin IP address whose mapping was deleted.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.cache#DeleteSmartTieredCache": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.cache#DeleteSmartTieredCacheRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.cache#DeleteSmartTieredCacheResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/zones/{zone_id}/cache/tiered_cache_smart_topology_enable",
+          "code": 200
+        },
+        "smithy.api#documentation": "Smart Tiered Cache dynamically selects the single closest upper tier for each of your website’s origins with no configuration required, using our in-house performance and routing data. Cloudflare collects latency data for each request to an origin, and uses the latency data to determine how well any upper-tier data center is connected with an origin. As a result, Cloudflare can select the data center with the lowest latency to be the upper-tier for an origin.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.cache#DeleteSmartTieredCacheRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.cache#DeleteSmartTieredCacheResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "com.cloudflare.cache#SmartTieredCacheDeleteResponseId",
+          "traits": {
+            "smithy.api#documentation": "The identifier of the caching setting.",
+            "smithy.api#required": {}
+          }
+        },
+        "editable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the setting is editable.",
+            "smithy.api#required": {}
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last time this setting was modified."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.cache#DeleteVariant": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.cache#DeleteVariantRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.cache#DeleteVariantResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/zones/{zone_id}/cache/variants",
+          "code": 200
+        },
+        "smithy.api#documentation": "Variant support enables caching variants of images with certain file extensions in addition to the original. This only applies when the origin server sends the 'Vary: Accept' response header. If the origin server sends 'Vary: Accept' but does not serve the variant requested, the response will not be cached. This will be indicated with BYPASS cache status in the response headers.",
+        "smithy.api#idempotent": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.cache#VariantsNotConfigured"
+        },
+        {
+          "target": "com.cloudflare.cache#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.cache#DeleteVariantRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.cache#DeleteVariantResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "com.cloudflare.cache#VariantsDeleteResponseId",
+          "traits": {
+            "smithy.api#documentation": "The identifier of the caching setting.",
+            "smithy.api#required": {}
+          }
+        },
+        "editable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the setting is editable.",
+            "smithy.api#required": {}
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last time this setting was modified."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.cache#GetCacheReserve": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.cache#GetCacheReserveRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.cache#GetCacheReserveResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/cache/cache_reserve",
+          "code": 200
+        },
+        "smithy.api#documentation": "Increase cache lifetimes by automatically storing all cacheable files into Cloudflare's persistent object storage buckets. Requires Cache Reserve subscription. Note: using Tiered Cache with Cache Reserve is highly recommended to reduce Reserve operations costs. See the [developer docs](https://developers.cloudflare.com/cache/about/cache-reserve) for more information.",
+        "smithy.api#readonly": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.cache#SettingUnavailableForPlan"
+        },
+        {
+          "target": "com.cloudflare.cache#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.cache#GetCacheReserveRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.cache#GetCacheReserveResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "com.cloudflare.cache#CacheReserveGetResponseId",
+          "traits": {
+            "smithy.api#documentation": "The identifier of the caching setting.",
+            "smithy.api#required": {}
+          }
+        },
+        "editable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the setting is editable.",
+            "smithy.api#required": {}
+          }
+        },
+        "value": {
+          "target": "com.cloudflare.cache#CacheReserveGetResponseValue",
+          "traits": {
+            "smithy.api#documentation": "Value of the Cache Reserve zone setting.",
+            "smithy.api#required": {}
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last time this setting was modified."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.cache#GetOriginCloudRegion": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.cache#GetOriginCloudRegionRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.cache#GetOriginCloudRegionResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/origin/cloud_regions/{originIP}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Returns the cloud region mapping for a single origin IP address. The IP path parameter is normalized before lookup (RFC 5952 for IPv6). Returns 404 if the zone has no mappings or if the specified IP has no mapping.",
+        "smithy.api#readonly": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.cache#OriginCloudRegionNotFound"
+        },
+        {
+          "target": "com.cloudflare.cache#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.cache#GetOriginCloudRegionRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "originIP": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.cache#GetOriginCloudRegionResponse": {
+      "type": "structure",
+      "members": {
+        "origin_ip": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The origin IP address (IPv4 or IPv6). Normalized to canonical form (RFC 5952 for IPv6).",
+            "smithy.api#required": {}
+          }
+        },
+        "region": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Cloud vendor region identifier.",
+            "smithy.api#required": {}
+          }
+        },
+        "vendor": {
+          "target": "com.cloudflare.cache#OriginCloudRegionsGetResponseVendor",
+          "traits": {
+            "smithy.api#documentation": "Cloud vendor hosting the origin.",
+            "smithy.api#required": {}
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Time this mapping was last modified."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.cache#GetRegionalTieredCache": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.cache#GetRegionalTieredCacheRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.cache#GetRegionalTieredCacheResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/cache/regional_tiered_cache",
+          "code": 200
+        },
+        "smithy.api#documentation": "Instructs Cloudflare to check a regional hub data center on the way to your upper tier. This can help improve performance for smart and custom tiered cache topologies.",
+        "smithy.api#readonly": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.cache#SettingUnavailableForPlan"
+        },
+        {
+          "target": "com.cloudflare.cache#Forbidden"
+        },
+        {
+          "target": "com.cloudflare.cache#Unauthorized"
+        }
+      ]
+    },
+    "com.cloudflare.cache#GetRegionalTieredCacheRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.cache#GetRegionalTieredCacheResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "com.cloudflare.cache#RegionalTieredCacheGetResponseId",
+          "traits": {
+            "smithy.api#documentation": "The identifier of the caching setting.",
+            "smithy.api#required": {}
+          }
+        },
+        "editable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the setting is editable.",
+            "smithy.api#required": {}
+          }
+        },
+        "value": {
+          "target": "com.cloudflare.cache#RegionalTieredCacheGetResponseValue",
+          "traits": {
+            "smithy.api#documentation": "Value of the Regional Tiered Cache zone setting.",
+            "smithy.api#required": {}
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last time this setting was modified."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.cache#GetSmartTieredCache": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.cache#GetSmartTieredCacheRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.cache#GetSmartTieredCacheResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/cache/tiered_cache_smart_topology_enable",
+          "code": 200
+        },
+        "smithy.api#documentation": "Smart Tiered Cache dynamically selects the single closest upper tier for each of your website’s origins with no configuration required, using our in-house performance and routing data. Cloudflare collects latency data for each request to an origin, and uses the latency data to determine how well any upper-tier data center is connected with an origin. As a result, Cloudflare can select the data center with the lowest latency to be the upper-tier for an origin.",
+        "smithy.api#readonly": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.cache#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.cache#GetSmartTieredCacheRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.cache#GetSmartTieredCacheResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "com.cloudflare.cache#SmartTieredCacheGetResponseId",
+          "traits": {
+            "smithy.api#documentation": "The identifier of the caching setting.",
+            "smithy.api#required": {}
+          }
+        },
+        "editable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the setting is editable.",
+            "smithy.api#required": {}
+          }
+        },
+        "value": {
+          "target": "com.cloudflare.cache#SmartTieredCacheGetResponseValue",
+          "traits": {
+            "smithy.api#documentation": "Value of the Smart Tiered Cache zone setting.",
+            "smithy.api#required": {}
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last time this setting was modified."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.cache#GetVariant": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.cache#GetVariantRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.cache#GetVariantResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/cache/variants",
+          "code": 200
+        },
+        "smithy.api#documentation": "Variant support enables caching variants of images with certain file extensions in addition to the original. This only applies when the origin server sends the 'Vary: Accept' response header. If the origin server sends 'Vary: Accept' but does not serve the variant requested, the response will not be cached. This will be indicated with BYPASS cache status in the response headers.",
+        "smithy.api#readonly": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.cache#VariantsNotConfigured"
+        },
+        {
+          "target": "com.cloudflare.cache#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.cache#GetVariantRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.cache#GetVariantResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -4206,123 +3741,806 @@
         "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
       }
     },
-    "com.cloudflare.cache#VariantsGet": {
+    "com.cloudflare.cache#ListOriginCloudRegions": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.cache#VariantsGetRequest"
+        "target": "com.cloudflare.cache#ListOriginCloudRegionsRequest"
       },
       "output": {
-        "target": "com.cloudflare.cache#VariantsGetResponse"
+        "target": "com.cloudflare.cache#ListOriginCloudRegionsResponse"
       },
       "traits": {
         "smithy.api#http": {
           "method": "GET",
+          "uri": "/zones/{zone_id}/origin/cloud_regions",
+          "code": 200
+        },
+        "smithy.api#documentation": "Returns all IP-to-cloud-region mappings configured for the zone with pagination support. Each mapping tells Cloudflare which cloud vendor and region hosts the origin at that IP, enabling the edge to route via the nearest Tiered Cache upper-tier co-located with that cloud provider. Returns an empty array when no mappings exist.",
+        "smithy.api#readonly": {},
+        "smithy.api#paginated": {
+          "mode": "page",
+          "inputToken": "page",
+          "outputToken": "resultInfo.page",
+          "items": "result",
+          "pageSize": "perPage"
+        }
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.cache#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.cache#ListOriginCloudRegionsRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Page number of paginated results.",
+            "smithy.api#httpQuery": "page"
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Number of items per page.",
+            "smithy.api#httpQuery": "per_page"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.cache#ListOriginCloudRegionsResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.cache#OriginCloudRegionsListResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.cache#PatchCacheReserve": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.cache#PatchCacheReserveRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.cache#PatchCacheReserveResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/zones/{zone_id}/cache/cache_reserve",
+          "code": 200
+        },
+        "smithy.api#documentation": "Increase cache lifetimes by automatically storing all cacheable files into Cloudflare's persistent object storage buckets. Requires Cache Reserve subscription. Note: using Tiered Cache with Cache Reserve is highly recommended to reduce Reserve operations costs. See the [developer docs](https://developers.cloudflare.com/cache/about/cache-reserve) for more information."
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.cache#SettingUnavailableForPlan"
+        },
+        {
+          "target": "com.cloudflare.cache#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.cache#PatchCacheReserveRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "value": {
+          "target": "com.cloudflare.cache#CacheReserveEditRequestValue",
+          "traits": {
+            "smithy.api#documentation": "Value of the Cache Reserve zone setting.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.cache#PatchCacheReserveResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "com.cloudflare.cache#CacheReserveEditResponseId",
+          "traits": {
+            "smithy.api#documentation": "The identifier of the caching setting.",
+            "smithy.api#required": {}
+          }
+        },
+        "editable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the setting is editable.",
+            "smithy.api#required": {}
+          }
+        },
+        "value": {
+          "target": "com.cloudflare.cache#CacheReserveEditResponseValue",
+          "traits": {
+            "smithy.api#documentation": "Value of the Cache Reserve zone setting.",
+            "smithy.api#required": {}
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last time this setting was modified."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.cache#PatchRegionalTieredCache": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.cache#PatchRegionalTieredCacheRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.cache#PatchRegionalTieredCacheResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/zones/{zone_id}/cache/regional_tiered_cache",
+          "code": 200
+        },
+        "smithy.api#documentation": "Instructs Cloudflare to check a regional hub data center on the way to your upper tier. This can help improve performance for smart and custom tiered cache topologies."
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.cache#SettingUnavailableForPlan"
+        },
+        {
+          "target": "com.cloudflare.cache#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.cache#PatchRegionalTieredCacheRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "value": {
+          "target": "com.cloudflare.cache#RegionalTieredCacheEditRequestValue",
+          "traits": {
+            "smithy.api#documentation": "Value of the Regional Tiered Cache zone setting.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.cache#PatchRegionalTieredCacheResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "com.cloudflare.cache#RegionalTieredCacheEditResponseId",
+          "traits": {
+            "smithy.api#documentation": "The identifier of the caching setting.",
+            "smithy.api#required": {}
+          }
+        },
+        "editable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the setting is editable.",
+            "smithy.api#required": {}
+          }
+        },
+        "value": {
+          "target": "com.cloudflare.cache#RegionalTieredCacheEditResponseValue",
+          "traits": {
+            "smithy.api#documentation": "Value of the Regional Tiered Cache zone setting.",
+            "smithy.api#required": {}
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last time this setting was modified."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.cache#PatchSmartTieredCache": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.cache#PatchSmartTieredCacheRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.cache#PatchSmartTieredCacheResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/zones/{zone_id}/cache/tiered_cache_smart_topology_enable",
+          "code": 200
+        },
+        "smithy.api#documentation": "Smart Tiered Cache dynamically selects the single closest upper tier for each of your website’s origins with no configuration required, using our in-house performance and routing data. Cloudflare collects latency data for each request to an origin, and uses the latency data to determine how well any upper-tier data center is connected with an origin. As a result, Cloudflare can select the data center with the lowest latency to be the upper-tier for an origin."
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.cache#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.cache#PatchSmartTieredCacheRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "value": {
+          "target": "com.cloudflare.cache#SmartTieredCacheEditRequestValue",
+          "traits": {
+            "smithy.api#documentation": "Enable or disable the Smart Tiered Cache.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.cache#PatchSmartTieredCacheResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "com.cloudflare.cache#SmartTieredCacheEditResponseId",
+          "traits": {
+            "smithy.api#documentation": "The identifier of the caching setting.",
+            "smithy.api#required": {}
+          }
+        },
+        "editable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the setting is editable.",
+            "smithy.api#required": {}
+          }
+        },
+        "value": {
+          "target": "com.cloudflare.cache#SmartTieredCacheEditResponseValue",
+          "traits": {
+            "smithy.api#documentation": "Value of the Smart Tiered Cache zone setting.",
+            "smithy.api#required": {}
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last time this setting was modified."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.cache#PatchVariant": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.cache#PatchVariantRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.cache#PatchVariantResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
           "uri": "/zones/{zone_id}/cache/variants",
           "code": 200
         },
-        "smithy.api#documentation": "Variant support enables caching variants of images with certain file extensions in addition to the original. This only applies when the origin server sends the 'Vary: Accept' response header. If the origin server sends 'Vary: Accept' but does not serve the variant requested, the response will not be cached. This will be indicated with BYPASS cache status in the response headers.",
+        "smithy.api#documentation": "Variant support enables caching variants of images with certain file extensions in addition to the original. This only applies when the origin server sends the 'Vary: Accept' response header. If the origin server sends 'Vary: Accept' but does not serve the variant requested, the response will not be cached. This will be indicated with BYPASS cache status in the response headers."
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.cache#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.cache#PatchVariantRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "value": {
+          "target": "com.cloudflare.cache#VariantsEditRequestValue",
+          "traits": {
+            "smithy.api#documentation": "Value of the zone setting.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.cache#PatchVariantResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "com.cloudflare.cache#VariantsEditResponseId",
+          "traits": {
+            "smithy.api#documentation": "The identifier of the caching setting.",
+            "smithy.api#required": {}
+          }
+        },
+        "editable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the setting is editable.",
+            "smithy.api#required": {}
+          }
+        },
+        "value": {
+          "target": "com.cloudflare.cache#VariantsEditResponseValue",
+          "traits": {
+            "smithy.api#documentation": "Value of the zone setting.",
+            "smithy.api#required": {}
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last time this setting was modified."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.cache#PurgeCache": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.cache#PurgeCacheRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.cache#PurgeCacheResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/zones/{zone_id}/purge_cache",
+          "code": 200
+        }
+      }
+    },
+    "com.cloudflare.cache#PurgeCacheRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "tags": {
+          "target": "com.cloudflare.cache#PurgeRequestTagsList",
+          "traits": {
+            "smithy.api#documentation": "For more information on cache tags and purging by tags, please refer to [purge by cache-tags documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-tags/)."
+          }
+        },
+        "hosts": {
+          "target": "com.cloudflare.cache#PurgeRequestHostsList",
+          "traits": {
+            "smithy.api#documentation": "For more information purging by hostnames, please refer to [purge by hostname documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-hostname/)."
+          }
+        },
+        "prefixes": {
+          "target": "com.cloudflare.cache#PurgeRequestPrefixesList",
+          "traits": {
+            "smithy.api#documentation": "For more information on purging by prefixes, please refer to [purge by prefix documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/purge_by_prefix/)."
+          }
+        },
+        "purge_everything": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "For more information, please refer to [purge everything documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-everything/)."
+          }
+        },
+        "files": {
+          "target": "com.cloudflare.cache#PurgeRequestFiles",
+          "traits": {
+            "smithy.api#documentation": "For more information on purging files, please refer to [purge by single-file documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-single-file/)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.cache#PurgeCacheResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.cache#PurgeEnvironmentCache": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.cache#PurgeEnvironmentCacheRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.cache#PurgeEnvironmentCacheResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/zones/{zone_id}/environments/{environment_id}/purge_cache",
+          "code": 200
+        },
+        "smithy.api#documentation": "Purge cached content scoped to a specific environment. Supports the same purge types as the zone-level endpoint (purge everything, by URL, by tag, host, or prefix)."
+      }
+    },
+    "com.cloudflare.cache#PurgeEnvironmentCacheRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "environment_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "tags": {
+          "target": "com.cloudflare.cache#PurgeEnvironmentRequestTagsList",
+          "traits": {
+            "smithy.api#documentation": "For more information on cache tags and purging by tags, please refer to [purge by cache-tags documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-tags/)."
+          }
+        },
+        "hosts": {
+          "target": "com.cloudflare.cache#PurgeEnvironmentRequestHostsList",
+          "traits": {
+            "smithy.api#documentation": "For more information purging by hostnames, please refer to [purge by hostname documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-hostname/)."
+          }
+        },
+        "prefixes": {
+          "target": "com.cloudflare.cache#PurgeEnvironmentRequestPrefixesList",
+          "traits": {
+            "smithy.api#documentation": "For more information on purging by prefixes, please refer to [purge by prefix documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/purge_by_prefix/)."
+          }
+        },
+        "purge_everything": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "For more information, please refer to [purge everything documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-everything/)."
+          }
+        },
+        "files": {
+          "target": "com.cloudflare.cache#PurgeEnvironmentRequestFiles",
+          "traits": {
+            "smithy.api#documentation": "For more information on purging files, please refer to [purge by single-file documentation page](https://developers.cloudflare.com/cache/how-to/purge-cache/purge-by-single-file/)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.cache#PurgeEnvironmentCacheResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.cache#PutOriginCloudRegion": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.cache#PutOriginCloudRegionRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.cache#PutOriginCloudRegionResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/zones/{zone_id}/origin/cloud_regions/{originIP}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Creates a new IP-to-cloud-region mapping or replaces the existing mapping for the specified IP. PUT is idempotent — calling it repeatedly with the same body produces the same result. The IP path parameter is normalized to canonical form (RFC 5952 for IPv6) before storage. The vendor and region are validated against the list from `GET /zones/{zone_id}/origin/cloud_regions/supported_regions`. Returns 400 if the `origin_ip` in the body does not match the URL path parameter. Returns 403 (code 1164) when the zone has reached the limit of 3,500 IP mappings.",
+        "smithy.api#idempotent": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.cache#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.cache#PutOriginCloudRegionRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "region": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Cloud vendor region identifier. Must be a valid region for the specified vendor as returned by the supported_regions endpoint.",
+            "smithy.api#required": {}
+          }
+        },
+        "vendor": {
+          "target": "com.cloudflare.cache#OriginCloudRegionsUpdateRequestVendor",
+          "traits": {
+            "smithy.api#documentation": "Cloud vendor hosting the origin. Must be one of the supported vendors.",
+            "smithy.api#required": {}
+          }
+        },
+        "originIP": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "originIp": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Origin IP address (IPv4 or IPv6). For the single PUT endpoint (`PUT /origin/cloud_regions/{origin_ip}`), this field must match the path parameter or the request will be rejected with a 400 error. For the batch PUT endpoint, this field identifies which mapping to upsert.",
+            "smithy.api#required": {},
+            "smithy.api#jsonName": "origin_ip"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.cache#PutOriginCloudRegionResponse": {
+      "type": "structure",
+      "members": {
+        "origin_ip": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The origin IP address (IPv4 or IPv6). Normalized to canonical form (RFC 5952 for IPv6).",
+            "smithy.api#required": {}
+          }
+        },
+        "region": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Cloud vendor region identifier.",
+            "smithy.api#required": {}
+          }
+        },
+        "vendor": {
+          "target": "com.cloudflare.cache#OriginCloudRegionsUpdateResponseVendor",
+          "traits": {
+            "smithy.api#documentation": "Cloud vendor hosting the origin.",
+            "smithy.api#required": {}
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Time this mapping was last modified."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.cache#StatusCacheReserve": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.cache#StatusCacheReserveRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.cache#StatusCacheReserveResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/cache/cache_reserve_clear",
+          "code": 200
+        },
+        "smithy.api#documentation": "You can use Cache Reserve Clear to clear your Cache Reserve, but you must first disable Cache Reserve. In most cases, this will be accomplished within 24 hours. You cannot re-enable Cache Reserve while this process is ongoing. Keep in mind that you cannot undo or cancel this operation.",
         "smithy.api#readonly": {}
       }
     },
-    "com.cloudflare.cache#Cache": {
-      "type": "service",
-      "version": "4.0",
-      "operations": [
-        {
-          "target": "com.cloudflare.cache#Purge"
-        },
-        {
-          "target": "com.cloudflare.cache#PurgeEnvironment"
-        },
-        {
-          "target": "com.cloudflare.cache#CacheReserveClear"
-        },
-        {
-          "target": "com.cloudflare.cache#CacheReserveEdit"
-        },
-        {
-          "target": "com.cloudflare.cache#CacheReserveGet"
-        },
-        {
-          "target": "com.cloudflare.cache#CacheReserveStatus"
-        },
-        {
-          "target": "com.cloudflare.cache#OriginCloudRegionsBulkDelete"
-        },
-        {
-          "target": "com.cloudflare.cache#OriginCloudRegionsBulkDeleteV1"
-        },
-        {
-          "target": "com.cloudflare.cache#OriginCloudRegionsBulkEditV1"
-        },
-        {
-          "target": "com.cloudflare.cache#OriginCloudRegionsBulkUpdate"
-        },
-        {
-          "target": "com.cloudflare.cache#OriginCloudRegionsCreateV1"
-        },
-        {
-          "target": "com.cloudflare.cache#OriginCloudRegionsDelete"
-        },
-        {
-          "target": "com.cloudflare.cache#OriginCloudRegionsDeleteV1"
-        },
-        {
-          "target": "com.cloudflare.cache#OriginCloudRegionsEditV1"
-        },
-        {
-          "target": "com.cloudflare.cache#OriginCloudRegionsGet"
-        },
-        {
-          "target": "com.cloudflare.cache#OriginCloudRegionsGetV1"
-        },
-        {
-          "target": "com.cloudflare.cache#OriginCloudRegionsList"
-        },
-        {
-          "target": "com.cloudflare.cache#OriginCloudRegionsListV1"
-        },
-        {
-          "target": "com.cloudflare.cache#OriginCloudRegionsSupportedRegions"
-        },
-        {
-          "target": "com.cloudflare.cache#OriginCloudRegionsSupportedRegionsV1"
-        },
-        {
-          "target": "com.cloudflare.cache#OriginCloudRegionsUpdate"
-        },
-        {
-          "target": "com.cloudflare.cache#RegionalTieredCacheEdit"
-        },
-        {
-          "target": "com.cloudflare.cache#RegionalTieredCacheGet"
-        },
-        {
-          "target": "com.cloudflare.cache#SmartTieredCacheCreate"
-        },
-        {
-          "target": "com.cloudflare.cache#SmartTieredCacheDelete"
-        },
-        {
-          "target": "com.cloudflare.cache#SmartTieredCacheEdit"
-        },
-        {
-          "target": "com.cloudflare.cache#SmartTieredCacheGet"
-        },
-        {
-          "target": "com.cloudflare.cache#VariantsDelete"
-        },
-        {
-          "target": "com.cloudflare.cache#VariantsEdit"
-        },
-        {
-          "target": "com.cloudflare.cache#VariantsGet"
+    "com.cloudflare.cache#StatusCacheReserveRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
         }
-      ],
+      },
       "traits": {
-        "com.cloudflare.protocols#v4Json": {},
-        "smithy.api#title": "Cloudflare Cache",
-        "smithy.api#documentation": "Cloudflare API — cache resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.cache#StatusCacheReserveResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "com.cloudflare.cache#CacheReserveStatusResponseId",
+          "traits": {
+            "smithy.api#documentation": "ID of the zone setting.",
+            "smithy.api#required": {}
+          }
+        },
+        "start_ts": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time that the latest Cache Reserve Clear operation started.",
+            "smithy.api#required": {}
+          }
+        },
+        "state": {
+          "target": "com.cloudflare.cache#CacheReserveStatusResponseState",
+          "traits": {
+            "smithy.api#documentation": "The current state of the Cache Reserve Clear operation.",
+            "smithy.api#required": {}
+          }
+        },
+        "end_ts": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time that the latest Cache Reserve Clear operation completed."
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last time this setting was modified."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.cache#SupportedRegionsOriginCloudRegion": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.cache#SupportedRegionsOriginCloudRegionRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.cache#SupportedRegionsOriginCloudRegionResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/origin/cloud_regions/supported_regions",
+          "code": 200
+        },
+        "smithy.api#documentation": "Returns the cloud vendors and regions that are valid values for origin cloud region mappings. Each region includes the Tiered Cache upper-tier colocation codes that will be used for cache routing when a mapping targeting that region is active. Requires the zone to have Tiered Cache enabled.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.cache#SupportedRegionsOriginCloudRegionRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.cache#SupportedRegionsOriginCloudRegionResponse": {
+      "type": "structure",
+      "members": {
+        "obtained_codes": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether Cloudflare airport codes (IATA colo identifiers) were successfully resolved for the `upper_tier_colos` field on each region. When `false`, the `upper_tier_colos` arrays may be empty or incomplete.",
+            "smithy.api#required": {}
+          }
+        },
+        "vendors": {
+          "target": "com.cloudflare.cache#OriginCloudRegionsSupportedRegionsResponseVendorsMap",
+          "traits": {
+            "smithy.api#documentation": "Map of vendor name to list of supported regions.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
       }
     }
   }

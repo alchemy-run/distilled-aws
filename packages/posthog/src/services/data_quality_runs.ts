@@ -12,21 +12,21 @@ import * as Retry from "../retry.ts";
 export type { PosthogOpError, PosthogOpContext };
 
 /** Ids of the checks to run. Omit to run every enabled check in the project. */
-export type DataQualityRunsCreateRequestCheckIdsList = Array<string>;
-export const DataQualityRunsCreateRequestCheckIdsList = /*@__PURE__*/ S.Array(
+export type CreateDataQualityRunRequestCheckIdsList = Array<string>;
+export const CreateDataQualityRunRequestCheckIdsList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<DataQualityRunsCreateRequestCheckIdsList>;
+) as any as S.Schema<CreateDataQualityRunRequestCheckIdsList>;
 
-export interface DataQualityRunsCreateRequest {
+export interface CreateDataQualityRunRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** Ids of the checks to run. Omit to run every enabled check in the project. */
-  check_ids?: DataQualityRunsCreateRequestCheckIdsList;
+  check_ids?: CreateDataQualityRunRequestCheckIdsList;
 }
-export const DataQualityRunsCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateDataQualityRunRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
-    check_ids: S.optional(DataQualityRunsCreateRequestCheckIdsList),
+    check_ids: S.optional(CreateDataQualityRunRequestCheckIdsList),
   }).pipe(
     T.Http({
       method: "POST",
@@ -35,8 +35,8 @@ export const DataQualityRunsCreateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DataQualityRunsCreateRequest",
-}) as any as S.Schema<DataQualityRunsCreateRequest>;
+  identifier: "CreateDataQualityRunRequest",
+}) as any as S.Schema<CreateDataQualityRunRequest>;
 
 export interface DataQualitySuiteRun {
   id: string;
@@ -80,7 +80,28 @@ export const DataQualitySuiteRun = /*@__PURE__*/ S.suspend(() =>
   identifier: "DataQualitySuiteRun",
 }) as any as S.Schema<DataQualitySuiteRun>;
 
-export interface DataQualityRunsListRequest {
+export interface GetDataQualityRunRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this data quality suite run. */
+  id: string;
+}
+export const GetDataQualityRunRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/data_quality_runs/{id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetDataQualityRunRequest",
+}) as any as S.Schema<GetDataQualityRunRequest>;
+
+export interface ListDataQualityRunsRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** Number of results to return per page. */
@@ -88,7 +109,7 @@ export interface DataQualityRunsListRequest {
   /** The initial index from which to return the results. */
   offset?: number;
 }
-export const DataQualityRunsListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListDataQualityRunsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     limit: S.optional(S.Number.pipe(T.Query())),
@@ -101,8 +122,8 @@ export const DataQualityRunsListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DataQualityRunsListRequest",
-}) as any as S.Schema<DataQualityRunsListRequest>;
+  identifier: "ListDataQualityRunsRequest",
+}) as any as S.Schema<ListDataQualityRunsRequest>;
 
 export type PaginatedDataQualitySuiteRunListResultsList =
   Array<DataQualitySuiteRun>;
@@ -128,67 +149,46 @@ export const PaginatedDataQualitySuiteRunList = /*@__PURE__*/ S.suspend(() =>
   identifier: "PaginatedDataQualitySuiteRunList",
 }) as any as S.Schema<PaginatedDataQualitySuiteRunList>;
 
-export interface DataQualityRunsRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this data quality suite run. */
-  id: string;
-}
-export const DataQualityRunsRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/data_quality_runs/{id}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "DataQualityRunsRetrieveRequest",
-}) as any as S.Schema<DataQualityRunsRetrieveRequest>;
-
-export type DataQualityRunsCreateError = PosthogOpError;
+export type CreateDataQualityRunError = PosthogOpError;
 /** Run the named checks now, or every enabled check in the project when none are named. Returns the suite run to poll for the report. */
-export const dataQualityRunsCreate: API.OperationMethod<
-  DataQualityRunsCreateRequest,
+export const createDataQualityRun: API.OperationMethod<
+  CreateDataQualityRunRequest,
   DataQualitySuiteRun,
-  DataQualityRunsCreateError,
+  CreateDataQualityRunError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DataQualityRunsCreateRequest,
+  input: CreateDataQualityRunRequest,
   output: DataQualitySuiteRun,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type DataQualityRunsListError = PosthogOpError;
+export type GetDataQualityRunError = PosthogOpError;
 /** Project-wide check runs: start one over a selection, and read every run the project has had. The per-subject surfaces only serve runs scoped to their own subject, so this is where a sweep across several subjects -- a manual project-wide run, a materialization, a source sync -- is readable. Scoped to `warehouse_objects` because it spans tables and views at once. */
-export const dataQualityRunsList: API.OperationMethod<
-  DataQualityRunsListRequest,
+export const getDataQualityRun: API.OperationMethod<
+  GetDataQualityRunRequest,
+  DataQualitySuiteRun,
+  GetDataQualityRunError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDataQualityRunRequest,
+  output: DataQualitySuiteRun,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListDataQualityRunsError = PosthogOpError;
+/** Project-wide check runs: start one over a selection, and read every run the project has had. The per-subject surfaces only serve runs scoped to their own subject, so this is where a sweep across several subjects -- a manual project-wide run, a materialization, a source sync -- is readable. Scoped to `warehouse_objects` because it spans tables and views at once. */
+export const listDataQualityRuns: API.OperationMethod<
+  ListDataQualityRunsRequest,
   PaginatedDataQualitySuiteRunList,
-  DataQualityRunsListError,
+  ListDataQualityRunsError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DataQualityRunsListRequest,
+  input: ListDataQualityRunsRequest,
   output: PaginatedDataQualitySuiteRunList,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DataQualityRunsRetrieveError = PosthogOpError;
-/** Project-wide check runs: start one over a selection, and read every run the project has had. The per-subject surfaces only serve runs scoped to their own subject, so this is where a sweep across several subjects -- a manual project-wide run, a materialization, a source sync -- is readable. Scoped to `warehouse_objects` because it spans tables and views at once. */
-export const dataQualityRunsRetrieve: API.OperationMethod<
-  DataQualityRunsRetrieveRequest,
-  DataQualitySuiteRun,
-  DataQualityRunsRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DataQualityRunsRetrieveRequest,
-  output: DataQualitySuiteRun,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,

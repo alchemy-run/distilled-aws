@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.whop.plans#ListPlansRequestDirection": {
@@ -2108,7 +2109,7 @@
         "smithy.api#documentation": "Create Plan\n\nCreate a new pricing plan for a product. The plan defines the billing interval, price, and availability for customers."
       }
     },
-    "com.whop.plans#RetrievePlanRequest": {
+    "com.whop.plans#GetPlanRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -2124,10 +2125,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.whop.plans#RetrievePlan": {
+    "com.whop.plans#GetPlan": {
       "type": "operation",
       "input": {
-        "target": "com.whop.plans#RetrievePlanRequest"
+        "target": "com.whop.plans#GetPlanRequest"
       },
       "output": {
         "target": "com.whop.plans#Plan"
@@ -3526,7 +3527,7 @@
           "target": "com.whop.plans#CreatePlan"
         },
         {
-          "target": "com.whop.plans#RetrievePlan"
+          "target": "com.whop.plans#GetPlan"
         },
         {
           "target": "com.whop.plans#UpdatePlan"

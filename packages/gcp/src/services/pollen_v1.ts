@@ -40,30 +40,30 @@ export class NotFound
   ) {}
 
 export interface LookupForecastRequest {
-  /** Optional. A page token received from a previous daily call. It is used to retrieve the subsequent page. Note that when providing a value for the page token, all other request parameters provided must match the previous call that provided the page token. */
-  pageToken?: string;
-  /** The longitude in degrees. It must be in the range [-180.0, +180.0]. */
-  "location.longitude"?: number;
   /** Optional. Contains general information about plants, including details on their seasonality, special shapes and colors, information about allergic cross-reactions, and plant photos. The default value is "true". */
   plantsDescription?: boolean;
-  /** Required. A number that indicates how many forecast days to request (minimum value 1, maximum value is 5). */
-  days?: number;
   /** The latitude in degrees. It must be in the range [-90.0, +90.0]. */
   "location.latitude"?: number;
-  /** Optional. The maximum number of daily info records to return per page. The default and max value is 5, indicating 5 days of data. */
-  pageSize?: number;
+  /** Optional. A page token received from a previous daily call. It is used to retrieve the subsequent page. Note that when providing a value for the page token, all other request parameters provided must match the previous call that provided the page token. */
+  pageToken?: string;
+  /** Required. A number that indicates how many forecast days to request (minimum value 1, maximum value is 5). */
+  days?: number;
+  /** The longitude in degrees. It must be in the range [-180.0, +180.0]. */
+  "location.longitude"?: number;
   /** Optional. Allows the client to choose the language for the response. If data cannot be provided for that language, the API uses the closest match. Allowed values rely on the IETF BCP-47 standard. The default value is "en". */
   languageCode?: string;
+  /** Optional. The maximum number of daily info records to return per page. The default and max value is 5, indicating 5 days of data. */
+  pageSize?: number;
 }
 export const LookupForecastRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    pageToken: S.optional(S.String.pipe(T.Query())),
-    "location.longitude": S.optional(S.Number.pipe(T.Query())),
     plantsDescription: S.optional(S.Boolean.pipe(T.Query())),
-    days: S.optional(S.Number.pipe(T.Query())),
     "location.latitude": S.optional(S.Number.pipe(T.Query())),
-    pageSize: S.optional(S.Number.pipe(T.Query())),
+    pageToken: S.optional(S.String.pipe(T.Query())),
+    days: S.optional(S.Number.pipe(T.Query())),
+    "location.longitude": S.optional(S.Number.pipe(T.Query())),
     languageCode: S.optional(S.String.pipe(T.Query())),
+    pageSize: S.optional(S.Number.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -75,59 +75,22 @@ export const LookupForecastRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "LookupForecastRequest",
 }) as any as S.Schema<LookupForecastRequest>;
 
-export type StringList = Array<string>;
-export const StringList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<StringList>;
-
-/** Represents a color in the RGBA color space. This representation is designed for simplicity of conversion to and from color representations in various languages over compactness. For example, the fields of this representation can be trivially provided to the constructor of `java.awt.Color` in Java; it can also be trivially provided to UIColor's `+colorWithRed:green:blue:alpha` method in iOS; and, with just a little work, it can be easily formatted into a CSS `rgba()` string in JavaScript. This reference page doesn't have information about the absolute color space that should be used to interpret the RGB value—for example, sRGB, Adobe RGB, DCI-P3, and BT.2020. By default, applications should assume the sRGB color space. When color equality needs to be decided, implementations, unless documented otherwise, treat two colors as equal if all their red, green, blue, and alpha values each differ by at most `1e-5`. Example (Java): import com.google.type.Color; // ... public static java.awt.Color fromProto(Color protocolor) { float alpha = protocolor.hasAlpha() ? protocolor.getAlpha().getValue() : 1.0; return new java.awt.Color( protocolor.getRed(), protocolor.getGreen(), protocolor.getBlue(), alpha); } public static Color toProto(java.awt.Color color) { float red = (float) color.getRed(); float green = (float) color.getGreen(); float blue = (float) color.getBlue(); float denominator = 255.0; Color.Builder resultBuilder = Color .newBuilder() .setRed(red / denominator) .setGreen(green / denominator) .setBlue(blue / denominator); int alpha = color.getAlpha(); if (alpha != 255) { result.setAlpha( FloatValue .newBuilder() .setValue(((float) alpha) / denominator) .build()); } return resultBuilder.build(); } // ... Example (iOS / Obj-C): // ... static UIColor* fromProto(Color* protocolor) { float red = [protocolor red]; float green = [protocolor green]; float blue = [protocolor blue]; FloatValue* alpha_wrapper = [protocolor alpha]; float alpha = 1.0; if (alpha_wrapper != nil) { alpha = [alpha_wrapper value]; } return [UIColor colorWithRed:red green:green blue:blue alpha:alpha]; } static Color* toProto(UIColor* color) { CGFloat red, green, blue, alpha; if (![color getRed:&red green:&green blue:&blue alpha:&alpha]) { return nil; } Color* result = [[Color alloc] init]; [result setRed:red]; [result setGreen:green]; [result setBlue:blue]; if (alpha <= 0.9999) { [result setAlpha:floatWrapperWithValue(alpha)]; } [result autorelease]; return result; } // ... Example (JavaScript): // ... var protoToCssColor = function(rgb_color) { var redFrac = rgb_color.red || 0.0; var greenFrac = rgb_color.green || 0.0; var blueFrac = rgb_color.blue || 0.0; var red = Math.floor(redFrac * 255); var green = Math.floor(greenFrac * 255); var blue = Math.floor(blueFrac * 255); if (!('alpha' in rgb_color)) { return rgbToCssColor(red, green, blue); } var alphaFrac = rgb_color.alpha.value || 0.0; var rgbParams = [red, green, blue].join(','); return ['rgba(', rgbParams, ',', alphaFrac, ')'].join(''); }; var rgbToCssColor = function(red, green, blue) { var rgbNumber = new Number((red << 16) | (green << 8) | blue); var hexString = rgbNumber.toString(16); var missingZeros = 6 - hexString.length; var resultBuilder = ['#']; for (var i = 0; i < missingZeros; i++) { resultBuilder.push('0'); } resultBuilder.push(hexString); return resultBuilder.join(''); }; // ... */
-export interface Color {
-  /** The amount of green in the color as a value in the interval [0, 1]. */
-  green?: number;
-  /** The amount of red in the color as a value in the interval [0, 1]. */
-  red?: number;
-  /** The fraction of this color that should be applied to the pixel. That is, the final pixel color is defined by the equation: `pixel color = alpha * (this color) + (1.0 - alpha) * (background color)` This means that a value of 1.0 corresponds to a solid color, whereas a value of 0.0 corresponds to a completely transparent color. This uses a wrapper message rather than a simple float scalar so that it is possible to distinguish between a default value and the value being unset. If omitted, this color object is rendered as a solid color (as if the alpha value had been explicitly given a value of 1.0). */
-  alpha?: number;
-  /** The amount of blue in the color as a value in the interval [0, 1]. */
-  blue?: number;
+/** Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp */
+export interface Pollen_Date {
+  /** Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year. */
+  year?: number;
+  /** Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant. */
+  day?: number;
+  /** Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day. */
+  month?: number;
 }
-export const Color = /*@__PURE__*/ S.suspend(() =>
+export const Pollen_Date = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    green: S.optional(S.Number),
-    red: S.optional(S.Number),
-    alpha: S.optional(S.Number),
-    blue: S.optional(S.Number),
+    year: S.optional(S.Number),
+    day: S.optional(S.Number),
+    month: S.optional(S.Number),
   }),
-).annotate({ identifier: "Color" }) as any as S.Schema<Color>;
-
-export type IndexInfoCodeEnum = "INDEX_UNSPECIFIED" | "UPI";
-export const IndexInfoCodeEnum = /*@__PURE__*/ S.String;
-
-/** This object contains data representing specific pollen index value, category and description. */
-export interface IndexInfo {
-  /** The color used to represent the Pollen Index numeric score. */
-  color?: Color;
-  /** A human readable representation of the index name. Example: "Universal Pollen Index". */
-  displayName?: string;
-  /** The index's numeric score. Numeric range is between 0 and 5. */
-  value?: number;
-  /** The index's code. This field represents the index for programming purposes by using snake cases instead of spaces. Example: "UPI". */
-  code?: IndexInfoCodeEnum;
-  /** Textual explanation of current index level. */
-  indexDescription?: string;
-  /** Text classification of index numerical score interpretation. The index consists of six categories: * 0: "None" * 1: "Very low" * 2: "Low" * 3: "Moderate" * 4: "High" * 5: "Very high */
-  category?: string;
-}
-export const IndexInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    color: S.optional(Color),
-    displayName: S.optional(S.String),
-    value: S.optional(S.Number),
-    code: S.optional(IndexInfoCodeEnum),
-    indexDescription: S.optional(S.String),
-    category: S.optional(S.String),
-  }),
-).annotate({ identifier: "IndexInfo" }) as any as S.Schema<IndexInfo>;
+).annotate({ identifier: "Pollen_Date" }) as any as S.Schema<Pollen_Date>;
 
 export type PollenTypeInfoCodeEnum =
   | "POLLEN_TYPE_UNSPECIFIED"
@@ -136,26 +99,80 @@ export type PollenTypeInfoCodeEnum =
   | "WEED";
 export const PollenTypeInfoCodeEnum = /*@__PURE__*/ S.String;
 
+/** Represents a color in the RGBA color space. This representation is designed for simplicity of conversion to and from color representations in various languages over compactness. For example, the fields of this representation can be trivially provided to the constructor of `java.awt.Color` in Java; it can also be trivially provided to UIColor's `+colorWithRed:green:blue:alpha` method in iOS; and, with just a little work, it can be easily formatted into a CSS `rgba()` string in JavaScript. This reference page doesn't have information about the absolute color space that should be used to interpret the RGB value—for example, sRGB, Adobe RGB, DCI-P3, and BT.2020. By default, applications should assume the sRGB color space. When color equality needs to be decided, implementations, unless documented otherwise, treat two colors as equal if all their red, green, blue, and alpha values each differ by at most `1e-5`. Example (Java): import com.google.type.Color; // ... public static java.awt.Color fromProto(Color protocolor) { float alpha = protocolor.hasAlpha() ? protocolor.getAlpha().getValue() : 1.0; return new java.awt.Color( protocolor.getRed(), protocolor.getGreen(), protocolor.getBlue(), alpha); } public static Color toProto(java.awt.Color color) { float red = (float) color.getRed(); float green = (float) color.getGreen(); float blue = (float) color.getBlue(); float denominator = 255.0; Color.Builder resultBuilder = Color .newBuilder() .setRed(red / denominator) .setGreen(green / denominator) .setBlue(blue / denominator); int alpha = color.getAlpha(); if (alpha != 255) { result.setAlpha( FloatValue .newBuilder() .setValue(((float) alpha) / denominator) .build()); } return resultBuilder.build(); } // ... Example (iOS / Obj-C): // ... static UIColor* fromProto(Color* protocolor) { float red = [protocolor red]; float green = [protocolor green]; float blue = [protocolor blue]; FloatValue* alpha_wrapper = [protocolor alpha]; float alpha = 1.0; if (alpha_wrapper != nil) { alpha = [alpha_wrapper value]; } return [UIColor colorWithRed:red green:green blue:blue alpha:alpha]; } static Color* toProto(UIColor* color) { CGFloat red, green, blue, alpha; if (![color getRed:&red green:&green blue:&blue alpha:&alpha]) { return nil; } Color* result = [[Color alloc] init]; [result setRed:red]; [result setGreen:green]; [result setBlue:blue]; if (alpha <= 0.9999) { [result setAlpha:floatWrapperWithValue(alpha)]; } [result autorelease]; return result; } // ... Example (JavaScript): // ... var protoToCssColor = function(rgb_color) { var redFrac = rgb_color.red || 0.0; var greenFrac = rgb_color.green || 0.0; var blueFrac = rgb_color.blue || 0.0; var red = Math.floor(redFrac * 255); var green = Math.floor(greenFrac * 255); var blue = Math.floor(blueFrac * 255); if (!('alpha' in rgb_color)) { return rgbToCssColor(red, green, blue); } var alphaFrac = rgb_color.alpha.value || 0.0; var rgbParams = [red, green, blue].join(','); return ['rgba(', rgbParams, ',', alphaFrac, ')'].join(''); }; var rgbToCssColor = function(red, green, blue) { var rgbNumber = new Number((red << 16) | (green << 8) | blue); var hexString = rgbNumber.toString(16); var missingZeros = 6 - hexString.length; var resultBuilder = ['#']; for (var i = 0; i < missingZeros; i++) { resultBuilder.push('0'); } resultBuilder.push(hexString); return resultBuilder.join(''); }; // ... */
+export interface Color {
+  /** The amount of green in the color as a value in the interval [0, 1]. */
+  green?: number;
+  /** The amount of blue in the color as a value in the interval [0, 1]. */
+  blue?: number;
+  /** The fraction of this color that should be applied to the pixel. That is, the final pixel color is defined by the equation: `pixel color = alpha * (this color) + (1.0 - alpha) * (background color)` This means that a value of 1.0 corresponds to a solid color, whereas a value of 0.0 corresponds to a completely transparent color. This uses a wrapper message rather than a simple float scalar so that it is possible to distinguish between a default value and the value being unset. If omitted, this color object is rendered as a solid color (as if the alpha value had been explicitly given a value of 1.0). */
+  alpha?: number;
+  /** The amount of red in the color as a value in the interval [0, 1]. */
+  red?: number;
+}
+export const Color = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    green: S.optional(S.Number),
+    blue: S.optional(S.Number),
+    alpha: S.optional(S.Number),
+    red: S.optional(S.Number),
+  }),
+).annotate({ identifier: "Color" }) as any as S.Schema<Color>;
+
+export type IndexInfoCodeEnum = "INDEX_UNSPECIFIED" | "UPI";
+export const IndexInfoCodeEnum = /*@__PURE__*/ S.String;
+
+/** This object contains data representing specific pollen index value, category and description. */
+export interface IndexInfo {
+  /** The index's numeric score. Numeric range is between 0 and 5. */
+  value?: number;
+  /** A human readable representation of the index name. Example: "Universal Pollen Index". */
+  displayName?: string;
+  /** The color used to represent the Pollen Index numeric score. */
+  color?: Color;
+  /** Textual explanation of current index level. */
+  indexDescription?: string;
+  /** The index's code. This field represents the index for programming purposes by using snake cases instead of spaces. Example: "UPI". */
+  code?: IndexInfoCodeEnum;
+  /** Text classification of index numerical score interpretation. The index consists of six categories: * 0: "None" * 1: "Very low" * 2: "Low" * 3: "Moderate" * 4: "High" * 5: "Very high */
+  category?: string;
+}
+export const IndexInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(S.Number),
+    displayName: S.optional(S.String),
+    color: S.optional(Color),
+    indexDescription: S.optional(S.String),
+    code: S.optional(IndexInfoCodeEnum),
+    category: S.optional(S.String),
+  }),
+).annotate({ identifier: "IndexInfo" }) as any as S.Schema<IndexInfo>;
+
+export type StringList = Array<string>;
+export const StringList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<StringList>;
+
 /** This object contains the pollen type index and health recommendation information on specific pollen type. */
 export interface PollenTypeInfo {
-  /** Textual list of explanations, related to health insights based on the current pollen levels. */
-  healthRecommendations?: StringList;
-  /** Contains the Universal Pollen Index (UPI) data for the pollen type. */
-  indexInfo?: IndexInfo;
   /** A human readable representation of the pollen type name. Example: "Grass" */
   displayName?: string;
-  /** Indication whether the plant is in season or not. */
-  inSeason?: boolean;
   /** The pollen type's code name. For example: "GRASS" */
   code?: PollenTypeInfoCodeEnum;
+  /** Contains the Universal Pollen Index (UPI) data for the pollen type. */
+  indexInfo?: IndexInfo;
+  /** Indication whether the plant is in season or not. */
+  inSeason?: boolean;
+  /** Textual list of explanations, related to health insights based on the current pollen levels. */
+  healthRecommendations?: StringList;
 }
 export const PollenTypeInfo = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    healthRecommendations: S.optional(StringList),
-    indexInfo: S.optional(IndexInfo),
     displayName: S.optional(S.String),
-    inSeason: S.optional(S.Boolean),
     code: S.optional(PollenTypeInfoCodeEnum),
+    indexInfo: S.optional(IndexInfo),
+    inSeason: S.optional(S.Boolean),
+    healthRecommendations: S.optional(StringList),
   }),
 ).annotate({ identifier: "PollenTypeInfo" }) as any as S.Schema<PollenTypeInfo>;
 
@@ -163,6 +180,47 @@ export type PollenTypeInfoList = Array<PollenTypeInfo>;
 export const PollenTypeInfoList = /*@__PURE__*/ S.Array(
   PollenTypeInfo,
 ) as any as S.Schema<PollenTypeInfoList>;
+
+export type PlantDescriptionTypeEnum =
+  | "POLLEN_TYPE_UNSPECIFIED"
+  | "GRASS"
+  | "TREE"
+  | "WEED";
+export const PlantDescriptionTypeEnum = /*@__PURE__*/ S.String;
+
+/** Contains general information about plants, including details on their seasonality, special shapes and colors, information about allergic cross-reactions, and plant photos. */
+export interface PlantDescription {
+  /** Textual description of the plants' shapes of leaves, bark, flowers or seeds that helps identify the plant. */
+  specialShapes?: string;
+  /** The plant's pollen type. For example: "GRASS". A list of all available codes could be found here. */
+  type?: PlantDescriptionTypeEnum;
+  /** Link to a closeup picture of the plant. */
+  pictureCloseup?: string;
+  /** Textual description of pollen cross reaction plants. Example: Alder, Hazel, Hornbeam, Beech, Willow, and Oak pollen. */
+  crossReaction?: string;
+  /** A human readable representation of the plant family name. Example: "Betulaceae (the Birch family)". */
+  family?: string;
+  /** Textual list of explanations of seasons where the pollen is active. Example: "Late winter, spring". */
+  season?: string;
+  /** Textual description of the plants' colors of leaves, bark, flowers or seeds that helps identify the plant. */
+  specialColors?: string;
+  /** Link to the picture of the plant. */
+  picture?: string;
+}
+export const PlantDescription = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    specialShapes: S.optional(S.String),
+    type: S.optional(PlantDescriptionTypeEnum),
+    pictureCloseup: S.optional(S.String),
+    crossReaction: S.optional(S.String),
+    family: S.optional(S.String),
+    season: S.optional(S.String),
+    specialColors: S.optional(S.String),
+    picture: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PlantDescription",
+}) as any as S.Schema<PlantDescription>;
 
 export type PlantInfoCodeEnum =
   | "PLANT_UNSPECIFIED"
@@ -185,67 +243,26 @@ export type PlantInfoCodeEnum =
   | "JAPANESE_CYPRESS";
 export const PlantInfoCodeEnum = /*@__PURE__*/ S.String;
 
-export type PlantDescriptionTypeEnum =
-  | "POLLEN_TYPE_UNSPECIFIED"
-  | "GRASS"
-  | "TREE"
-  | "WEED";
-export const PlantDescriptionTypeEnum = /*@__PURE__*/ S.String;
-
-/** Contains general information about plants, including details on their seasonality, special shapes and colors, information about allergic cross-reactions, and plant photos. */
-export interface PlantDescription {
-  /** A human readable representation of the plant family name. Example: "Betulaceae (the Birch family)". */
-  family?: string;
-  /** Textual description of the plants' colors of leaves, bark, flowers or seeds that helps identify the plant. */
-  specialColors?: string;
-  /** Textual description of the plants' shapes of leaves, bark, flowers or seeds that helps identify the plant. */
-  specialShapes?: string;
-  /** Textual description of pollen cross reaction plants. Example: Alder, Hazel, Hornbeam, Beech, Willow, and Oak pollen. */
-  crossReaction?: string;
-  /** The plant's pollen type. For example: "GRASS". A list of all available codes could be found here. */
-  type?: PlantDescriptionTypeEnum;
-  /** Link to a closeup picture of the plant. */
-  pictureCloseup?: string;
-  /** Link to the picture of the plant. */
-  picture?: string;
-  /** Textual list of explanations of seasons where the pollen is active. Example: "Late winter, spring". */
-  season?: string;
-}
-export const PlantDescription = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    family: S.optional(S.String),
-    specialColors: S.optional(S.String),
-    specialShapes: S.optional(S.String),
-    crossReaction: S.optional(S.String),
-    type: S.optional(PlantDescriptionTypeEnum),
-    pictureCloseup: S.optional(S.String),
-    picture: S.optional(S.String),
-    season: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PlantDescription",
-}) as any as S.Schema<PlantDescription>;
-
 /** This object contains the daily information on specific plant. */
 export interface PlantInfo {
-  /** This object contains data representing specific pollen index value, category and description. */
-  indexInfo?: IndexInfo;
   /** Indication of either the plant is in season or not. */
   inSeason?: boolean;
-  /** A human readable representation of the plant name. Example: “Cottonwood". */
-  displayName?: string;
-  /** The plant code name. For example: "COTTONWOOD". A list of all available codes could be found here. */
-  code?: PlantInfoCodeEnum;
   /** Contains general information about plants, including details on their seasonality, special shapes and colors, information about allergic cross-reactions, and plant photos. */
   plantDescription?: PlantDescription;
+  /** The plant code name. For example: "COTTONWOOD". A list of all available codes could be found here. */
+  code?: PlantInfoCodeEnum;
+  /** This object contains data representing specific pollen index value, category and description. */
+  indexInfo?: IndexInfo;
+  /** A human readable representation of the plant name. Example: “Cottonwood". */
+  displayName?: string;
 }
 export const PlantInfo = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    indexInfo: S.optional(IndexInfo),
     inSeason: S.optional(S.Boolean),
-    displayName: S.optional(S.String),
-    code: S.optional(PlantInfoCodeEnum),
     plantDescription: S.optional(PlantDescription),
+    code: S.optional(PlantInfoCodeEnum),
+    indexInfo: S.optional(IndexInfo),
+    displayName: S.optional(S.String),
   }),
 ).annotate({ identifier: "PlantInfo" }) as any as S.Schema<PlantInfo>;
 
@@ -254,37 +271,20 @@ export const PlantInfoList = /*@__PURE__*/ S.Array(
   PlantInfo,
 ) as any as S.Schema<PlantInfoList>;
 
-/** Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp */
-export interface Pollen_Date {
-  /** Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant. */
-  day?: number;
-  /** Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year. */
-  year?: number;
-  /** Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day. */
-  month?: number;
-}
-export const Pollen_Date = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    day: S.optional(S.Number),
-    year: S.optional(S.Number),
-    month: S.optional(S.Number),
-  }),
-).annotate({ identifier: "Pollen_Date" }) as any as S.Schema<Pollen_Date>;
-
 /** This object contains the daily forecast information for each day requested. */
 export interface DayInfo {
+  /** The date in UTC at which the pollen forecast data is represented. */
+  date?: Pollen_Date;
   /** This list will include up to three pollen types (GRASS, WEED, TREE) affecting the location specified in the request. */
   pollenTypeInfo?: PollenTypeInfoList;
   /** This list will include up to 15 pollen species affecting the location specified in the request. */
   plantInfo?: PlantInfoList;
-  /** The date in UTC at which the pollen forecast data is represented. */
-  date?: Pollen_Date;
 }
 export const DayInfo = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    date: S.optional(Pollen_Date),
     pollenTypeInfo: S.optional(PollenTypeInfoList),
     plantInfo: S.optional(PlantInfoList),
-    date: S.optional(Pollen_Date),
   }),
 ).annotate({ identifier: "DayInfo" }) as any as S.Schema<DayInfo>;
 
@@ -320,10 +320,10 @@ export const LookupHeatmapTileMapTypesHeatmapTilesMapTypeEnum =
   /*@__PURE__*/ S.String;
 
 export interface LookupHeatmapTileMapTypesHeatmapTilesRequest {
-  /** Required. The type of the pollen heatmap. Defines the combination of pollen type and index that the map will graphically represent. */
-  mapType: LookupHeatmapTileMapTypesHeatmapTilesMapTypeEnum | (string & {});
   /** Required. The map's zoom level. Defines how large or small the contents of a map appear in a map view. * Zoom level 0 is the entire world in a single tile. * Zoom level 1 is the entire world in 4 tiles. * Zoom level 2 is the entire world in 16 tiles. * Zoom level 16 is the entire world in 65,536 tiles. Allowed values: 0-16 */
   zoom: number;
+  /** Required. The type of the pollen heatmap. Defines the combination of pollen type and index that the map will graphically represent. */
+  mapType: LookupHeatmapTileMapTypesHeatmapTilesMapTypeEnum | (string & {});
   /** Required. Defines the north-south point in the requested tile. */
   y: number;
   /** Required. Defines the east-west point in the requested tile. */
@@ -332,8 +332,8 @@ export interface LookupHeatmapTileMapTypesHeatmapTilesRequest {
 export const LookupHeatmapTileMapTypesHeatmapTilesRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      mapType: LookupHeatmapTileMapTypesHeatmapTilesMapTypeEnum.pipe(T.Label()),
       zoom: S.Number.pipe(T.Label()),
+      mapType: LookupHeatmapTileMapTypesHeatmapTilesMapTypeEnum.pipe(T.Label()),
       y: S.Number.pipe(T.Label()),
       x: S.Number.pipe(T.Label()),
     }).pipe(
@@ -360,18 +360,18 @@ export const DocumentMapList = /*@__PURE__*/ S.Array(
 
 /** Message that represents an arbitrary HTTP body. It should only be used for payload formats that can't be represented as JSON, such as raw binary or an HTML page. This message can be used both in streaming and non-streaming API methods in the request as well as the response. It can be used as a top-level request field, which is convenient if one wants to extract parameters from either the URL or HTTP template into the request fields and also want access to the raw HTTP body. Example: message GetResourceRequest { // A unique request id. string request_id = 1; // The raw HTTP body is bound to this field. google.api.HttpBody http_body = 2; } service ResourceService { rpc GetResource(GetResourceRequest) returns (google.api.HttpBody); rpc UpdateResource(google.api.HttpBody) returns (google.protobuf.Empty); } Example with streaming methods: service CaldavService { rpc GetCalendar(stream google.api.HttpBody) returns (stream google.api.HttpBody); rpc UpdateCalendar(stream google.api.HttpBody) returns (stream google.api.HttpBody); } Use of this type only changes how the request and response bodies are handled, all other features will continue to work unchanged. */
 export interface HttpBody {
-  /** The HTTP request/response body as raw binary. */
-  data?: string;
   /** Application specific response metadata. Must be set in the first response for streaming APIs. */
   extensions?: DocumentMapList;
   /** The HTTP Content-Type header value specifying the content type of the body. */
   contentType?: string;
+  /** The HTTP request/response body as raw binary. */
+  data?: string;
 }
 export const HttpBody = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    data: S.optional(S.String),
     extensions: S.optional(DocumentMapList),
     contentType: S.optional(S.String),
+    data: S.optional(S.String),
   }),
 ).annotate({ identifier: "HttpBody" }) as any as S.Schema<HttpBody>;
 

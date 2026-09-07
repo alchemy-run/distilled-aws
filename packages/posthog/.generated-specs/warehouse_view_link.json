@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.warehouse_view_link#WarehouseViewLinkListRequest": {
+    "com.posthog.warehouse_view_link#ListWarehouseViewLinkRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -304,10 +305,10 @@
       },
       "traits": {}
     },
-    "com.posthog.warehouse_view_link#WarehouseViewLinkList": {
+    "com.posthog.warehouse_view_link#ListWarehouseViewLink": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.warehouse_view_link#WarehouseViewLinkListRequest"
+        "target": "com.posthog.warehouse_view_link#ListWarehouseViewLinkRequest"
       },
       "output": {
         "target": "com.posthog.warehouse_view_link#PaginatedViewLinkList"
@@ -321,7 +322,7 @@
         "smithy.api#documentation": "Create, Read, Update and Delete View Columns."
       }
     },
-    "com.posthog.warehouse_view_link#WarehouseViewLinkCreateRequest": {
+    "com.posthog.warehouse_view_link#CreateWarehouseViewLinkRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -385,10 +386,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.warehouse_view_link#WarehouseViewLinkCreate": {
+    "com.posthog.warehouse_view_link#CreateWarehouseViewLink": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.warehouse_view_link#WarehouseViewLinkCreateRequest"
+        "target": "com.posthog.warehouse_view_link#CreateWarehouseViewLinkRequest"
       },
       "output": {
         "target": "com.posthog.warehouse_view_link#ViewLink"
@@ -402,7 +403,7 @@
         "smithy.api#documentation": "Create, Read, Update and Delete View Columns."
       }
     },
-    "com.posthog.warehouse_view_link#WarehouseViewLinkRetrieveRequest": {
+    "com.posthog.warehouse_view_link#GetWarehouseViewLinkRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -426,10 +427,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.warehouse_view_link#WarehouseViewLinkRetrieve": {
+    "com.posthog.warehouse_view_link#GetWarehouseViewLink": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.warehouse_view_link#WarehouseViewLinkRetrieveRequest"
+        "target": "com.posthog.warehouse_view_link#GetWarehouseViewLinkRequest"
       },
       "output": {
         "target": "com.posthog.warehouse_view_link#ViewLink"
@@ -443,7 +444,7 @@
         "smithy.api#documentation": "Create, Read, Update and Delete View Columns."
       }
     },
-    "com.posthog.warehouse_view_link#WarehouseViewLinkUpdateRequest": {
+    "com.posthog.warehouse_view_link#UpdateWarehouseViewLinkRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -515,10 +516,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.warehouse_view_link#WarehouseViewLinkUpdate": {
+    "com.posthog.warehouse_view_link#UpdateWarehouseViewLink": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.warehouse_view_link#WarehouseViewLinkUpdateRequest"
+        "target": "com.posthog.warehouse_view_link#UpdateWarehouseViewLinkRequest"
       },
       "output": {
         "target": "com.posthog.warehouse_view_link#ViewLink"
@@ -532,7 +533,7 @@
         "smithy.api#documentation": "Create, Read, Update and Delete View Columns."
       }
     },
-    "com.posthog.warehouse_view_link#WarehouseViewLinkPartialUpdateRequest": {
+    "com.posthog.warehouse_view_link#UpdateWarehouseViewLinkPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -599,10 +600,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.warehouse_view_link#WarehouseViewLinkPartialUpdate": {
+    "com.posthog.warehouse_view_link#UpdateWarehouseViewLinkPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.warehouse_view_link#WarehouseViewLinkPartialUpdateRequest"
+        "target": "com.posthog.warehouse_view_link#UpdateWarehouseViewLinkPartialRequest"
       },
       "output": {
         "target": "com.posthog.warehouse_view_link#ViewLink"
@@ -833,19 +834,19 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.warehouse_view_link#WarehouseViewLinkList"
+          "target": "com.posthog.warehouse_view_link#ListWarehouseViewLink"
         },
         {
-          "target": "com.posthog.warehouse_view_link#WarehouseViewLinkCreate"
+          "target": "com.posthog.warehouse_view_link#CreateWarehouseViewLink"
         },
         {
-          "target": "com.posthog.warehouse_view_link#WarehouseViewLinkRetrieve"
+          "target": "com.posthog.warehouse_view_link#GetWarehouseViewLink"
         },
         {
-          "target": "com.posthog.warehouse_view_link#WarehouseViewLinkUpdate"
+          "target": "com.posthog.warehouse_view_link#UpdateWarehouseViewLink"
         },
         {
-          "target": "com.posthog.warehouse_view_link#WarehouseViewLinkPartialUpdate"
+          "target": "com.posthog.warehouse_view_link#UpdateWarehouseViewLinkPartial"
         },
         {
           "target": "com.posthog.warehouse_view_link#WarehouseViewLinkDestroy"

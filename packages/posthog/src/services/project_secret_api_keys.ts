@@ -40,24 +40,24 @@ export class NotFound
   ) {}
 
 /** Project-wide API scopes granted to this key. Project secret API keys do not honor object-level access controls, so a scope can access resources of that type even when per-resource RBAC would hide them from an individual user. */
-export type ProjectSecretApiKeysCreateRequestScopesList = Array<string>;
-export const ProjectSecretApiKeysCreateRequestScopesList =
+export type CreateProjectSecretApiKeysRequestScopesList = Array<string>;
+export const CreateProjectSecretApiKeysRequestScopesList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<ProjectSecretApiKeysCreateRequestScopesList>;
+  ) as any as S.Schema<CreateProjectSecretApiKeysRequestScopesList>;
 
-export interface ProjectSecretApiKeysCreateRequest {
+export interface CreateProjectSecretApiKeysRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   label?: string;
   /** Project-wide API scopes granted to this key. Project secret API keys do not honor object-level access controls, so a scope can access resources of that type even when per-resource RBAC would hide them from an individual user. */
-  scopes?: ProjectSecretApiKeysCreateRequestScopesList;
+  scopes?: CreateProjectSecretApiKeysRequestScopesList;
 }
-export const ProjectSecretApiKeysCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateProjectSecretApiKeysRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     label: S.optional(S.String),
-    scopes: S.optional(ProjectSecretApiKeysCreateRequestScopesList),
+    scopes: S.optional(CreateProjectSecretApiKeysRequestScopesList),
   }).pipe(
     T.Http({
       method: "POST",
@@ -66,8 +66,8 @@ export const ProjectSecretApiKeysCreateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ProjectSecretApiKeysCreateRequest",
-}) as any as S.Schema<ProjectSecretApiKeysCreateRequest>;
+  identifier: "CreateProjectSecretApiKeysRequest",
+}) as any as S.Schema<CreateProjectSecretApiKeysRequest>;
 
 export type UserBasicHedgehogConfigMap = { [key: string]: unknown | undefined };
 export const UserBasicHedgehogConfigMap = /*@__PURE__*/ S.Record(
@@ -154,6 +154,97 @@ export const ProjectSecretAPIKey = /*@__PURE__*/ S.suspend(() =>
   identifier: "ProjectSecretAPIKey",
 }) as any as S.Schema<ProjectSecretAPIKey>;
 
+export interface CreateProjectSecretApiKeysRollRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A unique value identifying this project secret api key. */
+  id: string;
+}
+export const CreateProjectSecretApiKeysRollRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      id: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/projects/{project_id}/project_secret_api_keys/{id}/roll/",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "CreateProjectSecretApiKeysRollRequest",
+}) as any as S.Schema<CreateProjectSecretApiKeysRollRequest>;
+
+export interface GetProjectSecretApiKeysRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A unique value identifying this project secret api key. */
+  id: string;
+}
+export const GetProjectSecretApiKeysRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/project_secret_api_keys/{id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetProjectSecretApiKeysRequest",
+}) as any as S.Schema<GetProjectSecretApiKeysRequest>;
+
+export interface ListProjectSecretApiKeysRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** Number of results to return per page. */
+  limit?: number;
+  /** The initial index from which to return the results. */
+  offset?: number;
+}
+export const ListProjectSecretApiKeysRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    limit: S.optional(S.Number.pipe(T.Query())),
+    offset: S.optional(S.Number.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/project_secret_api_keys/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "ListProjectSecretApiKeysRequest",
+}) as any as S.Schema<ListProjectSecretApiKeysRequest>;
+
+export type PaginatedProjectSecretAPIKeyListResultsList =
+  Array<ProjectSecretAPIKey>;
+export const PaginatedProjectSecretAPIKeyListResultsList =
+  /*@__PURE__*/ S.Array(
+    ProjectSecretAPIKey,
+  ) as any as S.Schema<PaginatedProjectSecretAPIKeyListResultsList>;
+
+export interface PaginatedProjectSecretAPIKeyList {
+  count?: number;
+  next?: string | null;
+  previous?: string | null;
+  results?: PaginatedProjectSecretAPIKeyListResultsList;
+}
+export const PaginatedProjectSecretAPIKeyList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    count: S.optional(S.Number),
+    next: S.optional(S.NullOr(S.String)),
+    previous: S.optional(S.NullOr(S.String)),
+    results: S.optional(PaginatedProjectSecretAPIKeyListResultsList),
+  }),
+).annotate({
+  identifier: "PaginatedProjectSecretAPIKeyList",
+}) as any as S.Schema<PaginatedProjectSecretAPIKeyList>;
+
 export interface ProjectSecretApiKeysDestroyRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
@@ -182,153 +273,28 @@ export const ProjectSecretApiKeysDestroyResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ProjectSecretApiKeysDestroyResponse",
 }) as any as S.Schema<ProjectSecretApiKeysDestroyResponse>;
 
-export interface ProjectSecretApiKeysListRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** Number of results to return per page. */
-  limit?: number;
-  /** The initial index from which to return the results. */
-  offset?: number;
-}
-export const ProjectSecretApiKeysListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    limit: S.optional(S.Number.pipe(T.Query())),
-    offset: S.optional(S.Number.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/project_secret_api_keys/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ProjectSecretApiKeysListRequest",
-}) as any as S.Schema<ProjectSecretApiKeysListRequest>;
-
-export type PaginatedProjectSecretAPIKeyListResultsList =
-  Array<ProjectSecretAPIKey>;
-export const PaginatedProjectSecretAPIKeyListResultsList =
-  /*@__PURE__*/ S.Array(
-    ProjectSecretAPIKey,
-  ) as any as S.Schema<PaginatedProjectSecretAPIKeyListResultsList>;
-
-export interface PaginatedProjectSecretAPIKeyList {
-  count?: number;
-  next?: string | null;
-  previous?: string | null;
-  results?: PaginatedProjectSecretAPIKeyListResultsList;
-}
-export const PaginatedProjectSecretAPIKeyList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    count: S.optional(S.Number),
-    next: S.optional(S.NullOr(S.String)),
-    previous: S.optional(S.NullOr(S.String)),
-    results: S.optional(PaginatedProjectSecretAPIKeyListResultsList),
-  }),
-).annotate({
-  identifier: "PaginatedProjectSecretAPIKeyList",
-}) as any as S.Schema<PaginatedProjectSecretAPIKeyList>;
-
 /** Project-wide API scopes granted to this key. Project secret API keys do not honor object-level access controls, so a scope can access resources of that type even when per-resource RBAC would hide them from an individual user. */
-export type ProjectSecretApiKeysPartialUpdateRequestScopesList = Array<string>;
-export const ProjectSecretApiKeysPartialUpdateRequestScopesList =
+export type UpdateProjectSecretApiKeysRequestScopesList = Array<string>;
+export const UpdateProjectSecretApiKeysRequestScopesList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<ProjectSecretApiKeysPartialUpdateRequestScopesList>;
+  ) as any as S.Schema<UpdateProjectSecretApiKeysRequestScopesList>;
 
-export interface ProjectSecretApiKeysPartialUpdateRequest {
+export interface UpdateProjectSecretApiKeysRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A unique value identifying this project secret api key. */
   id: string;
   label?: string;
   /** Project-wide API scopes granted to this key. Project secret API keys do not honor object-level access controls, so a scope can access resources of that type even when per-resource RBAC would hide them from an individual user. */
-  scopes?: ProjectSecretApiKeysPartialUpdateRequestScopesList;
+  scopes?: UpdateProjectSecretApiKeysRequestScopesList;
 }
-export const ProjectSecretApiKeysPartialUpdateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-      label: S.optional(S.String),
-      scopes: S.optional(ProjectSecretApiKeysPartialUpdateRequestScopesList),
-    }).pipe(
-      T.Http({
-        method: "PATCH",
-        uri: "/api/projects/{project_id}/project_secret_api_keys/{id}/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "ProjectSecretApiKeysPartialUpdateRequest",
-}) as any as S.Schema<ProjectSecretApiKeysPartialUpdateRequest>;
-
-export interface ProjectSecretApiKeysRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A unique value identifying this project secret api key. */
-  id: string;
-}
-export const ProjectSecretApiKeysRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/project_secret_api_keys/{id}/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "ProjectSecretApiKeysRetrieveRequest",
-}) as any as S.Schema<ProjectSecretApiKeysRetrieveRequest>;
-
-export interface ProjectSecretApiKeysRollCreateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A unique value identifying this project secret api key. */
-  id: string;
-}
-export const ProjectSecretApiKeysRollCreateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/api/projects/{project_id}/project_secret_api_keys/{id}/roll/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "ProjectSecretApiKeysRollCreateRequest",
-}) as any as S.Schema<ProjectSecretApiKeysRollCreateRequest>;
-
-/** Project-wide API scopes granted to this key. Project secret API keys do not honor object-level access controls, so a scope can access resources of that type even when per-resource RBAC would hide them from an individual user. */
-export type ProjectSecretApiKeysUpdateRequestScopesList = Array<string>;
-export const ProjectSecretApiKeysUpdateRequestScopesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ProjectSecretApiKeysUpdateRequestScopesList>;
-
-export interface ProjectSecretApiKeysUpdateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A unique value identifying this project secret api key. */
-  id: string;
-  label?: string;
-  /** Project-wide API scopes granted to this key. Project secret API keys do not honor object-level access controls, so a scope can access resources of that type even when per-resource RBAC would hide them from an individual user. */
-  scopes?: ProjectSecretApiKeysUpdateRequestScopesList;
-}
-export const ProjectSecretApiKeysUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateProjectSecretApiKeysRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     id: S.String.pipe(T.Label()),
     label: S.optional(S.String),
-    scopes: S.optional(ProjectSecretApiKeysUpdateRequestScopesList),
+    scopes: S.optional(UpdateProjectSecretApiKeysRequestScopesList),
   }).pipe(
     T.Http({
       method: "PUT",
@@ -337,22 +303,109 @@ export const ProjectSecretApiKeysUpdateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ProjectSecretApiKeysUpdateRequest",
-}) as any as S.Schema<ProjectSecretApiKeysUpdateRequest>;
+  identifier: "UpdateProjectSecretApiKeysRequest",
+}) as any as S.Schema<UpdateProjectSecretApiKeysRequest>;
 
-export type ProjectSecretApiKeysCreateError =
+/** Project-wide API scopes granted to this key. Project secret API keys do not honor object-level access controls, so a scope can access resources of that type even when per-resource RBAC would hide them from an individual user. */
+export type UpdateProjectSecretApiKeysPartialRequestScopesList = Array<string>;
+export const UpdateProjectSecretApiKeysPartialRequestScopesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<UpdateProjectSecretApiKeysPartialRequestScopesList>;
+
+export interface UpdateProjectSecretApiKeysPartialRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A unique value identifying this project secret api key. */
+  id: string;
+  label?: string;
+  /** Project-wide API scopes granted to this key. Project secret API keys do not honor object-level access controls, so a scope can access resources of that type even when per-resource RBAC would hide them from an individual user. */
+  scopes?: UpdateProjectSecretApiKeysPartialRequestScopesList;
+}
+export const UpdateProjectSecretApiKeysPartialRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      id: S.String.pipe(T.Label()),
+      label: S.optional(S.String),
+      scopes: S.optional(UpdateProjectSecretApiKeysPartialRequestScopesList),
+    }).pipe(
+      T.Http({
+        method: "PATCH",
+        uri: "/api/projects/{project_id}/project_secret_api_keys/{id}/",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "UpdateProjectSecretApiKeysPartialRequest",
+}) as any as S.Schema<UpdateProjectSecretApiKeysPartialRequest>;
+
+export type CreateProjectSecretApiKeysError =
   | BadRequest
   | Forbidden
   | NotFound
   | PosthogOpError;
-export const projectSecretApiKeysCreate: API.OperationMethod<
-  ProjectSecretApiKeysCreateRequest,
+export const createProjectSecretApiKeys: API.OperationMethod<
+  CreateProjectSecretApiKeysRequest,
   ProjectSecretAPIKey,
-  ProjectSecretApiKeysCreateError,
+  CreateProjectSecretApiKeysError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ProjectSecretApiKeysCreateRequest,
+  input: CreateProjectSecretApiKeysRequest,
   output: ProjectSecretAPIKey,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateProjectSecretApiKeysRollError =
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+/** Roll a project secret API key */
+export const createProjectSecretApiKeysRoll: API.OperationMethod<
+  CreateProjectSecretApiKeysRollRequest,
+  ProjectSecretAPIKey,
+  CreateProjectSecretApiKeysRollError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateProjectSecretApiKeysRollRequest,
+  output: ProjectSecretAPIKey,
+  errors: [Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetProjectSecretApiKeysError =
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+export const getProjectSecretApiKeys: API.OperationMethod<
+  GetProjectSecretApiKeysRequest,
+  ProjectSecretAPIKey,
+  GetProjectSecretApiKeysError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetProjectSecretApiKeysRequest,
+  output: ProjectSecretAPIKey,
+  errors: [Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListProjectSecretApiKeysError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+export const listProjectSecretApiKeys: API.OperationMethod<
+  ListProjectSecretApiKeysRequest,
+  PaginatedProjectSecretAPIKeyList,
+  ListProjectSecretApiKeysError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListProjectSecretApiKeysRequest,
+  output: PaginatedProjectSecretAPIKeyList,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
@@ -375,89 +428,36 @@ export const projectSecretApiKeysDestroy: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ProjectSecretApiKeysListError =
+export type UpdateProjectSecretApiKeysError =
   | BadRequest
   | Forbidden
   | NotFound
   | PosthogOpError;
-export const projectSecretApiKeysList: API.OperationMethod<
-  ProjectSecretApiKeysListRequest,
-  PaginatedProjectSecretAPIKeyList,
-  ProjectSecretApiKeysListError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ProjectSecretApiKeysListRequest,
-  output: PaginatedProjectSecretAPIKeyList,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ProjectSecretApiKeysPartialUpdateError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-export const projectSecretApiKeysPartialUpdate: API.OperationMethod<
-  ProjectSecretApiKeysPartialUpdateRequest,
+export const updateProjectSecretApiKeys: API.OperationMethod<
+  UpdateProjectSecretApiKeysRequest,
   ProjectSecretAPIKey,
-  ProjectSecretApiKeysPartialUpdateError,
+  UpdateProjectSecretApiKeysError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ProjectSecretApiKeysPartialUpdateRequest,
+  input: UpdateProjectSecretApiKeysRequest,
   output: ProjectSecretAPIKey,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type ProjectSecretApiKeysRetrieveError =
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-export const projectSecretApiKeysRetrieve: API.OperationMethod<
-  ProjectSecretApiKeysRetrieveRequest,
-  ProjectSecretAPIKey,
-  ProjectSecretApiKeysRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ProjectSecretApiKeysRetrieveRequest,
-  output: ProjectSecretAPIKey,
-  errors: [Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ProjectSecretApiKeysRollCreateError =
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** Roll a project secret API key */
-export const projectSecretApiKeysRollCreate: API.OperationMethod<
-  ProjectSecretApiKeysRollCreateRequest,
-  ProjectSecretAPIKey,
-  ProjectSecretApiKeysRollCreateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ProjectSecretApiKeysRollCreateRequest,
-  output: ProjectSecretAPIKey,
-  errors: [Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ProjectSecretApiKeysUpdateError =
+export type UpdateProjectSecretApiKeysPartialError =
   | BadRequest
   | Forbidden
   | NotFound
   | PosthogOpError;
-export const projectSecretApiKeysUpdate: API.OperationMethod<
-  ProjectSecretApiKeysUpdateRequest,
+export const updateProjectSecretApiKeysPartial: API.OperationMethod<
+  UpdateProjectSecretApiKeysPartialRequest,
   ProjectSecretAPIKey,
-  ProjectSecretApiKeysUpdateError,
+  UpdateProjectSecretApiKeysPartialError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ProjectSecretApiKeysUpdateRequest,
+  input: UpdateProjectSecretApiKeysPartialRequest,
   output: ProjectSecretAPIKey,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,

@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.object_media_previews#ObjectMediaPreviewsListRequest": {
+    "com.posthog.object_media_previews#ListObjectMediaPreviewsRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -108,10 +109,10 @@
       },
       "traits": {}
     },
-    "com.posthog.object_media_previews#ObjectMediaPreviewsList": {
+    "com.posthog.object_media_previews#ListObjectMediaPreviews": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.object_media_previews#ObjectMediaPreviewsListRequest"
+        "target": "com.posthog.object_media_previews#ListObjectMediaPreviewsRequest"
       },
       "output": {
         "target": "com.posthog.object_media_previews#PaginatedObjectMediaPreviewListOutput"
@@ -135,7 +136,7 @@
         }
       }
     },
-    "com.posthog.object_media_previews#ObjectMediaPreviewsCreateRequest": {
+    "com.posthog.object_media_previews#CreateObjectMediaPreviewRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -172,10 +173,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.object_media_previews#ObjectMediaPreviewsCreate": {
+    "com.posthog.object_media_previews#CreateObjectMediaPreview": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.object_media_previews#ObjectMediaPreviewsCreateRequest"
+        "target": "com.posthog.object_media_previews#CreateObjectMediaPreviewRequest"
       },
       "output": {
         "target": "com.posthog.object_media_previews#ObjectMediaPreviewOutput"
@@ -199,7 +200,7 @@
         }
       }
     },
-    "com.posthog.object_media_previews#ObjectMediaPreviewsRetrieveRequest": {
+    "com.posthog.object_media_previews#GetObjectMediaPreviewRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -223,10 +224,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.object_media_previews#ObjectMediaPreviewsRetrieve": {
+    "com.posthog.object_media_previews#GetObjectMediaPreview": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.object_media_previews#ObjectMediaPreviewsRetrieveRequest"
+        "target": "com.posthog.object_media_previews#GetObjectMediaPreviewRequest"
       },
       "output": {
         "target": "com.posthog.object_media_previews#ObjectMediaPreviewOutput"
@@ -247,7 +248,7 @@
         }
       }
     },
-    "com.posthog.object_media_previews#ObjectMediaPreviewsUpdateRequest": {
+    "com.posthog.object_media_previews#UpdateObjectMediaPreviewRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -292,10 +293,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.object_media_previews#ObjectMediaPreviewsUpdate": {
+    "com.posthog.object_media_previews#UpdateObjectMediaPreview": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.object_media_previews#ObjectMediaPreviewsUpdateRequest"
+        "target": "com.posthog.object_media_previews#UpdateObjectMediaPreviewRequest"
       },
       "output": {
         "target": "com.posthog.object_media_previews#ObjectMediaPreviewOutput"
@@ -319,7 +320,7 @@
         }
       }
     },
-    "com.posthog.object_media_previews#ObjectMediaPreviewsPartialUpdateRequest": {
+    "com.posthog.object_media_previews#UpdateObjectMediaPreviewsPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -364,10 +365,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.object_media_previews#ObjectMediaPreviewsPartialUpdate": {
+    "com.posthog.object_media_previews#UpdateObjectMediaPreviewsPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.object_media_previews#ObjectMediaPreviewsPartialUpdateRequest"
+        "target": "com.posthog.object_media_previews#UpdateObjectMediaPreviewsPartialRequest"
       },
       "output": {
         "target": "com.posthog.object_media_previews#ObjectMediaPreviewOutput"
@@ -439,7 +440,7 @@
         }
       }
     },
-    "com.posthog.object_media_previews#ObjectMediaPreviewsPreferredForEventRetrieveRequest": {
+    "com.posthog.object_media_previews#GetObjectMediaPreviewsPreferredForEventRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -455,10 +456,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.object_media_previews#ObjectMediaPreviewsPreferredForEventRetrieve": {
+    "com.posthog.object_media_previews#GetObjectMediaPreviewsPreferredForEvent": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.object_media_previews#ObjectMediaPreviewsPreferredForEventRetrieveRequest"
+        "target": "com.posthog.object_media_previews#GetObjectMediaPreviewsPreferredForEventRequest"
       },
       "output": {
         "target": "com.posthog.object_media_previews#ObjectMediaPreviewOutput"
@@ -524,25 +525,25 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.object_media_previews#ObjectMediaPreviewsList"
+          "target": "com.posthog.object_media_previews#ListObjectMediaPreviews"
         },
         {
-          "target": "com.posthog.object_media_previews#ObjectMediaPreviewsCreate"
+          "target": "com.posthog.object_media_previews#CreateObjectMediaPreview"
         },
         {
-          "target": "com.posthog.object_media_previews#ObjectMediaPreviewsRetrieve"
+          "target": "com.posthog.object_media_previews#GetObjectMediaPreview"
         },
         {
-          "target": "com.posthog.object_media_previews#ObjectMediaPreviewsUpdate"
+          "target": "com.posthog.object_media_previews#UpdateObjectMediaPreview"
         },
         {
-          "target": "com.posthog.object_media_previews#ObjectMediaPreviewsPartialUpdate"
+          "target": "com.posthog.object_media_previews#UpdateObjectMediaPreviewsPartial"
         },
         {
           "target": "com.posthog.object_media_previews#ObjectMediaPreviewsDestroy"
         },
         {
-          "target": "com.posthog.object_media_previews#ObjectMediaPreviewsPreferredForEventRetrieve"
+          "target": "com.posthog.object_media_previews#GetObjectMediaPreviewsPreferredForEvent"
         }
       ],
       "traits": {

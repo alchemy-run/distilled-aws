@@ -415,81 +415,6 @@ export const ListCustomTrustStoresResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListCustomTrustStoresResponse",
 }) as any as S.Schema<ListCustomTrustStoresResponse>;
 
-export type TotalTlsUpdateRequestCertificateAuthority =
-  | "google"
-  | "lets_encrypt"
-  | "ssl_com";
-export const TotalTlsUpdateRequestCertificateAuthority = /*@__PURE__*/ S.String;
-
-export interface TotalTlsUpdateRequest {
-  /** Identifier. */
-  zoneId: string;
-  /** If enabled, Total TLS will order a hostname specific TLS certificate for any proxied A, AAAA, or CNAME record in your zone. */
-  enabled: boolean;
-  /** The Certificate Authority that Total TLS certificates will be issued through. */
-  certificateAuthority?:
-    | TotalTlsUpdateRequestCertificateAuthority
-    | (string & {});
-}
-export const TotalTlsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    zoneId: S.String.pipe(T.Label("zone_id")),
-    enabled: S.Boolean,
-    certificateAuthority: S.optional(
-      TotalTlsUpdateRequestCertificateAuthority.pipe(
-        T.Body("certificate_authority"),
-      ),
-    ),
-  })
-    .pipe(
-      T.Http({
-        method: "POST",
-        uri: "/zones/{zone_id}/acm/total_tls",
-        code: 200,
-      }),
-    )
-    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "TotalTlsUpdateRequest",
-}) as any as S.Schema<TotalTlsUpdateRequest>;
-
-export type TotalTlsUpdateResponseCertificateAuthority =
-  | "google"
-  | "lets_encrypt"
-  | "ssl_com";
-export const TotalTlsUpdateResponseCertificateAuthority =
-  /*@__PURE__*/ S.String;
-
-export type TotalTlsUpdateResponseValidityPeriod = 90;
-export const TotalTlsUpdateResponseValidityPeriod = /*@__PURE__*/ S.Number;
-
-/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
-export interface TotalTlsUpdateResponse {
-  /** The Certificate Authority that Total TLS certificates will be issued through. */
-  certificateAuthority?: TotalTlsUpdateResponseCertificateAuthority | null;
-  /** If enabled, Total TLS will order a hostname specific TLS certificate for any proxied A, AAAA, or CNAME record in your zone. */
-  enabled?: boolean | null;
-  /** The validity period in days for the certificates ordered via Total TLS. */
-  validityPeriod?: TotalTlsUpdateResponseValidityPeriod | null;
-}
-export const TotalTlsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    certificateAuthority: S.optional(
-      S.NullOr(TotalTlsUpdateResponseCertificateAuthority).pipe(
-        T.Body("certificate_authority"),
-      ),
-    ),
-    enabled: S.optional(S.NullOr(S.Boolean)),
-    validityPeriod: S.optional(
-      S.NullOr(TotalTlsUpdateResponseValidityPeriod).pipe(
-        T.Body("validity_period"),
-      ),
-    ),
-  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "TotalTlsUpdateResponse",
-}) as any as S.Schema<TotalTlsUpdateResponse>;
-
 export type TotalTlsEditRequestCertificateAuthority =
   | "google"
   | "lets_encrypt"
@@ -563,6 +488,81 @@ export const UpdateTotalTlResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "UpdateTotalTlResponse",
 }) as any as S.Schema<UpdateTotalTlResponse>;
+
+export type UpdateTotalTlsRequestCertificateAuthority =
+  | "google"
+  | "lets_encrypt"
+  | "ssl_com";
+export const UpdateTotalTlsRequestCertificateAuthority = /*@__PURE__*/ S.String;
+
+export interface UpdateTotalTlsRequest {
+  /** Identifier. */
+  zoneId: string;
+  /** If enabled, Total TLS will order a hostname specific TLS certificate for any proxied A, AAAA, or CNAME record in your zone. */
+  enabled: boolean;
+  /** The Certificate Authority that Total TLS certificates will be issued through. */
+  certificateAuthority?:
+    | UpdateTotalTlsRequestCertificateAuthority
+    | (string & {});
+}
+export const UpdateTotalTlsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    zoneId: S.String.pipe(T.Label("zone_id")),
+    enabled: S.Boolean,
+    certificateAuthority: S.optional(
+      UpdateTotalTlsRequestCertificateAuthority.pipe(
+        T.Body("certificate_authority"),
+      ),
+    ),
+  })
+    .pipe(
+      T.Http({
+        method: "POST",
+        uri: "/zones/{zone_id}/acm/total_tls",
+        code: 200,
+      }),
+    )
+    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "UpdateTotalTlsRequest",
+}) as any as S.Schema<UpdateTotalTlsRequest>;
+
+export type UpdateTotalTlsResponseCertificateAuthority =
+  | "google"
+  | "lets_encrypt"
+  | "ssl_com";
+export const UpdateTotalTlsResponseCertificateAuthority =
+  /*@__PURE__*/ S.String;
+
+export type UpdateTotalTlsResponseValidityPeriod = 90;
+export const UpdateTotalTlsResponseValidityPeriod = /*@__PURE__*/ S.Number;
+
+/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
+export interface UpdateTotalTlsResponse {
+  /** The Certificate Authority that Total TLS certificates will be issued through. */
+  certificateAuthority?: UpdateTotalTlsResponseCertificateAuthority | null;
+  /** If enabled, Total TLS will order a hostname specific TLS certificate for any proxied A, AAAA, or CNAME record in your zone. */
+  enabled?: boolean | null;
+  /** The validity period in days for the certificates ordered via Total TLS. */
+  validityPeriod?: UpdateTotalTlsResponseValidityPeriod | null;
+}
+export const UpdateTotalTlsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    certificateAuthority: S.optional(
+      S.NullOr(UpdateTotalTlsResponseCertificateAuthority).pipe(
+        T.Body("certificate_authority"),
+      ),
+    ),
+    enabled: S.optional(S.NullOr(S.Boolean)),
+    validityPeriod: S.optional(
+      S.NullOr(UpdateTotalTlsResponseValidityPeriod).pipe(
+        T.Body("validity_period"),
+      ),
+    ),
+  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "UpdateTotalTlsResponse",
+}) as any as S.Schema<UpdateTotalTlsResponse>;
 
 export type CreateCustomTrustStoreError =
   | InvalidObjectIdentifier
@@ -702,35 +702,6 @@ export const listCustomTrustStores: API.PaginatedOperationMethod<
   cloudflarePaginate,
 ) as any;
 
-export type TotalTlsUpdateError =
-  | InvalidObjectIdentifier
-  | AdvancedCertificateManagerRequired
-  | NoStateChange
-  | PreviousJobInProgress
-  | Forbidden
-  | CloudflareOpError;
-/** Set Total TLS Settings or disable the feature for a Zone. */
-export const totalTlsUpdate: API.OperationMethod<
-  TotalTlsUpdateRequest,
-  TotalTlsUpdateResponse,
-  TotalTlsUpdateError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: TotalTlsUpdateRequest,
-  output: TotalTlsUpdateResponse,
-  errors: [
-    InvalidObjectIdentifier,
-    AdvancedCertificateManagerRequired,
-    NoStateChange,
-    PreviousJobInProgress,
-    Forbidden,
-    CloudflareRateLimited,
-    CloudflareError,
-  ],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
-
 export type UpdateTotalTlError =
   | InvalidObjectIdentifier
   | AdvancedCertificateManagerRequired
@@ -747,6 +718,35 @@ export const updateTotalTl: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: UpdateTotalTlRequest,
   output: UpdateTotalTlResponse,
+  errors: [
+    InvalidObjectIdentifier,
+    AdvancedCertificateManagerRequired,
+    NoStateChange,
+    PreviousJobInProgress,
+    Forbidden,
+    CloudflareRateLimited,
+    CloudflareError,
+  ],
+  protocol: CloudflareProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateTotalTlsError =
+  | InvalidObjectIdentifier
+  | AdvancedCertificateManagerRequired
+  | NoStateChange
+  | PreviousJobInProgress
+  | Forbidden
+  | CloudflareOpError;
+/** Set Total TLS Settings or disable the feature for a Zone. */
+export const updateTotalTls: API.OperationMethod<
+  UpdateTotalTlsRequest,
+  UpdateTotalTlsResponse,
+  UpdateTotalTlsError,
+  CloudflareOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateTotalTlsRequest,
+  output: UpdateTotalTlsResponse,
   errors: [
     InvalidObjectIdentifier,
     AdvancedCertificateManagerRequired,

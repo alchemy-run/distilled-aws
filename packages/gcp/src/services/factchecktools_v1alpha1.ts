@@ -65,53 +65,30 @@ export class NotFound
     [{ status: 404 }],
   ) {}
 
-/** Information about the claim author. */
-export interface GoogleFactcheckingFactchecktoolsV1alpha1ClaimAuthor {
-  /** Corresponds to `ClaimReview.itemReviewed.author.image`. */
-  imageUrl?: string;
-  /** Corresponds to `ClaimReview.itemReviewed.author.sameAs`. */
-  sameAs?: string;
-  /** Corresponds to `ClaimReview.itemReviewed.author.jobTitle`. */
-  jobTitle?: string;
-  /** A person or organization stating the claim. For instance, "John Doe". Corresponds to `ClaimReview.itemReviewed.author.name`. */
-  name?: string;
-}
-export const GoogleFactcheckingFactchecktoolsV1alpha1ClaimAuthor =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      imageUrl: S.optional(S.String),
-      sameAs: S.optional(S.String),
-      jobTitle: S.optional(S.String),
-      name: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "GoogleFactcheckingFactchecktoolsV1alpha1ClaimAuthor",
-  }) as any as S.Schema<GoogleFactcheckingFactchecktoolsV1alpha1ClaimAuthor>;
-
 /** Information about the claim rating. */
 export interface GoogleFactcheckingFactchecktoolsV1alpha1ClaimRating {
-  /** The truthfulness rating as a human-readible short word or phrase. Corresponds to `ClaimReview.reviewRating.alternateName`. */
-  textualRating?: string;
-  /** For numeric ratings, the best value possible in the scale from worst to best. Corresponds to `ClaimReview.reviewRating.bestRating`. */
-  bestRating?: number;
-  /** A numeric rating of this claim, in the range worstRating — bestRating inclusive. Corresponds to `ClaimReview.reviewRating.ratingValue`. */
-  ratingValue?: number;
   /** For numeric ratings, the worst value possible in the scale from worst to best. Corresponds to `ClaimReview.reviewRating.worstRating`. */
   worstRating?: number;
-  /** Corresponds to `ClaimReview.reviewRating.ratingExplanation`. */
-  ratingExplanation?: string;
+  /** The truthfulness rating as a human-readible short word or phrase. Corresponds to `ClaimReview.reviewRating.alternateName`. */
+  textualRating?: string;
+  /** A numeric rating of this claim, in the range worstRating — bestRating inclusive. Corresponds to `ClaimReview.reviewRating.ratingValue`. */
+  ratingValue?: number;
+  /** For numeric ratings, the best value possible in the scale from worst to best. Corresponds to `ClaimReview.reviewRating.bestRating`. */
+  bestRating?: number;
   /** Corresponds to `ClaimReview.reviewRating.image`. */
   imageUrl?: string;
+  /** Corresponds to `ClaimReview.reviewRating.ratingExplanation`. */
+  ratingExplanation?: string;
 }
 export const GoogleFactcheckingFactchecktoolsV1alpha1ClaimRating =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      textualRating: S.optional(S.String),
-      bestRating: S.optional(S.Number),
-      ratingValue: S.optional(S.Number),
       worstRating: S.optional(S.Number),
-      ratingExplanation: S.optional(S.String),
+      textualRating: S.optional(S.String),
+      ratingValue: S.optional(S.Number),
+      bestRating: S.optional(S.Number),
       imageUrl: S.optional(S.String),
+      ratingExplanation: S.optional(S.String),
     }),
   ).annotate({
     identifier: "GoogleFactcheckingFactchecktoolsV1alpha1ClaimRating",
@@ -122,38 +99,61 @@ export const StringList = /*@__PURE__*/ S.Array(
   S.String,
 ) as any as S.Schema<StringList>;
 
+/** Information about the claim author. */
+export interface GoogleFactcheckingFactchecktoolsV1alpha1ClaimAuthor {
+  /** Corresponds to `ClaimReview.itemReviewed.author.jobTitle`. */
+  jobTitle?: string;
+  /** A person or organization stating the claim. For instance, "John Doe". Corresponds to `ClaimReview.itemReviewed.author.name`. */
+  name?: string;
+  /** Corresponds to `ClaimReview.itemReviewed.author.image`. */
+  imageUrl?: string;
+  /** Corresponds to `ClaimReview.itemReviewed.author.sameAs`. */
+  sameAs?: string;
+}
+export const GoogleFactcheckingFactchecktoolsV1alpha1ClaimAuthor =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      jobTitle: S.optional(S.String),
+      name: S.optional(S.String),
+      imageUrl: S.optional(S.String),
+      sameAs: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "GoogleFactcheckingFactchecktoolsV1alpha1ClaimAuthor",
+  }) as any as S.Schema<GoogleFactcheckingFactchecktoolsV1alpha1ClaimAuthor>;
+
 /** Fields for an individual `ClaimReview` element. Except for sub-messages that group fields together, each of these fields correspond those in https://schema.org/ClaimReview. We list the precise mapping for each field. */
 export interface GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkup {
-  /** A link to a work in which this claim first appears. Corresponds to `ClaimReview.itemReviewed[@type=Claim].firstAppearance.url`. */
-  claimFirstAppearance?: string;
   /** The date when the claim was made or entered public discourse. Corresponds to `ClaimReview.itemReviewed.datePublished`. */
   claimDate?: string;
-  /** The location where this claim was made. Corresponds to `ClaimReview.itemReviewed.name`. */
-  claimLocation?: string;
-  /** Info about the author of this claim. */
-  claimAuthor?: GoogleFactcheckingFactchecktoolsV1alpha1ClaimAuthor;
   /** Info about the rating of this claim review. */
   rating?: GoogleFactcheckingFactchecktoolsV1alpha1ClaimRating;
-  /** A list of links to works in which this claim appears, aside from the one specified in `claim_first_appearance`. Corresponds to `ClaimReview.itemReviewed[@type=Claim].appearance.url`. */
-  claimAppearances?: StringList;
   /** A short summary of the claim being evaluated. Corresponds to `ClaimReview.claimReviewed`. */
   claimReviewed?: string;
+  /** A list of links to works in which this claim appears, aside from the one specified in `claim_first_appearance`. Corresponds to `ClaimReview.itemReviewed[@type=Claim].appearance.url`. */
+  claimAppearances?: StringList;
+  /** A link to a work in which this claim first appears. Corresponds to `ClaimReview.itemReviewed[@type=Claim].firstAppearance.url`. */
+  claimFirstAppearance?: string;
   /** This field is optional, and will default to the page URL. We provide this field to allow you the override the default value, but the only permitted override is the page URL plus an optional anchor link ("page jump"). Corresponds to `ClaimReview.url` */
   url?: string;
+  /** Info about the author of this claim. */
+  claimAuthor?: GoogleFactcheckingFactchecktoolsV1alpha1ClaimAuthor;
+  /** The location where this claim was made. Corresponds to `ClaimReview.itemReviewed.name`. */
+  claimLocation?: string;
 }
 export const GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkup =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      claimFirstAppearance: S.optional(S.String),
       claimDate: S.optional(S.String),
-      claimLocation: S.optional(S.String),
+      rating: S.optional(GoogleFactcheckingFactchecktoolsV1alpha1ClaimRating),
+      claimReviewed: S.optional(S.String),
+      claimAppearances: S.optional(StringList),
+      claimFirstAppearance: S.optional(S.String),
+      url: S.optional(S.String),
       claimAuthor: S.optional(
         GoogleFactcheckingFactchecktoolsV1alpha1ClaimAuthor,
       ),
-      rating: S.optional(GoogleFactcheckingFactchecktoolsV1alpha1ClaimRating),
-      claimAppearances: S.optional(StringList),
-      claimReviewed: S.optional(S.String),
-      url: S.optional(S.String),
+      claimLocation: S.optional(S.String),
     }),
   ).annotate({
     identifier: "GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkup",
@@ -168,16 +168,16 @@ export const GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupList =
 
 /** Information about the claim review author. */
 export interface GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewAuthor {
-  /** Corresponds to `ClaimReview.author.image`. */
-  imageUrl?: string;
   /** Name of the organization that is publishing the fact check. Corresponds to `ClaimReview.author.name`. */
   name?: string;
+  /** Corresponds to `ClaimReview.author.image`. */
+  imageUrl?: string;
 }
 export const GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewAuthor =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      imageUrl: S.optional(S.String),
       name: S.optional(S.String),
+      imageUrl: S.optional(S.String),
     }),
   ).annotate({
     identifier: "GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewAuthor",
@@ -185,14 +185,14 @@ export const GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewAuthor =
 
 /** Holds one or more instances of `ClaimReview` markup for a webpage. */
 export interface GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage {
-  /** The URL of the page associated with this `ClaimReview` markup. While every individual `ClaimReview` has its own URL field, semantically this is a page-level field, and each `ClaimReview` on this page will use this value unless individually overridden. Corresponds to `ClaimReview.url` */
-  pageUrl?: string;
-  /** The date when the fact check was published. Similar to the URL, semantically this is a page-level field, and each `ClaimReview` on this page will contain the same value. Corresponds to `ClaimReview.datePublished` */
-  publishDate?: string;
   /** The name of this `ClaimReview` markup page resource, in the form of `pages/{page_id}`. Except for update requests, this field is output-only and should not be set by the user. */
   name?: string;
+  /** The date when the fact check was published. Similar to the URL, semantically this is a page-level field, and each `ClaimReview` on this page will contain the same value. Corresponds to `ClaimReview.datePublished` */
+  publishDate?: string;
   /** The version ID for this markup. Except for update requests, this field is output-only and should not be set by the user. */
   versionId?: string;
+  /** The URL of the page associated with this `ClaimReview` markup. While every individual `ClaimReview` has its own URL field, semantically this is a page-level field, and each `ClaimReview` on this page will use this value unless individually overridden. Corresponds to `ClaimReview.url` */
+  pageUrl?: string;
   /** A list of individual claim reviews for this page. Each item in the list corresponds to one `ClaimReview` element. */
   claimReviewMarkups?: GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupList;
   /** Info about the author of this claim review. Similar to the above, semantically these are page-level fields, and each `ClaimReview` on this page will contain the same values. */
@@ -201,10 +201,10 @@ export interface GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage {
 export const GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      pageUrl: S.optional(S.String),
-      publishDate: S.optional(S.String),
       name: S.optional(S.String),
+      publishDate: S.optional(S.String),
       versionId: S.optional(S.String),
+      pageUrl: S.optional(S.String),
       claimReviewMarkups: S.optional(
         GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupList,
       ),
@@ -283,24 +283,24 @@ export const GetPagesRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetPagesRequest>;
 
 export interface ImageSearchClaimsRequest {
+  /** Optional. The pagination size. We will return up to that many results. Defaults to 10 if not set. */
+  pageSize?: number;
   /** Optional. The pagination token. You may provide the `next_page_token` returned from a previous List request, if any, in order to get the next page. All other fields must have the same values as in the previous request. */
   pageToken?: string;
-  /** Required. The URI of the source image. This must be a publicly-accessible image HTTP/HTTPS URL. When fetching images from HTTP/HTTPS URLs, Google cannot guarantee that the request will be completed. Your request may fail if the specified host denies the request (e.g. due to request throttling or DOS prevention), or if Google throttles requests to the site for abuse prevention. You should not depend on externally-hosted images for production applications. */
-  imageUri?: string;
   /** Optional. An integer that specifies the current offset (that is, starting result location) in search results. This field is only considered if `page_token` is unset. For example, 0 means to return results starting from the first matching result, and 10 means to return from the 11th result. */
   offset?: number;
   /** Optional. The BCP-47 language code, such as "en-US" or "sr-Latn". Can be used to restrict results by language, though we do not currently consider the region. */
   languageCode?: string;
-  /** Optional. The pagination size. We will return up to that many results. Defaults to 10 if not set. */
-  pageSize?: number;
+  /** Required. The URI of the source image. This must be a publicly-accessible image HTTP/HTTPS URL. When fetching images from HTTP/HTTPS URLs, Google cannot guarantee that the request will be completed. Your request may fail if the specified host denies the request (e.g. due to request throttling or DOS prevention), or if Google throttles requests to the site for abuse prevention. You should not depend on externally-hosted images for production applications. */
+  imageUri?: string;
 }
 export const ImageSearchClaimsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    pageSize: S.optional(S.Number.pipe(T.Query())),
     pageToken: S.optional(S.String.pipe(T.Query())),
-    imageUri: S.optional(S.String.pipe(T.Query())),
     offset: S.optional(S.Number.pipe(T.Query())),
     languageCode: S.optional(S.String.pipe(T.Query())),
-    pageSize: S.optional(S.Number.pipe(T.Query())),
+    imageUri: S.optional(S.String.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -314,16 +314,16 @@ export const ImageSearchClaimsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Information about the publisher. */
 export interface GoogleFactcheckingFactchecktoolsV1alpha1Publisher {
-  /** The name of this publisher. For instance, "Awesome Fact Checks". */
-  name?: string;
   /** Host-level site name, without the protocol or "www" prefix. For instance, "awesomefactchecks.com". This value of this field is based purely on the claim review URL. */
   site?: string;
+  /** The name of this publisher. For instance, "Awesome Fact Checks". */
+  name?: string;
 }
 export const GoogleFactcheckingFactchecktoolsV1alpha1Publisher =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      name: S.optional(S.String),
       site: S.optional(S.String),
+      name: S.optional(S.String),
     }),
   ).annotate({
     identifier: "GoogleFactcheckingFactchecktoolsV1alpha1Publisher",
@@ -331,27 +331,27 @@ export const GoogleFactcheckingFactchecktoolsV1alpha1Publisher =
 
 /** Information about a claim review. */
 export interface GoogleFactcheckingFactchecktoolsV1alpha1ClaimReview {
-  /** The URL of this claim review. */
-  url?: string;
-  /** The title of this claim review, if it can be determined. */
-  title?: string;
-  /** The date the claim was reviewed. */
-  reviewDate?: string;
-  /** The publisher of this claim review. */
-  publisher?: GoogleFactcheckingFactchecktoolsV1alpha1Publisher;
   /** Textual rating. For instance, "Mostly false". */
   textualRating?: string;
+  /** The publisher of this claim review. */
+  publisher?: GoogleFactcheckingFactchecktoolsV1alpha1Publisher;
+  /** The title of this claim review, if it can be determined. */
+  title?: string;
+  /** The URL of this claim review. */
+  url?: string;
+  /** The date the claim was reviewed. */
+  reviewDate?: string;
   /** The language this review was written in. For instance, "en" or "de". */
   languageCode?: string;
 }
 export const GoogleFactcheckingFactchecktoolsV1alpha1ClaimReview =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      url: S.optional(S.String),
-      title: S.optional(S.String),
-      reviewDate: S.optional(S.String),
-      publisher: S.optional(GoogleFactcheckingFactchecktoolsV1alpha1Publisher),
       textualRating: S.optional(S.String),
+      publisher: S.optional(GoogleFactcheckingFactchecktoolsV1alpha1Publisher),
+      title: S.optional(S.String),
+      url: S.optional(S.String),
+      reviewDate: S.optional(S.String),
       languageCode: S.optional(S.String),
     }),
   ).annotate({
@@ -369,10 +369,10 @@ export const GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewList =
 export interface GoogleFactcheckingFactchecktoolsV1alpha1Claim {
   /** The date that the claim was made. */
   claimDate?: string;
-  /** One or more reviews of this claim (namely, a fact-checking article). */
-  claimReview?: GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewList;
   /** The claim text. For instance, "Crime has doubled in the last 2 years." */
   text?: string;
+  /** One or more reviews of this claim (namely, a fact-checking article). */
+  claimReview?: GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewList;
   /** A person or organization stating the claim. For instance, "John Doe". */
   claimant?: string;
 }
@@ -380,10 +380,10 @@ export const GoogleFactcheckingFactchecktoolsV1alpha1Claim =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       claimDate: S.optional(S.String),
+      text: S.optional(S.String),
       claimReview: S.optional(
         GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewList,
       ),
-      text: S.optional(S.String),
       claimant: S.optional(S.String),
     }),
   ).annotate({
@@ -433,10 +433,10 @@ export const GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimImageSearch
   }) as any as S.Schema<GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimImageSearchResponse>;
 
 export interface ListPagesRequest {
-  /** The pagination token. You may provide the `next_page_token` returned from a previous List request, if any, in order to get the next page. All other fields must have the same values as in the previous request. */
-  pageToken?: string;
   /** The pagination size. We will return up to that many results. Defaults to 10 if not set. Has no effect if a URL is requested. */
   pageSize?: number;
+  /** The pagination token. You may provide the `next_page_token` returned from a previous List request, if any, in order to get the next page. All other fields must have the same values as in the previous request. */
+  pageToken?: string;
   /** The URL from which to get `ClaimReview` markup. There will be at most one result. If markup is associated with a more canonical version of the URL provided, we will return that URL instead. Cannot be specified along with an organization. */
   url?: string;
   /** The organization for which we want to fetch markups for. For instance, "site.com". Cannot be specified along with an URL. */
@@ -446,8 +446,8 @@ export interface ListPagesRequest {
 }
 export const ListPagesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    pageToken: S.optional(S.String.pipe(T.Query())),
     pageSize: S.optional(S.Number.pipe(T.Query())),
+    pageToken: S.optional(S.String.pipe(T.Query())),
     url: S.optional(S.String.pipe(T.Query())),
     organization: S.optional(S.String.pipe(T.Query())),
     offset: S.optional(S.Number.pipe(T.Query())),
@@ -471,18 +471,18 @@ export const GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPageList =
 
 /** Response from listing `ClaimReview` markup. */
 export interface GoogleFactcheckingFactchecktoolsV1alpha1ListClaimReviewMarkupPagesResponse {
-  /** The next pagination token in the Search response. It should be used as the `page_token` for the following request. An empty value means no more results. */
-  nextPageToken?: string;
   /** The result list of pages of `ClaimReview` markup. */
   claimReviewMarkupPages?: GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPageList;
+  /** The next pagination token in the Search response. It should be used as the `page_token` for the following request. An empty value means no more results. */
+  nextPageToken?: string;
 }
 export const GoogleFactcheckingFactchecktoolsV1alpha1ListClaimReviewMarkupPagesResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      nextPageToken: S.optional(S.String),
       claimReviewMarkupPages: S.optional(
         GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPageList,
       ),
+      nextPageToken: S.optional(S.String),
     }),
   ).annotate({
     identifier:
@@ -490,30 +490,30 @@ export const GoogleFactcheckingFactchecktoolsV1alpha1ListClaimReviewMarkupPagesR
   }) as any as S.Schema<GoogleFactcheckingFactchecktoolsV1alpha1ListClaimReviewMarkupPagesResponse>;
 
 export interface SearchClaimsRequest {
-  /** Textual query string. Required unless `review_publisher_site_filter` is specified. */
-  query?: string;
   /** The BCP-47 language code, such as "en-US" or "sr-Latn". Can be used to restrict results by language, though we do not currently consider the region. */
   languageCode?: string;
-  /** The review publisher site to filter results by, e.g. nytimes.com. */
-  reviewPublisherSiteFilter?: string;
-  /** The pagination size. We will return up to that many results. Defaults to 10 if not set. */
-  pageSize?: number;
-  /** An integer that specifies the current offset (that is, starting result location) in search results. This field is only considered if `page_token` is unset. For example, 0 means to return results starting from the first matching result, and 10 means to return from the 11th result. */
-  offset?: number;
   /** The maximum age of the returned search results, in days. Age is determined by either claim date or review date, whichever is newer. */
   maxAgeDays?: number;
   /** The pagination token. You may provide the `next_page_token` returned from a previous List request, if any, in order to get the next page. All other fields must have the same values as in the previous request. */
   pageToken?: string;
+  /** Textual query string. Required unless `review_publisher_site_filter` is specified. */
+  query?: string;
+  /** An integer that specifies the current offset (that is, starting result location) in search results. This field is only considered if `page_token` is unset. For example, 0 means to return results starting from the first matching result, and 10 means to return from the 11th result. */
+  offset?: number;
+  /** The review publisher site to filter results by, e.g. nytimes.com. */
+  reviewPublisherSiteFilter?: string;
+  /** The pagination size. We will return up to that many results. Defaults to 10 if not set. */
+  pageSize?: number;
 }
 export const SearchClaimsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    query: S.optional(S.String.pipe(T.Query())),
     languageCode: S.optional(S.String.pipe(T.Query())),
-    reviewPublisherSiteFilter: S.optional(S.String.pipe(T.Query())),
-    pageSize: S.optional(S.Number.pipe(T.Query())),
-    offset: S.optional(S.Number.pipe(T.Query())),
     maxAgeDays: S.optional(S.Number.pipe(T.Query())),
     pageToken: S.optional(S.String.pipe(T.Query())),
+    query: S.optional(S.String.pipe(T.Query())),
+    offset: S.optional(S.Number.pipe(T.Query())),
+    reviewPublisherSiteFilter: S.optional(S.String.pipe(T.Query())),
+    pageSize: S.optional(S.Number.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -534,16 +534,16 @@ export const GoogleFactcheckingFactchecktoolsV1alpha1ClaimList =
 
 /** Response from searching fact-checked claims. */
 export interface GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimSearchResponse {
-  /** The list of claims and all of their associated information. */
-  claims?: GoogleFactcheckingFactchecktoolsV1alpha1ClaimList;
   /** The next pagination token in the Search response. It should be used as the `page_token` for the following request. An empty value means no more results. */
   nextPageToken?: string;
+  /** The list of claims and all of their associated information. */
+  claims?: GoogleFactcheckingFactchecktoolsV1alpha1ClaimList;
 }
 export const GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimSearchResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      claims: S.optional(GoogleFactcheckingFactchecktoolsV1alpha1ClaimList),
       nextPageToken: S.optional(S.String),
+      claims: S.optional(GoogleFactcheckingFactchecktoolsV1alpha1ClaimList),
     }),
   ).annotate({
     identifier:

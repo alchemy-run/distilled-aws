@@ -3657,6 +3657,225 @@ export const FormCompanyResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "FormCompanyResponse",
 }) as any as S.Schema<FormCompanyResponse>;
 
+export interface GetAccountRequest {
+  /** Account ID, prefixed `biz_`, its public route, or `me` for the account associated with the current API key. */
+  id: string;
+}
+export const GetAccountRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/accounts/{id}", code: 200 })),
+).annotate({
+  identifier: "GetAccountRequest",
+}) as any as S.Schema<GetAccountRequest>;
+
+export interface GetAccountPreferencesRequest {
+  /** Account ID, prefixed `biz_`. */
+  account_id: string;
+}
+export const GetAccountPreferencesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    account_id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/accounts/{account_id}/preferences",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetAccountPreferencesRequest",
+}) as any as S.Schema<GetAccountPreferencesRequest>;
+
+/** Where the account's ads services agreement stands. */
+export type GetAccountPreferencesResponseAdsAgreementStatus =
+  | "not_required"
+  | "pending_signature"
+  | "signed";
+export const GetAccountPreferencesResponseAdsAgreementStatus =
+  /*@__PURE__*/ S.String;
+
+/** The account's Whop Ads services and payment authorization agreement. While `pending_signature`, campaign launch is blocked; sign by answering `requested_information` via `PATCH /verifications/{id}`. */
+export interface GetAccountPreferencesResponseAdsAgreement {
+  /** When the agreement was signed, as an ISO 8601 timestamp. `null` until signed. */
+  accepted_at: string | null;
+  /** The agreement version signed or awaiting signature, as an ISO date. `null` when no signature is required. */
+  agreement_version: string | null;
+  /** The signer's printed full name. `null` until signed. */
+  printed_name: string | null;
+  /** Where the account's ads services agreement stands. */
+  status: GetAccountPreferencesResponseAdsAgreementStatus;
+}
+export const GetAccountPreferencesResponseAdsAgreement =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      accepted_at: S.NullOr(S.String),
+      agreement_version: S.NullOr(S.String),
+      printed_name: S.NullOr(S.String),
+      status: GetAccountPreferencesResponseAdsAgreementStatus,
+    }),
+  ).annotate({
+    identifier: "GetAccountPreferencesResponseAdsAgreement",
+  }) as any as S.Schema<GetAccountPreferencesResponseAdsAgreement>;
+
+/** The funding source kind: a Whop balance or a saved card. */
+export type GetAccountPreferencesResponseAdsPaymentMethodsBackupType =
+  | "platform_balance"
+  | "card";
+export const GetAccountPreferencesResponseAdsPaymentMethodsBackupType =
+  /*@__PURE__*/ S.String;
+
+export interface GetAccountPreferencesResponseAdsPaymentMethodsBackup {
+  /** Card brand, present for `card` entries. */
+  card_brand?: string | null;
+  /** Expiration month, present for `card` entries. */
+  exp_month?: number | null;
+  /** Expiration year, present for `card` entries. */
+  exp_year?: number | null;
+  /** Balance owner icon URL, present for `platform_balance` entries. */
+  icon_url?: string | null;
+  /** The funding source ID: a Whop balance (`ldgr_`) for `platform_balance`, or a payment method (`payt_`) for `card`. */
+  id: string;
+  /** Last four digits, present for `card` entries. */
+  last4?: string | null;
+  /** Balance name, present for account `platform_balance` entries (null for a personal balance). */
+  title?: string | null;
+  /** The funding source kind: a Whop balance or a saved card. */
+  type: GetAccountPreferencesResponseAdsPaymentMethodsBackupType;
+}
+export const GetAccountPreferencesResponseAdsPaymentMethodsBackup =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      card_brand: S.optional(S.NullOr(S.String)),
+      exp_month: S.optional(S.NullOr(S.Number)),
+      exp_year: S.optional(S.NullOr(S.Number)),
+      icon_url: S.optional(S.NullOr(S.String)),
+      id: S.String,
+      last4: S.optional(S.NullOr(S.String)),
+      title: S.optional(S.NullOr(S.String)),
+      type: GetAccountPreferencesResponseAdsPaymentMethodsBackupType,
+    }),
+  ).annotate({
+    identifier: "GetAccountPreferencesResponseAdsPaymentMethodsBackup",
+  }) as any as S.Schema<GetAccountPreferencesResponseAdsPaymentMethodsBackup>;
+
+/** The funding source kind: a Whop balance or a saved card. */
+export type GetAccountPreferencesResponseAdsPaymentMethodsPrimaryType =
+  | "platform_balance"
+  | "card";
+export const GetAccountPreferencesResponseAdsPaymentMethodsPrimaryType =
+  /*@__PURE__*/ S.String;
+
+export interface GetAccountPreferencesResponseAdsPaymentMethodsPrimary {
+  /** Card brand, present for `card` entries. */
+  card_brand?: string | null;
+  /** Expiration month, present for `card` entries. */
+  exp_month?: number | null;
+  /** Expiration year, present for `card` entries. */
+  exp_year?: number | null;
+  /** Balance owner icon URL, present for `platform_balance` entries. */
+  icon_url?: string | null;
+  /** The funding source ID: a Whop balance (`ldgr_`) for `platform_balance`, or a payment method (`payt_`) for `card`. */
+  id: string;
+  /** Last four digits, present for `card` entries. */
+  last4?: string | null;
+  /** Balance name, present for account `platform_balance` entries (null for a personal balance). */
+  title?: string | null;
+  /** The funding source kind: a Whop balance or a saved card. */
+  type: GetAccountPreferencesResponseAdsPaymentMethodsPrimaryType;
+}
+export const GetAccountPreferencesResponseAdsPaymentMethodsPrimary =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      card_brand: S.optional(S.NullOr(S.String)),
+      exp_month: S.optional(S.NullOr(S.Number)),
+      exp_year: S.optional(S.NullOr(S.Number)),
+      icon_url: S.optional(S.NullOr(S.String)),
+      id: S.String,
+      last4: S.optional(S.NullOr(S.String)),
+      title: S.optional(S.NullOr(S.String)),
+      type: GetAccountPreferencesResponseAdsPaymentMethodsPrimaryType,
+    }),
+  ).annotate({
+    identifier: "GetAccountPreferencesResponseAdsPaymentMethodsPrimary",
+  }) as any as S.Schema<GetAccountPreferencesResponseAdsPaymentMethodsPrimary>;
+
+/** How the account pays for Whop Ads spend. `primary` is charged first; `backup` covers the charge when the primary fails. `null` until ads billing has been configured. */
+export interface GetAccountPreferencesResponseAdsPaymentMethods {
+  backup: GetAccountPreferencesResponseAdsPaymentMethodsBackup | null;
+  primary: GetAccountPreferencesResponseAdsPaymentMethodsPrimary | null;
+}
+export const GetAccountPreferencesResponseAdsPaymentMethods =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      backup: S.NullOr(GetAccountPreferencesResponseAdsPaymentMethodsBackup),
+      primary: S.NullOr(GetAccountPreferencesResponseAdsPaymentMethodsPrimary),
+    }),
+  ).annotate({
+    identifier: "GetAccountPreferencesResponseAdsPaymentMethods",
+  }) as any as S.Schema<GetAccountPreferencesResponseAdsPaymentMethods>;
+
+/** Where the integration stands. `requires_shopify_store` means no Shopify store is connected — Triple Whale keys records by Shopify shop, so no spend is reported until one is. */
+export type GetAccountPreferencesResponseAdsTripleWhaleIntegrationStatus =
+  | "connected"
+  | "not_connected"
+  | "requires_shopify_store";
+export const GetAccountPreferencesResponseAdsTripleWhaleIntegrationStatus =
+  /*@__PURE__*/ S.String;
+
+/** The account's Triple Whale integration, which pushes Whop ad spend to Triple Whale's Data-In API so it reports as a `whop` channel. */
+export interface GetAccountPreferencesResponseAdsTripleWhaleIntegration {
+  /** The leading characters of the stored Data-In API key, followed by asterisks. The full key is never returned. `null` when no key is stored. */
+  masked_api_key: string | null;
+  /** The connected Shopify store domain spend is reported for, such as `acme.myshopify.com`. `null` when no store is connected. */
+  shop_domain: string | null;
+  /** Where the integration stands. `requires_shopify_store` means no Shopify store is connected — Triple Whale keys records by Shopify shop, so no spend is reported until one is. */
+  status: GetAccountPreferencesResponseAdsTripleWhaleIntegrationStatus;
+}
+export const GetAccountPreferencesResponseAdsTripleWhaleIntegration =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      masked_api_key: S.NullOr(S.String),
+      shop_domain: S.NullOr(S.String),
+      status: GetAccountPreferencesResponseAdsTripleWhaleIntegrationStatus,
+    }),
+  ).annotate({
+    identifier: "GetAccountPreferencesResponseAdsTripleWhaleIntegration",
+  }) as any as S.Schema<GetAccountPreferencesResponseAdsTripleWhaleIntegration>;
+
+export interface GetAccountPreferencesResponse {
+  /** The account's Whop Ads services and payment authorization agreement. While `pending_signature`, campaign launch is blocked; sign by answering `requested_information` via `PATCH /verifications/{id}`. */
+  ads_agreement: GetAccountPreferencesResponseAdsAgreement;
+  /** How the account pays for Whop Ads spend. `primary` is charged first; `backup` covers the charge when the primary fails. `null` until ads billing has been configured. */
+  ads_payment_methods: GetAccountPreferencesResponseAdsPaymentMethods | null;
+  /** Lowercase ISO currency code, such as `usd` or `eur`, used to display ad spend and stats. Defaults to `usd`. */
+  ads_reporting_currency: string;
+  /** IANA timezone (e.g. `America/New_York`) used to interpret campaign start/end times and to bucket reports. Defaults to `America/New_York` until explicitly overridden. */
+  ads_scheduling_timezone: string;
+  /** The account's Triple Whale integration, which pushes Whop ad spend to Triple Whale's Data-In API so it reports as a `whop` channel. */
+  ads_triple_whale_integration: GetAccountPreferencesResponseAdsTripleWhaleIntegration;
+  /** Whether incoming funds are automatically moved to the account's cards balance. `false` when the account has no cards balance. */
+  cards_auto_top_up: boolean;
+  /** Whether Whop assembles and files the evidence response when this account's payments are disputed. Off by default; enabling it also opts the account into the success fee charged only on disputes it wins. */
+  dispute_fighter_enabled: boolean;
+}
+export const GetAccountPreferencesResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ads_agreement: GetAccountPreferencesResponseAdsAgreement,
+    ads_payment_methods: S.NullOr(
+      GetAccountPreferencesResponseAdsPaymentMethods,
+    ),
+    ads_reporting_currency: S.String,
+    ads_scheduling_timezone: S.String,
+    ads_triple_whale_integration:
+      GetAccountPreferencesResponseAdsTripleWhaleIntegration,
+    cards_auto_top_up: S.Boolean,
+    dispute_fighter_enabled: S.Boolean,
+  }),
+).annotate({
+  identifier: "GetAccountPreferencesResponse",
+}) as any as S.Schema<GetAccountPreferencesResponse>;
+
 export interface ListAccountReservesRequest {
   /** Account ID, prefixed `biz_`. */
   account_id: string;
@@ -3854,229 +4073,6 @@ export const ListAccountsResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ListAccountsResponse",
 }) as any as S.Schema<ListAccountsResponse>;
-
-export interface RetrieveAccountRequest {
-  /** Account ID, prefixed `biz_`, its public route, or `me` for the account associated with the current API key. */
-  id: string;
-}
-export const RetrieveAccountRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/accounts/{id}", code: 200 })),
-).annotate({
-  identifier: "RetrieveAccountRequest",
-}) as any as S.Schema<RetrieveAccountRequest>;
-
-export interface RetrieveAccountPreferencesRequest {
-  /** Account ID, prefixed `biz_`. */
-  account_id: string;
-}
-export const RetrieveAccountPreferencesRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    account_id: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/accounts/{account_id}/preferences",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "RetrieveAccountPreferencesRequest",
-}) as any as S.Schema<RetrieveAccountPreferencesRequest>;
-
-/** Where the account's ads services agreement stands. */
-export type RetrieveAccountPreferencesResponseAdsAgreementStatus =
-  | "not_required"
-  | "pending_signature"
-  | "signed";
-export const RetrieveAccountPreferencesResponseAdsAgreementStatus =
-  /*@__PURE__*/ S.String;
-
-/** The account's Whop Ads services and payment authorization agreement. While `pending_signature`, campaign launch is blocked; sign by answering `requested_information` via `PATCH /verifications/{id}`. */
-export interface RetrieveAccountPreferencesResponseAdsAgreement {
-  /** When the agreement was signed, as an ISO 8601 timestamp. `null` until signed. */
-  accepted_at: string | null;
-  /** The agreement version signed or awaiting signature, as an ISO date. `null` when no signature is required. */
-  agreement_version: string | null;
-  /** The signer's printed full name. `null` until signed. */
-  printed_name: string | null;
-  /** Where the account's ads services agreement stands. */
-  status: RetrieveAccountPreferencesResponseAdsAgreementStatus;
-}
-export const RetrieveAccountPreferencesResponseAdsAgreement =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      accepted_at: S.NullOr(S.String),
-      agreement_version: S.NullOr(S.String),
-      printed_name: S.NullOr(S.String),
-      status: RetrieveAccountPreferencesResponseAdsAgreementStatus,
-    }),
-  ).annotate({
-    identifier: "RetrieveAccountPreferencesResponseAdsAgreement",
-  }) as any as S.Schema<RetrieveAccountPreferencesResponseAdsAgreement>;
-
-/** The funding source kind: a Whop balance or a saved card. */
-export type RetrieveAccountPreferencesResponseAdsPaymentMethodsBackupType =
-  | "platform_balance"
-  | "card";
-export const RetrieveAccountPreferencesResponseAdsPaymentMethodsBackupType =
-  /*@__PURE__*/ S.String;
-
-export interface RetrieveAccountPreferencesResponseAdsPaymentMethodsBackup {
-  /** Card brand, present for `card` entries. */
-  card_brand?: string | null;
-  /** Expiration month, present for `card` entries. */
-  exp_month?: number | null;
-  /** Expiration year, present for `card` entries. */
-  exp_year?: number | null;
-  /** Balance owner icon URL, present for `platform_balance` entries. */
-  icon_url?: string | null;
-  /** The funding source ID: a Whop balance (`ldgr_`) for `platform_balance`, or a payment method (`payt_`) for `card`. */
-  id: string;
-  /** Last four digits, present for `card` entries. */
-  last4?: string | null;
-  /** Balance name, present for account `platform_balance` entries (null for a personal balance). */
-  title?: string | null;
-  /** The funding source kind: a Whop balance or a saved card. */
-  type: RetrieveAccountPreferencesResponseAdsPaymentMethodsBackupType;
-}
-export const RetrieveAccountPreferencesResponseAdsPaymentMethodsBackup =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      card_brand: S.optional(S.NullOr(S.String)),
-      exp_month: S.optional(S.NullOr(S.Number)),
-      exp_year: S.optional(S.NullOr(S.Number)),
-      icon_url: S.optional(S.NullOr(S.String)),
-      id: S.String,
-      last4: S.optional(S.NullOr(S.String)),
-      title: S.optional(S.NullOr(S.String)),
-      type: RetrieveAccountPreferencesResponseAdsPaymentMethodsBackupType,
-    }),
-  ).annotate({
-    identifier: "RetrieveAccountPreferencesResponseAdsPaymentMethodsBackup",
-  }) as any as S.Schema<RetrieveAccountPreferencesResponseAdsPaymentMethodsBackup>;
-
-/** The funding source kind: a Whop balance or a saved card. */
-export type RetrieveAccountPreferencesResponseAdsPaymentMethodsPrimaryType =
-  | "platform_balance"
-  | "card";
-export const RetrieveAccountPreferencesResponseAdsPaymentMethodsPrimaryType =
-  /*@__PURE__*/ S.String;
-
-export interface RetrieveAccountPreferencesResponseAdsPaymentMethodsPrimary {
-  /** Card brand, present for `card` entries. */
-  card_brand?: string | null;
-  /** Expiration month, present for `card` entries. */
-  exp_month?: number | null;
-  /** Expiration year, present for `card` entries. */
-  exp_year?: number | null;
-  /** Balance owner icon URL, present for `platform_balance` entries. */
-  icon_url?: string | null;
-  /** The funding source ID: a Whop balance (`ldgr_`) for `platform_balance`, or a payment method (`payt_`) for `card`. */
-  id: string;
-  /** Last four digits, present for `card` entries. */
-  last4?: string | null;
-  /** Balance name, present for account `platform_balance` entries (null for a personal balance). */
-  title?: string | null;
-  /** The funding source kind: a Whop balance or a saved card. */
-  type: RetrieveAccountPreferencesResponseAdsPaymentMethodsPrimaryType;
-}
-export const RetrieveAccountPreferencesResponseAdsPaymentMethodsPrimary =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      card_brand: S.optional(S.NullOr(S.String)),
-      exp_month: S.optional(S.NullOr(S.Number)),
-      exp_year: S.optional(S.NullOr(S.Number)),
-      icon_url: S.optional(S.NullOr(S.String)),
-      id: S.String,
-      last4: S.optional(S.NullOr(S.String)),
-      title: S.optional(S.NullOr(S.String)),
-      type: RetrieveAccountPreferencesResponseAdsPaymentMethodsPrimaryType,
-    }),
-  ).annotate({
-    identifier: "RetrieveAccountPreferencesResponseAdsPaymentMethodsPrimary",
-  }) as any as S.Schema<RetrieveAccountPreferencesResponseAdsPaymentMethodsPrimary>;
-
-/** How the account pays for Whop Ads spend. `primary` is charged first; `backup` covers the charge when the primary fails. `null` until ads billing has been configured. */
-export interface RetrieveAccountPreferencesResponseAdsPaymentMethods {
-  backup: RetrieveAccountPreferencesResponseAdsPaymentMethodsBackup | null;
-  primary: RetrieveAccountPreferencesResponseAdsPaymentMethodsPrimary | null;
-}
-export const RetrieveAccountPreferencesResponseAdsPaymentMethods =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      backup: S.NullOr(
-        RetrieveAccountPreferencesResponseAdsPaymentMethodsBackup,
-      ),
-      primary: S.NullOr(
-        RetrieveAccountPreferencesResponseAdsPaymentMethodsPrimary,
-      ),
-    }),
-  ).annotate({
-    identifier: "RetrieveAccountPreferencesResponseAdsPaymentMethods",
-  }) as any as S.Schema<RetrieveAccountPreferencesResponseAdsPaymentMethods>;
-
-/** Where the integration stands. `requires_shopify_store` means no Shopify store is connected — Triple Whale keys records by Shopify shop, so no spend is reported until one is. */
-export type RetrieveAccountPreferencesResponseAdsTripleWhaleIntegrationStatus =
-  | "connected"
-  | "not_connected"
-  | "requires_shopify_store";
-export const RetrieveAccountPreferencesResponseAdsTripleWhaleIntegrationStatus =
-  /*@__PURE__*/ S.String;
-
-/** The account's Triple Whale integration, which pushes Whop ad spend to Triple Whale's Data-In API so it reports as a `whop` channel. */
-export interface RetrieveAccountPreferencesResponseAdsTripleWhaleIntegration {
-  /** The leading characters of the stored Data-In API key, followed by asterisks. The full key is never returned. `null` when no key is stored. */
-  masked_api_key: string | null;
-  /** The connected Shopify store domain spend is reported for, such as `acme.myshopify.com`. `null` when no store is connected. */
-  shop_domain: string | null;
-  /** Where the integration stands. `requires_shopify_store` means no Shopify store is connected — Triple Whale keys records by Shopify shop, so no spend is reported until one is. */
-  status: RetrieveAccountPreferencesResponseAdsTripleWhaleIntegrationStatus;
-}
-export const RetrieveAccountPreferencesResponseAdsTripleWhaleIntegration =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      masked_api_key: S.NullOr(S.String),
-      shop_domain: S.NullOr(S.String),
-      status: RetrieveAccountPreferencesResponseAdsTripleWhaleIntegrationStatus,
-    }),
-  ).annotate({
-    identifier: "RetrieveAccountPreferencesResponseAdsTripleWhaleIntegration",
-  }) as any as S.Schema<RetrieveAccountPreferencesResponseAdsTripleWhaleIntegration>;
-
-export interface RetrieveAccountPreferencesResponse {
-  /** The account's Whop Ads services and payment authorization agreement. While `pending_signature`, campaign launch is blocked; sign by answering `requested_information` via `PATCH /verifications/{id}`. */
-  ads_agreement: RetrieveAccountPreferencesResponseAdsAgreement;
-  /** How the account pays for Whop Ads spend. `primary` is charged first; `backup` covers the charge when the primary fails. `null` until ads billing has been configured. */
-  ads_payment_methods: RetrieveAccountPreferencesResponseAdsPaymentMethods | null;
-  /** Lowercase ISO currency code, such as `usd` or `eur`, used to display ad spend and stats. Defaults to `usd`. */
-  ads_reporting_currency: string;
-  /** IANA timezone (e.g. `America/New_York`) used to interpret campaign start/end times and to bucket reports. Defaults to `America/New_York` until explicitly overridden. */
-  ads_scheduling_timezone: string;
-  /** The account's Triple Whale integration, which pushes Whop ad spend to Triple Whale's Data-In API so it reports as a `whop` channel. */
-  ads_triple_whale_integration: RetrieveAccountPreferencesResponseAdsTripleWhaleIntegration;
-  /** Whether incoming funds are automatically moved to the account's cards balance. `false` when the account has no cards balance. */
-  cards_auto_top_up: boolean;
-  /** Whether Whop assembles and files the evidence response when this account's payments are disputed. Off by default; enabling it also opts the account into the success fee charged only on disputes it wins. */
-  dispute_fighter_enabled: boolean;
-}
-export const RetrieveAccountPreferencesResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ads_agreement: RetrieveAccountPreferencesResponseAdsAgreement,
-    ads_payment_methods: S.NullOr(
-      RetrieveAccountPreferencesResponseAdsPaymentMethods,
-    ),
-    ads_reporting_currency: S.String,
-    ads_scheduling_timezone: S.String,
-    ads_triple_whale_integration:
-      RetrieveAccountPreferencesResponseAdsTripleWhaleIntegration,
-    cards_auto_top_up: S.Boolean,
-    dispute_fighter_enabled: S.Boolean,
-  }),
-).annotate({
-  identifier: "RetrieveAccountPreferencesResponse",
-}) as any as S.Schema<RetrieveAccountPreferencesResponse>;
 
 export interface TransferAccountOwnershipRequest {
   /** Account ID, prefixed `biz_`. */
@@ -7127,6 +7123,36 @@ export const formCompany: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetAccountError = Forbidden | NotFound | WhopOpError;
+/** Retrieve Account Retrieves a single account by ID or public route when it is visible to the credential, including its crypto wallet. The reserved id `me` retrieves the account associated with the current Account API key; user tokens have no single account, so they must address one by ID or route. */
+export const getAccount: API.OperationMethod<
+  GetAccountRequest,
+  Account,
+  GetAccountError,
+  WhopOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetAccountRequest,
+  output: Account,
+  errors: [Forbidden, NotFound],
+  protocol: WhopProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetAccountPreferencesError = NotFound | WhopOpError;
+/** Retrieve Account Preferences Retrieves the account's preferences: a singleton settings document keyed by preference name. */
+export const getAccountPreferences: API.OperationMethod<
+  GetAccountPreferencesRequest,
+  GetAccountPreferencesResponse,
+  GetAccountPreferencesError,
+  WhopOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetAccountPreferencesRequest,
+  output: GetAccountPreferencesResponse,
+  errors: [NotFound],
+  protocol: WhopProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListAccountReservesError = Forbidden | WhopOpError;
 /** List Account Reserves Lists what the account's held balance is made of, one entry per currency: the total held, why each part is held, and the days it unlocks. */
 export const listAccountReserves: API.OperationMethod<
@@ -7168,36 +7194,6 @@ export const listAccounts: API.PaginatedOperationMethod<
   }),
   paginateRelay,
 ) as any;
-
-export type RetrieveAccountError = Forbidden | NotFound | WhopOpError;
-/** Retrieve Account Retrieves a single account by ID or public route when it is visible to the credential, including its crypto wallet. The reserved id `me` retrieves the account associated with the current Account API key; user tokens have no single account, so they must address one by ID or route. */
-export const retrieveAccount: API.OperationMethod<
-  RetrieveAccountRequest,
-  Account,
-  RetrieveAccountError,
-  WhopOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveAccountRequest,
-  output: Account,
-  errors: [Forbidden, NotFound],
-  protocol: WhopProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveAccountPreferencesError = NotFound | WhopOpError;
-/** Retrieve Account Preferences Retrieves the account's preferences: a singleton settings document keyed by preference name. */
-export const retrieveAccountPreferences: API.OperationMethod<
-  RetrieveAccountPreferencesRequest,
-  RetrieveAccountPreferencesResponse,
-  RetrieveAccountPreferencesError,
-  WhopOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveAccountPreferencesRequest,
-  output: RetrieveAccountPreferencesResponse,
-  errors: [NotFound],
-  protocol: WhopProtocol,
-  retry: Retry.Retry,
-}));
 
 export type TransferAccountOwnershipError = Forbidden | Conflict | WhopOpError;
 /** Transfer Account Ownership Transfers ownership of the account to another user, identified by user ID or email address. If the recipient already holds the owner role, ownership moves immediately; otherwise they get an invite and ownership moves when they accept. */

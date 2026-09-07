@@ -156,13 +156,13 @@ export const BgpPeersCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "BgpPeersCreateOrUpdateResponse",
 }) as any as S.Schema<BgpPeersCreateOrUpdateResponse>;
 
-export interface BgpPeersDeleteRequest {
+export interface DeleteBgpPeerRequest {
   /** The fully qualified Azure Resource manager identifier of the resource. */
   resourceUri: string;
   /** The name of the BgpPeer */
   bgpPeerName: string;
 }
-export const BgpPeersDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteBgpPeerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     resourceUri: S.String.pipe(T.Label()),
     bgpPeerName: S.String.pipe(T.Label()),
@@ -175,23 +175,110 @@ export const BgpPeersDeleteRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "BgpPeersDeleteRequest",
-}) as any as S.Schema<BgpPeersDeleteRequest>;
+  identifier: "DeleteBgpPeerRequest",
+}) as any as S.Schema<DeleteBgpPeerRequest>;
 
-export interface BgpPeersDeleteResponse {}
-export const BgpPeersDeleteResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteBgpPeerResponse {}
+export const DeleteBgpPeerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "BgpPeersDeleteResponse",
-}) as any as S.Schema<BgpPeersDeleteResponse>;
+  identifier: "DeleteBgpPeerResponse",
+}) as any as S.Schema<DeleteBgpPeerResponse>;
 
-export interface BgpPeersGetRequest {
+export interface DeleteLoadBalancerRequest {
+  /** The fully qualified Azure Resource manager identifier of the resource. */
+  resourceUri: string;
+  /** The name of the LoadBalancer */
+  loadBalancerName: string;
+}
+export const DeleteLoadBalancerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    resourceUri: S.String.pipe(T.Label()),
+    loadBalancerName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/{resourceUri}/providers/Microsoft.KubernetesRuntime/loadBalancers/{loadBalancerName}",
+      code: 200,
+      apiVersion: "2024-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteLoadBalancerRequest",
+}) as any as S.Schema<DeleteLoadBalancerRequest>;
+
+export interface DeleteLoadBalancerResponse {}
+export const DeleteLoadBalancerResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteLoadBalancerResponse",
+}) as any as S.Schema<DeleteLoadBalancerResponse>;
+
+export interface DeleteServiceRequest {
+  /** The fully qualified Azure Resource manager identifier of the resource. */
+  resourceUri: string;
+  /** The name of the the service */
+  serviceName: string;
+}
+export const DeleteServiceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    resourceUri: S.String.pipe(T.Label()),
+    serviceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/{resourceUri}/providers/Microsoft.KubernetesRuntime/services/{serviceName}",
+      code: 200,
+      apiVersion: "2024-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteServiceRequest",
+}) as any as S.Schema<DeleteServiceRequest>;
+
+export interface DeleteServiceResponse {}
+export const DeleteServiceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteServiceResponse",
+}) as any as S.Schema<DeleteServiceResponse>;
+
+export interface DeleteStorageClassRequest {
+  /** The fully qualified Azure Resource manager identifier of the resource. */
+  resourceUri: string;
+  /** The name of the the storage class */
+  storageClassName: string;
+}
+export const DeleteStorageClassRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    resourceUri: S.String.pipe(T.Label()),
+    storageClassName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/{resourceUri}/providers/Microsoft.KubernetesRuntime/storageClasses/{storageClassName}",
+      code: 200,
+      apiVersion: "2024-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteStorageClassRequest",
+}) as any as S.Schema<DeleteStorageClassRequest>;
+
+export interface DeleteStorageClassResponse {}
+export const DeleteStorageClassResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteStorageClassResponse",
+}) as any as S.Schema<DeleteStorageClassResponse>;
+
+export interface GetBgpPeerRequest {
   /** The fully qualified Azure Resource manager identifier of the resource. */
   resourceUri: string;
   /** The name of the BgpPeer */
   bgpPeerName: string;
 }
-export const BgpPeersGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetBgpPeerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     resourceUri: S.String.pipe(T.Label()),
     bgpPeerName: S.String.pipe(T.Label()),
@@ -204,10 +291,10 @@ export const BgpPeersGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "BgpPeersGetRequest",
-}) as any as S.Schema<BgpPeersGetRequest>;
+  identifier: "GetBgpPeerRequest",
+}) as any as S.Schema<GetBgpPeerRequest>;
 
-export interface BgpPeersGetResponse {
+export interface GetBgpPeerResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -219,7 +306,7 @@ export interface BgpPeersGetResponse {
   /** The resource-specific properties for this resource. */
   properties?: BgpPeerProperties;
 }
-export const BgpPeersGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetBgpPeerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -228,14 +315,328 @@ export const BgpPeersGetResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(BgpPeerProperties),
   }),
 ).annotate({
-  identifier: "BgpPeersGetResponse",
-}) as any as S.Schema<BgpPeersGetResponse>;
+  identifier: "GetBgpPeerResponse",
+}) as any as S.Schema<GetBgpPeerResponse>;
 
-export interface BgpPeersListRequest {
+export interface GetLoadBalancerRequest {
+  /** The fully qualified Azure Resource manager identifier of the resource. */
+  resourceUri: string;
+  /** The name of the LoadBalancer */
+  loadBalancerName: string;
+}
+export const GetLoadBalancerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    resourceUri: S.String.pipe(T.Label()),
+    loadBalancerName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/{resourceUri}/providers/Microsoft.KubernetesRuntime/loadBalancers/{loadBalancerName}",
+      code: 200,
+      apiVersion: "2024-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetLoadBalancerRequest",
+}) as any as S.Schema<GetLoadBalancerRequest>;
+
+/** IP Range */
+export type LoadBalancerPropertiesAddressesList = Array<string>;
+export const LoadBalancerPropertiesAddressesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<LoadBalancerPropertiesAddressesList>;
+
+/** A dynamic label mapping to select related services. For instance, if you want to create a load balancer only for services with label "a=b", then please specify {"a": "b"} in the field. */
+export type LoadBalancerPropertiesServiceSelectorMap = {
+  [key: string]: string | undefined;
+};
+export const LoadBalancerPropertiesServiceSelectorMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<LoadBalancerPropertiesServiceSelectorMap>;
+
+/** Enum of advertise mode */
+export type AdvertiseMode = "ARP" | "BGP" | "Both";
+export const AdvertiseMode = /*@__PURE__*/ S.String;
+
+/** The list of BGP peers it should advertise to. Null or empty means to advertise to all peers. */
+export type LoadBalancerPropertiesBgpPeersList = Array<string>;
+export const LoadBalancerPropertiesBgpPeersList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<LoadBalancerPropertiesBgpPeersList>;
+
+/** Details of the LoadBalancer. */
+export interface LoadBalancerProperties {
+  /** IP Range */
+  addresses: LoadBalancerPropertiesAddressesList;
+  /** A dynamic label mapping to select related services. For instance, if you want to create a load balancer only for services with label "a=b", then please specify {"a": "b"} in the field. */
+  serviceSelector?: LoadBalancerPropertiesServiceSelectorMap;
+  /** Advertise Mode */
+  advertiseMode: AdvertiseMode;
+  /** The list of BGP peers it should advertise to. Null or empty means to advertise to all peers. */
+  bgpPeers?: LoadBalancerPropertiesBgpPeersList;
+  /** Resource provision state */
+  provisioningState?: ProvisioningState;
+}
+export const LoadBalancerProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    addresses: LoadBalancerPropertiesAddressesList,
+    serviceSelector: S.optional(LoadBalancerPropertiesServiceSelectorMap),
+    advertiseMode: AdvertiseMode,
+    bgpPeers: S.optional(LoadBalancerPropertiesBgpPeersList),
+    provisioningState: S.optional(ProvisioningState),
+  }),
+).annotate({
+  identifier: "LoadBalancerProperties",
+}) as any as S.Schema<LoadBalancerProperties>;
+
+export interface GetLoadBalancerResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: LoadBalancerProperties;
+}
+export const GetLoadBalancerResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(LoadBalancerProperties),
+  }),
+).annotate({
+  identifier: "GetLoadBalancerResponse",
+}) as any as S.Schema<GetLoadBalancerResponse>;
+
+export interface GetServiceRequest {
+  /** The fully qualified Azure Resource manager identifier of the resource. */
+  resourceUri: string;
+  /** The name of the the service */
+  serviceName: string;
+}
+export const GetServiceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    resourceUri: S.String.pipe(T.Label()),
+    serviceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/{resourceUri}/providers/Microsoft.KubernetesRuntime/services/{serviceName}",
+      code: 200,
+      apiVersion: "2024-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetServiceRequest",
+}) as any as S.Schema<GetServiceRequest>;
+
+/** Properties for the service resource */
+export interface ServiceProperties {
+  /** The object id of the service principal of the RP provisioned in the tenant */
+  rpObjectId?: string;
+  /** Resource provision state */
+  provisioningState?: ProvisioningState;
+}
+export const ServiceProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    rpObjectId: S.optional(S.String),
+    provisioningState: S.optional(ProvisioningState),
+  }),
+).annotate({
+  identifier: "ServiceProperties",
+}) as any as S.Schema<ServiceProperties>;
+
+export interface GetServiceResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: ServiceProperties;
+}
+export const GetServiceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ServiceProperties),
+  }),
+).annotate({
+  identifier: "GetServiceResponse",
+}) as any as S.Schema<GetServiceResponse>;
+
+export interface GetStorageClassRequest {
+  /** The fully qualified Azure Resource manager identifier of the resource. */
+  resourceUri: string;
+  /** The name of the the storage class */
+  storageClassName: string;
+}
+export const GetStorageClassRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    resourceUri: S.String.pipe(T.Label()),
+    storageClassName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/{resourceUri}/providers/Microsoft.KubernetesRuntime/storageClasses/{storageClassName}",
+      code: 200,
+      apiVersion: "2024-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetStorageClassRequest",
+}) as any as S.Schema<GetStorageClassRequest>;
+
+/** Ability to expand volumes of a storage class */
+export type VolumeExpansion = "Allow" | "Disallow";
+export const VolumeExpansion = /*@__PURE__*/ S.String;
+
+/** Additional mount options */
+export type StorageClassPropertiesMountOptionsList = Array<string>;
+export const StorageClassPropertiesMountOptionsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<StorageClassPropertiesMountOptionsList>;
+
+/** Storage class volume binding mode */
+export type VolumeBindingMode = "Immediate" | "WaitForFirstConsumer";
+export const VolumeBindingMode = /*@__PURE__*/ S.String;
+
+/** Storage Class Access Mode */
+export type AccessMode = "ReadWriteOnce" | "ReadWriteMany";
+export const AccessMode = /*@__PURE__*/ S.String;
+
+/** The access mode: [ReadWriteOnce, ReadWriteMany] or [ReadWriteOnce] */
+export type StorageClassPropertiesAccessModesList = Array<AccessMode>;
+export const StorageClassPropertiesAccessModesList = /*@__PURE__*/ S.Array(
+  AccessMode,
+) as any as S.Schema<StorageClassPropertiesAccessModesList>;
+
+/** Data resilience tier of a storage class */
+export type DataResilienceTier = "NotDataResilient" | "DataResilient";
+export const DataResilienceTier = /*@__PURE__*/ S.String;
+
+/** Failover tier of a storage class */
+export type FailoverTier = "NotAvailable" | "Slow" | "Fast" | "Super";
+export const FailoverTier = /*@__PURE__*/ S.String;
+
+/** Limitations of the storage class */
+export type StorageClassPropertiesLimitationsList = Array<string>;
+export const StorageClassPropertiesLimitationsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<StorageClassPropertiesLimitationsList>;
+
+/** Performance tier of a storage class */
+export type PerformanceTier =
+  | "Undefined"
+  | "Basic"
+  | "Standard"
+  | "Premium"
+  | "Ultra";
+export const PerformanceTier = /*@__PURE__*/ S.String;
+
+/** Type of a storage class */
+export type SCType = "Native" | "RWX" | "Blob" | "NFS" | "SMB";
+export const SCType = /*@__PURE__*/ S.String;
+
+/** The properties of storage class of the StorageClass */
+export interface StorageClassTypeProperties {
+  /** Type of the storage class. */
+  type: SCType | (string & {});
+}
+export const StorageClassTypeProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: SCType,
+  }),
+).annotate({
+  identifier: "StorageClassTypeProperties",
+}) as any as S.Schema<StorageClassTypeProperties>;
+
+/** Details of the StorageClass StorageClass. */
+export interface StorageClassProperties {
+  /** Volume can be expanded or not */
+  allowVolumeExpansion?: VolumeExpansion;
+  /** Additional mount options */
+  mountOptions?: StorageClassPropertiesMountOptionsList;
+  /** Provisioner name */
+  provisioner?: string;
+  /** Binding mode of volumes: Immediate, WaitForFirstConsumer */
+  volumeBindingMode?: VolumeBindingMode;
+  /** The access mode: [ReadWriteOnce, ReadWriteMany] or [ReadWriteOnce] */
+  accessModes?: StorageClassPropertiesAccessModesList;
+  /** Allow single data node failure */
+  dataResilience?: DataResilienceTier;
+  /** Failover speed: NA, Slow, Fast */
+  failoverSpeed?: FailoverTier;
+  /** Limitations of the storage class */
+  limitations?: StorageClassPropertiesLimitationsList;
+  /** Performance tier */
+  performance?: PerformanceTier;
+  /** Selection priority when multiple storage classes meet the criteria. 0: Highest, -1: Never use */
+  priority?: number;
+  /** Properties of the StorageClass */
+  typeProperties: StorageClassTypeProperties;
+  /** Resource provision state */
+  provisioningState?: ProvisioningState;
+}
+export const StorageClassProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    allowVolumeExpansion: S.optional(VolumeExpansion),
+    mountOptions: S.optional(StorageClassPropertiesMountOptionsList),
+    provisioner: S.optional(S.String),
+    volumeBindingMode: S.optional(VolumeBindingMode),
+    accessModes: S.optional(StorageClassPropertiesAccessModesList),
+    dataResilience: S.optional(DataResilienceTier),
+    failoverSpeed: S.optional(FailoverTier),
+    limitations: S.optional(StorageClassPropertiesLimitationsList),
+    performance: S.optional(PerformanceTier),
+    priority: S.optional(S.Number),
+    typeProperties: StorageClassTypeProperties,
+    provisioningState: S.optional(ProvisioningState),
+  }),
+).annotate({
+  identifier: "StorageClassProperties",
+}) as any as S.Schema<StorageClassProperties>;
+
+export interface GetStorageClassResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: StorageClassProperties;
+}
+export const GetStorageClassResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(StorageClassProperties),
+  }),
+).annotate({
+  identifier: "GetStorageClassResponse",
+}) as any as S.Schema<GetStorageClassResponse>;
+
+export interface ListBgpPeersRequest {
   /** The fully qualified Azure Resource manager identifier of the resource. */
   resourceUri: string;
 }
-export const BgpPeersListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListBgpPeersRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     resourceUri: S.String.pipe(T.Label()),
   }).pipe(
@@ -247,8 +648,8 @@ export const BgpPeersListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "BgpPeersListRequest",
-}) as any as S.Schema<BgpPeersListRequest>;
+  identifier: "ListBgpPeersRequest",
+}) as any as S.Schema<ListBgpPeersRequest>;
 
 /** A BgpPeer resource for an Arc connected cluster (Microsoft.Kubernetes/connectedClusters) */
 export interface BgpPeer {
@@ -295,229 +696,11 @@ export const BgpPeerListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "BgpPeerListResult",
 }) as any as S.Schema<BgpPeerListResult>;
 
-/** IP Range */
-export type LoadBalancerPropertiesInputAddressesList = Array<string>;
-export const LoadBalancerPropertiesInputAddressesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<LoadBalancerPropertiesInputAddressesList>;
-
-/** A dynamic label mapping to select related services. For instance, if you want to create a load balancer only for services with label "a=b", then please specify {"a": "b"} in the field. */
-export type LoadBalancerPropertiesInputServiceSelectorMap = {
-  [key: string]: string | undefined;
-};
-export const LoadBalancerPropertiesInputServiceSelectorMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<LoadBalancerPropertiesInputServiceSelectorMap>;
-
-/** Enum of advertise mode */
-export type AdvertiseMode = "ARP" | "BGP" | "Both";
-export const AdvertiseMode = /*@__PURE__*/ S.String;
-
-/** The list of BGP peers it should advertise to. Null or empty means to advertise to all peers. */
-export type LoadBalancerPropertiesInputBgpPeersList = Array<string>;
-export const LoadBalancerPropertiesInputBgpPeersList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<LoadBalancerPropertiesInputBgpPeersList>;
-
-/** Details of the LoadBalancer. */
-export interface LoadBalancerPropertiesInput {
-  /** IP Range */
-  addresses: LoadBalancerPropertiesInputAddressesList;
-  /** A dynamic label mapping to select related services. For instance, if you want to create a load balancer only for services with label "a=b", then please specify {"a": "b"} in the field. */
-  serviceSelector?: LoadBalancerPropertiesInputServiceSelectorMap;
-  /** Advertise Mode */
-  advertiseMode: AdvertiseMode | (string & {});
-  /** The list of BGP peers it should advertise to. Null or empty means to advertise to all peers. */
-  bgpPeers?: LoadBalancerPropertiesInputBgpPeersList;
-}
-export const LoadBalancerPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    addresses: LoadBalancerPropertiesInputAddressesList,
-    serviceSelector: S.optional(LoadBalancerPropertiesInputServiceSelectorMap),
-    advertiseMode: AdvertiseMode,
-    bgpPeers: S.optional(LoadBalancerPropertiesInputBgpPeersList),
-  }),
-).annotate({
-  identifier: "LoadBalancerPropertiesInput",
-}) as any as S.Schema<LoadBalancerPropertiesInput>;
-
-export interface LoadBalancersCreateOrUpdateRequest {
-  /** The fully qualified Azure Resource manager identifier of the resource. */
-  resourceUri: string;
-  /** The name of the LoadBalancer */
-  loadBalancerName: string;
-  /** The resource-specific properties for this resource. */
-  properties?: LoadBalancerPropertiesInput;
-}
-export const LoadBalancersCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    resourceUri: S.String.pipe(T.Label()),
-    loadBalancerName: S.String.pipe(T.Label()),
-    properties: S.optional(LoadBalancerPropertiesInput),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/{resourceUri}/providers/Microsoft.KubernetesRuntime/loadBalancers/{loadBalancerName}",
-      code: 200,
-      apiVersion: "2024-03-01",
-    }),
-  ),
-).annotate({
-  identifier: "LoadBalancersCreateOrUpdateRequest",
-}) as any as S.Schema<LoadBalancersCreateOrUpdateRequest>;
-
-/** IP Range */
-export type LoadBalancerPropertiesAddressesList = Array<string>;
-export const LoadBalancerPropertiesAddressesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<LoadBalancerPropertiesAddressesList>;
-
-/** A dynamic label mapping to select related services. For instance, if you want to create a load balancer only for services with label "a=b", then please specify {"a": "b"} in the field. */
-export type LoadBalancerPropertiesServiceSelectorMap = {
-  [key: string]: string | undefined;
-};
-export const LoadBalancerPropertiesServiceSelectorMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<LoadBalancerPropertiesServiceSelectorMap>;
-
-/** The list of BGP peers it should advertise to. Null or empty means to advertise to all peers. */
-export type LoadBalancerPropertiesBgpPeersList = Array<string>;
-export const LoadBalancerPropertiesBgpPeersList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<LoadBalancerPropertiesBgpPeersList>;
-
-/** Details of the LoadBalancer. */
-export interface LoadBalancerProperties {
-  /** IP Range */
-  addresses: LoadBalancerPropertiesAddressesList;
-  /** A dynamic label mapping to select related services. For instance, if you want to create a load balancer only for services with label "a=b", then please specify {"a": "b"} in the field. */
-  serviceSelector?: LoadBalancerPropertiesServiceSelectorMap;
-  /** Advertise Mode */
-  advertiseMode: AdvertiseMode;
-  /** The list of BGP peers it should advertise to. Null or empty means to advertise to all peers. */
-  bgpPeers?: LoadBalancerPropertiesBgpPeersList;
-  /** Resource provision state */
-  provisioningState?: ProvisioningState;
-}
-export const LoadBalancerProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    addresses: LoadBalancerPropertiesAddressesList,
-    serviceSelector: S.optional(LoadBalancerPropertiesServiceSelectorMap),
-    advertiseMode: AdvertiseMode,
-    bgpPeers: S.optional(LoadBalancerPropertiesBgpPeersList),
-    provisioningState: S.optional(ProvisioningState),
-  }),
-).annotate({
-  identifier: "LoadBalancerProperties",
-}) as any as S.Schema<LoadBalancerProperties>;
-
-export interface LoadBalancersCreateOrUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: LoadBalancerProperties;
-}
-export const LoadBalancersCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(LoadBalancerProperties),
-  }),
-).annotate({
-  identifier: "LoadBalancersCreateOrUpdateResponse",
-}) as any as S.Schema<LoadBalancersCreateOrUpdateResponse>;
-
-export interface LoadBalancersDeleteRequest {
-  /** The fully qualified Azure Resource manager identifier of the resource. */
-  resourceUri: string;
-  /** The name of the LoadBalancer */
-  loadBalancerName: string;
-}
-export const LoadBalancersDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    resourceUri: S.String.pipe(T.Label()),
-    loadBalancerName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/{resourceUri}/providers/Microsoft.KubernetesRuntime/loadBalancers/{loadBalancerName}",
-      code: 200,
-      apiVersion: "2024-03-01",
-    }),
-  ),
-).annotate({
-  identifier: "LoadBalancersDeleteRequest",
-}) as any as S.Schema<LoadBalancersDeleteRequest>;
-
-export interface LoadBalancersDeleteResponse {}
-export const LoadBalancersDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "LoadBalancersDeleteResponse",
-}) as any as S.Schema<LoadBalancersDeleteResponse>;
-
-export interface LoadBalancersGetRequest {
-  /** The fully qualified Azure Resource manager identifier of the resource. */
-  resourceUri: string;
-  /** The name of the LoadBalancer */
-  loadBalancerName: string;
-}
-export const LoadBalancersGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    resourceUri: S.String.pipe(T.Label()),
-    loadBalancerName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/{resourceUri}/providers/Microsoft.KubernetesRuntime/loadBalancers/{loadBalancerName}",
-      code: 200,
-      apiVersion: "2024-03-01",
-    }),
-  ),
-).annotate({
-  identifier: "LoadBalancersGetRequest",
-}) as any as S.Schema<LoadBalancersGetRequest>;
-
-export interface LoadBalancersGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: LoadBalancerProperties;
-}
-export const LoadBalancersGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(LoadBalancerProperties),
-  }),
-).annotate({
-  identifier: "LoadBalancersGetResponse",
-}) as any as S.Schema<LoadBalancersGetResponse>;
-
-export interface LoadBalancersListRequest {
+export interface ListLoadBalancersRequest {
   /** The fully qualified Azure Resource manager identifier of the resource. */
   resourceUri: string;
 }
-export const LoadBalancersListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListLoadBalancersRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     resourceUri: S.String.pipe(T.Label()),
   }).pipe(
@@ -529,8 +712,8 @@ export const LoadBalancersListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "LoadBalancersListRequest",
-}) as any as S.Schema<LoadBalancersListRequest>;
+  identifier: "ListLoadBalancersRequest",
+}) as any as S.Schema<ListLoadBalancersRequest>;
 
 /** A LoadBalancer resource for an Arc connected cluster (Microsoft.Kubernetes/connectedClusters) */
 export interface LoadBalancer {
@@ -577,8 +760,8 @@ export const LoadBalancerListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "LoadBalancerListResult",
 }) as any as S.Schema<LoadBalancerListResult>;
 
-export interface OperationsListRequest {}
-export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
+export interface ListOperationsRequest {}
+export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
     T.Http({
       method: "GET",
@@ -588,8 +771,8 @@ export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "OperationsListRequest",
-}) as any as S.Schema<OperationsListRequest>;
+  identifier: "ListOperationsRequest",
+}) as any as S.Schema<ListOperationsRequest>;
 
 /** Localized display information for this particular operation. */
 export interface OperationDisplay {
@@ -645,179 +828,31 @@ export const Operation = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 /** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
   Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
+) as any as S.Schema<ListOperationsResponseValueList>;
 
-export interface OperationsListResponse {
+export interface ListOperationsResponse {
   /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
+  value?: ListOperationsResponseValueList;
   /** URL to get the next set of operation list results (if there are any). */
   nextLink?: string;
 }
-export const OperationsListResponse = /*@__PURE__*/ S.suspend(() =>
+export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(OperationsListResponseValueList),
+    value: S.optional(ListOperationsResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "OperationsListResponse",
-}) as any as S.Schema<OperationsListResponse>;
+  identifier: "ListOperationsResponse",
+}) as any as S.Schema<ListOperationsResponse>;
 
-/** Properties for the service resource */
-export interface ServicePropertiesInput {}
-export const ServicePropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ServicePropertiesInput",
-}) as any as S.Schema<ServicePropertiesInput>;
-
-export interface ServicesCreateOrUpdateRequest {
-  /** The fully qualified Azure Resource manager identifier of the resource. */
-  resourceUri: string;
-  /** The name of the the service */
-  serviceName: string;
-  /** The resource-specific properties for this resource. */
-  properties?: ServicePropertiesInput;
-}
-export const ServicesCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    resourceUri: S.String.pipe(T.Label()),
-    serviceName: S.String.pipe(T.Label()),
-    properties: S.optional(ServicePropertiesInput),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/{resourceUri}/providers/Microsoft.KubernetesRuntime/services/{serviceName}",
-      code: 200,
-      apiVersion: "2024-03-01",
-    }),
-  ),
-).annotate({
-  identifier: "ServicesCreateOrUpdateRequest",
-}) as any as S.Schema<ServicesCreateOrUpdateRequest>;
-
-/** Properties for the service resource */
-export interface ServiceProperties {
-  /** The object id of the service principal of the RP provisioned in the tenant */
-  rpObjectId?: string;
-  /** Resource provision state */
-  provisioningState?: ProvisioningState;
-}
-export const ServiceProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    rpObjectId: S.optional(S.String),
-    provisioningState: S.optional(ProvisioningState),
-  }),
-).annotate({
-  identifier: "ServiceProperties",
-}) as any as S.Schema<ServiceProperties>;
-
-export interface ServicesCreateOrUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: ServiceProperties;
-}
-export const ServicesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ServiceProperties),
-  }),
-).annotate({
-  identifier: "ServicesCreateOrUpdateResponse",
-}) as any as S.Schema<ServicesCreateOrUpdateResponse>;
-
-export interface ServicesDeleteRequest {
-  /** The fully qualified Azure Resource manager identifier of the resource. */
-  resourceUri: string;
-  /** The name of the the service */
-  serviceName: string;
-}
-export const ServicesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    resourceUri: S.String.pipe(T.Label()),
-    serviceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/{resourceUri}/providers/Microsoft.KubernetesRuntime/services/{serviceName}",
-      code: 200,
-      apiVersion: "2024-03-01",
-    }),
-  ),
-).annotate({
-  identifier: "ServicesDeleteRequest",
-}) as any as S.Schema<ServicesDeleteRequest>;
-
-export interface ServicesDeleteResponse {}
-export const ServicesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ServicesDeleteResponse",
-}) as any as S.Schema<ServicesDeleteResponse>;
-
-export interface ServicesGetRequest {
-  /** The fully qualified Azure Resource manager identifier of the resource. */
-  resourceUri: string;
-  /** The name of the the service */
-  serviceName: string;
-}
-export const ServicesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    resourceUri: S.String.pipe(T.Label()),
-    serviceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/{resourceUri}/providers/Microsoft.KubernetesRuntime/services/{serviceName}",
-      code: 200,
-      apiVersion: "2024-03-01",
-    }),
-  ),
-).annotate({
-  identifier: "ServicesGetRequest",
-}) as any as S.Schema<ServicesGetRequest>;
-
-export interface ServicesGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: ServiceProperties;
-}
-export const ServicesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ServiceProperties),
-  }),
-).annotate({
-  identifier: "ServicesGetResponse",
-}) as any as S.Schema<ServicesGetResponse>;
-
-export interface ServicesListRequest {
+export interface ListServicesRequest {
   /** The fully qualified Azure Resource manager identifier of the resource. */
   resourceUri: string;
 }
-export const ServicesListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListServicesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     resourceUri: S.String.pipe(T.Label()),
   }).pipe(
@@ -829,8 +864,8 @@ export const ServicesListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ServicesListRequest",
-}) as any as S.Schema<ServicesListRequest>;
+  identifier: "ListServicesRequest",
+}) as any as S.Schema<ListServicesRequest>;
 
 /** A Service resource for an Arc connected cluster (Microsoft.Kubernetes/connectedClusters) */
 export interface ServiceResource {
@@ -879,9 +914,222 @@ export const ServiceResourceListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "ServiceResourceListResult",
 }) as any as S.Schema<ServiceResourceListResult>;
 
-/** Ability to expand volumes of a storage class */
-export type VolumeExpansion = "Allow" | "Disallow";
-export const VolumeExpansion = /*@__PURE__*/ S.String;
+export interface ListStorageClassRequest {
+  /** The fully qualified Azure Resource manager identifier of the resource. */
+  resourceUri: string;
+}
+export const ListStorageClassRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    resourceUri: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/{resourceUri}/providers/Microsoft.KubernetesRuntime/storageClasses",
+      code: 200,
+      apiVersion: "2024-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListStorageClassRequest",
+}) as any as S.Schema<ListStorageClassRequest>;
+
+/** A StorageClass resource for an Arc connected cluster (Microsoft.Kubernetes/connectedClusters) */
+export interface StorageClassResource {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: StorageClassProperties;
+}
+export const StorageClassResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(StorageClassProperties),
+  }),
+).annotate({
+  identifier: "StorageClassResource",
+}) as any as S.Schema<StorageClassResource>;
+
+/** The StorageClassResource items on this page */
+export type StorageClassResourceListResultValueList =
+  Array<StorageClassResource>;
+export const StorageClassResourceListResultValueList = /*@__PURE__*/ S.Array(
+  StorageClassResource,
+) as any as S.Schema<StorageClassResourceListResultValueList>;
+
+/** The response of a StorageClassResource list operation. */
+export interface StorageClassResourceListResult {
+  /** The StorageClassResource items on this page */
+  value: StorageClassResourceListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const StorageClassResourceListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: StorageClassResourceListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "StorageClassResourceListResult",
+}) as any as S.Schema<StorageClassResourceListResult>;
+
+/** IP Range */
+export type LoadBalancerPropertiesInputAddressesList = Array<string>;
+export const LoadBalancerPropertiesInputAddressesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<LoadBalancerPropertiesInputAddressesList>;
+
+/** A dynamic label mapping to select related services. For instance, if you want to create a load balancer only for services with label "a=b", then please specify {"a": "b"} in the field. */
+export type LoadBalancerPropertiesInputServiceSelectorMap = {
+  [key: string]: string | undefined;
+};
+export const LoadBalancerPropertiesInputServiceSelectorMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<LoadBalancerPropertiesInputServiceSelectorMap>;
+
+/** The list of BGP peers it should advertise to. Null or empty means to advertise to all peers. */
+export type LoadBalancerPropertiesInputBgpPeersList = Array<string>;
+export const LoadBalancerPropertiesInputBgpPeersList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<LoadBalancerPropertiesInputBgpPeersList>;
+
+/** Details of the LoadBalancer. */
+export interface LoadBalancerPropertiesInput {
+  /** IP Range */
+  addresses: LoadBalancerPropertiesInputAddressesList;
+  /** A dynamic label mapping to select related services. For instance, if you want to create a load balancer only for services with label "a=b", then please specify {"a": "b"} in the field. */
+  serviceSelector?: LoadBalancerPropertiesInputServiceSelectorMap;
+  /** Advertise Mode */
+  advertiseMode: AdvertiseMode | (string & {});
+  /** The list of BGP peers it should advertise to. Null or empty means to advertise to all peers. */
+  bgpPeers?: LoadBalancerPropertiesInputBgpPeersList;
+}
+export const LoadBalancerPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    addresses: LoadBalancerPropertiesInputAddressesList,
+    serviceSelector: S.optional(LoadBalancerPropertiesInputServiceSelectorMap),
+    advertiseMode: AdvertiseMode,
+    bgpPeers: S.optional(LoadBalancerPropertiesInputBgpPeersList),
+  }),
+).annotate({
+  identifier: "LoadBalancerPropertiesInput",
+}) as any as S.Schema<LoadBalancerPropertiesInput>;
+
+export interface LoadBalancersCreateOrUpdateRequest {
+  /** The fully qualified Azure Resource manager identifier of the resource. */
+  resourceUri: string;
+  /** The name of the LoadBalancer */
+  loadBalancerName: string;
+  /** The resource-specific properties for this resource. */
+  properties?: LoadBalancerPropertiesInput;
+}
+export const LoadBalancersCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    resourceUri: S.String.pipe(T.Label()),
+    loadBalancerName: S.String.pipe(T.Label()),
+    properties: S.optional(LoadBalancerPropertiesInput),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/{resourceUri}/providers/Microsoft.KubernetesRuntime/loadBalancers/{loadBalancerName}",
+      code: 200,
+      apiVersion: "2024-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "LoadBalancersCreateOrUpdateRequest",
+}) as any as S.Schema<LoadBalancersCreateOrUpdateRequest>;
+
+export interface LoadBalancersCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: LoadBalancerProperties;
+}
+export const LoadBalancersCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(LoadBalancerProperties),
+  }),
+).annotate({
+  identifier: "LoadBalancersCreateOrUpdateResponse",
+}) as any as S.Schema<LoadBalancersCreateOrUpdateResponse>;
+
+/** Properties for the service resource */
+export interface ServicePropertiesInput {}
+export const ServicePropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "ServicePropertiesInput",
+}) as any as S.Schema<ServicePropertiesInput>;
+
+export interface ServicesCreateOrUpdateRequest {
+  /** The fully qualified Azure Resource manager identifier of the resource. */
+  resourceUri: string;
+  /** The name of the the service */
+  serviceName: string;
+  /** The resource-specific properties for this resource. */
+  properties?: ServicePropertiesInput;
+}
+export const ServicesCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    resourceUri: S.String.pipe(T.Label()),
+    serviceName: S.String.pipe(T.Label()),
+    properties: S.optional(ServicePropertiesInput),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/{resourceUri}/providers/Microsoft.KubernetesRuntime/services/{serviceName}",
+      code: 200,
+      apiVersion: "2024-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "ServicesCreateOrUpdateRequest",
+}) as any as S.Schema<ServicesCreateOrUpdateRequest>;
+
+export interface ServicesCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: ServiceProperties;
+}
+export const ServicesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ServiceProperties),
+  }),
+).annotate({
+  identifier: "ServicesCreateOrUpdateResponse",
+}) as any as S.Schema<ServicesCreateOrUpdateResponse>;
 
 /** Additional mount options */
 export type StorageClassPropertiesInputMountOptionsList = Array<string>;
@@ -889,14 +1137,6 @@ export const StorageClassPropertiesInputMountOptionsList =
   /*@__PURE__*/ S.Array(
     S.String,
   ) as any as S.Schema<StorageClassPropertiesInputMountOptionsList>;
-
-/** Storage class volume binding mode */
-export type VolumeBindingMode = "Immediate" | "WaitForFirstConsumer";
-export const VolumeBindingMode = /*@__PURE__*/ S.String;
-
-/** Storage Class Access Mode */
-export type AccessMode = "ReadWriteOnce" | "ReadWriteMany";
-export const AccessMode = /*@__PURE__*/ S.String;
 
 /** The access mode: [ReadWriteOnce, ReadWriteMany] or [ReadWriteOnce] */
 export type StorageClassPropertiesInputAccessModesList = Array<
@@ -906,45 +1146,11 @@ export const StorageClassPropertiesInputAccessModesList = /*@__PURE__*/ S.Array(
   AccessMode,
 ) as any as S.Schema<StorageClassPropertiesInputAccessModesList>;
 
-/** Data resilience tier of a storage class */
-export type DataResilienceTier = "NotDataResilient" | "DataResilient";
-export const DataResilienceTier = /*@__PURE__*/ S.String;
-
-/** Failover tier of a storage class */
-export type FailoverTier = "NotAvailable" | "Slow" | "Fast" | "Super";
-export const FailoverTier = /*@__PURE__*/ S.String;
-
 /** Limitations of the storage class */
 export type StorageClassPropertiesInputLimitationsList = Array<string>;
 export const StorageClassPropertiesInputLimitationsList = /*@__PURE__*/ S.Array(
   S.String,
 ) as any as S.Schema<StorageClassPropertiesInputLimitationsList>;
-
-/** Performance tier of a storage class */
-export type PerformanceTier =
-  | "Undefined"
-  | "Basic"
-  | "Standard"
-  | "Premium"
-  | "Ultra";
-export const PerformanceTier = /*@__PURE__*/ S.String;
-
-/** Type of a storage class */
-export type SCType = "Native" | "RWX" | "Blob" | "NFS" | "SMB";
-export const SCType = /*@__PURE__*/ S.String;
-
-/** The properties of storage class of the StorageClass */
-export interface StorageClassTypeProperties {
-  /** Type of the storage class. */
-  type: SCType | (string & {});
-}
-export const StorageClassTypeProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: SCType,
-  }),
-).annotate({
-  identifier: "StorageClassTypeProperties",
-}) as any as S.Schema<StorageClassTypeProperties>;
 
 /** Details of the StorageClass StorageClass. */
 export interface StorageClassPropertiesInput {
@@ -1014,70 +1220,6 @@ export const StorageClassCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "StorageClassCreateOrUpdateRequest",
 }) as any as S.Schema<StorageClassCreateOrUpdateRequest>;
 
-/** Additional mount options */
-export type StorageClassPropertiesMountOptionsList = Array<string>;
-export const StorageClassPropertiesMountOptionsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<StorageClassPropertiesMountOptionsList>;
-
-/** The access mode: [ReadWriteOnce, ReadWriteMany] or [ReadWriteOnce] */
-export type StorageClassPropertiesAccessModesList = Array<AccessMode>;
-export const StorageClassPropertiesAccessModesList = /*@__PURE__*/ S.Array(
-  AccessMode,
-) as any as S.Schema<StorageClassPropertiesAccessModesList>;
-
-/** Limitations of the storage class */
-export type StorageClassPropertiesLimitationsList = Array<string>;
-export const StorageClassPropertiesLimitationsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<StorageClassPropertiesLimitationsList>;
-
-/** Details of the StorageClass StorageClass. */
-export interface StorageClassProperties {
-  /** Volume can be expanded or not */
-  allowVolumeExpansion?: VolumeExpansion;
-  /** Additional mount options */
-  mountOptions?: StorageClassPropertiesMountOptionsList;
-  /** Provisioner name */
-  provisioner?: string;
-  /** Binding mode of volumes: Immediate, WaitForFirstConsumer */
-  volumeBindingMode?: VolumeBindingMode;
-  /** The access mode: [ReadWriteOnce, ReadWriteMany] or [ReadWriteOnce] */
-  accessModes?: StorageClassPropertiesAccessModesList;
-  /** Allow single data node failure */
-  dataResilience?: DataResilienceTier;
-  /** Failover speed: NA, Slow, Fast */
-  failoverSpeed?: FailoverTier;
-  /** Limitations of the storage class */
-  limitations?: StorageClassPropertiesLimitationsList;
-  /** Performance tier */
-  performance?: PerformanceTier;
-  /** Selection priority when multiple storage classes meet the criteria. 0: Highest, -1: Never use */
-  priority?: number;
-  /** Properties of the StorageClass */
-  typeProperties: StorageClassTypeProperties;
-  /** Resource provision state */
-  provisioningState?: ProvisioningState;
-}
-export const StorageClassProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    allowVolumeExpansion: S.optional(VolumeExpansion),
-    mountOptions: S.optional(StorageClassPropertiesMountOptionsList),
-    provisioner: S.optional(S.String),
-    volumeBindingMode: S.optional(VolumeBindingMode),
-    accessModes: S.optional(StorageClassPropertiesAccessModesList),
-    dataResilience: S.optional(DataResilienceTier),
-    failoverSpeed: S.optional(FailoverTier),
-    limitations: S.optional(StorageClassPropertiesLimitationsList),
-    performance: S.optional(PerformanceTier),
-    priority: S.optional(S.Number),
-    typeProperties: StorageClassTypeProperties,
-    provisioningState: S.optional(ProvisioningState),
-  }),
-).annotate({
-  identifier: "StorageClassProperties",
-}) as any as S.Schema<StorageClassProperties>;
-
 export interface StorageClassCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
@@ -1101,148 +1243,6 @@ export const StorageClassCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "StorageClassCreateOrUpdateResponse",
 }) as any as S.Schema<StorageClassCreateOrUpdateResponse>;
-
-export interface StorageClassDeleteRequest {
-  /** The fully qualified Azure Resource manager identifier of the resource. */
-  resourceUri: string;
-  /** The name of the the storage class */
-  storageClassName: string;
-}
-export const StorageClassDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    resourceUri: S.String.pipe(T.Label()),
-    storageClassName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/{resourceUri}/providers/Microsoft.KubernetesRuntime/storageClasses/{storageClassName}",
-      code: 200,
-      apiVersion: "2024-03-01",
-    }),
-  ),
-).annotate({
-  identifier: "StorageClassDeleteRequest",
-}) as any as S.Schema<StorageClassDeleteRequest>;
-
-export interface StorageClassDeleteResponse {}
-export const StorageClassDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "StorageClassDeleteResponse",
-}) as any as S.Schema<StorageClassDeleteResponse>;
-
-export interface StorageClassGetRequest {
-  /** The fully qualified Azure Resource manager identifier of the resource. */
-  resourceUri: string;
-  /** The name of the the storage class */
-  storageClassName: string;
-}
-export const StorageClassGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    resourceUri: S.String.pipe(T.Label()),
-    storageClassName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/{resourceUri}/providers/Microsoft.KubernetesRuntime/storageClasses/{storageClassName}",
-      code: 200,
-      apiVersion: "2024-03-01",
-    }),
-  ),
-).annotate({
-  identifier: "StorageClassGetRequest",
-}) as any as S.Schema<StorageClassGetRequest>;
-
-export interface StorageClassGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: StorageClassProperties;
-}
-export const StorageClassGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(StorageClassProperties),
-  }),
-).annotate({
-  identifier: "StorageClassGetResponse",
-}) as any as S.Schema<StorageClassGetResponse>;
-
-export interface StorageClassListRequest {
-  /** The fully qualified Azure Resource manager identifier of the resource. */
-  resourceUri: string;
-}
-export const StorageClassListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    resourceUri: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/{resourceUri}/providers/Microsoft.KubernetesRuntime/storageClasses",
-      code: 200,
-      apiVersion: "2024-03-01",
-    }),
-  ),
-).annotate({
-  identifier: "StorageClassListRequest",
-}) as any as S.Schema<StorageClassListRequest>;
-
-/** A StorageClass resource for an Arc connected cluster (Microsoft.Kubernetes/connectedClusters) */
-export interface StorageClassResource {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: StorageClassProperties;
-}
-export const StorageClassResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(StorageClassProperties),
-  }),
-).annotate({
-  identifier: "StorageClassResource",
-}) as any as S.Schema<StorageClassResource>;
-
-/** The StorageClassResource items on this page */
-export type StorageClassResourceListResultValueList =
-  Array<StorageClassResource>;
-export const StorageClassResourceListResultValueList = /*@__PURE__*/ S.Array(
-  StorageClassResource,
-) as any as S.Schema<StorageClassResourceListResultValueList>;
-
-/** The response of a StorageClassResource list operation. */
-export interface StorageClassResourceListResult {
-  /** The StorageClassResource items on this page */
-  value: StorageClassResourceListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const StorageClassResourceListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: StorageClassResourceListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "StorageClassResourceListResult",
-}) as any as S.Schema<StorageClassResourceListResult>;
 
 /** Additional mount options */
 export type StorageClassPropertiesUpdateMountOptionsList = Array<string>;
@@ -1354,7 +1354,7 @@ export const StorageClassPropertiesUpdate = /*@__PURE__*/ S.suspend(() =>
   identifier: "StorageClassPropertiesUpdate",
 }) as any as S.Schema<StorageClassPropertiesUpdate>;
 
-export interface StorageClassUpdateRequest {
+export interface UpdateStorageClassRequest {
   /** The fully qualified Azure Resource manager identifier of the resource. */
   resourceUri: string;
   /** The name of the the storage class */
@@ -1362,7 +1362,7 @@ export interface StorageClassUpdateRequest {
   /** The properties of StorageClass */
   properties?: StorageClassPropertiesUpdate;
 }
-export const StorageClassUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateStorageClassRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     resourceUri: S.String.pipe(T.Label()),
     storageClassName: S.String.pipe(T.Label()),
@@ -1376,10 +1376,10 @@ export const StorageClassUpdateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "StorageClassUpdateRequest",
-}) as any as S.Schema<StorageClassUpdateRequest>;
+  identifier: "UpdateStorageClassRequest",
+}) as any as S.Schema<UpdateStorageClassRequest>;
 
-export interface StorageClassUpdateResponse {
+export interface UpdateStorageClassResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -1391,7 +1391,7 @@ export interface StorageClassUpdateResponse {
   /** The resource-specific properties for this resource. */
   properties?: StorageClassProperties;
 }
-export const StorageClassUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateStorageClassResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -1400,8 +1400,8 @@ export const StorageClassUpdateResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(StorageClassProperties),
   }),
 ).annotate({
-  identifier: "StorageClassUpdateResponse",
-}) as any as S.Schema<StorageClassUpdateResponse>;
+  identifier: "UpdateStorageClassResponse",
+}) as any as S.Schema<UpdateStorageClassResponse>;
 
 export type BgpPeersCreateOrUpdateError = AzureOpError;
 /** Create a BgpPeer */
@@ -1418,46 +1418,196 @@ export const BgpPeersCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type BgpPeersDeleteError = AzureOpError;
+export type DeleteBgpPeerError = AzureOpError;
 /** Delete a BgpPeer */
-export const BgpPeersDelete: API.OperationMethod<
-  BgpPeersDeleteRequest,
-  BgpPeersDeleteResponse,
-  BgpPeersDeleteError,
+export const DeleteBgpPeer: API.OperationMethod<
+  DeleteBgpPeerRequest,
+  DeleteBgpPeerResponse,
+  DeleteBgpPeerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: BgpPeersDeleteRequest,
-  output: BgpPeersDeleteResponse,
+  input: DeleteBgpPeerRequest,
+  output: DeleteBgpPeerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type BgpPeersGetError = AzureOpError;
+export type DeleteLoadBalancerError = AzureOpError;
+/** Delete a LoadBalancer */
+export const DeleteLoadBalancer: API.OperationMethod<
+  DeleteLoadBalancerRequest,
+  DeleteLoadBalancerResponse,
+  DeleteLoadBalancerError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteLoadBalancerRequest,
+  output: DeleteLoadBalancerResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteServiceError = AzureOpError;
+/** Delete a ServiceResource */
+export const DeleteService: API.OperationMethod<
+  DeleteServiceRequest,
+  DeleteServiceResponse,
+  DeleteServiceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteServiceRequest,
+  output: DeleteServiceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteStorageClassError = AzureOpError;
+/** Delete a StorageClassResource */
+export const DeleteStorageClass: API.OperationMethod<
+  DeleteStorageClassRequest,
+  DeleteStorageClassResponse,
+  DeleteStorageClassError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteStorageClassRequest,
+  output: DeleteStorageClassResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetBgpPeerError = AzureOpError;
 /** Get a BgpPeer */
-export const BgpPeersGet: API.OperationMethod<
-  BgpPeersGetRequest,
-  BgpPeersGetResponse,
-  BgpPeersGetError,
+export const GetBgpPeer: API.OperationMethod<
+  GetBgpPeerRequest,
+  GetBgpPeerResponse,
+  GetBgpPeerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: BgpPeersGetRequest,
-  output: BgpPeersGetResponse,
+  input: GetBgpPeerRequest,
+  output: GetBgpPeerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type BgpPeersListError = AzureOpError;
-/** List BgpPeer resources by parent */
-export const BgpPeersList: API.OperationMethod<
-  BgpPeersListRequest,
-  BgpPeerListResult,
-  BgpPeersListError,
+export type GetLoadBalancerError = AzureOpError;
+/** Get a LoadBalancer */
+export const GetLoadBalancer: API.OperationMethod<
+  GetLoadBalancerRequest,
+  GetLoadBalancerResponse,
+  GetLoadBalancerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: BgpPeersListRequest,
+  input: GetLoadBalancerRequest,
+  output: GetLoadBalancerResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetServiceError = AzureOpError;
+/** Get a ServiceResource */
+export const GetService: API.OperationMethod<
+  GetServiceRequest,
+  GetServiceResponse,
+  GetServiceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetServiceRequest,
+  output: GetServiceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetStorageClassError = AzureOpError;
+/** Get a StorageClassResource */
+export const GetStorageClass: API.OperationMethod<
+  GetStorageClassRequest,
+  GetStorageClassResponse,
+  GetStorageClassError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetStorageClassRequest,
+  output: GetStorageClassResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListBgpPeersError = AzureOpError;
+/** List BgpPeer resources by parent */
+export const ListBgpPeers: API.OperationMethod<
+  ListBgpPeersRequest,
+  BgpPeerListResult,
+  ListBgpPeersError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListBgpPeersRequest,
   output: BgpPeerListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListLoadBalancersError = AzureOpError;
+/** List LoadBalancer resources by parent */
+export const ListLoadBalancers: API.OperationMethod<
+  ListLoadBalancersRequest,
+  LoadBalancerListResult,
+  ListLoadBalancersError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListLoadBalancersRequest,
+  output: LoadBalancerListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListOperationsError = AzureOpError;
+/** List the operations for the provider */
+export const ListOperations: API.OperationMethod<
+  ListOperationsRequest,
+  ListOperationsResponse,
+  ListOperationsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListOperationsRequest,
+  output: ListOperationsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListServicesError = AzureOpError;
+/** List ServiceResource resources by parent */
+export const ListServices: API.OperationMethod<
+  ListServicesRequest,
+  ServiceResourceListResult,
+  ListServicesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListServicesRequest,
+  output: ServiceResourceListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListStorageClassError = AzureOpError;
+/** List StorageClassResource resources by parent */
+export const ListStorageClass: API.OperationMethod<
+  ListStorageClassRequest,
+  StorageClassResourceListResult,
+  ListStorageClassError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListStorageClassRequest,
+  output: StorageClassResourceListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -1478,66 +1628,6 @@ export const LoadBalancersCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type LoadBalancersDeleteError = AzureOpError;
-/** Delete a LoadBalancer */
-export const LoadBalancersDelete: API.OperationMethod<
-  LoadBalancersDeleteRequest,
-  LoadBalancersDeleteResponse,
-  LoadBalancersDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: LoadBalancersDeleteRequest,
-  output: LoadBalancersDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type LoadBalancersGetError = AzureOpError;
-/** Get a LoadBalancer */
-export const LoadBalancersGet: API.OperationMethod<
-  LoadBalancersGetRequest,
-  LoadBalancersGetResponse,
-  LoadBalancersGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: LoadBalancersGetRequest,
-  output: LoadBalancersGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type LoadBalancersListError = AzureOpError;
-/** List LoadBalancer resources by parent */
-export const LoadBalancersList: API.OperationMethod<
-  LoadBalancersListRequest,
-  LoadBalancerListResult,
-  LoadBalancersListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: LoadBalancersListRequest,
-  output: LoadBalancerListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type OperationsListError = AzureOpError;
-/** List the operations for the provider */
-export const OperationsList: API.OperationMethod<
-  OperationsListRequest,
-  OperationsListResponse,
-  OperationsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: OperationsListRequest,
-  output: OperationsListResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ServicesCreateOrUpdateError = AzureOpError;
 /** Create a ServiceResource */
 export const ServicesCreateOrUpdate: API.OperationMethod<
@@ -1548,51 +1638,6 @@ export const ServicesCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ServicesCreateOrUpdateRequest,
   output: ServicesCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ServicesDeleteError = AzureOpError;
-/** Delete a ServiceResource */
-export const ServicesDelete: API.OperationMethod<
-  ServicesDeleteRequest,
-  ServicesDeleteResponse,
-  ServicesDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ServicesDeleteRequest,
-  output: ServicesDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ServicesGetError = AzureOpError;
-/** Get a ServiceResource */
-export const ServicesGet: API.OperationMethod<
-  ServicesGetRequest,
-  ServicesGetResponse,
-  ServicesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ServicesGetRequest,
-  output: ServicesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ServicesListError = AzureOpError;
-/** List ServiceResource resources by parent */
-export const ServicesList: API.OperationMethod<
-  ServicesListRequest,
-  ServiceResourceListResult,
-  ServicesListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ServicesListRequest,
-  output: ServiceResourceListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -1613,61 +1658,16 @@ export const StorageClassCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type StorageClassDeleteError = AzureOpError;
-/** Delete a StorageClassResource */
-export const StorageClassDelete: API.OperationMethod<
-  StorageClassDeleteRequest,
-  StorageClassDeleteResponse,
-  StorageClassDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: StorageClassDeleteRequest,
-  output: StorageClassDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type StorageClassGetError = AzureOpError;
-/** Get a StorageClassResource */
-export const StorageClassGet: API.OperationMethod<
-  StorageClassGetRequest,
-  StorageClassGetResponse,
-  StorageClassGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: StorageClassGetRequest,
-  output: StorageClassGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type StorageClassListError = AzureOpError;
-/** List StorageClassResource resources by parent */
-export const StorageClassList: API.OperationMethod<
-  StorageClassListRequest,
-  StorageClassResourceListResult,
-  StorageClassListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: StorageClassListRequest,
-  output: StorageClassResourceListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type StorageClassUpdateError = AzureOpError;
+export type UpdateStorageClassError = AzureOpError;
 /** Update a StorageClassResource */
-export const StorageClassUpdate: API.OperationMethod<
-  StorageClassUpdateRequest,
-  StorageClassUpdateResponse,
-  StorageClassUpdateError,
+export const UpdateStorageClass: API.OperationMethod<
+  UpdateStorageClassRequest,
+  UpdateStorageClassResponse,
+  UpdateStorageClassError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: StorageClassUpdateRequest,
-  output: StorageClassUpdateResponse,
+  input: UpdateStorageClassRequest,
+  output: UpdateStorageClassResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

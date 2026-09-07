@@ -14,13 +14,14 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.servicebus#RulesDelete": {
+    "com.azure.servicebus#DeleteRule": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicebus#RulesDeleteRequest"
+        "target": "com.azure.servicebus#DeleteRuleRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -36,7 +37,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.servicebus#RulesDeleteRequest": {
+    "com.azure.servicebus#DeleteRuleRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -509,13 +510,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicebus#RulesGet": {
+    "com.azure.servicebus#GetRule": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicebus#RulesGetRequest"
+        "target": "com.azure.servicebus#GetRuleRequest"
       },
       "output": {
-        "target": "com.azure.servicebus#RulesGetResponse"
+        "target": "com.azure.servicebus#GetRuleResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -528,7 +529,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.servicebus#RulesGetResponse": {
+    "com.azure.servicebus#GetRuleResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -572,7 +573,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.servicebus#RulesGetRequest": {
+    "com.azure.servicebus#GetRuleRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -628,10 +629,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicebus#RulesListBySubscriptions": {
+    "com.azure.servicebus#ListRuleBySubscriptions": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicebus#RulesListBySubscriptionsRequest"
+        "target": "com.azure.servicebus#ListRuleBySubscriptionsRequest"
       },
       "output": {
         "target": "com.azure.servicebus#RuleListResult"
@@ -721,7 +722,7 @@
         "smithy.api#documentation": "Description of Rule Resource."
       }
     },
-    "com.azure.servicebus#RulesListBySubscriptionsRequest": {
+    "com.azure.servicebus#ListRuleBySubscriptionsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -783,10 +784,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicebus#SubscriptionsDelete": {
+    "com.azure.servicebus#DeleteSubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicebus#SubscriptionsDeleteRequest"
+        "target": "com.azure.servicebus#DeleteSubscriptionRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -802,7 +803,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.servicebus#SubscriptionsDeleteRequest": {
+    "com.azure.servicebus#DeleteSubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1319,13 +1320,13 @@
         "smithy.api#documentation": "Description of Subscription Resource."
       }
     },
-    "com.azure.servicebus#SubscriptionsGet": {
+    "com.azure.servicebus#GetSubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicebus#SubscriptionsGetRequest"
+        "target": "com.azure.servicebus#GetSubscriptionRequest"
       },
       "output": {
-        "target": "com.azure.servicebus#SubscriptionsGetResponse"
+        "target": "com.azure.servicebus#GetSubscriptionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1338,7 +1339,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.servicebus#SubscriptionsGetResponse": {
+    "com.azure.servicebus#GetSubscriptionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1382,7 +1383,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.servicebus#SubscriptionsGetRequest": {
+    "com.azure.servicebus#GetSubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1430,10 +1431,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicebus#SubscriptionsListByTopic": {
+    "com.azure.servicebus#ListSubscriptionByTopic": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicebus#SubscriptionsListByTopicRequest"
+        "target": "com.azure.servicebus#ListSubscriptionByTopicRequest"
       },
       "output": {
         "target": "com.azure.servicebus#SBSubscriptionListResult"
@@ -1523,7 +1524,7 @@
         "smithy.api#documentation": "Description of subscription resource."
       }
     },
-    "com.azure.servicebus#SubscriptionsListByTopicRequest": {
+    "com.azure.servicebus#ListSubscriptionByTopicRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1577,10 +1578,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicebus#TopicsRegenerateKeys": {
+    "com.azure.servicebus#RegenerateTopicKeys": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicebus#TopicsRegenerateKeysRequest"
+        "target": "com.azure.servicebus#RegenerateTopicKeysRequest"
       },
       "output": {
         "target": "com.azure.servicebus#AccessKeys"
@@ -1646,7 +1647,7 @@
         "smithy.api#documentation": "Namespace/ServiceBus Connection String"
       }
     },
-    "com.azure.servicebus#TopicsRegenerateKeysRequest": {
+    "com.azure.servicebus#RegenerateTopicKeysRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1727,10 +1728,10 @@
         "smithy.api#documentation": "The access key to regenerate."
       }
     },
-    "com.azure.servicebus#TopicsListKeys": {
+    "com.azure.servicebus#ListTopicKeys": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicebus#TopicsListKeysRequest"
+        "target": "com.azure.servicebus#ListTopicKeysRequest"
       },
       "output": {
         "target": "com.azure.servicebus#AccessKeys"
@@ -1746,7 +1747,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.servicebus#TopicsListKeysRequest": {
+    "com.azure.servicebus#ListTopicKeysRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1794,10 +1795,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicebus#TopicsDeleteAuthorizationRule": {
+    "com.azure.servicebus#DeleteTopicAuthorizationRule": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicebus#TopicsDeleteAuthorizationRuleRequest"
+        "target": "com.azure.servicebus#DeleteTopicAuthorizationRuleRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1813,7 +1814,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.servicebus#TopicsDeleteAuthorizationRuleRequest": {
+    "com.azure.servicebus#DeleteTopicAuthorizationRuleRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2026,13 +2027,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicebus#TopicsGetAuthorizationRule": {
+    "com.azure.servicebus#GetTopicAuthorizationRule": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicebus#TopicsGetAuthorizationRuleRequest"
+        "target": "com.azure.servicebus#GetTopicAuthorizationRuleRequest"
       },
       "output": {
-        "target": "com.azure.servicebus#TopicsGetAuthorizationRuleResponse"
+        "target": "com.azure.servicebus#GetTopicAuthorizationRuleResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2045,7 +2046,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.servicebus#TopicsGetAuthorizationRuleResponse": {
+    "com.azure.servicebus#GetTopicAuthorizationRuleResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2089,7 +2090,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.servicebus#TopicsGetAuthorizationRuleRequest": {
+    "com.azure.servicebus#GetTopicAuthorizationRuleRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2137,10 +2138,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicebus#TopicsListAuthorizationRules": {
+    "com.azure.servicebus#ListTopicAuthorizationRules": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicebus#TopicsListAuthorizationRulesRequest"
+        "target": "com.azure.servicebus#ListTopicAuthorizationRulesRequest"
       },
       "output": {
         "target": "com.azure.servicebus#SBAuthorizationRuleListResult"
@@ -2230,7 +2231,7 @@
         "smithy.api#documentation": "Description of a namespace authorization rule."
       }
     },
-    "com.azure.servicebus#TopicsListAuthorizationRulesRequest": {
+    "com.azure.servicebus#ListTopicAuthorizationRulesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2270,10 +2271,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicebus#TopicsDelete": {
+    "com.azure.servicebus#DeleteTopic": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicebus#TopicsDeleteRequest"
+        "target": "com.azure.servicebus#DeleteTopicRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2289,7 +2290,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.servicebus#TopicsDeleteRequest": {
+    "com.azure.servicebus#DeleteTopicRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2634,13 +2635,13 @@
         "smithy.api#documentation": "The Topic Properties definition."
       }
     },
-    "com.azure.servicebus#TopicsGet": {
+    "com.azure.servicebus#GetTopic": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicebus#TopicsGetRequest"
+        "target": "com.azure.servicebus#GetTopicRequest"
       },
       "output": {
-        "target": "com.azure.servicebus#TopicsGetResponse"
+        "target": "com.azure.servicebus#GetTopicResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2653,7 +2654,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.servicebus#TopicsGetResponse": {
+    "com.azure.servicebus#GetTopicResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2697,7 +2698,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.servicebus#TopicsGetRequest": {
+    "com.azure.servicebus#GetTopicRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2737,10 +2738,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicebus#TopicsListByNamespace": {
+    "com.azure.servicebus#ListTopicByNamespace": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicebus#TopicsListByNamespaceRequest"
+        "target": "com.azure.servicebus#ListTopicByNamespaceRequest"
       },
       "output": {
         "target": "com.azure.servicebus#SBTopicListResult"
@@ -2830,7 +2831,7 @@
         "smithy.api#documentation": "Description of topic resource."
       }
     },
-    "com.azure.servicebus#TopicsListByNamespaceRequest": {
+    "com.azure.servicebus#ListTopicByNamespaceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2876,10 +2877,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicebus#QueuesRegenerateKeys": {
+    "com.azure.servicebus#RegenerateQueueKeys": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicebus#QueuesRegenerateKeysRequest"
+        "target": "com.azure.servicebus#RegenerateQueueKeysRequest"
       },
       "output": {
         "target": "com.azure.servicebus#AccessKeys"
@@ -2895,7 +2896,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.servicebus#QueuesRegenerateKeysRequest": {
+    "com.azure.servicebus#RegenerateQueueKeysRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2956,10 +2957,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicebus#QueuesListKeys": {
+    "com.azure.servicebus#ListQueueKeys": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicebus#QueuesListKeysRequest"
+        "target": "com.azure.servicebus#ListQueueKeysRequest"
       },
       "output": {
         "target": "com.azure.servicebus#AccessKeys"
@@ -2975,7 +2976,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.servicebus#QueuesListKeysRequest": {
+    "com.azure.servicebus#ListQueueKeysRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3023,10 +3024,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicebus#QueuesDeleteAuthorizationRule": {
+    "com.azure.servicebus#DeleteQueueAuthorizationRule": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicebus#QueuesDeleteAuthorizationRuleRequest"
+        "target": "com.azure.servicebus#DeleteQueueAuthorizationRuleRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3042,7 +3043,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.servicebus#QueuesDeleteAuthorizationRuleRequest": {
+    "com.azure.servicebus#DeleteQueueAuthorizationRuleRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3207,13 +3208,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicebus#QueuesGetAuthorizationRule": {
+    "com.azure.servicebus#GetQueueAuthorizationRule": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicebus#QueuesGetAuthorizationRuleRequest"
+        "target": "com.azure.servicebus#GetQueueAuthorizationRuleRequest"
       },
       "output": {
-        "target": "com.azure.servicebus#QueuesGetAuthorizationRuleResponse"
+        "target": "com.azure.servicebus#GetQueueAuthorizationRuleResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3226,7 +3227,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.servicebus#QueuesGetAuthorizationRuleResponse": {
+    "com.azure.servicebus#GetQueueAuthorizationRuleResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3270,7 +3271,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.servicebus#QueuesGetAuthorizationRuleRequest": {
+    "com.azure.servicebus#GetQueueAuthorizationRuleRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3318,10 +3319,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicebus#QueuesListAuthorizationRules": {
+    "com.azure.servicebus#ListQueueAuthorizationRules": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicebus#QueuesListAuthorizationRulesRequest"
+        "target": "com.azure.servicebus#ListQueueAuthorizationRulesRequest"
       },
       "output": {
         "target": "com.azure.servicebus#SBAuthorizationRuleListResult"
@@ -3337,7 +3338,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.servicebus#QueuesListAuthorizationRulesRequest": {
+    "com.azure.servicebus#ListQueueAuthorizationRulesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3377,10 +3378,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicebus#QueuesDelete": {
+    "com.azure.servicebus#DeleteQueue": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicebus#QueuesDeleteRequest"
+        "target": "com.azure.servicebus#DeleteQueueRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3396,7 +3397,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.servicebus#QueuesDeleteRequest": {
+    "com.azure.servicebus#DeleteQueueRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3801,13 +3802,13 @@
         "smithy.api#documentation": "The Queue Properties definition."
       }
     },
-    "com.azure.servicebus#QueuesGet": {
+    "com.azure.servicebus#GetQueue": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicebus#QueuesGetRequest"
+        "target": "com.azure.servicebus#GetQueueRequest"
       },
       "output": {
-        "target": "com.azure.servicebus#QueuesGetResponse"
+        "target": "com.azure.servicebus#GetQueueResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3820,7 +3821,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.servicebus#QueuesGetResponse": {
+    "com.azure.servicebus#GetQueueResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3864,7 +3865,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.servicebus#QueuesGetRequest": {
+    "com.azure.servicebus#GetQueueRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3904,10 +3905,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicebus#QueuesListByNamespace": {
+    "com.azure.servicebus#ListQueueByNamespace": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicebus#QueuesListByNamespaceRequest"
+        "target": "com.azure.servicebus#ListQueueByNamespaceRequest"
       },
       "output": {
         "target": "com.azure.servicebus#SBQueueListResult"
@@ -3997,7 +3998,7 @@
         "smithy.api#documentation": "Description of queue Resource."
       }
     },
-    "com.azure.servicebus#QueuesListByNamespaceRequest": {
+    "com.azure.servicebus#ListQueueByNamespaceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4043,10 +4044,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicebus#PrivateLinkResourcesGet": {
+    "com.azure.servicebus#GetPrivateLinkResource": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicebus#PrivateLinkResourcesGetRequest"
+        "target": "com.azure.servicebus#GetPrivateLinkResourceRequest"
       },
       "output": {
         "target": "com.azure.servicebus#PrivateLinkResourcesListResult"
@@ -4165,7 +4166,7 @@
         "smithy.api#documentation": "Required Members"
       }
     },
-    "com.azure.servicebus#PrivateLinkResourcesGetRequest": {
+    "com.azure.servicebus#GetPrivateLinkResourceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4197,10 +4198,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicebus#PrivateEndpointConnectionsDelete": {
+    "com.azure.servicebus#DeletePrivateEndpointConnection": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicebus#PrivateEndpointConnectionsDeleteRequest"
+        "target": "com.azure.servicebus#DeletePrivateEndpointConnectionRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4216,7 +4217,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.servicebus#PrivateEndpointConnectionsDeleteRequest": {
+    "com.azure.servicebus#DeletePrivateEndpointConnectionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4501,13 +4502,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicebus#PrivateEndpointConnectionsGet": {
+    "com.azure.servicebus#GetPrivateEndpointConnection": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicebus#PrivateEndpointConnectionsGetRequest"
+        "target": "com.azure.servicebus#GetPrivateEndpointConnectionRequest"
       },
       "output": {
-        "target": "com.azure.servicebus#PrivateEndpointConnectionsGetResponse"
+        "target": "com.azure.servicebus#GetPrivateEndpointConnectionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4520,7 +4521,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.servicebus#PrivateEndpointConnectionsGetResponse": {
+    "com.azure.servicebus#GetPrivateEndpointConnectionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -4564,7 +4565,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.servicebus#PrivateEndpointConnectionsGetRequest": {
+    "com.azure.servicebus#GetPrivateEndpointConnectionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4604,10 +4605,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicebus#PrivateEndpointConnectionsList": {
+    "com.azure.servicebus#ListPrivateEndpointConnections": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicebus#PrivateEndpointConnectionsListRequest"
+        "target": "com.azure.servicebus#ListPrivateEndpointConnectionsRequest"
       },
       "output": {
         "target": "com.azure.servicebus#PrivateEndpointConnectionListResult"
@@ -4697,7 +4698,7 @@
         "smithy.api#documentation": "Properties of the PrivateEndpointConnection."
       }
     },
-    "com.azure.servicebus#PrivateEndpointConnectionsListRequest": {
+    "com.azure.servicebus#ListPrivateEndpointConnectionsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4788,13 +4789,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicebus#NetworkSecurityPerimeterConfigurationsGetResourceAssociationName": {
+    "com.azure.servicebus#GetNetworkSecurityPerimeterConfigurationResourceAssociationName": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicebus#NetworkSecurityPerimeterConfigurationsGetResourceAssociationNameRequest"
+        "target": "com.azure.servicebus#GetNetworkSecurityPerimeterConfigurationResourceAssociationNameRequest"
       },
       "output": {
-        "target": "com.azure.servicebus#NetworkSecurityPerimeterConfigurationsGetResourceAssociationNameResponse"
+        "target": "com.azure.servicebus#GetNetworkSecurityPerimeterConfigurationResourceAssociationNameResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4807,7 +4808,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.servicebus#NetworkSecurityPerimeterConfigurationsGetResourceAssociationNameResponse": {
+    "com.azure.servicebus#GetNetworkSecurityPerimeterConfigurationResourceAssociationNameResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -5304,7 +5305,7 @@
         "smithy.api#documentation": "Provisioning state of NetworkSecurityPerimeter configuration propagation"
       }
     },
-    "com.azure.servicebus#NetworkSecurityPerimeterConfigurationsGetResourceAssociationNameRequest": {
+    "com.azure.servicebus#GetNetworkSecurityPerimeterConfigurationResourceAssociationNameRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5344,10 +5345,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicebus#NetworkSecurityPerimeterConfigurationList2": {
+    "com.azure.servicebus#ListNetworkSecurityPerimeterConfiguration": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicebus#NetworkSecurityPerimeterConfigurationListRequest"
+        "target": "com.azure.servicebus#ListNetworkSecurityPerimeterConfigurationRequest"
       },
       "output": {
         "target": "com.azure.servicebus#NetworkSecurityPerimeterConfigurationList"
@@ -5437,7 +5438,7 @@
         "smithy.api#documentation": "Network Security Perimeter related configurations of a given namespace"
       }
     },
-    "com.azure.servicebus#NetworkSecurityPerimeterConfigurationListRequest": {
+    "com.azure.servicebus#ListNetworkSecurityPerimeterConfigurationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5735,13 +5736,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicebus#NamespacesGetNetworkRuleSet": {
+    "com.azure.servicebus#GetNamespaceNetworkRuleSet": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicebus#NamespacesGetNetworkRuleSetRequest"
+        "target": "com.azure.servicebus#GetNamespaceNetworkRuleSetRequest"
       },
       "output": {
-        "target": "com.azure.servicebus#NamespacesGetNetworkRuleSetResponse"
+        "target": "com.azure.servicebus#GetNamespaceNetworkRuleSetResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5754,7 +5755,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.servicebus#NamespacesGetNetworkRuleSetResponse": {
+    "com.azure.servicebus#GetNamespaceNetworkRuleSetResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -5798,7 +5799,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.servicebus#NamespacesGetNetworkRuleSetRequest": {
+    "com.azure.servicebus#GetNamespaceNetworkRuleSetRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5830,10 +5831,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicebus#NamespacesListNetworkRuleSets": {
+    "com.azure.servicebus#ListNamespaceNetworkRuleSets": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicebus#NamespacesListNetworkRuleSetsRequest"
+        "target": "com.azure.servicebus#ListNamespaceNetworkRuleSetsRequest"
       },
       "output": {
         "target": "com.azure.servicebus#NetworkRuleSetListResult"
@@ -5923,7 +5924,7 @@
         "smithy.api#documentation": "Description of NetworkRuleSet resource."
       }
     },
-    "com.azure.servicebus#NamespacesListNetworkRuleSetsRequest": {
+    "com.azure.servicebus#ListNamespaceNetworkRuleSetsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5955,10 +5956,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicebus#MigrationConfigsCompleteMigration": {
+    "com.azure.servicebus#CompleteMigrationConfigMigration": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicebus#MigrationConfigsCompleteMigrationRequest"
+        "target": "com.azure.servicebus#CompleteMigrationConfigMigrationRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -5974,7 +5975,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.servicebus#MigrationConfigsCompleteMigrationRequest": {
+    "com.azure.servicebus#CompleteMigrationConfigMigrationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6002,7 +6003,7 @@
           }
         },
         "configName": {
-          "target": "com.azure.servicebus#MigrationConfigsCompleteMigrationRequestConfigName",
+          "target": "com.azure.servicebus#CompleteMigrationConfigMigrationRequestConfigName",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -6014,7 +6015,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicebus#MigrationConfigsCompleteMigrationRequestConfigName": {
+    "com.azure.servicebus#CompleteMigrationConfigMigrationRequestConfigName": {
       "type": "enum",
       "members": {
         "DEFAULT": {
@@ -6097,10 +6098,10 @@
       },
       "traits": {}
     },
-    "com.azure.servicebus#MigrationConfigsDelete": {
+    "com.azure.servicebus#DeleteMigrationConfig": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicebus#MigrationConfigsDeleteRequest"
+        "target": "com.azure.servicebus#DeleteMigrationConfigRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -6116,7 +6117,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.servicebus#MigrationConfigsDeleteRequest": {
+    "com.azure.servicebus#DeleteMigrationConfigRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6144,7 +6145,7 @@
           }
         },
         "configName": {
-          "target": "com.azure.servicebus#MigrationConfigsDeleteRequestConfigName",
+          "target": "com.azure.servicebus#DeleteMigrationConfigRequestConfigName",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -6156,7 +6157,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicebus#MigrationConfigsDeleteRequestConfigName": {
+    "com.azure.servicebus#DeleteMigrationConfigRequestConfigName": {
       "type": "enum",
       "members": {
         "DEFAULT": {
@@ -6351,13 +6352,13 @@
       },
       "traits": {}
     },
-    "com.azure.servicebus#MigrationConfigsGet": {
+    "com.azure.servicebus#GetMigrationConfig": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicebus#MigrationConfigsGetRequest"
+        "target": "com.azure.servicebus#GetMigrationConfigRequest"
       },
       "output": {
-        "target": "com.azure.servicebus#MigrationConfigsGetResponse"
+        "target": "com.azure.servicebus#GetMigrationConfigResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6370,7 +6371,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.servicebus#MigrationConfigsGetResponse": {
+    "com.azure.servicebus#GetMigrationConfigResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -6414,7 +6415,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.servicebus#MigrationConfigsGetRequest": {
+    "com.azure.servicebus#GetMigrationConfigRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6442,7 +6443,7 @@
           }
         },
         "configName": {
-          "target": "com.azure.servicebus#MigrationConfigsGetRequestConfigName",
+          "target": "com.azure.servicebus#GetMigrationConfigRequestConfigName",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -6454,7 +6455,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicebus#MigrationConfigsGetRequestConfigName": {
+    "com.azure.servicebus#GetMigrationConfigRequestConfigName": {
       "type": "enum",
       "members": {
         "DEFAULT": {
@@ -6466,10 +6467,10 @@
       },
       "traits": {}
     },
-    "com.azure.servicebus#MigrationConfigsList": {
+    "com.azure.servicebus#ListMigrationConfigs": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicebus#MigrationConfigsListRequest"
+        "target": "com.azure.servicebus#ListMigrationConfigsRequest"
       },
       "output": {
         "target": "com.azure.servicebus#MigrationConfigListResult"
@@ -6559,7 +6560,7 @@
         "smithy.api#documentation": "Single item in List or Get Migration Config operation"
       }
     },
-    "com.azure.servicebus#MigrationConfigsListRequest": {
+    "com.azure.servicebus#ListMigrationConfigsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6663,10 +6664,10 @@
       },
       "traits": {}
     },
-    "com.azure.servicebus#DisasterRecoveryConfigsCheckNameAvailability": {
+    "com.azure.servicebus#CheckDisasterRecoveryConfigNameAvailability": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicebus#DisasterRecoveryConfigsCheckNameAvailabilityRequest"
+        "target": "com.azure.servicebus#CheckDisasterRecoveryConfigNameAvailabilityRequest"
       },
       "output": {
         "target": "com.azure.servicebus#CheckNameAvailabilityResult"
@@ -6752,7 +6753,7 @@
         "smithy.api#documentation": "Specifies the reason for the unavailability of the service."
       }
     },
-    "com.azure.servicebus#DisasterRecoveryConfigsCheckNameAvailabilityRequest": {
+    "com.azure.servicebus#CheckDisasterRecoveryConfigNameAvailabilityRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6929,10 +6930,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicebus#DisasterRecoveryConfigsListKeys": {
+    "com.azure.servicebus#ListDisasterRecoveryConfigKeys": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicebus#DisasterRecoveryConfigsListKeysRequest"
+        "target": "com.azure.servicebus#ListDisasterRecoveryConfigKeysRequest"
       },
       "output": {
         "target": "com.azure.servicebus#AccessKeys"
@@ -6948,7 +6949,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.servicebus#DisasterRecoveryConfigsListKeysRequest": {
+    "com.azure.servicebus#ListDisasterRecoveryConfigKeysRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6996,13 +6997,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicebus#DisasterRecoveryConfigsGetAuthorizationRule": {
+    "com.azure.servicebus#GetDisasterRecoveryConfigAuthorizationRule": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicebus#DisasterRecoveryConfigsGetAuthorizationRuleRequest"
+        "target": "com.azure.servicebus#GetDisasterRecoveryConfigAuthorizationRuleRequest"
       },
       "output": {
-        "target": "com.azure.servicebus#DisasterRecoveryConfigsGetAuthorizationRuleResponse"
+        "target": "com.azure.servicebus#GetDisasterRecoveryConfigAuthorizationRuleResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7015,7 +7016,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.servicebus#DisasterRecoveryConfigsGetAuthorizationRuleResponse": {
+    "com.azure.servicebus#GetDisasterRecoveryConfigAuthorizationRuleResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -7059,7 +7060,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.servicebus#DisasterRecoveryConfigsGetAuthorizationRuleRequest": {
+    "com.azure.servicebus#GetDisasterRecoveryConfigAuthorizationRuleRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7107,10 +7108,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicebus#DisasterRecoveryConfigsListAuthorizationRules": {
+    "com.azure.servicebus#ListDisasterRecoveryConfigAuthorizationRules": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicebus#DisasterRecoveryConfigsListAuthorizationRulesRequest"
+        "target": "com.azure.servicebus#ListDisasterRecoveryConfigAuthorizationRulesRequest"
       },
       "output": {
         "target": "com.azure.servicebus#SBAuthorizationRuleListResult"
@@ -7126,7 +7127,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.servicebus#DisasterRecoveryConfigsListAuthorizationRulesRequest": {
+    "com.azure.servicebus#ListDisasterRecoveryConfigAuthorizationRulesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7166,10 +7167,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicebus#DisasterRecoveryConfigsDelete": {
+    "com.azure.servicebus#DeleteDisasterRecoveryConfig": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicebus#DisasterRecoveryConfigsDeleteRequest"
+        "target": "com.azure.servicebus#DeleteDisasterRecoveryConfigRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -7185,7 +7186,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.servicebus#DisasterRecoveryConfigsDeleteRequest": {
+    "com.azure.servicebus#DeleteDisasterRecoveryConfigRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7444,13 +7445,13 @@
         "smithy.api#documentation": "Properties required to the Create Or Update Alias(Disaster Recovery configurations)"
       }
     },
-    "com.azure.servicebus#DisasterRecoveryConfigsGet": {
+    "com.azure.servicebus#GetDisasterRecoveryConfig": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicebus#DisasterRecoveryConfigsGetRequest"
+        "target": "com.azure.servicebus#GetDisasterRecoveryConfigRequest"
       },
       "output": {
-        "target": "com.azure.servicebus#DisasterRecoveryConfigsGetResponse"
+        "target": "com.azure.servicebus#GetDisasterRecoveryConfigResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7463,7 +7464,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.servicebus#DisasterRecoveryConfigsGetResponse": {
+    "com.azure.servicebus#GetDisasterRecoveryConfigResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -7507,7 +7508,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.servicebus#DisasterRecoveryConfigsGetRequest": {
+    "com.azure.servicebus#GetDisasterRecoveryConfigRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7547,10 +7548,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicebus#DisasterRecoveryConfigsList": {
+    "com.azure.servicebus#ListDisasterRecoveryConfigs": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicebus#DisasterRecoveryConfigsListRequest"
+        "target": "com.azure.servicebus#ListDisasterRecoveryConfigsRequest"
       },
       "output": {
         "target": "com.azure.servicebus#ArmDisasterRecoveryListResult"
@@ -7640,7 +7641,7 @@
         "smithy.api#documentation": "Single item in List or Get Alias(Disaster Recovery configuration) operation"
       }
     },
-    "com.azure.servicebus#DisasterRecoveryConfigsListRequest": {
+    "com.azure.servicebus#ListDisasterRecoveryConfigsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7672,10 +7673,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicebus#NamespacesRegenerateKeys": {
+    "com.azure.servicebus#RegenerateNamespaceKeys": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicebus#NamespacesRegenerateKeysRequest"
+        "target": "com.azure.servicebus#RegenerateNamespaceKeysRequest"
       },
       "output": {
         "target": "com.azure.servicebus#AccessKeys"
@@ -7691,7 +7692,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.servicebus#NamespacesRegenerateKeysRequest": {
+    "com.azure.servicebus#RegenerateNamespaceKeysRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7744,10 +7745,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicebus#NamespacesListKeys": {
+    "com.azure.servicebus#ListNamespaceKeys": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicebus#NamespacesListKeysRequest"
+        "target": "com.azure.servicebus#ListNamespaceKeysRequest"
       },
       "output": {
         "target": "com.azure.servicebus#AccessKeys"
@@ -7763,7 +7764,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.servicebus#NamespacesListKeysRequest": {
+    "com.azure.servicebus#ListNamespaceKeysRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7803,10 +7804,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicebus#NamespacesDeleteAuthorizationRule": {
+    "com.azure.servicebus#DeleteNamespaceAuthorizationRule": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicebus#NamespacesDeleteAuthorizationRuleRequest"
+        "target": "com.azure.servicebus#DeleteNamespaceAuthorizationRuleRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -7822,7 +7823,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.servicebus#NamespacesDeleteAuthorizationRuleRequest": {
+    "com.azure.servicebus#DeleteNamespaceAuthorizationRuleRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7971,13 +7972,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicebus#NamespacesGetAuthorizationRule": {
+    "com.azure.servicebus#GetNamespaceAuthorizationRule": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicebus#NamespacesGetAuthorizationRuleRequest"
+        "target": "com.azure.servicebus#GetNamespaceAuthorizationRuleRequest"
       },
       "output": {
-        "target": "com.azure.servicebus#NamespacesGetAuthorizationRuleResponse"
+        "target": "com.azure.servicebus#GetNamespaceAuthorizationRuleResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7990,7 +7991,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.servicebus#NamespacesGetAuthorizationRuleResponse": {
+    "com.azure.servicebus#GetNamespaceAuthorizationRuleResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -8034,7 +8035,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.servicebus#NamespacesGetAuthorizationRuleRequest": {
+    "com.azure.servicebus#GetNamespaceAuthorizationRuleRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8074,10 +8075,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicebus#NamespacesListAuthorizationRules": {
+    "com.azure.servicebus#ListNamespaceAuthorizationRules": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicebus#NamespacesListAuthorizationRulesRequest"
+        "target": "com.azure.servicebus#ListNamespaceAuthorizationRulesRequest"
       },
       "output": {
         "target": "com.azure.servicebus#SBAuthorizationRuleListResult"
@@ -8093,7 +8094,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.servicebus#NamespacesListAuthorizationRulesRequest": {
+    "com.azure.servicebus#ListNamespaceAuthorizationRulesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8125,10 +8126,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicebus#NamespacesDelete": {
+    "com.azure.servicebus#DeleteNamespace": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicebus#NamespacesDeleteRequest"
+        "target": "com.azure.servicebus#DeleteNamespaceRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -8144,7 +8145,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.servicebus#NamespacesDeleteRequest": {
+    "com.azure.servicebus#DeleteNamespaceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8176,13 +8177,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicebus#NamespacesUpdate": {
+    "com.azure.servicebus#UpdateNamespace": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicebus#NamespacesUpdateRequest"
+        "target": "com.azure.servicebus#UpdateNamespaceRequest"
       },
       "output": {
-        "target": "com.azure.servicebus#NamespacesUpdateResponse"
+        "target": "com.azure.servicebus#UpdateNamespaceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -8195,7 +8196,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.servicebus#NamespacesUpdateResponse": {
+    "com.azure.servicebus#UpdateNamespaceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -8223,7 +8224,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.servicebus#NamespacesUpdateResponseTagsMap",
+          "target": "com.azure.servicebus#UpdateNamespaceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -8827,7 +8828,7 @@
         "smithy.api#documentation": "The minimum TLS version for the cluster to support, e.g. '1.3'"
       }
     },
-    "com.azure.servicebus#NamespacesUpdateResponseTagsMap": {
+    "com.azure.servicebus#UpdateNamespaceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8839,7 +8840,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.servicebus#NamespacesUpdateRequest": {
+    "com.azure.servicebus#UpdateNamespaceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8873,7 +8874,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.servicebus#NamespacesUpdateRequestTagsMap",
+          "target": "com.azure.servicebus#UpdateNamespaceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags"
           }
@@ -8995,7 +8996,7 @@
         "smithy.api#documentation": "Properties of the PrivateEndpointConnection."
       }
     },
-    "com.azure.servicebus#NamespacesUpdateRequestTagsMap": {
+    "com.azure.servicebus#UpdateNamespaceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -9282,13 +9283,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.servicebus#NamespacesGet": {
+    "com.azure.servicebus#GetNamespace": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicebus#NamespacesGetRequest"
+        "target": "com.azure.servicebus#GetNamespaceRequest"
       },
       "output": {
-        "target": "com.azure.servicebus#NamespacesGetResponse"
+        "target": "com.azure.servicebus#GetNamespaceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -9301,7 +9302,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.servicebus#NamespacesGetResponse": {
+    "com.azure.servicebus#GetNamespaceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -9329,7 +9330,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.servicebus#NamespacesGetResponseTagsMap",
+          "target": "com.azure.servicebus#GetNamespaceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -9364,7 +9365,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.servicebus#NamespacesGetResponseTagsMap": {
+    "com.azure.servicebus#GetNamespaceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -9376,7 +9377,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.servicebus#NamespacesGetRequest": {
+    "com.azure.servicebus#GetNamespaceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9408,10 +9409,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicebus#NamespacesListByResourceGroup": {
+    "com.azure.servicebus#ListNamespaceByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicebus#NamespacesListByResourceGroupRequest"
+        "target": "com.azure.servicebus#ListNamespaceByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.servicebus#SBNamespaceListResult"
@@ -9532,7 +9533,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.servicebus#NamespacesListByResourceGroupRequest": {
+    "com.azure.servicebus#ListNamespaceByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9556,10 +9557,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicebus#NamespacesList": {
+    "com.azure.servicebus#ListNamespaces": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicebus#NamespacesListRequest"
+        "target": "com.azure.servicebus#ListNamespacesRequest"
       },
       "output": {
         "target": "com.azure.servicebus#SBNamespaceListResult"
@@ -9575,7 +9576,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.servicebus#NamespacesListRequest": {
+    "com.azure.servicebus#ListNamespacesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9591,10 +9592,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicebus#NamespacesCheckNameAvailability": {
+    "com.azure.servicebus#CheckNamespaceNameAvailability": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicebus#NamespacesCheckNameAvailabilityRequest"
+        "target": "com.azure.servicebus#CheckNamespaceNameAvailabilityRequest"
       },
       "output": {
         "target": "com.azure.servicebus#CheckNameAvailabilityResult"
@@ -9610,7 +9611,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.servicebus#NamespacesCheckNameAvailabilityRequest": {
+    "com.azure.servicebus#CheckNamespaceNameAvailabilityRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9633,7 +9634,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicebus#OperationsList": {
+    "com.azure.servicebus#ListOperations": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -9757,145 +9758,145 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.servicebus#RulesDelete"
+          "target": "com.azure.servicebus#DeleteRule"
         },
         {
           "target": "com.azure.servicebus#RulesCreateOrUpdate"
         },
         {
-          "target": "com.azure.servicebus#RulesGet"
+          "target": "com.azure.servicebus#GetRule"
         },
         {
-          "target": "com.azure.servicebus#RulesListBySubscriptions"
+          "target": "com.azure.servicebus#ListRuleBySubscriptions"
         },
         {
-          "target": "com.azure.servicebus#SubscriptionsDelete"
+          "target": "com.azure.servicebus#DeleteSubscription"
         },
         {
           "target": "com.azure.servicebus#SubscriptionsCreateOrUpdate"
         },
         {
-          "target": "com.azure.servicebus#SubscriptionsGet"
+          "target": "com.azure.servicebus#GetSubscription"
         },
         {
-          "target": "com.azure.servicebus#SubscriptionsListByTopic"
+          "target": "com.azure.servicebus#ListSubscriptionByTopic"
         },
         {
-          "target": "com.azure.servicebus#TopicsRegenerateKeys"
+          "target": "com.azure.servicebus#RegenerateTopicKeys"
         },
         {
-          "target": "com.azure.servicebus#TopicsListKeys"
+          "target": "com.azure.servicebus#ListTopicKeys"
         },
         {
-          "target": "com.azure.servicebus#TopicsDeleteAuthorizationRule"
+          "target": "com.azure.servicebus#DeleteTopicAuthorizationRule"
         },
         {
           "target": "com.azure.servicebus#TopicsCreateOrUpdateAuthorizationRule"
         },
         {
-          "target": "com.azure.servicebus#TopicsGetAuthorizationRule"
+          "target": "com.azure.servicebus#GetTopicAuthorizationRule"
         },
         {
-          "target": "com.azure.servicebus#TopicsListAuthorizationRules"
+          "target": "com.azure.servicebus#ListTopicAuthorizationRules"
         },
         {
-          "target": "com.azure.servicebus#TopicsDelete"
+          "target": "com.azure.servicebus#DeleteTopic"
         },
         {
           "target": "com.azure.servicebus#TopicsCreateOrUpdate"
         },
         {
-          "target": "com.azure.servicebus#TopicsGet"
+          "target": "com.azure.servicebus#GetTopic"
         },
         {
-          "target": "com.azure.servicebus#TopicsListByNamespace"
+          "target": "com.azure.servicebus#ListTopicByNamespace"
         },
         {
-          "target": "com.azure.servicebus#QueuesRegenerateKeys"
+          "target": "com.azure.servicebus#RegenerateQueueKeys"
         },
         {
-          "target": "com.azure.servicebus#QueuesListKeys"
+          "target": "com.azure.servicebus#ListQueueKeys"
         },
         {
-          "target": "com.azure.servicebus#QueuesDeleteAuthorizationRule"
+          "target": "com.azure.servicebus#DeleteQueueAuthorizationRule"
         },
         {
           "target": "com.azure.servicebus#QueuesCreateOrUpdateAuthorizationRule"
         },
         {
-          "target": "com.azure.servicebus#QueuesGetAuthorizationRule"
+          "target": "com.azure.servicebus#GetQueueAuthorizationRule"
         },
         {
-          "target": "com.azure.servicebus#QueuesListAuthorizationRules"
+          "target": "com.azure.servicebus#ListQueueAuthorizationRules"
         },
         {
-          "target": "com.azure.servicebus#QueuesDelete"
+          "target": "com.azure.servicebus#DeleteQueue"
         },
         {
           "target": "com.azure.servicebus#QueuesCreateOrUpdate"
         },
         {
-          "target": "com.azure.servicebus#QueuesGet"
+          "target": "com.azure.servicebus#GetQueue"
         },
         {
-          "target": "com.azure.servicebus#QueuesListByNamespace"
+          "target": "com.azure.servicebus#ListQueueByNamespace"
         },
         {
-          "target": "com.azure.servicebus#PrivateLinkResourcesGet"
+          "target": "com.azure.servicebus#GetPrivateLinkResource"
         },
         {
-          "target": "com.azure.servicebus#PrivateEndpointConnectionsDelete"
+          "target": "com.azure.servicebus#DeletePrivateEndpointConnection"
         },
         {
           "target": "com.azure.servicebus#PrivateEndpointConnectionsCreateOrUpdate"
         },
         {
-          "target": "com.azure.servicebus#PrivateEndpointConnectionsGet"
+          "target": "com.azure.servicebus#GetPrivateEndpointConnection"
         },
         {
-          "target": "com.azure.servicebus#PrivateEndpointConnectionsList"
+          "target": "com.azure.servicebus#ListPrivateEndpointConnections"
         },
         {
           "target": "com.azure.servicebus#NetworkSecurityPerimeterConfigurationsReconcile"
         },
         {
-          "target": "com.azure.servicebus#NetworkSecurityPerimeterConfigurationsGetResourceAssociationName"
+          "target": "com.azure.servicebus#GetNetworkSecurityPerimeterConfigurationResourceAssociationName"
         },
         {
-          "target": "com.azure.servicebus#NetworkSecurityPerimeterConfigurationList2"
+          "target": "com.azure.servicebus#ListNetworkSecurityPerimeterConfiguration"
         },
         {
           "target": "com.azure.servicebus#NamespacesCreateOrUpdateNetworkRuleSet"
         },
         {
-          "target": "com.azure.servicebus#NamespacesGetNetworkRuleSet"
+          "target": "com.azure.servicebus#GetNamespaceNetworkRuleSet"
         },
         {
-          "target": "com.azure.servicebus#NamespacesListNetworkRuleSets"
+          "target": "com.azure.servicebus#ListNamespaceNetworkRuleSets"
         },
         {
-          "target": "com.azure.servicebus#MigrationConfigsCompleteMigration"
+          "target": "com.azure.servicebus#CompleteMigrationConfigMigration"
         },
         {
           "target": "com.azure.servicebus#MigrationConfigsRevert"
         },
         {
-          "target": "com.azure.servicebus#MigrationConfigsDelete"
+          "target": "com.azure.servicebus#DeleteMigrationConfig"
         },
         {
           "target": "com.azure.servicebus#MigrationConfigsCreateAndStartMigration"
         },
         {
-          "target": "com.azure.servicebus#MigrationConfigsGet"
+          "target": "com.azure.servicebus#GetMigrationConfig"
         },
         {
-          "target": "com.azure.servicebus#MigrationConfigsList"
+          "target": "com.azure.servicebus#ListMigrationConfigs"
         },
         {
           "target": "com.azure.servicebus#NamespacesFailover"
         },
         {
-          "target": "com.azure.servicebus#DisasterRecoveryConfigsCheckNameAvailability"
+          "target": "com.azure.servicebus#CheckDisasterRecoveryConfigNameAvailability"
         },
         {
           "target": "com.azure.servicebus#DisasterRecoveryConfigsFailOver"
@@ -9904,67 +9905,67 @@
           "target": "com.azure.servicebus#DisasterRecoveryConfigsBreakPairing"
         },
         {
-          "target": "com.azure.servicebus#DisasterRecoveryConfigsListKeys"
+          "target": "com.azure.servicebus#ListDisasterRecoveryConfigKeys"
         },
         {
-          "target": "com.azure.servicebus#DisasterRecoveryConfigsGetAuthorizationRule"
+          "target": "com.azure.servicebus#GetDisasterRecoveryConfigAuthorizationRule"
         },
         {
-          "target": "com.azure.servicebus#DisasterRecoveryConfigsListAuthorizationRules"
+          "target": "com.azure.servicebus#ListDisasterRecoveryConfigAuthorizationRules"
         },
         {
-          "target": "com.azure.servicebus#DisasterRecoveryConfigsDelete"
+          "target": "com.azure.servicebus#DeleteDisasterRecoveryConfig"
         },
         {
           "target": "com.azure.servicebus#DisasterRecoveryConfigsCreateOrUpdate"
         },
         {
-          "target": "com.azure.servicebus#DisasterRecoveryConfigsGet"
+          "target": "com.azure.servicebus#GetDisasterRecoveryConfig"
         },
         {
-          "target": "com.azure.servicebus#DisasterRecoveryConfigsList"
+          "target": "com.azure.servicebus#ListDisasterRecoveryConfigs"
         },
         {
-          "target": "com.azure.servicebus#NamespacesRegenerateKeys"
+          "target": "com.azure.servicebus#RegenerateNamespaceKeys"
         },
         {
-          "target": "com.azure.servicebus#NamespacesListKeys"
+          "target": "com.azure.servicebus#ListNamespaceKeys"
         },
         {
-          "target": "com.azure.servicebus#NamespacesDeleteAuthorizationRule"
+          "target": "com.azure.servicebus#DeleteNamespaceAuthorizationRule"
         },
         {
           "target": "com.azure.servicebus#NamespacesCreateOrUpdateAuthorizationRule"
         },
         {
-          "target": "com.azure.servicebus#NamespacesGetAuthorizationRule"
+          "target": "com.azure.servicebus#GetNamespaceAuthorizationRule"
         },
         {
-          "target": "com.azure.servicebus#NamespacesListAuthorizationRules"
+          "target": "com.azure.servicebus#ListNamespaceAuthorizationRules"
         },
         {
-          "target": "com.azure.servicebus#NamespacesDelete"
+          "target": "com.azure.servicebus#DeleteNamespace"
         },
         {
-          "target": "com.azure.servicebus#NamespacesUpdate"
+          "target": "com.azure.servicebus#UpdateNamespace"
         },
         {
           "target": "com.azure.servicebus#NamespacesCreateOrUpdate"
         },
         {
-          "target": "com.azure.servicebus#NamespacesGet"
+          "target": "com.azure.servicebus#GetNamespace"
         },
         {
-          "target": "com.azure.servicebus#NamespacesListByResourceGroup"
+          "target": "com.azure.servicebus#ListNamespaceByResourceGroup"
         },
         {
-          "target": "com.azure.servicebus#NamespacesList"
+          "target": "com.azure.servicebus#ListNamespaces"
         },
         {
-          "target": "com.azure.servicebus#NamespacesCheckNameAvailability"
+          "target": "com.azure.servicebus#CheckNamespaceNameAvailability"
         },
         {
-          "target": "com.azure.servicebus#OperationsList"
+          "target": "com.azure.servicebus#ListOperations"
         }
       ],
       "traits": {

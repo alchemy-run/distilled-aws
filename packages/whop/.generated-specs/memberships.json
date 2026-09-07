@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.whop.memberships#ListMembershipsRequestStatus": {
@@ -608,7 +609,7 @@
         "smithy.api#documentation": "Invite to a Membership\n\nSends an email inviting one recipient to join the account through a free plan. Identify the recipient by exactly one of `user_id` or `email`. The invitation is bound to that recipient; after signing in, accepting it immediately grants the membership without checkout. This Experimental endpoint is available only to accounts enabled for membership invitations."
       }
     },
-    "com.whop.memberships#RetrieveMembershipRequest": {
+    "com.whop.memberships#GetMembershipRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -624,10 +625,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.whop.memberships#RetrieveMembership": {
+    "com.whop.memberships#GetMembership": {
       "type": "operation",
       "input": {
-        "target": "com.whop.memberships#RetrieveMembershipRequest"
+        "target": "com.whop.memberships#GetMembershipRequest"
       },
       "output": {
         "target": "com.whop.memberships#Membership"
@@ -2347,7 +2348,7 @@
           "target": "com.whop.memberships#InviteMembership"
         },
         {
-          "target": "com.whop.memberships#RetrieveMembership"
+          "target": "com.whop.memberships#GetMembership"
         },
         {
           "target": "com.whop.memberships#UpdateMembership"

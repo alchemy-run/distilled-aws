@@ -14,13 +14,14 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.cognitiveservices#CommitmentPlansDeleteAssociation": {
+    "com.azure.cognitiveservices#DeleteCommitmentPlanAssociation": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#CommitmentPlansDeleteAssociationRequest"
+        "target": "com.azure.cognitiveservices#DeleteCommitmentPlanAssociationRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -36,7 +37,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#CommitmentPlansDeleteAssociationRequest": {
+    "com.azure.cognitiveservices#DeleteCommitmentPlanAssociationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -343,13 +344,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.cognitiveservices#CommitmentPlansGetAssociation": {
+    "com.azure.cognitiveservices#GetCommitmentPlanAssociation": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#CommitmentPlansGetAssociationRequest"
+        "target": "com.azure.cognitiveservices#GetCommitmentPlanAssociationRequest"
       },
       "output": {
-        "target": "com.azure.cognitiveservices#CommitmentPlansGetAssociationResponse"
+        "target": "com.azure.cognitiveservices#GetCommitmentPlanAssociationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -362,7 +363,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#CommitmentPlansGetAssociationResponse": {
+    "com.azure.cognitiveservices#GetCommitmentPlanAssociationResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -402,7 +403,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.cognitiveservices#CommitmentPlansGetAssociationResponseTagsMap",
+          "target": "com.azure.cognitiveservices#GetCommitmentPlanAssociationResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -412,7 +413,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.cognitiveservices#CommitmentPlansGetAssociationResponseTagsMap": {
+    "com.azure.cognitiveservices#GetCommitmentPlanAssociationResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -424,7 +425,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.cognitiveservices#CommitmentPlansGetAssociationRequest": {
+    "com.azure.cognitiveservices#GetCommitmentPlanAssociationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -464,10 +465,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#CommitmentPlansListAssociations": {
+    "com.azure.cognitiveservices#ListCommitmentPlanAssociations": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#CommitmentPlansListAssociationsRequest"
+        "target": "com.azure.cognitiveservices#ListCommitmentPlanAssociationsRequest"
       },
       "output": {
         "target": "com.azure.cognitiveservices#CommitmentPlanAccountAssociationListResult"
@@ -574,7 +575,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.cognitiveservices#CommitmentPlansListAssociationsRequest": {
+    "com.azure.cognitiveservices#ListCommitmentPlanAssociationsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -606,10 +607,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#CommitmentPlansDeletePlan": {
+    "com.azure.cognitiveservices#DeleteCommitmentPlanPlan": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#CommitmentPlansDeletePlanRequest"
+        "target": "com.azure.cognitiveservices#DeleteCommitmentPlanPlanRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -625,7 +626,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#CommitmentPlansDeletePlanRequest": {
+    "com.azure.cognitiveservices#DeleteCommitmentPlanPlanRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -657,13 +658,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#CommitmentPlansUpdatePlan": {
+    "com.azure.cognitiveservices#UpdateCommitmentPlanPlan": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#CommitmentPlansUpdatePlanRequest"
+        "target": "com.azure.cognitiveservices#UpdateCommitmentPlanPlanRequest"
       },
       "output": {
-        "target": "com.azure.cognitiveservices#CommitmentPlansUpdatePlanResponse"
+        "target": "com.azure.cognitiveservices#UpdateCommitmentPlanPlanResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -676,7 +677,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#CommitmentPlansUpdatePlanResponse": {
+    "com.azure.cognitiveservices#UpdateCommitmentPlanPlanResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -710,7 +711,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.cognitiveservices#CommitmentPlansUpdatePlanResponseTagsMap",
+          "target": "com.azure.cognitiveservices#UpdateCommitmentPlanPlanResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -821,7 +822,7 @@
         "smithy.api#documentation": "This field is required to be implemented by the Resource Provider if the service has more than one tier, but is not required on a PUT."
       }
     },
-    "com.azure.cognitiveservices#CommitmentPlansUpdatePlanResponseTagsMap": {
+    "com.azure.cognitiveservices#UpdateCommitmentPlanPlanResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1044,7 +1045,7 @@
         "smithy.api#documentation": "Gets the status of the resource at the time the operation was called."
       }
     },
-    "com.azure.cognitiveservices#CommitmentPlansUpdatePlanRequest": {
+    "com.azure.cognitiveservices#UpdateCommitmentPlanPlanRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1072,7 +1073,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.cognitiveservices#CommitmentPlansUpdatePlanRequestTagsMap",
+          "target": "com.azure.cognitiveservices#UpdateCommitmentPlanPlanRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1088,7 +1089,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#CommitmentPlansUpdatePlanRequestTagsMap": {
+    "com.azure.cognitiveservices#UpdateCommitmentPlanPlanRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1337,13 +1338,13 @@
         "smithy.api#documentation": "Cognitive Services account commitment period."
       }
     },
-    "com.azure.cognitiveservices#CommitmentPlansGetPlan": {
+    "com.azure.cognitiveservices#GetCommitmentPlanPlan": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#CommitmentPlansGetPlanRequest"
+        "target": "com.azure.cognitiveservices#GetCommitmentPlanPlanRequest"
       },
       "output": {
-        "target": "com.azure.cognitiveservices#CommitmentPlansGetPlanResponse"
+        "target": "com.azure.cognitiveservices#GetCommitmentPlanPlanResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1356,7 +1357,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#CommitmentPlansGetPlanResponse": {
+    "com.azure.cognitiveservices#GetCommitmentPlanPlanResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1390,7 +1391,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.cognitiveservices#CommitmentPlansGetPlanResponseTagsMap",
+          "target": "com.azure.cognitiveservices#GetCommitmentPlanPlanResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1424,7 +1425,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.cognitiveservices#CommitmentPlansGetPlanResponseTagsMap": {
+    "com.azure.cognitiveservices#GetCommitmentPlanPlanResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1436,7 +1437,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.cognitiveservices#CommitmentPlansGetPlanRequest": {
+    "com.azure.cognitiveservices#GetCommitmentPlanPlanRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1468,10 +1469,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#CommitmentPlansListPlansByResourceGroup": {
+    "com.azure.cognitiveservices#ListCommitmentPlanPlansByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#CommitmentPlansListPlansByResourceGroupRequest"
+        "target": "com.azure.cognitiveservices#ListCommitmentPlanPlansByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.cognitiveservices#CommitmentPlanListResult"
@@ -1596,7 +1597,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.cognitiveservices#CommitmentPlansListPlansByResourceGroupRequest": {
+    "com.azure.cognitiveservices#ListCommitmentPlanPlansByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1620,10 +1621,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#AccountsListUsages": {
+    "com.azure.cognitiveservices#ListAccountUsages": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#AccountsListUsagesRequest"
+        "target": "com.azure.cognitiveservices#ListAccountUsagesRequest"
       },
       "output": {
         "target": "com.azure.cognitiveservices#UsageListResult"
@@ -1866,7 +1867,7 @@
         "smithy.api#documentation": "The unit of the metric."
       }
     },
-    "com.azure.cognitiveservices#AccountsListUsagesRequest": {
+    "com.azure.cognitiveservices#ListAccountUsagesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2144,10 +2145,10 @@
         "smithy.api#documentation": "RAI External SafetyProvider schema properties."
       }
     },
-    "com.azure.cognitiveservices#AccountsListSkus": {
+    "com.azure.cognitiveservices#ListAccountSkus": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#AccountsListSkusRequest"
+        "target": "com.azure.cognitiveservices#ListAccountSkusRequest"
       },
       "output": {
         "target": "com.azure.cognitiveservices#AccountSkuListResult"
@@ -2206,7 +2207,7 @@
         "smithy.api#documentation": "Cognitive Services resource type and SKU."
       }
     },
-    "com.azure.cognitiveservices#AccountsListSkusRequest": {
+    "com.azure.cognitiveservices#ListAccountSkusRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2238,10 +2239,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#AccountsRegenerateKey": {
+    "com.azure.cognitiveservices#RegenerateAccountKey": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#AccountsRegenerateKeyRequest"
+        "target": "com.azure.cognitiveservices#RegenerateAccountKeyRequest"
       },
       "output": {
         "target": "com.azure.cognitiveservices#ApiKeys"
@@ -2277,7 +2278,7 @@
         "smithy.api#documentation": "The access keys for the cognitive services account."
       }
     },
-    "com.azure.cognitiveservices#AccountsRegenerateKeyRequest": {
+    "com.azure.cognitiveservices#RegenerateAccountKeyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2336,10 +2337,10 @@
         "smithy.api#documentation": "key name to generate (Key1|Key2)"
       }
     },
-    "com.azure.cognitiveservices#RaiTopicsDelete": {
+    "com.azure.cognitiveservices#DeleteRaiTopic": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#RaiTopicsDeleteRequest"
+        "target": "com.azure.cognitiveservices#DeleteRaiTopicRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2355,7 +2356,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#RaiTopicsDeleteRequest": {
+    "com.azure.cognitiveservices#DeleteRaiTopicRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2596,13 +2597,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.cognitiveservices#RaiTopicsGet": {
+    "com.azure.cognitiveservices#GetRaiTopic": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#RaiTopicsGetRequest"
+        "target": "com.azure.cognitiveservices#GetRaiTopicRequest"
       },
       "output": {
-        "target": "com.azure.cognitiveservices#RaiTopicsGetResponse"
+        "target": "com.azure.cognitiveservices#GetRaiTopicResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2615,7 +2616,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#RaiTopicsGetResponse": {
+    "com.azure.cognitiveservices#GetRaiTopicResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2655,7 +2656,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.cognitiveservices#RaiTopicsGetResponseTagsMap",
+          "target": "com.azure.cognitiveservices#GetRaiTopicResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2665,7 +2666,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.cognitiveservices#RaiTopicsGetResponseTagsMap": {
+    "com.azure.cognitiveservices#GetRaiTopicResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2677,7 +2678,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.cognitiveservices#RaiTopicsGetRequest": {
+    "com.azure.cognitiveservices#GetRaiTopicRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2717,10 +2718,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#RaiTopicsList": {
+    "com.azure.cognitiveservices#ListRaiTopics": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#RaiTopicsListRequest"
+        "target": "com.azure.cognitiveservices#ListRaiTopicsRequest"
       },
       "output": {
         "target": "com.azure.cognitiveservices#RaiTopicResult"
@@ -2827,7 +2828,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.cognitiveservices#RaiTopicsListRequest": {
+    "com.azure.cognitiveservices#ListRaiTopicsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2859,10 +2860,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#RaiToolLabelsDelete": {
+    "com.azure.cognitiveservices#DeleteRaiToolLabel": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#RaiToolLabelsDeleteRequest"
+        "target": "com.azure.cognitiveservices#DeleteRaiToolLabelRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2878,7 +2879,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#RaiToolLabelsDeleteRequest": {
+    "com.azure.cognitiveservices#DeleteRaiToolLabelRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3157,13 +3158,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.cognitiveservices#RaiToolLabelsGet": {
+    "com.azure.cognitiveservices#GetRaiToolLabel": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#RaiToolLabelsGetRequest"
+        "target": "com.azure.cognitiveservices#GetRaiToolLabelRequest"
       },
       "output": {
-        "target": "com.azure.cognitiveservices#RaiToolLabelsGetResponse"
+        "target": "com.azure.cognitiveservices#GetRaiToolLabelResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3176,7 +3177,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#RaiToolLabelsGetResponse": {
+    "com.azure.cognitiveservices#GetRaiToolLabelResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3216,7 +3217,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.cognitiveservices#RaiToolLabelsGetResponseTagsMap",
+          "target": "com.azure.cognitiveservices#GetRaiToolLabelResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3226,7 +3227,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.cognitiveservices#RaiToolLabelsGetResponseTagsMap": {
+    "com.azure.cognitiveservices#GetRaiToolLabelResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3238,7 +3239,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.cognitiveservices#RaiToolLabelsGetRequest": {
+    "com.azure.cognitiveservices#GetRaiToolLabelRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3278,10 +3279,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#RaiToolLabelsList": {
+    "com.azure.cognitiveservices#ListRaiToolLabels": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#RaiToolLabelsListRequest"
+        "target": "com.azure.cognitiveservices#ListRaiToolLabelsRequest"
       },
       "output": {
         "target": "com.azure.cognitiveservices#RaiToolLabelResult"
@@ -3388,7 +3389,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.cognitiveservices#RaiToolLabelsListRequest": {
+    "com.azure.cognitiveservices#ListRaiToolLabelsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3420,10 +3421,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#RaiPoliciesDelete": {
+    "com.azure.cognitiveservices#DeleteRaiPolicy": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#RaiPoliciesDeleteRequest"
+        "target": "com.azure.cognitiveservices#DeleteRaiPolicyRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3439,7 +3440,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#RaiPoliciesDeleteRequest": {
+    "com.azure.cognitiveservices#DeleteRaiPolicyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3951,13 +3952,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.cognitiveservices#RaiPoliciesGet": {
+    "com.azure.cognitiveservices#GetRaiPolicy": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#RaiPoliciesGetRequest"
+        "target": "com.azure.cognitiveservices#GetRaiPolicyRequest"
       },
       "output": {
-        "target": "com.azure.cognitiveservices#RaiPoliciesGetResponse"
+        "target": "com.azure.cognitiveservices#GetRaiPolicyResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3970,7 +3971,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#RaiPoliciesGetResponse": {
+    "com.azure.cognitiveservices#GetRaiPolicyResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -4010,7 +4011,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.cognitiveservices#RaiPoliciesGetResponseTagsMap",
+          "target": "com.azure.cognitiveservices#GetRaiPolicyResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4020,7 +4021,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.cognitiveservices#RaiPoliciesGetResponseTagsMap": {
+    "com.azure.cognitiveservices#GetRaiPolicyResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4032,7 +4033,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.cognitiveservices#RaiPoliciesGetRequest": {
+    "com.azure.cognitiveservices#GetRaiPolicyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4072,10 +4073,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#RaiPoliciesList": {
+    "com.azure.cognitiveservices#ListRaiPolicies": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#RaiPoliciesListRequest"
+        "target": "com.azure.cognitiveservices#ListRaiPoliciesRequest"
       },
       "output": {
         "target": "com.azure.cognitiveservices#RaiPolicyListResult"
@@ -4182,7 +4183,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.cognitiveservices#RaiPoliciesListRequest": {
+    "com.azure.cognitiveservices#ListRaiPoliciesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4214,10 +4215,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#RaiBlocklistItemsDelete": {
+    "com.azure.cognitiveservices#DeleteRaiBlocklistItem": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#RaiBlocklistItemsDeleteRequest"
+        "target": "com.azure.cognitiveservices#DeleteRaiBlocklistItemRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4233,7 +4234,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#RaiBlocklistItemsDeleteRequest": {
+    "com.azure.cognitiveservices#DeleteRaiBlocklistItemRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4454,13 +4455,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.cognitiveservices#RaiBlocklistItemsGet": {
+    "com.azure.cognitiveservices#GetRaiBlocklistItem": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#RaiBlocklistItemsGetRequest"
+        "target": "com.azure.cognitiveservices#GetRaiBlocklistItemRequest"
       },
       "output": {
-        "target": "com.azure.cognitiveservices#RaiBlocklistItemsGetResponse"
+        "target": "com.azure.cognitiveservices#GetRaiBlocklistItemResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4473,7 +4474,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#RaiBlocklistItemsGetResponse": {
+    "com.azure.cognitiveservices#GetRaiBlocklistItemResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -4513,7 +4514,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.cognitiveservices#RaiBlocklistItemsGetResponseTagsMap",
+          "target": "com.azure.cognitiveservices#GetRaiBlocklistItemResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4523,7 +4524,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.cognitiveservices#RaiBlocklistItemsGetResponseTagsMap": {
+    "com.azure.cognitiveservices#GetRaiBlocklistItemResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4535,7 +4536,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.cognitiveservices#RaiBlocklistItemsGetRequest": {
+    "com.azure.cognitiveservices#GetRaiBlocklistItemRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4583,10 +4584,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#RaiBlocklistItemsList": {
+    "com.azure.cognitiveservices#ListRaiBlocklistItems": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#RaiBlocklistItemsListRequest"
+        "target": "com.azure.cognitiveservices#ListRaiBlocklistItemsRequest"
       },
       "output": {
         "target": "com.azure.cognitiveservices#RaiBlockListItemsResult"
@@ -4693,7 +4694,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.cognitiveservices#RaiBlocklistItemsListRequest": {
+    "com.azure.cognitiveservices#ListRaiBlocklistItemsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4733,10 +4734,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#RaiBlocklistItemsBatchDelete": {
+    "com.azure.cognitiveservices#DeleteRaiBlocklistItemBatch": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#RaiBlocklistItemsBatchDeleteRequest"
+        "target": "com.azure.cognitiveservices#DeleteRaiBlocklistItemBatchRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4752,7 +4753,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#RaiBlocklistItemsBatchDeleteRequest": {
+    "com.azure.cognitiveservices#DeleteRaiBlocklistItemBatchRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4808,13 +4809,13 @@
         "smithy.api#documentation": "The list of Cognitive Services RaiBlocklist Items Names."
       }
     },
-    "com.azure.cognitiveservices#RaiBlocklistItemsBatchAdd": {
+    "com.azure.cognitiveservices#AddRaiBlocklistItemBatch": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#RaiBlocklistItemsBatchAddRequest"
+        "target": "com.azure.cognitiveservices#AddRaiBlocklistItemBatchRequest"
       },
       "output": {
-        "target": "com.azure.cognitiveservices#RaiBlocklistItemsBatchAddResponse"
+        "target": "com.azure.cognitiveservices#AddRaiBlocklistItemBatchResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4827,7 +4828,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#RaiBlocklistItemsBatchAddResponse": {
+    "com.azure.cognitiveservices#AddRaiBlocklistItemBatchResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -4867,7 +4868,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.cognitiveservices#RaiBlocklistItemsBatchAddResponseTagsMap",
+          "target": "com.azure.cognitiveservices#AddRaiBlocklistItemBatchResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4877,7 +4878,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.cognitiveservices#RaiBlocklistItemsBatchAddResponseTagsMap": {
+    "com.azure.cognitiveservices#AddRaiBlocklistItemBatchResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4903,7 +4904,7 @@
         "smithy.api#documentation": "RAI Custom Blocklist properties."
       }
     },
-    "com.azure.cognitiveservices#RaiBlocklistItemsBatchAddRequest": {
+    "com.azure.cognitiveservices#AddRaiBlocklistItemBatchRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4976,10 +4977,10 @@
         "smithy.api#documentation": "The Cognitive Services RaiBlocklist Item request body."
       }
     },
-    "com.azure.cognitiveservices#RaiBlocklistsDelete": {
+    "com.azure.cognitiveservices#DeleteRaiBlocklist": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#RaiBlocklistsDeleteRequest"
+        "target": "com.azure.cognitiveservices#DeleteRaiBlocklistRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4995,7 +4996,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#RaiBlocklistsDeleteRequest": {
+    "com.azure.cognitiveservices#DeleteRaiBlocklistRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5180,13 +5181,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.cognitiveservices#RaiBlocklistsGet": {
+    "com.azure.cognitiveservices#GetRaiBlocklist": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#RaiBlocklistsGetRequest"
+        "target": "com.azure.cognitiveservices#GetRaiBlocklistRequest"
       },
       "output": {
-        "target": "com.azure.cognitiveservices#RaiBlocklistsGetResponse"
+        "target": "com.azure.cognitiveservices#GetRaiBlocklistResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5199,7 +5200,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#RaiBlocklistsGetResponse": {
+    "com.azure.cognitiveservices#GetRaiBlocklistResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -5239,7 +5240,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.cognitiveservices#RaiBlocklistsGetResponseTagsMap",
+          "target": "com.azure.cognitiveservices#GetRaiBlocklistResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -5249,7 +5250,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.cognitiveservices#RaiBlocklistsGetResponseTagsMap": {
+    "com.azure.cognitiveservices#GetRaiBlocklistResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5261,7 +5262,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.cognitiveservices#RaiBlocklistsGetRequest": {
+    "com.azure.cognitiveservices#GetRaiBlocklistRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5301,10 +5302,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#RaiBlocklistsList": {
+    "com.azure.cognitiveservices#ListRaiBlocklists": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#RaiBlocklistsListRequest"
+        "target": "com.azure.cognitiveservices#ListRaiBlocklistsRequest"
       },
       "output": {
         "target": "com.azure.cognitiveservices#RaiBlockListResult"
@@ -5411,7 +5412,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.cognitiveservices#RaiBlocklistsListRequest": {
+    "com.azure.cognitiveservices#ListRaiBlocklistsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5443,10 +5444,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#ProjectConnectionsDelete": {
+    "com.azure.cognitiveservices#DeleteProjectConnection": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#ProjectConnectionsDeleteRequest"
+        "target": "com.azure.cognitiveservices#DeleteProjectConnectionRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -5462,7 +5463,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#ProjectConnectionsDeleteRequest": {
+    "com.azure.cognitiveservices#DeleteProjectConnectionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5510,13 +5511,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#ProjectConnectionsUpdate": {
+    "com.azure.cognitiveservices#UpdateProjectConnection": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#ProjectConnectionsUpdateRequest"
+        "target": "com.azure.cognitiveservices#UpdateProjectConnectionRequest"
       },
       "output": {
-        "target": "com.azure.cognitiveservices#ProjectConnectionsUpdateResponse"
+        "target": "com.azure.cognitiveservices#UpdateProjectConnectionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5529,7 +5530,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#ProjectConnectionsUpdateResponse": {
+    "com.azure.cognitiveservices#UpdateProjectConnectionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -6610,7 +6611,7 @@
         "smithy.api#documentation": "Authentication type of the connection target"
       }
     },
-    "com.azure.cognitiveservices#ProjectConnectionsUpdateRequest": {
+    "com.azure.cognitiveservices#UpdateProjectConnectionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6746,13 +6747,13 @@
         "smithy.api#documentation": "Store user metadata for this connection"
       }
     },
-    "com.azure.cognitiveservices#ProjectConnectionsCreate": {
+    "com.azure.cognitiveservices#CreateProjectConnection": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#ProjectConnectionsCreateRequest"
+        "target": "com.azure.cognitiveservices#CreateProjectConnectionRequest"
       },
       "output": {
-        "target": "com.azure.cognitiveservices#ProjectConnectionsCreateResponse"
+        "target": "com.azure.cognitiveservices#CreateProjectConnectionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6765,7 +6766,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#ProjectConnectionsCreateResponse": {
+    "com.azure.cognitiveservices#CreateProjectConnectionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -6804,7 +6805,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.cognitiveservices#ProjectConnectionsCreateRequest": {
+    "com.azure.cognitiveservices#CreateProjectConnectionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6859,13 +6860,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#ProjectConnectionsGet": {
+    "com.azure.cognitiveservices#GetProjectConnection": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#ProjectConnectionsGetRequest"
+        "target": "com.azure.cognitiveservices#GetProjectConnectionRequest"
       },
       "output": {
-        "target": "com.azure.cognitiveservices#ProjectConnectionsGetResponse"
+        "target": "com.azure.cognitiveservices#GetProjectConnectionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6878,7 +6879,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#ProjectConnectionsGetResponse": {
+    "com.azure.cognitiveservices#GetProjectConnectionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -6917,7 +6918,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.cognitiveservices#ProjectConnectionsGetRequest": {
+    "com.azure.cognitiveservices#GetProjectConnectionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6965,10 +6966,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#ProjectConnectionsList": {
+    "com.azure.cognitiveservices#ListProjectConnections": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#ProjectConnectionsListRequest"
+        "target": "com.azure.cognitiveservices#ListProjectConnectionsRequest"
       },
       "output": {
         "target": "com.azure.cognitiveservices#ConnectionPropertiesV2BasicResourceArmPaginatedResult"
@@ -7042,7 +7043,7 @@
         "smithy.api#documentation": "Connection base resource schema."
       }
     },
-    "com.azure.cognitiveservices#ProjectConnectionsListRequest": {
+    "com.azure.cognitiveservices#ListProjectConnectionsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7103,10 +7104,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#ProjectCapabilityHostsDelete": {
+    "com.azure.cognitiveservices#DeleteProjectCapabilityHost": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#ProjectCapabilityHostsDeleteRequest"
+        "target": "com.azure.cognitiveservices#DeleteProjectCapabilityHostRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -7122,7 +7123,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#ProjectCapabilityHostsDeleteRequest": {
+    "com.azure.cognitiveservices#DeleteProjectCapabilityHostRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7473,13 +7474,13 @@
         "smithy.api#documentation": "List of AI services connections."
       }
     },
-    "com.azure.cognitiveservices#ProjectCapabilityHostsGet": {
+    "com.azure.cognitiveservices#GetProjectCapabilityHost": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#ProjectCapabilityHostsGetRequest"
+        "target": "com.azure.cognitiveservices#GetProjectCapabilityHostRequest"
       },
       "output": {
-        "target": "com.azure.cognitiveservices#ProjectCapabilityHostsGetResponse"
+        "target": "com.azure.cognitiveservices#GetProjectCapabilityHostResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7492,7 +7493,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#ProjectCapabilityHostsGetResponse": {
+    "com.azure.cognitiveservices#GetProjectCapabilityHostResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -7531,7 +7532,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.cognitiveservices#ProjectCapabilityHostsGetRequest": {
+    "com.azure.cognitiveservices#GetProjectCapabilityHostRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7579,10 +7580,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#ProjectCapabilityHostsList": {
+    "com.azure.cognitiveservices#ListProjectCapabilityHosts": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#ProjectCapabilityHostsListRequest"
+        "target": "com.azure.cognitiveservices#ListProjectCapabilityHostsRequest"
       },
       "output": {
         "target": "com.azure.cognitiveservices#ProjectCapabilityHostResourceArmPaginatedResult"
@@ -7667,7 +7668,7 @@
         "smithy.api#documentation": "Azure Resource Manager resource envelope for Project CapabilityHost."
       }
     },
-    "com.azure.cognitiveservices#ProjectCapabilityHostsListRequest": {
+    "com.azure.cognitiveservices#ListProjectCapabilityHostsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7707,10 +7708,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#AgentApplicationsListAgents": {
+    "com.azure.cognitiveservices#ListAgentApplicationAgents": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#AgentApplicationsListAgentsRequest"
+        "target": "com.azure.cognitiveservices#ListAgentApplicationAgentsRequest"
       },
       "output": {
         "target": "com.azure.cognitiveservices#AgentReferenceResourceArmPaginatedResult"
@@ -7818,7 +7819,7 @@
         "smithy.api#documentation": "Type modeling a reference to a version of an agent definition."
       }
     },
-    "com.azure.cognitiveservices#AgentApplicationsListAgentsRequest": {
+    "com.azure.cognitiveservices#ListAgentApplicationAgentsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7866,10 +7867,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#AgentApplicationsEnable": {
+    "com.azure.cognitiveservices#EnableAgentApplication": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#AgentApplicationsEnableRequest"
+        "target": "com.azure.cognitiveservices#EnableAgentApplicationRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -7885,7 +7886,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#AgentApplicationsEnableRequest": {
+    "com.azure.cognitiveservices#EnableAgentApplicationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7933,10 +7934,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#AgentApplicationsDisable": {
+    "com.azure.cognitiveservices#DisableAgentApplication": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#AgentApplicationsDisableRequest"
+        "target": "com.azure.cognitiveservices#DisableAgentApplicationRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -7952,7 +7953,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#AgentApplicationsDisableRequest": {
+    "com.azure.cognitiveservices#DisableAgentApplicationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8000,10 +8001,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#AgentDeploymentsStop": {
+    "com.azure.cognitiveservices#StopAgentDeployment": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#AgentDeploymentsStopRequest"
+        "target": "com.azure.cognitiveservices#StopAgentDeploymentRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -8019,7 +8020,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#AgentDeploymentsStopRequest": {
+    "com.azure.cognitiveservices#StopAgentDeploymentRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8075,10 +8076,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#AgentDeploymentsStart": {
+    "com.azure.cognitiveservices#StartAgentDeployment": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#AgentDeploymentsStartRequest"
+        "target": "com.azure.cognitiveservices#StartAgentDeploymentRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -8094,7 +8095,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#AgentDeploymentsStartRequest": {
+    "com.azure.cognitiveservices#StartAgentDeploymentRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8150,10 +8151,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#AgentDeploymentsDelete": {
+    "com.azure.cognitiveservices#DeleteAgentDeployment": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#AgentDeploymentsDeleteRequest"
+        "target": "com.azure.cognitiveservices#DeleteAgentDeploymentRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -8169,7 +8170,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#AgentDeploymentsDeleteRequest": {
+    "com.azure.cognitiveservices#DeleteAgentDeploymentRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8742,13 +8743,13 @@
         "smithy.api#documentation": "Tag dictionary. Tags can be added, removed, and updated."
       }
     },
-    "com.azure.cognitiveservices#AgentDeploymentsGet": {
+    "com.azure.cognitiveservices#GetAgentDeployment": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#AgentDeploymentsGetRequest"
+        "target": "com.azure.cognitiveservices#GetAgentDeploymentRequest"
       },
       "output": {
-        "target": "com.azure.cognitiveservices#AgentDeploymentsGetResponse"
+        "target": "com.azure.cognitiveservices#GetAgentDeploymentResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -8761,7 +8762,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#AgentDeploymentsGetResponse": {
+    "com.azure.cognitiveservices#GetAgentDeploymentResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -8800,7 +8801,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.cognitiveservices#AgentDeploymentsGetRequest": {
+    "com.azure.cognitiveservices#GetAgentDeploymentRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8856,10 +8857,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#AgentDeploymentsList": {
+    "com.azure.cognitiveservices#ListAgentDeployments": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#AgentDeploymentsListRequest"
+        "target": "com.azure.cognitiveservices#ListAgentDeploymentsRequest"
       },
       "output": {
         "target": "com.azure.cognitiveservices#AgentDeploymentResourceArmPaginatedResult"
@@ -8944,7 +8945,7 @@
         "smithy.api#documentation": "Agent Deployment resource"
       }
     },
-    "com.azure.cognitiveservices#AgentDeploymentsListRequest": {
+    "com.azure.cognitiveservices#ListAgentDeploymentsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9002,7 +9003,7 @@
           }
         },
         "names": {
-          "target": "com.azure.cognitiveservices#AgentDeploymentsListRequestNamesList",
+          "target": "com.azure.cognitiveservices#ListAgentDeploymentsRequestNamesList",
           "traits": {
             "smithy.api#httpQuery": "names",
             "smithy.api#documentation": "Names of agent deployments to retrieve."
@@ -9027,17 +9028,17 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#AgentDeploymentsListRequestNamesList": {
+    "com.azure.cognitiveservices#ListAgentDeploymentsRequestNamesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.azure.cognitiveservices#AgentApplicationsDelete": {
+    "com.azure.cognitiveservices#DeleteAgentApplication": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#AgentApplicationsDeleteRequest"
+        "target": "com.azure.cognitiveservices#DeleteAgentApplicationRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -9053,7 +9054,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#AgentApplicationsDeleteRequest": {
+    "com.azure.cognitiveservices#DeleteAgentApplicationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9794,13 +9795,13 @@
         "smithy.api#documentation": "Tag dictionary. Tags can be added, removed, and updated."
       }
     },
-    "com.azure.cognitiveservices#AgentApplicationsGet": {
+    "com.azure.cognitiveservices#GetAgentApplication": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#AgentApplicationsGetRequest"
+        "target": "com.azure.cognitiveservices#GetAgentApplicationRequest"
       },
       "output": {
-        "target": "com.azure.cognitiveservices#AgentApplicationsGetResponse"
+        "target": "com.azure.cognitiveservices#GetAgentApplicationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -9813,7 +9814,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#AgentApplicationsGetResponse": {
+    "com.azure.cognitiveservices#GetAgentApplicationResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -9852,7 +9853,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.cognitiveservices#AgentApplicationsGetRequest": {
+    "com.azure.cognitiveservices#GetAgentApplicationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9900,10 +9901,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#AgentApplicationsList": {
+    "com.azure.cognitiveservices#ListAgentApplications": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#AgentApplicationsListRequest"
+        "target": "com.azure.cognitiveservices#ListAgentApplicationsRequest"
       },
       "output": {
         "target": "com.azure.cognitiveservices#AgentApplicationResourceArmPaginatedResult"
@@ -9988,7 +9989,7 @@
         "smithy.api#documentation": "Agent Application resource"
       }
     },
-    "com.azure.cognitiveservices#AgentApplicationsListRequest": {
+    "com.azure.cognitiveservices#ListAgentApplicationsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10045,7 +10046,7 @@
           }
         },
         "names": {
-          "target": "com.azure.cognitiveservices#AgentApplicationsListRequestNamesList",
+          "target": "com.azure.cognitiveservices#ListAgentApplicationsRequestNamesList",
           "traits": {
             "smithy.api#httpQuery": "names",
             "smithy.api#documentation": "Names of agent applications to retrieve."
@@ -10077,17 +10078,17 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#AgentApplicationsListRequestNamesList": {
+    "com.azure.cognitiveservices#ListAgentApplicationsRequestNamesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.azure.cognitiveservices#ProjectsDelete": {
+    "com.azure.cognitiveservices#DeleteProject": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#ProjectsDeleteRequest"
+        "target": "com.azure.cognitiveservices#DeleteProjectRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -10103,7 +10104,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#ProjectsDeleteRequest": {
+    "com.azure.cognitiveservices#DeleteProjectRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10143,13 +10144,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#ProjectsUpdate": {
+    "com.azure.cognitiveservices#UpdateProject": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#ProjectsUpdateRequest"
+        "target": "com.azure.cognitiveservices#UpdateProjectRequest"
       },
       "output": {
-        "target": "com.azure.cognitiveservices#ProjectsUpdateResponse"
+        "target": "com.azure.cognitiveservices#UpdateProjectResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -10162,7 +10163,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#ProjectsUpdateResponse": {
+    "com.azure.cognitiveservices#UpdateProjectResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -10196,7 +10197,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.cognitiveservices#ProjectsUpdateResponseTagsMap",
+          "target": "com.azure.cognitiveservices#UpdateProjectResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -10320,7 +10321,7 @@
         "smithy.api#documentation": "The identity type."
       }
     },
-    "com.azure.cognitiveservices#ProjectsUpdateResponseTagsMap": {
+    "com.azure.cognitiveservices#UpdateProjectResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -10438,7 +10439,7 @@
         "smithy.api#documentation": "Gets the status of the cognitive services account at the time the operation was called."
       }
     },
-    "com.azure.cognitiveservices#ProjectsUpdateRequest": {
+    "com.azure.cognitiveservices#UpdateProjectRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10480,7 +10481,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.cognitiveservices#ProjectsUpdateRequestTagsMap",
+          "target": "com.azure.cognitiveservices#UpdateProjectRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -10541,7 +10542,7 @@
         "smithy.api#documentation": "User-assigned managed identity."
       }
     },
-    "com.azure.cognitiveservices#ProjectsUpdateRequestTagsMap": {
+    "com.azure.cognitiveservices#UpdateProjectRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -10573,13 +10574,13 @@
         "smithy.api#documentation": "Properties of Cognitive Services Project'."
       }
     },
-    "com.azure.cognitiveservices#ProjectsCreate": {
+    "com.azure.cognitiveservices#CreateProject": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#ProjectsCreateRequest"
+        "target": "com.azure.cognitiveservices#CreateProjectRequest"
       },
       "output": {
-        "target": "com.azure.cognitiveservices#ProjectsCreateResponse"
+        "target": "com.azure.cognitiveservices#CreateProjectResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -10592,7 +10593,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#ProjectsCreateResponse": {
+    "com.azure.cognitiveservices#CreateProjectResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -10626,7 +10627,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.cognitiveservices#ProjectsCreateResponseTagsMap",
+          "target": "com.azure.cognitiveservices#CreateProjectResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -10654,7 +10655,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.cognitiveservices#ProjectsCreateResponseTagsMap": {
+    "com.azure.cognitiveservices#CreateProjectResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -10666,7 +10667,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.cognitiveservices#ProjectsCreateRequest": {
+    "com.azure.cognitiveservices#CreateProjectRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10708,7 +10709,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.cognitiveservices#ProjectsCreateRequestTagsMap",
+          "target": "com.azure.cognitiveservices#CreateProjectRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -10730,7 +10731,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#ProjectsCreateRequestTagsMap": {
+    "com.azure.cognitiveservices#CreateProjectRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -10742,13 +10743,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.cognitiveservices#ProjectsGet": {
+    "com.azure.cognitiveservices#GetProject": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#ProjectsGetRequest"
+        "target": "com.azure.cognitiveservices#GetProjectRequest"
       },
       "output": {
-        "target": "com.azure.cognitiveservices#ProjectsGetResponse"
+        "target": "com.azure.cognitiveservices#GetProjectResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -10761,7 +10762,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#ProjectsGetResponse": {
+    "com.azure.cognitiveservices#GetProjectResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -10795,7 +10796,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.cognitiveservices#ProjectsGetResponseTagsMap",
+          "target": "com.azure.cognitiveservices#GetProjectResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -10823,7 +10824,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.cognitiveservices#ProjectsGetResponseTagsMap": {
+    "com.azure.cognitiveservices#GetProjectResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -10835,7 +10836,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.cognitiveservices#ProjectsGetRequest": {
+    "com.azure.cognitiveservices#GetProjectRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10875,10 +10876,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#ProjectsList": {
+    "com.azure.cognitiveservices#ListProjects": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#ProjectsListRequest"
+        "target": "com.azure.cognitiveservices#ListProjectsRequest"
       },
       "output": {
         "target": "com.azure.cognitiveservices#ProjectListResult"
@@ -10997,7 +10998,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.cognitiveservices#ProjectsListRequest": {
+    "com.azure.cognitiveservices#ListProjectsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11029,10 +11030,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#PrivateLinkResourcesList": {
+    "com.azure.cognitiveservices#ListPrivateLinkResources": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#PrivateLinkResourcesListRequest"
+        "target": "com.azure.cognitiveservices#ListPrivateLinkResourcesRequest"
       },
       "output": {
         "target": "com.azure.cognitiveservices#PrivateLinkResourceListResult"
@@ -11159,7 +11160,7 @@
         "smithy.api#documentation": "The private link resource required member names."
       }
     },
-    "com.azure.cognitiveservices#PrivateLinkResourcesListRequest": {
+    "com.azure.cognitiveservices#ListPrivateLinkResourcesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11191,10 +11192,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#PrivateEndpointConnectionsDelete": {
+    "com.azure.cognitiveservices#DeletePrivateEndpointConnection": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#PrivateEndpointConnectionsDeleteRequest"
+        "target": "com.azure.cognitiveservices#DeletePrivateEndpointConnectionRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -11210,7 +11211,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#PrivateEndpointConnectionsDeleteRequest": {
+    "com.azure.cognitiveservices#DeletePrivateEndpointConnectionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11580,13 +11581,13 @@
         "smithy.api#documentation": "The Private Endpoint resource."
       }
     },
-    "com.azure.cognitiveservices#PrivateEndpointConnectionsGet": {
+    "com.azure.cognitiveservices#GetPrivateEndpointConnection": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#PrivateEndpointConnectionsGetRequest"
+        "target": "com.azure.cognitiveservices#GetPrivateEndpointConnectionRequest"
       },
       "output": {
-        "target": "com.azure.cognitiveservices#PrivateEndpointConnectionsGetResponse"
+        "target": "com.azure.cognitiveservices#GetPrivateEndpointConnectionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -11599,7 +11600,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#PrivateEndpointConnectionsGetResponse": {
+    "com.azure.cognitiveservices#GetPrivateEndpointConnectionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -11649,7 +11650,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.cognitiveservices#PrivateEndpointConnectionsGetRequest": {
+    "com.azure.cognitiveservices#GetPrivateEndpointConnectionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11689,10 +11690,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#PrivateEndpointConnectionsList": {
+    "com.azure.cognitiveservices#ListPrivateEndpointConnections": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#PrivateEndpointConnectionsListRequest"
+        "target": "com.azure.cognitiveservices#ListPrivateEndpointConnectionsRequest"
       },
       "output": {
         "target": "com.azure.cognitiveservices#PrivateEndpointConnectionListResult"
@@ -11781,7 +11782,7 @@
         "smithy.api#documentation": "The Private Endpoint Connection resource."
       }
     },
-    "com.azure.cognitiveservices#PrivateEndpointConnectionsListRequest": {
+    "com.azure.cognitiveservices#ListPrivateEndpointConnectionsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -12256,13 +12257,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#NetworkSecurityPerimeterConfigurationsGet": {
+    "com.azure.cognitiveservices#GetNetworkSecurityPerimeterConfiguration": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#NetworkSecurityPerimeterConfigurationsGetRequest"
+        "target": "com.azure.cognitiveservices#GetNetworkSecurityPerimeterConfigurationRequest"
       },
       "output": {
-        "target": "com.azure.cognitiveservices#NetworkSecurityPerimeterConfigurationsGetResponse"
+        "target": "com.azure.cognitiveservices#GetNetworkSecurityPerimeterConfigurationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -12275,7 +12276,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#NetworkSecurityPerimeterConfigurationsGetResponse": {
+    "com.azure.cognitiveservices#GetNetworkSecurityPerimeterConfigurationResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -12313,7 +12314,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.cognitiveservices#NetworkSecurityPerimeterConfigurationsGetRequest": {
+    "com.azure.cognitiveservices#GetNetworkSecurityPerimeterConfigurationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -12353,10 +12354,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#NetworkSecurityPerimeterConfigurationsList": {
+    "com.azure.cognitiveservices#ListNetworkSecurityPerimeterConfigurations": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#NetworkSecurityPerimeterConfigurationsListRequest"
+        "target": "com.azure.cognitiveservices#ListNetworkSecurityPerimeterConfigurationsRequest"
       },
       "output": {
         "target": "com.azure.cognitiveservices#NetworkSecurityPerimeterConfigurationList"
@@ -12439,7 +12440,7 @@
         "smithy.api#documentation": "NSP Configuration for an Cognitive Services account."
       }
     },
-    "com.azure.cognitiveservices#NetworkSecurityPerimeterConfigurationsListRequest": {
+    "com.azure.cognitiveservices#ListNetworkSecurityPerimeterConfigurationsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -12471,10 +12472,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#AccountsListModels": {
+    "com.azure.cognitiveservices#ListAccountModels": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#AccountsListModelsRequest"
+        "target": "com.azure.cognitiveservices#ListAccountModelsRequest"
       },
       "output": {
         "target": "com.azure.cognitiveservices#AccountModelListResult"
@@ -13139,7 +13140,7 @@
         "smithy.api#documentation": "Properties of Cognitive Services account deployment model."
       }
     },
-    "com.azure.cognitiveservices#AccountsListModelsRequest": {
+    "com.azure.cognitiveservices#ListAccountModelsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -13171,10 +13172,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#ManagedNetworkProvisionsProvisionManagedNetwork": {
+    "com.azure.cognitiveservices#ProvisionManagedNetworkProvisionManagedNetwork": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#ManagedNetworkProvisionsProvisionManagedNetworkRequest"
+        "target": "com.azure.cognitiveservices#ProvisionManagedNetworkProvisionManagedNetworkRequest"
       },
       "output": {
         "target": "com.azure.cognitiveservices#ManagedNetworkProvisionStatus"
@@ -13224,7 +13225,7 @@
         "smithy.api#documentation": "Status for the managed network of a cognitive services account."
       }
     },
-    "com.azure.cognitiveservices#ManagedNetworkProvisionsProvisionManagedNetworkRequest": {
+    "com.azure.cognitiveservices#ProvisionManagedNetworkProvisionManagedNetworkRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -13264,10 +13265,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#OutboundRuleDelete": {
+    "com.azure.cognitiveservices#DeleteOutboundRule": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#OutboundRuleDeleteRequest"
+        "target": "com.azure.cognitiveservices#DeleteOutboundRuleRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -13283,7 +13284,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#OutboundRuleDeleteRequest": {
+    "com.azure.cognitiveservices#DeleteOutboundRuleRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -13610,13 +13611,13 @@
         "smithy.api#documentation": "Outbound Rule for the managed network of a cognitive services account."
       }
     },
-    "com.azure.cognitiveservices#OutboundRuleGet": {
+    "com.azure.cognitiveservices#GetOutboundRule": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#OutboundRuleGetRequest"
+        "target": "com.azure.cognitiveservices#GetOutboundRuleRequest"
       },
       "output": {
-        "target": "com.azure.cognitiveservices#OutboundRuleGetResponse"
+        "target": "com.azure.cognitiveservices#GetOutboundRuleResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -13629,7 +13630,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#OutboundRuleGetResponse": {
+    "com.azure.cognitiveservices#GetOutboundRuleResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -13668,7 +13669,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.cognitiveservices#OutboundRuleGetRequest": {
+    "com.azure.cognitiveservices#GetOutboundRuleRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -13716,10 +13717,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#OutboundRuleList": {
+    "com.azure.cognitiveservices#ListOutboundRule": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#OutboundRuleListRequest"
+        "target": "com.azure.cognitiveservices#ListOutboundRuleRequest"
       },
       "output": {
         "target": "com.azure.cognitiveservices#OutboundRuleListResult"
@@ -13803,7 +13804,7 @@
         "smithy.api#documentation": "Concrete proxy resource types can be created by aliasing this type using a specific property type."
       }
     },
-    "com.azure.cognitiveservices#OutboundRuleListRequest": {
+    "com.azure.cognitiveservices#ListOutboundRuleRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -13843,10 +13844,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#OutboundRulesPost": {
+    "com.azure.cognitiveservices#PostOutboundRule": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#OutboundRulesPostRequest"
+        "target": "com.azure.cognitiveservices#PostOutboundRuleRequest"
       },
       "output": {
         "target": "com.azure.cognitiveservices#OutboundRuleListResult"
@@ -13862,7 +13863,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#OutboundRulesPostRequest": {
+    "com.azure.cognitiveservices#PostOutboundRuleRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -14025,10 +14026,10 @@
         "smithy.api#documentation": "Isolation mode for the managed network of a cognitive services account."
       }
     },
-    "com.azure.cognitiveservices#ManagedNetworkSettingsDelete": {
+    "com.azure.cognitiveservices#DeleteManagedNetworkSettings": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#ManagedNetworkSettingsDeleteRequest"
+        "target": "com.azure.cognitiveservices#DeleteManagedNetworkSettingsRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -14044,7 +14045,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#ManagedNetworkSettingsDeleteRequest": {
+    "com.azure.cognitiveservices#DeleteManagedNetworkSettingsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -14084,13 +14085,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#ManagedNetworkSettingsPatch": {
+    "com.azure.cognitiveservices#PatchManagedNetworkSettings": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#ManagedNetworkSettingsPatchRequest"
+        "target": "com.azure.cognitiveservices#PatchManagedNetworkSettingsRequest"
       },
       "output": {
-        "target": "com.azure.cognitiveservices#ManagedNetworkSettingsPatchResponse"
+        "target": "com.azure.cognitiveservices#PatchManagedNetworkSettingsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -14103,7 +14104,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#ManagedNetworkSettingsPatchResponse": {
+    "com.azure.cognitiveservices#PatchManagedNetworkSettingsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -14278,7 +14279,7 @@
         "smithy.api#documentation": "Dictionary of <OutboundRule>"
       }
     },
-    "com.azure.cognitiveservices#ManagedNetworkSettingsPatchRequest": {
+    "com.azure.cognitiveservices#PatchManagedNetworkSettingsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -14387,13 +14388,13 @@
         "smithy.api#documentation": "Dictionary of <OutboundRule>"
       }
     },
-    "com.azure.cognitiveservices#ManagedNetworkSettingsPut": {
+    "com.azure.cognitiveservices#PutManagedNetworkSettings": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#ManagedNetworkSettingsPutRequest"
+        "target": "com.azure.cognitiveservices#PutManagedNetworkSettingsRequest"
       },
       "output": {
-        "target": "com.azure.cognitiveservices#ManagedNetworkSettingsPutResponse"
+        "target": "com.azure.cognitiveservices#PutManagedNetworkSettingsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -14406,7 +14407,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#ManagedNetworkSettingsPutResponse": {
+    "com.azure.cognitiveservices#PutManagedNetworkSettingsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -14444,7 +14445,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.cognitiveservices#ManagedNetworkSettingsPutRequest": {
+    "com.azure.cognitiveservices#PutManagedNetworkSettingsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -14490,13 +14491,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#ManagedNetworkSettingsGet": {
+    "com.azure.cognitiveservices#GetManagedNetworkSettings": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#ManagedNetworkSettingsGetRequest"
+        "target": "com.azure.cognitiveservices#GetManagedNetworkSettingsRequest"
       },
       "output": {
-        "target": "com.azure.cognitiveservices#ManagedNetworkSettingsGetResponse"
+        "target": "com.azure.cognitiveservices#GetManagedNetworkSettingsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -14509,7 +14510,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#ManagedNetworkSettingsGetResponse": {
+    "com.azure.cognitiveservices#GetManagedNetworkSettingsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -14547,7 +14548,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.cognitiveservices#ManagedNetworkSettingsGetRequest": {
+    "com.azure.cognitiveservices#GetManagedNetworkSettingsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -14587,10 +14588,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#ManagedNetworkSettingsList": {
+    "com.azure.cognitiveservices#ListManagedNetworkSettings": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#ManagedNetworkSettingsListRequest"
+        "target": "com.azure.cognitiveservices#ListManagedNetworkSettingsRequest"
       },
       "output": {
         "target": "com.azure.cognitiveservices#ManagedNetworkListResult"
@@ -14673,7 +14674,7 @@
         "smithy.api#documentation": "Concrete proxy resource types can be created by aliasing this type using a specific property type."
       }
     },
-    "com.azure.cognitiveservices#ManagedNetworkSettingsListRequest": {
+    "com.azure.cognitiveservices#ListManagedNetworkSettingsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -14705,10 +14706,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#AccountsListKeys": {
+    "com.azure.cognitiveservices#ListAccountKeys": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#AccountsListKeysRequest"
+        "target": "com.azure.cognitiveservices#ListAccountKeysRequest"
       },
       "output": {
         "target": "com.azure.cognitiveservices#ApiKeys"
@@ -14724,7 +14725,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#AccountsListKeysRequest": {
+    "com.azure.cognitiveservices#ListAccountKeysRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -14756,10 +14757,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#EncryptionScopesDelete": {
+    "com.azure.cognitiveservices#DeleteEncryptionScope": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#EncryptionScopesDeleteRequest"
+        "target": "com.azure.cognitiveservices#DeleteEncryptionScopeRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -14775,7 +14776,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#EncryptionScopesDeleteRequest": {
+    "com.azure.cognitiveservices#DeleteEncryptionScopeRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -15157,13 +15158,13 @@
         "smithy.api#documentation": "Enumerates the possible value of keySource for Encryption"
       }
     },
-    "com.azure.cognitiveservices#EncryptionScopesGet": {
+    "com.azure.cognitiveservices#GetEncryptionScope": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#EncryptionScopesGetRequest"
+        "target": "com.azure.cognitiveservices#GetEncryptionScopeRequest"
       },
       "output": {
-        "target": "com.azure.cognitiveservices#EncryptionScopesGetResponse"
+        "target": "com.azure.cognitiveservices#GetEncryptionScopeResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -15176,7 +15177,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#EncryptionScopesGetResponse": {
+    "com.azure.cognitiveservices#GetEncryptionScopeResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -15216,7 +15217,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.cognitiveservices#EncryptionScopesGetResponseTagsMap",
+          "target": "com.azure.cognitiveservices#GetEncryptionScopeResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -15226,7 +15227,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.cognitiveservices#EncryptionScopesGetResponseTagsMap": {
+    "com.azure.cognitiveservices#GetEncryptionScopeResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -15238,7 +15239,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.cognitiveservices#EncryptionScopesGetRequest": {
+    "com.azure.cognitiveservices#GetEncryptionScopeRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -15278,10 +15279,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#EncryptionScopesList": {
+    "com.azure.cognitiveservices#ListEncryptionScopes": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#EncryptionScopesListRequest"
+        "target": "com.azure.cognitiveservices#ListEncryptionScopesRequest"
       },
       "output": {
         "target": "com.azure.cognitiveservices#EncryptionScopeListResult"
@@ -15388,7 +15389,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.cognitiveservices#EncryptionScopesListRequest": {
+    "com.azure.cognitiveservices#ListEncryptionScopesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -15420,10 +15421,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#DeploymentsListSkus": {
+    "com.azure.cognitiveservices#ListDeploymentSkus": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#DeploymentsListSkusRequest"
+        "target": "com.azure.cognitiveservices#ListDeploymentSkusRequest"
       },
       "output": {
         "target": "com.azure.cognitiveservices#DeploymentSkuListResult"
@@ -15494,7 +15495,7 @@
         "smithy.api#documentation": "Properties of Cognitive Services account resource sku resource properties."
       }
     },
-    "com.azure.cognitiveservices#DeploymentsListSkusRequest": {
+    "com.azure.cognitiveservices#ListDeploymentSkusRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -15534,13 +15535,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#DeploymentsResume": {
+    "com.azure.cognitiveservices#ResumeDeployment": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#DeploymentsResumeRequest"
+        "target": "com.azure.cognitiveservices#ResumeDeploymentRequest"
       },
       "output": {
-        "target": "com.azure.cognitiveservices#DeploymentsResumeResponse"
+        "target": "com.azure.cognitiveservices#ResumeDeploymentResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -15553,7 +15554,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#DeploymentsResumeResponse": {
+    "com.azure.cognitiveservices#ResumeDeploymentResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -15599,7 +15600,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.cognitiveservices#DeploymentsResumeResponseTagsMap",
+          "target": "com.azure.cognitiveservices#ResumeDeploymentResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -15609,7 +15610,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.cognitiveservices#DeploymentsResumeResponseTagsMap": {
+    "com.azure.cognitiveservices#ResumeDeploymentResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -15986,7 +15987,7 @@
         "smithy.api#documentation": "Gets the status of the resource at the time the operation was called."
       }
     },
-    "com.azure.cognitiveservices#DeploymentsResumeRequest": {
+    "com.azure.cognitiveservices#ResumeDeploymentRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -16026,13 +16027,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#DeploymentsPause": {
+    "com.azure.cognitiveservices#PauseDeployment": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#DeploymentsPauseRequest"
+        "target": "com.azure.cognitiveservices#PauseDeploymentRequest"
       },
       "output": {
-        "target": "com.azure.cognitiveservices#DeploymentsPauseResponse"
+        "target": "com.azure.cognitiveservices#PauseDeploymentResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -16045,7 +16046,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#DeploymentsPauseResponse": {
+    "com.azure.cognitiveservices#PauseDeploymentResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -16091,7 +16092,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.cognitiveservices#DeploymentsPauseResponseTagsMap",
+          "target": "com.azure.cognitiveservices#PauseDeploymentResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -16101,7 +16102,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.cognitiveservices#DeploymentsPauseResponseTagsMap": {
+    "com.azure.cognitiveservices#PauseDeploymentResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -16113,7 +16114,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.cognitiveservices#DeploymentsPauseRequest": {
+    "com.azure.cognitiveservices#PauseDeploymentRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -16153,10 +16154,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#DeploymentsDelete": {
+    "com.azure.cognitiveservices#DeleteDeployment": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#DeploymentsDeleteRequest"
+        "target": "com.azure.cognitiveservices#DeleteDeploymentRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -16172,7 +16173,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#DeploymentsDeleteRequest": {
+    "com.azure.cognitiveservices#DeleteDeploymentRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -16212,13 +16213,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#DeploymentsUpdate": {
+    "com.azure.cognitiveservices#UpdateDeployment": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#DeploymentsUpdateRequest"
+        "target": "com.azure.cognitiveservices#UpdateDeploymentRequest"
       },
       "output": {
-        "target": "com.azure.cognitiveservices#DeploymentsUpdateResponse"
+        "target": "com.azure.cognitiveservices#UpdateDeploymentResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -16231,7 +16232,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#DeploymentsUpdateResponse": {
+    "com.azure.cognitiveservices#UpdateDeploymentResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -16277,7 +16278,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.cognitiveservices#DeploymentsUpdateResponseTagsMap",
+          "target": "com.azure.cognitiveservices#UpdateDeploymentResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -16287,7 +16288,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.cognitiveservices#DeploymentsUpdateResponseTagsMap": {
+    "com.azure.cognitiveservices#UpdateDeploymentResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -16299,7 +16300,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.cognitiveservices#DeploymentsUpdateRequest": {
+    "com.azure.cognitiveservices#UpdateDeploymentRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -16335,7 +16336,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.cognitiveservices#DeploymentsUpdateRequestTagsMap",
+          "target": "com.azure.cognitiveservices#UpdateDeploymentRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -16351,7 +16352,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#DeploymentsUpdateRequestTagsMap": {
+    "com.azure.cognitiveservices#UpdateDeploymentRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -16616,13 +16617,13 @@
         "smithy.api#documentation": "Properties of Cognitive Services account deployment model. (Deprecated, please use Deployment.sku instead.)"
       }
     },
-    "com.azure.cognitiveservices#DeploymentsGet": {
+    "com.azure.cognitiveservices#GetDeployment": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#DeploymentsGetRequest"
+        "target": "com.azure.cognitiveservices#GetDeploymentRequest"
       },
       "output": {
-        "target": "com.azure.cognitiveservices#DeploymentsGetResponse"
+        "target": "com.azure.cognitiveservices#GetDeploymentResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -16635,7 +16636,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#DeploymentsGetResponse": {
+    "com.azure.cognitiveservices#GetDeploymentResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -16681,7 +16682,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.cognitiveservices#DeploymentsGetResponseTagsMap",
+          "target": "com.azure.cognitiveservices#GetDeploymentResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -16691,7 +16692,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.cognitiveservices#DeploymentsGetResponseTagsMap": {
+    "com.azure.cognitiveservices#GetDeploymentResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -16703,7 +16704,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.cognitiveservices#DeploymentsGetRequest": {
+    "com.azure.cognitiveservices#GetDeploymentRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -16743,10 +16744,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#DeploymentsList": {
+    "com.azure.cognitiveservices#ListDeployments": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#DeploymentsListRequest"
+        "target": "com.azure.cognitiveservices#ListDeploymentsRequest"
       },
       "output": {
         "target": "com.azure.cognitiveservices#DeploymentListResult"
@@ -16859,7 +16860,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.cognitiveservices#DeploymentsListRequest": {
+    "com.azure.cognitiveservices#ListDeploymentsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -16891,13 +16892,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#DefenderForAISettingsUpdate": {
+    "com.azure.cognitiveservices#UpdateDefenderForAISettings": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#DefenderForAISettingsUpdateRequest"
+        "target": "com.azure.cognitiveservices#UpdateDefenderForAISettingsRequest"
       },
       "output": {
-        "target": "com.azure.cognitiveservices#DefenderForAISettingsUpdateResponse"
+        "target": "com.azure.cognitiveservices#UpdateDefenderForAISettingsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -16910,7 +16911,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#DefenderForAISettingsUpdateResponse": {
+    "com.azure.cognitiveservices#UpdateDefenderForAISettingsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -16950,7 +16951,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.cognitiveservices#DefenderForAISettingsUpdateResponseTagsMap",
+          "target": "com.azure.cognitiveservices#UpdateDefenderForAISettingsResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -16960,7 +16961,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.cognitiveservices#DefenderForAISettingsUpdateResponseTagsMap": {
+    "com.azure.cognitiveservices#UpdateDefenderForAISettingsResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -17006,7 +17007,7 @@
         "smithy.api#documentation": "Defender for AI state on the AI resource."
       }
     },
-    "com.azure.cognitiveservices#DefenderForAISettingsUpdateRequest": {
+    "com.azure.cognitiveservices#UpdateDefenderForAISettingsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -17048,7 +17049,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.cognitiveservices#DefenderForAISettingsUpdateRequestTagsMap",
+          "target": "com.azure.cognitiveservices#UpdateDefenderForAISettingsRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -17058,7 +17059,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#DefenderForAISettingsUpdateRequestTagsMap": {
+    "com.azure.cognitiveservices#UpdateDefenderForAISettingsRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -17215,13 +17216,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.cognitiveservices#DefenderForAISettingsGet": {
+    "com.azure.cognitiveservices#GetDefenderForAISettings": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#DefenderForAISettingsGetRequest"
+        "target": "com.azure.cognitiveservices#GetDefenderForAISettingsRequest"
       },
       "output": {
-        "target": "com.azure.cognitiveservices#DefenderForAISettingsGetResponse"
+        "target": "com.azure.cognitiveservices#GetDefenderForAISettingsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -17234,7 +17235,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#DefenderForAISettingsGetResponse": {
+    "com.azure.cognitiveservices#GetDefenderForAISettingsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -17274,7 +17275,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.cognitiveservices#DefenderForAISettingsGetResponseTagsMap",
+          "target": "com.azure.cognitiveservices#GetDefenderForAISettingsResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -17284,7 +17285,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.cognitiveservices#DefenderForAISettingsGetResponseTagsMap": {
+    "com.azure.cognitiveservices#GetDefenderForAISettingsResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -17296,7 +17297,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.cognitiveservices#DefenderForAISettingsGetRequest": {
+    "com.azure.cognitiveservices#GetDefenderForAISettingsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -17336,10 +17337,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#DefenderForAISettingsList": {
+    "com.azure.cognitiveservices#ListDefenderForAISettings": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#DefenderForAISettingsListRequest"
+        "target": "com.azure.cognitiveservices#ListDefenderForAISettingsRequest"
       },
       "output": {
         "target": "com.azure.cognitiveservices#DefenderForAISettingResult"
@@ -17446,7 +17447,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.cognitiveservices#DefenderForAISettingsListRequest": {
+    "com.azure.cognitiveservices#ListDefenderForAISettingsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -17478,10 +17479,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#AccountConnectionsDelete": {
+    "com.azure.cognitiveservices#DeleteAccountConnection": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#AccountConnectionsDeleteRequest"
+        "target": "com.azure.cognitiveservices#DeleteAccountConnectionRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -17497,7 +17498,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#AccountConnectionsDeleteRequest": {
+    "com.azure.cognitiveservices#DeleteAccountConnectionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -17537,13 +17538,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#AccountConnectionsUpdate": {
+    "com.azure.cognitiveservices#UpdateAccountConnection": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#AccountConnectionsUpdateRequest"
+        "target": "com.azure.cognitiveservices#UpdateAccountConnectionRequest"
       },
       "output": {
-        "target": "com.azure.cognitiveservices#AccountConnectionsUpdateResponse"
+        "target": "com.azure.cognitiveservices#UpdateAccountConnectionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -17556,7 +17557,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#AccountConnectionsUpdateResponse": {
+    "com.azure.cognitiveservices#UpdateAccountConnectionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -17595,7 +17596,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.cognitiveservices#AccountConnectionsUpdateRequest": {
+    "com.azure.cognitiveservices#UpdateAccountConnectionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -17641,13 +17642,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#AccountConnectionsCreate": {
+    "com.azure.cognitiveservices#CreateAccountConnection": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#AccountConnectionsCreateRequest"
+        "target": "com.azure.cognitiveservices#CreateAccountConnectionRequest"
       },
       "output": {
-        "target": "com.azure.cognitiveservices#AccountConnectionsCreateResponse"
+        "target": "com.azure.cognitiveservices#CreateAccountConnectionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -17660,7 +17661,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#AccountConnectionsCreateResponse": {
+    "com.azure.cognitiveservices#CreateAccountConnectionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -17699,7 +17700,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.cognitiveservices#AccountConnectionsCreateRequest": {
+    "com.azure.cognitiveservices#CreateAccountConnectionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -17746,13 +17747,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#AccountConnectionsGet": {
+    "com.azure.cognitiveservices#GetAccountConnection": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#AccountConnectionsGetRequest"
+        "target": "com.azure.cognitiveservices#GetAccountConnectionRequest"
       },
       "output": {
-        "target": "com.azure.cognitiveservices#AccountConnectionsGetResponse"
+        "target": "com.azure.cognitiveservices#GetAccountConnectionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -17765,7 +17766,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#AccountConnectionsGetResponse": {
+    "com.azure.cognitiveservices#GetAccountConnectionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -17804,7 +17805,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.cognitiveservices#AccountConnectionsGetRequest": {
+    "com.azure.cognitiveservices#GetAccountConnectionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -17844,10 +17845,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#AccountConnectionsList": {
+    "com.azure.cognitiveservices#ListAccountConnections": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#AccountConnectionsListRequest"
+        "target": "com.azure.cognitiveservices#ListAccountConnectionsRequest"
       },
       "output": {
         "target": "com.azure.cognitiveservices#ConnectionPropertiesV2BasicResourceArmPaginatedResult"
@@ -17863,7 +17864,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#AccountConnectionsListRequest": {
+    "com.azure.cognitiveservices#ListAccountConnectionsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -17916,10 +17917,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#CommitmentPlansDelete": {
+    "com.azure.cognitiveservices#DeleteCommitmentPlan": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#CommitmentPlansDeleteRequest"
+        "target": "com.azure.cognitiveservices#DeleteCommitmentPlanRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -17935,7 +17936,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#CommitmentPlansDeleteRequest": {
+    "com.azure.cognitiveservices#DeleteCommitmentPlanRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -18156,13 +18157,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.cognitiveservices#CommitmentPlansGet": {
+    "com.azure.cognitiveservices#GetCommitmentPlan": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#CommitmentPlansGetRequest"
+        "target": "com.azure.cognitiveservices#GetCommitmentPlanRequest"
       },
       "output": {
-        "target": "com.azure.cognitiveservices#CommitmentPlansGetResponse"
+        "target": "com.azure.cognitiveservices#GetCommitmentPlanResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -18175,7 +18176,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#CommitmentPlansGetResponse": {
+    "com.azure.cognitiveservices#GetCommitmentPlanResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -18209,7 +18210,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.cognitiveservices#CommitmentPlansGetResponseTagsMap",
+          "target": "com.azure.cognitiveservices#GetCommitmentPlanResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -18243,7 +18244,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.cognitiveservices#CommitmentPlansGetResponseTagsMap": {
+    "com.azure.cognitiveservices#GetCommitmentPlanResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -18255,7 +18256,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.cognitiveservices#CommitmentPlansGetRequest": {
+    "com.azure.cognitiveservices#GetCommitmentPlanRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -18295,10 +18296,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#CommitmentPlansList": {
+    "com.azure.cognitiveservices#ListCommitmentPlans": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#CommitmentPlansListRequest"
+        "target": "com.azure.cognitiveservices#ListCommitmentPlansRequest"
       },
       "output": {
         "target": "com.azure.cognitiveservices#CommitmentPlanListResult"
@@ -18314,7 +18315,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#CommitmentPlansListRequest": {
+    "com.azure.cognitiveservices#ListCommitmentPlansRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -18346,10 +18347,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#AccountCapabilityHostsDelete": {
+    "com.azure.cognitiveservices#DeleteAccountCapabilityHost": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#AccountCapabilityHostsDeleteRequest"
+        "target": "com.azure.cognitiveservices#DeleteAccountCapabilityHostRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -18365,7 +18366,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#AccountCapabilityHostsDeleteRequest": {
+    "com.azure.cognitiveservices#DeleteAccountCapabilityHostRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -18758,13 +18759,13 @@
         "smithy.api#documentation": "Tag dictionary. Tags can be added, removed, and updated."
       }
     },
-    "com.azure.cognitiveservices#AccountCapabilityHostsGet": {
+    "com.azure.cognitiveservices#GetAccountCapabilityHost": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#AccountCapabilityHostsGetRequest"
+        "target": "com.azure.cognitiveservices#GetAccountCapabilityHostRequest"
       },
       "output": {
-        "target": "com.azure.cognitiveservices#AccountCapabilityHostsGetResponse"
+        "target": "com.azure.cognitiveservices#GetAccountCapabilityHostResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -18777,7 +18778,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#AccountCapabilityHostsGetResponse": {
+    "com.azure.cognitiveservices#GetAccountCapabilityHostResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -18816,7 +18817,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.cognitiveservices#AccountCapabilityHostsGetRequest": {
+    "com.azure.cognitiveservices#GetAccountCapabilityHostRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -18856,10 +18857,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#AccountCapabilityHostsList": {
+    "com.azure.cognitiveservices#ListAccountCapabilityHosts": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#AccountCapabilityHostsListRequest"
+        "target": "com.azure.cognitiveservices#ListAccountCapabilityHostsRequest"
       },
       "output": {
         "target": "com.azure.cognitiveservices#CapabilityHostResourceArmPaginatedResult"
@@ -18944,7 +18945,7 @@
         "smithy.api#documentation": "Azure Resource Manager resource envelope."
       }
     },
-    "com.azure.cognitiveservices#AccountCapabilityHostsListRequest": {
+    "com.azure.cognitiveservices#ListAccountCapabilityHostsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -18976,10 +18977,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#AccountsDelete": {
+    "com.azure.cognitiveservices#DeleteAccount": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#AccountsDeleteRequest"
+        "target": "com.azure.cognitiveservices#DeleteAccountRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -18995,7 +18996,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#AccountsDeleteRequest": {
+    "com.azure.cognitiveservices#DeleteAccountRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -19027,13 +19028,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#AccountsUpdate": {
+    "com.azure.cognitiveservices#UpdateAccount": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#AccountsUpdateRequest"
+        "target": "com.azure.cognitiveservices#UpdateAccountRequest"
       },
       "output": {
-        "target": "com.azure.cognitiveservices#AccountsUpdateResponse"
+        "target": "com.azure.cognitiveservices#UpdateAccountResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -19046,7 +19047,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#AccountsUpdateResponse": {
+    "com.azure.cognitiveservices#UpdateAccountResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -19080,7 +19081,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.cognitiveservices#AccountsUpdateResponseTagsMap",
+          "target": "com.azure.cognitiveservices#UpdateAccountResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -19120,7 +19121,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.cognitiveservices#AccountsUpdateResponseTagsMap": {
+    "com.azure.cognitiveservices#UpdateAccountResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -19976,7 +19977,7 @@
         "smithy.api#documentation": "SkuCapability indicates the capability of a certain feature."
       }
     },
-    "com.azure.cognitiveservices#AccountsUpdateRequest": {
+    "com.azure.cognitiveservices#UpdateAccountRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -20010,7 +20011,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.cognitiveservices#AccountsUpdateRequestTagsMap",
+          "target": "com.azure.cognitiveservices#UpdateAccountRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -20044,7 +20045,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#AccountsUpdateRequestTagsMap": {
+    "com.azure.cognitiveservices#UpdateAccountRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -20201,13 +20202,13 @@
         "smithy.api#documentation": "The storage accounts for this resource."
       }
     },
-    "com.azure.cognitiveservices#AccountsCreate": {
+    "com.azure.cognitiveservices#CreateAccount": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#AccountsCreateRequest"
+        "target": "com.azure.cognitiveservices#CreateAccountRequest"
       },
       "output": {
-        "target": "com.azure.cognitiveservices#AccountsCreateResponse"
+        "target": "com.azure.cognitiveservices#CreateAccountResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -20220,7 +20221,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#AccountsCreateResponse": {
+    "com.azure.cognitiveservices#CreateAccountResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -20254,7 +20255,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.cognitiveservices#AccountsCreateResponseTagsMap",
+          "target": "com.azure.cognitiveservices#CreateAccountResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -20294,7 +20295,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.cognitiveservices#AccountsCreateResponseTagsMap": {
+    "com.azure.cognitiveservices#CreateAccountResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -20306,7 +20307,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.cognitiveservices#AccountsCreateRequest": {
+    "com.azure.cognitiveservices#CreateAccountRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -20340,7 +20341,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.cognitiveservices#AccountsCreateRequestTagsMap",
+          "target": "com.azure.cognitiveservices#CreateAccountRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -20374,7 +20375,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#AccountsCreateRequestTagsMap": {
+    "com.azure.cognitiveservices#CreateAccountRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -20386,13 +20387,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.cognitiveservices#AccountsGet": {
+    "com.azure.cognitiveservices#GetAccount": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#AccountsGetRequest"
+        "target": "com.azure.cognitiveservices#GetAccountRequest"
       },
       "output": {
-        "target": "com.azure.cognitiveservices#AccountsGetResponse"
+        "target": "com.azure.cognitiveservices#GetAccountResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -20405,7 +20406,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#AccountsGetResponse": {
+    "com.azure.cognitiveservices#GetAccountResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -20439,7 +20440,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.cognitiveservices#AccountsGetResponseTagsMap",
+          "target": "com.azure.cognitiveservices#GetAccountResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -20479,7 +20480,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.cognitiveservices#AccountsGetResponseTagsMap": {
+    "com.azure.cognitiveservices#GetAccountResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -20491,7 +20492,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.cognitiveservices#AccountsGetRequest": {
+    "com.azure.cognitiveservices#GetAccountRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -20523,10 +20524,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#AccountsListByResourceGroup": {
+    "com.azure.cognitiveservices#ListAccountByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#AccountsListByResourceGroupRequest"
+        "target": "com.azure.cognitiveservices#ListAccountByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.cognitiveservices#AccountListResult"
@@ -20657,7 +20658,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.cognitiveservices#AccountsListByResourceGroupRequest": {
+    "com.azure.cognitiveservices#ListAccountByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -20681,10 +20682,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#ResourceSkusList": {
+    "com.azure.cognitiveservices#ListResourceSkus": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#ResourceSkusListRequest"
+        "target": "com.azure.cognitiveservices#ListResourceSkusRequest"
       },
       "output": {
         "target": "com.azure.cognitiveservices#ResourceSkuListResult"
@@ -20909,7 +20910,7 @@
         "smithy.api#documentation": "The set of locations that the SKU is available."
       }
     },
-    "com.azure.cognitiveservices#ResourceSkusListRequest": {
+    "com.azure.cognitiveservices#ListResourceSkusRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -20925,10 +20926,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#SubscriptionRaiPolicyDelete": {
+    "com.azure.cognitiveservices#DeleteSubscriptionRaiPolicy": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#SubscriptionRaiPolicyDeleteRequest"
+        "target": "com.azure.cognitiveservices#DeleteSubscriptionRaiPolicyRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -20944,7 +20945,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#SubscriptionRaiPolicyDeleteRequest": {
+    "com.azure.cognitiveservices#DeleteSubscriptionRaiPolicyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -21097,13 +21098,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.cognitiveservices#SubscriptionRaiPolicyGet": {
+    "com.azure.cognitiveservices#GetSubscriptionRaiPolicy": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#SubscriptionRaiPolicyGetRequest"
+        "target": "com.azure.cognitiveservices#GetSubscriptionRaiPolicyRequest"
       },
       "output": {
-        "target": "com.azure.cognitiveservices#SubscriptionRaiPolicyGetResponse"
+        "target": "com.azure.cognitiveservices#GetSubscriptionRaiPolicyResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -21116,7 +21117,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#SubscriptionRaiPolicyGetResponse": {
+    "com.azure.cognitiveservices#GetSubscriptionRaiPolicyResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -21156,7 +21157,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.cognitiveservices#SubscriptionRaiPolicyGetResponseTagsMap",
+          "target": "com.azure.cognitiveservices#GetSubscriptionRaiPolicyResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -21166,7 +21167,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.cognitiveservices#SubscriptionRaiPolicyGetResponseTagsMap": {
+    "com.azure.cognitiveservices#GetSubscriptionRaiPolicyResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -21178,7 +21179,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.cognitiveservices#SubscriptionRaiPolicyGetRequest": {
+    "com.azure.cognitiveservices#GetSubscriptionRaiPolicyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -21202,10 +21203,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#RaiExternalSafetyProviderDelete": {
+    "com.azure.cognitiveservices#DeleteRaiExternalSafetyProvider": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#RaiExternalSafetyProviderDeleteRequest"
+        "target": "com.azure.cognitiveservices#DeleteRaiExternalSafetyProviderRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -21221,7 +21222,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#RaiExternalSafetyProviderDeleteRequest": {
+    "com.azure.cognitiveservices#DeleteRaiExternalSafetyProviderRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -21356,13 +21357,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#RaiExternalSafetyProviderGet": {
+    "com.azure.cognitiveservices#GetRaiExternalSafetyProvider": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#RaiExternalSafetyProviderGetRequest"
+        "target": "com.azure.cognitiveservices#GetRaiExternalSafetyProviderRequest"
       },
       "output": {
-        "target": "com.azure.cognitiveservices#RaiExternalSafetyProviderGetResponse"
+        "target": "com.azure.cognitiveservices#GetRaiExternalSafetyProviderResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -21375,7 +21376,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#RaiExternalSafetyProviderGetResponse": {
+    "com.azure.cognitiveservices#GetRaiExternalSafetyProviderResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -21415,7 +21416,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.cognitiveservices#RaiExternalSafetyProviderGetResponseTagsMap",
+          "target": "com.azure.cognitiveservices#GetRaiExternalSafetyProviderResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -21425,7 +21426,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.cognitiveservices#RaiExternalSafetyProviderGetResponseTagsMap": {
+    "com.azure.cognitiveservices#GetRaiExternalSafetyProviderResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -21437,7 +21438,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.cognitiveservices#RaiExternalSafetyProviderGetRequest": {
+    "com.azure.cognitiveservices#GetRaiExternalSafetyProviderRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -21461,10 +21462,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#RaiExternalSafetyProvidersList": {
+    "com.azure.cognitiveservices#ListRaiExternalSafetyProviders": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#RaiExternalSafetyProvidersListRequest"
+        "target": "com.azure.cognitiveservices#ListRaiExternalSafetyProvidersRequest"
       },
       "output": {
         "target": "com.azure.cognitiveservices#RaiExternalSafetyProviderResult"
@@ -21571,7 +21572,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.cognitiveservices#RaiExternalSafetyProvidersListRequest": {
+    "com.azure.cognitiveservices#ListRaiExternalSafetyProvidersRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -21587,13 +21588,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#QuotaTiersUpdate": {
+    "com.azure.cognitiveservices#UpdateQuotaTier": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#QuotaTiersUpdateRequest"
+        "target": "com.azure.cognitiveservices#UpdateQuotaTierRequest"
       },
       "output": {
-        "target": "com.azure.cognitiveservices#QuotaTiersUpdateResponse"
+        "target": "com.azure.cognitiveservices#UpdateQuotaTierResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -21606,7 +21607,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#QuotaTiersUpdateResponse": {
+    "com.azure.cognitiveservices#UpdateQuotaTierResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -21752,7 +21753,7 @@
         "smithy.api#documentation": "Gets the tier upgrade policy for the subscription."
       }
     },
-    "com.azure.cognitiveservices#QuotaTiersUpdateRequest": {
+    "com.azure.cognitiveservices#UpdateQuotaTierRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -21883,13 +21884,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#QuotaTiersGet": {
+    "com.azure.cognitiveservices#GetQuotaTier": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#QuotaTiersGetRequest"
+        "target": "com.azure.cognitiveservices#GetQuotaTierRequest"
       },
       "output": {
-        "target": "com.azure.cognitiveservices#QuotaTiersGetResponse"
+        "target": "com.azure.cognitiveservices#GetQuotaTierResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -21902,7 +21903,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#QuotaTiersGetResponse": {
+    "com.azure.cognitiveservices#GetQuotaTierResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -21940,7 +21941,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.cognitiveservices#QuotaTiersGetRequest": {
+    "com.azure.cognitiveservices#GetQuotaTierRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -21964,10 +21965,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#QuotaTiersListBySubscription": {
+    "com.azure.cognitiveservices#ListQuotaTierBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#QuotaTiersListBySubscriptionRequest"
+        "target": "com.azure.cognitiveservices#ListQuotaTierBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.cognitiveservices#QuotaTierListResult"
@@ -22050,7 +22051,7 @@
         "smithy.api#documentation": "The quota tier information for the subscription"
       }
     },
-    "com.azure.cognitiveservices#QuotaTiersListBySubscriptionRequest": {
+    "com.azure.cognitiveservices#ListQuotaTierBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -22066,10 +22067,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#ModelCapacitiesList": {
+    "com.azure.cognitiveservices#ListModelCapacities": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#ModelCapacitiesListRequest"
+        "target": "com.azure.cognitiveservices#ListModelCapacitiesRequest"
       },
       "output": {
         "target": "com.azure.cognitiveservices#ModelCapacityListResult"
@@ -22199,7 +22200,7 @@
         "smithy.api#documentation": "Cognitive Services account ModelSkuCapacity."
       }
     },
-    "com.azure.cognitiveservices#ModelCapacitiesListRequest": {
+    "com.azure.cognitiveservices#ListModelCapacitiesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -22239,10 +22240,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#UsagesList": {
+    "com.azure.cognitiveservices#ListUsages": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#UsagesListRequest"
+        "target": "com.azure.cognitiveservices#ListUsagesRequest"
       },
       "output": {
         "target": "com.azure.cognitiveservices#UsageListResult"
@@ -22258,7 +22259,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#UsagesListRequest": {
+    "com.azure.cognitiveservices#ListUsagesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -22289,10 +22290,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#DeletedAccountsPurge": {
+    "com.azure.cognitiveservices#PurgeDeletedAccount": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#DeletedAccountsPurgeRequest"
+        "target": "com.azure.cognitiveservices#PurgeDeletedAccountRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -22308,7 +22309,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#DeletedAccountsPurgeRequest": {
+    "com.azure.cognitiveservices#PurgeDeletedAccountRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -22348,13 +22349,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#DeletedAccountsGet": {
+    "com.azure.cognitiveservices#GetDeletedAccount": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#DeletedAccountsGetRequest"
+        "target": "com.azure.cognitiveservices#GetDeletedAccountRequest"
       },
       "output": {
-        "target": "com.azure.cognitiveservices#DeletedAccountsGetResponse"
+        "target": "com.azure.cognitiveservices#GetDeletedAccountResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -22367,7 +22368,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#DeletedAccountsGetResponse": {
+    "com.azure.cognitiveservices#GetDeletedAccountResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -22401,7 +22402,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.cognitiveservices#DeletedAccountsGetResponseTagsMap",
+          "target": "com.azure.cognitiveservices#GetDeletedAccountResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -22441,7 +22442,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.cognitiveservices#DeletedAccountsGetResponseTagsMap": {
+    "com.azure.cognitiveservices#GetDeletedAccountResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -22453,7 +22454,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.cognitiveservices#DeletedAccountsGetRequest": {
+    "com.azure.cognitiveservices#GetDeletedAccountRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -22493,13 +22494,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#RaiContentFiltersGet": {
+    "com.azure.cognitiveservices#GetRaiContentFilter": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#RaiContentFiltersGetRequest"
+        "target": "com.azure.cognitiveservices#GetRaiContentFilterRequest"
       },
       "output": {
-        "target": "com.azure.cognitiveservices#RaiContentFiltersGetResponse"
+        "target": "com.azure.cognitiveservices#GetRaiContentFilterResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -22512,7 +22513,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#RaiContentFiltersGetResponse": {
+    "com.azure.cognitiveservices#GetRaiContentFilterResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -22576,7 +22577,7 @@
         "smithy.api#documentation": "Azure OpenAI Content Filter Properties."
       }
     },
-    "com.azure.cognitiveservices#RaiContentFiltersGetRequest": {
+    "com.azure.cognitiveservices#GetRaiContentFilterRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -22608,10 +22609,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#RaiContentFiltersList": {
+    "com.azure.cognitiveservices#ListRaiContentFilters": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#RaiContentFiltersListRequest"
+        "target": "com.azure.cognitiveservices#ListRaiContentFiltersRequest"
       },
       "output": {
         "target": "com.azure.cognitiveservices#RaiContentFilterListResult"
@@ -22694,7 +22695,7 @@
         "smithy.api#documentation": "Azure OpenAI Content Filter."
       }
     },
-    "com.azure.cognitiveservices#RaiContentFiltersListRequest": {
+    "com.azure.cognitiveservices#ListRaiContentFiltersRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -22718,10 +22719,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#ModelsList": {
+    "com.azure.cognitiveservices#ListModels": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#ModelsListRequest"
+        "target": "com.azure.cognitiveservices#ListModelsRequest"
       },
       "output": {
         "target": "com.azure.cognitiveservices#ModelListResult"
@@ -22798,7 +22799,7 @@
         "smithy.api#documentation": "Cognitive Services Model."
       }
     },
-    "com.azure.cognitiveservices#ModelsListRequest": {
+    "com.azure.cognitiveservices#ListModelsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -22822,10 +22823,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#LocationBasedModelCapacitiesList": {
+    "com.azure.cognitiveservices#ListLocationBasedModelCapacities": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#LocationBasedModelCapacitiesListRequest"
+        "target": "com.azure.cognitiveservices#ListLocationBasedModelCapacitiesRequest"
       },
       "output": {
         "target": "com.azure.cognitiveservices#ModelCapacityListResult"
@@ -22841,7 +22842,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#LocationBasedModelCapacitiesListRequest": {
+    "com.azure.cognitiveservices#ListLocationBasedModelCapacitiesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -22889,10 +22890,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#CommitmentTiersList": {
+    "com.azure.cognitiveservices#ListCommitmentTiers": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#CommitmentTiersListRequest"
+        "target": "com.azure.cognitiveservices#ListCommitmentTiersRequest"
       },
       "output": {
         "target": "com.azure.cognitiveservices#CommitmentTierListResult"
@@ -23013,7 +23014,7 @@
         "smithy.api#documentation": "Cognitive Services account commitment cost."
       }
     },
-    "com.azure.cognitiveservices#CommitmentTiersListRequest": {
+    "com.azure.cognitiveservices#ListCommitmentTiersRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -23177,10 +23178,10 @@
         "smithy.api#documentation": "The SKU of the resource."
       }
     },
-    "com.azure.cognitiveservices#DeletedAccountsList": {
+    "com.azure.cognitiveservices#ListDeletedAccounts": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#DeletedAccountsListRequest"
+        "target": "com.azure.cognitiveservices#ListDeletedAccountsRequest"
       },
       "output": {
         "target": "com.azure.cognitiveservices#AccountListResult"
@@ -23196,7 +23197,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#DeletedAccountsListRequest": {
+    "com.azure.cognitiveservices#ListDeletedAccountsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -23212,10 +23213,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#CommitmentPlansListPlansBySubscription": {
+    "com.azure.cognitiveservices#ListCommitmentPlanPlansBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#CommitmentPlansListPlansBySubscriptionRequest"
+        "target": "com.azure.cognitiveservices#ListCommitmentPlanPlansBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.cognitiveservices#CommitmentPlanListResult"
@@ -23231,7 +23232,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#CommitmentPlansListPlansBySubscriptionRequest": {
+    "com.azure.cognitiveservices#ListCommitmentPlanPlansBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -23479,10 +23480,10 @@
         "smithy.api#documentation": "Dictionary, Model Capacity Calculator Workload Parameters."
       }
     },
-    "com.azure.cognitiveservices#AccountsList": {
+    "com.azure.cognitiveservices#ListAccounts": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cognitiveservices#AccountsListRequest"
+        "target": "com.azure.cognitiveservices#ListAccountsRequest"
       },
       "output": {
         "target": "com.azure.cognitiveservices#AccountListResult"
@@ -23498,7 +23499,7 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#AccountsListRequest": {
+    "com.azure.cognitiveservices#ListAccountsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -23514,13 +23515,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cognitiveservices#OperationsList": {
+    "com.azure.cognitiveservices#ListOperations": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
       },
       "output": {
-        "target": "com.azure.cognitiveservices#OperationsListResponse"
+        "target": "com.azure.cognitiveservices#ListOperationsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -23533,11 +23534,11 @@
         "com.distilled.openapi#apiVersion": "2026-07-01"
       }
     },
-    "com.azure.cognitiveservices#OperationsListResponse": {
+    "com.azure.cognitiveservices#ListOperationsResponse": {
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.cognitiveservices#OperationsListResponseValueList",
+          "target": "com.azure.cognitiveservices#ListOperationsResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of operations supported by the resource provider"
           }
@@ -23553,7 +23554,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.cognitiveservices#OperationsListResponseValueList": {
+    "com.azure.cognitiveservices#ListOperationsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.cognitiveservices#Operation"
@@ -23677,427 +23678,427 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.cognitiveservices#CommitmentPlansDeleteAssociation"
+          "target": "com.azure.cognitiveservices#DeleteCommitmentPlanAssociation"
         },
         {
           "target": "com.azure.cognitiveservices#CommitmentPlansCreateOrUpdateAssociation"
         },
         {
-          "target": "com.azure.cognitiveservices#CommitmentPlansGetAssociation"
+          "target": "com.azure.cognitiveservices#GetCommitmentPlanAssociation"
         },
         {
-          "target": "com.azure.cognitiveservices#CommitmentPlansListAssociations"
+          "target": "com.azure.cognitiveservices#ListCommitmentPlanAssociations"
         },
         {
-          "target": "com.azure.cognitiveservices#CommitmentPlansDeletePlan"
+          "target": "com.azure.cognitiveservices#DeleteCommitmentPlanPlan"
         },
         {
-          "target": "com.azure.cognitiveservices#CommitmentPlansUpdatePlan"
+          "target": "com.azure.cognitiveservices#UpdateCommitmentPlanPlan"
         },
         {
           "target": "com.azure.cognitiveservices#CommitmentPlansCreateOrUpdatePlan"
         },
         {
-          "target": "com.azure.cognitiveservices#CommitmentPlansGetPlan"
+          "target": "com.azure.cognitiveservices#GetCommitmentPlanPlan"
         },
         {
-          "target": "com.azure.cognitiveservices#CommitmentPlansListPlansByResourceGroup"
+          "target": "com.azure.cognitiveservices#ListCommitmentPlanPlansByResourceGroup"
         },
         {
-          "target": "com.azure.cognitiveservices#AccountsListUsages"
+          "target": "com.azure.cognitiveservices#ListAccountUsages"
         },
         {
           "target": "com.azure.cognitiveservices#TestRaiExternalSafetyProviderCreateOrUpdate"
         },
         {
-          "target": "com.azure.cognitiveservices#AccountsListSkus"
+          "target": "com.azure.cognitiveservices#ListAccountSkus"
         },
         {
-          "target": "com.azure.cognitiveservices#AccountsRegenerateKey"
+          "target": "com.azure.cognitiveservices#RegenerateAccountKey"
         },
         {
-          "target": "com.azure.cognitiveservices#RaiTopicsDelete"
+          "target": "com.azure.cognitiveservices#DeleteRaiTopic"
         },
         {
           "target": "com.azure.cognitiveservices#RaiTopicsCreateOrUpdate"
         },
         {
-          "target": "com.azure.cognitiveservices#RaiTopicsGet"
+          "target": "com.azure.cognitiveservices#GetRaiTopic"
         },
         {
-          "target": "com.azure.cognitiveservices#RaiTopicsList"
+          "target": "com.azure.cognitiveservices#ListRaiTopics"
         },
         {
-          "target": "com.azure.cognitiveservices#RaiToolLabelsDelete"
+          "target": "com.azure.cognitiveservices#DeleteRaiToolLabel"
         },
         {
           "target": "com.azure.cognitiveservices#RaiToolLabelsCreateOrUpdate"
         },
         {
-          "target": "com.azure.cognitiveservices#RaiToolLabelsGet"
+          "target": "com.azure.cognitiveservices#GetRaiToolLabel"
         },
         {
-          "target": "com.azure.cognitiveservices#RaiToolLabelsList"
+          "target": "com.azure.cognitiveservices#ListRaiToolLabels"
         },
         {
-          "target": "com.azure.cognitiveservices#RaiPoliciesDelete"
+          "target": "com.azure.cognitiveservices#DeleteRaiPolicy"
         },
         {
           "target": "com.azure.cognitiveservices#RaiPoliciesCreateOrUpdate"
         },
         {
-          "target": "com.azure.cognitiveservices#RaiPoliciesGet"
+          "target": "com.azure.cognitiveservices#GetRaiPolicy"
         },
         {
-          "target": "com.azure.cognitiveservices#RaiPoliciesList"
+          "target": "com.azure.cognitiveservices#ListRaiPolicies"
         },
         {
-          "target": "com.azure.cognitiveservices#RaiBlocklistItemsDelete"
+          "target": "com.azure.cognitiveservices#DeleteRaiBlocklistItem"
         },
         {
           "target": "com.azure.cognitiveservices#RaiBlocklistItemsCreateOrUpdate"
         },
         {
-          "target": "com.azure.cognitiveservices#RaiBlocklistItemsGet"
+          "target": "com.azure.cognitiveservices#GetRaiBlocklistItem"
         },
         {
-          "target": "com.azure.cognitiveservices#RaiBlocklistItemsList"
+          "target": "com.azure.cognitiveservices#ListRaiBlocklistItems"
         },
         {
-          "target": "com.azure.cognitiveservices#RaiBlocklistItemsBatchDelete"
+          "target": "com.azure.cognitiveservices#DeleteRaiBlocklistItemBatch"
         },
         {
-          "target": "com.azure.cognitiveservices#RaiBlocklistItemsBatchAdd"
+          "target": "com.azure.cognitiveservices#AddRaiBlocklistItemBatch"
         },
         {
-          "target": "com.azure.cognitiveservices#RaiBlocklistsDelete"
+          "target": "com.azure.cognitiveservices#DeleteRaiBlocklist"
         },
         {
           "target": "com.azure.cognitiveservices#RaiBlocklistsCreateOrUpdate"
         },
         {
-          "target": "com.azure.cognitiveservices#RaiBlocklistsGet"
+          "target": "com.azure.cognitiveservices#GetRaiBlocklist"
         },
         {
-          "target": "com.azure.cognitiveservices#RaiBlocklistsList"
+          "target": "com.azure.cognitiveservices#ListRaiBlocklists"
         },
         {
-          "target": "com.azure.cognitiveservices#ProjectConnectionsDelete"
+          "target": "com.azure.cognitiveservices#DeleteProjectConnection"
         },
         {
-          "target": "com.azure.cognitiveservices#ProjectConnectionsUpdate"
+          "target": "com.azure.cognitiveservices#UpdateProjectConnection"
         },
         {
-          "target": "com.azure.cognitiveservices#ProjectConnectionsCreate"
+          "target": "com.azure.cognitiveservices#CreateProjectConnection"
         },
         {
-          "target": "com.azure.cognitiveservices#ProjectConnectionsGet"
+          "target": "com.azure.cognitiveservices#GetProjectConnection"
         },
         {
-          "target": "com.azure.cognitiveservices#ProjectConnectionsList"
+          "target": "com.azure.cognitiveservices#ListProjectConnections"
         },
         {
-          "target": "com.azure.cognitiveservices#ProjectCapabilityHostsDelete"
+          "target": "com.azure.cognitiveservices#DeleteProjectCapabilityHost"
         },
         {
           "target": "com.azure.cognitiveservices#ProjectCapabilityHostsCreateOrUpdate"
         },
         {
-          "target": "com.azure.cognitiveservices#ProjectCapabilityHostsGet"
+          "target": "com.azure.cognitiveservices#GetProjectCapabilityHost"
         },
         {
-          "target": "com.azure.cognitiveservices#ProjectCapabilityHostsList"
+          "target": "com.azure.cognitiveservices#ListProjectCapabilityHosts"
         },
         {
-          "target": "com.azure.cognitiveservices#AgentApplicationsListAgents"
+          "target": "com.azure.cognitiveservices#ListAgentApplicationAgents"
         },
         {
-          "target": "com.azure.cognitiveservices#AgentApplicationsEnable"
+          "target": "com.azure.cognitiveservices#EnableAgentApplication"
         },
         {
-          "target": "com.azure.cognitiveservices#AgentApplicationsDisable"
+          "target": "com.azure.cognitiveservices#DisableAgentApplication"
         },
         {
-          "target": "com.azure.cognitiveservices#AgentDeploymentsStop"
+          "target": "com.azure.cognitiveservices#StopAgentDeployment"
         },
         {
-          "target": "com.azure.cognitiveservices#AgentDeploymentsStart"
+          "target": "com.azure.cognitiveservices#StartAgentDeployment"
         },
         {
-          "target": "com.azure.cognitiveservices#AgentDeploymentsDelete"
+          "target": "com.azure.cognitiveservices#DeleteAgentDeployment"
         },
         {
           "target": "com.azure.cognitiveservices#AgentDeploymentsCreateOrUpdate"
         },
         {
-          "target": "com.azure.cognitiveservices#AgentDeploymentsGet"
+          "target": "com.azure.cognitiveservices#GetAgentDeployment"
         },
         {
-          "target": "com.azure.cognitiveservices#AgentDeploymentsList"
+          "target": "com.azure.cognitiveservices#ListAgentDeployments"
         },
         {
-          "target": "com.azure.cognitiveservices#AgentApplicationsDelete"
+          "target": "com.azure.cognitiveservices#DeleteAgentApplication"
         },
         {
           "target": "com.azure.cognitiveservices#AgentApplicationsCreateOrUpdate"
         },
         {
-          "target": "com.azure.cognitiveservices#AgentApplicationsGet"
+          "target": "com.azure.cognitiveservices#GetAgentApplication"
         },
         {
-          "target": "com.azure.cognitiveservices#AgentApplicationsList"
+          "target": "com.azure.cognitiveservices#ListAgentApplications"
         },
         {
-          "target": "com.azure.cognitiveservices#ProjectsDelete"
+          "target": "com.azure.cognitiveservices#DeleteProject"
         },
         {
-          "target": "com.azure.cognitiveservices#ProjectsUpdate"
+          "target": "com.azure.cognitiveservices#UpdateProject"
         },
         {
-          "target": "com.azure.cognitiveservices#ProjectsCreate"
+          "target": "com.azure.cognitiveservices#CreateProject"
         },
         {
-          "target": "com.azure.cognitiveservices#ProjectsGet"
+          "target": "com.azure.cognitiveservices#GetProject"
         },
         {
-          "target": "com.azure.cognitiveservices#ProjectsList"
+          "target": "com.azure.cognitiveservices#ListProjects"
         },
         {
-          "target": "com.azure.cognitiveservices#PrivateLinkResourcesList"
+          "target": "com.azure.cognitiveservices#ListPrivateLinkResources"
         },
         {
-          "target": "com.azure.cognitiveservices#PrivateEndpointConnectionsDelete"
+          "target": "com.azure.cognitiveservices#DeletePrivateEndpointConnection"
         },
         {
           "target": "com.azure.cognitiveservices#PrivateEndpointConnectionsCreateOrUpdate"
         },
         {
-          "target": "com.azure.cognitiveservices#PrivateEndpointConnectionsGet"
+          "target": "com.azure.cognitiveservices#GetPrivateEndpointConnection"
         },
         {
-          "target": "com.azure.cognitiveservices#PrivateEndpointConnectionsList"
+          "target": "com.azure.cognitiveservices#ListPrivateEndpointConnections"
         },
         {
           "target": "com.azure.cognitiveservices#NetworkSecurityPerimeterConfigurationsReconcile"
         },
         {
-          "target": "com.azure.cognitiveservices#NetworkSecurityPerimeterConfigurationsGet"
+          "target": "com.azure.cognitiveservices#GetNetworkSecurityPerimeterConfiguration"
         },
         {
-          "target": "com.azure.cognitiveservices#NetworkSecurityPerimeterConfigurationsList"
+          "target": "com.azure.cognitiveservices#ListNetworkSecurityPerimeterConfigurations"
         },
         {
-          "target": "com.azure.cognitiveservices#AccountsListModels"
+          "target": "com.azure.cognitiveservices#ListAccountModels"
         },
         {
-          "target": "com.azure.cognitiveservices#ManagedNetworkProvisionsProvisionManagedNetwork"
+          "target": "com.azure.cognitiveservices#ProvisionManagedNetworkProvisionManagedNetwork"
         },
         {
-          "target": "com.azure.cognitiveservices#OutboundRuleDelete"
+          "target": "com.azure.cognitiveservices#DeleteOutboundRule"
         },
         {
           "target": "com.azure.cognitiveservices#OutboundRuleCreateOrUpdate"
         },
         {
-          "target": "com.azure.cognitiveservices#OutboundRuleGet"
+          "target": "com.azure.cognitiveservices#GetOutboundRule"
         },
         {
-          "target": "com.azure.cognitiveservices#OutboundRuleList"
+          "target": "com.azure.cognitiveservices#ListOutboundRule"
         },
         {
-          "target": "com.azure.cognitiveservices#OutboundRulesPost"
+          "target": "com.azure.cognitiveservices#PostOutboundRule"
         },
         {
-          "target": "com.azure.cognitiveservices#ManagedNetworkSettingsDelete"
+          "target": "com.azure.cognitiveservices#DeleteManagedNetworkSettings"
         },
         {
-          "target": "com.azure.cognitiveservices#ManagedNetworkSettingsPatch"
+          "target": "com.azure.cognitiveservices#PatchManagedNetworkSettings"
         },
         {
-          "target": "com.azure.cognitiveservices#ManagedNetworkSettingsPut"
+          "target": "com.azure.cognitiveservices#PutManagedNetworkSettings"
         },
         {
-          "target": "com.azure.cognitiveservices#ManagedNetworkSettingsGet"
+          "target": "com.azure.cognitiveservices#GetManagedNetworkSettings"
         },
         {
-          "target": "com.azure.cognitiveservices#ManagedNetworkSettingsList"
+          "target": "com.azure.cognitiveservices#ListManagedNetworkSettings"
         },
         {
-          "target": "com.azure.cognitiveservices#AccountsListKeys"
+          "target": "com.azure.cognitiveservices#ListAccountKeys"
         },
         {
-          "target": "com.azure.cognitiveservices#EncryptionScopesDelete"
+          "target": "com.azure.cognitiveservices#DeleteEncryptionScope"
         },
         {
           "target": "com.azure.cognitiveservices#EncryptionScopesCreateOrUpdate"
         },
         {
-          "target": "com.azure.cognitiveservices#EncryptionScopesGet"
+          "target": "com.azure.cognitiveservices#GetEncryptionScope"
         },
         {
-          "target": "com.azure.cognitiveservices#EncryptionScopesList"
+          "target": "com.azure.cognitiveservices#ListEncryptionScopes"
         },
         {
-          "target": "com.azure.cognitiveservices#DeploymentsListSkus"
+          "target": "com.azure.cognitiveservices#ListDeploymentSkus"
         },
         {
-          "target": "com.azure.cognitiveservices#DeploymentsResume"
+          "target": "com.azure.cognitiveservices#ResumeDeployment"
         },
         {
-          "target": "com.azure.cognitiveservices#DeploymentsPause"
+          "target": "com.azure.cognitiveservices#PauseDeployment"
         },
         {
-          "target": "com.azure.cognitiveservices#DeploymentsDelete"
+          "target": "com.azure.cognitiveservices#DeleteDeployment"
         },
         {
-          "target": "com.azure.cognitiveservices#DeploymentsUpdate"
+          "target": "com.azure.cognitiveservices#UpdateDeployment"
         },
         {
           "target": "com.azure.cognitiveservices#DeploymentsCreateOrUpdate"
         },
         {
-          "target": "com.azure.cognitiveservices#DeploymentsGet"
+          "target": "com.azure.cognitiveservices#GetDeployment"
         },
         {
-          "target": "com.azure.cognitiveservices#DeploymentsList"
+          "target": "com.azure.cognitiveservices#ListDeployments"
         },
         {
-          "target": "com.azure.cognitiveservices#DefenderForAISettingsUpdate"
+          "target": "com.azure.cognitiveservices#UpdateDefenderForAISettings"
         },
         {
           "target": "com.azure.cognitiveservices#DefenderForAISettingsCreateOrUpdate"
         },
         {
-          "target": "com.azure.cognitiveservices#DefenderForAISettingsGet"
+          "target": "com.azure.cognitiveservices#GetDefenderForAISettings"
         },
         {
-          "target": "com.azure.cognitiveservices#DefenderForAISettingsList"
+          "target": "com.azure.cognitiveservices#ListDefenderForAISettings"
         },
         {
-          "target": "com.azure.cognitiveservices#AccountConnectionsDelete"
+          "target": "com.azure.cognitiveservices#DeleteAccountConnection"
         },
         {
-          "target": "com.azure.cognitiveservices#AccountConnectionsUpdate"
+          "target": "com.azure.cognitiveservices#UpdateAccountConnection"
         },
         {
-          "target": "com.azure.cognitiveservices#AccountConnectionsCreate"
+          "target": "com.azure.cognitiveservices#CreateAccountConnection"
         },
         {
-          "target": "com.azure.cognitiveservices#AccountConnectionsGet"
+          "target": "com.azure.cognitiveservices#GetAccountConnection"
         },
         {
-          "target": "com.azure.cognitiveservices#AccountConnectionsList"
+          "target": "com.azure.cognitiveservices#ListAccountConnections"
         },
         {
-          "target": "com.azure.cognitiveservices#CommitmentPlansDelete"
+          "target": "com.azure.cognitiveservices#DeleteCommitmentPlan"
         },
         {
           "target": "com.azure.cognitiveservices#CommitmentPlansCreateOrUpdate"
         },
         {
-          "target": "com.azure.cognitiveservices#CommitmentPlansGet"
+          "target": "com.azure.cognitiveservices#GetCommitmentPlan"
         },
         {
-          "target": "com.azure.cognitiveservices#CommitmentPlansList"
+          "target": "com.azure.cognitiveservices#ListCommitmentPlans"
         },
         {
-          "target": "com.azure.cognitiveservices#AccountCapabilityHostsDelete"
+          "target": "com.azure.cognitiveservices#DeleteAccountCapabilityHost"
         },
         {
           "target": "com.azure.cognitiveservices#AccountCapabilityHostsCreateOrUpdate"
         },
         {
-          "target": "com.azure.cognitiveservices#AccountCapabilityHostsGet"
+          "target": "com.azure.cognitiveservices#GetAccountCapabilityHost"
         },
         {
-          "target": "com.azure.cognitiveservices#AccountCapabilityHostsList"
+          "target": "com.azure.cognitiveservices#ListAccountCapabilityHosts"
         },
         {
-          "target": "com.azure.cognitiveservices#AccountsDelete"
+          "target": "com.azure.cognitiveservices#DeleteAccount"
         },
         {
-          "target": "com.azure.cognitiveservices#AccountsUpdate"
+          "target": "com.azure.cognitiveservices#UpdateAccount"
         },
         {
-          "target": "com.azure.cognitiveservices#AccountsCreate"
+          "target": "com.azure.cognitiveservices#CreateAccount"
         },
         {
-          "target": "com.azure.cognitiveservices#AccountsGet"
+          "target": "com.azure.cognitiveservices#GetAccount"
         },
         {
-          "target": "com.azure.cognitiveservices#AccountsListByResourceGroup"
+          "target": "com.azure.cognitiveservices#ListAccountByResourceGroup"
         },
         {
-          "target": "com.azure.cognitiveservices#ResourceSkusList"
+          "target": "com.azure.cognitiveservices#ListResourceSkus"
         },
         {
-          "target": "com.azure.cognitiveservices#SubscriptionRaiPolicyDelete"
+          "target": "com.azure.cognitiveservices#DeleteSubscriptionRaiPolicy"
         },
         {
           "target": "com.azure.cognitiveservices#SubscriptionRaiPolicyCreateOrUpdate"
         },
         {
-          "target": "com.azure.cognitiveservices#SubscriptionRaiPolicyGet"
+          "target": "com.azure.cognitiveservices#GetSubscriptionRaiPolicy"
         },
         {
-          "target": "com.azure.cognitiveservices#RaiExternalSafetyProviderDelete"
+          "target": "com.azure.cognitiveservices#DeleteRaiExternalSafetyProvider"
         },
         {
           "target": "com.azure.cognitiveservices#RaiExternalSafetyProviderCreateOrUpdate"
         },
         {
-          "target": "com.azure.cognitiveservices#RaiExternalSafetyProviderGet"
+          "target": "com.azure.cognitiveservices#GetRaiExternalSafetyProvider"
         },
         {
-          "target": "com.azure.cognitiveservices#RaiExternalSafetyProvidersList"
+          "target": "com.azure.cognitiveservices#ListRaiExternalSafetyProviders"
         },
         {
-          "target": "com.azure.cognitiveservices#QuotaTiersUpdate"
+          "target": "com.azure.cognitiveservices#UpdateQuotaTier"
         },
         {
           "target": "com.azure.cognitiveservices#QuotaTiersCreateOrUpdate"
         },
         {
-          "target": "com.azure.cognitiveservices#QuotaTiersGet"
+          "target": "com.azure.cognitiveservices#GetQuotaTier"
         },
         {
-          "target": "com.azure.cognitiveservices#QuotaTiersListBySubscription"
+          "target": "com.azure.cognitiveservices#ListQuotaTierBySubscription"
         },
         {
-          "target": "com.azure.cognitiveservices#ModelCapacitiesList"
+          "target": "com.azure.cognitiveservices#ListModelCapacities"
         },
         {
-          "target": "com.azure.cognitiveservices#UsagesList"
+          "target": "com.azure.cognitiveservices#ListUsages"
         },
         {
-          "target": "com.azure.cognitiveservices#DeletedAccountsPurge"
+          "target": "com.azure.cognitiveservices#PurgeDeletedAccount"
         },
         {
-          "target": "com.azure.cognitiveservices#DeletedAccountsGet"
+          "target": "com.azure.cognitiveservices#GetDeletedAccount"
         },
         {
-          "target": "com.azure.cognitiveservices#RaiContentFiltersGet"
+          "target": "com.azure.cognitiveservices#GetRaiContentFilter"
         },
         {
-          "target": "com.azure.cognitiveservices#RaiContentFiltersList"
+          "target": "com.azure.cognitiveservices#ListRaiContentFilters"
         },
         {
-          "target": "com.azure.cognitiveservices#ModelsList"
+          "target": "com.azure.cognitiveservices#ListModels"
         },
         {
-          "target": "com.azure.cognitiveservices#LocationBasedModelCapacitiesList"
+          "target": "com.azure.cognitiveservices#ListLocationBasedModelCapacities"
         },
         {
-          "target": "com.azure.cognitiveservices#CommitmentTiersList"
+          "target": "com.azure.cognitiveservices#ListCommitmentTiers"
         },
         {
           "target": "com.azure.cognitiveservices#CheckSkuAvailability"
         },
         {
-          "target": "com.azure.cognitiveservices#DeletedAccountsList"
+          "target": "com.azure.cognitiveservices#ListDeletedAccounts"
         },
         {
-          "target": "com.azure.cognitiveservices#CommitmentPlansListPlansBySubscription"
+          "target": "com.azure.cognitiveservices#ListCommitmentPlanPlansBySubscription"
         },
         {
           "target": "com.azure.cognitiveservices#CheckDomainAvailability"
@@ -24106,10 +24107,10 @@
           "target": "com.azure.cognitiveservices#CalculateModelCapacity"
         },
         {
-          "target": "com.azure.cognitiveservices#AccountsList"
+          "target": "com.azure.cognitiveservices#ListAccounts"
         },
         {
-          "target": "com.azure.cognitiveservices#OperationsList"
+          "target": "com.azure.cognitiveservices#ListOperations"
         }
       ],
       "traits": {

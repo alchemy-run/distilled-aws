@@ -14,13 +14,14 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.storagediscovery#ReportGenerateReport": {
+    "com.azure.storagediscovery#GenerateReportReport": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storagediscovery#ReportGenerateReportRequest"
+        "target": "com.azure.storagediscovery#GenerateReportReportRequest"
       },
       "output": {
         "target": "com.azure.storagediscovery#GetReportResult"
@@ -133,7 +134,7 @@
         "smithy.api#documentation": "The column of the response result set"
       }
     },
-    "com.azure.storagediscovery#ReportGenerateReportRequest": {
+    "com.azure.storagediscovery#GenerateReportReportRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -169,7 +170,7 @@
           }
         },
         "queries": {
-          "target": "com.azure.storagediscovery#ReportGenerateReportRequestQueriesList",
+          "target": "com.azure.storagediscovery#GenerateReportReportRequestQueriesList",
           "traits": {
             "smithy.api#documentation": "The queries to execute against Storage Discovery data.\nFormat: Base64-encoded JSON object with structure:\n{\"queries\":[{\"name\":\"queryName\",\"query\":\"KQL query\"}]}\nFor query syntax and available tables, see: https://aka.ms/storageDiscoveryQuery",
             "smithy.api#required": {}
@@ -180,7 +181,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storagediscovery#ReportGenerateReportRequestQueriesList": {
+    "com.azure.storagediscovery#GenerateReportReportRequestQueriesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -189,13 +190,13 @@
         "smithy.api#documentation": "The queries to execute against Storage Discovery data.\nFormat: Base64-encoded JSON object with structure:\n{\"queries\":[{\"name\":\"queryName\",\"query\":\"KQL query\"}]}\nFor query syntax and available tables, see: https://aka.ms/storageDiscoveryQuery"
       }
     },
-    "com.azure.storagediscovery#ReportGet": {
+    "com.azure.storagediscovery#GetReport": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storagediscovery#ReportGetRequest"
+        "target": "com.azure.storagediscovery#GetReportRequest"
       },
       "output": {
-        "target": "com.azure.storagediscovery#ReportGetResponse"
+        "target": "com.azure.storagediscovery#GetReportResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -208,7 +209,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.storagediscovery#ReportGetResponse": {
+    "com.azure.storagediscovery#GetReportResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -394,7 +395,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.storagediscovery#ReportGetRequest": {
+    "com.azure.storagediscovery#GetReportRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -434,10 +435,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storagediscovery#ReportListByResourceGroup": {
+    "com.azure.storagediscovery#ListReportByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storagediscovery#ReportListByResourceGroupRequest"
+        "target": "com.azure.storagediscovery#ListReportByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.storagediscovery#ReportResourceListResult"
@@ -521,7 +522,7 @@
         "smithy.api#documentation": "A report resource"
       }
     },
-    "com.azure.storagediscovery#ReportListByResourceGroupRequest": {
+    "com.azure.storagediscovery#ListReportByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -620,10 +621,10 @@
         "smithy.api#documentation": "The queries to execute against Storage Discovery data.\nFormat: Base64-encoded JSON object with structure:\n{\"queries\":[{\"name\":\"queryName\",\"query\":\"KQL query\"}]}\nFor query syntax and available tables, see: https://aka.ms/storageDiscoveryQuery"
       }
     },
-    "com.azure.storagediscovery#StorageDiscoveryWorkspacesDelete": {
+    "com.azure.storagediscovery#DeleteStorageDiscoveryWorkspace": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storagediscovery#StorageDiscoveryWorkspacesDeleteRequest"
+        "target": "com.azure.storagediscovery#DeleteStorageDiscoveryWorkspaceRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -639,7 +640,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.storagediscovery#StorageDiscoveryWorkspacesDeleteRequest": {
+    "com.azure.storagediscovery#DeleteStorageDiscoveryWorkspaceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -671,13 +672,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storagediscovery#StorageDiscoveryWorkspacesUpdate": {
+    "com.azure.storagediscovery#UpdateStorageDiscoveryWorkspace": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storagediscovery#StorageDiscoveryWorkspacesUpdateRequest"
+        "target": "com.azure.storagediscovery#UpdateStorageDiscoveryWorkspaceRequest"
       },
       "output": {
-        "target": "com.azure.storagediscovery#StorageDiscoveryWorkspacesUpdateResponse"
+        "target": "com.azure.storagediscovery#UpdateStorageDiscoveryWorkspaceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -690,7 +691,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.storagediscovery#StorageDiscoveryWorkspacesUpdateResponse": {
+    "com.azure.storagediscovery#UpdateStorageDiscoveryWorkspaceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -718,7 +719,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.storagediscovery#StorageDiscoveryWorkspacesUpdateResponseTagsMap",
+          "target": "com.azure.storagediscovery#UpdateStorageDiscoveryWorkspaceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -897,7 +898,7 @@
         "smithy.api#documentation": "The storage discovery sku"
       }
     },
-    "com.azure.storagediscovery#StorageDiscoveryWorkspacesUpdateResponseTagsMap": {
+    "com.azure.storagediscovery#UpdateStorageDiscoveryWorkspaceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -909,7 +910,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.storagediscovery#StorageDiscoveryWorkspacesUpdateRequest": {
+    "com.azure.storagediscovery#UpdateStorageDiscoveryWorkspaceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -937,7 +938,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.storagediscovery#StorageDiscoveryWorkspacesUpdateRequestTagsMap",
+          "target": "com.azure.storagediscovery#UpdateStorageDiscoveryWorkspaceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1023,7 +1024,7 @@
         "smithy.api#documentation": "Storage Discovery Sku"
       }
     },
-    "com.azure.storagediscovery#StorageDiscoveryWorkspacesUpdateRequestTagsMap": {
+    "com.azure.storagediscovery#UpdateStorageDiscoveryWorkspaceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1252,13 +1253,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.storagediscovery#StorageDiscoveryWorkspacesGet": {
+    "com.azure.storagediscovery#GetStorageDiscoveryWorkspace": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storagediscovery#StorageDiscoveryWorkspacesGetRequest"
+        "target": "com.azure.storagediscovery#GetStorageDiscoveryWorkspaceRequest"
       },
       "output": {
-        "target": "com.azure.storagediscovery#StorageDiscoveryWorkspacesGetResponse"
+        "target": "com.azure.storagediscovery#GetStorageDiscoveryWorkspaceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1271,7 +1272,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.storagediscovery#StorageDiscoveryWorkspacesGetResponse": {
+    "com.azure.storagediscovery#GetStorageDiscoveryWorkspaceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1299,7 +1300,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.storagediscovery#StorageDiscoveryWorkspacesGetResponseTagsMap",
+          "target": "com.azure.storagediscovery#GetStorageDiscoveryWorkspaceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1322,7 +1323,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.storagediscovery#StorageDiscoveryWorkspacesGetResponseTagsMap": {
+    "com.azure.storagediscovery#GetStorageDiscoveryWorkspaceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1334,7 +1335,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.storagediscovery#StorageDiscoveryWorkspacesGetRequest": {
+    "com.azure.storagediscovery#GetStorageDiscoveryWorkspaceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1366,10 +1367,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storagediscovery#StorageDiscoveryWorkspacesListByResourceGroup": {
+    "com.azure.storagediscovery#ListStorageDiscoveryWorkspaceByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storagediscovery#StorageDiscoveryWorkspacesListByResourceGroupRequest"
+        "target": "com.azure.storagediscovery#ListStorageDiscoveryWorkspaceByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.storagediscovery#StorageDiscoveryWorkspaceListResult"
@@ -1478,7 +1479,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.storagediscovery#StorageDiscoveryWorkspacesListByResourceGroupRequest": {
+    "com.azure.storagediscovery#ListStorageDiscoveryWorkspaceByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1502,10 +1503,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storagediscovery#ReportListBySubscription": {
+    "com.azure.storagediscovery#ListReportBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storagediscovery#ReportListBySubscriptionRequest"
+        "target": "com.azure.storagediscovery#ListReportBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.storagediscovery#ReportResourceListResult"
@@ -1521,7 +1522,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.storagediscovery#ReportListBySubscriptionRequest": {
+    "com.azure.storagediscovery#ListReportBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1545,10 +1546,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storagediscovery#StorageDiscoveryWorkspacesListBySubscription": {
+    "com.azure.storagediscovery#ListStorageDiscoveryWorkspaceBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storagediscovery#StorageDiscoveryWorkspacesListBySubscriptionRequest"
+        "target": "com.azure.storagediscovery#ListStorageDiscoveryWorkspaceBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.storagediscovery#StorageDiscoveryWorkspaceListResult"
@@ -1564,7 +1565,7 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.storagediscovery#StorageDiscoveryWorkspacesListBySubscriptionRequest": {
+    "com.azure.storagediscovery#ListStorageDiscoveryWorkspaceBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1580,13 +1581,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storagediscovery#OperationsList": {
+    "com.azure.storagediscovery#ListOperations": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
       },
       "output": {
-        "target": "com.azure.storagediscovery#OperationsListResponse"
+        "target": "com.azure.storagediscovery#ListOperationsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1599,11 +1600,11 @@
         "com.distilled.openapi#apiVersion": "2025-09-01"
       }
     },
-    "com.azure.storagediscovery#OperationsListResponse": {
+    "com.azure.storagediscovery#ListOperationsResponse": {
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.storagediscovery#OperationsListResponseValueList",
+          "target": "com.azure.storagediscovery#ListOperationsResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of operations supported by the resource provider"
           }
@@ -1619,7 +1620,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.storagediscovery#OperationsListResponseValueList": {
+    "com.azure.storagediscovery#ListOperationsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.storagediscovery#Operation"
@@ -1743,40 +1744,40 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.storagediscovery#ReportGenerateReport"
+          "target": "com.azure.storagediscovery#GenerateReportReport"
         },
         {
-          "target": "com.azure.storagediscovery#ReportGet"
+          "target": "com.azure.storagediscovery#GetReport"
         },
         {
-          "target": "com.azure.storagediscovery#ReportListByResourceGroup"
+          "target": "com.azure.storagediscovery#ListReportByResourceGroup"
         },
         {
           "target": "com.azure.storagediscovery#StorageDiscoveryWorkspacesReport"
         },
         {
-          "target": "com.azure.storagediscovery#StorageDiscoveryWorkspacesDelete"
+          "target": "com.azure.storagediscovery#DeleteStorageDiscoveryWorkspace"
         },
         {
-          "target": "com.azure.storagediscovery#StorageDiscoveryWorkspacesUpdate"
+          "target": "com.azure.storagediscovery#UpdateStorageDiscoveryWorkspace"
         },
         {
           "target": "com.azure.storagediscovery#StorageDiscoveryWorkspacesCreateOrUpdate"
         },
         {
-          "target": "com.azure.storagediscovery#StorageDiscoveryWorkspacesGet"
+          "target": "com.azure.storagediscovery#GetStorageDiscoveryWorkspace"
         },
         {
-          "target": "com.azure.storagediscovery#StorageDiscoveryWorkspacesListByResourceGroup"
+          "target": "com.azure.storagediscovery#ListStorageDiscoveryWorkspaceByResourceGroup"
         },
         {
-          "target": "com.azure.storagediscovery#ReportListBySubscription"
+          "target": "com.azure.storagediscovery#ListReportBySubscription"
         },
         {
-          "target": "com.azure.storagediscovery#StorageDiscoveryWorkspacesListBySubscription"
+          "target": "com.azure.storagediscovery#ListStorageDiscoveryWorkspaceBySubscription"
         },
         {
-          "target": "com.azure.storagediscovery#OperationsList"
+          "target": "com.azure.storagediscovery#ListOperations"
         }
       ],
       "traits": {

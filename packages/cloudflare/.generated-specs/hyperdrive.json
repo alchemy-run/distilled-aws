@@ -14,7 +14,20 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "keyDictionary": {
+      "accessClientId": "access_client_id",
+      "accessClientSecret": "access_client_secret",
+      "caCertificateId": "ca_certificate_id",
+      "createdOn": "created_on",
+      "maxAge": "max_age",
+      "modifiedOn": "modified_on",
+      "mtlsCertificateId": "mtls_certificate_id",
+      "originConnectionLimit": "origin_connection_limit",
+      "serviceId": "service_id",
+      "staleWhileRevalidate": "stale_while_revalidate"
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.hyperdrive#ConfigsCreateRequestOriginPublicDatabaseScheme": {
@@ -309,50 +322,6 @@
         }
       }
     },
-    "com.cloudflare.hyperdrive#ConfigsCreateRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Define configurations using a unique string identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name of the Hyperdrive configuration. Used to identify the configuration in the Cloudflare dashboard and API.",
-            "smithy.api#required": {}
-          }
-        },
-        "origin": {
-          "target": "com.cloudflare.hyperdrive#ConfigsCreateRequestOrigin",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "caching": {
-          "target": "com.cloudflare.hyperdrive#ConfigsCreateRequestCaching"
-        },
-        "mtls": {
-          "target": "com.cloudflare.hyperdrive#ConfigsCreateRequestMtls",
-          "traits": {
-            "smithy.api#documentation": "mTLS configuration for the origin connection. Cannot be used with VPC Service origins; TLS must be managed on the VPC Service."
-          }
-        },
-        "origin_connection_limit": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The (soft) maximum number of connections the Hyperdrive is allowed to make to the origin database."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.hyperdrive#ConfigsCreateResponseOriginPublicDatabaseScheme": {
       "type": "enum",
       "members": {
@@ -390,13 +359,6 @@
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Defines the host (hostname or IP) of your origin database.",
-            "smithy.api#required": {}
-          }
-        },
-        "password": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Set the password needed to access your origin database. The API never returns this write-only value.",
             "smithy.api#required": {}
           }
         },
@@ -477,13 +439,6 @@
             "smithy.api#required": {}
           }
         },
-        "password": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Set the password needed to access your origin database. The API never returns this write-only value.",
-            "smithy.api#required": {}
-          }
-        },
         "scheme": {
           "target": "com.cloudflare.hyperdrive#ConfigsCreateResponseOriginAccessProtectedDatabaseBehindCloudflareTunnelScheme",
           "traits": {
@@ -530,13 +485,6 @@
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Set the name of your origin database.",
-            "smithy.api#required": {}
-          }
-        },
-        "password": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Set the password needed to access your origin database. The API never returns this write-only value.",
             "smithy.api#required": {}
           }
         },
@@ -643,136 +591,6 @@
             "smithy.api#documentation": "Set SSL mode to 'require', 'verify-ca', or 'verify-full' to verify the CA."
           }
         }
-      }
-    },
-    "com.cloudflare.hyperdrive#ConfigsCreateResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Define configurations using a unique string identifier.",
-            "smithy.api#required": {}
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name of the Hyperdrive configuration. Used to identify the configuration in the Cloudflare dashboard and API.",
-            "smithy.api#required": {}
-          }
-        },
-        "origin": {
-          "target": "com.cloudflare.hyperdrive#ConfigsCreateResponseOrigin",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "caching": {
-          "target": "com.cloudflare.hyperdrive#ConfigsCreateResponseCaching"
-        },
-        "created_on": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Defines the creation time of the Hyperdrive configuration."
-          }
-        },
-        "modified_on": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Defines the last modified time of the Hyperdrive configuration."
-          }
-        },
-        "mtls": {
-          "target": "com.cloudflare.hyperdrive#ConfigsCreateResponseMtls",
-          "traits": {
-            "smithy.api#documentation": "mTLS configuration for the origin connection. Cannot be used with VPC Service origins; TLS must be managed on the VPC Service."
-          }
-        },
-        "origin_connection_limit": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The (soft) maximum number of connections the Hyperdrive is allowed to make to the origin database."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.hyperdrive#ConfigsCreate": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.hyperdrive#ConfigsCreateRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.hyperdrive#ConfigsCreateResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "/accounts/{account_id}/hyperdrive/configs",
-          "code": 200
-        },
-        "smithy.api#documentation": "Creates and returns a new Hyperdrive configuration."
-      }
-    },
-    "com.cloudflare.hyperdrive#ConfigsDeleteRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Define configurations using a unique string identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "hyperdrive_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Define configurations using a unique string identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.hyperdrive#ConfigsDeleteResponse": {
-      "type": "structure",
-      "members": {
-        "result": {
-          "target": "smithy.api#Document",
-          "traits": {
-            "com.cloudflare.protocols#envelopePayload": {},
-            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.hyperdrive#ConfigsDelete": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.hyperdrive#ConfigsDeleteRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.hyperdrive#ConfigsDeleteResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "/accounts/{account_id}/hyperdrive/configs/{hyperdrive_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Deletes the specified Hyperdrive.",
-        "smithy.api#idempotent": {}
       }
     },
     "com.cloudflare.hyperdrive#ConfigsEditRequestCachingHyperdriveHyperdriveCachingCommon": {
@@ -969,57 +787,6 @@
         }
       }
     },
-    "com.cloudflare.hyperdrive#ConfigsEditRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Define configurations using a unique string identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "hyperdrive_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Define configurations using a unique string identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "caching": {
-          "target": "com.cloudflare.hyperdrive#ConfigsEditRequestCaching"
-        },
-        "mtls": {
-          "target": "com.cloudflare.hyperdrive#ConfigsEditRequestMtls",
-          "traits": {
-            "smithy.api#documentation": "mTLS configuration for the origin connection. Cannot be used with VPC Service origins; TLS must be managed on the VPC Service."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name of the Hyperdrive configuration. Used to identify the configuration in the Cloudflare dashboard and API."
-          }
-        },
-        "origin": {
-          "target": "com.cloudflare.hyperdrive#ConfigsEditRequestOrigin",
-          "traits": {
-            "smithy.api#documentation": "Connect to a database through a Workers VPC Service. TLS settings (mTLS, sslmode) cannot be configured on the Hyperdrive when using a VPC Service origin; TLS must be managed on the VPC Service itself."
-          }
-        },
-        "origin_connection_limit": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The (soft) maximum number of connections the Hyperdrive is allowed to make to the origin database."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.hyperdrive#ConfigsEditResponseOriginPublicDatabaseScheme": {
       "type": "enum",
       "members": {
@@ -1057,13 +824,6 @@
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Defines the host (hostname or IP) of your origin database.",
-            "smithy.api#required": {}
-          }
-        },
-        "password": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Set the password needed to access your origin database. The API never returns this write-only value.",
             "smithy.api#required": {}
           }
         },
@@ -1144,13 +904,6 @@
             "smithy.api#required": {}
           }
         },
-        "password": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Set the password needed to access your origin database. The API never returns this write-only value.",
-            "smithy.api#required": {}
-          }
-        },
         "scheme": {
           "target": "com.cloudflare.hyperdrive#ConfigsEditResponseOriginAccessProtectedDatabaseBehindCloudflareTunnelScheme",
           "traits": {
@@ -1197,13 +950,6 @@
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Set the name of your origin database.",
-            "smithy.api#required": {}
-          }
-        },
-        "password": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Set the password needed to access your origin database. The API never returns this write-only value.",
             "smithy.api#required": {}
           }
         },
@@ -1312,103 +1058,6 @@
         }
       }
     },
-    "com.cloudflare.hyperdrive#ConfigsEditResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Define configurations using a unique string identifier.",
-            "smithy.api#required": {}
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name of the Hyperdrive configuration. Used to identify the configuration in the Cloudflare dashboard and API.",
-            "smithy.api#required": {}
-          }
-        },
-        "origin": {
-          "target": "com.cloudflare.hyperdrive#ConfigsEditResponseOrigin",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "caching": {
-          "target": "com.cloudflare.hyperdrive#ConfigsEditResponseCaching"
-        },
-        "created_on": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Defines the creation time of the Hyperdrive configuration."
-          }
-        },
-        "modified_on": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Defines the last modified time of the Hyperdrive configuration."
-          }
-        },
-        "mtls": {
-          "target": "com.cloudflare.hyperdrive#ConfigsEditResponseMtls",
-          "traits": {
-            "smithy.api#documentation": "mTLS configuration for the origin connection. Cannot be used with VPC Service origins; TLS must be managed on the VPC Service."
-          }
-        },
-        "origin_connection_limit": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The (soft) maximum number of connections the Hyperdrive is allowed to make to the origin database."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.hyperdrive#ConfigsEdit": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.hyperdrive#ConfigsEditRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.hyperdrive#ConfigsEditResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "PATCH",
-          "uri": "/accounts/{account_id}/hyperdrive/configs/{hyperdrive_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Patches and returns the specified Hyperdrive configuration. Custom caching settings are not kept if caching is disabled."
-      }
-    },
-    "com.cloudflare.hyperdrive#ConfigsGetRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Define configurations using a unique string identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "hyperdrive_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Define configurations using a unique string identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.hyperdrive#ConfigsGetResponseOriginPublicDatabaseScheme": {
       "type": "enum",
       "members": {
@@ -1446,13 +1095,6 @@
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Defines the host (hostname or IP) of your origin database.",
-            "smithy.api#required": {}
-          }
-        },
-        "password": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Set the password needed to access your origin database. The API never returns this write-only value.",
             "smithy.api#required": {}
           }
         },
@@ -1533,13 +1175,6 @@
             "smithy.api#required": {}
           }
         },
-        "password": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Set the password needed to access your origin database. The API never returns this write-only value.",
-            "smithy.api#required": {}
-          }
-        },
         "scheme": {
           "target": "com.cloudflare.hyperdrive#ConfigsGetResponseOriginAccessProtectedDatabaseBehindCloudflareTunnelScheme",
           "traits": {
@@ -1586,13 +1221,6 @@
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Set the name of your origin database.",
-            "smithy.api#required": {}
-          }
-        },
-        "password": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Set the password needed to access your origin database. The API never returns this write-only value.",
             "smithy.api#required": {}
           }
         },
@@ -1701,96 +1329,6 @@
         }
       }
     },
-    "com.cloudflare.hyperdrive#ConfigsGetResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Define configurations using a unique string identifier.",
-            "smithy.api#required": {}
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name of the Hyperdrive configuration. Used to identify the configuration in the Cloudflare dashboard and API.",
-            "smithy.api#required": {}
-          }
-        },
-        "origin": {
-          "target": "com.cloudflare.hyperdrive#ConfigsGetResponseOrigin",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "caching": {
-          "target": "com.cloudflare.hyperdrive#ConfigsGetResponseCaching"
-        },
-        "created_on": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Defines the creation time of the Hyperdrive configuration."
-          }
-        },
-        "modified_on": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Defines the last modified time of the Hyperdrive configuration."
-          }
-        },
-        "mtls": {
-          "target": "com.cloudflare.hyperdrive#ConfigsGetResponseMtls",
-          "traits": {
-            "smithy.api#documentation": "mTLS configuration for the origin connection. Cannot be used with VPC Service origins; TLS must be managed on the VPC Service."
-          }
-        },
-        "origin_connection_limit": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The (soft) maximum number of connections the Hyperdrive is allowed to make to the origin database."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.hyperdrive#ConfigsGet": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.hyperdrive#ConfigsGetRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.hyperdrive#ConfigsGetResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/accounts/{account_id}/hyperdrive/configs/{hyperdrive_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Returns the specified Hyperdrive configuration.",
-        "smithy.api#readonly": {}
-      }
-    },
-    "com.cloudflare.hyperdrive#ConfigsListRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Define configurations using a unique string identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.hyperdrive#ConfigsListResultItemOriginPublicDatabaseScheme": {
       "type": "enum",
       "members": {
@@ -1828,13 +1366,6 @@
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Defines the host (hostname or IP) of your origin database.",
-            "smithy.api#required": {}
-          }
-        },
-        "password": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Set the password needed to access your origin database. The API never returns this write-only value.",
             "smithy.api#required": {}
           }
         },
@@ -1915,13 +1446,6 @@
             "smithy.api#required": {}
           }
         },
-        "password": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Set the password needed to access your origin database. The API never returns this write-only value.",
-            "smithy.api#required": {}
-          }
-        },
         "scheme": {
           "target": "com.cloudflare.hyperdrive#ConfigsListResultItemOriginAccessProtectedDatabaseBehindCloudflareTunnelScheme",
           "traits": {
@@ -1968,13 +1492,6 @@
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Set the name of your origin database.",
-            "smithy.api#required": {}
-          }
-        },
-        "password": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Set the password needed to access your origin database. The API never returns this write-only value.",
             "smithy.api#required": {}
           }
         },
@@ -2139,39 +1656,6 @@
       "type": "list",
       "member": {
         "target": "com.cloudflare.hyperdrive#ConfigsListResultItem"
-      }
-    },
-    "com.cloudflare.hyperdrive#ConfigsListResponse": {
-      "type": "structure",
-      "members": {
-        "result": {
-          "target": "com.cloudflare.hyperdrive#ConfigsListResultList",
-          "traits": {
-            "com.cloudflare.protocols#envelopePayload": {},
-            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.hyperdrive#ConfigsList": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.hyperdrive#ConfigsListRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.hyperdrive#ConfigsListResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/accounts/{account_id}/hyperdrive/configs",
-          "code": 200
-        },
-        "smithy.api#documentation": "Returns a list of Hyperdrives.",
-        "smithy.api#readonly": {}
       }
     },
     "com.cloudflare.hyperdrive#ConfigsUpdateRequestOriginPublicDatabaseScheme": {
@@ -2466,58 +1950,6 @@
         }
       }
     },
-    "com.cloudflare.hyperdrive#ConfigsUpdateRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Define configurations using a unique string identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "hyperdrive_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Define configurations using a unique string identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name of the Hyperdrive configuration. Used to identify the configuration in the Cloudflare dashboard and API.",
-            "smithy.api#required": {}
-          }
-        },
-        "origin": {
-          "target": "com.cloudflare.hyperdrive#ConfigsUpdateRequestOrigin",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "caching": {
-          "target": "com.cloudflare.hyperdrive#ConfigsUpdateRequestCaching"
-        },
-        "mtls": {
-          "target": "com.cloudflare.hyperdrive#ConfigsUpdateRequestMtls",
-          "traits": {
-            "smithy.api#documentation": "mTLS configuration for the origin connection. Cannot be used with VPC Service origins; TLS must be managed on the VPC Service."
-          }
-        },
-        "origin_connection_limit": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The (soft) maximum number of connections the Hyperdrive is allowed to make to the origin database."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.hyperdrive#ConfigsUpdateResponseOriginPublicDatabaseScheme": {
       "type": "enum",
       "members": {
@@ -2555,13 +1987,6 @@
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Defines the host (hostname or IP) of your origin database.",
-            "smithy.api#required": {}
-          }
-        },
-        "password": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Set the password needed to access your origin database. The API never returns this write-only value.",
             "smithy.api#required": {}
           }
         },
@@ -2642,13 +2067,6 @@
             "smithy.api#required": {}
           }
         },
-        "password": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Set the password needed to access your origin database. The API never returns this write-only value.",
-            "smithy.api#required": {}
-          }
-        },
         "scheme": {
           "target": "com.cloudflare.hyperdrive#ConfigsUpdateResponseOriginAccessProtectedDatabaseBehindCloudflareTunnelScheme",
           "traits": {
@@ -2695,13 +2113,6 @@
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Set the name of your origin database.",
-            "smithy.api#required": {}
-          }
-        },
-        "password": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Set the password needed to access your origin database. The API never returns this write-only value.",
             "smithy.api#required": {}
           }
         },
@@ -2810,7 +2221,734 @@
         }
       }
     },
-    "com.cloudflare.hyperdrive#ConfigsUpdateResponse": {
+    "com.cloudflare.hyperdrive#Hyperdrive": {
+      "type": "service",
+      "version": "4.0",
+      "operations": [
+        {
+          "target": "com.cloudflare.hyperdrive#CreateConfig"
+        },
+        {
+          "target": "com.cloudflare.hyperdrive#DeleteConfig"
+        },
+        {
+          "target": "com.cloudflare.hyperdrive#GetConfig"
+        },
+        {
+          "target": "com.cloudflare.hyperdrive#ListConfigs"
+        },
+        {
+          "target": "com.cloudflare.hyperdrive#PatchConfig"
+        },
+        {
+          "target": "com.cloudflare.hyperdrive#UpdateConfig"
+        }
+      ],
+      "traits": {
+        "com.cloudflare.protocols#v4Json": {},
+        "smithy.api#title": "Cloudflare Hyperdrive",
+        "smithy.api#documentation": "Cloudflare API — hyperdrive resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+      }
+    },
+    "com.cloudflare.hyperdrive#HyperdriveConfigNotFound": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "code": 2006
+          },
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.cloudflare.hyperdrive#InvalidHyperdriveConfig": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "code": 2007
+          }
+        ]
+      }
+    },
+    "com.cloudflare.hyperdrive#InvalidObjectIdentifier": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "code": 7003
+          }
+        ]
+      }
+    },
+    "com.cloudflare.hyperdrive#MethodNotAllowed": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "code": 10000,
+            "message": {
+              "includes": "method not allowed"
+            }
+          },
+          {
+            "code": 10405,
+            "message": {
+              "includes": "Method not allowed"
+            }
+          }
+        ]
+      }
+    },
+    "com.cloudflare.hyperdrive#PrivateHostNotAllowed": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "code": 2009
+          }
+        ]
+      }
+    },
+    "com.cloudflare.hyperdrive#CreateConfig": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.hyperdrive#CreateConfigRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.hyperdrive#CreateConfigResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/hyperdrive/configs",
+          "code": 200
+        },
+        "smithy.api#documentation": "Creates and returns a new Hyperdrive configuration."
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.hyperdrive#PrivateHostNotAllowed"
+        },
+        {
+          "target": "com.cloudflare.hyperdrive#InvalidHyperdriveConfig"
+        },
+        {
+          "target": "com.cloudflare.hyperdrive#InvalidObjectIdentifier"
+        }
+      ]
+    },
+    "com.cloudflare.hyperdrive#CreateConfigRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Define configurations using a unique string identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the Hyperdrive configuration. Used to identify the configuration in the Cloudflare dashboard and API.",
+            "smithy.api#required": {}
+          }
+        },
+        "origin": {
+          "target": "com.cloudflare.hyperdrive#ConfigsCreateRequestOrigin",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "caching": {
+          "target": "com.cloudflare.hyperdrive#ConfigsCreateRequestCaching"
+        },
+        "mtls": {
+          "target": "com.cloudflare.hyperdrive#ConfigsCreateRequestMtls",
+          "traits": {
+            "smithy.api#documentation": "mTLS configuration for the origin connection. Cannot be used with VPC Service origins; TLS must be managed on the VPC Service."
+          }
+        },
+        "origin_connection_limit": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The (soft) maximum number of connections the Hyperdrive is allowed to make to the origin database."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.hyperdrive#CreateConfigResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Define configurations using a unique string identifier.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the Hyperdrive configuration. Used to identify the configuration in the Cloudflare dashboard and API.",
+            "smithy.api#required": {}
+          }
+        },
+        "origin": {
+          "target": "com.cloudflare.hyperdrive#ConfigsCreateResponseOrigin",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "caching": {
+          "target": "com.cloudflare.hyperdrive#ConfigsCreateResponseCaching"
+        },
+        "created_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Defines the creation time of the Hyperdrive configuration."
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Defines the last modified time of the Hyperdrive configuration."
+          }
+        },
+        "mtls": {
+          "target": "com.cloudflare.hyperdrive#ConfigsCreateResponseMtls",
+          "traits": {
+            "smithy.api#documentation": "mTLS configuration for the origin connection. Cannot be used with VPC Service origins; TLS must be managed on the VPC Service."
+          }
+        },
+        "origin_connection_limit": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The (soft) maximum number of connections the Hyperdrive is allowed to make to the origin database."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.hyperdrive#DeleteConfig": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.hyperdrive#DeleteConfigRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.hyperdrive#DeleteConfigResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/accounts/{account_id}/hyperdrive/configs/{hyperdrive_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Deletes the specified Hyperdrive.",
+        "smithy.api#idempotent": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.hyperdrive#PrivateHostNotAllowed"
+        },
+        {
+          "target": "com.cloudflare.hyperdrive#HyperdriveConfigNotFound"
+        },
+        {
+          "target": "com.cloudflare.hyperdrive#InvalidObjectIdentifier"
+        },
+        {
+          "target": "com.cloudflare.hyperdrive#MethodNotAllowed"
+        }
+      ]
+    },
+    "com.cloudflare.hyperdrive#DeleteConfigRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Define configurations using a unique string identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "hyperdrive_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Define configurations using a unique string identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.hyperdrive#DeleteConfigResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.hyperdrive#GetConfig": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.hyperdrive#GetConfigRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.hyperdrive#GetConfigResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/hyperdrive/configs/{hyperdrive_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Returns the specified Hyperdrive configuration.",
+        "smithy.api#readonly": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.hyperdrive#PrivateHostNotAllowed"
+        },
+        {
+          "target": "com.cloudflare.hyperdrive#HyperdriveConfigNotFound"
+        },
+        {
+          "target": "com.cloudflare.hyperdrive#InvalidObjectIdentifier"
+        }
+      ]
+    },
+    "com.cloudflare.hyperdrive#GetConfigRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Define configurations using a unique string identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "hyperdrive_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Define configurations using a unique string identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.hyperdrive#GetConfigResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Define configurations using a unique string identifier.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the Hyperdrive configuration. Used to identify the configuration in the Cloudflare dashboard and API.",
+            "smithy.api#required": {}
+          }
+        },
+        "origin": {
+          "target": "com.cloudflare.hyperdrive#ConfigsGetResponseOrigin",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "caching": {
+          "target": "com.cloudflare.hyperdrive#ConfigsGetResponseCaching"
+        },
+        "created_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Defines the creation time of the Hyperdrive configuration."
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Defines the last modified time of the Hyperdrive configuration."
+          }
+        },
+        "mtls": {
+          "target": "com.cloudflare.hyperdrive#ConfigsGetResponseMtls",
+          "traits": {
+            "smithy.api#documentation": "mTLS configuration for the origin connection. Cannot be used with VPC Service origins; TLS must be managed on the VPC Service."
+          }
+        },
+        "origin_connection_limit": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The (soft) maximum number of connections the Hyperdrive is allowed to make to the origin database."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.hyperdrive#ListConfigs": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.hyperdrive#ListConfigsRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.hyperdrive#ListConfigsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/hyperdrive/configs",
+          "code": 200
+        },
+        "smithy.api#documentation": "Returns a list of Hyperdrives.",
+        "smithy.api#readonly": {},
+        "smithy.api#paginated": {
+          "mode": "single",
+          "items": "result"
+        }
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.hyperdrive#PrivateHostNotAllowed"
+        },
+        {
+          "target": "com.cloudflare.hyperdrive#InvalidObjectIdentifier"
+        }
+      ]
+    },
+    "com.cloudflare.hyperdrive#ListConfigsRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Define configurations using a unique string identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.hyperdrive#ListConfigsResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.hyperdrive#ConfigsListResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.hyperdrive#PatchConfig": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.hyperdrive#PatchConfigRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.hyperdrive#PatchConfigResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/accounts/{account_id}/hyperdrive/configs/{hyperdrive_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Patches and returns the specified Hyperdrive configuration. Custom caching settings are not kept if caching is disabled."
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.hyperdrive#PrivateHostNotAllowed"
+        },
+        {
+          "target": "com.cloudflare.hyperdrive#HyperdriveConfigNotFound"
+        },
+        {
+          "target": "com.cloudflare.hyperdrive#InvalidObjectIdentifier"
+        },
+        {
+          "target": "com.cloudflare.hyperdrive#MethodNotAllowed"
+        }
+      ]
+    },
+    "com.cloudflare.hyperdrive#PatchConfigRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Define configurations using a unique string identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "hyperdrive_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Define configurations using a unique string identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "caching": {
+          "target": "com.cloudflare.hyperdrive#ConfigsEditRequestCaching"
+        },
+        "mtls": {
+          "target": "com.cloudflare.hyperdrive#ConfigsEditRequestMtls",
+          "traits": {
+            "smithy.api#documentation": "mTLS configuration for the origin connection. Cannot be used with VPC Service origins; TLS must be managed on the VPC Service."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the Hyperdrive configuration. Used to identify the configuration in the Cloudflare dashboard and API."
+          }
+        },
+        "origin": {
+          "target": "com.cloudflare.hyperdrive#ConfigsEditRequestOrigin",
+          "traits": {
+            "smithy.api#documentation": "Connect to a database through a Workers VPC Service. TLS settings (mTLS, sslmode) cannot be configured on the Hyperdrive when using a VPC Service origin; TLS must be managed on the VPC Service itself."
+          }
+        },
+        "origin_connection_limit": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The (soft) maximum number of connections the Hyperdrive is allowed to make to the origin database."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.hyperdrive#PatchConfigResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Define configurations using a unique string identifier.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the Hyperdrive configuration. Used to identify the configuration in the Cloudflare dashboard and API.",
+            "smithy.api#required": {}
+          }
+        },
+        "origin": {
+          "target": "com.cloudflare.hyperdrive#ConfigsEditResponseOrigin",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "caching": {
+          "target": "com.cloudflare.hyperdrive#ConfigsEditResponseCaching"
+        },
+        "created_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Defines the creation time of the Hyperdrive configuration."
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Defines the last modified time of the Hyperdrive configuration."
+          }
+        },
+        "mtls": {
+          "target": "com.cloudflare.hyperdrive#ConfigsEditResponseMtls",
+          "traits": {
+            "smithy.api#documentation": "mTLS configuration for the origin connection. Cannot be used with VPC Service origins; TLS must be managed on the VPC Service."
+          }
+        },
+        "origin_connection_limit": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The (soft) maximum number of connections the Hyperdrive is allowed to make to the origin database."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.hyperdrive#UpdateConfig": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.hyperdrive#UpdateConfigRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.hyperdrive#UpdateConfigResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/accounts/{account_id}/hyperdrive/configs/{hyperdrive_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Updates and returns the specified Hyperdrive configuration.",
+        "smithy.api#idempotent": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.hyperdrive#PrivateHostNotAllowed"
+        },
+        {
+          "target": "com.cloudflare.hyperdrive#HyperdriveConfigNotFound"
+        },
+        {
+          "target": "com.cloudflare.hyperdrive#InvalidObjectIdentifier"
+        },
+        {
+          "target": "com.cloudflare.hyperdrive#MethodNotAllowed"
+        }
+      ]
+    },
+    "com.cloudflare.hyperdrive#UpdateConfigRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Define configurations using a unique string identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "hyperdrive_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Define configurations using a unique string identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the Hyperdrive configuration. Used to identify the configuration in the Cloudflare dashboard and API.",
+            "smithy.api#required": {}
+          }
+        },
+        "origin": {
+          "target": "com.cloudflare.hyperdrive#ConfigsUpdateRequestOrigin",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "caching": {
+          "target": "com.cloudflare.hyperdrive#ConfigsUpdateRequestCaching"
+        },
+        "mtls": {
+          "target": "com.cloudflare.hyperdrive#ConfigsUpdateRequestMtls",
+          "traits": {
+            "smithy.api#documentation": "mTLS configuration for the origin connection. Cannot be used with VPC Service origins; TLS must be managed on the VPC Service."
+          }
+        },
+        "origin_connection_limit": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The (soft) maximum number of connections the Hyperdrive is allowed to make to the origin database."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.hyperdrive#UpdateConfigResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2864,53 +3002,6 @@
       "traits": {
         "smithy.api#output": {},
         "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.hyperdrive#ConfigsUpdate": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.hyperdrive#ConfigsUpdateRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.hyperdrive#ConfigsUpdateResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "PUT",
-          "uri": "/accounts/{account_id}/hyperdrive/configs/{hyperdrive_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Updates and returns the specified Hyperdrive configuration.",
-        "smithy.api#idempotent": {}
-      }
-    },
-    "com.cloudflare.hyperdrive#Hyperdrive": {
-      "type": "service",
-      "version": "4.0",
-      "operations": [
-        {
-          "target": "com.cloudflare.hyperdrive#ConfigsCreate"
-        },
-        {
-          "target": "com.cloudflare.hyperdrive#ConfigsDelete"
-        },
-        {
-          "target": "com.cloudflare.hyperdrive#ConfigsEdit"
-        },
-        {
-          "target": "com.cloudflare.hyperdrive#ConfigsGet"
-        },
-        {
-          "target": "com.cloudflare.hyperdrive#ConfigsList"
-        },
-        {
-          "target": "com.cloudflare.hyperdrive#ConfigsUpdate"
-        }
-      ],
-      "traits": {
-        "com.cloudflare.protocols#v4Json": {},
-        "smithy.api#title": "Cloudflare Hyperdrive",
-        "smithy.api#documentation": "Cloudflare API — hyperdrive resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
       }
     }
   }

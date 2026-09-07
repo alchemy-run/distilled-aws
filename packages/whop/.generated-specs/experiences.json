@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.whop.experiences#ListExperienceRequest": {
@@ -650,7 +651,7 @@
         "smithy.api#documentation": "Create experience\n\n[Legacy API — https://docs.whop.com/api-reference]\n\nRequired permissions:\n - `experience:create`"
       }
     },
-    "com.whop.experiences#RetrieveExperienceRequest": {
+    "com.whop.experiences#GetExperienceRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -666,10 +667,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.whop.experiences#RetrieveExperience": {
+    "com.whop.experiences#GetExperience": {
       "type": "operation",
       "input": {
-        "target": "com.whop.experiences#RetrieveExperienceRequest"
+        "target": "com.whop.experiences#GetExperienceRequest"
       },
       "output": {
         "target": "com.whop.experiences#Experience"
@@ -1115,7 +1116,7 @@
           "target": "com.whop.experiences#CreateExperience"
         },
         {
-          "target": "com.whop.experiences#RetrieveExperience"
+          "target": "com.whop.experiences#GetExperience"
         },
         {
           "target": "com.whop.experiences#UpdateExperience"

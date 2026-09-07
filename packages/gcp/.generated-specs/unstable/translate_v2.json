@@ -4,9 +4,50 @@
     "service": "translate",
     "version": "v2",
     "title": "Google Cloud Translation API",
-    "baseUrl": "https://translation.googleapis.com/language/translate/"
+    "baseUrl": "https://translation.googleapis.com/language/translate/",
+    "distilled.finalized": true
   },
   "shapes": {
+    "com.gcp.translate_v2#TranslationsResource": {
+      "type": "structure",
+      "members": {
+        "model": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The `model` type used for this translation. Valid values are\nlisted in public documentation. Can be different from requested `model`.\nPresent only if specific model type was explicitly requested."
+          }
+        },
+        "translatedText": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Text translated into the target language."
+          }
+        },
+        "detectedSourceLanguage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The source language of the initial request, detected automatically, if\nno source language was passed within the initial request. If the\nsource language was passed, auto-detection of the language will not\noccur and this field will be empty."
+          }
+        }
+      }
+    },
+    "com.gcp.translate_v2#DetectionsListResponse": {
+      "type": "structure",
+      "members": {
+        "detections": {
+          "target": "com.gcp.translate_v2#DetectionsResourceList",
+          "traits": {
+            "smithy.api#documentation": "A detections contains detection results of several text"
+          }
+        }
+      }
+    },
+    "com.gcp.translate_v2#DetectionsResourceList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.translate_v2#DetectionsResource"
+      }
+    },
     "com.gcp.translate_v2#LanguagesResource": {
       "type": "structure",
       "members": {
@@ -24,6 +65,50 @@
         }
       }
     },
+    "com.gcp.translate_v2#TranslateTextRequest": {
+      "type": "structure",
+      "members": {
+        "model": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The `model` type requested for this translation. Valid values are\nlisted in public documentation."
+          }
+        },
+        "format": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The format of the source text, in either HTML (default) or plain-text. A\nvalue of \"html\" indicates HTML and a value of \"text\" indicates plain-text."
+          }
+        },
+        "q": {
+          "target": "com.gcp.translate_v2#StringList",
+          "traits": {
+            "smithy.api#documentation": "The input text to translate. Repeat this parameter to perform translation\noperations on multiple text inputs."
+          }
+        },
+        "target": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The language to use for translation of the input text, set to one of the\nlanguage codes listed in Language Support."
+          }
+        },
+        "source": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The language of the source text, set to one of the language codes listed in\nLanguage Support. If the source language is not specified, the API will\nattempt to identify the source language automatically and return it within\nthe response."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The main translation request message for the Cloud Translation API."
+      }
+    },
+    "com.gcp.translate_v2#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
     "com.gcp.translate_v2#DetectLanguageRequest": {
       "type": "structure",
       "members": {
@@ -38,24 +123,36 @@
         "smithy.api#documentation": "The request message for language detection."
       }
     },
-    "com.gcp.translate_v2#StringList": {
-      "type": "list",
-      "member": {
-        "target": "smithy.api#String"
-      }
-    },
-    "com.gcp.translate_v2#GetSupportedLanguagesRequest": {
+    "com.gcp.translate_v2#DetectionsResourceItem": {
       "type": "structure",
       "members": {
-        "target": {
+        "isReliable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "A boolean to indicate is the language detection result reliable."
+          }
+        },
+        "language": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The language to use to return localized, human readable names of supported\nlanguages."
+            "smithy.api#documentation": "The language we detected."
+          }
+        },
+        "confidence": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The confidence of the detection result of this language."
           }
         }
+      }
+    },
+    "com.gcp.translate_v2#DetectionsResource": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.translate_v2#DetectionsResourceItem"
       },
       "traits": {
-        "smithy.api#documentation": "The request message for discovering supported languages."
+        "smithy.api#documentation": "An array of languages which we detect for the given text The most likely language list first."
       }
     },
     "com.gcp.translate_v2#TranslationsListResponse": {
@@ -78,76 +175,18 @@
         "target": "com.gcp.translate_v2#TranslationsResource"
       }
     },
-    "com.gcp.translate_v2#DetectionsResourceItem": {
+    "com.gcp.translate_v2#GetSupportedLanguagesRequest": {
       "type": "structure",
       "members": {
-        "confidence": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The confidence of the detection result of this language."
-          }
-        },
-        "language": {
+        "target": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The language we detected."
-          }
-        },
-        "isReliable": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "A boolean to indicate is the language detection result reliable."
+            "smithy.api#documentation": "The language to use to return localized, human readable names of supported\nlanguages."
           }
         }
-      }
-    },
-    "com.gcp.translate_v2#DetectionsResource": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.translate_v2#DetectionsResourceItem"
       },
       "traits": {
-        "smithy.api#documentation": "An array of languages which we detect for the given text The most likely language list first."
-      }
-    },
-    "com.gcp.translate_v2#TranslationsResource": {
-      "type": "structure",
-      "members": {
-        "detectedSourceLanguage": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The source language of the initial request, detected automatically, if\nno source language was passed within the initial request. If the\nsource language was passed, auto-detection of the language will not\noccur and this field will be empty."
-          }
-        },
-        "translatedText": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Text translated into the target language."
-          }
-        },
-        "model": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The `model` type used for this translation. Valid values are\nlisted in public documentation. Can be different from requested `model`.\nPresent only if specific model type was explicitly requested."
-          }
-        }
-      }
-    },
-    "com.gcp.translate_v2#DetectionsListResponse": {
-      "type": "structure",
-      "members": {
-        "detections": {
-          "target": "com.gcp.translate_v2#DetectionsResourceList",
-          "traits": {
-            "smithy.api#documentation": "A detections contains detection results of several text"
-          }
-        }
-      }
-    },
-    "com.gcp.translate_v2#DetectionsResourceList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.translate_v2#DetectionsResource"
+        "smithy.api#documentation": "The request message for discovering supported languages."
       }
     },
     "com.gcp.translate_v2#LanguagesListResponse": {
@@ -167,45 +206,7 @@
         "target": "com.gcp.translate_v2#LanguagesResource"
       }
     },
-    "com.gcp.translate_v2#TranslateTextRequest": {
-      "type": "structure",
-      "members": {
-        "q": {
-          "target": "com.gcp.translate_v2#StringList",
-          "traits": {
-            "smithy.api#documentation": "The input text to translate. Repeat this parameter to perform translation\noperations on multiple text inputs."
-          }
-        },
-        "source": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The language of the source text, set to one of the language codes listed in\nLanguage Support. If the source language is not specified, the API will\nattempt to identify the source language automatically and return it within\nthe response."
-          }
-        },
-        "format": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The format of the source text, in either HTML (default) or plain-text. A\nvalue of \"html\" indicates HTML and a value of \"text\" indicates plain-text."
-          }
-        },
-        "model": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The `model` type requested for this translation. Valid values are\nlisted in public documentation."
-          }
-        },
-        "target": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The language to use for translation of the input text, set to one of the\nlanguage codes listed in Language Support."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The main translation request message for the Cloud Translation API."
-      }
-    },
-    "com.gcp.translate_v2#TranslateTranslationsRequest": {
+    "com.gcp.translate_v2#ListDetectionsRequest": {
       "type": "structure",
       "members": {
         "bearer_token": {
@@ -222,11 +223,12 @@
             "smithy.api#httpQuery": "pp"
           }
         },
-        "body": {
-          "target": "com.gcp.translate_v2#TranslateTextRequest",
+        "q": {
+          "target": "com.gcp.translate_v2#StringList",
           "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
+            "smithy.api#documentation": "The input text upon which to perform language detection. Repeat this\nparameter to perform language detection on multiple text inputs.",
+            "smithy.api#httpQuery": "q",
+            "smithy.api#required": {}
           }
         }
       }
@@ -257,6 +259,56 @@
         ]
       }
     },
+    "com.gcp.translate_v2#ListDetections": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.translate_v2#ListDetectionsRequest"
+      },
+      "output": {
+        "target": "com.gcp.translate_v2#DetectionsListResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.translate_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.translate_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/detect"
+        },
+        "smithy.api#documentation": "Detects the language of text within a request."
+      }
+    },
+    "com.gcp.translate_v2#DetectDetectionsRequest": {
+      "type": "structure",
+      "members": {
+        "bearer_token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "OAuth bearer token.",
+            "smithy.api#httpQuery": "bearer_token"
+          }
+        },
+        "pp": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Pretty-print response.",
+            "smithy.api#httpQuery": "pp"
+          }
+        },
+        "body": {
+          "target": "com.gcp.translate_v2#DetectLanguageRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
     "com.gcp.translate_v2#BadRequest": {
       "type": "structure",
       "members": {},
@@ -281,6 +333,62 @@
             "status": 409
           }
         ]
+      }
+    },
+    "com.gcp.translate_v2#DetectDetections": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.translate_v2#DetectDetectionsRequest"
+      },
+      "output": {
+        "target": "com.gcp.translate_v2#DetectionsListResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.translate_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.translate_v2#Forbidden"
+        },
+        {
+          "target": "com.gcp.translate_v2#BadRequest"
+        },
+        {
+          "target": "com.gcp.translate_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v2/detect"
+        },
+        "smithy.api#documentation": "Detects the language of text within a request."
+      }
+    },
+    "com.gcp.translate_v2#TranslateTranslationsRequest": {
+      "type": "structure",
+      "members": {
+        "bearer_token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "OAuth bearer token.",
+            "smithy.api#httpQuery": "bearer_token"
+          }
+        },
+        "pp": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Pretty-print response.",
+            "smithy.api#httpQuery": "pp"
+          }
+        },
+        "body": {
+          "target": "com.gcp.translate_v2#TranslateTextRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
       }
     },
     "com.gcp.translate_v2#TranslateTranslations": {
@@ -347,11 +455,11 @@
             "smithy.api#httpQuery": "pp"
           }
         },
-        "cid": {
-          "target": "com.gcp.translate_v2#StringList",
+        "model": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The customization id for translate",
-            "smithy.api#httpQuery": "cid"
+            "smithy.api#documentation": "The `model` type requested for this translation. Valid values are\nlisted in public documentation.",
+            "smithy.api#httpQuery": "model"
           }
         },
         "format": {
@@ -361,11 +469,11 @@
             "smithy.api#httpQuery": "format"
           }
         },
-        "model": {
-          "target": "smithy.api#String",
+        "cid": {
+          "target": "com.gcp.translate_v2#StringList",
           "traits": {
-            "smithy.api#documentation": "The `model` type requested for this translation. Valid values are\nlisted in public documentation.",
-            "smithy.api#httpQuery": "model"
+            "smithy.api#documentation": "The customization id for translate",
+            "smithy.api#httpQuery": "cid"
           }
         },
         "source": {
@@ -375,19 +483,19 @@
             "smithy.api#httpQuery": "source"
           }
         },
-        "q": {
-          "target": "com.gcp.translate_v2#StringList",
-          "traits": {
-            "smithy.api#documentation": "The input text to translate. Repeat this parameter to perform translation\noperations on multiple text inputs.",
-            "smithy.api#httpQuery": "q",
-            "smithy.api#required": {}
-          }
-        },
         "target": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "The language to use for translation of the input text, set to one of the\nlanguage codes listed in Language Support.",
             "smithy.api#httpQuery": "target",
+            "smithy.api#required": {}
+          }
+        },
+        "q": {
+          "target": "com.gcp.translate_v2#StringList",
+          "traits": {
+            "smithy.api#documentation": "The input text to translate. Repeat this parameter to perform translation\noperations on multiple text inputs.",
+            "smithy.api#httpQuery": "q",
             "smithy.api#required": {}
           }
         }
@@ -472,113 +580,6 @@
           "uri": "v2/languages"
         },
         "smithy.api#documentation": "Returns a list of supported languages for translation."
-      }
-    },
-    "com.gcp.translate_v2#DetectDetectionsRequest": {
-      "type": "structure",
-      "members": {
-        "bearer_token": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "OAuth bearer token.",
-            "smithy.api#httpQuery": "bearer_token"
-          }
-        },
-        "pp": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Pretty-print response.",
-            "smithy.api#httpQuery": "pp"
-          }
-        },
-        "body": {
-          "target": "com.gcp.translate_v2#DetectLanguageRequest",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.translate_v2#DetectDetections": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.translate_v2#DetectDetectionsRequest"
-      },
-      "output": {
-        "target": "com.gcp.translate_v2#DetectionsListResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.translate_v2#NotFound"
-        },
-        {
-          "target": "com.gcp.translate_v2#Forbidden"
-        },
-        {
-          "target": "com.gcp.translate_v2#BadRequest"
-        },
-        {
-          "target": "com.gcp.translate_v2#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v2/detect"
-        },
-        "smithy.api#documentation": "Detects the language of text within a request."
-      }
-    },
-    "com.gcp.translate_v2#ListDetectionsRequest": {
-      "type": "structure",
-      "members": {
-        "bearer_token": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "OAuth bearer token.",
-            "smithy.api#httpQuery": "bearer_token"
-          }
-        },
-        "pp": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Pretty-print response.",
-            "smithy.api#httpQuery": "pp"
-          }
-        },
-        "q": {
-          "target": "com.gcp.translate_v2#StringList",
-          "traits": {
-            "smithy.api#documentation": "The input text upon which to perform language detection. Repeat this\nparameter to perform language detection on multiple text inputs.",
-            "smithy.api#httpQuery": "q",
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.translate_v2#ListDetections": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.translate_v2#ListDetectionsRequest"
-      },
-      "output": {
-        "target": "com.gcp.translate_v2#DetectionsListResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.translate_v2#NotFound"
-        },
-        {
-          "target": "com.gcp.translate_v2#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v2/detect"
-        },
-        "smithy.api#documentation": "Detects the language of text within a request."
       }
     }
   }

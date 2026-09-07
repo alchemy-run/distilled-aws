@@ -12,15 +12,399 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
-/** The name of sku */
-export interface SkuName {
-  name?: string;
+export interface ArchiveReservationRequest {
+  /** Order Id of the reservation */
+  reservationOrderId: string;
+  /** Id of the reservation item */
+  reservationId: string;
 }
-export const SkuName = /*@__PURE__*/ S.suspend(() =>
+export const ArchiveReservationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    reservationOrderId: S.String.pipe(T.Label()),
+    reservationId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/providers/Microsoft.Capacity/reservationOrders/{reservationOrderId}/reservations/{reservationId}/archive",
+      code: 200,
+      apiVersion: "2022-11-01",
+    }),
+  ),
+).annotate({
+  identifier: "ArchiveReservationRequest",
+}) as any as S.Schema<ArchiveReservationRequest>;
+
+export interface ArchiveReservationResponse {}
+export const ArchiveReservationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "ArchiveReservationResponse",
+}) as any as S.Schema<ArchiveReservationResponse>;
+
+export interface GetAppliedReservationListRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+}
+export const GetAppliedReservationListRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Capacity/appliedReservations",
+      code: 200,
+      apiVersion: "2022-11-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetAppliedReservationListRequest",
+}) as any as S.Schema<GetAppliedReservationListRequest>;
+
+/** Array of reservation resource ids */
+export type AppliedReservationListValueList = Array<string>;
+export const AppliedReservationListValueList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<AppliedReservationListValueList>;
+
+/** Paginated list of applied reservations */
+export interface AppliedReservationList {
+  /** Array of reservation resource ids */
+  value?: AppliedReservationListValueList;
+  /** Url to get the next page of reservations */
+  nextLink?: string;
+}
+export const AppliedReservationList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(AppliedReservationListValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "AppliedReservationList",
+}) as any as S.Schema<AppliedReservationList>;
+
+/** Properties for applied reservations returned */
+export interface AppliedReservationsProperties {
+  /** Paginated list of applied reservations */
+  reservationOrderIds?: AppliedReservationList;
+}
+export const AppliedReservationsProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    reservationOrderIds: S.optional(AppliedReservationList),
+  }),
+).annotate({
+  identifier: "AppliedReservationsProperties",
+}) as any as S.Schema<AppliedReservationsProperties>;
+
+/** The response for applied reservations api */
+export interface AppliedReservations {
+  /** Identifier of the applied reservations */
+  id?: string;
+  /** Name of resource */
+  name?: string;
+  /** Type of resource. "Microsoft.Capacity/AppliedReservations" */
+  type?: string;
+  /** Properties for applied reservations returned */
+  properties?: AppliedReservationsProperties;
+}
+export const AppliedReservations = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    properties: S.optional(AppliedReservationsProperties),
+  }),
+).annotate({
+  identifier: "AppliedReservations",
+}) as any as S.Schema<AppliedReservations>;
+
+export interface GetCatalogRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The type of the resource for which the skus should be provided. */
+  reservedResourceType?: string;
+  /** Filters the skus based on the location specified in this parameter. This can be an azure region or global */
+  location?: string;
+  /** Publisher id used to get the third party products */
+  publisherId?: string;
+  /** Offer id used to get the third party products */
+  offerId?: string;
+  /** Plan id used to get the third party products */
+  planId?: string;
+  /** May be used to filter by Catalog properties. The filter supports 'eq', 'or', and 'and'. */
+  _filter?: string;
+  /** The number of reservations to skip from the list before returning results */
+  _skip?: number;
+  /** To number of reservations to return */
+  _take?: number;
+}
+export const GetCatalogRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    reservedResourceType: S.optional(S.String.pipe(T.Query())),
+    location: S.optional(S.String.pipe(T.Query())),
+    publisherId: S.optional(S.String.pipe(T.Query())),
+    offerId: S.optional(S.String.pipe(T.Query())),
+    planId: S.optional(S.String.pipe(T.Query())),
+    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+    _skip: S.optional(S.Number.pipe(T.Query("$skip"))),
+    _take: S.optional(S.Number.pipe(T.Query("$take"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Capacity/catalogs",
+      code: 200,
+      apiVersion: "2022-11-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetCatalogRequest",
+}) as any as S.Schema<GetCatalogRequest>;
+
+/** Represent the billing plans. */
+export type ReservationBillingPlan = "Upfront" | "Monthly";
+export const ReservationBillingPlan = /*@__PURE__*/ S.String;
+
+export type CatalogBillingPlansValueList = Array<ReservationBillingPlan>;
+export const CatalogBillingPlansValueList = /*@__PURE__*/ S.Array(
+  ReservationBillingPlan,
+) as any as S.Schema<CatalogBillingPlansValueList>;
+
+/** The billing plan options available for this sku. */
+export type CatalogBillingPlansMap = {
+  [key: string]: CatalogBillingPlansValueList | undefined;
+};
+export const CatalogBillingPlansMap = /*@__PURE__*/ S.Record(
+  S.String,
+  CatalogBillingPlansValueList,
+) as any as S.Schema<CatalogBillingPlansMap>;
+
+/** Represent the term of reservation. */
+export type ReservationTerm = "P1Y" | "P3Y" | "P5Y";
+export const ReservationTerm = /*@__PURE__*/ S.String;
+
+/** Available reservation terms for this resource */
+export type CatalogTermsList = Array<ReservationTerm>;
+export const CatalogTermsList = /*@__PURE__*/ S.Array(
+  ReservationTerm,
+) as any as S.Schema<CatalogTermsList>;
+
+export type CatalogLocationsList = Array<string>;
+export const CatalogLocationsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CatalogLocationsList>;
+
+/** Property of a sku. */
+export interface SkuProperty {
+  /** An invariant to describe the feature. */
+  name?: string;
+  /** An invariant if the feature is measured by quantity. */
+  value?: string;
+}
+export const SkuProperty = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     name: S.optional(S.String),
+    value: S.optional(S.String),
   }),
-).annotate({ identifier: "SkuName" }) as any as S.Schema<SkuName>;
+).annotate({ identifier: "SkuProperty" }) as any as S.Schema<SkuProperty>;
+
+export type CatalogSkuPropertiesList = Array<SkuProperty>;
+export const CatalogSkuPropertiesList = /*@__PURE__*/ S.Array(
+  SkuProperty,
+) as any as S.Schema<CatalogSkuPropertiesList>;
+
+/** Pricing information containing the amount and the currency code */
+export interface Price {
+  /** The ISO 4217 3-letter currency code for the currency used by this purchase record. */
+  currencyCode?: string;
+  amount?: number;
+}
+export const Price = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    currencyCode: S.optional(S.String),
+    amount: S.optional(S.Number),
+  }),
+).annotate({ identifier: "Price" }) as any as S.Schema<Price>;
+
+/** Pricing information about the sku */
+export interface CatalogMsrp {
+  /** Amount in pricing currency. Tax not included. */
+  p1Y?: Price;
+  /** Amount in pricing currency. Tax not included. */
+  p3Y?: Price;
+  /** Amount in pricing currency. Tax not included. */
+  p5Y?: Price;
+}
+export const CatalogMsrp = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    p1Y: S.optional(Price),
+    p3Y: S.optional(Price),
+    p5Y: S.optional(Price),
+  }),
+).annotate({ identifier: "CatalogMsrp" }) as any as S.Schema<CatalogMsrp>;
+
+/** The value of restrictions. If the restriction type is set to location. This would be different locations where the sku is restricted. */
+export type SkuRestrictionValuesList = Array<string>;
+export const SkuRestrictionValuesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<SkuRestrictionValuesList>;
+
+/** Restriction of a sku. */
+export interface SkuRestriction {
+  /** The type of restrictions. */
+  type?: string;
+  /** The value of restrictions. If the restriction type is set to location. This would be different locations where the sku is restricted. */
+  values?: SkuRestrictionValuesList;
+  /** The reason for restriction. */
+  reasonCode?: string;
+}
+export const SkuRestriction = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    type: S.optional(S.String),
+    values: S.optional(SkuRestrictionValuesList),
+    reasonCode: S.optional(S.String),
+  }),
+).annotate({ identifier: "SkuRestriction" }) as any as S.Schema<SkuRestriction>;
+
+export type CatalogRestrictionsList = Array<SkuRestriction>;
+export const CatalogRestrictionsList = /*@__PURE__*/ S.Array(
+  SkuRestriction,
+) as any as S.Schema<CatalogRestrictionsList>;
+
+/** Capability of a sku. */
+export type SkuCapability = SkuProperty;
+export const SkuCapability = SkuProperty;
+
+export type CatalogCapabilitiesList = Array<SkuProperty>;
+export const CatalogCapabilitiesList = /*@__PURE__*/ S.Array(
+  SkuProperty,
+) as any as S.Schema<CatalogCapabilitiesList>;
+
+/** Product details of a type of resource. */
+export interface Catalog {
+  /** The type of resource the sku applies to. */
+  resourceType?: string;
+  /** The name of sku */
+  name?: string;
+  /** The billing plan options available for this sku. */
+  billingPlans?: CatalogBillingPlansMap;
+  /** Available reservation terms for this resource */
+  terms?: CatalogTermsList;
+  locations?: CatalogLocationsList;
+  skuProperties?: CatalogSkuPropertiesList;
+  /** Pricing information about the sku */
+  msrp?: CatalogMsrp;
+  restrictions?: CatalogRestrictionsList;
+  /** The tier of this sku */
+  tier?: string;
+  /** The size of this sku */
+  size?: string;
+  capabilities?: CatalogCapabilitiesList;
+}
+export const Catalog = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    resourceType: S.optional(S.String),
+    name: S.optional(S.String),
+    billingPlans: S.optional(CatalogBillingPlansMap),
+    terms: S.optional(CatalogTermsList),
+    locations: S.optional(CatalogLocationsList),
+    skuProperties: S.optional(CatalogSkuPropertiesList),
+    msrp: S.optional(CatalogMsrp),
+    restrictions: S.optional(CatalogRestrictionsList),
+    tier: S.optional(S.String),
+    size: S.optional(S.String),
+    capabilities: S.optional(CatalogCapabilitiesList),
+  }),
+).annotate({ identifier: "Catalog" }) as any as S.Schema<Catalog>;
+
+/** The Catalog items on this page */
+export type CatalogsResultValueList = Array<Catalog>;
+export const CatalogsResultValueList = /*@__PURE__*/ S.Array(
+  Catalog,
+) as any as S.Schema<CatalogsResultValueList>;
+
+/** The list of catalogs and pagination information. */
+export interface CatalogsResult {
+  /** The Catalog items on this page */
+  value: CatalogsResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+  /** The total amount of catalog items. */
+  totalItems?: number;
+}
+export const CatalogsResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: CatalogsResultValueList,
+    nextLink: S.optional(S.String),
+    totalItems: S.optional(S.Number),
+  }),
+).annotate({ identifier: "CatalogsResult" }) as any as S.Schema<CatalogsResult>;
+
+export interface GetReservationRequest {
+  /** Order Id of the reservation */
+  reservationOrderId: string;
+  /** Id of the reservation item */
+  reservationId: string;
+  /** Supported value of this query is renewProperties */
+  _expand?: string;
+}
+export const GetReservationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    reservationOrderId: S.String.pipe(T.Label()),
+    reservationId: S.String.pipe(T.Label()),
+    _expand: S.optional(S.String.pipe(T.Query("$expand"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/providers/Microsoft.Capacity/reservationOrders/{reservationOrderId}/reservations/{reservationId}",
+      code: 200,
+      apiVersion: "2022-11-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetReservationRequest",
+}) as any as S.Schema<GetReservationRequest>;
+
+/** The type of identity that created the resource. */
+export type SystemDataCreatedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
+
+/** The type of identity that last modified the resource. */
+export type SystemDataLastModifiedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
+
+/** Metadata pertaining to creation and last modification of the resource. */
+export interface SystemData {
+  /** The identity that created the resource. */
+  createdBy?: string;
+  /** The type of identity that created the resource. */
+  createdByType?: SystemDataCreatedByType;
+  /** The timestamp of resource creation (UTC). */
+  createdAt?: string;
+  /** The identity that last modified the resource. */
+  lastModifiedBy?: string;
+  /** The type of identity that last modified the resource. */
+  lastModifiedByType?: SystemDataLastModifiedByType;
+  /** The timestamp of resource last modification (UTC) */
+  lastModifiedAt?: string;
+}
+export const SystemData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    createdBy: S.optional(S.String),
+    createdByType: S.optional(SystemDataCreatedByType),
+    createdAt: S.optional(S.String),
+    lastModifiedBy: S.optional(S.String),
+    lastModifiedByType: S.optional(SystemDataLastModifiedByType),
+    lastModifiedAt: S.optional(S.String),
+  }),
+).annotate({ identifier: "SystemData" }) as any as S.Schema<SystemData>;
 
 /** The type of the resource that is being reserved. In addition to below types we have also added the following: OpenAIPTU, MDC, Sentinel. */
 export type ReservedResourceType =
@@ -52,23 +436,126 @@ export type ReservedResourceType =
   | "VirtualMachineSoftware";
 export const ReservedResourceType = /*@__PURE__*/ S.String;
 
-/** Represent the term of reservation. */
-export type ReservationTerm = "P1Y" | "P3Y" | "P5Y";
-export const ReservationTerm = /*@__PURE__*/ S.String;
+/** Turning this on will apply the reservation discount to other VMs in the same VM size group. Only specify for VirtualMachines reserved resource type. */
+export type InstanceFlexibility = "On" | "Off";
+export const InstanceFlexibility = /*@__PURE__*/ S.String;
 
-/** Represent the billing plans. */
-export type ReservationBillingPlan = "Upfront" | "Monthly";
-export const ReservationBillingPlan = /*@__PURE__*/ S.String;
+/** The list of applied scopes */
+export type ReservationsPropertiesAppliedScopesList = Array<string>;
+export const ReservationsPropertiesAppliedScopesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ReservationsPropertiesAppliedScopesList>;
 
 /** Type of the Applied Scope. */
 export type AppliedScopeType = "Single" | "Shared" | "ManagementGroup";
 export const AppliedScopeType = /*@__PURE__*/ S.String;
 
-/** List of the subscriptions that the benefit will be applied. Do not specify if AppliedScopeType is Shared. This property will be deprecated and replaced by appliedScopeProperties instead for Single AppliedScopeType. */
-export type PurchaseRequestPropertiesAppliedScopesList = Array<string>;
-export const PurchaseRequestPropertiesAppliedScopesList = /*@__PURE__*/ S.Array(
+/** Represent the current state of the Reservation. */
+export type ProvisioningState =
+  | "Creating"
+  | "PendingResourceHold"
+  | "ConfirmedResourceHold"
+  | "PendingBilling"
+  | "ConfirmedBilling"
+  | "Created"
+  | "Succeeded"
+  | "Cancelled"
+  | "Expired"
+  | "BillingFailed"
+  | "Failed"
+  | "Split"
+  | "Merged";
+export const ProvisioningState = /*@__PURE__*/ S.String;
+
+export type ReservationStatusCode =
+  | "None"
+  | "Pending"
+  | "Processing"
+  | "Active"
+  | "PurchaseError"
+  | "PaymentInstrumentError"
+  | "Split"
+  | "Merged"
+  | "Expired"
+  | "Succeeded";
+export const ReservationStatusCode = /*@__PURE__*/ S.String;
+
+export interface ExtendedStatusInfo {
+  statusCode?: ReservationStatusCode;
+  /** The message giving detailed information about the status code. */
+  message?: string;
+}
+export const ExtendedStatusInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    statusCode: S.optional(ReservationStatusCode),
+    message: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ExtendedStatusInfo",
+}) as any as S.Schema<ExtendedStatusInfo>;
+
+/** List of destination resource id that are created due to split. Format of the resource id is /providers/Microsoft.Capacity/reservationOrders/{reservationOrderId}/reservations/{reservationId} */
+export type ReservationSplitPropertiesSplitDestinationsList = Array<string>;
+export const ReservationSplitPropertiesSplitDestinationsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ReservationSplitPropertiesSplitDestinationsList>;
+
+/** Properties of reservation split */
+export interface ReservationSplitProperties {
+  /** List of destination resource id that are created due to split. Format of the resource id is /providers/Microsoft.Capacity/reservationOrders/{reservationOrderId}/reservations/{reservationId} */
+  splitDestinations?: ReservationSplitPropertiesSplitDestinationsList;
+  /** Resource id of the reservation from which this is split. Format of the resource id is /providers/Microsoft.Capacity/reservationOrders/{reservationOrderId}/reservations/{reservationId} */
+  splitSource?: string;
+}
+export const ReservationSplitProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    splitDestinations: S.optional(
+      ReservationSplitPropertiesSplitDestinationsList,
+    ),
+    splitSource: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ReservationSplitProperties",
+}) as any as S.Schema<ReservationSplitProperties>;
+
+/** Resource ids of the source reservation's merged to form this reservation. Format of the resource id is /providers/Microsoft.Capacity/reservationOrders/{reservationOrderId}/reservations/{reservationId} */
+export type ReservationMergePropertiesMergeSourcesList = Array<string>;
+export const ReservationMergePropertiesMergeSourcesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<PurchaseRequestPropertiesAppliedScopesList>;
+) as any as S.Schema<ReservationMergePropertiesMergeSourcesList>;
+
+/** Properties of reservation merge */
+export interface ReservationMergeProperties {
+  /** Reservation resource id Created due to the merge. Format of the resource id is /providers/Microsoft.Capacity/reservationOrders/{reservationOrderId}/reservations/{reservationId} */
+  mergeDestination?: string;
+  /** Resource ids of the source reservation's merged to form this reservation. Format of the resource id is /providers/Microsoft.Capacity/reservationOrders/{reservationOrderId}/reservations/{reservationId} */
+  mergeSources?: ReservationMergePropertiesMergeSourcesList;
+}
+export const ReservationMergeProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    mergeDestination: S.optional(S.String),
+    mergeSources: S.optional(ReservationMergePropertiesMergeSourcesList),
+  }),
+).annotate({
+  identifier: "ReservationMergeProperties",
+}) as any as S.Schema<ReservationMergeProperties>;
+
+/** Properties of reservation swap */
+export interface ReservationSwapProperties {
+  /** Resource id of the source reservation that gets swapped. Format of the resource id is /providers/microsoft.capacity/reservationOrders/{reservationOrderId}/reservations/{reservationId} */
+  swapSource?: string;
+  /** Reservation resource id that the original resource gets swapped to. Format of the resource id is /providers/microsoft.capacity/reservationOrders/{reservationOrderId}/reservations/{reservationId} */
+  swapDestination?: string;
+}
+export const ReservationSwapProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    swapSource: S.optional(S.String),
+    swapDestination: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ReservationSwapProperties",
+}) as any as S.Schema<ReservationSwapProperties>;
 
 /** Properties specific to applied scope type. Not required if not applicable. Required and need to provide tenantId and managementGroupId if AppliedScopeType is ManagementGroup */
 export interface AppliedScopeProperties {
@@ -95,9 +582,21 @@ export const AppliedScopeProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "AppliedScopeProperties",
 }) as any as S.Schema<AppliedScopeProperties>;
 
-/** Turning this on will apply the reservation discount to other VMs in the same VM size group. Only specify for VirtualMachines reserved resource type. */
-export type InstanceFlexibility = "On" | "Off";
-export const InstanceFlexibility = /*@__PURE__*/ S.String;
+/** The name of sku */
+export interface SkuName {
+  name?: string;
+}
+export const SkuName = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+  }),
+).annotate({ identifier: "SkuName" }) as any as S.Schema<SkuName>;
+
+/** List of the subscriptions that the benefit will be applied. Do not specify if AppliedScopeType is Shared. This property will be deprecated and replaced by appliedScopeProperties instead for Single AppliedScopeType. */
+export type PurchaseRequestPropertiesAppliedScopesList = Array<string>;
+export const PurchaseRequestPropertiesAppliedScopesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<PurchaseRequestPropertiesAppliedScopesList>;
 
 /** Properties specific to each reserved resource type. Not required if not applicable. */
 export interface PurchaseRequestPropertiesReservedResourceProperties {
@@ -179,6 +678,787 @@ export const PurchaseRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "PurchaseRequest",
 }) as any as S.Schema<PurchaseRequest>;
+
+/** Amount that Microsoft uses for record. Used during refund for calculating refund limit. Tax is not included. This is locked price 30 days before expiry. */
+export type RenewPropertiesResponsePricingCurrencyTotal = Price;
+export const RenewPropertiesResponsePricingCurrencyTotal = Price;
+
+/** Currency and amount that customer will be charged in customer's local currency for renewal purchase. Tax is not included. */
+export type RenewPropertiesResponseBillingCurrencyTotal = Price;
+export const RenewPropertiesResponseBillingCurrencyTotal = Price;
+
+/** The renew properties for a reservation. */
+export interface RenewPropertiesResponse {
+  /** The request for reservation purchase */
+  purchaseProperties?: PurchaseRequest;
+  /** Amount that Microsoft uses for record. Used during refund for calculating refund limit. Tax is not included. This is locked price 30 days before expiry. */
+  pricingCurrencyTotal?: Price;
+  /** Currency and amount that customer will be charged in customer's local currency for renewal purchase. Tax is not included. */
+  billingCurrencyTotal?: Price;
+}
+export const RenewPropertiesResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    purchaseProperties: S.optional(PurchaseRequest),
+    pricingCurrencyTotal: S.optional(Price),
+    billingCurrencyTotal: S.optional(Price),
+  }),
+).annotate({
+  identifier: "RenewPropertiesResponse",
+}) as any as S.Schema<RenewPropertiesResponse>;
+
+/** The aggregate values of reservation utilization */
+export interface ReservationUtilizationAggregates {
+  /** The grain of the aggregate */
+  grain?: number;
+  /** The grain unit of the aggregate */
+  grainUnit?: string;
+  /** The aggregate value */
+  value?: number;
+  /** The aggregate value unit */
+  valueUnit?: string;
+}
+export const ReservationUtilizationAggregates = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    grain: S.optional(S.Number),
+    grainUnit: S.optional(S.String),
+    value: S.optional(S.Number),
+    valueUnit: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ReservationUtilizationAggregates",
+}) as any as S.Schema<ReservationUtilizationAggregates>;
+
+/** The array of aggregates of a reservation's utilization */
+export type ReservationsPropertiesUtilizationAggregatesList =
+  Array<ReservationUtilizationAggregates>;
+export const ReservationsPropertiesUtilizationAggregatesList =
+  /*@__PURE__*/ S.Array(
+    ReservationUtilizationAggregates,
+  ) as any as S.Schema<ReservationsPropertiesUtilizationAggregatesList>;
+
+/** Reservation utilization */
+export interface ReservationsPropertiesUtilization {
+  /** last 7 day utilization trend for a reservation */
+  trend?: string;
+  /** The array of aggregates of a reservation's utilization */
+  aggregates?: ReservationsPropertiesUtilizationAggregatesList;
+}
+export const ReservationsPropertiesUtilization = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    trend: S.optional(S.String),
+    aggregates: S.optional(ReservationsPropertiesUtilizationAggregatesList),
+  }),
+).annotate({
+  identifier: "ReservationsPropertiesUtilization",
+}) as any as S.Schema<ReservationsPropertiesUtilization>;
+
+/** The properties of the reservations */
+export interface ReservationsProperties {
+  /** The type of the resource that is being reserved. */
+  reservedResourceType?: ReservedResourceType;
+  /** Allows reservation discount to be applied across skus within the same auto fit group. Not all skus support instance size flexibility. */
+  instanceFlexibility?: InstanceFlexibility;
+  /** Friendly name for user to easily identify the reservation */
+  displayName?: string;
+  /** The list of applied scopes */
+  appliedScopes?: ReservationsPropertiesAppliedScopesList;
+  /** The applied scope type */
+  appliedScopeType?: AppliedScopeType;
+  /** Indicates if the reservation is archived */
+  archived?: boolean;
+  /** Capabilities of the reservation */
+  capabilities?: string;
+  /** Quantity of the skus that are part of the reservation. Must be greater than zero. */
+  quantity?: number;
+  /** Current state of the reservation. */
+  provisioningState?: ProvisioningState;
+  /** DateTime of the reservation starting when this version is effective from. */
+  effectiveDateTime?: string;
+  /** This is the DateTime when the reservation benefit started. */
+  benefitStartTime?: string;
+  /** DateTime of the last time the reservation was updated. */
+  lastUpdatedDateTime?: string;
+  /** This is the date when the reservation will expire. */
+  expiryDate?: string;
+  /** This is the date-time when the reservation will expire. */
+  expiryDateTime?: string;
+  /** This is the date-time when the Azure Hybrid Benefit needs to be reviewed. */
+  reviewDateTime?: string;
+  /** Description of the sku in english. */
+  skuDescription?: string;
+  /** The message giving detailed information about the status code. */
+  extendedStatusInfo?: ExtendedStatusInfo;
+  /** The billing plan options available for this sku. */
+  billingPlan?: ReservationBillingPlan;
+  /** The provisioning state of the reservation for display, e.g. Succeeded */
+  displayProvisioningState?: string;
+  /** The provisioning sub-state of the reservation, e.g. Succeeded */
+  provisioningSubState?: string;
+  /** This is the date when the reservation was purchased. */
+  purchaseDate?: string;
+  /** This is the date-time when the reservation was purchased. */
+  purchaseDateTime?: string;
+  /** Properties of reservation split */
+  splitProperties?: ReservationSplitProperties;
+  /** Properties of reservation merge */
+  mergeProperties?: ReservationMergeProperties;
+  /** Properties of reservation swap */
+  swapProperties?: ReservationSwapProperties;
+  /** Properties specific to applied scope type. Not required if not applicable. Required and need to provide tenantId and managementGroupId if AppliedScopeType is ManagementGroup */
+  appliedScopeProperties?: AppliedScopeProperties;
+  /** Subscription that will be charged for purchasing reservation or savings plan */
+  billingScopeId?: string;
+  /** Setting this to true will automatically purchase a new reservation on the expiration date time. */
+  renew?: boolean;
+  /** Reservation Id of the reservation from which this reservation is renewed. Format of the resource Id is /providers/Microsoft.Capacity/reservationOrders/{reservationOrderId}/reservations/{reservationId}. */
+  renewSource?: string;
+  /** Reservation Id of the reservation which is purchased because of renew. Format of the resource Id is /providers/Microsoft.Capacity/reservationOrders/{reservationOrderId}/reservations/{reservationId}. */
+  renewDestination?: string;
+  /** The renew properties for a reservation. */
+  renewProperties?: RenewPropertiesResponse;
+  /** Represent the term of reservation. */
+  term?: ReservationTerm;
+  /** The applied scope type of the reservation for display, e.g. Shared */
+  userFriendlyAppliedScopeType?: string;
+  /** The renew state of the reservation for display, e.g. On */
+  userFriendlyRenewState?: string;
+  /** Reservation utilization */
+  utilization?: ReservationsPropertiesUtilization;
+}
+export const ReservationsProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    reservedResourceType: S.optional(ReservedResourceType),
+    instanceFlexibility: S.optional(InstanceFlexibility),
+    displayName: S.optional(S.String),
+    appliedScopes: S.optional(ReservationsPropertiesAppliedScopesList),
+    appliedScopeType: S.optional(AppliedScopeType),
+    archived: S.optional(S.Boolean),
+    capabilities: S.optional(S.String),
+    quantity: S.optional(S.Number),
+    provisioningState: S.optional(ProvisioningState),
+    effectiveDateTime: S.optional(S.String),
+    benefitStartTime: S.optional(S.String),
+    lastUpdatedDateTime: S.optional(S.String),
+    expiryDate: S.optional(S.String),
+    expiryDateTime: S.optional(S.String),
+    reviewDateTime: S.optional(S.String),
+    skuDescription: S.optional(S.String),
+    extendedStatusInfo: S.optional(ExtendedStatusInfo),
+    billingPlan: S.optional(ReservationBillingPlan),
+    displayProvisioningState: S.optional(S.String),
+    provisioningSubState: S.optional(S.String),
+    purchaseDate: S.optional(S.String),
+    purchaseDateTime: S.optional(S.String),
+    splitProperties: S.optional(ReservationSplitProperties),
+    mergeProperties: S.optional(ReservationMergeProperties),
+    swapProperties: S.optional(ReservationSwapProperties),
+    appliedScopeProperties: S.optional(AppliedScopeProperties),
+    billingScopeId: S.optional(S.String),
+    renew: S.optional(S.Boolean),
+    renewSource: S.optional(S.String),
+    renewDestination: S.optional(S.String),
+    renewProperties: S.optional(RenewPropertiesResponse),
+    term: S.optional(ReservationTerm),
+    userFriendlyAppliedScopeType: S.optional(S.String),
+    userFriendlyRenewState: S.optional(S.String),
+    utilization: S.optional(ReservationsPropertiesUtilization),
+  }),
+).annotate({
+  identifier: "ReservationsProperties",
+}) as any as S.Schema<ReservationsProperties>;
+
+/** Resource Provider type to be reserved. */
+export type GetReservationResponseKind = "Microsoft.Compute";
+export const GetReservationResponseKind = /*@__PURE__*/ S.String;
+
+export interface GetReservationResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties associated to this reservation */
+  properties?: ReservationsProperties;
+  /** The Azure region where the reserved resource lives. */
+  location?: string;
+  etag?: number;
+  /** The sku information associated to this reservation */
+  sku?: SkuName;
+  /** Resource Provider type to be reserved. */
+  kind?: GetReservationResponseKind;
+}
+export const GetReservationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ReservationsProperties),
+    location: S.optional(S.String),
+    etag: S.optional(S.Number),
+    sku: S.optional(SkuName),
+    kind: S.optional(GetReservationResponseKind),
+  }),
+).annotate({
+  identifier: "GetReservationResponse",
+}) as any as S.Schema<GetReservationResponse>;
+
+export interface GetReservationOrderRequest {
+  /** Order Id of the reservation */
+  reservationOrderId: string;
+  /** May be used to expand the planInformation. */
+  _expand?: string;
+}
+export const GetReservationOrderRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    reservationOrderId: S.String.pipe(T.Label()),
+    _expand: S.optional(S.String.pipe(T.Query("$expand"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/providers/Microsoft.Capacity/reservationOrders/{reservationOrderId}",
+      code: 200,
+      apiVersion: "2022-11-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetReservationOrderRequest",
+}) as any as S.Schema<GetReservationOrderRequest>;
+
+/** Describes whether the payment is completed, failed, cancelled or scheduled in the future. */
+export type PaymentStatus = "Succeeded" | "Failed" | "Scheduled" | "Cancelled";
+export const PaymentStatus = /*@__PURE__*/ S.String;
+
+/** Information about payment related to a reservation order. */
+export interface PaymentDetail {
+  /** Date when the payment needs to be done. */
+  dueDate?: string;
+  /** Date when the transaction is completed. Is null when it is scheduled. */
+  paymentDate?: string;
+  /** Amount in pricing currency. Tax not included. */
+  pricingCurrencyTotal?: Price;
+  /** Amount charged in Billing currency. Tax not included. Is null for future payments */
+  billingCurrencyTotal?: Price;
+  /** Shows the Account that is charged for this payment. */
+  billingAccount?: string;
+  /** Describes whether the payment is completed, failed, cancelled or scheduled in the future. */
+  status?: PaymentStatus;
+  extendedStatusInfo?: ExtendedStatusInfo;
+}
+export const PaymentDetail = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    dueDate: S.optional(S.String),
+    paymentDate: S.optional(S.String),
+    pricingCurrencyTotal: S.optional(Price),
+    billingCurrencyTotal: S.optional(Price),
+    billingAccount: S.optional(S.String),
+    status: S.optional(PaymentStatus),
+    extendedStatusInfo: S.optional(ExtendedStatusInfo),
+  }),
+).annotate({ identifier: "PaymentDetail" }) as any as S.Schema<PaymentDetail>;
+
+export type ReservationOrderBillingPlanInformationTransactionsList =
+  Array<PaymentDetail>;
+export const ReservationOrderBillingPlanInformationTransactionsList =
+  /*@__PURE__*/ S.Array(
+    PaymentDetail,
+  ) as any as S.Schema<ReservationOrderBillingPlanInformationTransactionsList>;
+
+/** Information describing the type of billing plan for this reservation. */
+export interface ReservationOrderBillingPlanInformation {
+  /** Amount of money to be paid for the Order. Tax is not included. */
+  pricingCurrencyTotal?: Price;
+  /** Date when the billing plan has started. */
+  startDate?: string;
+  /** For recurring billing plans, indicates the date when next payment will be processed. Null when total is paid off. */
+  nextPaymentDueDate?: string;
+  transactions?: ReservationOrderBillingPlanInformationTransactionsList;
+}
+export const ReservationOrderBillingPlanInformation = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      pricingCurrencyTotal: S.optional(Price),
+      startDate: S.optional(S.String),
+      nextPaymentDueDate: S.optional(S.String),
+      transactions: S.optional(
+        ReservationOrderBillingPlanInformationTransactionsList,
+      ),
+    }),
+).annotate({
+  identifier: "ReservationOrderBillingPlanInformation",
+}) as any as S.Schema<ReservationOrderBillingPlanInformation>;
+
+/** Resource Provider type to be reserved. */
+export type ReservationResponseKind = "Microsoft.Compute";
+export const ReservationResponseKind = /*@__PURE__*/ S.String;
+
+/** The definition of the reservation. */
+export interface ReservationResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties associated to this reservation */
+  properties?: ReservationsProperties;
+  /** The Azure region where the reserved resource lives. */
+  location?: string;
+  etag?: number;
+  /** The sku information associated to this reservation */
+  sku?: SkuName;
+  /** Resource Provider type to be reserved. */
+  kind?: ReservationResponseKind;
+}
+export const ReservationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ReservationsProperties),
+    location: S.optional(S.String),
+    etag: S.optional(S.Number),
+    sku: S.optional(SkuName),
+    kind: S.optional(ReservationResponseKind),
+  }),
+).annotate({
+  identifier: "ReservationResponse",
+}) as any as S.Schema<ReservationResponse>;
+
+export type ReservationOrderPropertiesReservationsList =
+  Array<ReservationResponse>;
+export const ReservationOrderPropertiesReservationsList = /*@__PURE__*/ S.Array(
+  ReservationResponse,
+) as any as S.Schema<ReservationOrderPropertiesReservationsList>;
+
+/** Properties of a reservation order. */
+export interface ReservationOrderProperties {
+  /** Friendly name for user to easily identified the reservation. */
+  displayName?: string;
+  /** This is the DateTime when the reservation was initially requested for purchase. */
+  requestDateTime?: string;
+  /** This is the DateTime when the reservation was created. */
+  createdDateTime?: string;
+  /** This is the date when the reservation will expire. */
+  expiryDate?: string;
+  /** This is the date-time when the reservation will expire. */
+  expiryDateTime?: string;
+  /** This is the DateTime when the reservation benefit started. */
+  benefitStartTime?: string;
+  /** Total Quantity of the skus purchased in the reservation. */
+  originalQuantity?: number;
+  /** Represent the term of reservation. */
+  term?: ReservationTerm;
+  /** Current state of the reservation. */
+  provisioningState?: ProvisioningState;
+  /** Represent the billing plans. */
+  billingPlan?: ReservationBillingPlan;
+  /** Information describing the type of billing plan for this reservation. */
+  planInformation?: ReservationOrderBillingPlanInformation;
+  reservations?: ReservationOrderPropertiesReservationsList;
+  /** This is the date-time when the Azure Hybrid Benefit needs to be reviewed. */
+  reviewDateTime?: string;
+}
+export const ReservationOrderProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    displayName: S.optional(S.String),
+    requestDateTime: S.optional(S.String),
+    createdDateTime: S.optional(S.String),
+    expiryDate: S.optional(S.String),
+    expiryDateTime: S.optional(S.String),
+    benefitStartTime: S.optional(S.String),
+    originalQuantity: S.optional(S.Number),
+    term: S.optional(ReservationTerm),
+    provisioningState: S.optional(ProvisioningState),
+    billingPlan: S.optional(ReservationBillingPlan),
+    planInformation: S.optional(ReservationOrderBillingPlanInformation),
+    reservations: S.optional(ReservationOrderPropertiesReservationsList),
+    reviewDateTime: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ReservationOrderProperties",
+}) as any as S.Schema<ReservationOrderProperties>;
+
+export interface GetReservationOrderResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of a reservation order. */
+  properties?: ReservationOrderProperties;
+  etag?: number;
+}
+export const GetReservationOrderResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ReservationOrderProperties),
+    etag: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "GetReservationOrderResponse",
+}) as any as S.Schema<GetReservationOrderResponse>;
+
+export interface ListOperationRequest {}
+export const ListOperationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/providers/Microsoft.Capacity/operations",
+      code: 200,
+      apiVersion: "2022-11-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListOperationRequest",
+}) as any as S.Schema<ListOperationRequest>;
+
+/** Information about an operation */
+export interface OperationDisplay {
+  provider?: string;
+  resource?: string;
+  operation?: string;
+  description?: string;
+}
+export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provider: S.optional(S.String),
+    resource: S.optional(S.String),
+    operation: S.optional(S.String),
+    description: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "OperationDisplay",
+}) as any as S.Schema<OperationDisplay>;
+
+/** The response containing operation information */
+export interface OperationResponse {
+  /** Name of the operation */
+  name?: string;
+  /** Indicates whether the operation is a data action */
+  isDataAction?: boolean;
+  /** Display of the operation */
+  display?: OperationDisplay;
+  /** Origin of the operation */
+  origin?: string;
+  /** Properties of the operation */
+  properties?: unknown;
+}
+export const OperationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    isDataAction: S.optional(S.Boolean),
+    display: S.optional(OperationDisplay),
+    origin: S.optional(S.String),
+    properties: S.optional(S.Unknown),
+  }),
+).annotate({
+  identifier: "OperationResponse",
+}) as any as S.Schema<OperationResponse>;
+
+export type OperationListValueList = Array<OperationResponse>;
+export const OperationListValueList = /*@__PURE__*/ S.Array(
+  OperationResponse,
+) as any as S.Schema<OperationListValueList>;
+
+export interface OperationList {
+  value?: OperationListValueList;
+  /** Url to get the next page of items. */
+  nextLink?: string;
+}
+export const OperationList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(OperationListValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({ identifier: "OperationList" }) as any as S.Schema<OperationList>;
+
+export interface ListReservationRequest {
+  /** Order Id of the reservation */
+  reservationOrderId: string;
+}
+export const ListReservationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    reservationOrderId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/providers/Microsoft.Capacity/reservationOrders/{reservationOrderId}/reservations",
+      code: 200,
+      apiVersion: "2022-11-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListReservationRequest",
+}) as any as S.Schema<ListReservationRequest>;
+
+/** The ReservationResponse items on this page */
+export type ReservationListValueList = Array<ReservationResponse>;
+export const ReservationListValueList = /*@__PURE__*/ S.Array(
+  ReservationResponse,
+) as any as S.Schema<ReservationListValueList>;
+
+/** List of `Reservation`s */
+export interface ReservationList {
+  /** The ReservationResponse items on this page */
+  value: ReservationListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const ReservationList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: ReservationListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ReservationList",
+}) as any as S.Schema<ReservationList>;
+
+export interface ListReservationAllRequest {
+  /** May be used to filter by reservation properties. The filter supports 'eq', 'or', and 'and'. It does not currently support 'ne', 'gt', 'le', 'ge', or 'not'. Reservation properties include sku/name, properties/{appliedScopeType, archived, displayName, displayProvisioningState, effectiveDateTime, expiryDate, expiryDateTime, provisioningState, quantity, renew, reservedResourceType, term, userFriendlyAppliedScopeType, userFriendlyRenewState} */
+  _filter?: string;
+  /** May be used to sort order by reservation properties. */
+  _orderby?: string;
+  /** To indicate whether to refresh the roll up counts of the reservations group by provisioning states */
+  refreshSummary?: string;
+  /** The number of reservations to skip from the list before returning results */
+  _skiptoken?: number;
+  /** The selected provisioning state */
+  selectedState?: string;
+  /** To number of reservations to return */
+  take?: number;
+}
+export const ListReservationAllRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+    _orderby: S.optional(S.String.pipe(T.Query("$orderby"))),
+    refreshSummary: S.optional(S.String.pipe(T.Query())),
+    _skiptoken: S.optional(S.Number.pipe(T.Query("$skiptoken"))),
+    selectedState: S.optional(S.String.pipe(T.Query())),
+    take: S.optional(S.Number.pipe(T.Query())),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/providers/Microsoft.Capacity/reservations",
+      code: 200,
+      apiVersion: "2022-11-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListReservationAllRequest",
+}) as any as S.Schema<ListReservationAllRequest>;
+
+/** The list of reservations. */
+export type ReservationsListResultValueList = Array<ReservationResponse>;
+export const ReservationsListResultValueList = /*@__PURE__*/ S.Array(
+  ReservationResponse,
+) as any as S.Schema<ReservationsListResultValueList>;
+
+/** The roll up count summary of reservations in each state */
+export interface ReservationSummary {
+  /** The number of reservation in Succeeded state */
+  succeededCount?: number;
+  /** The number of reservation in Failed state */
+  failedCount?: number;
+  /** The number of reservation in Expiring state */
+  expiringCount?: number;
+  /** The number of reservation in Expired state */
+  expiredCount?: number;
+  /** The number of reservation in Pending state */
+  pendingCount?: number;
+  /** The number of reservation in Cancelled state */
+  cancelledCount?: number;
+  /** The number of reservation in Processing state */
+  processingCount?: number;
+  /** The number of reservation in Warning state */
+  warningCount?: number;
+  /** The number of reservation in NoBenefit state */
+  noBenefitCount?: number;
+}
+export const ReservationSummary = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    succeededCount: S.optional(S.Number),
+    failedCount: S.optional(S.Number),
+    expiringCount: S.optional(S.Number),
+    expiredCount: S.optional(S.Number),
+    pendingCount: S.optional(S.Number),
+    cancelledCount: S.optional(S.Number),
+    processingCount: S.optional(S.Number),
+    warningCount: S.optional(S.Number),
+    noBenefitCount: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "ReservationSummary",
+}) as any as S.Schema<ReservationSummary>;
+
+/** The list of reservations and summary of roll out count of reservations in each state. */
+export interface ReservationsListResult {
+  /** The list of reservations. */
+  value?: ReservationsListResultValueList;
+  /** The link (url) to the next page of results. */
+  nextLink?: string;
+  /** The roll out count summary of the reservations */
+  summary?: ReservationSummary;
+}
+export const ReservationsListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(ReservationsListResultValueList),
+    nextLink: S.optional(S.String),
+    summary: S.optional(ReservationSummary),
+  }),
+).annotate({
+  identifier: "ReservationsListResult",
+}) as any as S.Schema<ReservationsListResult>;
+
+export interface ListReservationOrderRequest {}
+export const ListReservationOrderRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/providers/Microsoft.Capacity/reservationOrders",
+      code: 200,
+      apiVersion: "2022-11-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListReservationOrderRequest",
+}) as any as S.Schema<ListReservationOrderRequest>;
+
+/** Details of a reservation order being returned. */
+export interface ReservationOrderResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of a reservation order. */
+  properties?: ReservationOrderProperties;
+  etag?: number;
+}
+export const ReservationOrderResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ReservationOrderProperties),
+    etag: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "ReservationOrderResponse",
+}) as any as S.Schema<ReservationOrderResponse>;
+
+/** The ReservationOrderResponse items on this page */
+export type ReservationOrderListValueList = Array<ReservationOrderResponse>;
+export const ReservationOrderListValueList = /*@__PURE__*/ S.Array(
+  ReservationOrderResponse,
+) as any as S.Schema<ReservationOrderListValueList>;
+
+/** List of `ReservationOrder`s */
+export interface ReservationOrderList {
+  /** The ReservationOrderResponse items on this page */
+  value: ReservationOrderListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const ReservationOrderList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: ReservationOrderListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ReservationOrderList",
+}) as any as S.Schema<ReservationOrderList>;
+
+export interface ListReservationRevisionsRequest {
+  /** Order Id of the reservation */
+  reservationOrderId: string;
+  /** Id of the reservation item */
+  reservationId: string;
+}
+export const ListReservationRevisionsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    reservationOrderId: S.String.pipe(T.Label()),
+    reservationId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/providers/Microsoft.Capacity/reservationOrders/{reservationOrderId}/reservations/{reservationId}/revisions",
+      code: 200,
+      apiVersion: "2022-11-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListReservationRevisionsRequest",
+}) as any as S.Schema<ListReservationRevisionsRequest>;
+
+/** Format of the resource id should be /providers/Microsoft.Capacity/reservationOrders/{reservationOrderId}/reservations/{reservationId} */
+export type MergePropertiesSourcesList = Array<string>;
+export const MergePropertiesSourcesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<MergePropertiesSourcesList>;
+
+/** Properties for reservation merge */
+export interface MergeProperties {
+  /** Format of the resource id should be /providers/Microsoft.Capacity/reservationOrders/{reservationOrderId}/reservations/{reservationId} */
+  sources?: MergePropertiesSourcesList;
+}
+export const MergeProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    sources: S.optional(MergePropertiesSourcesList),
+  }),
+).annotate({
+  identifier: "MergeProperties",
+}) as any as S.Schema<MergeProperties>;
+
+export interface MergeReservationRequest {
+  /** Order Id of the reservation */
+  reservationOrderId: string;
+  /** Properties for reservation merge */
+  properties?: MergeProperties;
+}
+export const MergeReservationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    reservationOrderId: S.String.pipe(T.Label()),
+    properties: S.optional(MergeProperties),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/providers/Microsoft.Capacity/reservationOrders/{reservationOrderId}/merge",
+      code: 200,
+      apiVersion: "2022-11-01",
+    }),
+  ),
+).annotate({
+  identifier: "MergeReservationRequest",
+}) as any as S.Schema<MergeReservationRequest>;
+
+export type MergeReservationResponseBodyList = Array<ReservationResponse>;
+export const MergeReservationResponseBodyList = /*@__PURE__*/ S.Array(
+  ReservationResponse,
+) as any as S.Schema<MergeReservationResponseBodyList>;
+
+export type MergeReservationResponse = MergeReservationResponseBodyList;
+export const MergeReservationResponse = /*@__PURE__*/ S.suspend(() =>
+  MergeReservationResponseBodyList.pipe(T.RawResponseRoot()),
+).annotate({
+  identifier: "MergeReservationResponse",
+}) as any as S.Schema<MergeReservationResponse>;
 
 /** List of reservations that are being purchased in this exchange. */
 export type CalculateExchangeRequestPropertiesReservationsToPurchaseList =
@@ -321,11 +1601,11 @@ export const CalculateExchangeRequestProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "CalculateExchangeRequestProperties",
 }) as any as S.Schema<CalculateExchangeRequestProperties>;
 
-export interface CalculateExchangePostRequest {
+export interface PostCalculateExchangeRequest {
   /** Calculate exchange request properties */
   properties?: CalculateExchangeRequestProperties;
 }
-export const CalculateExchangePostRequest = /*@__PURE__*/ S.suspend(() =>
+export const PostCalculateExchangeRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     properties: S.optional(CalculateExchangeRequestProperties),
   }).pipe(
@@ -337,8 +1617,8 @@ export const CalculateExchangePostRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "CalculateExchangePostRequest",
-}) as any as S.Schema<CalculateExchangePostRequest>;
+  identifier: "PostCalculateExchangeRequest",
+}) as any as S.Schema<PostCalculateExchangeRequest>;
 
 /** Status of the operation. */
 export type CalculateExchangeOperationResultStatus =
@@ -347,19 +1627,6 @@ export type CalculateExchangeOperationResultStatus =
   | "Cancelled"
   | "Pending";
 export const CalculateExchangeOperationResultStatus = /*@__PURE__*/ S.String;
-
-/** Pricing information containing the amount and the currency code */
-export interface Price {
-  /** The ISO 4217 3-letter currency code for the currency used by this purchase record. */
-  currencyCode?: string;
-  amount?: number;
-}
-export const Price = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    currencyCode: S.optional(S.String),
-    amount: S.optional(S.Number),
-  }),
-).annotate({ identifier: "Price" }) as any as S.Schema<Price>;
 
 /** Reservation purchase details */
 export interface ReservationToPurchaseCalculateExchange {
@@ -591,7 +1858,7 @@ export const CalculateRefundRequestProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "CalculateRefundRequestProperties",
 }) as any as S.Schema<CalculateRefundRequestProperties>;
 
-export interface CalculateRefundPostRequest {
+export interface PostCalculateRefundRequest {
   /** Order Id of the reservation */
   reservationOrderId: string;
   /** Fully qualified identifier of the reservation order being returned */
@@ -599,7 +1866,7 @@ export interface CalculateRefundPostRequest {
   /** Properties needed for calculate refund including the scope and the reservation to be returned. */
   properties?: CalculateRefundRequestProperties;
 }
-export const CalculateRefundPostRequest = /*@__PURE__*/ S.suspend(() =>
+export const PostCalculateRefundRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     reservationOrderId: S.String.pipe(T.Label()),
     id: S.optional(S.String),
@@ -613,8 +1880,8 @@ export const CalculateRefundPostRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "CalculateRefundPostRequest",
-}) as any as S.Schema<CalculateRefundPostRequest>;
+  identifier: "PostCalculateRefundRequest",
+}) as any as S.Schema<PostCalculateRefundRequest>;
 
 /** Error code describing the reason that service is not able to process the incoming request */
 export type ErrorResponseCode =
@@ -817,11 +2084,11 @@ export const ExchangeRequestProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "ExchangeRequestProperties",
 }) as any as S.Schema<ExchangeRequestProperties>;
 
-export interface ExchangePostRequest {
+export interface PostExchangeRequest {
   /** Exchange request properties */
   properties?: ExchangeRequestProperties;
 }
-export const ExchangePostRequest = /*@__PURE__*/ S.suspend(() =>
+export const PostExchangeRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     properties: S.optional(ExchangeRequestProperties),
   }).pipe(
@@ -833,8 +2100,8 @@ export const ExchangePostRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ExchangePostRequest",
-}) as any as S.Schema<ExchangePostRequest>;
+  identifier: "PostExchangeRequest",
+}) as any as S.Schema<PostExchangeRequest>;
 
 /** Status of the operation. */
 export type ExchangeOperationResultStatus =
@@ -1013,385 +2280,75 @@ export const ExchangeOperationResultResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ExchangeOperationResultResponse",
 }) as any as S.Schema<ExchangeOperationResultResponse>;
 
-export interface GetAppliedReservationListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
+/** Properties needed for refund request including the session id from calculate refund, the scope, the reservation to be returned and the return reason. */
+export interface RefundRequestProperties {
+  /** SessionId that was returned by CalculateRefund API. */
+  sessionId?: string;
+  /** The scope of the refund, e.g. Reservation */
+  scope?: string;
+  /** Reservation to return */
+  reservationToReturn?: ReservationToReturn;
+  /** The reason of returning the reservation */
+  returnReason?: string;
 }
-export const GetAppliedReservationListRequest = /*@__PURE__*/ S.suspend(() =>
+export const RefundRequestProperties = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
+    sessionId: S.optional(S.String),
+    scope: S.optional(S.String),
+    reservationToReturn: S.optional(ReservationToReturn),
+    returnReason: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "RefundRequestProperties",
+}) as any as S.Schema<RefundRequestProperties>;
+
+export interface PostReturnRequest {
+  /** Order Id of the reservation */
+  reservationOrderId: string;
+  /** Properties needed for refund request including the session id from calculate refund, the scope, the reservation to be returned and the return reason. */
+  properties?: RefundRequestProperties;
+}
+export const PostReturnRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    reservationOrderId: S.String.pipe(T.Label()),
+    properties: S.optional(RefundRequestProperties),
   }).pipe(
     T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Capacity/appliedReservations",
+      method: "POST",
+      uri: "/providers/Microsoft.Capacity/reservationOrders/{reservationOrderId}/return",
       code: 200,
       apiVersion: "2022-11-01",
     }),
   ),
 ).annotate({
-  identifier: "GetAppliedReservationListRequest",
-}) as any as S.Schema<GetAppliedReservationListRequest>;
+  identifier: "PostReturnRequest",
+}) as any as S.Schema<PostReturnRequest>;
 
-/** Array of reservation resource ids */
-export type AppliedReservationListValueList = Array<string>;
-export const AppliedReservationListValueList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<AppliedReservationListValueList>;
-
-/** Paginated list of applied reservations */
-export interface AppliedReservationList {
-  /** Array of reservation resource ids */
-  value?: AppliedReservationListValueList;
-  /** Url to get the next page of reservations */
-  nextLink?: string;
-}
-export const AppliedReservationList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(AppliedReservationListValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AppliedReservationList",
-}) as any as S.Schema<AppliedReservationList>;
-
-/** Properties for applied reservations returned */
-export interface AppliedReservationsProperties {
-  /** Paginated list of applied reservations */
-  reservationOrderIds?: AppliedReservationList;
-}
-export const AppliedReservationsProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    reservationOrderIds: S.optional(AppliedReservationList),
-  }),
-).annotate({
-  identifier: "AppliedReservationsProperties",
-}) as any as S.Schema<AppliedReservationsProperties>;
-
-/** The response for applied reservations api */
-export interface AppliedReservations {
-  /** Identifier of the applied reservations */
+export interface PostReturnResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
-  /** Name of resource */
+  /** The name of the resource */
   name?: string;
-  /** Type of resource. "Microsoft.Capacity/AppliedReservations" */
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
   type?: string;
-  /** Properties for applied reservations returned */
-  properties?: AppliedReservationsProperties;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of a reservation order. */
+  properties?: ReservationOrderProperties;
+  etag?: number;
 }
-export const AppliedReservations = /*@__PURE__*/ S.suspend(() =>
+export const PostReturnResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
-    properties: S.optional(AppliedReservationsProperties),
+    systemData: S.optional(SystemData),
+    properties: S.optional(ReservationOrderProperties),
+    etag: S.optional(S.Number),
   }),
 ).annotate({
-  identifier: "AppliedReservations",
-}) as any as S.Schema<AppliedReservations>;
-
-export interface GetCatalogRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The type of the resource for which the skus should be provided. */
-  reservedResourceType?: string;
-  /** Filters the skus based on the location specified in this parameter. This can be an azure region or global */
-  location?: string;
-  /** Publisher id used to get the third party products */
-  publisherId?: string;
-  /** Offer id used to get the third party products */
-  offerId?: string;
-  /** Plan id used to get the third party products */
-  planId?: string;
-  /** May be used to filter by Catalog properties. The filter supports 'eq', 'or', and 'and'. */
-  _filter?: string;
-  /** The number of reservations to skip from the list before returning results */
-  _skip?: number;
-  /** To number of reservations to return */
-  _take?: number;
-}
-export const GetCatalogRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    reservedResourceType: S.optional(S.String.pipe(T.Query())),
-    location: S.optional(S.String.pipe(T.Query())),
-    publisherId: S.optional(S.String.pipe(T.Query())),
-    offerId: S.optional(S.String.pipe(T.Query())),
-    planId: S.optional(S.String.pipe(T.Query())),
-    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-    _skip: S.optional(S.Number.pipe(T.Query("$skip"))),
-    _take: S.optional(S.Number.pipe(T.Query("$take"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Capacity/catalogs",
-      code: 200,
-      apiVersion: "2022-11-01",
-    }),
-  ),
-).annotate({
-  identifier: "GetCatalogRequest",
-}) as any as S.Schema<GetCatalogRequest>;
-
-export type CatalogBillingPlansValueList = Array<ReservationBillingPlan>;
-export const CatalogBillingPlansValueList = /*@__PURE__*/ S.Array(
-  ReservationBillingPlan,
-) as any as S.Schema<CatalogBillingPlansValueList>;
-
-/** The billing plan options available for this sku. */
-export type CatalogBillingPlansMap = {
-  [key: string]: CatalogBillingPlansValueList | undefined;
-};
-export const CatalogBillingPlansMap = /*@__PURE__*/ S.Record(
-  S.String,
-  CatalogBillingPlansValueList,
-) as any as S.Schema<CatalogBillingPlansMap>;
-
-/** Available reservation terms for this resource */
-export type CatalogTermsList = Array<ReservationTerm>;
-export const CatalogTermsList = /*@__PURE__*/ S.Array(
-  ReservationTerm,
-) as any as S.Schema<CatalogTermsList>;
-
-export type CatalogLocationsList = Array<string>;
-export const CatalogLocationsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<CatalogLocationsList>;
-
-/** Property of a sku. */
-export interface SkuProperty {
-  /** An invariant to describe the feature. */
-  name?: string;
-  /** An invariant if the feature is measured by quantity. */
-  value?: string;
-}
-export const SkuProperty = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    value: S.optional(S.String),
-  }),
-).annotate({ identifier: "SkuProperty" }) as any as S.Schema<SkuProperty>;
-
-export type CatalogSkuPropertiesList = Array<SkuProperty>;
-export const CatalogSkuPropertiesList = /*@__PURE__*/ S.Array(
-  SkuProperty,
-) as any as S.Schema<CatalogSkuPropertiesList>;
-
-/** Pricing information about the sku */
-export interface CatalogMsrp {
-  /** Amount in pricing currency. Tax not included. */
-  p1Y?: Price;
-  /** Amount in pricing currency. Tax not included. */
-  p3Y?: Price;
-  /** Amount in pricing currency. Tax not included. */
-  p5Y?: Price;
-}
-export const CatalogMsrp = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    p1Y: S.optional(Price),
-    p3Y: S.optional(Price),
-    p5Y: S.optional(Price),
-  }),
-).annotate({ identifier: "CatalogMsrp" }) as any as S.Schema<CatalogMsrp>;
-
-/** The value of restrictions. If the restriction type is set to location. This would be different locations where the sku is restricted. */
-export type SkuRestrictionValuesList = Array<string>;
-export const SkuRestrictionValuesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<SkuRestrictionValuesList>;
-
-/** Restriction of a sku. */
-export interface SkuRestriction {
-  /** The type of restrictions. */
-  type?: string;
-  /** The value of restrictions. If the restriction type is set to location. This would be different locations where the sku is restricted. */
-  values?: SkuRestrictionValuesList;
-  /** The reason for restriction. */
-  reasonCode?: string;
-}
-export const SkuRestriction = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    type: S.optional(S.String),
-    values: S.optional(SkuRestrictionValuesList),
-    reasonCode: S.optional(S.String),
-  }),
-).annotate({ identifier: "SkuRestriction" }) as any as S.Schema<SkuRestriction>;
-
-export type CatalogRestrictionsList = Array<SkuRestriction>;
-export const CatalogRestrictionsList = /*@__PURE__*/ S.Array(
-  SkuRestriction,
-) as any as S.Schema<CatalogRestrictionsList>;
-
-/** Capability of a sku. */
-export type SkuCapability = SkuProperty;
-export const SkuCapability = SkuProperty;
-
-export type CatalogCapabilitiesList = Array<SkuProperty>;
-export const CatalogCapabilitiesList = /*@__PURE__*/ S.Array(
-  SkuProperty,
-) as any as S.Schema<CatalogCapabilitiesList>;
-
-/** Product details of a type of resource. */
-export interface Catalog {
-  /** The type of resource the sku applies to. */
-  resourceType?: string;
-  /** The name of sku */
-  name?: string;
-  /** The billing plan options available for this sku. */
-  billingPlans?: CatalogBillingPlansMap;
-  /** Available reservation terms for this resource */
-  terms?: CatalogTermsList;
-  locations?: CatalogLocationsList;
-  skuProperties?: CatalogSkuPropertiesList;
-  /** Pricing information about the sku */
-  msrp?: CatalogMsrp;
-  restrictions?: CatalogRestrictionsList;
-  /** The tier of this sku */
-  tier?: string;
-  /** The size of this sku */
-  size?: string;
-  capabilities?: CatalogCapabilitiesList;
-}
-export const Catalog = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    resourceType: S.optional(S.String),
-    name: S.optional(S.String),
-    billingPlans: S.optional(CatalogBillingPlansMap),
-    terms: S.optional(CatalogTermsList),
-    locations: S.optional(CatalogLocationsList),
-    skuProperties: S.optional(CatalogSkuPropertiesList),
-    msrp: S.optional(CatalogMsrp),
-    restrictions: S.optional(CatalogRestrictionsList),
-    tier: S.optional(S.String),
-    size: S.optional(S.String),
-    capabilities: S.optional(CatalogCapabilitiesList),
-  }),
-).annotate({ identifier: "Catalog" }) as any as S.Schema<Catalog>;
-
-/** The Catalog items on this page */
-export type CatalogsResultValueList = Array<Catalog>;
-export const CatalogsResultValueList = /*@__PURE__*/ S.Array(
-  Catalog,
-) as any as S.Schema<CatalogsResultValueList>;
-
-/** The list of catalogs and pagination information. */
-export interface CatalogsResult {
-  /** The Catalog items on this page */
-  value: CatalogsResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-  /** The total amount of catalog items. */
-  totalItems?: number;
-}
-export const CatalogsResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: CatalogsResultValueList,
-    nextLink: S.optional(S.String),
-    totalItems: S.optional(S.Number),
-  }),
-).annotate({ identifier: "CatalogsResult" }) as any as S.Schema<CatalogsResult>;
-
-export interface OperationList2Request {}
-export const OperationList2Request = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/providers/Microsoft.Capacity/operations",
-      code: 200,
-      apiVersion: "2022-11-01",
-    }),
-  ),
-).annotate({
-  identifier: "OperationList2Request",
-}) as any as S.Schema<OperationList2Request>;
-
-/** Information about an operation */
-export interface OperationDisplay {
-  provider?: string;
-  resource?: string;
-  operation?: string;
-  description?: string;
-}
-export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provider: S.optional(S.String),
-    resource: S.optional(S.String),
-    operation: S.optional(S.String),
-    description: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OperationDisplay",
-}) as any as S.Schema<OperationDisplay>;
-
-/** The response containing operation information */
-export interface OperationResponse {
-  /** Name of the operation */
-  name?: string;
-  /** Indicates whether the operation is a data action */
-  isDataAction?: boolean;
-  /** Display of the operation */
-  display?: OperationDisplay;
-  /** Origin of the operation */
-  origin?: string;
-  /** Properties of the operation */
-  properties?: unknown;
-}
-export const OperationResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    isDataAction: S.optional(S.Boolean),
-    display: S.optional(OperationDisplay),
-    origin: S.optional(S.String),
-    properties: S.optional(S.Unknown),
-  }),
-).annotate({
-  identifier: "OperationResponse",
-}) as any as S.Schema<OperationResponse>;
-
-export type OperationListValueList = Array<OperationResponse>;
-export const OperationListValueList = /*@__PURE__*/ S.Array(
-  OperationResponse,
-) as any as S.Schema<OperationListValueList>;
-
-export interface OperationList {
-  value?: OperationListValueList;
-  /** Url to get the next page of items. */
-  nextLink?: string;
-}
-export const OperationList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(OperationListValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({ identifier: "OperationList" }) as any as S.Schema<OperationList>;
-
-export interface ReservationArchiveRequest {
-  /** Order Id of the reservation */
-  reservationOrderId: string;
-  /** Id of the reservation item */
-  reservationId: string;
-}
-export const ReservationArchiveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    reservationOrderId: S.String.pipe(T.Label()),
-    reservationId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/providers/Microsoft.Capacity/reservationOrders/{reservationOrderId}/reservations/{reservationId}/archive",
-      code: 200,
-      apiVersion: "2022-11-01",
-    }),
-  ),
-).annotate({
-  identifier: "ReservationArchiveRequest",
-}) as any as S.Schema<ReservationArchiveRequest>;
-
-export interface ReservationArchiveResponse {}
-export const ReservationArchiveResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ReservationArchiveResponse",
-}) as any as S.Schema<ReservationArchiveResponse>;
+  identifier: "PostReturnResponse",
+}) as any as S.Schema<PostReturnResponse>;
 
 export type AvailableScopeRequestPropertiesScopesList = Array<string>;
 export const AvailableScopeRequestPropertiesScopesList = /*@__PURE__*/ S.Array(
@@ -1479,665 +2436,6 @@ export const AvailableScopeProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "AvailableScopeProperties",
 }) as any as S.Schema<AvailableScopeProperties>;
 
-export interface ReservationGetRequest {
-  /** Order Id of the reservation */
-  reservationOrderId: string;
-  /** Id of the reservation item */
-  reservationId: string;
-  /** Supported value of this query is renewProperties */
-  _expand?: string;
-}
-export const ReservationGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    reservationOrderId: S.String.pipe(T.Label()),
-    reservationId: S.String.pipe(T.Label()),
-    _expand: S.optional(S.String.pipe(T.Query("$expand"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/providers/Microsoft.Capacity/reservationOrders/{reservationOrderId}/reservations/{reservationId}",
-      code: 200,
-      apiVersion: "2022-11-01",
-    }),
-  ),
-).annotate({
-  identifier: "ReservationGetRequest",
-}) as any as S.Schema<ReservationGetRequest>;
-
-/** The type of identity that created the resource. */
-export type SystemDataCreatedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const SystemDataCreatedByType = /*@__PURE__*/ S.String;
-
-/** The type of identity that last modified the resource. */
-export type SystemDataLastModifiedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const SystemDataLastModifiedByType = /*@__PURE__*/ S.String;
-
-/** Metadata pertaining to creation and last modification of the resource. */
-export interface SystemData {
-  /** The identity that created the resource. */
-  createdBy?: string;
-  /** The type of identity that created the resource. */
-  createdByType?: SystemDataCreatedByType;
-  /** The timestamp of resource creation (UTC). */
-  createdAt?: string;
-  /** The identity that last modified the resource. */
-  lastModifiedBy?: string;
-  /** The type of identity that last modified the resource. */
-  lastModifiedByType?: SystemDataLastModifiedByType;
-  /** The timestamp of resource last modification (UTC) */
-  lastModifiedAt?: string;
-}
-export const SystemData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    createdBy: S.optional(S.String),
-    createdByType: S.optional(SystemDataCreatedByType),
-    createdAt: S.optional(S.String),
-    lastModifiedBy: S.optional(S.String),
-    lastModifiedByType: S.optional(SystemDataLastModifiedByType),
-    lastModifiedAt: S.optional(S.String),
-  }),
-).annotate({ identifier: "SystemData" }) as any as S.Schema<SystemData>;
-
-/** The list of applied scopes */
-export type ReservationsPropertiesAppliedScopesList = Array<string>;
-export const ReservationsPropertiesAppliedScopesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ReservationsPropertiesAppliedScopesList>;
-
-/** Represent the current state of the Reservation. */
-export type ProvisioningState =
-  | "Creating"
-  | "PendingResourceHold"
-  | "ConfirmedResourceHold"
-  | "PendingBilling"
-  | "ConfirmedBilling"
-  | "Created"
-  | "Succeeded"
-  | "Cancelled"
-  | "Expired"
-  | "BillingFailed"
-  | "Failed"
-  | "Split"
-  | "Merged";
-export const ProvisioningState = /*@__PURE__*/ S.String;
-
-export type ReservationStatusCode =
-  | "None"
-  | "Pending"
-  | "Processing"
-  | "Active"
-  | "PurchaseError"
-  | "PaymentInstrumentError"
-  | "Split"
-  | "Merged"
-  | "Expired"
-  | "Succeeded";
-export const ReservationStatusCode = /*@__PURE__*/ S.String;
-
-export interface ExtendedStatusInfo {
-  statusCode?: ReservationStatusCode;
-  /** The message giving detailed information about the status code. */
-  message?: string;
-}
-export const ExtendedStatusInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    statusCode: S.optional(ReservationStatusCode),
-    message: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ExtendedStatusInfo",
-}) as any as S.Schema<ExtendedStatusInfo>;
-
-/** List of destination resource id that are created due to split. Format of the resource id is /providers/Microsoft.Capacity/reservationOrders/{reservationOrderId}/reservations/{reservationId} */
-export type ReservationSplitPropertiesSplitDestinationsList = Array<string>;
-export const ReservationSplitPropertiesSplitDestinationsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ReservationSplitPropertiesSplitDestinationsList>;
-
-/** Properties of reservation split */
-export interface ReservationSplitProperties {
-  /** List of destination resource id that are created due to split. Format of the resource id is /providers/Microsoft.Capacity/reservationOrders/{reservationOrderId}/reservations/{reservationId} */
-  splitDestinations?: ReservationSplitPropertiesSplitDestinationsList;
-  /** Resource id of the reservation from which this is split. Format of the resource id is /providers/Microsoft.Capacity/reservationOrders/{reservationOrderId}/reservations/{reservationId} */
-  splitSource?: string;
-}
-export const ReservationSplitProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    splitDestinations: S.optional(
-      ReservationSplitPropertiesSplitDestinationsList,
-    ),
-    splitSource: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ReservationSplitProperties",
-}) as any as S.Schema<ReservationSplitProperties>;
-
-/** Resource ids of the source reservation's merged to form this reservation. Format of the resource id is /providers/Microsoft.Capacity/reservationOrders/{reservationOrderId}/reservations/{reservationId} */
-export type ReservationMergePropertiesMergeSourcesList = Array<string>;
-export const ReservationMergePropertiesMergeSourcesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ReservationMergePropertiesMergeSourcesList>;
-
-/** Properties of reservation merge */
-export interface ReservationMergeProperties {
-  /** Reservation resource id Created due to the merge. Format of the resource id is /providers/Microsoft.Capacity/reservationOrders/{reservationOrderId}/reservations/{reservationId} */
-  mergeDestination?: string;
-  /** Resource ids of the source reservation's merged to form this reservation. Format of the resource id is /providers/Microsoft.Capacity/reservationOrders/{reservationOrderId}/reservations/{reservationId} */
-  mergeSources?: ReservationMergePropertiesMergeSourcesList;
-}
-export const ReservationMergeProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    mergeDestination: S.optional(S.String),
-    mergeSources: S.optional(ReservationMergePropertiesMergeSourcesList),
-  }),
-).annotate({
-  identifier: "ReservationMergeProperties",
-}) as any as S.Schema<ReservationMergeProperties>;
-
-/** Properties of reservation swap */
-export interface ReservationSwapProperties {
-  /** Resource id of the source reservation that gets swapped. Format of the resource id is /providers/microsoft.capacity/reservationOrders/{reservationOrderId}/reservations/{reservationId} */
-  swapSource?: string;
-  /** Reservation resource id that the original resource gets swapped to. Format of the resource id is /providers/microsoft.capacity/reservationOrders/{reservationOrderId}/reservations/{reservationId} */
-  swapDestination?: string;
-}
-export const ReservationSwapProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    swapSource: S.optional(S.String),
-    swapDestination: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ReservationSwapProperties",
-}) as any as S.Schema<ReservationSwapProperties>;
-
-/** Amount that Microsoft uses for record. Used during refund for calculating refund limit. Tax is not included. This is locked price 30 days before expiry. */
-export type RenewPropertiesResponsePricingCurrencyTotal = Price;
-export const RenewPropertiesResponsePricingCurrencyTotal = Price;
-
-/** Currency and amount that customer will be charged in customer's local currency for renewal purchase. Tax is not included. */
-export type RenewPropertiesResponseBillingCurrencyTotal = Price;
-export const RenewPropertiesResponseBillingCurrencyTotal = Price;
-
-/** The renew properties for a reservation. */
-export interface RenewPropertiesResponse {
-  /** The request for reservation purchase */
-  purchaseProperties?: PurchaseRequest;
-  /** Amount that Microsoft uses for record. Used during refund for calculating refund limit. Tax is not included. This is locked price 30 days before expiry. */
-  pricingCurrencyTotal?: Price;
-  /** Currency and amount that customer will be charged in customer's local currency for renewal purchase. Tax is not included. */
-  billingCurrencyTotal?: Price;
-}
-export const RenewPropertiesResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    purchaseProperties: S.optional(PurchaseRequest),
-    pricingCurrencyTotal: S.optional(Price),
-    billingCurrencyTotal: S.optional(Price),
-  }),
-).annotate({
-  identifier: "RenewPropertiesResponse",
-}) as any as S.Schema<RenewPropertiesResponse>;
-
-/** The aggregate values of reservation utilization */
-export interface ReservationUtilizationAggregates {
-  /** The grain of the aggregate */
-  grain?: number;
-  /** The grain unit of the aggregate */
-  grainUnit?: string;
-  /** The aggregate value */
-  value?: number;
-  /** The aggregate value unit */
-  valueUnit?: string;
-}
-export const ReservationUtilizationAggregates = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    grain: S.optional(S.Number),
-    grainUnit: S.optional(S.String),
-    value: S.optional(S.Number),
-    valueUnit: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ReservationUtilizationAggregates",
-}) as any as S.Schema<ReservationUtilizationAggregates>;
-
-/** The array of aggregates of a reservation's utilization */
-export type ReservationsPropertiesUtilizationAggregatesList =
-  Array<ReservationUtilizationAggregates>;
-export const ReservationsPropertiesUtilizationAggregatesList =
-  /*@__PURE__*/ S.Array(
-    ReservationUtilizationAggregates,
-  ) as any as S.Schema<ReservationsPropertiesUtilizationAggregatesList>;
-
-/** Reservation utilization */
-export interface ReservationsPropertiesUtilization {
-  /** last 7 day utilization trend for a reservation */
-  trend?: string;
-  /** The array of aggregates of a reservation's utilization */
-  aggregates?: ReservationsPropertiesUtilizationAggregatesList;
-}
-export const ReservationsPropertiesUtilization = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    trend: S.optional(S.String),
-    aggregates: S.optional(ReservationsPropertiesUtilizationAggregatesList),
-  }),
-).annotate({
-  identifier: "ReservationsPropertiesUtilization",
-}) as any as S.Schema<ReservationsPropertiesUtilization>;
-
-/** The properties of the reservations */
-export interface ReservationsProperties {
-  /** The type of the resource that is being reserved. */
-  reservedResourceType?: ReservedResourceType;
-  /** Allows reservation discount to be applied across skus within the same auto fit group. Not all skus support instance size flexibility. */
-  instanceFlexibility?: InstanceFlexibility;
-  /** Friendly name for user to easily identify the reservation */
-  displayName?: string;
-  /** The list of applied scopes */
-  appliedScopes?: ReservationsPropertiesAppliedScopesList;
-  /** The applied scope type */
-  appliedScopeType?: AppliedScopeType;
-  /** Indicates if the reservation is archived */
-  archived?: boolean;
-  /** Capabilities of the reservation */
-  capabilities?: string;
-  /** Quantity of the skus that are part of the reservation. Must be greater than zero. */
-  quantity?: number;
-  /** Current state of the reservation. */
-  provisioningState?: ProvisioningState;
-  /** DateTime of the reservation starting when this version is effective from. */
-  effectiveDateTime?: string;
-  /** This is the DateTime when the reservation benefit started. */
-  benefitStartTime?: string;
-  /** DateTime of the last time the reservation was updated. */
-  lastUpdatedDateTime?: string;
-  /** This is the date when the reservation will expire. */
-  expiryDate?: string;
-  /** This is the date-time when the reservation will expire. */
-  expiryDateTime?: string;
-  /** This is the date-time when the Azure Hybrid Benefit needs to be reviewed. */
-  reviewDateTime?: string;
-  /** Description of the sku in english. */
-  skuDescription?: string;
-  /** The message giving detailed information about the status code. */
-  extendedStatusInfo?: ExtendedStatusInfo;
-  /** The billing plan options available for this sku. */
-  billingPlan?: ReservationBillingPlan;
-  /** The provisioning state of the reservation for display, e.g. Succeeded */
-  displayProvisioningState?: string;
-  /** The provisioning sub-state of the reservation, e.g. Succeeded */
-  provisioningSubState?: string;
-  /** This is the date when the reservation was purchased. */
-  purchaseDate?: string;
-  /** This is the date-time when the reservation was purchased. */
-  purchaseDateTime?: string;
-  /** Properties of reservation split */
-  splitProperties?: ReservationSplitProperties;
-  /** Properties of reservation merge */
-  mergeProperties?: ReservationMergeProperties;
-  /** Properties of reservation swap */
-  swapProperties?: ReservationSwapProperties;
-  /** Properties specific to applied scope type. Not required if not applicable. Required and need to provide tenantId and managementGroupId if AppliedScopeType is ManagementGroup */
-  appliedScopeProperties?: AppliedScopeProperties;
-  /** Subscription that will be charged for purchasing reservation or savings plan */
-  billingScopeId?: string;
-  /** Setting this to true will automatically purchase a new reservation on the expiration date time. */
-  renew?: boolean;
-  /** Reservation Id of the reservation from which this reservation is renewed. Format of the resource Id is /providers/Microsoft.Capacity/reservationOrders/{reservationOrderId}/reservations/{reservationId}. */
-  renewSource?: string;
-  /** Reservation Id of the reservation which is purchased because of renew. Format of the resource Id is /providers/Microsoft.Capacity/reservationOrders/{reservationOrderId}/reservations/{reservationId}. */
-  renewDestination?: string;
-  /** The renew properties for a reservation. */
-  renewProperties?: RenewPropertiesResponse;
-  /** Represent the term of reservation. */
-  term?: ReservationTerm;
-  /** The applied scope type of the reservation for display, e.g. Shared */
-  userFriendlyAppliedScopeType?: string;
-  /** The renew state of the reservation for display, e.g. On */
-  userFriendlyRenewState?: string;
-  /** Reservation utilization */
-  utilization?: ReservationsPropertiesUtilization;
-}
-export const ReservationsProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    reservedResourceType: S.optional(ReservedResourceType),
-    instanceFlexibility: S.optional(InstanceFlexibility),
-    displayName: S.optional(S.String),
-    appliedScopes: S.optional(ReservationsPropertiesAppliedScopesList),
-    appliedScopeType: S.optional(AppliedScopeType),
-    archived: S.optional(S.Boolean),
-    capabilities: S.optional(S.String),
-    quantity: S.optional(S.Number),
-    provisioningState: S.optional(ProvisioningState),
-    effectiveDateTime: S.optional(S.String),
-    benefitStartTime: S.optional(S.String),
-    lastUpdatedDateTime: S.optional(S.String),
-    expiryDate: S.optional(S.String),
-    expiryDateTime: S.optional(S.String),
-    reviewDateTime: S.optional(S.String),
-    skuDescription: S.optional(S.String),
-    extendedStatusInfo: S.optional(ExtendedStatusInfo),
-    billingPlan: S.optional(ReservationBillingPlan),
-    displayProvisioningState: S.optional(S.String),
-    provisioningSubState: S.optional(S.String),
-    purchaseDate: S.optional(S.String),
-    purchaseDateTime: S.optional(S.String),
-    splitProperties: S.optional(ReservationSplitProperties),
-    mergeProperties: S.optional(ReservationMergeProperties),
-    swapProperties: S.optional(ReservationSwapProperties),
-    appliedScopeProperties: S.optional(AppliedScopeProperties),
-    billingScopeId: S.optional(S.String),
-    renew: S.optional(S.Boolean),
-    renewSource: S.optional(S.String),
-    renewDestination: S.optional(S.String),
-    renewProperties: S.optional(RenewPropertiesResponse),
-    term: S.optional(ReservationTerm),
-    userFriendlyAppliedScopeType: S.optional(S.String),
-    userFriendlyRenewState: S.optional(S.String),
-    utilization: S.optional(ReservationsPropertiesUtilization),
-  }),
-).annotate({
-  identifier: "ReservationsProperties",
-}) as any as S.Schema<ReservationsProperties>;
-
-/** Resource Provider type to be reserved. */
-export type ReservationGetResponseKind = "Microsoft.Compute";
-export const ReservationGetResponseKind = /*@__PURE__*/ S.String;
-
-export interface ReservationGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties associated to this reservation */
-  properties?: ReservationsProperties;
-  /** The Azure region where the reserved resource lives. */
-  location?: string;
-  etag?: number;
-  /** The sku information associated to this reservation */
-  sku?: SkuName;
-  /** Resource Provider type to be reserved. */
-  kind?: ReservationGetResponseKind;
-}
-export const ReservationGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ReservationsProperties),
-    location: S.optional(S.String),
-    etag: S.optional(S.Number),
-    sku: S.optional(SkuName),
-    kind: S.optional(ReservationGetResponseKind),
-  }),
-).annotate({
-  identifier: "ReservationGetResponse",
-}) as any as S.Schema<ReservationGetResponse>;
-
-export interface ReservationListRequest {
-  /** Order Id of the reservation */
-  reservationOrderId: string;
-}
-export const ReservationListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    reservationOrderId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/providers/Microsoft.Capacity/reservationOrders/{reservationOrderId}/reservations",
-      code: 200,
-      apiVersion: "2022-11-01",
-    }),
-  ),
-).annotate({
-  identifier: "ReservationListRequest",
-}) as any as S.Schema<ReservationListRequest>;
-
-/** Resource Provider type to be reserved. */
-export type ReservationResponseKind = "Microsoft.Compute";
-export const ReservationResponseKind = /*@__PURE__*/ S.String;
-
-/** The definition of the reservation. */
-export interface ReservationResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties associated to this reservation */
-  properties?: ReservationsProperties;
-  /** The Azure region where the reserved resource lives. */
-  location?: string;
-  etag?: number;
-  /** The sku information associated to this reservation */
-  sku?: SkuName;
-  /** Resource Provider type to be reserved. */
-  kind?: ReservationResponseKind;
-}
-export const ReservationResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ReservationsProperties),
-    location: S.optional(S.String),
-    etag: S.optional(S.Number),
-    sku: S.optional(SkuName),
-    kind: S.optional(ReservationResponseKind),
-  }),
-).annotate({
-  identifier: "ReservationResponse",
-}) as any as S.Schema<ReservationResponse>;
-
-/** The ReservationResponse items on this page */
-export type ReservationListValueList = Array<ReservationResponse>;
-export const ReservationListValueList = /*@__PURE__*/ S.Array(
-  ReservationResponse,
-) as any as S.Schema<ReservationListValueList>;
-
-/** List of `Reservation`s */
-export interface ReservationList {
-  /** The ReservationResponse items on this page */
-  value: ReservationListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const ReservationList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: ReservationListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ReservationList",
-}) as any as S.Schema<ReservationList>;
-
-export interface ReservationListAllRequest {
-  /** May be used to filter by reservation properties. The filter supports 'eq', 'or', and 'and'. It does not currently support 'ne', 'gt', 'le', 'ge', or 'not'. Reservation properties include sku/name, properties/{appliedScopeType, archived, displayName, displayProvisioningState, effectiveDateTime, expiryDate, expiryDateTime, provisioningState, quantity, renew, reservedResourceType, term, userFriendlyAppliedScopeType, userFriendlyRenewState} */
-  _filter?: string;
-  /** May be used to sort order by reservation properties. */
-  _orderby?: string;
-  /** To indicate whether to refresh the roll up counts of the reservations group by provisioning states */
-  refreshSummary?: string;
-  /** The number of reservations to skip from the list before returning results */
-  _skiptoken?: number;
-  /** The selected provisioning state */
-  selectedState?: string;
-  /** To number of reservations to return */
-  take?: number;
-}
-export const ReservationListAllRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
-    _orderby: S.optional(S.String.pipe(T.Query("$orderby"))),
-    refreshSummary: S.optional(S.String.pipe(T.Query())),
-    _skiptoken: S.optional(S.Number.pipe(T.Query("$skiptoken"))),
-    selectedState: S.optional(S.String.pipe(T.Query())),
-    take: S.optional(S.Number.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/providers/Microsoft.Capacity/reservations",
-      code: 200,
-      apiVersion: "2022-11-01",
-    }),
-  ),
-).annotate({
-  identifier: "ReservationListAllRequest",
-}) as any as S.Schema<ReservationListAllRequest>;
-
-/** The list of reservations. */
-export type ReservationsListResultValueList = Array<ReservationResponse>;
-export const ReservationsListResultValueList = /*@__PURE__*/ S.Array(
-  ReservationResponse,
-) as any as S.Schema<ReservationsListResultValueList>;
-
-/** The roll up count summary of reservations in each state */
-export interface ReservationSummary {
-  /** The number of reservation in Succeeded state */
-  succeededCount?: number;
-  /** The number of reservation in Failed state */
-  failedCount?: number;
-  /** The number of reservation in Expiring state */
-  expiringCount?: number;
-  /** The number of reservation in Expired state */
-  expiredCount?: number;
-  /** The number of reservation in Pending state */
-  pendingCount?: number;
-  /** The number of reservation in Cancelled state */
-  cancelledCount?: number;
-  /** The number of reservation in Processing state */
-  processingCount?: number;
-  /** The number of reservation in Warning state */
-  warningCount?: number;
-  /** The number of reservation in NoBenefit state */
-  noBenefitCount?: number;
-}
-export const ReservationSummary = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    succeededCount: S.optional(S.Number),
-    failedCount: S.optional(S.Number),
-    expiringCount: S.optional(S.Number),
-    expiredCount: S.optional(S.Number),
-    pendingCount: S.optional(S.Number),
-    cancelledCount: S.optional(S.Number),
-    processingCount: S.optional(S.Number),
-    warningCount: S.optional(S.Number),
-    noBenefitCount: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "ReservationSummary",
-}) as any as S.Schema<ReservationSummary>;
-
-/** The list of reservations and summary of roll out count of reservations in each state. */
-export interface ReservationsListResult {
-  /** The list of reservations. */
-  value?: ReservationsListResultValueList;
-  /** The link (url) to the next page of results. */
-  nextLink?: string;
-  /** The roll out count summary of the reservations */
-  summary?: ReservationSummary;
-}
-export const ReservationsListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(ReservationsListResultValueList),
-    nextLink: S.optional(S.String),
-    summary: S.optional(ReservationSummary),
-  }),
-).annotate({
-  identifier: "ReservationsListResult",
-}) as any as S.Schema<ReservationsListResult>;
-
-export interface ReservationListRevisionsRequest {
-  /** Order Id of the reservation */
-  reservationOrderId: string;
-  /** Id of the reservation item */
-  reservationId: string;
-}
-export const ReservationListRevisionsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    reservationOrderId: S.String.pipe(T.Label()),
-    reservationId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/providers/Microsoft.Capacity/reservationOrders/{reservationOrderId}/reservations/{reservationId}/revisions",
-      code: 200,
-      apiVersion: "2022-11-01",
-    }),
-  ),
-).annotate({
-  identifier: "ReservationListRevisionsRequest",
-}) as any as S.Schema<ReservationListRevisionsRequest>;
-
-/** Format of the resource id should be /providers/Microsoft.Capacity/reservationOrders/{reservationOrderId}/reservations/{reservationId} */
-export type MergePropertiesSourcesList = Array<string>;
-export const MergePropertiesSourcesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<MergePropertiesSourcesList>;
-
-/** Properties for reservation merge */
-export interface MergeProperties {
-  /** Format of the resource id should be /providers/Microsoft.Capacity/reservationOrders/{reservationOrderId}/reservations/{reservationId} */
-  sources?: MergePropertiesSourcesList;
-}
-export const MergeProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    sources: S.optional(MergePropertiesSourcesList),
-  }),
-).annotate({
-  identifier: "MergeProperties",
-}) as any as S.Schema<MergeProperties>;
-
-export interface ReservationMergeRequest {
-  /** Order Id of the reservation */
-  reservationOrderId: string;
-  /** Properties for reservation merge */
-  properties?: MergeProperties;
-}
-export const ReservationMergeRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    reservationOrderId: S.String.pipe(T.Label()),
-    properties: S.optional(MergeProperties),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/providers/Microsoft.Capacity/reservationOrders/{reservationOrderId}/merge",
-      code: 200,
-      apiVersion: "2022-11-01",
-    }),
-  ),
-).annotate({
-  identifier: "ReservationMergeRequest",
-}) as any as S.Schema<ReservationMergeRequest>;
-
-export type ReservationMergeResponseBodyList = Array<ReservationResponse>;
-export const ReservationMergeResponseBodyList = /*@__PURE__*/ S.Array(
-  ReservationResponse,
-) as any as S.Schema<ReservationMergeResponseBodyList>;
-
-export type ReservationMergeResponse = ReservationMergeResponseBodyList;
-export const ReservationMergeResponse = /*@__PURE__*/ S.suspend(() =>
-  ReservationMergeResponseBodyList.pipe(T.RawResponseRoot()),
-).annotate({
-  identifier: "ReservationMergeResponse",
-}) as any as S.Schema<ReservationMergeResponse>;
-
 export interface ReservationOrderCalculateRequest {
   /** The name of sku */
   sku?: SkuName;
@@ -2183,38 +2481,6 @@ export const CalculatePriceResponsePropertiesBillingCurrencyTotal =
 /** Amount that Microsoft uses for record. Used during refund for calculating refund limit. Tax is not included. */
 export type CalculatePriceResponsePropertiesPricingCurrencyTotal = Price;
 export const CalculatePriceResponsePropertiesPricingCurrencyTotal = Price;
-
-/** Describes whether the payment is completed, failed, cancelled or scheduled in the future. */
-export type PaymentStatus = "Succeeded" | "Failed" | "Scheduled" | "Cancelled";
-export const PaymentStatus = /*@__PURE__*/ S.String;
-
-/** Information about payment related to a reservation order. */
-export interface PaymentDetail {
-  /** Date when the payment needs to be done. */
-  dueDate?: string;
-  /** Date when the transaction is completed. Is null when it is scheduled. */
-  paymentDate?: string;
-  /** Amount in pricing currency. Tax not included. */
-  pricingCurrencyTotal?: Price;
-  /** Amount charged in Billing currency. Tax not included. Is null for future payments */
-  billingCurrencyTotal?: Price;
-  /** Shows the Account that is charged for this payment. */
-  billingAccount?: string;
-  /** Describes whether the payment is completed, failed, cancelled or scheduled in the future. */
-  status?: PaymentStatus;
-  extendedStatusInfo?: ExtendedStatusInfo;
-}
-export const PaymentDetail = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    dueDate: S.optional(S.String),
-    paymentDate: S.optional(S.String),
-    pricingCurrencyTotal: S.optional(Price),
-    billingCurrencyTotal: S.optional(Price),
-    billingAccount: S.optional(S.String),
-    status: S.optional(PaymentStatus),
-    extendedStatusInfo: S.optional(ExtendedStatusInfo),
-  }),
-).annotate({ identifier: "PaymentDetail" }) as any as S.Schema<PaymentDetail>;
 
 export type CalculatePriceResponsePropertiesPaymentScheduleList =
   Array<PaymentDetail>;
@@ -2348,202 +2614,6 @@ export const ChangeDirectoryResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ChangeDirectoryResponse",
 }) as any as S.Schema<ChangeDirectoryResponse>;
 
-export interface ReservationOrderGetRequest {
-  /** Order Id of the reservation */
-  reservationOrderId: string;
-  /** May be used to expand the planInformation. */
-  _expand?: string;
-}
-export const ReservationOrderGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    reservationOrderId: S.String.pipe(T.Label()),
-    _expand: S.optional(S.String.pipe(T.Query("$expand"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/providers/Microsoft.Capacity/reservationOrders/{reservationOrderId}",
-      code: 200,
-      apiVersion: "2022-11-01",
-    }),
-  ),
-).annotate({
-  identifier: "ReservationOrderGetRequest",
-}) as any as S.Schema<ReservationOrderGetRequest>;
-
-export type ReservationOrderBillingPlanInformationTransactionsList =
-  Array<PaymentDetail>;
-export const ReservationOrderBillingPlanInformationTransactionsList =
-  /*@__PURE__*/ S.Array(
-    PaymentDetail,
-  ) as any as S.Schema<ReservationOrderBillingPlanInformationTransactionsList>;
-
-/** Information describing the type of billing plan for this reservation. */
-export interface ReservationOrderBillingPlanInformation {
-  /** Amount of money to be paid for the Order. Tax is not included. */
-  pricingCurrencyTotal?: Price;
-  /** Date when the billing plan has started. */
-  startDate?: string;
-  /** For recurring billing plans, indicates the date when next payment will be processed. Null when total is paid off. */
-  nextPaymentDueDate?: string;
-  transactions?: ReservationOrderBillingPlanInformationTransactionsList;
-}
-export const ReservationOrderBillingPlanInformation = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      pricingCurrencyTotal: S.optional(Price),
-      startDate: S.optional(S.String),
-      nextPaymentDueDate: S.optional(S.String),
-      transactions: S.optional(
-        ReservationOrderBillingPlanInformationTransactionsList,
-      ),
-    }),
-).annotate({
-  identifier: "ReservationOrderBillingPlanInformation",
-}) as any as S.Schema<ReservationOrderBillingPlanInformation>;
-
-export type ReservationOrderPropertiesReservationsList =
-  Array<ReservationResponse>;
-export const ReservationOrderPropertiesReservationsList = /*@__PURE__*/ S.Array(
-  ReservationResponse,
-) as any as S.Schema<ReservationOrderPropertiesReservationsList>;
-
-/** Properties of a reservation order. */
-export interface ReservationOrderProperties {
-  /** Friendly name for user to easily identified the reservation. */
-  displayName?: string;
-  /** This is the DateTime when the reservation was initially requested for purchase. */
-  requestDateTime?: string;
-  /** This is the DateTime when the reservation was created. */
-  createdDateTime?: string;
-  /** This is the date when the reservation will expire. */
-  expiryDate?: string;
-  /** This is the date-time when the reservation will expire. */
-  expiryDateTime?: string;
-  /** This is the DateTime when the reservation benefit started. */
-  benefitStartTime?: string;
-  /** Total Quantity of the skus purchased in the reservation. */
-  originalQuantity?: number;
-  /** Represent the term of reservation. */
-  term?: ReservationTerm;
-  /** Current state of the reservation. */
-  provisioningState?: ProvisioningState;
-  /** Represent the billing plans. */
-  billingPlan?: ReservationBillingPlan;
-  /** Information describing the type of billing plan for this reservation. */
-  planInformation?: ReservationOrderBillingPlanInformation;
-  reservations?: ReservationOrderPropertiesReservationsList;
-  /** This is the date-time when the Azure Hybrid Benefit needs to be reviewed. */
-  reviewDateTime?: string;
-}
-export const ReservationOrderProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    displayName: S.optional(S.String),
-    requestDateTime: S.optional(S.String),
-    createdDateTime: S.optional(S.String),
-    expiryDate: S.optional(S.String),
-    expiryDateTime: S.optional(S.String),
-    benefitStartTime: S.optional(S.String),
-    originalQuantity: S.optional(S.Number),
-    term: S.optional(ReservationTerm),
-    provisioningState: S.optional(ProvisioningState),
-    billingPlan: S.optional(ReservationBillingPlan),
-    planInformation: S.optional(ReservationOrderBillingPlanInformation),
-    reservations: S.optional(ReservationOrderPropertiesReservationsList),
-    reviewDateTime: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ReservationOrderProperties",
-}) as any as S.Schema<ReservationOrderProperties>;
-
-export interface ReservationOrderGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of a reservation order. */
-  properties?: ReservationOrderProperties;
-  etag?: number;
-}
-export const ReservationOrderGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ReservationOrderProperties),
-    etag: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "ReservationOrderGetResponse",
-}) as any as S.Schema<ReservationOrderGetResponse>;
-
-export interface ReservationOrderList2Request {}
-export const ReservationOrderList2Request = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/providers/Microsoft.Capacity/reservationOrders",
-      code: 200,
-      apiVersion: "2022-11-01",
-    }),
-  ),
-).annotate({
-  identifier: "ReservationOrderList2Request",
-}) as any as S.Schema<ReservationOrderList2Request>;
-
-/** Details of a reservation order being returned. */
-export interface ReservationOrderResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of a reservation order. */
-  properties?: ReservationOrderProperties;
-  etag?: number;
-}
-export const ReservationOrderResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ReservationOrderProperties),
-    etag: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "ReservationOrderResponse",
-}) as any as S.Schema<ReservationOrderResponse>;
-
-/** The ReservationOrderResponse items on this page */
-export type ReservationOrderListValueList = Array<ReservationOrderResponse>;
-export const ReservationOrderListValueList = /*@__PURE__*/ S.Array(
-  ReservationOrderResponse,
-) as any as S.Schema<ReservationOrderListValueList>;
-
-/** List of `ReservationOrder`s */
-export interface ReservationOrderList {
-  /** The ReservationOrderResponse items on this page */
-  value: ReservationOrderListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const ReservationOrderList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: ReservationOrderListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ReservationOrderList",
-}) as any as S.Schema<ReservationOrderList>;
-
 export interface ReservationOrderPurchaseRequest {
   /** Order Id of the reservation */
   reservationOrderId: string;
@@ -2654,13 +2724,13 @@ export const ReservationSplitResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ReservationSplitResponse",
 }) as any as S.Schema<ReservationSplitResponse>;
 
-export interface ReservationUnarchiveRequest {
+export interface UnarchiveReservationRequest {
   /** Order Id of the reservation */
   reservationOrderId: string;
   /** Id of the reservation item */
   reservationId: string;
 }
-export const ReservationUnarchiveRequest = /*@__PURE__*/ S.suspend(() =>
+export const UnarchiveReservationRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     reservationOrderId: S.String.pipe(T.Label()),
     reservationId: S.String.pipe(T.Label()),
@@ -2673,15 +2743,15 @@ export const ReservationUnarchiveRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ReservationUnarchiveRequest",
-}) as any as S.Schema<ReservationUnarchiveRequest>;
+  identifier: "UnarchiveReservationRequest",
+}) as any as S.Schema<UnarchiveReservationRequest>;
 
-export interface ReservationUnarchiveResponse {}
-export const ReservationUnarchiveResponse = /*@__PURE__*/ S.suspend(() =>
+export interface UnarchiveReservationResponse {}
+export const UnarchiveReservationResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "ReservationUnarchiveResponse",
-}) as any as S.Schema<ReservationUnarchiveResponse>;
+  identifier: "UnarchiveReservationResponse",
+}) as any as S.Schema<UnarchiveReservationResponse>;
 
 /** List of the subscriptions that the benefit will be applied. Do not specify if AppliedScopeType is Shared. This property will be deprecated and replaced by appliedScopeProperties instead for Single AppliedScopeType. */
 export type PatchPropertiesAppliedScopesList = Array<string>;
@@ -2734,7 +2804,7 @@ export const PatchProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "PatchProperties",
 }) as any as S.Schema<PatchProperties>;
 
-export interface ReservationUpdateRequest {
+export interface UpdateReservationRequest {
   /** Order Id of the reservation */
   reservationOrderId: string;
   /** Id of the reservation item */
@@ -2742,7 +2812,7 @@ export interface ReservationUpdateRequest {
   /** Properties for reservation patch */
   properties?: PatchProperties;
 }
-export const ReservationUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateReservationRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     reservationOrderId: S.String.pipe(T.Label()),
     reservationId: S.String.pipe(T.Label()),
@@ -2756,14 +2826,14 @@ export const ReservationUpdateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ReservationUpdateRequest",
-}) as any as S.Schema<ReservationUpdateRequest>;
+  identifier: "UpdateReservationRequest",
+}) as any as S.Schema<UpdateReservationRequest>;
 
 /** Resource Provider type to be reserved. */
-export type ReservationUpdateResponseKind = "Microsoft.Compute";
-export const ReservationUpdateResponseKind = /*@__PURE__*/ S.String;
+export type UpdateReservationResponseKind = "Microsoft.Compute";
+export const UpdateReservationResponseKind = /*@__PURE__*/ S.String;
 
-export interface ReservationUpdateResponse {
+export interface UpdateReservationResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -2780,9 +2850,9 @@ export interface ReservationUpdateResponse {
   /** The sku information associated to this reservation */
   sku?: SkuName;
   /** Resource Provider type to be reserved. */
-  kind?: ReservationUpdateResponseKind;
+  kind?: UpdateReservationResponseKind;
 }
-export const ReservationUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateReservationResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -2792,122 +2862,22 @@ export const ReservationUpdateResponse = /*@__PURE__*/ S.suspend(() =>
     location: S.optional(S.String),
     etag: S.optional(S.Number),
     sku: S.optional(SkuName),
-    kind: S.optional(ReservationUpdateResponseKind),
+    kind: S.optional(UpdateReservationResponseKind),
   }),
 ).annotate({
-  identifier: "ReservationUpdateResponse",
-}) as any as S.Schema<ReservationUpdateResponse>;
+  identifier: "UpdateReservationResponse",
+}) as any as S.Schema<UpdateReservationResponse>;
 
-/** Properties needed for refund request including the session id from calculate refund, the scope, the reservation to be returned and the return reason. */
-export interface RefundRequestProperties {
-  /** SessionId that was returned by CalculateRefund API. */
-  sessionId?: string;
-  /** The scope of the refund, e.g. Reservation */
-  scope?: string;
-  /** Reservation to return */
-  reservationToReturn?: ReservationToReturn;
-  /** The reason of returning the reservation */
-  returnReason?: string;
-}
-export const RefundRequestProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    sessionId: S.optional(S.String),
-    scope: S.optional(S.String),
-    reservationToReturn: S.optional(ReservationToReturn),
-    returnReason: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "RefundRequestProperties",
-}) as any as S.Schema<RefundRequestProperties>;
-
-export interface ReturnPostRequest {
-  /** Order Id of the reservation */
-  reservationOrderId: string;
-  /** Properties needed for refund request including the session id from calculate refund, the scope, the reservation to be returned and the return reason. */
-  properties?: RefundRequestProperties;
-}
-export const ReturnPostRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    reservationOrderId: S.String.pipe(T.Label()),
-    properties: S.optional(RefundRequestProperties),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/providers/Microsoft.Capacity/reservationOrders/{reservationOrderId}/return",
-      code: 200,
-      apiVersion: "2022-11-01",
-    }),
-  ),
-).annotate({
-  identifier: "ReturnPostRequest",
-}) as any as S.Schema<ReturnPostRequest>;
-
-export interface ReturnPostResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of a reservation order. */
-  properties?: ReservationOrderProperties;
-  etag?: number;
-}
-export const ReturnPostResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(ReservationOrderProperties),
-    etag: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "ReturnPostResponse",
-}) as any as S.Schema<ReturnPostResponse>;
-
-export type CalculateExchangePostError = AzureOpError;
-/** Calculates the refund amounts and price of the new purchases. Calculates price for exchanging `Reservations` if there are no policy errors. */
-export const CalculateExchangePost: API.OperationMethod<
-  CalculateExchangePostRequest,
-  CalculateExchangeOperationResultResponse,
-  CalculateExchangePostError,
+export type ArchiveReservationError = AzureOpError;
+/** Archive a `Reservation`. Archiving a `Reservation` moves it to `Archived` state. */
+export const ArchiveReservation: API.OperationMethod<
+  ArchiveReservationRequest,
+  ArchiveReservationResponse,
+  ArchiveReservationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CalculateExchangePostRequest,
-  output: CalculateExchangeOperationResultResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CalculateRefundPostError = AzureOpError;
-/** Calculate the refund amount of a reservation order. Calculate price for returning `Reservations` if there are no policy errors. */
-export const CalculateRefundPost: API.OperationMethod<
-  CalculateRefundPostRequest,
-  CalculateRefundResponse,
-  CalculateRefundPostError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CalculateRefundPostRequest,
-  output: CalculateRefundResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ExchangePostError = AzureOpError;
-/** Exchange Reservation(s) Returns one or more `Reservations` in exchange for one or more `Reservation` purchases. */
-export const ExchangePost: API.OperationMethod<
-  ExchangePostRequest,
-  ExchangeOperationResultResponse,
-  ExchangePostError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ExchangePostRequest,
-  output: ExchangeOperationResultResponse,
+  input: ArchiveReservationRequest,
+  output: ArchiveReservationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -2943,31 +2913,181 @@ export const GetCatalog: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type OperationList2Error = AzureOpError;
-/** Get operations. List all the operations. */
-export const OperationList2: API.OperationMethod<
-  OperationList2Request,
-  OperationList,
-  OperationList2Error,
+export type GetReservationError = AzureOpError;
+/** Get `Reservation` details. Get specific `Reservation` details. */
+export const GetReservation: API.OperationMethod<
+  GetReservationRequest,
+  GetReservationResponse,
+  GetReservationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OperationList2Request,
+  input: GetReservationRequest,
+  output: GetReservationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetReservationOrderError = AzureOpError;
+/** Get a specific `ReservationOrder`. Get the details of the `ReservationOrder`. */
+export const GetReservationOrder: API.OperationMethod<
+  GetReservationOrderRequest,
+  GetReservationOrderResponse,
+  GetReservationOrderError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetReservationOrderRequest,
+  output: GetReservationOrderResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListOperationError = AzureOpError;
+/** Get operations. List all the operations. */
+export const ListOperation: API.OperationMethod<
+  ListOperationRequest,
+  OperationList,
+  ListOperationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListOperationRequest,
   output: OperationList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ReservationArchiveError = AzureOpError;
-/** Archive a `Reservation`. Archiving a `Reservation` moves it to `Archived` state. */
-export const ReservationArchive: API.OperationMethod<
-  ReservationArchiveRequest,
-  ReservationArchiveResponse,
-  ReservationArchiveError,
+export type ListReservationError = AzureOpError;
+/** Get `Reservation`s in a given reservation Order List `Reservation`s within a single `ReservationOrder`. */
+export const ListReservation: API.OperationMethod<
+  ListReservationRequest,
+  ReservationList,
+  ListReservationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ReservationArchiveRequest,
-  output: ReservationArchiveResponse,
+  input: ListReservationRequest,
+  output: ReservationList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListReservationAllError = AzureOpError;
+/** List the reservations and the roll up counts of reservations group by provisioning states that the user has access to in the current tenant. */
+export const ListReservationAll: API.OperationMethod<
+  ListReservationAllRequest,
+  ReservationsListResult,
+  ListReservationAllError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListReservationAllRequest,
+  output: ReservationsListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListReservationOrderError = AzureOpError;
+/** Get all `ReservationOrder`s. List of all the `ReservationOrder`s that the user has access to in the current tenant. */
+export const ListReservationOrder: API.OperationMethod<
+  ListReservationOrderRequest,
+  ReservationOrderList,
+  ListReservationOrderError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListReservationOrderRequest,
+  output: ReservationOrderList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListReservationRevisionsError = AzureOpError;
+/** Get `Reservation` revisions. List of all the revisions for the `Reservation`. */
+export const ListReservationRevisions: API.OperationMethod<
+  ListReservationRevisionsRequest,
+  ReservationList,
+  ListReservationRevisionsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListReservationRevisionsRequest,
+  output: ReservationList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type MergeReservationError = AzureOpError;
+/** Merges two `Reservation`s. Merge the specified `Reservation`s into a new `Reservation`. The two `Reservation`s being merged must have same properties. */
+export const MergeReservation: API.OperationMethod<
+  MergeReservationRequest,
+  MergeReservationResponse,
+  MergeReservationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: MergeReservationRequest,
+  output: MergeReservationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PostCalculateExchangeError = AzureOpError;
+/** Calculates the refund amounts and price of the new purchases. Calculates price for exchanging `Reservations` if there are no policy errors. */
+export const PostCalculateExchange: API.OperationMethod<
+  PostCalculateExchangeRequest,
+  CalculateExchangeOperationResultResponse,
+  PostCalculateExchangeError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PostCalculateExchangeRequest,
+  output: CalculateExchangeOperationResultResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PostCalculateRefundError = AzureOpError;
+/** Calculate the refund amount of a reservation order. Calculate price for returning `Reservations` if there are no policy errors. */
+export const PostCalculateRefund: API.OperationMethod<
+  PostCalculateRefundRequest,
+  CalculateRefundResponse,
+  PostCalculateRefundError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PostCalculateRefundRequest,
+  output: CalculateRefundResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PostExchangeError = AzureOpError;
+/** Exchange Reservation(s) Returns one or more `Reservations` in exchange for one or more `Reservation` purchases. */
+export const PostExchange: API.OperationMethod<
+  PostExchangeRequest,
+  ExchangeOperationResultResponse,
+  PostExchangeError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PostExchangeRequest,
+  output: ExchangeOperationResultResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type PostReturnError = AzureOpError;
+/** Return a reservation. Return a reservation and get refund information. */
+export const PostReturn: API.OperationMethod<
+  PostReturnRequest,
+  PostReturnResponse,
+  PostReturnError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PostReturnRequest,
+  output: PostReturnResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -2983,81 +3103,6 @@ export const ReservationAvailableScopes: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: ReservationAvailableScopesRequest,
   output: AvailableScopeProperties,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ReservationGetError = AzureOpError;
-/** Get `Reservation` details. Get specific `Reservation` details. */
-export const ReservationGet: API.OperationMethod<
-  ReservationGetRequest,
-  ReservationGetResponse,
-  ReservationGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ReservationGetRequest,
-  output: ReservationGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ReservationList2Error = AzureOpError;
-/** Get `Reservation`s in a given reservation Order List `Reservation`s within a single `ReservationOrder`. */
-export const ReservationList2: API.OperationMethod<
-  ReservationListRequest,
-  ReservationList,
-  ReservationList2Error,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ReservationListRequest,
-  output: ReservationList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ReservationListAllError = AzureOpError;
-/** List the reservations and the roll up counts of reservations group by provisioning states that the user has access to in the current tenant. */
-export const ReservationListAll: API.OperationMethod<
-  ReservationListAllRequest,
-  ReservationsListResult,
-  ReservationListAllError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ReservationListAllRequest,
-  output: ReservationsListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ReservationListRevisionsError = AzureOpError;
-/** Get `Reservation` revisions. List of all the revisions for the `Reservation`. */
-export const ReservationListRevisions: API.OperationMethod<
-  ReservationListRevisionsRequest,
-  ReservationList,
-  ReservationListRevisionsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ReservationListRevisionsRequest,
-  output: ReservationList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ReservationMergeError = AzureOpError;
-/** Merges two `Reservation`s. Merge the specified `Reservation`s into a new `Reservation`. The two `Reservation`s being merged must have same properties. */
-export const ReservationMerge: API.OperationMethod<
-  ReservationMergeRequest,
-  ReservationMergeResponse,
-  ReservationMergeError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ReservationMergeRequest,
-  output: ReservationMergeResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -3093,36 +3138,6 @@ export const ReservationOrderChangeDirectory: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ReservationOrderGetError = AzureOpError;
-/** Get a specific `ReservationOrder`. Get the details of the `ReservationOrder`. */
-export const ReservationOrderGet: API.OperationMethod<
-  ReservationOrderGetRequest,
-  ReservationOrderGetResponse,
-  ReservationOrderGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ReservationOrderGetRequest,
-  output: ReservationOrderGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ReservationOrderList2Error = AzureOpError;
-/** Get all `ReservationOrder`s. List of all the `ReservationOrder`s that the user has access to in the current tenant. */
-export const ReservationOrderList2: API.OperationMethod<
-  ReservationOrderList2Request,
-  ReservationOrderList,
-  ReservationOrderList2Error,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ReservationOrderList2Request,
-  output: ReservationOrderList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type ReservationOrderPurchaseError = AzureOpError;
 /** Purchase `ReservationOrder` Purchase `ReservationOrder` and create resource under the specified URI. */
 export const ReservationOrderPurchase: API.OperationMethod<
@@ -3153,46 +3168,31 @@ export const ReservationSplit: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ReservationUnarchiveError = AzureOpError;
+export type UnarchiveReservationError = AzureOpError;
 /** Unarchive a `Reservation`. Restores a `Reservation` to the state it was before archiving. */
-export const ReservationUnarchive: API.OperationMethod<
-  ReservationUnarchiveRequest,
-  ReservationUnarchiveResponse,
-  ReservationUnarchiveError,
+export const UnarchiveReservation: API.OperationMethod<
+  UnarchiveReservationRequest,
+  UnarchiveReservationResponse,
+  UnarchiveReservationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ReservationUnarchiveRequest,
-  output: ReservationUnarchiveResponse,
+  input: UnarchiveReservationRequest,
+  output: UnarchiveReservationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ReservationUpdateError = AzureOpError;
+export type UpdateReservationError = AzureOpError;
 /** Updates a `Reservation`. Updates the applied scopes of the `Reservation`. */
-export const ReservationUpdate: API.OperationMethod<
-  ReservationUpdateRequest,
-  ReservationUpdateResponse,
-  ReservationUpdateError,
+export const UpdateReservation: API.OperationMethod<
+  UpdateReservationRequest,
+  UpdateReservationResponse,
+  UpdateReservationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ReservationUpdateRequest,
-  output: ReservationUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ReturnPostError = AzureOpError;
-/** Return a reservation. Return a reservation and get refund information. */
-export const ReturnPost: API.OperationMethod<
-  ReturnPostRequest,
-  ReturnPostResponse,
-  ReturnPostError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ReturnPostRequest,
-  output: ReturnPostResponse,
+  input: UpdateReservationRequest,
+  output: UpdateReservationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

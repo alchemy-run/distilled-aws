@@ -14,13 +14,14 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.containerregistry#WebhooksPing": {
+    "com.azure.containerregistry#PingWebhook": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerregistry#WebhooksPingRequest"
+        "target": "com.azure.containerregistry#PingWebhookRequest"
       },
       "output": {
         "target": "com.azure.containerregistry#EventInfo"
@@ -50,7 +51,7 @@
         "smithy.api#documentation": "The basic information of an event."
       }
     },
-    "com.azure.containerregistry#WebhooksPingRequest": {
+    "com.azure.containerregistry#PingWebhookRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -90,10 +91,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.containerregistry#WebhooksListEvents": {
+    "com.azure.containerregistry#ListWebhookEvents": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerregistry#WebhooksListEventsRequest"
+        "target": "com.azure.containerregistry#ListWebhookEventsRequest"
       },
       "output": {
         "target": "com.azure.containerregistry#EventListResult"
@@ -448,7 +449,7 @@
         "smithy.api#documentation": "The target of the event."
       }
     },
-    "com.azure.containerregistry#WebhooksListEventsRequest": {
+    "com.azure.containerregistry#ListWebhookEventsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -488,10 +489,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.containerregistry#WebhooksGetCallbackConfig": {
+    "com.azure.containerregistry#GetWebhookCallbackConfig": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerregistry#WebhooksGetCallbackConfigRequest"
+        "target": "com.azure.containerregistry#GetWebhookCallbackConfigRequest"
       },
       "output": {
         "target": "com.azure.containerregistry#CallbackConfig"
@@ -540,7 +541,7 @@
         "smithy.api#documentation": "Custom headers that will be added to the webhook notifications."
       }
     },
-    "com.azure.containerregistry#WebhooksGetCallbackConfigRequest": {
+    "com.azure.containerregistry#GetWebhookCallbackConfigRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -580,10 +581,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.containerregistry#WebhooksDelete": {
+    "com.azure.containerregistry#DeleteWebhook": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerregistry#WebhooksDeleteRequest"
+        "target": "com.azure.containerregistry#DeleteWebhookRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -599,7 +600,7 @@
         "com.distilled.openapi#apiVersion": "2025-11-01"
       }
     },
-    "com.azure.containerregistry#WebhooksDeleteRequest": {
+    "com.azure.containerregistry#DeleteWebhookRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -639,13 +640,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.containerregistry#WebhooksUpdate": {
+    "com.azure.containerregistry#UpdateWebhook": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerregistry#WebhooksUpdateRequest"
+        "target": "com.azure.containerregistry#UpdateWebhookRequest"
       },
       "output": {
-        "target": "com.azure.containerregistry#WebhooksUpdateResponse"
+        "target": "com.azure.containerregistry#UpdateWebhookResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -658,7 +659,7 @@
         "com.distilled.openapi#apiVersion": "2025-11-01"
       }
     },
-    "com.azure.containerregistry#WebhooksUpdateResponse": {
+    "com.azure.containerregistry#UpdateWebhookResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -686,7 +687,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.containerregistry#WebhooksUpdateResponseTagsMap",
+          "target": "com.azure.containerregistry#UpdateWebhookResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -851,7 +852,7 @@
         "smithy.api#documentation": "The status of the webhook at the time the operation was called."
       }
     },
-    "com.azure.containerregistry#WebhooksUpdateResponseTagsMap": {
+    "com.azure.containerregistry#UpdateWebhookResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -971,7 +972,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.containerregistry#WebhooksUpdateRequest": {
+    "com.azure.containerregistry#UpdateWebhookRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1007,7 +1008,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.containerregistry#WebhooksUpdateRequestTagsMap",
+          "target": "com.azure.containerregistry#UpdateWebhookRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "The tags for the webhook."
           }
@@ -1082,7 +1083,7 @@
         "smithy.api#documentation": "Custom headers that will be added to the webhook notifications."
       }
     },
-    "com.azure.containerregistry#WebhooksUpdateRequestTagsMap": {
+    "com.azure.containerregistry#UpdateWebhookRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1094,13 +1095,13 @@
         "smithy.api#documentation": "The tags for the webhook."
       }
     },
-    "com.azure.containerregistry#WebhooksCreate": {
+    "com.azure.containerregistry#CreateWebhook": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerregistry#WebhooksCreateRequest"
+        "target": "com.azure.containerregistry#CreateWebhookRequest"
       },
       "output": {
-        "target": "com.azure.containerregistry#WebhooksCreateResponse"
+        "target": "com.azure.containerregistry#CreateWebhookResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1113,7 +1114,7 @@
         "com.distilled.openapi#apiVersion": "2025-11-01"
       }
     },
-    "com.azure.containerregistry#WebhooksCreateResponse": {
+    "com.azure.containerregistry#CreateWebhookResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1141,7 +1142,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.containerregistry#WebhooksCreateResponseTagsMap",
+          "target": "com.azure.containerregistry#CreateWebhookResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1164,7 +1165,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.containerregistry#WebhooksCreateResponseTagsMap": {
+    "com.azure.containerregistry#CreateWebhookResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1176,7 +1177,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.containerregistry#WebhooksCreateRequest": {
+    "com.azure.containerregistry#CreateWebhookRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1212,7 +1213,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.containerregistry#WebhooksCreateRequestTagsMap",
+          "target": "com.azure.containerregistry#CreateWebhookRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "The tags for the webhook."
           }
@@ -1296,7 +1297,7 @@
         "smithy.api#documentation": "Custom headers that will be added to the webhook notifications."
       }
     },
-    "com.azure.containerregistry#WebhooksCreateRequestTagsMap": {
+    "com.azure.containerregistry#CreateWebhookRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1308,13 +1309,13 @@
         "smithy.api#documentation": "The tags for the webhook."
       }
     },
-    "com.azure.containerregistry#WebhooksGet": {
+    "com.azure.containerregistry#GetWebhook": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerregistry#WebhooksGetRequest"
+        "target": "com.azure.containerregistry#GetWebhookRequest"
       },
       "output": {
-        "target": "com.azure.containerregistry#WebhooksGetResponse"
+        "target": "com.azure.containerregistry#GetWebhookResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1327,7 +1328,7 @@
         "com.distilled.openapi#apiVersion": "2025-11-01"
       }
     },
-    "com.azure.containerregistry#WebhooksGetResponse": {
+    "com.azure.containerregistry#GetWebhookResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1355,7 +1356,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.containerregistry#WebhooksGetResponseTagsMap",
+          "target": "com.azure.containerregistry#GetWebhookResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1378,7 +1379,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.containerregistry#WebhooksGetResponseTagsMap": {
+    "com.azure.containerregistry#GetWebhookResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1390,7 +1391,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.containerregistry#WebhooksGetRequest": {
+    "com.azure.containerregistry#GetWebhookRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1430,10 +1431,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.containerregistry#WebhooksList": {
+    "com.azure.containerregistry#ListWebhooks": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerregistry#WebhooksListRequest"
+        "target": "com.azure.containerregistry#ListWebhooksRequest"
       },
       "output": {
         "target": "com.azure.containerregistry#WebhookListResult"
@@ -1541,7 +1542,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.containerregistry#WebhooksListRequest": {
+    "com.azure.containerregistry#ListWebhooksRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1573,10 +1574,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.containerregistry#TokensDelete": {
+    "com.azure.containerregistry#DeleteToken": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerregistry#TokensDeleteRequest"
+        "target": "com.azure.containerregistry#DeleteTokenRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1592,7 +1593,7 @@
         "com.distilled.openapi#apiVersion": "2025-11-01"
       }
     },
-    "com.azure.containerregistry#TokensDeleteRequest": {
+    "com.azure.containerregistry#DeleteTokenRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1632,13 +1633,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.containerregistry#TokensUpdate": {
+    "com.azure.containerregistry#UpdateToken": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerregistry#TokensUpdateRequest"
+        "target": "com.azure.containerregistry#UpdateTokenRequest"
       },
       "output": {
-        "target": "com.azure.containerregistry#TokensUpdateResponse"
+        "target": "com.azure.containerregistry#UpdateTokenResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1651,7 +1652,7 @@
         "com.distilled.openapi#apiVersion": "2025-11-01"
       }
     },
-    "com.azure.containerregistry#TokensUpdateResponse": {
+    "com.azure.containerregistry#UpdateTokenResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1874,7 +1875,7 @@
       },
       "traits": {}
     },
-    "com.azure.containerregistry#TokensUpdateRequest": {
+    "com.azure.containerregistry#UpdateTokenRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2000,13 +2001,13 @@
       },
       "traits": {}
     },
-    "com.azure.containerregistry#TokensCreate": {
+    "com.azure.containerregistry#CreateToken": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerregistry#TokensCreateRequest"
+        "target": "com.azure.containerregistry#CreateTokenRequest"
       },
       "output": {
-        "target": "com.azure.containerregistry#TokensCreateResponse"
+        "target": "com.azure.containerregistry#CreateTokenResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2019,7 +2020,7 @@
         "com.distilled.openapi#apiVersion": "2025-11-01"
       }
     },
-    "com.azure.containerregistry#TokensCreateResponse": {
+    "com.azure.containerregistry#CreateTokenResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2057,7 +2058,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.containerregistry#TokensCreateRequest": {
+    "com.azure.containerregistry#CreateTokenRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2129,13 +2130,13 @@
         "smithy.api#documentation": "The properties of a token."
       }
     },
-    "com.azure.containerregistry#TokensGet": {
+    "com.azure.containerregistry#GetToken": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerregistry#TokensGetRequest"
+        "target": "com.azure.containerregistry#GetTokenRequest"
       },
       "output": {
-        "target": "com.azure.containerregistry#TokensGetResponse"
+        "target": "com.azure.containerregistry#GetTokenResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2148,7 +2149,7 @@
         "com.distilled.openapi#apiVersion": "2025-11-01"
       }
     },
-    "com.azure.containerregistry#TokensGetResponse": {
+    "com.azure.containerregistry#GetTokenResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2186,7 +2187,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.containerregistry#TokensGetRequest": {
+    "com.azure.containerregistry#GetTokenRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2226,10 +2227,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.containerregistry#TokensList": {
+    "com.azure.containerregistry#ListTokens": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerregistry#TokensListRequest"
+        "target": "com.azure.containerregistry#ListTokensRequest"
       },
       "output": {
         "target": "com.azure.containerregistry#TokenListResult"
@@ -2312,7 +2313,7 @@
         "smithy.api#documentation": "An object that represents a token for a container registry."
       }
     },
-    "com.azure.containerregistry#TokensListRequest": {
+    "com.azure.containerregistry#ListTokensRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2344,10 +2345,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.containerregistry#ScopeMapsDelete": {
+    "com.azure.containerregistry#DeleteScopeMap": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerregistry#ScopeMapsDeleteRequest"
+        "target": "com.azure.containerregistry#DeleteScopeMapRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2363,7 +2364,7 @@
         "com.distilled.openapi#apiVersion": "2025-11-01"
       }
     },
-    "com.azure.containerregistry#ScopeMapsDeleteRequest": {
+    "com.azure.containerregistry#DeleteScopeMapRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2403,13 +2404,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.containerregistry#ScopeMapsUpdate": {
+    "com.azure.containerregistry#UpdateScopeMap": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerregistry#ScopeMapsUpdateRequest"
+        "target": "com.azure.containerregistry#UpdateScopeMapRequest"
       },
       "output": {
-        "target": "com.azure.containerregistry#ScopeMapsUpdateResponse"
+        "target": "com.azure.containerregistry#UpdateScopeMapResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2422,7 +2423,7 @@
         "com.distilled.openapi#apiVersion": "2025-11-01"
       }
     },
-    "com.azure.containerregistry#ScopeMapsUpdateResponse": {
+    "com.azure.containerregistry#UpdateScopeMapResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2508,7 +2509,7 @@
         "smithy.api#documentation": "The list of scoped permissions for registry artifacts.\nE.g. repositories/repository-name/content/read,\nrepositories/repository-name/metadata/write"
       }
     },
-    "com.azure.containerregistry#ScopeMapsUpdateRequest": {
+    "com.azure.containerregistry#UpdateScopeMapRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2583,13 +2584,13 @@
         "smithy.api#documentation": "The list of scope permissions for registry artifacts.\nE.g. repositories/repository-name/pull,\nrepositories/repository-name/delete"
       }
     },
-    "com.azure.containerregistry#ScopeMapsCreate": {
+    "com.azure.containerregistry#CreateScopeMap": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerregistry#ScopeMapsCreateRequest"
+        "target": "com.azure.containerregistry#CreateScopeMapRequest"
       },
       "output": {
-        "target": "com.azure.containerregistry#ScopeMapsCreateResponse"
+        "target": "com.azure.containerregistry#CreateScopeMapResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2602,7 +2603,7 @@
         "com.distilled.openapi#apiVersion": "2025-11-01"
       }
     },
-    "com.azure.containerregistry#ScopeMapsCreateResponse": {
+    "com.azure.containerregistry#CreateScopeMapResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2640,7 +2641,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.containerregistry#ScopeMapsCreateRequest": {
+    "com.azure.containerregistry#CreateScopeMapRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2716,13 +2717,13 @@
         "smithy.api#documentation": "The list of scoped permissions for registry artifacts.\nE.g. repositories/repository-name/content/read,\nrepositories/repository-name/metadata/write"
       }
     },
-    "com.azure.containerregistry#ScopeMapsGet": {
+    "com.azure.containerregistry#GetScopeMap": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerregistry#ScopeMapsGetRequest"
+        "target": "com.azure.containerregistry#GetScopeMapRequest"
       },
       "output": {
-        "target": "com.azure.containerregistry#ScopeMapsGetResponse"
+        "target": "com.azure.containerregistry#GetScopeMapResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2735,7 +2736,7 @@
         "com.distilled.openapi#apiVersion": "2025-11-01"
       }
     },
-    "com.azure.containerregistry#ScopeMapsGetResponse": {
+    "com.azure.containerregistry#GetScopeMapResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2773,7 +2774,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.containerregistry#ScopeMapsGetRequest": {
+    "com.azure.containerregistry#GetScopeMapRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2813,10 +2814,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.containerregistry#ScopeMapsList": {
+    "com.azure.containerregistry#ListScopeMaps": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerregistry#ScopeMapsListRequest"
+        "target": "com.azure.containerregistry#ListScopeMapsRequest"
       },
       "output": {
         "target": "com.azure.containerregistry#ScopeMapListResult"
@@ -2899,7 +2900,7 @@
         "smithy.api#documentation": "An object that represents a scope map for a container registry."
       }
     },
-    "com.azure.containerregistry#ScopeMapsListRequest": {
+    "com.azure.containerregistry#ListScopeMapsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2931,10 +2932,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.containerregistry#ReplicationsDelete": {
+    "com.azure.containerregistry#DeleteReplication": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerregistry#ReplicationsDeleteRequest"
+        "target": "com.azure.containerregistry#DeleteReplicationRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2950,7 +2951,7 @@
         "com.distilled.openapi#apiVersion": "2025-11-01"
       }
     },
-    "com.azure.containerregistry#ReplicationsDeleteRequest": {
+    "com.azure.containerregistry#DeleteReplicationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2990,13 +2991,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.containerregistry#ReplicationsUpdate": {
+    "com.azure.containerregistry#UpdateReplication": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerregistry#ReplicationsUpdateRequest"
+        "target": "com.azure.containerregistry#UpdateReplicationRequest"
       },
       "output": {
-        "target": "com.azure.containerregistry#ReplicationsUpdateResponse"
+        "target": "com.azure.containerregistry#UpdateReplicationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3009,7 +3010,7 @@
         "com.distilled.openapi#apiVersion": "2025-11-01"
       }
     },
-    "com.azure.containerregistry#ReplicationsUpdateResponse": {
+    "com.azure.containerregistry#UpdateReplicationResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3037,7 +3038,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.containerregistry#ReplicationsUpdateResponseTagsMap",
+          "target": "com.azure.containerregistry#UpdateReplicationResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3138,7 +3139,7 @@
         "smithy.api#documentation": "The status of an Azure resource at the time the operation was called."
       }
     },
-    "com.azure.containerregistry#ReplicationsUpdateResponseTagsMap": {
+    "com.azure.containerregistry#UpdateReplicationResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3150,7 +3151,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.containerregistry#ReplicationsUpdateRequest": {
+    "com.azure.containerregistry#UpdateReplicationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3186,7 +3187,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.containerregistry#ReplicationsUpdateRequestTagsMap",
+          "target": "com.azure.containerregistry#UpdateReplicationRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "The tags for the replication."
           }
@@ -3214,7 +3215,7 @@
       },
       "traits": {}
     },
-    "com.azure.containerregistry#ReplicationsUpdateRequestTagsMap": {
+    "com.azure.containerregistry#UpdateReplicationRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3226,13 +3227,13 @@
         "smithy.api#documentation": "The tags for the replication."
       }
     },
-    "com.azure.containerregistry#ReplicationsCreate": {
+    "com.azure.containerregistry#CreateReplication": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerregistry#ReplicationsCreateRequest"
+        "target": "com.azure.containerregistry#CreateReplicationRequest"
       },
       "output": {
-        "target": "com.azure.containerregistry#ReplicationsCreateResponse"
+        "target": "com.azure.containerregistry#CreateReplicationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3245,7 +3246,7 @@
         "com.distilled.openapi#apiVersion": "2025-11-01"
       }
     },
-    "com.azure.containerregistry#ReplicationsCreateResponse": {
+    "com.azure.containerregistry#CreateReplicationResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3273,7 +3274,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.containerregistry#ReplicationsCreateResponseTagsMap",
+          "target": "com.azure.containerregistry#CreateReplicationResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3296,7 +3297,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.containerregistry#ReplicationsCreateResponseTagsMap": {
+    "com.azure.containerregistry#CreateReplicationResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3308,7 +3309,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.containerregistry#ReplicationsCreateRequest": {
+    "com.azure.containerregistry#CreateReplicationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3344,7 +3345,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.containerregistry#ReplicationsCreateRequestTagsMap",
+          "target": "com.azure.containerregistry#CreateReplicationRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3407,7 +3408,7 @@
         "smithy.api#documentation": "Whether or not zone redundancy is enabled for this container registry replication"
       }
     },
-    "com.azure.containerregistry#ReplicationsCreateRequestTagsMap": {
+    "com.azure.containerregistry#CreateReplicationRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3419,13 +3420,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.containerregistry#ReplicationsGet": {
+    "com.azure.containerregistry#GetReplication": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerregistry#ReplicationsGetRequest"
+        "target": "com.azure.containerregistry#GetReplicationRequest"
       },
       "output": {
-        "target": "com.azure.containerregistry#ReplicationsGetResponse"
+        "target": "com.azure.containerregistry#GetReplicationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3438,7 +3439,7 @@
         "com.distilled.openapi#apiVersion": "2025-11-01"
       }
     },
-    "com.azure.containerregistry#ReplicationsGetResponse": {
+    "com.azure.containerregistry#GetReplicationResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3466,7 +3467,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.containerregistry#ReplicationsGetResponseTagsMap",
+          "target": "com.azure.containerregistry#GetReplicationResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3489,7 +3490,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.containerregistry#ReplicationsGetResponseTagsMap": {
+    "com.azure.containerregistry#GetReplicationResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3501,7 +3502,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.containerregistry#ReplicationsGetRequest": {
+    "com.azure.containerregistry#GetReplicationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3541,10 +3542,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.containerregistry#ReplicationsList": {
+    "com.azure.containerregistry#ListReplications": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerregistry#ReplicationsListRequest"
+        "target": "com.azure.containerregistry#ListReplicationsRequest"
       },
       "output": {
         "target": "com.azure.containerregistry#ReplicationListResult"
@@ -3652,7 +3653,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.containerregistry#ReplicationsListRequest": {
+    "com.azure.containerregistry#ListReplicationsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3684,10 +3685,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.containerregistry#RegistriesRegenerateCredential": {
+    "com.azure.containerregistry#RegenerateRegistryCredential": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerregistry#RegistriesRegenerateCredentialRequest"
+        "target": "com.azure.containerregistry#RegenerateRegistryCredentialRequest"
       },
       "output": {
         "target": "com.azure.containerregistry#RegistryListCredentialsResult"
@@ -3772,7 +3773,7 @@
         "smithy.api#documentation": "The password name."
       }
     },
-    "com.azure.containerregistry#RegistriesRegenerateCredentialRequest": {
+    "com.azure.containerregistry#RegenerateRegistryCredentialRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3811,13 +3812,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.containerregistry#RegistriesGetPrivateLinkResource": {
+    "com.azure.containerregistry#GetRegistryPrivateLinkResource": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerregistry#RegistriesGetPrivateLinkResourceRequest"
+        "target": "com.azure.containerregistry#GetRegistryPrivateLinkResourceRequest"
       },
       "output": {
-        "target": "com.azure.containerregistry#RegistriesGetPrivateLinkResourceResponse"
+        "target": "com.azure.containerregistry#GetRegistryPrivateLinkResourceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3830,7 +3831,7 @@
         "com.distilled.openapi#apiVersion": "2025-11-01"
       }
     },
-    "com.azure.containerregistry#RegistriesGetPrivateLinkResourceResponse": {
+    "com.azure.containerregistry#GetRegistryPrivateLinkResourceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3912,7 +3913,7 @@
         "smithy.api#documentation": "The private link resource required member names."
       }
     },
-    "com.azure.containerregistry#RegistriesGetPrivateLinkResourceRequest": {
+    "com.azure.containerregistry#GetRegistryPrivateLinkResourceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3952,10 +3953,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.containerregistry#RegistriesListPrivateLinkResources": {
+    "com.azure.containerregistry#ListRegistryPrivateLinkResources": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerregistry#RegistriesListPrivateLinkResourcesRequest"
+        "target": "com.azure.containerregistry#ListRegistryPrivateLinkResourcesRequest"
       },
       "output": {
         "target": "com.azure.containerregistry#PrivateLinkResourceListResult"
@@ -4038,7 +4039,7 @@
         "smithy.api#documentation": "A private link resource."
       }
     },
-    "com.azure.containerregistry#RegistriesListPrivateLinkResourcesRequest": {
+    "com.azure.containerregistry#ListRegistryPrivateLinkResourcesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4070,10 +4071,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.containerregistry#PrivateEndpointConnectionsDelete": {
+    "com.azure.containerregistry#DeletePrivateEndpointConnection": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerregistry#PrivateEndpointConnectionsDeleteRequest"
+        "target": "com.azure.containerregistry#DeletePrivateEndpointConnectionRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4089,7 +4090,7 @@
         "com.distilled.openapi#apiVersion": "2025-11-01"
       }
     },
-    "com.azure.containerregistry#PrivateEndpointConnectionsDeleteRequest": {
+    "com.azure.containerregistry#DeletePrivateEndpointConnectionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4350,13 +4351,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.containerregistry#PrivateEndpointConnectionsGet": {
+    "com.azure.containerregistry#GetPrivateEndpointConnection": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerregistry#PrivateEndpointConnectionsGetRequest"
+        "target": "com.azure.containerregistry#GetPrivateEndpointConnectionRequest"
       },
       "output": {
-        "target": "com.azure.containerregistry#PrivateEndpointConnectionsGetResponse"
+        "target": "com.azure.containerregistry#GetPrivateEndpointConnectionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4369,7 +4370,7 @@
         "com.distilled.openapi#apiVersion": "2025-11-01"
       }
     },
-    "com.azure.containerregistry#PrivateEndpointConnectionsGetResponse": {
+    "com.azure.containerregistry#GetPrivateEndpointConnectionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -4407,7 +4408,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.containerregistry#PrivateEndpointConnectionsGetRequest": {
+    "com.azure.containerregistry#GetPrivateEndpointConnectionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4447,10 +4448,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.containerregistry#PrivateEndpointConnectionsList": {
+    "com.azure.containerregistry#ListPrivateEndpointConnections": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerregistry#PrivateEndpointConnectionsListRequest"
+        "target": "com.azure.containerregistry#ListPrivateEndpointConnectionsRequest"
       },
       "output": {
         "target": "com.azure.containerregistry#PrivateEndpointConnectionListResult"
@@ -4533,7 +4534,7 @@
         "smithy.api#documentation": "An object that represents a private endpoint connection for a container registry."
       }
     },
-    "com.azure.containerregistry#PrivateEndpointConnectionsListRequest": {
+    "com.azure.containerregistry#ListPrivateEndpointConnectionsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4565,10 +4566,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.containerregistry#RegistriesListUsages": {
+    "com.azure.containerregistry#ListRegistryUsages": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerregistry#RegistriesListUsagesRequest"
+        "target": "com.azure.containerregistry#ListRegistryUsagesRequest"
       },
       "output": {
         "target": "com.azure.containerregistry#RegistryUsageListResult"
@@ -4659,7 +4660,7 @@
         "smithy.api#documentation": "The unit of measurement."
       }
     },
-    "com.azure.containerregistry#RegistriesListUsagesRequest": {
+    "com.azure.containerregistry#ListRegistryUsagesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4691,10 +4692,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.containerregistry#RegistriesListCredentials": {
+    "com.azure.containerregistry#ListRegistryCredentials": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerregistry#RegistriesListCredentialsRequest"
+        "target": "com.azure.containerregistry#ListRegistryCredentialsRequest"
       },
       "output": {
         "target": "com.azure.containerregistry#RegistryListCredentialsResult"
@@ -4710,7 +4711,7 @@
         "com.distilled.openapi#apiVersion": "2025-11-01"
       }
     },
-    "com.azure.containerregistry#RegistriesListCredentialsRequest": {
+    "com.azure.containerregistry#ListRegistryCredentialsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4742,10 +4743,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.containerregistry#RegistriesImportImage": {
+    "com.azure.containerregistry#ImportRegistryImage": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerregistry#RegistriesImportImageRequest"
+        "target": "com.azure.containerregistry#ImportRegistryImageRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4761,7 +4762,7 @@
         "com.distilled.openapi#apiVersion": "2025-11-01"
       }
     },
-    "com.azure.containerregistry#RegistriesImportImageRequest": {
+    "com.azure.containerregistry#ImportRegistryImageRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4796,19 +4797,19 @@
           }
         },
         "targetTags": {
-          "target": "com.azure.containerregistry#RegistriesImportImageRequestTargetTagsList",
+          "target": "com.azure.containerregistry#ImportRegistryImageRequestTargetTagsList",
           "traits": {
             "smithy.api#documentation": "List of strings of the form repo[:tag]. When tag is omitted the source will be used (or 'latest' if source tag is also omitted)."
           }
         },
         "untaggedTargetRepositories": {
-          "target": "com.azure.containerregistry#RegistriesImportImageRequestUntaggedTargetRepositoriesList",
+          "target": "com.azure.containerregistry#ImportRegistryImageRequestUntaggedTargetRepositoriesList",
           "traits": {
             "smithy.api#documentation": "List of strings of repository names to do a manifest only copy. No tag will be created."
           }
         },
         "mode": {
-          "target": "com.azure.containerregistry#RegistriesImportImageRequestMode",
+          "target": "com.azure.containerregistry#ImportRegistryImageRequestMode",
           "traits": {
             "smithy.api#documentation": "When Force, any existing target tags will be overwritten. When NoForce, any existing target tags will fail the operation before any copying begins."
           }
@@ -4818,7 +4819,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.containerregistry#RegistriesImportImageRequestMode": {
+    "com.azure.containerregistry#ImportRegistryImageRequestMode": {
       "type": "enum",
       "members": {
         "NOFORCE": {
@@ -4838,7 +4839,7 @@
         "smithy.api#documentation": "When Force, any existing target tags will be overwritten. When NoForce, any existing target tags will fail the operation before any copying begins."
       }
     },
-    "com.azure.containerregistry#RegistriesImportImageRequestUntaggedTargetRepositoriesList": {
+    "com.azure.containerregistry#ImportRegistryImageRequestUntaggedTargetRepositoriesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -4847,7 +4848,7 @@
         "smithy.api#documentation": "List of strings of repository names to do a manifest only copy. No tag will be created."
       }
     },
-    "com.azure.containerregistry#RegistriesImportImageRequestTargetTagsList": {
+    "com.azure.containerregistry#ImportRegistryImageRequestTargetTagsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -4907,10 +4908,10 @@
       },
       "traits": {}
     },
-    "com.azure.containerregistry#RegistriesGenerateCredentials": {
+    "com.azure.containerregistry#GenerateRegistryCredentials": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerregistry#RegistriesGenerateCredentialsRequest"
+        "target": "com.azure.containerregistry#GenerateRegistryCredentialsRequest"
       },
       "output": {
         "target": "com.azure.containerregistry#GenerateCredentialsResult"
@@ -4955,7 +4956,7 @@
         "smithy.api#documentation": "The list of passwords for a container registry."
       }
     },
-    "com.azure.containerregistry#RegistriesGenerateCredentialsRequest": {
+    "com.azure.containerregistry#GenerateRegistryCredentialsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5005,10 +5006,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.containerregistry#CredentialSetsDelete": {
+    "com.azure.containerregistry#DeleteCredentialSet": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerregistry#CredentialSetsDeleteRequest"
+        "target": "com.azure.containerregistry#DeleteCredentialSetRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -5024,7 +5025,7 @@
         "com.distilled.openapi#apiVersion": "2025-11-01"
       }
     },
-    "com.azure.containerregistry#CredentialSetsDeleteRequest": {
+    "com.azure.containerregistry#DeleteCredentialSetRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5064,13 +5065,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.containerregistry#CredentialSetsUpdate": {
+    "com.azure.containerregistry#UpdateCredentialSet": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerregistry#CredentialSetsUpdateRequest"
+        "target": "com.azure.containerregistry#UpdateCredentialSetRequest"
       },
       "output": {
-        "target": "com.azure.containerregistry#CredentialSetsUpdateResponse"
+        "target": "com.azure.containerregistry#UpdateCredentialSetResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5083,7 +5084,7 @@
         "com.distilled.openapi#apiVersion": "2025-11-01"
       }
     },
-    "com.azure.containerregistry#CredentialSetsUpdateResponse": {
+    "com.azure.containerregistry#UpdateCredentialSetResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -5355,7 +5356,7 @@
         "smithy.api#documentation": "The name of the credential."
       }
     },
-    "com.azure.containerregistry#CredentialSetsUpdateRequest": {
+    "com.azure.containerregistry#UpdateCredentialSetRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5467,13 +5468,13 @@
         "smithy.api#documentation": "List of authentication credentials stored for an upstream.\nUsually consists of a primary and an optional secondary credential."
       }
     },
-    "com.azure.containerregistry#CredentialSetsCreate": {
+    "com.azure.containerregistry#CreateCredentialSet": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerregistry#CredentialSetsCreateRequest"
+        "target": "com.azure.containerregistry#CreateCredentialSetRequest"
       },
       "output": {
-        "target": "com.azure.containerregistry#CredentialSetsCreateResponse"
+        "target": "com.azure.containerregistry#CreateCredentialSetResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5486,7 +5487,7 @@
         "com.distilled.openapi#apiVersion": "2025-11-01"
       }
     },
-    "com.azure.containerregistry#CredentialSetsCreateResponse": {
+    "com.azure.containerregistry#CreateCredentialSetResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -5530,7 +5531,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.containerregistry#CredentialSetsCreateRequest": {
+    "com.azure.containerregistry#CreateCredentialSetRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5611,13 +5612,13 @@
         "smithy.api#documentation": "List of authentication credentials stored for an upstream.\nUsually consists of a primary and an optional secondary credential."
       }
     },
-    "com.azure.containerregistry#CredentialSetsGet": {
+    "com.azure.containerregistry#GetCredentialSet": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerregistry#CredentialSetsGetRequest"
+        "target": "com.azure.containerregistry#GetCredentialSetRequest"
       },
       "output": {
-        "target": "com.azure.containerregistry#CredentialSetsGetResponse"
+        "target": "com.azure.containerregistry#GetCredentialSetResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5630,7 +5631,7 @@
         "com.distilled.openapi#apiVersion": "2025-11-01"
       }
     },
-    "com.azure.containerregistry#CredentialSetsGetResponse": {
+    "com.azure.containerregistry#GetCredentialSetResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -5674,7 +5675,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.containerregistry#CredentialSetsGetRequest": {
+    "com.azure.containerregistry#GetCredentialSetRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5714,10 +5715,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.containerregistry#CredentialSetsList": {
+    "com.azure.containerregistry#ListCredentialSets": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerregistry#CredentialSetsListRequest"
+        "target": "com.azure.containerregistry#ListCredentialSetsRequest"
       },
       "output": {
         "target": "com.azure.containerregistry#CredentialSetListResult"
@@ -5806,7 +5807,7 @@
         "smithy.api#documentation": "An object that represents a credential set resource for a container registry."
       }
     },
-    "com.azure.containerregistry#CredentialSetsListRequest": {
+    "com.azure.containerregistry#ListCredentialSetsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5838,10 +5839,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.containerregistry#ConnectedRegistriesDeactivate": {
+    "com.azure.containerregistry#DeactivateConnectedRegistry": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerregistry#ConnectedRegistriesDeactivateRequest"
+        "target": "com.azure.containerregistry#DeactivateConnectedRegistryRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -5857,7 +5858,7 @@
         "com.distilled.openapi#apiVersion": "2025-11-01"
       }
     },
-    "com.azure.containerregistry#ConnectedRegistriesDeactivateRequest": {
+    "com.azure.containerregistry#DeactivateConnectedRegistryRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5897,10 +5898,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.containerregistry#ConnectedRegistriesDelete": {
+    "com.azure.containerregistry#DeleteConnectedRegistry": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerregistry#ConnectedRegistriesDeleteRequest"
+        "target": "com.azure.containerregistry#DeleteConnectedRegistryRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -5916,7 +5917,7 @@
         "com.distilled.openapi#apiVersion": "2025-11-01"
       }
     },
-    "com.azure.containerregistry#ConnectedRegistriesDeleteRequest": {
+    "com.azure.containerregistry#DeleteConnectedRegistryRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5956,13 +5957,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.containerregistry#ConnectedRegistriesUpdate": {
+    "com.azure.containerregistry#UpdateConnectedRegistry": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerregistry#ConnectedRegistriesUpdateRequest"
+        "target": "com.azure.containerregistry#UpdateConnectedRegistryRequest"
       },
       "output": {
-        "target": "com.azure.containerregistry#ConnectedRegistriesUpdateResponse"
+        "target": "com.azure.containerregistry#UpdateConnectedRegistryResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5975,7 +5976,7 @@
         "com.distilled.openapi#apiVersion": "2025-11-01"
       }
     },
-    "com.azure.containerregistry#ConnectedRegistriesUpdateResponse": {
+    "com.azure.containerregistry#UpdateConnectedRegistryResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -6523,7 +6524,7 @@
         "smithy.api#documentation": "The mode of the connected registry resource that indicates the permissions of the registry."
       }
     },
-    "com.azure.containerregistry#ConnectedRegistriesUpdateRequest": {
+    "com.azure.containerregistry#UpdateConnectedRegistryRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6651,13 +6652,13 @@
         "smithy.api#documentation": "The parameters for updating the sync properties of the connected registry with its parent."
       }
     },
-    "com.azure.containerregistry#ConnectedRegistriesCreate": {
+    "com.azure.containerregistry#CreateConnectedRegistry": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerregistry#ConnectedRegistriesCreateRequest"
+        "target": "com.azure.containerregistry#CreateConnectedRegistryRequest"
       },
       "output": {
-        "target": "com.azure.containerregistry#ConnectedRegistriesCreateResponse"
+        "target": "com.azure.containerregistry#CreateConnectedRegistryResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6670,7 +6671,7 @@
         "com.distilled.openapi#apiVersion": "2025-11-01"
       }
     },
-    "com.azure.containerregistry#ConnectedRegistriesCreateResponse": {
+    "com.azure.containerregistry#CreateConnectedRegistryResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -6708,7 +6709,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.containerregistry#ConnectedRegistriesCreateRequest": {
+    "com.azure.containerregistry#CreateConnectedRegistryRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6886,13 +6887,13 @@
         "smithy.api#documentation": "The sync properties of the connected registry with its parent."
       }
     },
-    "com.azure.containerregistry#ConnectedRegistriesGet": {
+    "com.azure.containerregistry#GetConnectedRegistry": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerregistry#ConnectedRegistriesGetRequest"
+        "target": "com.azure.containerregistry#GetConnectedRegistryRequest"
       },
       "output": {
-        "target": "com.azure.containerregistry#ConnectedRegistriesGetResponse"
+        "target": "com.azure.containerregistry#GetConnectedRegistryResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6905,7 +6906,7 @@
         "com.distilled.openapi#apiVersion": "2025-11-01"
       }
     },
-    "com.azure.containerregistry#ConnectedRegistriesGetResponse": {
+    "com.azure.containerregistry#GetConnectedRegistryResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -6943,7 +6944,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.containerregistry#ConnectedRegistriesGetRequest": {
+    "com.azure.containerregistry#GetConnectedRegistryRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6983,10 +6984,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.containerregistry#ConnectedRegistriesList": {
+    "com.azure.containerregistry#ListConnectedRegistries": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerregistry#ConnectedRegistriesListRequest"
+        "target": "com.azure.containerregistry#ListConnectedRegistriesRequest"
       },
       "output": {
         "target": "com.azure.containerregistry#ConnectedRegistryListResult"
@@ -7069,7 +7070,7 @@
         "smithy.api#documentation": "An object that represents a connected registry for a container registry."
       }
     },
-    "com.azure.containerregistry#ConnectedRegistriesListRequest": {
+    "com.azure.containerregistry#ListConnectedRegistriesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7108,10 +7109,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.containerregistry#CacheRulesDelete": {
+    "com.azure.containerregistry#DeleteCacheRule": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerregistry#CacheRulesDeleteRequest"
+        "target": "com.azure.containerregistry#DeleteCacheRuleRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -7127,7 +7128,7 @@
         "com.distilled.openapi#apiVersion": "2025-11-01"
       }
     },
-    "com.azure.containerregistry#CacheRulesDeleteRequest": {
+    "com.azure.containerregistry#DeleteCacheRuleRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7167,13 +7168,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.containerregistry#CacheRulesUpdate": {
+    "com.azure.containerregistry#UpdateCacheRule": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerregistry#CacheRulesUpdateRequest"
+        "target": "com.azure.containerregistry#UpdateCacheRuleRequest"
       },
       "output": {
-        "target": "com.azure.containerregistry#CacheRulesUpdateResponse"
+        "target": "com.azure.containerregistry#UpdateCacheRuleResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7186,7 +7187,7 @@
         "com.distilled.openapi#apiVersion": "2025-11-01"
       }
     },
-    "com.azure.containerregistry#CacheRulesUpdateResponse": {
+    "com.azure.containerregistry#UpdateCacheRuleResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -7262,7 +7263,7 @@
         "smithy.api#documentation": "The properties of a cache rule."
       }
     },
-    "com.azure.containerregistry#CacheRulesUpdateRequest": {
+    "com.azure.containerregistry#UpdateCacheRuleRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7322,13 +7323,13 @@
         "smithy.api#documentation": "The parameters for updating cache rule properties."
       }
     },
-    "com.azure.containerregistry#CacheRulesCreate": {
+    "com.azure.containerregistry#CreateCacheRule": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerregistry#CacheRulesCreateRequest"
+        "target": "com.azure.containerregistry#CreateCacheRuleRequest"
       },
       "output": {
-        "target": "com.azure.containerregistry#CacheRulesCreateResponse"
+        "target": "com.azure.containerregistry#CreateCacheRuleResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7341,7 +7342,7 @@
         "com.distilled.openapi#apiVersion": "2025-11-01"
       }
     },
-    "com.azure.containerregistry#CacheRulesCreateResponse": {
+    "com.azure.containerregistry#CreateCacheRuleResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -7379,7 +7380,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.containerregistry#CacheRulesCreateRequest": {
+    "com.azure.containerregistry#CreateCacheRuleRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7451,13 +7452,13 @@
         "smithy.api#documentation": "The properties of a cache rule."
       }
     },
-    "com.azure.containerregistry#CacheRulesGet": {
+    "com.azure.containerregistry#GetCacheRule": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerregistry#CacheRulesGetRequest"
+        "target": "com.azure.containerregistry#GetCacheRuleRequest"
       },
       "output": {
-        "target": "com.azure.containerregistry#CacheRulesGetResponse"
+        "target": "com.azure.containerregistry#GetCacheRuleResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7470,7 +7471,7 @@
         "com.distilled.openapi#apiVersion": "2025-11-01"
       }
     },
-    "com.azure.containerregistry#CacheRulesGetResponse": {
+    "com.azure.containerregistry#GetCacheRuleResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -7508,7 +7509,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.containerregistry#CacheRulesGetRequest": {
+    "com.azure.containerregistry#GetCacheRuleRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7548,10 +7549,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.containerregistry#CacheRulesList": {
+    "com.azure.containerregistry#ListCacheRules": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerregistry#CacheRulesListRequest"
+        "target": "com.azure.containerregistry#ListCacheRulesRequest"
       },
       "output": {
         "target": "com.azure.containerregistry#CacheRulesListResult"
@@ -7634,7 +7635,7 @@
         "smithy.api#documentation": "An object that represents a cache rule for a container registry."
       }
     },
-    "com.azure.containerregistry#CacheRulesListRequest": {
+    "com.azure.containerregistry#ListCacheRulesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7666,10 +7667,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.containerregistry#RegistriesDelete": {
+    "com.azure.containerregistry#DeleteRegistry": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerregistry#RegistriesDeleteRequest"
+        "target": "com.azure.containerregistry#DeleteRegistryRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -7685,7 +7686,7 @@
         "com.distilled.openapi#apiVersion": "2025-11-01"
       }
     },
-    "com.azure.containerregistry#RegistriesDeleteRequest": {
+    "com.azure.containerregistry#DeleteRegistryRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7717,13 +7718,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.containerregistry#RegistriesUpdate": {
+    "com.azure.containerregistry#UpdateRegistry": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerregistry#RegistriesUpdateRequest"
+        "target": "com.azure.containerregistry#UpdateRegistryRequest"
       },
       "output": {
-        "target": "com.azure.containerregistry#RegistriesUpdateResponse"
+        "target": "com.azure.containerregistry#UpdateRegistryResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7736,7 +7737,7 @@
         "com.distilled.openapi#apiVersion": "2025-11-01"
       }
     },
-    "com.azure.containerregistry#RegistriesUpdateResponse": {
+    "com.azure.containerregistry#UpdateRegistryResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -7764,7 +7765,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.containerregistry#RegistriesUpdateResponseTagsMap",
+          "target": "com.azure.containerregistry#UpdateRegistryResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -8492,7 +8493,7 @@
         "smithy.api#documentation": "The default action of allow or deny when no other rules match."
       }
     },
-    "com.azure.containerregistry#RegistriesUpdateResponseTagsMap": {
+    "com.azure.containerregistry#UpdateRegistryResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8504,7 +8505,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.containerregistry#RegistriesUpdateRequest": {
+    "com.azure.containerregistry#UpdateRegistryRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8538,7 +8539,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.containerregistry#RegistriesUpdateRequestTagsMap",
+          "target": "com.azure.containerregistry#UpdateRegistryRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "The tags for the container registry."
           }
@@ -8802,7 +8803,7 @@
         "smithy.api#documentation": "The value that indicates whether the policy is enabled or not."
       }
     },
-    "com.azure.containerregistry#RegistriesUpdateRequestTagsMap": {
+    "com.azure.containerregistry#UpdateRegistryRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8814,13 +8815,13 @@
         "smithy.api#documentation": "The tags for the container registry."
       }
     },
-    "com.azure.containerregistry#RegistriesCreate": {
+    "com.azure.containerregistry#CreateRegistry": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerregistry#RegistriesCreateRequest"
+        "target": "com.azure.containerregistry#CreateRegistryRequest"
       },
       "output": {
-        "target": "com.azure.containerregistry#RegistriesCreateResponse"
+        "target": "com.azure.containerregistry#CreateRegistryResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -8833,7 +8834,7 @@
         "com.distilled.openapi#apiVersion": "2025-11-01"
       }
     },
-    "com.azure.containerregistry#RegistriesCreateResponse": {
+    "com.azure.containerregistry#CreateRegistryResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -8861,7 +8862,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.containerregistry#RegistriesCreateResponseTagsMap",
+          "target": "com.azure.containerregistry#CreateRegistryResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -8897,7 +8898,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.containerregistry#RegistriesCreateResponseTagsMap": {
+    "com.azure.containerregistry#CreateRegistryResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8909,7 +8910,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.containerregistry#RegistriesCreateRequest": {
+    "com.azure.containerregistry#CreateRegistryRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8937,7 +8938,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.containerregistry#RegistriesCreateRequestTagsMap",
+          "target": "com.azure.containerregistry#CreateRegistryRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -9127,7 +9128,7 @@
         "smithy.api#documentation": "Whether or not public network access is allowed for the container registry."
       }
     },
-    "com.azure.containerregistry#RegistriesCreateRequestTagsMap": {
+    "com.azure.containerregistry#CreateRegistryRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -9139,13 +9140,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.containerregistry#RegistriesGet": {
+    "com.azure.containerregistry#GetRegistry": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerregistry#RegistriesGetRequest"
+        "target": "com.azure.containerregistry#GetRegistryRequest"
       },
       "output": {
-        "target": "com.azure.containerregistry#RegistriesGetResponse"
+        "target": "com.azure.containerregistry#GetRegistryResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -9158,7 +9159,7 @@
         "com.distilled.openapi#apiVersion": "2025-11-01"
       }
     },
-    "com.azure.containerregistry#RegistriesGetResponse": {
+    "com.azure.containerregistry#GetRegistryResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -9186,7 +9187,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.containerregistry#RegistriesGetResponseTagsMap",
+          "target": "com.azure.containerregistry#GetRegistryResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -9222,7 +9223,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.containerregistry#RegistriesGetResponseTagsMap": {
+    "com.azure.containerregistry#GetRegistryResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -9234,7 +9235,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.containerregistry#RegistriesGetRequest": {
+    "com.azure.containerregistry#GetRegistryRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9266,10 +9267,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.containerregistry#RegistriesListByResourceGroup": {
+    "com.azure.containerregistry#ListRegistryByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerregistry#RegistriesListByResourceGroupRequest"
+        "target": "com.azure.containerregistry#ListRegistryByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.containerregistry#RegistryListResult"
@@ -9390,7 +9391,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.containerregistry#RegistriesListByResourceGroupRequest": {
+    "com.azure.containerregistry#ListRegistryByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9414,10 +9415,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.containerregistry#RegistriesList": {
+    "com.azure.containerregistry#ListRegistries": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerregistry#RegistriesListRequest"
+        "target": "com.azure.containerregistry#ListRegistriesRequest"
       },
       "output": {
         "target": "com.azure.containerregistry#RegistryListResult"
@@ -9433,7 +9434,7 @@
         "com.distilled.openapi#apiVersion": "2025-11-01"
       }
     },
-    "com.azure.containerregistry#RegistriesListRequest": {
+    "com.azure.containerregistry#ListRegistriesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9449,10 +9450,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.containerregistry#RegistriesCheckNameAvailability": {
+    "com.azure.containerregistry#CheckRegistryNameAvailability": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerregistry#RegistriesCheckNameAvailabilityRequest"
+        "target": "com.azure.containerregistry#CheckRegistryNameAvailabilityRequest"
       },
       "output": {
         "target": "com.azure.containerregistry#RegistryNameStatus"
@@ -9494,7 +9495,7 @@
         "smithy.api#documentation": "The result of a request to check the availability of a container registry name."
       }
     },
-    "com.azure.containerregistry#RegistriesCheckNameAvailabilityRequest": {
+    "com.azure.containerregistry#CheckRegistryNameAvailabilityRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9538,7 +9539,7 @@
         "smithy.api#documentation": "The resource type for Container Registry."
       }
     },
-    "com.azure.containerregistry#OperationsList": {
+    "com.azure.containerregistry#ListOperations": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -9778,13 +9779,13 @@
         "smithy.api#documentation": "The display information for a container registry operation."
       }
     },
-    "com.azure.containerregistry#TasksGetDetails": {
+    "com.azure.containerregistry#GetTaskDetails": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerregistry#TasksGetDetailsRequest"
+        "target": "com.azure.containerregistry#GetTaskDetailsRequest"
       },
       "output": {
-        "target": "com.azure.containerregistry#TasksGetDetailsResponse"
+        "target": "com.azure.containerregistry#GetTaskDetailsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -9797,7 +9798,7 @@
         "com.distilled.openapi#apiVersion": "2019-04-01"
       }
     },
-    "com.azure.containerregistry#TasksGetDetailsResponse": {
+    "com.azure.containerregistry#GetTaskDetailsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -9826,7 +9827,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.containerregistry#TasksGetDetailsResponseTagsMap",
+          "target": "com.azure.containerregistry#GetTaskDetailsResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The tags of the resource."
           }
@@ -10780,7 +10781,7 @@
         "smithy.api#documentation": "The identity type."
       }
     },
-    "com.azure.containerregistry#TasksGetDetailsResponseTagsMap": {
+    "com.azure.containerregistry#GetTaskDetailsResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -10792,7 +10793,7 @@
         "smithy.api#documentation": "The tags of the resource."
       }
     },
-    "com.azure.containerregistry#TasksGetDetailsRequest": {
+    "com.azure.containerregistry#GetTaskDetailsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10832,10 +10833,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.containerregistry#TasksDelete": {
+    "com.azure.containerregistry#DeleteTask": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerregistry#TasksDeleteRequest"
+        "target": "com.azure.containerregistry#DeleteTaskRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -10851,7 +10852,7 @@
         "com.distilled.openapi#apiVersion": "2019-04-01"
       }
     },
-    "com.azure.containerregistry#TasksDeleteRequest": {
+    "com.azure.containerregistry#DeleteTaskRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10891,13 +10892,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.containerregistry#TasksUpdate": {
+    "com.azure.containerregistry#UpdateTask": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerregistry#TasksUpdateRequest"
+        "target": "com.azure.containerregistry#UpdateTaskRequest"
       },
       "output": {
-        "target": "com.azure.containerregistry#TasksUpdateResponse"
+        "target": "com.azure.containerregistry#UpdateTaskResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -10910,7 +10911,7 @@
         "com.distilled.openapi#apiVersion": "2019-04-01"
       }
     },
-    "com.azure.containerregistry#TasksUpdateResponse": {
+    "com.azure.containerregistry#UpdateTaskResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -10939,7 +10940,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.containerregistry#TasksUpdateResponseTagsMap",
+          "target": "com.azure.containerregistry#UpdateTaskResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The tags of the resource."
           }
@@ -10961,7 +10962,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.containerregistry#TasksUpdateResponseTagsMap": {
+    "com.azure.containerregistry#UpdateTaskResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -10973,7 +10974,7 @@
         "smithy.api#documentation": "The tags of the resource."
       }
     },
-    "com.azure.containerregistry#TasksUpdateRequest": {
+    "com.azure.containerregistry#UpdateTaskRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11021,7 +11022,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.containerregistry#TasksUpdateRequestTagsMap",
+          "target": "com.azure.containerregistry#UpdateTaskRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "The ARM resource tags."
           }
@@ -11031,7 +11032,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.containerregistry#TasksUpdateRequestTagsMap": {
+    "com.azure.containerregistry#UpdateTaskRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -11613,13 +11614,13 @@
         "smithy.api#documentation": "The current status of task."
       }
     },
-    "com.azure.containerregistry#TasksCreate": {
+    "com.azure.containerregistry#CreateTask": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerregistry#TasksCreateRequest"
+        "target": "com.azure.containerregistry#CreateTaskRequest"
       },
       "output": {
-        "target": "com.azure.containerregistry#TasksCreateResponse"
+        "target": "com.azure.containerregistry#CreateTaskResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -11632,7 +11633,7 @@
         "com.distilled.openapi#apiVersion": "2019-04-01"
       }
     },
-    "com.azure.containerregistry#TasksCreateResponse": {
+    "com.azure.containerregistry#CreateTaskResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -11661,7 +11662,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.containerregistry#TasksCreateResponseTagsMap",
+          "target": "com.azure.containerregistry#CreateTaskResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The tags of the resource."
           }
@@ -11683,7 +11684,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.containerregistry#TasksCreateResponseTagsMap": {
+    "com.azure.containerregistry#CreateTaskResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -11695,7 +11696,7 @@
         "smithy.api#documentation": "The tags of the resource."
       }
     },
-    "com.azure.containerregistry#TasksCreateRequest": {
+    "com.azure.containerregistry#CreateTaskRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11738,7 +11739,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.containerregistry#TasksCreateRequestTagsMap",
+          "target": "com.azure.containerregistry#CreateTaskRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "The tags of the resource."
           }
@@ -11885,7 +11886,7 @@
         "smithy.api#documentation": "The current status of task."
       }
     },
-    "com.azure.containerregistry#TasksCreateRequestTagsMap": {
+    "com.azure.containerregistry#CreateTaskRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -11897,13 +11898,13 @@
         "smithy.api#documentation": "The tags of the resource."
       }
     },
-    "com.azure.containerregistry#TasksGet": {
+    "com.azure.containerregistry#GetTask": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerregistry#TasksGetRequest"
+        "target": "com.azure.containerregistry#GetTaskRequest"
       },
       "output": {
-        "target": "com.azure.containerregistry#TasksGetResponse"
+        "target": "com.azure.containerregistry#GetTaskResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -11916,7 +11917,7 @@
         "com.distilled.openapi#apiVersion": "2019-04-01"
       }
     },
-    "com.azure.containerregistry#TasksGetResponse": {
+    "com.azure.containerregistry#GetTaskResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -11945,7 +11946,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.containerregistry#TasksGetResponseTagsMap",
+          "target": "com.azure.containerregistry#GetTaskResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "The tags of the resource."
           }
@@ -11967,7 +11968,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.containerregistry#TasksGetResponseTagsMap": {
+    "com.azure.containerregistry#GetTaskResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -11979,7 +11980,7 @@
         "smithy.api#documentation": "The tags of the resource."
       }
     },
-    "com.azure.containerregistry#TasksGetRequest": {
+    "com.azure.containerregistry#GetTaskRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -12019,10 +12020,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.containerregistry#TasksList": {
+    "com.azure.containerregistry#ListTasks": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerregistry#TasksListRequest"
+        "target": "com.azure.containerregistry#ListTasksRequest"
       },
       "output": {
         "target": "com.azure.containerregistry#TaskListResult"
@@ -12130,7 +12131,7 @@
         "smithy.api#documentation": "The tags of the resource."
       }
     },
-    "com.azure.containerregistry#TasksListRequest": {
+    "com.azure.containerregistry#ListTasksRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -12162,10 +12163,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.containerregistry#RunsCancel": {
+    "com.azure.containerregistry#CancelRun": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerregistry#RunsCancelRequest"
+        "target": "com.azure.containerregistry#CancelRunRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -12181,7 +12182,7 @@
         "com.distilled.openapi#apiVersion": "2019-04-01"
       }
     },
-    "com.azure.containerregistry#RunsCancelRequest": {
+    "com.azure.containerregistry#CancelRunRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -12221,10 +12222,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.containerregistry#RunsGetLogSasUrl": {
+    "com.azure.containerregistry#GetRunLogSasUrl": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerregistry#RunsGetLogSasUrlRequest"
+        "target": "com.azure.containerregistry#GetRunLogSasUrlRequest"
       },
       "output": {
         "target": "com.azure.containerregistry#RunGetLogResult"
@@ -12254,7 +12255,7 @@
         "smithy.api#documentation": "The result of get log link operation."
       }
     },
-    "com.azure.containerregistry#RunsGetLogSasUrlRequest": {
+    "com.azure.containerregistry#GetRunLogSasUrlRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -12294,13 +12295,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.containerregistry#RunsUpdate": {
+    "com.azure.containerregistry#UpdateRun": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerregistry#RunsUpdateRequest"
+        "target": "com.azure.containerregistry#UpdateRunRequest"
       },
       "output": {
-        "target": "com.azure.containerregistry#RunsUpdateResponse"
+        "target": "com.azure.containerregistry#UpdateRunResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -12313,7 +12314,7 @@
         "com.distilled.openapi#apiVersion": "2019-04-01"
       }
     },
-    "com.azure.containerregistry#RunsUpdateResponse": {
+    "com.azure.containerregistry#UpdateRunResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -12752,7 +12753,7 @@
         "smithy.api#documentation": "The current status of the run."
       }
     },
-    "com.azure.containerregistry#RunsUpdateRequest": {
+    "com.azure.containerregistry#UpdateRunRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -12798,13 +12799,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.containerregistry#RunsGet": {
+    "com.azure.containerregistry#GetRun": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerregistry#RunsGetRequest"
+        "target": "com.azure.containerregistry#GetRunRequest"
       },
       "output": {
-        "target": "com.azure.containerregistry#RunsGetResponse"
+        "target": "com.azure.containerregistry#GetRunResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -12817,7 +12818,7 @@
         "com.distilled.openapi#apiVersion": "2019-04-01"
       }
     },
-    "com.azure.containerregistry#RunsGetResponse": {
+    "com.azure.containerregistry#GetRunResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -12849,7 +12850,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.containerregistry#RunsGetRequest": {
+    "com.azure.containerregistry#GetRunRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -12889,10 +12890,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.containerregistry#RunsList": {
+    "com.azure.containerregistry#ListRuns": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerregistry#RunsListRequest"
+        "target": "com.azure.containerregistry#ListRunsRequest"
       },
       "output": {
         "target": "com.azure.containerregistry#RunListResult"
@@ -12969,7 +12970,7 @@
         "smithy.api#documentation": "Run resource properties"
       }
     },
-    "com.azure.containerregistry#RunsListRequest": {
+    "com.azure.containerregistry#ListRunsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -13086,13 +13087,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.containerregistry#RegistriesScheduleRun": {
+    "com.azure.containerregistry#RunRegistriesSchedule": {
       "type": "operation",
       "input": {
-        "target": "com.azure.containerregistry#RegistriesScheduleRunRequest"
+        "target": "com.azure.containerregistry#RunRegistriesScheduleRequest"
       },
       "output": {
-        "target": "com.azure.containerregistry#RegistriesScheduleRunResponse"
+        "target": "com.azure.containerregistry#RunRegistriesScheduleResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -13105,7 +13106,7 @@
         "com.distilled.openapi#apiVersion": "2019-04-01"
       }
     },
-    "com.azure.containerregistry#RegistriesScheduleRunResponse": {
+    "com.azure.containerregistry#RunRegistriesScheduleResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -13137,7 +13138,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.containerregistry#RegistriesScheduleRunRequest": {
+    "com.azure.containerregistry#RunRegistriesScheduleRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -13187,217 +13188,217 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.containerregistry#WebhooksPing"
+          "target": "com.azure.containerregistry#PingWebhook"
         },
         {
-          "target": "com.azure.containerregistry#WebhooksListEvents"
+          "target": "com.azure.containerregistry#ListWebhookEvents"
         },
         {
-          "target": "com.azure.containerregistry#WebhooksGetCallbackConfig"
+          "target": "com.azure.containerregistry#GetWebhookCallbackConfig"
         },
         {
-          "target": "com.azure.containerregistry#WebhooksDelete"
+          "target": "com.azure.containerregistry#DeleteWebhook"
         },
         {
-          "target": "com.azure.containerregistry#WebhooksUpdate"
+          "target": "com.azure.containerregistry#UpdateWebhook"
         },
         {
-          "target": "com.azure.containerregistry#WebhooksCreate"
+          "target": "com.azure.containerregistry#CreateWebhook"
         },
         {
-          "target": "com.azure.containerregistry#WebhooksGet"
+          "target": "com.azure.containerregistry#GetWebhook"
         },
         {
-          "target": "com.azure.containerregistry#WebhooksList"
+          "target": "com.azure.containerregistry#ListWebhooks"
         },
         {
-          "target": "com.azure.containerregistry#TokensDelete"
+          "target": "com.azure.containerregistry#DeleteToken"
         },
         {
-          "target": "com.azure.containerregistry#TokensUpdate"
+          "target": "com.azure.containerregistry#UpdateToken"
         },
         {
-          "target": "com.azure.containerregistry#TokensCreate"
+          "target": "com.azure.containerregistry#CreateToken"
         },
         {
-          "target": "com.azure.containerregistry#TokensGet"
+          "target": "com.azure.containerregistry#GetToken"
         },
         {
-          "target": "com.azure.containerregistry#TokensList"
+          "target": "com.azure.containerregistry#ListTokens"
         },
         {
-          "target": "com.azure.containerregistry#ScopeMapsDelete"
+          "target": "com.azure.containerregistry#DeleteScopeMap"
         },
         {
-          "target": "com.azure.containerregistry#ScopeMapsUpdate"
+          "target": "com.azure.containerregistry#UpdateScopeMap"
         },
         {
-          "target": "com.azure.containerregistry#ScopeMapsCreate"
+          "target": "com.azure.containerregistry#CreateScopeMap"
         },
         {
-          "target": "com.azure.containerregistry#ScopeMapsGet"
+          "target": "com.azure.containerregistry#GetScopeMap"
         },
         {
-          "target": "com.azure.containerregistry#ScopeMapsList"
+          "target": "com.azure.containerregistry#ListScopeMaps"
         },
         {
-          "target": "com.azure.containerregistry#ReplicationsDelete"
+          "target": "com.azure.containerregistry#DeleteReplication"
         },
         {
-          "target": "com.azure.containerregistry#ReplicationsUpdate"
+          "target": "com.azure.containerregistry#UpdateReplication"
         },
         {
-          "target": "com.azure.containerregistry#ReplicationsCreate"
+          "target": "com.azure.containerregistry#CreateReplication"
         },
         {
-          "target": "com.azure.containerregistry#ReplicationsGet"
+          "target": "com.azure.containerregistry#GetReplication"
         },
         {
-          "target": "com.azure.containerregistry#ReplicationsList"
+          "target": "com.azure.containerregistry#ListReplications"
         },
         {
-          "target": "com.azure.containerregistry#RegistriesRegenerateCredential"
+          "target": "com.azure.containerregistry#RegenerateRegistryCredential"
         },
         {
-          "target": "com.azure.containerregistry#RegistriesGetPrivateLinkResource"
+          "target": "com.azure.containerregistry#GetRegistryPrivateLinkResource"
         },
         {
-          "target": "com.azure.containerregistry#RegistriesListPrivateLinkResources"
+          "target": "com.azure.containerregistry#ListRegistryPrivateLinkResources"
         },
         {
-          "target": "com.azure.containerregistry#PrivateEndpointConnectionsDelete"
+          "target": "com.azure.containerregistry#DeletePrivateEndpointConnection"
         },
         {
           "target": "com.azure.containerregistry#PrivateEndpointConnectionsCreateOrUpdate"
         },
         {
-          "target": "com.azure.containerregistry#PrivateEndpointConnectionsGet"
+          "target": "com.azure.containerregistry#GetPrivateEndpointConnection"
         },
         {
-          "target": "com.azure.containerregistry#PrivateEndpointConnectionsList"
+          "target": "com.azure.containerregistry#ListPrivateEndpointConnections"
         },
         {
-          "target": "com.azure.containerregistry#RegistriesListUsages"
+          "target": "com.azure.containerregistry#ListRegistryUsages"
         },
         {
-          "target": "com.azure.containerregistry#RegistriesListCredentials"
+          "target": "com.azure.containerregistry#ListRegistryCredentials"
         },
         {
-          "target": "com.azure.containerregistry#RegistriesImportImage"
+          "target": "com.azure.containerregistry#ImportRegistryImage"
         },
         {
-          "target": "com.azure.containerregistry#RegistriesGenerateCredentials"
+          "target": "com.azure.containerregistry#GenerateRegistryCredentials"
         },
         {
-          "target": "com.azure.containerregistry#CredentialSetsDelete"
+          "target": "com.azure.containerregistry#DeleteCredentialSet"
         },
         {
-          "target": "com.azure.containerregistry#CredentialSetsUpdate"
+          "target": "com.azure.containerregistry#UpdateCredentialSet"
         },
         {
-          "target": "com.azure.containerregistry#CredentialSetsCreate"
+          "target": "com.azure.containerregistry#CreateCredentialSet"
         },
         {
-          "target": "com.azure.containerregistry#CredentialSetsGet"
+          "target": "com.azure.containerregistry#GetCredentialSet"
         },
         {
-          "target": "com.azure.containerregistry#CredentialSetsList"
+          "target": "com.azure.containerregistry#ListCredentialSets"
         },
         {
-          "target": "com.azure.containerregistry#ConnectedRegistriesDeactivate"
+          "target": "com.azure.containerregistry#DeactivateConnectedRegistry"
         },
         {
-          "target": "com.azure.containerregistry#ConnectedRegistriesDelete"
+          "target": "com.azure.containerregistry#DeleteConnectedRegistry"
         },
         {
-          "target": "com.azure.containerregistry#ConnectedRegistriesUpdate"
+          "target": "com.azure.containerregistry#UpdateConnectedRegistry"
         },
         {
-          "target": "com.azure.containerregistry#ConnectedRegistriesCreate"
+          "target": "com.azure.containerregistry#CreateConnectedRegistry"
         },
         {
-          "target": "com.azure.containerregistry#ConnectedRegistriesGet"
+          "target": "com.azure.containerregistry#GetConnectedRegistry"
         },
         {
-          "target": "com.azure.containerregistry#ConnectedRegistriesList"
+          "target": "com.azure.containerregistry#ListConnectedRegistries"
         },
         {
-          "target": "com.azure.containerregistry#CacheRulesDelete"
+          "target": "com.azure.containerregistry#DeleteCacheRule"
         },
         {
-          "target": "com.azure.containerregistry#CacheRulesUpdate"
+          "target": "com.azure.containerregistry#UpdateCacheRule"
         },
         {
-          "target": "com.azure.containerregistry#CacheRulesCreate"
+          "target": "com.azure.containerregistry#CreateCacheRule"
         },
         {
-          "target": "com.azure.containerregistry#CacheRulesGet"
+          "target": "com.azure.containerregistry#GetCacheRule"
         },
         {
-          "target": "com.azure.containerregistry#CacheRulesList"
+          "target": "com.azure.containerregistry#ListCacheRules"
         },
         {
-          "target": "com.azure.containerregistry#RegistriesDelete"
+          "target": "com.azure.containerregistry#DeleteRegistry"
         },
         {
-          "target": "com.azure.containerregistry#RegistriesUpdate"
+          "target": "com.azure.containerregistry#UpdateRegistry"
         },
         {
-          "target": "com.azure.containerregistry#RegistriesCreate"
+          "target": "com.azure.containerregistry#CreateRegistry"
         },
         {
-          "target": "com.azure.containerregistry#RegistriesGet"
+          "target": "com.azure.containerregistry#GetRegistry"
         },
         {
-          "target": "com.azure.containerregistry#RegistriesListByResourceGroup"
+          "target": "com.azure.containerregistry#ListRegistryByResourceGroup"
         },
         {
-          "target": "com.azure.containerregistry#RegistriesList"
+          "target": "com.azure.containerregistry#ListRegistries"
         },
         {
-          "target": "com.azure.containerregistry#RegistriesCheckNameAvailability"
+          "target": "com.azure.containerregistry#CheckRegistryNameAvailability"
         },
         {
-          "target": "com.azure.containerregistry#OperationsList"
+          "target": "com.azure.containerregistry#ListOperations"
         },
         {
-          "target": "com.azure.containerregistry#TasksGetDetails"
+          "target": "com.azure.containerregistry#GetTaskDetails"
         },
         {
-          "target": "com.azure.containerregistry#TasksDelete"
+          "target": "com.azure.containerregistry#DeleteTask"
         },
         {
-          "target": "com.azure.containerregistry#TasksUpdate"
+          "target": "com.azure.containerregistry#UpdateTask"
         },
         {
-          "target": "com.azure.containerregistry#TasksCreate"
+          "target": "com.azure.containerregistry#CreateTask"
         },
         {
-          "target": "com.azure.containerregistry#TasksGet"
+          "target": "com.azure.containerregistry#GetTask"
         },
         {
-          "target": "com.azure.containerregistry#TasksList"
+          "target": "com.azure.containerregistry#ListTasks"
         },
         {
-          "target": "com.azure.containerregistry#RunsCancel"
+          "target": "com.azure.containerregistry#CancelRun"
         },
         {
-          "target": "com.azure.containerregistry#RunsGetLogSasUrl"
+          "target": "com.azure.containerregistry#GetRunLogSasUrl"
         },
         {
-          "target": "com.azure.containerregistry#RunsUpdate"
+          "target": "com.azure.containerregistry#UpdateRun"
         },
         {
-          "target": "com.azure.containerregistry#RunsGet"
+          "target": "com.azure.containerregistry#GetRun"
         },
         {
-          "target": "com.azure.containerregistry#RunsList"
+          "target": "com.azure.containerregistry#ListRuns"
         },
         {
           "target": "com.azure.containerregistry#RegistriesGetBuildSourceUploadUrl"
         },
         {
-          "target": "com.azure.containerregistry#RegistriesScheduleRun"
+          "target": "com.azure.containerregistry#RunRegistriesSchedule"
         }
       ],
       "traits": {

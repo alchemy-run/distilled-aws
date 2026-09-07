@@ -13,12 +13,12 @@ import * as Retry from "../retry.ts";
 
 export type { ModalOpError, ModalOpContext };
 
-export interface TokenFlowCreateRequest {
+export interface CreateTokenFlowRequest {
   utmSource?: string;
   localhostPort?: number;
   nextUrl?: string;
 }
-export const TokenFlowCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateTokenFlowRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     utmSource: S.optional(S.String),
     localhostPort: S.optional(S.Number),
@@ -31,16 +31,16 @@ export const TokenFlowCreateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "TokenFlowCreateRequest",
-}) as any as S.Schema<TokenFlowCreateRequest>;
+  identifier: "CreateTokenFlowRequest",
+}) as any as S.Schema<CreateTokenFlowRequest>;
 
-export interface TokenFlowCreateResponse {
+export interface CreateTokenFlowResponse {
   tokenFlowId?: string;
   webUrl?: string;
   code?: string;
   waitSecret?: string | Redacted.Redacted<string>;
 }
-export const TokenFlowCreateResponse = /*@__PURE__*/ S.suspend(() =>
+export const CreateTokenFlowResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     tokenFlowId: S.optional(S.String),
     webUrl: S.optional(S.String),
@@ -48,49 +48,11 @@ export const TokenFlowCreateResponse = /*@__PURE__*/ S.suspend(() =>
     waitSecret: S.optional(S.String.pipe(T.SensitiveValue({}))),
   }),
 ).annotate({
-  identifier: "TokenFlowCreateResponse",
-}) as any as S.Schema<TokenFlowCreateResponse>;
+  identifier: "CreateTokenFlowResponse",
+}) as any as S.Schema<CreateTokenFlowResponse>;
 
-export interface TokenFlowWaitRequest {
-  timeout?: number;
-  tokenFlowId?: string;
-  waitSecret?: string | Redacted.Redacted<string>;
-}
-export const TokenFlowWaitRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    timeout: S.optional(S.Number),
-    tokenFlowId: S.optional(S.String),
-    waitSecret: S.optional(S.String.pipe(T.SensitiveValue({}))),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/modal.client.ModalClient/TokenFlowWait",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "TokenFlowWaitRequest",
-}) as any as S.Schema<TokenFlowWaitRequest>;
-
-export interface TokenFlowWaitResponse {
-  tokenId?: string;
-  tokenSecret?: string | Redacted.Redacted<string>;
-  timeout?: boolean;
-  workspaceUsername?: string;
-}
-export const TokenFlowWaitResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    tokenId: S.optional(S.String),
-    tokenSecret: S.optional(S.String.pipe(T.SensitiveValue({}))),
-    timeout: S.optional(S.Boolean),
-    workspaceUsername: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "TokenFlowWaitResponse",
-}) as any as S.Schema<TokenFlowWaitResponse>;
-
-export interface TokenInfoGetRequest {}
-export const TokenInfoGetRequest = /*@__PURE__*/ S.suspend(() =>
+export interface GetTokenInfoRequest {}
+export const GetTokenInfoRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
     T.Http({
       method: "POST",
@@ -99,8 +61,8 @@ export const TokenInfoGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "TokenInfoGetRequest",
-}) as any as S.Schema<TokenInfoGetRequest>;
+  identifier: "GetTokenInfoRequest",
+}) as any as S.Schema<GetTokenInfoRequest>;
 
 export interface UserIdentity {
   userId?: string;
@@ -128,7 +90,7 @@ export const ServiceUserIdentity = /*@__PURE__*/ S.suspend(() =>
   identifier: "ServiceUserIdentity",
 }) as any as S.Schema<ServiceUserIdentity>;
 
-export interface TokenInfoGetResponse {
+export interface GetTokenInfoResponse {
   tokenId?: string;
   workspaceId?: string;
   workspaceName?: string;
@@ -139,7 +101,7 @@ export interface TokenInfoGetResponse {
   expiresAt?: string;
   tokenName?: string;
 }
-export const TokenInfoGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetTokenInfoResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     tokenId: S.optional(S.String),
     workspaceId: S.optional(S.String),
@@ -151,47 +113,85 @@ export const TokenInfoGetResponse = /*@__PURE__*/ S.suspend(() =>
     tokenName: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "TokenInfoGetResponse",
-}) as any as S.Schema<TokenInfoGetResponse>;
+  identifier: "GetTokenInfoResponse",
+}) as any as S.Schema<GetTokenInfoResponse>;
 
-export type TokenFlowCreateError = ModalOpError;
+export interface WaitTokenFlowRequest {
+  timeout?: number;
+  tokenFlowId?: string;
+  waitSecret?: string | Redacted.Redacted<string>;
+}
+export const WaitTokenFlowRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    timeout: S.optional(S.Number),
+    tokenFlowId: S.optional(S.String),
+    waitSecret: S.optional(S.String.pipe(T.SensitiveValue({}))),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/modal.client.ModalClient/TokenFlowWait",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "WaitTokenFlowRequest",
+}) as any as S.Schema<WaitTokenFlowRequest>;
+
+export interface WaitTokenFlowResponse {
+  tokenId?: string;
+  tokenSecret?: string | Redacted.Redacted<string>;
+  timeout?: boolean;
+  workspaceUsername?: string;
+}
+export const WaitTokenFlowResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    tokenId: S.optional(S.String),
+    tokenSecret: S.optional(S.String.pipe(T.SensitiveValue({}))),
+    timeout: S.optional(S.Boolean),
+    workspaceUsername: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "WaitTokenFlowResponse",
+}) as any as S.Schema<WaitTokenFlowResponse>;
+
+export type CreateTokenFlowError = ModalOpError;
 /** Tokens (web auth flow) */
-export const tokenFlowCreate: API.OperationMethod<
-  TokenFlowCreateRequest,
-  TokenFlowCreateResponse,
-  TokenFlowCreateError,
+export const createTokenFlow: API.OperationMethod<
+  CreateTokenFlowRequest,
+  CreateTokenFlowResponse,
+  CreateTokenFlowError,
   ModalOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: TokenFlowCreateRequest,
-  output: TokenFlowCreateResponse,
+  input: CreateTokenFlowRequest,
+  output: CreateTokenFlowResponse,
   errors: [UnknownModalError],
   protocol: ModalProtocol,
   retry: Retry.Retry,
 }));
 
-export type TokenFlowWaitError = ModalOpError;
-export const tokenFlowWait: API.OperationMethod<
-  TokenFlowWaitRequest,
-  TokenFlowWaitResponse,
-  TokenFlowWaitError,
+export type GetTokenInfoError = ModalOpError;
+export const getTokenInfo: API.OperationMethod<
+  GetTokenInfoRequest,
+  GetTokenInfoResponse,
+  GetTokenInfoError,
   ModalOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: TokenFlowWaitRequest,
-  output: TokenFlowWaitResponse,
+  input: GetTokenInfoRequest,
+  output: GetTokenInfoResponse,
   errors: [UnknownModalError],
   protocol: ModalProtocol,
   retry: Retry.Retry,
 }));
 
-export type TokenInfoGetError = ModalOpError;
-export const tokenInfoGet: API.OperationMethod<
-  TokenInfoGetRequest,
-  TokenInfoGetResponse,
-  TokenInfoGetError,
+export type WaitTokenFlowError = ModalOpError;
+export const waitTokenFlow: API.OperationMethod<
+  WaitTokenFlowRequest,
+  WaitTokenFlowResponse,
+  WaitTokenFlowError,
   ModalOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: TokenInfoGetRequest,
-  output: TokenInfoGetResponse,
+  input: WaitTokenFlowRequest,
+  output: WaitTokenFlowResponse,
   errors: [UnknownModalError],
   protocol: ModalProtocol,
   retry: Retry.Retry,

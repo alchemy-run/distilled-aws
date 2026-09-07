@@ -699,7 +699,7 @@ export const ConnectedClusterCreateOrReplaceResponse = /*@__PURE__*/ S.suspend(
   identifier: "ConnectedClusterCreateOrReplaceResponse",
 }) as any as S.Schema<ConnectedClusterCreateOrReplaceResponse>;
 
-export interface ConnectedClusterDeleteRequest {
+export interface DeleteConnectedClusterRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -707,7 +707,7 @@ export interface ConnectedClusterDeleteRequest {
   /** The name of the Kubernetes cluster on which get is called. */
   clusterName: string;
 }
-export const ConnectedClusterDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteConnectedClusterRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -721,17 +721,17 @@ export const ConnectedClusterDeleteRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ConnectedClusterDeleteRequest",
-}) as any as S.Schema<ConnectedClusterDeleteRequest>;
+  identifier: "DeleteConnectedClusterRequest",
+}) as any as S.Schema<DeleteConnectedClusterRequest>;
 
-export interface ConnectedClusterDeleteResponse {}
-export const ConnectedClusterDeleteResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteConnectedClusterResponse {}
+export const DeleteConnectedClusterResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "ConnectedClusterDeleteResponse",
-}) as any as S.Schema<ConnectedClusterDeleteResponse>;
+  identifier: "DeleteConnectedClusterResponse",
+}) as any as S.Schema<DeleteConnectedClusterResponse>;
 
-export interface ConnectedClusterGetRequest {
+export interface GetConnectedClusterRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -739,7 +739,7 @@ export interface ConnectedClusterGetRequest {
   /** The name of the Kubernetes cluster on which get is called. */
   clusterName: string;
 }
-export const ConnectedClusterGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetConnectedClusterRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -753,19 +753,19 @@ export const ConnectedClusterGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ConnectedClusterGetRequest",
-}) as any as S.Schema<ConnectedClusterGetRequest>;
+  identifier: "GetConnectedClusterRequest",
+}) as any as S.Schema<GetConnectedClusterRequest>;
 
 /** Resource tags. */
-export type ConnectedClusterGetResponseTagsMap = {
+export type GetConnectedClusterResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ConnectedClusterGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetConnectedClusterResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ConnectedClusterGetResponseTagsMap>;
+) as any as S.Schema<GetConnectedClusterResponseTagsMap>;
 
-export interface ConnectedClusterGetResponse {
+export interface GetConnectedClusterResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -775,7 +775,7 @@ export interface ConnectedClusterGetResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ConnectedClusterGetResponseTagsMap;
+  tags?: GetConnectedClusterResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Describes the connected cluster resource properties. */
@@ -785,346 +785,24 @@ export interface ConnectedClusterGetResponse {
   /** The kind of connected cluster. */
   kind?: ConnectedClusterKind;
 }
-export const ConnectedClusterGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetConnectedClusterResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ConnectedClusterGetResponseTagsMap),
+    tags: S.optional(GetConnectedClusterResponseTagsMap),
     location: S.String,
     properties: ConnectedClusterProperties,
     identity: ConnectedClusterIdentity,
     kind: S.optional(ConnectedClusterKind),
   }),
 ).annotate({
-  identifier: "ConnectedClusterGetResponse",
-}) as any as S.Schema<ConnectedClusterGetResponse>;
+  identifier: "GetConnectedClusterResponse",
+}) as any as S.Schema<GetConnectedClusterResponse>;
 
-export interface ConnectedClusterListByResourceGroupRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-}
-export const ConnectedClusterListByResourceGroupRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kubernetes/connectedClusters",
-        code: 200,
-        apiVersion: "2026-05-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ConnectedClusterListByResourceGroupRequest",
-  }) as any as S.Schema<ConnectedClusterListByResourceGroupRequest>;
-
-/** Resource tags. */
-export type ConnectedClusterTagsMap = { [key: string]: string | undefined };
-export const ConnectedClusterTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ConnectedClusterTagsMap>;
-
-/** Represents a connected cluster. */
-export interface ConnectedCluster {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: ConnectedClusterTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Describes the connected cluster resource properties. */
-  properties: ConnectedClusterProperties;
-  /** The identity of the connected cluster. */
-  identity: ConnectedClusterIdentity;
-  /** The kind of connected cluster. */
-  kind?: ConnectedClusterKind;
-}
-export const ConnectedCluster = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(ConnectedClusterTagsMap),
-    location: S.String,
-    properties: ConnectedClusterProperties,
-    identity: ConnectedClusterIdentity,
-    kind: S.optional(ConnectedClusterKind),
-  }),
-).annotate({
-  identifier: "ConnectedCluster",
-}) as any as S.Schema<ConnectedCluster>;
-
-/** The ConnectedCluster items on this page */
-export type ConnectedClusterListValueList = Array<ConnectedCluster>;
-export const ConnectedClusterListValueList = /*@__PURE__*/ S.Array(
-  ConnectedCluster,
-) as any as S.Schema<ConnectedClusterListValueList>;
-
-/** The paginated list of connected Clusters */
-export interface ConnectedClusterList {
-  /** The ConnectedCluster items on this page */
-  value: ConnectedClusterListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const ConnectedClusterList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: ConnectedClusterListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ConnectedClusterList",
-}) as any as S.Schema<ConnectedClusterList>;
-
-export interface ConnectedClusterListBySubscriptionRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-}
-export const ConnectedClusterListBySubscriptionRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Kubernetes/connectedClusters",
-        code: 200,
-        apiVersion: "2026-05-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ConnectedClusterListBySubscriptionRequest",
-  }) as any as S.Schema<ConnectedClusterListBySubscriptionRequest>;
-
-/** The mode of client authentication. */
-export type AuthenticationMethod = "Token" | "AAD";
-export const AuthenticationMethod = /*@__PURE__*/ S.String;
-
-export interface ConnectedClusterListClusterUserCredentialRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Kubernetes cluster on which get is called. */
-  clusterName: string;
-  /** The mode of client authentication. */
-  authenticationMethod: AuthenticationMethod | (string & {});
-  /** Boolean value to indicate whether the request is for client side proxy or not */
-  clientProxy: boolean;
-}
-export const ConnectedClusterListClusterUserCredentialRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      clusterName: S.String.pipe(T.Label()),
-      authenticationMethod: AuthenticationMethod,
-      clientProxy: S.Boolean,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kubernetes/connectedClusters/{clusterName}/listClusterUserCredential",
-        code: 200,
-        apiVersion: "2026-05-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "ConnectedClusterListClusterUserCredentialRequest",
-  }) as any as S.Schema<ConnectedClusterListClusterUserCredentialRequest>;
-
-/** Contains the REP (rendezvous endpoint) and “Sender” access token. */
-export interface HybridConnectionConfig {
-  /** Timestamp when this token will be expired. */
-  expirationTime?: number;
-  /** Name of the connection */
-  hybridConnectionName?: string;
-  /** Name of the relay. */
-  relay?: string;
-  /** Sender access token */
-  token?: string;
-  /** TenantID of the relay */
-  relayTid?: string;
-  /** Type of relay */
-  relayType?: string;
-}
-export const HybridConnectionConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    expirationTime: S.optional(S.Number),
-    hybridConnectionName: S.optional(S.String),
-    relay: S.optional(S.String),
-    token: S.optional(S.String),
-    relayTid: S.optional(S.String),
-    relayType: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "HybridConnectionConfig",
-}) as any as S.Schema<HybridConnectionConfig>;
-
-/** The credential result response. */
-export interface CredentialResult {
-  /** The name of the credential. */
-  name?: string;
-  /** Base64-encoded Kubernetes configuration file. */
-  value?: string;
-}
-export const CredentialResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    value: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "CredentialResult",
-}) as any as S.Schema<CredentialResult>;
-
-/** Base64-encoded Kubernetes configuration file. */
-export type CredentialResultsKubeconfigsList = Array<CredentialResult>;
-export const CredentialResultsKubeconfigsList = /*@__PURE__*/ S.Array(
-  CredentialResult,
-) as any as S.Schema<CredentialResultsKubeconfigsList>;
-
-/** The list of credential result response. */
-export interface CredentialResults {
-  /** Contains the REP (rendezvous endpoint) and “Sender” access token. */
-  hybridConnectionConfig?: HybridConnectionConfig;
-  /** Base64-encoded Kubernetes configuration file. */
-  kubeconfigs?: CredentialResultsKubeconfigsList;
-}
-export const CredentialResults = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    hybridConnectionConfig: S.optional(HybridConnectionConfig),
-    kubeconfigs: S.optional(CredentialResultsKubeconfigsList),
-  }),
-).annotate({
-  identifier: "CredentialResults",
-}) as any as S.Schema<CredentialResults>;
-
-/** Resource tags. */
-export type ConnectedClusterUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ConnectedClusterUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ConnectedClusterUpdateRequestTagsMap>;
-
-/** Indicates whether Azure Hybrid Benefit is opted in */
-export type AzureHybridBenefit = "True" | "False" | "NotApplicable";
-export const AzureHybridBenefit = /*@__PURE__*/ S.String;
-
-/** Properties which can be patched on the connected cluster resource. */
-export interface ConnectedClusterPatchProperties {
-  /** Represents the distribution of the connected cluster */
-  distribution?: string;
-  /** Represents the Kubernetes distribution version on this connected cluster. */
-  distributionVersion?: string;
-  /** Indicates whether Azure Hybrid Benefit is opted in */
-  azureHybridBenefit?: AzureHybridBenefit | (string & {});
-  /** Indicates whether Gateway is enabled for the connected cluster resource */
-  gateway?: Gateway;
-}
-export const ConnectedClusterPatchProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    distribution: S.optional(S.String),
-    distributionVersion: S.optional(S.String),
-    azureHybridBenefit: S.optional(AzureHybridBenefit),
-    gateway: S.optional(Gateway),
-  }),
-).annotate({
-  identifier: "ConnectedClusterPatchProperties",
-}) as any as S.Schema<ConnectedClusterPatchProperties>;
-
-export interface ConnectedClusterUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Kubernetes cluster on which get is called. */
-  clusterName: string;
-  /** Resource tags. */
-  tags?: ConnectedClusterUpdateRequestTagsMap;
-  /** Describes the connected cluster resource properties that can be updated during PATCH operation. */
-  properties?: ConnectedClusterPatchProperties;
-}
-export const ConnectedClusterUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    clusterName: S.String.pipe(T.Label()),
-    tags: S.optional(ConnectedClusterUpdateRequestTagsMap),
-    properties: S.optional(ConnectedClusterPatchProperties),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kubernetes/connectedClusters/{clusterName}",
-      code: 200,
-      apiVersion: "2026-05-01",
-    }),
-  ),
-).annotate({
-  identifier: "ConnectedClusterUpdateRequest",
-}) as any as S.Schema<ConnectedClusterUpdateRequest>;
-
-/** Resource tags. */
-export type ConnectedClusterUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ConnectedClusterUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ConnectedClusterUpdateResponseTagsMap>;
-
-export interface ConnectedClusterUpdateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: ConnectedClusterUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Describes the connected cluster resource properties. */
-  properties: ConnectedClusterProperties;
-  /** The identity of the connected cluster. */
-  identity: ConnectedClusterIdentity;
-  /** The kind of connected cluster. */
-  kind?: ConnectedClusterKind;
-}
-export const ConnectedClusterUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(ConnectedClusterUpdateResponseTagsMap),
-    location: S.String,
-    properties: ConnectedClusterProperties,
-    identity: ConnectedClusterIdentity,
-    kind: S.optional(ConnectedClusterKind),
-  }),
-).annotate({
-  identifier: "ConnectedClusterUpdateResponse",
-}) as any as S.Schema<ConnectedClusterUpdateResponse>;
-
-export interface OperationsGetRequest {}
-export const OperationsGetRequest = /*@__PURE__*/ S.suspend(() =>
+export interface GetOperationRequest {}
+export const GetOperationRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
     T.Http({
       method: "GET",
@@ -1134,8 +812,8 @@ export const OperationsGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "OperationsGetRequest",
-}) as any as S.Schema<OperationsGetRequest>;
+  identifier: "GetOperationRequest",
+}) as any as S.Schema<GetOperationRequest>;
 
 /** Localized display information for this particular operation. */
 export interface OperationListValueItemDisplay {
@@ -1212,6 +890,328 @@ export const OperationList = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "OperationList" }) as any as S.Schema<OperationList>;
 
+export interface ListConnectedClusterByResourceGroupRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+}
+export const ListConnectedClusterByResourceGroupRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kubernetes/connectedClusters",
+        code: 200,
+        apiVersion: "2026-05-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListConnectedClusterByResourceGroupRequest",
+  }) as any as S.Schema<ListConnectedClusterByResourceGroupRequest>;
+
+/** Resource tags. */
+export type ConnectedClusterTagsMap = { [key: string]: string | undefined };
+export const ConnectedClusterTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<ConnectedClusterTagsMap>;
+
+/** Represents a connected cluster. */
+export interface ConnectedCluster {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: ConnectedClusterTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Describes the connected cluster resource properties. */
+  properties: ConnectedClusterProperties;
+  /** The identity of the connected cluster. */
+  identity: ConnectedClusterIdentity;
+  /** The kind of connected cluster. */
+  kind?: ConnectedClusterKind;
+}
+export const ConnectedCluster = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(ConnectedClusterTagsMap),
+    location: S.String,
+    properties: ConnectedClusterProperties,
+    identity: ConnectedClusterIdentity,
+    kind: S.optional(ConnectedClusterKind),
+  }),
+).annotate({
+  identifier: "ConnectedCluster",
+}) as any as S.Schema<ConnectedCluster>;
+
+/** The ConnectedCluster items on this page */
+export type ConnectedClusterListValueList = Array<ConnectedCluster>;
+export const ConnectedClusterListValueList = /*@__PURE__*/ S.Array(
+  ConnectedCluster,
+) as any as S.Schema<ConnectedClusterListValueList>;
+
+/** The paginated list of connected Clusters */
+export interface ConnectedClusterList {
+  /** The ConnectedCluster items on this page */
+  value: ConnectedClusterListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const ConnectedClusterList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: ConnectedClusterListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ConnectedClusterList",
+}) as any as S.Schema<ConnectedClusterList>;
+
+export interface ListConnectedClusterBySubscriptionRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+}
+export const ListConnectedClusterBySubscriptionRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Kubernetes/connectedClusters",
+        code: 200,
+        apiVersion: "2026-05-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListConnectedClusterBySubscriptionRequest",
+  }) as any as S.Schema<ListConnectedClusterBySubscriptionRequest>;
+
+/** The mode of client authentication. */
+export type AuthenticationMethod = "Token" | "AAD";
+export const AuthenticationMethod = /*@__PURE__*/ S.String;
+
+export interface ListConnectedClusterClusterUserCredentialRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Kubernetes cluster on which get is called. */
+  clusterName: string;
+  /** The mode of client authentication. */
+  authenticationMethod: AuthenticationMethod | (string & {});
+  /** Boolean value to indicate whether the request is for client side proxy or not */
+  clientProxy: boolean;
+}
+export const ListConnectedClusterClusterUserCredentialRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      clusterName: S.String.pipe(T.Label()),
+      authenticationMethod: AuthenticationMethod,
+      clientProxy: S.Boolean,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kubernetes/connectedClusters/{clusterName}/listClusterUserCredential",
+        code: 200,
+        apiVersion: "2026-05-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListConnectedClusterClusterUserCredentialRequest",
+  }) as any as S.Schema<ListConnectedClusterClusterUserCredentialRequest>;
+
+/** Contains the REP (rendezvous endpoint) and “Sender” access token. */
+export interface HybridConnectionConfig {
+  /** Timestamp when this token will be expired. */
+  expirationTime?: number;
+  /** Name of the connection */
+  hybridConnectionName?: string;
+  /** Name of the relay. */
+  relay?: string;
+  /** Sender access token */
+  token?: string;
+  /** TenantID of the relay */
+  relayTid?: string;
+  /** Type of relay */
+  relayType?: string;
+}
+export const HybridConnectionConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    expirationTime: S.optional(S.Number),
+    hybridConnectionName: S.optional(S.String),
+    relay: S.optional(S.String),
+    token: S.optional(S.String),
+    relayTid: S.optional(S.String),
+    relayType: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "HybridConnectionConfig",
+}) as any as S.Schema<HybridConnectionConfig>;
+
+/** The credential result response. */
+export interface CredentialResult {
+  /** The name of the credential. */
+  name?: string;
+  /** Base64-encoded Kubernetes configuration file. */
+  value?: string;
+}
+export const CredentialResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    value: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "CredentialResult",
+}) as any as S.Schema<CredentialResult>;
+
+/** Base64-encoded Kubernetes configuration file. */
+export type CredentialResultsKubeconfigsList = Array<CredentialResult>;
+export const CredentialResultsKubeconfigsList = /*@__PURE__*/ S.Array(
+  CredentialResult,
+) as any as S.Schema<CredentialResultsKubeconfigsList>;
+
+/** The list of credential result response. */
+export interface CredentialResults {
+  /** Contains the REP (rendezvous endpoint) and “Sender” access token. */
+  hybridConnectionConfig?: HybridConnectionConfig;
+  /** Base64-encoded Kubernetes configuration file. */
+  kubeconfigs?: CredentialResultsKubeconfigsList;
+}
+export const CredentialResults = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    hybridConnectionConfig: S.optional(HybridConnectionConfig),
+    kubeconfigs: S.optional(CredentialResultsKubeconfigsList),
+  }),
+).annotate({
+  identifier: "CredentialResults",
+}) as any as S.Schema<CredentialResults>;
+
+/** Resource tags. */
+export type UpdateConnectedClusterRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateConnectedClusterRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateConnectedClusterRequestTagsMap>;
+
+/** Indicates whether Azure Hybrid Benefit is opted in */
+export type AzureHybridBenefit = "True" | "False" | "NotApplicable";
+export const AzureHybridBenefit = /*@__PURE__*/ S.String;
+
+/** Properties which can be patched on the connected cluster resource. */
+export interface ConnectedClusterPatchProperties {
+  /** Represents the distribution of the connected cluster */
+  distribution?: string;
+  /** Represents the Kubernetes distribution version on this connected cluster. */
+  distributionVersion?: string;
+  /** Indicates whether Azure Hybrid Benefit is opted in */
+  azureHybridBenefit?: AzureHybridBenefit | (string & {});
+  /** Indicates whether Gateway is enabled for the connected cluster resource */
+  gateway?: Gateway;
+}
+export const ConnectedClusterPatchProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    distribution: S.optional(S.String),
+    distributionVersion: S.optional(S.String),
+    azureHybridBenefit: S.optional(AzureHybridBenefit),
+    gateway: S.optional(Gateway),
+  }),
+).annotate({
+  identifier: "ConnectedClusterPatchProperties",
+}) as any as S.Schema<ConnectedClusterPatchProperties>;
+
+export interface UpdateConnectedClusterRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Kubernetes cluster on which get is called. */
+  clusterName: string;
+  /** Resource tags. */
+  tags?: UpdateConnectedClusterRequestTagsMap;
+  /** Describes the connected cluster resource properties that can be updated during PATCH operation. */
+  properties?: ConnectedClusterPatchProperties;
+}
+export const UpdateConnectedClusterRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    clusterName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateConnectedClusterRequestTagsMap),
+    properties: S.optional(ConnectedClusterPatchProperties),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Kubernetes/connectedClusters/{clusterName}",
+      code: 200,
+      apiVersion: "2026-05-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateConnectedClusterRequest",
+}) as any as S.Schema<UpdateConnectedClusterRequest>;
+
+/** Resource tags. */
+export type UpdateConnectedClusterResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateConnectedClusterResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateConnectedClusterResponseTagsMap>;
+
+export interface UpdateConnectedClusterResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateConnectedClusterResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Describes the connected cluster resource properties. */
+  properties: ConnectedClusterProperties;
+  /** The identity of the connected cluster. */
+  identity: ConnectedClusterIdentity;
+  /** The kind of connected cluster. */
+  kind?: ConnectedClusterKind;
+}
+export const UpdateConnectedClusterResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateConnectedClusterResponseTagsMap),
+    location: S.String,
+    properties: ConnectedClusterProperties,
+    identity: ConnectedClusterIdentity,
+    kind: S.optional(ConnectedClusterKind),
+  }),
+).annotate({
+  identifier: "UpdateConnectedClusterResponse",
+}) as any as S.Schema<UpdateConnectedClusterResponse>;
+
 export type ConnectedClusterCreateOrReplaceError = AzureOpError;
 /** Register a new Kubernetes cluster with Azure Resource Manager. API to register a new Kubernetes cluster and create or replace a connected cluster tracked resource in Azure Resource Manager (ARM). */
 export const ConnectedClusterCreateOrReplace: API.OperationMethod<
@@ -1227,106 +1227,106 @@ export const ConnectedClusterCreateOrReplace: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ConnectedClusterDeleteError = AzureOpError;
+export type DeleteConnectedClusterError = AzureOpError;
 /** Delete a connected cluster. Delete a connected cluster, removing the tracked resource in Azure Resource Manager (ARM). */
-export const ConnectedClusterDelete: API.OperationMethod<
-  ConnectedClusterDeleteRequest,
-  ConnectedClusterDeleteResponse,
-  ConnectedClusterDeleteError,
+export const DeleteConnectedCluster: API.OperationMethod<
+  DeleteConnectedClusterRequest,
+  DeleteConnectedClusterResponse,
+  DeleteConnectedClusterError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ConnectedClusterDeleteRequest,
-  output: ConnectedClusterDeleteResponse,
+  input: DeleteConnectedClusterRequest,
+  output: DeleteConnectedClusterResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ConnectedClusterGetError = AzureOpError;
+export type GetConnectedClusterError = AzureOpError;
 /** Get the properties of the specified connected cluster. Returns the properties of the specified connected cluster, including name, identity, properties, and additional cluster details. */
-export const ConnectedClusterGet: API.OperationMethod<
-  ConnectedClusterGetRequest,
-  ConnectedClusterGetResponse,
-  ConnectedClusterGetError,
+export const GetConnectedCluster: API.OperationMethod<
+  GetConnectedClusterRequest,
+  GetConnectedClusterResponse,
+  GetConnectedClusterError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ConnectedClusterGetRequest,
-  output: ConnectedClusterGetResponse,
+  input: GetConnectedClusterRequest,
+  output: GetConnectedClusterResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ConnectedClusterListByResourceGroupError = AzureOpError;
+export type GetOperationError = AzureOpError;
+/** List the operations for the provider */
+export const GetOperation: API.OperationMethod<
+  GetOperationRequest,
+  OperationList,
+  GetOperationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetOperationRequest,
+  output: OperationList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListConnectedClusterByResourceGroupError = AzureOpError;
 /** Lists all connected clusters in the given Resource Group API to enumerate registered connected K8s clusters under a Resource Group */
-export const ConnectedClusterListByResourceGroup: API.OperationMethod<
-  ConnectedClusterListByResourceGroupRequest,
+export const ListConnectedClusterByResourceGroup: API.OperationMethod<
+  ListConnectedClusterByResourceGroupRequest,
   ConnectedClusterList,
-  ConnectedClusterListByResourceGroupError,
+  ListConnectedClusterByResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ConnectedClusterListByResourceGroupRequest,
+  input: ListConnectedClusterByResourceGroupRequest,
   output: ConnectedClusterList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ConnectedClusterListBySubscriptionError = AzureOpError;
+export type ListConnectedClusterBySubscriptionError = AzureOpError;
 /** Lists all connected clusters in the given Subscription API to enumerate registered connected K8s clusters under a Subscription */
-export const ConnectedClusterListBySubscription: API.OperationMethod<
-  ConnectedClusterListBySubscriptionRequest,
+export const ListConnectedClusterBySubscription: API.OperationMethod<
+  ListConnectedClusterBySubscriptionRequest,
   ConnectedClusterList,
-  ConnectedClusterListBySubscriptionError,
+  ListConnectedClusterBySubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ConnectedClusterListBySubscriptionRequest,
+  input: ListConnectedClusterBySubscriptionRequest,
   output: ConnectedClusterList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ConnectedClusterListClusterUserCredentialError = AzureOpError;
+export type ListConnectedClusterClusterUserCredentialError = AzureOpError;
 /** Gets cluster user credentials of a connected cluster Gets cluster user credentials of the connected cluster with a specified resource group and name. */
-export const ConnectedClusterListClusterUserCredential: API.OperationMethod<
-  ConnectedClusterListClusterUserCredentialRequest,
+export const ListConnectedClusterClusterUserCredential: API.OperationMethod<
+  ListConnectedClusterClusterUserCredentialRequest,
   CredentialResults,
-  ConnectedClusterListClusterUserCredentialError,
+  ListConnectedClusterClusterUserCredentialError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ConnectedClusterListClusterUserCredentialRequest,
+  input: ListConnectedClusterClusterUserCredentialRequest,
   output: CredentialResults,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ConnectedClusterUpdateError = AzureOpError;
+export type UpdateConnectedClusterError = AzureOpError;
 /** Updates a connected cluster. API to update certain properties of the connected cluster resource */
-export const ConnectedClusterUpdate: API.OperationMethod<
-  ConnectedClusterUpdateRequest,
-  ConnectedClusterUpdateResponse,
-  ConnectedClusterUpdateError,
+export const UpdateConnectedCluster: API.OperationMethod<
+  UpdateConnectedClusterRequest,
+  UpdateConnectedClusterResponse,
+  UpdateConnectedClusterError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ConnectedClusterUpdateRequest,
-  output: ConnectedClusterUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type OperationsGetError = AzureOpError;
-/** List the operations for the provider */
-export const OperationsGet: API.OperationMethod<
-  OperationsGetRequest,
-  OperationList,
-  OperationsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: OperationsGetRequest,
-  output: OperationList,
+  input: UpdateConnectedClusterRequest,
+  output: UpdateConnectedClusterResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

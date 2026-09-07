@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.session_recordings#SessionRecordingsSharingListRequest": {
+    "com.posthog.session_recordings#ListSessionRecordingsSharingRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -108,18 +109,18 @@
       },
       "traits": {}
     },
-    "com.posthog.session_recordings#SessionRecordingsSharingListResponseBodyList": {
+    "com.posthog.session_recordings#ListSessionRecordingsSharingResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.posthog.session_recordings#SharingConfiguration"
       },
       "traits": {}
     },
-    "com.posthog.session_recordings#SessionRecordingsSharingListResponse": {
+    "com.posthog.session_recordings#ListSessionRecordingsSharingResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.posthog.session_recordings#SessionRecordingsSharingListResponseBodyList",
+          "target": "com.posthog.session_recordings#ListSessionRecordingsSharingResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -130,13 +131,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.posthog.session_recordings#SessionRecordingsSharingList": {
+    "com.posthog.session_recordings#ListSessionRecordingsSharing": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.session_recordings#SessionRecordingsSharingListRequest"
+        "target": "com.posthog.session_recordings#ListSessionRecordingsSharingRequest"
       },
       "output": {
-        "target": "com.posthog.session_recordings#SessionRecordingsSharingListResponse"
+        "target": "com.posthog.session_recordings#ListSessionRecordingsSharingResponse"
       },
       "errors": [
         {
@@ -154,7 +155,7 @@
         }
       }
     },
-    "com.posthog.session_recordings#SessionRecordingsSharingPasswordsCreateRequest": {
+    "com.posthog.session_recordings#CreateSessionRecordingsSharingPasswordRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -186,10 +187,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.session_recordings#SessionRecordingsSharingPasswordsCreate": {
+    "com.posthog.session_recordings#CreateSessionRecordingsSharingPassword": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.session_recordings#SessionRecordingsSharingPasswordsCreateRequest"
+        "target": "com.posthog.session_recordings#CreateSessionRecordingsSharingPasswordRequest"
       },
       "output": {
         "target": "com.posthog.session_recordings#SharingConfiguration"
@@ -372,10 +373,10 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.session_recordings#SessionRecordingsSharingList"
+          "target": "com.posthog.session_recordings#ListSessionRecordingsSharing"
         },
         {
-          "target": "com.posthog.session_recordings#SessionRecordingsSharingPasswordsCreate"
+          "target": "com.posthog.session_recordings#CreateSessionRecordingsSharingPassword"
         },
         {
           "target": "com.posthog.session_recordings#SessionRecordingsSharingPasswordsDestroy"

@@ -4,7 +4,8 @@
     "service": "playcustomapp",
     "version": "v1",
     "title": "Google Play Custom App Publishing API",
-    "baseUrl": "https://playcustomapp.googleapis.com/"
+    "baseUrl": "https://playcustomapp.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
     "com.gcp.playcustomapp_v1#CustomApp": {
@@ -22,16 +23,16 @@
             "smithy.api#documentation": "Output only. Package name of the created Android app. Only present in the API response."
           }
         },
-        "languageCode": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Default listing language in BCP 47 format."
-          }
-        },
         "title": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Title for the Android app."
+          }
+        },
+        "languageCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Default listing language in BCP 47 format."
           }
         }
       },

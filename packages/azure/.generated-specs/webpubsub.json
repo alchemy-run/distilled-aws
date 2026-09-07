@@ -14,13 +14,14 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.webpubsub#WebPubSubListSkus": {
+    "com.azure.webpubsub#ListWebPubSubSkus": {
       "type": "operation",
       "input": {
-        "target": "com.azure.webpubsub#WebPubSubListSkusRequest"
+        "target": "com.azure.webpubsub#ListWebPubSubSkusRequest"
       },
       "output": {
         "target": "com.azure.webpubsub#SkuList"
@@ -223,7 +224,7 @@
         "smithy.api#documentation": "Optional tier of this particular SKU. 'Standard' or 'Free'. \r\n\r\n`Basic` is deprecated, use `Standard` instead."
       }
     },
-    "com.azure.webpubsub#WebPubSubListSkusRequest": {
+    "com.azure.webpubsub#ListWebPubSubSkusRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -255,10 +256,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.webpubsub#WebPubSubSharedPrivateLinkResourcesDelete": {
+    "com.azure.webpubsub#DeleteWebPubSubSharedPrivateLinkResource": {
       "type": "operation",
       "input": {
-        "target": "com.azure.webpubsub#WebPubSubSharedPrivateLinkResourcesDeleteRequest"
+        "target": "com.azure.webpubsub#DeleteWebPubSubSharedPrivateLinkResourceRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -274,7 +275,7 @@
         "com.distilled.openapi#apiVersion": "2024-03-01"
       }
     },
-    "com.azure.webpubsub#WebPubSubSharedPrivateLinkResourcesDeleteRequest": {
+    "com.azure.webpubsub#DeleteWebPubSubSharedPrivateLinkResourceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -681,13 +682,13 @@
         "smithy.api#documentation": "Describes the properties of an existing Shared Private Link Resource"
       }
     },
-    "com.azure.webpubsub#WebPubSubSharedPrivateLinkResourcesGet": {
+    "com.azure.webpubsub#GetWebPubSubSharedPrivateLinkResource": {
       "type": "operation",
       "input": {
-        "target": "com.azure.webpubsub#WebPubSubSharedPrivateLinkResourcesGetRequest"
+        "target": "com.azure.webpubsub#GetWebPubSubSharedPrivateLinkResourceRequest"
       },
       "output": {
-        "target": "com.azure.webpubsub#WebPubSubSharedPrivateLinkResourcesGetResponse"
+        "target": "com.azure.webpubsub#GetWebPubSubSharedPrivateLinkResourceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -700,7 +701,7 @@
         "com.distilled.openapi#apiVersion": "2024-03-01"
       }
     },
-    "com.azure.webpubsub#WebPubSubSharedPrivateLinkResourcesGetResponse": {
+    "com.azure.webpubsub#GetWebPubSubSharedPrivateLinkResourceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -735,7 +736,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.webpubsub#WebPubSubSharedPrivateLinkResourcesGetRequest": {
+    "com.azure.webpubsub#GetWebPubSubSharedPrivateLinkResourceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -775,10 +776,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.webpubsub#WebPubSubSharedPrivateLinkResourcesList": {
+    "com.azure.webpubsub#ListWebPubSubSharedPrivateLinkResources": {
       "type": "operation",
       "input": {
-        "target": "com.azure.webpubsub#WebPubSubSharedPrivateLinkResourcesListRequest"
+        "target": "com.azure.webpubsub#ListWebPubSubSharedPrivateLinkResourcesRequest"
       },
       "output": {
         "target": "com.azure.webpubsub#SharedPrivateLinkResourceList"
@@ -858,7 +859,7 @@
         "smithy.api#documentation": "Describes a Shared Private Link Resource"
       }
     },
-    "com.azure.webpubsub#WebPubSubSharedPrivateLinkResourcesListRequest": {
+    "com.azure.webpubsub#ListWebPubSubSharedPrivateLinkResourcesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -890,10 +891,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.webpubsub#WebPubSubRestart": {
+    "com.azure.webpubsub#RestartWebPubSub": {
       "type": "operation",
       "input": {
-        "target": "com.azure.webpubsub#WebPubSubRestartRequest"
+        "target": "com.azure.webpubsub#RestartWebPubSubRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -909,7 +910,7 @@
         "com.distilled.openapi#apiVersion": "2024-03-01"
       }
     },
-    "com.azure.webpubsub#WebPubSubRestartRequest": {
+    "com.azure.webpubsub#RestartWebPubSubRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -941,10 +942,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.webpubsub#WebPubSubListReplicaSkus": {
+    "com.azure.webpubsub#ListWebPubSubReplicaSkus": {
       "type": "operation",
       "input": {
-        "target": "com.azure.webpubsub#WebPubSubListReplicaSkusRequest"
+        "target": "com.azure.webpubsub#ListWebPubSubReplicaSkusRequest"
       },
       "output": {
         "target": "com.azure.webpubsub#SkuList"
@@ -960,7 +961,7 @@
         "com.distilled.openapi#apiVersion": "2024-03-01"
       }
     },
-    "com.azure.webpubsub#WebPubSubListReplicaSkusRequest": {
+    "com.azure.webpubsub#ListWebPubSubReplicaSkusRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1105,13 +1106,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.webpubsub#WebPubSubReplicaSharedPrivateLinkResourcesGet": {
+    "com.azure.webpubsub#GetWebPubSubReplicaSharedPrivateLinkResource": {
       "type": "operation",
       "input": {
-        "target": "com.azure.webpubsub#WebPubSubReplicaSharedPrivateLinkResourcesGetRequest"
+        "target": "com.azure.webpubsub#GetWebPubSubReplicaSharedPrivateLinkResourceRequest"
       },
       "output": {
-        "target": "com.azure.webpubsub#WebPubSubReplicaSharedPrivateLinkResourcesGetResponse"
+        "target": "com.azure.webpubsub#GetWebPubSubReplicaSharedPrivateLinkResourceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1124,7 +1125,7 @@
         "com.distilled.openapi#apiVersion": "2024-03-01"
       }
     },
-    "com.azure.webpubsub#WebPubSubReplicaSharedPrivateLinkResourcesGetResponse": {
+    "com.azure.webpubsub#GetWebPubSubReplicaSharedPrivateLinkResourceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1159,7 +1160,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.webpubsub#WebPubSubReplicaSharedPrivateLinkResourcesGetRequest": {
+    "com.azure.webpubsub#GetWebPubSubReplicaSharedPrivateLinkResourceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1207,10 +1208,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.webpubsub#WebPubSubReplicaSharedPrivateLinkResourcesList": {
+    "com.azure.webpubsub#ListWebPubSubReplicaSharedPrivateLinkResources": {
       "type": "operation",
       "input": {
-        "target": "com.azure.webpubsub#WebPubSubReplicaSharedPrivateLinkResourcesListRequest"
+        "target": "com.azure.webpubsub#ListWebPubSubReplicaSharedPrivateLinkResourcesRequest"
       },
       "output": {
         "target": "com.azure.webpubsub#SharedPrivateLinkResourceList"
@@ -1226,7 +1227,7 @@
         "com.distilled.openapi#apiVersion": "2024-03-01"
       }
     },
-    "com.azure.webpubsub#WebPubSubReplicaSharedPrivateLinkResourcesListRequest": {
+    "com.azure.webpubsub#ListWebPubSubReplicaSharedPrivateLinkResourcesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1266,10 +1267,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.webpubsub#WebPubSubReplicasRestart": {
+    "com.azure.webpubsub#RestartWebPubSubReplicas": {
       "type": "operation",
       "input": {
-        "target": "com.azure.webpubsub#WebPubSubReplicasRestartRequest"
+        "target": "com.azure.webpubsub#RestartWebPubSubReplicasRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1285,7 +1286,7 @@
         "com.distilled.openapi#apiVersion": "2024-03-01"
       }
     },
-    "com.azure.webpubsub#WebPubSubReplicasRestartRequest": {
+    "com.azure.webpubsub#RestartWebPubSubReplicasRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1325,10 +1326,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.webpubsub#WebPubSubReplicasDelete": {
+    "com.azure.webpubsub#DeleteWebPubSubReplicas": {
       "type": "operation",
       "input": {
-        "target": "com.azure.webpubsub#WebPubSubReplicasDeleteRequest"
+        "target": "com.azure.webpubsub#DeleteWebPubSubReplicasRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1344,7 +1345,7 @@
         "com.distilled.openapi#apiVersion": "2024-03-01"
       }
     },
-    "com.azure.webpubsub#WebPubSubReplicasDeleteRequest": {
+    "com.azure.webpubsub#DeleteWebPubSubReplicasRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1384,13 +1385,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.webpubsub#WebPubSubReplicasUpdate": {
+    "com.azure.webpubsub#UpdateWebPubSubReplicas": {
       "type": "operation",
       "input": {
-        "target": "com.azure.webpubsub#WebPubSubReplicasUpdateRequest"
+        "target": "com.azure.webpubsub#UpdateWebPubSubReplicasRequest"
       },
       "output": {
-        "target": "com.azure.webpubsub#WebPubSubReplicasUpdateResponse"
+        "target": "com.azure.webpubsub#UpdateWebPubSubReplicasResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1403,7 +1404,7 @@
         "com.distilled.openapi#apiVersion": "2024-03-01"
       }
     },
-    "com.azure.webpubsub#WebPubSubReplicasUpdateResponse": {
+    "com.azure.webpubsub#UpdateWebPubSubReplicasResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1431,7 +1432,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.webpubsub#WebPubSubReplicasUpdateResponseTagsMap",
+          "target": "com.azure.webpubsub#UpdateWebPubSubReplicasResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1475,7 +1476,7 @@
       },
       "traits": {}
     },
-    "com.azure.webpubsub#WebPubSubReplicasUpdateResponseTagsMap": {
+    "com.azure.webpubsub#UpdateWebPubSubReplicasResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1487,7 +1488,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.webpubsub#WebPubSubReplicasUpdateRequest": {
+    "com.azure.webpubsub#UpdateWebPubSubReplicasRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1523,7 +1524,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.webpubsub#WebPubSubReplicasUpdateRequestTagsMap",
+          "target": "com.azure.webpubsub#UpdateWebPubSubReplicasRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1588,7 +1589,7 @@
         "smithy.api#documentation": "The billing information of the resource."
       }
     },
-    "com.azure.webpubsub#WebPubSubReplicasUpdateRequestTagsMap": {
+    "com.azure.webpubsub#UpdateWebPubSubReplicasRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1753,13 +1754,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.webpubsub#WebPubSubReplicasGet": {
+    "com.azure.webpubsub#GetWebPubSubReplicas": {
       "type": "operation",
       "input": {
-        "target": "com.azure.webpubsub#WebPubSubReplicasGetRequest"
+        "target": "com.azure.webpubsub#GetWebPubSubReplicasRequest"
       },
       "output": {
-        "target": "com.azure.webpubsub#WebPubSubReplicasGetResponse"
+        "target": "com.azure.webpubsub#GetWebPubSubReplicasResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1772,7 +1773,7 @@
         "com.distilled.openapi#apiVersion": "2024-03-01"
       }
     },
-    "com.azure.webpubsub#WebPubSubReplicasGetResponse": {
+    "com.azure.webpubsub#GetWebPubSubReplicasResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1800,7 +1801,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.webpubsub#WebPubSubReplicasGetResponseTagsMap",
+          "target": "com.azure.webpubsub#GetWebPubSubReplicasResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1823,7 +1824,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.webpubsub#WebPubSubReplicasGetResponseTagsMap": {
+    "com.azure.webpubsub#GetWebPubSubReplicasResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1835,7 +1836,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.webpubsub#WebPubSubReplicasGetRequest": {
+    "com.azure.webpubsub#GetWebPubSubReplicasRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1875,10 +1876,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.webpubsub#WebPubSubReplicasList": {
+    "com.azure.webpubsub#ListWebPubSubReplicas": {
       "type": "operation",
       "input": {
-        "target": "com.azure.webpubsub#WebPubSubReplicasListRequest"
+        "target": "com.azure.webpubsub#ListWebPubSubReplicasRequest"
       },
       "output": {
         "target": "com.azure.webpubsub#ReplicaList"
@@ -1984,7 +1985,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.webpubsub#WebPubSubReplicasListRequest": {
+    "com.azure.webpubsub#ListWebPubSubReplicasRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2016,10 +2017,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.webpubsub#WebPubSubRegenerateKey": {
+    "com.azure.webpubsub#RegenerateWebPubSubKey": {
       "type": "operation",
       "input": {
-        "target": "com.azure.webpubsub#WebPubSubRegenerateKeyRequest"
+        "target": "com.azure.webpubsub#RegenerateWebPubSubKeyRequest"
       },
       "output": {
         "target": "com.azure.webpubsub#WebPubSubKeys"
@@ -2067,7 +2068,7 @@
         "smithy.api#documentation": "A class represents the access keys of the resource."
       }
     },
-    "com.azure.webpubsub#WebPubSubRegenerateKeyRequest": {
+    "com.azure.webpubsub#RegenerateWebPubSubKeyRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2128,10 +2129,10 @@
         "smithy.api#documentation": "The type of access key."
       }
     },
-    "com.azure.webpubsub#WebPubSubPrivateLinkResourcesList": {
+    "com.azure.webpubsub#ListWebPubSubPrivateLinkResources": {
       "type": "operation",
       "input": {
-        "target": "com.azure.webpubsub#WebPubSubPrivateLinkResourcesListRequest"
+        "target": "com.azure.webpubsub#ListWebPubSubPrivateLinkResourcesRequest"
       },
       "output": {
         "target": "com.azure.webpubsub#PrivateLinkResourceList"
@@ -2313,7 +2314,7 @@
         "smithy.api#documentation": "Required members of the private link resource"
       }
     },
-    "com.azure.webpubsub#WebPubSubPrivateLinkResourcesListRequest": {
+    "com.azure.webpubsub#ListWebPubSubPrivateLinkResourcesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2345,10 +2346,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.webpubsub#WebPubSubPrivateEndpointConnectionsDelete": {
+    "com.azure.webpubsub#DeleteWebPubSubPrivateEndpointConnection": {
       "type": "operation",
       "input": {
-        "target": "com.azure.webpubsub#WebPubSubPrivateEndpointConnectionsDeleteRequest"
+        "target": "com.azure.webpubsub#DeleteWebPubSubPrivateEndpointConnectionRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2364,7 +2365,7 @@
         "com.distilled.openapi#apiVersion": "2024-03-01"
       }
     },
-    "com.azure.webpubsub#WebPubSubPrivateEndpointConnectionsDeleteRequest": {
+    "com.azure.webpubsub#DeleteWebPubSubPrivateEndpointConnectionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2404,13 +2405,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.webpubsub#WebPubSubPrivateEndpointConnectionsUpdate": {
+    "com.azure.webpubsub#UpdateWebPubSubPrivateEndpointConnection": {
       "type": "operation",
       "input": {
-        "target": "com.azure.webpubsub#WebPubSubPrivateEndpointConnectionsUpdateRequest"
+        "target": "com.azure.webpubsub#UpdateWebPubSubPrivateEndpointConnectionRequest"
       },
       "output": {
-        "target": "com.azure.webpubsub#WebPubSubPrivateEndpointConnectionsUpdateResponse"
+        "target": "com.azure.webpubsub#UpdateWebPubSubPrivateEndpointConnectionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2423,7 +2424,7 @@
         "com.distilled.openapi#apiVersion": "2024-03-01"
       }
     },
-    "com.azure.webpubsub#WebPubSubPrivateEndpointConnectionsUpdateResponse": {
+    "com.azure.webpubsub#UpdateWebPubSubPrivateEndpointConnectionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2559,7 +2560,7 @@
         "smithy.api#documentation": "Private endpoint"
       }
     },
-    "com.azure.webpubsub#WebPubSubPrivateEndpointConnectionsUpdateRequest": {
+    "com.azure.webpubsub#UpdateWebPubSubPrivateEndpointConnectionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2616,13 +2617,13 @@
         "smithy.api#documentation": "Private endpoint connection properties"
       }
     },
-    "com.azure.webpubsub#WebPubSubPrivateEndpointConnectionsGet": {
+    "com.azure.webpubsub#GetWebPubSubPrivateEndpointConnection": {
       "type": "operation",
       "input": {
-        "target": "com.azure.webpubsub#WebPubSubPrivateEndpointConnectionsGetRequest"
+        "target": "com.azure.webpubsub#GetWebPubSubPrivateEndpointConnectionRequest"
       },
       "output": {
-        "target": "com.azure.webpubsub#WebPubSubPrivateEndpointConnectionsGetResponse"
+        "target": "com.azure.webpubsub#GetWebPubSubPrivateEndpointConnectionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2635,7 +2636,7 @@
         "com.distilled.openapi#apiVersion": "2024-03-01"
       }
     },
-    "com.azure.webpubsub#WebPubSubPrivateEndpointConnectionsGetResponse": {
+    "com.azure.webpubsub#GetWebPubSubPrivateEndpointConnectionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2670,7 +2671,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.webpubsub#WebPubSubPrivateEndpointConnectionsGetRequest": {
+    "com.azure.webpubsub#GetWebPubSubPrivateEndpointConnectionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2710,10 +2711,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.webpubsub#WebPubSubPrivateEndpointConnectionsList": {
+    "com.azure.webpubsub#ListWebPubSubPrivateEndpointConnections": {
       "type": "operation",
       "input": {
-        "target": "com.azure.webpubsub#WebPubSubPrivateEndpointConnectionsListRequest"
+        "target": "com.azure.webpubsub#ListWebPubSubPrivateEndpointConnectionsRequest"
       },
       "output": {
         "target": "com.azure.webpubsub#PrivateEndpointConnectionList"
@@ -2793,7 +2794,7 @@
         "smithy.api#documentation": "A private endpoint connection to an azure resource"
       }
     },
-    "com.azure.webpubsub#WebPubSubPrivateEndpointConnectionsListRequest": {
+    "com.azure.webpubsub#ListWebPubSubPrivateEndpointConnectionsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2825,10 +2826,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.webpubsub#WebPubSubListKeys": {
+    "com.azure.webpubsub#ListWebPubSubKeys": {
       "type": "operation",
       "input": {
-        "target": "com.azure.webpubsub#WebPubSubListKeysRequest"
+        "target": "com.azure.webpubsub#ListWebPubSubKeysRequest"
       },
       "output": {
         "target": "com.azure.webpubsub#WebPubSubKeys"
@@ -2844,7 +2845,7 @@
         "com.distilled.openapi#apiVersion": "2024-03-01"
       }
     },
-    "com.azure.webpubsub#WebPubSubListKeysRequest": {
+    "com.azure.webpubsub#ListWebPubSubKeysRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2876,10 +2877,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.webpubsub#WebPubSubHubsDelete": {
+    "com.azure.webpubsub#DeleteWebPubSubHub": {
       "type": "operation",
       "input": {
-        "target": "com.azure.webpubsub#WebPubSubHubsDeleteRequest"
+        "target": "com.azure.webpubsub#DeleteWebPubSubHubRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2895,7 +2896,7 @@
         "com.distilled.openapi#apiVersion": "2024-03-01"
       }
     },
-    "com.azure.webpubsub#WebPubSubHubsDeleteRequest": {
+    "com.azure.webpubsub#DeleteWebPubSubHubRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3247,13 +3248,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.webpubsub#WebPubSubHubsGet": {
+    "com.azure.webpubsub#GetWebPubSubHub": {
       "type": "operation",
       "input": {
-        "target": "com.azure.webpubsub#WebPubSubHubsGetRequest"
+        "target": "com.azure.webpubsub#GetWebPubSubHubRequest"
       },
       "output": {
-        "target": "com.azure.webpubsub#WebPubSubHubsGetResponse"
+        "target": "com.azure.webpubsub#GetWebPubSubHubResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3266,7 +3267,7 @@
         "com.distilled.openapi#apiVersion": "2024-03-01"
       }
     },
-    "com.azure.webpubsub#WebPubSubHubsGetResponse": {
+    "com.azure.webpubsub#GetWebPubSubHubResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3304,7 +3305,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.webpubsub#WebPubSubHubsGetRequest": {
+    "com.azure.webpubsub#GetWebPubSubHubRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3344,10 +3345,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.webpubsub#WebPubSubHubsList": {
+    "com.azure.webpubsub#ListWebPubSubHubs": {
       "type": "operation",
       "input": {
-        "target": "com.azure.webpubsub#WebPubSubHubsListRequest"
+        "target": "com.azure.webpubsub#ListWebPubSubHubsRequest"
       },
       "output": {
         "target": "com.azure.webpubsub#WebPubSubHubList"
@@ -3430,7 +3431,7 @@
         "smithy.api#documentation": "A hub setting"
       }
     },
-    "com.azure.webpubsub#WebPubSubHubsListRequest": {
+    "com.azure.webpubsub#ListWebPubSubHubsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3462,10 +3463,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.webpubsub#WebPubSubCustomDomainsDelete": {
+    "com.azure.webpubsub#DeleteWebPubSubCustomDomain": {
       "type": "operation",
       "input": {
-        "target": "com.azure.webpubsub#WebPubSubCustomDomainsDeleteRequest"
+        "target": "com.azure.webpubsub#DeleteWebPubSubCustomDomainRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3481,7 +3482,7 @@
         "com.distilled.openapi#apiVersion": "2024-03-01"
       }
     },
-    "com.azure.webpubsub#WebPubSubCustomDomainsDeleteRequest": {
+    "com.azure.webpubsub#DeleteWebPubSubCustomDomainRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3683,13 +3684,13 @@
         "smithy.api#documentation": "Properties of a custom domain."
       }
     },
-    "com.azure.webpubsub#WebPubSubCustomDomainsGet": {
+    "com.azure.webpubsub#GetWebPubSubCustomDomain": {
       "type": "operation",
       "input": {
-        "target": "com.azure.webpubsub#WebPubSubCustomDomainsGetRequest"
+        "target": "com.azure.webpubsub#GetWebPubSubCustomDomainRequest"
       },
       "output": {
-        "target": "com.azure.webpubsub#WebPubSubCustomDomainsGetResponse"
+        "target": "com.azure.webpubsub#GetWebPubSubCustomDomainResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3702,7 +3703,7 @@
         "com.distilled.openapi#apiVersion": "2024-03-01"
       }
     },
-    "com.azure.webpubsub#WebPubSubCustomDomainsGetResponse": {
+    "com.azure.webpubsub#GetWebPubSubCustomDomainResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3740,7 +3741,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.webpubsub#WebPubSubCustomDomainsGetRequest": {
+    "com.azure.webpubsub#GetWebPubSubCustomDomainRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3780,10 +3781,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.webpubsub#WebPubSubCustomDomainsList": {
+    "com.azure.webpubsub#ListWebPubSubCustomDomains": {
       "type": "operation",
       "input": {
-        "target": "com.azure.webpubsub#WebPubSubCustomDomainsListRequest"
+        "target": "com.azure.webpubsub#ListWebPubSubCustomDomainsRequest"
       },
       "output": {
         "target": "com.azure.webpubsub#CustomDomainList"
@@ -3866,7 +3867,7 @@
         "smithy.api#documentation": "A custom domain"
       }
     },
-    "com.azure.webpubsub#WebPubSubCustomDomainsListRequest": {
+    "com.azure.webpubsub#ListWebPubSubCustomDomainsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3898,10 +3899,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.webpubsub#WebPubSubCustomCertificatesDelete": {
+    "com.azure.webpubsub#DeleteWebPubSubCustomCertificate": {
       "type": "operation",
       "input": {
-        "target": "com.azure.webpubsub#WebPubSubCustomCertificatesDeleteRequest"
+        "target": "com.azure.webpubsub#DeleteWebPubSubCustomCertificateRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3917,7 +3918,7 @@
         "com.distilled.openapi#apiVersion": "2024-03-01"
       }
     },
-    "com.azure.webpubsub#WebPubSubCustomCertificatesDeleteRequest": {
+    "com.azure.webpubsub#DeleteWebPubSubCustomCertificateRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4119,13 +4120,13 @@
         "smithy.api#documentation": "Custom certificate properties."
       }
     },
-    "com.azure.webpubsub#WebPubSubCustomCertificatesGet": {
+    "com.azure.webpubsub#GetWebPubSubCustomCertificate": {
       "type": "operation",
       "input": {
-        "target": "com.azure.webpubsub#WebPubSubCustomCertificatesGetRequest"
+        "target": "com.azure.webpubsub#GetWebPubSubCustomCertificateRequest"
       },
       "output": {
-        "target": "com.azure.webpubsub#WebPubSubCustomCertificatesGetResponse"
+        "target": "com.azure.webpubsub#GetWebPubSubCustomCertificateResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4138,7 +4139,7 @@
         "com.distilled.openapi#apiVersion": "2024-03-01"
       }
     },
-    "com.azure.webpubsub#WebPubSubCustomCertificatesGetResponse": {
+    "com.azure.webpubsub#GetWebPubSubCustomCertificateResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -4176,7 +4177,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.webpubsub#WebPubSubCustomCertificatesGetRequest": {
+    "com.azure.webpubsub#GetWebPubSubCustomCertificateRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4216,10 +4217,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.webpubsub#WebPubSubCustomCertificatesList": {
+    "com.azure.webpubsub#ListWebPubSubCustomCertificates": {
       "type": "operation",
       "input": {
-        "target": "com.azure.webpubsub#WebPubSubCustomCertificatesListRequest"
+        "target": "com.azure.webpubsub#ListWebPubSubCustomCertificatesRequest"
       },
       "output": {
         "target": "com.azure.webpubsub#CustomCertificateList"
@@ -4302,7 +4303,7 @@
         "smithy.api#documentation": "A custom certificate."
       }
     },
-    "com.azure.webpubsub#WebPubSubCustomCertificatesListRequest": {
+    "com.azure.webpubsub#ListWebPubSubCustomCertificatesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4334,10 +4335,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.webpubsub#WebPubSubDelete": {
+    "com.azure.webpubsub#DeleteWebPubSub": {
       "type": "operation",
       "input": {
-        "target": "com.azure.webpubsub#WebPubSubDeleteRequest"
+        "target": "com.azure.webpubsub#DeleteWebPubSubRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4353,7 +4354,7 @@
         "com.distilled.openapi#apiVersion": "2024-03-01"
       }
     },
-    "com.azure.webpubsub#WebPubSubDeleteRequest": {
+    "com.azure.webpubsub#DeleteWebPubSubRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4385,13 +4386,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.webpubsub#WebPubSubUpdate": {
+    "com.azure.webpubsub#UpdateWebPubSub": {
       "type": "operation",
       "input": {
-        "target": "com.azure.webpubsub#WebPubSubUpdateRequest"
+        "target": "com.azure.webpubsub#UpdateWebPubSubRequest"
       },
       "output": {
-        "target": "com.azure.webpubsub#WebPubSubUpdateResponse"
+        "target": "com.azure.webpubsub#UpdateWebPubSubResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4404,7 +4405,7 @@
         "com.distilled.openapi#apiVersion": "2024-03-01"
       }
     },
-    "com.azure.webpubsub#WebPubSubUpdateResponse": {
+    "com.azure.webpubsub#UpdateWebPubSubResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -4432,7 +4433,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.webpubsub#WebPubSubUpdateResponseTagsMap",
+          "target": "com.azure.webpubsub#UpdateWebPubSubResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -5006,7 +5007,7 @@
         "smithy.api#documentation": "Private endpoint connections to the resource."
       }
     },
-    "com.azure.webpubsub#WebPubSubUpdateResponseTagsMap": {
+    "com.azure.webpubsub#UpdateWebPubSubResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5018,7 +5019,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.webpubsub#WebPubSubUpdateRequest": {
+    "com.azure.webpubsub#UpdateWebPubSubRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5046,7 +5047,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.webpubsub#WebPubSubUpdateRequestTagsMap",
+          "target": "com.azure.webpubsub#UpdateWebPubSubRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -5164,7 +5165,7 @@
         "smithy.api#documentation": "A class that describes the properties of the resource"
       }
     },
-    "com.azure.webpubsub#WebPubSubUpdateRequestTagsMap": {
+    "com.azure.webpubsub#UpdateWebPubSubRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5333,13 +5334,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.webpubsub#WebPubSubGet": {
+    "com.azure.webpubsub#GetWebPubSub": {
       "type": "operation",
       "input": {
-        "target": "com.azure.webpubsub#WebPubSubGetRequest"
+        "target": "com.azure.webpubsub#GetWebPubSubRequest"
       },
       "output": {
-        "target": "com.azure.webpubsub#WebPubSubGetResponse"
+        "target": "com.azure.webpubsub#GetWebPubSubResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5352,7 +5353,7 @@
         "com.distilled.openapi#apiVersion": "2024-03-01"
       }
     },
-    "com.azure.webpubsub#WebPubSubGetResponse": {
+    "com.azure.webpubsub#GetWebPubSubResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -5380,7 +5381,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.webpubsub#WebPubSubGetResponseTagsMap",
+          "target": "com.azure.webpubsub#GetWebPubSubResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -5409,7 +5410,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.webpubsub#WebPubSubGetResponseTagsMap": {
+    "com.azure.webpubsub#GetWebPubSubResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5421,7 +5422,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.webpubsub#WebPubSubGetRequest": {
+    "com.azure.webpubsub#GetWebPubSubRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5453,10 +5454,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.webpubsub#WebPubSubListByResourceGroup": {
+    "com.azure.webpubsub#ListWebPubSubByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.webpubsub#WebPubSubListByResourceGroupRequest"
+        "target": "com.azure.webpubsub#ListWebPubSubByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.webpubsub#WebPubSubResourceList"
@@ -5570,7 +5571,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.webpubsub#WebPubSubListByResourceGroupRequest": {
+    "com.azure.webpubsub#ListWebPubSubByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5594,10 +5595,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.webpubsub#WebPubSubListBySubscription": {
+    "com.azure.webpubsub#ListWebPubSubBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.webpubsub#WebPubSubListBySubscriptionRequest"
+        "target": "com.azure.webpubsub#ListWebPubSubBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.webpubsub#WebPubSubResourceList"
@@ -5613,7 +5614,7 @@
         "com.distilled.openapi#apiVersion": "2024-03-01"
       }
     },
-    "com.azure.webpubsub#WebPubSubListBySubscriptionRequest": {
+    "com.azure.webpubsub#ListWebPubSubBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5629,10 +5630,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.webpubsub#UsagesList": {
+    "com.azure.webpubsub#ListUsages": {
       "type": "operation",
       "input": {
-        "target": "com.azure.webpubsub#UsagesListRequest"
+        "target": "com.azure.webpubsub#ListUsagesRequest"
       },
       "output": {
         "target": "com.azure.webpubsub#SignalRServiceUsageList"
@@ -5732,7 +5733,7 @@
         "smithy.api#documentation": "Localizable String object containing the name and a localized value."
       }
     },
-    "com.azure.webpubsub#UsagesListRequest": {
+    "com.azure.webpubsub#ListUsagesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5756,10 +5757,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.webpubsub#WebPubSubCheckNameAvailability": {
+    "com.azure.webpubsub#CheckWebPubSubNameAvailability": {
       "type": "operation",
       "input": {
-        "target": "com.azure.webpubsub#WebPubSubCheckNameAvailabilityRequest"
+        "target": "com.azure.webpubsub#CheckWebPubSubNameAvailabilityRequest"
       },
       "output": {
         "target": "com.azure.webpubsub#NameAvailability"
@@ -5801,7 +5802,7 @@
         "smithy.api#documentation": "Result of the request to check name availability. It contains a flag and possible reason of failure."
       }
     },
-    "com.azure.webpubsub#WebPubSubCheckNameAvailabilityRequest": {
+    "com.azure.webpubsub#CheckWebPubSubNameAvailabilityRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5839,7 +5840,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.webpubsub#OperationsList": {
+    "com.azure.webpubsub#ListOperations": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -6122,136 +6123,136 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.webpubsub#WebPubSubListSkus"
+          "target": "com.azure.webpubsub#ListWebPubSubSkus"
         },
         {
-          "target": "com.azure.webpubsub#WebPubSubSharedPrivateLinkResourcesDelete"
+          "target": "com.azure.webpubsub#DeleteWebPubSubSharedPrivateLinkResource"
         },
         {
           "target": "com.azure.webpubsub#WebPubSubSharedPrivateLinkResourcesCreateOrUpdate"
         },
         {
-          "target": "com.azure.webpubsub#WebPubSubSharedPrivateLinkResourcesGet"
+          "target": "com.azure.webpubsub#GetWebPubSubSharedPrivateLinkResource"
         },
         {
-          "target": "com.azure.webpubsub#WebPubSubSharedPrivateLinkResourcesList"
+          "target": "com.azure.webpubsub#ListWebPubSubSharedPrivateLinkResources"
         },
         {
-          "target": "com.azure.webpubsub#WebPubSubRestart"
+          "target": "com.azure.webpubsub#RestartWebPubSub"
         },
         {
-          "target": "com.azure.webpubsub#WebPubSubListReplicaSkus"
+          "target": "com.azure.webpubsub#ListWebPubSubReplicaSkus"
         },
         {
           "target": "com.azure.webpubsub#WebPubSubReplicaSharedPrivateLinkResourcesCreateOrUpdate"
         },
         {
-          "target": "com.azure.webpubsub#WebPubSubReplicaSharedPrivateLinkResourcesGet"
+          "target": "com.azure.webpubsub#GetWebPubSubReplicaSharedPrivateLinkResource"
         },
         {
-          "target": "com.azure.webpubsub#WebPubSubReplicaSharedPrivateLinkResourcesList"
+          "target": "com.azure.webpubsub#ListWebPubSubReplicaSharedPrivateLinkResources"
         },
         {
-          "target": "com.azure.webpubsub#WebPubSubReplicasRestart"
+          "target": "com.azure.webpubsub#RestartWebPubSubReplicas"
         },
         {
-          "target": "com.azure.webpubsub#WebPubSubReplicasDelete"
+          "target": "com.azure.webpubsub#DeleteWebPubSubReplicas"
         },
         {
-          "target": "com.azure.webpubsub#WebPubSubReplicasUpdate"
+          "target": "com.azure.webpubsub#UpdateWebPubSubReplicas"
         },
         {
           "target": "com.azure.webpubsub#WebPubSubReplicasCreateOrUpdate"
         },
         {
-          "target": "com.azure.webpubsub#WebPubSubReplicasGet"
+          "target": "com.azure.webpubsub#GetWebPubSubReplicas"
         },
         {
-          "target": "com.azure.webpubsub#WebPubSubReplicasList"
+          "target": "com.azure.webpubsub#ListWebPubSubReplicas"
         },
         {
-          "target": "com.azure.webpubsub#WebPubSubRegenerateKey"
+          "target": "com.azure.webpubsub#RegenerateWebPubSubKey"
         },
         {
-          "target": "com.azure.webpubsub#WebPubSubPrivateLinkResourcesList"
+          "target": "com.azure.webpubsub#ListWebPubSubPrivateLinkResources"
         },
         {
-          "target": "com.azure.webpubsub#WebPubSubPrivateEndpointConnectionsDelete"
+          "target": "com.azure.webpubsub#DeleteWebPubSubPrivateEndpointConnection"
         },
         {
-          "target": "com.azure.webpubsub#WebPubSubPrivateEndpointConnectionsUpdate"
+          "target": "com.azure.webpubsub#UpdateWebPubSubPrivateEndpointConnection"
         },
         {
-          "target": "com.azure.webpubsub#WebPubSubPrivateEndpointConnectionsGet"
+          "target": "com.azure.webpubsub#GetWebPubSubPrivateEndpointConnection"
         },
         {
-          "target": "com.azure.webpubsub#WebPubSubPrivateEndpointConnectionsList"
+          "target": "com.azure.webpubsub#ListWebPubSubPrivateEndpointConnections"
         },
         {
-          "target": "com.azure.webpubsub#WebPubSubListKeys"
+          "target": "com.azure.webpubsub#ListWebPubSubKeys"
         },
         {
-          "target": "com.azure.webpubsub#WebPubSubHubsDelete"
+          "target": "com.azure.webpubsub#DeleteWebPubSubHub"
         },
         {
           "target": "com.azure.webpubsub#WebPubSubHubsCreateOrUpdate"
         },
         {
-          "target": "com.azure.webpubsub#WebPubSubHubsGet"
+          "target": "com.azure.webpubsub#GetWebPubSubHub"
         },
         {
-          "target": "com.azure.webpubsub#WebPubSubHubsList"
+          "target": "com.azure.webpubsub#ListWebPubSubHubs"
         },
         {
-          "target": "com.azure.webpubsub#WebPubSubCustomDomainsDelete"
+          "target": "com.azure.webpubsub#DeleteWebPubSubCustomDomain"
         },
         {
           "target": "com.azure.webpubsub#WebPubSubCustomDomainsCreateOrUpdate"
         },
         {
-          "target": "com.azure.webpubsub#WebPubSubCustomDomainsGet"
+          "target": "com.azure.webpubsub#GetWebPubSubCustomDomain"
         },
         {
-          "target": "com.azure.webpubsub#WebPubSubCustomDomainsList"
+          "target": "com.azure.webpubsub#ListWebPubSubCustomDomains"
         },
         {
-          "target": "com.azure.webpubsub#WebPubSubCustomCertificatesDelete"
+          "target": "com.azure.webpubsub#DeleteWebPubSubCustomCertificate"
         },
         {
           "target": "com.azure.webpubsub#WebPubSubCustomCertificatesCreateOrUpdate"
         },
         {
-          "target": "com.azure.webpubsub#WebPubSubCustomCertificatesGet"
+          "target": "com.azure.webpubsub#GetWebPubSubCustomCertificate"
         },
         {
-          "target": "com.azure.webpubsub#WebPubSubCustomCertificatesList"
+          "target": "com.azure.webpubsub#ListWebPubSubCustomCertificates"
         },
         {
-          "target": "com.azure.webpubsub#WebPubSubDelete"
+          "target": "com.azure.webpubsub#DeleteWebPubSub"
         },
         {
-          "target": "com.azure.webpubsub#WebPubSubUpdate"
+          "target": "com.azure.webpubsub#UpdateWebPubSub"
         },
         {
           "target": "com.azure.webpubsub#WebPubSubCreateOrUpdate"
         },
         {
-          "target": "com.azure.webpubsub#WebPubSubGet"
+          "target": "com.azure.webpubsub#GetWebPubSub"
         },
         {
-          "target": "com.azure.webpubsub#WebPubSubListByResourceGroup"
+          "target": "com.azure.webpubsub#ListWebPubSubByResourceGroup"
         },
         {
-          "target": "com.azure.webpubsub#WebPubSubListBySubscription"
+          "target": "com.azure.webpubsub#ListWebPubSubBySubscription"
         },
         {
-          "target": "com.azure.webpubsub#UsagesList"
+          "target": "com.azure.webpubsub#ListUsages"
         },
         {
-          "target": "com.azure.webpubsub#WebPubSubCheckNameAvailability"
+          "target": "com.azure.webpubsub#CheckWebPubSubNameAvailability"
         },
         {
-          "target": "com.azure.webpubsub#OperationsList"
+          "target": "com.azure.webpubsub#ListOperations"
         }
       ],
       "traits": {

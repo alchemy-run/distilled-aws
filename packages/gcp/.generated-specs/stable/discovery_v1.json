@@ -4,151 +4,23 @@
     "service": "discovery",
     "version": "v1",
     "title": "API Discovery Service",
-    "baseUrl": "https://www.googleapis.com/discovery/v1/"
+    "baseUrl": "https://www.googleapis.com/discovery/v1/",
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.gcp.discovery_v1#DirectoryList": {
-      "type": "structure",
-      "members": {
-        "discoveryVersion": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Indicate the version of the Discovery API used to generate this doc."
-          }
-        },
-        "items": {
-          "target": "com.gcp.discovery_v1#DirectoryListItemsItemList",
-          "traits": {
-            "smithy.api#documentation": "The individual directory entries. One entry per api/version pair."
-          }
-        },
-        "kind": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The kind for this response."
-          }
-        }
-      }
-    },
-    "com.gcp.discovery_v1#DirectoryListItemsItem": {
-      "type": "structure",
-      "members": {
-        "preferred": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "True if this version is the preferred version to use."
-          }
-        },
-        "description": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The description of this API."
-          }
-        },
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The id of this API."
-          }
-        },
-        "documentationLink": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A link to human readable documentation for the API."
-          }
-        },
-        "icons": {
-          "target": "com.gcp.discovery_v1#DirectoryListItemsItemIcons",
-          "traits": {
-            "smithy.api#documentation": "Links to 16x16 and 32x32 icons representing the API."
-          }
-        },
-        "discoveryRestUrl": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The URL for the discovery REST document."
-          }
-        },
-        "discoveryLink": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A link to the discovery document."
-          }
-        },
-        "version": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The version of the API."
-          }
-        },
-        "title": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The title of this API."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name of the API."
-          }
-        },
-        "kind": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The kind for this response."
-          }
-        },
-        "labels": {
-          "target": "com.gcp.discovery_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "Labels for the status of this API, such as labs or deprecated."
-          }
-        }
-      }
-    },
-    "com.gcp.discovery_v1#DirectoryListItemsItemIcons": {
-      "type": "structure",
-      "members": {
-        "x16": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The URL of the 16x16 icon."
-          }
-        },
-        "x32": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The URL of the 32x32 icon."
-          }
-        }
-      }
-    },
-    "com.gcp.discovery_v1#StringList": {
-      "type": "list",
-      "member": {
-        "target": "smithy.api#String"
-      }
-    },
-    "com.gcp.discovery_v1#DirectoryListItemsItemList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.discovery_v1#DirectoryListItemsItem"
-      }
-    },
     "com.gcp.discovery_v1#RestMethod": {
       "type": "structure",
       "members": {
-        "description": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Description of this method."
-          }
-        },
-        "useMediaDownloadService": {
+        "etagRequired": {
           "target": "smithy.api#Boolean",
           "traits": {
-            "smithy.api#documentation": "Indicates that downloads from this method should use the download service URL (i.e. \"/download\"). Only applies if the method supports media download."
+            "smithy.api#documentation": "Whether this method requires an ETag to be specified. The ETag is sent as an HTTP If-Match or If-None-Match header."
+          }
+        },
+        "deprecated": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether this method is deprecated."
           }
         },
         "apiVersion": {
@@ -157,28 +29,46 @@
             "smithy.api#documentation": "The API Version of this method, as passed in via the `X-Goog-Api-Version` header or `$apiVersion` query parameter."
           }
         },
+        "response": {
+          "target": "com.gcp.discovery_v1#RestMethodResponse",
+          "traits": {
+            "smithy.api#documentation": "The schema for the response."
+          }
+        },
         "mediaUpload": {
           "target": "com.gcp.discovery_v1#RestMethodMediaUpload",
           "traits": {
             "smithy.api#documentation": "Media upload parameters."
           }
         },
-        "etagRequired": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A unique ID for this method. This property can be used to match methods between different versions of Discovery."
+          }
+        },
+        "flatPath": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URI path of this REST method in (RFC 6570) format without level 2 features ({+var}). Supplementary to the path property."
+          }
+        },
+        "supportsSubscription": {
           "target": "smithy.api#Boolean",
           "traits": {
-            "smithy.api#documentation": "Whether this method requires an ETag to be specified. The ETag is sent as an HTTP If-Match or If-None-Match header."
+            "smithy.api#documentation": "Whether this method supports subscriptions."
           }
         },
-        "parameterOrder": {
-          "target": "com.gcp.discovery_v1#StringList",
+        "useMediaDownloadService": {
+          "target": "smithy.api#Boolean",
           "traits": {
-            "smithy.api#documentation": "Ordered list of required parameters, serves as a hint to clients on how to structure their method signatures. The array is ordered such that the \"most-significant\" parameter appears first."
+            "smithy.api#documentation": "Indicates that downloads from this method should use the download service URL (i.e. \"/download\"). Only applies if the method supports media download."
           }
         },
-        "request": {
-          "target": "com.gcp.discovery_v1#RestMethodRequest",
+        "path": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The schema for the request."
+            "smithy.api#documentation": "The URI path of this REST method. Should be used in conjunction with the basePath property at the api-level."
           }
         },
         "supportsMediaUpload": {
@@ -187,10 +77,34 @@
             "smithy.api#documentation": "Whether this method supports media uploads."
           }
         },
-        "deprecated": {
+        "parameterOrder": {
+          "target": "com.gcp.discovery_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Ordered list of required parameters, serves as a hint to clients on how to structure their method signatures. The array is ordered such that the \"most-significant\" parameter appears first."
+          }
+        },
+        "supportsMediaDownload": {
           "target": "smithy.api#Boolean",
           "traits": {
-            "smithy.api#documentation": "Whether this method is deprecated."
+            "smithy.api#documentation": "Whether this method supports media downloads."
+          }
+        },
+        "request": {
+          "target": "com.gcp.discovery_v1#RestMethodRequest",
+          "traits": {
+            "smithy.api#documentation": "The schema for the request."
+          }
+        },
+        "scopes": {
+          "target": "com.gcp.discovery_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "OAuth 2.0 scopes applicable to this method."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of this method."
           }
         },
         "httpMethod": {
@@ -204,47 +118,16 @@
           "traits": {
             "smithy.api#documentation": "Details for all parameters in this method."
           }
-        },
-        "response": {
-          "target": "com.gcp.discovery_v1#RestMethodResponse",
-          "traits": {
-            "smithy.api#documentation": "The schema for the response."
-          }
-        },
-        "flatPath": {
+        }
+      }
+    },
+    "com.gcp.discovery_v1#RestMethodResponse": {
+      "type": "structure",
+      "members": {
+        "$ref": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The URI path of this REST method in (RFC 6570) format without level 2 features ({+var}). Supplementary to the path property."
-          }
-        },
-        "path": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The URI path of this REST method. Should be used in conjunction with the basePath property at the api-level."
-          }
-        },
-        "scopes": {
-          "target": "com.gcp.discovery_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "OAuth 2.0 scopes applicable to this method."
-          }
-        },
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A unique ID for this method. This property can be used to match methods between different versions of Discovery."
-          }
-        },
-        "supportsSubscription": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether this method supports subscriptions."
-          }
-        },
-        "supportsMediaDownload": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether this method supports media downloads."
+            "smithy.api#documentation": "Schema ID for the response schema."
           }
         }
       }
@@ -252,12 +135,6 @@
     "com.gcp.discovery_v1#RestMethodMediaUpload": {
       "type": "structure",
       "members": {
-        "protocols": {
-          "target": "com.gcp.discovery_v1#RestMethodMediaUploadProtocols",
-          "traits": {
-            "smithy.api#documentation": "Supported upload protocols."
-          }
-        },
         "maxSize": {
           "target": "smithy.api#String",
           "traits": {
@@ -269,7 +146,19 @@
           "traits": {
             "smithy.api#documentation": "MIME Media Ranges for acceptable media uploads to this method."
           }
+        },
+        "protocols": {
+          "target": "com.gcp.discovery_v1#RestMethodMediaUploadProtocols",
+          "traits": {
+            "smithy.api#documentation": "Supported upload protocols."
+          }
         }
+      }
+    },
+    "com.gcp.discovery_v1#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
       }
     },
     "com.gcp.discovery_v1#RestMethodMediaUploadProtocols": {
@@ -292,16 +181,16 @@
     "com.gcp.discovery_v1#RestMethodMediaUploadProtocolsSimple": {
       "type": "structure",
       "members": {
-        "multipart": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "True if this endpoint supports upload multipart media."
-          }
-        },
         "path": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "The URI path to be used for upload. Should be used in conjunction with the basePath property at the api-level."
+          }
+        },
+        "multipart": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "True if this endpoint supports upload multipart media."
           }
         }
       }
@@ -349,277 +238,36 @@
         "target": "com.gcp.discovery_v1#JsonSchema"
       }
     },
-    "com.gcp.discovery_v1#RestMethodResponse": {
+    "com.gcp.discovery_v1#DirectoryList": {
       "type": "structure",
       "members": {
-        "$ref": {
+        "discoveryVersion": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Schema ID for the response schema."
-          }
-        }
-      }
-    },
-    "com.gcp.discovery_v1#RestResource": {
-      "type": "structure",
-      "members": {
-        "methods": {
-          "target": "com.gcp.discovery_v1#RestMethodMap",
-          "traits": {
-            "smithy.api#documentation": "Methods on this resource."
-          }
-        },
-        "deprecated": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether this resource is deprecated."
-          }
-        },
-        "resources": {
-          "target": "com.gcp.discovery_v1#RestResourceMap",
-          "traits": {
-            "smithy.api#documentation": "Sub-resources on this resource."
-          }
-        }
-      }
-    },
-    "com.gcp.discovery_v1#RestMethodMap": {
-      "type": "map",
-      "key": {
-        "target": "smithy.api#String"
-      },
-      "value": {
-        "target": "com.gcp.discovery_v1#RestMethod"
-      }
-    },
-    "com.gcp.discovery_v1#RestResourceMap": {
-      "type": "map",
-      "key": {
-        "target": "smithy.api#String"
-      },
-      "value": {
-        "target": "com.gcp.discovery_v1#RestResource"
-      }
-    },
-    "com.gcp.discovery_v1#JsonSchema": {
-      "type": "structure",
-      "members": {
-        "location": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Whether this parameter goes in the query or the path for REST requests."
-          }
-        },
-        "pattern": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The regular expression this parameter must conform to. Uses Java 6 regex format: http://docs.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html"
-          }
-        },
-        "type": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The value type for this schema. A list of values can be found here: http://tools.ietf.org/html/draft-zyp-json-schema-03#section-5.1"
+            "smithy.api#documentation": "Indicate the version of the Discovery API used to generate this doc."
           }
         },
         "items": {
-          "target": "com.gcp.discovery_v1#JsonSchema",
+          "target": "com.gcp.discovery_v1#DirectoryListItemsItemList",
           "traits": {
-            "smithy.api#documentation": "If this is a schema for an array, this property is the schema for each element in the array."
+            "smithy.api#documentation": "The individual directory entries. One entry per api/version pair."
           }
         },
-        "readOnly": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "The value is read-only, generated by the service. The value cannot be modified by the client. If the value is included in a POST, PUT, or PATCH request, it is ignored by the service."
-          }
-        },
-        "repeated": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether this parameter may appear multiple times."
-          }
-        },
-        "id": {
+        "kind": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Unique identifier for this schema."
-          }
-        },
-        "deprecated": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether the parameter is deprecated."
-          }
-        },
-        "minimum": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The minimum value of this parameter."
-          }
-        },
-        "required": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether the parameter is required."
-          }
-        },
-        "default": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The default value of this property (if one exists)."
-          }
-        },
-        "$ref": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A reference to another schema. The value of this property is the \"id\" of another schema."
-          }
-        },
-        "enumDescriptions": {
-          "target": "com.gcp.discovery_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "The descriptions for the enums. Each position maps to the corresponding value in the \"enum\" array."
-          }
-        },
-        "enumDeprecated": {
-          "target": "com.gcp.discovery_v1#BooleanList",
-          "traits": {
-            "smithy.api#documentation": "The deprecation status for the enums. Each position maps to the corresponding value in the \"enum\" array."
-          }
-        },
-        "format": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "An additional regular expression or key that helps constrain the value. For more details see: http://tools.ietf.org/html/draft-zyp-json-schema-03#section-5.23"
-          }
-        },
-        "annotations": {
-          "target": "com.gcp.discovery_v1#JsonSchemaAnnotations",
-          "traits": {
-            "smithy.api#documentation": "Additional information about this property."
-          }
-        },
-        "description": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A description of this object."
-          }
-        },
-        "additionalProperties": {
-          "target": "com.gcp.discovery_v1#JsonSchema",
-          "traits": {
-            "smithy.api#documentation": "If this is a schema for an object, this property is the schema for any additional properties with dynamic keys on this object."
-          }
-        },
-        "enum": {
-          "target": "com.gcp.discovery_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "Values this parameter may take (if it is an enum)."
-          }
-        },
-        "properties": {
-          "target": "com.gcp.discovery_v1#JsonSchemaMap",
-          "traits": {
-            "smithy.api#documentation": "If this is a schema for an object, list the schema for each property of this object."
-          }
-        },
-        "variant": {
-          "target": "com.gcp.discovery_v1#JsonSchemaVariant",
-          "traits": {
-            "smithy.api#documentation": "In a variant data type, the value of one property is used to determine how to interpret the entire entity. Its value must exist in a map of descriminant values to schema names."
-          }
-        },
-        "maximum": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The maximum value of this parameter."
+            "smithy.api#documentation": "The kind for this response."
           }
         }
       }
     },
-    "com.gcp.discovery_v1#BooleanList": {
-      "type": "list",
-      "member": {
-        "target": "smithy.api#Boolean"
-      }
-    },
-    "com.gcp.discovery_v1#JsonSchemaAnnotations": {
+    "com.gcp.discovery_v1#DirectoryListItemsItem": {
       "type": "structure",
       "members": {
-        "required": {
-          "target": "com.gcp.discovery_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "A list of methods for which this property is required on requests."
-          }
-        }
-      }
-    },
-    "com.gcp.discovery_v1#JsonSchemaVariant": {
-      "type": "structure",
-      "members": {
-        "discriminant": {
+        "discoveryLink": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The name of the type discriminant property."
-          }
-        },
-        "map": {
-          "target": "com.gcp.discovery_v1#JsonSchemaVariantMapItemList",
-          "traits": {
-            "smithy.api#documentation": "The map of discriminant value to schema to use for parsing.."
-          }
-        }
-      }
-    },
-    "com.gcp.discovery_v1#JsonSchemaVariantMapItem": {
-      "type": "structure",
-      "members": {
-        "$ref": {
-          "target": "smithy.api#String"
-        },
-        "type_value": {
-          "target": "smithy.api#String"
-        }
-      }
-    },
-    "com.gcp.discovery_v1#JsonSchemaVariantMapItemList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.discovery_v1#JsonSchemaVariantMapItem"
-      }
-    },
-    "com.gcp.discovery_v1#RestDescription": {
-      "type": "structure",
-      "members": {
-        "batchPath": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The path for REST batch requests."
-          }
-        },
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The ID of this API."
-          }
-        },
-        "rootUrl": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The root URL under which all API services live."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name of this API."
-          }
-        },
-        "endpoints": {
-          "target": "com.gcp.discovery_v1#RestDescriptionEndpointsItemList",
-          "traits": {
-            "smithy.api#documentation": "A list of location-based endpoint objects for this API. Each object contains the endpoint URL, location, description and deprecation status."
+            "smithy.api#documentation": "A link to the discovery document."
           }
         },
         "title": {
@@ -628,91 +276,40 @@
             "smithy.api#documentation": "The title of this API."
           }
         },
-        "description": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The description of this API."
-          }
-        },
-        "baseUrl": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "[DEPRECATED] The base URL for REST requests."
-          }
-        },
-        "etag": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The ETag for this response."
-          }
-        },
-        "icons": {
-          "target": "com.gcp.discovery_v1#RestDescriptionIcons",
-          "traits": {
-            "smithy.api#documentation": "Links to 16x16 and 32x32 icons representing the API."
-          }
-        },
-        "ownerName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name of the owner of this API. See ownerDomain."
-          }
-        },
-        "discoveryVersion": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Indicate the version of the Discovery API used to generate this doc."
-          }
-        },
-        "packagePath": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The package of the owner of this API. See ownerDomain."
-          }
-        },
-        "version": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The version of this API."
-          }
-        },
-        "methods": {
-          "target": "com.gcp.discovery_v1#RestMethodMap",
-          "traits": {
-            "smithy.api#documentation": "API-level methods for this API."
-          }
-        },
-        "schemas": {
-          "target": "com.gcp.discovery_v1#JsonSchemaMap",
-          "traits": {
-            "smithy.api#documentation": "The schemas for this API."
-          }
-        },
-        "parameters": {
-          "target": "com.gcp.discovery_v1#JsonSchemaMap",
-          "traits": {
-            "smithy.api#documentation": "Common parameters that apply across all apis."
-          }
-        },
         "kind": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "The kind for this response."
           }
         },
-        "resources": {
-          "target": "com.gcp.discovery_v1#RestResourceMap",
+        "icons": {
+          "target": "com.gcp.discovery_v1#DirectoryListItemsItemIcons",
           "traits": {
-            "smithy.api#documentation": "The resources in this API."
+            "smithy.api#documentation": "Links to 16x16 and 32x32 icons representing the API."
           }
         },
-        "version_module": {
-          "target": "smithy.api#Boolean"
-        },
-        "documentationLink": {
+        "id": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "A link to human readable documentation for the API."
+            "smithy.api#documentation": "The id of this API."
+          }
+        },
+        "version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The version of the API."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The description of this API."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the API."
           }
         },
         "labels": {
@@ -721,40 +318,74 @@
             "smithy.api#documentation": "Labels for the status of this API, such as labs or deprecated."
           }
         },
-        "canonicalName": {
+        "documentationLink": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Indicates how the API name should be capitalized and split into various parts. Useful for generating pretty class names."
+            "smithy.api#documentation": "A link to human readable documentation for the API."
           }
         },
-        "revision": {
+        "discoveryRestUrl": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The version of this API."
+            "smithy.api#documentation": "The URL for the discovery REST document."
           }
         },
-        "exponentialBackoffDefault": {
+        "preferred": {
           "target": "smithy.api#Boolean",
           "traits": {
-            "smithy.api#documentation": "Enable exponential backoff for suitable methods in the generated clients."
+            "smithy.api#documentation": "True if this version is the preferred version to use."
           }
-        },
-        "protocol": {
+        }
+      }
+    },
+    "com.gcp.discovery_v1#DirectoryListItemsItemIcons": {
+      "type": "structure",
+      "members": {
+        "x16": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The protocol described by this document."
+            "smithy.api#documentation": "The URL of the 16x16 icon."
           }
         },
-        "servicePath": {
+        "x32": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The base path for all REST requests."
+            "smithy.api#documentation": "The URL of the 32x32 icon."
+          }
+        }
+      }
+    },
+    "com.gcp.discovery_v1#DirectoryListItemsItemList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.discovery_v1#DirectoryListItemsItem"
+      }
+    },
+    "com.gcp.discovery_v1#RestDescription": {
+      "type": "structure",
+      "members": {
+        "icons": {
+          "target": "com.gcp.discovery_v1#RestDescriptionIcons",
+          "traits": {
+            "smithy.api#documentation": "Links to 16x16 and 32x32 icons representing the API."
           }
         },
-        "basePath": {
+        "ownerDomain": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "[DEPRECATED] The base path for REST requests."
+            "smithy.api#documentation": "The domain of the owner of this API. Together with the ownerName and a packagePath values, this can be used to generate a library for this API which would have a unique fully qualified name."
+          }
+        },
+        "methods": {
+          "target": "com.gcp.discovery_v1#RestMethodMap",
+          "traits": {
+            "smithy.api#documentation": "API-level methods for this API."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of this API."
           }
         },
         "features": {
@@ -763,53 +394,159 @@
             "smithy.api#documentation": "A list of supported features for this API."
           }
         },
+        "documentationLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A link to human readable documentation for the API."
+          }
+        },
+        "canonicalName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Indicates how the API name should be capitalized and split into various parts. Useful for generating pretty class names."
+          }
+        },
+        "schemas": {
+          "target": "com.gcp.discovery_v1#JsonSchemaMap",
+          "traits": {
+            "smithy.api#documentation": "The schemas for this API."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ETag for this response."
+          }
+        },
         "auth": {
           "target": "com.gcp.discovery_v1#RestDescriptionAuth",
           "traits": {
             "smithy.api#documentation": "Authentication information."
           }
         },
-        "ownerDomain": {
+        "version": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The domain of the owner of this API. Together with the ownerName and a packagePath values, this can be used to generate a library for this API which would have a unique fully qualified name."
-          }
-        }
-      }
-    },
-    "com.gcp.discovery_v1#RestDescriptionEndpointsItem": {
-      "type": "structure",
-      "members": {
-        "deprecated": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether this endpoint is deprecated"
-          }
-        },
-        "endpointUrl": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The URL of the endpoint target host"
-          }
-        },
-        "location": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The location of the endpoint"
+            "smithy.api#documentation": "The version of this API."
           }
         },
         "description": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "A string describing the host designated by the URL"
+            "smithy.api#documentation": "The description of this API."
+          }
+        },
+        "servicePath": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The base path for all REST requests."
+          }
+        },
+        "resources": {
+          "target": "com.gcp.discovery_v1#RestResourceMap",
+          "traits": {
+            "smithy.api#documentation": "The resources in this API."
+          }
+        },
+        "endpoints": {
+          "target": "com.gcp.discovery_v1#RestDescriptionEndpointsItemList",
+          "traits": {
+            "smithy.api#documentation": "A list of location-based endpoint objects for this API. Each object contains the endpoint URL, location, description and deprecation status."
+          }
+        },
+        "basePath": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "[DEPRECATED] The base path for REST requests."
+          }
+        },
+        "packagePath": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The package of the owner of this API. See ownerDomain."
+          }
+        },
+        "revision": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The version of this API."
+          }
+        },
+        "batchPath": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The path for REST batch requests."
+          }
+        },
+        "discoveryVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Indicate the version of the Discovery API used to generate this doc."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of this API."
+          }
+        },
+        "parameters": {
+          "target": "com.gcp.discovery_v1#JsonSchemaMap",
+          "traits": {
+            "smithy.api#documentation": "Common parameters that apply across all apis."
+          }
+        },
+        "exponentialBackoffDefault": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Enable exponential backoff for suitable methods in the generated clients."
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The kind for this response."
+          }
+        },
+        "baseUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "[DEPRECATED] The base URL for REST requests."
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The title of this API."
+          }
+        },
+        "ownerName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the owner of this API. See ownerDomain."
+          }
+        },
+        "labels": {
+          "target": "com.gcp.discovery_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Labels for the status of this API, such as labs or deprecated."
+          }
+        },
+        "version_module": {
+          "target": "smithy.api#Boolean"
+        },
+        "protocol": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The protocol described by this document."
+          }
+        },
+        "rootUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The root URL under which all API services live."
           }
         }
-      }
-    },
-    "com.gcp.discovery_v1#RestDescriptionEndpointsItemList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.discovery_v1#RestDescriptionEndpointsItem"
       }
     },
     "com.gcp.discovery_v1#RestDescriptionIcons": {
@@ -827,6 +564,15 @@
             "smithy.api#documentation": "The URL of the 32x32 icon."
           }
         }
+      }
+    },
+    "com.gcp.discovery_v1#RestMethodMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.gcp.discovery_v1#RestMethod"
       }
     },
     "com.gcp.discovery_v1#RestDescriptionAuth": {
@@ -871,23 +617,276 @@
         "target": "com.gcp.discovery_v1#RestDescriptionAuthOauth2ScopesValue"
       }
     },
-    "com.gcp.discovery_v1#GetRestApisRequest": {
+    "com.gcp.discovery_v1#RestResourceMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.gcp.discovery_v1#RestResource"
+      }
+    },
+    "com.gcp.discovery_v1#RestDescriptionEndpointsItem": {
       "type": "structure",
       "members": {
-        "api": {
-          "target": "smithy.api#String",
+        "deprecated": {
+          "target": "smithy.api#Boolean",
           "traits": {
-            "smithy.api#documentation": "The name of the API.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
+            "smithy.api#documentation": "Whether this endpoint is deprecated"
           }
         },
-        "version": {
+        "location": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The version of the API.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
+            "smithy.api#documentation": "The location of the endpoint"
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A string describing the host designated by the URL"
+          }
+        },
+        "endpointUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL of the endpoint target host"
+          }
+        }
+      }
+    },
+    "com.gcp.discovery_v1#RestDescriptionEndpointsItemList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.discovery_v1#RestDescriptionEndpointsItem"
+      }
+    },
+    "com.gcp.discovery_v1#RestResource": {
+      "type": "structure",
+      "members": {
+        "deprecated": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether this resource is deprecated."
+          }
+        },
+        "resources": {
+          "target": "com.gcp.discovery_v1#RestResourceMap",
+          "traits": {
+            "smithy.api#documentation": "Sub-resources on this resource."
+          }
+        },
+        "methods": {
+          "target": "com.gcp.discovery_v1#RestMethodMap",
+          "traits": {
+            "smithy.api#documentation": "Methods on this resource."
+          }
+        }
+      }
+    },
+    "com.gcp.discovery_v1#JsonSchema": {
+      "type": "structure",
+      "members": {
+        "default": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The default value of this property (if one exists)."
+          }
+        },
+        "repeated": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether this parameter may appear multiple times."
+          }
+        },
+        "$ref": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A reference to another schema. The value of this property is the \"id\" of another schema."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Whether this parameter goes in the query or the path for REST requests."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier for this schema."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A description of this object."
+          }
+        },
+        "readOnly": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "The value is read-only, generated by the service. The value cannot be modified by the client. If the value is included in a POST, PUT, or PATCH request, it is ignored by the service."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The value type for this schema. A list of values can be found here: http://tools.ietf.org/html/draft-zyp-json-schema-03#section-5.1"
+          }
+        },
+        "format": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An additional regular expression or key that helps constrain the value. For more details see: http://tools.ietf.org/html/draft-zyp-json-schema-03#section-5.23"
+          }
+        },
+        "pattern": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The regular expression this parameter must conform to. Uses Java 6 regex format: http://docs.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html"
+          }
+        },
+        "annotations": {
+          "target": "com.gcp.discovery_v1#JsonSchemaAnnotations",
+          "traits": {
+            "smithy.api#documentation": "Additional information about this property."
+          }
+        },
+        "maximum": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The maximum value of this parameter."
+          }
+        },
+        "items": {
+          "target": "com.gcp.discovery_v1#JsonSchema",
+          "traits": {
+            "smithy.api#documentation": "If this is a schema for an array, this property is the schema for each element in the array."
+          }
+        },
+        "deprecated": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the parameter is deprecated."
+          }
+        },
+        "enumDescriptions": {
+          "target": "com.gcp.discovery_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "The descriptions for the enums. Each position maps to the corresponding value in the \"enum\" array."
+          }
+        },
+        "enum": {
+          "target": "com.gcp.discovery_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Values this parameter may take (if it is an enum)."
+          }
+        },
+        "properties": {
+          "target": "com.gcp.discovery_v1#JsonSchemaMap",
+          "traits": {
+            "smithy.api#documentation": "If this is a schema for an object, list the schema for each property of this object."
+          }
+        },
+        "minimum": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The minimum value of this parameter."
+          }
+        },
+        "enumDeprecated": {
+          "target": "com.gcp.discovery_v1#BooleanList",
+          "traits": {
+            "smithy.api#documentation": "The deprecation status for the enums. Each position maps to the corresponding value in the \"enum\" array."
+          }
+        },
+        "required": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the parameter is required."
+          }
+        },
+        "additionalProperties": {
+          "target": "com.gcp.discovery_v1#JsonSchema",
+          "traits": {
+            "smithy.api#documentation": "If this is a schema for an object, this property is the schema for any additional properties with dynamic keys on this object."
+          }
+        },
+        "variant": {
+          "target": "com.gcp.discovery_v1#JsonSchemaVariant",
+          "traits": {
+            "smithy.api#documentation": "In a variant data type, the value of one property is used to determine how to interpret the entire entity. Its value must exist in a map of descriminant values to schema names."
+          }
+        }
+      }
+    },
+    "com.gcp.discovery_v1#JsonSchemaAnnotations": {
+      "type": "structure",
+      "members": {
+        "required": {
+          "target": "com.gcp.discovery_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "A list of methods for which this property is required on requests."
+          }
+        }
+      }
+    },
+    "com.gcp.discovery_v1#BooleanList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Boolean"
+      }
+    },
+    "com.gcp.discovery_v1#JsonSchemaVariant": {
+      "type": "structure",
+      "members": {
+        "discriminant": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the type discriminant property."
+          }
+        },
+        "map": {
+          "target": "com.gcp.discovery_v1#JsonSchemaVariantMapItemList",
+          "traits": {
+            "smithy.api#documentation": "The map of discriminant value to schema to use for parsing.."
+          }
+        }
+      }
+    },
+    "com.gcp.discovery_v1#JsonSchemaVariantMapItem": {
+      "type": "structure",
+      "members": {
+        "$ref": {
+          "target": "smithy.api#String"
+        },
+        "type_value": {
+          "target": "smithy.api#String"
+        }
+      }
+    },
+    "com.gcp.discovery_v1#JsonSchemaVariantMapItemList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.discovery_v1#JsonSchemaVariantMapItem"
+      }
+    },
+    "com.gcp.discovery_v1#ListApisRequest": {
+      "type": "structure",
+      "members": {
+        "preferred": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Return only the preferred version of an API.",
+            "smithy.api#httpQuery": "preferred"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Only include APIs with the given name.",
+            "smithy.api#httpQuery": "name"
           }
         }
       }
@@ -918,49 +917,6 @@
         ]
       }
     },
-    "com.gcp.discovery_v1#GetRestApis": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.discovery_v1#GetRestApisRequest"
-      },
-      "output": {
-        "target": "com.gcp.discovery_v1#RestDescription"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.discovery_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.discovery_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "apis/{api}/{version}/rest"
-        },
-        "smithy.api#documentation": "Retrieve the description of a particular version of an api."
-      }
-    },
-    "com.gcp.discovery_v1#ListApisRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Only include APIs with the given name.",
-            "smithy.api#httpQuery": "name"
-          }
-        },
-        "preferred": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Return only the preferred version of an API.",
-            "smithy.api#httpQuery": "preferred"
-          }
-        }
-      }
-    },
     "com.gcp.discovery_v1#ListApis": {
       "type": "operation",
       "input": {
@@ -983,6 +939,51 @@
           "uri": "apis"
         },
         "smithy.api#documentation": "Retrieve the list of APIs supported at this endpoint."
+      }
+    },
+    "com.gcp.discovery_v1#GetRestApisRequest": {
+      "type": "structure",
+      "members": {
+        "version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The version of the API.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "api": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the API.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.discovery_v1#GetRestApis": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.discovery_v1#GetRestApisRequest"
+      },
+      "output": {
+        "target": "com.gcp.discovery_v1#RestDescription"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.discovery_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.discovery_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "apis/{api}/{version}/rest"
+        },
+        "smithy.api#documentation": "Retrieve the description of a particular version of an api."
       }
     }
   }

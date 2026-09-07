@@ -14,13 +14,14 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.dashboard#ManagedPrivateEndpointsRefresh": {
+    "com.azure.dashboard#RefreshManagedPrivateEndpoint": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dashboard#ManagedPrivateEndpointsRefreshRequest"
+        "target": "com.azure.dashboard#RefreshManagedPrivateEndpointRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -36,7 +37,7 @@
         "com.distilled.openapi#apiVersion": "2025-08-01"
       }
     },
-    "com.azure.dashboard#ManagedPrivateEndpointsRefreshRequest": {
+    "com.azure.dashboard#RefreshManagedPrivateEndpointRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -68,13 +69,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dashboard#PrivateLinkResourcesGet": {
+    "com.azure.dashboard#GetPrivateLinkResource": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dashboard#PrivateLinkResourcesGetRequest"
+        "target": "com.azure.dashboard#GetPrivateLinkResourceRequest"
       },
       "output": {
-        "target": "com.azure.dashboard#PrivateLinkResourcesGetResponse"
+        "target": "com.azure.dashboard#GetPrivateLinkResourceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -87,7 +88,7 @@
         "com.distilled.openapi#apiVersion": "2025-08-01"
       }
     },
-    "com.azure.dashboard#PrivateLinkResourcesGetResponse": {
+    "com.azure.dashboard#GetPrivateLinkResourceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -343,7 +344,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.dashboard#PrivateLinkResourcesGetRequest": {
+    "com.azure.dashboard#GetPrivateLinkResourceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -382,10 +383,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dashboard#PrivateLinkResourcesList": {
+    "com.azure.dashboard#ListPrivateLinkResources": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dashboard#PrivateLinkResourcesListRequest"
+        "target": "com.azure.dashboard#ListPrivateLinkResourcesRequest"
       },
       "output": {
         "target": "com.azure.dashboard#PrivateLinkResourceListResult"
@@ -469,7 +470,7 @@
         "smithy.api#documentation": "A private link resource"
       }
     },
-    "com.azure.dashboard#PrivateLinkResourcesListRequest": {
+    "com.azure.dashboard#ListPrivateLinkResourcesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -501,10 +502,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dashboard#PrivateEndpointConnectionsDelete": {
+    "com.azure.dashboard#DeletePrivateEndpointConnection": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dashboard#PrivateEndpointConnectionsDeleteRequest"
+        "target": "com.azure.dashboard#DeletePrivateEndpointConnectionRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -520,7 +521,7 @@
         "com.distilled.openapi#apiVersion": "2025-08-01"
       }
     },
-    "com.azure.dashboard#PrivateEndpointConnectionsDeleteRequest": {
+    "com.azure.dashboard#DeletePrivateEndpointConnectionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -560,13 +561,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dashboard#PrivateEndpointConnectionsApprove": {
+    "com.azure.dashboard#ApprovePrivateEndpointConnection": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dashboard#PrivateEndpointConnectionsApproveRequest"
+        "target": "com.azure.dashboard#ApprovePrivateEndpointConnectionRequest"
       },
       "output": {
-        "target": "com.azure.dashboard#PrivateEndpointConnectionsApproveResponse"
+        "target": "com.azure.dashboard#ApprovePrivateEndpointConnectionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -579,7 +580,7 @@
         "com.distilled.openapi#apiVersion": "2025-08-01"
       }
     },
-    "com.azure.dashboard#PrivateEndpointConnectionsApproveResponse": {
+    "com.azure.dashboard#ApprovePrivateEndpointConnectionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -757,7 +758,7 @@
         "smithy.api#documentation": "The Private Endpoint resource."
       }
     },
-    "com.azure.dashboard#PrivateEndpointConnectionsApproveRequest": {
+    "com.azure.dashboard#ApprovePrivateEndpointConnectionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -872,13 +873,13 @@
         "smithy.api#documentation": "The Private Endpoint resource."
       }
     },
-    "com.azure.dashboard#PrivateEndpointConnectionsGet": {
+    "com.azure.dashboard#GetPrivateEndpointConnection": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dashboard#PrivateEndpointConnectionsGetRequest"
+        "target": "com.azure.dashboard#GetPrivateEndpointConnectionRequest"
       },
       "output": {
-        "target": "com.azure.dashboard#PrivateEndpointConnectionsGetResponse"
+        "target": "com.azure.dashboard#GetPrivateEndpointConnectionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -891,7 +892,7 @@
         "com.distilled.openapi#apiVersion": "2025-08-01"
       }
     },
-    "com.azure.dashboard#PrivateEndpointConnectionsGetResponse": {
+    "com.azure.dashboard#GetPrivateEndpointConnectionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -929,7 +930,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.dashboard#PrivateEndpointConnectionsGetRequest": {
+    "com.azure.dashboard#GetPrivateEndpointConnectionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -969,10 +970,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dashboard#PrivateEndpointConnectionsList": {
+    "com.azure.dashboard#ListPrivateEndpointConnections": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dashboard#PrivateEndpointConnectionsListRequest"
+        "target": "com.azure.dashboard#ListPrivateEndpointConnectionsRequest"
       },
       "output": {
         "target": "com.azure.dashboard#PrivateEndpointConnectionListResult"
@@ -1056,7 +1057,7 @@
         "smithy.api#documentation": "The Private Endpoint Connection resource."
       }
     },
-    "com.azure.dashboard#PrivateEndpointConnectionsListRequest": {
+    "com.azure.dashboard#ListPrivateEndpointConnectionsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1088,10 +1089,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dashboard#ManagedPrivateEndpointsDelete": {
+    "com.azure.dashboard#DeleteManagedPrivateEndpoint": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dashboard#ManagedPrivateEndpointsDeleteRequest"
+        "target": "com.azure.dashboard#DeleteManagedPrivateEndpointRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1107,7 +1108,7 @@
         "com.distilled.openapi#apiVersion": "2025-08-01"
       }
     },
-    "com.azure.dashboard#ManagedPrivateEndpointsDeleteRequest": {
+    "com.azure.dashboard#DeleteManagedPrivateEndpointRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1147,13 +1148,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dashboard#ManagedPrivateEndpointsUpdate": {
+    "com.azure.dashboard#UpdateManagedPrivateEndpoint": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dashboard#ManagedPrivateEndpointsUpdateRequest"
+        "target": "com.azure.dashboard#UpdateManagedPrivateEndpointRequest"
       },
       "output": {
-        "target": "com.azure.dashboard#ManagedPrivateEndpointsUpdateResponse"
+        "target": "com.azure.dashboard#UpdateManagedPrivateEndpointResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1166,7 +1167,7 @@
         "com.distilled.openapi#apiVersion": "2025-08-01"
       }
     },
-    "com.azure.dashboard#ManagedPrivateEndpointsUpdateResponse": {
+    "com.azure.dashboard#UpdateManagedPrivateEndpointResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1194,7 +1195,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dashboard#ManagedPrivateEndpointsUpdateResponseTagsMap",
+          "target": "com.azure.dashboard#UpdateManagedPrivateEndpointResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1334,7 +1335,7 @@
         "smithy.api#documentation": "The group Ids of the managed private endpoint."
       }
     },
-    "com.azure.dashboard#ManagedPrivateEndpointsUpdateResponseTagsMap": {
+    "com.azure.dashboard#UpdateManagedPrivateEndpointResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1346,7 +1347,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.dashboard#ManagedPrivateEndpointsUpdateRequest": {
+    "com.azure.dashboard#UpdateManagedPrivateEndpointRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1382,7 +1383,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dashboard#ManagedPrivateEndpointsUpdateRequestTagsMap",
+          "target": "com.azure.dashboard#UpdateManagedPrivateEndpointRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "The new tags of the managed private endpoint."
           }
@@ -1392,7 +1393,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dashboard#ManagedPrivateEndpointsUpdateRequestTagsMap": {
+    "com.azure.dashboard#UpdateManagedPrivateEndpointRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1404,13 +1405,13 @@
         "smithy.api#documentation": "The new tags of the managed private endpoint."
       }
     },
-    "com.azure.dashboard#ManagedPrivateEndpointsCreate": {
+    "com.azure.dashboard#CreateManagedPrivateEndpoint": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dashboard#ManagedPrivateEndpointsCreateRequest"
+        "target": "com.azure.dashboard#CreateManagedPrivateEndpointRequest"
       },
       "output": {
-        "target": "com.azure.dashboard#ManagedPrivateEndpointsCreateResponse"
+        "target": "com.azure.dashboard#CreateManagedPrivateEndpointResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1423,7 +1424,7 @@
         "com.distilled.openapi#apiVersion": "2025-08-01"
       }
     },
-    "com.azure.dashboard#ManagedPrivateEndpointsCreateResponse": {
+    "com.azure.dashboard#CreateManagedPrivateEndpointResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1451,7 +1452,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dashboard#ManagedPrivateEndpointsCreateResponseTagsMap",
+          "target": "com.azure.dashboard#CreateManagedPrivateEndpointResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1474,7 +1475,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.dashboard#ManagedPrivateEndpointsCreateResponseTagsMap": {
+    "com.azure.dashboard#CreateManagedPrivateEndpointResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1486,7 +1487,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.dashboard#ManagedPrivateEndpointsCreateRequest": {
+    "com.azure.dashboard#CreateManagedPrivateEndpointRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1522,7 +1523,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dashboard#ManagedPrivateEndpointsCreateRequestTagsMap",
+          "target": "com.azure.dashboard#CreateManagedPrivateEndpointRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1592,7 +1593,7 @@
         "smithy.api#documentation": "The group Ids of the managed private endpoint."
       }
     },
-    "com.azure.dashboard#ManagedPrivateEndpointsCreateRequestTagsMap": {
+    "com.azure.dashboard#CreateManagedPrivateEndpointRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1604,13 +1605,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.dashboard#ManagedPrivateEndpointsGet": {
+    "com.azure.dashboard#GetManagedPrivateEndpoint": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dashboard#ManagedPrivateEndpointsGetRequest"
+        "target": "com.azure.dashboard#GetManagedPrivateEndpointRequest"
       },
       "output": {
-        "target": "com.azure.dashboard#ManagedPrivateEndpointsGetResponse"
+        "target": "com.azure.dashboard#GetManagedPrivateEndpointResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1623,7 +1624,7 @@
         "com.distilled.openapi#apiVersion": "2025-08-01"
       }
     },
-    "com.azure.dashboard#ManagedPrivateEndpointsGetResponse": {
+    "com.azure.dashboard#GetManagedPrivateEndpointResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1651,7 +1652,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dashboard#ManagedPrivateEndpointsGetResponseTagsMap",
+          "target": "com.azure.dashboard#GetManagedPrivateEndpointResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1674,7 +1675,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.dashboard#ManagedPrivateEndpointsGetResponseTagsMap": {
+    "com.azure.dashboard#GetManagedPrivateEndpointResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1686,7 +1687,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.dashboard#ManagedPrivateEndpointsGetRequest": {
+    "com.azure.dashboard#GetManagedPrivateEndpointRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1726,10 +1727,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dashboard#ManagedPrivateEndpointsList": {
+    "com.azure.dashboard#ListManagedPrivateEndpoints": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dashboard#ManagedPrivateEndpointsListRequest"
+        "target": "com.azure.dashboard#ListManagedPrivateEndpointsRequest"
       },
       "output": {
         "target": "com.azure.dashboard#ManagedPrivateEndpointModelListResponse"
@@ -1838,7 +1839,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.dashboard#ManagedPrivateEndpointsListRequest": {
+    "com.azure.dashboard#ListManagedPrivateEndpointsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1870,10 +1871,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dashboard#IntegrationFabricsDelete": {
+    "com.azure.dashboard#DeleteIntegrationFabric": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dashboard#IntegrationFabricsDeleteRequest"
+        "target": "com.azure.dashboard#DeleteIntegrationFabricRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1889,7 +1890,7 @@
         "com.distilled.openapi#apiVersion": "2025-08-01"
       }
     },
-    "com.azure.dashboard#IntegrationFabricsDeleteRequest": {
+    "com.azure.dashboard#DeleteIntegrationFabricRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1929,13 +1930,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dashboard#IntegrationFabricsUpdate": {
+    "com.azure.dashboard#UpdateIntegrationFabric": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dashboard#IntegrationFabricsUpdateRequest"
+        "target": "com.azure.dashboard#UpdateIntegrationFabricRequest"
       },
       "output": {
-        "target": "com.azure.dashboard#IntegrationFabricsUpdateResponse"
+        "target": "com.azure.dashboard#UpdateIntegrationFabricResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1948,7 +1949,7 @@
         "com.distilled.openapi#apiVersion": "2025-08-01"
       }
     },
-    "com.azure.dashboard#IntegrationFabricsUpdateResponse": {
+    "com.azure.dashboard#UpdateIntegrationFabricResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1976,7 +1977,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dashboard#IntegrationFabricsUpdateResponseTagsMap",
+          "target": "com.azure.dashboard#UpdateIntegrationFabricResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2035,7 +2036,7 @@
         "smithy.api#documentation": "A list of integration scenarios covered by this integration fabric"
       }
     },
-    "com.azure.dashboard#IntegrationFabricsUpdateResponseTagsMap": {
+    "com.azure.dashboard#UpdateIntegrationFabricResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2047,7 +2048,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.dashboard#IntegrationFabricsUpdateRequest": {
+    "com.azure.dashboard#UpdateIntegrationFabricRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2083,7 +2084,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dashboard#IntegrationFabricsUpdateRequestTagsMap",
+          "target": "com.azure.dashboard#UpdateIntegrationFabricRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "The new tags of the Integration Fabric resource."
           }
@@ -2120,7 +2121,7 @@
         "smithy.api#documentation": "The new integration scenarios covered by this integration fabric."
       }
     },
-    "com.azure.dashboard#IntegrationFabricsUpdateRequestTagsMap": {
+    "com.azure.dashboard#UpdateIntegrationFabricRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2132,13 +2133,13 @@
         "smithy.api#documentation": "The new tags of the Integration Fabric resource."
       }
     },
-    "com.azure.dashboard#IntegrationFabricsCreate": {
+    "com.azure.dashboard#CreateIntegrationFabric": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dashboard#IntegrationFabricsCreateRequest"
+        "target": "com.azure.dashboard#CreateIntegrationFabricRequest"
       },
       "output": {
-        "target": "com.azure.dashboard#IntegrationFabricsCreateResponse"
+        "target": "com.azure.dashboard#CreateIntegrationFabricResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2151,7 +2152,7 @@
         "com.distilled.openapi#apiVersion": "2025-08-01"
       }
     },
-    "com.azure.dashboard#IntegrationFabricsCreateResponse": {
+    "com.azure.dashboard#CreateIntegrationFabricResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2179,7 +2180,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dashboard#IntegrationFabricsCreateResponseTagsMap",
+          "target": "com.azure.dashboard#CreateIntegrationFabricResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2199,7 +2200,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.dashboard#IntegrationFabricsCreateResponseTagsMap": {
+    "com.azure.dashboard#CreateIntegrationFabricResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2211,7 +2212,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.dashboard#IntegrationFabricsCreateRequest": {
+    "com.azure.dashboard#CreateIntegrationFabricRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2247,7 +2248,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dashboard#IntegrationFabricsCreateRequestTagsMap",
+          "target": "com.azure.dashboard#CreateIntegrationFabricRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2300,7 +2301,7 @@
         "smithy.api#documentation": "A list of integration scenarios covered by this integration fabric"
       }
     },
-    "com.azure.dashboard#IntegrationFabricsCreateRequestTagsMap": {
+    "com.azure.dashboard#CreateIntegrationFabricRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2312,13 +2313,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.dashboard#IntegrationFabricsGet": {
+    "com.azure.dashboard#GetIntegrationFabric": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dashboard#IntegrationFabricsGetRequest"
+        "target": "com.azure.dashboard#GetIntegrationFabricRequest"
       },
       "output": {
-        "target": "com.azure.dashboard#IntegrationFabricsGetResponse"
+        "target": "com.azure.dashboard#GetIntegrationFabricResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2331,7 +2332,7 @@
         "com.distilled.openapi#apiVersion": "2025-08-01"
       }
     },
-    "com.azure.dashboard#IntegrationFabricsGetResponse": {
+    "com.azure.dashboard#GetIntegrationFabricResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2359,7 +2360,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dashboard#IntegrationFabricsGetResponseTagsMap",
+          "target": "com.azure.dashboard#GetIntegrationFabricResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2379,7 +2380,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.dashboard#IntegrationFabricsGetResponseTagsMap": {
+    "com.azure.dashboard#GetIntegrationFabricResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2391,7 +2392,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.dashboard#IntegrationFabricsGetRequest": {
+    "com.azure.dashboard#GetIntegrationFabricRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2431,10 +2432,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dashboard#IntegrationFabricsList": {
+    "com.azure.dashboard#ListIntegrationFabrics": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dashboard#IntegrationFabricsListRequest"
+        "target": "com.azure.dashboard#ListIntegrationFabricsRequest"
       },
       "output": {
         "target": "com.azure.dashboard#IntegrationFabricListResponse"
@@ -2540,7 +2541,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.dashboard#IntegrationFabricsListRequest": {
+    "com.azure.dashboard#ListIntegrationFabricsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2572,10 +2573,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dashboard#GrafanaFetchAvailablePlugins": {
+    "com.azure.dashboard#FetchGrafanaAvailablePlugins": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dashboard#GrafanaFetchAvailablePluginsRequest"
+        "target": "com.azure.dashboard#FetchGrafanaAvailablePluginsRequest"
       },
       "output": {
         "target": "com.azure.dashboard#GrafanaAvailablePluginListResponse"
@@ -2642,7 +2643,7 @@
         "smithy.api#documentation": "Available plugins of grafana"
       }
     },
-    "com.azure.dashboard#GrafanaFetchAvailablePluginsRequest": {
+    "com.azure.dashboard#FetchGrafanaAvailablePluginsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2674,10 +2675,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dashboard#GrafanaCheckEnterpriseDetails": {
+    "com.azure.dashboard#CheckGrafanaEnterpriseDetails": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dashboard#GrafanaCheckEnterpriseDetailsRequest"
+        "target": "com.azure.dashboard#CheckGrafanaEnterpriseDetailsRequest"
       },
       "output": {
         "target": "com.azure.dashboard#EnterpriseDetails"
@@ -2823,7 +2824,7 @@
         "smithy.api#documentation": "The current billing term of the SaaS Subscription."
       }
     },
-    "com.azure.dashboard#GrafanaCheckEnterpriseDetailsRequest": {
+    "com.azure.dashboard#CheckGrafanaEnterpriseDetailsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2855,10 +2856,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dashboard#GrafanaDelete": {
+    "com.azure.dashboard#DeleteGrafana": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dashboard#GrafanaDeleteRequest"
+        "target": "com.azure.dashboard#DeleteGrafanaRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2874,7 +2875,7 @@
         "com.distilled.openapi#apiVersion": "2025-08-01"
       }
     },
-    "com.azure.dashboard#GrafanaDeleteRequest": {
+    "com.azure.dashboard#DeleteGrafanaRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2906,13 +2907,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dashboard#GrafanaUpdate": {
+    "com.azure.dashboard#UpdateGrafana": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dashboard#GrafanaUpdateRequest"
+        "target": "com.azure.dashboard#UpdateGrafanaRequest"
       },
       "output": {
-        "target": "com.azure.dashboard#GrafanaUpdateResponse"
+        "target": "com.azure.dashboard#UpdateGrafanaResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2925,7 +2926,7 @@
         "com.distilled.openapi#apiVersion": "2025-08-01"
       }
     },
-    "com.azure.dashboard#GrafanaUpdateResponse": {
+    "com.azure.dashboard#UpdateGrafanaResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2965,7 +2966,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dashboard#GrafanaUpdateResponseTagsMap",
+          "target": "com.azure.dashboard#UpdateGrafanaResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2977,7 +2978,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.dashboard#GrafanaUpdateResponseIdentity",
+          "target": "com.azure.dashboard#UpdateGrafanaResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -2987,7 +2988,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.dashboard#GrafanaUpdateResponseIdentity": {
+    "com.azure.dashboard#UpdateGrafanaResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -3083,7 +3084,7 @@
         "smithy.api#documentation": "Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed)."
       }
     },
-    "com.azure.dashboard#GrafanaUpdateResponseTagsMap": {
+    "com.azure.dashboard#UpdateGrafanaResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3653,7 +3654,7 @@
         "smithy.api#documentation": "Indicate the state for enable or disable traffic over the public interface."
       }
     },
-    "com.azure.dashboard#GrafanaUpdateRequest": {
+    "com.azure.dashboard#UpdateGrafanaRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3684,13 +3685,13 @@
           "target": "com.azure.dashboard#ResourceSku"
         },
         "identity": {
-          "target": "com.azure.dashboard#GrafanaUpdateRequestIdentity",
+          "target": "com.azure.dashboard#UpdateGrafanaRequestIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
         },
         "tags": {
-          "target": "com.azure.dashboard#GrafanaUpdateRequestTagsMap",
+          "target": "com.azure.dashboard#UpdateGrafanaRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "The new tags of the grafana resource."
           }
@@ -3873,7 +3874,7 @@
         "smithy.api#documentation": "The zone redundancy setting of the Grafana instance."
       }
     },
-    "com.azure.dashboard#GrafanaUpdateRequestTagsMap": {
+    "com.azure.dashboard#UpdateGrafanaRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3885,7 +3886,7 @@
         "smithy.api#documentation": "The new tags of the grafana resource."
       }
     },
-    "com.azure.dashboard#GrafanaUpdateRequestIdentity": {
+    "com.azure.dashboard#UpdateGrafanaRequestIdentity": {
       "type": "structure",
       "members": {
         "type": {
@@ -3924,13 +3925,13 @@
         "smithy.api#documentation": "User assigned identity properties"
       }
     },
-    "com.azure.dashboard#GrafanaCreate": {
+    "com.azure.dashboard#CreateGrafana": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dashboard#GrafanaCreateRequest"
+        "target": "com.azure.dashboard#CreateGrafanaRequest"
       },
       "output": {
-        "target": "com.azure.dashboard#GrafanaCreateResponse"
+        "target": "com.azure.dashboard#CreateGrafanaResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3943,7 +3944,7 @@
         "com.distilled.openapi#apiVersion": "2025-08-01"
       }
     },
-    "com.azure.dashboard#GrafanaCreateResponse": {
+    "com.azure.dashboard#CreateGrafanaResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3983,7 +3984,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dashboard#GrafanaCreateResponseTagsMap",
+          "target": "com.azure.dashboard#CreateGrafanaResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3995,7 +3996,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.dashboard#GrafanaCreateResponseIdentity",
+          "target": "com.azure.dashboard#CreateGrafanaResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -4005,7 +4006,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.dashboard#GrafanaCreateResponseIdentity": {
+    "com.azure.dashboard#CreateGrafanaResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -4037,7 +4038,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.dashboard#GrafanaCreateResponseTagsMap": {
+    "com.azure.dashboard#CreateGrafanaResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4049,7 +4050,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.dashboard#GrafanaCreateRequest": {
+    "com.azure.dashboard#CreateGrafanaRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4089,7 +4090,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dashboard#GrafanaCreateRequestTagsMap",
+          "target": "com.azure.dashboard#CreateGrafanaRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4101,7 +4102,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.dashboard#GrafanaCreateRequestIdentity",
+          "target": "com.azure.dashboard#CreateGrafanaRequestIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -4111,7 +4112,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dashboard#GrafanaCreateRequestIdentity": {
+    "com.azure.dashboard#CreateGrafanaRequestIdentity": {
       "type": "structure",
       "members": {
         "type": {
@@ -4131,7 +4132,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.dashboard#GrafanaCreateRequestTagsMap": {
+    "com.azure.dashboard#CreateGrafanaRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4309,13 +4310,13 @@
         "smithy.api#documentation": "Indicate the state for enable or disable traffic over the public interface."
       }
     },
-    "com.azure.dashboard#GrafanaGet": {
+    "com.azure.dashboard#GetGrafana": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dashboard#GrafanaGetRequest"
+        "target": "com.azure.dashboard#GetGrafanaRequest"
       },
       "output": {
-        "target": "com.azure.dashboard#GrafanaGetResponse"
+        "target": "com.azure.dashboard#GetGrafanaResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4328,7 +4329,7 @@
         "com.distilled.openapi#apiVersion": "2025-08-01"
       }
     },
-    "com.azure.dashboard#GrafanaGetResponse": {
+    "com.azure.dashboard#GetGrafanaResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -4368,7 +4369,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dashboard#GrafanaGetResponseTagsMap",
+          "target": "com.azure.dashboard#GetGrafanaResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4380,7 +4381,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.dashboard#GrafanaGetResponseIdentity",
+          "target": "com.azure.dashboard#GetGrafanaResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -4390,7 +4391,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.dashboard#GrafanaGetResponseIdentity": {
+    "com.azure.dashboard#GetGrafanaResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -4422,7 +4423,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.dashboard#GrafanaGetResponseTagsMap": {
+    "com.azure.dashboard#GetGrafanaResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4434,7 +4435,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.dashboard#GrafanaGetRequest": {
+    "com.azure.dashboard#GetGrafanaRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4466,10 +4467,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dashboard#GrafanaListByResourceGroup": {
+    "com.azure.dashboard#ListGrafanaByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dashboard#GrafanaListByResourceGroupRequest"
+        "target": "com.azure.dashboard#ListGrafanaByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.dashboard#ManagedGrafanaListResponse"
@@ -4621,7 +4622,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.dashboard#GrafanaListByResourceGroupRequest": {
+    "com.azure.dashboard#ListGrafanaByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4645,10 +4646,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dashboard#ManagedDashboardsDelete": {
+    "com.azure.dashboard#DeleteManagedDashboard": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dashboard#ManagedDashboardsDeleteRequest"
+        "target": "com.azure.dashboard#DeleteManagedDashboardRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4664,7 +4665,7 @@
         "com.distilled.openapi#apiVersion": "2025-08-01"
       }
     },
-    "com.azure.dashboard#ManagedDashboardsDeleteRequest": {
+    "com.azure.dashboard#DeleteManagedDashboardRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4696,13 +4697,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dashboard#ManagedDashboardsUpdate": {
+    "com.azure.dashboard#UpdateManagedDashboard": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dashboard#ManagedDashboardsUpdateRequest"
+        "target": "com.azure.dashboard#UpdateManagedDashboardRequest"
       },
       "output": {
-        "target": "com.azure.dashboard#ManagedDashboardsUpdateResponse"
+        "target": "com.azure.dashboard#UpdateManagedDashboardResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4715,7 +4716,7 @@
         "com.distilled.openapi#apiVersion": "2025-08-01"
       }
     },
-    "com.azure.dashboard#ManagedDashboardsUpdateResponse": {
+    "com.azure.dashboard#UpdateManagedDashboardResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -4743,7 +4744,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dashboard#ManagedDashboardsUpdateResponseTagsMap",
+          "target": "com.azure.dashboard#UpdateManagedDashboardResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4780,7 +4781,7 @@
         "smithy.api#documentation": "Properties specific to the grafana resource."
       }
     },
-    "com.azure.dashboard#ManagedDashboardsUpdateResponseTagsMap": {
+    "com.azure.dashboard#UpdateManagedDashboardResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4792,7 +4793,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.dashboard#ManagedDashboardsUpdateRequest": {
+    "com.azure.dashboard#UpdateManagedDashboardRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4820,7 +4821,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dashboard#ManagedDashboardsUpdateRequestTagsMap",
+          "target": "com.azure.dashboard#UpdateManagedDashboardRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "The new tags of the managed dashboard resource."
           }
@@ -4830,7 +4831,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dashboard#ManagedDashboardsUpdateRequestTagsMap": {
+    "com.azure.dashboard#UpdateManagedDashboardRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4842,13 +4843,13 @@
         "smithy.api#documentation": "The new tags of the managed dashboard resource."
       }
     },
-    "com.azure.dashboard#ManagedDashboardsCreate": {
+    "com.azure.dashboard#CreateManagedDashboard": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dashboard#ManagedDashboardsCreateRequest"
+        "target": "com.azure.dashboard#CreateManagedDashboardRequest"
       },
       "output": {
-        "target": "com.azure.dashboard#ManagedDashboardsCreateResponse"
+        "target": "com.azure.dashboard#CreateManagedDashboardResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4861,7 +4862,7 @@
         "com.distilled.openapi#apiVersion": "2025-08-01"
       }
     },
-    "com.azure.dashboard#ManagedDashboardsCreateResponse": {
+    "com.azure.dashboard#CreateManagedDashboardResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -4889,7 +4890,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dashboard#ManagedDashboardsCreateResponseTagsMap",
+          "target": "com.azure.dashboard#CreateManagedDashboardResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4912,7 +4913,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.dashboard#ManagedDashboardsCreateResponseTagsMap": {
+    "com.azure.dashboard#CreateManagedDashboardResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4924,7 +4925,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.dashboard#ManagedDashboardsCreateRequest": {
+    "com.azure.dashboard#CreateManagedDashboardRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4952,7 +4953,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dashboard#ManagedDashboardsCreateRequestTagsMap",
+          "target": "com.azure.dashboard#CreateManagedDashboardRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4982,7 +4983,7 @@
         "smithy.api#documentation": "Properties specific to the grafana resource."
       }
     },
-    "com.azure.dashboard#ManagedDashboardsCreateRequestTagsMap": {
+    "com.azure.dashboard#CreateManagedDashboardRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4994,13 +4995,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.dashboard#DashboardsGet": {
+    "com.azure.dashboard#GetDashboard": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dashboard#DashboardsGetRequest"
+        "target": "com.azure.dashboard#GetDashboardRequest"
       },
       "output": {
-        "target": "com.azure.dashboard#DashboardsGetResponse"
+        "target": "com.azure.dashboard#GetDashboardResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5013,7 +5014,7 @@
         "com.distilled.openapi#apiVersion": "2025-08-01"
       }
     },
-    "com.azure.dashboard#DashboardsGetResponse": {
+    "com.azure.dashboard#GetDashboardResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -5041,7 +5042,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.dashboard#DashboardsGetResponseTagsMap",
+          "target": "com.azure.dashboard#GetDashboardResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -5064,7 +5065,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.dashboard#DashboardsGetResponseTagsMap": {
+    "com.azure.dashboard#GetDashboardResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5076,7 +5077,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.dashboard#DashboardsGetRequest": {
+    "com.azure.dashboard#GetDashboardRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5108,10 +5109,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dashboard#DashboardsList": {
+    "com.azure.dashboard#ListDashboards": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dashboard#DashboardsListRequest"
+        "target": "com.azure.dashboard#ListDashboardsRequest"
       },
       "output": {
         "target": "com.azure.dashboard#ManagedDashboardListResponse"
@@ -5220,7 +5221,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.dashboard#DashboardsListRequest": {
+    "com.azure.dashboard#ListDashboardsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5244,10 +5245,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dashboard#GrafanaList": {
+    "com.azure.dashboard#ListGrafana": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dashboard#GrafanaListRequest"
+        "target": "com.azure.dashboard#ListGrafanaRequest"
       },
       "output": {
         "target": "com.azure.dashboard#ManagedGrafanaListResponse"
@@ -5263,7 +5264,7 @@
         "com.distilled.openapi#apiVersion": "2025-08-01"
       }
     },
-    "com.azure.dashboard#GrafanaListRequest": {
+    "com.azure.dashboard#ListGrafanaRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5279,10 +5280,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dashboard#DashboardsListBySubscription": {
+    "com.azure.dashboard#ListDashboardBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.dashboard#DashboardsListBySubscriptionRequest"
+        "target": "com.azure.dashboard#ListDashboardBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.dashboard#ManagedDashboardListResponse"
@@ -5298,7 +5299,7 @@
         "com.distilled.openapi#apiVersion": "2025-08-01"
       }
     },
-    "com.azure.dashboard#DashboardsListBySubscriptionRequest": {
+    "com.azure.dashboard#ListDashboardBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5314,13 +5315,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.dashboard#OperationsList": {
+    "com.azure.dashboard#ListOperations": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
       },
       "output": {
-        "target": "com.azure.dashboard#OperationsListResponse"
+        "target": "com.azure.dashboard#ListOperationsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5333,11 +5334,11 @@
         "com.distilled.openapi#apiVersion": "2025-08-01"
       }
     },
-    "com.azure.dashboard#OperationsListResponse": {
+    "com.azure.dashboard#ListOperationsResponse": {
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.dashboard#OperationsListResponseValueList",
+          "target": "com.azure.dashboard#ListOperationsResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of operations supported by the resource provider"
           }
@@ -5353,7 +5354,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.dashboard#OperationsListResponseValueList": {
+    "com.azure.dashboard#ListOperationsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.dashboard#Operation"
@@ -5477,100 +5478,100 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.dashboard#ManagedPrivateEndpointsRefresh"
+          "target": "com.azure.dashboard#RefreshManagedPrivateEndpoint"
         },
         {
-          "target": "com.azure.dashboard#PrivateLinkResourcesGet"
+          "target": "com.azure.dashboard#GetPrivateLinkResource"
         },
         {
-          "target": "com.azure.dashboard#PrivateLinkResourcesList"
+          "target": "com.azure.dashboard#ListPrivateLinkResources"
         },
         {
-          "target": "com.azure.dashboard#PrivateEndpointConnectionsDelete"
+          "target": "com.azure.dashboard#DeletePrivateEndpointConnection"
         },
         {
-          "target": "com.azure.dashboard#PrivateEndpointConnectionsApprove"
+          "target": "com.azure.dashboard#ApprovePrivateEndpointConnection"
         },
         {
-          "target": "com.azure.dashboard#PrivateEndpointConnectionsGet"
+          "target": "com.azure.dashboard#GetPrivateEndpointConnection"
         },
         {
-          "target": "com.azure.dashboard#PrivateEndpointConnectionsList"
+          "target": "com.azure.dashboard#ListPrivateEndpointConnections"
         },
         {
-          "target": "com.azure.dashboard#ManagedPrivateEndpointsDelete"
+          "target": "com.azure.dashboard#DeleteManagedPrivateEndpoint"
         },
         {
-          "target": "com.azure.dashboard#ManagedPrivateEndpointsUpdate"
+          "target": "com.azure.dashboard#UpdateManagedPrivateEndpoint"
         },
         {
-          "target": "com.azure.dashboard#ManagedPrivateEndpointsCreate"
+          "target": "com.azure.dashboard#CreateManagedPrivateEndpoint"
         },
         {
-          "target": "com.azure.dashboard#ManagedPrivateEndpointsGet"
+          "target": "com.azure.dashboard#GetManagedPrivateEndpoint"
         },
         {
-          "target": "com.azure.dashboard#ManagedPrivateEndpointsList"
+          "target": "com.azure.dashboard#ListManagedPrivateEndpoints"
         },
         {
-          "target": "com.azure.dashboard#IntegrationFabricsDelete"
+          "target": "com.azure.dashboard#DeleteIntegrationFabric"
         },
         {
-          "target": "com.azure.dashboard#IntegrationFabricsUpdate"
+          "target": "com.azure.dashboard#UpdateIntegrationFabric"
         },
         {
-          "target": "com.azure.dashboard#IntegrationFabricsCreate"
+          "target": "com.azure.dashboard#CreateIntegrationFabric"
         },
         {
-          "target": "com.azure.dashboard#IntegrationFabricsGet"
+          "target": "com.azure.dashboard#GetIntegrationFabric"
         },
         {
-          "target": "com.azure.dashboard#IntegrationFabricsList"
+          "target": "com.azure.dashboard#ListIntegrationFabrics"
         },
         {
-          "target": "com.azure.dashboard#GrafanaFetchAvailablePlugins"
+          "target": "com.azure.dashboard#FetchGrafanaAvailablePlugins"
         },
         {
-          "target": "com.azure.dashboard#GrafanaCheckEnterpriseDetails"
+          "target": "com.azure.dashboard#CheckGrafanaEnterpriseDetails"
         },
         {
-          "target": "com.azure.dashboard#GrafanaDelete"
+          "target": "com.azure.dashboard#DeleteGrafana"
         },
         {
-          "target": "com.azure.dashboard#GrafanaUpdate"
+          "target": "com.azure.dashboard#UpdateGrafana"
         },
         {
-          "target": "com.azure.dashboard#GrafanaCreate"
+          "target": "com.azure.dashboard#CreateGrafana"
         },
         {
-          "target": "com.azure.dashboard#GrafanaGet"
+          "target": "com.azure.dashboard#GetGrafana"
         },
         {
-          "target": "com.azure.dashboard#GrafanaListByResourceGroup"
+          "target": "com.azure.dashboard#ListGrafanaByResourceGroup"
         },
         {
-          "target": "com.azure.dashboard#ManagedDashboardsDelete"
+          "target": "com.azure.dashboard#DeleteManagedDashboard"
         },
         {
-          "target": "com.azure.dashboard#ManagedDashboardsUpdate"
+          "target": "com.azure.dashboard#UpdateManagedDashboard"
         },
         {
-          "target": "com.azure.dashboard#ManagedDashboardsCreate"
+          "target": "com.azure.dashboard#CreateManagedDashboard"
         },
         {
-          "target": "com.azure.dashboard#DashboardsGet"
+          "target": "com.azure.dashboard#GetDashboard"
         },
         {
-          "target": "com.azure.dashboard#DashboardsList"
+          "target": "com.azure.dashboard#ListDashboards"
         },
         {
-          "target": "com.azure.dashboard#GrafanaList"
+          "target": "com.azure.dashboard#ListGrafana"
         },
         {
-          "target": "com.azure.dashboard#DashboardsListBySubscription"
+          "target": "com.azure.dashboard#ListDashboardBySubscription"
         },
         {
-          "target": "com.azure.dashboard#OperationsList"
+          "target": "com.azure.dashboard#ListOperations"
         }
       ],
       "traits": {

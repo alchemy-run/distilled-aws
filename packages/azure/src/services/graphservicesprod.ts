@@ -183,7 +183,7 @@ export const AccountsCreateAndUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "AccountsCreateAndUpdateResponse",
 }) as any as S.Schema<AccountsCreateAndUpdateResponse>;
 
-export interface AccountsDeleteRequest {
+export interface DeleteAccountRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -191,7 +191,7 @@ export interface AccountsDeleteRequest {
   /** The name of the resource. */
   resourceName: string;
 }
-export const AccountsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteAccountRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -205,17 +205,17 @@ export const AccountsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "AccountsDeleteRequest",
-}) as any as S.Schema<AccountsDeleteRequest>;
+  identifier: "DeleteAccountRequest",
+}) as any as S.Schema<DeleteAccountRequest>;
 
-export interface AccountsDeleteResponse {}
-export const AccountsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteAccountResponse {}
+export const DeleteAccountResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "AccountsDeleteResponse",
-}) as any as S.Schema<AccountsDeleteResponse>;
+  identifier: "DeleteAccountResponse",
+}) as any as S.Schema<DeleteAccountResponse>;
 
-export interface AccountsGetRequest {
+export interface GetAccountRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -223,7 +223,7 @@ export interface AccountsGetRequest {
   /** The name of the resource. */
   resourceName: string;
 }
-export const AccountsGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetAccountRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -237,88 +237,87 @@ export const AccountsGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "AccountsGetRequest",
-}) as any as S.Schema<AccountsGetRequest>;
+  identifier: "GetAccountRequest",
+}) as any as S.Schema<GetAccountRequest>;
 
 /** resource tags. */
-export type AccountsGetResponseTagsMap = { [key: string]: string | undefined };
-export const AccountsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetAccountResponseTagsMap = { [key: string]: string | undefined };
+export const GetAccountResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AccountsGetResponseTagsMap>;
+) as any as S.Schema<GetAccountResponseTagsMap>;
 
 /** The type of identity that created the resource. */
-export type AccountsGetResponseSystemDataCreatedByType =
+export type GetAccountResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const AccountsGetResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
+export const GetAccountResponseSystemDataCreatedByType = /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type AccountsGetResponseSystemDataLastModifiedByType =
+export type GetAccountResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const AccountsGetResponseSystemDataLastModifiedByType =
+export const GetAccountResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface AccountsGetResponseSystemData {
+export interface GetAccountResponseSystemData {
   /** The type of identity that created the resource. */
-  createdByType?: AccountsGetResponseSystemDataCreatedByType;
+  createdByType?: GetAccountResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: AccountsGetResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: GetAccountResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const AccountsGetResponseSystemData = /*@__PURE__*/ S.suspend(() =>
+export const GetAccountResponseSystemData = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    createdByType: S.optional(AccountsGetResponseSystemDataCreatedByType),
+    createdByType: S.optional(GetAccountResponseSystemDataCreatedByType),
     createdAt: S.optional(S.String),
     lastModifiedByType: S.optional(
-      AccountsGetResponseSystemDataLastModifiedByType,
+      GetAccountResponseSystemDataLastModifiedByType,
     ),
     lastModifiedAt: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "AccountsGetResponseSystemData",
-}) as any as S.Schema<AccountsGetResponseSystemData>;
+  identifier: "GetAccountResponseSystemData",
+}) as any as S.Schema<GetAccountResponseSystemData>;
 
 /** Provisioning state. */
-export type AccountsGetResponsePropertiesProvisioningState =
+export type GetAccountResponsePropertiesProvisioningState =
   | "Succeeded"
   | "Failed"
   | "Canceled";
-export const AccountsGetResponsePropertiesProvisioningState =
+export const GetAccountResponsePropertiesProvisioningState =
   /*@__PURE__*/ S.String;
 
 /** Property bag from billing account */
-export interface AccountsGetResponseProperties {
+export interface GetAccountResponseProperties {
   /** Provisioning state. */
-  provisioningState?: AccountsGetResponsePropertiesProvisioningState;
+  provisioningState?: GetAccountResponsePropertiesProvisioningState;
   /** Customer owned application ID */
   appId: string;
   /** Billing Plan Id */
   billingPlanId?: string;
 }
-export const AccountsGetResponseProperties = /*@__PURE__*/ S.suspend(() =>
+export const GetAccountResponseProperties = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     provisioningState: S.optional(
-      AccountsGetResponsePropertiesProvisioningState,
+      GetAccountResponsePropertiesProvisioningState,
     ),
     appId: S.String,
     billingPlanId: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "AccountsGetResponseProperties",
-}) as any as S.Schema<AccountsGetResponseProperties>;
+  identifier: "GetAccountResponseProperties",
+}) as any as S.Schema<GetAccountResponseProperties>;
 
-export interface AccountsGetResponse {
+export interface GetAccountResponse {
   /** Azure resource ID. */
   id?: string;
   /** Azure resource name. */
@@ -328,33 +327,33 @@ export interface AccountsGetResponse {
   /** Location of the resource. */
   location?: string;
   /** resource tags. */
-  tags?: AccountsGetResponseTagsMap;
+  tags?: GetAccountResponseTagsMap;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: AccountsGetResponseSystemData;
+  systemData?: GetAccountResponseSystemData;
   /** Property bag from billing account */
-  properties: AccountsGetResponseProperties;
+  properties: GetAccountResponseProperties;
 }
-export const AccountsGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetAccountResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     location: S.optional(S.String),
-    tags: S.optional(AccountsGetResponseTagsMap),
-    systemData: S.optional(AccountsGetResponseSystemData),
-    properties: AccountsGetResponseProperties,
+    tags: S.optional(GetAccountResponseTagsMap),
+    systemData: S.optional(GetAccountResponseSystemData),
+    properties: GetAccountResponseProperties,
   }),
 ).annotate({
-  identifier: "AccountsGetResponse",
-}) as any as S.Schema<AccountsGetResponse>;
+  identifier: "GetAccountResponse",
+}) as any as S.Schema<GetAccountResponse>;
 
-export interface AccountsListByResourceGroupRequest {
+export interface ListAccountByResourceGroupRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
 }
-export const AccountsListByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListAccountByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -367,8 +366,8 @@ export const AccountsListByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "AccountsListByResourceGroupRequest",
-}) as any as S.Schema<AccountsListByResourceGroupRequest>;
+  identifier: "ListAccountByResourceGroupRequest",
+}) as any as S.Schema<ListAccountByResourceGroupRequest>;
 
 /** resource tags. */
 export type AccountResourceTagsMap = { [key: string]: string | undefined };
@@ -496,11 +495,11 @@ export const AccountResourceList = /*@__PURE__*/ S.suspend(() =>
   identifier: "AccountResourceList",
 }) as any as S.Schema<AccountResourceList>;
 
-export interface AccountsListBySubscriptionRequest {
+export interface ListAccountBySubscriptionRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
 }
-export const AccountsListBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListAccountBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
   }).pipe(
@@ -512,158 +511,11 @@ export const AccountsListBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "AccountsListBySubscriptionRequest",
-}) as any as S.Schema<AccountsListBySubscriptionRequest>;
+  identifier: "ListAccountBySubscriptionRequest",
+}) as any as S.Schema<ListAccountBySubscriptionRequest>;
 
-/** List of key value pairs that describe the resource. This will overwrite the existing tags. */
-export type AccountsUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const AccountsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<AccountsUpdateRequestTagsMap>;
-
-export interface AccountsUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the resource. */
-  resourceName: string;
-  /** List of key value pairs that describe the resource. This will overwrite the existing tags. */
-  tags?: AccountsUpdateRequestTagsMap;
-}
-export const AccountsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    resourceName: S.String.pipe(T.Label()),
-    tags: S.optional(AccountsUpdateRequestTagsMap),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.GraphServices/accounts/{resourceName}",
-      code: 200,
-      apiVersion: "2023-04-13",
-    }),
-  ),
-).annotate({
-  identifier: "AccountsUpdateRequest",
-}) as any as S.Schema<AccountsUpdateRequest>;
-
-/** resource tags. */
-export type AccountsUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const AccountsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<AccountsUpdateResponseTagsMap>;
-
-/** The type of identity that created the resource. */
-export type AccountsUpdateResponseSystemDataCreatedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const AccountsUpdateResponseSystemDataCreatedByType =
-  /*@__PURE__*/ S.String;
-
-/** The type of identity that last modified the resource. */
-export type AccountsUpdateResponseSystemDataLastModifiedByType =
-  | "User"
-  | "Application"
-  | "ManagedIdentity"
-  | "Key";
-export const AccountsUpdateResponseSystemDataLastModifiedByType =
-  /*@__PURE__*/ S.String;
-
-/** Metadata pertaining to creation and last modification of the resource. */
-export interface AccountsUpdateResponseSystemData {
-  /** The type of identity that created the resource. */
-  createdByType?: AccountsUpdateResponseSystemDataCreatedByType;
-  /** The timestamp of resource creation (UTC). */
-  createdAt?: string;
-  /** The type of identity that last modified the resource. */
-  lastModifiedByType?: AccountsUpdateResponseSystemDataLastModifiedByType;
-  /** The timestamp of resource last modification (UTC) */
-  lastModifiedAt?: string;
-}
-export const AccountsUpdateResponseSystemData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    createdByType: S.optional(AccountsUpdateResponseSystemDataCreatedByType),
-    createdAt: S.optional(S.String),
-    lastModifiedByType: S.optional(
-      AccountsUpdateResponseSystemDataLastModifiedByType,
-    ),
-    lastModifiedAt: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AccountsUpdateResponseSystemData",
-}) as any as S.Schema<AccountsUpdateResponseSystemData>;
-
-/** Provisioning state. */
-export type AccountsUpdateResponsePropertiesProvisioningState =
-  | "Succeeded"
-  | "Failed"
-  | "Canceled";
-export const AccountsUpdateResponsePropertiesProvisioningState =
-  /*@__PURE__*/ S.String;
-
-/** Property bag from billing account */
-export interface AccountsUpdateResponseProperties {
-  /** Provisioning state. */
-  provisioningState?: AccountsUpdateResponsePropertiesProvisioningState;
-  /** Customer owned application ID */
-  appId: string;
-  /** Billing Plan Id */
-  billingPlanId?: string;
-}
-export const AccountsUpdateResponseProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provisioningState: S.optional(
-      AccountsUpdateResponsePropertiesProvisioningState,
-    ),
-    appId: S.String,
-    billingPlanId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AccountsUpdateResponseProperties",
-}) as any as S.Schema<AccountsUpdateResponseProperties>;
-
-export interface AccountsUpdateResponse {
-  /** Azure resource ID. */
-  id?: string;
-  /** Azure resource name. */
-  name?: string;
-  /** Azure resource type. */
-  type?: string;
-  /** Location of the resource. */
-  location?: string;
-  /** resource tags. */
-  tags?: AccountsUpdateResponseTagsMap;
-  /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: AccountsUpdateResponseSystemData;
-  /** Property bag from billing account */
-  properties: AccountsUpdateResponseProperties;
-}
-export const AccountsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    location: S.optional(S.String),
-    tags: S.optional(AccountsUpdateResponseTagsMap),
-    systemData: S.optional(AccountsUpdateResponseSystemData),
-    properties: AccountsUpdateResponseProperties,
-  }),
-).annotate({
-  identifier: "AccountsUpdateResponse",
-}) as any as S.Schema<AccountsUpdateResponse>;
-
-export interface OperationsListRequest {}
-export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
+export interface ListOperationsRequest {}
+export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
     T.Http({
       method: "GET",
@@ -673,8 +525,8 @@ export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "OperationsListRequest",
-}) as any as S.Schema<OperationsListRequest>;
+  identifier: "ListOperationsRequest",
+}) as any as S.Schema<ListOperationsRequest>;
 
 /** Localized display information for this particular operation. */
 export interface OperationDisplay {
@@ -730,25 +582,170 @@ export const Operation = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 /** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
   Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
+) as any as S.Schema<ListOperationsResponseValueList>;
 
-export interface OperationsListResponse {
+export interface ListOperationsResponse {
   /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
+  value?: ListOperationsResponseValueList;
   /** URL to get the next set of operation list results (if there are any). */
   nextLink?: string;
 }
-export const OperationsListResponse = /*@__PURE__*/ S.suspend(() =>
+export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(OperationsListResponseValueList),
+    value: S.optional(ListOperationsResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "OperationsListResponse",
-}) as any as S.Schema<OperationsListResponse>;
+  identifier: "ListOperationsResponse",
+}) as any as S.Schema<ListOperationsResponse>;
+
+/** List of key value pairs that describe the resource. This will overwrite the existing tags. */
+export type UpdateAccountRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateAccountRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateAccountRequestTagsMap>;
+
+export interface UpdateAccountRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the resource. */
+  resourceName: string;
+  /** List of key value pairs that describe the resource. This will overwrite the existing tags. */
+  tags?: UpdateAccountRequestTagsMap;
+}
+export const UpdateAccountRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    resourceName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateAccountRequestTagsMap),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.GraphServices/accounts/{resourceName}",
+      code: 200,
+      apiVersion: "2023-04-13",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateAccountRequest",
+}) as any as S.Schema<UpdateAccountRequest>;
+
+/** resource tags. */
+export type UpdateAccountResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateAccountResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateAccountResponseTagsMap>;
+
+/** The type of identity that created the resource. */
+export type UpdateAccountResponseSystemDataCreatedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const UpdateAccountResponseSystemDataCreatedByType =
+  /*@__PURE__*/ S.String;
+
+/** The type of identity that last modified the resource. */
+export type UpdateAccountResponseSystemDataLastModifiedByType =
+  | "User"
+  | "Application"
+  | "ManagedIdentity"
+  | "Key";
+export const UpdateAccountResponseSystemDataLastModifiedByType =
+  /*@__PURE__*/ S.String;
+
+/** Metadata pertaining to creation and last modification of the resource. */
+export interface UpdateAccountResponseSystemData {
+  /** The type of identity that created the resource. */
+  createdByType?: UpdateAccountResponseSystemDataCreatedByType;
+  /** The timestamp of resource creation (UTC). */
+  createdAt?: string;
+  /** The type of identity that last modified the resource. */
+  lastModifiedByType?: UpdateAccountResponseSystemDataLastModifiedByType;
+  /** The timestamp of resource last modification (UTC) */
+  lastModifiedAt?: string;
+}
+export const UpdateAccountResponseSystemData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    createdByType: S.optional(UpdateAccountResponseSystemDataCreatedByType),
+    createdAt: S.optional(S.String),
+    lastModifiedByType: S.optional(
+      UpdateAccountResponseSystemDataLastModifiedByType,
+    ),
+    lastModifiedAt: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "UpdateAccountResponseSystemData",
+}) as any as S.Schema<UpdateAccountResponseSystemData>;
+
+/** Provisioning state. */
+export type UpdateAccountResponsePropertiesProvisioningState =
+  | "Succeeded"
+  | "Failed"
+  | "Canceled";
+export const UpdateAccountResponsePropertiesProvisioningState =
+  /*@__PURE__*/ S.String;
+
+/** Property bag from billing account */
+export interface UpdateAccountResponseProperties {
+  /** Provisioning state. */
+  provisioningState?: UpdateAccountResponsePropertiesProvisioningState;
+  /** Customer owned application ID */
+  appId: string;
+  /** Billing Plan Id */
+  billingPlanId?: string;
+}
+export const UpdateAccountResponseProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provisioningState: S.optional(
+      UpdateAccountResponsePropertiesProvisioningState,
+    ),
+    appId: S.String,
+    billingPlanId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "UpdateAccountResponseProperties",
+}) as any as S.Schema<UpdateAccountResponseProperties>;
+
+export interface UpdateAccountResponse {
+  /** Azure resource ID. */
+  id?: string;
+  /** Azure resource name. */
+  name?: string;
+  /** Azure resource type. */
+  type?: string;
+  /** Location of the resource. */
+  location?: string;
+  /** resource tags. */
+  tags?: UpdateAccountResponseTagsMap;
+  /** Metadata pertaining to creation and last modification of the resource. */
+  systemData?: UpdateAccountResponseSystemData;
+  /** Property bag from billing account */
+  properties: UpdateAccountResponseProperties;
+}
+export const UpdateAccountResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    location: S.optional(S.String),
+    tags: S.optional(UpdateAccountResponseTagsMap),
+    systemData: S.optional(UpdateAccountResponseSystemData),
+    properties: UpdateAccountResponseProperties,
+  }),
+).annotate({
+  identifier: "UpdateAccountResponse",
+}) as any as S.Schema<UpdateAccountResponse>;
 
 export type AccountsCreateAndUpdateError = AzureOpError;
 /** Create or update account resource. */
@@ -765,91 +762,91 @@ export const AccountsCreateAndUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type AccountsDeleteError = AzureOpError;
+export type DeleteAccountError = AzureOpError;
 /** Deletes a account resource. */
-export const AccountsDelete: API.OperationMethod<
-  AccountsDeleteRequest,
-  AccountsDeleteResponse,
-  AccountsDeleteError,
+export const DeleteAccount: API.OperationMethod<
+  DeleteAccountRequest,
+  DeleteAccountResponse,
+  DeleteAccountError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AccountsDeleteRequest,
-  output: AccountsDeleteResponse,
+  input: DeleteAccountRequest,
+  output: DeleteAccountResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type AccountsGetError = AzureOpError;
+export type GetAccountError = AzureOpError;
 /** Returns account resource for a given name. */
-export const AccountsGet: API.OperationMethod<
-  AccountsGetRequest,
-  AccountsGetResponse,
-  AccountsGetError,
+export const GetAccount: API.OperationMethod<
+  GetAccountRequest,
+  GetAccountResponse,
+  GetAccountError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AccountsGetRequest,
-  output: AccountsGetResponse,
+  input: GetAccountRequest,
+  output: GetAccountResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type AccountsListByResourceGroupError = AzureOpError;
+export type ListAccountByResourceGroupError = AzureOpError;
 /** Returns list of accounts apps. */
-export const AccountsListByResourceGroup: API.OperationMethod<
-  AccountsListByResourceGroupRequest,
+export const ListAccountByResourceGroup: API.OperationMethod<
+  ListAccountByResourceGroupRequest,
   AccountResourceList,
-  AccountsListByResourceGroupError,
+  ListAccountByResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AccountsListByResourceGroupRequest,
+  input: ListAccountByResourceGroupRequest,
   output: AccountResourceList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type AccountsListBySubscriptionError = AzureOpError;
+export type ListAccountBySubscriptionError = AzureOpError;
 /** Returns list of accounts belonging to a subscription. */
-export const AccountsListBySubscription: API.OperationMethod<
-  AccountsListBySubscriptionRequest,
+export const ListAccountBySubscription: API.OperationMethod<
+  ListAccountBySubscriptionRequest,
   AccountResourceList,
-  AccountsListBySubscriptionError,
+  ListAccountBySubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AccountsListBySubscriptionRequest,
+  input: ListAccountBySubscriptionRequest,
   output: AccountResourceList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type AccountsUpdateError = AzureOpError;
-/** Update account details. */
-export const AccountsUpdate: API.OperationMethod<
-  AccountsUpdateRequest,
-  AccountsUpdateResponse,
-  AccountsUpdateError,
+export type ListOperationsError = AzureOpError;
+/** Returns list of operations. */
+export const ListOperations: API.OperationMethod<
+  ListOperationsRequest,
+  ListOperationsResponse,
+  ListOperationsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AccountsUpdateRequest,
-  output: AccountsUpdateResponse,
+  input: ListOperationsRequest,
+  output: ListOperationsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type OperationsListError = AzureOpError;
-/** Returns list of operations. */
-export const OperationsList: API.OperationMethod<
-  OperationsListRequest,
-  OperationsListResponse,
-  OperationsListError,
+export type UpdateAccountError = AzureOpError;
+/** Update account details. */
+export const UpdateAccount: API.OperationMethod<
+  UpdateAccountRequest,
+  UpdateAccountResponse,
+  UpdateAccountError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OperationsListRequest,
-  output: OperationsListResponse,
+  input: UpdateAccountRequest,
+  output: UpdateAccountResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

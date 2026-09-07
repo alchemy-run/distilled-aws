@@ -14,13 +14,14 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.storagemover#JobDefinitionsStopJob": {
+    "com.azure.storagemover#StopJobDefinitionJob": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storagemover#JobDefinitionsStopJobRequest"
+        "target": "com.azure.storagemover#StopJobDefinitionJobRequest"
       },
       "output": {
         "target": "com.azure.storagemover#JobRunResourceId"
@@ -50,7 +51,7 @@
         "smithy.api#documentation": "Response that identifies a Job Run."
       }
     },
-    "com.azure.storagemover#JobDefinitionsStopJobRequest": {
+    "com.azure.storagemover#StopJobDefinitionJobRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -98,10 +99,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storagemover#JobDefinitionsStartJob": {
+    "com.azure.storagemover#StartJobDefinitionJob": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storagemover#JobDefinitionsStartJobRequest"
+        "target": "com.azure.storagemover#StartJobDefinitionJobRequest"
       },
       "output": {
         "target": "com.azure.storagemover#JobRunResourceId"
@@ -117,7 +118,7 @@
         "com.distilled.openapi#apiVersion": "2026-05-01"
       }
     },
-    "com.azure.storagemover#JobDefinitionsStartJobRequest": {
+    "com.azure.storagemover#StartJobDefinitionJobRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -232,13 +233,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storagemover#JobRunsGet": {
+    "com.azure.storagemover#GetJobRun": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storagemover#JobRunsGetRequest"
+        "target": "com.azure.storagemover#GetJobRunRequest"
       },
       "output": {
-        "target": "com.azure.storagemover#JobRunsGetResponse"
+        "target": "com.azure.storagemover#GetJobRunResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -251,7 +252,7 @@
         "com.distilled.openapi#apiVersion": "2026-05-01"
       }
     },
-    "com.azure.storagemover#JobRunsGetResponse": {
+    "com.azure.storagemover#GetJobRunResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -792,7 +793,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.storagemover#JobRunsGetRequest": {
+    "com.azure.storagemover#GetJobRunRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -848,10 +849,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storagemover#JobRunsList": {
+    "com.azure.storagemover#ListJobRuns": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storagemover#JobRunsListRequest"
+        "target": "com.azure.storagemover#ListJobRunsRequest"
       },
       "output": {
         "target": "com.azure.storagemover#JobRunList"
@@ -935,7 +936,7 @@
         "smithy.api#documentation": "The Job Run resource."
       }
     },
-    "com.azure.storagemover#JobRunsListRequest": {
+    "com.azure.storagemover#ListJobRunsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -983,10 +984,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storagemover#JobDefinitionsDelete": {
+    "com.azure.storagemover#DeleteJobDefinition": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storagemover#JobDefinitionsDeleteRequest"
+        "target": "com.azure.storagemover#DeleteJobDefinitionRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1002,7 +1003,7 @@
         "com.distilled.openapi#apiVersion": "2026-05-01"
       }
     },
-    "com.azure.storagemover#JobDefinitionsDeleteRequest": {
+    "com.azure.storagemover#DeleteJobDefinitionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1050,13 +1051,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storagemover#JobDefinitionsUpdate": {
+    "com.azure.storagemover#UpdateJobDefinition": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storagemover#JobDefinitionsUpdateRequest"
+        "target": "com.azure.storagemover#UpdateJobDefinitionRequest"
       },
       "output": {
-        "target": "com.azure.storagemover#JobDefinitionsUpdateResponse"
+        "target": "com.azure.storagemover#UpdateJobDefinitionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1069,7 +1070,7 @@
         "com.distilled.openapi#apiVersion": "2026-05-01"
       }
     },
-    "com.azure.storagemover#JobDefinitionsUpdateResponse": {
+    "com.azure.storagemover#UpdateJobDefinitionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1638,7 +1639,7 @@
         "smithy.api#documentation": "The type of the Job."
       }
     },
-    "com.azure.storagemover#JobDefinitionsUpdateRequest": {
+    "com.azure.storagemover#UpdateJobDefinitionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2083,13 +2084,13 @@
         "smithy.api#documentation": "The type of the Job."
       }
     },
-    "com.azure.storagemover#JobDefinitionsGet": {
+    "com.azure.storagemover#GetJobDefinition": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storagemover#JobDefinitionsGetRequest"
+        "target": "com.azure.storagemover#GetJobDefinitionRequest"
       },
       "output": {
-        "target": "com.azure.storagemover#JobDefinitionsGetResponse"
+        "target": "com.azure.storagemover#GetJobDefinitionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2102,7 +2103,7 @@
         "com.distilled.openapi#apiVersion": "2026-05-01"
       }
     },
-    "com.azure.storagemover#JobDefinitionsGetResponse": {
+    "com.azure.storagemover#GetJobDefinitionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2141,7 +2142,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.storagemover#JobDefinitionsGetRequest": {
+    "com.azure.storagemover#GetJobDefinitionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2189,10 +2190,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storagemover#JobDefinitionsList": {
+    "com.azure.storagemover#ListJobDefinitions": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storagemover#JobDefinitionsListRequest"
+        "target": "com.azure.storagemover#ListJobDefinitionsRequest"
       },
       "output": {
         "target": "com.azure.storagemover#JobDefinitionList"
@@ -2277,7 +2278,7 @@
         "smithy.api#documentation": "The Job Definition resource."
       }
     },
-    "com.azure.storagemover#JobDefinitionsListRequest": {
+    "com.azure.storagemover#ListJobDefinitionsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2317,10 +2318,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storagemover#ProjectsDelete": {
+    "com.azure.storagemover#DeleteProject": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storagemover#ProjectsDeleteRequest"
+        "target": "com.azure.storagemover#DeleteProjectRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2336,7 +2337,7 @@
         "com.distilled.openapi#apiVersion": "2026-05-01"
       }
     },
-    "com.azure.storagemover#ProjectsDeleteRequest": {
+    "com.azure.storagemover#DeleteProjectRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2376,13 +2377,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storagemover#ProjectsUpdate": {
+    "com.azure.storagemover#UpdateProject": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storagemover#ProjectsUpdateRequest"
+        "target": "com.azure.storagemover#UpdateProjectRequest"
       },
       "output": {
-        "target": "com.azure.storagemover#ProjectsUpdateResponse"
+        "target": "com.azure.storagemover#UpdateProjectResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2395,7 +2396,7 @@
         "com.distilled.openapi#apiVersion": "2026-05-01"
       }
     },
-    "com.azure.storagemover#ProjectsUpdateResponse": {
+    "com.azure.storagemover#UpdateProjectResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2453,7 +2454,7 @@
         "smithy.api#documentation": "Project properties."
       }
     },
-    "com.azure.storagemover#ProjectsUpdateRequest": {
+    "com.azure.storagemover#UpdateProjectRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2630,13 +2631,13 @@
         "smithy.api#documentation": "Project properties."
       }
     },
-    "com.azure.storagemover#ProjectsGet": {
+    "com.azure.storagemover#GetProject": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storagemover#ProjectsGetRequest"
+        "target": "com.azure.storagemover#GetProjectRequest"
       },
       "output": {
-        "target": "com.azure.storagemover#ProjectsGetResponse"
+        "target": "com.azure.storagemover#GetProjectResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2649,7 +2650,7 @@
         "com.distilled.openapi#apiVersion": "2026-05-01"
       }
     },
-    "com.azure.storagemover#ProjectsGetResponse": {
+    "com.azure.storagemover#GetProjectResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2687,7 +2688,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.storagemover#ProjectsGetRequest": {
+    "com.azure.storagemover#GetProjectRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2727,10 +2728,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storagemover#ProjectsList": {
+    "com.azure.storagemover#ListProjects": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storagemover#ProjectsListRequest"
+        "target": "com.azure.storagemover#ListProjectsRequest"
       },
       "output": {
         "target": "com.azure.storagemover#ProjectList"
@@ -2814,7 +2815,7 @@
         "smithy.api#documentation": "The Project resource."
       }
     },
-    "com.azure.storagemover#ProjectsListRequest": {
+    "com.azure.storagemover#ListProjectsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2846,10 +2847,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storagemover#EndpointsDelete": {
+    "com.azure.storagemover#DeleteEndpoint": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storagemover#EndpointsDeleteRequest"
+        "target": "com.azure.storagemover#DeleteEndpointRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2865,7 +2866,7 @@
         "com.distilled.openapi#apiVersion": "2026-05-01"
       }
     },
-    "com.azure.storagemover#EndpointsDeleteRequest": {
+    "com.azure.storagemover#DeleteEndpointRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2905,13 +2906,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storagemover#EndpointsUpdate": {
+    "com.azure.storagemover#UpdateEndpoint": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storagemover#EndpointsUpdateRequest"
+        "target": "com.azure.storagemover#UpdateEndpointRequest"
       },
       "output": {
-        "target": "com.azure.storagemover#EndpointsUpdateResponse"
+        "target": "com.azure.storagemover#UpdateEndpointResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2924,7 +2925,7 @@
         "com.distilled.openapi#apiVersion": "2026-05-01"
       }
     },
-    "com.azure.storagemover#EndpointsUpdateResponse": {
+    "com.azure.storagemover#UpdateEndpointResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2959,7 +2960,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.storagemover#EndpointsUpdateResponseIdentity",
+          "target": "com.azure.storagemover#UpdateEndpointResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -2969,7 +2970,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.storagemover#EndpointsUpdateResponseIdentity": {
+    "com.azure.storagemover#UpdateEndpointResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -3168,7 +3169,7 @@
         "smithy.api#documentation": "The Endpoint resource type."
       }
     },
-    "com.azure.storagemover#EndpointsUpdateRequest": {
+    "com.azure.storagemover#UpdateEndpointRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3210,7 +3211,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.storagemover#EndpointsUpdateRequestIdentity",
+          "target": "com.azure.storagemover#UpdateEndpointRequestIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -3220,7 +3221,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storagemover#EndpointsUpdateRequestIdentity": {
+    "com.azure.storagemover#UpdateEndpointRequestIdentity": {
       "type": "structure",
       "members": {
         "type": {
@@ -3476,13 +3477,13 @@
         "smithy.api#documentation": "The resource specific properties for the Storage Mover resource."
       }
     },
-    "com.azure.storagemover#EndpointsGet": {
+    "com.azure.storagemover#GetEndpoint": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storagemover#EndpointsGetRequest"
+        "target": "com.azure.storagemover#GetEndpointRequest"
       },
       "output": {
-        "target": "com.azure.storagemover#EndpointsGetResponse"
+        "target": "com.azure.storagemover#GetEndpointResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3495,7 +3496,7 @@
         "com.distilled.openapi#apiVersion": "2026-05-01"
       }
     },
-    "com.azure.storagemover#EndpointsGetResponse": {
+    "com.azure.storagemover#GetEndpointResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3530,7 +3531,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.storagemover#EndpointsGetResponseIdentity",
+          "target": "com.azure.storagemover#GetEndpointResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
@@ -3540,7 +3541,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.storagemover#EndpointsGetResponseIdentity": {
+    "com.azure.storagemover#GetEndpointResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -3572,7 +3573,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.storagemover#EndpointsGetRequest": {
+    "com.azure.storagemover#GetEndpointRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3612,10 +3613,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storagemover#EndpointsList": {
+    "com.azure.storagemover#ListEndpoints": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storagemover#EndpointsListRequest"
+        "target": "com.azure.storagemover#ListEndpointsRequest"
       },
       "output": {
         "target": "com.azure.storagemover#EndpointList"
@@ -3738,7 +3739,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.storagemover#EndpointsListRequest": {
+    "com.azure.storagemover#ListEndpointsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3770,10 +3771,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storagemover#ConnectionsDelete": {
+    "com.azure.storagemover#DeleteConnection": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storagemover#ConnectionsDeleteRequest"
+        "target": "com.azure.storagemover#DeleteConnectionRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3789,7 +3790,7 @@
         "com.distilled.openapi#apiVersion": "2026-05-01"
       }
     },
-    "com.azure.storagemover#ConnectionsDeleteRequest": {
+    "com.azure.storagemover#DeleteConnectionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4068,13 +4069,13 @@
         "smithy.api#documentation": "List of job definitions associated with this connection."
       }
     },
-    "com.azure.storagemover#ConnectionsGet": {
+    "com.azure.storagemover#GetConnection": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storagemover#ConnectionsGetRequest"
+        "target": "com.azure.storagemover#GetConnectionRequest"
       },
       "output": {
-        "target": "com.azure.storagemover#ConnectionsGetResponse"
+        "target": "com.azure.storagemover#GetConnectionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4087,7 +4088,7 @@
         "com.distilled.openapi#apiVersion": "2026-05-01"
       }
     },
-    "com.azure.storagemover#ConnectionsGetResponse": {
+    "com.azure.storagemover#GetConnectionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -4126,7 +4127,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.storagemover#ConnectionsGetRequest": {
+    "com.azure.storagemover#GetConnectionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4166,10 +4167,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storagemover#ConnectionsList": {
+    "com.azure.storagemover#ListConnections": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storagemover#ConnectionsListRequest"
+        "target": "com.azure.storagemover#ListConnectionsRequest"
       },
       "output": {
         "target": "com.azure.storagemover#ConnectionList"
@@ -4254,7 +4255,7 @@
         "smithy.api#documentation": "The Connection resource."
       }
     },
-    "com.azure.storagemover#ConnectionsListRequest": {
+    "com.azure.storagemover#ListConnectionsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4286,10 +4287,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storagemover#AgentsDelete": {
+    "com.azure.storagemover#DeleteAgent": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storagemover#AgentsDeleteRequest"
+        "target": "com.azure.storagemover#DeleteAgentRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4305,7 +4306,7 @@
         "com.distilled.openapi#apiVersion": "2026-05-01"
       }
     },
-    "com.azure.storagemover#AgentsDeleteRequest": {
+    "com.azure.storagemover#DeleteAgentRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4345,13 +4346,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storagemover#AgentsUpdate": {
+    "com.azure.storagemover#UpdateAgent": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storagemover#AgentsUpdateRequest"
+        "target": "com.azure.storagemover#UpdateAgentRequest"
       },
       "output": {
-        "target": "com.azure.storagemover#AgentsUpdateResponse"
+        "target": "com.azure.storagemover#UpdateAgentResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4364,7 +4365,7 @@
         "com.distilled.openapi#apiVersion": "2026-05-01"
       }
     },
-    "com.azure.storagemover#AgentsUpdateResponse": {
+    "com.azure.storagemover#UpdateAgentResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -4712,7 +4713,7 @@
         "smithy.api#documentation": "The Agent status."
       }
     },
-    "com.azure.storagemover#AgentsUpdateRequest": {
+    "com.azure.storagemover#UpdateAgentRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4908,13 +4909,13 @@
       },
       "traits": {}
     },
-    "com.azure.storagemover#AgentsGet": {
+    "com.azure.storagemover#GetAgent": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storagemover#AgentsGetRequest"
+        "target": "com.azure.storagemover#GetAgentRequest"
       },
       "output": {
-        "target": "com.azure.storagemover#AgentsGetResponse"
+        "target": "com.azure.storagemover#GetAgentResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4927,7 +4928,7 @@
         "com.distilled.openapi#apiVersion": "2026-05-01"
       }
     },
-    "com.azure.storagemover#AgentsGetResponse": {
+    "com.azure.storagemover#GetAgentResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -4965,7 +4966,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.storagemover#AgentsGetRequest": {
+    "com.azure.storagemover#GetAgentRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5005,10 +5006,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storagemover#AgentsList": {
+    "com.azure.storagemover#ListAgents": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storagemover#AgentsListRequest"
+        "target": "com.azure.storagemover#ListAgentsRequest"
       },
       "output": {
         "target": "com.azure.storagemover#AgentList"
@@ -5092,7 +5093,7 @@
         "smithy.api#documentation": "The Agent resource."
       }
     },
-    "com.azure.storagemover#AgentsListRequest": {
+    "com.azure.storagemover#ListAgentsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5124,10 +5125,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storagemover#StorageMoversDelete": {
+    "com.azure.storagemover#DeleteStorageMover": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storagemover#StorageMoversDeleteRequest"
+        "target": "com.azure.storagemover#DeleteStorageMoverRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -5143,7 +5144,7 @@
         "com.distilled.openapi#apiVersion": "2026-05-01"
       }
     },
-    "com.azure.storagemover#StorageMoversDeleteRequest": {
+    "com.azure.storagemover#DeleteStorageMoverRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5175,13 +5176,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storagemover#StorageMoversUpdate": {
+    "com.azure.storagemover#UpdateStorageMover": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storagemover#StorageMoversUpdateRequest"
+        "target": "com.azure.storagemover#UpdateStorageMoverRequest"
       },
       "output": {
-        "target": "com.azure.storagemover#StorageMoversUpdateResponse"
+        "target": "com.azure.storagemover#UpdateStorageMoverResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5194,7 +5195,7 @@
         "com.distilled.openapi#apiVersion": "2026-05-01"
       }
     },
-    "com.azure.storagemover#StorageMoversUpdateResponse": {
+    "com.azure.storagemover#UpdateStorageMoverResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -5222,7 +5223,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.storagemover#StorageMoversUpdateResponseTagsMap",
+          "target": "com.azure.storagemover#UpdateStorageMoverResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -5265,7 +5266,7 @@
         "smithy.api#documentation": "The resource specific properties for the Storage Mover resource."
       }
     },
-    "com.azure.storagemover#StorageMoversUpdateResponseTagsMap": {
+    "com.azure.storagemover#UpdateStorageMoverResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5277,7 +5278,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.storagemover#StorageMoversUpdateRequest": {
+    "com.azure.storagemover#UpdateStorageMoverRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5311,7 +5312,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.storagemover#StorageMoversUpdateRequestTagsMap",
+          "target": "com.azure.storagemover#UpdateStorageMoverRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -5321,7 +5322,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storagemover#StorageMoversUpdateRequestTagsMap": {
+    "com.azure.storagemover#UpdateStorageMoverRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5506,13 +5507,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.storagemover#StorageMoversGet": {
+    "com.azure.storagemover#GetStorageMover": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storagemover#StorageMoversGetRequest"
+        "target": "com.azure.storagemover#GetStorageMoverRequest"
       },
       "output": {
-        "target": "com.azure.storagemover#StorageMoversGetResponse"
+        "target": "com.azure.storagemover#GetStorageMoverResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5525,7 +5526,7 @@
         "com.distilled.openapi#apiVersion": "2026-05-01"
       }
     },
-    "com.azure.storagemover#StorageMoversGetResponse": {
+    "com.azure.storagemover#GetStorageMoverResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -5553,7 +5554,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.storagemover#StorageMoversGetResponseTagsMap",
+          "target": "com.azure.storagemover#GetStorageMoverResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -5576,7 +5577,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.storagemover#StorageMoversGetResponseTagsMap": {
+    "com.azure.storagemover#GetStorageMoverResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5588,7 +5589,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.storagemover#StorageMoversGetRequest": {
+    "com.azure.storagemover#GetStorageMoverRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5620,10 +5621,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storagemover#StorageMoversList": {
+    "com.azure.storagemover#ListStorageMovers": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storagemover#StorageMoversListRequest"
+        "target": "com.azure.storagemover#ListStorageMoversRequest"
       },
       "output": {
         "target": "com.azure.storagemover#StorageMoverList"
@@ -5732,7 +5733,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.storagemover#StorageMoversListRequest": {
+    "com.azure.storagemover#ListStorageMoversRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5756,10 +5757,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storagemover#StorageMoversListBySubscription": {
+    "com.azure.storagemover#ListStorageMoverBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.storagemover#StorageMoversListBySubscriptionRequest"
+        "target": "com.azure.storagemover#ListStorageMoverBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.storagemover#StorageMoverList"
@@ -5775,7 +5776,7 @@
         "com.distilled.openapi#apiVersion": "2026-05-01"
       }
     },
-    "com.azure.storagemover#StorageMoversListBySubscriptionRequest": {
+    "com.azure.storagemover#ListStorageMoverBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5791,13 +5792,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.storagemover#OperationsList": {
+    "com.azure.storagemover#ListOperations": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
       },
       "output": {
-        "target": "com.azure.storagemover#OperationsListResponse"
+        "target": "com.azure.storagemover#ListOperationsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5810,11 +5811,11 @@
         "com.distilled.openapi#apiVersion": "2026-05-01"
       }
     },
-    "com.azure.storagemover#OperationsListResponse": {
+    "com.azure.storagemover#ListOperationsResponse": {
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.storagemover#OperationsListResponseValueList",
+          "target": "com.azure.storagemover#ListOperationsResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of operations supported by the resource provider"
           }
@@ -5830,7 +5831,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.storagemover#OperationsListResponseValueList": {
+    "com.azure.storagemover#ListOperationsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.storagemover#Operation"
@@ -5954,112 +5955,112 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.storagemover#JobDefinitionsStopJob"
+          "target": "com.azure.storagemover#StopJobDefinitionJob"
         },
         {
-          "target": "com.azure.storagemover#JobDefinitionsStartJob"
+          "target": "com.azure.storagemover#StartJobDefinitionJob"
         },
         {
           "target": "com.azure.storagemover#JobDefinitionsReconcileJob"
         },
         {
-          "target": "com.azure.storagemover#JobRunsGet"
+          "target": "com.azure.storagemover#GetJobRun"
         },
         {
-          "target": "com.azure.storagemover#JobRunsList"
+          "target": "com.azure.storagemover#ListJobRuns"
         },
         {
-          "target": "com.azure.storagemover#JobDefinitionsDelete"
+          "target": "com.azure.storagemover#DeleteJobDefinition"
         },
         {
-          "target": "com.azure.storagemover#JobDefinitionsUpdate"
+          "target": "com.azure.storagemover#UpdateJobDefinition"
         },
         {
           "target": "com.azure.storagemover#JobDefinitionsCreateOrUpdate"
         },
         {
-          "target": "com.azure.storagemover#JobDefinitionsGet"
+          "target": "com.azure.storagemover#GetJobDefinition"
         },
         {
-          "target": "com.azure.storagemover#JobDefinitionsList"
+          "target": "com.azure.storagemover#ListJobDefinitions"
         },
         {
-          "target": "com.azure.storagemover#ProjectsDelete"
+          "target": "com.azure.storagemover#DeleteProject"
         },
         {
-          "target": "com.azure.storagemover#ProjectsUpdate"
+          "target": "com.azure.storagemover#UpdateProject"
         },
         {
           "target": "com.azure.storagemover#ProjectsCreateOrUpdate"
         },
         {
-          "target": "com.azure.storagemover#ProjectsGet"
+          "target": "com.azure.storagemover#GetProject"
         },
         {
-          "target": "com.azure.storagemover#ProjectsList"
+          "target": "com.azure.storagemover#ListProjects"
         },
         {
-          "target": "com.azure.storagemover#EndpointsDelete"
+          "target": "com.azure.storagemover#DeleteEndpoint"
         },
         {
-          "target": "com.azure.storagemover#EndpointsUpdate"
+          "target": "com.azure.storagemover#UpdateEndpoint"
         },
         {
           "target": "com.azure.storagemover#EndpointsCreateOrUpdate"
         },
         {
-          "target": "com.azure.storagemover#EndpointsGet"
+          "target": "com.azure.storagemover#GetEndpoint"
         },
         {
-          "target": "com.azure.storagemover#EndpointsList"
+          "target": "com.azure.storagemover#ListEndpoints"
         },
         {
-          "target": "com.azure.storagemover#ConnectionsDelete"
+          "target": "com.azure.storagemover#DeleteConnection"
         },
         {
           "target": "com.azure.storagemover#ConnectionsCreateOrUpdate"
         },
         {
-          "target": "com.azure.storagemover#ConnectionsGet"
+          "target": "com.azure.storagemover#GetConnection"
         },
         {
-          "target": "com.azure.storagemover#ConnectionsList"
+          "target": "com.azure.storagemover#ListConnections"
         },
         {
-          "target": "com.azure.storagemover#AgentsDelete"
+          "target": "com.azure.storagemover#DeleteAgent"
         },
         {
-          "target": "com.azure.storagemover#AgentsUpdate"
+          "target": "com.azure.storagemover#UpdateAgent"
         },
         {
           "target": "com.azure.storagemover#AgentsCreateOrUpdate"
         },
         {
-          "target": "com.azure.storagemover#AgentsGet"
+          "target": "com.azure.storagemover#GetAgent"
         },
         {
-          "target": "com.azure.storagemover#AgentsList"
+          "target": "com.azure.storagemover#ListAgents"
         },
         {
-          "target": "com.azure.storagemover#StorageMoversDelete"
+          "target": "com.azure.storagemover#DeleteStorageMover"
         },
         {
-          "target": "com.azure.storagemover#StorageMoversUpdate"
+          "target": "com.azure.storagemover#UpdateStorageMover"
         },
         {
           "target": "com.azure.storagemover#StorageMoversCreateOrUpdate"
         },
         {
-          "target": "com.azure.storagemover#StorageMoversGet"
+          "target": "com.azure.storagemover#GetStorageMover"
         },
         {
-          "target": "com.azure.storagemover#StorageMoversList"
+          "target": "com.azure.storagemover#ListStorageMovers"
         },
         {
-          "target": "com.azure.storagemover#StorageMoversListBySubscription"
+          "target": "com.azure.storagemover#ListStorageMoverBySubscription"
         },
         {
-          "target": "com.azure.storagemover#OperationsList"
+          "target": "com.azure.storagemover#ListOperations"
         }
       ],
       "traits": {

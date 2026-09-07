@@ -14,13 +14,14 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.cost_management#GenerateBenefitUtilizationSummariesReportGenerateByReservationId": {
+    "com.azure.cost_management#GenerateGenerateBenefitUtilizationSummariesReportByReservationId": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cost_management#GenerateBenefitUtilizationSummariesReportGenerateByReservationIdRequest"
+        "target": "com.azure.cost_management#GenerateGenerateBenefitUtilizationSummariesReportByReservationIdRequest"
       },
       "output": {
         "target": "com.azure.cost_management#BenefitUtilizationSummariesOperationStatus"
@@ -287,7 +288,7 @@
         "smithy.api#documentation": "Grain which corresponds to value."
       }
     },
-    "com.azure.cost_management#GenerateBenefitUtilizationSummariesReportGenerateByReservationIdRequest": {
+    "com.azure.cost_management#GenerateGenerateBenefitUtilizationSummariesReportByReservationIdRequest": {
       "type": "structure",
       "members": {
         "reservationOrderId": {
@@ -362,10 +363,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cost_management#GenerateBenefitUtilizationSummariesReportGenerateByReservationOrderId": {
+    "com.azure.cost_management#GenerateGenerateBenefitUtilizationSummariesReportByReservationOrderId": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cost_management#GenerateBenefitUtilizationSummariesReportGenerateByReservationOrderIdRequest"
+        "target": "com.azure.cost_management#GenerateGenerateBenefitUtilizationSummariesReportByReservationOrderIdRequest"
       },
       "output": {
         "target": "com.azure.cost_management#BenefitUtilizationSummariesOperationStatus"
@@ -381,7 +382,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.cost_management#GenerateBenefitUtilizationSummariesReportGenerateByReservationOrderIdRequest": {
+    "com.azure.cost_management#GenerateGenerateBenefitUtilizationSummariesReportByReservationOrderIdRequest": {
       "type": "structure",
       "members": {
         "reservationOrderId": {
@@ -448,10 +449,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cost_management#GenerateBenefitUtilizationSummariesReportGenerateBySavingsPlanId": {
+    "com.azure.cost_management#GenerateGenerateBenefitUtilizationSummariesReportBySavingsPlanId": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cost_management#GenerateBenefitUtilizationSummariesReportGenerateBySavingsPlanIdRequest"
+        "target": "com.azure.cost_management#GenerateGenerateBenefitUtilizationSummariesReportBySavingsPlanIdRequest"
       },
       "output": {
         "target": "com.azure.cost_management#BenefitUtilizationSummariesOperationStatus"
@@ -467,7 +468,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.cost_management#GenerateBenefitUtilizationSummariesReportGenerateBySavingsPlanIdRequest": {
+    "com.azure.cost_management#GenerateGenerateBenefitUtilizationSummariesReportBySavingsPlanIdRequest": {
       "type": "structure",
       "members": {
         "savingsPlanOrderId": {
@@ -542,10 +543,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cost_management#BenefitUtilizationSummariesListBySavingsPlanId": {
+    "com.azure.cost_management#ListBenefitUtilizationSummaryBySavingsPlanId": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cost_management#BenefitUtilizationSummariesListBySavingsPlanIdRequest"
+        "target": "com.azure.cost_management#ListBenefitUtilizationSummaryBySavingsPlanIdRequest"
       },
       "output": {
         "target": "com.azure.cost_management#BenefitUtilizationSummariesListResult"
@@ -737,7 +738,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.cost_management#BenefitUtilizationSummariesListBySavingsPlanIdRequest": {
+    "com.azure.cost_management#ListBenefitUtilizationSummaryBySavingsPlanIdRequest": {
       "type": "structure",
       "members": {
         "savingsPlanOrderId": {
@@ -764,7 +765,7 @@
           }
         },
         "grainParameter": {
-          "target": "com.azure.cost_management#BenefitUtilizationSummariesListBySavingsPlanIdRequestGrainParameter",
+          "target": "com.azure.cost_management#ListBenefitUtilizationSummaryBySavingsPlanIdRequestGrainParameter",
           "traits": {
             "smithy.api#httpQuery": "grainParameter",
             "smithy.api#documentation": "Grain."
@@ -775,7 +776,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cost_management#BenefitUtilizationSummariesListBySavingsPlanIdRequestGrainParameter": {
+    "com.azure.cost_management#ListBenefitUtilizationSummaryBySavingsPlanIdRequestGrainParameter": {
       "type": "enum",
       "members": {
         "HOURLY": {
@@ -799,10 +800,10 @@
       },
       "traits": {}
     },
-    "com.azure.cost_management#GenerateBenefitUtilizationSummariesReportGenerateBySavingsPlanOrderId": {
+    "com.azure.cost_management#GenerateGenerateBenefitUtilizationSummariesReportBySavingsPlanOrderId": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cost_management#GenerateBenefitUtilizationSummariesReportGenerateBySavingsPlanOrderIdRequest"
+        "target": "com.azure.cost_management#GenerateGenerateBenefitUtilizationSummariesReportBySavingsPlanOrderIdRequest"
       },
       "output": {
         "target": "com.azure.cost_management#BenefitUtilizationSummariesOperationStatus"
@@ -818,7 +819,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.cost_management#GenerateBenefitUtilizationSummariesReportGenerateBySavingsPlanOrderIdRequest": {
+    "com.azure.cost_management#GenerateGenerateBenefitUtilizationSummariesReportBySavingsPlanOrderIdRequest": {
       "type": "structure",
       "members": {
         "savingsPlanOrderId": {
@@ -885,10 +886,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cost_management#BenefitUtilizationSummariesListBySavingsPlanOrder": {
+    "com.azure.cost_management#ListBenefitUtilizationSummaryBySavingsPlanOrder": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cost_management#BenefitUtilizationSummariesListBySavingsPlanOrderRequest"
+        "target": "com.azure.cost_management#ListBenefitUtilizationSummaryBySavingsPlanOrderRequest"
       },
       "output": {
         "target": "com.azure.cost_management#BenefitUtilizationSummariesListResult"
@@ -904,7 +905,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.cost_management#BenefitUtilizationSummariesListBySavingsPlanOrderRequest": {
+    "com.azure.cost_management#ListBenefitUtilizationSummaryBySavingsPlanOrderRequest": {
       "type": "structure",
       "members": {
         "savingsPlanOrderId": {
@@ -923,7 +924,7 @@
           }
         },
         "grainParameter": {
-          "target": "com.azure.cost_management#BenefitUtilizationSummariesListBySavingsPlanOrderRequestGrainParameter",
+          "target": "com.azure.cost_management#ListBenefitUtilizationSummaryBySavingsPlanOrderRequestGrainParameter",
           "traits": {
             "smithy.api#httpQuery": "grainParameter",
             "smithy.api#documentation": "Grain."
@@ -934,7 +935,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cost_management#BenefitUtilizationSummariesListBySavingsPlanOrderRequestGrainParameter": {
+    "com.azure.cost_management#ListBenefitUtilizationSummaryBySavingsPlanOrderRequestGrainParameter": {
       "type": "enum",
       "members": {
         "HOURLY": {
@@ -1123,10 +1124,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cost_management#GenerateBenefitUtilizationSummariesReportGenerateByBillingAccount": {
+    "com.azure.cost_management#GenerateGenerateBenefitUtilizationSummariesReportByBillingAccount": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cost_management#GenerateBenefitUtilizationSummariesReportGenerateByBillingAccountRequest"
+        "target": "com.azure.cost_management#GenerateGenerateBenefitUtilizationSummariesReportByBillingAccountRequest"
       },
       "output": {
         "target": "com.azure.cost_management#BenefitUtilizationSummariesOperationStatus"
@@ -1142,7 +1143,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.cost_management#GenerateBenefitUtilizationSummariesReportGenerateByBillingAccountRequest": {
+    "com.azure.cost_management#GenerateGenerateBenefitUtilizationSummariesReportByBillingAccountRequest": {
       "type": "structure",
       "members": {
         "billingAccountId": {
@@ -1203,10 +1204,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cost_management#CostAllocationRulesCheckNameAvailability": {
+    "com.azure.cost_management#CheckCostAllocationRuleNameAvailability": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cost_management#CostAllocationRulesCheckNameAvailabilityRequest"
+        "target": "com.azure.cost_management#CheckCostAllocationRuleNameAvailabilityRequest"
       },
       "output": {
         "target": "com.azure.cost_management#CostAllocationRuleCheckNameAvailabilityResponse"
@@ -1274,7 +1275,7 @@
         "smithy.api#documentation": "The reason this name is not available."
       }
     },
-    "com.azure.cost_management#CostAllocationRulesCheckNameAvailabilityRequest": {
+    "com.azure.cost_management#CheckCostAllocationRuleNameAvailabilityRequest": {
       "type": "structure",
       "members": {
         "billingAccountId": {
@@ -1302,10 +1303,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cost_management#CostAllocationRulesDelete": {
+    "com.azure.cost_management#DeleteCostAllocationRule": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cost_management#CostAllocationRulesDeleteRequest"
+        "target": "com.azure.cost_management#DeleteCostAllocationRuleRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1321,7 +1322,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.cost_management#CostAllocationRulesDeleteRequest": {
+    "com.azure.cost_management#DeleteCostAllocationRuleRequest": {
       "type": "structure",
       "members": {
         "billingAccountId": {
@@ -1703,13 +1704,13 @@
         "smithy.api#documentation": "The properties of a cost allocation rule"
       }
     },
-    "com.azure.cost_management#CostAllocationRulesGet": {
+    "com.azure.cost_management#GetCostAllocationRule": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cost_management#CostAllocationRulesGetRequest"
+        "target": "com.azure.cost_management#GetCostAllocationRuleRequest"
       },
       "output": {
-        "target": "com.azure.cost_management#CostAllocationRulesGetResponse"
+        "target": "com.azure.cost_management#GetCostAllocationRuleResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1722,7 +1723,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.cost_management#CostAllocationRulesGetResponse": {
+    "com.azure.cost_management#GetCostAllocationRuleResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1760,7 +1761,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.cost_management#CostAllocationRulesGetRequest": {
+    "com.azure.cost_management#GetCostAllocationRuleRequest": {
       "type": "structure",
       "members": {
         "billingAccountId": {
@@ -1784,10 +1785,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cost_management#CostAllocationRulesList": {
+    "com.azure.cost_management#ListCostAllocationRules": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cost_management#CostAllocationRulesListRequest"
+        "target": "com.azure.cost_management#ListCostAllocationRulesRequest"
       },
       "output": {
         "target": "com.azure.cost_management#CostAllocationRuleList"
@@ -1870,7 +1871,7 @@
         "smithy.api#documentation": "The cost allocation rule model definition"
       }
     },
-    "com.azure.cost_management#CostAllocationRulesListRequest": {
+    "com.azure.cost_management#ListCostAllocationRulesRequest": {
       "type": "structure",
       "members": {
         "billingAccountId": {
@@ -1886,10 +1887,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cost_management#BenefitUtilizationSummariesListByBillingAccountId": {
+    "com.azure.cost_management#ListBenefitUtilizationSummaryByBillingAccountId": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cost_management#BenefitUtilizationSummariesListByBillingAccountIdRequest"
+        "target": "com.azure.cost_management#ListBenefitUtilizationSummaryByBillingAccountIdRequest"
       },
       "output": {
         "target": "com.azure.cost_management#BenefitUtilizationSummariesListResult"
@@ -1905,7 +1906,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.cost_management#BenefitUtilizationSummariesListByBillingAccountIdRequest": {
+    "com.azure.cost_management#ListBenefitUtilizationSummaryByBillingAccountIdRequest": {
       "type": "structure",
       "members": {
         "billingAccountId": {
@@ -1917,7 +1918,7 @@
           }
         },
         "grainParameter": {
-          "target": "com.azure.cost_management#BenefitUtilizationSummariesListByBillingAccountIdRequestGrainParameter",
+          "target": "com.azure.cost_management#ListBenefitUtilizationSummaryByBillingAccountIdRequestGrainParameter",
           "traits": {
             "smithy.api#httpQuery": "grainParameter",
             "smithy.api#documentation": "Grain."
@@ -1935,7 +1936,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cost_management#BenefitUtilizationSummariesListByBillingAccountIdRequestGrainParameter": {
+    "com.azure.cost_management#ListBenefitUtilizationSummaryByBillingAccountIdRequestGrainParameter": {
       "type": "enum",
       "members": {
         "HOURLY": {
@@ -1959,10 +1960,10 @@
       },
       "traits": {}
     },
-    "com.azure.cost_management#PriceSheetDownloadByBillingProfile": {
+    "com.azure.cost_management#DownloadPriceSheetByBillingProfile": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cost_management#PriceSheetDownloadByBillingProfileRequest"
+        "target": "com.azure.cost_management#DownloadPriceSheetByBillingProfileRequest"
       },
       "output": {
         "target": "com.azure.cost_management#PricesheetDownloadProperties"
@@ -2168,7 +2169,7 @@
         "smithy.api#documentation": "The properties of the price sheet."
       }
     },
-    "com.azure.cost_management#PriceSheetDownloadByBillingProfileRequest": {
+    "com.azure.cost_management#DownloadPriceSheetByBillingProfileRequest": {
       "type": "structure",
       "members": {
         "billingAccountName": {
@@ -2251,10 +2252,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cost_management#GenerateBenefitUtilizationSummariesReportGenerateByBillingProfile": {
+    "com.azure.cost_management#GenerateGenerateBenefitUtilizationSummariesReportByBillingProfile": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cost_management#GenerateBenefitUtilizationSummariesReportGenerateByBillingProfileRequest"
+        "target": "com.azure.cost_management#GenerateGenerateBenefitUtilizationSummariesReportByBillingProfileRequest"
       },
       "output": {
         "target": "com.azure.cost_management#BenefitUtilizationSummariesOperationStatus"
@@ -2270,7 +2271,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.cost_management#GenerateBenefitUtilizationSummariesReportGenerateByBillingProfileRequest": {
+    "com.azure.cost_management#GenerateGenerateBenefitUtilizationSummariesReportByBillingProfileRequest": {
       "type": "structure",
       "members": {
         "billingAccountId": {
@@ -2333,10 +2334,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cost_management#BenefitUtilizationSummariesListByBillingProfileId": {
+    "com.azure.cost_management#ListBenefitUtilizationSummaryByBillingProfileId": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cost_management#BenefitUtilizationSummariesListByBillingProfileIdRequest"
+        "target": "com.azure.cost_management#ListBenefitUtilizationSummaryByBillingProfileIdRequest"
       },
       "output": {
         "target": "com.azure.cost_management#BenefitUtilizationSummariesListResult"
@@ -2352,7 +2353,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.cost_management#BenefitUtilizationSummariesListByBillingProfileIdRequest": {
+    "com.azure.cost_management#ListBenefitUtilizationSummaryByBillingProfileIdRequest": {
       "type": "structure",
       "members": {
         "billingAccountId": {
@@ -2372,7 +2373,7 @@
           }
         },
         "grainParameter": {
-          "target": "com.azure.cost_management#BenefitUtilizationSummariesListByBillingProfileIdRequestGrainParameter",
+          "target": "com.azure.cost_management#ListBenefitUtilizationSummaryByBillingProfileIdRequestGrainParameter",
           "traits": {
             "smithy.api#httpQuery": "grainParameter",
             "smithy.api#documentation": "Grain."
@@ -2390,7 +2391,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cost_management#BenefitUtilizationSummariesListByBillingProfileIdRequestGrainParameter": {
+    "com.azure.cost_management#ListBenefitUtilizationSummaryByBillingProfileIdRequestGrainParameter": {
       "type": "enum",
       "members": {
         "HOURLY": {
@@ -2414,10 +2415,10 @@
       },
       "traits": {}
     },
-    "com.azure.cost_management#PriceSheetDownloadByInvoice": {
+    "com.azure.cost_management#DownloadPriceSheetByInvoice": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cost_management#PriceSheetDownloadByInvoiceRequest"
+        "target": "com.azure.cost_management#DownloadPriceSheetByInvoiceRequest"
       },
       "output": {
         "target": "com.azure.cost_management#DownloadURL"
@@ -2459,7 +2460,7 @@
         "smithy.api#documentation": "The URL to download the generated report."
       }
     },
-    "com.azure.cost_management#PriceSheetDownloadByInvoiceRequest": {
+    "com.azure.cost_management#DownloadPriceSheetByInvoiceRequest": {
       "type": "structure",
       "members": {
         "billingAccountName": {
@@ -2491,10 +2492,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cost_management#PriceSheetDownloadByBillingAccount": {
+    "com.azure.cost_management#DownloadPriceSheetByBillingAccount": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cost_management#PriceSheetDownloadByBillingAccountRequest"
+        "target": "com.azure.cost_management#DownloadPriceSheetByBillingAccountRequest"
       },
       "output": {
         "target": "com.azure.cost_management#OperationStatus"
@@ -2510,7 +2511,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.cost_management#PriceSheetDownloadByBillingAccountRequest": {
+    "com.azure.cost_management#DownloadPriceSheetByBillingAccountRequest": {
       "type": "structure",
       "members": {
         "billingAccountId": {
@@ -2534,10 +2535,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cost_management#ViewsDelete": {
+    "com.azure.cost_management#DeleteView": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cost_management#ViewsDeleteRequest"
+        "target": "com.azure.cost_management#DeleteViewRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2553,7 +2554,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.cost_management#ViewsDeleteRequest": {
+    "com.azure.cost_management#DeleteViewRequest": {
       "type": "structure",
       "members": {
         "viewName": {
@@ -3466,13 +3467,13 @@
         "smithy.api#documentation": "List of KPIs to show in Cost Analysis UI."
       }
     },
-    "com.azure.cost_management#ViewsGet": {
+    "com.azure.cost_management#GetView": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cost_management#ViewsGetRequest"
+        "target": "com.azure.cost_management#GetViewRequest"
       },
       "output": {
-        "target": "com.azure.cost_management#ViewsGetResponse"
+        "target": "com.azure.cost_management#GetViewResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3485,7 +3486,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.cost_management#ViewsGetResponse": {
+    "com.azure.cost_management#GetViewResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3529,7 +3530,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.cost_management#ViewsGetRequest": {
+    "com.azure.cost_management#GetViewRequest": {
       "type": "structure",
       "members": {
         "viewName": {
@@ -3545,7 +3546,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cost_management#ViewsList": {
+    "com.azure.cost_management#ListViews": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -3637,10 +3638,10 @@
         "smithy.api#documentation": "States and configurations of Cost Analysis."
       }
     },
-    "com.azure.cost_management#ScheduledActionsRun": {
+    "com.azure.cost_management#RunScheduledAction": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cost_management#ScheduledActionsRunRequest"
+        "target": "com.azure.cost_management#RunScheduledActionRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3656,7 +3657,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.cost_management#ScheduledActionsRunRequest": {
+    "com.azure.cost_management#RunScheduledActionRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -3672,10 +3673,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cost_management#ScheduledActionsDelete": {
+    "com.azure.cost_management#DeleteScheduledAction": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cost_management#ScheduledActionsDeleteRequest"
+        "target": "com.azure.cost_management#DeleteScheduledActionRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3691,7 +3692,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.cost_management#ScheduledActionsDeleteRequest": {
+    "com.azure.cost_management#DeleteScheduledActionRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -4188,13 +4189,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cost_management#ScheduledActionsGet": {
+    "com.azure.cost_management#GetScheduledAction": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cost_management#ScheduledActionsGetRequest"
+        "target": "com.azure.cost_management#GetScheduledActionRequest"
       },
       "output": {
-        "target": "com.azure.cost_management#ScheduledActionsGetResponse"
+        "target": "com.azure.cost_management#GetScheduledActionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4207,7 +4208,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.cost_management#ScheduledActionsGetResponse": {
+    "com.azure.cost_management#GetScheduledActionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -4257,7 +4258,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.cost_management#ScheduledActionsGetRequest": {
+    "com.azure.cost_management#GetScheduledActionRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -4273,10 +4274,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cost_management#ScheduledActionsList": {
+    "com.azure.cost_management#ListScheduledActions": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cost_management#ScheduledActionsListRequest"
+        "target": "com.azure.cost_management#ListScheduledActionsRequest"
       },
       "output": {
         "target": "com.azure.cost_management#ScheduledActionListResult"
@@ -4371,7 +4372,7 @@
         "smithy.api#documentation": "Scheduled action definition."
       }
     },
-    "com.azure.cost_management#ScheduledActionsListRequest": {
+    "com.azure.cost_management#ListScheduledActionsRequest": {
       "type": "structure",
       "members": {
         "_filter": {
@@ -4386,7 +4387,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cost_management#OperationsList": {
+    "com.azure.cost_management#ListOperations": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -4550,13 +4551,13 @@
         "smithy.api#documentation": "Localized display information for this particular operation."
       }
     },
-    "com.azure.cost_management#ScheduledActionsCheckNameAvailability": {
+    "com.azure.cost_management#CheckScheduledActionNameAvailability": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cost_management#ScheduledActionsCheckNameAvailabilityRequest"
+        "target": "com.azure.cost_management#CheckScheduledActionNameAvailabilityRequest"
       },
       "output": {
-        "target": "com.azure.cost_management#ScheduledActionsCheckNameAvailabilityResponse"
+        "target": "com.azure.cost_management#CheckScheduledActionNameAvailabilityResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4569,7 +4570,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.cost_management#ScheduledActionsCheckNameAvailabilityResponse": {
+    "com.azure.cost_management#CheckScheduledActionNameAvailabilityResponse": {
       "type": "structure",
       "members": {
         "nameAvailable": {
@@ -4579,7 +4580,7 @@
           }
         },
         "reason": {
-          "target": "com.azure.cost_management#ScheduledActionsCheckNameAvailabilityResponseReason",
+          "target": "com.azure.cost_management#CheckScheduledActionNameAvailabilityResponseReason",
           "traits": {
             "smithy.api#documentation": "The reason why the given name is not available."
           }
@@ -4595,7 +4596,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.cost_management#ScheduledActionsCheckNameAvailabilityResponseReason": {
+    "com.azure.cost_management#CheckScheduledActionNameAvailabilityResponseReason": {
       "type": "enum",
       "members": {
         "INVALID": {
@@ -4615,7 +4616,7 @@
         "smithy.api#documentation": "The reason why the given name is not available."
       }
     },
-    "com.azure.cost_management#ScheduledActionsCheckNameAvailabilityRequest": {
+    "com.azure.cost_management#CheckScheduledActionNameAvailabilityRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -6027,10 +6028,10 @@
       },
       "traits": {}
     },
-    "com.azure.cost_management#AlertsListExternal": {
+    "com.azure.cost_management#ListAlertExternal": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cost_management#AlertsListExternalRequest"
+        "target": "com.azure.cost_management#ListAlertExternalRequest"
       },
       "output": {
         "target": "com.azure.cost_management#AlertsResult"
@@ -6739,11 +6740,11 @@
         "smithy.api#documentation": "type of alert"
       }
     },
-    "com.azure.cost_management#AlertsListExternalRequest": {
+    "com.azure.cost_management#ListAlertExternalRequest": {
       "type": "structure",
       "members": {
         "externalCloudProviderType": {
-          "target": "com.azure.cost_management#AlertsListExternalRequestExternalCloudProviderType",
+          "target": "com.azure.cost_management#ListAlertExternalRequestExternalCloudProviderType",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -6763,7 +6764,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cost_management#AlertsListExternalRequestExternalCloudProviderType": {
+    "com.azure.cost_management#ListAlertExternalRequestExternalCloudProviderType": {
       "type": "enum",
       "members": {
         "EXTERNALSUBSCRIPTIONS": {
@@ -6781,10 +6782,10 @@
       },
       "traits": {}
     },
-    "com.azure.cost_management#MarkupRulesDelete": {
+    "com.azure.cost_management#DeleteMarkupRule": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cost_management#MarkupRulesDeleteRequest"
+        "target": "com.azure.cost_management#DeleteMarkupRuleRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -6800,7 +6801,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.cost_management#MarkupRulesDeleteRequest": {
+    "com.azure.cost_management#DeleteMarkupRuleRequest": {
       "type": "structure",
       "members": {
         "billingAccountId": {
@@ -6990,13 +6991,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cost_management#MarkupRulesGet": {
+    "com.azure.cost_management#GetMarkupRule": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cost_management#MarkupRulesGetRequest"
+        "target": "com.azure.cost_management#GetMarkupRuleRequest"
       },
       "output": {
-        "target": "com.azure.cost_management#MarkupRulesGetResponse"
+        "target": "com.azure.cost_management#GetMarkupRuleResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7009,7 +7010,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.cost_management#MarkupRulesGetResponse": {
+    "com.azure.cost_management#GetMarkupRuleResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -7047,7 +7048,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.cost_management#MarkupRulesGetRequest": {
+    "com.azure.cost_management#GetMarkupRuleRequest": {
       "type": "structure",
       "members": {
         "billingAccountId": {
@@ -7079,10 +7080,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cost_management#MarkupRulesList": {
+    "com.azure.cost_management#ListMarkupRules": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cost_management#MarkupRulesListRequest"
+        "target": "com.azure.cost_management#ListMarkupRulesRequest"
       },
       "output": {
         "target": "com.azure.cost_management#MarkupRulePagedResponse"
@@ -7165,7 +7166,7 @@
         "smithy.api#documentation": "Markup rule"
       }
     },
-    "com.azure.cost_management#MarkupRulesListRequest": {
+    "com.azure.cost_management#ListMarkupRulesRequest": {
       "type": "structure",
       "members": {
         "billingAccountId": {
@@ -7189,10 +7190,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cost_management#ViewsDeleteByScope": {
+    "com.azure.cost_management#DeleteViewByScope": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cost_management#ViewsDeleteByScopeRequest"
+        "target": "com.azure.cost_management#DeleteViewByScopeRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -7208,7 +7209,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.cost_management#ViewsDeleteByScopeRequest": {
+    "com.azure.cost_management#DeleteViewByScopeRequest": {
       "type": "structure",
       "members": {
         "scope": {
@@ -7331,13 +7332,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cost_management#ViewsGetByScope": {
+    "com.azure.cost_management#GetViewByScope": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cost_management#ViewsGetByScopeRequest"
+        "target": "com.azure.cost_management#GetViewByScopeRequest"
       },
       "output": {
-        "target": "com.azure.cost_management#ViewsGetByScopeResponse"
+        "target": "com.azure.cost_management#GetViewByScopeResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7350,7 +7351,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.cost_management#ViewsGetByScopeResponse": {
+    "com.azure.cost_management#GetViewByScopeResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -7394,7 +7395,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.cost_management#ViewsGetByScopeRequest": {
+    "com.azure.cost_management#GetViewByScopeRequest": {
       "type": "structure",
       "members": {
         "scope": {
@@ -7418,10 +7419,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cost_management#ViewsListByScope": {
+    "com.azure.cost_management#ListViewByScope": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cost_management#ViewsListByScopeRequest"
+        "target": "com.azure.cost_management#ListViewByScopeRequest"
       },
       "output": {
         "target": "com.azure.cost_management#ViewListResult"
@@ -7437,7 +7438,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.cost_management#ViewsListByScopeRequest": {
+    "com.azure.cost_management#ListViewByScopeRequest": {
       "type": "structure",
       "members": {
         "scope": {
@@ -7453,10 +7454,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cost_management#SettingsDeleteByScope": {
+    "com.azure.cost_management#DeleteSettingsByScope": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cost_management#SettingsDeleteByScopeRequest"
+        "target": "com.azure.cost_management#DeleteSettingsByScopeRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -7472,7 +7473,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.cost_management#SettingsDeleteByScopeRequest": {
+    "com.azure.cost_management#DeleteSettingsByScopeRequest": {
       "type": "structure",
       "members": {
         "scope": {
@@ -7484,7 +7485,7 @@
           }
         },
         "type": {
-          "target": "com.azure.cost_management#SettingsDeleteByScopeRequestType",
+          "target": "com.azure.cost_management#DeleteSettingsByScopeRequestType",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -7496,7 +7497,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cost_management#SettingsDeleteByScopeRequestType": {
+    "com.azure.cost_management#DeleteSettingsByScopeRequestType": {
       "type": "enum",
       "members": {
         "TAGINHERITANCE": {
@@ -7623,13 +7624,13 @@
       },
       "traits": {}
     },
-    "com.azure.cost_management#SettingsGetByScope": {
+    "com.azure.cost_management#GetSettingsByScope": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cost_management#SettingsGetByScopeRequest"
+        "target": "com.azure.cost_management#GetSettingsByScopeRequest"
       },
       "output": {
-        "target": "com.azure.cost_management#SettingsGetByScopeResponse"
+        "target": "com.azure.cost_management#GetSettingsByScopeResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7642,7 +7643,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.cost_management#SettingsGetByScopeResponse": {
+    "com.azure.cost_management#GetSettingsByScopeResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -7681,7 +7682,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.cost_management#SettingsGetByScopeRequest": {
+    "com.azure.cost_management#GetSettingsByScopeRequest": {
       "type": "structure",
       "members": {
         "scope": {
@@ -7693,7 +7694,7 @@
           }
         },
         "type": {
-          "target": "com.azure.cost_management#SettingsGetByScopeRequestType",
+          "target": "com.azure.cost_management#GetSettingsByScopeRequestType",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -7705,7 +7706,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cost_management#SettingsGetByScopeRequestType": {
+    "com.azure.cost_management#GetSettingsByScopeRequestType": {
       "type": "enum",
       "members": {
         "TAGINHERITANCE": {
@@ -7717,10 +7718,10 @@
       },
       "traits": {}
     },
-    "com.azure.cost_management#SettingsList": {
+    "com.azure.cost_management#ListSettings": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cost_management#SettingsListRequest"
+        "target": "com.azure.cost_management#ListSettingsRequest"
       },
       "output": {
         "target": "com.azure.cost_management#SettingsListResult"
@@ -7798,7 +7799,7 @@
         "smithy.api#documentation": "Setting definition."
       }
     },
-    "com.azure.cost_management#SettingsListRequest": {
+    "com.azure.cost_management#ListSettingsRequest": {
       "type": "structure",
       "members": {
         "scope": {
@@ -7814,10 +7815,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cost_management#ScheduledActionsRunByScope": {
+    "com.azure.cost_management#RunScheduledActionByScope": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cost_management#ScheduledActionsRunByScopeRequest"
+        "target": "com.azure.cost_management#RunScheduledActionByScopeRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -7833,7 +7834,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.cost_management#ScheduledActionsRunByScopeRequest": {
+    "com.azure.cost_management#RunScheduledActionByScopeRequest": {
       "type": "structure",
       "members": {
         "scope": {
@@ -7857,10 +7858,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cost_management#ScheduledActionsDeleteByScope": {
+    "com.azure.cost_management#DeleteScheduledActionByScope": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cost_management#ScheduledActionsDeleteByScopeRequest"
+        "target": "com.azure.cost_management#DeleteScheduledActionByScopeRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -7876,7 +7877,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.cost_management#ScheduledActionsDeleteByScopeRequest": {
+    "com.azure.cost_management#DeleteScheduledActionByScopeRequest": {
       "type": "structure",
       "members": {
         "scope": {
@@ -8011,13 +8012,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cost_management#ScheduledActionsGetByScope": {
+    "com.azure.cost_management#GetScheduledActionByScope": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cost_management#ScheduledActionsGetByScopeRequest"
+        "target": "com.azure.cost_management#GetScheduledActionByScopeRequest"
       },
       "output": {
-        "target": "com.azure.cost_management#ScheduledActionsGetByScopeResponse"
+        "target": "com.azure.cost_management#GetScheduledActionByScopeResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -8030,7 +8031,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.cost_management#ScheduledActionsGetByScopeResponse": {
+    "com.azure.cost_management#GetScheduledActionByScopeResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -8080,7 +8081,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.cost_management#ScheduledActionsGetByScopeRequest": {
+    "com.azure.cost_management#GetScheduledActionByScopeRequest": {
       "type": "structure",
       "members": {
         "scope": {
@@ -8104,10 +8105,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cost_management#ScheduledActionsListByScope": {
+    "com.azure.cost_management#ListScheduledActionByScope": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cost_management#ScheduledActionsListByScopeRequest"
+        "target": "com.azure.cost_management#ListScheduledActionByScopeRequest"
       },
       "output": {
         "target": "com.azure.cost_management#ScheduledActionListResult"
@@ -8123,7 +8124,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.cost_management#ScheduledActionsListByScopeRequest": {
+    "com.azure.cost_management#ListScheduledActionByScopeRequest": {
       "type": "structure",
       "members": {
         "scope": {
@@ -8276,13 +8277,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cost_management#GenerateDetailedCostReportOperationStatusGet": {
+    "com.azure.cost_management#GetGenerateDetailedCostReportOperationStatus": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cost_management#GenerateDetailedCostReportOperationStatusGetRequest"
+        "target": "com.azure.cost_management#GetGenerateDetailedCostReportOperationStatusRequest"
       },
       "output": {
-        "target": "com.azure.cost_management#GenerateDetailedCostReportOperationStatusGetResponse"
+        "target": "com.azure.cost_management#GetGenerateDetailedCostReportOperationStatusResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -8295,7 +8296,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.cost_management#GenerateDetailedCostReportOperationStatusGetResponse": {
+    "com.azure.cost_management#GetGenerateDetailedCostReportOperationStatusResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -8441,7 +8442,7 @@
         "smithy.api#documentation": "The status of the long running operation."
       }
     },
-    "com.azure.cost_management#GenerateDetailedCostReportOperationStatusGetRequest": {
+    "com.azure.cost_management#GetGenerateDetailedCostReportOperationStatusRequest": {
       "type": "structure",
       "members": {
         "scope": {
@@ -8465,13 +8466,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cost_management#GenerateDetailedCostReportOperationResultsGet": {
+    "com.azure.cost_management#GetGenerateDetailedCostReportOperationResult": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cost_management#GenerateDetailedCostReportOperationResultsGetRequest"
+        "target": "com.azure.cost_management#GetGenerateDetailedCostReportOperationResultRequest"
       },
       "output": {
-        "target": "com.azure.cost_management#GenerateDetailedCostReportOperationResultsGetResponse"
+        "target": "com.azure.cost_management#GetGenerateDetailedCostReportOperationResultResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -8484,7 +8485,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.cost_management#GenerateDetailedCostReportOperationResultsGetResponse": {
+    "com.azure.cost_management#GetGenerateDetailedCostReportOperationResultResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -8522,7 +8523,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.cost_management#GenerateDetailedCostReportOperationResultsGetRequest": {
+    "com.azure.cost_management#GetGenerateDetailedCostReportOperationResultRequest": {
       "type": "structure",
       "members": {
         "scope": {
@@ -8546,13 +8547,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cost_management#GenerateDetailedCostReportCreateOperation": {
+    "com.azure.cost_management#CreateGenerateDetailedCostReportOperation": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cost_management#GenerateDetailedCostReportCreateOperationRequest"
+        "target": "com.azure.cost_management#CreateGenerateDetailedCostReportOperationRequest"
       },
       "output": {
-        "target": "com.azure.cost_management#GenerateDetailedCostReportCreateOperationResponse"
+        "target": "com.azure.cost_management#CreateGenerateDetailedCostReportOperationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -8565,7 +8566,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.cost_management#GenerateDetailedCostReportCreateOperationResponse": {
+    "com.azure.cost_management#CreateGenerateDetailedCostReportOperationResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -8603,7 +8604,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.cost_management#GenerateDetailedCostReportCreateOperationRequest": {
+    "com.azure.cost_management#CreateGenerateDetailedCostReportOperationRequest": {
       "type": "structure",
       "members": {
         "scope": {
@@ -8691,10 +8692,10 @@
         "smithy.api#documentation": "The type of the detailed report. By default ActualCost is provided"
       }
     },
-    "com.azure.cost_management#GenerateCostDetailsReportCreateOperation": {
+    "com.azure.cost_management#CreateGenerateCostDetailsReportOperation": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cost_management#GenerateCostDetailsReportCreateOperationRequest"
+        "target": "com.azure.cost_management#CreateGenerateCostDetailsReportOperationRequest"
       },
       "output": {
         "target": "com.azure.cost_management#CostDetailsOperationResults"
@@ -8973,7 +8974,7 @@
         "smithy.api#documentation": "The status of the cost details operation"
       }
     },
-    "com.azure.cost_management#GenerateCostDetailsReportCreateOperationRequest": {
+    "com.azure.cost_management#CreateGenerateCostDetailsReportOperationRequest": {
       "type": "structure",
       "members": {
         "scope": {
@@ -9162,10 +9163,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cost_management#ExportsGetExecutionHistory": {
+    "com.azure.cost_management#GetExportExecutionHistory": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cost_management#ExportsGetExecutionHistoryRequest"
+        "target": "com.azure.cost_management#GetExportExecutionHistoryRequest"
       },
       "output": {
         "target": "com.azure.cost_management#ExportExecutionListResult"
@@ -9794,7 +9795,7 @@
         "smithy.api#documentation": "The type of the export run."
       }
     },
-    "com.azure.cost_management#ExportsGetExecutionHistoryRequest": {
+    "com.azure.cost_management#GetExportExecutionHistoryRequest": {
       "type": "structure",
       "members": {
         "scope": {
@@ -9818,10 +9819,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cost_management#ExportsExecute": {
+    "com.azure.cost_management#ExecuteExport": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cost_management#ExportsExecuteRequest"
+        "target": "com.azure.cost_management#ExecuteExportRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -9837,7 +9838,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.cost_management#ExportsExecuteRequest": {
+    "com.azure.cost_management#ExecuteExportRequest": {
       "type": "structure",
       "members": {
         "scope": {
@@ -9867,10 +9868,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cost_management#ExportsDelete": {
+    "com.azure.cost_management#DeleteExport": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cost_management#ExportsDeleteRequest"
+        "target": "com.azure.cost_management#DeleteExportRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -9886,7 +9887,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.cost_management#ExportsDeleteRequest": {
+    "com.azure.cost_management#DeleteExportRequest": {
       "type": "structure",
       "members": {
         "scope": {
@@ -10339,13 +10340,13 @@
         "smithy.api#documentation": "Result of listing the run history of an export."
       }
     },
-    "com.azure.cost_management#ExportsGet": {
+    "com.azure.cost_management#GetExport": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cost_management#ExportsGetRequest"
+        "target": "com.azure.cost_management#GetExportRequest"
       },
       "output": {
-        "target": "com.azure.cost_management#ExportsGetResponse"
+        "target": "com.azure.cost_management#GetExportResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -10358,7 +10359,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.cost_management#ExportsGetResponse": {
+    "com.azure.cost_management#GetExportResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -10392,7 +10393,7 @@
           }
         },
         "identity": {
-          "target": "com.azure.cost_management#ExportsGetResponseIdentity",
+          "target": "com.azure.cost_management#GetExportResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (either system assigned, or none)"
           }
@@ -10414,7 +10415,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.cost_management#ExportsGetResponseIdentity": {
+    "com.azure.cost_management#GetExportResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -10440,7 +10441,7 @@
         "smithy.api#documentation": "Managed service identity (either system assigned, or none)"
       }
     },
-    "com.azure.cost_management#ExportsGetRequest": {
+    "com.azure.cost_management#GetExportRequest": {
       "type": "structure",
       "members": {
         "scope": {
@@ -10471,10 +10472,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cost_management#ExportsList": {
+    "com.azure.cost_management#ListExports": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cost_management#ExportsListRequest"
+        "target": "com.azure.cost_management#ListExportsRequest"
       },
       "output": {
         "target": "com.azure.cost_management#ExportListResult"
@@ -10595,7 +10596,7 @@
         "smithy.api#documentation": "Managed service identity (either system assigned, or none)"
       }
     },
-    "com.azure.cost_management#ExportsListRequest": {
+    "com.azure.cost_management#ListExportsRequest": {
       "type": "structure",
       "members": {
         "scope": {
@@ -10618,10 +10619,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cost_management#DimensionsList": {
+    "com.azure.cost_management#ListDimensions": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cost_management#DimensionsListRequest"
+        "target": "com.azure.cost_management#ListDimensionsRequest"
       },
       "output": {
         "target": "com.azure.cost_management#DimensionsListResult"
@@ -10637,7 +10638,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.cost_management#DimensionsListRequest": {
+    "com.azure.cost_management#ListDimensionsRequest": {
       "type": "structure",
       "members": {
         "scope": {
@@ -10681,10 +10682,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cost_management#GenerateCostDetailsReportGetOperationResults": {
+    "com.azure.cost_management#GetGenerateCostDetailsReportOperationResults": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cost_management#GenerateCostDetailsReportGetOperationResultsRequest"
+        "target": "com.azure.cost_management#GetGenerateCostDetailsReportOperationResultsRequest"
       },
       "output": {
         "target": "com.azure.cost_management#CostDetailsOperationResults"
@@ -10700,7 +10701,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.cost_management#GenerateCostDetailsReportGetOperationResultsRequest": {
+    "com.azure.cost_management#GetGenerateCostDetailsReportOperationResultsRequest": {
       "type": "structure",
       "members": {
         "scope": {
@@ -10724,13 +10725,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cost_management#ScheduledActionsCheckNameAvailabilityByScope": {
+    "com.azure.cost_management#CheckScheduledActionNameAvailabilityByScope": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cost_management#ScheduledActionsCheckNameAvailabilityByScopeRequest"
+        "target": "com.azure.cost_management#CheckScheduledActionNameAvailabilityByScopeRequest"
       },
       "output": {
-        "target": "com.azure.cost_management#ScheduledActionsCheckNameAvailabilityByScopeResponse"
+        "target": "com.azure.cost_management#CheckScheduledActionNameAvailabilityByScopeResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -10743,7 +10744,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.cost_management#ScheduledActionsCheckNameAvailabilityByScopeResponse": {
+    "com.azure.cost_management#CheckScheduledActionNameAvailabilityByScopeResponse": {
       "type": "structure",
       "members": {
         "nameAvailable": {
@@ -10753,7 +10754,7 @@
           }
         },
         "reason": {
-          "target": "com.azure.cost_management#ScheduledActionsCheckNameAvailabilityByScopeResponseReason",
+          "target": "com.azure.cost_management#CheckScheduledActionNameAvailabilityByScopeResponseReason",
           "traits": {
             "smithy.api#documentation": "The reason why the given name is not available."
           }
@@ -10769,7 +10770,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.cost_management#ScheduledActionsCheckNameAvailabilityByScopeResponseReason": {
+    "com.azure.cost_management#CheckScheduledActionNameAvailabilityByScopeResponseReason": {
       "type": "enum",
       "members": {
         "INVALID": {
@@ -10789,7 +10790,7 @@
         "smithy.api#documentation": "The reason why the given name is not available."
       }
     },
-    "com.azure.cost_management#ScheduledActionsCheckNameAvailabilityByScopeRequest": {
+    "com.azure.cost_management#CheckScheduledActionNameAvailabilityByScopeRequest": {
       "type": "structure",
       "members": {
         "scope": {
@@ -10817,10 +10818,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cost_management#BudgetsDelete": {
+    "com.azure.cost_management#DeleteBudget": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cost_management#BudgetsDeleteRequest"
+        "target": "com.azure.cost_management#DeleteBudgetRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -10836,7 +10837,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.cost_management#BudgetsDeleteRequest": {
+    "com.azure.cost_management#DeleteBudgetRequest": {
       "type": "structure",
       "members": {
         "scope": {
@@ -11638,13 +11639,13 @@
         "smithy.api#documentation": "Dictionary of notifications associated with the budget.\n\nSupported for CategoryType(s): Cost, ReservationUtilization.\n\n- Constraints for **CategoryType: Cost** - Budget can have up to 5 notifications with thresholdType: Actual and 5 notifications with thresholdType: Forecasted.\n- Constraints for **CategoryType: ReservationUtilization** - Only one notification allowed. thresholdType is not applicable."
       }
     },
-    "com.azure.cost_management#BudgetsGet": {
+    "com.azure.cost_management#GetBudget": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cost_management#BudgetsGetRequest"
+        "target": "com.azure.cost_management#GetBudgetRequest"
       },
       "output": {
-        "target": "com.azure.cost_management#BudgetsGetResponse"
+        "target": "com.azure.cost_management#GetBudgetResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -11657,7 +11658,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.cost_management#BudgetsGetResponse": {
+    "com.azure.cost_management#GetBudgetResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -11701,7 +11702,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.cost_management#BudgetsGetRequest": {
+    "com.azure.cost_management#GetBudgetRequest": {
       "type": "structure",
       "members": {
         "scope": {
@@ -11725,10 +11726,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cost_management#BudgetsList": {
+    "com.azure.cost_management#ListBudgets": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cost_management#BudgetsListRequest"
+        "target": "com.azure.cost_management#ListBudgetsRequest"
       },
       "output": {
         "target": "com.azure.cost_management#BudgetsListResult"
@@ -11817,7 +11818,7 @@
         "smithy.api#documentation": "A budget resource."
       }
     },
-    "com.azure.cost_management#BudgetsListRequest": {
+    "com.azure.cost_management#ListBudgetsRequest": {
       "type": "structure",
       "members": {
         "scope": {
@@ -11840,10 +11841,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cost_management#BenefitRecommendationsList": {
+    "com.azure.cost_management#ListBenefitRecommendations": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cost_management#BenefitRecommendationsListRequest"
+        "target": "com.azure.cost_management#ListBenefitRecommendationsRequest"
       },
       "output": {
         "target": "com.azure.cost_management#BenefitRecommendationsListResult"
@@ -12211,7 +12212,7 @@
         "smithy.api#documentation": "The number of days used to look back."
       }
     },
-    "com.azure.cost_management#BenefitRecommendationsListRequest": {
+    "com.azure.cost_management#ListBenefitRecommendationsRequest": {
       "type": "structure",
       "members": {
         "billingScope": {
@@ -12248,13 +12249,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cost_management#AlertsDismiss": {
+    "com.azure.cost_management#DismissAlert": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cost_management#AlertsDismissRequest"
+        "target": "com.azure.cost_management#DismissAlertRequest"
       },
       "output": {
-        "target": "com.azure.cost_management#AlertsDismissResponse"
+        "target": "com.azure.cost_management#DismissAlertResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -12267,7 +12268,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.cost_management#AlertsDismissResponse": {
+    "com.azure.cost_management#DismissAlertResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -12311,7 +12312,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.cost_management#AlertsDismissRequest": {
+    "com.azure.cost_management#DismissAlertRequest": {
       "type": "structure",
       "members": {
         "scope": {
@@ -12341,13 +12342,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cost_management#AlertsGet": {
+    "com.azure.cost_management#GetAlert": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cost_management#AlertsGetRequest"
+        "target": "com.azure.cost_management#GetAlertRequest"
       },
       "output": {
-        "target": "com.azure.cost_management#AlertsGetResponse"
+        "target": "com.azure.cost_management#GetAlertResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -12360,7 +12361,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.cost_management#AlertsGetResponse": {
+    "com.azure.cost_management#GetAlertResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -12404,7 +12405,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.cost_management#AlertsGetRequest": {
+    "com.azure.cost_management#GetAlertRequest": {
       "type": "structure",
       "members": {
         "scope": {
@@ -12428,10 +12429,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cost_management#AlertsList": {
+    "com.azure.cost_management#ListAlerts": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cost_management#AlertsListRequest"
+        "target": "com.azure.cost_management#ListAlertsRequest"
       },
       "output": {
         "target": "com.azure.cost_management#AlertsResult"
@@ -12447,7 +12448,7 @@
         "com.distilled.openapi#apiVersion": "2026-06-01"
       }
     },
-    "com.azure.cost_management#AlertsListRequest": {
+    "com.azure.cost_management#ListAlertsRequest": {
       "type": "structure",
       "members": {
         "scope": {
@@ -12468,97 +12469,97 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.cost_management#GenerateBenefitUtilizationSummariesReportGenerateByReservationId"
+          "target": "com.azure.cost_management#GenerateGenerateBenefitUtilizationSummariesReportByReservationId"
         },
         {
-          "target": "com.azure.cost_management#GenerateBenefitUtilizationSummariesReportGenerateByReservationOrderId"
+          "target": "com.azure.cost_management#GenerateGenerateBenefitUtilizationSummariesReportByReservationOrderId"
         },
         {
-          "target": "com.azure.cost_management#GenerateBenefitUtilizationSummariesReportGenerateBySavingsPlanId"
+          "target": "com.azure.cost_management#GenerateGenerateBenefitUtilizationSummariesReportBySavingsPlanId"
         },
         {
-          "target": "com.azure.cost_management#BenefitUtilizationSummariesListBySavingsPlanId"
+          "target": "com.azure.cost_management#ListBenefitUtilizationSummaryBySavingsPlanId"
         },
         {
-          "target": "com.azure.cost_management#GenerateBenefitUtilizationSummariesReportGenerateBySavingsPlanOrderId"
+          "target": "com.azure.cost_management#GenerateGenerateBenefitUtilizationSummariesReportBySavingsPlanOrderId"
         },
         {
-          "target": "com.azure.cost_management#BenefitUtilizationSummariesListBySavingsPlanOrder"
+          "target": "com.azure.cost_management#ListBenefitUtilizationSummaryBySavingsPlanOrder"
         },
         {
           "target": "com.azure.cost_management#GenerateReservationDetailsReportByBillingAccountId"
         },
         {
-          "target": "com.azure.cost_management#GenerateBenefitUtilizationSummariesReportGenerateByBillingAccount"
+          "target": "com.azure.cost_management#GenerateGenerateBenefitUtilizationSummariesReportByBillingAccount"
         },
         {
-          "target": "com.azure.cost_management#CostAllocationRulesCheckNameAvailability"
+          "target": "com.azure.cost_management#CheckCostAllocationRuleNameAvailability"
         },
         {
-          "target": "com.azure.cost_management#CostAllocationRulesDelete"
+          "target": "com.azure.cost_management#DeleteCostAllocationRule"
         },
         {
           "target": "com.azure.cost_management#CostAllocationRulesCreateOrUpdate"
         },
         {
-          "target": "com.azure.cost_management#CostAllocationRulesGet"
+          "target": "com.azure.cost_management#GetCostAllocationRule"
         },
         {
-          "target": "com.azure.cost_management#CostAllocationRulesList"
+          "target": "com.azure.cost_management#ListCostAllocationRules"
         },
         {
-          "target": "com.azure.cost_management#BenefitUtilizationSummariesListByBillingAccountId"
+          "target": "com.azure.cost_management#ListBenefitUtilizationSummaryByBillingAccountId"
         },
         {
-          "target": "com.azure.cost_management#PriceSheetDownloadByBillingProfile"
+          "target": "com.azure.cost_management#DownloadPriceSheetByBillingProfile"
         },
         {
           "target": "com.azure.cost_management#GenerateReservationDetailsReportByBillingProfileId"
         },
         {
-          "target": "com.azure.cost_management#GenerateBenefitUtilizationSummariesReportGenerateByBillingProfile"
+          "target": "com.azure.cost_management#GenerateGenerateBenefitUtilizationSummariesReportByBillingProfile"
         },
         {
-          "target": "com.azure.cost_management#BenefitUtilizationSummariesListByBillingProfileId"
+          "target": "com.azure.cost_management#ListBenefitUtilizationSummaryByBillingProfileId"
         },
         {
-          "target": "com.azure.cost_management#PriceSheetDownloadByInvoice"
+          "target": "com.azure.cost_management#DownloadPriceSheetByInvoice"
         },
         {
-          "target": "com.azure.cost_management#PriceSheetDownloadByBillingAccount"
+          "target": "com.azure.cost_management#DownloadPriceSheetByBillingAccount"
         },
         {
-          "target": "com.azure.cost_management#ViewsDelete"
+          "target": "com.azure.cost_management#DeleteView"
         },
         {
           "target": "com.azure.cost_management#ViewsCreateOrUpdate"
         },
         {
-          "target": "com.azure.cost_management#ViewsGet"
+          "target": "com.azure.cost_management#GetView"
         },
         {
-          "target": "com.azure.cost_management#ViewsList"
+          "target": "com.azure.cost_management#ListViews"
         },
         {
-          "target": "com.azure.cost_management#ScheduledActionsRun"
+          "target": "com.azure.cost_management#RunScheduledAction"
         },
         {
-          "target": "com.azure.cost_management#ScheduledActionsDelete"
+          "target": "com.azure.cost_management#DeleteScheduledAction"
         },
         {
           "target": "com.azure.cost_management#ScheduledActionsCreateOrUpdate"
         },
         {
-          "target": "com.azure.cost_management#ScheduledActionsGet"
+          "target": "com.azure.cost_management#GetScheduledAction"
         },
         {
-          "target": "com.azure.cost_management#ScheduledActionsList"
+          "target": "com.azure.cost_management#ListScheduledActions"
         },
         {
-          "target": "com.azure.cost_management#OperationsList"
+          "target": "com.azure.cost_management#ListOperations"
         },
         {
-          "target": "com.azure.cost_management#ScheduledActionsCheckNameAvailability"
+          "target": "com.azure.cost_management#CheckScheduledActionNameAvailability"
         },
         {
           "target": "com.azure.cost_management#QueryUsageByExternalCloudProviderType"
@@ -12570,127 +12571,127 @@
           "target": "com.azure.cost_management#DimensionsByExternalCloudProviderType"
         },
         {
-          "target": "com.azure.cost_management#AlertsListExternal"
+          "target": "com.azure.cost_management#ListAlertExternal"
         },
         {
-          "target": "com.azure.cost_management#MarkupRulesDelete"
+          "target": "com.azure.cost_management#DeleteMarkupRule"
         },
         {
           "target": "com.azure.cost_management#MarkupRulesCreateOrUpdate"
         },
         {
-          "target": "com.azure.cost_management#MarkupRulesGet"
+          "target": "com.azure.cost_management#GetMarkupRule"
         },
         {
-          "target": "com.azure.cost_management#MarkupRulesList"
+          "target": "com.azure.cost_management#ListMarkupRules"
         },
         {
-          "target": "com.azure.cost_management#ViewsDeleteByScope"
+          "target": "com.azure.cost_management#DeleteViewByScope"
         },
         {
           "target": "com.azure.cost_management#ViewsCreateOrUpdateByScope"
         },
         {
-          "target": "com.azure.cost_management#ViewsGetByScope"
+          "target": "com.azure.cost_management#GetViewByScope"
         },
         {
-          "target": "com.azure.cost_management#ViewsListByScope"
+          "target": "com.azure.cost_management#ListViewByScope"
         },
         {
-          "target": "com.azure.cost_management#SettingsDeleteByScope"
+          "target": "com.azure.cost_management#DeleteSettingsByScope"
         },
         {
           "target": "com.azure.cost_management#SettingsCreateOrUpdateByScope"
         },
         {
-          "target": "com.azure.cost_management#SettingsGetByScope"
+          "target": "com.azure.cost_management#GetSettingsByScope"
         },
         {
-          "target": "com.azure.cost_management#SettingsList"
+          "target": "com.azure.cost_management#ListSettings"
         },
         {
-          "target": "com.azure.cost_management#ScheduledActionsRunByScope"
+          "target": "com.azure.cost_management#RunScheduledActionByScope"
         },
         {
-          "target": "com.azure.cost_management#ScheduledActionsDeleteByScope"
+          "target": "com.azure.cost_management#DeleteScheduledActionByScope"
         },
         {
           "target": "com.azure.cost_management#ScheduledActionsCreateOrUpdateByScope"
         },
         {
-          "target": "com.azure.cost_management#ScheduledActionsGetByScope"
+          "target": "com.azure.cost_management#GetScheduledActionByScope"
         },
         {
-          "target": "com.azure.cost_management#ScheduledActionsListByScope"
+          "target": "com.azure.cost_management#ListScheduledActionByScope"
         },
         {
           "target": "com.azure.cost_management#QueryUsage"
         },
         {
-          "target": "com.azure.cost_management#GenerateDetailedCostReportOperationStatusGet"
+          "target": "com.azure.cost_management#GetGenerateDetailedCostReportOperationStatus"
         },
         {
-          "target": "com.azure.cost_management#GenerateDetailedCostReportOperationResultsGet"
+          "target": "com.azure.cost_management#GetGenerateDetailedCostReportOperationResult"
         },
         {
-          "target": "com.azure.cost_management#GenerateDetailedCostReportCreateOperation"
+          "target": "com.azure.cost_management#CreateGenerateDetailedCostReportOperation"
         },
         {
-          "target": "com.azure.cost_management#GenerateCostDetailsReportCreateOperation"
+          "target": "com.azure.cost_management#CreateGenerateCostDetailsReportOperation"
         },
         {
           "target": "com.azure.cost_management#ForecastUsage"
         },
         {
-          "target": "com.azure.cost_management#ExportsGetExecutionHistory"
+          "target": "com.azure.cost_management#GetExportExecutionHistory"
         },
         {
-          "target": "com.azure.cost_management#ExportsExecute"
+          "target": "com.azure.cost_management#ExecuteExport"
         },
         {
-          "target": "com.azure.cost_management#ExportsDelete"
+          "target": "com.azure.cost_management#DeleteExport"
         },
         {
           "target": "com.azure.cost_management#ExportsCreateOrUpdate"
         },
         {
-          "target": "com.azure.cost_management#ExportsGet"
+          "target": "com.azure.cost_management#GetExport"
         },
         {
-          "target": "com.azure.cost_management#ExportsList"
+          "target": "com.azure.cost_management#ListExports"
         },
         {
-          "target": "com.azure.cost_management#DimensionsList"
+          "target": "com.azure.cost_management#ListDimensions"
         },
         {
-          "target": "com.azure.cost_management#GenerateCostDetailsReportGetOperationResults"
+          "target": "com.azure.cost_management#GetGenerateCostDetailsReportOperationResults"
         },
         {
-          "target": "com.azure.cost_management#ScheduledActionsCheckNameAvailabilityByScope"
+          "target": "com.azure.cost_management#CheckScheduledActionNameAvailabilityByScope"
         },
         {
-          "target": "com.azure.cost_management#BudgetsDelete"
+          "target": "com.azure.cost_management#DeleteBudget"
         },
         {
           "target": "com.azure.cost_management#BudgetsCreateOrUpdate"
         },
         {
-          "target": "com.azure.cost_management#BudgetsGet"
+          "target": "com.azure.cost_management#GetBudget"
         },
         {
-          "target": "com.azure.cost_management#BudgetsList"
+          "target": "com.azure.cost_management#ListBudgets"
         },
         {
-          "target": "com.azure.cost_management#BenefitRecommendationsList"
+          "target": "com.azure.cost_management#ListBenefitRecommendations"
         },
         {
-          "target": "com.azure.cost_management#AlertsDismiss"
+          "target": "com.azure.cost_management#DismissAlert"
         },
         {
-          "target": "com.azure.cost_management#AlertsGet"
+          "target": "com.azure.cost_management#GetAlert"
         },
         {
-          "target": "com.azure.cost_management#AlertsList"
+          "target": "com.azure.cost_management#ListAlerts"
         }
       ],
       "traits": {

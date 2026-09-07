@@ -4,9 +4,24 @@
     "service": "runtimeconfig",
     "version": "v1",
     "title": "Cloud Runtime Configuration API",
-    "baseUrl": "https://runtimeconfig.googleapis.com/"
+    "baseUrl": "https://runtimeconfig.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
+    "com.gcp.runtimeconfig_v1#CancelOperationRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "The request message for Operations.CancelOperation."
+      }
+    },
+    "com.gcp.runtimeconfig_v1#Empty": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+      }
+    },
     "com.gcp.runtimeconfig_v1#ListOperationsResponse": {
       "type": "structure",
       "members": {
@@ -45,73 +60,19 @@
         "target": "smithy.api#String"
       }
     },
-    "com.gcp.runtimeconfig_v1#Operation": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
-          }
-        },
-        "response": {
-          "target": "com.gcp.runtimeconfig_v1#DocumentMap",
-          "traits": {
-            "smithy.api#documentation": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`."
-          }
-        },
-        "metadata": {
-          "target": "com.gcp.runtimeconfig_v1#DocumentMap",
-          "traits": {
-            "smithy.api#documentation": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any."
-          }
-        },
-        "done": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
-          }
-        },
-        "error": {
-          "target": "com.gcp.runtimeconfig_v1#Status",
-          "traits": {
-            "smithy.api#documentation": "The error result of the operation in case of failure or cancellation."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "This resource represents a long-running operation that is the result of a network API call."
-      }
-    },
-    "com.gcp.runtimeconfig_v1#DocumentMap": {
-      "type": "map",
-      "key": {
-        "target": "smithy.api#String"
-      },
-      "value": {
-        "target": "smithy.api#Document"
-      }
-    },
-    "com.gcp.runtimeconfig_v1#Empty": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
-      }
-    },
     "com.gcp.runtimeconfig_v1#Status": {
       "type": "structure",
       "members": {
-        "details": {
-          "target": "com.gcp.runtimeconfig_v1#DocumentMapList",
-          "traits": {
-            "smithy.api#documentation": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
-          }
-        },
         "code": {
           "target": "smithy.api#Integer",
           "traits": {
             "smithy.api#documentation": "The status code, which should be an enum value of google.rpc.Code."
+          }
+        },
+        "details": {
+          "target": "com.gcp.runtimeconfig_v1#DocumentMapList",
+          "traits": {
+            "smithy.api#documentation": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
           }
         },
         "message": {
@@ -125,17 +86,57 @@
         "smithy.api#documentation": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
       }
     },
+    "com.gcp.runtimeconfig_v1#DocumentMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      }
+    },
     "com.gcp.runtimeconfig_v1#DocumentMapList": {
       "type": "list",
       "member": {
         "target": "com.gcp.runtimeconfig_v1#DocumentMap"
       }
     },
-    "com.gcp.runtimeconfig_v1#CancelOperationRequest": {
+    "com.gcp.runtimeconfig_v1#Operation": {
       "type": "structure",
-      "members": {},
+      "members": {
+        "response": {
+          "target": "com.gcp.runtimeconfig_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`."
+          }
+        },
+        "metadata": {
+          "target": "com.gcp.runtimeconfig_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
+          }
+        },
+        "error": {
+          "target": "com.gcp.runtimeconfig_v1#Status",
+          "traits": {
+            "smithy.api#documentation": "The error result of the operation in case of failure or cancellation."
+          }
+        },
+        "done": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
+          }
+        }
+      },
       "traits": {
-        "smithy.api#documentation": "The request message for Operations.CancelOperation."
+        "smithy.api#documentation": "This resource represents a long-running operation that is the result of a network API call."
       }
     },
     "com.gcp.runtimeconfig_v1#DeleteOperationsRequest": {
@@ -236,11 +237,18 @@
     "com.gcp.runtimeconfig_v1#ListOperationsRequest": {
       "type": "structure",
       "members": {
-        "pageSize": {
-          "target": "smithy.api#Integer",
+        "pageToken": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The standard list page size.",
-            "smithy.api#httpQuery": "pageSize"
+            "smithy.api#documentation": "The standard list page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard list filter.",
+            "smithy.api#httpQuery": "filter"
           }
         },
         "name": {
@@ -251,18 +259,11 @@
             "smithy.api#required": {}
           }
         },
-        "filter": {
-          "target": "smithy.api#String",
+        "pageSize": {
+          "target": "smithy.api#Integer",
           "traits": {
-            "smithy.api#documentation": "The standard list filter.",
-            "smithy.api#httpQuery": "filter"
-          }
-        },
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The standard list page token.",
-            "smithy.api#httpQuery": "pageToken"
+            "smithy.api#documentation": "The standard list page size.",
+            "smithy.api#httpQuery": "pageSize"
           }
         },
         "returnPartialSuccess": {

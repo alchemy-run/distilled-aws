@@ -14,17 +14,18 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.modal.template#TemplateListRequest": {
+    "com.modal.template#ListTemplateRequest": {
       "type": "structure",
       "members": {},
       "traits": {
         "smithy.api#input": {}
       }
     },
-    "com.modal.template#TemplateListResponseTemplateListItem": {
+    "com.modal.template#ListTemplateResponseTemplateListItem": {
       "type": "structure",
       "members": {
         "name": {
@@ -38,30 +39,30 @@
         }
       }
     },
-    "com.modal.template#TemplateListResponseTemplateListItemList": {
+    "com.modal.template#ListTemplateResponseTemplateListItemList": {
       "type": "list",
       "member": {
-        "target": "com.modal.template#TemplateListResponseTemplateListItem"
+        "target": "com.modal.template#ListTemplateResponseTemplateListItem"
       }
     },
-    "com.modal.template#TemplateListResponse": {
+    "com.modal.template#ListTemplateResponse": {
       "type": "structure",
       "members": {
         "items": {
-          "target": "com.modal.template#TemplateListResponseTemplateListItemList"
+          "target": "com.modal.template#ListTemplateResponseTemplateListItemList"
         }
       },
       "traits": {
         "smithy.api#output": {}
       }
     },
-    "com.modal.template#TemplateList": {
+    "com.modal.template#ListTemplate": {
       "type": "operation",
       "input": {
-        "target": "com.modal.template#TemplateListRequest"
+        "target": "com.modal.template#ListTemplateRequest"
       },
       "output": {
-        "target": "com.modal.template#TemplateListResponse"
+        "target": "com.modal.template#ListTemplateResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -77,7 +78,7 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.modal.template#TemplateList"
+          "target": "com.modal.template#ListTemplate"
         }
       ],
       "traits": {

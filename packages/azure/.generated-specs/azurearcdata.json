@@ -14,13 +14,14 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.azurearcdata#PostgresInstancesDelete": {
+    "com.azure.azurearcdata#DeletePostgresInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurearcdata#PostgresInstancesDeleteRequest"
+        "target": "com.azure.azurearcdata#DeletePostgresInstanceRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -36,7 +37,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.azurearcdata#PostgresInstancesDeleteRequest": {
+    "com.azure.azurearcdata#DeletePostgresInstanceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -68,13 +69,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurearcdata#PostgresInstancesUpdate": {
+    "com.azure.azurearcdata#UpdatePostgresInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurearcdata#PostgresInstancesUpdateRequest"
+        "target": "com.azure.azurearcdata#UpdatePostgresInstanceRequest"
       },
       "output": {
-        "target": "com.azure.azurearcdata#PostgresInstancesUpdateResponse"
+        "target": "com.azure.azurearcdata#UpdatePostgresInstanceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -87,7 +88,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.azurearcdata#PostgresInstancesUpdateResponse": {
+    "com.azure.azurearcdata#UpdatePostgresInstanceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -115,7 +116,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.azurearcdata#PostgresInstancesUpdateResponseTagsMap",
+          "target": "com.azure.azurearcdata#UpdatePostgresInstanceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -128,7 +129,7 @@
           }
         },
         "extendedLocation": {
-          "target": "com.azure.azurearcdata#PostgresInstancesUpdateResponseExtendedLocation",
+          "target": "com.azure.azurearcdata#UpdatePostgresInstanceResponseExtendedLocation",
           "traits": {
             "smithy.api#documentation": "The complex type of the extended location."
           }
@@ -275,7 +276,7 @@
         "smithy.api#documentation": "Username and password for basic login authentication."
       }
     },
-    "com.azure.azurearcdata#PostgresInstancesUpdateResponseExtendedLocation": {
+    "com.azure.azurearcdata#UpdatePostgresInstanceResponseExtendedLocation": {
       "type": "structure",
       "members": {
         "name": {
@@ -309,7 +310,7 @@
         "smithy.api#documentation": "The type of extendedLocation."
       }
     },
-    "com.azure.azurearcdata#PostgresInstancesUpdateResponseTagsMap": {
+    "com.azure.azurearcdata#UpdatePostgresInstanceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -429,7 +430,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.azurearcdata#PostgresInstancesUpdateRequest": {
+    "com.azure.azurearcdata#UpdatePostgresInstanceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -457,7 +458,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.azurearcdata#PostgresInstancesUpdateRequestTagsMap",
+          "target": "com.azure.azurearcdata#UpdatePostgresInstanceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -529,7 +530,7 @@
         "smithy.api#documentation": "Username and password for basic login authentication."
       }
     },
-    "com.azure.azurearcdata#PostgresInstancesUpdateRequestTagsMap": {
+    "com.azure.azurearcdata#UpdatePostgresInstanceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -541,13 +542,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.azurearcdata#PostgresInstancesCreate": {
+    "com.azure.azurearcdata#CreatePostgresInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurearcdata#PostgresInstancesCreateRequest"
+        "target": "com.azure.azurearcdata#CreatePostgresInstanceRequest"
       },
       "output": {
-        "target": "com.azure.azurearcdata#PostgresInstancesCreateResponse"
+        "target": "com.azure.azurearcdata#CreatePostgresInstanceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -560,7 +561,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.azurearcdata#PostgresInstancesCreateResponse": {
+    "com.azure.azurearcdata#CreatePostgresInstanceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -588,7 +589,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.azurearcdata#PostgresInstancesCreateResponseTagsMap",
+          "target": "com.azure.azurearcdata#CreatePostgresInstanceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -601,7 +602,7 @@
           }
         },
         "extendedLocation": {
-          "target": "com.azure.azurearcdata#PostgresInstancesCreateResponseExtendedLocation",
+          "target": "com.azure.azurearcdata#CreatePostgresInstanceResponseExtendedLocation",
           "traits": {
             "smithy.api#documentation": "The complex type of the extended location."
           }
@@ -624,7 +625,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.azurearcdata#PostgresInstancesCreateResponseExtendedLocation": {
+    "com.azure.azurearcdata#CreatePostgresInstanceResponseExtendedLocation": {
       "type": "structure",
       "members": {
         "name": {
@@ -644,7 +645,7 @@
         "smithy.api#documentation": "The complex type of the extended location."
       }
     },
-    "com.azure.azurearcdata#PostgresInstancesCreateResponseTagsMap": {
+    "com.azure.azurearcdata#CreatePostgresInstanceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -656,7 +657,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.azurearcdata#PostgresInstancesCreateRequest": {
+    "com.azure.azurearcdata#CreatePostgresInstanceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -684,7 +685,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.azurearcdata#PostgresInstancesCreateRequestTagsMap",
+          "target": "com.azure.azurearcdata#CreatePostgresInstanceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -697,7 +698,7 @@
           }
         },
         "extendedLocation": {
-          "target": "com.azure.azurearcdata#PostgresInstancesCreateRequestExtendedLocation",
+          "target": "com.azure.azurearcdata#CreatePostgresInstanceRequestExtendedLocation",
           "traits": {
             "smithy.api#documentation": "The complex type of the extended location."
           }
@@ -720,7 +721,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurearcdata#PostgresInstancesCreateRequestExtendedLocation": {
+    "com.azure.azurearcdata#CreatePostgresInstanceRequestExtendedLocation": {
       "type": "structure",
       "members": {
         "name": {
@@ -740,7 +741,7 @@
         "smithy.api#documentation": "The complex type of the extended location."
       }
     },
-    "com.azure.azurearcdata#PostgresInstancesCreateRequestTagsMap": {
+    "com.azure.azurearcdata#CreatePostgresInstanceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -752,13 +753,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.azurearcdata#PostgresInstancesGet": {
+    "com.azure.azurearcdata#GetPostgresInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurearcdata#PostgresInstancesGetRequest"
+        "target": "com.azure.azurearcdata#GetPostgresInstanceRequest"
       },
       "output": {
-        "target": "com.azure.azurearcdata#PostgresInstancesGetResponse"
+        "target": "com.azure.azurearcdata#GetPostgresInstanceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -771,7 +772,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.azurearcdata#PostgresInstancesGetResponse": {
+    "com.azure.azurearcdata#GetPostgresInstanceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -799,7 +800,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.azurearcdata#PostgresInstancesGetResponseTagsMap",
+          "target": "com.azure.azurearcdata#GetPostgresInstanceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -812,7 +813,7 @@
           }
         },
         "extendedLocation": {
-          "target": "com.azure.azurearcdata#PostgresInstancesGetResponseExtendedLocation",
+          "target": "com.azure.azurearcdata#GetPostgresInstanceResponseExtendedLocation",
           "traits": {
             "smithy.api#documentation": "The complex type of the extended location."
           }
@@ -835,7 +836,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.azurearcdata#PostgresInstancesGetResponseExtendedLocation": {
+    "com.azure.azurearcdata#GetPostgresInstanceResponseExtendedLocation": {
       "type": "structure",
       "members": {
         "name": {
@@ -855,7 +856,7 @@
         "smithy.api#documentation": "The complex type of the extended location."
       }
     },
-    "com.azure.azurearcdata#PostgresInstancesGetResponseTagsMap": {
+    "com.azure.azurearcdata#GetPostgresInstanceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -867,7 +868,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.azurearcdata#PostgresInstancesGetRequest": {
+    "com.azure.azurearcdata#GetPostgresInstanceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -899,13 +900,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurearcdata#PostgresInstancesListByResourceGroup": {
+    "com.azure.azurearcdata#ListPostgresInstanceByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurearcdata#PostgresInstancesListByResourceGroupRequest"
+        "target": "com.azure.azurearcdata#ListPostgresInstanceByResourceGroupRequest"
       },
       "output": {
-        "target": "com.azure.azurearcdata#PostgresInstancesListByResourceGroupResponse"
+        "target": "com.azure.azurearcdata#ListPostgresInstanceByResourceGroupResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -918,11 +919,11 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.azurearcdata#PostgresInstancesListByResourceGroupResponse": {
+    "com.azure.azurearcdata#ListPostgresInstanceByResourceGroupResponse": {
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.azurearcdata#PostgresInstancesListByResourceGroupResponseValueList",
+          "target": "com.azure.azurearcdata#ListPostgresInstanceByResourceGroupResponseValueList",
           "traits": {
             "smithy.api#documentation": "Array of results."
           }
@@ -938,7 +939,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.azurearcdata#PostgresInstancesListByResourceGroupResponseValueList": {
+    "com.azure.azurearcdata#ListPostgresInstanceByResourceGroupResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.azurearcdata#PostgresInstance"
@@ -1043,7 +1044,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.azurearcdata#PostgresInstancesListByResourceGroupRequest": {
+    "com.azure.azurearcdata#ListPostgresInstanceByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1067,13 +1068,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurearcdata#PostgresInstancesList": {
+    "com.azure.azurearcdata#ListPostgresInstances": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurearcdata#PostgresInstancesListRequest"
+        "target": "com.azure.azurearcdata#ListPostgresInstancesRequest"
       },
       "output": {
-        "target": "com.azure.azurearcdata#PostgresInstancesListResponse"
+        "target": "com.azure.azurearcdata#ListPostgresInstancesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1086,11 +1087,11 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.azurearcdata#PostgresInstancesListResponse": {
+    "com.azure.azurearcdata#ListPostgresInstancesResponse": {
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.azurearcdata#PostgresInstancesListResponseValueList",
+          "target": "com.azure.azurearcdata#ListPostgresInstancesResponseValueList",
           "traits": {
             "smithy.api#documentation": "Array of results."
           }
@@ -1106,7 +1107,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.azurearcdata#PostgresInstancesListResponseValueList": {
+    "com.azure.azurearcdata#ListPostgresInstancesResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.azurearcdata#PostgresInstance"
@@ -1115,7 +1116,7 @@
         "smithy.api#documentation": "Array of results."
       }
     },
-    "com.azure.azurearcdata#PostgresInstancesListRequest": {
+    "com.azure.azurearcdata#ListPostgresInstancesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1131,10 +1132,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurearcdata#ActiveDirectoryConnectorsDelete": {
+    "com.azure.azurearcdata#DeleteActiveDirectoryConnector": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurearcdata#ActiveDirectoryConnectorsDeleteRequest"
+        "target": "com.azure.azurearcdata#DeleteActiveDirectoryConnectorRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1150,7 +1151,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.azurearcdata#ActiveDirectoryConnectorsDeleteRequest": {
+    "com.azure.azurearcdata#DeleteActiveDirectoryConnectorRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1190,13 +1191,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurearcdata#ActiveDirectoryConnectorsCreate": {
+    "com.azure.azurearcdata#CreateActiveDirectoryConnector": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurearcdata#ActiveDirectoryConnectorsCreateRequest"
+        "target": "com.azure.azurearcdata#CreateActiveDirectoryConnectorRequest"
       },
       "output": {
-        "target": "com.azure.azurearcdata#ActiveDirectoryConnectorsCreateResponse"
+        "target": "com.azure.azurearcdata#CreateActiveDirectoryConnectorResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1209,7 +1210,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.azurearcdata#ActiveDirectoryConnectorsCreateResponse": {
+    "com.azure.azurearcdata#CreateActiveDirectoryConnectorResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1495,7 +1496,7 @@
         "smithy.api#documentation": "Username and password for basic login authentication."
       }
     },
-    "com.azure.azurearcdata#ActiveDirectoryConnectorsCreateRequest": {
+    "com.azure.azurearcdata#CreateActiveDirectoryConnectorRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1590,13 +1591,13 @@
         "smithy.api#documentation": "Username and password for basic login authentication."
       }
     },
-    "com.azure.azurearcdata#ActiveDirectoryConnectorsGet": {
+    "com.azure.azurearcdata#GetActiveDirectoryConnector": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurearcdata#ActiveDirectoryConnectorsGetRequest"
+        "target": "com.azure.azurearcdata#GetActiveDirectoryConnectorRequest"
       },
       "output": {
-        "target": "com.azure.azurearcdata#ActiveDirectoryConnectorsGetResponse"
+        "target": "com.azure.azurearcdata#GetActiveDirectoryConnectorResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1609,7 +1610,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.azurearcdata#ActiveDirectoryConnectorsGetResponse": {
+    "com.azure.azurearcdata#GetActiveDirectoryConnectorResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1648,7 +1649,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.azurearcdata#ActiveDirectoryConnectorsGetRequest": {
+    "com.azure.azurearcdata#GetActiveDirectoryConnectorRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1688,13 +1689,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurearcdata#ActiveDirectoryConnectorsList": {
+    "com.azure.azurearcdata#ListActiveDirectoryConnectors": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurearcdata#ActiveDirectoryConnectorsListRequest"
+        "target": "com.azure.azurearcdata#ListActiveDirectoryConnectorsRequest"
       },
       "output": {
-        "target": "com.azure.azurearcdata#ActiveDirectoryConnectorsListResponse"
+        "target": "com.azure.azurearcdata#ListActiveDirectoryConnectorsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1707,11 +1708,11 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.azurearcdata#ActiveDirectoryConnectorsListResponse": {
+    "com.azure.azurearcdata#ListActiveDirectoryConnectorsResponse": {
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.azurearcdata#ActiveDirectoryConnectorsListResponseValueList",
+          "target": "com.azure.azurearcdata#ListActiveDirectoryConnectorsResponseValueList",
           "traits": {
             "smithy.api#documentation": "Array of results."
           }
@@ -1727,7 +1728,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.azurearcdata#ActiveDirectoryConnectorsListResponseValueList": {
+    "com.azure.azurearcdata#ListActiveDirectoryConnectorsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.azurearcdata#ActiveDirectoryConnectorResource"
@@ -1775,7 +1776,7 @@
         "smithy.api#documentation": "Active directory connector resource"
       }
     },
-    "com.azure.azurearcdata#ActiveDirectoryConnectorsListRequest": {
+    "com.azure.azurearcdata#ListActiveDirectoryConnectorsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1807,10 +1808,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurearcdata#DataControllersDeleteDataController": {
+    "com.azure.azurearcdata#DeleteDataControllerDataController": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurearcdata#DataControllersDeleteDataControllerRequest"
+        "target": "com.azure.azurearcdata#DeleteDataControllerDataControllerRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1826,7 +1827,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.azurearcdata#DataControllersDeleteDataControllerRequest": {
+    "com.azure.azurearcdata#DeleteDataControllerDataControllerRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1858,13 +1859,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurearcdata#DataControllersPatchDataController": {
+    "com.azure.azurearcdata#PatchDataControllerDataController": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurearcdata#DataControllersPatchDataControllerRequest"
+        "target": "com.azure.azurearcdata#PatchDataControllerDataControllerRequest"
       },
       "output": {
-        "target": "com.azure.azurearcdata#DataControllersPatchDataControllerResponse"
+        "target": "com.azure.azurearcdata#PatchDataControllerDataControllerResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1877,7 +1878,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.azurearcdata#DataControllersPatchDataControllerResponse": {
+    "com.azure.azurearcdata#PatchDataControllerDataControllerResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1905,7 +1906,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.azurearcdata#DataControllersPatchDataControllerResponseTagsMap",
+          "target": "com.azure.azurearcdata#PatchDataControllerDataControllerResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -1918,7 +1919,7 @@
           }
         },
         "extendedLocation": {
-          "target": "com.azure.azurearcdata#DataControllersPatchDataControllerResponseExtendedLocation",
+          "target": "com.azure.azurearcdata#PatchDataControllerDataControllerResponseExtendedLocation",
           "traits": {
             "smithy.api#documentation": "The complex type of the extended location."
           }
@@ -2226,7 +2227,7 @@
         "smithy.api#documentation": "The infrastructure the data controller is running on."
       }
     },
-    "com.azure.azurearcdata#DataControllersPatchDataControllerResponseExtendedLocation": {
+    "com.azure.azurearcdata#PatchDataControllerDataControllerResponseExtendedLocation": {
       "type": "structure",
       "members": {
         "name": {
@@ -2246,7 +2247,7 @@
         "smithy.api#documentation": "The complex type of the extended location."
       }
     },
-    "com.azure.azurearcdata#DataControllersPatchDataControllerResponseTagsMap": {
+    "com.azure.azurearcdata#PatchDataControllerDataControllerResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2258,7 +2259,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.azurearcdata#DataControllersPatchDataControllerRequest": {
+    "com.azure.azurearcdata#PatchDataControllerDataControllerRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2286,7 +2287,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.azurearcdata#DataControllersPatchDataControllerRequestTagsMap",
+          "target": "com.azure.azurearcdata#PatchDataControllerDataControllerRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags"
           }
@@ -2480,7 +2481,7 @@
         "smithy.api#documentation": "The infrastructure the data controller is running on."
       }
     },
-    "com.azure.azurearcdata#DataControllersPatchDataControllerRequestTagsMap": {
+    "com.azure.azurearcdata#PatchDataControllerDataControllerRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2492,13 +2493,13 @@
         "smithy.api#documentation": "Resource tags"
       }
     },
-    "com.azure.azurearcdata#DataControllersPutDataController": {
+    "com.azure.azurearcdata#PutDataControllerDataController": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurearcdata#DataControllersPutDataControllerRequest"
+        "target": "com.azure.azurearcdata#PutDataControllerDataControllerRequest"
       },
       "output": {
-        "target": "com.azure.azurearcdata#DataControllersPutDataControllerResponse"
+        "target": "com.azure.azurearcdata#PutDataControllerDataControllerResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2511,7 +2512,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.azurearcdata#DataControllersPutDataControllerResponse": {
+    "com.azure.azurearcdata#PutDataControllerDataControllerResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2539,7 +2540,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.azurearcdata#DataControllersPutDataControllerResponseTagsMap",
+          "target": "com.azure.azurearcdata#PutDataControllerDataControllerResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2552,7 +2553,7 @@
           }
         },
         "extendedLocation": {
-          "target": "com.azure.azurearcdata#DataControllersPutDataControllerResponseExtendedLocation",
+          "target": "com.azure.azurearcdata#PutDataControllerDataControllerResponseExtendedLocation",
           "traits": {
             "smithy.api#documentation": "The complex type of the extended location."
           }
@@ -2569,7 +2570,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.azurearcdata#DataControllersPutDataControllerResponseExtendedLocation": {
+    "com.azure.azurearcdata#PutDataControllerDataControllerResponseExtendedLocation": {
       "type": "structure",
       "members": {
         "name": {
@@ -2589,7 +2590,7 @@
         "smithy.api#documentation": "The complex type of the extended location."
       }
     },
-    "com.azure.azurearcdata#DataControllersPutDataControllerResponseTagsMap": {
+    "com.azure.azurearcdata#PutDataControllerDataControllerResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2601,7 +2602,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.azurearcdata#DataControllersPutDataControllerRequest": {
+    "com.azure.azurearcdata#PutDataControllerDataControllerRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2629,7 +2630,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.azurearcdata#DataControllersPutDataControllerRequestTagsMap",
+          "target": "com.azure.azurearcdata#PutDataControllerDataControllerRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2642,7 +2643,7 @@
           }
         },
         "extendedLocation": {
-          "target": "com.azure.azurearcdata#DataControllersPutDataControllerRequestExtendedLocation",
+          "target": "com.azure.azurearcdata#PutDataControllerDataControllerRequestExtendedLocation",
           "traits": {
             "smithy.api#documentation": "The complex type of the extended location."
           }
@@ -2659,7 +2660,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurearcdata#DataControllersPutDataControllerRequestExtendedLocation": {
+    "com.azure.azurearcdata#PutDataControllerDataControllerRequestExtendedLocation": {
       "type": "structure",
       "members": {
         "name": {
@@ -2679,7 +2680,7 @@
         "smithy.api#documentation": "The complex type of the extended location."
       }
     },
-    "com.azure.azurearcdata#DataControllersPutDataControllerRequestTagsMap": {
+    "com.azure.azurearcdata#PutDataControllerDataControllerRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2691,13 +2692,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.azurearcdata#DataControllersGetDataController": {
+    "com.azure.azurearcdata#GetDataControllerDataController": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurearcdata#DataControllersGetDataControllerRequest"
+        "target": "com.azure.azurearcdata#GetDataControllerDataControllerRequest"
       },
       "output": {
-        "target": "com.azure.azurearcdata#DataControllersGetDataControllerResponse"
+        "target": "com.azure.azurearcdata#GetDataControllerDataControllerResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2710,7 +2711,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.azurearcdata#DataControllersGetDataControllerResponse": {
+    "com.azure.azurearcdata#GetDataControllerDataControllerResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2738,7 +2739,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.azurearcdata#DataControllersGetDataControllerResponseTagsMap",
+          "target": "com.azure.azurearcdata#GetDataControllerDataControllerResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -2751,7 +2752,7 @@
           }
         },
         "extendedLocation": {
-          "target": "com.azure.azurearcdata#DataControllersGetDataControllerResponseExtendedLocation",
+          "target": "com.azure.azurearcdata#GetDataControllerDataControllerResponseExtendedLocation",
           "traits": {
             "smithy.api#documentation": "The complex type of the extended location."
           }
@@ -2768,7 +2769,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.azurearcdata#DataControllersGetDataControllerResponseExtendedLocation": {
+    "com.azure.azurearcdata#GetDataControllerDataControllerResponseExtendedLocation": {
       "type": "structure",
       "members": {
         "name": {
@@ -2788,7 +2789,7 @@
         "smithy.api#documentation": "The complex type of the extended location."
       }
     },
-    "com.azure.azurearcdata#DataControllersGetDataControllerResponseTagsMap": {
+    "com.azure.azurearcdata#GetDataControllerDataControllerResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2800,7 +2801,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.azurearcdata#DataControllersGetDataControllerRequest": {
+    "com.azure.azurearcdata#GetDataControllerDataControllerRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2832,13 +2833,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurearcdata#DataControllersListInGroup": {
+    "com.azure.azurearcdata#ListDataControllerInGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurearcdata#DataControllersListInGroupRequest"
+        "target": "com.azure.azurearcdata#ListDataControllerInGroupRequest"
       },
       "output": {
-        "target": "com.azure.azurearcdata#DataControllersListInGroupResponse"
+        "target": "com.azure.azurearcdata#ListDataControllerInGroupResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2851,11 +2852,11 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.azurearcdata#DataControllersListInGroupResponse": {
+    "com.azure.azurearcdata#ListDataControllerInGroupResponse": {
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.azurearcdata#DataControllersListInGroupResponseValueList",
+          "target": "com.azure.azurearcdata#ListDataControllerInGroupResponseValueList",
           "traits": {
             "smithy.api#documentation": "Array of results."
           }
@@ -2871,7 +2872,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.azurearcdata#DataControllersListInGroupResponseValueList": {
+    "com.azure.azurearcdata#ListDataControllerInGroupResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.azurearcdata#DataControllerResource"
@@ -2970,7 +2971,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.azurearcdata#DataControllersListInGroupRequest": {
+    "com.azure.azurearcdata#ListDataControllerInGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2994,13 +2995,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurearcdata#DataControllersListInSubscription": {
+    "com.azure.azurearcdata#ListDataControllerInSubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurearcdata#DataControllersListInSubscriptionRequest"
+        "target": "com.azure.azurearcdata#ListDataControllerInSubscriptionRequest"
       },
       "output": {
-        "target": "com.azure.azurearcdata#DataControllersListInSubscriptionResponse"
+        "target": "com.azure.azurearcdata#ListDataControllerInSubscriptionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3013,11 +3014,11 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.azurearcdata#DataControllersListInSubscriptionResponse": {
+    "com.azure.azurearcdata#ListDataControllerInSubscriptionResponse": {
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.azurearcdata#DataControllersListInSubscriptionResponseValueList",
+          "target": "com.azure.azurearcdata#ListDataControllerInSubscriptionResponseValueList",
           "traits": {
             "smithy.api#documentation": "Array of results."
           }
@@ -3033,7 +3034,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.azurearcdata#DataControllersListInSubscriptionResponseValueList": {
+    "com.azure.azurearcdata#ListDataControllerInSubscriptionResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.azurearcdata#DataControllerResource"
@@ -3042,7 +3043,7 @@
         "smithy.api#documentation": "Array of results."
       }
     },
-    "com.azure.azurearcdata#DataControllersListInSubscriptionRequest": {
+    "com.azure.azurearcdata#ListDataControllerInSubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3058,10 +3059,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurearcdata#SqlServerLicensesDelete": {
+    "com.azure.azurearcdata#DeleteSqlServerLicense": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurearcdata#SqlServerLicensesDeleteRequest"
+        "target": "com.azure.azurearcdata#DeleteSqlServerLicenseRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3077,7 +3078,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.azurearcdata#SqlServerLicensesDeleteRequest": {
+    "com.azure.azurearcdata#DeleteSqlServerLicenseRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3109,13 +3110,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurearcdata#SqlServerLicensesUpdate": {
+    "com.azure.azurearcdata#UpdateSqlServerLicense": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurearcdata#SqlServerLicensesUpdateRequest"
+        "target": "com.azure.azurearcdata#UpdateSqlServerLicenseRequest"
       },
       "output": {
-        "target": "com.azure.azurearcdata#SqlServerLicensesUpdateResponse"
+        "target": "com.azure.azurearcdata#UpdateSqlServerLicenseResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3128,7 +3129,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.azurearcdata#SqlServerLicensesUpdateResponse": {
+    "com.azure.azurearcdata#UpdateSqlServerLicenseResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3156,7 +3157,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.azurearcdata#SqlServerLicensesUpdateResponseTagsMap",
+          "target": "com.azure.azurearcdata#UpdateSqlServerLicenseResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3321,7 +3322,7 @@
         "smithy.api#documentation": "SQL Server license type."
       }
     },
-    "com.azure.azurearcdata#SqlServerLicensesUpdateResponseTagsMap": {
+    "com.azure.azurearcdata#UpdateSqlServerLicenseResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3333,7 +3334,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.azurearcdata#SqlServerLicensesUpdateRequest": {
+    "com.azure.azurearcdata#UpdateSqlServerLicenseRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3361,7 +3362,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.azurearcdata#SqlServerLicensesUpdateRequestTagsMap",
+          "target": "com.azure.azurearcdata#UpdateSqlServerLicenseRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3495,7 +3496,7 @@
         "smithy.api#documentation": "SQL Server license type."
       }
     },
-    "com.azure.azurearcdata#SqlServerLicensesUpdateRequestTagsMap": {
+    "com.azure.azurearcdata#UpdateSqlServerLicenseRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3507,13 +3508,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.azurearcdata#SqlServerLicensesCreate": {
+    "com.azure.azurearcdata#CreateSqlServerLicense": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurearcdata#SqlServerLicensesCreateRequest"
+        "target": "com.azure.azurearcdata#CreateSqlServerLicenseRequest"
       },
       "output": {
-        "target": "com.azure.azurearcdata#SqlServerLicensesCreateResponse"
+        "target": "com.azure.azurearcdata#CreateSqlServerLicenseResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3526,7 +3527,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.azurearcdata#SqlServerLicensesCreateResponse": {
+    "com.azure.azurearcdata#CreateSqlServerLicenseResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3554,7 +3555,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.azurearcdata#SqlServerLicensesCreateResponseTagsMap",
+          "target": "com.azure.azurearcdata#CreateSqlServerLicenseResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3578,7 +3579,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.azurearcdata#SqlServerLicensesCreateResponseTagsMap": {
+    "com.azure.azurearcdata#CreateSqlServerLicenseResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3590,7 +3591,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.azurearcdata#SqlServerLicensesCreateRequest": {
+    "com.azure.azurearcdata#CreateSqlServerLicenseRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3618,7 +3619,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.azurearcdata#SqlServerLicensesCreateRequestTagsMap",
+          "target": "com.azure.azurearcdata#CreateSqlServerLicenseRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3765,7 +3766,7 @@
         "smithy.api#documentation": "SQL Server license type."
       }
     },
-    "com.azure.azurearcdata#SqlServerLicensesCreateRequestTagsMap": {
+    "com.azure.azurearcdata#CreateSqlServerLicenseRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3777,13 +3778,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.azurearcdata#SqlServerLicensesGet": {
+    "com.azure.azurearcdata#GetSqlServerLicense": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurearcdata#SqlServerLicensesGetRequest"
+        "target": "com.azure.azurearcdata#GetSqlServerLicenseRequest"
       },
       "output": {
-        "target": "com.azure.azurearcdata#SqlServerLicensesGetResponse"
+        "target": "com.azure.azurearcdata#GetSqlServerLicenseResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3796,7 +3797,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.azurearcdata#SqlServerLicensesGetResponse": {
+    "com.azure.azurearcdata#GetSqlServerLicenseResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3824,7 +3825,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.azurearcdata#SqlServerLicensesGetResponseTagsMap",
+          "target": "com.azure.azurearcdata#GetSqlServerLicenseResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3848,7 +3849,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.azurearcdata#SqlServerLicensesGetResponseTagsMap": {
+    "com.azure.azurearcdata#GetSqlServerLicenseResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3860,7 +3861,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.azurearcdata#SqlServerLicensesGetRequest": {
+    "com.azure.azurearcdata#GetSqlServerLicenseRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3892,13 +3893,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurearcdata#SqlServerLicensesListByResourceGroup": {
+    "com.azure.azurearcdata#ListSqlServerLicenseByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurearcdata#SqlServerLicensesListByResourceGroupRequest"
+        "target": "com.azure.azurearcdata#ListSqlServerLicenseByResourceGroupRequest"
       },
       "output": {
-        "target": "com.azure.azurearcdata#SqlServerLicensesListByResourceGroupResponse"
+        "target": "com.azure.azurearcdata#ListSqlServerLicenseByResourceGroupResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3911,11 +3912,11 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.azurearcdata#SqlServerLicensesListByResourceGroupResponse": {
+    "com.azure.azurearcdata#ListSqlServerLicenseByResourceGroupResponse": {
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.azurearcdata#SqlServerLicensesListByResourceGroupResponseValueList",
+          "target": "com.azure.azurearcdata#ListSqlServerLicenseByResourceGroupResponseValueList",
           "traits": {
             "smithy.api#documentation": "Array of results."
           }
@@ -3931,7 +3932,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.azurearcdata#SqlServerLicensesListByResourceGroupResponseValueList": {
+    "com.azure.azurearcdata#ListSqlServerLicenseByResourceGroupResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.azurearcdata#SqlServerLicense"
@@ -4004,7 +4005,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.azurearcdata#SqlServerLicensesListByResourceGroupRequest": {
+    "com.azure.azurearcdata#ListSqlServerLicenseByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4028,13 +4029,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurearcdata#SqlServerLicensesList": {
+    "com.azure.azurearcdata#ListSqlServerLicenses": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurearcdata#SqlServerLicensesListRequest"
+        "target": "com.azure.azurearcdata#ListSqlServerLicensesRequest"
       },
       "output": {
-        "target": "com.azure.azurearcdata#SqlServerLicensesListResponse"
+        "target": "com.azure.azurearcdata#ListSqlServerLicensesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4047,11 +4048,11 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.azurearcdata#SqlServerLicensesListResponse": {
+    "com.azure.azurearcdata#ListSqlServerLicensesResponse": {
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.azurearcdata#SqlServerLicensesListResponseValueList",
+          "target": "com.azure.azurearcdata#ListSqlServerLicensesResponseValueList",
           "traits": {
             "smithy.api#documentation": "Array of results."
           }
@@ -4067,7 +4068,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.azurearcdata#SqlServerLicensesListResponseValueList": {
+    "com.azure.azurearcdata#ListSqlServerLicensesResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.azurearcdata#SqlServerLicense"
@@ -4076,7 +4077,7 @@
         "smithy.api#documentation": "Array of results."
       }
     },
-    "com.azure.azurearcdata#SqlServerLicensesListRequest": {
+    "com.azure.azurearcdata#ListSqlServerLicensesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4092,13 +4093,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurearcdata#SqlServerInstancesRunManagedInstanceLinkAssessment": {
+    "com.azure.azurearcdata#RunSqlServerInstanceManagedInstanceLinkAssessment": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurearcdata#SqlServerInstancesRunManagedInstanceLinkAssessmentRequest"
+        "target": "com.azure.azurearcdata#RunSqlServerInstanceManagedInstanceLinkAssessmentRequest"
       },
       "output": {
-        "target": "com.azure.azurearcdata#SqlServerInstancesRunManagedInstanceLinkAssessmentResponse"
+        "target": "com.azure.azurearcdata#RunSqlServerInstanceManagedInstanceLinkAssessmentResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4111,11 +4112,11 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.azurearcdata#SqlServerInstancesRunManagedInstanceLinkAssessmentResponse": {
+    "com.azure.azurearcdata#RunSqlServerInstanceManagedInstanceLinkAssessmentResponse": {
       "type": "structure",
       "members": {
         "assessments": {
-          "target": "com.azure.azurearcdata#SqlServerInstancesRunManagedInstanceLinkAssessmentResponseAssessmentsList",
+          "target": "com.azure.azurearcdata#RunSqlServerInstanceManagedInstanceLinkAssessmentResponseAssessmentsList",
           "traits": {
             "smithy.api#documentation": "The list of the results for MI Link assessment."
           }
@@ -4125,7 +4126,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.azurearcdata#SqlServerInstancesRunManagedInstanceLinkAssessmentResponseAssessmentsList": {
+    "com.azure.azurearcdata#RunSqlServerInstanceManagedInstanceLinkAssessmentResponseAssessmentsList": {
       "type": "list",
       "member": {
         "target": "com.azure.azurearcdata#SqlServerInstanceManagedInstanceLinkAssessment"
@@ -4278,7 +4279,7 @@
         "smithy.api#documentation": "Validation category for the MI Link prerequisites assessment."
       }
     },
-    "com.azure.azurearcdata#SqlServerInstancesRunManagedInstanceLinkAssessmentRequest": {
+    "com.azure.azurearcdata#RunSqlServerInstanceManagedInstanceLinkAssessmentRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4313,13 +4314,13 @@
           }
         },
         "azureManagedInstanceRole": {
-          "target": "com.azure.azurearcdata#SqlServerInstancesRunManagedInstanceLinkAssessmentRequestAzureManagedInstanceRole",
+          "target": "com.azure.azurearcdata#RunSqlServerInstanceManagedInstanceLinkAssessmentRequestAzureManagedInstanceRole",
           "traits": {
             "smithy.api#documentation": "The role of managed instance in a distributed availability group, can be Primary or Secondary."
           }
         },
         "databaseNames": {
-          "target": "com.azure.azurearcdata#SqlServerInstancesRunManagedInstanceLinkAssessmentRequestDatabaseNamesList",
+          "target": "com.azure.azurearcdata#RunSqlServerInstanceManagedInstanceLinkAssessmentRequestDatabaseNamesList",
           "traits": {
             "smithy.api#documentation": "An array of strings, where each value represents the name of a database to be replicated to the Azure SQL Managed Instance.",
             "smithy.api#required": {}
@@ -4340,7 +4341,7 @@
           }
         },
         "assessmentCategories": {
-          "target": "com.azure.azurearcdata#SqlServerInstancesRunManagedInstanceLinkAssessmentRequestAssessmentCategoriesList",
+          "target": "com.azure.azurearcdata#RunSqlServerInstanceManagedInstanceLinkAssessmentRequestAssessmentCategoriesList",
           "traits": {
             "smithy.api#documentation": "An array of strings, where each value represents the category of the assessment to be run. If this field is not provided, all assessment categories will be run."
           }
@@ -4356,7 +4357,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurearcdata#SqlServerInstancesRunManagedInstanceLinkAssessmentRequestAssessmentCategoriesList": {
+    "com.azure.azurearcdata#RunSqlServerInstanceManagedInstanceLinkAssessmentRequestAssessmentCategoriesList": {
       "type": "list",
       "member": {
         "target": "com.azure.azurearcdata#MiLinkAssessmentCategory"
@@ -4365,7 +4366,7 @@
         "smithy.api#documentation": "An array of strings, where each value represents the category of the assessment to be run. If this field is not provided, all assessment categories will be run."
       }
     },
-    "com.azure.azurearcdata#SqlServerInstancesRunManagedInstanceLinkAssessmentRequestDatabaseNamesList": {
+    "com.azure.azurearcdata#RunSqlServerInstanceManagedInstanceLinkAssessmentRequestDatabaseNamesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -4374,7 +4375,7 @@
         "smithy.api#documentation": "An array of strings, where each value represents the name of a database to be replicated to the Azure SQL Managed Instance."
       }
     },
-    "com.azure.azurearcdata#SqlServerInstancesRunManagedInstanceLinkAssessmentRequestAzureManagedInstanceRole": {
+    "com.azure.azurearcdata#RunSqlServerInstanceManagedInstanceLinkAssessmentRequestAzureManagedInstanceRole": {
       "type": "enum",
       "members": {
         "PRIMARY": {
@@ -4394,13 +4395,13 @@
         "smithy.api#documentation": "The role of managed instance in a distributed availability group, can be Primary or Secondary."
       }
     },
-    "com.azure.azurearcdata#SqlServerInstancesPostUpgrade": {
+    "com.azure.azurearcdata#PostSqlServerInstanceUpgrade": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurearcdata#SqlServerInstancesPostUpgradeRequest"
+        "target": "com.azure.azurearcdata#PostSqlServerInstanceUpgradeRequest"
       },
       "output": {
-        "target": "com.azure.azurearcdata#SqlServerInstancesPostUpgradeResponse"
+        "target": "com.azure.azurearcdata#PostSqlServerInstanceUpgradeResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4413,7 +4414,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.azurearcdata#SqlServerInstancesPostUpgradeResponse": {
+    "com.azure.azurearcdata#PostSqlServerInstanceUpgradeResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -4441,7 +4442,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.azurearcdata#SqlServerInstancesPostUpgradeResponseTagsMap",
+          "target": "com.azure.azurearcdata#PostSqlServerInstanceUpgradeResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -6656,7 +6657,7 @@
         "smithy.api#documentation": "SQL Server version."
       }
     },
-    "com.azure.azurearcdata#SqlServerInstancesPostUpgradeResponseTagsMap": {
+    "com.azure.azurearcdata#PostSqlServerInstanceUpgradeResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6668,7 +6669,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.azurearcdata#SqlServerInstancesPostUpgradeRequest": {
+    "com.azure.azurearcdata#PostSqlServerInstanceUpgradeRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6814,13 +6815,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurearcdata#SqlServerInstancesGetJobsStatus": {
+    "com.azure.azurearcdata#GetSqlServerInstanceJobsStatus": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurearcdata#SqlServerInstancesGetJobsStatusRequest"
+        "target": "com.azure.azurearcdata#GetSqlServerInstanceJobsStatusRequest"
       },
       "output": {
-        "target": "com.azure.azurearcdata#SqlServerInstancesGetJobsStatusResponse"
+        "target": "com.azure.azurearcdata#GetSqlServerInstanceJobsStatusResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6833,11 +6834,11 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.azurearcdata#SqlServerInstancesGetJobsStatusResponse": {
+    "com.azure.azurearcdata#GetSqlServerInstanceJobsStatusResponse": {
       "type": "structure",
       "members": {
         "jobsStatus": {
-          "target": "com.azure.azurearcdata#SqlServerInstancesGetJobsStatusResponseJobsStatusList",
+          "target": "com.azure.azurearcdata#GetSqlServerInstanceJobsStatusResponseJobsStatusList",
           "traits": {
             "smithy.api#documentation": "The list of jobs status running on the SQL Server instance."
           }
@@ -6847,7 +6848,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.azurearcdata#SqlServerInstancesGetJobsStatusResponseJobsStatusList": {
+    "com.azure.azurearcdata#GetSqlServerInstanceJobsStatusResponseJobsStatusList": {
       "type": "list",
       "member": {
         "target": "com.azure.azurearcdata#SqlServerInstanceJobStatus"
@@ -7195,7 +7196,7 @@
         "smithy.api#documentation": "The status of the job."
       }
     },
-    "com.azure.azurearcdata#SqlServerInstancesGetJobsStatusRequest": {
+    "com.azure.azurearcdata#GetSqlServerInstanceJobsStatusRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7239,13 +7240,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurearcdata#SqlServerInstancesRunBestPracticesAssessment": {
+    "com.azure.azurearcdata#RunSqlServerInstanceBestPracticesAssessment": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurearcdata#SqlServerInstancesRunBestPracticesAssessmentRequest"
+        "target": "com.azure.azurearcdata#RunSqlServerInstanceBestPracticesAssessmentRequest"
       },
       "output": {
-        "target": "com.azure.azurearcdata#SqlServerInstancesRunBestPracticesAssessmentResponse"
+        "target": "com.azure.azurearcdata#RunSqlServerInstanceBestPracticesAssessmentResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7258,7 +7259,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.azurearcdata#SqlServerInstancesRunBestPracticesAssessmentResponse": {
+    "com.azure.azurearcdata#RunSqlServerInstanceBestPracticesAssessmentResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -7274,7 +7275,7 @@
           }
         },
         "jobStatus": {
-          "target": "com.azure.azurearcdata#SqlServerInstancesRunBestPracticesAssessmentResponseJobStatus",
+          "target": "com.azure.azurearcdata#RunSqlServerInstanceBestPracticesAssessmentResponseJobStatus",
           "traits": {
             "smithy.api#documentation": "The status of the job."
           }
@@ -7292,7 +7293,7 @@
           }
         },
         "sequencerActions": {
-          "target": "com.azure.azurearcdata#SqlServerInstancesRunBestPracticesAssessmentResponseSequencerActionsList",
+          "target": "com.azure.azurearcdata#RunSqlServerInstanceBestPracticesAssessmentResponseSequencerActionsList",
           "traits": {
             "smithy.api#documentation": "The list of sequencer actions."
           }
@@ -7302,7 +7303,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.azurearcdata#SqlServerInstancesRunBestPracticesAssessmentResponseSequencerActionsList": {
+    "com.azure.azurearcdata#RunSqlServerInstanceBestPracticesAssessmentResponseSequencerActionsList": {
       "type": "list",
       "member": {
         "target": "com.azure.azurearcdata#SequencerAction"
@@ -7311,7 +7312,7 @@
         "smithy.api#documentation": "The list of sequencer actions."
       }
     },
-    "com.azure.azurearcdata#SqlServerInstancesRunBestPracticesAssessmentResponseJobStatus": {
+    "com.azure.azurearcdata#RunSqlServerInstanceBestPracticesAssessmentResponseJobStatus": {
       "type": "enum",
       "members": {
         "NOTSTARTED": {
@@ -7343,7 +7344,7 @@
         "smithy.api#documentation": "The status of the job."
       }
     },
-    "com.azure.azurearcdata#SqlServerInstancesRunBestPracticesAssessmentRequest": {
+    "com.azure.azurearcdata#RunSqlServerInstanceBestPracticesAssessmentRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7375,13 +7376,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurearcdata#SqlServerInstancesRunMigrationAssessment": {
+    "com.azure.azurearcdata#RunSqlServerInstanceMigrationAssessment": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurearcdata#SqlServerInstancesRunMigrationAssessmentRequest"
+        "target": "com.azure.azurearcdata#RunSqlServerInstanceMigrationAssessmentRequest"
       },
       "output": {
-        "target": "com.azure.azurearcdata#SqlServerInstancesRunMigrationAssessmentResponse"
+        "target": "com.azure.azurearcdata#RunSqlServerInstanceMigrationAssessmentResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7394,7 +7395,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.azurearcdata#SqlServerInstancesRunMigrationAssessmentResponse": {
+    "com.azure.azurearcdata#RunSqlServerInstanceMigrationAssessmentResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -7410,7 +7411,7 @@
           }
         },
         "jobStatus": {
-          "target": "com.azure.azurearcdata#SqlServerInstancesRunMigrationAssessmentResponseJobStatus",
+          "target": "com.azure.azurearcdata#RunSqlServerInstanceMigrationAssessmentResponseJobStatus",
           "traits": {
             "smithy.api#documentation": "The status of the job."
           }
@@ -7428,7 +7429,7 @@
           }
         },
         "sequencerActions": {
-          "target": "com.azure.azurearcdata#SqlServerInstancesRunMigrationAssessmentResponseSequencerActionsList",
+          "target": "com.azure.azurearcdata#RunSqlServerInstanceMigrationAssessmentResponseSequencerActionsList",
           "traits": {
             "smithy.api#documentation": "The list of sequencer actions."
           }
@@ -7438,7 +7439,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.azurearcdata#SqlServerInstancesRunMigrationAssessmentResponseSequencerActionsList": {
+    "com.azure.azurearcdata#RunSqlServerInstanceMigrationAssessmentResponseSequencerActionsList": {
       "type": "list",
       "member": {
         "target": "com.azure.azurearcdata#SequencerAction"
@@ -7447,7 +7448,7 @@
         "smithy.api#documentation": "The list of sequencer actions."
       }
     },
-    "com.azure.azurearcdata#SqlServerInstancesRunMigrationAssessmentResponseJobStatus": {
+    "com.azure.azurearcdata#RunSqlServerInstanceMigrationAssessmentResponseJobStatus": {
       "type": "enum",
       "members": {
         "NOTSTARTED": {
@@ -7479,7 +7480,7 @@
         "smithy.api#documentation": "The status of the job."
       }
     },
-    "com.azure.azurearcdata#SqlServerInstancesRunMigrationAssessmentRequest": {
+    "com.azure.azurearcdata#RunSqlServerInstanceMigrationAssessmentRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7511,13 +7512,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurearcdata#SqlServerInstancesGetBestPracticesAssessment": {
+    "com.azure.azurearcdata#GetSqlServerInstanceBestPracticesAssessment": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurearcdata#SqlServerInstancesGetBestPracticesAssessmentRequest"
+        "target": "com.azure.azurearcdata#GetSqlServerInstanceBestPracticesAssessmentRequest"
       },
       "output": {
-        "target": "com.azure.azurearcdata#SqlServerInstancesGetBestPracticesAssessmentResponse"
+        "target": "com.azure.azurearcdata#GetSqlServerInstanceBestPracticesAssessmentResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7530,18 +7531,18 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.azurearcdata#SqlServerInstancesGetBestPracticesAssessmentResponse": {
+    "com.azure.azurearcdata#GetSqlServerInstanceBestPracticesAssessmentResponse": {
       "type": "structure",
       "members": {
         "columns": {
-          "target": "com.azure.azurearcdata#SqlServerInstancesGetBestPracticesAssessmentResponseColumnsList",
+          "target": "com.azure.azurearcdata#GetSqlServerInstanceBestPracticesAssessmentResponseColumnsList",
           "traits": {
             "smithy.api#documentation": "The SQL best practices assessment response columns.",
             "smithy.api#required": {}
           }
         },
         "rows": {
-          "target": "com.azure.azurearcdata#SqlServerInstancesGetBestPracticesAssessmentResponseRowsList",
+          "target": "com.azure.azurearcdata#GetSqlServerInstanceBestPracticesAssessmentResponseRowsList",
           "traits": {
             "smithy.api#documentation": "An array of results of the SQL best practices assessment response.",
             "smithy.api#required": {}
@@ -7558,7 +7559,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.azurearcdata#SqlServerInstancesGetBestPracticesAssessmentResponseRowsList": {
+    "com.azure.azurearcdata#GetSqlServerInstanceBestPracticesAssessmentResponseRowsList": {
       "type": "list",
       "member": {
         "target": "com.azure.azurearcdata#SqlServerInstanceBpaRow"
@@ -7576,7 +7577,7 @@
         "smithy.api#documentation": "An array of values representing a row in the SQL best practices assessment results."
       }
     },
-    "com.azure.azurearcdata#SqlServerInstancesGetBestPracticesAssessmentResponseColumnsList": {
+    "com.azure.azurearcdata#GetSqlServerInstanceBestPracticesAssessmentResponseColumnsList": {
       "type": "list",
       "member": {
         "target": "com.azure.azurearcdata#SqlServerInstanceBpaColumn"
@@ -7661,7 +7662,7 @@
         "smithy.api#documentation": "The type of the result column."
       }
     },
-    "com.azure.azurearcdata#SqlServerInstancesGetBestPracticesAssessmentRequest": {
+    "com.azure.azurearcdata#GetSqlServerInstanceBestPracticesAssessmentRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7689,7 +7690,7 @@
           }
         },
         "reportType": {
-          "target": "com.azure.azurearcdata#SqlServerInstancesGetBestPracticesAssessmentRequestReportType",
+          "target": "com.azure.azurearcdata#GetSqlServerInstanceBestPracticesAssessmentRequestReportType",
           "traits": {
             "smithy.api#documentation": "The report type that needs to be fetched. If not specified, the default is AssessmentSummary."
           }
@@ -7711,7 +7712,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurearcdata#SqlServerInstancesGetBestPracticesAssessmentRequestReportType": {
+    "com.azure.azurearcdata#GetSqlServerInstanceBestPracticesAssessmentRequestReportType": {
       "type": "enum",
       "members": {
         "ASSESSMENTDATAPOINT": {
@@ -7731,13 +7732,13 @@
         "smithy.api#documentation": "The report type that needs to be fetched. If not specified, the default is AssessmentSummary."
       }
     },
-    "com.azure.azurearcdata#SqlServerInstancesGetTelemetry": {
+    "com.azure.azurearcdata#GetSqlServerInstanceTelemetry": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurearcdata#SqlServerInstancesGetTelemetryRequest"
+        "target": "com.azure.azurearcdata#GetSqlServerInstanceTelemetryRequest"
       },
       "output": {
-        "target": "com.azure.azurearcdata#SqlServerInstancesGetTelemetryResponse"
+        "target": "com.azure.azurearcdata#GetSqlServerInstanceTelemetryResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7750,18 +7751,18 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.azurearcdata#SqlServerInstancesGetTelemetryResponse": {
+    "com.azure.azurearcdata#GetSqlServerInstanceTelemetryResponse": {
       "type": "structure",
       "members": {
         "columns": {
-          "target": "com.azure.azurearcdata#SqlServerInstancesGetTelemetryResponseColumnsList",
+          "target": "com.azure.azurearcdata#GetSqlServerInstanceTelemetryResponseColumnsList",
           "traits": {
             "smithy.api#documentation": "The columns of the result telemetry table for the SQL Server instance.",
             "smithy.api#required": {}
           }
         },
         "rows": {
-          "target": "com.azure.azurearcdata#SqlServerInstancesGetTelemetryResponseRowsList",
+          "target": "com.azure.azurearcdata#GetSqlServerInstanceTelemetryResponseRowsList",
           "traits": {
             "smithy.api#documentation": "A list of rows from the result telemetry table for the SQL Server instance.",
             "smithy.api#required": {}
@@ -7778,7 +7779,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.azurearcdata#SqlServerInstancesGetTelemetryResponseRowsList": {
+    "com.azure.azurearcdata#GetSqlServerInstanceTelemetryResponseRowsList": {
       "type": "list",
       "member": {
         "target": "com.azure.azurearcdata#SqlServerInstanceTelemetryRow"
@@ -7796,7 +7797,7 @@
         "smithy.api#documentation": "An array of values representing a telemetry row for the SQL Server instance."
       }
     },
-    "com.azure.azurearcdata#SqlServerInstancesGetTelemetryResponseColumnsList": {
+    "com.azure.azurearcdata#GetSqlServerInstanceTelemetryResponseColumnsList": {
       "type": "list",
       "member": {
         "target": "com.azure.azurearcdata#SqlServerInstanceTelemetryColumn"
@@ -7881,7 +7882,7 @@
         "smithy.api#documentation": "The type of the telemetry column."
       }
     },
-    "com.azure.azurearcdata#SqlServerInstancesGetTelemetryRequest": {
+    "com.azure.azurearcdata#GetSqlServerInstanceTelemetryRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7934,13 +7935,13 @@
           }
         },
         "aggregationType": {
-          "target": "com.azure.azurearcdata#SqlServerInstancesGetTelemetryRequestAggregationType",
+          "target": "com.azure.azurearcdata#GetSqlServerInstanceTelemetryRequestAggregationType",
           "traits": {
             "smithy.api#documentation": "The aggregation type to use for the numerical columns in the dataset."
           }
         },
         "databaseNames": {
-          "target": "com.azure.azurearcdata#SqlServerInstancesGetTelemetryRequestDatabaseNamesList",
+          "target": "com.azure.azurearcdata#GetSqlServerInstanceTelemetryRequestDatabaseNamesList",
           "traits": {
             "smithy.api#documentation": "The list of database names to return telemetry for. If not specified, telemetry for all databases will be aggregated and returned."
           }
@@ -7950,7 +7951,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurearcdata#SqlServerInstancesGetTelemetryRequestDatabaseNamesList": {
+    "com.azure.azurearcdata#GetSqlServerInstanceTelemetryRequestDatabaseNamesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -7959,7 +7960,7 @@
         "smithy.api#documentation": "The list of database names to return telemetry for. If not specified, telemetry for all databases will be aggregated and returned."
       }
     },
-    "com.azure.azurearcdata#SqlServerInstancesGetTelemetryRequestAggregationType": {
+    "com.azure.azurearcdata#GetSqlServerInstanceTelemetryRequestAggregationType": {
       "type": "enum",
       "members": {
         "AVERAGE": {
@@ -7997,10 +7998,10 @@
         "smithy.api#documentation": "The aggregation type to use for the numerical columns in the dataset."
       }
     },
-    "com.azure.azurearcdata#SqlServerInstancesDelete": {
+    "com.azure.azurearcdata#DeleteSqlServerInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurearcdata#SqlServerInstancesDeleteRequest"
+        "target": "com.azure.azurearcdata#DeleteSqlServerInstanceRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -8016,7 +8017,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.azurearcdata#SqlServerInstancesDeleteRequest": {
+    "com.azure.azurearcdata#DeleteSqlServerInstanceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8048,13 +8049,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurearcdata#SqlServerInstancesUpdate": {
+    "com.azure.azurearcdata#UpdateSqlServerInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurearcdata#SqlServerInstancesUpdateRequest"
+        "target": "com.azure.azurearcdata#UpdateSqlServerInstanceRequest"
       },
       "output": {
-        "target": "com.azure.azurearcdata#SqlServerInstancesUpdateResponse"
+        "target": "com.azure.azurearcdata#UpdateSqlServerInstanceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -8067,7 +8068,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.azurearcdata#SqlServerInstancesUpdateResponse": {
+    "com.azure.azurearcdata#UpdateSqlServerInstanceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -8095,7 +8096,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.azurearcdata#SqlServerInstancesUpdateResponseTagsMap",
+          "target": "com.azure.azurearcdata#UpdateSqlServerInstanceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -8118,7 +8119,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.azurearcdata#SqlServerInstancesUpdateResponseTagsMap": {
+    "com.azure.azurearcdata#UpdateSqlServerInstanceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8130,7 +8131,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.azurearcdata#SqlServerInstancesUpdateRequest": {
+    "com.azure.azurearcdata#UpdateSqlServerInstanceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8158,7 +8159,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.azurearcdata#SqlServerInstancesUpdateRequestTagsMap",
+          "target": "com.azure.azurearcdata#UpdateSqlServerInstanceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -8689,7 +8690,7 @@
         "smithy.api#documentation": "SQL Server version."
       }
     },
-    "com.azure.azurearcdata#SqlServerInstancesUpdateRequestTagsMap": {
+    "com.azure.azurearcdata#UpdateSqlServerInstanceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8701,13 +8702,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.azurearcdata#SqlServerInstancesCreate": {
+    "com.azure.azurearcdata#CreateSqlServerInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurearcdata#SqlServerInstancesCreateRequest"
+        "target": "com.azure.azurearcdata#CreateSqlServerInstanceRequest"
       },
       "output": {
-        "target": "com.azure.azurearcdata#SqlServerInstancesCreateResponse"
+        "target": "com.azure.azurearcdata#CreateSqlServerInstanceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -8720,7 +8721,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.azurearcdata#SqlServerInstancesCreateResponse": {
+    "com.azure.azurearcdata#CreateSqlServerInstanceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -8748,7 +8749,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.azurearcdata#SqlServerInstancesCreateResponseTagsMap",
+          "target": "com.azure.azurearcdata#CreateSqlServerInstanceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -8771,7 +8772,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.azurearcdata#SqlServerInstancesCreateResponseTagsMap": {
+    "com.azure.azurearcdata#CreateSqlServerInstanceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8783,7 +8784,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.azurearcdata#SqlServerInstancesCreateRequest": {
+    "com.azure.azurearcdata#CreateSqlServerInstanceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8811,7 +8812,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.azurearcdata#SqlServerInstancesCreateRequestTagsMap",
+          "target": "com.azure.azurearcdata#CreateSqlServerInstanceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -9130,7 +9131,7 @@
         "smithy.api#documentation": "SQL Server version."
       }
     },
-    "com.azure.azurearcdata#SqlServerInstancesCreateRequestTagsMap": {
+    "com.azure.azurearcdata#CreateSqlServerInstanceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -9142,13 +9143,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.azurearcdata#SqlServerInstancesGet": {
+    "com.azure.azurearcdata#GetSqlServerInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurearcdata#SqlServerInstancesGetRequest"
+        "target": "com.azure.azurearcdata#GetSqlServerInstanceRequest"
       },
       "output": {
-        "target": "com.azure.azurearcdata#SqlServerInstancesGetResponse"
+        "target": "com.azure.azurearcdata#GetSqlServerInstanceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -9161,7 +9162,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.azurearcdata#SqlServerInstancesGetResponse": {
+    "com.azure.azurearcdata#GetSqlServerInstanceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -9189,7 +9190,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.azurearcdata#SqlServerInstancesGetResponseTagsMap",
+          "target": "com.azure.azurearcdata#GetSqlServerInstanceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -9212,7 +9213,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.azurearcdata#SqlServerInstancesGetResponseTagsMap": {
+    "com.azure.azurearcdata#GetSqlServerInstanceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -9224,7 +9225,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.azurearcdata#SqlServerInstancesGetRequest": {
+    "com.azure.azurearcdata#GetSqlServerInstanceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9256,13 +9257,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurearcdata#SqlServerInstancesListByResourceGroup": {
+    "com.azure.azurearcdata#ListSqlServerInstanceByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurearcdata#SqlServerInstancesListByResourceGroupRequest"
+        "target": "com.azure.azurearcdata#ListSqlServerInstanceByResourceGroupRequest"
       },
       "output": {
-        "target": "com.azure.azurearcdata#SqlServerInstancesListByResourceGroupResponse"
+        "target": "com.azure.azurearcdata#ListSqlServerInstanceByResourceGroupResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -9275,11 +9276,11 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.azurearcdata#SqlServerInstancesListByResourceGroupResponse": {
+    "com.azure.azurearcdata#ListSqlServerInstanceByResourceGroupResponse": {
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.azurearcdata#SqlServerInstancesListByResourceGroupResponseValueList",
+          "target": "com.azure.azurearcdata#ListSqlServerInstanceByResourceGroupResponseValueList",
           "traits": {
             "smithy.api#documentation": "Array of results."
           }
@@ -9295,7 +9296,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.azurearcdata#SqlServerInstancesListByResourceGroupResponseValueList": {
+    "com.azure.azurearcdata#ListSqlServerInstanceByResourceGroupResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.azurearcdata#SqlServerInstance"
@@ -9367,7 +9368,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.azurearcdata#SqlServerInstancesListByResourceGroupRequest": {
+    "com.azure.azurearcdata#ListSqlServerInstanceByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9391,13 +9392,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurearcdata#SqlServerInstancesList": {
+    "com.azure.azurearcdata#ListSqlServerInstances": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurearcdata#SqlServerInstancesListRequest"
+        "target": "com.azure.azurearcdata#ListSqlServerInstancesRequest"
       },
       "output": {
-        "target": "com.azure.azurearcdata#SqlServerInstancesListResponse"
+        "target": "com.azure.azurearcdata#ListSqlServerInstancesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -9410,11 +9411,11 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.azurearcdata#SqlServerInstancesListResponse": {
+    "com.azure.azurearcdata#ListSqlServerInstancesResponse": {
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.azurearcdata#SqlServerInstancesListResponseValueList",
+          "target": "com.azure.azurearcdata#ListSqlServerInstancesResponseValueList",
           "traits": {
             "smithy.api#documentation": "Array of results."
           }
@@ -9430,7 +9431,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.azurearcdata#SqlServerInstancesListResponseValueList": {
+    "com.azure.azurearcdata#ListSqlServerInstancesResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.azurearcdata#SqlServerInstance"
@@ -9439,7 +9440,7 @@
         "smithy.api#documentation": "Array of results."
       }
     },
-    "com.azure.azurearcdata#SqlServerInstancesListRequest": {
+    "com.azure.azurearcdata#ListSqlServerInstancesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9455,10 +9456,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurearcdata#FailoverGroupsDelete": {
+    "com.azure.azurearcdata#DeleteFailoverGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurearcdata#FailoverGroupsDeleteRequest"
+        "target": "com.azure.azurearcdata#DeleteFailoverGroupRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -9474,7 +9475,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.azurearcdata#FailoverGroupsDeleteRequest": {
+    "com.azure.azurearcdata#DeleteFailoverGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9514,13 +9515,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurearcdata#FailoverGroupsCreate": {
+    "com.azure.azurearcdata#CreateFailoverGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurearcdata#FailoverGroupsCreateRequest"
+        "target": "com.azure.azurearcdata#CreateFailoverGroupRequest"
       },
       "output": {
-        "target": "com.azure.azurearcdata#FailoverGroupsCreateResponse"
+        "target": "com.azure.azurearcdata#CreateFailoverGroupResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -9533,7 +9534,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.azurearcdata#FailoverGroupsCreateResponse": {
+    "com.azure.azurearcdata#CreateFailoverGroupResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -9741,7 +9742,7 @@
         "smithy.api#documentation": "The provisioning state of the failover group resource."
       }
     },
-    "com.azure.azurearcdata#FailoverGroupsCreateRequest": {
+    "com.azure.azurearcdata#CreateFailoverGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9816,13 +9817,13 @@
         "smithy.api#documentation": "The properties of a failover group resource."
       }
     },
-    "com.azure.azurearcdata#FailoverGroupsGet": {
+    "com.azure.azurearcdata#GetFailoverGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurearcdata#FailoverGroupsGetRequest"
+        "target": "com.azure.azurearcdata#GetFailoverGroupRequest"
       },
       "output": {
-        "target": "com.azure.azurearcdata#FailoverGroupsGetResponse"
+        "target": "com.azure.azurearcdata#GetFailoverGroupResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -9835,7 +9836,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.azurearcdata#FailoverGroupsGetResponse": {
+    "com.azure.azurearcdata#GetFailoverGroupResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -9874,7 +9875,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.azurearcdata#FailoverGroupsGetRequest": {
+    "com.azure.azurearcdata#GetFailoverGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9914,13 +9915,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurearcdata#FailoverGroupsList": {
+    "com.azure.azurearcdata#ListFailoverGroups": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurearcdata#FailoverGroupsListRequest"
+        "target": "com.azure.azurearcdata#ListFailoverGroupsRequest"
       },
       "output": {
-        "target": "com.azure.azurearcdata#FailoverGroupsListResponse"
+        "target": "com.azure.azurearcdata#ListFailoverGroupsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -9933,11 +9934,11 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.azurearcdata#FailoverGroupsListResponse": {
+    "com.azure.azurearcdata#ListFailoverGroupsResponse": {
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.azurearcdata#FailoverGroupsListResponseValueList",
+          "target": "com.azure.azurearcdata#ListFailoverGroupsResponseValueList",
           "traits": {
             "smithy.api#documentation": "Array of failover group results."
           }
@@ -9953,7 +9954,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.azurearcdata#FailoverGroupsListResponseValueList": {
+    "com.azure.azurearcdata#ListFailoverGroupsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.azurearcdata#FailoverGroupResource"
@@ -10001,7 +10002,7 @@
         "smithy.api#documentation": "A failover group resource."
       }
     },
-    "com.azure.azurearcdata#FailoverGroupsListRequest": {
+    "com.azure.azurearcdata#ListFailoverGroupsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10033,10 +10034,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurearcdata#SqlManagedInstancesDelete": {
+    "com.azure.azurearcdata#DeleteSqlManagedInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurearcdata#SqlManagedInstancesDeleteRequest"
+        "target": "com.azure.azurearcdata#DeleteSqlManagedInstanceRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -10052,7 +10053,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.azurearcdata#SqlManagedInstancesDeleteRequest": {
+    "com.azure.azurearcdata#DeleteSqlManagedInstanceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10084,13 +10085,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurearcdata#SqlManagedInstancesUpdate": {
+    "com.azure.azurearcdata#UpdateSqlManagedInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurearcdata#SqlManagedInstancesUpdateRequest"
+        "target": "com.azure.azurearcdata#UpdateSqlManagedInstanceRequest"
       },
       "output": {
-        "target": "com.azure.azurearcdata#SqlManagedInstancesUpdateResponse"
+        "target": "com.azure.azurearcdata#UpdateSqlManagedInstanceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -10103,7 +10104,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.azurearcdata#SqlManagedInstancesUpdateResponse": {
+    "com.azure.azurearcdata#UpdateSqlManagedInstanceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -10131,7 +10132,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.azurearcdata#SqlManagedInstancesUpdateResponseTagsMap",
+          "target": "com.azure.azurearcdata#UpdateSqlManagedInstanceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -10151,7 +10152,7 @@
           }
         },
         "extendedLocation": {
-          "target": "com.azure.azurearcdata#SqlManagedInstancesUpdateResponseExtendedLocation",
+          "target": "com.azure.azurearcdata#UpdateSqlManagedInstanceResponseExtendedLocation",
           "traits": {
             "smithy.api#documentation": "The complex type of the extended location."
           }
@@ -10246,7 +10247,7 @@
         "smithy.api#documentation": "The name of the SKU."
       }
     },
-    "com.azure.azurearcdata#SqlManagedInstancesUpdateResponseExtendedLocation": {
+    "com.azure.azurearcdata#UpdateSqlManagedInstanceResponseExtendedLocation": {
       "type": "structure",
       "members": {
         "name": {
@@ -10660,7 +10661,7 @@
         "smithy.api#documentation": "Requests for a kubernetes resource type (e.g 'cpu', 'memory'). The 'cpu' request must be less than or equal to 'cpu' limit. Default 'cpu' is 2, minimum is 1. Default 'memory' is '4Gi', minimum is '2Gi. If sku.tier is GeneralPurpose, maximum 'cpu' is 24 and maximum 'memory' is '128Gi'."
       }
     },
-    "com.azure.azurearcdata#SqlManagedInstancesUpdateResponseTagsMap": {
+    "com.azure.azurearcdata#UpdateSqlManagedInstanceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -10672,7 +10673,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.azurearcdata#SqlManagedInstancesUpdateRequest": {
+    "com.azure.azurearcdata#UpdateSqlManagedInstanceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10700,7 +10701,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.azurearcdata#SqlManagedInstancesUpdateRequestTagsMap",
+          "target": "com.azure.azurearcdata#UpdateSqlManagedInstanceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -10710,7 +10711,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurearcdata#SqlManagedInstancesUpdateRequestTagsMap": {
+    "com.azure.azurearcdata#UpdateSqlManagedInstanceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -10722,13 +10723,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.azurearcdata#SqlManagedInstancesCreate": {
+    "com.azure.azurearcdata#CreateSqlManagedInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurearcdata#SqlManagedInstancesCreateRequest"
+        "target": "com.azure.azurearcdata#CreateSqlManagedInstanceRequest"
       },
       "output": {
-        "target": "com.azure.azurearcdata#SqlManagedInstancesCreateResponse"
+        "target": "com.azure.azurearcdata#CreateSqlManagedInstanceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -10741,7 +10742,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.azurearcdata#SqlManagedInstancesCreateResponse": {
+    "com.azure.azurearcdata#CreateSqlManagedInstanceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -10769,7 +10770,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.azurearcdata#SqlManagedInstancesCreateResponseTagsMap",
+          "target": "com.azure.azurearcdata#CreateSqlManagedInstanceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -10789,7 +10790,7 @@
           }
         },
         "extendedLocation": {
-          "target": "com.azure.azurearcdata#SqlManagedInstancesCreateResponseExtendedLocation",
+          "target": "com.azure.azurearcdata#CreateSqlManagedInstanceResponseExtendedLocation",
           "traits": {
             "smithy.api#documentation": "The complex type of the extended location."
           }
@@ -10805,7 +10806,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.azurearcdata#SqlManagedInstancesCreateResponseExtendedLocation": {
+    "com.azure.azurearcdata#CreateSqlManagedInstanceResponseExtendedLocation": {
       "type": "structure",
       "members": {
         "name": {
@@ -10825,7 +10826,7 @@
         "smithy.api#documentation": "The complex type of the extended location."
       }
     },
-    "com.azure.azurearcdata#SqlManagedInstancesCreateResponseTagsMap": {
+    "com.azure.azurearcdata#CreateSqlManagedInstanceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -10837,7 +10838,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.azurearcdata#SqlManagedInstancesCreateRequest": {
+    "com.azure.azurearcdata#CreateSqlManagedInstanceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10865,7 +10866,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.azurearcdata#SqlManagedInstancesCreateRequestTagsMap",
+          "target": "com.azure.azurearcdata#CreateSqlManagedInstanceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -10885,7 +10886,7 @@
           }
         },
         "extendedLocation": {
-          "target": "com.azure.azurearcdata#SqlManagedInstancesCreateRequestExtendedLocation",
+          "target": "com.azure.azurearcdata#CreateSqlManagedInstanceRequestExtendedLocation",
           "traits": {
             "smithy.api#documentation": "The complex type of the extended location."
           }
@@ -10901,7 +10902,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurearcdata#SqlManagedInstancesCreateRequestExtendedLocation": {
+    "com.azure.azurearcdata#CreateSqlManagedInstanceRequestExtendedLocation": {
       "type": "structure",
       "members": {
         "name": {
@@ -11042,7 +11043,7 @@
         "smithy.api#documentation": "Username and password for basic login authentication."
       }
     },
-    "com.azure.azurearcdata#SqlManagedInstancesCreateRequestTagsMap": {
+    "com.azure.azurearcdata#CreateSqlManagedInstanceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -11054,13 +11055,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.azurearcdata#SqlManagedInstancesGet": {
+    "com.azure.azurearcdata#GetSqlManagedInstance": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurearcdata#SqlManagedInstancesGetRequest"
+        "target": "com.azure.azurearcdata#GetSqlManagedInstanceRequest"
       },
       "output": {
-        "target": "com.azure.azurearcdata#SqlManagedInstancesGetResponse"
+        "target": "com.azure.azurearcdata#GetSqlManagedInstanceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -11073,7 +11074,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.azurearcdata#SqlManagedInstancesGetResponse": {
+    "com.azure.azurearcdata#GetSqlManagedInstanceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -11101,7 +11102,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.azurearcdata#SqlManagedInstancesGetResponseTagsMap",
+          "target": "com.azure.azurearcdata#GetSqlManagedInstanceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -11121,7 +11122,7 @@
           }
         },
         "extendedLocation": {
-          "target": "com.azure.azurearcdata#SqlManagedInstancesGetResponseExtendedLocation",
+          "target": "com.azure.azurearcdata#GetSqlManagedInstanceResponseExtendedLocation",
           "traits": {
             "smithy.api#documentation": "The complex type of the extended location."
           }
@@ -11137,7 +11138,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.azurearcdata#SqlManagedInstancesGetResponseExtendedLocation": {
+    "com.azure.azurearcdata#GetSqlManagedInstanceResponseExtendedLocation": {
       "type": "structure",
       "members": {
         "name": {
@@ -11157,7 +11158,7 @@
         "smithy.api#documentation": "The complex type of the extended location."
       }
     },
-    "com.azure.azurearcdata#SqlManagedInstancesGetResponseTagsMap": {
+    "com.azure.azurearcdata#GetSqlManagedInstanceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -11169,7 +11170,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.azurearcdata#SqlManagedInstancesGetRequest": {
+    "com.azure.azurearcdata#GetSqlManagedInstanceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11201,13 +11202,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurearcdata#SqlManagedInstancesListByResourceGroup": {
+    "com.azure.azurearcdata#ListSqlManagedInstanceByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurearcdata#SqlManagedInstancesListByResourceGroupRequest"
+        "target": "com.azure.azurearcdata#ListSqlManagedInstanceByResourceGroupRequest"
       },
       "output": {
-        "target": "com.azure.azurearcdata#SqlManagedInstancesListByResourceGroupResponse"
+        "target": "com.azure.azurearcdata#ListSqlManagedInstanceByResourceGroupResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -11220,11 +11221,11 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.azurearcdata#SqlManagedInstancesListByResourceGroupResponse": {
+    "com.azure.azurearcdata#ListSqlManagedInstanceByResourceGroupResponse": {
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.azurearcdata#SqlManagedInstancesListByResourceGroupResponseValueList",
+          "target": "com.azure.azurearcdata#ListSqlManagedInstanceByResourceGroupResponseValueList",
           "traits": {
             "smithy.api#documentation": "Array of results."
           }
@@ -11240,7 +11241,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.azurearcdata#SqlManagedInstancesListByResourceGroupResponseValueList": {
+    "com.azure.azurearcdata#ListSqlManagedInstanceByResourceGroupResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.azurearcdata#SqlManagedInstance"
@@ -11345,7 +11346,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.azurearcdata#SqlManagedInstancesListByResourceGroupRequest": {
+    "com.azure.azurearcdata#ListSqlManagedInstanceByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11369,13 +11370,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurearcdata#SqlManagedInstancesList": {
+    "com.azure.azurearcdata#ListSqlManagedInstances": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurearcdata#SqlManagedInstancesListRequest"
+        "target": "com.azure.azurearcdata#ListSqlManagedInstancesRequest"
       },
       "output": {
-        "target": "com.azure.azurearcdata#SqlManagedInstancesListResponse"
+        "target": "com.azure.azurearcdata#ListSqlManagedInstancesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -11388,11 +11389,11 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.azurearcdata#SqlManagedInstancesListResponse": {
+    "com.azure.azurearcdata#ListSqlManagedInstancesResponse": {
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.azurearcdata#SqlManagedInstancesListResponseValueList",
+          "target": "com.azure.azurearcdata#ListSqlManagedInstancesResponseValueList",
           "traits": {
             "smithy.api#documentation": "Array of results."
           }
@@ -11408,7 +11409,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.azurearcdata#SqlManagedInstancesListResponseValueList": {
+    "com.azure.azurearcdata#ListSqlManagedInstancesResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.azurearcdata#SqlManagedInstance"
@@ -11417,7 +11418,7 @@
         "smithy.api#documentation": "Array of results."
       }
     },
-    "com.azure.azurearcdata#SqlManagedInstancesListRequest": {
+    "com.azure.azurearcdata#ListSqlManagedInstancesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11433,13 +11434,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurearcdata#OperationsList": {
+    "com.azure.azurearcdata#ListOperations": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
       },
       "output": {
-        "target": "com.azure.azurearcdata#OperationsListResponse"
+        "target": "com.azure.azurearcdata#ListOperationsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -11452,11 +11453,11 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.azurearcdata#OperationsListResponse": {
+    "com.azure.azurearcdata#ListOperationsResponse": {
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.azurearcdata#OperationsListResponseValueList",
+          "target": "com.azure.azurearcdata#ListOperationsResponseValueList",
           "traits": {
             "smithy.api#documentation": "Array of results."
           }
@@ -11472,7 +11473,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.azurearcdata#OperationsListResponseValueList": {
+    "com.azure.azurearcdata#ListOperationsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.azurearcdata#Operation"
@@ -11590,10 +11591,10 @@
         "smithy.api#documentation": "Display metadata associated with the operation."
       }
     },
-    "com.azure.azurearcdata#SqlServerAvailabilityGroupsList": {
+    "com.azure.azurearcdata#ListSqlServerAvailabilityGroups": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurearcdata#SqlServerAvailabilityGroupsListRequest"
+        "target": "com.azure.azurearcdata#ListSqlServerAvailabilityGroupsRequest"
       },
       "output": {
         "target": "com.azure.azurearcdata#ArcSqlServerAvailabilityGroupListResult"
@@ -12503,7 +12504,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.azurearcdata#SqlServerAvailabilityGroupsListRequest": {
+    "com.azure.azurearcdata#ListSqlServerAvailabilityGroupsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -12535,13 +12536,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurearcdata#SqlServerAvailabilityGroupsRemoveDatabases": {
+    "com.azure.azurearcdata#RemoveSqlServerAvailabilityGroupDatabases": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurearcdata#SqlServerAvailabilityGroupsRemoveDatabasesRequest"
+        "target": "com.azure.azurearcdata#RemoveSqlServerAvailabilityGroupDatabasesRequest"
       },
       "output": {
-        "target": "com.azure.azurearcdata#SqlServerAvailabilityGroupsRemoveDatabasesResponse"
+        "target": "com.azure.azurearcdata#RemoveSqlServerAvailabilityGroupDatabasesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -12554,7 +12555,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.azurearcdata#SqlServerAvailabilityGroupsRemoveDatabasesResponse": {
+    "com.azure.azurearcdata#RemoveSqlServerAvailabilityGroupDatabasesResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -12582,7 +12583,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.azurearcdata#SqlServerAvailabilityGroupsRemoveDatabasesResponseTagsMap",
+          "target": "com.azure.azurearcdata#RemoveSqlServerAvailabilityGroupDatabasesResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -12606,7 +12607,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.azurearcdata#SqlServerAvailabilityGroupsRemoveDatabasesResponseTagsMap": {
+    "com.azure.azurearcdata#RemoveSqlServerAvailabilityGroupDatabasesResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -12618,7 +12619,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.azurearcdata#SqlServerAvailabilityGroupsRemoveDatabasesRequest": {
+    "com.azure.azurearcdata#RemoveSqlServerAvailabilityGroupDatabasesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -12654,7 +12655,7 @@
           }
         },
         "values": {
-          "target": "com.azure.azurearcdata#SqlServerAvailabilityGroupsRemoveDatabasesRequestValuesList",
+          "target": "com.azure.azurearcdata#RemoveSqlServerAvailabilityGroupDatabasesRequestValuesList",
           "traits": {
             "smithy.api#documentation": "List of database names."
           }
@@ -12664,7 +12665,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurearcdata#SqlServerAvailabilityGroupsRemoveDatabasesRequestValuesList": {
+    "com.azure.azurearcdata#RemoveSqlServerAvailabilityGroupDatabasesRequestValuesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -12673,10 +12674,10 @@
         "smithy.api#documentation": "List of database names."
       }
     },
-    "com.azure.azurearcdata#SqlServerAvailabilityGroupsDeleteMiLink": {
+    "com.azure.azurearcdata#DeleteSqlServerAvailabilityGroupMiLink": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurearcdata#SqlServerAvailabilityGroupsDeleteMiLinkRequest"
+        "target": "com.azure.azurearcdata#DeleteSqlServerAvailabilityGroupMiLinkRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -12692,7 +12693,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.azurearcdata#SqlServerAvailabilityGroupsDeleteMiLinkRequest": {
+    "com.azure.azurearcdata#DeleteSqlServerAvailabilityGroupMiLinkRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -12867,13 +12868,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurearcdata#SqlServerAvailabilityGroupsAddDatabases": {
+    "com.azure.azurearcdata#AddSqlServerAvailabilityGroupDatabases": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurearcdata#SqlServerAvailabilityGroupsAddDatabasesRequest"
+        "target": "com.azure.azurearcdata#AddSqlServerAvailabilityGroupDatabasesRequest"
       },
       "output": {
-        "target": "com.azure.azurearcdata#SqlServerAvailabilityGroupsAddDatabasesResponse"
+        "target": "com.azure.azurearcdata#AddSqlServerAvailabilityGroupDatabasesResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -12886,7 +12887,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.azurearcdata#SqlServerAvailabilityGroupsAddDatabasesResponse": {
+    "com.azure.azurearcdata#AddSqlServerAvailabilityGroupDatabasesResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -12914,7 +12915,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.azurearcdata#SqlServerAvailabilityGroupsAddDatabasesResponseTagsMap",
+          "target": "com.azure.azurearcdata#AddSqlServerAvailabilityGroupDatabasesResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -12938,7 +12939,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.azurearcdata#SqlServerAvailabilityGroupsAddDatabasesResponseTagsMap": {
+    "com.azure.azurearcdata#AddSqlServerAvailabilityGroupDatabasesResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -12950,7 +12951,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.azurearcdata#SqlServerAvailabilityGroupsAddDatabasesRequest": {
+    "com.azure.azurearcdata#AddSqlServerAvailabilityGroupDatabasesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -12986,7 +12987,7 @@
           }
         },
         "values": {
-          "target": "com.azure.azurearcdata#SqlServerAvailabilityGroupsAddDatabasesRequestValuesList",
+          "target": "com.azure.azurearcdata#AddSqlServerAvailabilityGroupDatabasesRequestValuesList",
           "traits": {
             "smithy.api#documentation": "List of database names."
           }
@@ -12996,7 +12997,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurearcdata#SqlServerAvailabilityGroupsAddDatabasesRequestValuesList": {
+    "com.azure.azurearcdata#AddSqlServerAvailabilityGroupDatabasesRequestValuesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -13005,13 +13006,13 @@
         "smithy.api#documentation": "List of database names."
       }
     },
-    "com.azure.azurearcdata#SqlServerAvailabilityGroupsCreateManagedInstanceLink": {
+    "com.azure.azurearcdata#CreateSqlServerAvailabilityGroupManagedInstanceLink": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurearcdata#SqlServerAvailabilityGroupsCreateManagedInstanceLinkRequest"
+        "target": "com.azure.azurearcdata#CreateSqlServerAvailabilityGroupManagedInstanceLinkRequest"
       },
       "output": {
-        "target": "com.azure.azurearcdata#SqlServerAvailabilityGroupsCreateManagedInstanceLinkResponse"
+        "target": "com.azure.azurearcdata#CreateSqlServerAvailabilityGroupManagedInstanceLinkResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -13024,7 +13025,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.azurearcdata#SqlServerAvailabilityGroupsCreateManagedInstanceLinkResponse": {
+    "com.azure.azurearcdata#CreateSqlServerAvailabilityGroupManagedInstanceLinkResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -13052,7 +13053,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.azurearcdata#SqlServerAvailabilityGroupsCreateManagedInstanceLinkResponseTagsMap",
+          "target": "com.azure.azurearcdata#CreateSqlServerAvailabilityGroupManagedInstanceLinkResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -13076,7 +13077,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.azurearcdata#SqlServerAvailabilityGroupsCreateManagedInstanceLinkResponseTagsMap": {
+    "com.azure.azurearcdata#CreateSqlServerAvailabilityGroupManagedInstanceLinkResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -13088,7 +13089,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.azurearcdata#SqlServerAvailabilityGroupsCreateManagedInstanceLinkRequest": {
+    "com.azure.azurearcdata#CreateSqlServerAvailabilityGroupManagedInstanceLinkRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -13823,13 +13824,13 @@
         "smithy.api#documentation": "The endpoint connection authentication type(s)."
       }
     },
-    "com.azure.azurearcdata#SqlServerAvailabilityGroupsCreateDistributedAvailabilityGroup": {
+    "com.azure.azurearcdata#CreateSqlServerAvailabilityGroupDistributedAvailabilityGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurearcdata#SqlServerAvailabilityGroupsCreateDistributedAvailabilityGroupRequest"
+        "target": "com.azure.azurearcdata#CreateSqlServerAvailabilityGroupDistributedAvailabilityGroupRequest"
       },
       "output": {
-        "target": "com.azure.azurearcdata#SqlServerAvailabilityGroupsCreateDistributedAvailabilityGroupResponse"
+        "target": "com.azure.azurearcdata#CreateSqlServerAvailabilityGroupDistributedAvailabilityGroupResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -13842,7 +13843,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.azurearcdata#SqlServerAvailabilityGroupsCreateDistributedAvailabilityGroupResponse": {
+    "com.azure.azurearcdata#CreateSqlServerAvailabilityGroupDistributedAvailabilityGroupResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -13870,7 +13871,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.azurearcdata#SqlServerAvailabilityGroupsCreateDistributedAvailabilityGroupResponseTagsMap",
+          "target": "com.azure.azurearcdata#CreateSqlServerAvailabilityGroupDistributedAvailabilityGroupResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -13894,7 +13895,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.azurearcdata#SqlServerAvailabilityGroupsCreateDistributedAvailabilityGroupResponseTagsMap": {
+    "com.azure.azurearcdata#CreateSqlServerAvailabilityGroupDistributedAvailabilityGroupResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -13906,7 +13907,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.azurearcdata#SqlServerAvailabilityGroupsCreateDistributedAvailabilityGroupRequest": {
+    "com.azure.azurearcdata#CreateSqlServerAvailabilityGroupDistributedAvailabilityGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -13956,13 +13957,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurearcdata#SqlServerAvailabilityGroupsCreateAvailabilityGroup": {
+    "com.azure.azurearcdata#CreateSqlServerAvailabilityGroupAvailabilityGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurearcdata#SqlServerAvailabilityGroupsCreateAvailabilityGroupRequest"
+        "target": "com.azure.azurearcdata#CreateSqlServerAvailabilityGroupAvailabilityGroupRequest"
       },
       "output": {
-        "target": "com.azure.azurearcdata#SqlServerAvailabilityGroupsCreateAvailabilityGroupResponse"
+        "target": "com.azure.azurearcdata#CreateSqlServerAvailabilityGroupAvailabilityGroupResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -13975,7 +13976,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.azurearcdata#SqlServerAvailabilityGroupsCreateAvailabilityGroupResponse": {
+    "com.azure.azurearcdata#CreateSqlServerAvailabilityGroupAvailabilityGroupResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -14003,7 +14004,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.azurearcdata#SqlServerAvailabilityGroupsCreateAvailabilityGroupResponseTagsMap",
+          "target": "com.azure.azurearcdata#CreateSqlServerAvailabilityGroupAvailabilityGroupResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -14027,7 +14028,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.azurearcdata#SqlServerAvailabilityGroupsCreateAvailabilityGroupResponseTagsMap": {
+    "com.azure.azurearcdata#CreateSqlServerAvailabilityGroupAvailabilityGroupResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -14039,7 +14040,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.azurearcdata#SqlServerAvailabilityGroupsCreateAvailabilityGroupRequest": {
+    "com.azure.azurearcdata#CreateSqlServerAvailabilityGroupAvailabilityGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -14073,25 +14074,25 @@
           }
         },
         "replicas": {
-          "target": "com.azure.azurearcdata#SqlServerAvailabilityGroupsCreateAvailabilityGroupRequestReplicasList",
+          "target": "com.azure.azurearcdata#CreateSqlServerAvailabilityGroupAvailabilityGroupRequestReplicasList",
           "traits": {
             "smithy.api#documentation": "List of availability group replicas."
           }
         },
         "databases": {
-          "target": "com.azure.azurearcdata#SqlServerAvailabilityGroupsCreateAvailabilityGroupRequestDatabasesList",
+          "target": "com.azure.azurearcdata#CreateSqlServerAvailabilityGroupAvailabilityGroupRequestDatabasesList",
           "traits": {
             "smithy.api#documentation": "List of databases to include in the availability group."
           }
         },
         "automatedBackupPreference": {
-          "target": "com.azure.azurearcdata#SqlServerAvailabilityGroupsCreateAvailabilityGroupRequestAutomatedBackupPreference",
+          "target": "com.azure.azurearcdata#CreateSqlServerAvailabilityGroupAvailabilityGroupRequestAutomatedBackupPreference",
           "traits": {
             "smithy.api#documentation": "Preferred replica for running automated backups."
           }
         },
         "failureConditionLevel": {
-          "target": "com.azure.azurearcdata#SqlServerAvailabilityGroupsCreateAvailabilityGroupRequestFailureConditionLevel",
+          "target": "com.azure.azurearcdata#CreateSqlServerAvailabilityGroupAvailabilityGroupRequestFailureConditionLevel",
           "traits": {
             "smithy.api#documentation": "User-defined failure condition level under which an automatic failover must be triggered."
           }
@@ -14103,13 +14104,13 @@
           }
         },
         "dbFailover": {
-          "target": "com.azure.azurearcdata#SqlServerAvailabilityGroupsCreateAvailabilityGroupRequestDbFailover",
+          "target": "com.azure.azurearcdata#CreateSqlServerAvailabilityGroupAvailabilityGroupRequestDbFailover",
           "traits": {
             "smithy.api#documentation": "Specifies whether the availability group supports failover for database health conditions."
           }
         },
         "dtcSupport": {
-          "target": "com.azure.azurearcdata#SqlServerAvailabilityGroupsCreateAvailabilityGroupRequestDtcSupport",
+          "target": "com.azure.azurearcdata#CreateSqlServerAvailabilityGroupAvailabilityGroupRequestDtcSupport",
           "traits": {
             "smithy.api#documentation": "Specifies whether DTC support has been enabled for this availability group."
           }
@@ -14121,7 +14122,7 @@
           }
         },
         "clusterType": {
-          "target": "com.azure.azurearcdata#SqlServerAvailabilityGroupsCreateAvailabilityGroupRequestClusterType",
+          "target": "com.azure.azurearcdata#CreateSqlServerAvailabilityGroupAvailabilityGroupRequestClusterType",
           "traits": {
             "smithy.api#documentation": "Set to WSFC when availability group is on a failover cluster instance on a Windows Server failover cluster. Set to NONE when availability group not using WSFC for cluster coordination."
           }
@@ -14137,7 +14138,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurearcdata#SqlServerAvailabilityGroupsCreateAvailabilityGroupRequestClusterType": {
+    "com.azure.azurearcdata#CreateSqlServerAvailabilityGroupAvailabilityGroupRequestClusterType": {
       "type": "enum",
       "members": {
         "WSFC": {
@@ -14157,7 +14158,7 @@
         "smithy.api#documentation": "Set to WSFC when availability group is on a failover cluster instance on a Windows Server failover cluster. Set to NONE when availability group not using WSFC for cluster coordination."
       }
     },
-    "com.azure.azurearcdata#SqlServerAvailabilityGroupsCreateAvailabilityGroupRequestDtcSupport": {
+    "com.azure.azurearcdata#CreateSqlServerAvailabilityGroupAvailabilityGroupRequestDtcSupport": {
       "type": "enum",
       "members": {
         "PER_DB": {
@@ -14177,7 +14178,7 @@
         "smithy.api#documentation": "Specifies whether DTC support has been enabled for this availability group."
       }
     },
-    "com.azure.azurearcdata#SqlServerAvailabilityGroupsCreateAvailabilityGroupRequestDbFailover": {
+    "com.azure.azurearcdata#CreateSqlServerAvailabilityGroupAvailabilityGroupRequestDbFailover": {
       "type": "enum",
       "members": {
         "ON": {
@@ -14197,7 +14198,7 @@
         "smithy.api#documentation": "Specifies whether the availability group supports failover for database health conditions."
       }
     },
-    "com.azure.azurearcdata#SqlServerAvailabilityGroupsCreateAvailabilityGroupRequestFailureConditionLevel": {
+    "com.azure.azurearcdata#CreateSqlServerAvailabilityGroupAvailabilityGroupRequestFailureConditionLevel": {
       "type": "intEnum",
       "members": {
         "_1": {
@@ -14235,7 +14236,7 @@
         "smithy.api#documentation": "User-defined failure condition level under which an automatic failover must be triggered."
       }
     },
-    "com.azure.azurearcdata#SqlServerAvailabilityGroupsCreateAvailabilityGroupRequestAutomatedBackupPreference": {
+    "com.azure.azurearcdata#CreateSqlServerAvailabilityGroupAvailabilityGroupRequestAutomatedBackupPreference": {
       "type": "enum",
       "members": {
         "PRIMARY": {
@@ -14267,7 +14268,7 @@
         "smithy.api#documentation": "Preferred replica for running automated backups."
       }
     },
-    "com.azure.azurearcdata#SqlServerAvailabilityGroupsCreateAvailabilityGroupRequestDatabasesList": {
+    "com.azure.azurearcdata#CreateSqlServerAvailabilityGroupAvailabilityGroupRequestDatabasesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -14276,7 +14277,7 @@
         "smithy.api#documentation": "List of databases to include in the availability group."
       }
     },
-    "com.azure.azurearcdata#SqlServerAvailabilityGroupsCreateAvailabilityGroupRequestReplicasList": {
+    "com.azure.azurearcdata#CreateSqlServerAvailabilityGroupAvailabilityGroupRequestReplicasList": {
       "type": "list",
       "member": {
         "target": "com.azure.azurearcdata#AvailabilityGroupCreateUpdateReplicaConfiguration"
@@ -14531,10 +14532,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurearcdata#SqlServerInstancesGetAllAvailabilityGroups": {
+    "com.azure.azurearcdata#GetSqlServerInstanceAllAvailabilityGroups": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurearcdata#SqlServerInstancesGetAllAvailabilityGroupsRequest"
+        "target": "com.azure.azurearcdata#GetSqlServerInstanceAllAvailabilityGroupsRequest"
       },
       "output": {
         "target": "com.azure.azurearcdata#ArcSqlServerAvailabilityGroupListResult"
@@ -14550,7 +14551,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.azurearcdata#SqlServerInstancesGetAllAvailabilityGroupsRequest": {
+    "com.azure.azurearcdata#GetSqlServerInstanceAllAvailabilityGroupsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -14767,10 +14768,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurearcdata#SqlServerAvailabilityGroupsDelete": {
+    "com.azure.azurearcdata#DeleteSqlServerAvailabilityGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurearcdata#SqlServerAvailabilityGroupsDeleteRequest"
+        "target": "com.azure.azurearcdata#DeleteSqlServerAvailabilityGroupRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -14786,7 +14787,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.azurearcdata#SqlServerAvailabilityGroupsDeleteRequest": {
+    "com.azure.azurearcdata#DeleteSqlServerAvailabilityGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -14826,13 +14827,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurearcdata#SqlServerAvailabilityGroupsUpdate": {
+    "com.azure.azurearcdata#UpdateSqlServerAvailabilityGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurearcdata#SqlServerAvailabilityGroupsUpdateRequest"
+        "target": "com.azure.azurearcdata#UpdateSqlServerAvailabilityGroupRequest"
       },
       "output": {
-        "target": "com.azure.azurearcdata#SqlServerAvailabilityGroupsUpdateResponse"
+        "target": "com.azure.azurearcdata#UpdateSqlServerAvailabilityGroupResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -14845,7 +14846,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.azurearcdata#SqlServerAvailabilityGroupsUpdateResponse": {
+    "com.azure.azurearcdata#UpdateSqlServerAvailabilityGroupResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -14873,7 +14874,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.azurearcdata#SqlServerAvailabilityGroupsUpdateResponseTagsMap",
+          "target": "com.azure.azurearcdata#UpdateSqlServerAvailabilityGroupResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -14897,7 +14898,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.azurearcdata#SqlServerAvailabilityGroupsUpdateResponseTagsMap": {
+    "com.azure.azurearcdata#UpdateSqlServerAvailabilityGroupResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -14909,7 +14910,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.azurearcdata#SqlServerAvailabilityGroupsUpdateRequest": {
+    "com.azure.azurearcdata#UpdateSqlServerAvailabilityGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -14945,7 +14946,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.azurearcdata#SqlServerAvailabilityGroupsUpdateRequestTagsMap",
+          "target": "com.azure.azurearcdata#UpdateSqlServerAvailabilityGroupRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -15426,7 +15427,7 @@
         "smithy.api#documentation": "The specifications of the availability group state"
       }
     },
-    "com.azure.azurearcdata#SqlServerAvailabilityGroupsUpdateRequestTagsMap": {
+    "com.azure.azurearcdata#UpdateSqlServerAvailabilityGroupRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -15438,13 +15439,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.azurearcdata#SqlServerAvailabilityGroupsCreate": {
+    "com.azure.azurearcdata#CreateSqlServerAvailabilityGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurearcdata#SqlServerAvailabilityGroupsCreateRequest"
+        "target": "com.azure.azurearcdata#CreateSqlServerAvailabilityGroupRequest"
       },
       "output": {
-        "target": "com.azure.azurearcdata#SqlServerAvailabilityGroupsCreateResponse"
+        "target": "com.azure.azurearcdata#CreateSqlServerAvailabilityGroupResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -15457,7 +15458,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.azurearcdata#SqlServerAvailabilityGroupsCreateResponse": {
+    "com.azure.azurearcdata#CreateSqlServerAvailabilityGroupResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -15485,7 +15486,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.azurearcdata#SqlServerAvailabilityGroupsCreateResponseTagsMap",
+          "target": "com.azure.azurearcdata#CreateSqlServerAvailabilityGroupResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -15509,7 +15510,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.azurearcdata#SqlServerAvailabilityGroupsCreateResponseTagsMap": {
+    "com.azure.azurearcdata#CreateSqlServerAvailabilityGroupResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -15521,7 +15522,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.azurearcdata#SqlServerAvailabilityGroupsCreateRequest": {
+    "com.azure.azurearcdata#CreateSqlServerAvailabilityGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -15557,7 +15558,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.azurearcdata#SqlServerAvailabilityGroupsCreateRequestTagsMap",
+          "target": "com.azure.azurearcdata#CreateSqlServerAvailabilityGroupRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -15581,7 +15582,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurearcdata#SqlServerAvailabilityGroupsCreateRequestTagsMap": {
+    "com.azure.azurearcdata#CreateSqlServerAvailabilityGroupRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -15593,13 +15594,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.azurearcdata#SqlServerAvailabilityGroupsGet": {
+    "com.azure.azurearcdata#GetSqlServerAvailabilityGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurearcdata#SqlServerAvailabilityGroupsGetRequest"
+        "target": "com.azure.azurearcdata#GetSqlServerAvailabilityGroupRequest"
       },
       "output": {
-        "target": "com.azure.azurearcdata#SqlServerAvailabilityGroupsGetResponse"
+        "target": "com.azure.azurearcdata#GetSqlServerAvailabilityGroupResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -15612,7 +15613,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.azurearcdata#SqlServerAvailabilityGroupsGetResponse": {
+    "com.azure.azurearcdata#GetSqlServerAvailabilityGroupResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -15640,7 +15641,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.azurearcdata#SqlServerAvailabilityGroupsGetResponseTagsMap",
+          "target": "com.azure.azurearcdata#GetSqlServerAvailabilityGroupResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -15664,7 +15665,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.azurearcdata#SqlServerAvailabilityGroupsGetResponseTagsMap": {
+    "com.azure.azurearcdata#GetSqlServerAvailabilityGroupResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -15676,7 +15677,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.azurearcdata#SqlServerAvailabilityGroupsGetRequest": {
+    "com.azure.azurearcdata#GetSqlServerAvailabilityGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -15716,10 +15717,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurearcdata#SqlServerDatabasesList": {
+    "com.azure.azurearcdata#ListSqlServerDatabases": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurearcdata#SqlServerDatabasesListRequest"
+        "target": "com.azure.azurearcdata#ListSqlServerDatabasesRequest"
       },
       "output": {
         "target": "com.azure.azurearcdata#ArcSqlServerDatabaseListResult"
@@ -16438,7 +16439,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.azurearcdata#SqlServerDatabasesListRequest": {
+    "com.azure.azurearcdata#ListSqlServerDatabasesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -16470,10 +16471,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurearcdata#SqlServerDatabasesDelete": {
+    "com.azure.azurearcdata#DeleteSqlServerDatabase": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurearcdata#SqlServerDatabasesDeleteRequest"
+        "target": "com.azure.azurearcdata#DeleteSqlServerDatabaseRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -16489,7 +16490,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.azurearcdata#SqlServerDatabasesDeleteRequest": {
+    "com.azure.azurearcdata#DeleteSqlServerDatabaseRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -16529,13 +16530,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurearcdata#SqlServerDatabasesUpdate": {
+    "com.azure.azurearcdata#UpdateSqlServerDatabase": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurearcdata#SqlServerDatabasesUpdateRequest"
+        "target": "com.azure.azurearcdata#UpdateSqlServerDatabaseRequest"
       },
       "output": {
-        "target": "com.azure.azurearcdata#SqlServerDatabasesUpdateResponse"
+        "target": "com.azure.azurearcdata#UpdateSqlServerDatabaseResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -16548,7 +16549,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.azurearcdata#SqlServerDatabasesUpdateResponse": {
+    "com.azure.azurearcdata#UpdateSqlServerDatabaseResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -16576,7 +16577,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.azurearcdata#SqlServerDatabasesUpdateResponseTagsMap",
+          "target": "com.azure.azurearcdata#UpdateSqlServerDatabaseResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -16600,7 +16601,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.azurearcdata#SqlServerDatabasesUpdateResponseTagsMap": {
+    "com.azure.azurearcdata#UpdateSqlServerDatabaseResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -16612,7 +16613,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.azurearcdata#SqlServerDatabasesUpdateRequest": {
+    "com.azure.azurearcdata#UpdateSqlServerDatabaseRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -16648,7 +16649,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.azurearcdata#SqlServerDatabasesUpdateRequestTagsMap",
+          "target": "com.azure.azurearcdata#UpdateSqlServerDatabaseRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -16959,7 +16960,7 @@
         "smithy.api#documentation": "State of the database."
       }
     },
-    "com.azure.azurearcdata#SqlServerDatabasesUpdateRequestTagsMap": {
+    "com.azure.azurearcdata#UpdateSqlServerDatabaseRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -16971,13 +16972,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.azurearcdata#SqlServerDatabasesCreate": {
+    "com.azure.azurearcdata#CreateSqlServerDatabase": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurearcdata#SqlServerDatabasesCreateRequest"
+        "target": "com.azure.azurearcdata#CreateSqlServerDatabaseRequest"
       },
       "output": {
-        "target": "com.azure.azurearcdata#SqlServerDatabasesCreateResponse"
+        "target": "com.azure.azurearcdata#CreateSqlServerDatabaseResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -16990,7 +16991,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.azurearcdata#SqlServerDatabasesCreateResponse": {
+    "com.azure.azurearcdata#CreateSqlServerDatabaseResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -17018,7 +17019,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.azurearcdata#SqlServerDatabasesCreateResponseTagsMap",
+          "target": "com.azure.azurearcdata#CreateSqlServerDatabaseResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -17042,7 +17043,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.azurearcdata#SqlServerDatabasesCreateResponseTagsMap": {
+    "com.azure.azurearcdata#CreateSqlServerDatabaseResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -17054,7 +17055,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.azurearcdata#SqlServerDatabasesCreateRequest": {
+    "com.azure.azurearcdata#CreateSqlServerDatabaseRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -17090,7 +17091,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.azurearcdata#SqlServerDatabasesCreateRequestTagsMap",
+          "target": "com.azure.azurearcdata#CreateSqlServerDatabaseRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -17114,7 +17115,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurearcdata#SqlServerDatabasesCreateRequestTagsMap": {
+    "com.azure.azurearcdata#CreateSqlServerDatabaseRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -17126,13 +17127,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.azurearcdata#SqlServerDatabasesGet": {
+    "com.azure.azurearcdata#GetSqlServerDatabase": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurearcdata#SqlServerDatabasesGetRequest"
+        "target": "com.azure.azurearcdata#GetSqlServerDatabaseRequest"
       },
       "output": {
-        "target": "com.azure.azurearcdata#SqlServerDatabasesGetResponse"
+        "target": "com.azure.azurearcdata#GetSqlServerDatabaseResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -17145,7 +17146,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.azurearcdata#SqlServerDatabasesGetResponse": {
+    "com.azure.azurearcdata#GetSqlServerDatabaseResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -17173,7 +17174,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.azurearcdata#SqlServerDatabasesGetResponseTagsMap",
+          "target": "com.azure.azurearcdata#GetSqlServerDatabaseResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -17197,7 +17198,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.azurearcdata#SqlServerDatabasesGetResponseTagsMap": {
+    "com.azure.azurearcdata#GetSqlServerDatabaseResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -17209,7 +17210,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.azurearcdata#SqlServerDatabasesGetRequest": {
+    "com.azure.azurearcdata#GetSqlServerDatabaseRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -17249,10 +17250,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurearcdata#SqlServerEsuLicensesDelete": {
+    "com.azure.azurearcdata#DeleteSqlServerEsuLicense": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurearcdata#SqlServerEsuLicensesDeleteRequest"
+        "target": "com.azure.azurearcdata#DeleteSqlServerEsuLicenseRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -17268,7 +17269,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.azurearcdata#SqlServerEsuLicensesDeleteRequest": {
+    "com.azure.azurearcdata#DeleteSqlServerEsuLicenseRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -17300,13 +17301,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurearcdata#SqlServerEsuLicensesUpdate": {
+    "com.azure.azurearcdata#UpdateSqlServerEsuLicense": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurearcdata#SqlServerEsuLicensesUpdateRequest"
+        "target": "com.azure.azurearcdata#UpdateSqlServerEsuLicenseRequest"
       },
       "output": {
-        "target": "com.azure.azurearcdata#SqlServerEsuLicensesUpdateResponse"
+        "target": "com.azure.azurearcdata#UpdateSqlServerEsuLicenseResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -17319,7 +17320,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.azurearcdata#SqlServerEsuLicensesUpdateResponse": {
+    "com.azure.azurearcdata#UpdateSqlServerEsuLicenseResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -17347,7 +17348,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.azurearcdata#SqlServerEsuLicensesUpdateResponseTagsMap",
+          "target": "com.azure.azurearcdata#UpdateSqlServerEsuLicenseResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -17524,7 +17525,7 @@
         "smithy.api#documentation": "SQL Server ESU license type."
       }
     },
-    "com.azure.azurearcdata#SqlServerEsuLicensesUpdateResponseTagsMap": {
+    "com.azure.azurearcdata#UpdateSqlServerEsuLicenseResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -17536,7 +17537,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.azurearcdata#SqlServerEsuLicensesUpdateRequest": {
+    "com.azure.azurearcdata#UpdateSqlServerEsuLicenseRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -17564,7 +17565,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.azurearcdata#SqlServerEsuLicensesUpdateRequestTagsMap",
+          "target": "com.azure.azurearcdata#UpdateSqlServerEsuLicenseRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -17704,7 +17705,7 @@
         "smithy.api#documentation": "SQL Server ESU license type."
       }
     },
-    "com.azure.azurearcdata#SqlServerEsuLicensesUpdateRequestTagsMap": {
+    "com.azure.azurearcdata#UpdateSqlServerEsuLicenseRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -17716,13 +17717,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.azurearcdata#SqlServerEsuLicensesCreate": {
+    "com.azure.azurearcdata#CreateSqlServerEsuLicense": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurearcdata#SqlServerEsuLicensesCreateRequest"
+        "target": "com.azure.azurearcdata#CreateSqlServerEsuLicenseRequest"
       },
       "output": {
-        "target": "com.azure.azurearcdata#SqlServerEsuLicensesCreateResponse"
+        "target": "com.azure.azurearcdata#CreateSqlServerEsuLicenseResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -17735,7 +17736,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.azurearcdata#SqlServerEsuLicensesCreateResponse": {
+    "com.azure.azurearcdata#CreateSqlServerEsuLicenseResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -17763,7 +17764,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.azurearcdata#SqlServerEsuLicensesCreateResponseTagsMap",
+          "target": "com.azure.azurearcdata#CreateSqlServerEsuLicenseResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -17787,7 +17788,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.azurearcdata#SqlServerEsuLicensesCreateResponseTagsMap": {
+    "com.azure.azurearcdata#CreateSqlServerEsuLicenseResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -17799,7 +17800,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.azurearcdata#SqlServerEsuLicensesCreateRequest": {
+    "com.azure.azurearcdata#CreateSqlServerEsuLicenseRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -17827,7 +17828,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.azurearcdata#SqlServerEsuLicensesCreateRequestTagsMap",
+          "target": "com.azure.azurearcdata#CreateSqlServerEsuLicenseRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -17980,7 +17981,7 @@
         "smithy.api#documentation": "SQL Server ESU license type."
       }
     },
-    "com.azure.azurearcdata#SqlServerEsuLicensesCreateRequestTagsMap": {
+    "com.azure.azurearcdata#CreateSqlServerEsuLicenseRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -17992,13 +17993,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.azurearcdata#SqlServerEsuLicensesGet": {
+    "com.azure.azurearcdata#GetSqlServerEsuLicense": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurearcdata#SqlServerEsuLicensesGetRequest"
+        "target": "com.azure.azurearcdata#GetSqlServerEsuLicenseRequest"
       },
       "output": {
-        "target": "com.azure.azurearcdata#SqlServerEsuLicensesGetResponse"
+        "target": "com.azure.azurearcdata#GetSqlServerEsuLicenseResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -18011,7 +18012,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.azurearcdata#SqlServerEsuLicensesGetResponse": {
+    "com.azure.azurearcdata#GetSqlServerEsuLicenseResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -18039,7 +18040,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.azurearcdata#SqlServerEsuLicensesGetResponseTagsMap",
+          "target": "com.azure.azurearcdata#GetSqlServerEsuLicenseResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -18063,7 +18064,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.azurearcdata#SqlServerEsuLicensesGetResponseTagsMap": {
+    "com.azure.azurearcdata#GetSqlServerEsuLicenseResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -18075,7 +18076,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.azurearcdata#SqlServerEsuLicensesGetRequest": {
+    "com.azure.azurearcdata#GetSqlServerEsuLicenseRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -18107,10 +18108,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurearcdata#SqlServerEsuLicensesListByResourceGroup": {
+    "com.azure.azurearcdata#ListSqlServerEsuLicenseByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurearcdata#SqlServerEsuLicensesListByResourceGroupRequest"
+        "target": "com.azure.azurearcdata#ListSqlServerEsuLicenseByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.azurearcdata#SqlServerEsuLicenseListResult"
@@ -18219,7 +18220,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.azurearcdata#SqlServerEsuLicensesListByResourceGroupRequest": {
+    "com.azure.azurearcdata#ListSqlServerEsuLicenseByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -18243,10 +18244,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurearcdata#SqlServerEsuLicensesList": {
+    "com.azure.azurearcdata#ListSqlServerEsuLicenses": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurearcdata#SqlServerEsuLicensesListRequest"
+        "target": "com.azure.azurearcdata#ListSqlServerEsuLicensesRequest"
       },
       "output": {
         "target": "com.azure.azurearcdata#SqlServerEsuLicenseListResult"
@@ -18262,7 +18263,7 @@
         "com.distilled.openapi#apiVersion": "2026-01-01"
       }
     },
-    "com.azure.azurearcdata#SqlServerEsuLicensesListRequest": {
+    "com.azure.azurearcdata#ListSqlServerEsuLicensesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -18283,169 +18284,169 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.azurearcdata#PostgresInstancesDelete"
+          "target": "com.azure.azurearcdata#DeletePostgresInstance"
         },
         {
-          "target": "com.azure.azurearcdata#PostgresInstancesUpdate"
+          "target": "com.azure.azurearcdata#UpdatePostgresInstance"
         },
         {
-          "target": "com.azure.azurearcdata#PostgresInstancesCreate"
+          "target": "com.azure.azurearcdata#CreatePostgresInstance"
         },
         {
-          "target": "com.azure.azurearcdata#PostgresInstancesGet"
+          "target": "com.azure.azurearcdata#GetPostgresInstance"
         },
         {
-          "target": "com.azure.azurearcdata#PostgresInstancesListByResourceGroup"
+          "target": "com.azure.azurearcdata#ListPostgresInstanceByResourceGroup"
         },
         {
-          "target": "com.azure.azurearcdata#PostgresInstancesList"
+          "target": "com.azure.azurearcdata#ListPostgresInstances"
         },
         {
-          "target": "com.azure.azurearcdata#ActiveDirectoryConnectorsDelete"
+          "target": "com.azure.azurearcdata#DeleteActiveDirectoryConnector"
         },
         {
-          "target": "com.azure.azurearcdata#ActiveDirectoryConnectorsCreate"
+          "target": "com.azure.azurearcdata#CreateActiveDirectoryConnector"
         },
         {
-          "target": "com.azure.azurearcdata#ActiveDirectoryConnectorsGet"
+          "target": "com.azure.azurearcdata#GetActiveDirectoryConnector"
         },
         {
-          "target": "com.azure.azurearcdata#ActiveDirectoryConnectorsList"
+          "target": "com.azure.azurearcdata#ListActiveDirectoryConnectors"
         },
         {
-          "target": "com.azure.azurearcdata#DataControllersDeleteDataController"
+          "target": "com.azure.azurearcdata#DeleteDataControllerDataController"
         },
         {
-          "target": "com.azure.azurearcdata#DataControllersPatchDataController"
+          "target": "com.azure.azurearcdata#PatchDataControllerDataController"
         },
         {
-          "target": "com.azure.azurearcdata#DataControllersPutDataController"
+          "target": "com.azure.azurearcdata#PutDataControllerDataController"
         },
         {
-          "target": "com.azure.azurearcdata#DataControllersGetDataController"
+          "target": "com.azure.azurearcdata#GetDataControllerDataController"
         },
         {
-          "target": "com.azure.azurearcdata#DataControllersListInGroup"
+          "target": "com.azure.azurearcdata#ListDataControllerInGroup"
         },
         {
-          "target": "com.azure.azurearcdata#DataControllersListInSubscription"
+          "target": "com.azure.azurearcdata#ListDataControllerInSubscription"
         },
         {
-          "target": "com.azure.azurearcdata#SqlServerLicensesDelete"
+          "target": "com.azure.azurearcdata#DeleteSqlServerLicense"
         },
         {
-          "target": "com.azure.azurearcdata#SqlServerLicensesUpdate"
+          "target": "com.azure.azurearcdata#UpdateSqlServerLicense"
         },
         {
-          "target": "com.azure.azurearcdata#SqlServerLicensesCreate"
+          "target": "com.azure.azurearcdata#CreateSqlServerLicense"
         },
         {
-          "target": "com.azure.azurearcdata#SqlServerLicensesGet"
+          "target": "com.azure.azurearcdata#GetSqlServerLicense"
         },
         {
-          "target": "com.azure.azurearcdata#SqlServerLicensesListByResourceGroup"
+          "target": "com.azure.azurearcdata#ListSqlServerLicenseByResourceGroup"
         },
         {
-          "target": "com.azure.azurearcdata#SqlServerLicensesList"
+          "target": "com.azure.azurearcdata#ListSqlServerLicenses"
         },
         {
-          "target": "com.azure.azurearcdata#SqlServerInstancesRunManagedInstanceLinkAssessment"
+          "target": "com.azure.azurearcdata#RunSqlServerInstanceManagedInstanceLinkAssessment"
         },
         {
-          "target": "com.azure.azurearcdata#SqlServerInstancesPostUpgrade"
+          "target": "com.azure.azurearcdata#PostSqlServerInstanceUpgrade"
         },
         {
           "target": "com.azure.azurearcdata#SqlServerInstancesPreUpgrade"
         },
         {
-          "target": "com.azure.azurearcdata#SqlServerInstancesGetJobsStatus"
+          "target": "com.azure.azurearcdata#GetSqlServerInstanceJobsStatus"
         },
         {
-          "target": "com.azure.azurearcdata#SqlServerInstancesRunBestPracticesAssessment"
+          "target": "com.azure.azurearcdata#RunSqlServerInstanceBestPracticesAssessment"
         },
         {
-          "target": "com.azure.azurearcdata#SqlServerInstancesRunMigrationAssessment"
+          "target": "com.azure.azurearcdata#RunSqlServerInstanceMigrationAssessment"
         },
         {
-          "target": "com.azure.azurearcdata#SqlServerInstancesGetBestPracticesAssessment"
+          "target": "com.azure.azurearcdata#GetSqlServerInstanceBestPracticesAssessment"
         },
         {
-          "target": "com.azure.azurearcdata#SqlServerInstancesGetTelemetry"
+          "target": "com.azure.azurearcdata#GetSqlServerInstanceTelemetry"
         },
         {
-          "target": "com.azure.azurearcdata#SqlServerInstancesDelete"
+          "target": "com.azure.azurearcdata#DeleteSqlServerInstance"
         },
         {
-          "target": "com.azure.azurearcdata#SqlServerInstancesUpdate"
+          "target": "com.azure.azurearcdata#UpdateSqlServerInstance"
         },
         {
-          "target": "com.azure.azurearcdata#SqlServerInstancesCreate"
+          "target": "com.azure.azurearcdata#CreateSqlServerInstance"
         },
         {
-          "target": "com.azure.azurearcdata#SqlServerInstancesGet"
+          "target": "com.azure.azurearcdata#GetSqlServerInstance"
         },
         {
-          "target": "com.azure.azurearcdata#SqlServerInstancesListByResourceGroup"
+          "target": "com.azure.azurearcdata#ListSqlServerInstanceByResourceGroup"
         },
         {
-          "target": "com.azure.azurearcdata#SqlServerInstancesList"
+          "target": "com.azure.azurearcdata#ListSqlServerInstances"
         },
         {
-          "target": "com.azure.azurearcdata#FailoverGroupsDelete"
+          "target": "com.azure.azurearcdata#DeleteFailoverGroup"
         },
         {
-          "target": "com.azure.azurearcdata#FailoverGroupsCreate"
+          "target": "com.azure.azurearcdata#CreateFailoverGroup"
         },
         {
-          "target": "com.azure.azurearcdata#FailoverGroupsGet"
+          "target": "com.azure.azurearcdata#GetFailoverGroup"
         },
         {
-          "target": "com.azure.azurearcdata#FailoverGroupsList"
+          "target": "com.azure.azurearcdata#ListFailoverGroups"
         },
         {
-          "target": "com.azure.azurearcdata#SqlManagedInstancesDelete"
+          "target": "com.azure.azurearcdata#DeleteSqlManagedInstance"
         },
         {
-          "target": "com.azure.azurearcdata#SqlManagedInstancesUpdate"
+          "target": "com.azure.azurearcdata#UpdateSqlManagedInstance"
         },
         {
-          "target": "com.azure.azurearcdata#SqlManagedInstancesCreate"
+          "target": "com.azure.azurearcdata#CreateSqlManagedInstance"
         },
         {
-          "target": "com.azure.azurearcdata#SqlManagedInstancesGet"
+          "target": "com.azure.azurearcdata#GetSqlManagedInstance"
         },
         {
-          "target": "com.azure.azurearcdata#SqlManagedInstancesListByResourceGroup"
+          "target": "com.azure.azurearcdata#ListSqlManagedInstanceByResourceGroup"
         },
         {
-          "target": "com.azure.azurearcdata#SqlManagedInstancesList"
+          "target": "com.azure.azurearcdata#ListSqlManagedInstances"
         },
         {
-          "target": "com.azure.azurearcdata#OperationsList"
+          "target": "com.azure.azurearcdata#ListOperations"
         },
         {
-          "target": "com.azure.azurearcdata#SqlServerAvailabilityGroupsList"
+          "target": "com.azure.azurearcdata#ListSqlServerAvailabilityGroups"
         },
         {
-          "target": "com.azure.azurearcdata#SqlServerAvailabilityGroupsRemoveDatabases"
+          "target": "com.azure.azurearcdata#RemoveSqlServerAvailabilityGroupDatabases"
         },
         {
-          "target": "com.azure.azurearcdata#SqlServerAvailabilityGroupsDeleteMiLink"
+          "target": "com.azure.azurearcdata#DeleteSqlServerAvailabilityGroupMiLink"
         },
         {
           "target": "com.azure.azurearcdata#SqlServerAvailabilityGroupsFailoverMiLink"
         },
         {
-          "target": "com.azure.azurearcdata#SqlServerAvailabilityGroupsAddDatabases"
+          "target": "com.azure.azurearcdata#AddSqlServerAvailabilityGroupDatabases"
         },
         {
-          "target": "com.azure.azurearcdata#SqlServerAvailabilityGroupsCreateManagedInstanceLink"
+          "target": "com.azure.azurearcdata#CreateSqlServerAvailabilityGroupManagedInstanceLink"
         },
         {
-          "target": "com.azure.azurearcdata#SqlServerAvailabilityGroupsCreateDistributedAvailabilityGroup"
+          "target": "com.azure.azurearcdata#CreateSqlServerAvailabilityGroupDistributedAvailabilityGroup"
         },
         {
-          "target": "com.azure.azurearcdata#SqlServerAvailabilityGroupsCreateAvailabilityGroup"
+          "target": "com.azure.azurearcdata#CreateSqlServerAvailabilityGroupAvailabilityGroup"
         },
         {
           "target": "com.azure.azurearcdata#SqlServerAvailabilityGroupsForceFailoverAllowDataLoss"
@@ -18454,55 +18455,55 @@
           "target": "com.azure.azurearcdata#SqlServerAvailabilityGroupsFailover"
         },
         {
-          "target": "com.azure.azurearcdata#SqlServerInstancesGetAllAvailabilityGroups"
+          "target": "com.azure.azurearcdata#GetSqlServerInstanceAllAvailabilityGroups"
         },
         {
           "target": "com.azure.azurearcdata#SqlServerAvailabilityGroupsDetailView"
         },
         {
-          "target": "com.azure.azurearcdata#SqlServerAvailabilityGroupsDelete"
+          "target": "com.azure.azurearcdata#DeleteSqlServerAvailabilityGroup"
         },
         {
-          "target": "com.azure.azurearcdata#SqlServerAvailabilityGroupsUpdate"
+          "target": "com.azure.azurearcdata#UpdateSqlServerAvailabilityGroup"
         },
         {
-          "target": "com.azure.azurearcdata#SqlServerAvailabilityGroupsCreate"
+          "target": "com.azure.azurearcdata#CreateSqlServerAvailabilityGroup"
         },
         {
-          "target": "com.azure.azurearcdata#SqlServerAvailabilityGroupsGet"
+          "target": "com.azure.azurearcdata#GetSqlServerAvailabilityGroup"
         },
         {
-          "target": "com.azure.azurearcdata#SqlServerDatabasesList"
+          "target": "com.azure.azurearcdata#ListSqlServerDatabases"
         },
         {
-          "target": "com.azure.azurearcdata#SqlServerDatabasesDelete"
+          "target": "com.azure.azurearcdata#DeleteSqlServerDatabase"
         },
         {
-          "target": "com.azure.azurearcdata#SqlServerDatabasesUpdate"
+          "target": "com.azure.azurearcdata#UpdateSqlServerDatabase"
         },
         {
-          "target": "com.azure.azurearcdata#SqlServerDatabasesCreate"
+          "target": "com.azure.azurearcdata#CreateSqlServerDatabase"
         },
         {
-          "target": "com.azure.azurearcdata#SqlServerDatabasesGet"
+          "target": "com.azure.azurearcdata#GetSqlServerDatabase"
         },
         {
-          "target": "com.azure.azurearcdata#SqlServerEsuLicensesDelete"
+          "target": "com.azure.azurearcdata#DeleteSqlServerEsuLicense"
         },
         {
-          "target": "com.azure.azurearcdata#SqlServerEsuLicensesUpdate"
+          "target": "com.azure.azurearcdata#UpdateSqlServerEsuLicense"
         },
         {
-          "target": "com.azure.azurearcdata#SqlServerEsuLicensesCreate"
+          "target": "com.azure.azurearcdata#CreateSqlServerEsuLicense"
         },
         {
-          "target": "com.azure.azurearcdata#SqlServerEsuLicensesGet"
+          "target": "com.azure.azurearcdata#GetSqlServerEsuLicense"
         },
         {
-          "target": "com.azure.azurearcdata#SqlServerEsuLicensesListByResourceGroup"
+          "target": "com.azure.azurearcdata#ListSqlServerEsuLicenseByResourceGroup"
         },
         {
-          "target": "com.azure.azurearcdata#SqlServerEsuLicensesList"
+          "target": "com.azure.azurearcdata#ListSqlServerEsuLicenses"
         }
       ],
       "traits": {

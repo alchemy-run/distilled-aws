@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.sessions#SessionsPropertyDefinitionsRetrieveRequest": {
+    "com.posthog.sessions#GetSessionsPropertyDefinitionRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -33,10 +34,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.sessions#SessionsPropertyDefinitionsRetrieve": {
+    "com.posthog.sessions#GetSessionsPropertyDefinition": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.sessions#SessionsPropertyDefinitionsRetrieveRequest"
+        "target": "com.posthog.sessions#GetSessionsPropertyDefinitionRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -57,7 +58,7 @@
         }
       }
     },
-    "com.posthog.sessions#SessionsValuesRetrieveRequest": {
+    "com.posthog.sessions#GetSessionsValueRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -73,10 +74,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.sessions#SessionsValuesRetrieve": {
+    "com.posthog.sessions#GetSessionsValue": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.sessions#SessionsValuesRetrieveRequest"
+        "target": "com.posthog.sessions#GetSessionsValueRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -128,10 +129,10 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.sessions#SessionsPropertyDefinitionsRetrieve"
+          "target": "com.posthog.sessions#GetSessionsPropertyDefinition"
         },
         {
-          "target": "com.posthog.sessions#SessionsValuesRetrieve"
+          "target": "com.posthog.sessions#GetSessionsValue"
         }
       ],
       "traits": {

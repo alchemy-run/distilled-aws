@@ -13,13 +13,13 @@ import * as Retry from "../retry.ts";
 export type { AzureOpError, AzureOpContext };
 
 /** Resource tags. */
-export type ElasticSansCreateRequestTagsMap = {
+export type CreateElasticSanRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const ElasticSansCreateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const CreateElasticSanRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ElasticSansCreateRequestTagsMap>;
+) as any as S.Schema<CreateElasticSanRequestTagsMap>;
 
 /** The sku name. */
 export type SkuName = "Premium_LRS" | "Premium_ZRS";
@@ -123,7 +123,7 @@ export const ElasticSanPropertiesInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "ElasticSanPropertiesInput",
 }) as any as S.Schema<ElasticSanPropertiesInput>;
 
-export interface ElasticSansCreateRequest {
+export interface CreateElasticSanRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -131,18 +131,18 @@ export interface ElasticSansCreateRequest {
   /** The name of the ElasticSan. */
   elasticSanName: string;
   /** Resource tags. */
-  tags?: ElasticSansCreateRequestTagsMap;
+  tags?: CreateElasticSanRequestTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties of ElasticSan. */
   properties: ElasticSanPropertiesInput;
 }
-export const ElasticSansCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateElasticSanRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     elasticSanName: S.String.pipe(T.Label()),
-    tags: S.optional(ElasticSansCreateRequestTagsMap),
+    tags: S.optional(CreateElasticSanRequestTagsMap),
     location: S.String,
     properties: ElasticSanPropertiesInput,
   }).pipe(
@@ -154,8 +154,8 @@ export const ElasticSansCreateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ElasticSansCreateRequest",
-}) as any as S.Schema<ElasticSansCreateRequest>;
+  identifier: "CreateElasticSanRequest",
+}) as any as S.Schema<CreateElasticSanRequest>;
 
 /** The type of identity that created the resource. */
 export type SystemDataCreatedByType =
@@ -200,13 +200,13 @@ export const SystemData = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "SystemData" }) as any as S.Schema<SystemData>;
 
 /** Resource tags. */
-export type ElasticSansCreateResponseTagsMap = {
+export type CreateElasticSanResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const ElasticSansCreateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const CreateElasticSanResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<ElasticSansCreateResponseTagsMap>;
+) as any as S.Schema<CreateElasticSanResponseTagsMap>;
 
 /** Logical zone for Elastic San resource; example: ["1"]. */
 export type ElasticSanPropertiesAvailabilityZonesList = Array<string>;
@@ -381,7 +381,7 @@ export const ElasticSanProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "ElasticSanProperties",
 }) as any as S.Schema<ElasticSanProperties>;
 
-export interface ElasticSansCreateResponse {
+export interface CreateElasticSanResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -391,409 +391,25 @@ export interface ElasticSansCreateResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: ElasticSansCreateResponseTagsMap;
+  tags?: CreateElasticSanResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Properties of ElasticSan. */
   properties: ElasticSanProperties;
 }
-export const ElasticSansCreateResponse = /*@__PURE__*/ S.suspend(() =>
+export const CreateElasticSanResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(ElasticSansCreateResponseTagsMap),
+    tags: S.optional(CreateElasticSanResponseTagsMap),
     location: S.String,
     properties: ElasticSanProperties,
   }),
 ).annotate({
-  identifier: "ElasticSansCreateResponse",
-}) as any as S.Schema<ElasticSansCreateResponse>;
-
-export interface ElasticSansDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the ElasticSan. */
-  elasticSanName: string;
-}
-export const ElasticSansDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    elasticSanName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ElasticSan/elasticSans/{elasticSanName}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "ElasticSansDeleteRequest",
-}) as any as S.Schema<ElasticSansDeleteRequest>;
-
-export interface ElasticSansDeleteResponse {}
-export const ElasticSansDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ElasticSansDeleteResponse",
-}) as any as S.Schema<ElasticSansDeleteResponse>;
-
-export interface ElasticSansGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the ElasticSan. */
-  elasticSanName: string;
-}
-export const ElasticSansGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    elasticSanName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ElasticSan/elasticSans/{elasticSanName}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "ElasticSansGetRequest",
-}) as any as S.Schema<ElasticSansGetRequest>;
-
-/** Resource tags. */
-export type ElasticSansGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ElasticSansGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ElasticSansGetResponseTagsMap>;
-
-export interface ElasticSansGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: ElasticSansGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Properties of ElasticSan. */
-  properties: ElasticSanProperties;
-}
-export const ElasticSansGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(ElasticSansGetResponseTagsMap),
-    location: S.String,
-    properties: ElasticSanProperties,
-  }),
-).annotate({
-  identifier: "ElasticSansGetResponse",
-}) as any as S.Schema<ElasticSansGetResponse>;
-
-export interface ElasticSansListByResourceGroupRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-}
-export const ElasticSansListByResourceGroupRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ElasticSan/elasticSans",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
-).annotate({
-  identifier: "ElasticSansListByResourceGroupRequest",
-}) as any as S.Schema<ElasticSansListByResourceGroupRequest>;
-
-/** Resource tags. */
-export type ElasticSanTagsMap = { [key: string]: string | undefined };
-export const ElasticSanTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ElasticSanTagsMap>;
-
-/** Response for ElasticSan request. */
-export interface ElasticSan {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: ElasticSanTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Properties of ElasticSan. */
-  properties: ElasticSanProperties;
-}
-export const ElasticSan = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(ElasticSanTagsMap),
-    location: S.String,
-    properties: ElasticSanProperties,
-  }),
-).annotate({ identifier: "ElasticSan" }) as any as S.Schema<ElasticSan>;
-
-/** The ElasticSan items on this page */
-export type ElasticSanListValueList = Array<ElasticSan>;
-export const ElasticSanListValueList = /*@__PURE__*/ S.Array(
-  ElasticSan,
-) as any as S.Schema<ElasticSanListValueList>;
-
-/** List of Elastic Sans */
-export interface ElasticSanList {
-  /** The ElasticSan items on this page */
-  value: ElasticSanListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const ElasticSanList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: ElasticSanListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({ identifier: "ElasticSanList" }) as any as S.Schema<ElasticSanList>;
-
-export interface ElasticSansListBySubscriptionRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-}
-export const ElasticSansListBySubscriptionRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ElasticSan/elasticSans",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
-).annotate({
-  identifier: "ElasticSansListBySubscriptionRequest",
-}) as any as S.Schema<ElasticSansListBySubscriptionRequest>;
-
-/** Elastic San update properties. */
-export interface ElasticSanUpdateProperties {
-  /** Base size of the Elastic San appliance in TiB. */
-  baseSizeTiB?: number;
-  /** Extended size of the Elastic San appliance in TiB. */
-  extendedCapacitySizeTiB?: number;
-  /** Allow or disallow public network access to ElasticSan Account. Value is optional but if passed in, must be 'Enabled' or 'Disabled'. */
-  publicNetworkAccess?: PublicNetworkAccess | (string & {});
-  /** Auto Scale Properties for Elastic San Appliance. */
-  autoScaleProperties?: AutoScaleProperties;
-}
-export const ElasticSanUpdateProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    baseSizeTiB: S.optional(S.Number),
-    extendedCapacitySizeTiB: S.optional(S.Number),
-    publicNetworkAccess: S.optional(PublicNetworkAccess),
-    autoScaleProperties: S.optional(AutoScaleProperties),
-  }),
-).annotate({
-  identifier: "ElasticSanUpdateProperties",
-}) as any as S.Schema<ElasticSanUpdateProperties>;
-
-/** Update tags */
-export type ElasticSansUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ElasticSansUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ElasticSansUpdateRequestTagsMap>;
-
-export interface ElasticSansUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the ElasticSan. */
-  elasticSanName: string;
-  /** Properties of ElasticSan. */
-  properties?: ElasticSanUpdateProperties;
-  /** Update tags */
-  tags?: ElasticSansUpdateRequestTagsMap;
-}
-export const ElasticSansUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    elasticSanName: S.String.pipe(T.Label()),
-    properties: S.optional(ElasticSanUpdateProperties),
-    tags: S.optional(ElasticSansUpdateRequestTagsMap),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ElasticSan/elasticSans/{elasticSanName}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "ElasticSansUpdateRequest",
-}) as any as S.Schema<ElasticSansUpdateRequest>;
-
-/** Resource tags. */
-export type ElasticSansUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ElasticSansUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ElasticSansUpdateResponseTagsMap>;
-
-export interface ElasticSansUpdateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: ElasticSansUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Properties of ElasticSan. */
-  properties: ElasticSanProperties;
-}
-export const ElasticSansUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(ElasticSansUpdateResponseTagsMap),
-    location: S.String,
-    properties: ElasticSanProperties,
-  }),
-).annotate({
-  identifier: "ElasticSansUpdateResponse",
-}) as any as S.Schema<ElasticSansUpdateResponse>;
-
-export interface OperationsListRequest {}
-export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/providers/Microsoft.ElasticSan/operations",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "OperationsListRequest",
-}) as any as S.Schema<OperationsListRequest>;
-
-/** Localized display information for this particular operation. */
-export interface OperationDisplay {
-  /** The localized friendly form of the resource provider name, e.g. "Microsoft Monitoring Insights" or "Microsoft Compute". */
-  provider?: string;
-  /** The localized friendly name of the resource type related to this operation. E.g. "Virtual Machines" or "Job Schedule Collections". */
-  resource?: string;
-  /** The concise, localized friendly name for the operation; suitable for dropdowns. E.g. "Create or Update Virtual Machine", "Restart Virtual Machine". */
-  operation?: string;
-  /** The short, localized friendly description of the operation; suitable for tool tips and detailed views. */
-  description?: string;
-}
-export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provider: S.optional(S.String),
-    resource: S.optional(S.String),
-    operation: S.optional(S.String),
-    description: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OperationDisplay",
-}) as any as S.Schema<OperationDisplay>;
-
-/** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
-export type OperationOrigin = "user" | "system" | "user,system";
-export const OperationOrigin = /*@__PURE__*/ S.String;
-
-/** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
-export type OperationActionType = "Internal";
-export const OperationActionType = /*@__PURE__*/ S.String;
-
-/** Details of a REST API operation, returned from the Resource Provider Operations API */
-export interface Operation {
-  /** The name of the operation, as per Resource-Based Access Control (RBAC). Examples: "Microsoft.Compute/virtualMachines/write", "Microsoft.Compute/virtualMachines/capture/action" */
-  name?: string;
-  /** Whether the operation applies to data-plane. This is "true" for data-plane operations and "false" for ARM/control-plane operations. */
-  isDataAction?: boolean;
-  /** Localized display information for this particular operation. */
-  display?: OperationDisplay;
-  /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
-  origin?: OperationOrigin;
-  /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
-  actionType?: OperationActionType;
-}
-export const Operation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    isDataAction: S.optional(S.Boolean),
-    display: S.optional(OperationDisplay),
-    origin: S.optional(OperationOrigin),
-    actionType: S.optional(OperationActionType),
-  }),
-).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
-
-/** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
-  Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
-
-export interface OperationsListResponse {
-  /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
-  /** URL to get the next set of operation list results (if there are any). */
-  nextLink?: string;
-}
-export const OperationsListResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(OperationsListResponseValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OperationsListResponse",
-}) as any as S.Schema<OperationsListResponse>;
+  identifier: "CreateElasticSanResponse",
+}) as any as S.Schema<CreateElasticSanResponse>;
 
 /** Response for PrivateEndpoint */
 export interface PrivateEndpointInput {}
@@ -833,7 +449,7 @@ export const PrivateEndpointConnectionPropertiesInput = /*@__PURE__*/ S.suspend(
   identifier: "PrivateEndpointConnectionPropertiesInput",
 }) as any as S.Schema<PrivateEndpointConnectionPropertiesInput>;
 
-export interface PrivateEndpointConnectionsCreateRequest {
+export interface CreatePrivateEndpointConnectionRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -845,7 +461,7 @@ export interface PrivateEndpointConnectionsCreateRequest {
   /** Private Endpoint Connection Properties. */
   properties: PrivateEndpointConnectionPropertiesInput;
 }
-export const PrivateEndpointConnectionsCreateRequest = /*@__PURE__*/ S.suspend(
+export const CreatePrivateEndpointConnectionRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -862,10 +478,10 @@ export const PrivateEndpointConnectionsCreateRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "PrivateEndpointConnectionsCreateRequest",
-}) as any as S.Schema<PrivateEndpointConnectionsCreateRequest>;
+  identifier: "CreatePrivateEndpointConnectionRequest",
+}) as any as S.Schema<CreatePrivateEndpointConnectionRequest>;
 
-export interface PrivateEndpointConnectionsCreateResponse {
+export interface CreatePrivateEndpointConnectionResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -877,7 +493,7 @@ export interface PrivateEndpointConnectionsCreateResponse {
   /** Private Endpoint Connection Properties. */
   properties: PrivateEndpointConnectionProperties;
 }
-export const PrivateEndpointConnectionsCreateResponse = /*@__PURE__*/ S.suspend(
+export const CreatePrivateEndpointConnectionResponse = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       id: S.optional(S.String),
@@ -887,382 +503,186 @@ export const PrivateEndpointConnectionsCreateResponse = /*@__PURE__*/ S.suspend(
       properties: PrivateEndpointConnectionProperties,
     }),
 ).annotate({
-  identifier: "PrivateEndpointConnectionsCreateResponse",
-}) as any as S.Schema<PrivateEndpointConnectionsCreateResponse>;
+  identifier: "CreatePrivateEndpointConnectionResponse",
+}) as any as S.Schema<CreatePrivateEndpointConnectionResponse>;
 
-export interface PrivateEndpointConnectionsDeleteRequest {
+/** This enumerates the possible sources of a volume creation. */
+export type VolumeCreateOption =
+  | "None"
+  | "VolumeSnapshot"
+  | "DiskSnapshot"
+  | "Disk"
+  | "DiskRestorePoint";
+export const VolumeCreateOption = /*@__PURE__*/ S.String;
+
+/** Data source used when creating the volume. */
+export interface SourceCreationData {
+  /** This enumerates the possible sources of a volume creation. */
+  createSource?: VolumeCreateOption | (string & {});
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  sourceId?: string;
+}
+export const SourceCreationData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    createSource: S.optional(VolumeCreateOption),
+    sourceId: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "SourceCreationData",
+}) as any as S.Schema<SourceCreationData>;
+
+/** Parent resource information. */
+export interface ManagedByInfo {
+  /** Resource ID of the resource managing the volume, this is a restricted field and can only be set for internal use. */
+  resourceId?: string;
+}
+export const ManagedByInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    resourceId: S.optional(S.String),
+  }),
+).annotate({ identifier: "ManagedByInfo" }) as any as S.Schema<ManagedByInfo>;
+
+/** Volume response properties. */
+export interface VolumePropertiesInput {
+  /** State of the operation on the resource. */
+  creationData?: SourceCreationData;
+  /** Volume size. */
+  sizeGiB: number;
+  /** Parent resource information. */
+  managedBy?: ManagedByInfo;
+}
+export const VolumePropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    creationData: S.optional(SourceCreationData),
+    sizeGiB: S.Number,
+    managedBy: S.optional(ManagedByInfo),
+  }),
+).annotate({
+  identifier: "VolumePropertiesInput",
+}) as any as S.Schema<VolumePropertiesInput>;
+
+export interface CreateVolumeRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of the ElasticSan. */
   elasticSanName: string;
-  /** The name of the Private Endpoint connection. */
-  privateEndpointConnectionName: string;
+  /** The name of the VolumeGroup. */
+  volumeGroupName: string;
+  /** The name of the Volume. */
+  volumeName: string;
+  /** Properties of Volume. */
+  properties: VolumePropertiesInput;
 }
-export const PrivateEndpointConnectionsDeleteRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      elasticSanName: S.String.pipe(T.Label()),
-      privateEndpointConnectionName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ElasticSan/elasticSans/{elasticSanName}/privateEndpointConnections/{privateEndpointConnectionName}",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
-).annotate({
-  identifier: "PrivateEndpointConnectionsDeleteRequest",
-}) as any as S.Schema<PrivateEndpointConnectionsDeleteRequest>;
-
-export interface PrivateEndpointConnectionsDeleteResponse {}
-export const PrivateEndpointConnectionsDeleteResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "PrivateEndpointConnectionsDeleteResponse",
-}) as any as S.Schema<PrivateEndpointConnectionsDeleteResponse>;
-
-export interface PrivateEndpointConnectionsGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the ElasticSan. */
-  elasticSanName: string;
-  /** The name of the Private Endpoint connection. */
-  privateEndpointConnectionName: string;
-}
-export const PrivateEndpointConnectionsGetRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      elasticSanName: S.String.pipe(T.Label()),
-      privateEndpointConnectionName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ElasticSan/elasticSans/{elasticSanName}/privateEndpointConnections/{privateEndpointConnectionName}",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
-).annotate({
-  identifier: "PrivateEndpointConnectionsGetRequest",
-}) as any as S.Schema<PrivateEndpointConnectionsGetRequest>;
-
-export interface PrivateEndpointConnectionsGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Private Endpoint Connection Properties. */
-  properties: PrivateEndpointConnectionProperties;
-}
-export const PrivateEndpointConnectionsGetResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: PrivateEndpointConnectionProperties,
-    }),
-).annotate({
-  identifier: "PrivateEndpointConnectionsGetResponse",
-}) as any as S.Schema<PrivateEndpointConnectionsGetResponse>;
-
-export interface PrivateEndpointConnectionsListRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the ElasticSan. */
-  elasticSanName: string;
-}
-export const PrivateEndpointConnectionsListRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      elasticSanName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ElasticSan/elasticSans/{elasticSanName}/privateEndpointConnections",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
-).annotate({
-  identifier: "PrivateEndpointConnectionsListRequest",
-}) as any as S.Schema<PrivateEndpointConnectionsListRequest>;
-
-/** The PrivateEndpointConnection items on this page */
-export type PrivateEndpointConnectionListResultValueList =
-  Array<PrivateEndpointConnection>;
-export const PrivateEndpointConnectionListResultValueList =
-  /*@__PURE__*/ S.Array(
-    PrivateEndpointConnection,
-  ) as any as S.Schema<PrivateEndpointConnectionListResultValueList>;
-
-/** The response of a PrivateEndpointConnection list operation. */
-export interface PrivateEndpointConnectionListResult {
-  /** The PrivateEndpointConnection items on this page */
-  value: PrivateEndpointConnectionListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const PrivateEndpointConnectionListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: PrivateEndpointConnectionListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PrivateEndpointConnectionListResult",
-}) as any as S.Schema<PrivateEndpointConnectionListResult>;
-
-export interface PrivateLinkResourcesListByElasticSanRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the ElasticSan. */
-  elasticSanName: string;
-}
-export const PrivateLinkResourcesListByElasticSanRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      elasticSanName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ElasticSan/elasticSans/{elasticSanName}/privateLinkResources",
-        code: 200,
-        apiVersion: "2025-09-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "PrivateLinkResourcesListByElasticSanRequest",
-  }) as any as S.Schema<PrivateLinkResourcesListByElasticSanRequest>;
-
-/** The private link resource required member names. */
-export type PrivateLinkResourcePropertiesRequiredMembersList = Array<string>;
-export const PrivateLinkResourcePropertiesRequiredMembersList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PrivateLinkResourcePropertiesRequiredMembersList>;
-
-/** The private link resource Private link DNS zone name. */
-export type PrivateLinkResourcePropertiesRequiredZoneNamesList = Array<string>;
-export const PrivateLinkResourcePropertiesRequiredZoneNamesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PrivateLinkResourcePropertiesRequiredZoneNamesList>;
-
-/** Properties of a private link resource. */
-export interface PrivateLinkResourceProperties {
-  /** The private link resource group id. */
-  groupId?: string;
-  /** The private link resource required member names. */
-  requiredMembers?: PrivateLinkResourcePropertiesRequiredMembersList;
-  /** The private link resource Private link DNS zone name. */
-  requiredZoneNames?: PrivateLinkResourcePropertiesRequiredZoneNamesList;
-}
-export const PrivateLinkResourceProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    groupId: S.optional(S.String),
-    requiredMembers: S.optional(
-      PrivateLinkResourcePropertiesRequiredMembersList,
-    ),
-    requiredZoneNames: S.optional(
-      PrivateLinkResourcePropertiesRequiredZoneNamesList,
-    ),
-  }),
-).annotate({
-  identifier: "PrivateLinkResourceProperties",
-}) as any as S.Schema<PrivateLinkResourceProperties>;
-
-/** A private link resource */
-export interface PrivateLinkResource {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource properties. */
-  properties?: PrivateLinkResourceProperties;
-}
-export const PrivateLinkResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(PrivateLinkResourceProperties),
-  }),
-).annotate({
-  identifier: "PrivateLinkResource",
-}) as any as S.Schema<PrivateLinkResource>;
-
-/** Array of private link resources */
-export type PrivateLinkResourceListResultValueList = Array<PrivateLinkResource>;
-export const PrivateLinkResourceListResultValueList = /*@__PURE__*/ S.Array(
-  PrivateLinkResource,
-) as any as S.Schema<PrivateLinkResourceListResultValueList>;
-
-/** A list of private link resources */
-export interface PrivateLinkResourceListResult {
-  /** Array of private link resources */
-  value: PrivateLinkResourceListResultValueList;
-  /** URI to fetch the next section of the paginated response. */
-  nextLink?: string;
-}
-export const PrivateLinkResourceListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: PrivateLinkResourceListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PrivateLinkResourceListResult",
-}) as any as S.Schema<PrivateLinkResourceListResult>;
-
-export interface SkusListRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** Specify $filter='location eq <location>' to filter on location. */
-  _filter?: string;
-}
-export const SkusListRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateVolumeRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
-    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+    resourceGroupName: S.String.pipe(T.Label()),
+    elasticSanName: S.String.pipe(T.Label()),
+    volumeGroupName: S.String.pipe(T.Label()),
+    volumeName: S.String.pipe(T.Label()),
+    properties: VolumePropertiesInput,
   }).pipe(
     T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ElasticSan/skus",
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ElasticSan/elasticSans/{elasticSanName}/volumegroups/{volumeGroupName}/volumes/{volumeName}",
       code: 200,
       apiVersion: "2025-09-01",
     }),
   ),
 ).annotate({
-  identifier: "SkusListRequest",
-}) as any as S.Schema<SkusListRequest>;
+  identifier: "CreateVolumeRequest",
+}) as any as S.Schema<CreateVolumeRequest>;
 
-/** The set of locations that the SKU is available. This will be supported and registered Azure Geo Regions (e.g. West US, East US, Southeast Asia, etc.). */
-export type SkuInformationLocationsList = Array<string>;
-export const SkuInformationLocationsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<SkuInformationLocationsList>;
+/** Operational status of the resource. */
+export type OperationalStatus =
+  | "Invalid"
+  | "Unknown"
+  | "Healthy"
+  | "Unhealthy"
+  | "Updating"
+  | "Running"
+  | "Stopped"
+  | "Stopped (deallocated)";
+export const OperationalStatus = /*@__PURE__*/ S.String;
 
-/** The zones. */
-export type SkuLocationInfoZonesList = Array<string>;
-export const SkuLocationInfoZonesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<SkuLocationInfoZonesList>;
-
-/** The location info. */
-export interface SkuLocationInfo {
-  /** The location. */
-  location?: string;
-  /** The zones. */
-  zones?: SkuLocationInfoZonesList;
+/** Iscsi target information */
+export interface IscsiTargetInfo {
+  /** iSCSI Target IQN (iSCSI Qualified Name); example: "iqn.2005-03.org.iscsi:server". */
+  targetIqn?: string;
+  /** iSCSI Target Portal Host Name */
+  targetPortalHostname?: string;
+  /** iSCSI Target Portal Port */
+  targetPortalPort?: number;
+  /** State of the operation on the resource. */
+  provisioningState?: ProvisioningStates;
+  /** Operational status of the iSCSI Target. */
+  status?: OperationalStatus;
 }
-export const SkuLocationInfo = /*@__PURE__*/ S.suspend(() =>
+export const IscsiTargetInfo = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    location: S.optional(S.String),
-    zones: S.optional(SkuLocationInfoZonesList),
+    targetIqn: S.optional(S.String),
+    targetPortalHostname: S.optional(S.String),
+    targetPortalPort: S.optional(S.Number),
+    provisioningState: S.optional(ProvisioningStates),
+    status: S.optional(OperationalStatus),
   }),
 ).annotate({
-  identifier: "SkuLocationInfo",
-}) as any as S.Schema<SkuLocationInfo>;
+  identifier: "IscsiTargetInfo",
+}) as any as S.Schema<IscsiTargetInfo>;
 
-/** Availability of the SKU for the location/zone */
-export type SkuInformationLocationInfoList = Array<SkuLocationInfo>;
-export const SkuInformationLocationInfoList = /*@__PURE__*/ S.Array(
-  SkuLocationInfo,
-) as any as S.Schema<SkuInformationLocationInfoList>;
+/** Volume response properties. */
+export interface VolumeProperties {
+  /** Unique Id of the volume in GUID format */
+  volumeId?: string;
+  /** State of the operation on the resource. */
+  creationData?: SourceCreationData;
+  /** Volume size. */
+  sizeGiB: number;
+  /** Storage target information */
+  storageTarget?: IscsiTargetInfo;
+  /** Parent resource information. */
+  managedBy?: ManagedByInfo;
+  /** State of the operation on the resource. */
+  provisioningState?: ProvisioningStates;
+}
+export const VolumeProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    volumeId: S.optional(S.String),
+    creationData: S.optional(SourceCreationData),
+    sizeGiB: S.Number,
+    storageTarget: S.optional(IscsiTargetInfo),
+    managedBy: S.optional(ManagedByInfo),
+    provisioningState: S.optional(ProvisioningStates),
+  }),
+).annotate({
+  identifier: "VolumeProperties",
+}) as any as S.Schema<VolumeProperties>;
 
-/** The capability information in the specified SKU. */
-export interface SKUCapability {
-  /** The name of capability. */
+export interface CreateVolumeResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
   name?: string;
-  /** A string value to indicate states of given capability. */
-  value?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of Volume. */
+  properties: VolumeProperties;
 }
-export const SKUCapability = /*@__PURE__*/ S.suspend(() =>
+export const CreateVolumeResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    id: S.optional(S.String),
     name: S.optional(S.String),
-    value: S.optional(S.String),
-  }),
-).annotate({ identifier: "SKUCapability" }) as any as S.Schema<SKUCapability>;
-
-/** The capability information in the specified SKU. */
-export type SkuInformationCapabilitiesList = Array<SKUCapability>;
-export const SkuInformationCapabilitiesList = /*@__PURE__*/ S.Array(
-  SKUCapability,
-) as any as S.Schema<SkuInformationCapabilitiesList>;
-
-/** ElasticSAN SKU and its properties */
-export interface SkuInformation {
-  /** Sku Name */
-  name: SkuName;
-  /** Sku Tier */
-  tier?: SkuTier;
-  /** The type of the resource. */
-  resourceType?: string;
-  /** The set of locations that the SKU is available. This will be supported and registered Azure Geo Regions (e.g. West US, East US, Southeast Asia, etc.). */
-  locations?: SkuInformationLocationsList;
-  /** Availability of the SKU for the location/zone */
-  locationInfo?: SkuInformationLocationInfoList;
-  /** The capability information in the specified SKU. */
-  capabilities?: SkuInformationCapabilitiesList;
-}
-export const SkuInformation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: SkuName,
-    tier: S.optional(SkuTier),
-    resourceType: S.optional(S.String),
-    locations: S.optional(SkuInformationLocationsList),
-    locationInfo: S.optional(SkuInformationLocationInfoList),
-    capabilities: S.optional(SkuInformationCapabilitiesList),
-  }),
-).annotate({ identifier: "SkuInformation" }) as any as S.Schema<SkuInformation>;
-
-/** The SkuInformation items on this page */
-export type SkuInformationListValueList = Array<SkuInformation>;
-export const SkuInformationListValueList = /*@__PURE__*/ S.Array(
-  SkuInformation,
-) as any as S.Schema<SkuInformationListValueList>;
-
-/** List of SKU Information objects */
-export interface SkuInformationList {
-  /** The SkuInformation items on this page */
-  value: SkuInformationListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const SkuInformationList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: SkuInformationListValueList,
-    nextLink: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: VolumeProperties,
   }),
 ).annotate({
-  identifier: "SkuInformationList",
-}) as any as S.Schema<SkuInformationList>;
+  identifier: "CreateVolumeResponse",
+}) as any as S.Schema<CreateVolumeResponse>;
 
 /** The identity type. */
 export type IdentityType = "None" | "SystemAssigned" | "UserAssigned";
@@ -1415,7 +835,7 @@ export const VolumeGroupPropertiesInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "VolumeGroupPropertiesInput",
 }) as any as S.Schema<VolumeGroupPropertiesInput>;
 
-export interface VolumeGroupsCreateRequest {
+export interface CreateVolumeGroupRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1429,7 +849,7 @@ export interface VolumeGroupsCreateRequest {
   /** Properties of VolumeGroup. */
   properties?: VolumeGroupPropertiesInput;
 }
-export const VolumeGroupsCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateVolumeGroupRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1446,8 +866,8 @@ export const VolumeGroupsCreateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "VolumeGroupsCreateRequest",
-}) as any as S.Schema<VolumeGroupsCreateRequest>;
+  identifier: "CreateVolumeGroupRequest",
+}) as any as S.Schema<CreateVolumeGroupRequest>;
 
 /** UserAssignedIdentity for the resource. */
 export interface UserAssignedIdentity {
@@ -1579,7 +999,7 @@ export const VolumeGroupProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "VolumeGroupProperties",
 }) as any as S.Schema<VolumeGroupProperties>;
 
-export interface VolumeGroupsCreateResponse {
+export interface CreateVolumeGroupResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -1593,7 +1013,7 @@ export interface VolumeGroupsCreateResponse {
   /** Properties of VolumeGroup. */
   properties?: VolumeGroupProperties;
 }
-export const VolumeGroupsCreateResponse = /*@__PURE__*/ S.suspend(() =>
+export const CreateVolumeGroupResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -1603,10 +1023,222 @@ export const VolumeGroupsCreateResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(VolumeGroupProperties),
   }),
 ).annotate({
-  identifier: "VolumeGroupsCreateResponse",
-}) as any as S.Schema<VolumeGroupsCreateResponse>;
+  identifier: "CreateVolumeGroupResponse",
+}) as any as S.Schema<CreateVolumeGroupResponse>;
 
-export interface VolumeGroupsDeleteRequest {
+/** Data used when creating a volume snapshot. */
+export interface SnapshotCreationData {
+  /** Fully qualified resource ID of the volume. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ElasticSan/elasticSans/{elasticSanName}/volumegroups/{volumeGroupName}/volumes/{volumeName}" */
+  sourceId: string;
+}
+export const SnapshotCreationData = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    sourceId: S.String,
+  }),
+).annotate({
+  identifier: "SnapshotCreationData",
+}) as any as S.Schema<SnapshotCreationData>;
+
+/** Properties for Snapshot. */
+export interface SnapshotPropertiesInput {
+  /** Data used when creating a volume snapshot. */
+  creationData: SnapshotCreationData;
+}
+export const SnapshotPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    creationData: SnapshotCreationData,
+  }),
+).annotate({
+  identifier: "SnapshotPropertiesInput",
+}) as any as S.Schema<SnapshotPropertiesInput>;
+
+export interface CreateVolumeSnapshotRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the ElasticSan. */
+  elasticSanName: string;
+  /** The name of the VolumeGroup. */
+  volumeGroupName: string;
+  /** The name of the volume snapshot within the given volume group. */
+  snapshotName: string;
+  /** Properties of Volume Snapshot. */
+  properties: SnapshotPropertiesInput;
+}
+export const CreateVolumeSnapshotRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    elasticSanName: S.String.pipe(T.Label()),
+    volumeGroupName: S.String.pipe(T.Label()),
+    snapshotName: S.String.pipe(T.Label()),
+    properties: SnapshotPropertiesInput,
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ElasticSan/elasticSans/{elasticSanName}/volumegroups/{volumeGroupName}/snapshots/{snapshotName}",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "CreateVolumeSnapshotRequest",
+}) as any as S.Schema<CreateVolumeSnapshotRequest>;
+
+/** Properties for Snapshot. */
+export interface SnapshotProperties {
+  /** Data used when creating a volume snapshot. */
+  creationData: SnapshotCreationData;
+  /** State of the operation on the resource. */
+  provisioningState?: ProvisioningStates;
+  /** Size of Source Volume */
+  sourceVolumeSizeGiB?: number;
+  /** Source Volume Name of a snapshot */
+  volumeName?: string;
+}
+export const SnapshotProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    creationData: SnapshotCreationData,
+    provisioningState: S.optional(ProvisioningStates),
+    sourceVolumeSizeGiB: S.optional(S.Number),
+    volumeName: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "SnapshotProperties",
+}) as any as S.Schema<SnapshotProperties>;
+
+export interface CreateVolumeSnapshotResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of Volume Snapshot. */
+  properties: SnapshotProperties;
+}
+export const CreateVolumeSnapshotResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: SnapshotProperties,
+  }),
+).annotate({
+  identifier: "CreateVolumeSnapshotResponse",
+}) as any as S.Schema<CreateVolumeSnapshotResponse>;
+
+export interface DeleteElasticSanRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the ElasticSan. */
+  elasticSanName: string;
+}
+export const DeleteElasticSanRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    elasticSanName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ElasticSan/elasticSans/{elasticSanName}",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteElasticSanRequest",
+}) as any as S.Schema<DeleteElasticSanRequest>;
+
+export interface DeleteElasticSanResponse {}
+export const DeleteElasticSanResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteElasticSanResponse",
+}) as any as S.Schema<DeleteElasticSanResponse>;
+
+export interface DeletePrivateEndpointConnectionRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the ElasticSan. */
+  elasticSanName: string;
+  /** The name of the Private Endpoint connection. */
+  privateEndpointConnectionName: string;
+}
+export const DeletePrivateEndpointConnectionRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      elasticSanName: S.String.pipe(T.Label()),
+      privateEndpointConnectionName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ElasticSan/elasticSans/{elasticSanName}/privateEndpointConnections/{privateEndpointConnectionName}",
+        code: 200,
+        apiVersion: "2025-09-01",
+      }),
+    ),
+).annotate({
+  identifier: "DeletePrivateEndpointConnectionRequest",
+}) as any as S.Schema<DeletePrivateEndpointConnectionRequest>;
+
+export interface DeletePrivateEndpointConnectionResponse {}
+export const DeletePrivateEndpointConnectionResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "DeletePrivateEndpointConnectionResponse",
+}) as any as S.Schema<DeletePrivateEndpointConnectionResponse>;
+
+export interface DeleteVolumeRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the ElasticSan. */
+  elasticSanName: string;
+  /** The name of the VolumeGroup. */
+  volumeGroupName: string;
+  /** The name of the Volume. */
+  volumeName: string;
+}
+export const DeleteVolumeRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    elasticSanName: S.String.pipe(T.Label()),
+    volumeGroupName: S.String.pipe(T.Label()),
+    volumeName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ElasticSan/elasticSans/{elasticSanName}/volumegroups/{volumeGroupName}/volumes/{volumeName}",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteVolumeRequest",
+}) as any as S.Schema<DeleteVolumeRequest>;
+
+export interface DeleteVolumeResponse {}
+export const DeleteVolumeResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteVolumeResponse",
+}) as any as S.Schema<DeleteVolumeResponse>;
+
+export interface DeleteVolumeGroupRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1616,7 +1248,7 @@ export interface VolumeGroupsDeleteRequest {
   /** The name of the VolumeGroup. */
   volumeGroupName: string;
 }
-export const VolumeGroupsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteVolumeGroupRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1631,17 +1263,227 @@ export const VolumeGroupsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "VolumeGroupsDeleteRequest",
-}) as any as S.Schema<VolumeGroupsDeleteRequest>;
+  identifier: "DeleteVolumeGroupRequest",
+}) as any as S.Schema<DeleteVolumeGroupRequest>;
 
-export interface VolumeGroupsDeleteResponse {}
-export const VolumeGroupsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteVolumeGroupResponse {}
+export const DeleteVolumeGroupResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "VolumeGroupsDeleteResponse",
-}) as any as S.Schema<VolumeGroupsDeleteResponse>;
+  identifier: "DeleteVolumeGroupResponse",
+}) as any as S.Schema<DeleteVolumeGroupResponse>;
 
-export interface VolumeGroupsGetRequest {
+export interface DeleteVolumeSnapshotRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the ElasticSan. */
+  elasticSanName: string;
+  /** The name of the VolumeGroup. */
+  volumeGroupName: string;
+  /** The name of the volume snapshot within the given volume group. */
+  snapshotName: string;
+}
+export const DeleteVolumeSnapshotRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    elasticSanName: S.String.pipe(T.Label()),
+    volumeGroupName: S.String.pipe(T.Label()),
+    snapshotName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ElasticSan/elasticSans/{elasticSanName}/volumegroups/{volumeGroupName}/snapshots/{snapshotName}",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteVolumeSnapshotRequest",
+}) as any as S.Schema<DeleteVolumeSnapshotRequest>;
+
+export interface DeleteVolumeSnapshotResponse {}
+export const DeleteVolumeSnapshotResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteVolumeSnapshotResponse",
+}) as any as S.Schema<DeleteVolumeSnapshotResponse>;
+
+export interface GetElasticSanRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the ElasticSan. */
+  elasticSanName: string;
+}
+export const GetElasticSanRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    elasticSanName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ElasticSan/elasticSans/{elasticSanName}",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetElasticSanRequest",
+}) as any as S.Schema<GetElasticSanRequest>;
+
+/** Resource tags. */
+export type GetElasticSanResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetElasticSanResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetElasticSanResponseTagsMap>;
+
+export interface GetElasticSanResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetElasticSanResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Properties of ElasticSan. */
+  properties: ElasticSanProperties;
+}
+export const GetElasticSanResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetElasticSanResponseTagsMap),
+    location: S.String,
+    properties: ElasticSanProperties,
+  }),
+).annotate({
+  identifier: "GetElasticSanResponse",
+}) as any as S.Schema<GetElasticSanResponse>;
+
+export interface GetPrivateEndpointConnectionRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the ElasticSan. */
+  elasticSanName: string;
+  /** The name of the Private Endpoint connection. */
+  privateEndpointConnectionName: string;
+}
+export const GetPrivateEndpointConnectionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    elasticSanName: S.String.pipe(T.Label()),
+    privateEndpointConnectionName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ElasticSan/elasticSans/{elasticSanName}/privateEndpointConnections/{privateEndpointConnectionName}",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetPrivateEndpointConnectionRequest",
+}) as any as S.Schema<GetPrivateEndpointConnectionRequest>;
+
+export interface GetPrivateEndpointConnectionResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Private Endpoint Connection Properties. */
+  properties: PrivateEndpointConnectionProperties;
+}
+export const GetPrivateEndpointConnectionResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: PrivateEndpointConnectionProperties,
+    }),
+).annotate({
+  identifier: "GetPrivateEndpointConnectionResponse",
+}) as any as S.Schema<GetPrivateEndpointConnectionResponse>;
+
+export interface GetVolumeRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the ElasticSan. */
+  elasticSanName: string;
+  /** The name of the VolumeGroup. */
+  volumeGroupName: string;
+  /** The name of the Volume. */
+  volumeName: string;
+}
+export const GetVolumeRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    elasticSanName: S.String.pipe(T.Label()),
+    volumeGroupName: S.String.pipe(T.Label()),
+    volumeName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ElasticSan/elasticSans/{elasticSanName}/volumegroups/{volumeGroupName}/volumes/{volumeName}",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetVolumeRequest",
+}) as any as S.Schema<GetVolumeRequest>;
+
+export interface GetVolumeResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of Volume. */
+  properties: VolumeProperties;
+}
+export const GetVolumeResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: VolumeProperties,
+  }),
+).annotate({
+  identifier: "GetVolumeResponse",
+}) as any as S.Schema<GetVolumeResponse>;
+
+export interface GetVolumeGroupRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1651,7 +1493,7 @@ export interface VolumeGroupsGetRequest {
   /** The name of the VolumeGroup. */
   volumeGroupName: string;
 }
-export const VolumeGroupsGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetVolumeGroupRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1666,10 +1508,10 @@ export const VolumeGroupsGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "VolumeGroupsGetRequest",
-}) as any as S.Schema<VolumeGroupsGetRequest>;
+  identifier: "GetVolumeGroupRequest",
+}) as any as S.Schema<GetVolumeGroupRequest>;
 
-export interface VolumeGroupsGetResponse {
+export interface GetVolumeGroupResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -1683,7 +1525,7 @@ export interface VolumeGroupsGetResponse {
   /** Properties of VolumeGroup. */
   properties?: VolumeGroupProperties;
 }
-export const VolumeGroupsGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetVolumeGroupResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -1693,10 +1535,251 @@ export const VolumeGroupsGetResponse = /*@__PURE__*/ S.suspend(() =>
     properties: S.optional(VolumeGroupProperties),
   }),
 ).annotate({
-  identifier: "VolumeGroupsGetResponse",
-}) as any as S.Schema<VolumeGroupsGetResponse>;
+  identifier: "GetVolumeGroupResponse",
+}) as any as S.Schema<GetVolumeGroupResponse>;
 
-export interface VolumeGroupsListByElasticSanRequest {
+export interface GetVolumeSnapshotRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the ElasticSan. */
+  elasticSanName: string;
+  /** The name of the VolumeGroup. */
+  volumeGroupName: string;
+  /** The name of the volume snapshot within the given volume group. */
+  snapshotName: string;
+}
+export const GetVolumeSnapshotRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    elasticSanName: S.String.pipe(T.Label()),
+    volumeGroupName: S.String.pipe(T.Label()),
+    snapshotName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ElasticSan/elasticSans/{elasticSanName}/volumegroups/{volumeGroupName}/snapshots/{snapshotName}",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetVolumeSnapshotRequest",
+}) as any as S.Schema<GetVolumeSnapshotRequest>;
+
+export interface GetVolumeSnapshotResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of Volume Snapshot. */
+  properties: SnapshotProperties;
+}
+export const GetVolumeSnapshotResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: SnapshotProperties,
+  }),
+).annotate({
+  identifier: "GetVolumeSnapshotResponse",
+}) as any as S.Schema<GetVolumeSnapshotResponse>;
+
+export interface ListElasticSanByResourceGroupRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+}
+export const ListElasticSanByResourceGroupRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ElasticSan/elasticSans",
+        code: 200,
+        apiVersion: "2025-09-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListElasticSanByResourceGroupRequest",
+}) as any as S.Schema<ListElasticSanByResourceGroupRequest>;
+
+/** Resource tags. */
+export type ElasticSanTagsMap = { [key: string]: string | undefined };
+export const ElasticSanTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<ElasticSanTagsMap>;
+
+/** Response for ElasticSan request. */
+export interface ElasticSan {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: ElasticSanTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Properties of ElasticSan. */
+  properties: ElasticSanProperties;
+}
+export const ElasticSan = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(ElasticSanTagsMap),
+    location: S.String,
+    properties: ElasticSanProperties,
+  }),
+).annotate({ identifier: "ElasticSan" }) as any as S.Schema<ElasticSan>;
+
+/** The ElasticSan items on this page */
+export type ElasticSanListValueList = Array<ElasticSan>;
+export const ElasticSanListValueList = /*@__PURE__*/ S.Array(
+  ElasticSan,
+) as any as S.Schema<ElasticSanListValueList>;
+
+/** List of Elastic Sans */
+export interface ElasticSanList {
+  /** The ElasticSan items on this page */
+  value: ElasticSanListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const ElasticSanList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: ElasticSanListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({ identifier: "ElasticSanList" }) as any as S.Schema<ElasticSanList>;
+
+export interface ListElasticSanBySubscriptionRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+}
+export const ListElasticSanBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ElasticSan/elasticSans",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListElasticSanBySubscriptionRequest",
+}) as any as S.Schema<ListElasticSanBySubscriptionRequest>;
+
+export interface ListOperationsRequest {}
+export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/providers/Microsoft.ElasticSan/operations",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListOperationsRequest",
+}) as any as S.Schema<ListOperationsRequest>;
+
+/** Localized display information for this particular operation. */
+export interface OperationDisplay {
+  /** The localized friendly form of the resource provider name, e.g. "Microsoft Monitoring Insights" or "Microsoft Compute". */
+  provider?: string;
+  /** The localized friendly name of the resource type related to this operation. E.g. "Virtual Machines" or "Job Schedule Collections". */
+  resource?: string;
+  /** The concise, localized friendly name for the operation; suitable for dropdowns. E.g. "Create or Update Virtual Machine", "Restart Virtual Machine". */
+  operation?: string;
+  /** The short, localized friendly description of the operation; suitable for tool tips and detailed views. */
+  description?: string;
+}
+export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provider: S.optional(S.String),
+    resource: S.optional(S.String),
+    operation: S.optional(S.String),
+    description: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "OperationDisplay",
+}) as any as S.Schema<OperationDisplay>;
+
+/** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
+export type OperationOrigin = "user" | "system" | "user,system";
+export const OperationOrigin = /*@__PURE__*/ S.String;
+
+/** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
+export type OperationActionType = "Internal";
+export const OperationActionType = /*@__PURE__*/ S.String;
+
+/** Details of a REST API operation, returned from the Resource Provider Operations API */
+export interface Operation {
+  /** The name of the operation, as per Resource-Based Access Control (RBAC). Examples: "Microsoft.Compute/virtualMachines/write", "Microsoft.Compute/virtualMachines/capture/action" */
+  name?: string;
+  /** Whether the operation applies to data-plane. This is "true" for data-plane operations and "false" for ARM/control-plane operations. */
+  isDataAction?: boolean;
+  /** Localized display information for this particular operation. */
+  display?: OperationDisplay;
+  /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
+  origin?: OperationOrigin;
+  /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
+  actionType?: OperationActionType;
+}
+export const Operation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    isDataAction: S.optional(S.Boolean),
+    display: S.optional(OperationDisplay),
+    origin: S.optional(OperationOrigin),
+    actionType: S.optional(OperationActionType),
+  }),
+).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
+
+/** List of operations supported by the resource provider */
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
+  Operation,
+) as any as S.Schema<ListOperationsResponseValueList>;
+
+export interface ListOperationsResponse {
+  /** List of operations supported by the resource provider */
+  value?: ListOperationsResponseValueList;
+  /** URL to get the next set of operation list results (if there are any). */
+  nextLink?: string;
+}
+export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(ListOperationsResponseValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ListOperationsResponse",
+}) as any as S.Schema<ListOperationsResponse>;
+
+export interface ListPrivateEndpointConnectionsRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1704,7 +1787,362 @@ export interface VolumeGroupsListByElasticSanRequest {
   /** The name of the ElasticSan. */
   elasticSanName: string;
 }
-export const VolumeGroupsListByElasticSanRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListPrivateEndpointConnectionsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      elasticSanName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ElasticSan/elasticSans/{elasticSanName}/privateEndpointConnections",
+        code: 200,
+        apiVersion: "2025-09-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListPrivateEndpointConnectionsRequest",
+}) as any as S.Schema<ListPrivateEndpointConnectionsRequest>;
+
+/** The PrivateEndpointConnection items on this page */
+export type PrivateEndpointConnectionListResultValueList =
+  Array<PrivateEndpointConnection>;
+export const PrivateEndpointConnectionListResultValueList =
+  /*@__PURE__*/ S.Array(
+    PrivateEndpointConnection,
+  ) as any as S.Schema<PrivateEndpointConnectionListResultValueList>;
+
+/** The response of a PrivateEndpointConnection list operation. */
+export interface PrivateEndpointConnectionListResult {
+  /** The PrivateEndpointConnection items on this page */
+  value: PrivateEndpointConnectionListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const PrivateEndpointConnectionListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: PrivateEndpointConnectionListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PrivateEndpointConnectionListResult",
+}) as any as S.Schema<PrivateEndpointConnectionListResult>;
+
+export interface ListPrivateLinkResourceByElasticSanRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the ElasticSan. */
+  elasticSanName: string;
+}
+export const ListPrivateLinkResourceByElasticSanRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      elasticSanName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ElasticSan/elasticSans/{elasticSanName}/privateLinkResources",
+        code: 200,
+        apiVersion: "2025-09-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListPrivateLinkResourceByElasticSanRequest",
+  }) as any as S.Schema<ListPrivateLinkResourceByElasticSanRequest>;
+
+/** The private link resource required member names. */
+export type PrivateLinkResourcePropertiesRequiredMembersList = Array<string>;
+export const PrivateLinkResourcePropertiesRequiredMembersList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<PrivateLinkResourcePropertiesRequiredMembersList>;
+
+/** The private link resource Private link DNS zone name. */
+export type PrivateLinkResourcePropertiesRequiredZoneNamesList = Array<string>;
+export const PrivateLinkResourcePropertiesRequiredZoneNamesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<PrivateLinkResourcePropertiesRequiredZoneNamesList>;
+
+/** Properties of a private link resource. */
+export interface PrivateLinkResourceProperties {
+  /** The private link resource group id. */
+  groupId?: string;
+  /** The private link resource required member names. */
+  requiredMembers?: PrivateLinkResourcePropertiesRequiredMembersList;
+  /** The private link resource Private link DNS zone name. */
+  requiredZoneNames?: PrivateLinkResourcePropertiesRequiredZoneNamesList;
+}
+export const PrivateLinkResourceProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    groupId: S.optional(S.String),
+    requiredMembers: S.optional(
+      PrivateLinkResourcePropertiesRequiredMembersList,
+    ),
+    requiredZoneNames: S.optional(
+      PrivateLinkResourcePropertiesRequiredZoneNamesList,
+    ),
+  }),
+).annotate({
+  identifier: "PrivateLinkResourceProperties",
+}) as any as S.Schema<PrivateLinkResourceProperties>;
+
+/** A private link resource */
+export interface PrivateLinkResource {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource properties. */
+  properties?: PrivateLinkResourceProperties;
+}
+export const PrivateLinkResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(PrivateLinkResourceProperties),
+  }),
+).annotate({
+  identifier: "PrivateLinkResource",
+}) as any as S.Schema<PrivateLinkResource>;
+
+/** Array of private link resources */
+export type PrivateLinkResourceListResultValueList = Array<PrivateLinkResource>;
+export const PrivateLinkResourceListResultValueList = /*@__PURE__*/ S.Array(
+  PrivateLinkResource,
+) as any as S.Schema<PrivateLinkResourceListResultValueList>;
+
+/** A list of private link resources */
+export interface PrivateLinkResourceListResult {
+  /** Array of private link resources */
+  value: PrivateLinkResourceListResultValueList;
+  /** URI to fetch the next section of the paginated response. */
+  nextLink?: string;
+}
+export const PrivateLinkResourceListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: PrivateLinkResourceListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PrivateLinkResourceListResult",
+}) as any as S.Schema<PrivateLinkResourceListResult>;
+
+export interface ListSkusRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** Specify $filter='location eq <location>' to filter on location. */
+  _filter?: string;
+}
+export const ListSkusRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.ElasticSan/skus",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListSkusRequest",
+}) as any as S.Schema<ListSkusRequest>;
+
+/** The set of locations that the SKU is available. This will be supported and registered Azure Geo Regions (e.g. West US, East US, Southeast Asia, etc.). */
+export type SkuInformationLocationsList = Array<string>;
+export const SkuInformationLocationsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<SkuInformationLocationsList>;
+
+/** The zones. */
+export type SkuLocationInfoZonesList = Array<string>;
+export const SkuLocationInfoZonesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<SkuLocationInfoZonesList>;
+
+/** The location info. */
+export interface SkuLocationInfo {
+  /** The location. */
+  location?: string;
+  /** The zones. */
+  zones?: SkuLocationInfoZonesList;
+}
+export const SkuLocationInfo = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    location: S.optional(S.String),
+    zones: S.optional(SkuLocationInfoZonesList),
+  }),
+).annotate({
+  identifier: "SkuLocationInfo",
+}) as any as S.Schema<SkuLocationInfo>;
+
+/** Availability of the SKU for the location/zone */
+export type SkuInformationLocationInfoList = Array<SkuLocationInfo>;
+export const SkuInformationLocationInfoList = /*@__PURE__*/ S.Array(
+  SkuLocationInfo,
+) as any as S.Schema<SkuInformationLocationInfoList>;
+
+/** The capability information in the specified SKU. */
+export interface SKUCapability {
+  /** The name of capability. */
+  name?: string;
+  /** A string value to indicate states of given capability. */
+  value?: string;
+}
+export const SKUCapability = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    value: S.optional(S.String),
+  }),
+).annotate({ identifier: "SKUCapability" }) as any as S.Schema<SKUCapability>;
+
+/** The capability information in the specified SKU. */
+export type SkuInformationCapabilitiesList = Array<SKUCapability>;
+export const SkuInformationCapabilitiesList = /*@__PURE__*/ S.Array(
+  SKUCapability,
+) as any as S.Schema<SkuInformationCapabilitiesList>;
+
+/** ElasticSAN SKU and its properties */
+export interface SkuInformation {
+  /** Sku Name */
+  name: SkuName;
+  /** Sku Tier */
+  tier?: SkuTier;
+  /** The type of the resource. */
+  resourceType?: string;
+  /** The set of locations that the SKU is available. This will be supported and registered Azure Geo Regions (e.g. West US, East US, Southeast Asia, etc.). */
+  locations?: SkuInformationLocationsList;
+  /** Availability of the SKU for the location/zone */
+  locationInfo?: SkuInformationLocationInfoList;
+  /** The capability information in the specified SKU. */
+  capabilities?: SkuInformationCapabilitiesList;
+}
+export const SkuInformation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: SkuName,
+    tier: S.optional(SkuTier),
+    resourceType: S.optional(S.String),
+    locations: S.optional(SkuInformationLocationsList),
+    locationInfo: S.optional(SkuInformationLocationInfoList),
+    capabilities: S.optional(SkuInformationCapabilitiesList),
+  }),
+).annotate({ identifier: "SkuInformation" }) as any as S.Schema<SkuInformation>;
+
+/** The SkuInformation items on this page */
+export type SkuInformationListValueList = Array<SkuInformation>;
+export const SkuInformationListValueList = /*@__PURE__*/ S.Array(
+  SkuInformation,
+) as any as S.Schema<SkuInformationListValueList>;
+
+/** List of SKU Information objects */
+export interface SkuInformationList {
+  /** The SkuInformation items on this page */
+  value: SkuInformationListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const SkuInformationList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: SkuInformationListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "SkuInformationList",
+}) as any as S.Schema<SkuInformationList>;
+
+export interface ListVolumeByVolumeGroupRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the ElasticSan. */
+  elasticSanName: string;
+  /** The name of the VolumeGroup. */
+  volumeGroupName: string;
+}
+export const ListVolumeByVolumeGroupRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    elasticSanName: S.String.pipe(T.Label()),
+    volumeGroupName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ElasticSan/elasticSans/{elasticSanName}/volumegroups/{volumeGroupName}/volumes",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListVolumeByVolumeGroupRequest",
+}) as any as S.Schema<ListVolumeByVolumeGroupRequest>;
+
+/** Response for Volume request. */
+export interface Volume {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of Volume. */
+  properties: VolumeProperties;
+}
+export const Volume = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: VolumeProperties,
+  }),
+).annotate({ identifier: "Volume" }) as any as S.Schema<Volume>;
+
+/** The Volume items on this page */
+export type VolumeListValueList = Array<Volume>;
+export const VolumeListValueList = /*@__PURE__*/ S.Array(
+  Volume,
+) as any as S.Schema<VolumeListValueList>;
+
+/** List of Volumes */
+export interface VolumeList {
+  /** The Volume items on this page */
+  value: VolumeListValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const VolumeList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: VolumeListValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({ identifier: "VolumeList" }) as any as S.Schema<VolumeList>;
+
+export interface ListVolumeGroupByElasticSanRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the ElasticSan. */
+  elasticSanName: string;
+}
+export const ListVolumeGroupByElasticSanRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1718,8 +2156,8 @@ export const VolumeGroupsListByElasticSanRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "VolumeGroupsListByElasticSanRequest",
-}) as any as S.Schema<VolumeGroupsListByElasticSanRequest>;
+  identifier: "ListVolumeGroupByElasticSanRequest",
+}) as any as S.Schema<ListVolumeGroupByElasticSanRequest>;
 
 /** Response for Volume Group request. */
 export interface VolumeGroup {
@@ -1769,613 +2207,7 @@ export const VolumeGroupList = /*@__PURE__*/ S.suspend(() =>
   identifier: "VolumeGroupList",
 }) as any as S.Schema<VolumeGroupList>;
 
-/** VolumeGroup response properties. */
-export type VolumeGroupUpdatePropertiesInput = VolumeGroupPropertiesInput;
-export const VolumeGroupUpdatePropertiesInput = VolumeGroupPropertiesInput;
-
-export interface VolumeGroupsUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the ElasticSan. */
-  elasticSanName: string;
-  /** The name of the VolumeGroup. */
-  volumeGroupName: string;
-  /** The identity of the resource. */
-  identity?: IdentityInput;
-  /** Properties of VolumeGroup. */
-  properties?: VolumeGroupPropertiesInput;
-}
-export const VolumeGroupsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    elasticSanName: S.String.pipe(T.Label()),
-    volumeGroupName: S.String.pipe(T.Label()),
-    identity: S.optional(IdentityInput),
-    properties: S.optional(VolumeGroupPropertiesInput),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ElasticSan/elasticSans/{elasticSanName}/volumegroups/{volumeGroupName}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "VolumeGroupsUpdateRequest",
-}) as any as S.Schema<VolumeGroupsUpdateRequest>;
-
-export interface VolumeGroupsUpdateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The identity of the resource. */
-  identity?: Identity;
-  /** Properties of VolumeGroup. */
-  properties?: VolumeGroupProperties;
-}
-export const VolumeGroupsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    identity: S.optional(Identity),
-    properties: S.optional(VolumeGroupProperties),
-  }),
-).annotate({
-  identifier: "VolumeGroupsUpdateResponse",
-}) as any as S.Schema<VolumeGroupsUpdateResponse>;
-
-/** This enumerates the possible sources of a volume creation. */
-export type VolumeCreateOption =
-  | "None"
-  | "VolumeSnapshot"
-  | "DiskSnapshot"
-  | "Disk"
-  | "DiskRestorePoint";
-export const VolumeCreateOption = /*@__PURE__*/ S.String;
-
-/** Data source used when creating the volume. */
-export interface SourceCreationData {
-  /** This enumerates the possible sources of a volume creation. */
-  createSource?: VolumeCreateOption | (string & {});
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  sourceId?: string;
-}
-export const SourceCreationData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    createSource: S.optional(VolumeCreateOption),
-    sourceId: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SourceCreationData",
-}) as any as S.Schema<SourceCreationData>;
-
-/** Parent resource information. */
-export interface ManagedByInfo {
-  /** Resource ID of the resource managing the volume, this is a restricted field and can only be set for internal use. */
-  resourceId?: string;
-}
-export const ManagedByInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    resourceId: S.optional(S.String),
-  }),
-).annotate({ identifier: "ManagedByInfo" }) as any as S.Schema<ManagedByInfo>;
-
-/** Volume response properties. */
-export interface VolumePropertiesInput {
-  /** State of the operation on the resource. */
-  creationData?: SourceCreationData;
-  /** Volume size. */
-  sizeGiB: number;
-  /** Parent resource information. */
-  managedBy?: ManagedByInfo;
-}
-export const VolumePropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    creationData: S.optional(SourceCreationData),
-    sizeGiB: S.Number,
-    managedBy: S.optional(ManagedByInfo),
-  }),
-).annotate({
-  identifier: "VolumePropertiesInput",
-}) as any as S.Schema<VolumePropertiesInput>;
-
-export interface VolumesCreateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the ElasticSan. */
-  elasticSanName: string;
-  /** The name of the VolumeGroup. */
-  volumeGroupName: string;
-  /** The name of the Volume. */
-  volumeName: string;
-  /** Properties of Volume. */
-  properties: VolumePropertiesInput;
-}
-export const VolumesCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    elasticSanName: S.String.pipe(T.Label()),
-    volumeGroupName: S.String.pipe(T.Label()),
-    volumeName: S.String.pipe(T.Label()),
-    properties: VolumePropertiesInput,
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ElasticSan/elasticSans/{elasticSanName}/volumegroups/{volumeGroupName}/volumes/{volumeName}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "VolumesCreateRequest",
-}) as any as S.Schema<VolumesCreateRequest>;
-
-/** Operational status of the resource. */
-export type OperationalStatus =
-  | "Invalid"
-  | "Unknown"
-  | "Healthy"
-  | "Unhealthy"
-  | "Updating"
-  | "Running"
-  | "Stopped"
-  | "Stopped (deallocated)";
-export const OperationalStatus = /*@__PURE__*/ S.String;
-
-/** Iscsi target information */
-export interface IscsiTargetInfo {
-  /** iSCSI Target IQN (iSCSI Qualified Name); example: "iqn.2005-03.org.iscsi:server". */
-  targetIqn?: string;
-  /** iSCSI Target Portal Host Name */
-  targetPortalHostname?: string;
-  /** iSCSI Target Portal Port */
-  targetPortalPort?: number;
-  /** State of the operation on the resource. */
-  provisioningState?: ProvisioningStates;
-  /** Operational status of the iSCSI Target. */
-  status?: OperationalStatus;
-}
-export const IscsiTargetInfo = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    targetIqn: S.optional(S.String),
-    targetPortalHostname: S.optional(S.String),
-    targetPortalPort: S.optional(S.Number),
-    provisioningState: S.optional(ProvisioningStates),
-    status: S.optional(OperationalStatus),
-  }),
-).annotate({
-  identifier: "IscsiTargetInfo",
-}) as any as S.Schema<IscsiTargetInfo>;
-
-/** Volume response properties. */
-export interface VolumeProperties {
-  /** Unique Id of the volume in GUID format */
-  volumeId?: string;
-  /** State of the operation on the resource. */
-  creationData?: SourceCreationData;
-  /** Volume size. */
-  sizeGiB: number;
-  /** Storage target information */
-  storageTarget?: IscsiTargetInfo;
-  /** Parent resource information. */
-  managedBy?: ManagedByInfo;
-  /** State of the operation on the resource. */
-  provisioningState?: ProvisioningStates;
-}
-export const VolumeProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    volumeId: S.optional(S.String),
-    creationData: S.optional(SourceCreationData),
-    sizeGiB: S.Number,
-    storageTarget: S.optional(IscsiTargetInfo),
-    managedBy: S.optional(ManagedByInfo),
-    provisioningState: S.optional(ProvisioningStates),
-  }),
-).annotate({
-  identifier: "VolumeProperties",
-}) as any as S.Schema<VolumeProperties>;
-
-export interface VolumesCreateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of Volume. */
-  properties: VolumeProperties;
-}
-export const VolumesCreateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: VolumeProperties,
-  }),
-).annotate({
-  identifier: "VolumesCreateResponse",
-}) as any as S.Schema<VolumesCreateResponse>;
-
-export interface VolumesDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the ElasticSan. */
-  elasticSanName: string;
-  /** The name of the VolumeGroup. */
-  volumeGroupName: string;
-  /** The name of the Volume. */
-  volumeName: string;
-}
-export const VolumesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    elasticSanName: S.String.pipe(T.Label()),
-    volumeGroupName: S.String.pipe(T.Label()),
-    volumeName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ElasticSan/elasticSans/{elasticSanName}/volumegroups/{volumeGroupName}/volumes/{volumeName}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "VolumesDeleteRequest",
-}) as any as S.Schema<VolumesDeleteRequest>;
-
-export interface VolumesDeleteResponse {}
-export const VolumesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "VolumesDeleteResponse",
-}) as any as S.Schema<VolumesDeleteResponse>;
-
-export interface VolumesGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the ElasticSan. */
-  elasticSanName: string;
-  /** The name of the VolumeGroup. */
-  volumeGroupName: string;
-  /** The name of the Volume. */
-  volumeName: string;
-}
-export const VolumesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    elasticSanName: S.String.pipe(T.Label()),
-    volumeGroupName: S.String.pipe(T.Label()),
-    volumeName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ElasticSan/elasticSans/{elasticSanName}/volumegroups/{volumeGroupName}/volumes/{volumeName}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "VolumesGetRequest",
-}) as any as S.Schema<VolumesGetRequest>;
-
-export interface VolumesGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of Volume. */
-  properties: VolumeProperties;
-}
-export const VolumesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: VolumeProperties,
-  }),
-).annotate({
-  identifier: "VolumesGetResponse",
-}) as any as S.Schema<VolumesGetResponse>;
-
-export interface VolumesListByVolumeGroupRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the ElasticSan. */
-  elasticSanName: string;
-  /** The name of the VolumeGroup. */
-  volumeGroupName: string;
-}
-export const VolumesListByVolumeGroupRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    elasticSanName: S.String.pipe(T.Label()),
-    volumeGroupName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ElasticSan/elasticSans/{elasticSanName}/volumegroups/{volumeGroupName}/volumes",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "VolumesListByVolumeGroupRequest",
-}) as any as S.Schema<VolumesListByVolumeGroupRequest>;
-
-/** Response for Volume request. */
-export interface Volume {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of Volume. */
-  properties: VolumeProperties;
-}
-export const Volume = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: VolumeProperties,
-  }),
-).annotate({ identifier: "Volume" }) as any as S.Schema<Volume>;
-
-/** The Volume items on this page */
-export type VolumeListValueList = Array<Volume>;
-export const VolumeListValueList = /*@__PURE__*/ S.Array(
-  Volume,
-) as any as S.Schema<VolumeListValueList>;
-
-/** List of Volumes */
-export interface VolumeList {
-  /** The Volume items on this page */
-  value: VolumeListValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const VolumeList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: VolumeListValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({ identifier: "VolumeList" }) as any as S.Schema<VolumeList>;
-
-/** Data used when creating a volume snapshot. */
-export interface SnapshotCreationData {
-  /** Fully qualified resource ID of the volume. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ElasticSan/elasticSans/{elasticSanName}/volumegroups/{volumeGroupName}/volumes/{volumeName}" */
-  sourceId: string;
-}
-export const SnapshotCreationData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    sourceId: S.String,
-  }),
-).annotate({
-  identifier: "SnapshotCreationData",
-}) as any as S.Schema<SnapshotCreationData>;
-
-/** Properties for Snapshot. */
-export interface SnapshotPropertiesInput {
-  /** Data used when creating a volume snapshot. */
-  creationData: SnapshotCreationData;
-}
-export const SnapshotPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    creationData: SnapshotCreationData,
-  }),
-).annotate({
-  identifier: "SnapshotPropertiesInput",
-}) as any as S.Schema<SnapshotPropertiesInput>;
-
-export interface VolumeSnapshotsCreateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the ElasticSan. */
-  elasticSanName: string;
-  /** The name of the VolumeGroup. */
-  volumeGroupName: string;
-  /** The name of the volume snapshot within the given volume group. */
-  snapshotName: string;
-  /** Properties of Volume Snapshot. */
-  properties: SnapshotPropertiesInput;
-}
-export const VolumeSnapshotsCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    elasticSanName: S.String.pipe(T.Label()),
-    volumeGroupName: S.String.pipe(T.Label()),
-    snapshotName: S.String.pipe(T.Label()),
-    properties: SnapshotPropertiesInput,
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ElasticSan/elasticSans/{elasticSanName}/volumegroups/{volumeGroupName}/snapshots/{snapshotName}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "VolumeSnapshotsCreateRequest",
-}) as any as S.Schema<VolumeSnapshotsCreateRequest>;
-
-/** Properties for Snapshot. */
-export interface SnapshotProperties {
-  /** Data used when creating a volume snapshot. */
-  creationData: SnapshotCreationData;
-  /** State of the operation on the resource. */
-  provisioningState?: ProvisioningStates;
-  /** Size of Source Volume */
-  sourceVolumeSizeGiB?: number;
-  /** Source Volume Name of a snapshot */
-  volumeName?: string;
-}
-export const SnapshotProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    creationData: SnapshotCreationData,
-    provisioningState: S.optional(ProvisioningStates),
-    sourceVolumeSizeGiB: S.optional(S.Number),
-    volumeName: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "SnapshotProperties",
-}) as any as S.Schema<SnapshotProperties>;
-
-export interface VolumeSnapshotsCreateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of Volume Snapshot. */
-  properties: SnapshotProperties;
-}
-export const VolumeSnapshotsCreateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: SnapshotProperties,
-  }),
-).annotate({
-  identifier: "VolumeSnapshotsCreateResponse",
-}) as any as S.Schema<VolumeSnapshotsCreateResponse>;
-
-export interface VolumeSnapshotsDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the ElasticSan. */
-  elasticSanName: string;
-  /** The name of the VolumeGroup. */
-  volumeGroupName: string;
-  /** The name of the volume snapshot within the given volume group. */
-  snapshotName: string;
-}
-export const VolumeSnapshotsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    elasticSanName: S.String.pipe(T.Label()),
-    volumeGroupName: S.String.pipe(T.Label()),
-    snapshotName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ElasticSan/elasticSans/{elasticSanName}/volumegroups/{volumeGroupName}/snapshots/{snapshotName}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "VolumeSnapshotsDeleteRequest",
-}) as any as S.Schema<VolumeSnapshotsDeleteRequest>;
-
-export interface VolumeSnapshotsDeleteResponse {}
-export const VolumeSnapshotsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "VolumeSnapshotsDeleteResponse",
-}) as any as S.Schema<VolumeSnapshotsDeleteResponse>;
-
-export interface VolumeSnapshotsGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the ElasticSan. */
-  elasticSanName: string;
-  /** The name of the VolumeGroup. */
-  volumeGroupName: string;
-  /** The name of the volume snapshot within the given volume group. */
-  snapshotName: string;
-}
-export const VolumeSnapshotsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    elasticSanName: S.String.pipe(T.Label()),
-    volumeGroupName: S.String.pipe(T.Label()),
-    snapshotName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ElasticSan/elasticSans/{elasticSanName}/volumegroups/{volumeGroupName}/snapshots/{snapshotName}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "VolumeSnapshotsGetRequest",
-}) as any as S.Schema<VolumeSnapshotsGetRequest>;
-
-export interface VolumeSnapshotsGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of Volume Snapshot. */
-  properties: SnapshotProperties;
-}
-export const VolumeSnapshotsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: SnapshotProperties,
-  }),
-).annotate({
-  identifier: "VolumeSnapshotsGetResponse",
-}) as any as S.Schema<VolumeSnapshotsGetResponse>;
-
-export interface VolumeSnapshotsListByVolumeGroupRequest {
+export interface ListVolumeSnapshotByVolumeGroupRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2387,7 +2219,7 @@ export interface VolumeSnapshotsListByVolumeGroupRequest {
   /** Specify $filter='volumeName eq <volume name>' to filter on volume. */
   _filter?: string;
 }
-export const VolumeSnapshotsListByVolumeGroupRequest = /*@__PURE__*/ S.suspend(
+export const ListVolumeSnapshotByVolumeGroupRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -2404,8 +2236,8 @@ export const VolumeSnapshotsListByVolumeGroupRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "VolumeSnapshotsListByVolumeGroupRequest",
-}) as any as S.Schema<VolumeSnapshotsListByVolumeGroupRequest>;
+  identifier: "ListVolumeSnapshotByVolumeGroupRequest",
+}) as any as S.Schema<ListVolumeSnapshotByVolumeGroupRequest>;
 
 /** Response for Volume Snapshot request. */
 export interface Snapshot {
@@ -2450,6 +2282,297 @@ export const SnapshotList = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "SnapshotList" }) as any as S.Schema<SnapshotList>;
 
+/** array of DiskSnapshot ARM IDs */
+export type RestoreVolumesPreRequestDiskSnapshotIdsList = Array<string>;
+export const RestoreVolumesPreRequestDiskSnapshotIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<RestoreVolumesPreRequestDiskSnapshotIdsList>;
+
+export interface RestoreVolumesPreRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the ElasticSan. */
+  elasticSanName: string;
+  /** The name of the VolumeGroup. */
+  volumeGroupName: string;
+  /** array of DiskSnapshot ARM IDs */
+  diskSnapshotIds: RestoreVolumesPreRequestDiskSnapshotIdsList;
+}
+export const RestoreVolumesPreRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    elasticSanName: S.String.pipe(T.Label()),
+    volumeGroupName: S.String.pipe(T.Label()),
+    diskSnapshotIds: RestoreVolumesPreRequestDiskSnapshotIdsList,
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ElasticSan/elasticSans/{elasticSanName}/volumegroups/{volumeGroupName}/preRestore",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "RestoreVolumesPreRequest",
+}) as any as S.Schema<RestoreVolumesPreRequest>;
+
+/** response object for pre validation api */
+export interface PreValidationResponse {
+  /** a status value indicating success or failure of validation */
+  validationStatus?: string;
+}
+export const PreValidationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    validationStatus: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PreValidationResponse",
+}) as any as S.Schema<PreValidationResponse>;
+
+/** Elastic San update properties. */
+export interface ElasticSanUpdateProperties {
+  /** Base size of the Elastic San appliance in TiB. */
+  baseSizeTiB?: number;
+  /** Extended size of the Elastic San appliance in TiB. */
+  extendedCapacitySizeTiB?: number;
+  /** Allow or disallow public network access to ElasticSan Account. Value is optional but if passed in, must be 'Enabled' or 'Disabled'. */
+  publicNetworkAccess?: PublicNetworkAccess | (string & {});
+  /** Auto Scale Properties for Elastic San Appliance. */
+  autoScaleProperties?: AutoScaleProperties;
+}
+export const ElasticSanUpdateProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    baseSizeTiB: S.optional(S.Number),
+    extendedCapacitySizeTiB: S.optional(S.Number),
+    publicNetworkAccess: S.optional(PublicNetworkAccess),
+    autoScaleProperties: S.optional(AutoScaleProperties),
+  }),
+).annotate({
+  identifier: "ElasticSanUpdateProperties",
+}) as any as S.Schema<ElasticSanUpdateProperties>;
+
+/** Update tags */
+export type UpdateElasticSanRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateElasticSanRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateElasticSanRequestTagsMap>;
+
+export interface UpdateElasticSanRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the ElasticSan. */
+  elasticSanName: string;
+  /** Properties of ElasticSan. */
+  properties?: ElasticSanUpdateProperties;
+  /** Update tags */
+  tags?: UpdateElasticSanRequestTagsMap;
+}
+export const UpdateElasticSanRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    elasticSanName: S.String.pipe(T.Label()),
+    properties: S.optional(ElasticSanUpdateProperties),
+    tags: S.optional(UpdateElasticSanRequestTagsMap),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ElasticSan/elasticSans/{elasticSanName}",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateElasticSanRequest",
+}) as any as S.Schema<UpdateElasticSanRequest>;
+
+/** Resource tags. */
+export type UpdateElasticSanResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateElasticSanResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateElasticSanResponseTagsMap>;
+
+export interface UpdateElasticSanResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateElasticSanResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Properties of ElasticSan. */
+  properties: ElasticSanProperties;
+}
+export const UpdateElasticSanResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateElasticSanResponseTagsMap),
+    location: S.String,
+    properties: ElasticSanProperties,
+  }),
+).annotate({
+  identifier: "UpdateElasticSanResponse",
+}) as any as S.Schema<UpdateElasticSanResponse>;
+
+/** Volume response properties. */
+export interface VolumeUpdateProperties {
+  /** Volume size. */
+  sizeGiB?: number;
+  /** Parent resource information. */
+  managedBy?: ManagedByInfo;
+}
+export const VolumeUpdateProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    sizeGiB: S.optional(S.Number),
+    managedBy: S.optional(ManagedByInfo),
+  }),
+).annotate({
+  identifier: "VolumeUpdateProperties",
+}) as any as S.Schema<VolumeUpdateProperties>;
+
+export interface UpdateVolumeRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the ElasticSan. */
+  elasticSanName: string;
+  /** The name of the VolumeGroup. */
+  volumeGroupName: string;
+  /** The name of the Volume. */
+  volumeName: string;
+  /** Properties of Volume. */
+  properties?: VolumeUpdateProperties;
+}
+export const UpdateVolumeRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    elasticSanName: S.String.pipe(T.Label()),
+    volumeGroupName: S.String.pipe(T.Label()),
+    volumeName: S.String.pipe(T.Label()),
+    properties: S.optional(VolumeUpdateProperties),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ElasticSan/elasticSans/{elasticSanName}/volumegroups/{volumeGroupName}/volumes/{volumeName}",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateVolumeRequest",
+}) as any as S.Schema<UpdateVolumeRequest>;
+
+export interface UpdateVolumeResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of Volume. */
+  properties: VolumeProperties;
+}
+export const UpdateVolumeResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: VolumeProperties,
+  }),
+).annotate({
+  identifier: "UpdateVolumeResponse",
+}) as any as S.Schema<UpdateVolumeResponse>;
+
+/** VolumeGroup response properties. */
+export type VolumeGroupUpdatePropertiesInput = VolumeGroupPropertiesInput;
+export const VolumeGroupUpdatePropertiesInput = VolumeGroupPropertiesInput;
+
+export interface UpdateVolumeGroupRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the ElasticSan. */
+  elasticSanName: string;
+  /** The name of the VolumeGroup. */
+  volumeGroupName: string;
+  /** The identity of the resource. */
+  identity?: IdentityInput;
+  /** Properties of VolumeGroup. */
+  properties?: VolumeGroupPropertiesInput;
+}
+export const UpdateVolumeGroupRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    elasticSanName: S.String.pipe(T.Label()),
+    volumeGroupName: S.String.pipe(T.Label()),
+    identity: S.optional(IdentityInput),
+    properties: S.optional(VolumeGroupPropertiesInput),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ElasticSan/elasticSans/{elasticSanName}/volumegroups/{volumeGroupName}",
+      code: 200,
+      apiVersion: "2025-09-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateVolumeGroupRequest",
+}) as any as S.Schema<UpdateVolumeGroupRequest>;
+
+export interface UpdateVolumeGroupResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The identity of the resource. */
+  identity?: Identity;
+  /** Properties of VolumeGroup. */
+  properties?: VolumeGroupProperties;
+}
+export const UpdateVolumeGroupResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    identity: S.optional(Identity),
+    properties: S.optional(VolumeGroupProperties),
+  }),
+).annotate({
+  identifier: "UpdateVolumeGroupResponse",
+}) as any as S.Schema<UpdateVolumeGroupResponse>;
+
 /** array of volume names */
 export type VolumesPreBackupRequestVolumeNamesList = Array<string>;
 export const VolumesPreBackupRequestVolumeNamesList = /*@__PURE__*/ S.Array(
@@ -2487,516 +2610,421 @@ export const VolumesPreBackupRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "VolumesPreBackupRequest",
 }) as any as S.Schema<VolumesPreBackupRequest>;
 
-/** response object for pre validation api */
-export interface PreValidationResponse {
-  /** a status value indicating success or failure of validation */
-  validationStatus?: string;
-}
-export const PreValidationResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    validationStatus: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PreValidationResponse",
-}) as any as S.Schema<PreValidationResponse>;
-
-/** array of DiskSnapshot ARM IDs */
-export type VolumesPreRestoreRequestDiskSnapshotIdsList = Array<string>;
-export const VolumesPreRestoreRequestDiskSnapshotIdsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<VolumesPreRestoreRequestDiskSnapshotIdsList>;
-
-export interface VolumesPreRestoreRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the ElasticSan. */
-  elasticSanName: string;
-  /** The name of the VolumeGroup. */
-  volumeGroupName: string;
-  /** array of DiskSnapshot ARM IDs */
-  diskSnapshotIds: VolumesPreRestoreRequestDiskSnapshotIdsList;
-}
-export const VolumesPreRestoreRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    elasticSanName: S.String.pipe(T.Label()),
-    volumeGroupName: S.String.pipe(T.Label()),
-    diskSnapshotIds: VolumesPreRestoreRequestDiskSnapshotIdsList,
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ElasticSan/elasticSans/{elasticSanName}/volumegroups/{volumeGroupName}/preRestore",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "VolumesPreRestoreRequest",
-}) as any as S.Schema<VolumesPreRestoreRequest>;
-
-/** Volume response properties. */
-export interface VolumeUpdateProperties {
-  /** Volume size. */
-  sizeGiB?: number;
-  /** Parent resource information. */
-  managedBy?: ManagedByInfo;
-}
-export const VolumeUpdateProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    sizeGiB: S.optional(S.Number),
-    managedBy: S.optional(ManagedByInfo),
-  }),
-).annotate({
-  identifier: "VolumeUpdateProperties",
-}) as any as S.Schema<VolumeUpdateProperties>;
-
-export interface VolumesUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the ElasticSan. */
-  elasticSanName: string;
-  /** The name of the VolumeGroup. */
-  volumeGroupName: string;
-  /** The name of the Volume. */
-  volumeName: string;
-  /** Properties of Volume. */
-  properties?: VolumeUpdateProperties;
-}
-export const VolumesUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    elasticSanName: S.String.pipe(T.Label()),
-    volumeGroupName: S.String.pipe(T.Label()),
-    volumeName: S.String.pipe(T.Label()),
-    properties: S.optional(VolumeUpdateProperties),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ElasticSan/elasticSans/{elasticSanName}/volumegroups/{volumeGroupName}/volumes/{volumeName}",
-      code: 200,
-      apiVersion: "2025-09-01",
-    }),
-  ),
-).annotate({
-  identifier: "VolumesUpdateRequest",
-}) as any as S.Schema<VolumesUpdateRequest>;
-
-export interface VolumesUpdateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of Volume. */
-  properties: VolumeProperties;
-}
-export const VolumesUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: VolumeProperties,
-  }),
-).annotate({
-  identifier: "VolumesUpdateResponse",
-}) as any as S.Schema<VolumesUpdateResponse>;
-
-export type ElasticSansCreateError = AzureOpError;
+export type CreateElasticSanError = AzureOpError;
 /** Create ElasticSan. */
-export const ElasticSansCreate: API.OperationMethod<
-  ElasticSansCreateRequest,
-  ElasticSansCreateResponse,
-  ElasticSansCreateError,
+export const CreateElasticSan: API.OperationMethod<
+  CreateElasticSanRequest,
+  CreateElasticSanResponse,
+  CreateElasticSanError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ElasticSansCreateRequest,
-  output: ElasticSansCreateResponse,
+  input: CreateElasticSanRequest,
+  output: CreateElasticSanResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ElasticSansDeleteError = AzureOpError;
-/** Delete a Elastic San. */
-export const ElasticSansDelete: API.OperationMethod<
-  ElasticSansDeleteRequest,
-  ElasticSansDeleteResponse,
-  ElasticSansDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ElasticSansDeleteRequest,
-  output: ElasticSansDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ElasticSansGetError = AzureOpError;
-/** Get a ElasticSan. */
-export const ElasticSansGet: API.OperationMethod<
-  ElasticSansGetRequest,
-  ElasticSansGetResponse,
-  ElasticSansGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ElasticSansGetRequest,
-  output: ElasticSansGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ElasticSansListByResourceGroupError = AzureOpError;
-/** Gets a list of ElasticSan in a resource group. */
-export const ElasticSansListByResourceGroup: API.OperationMethod<
-  ElasticSansListByResourceGroupRequest,
-  ElasticSanList,
-  ElasticSansListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ElasticSansListByResourceGroupRequest,
-  output: ElasticSanList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ElasticSansListBySubscriptionError = AzureOpError;
-/** Gets a list of ElasticSans in a subscription */
-export const ElasticSansListBySubscription: API.OperationMethod<
-  ElasticSansListBySubscriptionRequest,
-  ElasticSanList,
-  ElasticSansListBySubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ElasticSansListBySubscriptionRequest,
-  output: ElasticSanList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ElasticSansUpdateError = AzureOpError;
-/** Update a Elastic San. */
-export const ElasticSansUpdate: API.OperationMethod<
-  ElasticSansUpdateRequest,
-  ElasticSansUpdateResponse,
-  ElasticSansUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ElasticSansUpdateRequest,
-  output: ElasticSansUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type OperationsListError = AzureOpError;
-/** List the operations for the provider */
-export const OperationsList: API.OperationMethod<
-  OperationsListRequest,
-  OperationsListResponse,
-  OperationsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: OperationsListRequest,
-  output: OperationsListResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateEndpointConnectionsCreateError = AzureOpError;
+export type CreatePrivateEndpointConnectionError = AzureOpError;
 /** Update the state of specified private endpoint connection associated with the Elastic San */
-export const PrivateEndpointConnectionsCreate: API.OperationMethod<
-  PrivateEndpointConnectionsCreateRequest,
-  PrivateEndpointConnectionsCreateResponse,
-  PrivateEndpointConnectionsCreateError,
+export const CreatePrivateEndpointConnection: API.OperationMethod<
+  CreatePrivateEndpointConnectionRequest,
+  CreatePrivateEndpointConnectionResponse,
+  CreatePrivateEndpointConnectionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PrivateEndpointConnectionsCreateRequest,
-  output: PrivateEndpointConnectionsCreateResponse,
+  input: CreatePrivateEndpointConnectionRequest,
+  output: CreatePrivateEndpointConnectionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type PrivateEndpointConnectionsDeleteError = AzureOpError;
+export type CreateVolumeError = AzureOpError;
+/** Create a Volume. */
+export const CreateVolume: API.OperationMethod<
+  CreateVolumeRequest,
+  CreateVolumeResponse,
+  CreateVolumeError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateVolumeRequest,
+  output: CreateVolumeResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateVolumeGroupError = AzureOpError;
+/** Create a Volume Group. */
+export const CreateVolumeGroup: API.OperationMethod<
+  CreateVolumeGroupRequest,
+  CreateVolumeGroupResponse,
+  CreateVolumeGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateVolumeGroupRequest,
+  output: CreateVolumeGroupResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateVolumeSnapshotError = AzureOpError;
+/** Create a Volume Snapshot. */
+export const CreateVolumeSnapshot: API.OperationMethod<
+  CreateVolumeSnapshotRequest,
+  CreateVolumeSnapshotResponse,
+  CreateVolumeSnapshotError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateVolumeSnapshotRequest,
+  output: CreateVolumeSnapshotResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteElasticSanError = AzureOpError;
+/** Delete a Elastic San. */
+export const DeleteElasticSan: API.OperationMethod<
+  DeleteElasticSanRequest,
+  DeleteElasticSanResponse,
+  DeleteElasticSanError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteElasticSanRequest,
+  output: DeleteElasticSanResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeletePrivateEndpointConnectionError = AzureOpError;
 /** Deletes the specified private endpoint connection associated with the Elastic San */
-export const PrivateEndpointConnectionsDelete: API.OperationMethod<
-  PrivateEndpointConnectionsDeleteRequest,
-  PrivateEndpointConnectionsDeleteResponse,
-  PrivateEndpointConnectionsDeleteError,
+export const DeletePrivateEndpointConnection: API.OperationMethod<
+  DeletePrivateEndpointConnectionRequest,
+  DeletePrivateEndpointConnectionResponse,
+  DeletePrivateEndpointConnectionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PrivateEndpointConnectionsDeleteRequest,
-  output: PrivateEndpointConnectionsDeleteResponse,
+  input: DeletePrivateEndpointConnectionRequest,
+  output: DeletePrivateEndpointConnectionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type PrivateEndpointConnectionsGetError = AzureOpError;
+export type DeleteVolumeError = AzureOpError;
+/** Delete an Volume. */
+export const DeleteVolume: API.OperationMethod<
+  DeleteVolumeRequest,
+  DeleteVolumeResponse,
+  DeleteVolumeError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteVolumeRequest,
+  output: DeleteVolumeResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteVolumeGroupError = AzureOpError;
+/** Delete an VolumeGroup. */
+export const DeleteVolumeGroup: API.OperationMethod<
+  DeleteVolumeGroupRequest,
+  DeleteVolumeGroupResponse,
+  DeleteVolumeGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteVolumeGroupRequest,
+  output: DeleteVolumeGroupResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteVolumeSnapshotError = AzureOpError;
+/** Delete a Volume Snapshot. */
+export const DeleteVolumeSnapshot: API.OperationMethod<
+  DeleteVolumeSnapshotRequest,
+  DeleteVolumeSnapshotResponse,
+  DeleteVolumeSnapshotError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteVolumeSnapshotRequest,
+  output: DeleteVolumeSnapshotResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetElasticSanError = AzureOpError;
+/** Get a ElasticSan. */
+export const GetElasticSan: API.OperationMethod<
+  GetElasticSanRequest,
+  GetElasticSanResponse,
+  GetElasticSanError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetElasticSanRequest,
+  output: GetElasticSanResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetPrivateEndpointConnectionError = AzureOpError;
 /** Gets the specified private endpoint connection associated with the Elastic San */
-export const PrivateEndpointConnectionsGet: API.OperationMethod<
-  PrivateEndpointConnectionsGetRequest,
-  PrivateEndpointConnectionsGetResponse,
-  PrivateEndpointConnectionsGetError,
+export const GetPrivateEndpointConnection: API.OperationMethod<
+  GetPrivateEndpointConnectionRequest,
+  GetPrivateEndpointConnectionResponse,
+  GetPrivateEndpointConnectionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PrivateEndpointConnectionsGetRequest,
-  output: PrivateEndpointConnectionsGetResponse,
+  input: GetPrivateEndpointConnectionRequest,
+  output: GetPrivateEndpointConnectionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type PrivateEndpointConnectionsListError = AzureOpError;
-/** List all Private Endpoint Connections associated with the Elastic San. */
-export const PrivateEndpointConnectionsList: API.OperationMethod<
-  PrivateEndpointConnectionsListRequest,
-  PrivateEndpointConnectionListResult,
-  PrivateEndpointConnectionsListError,
+export type GetVolumeError = AzureOpError;
+/** Get an Volume. */
+export const GetVolume: API.OperationMethod<
+  GetVolumeRequest,
+  GetVolumeResponse,
+  GetVolumeError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PrivateEndpointConnectionsListRequest,
+  input: GetVolumeRequest,
+  output: GetVolumeResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetVolumeGroupError = AzureOpError;
+/** Get an VolumeGroups. */
+export const GetVolumeGroup: API.OperationMethod<
+  GetVolumeGroupRequest,
+  GetVolumeGroupResponse,
+  GetVolumeGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetVolumeGroupRequest,
+  output: GetVolumeGroupResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetVolumeSnapshotError = AzureOpError;
+/** Get a Volume Snapshot. */
+export const GetVolumeSnapshot: API.OperationMethod<
+  GetVolumeSnapshotRequest,
+  GetVolumeSnapshotResponse,
+  GetVolumeSnapshotError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetVolumeSnapshotRequest,
+  output: GetVolumeSnapshotResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListElasticSanByResourceGroupError = AzureOpError;
+/** Gets a list of ElasticSan in a resource group. */
+export const ListElasticSanByResourceGroup: API.OperationMethod<
+  ListElasticSanByResourceGroupRequest,
+  ElasticSanList,
+  ListElasticSanByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListElasticSanByResourceGroupRequest,
+  output: ElasticSanList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListElasticSanBySubscriptionError = AzureOpError;
+/** Gets a list of ElasticSans in a subscription */
+export const ListElasticSanBySubscription: API.OperationMethod<
+  ListElasticSanBySubscriptionRequest,
+  ElasticSanList,
+  ListElasticSanBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListElasticSanBySubscriptionRequest,
+  output: ElasticSanList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListOperationsError = AzureOpError;
+/** List the operations for the provider */
+export const ListOperations: API.OperationMethod<
+  ListOperationsRequest,
+  ListOperationsResponse,
+  ListOperationsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListOperationsRequest,
+  output: ListOperationsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListPrivateEndpointConnectionsError = AzureOpError;
+/** List all Private Endpoint Connections associated with the Elastic San. */
+export const ListPrivateEndpointConnections: API.OperationMethod<
+  ListPrivateEndpointConnectionsRequest,
+  PrivateEndpointConnectionListResult,
+  ListPrivateEndpointConnectionsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListPrivateEndpointConnectionsRequest,
   output: PrivateEndpointConnectionListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type PrivateLinkResourcesListByElasticSanError = AzureOpError;
+export type ListPrivateLinkResourceByElasticSanError = AzureOpError;
 /** Gets the private link resources that need to be created for a elastic San. */
-export const PrivateLinkResourcesListByElasticSan: API.OperationMethod<
-  PrivateLinkResourcesListByElasticSanRequest,
+export const ListPrivateLinkResourceByElasticSan: API.OperationMethod<
+  ListPrivateLinkResourceByElasticSanRequest,
   PrivateLinkResourceListResult,
-  PrivateLinkResourcesListByElasticSanError,
+  ListPrivateLinkResourceByElasticSanError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PrivateLinkResourcesListByElasticSanRequest,
+  input: ListPrivateLinkResourceByElasticSanRequest,
   output: PrivateLinkResourceListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type SkusListError = AzureOpError;
+export type ListSkusError = AzureOpError;
 /** List all the available Skus in the region and information related to them List all the available Skus in the region and information related to them */
-export const SkusList: API.OperationMethod<
-  SkusListRequest,
+export const ListSkus: API.OperationMethod<
+  ListSkusRequest,
   SkuInformationList,
-  SkusListError,
+  ListSkusError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SkusListRequest,
+  input: ListSkusRequest,
   output: SkuInformationList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type VolumeGroupsCreateError = AzureOpError;
-/** Create a Volume Group. */
-export const VolumeGroupsCreate: API.OperationMethod<
-  VolumeGroupsCreateRequest,
-  VolumeGroupsCreateResponse,
-  VolumeGroupsCreateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VolumeGroupsCreateRequest,
-  output: VolumeGroupsCreateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VolumeGroupsDeleteError = AzureOpError;
-/** Delete an VolumeGroup. */
-export const VolumeGroupsDelete: API.OperationMethod<
-  VolumeGroupsDeleteRequest,
-  VolumeGroupsDeleteResponse,
-  VolumeGroupsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VolumeGroupsDeleteRequest,
-  output: VolumeGroupsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VolumeGroupsGetError = AzureOpError;
-/** Get an VolumeGroups. */
-export const VolumeGroupsGet: API.OperationMethod<
-  VolumeGroupsGetRequest,
-  VolumeGroupsGetResponse,
-  VolumeGroupsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VolumeGroupsGetRequest,
-  output: VolumeGroupsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VolumeGroupsListByElasticSanError = AzureOpError;
-/** List VolumeGroups. */
-export const VolumeGroupsListByElasticSan: API.OperationMethod<
-  VolumeGroupsListByElasticSanRequest,
-  VolumeGroupList,
-  VolumeGroupsListByElasticSanError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VolumeGroupsListByElasticSanRequest,
-  output: VolumeGroupList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VolumeGroupsUpdateError = AzureOpError;
-/** Update an VolumeGroup. */
-export const VolumeGroupsUpdate: API.OperationMethod<
-  VolumeGroupsUpdateRequest,
-  VolumeGroupsUpdateResponse,
-  VolumeGroupsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VolumeGroupsUpdateRequest,
-  output: VolumeGroupsUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VolumesCreateError = AzureOpError;
-/** Create a Volume. */
-export const VolumesCreate: API.OperationMethod<
-  VolumesCreateRequest,
-  VolumesCreateResponse,
-  VolumesCreateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VolumesCreateRequest,
-  output: VolumesCreateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VolumesDeleteError = AzureOpError;
-/** Delete an Volume. */
-export const VolumesDelete: API.OperationMethod<
-  VolumesDeleteRequest,
-  VolumesDeleteResponse,
-  VolumesDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VolumesDeleteRequest,
-  output: VolumesDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VolumesGetError = AzureOpError;
-/** Get an Volume. */
-export const VolumesGet: API.OperationMethod<
-  VolumesGetRequest,
-  VolumesGetResponse,
-  VolumesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VolumesGetRequest,
-  output: VolumesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VolumesListByVolumeGroupError = AzureOpError;
+export type ListVolumeByVolumeGroupError = AzureOpError;
 /** List Volumes in a VolumeGroup. */
-export const VolumesListByVolumeGroup: API.OperationMethod<
-  VolumesListByVolumeGroupRequest,
+export const ListVolumeByVolumeGroup: API.OperationMethod<
+  ListVolumeByVolumeGroupRequest,
   VolumeList,
-  VolumesListByVolumeGroupError,
+  ListVolumeByVolumeGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: VolumesListByVolumeGroupRequest,
+  input: ListVolumeByVolumeGroupRequest,
   output: VolumeList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type VolumeSnapshotsCreateError = AzureOpError;
-/** Create a Volume Snapshot. */
-export const VolumeSnapshotsCreate: API.OperationMethod<
-  VolumeSnapshotsCreateRequest,
-  VolumeSnapshotsCreateResponse,
-  VolumeSnapshotsCreateError,
+export type ListVolumeGroupByElasticSanError = AzureOpError;
+/** List VolumeGroups. */
+export const ListVolumeGroupByElasticSan: API.OperationMethod<
+  ListVolumeGroupByElasticSanRequest,
+  VolumeGroupList,
+  ListVolumeGroupByElasticSanError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: VolumeSnapshotsCreateRequest,
-  output: VolumeSnapshotsCreateResponse,
+  input: ListVolumeGroupByElasticSanRequest,
+  output: VolumeGroupList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type VolumeSnapshotsDeleteError = AzureOpError;
-/** Delete a Volume Snapshot. */
-export const VolumeSnapshotsDelete: API.OperationMethod<
-  VolumeSnapshotsDeleteRequest,
-  VolumeSnapshotsDeleteResponse,
-  VolumeSnapshotsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VolumeSnapshotsDeleteRequest,
-  output: VolumeSnapshotsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VolumeSnapshotsGetError = AzureOpError;
-/** Get a Volume Snapshot. */
-export const VolumeSnapshotsGet: API.OperationMethod<
-  VolumeSnapshotsGetRequest,
-  VolumeSnapshotsGetResponse,
-  VolumeSnapshotsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VolumeSnapshotsGetRequest,
-  output: VolumeSnapshotsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VolumeSnapshotsListByVolumeGroupError = AzureOpError;
+export type ListVolumeSnapshotByVolumeGroupError = AzureOpError;
 /** List Snapshots in a VolumeGroup or List Snapshots by Volume (name) in a VolumeGroup using filter */
-export const VolumeSnapshotsListByVolumeGroup: API.OperationMethod<
-  VolumeSnapshotsListByVolumeGroupRequest,
+export const ListVolumeSnapshotByVolumeGroup: API.OperationMethod<
+  ListVolumeSnapshotByVolumeGroupRequest,
   SnapshotList,
-  VolumeSnapshotsListByVolumeGroupError,
+  ListVolumeSnapshotByVolumeGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: VolumeSnapshotsListByVolumeGroupRequest,
+  input: ListVolumeSnapshotByVolumeGroupRequest,
   output: SnapshotList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type RestoreVolumesPreError = AzureOpError;
+/** Validate whether a list of backed up disk snapshots can be restored into ElasticSan volumes. */
+export const RestoreVolumesPre: API.OperationMethod<
+  RestoreVolumesPreRequest,
+  PreValidationResponse,
+  RestoreVolumesPreError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: RestoreVolumesPreRequest,
+  output: PreValidationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateElasticSanError = AzureOpError;
+/** Update a Elastic San. */
+export const UpdateElasticSan: API.OperationMethod<
+  UpdateElasticSanRequest,
+  UpdateElasticSanResponse,
+  UpdateElasticSanError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateElasticSanRequest,
+  output: UpdateElasticSanResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateVolumeError = AzureOpError;
+/** Update an Volume. */
+export const UpdateVolume: API.OperationMethod<
+  UpdateVolumeRequest,
+  UpdateVolumeResponse,
+  UpdateVolumeError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateVolumeRequest,
+  output: UpdateVolumeResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateVolumeGroupError = AzureOpError;
+/** Update an VolumeGroup. */
+export const UpdateVolumeGroup: API.OperationMethod<
+  UpdateVolumeGroupRequest,
+  UpdateVolumeGroupResponse,
+  UpdateVolumeGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateVolumeGroupRequest,
+  output: UpdateVolumeGroupResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -3012,36 +3040,6 @@ export const VolumesPreBackup: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: VolumesPreBackupRequest,
   output: PreValidationResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VolumesPreRestoreError = AzureOpError;
-/** Validate whether a list of backed up disk snapshots can be restored into ElasticSan volumes. */
-export const VolumesPreRestore: API.OperationMethod<
-  VolumesPreRestoreRequest,
-  PreValidationResponse,
-  VolumesPreRestoreError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VolumesPreRestoreRequest,
-  output: PreValidationResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VolumesUpdateError = AzureOpError;
-/** Update an Volume. */
-export const VolumesUpdate: API.OperationMethod<
-  VolumesUpdateRequest,
-  VolumesUpdateResponse,
-  VolumesUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VolumesUpdateRequest,
-  output: VolumesUpdateResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

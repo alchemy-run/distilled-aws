@@ -14,32 +14,17 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "keyDictionary": {
+      "lingeringSubscribe": "lingering_subscribe",
+      "maxTimeoutMs": "max_timeout_ms",
+      "originFallback": "origin_fallback",
+      "tokenPublishSubscribe": "token_publish_subscribe",
+      "tokenSubscribe": "token_subscribe"
+    },
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.cloudflare.moq#RelaysCreateRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Cloudflare account identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Human-readable name for the relay.",
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.moq#RelaysCreateResponseConfigLingeringSubscribe": {
       "type": "structure",
       "members": {
@@ -97,157 +82,6 @@
             "smithy.api#documentation": "Upstreams are external MOQT server publishers that a relay falls back"
           }
         }
-      }
-    },
-    "com.cloudflare.moq#RelaysCreateResponse": {
-      "type": "structure",
-      "members": {
-        "config": {
-          "target": "com.cloudflare.moq#RelaysCreateResponseConfig",
-          "traits": {
-            "smithy.api#documentation": "upstreams and lingering_subscribe are mutually exclusive.",
-            "smithy.api#required": {}
-          }
-        },
-        "created": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "modified": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "token_publish_subscribe": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Full access token (publish + subscribe). Treat as sensitive.",
-            "smithy.api#required": {}
-          }
-        },
-        "token_subscribe": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Subscribe-only token. Treat as sensitive.",
-            "smithy.api#required": {}
-          }
-        },
-        "uid": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Server-generated unique identifier (32 hex chars).",
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.moq#RelaysCreate": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.moq#RelaysCreateRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.moq#RelaysCreateResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "/accounts/{account_id}/moq/relays",
-          "code": 200
-        },
-        "smithy.api#documentation": "Provisions a new MoQ relay instance. Auto-creates a publish+subscribe token and a subscribe-only token. Token values are included in the response (shown once). Config is set to defaults (lingering subscribe enabled, 30s ceiling, upstreams off). Use PUT to modify."
-      }
-    },
-    "com.cloudflare.moq#RelaysDeleteRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Cloudflare account identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "relay_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.moq#RelaysDeleteResponse": {
-      "type": "structure",
-      "members": {
-        "result": {
-          "target": "smithy.api#Document",
-          "traits": {
-            "com.cloudflare.protocols#envelopePayload": {},
-            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.moq#RelaysDelete": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.moq#RelaysDeleteRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.moq#RelaysDeleteResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "/accounts/{account_id}/moq/relays/{relay_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Soft-deletes a MoQ relay.",
-        "smithy.api#idempotent": {}
-      }
-    },
-    "com.cloudflare.moq#RelaysGetRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Cloudflare account identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "relay_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.moq#RelaysGetResponseConfigLingeringSubscribe": {
@@ -320,114 +154,6 @@
         }
       }
     },
-    "com.cloudflare.moq#RelaysGetResponse": {
-      "type": "structure",
-      "members": {
-        "config": {
-          "target": "com.cloudflare.moq#RelaysGetResponseConfig",
-          "traits": {
-            "smithy.api#documentation": "upstreams and lingering_subscribe are mutually exclusive.",
-            "smithy.api#required": {}
-          }
-        },
-        "created": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "modified": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "uid": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "status": {
-          "target": "com.cloudflare.moq#RelaysGetResponseStatus",
-          "traits": {
-            "smithy.api#documentation": "\"connected\" when active, omitted otherwise."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.moq#RelaysGet": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.moq#RelaysGetRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.moq#RelaysGetResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/accounts/{account_id}/moq/relays/{relay_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Retrieves a single MoQ relay including config and status. Tokens are NOT included.",
-        "smithy.api#readonly": {}
-      }
-    },
-    "com.cloudflare.moq#RelaysListRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Cloudflare account identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "asc": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Sort order by `created`. When true, results are returned oldest-first",
-            "smithy.api#httpQuery": "asc"
-          }
-        },
-        "created_after": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Cursor for pagination. Returns relays created strictly after this",
-            "smithy.api#httpQuery": "created_after"
-          }
-        },
-        "created_before": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Cursor for pagination. Returns relays created strictly before this",
-            "smithy.api#httpQuery": "created_before"
-          }
-        },
-        "per_page": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Maximum number of relays to return per page.",
-            "smithy.api#httpQuery": "per_page"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.moq#RelaysListResultItem": {
       "type": "structure",
       "members": {
@@ -461,39 +187,6 @@
       "type": "list",
       "member": {
         "target": "com.cloudflare.moq#RelaysListResultItem"
-      }
-    },
-    "com.cloudflare.moq#RelaysListResponse": {
-      "type": "structure",
-      "members": {
-        "result": {
-          "target": "com.cloudflare.moq#RelaysListResultList",
-          "traits": {
-            "com.cloudflare.protocols#envelopePayload": {},
-            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.moq#RelaysList": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.moq#RelaysListRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.moq#RelaysListResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/accounts/{account_id}/moq/relays",
-          "code": 200
-        },
-        "smithy.api#documentation": "Lists all MoQ relays for the account. Returns only metadata. Config, status, and tokens are omitted. Results are cursor-paginated (keyset on the `created` timestamp). Use `created_before` / `created_after` with the `created` value of the first/last item in a page to fetch the adjacent page. `result_info` reports the page `count` and the `total` matching the cursor filters.",
-        "smithy.api#readonly": {}
       }
     },
     "com.cloudflare.moq#RelaysUpdateRequestConfigLingeringSubscribe": {
@@ -553,38 +246,6 @@
             "smithy.api#documentation": "Upstreams are external MOQT server publishers that a relay falls back"
           }
         }
-      }
-    },
-    "com.cloudflare.moq#RelaysUpdateRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Cloudflare account identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "relay_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "config": {
-          "target": "com.cloudflare.moq#RelaysUpdateRequestConfig",
-          "traits": {
-            "smithy.api#documentation": "upstreams and lingering_subscribe are mutually exclusive."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String"
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.moq#RelaysUpdateResponseConfigLingeringSubscribe": {
@@ -657,7 +318,508 @@
         }
       }
     },
-    "com.cloudflare.moq#RelaysUpdateResponse": {
+    "com.cloudflare.moq#RelaysTokensRotateRequestType": {
+      "type": "enum",
+      "members": {
+        "PUBLISH_SUBSCRIBE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "publish_subscribe"
+          }
+        },
+        "SUBSCRIBE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "subscribe"
+          }
+        }
+      }
+    },
+    "com.cloudflare.moq#RelaysTokensRotateResponseType": {
+      "type": "enum",
+      "members": {
+        "PUBLISH_SUBSCRIBE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "publish_subscribe"
+          }
+        },
+        "SUBSCRIBE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "subscribe"
+          }
+        }
+      }
+    },
+    "com.cloudflare.moq#Moq": {
+      "type": "service",
+      "version": "4.0",
+      "operations": [
+        {
+          "target": "com.cloudflare.moq#CreateRelay"
+        },
+        {
+          "target": "com.cloudflare.moq#DeleteRelay"
+        },
+        {
+          "target": "com.cloudflare.moq#GetRelay"
+        },
+        {
+          "target": "com.cloudflare.moq#ListRelays"
+        },
+        {
+          "target": "com.cloudflare.moq#RotateRelayToken"
+        },
+        {
+          "target": "com.cloudflare.moq#UpdateRelay"
+        }
+      ],
+      "traits": {
+        "com.cloudflare.protocols#v4Json": {},
+        "smithy.api#title": "Cloudflare Moq",
+        "smithy.api#documentation": "Cloudflare API — moq resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+      }
+    },
+    "com.cloudflare.moq#CreateRelay": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.moq#CreateRelayRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.moq#CreateRelayResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/moq/relays",
+          "code": 200
+        },
+        "smithy.api#documentation": "Provisions a new MoQ relay instance. Auto-creates a publish+subscribe token and a subscribe-only token. Token values are included in the response (shown once). Config is set to defaults (lingering subscribe enabled, 30s ceiling, upstreams off). Use PUT to modify."
+      }
+    },
+    "com.cloudflare.moq#CreateRelayRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Cloudflare account identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable name for the relay.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.moq#CreateRelayResponse": {
+      "type": "structure",
+      "members": {
+        "config": {
+          "target": "com.cloudflare.moq#RelaysCreateResponseConfig",
+          "traits": {
+            "smithy.api#documentation": "upstreams and lingering_subscribe are mutually exclusive.",
+            "smithy.api#required": {}
+          }
+        },
+        "created": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "modified": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "token_publish_subscribe": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Full access token (publish + subscribe). Treat as sensitive.",
+            "smithy.api#required": {}
+          }
+        },
+        "token_subscribe": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Subscribe-only token. Treat as sensitive.",
+            "smithy.api#required": {}
+          }
+        },
+        "uid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Server-generated unique identifier (32 hex chars).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.moq#DeleteRelay": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.moq#DeleteRelayRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.moq#DeleteRelayResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/accounts/{account_id}/moq/relays/{relay_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Soft-deletes a MoQ relay.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.moq#DeleteRelayRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Cloudflare account identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "relay_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.moq#DeleteRelayResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.moq#GetRelay": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.moq#GetRelayRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.moq#GetRelayResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/moq/relays/{relay_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieves a single MoQ relay including config and status. Tokens are NOT included.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.moq#GetRelayRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Cloudflare account identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "relay_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.moq#GetRelayResponse": {
+      "type": "structure",
+      "members": {
+        "config": {
+          "target": "com.cloudflare.moq#RelaysGetResponseConfig",
+          "traits": {
+            "smithy.api#documentation": "upstreams and lingering_subscribe are mutually exclusive.",
+            "smithy.api#required": {}
+          }
+        },
+        "created": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "modified": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "uid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.cloudflare.moq#RelaysGetResponseStatus",
+          "traits": {
+            "smithy.api#documentation": "\"connected\" when active, omitted otherwise."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.moq#ListRelays": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.moq#ListRelaysRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.moq#ListRelaysResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/moq/relays",
+          "code": 200
+        },
+        "smithy.api#documentation": "Lists all MoQ relays for the account. Returns only metadata. Config, status, and tokens are omitted. Results are cursor-paginated (keyset on the `created` timestamp). Use `created_before` / `created_after` with the `created` value of the first/last item in a page to fetch the adjacent page. `result_info` reports the page `count` and the `total` matching the cursor filters.",
+        "smithy.api#readonly": {},
+        "smithy.api#paginated": {
+          "mode": "single",
+          "items": "result"
+        }
+      }
+    },
+    "com.cloudflare.moq#ListRelaysRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Cloudflare account identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "asc": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Sort order by `created`. When true, results are returned oldest-first",
+            "smithy.api#httpQuery": "asc"
+          }
+        },
+        "created_after": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Cursor for pagination. Returns relays created strictly after this",
+            "smithy.api#httpQuery": "created_after"
+          }
+        },
+        "created_before": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Cursor for pagination. Returns relays created strictly before this",
+            "smithy.api#httpQuery": "created_before"
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Maximum number of relays to return per page.",
+            "smithy.api#httpQuery": "per_page"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.moq#ListRelaysResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.moq#RelaysListResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.moq#RotateRelayToken": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.moq#RotateRelayTokenRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.moq#RotateRelayTokenResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/moq/relays/{relay_id}/tokens/rotate",
+          "code": 200
+        },
+        "smithy.api#documentation": "Generates a new token for the specified type. The old token is immediately invalidated. Token value is shown once in the response."
+      }
+    },
+    "com.cloudflare.moq#RotateRelayTokenRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Cloudflare account identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "relay_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.cloudflare.moq#RelaysTokensRotateRequestType",
+          "traits": {
+            "smithy.api#documentation": "Which token type to rotate.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.moq#RotateRelayTokenResponse": {
+      "type": "structure",
+      "members": {
+        "token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "New token value (shown once). Treat as sensitive.",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.cloudflare.moq#RelaysTokensRotateResponseType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.moq#UpdateRelay": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.moq#UpdateRelayRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.moq#UpdateRelayResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/accounts/{account_id}/moq/relays/{relay_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Updates a relay's name and/or configuration. Partial updates: omitted fields are preserved. Config sub-objects replace as whole objects when present. upstreams and lingering_subscribe are mutually exclusive.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.moq#UpdateRelayRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Cloudflare account identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "relay_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "config": {
+          "target": "com.cloudflare.moq#RelaysUpdateRequestConfig",
+          "traits": {
+            "smithy.api#documentation": "upstreams and lingering_subscribe are mutually exclusive."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.moq#UpdateRelayResponse": {
       "type": "structure",
       "members": {
         "config": {
@@ -701,156 +863,6 @@
       "traits": {
         "smithy.api#output": {},
         "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.moq#RelaysUpdate": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.moq#RelaysUpdateRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.moq#RelaysUpdateResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "PUT",
-          "uri": "/accounts/{account_id}/moq/relays/{relay_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Updates a relay's name and/or configuration. Partial updates: omitted fields are preserved. Config sub-objects replace as whole objects when present. upstreams and lingering_subscribe are mutually exclusive.",
-        "smithy.api#idempotent": {}
-      }
-    },
-    "com.cloudflare.moq#RelaysTokensRotateRequestType": {
-      "type": "enum",
-      "members": {
-        "PUBLISH_SUBSCRIBE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "publish_subscribe"
-          }
-        },
-        "SUBSCRIBE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "subscribe"
-          }
-        }
-      }
-    },
-    "com.cloudflare.moq#RelaysTokensRotateRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Cloudflare account identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "relay_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "type": {
-          "target": "com.cloudflare.moq#RelaysTokensRotateRequestType",
-          "traits": {
-            "smithy.api#documentation": "Which token type to rotate.",
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.moq#RelaysTokensRotateResponseType": {
-      "type": "enum",
-      "members": {
-        "PUBLISH_SUBSCRIBE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "publish_subscribe"
-          }
-        },
-        "SUBSCRIBE": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "subscribe"
-          }
-        }
-      }
-    },
-    "com.cloudflare.moq#RelaysTokensRotateResponse": {
-      "type": "structure",
-      "members": {
-        "token": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "New token value (shown once). Treat as sensitive.",
-            "smithy.api#required": {}
-          }
-        },
-        "type": {
-          "target": "com.cloudflare.moq#RelaysTokensRotateResponseType",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.moq#RelaysTokensRotate": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.moq#RelaysTokensRotateRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.moq#RelaysTokensRotateResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "/accounts/{account_id}/moq/relays/{relay_id}/tokens/rotate",
-          "code": 200
-        },
-        "smithy.api#documentation": "Generates a new token for the specified type. The old token is immediately invalidated. Token value is shown once in the response."
-      }
-    },
-    "com.cloudflare.moq#Moq": {
-      "type": "service",
-      "version": "4.0",
-      "operations": [
-        {
-          "target": "com.cloudflare.moq#RelaysCreate"
-        },
-        {
-          "target": "com.cloudflare.moq#RelaysDelete"
-        },
-        {
-          "target": "com.cloudflare.moq#RelaysGet"
-        },
-        {
-          "target": "com.cloudflare.moq#RelaysList"
-        },
-        {
-          "target": "com.cloudflare.moq#RelaysUpdate"
-        },
-        {
-          "target": "com.cloudflare.moq#RelaysTokensRotate"
-        }
-      ],
-      "traits": {
-        "com.cloudflare.protocols#v4Json": {},
-        "smithy.api#title": "Cloudflare Moq",
-        "smithy.api#documentation": "Cloudflare API — moq resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
       }
     }
   }

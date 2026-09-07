@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.hog_function_templates#HogFunctionTemplatesListRequest": {
+    "com.posthog.hog_function_templates#ListHogFunctionTemplatesRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -245,10 +246,10 @@
       },
       "traits": {}
     },
-    "com.posthog.hog_function_templates#HogFunctionTemplatesList": {
+    "com.posthog.hog_function_templates#ListHogFunctionTemplates": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.hog_function_templates#HogFunctionTemplatesListRequest"
+        "target": "com.posthog.hog_function_templates#ListHogFunctionTemplatesRequest"
       },
       "output": {
         "target": "com.posthog.hog_function_templates#PaginatedHogFunctionTemplateList"
@@ -272,7 +273,7 @@
         }
       }
     },
-    "com.posthog.hog_function_templates#HogFunctionTemplatesRetrieveRequest": {
+    "com.posthog.hog_function_templates#GetHogFunctionTemplateRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -295,10 +296,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.hog_function_templates#HogFunctionTemplatesRetrieve": {
+    "com.posthog.hog_function_templates#GetHogFunctionTemplate": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.hog_function_templates#HogFunctionTemplatesRetrieveRequest"
+        "target": "com.posthog.hog_function_templates#GetHogFunctionTemplateRequest"
       },
       "output": {
         "target": "com.posthog.hog_function_templates#HogFunctionTemplate"
@@ -319,7 +320,7 @@
         }
       }
     },
-    "com.posthog.hog_function_templates#PublicHogFunctionTemplatesListRequest": {
+    "com.posthog.hog_function_templates#ListPublicHogFunctionTemplatesRequest": {
       "type": "structure",
       "members": {
         "limit": {
@@ -362,10 +363,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.hog_function_templates#PublicHogFunctionTemplatesList": {
+    "com.posthog.hog_function_templates#ListPublicHogFunctionTemplates": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.hog_function_templates#PublicHogFunctionTemplatesListRequest"
+        "target": "com.posthog.hog_function_templates#ListPublicHogFunctionTemplatesRequest"
       },
       "output": {
         "target": "com.posthog.hog_function_templates#PaginatedHogFunctionTemplateList"
@@ -430,13 +431,13 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.hog_function_templates#HogFunctionTemplatesList"
+          "target": "com.posthog.hog_function_templates#ListHogFunctionTemplates"
         },
         {
-          "target": "com.posthog.hog_function_templates#HogFunctionTemplatesRetrieve"
+          "target": "com.posthog.hog_function_templates#GetHogFunctionTemplate"
         },
         {
-          "target": "com.posthog.hog_function_templates#PublicHogFunctionTemplatesList"
+          "target": "com.posthog.hog_function_templates#ListPublicHogFunctionTemplates"
         }
       ],
       "traits": {

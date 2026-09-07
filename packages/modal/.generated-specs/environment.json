@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.modal.environment#EnvironmentBillingSummaryRequest": {
@@ -155,7 +156,7 @@
         }
       }
     },
-    "com.modal.environment#EnvironmentCreateRequest": {
+    "com.modal.environment#CreateEnvironmentRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -181,10 +182,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.modal.environment#EnvironmentCreate": {
+    "com.modal.environment#CreateEnvironment": {
       "type": "operation",
       "input": {
-        "target": "com.modal.environment#EnvironmentCreateRequest"
+        "target": "com.modal.environment#CreateEnvironmentRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -197,7 +198,7 @@
         }
       }
     },
-    "com.modal.environment#EnvironmentDeleteRequest": {
+    "com.modal.environment#DeleteEnvironmentRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -208,10 +209,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.modal.environment#EnvironmentDelete": {
+    "com.modal.environment#DeleteEnvironment": {
       "type": "operation",
       "input": {
-        "target": "com.modal.environment#EnvironmentDeleteRequest"
+        "target": "com.modal.environment#DeleteEnvironmentRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -651,7 +652,7 @@
         "target": "com.modal.environment#EnvironmentListItem"
       }
     },
-    "com.modal.environment#EnvironmentListResponse": {
+    "com.modal.environment#ListEnvironmentResponse": {
       "type": "structure",
       "members": {
         "items": {
@@ -662,13 +663,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.modal.environment#EnvironmentList": {
+    "com.modal.environment#ListEnvironment": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
       },
       "output": {
-        "target": "com.modal.environment#EnvironmentListResponse"
+        "target": "com.modal.environment#ListEnvironmentResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -678,7 +679,7 @@
         }
       }
     },
-    "com.modal.environment#EnvironmentRoleSetRequest": {
+    "com.modal.environment#SetEnvironmentRoleRequest": {
       "type": "structure",
       "members": {
         "environmentId": {
@@ -701,10 +702,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.modal.environment#EnvironmentRoleSet": {
+    "com.modal.environment#SetEnvironmentRole": {
       "type": "operation",
       "input": {
-        "target": "com.modal.environment#EnvironmentRoleSetRequest"
+        "target": "com.modal.environment#SetEnvironmentRoleRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -813,7 +814,7 @@
         }
       }
     },
-    "com.modal.environment#EnvironmentUpdateRequest": {
+    "com.modal.environment#UpdateEnvironmentRequest": {
       "type": "structure",
       "members": {
         "currentName": {
@@ -836,7 +837,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.modal.environment#EnvironmentUpdateResponse": {
+    "com.modal.environment#UpdateEnvironmentResponse": {
       "type": "structure",
       "members": {
         "name": {
@@ -895,13 +896,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.modal.environment#EnvironmentUpdate": {
+    "com.modal.environment#UpdateEnvironment": {
       "type": "operation",
       "input": {
-        "target": "com.modal.environment#EnvironmentUpdateRequest"
+        "target": "com.modal.environment#UpdateEnvironmentRequest"
       },
       "output": {
-        "target": "com.modal.environment#EnvironmentUpdateResponse"
+        "target": "com.modal.environment#UpdateEnvironmentResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -919,10 +920,10 @@
           "target": "com.modal.environment#EnvironmentBillingSummary"
         },
         {
-          "target": "com.modal.environment#EnvironmentCreate"
+          "target": "com.modal.environment#CreateEnvironment"
         },
         {
-          "target": "com.modal.environment#EnvironmentDelete"
+          "target": "com.modal.environment#DeleteEnvironment"
         },
         {
           "target": "com.modal.environment#EnvironmentGetBudget"
@@ -937,10 +938,10 @@
           "target": "com.modal.environment#EnvironmentGetRoles"
         },
         {
-          "target": "com.modal.environment#EnvironmentList"
+          "target": "com.modal.environment#ListEnvironment"
         },
         {
-          "target": "com.modal.environment#EnvironmentRoleSet"
+          "target": "com.modal.environment#SetEnvironmentRole"
         },
         {
           "target": "com.modal.environment#EnvironmentSetBudget"
@@ -952,7 +953,7 @@
           "target": "com.modal.environment#EnvironmentSetManaged"
         },
         {
-          "target": "com.modal.environment#EnvironmentUpdate"
+          "target": "com.modal.environment#UpdateEnvironment"
         }
       ],
       "traits": {

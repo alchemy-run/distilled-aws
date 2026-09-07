@@ -1,10 +1,11 @@
 /**
  * JSON Patch (RFC 6902) Implementation
  *
- * Provides a unified spec patching system for all SDKs. Patches are applied to
- * generated intermediary specs (Smithy models, OpenAPI docs, …) before code
- * generation to add typed error shapes, rename operations, mark nullable
- * fields, etc. Ported from the distilled repo's `core/json-patch`.
+ * Provides a unified spec patching system for all SDKs. Patches apply in
+ * `convert` so `.generated-specs` is the patched Smithy model. generate does
+ * not patch. Prefer `operationNaming: "verbNoun"` for operationId renames —
+ * JSON pointers at `/paths/~1foo/operationId` go stale when upstream prefixes
+ * paths.
  *
  * Pure functions only — callers load patch files themselves (the generators
  * use Effect's FileSystem) and hand the parsed operations to `applyPatch`.
@@ -45,19 +46,44 @@ export function parseJsonPointer(pointer: string): string[] {
 }
 
 /** Get a value at a JSON Pointer path. */
+/**
+ * The target location of a patch operation is absent from the document —
+ * spec drift (renamed/removed upstream), not a malformed patch.
+ */
+export class StaleTargetError extends Error {
+  override readonly name = "StaleTargetError";
+}
+
 export function getValueAtPath(obj: unknown, pointer: string): unknown {
   const segments = parseJsonPointer(pointer);
   let current: unknown = obj;
 
   for (const segment of segments) {
-    if (current === null || typeof current !== "object") {
-      throw new Error(`Cannot traverse path ${pointer}: not an object`);
+    if (
+      current === null ||
+      current === undefined ||
+      typeof current !== "object"
+    ) {
+      throw new StaleTargetError(
+        `JSON pointer ${pointer} missing (at '${segment}'): not an object`,
+      );
     }
     if (Array.isArray(current)) {
       const index = segment === "-" ? current.length : parseInt(segment, 10);
+      if (index < 0 || index >= current.length) {
+        throw new StaleTargetError(
+          `JSON pointer ${pointer} missing index '${segment}'`,
+        );
+      }
       current = current[index];
     } else {
-      current = (current as Record<string, unknown>)[segment];
+      const record = current as Record<string, unknown>;
+      if (!Object.prototype.hasOwnProperty.call(record, segment)) {
+        throw new StaleTargetError(
+          `JSON pointer ${pointer} missing key '${segment}'`,
+        );
+      }
+      current = record[segment];
     }
   }
 
@@ -80,7 +106,9 @@ export function setValueAtPath(
   for (let i = 0; i < segments.length - 1; i++) {
     const segment = segments[i]!;
     if (current === null || typeof current !== "object") {
-      throw new Error(`Cannot traverse path ${pointer}: not an object`);
+      throw new StaleTargetError(
+        `Cannot traverse path ${pointer}: not an object`,
+      );
     }
     if (Array.isArray(current)) {
       current = current[parseInt(segment, 10)];
@@ -91,7 +119,7 @@ export function setValueAtPath(
 
   const lastSegment = segments[segments.length - 1]!;
   if (current === null || typeof current !== "object") {
-    throw new Error(
+    throw new StaleTargetError(
       `Cannot set value at path ${pointer}: parent is not an object`,
     );
   }
@@ -119,7 +147,9 @@ export function removeValueAtPath(obj: unknown, pointer: string): void {
   for (let i = 0; i < segments.length - 1; i++) {
     const segment = segments[i]!;
     if (current === null || typeof current !== "object") {
-      throw new Error(`Cannot traverse path ${pointer}: not an object`);
+      throw new StaleTargetError(
+        `Cannot traverse path ${pointer}: not an object`,
+      );
     }
     if (Array.isArray(current)) {
       current = current[parseInt(segment, 10)];
@@ -130,15 +160,28 @@ export function removeValueAtPath(obj: unknown, pointer: string): void {
 
   const lastSegment = segments[segments.length - 1]!;
   if (current === null || typeof current !== "object") {
-    throw new Error(
+    throw new StaleTargetError(
       `Cannot remove at path ${pointer}: parent is not an object`,
     );
   }
 
+  // RFC 6902 §4.2: the target location MUST exist.
   if (Array.isArray(current)) {
-    current.splice(parseInt(lastSegment, 10), 1);
+    const index = parseInt(lastSegment, 10);
+    if (Number.isNaN(index) || index < 0 || index >= current.length) {
+      throw new StaleTargetError(
+        `JSON pointer ${pointer} missing index '${lastSegment}'`,
+      );
+    }
+    current.splice(index, 1);
   } else {
-    delete (current as Record<string, unknown>)[lastSegment];
+    const record = current as Record<string, unknown>;
+    if (!Object.prototype.hasOwnProperty.call(record, lastSegment)) {
+      throw new StaleTargetError(
+        `JSON pointer ${pointer} missing key '${lastSegment}'`,
+      );
+    }
+    delete record[lastSegment];
   }
 }
 
@@ -158,16 +201,21 @@ export function applyOperation(
     case "remove":
       removeValueAtPath(obj, operation.path);
       break;
-    case "replace":
-      // For replace, the path must exist
-      getValueAtPath(obj, operation.path); // throws if doesn't exist
+    case "replace": {
+      const existing = getValueAtPath(obj, operation.path);
+      if (existing === undefined) {
+        throw new StaleTargetError(
+          `JSON pointer ${operation.path} does not exist`,
+        );
+      }
       setValueAtPath(obj, operation.path, operation.value);
       break;
+    }
     case "move": {
       if (!operation.from) throw new Error("move operation requires 'from'");
       const moveValue = getValueAtPath(obj, operation.from);
       if (moveValue === undefined) {
-        throw new Error(
+        throw new StaleTargetError(
           `Cannot move from path ${operation.from}: not an object`,
         );
       }
@@ -207,16 +255,25 @@ export function applyPatch(obj: unknown, patch: JsonPatch): void {
 }
 
 /**
- * Whether a per-operation failure is caused by the target location being
- * absent from the spec (i.e. spec drift — the operation/shape the patch
- * targets was renamed or removed upstream) as opposed to a malformed patch.
- * Stale targets should be skipped with a warning rather than aborting the
- * whole generate; a patch that only adds an error to an operation that no
- * longer exists is harmless to drop.
+ * Whether a per-operation failure is a {@link StaleTargetError} (the
+ * operation/shape the patch targets was renamed or removed upstream) as
+ * opposed to a malformed patch. Accepts the thrown value or its message.
+ * Convert fails the run on these by default (`onStalePatch: "fail"`);
+ * `"warn"` restores skip-and-continue.
  */
-export function isStaleTargetError(message: string): boolean {
+export function isStaleTargetError(error: unknown): boolean {
+  if (error instanceof StaleTargetError) return true;
+  const message =
+    typeof error === "string"
+      ? error
+      : error instanceof Error
+        ? error.message
+        : "";
   return (
     message.includes("not an object") ||
-    message.includes("parent is not an object")
+    message.includes("parent is not an object") ||
+    message.includes("missing key") ||
+    message.includes("missing index") ||
+    message.includes("does not exist")
   );
 }

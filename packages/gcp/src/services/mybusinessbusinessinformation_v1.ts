@@ -77,21 +77,21 @@ export const StringList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<StringList>;
 
 export interface BatchGetCategoriesRequest {
-  /** Required. The BCP 47 code of language that the category names should be returned in. */
-  languageCode?: string;
-  /** Optional. The ISO 3166-1 alpha-2 country code used to infer non-standard language. */
-  regionCode?: string;
   /** Required. Specifies which parts to the Category resource should be returned in the response. */
   view?: BatchGetCategoriesViewEnum | (string & {});
   /** Required. At least one name must be set. The GConcept ids the localized category names should be returned for. To return details for more than one category, repeat this parameter in the request. */
   names?: StringList;
+  /** Required. The BCP 47 code of language that the category names should be returned in. */
+  languageCode?: string;
+  /** Optional. The ISO 3166-1 alpha-2 country code used to infer non-standard language. */
+  regionCode?: string;
 }
 export const BatchGetCategoriesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    languageCode: S.optional(S.String.pipe(T.Query())),
-    regionCode: S.optional(S.String.pipe(T.Query())),
     view: S.optional(BatchGetCategoriesViewEnum.pipe(T.Query())),
     names: S.optional(StringList.pipe(T.Query())),
+    languageCode: S.optional(S.String.pipe(T.Query())),
+    regionCode: S.optional(S.String.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -102,28 +102,6 @@ export const BatchGetCategoriesRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "BatchGetCategoriesRequest",
 }) as any as S.Schema<BatchGetCategoriesRequest>;
-
-/** More hours types that a business can offers, in addition to its regular hours. */
-export interface MoreHoursType {
-  /** Output only. The human-readable English display name for the hours type. */
-  displayName?: string;
-  /** Output only. A stable ID provided by Google for this hours type. */
-  hoursTypeId?: string;
-  /** Output only. The human-readable localized display name for the hours type. */
-  localizedDisplayName?: string;
-}
-export const MoreHoursType = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    displayName: S.optional(S.String),
-    hoursTypeId: S.optional(S.String),
-    localizedDisplayName: S.optional(S.String),
-  }),
-).annotate({ identifier: "MoreHoursType" }) as any as S.Schema<MoreHoursType>;
-
-export type MoreHoursTypeList = Array<MoreHoursType>;
-export const MoreHoursTypeList = /*@__PURE__*/ S.Array(
-  MoreHoursType,
-) as any as S.Schema<MoreHoursTypeList>;
 
 /** A message describing a service type that the business offers. */
 export interface ServiceType {
@@ -144,22 +122,44 @@ export const ServiceTypeList = /*@__PURE__*/ S.Array(
   ServiceType,
 ) as any as S.Schema<ServiceTypeList>;
 
+/** More hours types that a business can offers, in addition to its regular hours. */
+export interface MoreHoursType {
+  /** Output only. A stable ID provided by Google for this hours type. */
+  hoursTypeId?: string;
+  /** Output only. The human-readable English display name for the hours type. */
+  displayName?: string;
+  /** Output only. The human-readable localized display name for the hours type. */
+  localizedDisplayName?: string;
+}
+export const MoreHoursType = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    hoursTypeId: S.optional(S.String),
+    displayName: S.optional(S.String),
+    localizedDisplayName: S.optional(S.String),
+  }),
+).annotate({ identifier: "MoreHoursType" }) as any as S.Schema<MoreHoursType>;
+
+export type MoreHoursTypeList = Array<MoreHoursType>;
+export const MoreHoursTypeList = /*@__PURE__*/ S.Array(
+  MoreHoursType,
+) as any as S.Schema<MoreHoursTypeList>;
+
 /** A category describing what this business is (not what it does). For a list of valid category IDs, and the mappings to their human-readable names, see `categories.list`. */
 export interface Category {
-  /** Output only. More hours types that are available for this business category. */
-  moreHoursTypes?: MoreHoursTypeList;
-  /** Output only. The human-readable name of the category. This is set when reading the location. When modifying the location, `category_id` must be set. */
-  displayName?: string;
   /** Output only. A list of all the service types that are available for this business category. */
   serviceTypes?: ServiceTypeList;
+  /** Output only. The human-readable name of the category. This is set when reading the location. When modifying the location, `category_id` must be set. */
+  displayName?: string;
+  /** Output only. More hours types that are available for this business category. */
+  moreHoursTypes?: MoreHoursTypeList;
   /** Required. A stable ID (provided by Google) for this category. The value must be specified when modifying the category (when creating or updating a location). */
   name?: string;
 }
 export const Category = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    moreHoursTypes: S.optional(MoreHoursTypeList),
-    displayName: S.optional(S.String),
     serviceTypes: S.optional(ServiceTypeList),
+    displayName: S.optional(S.String),
+    moreHoursTypes: S.optional(MoreHoursTypeList),
     name: S.optional(S.String),
   }),
 ).annotate({ identifier: "Category" }) as any as S.Schema<Category>;
@@ -182,60 +182,265 @@ export const BatchGetCategoriesResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "BatchGetCategoriesResponse",
 }) as any as S.Schema<BatchGetCategoriesResponse>;
 
-/** Defines an area that's represented by a place ID. */
-export interface PlaceInfo {
-  /** Required. The localized name of the place. For example, `Scottsdale, AZ`. */
-  placeName?: string;
-  /** Required. The ID of the place. Must correspond to a region. (https://developers.google.com/places/web-service/supported_types#table3) */
-  placeId?: string;
+/** Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and `google.protobuf.Timestamp`. */
+export interface TimeOfDay {
+  /** Minutes of an hour. Must be greater than or equal to 0 and less than or equal to 59. */
+  minutes?: number;
+  /** Hours of a day in 24 hour format. Must be greater than or equal to 0 and typically must be less than or equal to 23. An API may choose to allow the value "24:00:00" for scenarios like business closing time. */
+  hours?: number;
+  /** Fractions of seconds, in nanoseconds. Must be greater than or equal to 0 and less than or equal to 999,999,999. */
+  nanos?: number;
+  /** Seconds of a minute. Must be greater than or equal to 0 and typically must be less than or equal to 59. An API may allow the value 60 if it allows leap-seconds. */
+  seconds?: number;
 }
-export const PlaceInfo = /*@__PURE__*/ S.suspend(() =>
+export const TimeOfDay = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    placeName: S.optional(S.String),
-    placeId: S.optional(S.String),
+    minutes: S.optional(S.Number),
+    hours: S.optional(S.Number),
+    nanos: S.optional(S.Number),
+    seconds: S.optional(S.Number),
   }),
-).annotate({ identifier: "PlaceInfo" }) as any as S.Schema<PlaceInfo>;
+).annotate({ identifier: "TimeOfDay" }) as any as S.Schema<TimeOfDay>;
 
-export type PlaceInfoList = Array<PlaceInfo>;
-export const PlaceInfoList = /*@__PURE__*/ S.Array(
-  PlaceInfo,
-) as any as S.Schema<PlaceInfoList>;
+export type TimePeriodCloseDayEnum =
+  | "DAY_OF_WEEK_UNSPECIFIED"
+  | "MONDAY"
+  | "TUESDAY"
+  | "WEDNESDAY"
+  | "THURSDAY"
+  | "FRIDAY"
+  | "SATURDAY"
+  | "SUNDAY";
+export const TimePeriodCloseDayEnum = /*@__PURE__*/ S.String;
 
-/** Defines the union of areas represented by a set of places. */
-export interface Places {
-  /** The areas represented by place IDs. Limited to a maximum of 20 places. */
-  placeInfos?: PlaceInfoList;
+export type TimePeriodOpenDayEnum =
+  | "DAY_OF_WEEK_UNSPECIFIED"
+  | "MONDAY"
+  | "TUESDAY"
+  | "WEDNESDAY"
+  | "THURSDAY"
+  | "FRIDAY"
+  | "SATURDAY"
+  | "SUNDAY";
+export const TimePeriodOpenDayEnum = /*@__PURE__*/ S.String;
+
+/** Represents a span of time that the business is open, starting on the specified open day/time and closing on the specified close day/time. The closing time must occur after the opening time, for example later in the same day, or on a subsequent day. */
+export interface TimePeriod {
+  /** Required. Valid values are 00:00-24:00, where 24:00 represents midnight at the end of the specified day field. Note: In Proto3 JSON mapping, default zero values (00:00) are omitted, producing `{}` for open_time. */
+  openTime?: TimeOfDay;
+  /** Required. Indicates the day of the week this period ends on. */
+  closeDay?: TimePeriodCloseDayEnum | (string & {});
+  /** Required. Indicates the day of the week this period starts on. */
+  openDay?: TimePeriodOpenDayEnum | (string & {});
+  /** Required. Valid values are 00:00-24:00, where 24:00 represents midnight at the end of the specified day field. Note: In Proto3 JSON mapping, default zero values (00:00) are omitted, producing `{}` for close_time. */
+  closeTime?: TimeOfDay;
 }
-export const Places = /*@__PURE__*/ S.suspend(() =>
+export const TimePeriod = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    placeInfos: S.optional(PlaceInfoList),
+    openTime: S.optional(TimeOfDay),
+    closeDay: S.optional(TimePeriodCloseDayEnum),
+    openDay: S.optional(TimePeriodOpenDayEnum),
+    closeTime: S.optional(TimeOfDay),
   }),
-).annotate({ identifier: "Places" }) as any as S.Schema<Places>;
+).annotate({ identifier: "TimePeriod" }) as any as S.Schema<TimePeriod>;
 
-export type ServiceAreaBusinessBusinessTypeEnum =
-  | "BUSINESS_TYPE_UNSPECIFIED"
-  | "CUSTOMER_LOCATION_ONLY"
-  | "CUSTOMER_AND_BUSINESS_LOCATION";
-export const ServiceAreaBusinessBusinessTypeEnum = /*@__PURE__*/ S.String;
+export type TimePeriodList = Array<TimePeriod>;
+export const TimePeriodList = /*@__PURE__*/ S.Array(
+  TimePeriod,
+) as any as S.Schema<TimePeriodList>;
 
-/** Service area businesses provide their service at the customer's location (for example, a locksmith or plumber). */
-export interface ServiceAreaBusiness {
-  /** The area that this business serves defined through a set of places. */
-  places?: Places;
-  /** Immutable. CLDR region code of the country/region that this service area business is based in. See http://cldr.unicode.org/ and http://www.unicode.org/cldr/charts/30/supplemental/territory_information.html for details. Example: "CH" for Switzerland. This field is required for CUSTOMER_LOCATION_ONLY businesses, and is ignored otherwise. The region specified here can be different from regions for the areas that this business serves (e.g. service area businesses that provide services in regions other than the one that they are based in). If this location requires verification after creation, the address provided for verification purposes *must* be located within this region, and the business owner or their authorized representative *must* be able to receive postal mail at the provided verification address. */
-  regionCode?: string;
-  /** Required. Indicates the type of the service area business. */
-  businessType?: ServiceAreaBusinessBusinessTypeEnum | (string & {});
+/** The time periods during which a location is open for certain types of business. */
+export interface MoreHours {
+  /** Required. A collection of times that this location is open. Each period represents a range of hours when the location is open during the week. */
+  periods?: TimePeriodList;
+  /** Required. Type of hours. Clients should call {#link businessCategories:BatchGet} to get supported hours types for categories of their locations. */
+  hoursTypeId?: string;
 }
-export const ServiceAreaBusiness = /*@__PURE__*/ S.suspend(() =>
+export const MoreHours = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    places: S.optional(Places),
-    regionCode: S.optional(S.String),
-    businessType: S.optional(ServiceAreaBusinessBusinessTypeEnum),
+    periods: S.optional(TimePeriodList),
+    hoursTypeId: S.optional(S.String),
+  }),
+).annotate({ identifier: "MoreHours" }) as any as S.Schema<MoreHours>;
+
+export type MoreHoursList = Array<MoreHours>;
+export const MoreHoursList = /*@__PURE__*/ S.Array(
+  MoreHours,
+) as any as S.Schema<MoreHoursList>;
+
+/** Represents a structured service offered by the merchant. For eg: toilet_installation. */
+export interface StructuredServiceItem {
+  /** Optional. Description of structured service item. The character limit is 300. */
+  description?: string;
+  /** Required. The `service_type_id` field is a Google provided unique ID that can be found in `ServiceType`. This information is provided by `BatchGetCategories` rpc service. */
+  serviceTypeId?: string;
+}
+export const StructuredServiceItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    description: S.optional(S.String),
+    serviceTypeId: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "ServiceAreaBusiness",
-}) as any as S.Schema<ServiceAreaBusiness>;
+  identifier: "StructuredServiceItem",
+}) as any as S.Schema<StructuredServiceItem>;
+
+/** Label to be used when displaying the price list, section, or item. */
+export interface Label {
+  /** Required. Display name for the price list, section, or item. */
+  displayName?: string;
+  /** Optional. Description of the price list, section, or item. */
+  description?: string;
+  /** Optional. The BCP-47 language code that these strings apply for. Only one set of labels may be set per language. */
+  languageCode?: string;
+}
+export const Label = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    displayName: S.optional(S.String),
+    description: S.optional(S.String),
+    languageCode: S.optional(S.String),
+  }),
+).annotate({ identifier: "Label" }) as any as S.Schema<Label>;
+
+/** Represents a free-form service offered by the merchant. These are services that are not exposed as part of our structure service data. The merchant manually enters the names for such services using a geomerchant surface. */
+export interface FreeFormServiceItem {
+  /** Required. This field represents the category name (i.e. the category's stable ID). The `category` and `service_type_id` should match the possible combinations provided in the `Category` message. */
+  category?: string;
+  /** Required. Language-tagged labels for the item. We recommend that item names be 140 characters or less, and descriptions 250 characters or less. This field should only be set if the input is a custom service item. Standardized service types should be updated using service_type_id. */
+  label?: Label;
+}
+export const FreeFormServiceItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    category: S.optional(S.String),
+    label: S.optional(Label),
+  }),
+).annotate({
+  identifier: "FreeFormServiceItem",
+}) as any as S.Schema<FreeFormServiceItem>;
+
+/** Represents an amount of money with its currency type. */
+export interface Money {
+  /** The whole units of the amount. For example if `currencyCode` is `"USD"`, then 1 unit is one US dollar. */
+  units?: string;
+  /** The three-letter currency code defined in ISO 4217. */
+  currencyCode?: string;
+  /** Number of nano (10^-9) units of the amount. The value must be between -999,999,999 and +999,999,999 inclusive. If `units` is positive, `nanos` must be positive or zero. If `units` is zero, `nanos` can be positive, zero, or negative. If `units` is negative, `nanos` must be negative or zero. For example $-1.75 is represented as `units`=-1 and `nanos`=-750,000,000. */
+  nanos?: number;
+}
+export const Money = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    units: S.optional(S.String),
+    currencyCode: S.optional(S.String),
+    nanos: S.optional(S.Number),
+  }),
+).annotate({ identifier: "Money" }) as any as S.Schema<Money>;
+
+/** A message that describes a single service item. It is used to describe the type of service that the merchant provides. For example, haircut can be a service. */
+export interface ServiceItem {
+  /** Optional. This field will be set case of structured services data. */
+  structuredServiceItem?: StructuredServiceItem;
+  /** Optional. This field will be set case of free-form services data. */
+  freeFormServiceItem?: FreeFormServiceItem;
+  /** Optional. Represents the monetary price of the service item. We recommend that currency_code and units should be set when including a price. This will be treated as a fixed price for the service item. */
+  price?: Money;
+}
+export const ServiceItem = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    structuredServiceItem: S.optional(StructuredServiceItem),
+    freeFormServiceItem: S.optional(FreeFormServiceItem),
+    price: S.optional(Money),
+  }),
+).annotate({ identifier: "ServiceItem" }) as any as S.Schema<ServiceItem>;
+
+export type ServiceItemList = Array<ServiceItem>;
+export const ServiceItemList = /*@__PURE__*/ S.Array(
+  ServiceItem,
+) as any as S.Schema<ServiceItemList>;
+
+/** A collection of phone numbers for the business. During updates, both fields must be set. Clients may not update just the primary or additional phone numbers using the update mask. International phone format is preferred, such as "+1 415 555 0132", see more in (https://developers.google.com/style/phone-numbers#international-phone-numbers). */
+export interface PhoneNumbers {
+  /** Optional. Up to two phone numbers (mobile or landline, no fax) at which your business can be called, in addition to your primary phone number. */
+  additionalPhones?: StringList;
+  /** Required. A phone number that connects to your individual business location as directly as possible. Use a local phone number instead of a central, call center helpline number whenever possible. */
+  primaryPhone?: string;
+}
+export const PhoneNumbers = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    additionalPhones: S.optional(StringList),
+    primaryPhone: S.optional(S.String),
+  }),
+).annotate({ identifier: "PhoneNumbers" }) as any as S.Schema<PhoneNumbers>;
+
+/** Additional non-user-editable information about the location. */
+export interface Metadata {
+  /** Output only. Indicates whether any of this Location's properties are in the edit pending state. */
+  hasPendingEdits?: boolean;
+  /** Output only. A link to the page on Google Search where a customer can leave a review for the location. */
+  newReviewUri?: string;
+  /** Output only. Indicates if the listing is eligible for business calls. */
+  canHaveBusinessCalls?: boolean;
+  /** Output only. Indicates if the listing has Voice of Merchant. If this boolean is false, you should call the locations.getVoiceOfMerchantState API to get details as to why they do not have Voice of Merchant. */
+  hasVoiceOfMerchant?: boolean;
+  /** Output only. If this locationappears on Google Maps, this field is populated with the place ID for the location. This ID can be used in various Places APIs. This field can be set during Create calls, but not for Update. */
+  placeId?: string;
+  /** Output only. Indicates if the listing can modify the service list. */
+  canModifyServiceList?: boolean;
+  /** Output only. The location resource that this location duplicates. */
+  duplicateLocation?: string;
+  /** Output only. Indicates if the listing can manage local posts. Deprecated: This field is no longer populated and will be removed in a future version. */
+  canOperateLocalPost?: boolean;
+  /** Output only. */
+  isParticularlyPersonalPlace?: boolean;
+  /** Output only. Indicates whether the location can be deleted using the API. */
+  canDelete?: boolean;
+  /** Output only. Indicates if the listing is eligible for food menu. */
+  canHaveFoodMenus?: boolean;
+  /** Output only. Indicates whether the location can operate on Lodging data. */
+  canOperateLodgingData?: boolean;
+  /** Output only. A link to the location on Maps. */
+  mapsUri?: string;
+  /** Output only. Indicates whether the location can operate on Health data. */
+  canOperateHealthData?: boolean;
+  /** Output only. Indicates whether the place ID associated with this location has updates that need to be updated or rejected by the client. If this boolean is set, you should call the `getGoogleUpdated` method to look up information that's needs to be verified. */
+  hasGoogleUpdated?: boolean;
+}
+export const Metadata = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    hasPendingEdits: S.optional(S.Boolean),
+    newReviewUri: S.optional(S.String),
+    canHaveBusinessCalls: S.optional(S.Boolean),
+    hasVoiceOfMerchant: S.optional(S.Boolean),
+    placeId: S.optional(S.String),
+    canModifyServiceList: S.optional(S.Boolean),
+    duplicateLocation: S.optional(S.String),
+    canOperateLocalPost: S.optional(S.Boolean),
+    isParticularlyPersonalPlace: S.optional(S.Boolean),
+    canDelete: S.optional(S.Boolean),
+    canHaveFoodMenus: S.optional(S.Boolean),
+    canOperateLodgingData: S.optional(S.Boolean),
+    mapsUri: S.optional(S.String),
+    canOperateHealthData: S.optional(S.Boolean),
+    hasGoogleUpdated: S.optional(S.Boolean),
+  }),
+).annotate({ identifier: "Metadata" }) as any as S.Schema<Metadata>;
+
+/** Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp */
+export interface Mybusinessbusinessinformation_Date {
+  /** Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day. */
+  month?: number;
+  /** Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year. */
+  year?: number;
+  /** Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant. */
+  day?: number;
+}
+export const Mybusinessbusinessinformation_Date = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    month: S.optional(S.Number),
+    year: S.optional(S.Number),
+    day: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "Mybusinessbusinessinformation_Date",
+}) as any as S.Schema<Mybusinessbusinessinformation_Date>;
 
 export type OpenInfoStatusEnum =
   | "OPEN_FOR_BUSINESS_UNSPECIFIED"
@@ -244,221 +449,87 @@ export type OpenInfoStatusEnum =
   | "CLOSED_TEMPORARILY";
 export const OpenInfoStatusEnum = /*@__PURE__*/ S.String;
 
-/** Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp */
-export interface Mybusinessbusinessinformation_Date {
-  /** Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day. */
-  month?: number;
-  /** Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant. */
-  day?: number;
-  /** Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year. */
-  year?: number;
-}
-export const Mybusinessbusinessinformation_Date = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    month: S.optional(S.Number),
-    day: S.optional(S.Number),
-    year: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "Mybusinessbusinessinformation_Date",
-}) as any as S.Schema<Mybusinessbusinessinformation_Date>;
-
 /** Information related to the opening state of the business. */
 export interface OpenInfo {
-  /** Required. Indicates whether or not the Location is currently open for business. All locations are open by default, unless updated to be closed. */
-  status?: OpenInfoStatusEnum | (string & {});
   /** Output only. Indicates whether this business is eligible for re-open. */
   canReopen?: boolean;
   /** Optional. The date on which the location first opened. If the exact day is not known, month and year only can be provided. The date must be in the past or be no more than one year in the future. */
   openingDate?: Mybusinessbusinessinformation_Date;
+  /** Required. Indicates whether or not the Location is currently open for business. All locations are open by default, unless updated to be closed. */
+  status?: OpenInfoStatusEnum | (string & {});
 }
 export const OpenInfo = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    status: S.optional(OpenInfoStatusEnum),
     canReopen: S.optional(S.Boolean),
     openingDate: S.optional(Mybusinessbusinessinformation_Date),
+    status: S.optional(OpenInfoStatusEnum),
   }),
 ).annotate({ identifier: "OpenInfo" }) as any as S.Schema<OpenInfo>;
 
-/** Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and `google.protobuf.Timestamp`. */
-export interface TimeOfDay {
-  /** Seconds of a minute. Must be greater than or equal to 0 and typically must be less than or equal to 59. An API may allow the value 60 if it allows leap-seconds. */
-  seconds?: number;
-  /** Hours of a day in 24 hour format. Must be greater than or equal to 0 and typically must be less than or equal to 23. An API may choose to allow the value "24:00:00" for scenarios like business closing time. */
-  hours?: number;
-  /** Fractions of seconds, in nanoseconds. Must be greater than or equal to 0 and less than or equal to 999,999,999. */
-  nanos?: number;
-  /** Minutes of an hour. Must be greater than or equal to 0 and less than or equal to 59. */
-  minutes?: number;
-}
-export const TimeOfDay = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    seconds: S.optional(S.Number),
-    hours: S.optional(S.Number),
-    nanos: S.optional(S.Number),
-    minutes: S.optional(S.Number),
-  }),
-).annotate({ identifier: "TimeOfDay" }) as any as S.Schema<TimeOfDay>;
-
-/** Represents a single time period when a location's operational hours differ from its normal business hours. A special hour period must represent a range of less than 24 hours. The `open_time` and `start_date` must predate the `close_time` and `end_date`. The `close_time` and `end_date` can extend to 11:59 a.m. on the day after the specified `start_date`. For example, the following inputs are valid: start_date=2015-11-23, open_time=08:00, close_time=18:00 start_date=2015-11-23, end_date=2015-11-23, open_time=08:00, close_time=18:00 start_date=2015-11-23, end_date=2015-11-24, open_time=13:00, close_time=11:59 The following inputs are not valid: start_date=2015-11-23, open_time=13:00, close_time=11:59 start_date=2015-11-23, end_date=2015-11-24, open_time=13:00, close_time=12:00 start_date=2015-11-23, end_date=2015-11-25, open_time=08:00, close_time=18:00 */
-export interface SpecialHourPeriod {
-  /** Required. The calendar date this special hour period starts on. */
-  startDate?: Mybusinessbusinessinformation_Date;
-  /** Optional. Valid values are 00:00-24:00, where 24:00 represents midnight at the end of the specified day field. Must be specified if `closed` is false. */
-  closeTime?: TimeOfDay;
-  /** Optional. Valid values are 00:00-24:00 where 24:00 represents midnight at the end of the specified day field. Must be specified if `closed` is false. */
-  openTime?: TimeOfDay;
-  /** Optional. If true, `end_date`, `open_time`, and `close_time` are ignored, and the date specified in `start_date` is treated as the location being closed for the entire day. */
-  closed?: boolean;
-  /** Optional. The calendar date this special hour period ends on. If `end_date` field is not set, default to the date specified in `start_date`. If set, this field must be equal to or at most 1 day after `start_date`. */
-  endDate?: Mybusinessbusinessinformation_Date;
-}
-export const SpecialHourPeriod = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    startDate: S.optional(Mybusinessbusinessinformation_Date),
-    closeTime: S.optional(TimeOfDay),
-    openTime: S.optional(TimeOfDay),
-    closed: S.optional(S.Boolean),
-    endDate: S.optional(Mybusinessbusinessinformation_Date),
-  }),
-).annotate({
-  identifier: "SpecialHourPeriod",
-}) as any as S.Schema<SpecialHourPeriod>;
-
-export type SpecialHourPeriodList = Array<SpecialHourPeriod>;
-export const SpecialHourPeriodList = /*@__PURE__*/ S.Array(
-  SpecialHourPeriod,
-) as any as S.Schema<SpecialHourPeriodList>;
-
-/** Represents a set of time periods when a location's operational hours differ from its normal business hours. */
-export interface SpecialHours {
-  /** Required. A list of exceptions to the business's regular hours. */
-  specialHourPeriods?: SpecialHourPeriodList;
-}
-export const SpecialHours = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    specialHourPeriods: S.optional(SpecialHourPeriodList),
-  }),
-).annotate({ identifier: "SpecialHours" }) as any as S.Schema<SpecialHours>;
-
-/** All information pertaining to the location's profile. */
-export interface Profile {
-  /** Required. Description of the location in your own voice, not editable by anyone else. */
-  description?: string;
-}
-export const Profile = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    description: S.optional(S.String),
-  }),
-).annotate({ identifier: "Profile" }) as any as S.Schema<Profile>;
-
-/** Additional non-user-editable information about the location. */
-export interface Metadata {
-  /** Output only. If this locationappears on Google Maps, this field is populated with the place ID for the location. This ID can be used in various Places APIs. This field can be set during Create calls, but not for Update. */
-  placeId?: string;
-  /** Output only. */
-  isParticularlyPersonalPlace?: boolean;
-  /** Output only. Indicates whether the location can be deleted using the API. */
-  canDelete?: boolean;
-  /** Output only. Indicates whether any of this Location's properties are in the edit pending state. */
-  hasPendingEdits?: boolean;
-  /** Output only. The location resource that this location duplicates. */
-  duplicateLocation?: string;
-  /** Output only. Indicates if the listing can modify the service list. */
-  canModifyServiceList?: boolean;
-  /** Output only. Indicates whether the place ID associated with this location has updates that need to be updated or rejected by the client. If this boolean is set, you should call the `getGoogleUpdated` method to look up information that's needs to be verified. */
-  hasGoogleUpdated?: boolean;
-  /** Output only. A link to the page on Google Search where a customer can leave a review for the location. */
-  newReviewUri?: string;
-  /** Output only. Indicates if the listing is eligible for food menu. */
-  canHaveFoodMenus?: boolean;
-  /** Output only. A link to the location on Maps. */
-  mapsUri?: string;
-  /** Output only. Indicates if the listing can manage local posts. Deprecated: This field is no longer populated and will be removed in a future version. */
-  canOperateLocalPost?: boolean;
-  /** Output only. Indicates if the listing has Voice of Merchant. If this boolean is false, you should call the locations.getVoiceOfMerchantState API to get details as to why they do not have Voice of Merchant. */
-  hasVoiceOfMerchant?: boolean;
-  /** Output only. Indicates whether the location can operate on Lodging data. */
-  canOperateLodgingData?: boolean;
-  /** Output only. Indicates whether the location can operate on Health data. */
-  canOperateHealthData?: boolean;
-  /** Output only. Indicates if the listing is eligible for business calls. */
-  canHaveBusinessCalls?: boolean;
-}
-export const Metadata = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    placeId: S.optional(S.String),
-    isParticularlyPersonalPlace: S.optional(S.Boolean),
-    canDelete: S.optional(S.Boolean),
-    hasPendingEdits: S.optional(S.Boolean),
-    duplicateLocation: S.optional(S.String),
-    canModifyServiceList: S.optional(S.Boolean),
-    hasGoogleUpdated: S.optional(S.Boolean),
-    newReviewUri: S.optional(S.String),
-    canHaveFoodMenus: S.optional(S.Boolean),
-    mapsUri: S.optional(S.String),
-    canOperateLocalPost: S.optional(S.Boolean),
-    hasVoiceOfMerchant: S.optional(S.Boolean),
-    canOperateLodgingData: S.optional(S.Boolean),
-    canOperateHealthData: S.optional(S.Boolean),
-    canHaveBusinessCalls: S.optional(S.Boolean),
-  }),
-).annotate({ identifier: "Metadata" }) as any as S.Schema<Metadata>;
-
-/** A collection of categories that describes the business. During updates, both fields must be set. Clients are prohibited from individually updating the primary or additional categories using the update mask. */
-export interface Categories {
-  /** Optional. Additional categories to describe your business. Categories help your customers find accurate, specific results for services they're interested in. To keep your business information accurate and live, make sure that you use as few categories as possible to describe your overall core business. Choose categories that are as specific as possible, but representative of your main business. */
-  additionalCategories?: CategoryList;
-  /** Required. Category that best describes the core business this location engages in. */
-  primaryCategory?: Category;
-}
-export const Categories = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    additionalCategories: S.optional(CategoryList),
-    primaryCategory: S.optional(Category),
-  }),
-).annotate({ identifier: "Categories" }) as any as S.Schema<Categories>;
-
 /** Represents a postal address, such as for postal delivery or payments addresses. With a postal address, a postal service can deliver items to a premise, P.O. box, or similar. A postal address is not intended to model geographical locations like roads, towns, or mountains. In typical usage, an address would be created by user input or from importing existing data, depending on the type of process. Advice on address input or editing: - Use an internationalization-ready address widget such as https://github.com/google/libaddressinput. - Users should not be presented with UI elements for input or editing of fields outside countries where that field is used. For more guidance on how to use this schema, see: https://support.google.com/business/answer/6397478. */
 export interface PostalAddress {
-  /** Optional. The name of the organization at the address. */
-  organization?: string;
+  /** Optional. Additional, country-specific, sorting code. This is not used in most regions. Where it is used, the value is either a string like "CEDEX", optionally followed by a number (for example, "CEDEX 7"), or just a number alone, representing the "sector code" (Jamaica), "delivery area indicator" (Malawi) or "post office indicator" (Côte d'Ivoire). */
+  sortingCode?: string;
   /** Optional. The recipient at the address. This field may, under certain circumstances, contain multiline information. For example, it might contain "care of" information. */
   recipients?: StringList;
   /** Optional. BCP-47 language code of the contents of this address (if known). This is often the UI language of the input form or is expected to match one of the languages used in the address' country/region, or their transliterated equivalents. This can affect formatting in certain countries, but is not critical to the correctness of the data and will never affect any validation or other non-formatting related operations. If this value is not known, it should be omitted (rather than specifying a possibly incorrect default). Examples: "zh-Hant", "ja", "ja-Latn", "en". */
   languageCode?: string;
+  /** Unstructured address lines describing the lower levels of an address. Because values in `address_lines` do not have type information and may sometimes contain multiple values in a single field (for example, "Austin, TX"), it is important that the line order is clear. The order of address lines should be "envelope order" for the country or region of the address. In places where this can vary (for example, Japan), `address_language` is used to make it explicit (for example, "ja" for large-to-small ordering and "ja-Latn" or "en" for small-to-large). In this way, the most specific line of an address can be selected based on the language. The minimum permitted structural representation of an address consists of a `region_code` with all remaining information placed in the `address_lines`. It would be possible to format such an address very approximately without geocoding, but no semantic reasoning could be made about any of the address components until it was at least partially resolved. Creating an address only containing a `region_code` and `address_lines` and then geocoding is the recommended way to handle completely unstructured addresses (as opposed to guessing which parts of the address should be localities or administrative areas). */
+  addressLines?: StringList;
   /** Optional. Highest administrative subdivision which is used for postal addresses of a country or region. For example, this can be a state, a province, an oblast, or a prefecture. For Spain, this is the province and not the autonomous community (for example, "Barcelona" and not "Catalonia"). Many countries don't use an administrative area in postal addresses. For example, in Switzerland, this should be left unpopulated. */
   administrativeArea?: string;
   /** Optional. Postal code of the address. Not all countries use or require postal codes to be present, but where they are used, they may trigger additional validation with other parts of the address (for example, state or zip code validation in the United States). */
   postalCode?: string;
-  /** Optional. Generally refers to the city or town portion of the address. Examples: US city, IT comune, UK post town. In regions of the world where localities are not well defined or do not fit into this structure well, leave `locality` empty and use `address_lines`. */
-  locality?: string;
-  /** Optional. Additional, country-specific, sorting code. This is not used in most regions. Where it is used, the value is either a string like "CEDEX", optionally followed by a number (for example, "CEDEX 7"), or just a number alone, representing the "sector code" (Jamaica), "delivery area indicator" (Malawi) or "post office indicator" (Côte d'Ivoire). */
-  sortingCode?: string;
-  /** Unstructured address lines describing the lower levels of an address. Because values in `address_lines` do not have type information and may sometimes contain multiple values in a single field (for example, "Austin, TX"), it is important that the line order is clear. The order of address lines should be "envelope order" for the country or region of the address. In places where this can vary (for example, Japan), `address_language` is used to make it explicit (for example, "ja" for large-to-small ordering and "ja-Latn" or "en" for small-to-large). In this way, the most specific line of an address can be selected based on the language. The minimum permitted structural representation of an address consists of a `region_code` with all remaining information placed in the `address_lines`. It would be possible to format such an address very approximately without geocoding, but no semantic reasoning could be made about any of the address components until it was at least partially resolved. Creating an address only containing a `region_code` and `address_lines` and then geocoding is the recommended way to handle completely unstructured addresses (as opposed to guessing which parts of the address should be localities or administrative areas). */
-  addressLines?: StringList;
-  /** Required. CLDR region code of the country/region of the address. This is never inferred and it is up to the user to ensure the value is correct. See https://cldr.unicode.org/ and https://www.unicode.org/cldr/charts/30/supplemental/territory_information.html for details. Example: "CH" for Switzerland. */
-  regionCode?: string;
-  /** Optional. Sublocality of the address. For example, this can be a neighborhood, borough, or district. */
-  sublocality?: string;
   /** The schema revision of the `PostalAddress`. This must be set to 0, which is the latest revision. All new revisions **must** be backward compatible with old revisions. */
   revision?: number;
+  /** Optional. Sublocality of the address. For example, this can be a neighborhood, borough, or district. */
+  sublocality?: string;
+  /** Optional. The name of the organization at the address. */
+  organization?: string;
+  /** Optional. Generally refers to the city or town portion of the address. Examples: US city, IT comune, UK post town. In regions of the world where localities are not well defined or do not fit into this structure well, leave `locality` empty and use `address_lines`. */
+  locality?: string;
+  /** Required. CLDR region code of the country/region of the address. This is never inferred and it is up to the user to ensure the value is correct. See https://cldr.unicode.org/ and https://www.unicode.org/cldr/charts/30/supplemental/territory_information.html for details. Example: "CH" for Switzerland. */
+  regionCode?: string;
 }
 export const PostalAddress = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    organization: S.optional(S.String),
+    sortingCode: S.optional(S.String),
     recipients: S.optional(StringList),
     languageCode: S.optional(S.String),
+    addressLines: S.optional(StringList),
     administrativeArea: S.optional(S.String),
     postalCode: S.optional(S.String),
-    locality: S.optional(S.String),
-    sortingCode: S.optional(S.String),
-    addressLines: S.optional(StringList),
-    regionCode: S.optional(S.String),
-    sublocality: S.optional(S.String),
     revision: S.optional(S.Number),
+    sublocality: S.optional(S.String),
+    organization: S.optional(S.String),
+    locality: S.optional(S.String),
+    regionCode: S.optional(S.String),
   }),
 ).annotate({ identifier: "PostalAddress" }) as any as S.Schema<PostalAddress>;
+
+/** Additional information that is surfaced in AdWords. */
+export interface AdWordsLocationExtensions {
+  /** Required. An alternate phone number to display on AdWords location extensions instead of the location's primary phone number. */
+  adPhone?: string;
+}
+export const AdWordsLocationExtensions = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    adPhone: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "AdWordsLocationExtensions",
+}) as any as S.Schema<AdWordsLocationExtensions>;
+
+/** Represents the time periods that this location is open for business. Holds a collection of TimePeriod instances. */
+export interface BusinessHours {
+  /** Required. A collection of times that this location is open for business. Each period represents a range of hours when the location is open during the week. */
+  periods?: TimePeriodList;
+}
+export const BusinessHours = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    periods: S.optional(TimePeriodList),
+  }),
+).annotate({ identifier: "BusinessHours" }) as any as S.Schema<BusinessHours>;
 
 export type RelevantLocationRelationTypeEnum =
   | "RELATION_TYPE_UNSPECIFIED"
@@ -489,200 +560,143 @@ export const RelevantLocationList = /*@__PURE__*/ S.Array(
 
 /** Information of all parent and children locations related to this one. */
 export interface RelationshipData {
+  /** The list of children locations that this location has relations with. */
+  childrenLocations?: RelevantLocationList;
   /** The parent location that this location has relations with. */
   parentLocation?: RelevantLocation;
   /** The resource name of the Chain that this location is member of. How to find Chain ID */
   parentChain?: string;
-  /** The list of children locations that this location has relations with. */
-  childrenLocations?: RelevantLocationList;
 }
 export const RelationshipData = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    childrenLocations: S.optional(RelevantLocationList),
     parentLocation: S.optional(RelevantLocation),
     parentChain: S.optional(S.String),
-    childrenLocations: S.optional(RelevantLocationList),
   }),
 ).annotate({
   identifier: "RelationshipData",
 }) as any as S.Schema<RelationshipData>;
 
-export type TimePeriodCloseDayEnum =
-  | "DAY_OF_WEEK_UNSPECIFIED"
-  | "MONDAY"
-  | "TUESDAY"
-  | "WEDNESDAY"
-  | "THURSDAY"
-  | "FRIDAY"
-  | "SATURDAY"
-  | "SUNDAY";
-export const TimePeriodCloseDayEnum = /*@__PURE__*/ S.String;
-
-export type TimePeriodOpenDayEnum =
-  | "DAY_OF_WEEK_UNSPECIFIED"
-  | "MONDAY"
-  | "TUESDAY"
-  | "WEDNESDAY"
-  | "THURSDAY"
-  | "FRIDAY"
-  | "SATURDAY"
-  | "SUNDAY";
-export const TimePeriodOpenDayEnum = /*@__PURE__*/ S.String;
-
-/** Represents a span of time that the business is open, starting on the specified open day/time and closing on the specified close day/time. The closing time must occur after the opening time, for example later in the same day, or on a subsequent day. */
-export interface TimePeriod {
-  /** Required. Valid values are 00:00-24:00, where 24:00 represents midnight at the end of the specified day field. Note: In Proto3 JSON mapping, default zero values (00:00) are omitted, producing `{}` for open_time. */
-  openTime?: TimeOfDay;
-  /** Required. Valid values are 00:00-24:00, where 24:00 represents midnight at the end of the specified day field. Note: In Proto3 JSON mapping, default zero values (00:00) are omitted, producing `{}` for close_time. */
+/** Represents a single time period when a location's operational hours differ from its normal business hours. A special hour period must represent a range of less than 24 hours. The `open_time` and `start_date` must predate the `close_time` and `end_date`. The `close_time` and `end_date` can extend to 11:59 a.m. on the day after the specified `start_date`. For example, the following inputs are valid: start_date=2015-11-23, open_time=08:00, close_time=18:00 start_date=2015-11-23, end_date=2015-11-23, open_time=08:00, close_time=18:00 start_date=2015-11-23, end_date=2015-11-24, open_time=13:00, close_time=11:59 The following inputs are not valid: start_date=2015-11-23, open_time=13:00, close_time=11:59 start_date=2015-11-23, end_date=2015-11-24, open_time=13:00, close_time=12:00 start_date=2015-11-23, end_date=2015-11-25, open_time=08:00, close_time=18:00 */
+export interface SpecialHourPeriod {
+  /** Required. The calendar date this special hour period starts on. */
+  startDate?: Mybusinessbusinessinformation_Date;
+  /** Optional. Valid values are 00:00-24:00, where 24:00 represents midnight at the end of the specified day field. Must be specified if `closed` is false. */
   closeTime?: TimeOfDay;
-  /** Required. Indicates the day of the week this period ends on. */
-  closeDay?: TimePeriodCloseDayEnum | (string & {});
-  /** Required. Indicates the day of the week this period starts on. */
-  openDay?: TimePeriodOpenDayEnum | (string & {});
+  /** Optional. The calendar date this special hour period ends on. If `end_date` field is not set, default to the date specified in `start_date`. If set, this field must be equal to or at most 1 day after `start_date`. */
+  endDate?: Mybusinessbusinessinformation_Date;
+  /** Optional. If true, `end_date`, `open_time`, and `close_time` are ignored, and the date specified in `start_date` is treated as the location being closed for the entire day. */
+  closed?: boolean;
+  /** Optional. Valid values are 00:00-24:00 where 24:00 represents midnight at the end of the specified day field. Must be specified if `closed` is false. */
+  openTime?: TimeOfDay;
 }
-export const TimePeriod = /*@__PURE__*/ S.suspend(() =>
+export const SpecialHourPeriod = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    openTime: S.optional(TimeOfDay),
+    startDate: S.optional(Mybusinessbusinessinformation_Date),
     closeTime: S.optional(TimeOfDay),
-    closeDay: S.optional(TimePeriodCloseDayEnum),
-    openDay: S.optional(TimePeriodOpenDayEnum),
-  }),
-).annotate({ identifier: "TimePeriod" }) as any as S.Schema<TimePeriod>;
-
-export type TimePeriodList = Array<TimePeriod>;
-export const TimePeriodList = /*@__PURE__*/ S.Array(
-  TimePeriod,
-) as any as S.Schema<TimePeriodList>;
-
-/** The time periods during which a location is open for certain types of business. */
-export interface MoreHours {
-  /** Required. Type of hours. Clients should call {#link businessCategories:BatchGet} to get supported hours types for categories of their locations. */
-  hoursTypeId?: string;
-  /** Required. A collection of times that this location is open. Each period represents a range of hours when the location is open during the week. */
-  periods?: TimePeriodList;
-}
-export const MoreHours = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    hoursTypeId: S.optional(S.String),
-    periods: S.optional(TimePeriodList),
-  }),
-).annotate({ identifier: "MoreHours" }) as any as S.Schema<MoreHours>;
-
-export type MoreHoursList = Array<MoreHours>;
-export const MoreHoursList = /*@__PURE__*/ S.Array(
-  MoreHours,
-) as any as S.Schema<MoreHoursList>;
-
-/** Represents the time periods that this location is open for business. Holds a collection of TimePeriod instances. */
-export interface BusinessHours {
-  /** Required. A collection of times that this location is open for business. Each period represents a range of hours when the location is open during the week. */
-  periods?: TimePeriodList;
-}
-export const BusinessHours = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    periods: S.optional(TimePeriodList),
-  }),
-).annotate({ identifier: "BusinessHours" }) as any as S.Schema<BusinessHours>;
-
-/** Additional information that is surfaced in AdWords. */
-export interface AdWordsLocationExtensions {
-  /** Required. An alternate phone number to display on AdWords location extensions instead of the location's primary phone number. */
-  adPhone?: string;
-}
-export const AdWordsLocationExtensions = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    adPhone: S.optional(S.String),
+    endDate: S.optional(Mybusinessbusinessinformation_Date),
+    closed: S.optional(S.Boolean),
+    openTime: S.optional(TimeOfDay),
   }),
 ).annotate({
-  identifier: "AdWordsLocationExtensions",
-}) as any as S.Schema<AdWordsLocationExtensions>;
+  identifier: "SpecialHourPeriod",
+}) as any as S.Schema<SpecialHourPeriod>;
 
-/** Represents an amount of money with its currency type. */
-export interface Money {
-  /** The whole units of the amount. For example if `currencyCode` is `"USD"`, then 1 unit is one US dollar. */
-  units?: string;
-  /** The three-letter currency code defined in ISO 4217. */
-  currencyCode?: string;
-  /** Number of nano (10^-9) units of the amount. The value must be between -999,999,999 and +999,999,999 inclusive. If `units` is positive, `nanos` must be positive or zero. If `units` is zero, `nanos` can be positive, zero, or negative. If `units` is negative, `nanos` must be negative or zero. For example $-1.75 is represented as `units`=-1 and `nanos`=-750,000,000. */
-  nanos?: number;
+export type SpecialHourPeriodList = Array<SpecialHourPeriod>;
+export const SpecialHourPeriodList = /*@__PURE__*/ S.Array(
+  SpecialHourPeriod,
+) as any as S.Schema<SpecialHourPeriodList>;
+
+/** Represents a set of time periods when a location's operational hours differ from its normal business hours. */
+export interface SpecialHours {
+  /** Required. A list of exceptions to the business's regular hours. */
+  specialHourPeriods?: SpecialHourPeriodList;
 }
-export const Money = /*@__PURE__*/ S.suspend(() =>
+export const SpecialHours = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    units: S.optional(S.String),
-    currencyCode: S.optional(S.String),
-    nanos: S.optional(S.Number),
+    specialHourPeriods: S.optional(SpecialHourPeriodList),
   }),
-).annotate({ identifier: "Money" }) as any as S.Schema<Money>;
+).annotate({ identifier: "SpecialHours" }) as any as S.Schema<SpecialHours>;
 
-/** Label to be used when displaying the price list, section, or item. */
-export interface Label {
-  /** Optional. The BCP-47 language code that these strings apply for. Only one set of labels may be set per language. */
-  languageCode?: string;
-  /** Optional. Description of the price list, section, or item. */
-  description?: string;
-  /** Required. Display name for the price list, section, or item. */
-  displayName?: string;
+/** A collection of categories that describes the business. During updates, both fields must be set. Clients are prohibited from individually updating the primary or additional categories using the update mask. */
+export interface Categories {
+  /** Required. Category that best describes the core business this location engages in. */
+  primaryCategory?: Category;
+  /** Optional. Additional categories to describe your business. Categories help your customers find accurate, specific results for services they're interested in. To keep your business information accurate and live, make sure that you use as few categories as possible to describe your overall core business. Choose categories that are as specific as possible, but representative of your main business. */
+  additionalCategories?: CategoryList;
 }
-export const Label = /*@__PURE__*/ S.suspend(() =>
+export const Categories = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    languageCode: S.optional(S.String),
-    description: S.optional(S.String),
-    displayName: S.optional(S.String),
+    primaryCategory: S.optional(Category),
+    additionalCategories: S.optional(CategoryList),
   }),
-).annotate({ identifier: "Label" }) as any as S.Schema<Label>;
+).annotate({ identifier: "Categories" }) as any as S.Schema<Categories>;
 
-/** Represents a free-form service offered by the merchant. These are services that are not exposed as part of our structure service data. The merchant manually enters the names for such services using a geomerchant surface. */
-export interface FreeFormServiceItem {
-  /** Required. This field represents the category name (i.e. the category's stable ID). The `category` and `service_type_id` should match the possible combinations provided in the `Category` message. */
-  category?: string;
-  /** Required. Language-tagged labels for the item. We recommend that item names be 140 characters or less, and descriptions 250 characters or less. This field should only be set if the input is a custom service item. Standardized service types should be updated using service_type_id. */
-  label?: Label;
-}
-export const FreeFormServiceItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    category: S.optional(S.String),
-    label: S.optional(Label),
-  }),
-).annotate({
-  identifier: "FreeFormServiceItem",
-}) as any as S.Schema<FreeFormServiceItem>;
-
-/** Represents a structured service offered by the merchant. For eg: toilet_installation. */
-export interface StructuredServiceItem {
-  /** Required. The `service_type_id` field is a Google provided unique ID that can be found in `ServiceType`. This information is provided by `BatchGetCategories` rpc service. */
-  serviceTypeId?: string;
-  /** Optional. Description of structured service item. The character limit is 300. */
+/** All information pertaining to the location's profile. */
+export interface Profile {
+  /** Required. Description of the location in your own voice, not editable by anyone else. */
   description?: string;
 }
-export const StructuredServiceItem = /*@__PURE__*/ S.suspend(() =>
+export const Profile = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    serviceTypeId: S.optional(S.String),
     description: S.optional(S.String),
   }),
-).annotate({
-  identifier: "StructuredServiceItem",
-}) as any as S.Schema<StructuredServiceItem>;
+).annotate({ identifier: "Profile" }) as any as S.Schema<Profile>;
 
-/** A message that describes a single service item. It is used to describe the type of service that the merchant provides. For example, haircut can be a service. */
-export interface ServiceItem {
-  /** Optional. Represents the monetary price of the service item. We recommend that currency_code and units should be set when including a price. This will be treated as a fixed price for the service item. */
-  price?: Money;
-  /** Optional. This field will be set case of free-form services data. */
-  freeFormServiceItem?: FreeFormServiceItem;
-  /** Optional. This field will be set case of structured services data. */
-  structuredServiceItem?: StructuredServiceItem;
+/** Defines an area that's represented by a place ID. */
+export interface PlaceInfo {
+  /** Required. The ID of the place. Must correspond to a region. (https://developers.google.com/places/web-service/supported_types#table3) */
+  placeId?: string;
+  /** Required. The localized name of the place. For example, `Scottsdale, AZ`. */
+  placeName?: string;
 }
-export const ServiceItem = /*@__PURE__*/ S.suspend(() =>
+export const PlaceInfo = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    price: S.optional(Money),
-    freeFormServiceItem: S.optional(FreeFormServiceItem),
-    structuredServiceItem: S.optional(StructuredServiceItem),
+    placeId: S.optional(S.String),
+    placeName: S.optional(S.String),
   }),
-).annotate({ identifier: "ServiceItem" }) as any as S.Schema<ServiceItem>;
+).annotate({ identifier: "PlaceInfo" }) as any as S.Schema<PlaceInfo>;
 
-export type ServiceItemList = Array<ServiceItem>;
-export const ServiceItemList = /*@__PURE__*/ S.Array(
-  ServiceItem,
-) as any as S.Schema<ServiceItemList>;
+export type PlaceInfoList = Array<PlaceInfo>;
+export const PlaceInfoList = /*@__PURE__*/ S.Array(
+  PlaceInfo,
+) as any as S.Schema<PlaceInfoList>;
+
+/** Defines the union of areas represented by a set of places. */
+export interface Places {
+  /** The areas represented by place IDs. Limited to a maximum of 20 places. */
+  placeInfos?: PlaceInfoList;
+}
+export const Places = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    placeInfos: S.optional(PlaceInfoList),
+  }),
+).annotate({ identifier: "Places" }) as any as S.Schema<Places>;
+
+export type ServiceAreaBusinessBusinessTypeEnum =
+  | "BUSINESS_TYPE_UNSPECIFIED"
+  | "CUSTOMER_LOCATION_ONLY"
+  | "CUSTOMER_AND_BUSINESS_LOCATION";
+export const ServiceAreaBusinessBusinessTypeEnum = /*@__PURE__*/ S.String;
+
+/** Service area businesses provide their service at the customer's location (for example, a locksmith or plumber). */
+export interface ServiceAreaBusiness {
+  /** The area that this business serves defined through a set of places. */
+  places?: Places;
+  /** Required. Indicates the type of the service area business. */
+  businessType?: ServiceAreaBusinessBusinessTypeEnum | (string & {});
+  /** Immutable. CLDR region code of the country/region that this service area business is based in. See http://cldr.unicode.org/ and http://www.unicode.org/cldr/charts/30/supplemental/territory_information.html for details. Example: "CH" for Switzerland. This field is required for CUSTOMER_LOCATION_ONLY businesses, and is ignored otherwise. The region specified here can be different from regions for the areas that this business serves (e.g. service area businesses that provide services in regions other than the one that they are based in). If this location requires verification after creation, the address provided for verification purposes *must* be located within this region, and the business owner or their authorized representative *must* be able to receive postal mail at the provided verification address. */
+  regionCode?: string;
+}
+export const ServiceAreaBusiness = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    places: S.optional(Places),
+    businessType: S.optional(ServiceAreaBusinessBusinessTypeEnum),
+    regionCode: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ServiceAreaBusiness",
+}) as any as S.Schema<ServiceAreaBusiness>;
 
 /** An object that represents a latitude/longitude pair. This is expressed as a pair of doubles to represent degrees latitude and degrees longitude. Unless specified otherwise, this object must conform to the WGS84 standard. Values must be within normalized ranges. */
 export interface LatLng {
@@ -698,103 +712,89 @@ export const LatLng = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "LatLng" }) as any as S.Schema<LatLng>;
 
-/** A collection of phone numbers for the business. During updates, both fields must be set. Clients may not update just the primary or additional phone numbers using the update mask. International phone format is preferred, such as "+1 415 555 0132", see more in (https://developers.google.com/style/phone-numbers#international-phone-numbers). */
-export interface PhoneNumbers {
-  /** Optional. Up to two phone numbers (mobile or landline, no fax) at which your business can be called, in addition to your primary phone number. */
-  additionalPhones?: StringList;
-  /** Required. A phone number that connects to your individual business location as directly as possible. Use a local phone number instead of a central, call center helpline number whenever possible. */
-  primaryPhone?: string;
-}
-export const PhoneNumbers = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    additionalPhones: S.optional(StringList),
-    primaryPhone: S.optional(S.String),
-  }),
-).annotate({ identifier: "PhoneNumbers" }) as any as S.Schema<PhoneNumbers>;
-
 /** A location. See the [help center article] (https://support.google.com/business/answer/3038177) for a detailed description of these fields, or the [category endpoint](/my-business/reference/rest/v4/categories) for a list of valid business categories. */
 export interface Location {
-  /** Immutable. The language of the location. Set during creation and not updateable. */
-  languageCode?: string;
   /** Optional. A collection of free-form strings to allow you to tag your business. These labels are NOT user facing; only you can see them. Must be between 1-255 characters per label. */
   labels?: StringList;
-  /** Optional. Service area businesses provide their service at the customer's location. If this business is a service area business, this field describes the area(s) serviced by the business. */
-  serviceArea?: ServiceAreaBusiness;
-  /** Optional. A flag that indicates whether the location is currently open for business. */
-  openInfo?: OpenInfo;
-  /** Optional. Special hours for the business. This typically includes holiday hours, and other times outside of regular operating hours. These override regular business hours. This field cannot be set without regular hours. */
-  specialHours?: SpecialHours;
-  /** Optional. Describes your business in your own voice and shares with users the unique story of your business and offerings. This field is required for all categories except lodging categories (e.g., hotels, motels, inns). */
-  profile?: Profile;
-  /** Output only. Additional non-user-editable information. */
-  metadata?: Metadata;
-  /** Optional. The different categories that describe the business. */
-  categories?: Categories;
-  /** Optional. A precise, accurate address to describe your business location. PO boxes or mailboxes located at remote locations are not acceptable. At this time, you can specify a maximum of five `address_lines` values in the address. This field should only be set for businesses that have a storefront. This field should not be set for locations of type `CUSTOMER_LOCATION_ONLY` but if set, any value provided will be discarded. */
-  storefrontAddress?: PostalAddress;
-  /** Optional. All locations and chain related to this one. */
-  relationshipData?: RelationshipData;
-  /** Optional. A URL for this business. If possible, use a URL that represents this individual business location instead of a generic website/URL that represents all locations, or the brand. */
-  websiteUri?: string;
-  /** Optional. External identifier for this location, which must be unique within a given account. This is a means of associating the location with your own records. */
-  storeCode?: string;
   /** Optional. More hours for a business's different departments or specific customers. */
   moreHours?: MoreHoursList;
-  /** Optional. Operating hours for the business. */
-  regularHours?: BusinessHours;
-  /** Optional. Additional information that is surfaced in AdWords. */
-  adWordsLocationExtensions?: AdWordsLocationExtensions;
+  /** Immutable. The language of the location. Set during creation and not updateable. */
+  languageCode?: string;
   /** Optional. List of services supported by merchants. A service can be haircut, install water heater, etc. Duplicated service items will be removed automatically. */
   serviceItems?: ServiceItemList;
-  /** Google identifier for this location in the form: `locations/{location_id}`. */
-  name?: string;
-  /** Optional. User-provided latitude and longitude. When creating a location, this field is ignored if the provided address geocodes successfully. This field is only returned on get requests if the user-provided `latlng` value was accepted during create, or the `latlng` value was updated through the Google Business Profile website. This field can only be updated by approved clients. */
-  latlng?: LatLng;
   /** Optional. The different phone numbers that customers can use to get in touch with the business. */
   phoneNumbers?: PhoneNumbers;
+  /** Output only. Additional non-user-editable information. */
+  metadata?: Metadata;
+  /** Optional. A URL for this business. If possible, use a URL that represents this individual business location instead of a generic website/URL that represents all locations, or the brand. */
+  websiteUri?: string;
+  /** Optional. A flag that indicates whether the location is currently open for business. */
+  openInfo?: OpenInfo;
+  /** Optional. A precise, accurate address to describe your business location. PO boxes or mailboxes located at remote locations are not acceptable. At this time, you can specify a maximum of five `address_lines` values in the address. This field should only be set for businesses that have a storefront. This field should not be set for locations of type `CUSTOMER_LOCATION_ONLY` but if set, any value provided will be discarded. */
+  storefrontAddress?: PostalAddress;
+  /** Optional. External identifier for this location, which must be unique within a given account. This is a means of associating the location with your own records. */
+  storeCode?: string;
+  /** Optional. Additional information that is surfaced in AdWords. */
+  adWordsLocationExtensions?: AdWordsLocationExtensions;
+  /** Google identifier for this location in the form: `locations/{location_id}`. */
+  name?: string;
+  /** Optional. Operating hours for the business. */
+  regularHours?: BusinessHours;
+  /** Optional. All locations and chain related to this one. */
+  relationshipData?: RelationshipData;
+  /** Optional. Special hours for the business. This typically includes holiday hours, and other times outside of regular operating hours. These override regular business hours. This field cannot be set without regular hours. */
+  specialHours?: SpecialHours;
+  /** Optional. The different categories that describe the business. */
+  categories?: Categories;
+  /** Optional. Describes your business in your own voice and shares with users the unique story of your business and offerings. This field is required for all categories except lodging categories (e.g., hotels, motels, inns). */
+  profile?: Profile;
+  /** Optional. Service area businesses provide their service at the customer's location. If this business is a service area business, this field describes the area(s) serviced by the business. */
+  serviceArea?: ServiceAreaBusiness;
   /** Required. Location name should reflect your business's real-world name, as used consistently on your storefront, website, and stationery, and as known to customers. Any additional information, when relevant, can be included in other fields of the resource (for example, `Address`, `Categories`). Don't add unnecessary information to your name (for example, prefer "Google" over "Google Inc. - Mountain View Corporate Headquarters"). Don't include marketing taglines, store codes, special characters, hours or closed/open status, phone numbers, website URLs, service/product information, location/address or directions, or containment information (for example, "Chase ATM in Duane Reade"). */
   title?: string;
+  /** Optional. User-provided latitude and longitude. When creating a location, this field is ignored if the provided address geocodes successfully. This field is only returned on get requests if the user-provided `latlng` value was accepted during create, or the `latlng` value was updated through the Google Business Profile website. This field can only be updated by approved clients. */
+  latlng?: LatLng;
 }
 export const Location = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    languageCode: S.optional(S.String),
     labels: S.optional(StringList),
-    serviceArea: S.optional(ServiceAreaBusiness),
-    openInfo: S.optional(OpenInfo),
-    specialHours: S.optional(SpecialHours),
-    profile: S.optional(Profile),
-    metadata: S.optional(Metadata),
-    categories: S.optional(Categories),
-    storefrontAddress: S.optional(PostalAddress),
-    relationshipData: S.optional(RelationshipData),
-    websiteUri: S.optional(S.String),
-    storeCode: S.optional(S.String),
     moreHours: S.optional(MoreHoursList),
-    regularHours: S.optional(BusinessHours),
-    adWordsLocationExtensions: S.optional(AdWordsLocationExtensions),
+    languageCode: S.optional(S.String),
     serviceItems: S.optional(ServiceItemList),
-    name: S.optional(S.String),
-    latlng: S.optional(LatLng),
     phoneNumbers: S.optional(PhoneNumbers),
+    metadata: S.optional(Metadata),
+    websiteUri: S.optional(S.String),
+    openInfo: S.optional(OpenInfo),
+    storefrontAddress: S.optional(PostalAddress),
+    storeCode: S.optional(S.String),
+    adWordsLocationExtensions: S.optional(AdWordsLocationExtensions),
+    name: S.optional(S.String),
+    regularHours: S.optional(BusinessHours),
+    relationshipData: S.optional(RelationshipData),
+    specialHours: S.optional(SpecialHours),
+    categories: S.optional(Categories),
+    profile: S.optional(Profile),
+    serviceArea: S.optional(ServiceAreaBusiness),
     title: S.optional(S.String),
+    latlng: S.optional(LatLng),
   }),
 ).annotate({ identifier: "Location" }) as any as S.Schema<Location>;
 
 export interface CreateAccountsLocationsRequest {
-  /** Optional. If true, the request is validated without actually creating the location. */
-  validateOnly?: boolean;
-  /** Optional. A unique request ID for the server to detect duplicated requests. We recommend using UUIDs. Max length is 50 characters. */
-  requestId?: string;
   /** Required. The name of the account in which to create this location. */
   parent: string;
+  /** Optional. A unique request ID for the server to detect duplicated requests. We recommend using UUIDs. Max length is 50 characters. */
+  requestId?: string;
+  /** Optional. If true, the request is validated without actually creating the location. */
+  validateOnly?: boolean;
   /** Request body */
   body?: Location;
 }
 export const CreateAccountsLocationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    validateOnly: S.optional(S.Boolean.pipe(T.Query())),
-    requestId: S.optional(S.String.pipe(T.Query())),
     parent: S.String.pipe(T.Label()),
+    requestId: S.optional(S.String.pipe(T.Query())),
+    validateOnly: S.optional(S.Boolean.pipe(T.Query())),
     body: S.optional(Location.pipe(T.HttpBody())),
   }).pipe(
     T.Http({
@@ -865,14 +865,6 @@ export const RepeatedEnumAttributeValue = /*@__PURE__*/ S.suspend(() =>
   identifier: "RepeatedEnumAttributeValue",
 }) as any as S.Schema<RepeatedEnumAttributeValue>;
 
-export type AttributeValueTypeEnum =
-  | "ATTRIBUTE_VALUE_TYPE_UNSPECIFIED"
-  | "BOOL"
-  | "ENUM"
-  | "URL"
-  | "REPEATED_ENUM";
-export const AttributeValueTypeEnum = /*@__PURE__*/ S.String;
-
 export type DocumentList = Array<unknown>;
 export const DocumentList = /*@__PURE__*/ S.Array(
   S.Unknown,
@@ -896,26 +888,34 @@ export const UriAttributeValueList = /*@__PURE__*/ S.Array(
   UriAttributeValue,
 ) as any as S.Schema<UriAttributeValueList>;
 
+export type AttributeValueTypeEnum =
+  | "ATTRIBUTE_VALUE_TYPE_UNSPECIFIED"
+  | "BOOL"
+  | "ENUM"
+  | "URL"
+  | "REPEATED_ENUM";
+export const AttributeValueTypeEnum = /*@__PURE__*/ S.String;
+
 /** A location attribute. Attributes provide additional information about a location. The attributes that can be set on a location may vary based on the properties of that location (for example, category). Available attributes are determined by Google and may be added and removed without API changes. */
 export interface Attribute {
-  /** Required. The resource name for this attribute. */
-  name?: string;
   /** When the attribute value type is REPEATED_ENUM, this contains the attribute value, and the other values fields must be empty. */
   repeatedEnumValue?: RepeatedEnumAttributeValue;
-  /** Output only. The type of value that this attribute contains. This should be used to determine how to interpret the value. */
-  valueType?: AttributeValueTypeEnum | (string & {});
   /** The values for this attribute. The type of the values supplied must match that expected for that attribute. This is a repeated field where multiple attribute values may be provided. Attribute types only support one value. */
   values?: DocumentList;
   /** When the attribute value type is URL, this field contains the value(s) for this attribute, and the other values fields must be empty. */
   uriValues?: UriAttributeValueList;
+  /** Output only. The type of value that this attribute contains. This should be used to determine how to interpret the value. */
+  valueType?: AttributeValueTypeEnum | (string & {});
+  /** Required. The resource name for this attribute. */
+  name?: string;
 }
 export const Attribute = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    name: S.optional(S.String),
     repeatedEnumValue: S.optional(RepeatedEnumAttributeValue),
-    valueType: S.optional(AttributeValueTypeEnum),
     values: S.optional(DocumentList),
     uriValues: S.optional(UriAttributeValueList),
+    valueType: S.optional(AttributeValueTypeEnum),
+    name: S.optional(S.String),
   }),
 ).annotate({ identifier: "Attribute" }) as any as S.Schema<Attribute>;
 
@@ -926,15 +926,15 @@ export const AttributeList = /*@__PURE__*/ S.Array(
 
 /** A container for all the attributes for a given location. */
 export interface Attributes {
-  /** A collection of attributes that need to be updated. */
-  attributes?: AttributeList;
   /** Required. Google identifier for this location in the form of `locations/{location_id}/attributes`. */
   name?: string;
+  /** A collection of attributes that need to be updated. */
+  attributes?: AttributeList;
 }
 export const Attributes = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    attributes: S.optional(AttributeList),
     name: S.optional(S.String),
+    attributes: S.optional(AttributeList),
   }),
 ).annotate({ identifier: "Attributes" }) as any as S.Schema<Attributes>;
 
@@ -956,6 +956,22 @@ export const GetChainsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetChainsRequest",
 }) as any as S.Schema<GetChainsRequest>;
 
+/** Url to be used when displaying the chain. */
+export interface ChainUri {
+  /** The uri for this chain. */
+  uri?: string;
+}
+export const ChainUri = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    uri: S.optional(S.String),
+  }),
+).annotate({ identifier: "ChainUri" }) as any as S.Schema<ChainUri>;
+
+export type ChainUriList = Array<ChainUri>;
+export const ChainUriList = /*@__PURE__*/ S.Array(
+  ChainUri,
+) as any as S.Schema<ChainUriList>;
+
 /** Name to be used when displaying the chain. */
 export interface ChainName {
   /** The BCP 47 code of language of the name. */
@@ -975,39 +991,23 @@ export const ChainNameList = /*@__PURE__*/ S.Array(
   ChainName,
 ) as any as S.Schema<ChainNameList>;
 
-/** Url to be used when displaying the chain. */
-export interface ChainUri {
-  /** The uri for this chain. */
-  uri?: string;
-}
-export const ChainUri = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    uri: S.optional(S.String),
-  }),
-).annotate({ identifier: "ChainUri" }) as any as S.Schema<ChainUri>;
-
-export type ChainUriList = Array<ChainUri>;
-export const ChainUriList = /*@__PURE__*/ S.Array(
-  ChainUri,
-) as any as S.Schema<ChainUriList>;
-
 /** A chain is a brand that your business's locations can be affiliated with. */
 export interface Chain {
-  /** Required. The chain's resource name, in the format `chains/{chain_id}`. */
-  name?: string;
+  /** Websites of the chain. */
+  websites?: ChainUriList;
   /** Number of locations that are part of this chain. */
   locationCount?: number;
   /** Names of the chain. */
   chainNames?: ChainNameList;
-  /** Websites of the chain. */
-  websites?: ChainUriList;
+  /** Required. The chain's resource name, in the format `chains/{chain_id}`. */
+  name?: string;
 }
 export const Chain = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    name: S.optional(S.String),
+    websites: S.optional(ChainUriList),
     locationCount: S.optional(S.Number),
     chainNames: S.optional(ChainNameList),
-    websites: S.optional(ChainUriList),
+    name: S.optional(S.String),
   }),
 ).annotate({ identifier: "Chain" }) as any as S.Schema<Chain>;
 
@@ -1034,17 +1034,17 @@ export const GetGoogleUpdatedLocationsRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** Represents the view of a location as it appears to consumers, which includes updates that are currently serving on Google Maps and Search. */
 export interface GoogleUpdatedLocation {
-  /** The fields where the values in the view as it appears to consumers are different than the merchant's information. To accept these changes, patch the location. To reject, patch with your preferred values. */
-  diffMask?: string;
   /** The fields where the merchant has provided an update that is currently in flight and hasn't yet been published to Maps and Search. This mask only tracks the status of the merchant's own edits, not external changes. */
   pendingMask?: string;
+  /** The fields where the values in the view as it appears to consumers are different than the merchant's information. To accept these changes, patch the location. To reject, patch with your preferred values. */
+  diffMask?: string;
   /** The Google-updated version of this location. */
   location?: Location;
 }
 export const GoogleUpdatedLocation = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    diffMask: S.optional(S.String),
     pendingMask: S.optional(S.String),
+    diffMask: S.optional(S.String),
     location: S.optional(Location),
   }),
 ).annotate({
@@ -1092,27 +1092,27 @@ export const GetLocationsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetLocationsRequest>;
 
 export interface ListAccountsLocationsRequest {
-  /** Required. Read mask to specify what fields will be returned in the response. */
-  readMask?: string;
-  /** Required. The name of the account to fetch locations from. * **Specific Account ID**: If the account is of type `AccountType.PERSONAL`, the response returns only locations directly owned by that account. For all other types (e.g., `AccountType.LOCATION_GROUP`), it returns all accessible locations. * **Wildcard (`-`)**: Using `accounts/-` identifies the authenticated user. This scope defaults to `AccountType.PERSONAL` but includes both directly and indirectly owned locations (e.g., those accessible via member groups). */
-  parent: string;
   /** Optional. If specified, it fetches the next `page` of locations. The page token is returned by previous calls to `ListLocations` when there were more locations than could fit in the requested page size. */
   pageToken?: string;
-  /** Optional. A filter constraining the locations to return. The response includes only entries that match the filter. If `filter` is empty, then constraints are applied and all locations (paginated) are retrieved for the requested account. For more information about valid fields and example usage, see [Work with Location Data Guide](https://developers.google.com/my-business/content/location-data#filter_results_when_you_list_locations). */
-  filter?: string;
   /** Optional. How many locations to fetch per page. Default value is 10 if not set. Minimum is 1, and maximum page size is 100. */
   pageSize?: number;
+  /** Required. The name of the account to fetch locations from. * **Specific Account ID**: If the account is of type `AccountType.PERSONAL`, the response returns only locations directly owned by that account. For all other types (e.g., `AccountType.LOCATION_GROUP`), it returns all accessible locations. * **Wildcard (`-`)**: Using `accounts/-` identifies the authenticated user. This scope defaults to `AccountType.PERSONAL` but includes both directly and indirectly owned locations (e.g., those accessible via member groups). */
+  parent: string;
   /** Optional. Sorting order for the request. Multiple fields should be comma-separated, following SQL syntax. The default sorting order is ascending. To specify descending order, a suffix " desc" should be added. Valid fields to order_by are title and store_code. For example: "title, store_code desc" or "title" or "store_code desc" */
   orderBy?: string;
+  /** Required. Read mask to specify what fields will be returned in the response. */
+  readMask?: string;
+  /** Optional. A filter constraining the locations to return. The response includes only entries that match the filter. If `filter` is empty, then constraints are applied and all locations (paginated) are retrieved for the requested account. For more information about valid fields and example usage, see [Work with Location Data Guide](https://developers.google.com/my-business/content/location-data#filter_results_when_you_list_locations). */
+  filter?: string;
 }
 export const ListAccountsLocationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    readMask: S.optional(S.String.pipe(T.Query())),
-    parent: S.String.pipe(T.Label()),
     pageToken: S.optional(S.String.pipe(T.Query())),
-    filter: S.optional(S.String.pipe(T.Query())),
     pageSize: S.optional(S.Number.pipe(T.Query())),
+    parent: S.String.pipe(T.Label()),
     orderBy: S.optional(S.String.pipe(T.Query())),
+    readMask: S.optional(S.String.pipe(T.Query())),
+    filter: S.optional(S.String.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -1131,17 +1131,17 @@ export const LocationList = /*@__PURE__*/ S.Array(
 
 /** Response message for Locations.ListLocations. */
 export interface ListLocationsResponse {
-  /** The locations. */
-  locations?: LocationList;
   /** If the number of locations exceeded the requested page size, this field is populated with a token to fetch the next page of locations on a subsequent call to `ListLocations`. If there are no more locations, this field is not present in the response. */
   nextPageToken?: string;
+  /** The locations. */
+  locations?: LocationList;
   /** The approximate number of Locations in the list irrespective of pagination. This field will only be returned if `filter` is used as a query parameter. */
   totalSize?: number;
 }
 export const ListLocationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    locations: S.optional(LocationList),
     nextPageToken: S.optional(S.String),
+    locations: S.optional(LocationList),
     totalSize: S.optional(S.Number),
   }),
 ).annotate({
@@ -1149,30 +1149,30 @@ export const ListLocationsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListLocationsResponse>;
 
 export interface ListAttributesRequest {
-  /** Optional. The primary category stable ID to find available attributes. Must be of the format `categories/{category_id}` (e.g., `categories/gcid:restaurant`). Required if `parent` is not set and `show_all` is false. */
-  categoryName?: string;
-  /** Optional. Resource name of the location to look up available attributes. If this field is set, `category_name`, `region_code`, `language_code` and `show_all` are not required and must not be set. Format: `locations/{location_id}` (e.g., `locations/1234567890`). */
-  parent?: string;
-  /** Optional. If set to true, metadata for all available attributes are returned, disregarding `parent` and `category_name` fields. `language_code` and `region_code` are required when `show_all` is set to true. */
-  showAll?: boolean;
   /** Optional. The ISO 3166-1 alpha-2 country code to find available attributes. Required if `parent` is not set. */
   regionCode?: string;
-  /** How many attributes to include per page. Default is 200, minimum is 1. */
-  pageSize?: number;
-  /** If specified, the next page of attribute metadata is retrieved. */
-  pageToken?: string;
+  /** Optional. The primary category stable ID to find available attributes. Must be of the format `categories/{category_id}` (e.g., `categories/gcid:restaurant`). Required if `parent` is not set and `show_all` is false. */
+  categoryName?: string;
   /** Optional. The BCP 47 code of language to get attribute display names in. If this language is not available, they will be provided in English. */
   languageCode?: string;
+  /** If specified, the next page of attribute metadata is retrieved. */
+  pageToken?: string;
+  /** Optional. If set to true, metadata for all available attributes are returned, disregarding `parent` and `category_name` fields. `language_code` and `region_code` are required when `show_all` is set to true. */
+  showAll?: boolean;
+  /** How many attributes to include per page. Default is 200, minimum is 1. */
+  pageSize?: number;
+  /** Optional. Resource name of the location to look up available attributes. If this field is set, `category_name`, `region_code`, `language_code` and `show_all` are not required and must not be set. Format: `locations/{location_id}` (e.g., `locations/1234567890`). */
+  parent?: string;
 }
 export const ListAttributesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    categoryName: S.optional(S.String.pipe(T.Query())),
-    parent: S.optional(S.String.pipe(T.Query())),
-    showAll: S.optional(S.Boolean.pipe(T.Query())),
     regionCode: S.optional(S.String.pipe(T.Query())),
-    pageSize: S.optional(S.Number.pipe(T.Query())),
-    pageToken: S.optional(S.String.pipe(T.Query())),
+    categoryName: S.optional(S.String.pipe(T.Query())),
     languageCode: S.optional(S.String.pipe(T.Query())),
+    pageToken: S.optional(S.String.pipe(T.Query())),
+    showAll: S.optional(S.Boolean.pipe(T.Query())),
+    pageSize: S.optional(S.Number.pipe(T.Query())),
+    parent: S.optional(S.String.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -1184,17 +1184,25 @@ export const ListAttributesRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListAttributesRequest",
 }) as any as S.Schema<ListAttributesRequest>;
 
+export type AttributeMetadataValueTypeEnum =
+  | "ATTRIBUTE_VALUE_TYPE_UNSPECIFIED"
+  | "BOOL"
+  | "ENUM"
+  | "URL"
+  | "REPEATED_ENUM";
+export const AttributeMetadataValueTypeEnum = /*@__PURE__*/ S.String;
+
 /** Metadata for supported attribute values. */
 export interface AttributeValueMetadata {
-  /** The display name for this value, localized where available; otherwise, in English. The value display name is intended to be used in context with the attribute display name. For example, for a "WiFi" enum attribute, this could contain "Paid" to represent paid Wi-Fi. */
-  displayName?: string;
   /** The attribute value. */
   value?: unknown;
+  /** The display name for this value, localized where available; otherwise, in English. The value display name is intended to be used in context with the attribute display name. For example, for a "WiFi" enum attribute, this could contain "Paid" to represent paid Wi-Fi. */
+  displayName?: string;
 }
 export const AttributeValueMetadata = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    displayName: S.optional(S.String),
     value: S.optional(S.Unknown),
+    displayName: S.optional(S.String),
   }),
 ).annotate({
   identifier: "AttributeValueMetadata",
@@ -1205,40 +1213,32 @@ export const AttributeValueMetadataList = /*@__PURE__*/ S.Array(
   AttributeValueMetadata,
 ) as any as S.Schema<AttributeValueMetadataList>;
 
-export type AttributeMetadataValueTypeEnum =
-  | "ATTRIBUTE_VALUE_TYPE_UNSPECIFIED"
-  | "BOOL"
-  | "ENUM"
-  | "URL"
-  | "REPEATED_ENUM";
-export const AttributeMetadataValueTypeEnum = /*@__PURE__*/ S.String;
-
 /** Metadata for an attribute. Contains display information for the attribute, including a localized name and a heading for grouping related attributes together. */
 export interface AttributeMetadata {
+  /** The localized display name for the attribute, if available; otherwise, the English display name. */
+  displayName?: string;
+  /** The unique identifier for the attribute. */
+  parent?: string;
+  /** The localized display name of the group that contains this attribute, if available; otherwise, the English group name. Related attributes are collected into a group and should be displayed together under the heading given here. */
+  groupDisplayName?: string;
+  /** The value type for the attribute. Values set and retrieved should be expected to be of this type. */
+  valueType?: AttributeMetadataValueTypeEnum;
+  /** If true, the attribute is deprecated and should no longer be used. If deprecated, updating this attribute will not result in an error, but updates will not be saved. At some point after being deprecated, the attribute will be removed entirely and it will become an error. */
+  deprecated?: boolean;
   /** If true, the attribute supports multiple values. If false, only a single value should be provided. */
   repeatable?: boolean;
   /** For some types of attributes (for example, enums), a list of supported values and corresponding display names for those values is provided. */
   valueMetadata?: AttributeValueMetadataList;
-  /** The value type for the attribute. Values set and retrieved should be expected to be of this type. */
-  valueType?: AttributeMetadataValueTypeEnum;
-  /** The unique identifier for the attribute. */
-  parent?: string;
-  /** If true, the attribute is deprecated and should no longer be used. If deprecated, updating this attribute will not result in an error, but updates will not be saved. At some point after being deprecated, the attribute will be removed entirely and it will become an error. */
-  deprecated?: boolean;
-  /** The localized display name of the group that contains this attribute, if available; otherwise, the English group name. Related attributes are collected into a group and should be displayed together under the heading given here. */
-  groupDisplayName?: string;
-  /** The localized display name for the attribute, if available; otherwise, the English display name. */
-  displayName?: string;
 }
 export const AttributeMetadata = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    displayName: S.optional(S.String),
+    parent: S.optional(S.String),
+    groupDisplayName: S.optional(S.String),
+    valueType: S.optional(AttributeMetadataValueTypeEnum),
+    deprecated: S.optional(S.Boolean),
     repeatable: S.optional(S.Boolean),
     valueMetadata: S.optional(AttributeValueMetadataList),
-    valueType: S.optional(AttributeMetadataValueTypeEnum),
-    parent: S.optional(S.String),
-    deprecated: S.optional(S.Boolean),
-    groupDisplayName: S.optional(S.String),
-    displayName: S.optional(S.String),
   }),
 ).annotate({
   identifier: "AttributeMetadata",
@@ -1251,15 +1251,15 @@ export const AttributeMetadataList = /*@__PURE__*/ S.Array(
 
 /** Response for AttributesService.ListAttributeMetadata. */
 export interface ListAttributeMetadataResponse {
-  /** A collection of attribute metadata for the available attributes. */
-  attributeMetadata?: AttributeMetadataList;
   /** If the number of attributes exceeded the requested page size, this field will be populated with a token to fetch the next page of attributes on a subsequent call to `attributes.list`. If there are no more attributes, this field will not be present in the response. */
   nextPageToken?: string;
+  /** A collection of attribute metadata for the available attributes. */
+  attributeMetadata?: AttributeMetadataList;
 }
 export const ListAttributeMetadataResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    attributeMetadata: S.optional(AttributeMetadataList),
     nextPageToken: S.optional(S.String),
+    attributeMetadata: S.optional(AttributeMetadataList),
   }),
 ).annotate({
   identifier: "ListAttributeMetadataResponse",
@@ -1272,27 +1272,27 @@ export type ListCategoriesViewEnum =
 export const ListCategoriesViewEnum = /*@__PURE__*/ S.String;
 
 export interface ListCategoriesRequest {
-  /** Required. The BCP 47 code of language. */
-  languageCode?: string;
-  /** Required. The ISO 3166-1 alpha-2 country code. */
-  regionCode?: string;
   /** Optional. If specified, the next page of categories will be fetched. */
   pageToken?: string;
+  /** Required. The ISO 3166-1 alpha-2 country code. */
+  regionCode?: string;
   /** Required. Specifies which parts to the Category resource should be returned in the response. */
   view?: ListCategoriesViewEnum | (string & {});
-  /** Optional. Filter string from user. The only field that supported is `displayName`. Eg: `filter=displayName=foo`. */
-  filter?: string;
+  /** Required. The BCP 47 code of language. */
+  languageCode?: string;
   /** Optional. How many categories to fetch per page. Default is 100, minimum is 1, and maximum page size is 100. */
   pageSize?: number;
+  /** Optional. Filter string from user. The only field that supported is `displayName`. Eg: `filter=displayName=foo`. */
+  filter?: string;
 }
 export const ListCategoriesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    languageCode: S.optional(S.String.pipe(T.Query())),
-    regionCode: S.optional(S.String.pipe(T.Query())),
     pageToken: S.optional(S.String.pipe(T.Query())),
+    regionCode: S.optional(S.String.pipe(T.Query())),
     view: S.optional(ListCategoriesViewEnum.pipe(T.Query())),
-    filter: S.optional(S.String.pipe(T.Query())),
+    languageCode: S.optional(S.String.pipe(T.Query())),
     pageSize: S.optional(S.Number.pipe(T.Query())),
+    filter: S.optional(S.String.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -1321,10 +1321,10 @@ export const ListCategoriesResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<ListCategoriesResponse>;
 
 export interface PatchLocationsRequest {
-  /** Required. The specific fields to update. */
-  updateMask?: string;
   /** Google identifier for this location in the form: `locations/{location_id}`. */
   name: string;
+  /** Required. The specific fields to update. */
+  updateMask?: string;
   /** Optional. If true, the request is validated without actually updating the location. When this field is set, we will only return validation errors if there were any. The response will be empty if no errors were found. */
   validateOnly?: boolean;
   /** Request body */
@@ -1332,8 +1332,8 @@ export interface PatchLocationsRequest {
 }
 export const PatchLocationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    updateMask: S.optional(S.String.pipe(T.Query())),
     name: S.String.pipe(T.Label()),
+    updateMask: S.optional(S.String.pipe(T.Query())),
     validateOnly: S.optional(S.Boolean.pipe(T.Query())),
     body: S.optional(Location.pipe(T.HttpBody())),
   }).pipe(
@@ -1348,15 +1348,15 @@ export const PatchLocationsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PatchLocationsRequest>;
 
 export interface SearchChainsRequest {
-  /** Required. Search for a chain by its name. Exact/partial/fuzzy/related queries are supported. Examples: "walmart", "wal-mart", "walmmmart", "沃尔玛" */
-  chainName?: string;
   /** The maximum number of matched chains to return from this query. The default is 10. The maximum possible value is 500. */
   pageSize?: number;
+  /** Required. Search for a chain by its name. Exact/partial/fuzzy/related queries are supported. Examples: "walmart", "wal-mart", "walmmmart", "沃尔玛" */
+  chainName?: string;
 }
 export const SearchChainsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    chainName: S.optional(S.String.pipe(T.Query())),
     pageSize: S.optional(S.Number.pipe(T.Query())),
+    chainName: S.optional(S.String.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -1388,18 +1388,18 @@ export const SearchChainsResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** Request message for GoogleLocations.SearchGoogleLocations. */
 export interface SearchGoogleLocationsRequest {
+  /** Text query to search for. The search results from a query string will be less accurate than if providing an exact location, but can provide more inexact matches. */
+  query?: string;
   /** Location to search for. If provided, will find locations which match the provided location details, which must include a value for the title. */
   location?: Location;
   /** The number of matches to return. The default value is 3, with a maximum of 10. Note that latency may increase if more are requested. There is no pagination. */
   pageSize?: number;
-  /** Text query to search for. The search results from a query string will be less accurate than if providing an exact location, but can provide more inexact matches. */
-  query?: string;
 }
 export const SearchGoogleLocationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    query: S.optional(S.String),
     location: S.optional(Location),
     pageSize: S.optional(S.Number),
-    query: S.optional(S.String),
   }),
 ).annotate({
   identifier: "SearchGoogleLocationsRequest",
@@ -1425,18 +1425,18 @@ export const SearchGoogleLocationsRequest_ = /*@__PURE__*/ S.suspend(() =>
 
 /** Represents a Location that is present on Google. This can be a location that has been claimed by the user, someone else, or could be unclaimed. */
 export interface GoogleLocation {
-  /** The sparsely populated Location information. This field can be re-used in CreateLocation if it is not currently claimed by a user. */
-  location?: Location;
-  /** A URL that will redirect the user to the request admin rights UI. This field is only present if the location has already been claimed by any user, including the current user. */
-  requestAdminRightsUri?: string;
   /** Resource name of this GoogleLocation, in the format `googleLocations/{googleLocationId}`. */
   name?: string;
+  /** A URL that will redirect the user to the request admin rights UI. This field is only present if the location has already been claimed by any user, including the current user. */
+  requestAdminRightsUri?: string;
+  /** The sparsely populated Location information. This field can be re-used in CreateLocation if it is not currently claimed by a user. */
+  location?: Location;
 }
 export const GoogleLocation = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    location: S.optional(Location),
-    requestAdminRightsUri: S.optional(S.String),
     name: S.optional(S.String),
+    requestAdminRightsUri: S.optional(S.String),
+    location: S.optional(Location),
   }),
 ).annotate({ identifier: "GoogleLocation" }) as any as S.Schema<GoogleLocation>;
 

@@ -42,24 +42,24 @@ export class Forbidden
     [{ status: 403 }],
   ) {}
 
-export interface FeedbackCreateRequestRequestsByAttribute {
+export interface CreateFeedbackRequestRequestsByAttribute {
   metric: string;
   requests: number;
 }
-export const FeedbackCreateRequestRequestsByAttribute = /*@__PURE__*/ S.suspend(
+export const CreateFeedbackRequestRequestsByAttribute = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       metric: S.String,
       requests: S.Number,
     }),
 ).annotate({
-  identifier: "FeedbackCreateRequestRequestsByAttribute",
-}) as any as S.Schema<FeedbackCreateRequestRequestsByAttribute>;
+  identifier: "CreateFeedbackRequestRequestsByAttribute",
+}) as any as S.Schema<CreateFeedbackRequestRequestsByAttribute>;
 
-export type FeedbackCreateRequestType = "false_positive" | "false_negative";
-export const FeedbackCreateRequestType = /*@__PURE__*/ S.String;
+export type CreateFeedbackRequestType = "false_positive" | "false_negative";
+export const CreateFeedbackRequestType = /*@__PURE__*/ S.String;
 
-export interface FeedbackCreateRequest {
+export interface CreateFeedbackRequest {
   /** Identifier. */
   zoneId: string;
   description: string;
@@ -69,16 +69,16 @@ export interface FeedbackCreateRequest {
   lastRequestSeenAt: string;
   requests: number;
   /** Top attributes contributing to the feedback sample. Keys include topASNs, topCountries, topHosts, topIPs, topJA3Hashes, topJA4s, topPaths, topUserAgents. */
-  requestsByAttribute: FeedbackCreateRequestRequestsByAttribute;
+  requestsByAttribute: CreateFeedbackRequestRequestsByAttribute;
   /** Map of bot scores (1-99) to request counts. Sum must equal `requests`. */
   requestsByScore: unknown;
   /** Map of score source to request counts. Sum must equal `requests`. */
   requestsByScoreSrc: unknown;
   /** Type of feedback report. */
-  type: FeedbackCreateRequestType | (string & {});
+  type: CreateFeedbackRequestType | (string & {});
   subtype?: string;
 }
-export const FeedbackCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateFeedbackRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     zoneId: S.String.pipe(T.Label("zone_id")),
     description: S.String,
@@ -86,12 +86,12 @@ export const FeedbackCreateRequest = /*@__PURE__*/ S.suspend(() =>
     firstRequestSeenAt: S.String.pipe(T.Body("first_request_seen_at")),
     lastRequestSeenAt: S.String.pipe(T.Body("last_request_seen_at")),
     requests: S.Number,
-    requestsByAttribute: FeedbackCreateRequestRequestsByAttribute.pipe(
+    requestsByAttribute: CreateFeedbackRequestRequestsByAttribute.pipe(
       T.Body("requests_by_attribute"),
     ),
     requestsByScore: S.Unknown.pipe(T.Body("requests_by_score")),
     requestsByScoreSrc: S.Unknown.pipe(T.Body("requests_by_score_src")),
-    type: FeedbackCreateRequestType,
+    type: CreateFeedbackRequestType,
     subtype: S.optional(S.String),
   })
     .pipe(
@@ -103,82 +103,15 @@ export const FeedbackCreateRequest = /*@__PURE__*/ S.suspend(() =>
     )
     .pipe(T.KeyDictionary(KEY_DICTIONARY)),
 ).annotate({
-  identifier: "FeedbackCreateRequest",
-}) as any as S.Schema<FeedbackCreateRequest>;
+  identifier: "CreateFeedbackRequest",
+}) as any as S.Schema<CreateFeedbackRequest>;
 
-export interface FeedbackCreateResponse {}
-export const FeedbackCreateResponse = /*@__PURE__*/ S.suspend(() =>
+export interface CreateFeedbackResponse {}
+export const CreateFeedbackResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(T.KeyDictionary(KEY_DICTIONARY)),
 ).annotate({
-  identifier: "FeedbackCreateResponse",
-}) as any as S.Schema<FeedbackCreateResponse>;
-
-export interface FeedbackListRequest {
-  /** Identifier. */
-  zoneId: string;
-}
-export const FeedbackListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    zoneId: S.String.pipe(T.Label("zone_id")),
-  })
-    .pipe(
-      T.Http({
-        method: "GET",
-        uri: "/zones/{zone_id}/bot_management/feedback",
-        code: 200,
-      }),
-    )
-    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "FeedbackListRequest",
-}) as any as S.Schema<FeedbackListRequest>;
-
-export type FeedbackListResponseRequestsByAttribute =
-  FeedbackCreateRequestRequestsByAttribute;
-export const FeedbackListResponseRequestsByAttribute =
-  FeedbackCreateRequestRequestsByAttribute;
-
-export type FeedbackListResponseType = "false_positive" | "false_negative";
-export const FeedbackListResponseType = /*@__PURE__*/ S.String;
-
-/** Raw response payload (operation does not use the standard v4 result envelope). */
-export interface FeedbackListResponse {
-  description: string;
-  /** Wirefilter expression describing the traffic being reported. */
-  expression: string;
-  firstRequestSeenAt: string;
-  lastRequestSeenAt: string;
-  requests: number;
-  /** Top attributes contributing to the feedback sample. Keys include topASNs, topCountries, topHosts, topIPs, topJA3Hashes, topJA4s, topPaths, topUserAgents. */
-  requestsByAttribute: FeedbackCreateRequestRequestsByAttribute;
-  /** Map of bot scores (1-99) to request counts. Sum must equal `requests`. */
-  requestsByScore: unknown;
-  /** Map of score source to request counts. Sum must equal `requests`. */
-  requestsByScoreSrc: unknown;
-  /** Type of feedback report. */
-  type: FeedbackListResponseType;
-  createdAt?: string | null;
-  subtype?: string | null;
-}
-export const FeedbackListResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    description: S.String,
-    expression: S.String,
-    firstRequestSeenAt: S.String.pipe(T.Body("first_request_seen_at")),
-    lastRequestSeenAt: S.String.pipe(T.Body("last_request_seen_at")),
-    requests: S.Number,
-    requestsByAttribute: FeedbackCreateRequestRequestsByAttribute.pipe(
-      T.Body("requests_by_attribute"),
-    ),
-    requestsByScore: S.Unknown.pipe(T.Body("requests_by_score")),
-    requestsByScoreSrc: S.Unknown.pipe(T.Body("requests_by_score_src")),
-    type: FeedbackListResponseType,
-    createdAt: S.optional(S.NullOr(S.String).pipe(T.Body("created_at"))),
-    subtype: S.optional(S.NullOr(S.String)),
-  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "FeedbackListResponse",
-}) as any as S.Schema<FeedbackListResponse>;
+  identifier: "CreateFeedbackResponse",
+}) as any as S.Schema<CreateFeedbackResponse>;
 
 export interface GetBotManagementRequest {
   /** Identifier. */
@@ -816,6 +749,73 @@ export const GetBotManagementResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "GetBotManagementResponse",
 }) as any as S.Schema<GetBotManagementResponse>;
+
+export interface ListFeedbackRequest {
+  /** Identifier. */
+  zoneId: string;
+}
+export const ListFeedbackRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    zoneId: S.String.pipe(T.Label("zone_id")),
+  })
+    .pipe(
+      T.Http({
+        method: "GET",
+        uri: "/zones/{zone_id}/bot_management/feedback",
+        code: 200,
+      }),
+    )
+    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "ListFeedbackRequest",
+}) as any as S.Schema<ListFeedbackRequest>;
+
+export type ListFeedbackResponseRequestsByAttribute =
+  CreateFeedbackRequestRequestsByAttribute;
+export const ListFeedbackResponseRequestsByAttribute =
+  CreateFeedbackRequestRequestsByAttribute;
+
+export type ListFeedbackResponseType = "false_positive" | "false_negative";
+export const ListFeedbackResponseType = /*@__PURE__*/ S.String;
+
+/** Raw response payload (operation does not use the standard v4 result envelope). */
+export interface ListFeedbackResponse {
+  description: string;
+  /** Wirefilter expression describing the traffic being reported. */
+  expression: string;
+  firstRequestSeenAt: string;
+  lastRequestSeenAt: string;
+  requests: number;
+  /** Top attributes contributing to the feedback sample. Keys include topASNs, topCountries, topHosts, topIPs, topJA3Hashes, topJA4s, topPaths, topUserAgents. */
+  requestsByAttribute: CreateFeedbackRequestRequestsByAttribute;
+  /** Map of bot scores (1-99) to request counts. Sum must equal `requests`. */
+  requestsByScore: unknown;
+  /** Map of score source to request counts. Sum must equal `requests`. */
+  requestsByScoreSrc: unknown;
+  /** Type of feedback report. */
+  type: ListFeedbackResponseType;
+  createdAt?: string | null;
+  subtype?: string | null;
+}
+export const ListFeedbackResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    description: S.String,
+    expression: S.String,
+    firstRequestSeenAt: S.String.pipe(T.Body("first_request_seen_at")),
+    lastRequestSeenAt: S.String.pipe(T.Body("last_request_seen_at")),
+    requests: S.Number,
+    requestsByAttribute: CreateFeedbackRequestRequestsByAttribute.pipe(
+      T.Body("requests_by_attribute"),
+    ),
+    requestsByScore: S.Unknown.pipe(T.Body("requests_by_score")),
+    requestsByScoreSrc: S.Unknown.pipe(T.Body("requests_by_score_src")),
+    type: ListFeedbackResponseType,
+    createdAt: S.optional(S.NullOr(S.String).pipe(T.Body("created_at"))),
+    subtype: S.optional(S.NullOr(S.String)),
+  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "ListFeedbackResponse",
+}) as any as S.Schema<ListFeedbackResponse>;
 
 export type UpdateRequestAiBotsProtection =
   | "block"
@@ -1611,31 +1611,16 @@ export const PutBotManagementResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "PutBotManagementResponse",
 }) as any as S.Schema<PutBotManagementResponse>;
 
-export type FeedbackCreateError = CloudflareOpError;
+export type CreateFeedbackError = CloudflareOpError;
 /** Submit a feedback report for the specified zone. Use `type` to indicate whether the report is a false positive (good traffic flagged as bot) or a false negative (bot traffic missed). Furthermore, you can also use `expression` as a wirefilter to identify the affected traffic sample. See more accepted API fields and expression types at https://developers.cloudflare.com/bots/concepts/feedback-loop/#api-fields and https://developers.cloudflare.com/bots/concepts/feedback-loop/#expression-fields, respectively. */
-export const feedbackCreate: API.OperationMethod<
-  FeedbackCreateRequest,
-  FeedbackCreateResponse,
-  FeedbackCreateError,
+export const createFeedback: API.OperationMethod<
+  CreateFeedbackRequest,
+  CreateFeedbackResponse,
+  CreateFeedbackError,
   CloudflareOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FeedbackCreateRequest,
-  output: FeedbackCreateResponse,
-  errors: [CloudflareRateLimited, CloudflareError],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
-
-export type FeedbackListError = CloudflareOpError;
-/** Returns all feedback reports previously submitted for the specified zone. Feedback reports help improve detection by sharing samples of traffic that were misclassified as bots or humans. */
-export const feedbackList: API.OperationMethod<
-  FeedbackListRequest,
-  FeedbackListResponse,
-  FeedbackListError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FeedbackListRequest,
-  output: FeedbackListResponse,
+  input: CreateFeedbackRequest,
+  output: CreateFeedbackResponse,
   errors: [CloudflareRateLimited, CloudflareError],
   protocol: CloudflareProtocol,
   retry: Retry.Retry,
@@ -1652,6 +1637,21 @@ export const getBotManagement: API.OperationMethod<
   input: GetBotManagementRequest,
   output: GetBotManagementResponse,
   errors: [Forbidden, CloudflareRateLimited, CloudflareError],
+  protocol: CloudflareProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListFeedbackError = CloudflareOpError;
+/** Returns all feedback reports previously submitted for the specified zone. Feedback reports help improve detection by sharing samples of traffic that were misclassified as bots or humans. */
+export const listFeedback: API.OperationMethod<
+  ListFeedbackRequest,
+  ListFeedbackResponse,
+  ListFeedbackError,
+  CloudflareOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListFeedbackRequest,
+  output: ListFeedbackResponse,
+  errors: [CloudflareRateLimited, CloudflareError],
   protocol: CloudflareProtocol,
   retry: Retry.Retry,
 }));

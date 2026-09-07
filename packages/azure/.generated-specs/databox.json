@@ -14,13 +14,14 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.databox#ServiceValidateInputsByResourceGroup": {
+    "com.azure.databox#ValidateServiceInputsByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databox#ServiceValidateInputsByResourceGroupRequest"
+        "target": "com.azure.databox#ValidateServiceInputsByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.databox#ValidationResponse"
@@ -258,7 +259,7 @@
         "smithy.api#documentation": "Overall validation status."
       }
     },
-    "com.azure.databox#ServiceValidateInputsByResourceGroupRequest": {
+    "com.azure.databox#ValidateServiceInputsByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -286,14 +287,14 @@
           }
         },
         "validationCategory": {
-          "target": "com.azure.databox#ServiceValidateInputsByResourceGroupRequestValidationCategory",
+          "target": "com.azure.databox#ValidateServiceInputsByResourceGroupRequestValidationCategory",
           "traits": {
             "smithy.api#documentation": "Identify the nature of validation.",
             "smithy.api#required": {}
           }
         },
         "individualRequestDetails": {
-          "target": "com.azure.databox#ServiceValidateInputsByResourceGroupRequestIndividualRequestDetailsList",
+          "target": "com.azure.databox#ValidateServiceInputsByResourceGroupRequestIndividualRequestDetailsList",
           "traits": {
             "smithy.api#documentation": "List of request details contain validationType and its request as key and value respectively.",
             "smithy.api#required": {}
@@ -304,7 +305,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databox#ServiceValidateInputsByResourceGroupRequestIndividualRequestDetailsList": {
+    "com.azure.databox#ValidateServiceInputsByResourceGroupRequestIndividualRequestDetailsList": {
       "type": "list",
       "member": {
         "target": "com.azure.databox#ValidationInputRequest"
@@ -328,7 +329,7 @@
         "smithy.api#documentation": "Minimum fields that must be present in any type of validation request."
       }
     },
-    "com.azure.databox#ServiceValidateInputsByResourceGroupRequestValidationCategory": {
+    "com.azure.databox#ValidateServiceInputsByResourceGroupRequestValidationCategory": {
       "type": "enum",
       "members": {
         "JOBCREATIONVALIDATION": {
@@ -820,10 +821,10 @@
         "smithy.api#documentation": "Request body to get the availability for scheduling orders."
       }
     },
-    "com.azure.databox#ServiceListAvailableSkusByResourceGroup": {
+    "com.azure.databox#ListServiceAvailableSkusByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databox#ServiceListAvailableSkusByResourceGroupRequest"
+        "target": "com.azure.databox#ListServiceAvailableSkusByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.databox#AvailableSkusResult"
@@ -1136,7 +1137,7 @@
         "smithy.api#documentation": "The Sku."
       }
     },
-    "com.azure.databox#ServiceListAvailableSkusByResourceGroupRequest": {
+    "com.azure.databox#ListServiceAvailableSkusByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1178,7 +1179,7 @@
           }
         },
         "skuNames": {
-          "target": "com.azure.databox#ServiceListAvailableSkusByResourceGroupRequestSkuNamesList",
+          "target": "com.azure.databox#ListServiceAvailableSkusByResourceGroupRequestSkuNamesList",
           "traits": {
             "smithy.api#documentation": "Sku Names to filter for available skus"
           }
@@ -1188,7 +1189,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databox#ServiceListAvailableSkusByResourceGroupRequestSkuNamesList": {
+    "com.azure.databox#ListServiceAvailableSkusByResourceGroupRequestSkuNamesList": {
       "type": "list",
       "member": {
         "target": "com.azure.databox#SkuName"
@@ -1408,10 +1409,10 @@
         "smithy.api#documentation": "package carrier info"
       }
     },
-    "com.azure.databox#JobsListCredentials": {
+    "com.azure.databox#ListJobCredentials": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databox#JobsListCredentialsRequest"
+        "target": "com.azure.databox#ListJobCredentialsRequest"
       },
       "output": {
         "target": "com.azure.databox#UnencryptedCredentialsList"
@@ -1556,7 +1557,7 @@
         "smithy.api#documentation": "Indicates the type of job details."
       }
     },
-    "com.azure.databox#JobsListCredentialsRequest": {
+    "com.azure.databox#ListJobCredentialsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1588,10 +1589,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databox#JobsCancel": {
+    "com.azure.databox#CancelJob": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databox#JobsCancelRequest"
+        "target": "com.azure.databox#CancelJobRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1607,7 +1608,7 @@
         "com.distilled.openapi#apiVersion": "2025-07-01"
       }
     },
-    "com.azure.databox#JobsCancelRequest": {
+    "com.azure.databox#CancelJobRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1738,10 +1739,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databox#JobsDelete": {
+    "com.azure.databox#DeleteJob": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databox#JobsDeleteRequest"
+        "target": "com.azure.databox#DeleteJobRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1757,7 +1758,7 @@
         "com.distilled.openapi#apiVersion": "2025-07-01"
       }
     },
-    "com.azure.databox#JobsDeleteRequest": {
+    "com.azure.databox#DeleteJobRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1789,13 +1790,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databox#JobsUpdate": {
+    "com.azure.databox#UpdateJob": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databox#JobsUpdateRequest"
+        "target": "com.azure.databox#UpdateJobRequest"
       },
       "output": {
-        "target": "com.azure.databox#JobsUpdateResponse"
+        "target": "com.azure.databox#UpdateJobResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1808,7 +1809,7 @@
         "com.distilled.openapi#apiVersion": "2025-07-01"
       }
     },
-    "com.azure.databox#JobsUpdateResponse": {
+    "com.azure.databox#UpdateJobResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1836,7 +1837,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.databox#JobsUpdateResponseTagsMap",
+          "target": "com.azure.databox#UpdateJobResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4171,7 +4172,7 @@
         "smithy.api#documentation": "The Editable status for Reverse Shipping Address and Contact Info"
       }
     },
-    "com.azure.databox#JobsUpdateResponseTagsMap": {
+    "com.azure.databox#UpdateJobResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4291,7 +4292,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.databox#JobsUpdateRequest": {
+    "com.azure.databox#UpdateJobRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4325,7 +4326,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.databox#JobsUpdateRequestTagsMap",
+          "target": "com.azure.databox#UpdateJobRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "The list of key value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups)."
           }
@@ -4380,7 +4381,7 @@
         "smithy.api#documentation": "User assigned identity properties"
       }
     },
-    "com.azure.databox#JobsUpdateRequestTagsMap": {
+    "com.azure.databox#UpdateJobRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4579,13 +4580,13 @@
         "smithy.api#documentation": "Reverse Shipping Address and contact details for a job."
       }
     },
-    "com.azure.databox#JobsCreate": {
+    "com.azure.databox#CreateJob": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databox#JobsCreateRequest"
+        "target": "com.azure.databox#CreateJobRequest"
       },
       "output": {
-        "target": "com.azure.databox#JobsCreateResponse"
+        "target": "com.azure.databox#CreateJobResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4598,7 +4599,7 @@
         "com.distilled.openapi#apiVersion": "2025-07-01"
       }
     },
-    "com.azure.databox#JobsCreateResponse": {
+    "com.azure.databox#CreateJobResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -4626,7 +4627,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.databox#JobsCreateResponseTagsMap",
+          "target": "com.azure.databox#CreateJobResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4663,7 +4664,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.databox#JobsCreateResponseTagsMap": {
+    "com.azure.databox#CreateJobResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4675,7 +4676,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.databox#JobsCreateRequest": {
+    "com.azure.databox#CreateJobRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4703,7 +4704,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.databox#JobsCreateRequestTagsMap",
+          "target": "com.azure.databox#CreateJobRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4875,7 +4876,7 @@
         "smithy.api#documentation": "Details of the data to be imported into azure."
       }
     },
-    "com.azure.databox#JobsCreateRequestTagsMap": {
+    "com.azure.databox#CreateJobRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4887,13 +4888,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.databox#JobsGet": {
+    "com.azure.databox#GetJob": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databox#JobsGetRequest"
+        "target": "com.azure.databox#GetJobRequest"
       },
       "output": {
-        "target": "com.azure.databox#JobsGetResponse"
+        "target": "com.azure.databox#GetJobResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4906,7 +4907,7 @@
         "com.distilled.openapi#apiVersion": "2025-07-01"
       }
     },
-    "com.azure.databox#JobsGetResponse": {
+    "com.azure.databox#GetJobResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -4934,7 +4935,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.databox#JobsGetResponseTagsMap",
+          "target": "com.azure.databox#GetJobResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4971,7 +4972,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.databox#JobsGetResponseTagsMap": {
+    "com.azure.databox#GetJobResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4983,7 +4984,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.databox#JobsGetRequest": {
+    "com.azure.databox#GetJobRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5022,10 +5023,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databox#JobsListByResourceGroup": {
+    "com.azure.databox#ListJobByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databox#JobsListByResourceGroupRequest"
+        "target": "com.azure.databox#ListJobByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.databox#JobResourceList"
@@ -5148,7 +5149,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.databox#JobsListByResourceGroupRequest": {
+    "com.azure.databox#ListJobByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5179,10 +5180,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databox#ServiceValidateInputs": {
+    "com.azure.databox#ValidateServiceInputs": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databox#ServiceValidateInputsRequest"
+        "target": "com.azure.databox#ValidateServiceInputsRequest"
       },
       "output": {
         "target": "com.azure.databox#ValidationResponse"
@@ -5198,7 +5199,7 @@
         "com.distilled.openapi#apiVersion": "2025-07-01"
       }
     },
-    "com.azure.databox#ServiceValidateInputsRequest": {
+    "com.azure.databox#ValidateServiceInputsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5218,14 +5219,14 @@
           }
         },
         "validationCategory": {
-          "target": "com.azure.databox#ServiceValidateInputsRequestValidationCategory",
+          "target": "com.azure.databox#ValidateServiceInputsRequestValidationCategory",
           "traits": {
             "smithy.api#documentation": "Identify the nature of validation.",
             "smithy.api#required": {}
           }
         },
         "individualRequestDetails": {
-          "target": "com.azure.databox#ServiceValidateInputsRequestIndividualRequestDetailsList",
+          "target": "com.azure.databox#ValidateServiceInputsRequestIndividualRequestDetailsList",
           "traits": {
             "smithy.api#documentation": "List of request details contain validationType and its request as key and value respectively.",
             "smithy.api#required": {}
@@ -5236,7 +5237,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databox#ServiceValidateInputsRequestIndividualRequestDetailsList": {
+    "com.azure.databox#ValidateServiceInputsRequestIndividualRequestDetailsList": {
       "type": "list",
       "member": {
         "target": "com.azure.databox#ValidationInputRequest"
@@ -5245,7 +5246,7 @@
         "smithy.api#documentation": "List of request details contain validationType and its request as key and value respectively."
       }
     },
-    "com.azure.databox#ServiceValidateInputsRequestValidationCategory": {
+    "com.azure.databox#ValidateServiceInputsRequestValidationCategory": {
       "type": "enum",
       "members": {
         "JOBCREATIONVALIDATION": {
@@ -5326,10 +5327,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databox#JobsList": {
+    "com.azure.databox#ListJobs": {
       "type": "operation",
       "input": {
-        "target": "com.azure.databox#JobsListRequest"
+        "target": "com.azure.databox#ListJobsRequest"
       },
       "output": {
         "target": "com.azure.databox#JobResourceList"
@@ -5345,7 +5346,7 @@
         "com.distilled.openapi#apiVersion": "2025-07-01"
       }
     },
-    "com.azure.databox#JobsListRequest": {
+    "com.azure.databox#ListJobsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5368,7 +5369,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.databox#OperationsList": {
+    "com.azure.databox#ListOperations": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -5491,13 +5492,13 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.databox#ServiceValidateInputsByResourceGroup"
+          "target": "com.azure.databox#ValidateServiceInputsByResourceGroup"
         },
         {
           "target": "com.azure.databox#ServiceRegionConfigurationByResourceGroup"
         },
         {
-          "target": "com.azure.databox#ServiceListAvailableSkusByResourceGroup"
+          "target": "com.azure.databox#ListServiceAvailableSkusByResourceGroup"
         },
         {
           "target": "com.azure.databox#Mitigate"
@@ -5506,40 +5507,40 @@
           "target": "com.azure.databox#JobsMarkDevicesShipped"
         },
         {
-          "target": "com.azure.databox#JobsListCredentials"
+          "target": "com.azure.databox#ListJobCredentials"
         },
         {
-          "target": "com.azure.databox#JobsCancel"
+          "target": "com.azure.databox#CancelJob"
         },
         {
           "target": "com.azure.databox#JobsBookShipmentPickUp"
         },
         {
-          "target": "com.azure.databox#JobsDelete"
+          "target": "com.azure.databox#DeleteJob"
         },
         {
-          "target": "com.azure.databox#JobsUpdate"
+          "target": "com.azure.databox#UpdateJob"
         },
         {
-          "target": "com.azure.databox#JobsCreate"
+          "target": "com.azure.databox#CreateJob"
         },
         {
-          "target": "com.azure.databox#JobsGet"
+          "target": "com.azure.databox#GetJob"
         },
         {
-          "target": "com.azure.databox#JobsListByResourceGroup"
+          "target": "com.azure.databox#ListJobByResourceGroup"
         },
         {
-          "target": "com.azure.databox#ServiceValidateInputs"
+          "target": "com.azure.databox#ValidateServiceInputs"
         },
         {
           "target": "com.azure.databox#ServiceRegionConfiguration"
         },
         {
-          "target": "com.azure.databox#JobsList"
+          "target": "com.azure.databox#ListJobs"
         },
         {
-          "target": "com.azure.databox#OperationsList"
+          "target": "com.azure.databox#ListOperations"
         }
       ],
       "traits": {

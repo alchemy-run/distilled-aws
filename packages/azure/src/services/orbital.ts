@@ -12,120 +12,6 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
-export type AvailableGroundStationsListByCapabilityRequestCapability =
-  | "EarthObservation"
-  | "Communication";
-export const AvailableGroundStationsListByCapabilityRequestCapability =
-  /*@__PURE__*/ S.String;
-
-export interface AvailableGroundStationsListByCapabilityRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** Ground Station Capability. */
-  capability:
-    | AvailableGroundStationsListByCapabilityRequestCapability
-    | (string & {});
-}
-export const AvailableGroundStationsListByCapabilityRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      capability: AvailableGroundStationsListByCapabilityRequestCapability.pipe(
-        T.Query(),
-      ),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Orbital/availableGroundStations",
-        code: 200,
-        apiVersion: "2022-11-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "AvailableGroundStationsListByCapabilityRequest",
-  }) as any as S.Schema<AvailableGroundStationsListByCapabilityRequest>;
-
-/** Release Status of a ground station. */
-export type AvailableGroundStationPropertiesReleaseMode = "Preview" | "GA";
-export const AvailableGroundStationPropertiesReleaseMode =
-  /*@__PURE__*/ S.String;
-
-/** Properties object for Available groundstation. */
-export interface AvailableGroundStationProperties {
-  /** City of ground station. */
-  city?: string;
-  /** Ground station provider name. */
-  providerName?: string;
-  /** Longitude of the ground station in decimal degrees. */
-  longitudeDegrees?: number;
-  /** Latitude of the ground station in decimal degrees. */
-  latitudeDegrees?: number;
-  /** Altitude of the ground station. */
-  altitudeMeters?: number;
-  /** Release Status of a ground station. */
-  releaseMode?: AvailableGroundStationPropertiesReleaseMode;
-}
-export const AvailableGroundStationProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    city: S.optional(S.String),
-    providerName: S.optional(S.String),
-    longitudeDegrees: S.optional(S.Number),
-    latitudeDegrees: S.optional(S.Number),
-    altitudeMeters: S.optional(S.Number),
-    releaseMode: S.optional(AvailableGroundStationPropertiesReleaseMode),
-  }),
-).annotate({
-  identifier: "AvailableGroundStationProperties",
-}) as any as S.Schema<AvailableGroundStationProperties>;
-
-/** Ground Stations available to schedule Contacts. */
-export interface AvailableGroundStation {
-  /** ID of groundStation. */
-  id?: string;
-  /** Name of the ground station. */
-  name?: string;
-  /** Azure region. */
-  location?: string;
-  /** Resource type. */
-  type?: string;
-  /** The properties bag for this resource. */
-  properties: AvailableGroundStationProperties;
-}
-export const AvailableGroundStation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    location: S.optional(S.String),
-    type: S.optional(S.String),
-    properties: AvailableGroundStationProperties,
-  }),
-).annotate({
-  identifier: "AvailableGroundStation",
-}) as any as S.Schema<AvailableGroundStation>;
-
-/** A list of ground station resources. */
-export type AvailableGroundStationListResultValueList =
-  Array<AvailableGroundStation>;
-export const AvailableGroundStationListResultValueList = /*@__PURE__*/ S.Array(
-  AvailableGroundStation,
-) as any as S.Schema<AvailableGroundStationListResultValueList>;
-
-/** Response for the AvailableGroundStations API service call. */
-export interface AvailableGroundStationListResult {
-  /** A list of ground station resources. */
-  value?: AvailableGroundStationListResultValueList;
-  /** The URL to get the next set of results. */
-  nextLink?: string;
-}
-export const AvailableGroundStationListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(AvailableGroundStationListResultValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AvailableGroundStationListResult",
-}) as any as S.Schema<AvailableGroundStationListResult>;
-
 /** Resource tags. */
 export type ContactProfilesCreateOrUpdateRequestTagsMap = {
   [key: string]: string | undefined;
@@ -536,284 +422,6 @@ export const ContactProfilesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
   identifier: "ContactProfilesCreateOrUpdateResponse",
 }) as any as S.Schema<ContactProfilesCreateOrUpdateResponse>;
 
-export interface ContactProfilesDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Contact Profile name. */
-  contactProfileName: string;
-}
-export const ContactProfilesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    contactProfileName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Orbital/contactProfiles/{contactProfileName}",
-      code: 200,
-      apiVersion: "2022-11-01",
-    }),
-  ),
-).annotate({
-  identifier: "ContactProfilesDeleteRequest",
-}) as any as S.Schema<ContactProfilesDeleteRequest>;
-
-export interface ContactProfilesDeleteResponse {}
-export const ContactProfilesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "ContactProfilesDeleteResponse",
-}) as any as S.Schema<ContactProfilesDeleteResponse>;
-
-export interface ContactProfilesGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Contact Profile name. */
-  contactProfileName: string;
-}
-export const ContactProfilesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    contactProfileName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Orbital/contactProfiles/{contactProfileName}",
-      code: 200,
-      apiVersion: "2022-11-01",
-    }),
-  ),
-).annotate({
-  identifier: "ContactProfilesGetRequest",
-}) as any as S.Schema<ContactProfilesGetRequest>;
-
-/** Resource tags. */
-export type ContactProfilesGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ContactProfilesGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ContactProfilesGetResponseTagsMap>;
-
-export interface ContactProfilesGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: ContactProfilesGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Properties of the contact profile resource. */
-  properties: ContactProfilesProperties;
-}
-export const ContactProfilesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(ContactProfilesGetResponseTagsMap),
-    location: S.String,
-    properties: ContactProfilesProperties,
-  }),
-).annotate({
-  identifier: "ContactProfilesGetResponse",
-}) as any as S.Schema<ContactProfilesGetResponse>;
-
-export interface ContactProfilesListRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** An opaque string that the resource provider uses to skip over previously-returned results. This is used when a previous list operation call returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a skiptoken parameter that specifies a starting point to use for subsequent calls. */
-  _skiptoken?: string;
-}
-export const ContactProfilesListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    _skiptoken: S.optional(S.String.pipe(T.Query("$skiptoken"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Orbital/contactProfiles",
-      code: 200,
-      apiVersion: "2022-11-01",
-    }),
-  ),
-).annotate({
-  identifier: "ContactProfilesListRequest",
-}) as any as S.Schema<ContactProfilesListRequest>;
-
-/** Resource tags. */
-export type ContactProfileTagsMap = { [key: string]: string | undefined };
-export const ContactProfileTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ContactProfileTagsMap>;
-
-/** Customer creates a Contact Profile Resource, which will contain all of the configurations required for scheduling a contact. */
-export interface ContactProfile {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: ContactProfileTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Properties of the contact profile resource. */
-  properties: ContactProfilesProperties;
-}
-export const ContactProfile = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(ContactProfileTagsMap),
-    location: S.String,
-    properties: ContactProfilesProperties,
-  }),
-).annotate({ identifier: "ContactProfile" }) as any as S.Schema<ContactProfile>;
-
-/** A list of contact profile resources in a resource group. */
-export type ContactProfileListResultValueList = Array<ContactProfile>;
-export const ContactProfileListResultValueList = /*@__PURE__*/ S.Array(
-  ContactProfile,
-) as any as S.Schema<ContactProfileListResultValueList>;
-
-/** Response for the ListContactProfiles API service call. */
-export interface ContactProfileListResult {
-  /** A list of contact profile resources in a resource group. */
-  value?: ContactProfileListResultValueList;
-  /** The URL to get the next set of results. */
-  nextLink?: string;
-}
-export const ContactProfileListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(ContactProfileListResultValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ContactProfileListResult",
-}) as any as S.Schema<ContactProfileListResult>;
-
-export interface ContactProfilesListBySubscriptionRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** An opaque string that the resource provider uses to skip over previously-returned results. This is used when a previous list operation call returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a skiptoken parameter that specifies a starting point to use for subsequent calls. */
-  _skiptoken?: string;
-}
-export const ContactProfilesListBySubscriptionRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      _skiptoken: S.optional(S.String.pipe(T.Query("$skiptoken"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Orbital/contactProfiles",
-        code: 200,
-        apiVersion: "2022-11-01",
-      }),
-    ),
-).annotate({
-  identifier: "ContactProfilesListBySubscriptionRequest",
-}) as any as S.Schema<ContactProfilesListBySubscriptionRequest>;
-
-/** Resource tags. */
-export type ContactProfilesUpdateTagsRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ContactProfilesUpdateTagsRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ContactProfilesUpdateTagsRequestTagsMap>;
-
-export interface ContactProfilesUpdateTagsRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Contact Profile name. */
-  contactProfileName: string;
-  /** Resource tags. */
-  tags?: ContactProfilesUpdateTagsRequestTagsMap;
-}
-export const ContactProfilesUpdateTagsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    contactProfileName: S.String.pipe(T.Label()),
-    tags: S.optional(ContactProfilesUpdateTagsRequestTagsMap),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Orbital/contactProfiles/{contactProfileName}",
-      code: 200,
-      apiVersion: "2022-11-01",
-    }),
-  ),
-).annotate({
-  identifier: "ContactProfilesUpdateTagsRequest",
-}) as any as S.Schema<ContactProfilesUpdateTagsRequest>;
-
-/** Resource tags. */
-export type ContactProfilesUpdateTagsResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const ContactProfilesUpdateTagsResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<ContactProfilesUpdateTagsResponseTagsMap>;
-
-export interface ContactProfilesUpdateTagsResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: ContactProfilesUpdateTagsResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Properties of the contact profile resource. */
-  properties: ContactProfilesProperties;
-}
-export const ContactProfilesUpdateTagsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(ContactProfilesUpdateTagsResponseTagsMap),
-    location: S.String,
-    properties: ContactProfilesProperties,
-  }),
-).annotate({
-  identifier: "ContactProfilesUpdateTagsResponse",
-}) as any as S.Schema<ContactProfilesUpdateTagsResponse>;
-
 /** Resource Reference. */
 export interface ResourceReference {
   /** Resource ID. */
@@ -852,7 +460,7 @@ export const ContactsPropertiesInput = /*@__PURE__*/ S.suspend(() =>
   identifier: "ContactsPropertiesInput",
 }) as any as S.Schema<ContactsPropertiesInput>;
 
-export interface ContactsCreateRequest {
+export interface CreateContactRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -863,7 +471,7 @@ export interface ContactsCreateRequest {
   contactName: string;
   properties: ContactsPropertiesInput;
 }
-export const ContactsCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const CreateContactRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -879,8 +487,8 @@ export const ContactsCreateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ContactsCreateRequest",
-}) as any as S.Schema<ContactsCreateRequest>;
+  identifier: "CreateContactRequest",
+}) as any as S.Schema<CreateContactRequest>;
 
 /** Status of a contact. */
 export type ContactsPropertiesStatus =
@@ -978,7 +586,7 @@ export const ContactsProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "ContactsProperties",
 }) as any as S.Schema<ContactsProperties>;
 
-export interface ContactsCreateResponse {
+export interface CreateContactResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -989,7 +597,7 @@ export interface ContactsCreateResponse {
   systemData?: SystemData;
   properties: ContactsProperties;
 }
-export const ContactsCreateResponse = /*@__PURE__*/ S.suspend(() =>
+export const CreateContactResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -998,10 +606,10 @@ export const ContactsCreateResponse = /*@__PURE__*/ S.suspend(() =>
     properties: ContactsProperties,
   }),
 ).annotate({
-  identifier: "ContactsCreateResponse",
-}) as any as S.Schema<ContactsCreateResponse>;
+  identifier: "CreateContactResponse",
+}) as any as S.Schema<CreateContactResponse>;
 
-export interface ContactsDeleteRequest {
+export interface DeleteContactRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1011,7 +619,7 @@ export interface ContactsDeleteRequest {
   /** Contact name. */
   contactName: string;
 }
-export const ContactsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteContactRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1026,138 +634,175 @@ export const ContactsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ContactsDeleteRequest",
-}) as any as S.Schema<ContactsDeleteRequest>;
+  identifier: "DeleteContactRequest",
+}) as any as S.Schema<DeleteContactRequest>;
 
-export interface ContactsDeleteResponse {}
-export const ContactsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteContactResponse {}
+export const DeleteContactResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "ContactsDeleteResponse",
-}) as any as S.Schema<ContactsDeleteResponse>;
+  identifier: "DeleteContactResponse",
+}) as any as S.Schema<DeleteContactResponse>;
 
-export interface ContactsGetRequest {
+export interface DeleteContactProfileRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Contact Profile name. */
+  contactProfileName: string;
+}
+export const DeleteContactProfileRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    contactProfileName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Orbital/contactProfiles/{contactProfileName}",
+      code: 200,
+      apiVersion: "2022-11-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteContactProfileRequest",
+}) as any as S.Schema<DeleteContactProfileRequest>;
+
+export interface DeleteContactProfileResponse {}
+export const DeleteContactProfileResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteContactProfileResponse",
+}) as any as S.Schema<DeleteContactProfileResponse>;
+
+export interface DeleteEdgeSiteRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Edge site name. */
+  edgeSiteName: string;
+}
+export const DeleteEdgeSiteRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    edgeSiteName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Orbital/edgeSites/{edgeSiteName}",
+      code: 200,
+      apiVersion: "2024-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteEdgeSiteRequest",
+}) as any as S.Schema<DeleteEdgeSiteRequest>;
+
+export interface DeleteEdgeSiteResponse {}
+export const DeleteEdgeSiteResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteEdgeSiteResponse",
+}) as any as S.Schema<DeleteEdgeSiteResponse>;
+
+export interface DeleteGroundStationRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Ground Station name. */
+  groundStationName: string;
+}
+export const DeleteGroundStationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    groundStationName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Orbital/groundStations/{groundStationName}",
+      code: 200,
+      apiVersion: "2024-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteGroundStationRequest",
+}) as any as S.Schema<DeleteGroundStationRequest>;
+
+export interface DeleteGroundStationResponse {}
+export const DeleteGroundStationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteGroundStationResponse",
+}) as any as S.Schema<DeleteGroundStationResponse>;
+
+export interface DeleteL2ConnectionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** L2 Connection name. */
+  l2ConnectionName: string;
+}
+export const DeleteL2ConnectionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    l2ConnectionName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Orbital/l2Connections/{l2ConnectionName}",
+      code: 200,
+      apiVersion: "2024-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteL2ConnectionRequest",
+}) as any as S.Schema<DeleteL2ConnectionRequest>;
+
+export interface DeleteL2ConnectionResponse {}
+export const DeleteL2ConnectionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteL2ConnectionResponse",
+}) as any as S.Schema<DeleteL2ConnectionResponse>;
+
+export interface DeleteSpacecraftRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** Spacecraft ID. */
   spacecraftName: string;
-  /** Contact name. */
-  contactName: string;
 }
-export const ContactsGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteSpacecraftRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     spacecraftName: S.String.pipe(T.Label()),
-    contactName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Orbital/spacecrafts/{spacecraftName}/contacts/{contactName}",
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Orbital/spacecrafts/{spacecraftName}",
       code: 200,
       apiVersion: "2022-11-01",
     }),
   ),
 ).annotate({
-  identifier: "ContactsGetRequest",
-}) as any as S.Schema<ContactsGetRequest>;
+  identifier: "DeleteSpacecraftRequest",
+}) as any as S.Schema<DeleteSpacecraftRequest>;
 
-export interface ContactsGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  properties: ContactsProperties;
-}
-export const ContactsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: ContactsProperties,
-  }),
+export interface DeleteSpacecraftResponse {}
+export const DeleteSpacecraftResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
 ).annotate({
-  identifier: "ContactsGetResponse",
-}) as any as S.Schema<ContactsGetResponse>;
-
-export interface ContactsListRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Spacecraft ID. */
-  spacecraftName: string;
-  /** An opaque string that the resource provider uses to skip over previously-returned results. This is used when a previous list operation call returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a skiptoken parameter that specifies a starting point to use for subsequent calls. */
-  _skiptoken?: string;
-}
-export const ContactsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    spacecraftName: S.String.pipe(T.Label()),
-    _skiptoken: S.optional(S.String.pipe(T.Query("$skiptoken"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Orbital/spacecrafts/{spacecraftName}/contacts",
-      code: 200,
-      apiVersion: "2022-11-01",
-    }),
-  ),
-).annotate({
-  identifier: "ContactsListRequest",
-}) as any as S.Schema<ContactsListRequest>;
-
-/** Customer creates a contact resource for a spacecraft resource. */
-export interface Contact {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  properties: ContactsProperties;
-}
-export const Contact = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: ContactsProperties,
-  }),
-).annotate({ identifier: "Contact" }) as any as S.Schema<Contact>;
-
-/** A list of contact resources in a resource group. */
-export type ContactListResultValueList = Array<Contact>;
-export const ContactListResultValueList = /*@__PURE__*/ S.Array(
-  Contact,
-) as any as S.Schema<ContactListResultValueList>;
-
-/** Response for the ListContacts API service call. */
-export interface ContactListResult {
-  /** A list of contact resources in a resource group. */
-  value?: ContactListResultValueList;
-  /** The URL to get the next set of results. */
-  nextLink?: string;
-}
-export const ContactListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(ContactListResultValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ContactListResult",
-}) as any as S.Schema<ContactListResult>;
+  identifier: "DeleteSpacecraftResponse",
+}) as any as S.Schema<DeleteSpacecraftResponse>;
 
 /** Resource tags. */
 export type EdgeSitesCreateOrUpdateRequestTagsMap = {
@@ -1254,39 +899,122 @@ export const EdgeSitesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "EdgeSitesCreateOrUpdateResponse",
 }) as any as S.Schema<EdgeSitesCreateOrUpdateResponse>;
 
-export interface EdgeSitesDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
+export interface GetContactRequest {
+  /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
-  /** Edge site name. */
-  edgeSiteName: string;
+  /** Spacecraft ID. */
+  spacecraftName: string;
+  /** Contact name. */
+  contactName: string;
 }
-export const EdgeSitesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetContactRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
-    edgeSiteName: S.String.pipe(T.Label()),
+    spacecraftName: S.String.pipe(T.Label()),
+    contactName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Orbital/edgeSites/{edgeSiteName}",
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Orbital/spacecrafts/{spacecraftName}/contacts/{contactName}",
       code: 200,
-      apiVersion: "2024-03-01",
+      apiVersion: "2022-11-01",
     }),
   ),
 ).annotate({
-  identifier: "EdgeSitesDeleteRequest",
-}) as any as S.Schema<EdgeSitesDeleteRequest>;
+  identifier: "GetContactRequest",
+}) as any as S.Schema<GetContactRequest>;
 
-export interface EdgeSitesDeleteResponse {}
-export const EdgeSitesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
+export interface GetContactResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  properties: ContactsProperties;
+}
+export const GetContactResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: ContactsProperties,
+  }),
 ).annotate({
-  identifier: "EdgeSitesDeleteResponse",
-}) as any as S.Schema<EdgeSitesDeleteResponse>;
+  identifier: "GetContactResponse",
+}) as any as S.Schema<GetContactResponse>;
 
-export interface EdgeSitesGetRequest {
+export interface GetContactProfileRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Contact Profile name. */
+  contactProfileName: string;
+}
+export const GetContactProfileRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    contactProfileName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Orbital/contactProfiles/{contactProfileName}",
+      code: 200,
+      apiVersion: "2022-11-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetContactProfileRequest",
+}) as any as S.Schema<GetContactProfileRequest>;
+
+/** Resource tags. */
+export type GetContactProfileResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetContactProfileResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetContactProfileResponseTagsMap>;
+
+export interface GetContactProfileResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetContactProfileResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Properties of the contact profile resource. */
+  properties: ContactProfilesProperties;
+}
+export const GetContactProfileResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetContactProfileResponseTagsMap),
+    location: S.String,
+    properties: ContactProfilesProperties,
+  }),
+).annotate({
+  identifier: "GetContactProfileResponse",
+}) as any as S.Schema<GetContactProfileResponse>;
+
+export interface GetEdgeSiteRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1294,7 +1022,7 @@ export interface EdgeSitesGetRequest {
   /** Edge site name. */
   edgeSiteName: string;
 }
-export const EdgeSitesGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetEdgeSiteRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1308,17 +1036,17 @@ export const EdgeSitesGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "EdgeSitesGetRequest",
-}) as any as S.Schema<EdgeSitesGetRequest>;
+  identifier: "GetEdgeSiteRequest",
+}) as any as S.Schema<GetEdgeSiteRequest>;
 
 /** Resource tags. */
-export type EdgeSitesGetResponseTagsMap = { [key: string]: string | undefined };
-export const EdgeSitesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetEdgeSiteResponseTagsMap = { [key: string]: string | undefined };
+export const GetEdgeSiteResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<EdgeSitesGetResponseTagsMap>;
+) as any as S.Schema<GetEdgeSiteResponseTagsMap>;
 
-export interface EdgeSitesGetResponse {
+export interface GetEdgeSiteResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -1328,35 +1056,968 @@ export interface EdgeSitesGetResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: EdgeSitesGetResponseTagsMap;
+  tags?: GetEdgeSiteResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The properties bag for this resource. */
   properties: EdgeSitesProperties;
 }
-export const EdgeSitesGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetEdgeSiteResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(EdgeSitesGetResponseTagsMap),
+    tags: S.optional(GetEdgeSiteResponseTagsMap),
     location: S.String,
     properties: EdgeSitesProperties,
   }),
 ).annotate({
-  identifier: "EdgeSitesGetResponse",
-}) as any as S.Schema<EdgeSitesGetResponse>;
+  identifier: "GetEdgeSiteResponse",
+}) as any as S.Schema<GetEdgeSiteResponse>;
 
-export interface EdgeSitesListRequest {
+export interface GetGroundStationRequest {
   /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Ground Station name. */
+  groundStationName: string;
+}
+export const GetGroundStationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    groundStationName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Orbital/groundStations/{groundStationName}",
+      code: 200,
+      apiVersion: "2024-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetGroundStationRequest",
+}) as any as S.Schema<GetGroundStationRequest>;
+
+/** Resource tags. */
+export type GetGroundStationResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetGroundStationResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetGroundStationResponseTagsMap>;
+
+/** Capability of the Ground Station. */
+export type Capability = "EarthObservation" | "Communication";
+export const Capability = /*@__PURE__*/ S.String;
+
+/** Ground station capabilities. */
+export type GroundStationsPropertiesCapabilitiesList = Array<Capability>;
+export const GroundStationsPropertiesCapabilitiesList = /*@__PURE__*/ S.Array(
+  Capability,
+) as any as S.Schema<GroundStationsPropertiesCapabilitiesList>;
+
+/** Release Status of a ground station. */
+export type GroundStationsPropertiesReleaseMode = "Preview" | "GA";
+export const GroundStationsPropertiesReleaseMode = /*@__PURE__*/ S.String;
+
+/** List of ground station resource properties. */
+export interface GroundStationsProperties {
+  /** City of ground station. */
+  city?: string;
+  /** Ground station capabilities. */
+  capabilities: GroundStationsPropertiesCapabilitiesList;
+  /** Ground station provider name. */
+  providerName?: string;
+  /** Longitude of the ground station in decimal degrees. */
+  longitudeDegrees?: number;
+  /** Latitude of the ground station in decimal degrees. */
+  latitudeDegrees?: number;
+  /** Altitude of the ground station. */
+  altitudeMeters?: number;
+  /** Release Status of a ground station. */
+  releaseMode?: GroundStationsPropertiesReleaseMode;
+  /** A reference to global communications site. */
+  globalCommunicationsSite: ResourceReference;
+}
+export const GroundStationsProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    city: S.optional(S.String),
+    capabilities: GroundStationsPropertiesCapabilitiesList,
+    providerName: S.optional(S.String),
+    longitudeDegrees: S.optional(S.Number),
+    latitudeDegrees: S.optional(S.Number),
+    altitudeMeters: S.optional(S.Number),
+    releaseMode: S.optional(GroundStationsPropertiesReleaseMode),
+    globalCommunicationsSite: ResourceReference,
+  }),
+).annotate({
+  identifier: "GroundStationsProperties",
+}) as any as S.Schema<GroundStationsProperties>;
+
+export interface GetGroundStationResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetGroundStationResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Properties of the Ground Station. */
+  properties?: GroundStationsProperties;
+}
+export const GetGroundStationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetGroundStationResponseTagsMap),
+    location: S.String,
+    properties: S.optional(GroundStationsProperties),
+  }),
+).annotate({
+  identifier: "GetGroundStationResponse",
+}) as any as S.Schema<GetGroundStationResponse>;
+
+export interface GetL2ConnectionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** L2 Connection name. */
+  l2ConnectionName: string;
+}
+export const GetL2ConnectionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    l2ConnectionName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Orbital/l2Connections/{l2ConnectionName}",
+      code: 200,
+      apiVersion: "2024-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetL2ConnectionRequest",
+}) as any as S.Schema<GetL2ConnectionRequest>;
+
+/** Resource tags. */
+export type GetL2ConnectionResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetL2ConnectionResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetL2ConnectionResponseTagsMap>;
+
+/** The current state of the resource's creation, deletion, or modification. */
+export type ProvisioningState_2 =
+  | "Creating"
+  | "Succeeded"
+  | "Failed"
+  | "Canceled"
+  | "Updating"
+  | "Deleting";
+export const ProvisioningState_2 = /*@__PURE__*/ S.String;
+
+/** The name of the partner router that cross-connects with the Orbital Edge Router at the edge site. */
+export interface L2ConnectionsPropertiesEdgeSitePartnerRouter {
+  /** The unique name of the partner router that cross-connects with the Orbital Edge Router at the edge site. */
+  name: string;
+}
+export const L2ConnectionsPropertiesEdgeSitePartnerRouter =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      name: S.String,
+    }),
+  ).annotate({
+    identifier: "L2ConnectionsPropertiesEdgeSitePartnerRouter",
+  }) as any as S.Schema<L2ConnectionsPropertiesEdgeSitePartnerRouter>;
+
+/** The name of the partner router to establish a connection to within the ground station. */
+export interface L2ConnectionsPropertiesGroundStationPartnerRouter {
+  /** The unique name of the partner router that cross-connects with the Orbital Edge Router at the ground station site. */
+  name: string;
+}
+export const L2ConnectionsPropertiesGroundStationPartnerRouter =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      name: S.String,
+    }),
+  ).annotate({
+    identifier: "L2ConnectionsPropertiesGroundStationPartnerRouter",
+  }) as any as S.Schema<L2ConnectionsPropertiesGroundStationPartnerRouter>;
+
+/** Properties object for an L2 Connection. */
+export interface L2ConnectionsProperties {
+  /** The current state of the resource's creation, deletion, or modification. */
+  provisioningState?: ProvisioningState_2;
+  /** Globally-unique identifier for this connection that is to be used as a circuit ID. */
+  circuitId?: string;
+  /** A reference to an Microsoft.Orbital/edgeSites resource to route traffic for. */
+  edgeSite: ResourceReference;
+  /** The name of the partner router that cross-connects with the Orbital Edge Router at the edge site. */
+  edgeSitePartnerRouter: L2ConnectionsPropertiesEdgeSitePartnerRouter;
+  /** A reference to an Microsoft.Orbital/groundStations resource to route traffic for. */
+  groundStation: ResourceReference;
+  /** The name of the partner router to establish a connection to within the ground station. */
+  groundStationPartnerRouter: L2ConnectionsPropertiesGroundStationPartnerRouter;
+  /** The VLAN ID for the L2 connection. */
+  vlanId: number;
+}
+export const L2ConnectionsProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provisioningState: S.optional(ProvisioningState_2),
+    circuitId: S.optional(S.String),
+    edgeSite: ResourceReference,
+    edgeSitePartnerRouter: L2ConnectionsPropertiesEdgeSitePartnerRouter,
+    groundStation: ResourceReference,
+    groundStationPartnerRouter:
+      L2ConnectionsPropertiesGroundStationPartnerRouter,
+    vlanId: S.Number,
+  }),
+).annotate({
+  identifier: "L2ConnectionsProperties",
+}) as any as S.Schema<L2ConnectionsProperties>;
+
+export interface GetL2ConnectionResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetL2ConnectionResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The properties bag for this resource. */
+  properties: L2ConnectionsProperties;
+}
+export const GetL2ConnectionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetL2ConnectionResponseTagsMap),
+    location: S.String,
+    properties: L2ConnectionsProperties,
+  }),
+).annotate({
+  identifier: "GetL2ConnectionResponse",
+}) as any as S.Schema<GetL2ConnectionResponse>;
+
+export interface GetOperationsResultRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of Azure region. */
+  location: string;
+  /** The ID of an ongoing async operation. */
+  operationId: string;
+}
+export const GetOperationsResultRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    location: S.String.pipe(T.Label()),
+    operationId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Orbital/locations/{location}/operationResults/{operationId}",
+      code: 200,
+      apiVersion: "2022-11-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetOperationsResultRequest",
+}) as any as S.Schema<GetOperationsResultRequest>;
+
+/** The status of operation. */
+export type Status = "Succeeded" | "Canceled" | "Failed" | "Running";
+export const Status = /*@__PURE__*/ S.String;
+
+/** A list of results when the operation returns multiple results. */
+export type OperationResultValueList = Array<unknown>;
+export const OperationResultValueList = /*@__PURE__*/ S.Array(
+  S.Unknown,
+) as any as S.Schema<OperationResultValueList>;
+
+/** Operation result error properties. */
+export interface OperationResultErrorProperties {
+  /** The code of the error. */
+  code?: string;
+  /** The error message. */
+  message?: string;
+}
+export const OperationResultErrorProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    code: S.optional(S.String),
+    message: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "OperationResultErrorProperties",
+}) as any as S.Schema<OperationResultErrorProperties>;
+
+/** Operation Result Entity. */
+export interface OperationResult {
+  /** ID of the resource. */
+  id?: string;
+  /** Name of the resource. */
+  name?: string;
+  status?: Status;
+  /** The operation start time (ISO 8601 UTC standard). */
+  startTime?: string;
+  /** The operation end time (ISO 8601 UTC standard). */
+  endTime?: string;
+  /** Percentage completed. */
+  percentComplete?: number;
+  /** A list of results when the operation returns multiple results. */
+  value?: OperationResultValueList;
+  /** The URL to get the next set of results. */
+  nextLink?: string;
+  properties?: unknown;
+  error?: OperationResultErrorProperties;
+}
+export const OperationResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    status: S.optional(Status),
+    startTime: S.optional(S.String),
+    endTime: S.optional(S.String),
+    percentComplete: S.optional(S.Number),
+    value: S.optional(OperationResultValueList),
+    nextLink: S.optional(S.String),
+    properties: S.optional(S.Unknown),
+    error: S.optional(OperationResultErrorProperties),
+  }),
+).annotate({
+  identifier: "OperationResult",
+}) as any as S.Schema<OperationResult>;
+
+export interface GetSpacecraftRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Spacecraft ID. */
+  spacecraftName: string;
+}
+export const GetSpacecraftRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    spacecraftName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Orbital/spacecrafts/{spacecraftName}",
+      code: 200,
+      apiVersion: "2022-11-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetSpacecraftRequest",
+}) as any as S.Schema<GetSpacecraftRequest>;
+
+/** Resource tags. */
+export type GetSpacecraftResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GetSpacecraftResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetSpacecraftResponseTagsMap>;
+
+/** Direction (Uplink or Downlink). */
+export type SpacecraftLinkDirection = "Uplink" | "Downlink";
+export const SpacecraftLinkDirection = /*@__PURE__*/ S.String;
+
+/** Polarization. e.g. (RHCP, LHCP). */
+export type SpacecraftLinkPolarization =
+  | "RHCP"
+  | "LHCP"
+  | "linearVertical"
+  | "linearHorizontal";
+export const SpacecraftLinkPolarization = /*@__PURE__*/ S.String;
+
+/** Authorized groundstation. */
+export interface AuthorizedGroundstation {
+  /** Groundstation name. */
+  groundStation: string;
+  /** Date of authorization expiration. */
+  expirationDate: string;
+}
+export const AuthorizedGroundstation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    groundStation: S.String,
+    expirationDate: S.String,
+  }),
+).annotate({
+  identifier: "AuthorizedGroundstation",
+}) as any as S.Schema<AuthorizedGroundstation>;
+
+/** Authorized Ground Stations */
+export type SpacecraftLinkAuthorizationsList = Array<AuthorizedGroundstation>;
+export const SpacecraftLinkAuthorizationsList = /*@__PURE__*/ S.Array(
+  AuthorizedGroundstation,
+) as any as S.Schema<SpacecraftLinkAuthorizationsList>;
+
+/** List of authorized spacecraft links per ground station and the expiration date of the authorization. */
+export interface SpacecraftLink {
+  /** Link name. */
+  name: string;
+  /** Center Frequency in MHz. */
+  centerFrequencyMHz: number;
+  /** Bandwidth in MHz. */
+  bandwidthMHz: number;
+  /** Direction (Uplink or Downlink). */
+  direction: SpacecraftLinkDirection;
+  /** Polarization. e.g. (RHCP, LHCP). */
+  polarization: SpacecraftLinkPolarization;
+  /** Authorized Ground Stations */
+  authorizations?: SpacecraftLinkAuthorizationsList;
+}
+export const SpacecraftLink = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String,
+    centerFrequencyMHz: S.Number,
+    bandwidthMHz: S.Number,
+    direction: SpacecraftLinkDirection,
+    polarization: SpacecraftLinkPolarization,
+    authorizations: S.optional(SpacecraftLinkAuthorizationsList),
+  }),
+).annotate({ identifier: "SpacecraftLink" }) as any as S.Schema<SpacecraftLink>;
+
+/** Immutable list of Spacecraft links. */
+export type SpacecraftsPropertiesLinksList = Array<SpacecraftLink>;
+export const SpacecraftsPropertiesLinksList = /*@__PURE__*/ S.Array(
+  SpacecraftLink,
+) as any as S.Schema<SpacecraftsPropertiesLinksList>;
+
+/** List of Spacecraft Resource Properties. */
+export interface SpacecraftsProperties {
+  /** The current state of the resource's creation, deletion, or modification. */
+  provisioningState?: ProvisioningState;
+  /** NORAD ID of the spacecraft. */
+  noradId?: string;
+  /** Title line of the two-line element set (TLE). */
+  titleLine: string;
+  /** Line 1 of the two-line element set (TLE). */
+  tleLine1: string;
+  /** Line 2 of the two-line element set (TLE). */
+  tleLine2: string;
+  /** Immutable list of Spacecraft links. */
+  links: SpacecraftsPropertiesLinksList;
+}
+export const SpacecraftsProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provisioningState: S.optional(ProvisioningState),
+    noradId: S.optional(S.String),
+    titleLine: S.String,
+    tleLine1: S.String,
+    tleLine2: S.String,
+    links: SpacecraftsPropertiesLinksList,
+  }),
+).annotate({
+  identifier: "SpacecraftsProperties",
+}) as any as S.Schema<SpacecraftsProperties>;
+
+export interface GetSpacecraftResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetSpacecraftResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Spacecraft Properties */
+  properties: SpacecraftsProperties;
+}
+export const GetSpacecraftResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetSpacecraftResponseTagsMap),
+    location: S.String,
+    properties: SpacecraftsProperties,
+  }),
+).annotate({
+  identifier: "GetSpacecraftResponse",
+}) as any as S.Schema<GetSpacecraftResponse>;
+
+/** Resource tags. */
+export type GroundStationsCreateOrUpdateRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GroundStationsCreateOrUpdateRequestTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<GroundStationsCreateOrUpdateRequestTagsMap>;
+
+/** Ground station capabilities. */
+export type GroundStationsPropertiesInputCapabilitiesList = Array<
+  Capability | (string & {})
+>;
+export const GroundStationsPropertiesInputCapabilitiesList =
+  /*@__PURE__*/ S.Array(
+    Capability,
+  ) as any as S.Schema<GroundStationsPropertiesInputCapabilitiesList>;
+
+/** List of ground station resource properties. */
+export interface GroundStationsPropertiesInput {
+  /** City of ground station. */
+  city?: string;
+  /** Ground station capabilities. */
+  capabilities: GroundStationsPropertiesInputCapabilitiesList;
+  /** Ground station provider name. */
+  providerName?: string;
+  /** Longitude of the ground station in decimal degrees. */
+  longitudeDegrees?: number;
+  /** Latitude of the ground station in decimal degrees. */
+  latitudeDegrees?: number;
+  /** Altitude of the ground station. */
+  altitudeMeters?: number;
+  /** A reference to global communications site. */
+  globalCommunicationsSite: ResourceReference;
+}
+export const GroundStationsPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    city: S.optional(S.String),
+    capabilities: GroundStationsPropertiesInputCapabilitiesList,
+    providerName: S.optional(S.String),
+    longitudeDegrees: S.optional(S.Number),
+    latitudeDegrees: S.optional(S.Number),
+    altitudeMeters: S.optional(S.Number),
+    globalCommunicationsSite: ResourceReference,
+  }),
+).annotate({
+  identifier: "GroundStationsPropertiesInput",
+}) as any as S.Schema<GroundStationsPropertiesInput>;
+
+export interface GroundStationsCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Ground Station name. */
+  groundStationName: string;
+  /** Resource tags. */
+  tags?: GroundStationsCreateOrUpdateRequestTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Properties of the Ground Station. */
+  properties?: GroundStationsPropertiesInput;
+}
+export const GroundStationsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    groundStationName: S.String.pipe(T.Label()),
+    tags: S.optional(GroundStationsCreateOrUpdateRequestTagsMap),
+    location: S.String,
+    properties: S.optional(GroundStationsPropertiesInput),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Orbital/groundStations/{groundStationName}",
+      code: 200,
+      apiVersion: "2024-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "GroundStationsCreateOrUpdateRequest",
+}) as any as S.Schema<GroundStationsCreateOrUpdateRequest>;
+
+/** Resource tags. */
+export type GroundStationsCreateOrUpdateResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const GroundStationsCreateOrUpdateResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<GroundStationsCreateOrUpdateResponseTagsMap>;
+
+export interface GroundStationsCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GroundStationsCreateOrUpdateResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Properties of the Ground Station. */
+  properties?: GroundStationsProperties;
+}
+export const GroundStationsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      tags: S.optional(GroundStationsCreateOrUpdateResponseTagsMap),
+      location: S.String,
+      properties: S.optional(GroundStationsProperties),
+    }),
+).annotate({
+  identifier: "GroundStationsCreateOrUpdateResponse",
+}) as any as S.Schema<GroundStationsCreateOrUpdateResponse>;
+
+/** Resource tags. */
+export type L2ConnectionsCreateOrUpdateRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const L2ConnectionsCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<L2ConnectionsCreateOrUpdateRequestTagsMap>;
+
+/** The name of the partner router that cross-connects with the Orbital Edge Router at the edge site. */
+export type L2ConnectionsPropertiesInputEdgeSitePartnerRouter =
+  L2ConnectionsPropertiesEdgeSitePartnerRouter;
+export const L2ConnectionsPropertiesInputEdgeSitePartnerRouter =
+  L2ConnectionsPropertiesEdgeSitePartnerRouter;
+
+/** The name of the partner router to establish a connection to within the ground station. */
+export type L2ConnectionsPropertiesInputGroundStationPartnerRouter =
+  L2ConnectionsPropertiesGroundStationPartnerRouter;
+export const L2ConnectionsPropertiesInputGroundStationPartnerRouter =
+  L2ConnectionsPropertiesGroundStationPartnerRouter;
+
+/** Properties object for an L2 Connection. */
+export interface L2ConnectionsPropertiesInput {
+  /** A reference to an Microsoft.Orbital/edgeSites resource to route traffic for. */
+  edgeSite: ResourceReference;
+  /** The name of the partner router that cross-connects with the Orbital Edge Router at the edge site. */
+  edgeSitePartnerRouter: L2ConnectionsPropertiesEdgeSitePartnerRouter;
+  /** A reference to an Microsoft.Orbital/groundStations resource to route traffic for. */
+  groundStation: ResourceReference;
+  /** The name of the partner router to establish a connection to within the ground station. */
+  groundStationPartnerRouter: L2ConnectionsPropertiesGroundStationPartnerRouter;
+  /** The VLAN ID for the L2 connection. */
+  vlanId: number;
+}
+export const L2ConnectionsPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    edgeSite: ResourceReference,
+    edgeSitePartnerRouter: L2ConnectionsPropertiesEdgeSitePartnerRouter,
+    groundStation: ResourceReference,
+    groundStationPartnerRouter:
+      L2ConnectionsPropertiesGroundStationPartnerRouter,
+    vlanId: S.Number,
+  }),
+).annotate({
+  identifier: "L2ConnectionsPropertiesInput",
+}) as any as S.Schema<L2ConnectionsPropertiesInput>;
+
+export interface L2ConnectionsCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** L2 Connection name. */
+  l2ConnectionName: string;
+  /** Resource tags. */
+  tags?: L2ConnectionsCreateOrUpdateRequestTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The properties bag for this resource. */
+  properties: L2ConnectionsPropertiesInput;
+}
+export const L2ConnectionsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    l2ConnectionName: S.String.pipe(T.Label()),
+    tags: S.optional(L2ConnectionsCreateOrUpdateRequestTagsMap),
+    location: S.String,
+    properties: L2ConnectionsPropertiesInput,
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Orbital/l2Connections/{l2ConnectionName}",
+      code: 200,
+      apiVersion: "2024-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "L2ConnectionsCreateOrUpdateRequest",
+}) as any as S.Schema<L2ConnectionsCreateOrUpdateRequest>;
+
+/** Resource tags. */
+export type L2ConnectionsCreateOrUpdateResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const L2ConnectionsCreateOrUpdateResponseTagsMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.String,
+  ) as any as S.Schema<L2ConnectionsCreateOrUpdateResponseTagsMap>;
+
+export interface L2ConnectionsCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: L2ConnectionsCreateOrUpdateResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The properties bag for this resource. */
+  properties: L2ConnectionsProperties;
+}
+export const L2ConnectionsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(L2ConnectionsCreateOrUpdateResponseTagsMap),
+    location: S.String,
+    properties: L2ConnectionsProperties,
+  }),
+).annotate({
+  identifier: "L2ConnectionsCreateOrUpdateResponse",
+}) as any as S.Schema<L2ConnectionsCreateOrUpdateResponse>;
+
+export type ListAvailableGroundStationByCapabilityRequestCapability =
+  | "EarthObservation"
+  | "Communication";
+export const ListAvailableGroundStationByCapabilityRequestCapability =
+  /*@__PURE__*/ S.String;
+
+export interface ListAvailableGroundStationByCapabilityRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** Ground Station Capability. */
+  capability:
+    | ListAvailableGroundStationByCapabilityRequestCapability
+    | (string & {});
+}
+export const ListAvailableGroundStationByCapabilityRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      capability: ListAvailableGroundStationByCapabilityRequestCapability.pipe(
+        T.Query(),
+      ),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Orbital/availableGroundStations",
+        code: 200,
+        apiVersion: "2022-11-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListAvailableGroundStationByCapabilityRequest",
+  }) as any as S.Schema<ListAvailableGroundStationByCapabilityRequest>;
+
+/** Release Status of a ground station. */
+export type AvailableGroundStationPropertiesReleaseMode = "Preview" | "GA";
+export const AvailableGroundStationPropertiesReleaseMode =
+  /*@__PURE__*/ S.String;
+
+/** Properties object for Available groundstation. */
+export interface AvailableGroundStationProperties {
+  /** City of ground station. */
+  city?: string;
+  /** Ground station provider name. */
+  providerName?: string;
+  /** Longitude of the ground station in decimal degrees. */
+  longitudeDegrees?: number;
+  /** Latitude of the ground station in decimal degrees. */
+  latitudeDegrees?: number;
+  /** Altitude of the ground station. */
+  altitudeMeters?: number;
+  /** Release Status of a ground station. */
+  releaseMode?: AvailableGroundStationPropertiesReleaseMode;
+}
+export const AvailableGroundStationProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    city: S.optional(S.String),
+    providerName: S.optional(S.String),
+    longitudeDegrees: S.optional(S.Number),
+    latitudeDegrees: S.optional(S.Number),
+    altitudeMeters: S.optional(S.Number),
+    releaseMode: S.optional(AvailableGroundStationPropertiesReleaseMode),
+  }),
+).annotate({
+  identifier: "AvailableGroundStationProperties",
+}) as any as S.Schema<AvailableGroundStationProperties>;
+
+/** Ground Stations available to schedule Contacts. */
+export interface AvailableGroundStation {
+  /** ID of groundStation. */
+  id?: string;
+  /** Name of the ground station. */
+  name?: string;
+  /** Azure region. */
+  location?: string;
+  /** Resource type. */
+  type?: string;
+  /** The properties bag for this resource. */
+  properties: AvailableGroundStationProperties;
+}
+export const AvailableGroundStation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    location: S.optional(S.String),
+    type: S.optional(S.String),
+    properties: AvailableGroundStationProperties,
+  }),
+).annotate({
+  identifier: "AvailableGroundStation",
+}) as any as S.Schema<AvailableGroundStation>;
+
+/** A list of ground station resources. */
+export type AvailableGroundStationListResultValueList =
+  Array<AvailableGroundStation>;
+export const AvailableGroundStationListResultValueList = /*@__PURE__*/ S.Array(
+  AvailableGroundStation,
+) as any as S.Schema<AvailableGroundStationListResultValueList>;
+
+/** Response for the AvailableGroundStations API service call. */
+export interface AvailableGroundStationListResult {
+  /** A list of ground station resources. */
+  value?: AvailableGroundStationListResultValueList;
+  /** The URL to get the next set of results. */
+  nextLink?: string;
+}
+export const AvailableGroundStationListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(AvailableGroundStationListResultValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "AvailableGroundStationListResult",
+}) as any as S.Schema<AvailableGroundStationListResult>;
+
+export interface ListContactProfileBySubscriptionRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** An opaque string that the resource provider uses to skip over previously-returned results. This is used when a previous list operation call returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a skiptoken parameter that specifies a starting point to use for subsequent calls. */
+  _skiptoken?: string;
+}
+export const ListContactProfileBySubscriptionRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      _skiptoken: S.optional(S.String.pipe(T.Query("$skiptoken"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Orbital/contactProfiles",
+        code: 200,
+        apiVersion: "2022-11-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListContactProfileBySubscriptionRequest",
+}) as any as S.Schema<ListContactProfileBySubscriptionRequest>;
+
+/** Resource tags. */
+export type ContactProfileTagsMap = { [key: string]: string | undefined };
+export const ContactProfileTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<ContactProfileTagsMap>;
+
+/** Customer creates a Contact Profile Resource, which will contain all of the configurations required for scheduling a contact. */
+export interface ContactProfile {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: ContactProfileTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Properties of the contact profile resource. */
+  properties: ContactProfilesProperties;
+}
+export const ContactProfile = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(ContactProfileTagsMap),
+    location: S.String,
+    properties: ContactProfilesProperties,
+  }),
+).annotate({ identifier: "ContactProfile" }) as any as S.Schema<ContactProfile>;
+
+/** A list of contact profile resources in a resource group. */
+export type ContactProfileListResultValueList = Array<ContactProfile>;
+export const ContactProfileListResultValueList = /*@__PURE__*/ S.Array(
+  ContactProfile,
+) as any as S.Schema<ContactProfileListResultValueList>;
+
+/** Response for the ListContactProfiles API service call. */
+export interface ContactProfileListResult {
+  /** A list of contact profile resources in a resource group. */
+  value?: ContactProfileListResultValueList;
+  /** The URL to get the next set of results. */
+  nextLink?: string;
+}
+export const ContactProfileListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(ContactProfileListResultValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ContactProfileListResult",
+}) as any as S.Schema<ContactProfileListResult>;
+
+export interface ListContactProfilesRequest {
+  /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** An opaque string that the resource provider uses to skip over previously-returned results. This is used when a previous list operation call returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a skiptoken parameter that specifies a starting point to use for subsequent calls. */
   _skiptoken?: string;
 }
-export const EdgeSitesListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListContactProfilesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1364,14 +2025,108 @@ export const EdgeSitesListRequest = /*@__PURE__*/ S.suspend(() =>
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Orbital/edgeSites",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Orbital/contactProfiles",
+      code: 200,
+      apiVersion: "2022-11-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListContactProfilesRequest",
+}) as any as S.Schema<ListContactProfilesRequest>;
+
+export interface ListContactsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Spacecraft ID. */
+  spacecraftName: string;
+  /** An opaque string that the resource provider uses to skip over previously-returned results. This is used when a previous list operation call returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a skiptoken parameter that specifies a starting point to use for subsequent calls. */
+  _skiptoken?: string;
+}
+export const ListContactsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    spacecraftName: S.String.pipe(T.Label()),
+    _skiptoken: S.optional(S.String.pipe(T.Query("$skiptoken"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Orbital/spacecrafts/{spacecraftName}/contacts",
+      code: 200,
+      apiVersion: "2022-11-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListContactsRequest",
+}) as any as S.Schema<ListContactsRequest>;
+
+/** Customer creates a contact resource for a spacecraft resource. */
+export interface Contact {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  properties: ContactsProperties;
+}
+export const Contact = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: ContactsProperties,
+  }),
+).annotate({ identifier: "Contact" }) as any as S.Schema<Contact>;
+
+/** A list of contact resources in a resource group. */
+export type ContactListResultValueList = Array<Contact>;
+export const ContactListResultValueList = /*@__PURE__*/ S.Array(
+  Contact,
+) as any as S.Schema<ContactListResultValueList>;
+
+/** Response for the ListContacts API service call. */
+export interface ContactListResult {
+  /** A list of contact resources in a resource group. */
+  value?: ContactListResultValueList;
+  /** The URL to get the next set of results. */
+  nextLink?: string;
+}
+export const ContactListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(ContactListResultValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ContactListResult",
+}) as any as S.Schema<ContactListResult>;
+
+export interface ListEdgeSiteBySubscriptionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** An opaque string that the resource provider uses to skip over previously-returned results. This is used when a previous list operation call returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a skiptoken parameter that specifies a starting point to use for subsequent calls. */
+  _skiptoken?: string;
+}
+export const ListEdgeSiteBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    _skiptoken: S.optional(S.String.pipe(T.Query("$skiptoken"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Orbital/edgeSites",
       code: 200,
       apiVersion: "2024-03-01",
     }),
   ),
 ).annotate({
-  identifier: "EdgeSitesListRequest",
-}) as any as S.Schema<EdgeSitesListRequest>;
+  identifier: "ListEdgeSiteBySubscriptionRequest",
+}) as any as S.Schema<ListEdgeSiteBySubscriptionRequest>;
 
 /** Resource tags. */
 export type EdgeSiteTagsMap = { [key: string]: string | undefined };
@@ -1431,29 +2186,7 @@ export const EdgeSiteListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "EdgeSiteListResult",
 }) as any as S.Schema<EdgeSiteListResult>;
 
-export interface EdgeSitesListBySubscriptionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** An opaque string that the resource provider uses to skip over previously-returned results. This is used when a previous list operation call returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a skiptoken parameter that specifies a starting point to use for subsequent calls. */
-  _skiptoken?: string;
-}
-export const EdgeSitesListBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    _skiptoken: S.optional(S.String.pipe(T.Query("$skiptoken"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Orbital/edgeSites",
-      code: 200,
-      apiVersion: "2024-03-01",
-    }),
-  ),
-).annotate({
-  identifier: "EdgeSitesListBySubscriptionRequest",
-}) as any as S.Schema<EdgeSitesListBySubscriptionRequest>;
-
-export interface EdgeSitesListL2ConnectionsRequest {
+export interface ListEdgeSiteL2ConnectionsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1461,7 +2194,7 @@ export interface EdgeSitesListL2ConnectionsRequest {
   /** Edge site name. */
   edgeSiteName: string;
 }
-export const EdgeSitesListL2ConnectionsRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListEdgeSiteL2ConnectionsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1475,8 +2208,8 @@ export const EdgeSitesListL2ConnectionsRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "EdgeSitesListL2ConnectionsRequest",
-}) as any as S.Schema<EdgeSitesListL2ConnectionsRequest>;
+  identifier: "ListEdgeSiteL2ConnectionsRequest",
+}) as any as S.Schema<ListEdgeSiteL2ConnectionsRequest>;
 
 export interface ResourceIdListResultValueItem {
   /** The Azure Resource ID. */
@@ -1513,87 +2246,36 @@ export const ResourceIdListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "ResourceIdListResult",
 }) as any as S.Schema<ResourceIdListResult>;
 
-/** Resource tags. */
-export type EdgeSitesUpdateTagsRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const EdgeSitesUpdateTagsRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<EdgeSitesUpdateTagsRequestTagsMap>;
-
-export interface EdgeSitesUpdateTagsRequest {
+export interface ListEdgeSitesRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
-  /** Edge site name. */
-  edgeSiteName: string;
-  /** Resource tags. */
-  tags?: EdgeSitesUpdateTagsRequestTagsMap;
+  /** An opaque string that the resource provider uses to skip over previously-returned results. This is used when a previous list operation call returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a skiptoken parameter that specifies a starting point to use for subsequent calls. */
+  _skiptoken?: string;
 }
-export const EdgeSitesUpdateTagsRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListEdgeSitesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
-    edgeSiteName: S.String.pipe(T.Label()),
-    tags: S.optional(EdgeSitesUpdateTagsRequestTagsMap),
+    _skiptoken: S.optional(S.String.pipe(T.Query("$skiptoken"))),
   }).pipe(
     T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Orbital/edgeSites/{edgeSiteName}",
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Orbital/edgeSites",
       code: 200,
       apiVersion: "2024-03-01",
     }),
   ),
 ).annotate({
-  identifier: "EdgeSitesUpdateTagsRequest",
-}) as any as S.Schema<EdgeSitesUpdateTagsRequest>;
+  identifier: "ListEdgeSitesRequest",
+}) as any as S.Schema<ListEdgeSitesRequest>;
 
-/** Resource tags. */
-export type EdgeSitesUpdateTagsResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const EdgeSitesUpdateTagsResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<EdgeSitesUpdateTagsResponseTagsMap>;
-
-export interface EdgeSitesUpdateTagsResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: EdgeSitesUpdateTagsResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The properties bag for this resource. */
-  properties: EdgeSitesProperties;
-}
-export const EdgeSitesUpdateTagsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(EdgeSitesUpdateTagsResponseTagsMap),
-    location: S.String,
-    properties: EdgeSitesProperties,
-  }),
-).annotate({
-  identifier: "EdgeSitesUpdateTagsResponse",
-}) as any as S.Schema<EdgeSitesUpdateTagsResponse>;
-
-export interface GlobalCommunicationsSitesListBySubscriptionRequest {
+export interface ListGlobalCommunicationsSiteBySubscriptionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
 }
-export const GlobalCommunicationsSitesListBySubscriptionRequest =
+export const ListGlobalCommunicationsSiteBySubscriptionRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -1606,8 +2288,8 @@ export const GlobalCommunicationsSitesListBySubscriptionRequest =
       }),
     ),
   ).annotate({
-    identifier: "GlobalCommunicationsSitesListBySubscriptionRequest",
-  }) as any as S.Schema<GlobalCommunicationsSitesListBySubscriptionRequest>;
+    identifier: "ListGlobalCommunicationsSiteBySubscriptionRequest",
+  }) as any as S.Schema<ListGlobalCommunicationsSiteBySubscriptionRequest>;
 
 /** Describes a location outside of Azure. */
 export interface LocationData {
@@ -1728,299 +2410,28 @@ export const GlobalCommunicationsSiteListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "GlobalCommunicationsSiteListResult",
 }) as any as S.Schema<GlobalCommunicationsSiteListResult>;
 
-/** Resource tags. */
-export type GroundStationsCreateOrUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const GroundStationsCreateOrUpdateRequestTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<GroundStationsCreateOrUpdateRequestTagsMap>;
-
-/** Capability of the Ground Station. */
-export type Capability = "EarthObservation" | "Communication";
-export const Capability = /*@__PURE__*/ S.String;
-
-/** Ground station capabilities. */
-export type GroundStationsPropertiesInputCapabilitiesList = Array<
-  Capability | (string & {})
->;
-export const GroundStationsPropertiesInputCapabilitiesList =
-  /*@__PURE__*/ S.Array(
-    Capability,
-  ) as any as S.Schema<GroundStationsPropertiesInputCapabilitiesList>;
-
-/** List of ground station resource properties. */
-export interface GroundStationsPropertiesInput {
-  /** City of ground station. */
-  city?: string;
-  /** Ground station capabilities. */
-  capabilities: GroundStationsPropertiesInputCapabilitiesList;
-  /** Ground station provider name. */
-  providerName?: string;
-  /** Longitude of the ground station in decimal degrees. */
-  longitudeDegrees?: number;
-  /** Latitude of the ground station in decimal degrees. */
-  latitudeDegrees?: number;
-  /** Altitude of the ground station. */
-  altitudeMeters?: number;
-  /** A reference to global communications site. */
-  globalCommunicationsSite: ResourceReference;
-}
-export const GroundStationsPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    city: S.optional(S.String),
-    capabilities: GroundStationsPropertiesInputCapabilitiesList,
-    providerName: S.optional(S.String),
-    longitudeDegrees: S.optional(S.Number),
-    latitudeDegrees: S.optional(S.Number),
-    altitudeMeters: S.optional(S.Number),
-    globalCommunicationsSite: ResourceReference,
-  }),
-).annotate({
-  identifier: "GroundStationsPropertiesInput",
-}) as any as S.Schema<GroundStationsPropertiesInput>;
-
-export interface GroundStationsCreateOrUpdateRequest {
+export interface ListGroundStationBySubscriptionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Ground Station name. */
-  groundStationName: string;
-  /** Resource tags. */
-  tags?: GroundStationsCreateOrUpdateRequestTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Properties of the Ground Station. */
-  properties?: GroundStationsPropertiesInput;
-}
-export const GroundStationsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    groundStationName: S.String.pipe(T.Label()),
-    tags: S.optional(GroundStationsCreateOrUpdateRequestTagsMap),
-    location: S.String,
-    properties: S.optional(GroundStationsPropertiesInput),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Orbital/groundStations/{groundStationName}",
-      code: 200,
-      apiVersion: "2024-03-01",
-    }),
-  ),
-).annotate({
-  identifier: "GroundStationsCreateOrUpdateRequest",
-}) as any as S.Schema<GroundStationsCreateOrUpdateRequest>;
-
-/** Resource tags. */
-export type GroundStationsCreateOrUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const GroundStationsCreateOrUpdateResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<GroundStationsCreateOrUpdateResponseTagsMap>;
-
-/** Ground station capabilities. */
-export type GroundStationsPropertiesCapabilitiesList = Array<Capability>;
-export const GroundStationsPropertiesCapabilitiesList = /*@__PURE__*/ S.Array(
-  Capability,
-) as any as S.Schema<GroundStationsPropertiesCapabilitiesList>;
-
-/** Release Status of a ground station. */
-export type GroundStationsPropertiesReleaseMode = "Preview" | "GA";
-export const GroundStationsPropertiesReleaseMode = /*@__PURE__*/ S.String;
-
-/** List of ground station resource properties. */
-export interface GroundStationsProperties {
-  /** City of ground station. */
-  city?: string;
-  /** Ground station capabilities. */
-  capabilities: GroundStationsPropertiesCapabilitiesList;
-  /** Ground station provider name. */
-  providerName?: string;
-  /** Longitude of the ground station in decimal degrees. */
-  longitudeDegrees?: number;
-  /** Latitude of the ground station in decimal degrees. */
-  latitudeDegrees?: number;
-  /** Altitude of the ground station. */
-  altitudeMeters?: number;
-  /** Release Status of a ground station. */
-  releaseMode?: GroundStationsPropertiesReleaseMode;
-  /** A reference to global communications site. */
-  globalCommunicationsSite: ResourceReference;
-}
-export const GroundStationsProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    city: S.optional(S.String),
-    capabilities: GroundStationsPropertiesCapabilitiesList,
-    providerName: S.optional(S.String),
-    longitudeDegrees: S.optional(S.Number),
-    latitudeDegrees: S.optional(S.Number),
-    altitudeMeters: S.optional(S.Number),
-    releaseMode: S.optional(GroundStationsPropertiesReleaseMode),
-    globalCommunicationsSite: ResourceReference,
-  }),
-).annotate({
-  identifier: "GroundStationsProperties",
-}) as any as S.Schema<GroundStationsProperties>;
-
-export interface GroundStationsCreateOrUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: GroundStationsCreateOrUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Properties of the Ground Station. */
-  properties?: GroundStationsProperties;
-}
-export const GroundStationsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      tags: S.optional(GroundStationsCreateOrUpdateResponseTagsMap),
-      location: S.String,
-      properties: S.optional(GroundStationsProperties),
-    }),
-).annotate({
-  identifier: "GroundStationsCreateOrUpdateResponse",
-}) as any as S.Schema<GroundStationsCreateOrUpdateResponse>;
-
-export interface GroundStationsDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Ground Station name. */
-  groundStationName: string;
-}
-export const GroundStationsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    groundStationName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Orbital/groundStations/{groundStationName}",
-      code: 200,
-      apiVersion: "2024-03-01",
-    }),
-  ),
-).annotate({
-  identifier: "GroundStationsDeleteRequest",
-}) as any as S.Schema<GroundStationsDeleteRequest>;
-
-export interface GroundStationsDeleteResponse {}
-export const GroundStationsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "GroundStationsDeleteResponse",
-}) as any as S.Schema<GroundStationsDeleteResponse>;
-
-export interface GroundStationsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Ground Station name. */
-  groundStationName: string;
-}
-export const GroundStationsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    groundStationName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Orbital/groundStations/{groundStationName}",
-      code: 200,
-      apiVersion: "2024-03-01",
-    }),
-  ),
-).annotate({
-  identifier: "GroundStationsGetRequest",
-}) as any as S.Schema<GroundStationsGetRequest>;
-
-/** Resource tags. */
-export type GroundStationsGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const GroundStationsGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<GroundStationsGetResponseTagsMap>;
-
-export interface GroundStationsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: GroundStationsGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Properties of the Ground Station. */
-  properties?: GroundStationsProperties;
-}
-export const GroundStationsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(GroundStationsGetResponseTagsMap),
-    location: S.String,
-    properties: S.optional(GroundStationsProperties),
-  }),
-).annotate({
-  identifier: "GroundStationsGetResponse",
-}) as any as S.Schema<GroundStationsGetResponse>;
-
-export interface GroundStationsListRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
   /** An opaque string that the resource provider uses to skip over previously-returned results. This is used when a previous list operation call returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a skiptoken parameter that specifies a starting point to use for subsequent calls. */
   _skiptoken?: string;
 }
-export const GroundStationsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    _skiptoken: S.optional(S.String.pipe(T.Query("$skiptoken"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Orbital/groundStations",
-      code: 200,
-      apiVersion: "2024-03-01",
-    }),
-  ),
+export const ListGroundStationBySubscriptionRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      _skiptoken: S.optional(S.String.pipe(T.Query("$skiptoken"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Orbital/groundStations",
+        code: 200,
+        apiVersion: "2024-03-01",
+      }),
+    ),
 ).annotate({
-  identifier: "GroundStationsListRequest",
-}) as any as S.Schema<GroundStationsListRequest>;
+  identifier: "ListGroundStationBySubscriptionRequest",
+}) as any as S.Schema<ListGroundStationBySubscriptionRequest>;
 
 /** Resource tags. */
 export type GroundStationTagsMap = { [key: string]: string | undefined };
@@ -2080,30 +2491,7 @@ export const GroundStationListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "GroundStationListResult",
 }) as any as S.Schema<GroundStationListResult>;
 
-export interface GroundStationsListBySubscriptionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** An opaque string that the resource provider uses to skip over previously-returned results. This is used when a previous list operation call returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a skiptoken parameter that specifies a starting point to use for subsequent calls. */
-  _skiptoken?: string;
-}
-export const GroundStationsListBySubscriptionRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      _skiptoken: S.optional(S.String.pipe(T.Query("$skiptoken"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Orbital/groundStations",
-        code: 200,
-        apiVersion: "2024-03-01",
-      }),
-    ),
-).annotate({
-  identifier: "GroundStationsListBySubscriptionRequest",
-}) as any as S.Schema<GroundStationsListBySubscriptionRequest>;
-
-export interface GroundStationsListL2ConnectionsRequest {
+export interface ListGroundStationL2ConnectionsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2111,7 +2499,7 @@ export interface GroundStationsListL2ConnectionsRequest {
   /** Ground Station name. */
   groundStationName: string;
 }
-export const GroundStationsListL2ConnectionsRequest = /*@__PURE__*/ S.suspend(
+export const ListGroundStationL2ConnectionsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -2126,373 +2514,10 @@ export const GroundStationsListL2ConnectionsRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "GroundStationsListL2ConnectionsRequest",
-}) as any as S.Schema<GroundStationsListL2ConnectionsRequest>;
+  identifier: "ListGroundStationL2ConnectionsRequest",
+}) as any as S.Schema<ListGroundStationL2ConnectionsRequest>;
 
-/** Resource tags. */
-export type GroundStationsUpdateTagsRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const GroundStationsUpdateTagsRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<GroundStationsUpdateTagsRequestTagsMap>;
-
-export interface GroundStationsUpdateTagsRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Ground Station name. */
-  groundStationName: string;
-  /** Resource tags. */
-  tags?: GroundStationsUpdateTagsRequestTagsMap;
-}
-export const GroundStationsUpdateTagsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    groundStationName: S.String.pipe(T.Label()),
-    tags: S.optional(GroundStationsUpdateTagsRequestTagsMap),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Orbital/groundStations/{groundStationName}",
-      code: 200,
-      apiVersion: "2024-03-01",
-    }),
-  ),
-).annotate({
-  identifier: "GroundStationsUpdateTagsRequest",
-}) as any as S.Schema<GroundStationsUpdateTagsRequest>;
-
-/** Resource tags. */
-export type GroundStationsUpdateTagsResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const GroundStationsUpdateTagsResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<GroundStationsUpdateTagsResponseTagsMap>;
-
-export interface GroundStationsUpdateTagsResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: GroundStationsUpdateTagsResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Properties of the Ground Station. */
-  properties?: GroundStationsProperties;
-}
-export const GroundStationsUpdateTagsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(GroundStationsUpdateTagsResponseTagsMap),
-    location: S.String,
-    properties: S.optional(GroundStationsProperties),
-  }),
-).annotate({
-  identifier: "GroundStationsUpdateTagsResponse",
-}) as any as S.Schema<GroundStationsUpdateTagsResponse>;
-
-/** Resource tags. */
-export type L2ConnectionsCreateOrUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const L2ConnectionsCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<L2ConnectionsCreateOrUpdateRequestTagsMap>;
-
-/** The name of the partner router that cross-connects with the Orbital Edge Router at the edge site. */
-export interface L2ConnectionsPropertiesInputEdgeSitePartnerRouter {
-  /** The unique name of the partner router that cross-connects with the Orbital Edge Router at the edge site. */
-  name: string;
-}
-export const L2ConnectionsPropertiesInputEdgeSitePartnerRouter =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      name: S.String,
-    }),
-  ).annotate({
-    identifier: "L2ConnectionsPropertiesInputEdgeSitePartnerRouter",
-  }) as any as S.Schema<L2ConnectionsPropertiesInputEdgeSitePartnerRouter>;
-
-/** The name of the partner router to establish a connection to within the ground station. */
-export interface L2ConnectionsPropertiesInputGroundStationPartnerRouter {
-  /** The unique name of the partner router that cross-connects with the Orbital Edge Router at the ground station site. */
-  name: string;
-}
-export const L2ConnectionsPropertiesInputGroundStationPartnerRouter =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      name: S.String,
-    }),
-  ).annotate({
-    identifier: "L2ConnectionsPropertiesInputGroundStationPartnerRouter",
-  }) as any as S.Schema<L2ConnectionsPropertiesInputGroundStationPartnerRouter>;
-
-/** Properties object for an L2 Connection. */
-export interface L2ConnectionsPropertiesInput {
-  /** A reference to an Microsoft.Orbital/edgeSites resource to route traffic for. */
-  edgeSite: ResourceReference;
-  /** The name of the partner router that cross-connects with the Orbital Edge Router at the edge site. */
-  edgeSitePartnerRouter: L2ConnectionsPropertiesInputEdgeSitePartnerRouter;
-  /** A reference to an Microsoft.Orbital/groundStations resource to route traffic for. */
-  groundStation: ResourceReference;
-  /** The name of the partner router to establish a connection to within the ground station. */
-  groundStationPartnerRouter: L2ConnectionsPropertiesInputGroundStationPartnerRouter;
-  /** The VLAN ID for the L2 connection. */
-  vlanId: number;
-}
-export const L2ConnectionsPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    edgeSite: ResourceReference,
-    edgeSitePartnerRouter: L2ConnectionsPropertiesInputEdgeSitePartnerRouter,
-    groundStation: ResourceReference,
-    groundStationPartnerRouter:
-      L2ConnectionsPropertiesInputGroundStationPartnerRouter,
-    vlanId: S.Number,
-  }),
-).annotate({
-  identifier: "L2ConnectionsPropertiesInput",
-}) as any as S.Schema<L2ConnectionsPropertiesInput>;
-
-export interface L2ConnectionsCreateOrUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** L2 Connection name. */
-  l2ConnectionName: string;
-  /** Resource tags. */
-  tags?: L2ConnectionsCreateOrUpdateRequestTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The properties bag for this resource. */
-  properties: L2ConnectionsPropertiesInput;
-}
-export const L2ConnectionsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    l2ConnectionName: S.String.pipe(T.Label()),
-    tags: S.optional(L2ConnectionsCreateOrUpdateRequestTagsMap),
-    location: S.String,
-    properties: L2ConnectionsPropertiesInput,
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Orbital/l2Connections/{l2ConnectionName}",
-      code: 200,
-      apiVersion: "2024-03-01",
-    }),
-  ),
-).annotate({
-  identifier: "L2ConnectionsCreateOrUpdateRequest",
-}) as any as S.Schema<L2ConnectionsCreateOrUpdateRequest>;
-
-/** Resource tags. */
-export type L2ConnectionsCreateOrUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const L2ConnectionsCreateOrUpdateResponseTagsMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.String,
-  ) as any as S.Schema<L2ConnectionsCreateOrUpdateResponseTagsMap>;
-
-/** The current state of the resource's creation, deletion, or modification. */
-export type ProvisioningState_2 =
-  | "Creating"
-  | "Succeeded"
-  | "Failed"
-  | "Canceled"
-  | "Updating"
-  | "Deleting";
-export const ProvisioningState_2 = /*@__PURE__*/ S.String;
-
-/** The name of the partner router that cross-connects with the Orbital Edge Router at the edge site. */
-export type L2ConnectionsPropertiesEdgeSitePartnerRouter =
-  L2ConnectionsPropertiesInputEdgeSitePartnerRouter;
-export const L2ConnectionsPropertiesEdgeSitePartnerRouter =
-  L2ConnectionsPropertiesInputEdgeSitePartnerRouter;
-
-/** The name of the partner router to establish a connection to within the ground station. */
-export type L2ConnectionsPropertiesGroundStationPartnerRouter =
-  L2ConnectionsPropertiesInputGroundStationPartnerRouter;
-export const L2ConnectionsPropertiesGroundStationPartnerRouter =
-  L2ConnectionsPropertiesInputGroundStationPartnerRouter;
-
-/** Properties object for an L2 Connection. */
-export interface L2ConnectionsProperties {
-  /** The current state of the resource's creation, deletion, or modification. */
-  provisioningState?: ProvisioningState_2;
-  /** Globally-unique identifier for this connection that is to be used as a circuit ID. */
-  circuitId?: string;
-  /** A reference to an Microsoft.Orbital/edgeSites resource to route traffic for. */
-  edgeSite: ResourceReference;
-  /** The name of the partner router that cross-connects with the Orbital Edge Router at the edge site. */
-  edgeSitePartnerRouter: L2ConnectionsPropertiesInputEdgeSitePartnerRouter;
-  /** A reference to an Microsoft.Orbital/groundStations resource to route traffic for. */
-  groundStation: ResourceReference;
-  /** The name of the partner router to establish a connection to within the ground station. */
-  groundStationPartnerRouter: L2ConnectionsPropertiesInputGroundStationPartnerRouter;
-  /** The VLAN ID for the L2 connection. */
-  vlanId: number;
-}
-export const L2ConnectionsProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provisioningState: S.optional(ProvisioningState_2),
-    circuitId: S.optional(S.String),
-    edgeSite: ResourceReference,
-    edgeSitePartnerRouter: L2ConnectionsPropertiesInputEdgeSitePartnerRouter,
-    groundStation: ResourceReference,
-    groundStationPartnerRouter:
-      L2ConnectionsPropertiesInputGroundStationPartnerRouter,
-    vlanId: S.Number,
-  }),
-).annotate({
-  identifier: "L2ConnectionsProperties",
-}) as any as S.Schema<L2ConnectionsProperties>;
-
-export interface L2ConnectionsCreateOrUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: L2ConnectionsCreateOrUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The properties bag for this resource. */
-  properties: L2ConnectionsProperties;
-}
-export const L2ConnectionsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(L2ConnectionsCreateOrUpdateResponseTagsMap),
-    location: S.String,
-    properties: L2ConnectionsProperties,
-  }),
-).annotate({
-  identifier: "L2ConnectionsCreateOrUpdateResponse",
-}) as any as S.Schema<L2ConnectionsCreateOrUpdateResponse>;
-
-export interface L2ConnectionsDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** L2 Connection name. */
-  l2ConnectionName: string;
-}
-export const L2ConnectionsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    l2ConnectionName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Orbital/l2Connections/{l2ConnectionName}",
-      code: 200,
-      apiVersion: "2024-03-01",
-    }),
-  ),
-).annotate({
-  identifier: "L2ConnectionsDeleteRequest",
-}) as any as S.Schema<L2ConnectionsDeleteRequest>;
-
-export interface L2ConnectionsDeleteResponse {}
-export const L2ConnectionsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "L2ConnectionsDeleteResponse",
-}) as any as S.Schema<L2ConnectionsDeleteResponse>;
-
-export interface L2ConnectionsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** L2 Connection name. */
-  l2ConnectionName: string;
-}
-export const L2ConnectionsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    l2ConnectionName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Orbital/l2Connections/{l2ConnectionName}",
-      code: 200,
-      apiVersion: "2024-03-01",
-    }),
-  ),
-).annotate({
-  identifier: "L2ConnectionsGetRequest",
-}) as any as S.Schema<L2ConnectionsGetRequest>;
-
-/** Resource tags. */
-export type L2ConnectionsGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const L2ConnectionsGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<L2ConnectionsGetResponseTagsMap>;
-
-export interface L2ConnectionsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: L2ConnectionsGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The properties bag for this resource. */
-  properties: L2ConnectionsProperties;
-}
-export const L2ConnectionsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(L2ConnectionsGetResponseTagsMap),
-    location: S.String,
-    properties: L2ConnectionsProperties,
-  }),
-).annotate({
-  identifier: "L2ConnectionsGetResponse",
-}) as any as S.Schema<L2ConnectionsGetResponse>;
-
-export interface L2ConnectionsListRequest {
+export interface ListGroundStationsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -2500,7 +2525,7 @@ export interface L2ConnectionsListRequest {
   /** An opaque string that the resource provider uses to skip over previously-returned results. This is used when a previous list operation call returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a skiptoken parameter that specifies a starting point to use for subsequent calls. */
   _skiptoken?: string;
 }
-export const L2ConnectionsListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListGroundStationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -2508,14 +2533,37 @@ export const L2ConnectionsListRequest = /*@__PURE__*/ S.suspend(() =>
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Orbital/l2Connections",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Orbital/groundStations",
       code: 200,
       apiVersion: "2024-03-01",
     }),
   ),
 ).annotate({
-  identifier: "L2ConnectionsListRequest",
-}) as any as S.Schema<L2ConnectionsListRequest>;
+  identifier: "ListGroundStationsRequest",
+}) as any as S.Schema<ListGroundStationsRequest>;
+
+export interface ListL2ConnectionBySubscriptionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** An opaque string that the resource provider uses to skip over previously-returned results. This is used when a previous list operation call returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a skiptoken parameter that specifies a starting point to use for subsequent calls. */
+  _skiptoken?: string;
+}
+export const ListL2ConnectionBySubscriptionRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      _skiptoken: S.optional(S.String.pipe(T.Query("$skiptoken"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Orbital/l2Connections",
+        code: 200,
+        apiVersion: "2024-03-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListL2ConnectionBySubscriptionRequest",
+}) as any as S.Schema<ListL2ConnectionBySubscriptionRequest>;
 
 /** Resource tags. */
 export type L2ConnectionTagsMap = { [key: string]: string | undefined };
@@ -2575,107 +2623,33 @@ export const L2ConnectionListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "L2ConnectionListResult",
 }) as any as S.Schema<L2ConnectionListResult>;
 
-export interface L2ConnectionsListBySubscriptionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** An opaque string that the resource provider uses to skip over previously-returned results. This is used when a previous list operation call returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a skiptoken parameter that specifies a starting point to use for subsequent calls. */
-  _skiptoken?: string;
-}
-export const L2ConnectionsListBySubscriptionRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      _skiptoken: S.optional(S.String.pipe(T.Query("$skiptoken"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Orbital/l2Connections",
-        code: 200,
-        apiVersion: "2024-03-01",
-      }),
-    ),
-).annotate({
-  identifier: "L2ConnectionsListBySubscriptionRequest",
-}) as any as S.Schema<L2ConnectionsListBySubscriptionRequest>;
-
-/** Resource tags. */
-export type L2ConnectionsUpdateTagsRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const L2ConnectionsUpdateTagsRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<L2ConnectionsUpdateTagsRequestTagsMap>;
-
-export interface L2ConnectionsUpdateTagsRequest {
+export interface ListL2ConnectionsRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
-  /** L2 Connection name. */
-  l2ConnectionName: string;
-  /** Resource tags. */
-  tags?: L2ConnectionsUpdateTagsRequestTagsMap;
+  /** An opaque string that the resource provider uses to skip over previously-returned results. This is used when a previous list operation call returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a skiptoken parameter that specifies a starting point to use for subsequent calls. */
+  _skiptoken?: string;
 }
-export const L2ConnectionsUpdateTagsRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListL2ConnectionsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
-    l2ConnectionName: S.String.pipe(T.Label()),
-    tags: S.optional(L2ConnectionsUpdateTagsRequestTagsMap),
+    _skiptoken: S.optional(S.String.pipe(T.Query("$skiptoken"))),
   }).pipe(
     T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Orbital/l2Connections/{l2ConnectionName}",
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Orbital/l2Connections",
       code: 200,
       apiVersion: "2024-03-01",
     }),
   ),
 ).annotate({
-  identifier: "L2ConnectionsUpdateTagsRequest",
-}) as any as S.Schema<L2ConnectionsUpdateTagsRequest>;
+  identifier: "ListL2ConnectionsRequest",
+}) as any as S.Schema<ListL2ConnectionsRequest>;
 
-/** Resource tags. */
-export type L2ConnectionsUpdateTagsResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const L2ConnectionsUpdateTagsResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<L2ConnectionsUpdateTagsResponseTagsMap>;
-
-export interface L2ConnectionsUpdateTagsResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: L2ConnectionsUpdateTagsResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The properties bag for this resource. */
-  properties: L2ConnectionsProperties;
-}
-export const L2ConnectionsUpdateTagsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(L2ConnectionsUpdateTagsResponseTagsMap),
-    location: S.String,
-    properties: L2ConnectionsProperties,
-  }),
-).annotate({
-  identifier: "L2ConnectionsUpdateTagsResponse",
-}) as any as S.Schema<L2ConnectionsUpdateTagsResponse>;
-
-export interface OperationsListRequest {}
-export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
+export interface ListOperationsRequest {}
+export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
     T.Http({
       method: "GET",
@@ -2685,8 +2659,8 @@ export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "OperationsListRequest",
-}) as any as S.Schema<OperationsListRequest>;
+  identifier: "ListOperationsRequest",
+}) as any as S.Schema<ListOperationsRequest>;
 
 /** Localized display information for this particular operation. */
 export interface OperationDisplay {
@@ -2742,113 +2716,246 @@ export const Operation = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 /** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
   Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
+) as any as S.Schema<ListOperationsResponseValueList>;
 
-export interface OperationsListResponse {
+export interface ListOperationsResponse {
   /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
+  value?: ListOperationsResponseValueList;
   /** URL to get the next set of operation list results (if there are any). */
   nextLink?: string;
 }
-export const OperationsListResponse = /*@__PURE__*/ S.suspend(() =>
+export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(OperationsListResponseValueList),
+    value: S.optional(ListOperationsResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "OperationsListResponse",
-}) as any as S.Schema<OperationsListResponse>;
+  identifier: "ListOperationsResponse",
+}) as any as S.Schema<ListOperationsResponse>;
 
-export interface OperationsResultsGetRequest {
+export interface ListSpacecraftAvailableContactsRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
-  /** The name of Azure region. */
-  location: string;
-  /** The ID of an ongoing async operation. */
-  operationId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Spacecraft ID. */
+  spacecraftName: string;
+  /** The reference to the contact profile resource. */
+  contactProfile: ResourceReference;
+  /** Name of Azure Ground Station. */
+  groundStationName: string;
+  /** Start time of a contact (ISO 8601 UTC standard). */
+  startTime: string;
+  /** End time of a contact (ISO 8601 UTC standard). */
+  endTime: string;
 }
-export const OperationsResultsGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListSpacecraftAvailableContactsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      spacecraftName: S.String.pipe(T.Label()),
+      contactProfile: ResourceReference,
+      groundStationName: S.String,
+      startTime: S.String,
+      endTime: S.String,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Orbital/spacecrafts/{spacecraftName}/listAvailableContacts",
+        code: 200,
+        apiVersion: "2022-11-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListSpacecraftAvailableContactsRequest",
+}) as any as S.Schema<ListSpacecraftAvailableContactsRequest>;
+
+/** Contact Instance Properties. */
+export interface ContactInstanceProperties {
+  /** Maximum elevation of the antenna during the contact in decimal degrees. */
+  maximumElevationDegrees?: number;
+  /** Time at which antenna transmit will be enabled (ISO 8601 UTC standard). */
+  txStartTime?: string;
+  /** Time at which antenna transmit will be disabled (ISO 8601 UTC standard). */
+  txEndTime?: string;
+  /** Earliest time to receive a signal (ISO 8601 UTC standard). */
+  rxStartTime?: string;
+  /** Time to lost receiving a signal (ISO 8601 UTC standard). */
+  rxEndTime?: string;
+  /** Azimuth of the antenna at the start of the contact in decimal degrees. */
+  startAzimuthDegrees?: number;
+  /** Azimuth of the antenna at the end of the contact in decimal degrees. */
+  endAzimuthDegrees?: number;
+  /** Spacecraft elevation above the horizon at contact start. */
+  startElevationDegrees?: number;
+  /** Spacecraft elevation above the horizon at contact end. */
+  endElevationDegrees?: number;
+}
+export const ContactInstanceProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    maximumElevationDegrees: S.optional(S.Number),
+    txStartTime: S.optional(S.String),
+    txEndTime: S.optional(S.String),
+    rxStartTime: S.optional(S.String),
+    rxEndTime: S.optional(S.String),
+    startAzimuthDegrees: S.optional(S.Number),
+    endAzimuthDegrees: S.optional(S.Number),
+    startElevationDegrees: S.optional(S.Number),
+    endElevationDegrees: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "ContactInstanceProperties",
+}) as any as S.Schema<ContactInstanceProperties>;
+
+/** Customer retrieves list of Available Contacts for a spacecraft resource. Later, one of the available contact can be selected to create a contact. */
+export interface AvailableContacts {
+  /** The reference to the spacecraft resource. */
+  spacecraft?: ResourceReference;
+  /** Name of Azure Ground Station. */
+  groundStationName?: string;
+  /** Properties of Contact resource. */
+  properties?: ContactInstanceProperties;
+}
+export const AvailableContacts = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    spacecraft: S.optional(ResourceReference),
+    groundStationName: S.optional(S.String),
+    properties: S.optional(ContactInstanceProperties),
+  }),
+).annotate({
+  identifier: "AvailableContacts",
+}) as any as S.Schema<AvailableContacts>;
+
+/** A list of available contacts. */
+export type AvailableContactsListResultValueList = Array<AvailableContacts>;
+export const AvailableContactsListResultValueList = /*@__PURE__*/ S.Array(
+  AvailableContacts,
+) as any as S.Schema<AvailableContactsListResultValueList>;
+
+/** Response for the ListAvailableContacts API service call. */
+export interface AvailableContactsListResult {
+  /** A list of available contacts. */
+  value?: AvailableContactsListResultValueList;
+  /** The URL to get the next set of results. */
+  nextLink?: string;
+}
+export const AvailableContactsListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(AvailableContactsListResultValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "AvailableContactsListResult",
+}) as any as S.Schema<AvailableContactsListResult>;
+
+export interface ListSpacecraftBySubscriptionRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** An opaque string that the resource provider uses to skip over previously-returned results. This is used when a previous list operation call returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a skiptoken parameter that specifies a starting point to use for subsequent calls. */
+  _skiptoken?: string;
+}
+export const ListSpacecraftBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
-    location: S.String.pipe(T.Label()),
-    operationId: S.String.pipe(T.Label()),
+    _skiptoken: S.optional(S.String.pipe(T.Query("$skiptoken"))),
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Orbital/locations/{location}/operationResults/{operationId}",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Orbital/spacecrafts",
       code: 200,
       apiVersion: "2022-11-01",
     }),
   ),
 ).annotate({
-  identifier: "OperationsResultsGetRequest",
-}) as any as S.Schema<OperationsResultsGetRequest>;
+  identifier: "ListSpacecraftBySubscriptionRequest",
+}) as any as S.Schema<ListSpacecraftBySubscriptionRequest>;
 
-/** The status of operation. */
-export type Status = "Succeeded" | "Canceled" | "Failed" | "Running";
-export const Status = /*@__PURE__*/ S.String;
+/** Resource tags. */
+export type SpacecraftTagsMap = { [key: string]: string | undefined };
+export const SpacecraftTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<SpacecraftTagsMap>;
 
-/** A list of results when the operation returns multiple results. */
-export type OperationResultValueList = Array<unknown>;
-export const OperationResultValueList = /*@__PURE__*/ S.Array(
-  S.Unknown,
-) as any as S.Schema<OperationResultValueList>;
-
-/** Operation result error properties. */
-export interface OperationResultErrorProperties {
-  /** The code of the error. */
-  code?: string;
-  /** The error message. */
-  message?: string;
-}
-export const OperationResultErrorProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    code: S.optional(S.String),
-    message: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OperationResultErrorProperties",
-}) as any as S.Schema<OperationResultErrorProperties>;
-
-/** Operation Result Entity. */
-export interface OperationResult {
-  /** ID of the resource. */
+/** Customer creates a spacecraft resource to schedule a contact. */
+export interface Spacecraft {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
-  /** Name of the resource. */
+  /** The name of the resource */
   name?: string;
-  status?: Status;
-  /** The operation start time (ISO 8601 UTC standard). */
-  startTime?: string;
-  /** The operation end time (ISO 8601 UTC standard). */
-  endTime?: string;
-  /** Percentage completed. */
-  percentComplete?: number;
-  /** A list of results when the operation returns multiple results. */
-  value?: OperationResultValueList;
-  /** The URL to get the next set of results. */
-  nextLink?: string;
-  properties?: unknown;
-  error?: OperationResultErrorProperties;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: SpacecraftTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Spacecraft Properties */
+  properties: SpacecraftsProperties;
 }
-export const OperationResult = /*@__PURE__*/ S.suspend(() =>
+export const Spacecraft = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
-    status: S.optional(Status),
-    startTime: S.optional(S.String),
-    endTime: S.optional(S.String),
-    percentComplete: S.optional(S.Number),
-    value: S.optional(OperationResultValueList),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(SpacecraftTagsMap),
+    location: S.String,
+    properties: SpacecraftsProperties,
+  }),
+).annotate({ identifier: "Spacecraft" }) as any as S.Schema<Spacecraft>;
+
+/** A list of spacecraft resources in a resource group. */
+export type SpacecraftListResultValueList = Array<Spacecraft>;
+export const SpacecraftListResultValueList = /*@__PURE__*/ S.Array(
+  Spacecraft,
+) as any as S.Schema<SpacecraftListResultValueList>;
+
+/** Response for the ListSpacecrafts API service call. */
+export interface SpacecraftListResult {
+  /** A list of spacecraft resources in a resource group. */
+  value?: SpacecraftListResultValueList;
+  /** The URL to get the next set of results. */
+  nextLink?: string;
+}
+export const SpacecraftListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(SpacecraftListResultValueList),
     nextLink: S.optional(S.String),
-    properties: S.optional(S.Unknown),
-    error: S.optional(OperationResultErrorProperties),
   }),
 ).annotate({
-  identifier: "OperationResult",
-}) as any as S.Schema<OperationResult>;
+  identifier: "SpacecraftListResult",
+}) as any as S.Schema<SpacecraftListResult>;
+
+export interface ListSpacecraftsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** An opaque string that the resource provider uses to skip over previously-returned results. This is used when a previous list operation call returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a skiptoken parameter that specifies a starting point to use for subsequent calls. */
+  _skiptoken?: string;
+}
+export const ListSpacecraftsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    _skiptoken: S.optional(S.String.pipe(T.Query("$skiptoken"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Orbital/spacecrafts",
+      code: 200,
+      apiVersion: "2022-11-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListSpacecraftsRequest",
+}) as any as S.Schema<ListSpacecraftsRequest>;
 
 /** Resource tags. */
 export type SpacecraftsCreateOrUpdateRequestTagsMap = {
@@ -2973,100 +3080,6 @@ export const SpacecraftsCreateOrUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
 ) as any as S.Schema<SpacecraftsCreateOrUpdateResponseTagsMap>;
 
-/** Direction (Uplink or Downlink). */
-export type SpacecraftLinkDirection = "Uplink" | "Downlink";
-export const SpacecraftLinkDirection = /*@__PURE__*/ S.String;
-
-/** Polarization. e.g. (RHCP, LHCP). */
-export type SpacecraftLinkPolarization =
-  | "RHCP"
-  | "LHCP"
-  | "linearVertical"
-  | "linearHorizontal";
-export const SpacecraftLinkPolarization = /*@__PURE__*/ S.String;
-
-/** Authorized groundstation. */
-export interface AuthorizedGroundstation {
-  /** Groundstation name. */
-  groundStation: string;
-  /** Date of authorization expiration. */
-  expirationDate: string;
-}
-export const AuthorizedGroundstation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    groundStation: S.String,
-    expirationDate: S.String,
-  }),
-).annotate({
-  identifier: "AuthorizedGroundstation",
-}) as any as S.Schema<AuthorizedGroundstation>;
-
-/** Authorized Ground Stations */
-export type SpacecraftLinkAuthorizationsList = Array<AuthorizedGroundstation>;
-export const SpacecraftLinkAuthorizationsList = /*@__PURE__*/ S.Array(
-  AuthorizedGroundstation,
-) as any as S.Schema<SpacecraftLinkAuthorizationsList>;
-
-/** List of authorized spacecraft links per ground station and the expiration date of the authorization. */
-export interface SpacecraftLink {
-  /** Link name. */
-  name: string;
-  /** Center Frequency in MHz. */
-  centerFrequencyMHz: number;
-  /** Bandwidth in MHz. */
-  bandwidthMHz: number;
-  /** Direction (Uplink or Downlink). */
-  direction: SpacecraftLinkDirection;
-  /** Polarization. e.g. (RHCP, LHCP). */
-  polarization: SpacecraftLinkPolarization;
-  /** Authorized Ground Stations */
-  authorizations?: SpacecraftLinkAuthorizationsList;
-}
-export const SpacecraftLink = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String,
-    centerFrequencyMHz: S.Number,
-    bandwidthMHz: S.Number,
-    direction: SpacecraftLinkDirection,
-    polarization: SpacecraftLinkPolarization,
-    authorizations: S.optional(SpacecraftLinkAuthorizationsList),
-  }),
-).annotate({ identifier: "SpacecraftLink" }) as any as S.Schema<SpacecraftLink>;
-
-/** Immutable list of Spacecraft links. */
-export type SpacecraftsPropertiesLinksList = Array<SpacecraftLink>;
-export const SpacecraftsPropertiesLinksList = /*@__PURE__*/ S.Array(
-  SpacecraftLink,
-) as any as S.Schema<SpacecraftsPropertiesLinksList>;
-
-/** List of Spacecraft Resource Properties. */
-export interface SpacecraftsProperties {
-  /** The current state of the resource's creation, deletion, or modification. */
-  provisioningState?: ProvisioningState;
-  /** NORAD ID of the spacecraft. */
-  noradId?: string;
-  /** Title line of the two-line element set (TLE). */
-  titleLine: string;
-  /** Line 1 of the two-line element set (TLE). */
-  tleLine1: string;
-  /** Line 2 of the two-line element set (TLE). */
-  tleLine2: string;
-  /** Immutable list of Spacecraft links. */
-  links: SpacecraftsPropertiesLinksList;
-}
-export const SpacecraftsProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provisioningState: S.optional(ProvisioningState),
-    noradId: S.optional(S.String),
-    titleLine: S.String,
-    tleLine1: S.String,
-    tleLine2: S.String,
-    links: SpacecraftsPropertiesLinksList,
-  }),
-).annotate({
-  identifier: "SpacecraftsProperties",
-}) as any as S.Schema<SpacecraftsProperties>;
-
 export interface SpacecraftsCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
@@ -3097,136 +3110,53 @@ export const SpacecraftsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "SpacecraftsCreateOrUpdateResponse",
 }) as any as S.Schema<SpacecraftsCreateOrUpdateResponse>;
 
-export interface SpacecraftsDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Spacecraft ID. */
-  spacecraftName: string;
-}
-export const SpacecraftsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    spacecraftName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Orbital/spacecrafts/{spacecraftName}",
-      code: 200,
-      apiVersion: "2022-11-01",
-    }),
-  ),
-).annotate({
-  identifier: "SpacecraftsDeleteRequest",
-}) as any as S.Schema<SpacecraftsDeleteRequest>;
-
-export interface SpacecraftsDeleteResponse {}
-export const SpacecraftsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "SpacecraftsDeleteResponse",
-}) as any as S.Schema<SpacecraftsDeleteResponse>;
-
-export interface SpacecraftsGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** Spacecraft ID. */
-  spacecraftName: string;
-}
-export const SpacecraftsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    spacecraftName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Orbital/spacecrafts/{spacecraftName}",
-      code: 200,
-      apiVersion: "2022-11-01",
-    }),
-  ),
-).annotate({
-  identifier: "SpacecraftsGetRequest",
-}) as any as S.Schema<SpacecraftsGetRequest>;
-
 /** Resource tags. */
-export type SpacecraftsGetResponseTagsMap = {
+export type UpdateContactProfileTagsRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const SpacecraftsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateContactProfileTagsRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<SpacecraftsGetResponseTagsMap>;
+) as any as S.Schema<UpdateContactProfileTagsRequestTagsMap>;
 
-export interface SpacecraftsGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: SpacecraftsGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Spacecraft Properties */
-  properties: SpacecraftsProperties;
-}
-export const SpacecraftsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(SpacecraftsGetResponseTagsMap),
-    location: S.String,
-    properties: SpacecraftsProperties,
-  }),
-).annotate({
-  identifier: "SpacecraftsGetResponse",
-}) as any as S.Schema<SpacecraftsGetResponse>;
-
-export interface SpacecraftsListRequest {
+export interface UpdateContactProfileTagsRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
-  /** An opaque string that the resource provider uses to skip over previously-returned results. This is used when a previous list operation call returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a skiptoken parameter that specifies a starting point to use for subsequent calls. */
-  _skiptoken?: string;
+  /** Contact Profile name. */
+  contactProfileName: string;
+  /** Resource tags. */
+  tags?: UpdateContactProfileTagsRequestTagsMap;
 }
-export const SpacecraftsListRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateContactProfileTagsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
-    _skiptoken: S.optional(S.String.pipe(T.Query("$skiptoken"))),
+    contactProfileName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateContactProfileTagsRequestTagsMap),
   }).pipe(
     T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Orbital/spacecrafts",
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Orbital/contactProfiles/{contactProfileName}",
       code: 200,
       apiVersion: "2022-11-01",
     }),
   ),
 ).annotate({
-  identifier: "SpacecraftsListRequest",
-}) as any as S.Schema<SpacecraftsListRequest>;
+  identifier: "UpdateContactProfileTagsRequest",
+}) as any as S.Schema<UpdateContactProfileTagsRequest>;
 
 /** Resource tags. */
-export type SpacecraftTagsMap = { [key: string]: string | undefined };
-export const SpacecraftTagsMap = /*@__PURE__*/ S.Record(
+export type UpdateContactProfileTagsResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateContactProfileTagsResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<SpacecraftTagsMap>;
+) as any as S.Schema<UpdateContactProfileTagsResponseTagsMap>;
 
-/** Customer creates a spacecraft resource to schedule a contact. */
-export interface Spacecraft {
+export interface UpdateContactProfileTagsResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -3236,195 +3166,264 @@ export interface Spacecraft {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: SpacecraftTagsMap;
+  tags?: UpdateContactProfileTagsResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
-  /** Spacecraft Properties */
-  properties: SpacecraftsProperties;
+  /** Properties of the contact profile resource. */
+  properties: ContactProfilesProperties;
 }
-export const Spacecraft = /*@__PURE__*/ S.suspend(() =>
+export const UpdateContactProfileTagsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(SpacecraftTagsMap),
+    tags: S.optional(UpdateContactProfileTagsResponseTagsMap),
     location: S.String,
-    properties: SpacecraftsProperties,
-  }),
-).annotate({ identifier: "Spacecraft" }) as any as S.Schema<Spacecraft>;
-
-/** A list of spacecraft resources in a resource group. */
-export type SpacecraftListResultValueList = Array<Spacecraft>;
-export const SpacecraftListResultValueList = /*@__PURE__*/ S.Array(
-  Spacecraft,
-) as any as S.Schema<SpacecraftListResultValueList>;
-
-/** Response for the ListSpacecrafts API service call. */
-export interface SpacecraftListResult {
-  /** A list of spacecraft resources in a resource group. */
-  value?: SpacecraftListResultValueList;
-  /** The URL to get the next set of results. */
-  nextLink?: string;
-}
-export const SpacecraftListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(SpacecraftListResultValueList),
-    nextLink: S.optional(S.String),
+    properties: ContactProfilesProperties,
   }),
 ).annotate({
-  identifier: "SpacecraftListResult",
-}) as any as S.Schema<SpacecraftListResult>;
+  identifier: "UpdateContactProfileTagsResponse",
+}) as any as S.Schema<UpdateContactProfileTagsResponse>;
 
-export interface SpacecraftsListAvailableContactsRequest {
-  /** The ID of the target subscription. */
+/** Resource tags. */
+export type UpdateEdgeSiteTagsRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateEdgeSiteTagsRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateEdgeSiteTagsRequestTagsMap>;
+
+export interface UpdateEdgeSiteTagsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
-  /** Spacecraft ID. */
-  spacecraftName: string;
-  /** The reference to the contact profile resource. */
-  contactProfile: ResourceReference;
-  /** Name of Azure Ground Station. */
+  /** Edge site name. */
+  edgeSiteName: string;
+  /** Resource tags. */
+  tags?: UpdateEdgeSiteTagsRequestTagsMap;
+}
+export const UpdateEdgeSiteTagsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    edgeSiteName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateEdgeSiteTagsRequestTagsMap),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Orbital/edgeSites/{edgeSiteName}",
+      code: 200,
+      apiVersion: "2024-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateEdgeSiteTagsRequest",
+}) as any as S.Schema<UpdateEdgeSiteTagsRequest>;
+
+/** Resource tags. */
+export type UpdateEdgeSiteTagsResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateEdgeSiteTagsResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateEdgeSiteTagsResponseTagsMap>;
+
+export interface UpdateEdgeSiteTagsResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateEdgeSiteTagsResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The properties bag for this resource. */
+  properties: EdgeSitesProperties;
+}
+export const UpdateEdgeSiteTagsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateEdgeSiteTagsResponseTagsMap),
+    location: S.String,
+    properties: EdgeSitesProperties,
+  }),
+).annotate({
+  identifier: "UpdateEdgeSiteTagsResponse",
+}) as any as S.Schema<UpdateEdgeSiteTagsResponse>;
+
+/** Resource tags. */
+export type UpdateGroundStationTagsRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateGroundStationTagsRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateGroundStationTagsRequestTagsMap>;
+
+export interface UpdateGroundStationTagsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** Ground Station name. */
   groundStationName: string;
-  /** Start time of a contact (ISO 8601 UTC standard). */
-  startTime: string;
-  /** End time of a contact (ISO 8601 UTC standard). */
-  endTime: string;
+  /** Resource tags. */
+  tags?: UpdateGroundStationTagsRequestTagsMap;
 }
-export const SpacecraftsListAvailableContactsRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      spacecraftName: S.String.pipe(T.Label()),
-      contactProfile: ResourceReference,
-      groundStationName: S.String,
-      startTime: S.String,
-      endTime: S.String,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Orbital/spacecrafts/{spacecraftName}/listAvailableContacts",
-        code: 200,
-        apiVersion: "2022-11-01",
-      }),
-    ),
-).annotate({
-  identifier: "SpacecraftsListAvailableContactsRequest",
-}) as any as S.Schema<SpacecraftsListAvailableContactsRequest>;
-
-/** Contact Instance Properties. */
-export interface ContactInstanceProperties {
-  /** Maximum elevation of the antenna during the contact in decimal degrees. */
-  maximumElevationDegrees?: number;
-  /** Time at which antenna transmit will be enabled (ISO 8601 UTC standard). */
-  txStartTime?: string;
-  /** Time at which antenna transmit will be disabled (ISO 8601 UTC standard). */
-  txEndTime?: string;
-  /** Earliest time to receive a signal (ISO 8601 UTC standard). */
-  rxStartTime?: string;
-  /** Time to lost receiving a signal (ISO 8601 UTC standard). */
-  rxEndTime?: string;
-  /** Azimuth of the antenna at the start of the contact in decimal degrees. */
-  startAzimuthDegrees?: number;
-  /** Azimuth of the antenna at the end of the contact in decimal degrees. */
-  endAzimuthDegrees?: number;
-  /** Spacecraft elevation above the horizon at contact start. */
-  startElevationDegrees?: number;
-  /** Spacecraft elevation above the horizon at contact end. */
-  endElevationDegrees?: number;
-}
-export const ContactInstanceProperties = /*@__PURE__*/ S.suspend(() =>
+export const UpdateGroundStationTagsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    maximumElevationDegrees: S.optional(S.Number),
-    txStartTime: S.optional(S.String),
-    txEndTime: S.optional(S.String),
-    rxStartTime: S.optional(S.String),
-    rxEndTime: S.optional(S.String),
-    startAzimuthDegrees: S.optional(S.Number),
-    endAzimuthDegrees: S.optional(S.Number),
-    startElevationDegrees: S.optional(S.Number),
-    endElevationDegrees: S.optional(S.Number),
-  }),
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    groundStationName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateGroundStationTagsRequestTagsMap),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Orbital/groundStations/{groundStationName}",
+      code: 200,
+      apiVersion: "2024-03-01",
+    }),
+  ),
 ).annotate({
-  identifier: "ContactInstanceProperties",
-}) as any as S.Schema<ContactInstanceProperties>;
-
-/** Customer retrieves list of Available Contacts for a spacecraft resource. Later, one of the available contact can be selected to create a contact. */
-export interface AvailableContacts {
-  /** The reference to the spacecraft resource. */
-  spacecraft?: ResourceReference;
-  /** Name of Azure Ground Station. */
-  groundStationName?: string;
-  /** Properties of Contact resource. */
-  properties?: ContactInstanceProperties;
-}
-export const AvailableContacts = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    spacecraft: S.optional(ResourceReference),
-    groundStationName: S.optional(S.String),
-    properties: S.optional(ContactInstanceProperties),
-  }),
-).annotate({
-  identifier: "AvailableContacts",
-}) as any as S.Schema<AvailableContacts>;
-
-/** A list of available contacts. */
-export type AvailableContactsListResultValueList = Array<AvailableContacts>;
-export const AvailableContactsListResultValueList = /*@__PURE__*/ S.Array(
-  AvailableContacts,
-) as any as S.Schema<AvailableContactsListResultValueList>;
-
-/** Response for the ListAvailableContacts API service call. */
-export interface AvailableContactsListResult {
-  /** A list of available contacts. */
-  value?: AvailableContactsListResultValueList;
-  /** The URL to get the next set of results. */
-  nextLink?: string;
-}
-export const AvailableContactsListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(AvailableContactsListResultValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AvailableContactsListResult",
-}) as any as S.Schema<AvailableContactsListResult>;
-
-export interface SpacecraftsListBySubscriptionRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** An opaque string that the resource provider uses to skip over previously-returned results. This is used when a previous list operation call returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a skiptoken parameter that specifies a starting point to use for subsequent calls. */
-  _skiptoken?: string;
-}
-export const SpacecraftsListBySubscriptionRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      _skiptoken: S.optional(S.String.pipe(T.Query("$skiptoken"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Orbital/spacecrafts",
-        code: 200,
-        apiVersion: "2022-11-01",
-      }),
-    ),
-).annotate({
-  identifier: "SpacecraftsListBySubscriptionRequest",
-}) as any as S.Schema<SpacecraftsListBySubscriptionRequest>;
+  identifier: "UpdateGroundStationTagsRequest",
+}) as any as S.Schema<UpdateGroundStationTagsRequest>;
 
 /** Resource tags. */
-export type SpacecraftsUpdateTagsRequestTagsMap = {
+export type UpdateGroundStationTagsResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const SpacecraftsUpdateTagsRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateGroundStationTagsResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<SpacecraftsUpdateTagsRequestTagsMap>;
+) as any as S.Schema<UpdateGroundStationTagsResponseTagsMap>;
 
-export interface SpacecraftsUpdateTagsRequest {
+export interface UpdateGroundStationTagsResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateGroundStationTagsResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Properties of the Ground Station. */
+  properties?: GroundStationsProperties;
+}
+export const UpdateGroundStationTagsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateGroundStationTagsResponseTagsMap),
+    location: S.String,
+    properties: S.optional(GroundStationsProperties),
+  }),
+).annotate({
+  identifier: "UpdateGroundStationTagsResponse",
+}) as any as S.Schema<UpdateGroundStationTagsResponse>;
+
+/** Resource tags. */
+export type UpdateL2ConnectionTagsRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateL2ConnectionTagsRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateL2ConnectionTagsRequestTagsMap>;
+
+export interface UpdateL2ConnectionTagsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** L2 Connection name. */
+  l2ConnectionName: string;
+  /** Resource tags. */
+  tags?: UpdateL2ConnectionTagsRequestTagsMap;
+}
+export const UpdateL2ConnectionTagsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    l2ConnectionName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateL2ConnectionTagsRequestTagsMap),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Orbital/l2Connections/{l2ConnectionName}",
+      code: 200,
+      apiVersion: "2024-03-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateL2ConnectionTagsRequest",
+}) as any as S.Schema<UpdateL2ConnectionTagsRequest>;
+
+/** Resource tags. */
+export type UpdateL2ConnectionTagsResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateL2ConnectionTagsResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateL2ConnectionTagsResponseTagsMap>;
+
+export interface UpdateL2ConnectionTagsResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateL2ConnectionTagsResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The properties bag for this resource. */
+  properties: L2ConnectionsProperties;
+}
+export const UpdateL2ConnectionTagsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateL2ConnectionTagsResponseTagsMap),
+    location: S.String,
+    properties: L2ConnectionsProperties,
+  }),
+).annotate({
+  identifier: "UpdateL2ConnectionTagsResponse",
+}) as any as S.Schema<UpdateL2ConnectionTagsResponse>;
+
+/** Resource tags. */
+export type UpdateSpacecraftTagsRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateSpacecraftTagsRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateSpacecraftTagsRequestTagsMap>;
+
+export interface UpdateSpacecraftTagsRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -3432,14 +3431,14 @@ export interface SpacecraftsUpdateTagsRequest {
   /** Spacecraft ID. */
   spacecraftName: string;
   /** Resource tags. */
-  tags?: SpacecraftsUpdateTagsRequestTagsMap;
+  tags?: UpdateSpacecraftTagsRequestTagsMap;
 }
-export const SpacecraftsUpdateTagsRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateSpacecraftTagsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     spacecraftName: S.String.pipe(T.Label()),
-    tags: S.optional(SpacecraftsUpdateTagsRequestTagsMap),
+    tags: S.optional(UpdateSpacecraftTagsRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -3449,19 +3448,19 @@ export const SpacecraftsUpdateTagsRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "SpacecraftsUpdateTagsRequest",
-}) as any as S.Schema<SpacecraftsUpdateTagsRequest>;
+  identifier: "UpdateSpacecraftTagsRequest",
+}) as any as S.Schema<UpdateSpacecraftTagsRequest>;
 
 /** Resource tags. */
-export type SpacecraftsUpdateTagsResponseTagsMap = {
+export type UpdateSpacecraftTagsResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const SpacecraftsUpdateTagsResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateSpacecraftTagsResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<SpacecraftsUpdateTagsResponseTagsMap>;
+) as any as S.Schema<UpdateSpacecraftTagsResponseTagsMap>;
 
-export interface SpacecraftsUpdateTagsResponse {
+export interface UpdateSpacecraftTagsResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -3471,40 +3470,25 @@ export interface SpacecraftsUpdateTagsResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: SpacecraftsUpdateTagsResponseTagsMap;
+  tags?: UpdateSpacecraftTagsResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** Spacecraft Properties */
   properties: SpacecraftsProperties;
 }
-export const SpacecraftsUpdateTagsResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateSpacecraftTagsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(SpacecraftsUpdateTagsResponseTagsMap),
+    tags: S.optional(UpdateSpacecraftTagsResponseTagsMap),
     location: S.String,
     properties: SpacecraftsProperties,
   }),
 ).annotate({
-  identifier: "SpacecraftsUpdateTagsResponse",
-}) as any as S.Schema<SpacecraftsUpdateTagsResponse>;
-
-export type AvailableGroundStationsListByCapabilityError = AzureOpError;
-/** Returns list of available ground stations. */
-export const AvailableGroundStationsListByCapability: API.OperationMethod<
-  AvailableGroundStationsListByCapabilityRequest,
-  AvailableGroundStationListResult,
-  AvailableGroundStationsListByCapabilityError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AvailableGroundStationsListByCapabilityRequest,
-  output: AvailableGroundStationListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
+  identifier: "UpdateSpacecraftTagsResponse",
+}) as any as S.Schema<UpdateSpacecraftTagsResponse>;
 
 export type ContactProfilesCreateOrUpdateError = AzureOpError;
 /** Creates or updates a contact profile. */
@@ -3521,136 +3505,106 @@ export const ContactProfilesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type ContactProfilesDeleteError = AzureOpError;
-/** Deletes a specified contact profile resource. */
-export const ContactProfilesDelete: API.OperationMethod<
-  ContactProfilesDeleteRequest,
-  ContactProfilesDeleteResponse,
-  ContactProfilesDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ContactProfilesDeleteRequest,
-  output: ContactProfilesDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ContactProfilesGetError = AzureOpError;
-/** Gets the specified contact Profile in a specified resource group. */
-export const ContactProfilesGet: API.OperationMethod<
-  ContactProfilesGetRequest,
-  ContactProfilesGetResponse,
-  ContactProfilesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ContactProfilesGetRequest,
-  output: ContactProfilesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ContactProfilesListError = AzureOpError;
-/** Returns list of contact profiles by Resource Group. */
-export const ContactProfilesList: API.OperationMethod<
-  ContactProfilesListRequest,
-  ContactProfileListResult,
-  ContactProfilesListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ContactProfilesListRequest,
-  output: ContactProfileListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ContactProfilesListBySubscriptionError = AzureOpError;
-/** Returns list of contact profiles by Subscription. */
-export const ContactProfilesListBySubscription: API.OperationMethod<
-  ContactProfilesListBySubscriptionRequest,
-  ContactProfileListResult,
-  ContactProfilesListBySubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ContactProfilesListBySubscriptionRequest,
-  output: ContactProfileListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ContactProfilesUpdateTagsError = AzureOpError;
-/** Updates the specified contact profile tags. */
-export const ContactProfilesUpdateTags: API.OperationMethod<
-  ContactProfilesUpdateTagsRequest,
-  ContactProfilesUpdateTagsResponse,
-  ContactProfilesUpdateTagsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: ContactProfilesUpdateTagsRequest,
-  output: ContactProfilesUpdateTagsResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type ContactsCreateError = AzureOpError;
+export type CreateContactError = AzureOpError;
 /** Creates a contact. */
-export const ContactsCreate: API.OperationMethod<
-  ContactsCreateRequest,
-  ContactsCreateResponse,
-  ContactsCreateError,
+export const CreateContact: API.OperationMethod<
+  CreateContactRequest,
+  CreateContactResponse,
+  CreateContactError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ContactsCreateRequest,
-  output: ContactsCreateResponse,
+  input: CreateContactRequest,
+  output: CreateContactResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ContactsDeleteError = AzureOpError;
+export type DeleteContactError = AzureOpError;
 /** Deletes a specified contact. */
-export const ContactsDelete: API.OperationMethod<
-  ContactsDeleteRequest,
-  ContactsDeleteResponse,
-  ContactsDeleteError,
+export const DeleteContact: API.OperationMethod<
+  DeleteContactRequest,
+  DeleteContactResponse,
+  DeleteContactError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ContactsDeleteRequest,
-  output: ContactsDeleteResponse,
+  input: DeleteContactRequest,
+  output: DeleteContactResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ContactsGetError = AzureOpError;
-/** Gets the specified contact in a specified resource group. */
-export const ContactsGet: API.OperationMethod<
-  ContactsGetRequest,
-  ContactsGetResponse,
-  ContactsGetError,
+export type DeleteContactProfileError = AzureOpError;
+/** Deletes a specified contact profile resource. */
+export const DeleteContactProfile: API.OperationMethod<
+  DeleteContactProfileRequest,
+  DeleteContactProfileResponse,
+  DeleteContactProfileError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ContactsGetRequest,
-  output: ContactsGetResponse,
+  input: DeleteContactProfileRequest,
+  output: DeleteContactProfileResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type ContactsListError = AzureOpError;
-/** Returns list of contacts by spacecraftName. */
-export const ContactsList: API.OperationMethod<
-  ContactsListRequest,
-  ContactListResult,
-  ContactsListError,
+export type DeleteEdgeSiteError = AzureOpError;
+/** Deletes a specified edge site resource. */
+export const DeleteEdgeSite: API.OperationMethod<
+  DeleteEdgeSiteRequest,
+  DeleteEdgeSiteResponse,
+  DeleteEdgeSiteError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ContactsListRequest,
-  output: ContactListResult,
+  input: DeleteEdgeSiteRequest,
+  output: DeleteEdgeSiteResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteGroundStationError = AzureOpError;
+/** Deletes a specified ground station resource. */
+export const DeleteGroundStation: API.OperationMethod<
+  DeleteGroundStationRequest,
+  DeleteGroundStationResponse,
+  DeleteGroundStationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteGroundStationRequest,
+  output: DeleteGroundStationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteL2ConnectionError = AzureOpError;
+/** Deletes a specified L2 Connection resource. */
+export const DeleteL2Connection: API.OperationMethod<
+  DeleteL2ConnectionRequest,
+  DeleteL2ConnectionResponse,
+  DeleteL2ConnectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteL2ConnectionRequest,
+  output: DeleteL2ConnectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteSpacecraftError = AzureOpError;
+/** Deletes a specified spacecraft resource. */
+export const DeleteSpacecraft: API.OperationMethod<
+  DeleteSpacecraftRequest,
+  DeleteSpacecraftResponse,
+  DeleteSpacecraftError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteSpacecraftRequest,
+  output: DeleteSpacecraftResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -3671,106 +3625,106 @@ export const EdgeSitesCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type EdgeSitesDeleteError = AzureOpError;
-/** Deletes a specified edge site resource. */
-export const EdgeSitesDelete: API.OperationMethod<
-  EdgeSitesDeleteRequest,
-  EdgeSitesDeleteResponse,
-  EdgeSitesDeleteError,
+export type GetContactError = AzureOpError;
+/** Gets the specified contact in a specified resource group. */
+export const GetContact: API.OperationMethod<
+  GetContactRequest,
+  GetContactResponse,
+  GetContactError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: EdgeSitesDeleteRequest,
-  output: EdgeSitesDeleteResponse,
+  input: GetContactRequest,
+  output: GetContactResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type EdgeSitesGetError = AzureOpError;
+export type GetContactProfileError = AzureOpError;
+/** Gets the specified contact Profile in a specified resource group. */
+export const GetContactProfile: API.OperationMethod<
+  GetContactProfileRequest,
+  GetContactProfileResponse,
+  GetContactProfileError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetContactProfileRequest,
+  output: GetContactProfileResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetEdgeSiteError = AzureOpError;
 /** Gets the specified edge site in a specified resource group. */
-export const EdgeSitesGet: API.OperationMethod<
-  EdgeSitesGetRequest,
-  EdgeSitesGetResponse,
-  EdgeSitesGetError,
+export const GetEdgeSite: API.OperationMethod<
+  GetEdgeSiteRequest,
+  GetEdgeSiteResponse,
+  GetEdgeSiteError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: EdgeSitesGetRequest,
-  output: EdgeSitesGetResponse,
+  input: GetEdgeSiteRequest,
+  output: GetEdgeSiteResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type EdgeSitesListError = AzureOpError;
-/** Returns a list of edge sites for a resource group. */
-export const EdgeSitesList: API.OperationMethod<
-  EdgeSitesListRequest,
-  EdgeSiteListResult,
-  EdgeSitesListError,
+export type GetGroundStationError = AzureOpError;
+/** Gets the specified ground station in a specified resource group. */
+export const GetGroundStation: API.OperationMethod<
+  GetGroundStationRequest,
+  GetGroundStationResponse,
+  GetGroundStationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: EdgeSitesListRequest,
-  output: EdgeSiteListResult,
+  input: GetGroundStationRequest,
+  output: GetGroundStationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type EdgeSitesListBySubscriptionError = AzureOpError;
-/** Returns a list of edge sites for a subscription. */
-export const EdgeSitesListBySubscription: API.OperationMethod<
-  EdgeSitesListBySubscriptionRequest,
-  EdgeSiteListResult,
-  EdgeSitesListBySubscriptionError,
+export type GetL2ConnectionError = AzureOpError;
+/** Gets the specified L2 connection in a specified resource group. */
+export const GetL2Connection: API.OperationMethod<
+  GetL2ConnectionRequest,
+  GetL2ConnectionResponse,
+  GetL2ConnectionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: EdgeSitesListBySubscriptionRequest,
-  output: EdgeSiteListResult,
+  input: GetL2ConnectionRequest,
+  output: GetL2ConnectionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type EdgeSitesListL2ConnectionsError = AzureOpError;
-/** Returns a list of L2 Connections attached to an edge site. */
-export const EdgeSitesListL2Connections: API.OperationMethod<
-  EdgeSitesListL2ConnectionsRequest,
-  ResourceIdListResult,
-  EdgeSitesListL2ConnectionsError,
+export type GetOperationsResultError = AzureOpError;
+/** Returns operation results. */
+export const GetOperationsResult: API.OperationMethod<
+  GetOperationsResultRequest,
+  OperationResult,
+  GetOperationsResultError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: EdgeSitesListL2ConnectionsRequest,
-  output: ResourceIdListResult,
+  input: GetOperationsResultRequest,
+  output: OperationResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type EdgeSitesUpdateTagsError = AzureOpError;
-/** Updates the specified edge site's tags. */
-export const EdgeSitesUpdateTags: API.OperationMethod<
-  EdgeSitesUpdateTagsRequest,
-  EdgeSitesUpdateTagsResponse,
-  EdgeSitesUpdateTagsError,
+export type GetSpacecraftError = AzureOpError;
+/** Gets the specified spacecraft in a specified resource group. */
+export const GetSpacecraft: API.OperationMethod<
+  GetSpacecraftRequest,
+  GetSpacecraftResponse,
+  GetSpacecraftError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: EdgeSitesUpdateTagsRequest,
-  output: EdgeSitesUpdateTagsResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GlobalCommunicationsSitesListBySubscriptionError = AzureOpError;
-/** Returns a list of the global communications sites that a subscription is authorized to use. */
-export const GlobalCommunicationsSitesListBySubscription: API.OperationMethod<
-  GlobalCommunicationsSitesListBySubscriptionRequest,
-  GlobalCommunicationsSiteListResult,
-  GlobalCommunicationsSitesListBySubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GlobalCommunicationsSitesListBySubscriptionRequest,
-  output: GlobalCommunicationsSiteListResult,
+  input: GetSpacecraftRequest,
+  output: GetSpacecraftResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -3791,96 +3745,6 @@ export const GroundStationsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type GroundStationsDeleteError = AzureOpError;
-/** Deletes a specified ground station resource. */
-export const GroundStationsDelete: API.OperationMethod<
-  GroundStationsDeleteRequest,
-  GroundStationsDeleteResponse,
-  GroundStationsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GroundStationsDeleteRequest,
-  output: GroundStationsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GroundStationsGetError = AzureOpError;
-/** Gets the specified ground station in a specified resource group. */
-export const GroundStationsGet: API.OperationMethod<
-  GroundStationsGetRequest,
-  GroundStationsGetResponse,
-  GroundStationsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GroundStationsGetRequest,
-  output: GroundStationsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GroundStationsListError = AzureOpError;
-/** Return list of ground stations. */
-export const GroundStationsList: API.OperationMethod<
-  GroundStationsListRequest,
-  GroundStationListResult,
-  GroundStationsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GroundStationsListRequest,
-  output: GroundStationListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GroundStationsListBySubscriptionError = AzureOpError;
-/** Return list of ground stations. */
-export const GroundStationsListBySubscription: API.OperationMethod<
-  GroundStationsListBySubscriptionRequest,
-  GroundStationListResult,
-  GroundStationsListBySubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GroundStationsListBySubscriptionRequest,
-  output: GroundStationListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GroundStationsListL2ConnectionsError = AzureOpError;
-/** Returns a list of L2 Connections attached to an ground station. */
-export const GroundStationsListL2Connections: API.OperationMethod<
-  GroundStationsListL2ConnectionsRequest,
-  ResourceIdListResult,
-  GroundStationsListL2ConnectionsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GroundStationsListL2ConnectionsRequest,
-  output: ResourceIdListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type GroundStationsUpdateTagsError = AzureOpError;
-/** Updates the specified ground station tags. */
-export const GroundStationsUpdateTags: API.OperationMethod<
-  GroundStationsUpdateTagsRequest,
-  GroundStationsUpdateTagsResponse,
-  GroundStationsUpdateTagsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: GroundStationsUpdateTagsRequest,
-  output: GroundStationsUpdateTagsResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type L2ConnectionsCreateOrUpdateError = AzureOpError;
 /** Creates or updates an L2 Connection. */
 export const L2ConnectionsCreateOrUpdate: API.OperationMethod<
@@ -3896,106 +3760,256 @@ export const L2ConnectionsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type L2ConnectionsDeleteError = AzureOpError;
-/** Deletes a specified L2 Connection resource. */
-export const L2ConnectionsDelete: API.OperationMethod<
-  L2ConnectionsDeleteRequest,
-  L2ConnectionsDeleteResponse,
-  L2ConnectionsDeleteError,
+export type ListAvailableGroundStationByCapabilityError = AzureOpError;
+/** Returns list of available ground stations. */
+export const ListAvailableGroundStationByCapability: API.OperationMethod<
+  ListAvailableGroundStationByCapabilityRequest,
+  AvailableGroundStationListResult,
+  ListAvailableGroundStationByCapabilityError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: L2ConnectionsDeleteRequest,
-  output: L2ConnectionsDeleteResponse,
+  input: ListAvailableGroundStationByCapabilityRequest,
+  output: AvailableGroundStationListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type L2ConnectionsGetError = AzureOpError;
-/** Gets the specified L2 connection in a specified resource group. */
-export const L2ConnectionsGet: API.OperationMethod<
-  L2ConnectionsGetRequest,
-  L2ConnectionsGetResponse,
-  L2ConnectionsGetError,
+export type ListContactProfileBySubscriptionError = AzureOpError;
+/** Returns list of contact profiles by Subscription. */
+export const ListContactProfileBySubscription: API.OperationMethod<
+  ListContactProfileBySubscriptionRequest,
+  ContactProfileListResult,
+  ListContactProfileBySubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: L2ConnectionsGetRequest,
-  output: L2ConnectionsGetResponse,
+  input: ListContactProfileBySubscriptionRequest,
+  output: ContactProfileListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type L2ConnectionsListError = AzureOpError;
-/** Returns a list of L2 Connections attached to an orbital gateway. */
-export const L2ConnectionsList: API.OperationMethod<
-  L2ConnectionsListRequest,
-  L2ConnectionListResult,
-  L2ConnectionsListError,
+export type ListContactProfilesError = AzureOpError;
+/** Returns list of contact profiles by Resource Group. */
+export const ListContactProfiles: API.OperationMethod<
+  ListContactProfilesRequest,
+  ContactProfileListResult,
+  ListContactProfilesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: L2ConnectionsListRequest,
-  output: L2ConnectionListResult,
+  input: ListContactProfilesRequest,
+  output: ContactProfileListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type L2ConnectionsListBySubscriptionError = AzureOpError;
+export type ListContactsError = AzureOpError;
+/** Returns list of contacts by spacecraftName. */
+export const ListContacts: API.OperationMethod<
+  ListContactsRequest,
+  ContactListResult,
+  ListContactsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListContactsRequest,
+  output: ContactListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListEdgeSiteBySubscriptionError = AzureOpError;
+/** Returns a list of edge sites for a subscription. */
+export const ListEdgeSiteBySubscription: API.OperationMethod<
+  ListEdgeSiteBySubscriptionRequest,
+  EdgeSiteListResult,
+  ListEdgeSiteBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListEdgeSiteBySubscriptionRequest,
+  output: EdgeSiteListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListEdgeSiteL2ConnectionsError = AzureOpError;
+/** Returns a list of L2 Connections attached to an edge site. */
+export const ListEdgeSiteL2Connections: API.OperationMethod<
+  ListEdgeSiteL2ConnectionsRequest,
+  ResourceIdListResult,
+  ListEdgeSiteL2ConnectionsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListEdgeSiteL2ConnectionsRequest,
+  output: ResourceIdListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListEdgeSitesError = AzureOpError;
+/** Returns a list of edge sites for a resource group. */
+export const ListEdgeSites: API.OperationMethod<
+  ListEdgeSitesRequest,
+  EdgeSiteListResult,
+  ListEdgeSitesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListEdgeSitesRequest,
+  output: EdgeSiteListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListGlobalCommunicationsSiteBySubscriptionError = AzureOpError;
+/** Returns a list of the global communications sites that a subscription is authorized to use. */
+export const ListGlobalCommunicationsSiteBySubscription: API.OperationMethod<
+  ListGlobalCommunicationsSiteBySubscriptionRequest,
+  GlobalCommunicationsSiteListResult,
+  ListGlobalCommunicationsSiteBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListGlobalCommunicationsSiteBySubscriptionRequest,
+  output: GlobalCommunicationsSiteListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListGroundStationBySubscriptionError = AzureOpError;
+/** Return list of ground stations. */
+export const ListGroundStationBySubscription: API.OperationMethod<
+  ListGroundStationBySubscriptionRequest,
+  GroundStationListResult,
+  ListGroundStationBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListGroundStationBySubscriptionRequest,
+  output: GroundStationListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListGroundStationL2ConnectionsError = AzureOpError;
+/** Returns a list of L2 Connections attached to an ground station. */
+export const ListGroundStationL2Connections: API.OperationMethod<
+  ListGroundStationL2ConnectionsRequest,
+  ResourceIdListResult,
+  ListGroundStationL2ConnectionsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListGroundStationL2ConnectionsRequest,
+  output: ResourceIdListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListGroundStationsError = AzureOpError;
+/** Return list of ground stations. */
+export const ListGroundStations: API.OperationMethod<
+  ListGroundStationsRequest,
+  GroundStationListResult,
+  ListGroundStationsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListGroundStationsRequest,
+  output: GroundStationListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListL2ConnectionBySubscriptionError = AzureOpError;
 /** Returns a list of L2 Connections attached to a subscription. */
-export const L2ConnectionsListBySubscription: API.OperationMethod<
-  L2ConnectionsListBySubscriptionRequest,
+export const ListL2ConnectionBySubscription: API.OperationMethod<
+  ListL2ConnectionBySubscriptionRequest,
   L2ConnectionListResult,
-  L2ConnectionsListBySubscriptionError,
+  ListL2ConnectionBySubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: L2ConnectionsListBySubscriptionRequest,
+  input: ListL2ConnectionBySubscriptionRequest,
   output: L2ConnectionListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type L2ConnectionsUpdateTagsError = AzureOpError;
-/** Updates the specified L2 Connection's tags. */
-export const L2ConnectionsUpdateTags: API.OperationMethod<
-  L2ConnectionsUpdateTagsRequest,
-  L2ConnectionsUpdateTagsResponse,
-  L2ConnectionsUpdateTagsError,
+export type ListL2ConnectionsError = AzureOpError;
+/** Returns a list of L2 Connections attached to an orbital gateway. */
+export const ListL2Connections: API.OperationMethod<
+  ListL2ConnectionsRequest,
+  L2ConnectionListResult,
+  ListL2ConnectionsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: L2ConnectionsUpdateTagsRequest,
-  output: L2ConnectionsUpdateTagsResponse,
+  input: ListL2ConnectionsRequest,
+  output: L2ConnectionListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type OperationsListError = AzureOpError;
+export type ListOperationsError = AzureOpError;
 /** Lists all of the available Orbital Rest API operations. */
-export const OperationsList: API.OperationMethod<
-  OperationsListRequest,
-  OperationsListResponse,
-  OperationsListError,
+export const ListOperations: API.OperationMethod<
+  ListOperationsRequest,
+  ListOperationsResponse,
+  ListOperationsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OperationsListRequest,
-  output: OperationsListResponse,
+  input: ListOperationsRequest,
+  output: ListOperationsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type OperationsResultsGetError = AzureOpError;
-/** Returns operation results. */
-export const OperationsResultsGet: API.OperationMethod<
-  OperationsResultsGetRequest,
-  OperationResult,
-  OperationsResultsGetError,
+export type ListSpacecraftAvailableContactsError = AzureOpError;
+/** Returns list of available contacts. A contact is available if the spacecraft is visible from the ground station for more than the minimum viable contact duration provided in the contact profile. */
+export const ListSpacecraftAvailableContacts: API.OperationMethod<
+  ListSpacecraftAvailableContactsRequest,
+  AvailableContactsListResult,
+  ListSpacecraftAvailableContactsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OperationsResultsGetRequest,
-  output: OperationResult,
+  input: ListSpacecraftAvailableContactsRequest,
+  output: AvailableContactsListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSpacecraftBySubscriptionError = AzureOpError;
+/** Returns list of spacecrafts by subscription. */
+export const ListSpacecraftBySubscription: API.OperationMethod<
+  ListSpacecraftBySubscriptionRequest,
+  SpacecraftListResult,
+  ListSpacecraftBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSpacecraftBySubscriptionRequest,
+  output: SpacecraftListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSpacecraftsError = AzureOpError;
+/** Returns list of spacecrafts by resource group. */
+export const ListSpacecrafts: API.OperationMethod<
+  ListSpacecraftsRequest,
+  SpacecraftListResult,
+  ListSpacecraftsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSpacecraftsRequest,
+  output: SpacecraftListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -4016,91 +4030,76 @@ export const SpacecraftsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type SpacecraftsDeleteError = AzureOpError;
-/** Deletes a specified spacecraft resource. */
-export const SpacecraftsDelete: API.OperationMethod<
-  SpacecraftsDeleteRequest,
-  SpacecraftsDeleteResponse,
-  SpacecraftsDeleteError,
+export type UpdateContactProfileTagsError = AzureOpError;
+/** Updates the specified contact profile tags. */
+export const UpdateContactProfileTags: API.OperationMethod<
+  UpdateContactProfileTagsRequest,
+  UpdateContactProfileTagsResponse,
+  UpdateContactProfileTagsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SpacecraftsDeleteRequest,
-  output: SpacecraftsDeleteResponse,
+  input: UpdateContactProfileTagsRequest,
+  output: UpdateContactProfileTagsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type SpacecraftsGetError = AzureOpError;
-/** Gets the specified spacecraft in a specified resource group. */
-export const SpacecraftsGet: API.OperationMethod<
-  SpacecraftsGetRequest,
-  SpacecraftsGetResponse,
-  SpacecraftsGetError,
+export type UpdateEdgeSiteTagsError = AzureOpError;
+/** Updates the specified edge site's tags. */
+export const UpdateEdgeSiteTags: API.OperationMethod<
+  UpdateEdgeSiteTagsRequest,
+  UpdateEdgeSiteTagsResponse,
+  UpdateEdgeSiteTagsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SpacecraftsGetRequest,
-  output: SpacecraftsGetResponse,
+  input: UpdateEdgeSiteTagsRequest,
+  output: UpdateEdgeSiteTagsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type SpacecraftsListError = AzureOpError;
-/** Returns list of spacecrafts by resource group. */
-export const SpacecraftsList: API.OperationMethod<
-  SpacecraftsListRequest,
-  SpacecraftListResult,
-  SpacecraftsListError,
+export type UpdateGroundStationTagsError = AzureOpError;
+/** Updates the specified ground station tags. */
+export const UpdateGroundStationTags: API.OperationMethod<
+  UpdateGroundStationTagsRequest,
+  UpdateGroundStationTagsResponse,
+  UpdateGroundStationTagsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SpacecraftsListRequest,
-  output: SpacecraftListResult,
+  input: UpdateGroundStationTagsRequest,
+  output: UpdateGroundStationTagsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type SpacecraftsListAvailableContactsError = AzureOpError;
-/** Returns list of available contacts. A contact is available if the spacecraft is visible from the ground station for more than the minimum viable contact duration provided in the contact profile. */
-export const SpacecraftsListAvailableContacts: API.OperationMethod<
-  SpacecraftsListAvailableContactsRequest,
-  AvailableContactsListResult,
-  SpacecraftsListAvailableContactsError,
+export type UpdateL2ConnectionTagsError = AzureOpError;
+/** Updates the specified L2 Connection's tags. */
+export const UpdateL2ConnectionTags: API.OperationMethod<
+  UpdateL2ConnectionTagsRequest,
+  UpdateL2ConnectionTagsResponse,
+  UpdateL2ConnectionTagsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SpacecraftsListAvailableContactsRequest,
-  output: AvailableContactsListResult,
+  input: UpdateL2ConnectionTagsRequest,
+  output: UpdateL2ConnectionTagsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type SpacecraftsListBySubscriptionError = AzureOpError;
-/** Returns list of spacecrafts by subscription. */
-export const SpacecraftsListBySubscription: API.OperationMethod<
-  SpacecraftsListBySubscriptionRequest,
-  SpacecraftListResult,
-  SpacecraftsListBySubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SpacecraftsListBySubscriptionRequest,
-  output: SpacecraftListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SpacecraftsUpdateTagsError = AzureOpError;
+export type UpdateSpacecraftTagsError = AzureOpError;
 /** Updates the specified spacecraft tags. */
-export const SpacecraftsUpdateTags: API.OperationMethod<
-  SpacecraftsUpdateTagsRequest,
-  SpacecraftsUpdateTagsResponse,
-  SpacecraftsUpdateTagsError,
+export const UpdateSpacecraftTags: API.OperationMethod<
+  UpdateSpacecraftTagsRequest,
+  UpdateSpacecraftTagsResponse,
+  UpdateSpacecraftTagsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SpacecraftsUpdateTagsRequest,
-  output: SpacecraftsUpdateTagsResponse,
+  input: UpdateSpacecraftTagsRequest,
+  output: UpdateSpacecraftTagsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

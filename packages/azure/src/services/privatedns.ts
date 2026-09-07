@@ -12,59 +12,146 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
-/** Represents the properties of the Private DNS zone. */
-export interface PrivateZonePropertiesInput {}
-export const PrivateZonePropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "PrivateZonePropertiesInput",
-}) as any as S.Schema<PrivateZonePropertiesInput>;
-
-/** Resource tags. */
-export type PrivateZonesCreateOrUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const PrivateZonesCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<PrivateZonesCreateOrUpdateRequestTagsMap>;
-
-export interface PrivateZonesCreateOrUpdateRequest {
+export interface DeletePrivateZoneRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of the Private DNS zone (without a terminating dot). */
   privateZoneName: string;
-  /** Properties of the Private DNS zone. */
-  properties?: PrivateZonePropertiesInput;
-  /** Resource tags. */
-  tags?: PrivateZonesCreateOrUpdateRequestTagsMap;
-  /** The Azure Region where the resource lives */
-  location?: string;
-  /** The ETag of the zone. */
-  etag?: string;
 }
-export const PrivateZonesCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeletePrivateZoneRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     privateZoneName: S.String.pipe(T.Label()),
-    properties: S.optional(PrivateZonePropertiesInput),
-    tags: S.optional(PrivateZonesCreateOrUpdateRequestTagsMap),
-    location: S.optional(S.String),
-    etag: S.optional(S.String),
   }).pipe(
     T.Http({
-      method: "PUT",
+      method: "DELETE",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/privateDnsZones/{privateZoneName}",
       code: 200,
       apiVersion: "2024-06-01",
     }),
   ),
 ).annotate({
-  identifier: "PrivateZonesCreateOrUpdateRequest",
-}) as any as S.Schema<PrivateZonesCreateOrUpdateRequest>;
+  identifier: "DeletePrivateZoneRequest",
+}) as any as S.Schema<DeletePrivateZoneRequest>;
+
+export interface DeletePrivateZoneResponse {}
+export const DeletePrivateZoneResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeletePrivateZoneResponse",
+}) as any as S.Schema<DeletePrivateZoneResponse>;
+
+export type DeleteRecordSetRequestRecordType =
+  | "A"
+  | "AAAA"
+  | "CNAME"
+  | "MX"
+  | "PTR"
+  | "SOA"
+  | "SRV"
+  | "TXT";
+export const DeleteRecordSetRequestRecordType = /*@__PURE__*/ S.String;
+
+export interface DeleteRecordSetRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the DNS zone (without a terminating dot). */
+  privateZoneName: string;
+  /** The type of DNS record in this record set. */
+  recordType: DeleteRecordSetRequestRecordType | (string & {});
+  /** The name of the record set, relative to the name of the zone. */
+  relativeRecordSetName: string;
+}
+export const DeleteRecordSetRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    privateZoneName: S.String.pipe(T.Label()),
+    recordType: DeleteRecordSetRequestRecordType.pipe(T.Label()),
+    relativeRecordSetName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/privateDnsZones/{privateZoneName}/{recordType}/{relativeRecordSetName}",
+      code: 200,
+      apiVersion: "2024-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteRecordSetRequest",
+}) as any as S.Schema<DeleteRecordSetRequest>;
+
+export interface DeleteRecordSetResponse {}
+export const DeleteRecordSetResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteRecordSetResponse",
+}) as any as S.Schema<DeleteRecordSetResponse>;
+
+export interface DeleteVirtualNetworkLinkRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Private DNS zone (without a terminating dot). */
+  privateZoneName: string;
+  /** The name of the virtual network link. */
+  virtualNetworkLinkName: string;
+}
+export const DeleteVirtualNetworkLinkRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    privateZoneName: S.String.pipe(T.Label()),
+    virtualNetworkLinkName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/privateDnsZones/{privateZoneName}/virtualNetworkLinks/{virtualNetworkLinkName}",
+      code: 200,
+      apiVersion: "2024-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteVirtualNetworkLinkRequest",
+}) as any as S.Schema<DeleteVirtualNetworkLinkRequest>;
+
+export interface DeleteVirtualNetworkLinkResponse {}
+export const DeleteVirtualNetworkLinkResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteVirtualNetworkLinkResponse",
+}) as any as S.Schema<DeleteVirtualNetworkLinkResponse>;
+
+export interface GetPrivateZoneRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Private DNS zone (without a terminating dot). */
+  privateZoneName: string;
+}
+export const GetPrivateZoneRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    privateZoneName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/privateDnsZones/{privateZoneName}",
+      code: 200,
+      apiVersion: "2024-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetPrivateZoneRequest",
+}) as any as S.Schema<GetPrivateZoneRequest>;
 
 /** The type of identity that created the resource. */
 export type SystemDataCreatedByType =
@@ -153,15 +240,15 @@ export const PrivateZoneProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PrivateZoneProperties>;
 
 /** Resource tags. */
-export type PrivateZonesCreateOrUpdateResponseTagsMap = {
+export type GetPrivateZoneResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const PrivateZonesCreateOrUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetPrivateZoneResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<PrivateZonesCreateOrUpdateResponseTagsMap>;
+) as any as S.Schema<GetPrivateZoneResponseTagsMap>;
 
-export interface PrivateZonesCreateOrUpdateResponse {
+export interface GetPrivateZoneResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -173,94 +260,393 @@ export interface PrivateZonesCreateOrUpdateResponse {
   /** Properties of the Private DNS zone. */
   properties?: PrivateZoneProperties;
   /** Resource tags. */
-  tags?: PrivateZonesCreateOrUpdateResponseTagsMap;
+  tags?: GetPrivateZoneResponseTagsMap;
   /** The Azure Region where the resource lives */
   location?: string;
   /** The ETag of the zone. */
   etag?: string;
 }
-export const PrivateZonesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetPrivateZoneResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(PrivateZoneProperties),
-    tags: S.optional(PrivateZonesCreateOrUpdateResponseTagsMap),
+    tags: S.optional(GetPrivateZoneResponseTagsMap),
     location: S.optional(S.String),
     etag: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "PrivateZonesCreateOrUpdateResponse",
-}) as any as S.Schema<PrivateZonesCreateOrUpdateResponse>;
+  identifier: "GetPrivateZoneResponse",
+}) as any as S.Schema<GetPrivateZoneResponse>;
 
-export interface PrivateZonesDeleteRequest {
+export type GetRecordSetRequestRecordType =
+  | "A"
+  | "AAAA"
+  | "CNAME"
+  | "MX"
+  | "PTR"
+  | "SOA"
+  | "SRV"
+  | "TXT";
+export const GetRecordSetRequestRecordType = /*@__PURE__*/ S.String;
+
+export interface GetRecordSetRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
-  /** The name of the Private DNS zone (without a terminating dot). */
+  /** The name of the DNS zone (without a terminating dot). */
   privateZoneName: string;
+  /** The type of DNS record in this record set. */
+  recordType: GetRecordSetRequestRecordType | (string & {});
+  /** The name of the record set, relative to the name of the zone. */
+  relativeRecordSetName: string;
 }
-export const PrivateZonesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetRecordSetRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     privateZoneName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/privateDnsZones/{privateZoneName}",
-      code: 200,
-      apiVersion: "2024-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "PrivateZonesDeleteRequest",
-}) as any as S.Schema<PrivateZonesDeleteRequest>;
-
-export interface PrivateZonesDeleteResponse {}
-export const PrivateZonesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "PrivateZonesDeleteResponse",
-}) as any as S.Schema<PrivateZonesDeleteResponse>;
-
-export interface PrivateZonesGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Private DNS zone (without a terminating dot). */
-  privateZoneName: string;
-}
-export const PrivateZonesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    privateZoneName: S.String.pipe(T.Label()),
+    recordType: GetRecordSetRequestRecordType.pipe(T.Label()),
+    relativeRecordSetName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/privateDnsZones/{privateZoneName}",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/privateDnsZones/{privateZoneName}/{recordType}/{relativeRecordSetName}",
       code: 200,
       apiVersion: "2024-06-01",
     }),
   ),
 ).annotate({
-  identifier: "PrivateZonesGetRequest",
-}) as any as S.Schema<PrivateZonesGetRequest>;
+  identifier: "GetRecordSetRequest",
+}) as any as S.Schema<GetRecordSetRequest>;
+
+/** The metadata attached to the record set. */
+export type RecordSetPropertiesMetadataMap = {
+  [key: string]: string | undefined;
+};
+export const RecordSetPropertiesMetadataMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<RecordSetPropertiesMetadataMap>;
+
+/** An A record. */
+export interface ARecord {
+  /** The IPv4 address of this A record. */
+  ipv4Address?: string;
+}
+export const ARecord = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ipv4Address: S.optional(S.String),
+  }),
+).annotate({ identifier: "ARecord" }) as any as S.Schema<ARecord>;
+
+/** The list of A records in the record set. */
+export type RecordSetPropertiesARecordsList = Array<ARecord>;
+export const RecordSetPropertiesARecordsList = /*@__PURE__*/ S.Array(
+  ARecord,
+) as any as S.Schema<RecordSetPropertiesARecordsList>;
+
+/** An AAAA record. */
+export interface AaaaRecord {
+  /** The IPv6 address of this AAAA record. */
+  ipv6Address?: string;
+}
+export const AaaaRecord = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ipv6Address: S.optional(S.String),
+  }),
+).annotate({ identifier: "AaaaRecord" }) as any as S.Schema<AaaaRecord>;
+
+/** The list of AAAA records in the record set. */
+export type RecordSetPropertiesAaaaRecordsList = Array<AaaaRecord>;
+export const RecordSetPropertiesAaaaRecordsList = /*@__PURE__*/ S.Array(
+  AaaaRecord,
+) as any as S.Schema<RecordSetPropertiesAaaaRecordsList>;
+
+/** A CNAME record. */
+export interface CnameRecord {
+  /** The canonical name for this CNAME record. */
+  cname?: string;
+}
+export const CnameRecord = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    cname: S.optional(S.String),
+  }),
+).annotate({ identifier: "CnameRecord" }) as any as S.Schema<CnameRecord>;
+
+/** An MX record. */
+export interface MxRecord {
+  /** The preference value for this MX record. */
+  preference?: number;
+  /** The domain name of the mail host for this MX record. */
+  exchange?: string;
+}
+export const MxRecord = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    preference: S.optional(S.Number),
+    exchange: S.optional(S.String),
+  }),
+).annotate({ identifier: "MxRecord" }) as any as S.Schema<MxRecord>;
+
+/** The list of MX records in the record set. */
+export type RecordSetPropertiesMxRecordsList = Array<MxRecord>;
+export const RecordSetPropertiesMxRecordsList = /*@__PURE__*/ S.Array(
+  MxRecord,
+) as any as S.Schema<RecordSetPropertiesMxRecordsList>;
+
+/** A PTR record. */
+export interface PtrRecord {
+  /** The PTR target domain name for this PTR record. */
+  ptrdname?: string;
+}
+export const PtrRecord = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ptrdname: S.optional(S.String),
+  }),
+).annotate({ identifier: "PtrRecord" }) as any as S.Schema<PtrRecord>;
+
+/** The list of PTR records in the record set. */
+export type RecordSetPropertiesPtrRecordsList = Array<PtrRecord>;
+export const RecordSetPropertiesPtrRecordsList = /*@__PURE__*/ S.Array(
+  PtrRecord,
+) as any as S.Schema<RecordSetPropertiesPtrRecordsList>;
+
+/** An SOA record. */
+export interface SoaRecord {
+  /** The domain name of the authoritative name server for this SOA record. */
+  host?: string;
+  /** The email contact for this SOA record. */
+  email?: string;
+  /** The serial number for this SOA record. */
+  serialNumber?: number;
+  /** The refresh value for this SOA record. */
+  refreshTime?: number;
+  /** The retry time for this SOA record. */
+  retryTime?: number;
+  /** The expire time for this SOA record. */
+  expireTime?: number;
+  /** The minimum value for this SOA record. By convention this is used to determine the negative caching duration. */
+  minimumTtl?: number;
+}
+export const SoaRecord = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    host: S.optional(S.String),
+    email: S.optional(S.String),
+    serialNumber: S.optional(S.Number),
+    refreshTime: S.optional(S.Number),
+    retryTime: S.optional(S.Number),
+    expireTime: S.optional(S.Number),
+    minimumTtl: S.optional(S.Number),
+  }),
+).annotate({ identifier: "SoaRecord" }) as any as S.Schema<SoaRecord>;
+
+/** An SRV record. */
+export interface SrvRecord {
+  /** The priority value for this SRV record. */
+  priority?: number;
+  /** The weight value for this SRV record. */
+  weight?: number;
+  /** The port value for this SRV record. */
+  port?: number;
+  /** The target domain name for this SRV record. */
+  target?: string;
+}
+export const SrvRecord = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    priority: S.optional(S.Number),
+    weight: S.optional(S.Number),
+    port: S.optional(S.Number),
+    target: S.optional(S.String),
+  }),
+).annotate({ identifier: "SrvRecord" }) as any as S.Schema<SrvRecord>;
+
+/** The list of SRV records in the record set. */
+export type RecordSetPropertiesSrvRecordsList = Array<SrvRecord>;
+export const RecordSetPropertiesSrvRecordsList = /*@__PURE__*/ S.Array(
+  SrvRecord,
+) as any as S.Schema<RecordSetPropertiesSrvRecordsList>;
+
+/** The text value of this TXT record. */
+export type TxtRecordValueList = Array<string>;
+export const TxtRecordValueList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<TxtRecordValueList>;
+
+/** A TXT record. */
+export interface TxtRecord {
+  /** The text value of this TXT record. */
+  value?: TxtRecordValueList;
+}
+export const TxtRecord = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(TxtRecordValueList),
+  }),
+).annotate({ identifier: "TxtRecord" }) as any as S.Schema<TxtRecord>;
+
+/** The list of TXT records in the record set. */
+export type RecordSetPropertiesTxtRecordsList = Array<TxtRecord>;
+export const RecordSetPropertiesTxtRecordsList = /*@__PURE__*/ S.Array(
+  TxtRecord,
+) as any as S.Schema<RecordSetPropertiesTxtRecordsList>;
+
+/** Represents the properties of the records in the record set. */
+export interface RecordSetProperties {
+  /** The metadata attached to the record set. */
+  metadata?: RecordSetPropertiesMetadataMap;
+  /** The TTL (time-to-live) of the records in the record set. */
+  ttl?: number;
+  /** Fully qualified domain name of the record set. */
+  fqdn?: string;
+  /** Is the record set auto-registered in the Private DNS zone through a virtual network link? */
+  isAutoRegistered?: boolean;
+  /** The list of A records in the record set. */
+  aRecords?: RecordSetPropertiesARecordsList;
+  /** The list of AAAA records in the record set. */
+  aaaaRecords?: RecordSetPropertiesAaaaRecordsList;
+  /** The CNAME record in the record set. */
+  cnameRecord?: CnameRecord;
+  /** The list of MX records in the record set. */
+  mxRecords?: RecordSetPropertiesMxRecordsList;
+  /** The list of PTR records in the record set. */
+  ptrRecords?: RecordSetPropertiesPtrRecordsList;
+  /** The SOA record in the record set. */
+  soaRecord?: SoaRecord;
+  /** The list of SRV records in the record set. */
+  srvRecords?: RecordSetPropertiesSrvRecordsList;
+  /** The list of TXT records in the record set. */
+  txtRecords?: RecordSetPropertiesTxtRecordsList;
+}
+export const RecordSetProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    metadata: S.optional(RecordSetPropertiesMetadataMap),
+    ttl: S.optional(S.Number),
+    fqdn: S.optional(S.String),
+    isAutoRegistered: S.optional(S.Boolean),
+    aRecords: S.optional(RecordSetPropertiesARecordsList),
+    aaaaRecords: S.optional(RecordSetPropertiesAaaaRecordsList),
+    cnameRecord: S.optional(CnameRecord),
+    mxRecords: S.optional(RecordSetPropertiesMxRecordsList),
+    ptrRecords: S.optional(RecordSetPropertiesPtrRecordsList),
+    soaRecord: S.optional(SoaRecord),
+    srvRecords: S.optional(RecordSetPropertiesSrvRecordsList),
+    txtRecords: S.optional(RecordSetPropertiesTxtRecordsList),
+  }),
+).annotate({
+  identifier: "RecordSetProperties",
+}) as any as S.Schema<RecordSetProperties>;
+
+export interface GetRecordSetResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of the record set. */
+  properties?: RecordSetProperties;
+  /** The ETag of the record set. */
+  etag?: string;
+}
+export const GetRecordSetResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(RecordSetProperties),
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetRecordSetResponse",
+}) as any as S.Schema<GetRecordSetResponse>;
+
+export interface GetVirtualNetworkLinkRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Private DNS zone (without a terminating dot). */
+  privateZoneName: string;
+  /** The name of the virtual network link. */
+  virtualNetworkLinkName: string;
+}
+export const GetVirtualNetworkLinkRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    privateZoneName: S.String.pipe(T.Label()),
+    virtualNetworkLinkName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/privateDnsZones/{privateZoneName}/virtualNetworkLinks/{virtualNetworkLinkName}",
+      code: 200,
+      apiVersion: "2024-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetVirtualNetworkLinkRequest",
+}) as any as S.Schema<GetVirtualNetworkLinkRequest>;
+
+/** Reference to another subresource. */
+export interface SubResource {
+  /** Resource ID. */
+  id?: string;
+}
+export const SubResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+  }),
+).annotate({ identifier: "SubResource" }) as any as S.Schema<SubResource>;
+
+/** The resolution policy on the virtual network link. Only applicable for virtual network links to privatelink zones, and for A,AAAA,CNAME queries. When set to 'NxDomainRedirect', Azure DNS resolver falls back to public resolution if private dns query resolution results in non-existent domain response. */
+export type ResolutionPolicy = "Default" | "NxDomainRedirect";
+export const ResolutionPolicy = /*@__PURE__*/ S.String;
+
+/** The status of the virtual network link to the Private DNS zone. Possible values are 'InProgress' and 'Done'. This is a read-only property and any attempt to set this value will be ignored. */
+export type VirtualNetworkLinkState = "InProgress" | "Completed";
+export const VirtualNetworkLinkState = /*@__PURE__*/ S.String;
+
+/** Represents the properties of the Private DNS zone. */
+export interface VirtualNetworkLinkProperties {
+  /** The reference of the virtual network. */
+  virtualNetwork?: SubResource;
+  /** Is auto-registration of virtual machine records in the virtual network in the Private DNS zone enabled? */
+  registrationEnabled?: boolean;
+  /** The resolution policy on the virtual network link. Only applicable for virtual network links to privatelink zones, and for A,AAAA,CNAME queries. When set to 'NxDomainRedirect', Azure DNS resolver falls back to public resolution if private dns query resolution results in non-existent domain response. */
+  resolutionPolicy?: ResolutionPolicy;
+  /** The status of the virtual network link to the Private DNS zone. Possible values are 'InProgress' and 'Done'. This is a read-only property and any attempt to set this value will be ignored. */
+  virtualNetworkLinkState?: VirtualNetworkLinkState;
+  /** The provisioning state of the resource. This is a read-only property and any attempt to set this value will be ignored. */
+  provisioningState?: ProvisioningState;
+}
+export const VirtualNetworkLinkProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    virtualNetwork: S.optional(SubResource),
+    registrationEnabled: S.optional(S.Boolean),
+    resolutionPolicy: S.optional(ResolutionPolicy),
+    virtualNetworkLinkState: S.optional(VirtualNetworkLinkState),
+    provisioningState: S.optional(ProvisioningState),
+  }),
+).annotate({
+  identifier: "VirtualNetworkLinkProperties",
+}) as any as S.Schema<VirtualNetworkLinkProperties>;
 
 /** Resource tags. */
-export type PrivateZonesGetResponseTagsMap = {
+export type GetVirtualNetworkLinkResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const PrivateZonesGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export const GetVirtualNetworkLinkResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<PrivateZonesGetResponseTagsMap>;
+) as any as S.Schema<GetVirtualNetworkLinkResponseTagsMap>;
 
-export interface PrivateZonesGetResponse {
+export interface GetVirtualNetworkLinkResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -269,51 +655,55 @@ export interface PrivateZonesGetResponse {
   type?: string;
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
-  /** Properties of the Private DNS zone. */
-  properties?: PrivateZoneProperties;
+  /** Properties of the virtual network link to the Private DNS zone. */
+  properties?: VirtualNetworkLinkProperties;
   /** Resource tags. */
-  tags?: PrivateZonesGetResponseTagsMap;
+  tags?: GetVirtualNetworkLinkResponseTagsMap;
   /** The Azure Region where the resource lives */
   location?: string;
-  /** The ETag of the zone. */
+  /** The ETag of the virtual network link. */
   etag?: string;
 }
-export const PrivateZonesGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetVirtualNetworkLinkResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    properties: S.optional(PrivateZoneProperties),
-    tags: S.optional(PrivateZonesGetResponseTagsMap),
+    properties: S.optional(VirtualNetworkLinkProperties),
+    tags: S.optional(GetVirtualNetworkLinkResponseTagsMap),
     location: S.optional(S.String),
     etag: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "PrivateZonesGetResponse",
-}) as any as S.Schema<PrivateZonesGetResponse>;
+  identifier: "GetVirtualNetworkLinkResponse",
+}) as any as S.Schema<GetVirtualNetworkLinkResponse>;
 
-export interface PrivateZonesListRequest {
+export interface ListPrivateZoneByResourceGroupRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
-  /** The maximum number of Private DNS zones to return. If not specified, returns up to 100 zones. */
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The maximum number of record sets to return. If not specified, returns up to 100 record sets. */
   _top?: number;
 }
-export const PrivateZonesListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    _top: S.optional(S.Number.pipe(T.Query("$top"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Network/privateDnsZones",
-      code: 200,
-      apiVersion: "2024-06-01",
-    }),
-  ),
+export const ListPrivateZoneByResourceGroupRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      _top: S.optional(S.Number.pipe(T.Query("$top"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/privateDnsZones",
+        code: 200,
+        apiVersion: "2024-06-01",
+      }),
+    ),
 ).annotate({
-  identifier: "PrivateZonesListRequest",
-}) as any as S.Schema<PrivateZonesListRequest>;
+  identifier: "ListPrivateZoneByResourceGroupRequest",
+}) as any as S.Schema<ListPrivateZoneByResourceGroupRequest>;
 
 /** Resource tags. */
 export type PrivateZoneTagsMap = { [key: string]: string | undefined };
@@ -376,42 +766,265 @@ export const PrivateZoneListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "PrivateZoneListResult",
 }) as any as S.Schema<PrivateZoneListResult>;
 
-export interface PrivateZonesListByResourceGroupRequest {
+export interface ListPrivateZonesRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The maximum number of Private DNS zones to return. If not specified, returns up to 100 zones. */
+  _top?: number;
+}
+export const ListPrivateZonesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    _top: S.optional(S.Number.pipe(T.Query("$top"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Network/privateDnsZones",
+      code: 200,
+      apiVersion: "2024-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListPrivateZonesRequest",
+}) as any as S.Schema<ListPrivateZonesRequest>;
+
+export type ListRecordSetByTypeRequestRecordType =
+  | "A"
+  | "AAAA"
+  | "CNAME"
+  | "MX"
+  | "PTR"
+  | "SOA"
+  | "SRV"
+  | "TXT";
+export const ListRecordSetByTypeRequestRecordType = /*@__PURE__*/ S.String;
+
+export interface ListRecordSetByTypeRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
+  /** The name of the DNS zone (without a terminating dot). */
+  privateZoneName: string;
+  /** The type of DNS record in this record set. */
+  recordType: ListRecordSetByTypeRequestRecordType | (string & {});
   /** The maximum number of record sets to return. If not specified, returns up to 100 record sets. */
   _top?: number;
+  /** The suffix label of the record set name to be used to filter the record set enumeration. If this parameter is specified, the returned enumeration will only contain records that end with ".<recordsetnamesuffix>". */
+  _recordsetnamesuffix?: string;
 }
-export const PrivateZonesListByResourceGroupRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      _top: S.optional(S.Number.pipe(T.Query("$top"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/privateDnsZones",
-        code: 200,
-        apiVersion: "2024-06-01",
-      }),
+export const ListRecordSetByTypeRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    privateZoneName: S.String.pipe(T.Label()),
+    recordType: ListRecordSetByTypeRequestRecordType.pipe(T.Label()),
+    _top: S.optional(S.Number.pipe(T.Query("$top"))),
+    _recordsetnamesuffix: S.optional(
+      S.String.pipe(T.Query("$recordsetnamesuffix")),
     ),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/privateDnsZones/{privateZoneName}/{recordType}",
+      code: 200,
+      apiVersion: "2024-06-01",
+    }),
+  ),
 ).annotate({
-  identifier: "PrivateZonesListByResourceGroupRequest",
-}) as any as S.Schema<PrivateZonesListByResourceGroupRequest>;
+  identifier: "ListRecordSetByTypeRequest",
+}) as any as S.Schema<ListRecordSetByTypeRequest>;
+
+/** Describes a DNS record set (a collection of DNS records with the same name and type) in a Private DNS zone. */
+export interface RecordSet {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The properties of the record set. */
+  properties?: RecordSetProperties;
+  /** The ETag of the record set. */
+  etag?: string;
+}
+export const RecordSet = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(RecordSetProperties),
+    etag: S.optional(S.String),
+  }),
+).annotate({ identifier: "RecordSet" }) as any as S.Schema<RecordSet>;
+
+/** The RecordSet items on this page */
+export type RecordSetListResultValueList = Array<RecordSet>;
+export const RecordSetListResultValueList = /*@__PURE__*/ S.Array(
+  RecordSet,
+) as any as S.Schema<RecordSetListResultValueList>;
+
+/** The response of a RecordSet list operation. */
+export interface RecordSetListResult {
+  /** The RecordSet items on this page */
+  value: RecordSetListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const RecordSetListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: RecordSetListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "RecordSetListResult",
+}) as any as S.Schema<RecordSetListResult>;
+
+export interface ListRecordSetsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Private DNS zone (without a terminating dot). */
+  privateZoneName: string;
+  /** The maximum number of record sets to return. If not specified, returns up to 100 record sets. */
+  _top?: number;
+  /** The suffix label of the record set name to be used to filter the record set enumeration. If this parameter is specified, the returned enumeration will only contain records that end with ".<recordsetnamesuffix>". */
+  _recordsetnamesuffix?: string;
+}
+export const ListRecordSetsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    privateZoneName: S.String.pipe(T.Label()),
+    _top: S.optional(S.Number.pipe(T.Query("$top"))),
+    _recordsetnamesuffix: S.optional(
+      S.String.pipe(T.Query("$recordsetnamesuffix")),
+    ),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/privateDnsZones/{privateZoneName}/aLL",
+      code: 200,
+      apiVersion: "2024-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListRecordSetsRequest",
+}) as any as S.Schema<ListRecordSetsRequest>;
+
+export interface ListVirtualNetworkLinksRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Private DNS zone (without a terminating dot). */
+  privateZoneName: string;
+  /** The maximum number of virtual network links to return. If not specified, returns up to 100 virtual network links. */
+  _top?: number;
+}
+export const ListVirtualNetworkLinksRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    privateZoneName: S.String.pipe(T.Label()),
+    _top: S.optional(S.Number.pipe(T.Query("$top"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/privateDnsZones/{privateZoneName}/virtualNetworkLinks",
+      code: 200,
+      apiVersion: "2024-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListVirtualNetworkLinksRequest",
+}) as any as S.Schema<ListVirtualNetworkLinksRequest>;
 
 /** Resource tags. */
-export type PrivateZonesUpdateRequestTagsMap = {
+export type VirtualNetworkLinkTagsMap = { [key: string]: string | undefined };
+export const VirtualNetworkLinkTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<VirtualNetworkLinkTagsMap>;
+
+/** Describes a link to virtual network for a Private DNS zone. */
+export interface VirtualNetworkLink {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of the virtual network link to the Private DNS zone. */
+  properties?: VirtualNetworkLinkProperties;
+  /** Resource tags. */
+  tags?: VirtualNetworkLinkTagsMap;
+  /** The Azure Region where the resource lives */
+  location?: string;
+  /** The ETag of the virtual network link. */
+  etag?: string;
+}
+export const VirtualNetworkLink = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(VirtualNetworkLinkProperties),
+    tags: S.optional(VirtualNetworkLinkTagsMap),
+    location: S.optional(S.String),
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "VirtualNetworkLink",
+}) as any as S.Schema<VirtualNetworkLink>;
+
+/** The VirtualNetworkLink items on this page */
+export type VirtualNetworkLinkListResultValueList = Array<VirtualNetworkLink>;
+export const VirtualNetworkLinkListResultValueList = /*@__PURE__*/ S.Array(
+  VirtualNetworkLink,
+) as any as S.Schema<VirtualNetworkLinkListResultValueList>;
+
+/** The response of a VirtualNetworkLink list operation. */
+export interface VirtualNetworkLinkListResult {
+  /** The VirtualNetworkLink items on this page */
+  value: VirtualNetworkLinkListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const VirtualNetworkLinkListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: VirtualNetworkLinkListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "VirtualNetworkLinkListResult",
+}) as any as S.Schema<VirtualNetworkLinkListResult>;
+
+/** Represents the properties of the Private DNS zone. */
+export interface PrivateZonePropertiesInput {}
+export const PrivateZonePropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "PrivateZonePropertiesInput",
+}) as any as S.Schema<PrivateZonePropertiesInput>;
+
+/** Resource tags. */
+export type PrivateZonesCreateOrUpdateRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const PrivateZonesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const PrivateZonesCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<PrivateZonesUpdateRequestTagsMap>;
+) as any as S.Schema<PrivateZonesCreateOrUpdateRequestTagsMap>;
 
-export interface PrivateZonesUpdateRequest {
+export interface PrivateZonesCreateOrUpdateRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -421,43 +1034,43 @@ export interface PrivateZonesUpdateRequest {
   /** Properties of the Private DNS zone. */
   properties?: PrivateZonePropertiesInput;
   /** Resource tags. */
-  tags?: PrivateZonesUpdateRequestTagsMap;
+  tags?: PrivateZonesCreateOrUpdateRequestTagsMap;
   /** The Azure Region where the resource lives */
   location?: string;
   /** The ETag of the zone. */
   etag?: string;
 }
-export const PrivateZonesUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const PrivateZonesCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     privateZoneName: S.String.pipe(T.Label()),
     properties: S.optional(PrivateZonePropertiesInput),
-    tags: S.optional(PrivateZonesUpdateRequestTagsMap),
+    tags: S.optional(PrivateZonesCreateOrUpdateRequestTagsMap),
     location: S.optional(S.String),
     etag: S.optional(S.String),
   }).pipe(
     T.Http({
-      method: "PATCH",
+      method: "PUT",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/privateDnsZones/{privateZoneName}",
       code: 200,
       apiVersion: "2024-06-01",
     }),
   ),
 ).annotate({
-  identifier: "PrivateZonesUpdateRequest",
-}) as any as S.Schema<PrivateZonesUpdateRequest>;
+  identifier: "PrivateZonesCreateOrUpdateRequest",
+}) as any as S.Schema<PrivateZonesCreateOrUpdateRequest>;
 
 /** Resource tags. */
-export type PrivateZonesUpdateResponseTagsMap = {
+export type PrivateZonesCreateOrUpdateResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const PrivateZonesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const PrivateZonesCreateOrUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<PrivateZonesUpdateResponseTagsMap>;
+) as any as S.Schema<PrivateZonesCreateOrUpdateResponseTagsMap>;
 
-export interface PrivateZonesUpdateResponse {
+export interface PrivateZonesCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -469,26 +1082,26 @@ export interface PrivateZonesUpdateResponse {
   /** Properties of the Private DNS zone. */
   properties?: PrivateZoneProperties;
   /** Resource tags. */
-  tags?: PrivateZonesUpdateResponseTagsMap;
+  tags?: PrivateZonesCreateOrUpdateResponseTagsMap;
   /** The Azure Region where the resource lives */
   location?: string;
   /** The ETag of the zone. */
   etag?: string;
 }
-export const PrivateZonesUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const PrivateZonesCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
     properties: S.optional(PrivateZoneProperties),
-    tags: S.optional(PrivateZonesUpdateResponseTagsMap),
+    tags: S.optional(PrivateZonesCreateOrUpdateResponseTagsMap),
     location: S.optional(S.String),
     etag: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "PrivateZonesUpdateResponse",
-}) as any as S.Schema<PrivateZonesUpdateResponse>;
+  identifier: "PrivateZonesCreateOrUpdateResponse",
+}) as any as S.Schema<PrivateZonesCreateOrUpdateResponse>;
 
 export type RecordSetsCreateOrUpdateRequestRecordType =
   | "A"
@@ -510,33 +1123,11 @@ export const RecordSetPropertiesInputMetadataMap = /*@__PURE__*/ S.Record(
   S.String,
 ) as any as S.Schema<RecordSetPropertiesInputMetadataMap>;
 
-/** An A record. */
-export interface ARecord {
-  /** The IPv4 address of this A record. */
-  ipv4Address?: string;
-}
-export const ARecord = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ipv4Address: S.optional(S.String),
-  }),
-).annotate({ identifier: "ARecord" }) as any as S.Schema<ARecord>;
-
 /** The list of A records in the record set. */
 export type RecordSetPropertiesInputARecordsList = Array<ARecord>;
 export const RecordSetPropertiesInputARecordsList = /*@__PURE__*/ S.Array(
   ARecord,
 ) as any as S.Schema<RecordSetPropertiesInputARecordsList>;
-
-/** An AAAA record. */
-export interface AaaaRecord {
-  /** The IPv6 address of this AAAA record. */
-  ipv6Address?: string;
-}
-export const AaaaRecord = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ipv6Address: S.optional(S.String),
-  }),
-).annotate({ identifier: "AaaaRecord" }) as any as S.Schema<AaaaRecord>;
 
 /** The list of AAAA records in the record set. */
 export type RecordSetPropertiesInputAaaaRecordsList = Array<AaaaRecord>;
@@ -544,47 +1135,11 @@ export const RecordSetPropertiesInputAaaaRecordsList = /*@__PURE__*/ S.Array(
   AaaaRecord,
 ) as any as S.Schema<RecordSetPropertiesInputAaaaRecordsList>;
 
-/** A CNAME record. */
-export interface CnameRecord {
-  /** The canonical name for this CNAME record. */
-  cname?: string;
-}
-export const CnameRecord = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    cname: S.optional(S.String),
-  }),
-).annotate({ identifier: "CnameRecord" }) as any as S.Schema<CnameRecord>;
-
-/** An MX record. */
-export interface MxRecord {
-  /** The preference value for this MX record. */
-  preference?: number;
-  /** The domain name of the mail host for this MX record. */
-  exchange?: string;
-}
-export const MxRecord = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    preference: S.optional(S.Number),
-    exchange: S.optional(S.String),
-  }),
-).annotate({ identifier: "MxRecord" }) as any as S.Schema<MxRecord>;
-
 /** The list of MX records in the record set. */
 export type RecordSetPropertiesInputMxRecordsList = Array<MxRecord>;
 export const RecordSetPropertiesInputMxRecordsList = /*@__PURE__*/ S.Array(
   MxRecord,
 ) as any as S.Schema<RecordSetPropertiesInputMxRecordsList>;
-
-/** A PTR record. */
-export interface PtrRecord {
-  /** The PTR target domain name for this PTR record. */
-  ptrdname?: string;
-}
-export const PtrRecord = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ptrdname: S.optional(S.String),
-  }),
-).annotate({ identifier: "PtrRecord" }) as any as S.Schema<PtrRecord>;
 
 /** The list of PTR records in the record set. */
 export type RecordSetPropertiesInputPtrRecordsList = Array<PtrRecord>;
@@ -592,77 +1147,11 @@ export const RecordSetPropertiesInputPtrRecordsList = /*@__PURE__*/ S.Array(
   PtrRecord,
 ) as any as S.Schema<RecordSetPropertiesInputPtrRecordsList>;
 
-/** An SOA record. */
-export interface SoaRecord {
-  /** The domain name of the authoritative name server for this SOA record. */
-  host?: string;
-  /** The email contact for this SOA record. */
-  email?: string;
-  /** The serial number for this SOA record. */
-  serialNumber?: number;
-  /** The refresh value for this SOA record. */
-  refreshTime?: number;
-  /** The retry time for this SOA record. */
-  retryTime?: number;
-  /** The expire time for this SOA record. */
-  expireTime?: number;
-  /** The minimum value for this SOA record. By convention this is used to determine the negative caching duration. */
-  minimumTtl?: number;
-}
-export const SoaRecord = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    host: S.optional(S.String),
-    email: S.optional(S.String),
-    serialNumber: S.optional(S.Number),
-    refreshTime: S.optional(S.Number),
-    retryTime: S.optional(S.Number),
-    expireTime: S.optional(S.Number),
-    minimumTtl: S.optional(S.Number),
-  }),
-).annotate({ identifier: "SoaRecord" }) as any as S.Schema<SoaRecord>;
-
-/** An SRV record. */
-export interface SrvRecord {
-  /** The priority value for this SRV record. */
-  priority?: number;
-  /** The weight value for this SRV record. */
-  weight?: number;
-  /** The port value for this SRV record. */
-  port?: number;
-  /** The target domain name for this SRV record. */
-  target?: string;
-}
-export const SrvRecord = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    priority: S.optional(S.Number),
-    weight: S.optional(S.Number),
-    port: S.optional(S.Number),
-    target: S.optional(S.String),
-  }),
-).annotate({ identifier: "SrvRecord" }) as any as S.Schema<SrvRecord>;
-
 /** The list of SRV records in the record set. */
 export type RecordSetPropertiesInputSrvRecordsList = Array<SrvRecord>;
 export const RecordSetPropertiesInputSrvRecordsList = /*@__PURE__*/ S.Array(
   SrvRecord,
 ) as any as S.Schema<RecordSetPropertiesInputSrvRecordsList>;
-
-/** The text value of this TXT record. */
-export type TxtRecordValueList = Array<string>;
-export const TxtRecordValueList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<TxtRecordValueList>;
-
-/** A TXT record. */
-export interface TxtRecord {
-  /** The text value of this TXT record. */
-  value?: TxtRecordValueList;
-}
-export const TxtRecord = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(TxtRecordValueList),
-  }),
-).annotate({ identifier: "TxtRecord" }) as any as S.Schema<TxtRecord>;
 
 /** The list of TXT records in the record set. */
 export type RecordSetPropertiesInputTxtRecordsList = Array<TxtRecord>;
@@ -747,97 +1236,6 @@ export const RecordSetsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "RecordSetsCreateOrUpdateRequest",
 }) as any as S.Schema<RecordSetsCreateOrUpdateRequest>;
 
-/** The metadata attached to the record set. */
-export type RecordSetPropertiesMetadataMap = {
-  [key: string]: string | undefined;
-};
-export const RecordSetPropertiesMetadataMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<RecordSetPropertiesMetadataMap>;
-
-/** The list of A records in the record set. */
-export type RecordSetPropertiesARecordsList = Array<ARecord>;
-export const RecordSetPropertiesARecordsList = /*@__PURE__*/ S.Array(
-  ARecord,
-) as any as S.Schema<RecordSetPropertiesARecordsList>;
-
-/** The list of AAAA records in the record set. */
-export type RecordSetPropertiesAaaaRecordsList = Array<AaaaRecord>;
-export const RecordSetPropertiesAaaaRecordsList = /*@__PURE__*/ S.Array(
-  AaaaRecord,
-) as any as S.Schema<RecordSetPropertiesAaaaRecordsList>;
-
-/** The list of MX records in the record set. */
-export type RecordSetPropertiesMxRecordsList = Array<MxRecord>;
-export const RecordSetPropertiesMxRecordsList = /*@__PURE__*/ S.Array(
-  MxRecord,
-) as any as S.Schema<RecordSetPropertiesMxRecordsList>;
-
-/** The list of PTR records in the record set. */
-export type RecordSetPropertiesPtrRecordsList = Array<PtrRecord>;
-export const RecordSetPropertiesPtrRecordsList = /*@__PURE__*/ S.Array(
-  PtrRecord,
-) as any as S.Schema<RecordSetPropertiesPtrRecordsList>;
-
-/** The list of SRV records in the record set. */
-export type RecordSetPropertiesSrvRecordsList = Array<SrvRecord>;
-export const RecordSetPropertiesSrvRecordsList = /*@__PURE__*/ S.Array(
-  SrvRecord,
-) as any as S.Schema<RecordSetPropertiesSrvRecordsList>;
-
-/** The list of TXT records in the record set. */
-export type RecordSetPropertiesTxtRecordsList = Array<TxtRecord>;
-export const RecordSetPropertiesTxtRecordsList = /*@__PURE__*/ S.Array(
-  TxtRecord,
-) as any as S.Schema<RecordSetPropertiesTxtRecordsList>;
-
-/** Represents the properties of the records in the record set. */
-export interface RecordSetProperties {
-  /** The metadata attached to the record set. */
-  metadata?: RecordSetPropertiesMetadataMap;
-  /** The TTL (time-to-live) of the records in the record set. */
-  ttl?: number;
-  /** Fully qualified domain name of the record set. */
-  fqdn?: string;
-  /** Is the record set auto-registered in the Private DNS zone through a virtual network link? */
-  isAutoRegistered?: boolean;
-  /** The list of A records in the record set. */
-  aRecords?: RecordSetPropertiesARecordsList;
-  /** The list of AAAA records in the record set. */
-  aaaaRecords?: RecordSetPropertiesAaaaRecordsList;
-  /** The CNAME record in the record set. */
-  cnameRecord?: CnameRecord;
-  /** The list of MX records in the record set. */
-  mxRecords?: RecordSetPropertiesMxRecordsList;
-  /** The list of PTR records in the record set. */
-  ptrRecords?: RecordSetPropertiesPtrRecordsList;
-  /** The SOA record in the record set. */
-  soaRecord?: SoaRecord;
-  /** The list of SRV records in the record set. */
-  srvRecords?: RecordSetPropertiesSrvRecordsList;
-  /** The list of TXT records in the record set. */
-  txtRecords?: RecordSetPropertiesTxtRecordsList;
-}
-export const RecordSetProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    metadata: S.optional(RecordSetPropertiesMetadataMap),
-    ttl: S.optional(S.Number),
-    fqdn: S.optional(S.String),
-    isAutoRegistered: S.optional(S.Boolean),
-    aRecords: S.optional(RecordSetPropertiesARecordsList),
-    aaaaRecords: S.optional(RecordSetPropertiesAaaaRecordsList),
-    cnameRecord: S.optional(CnameRecord),
-    mxRecords: S.optional(RecordSetPropertiesMxRecordsList),
-    ptrRecords: S.optional(RecordSetPropertiesPtrRecordsList),
-    soaRecord: S.optional(SoaRecord),
-    srvRecords: S.optional(RecordSetPropertiesSrvRecordsList),
-    txtRecords: S.optional(RecordSetPropertiesTxtRecordsList),
-  }),
-).annotate({
-  identifier: "RecordSetProperties",
-}) as any as S.Schema<RecordSetProperties>;
-
 export interface RecordSetsCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
@@ -865,159 +1263,62 @@ export const RecordSetsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "RecordSetsCreateOrUpdateResponse",
 }) as any as S.Schema<RecordSetsCreateOrUpdateResponse>;
 
-export type RecordSetsDeleteRequestRecordType =
-  | "A"
-  | "AAAA"
-  | "CNAME"
-  | "MX"
-  | "PTR"
-  | "SOA"
-  | "SRV"
-  | "TXT";
-export const RecordSetsDeleteRequestRecordType = /*@__PURE__*/ S.String;
+/** Resource tags. */
+export type UpdatePrivateZoneRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdatePrivateZoneRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdatePrivateZoneRequestTagsMap>;
 
-export interface RecordSetsDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the DNS zone (without a terminating dot). */
-  privateZoneName: string;
-  /** The type of DNS record in this record set. */
-  recordType: RecordSetsDeleteRequestRecordType | (string & {});
-  /** The name of the record set, relative to the name of the zone. */
-  relativeRecordSetName: string;
-}
-export const RecordSetsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    privateZoneName: S.String.pipe(T.Label()),
-    recordType: RecordSetsDeleteRequestRecordType.pipe(T.Label()),
-    relativeRecordSetName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/privateDnsZones/{privateZoneName}/{recordType}/{relativeRecordSetName}",
-      code: 200,
-      apiVersion: "2024-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "RecordSetsDeleteRequest",
-}) as any as S.Schema<RecordSetsDeleteRequest>;
-
-export interface RecordSetsDeleteResponse {}
-export const RecordSetsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "RecordSetsDeleteResponse",
-}) as any as S.Schema<RecordSetsDeleteResponse>;
-
-export type RecordSetsGetRequestRecordType =
-  | "A"
-  | "AAAA"
-  | "CNAME"
-  | "MX"
-  | "PTR"
-  | "SOA"
-  | "SRV"
-  | "TXT";
-export const RecordSetsGetRequestRecordType = /*@__PURE__*/ S.String;
-
-export interface RecordSetsGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the DNS zone (without a terminating dot). */
-  privateZoneName: string;
-  /** The type of DNS record in this record set. */
-  recordType: RecordSetsGetRequestRecordType | (string & {});
-  /** The name of the record set, relative to the name of the zone. */
-  relativeRecordSetName: string;
-}
-export const RecordSetsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    privateZoneName: S.String.pipe(T.Label()),
-    recordType: RecordSetsGetRequestRecordType.pipe(T.Label()),
-    relativeRecordSetName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/privateDnsZones/{privateZoneName}/{recordType}/{relativeRecordSetName}",
-      code: 200,
-      apiVersion: "2024-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "RecordSetsGetRequest",
-}) as any as S.Schema<RecordSetsGetRequest>;
-
-export interface RecordSetsGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The properties of the record set. */
-  properties?: RecordSetProperties;
-  /** The ETag of the record set. */
-  etag?: string;
-}
-export const RecordSetsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(RecordSetProperties),
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "RecordSetsGetResponse",
-}) as any as S.Schema<RecordSetsGetResponse>;
-
-export interface RecordSetsListRequest {
+export interface UpdatePrivateZoneRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of the Private DNS zone (without a terminating dot). */
   privateZoneName: string;
-  /** The maximum number of record sets to return. If not specified, returns up to 100 record sets. */
-  _top?: number;
-  /** The suffix label of the record set name to be used to filter the record set enumeration. If this parameter is specified, the returned enumeration will only contain records that end with ".<recordsetnamesuffix>". */
-  _recordsetnamesuffix?: string;
+  /** Properties of the Private DNS zone. */
+  properties?: PrivateZonePropertiesInput;
+  /** Resource tags. */
+  tags?: UpdatePrivateZoneRequestTagsMap;
+  /** The Azure Region where the resource lives */
+  location?: string;
+  /** The ETag of the zone. */
+  etag?: string;
 }
-export const RecordSetsListRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdatePrivateZoneRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     privateZoneName: S.String.pipe(T.Label()),
-    _top: S.optional(S.Number.pipe(T.Query("$top"))),
-    _recordsetnamesuffix: S.optional(
-      S.String.pipe(T.Query("$recordsetnamesuffix")),
-    ),
+    properties: S.optional(PrivateZonePropertiesInput),
+    tags: S.optional(UpdatePrivateZoneRequestTagsMap),
+    location: S.optional(S.String),
+    etag: S.optional(S.String),
   }).pipe(
     T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/privateDnsZones/{privateZoneName}/aLL",
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/privateDnsZones/{privateZoneName}",
       code: 200,
       apiVersion: "2024-06-01",
     }),
   ),
 ).annotate({
-  identifier: "RecordSetsListRequest",
-}) as any as S.Schema<RecordSetsListRequest>;
+  identifier: "UpdatePrivateZoneRequest",
+}) as any as S.Schema<UpdatePrivateZoneRequest>;
 
-/** Describes a DNS record set (a collection of DNS records with the same name and type) in a Private DNS zone. */
-export interface RecordSet {
+/** Resource tags. */
+export type UpdatePrivateZoneResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdatePrivateZoneResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdatePrivateZoneResponseTagsMap>;
+
+export interface UpdatePrivateZoneResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -1026,45 +1327,31 @@ export interface RecordSet {
   type?: string;
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
-  /** The properties of the record set. */
-  properties?: RecordSetProperties;
-  /** The ETag of the record set. */
+  /** Properties of the Private DNS zone. */
+  properties?: PrivateZoneProperties;
+  /** Resource tags. */
+  tags?: UpdatePrivateZoneResponseTagsMap;
+  /** The Azure Region where the resource lives */
+  location?: string;
+  /** The ETag of the zone. */
   etag?: string;
 }
-export const RecordSet = /*@__PURE__*/ S.suspend(() =>
+export const UpdatePrivateZoneResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    properties: S.optional(RecordSetProperties),
+    properties: S.optional(PrivateZoneProperties),
+    tags: S.optional(UpdatePrivateZoneResponseTagsMap),
+    location: S.optional(S.String),
     etag: S.optional(S.String),
   }),
-).annotate({ identifier: "RecordSet" }) as any as S.Schema<RecordSet>;
-
-/** The RecordSet items on this page */
-export type RecordSetListResultValueList = Array<RecordSet>;
-export const RecordSetListResultValueList = /*@__PURE__*/ S.Array(
-  RecordSet,
-) as any as S.Schema<RecordSetListResultValueList>;
-
-/** The response of a RecordSet list operation. */
-export interface RecordSetListResult {
-  /** The RecordSet items on this page */
-  value: RecordSetListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const RecordSetListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: RecordSetListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
 ).annotate({
-  identifier: "RecordSetListResult",
-}) as any as S.Schema<RecordSetListResult>;
+  identifier: "UpdatePrivateZoneResponse",
+}) as any as S.Schema<UpdatePrivateZoneResponse>;
 
-export type RecordSetsListByTypeRequestRecordType =
+export type UpdateRecordSetRequestRecordType =
   | "A"
   | "AAAA"
   | "CNAME"
@@ -1073,9 +1360,9 @@ export type RecordSetsListByTypeRequestRecordType =
   | "SOA"
   | "SRV"
   | "TXT";
-export const RecordSetsListByTypeRequestRecordType = /*@__PURE__*/ S.String;
+export const UpdateRecordSetRequestRecordType = /*@__PURE__*/ S.String;
 
-export interface RecordSetsListByTypeRequest {
+export interface UpdateRecordSetRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1083,54 +1370,7 @@ export interface RecordSetsListByTypeRequest {
   /** The name of the DNS zone (without a terminating dot). */
   privateZoneName: string;
   /** The type of DNS record in this record set. */
-  recordType: RecordSetsListByTypeRequestRecordType | (string & {});
-  /** The maximum number of record sets to return. If not specified, returns up to 100 record sets. */
-  _top?: number;
-  /** The suffix label of the record set name to be used to filter the record set enumeration. If this parameter is specified, the returned enumeration will only contain records that end with ".<recordsetnamesuffix>". */
-  _recordsetnamesuffix?: string;
-}
-export const RecordSetsListByTypeRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    privateZoneName: S.String.pipe(T.Label()),
-    recordType: RecordSetsListByTypeRequestRecordType.pipe(T.Label()),
-    _top: S.optional(S.Number.pipe(T.Query("$top"))),
-    _recordsetnamesuffix: S.optional(
-      S.String.pipe(T.Query("$recordsetnamesuffix")),
-    ),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/privateDnsZones/{privateZoneName}/{recordType}",
-      code: 200,
-      apiVersion: "2024-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "RecordSetsListByTypeRequest",
-}) as any as S.Schema<RecordSetsListByTypeRequest>;
-
-export type RecordSetsUpdateRequestRecordType =
-  | "A"
-  | "AAAA"
-  | "CNAME"
-  | "MX"
-  | "PTR"
-  | "SOA"
-  | "SRV"
-  | "TXT";
-export const RecordSetsUpdateRequestRecordType = /*@__PURE__*/ S.String;
-
-export interface RecordSetsUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the DNS zone (without a terminating dot). */
-  privateZoneName: string;
-  /** The type of DNS record in this record set. */
-  recordType: RecordSetsUpdateRequestRecordType | (string & {});
+  recordType: UpdateRecordSetRequestRecordType | (string & {});
   /** The name of the record set, relative to the name of the zone. */
   relativeRecordSetName: string;
   /** The properties of the record set. */
@@ -1138,12 +1378,12 @@ export interface RecordSetsUpdateRequest {
   /** The ETag of the record set. */
   etag?: string;
 }
-export const RecordSetsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateRecordSetRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     privateZoneName: S.String.pipe(T.Label()),
-    recordType: RecordSetsUpdateRequestRecordType.pipe(T.Label()),
+    recordType: UpdateRecordSetRequestRecordType.pipe(T.Label()),
     relativeRecordSetName: S.String.pipe(T.Label()),
     properties: S.optional(RecordSetPropertiesInput),
     etag: S.optional(S.String),
@@ -1156,10 +1396,10 @@ export const RecordSetsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "RecordSetsUpdateRequest",
-}) as any as S.Schema<RecordSetsUpdateRequest>;
+  identifier: "UpdateRecordSetRequest",
+}) as any as S.Schema<UpdateRecordSetRequest>;
 
-export interface RecordSetsUpdateResponse {
+export interface UpdateRecordSetResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -1173,7 +1413,7 @@ export interface RecordSetsUpdateResponse {
   /** The ETag of the record set. */
   etag?: string;
 }
-export const RecordSetsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateRecordSetResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -1183,23 +1423,8 @@ export const RecordSetsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
     etag: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "RecordSetsUpdateResponse",
-}) as any as S.Schema<RecordSetsUpdateResponse>;
-
-/** Reference to another subresource. */
-export interface SubResource {
-  /** Resource ID. */
-  id?: string;
-}
-export const SubResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-  }),
-).annotate({ identifier: "SubResource" }) as any as S.Schema<SubResource>;
-
-/** The resolution policy on the virtual network link. Only applicable for virtual network links to privatelink zones, and for A,AAAA,CNAME queries. When set to 'NxDomainRedirect', Azure DNS resolver falls back to public resolution if private dns query resolution results in non-existent domain response. */
-export type ResolutionPolicy = "Default" | "NxDomainRedirect";
-export const ResolutionPolicy = /*@__PURE__*/ S.String;
+  identifier: "UpdateRecordSetResponse",
+}) as any as S.Schema<UpdateRecordSetResponse>;
 
 /** Represents the properties of the Private DNS zone. */
 export interface VirtualNetworkLinkPropertiesInput {
@@ -1219,6 +1444,97 @@ export const VirtualNetworkLinkPropertiesInput = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "VirtualNetworkLinkPropertiesInput",
 }) as any as S.Schema<VirtualNetworkLinkPropertiesInput>;
+
+/** Resource tags. */
+export type UpdateVirtualNetworkLinkRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateVirtualNetworkLinkRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateVirtualNetworkLinkRequestTagsMap>;
+
+export interface UpdateVirtualNetworkLinkRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Private DNS zone (without a terminating dot). */
+  privateZoneName: string;
+  /** The name of the virtual network link. */
+  virtualNetworkLinkName: string;
+  /** Properties of the virtual network link to the Private DNS zone. */
+  properties?: VirtualNetworkLinkPropertiesInput;
+  /** Resource tags. */
+  tags?: UpdateVirtualNetworkLinkRequestTagsMap;
+  /** The Azure Region where the resource lives */
+  location?: string;
+  /** The ETag of the virtual network link. */
+  etag?: string;
+}
+export const UpdateVirtualNetworkLinkRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    privateZoneName: S.String.pipe(T.Label()),
+    virtualNetworkLinkName: S.String.pipe(T.Label()),
+    properties: S.optional(VirtualNetworkLinkPropertiesInput),
+    tags: S.optional(UpdateVirtualNetworkLinkRequestTagsMap),
+    location: S.optional(S.String),
+    etag: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/privateDnsZones/{privateZoneName}/virtualNetworkLinks/{virtualNetworkLinkName}",
+      code: 200,
+      apiVersion: "2024-06-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateVirtualNetworkLinkRequest",
+}) as any as S.Schema<UpdateVirtualNetworkLinkRequest>;
+
+/** Resource tags. */
+export type UpdateVirtualNetworkLinkResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateVirtualNetworkLinkResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateVirtualNetworkLinkResponseTagsMap>;
+
+export interface UpdateVirtualNetworkLinkResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of the virtual network link to the Private DNS zone. */
+  properties?: VirtualNetworkLinkProperties;
+  /** Resource tags. */
+  tags?: UpdateVirtualNetworkLinkResponseTagsMap;
+  /** The Azure Region where the resource lives */
+  location?: string;
+  /** The ETag of the virtual network link. */
+  etag?: string;
+}
+export const UpdateVirtualNetworkLinkResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(VirtualNetworkLinkProperties),
+    tags: S.optional(UpdateVirtualNetworkLinkResponseTagsMap),
+    location: S.optional(S.String),
+    etag: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "UpdateVirtualNetworkLinkResponse",
+}) as any as S.Schema<UpdateVirtualNetworkLinkResponse>;
 
 /** Resource tags. */
 export type VirtualNetworkLinksCreateOrUpdateRequestTagsMap = {
@@ -1271,35 +1587,6 @@ export const VirtualNetworkLinksCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
   identifier: "VirtualNetworkLinksCreateOrUpdateRequest",
 }) as any as S.Schema<VirtualNetworkLinksCreateOrUpdateRequest>;
 
-/** The status of the virtual network link to the Private DNS zone. Possible values are 'InProgress' and 'Done'. This is a read-only property and any attempt to set this value will be ignored. */
-export type VirtualNetworkLinkState = "InProgress" | "Completed";
-export const VirtualNetworkLinkState = /*@__PURE__*/ S.String;
-
-/** Represents the properties of the Private DNS zone. */
-export interface VirtualNetworkLinkProperties {
-  /** The reference of the virtual network. */
-  virtualNetwork?: SubResource;
-  /** Is auto-registration of virtual machine records in the virtual network in the Private DNS zone enabled? */
-  registrationEnabled?: boolean;
-  /** The resolution policy on the virtual network link. Only applicable for virtual network links to privatelink zones, and for A,AAAA,CNAME queries. When set to 'NxDomainRedirect', Azure DNS resolver falls back to public resolution if private dns query resolution results in non-existent domain response. */
-  resolutionPolicy?: ResolutionPolicy;
-  /** The status of the virtual network link to the Private DNS zone. Possible values are 'InProgress' and 'Done'. This is a read-only property and any attempt to set this value will be ignored. */
-  virtualNetworkLinkState?: VirtualNetworkLinkState;
-  /** The provisioning state of the resource. This is a read-only property and any attempt to set this value will be ignored. */
-  provisioningState?: ProvisioningState;
-}
-export const VirtualNetworkLinkProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    virtualNetwork: S.optional(SubResource),
-    registrationEnabled: S.optional(S.Boolean),
-    resolutionPolicy: S.optional(ResolutionPolicy),
-    virtualNetworkLinkState: S.optional(VirtualNetworkLinkState),
-    provisioningState: S.optional(ProvisioningState),
-  }),
-).annotate({
-  identifier: "VirtualNetworkLinkProperties",
-}) as any as S.Schema<VirtualNetworkLinkProperties>;
-
 /** Resource tags. */
 export type VirtualNetworkLinksCreateOrUpdateResponseTagsMap = {
   [key: string]: string | undefined;
@@ -1344,292 +1631,170 @@ export const VirtualNetworkLinksCreateOrUpdateResponse =
     identifier: "VirtualNetworkLinksCreateOrUpdateResponse",
   }) as any as S.Schema<VirtualNetworkLinksCreateOrUpdateResponse>;
 
-export interface VirtualNetworkLinksDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Private DNS zone (without a terminating dot). */
-  privateZoneName: string;
-  /** The name of the virtual network link. */
-  virtualNetworkLinkName: string;
-}
-export const VirtualNetworkLinksDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    privateZoneName: S.String.pipe(T.Label()),
-    virtualNetworkLinkName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/privateDnsZones/{privateZoneName}/virtualNetworkLinks/{virtualNetworkLinkName}",
-      code: 200,
-      apiVersion: "2024-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "VirtualNetworkLinksDeleteRequest",
-}) as any as S.Schema<VirtualNetworkLinksDeleteRequest>;
+export type DeletePrivateZoneError = AzureOpError;
+/** Deletes a Private DNS zone. WARNING: All DNS records in the zone will also be deleted. This operation cannot be undone. Private DNS zone cannot be deleted unless all virtual network links to it are removed. */
+export const DeletePrivateZone: API.OperationMethod<
+  DeletePrivateZoneRequest,
+  DeletePrivateZoneResponse,
+  DeletePrivateZoneError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeletePrivateZoneRequest,
+  output: DeletePrivateZoneResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
-export interface VirtualNetworkLinksDeleteResponse {}
-export const VirtualNetworkLinksDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "VirtualNetworkLinksDeleteResponse",
-}) as any as S.Schema<VirtualNetworkLinksDeleteResponse>;
+export type DeleteRecordSetError = AzureOpError;
+/** Deletes a record set from a Private DNS zone. This operation cannot be undone. */
+export const DeleteRecordSet: API.OperationMethod<
+  DeleteRecordSetRequest,
+  DeleteRecordSetResponse,
+  DeleteRecordSetError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteRecordSetRequest,
+  output: DeleteRecordSetResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
-export interface VirtualNetworkLinksGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Private DNS zone (without a terminating dot). */
-  privateZoneName: string;
-  /** The name of the virtual network link. */
-  virtualNetworkLinkName: string;
-}
-export const VirtualNetworkLinksGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    privateZoneName: S.String.pipe(T.Label()),
-    virtualNetworkLinkName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/privateDnsZones/{privateZoneName}/virtualNetworkLinks/{virtualNetworkLinkName}",
-      code: 200,
-      apiVersion: "2024-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "VirtualNetworkLinksGetRequest",
-}) as any as S.Schema<VirtualNetworkLinksGetRequest>;
+export type DeleteVirtualNetworkLinkError = AzureOpError;
+/** Deletes a virtual network link to the specified Private DNS zone. WARNING: In case of a registration virtual network, all auto-registered DNS records in the zone for the virtual network will also be deleted. This operation cannot be undone. */
+export const DeleteVirtualNetworkLink: API.OperationMethod<
+  DeleteVirtualNetworkLinkRequest,
+  DeleteVirtualNetworkLinkResponse,
+  DeleteVirtualNetworkLinkError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteVirtualNetworkLinkRequest,
+  output: DeleteVirtualNetworkLinkResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
-/** Resource tags. */
-export type VirtualNetworkLinksGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const VirtualNetworkLinksGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<VirtualNetworkLinksGetResponseTagsMap>;
+export type GetPrivateZoneError = AzureOpError;
+/** Gets a Private DNS zone. Retrieves the zone properties, but not the virtual networks links or the record sets within the zone. */
+export const GetPrivateZone: API.OperationMethod<
+  GetPrivateZoneRequest,
+  GetPrivateZoneResponse,
+  GetPrivateZoneError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPrivateZoneRequest,
+  output: GetPrivateZoneResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
-export interface VirtualNetworkLinksGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of the virtual network link to the Private DNS zone. */
-  properties?: VirtualNetworkLinkProperties;
-  /** Resource tags. */
-  tags?: VirtualNetworkLinksGetResponseTagsMap;
-  /** The Azure Region where the resource lives */
-  location?: string;
-  /** The ETag of the virtual network link. */
-  etag?: string;
-}
-export const VirtualNetworkLinksGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(VirtualNetworkLinkProperties),
-    tags: S.optional(VirtualNetworkLinksGetResponseTagsMap),
-    location: S.optional(S.String),
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "VirtualNetworkLinksGetResponse",
-}) as any as S.Schema<VirtualNetworkLinksGetResponse>;
+export type GetRecordSetError = AzureOpError;
+/** Gets a record set. */
+export const GetRecordSet: API.OperationMethod<
+  GetRecordSetRequest,
+  GetRecordSetResponse,
+  GetRecordSetError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetRecordSetRequest,
+  output: GetRecordSetResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
-export interface VirtualNetworkLinksListRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Private DNS zone (without a terminating dot). */
-  privateZoneName: string;
-  /** The maximum number of virtual network links to return. If not specified, returns up to 100 virtual network links. */
-  _top?: number;
-}
-export const VirtualNetworkLinksListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    privateZoneName: S.String.pipe(T.Label()),
-    _top: S.optional(S.Number.pipe(T.Query("$top"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/privateDnsZones/{privateZoneName}/virtualNetworkLinks",
-      code: 200,
-      apiVersion: "2024-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "VirtualNetworkLinksListRequest",
-}) as any as S.Schema<VirtualNetworkLinksListRequest>;
+export type GetVirtualNetworkLinkError = AzureOpError;
+/** Gets a virtual network link to the specified Private DNS zone. */
+export const GetVirtualNetworkLink: API.OperationMethod<
+  GetVirtualNetworkLinkRequest,
+  GetVirtualNetworkLinkResponse,
+  GetVirtualNetworkLinkError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetVirtualNetworkLinkRequest,
+  output: GetVirtualNetworkLinkResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
-/** Resource tags. */
-export type VirtualNetworkLinkTagsMap = { [key: string]: string | undefined };
-export const VirtualNetworkLinkTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<VirtualNetworkLinkTagsMap>;
+export type ListPrivateZoneByResourceGroupError = AzureOpError;
+/** Lists the Private DNS zones within a resource group. */
+export const ListPrivateZoneByResourceGroup: API.OperationMethod<
+  ListPrivateZoneByResourceGroupRequest,
+  PrivateZoneListResult,
+  ListPrivateZoneByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListPrivateZoneByResourceGroupRequest,
+  output: PrivateZoneListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
-/** Describes a link to virtual network for a Private DNS zone. */
-export interface VirtualNetworkLink {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of the virtual network link to the Private DNS zone. */
-  properties?: VirtualNetworkLinkProperties;
-  /** Resource tags. */
-  tags?: VirtualNetworkLinkTagsMap;
-  /** The Azure Region where the resource lives */
-  location?: string;
-  /** The ETag of the virtual network link. */
-  etag?: string;
-}
-export const VirtualNetworkLink = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(VirtualNetworkLinkProperties),
-    tags: S.optional(VirtualNetworkLinkTagsMap),
-    location: S.optional(S.String),
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "VirtualNetworkLink",
-}) as any as S.Schema<VirtualNetworkLink>;
+export type ListPrivateZonesError = AzureOpError;
+/** Lists the Private DNS zones in all resource groups in a subscription. */
+export const ListPrivateZones: API.OperationMethod<
+  ListPrivateZonesRequest,
+  PrivateZoneListResult,
+  ListPrivateZonesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListPrivateZonesRequest,
+  output: PrivateZoneListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
-/** The VirtualNetworkLink items on this page */
-export type VirtualNetworkLinkListResultValueList = Array<VirtualNetworkLink>;
-export const VirtualNetworkLinkListResultValueList = /*@__PURE__*/ S.Array(
-  VirtualNetworkLink,
-) as any as S.Schema<VirtualNetworkLinkListResultValueList>;
+export type ListRecordSetByTypeError = AzureOpError;
+/** Lists the record sets of a specified type in a Private DNS zone. */
+export const ListRecordSetByType: API.OperationMethod<
+  ListRecordSetByTypeRequest,
+  RecordSetListResult,
+  ListRecordSetByTypeError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListRecordSetByTypeRequest,
+  output: RecordSetListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
-/** The response of a VirtualNetworkLink list operation. */
-export interface VirtualNetworkLinkListResult {
-  /** The VirtualNetworkLink items on this page */
-  value: VirtualNetworkLinkListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const VirtualNetworkLinkListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: VirtualNetworkLinkListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "VirtualNetworkLinkListResult",
-}) as any as S.Schema<VirtualNetworkLinkListResult>;
+export type ListRecordSetsError = AzureOpError;
+/** Lists all record sets in a Private DNS zone. */
+export const ListRecordSets: API.OperationMethod<
+  ListRecordSetsRequest,
+  RecordSetListResult,
+  ListRecordSetsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListRecordSetsRequest,
+  output: RecordSetListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
-/** Resource tags. */
-export type VirtualNetworkLinksUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const VirtualNetworkLinksUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<VirtualNetworkLinksUpdateRequestTagsMap>;
-
-export interface VirtualNetworkLinksUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Private DNS zone (without a terminating dot). */
-  privateZoneName: string;
-  /** The name of the virtual network link. */
-  virtualNetworkLinkName: string;
-  /** Properties of the virtual network link to the Private DNS zone. */
-  properties?: VirtualNetworkLinkPropertiesInput;
-  /** Resource tags. */
-  tags?: VirtualNetworkLinksUpdateRequestTagsMap;
-  /** The Azure Region where the resource lives */
-  location?: string;
-  /** The ETag of the virtual network link. */
-  etag?: string;
-}
-export const VirtualNetworkLinksUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    privateZoneName: S.String.pipe(T.Label()),
-    virtualNetworkLinkName: S.String.pipe(T.Label()),
-    properties: S.optional(VirtualNetworkLinkPropertiesInput),
-    tags: S.optional(VirtualNetworkLinksUpdateRequestTagsMap),
-    location: S.optional(S.String),
-    etag: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/privateDnsZones/{privateZoneName}/virtualNetworkLinks/{virtualNetworkLinkName}",
-      code: 200,
-      apiVersion: "2024-06-01",
-    }),
-  ),
-).annotate({
-  identifier: "VirtualNetworkLinksUpdateRequest",
-}) as any as S.Schema<VirtualNetworkLinksUpdateRequest>;
-
-/** Resource tags. */
-export type VirtualNetworkLinksUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const VirtualNetworkLinksUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<VirtualNetworkLinksUpdateResponseTagsMap>;
-
-export interface VirtualNetworkLinksUpdateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of the virtual network link to the Private DNS zone. */
-  properties?: VirtualNetworkLinkProperties;
-  /** Resource tags. */
-  tags?: VirtualNetworkLinksUpdateResponseTagsMap;
-  /** The Azure Region where the resource lives */
-  location?: string;
-  /** The ETag of the virtual network link. */
-  etag?: string;
-}
-export const VirtualNetworkLinksUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(VirtualNetworkLinkProperties),
-    tags: S.optional(VirtualNetworkLinksUpdateResponseTagsMap),
-    location: S.optional(S.String),
-    etag: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "VirtualNetworkLinksUpdateResponse",
-}) as any as S.Schema<VirtualNetworkLinksUpdateResponse>;
+export type ListVirtualNetworkLinksError = AzureOpError;
+/** Lists the virtual network links to the specified Private DNS zone. */
+export const ListVirtualNetworkLinks: API.OperationMethod<
+  ListVirtualNetworkLinksRequest,
+  VirtualNetworkLinkListResult,
+  ListVirtualNetworkLinksError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListVirtualNetworkLinksRequest,
+  output: VirtualNetworkLinkListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
 export type PrivateZonesCreateOrUpdateError = AzureOpError;
 /** Creates or updates a Private DNS zone. Does not modify Links to virtual networks or DNS records within the zone. */
@@ -1641,81 +1806,6 @@ export const PrivateZonesCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: PrivateZonesCreateOrUpdateRequest,
   output: PrivateZonesCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateZonesDeleteError = AzureOpError;
-/** Deletes a Private DNS zone. WARNING: All DNS records in the zone will also be deleted. This operation cannot be undone. Private DNS zone cannot be deleted unless all virtual network links to it are removed. */
-export const PrivateZonesDelete: API.OperationMethod<
-  PrivateZonesDeleteRequest,
-  PrivateZonesDeleteResponse,
-  PrivateZonesDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateZonesDeleteRequest,
-  output: PrivateZonesDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateZonesGetError = AzureOpError;
-/** Gets a Private DNS zone. Retrieves the zone properties, but not the virtual networks links or the record sets within the zone. */
-export const PrivateZonesGet: API.OperationMethod<
-  PrivateZonesGetRequest,
-  PrivateZonesGetResponse,
-  PrivateZonesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateZonesGetRequest,
-  output: PrivateZonesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateZonesListError = AzureOpError;
-/** Lists the Private DNS zones in all resource groups in a subscription. */
-export const PrivateZonesList: API.OperationMethod<
-  PrivateZonesListRequest,
-  PrivateZoneListResult,
-  PrivateZonesListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateZonesListRequest,
-  output: PrivateZoneListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateZonesListByResourceGroupError = AzureOpError;
-/** Lists the Private DNS zones within a resource group. */
-export const PrivateZonesListByResourceGroup: API.OperationMethod<
-  PrivateZonesListByResourceGroupRequest,
-  PrivateZoneListResult,
-  PrivateZonesListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateZonesListByResourceGroupRequest,
-  output: PrivateZoneListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateZonesUpdateError = AzureOpError;
-/** Updates a Private DNS zone. Does not modify virtual network links or DNS records within the zone. */
-export const PrivateZonesUpdate: API.OperationMethod<
-  PrivateZonesUpdateRequest,
-  PrivateZonesUpdateResponse,
-  PrivateZonesUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateZonesUpdateRequest,
-  output: PrivateZonesUpdateResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -1736,76 +1826,46 @@ export const RecordSetsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type RecordSetsDeleteError = AzureOpError;
-/** Deletes a record set from a Private DNS zone. This operation cannot be undone. */
-export const RecordSetsDelete: API.OperationMethod<
-  RecordSetsDeleteRequest,
-  RecordSetsDeleteResponse,
-  RecordSetsDeleteError,
+export type UpdatePrivateZoneError = AzureOpError;
+/** Updates a Private DNS zone. Does not modify virtual network links or DNS records within the zone. */
+export const UpdatePrivateZone: API.OperationMethod<
+  UpdatePrivateZoneRequest,
+  UpdatePrivateZoneResponse,
+  UpdatePrivateZoneError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: RecordSetsDeleteRequest,
-  output: RecordSetsDeleteResponse,
+  input: UpdatePrivateZoneRequest,
+  output: UpdatePrivateZoneResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type RecordSetsGetError = AzureOpError;
-/** Gets a record set. */
-export const RecordSetsGet: API.OperationMethod<
-  RecordSetsGetRequest,
-  RecordSetsGetResponse,
-  RecordSetsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RecordSetsGetRequest,
-  output: RecordSetsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RecordSetsListError = AzureOpError;
-/** Lists all record sets in a Private DNS zone. */
-export const RecordSetsList: API.OperationMethod<
-  RecordSetsListRequest,
-  RecordSetListResult,
-  RecordSetsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RecordSetsListRequest,
-  output: RecordSetListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RecordSetsListByTypeError = AzureOpError;
-/** Lists the record sets of a specified type in a Private DNS zone. */
-export const RecordSetsListByType: API.OperationMethod<
-  RecordSetsListByTypeRequest,
-  RecordSetListResult,
-  RecordSetsListByTypeError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RecordSetsListByTypeRequest,
-  output: RecordSetListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RecordSetsUpdateError = AzureOpError;
+export type UpdateRecordSetError = AzureOpError;
 /** Updates a record set within a Private DNS zone. */
-export const RecordSetsUpdate: API.OperationMethod<
-  RecordSetsUpdateRequest,
-  RecordSetsUpdateResponse,
-  RecordSetsUpdateError,
+export const UpdateRecordSet: API.OperationMethod<
+  UpdateRecordSetRequest,
+  UpdateRecordSetResponse,
+  UpdateRecordSetError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: RecordSetsUpdateRequest,
-  output: RecordSetsUpdateResponse,
+  input: UpdateRecordSetRequest,
+  output: UpdateRecordSetResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateVirtualNetworkLinkError = AzureOpError;
+/** Updates a virtual network link to the specified Private DNS zone. */
+export const UpdateVirtualNetworkLink: API.OperationMethod<
+  UpdateVirtualNetworkLinkRequest,
+  UpdateVirtualNetworkLinkResponse,
+  UpdateVirtualNetworkLinkError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateVirtualNetworkLinkRequest,
+  output: UpdateVirtualNetworkLinkResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -1821,66 +1881,6 @@ export const VirtualNetworkLinksCreateOrUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: VirtualNetworkLinksCreateOrUpdateRequest,
   output: VirtualNetworkLinksCreateOrUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualNetworkLinksDeleteError = AzureOpError;
-/** Deletes a virtual network link to the specified Private DNS zone. WARNING: In case of a registration virtual network, all auto-registered DNS records in the zone for the virtual network will also be deleted. This operation cannot be undone. */
-export const VirtualNetworkLinksDelete: API.OperationMethod<
-  VirtualNetworkLinksDeleteRequest,
-  VirtualNetworkLinksDeleteResponse,
-  VirtualNetworkLinksDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualNetworkLinksDeleteRequest,
-  output: VirtualNetworkLinksDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualNetworkLinksGetError = AzureOpError;
-/** Gets a virtual network link to the specified Private DNS zone. */
-export const VirtualNetworkLinksGet: API.OperationMethod<
-  VirtualNetworkLinksGetRequest,
-  VirtualNetworkLinksGetResponse,
-  VirtualNetworkLinksGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualNetworkLinksGetRequest,
-  output: VirtualNetworkLinksGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualNetworkLinksListError = AzureOpError;
-/** Lists the virtual network links to the specified Private DNS zone. */
-export const VirtualNetworkLinksList: API.OperationMethod<
-  VirtualNetworkLinksListRequest,
-  VirtualNetworkLinkListResult,
-  VirtualNetworkLinksListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualNetworkLinksListRequest,
-  output: VirtualNetworkLinkListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type VirtualNetworkLinksUpdateError = AzureOpError;
-/** Updates a virtual network link to the specified Private DNS zone. */
-export const VirtualNetworkLinksUpdate: API.OperationMethod<
-  VirtualNetworkLinksUpdateRequest,
-  VirtualNetworkLinksUpdateResponse,
-  VirtualNetworkLinksUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: VirtualNetworkLinksUpdateRequest,
-  output: VirtualNetworkLinksUpdateResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

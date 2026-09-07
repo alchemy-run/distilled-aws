@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.user_facet_settings#UserFacetSettingsRetrieveRequestProduct": {
+    "com.posthog.user_facet_settings#GetUserFacetSettingsRequestProduct": {
       "type": "enum",
       "members": {
         "LOGS": {
@@ -35,7 +36,7 @@
       },
       "traits": {}
     },
-    "com.posthog.user_facet_settings#UserFacetSettingsRetrieveRequest": {
+    "com.posthog.user_facet_settings#GetUserFacetSettingsRequest": {
       "type": "structure",
       "members": {
         "uuid": {
@@ -46,7 +47,7 @@
           }
         },
         "product": {
-          "target": "com.posthog.user_facet_settings#UserFacetSettingsRetrieveRequestProduct",
+          "target": "com.posthog.user_facet_settings#GetUserFacetSettingsRequestProduct",
           "traits": {
             "smithy.api#httpQuery": "product",
             "smithy.api#required": {},
@@ -120,10 +121,10 @@
         "smithy.api#documentation": "Ordered list of custom facets the user has pinned for this product, within the current team. Send the full list to replace the existing set."
       }
     },
-    "com.posthog.user_facet_settings#UserFacetSettingsRetrieve": {
+    "com.posthog.user_facet_settings#GetUserFacetSettings": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.user_facet_settings#UserFacetSettingsRetrieveRequest"
+        "target": "com.posthog.user_facet_settings#GetUserFacetSettingsRequest"
       },
       "output": {
         "target": "com.posthog.user_facet_settings#UserFacetSettings2"
@@ -137,7 +138,7 @@
         "smithy.api#documentation": "Get the authenticated user's custom facets for a product, within the current team. Pass `@me` as the UUID."
       }
     },
-    "com.posthog.user_facet_settings#UserFacetSettingsPartialUpdateRequestProduct": {
+    "com.posthog.user_facet_settings#UpdateUserFacetSettingsPartialRequestProduct": {
       "type": "enum",
       "members": {
         "LOGS": {
@@ -155,7 +156,7 @@
       },
       "traits": {}
     },
-    "com.posthog.user_facet_settings#UserFacetSettingsPartialUpdateRequestCustomFacetsList": {
+    "com.posthog.user_facet_settings#UpdateUserFacetSettingsPartialRequestCustomFacetsList": {
       "type": "list",
       "member": {
         "target": "com.posthog.user_facet_settings#UserFacetSettingsEntry"
@@ -164,7 +165,7 @@
         "smithy.api#documentation": "Ordered list of custom facets the user has pinned for this product, within the current team. Send the full list to replace the existing set."
       }
     },
-    "com.posthog.user_facet_settings#UserFacetSettingsPartialUpdateRequest": {
+    "com.posthog.user_facet_settings#UpdateUserFacetSettingsPartialRequest": {
       "type": "structure",
       "members": {
         "uuid": {
@@ -175,7 +176,7 @@
           }
         },
         "product": {
-          "target": "com.posthog.user_facet_settings#UserFacetSettingsPartialUpdateRequestProduct",
+          "target": "com.posthog.user_facet_settings#UpdateUserFacetSettingsPartialRequestProduct",
           "traits": {
             "smithy.api#httpQuery": "product",
             "smithy.api#required": {},
@@ -183,7 +184,7 @@
           }
         },
         "custom_facets": {
-          "target": "com.posthog.user_facet_settings#UserFacetSettingsPartialUpdateRequestCustomFacetsList",
+          "target": "com.posthog.user_facet_settings#UpdateUserFacetSettingsPartialRequestCustomFacetsList",
           "traits": {
             "smithy.api#documentation": "Ordered list of custom facets the user has pinned for this product, within the current team. Send the full list to replace the existing set."
           }
@@ -193,10 +194,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.user_facet_settings#UserFacetSettingsPartialUpdate": {
+    "com.posthog.user_facet_settings#UpdateUserFacetSettingsPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.user_facet_settings#UserFacetSettingsPartialUpdateRequest"
+        "target": "com.posthog.user_facet_settings#UpdateUserFacetSettingsPartialRequest"
       },
       "output": {
         "target": "com.posthog.user_facet_settings#UserFacetSettings2"
@@ -215,10 +216,10 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.user_facet_settings#UserFacetSettingsRetrieve"
+          "target": "com.posthog.user_facet_settings#GetUserFacetSettings"
         },
         {
-          "target": "com.posthog.user_facet_settings#UserFacetSettingsPartialUpdate"
+          "target": "com.posthog.user_facet_settings#UpdateUserFacetSettingsPartial"
         }
       ],
       "traits": {

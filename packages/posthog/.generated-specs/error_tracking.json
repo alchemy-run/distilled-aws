@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.error_tracking#ErrorTrackingAssignmentRulesListRequest": {
+    "com.posthog.error_tracking#ListErrorTrackingAssignmentRulesRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -150,10 +151,10 @@
       },
       "traits": {}
     },
-    "com.posthog.error_tracking#ErrorTrackingAssignmentRulesList": {
+    "com.posthog.error_tracking#ListErrorTrackingAssignmentRules": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.error_tracking#ErrorTrackingAssignmentRulesListRequest"
+        "target": "com.posthog.error_tracking#ListErrorTrackingAssignmentRulesRequest"
       },
       "output": {
         "target": "com.posthog.error_tracking#PaginatedErrorTrackingAssignmentRuleList"
@@ -2356,7 +2357,7 @@
         "smithy.api#documentation": "User ID when `type` is `user`, or role UUID when `type` is `role`."
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingAssignmentRulesCreateRequest": {
+    "com.posthog.error_tracking#CreateErrorTrackingAssignmentRuleRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2390,10 +2391,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingAssignmentRulesCreate": {
+    "com.posthog.error_tracking#CreateErrorTrackingAssignmentRule": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.error_tracking#ErrorTrackingAssignmentRulesCreateRequest"
+        "target": "com.posthog.error_tracking#CreateErrorTrackingAssignmentRuleRequest"
       },
       "output": {
         "target": "com.posthog.error_tracking#ErrorTrackingAssignmentRule"
@@ -2406,7 +2407,7 @@
         }
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingAssignmentRulesRetrieveRequest": {
+    "com.posthog.error_tracking#GetErrorTrackingAssignmentRuleRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2429,10 +2430,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingAssignmentRulesRetrieve": {
+    "com.posthog.error_tracking#GetErrorTrackingAssignmentRule": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.error_tracking#ErrorTrackingAssignmentRulesRetrieveRequest"
+        "target": "com.posthog.error_tracking#GetErrorTrackingAssignmentRuleRequest"
       },
       "output": {
         "target": "com.posthog.error_tracking#ErrorTrackingAssignmentRule"
@@ -2445,7 +2446,7 @@
         }
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingAssignmentRulesUpdateRequest": {
+    "com.posthog.error_tracking#UpdateErrorTrackingAssignmentRuleRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2482,10 +2483,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingAssignmentRulesUpdate": {
+    "com.posthog.error_tracking#UpdateErrorTrackingAssignmentRule": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.error_tracking#ErrorTrackingAssignmentRulesUpdateRequest"
+        "target": "com.posthog.error_tracking#UpdateErrorTrackingAssignmentRuleRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2498,7 +2499,7 @@
         }
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingAssignmentRulesPartialUpdateRequest": {
+    "com.posthog.error_tracking#UpdateErrorTrackingAssignmentRulesPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2535,10 +2536,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingAssignmentRulesPartialUpdate": {
+    "com.posthog.error_tracking#UpdateErrorTrackingAssignmentRulesPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.error_tracking#ErrorTrackingAssignmentRulesPartialUpdateRequest"
+        "target": "com.posthog.error_tracking#UpdateErrorTrackingAssignmentRulesPartialRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2590,7 +2591,7 @@
         }
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingAssignmentRulesReorderPartialUpdateRequest": {
+    "com.posthog.error_tracking#UpdateErrorTrackingAssignmentRulesReorderPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2615,10 +2616,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingAssignmentRulesReorderPartialUpdate": {
+    "com.posthog.error_tracking#UpdateErrorTrackingAssignmentRulesReorderPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.error_tracking#ErrorTrackingAssignmentRulesReorderPartialUpdateRequest"
+        "target": "com.posthog.error_tracking#UpdateErrorTrackingAssignmentRulesReorderPartialRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2631,7 +2632,7 @@
         }
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingBypassRulesListRequest": {
+    "com.posthog.error_tracking#ListErrorTrackingBypassRulesRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2746,10 +2747,10 @@
       },
       "traits": {}
     },
-    "com.posthog.error_tracking#ErrorTrackingBypassRulesList": {
+    "com.posthog.error_tracking#ListErrorTrackingBypassRules": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.error_tracking#ErrorTrackingBypassRulesListRequest"
+        "target": "com.posthog.error_tracking#ListErrorTrackingBypassRulesRequest"
       },
       "output": {
         "target": "com.posthog.error_tracking#PaginatedErrorTrackingBypassRuleList"
@@ -2762,7 +2763,7 @@
         }
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingBypassRulesCreateRequest": {
+    "com.posthog.error_tracking#CreateErrorTrackingBypassRuleRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2785,10 +2786,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingBypassRulesCreate": {
+    "com.posthog.error_tracking#CreateErrorTrackingBypassRule": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.error_tracking#ErrorTrackingBypassRulesCreateRequest"
+        "target": "com.posthog.error_tracking#CreateErrorTrackingBypassRuleRequest"
       },
       "output": {
         "target": "com.posthog.error_tracking#ErrorTrackingBypassRule"
@@ -2801,7 +2802,7 @@
         }
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingBypassRulesRetrieveRequest": {
+    "com.posthog.error_tracking#GetErrorTrackingBypassRuleRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2824,10 +2825,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingBypassRulesRetrieve": {
+    "com.posthog.error_tracking#GetErrorTrackingBypassRule": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.error_tracking#ErrorTrackingBypassRulesRetrieveRequest"
+        "target": "com.posthog.error_tracking#GetErrorTrackingBypassRuleRequest"
       },
       "output": {
         "target": "com.posthog.error_tracking#ErrorTrackingBypassRule"
@@ -2840,7 +2841,7 @@
         }
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingBypassRulesUpdateRequest": {
+    "com.posthog.error_tracking#UpdateErrorTrackingBypassRuleRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2869,10 +2870,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingBypassRulesUpdate": {
+    "com.posthog.error_tracking#UpdateErrorTrackingBypassRule": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.error_tracking#ErrorTrackingBypassRulesUpdateRequest"
+        "target": "com.posthog.error_tracking#UpdateErrorTrackingBypassRuleRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2885,7 +2886,7 @@
         }
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingBypassRulesPartialUpdateRequest": {
+    "com.posthog.error_tracking#UpdateErrorTrackingBypassRulesPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2914,10 +2915,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingBypassRulesPartialUpdate": {
+    "com.posthog.error_tracking#UpdateErrorTrackingBypassRulesPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.error_tracking#ErrorTrackingBypassRulesPartialUpdateRequest"
+        "target": "com.posthog.error_tracking#UpdateErrorTrackingBypassRulesPartialRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2969,7 +2970,7 @@
         }
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingBypassRulesReorderPartialUpdateRequest": {
+    "com.posthog.error_tracking#UpdateErrorTrackingBypassRulesReorderPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -3003,10 +3004,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingBypassRulesReorderPartialUpdate": {
+    "com.posthog.error_tracking#UpdateErrorTrackingBypassRulesReorderPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.error_tracking#ErrorTrackingBypassRulesReorderPartialUpdateRequest"
+        "target": "com.posthog.error_tracking#UpdateErrorTrackingBypassRulesReorderPartialRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3019,7 +3020,7 @@
         }
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingExternalReferencesListRequest": {
+    "com.posthog.error_tracking#ListErrorTrackingExternalReferencesRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -3136,10 +3137,10 @@
       },
       "traits": {}
     },
-    "com.posthog.error_tracking#ErrorTrackingExternalReferencesList": {
+    "com.posthog.error_tracking#ListErrorTrackingExternalReferences": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.error_tracking#ErrorTrackingExternalReferencesListRequest"
+        "target": "com.posthog.error_tracking#ListErrorTrackingExternalReferencesRequest"
       },
       "output": {
         "target": "com.posthog.error_tracking#PaginatedErrorTrackingExternalReferenceResultList"
@@ -3152,7 +3153,7 @@
         }
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingExternalReferencesCreateRequestConfigMap": {
+    "com.posthog.error_tracking#CreateErrorTrackingExternalReferenceRequestConfigMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3164,7 +3165,7 @@
         "smithy.api#documentation": "Provider-specific fields describing the external issue to create. Required keys depend on the integration kind: github -> {repository, title, body}; gitlab -> {title, body}; linear -> {team_id, title, description}; jira -> {project_key, title, description}. Examples: github {\"repository\":\"posthog\",\"title\":\"Checkout TypeError\",\"body\":\"Stack trace\"}; linear {\"team_id\":\"team-id\",\"title\":\"Checkout TypeError\",\"description\":\"Stack trace\"}; jira {\"project_key\":\"ENG\",\"title\":\"Checkout TypeError\",\"description\":\"Stack trace\"}."
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingExternalReferencesCreateRequest": {
+    "com.posthog.error_tracking#CreateErrorTrackingExternalReferenceRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -3183,7 +3184,7 @@
           }
         },
         "config": {
-          "target": "com.posthog.error_tracking#ErrorTrackingExternalReferencesCreateRequestConfigMap",
+          "target": "com.posthog.error_tracking#CreateErrorTrackingExternalReferenceRequestConfigMap",
           "traits": {
             "smithy.api#documentation": "Provider-specific fields describing the external issue to create. Required keys depend on the integration kind: github -> {repository, title, body}; gitlab -> {title, body}; linear -> {team_id, title, description}; jira -> {project_key, title, description}. Examples: github {\"repository\":\"posthog\",\"title\":\"Checkout TypeError\",\"body\":\"Stack trace\"}; linear {\"team_id\":\"team-id\",\"title\":\"Checkout TypeError\",\"description\":\"Stack trace\"}; jira {\"project_key\":\"ENG\",\"title\":\"Checkout TypeError\",\"description\":\"Stack trace\"}.",
             "smithy.api#required": {}
@@ -3201,10 +3202,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingExternalReferencesCreate": {
+    "com.posthog.error_tracking#CreateErrorTrackingExternalReference": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.error_tracking#ErrorTrackingExternalReferencesCreateRequest"
+        "target": "com.posthog.error_tracking#CreateErrorTrackingExternalReferenceRequest"
       },
       "output": {
         "target": "com.posthog.error_tracking#ErrorTrackingExternalReferenceResult"
@@ -3217,7 +3218,7 @@
         }
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingExternalReferencesRetrieveRequest": {
+    "com.posthog.error_tracking#GetErrorTrackingExternalReferenceRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -3240,10 +3241,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingExternalReferencesRetrieve": {
+    "com.posthog.error_tracking#GetErrorTrackingExternalReference": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.error_tracking#ErrorTrackingExternalReferencesRetrieveRequest"
+        "target": "com.posthog.error_tracking#GetErrorTrackingExternalReferenceRequest"
       },
       "output": {
         "target": "com.posthog.error_tracking#ErrorTrackingExternalReferenceResult"
@@ -3296,7 +3297,7 @@
         "smithy.api#documentation": "Hard delete of this model is not allowed. Use a patch API call to set \"deleted\" to true"
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingExternalReferencesLinkIssueCreateRequestExternalContextMap": {
+    "com.posthog.error_tracking#CreateErrorTrackingExternalReferencesLinkIssueRequestExternalContextMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3308,7 +3309,7 @@
         "smithy.api#documentation": "Identifier of the existing external issue to link, as returned by the search-issues endpoint. Required keys depend on the integration kind: github -> {repository, number}; gitlab -> {issue_id}; linear -> {id}; jira -> {key}."
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingExternalReferencesLinkIssueCreateRequest": {
+    "com.posthog.error_tracking#CreateErrorTrackingExternalReferencesLinkIssueRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -3334,7 +3335,7 @@
           }
         },
         "external_context": {
-          "target": "com.posthog.error_tracking#ErrorTrackingExternalReferencesLinkIssueCreateRequestExternalContextMap",
+          "target": "com.posthog.error_tracking#CreateErrorTrackingExternalReferencesLinkIssueRequestExternalContextMap",
           "traits": {
             "smithy.api#documentation": "Identifier of the existing external issue to link, as returned by the search-issues endpoint. Required keys depend on the integration kind: github -> {repository, number}; gitlab -> {issue_id}; linear -> {id}; jira -> {key}.",
             "smithy.api#required": {}
@@ -3345,10 +3346,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingExternalReferencesLinkIssueCreate": {
+    "com.posthog.error_tracking#CreateErrorTrackingExternalReferencesLinkIssue": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.error_tracking#ErrorTrackingExternalReferencesLinkIssueCreateRequest"
+        "target": "com.posthog.error_tracking#CreateErrorTrackingExternalReferencesLinkIssueRequest"
       },
       "output": {
         "target": "com.posthog.error_tracking#ErrorTrackingExternalReferenceResult"
@@ -3485,7 +3486,7 @@
         "smithy.api#documentation": "Search a connected provider for existing issues to link an error to."
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingFingerprintsListRequest": {
+    "com.posthog.error_tracking#ListErrorTrackingFingerprintsRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -3576,10 +3577,10 @@
       },
       "traits": {}
     },
-    "com.posthog.error_tracking#ErrorTrackingFingerprintsList": {
+    "com.posthog.error_tracking#ListErrorTrackingFingerprints": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.error_tracking#ErrorTrackingFingerprintsListRequest"
+        "target": "com.posthog.error_tracking#ListErrorTrackingFingerprintsRequest"
       },
       "output": {
         "target": "com.posthog.error_tracking#PaginatedErrorTrackingFingerprintList"
@@ -3592,7 +3593,7 @@
         }
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingFingerprintsRetrieveRequest": {
+    "com.posthog.error_tracking#GetErrorTrackingFingerprintRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -3616,10 +3617,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingFingerprintsRetrieve": {
+    "com.posthog.error_tracking#GetErrorTrackingFingerprint": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.error_tracking#ErrorTrackingFingerprintsRetrieveRequest"
+        "target": "com.posthog.error_tracking#GetErrorTrackingFingerprintRequest"
       },
       "output": {
         "target": "com.posthog.error_tracking#ErrorTrackingFingerprint"
@@ -3672,7 +3673,7 @@
         "smithy.api#documentation": "Hard delete of this model is not allowed. Use a patch API call to set \"deleted\" to true"
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingFingerprintsResolveRetrieveRequest": {
+    "com.posthog.error_tracking#GetErrorTrackingFingerprintsResolveRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -3696,10 +3697,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingFingerprintsResolveRetrieve": {
+    "com.posthog.error_tracking#GetErrorTrackingFingerprintsResolve": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.error_tracking#ErrorTrackingFingerprintsResolveRetrieveRequest"
+        "target": "com.posthog.error_tracking#GetErrorTrackingFingerprintsResolveRequest"
       },
       "output": {
         "target": "com.posthog.error_tracking#ErrorTrackingFingerprint"
@@ -3712,7 +3713,7 @@
         }
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingGitProviderFileLinksResolveGithubRetrieveRequest": {
+    "com.posthog.error_tracking#GetErrorTrackingGitProviderFileLinksResolveGithubRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -3784,10 +3785,10 @@
       },
       "traits": {}
     },
-    "com.posthog.error_tracking#ErrorTrackingGitProviderFileLinksResolveGithubRetrieve": {
+    "com.posthog.error_tracking#GetErrorTrackingGitProviderFileLinksResolveGithub": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.error_tracking#ErrorTrackingGitProviderFileLinksResolveGithubRetrieveRequest"
+        "target": "com.posthog.error_tracking#GetErrorTrackingGitProviderFileLinksResolveGithubRequest"
       },
       "output": {
         "target": "com.posthog.error_tracking#GitProviderFileLinkResolveResponse"
@@ -3800,7 +3801,7 @@
         }
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingGitProviderFileLinksResolveGitlabRetrieveRequest": {
+    "com.posthog.error_tracking#GetErrorTrackingGitProviderFileLinksResolveGitlabRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -3848,10 +3849,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingGitProviderFileLinksResolveGitlabRetrieve": {
+    "com.posthog.error_tracking#GetErrorTrackingGitProviderFileLinksResolveGitlab": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.error_tracking#ErrorTrackingGitProviderFileLinksResolveGitlabRetrieveRequest"
+        "target": "com.posthog.error_tracking#GetErrorTrackingGitProviderFileLinksResolveGitlabRequest"
       },
       "output": {
         "target": "com.posthog.error_tracking#GitProviderFileLinkResolveResponse"
@@ -3864,7 +3865,7 @@
         }
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingGroupingRulesListRequest": {
+    "com.posthog.error_tracking#ListErrorTrackingGroupingRulesRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -3993,10 +3994,10 @@
       },
       "traits": {}
     },
-    "com.posthog.error_tracking#ErrorTrackingGroupingRulesList": {
+    "com.posthog.error_tracking#ListErrorTrackingGroupingRules": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.error_tracking#ErrorTrackingGroupingRulesListRequest"
+        "target": "com.posthog.error_tracking#ListErrorTrackingGroupingRulesRequest"
       },
       "output": {
         "target": "com.posthog.error_tracking#ErrorTrackingGroupingRuleListResponse"
@@ -4041,7 +4042,7 @@
         "smithy.api#documentation": "User ID when `type` is `user`, or role UUID when `type` is `role`."
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingGroupingRulesCreateRequest": {
+    "com.posthog.error_tracking#CreateErrorTrackingGroupingRuleRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -4077,10 +4078,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingGroupingRulesCreate": {
+    "com.posthog.error_tracking#CreateErrorTrackingGroupingRule": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.error_tracking#ErrorTrackingGroupingRulesCreateRequest"
+        "target": "com.posthog.error_tracking#CreateErrorTrackingGroupingRuleRequest"
       },
       "output": {
         "target": "com.posthog.error_tracking#ErrorTrackingGroupingRule"
@@ -4093,7 +4094,7 @@
         }
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingGroupingRulesRetrieveRequest": {
+    "com.posthog.error_tracking#GetErrorTrackingGroupingRuleRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -4116,10 +4117,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingGroupingRulesRetrieve": {
+    "com.posthog.error_tracking#GetErrorTrackingGroupingRule": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.error_tracking#ErrorTrackingGroupingRulesRetrieveRequest"
+        "target": "com.posthog.error_tracking#GetErrorTrackingGroupingRuleRequest"
       },
       "output": {
         "target": "com.posthog.error_tracking#ErrorTrackingGroupingRule"
@@ -4132,7 +4133,7 @@
         }
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingGroupingRulesUpdateRequest": {
+    "com.posthog.error_tracking#UpdateErrorTrackingGroupingRuleRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -4162,10 +4163,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingGroupingRulesUpdate": {
+    "com.posthog.error_tracking#UpdateErrorTrackingGroupingRule": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.error_tracking#ErrorTrackingGroupingRulesUpdateRequest"
+        "target": "com.posthog.error_tracking#UpdateErrorTrackingGroupingRuleRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4178,7 +4179,7 @@
         }
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingGroupingRulesPartialUpdateRequest": {
+    "com.posthog.error_tracking#UpdateErrorTrackingGroupingRulesPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -4208,10 +4209,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingGroupingRulesPartialUpdate": {
+    "com.posthog.error_tracking#UpdateErrorTrackingGroupingRulesPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.error_tracking#ErrorTrackingGroupingRulesPartialUpdateRequest"
+        "target": "com.posthog.error_tracking#UpdateErrorTrackingGroupingRulesPartialRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4263,7 +4264,7 @@
         }
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingGroupingRulesReorderPartialUpdateRequest": {
+    "com.posthog.error_tracking#UpdateErrorTrackingGroupingRulesReorderPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -4294,10 +4295,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingGroupingRulesReorderPartialUpdate": {
+    "com.posthog.error_tracking#UpdateErrorTrackingGroupingRulesReorderPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.error_tracking#ErrorTrackingGroupingRulesReorderPartialUpdateRequest"
+        "target": "com.posthog.error_tracking#UpdateErrorTrackingGroupingRulesReorderPartialRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4310,7 +4311,7 @@
         }
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingIssuesListRequest": {
+    "com.posthog.error_tracking#ListErrorTrackingIssuesRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -4532,10 +4533,10 @@
       },
       "traits": {}
     },
-    "com.posthog.error_tracking#ErrorTrackingIssuesList": {
+    "com.posthog.error_tracking#ListErrorTrackingIssues": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.error_tracking#ErrorTrackingIssuesListRequest"
+        "target": "com.posthog.error_tracking#ListErrorTrackingIssuesRequest"
       },
       "output": {
         "target": "com.posthog.error_tracking#PaginatedErrorTrackingIssueReadList"
@@ -4548,7 +4549,7 @@
         }
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingIssuesRetrieveRequest": {
+    "com.posthog.error_tracking#GetErrorTrackingIssueRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -4571,10 +4572,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingIssuesRetrieve": {
+    "com.posthog.error_tracking#GetErrorTrackingIssue": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.error_tracking#ErrorTrackingIssuesRetrieveRequest"
+        "target": "com.posthog.error_tracking#GetErrorTrackingIssueRequest"
       },
       "output": {
         "target": "com.posthog.error_tracking#ErrorTrackingIssueRead"
@@ -4613,7 +4614,7 @@
         "smithy.api#documentation": "* `active` - active\n* `resolved` - resolved\n* `suppressed` - suppressed"
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingIssuesUpdateRequest": {
+    "com.posthog.error_tracking#UpdateErrorTrackingIssueRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -4663,10 +4664,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingIssuesUpdate": {
+    "com.posthog.error_tracking#UpdateErrorTrackingIssue": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.error_tracking#ErrorTrackingIssuesUpdateRequest"
+        "target": "com.posthog.error_tracking#UpdateErrorTrackingIssueRequest"
       },
       "output": {
         "target": "com.posthog.error_tracking#ErrorTrackingIssueRead"
@@ -4679,7 +4680,7 @@
         }
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingIssuesPartialUpdateRequest": {
+    "com.posthog.error_tracking#UpdateErrorTrackingIssuesPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -4729,10 +4730,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingIssuesPartialUpdate": {
+    "com.posthog.error_tracking#UpdateErrorTrackingIssuesPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.error_tracking#ErrorTrackingIssuesPartialUpdateRequest"
+        "target": "com.posthog.error_tracking#UpdateErrorTrackingIssuesPartialRequest"
       },
       "output": {
         "target": "com.posthog.error_tracking#ErrorTrackingIssueRead"
@@ -4785,7 +4786,7 @@
         "smithy.api#documentation": "Hard delete of this model is not allowed. Use a patch API call to set \"deleted\" to true"
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingIssuesActivityRetrieveRequest": {
+    "com.posthog.error_tracking#GetErrorTrackingIssuesActivityRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -4808,10 +4809,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingIssuesActivityRetrieve": {
+    "com.posthog.error_tracking#GetErrorTrackingIssuesActivity": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.error_tracking#ErrorTrackingIssuesActivityRetrieveRequest"
+        "target": "com.posthog.error_tracking#GetErrorTrackingIssuesActivityRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4820,6 +4821,97 @@
         "smithy.api#http": {
           "method": "GET",
           "uri": "/api/projects/{project_id}/error_tracking/issues/{id}/activity/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.error_tracking#ErrorTrackingIssueAssigneeWrite": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "com.posthog.error_tracking#ErrorTrackingIssueAssigneeId",
+          "traits": {
+            "smithy.api#documentation": "User ID or role UUID to assign the issue to.",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.posthog.error_tracking#AssigneeTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Assignment target type: user or role.\n\n* `user` - user\n* `role` - role",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.error_tracking#ErrorTrackingIssueAssigneeId": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "smithy.api#Integer"
+        },
+        "Case1": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.error_tracking#ErrorTrackingIssuesAssignPartialUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "assignee": {
+          "target": "com.posthog.error_tracking#ErrorTrackingIssueAssigneeWrite",
+          "traits": {
+            "smithy.api#documentation": "Assignment target. Set to null or omit to remove the current assignment.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.error_tracking#ErrorTrackingIssueAssignResponse": {
+      "type": "structure",
+      "members": {
+        "success": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the assignment update completed successfully.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.error_tracking#ErrorTrackingIssuesAssignPartialUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.error_tracking#ErrorTrackingIssuesAssignPartialUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.error_tracking#ErrorTrackingIssueAssignResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/projects/{project_id}/error_tracking/issues/{id}/assign/",
           "code": 200
         }
       }
@@ -4843,103 +4935,14 @@
         "smithy.api#documentation": "Read-only shape of an external reference, shared by every response."
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingIssuesAssignPartialUpdateRequestExternalIssuesList": {
+    "com.posthog.error_tracking#UpdateErrorTrackingIssuesCohortRequestExternalIssuesList": {
       "type": "list",
       "member": {
         "target": "com.posthog.error_tracking#ErrorTrackingExternalReferenceResultInput"
       },
       "traits": {}
     },
-    "com.posthog.error_tracking#ErrorTrackingIssuesAssignPartialUpdateRequest": {
-      "type": "structure",
-      "members": {
-        "project_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {},
-            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
-          }
-        },
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "status": {
-          "target": "smithy.api#String"
-        },
-        "severity": {
-          "target": "com.posthog.error_tracking#ErrorTrackingIssueSeverity",
-          "traits": {
-            "smithy.api#documentation": "Issue severity, or null when no severity is assigned.",
-            "com.distilled.openapi#nullable": {}
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "com.distilled.openapi#nullable": {}
-          }
-        },
-        "description": {
-          "target": "smithy.api#String",
-          "traits": {
-            "com.distilled.openapi#nullable": {}
-          }
-        },
-        "first_seen": {
-          "target": "smithy.api#String",
-          "traits": {
-            "com.distilled.openapi#nullable": {}
-          }
-        },
-        "assignee": {
-          "target": "com.posthog.error_tracking#ErrorTrackingIssueAssigneeReadInput",
-          "traits": {
-            "com.distilled.openapi#nullable": {}
-          }
-        },
-        "external_issues": {
-          "target": "com.posthog.error_tracking#ErrorTrackingIssuesAssignPartialUpdateRequestExternalIssuesList"
-        },
-        "cohort": {
-          "target": "com.posthog.error_tracking#ErrorTrackingIssueCohortRead",
-          "traits": {
-            "com.distilled.openapi#nullable": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.posthog.error_tracking#ErrorTrackingIssuesAssignPartialUpdate": {
-      "type": "operation",
-      "input": {
-        "target": "com.posthog.error_tracking#ErrorTrackingIssuesAssignPartialUpdateRequest"
-      },
-      "output": {
-        "target": "smithy.api#Unit"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "PATCH",
-          "uri": "/api/projects/{project_id}/error_tracking/issues/{id}/assign/",
-          "code": 200
-        }
-      }
-    },
-    "com.posthog.error_tracking#ErrorTrackingIssuesCohortUpdateRequestExternalIssuesList": {
-      "type": "list",
-      "member": {
-        "target": "com.posthog.error_tracking#ErrorTrackingExternalReferenceResultInput"
-      },
-      "traits": {}
-    },
-    "com.posthog.error_tracking#ErrorTrackingIssuesCohortUpdateRequest": {
+    "com.posthog.error_tracking#UpdateErrorTrackingIssuesCohortRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -5000,7 +5003,7 @@
           }
         },
         "external_issues": {
-          "target": "com.posthog.error_tracking#ErrorTrackingIssuesCohortUpdateRequestExternalIssuesList",
+          "target": "com.posthog.error_tracking#UpdateErrorTrackingIssuesCohortRequestExternalIssuesList",
           "traits": {
             "smithy.api#required": {}
           }
@@ -5017,10 +5020,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingIssuesCohortUpdate": {
+    "com.posthog.error_tracking#UpdateErrorTrackingIssuesCohort": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.error_tracking#ErrorTrackingIssuesCohortUpdateRequest"
+        "target": "com.posthog.error_tracking#UpdateErrorTrackingIssuesCohortRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -5033,7 +5036,7 @@
         }
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingIssuesMergeCreateRequestIdsList": {
+    "com.posthog.error_tracking#CreateErrorTrackingIssuesMergeRequestIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -5042,7 +5045,7 @@
         "smithy.api#documentation": "IDs of the issues to merge into the current issue."
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingIssuesMergeCreateRequest": {
+    "com.posthog.error_tracking#CreateErrorTrackingIssuesMergeRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -5061,7 +5064,7 @@
           }
         },
         "ids": {
-          "target": "com.posthog.error_tracking#ErrorTrackingIssuesMergeCreateRequestIdsList",
+          "target": "com.posthog.error_tracking#CreateErrorTrackingIssuesMergeRequestIdsList",
           "traits": {
             "smithy.api#documentation": "IDs of the issues to merge into the current issue."
           }
@@ -5083,10 +5086,10 @@
       },
       "traits": {}
     },
-    "com.posthog.error_tracking#ErrorTrackingIssuesMergeCreate": {
+    "com.posthog.error_tracking#CreateErrorTrackingIssuesMerge": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.error_tracking#ErrorTrackingIssuesMergeCreateRequest"
+        "target": "com.posthog.error_tracking#CreateErrorTrackingIssuesMergeRequest"
       },
       "output": {
         "target": "com.posthog.error_tracking#ErrorTrackingIssueMergeResponse"
@@ -5123,7 +5126,7 @@
       },
       "traits": {}
     },
-    "com.posthog.error_tracking#ErrorTrackingIssuesSplitCreateRequestFingerprintsList": {
+    "com.posthog.error_tracking#CreateErrorTrackingIssuesSplitRequestFingerprintsList": {
       "type": "list",
       "member": {
         "target": "com.posthog.error_tracking#ErrorTrackingIssueSplitFingerprint"
@@ -5132,7 +5135,7 @@
         "smithy.api#documentation": "Fingerprints to split into new issues. Each fingerprint becomes its own new issue."
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingIssuesSplitCreateRequest": {
+    "com.posthog.error_tracking#CreateErrorTrackingIssuesSplitRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -5151,7 +5154,7 @@
           }
         },
         "fingerprints": {
-          "target": "com.posthog.error_tracking#ErrorTrackingIssuesSplitCreateRequestFingerprintsList",
+          "target": "com.posthog.error_tracking#CreateErrorTrackingIssuesSplitRequestFingerprintsList",
           "traits": {
             "smithy.api#documentation": "Fingerprints to split into new issues. Each fingerprint becomes its own new issue."
           }
@@ -5188,10 +5191,10 @@
         "smithy.api#documentation": "IDs of the new issues created by the split."
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingIssuesSplitCreate": {
+    "com.posthog.error_tracking#CreateErrorTrackingIssuesSplit": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.error_tracking#ErrorTrackingIssuesSplitCreateRequest"
+        "target": "com.posthog.error_tracking#CreateErrorTrackingIssuesSplitRequest"
       },
       "output": {
         "target": "com.posthog.error_tracking#ErrorTrackingIssueSplitResponse"
@@ -5204,7 +5207,7 @@
         }
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingIssuesAllActivityRetrieveRequest": {
+    "com.posthog.error_tracking#GetErrorTrackingIssuesAllActivityRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -5220,10 +5223,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingIssuesAllActivityRetrieve": {
+    "com.posthog.error_tracking#GetErrorTrackingIssuesAllActivity": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.error_tracking#ErrorTrackingIssuesAllActivityRetrieveRequest"
+        "target": "com.posthog.error_tracking#GetErrorTrackingIssuesAllActivityRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -5336,7 +5339,7 @@
         }
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingIssuesExistsRetrieveRequest": {
+    "com.posthog.error_tracking#GetErrorTrackingIssuesExistRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -5352,10 +5355,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingIssuesExistsRetrieve": {
+    "com.posthog.error_tracking#GetErrorTrackingIssuesExist": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.error_tracking#ErrorTrackingIssuesExistsRetrieveRequest"
+        "target": "com.posthog.error_tracking#GetErrorTrackingIssuesExistRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -5368,7 +5371,7 @@
         }
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingIssuesValuesRetrieveRequest": {
+    "com.posthog.error_tracking#GetErrorTrackingIssuesValueRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -5384,10 +5387,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingIssuesValuesRetrieve": {
+    "com.posthog.error_tracking#GetErrorTrackingIssuesValue": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.error_tracking#ErrorTrackingIssuesValuesRetrieveRequest"
+        "target": "com.posthog.error_tracking#GetErrorTrackingIssuesValueRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -5419,7 +5422,7 @@
       },
       "traits": {}
     },
-    "com.posthog.error_tracking#ErrorTrackingQueryIssueCreateRequest": {
+    "com.posthog.error_tracking#CreateErrorTrackingQueryIssueRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -5798,10 +5801,10 @@
         "smithy.api#documentation": "Optional compact occurrence sparkline."
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingQueryIssueCreate": {
+    "com.posthog.error_tracking#CreateErrorTrackingQueryIssue": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.error_tracking#ErrorTrackingQueryIssueCreateRequest"
+        "target": "com.posthog.error_tracking#CreateErrorTrackingQueryIssueRequest"
       },
       "output": {
         "target": "com.posthog.error_tracking#ErrorTrackingIssueDetail"
@@ -6244,7 +6247,7 @@
       },
       "traits": {}
     },
-    "com.posthog.error_tracking#ErrorTrackingQueryIssueEventsCreateRequestFilterGroupList": {
+    "com.posthog.error_tracking#CreateErrorTrackingQueryIssueEventRequestFilterGroupList": {
       "type": "list",
       "member": {
         "target": "com.posthog.error_tracking#PropertyItem"
@@ -6329,7 +6332,7 @@
         "smithy.api#documentation": "* `exception` - exception\n* `stacktrace` - stacktrace\n* `code_variables` - code_variables\n* `environment` - environment\n* `release` - release\n* `navigation` - navigation\n* `correlation` - correlation\n* `diagnostics` - diagnostics"
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingQueryIssueEventsCreateRequestIncludeList": {
+    "com.posthog.error_tracking#CreateErrorTrackingQueryIssueEventRequestIncludeList": {
       "type": "list",
       "member": {
         "target": "com.posthog.error_tracking#IncludeEnum"
@@ -6338,7 +6341,7 @@
         "smithy.api#documentation": "Context groups to return. Defaults to exception, environment, navigation, and correlation. Request stacktrace for frames, code_variables for captured and SDK-masked frame variables, release for release metadata, or diagnostics for ingestion errors. code_variables implies stacktrace."
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingQueryIssueEventsCreateRequest": {
+    "com.posthog.error_tracking#CreateErrorTrackingQueryIssueEventRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -6369,7 +6372,7 @@
           }
         },
         "filterGroup": {
-          "target": "com.posthog.error_tracking#ErrorTrackingQueryIssueEventsCreateRequestFilterGroupList",
+          "target": "com.posthog.error_tracking#CreateErrorTrackingQueryIssueEventRequestFilterGroupList",
           "traits": {
             "smithy.api#documentation": "Advanced flat AND property filters applied to sampled events. HogQL filters are rejected."
           }
@@ -6399,7 +6402,7 @@
           }
         },
         "include": {
-          "target": "com.posthog.error_tracking#ErrorTrackingQueryIssueEventsCreateRequestIncludeList",
+          "target": "com.posthog.error_tracking#CreateErrorTrackingQueryIssueEventRequestIncludeList",
           "traits": {
             "smithy.api#documentation": "Context groups to return. Defaults to exception, environment, navigation, and correlation. Request stacktrace for frames, code_variables for captured and SDK-masked frame variables, release for release metadata, or diagnostics for ingestion errors. code_variables implies stacktrace."
           }
@@ -6506,10 +6509,10 @@
         "smithy.api#documentation": "Sampled exception events."
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingQueryIssueEventsCreate": {
+    "com.posthog.error_tracking#CreateErrorTrackingQueryIssueEvent": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.error_tracking#ErrorTrackingQueryIssueEventsCreateRequest"
+        "target": "com.posthog.error_tracking#CreateErrorTrackingQueryIssueEventRequest"
       },
       "output": {
         "target": "com.posthog.error_tracking#ErrorTrackingIssueEventsResponse"
@@ -6579,8 +6582,7 @@
           "target": "com.posthog.error_tracking#ErrorTrackingAssigneeId",
           "traits": {
             "smithy.api#documentation": "User ID or role UUID to filter by.",
-            "smithy.api#required": {},
-            "com.distilled.openapi#nullable": {}
+            "smithy.api#required": {}
           }
         },
         "type": {
@@ -6969,7 +6971,7 @@
         "smithy.api#documentation": "List compact error tracking issues\n\nList error tracking issues with typed filters and compact aggregate counts."
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingRecommendationsListRequest": {
+    "com.posthog.error_tracking#ListErrorTrackingRecommendationsRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -7092,10 +7094,10 @@
       },
       "traits": {}
     },
-    "com.posthog.error_tracking#ErrorTrackingRecommendationsList": {
+    "com.posthog.error_tracking#ListErrorTrackingRecommendations": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.error_tracking#ErrorTrackingRecommendationsListRequest"
+        "target": "com.posthog.error_tracking#ListErrorTrackingRecommendationsRequest"
       },
       "output": {
         "target": "com.posthog.error_tracking#PaginatedErrorTrackingRecommendationList"
@@ -7108,7 +7110,7 @@
         }
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingRecommendationsDismissCreateRequest": {
+    "com.posthog.error_tracking#CreateErrorTrackingRecommendationsDismissRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -7131,10 +7133,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingRecommendationsDismissCreate": {
+    "com.posthog.error_tracking#CreateErrorTrackingRecommendationsDismiss": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.error_tracking#ErrorTrackingRecommendationsDismissCreateRequest"
+        "target": "com.posthog.error_tracking#CreateErrorTrackingRecommendationsDismissRequest"
       },
       "output": {
         "target": "com.posthog.error_tracking#ErrorTrackingRecommendation"
@@ -7225,7 +7227,7 @@
         }
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingReleasesListRequest": {
+    "com.posthog.error_tracking#ListErrorTrackingReleasesRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -7326,10 +7328,10 @@
       },
       "traits": {}
     },
-    "com.posthog.error_tracking#ErrorTrackingReleasesList": {
+    "com.posthog.error_tracking#ListErrorTrackingReleases": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.error_tracking#ErrorTrackingReleasesListRequest"
+        "target": "com.posthog.error_tracking#ListErrorTrackingReleasesRequest"
       },
       "output": {
         "target": "com.posthog.error_tracking#PaginatedErrorTrackingReleaseList"
@@ -7353,7 +7355,7 @@
         }
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingReleasesCreateRequestMetadataMap": {
+    "com.posthog.error_tracking#CreateErrorTrackingReleaseRequestMetadataMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7365,7 +7367,7 @@
         "smithy.api#documentation": "Optional free-form metadata object stored alongside the release."
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingReleasesCreateRequest": {
+    "com.posthog.error_tracking#CreateErrorTrackingReleaseRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -7398,7 +7400,7 @@
           }
         },
         "metadata": {
-          "target": "com.posthog.error_tracking#ErrorTrackingReleasesCreateRequestMetadataMap",
+          "target": "com.posthog.error_tracking#CreateErrorTrackingReleaseRequestMetadataMap",
           "traits": {
             "smithy.api#documentation": "Optional free-form metadata object stored alongside the release.",
             "com.distilled.openapi#nullable": {}
@@ -7409,10 +7411,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingReleasesCreate": {
+    "com.posthog.error_tracking#CreateErrorTrackingRelease": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.error_tracking#ErrorTrackingReleasesCreateRequest"
+        "target": "com.posthog.error_tracking#CreateErrorTrackingReleaseRequest"
       },
       "output": {
         "target": "com.posthog.error_tracking#ErrorTrackingRelease"
@@ -7436,7 +7438,7 @@
         }
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingReleasesRetrieveRequest": {
+    "com.posthog.error_tracking#GetErrorTrackingReleaseRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -7459,10 +7461,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingReleasesRetrieve": {
+    "com.posthog.error_tracking#GetErrorTrackingRelease": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.error_tracking#ErrorTrackingReleasesRetrieveRequest"
+        "target": "com.posthog.error_tracking#GetErrorTrackingReleaseRequest"
       },
       "output": {
         "target": "com.posthog.error_tracking#ErrorTrackingRelease"
@@ -7483,7 +7485,7 @@
         }
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingReleasesUpdateRequestMetadataMap": {
+    "com.posthog.error_tracking#UpdateErrorTrackingReleaseRequestMetadataMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7495,7 +7497,7 @@
         "smithy.api#documentation": "Free-form metadata object. Omit to preserve the current value."
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingReleasesUpdateRequest": {
+    "com.posthog.error_tracking#UpdateErrorTrackingReleaseRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -7535,7 +7537,7 @@
           }
         },
         "metadata": {
-          "target": "com.posthog.error_tracking#ErrorTrackingReleasesUpdateRequestMetadataMap",
+          "target": "com.posthog.error_tracking#UpdateErrorTrackingReleaseRequestMetadataMap",
           "traits": {
             "smithy.api#documentation": "Free-form metadata object. Omit to preserve the current value.",
             "com.distilled.openapi#nullable": {}
@@ -7546,10 +7548,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingReleasesUpdate": {
+    "com.posthog.error_tracking#UpdateErrorTrackingRelease": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.error_tracking#ErrorTrackingReleasesUpdateRequest"
+        "target": "com.posthog.error_tracking#UpdateErrorTrackingReleaseRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -7573,7 +7575,7 @@
         }
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingReleasesPartialUpdateRequestMetadataMap": {
+    "com.posthog.error_tracking#UpdateErrorTrackingReleasesPartialRequestMetadataMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7585,7 +7587,7 @@
         "smithy.api#documentation": "Free-form metadata object. Omit to preserve the current value."
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingReleasesPartialUpdateRequest": {
+    "com.posthog.error_tracking#UpdateErrorTrackingReleasesPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -7625,7 +7627,7 @@
           }
         },
         "metadata": {
-          "target": "com.posthog.error_tracking#ErrorTrackingReleasesPartialUpdateRequestMetadataMap",
+          "target": "com.posthog.error_tracking#UpdateErrorTrackingReleasesPartialRequestMetadataMap",
           "traits": {
             "smithy.api#documentation": "Free-form metadata object. Omit to preserve the current value.",
             "com.distilled.openapi#nullable": {}
@@ -7636,10 +7638,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingReleasesPartialUpdate": {
+    "com.posthog.error_tracking#UpdateErrorTrackingReleasesPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.error_tracking#ErrorTrackingReleasesPartialUpdateRequest"
+        "target": "com.posthog.error_tracking#UpdateErrorTrackingReleasesPartialRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -7710,7 +7712,7 @@
         }
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingReleasesHashRetrieveRequest": {
+    "com.posthog.error_tracking#GetErrorTrackingReleasesHashRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -7733,10 +7735,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingReleasesHashRetrieve": {
+    "com.posthog.error_tracking#GetErrorTrackingReleasesHash": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.error_tracking#ErrorTrackingReleasesHashRetrieveRequest"
+        "target": "com.posthog.error_tracking#GetErrorTrackingReleasesHashRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -7883,7 +7885,7 @@
         }
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingSeverityRulesListRequest": {
+    "com.posthog.error_tracking#ListErrorTrackingSeverityRulesRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -8046,10 +8048,10 @@
         "smithy.api#documentation": "Severity rules in ascending evaluation order."
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingSeverityRulesList": {
+    "com.posthog.error_tracking#ListErrorTrackingSeverityRules": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.error_tracking#ErrorTrackingSeverityRulesListRequest"
+        "target": "com.posthog.error_tracking#ListErrorTrackingSeverityRulesRequest"
       },
       "output": {
         "target": "com.posthog.error_tracking#ErrorTrackingSeverityRuleListResponse"
@@ -8062,7 +8064,7 @@
         }
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingSeverityRulesCreateRequest": {
+    "com.posthog.error_tracking#CreateErrorTrackingSeverityRuleRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -8098,10 +8100,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingSeverityRulesCreate": {
+    "com.posthog.error_tracking#CreateErrorTrackingSeverityRule": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.error_tracking#ErrorTrackingSeverityRulesCreateRequest"
+        "target": "com.posthog.error_tracking#CreateErrorTrackingSeverityRuleRequest"
       },
       "output": {
         "target": "com.posthog.error_tracking#ErrorTrackingSeverityRule"
@@ -8114,7 +8116,7 @@
         }
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingSeverityRulesRetrieveRequest": {
+    "com.posthog.error_tracking#GetErrorTrackingSeverityRuleRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -8137,10 +8139,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingSeverityRulesRetrieve": {
+    "com.posthog.error_tracking#GetErrorTrackingSeverityRule": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.error_tracking#ErrorTrackingSeverityRulesRetrieveRequest"
+        "target": "com.posthog.error_tracking#GetErrorTrackingSeverityRuleRequest"
       },
       "output": {
         "target": "com.posthog.error_tracking#ErrorTrackingSeverityRule"
@@ -8153,7 +8155,7 @@
         }
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingSeverityRulesUpdateRequest": {
+    "com.posthog.error_tracking#UpdateErrorTrackingSeverityRuleRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -8188,10 +8190,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingSeverityRulesUpdate": {
+    "com.posthog.error_tracking#UpdateErrorTrackingSeverityRule": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.error_tracking#ErrorTrackingSeverityRulesUpdateRequest"
+        "target": "com.posthog.error_tracking#UpdateErrorTrackingSeverityRuleRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -8204,7 +8206,7 @@
         }
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingSeverityRulesPartialUpdateRequest": {
+    "com.posthog.error_tracking#UpdateErrorTrackingSeverityRulesPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -8239,10 +8241,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingSeverityRulesPartialUpdate": {
+    "com.posthog.error_tracking#UpdateErrorTrackingSeverityRulesPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.error_tracking#ErrorTrackingSeverityRulesPartialUpdateRequest"
+        "target": "com.posthog.error_tracking#UpdateErrorTrackingSeverityRulesPartialRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -8294,7 +8296,7 @@
         }
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingSeverityRulesReorderPartialUpdateRequestOrdersMap": {
+    "com.posthog.error_tracking#UpdateErrorTrackingSeverityRulesReorderPartialRequestOrdersMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8306,7 +8308,7 @@
         "smithy.api#documentation": "Mapping from severity rule UUID to its new evaluation order."
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingSeverityRulesReorderPartialUpdateRequest": {
+    "com.posthog.error_tracking#UpdateErrorTrackingSeverityRulesReorderPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -8318,7 +8320,7 @@
           }
         },
         "orders": {
-          "target": "com.posthog.error_tracking#ErrorTrackingSeverityRulesReorderPartialUpdateRequestOrdersMap",
+          "target": "com.posthog.error_tracking#UpdateErrorTrackingSeverityRulesReorderPartialRequestOrdersMap",
           "traits": {
             "smithy.api#documentation": "Mapping from severity rule UUID to its new evaluation order."
           }
@@ -8328,10 +8330,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingSeverityRulesReorderPartialUpdate": {
+    "com.posthog.error_tracking#UpdateErrorTrackingSeverityRulesReorderPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.error_tracking#ErrorTrackingSeverityRulesReorderPartialUpdateRequest"
+        "target": "com.posthog.error_tracking#UpdateErrorTrackingSeverityRulesReorderPartialRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -8344,7 +8346,7 @@
         }
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingSpikeDetectionConfigListRequest": {
+    "com.posthog.error_tracking#ListErrorTrackingSpikeDetectionConfigRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -8384,18 +8386,18 @@
       },
       "traits": {}
     },
-    "com.posthog.error_tracking#ErrorTrackingSpikeDetectionConfigListResponseBodyList": {
+    "com.posthog.error_tracking#ListErrorTrackingSpikeDetectionConfigResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.posthog.error_tracking#ErrorTrackingSpikeDetectionConfig"
       },
       "traits": {}
     },
-    "com.posthog.error_tracking#ErrorTrackingSpikeDetectionConfigListResponse": {
+    "com.posthog.error_tracking#ListErrorTrackingSpikeDetectionConfigResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.posthog.error_tracking#ErrorTrackingSpikeDetectionConfigListResponseBodyList",
+          "target": "com.posthog.error_tracking#ListErrorTrackingSpikeDetectionConfigResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -8406,13 +8408,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingSpikeDetectionConfigList": {
+    "com.posthog.error_tracking#ListErrorTrackingSpikeDetectionConfig": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.error_tracking#ErrorTrackingSpikeDetectionConfigListRequest"
+        "target": "com.posthog.error_tracking#ListErrorTrackingSpikeDetectionConfigRequest"
       },
       "output": {
-        "target": "com.posthog.error_tracking#ErrorTrackingSpikeDetectionConfigListResponse"
+        "target": "com.posthog.error_tracking#ListErrorTrackingSpikeDetectionConfigResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -8472,7 +8474,7 @@
         }
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingSpikeEventsListRequest": {
+    "com.posthog.error_tracking#ListErrorTrackingSpikeEventsRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -8575,10 +8577,10 @@
       },
       "traits": {}
     },
-    "com.posthog.error_tracking#ErrorTrackingSpikeEventsList": {
+    "com.posthog.error_tracking#ListErrorTrackingSpikeEvents": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.error_tracking#ErrorTrackingSpikeEventsListRequest"
+        "target": "com.posthog.error_tracking#ListErrorTrackingSpikeEventsRequest"
       },
       "output": {
         "target": "com.posthog.error_tracking#PaginatedErrorTrackingSpikeEventList"
@@ -8591,7 +8593,7 @@
         }
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingStackFramesListRequest": {
+    "com.posthog.error_tracking#ListErrorTrackingStackFramesRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -8711,10 +8713,10 @@
       },
       "traits": {}
     },
-    "com.posthog.error_tracking#ErrorTrackingStackFramesList": {
+    "com.posthog.error_tracking#ListErrorTrackingStackFrames": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.error_tracking#ErrorTrackingStackFramesListRequest"
+        "target": "com.posthog.error_tracking#ListErrorTrackingStackFramesRequest"
       },
       "output": {
         "target": "com.posthog.error_tracking#PaginatedErrorTrackingStackFrameList"
@@ -8727,7 +8729,7 @@
         }
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingStackFramesRetrieveRequest": {
+    "com.posthog.error_tracking#GetErrorTrackingStackFrameRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -8750,10 +8752,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingStackFramesRetrieve": {
+    "com.posthog.error_tracking#GetErrorTrackingStackFrame": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.error_tracking#ErrorTrackingStackFramesRetrieveRequest"
+        "target": "com.posthog.error_tracking#GetErrorTrackingStackFrameRequest"
       },
       "output": {
         "target": "com.posthog.error_tracking#ErrorTrackingStackFrame"
@@ -8883,7 +8885,7 @@
         }
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingSuppressionRulesListRequest": {
+    "com.posthog.error_tracking#ListErrorTrackingSuppressionRulesRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -8971,10 +8973,10 @@
       },
       "traits": {}
     },
-    "com.posthog.error_tracking#ErrorTrackingSuppressionRulesList": {
+    "com.posthog.error_tracking#ListErrorTrackingSuppressionRules": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.error_tracking#ErrorTrackingSuppressionRulesListRequest"
+        "target": "com.posthog.error_tracking#ListErrorTrackingSuppressionRulesRequest"
       },
       "output": {
         "target": "com.posthog.error_tracking#PaginatedErrorTrackingSuppressionRuleList"
@@ -8987,7 +8989,7 @@
         }
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingSuppressionRulesCreateRequest": {
+    "com.posthog.error_tracking#CreateErrorTrackingSuppressionRuleRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -9015,10 +9017,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingSuppressionRulesCreate": {
+    "com.posthog.error_tracking#CreateErrorTrackingSuppressionRule": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.error_tracking#ErrorTrackingSuppressionRulesCreateRequest"
+        "target": "com.posthog.error_tracking#CreateErrorTrackingSuppressionRuleRequest"
       },
       "output": {
         "target": "com.posthog.error_tracking#ErrorTrackingSuppressionRule"
@@ -9031,7 +9033,7 @@
         }
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingSuppressionRulesRetrieveRequest": {
+    "com.posthog.error_tracking#GetErrorTrackingSuppressionRuleRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -9054,10 +9056,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingSuppressionRulesRetrieve": {
+    "com.posthog.error_tracking#GetErrorTrackingSuppressionRule": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.error_tracking#ErrorTrackingSuppressionRulesRetrieveRequest"
+        "target": "com.posthog.error_tracking#GetErrorTrackingSuppressionRuleRequest"
       },
       "output": {
         "target": "com.posthog.error_tracking#ErrorTrackingSuppressionRule"
@@ -9070,7 +9072,7 @@
         }
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingSuppressionRulesUpdateRequest": {
+    "com.posthog.error_tracking#UpdateErrorTrackingSuppressionRuleRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -9105,10 +9107,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingSuppressionRulesUpdate": {
+    "com.posthog.error_tracking#UpdateErrorTrackingSuppressionRule": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.error_tracking#ErrorTrackingSuppressionRulesUpdateRequest"
+        "target": "com.posthog.error_tracking#UpdateErrorTrackingSuppressionRuleRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -9121,7 +9123,7 @@
         }
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingSuppressionRulesPartialUpdateRequest": {
+    "com.posthog.error_tracking#UpdateErrorTrackingSuppressionRulesPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -9156,10 +9158,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingSuppressionRulesPartialUpdate": {
+    "com.posthog.error_tracking#UpdateErrorTrackingSuppressionRulesPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.error_tracking#ErrorTrackingSuppressionRulesPartialUpdateRequest"
+        "target": "com.posthog.error_tracking#UpdateErrorTrackingSuppressionRulesPartialRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -9211,7 +9213,7 @@
         }
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingSuppressionRulesReorderPartialUpdateRequest": {
+    "com.posthog.error_tracking#UpdateErrorTrackingSuppressionRulesReorderPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -9239,10 +9241,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingSuppressionRulesReorderPartialUpdate": {
+    "com.posthog.error_tracking#UpdateErrorTrackingSuppressionRulesReorderPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.error_tracking#ErrorTrackingSuppressionRulesReorderPartialUpdateRequest"
+        "target": "com.posthog.error_tracking#UpdateErrorTrackingSuppressionRulesReorderPartialRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -9255,7 +9257,7 @@
         }
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingSymbolSetsListRequestOrderBy": {
+    "com.posthog.error_tracking#ListErrorTrackingSymbolSetsRequestOrderBy": {
       "type": "enum",
       "members": {
         "CREATED_AT": {
@@ -9297,7 +9299,7 @@
       },
       "traits": {}
     },
-    "com.posthog.error_tracking#ErrorTrackingSymbolSetsListRequestStatus": {
+    "com.posthog.error_tracking#ListErrorTrackingSymbolSetsRequestStatus": {
       "type": "enum",
       "members": {
         "ALL": {
@@ -9321,7 +9323,7 @@
       },
       "traits": {}
     },
-    "com.posthog.error_tracking#ErrorTrackingSymbolSetsListRequest": {
+    "com.posthog.error_tracking#ListErrorTrackingSymbolSetsRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -9347,7 +9349,7 @@
           }
         },
         "order_by": {
-          "target": "com.posthog.error_tracking#ErrorTrackingSymbolSetsListRequestOrderBy",
+          "target": "com.posthog.error_tracking#ListErrorTrackingSymbolSetsRequestOrderBy",
           "traits": {
             "smithy.api#httpQuery": "order_by",
             "smithy.api#documentation": "Sort order for symbol sets. Prefix with `-` for descending order.\n\n* `created_at` - created_at\n* `-created_at` - -created_at\n* `ref` - ref\n* `-ref` - -ref\n* `last_used` - last_used\n* `-last_used` - -last_used"
@@ -9368,7 +9370,7 @@
           }
         },
         "status": {
-          "target": "com.posthog.error_tracking#ErrorTrackingSymbolSetsListRequestStatus",
+          "target": "com.posthog.error_tracking#ListErrorTrackingSymbolSetsRequestStatus",
           "traits": {
             "smithy.api#httpQuery": "status",
             "smithy.api#documentation": "Upload status filter: `valid` has an uploaded file, `invalid` is missing a file, `all` returns both.\n\n* `all` - all\n* `valid` - valid\n* `invalid` - invalid"
@@ -9449,10 +9451,10 @@
       },
       "traits": {}
     },
-    "com.posthog.error_tracking#ErrorTrackingSymbolSetsList": {
+    "com.posthog.error_tracking#ListErrorTrackingSymbolSets": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.error_tracking#ErrorTrackingSymbolSetsListRequest"
+        "target": "com.posthog.error_tracking#ListErrorTrackingSymbolSetsRequest"
       },
       "output": {
         "target": "com.posthog.error_tracking#PaginatedErrorTrackingSymbolSetList"
@@ -9476,7 +9478,7 @@
         }
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingSymbolSetsRetrieveRequest": {
+    "com.posthog.error_tracking#GetErrorTrackingSymbolSetRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -9499,10 +9501,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.error_tracking#ErrorTrackingSymbolSetsRetrieve": {
+    "com.posthog.error_tracking#GetErrorTrackingSymbolSet": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.error_tracking#ErrorTrackingSymbolSetsRetrieveRequest"
+        "target": "com.posthog.error_tracking#GetErrorTrackingSymbolSetRequest"
       },
       "output": {
         "target": "com.posthog.error_tracking#ErrorTrackingSymbolSet"
@@ -10054,160 +10056,160 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.error_tracking#ErrorTrackingAssignmentRulesList"
+          "target": "com.posthog.error_tracking#ListErrorTrackingAssignmentRules"
         },
         {
-          "target": "com.posthog.error_tracking#ErrorTrackingAssignmentRulesCreate"
+          "target": "com.posthog.error_tracking#CreateErrorTrackingAssignmentRule"
         },
         {
-          "target": "com.posthog.error_tracking#ErrorTrackingAssignmentRulesRetrieve"
+          "target": "com.posthog.error_tracking#GetErrorTrackingAssignmentRule"
         },
         {
-          "target": "com.posthog.error_tracking#ErrorTrackingAssignmentRulesUpdate"
+          "target": "com.posthog.error_tracking#UpdateErrorTrackingAssignmentRule"
         },
         {
-          "target": "com.posthog.error_tracking#ErrorTrackingAssignmentRulesPartialUpdate"
+          "target": "com.posthog.error_tracking#UpdateErrorTrackingAssignmentRulesPartial"
         },
         {
           "target": "com.posthog.error_tracking#ErrorTrackingAssignmentRulesDestroy"
         },
         {
-          "target": "com.posthog.error_tracking#ErrorTrackingAssignmentRulesReorderPartialUpdate"
+          "target": "com.posthog.error_tracking#UpdateErrorTrackingAssignmentRulesReorderPartial"
         },
         {
-          "target": "com.posthog.error_tracking#ErrorTrackingBypassRulesList"
+          "target": "com.posthog.error_tracking#ListErrorTrackingBypassRules"
         },
         {
-          "target": "com.posthog.error_tracking#ErrorTrackingBypassRulesCreate"
+          "target": "com.posthog.error_tracking#CreateErrorTrackingBypassRule"
         },
         {
-          "target": "com.posthog.error_tracking#ErrorTrackingBypassRulesRetrieve"
+          "target": "com.posthog.error_tracking#GetErrorTrackingBypassRule"
         },
         {
-          "target": "com.posthog.error_tracking#ErrorTrackingBypassRulesUpdate"
+          "target": "com.posthog.error_tracking#UpdateErrorTrackingBypassRule"
         },
         {
-          "target": "com.posthog.error_tracking#ErrorTrackingBypassRulesPartialUpdate"
+          "target": "com.posthog.error_tracking#UpdateErrorTrackingBypassRulesPartial"
         },
         {
           "target": "com.posthog.error_tracking#ErrorTrackingBypassRulesDestroy"
         },
         {
-          "target": "com.posthog.error_tracking#ErrorTrackingBypassRulesReorderPartialUpdate"
+          "target": "com.posthog.error_tracking#UpdateErrorTrackingBypassRulesReorderPartial"
         },
         {
-          "target": "com.posthog.error_tracking#ErrorTrackingExternalReferencesList"
+          "target": "com.posthog.error_tracking#ListErrorTrackingExternalReferences"
         },
         {
-          "target": "com.posthog.error_tracking#ErrorTrackingExternalReferencesCreate"
+          "target": "com.posthog.error_tracking#CreateErrorTrackingExternalReference"
         },
         {
-          "target": "com.posthog.error_tracking#ErrorTrackingExternalReferencesRetrieve"
+          "target": "com.posthog.error_tracking#GetErrorTrackingExternalReference"
         },
         {
           "target": "com.posthog.error_tracking#ErrorTrackingExternalReferencesDestroy"
         },
         {
-          "target": "com.posthog.error_tracking#ErrorTrackingExternalReferencesLinkIssueCreate"
+          "target": "com.posthog.error_tracking#CreateErrorTrackingExternalReferencesLinkIssue"
         },
         {
           "target": "com.posthog.error_tracking#ErrorTrackingExternalReferencesSearchIssuesRetrieve"
         },
         {
-          "target": "com.posthog.error_tracking#ErrorTrackingFingerprintsList"
+          "target": "com.posthog.error_tracking#ListErrorTrackingFingerprints"
         },
         {
-          "target": "com.posthog.error_tracking#ErrorTrackingFingerprintsRetrieve"
+          "target": "com.posthog.error_tracking#GetErrorTrackingFingerprint"
         },
         {
           "target": "com.posthog.error_tracking#ErrorTrackingFingerprintsDestroy"
         },
         {
-          "target": "com.posthog.error_tracking#ErrorTrackingFingerprintsResolveRetrieve"
+          "target": "com.posthog.error_tracking#GetErrorTrackingFingerprintsResolve"
         },
         {
-          "target": "com.posthog.error_tracking#ErrorTrackingGitProviderFileLinksResolveGithubRetrieve"
+          "target": "com.posthog.error_tracking#GetErrorTrackingGitProviderFileLinksResolveGithub"
         },
         {
-          "target": "com.posthog.error_tracking#ErrorTrackingGitProviderFileLinksResolveGitlabRetrieve"
+          "target": "com.posthog.error_tracking#GetErrorTrackingGitProviderFileLinksResolveGitlab"
         },
         {
-          "target": "com.posthog.error_tracking#ErrorTrackingGroupingRulesList"
+          "target": "com.posthog.error_tracking#ListErrorTrackingGroupingRules"
         },
         {
-          "target": "com.posthog.error_tracking#ErrorTrackingGroupingRulesCreate"
+          "target": "com.posthog.error_tracking#CreateErrorTrackingGroupingRule"
         },
         {
-          "target": "com.posthog.error_tracking#ErrorTrackingGroupingRulesRetrieve"
+          "target": "com.posthog.error_tracking#GetErrorTrackingGroupingRule"
         },
         {
-          "target": "com.posthog.error_tracking#ErrorTrackingGroupingRulesUpdate"
+          "target": "com.posthog.error_tracking#UpdateErrorTrackingGroupingRule"
         },
         {
-          "target": "com.posthog.error_tracking#ErrorTrackingGroupingRulesPartialUpdate"
+          "target": "com.posthog.error_tracking#UpdateErrorTrackingGroupingRulesPartial"
         },
         {
           "target": "com.posthog.error_tracking#ErrorTrackingGroupingRulesDestroy"
         },
         {
-          "target": "com.posthog.error_tracking#ErrorTrackingGroupingRulesReorderPartialUpdate"
+          "target": "com.posthog.error_tracking#UpdateErrorTrackingGroupingRulesReorderPartial"
         },
         {
-          "target": "com.posthog.error_tracking#ErrorTrackingIssuesList"
+          "target": "com.posthog.error_tracking#ListErrorTrackingIssues"
         },
         {
-          "target": "com.posthog.error_tracking#ErrorTrackingIssuesRetrieve"
+          "target": "com.posthog.error_tracking#GetErrorTrackingIssue"
         },
         {
-          "target": "com.posthog.error_tracking#ErrorTrackingIssuesUpdate"
+          "target": "com.posthog.error_tracking#UpdateErrorTrackingIssue"
         },
         {
-          "target": "com.posthog.error_tracking#ErrorTrackingIssuesPartialUpdate"
+          "target": "com.posthog.error_tracking#UpdateErrorTrackingIssuesPartial"
         },
         {
           "target": "com.posthog.error_tracking#ErrorTrackingIssuesDestroy"
         },
         {
-          "target": "com.posthog.error_tracking#ErrorTrackingIssuesActivityRetrieve"
+          "target": "com.posthog.error_tracking#GetErrorTrackingIssuesActivity"
         },
         {
           "target": "com.posthog.error_tracking#ErrorTrackingIssuesAssignPartialUpdate"
         },
         {
-          "target": "com.posthog.error_tracking#ErrorTrackingIssuesCohortUpdate"
+          "target": "com.posthog.error_tracking#UpdateErrorTrackingIssuesCohort"
         },
         {
-          "target": "com.posthog.error_tracking#ErrorTrackingIssuesMergeCreate"
+          "target": "com.posthog.error_tracking#CreateErrorTrackingIssuesMerge"
         },
         {
-          "target": "com.posthog.error_tracking#ErrorTrackingIssuesSplitCreate"
+          "target": "com.posthog.error_tracking#CreateErrorTrackingIssuesSplit"
         },
         {
-          "target": "com.posthog.error_tracking#ErrorTrackingIssuesAllActivityRetrieve"
+          "target": "com.posthog.error_tracking#GetErrorTrackingIssuesAllActivity"
         },
         {
           "target": "com.posthog.error_tracking#ErrorTrackingIssuesBulkCreate"
         },
         {
-          "target": "com.posthog.error_tracking#ErrorTrackingIssuesExistsRetrieve"
+          "target": "com.posthog.error_tracking#GetErrorTrackingIssuesExist"
         },
         {
-          "target": "com.posthog.error_tracking#ErrorTrackingIssuesValuesRetrieve"
+          "target": "com.posthog.error_tracking#GetErrorTrackingIssuesValue"
         },
         {
-          "target": "com.posthog.error_tracking#ErrorTrackingQueryIssueCreate"
+          "target": "com.posthog.error_tracking#CreateErrorTrackingQueryIssue"
         },
         {
-          "target": "com.posthog.error_tracking#ErrorTrackingQueryIssueEventsCreate"
+          "target": "com.posthog.error_tracking#CreateErrorTrackingQueryIssueEvent"
         },
         {
           "target": "com.posthog.error_tracking#ErrorTrackingQueryIssuesListCreate"
         },
         {
-          "target": "com.posthog.error_tracking#ErrorTrackingRecommendationsList"
+          "target": "com.posthog.error_tracking#ListErrorTrackingRecommendations"
         },
         {
-          "target": "com.posthog.error_tracking#ErrorTrackingRecommendationsDismissCreate"
+          "target": "com.posthog.error_tracking#CreateErrorTrackingRecommendationsDismiss"
         },
         {
           "target": "com.posthog.error_tracking#ErrorTrackingRecommendationsRefreshCreate"
@@ -10216,25 +10218,25 @@
           "target": "com.posthog.error_tracking#ErrorTrackingRecommendationsRestoreCreate"
         },
         {
-          "target": "com.posthog.error_tracking#ErrorTrackingReleasesList"
+          "target": "com.posthog.error_tracking#ListErrorTrackingReleases"
         },
         {
-          "target": "com.posthog.error_tracking#ErrorTrackingReleasesCreate"
+          "target": "com.posthog.error_tracking#CreateErrorTrackingRelease"
         },
         {
-          "target": "com.posthog.error_tracking#ErrorTrackingReleasesRetrieve"
+          "target": "com.posthog.error_tracking#GetErrorTrackingRelease"
         },
         {
-          "target": "com.posthog.error_tracking#ErrorTrackingReleasesUpdate"
+          "target": "com.posthog.error_tracking#UpdateErrorTrackingRelease"
         },
         {
-          "target": "com.posthog.error_tracking#ErrorTrackingReleasesPartialUpdate"
+          "target": "com.posthog.error_tracking#UpdateErrorTrackingReleasesPartial"
         },
         {
           "target": "com.posthog.error_tracking#ErrorTrackingReleasesDestroy"
         },
         {
-          "target": "com.posthog.error_tracking#ErrorTrackingReleasesHashRetrieve"
+          "target": "com.posthog.error_tracking#GetErrorTrackingReleasesHash"
         },
         {
           "target": "com.posthog.error_tracking#ErrorTrackingSettingsRetrieveSettingsRetrieve"
@@ -10243,40 +10245,40 @@
           "target": "com.posthog.error_tracking#ErrorTrackingSettingsUpdateSettingsPartialUpdate"
         },
         {
-          "target": "com.posthog.error_tracking#ErrorTrackingSeverityRulesList"
+          "target": "com.posthog.error_tracking#ListErrorTrackingSeverityRules"
         },
         {
-          "target": "com.posthog.error_tracking#ErrorTrackingSeverityRulesCreate"
+          "target": "com.posthog.error_tracking#CreateErrorTrackingSeverityRule"
         },
         {
-          "target": "com.posthog.error_tracking#ErrorTrackingSeverityRulesRetrieve"
+          "target": "com.posthog.error_tracking#GetErrorTrackingSeverityRule"
         },
         {
-          "target": "com.posthog.error_tracking#ErrorTrackingSeverityRulesUpdate"
+          "target": "com.posthog.error_tracking#UpdateErrorTrackingSeverityRule"
         },
         {
-          "target": "com.posthog.error_tracking#ErrorTrackingSeverityRulesPartialUpdate"
+          "target": "com.posthog.error_tracking#UpdateErrorTrackingSeverityRulesPartial"
         },
         {
           "target": "com.posthog.error_tracking#ErrorTrackingSeverityRulesDestroy"
         },
         {
-          "target": "com.posthog.error_tracking#ErrorTrackingSeverityRulesReorderPartialUpdate"
+          "target": "com.posthog.error_tracking#UpdateErrorTrackingSeverityRulesReorderPartial"
         },
         {
-          "target": "com.posthog.error_tracking#ErrorTrackingSpikeDetectionConfigList"
+          "target": "com.posthog.error_tracking#ListErrorTrackingSpikeDetectionConfig"
         },
         {
           "target": "com.posthog.error_tracking#ErrorTrackingSpikeDetectionConfigUpdateConfigPartialUpdate"
         },
         {
-          "target": "com.posthog.error_tracking#ErrorTrackingSpikeEventsList"
+          "target": "com.posthog.error_tracking#ListErrorTrackingSpikeEvents"
         },
         {
-          "target": "com.posthog.error_tracking#ErrorTrackingStackFramesList"
+          "target": "com.posthog.error_tracking#ListErrorTrackingStackFrames"
         },
         {
-          "target": "com.posthog.error_tracking#ErrorTrackingStackFramesRetrieve"
+          "target": "com.posthog.error_tracking#GetErrorTrackingStackFrame"
         },
         {
           "target": "com.posthog.error_tracking#ErrorTrackingStackFramesDestroy"
@@ -10285,31 +10287,31 @@
           "target": "com.posthog.error_tracking#ErrorTrackingStackFramesBatchGetCreate"
         },
         {
-          "target": "com.posthog.error_tracking#ErrorTrackingSuppressionRulesList"
+          "target": "com.posthog.error_tracking#ListErrorTrackingSuppressionRules"
         },
         {
-          "target": "com.posthog.error_tracking#ErrorTrackingSuppressionRulesCreate"
+          "target": "com.posthog.error_tracking#CreateErrorTrackingSuppressionRule"
         },
         {
-          "target": "com.posthog.error_tracking#ErrorTrackingSuppressionRulesRetrieve"
+          "target": "com.posthog.error_tracking#GetErrorTrackingSuppressionRule"
         },
         {
-          "target": "com.posthog.error_tracking#ErrorTrackingSuppressionRulesUpdate"
+          "target": "com.posthog.error_tracking#UpdateErrorTrackingSuppressionRule"
         },
         {
-          "target": "com.posthog.error_tracking#ErrorTrackingSuppressionRulesPartialUpdate"
+          "target": "com.posthog.error_tracking#UpdateErrorTrackingSuppressionRulesPartial"
         },
         {
           "target": "com.posthog.error_tracking#ErrorTrackingSuppressionRulesDestroy"
         },
         {
-          "target": "com.posthog.error_tracking#ErrorTrackingSuppressionRulesReorderPartialUpdate"
+          "target": "com.posthog.error_tracking#UpdateErrorTrackingSuppressionRulesReorderPartial"
         },
         {
-          "target": "com.posthog.error_tracking#ErrorTrackingSymbolSetsList"
+          "target": "com.posthog.error_tracking#ListErrorTrackingSymbolSets"
         },
         {
-          "target": "com.posthog.error_tracking#ErrorTrackingSymbolSetsRetrieve"
+          "target": "com.posthog.error_tracking#GetErrorTrackingSymbolSet"
         },
         {
           "target": "com.posthog.error_tracking#ErrorTrackingSymbolSetsDestroy"

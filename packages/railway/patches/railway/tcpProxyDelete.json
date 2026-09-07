@@ -3,7 +3,7 @@
   "patches": [
     {
       "op": "replace",
-      "path": "/shapes/com.railway.api#TcpProxyDeleteRequest/traits/com.railway.graphql#operation/query",
+      "path": "/shapes/com.railway.api#DeleteTcpProxyRequest/traits/com.railway.graphql#operation/query",
       "value": "mutation tcpProxyDelete($id: String!) {\n  tcpProxyDelete(id: $id)\n}"
     }
   ]

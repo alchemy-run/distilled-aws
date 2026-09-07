@@ -453,6 +453,23 @@ export const BountySubmission = /*@__PURE__*/ S.suspend(() =>
   identifier: "BountySubmission",
 }) as any as S.Schema<BountySubmission>;
 
+export interface GetBountySubmissionRequest {
+  /** The bounty submission to act on (`btys_` tag). */
+  id: string;
+  /** Read the submission as this account (`biz_` tag), scoping the lookup to its bounties rather than the caller's own work. Requires read access to the account. Without it the lookup covers only what the credential owns — the submissions the caller authored plus those on bounties they posted. */
+  account_id?: string;
+}
+export const GetBountySubmissionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+    account_id: S.optional(S.String.pipe(T.Query())),
+  }).pipe(
+    T.Http({ method: "GET", uri: "/bounty_submissions/{id}", code: 200 }),
+  ),
+).annotate({
+  identifier: "GetBountySubmissionRequest",
+}) as any as S.Schema<GetBountySubmissionRequest>;
+
 export type ListBountySubmissionsRequestStatus =
   | "in_progress"
   | "submitted"
@@ -545,23 +562,6 @@ export const ListBountySubmissionsResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ListBountySubmissionsResponse",
 }) as any as S.Schema<ListBountySubmissionsResponse>;
-
-export interface RetrieveBountySubmissionRequest {
-  /** The bounty submission to act on (`btys_` tag). */
-  id: string;
-  /** Read the submission as this account (`biz_` tag), scoping the lookup to its bounties rather than the caller's own work. Requires read access to the account. Without it the lookup covers only what the credential owns — the submissions the caller authored plus those on bounties they posted. */
-  account_id?: string;
-}
-export const RetrieveBountySubmissionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-    account_id: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({ method: "GET", uri: "/bounty_submissions/{id}", code: 200 }),
-  ),
-).annotate({
-  identifier: "RetrieveBountySubmissionRequest",
-}) as any as S.Schema<RetrieveBountySubmissionRequest>;
 
 /** IDs of uploaded files attached as work, up to 10, each prefixed `file_`. Combinable with `urls` and `caption`. */
 export type SubmitBountySubmissionRequestDeliverableFileIdsList = Array<string>;
@@ -656,6 +656,21 @@ export const createBountySubmission: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetBountySubmissionError = NotFound | WhopOpError;
+/** Retrieve Bounty Submission Retrieves one bounty submission the credential can see — one the caller authored, or one on a bounty they posted or their account owns. Reading another member's work on an account's bounty takes `account_id`, the same way the list does. */
+export const getBountySubmission: API.OperationMethod<
+  GetBountySubmissionRequest,
+  BountySubmission,
+  GetBountySubmissionError,
+  WhopOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetBountySubmissionRequest,
+  output: BountySubmission,
+  errors: [NotFound],
+  protocol: WhopProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListBountySubmissionsError = BadRequest | Forbidden | WhopOpError;
 /** List Bounty Submissions Lists bounty submissions visible to the credential — for a user token, the submissions they authored plus those on bounties they posted; for an account API key, the submissions on the account's bounties. For the anonymous view of one bounty's reviewed work, use the submissions list under the bounty instead. */
 export const listBountySubmissions: API.PaginatedOperationMethod<
@@ -682,21 +697,6 @@ export const listBountySubmissions: API.PaginatedOperationMethod<
   }),
   paginateRelay,
 ) as any;
-
-export type RetrieveBountySubmissionError = NotFound | WhopOpError;
-/** Retrieve Bounty Submission Retrieves one bounty submission the credential can see — one the caller authored, or one on a bounty they posted or their account owns. Reading another member's work on an account's bounty takes `account_id`, the same way the list does. */
-export const retrieveBountySubmission: API.OperationMethod<
-  RetrieveBountySubmissionRequest,
-  BountySubmission,
-  RetrieveBountySubmissionError,
-  WhopOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveBountySubmissionRequest,
-  output: BountySubmission,
-  errors: [NotFound],
-  protocol: WhopProtocol,
-  retry: Retry.Retry,
-}));
 
 export type SubmitBountySubmissionError =
   | BadRequest

@@ -14,37 +14,26 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "keyDictionary": {
+      "approvedSources": "approved_sources",
+      "bimiRecords": "bimi_records",
+      "cnameDkimRecords": "cname_dkim_records",
+      "cnameDmarcRecords": "cname_dmarc_records",
+      "cnameSpfRecords": "cname_spf_records",
+      "createdAt": "created_at",
+      "dkimRecords": "dkim_records",
+      "dmarcRecords": "dmarc_records",
+      "modifiedAt": "modified_at",
+      "ruaPrefix": "rua_prefix",
+      "skipWizard": "skip_wizard",
+      "spfRecords": "spf_records",
+      "totalLookups": "total_lookups",
+      "zoneId": "zone_id"
+    },
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.cloudflare.email_auth#DmarcReportsEditRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "enabled": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Enable or disable DMARC reports for this zone"
-          }
-        },
-        "skip_wizard": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Skip the DMARC setup wizard"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.email_auth#DmarcReportsEditResponseApprovedSourcesItemIpsList": {
       "type": "list",
       "member": {
@@ -477,120 +466,6 @@
             "smithy.api#enumValue": "cname-on-dmarc-record"
           }
         }
-      }
-    },
-    "com.cloudflare.email_auth#DmarcReportsEditResponse": {
-      "type": "structure",
-      "members": {
-        "approved_sources": {
-          "target": "com.cloudflare.email_auth#DmarcReportsEditResponseApprovedSourcesList",
-          "traits": {
-            "smithy.api#documentation": "List of approved sending sources (omitted when empty)"
-          }
-        },
-        "created": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Deprecated, use created_at"
-          }
-        },
-        "created_at": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Creation timestamp"
-          }
-        },
-        "enabled": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether DMARC reports are enabled"
-          }
-        },
-        "modified": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Deprecated, use modified_at"
-          }
-        },
-        "modified_at": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Last modification timestamp"
-          }
-        },
-        "records": {
-          "target": "com.cloudflare.email_auth#DmarcReportsEditResponseRecords",
-          "traits": {
-            "smithy.api#documentation": "Live DNS records for the zone, grouped by type"
-          }
-        },
-        "rua_prefix": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Prefix for DMARC RUA addresses (32-char hex string)"
-          }
-        },
-        "skip_wizard": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether to skip the setup wizard"
-          }
-        },
-        "status": {
-          "target": "com.cloudflare.email_auth#DmarcReportsEditResponseStatus",
-          "traits": {
-            "smithy.api#documentation": "DMARC configuration status"
-          }
-        },
-        "tag": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Use `zone_id` instead"
-          }
-        },
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Zone identifier"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.email_auth#DmarcReportsEdit": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.email_auth#DmarcReportsEditRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.email_auth#DmarcReportsEditResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "PATCH",
-          "uri": "/zones/{zone_id}/email/auth/dmarc-reports",
-          "code": 200
-        },
-        "smithy.api#documentation": "Updates the DMARC report configuration for a zone. At least one of `enabled` or `skip_wizard` must be provided. When enabling, the handler will ensure the DMARC RUA record exists in DNS."
-      }
-    },
-    "com.cloudflare.email_auth#DmarcReportsGetRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.email_auth#DmarcReportsGetResponseApprovedSourcesItemIpsList": {
@@ -1027,7 +902,105 @@
         }
       }
     },
-    "com.cloudflare.email_auth#DmarcReportsGetResponse": {
+    "com.cloudflare.email_auth#SpfInspectGetResponseComponentsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.cloudflare.email_auth#SpfInspectGetResponseErrorsItem": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Error code. Known values:",
+            "smithy.api#required": {}
+          }
+        },
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Domain where the error occurred",
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable error message",
+            "smithy.api#required": {}
+          }
+        },
+        "details": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Additional error-specific details (optional)."
+          }
+        }
+      }
+    },
+    "com.cloudflare.email_auth#SpfInspectGetResponseErrorsList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.email_auth#SpfInspectGetResponseErrorsItem"
+      }
+    },
+    "com.cloudflare.email_auth#EmailAuth": {
+      "type": "service",
+      "version": "4.0",
+      "operations": [
+        {
+          "target": "com.cloudflare.email_auth#GetDmarcReport"
+        },
+        {
+          "target": "com.cloudflare.email_auth#GetSpfInspect"
+        },
+        {
+          "target": "com.cloudflare.email_auth#PatchDmarcReport"
+        }
+      ],
+      "traits": {
+        "com.cloudflare.protocols#v4Json": {},
+        "smithy.api#title": "Cloudflare EmailAuth",
+        "smithy.api#documentation": "Cloudflare API — email_auth resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+      }
+    },
+    "com.cloudflare.email_auth#GetDmarcReport": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.email_auth#GetDmarcReportRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.email_auth#GetDmarcReportResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/email/auth/dmarc-reports",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieves the current DMARC report configuration and status for a zone. Returns the RUA prefix, enabled status, approved sources, and DNS records.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.email_auth#GetDmarcReportRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.email_auth#GetDmarcReportResponse": {
       "type": "structure",
       "members": {
         "approved_sources": {
@@ -1108,25 +1081,25 @@
         "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
       }
     },
-    "com.cloudflare.email_auth#DmarcReportsGet": {
+    "com.cloudflare.email_auth#GetSpfInspect": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.email_auth#DmarcReportsGetRequest"
+        "target": "com.cloudflare.email_auth#GetSpfInspectRequest"
       },
       "output": {
-        "target": "com.cloudflare.email_auth#DmarcReportsGetResponse"
+        "target": "com.cloudflare.email_auth#GetSpfInspectResponse"
       },
       "traits": {
         "smithy.api#http": {
           "method": "GET",
-          "uri": "/zones/{zone_id}/email/auth/dmarc-reports",
+          "uri": "/zones/{zone_id}/email/auth/spf/inspect",
           "code": 200
         },
-        "smithy.api#documentation": "Retrieves the current DMARC report configuration and status for a zone. Returns the RUA prefix, enabled status, approved sources, and DNS records.",
+        "smithy.api#documentation": "Inspects a specific SPF TXT record and returns a parsed tree structure in the spflimit-worker format. The record ID must be provided via the `id` query parameter. Returns a recursive tree showing: - Parsed components with their qualifiers and types - Nested includes recursively resolved within components - Per-component and total lookup counts - Detailed error information with context",
         "smithy.api#readonly": {}
       }
     },
-    "com.cloudflare.email_auth#SpfInspectGetRequest": {
+    "com.cloudflare.email_auth#GetSpfInspectRequest": {
       "type": "structure",
       "members": {
         "zone_id": {
@@ -1150,51 +1123,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.email_auth#SpfInspectGetResponseComponentsList": {
-      "type": "list",
-      "member": {
-        "target": "smithy.api#Document"
-      }
-    },
-    "com.cloudflare.email_auth#SpfInspectGetResponseErrorsItem": {
-      "type": "structure",
-      "members": {
-        "code": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Error code. Known values:",
-            "smithy.api#required": {}
-          }
-        },
-        "domain": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Domain where the error occurred",
-            "smithy.api#required": {}
-          }
-        },
-        "message": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Human-readable error message",
-            "smithy.api#required": {}
-          }
-        },
-        "details": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Additional error-specific details (optional)."
-          }
-        }
-      }
-    },
-    "com.cloudflare.email_auth#SpfInspectGetResponseErrorsList": {
-      "type": "list",
-      "member": {
-        "target": "com.cloudflare.email_auth#SpfInspectGetResponseErrorsItem"
-      }
-    },
-    "com.cloudflare.email_auth#SpfInspectGetResponse": {
+    "com.cloudflare.email_auth#GetSpfInspectResponse": {
       "type": "structure",
       "members": {
         "components": {
@@ -1237,42 +1166,130 @@
         "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
       }
     },
-    "com.cloudflare.email_auth#SpfInspectGet": {
+    "com.cloudflare.email_auth#PatchDmarcReport": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.email_auth#SpfInspectGetRequest"
+        "target": "com.cloudflare.email_auth#PatchDmarcReportRequest"
       },
       "output": {
-        "target": "com.cloudflare.email_auth#SpfInspectGetResponse"
+        "target": "com.cloudflare.email_auth#PatchDmarcReportResponse"
       },
       "traits": {
         "smithy.api#http": {
-          "method": "GET",
-          "uri": "/zones/{zone_id}/email/auth/spf/inspect",
+          "method": "PATCH",
+          "uri": "/zones/{zone_id}/email/auth/dmarc-reports",
           "code": 200
         },
-        "smithy.api#documentation": "Inspects a specific SPF TXT record and returns a parsed tree structure in the spflimit-worker format. The record ID must be provided via the `id` query parameter. Returns a recursive tree showing: - Parsed components with their qualifiers and types - Nested includes recursively resolved within components - Per-component and total lookup counts - Detailed error information with context",
-        "smithy.api#readonly": {}
+        "smithy.api#documentation": "Updates the DMARC report configuration for a zone. At least one of `enabled` or `skip_wizard` must be provided. When enabling, the handler will ensure the DMARC RUA record exists in DNS."
       }
     },
-    "com.cloudflare.email_auth#EmailAuth": {
-      "type": "service",
-      "version": "4.0",
-      "operations": [
-        {
-          "target": "com.cloudflare.email_auth#DmarcReportsEdit"
+    "com.cloudflare.email_auth#PatchDmarcReportRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
         },
-        {
-          "target": "com.cloudflare.email_auth#DmarcReportsGet"
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Enable or disable DMARC reports for this zone"
+          }
         },
-        {
-          "target": "com.cloudflare.email_auth#SpfInspectGet"
+        "skip_wizard": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Skip the DMARC setup wizard"
+          }
         }
-      ],
+      },
       "traits": {
-        "com.cloudflare.protocols#v4Json": {},
-        "smithy.api#title": "Cloudflare EmailAuth",
-        "smithy.api#documentation": "Cloudflare API — email_auth resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.email_auth#PatchDmarcReportResponse": {
+      "type": "structure",
+      "members": {
+        "approved_sources": {
+          "target": "com.cloudflare.email_auth#DmarcReportsEditResponseApprovedSourcesList",
+          "traits": {
+            "smithy.api#documentation": "List of approved sending sources (omitted when empty)"
+          }
+        },
+        "created": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Deprecated, use created_at"
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Creation timestamp"
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether DMARC reports are enabled"
+          }
+        },
+        "modified": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Deprecated, use modified_at"
+          }
+        },
+        "modified_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last modification timestamp"
+          }
+        },
+        "records": {
+          "target": "com.cloudflare.email_auth#DmarcReportsEditResponseRecords",
+          "traits": {
+            "smithy.api#documentation": "Live DNS records for the zone, grouped by type"
+          }
+        },
+        "rua_prefix": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Prefix for DMARC RUA addresses (32-char hex string)"
+          }
+        },
+        "skip_wizard": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to skip the setup wizard"
+          }
+        },
+        "status": {
+          "target": "com.cloudflare.email_auth#DmarcReportsEditResponseStatus",
+          "traits": {
+            "smithy.api#documentation": "DMARC configuration status"
+          }
+        },
+        "tag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Use `zone_id` instead"
+          }
+        },
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Zone identifier"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
       }
     }
   }

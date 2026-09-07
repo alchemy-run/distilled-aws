@@ -91,16 +91,16 @@ export const GoogleCloudMlV1_Measurement_MetricList = /*@__PURE__*/ S.Array(
 export interface GoogleCloudMlV1__Measurement {
   /** The number of steps a machine learning model has been trained for. Must be non-negative. */
   stepCount?: string;
-  /** Output only. Time that the trial has been running at the point of this measurement. */
-  elapsedTime?: string;
   /** Provides a list of metrics that act as inputs into the objective function. */
   metrics?: GoogleCloudMlV1_Measurement_MetricList;
+  /** Output only. Time that the trial has been running at the point of this measurement. */
+  elapsedTime?: string;
 }
 export const GoogleCloudMlV1__Measurement = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     stepCount: S.optional(S.String),
-    elapsedTime: S.optional(S.String),
     metrics: S.optional(GoogleCloudMlV1_Measurement_MetricList),
+    elapsedTime: S.optional(S.String),
   }),
 ).annotate({
   identifier: "GoogleCloudMlV1__Measurement",
@@ -152,28 +152,22 @@ export type GoogleCloudMlV1__TrialStateEnum =
   | "STOPPING";
 export const GoogleCloudMlV1__TrialStateEnum = /*@__PURE__*/ S.String;
 
-export type GoogleCloudMlV1__MeasurementList =
-  Array<GoogleCloudMlV1__Measurement>;
-export const GoogleCloudMlV1__MeasurementList = /*@__PURE__*/ S.Array(
-  GoogleCloudMlV1__Measurement,
-) as any as S.Schema<GoogleCloudMlV1__MeasurementList>;
-
 /** A message representing a parameter to be tuned. Contains the name of the parameter and the suggested value to use for this trial. */
 export interface GoogleCloudMlV1_Trial_Parameter {
+  /** The name of the parameter. */
+  parameter?: string;
   /** Must be set if ParameterType is DOUBLE or DISCRETE. */
   floatValue?: number;
   /** Must be set if ParameterTypeis CATEGORICAL */
   stringValue?: string;
-  /** The name of the parameter. */
-  parameter?: string;
   /** Must be set if ParameterType is INTEGER */
   intValue?: string;
 }
 export const GoogleCloudMlV1_Trial_Parameter = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    parameter: S.optional(S.String),
     floatValue: S.optional(S.Number),
     stringValue: S.optional(S.String),
-    parameter: S.optional(S.String),
     intValue: S.optional(S.String),
   }),
 ).annotate({
@@ -186,41 +180,47 @@ export const GoogleCloudMlV1_Trial_ParameterList = /*@__PURE__*/ S.Array(
   GoogleCloudMlV1_Trial_Parameter,
 ) as any as S.Schema<GoogleCloudMlV1_Trial_ParameterList>;
 
+export type GoogleCloudMlV1__MeasurementList =
+  Array<GoogleCloudMlV1__Measurement>;
+export const GoogleCloudMlV1__MeasurementList = /*@__PURE__*/ S.Array(
+  GoogleCloudMlV1__Measurement,
+) as any as S.Schema<GoogleCloudMlV1__MeasurementList>;
+
 /** A message representing a trial. */
 export interface GoogleCloudMlV1__Trial {
-  /** Output only. Time at which the trial was started. */
-  startTime?: string;
+  /** Output only. The identifier of the client that originally requested this trial. */
+  clientId?: string;
   /** The detailed state of a trial. */
   state?: GoogleCloudMlV1__TrialStateEnum | (string & {});
-  /** The final measurement containing the objective value. */
-  finalMeasurement?: GoogleCloudMlV1__Measurement;
   /** Output only. Name of the trial assigned by the service. */
   name?: string;
+  /** The final measurement containing the objective value. */
+  finalMeasurement?: GoogleCloudMlV1__Measurement;
+  /** The parameters of the trial. */
+  parameters?: GoogleCloudMlV1_Trial_ParameterList;
+  /** Output only. If true, the parameters in this trial are not attempted again. */
+  trialInfeasible?: boolean;
+  /** A list of measurements that are strictly lexicographically ordered by their induced tuples (steps, elapsed_time). These are used for early stopping computations. */
+  measurements?: GoogleCloudMlV1__MeasurementList;
+  /** Output only. Time at which the trial was started. */
+  startTime?: string;
   /** Output only. Time at which the trial's status changed to COMPLETED. */
   endTime?: string;
   /** Output only. A human readable string describing why the trial is infeasible. This should only be set if trial_infeasible is true. */
   infeasibleReason?: string;
-  /** A list of measurements that are strictly lexicographically ordered by their induced tuples (steps, elapsed_time). These are used for early stopping computations. */
-  measurements?: GoogleCloudMlV1__MeasurementList;
-  /** The parameters of the trial. */
-  parameters?: GoogleCloudMlV1_Trial_ParameterList;
-  /** Output only. The identifier of the client that originally requested this trial. */
-  clientId?: string;
-  /** Output only. If true, the parameters in this trial are not attempted again. */
-  trialInfeasible?: boolean;
 }
 export const GoogleCloudMlV1__Trial = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    startTime: S.optional(S.String),
+    clientId: S.optional(S.String),
     state: S.optional(GoogleCloudMlV1__TrialStateEnum),
-    finalMeasurement: S.optional(GoogleCloudMlV1__Measurement),
     name: S.optional(S.String),
+    finalMeasurement: S.optional(GoogleCloudMlV1__Measurement),
+    parameters: S.optional(GoogleCloudMlV1_Trial_ParameterList),
+    trialInfeasible: S.optional(S.Boolean),
+    measurements: S.optional(GoogleCloudMlV1__MeasurementList),
+    startTime: S.optional(S.String),
     endTime: S.optional(S.String),
     infeasibleReason: S.optional(S.String),
-    measurements: S.optional(GoogleCloudMlV1__MeasurementList),
-    parameters: S.optional(GoogleCloudMlV1_Trial_ParameterList),
-    clientId: S.optional(S.String),
-    trialInfeasible: S.optional(S.Boolean),
   }),
 ).annotate({
   identifier: "GoogleCloudMlV1__Trial",
@@ -341,18 +341,18 @@ export const DocumentMapList = /*@__PURE__*/ S.Array(
 
 /** The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors). */
 export interface GoogleRpc__Status {
+  /** A list of messages that carry the error details. There is a common set of message types for APIs to use. */
+  details?: DocumentMapList;
   /** The status code, which should be an enum value of google.rpc.Code. */
   code?: number;
   /** A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client. */
   message?: string;
-  /** A list of messages that carry the error details. There is a common set of message types for APIs to use. */
-  details?: DocumentMapList;
 }
 export const GoogleRpc__Status = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    details: S.optional(DocumentMapList),
     code: S.optional(S.Number),
     message: S.optional(S.String),
-    details: S.optional(DocumentMapList),
   }),
 ).annotate({
   identifier: "GoogleRpc__Status",
@@ -362,22 +362,22 @@ export const GoogleRpc__Status = /*@__PURE__*/ S.suspend(() =>
 export interface GoogleLongrunning__Operation {
   /** The error result of the operation in case of failure or cancellation. */
   error?: GoogleRpc__Status;
-  /** The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`. */
-  name?: string;
-  /** If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available. */
-  done?: boolean;
   /** Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any. */
   metadata?: DocumentMap;
+  /** If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available. */
+  done?: boolean;
   /** The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`. */
   response?: DocumentMap;
+  /** The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`. */
+  name?: string;
 }
 export const GoogleLongrunning__Operation = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     error: S.optional(GoogleRpc__Status),
-    name: S.optional(S.String),
-    done: S.optional(S.Boolean),
     metadata: S.optional(DocumentMap),
+    done: S.optional(S.Boolean),
     response: S.optional(DocumentMap),
+    name: S.optional(S.String),
   }),
 ).annotate({
   identifier: "GoogleLongrunning__Operation",
@@ -385,19 +385,19 @@ export const GoogleLongrunning__Operation = /*@__PURE__*/ S.suspend(() =>
 
 /** The request message for the CompleteTrial service method. */
 export interface GoogleCloudMlV1__CompleteTrialRequest {
+  /** Optional. If provided, it will be used as the completed trial's final_measurement; Otherwise, the service will auto-select a previously reported measurement as the final-measurement */
+  finalMeasurement?: GoogleCloudMlV1__Measurement;
   /** Optional. A human readable reason why the trial was infeasible. This should only be provided if `trial_infeasible` is true. */
   infeasibleReason?: string;
   /** Optional. True if the trial cannot be run with the given Parameter, and final_measurement will be ignored. */
   trialInfeasible?: boolean;
-  /** Optional. If provided, it will be used as the completed trial's final_measurement; Otherwise, the service will auto-select a previously reported measurement as the final-measurement */
-  finalMeasurement?: GoogleCloudMlV1__Measurement;
 }
 export const GoogleCloudMlV1__CompleteTrialRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
+      finalMeasurement: S.optional(GoogleCloudMlV1__Measurement),
       infeasibleReason: S.optional(S.String),
       trialInfeasible: S.optional(S.Boolean),
-      finalMeasurement: S.optional(GoogleCloudMlV1__Measurement),
     }),
 ).annotate({
   identifier: "GoogleCloudMlV1__CompleteTrialRequest",
@@ -427,23 +427,133 @@ export const CompleteProjectsLocationsStudiesTrialsRequest =
     identifier: "CompleteProjectsLocationsStudiesTrialsRequest",
   }) as any as S.Schema<CompleteProjectsLocationsStudiesTrialsRequest>;
 
+export type GoogleCloudMlV1__PredictionInputOutputDataFormatEnum =
+  | "DATA_FORMAT_UNSPECIFIED"
+  | "JSON"
+  | "TEXT"
+  | "TF_RECORD"
+  | "TF_RECORD_GZIP"
+  | "CSV";
+export const GoogleCloudMlV1__PredictionInputOutputDataFormatEnum =
+  /*@__PURE__*/ S.String;
+
 export type StringList = Array<string>;
 export const StringList = /*@__PURE__*/ S.Array(
   S.String,
 ) as any as S.Schema<StringList>;
 
+export type GoogleCloudMlV1__PredictionInputDataFormatEnum =
+  | "DATA_FORMAT_UNSPECIFIED"
+  | "JSON"
+  | "TEXT"
+  | "TF_RECORD"
+  | "TF_RECORD_GZIP"
+  | "CSV";
+export const GoogleCloudMlV1__PredictionInputDataFormatEnum =
+  /*@__PURE__*/ S.String;
+
+/** Represents input parameters for a prediction job. */
+export interface GoogleCloudMlV1__PredictionInput {
+  /** Use this field if you want to specify a Google Cloud Storage path for the model to use. */
+  uri?: string;
+  /** Optional. The maximum number of workers to be used for parallel processing. Defaults to 10 if not specified. */
+  maxWorkerCount?: string;
+  /** Optional. Format of the output data files, defaults to JSON. */
+  outputDataFormat?:
+    | GoogleCloudMlV1__PredictionInputOutputDataFormatEnum
+    | (string & {});
+  /** Use this field if you want to specify a version of the model to use. The string is formatted the same way as `model_version`, with the addition of the version information: `"projects/YOUR_PROJECT/models/YOUR_MODEL/versions/YOUR_VERSION"` */
+  versionName?: string;
+  /** Use this field if you want to use the default version for the specified model. The string must use the following format: `"projects/YOUR_PROJECT/models/YOUR_MODEL"` */
+  modelName?: string;
+  /** Required. The output Google Cloud Storage location. */
+  outputPath?: string;
+  /** Optional. Number of records per batch, defaults to 64. The service will buffer batch_size number of records in memory before invoking one Tensorflow prediction call internally. So take the record size and memory available into consideration when setting this parameter. */
+  batchSize?: string;
+  /** Required. The Google Compute Engine region to run the prediction job in. See the available regions for AI Platform services. */
+  region?: string;
+  /** Optional. The name of the signature defined in the SavedModel to use for this job. Please refer to [SavedModel](https://tensorflow.github.io/serving/serving_basic.html) for information about how to use signatures. Defaults to [DEFAULT_SERVING_SIGNATURE_DEF_KEY](https://www.tensorflow.org/api_docs/python/tf/saved_model/signature_constants) , which is "serving_default". */
+  signatureName?: string;
+  /** Required. The Cloud Storage location of the input data files. May contain wildcards. */
+  inputPaths?: StringList;
+  /** Optional. The AI Platform runtime version to use for this batch prediction. If not set, AI Platform will pick the runtime version used during the CreateVersion request for this model version, or choose the latest stable version when model version information is not available such as when the model is specified by uri. */
+  runtimeVersion?: string;
+  /** Required. The format of the input data files. */
+  dataFormat?: GoogleCloudMlV1__PredictionInputDataFormatEnum | (string & {});
+}
+export const GoogleCloudMlV1__PredictionInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    uri: S.optional(S.String),
+    maxWorkerCount: S.optional(S.String),
+    outputDataFormat: S.optional(
+      GoogleCloudMlV1__PredictionInputOutputDataFormatEnum,
+    ),
+    versionName: S.optional(S.String),
+    modelName: S.optional(S.String),
+    outputPath: S.optional(S.String),
+    batchSize: S.optional(S.String),
+    region: S.optional(S.String),
+    signatureName: S.optional(S.String),
+    inputPaths: S.optional(StringList),
+    runtimeVersion: S.optional(S.String),
+    dataFormat: S.optional(GoogleCloudMlV1__PredictionInputDataFormatEnum),
+  }),
+).annotate({
+  identifier: "GoogleCloudMlV1__PredictionInput",
+}) as any as S.Schema<GoogleCloudMlV1__PredictionInput>;
+
+/** Represents results of a prediction job. */
+export interface GoogleCloudMlV1__PredictionOutput {
+  /** The output Google Cloud Storage location provided at the job creation time. */
+  outputPath?: string;
+  /** The number of generated predictions. */
+  predictionCount?: string;
+  /** The number of data instances which resulted in errors. */
+  errorCount?: string;
+  /** Node hours used by the batch prediction job. */
+  nodeHours?: number;
+}
+export const GoogleCloudMlV1__PredictionOutput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    outputPath: S.optional(S.String),
+    predictionCount: S.optional(S.String),
+    errorCount: S.optional(S.String),
+    nodeHours: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "GoogleCloudMlV1__PredictionOutput",
+}) as any as S.Schema<GoogleCloudMlV1__PredictionOutput>;
+
+/** All parameters related to scheduling of training jobs. */
+export interface GoogleCloudMlV1__Scheduling {
+  /** Optional. The maximum job wait time, expressed in seconds. The field can contain up to nine fractional digits, terminated by `s`. If not specified, there is no limit to the wait time. The minimum for this field is `1800s` (30 minutes). If the training job has not entered the `RUNNING` state after this duration, AI Platform Training cancels it. After the job begins running, it can no longer be cancelled due to the maximum wait time. Therefore the duration limited by this field does not overlap with the duration limited by Scheduling.max_running_time. For example, if the job temporarily stops running and retries due to a [VM restart](/ai-platform/training/docs/overview#restarts), this cannot lead to a maximum wait time cancellation. However, independently of this constraint, AI Platform Training might stop a job if there are too many retries due to exhausted resources in a region. The following example describes how you might use this field: To cancel your job if it doesn't start running within 1 hour, set this field to `3600s` (1 hour * 60 minutes / hour * 60 seconds / minute). If the job is still in the `QUEUED` or `PREPARING` state after an hour of waiting, AI Platform Training cancels the job. If you submit your training job using the `gcloud` tool, you can [specify this field in a `config.yaml` file](/ai-platform/training/docs/training-jobs#formatting_your_configuration_parameters). For example: ```yaml trainingInput: scheduling: maxWaitTime: 3600s ``` */
+  maxWaitTime?: string;
+  /** Optional. The maximum job running time, expressed in seconds. The field can contain up to nine fractional digits, terminated by `s`. If not specified, this field defaults to `604800s` (seven days). If the training job is still running after this duration, AI Platform Training cancels it. The duration is measured from when the job enters the `RUNNING` state; therefore it does not overlap with the duration limited by Scheduling.max_wait_time. For example, if you want to ensure your job runs for no more than 2 hours, set this field to `7200s` (2 hours * 60 minutes / hour * 60 seconds / minute). If you submit your training job using the `gcloud` tool, you can [specify this field in a `config.yaml` file](/ai-platform/training/docs/training-jobs#formatting_your_configuration_parameters). For example: ```yaml trainingInput: scheduling: maxRunningTime: 7200s ``` */
+  maxRunningTime?: string;
+  /** Optional. Job scheduling will be based on this priority, which in the range [0, 1000]. The bigger the number, the higher the priority. Default to 0 if not set. If there are multiple jobs requesting same type of accelerators, the high priority job will be scheduled prior to ones with low priority. */
+  priority?: number;
+}
+export const GoogleCloudMlV1__Scheduling = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    maxWaitTime: S.optional(S.String),
+    maxRunningTime: S.optional(S.String),
+    priority: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "GoogleCloudMlV1__Scheduling",
+}) as any as S.Schema<GoogleCloudMlV1__Scheduling>;
+
+export type GoogleCloudMlV1__HyperparameterSpecAlgorithmEnum =
+  | "ALGORITHM_UNSPECIFIED"
+  | "GRID_SEARCH"
+  | "RANDOM_SEARCH";
+export const GoogleCloudMlV1__HyperparameterSpecAlgorithmEnum =
+  /*@__PURE__*/ S.String;
+
 export type DoubleList = Array<number>;
 export const DoubleList = /*@__PURE__*/ S.Array(
   S.Number,
 ) as any as S.Schema<DoubleList>;
-
-export type GoogleCloudMlV1__ParameterSpecScaleTypeEnum =
-  | "NONE"
-  | "UNIT_LINEAR_SCALE"
-  | "UNIT_LOG_SCALE"
-  | "UNIT_REVERSE_LOG_SCALE";
-export const GoogleCloudMlV1__ParameterSpecScaleTypeEnum =
-  /*@__PURE__*/ S.String;
 
 export type GoogleCloudMlV1__ParameterSpecTypeEnum =
   | "PARAMETER_TYPE_UNSPECIFIED"
@@ -453,32 +563,40 @@ export type GoogleCloudMlV1__ParameterSpecTypeEnum =
   | "DISCRETE";
 export const GoogleCloudMlV1__ParameterSpecTypeEnum = /*@__PURE__*/ S.String;
 
+export type GoogleCloudMlV1__ParameterSpecScaleTypeEnum =
+  | "NONE"
+  | "UNIT_LINEAR_SCALE"
+  | "UNIT_LOG_SCALE"
+  | "UNIT_REVERSE_LOG_SCALE";
+export const GoogleCloudMlV1__ParameterSpecScaleTypeEnum =
+  /*@__PURE__*/ S.String;
+
 /** Represents a single hyperparameter to optimize. */
 export interface GoogleCloudMlV1__ParameterSpec {
   /** Required if type is `DISCRETE`. A list of feasible points. The list should be in strictly increasing order. For instance, this parameter might have possible settings of 1.5, 2.5, and 4.0. This list should not contain more than 1,000 values. */
   discreteValues?: DoubleList;
-  /** Required if type is `DOUBLE` or `INTEGER`. This field should be unset if type is `CATEGORICAL`. This value should be integers if type is INTEGER. */
-  minValue?: number;
-  /** Optional. How the parameter should be scaled to the hypercube. Leave unset for categorical parameters. Some kind of scaling is strongly recommended for real or integral parameters (e.g., `UNIT_LINEAR_SCALE`). */
-  scaleType?: GoogleCloudMlV1__ParameterSpecScaleTypeEnum | (string & {});
   /** Required. The type of the parameter. */
   type?: GoogleCloudMlV1__ParameterSpecTypeEnum | (string & {});
-  /** Required if type is `DOUBLE` or `INTEGER`. This field should be unset if type is `CATEGORICAL`. This value should be integers if type is `INTEGER`. */
-  maxValue?: number;
-  /** Required if type is `CATEGORICAL`. The list of possible categories. */
-  categoricalValues?: StringList;
   /** Required. The parameter name must be unique amongst all ParameterConfigs in a HyperparameterSpec message. E.g., "learning_rate". */
   parameterName?: string;
+  /** Required if type is `DOUBLE` or `INTEGER`. This field should be unset if type is `CATEGORICAL`. This value should be integers if type is `INTEGER`. */
+  maxValue?: number;
+  /** Optional. How the parameter should be scaled to the hypercube. Leave unset for categorical parameters. Some kind of scaling is strongly recommended for real or integral parameters (e.g., `UNIT_LINEAR_SCALE`). */
+  scaleType?: GoogleCloudMlV1__ParameterSpecScaleTypeEnum | (string & {});
+  /** Required if type is `CATEGORICAL`. The list of possible categories. */
+  categoricalValues?: StringList;
+  /** Required if type is `DOUBLE` or `INTEGER`. This field should be unset if type is `CATEGORICAL`. This value should be integers if type is INTEGER. */
+  minValue?: number;
 }
 export const GoogleCloudMlV1__ParameterSpec = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     discreteValues: S.optional(DoubleList),
-    minValue: S.optional(S.Number),
-    scaleType: S.optional(GoogleCloudMlV1__ParameterSpecScaleTypeEnum),
     type: S.optional(GoogleCloudMlV1__ParameterSpecTypeEnum),
-    maxValue: S.optional(S.Number),
-    categoricalValues: S.optional(StringList),
     parameterName: S.optional(S.String),
+    maxValue: S.optional(S.Number),
+    scaleType: S.optional(GoogleCloudMlV1__ParameterSpecScaleTypeEnum),
+    categoricalValues: S.optional(StringList),
+    minValue: S.optional(S.Number),
   }),
 ).annotate({
   identifier: "GoogleCloudMlV1__ParameterSpec",
@@ -497,65 +615,55 @@ export type GoogleCloudMlV1__HyperparameterSpecGoalEnum =
 export const GoogleCloudMlV1__HyperparameterSpecGoalEnum =
   /*@__PURE__*/ S.String;
 
-export type GoogleCloudMlV1__HyperparameterSpecAlgorithmEnum =
-  | "ALGORITHM_UNSPECIFIED"
-  | "GRID_SEARCH"
-  | "RANDOM_SEARCH";
-export const GoogleCloudMlV1__HyperparameterSpecAlgorithmEnum =
-  /*@__PURE__*/ S.String;
-
 /** Represents a set of hyperparameters to optimize. */
 export interface GoogleCloudMlV1__HyperparameterSpec {
-  /** Required. The set of parameters to tune. */
-  params?: GoogleCloudMlV1__ParameterSpecList;
-  /** Optional. The TensorFlow summary tag name to use for optimizing trials. For current versions of TensorFlow, this tag name should exactly match what is shown in TensorBoard, including all scopes. For versions of TensorFlow prior to 0.12, this should be only the tag passed to tf.Summary. By default, "training/hptuning/metric" will be used. */
-  hyperparameterMetricTag?: string;
-  /** Optional. The number of failed trials that need to be seen before failing the hyperparameter tuning job. You can specify this field to override the default failing criteria for AI Platform hyperparameter tuning jobs. Defaults to zero, which means the service decides when a hyperparameter job should fail. */
-  maxFailedTrials?: number;
-  /** Optional. How many training trials should be attempted to optimize the specified hyperparameters. Defaults to one. */
-  maxTrials?: number;
-  /** Optional. Indicates if the hyperparameter tuning job enables auto trial early stopping. */
-  enableTrialEarlyStopping?: boolean;
-  /** Required. The type of goal to use for tuning. Available types are `MAXIMIZE` and `MINIMIZE`. Defaults to `MAXIMIZE`. */
-  goal?: GoogleCloudMlV1__HyperparameterSpecGoalEnum | (string & {});
-  /** Optional. The prior hyperparameter tuning job id that users hope to continue with. The job id will be used to find the corresponding vizier study guid and resume the study. */
-  resumePreviousJobId?: string;
   /** Optional. The search algorithm specified for the hyperparameter tuning job. Uses the default AI Platform hyperparameter tuning algorithm if unspecified. */
   algorithm?: GoogleCloudMlV1__HyperparameterSpecAlgorithmEnum | (string & {});
+  /** Required. The set of parameters to tune. */
+  params?: GoogleCloudMlV1__ParameterSpecList;
+  /** Optional. How many training trials should be attempted to optimize the specified hyperparameters. Defaults to one. */
+  maxTrials?: number;
+  /** Optional. The prior hyperparameter tuning job id that users hope to continue with. The job id will be used to find the corresponding vizier study guid and resume the study. */
+  resumePreviousJobId?: string;
+  /** Required. The type of goal to use for tuning. Available types are `MAXIMIZE` and `MINIMIZE`. Defaults to `MAXIMIZE`. */
+  goal?: GoogleCloudMlV1__HyperparameterSpecGoalEnum | (string & {});
+  /** Optional. The number of failed trials that need to be seen before failing the hyperparameter tuning job. You can specify this field to override the default failing criteria for AI Platform hyperparameter tuning jobs. Defaults to zero, which means the service decides when a hyperparameter job should fail. */
+  maxFailedTrials?: number;
+  /** Optional. The TensorFlow summary tag name to use for optimizing trials. For current versions of TensorFlow, this tag name should exactly match what is shown in TensorBoard, including all scopes. For versions of TensorFlow prior to 0.12, this should be only the tag passed to tf.Summary. By default, "training/hptuning/metric" will be used. */
+  hyperparameterMetricTag?: string;
+  /** Optional. Indicates if the hyperparameter tuning job enables auto trial early stopping. */
+  enableTrialEarlyStopping?: boolean;
   /** Optional. The number of training trials to run concurrently. You can reduce the time it takes to perform hyperparameter tuning by adding trials in parallel. However, each trail only benefits from the information gained in completed trials. That means that a trial does not get access to the results of trials running at the same time, which could reduce the quality of the overall optimization. Each trial will use the same scale tier and machine types. Defaults to one. */
   maxParallelTrials?: number;
 }
 export const GoogleCloudMlV1__HyperparameterSpec = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    params: S.optional(GoogleCloudMlV1__ParameterSpecList),
-    hyperparameterMetricTag: S.optional(S.String),
-    maxFailedTrials: S.optional(S.Number),
-    maxTrials: S.optional(S.Number),
-    enableTrialEarlyStopping: S.optional(S.Boolean),
-    goal: S.optional(GoogleCloudMlV1__HyperparameterSpecGoalEnum),
-    resumePreviousJobId: S.optional(S.String),
     algorithm: S.optional(GoogleCloudMlV1__HyperparameterSpecAlgorithmEnum),
+    params: S.optional(GoogleCloudMlV1__ParameterSpecList),
+    maxTrials: S.optional(S.Number),
+    resumePreviousJobId: S.optional(S.String),
+    goal: S.optional(GoogleCloudMlV1__HyperparameterSpecGoalEnum),
+    maxFailedTrials: S.optional(S.Number),
+    hyperparameterMetricTag: S.optional(S.String),
+    enableTrialEarlyStopping: S.optional(S.Boolean),
     maxParallelTrials: S.optional(S.Number),
   }),
 ).annotate({
   identifier: "GoogleCloudMlV1__HyperparameterSpec",
 }) as any as S.Schema<GoogleCloudMlV1__HyperparameterSpec>;
 
-/** Represents the config of disk options. */
-export interface GoogleCloudMlV1__DiskConfig {
-  /** Type of the boot disk (default is "pd-ssd"). Valid values: "pd-ssd" (Persistent Disk Solid State Drive) or "pd-standard" (Persistent Disk Hard Disk Drive). */
-  bootDiskType?: string;
-  /** Size in GB of the boot disk (default is 100GB). */
-  bootDiskSizeGb?: number;
+/** Represents a custom encryption key configuration that can be applied to a resource. */
+export interface GoogleCloudMlV1__EncryptionConfig {
+  /** The Cloud KMS resource identifier of the customer-managed encryption key used to protect a resource, such as a training job. It has the following format: `projects/{PROJECT_ID}/locations/{REGION}/keyRings/{KEY_RING_NAME}/cryptoKeys/{KEY_NAME}` */
+  kmsKeyName?: string;
 }
-export const GoogleCloudMlV1__DiskConfig = /*@__PURE__*/ S.suspend(() =>
+export const GoogleCloudMlV1__EncryptionConfig = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    bootDiskType: S.optional(S.String),
-    bootDiskSizeGb: S.optional(S.Number),
+    kmsKeyName: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "GoogleCloudMlV1__DiskConfig",
-}) as any as S.Schema<GoogleCloudMlV1__DiskConfig>;
+  identifier: "GoogleCloudMlV1__EncryptionConfig",
+}) as any as S.Schema<GoogleCloudMlV1__EncryptionConfig>;
 
 export type GoogleCloudMlV1__AcceleratorConfigTypeEnum =
   | "ACCELERATOR_TYPE_UNSPECIFIED"
@@ -589,65 +697,49 @@ export const GoogleCloudMlV1__AcceleratorConfig = /*@__PURE__*/ S.suspend(() =>
   identifier: "GoogleCloudMlV1__AcceleratorConfig",
 }) as any as S.Schema<GoogleCloudMlV1__AcceleratorConfig>;
 
+/** Represents the config of disk options. */
+export interface GoogleCloudMlV1__DiskConfig {
+  /** Type of the boot disk (default is "pd-ssd"). Valid values: "pd-ssd" (Persistent Disk Solid State Drive) or "pd-standard" (Persistent Disk Hard Disk Drive). */
+  bootDiskType?: string;
+  /** Size in GB of the boot disk (default is 100GB). */
+  bootDiskSizeGb?: number;
+}
+export const GoogleCloudMlV1__DiskConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    bootDiskType: S.optional(S.String),
+    bootDiskSizeGb: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "GoogleCloudMlV1__DiskConfig",
+}) as any as S.Schema<GoogleCloudMlV1__DiskConfig>;
+
 /** Represents the configuration for a replica in a cluster. */
 export interface GoogleCloudMlV1__ReplicaConfig {
-  /** Represents the configuration of disk options. */
-  diskConfig?: GoogleCloudMlV1__DiskConfig;
-  /** The Docker image to run on the replica. This image must be in Container Registry. Learn more about [configuring custom containers](/ai-platform/training/docs/distributed-training-containers). */
-  imageUri?: string;
+  /** Represents the type and number of accelerators used by the replica. [Learn about restrictions on accelerator configurations for training.](/ai-platform/training/docs/using-gpus#compute-engine-machine-types-with-gpu) */
+  acceleratorConfig?: GoogleCloudMlV1__AcceleratorConfig;
   /** The AI Platform runtime version that includes a TensorFlow version matching the one used in the custom container. This field is required if the replica is a TPU worker that uses a custom container. Otherwise, do not specify this field. This must be a [runtime version that currently supports training with TPUs](/ml-engine/docs/tensorflow/runtime-version-list#tpu-support). Note that the version of TensorFlow included in a runtime version may differ from the numbering of the runtime version itself, because it may have a different [patch version](https://www.tensorflow.org/guide/version_compat#semantic_versioning_20). In this field, you must specify the runtime version (TensorFlow minor version). For example, if your custom container runs TensorFlow `1.x.y`, specify `1.x`. */
   tpuTfVersion?: string;
   /** Arguments to the entrypoint command. The following rules apply for container_command and container_args: - If you do not supply command or args: The defaults defined in the Docker image are used. - If you supply a command but no args: The default EntryPoint and the default Cmd defined in the Docker image are ignored. Your command is run without any arguments. - If you supply only args: The default Entrypoint defined in the Docker image is run with the args that you supplied. - If you supply a command and args: The default Entrypoint and the default Cmd defined in the Docker image are ignored. Your command is run with your args. It cannot be set if custom container image is not provided. Note that this field and [TrainingInput.args] are mutually exclusive, i.e., both cannot be set at the same time. */
   containerArgs?: StringList;
+  /** Represents the configuration of disk options. */
+  diskConfig?: GoogleCloudMlV1__DiskConfig;
+  /** The Docker image to run on the replica. This image must be in Container Registry. Learn more about [configuring custom containers](/ai-platform/training/docs/distributed-training-containers). */
+  imageUri?: string;
   /** The command with which the replica's custom container is run. If provided, it will override default ENTRYPOINT of the docker image. If not provided, the docker image's ENTRYPOINT is used. It cannot be set if custom container image is not provided. Note that this field and [TrainingInput.args] are mutually exclusive, i.e., both cannot be set at the same time. */
   containerCommand?: StringList;
-  /** Represents the type and number of accelerators used by the replica. [Learn about restrictions on accelerator configurations for training.](/ai-platform/training/docs/using-gpus#compute-engine-machine-types-with-gpu) */
-  acceleratorConfig?: GoogleCloudMlV1__AcceleratorConfig;
 }
 export const GoogleCloudMlV1__ReplicaConfig = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    diskConfig: S.optional(GoogleCloudMlV1__DiskConfig),
-    imageUri: S.optional(S.String),
+    acceleratorConfig: S.optional(GoogleCloudMlV1__AcceleratorConfig),
     tpuTfVersion: S.optional(S.String),
     containerArgs: S.optional(StringList),
+    diskConfig: S.optional(GoogleCloudMlV1__DiskConfig),
+    imageUri: S.optional(S.String),
     containerCommand: S.optional(StringList),
-    acceleratorConfig: S.optional(GoogleCloudMlV1__AcceleratorConfig),
   }),
 ).annotate({
   identifier: "GoogleCloudMlV1__ReplicaConfig",
 }) as any as S.Schema<GoogleCloudMlV1__ReplicaConfig>;
-
-/** All parameters related to scheduling of training jobs. */
-export interface GoogleCloudMlV1__Scheduling {
-  /** Optional. The maximum job wait time, expressed in seconds. The field can contain up to nine fractional digits, terminated by `s`. If not specified, there is no limit to the wait time. The minimum for this field is `1800s` (30 minutes). If the training job has not entered the `RUNNING` state after this duration, AI Platform Training cancels it. After the job begins running, it can no longer be cancelled due to the maximum wait time. Therefore the duration limited by this field does not overlap with the duration limited by Scheduling.max_running_time. For example, if the job temporarily stops running and retries due to a [VM restart](/ai-platform/training/docs/overview#restarts), this cannot lead to a maximum wait time cancellation. However, independently of this constraint, AI Platform Training might stop a job if there are too many retries due to exhausted resources in a region. The following example describes how you might use this field: To cancel your job if it doesn't start running within 1 hour, set this field to `3600s` (1 hour * 60 minutes / hour * 60 seconds / minute). If the job is still in the `QUEUED` or `PREPARING` state after an hour of waiting, AI Platform Training cancels the job. If you submit your training job using the `gcloud` tool, you can [specify this field in a `config.yaml` file](/ai-platform/training/docs/training-jobs#formatting_your_configuration_parameters). For example: ```yaml trainingInput: scheduling: maxWaitTime: 3600s ``` */
-  maxWaitTime?: string;
-  /** Optional. Job scheduling will be based on this priority, which in the range [0, 1000]. The bigger the number, the higher the priority. Default to 0 if not set. If there are multiple jobs requesting same type of accelerators, the high priority job will be scheduled prior to ones with low priority. */
-  priority?: number;
-  /** Optional. The maximum job running time, expressed in seconds. The field can contain up to nine fractional digits, terminated by `s`. If not specified, this field defaults to `604800s` (seven days). If the training job is still running after this duration, AI Platform Training cancels it. The duration is measured from when the job enters the `RUNNING` state; therefore it does not overlap with the duration limited by Scheduling.max_wait_time. For example, if you want to ensure your job runs for no more than 2 hours, set this field to `7200s` (2 hours * 60 minutes / hour * 60 seconds / minute). If you submit your training job using the `gcloud` tool, you can [specify this field in a `config.yaml` file](/ai-platform/training/docs/training-jobs#formatting_your_configuration_parameters). For example: ```yaml trainingInput: scheduling: maxRunningTime: 7200s ``` */
-  maxRunningTime?: string;
-}
-export const GoogleCloudMlV1__Scheduling = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    maxWaitTime: S.optional(S.String),
-    priority: S.optional(S.Number),
-    maxRunningTime: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "GoogleCloudMlV1__Scheduling",
-}) as any as S.Schema<GoogleCloudMlV1__Scheduling>;
-
-/** Represents a custom encryption key configuration that can be applied to a resource. */
-export interface GoogleCloudMlV1__EncryptionConfig {
-  /** The Cloud KMS resource identifier of the customer-managed encryption key used to protect a resource, such as a training job. It has the following format: `projects/{PROJECT_ID}/locations/{REGION}/keyRings/{KEY_RING_NAME}/cryptoKeys/{KEY_NAME}` */
-  kmsKeyName?: string;
-}
-export const GoogleCloudMlV1__EncryptionConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    kmsKeyName: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "GoogleCloudMlV1__EncryptionConfig",
-}) as any as S.Schema<GoogleCloudMlV1__EncryptionConfig>;
 
 export type GoogleCloudMlV1__TrainingInputScaleTierEnum =
   | "BASIC"
@@ -661,87 +753,87 @@ export const GoogleCloudMlV1__TrainingInputScaleTierEnum =
 
 /** Represents input parameters for a training job. When using the gcloud command to submit your training job, you can specify the input parameters as command-line arguments and/or in a YAML configuration file referenced from the --config command-line argument. For details, see the guide to [submitting a training job](/ai-platform/training/docs/training-jobs). */
 export interface GoogleCloudMlV1__TrainingInput {
-  /** Optional. Command-line arguments passed to the training application when it starts. If your job uses a custom container, then the arguments are passed to the container's `ENTRYPOINT` command. */
-  args?: StringList;
   /** Optional. The number of evaluator replicas to use for the training job. Each replica in the cluster will be of the type specified in `evaluator_type`. This value can only be used when `scale_tier` is set to `CUSTOM`. If you set this value, you must also set `evaluator_type`. The default value is zero. */
   evaluatorCount?: string;
-  /** Required. The Google Cloud Storage location of the packages with the training program and any additional dependencies. The maximum number of package URIs is 100. */
-  packageUris?: StringList;
+  /** Optional. Specifies the type of virtual machine to use for your training job's parameter server. The supported values are the same as those described in the entry for `master_type`. This value must be consistent with the category of machine type that `masterType` uses. In other words, both must be Compute Engine machine types or both must be legacy machine types. This value must be present when `scaleTier` is set to `CUSTOM` and `parameter_server_count` is greater than zero. */
+  parameterServerType?: string;
+  /** Optional. The number of parameter server replicas to use for the training job. Each replica in the cluster will be of the type specified in `parameter_server_type`. This value can only be used when `scale_tier` is set to `CUSTOM`. If you set this value, you must also set `parameter_server_type`. The default value is zero. */
+  parameterServerCount?: string;
+  /** Required. The Python module name to run after installing the packages. */
+  pythonModule?: string;
+  /** Optional. Scheduling options for a training job. */
+  scheduling?: GoogleCloudMlV1__Scheduling;
   /** Optional. A Google Cloud Storage path in which to store training outputs and other data needed for training. This path is passed to your TensorFlow program as the '--job-dir' command-line argument. The benefit of specifying this field is that Cloud ML validates the path for use in training. */
   jobDir?: string;
   /** Optional. The set of Hyperparameters to tune. */
   hyperparameters?: GoogleCloudMlV1__HyperparameterSpec;
-  /** Required. The region to run the training job in. See the [available regions](/ai-platform/training/docs/regions) for AI Platform Training. */
-  region?: string;
-  /** Optional. The email address of a service account to use when running the training appplication. You must have the `iam.serviceAccounts.actAs` permission for the specified service account. In addition, the AI Platform Training Google-managed service account must have the `roles/iam.serviceAccountAdmin` role for the specified service account. [Learn more about configuring a service account.](/ai-platform/training/docs/custom-service-account) If not specified, the AI Platform Training Google-managed service account is used by default. */
-  serviceAccount?: string;
-  /** Required. The Python module name to run after installing the packages. */
-  pythonModule?: string;
-  /** Optional. The configuration for workers. You should only set `workerConfig.acceleratorConfig` if `workerType` is set to a Compute Engine machine type. [Learn about restrictions on accelerator configurations for training.](/ai-platform/training/docs/using-gpus#compute-engine-machine-types-with-gpu) Set `workerConfig.imageUri` only if you build a custom image for your worker. If `workerConfig.imageUri` has not been set, AI Platform uses the value of `masterConfig.imageUri`. Learn more about [configuring custom containers](/ai-platform/training/docs/distributed-training-containers). */
-  workerConfig?: GoogleCloudMlV1__ReplicaConfig;
-  /** Optional. Scheduling options for a training job. */
-  scheduling?: GoogleCloudMlV1__Scheduling;
-  /** Optional. Specifies the type of virtual machine to use for your training job's evaluator nodes. The supported values are the same as those described in the entry for `masterType`. This value must be consistent with the category of machine type that `masterType` uses. In other words, both must be Compute Engine machine types or both must be legacy machine types. This value must be present when `scaleTier` is set to `CUSTOM` and `evaluatorCount` is greater than zero. */
-  evaluatorType?: string;
-  /** Optional. Options for using customer-managed encryption keys (CMEK) to protect resources created by a training job, instead of using Google's default encryption. If this is set, then all resources created by the training job will be encrypted with the customer-managed encryption key that you specify. [Learn how and when to use CMEK with AI Platform Training](/ai-platform/training/docs/cmek). */
-  encryptionConfig?: GoogleCloudMlV1__EncryptionConfig;
-  /** Optional. Specifies the type of virtual machine to use for your training job's worker nodes. The supported values are the same as those described in the entry for `masterType`. This value must be consistent with the category of machine type that `masterType` uses. In other words, both must be Compute Engine machine types or both must be legacy machine types. If you use `cloud_tpu` for this value, see special instructions for [configuring a custom TPU machine](/ml-engine/docs/tensorflow/using-tpus#configuring_a_custom_tpu_machine). This value must be present when `scaleTier` is set to `CUSTOM` and `workerCount` is greater than zero. */
-  workerType?: string;
-  /** Optional. The configuration for parameter servers. You should only set `parameterServerConfig.acceleratorConfig` if `parameterServerType` is set to a Compute Engine machine type. [Learn about restrictions on accelerator configurations for training.](/ai-platform/training/docs/using-gpus#compute-engine-machine-types-with-gpu) Set `parameterServerConfig.imageUri` only if you build a custom image for your parameter server. If `parameterServerConfig.imageUri` has not been set, AI Platform uses the value of `masterConfig.imageUri`. Learn more about [configuring custom containers](/ai-platform/training/docs/distributed-training-containers). */
-  parameterServerConfig?: GoogleCloudMlV1__ReplicaConfig;
-  /** Optional. The number of parameter server replicas to use for the training job. Each replica in the cluster will be of the type specified in `parameter_server_type`. This value can only be used when `scale_tier` is set to `CUSTOM`. If you set this value, you must also set `parameter_server_type`. The default value is zero. */
-  parameterServerCount?: string;
-  /** Optional. Use `chief` instead of `master` in the `TF_CONFIG` environment variable when training with a custom container. Defaults to `false`. [Learn more about this field.](/ai-platform/training/docs/distributed-training-details#chief-versus-master) This field has no effect for training jobs that don't use a custom container. */
-  useChiefInTfConfig?: boolean;
-  /** Optional. The number of worker replicas to use for the training job. Each replica in the cluster will be of the type specified in `worker_type`. This value can only be used when `scale_tier` is set to `CUSTOM`. If you set this value, you must also set `worker_type`. The default value is zero. */
-  workerCount?: string;
-  /** Optional. Whether you want AI Platform Training to enable [interactive shell access](https://cloud.google.com/ai-platform/training/docs/monitor-debug-interactive-shell) to training containers. If set to `true`, you can access interactive shells at the URIs given by TrainingOutput.web_access_uris or HyperparameterOutput.web_access_uris (within TrainingOutput.trials). */
-  enableWebAccess?: boolean;
-  /** Optional. The configuration for your master worker. You should only set `masterConfig.acceleratorConfig` if `masterType` is set to a Compute Engine machine type. Learn about [restrictions on accelerator configurations for training.](/ai-platform/training/docs/using-gpus#compute-engine-machine-types-with-gpu) Set `masterConfig.imageUri` only if you build a custom image. Only one of `masterConfig.imageUri` and `runtimeVersion` should be set. Learn more about [configuring custom containers](/ai-platform/training/docs/distributed-training-containers). */
-  masterConfig?: GoogleCloudMlV1__ReplicaConfig;
-  /** Optional. The AI Platform runtime version to use for training. You must either specify this field or specify `masterConfig.imageUri`. For more information, see the [runtime version list](/ai-platform/training/docs/runtime-version-list) and learn [how to manage runtime versions](/ai-platform/training/docs/versioning). */
-  runtimeVersion?: string;
-  /** Optional. The configuration for evaluators. You should only set `evaluatorConfig.acceleratorConfig` if `evaluatorType` is set to a Compute Engine machine type. [Learn about restrictions on accelerator configurations for training.](/ai-platform/training/docs/using-gpus#compute-engine-machine-types-with-gpu) Set `evaluatorConfig.imageUri` only if you build a custom image for your evaluator. If `evaluatorConfig.imageUri` has not been set, AI Platform uses the value of `masterConfig.imageUri`. Learn more about [configuring custom containers](/ai-platform/training/docs/distributed-training-containers). */
-  evaluatorConfig?: GoogleCloudMlV1__ReplicaConfig;
+  /** Required. The Google Cloud Storage location of the packages with the training program and any additional dependencies. The maximum number of package URIs is 100. */
+  packageUris?: StringList;
   /** Optional. The full name of the [Compute Engine network](/vpc/docs/vpc) to which the Job is peered. For example, `projects/12345/global/networks/myVPC`. The format of this field is `projects/{project}/global/networks/{network}`, where {project} is a project number (like `12345`) and {network} is network name. Private services access must already be configured for the network. If left unspecified, the Job is not peered with any network. [Learn about using VPC Network Peering.](/ai-platform/training/docs/vpc-peering). */
   network?: string;
-  /** Optional. Specifies the type of virtual machine to use for your training job's master worker. You must specify this field when `scaleTier` is set to `CUSTOM`. You can use certain Compute Engine machine types directly in this field. See the [list of compatible Compute Engine machine types](/ai-platform/training/docs/machine-types#compute-engine-machine-types). Alternatively, you can use the certain legacy machine types in this field. See the [list of legacy machine types](/ai-platform/training/docs/machine-types#legacy-machine-types). Finally, if you want to use a TPU for training, specify `cloud_tpu` in this field. Learn more about the [special configuration options for training with TPUs](/ai-platform/training/docs/using-tpus#configuring_a_custom_tpu_machine). */
-  masterType?: string;
-  /** Required. Specifies the machine types, the number of replicas for workers and parameter servers. */
-  scaleTier?: GoogleCloudMlV1__TrainingInputScaleTierEnum | (string & {});
-  /** Optional. Specifies the type of virtual machine to use for your training job's parameter server. The supported values are the same as those described in the entry for `master_type`. This value must be consistent with the category of machine type that `masterType` uses. In other words, both must be Compute Engine machine types or both must be legacy machine types. This value must be present when `scaleTier` is set to `CUSTOM` and `parameter_server_count` is greater than zero. */
-  parameterServerType?: string;
+  /** Optional. The number of worker replicas to use for the training job. Each replica in the cluster will be of the type specified in `worker_type`. This value can only be used when `scale_tier` is set to `CUSTOM`. If you set this value, you must also set `worker_type`. The default value is zero. */
+  workerCount?: string;
+  /** Optional. Options for using customer-managed encryption keys (CMEK) to protect resources created by a training job, instead of using Google's default encryption. If this is set, then all resources created by the training job will be encrypted with the customer-managed encryption key that you specify. [Learn how and when to use CMEK with AI Platform Training](/ai-platform/training/docs/cmek). */
+  encryptionConfig?: GoogleCloudMlV1__EncryptionConfig;
+  /** Optional. The configuration for workers. You should only set `workerConfig.acceleratorConfig` if `workerType` is set to a Compute Engine machine type. [Learn about restrictions on accelerator configurations for training.](/ai-platform/training/docs/using-gpus#compute-engine-machine-types-with-gpu) Set `workerConfig.imageUri` only if you build a custom image for your worker. If `workerConfig.imageUri` has not been set, AI Platform uses the value of `masterConfig.imageUri`. Learn more about [configuring custom containers](/ai-platform/training/docs/distributed-training-containers). */
+  workerConfig?: GoogleCloudMlV1__ReplicaConfig;
+  /** Optional. The configuration for evaluators. You should only set `evaluatorConfig.acceleratorConfig` if `evaluatorType` is set to a Compute Engine machine type. [Learn about restrictions on accelerator configurations for training.](/ai-platform/training/docs/using-gpus#compute-engine-machine-types-with-gpu) Set `evaluatorConfig.imageUri` only if you build a custom image for your evaluator. If `evaluatorConfig.imageUri` has not been set, AI Platform uses the value of `masterConfig.imageUri`. Learn more about [configuring custom containers](/ai-platform/training/docs/distributed-training-containers). */
+  evaluatorConfig?: GoogleCloudMlV1__ReplicaConfig;
   /** Optional. The version of Python used in training. You must either specify this field or specify `masterConfig.imageUri`. The following Python versions are available: * Python '3.7' is available when `runtime_version` is set to '1.15' or later. * Python '3.5' is available when `runtime_version` is set to a version from '1.4' to '1.14'. * Python '2.7' is available when `runtime_version` is set to '1.15' or earlier. Read more about the Python versions available for [each runtime version](/ml-engine/docs/runtime-version-list). */
   pythonVersion?: string;
+  /** Optional. Whether you want AI Platform Training to enable [interactive shell access](https://cloud.google.com/ai-platform/training/docs/monitor-debug-interactive-shell) to training containers. If set to `true`, you can access interactive shells at the URIs given by TrainingOutput.web_access_uris or HyperparameterOutput.web_access_uris (within TrainingOutput.trials). */
+  enableWebAccess?: boolean;
+  /** Optional. The AI Platform runtime version to use for training. You must either specify this field or specify `masterConfig.imageUri`. For more information, see the [runtime version list](/ai-platform/training/docs/runtime-version-list) and learn [how to manage runtime versions](/ai-platform/training/docs/versioning). */
+  runtimeVersion?: string;
+  /** Optional. Specifies the type of virtual machine to use for your training job's worker nodes. The supported values are the same as those described in the entry for `masterType`. This value must be consistent with the category of machine type that `masterType` uses. In other words, both must be Compute Engine machine types or both must be legacy machine types. If you use `cloud_tpu` for this value, see special instructions for [configuring a custom TPU machine](/ml-engine/docs/tensorflow/using-tpus#configuring_a_custom_tpu_machine). This value must be present when `scaleTier` is set to `CUSTOM` and `workerCount` is greater than zero. */
+  workerType?: string;
+  /** Optional. Use `chief` instead of `master` in the `TF_CONFIG` environment variable when training with a custom container. Defaults to `false`. [Learn more about this field.](/ai-platform/training/docs/distributed-training-details#chief-versus-master) This field has no effect for training jobs that don't use a custom container. */
+  useChiefInTfConfig?: boolean;
+  /** Optional. Specifies the type of virtual machine to use for your training job's evaluator nodes. The supported values are the same as those described in the entry for `masterType`. This value must be consistent with the category of machine type that `masterType` uses. In other words, both must be Compute Engine machine types or both must be legacy machine types. This value must be present when `scaleTier` is set to `CUSTOM` and `evaluatorCount` is greater than zero. */
+  evaluatorType?: string;
+  /** Optional. The configuration for your master worker. You should only set `masterConfig.acceleratorConfig` if `masterType` is set to a Compute Engine machine type. Learn about [restrictions on accelerator configurations for training.](/ai-platform/training/docs/using-gpus#compute-engine-machine-types-with-gpu) Set `masterConfig.imageUri` only if you build a custom image. Only one of `masterConfig.imageUri` and `runtimeVersion` should be set. Learn more about [configuring custom containers](/ai-platform/training/docs/distributed-training-containers). */
+  masterConfig?: GoogleCloudMlV1__ReplicaConfig;
+  /** Required. Specifies the machine types, the number of replicas for workers and parameter servers. */
+  scaleTier?: GoogleCloudMlV1__TrainingInputScaleTierEnum | (string & {});
+  /** Optional. The email address of a service account to use when running the training appplication. You must have the `iam.serviceAccounts.actAs` permission for the specified service account. In addition, the AI Platform Training Google-managed service account must have the `roles/iam.serviceAccountAdmin` role for the specified service account. [Learn more about configuring a service account.](/ai-platform/training/docs/custom-service-account) If not specified, the AI Platform Training Google-managed service account is used by default. */
+  serviceAccount?: string;
+  /** Optional. Command-line arguments passed to the training application when it starts. If your job uses a custom container, then the arguments are passed to the container's `ENTRYPOINT` command. */
+  args?: StringList;
+  /** Required. The region to run the training job in. See the [available regions](/ai-platform/training/docs/regions) for AI Platform Training. */
+  region?: string;
+  /** Optional. Specifies the type of virtual machine to use for your training job's master worker. You must specify this field when `scaleTier` is set to `CUSTOM`. You can use certain Compute Engine machine types directly in this field. See the [list of compatible Compute Engine machine types](/ai-platform/training/docs/machine-types#compute-engine-machine-types). Alternatively, you can use the certain legacy machine types in this field. See the [list of legacy machine types](/ai-platform/training/docs/machine-types#legacy-machine-types). Finally, if you want to use a TPU for training, specify `cloud_tpu` in this field. Learn more about the [special configuration options for training with TPUs](/ai-platform/training/docs/using-tpus#configuring_a_custom_tpu_machine). */
+  masterType?: string;
+  /** Optional. The configuration for parameter servers. You should only set `parameterServerConfig.acceleratorConfig` if `parameterServerType` is set to a Compute Engine machine type. [Learn about restrictions on accelerator configurations for training.](/ai-platform/training/docs/using-gpus#compute-engine-machine-types-with-gpu) Set `parameterServerConfig.imageUri` only if you build a custom image for your parameter server. If `parameterServerConfig.imageUri` has not been set, AI Platform uses the value of `masterConfig.imageUri`. Learn more about [configuring custom containers](/ai-platform/training/docs/distributed-training-containers). */
+  parameterServerConfig?: GoogleCloudMlV1__ReplicaConfig;
 }
 export const GoogleCloudMlV1__TrainingInput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    args: S.optional(StringList),
     evaluatorCount: S.optional(S.String),
-    packageUris: S.optional(StringList),
+    parameterServerType: S.optional(S.String),
+    parameterServerCount: S.optional(S.String),
+    pythonModule: S.optional(S.String),
+    scheduling: S.optional(GoogleCloudMlV1__Scheduling),
     jobDir: S.optional(S.String),
     hyperparameters: S.optional(GoogleCloudMlV1__HyperparameterSpec),
-    region: S.optional(S.String),
-    serviceAccount: S.optional(S.String),
-    pythonModule: S.optional(S.String),
-    workerConfig: S.optional(GoogleCloudMlV1__ReplicaConfig),
-    scheduling: S.optional(GoogleCloudMlV1__Scheduling),
-    evaluatorType: S.optional(S.String),
-    encryptionConfig: S.optional(GoogleCloudMlV1__EncryptionConfig),
-    workerType: S.optional(S.String),
-    parameterServerConfig: S.optional(GoogleCloudMlV1__ReplicaConfig),
-    parameterServerCount: S.optional(S.String),
-    useChiefInTfConfig: S.optional(S.Boolean),
-    workerCount: S.optional(S.String),
-    enableWebAccess: S.optional(S.Boolean),
-    masterConfig: S.optional(GoogleCloudMlV1__ReplicaConfig),
-    runtimeVersion: S.optional(S.String),
-    evaluatorConfig: S.optional(GoogleCloudMlV1__ReplicaConfig),
+    packageUris: S.optional(StringList),
     network: S.optional(S.String),
-    masterType: S.optional(S.String),
-    scaleTier: S.optional(GoogleCloudMlV1__TrainingInputScaleTierEnum),
-    parameterServerType: S.optional(S.String),
+    workerCount: S.optional(S.String),
+    encryptionConfig: S.optional(GoogleCloudMlV1__EncryptionConfig),
+    workerConfig: S.optional(GoogleCloudMlV1__ReplicaConfig),
+    evaluatorConfig: S.optional(GoogleCloudMlV1__ReplicaConfig),
     pythonVersion: S.optional(S.String),
+    enableWebAccess: S.optional(S.Boolean),
+    runtimeVersion: S.optional(S.String),
+    workerType: S.optional(S.String),
+    useChiefInTfConfig: S.optional(S.Boolean),
+    evaluatorType: S.optional(S.String),
+    masterConfig: S.optional(GoogleCloudMlV1__ReplicaConfig),
+    scaleTier: S.optional(GoogleCloudMlV1__TrainingInputScaleTierEnum),
+    serviceAccount: S.optional(S.String),
+    args: S.optional(StringList),
+    region: S.optional(S.String),
+    masterType: S.optional(S.String),
+    parameterServerConfig: S.optional(GoogleCloudMlV1__ReplicaConfig),
   }),
 ).annotate({
   identifier: "GoogleCloudMlV1__TrainingInput",
@@ -758,116 +850,11 @@ export type GoogleCloudMlV1__JobStateEnum =
   | "CANCELLED";
 export const GoogleCloudMlV1__JobStateEnum = /*@__PURE__*/ S.String;
 
-export type GoogleCloudMlV1__PredictionInputDataFormatEnum =
-  | "DATA_FORMAT_UNSPECIFIED"
-  | "JSON"
-  | "TEXT"
-  | "TF_RECORD"
-  | "TF_RECORD_GZIP"
-  | "CSV";
-export const GoogleCloudMlV1__PredictionInputDataFormatEnum =
-  /*@__PURE__*/ S.String;
-
-export type GoogleCloudMlV1__PredictionInputOutputDataFormatEnum =
-  | "DATA_FORMAT_UNSPECIFIED"
-  | "JSON"
-  | "TEXT"
-  | "TF_RECORD"
-  | "TF_RECORD_GZIP"
-  | "CSV";
-export const GoogleCloudMlV1__PredictionInputOutputDataFormatEnum =
-  /*@__PURE__*/ S.String;
-
-/** Represents input parameters for a prediction job. */
-export interface GoogleCloudMlV1__PredictionInput {
-  /** Required. The format of the input data files. */
-  dataFormat?: GoogleCloudMlV1__PredictionInputDataFormatEnum | (string & {});
-  /** Optional. The name of the signature defined in the SavedModel to use for this job. Please refer to [SavedModel](https://tensorflow.github.io/serving/serving_basic.html) for information about how to use signatures. Defaults to [DEFAULT_SERVING_SIGNATURE_DEF_KEY](https://www.tensorflow.org/api_docs/python/tf/saved_model/signature_constants) , which is "serving_default". */
-  signatureName?: string;
-  /** Use this field if you want to specify a version of the model to use. The string is formatted the same way as `model_version`, with the addition of the version information: `"projects/YOUR_PROJECT/models/YOUR_MODEL/versions/YOUR_VERSION"` */
-  versionName?: string;
-  /** Required. The Google Compute Engine region to run the prediction job in. See the available regions for AI Platform services. */
-  region?: string;
-  /** Required. The output Google Cloud Storage location. */
-  outputPath?: string;
-  /** Optional. Format of the output data files, defaults to JSON. */
-  outputDataFormat?:
-    | GoogleCloudMlV1__PredictionInputOutputDataFormatEnum
-    | (string & {});
-  /** Use this field if you want to specify a Google Cloud Storage path for the model to use. */
-  uri?: string;
-  /** Required. The Cloud Storage location of the input data files. May contain wildcards. */
-  inputPaths?: StringList;
-  /** Optional. The AI Platform runtime version to use for this batch prediction. If not set, AI Platform will pick the runtime version used during the CreateVersion request for this model version, or choose the latest stable version when model version information is not available such as when the model is specified by uri. */
-  runtimeVersion?: string;
-  /** Optional. Number of records per batch, defaults to 64. The service will buffer batch_size number of records in memory before invoking one Tensorflow prediction call internally. So take the record size and memory available into consideration when setting this parameter. */
-  batchSize?: string;
-  /** Use this field if you want to use the default version for the specified model. The string must use the following format: `"projects/YOUR_PROJECT/models/YOUR_MODEL"` */
-  modelName?: string;
-  /** Optional. The maximum number of workers to be used for parallel processing. Defaults to 10 if not specified. */
-  maxWorkerCount?: string;
-}
-export const GoogleCloudMlV1__PredictionInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    dataFormat: S.optional(GoogleCloudMlV1__PredictionInputDataFormatEnum),
-    signatureName: S.optional(S.String),
-    versionName: S.optional(S.String),
-    region: S.optional(S.String),
-    outputPath: S.optional(S.String),
-    outputDataFormat: S.optional(
-      GoogleCloudMlV1__PredictionInputOutputDataFormatEnum,
-    ),
-    uri: S.optional(S.String),
-    inputPaths: S.optional(StringList),
-    runtimeVersion: S.optional(S.String),
-    batchSize: S.optional(S.String),
-    modelName: S.optional(S.String),
-    maxWorkerCount: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "GoogleCloudMlV1__PredictionInput",
-}) as any as S.Schema<GoogleCloudMlV1__PredictionInput>;
-
 export type StringMap = { [key: string]: string | undefined };
 export const StringMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
 ) as any as S.Schema<StringMap>;
-
-/** Represents output related to a built-in algorithm Job. */
-export interface GoogleCloudMlV1__BuiltInAlgorithmOutput {
-  /** Framework on which the built-in algorithm was trained. */
-  framework?: string;
-  /** AI Platform runtime version on which the built-in algorithm was trained. */
-  runtimeVersion?: string;
-  /** The Cloud Storage path to the `model/` directory where the training job saves the trained model. Only set for successful jobs that don't use hyperparameter tuning. */
-  modelPath?: string;
-  /** Python version on which the built-in algorithm was trained. */
-  pythonVersion?: string;
-}
-export const GoogleCloudMlV1__BuiltInAlgorithmOutput = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      framework: S.optional(S.String),
-      runtimeVersion: S.optional(S.String),
-      modelPath: S.optional(S.String),
-      pythonVersion: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "GoogleCloudMlV1__BuiltInAlgorithmOutput",
-}) as any as S.Schema<GoogleCloudMlV1__BuiltInAlgorithmOutput>;
-
-export type GoogleCloudMlV1__HyperparameterOutputStateEnum =
-  | "STATE_UNSPECIFIED"
-  | "QUEUED"
-  | "PREPARING"
-  | "RUNNING"
-  | "SUCCEEDED"
-  | "FAILED"
-  | "CANCELLING"
-  | "CANCELLED";
-export const GoogleCloudMlV1__HyperparameterOutputStateEnum =
-  /*@__PURE__*/ S.String;
 
 /** An observed value of a metric. */
 export interface GoogleCloudMlV1_HyperparameterOutput_HyperparameterMetric {
@@ -893,48 +880,83 @@ export const GoogleCloudMlV1_HyperparameterOutput_HyperparameterMetricList =
     GoogleCloudMlV1_HyperparameterOutput_HyperparameterMetric,
   ) as any as S.Schema<GoogleCloudMlV1_HyperparameterOutput_HyperparameterMetricList>;
 
+/** Represents output related to a built-in algorithm Job. */
+export interface GoogleCloudMlV1__BuiltInAlgorithmOutput {
+  /** The Cloud Storage path to the `model/` directory where the training job saves the trained model. Only set for successful jobs that don't use hyperparameter tuning. */
+  modelPath?: string;
+  /** Framework on which the built-in algorithm was trained. */
+  framework?: string;
+  /** AI Platform runtime version on which the built-in algorithm was trained. */
+  runtimeVersion?: string;
+  /** Python version on which the built-in algorithm was trained. */
+  pythonVersion?: string;
+}
+export const GoogleCloudMlV1__BuiltInAlgorithmOutput = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      modelPath: S.optional(S.String),
+      framework: S.optional(S.String),
+      runtimeVersion: S.optional(S.String),
+      pythonVersion: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "GoogleCloudMlV1__BuiltInAlgorithmOutput",
+}) as any as S.Schema<GoogleCloudMlV1__BuiltInAlgorithmOutput>;
+
+export type GoogleCloudMlV1__HyperparameterOutputStateEnum =
+  | "STATE_UNSPECIFIED"
+  | "QUEUED"
+  | "PREPARING"
+  | "RUNNING"
+  | "SUCCEEDED"
+  | "FAILED"
+  | "CANCELLING"
+  | "CANCELLED";
+export const GoogleCloudMlV1__HyperparameterOutputStateEnum =
+  /*@__PURE__*/ S.String;
+
 /** Represents the result of a single hyperparameter tuning trial from a training job. The TrainingOutput object that is returned on successful completion of a training job with hyperparameter tuning includes a list of HyperparameterOutput objects, one for each successful trial. */
 export interface GoogleCloudMlV1__HyperparameterOutput {
-  /** Output only. Start time for the trial. */
-  startTime?: string;
-  /** Output only. The detailed state of the trial. */
-  state?: GoogleCloudMlV1__HyperparameterOutputStateEnum | (string & {});
-  /** Output only. End time for the trial. */
-  endTime?: string;
-  /** The final objective metric seen for this trial. */
-  finalMetric?: GoogleCloudMlV1_HyperparameterOutput_HyperparameterMetric;
-  /** URIs for accessing [interactive shells](https://cloud.google.com/ai-platform/training/docs/monitor-debug-interactive-shell) (one URI for each training node). Only available if this trial is part of a hyperparameter tuning job and the job's training_input.enable_web_access is `true`. The keys are names of each node in the training job; for example, `master-replica-0` for the master node, `worker-replica-0` for the first worker, and `ps-replica-0` for the first parameter server. The values are the URIs for each node's interactive shell. */
-  webAccessUris?: StringMap;
-  /** True if the trial is stopped early. */
-  isTrialStoppedEarly?: boolean;
-  /** All recorded object metrics for this trial. This field is not currently populated. */
-  allMetrics?: GoogleCloudMlV1_HyperparameterOutput_HyperparameterMetricList;
-  /** Details related to built-in algorithms jobs. Only set for trials of built-in algorithms jobs that have succeeded. */
-  builtInAlgorithmOutput?: GoogleCloudMlV1__BuiltInAlgorithmOutput;
-  /** The trial id for these results. */
-  trialId?: string;
   /** The hyperparameters given to this trial. */
   hyperparameters?: StringMap;
+  /** Output only. End time for the trial. */
+  endTime?: string;
+  /** Output only. Start time for the trial. */
+  startTime?: string;
+  /** All recorded object metrics for this trial. This field is not currently populated. */
+  allMetrics?: GoogleCloudMlV1_HyperparameterOutput_HyperparameterMetricList;
+  /** True if the trial is stopped early. */
+  isTrialStoppedEarly?: boolean;
+  /** Details related to built-in algorithms jobs. Only set for trials of built-in algorithms jobs that have succeeded. */
+  builtInAlgorithmOutput?: GoogleCloudMlV1__BuiltInAlgorithmOutput;
+  /** URIs for accessing [interactive shells](https://cloud.google.com/ai-platform/training/docs/monitor-debug-interactive-shell) (one URI for each training node). Only available if this trial is part of a hyperparameter tuning job and the job's training_input.enable_web_access is `true`. The keys are names of each node in the training job; for example, `master-replica-0` for the master node, `worker-replica-0` for the first worker, and `ps-replica-0` for the first parameter server. The values are the URIs for each node's interactive shell. */
+  webAccessUris?: StringMap;
+  /** Output only. The detailed state of the trial. */
+  state?: GoogleCloudMlV1__HyperparameterOutputStateEnum | (string & {});
+  /** The trial id for these results. */
+  trialId?: string;
+  /** The final objective metric seen for this trial. */
+  finalMetric?: GoogleCloudMlV1_HyperparameterOutput_HyperparameterMetric;
 }
 export const GoogleCloudMlV1__HyperparameterOutput = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      startTime: S.optional(S.String),
-      state: S.optional(GoogleCloudMlV1__HyperparameterOutputStateEnum),
+      hyperparameters: S.optional(StringMap),
       endTime: S.optional(S.String),
-      finalMetric: S.optional(
-        GoogleCloudMlV1_HyperparameterOutput_HyperparameterMetric,
-      ),
-      webAccessUris: S.optional(StringMap),
-      isTrialStoppedEarly: S.optional(S.Boolean),
+      startTime: S.optional(S.String),
       allMetrics: S.optional(
         GoogleCloudMlV1_HyperparameterOutput_HyperparameterMetricList,
       ),
+      isTrialStoppedEarly: S.optional(S.Boolean),
       builtInAlgorithmOutput: S.optional(
         GoogleCloudMlV1__BuiltInAlgorithmOutput,
       ),
+      webAccessUris: S.optional(StringMap),
+      state: S.optional(GoogleCloudMlV1__HyperparameterOutputStateEnum),
       trialId: S.optional(S.String),
-      hyperparameters: S.optional(StringMap),
+      finalMetric: S.optional(
+        GoogleCloudMlV1_HyperparameterOutput_HyperparameterMetric,
+      ),
     }),
 ).annotate({
   identifier: "GoogleCloudMlV1__HyperparameterOutput",
@@ -948,104 +970,82 @@ export const GoogleCloudMlV1__HyperparameterOutputList = /*@__PURE__*/ S.Array(
 
 /** Represents results of a training job. Output only. */
 export interface GoogleCloudMlV1__TrainingOutput {
-  /** Output only. URIs for accessing [interactive shells](https://cloud.google.com/ai-platform/training/docs/monitor-debug-interactive-shell) (one URI for each training node). Only available if training_input.enable_web_access is `true`. The keys are names of each node in the training job; for example, `master-replica-0` for the master node, `worker-replica-0` for the first worker, and `ps-replica-0` for the first parameter server. The values are the URIs for each node's interactive shell. */
-  webAccessUris?: StringMap;
+  /** The TensorFlow summary tag name used for optimizing hyperparameter tuning trials. See [`HyperparameterSpec.hyperparameterMetricTag`](#HyperparameterSpec.FIELDS.hyperparameter_metric_tag) for more information. Only set for hyperparameter tuning jobs. */
+  hyperparameterMetricTag?: string;
   /** Whether this job is a hyperparameter tuning job. */
   isHyperparameterTuningJob?: boolean;
+  /** Output only. URIs for accessing [interactive shells](https://cloud.google.com/ai-platform/training/docs/monitor-debug-interactive-shell) (one URI for each training node). Only available if training_input.enable_web_access is `true`. The keys are names of each node in the training job; for example, `master-replica-0` for the master node, `worker-replica-0` for the first worker, and `ps-replica-0` for the first parameter server. The values are the URIs for each node's interactive shell. */
+  webAccessUris?: StringMap;
+  /** Results for individual Hyperparameter trials. Only set for hyperparameter tuning jobs. */
+  trials?: GoogleCloudMlV1__HyperparameterOutputList;
   /** The amount of ML units consumed by the job. */
   consumedMLUnits?: number;
   /** Whether this job is a built-in Algorithm job. */
   isBuiltInAlgorithmJob?: boolean;
-  /** Details related to built-in algorithms jobs. Only set for built-in algorithms jobs. */
-  builtInAlgorithmOutput?: GoogleCloudMlV1__BuiltInAlgorithmOutput;
-  /** Results for individual Hyperparameter trials. Only set for hyperparameter tuning jobs. */
-  trials?: GoogleCloudMlV1__HyperparameterOutputList;
   /** The number of hyperparameter tuning trials that completed successfully. Only set for hyperparameter tuning jobs. */
   completedTrialCount?: string;
-  /** The TensorFlow summary tag name used for optimizing hyperparameter tuning trials. See [`HyperparameterSpec.hyperparameterMetricTag`](#HyperparameterSpec.FIELDS.hyperparameter_metric_tag) for more information. Only set for hyperparameter tuning jobs. */
-  hyperparameterMetricTag?: string;
+  /** Details related to built-in algorithms jobs. Only set for built-in algorithms jobs. */
+  builtInAlgorithmOutput?: GoogleCloudMlV1__BuiltInAlgorithmOutput;
 }
 export const GoogleCloudMlV1__TrainingOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    webAccessUris: S.optional(StringMap),
+    hyperparameterMetricTag: S.optional(S.String),
     isHyperparameterTuningJob: S.optional(S.Boolean),
+    webAccessUris: S.optional(StringMap),
+    trials: S.optional(GoogleCloudMlV1__HyperparameterOutputList),
     consumedMLUnits: S.optional(S.Number),
     isBuiltInAlgorithmJob: S.optional(S.Boolean),
-    builtInAlgorithmOutput: S.optional(GoogleCloudMlV1__BuiltInAlgorithmOutput),
-    trials: S.optional(GoogleCloudMlV1__HyperparameterOutputList),
     completedTrialCount: S.optional(S.String),
-    hyperparameterMetricTag: S.optional(S.String),
+    builtInAlgorithmOutput: S.optional(GoogleCloudMlV1__BuiltInAlgorithmOutput),
   }),
 ).annotate({
   identifier: "GoogleCloudMlV1__TrainingOutput",
 }) as any as S.Schema<GoogleCloudMlV1__TrainingOutput>;
 
-/** Represents results of a prediction job. */
-export interface GoogleCloudMlV1__PredictionOutput {
-  /** The output Google Cloud Storage location provided at the job creation time. */
-  outputPath?: string;
-  /** The number of data instances which resulted in errors. */
-  errorCount?: string;
-  /** The number of generated predictions. */
-  predictionCount?: string;
-  /** Node hours used by the batch prediction job. */
-  nodeHours?: number;
-}
-export const GoogleCloudMlV1__PredictionOutput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    outputPath: S.optional(S.String),
-    errorCount: S.optional(S.String),
-    predictionCount: S.optional(S.String),
-    nodeHours: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "GoogleCloudMlV1__PredictionOutput",
-}) as any as S.Schema<GoogleCloudMlV1__PredictionOutput>;
-
 /** Represents a training or prediction job. */
 export interface GoogleCloudMlV1__Job {
-  /** Output only. When the job processing was completed. */
-  endTime?: string;
-  /** Output only. When the job processing was started. */
-  startTime?: string;
-  /** Input parameters to create a training job. */
-  trainingInput?: GoogleCloudMlV1__TrainingInput;
-  /** Output only. The detailed state of a job. */
-  state?: GoogleCloudMlV1__JobStateEnum | (string & {});
-  /** Output only. The details of a failure or a cancellation. */
-  errorMessage?: string;
-  /** `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a job from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform job updates in order to avoid race conditions: An `etag` is returned in the response to `GetJob`, and systems are expected to put that etag in the request to `UpdateJob` to ensure that their change will be applied to the same version of the job. */
-  etag?: string;
   /** Input parameters to create a prediction job. */
   predictionInput?: GoogleCloudMlV1__PredictionInput;
-  /** Output only. When the job was created. */
-  createTime?: string;
-  /** The current training job result. */
-  trainingOutput?: GoogleCloudMlV1__TrainingOutput;
-  /** Optional. One or more labels that you can add, to organize your jobs. Each label is a key-value pair, where both the key and the value are arbitrary strings that you supply. For more information, see the documentation on using labels. */
-  labels?: StringMap;
   /** The current prediction job result. */
   predictionOutput?: GoogleCloudMlV1__PredictionOutput;
   /** Output only. It's only effect when the job is in QUEUED state. If it's positive, it indicates the job's position in the job scheduler. It's 0 when the job is already scheduled. */
   jobPosition?: string;
+  /** Input parameters to create a training job. */
+  trainingInput?: GoogleCloudMlV1__TrainingInput;
+  /** Output only. The detailed state of a job. */
+  state?: GoogleCloudMlV1__JobStateEnum | (string & {});
+  /** Output only. When the job was created. */
+  createTime?: string;
   /** Required. The user-specified id of the job. */
   jobId?: string;
+  /** Output only. When the job processing was completed. */
+  endTime?: string;
+  /** Output only. The details of a failure or a cancellation. */
+  errorMessage?: string;
+  /** `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a job from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform job updates in order to avoid race conditions: An `etag` is returned in the response to `GetJob`, and systems are expected to put that etag in the request to `UpdateJob` to ensure that their change will be applied to the same version of the job. */
+  etag?: string;
+  /** Output only. When the job processing was started. */
+  startTime?: string;
+  /** The current training job result. */
+  trainingOutput?: GoogleCloudMlV1__TrainingOutput;
+  /** Optional. One or more labels that you can add, to organize your jobs. Each label is a key-value pair, where both the key and the value are arbitrary strings that you supply. For more information, see the documentation on using labels. */
+  labels?: StringMap;
 }
 export const GoogleCloudMlV1__Job = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    endTime: S.optional(S.String),
-    startTime: S.optional(S.String),
-    trainingInput: S.optional(GoogleCloudMlV1__TrainingInput),
-    state: S.optional(GoogleCloudMlV1__JobStateEnum),
-    errorMessage: S.optional(S.String),
-    etag: S.optional(S.String),
     predictionInput: S.optional(GoogleCloudMlV1__PredictionInput),
-    createTime: S.optional(S.String),
-    trainingOutput: S.optional(GoogleCloudMlV1__TrainingOutput),
-    labels: S.optional(StringMap),
     predictionOutput: S.optional(GoogleCloudMlV1__PredictionOutput),
     jobPosition: S.optional(S.String),
+    trainingInput: S.optional(GoogleCloudMlV1__TrainingInput),
+    state: S.optional(GoogleCloudMlV1__JobStateEnum),
+    createTime: S.optional(S.String),
     jobId: S.optional(S.String),
+    endTime: S.optional(S.String),
+    errorMessage: S.optional(S.String),
+    etag: S.optional(S.String),
+    startTime: S.optional(S.String),
+    trainingOutput: S.optional(GoogleCloudMlV1__TrainingOutput),
+    labels: S.optional(StringMap),
   }),
 ).annotate({
   identifier: "GoogleCloudMlV1__Job",
@@ -1072,25 +1072,30 @@ export const CreateProjectsJobsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "CreateProjectsJobsRequest",
 }) as any as S.Schema<CreateProjectsJobsRequest>;
 
-export type GoogleCloudMlV1__StudyStateEnum =
-  | "STATE_UNSPECIFIED"
-  | "ACTIVE"
-  | "INACTIVE"
-  | "COMPLETED";
-export const GoogleCloudMlV1__StudyStateEnum = /*@__PURE__*/ S.String;
+export type GoogleCloudMlV1_StudyConfig_ParameterSpecTypeEnum =
+  | "PARAMETER_TYPE_UNSPECIFIED"
+  | "DOUBLE"
+  | "INTEGER"
+  | "CATEGORICAL"
+  | "DISCRETE";
+export const GoogleCloudMlV1_StudyConfig_ParameterSpecTypeEnum =
+  /*@__PURE__*/ S.String;
 
-export interface GoogleCloudMlV1_StudyConfigParameterSpec_DiscreteValueSpec {
-  /** Must be specified if type is `DISCRETE`. A list of feasible points. The list should be in strictly increasing order. For instance, this parameter might have possible settings of 1.5, 2.5, and 4.0. This list should not contain more than 1,000 values. */
-  values?: DoubleList;
+export interface GoogleCloudMlV1_StudyConfigParameterSpec_IntegerValueSpec {
+  /** Must be specified if type is `INTEGER`. Maximum value of the parameter. */
+  maxValue?: string;
+  /** Must be specified if type is `INTEGER`. Minimum value of the parameter. */
+  minValue?: string;
 }
-export const GoogleCloudMlV1_StudyConfigParameterSpec_DiscreteValueSpec =
+export const GoogleCloudMlV1_StudyConfigParameterSpec_IntegerValueSpec =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      values: S.optional(DoubleList),
+      maxValue: S.optional(S.String),
+      minValue: S.optional(S.String),
     }),
   ).annotate({
-    identifier: "GoogleCloudMlV1_StudyConfigParameterSpec_DiscreteValueSpec",
-  }) as any as S.Schema<GoogleCloudMlV1_StudyConfigParameterSpec_DiscreteValueSpec>;
+    identifier: "GoogleCloudMlV1_StudyConfigParameterSpec_IntegerValueSpec",
+  }) as any as S.Schema<GoogleCloudMlV1_StudyConfigParameterSpec_IntegerValueSpec>;
 
 /** Represents the spec to match discrete values from parent parameter. */
 export interface GoogleCloudMlV1_StudyConfigParameterSpec_MatchingParentDiscreteValueSpec {
@@ -1107,14 +1112,46 @@ export const GoogleCloudMlV1_StudyConfigParameterSpec_MatchingParentDiscreteValu
       "GoogleCloudMlV1_StudyConfigParameterSpec_MatchingParentDiscreteValueSpec",
   }) as any as S.Schema<GoogleCloudMlV1_StudyConfigParameterSpec_MatchingParentDiscreteValueSpec>;
 
-export type GoogleCloudMlV1_StudyConfig_ParameterSpecTypeEnum =
-  | "PARAMETER_TYPE_UNSPECIFIED"
-  | "DOUBLE"
-  | "INTEGER"
-  | "CATEGORICAL"
-  | "DISCRETE";
-export const GoogleCloudMlV1_StudyConfig_ParameterSpecTypeEnum =
-  /*@__PURE__*/ S.String;
+export interface GoogleCloudMlV1_StudyConfigParameterSpec_CategoricalValueSpec {
+  /** Must be specified if type is `CATEGORICAL`. The list of possible categories. */
+  values?: StringList;
+}
+export const GoogleCloudMlV1_StudyConfigParameterSpec_CategoricalValueSpec =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      values: S.optional(StringList),
+    }),
+  ).annotate({
+    identifier: "GoogleCloudMlV1_StudyConfigParameterSpec_CategoricalValueSpec",
+  }) as any as S.Schema<GoogleCloudMlV1_StudyConfigParameterSpec_CategoricalValueSpec>;
+
+/** Represents the spec to match categorical values from parent parameter. */
+export interface GoogleCloudMlV1_StudyConfigParameterSpec_MatchingParentCategoricalValueSpec {
+  /** Matches values of the parent parameter with type 'CATEGORICAL'. All values must exist in `categorical_value_spec` of parent parameter. */
+  values?: StringList;
+}
+export const GoogleCloudMlV1_StudyConfigParameterSpec_MatchingParentCategoricalValueSpec =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      values: S.optional(StringList),
+    }),
+  ).annotate({
+    identifier:
+      "GoogleCloudMlV1_StudyConfigParameterSpec_MatchingParentCategoricalValueSpec",
+  }) as any as S.Schema<GoogleCloudMlV1_StudyConfigParameterSpec_MatchingParentCategoricalValueSpec>;
+
+export interface GoogleCloudMlV1_StudyConfigParameterSpec_DiscreteValueSpec {
+  /** Must be specified if type is `DISCRETE`. A list of feasible points. The list should be in strictly increasing order. For instance, this parameter might have possible settings of 1.5, 2.5, and 4.0. This list should not contain more than 1,000 values. */
+  values?: DoubleList;
+}
+export const GoogleCloudMlV1_StudyConfigParameterSpec_DiscreteValueSpec =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      values: S.optional(DoubleList),
+    }),
+  ).annotate({
+    identifier: "GoogleCloudMlV1_StudyConfigParameterSpec_DiscreteValueSpec",
+  }) as any as S.Schema<GoogleCloudMlV1_StudyConfigParameterSpec_DiscreteValueSpec>;
 
 export type GoogleCloudMlV1_StudyConfig_ParameterSpecScaleTypeEnum =
   | "SCALE_TYPE_UNSPECIFIED"
@@ -1140,76 +1177,37 @@ export const GoogleCloudMlV1_StudyConfigParameterSpec_MatchingParentIntValueSpec
   }) as any as S.Schema<GoogleCloudMlV1_StudyConfigParameterSpec_MatchingParentIntValueSpec>;
 
 export interface GoogleCloudMlV1_StudyConfigParameterSpec_DoubleValueSpec {
-  /** Must be specified if type is `DOUBLE`. Maximum value of the parameter. */
-  maxValue?: number;
   /** Must be specified if type is `DOUBLE`. Minimum value of the parameter. */
   minValue?: number;
+  /** Must be specified if type is `DOUBLE`. Maximum value of the parameter. */
+  maxValue?: number;
 }
 export const GoogleCloudMlV1_StudyConfigParameterSpec_DoubleValueSpec =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      maxValue: S.optional(S.Number),
       minValue: S.optional(S.Number),
+      maxValue: S.optional(S.Number),
     }),
   ).annotate({
     identifier: "GoogleCloudMlV1_StudyConfigParameterSpec_DoubleValueSpec",
   }) as any as S.Schema<GoogleCloudMlV1_StudyConfigParameterSpec_DoubleValueSpec>;
 
-/** Represents the spec to match categorical values from parent parameter. */
-export interface GoogleCloudMlV1_StudyConfigParameterSpec_MatchingParentCategoricalValueSpec {
-  /** Matches values of the parent parameter with type 'CATEGORICAL'. All values must exist in `categorical_value_spec` of parent parameter. */
-  values?: StringList;
-}
-export const GoogleCloudMlV1_StudyConfigParameterSpec_MatchingParentCategoricalValueSpec =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      values: S.optional(StringList),
-    }),
-  ).annotate({
-    identifier:
-      "GoogleCloudMlV1_StudyConfigParameterSpec_MatchingParentCategoricalValueSpec",
-  }) as any as S.Schema<GoogleCloudMlV1_StudyConfigParameterSpec_MatchingParentCategoricalValueSpec>;
-
-export interface GoogleCloudMlV1_StudyConfigParameterSpec_CategoricalValueSpec {
-  /** Must be specified if type is `CATEGORICAL`. The list of possible categories. */
-  values?: StringList;
-}
-export const GoogleCloudMlV1_StudyConfigParameterSpec_CategoricalValueSpec =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      values: S.optional(StringList),
-    }),
-  ).annotate({
-    identifier: "GoogleCloudMlV1_StudyConfigParameterSpec_CategoricalValueSpec",
-  }) as any as S.Schema<GoogleCloudMlV1_StudyConfigParameterSpec_CategoricalValueSpec>;
-
-export interface GoogleCloudMlV1_StudyConfigParameterSpec_IntegerValueSpec {
-  /** Must be specified if type is `INTEGER`. Minimum value of the parameter. */
-  minValue?: string;
-  /** Must be specified if type is `INTEGER`. Maximum value of the parameter. */
-  maxValue?: string;
-}
-export const GoogleCloudMlV1_StudyConfigParameterSpec_IntegerValueSpec =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      minValue: S.optional(S.String),
-      maxValue: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "GoogleCloudMlV1_StudyConfigParameterSpec_IntegerValueSpec",
-  }) as any as S.Schema<GoogleCloudMlV1_StudyConfigParameterSpec_IntegerValueSpec>;
-
 /** Represents a single parameter to optimize. */
 export interface GoogleCloudMlV1_StudyConfig_ParameterSpec {
-  /** The value spec for a 'DISCRETE' parameter. */
-  discreteValueSpec?: GoogleCloudMlV1_StudyConfigParameterSpec_DiscreteValueSpec;
+  /** Required. The type of the parameter. */
+  type?: GoogleCloudMlV1_StudyConfig_ParameterSpecTypeEnum | (string & {});
+  /** The value spec for an 'INTEGER' parameter. */
+  integerValueSpec?: GoogleCloudMlV1_StudyConfigParameterSpec_IntegerValueSpec;
+  /** Required. The parameter name must be unique amongst all ParameterSpecs. */
+  parameter?: string;
   parentDiscreteValues?: GoogleCloudMlV1_StudyConfigParameterSpec_MatchingParentDiscreteValueSpec;
   /** A child node is active if the parameter's value matches the child node's matching_parent_values. If two items in child_parameter_specs have the same name, they must have disjoint matching_parent_values. */
   childParameterSpecs?: GoogleCloudMlV1_StudyConfig_ParameterSpecList;
-  /** Required. The parameter name must be unique amongst all ParameterSpecs. */
-  parameter?: string;
-  /** Required. The type of the parameter. */
-  type?: GoogleCloudMlV1_StudyConfig_ParameterSpecTypeEnum | (string & {});
+  /** The value spec for a 'CATEGORICAL' parameter. */
+  categoricalValueSpec?: GoogleCloudMlV1_StudyConfigParameterSpec_CategoricalValueSpec;
+  parentCategoricalValues?: GoogleCloudMlV1_StudyConfigParameterSpec_MatchingParentCategoricalValueSpec;
+  /** The value spec for a 'DISCRETE' parameter. */
+  discreteValueSpec?: GoogleCloudMlV1_StudyConfigParameterSpec_DiscreteValueSpec;
   /** How the parameter should be scaled. Leave unset for categorical parameters. */
   scaleType?:
     | GoogleCloudMlV1_StudyConfig_ParameterSpecScaleTypeEnum
@@ -1217,26 +1215,30 @@ export interface GoogleCloudMlV1_StudyConfig_ParameterSpec {
   parentIntValues?: GoogleCloudMlV1_StudyConfigParameterSpec_MatchingParentIntValueSpec;
   /** The value spec for a 'DOUBLE' parameter. */
   doubleValueSpec?: GoogleCloudMlV1_StudyConfigParameterSpec_DoubleValueSpec;
-  parentCategoricalValues?: GoogleCloudMlV1_StudyConfigParameterSpec_MatchingParentCategoricalValueSpec;
-  /** The value spec for a 'CATEGORICAL' parameter. */
-  categoricalValueSpec?: GoogleCloudMlV1_StudyConfigParameterSpec_CategoricalValueSpec;
-  /** The value spec for an 'INTEGER' parameter. */
-  integerValueSpec?: GoogleCloudMlV1_StudyConfigParameterSpec_IntegerValueSpec;
 }
 export const GoogleCloudMlV1_StudyConfig_ParameterSpec =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      discreteValueSpec: S.optional(
-        GoogleCloudMlV1_StudyConfigParameterSpec_DiscreteValueSpec,
+      type: S.optional(GoogleCloudMlV1_StudyConfig_ParameterSpecTypeEnum),
+      integerValueSpec: S.optional(
+        GoogleCloudMlV1_StudyConfigParameterSpec_IntegerValueSpec,
       ),
+      parameter: S.optional(S.String),
       parentDiscreteValues: S.optional(
         GoogleCloudMlV1_StudyConfigParameterSpec_MatchingParentDiscreteValueSpec,
       ),
       childParameterSpecs: S.optional(
         S.suspend(() => GoogleCloudMlV1_StudyConfig_ParameterSpecList),
       ),
-      parameter: S.optional(S.String),
-      type: S.optional(GoogleCloudMlV1_StudyConfig_ParameterSpecTypeEnum),
+      categoricalValueSpec: S.optional(
+        GoogleCloudMlV1_StudyConfigParameterSpec_CategoricalValueSpec,
+      ),
+      parentCategoricalValues: S.optional(
+        GoogleCloudMlV1_StudyConfigParameterSpec_MatchingParentCategoricalValueSpec,
+      ),
+      discreteValueSpec: S.optional(
+        GoogleCloudMlV1_StudyConfigParameterSpec_DiscreteValueSpec,
+      ),
       scaleType: S.optional(
         GoogleCloudMlV1_StudyConfig_ParameterSpecScaleTypeEnum,
       ),
@@ -1245,15 +1247,6 @@ export const GoogleCloudMlV1_StudyConfig_ParameterSpec =
       ),
       doubleValueSpec: S.optional(
         GoogleCloudMlV1_StudyConfigParameterSpec_DoubleValueSpec,
-      ),
-      parentCategoricalValues: S.optional(
-        GoogleCloudMlV1_StudyConfigParameterSpec_MatchingParentCategoricalValueSpec,
-      ),
-      categoricalValueSpec: S.optional(
-        GoogleCloudMlV1_StudyConfigParameterSpec_CategoricalValueSpec,
-      ),
-      integerValueSpec: S.optional(
-        GoogleCloudMlV1_StudyConfigParameterSpec_IntegerValueSpec,
       ),
     }),
   ).annotate({
@@ -1266,6 +1259,20 @@ export const GoogleCloudMlV1_StudyConfig_ParameterSpecList =
   /*@__PURE__*/ S.Array(
     GoogleCloudMlV1_StudyConfig_ParameterSpec,
   ) as any as S.Schema<GoogleCloudMlV1_StudyConfig_ParameterSpecList>;
+
+export interface GoogleCloudMlV1_AutomatedStoppingConfig_DecayCurveAutomatedStoppingConfig {
+  /** If true, measurement.elapsed_time is used as the x-axis of each Trials Decay Curve. Otherwise, Measurement.steps will be used as the x-axis. */
+  useElapsedTime?: boolean;
+}
+export const GoogleCloudMlV1_AutomatedStoppingConfig_DecayCurveAutomatedStoppingConfig =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      useElapsedTime: S.optional(S.Boolean),
+    }),
+  ).annotate({
+    identifier:
+      "GoogleCloudMlV1_AutomatedStoppingConfig_DecayCurveAutomatedStoppingConfig",
+  }) as any as S.Schema<GoogleCloudMlV1_AutomatedStoppingConfig_DecayCurveAutomatedStoppingConfig>;
 
 /** The median automated stopping rule stops a pending trial if the trial's best objective_value is strictly below the median 'performance' of all completed trials reported up to the trial's last measurement. Currently, 'performance' refers to the running average of the objective values reported by the trial in each measurement. */
 export interface GoogleCloudMlV1_AutomatedStoppingConfig_MedianAutomatedStoppingConfig {
@@ -1282,33 +1289,19 @@ export const GoogleCloudMlV1_AutomatedStoppingConfig_MedianAutomatedStoppingConf
       "GoogleCloudMlV1_AutomatedStoppingConfig_MedianAutomatedStoppingConfig",
   }) as any as S.Schema<GoogleCloudMlV1_AutomatedStoppingConfig_MedianAutomatedStoppingConfig>;
 
-export interface GoogleCloudMlV1_AutomatedStoppingConfig_DecayCurveAutomatedStoppingConfig {
-  /** If true, measurement.elapsed_time is used as the x-axis of each Trials Decay Curve. Otherwise, Measurement.steps will be used as the x-axis. */
-  useElapsedTime?: boolean;
-}
-export const GoogleCloudMlV1_AutomatedStoppingConfig_DecayCurveAutomatedStoppingConfig =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      useElapsedTime: S.optional(S.Boolean),
-    }),
-  ).annotate({
-    identifier:
-      "GoogleCloudMlV1_AutomatedStoppingConfig_DecayCurveAutomatedStoppingConfig",
-  }) as any as S.Schema<GoogleCloudMlV1_AutomatedStoppingConfig_DecayCurveAutomatedStoppingConfig>;
-
 /** Configuration for Automated Early Stopping of Trials. If no implementation_config is set, automated early stopping will not be run. */
 export interface GoogleCloudMlV1__AutomatedStoppingConfig {
-  medianAutomatedStoppingConfig?: GoogleCloudMlV1_AutomatedStoppingConfig_MedianAutomatedStoppingConfig;
   decayCurveStoppingConfig?: GoogleCloudMlV1_AutomatedStoppingConfig_DecayCurveAutomatedStoppingConfig;
+  medianAutomatedStoppingConfig?: GoogleCloudMlV1_AutomatedStoppingConfig_MedianAutomatedStoppingConfig;
 }
 export const GoogleCloudMlV1__AutomatedStoppingConfig = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      medianAutomatedStoppingConfig: S.optional(
-        GoogleCloudMlV1_AutomatedStoppingConfig_MedianAutomatedStoppingConfig,
-      ),
       decayCurveStoppingConfig: S.optional(
         GoogleCloudMlV1_AutomatedStoppingConfig_DecayCurveAutomatedStoppingConfig,
+      ),
+      medianAutomatedStoppingConfig: S.optional(
+        GoogleCloudMlV1_AutomatedStoppingConfig_MedianAutomatedStoppingConfig,
       ),
     }),
 ).annotate({
@@ -1376,26 +1369,33 @@ export const GoogleCloudMlV1__StudyConfig = /*@__PURE__*/ S.suspend(() =>
   identifier: "GoogleCloudMlV1__StudyConfig",
 }) as any as S.Schema<GoogleCloudMlV1__StudyConfig>;
 
+export type GoogleCloudMlV1__StudyStateEnum =
+  | "STATE_UNSPECIFIED"
+  | "ACTIVE"
+  | "INACTIVE"
+  | "COMPLETED";
+export const GoogleCloudMlV1__StudyStateEnum = /*@__PURE__*/ S.String;
+
 /** A message representing a Study. */
 export interface GoogleCloudMlV1__Study {
+  /** Output only. The name of a study. */
+  name?: string;
+  /** Required. Configuration of the study. */
+  studyConfig?: GoogleCloudMlV1__StudyConfig;
   /** Output only. Time at which the study was created. */
   createTime?: string;
   /** Output only. The detailed state of a study. */
   state?: GoogleCloudMlV1__StudyStateEnum | (string & {});
   /** Output only. A human readable reason why the Study is inactive. This should be empty if a study is ACTIVE or COMPLETED. */
   inactiveReason?: string;
-  /** Output only. The name of a study. */
-  name?: string;
-  /** Required. Configuration of the study. */
-  studyConfig?: GoogleCloudMlV1__StudyConfig;
 }
 export const GoogleCloudMlV1__Study = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    name: S.optional(S.String),
+    studyConfig: S.optional(GoogleCloudMlV1__StudyConfig),
     createTime: S.optional(S.String),
     state: S.optional(GoogleCloudMlV1__StudyStateEnum),
     inactiveReason: S.optional(S.String),
-    name: S.optional(S.String),
-    studyConfig: S.optional(GoogleCloudMlV1__StudyConfig),
   }),
 ).annotate({
   identifier: "GoogleCloudMlV1__Study",
@@ -1448,149 +1448,6 @@ export const CreateProjectsLocationsStudiesTrialsRequest =
     identifier: "CreateProjectsLocationsStudiesTrialsRequest",
   }) as any as S.Schema<CreateProjectsLocationsStudiesTrialsRequest>;
 
-/** Configuration for logging request-response pairs to a BigQuery table. Online prediction requests to a model version and the responses to these requests are converted to raw strings and saved to the specified BigQuery table. Logging is constrained by [BigQuery quotas and limits](/bigquery/quotas). If your project exceeds BigQuery quotas or limits, AI Platform Prediction does not log request-response pairs, but it continues to serve predictions. If you are using [continuous evaluation](/ml-engine/docs/continuous-evaluation/), you do not need to specify this configuration manually. Setting up continuous evaluation automatically enables logging of request-response pairs. */
-export interface GoogleCloudMlV1__RequestLoggingConfig {
-  /** Required. Fully qualified BigQuery table name in the following format: " project_id.dataset_name.table_name" The specified table must already exist, and the "Cloud ML Service Agent" for your project must have permission to write to it. The table must have the following [schema](/bigquery/docs/schemas): Field name Type Mode model STRING REQUIRED model_version STRING REQUIRED time TIMESTAMP REQUIRED raw_data STRING REQUIRED raw_prediction STRING NULLABLE groundtruth STRING NULLABLE */
-  bigqueryTableName?: string;
-  /** Percentage of requests to be logged, expressed as a fraction from 0 to 1. For example, if you want to log 10% of requests, enter `0.1`. The sampling window is the lifetime of the model version. Defaults to 0. */
-  samplingPercentage?: number;
-}
-export const GoogleCloudMlV1__RequestLoggingConfig = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      bigqueryTableName: S.optional(S.String),
-      samplingPercentage: S.optional(S.Number),
-    }),
-).annotate({
-  identifier: "GoogleCloudMlV1__RequestLoggingConfig",
-}) as any as S.Schema<GoogleCloudMlV1__RequestLoggingConfig>;
-
-/** An attribution method that approximates Shapley values for features that contribute to the label being predicted. A sampling strategy is used to approximate the value rather than considering all subsets of features. */
-export interface GoogleCloudMlV1__SampledShapleyAttribution {
-  /** The number of feature permutations to consider when approximating the Shapley values. */
-  numPaths?: number;
-}
-export const GoogleCloudMlV1__SampledShapleyAttribution =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      numPaths: S.optional(S.Number),
-    }),
-  ).annotate({
-    identifier: "GoogleCloudMlV1__SampledShapleyAttribution",
-  }) as any as S.Schema<GoogleCloudMlV1__SampledShapleyAttribution>;
-
-/** Attributes credit by computing the XRAI taking advantage of the model's fully differentiable structure. Refer to this paper for more details: https://arxiv.org/abs/1906.02825 Currently only implemented for models with natural image inputs. */
-export interface GoogleCloudMlV1__XraiAttribution {
-  /** Number of steps for approximating the path integral. A good value to start is 50 and gradually increase until the sum to diff property is met within the desired error range. */
-  numIntegralSteps?: number;
-}
-export const GoogleCloudMlV1__XraiAttribution = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    numIntegralSteps: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "GoogleCloudMlV1__XraiAttribution",
-}) as any as S.Schema<GoogleCloudMlV1__XraiAttribution>;
-
-/** Attributes credit by computing the Aumann-Shapley value taking advantage of the model's fully differentiable structure. Refer to this paper for more details: https://arxiv.org/abs/1703.01365 */
-export type GoogleCloudMlV1__IntegratedGradientsAttribution =
-  GoogleCloudMlV1__XraiAttribution;
-export const GoogleCloudMlV1__IntegratedGradientsAttribution =
-  GoogleCloudMlV1__XraiAttribution;
-
-/** Message holding configuration options for explaining model predictions. There are three feature attribution methods supported for TensorFlow models: integrated gradients, sampled Shapley, and XRAI. [Learn more about feature attributions.](/ai-platform/prediction/docs/ai-explanations/overview) */
-export interface GoogleCloudMlV1__ExplanationConfig {
-  /** An attribution method that approximates Shapley values for features that contribute to the label being predicted. A sampling strategy is used to approximate the value rather than considering all subsets of features. */
-  sampledShapleyAttribution?: GoogleCloudMlV1__SampledShapleyAttribution;
-  /** Attributes credit by computing the XRAI taking advantage of the model's fully differentiable structure. Refer to this paper for more details: https://arxiv.org/abs/1906.02825 Currently only implemented for models with natural image inputs. */
-  xraiAttribution?: GoogleCloudMlV1__XraiAttribution;
-  /** Attributes credit by computing the Aumann-Shapley value taking advantage of the model's fully differentiable structure. Refer to this paper for more details: https://arxiv.org/abs/1703.01365 */
-  integratedGradientsAttribution?: GoogleCloudMlV1__XraiAttribution;
-}
-export const GoogleCloudMlV1__ExplanationConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    sampledShapleyAttribution: S.optional(
-      GoogleCloudMlV1__SampledShapleyAttribution,
-    ),
-    xraiAttribution: S.optional(GoogleCloudMlV1__XraiAttribution),
-    integratedGradientsAttribution: S.optional(
-      GoogleCloudMlV1__XraiAttribution,
-    ),
-  }),
-).annotate({
-  identifier: "GoogleCloudMlV1__ExplanationConfig",
-}) as any as S.Schema<GoogleCloudMlV1__ExplanationConfig>;
-
-export type GoogleCloudMlV1__MetricSpecNameEnum =
-  | "METRIC_NAME_UNSPECIFIED"
-  | "CPU_USAGE"
-  | "GPU_DUTY_CYCLE";
-export const GoogleCloudMlV1__MetricSpecNameEnum = /*@__PURE__*/ S.String;
-
-/** MetricSpec contains the specifications to use to calculate the desired nodes count when autoscaling is enabled. */
-export interface GoogleCloudMlV1__MetricSpec {
-  /** metric name. */
-  name?: GoogleCloudMlV1__MetricSpecNameEnum | (string & {});
-  /** Target specifies the target value for the given metric; once real metric deviates from the threshold by a certain percentage, the node count changes. */
-  target?: number;
-}
-export const GoogleCloudMlV1__MetricSpec = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(GoogleCloudMlV1__MetricSpecNameEnum),
-    target: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "GoogleCloudMlV1__MetricSpec",
-}) as any as S.Schema<GoogleCloudMlV1__MetricSpec>;
-
-export type GoogleCloudMlV1__MetricSpecList =
-  Array<GoogleCloudMlV1__MetricSpec>;
-export const GoogleCloudMlV1__MetricSpecList = /*@__PURE__*/ S.Array(
-  GoogleCloudMlV1__MetricSpec,
-) as any as S.Schema<GoogleCloudMlV1__MetricSpecList>;
-
-/** Options for automatically scaling a model. */
-export interface GoogleCloudMlV1__AutoScaling {
-  /** Optional. The minimum number of nodes to allocate for this model. These nodes are always up, starting from the time the model is deployed. Therefore, the cost of operating this model will be at least `rate` * `min_nodes` * number of hours since last billing cycle, where `rate` is the cost per node-hour as documented in the [pricing guide](/ml-engine/docs/pricing), even if no predictions are performed. There is additional cost for each prediction performed. Unlike manual scaling, if the load gets too heavy for the nodes that are up, the service will automatically add nodes to handle the increased load as well as scale back as traffic drops, always maintaining at least `min_nodes`. You will be charged for the time in which additional nodes are used. If `min_nodes` is not specified and AutoScaling is used with a [legacy (MLS1) machine type](/ml-engine/docs/machine-types-online-prediction), `min_nodes` defaults to 0, in which case, when traffic to a model stops (and after a cool-down period), nodes will be shut down and no charges will be incurred until traffic to the model resumes. If `min_nodes` is not specified and AutoScaling is used with a [Compute Engine (N1) machine type](/ml-engine/docs/machine-types-online-prediction), `min_nodes` defaults to 1. `min_nodes` must be at least 1 for use with a Compute Engine machine type. You can set `min_nodes` when creating the model version, and you can also update `min_nodes` for an existing version: update_body.json: { 'autoScaling': { 'minNodes': 5 } } HTTP request: PATCH https://ml.googleapis.com/v1/{name=projects/*\/models/*\/versions/*}?update_mask=autoScaling.minNodes -d @./update_body.json */
-  minNodes?: number;
-  /** The maximum number of nodes to scale this model under load. The actual value will depend on resource quota and availability. */
-  maxNodes?: number;
-  /** MetricSpec contains the specifications to use to calculate the desired nodes count. */
-  metrics?: GoogleCloudMlV1__MetricSpecList;
-}
-export const GoogleCloudMlV1__AutoScaling = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    minNodes: S.optional(S.Number),
-    maxNodes: S.optional(S.Number),
-    metrics: S.optional(GoogleCloudMlV1__MetricSpecList),
-  }),
-).annotate({
-  identifier: "GoogleCloudMlV1__AutoScaling",
-}) as any as S.Schema<GoogleCloudMlV1__AutoScaling>;
-
-/** Specifies HTTP paths served by a custom container. AI Platform Prediction sends requests to these paths on the container; the custom container must run an HTTP server that responds to these requests with appropriate responses. Read [Custom container requirements](/ai-platform/prediction/docs/custom-container-requirements) for details on how to create your container image to meet these requirements. */
-export interface GoogleCloudMlV1__RouteMap {
-  /** HTTP path on the container to send health checkss to. AI Platform Prediction intermittently sends GET requests to this path on the container's IP address and port to check that the container is healthy. Read more about [health checks](/ai-platform/prediction/docs/custom-container-requirements#checks). For example, if you set this field to `/bar`, then AI Platform Prediction intermittently sends a GET request to the `/bar` path on the port of your container specified by the first value of Version.container.ports. If you don't specify this field, it defaults to the following value: /v1/models/ MODEL/versions/VERSION The placeholders in this value are replaced as follows: * MODEL: The name of the parent Model. This does not include the "projects/PROJECT_ID/models/" prefix that the API returns in output; it is the bare model name, as provided to projects.models.create. * VERSION: The name of the model version. This does not include the "projects/PROJECT_ID /models/MODEL/versions/" prefix that the API returns in output; it is the bare version name, as provided to projects.models.versions.create. */
-  health?: string;
-  /** HTTP path on the container to send prediction requests to. AI Platform Prediction forwards requests sent using projects.predict to this path on the container's IP address and port. AI Platform Prediction then returns the container's response in the API response. For example, if you set this field to `/foo`, then when AI Platform Prediction receives a prediction request, it forwards the request body in a POST request to the `/foo` path on the port of your container specified by the first value of Version.container.ports. If you don't specify this field, it defaults to the following value: /v1/models/MODEL/versions/VERSION:predict The placeholders in this value are replaced as follows: * MODEL: The name of the parent Model. This does not include the "projects/PROJECT_ID/models/" prefix that the API returns in output; it is the bare model name, as provided to projects.models.create. * VERSION: The name of the model version. This does not include the "projects/PROJECT_ID/models/MODEL/versions/" prefix that the API returns in output; it is the bare version name, as provided to projects.models.versions.create. */
-  predict?: string;
-}
-export const GoogleCloudMlV1__RouteMap = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    health: S.optional(S.String),
-    predict: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "GoogleCloudMlV1__RouteMap",
-}) as any as S.Schema<GoogleCloudMlV1__RouteMap>;
-
-export type GoogleCloudMlV1__VersionFrameworkEnum =
-  | "FRAMEWORK_UNSPECIFIED"
-  | "TENSORFLOW"
-  | "SCIKIT_LEARN"
-  | "XGBOOST";
-export const GoogleCloudMlV1__VersionFrameworkEnum = /*@__PURE__*/ S.String;
-
 /** Represents an environment variable to be made available in a container. This message is a subset of the [Kubernetes EnvVar v1 core specification](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#envvar-v1-core). */
 export interface GoogleCloudMlV1__EnvVar {
   /** Name of the environment variable. Must be a [valid C identifier](https://github.com/kubernetes/kubernetes/blob/v1.18.8/staging/src/k8s.io/apimachinery/pkg/util/validation/validation.go#L258) and must not begin with the prefix `AIP_`. */
@@ -1633,37 +1490,147 @@ export const GoogleCloudMlV1__ContainerPortList = /*@__PURE__*/ S.Array(
 
 /** Specification of a custom container for serving predictions. This message is a subset of the [Kubernetes Container v1 core specification](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#container-v1-core). */
 export interface GoogleCloudMlV1__ContainerSpec {
-  /** Immutable. List of environment variables to set in the container. After the container starts running, code running in the container can read these environment variables. Additionally, the command and args fields can reference these variables. Later entries in this list can also reference earlier entries. For example, the following example sets the variable `VAR_2` to have the value `foo bar`: ```json [ { "name": "VAR_1", "value": "foo" }, { "name": "VAR_2", "value": "$(VAR_1) bar" } ] ``` If you switch the order of the variables in the example, then the expansion does not occur. This field corresponds to the `env` field of the [Kubernetes Containers v1 core API](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#container-v1-core). */
-  env?: GoogleCloudMlV1__EnvVarList;
-  /** Immutable. Specifies arguments for the command that runs when the container starts. This overrides the container's [`CMD`](https://docs.docker.com/engine/reference/builder/#cmd). Specify this field as an array of executable and arguments, similar to a Docker `CMD`'s "default parameters" form. If you don't specify this field but do specify the command field, then the command from the `command` field runs without any additional arguments. See the [Kubernetes documentation about how the `command` and `args` fields interact with a container's `ENTRYPOINT` and `CMD`](https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#notes). If you don't specify this field and don't specify the `commmand` field, then the container's [`ENTRYPOINT`](https://docs.docker.com/engine/reference/builder/#cmd) and `CMD` determine what runs based on their default behavior. See the [Docker documentation about how `CMD` and `ENTRYPOINT` interact](https://docs.docker.com/engine/reference/builder/#understand-how-cmd-and-entrypoint-interact). In this field, you can reference [environment variables set by AI Platform Prediction](/ai-platform/prediction/docs/custom-container-requirements#aip-variables) and environment variables set in the env field. You cannot reference environment variables set in the Docker image. In order for environment variables to be expanded, reference them by using the following syntax: $( VARIABLE_NAME) Note that this differs from Bash variable expansion, which does not use parentheses. If a variable cannot be resolved, the reference in the input string is used unchanged. To avoid variable expansion, you can escape this syntax with `$$`; for example: $$(VARIABLE_NAME) This field corresponds to the `args` field of the [Kubernetes Containers v1 core API](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#container-v1-core). */
-  args?: StringList;
-  /** Immutable. List of ports to expose from the container. AI Platform Prediction sends any prediction requests that it receives to the first port on this list. AI Platform Prediction also sends [liveness and health checks](/ai-platform/prediction/docs/custom-container-requirements#health) to this port. If you do not specify this field, it defaults to following value: ```json [ { "containerPort": 8080 } ] ``` AI Platform Prediction does not use ports other than the first one listed. This field corresponds to the `ports` field of the [Kubernetes Containers v1 core API](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#container-v1-core). */
-  ports?: GoogleCloudMlV1__ContainerPortList;
-  /** Immutable. Specifies the command that runs when the container starts. This overrides the container's [`ENTRYPOINT`](https://docs.docker.com/engine/reference/builder/#entrypoint). Specify this field as an array of executable and arguments, similar to a Docker `ENTRYPOINT`'s "exec" form, not its "shell" form. If you do not specify this field, then the container's `ENTRYPOINT` runs, in conjunction with the args field or the container's [`CMD`](https://docs.docker.com/engine/reference/builder/#cmd), if either exists. If this field is not specified and the container does not have an `ENTRYPOINT`, then refer to the [Docker documentation about how `CMD` and `ENTRYPOINT` interact](https://docs.docker.com/engine/reference/builder/#understand-how-cmd-and-entrypoint-interact). If you specify this field, then you can also specify the `args` field to provide additional arguments for this command. However, if you specify this field, then the container's `CMD` is ignored. See the [Kubernetes documentation about how the `command` and `args` fields interact with a container's `ENTRYPOINT` and `CMD`](https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#notes). In this field, you can reference [environment variables set by AI Platform Prediction](/ai-platform/prediction/docs/custom-container-requirements#aip-variables) and environment variables set in the env field. You cannot reference environment variables set in the Docker image. In order for environment variables to be expanded, reference them by using the following syntax: $( VARIABLE_NAME) Note that this differs from Bash variable expansion, which does not use parentheses. If a variable cannot be resolved, the reference in the input string is used unchanged. To avoid variable expansion, you can escape this syntax with `$$`; for example: $$(VARIABLE_NAME) This field corresponds to the `command` field of the [Kubernetes Containers v1 core API](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#container-v1-core). */
-  command?: StringList;
   /** URI of the Docker image to be used as the custom container for serving predictions. This URI must identify [an image in Artifact Registry](/artifact-registry/docs/overview) and begin with the hostname `{REGION}-docker.pkg.dev`, where `{REGION}` is replaced by the region that matches AI Platform Prediction [regional endpoint](/ai-platform/prediction/docs/regional-endpoints) that you are using. For example, if you are using the `us-central1-ml.googleapis.com` endpoint, then this URI must begin with `us-central1-docker.pkg.dev`. To use a custom container, the [AI Platform Google-managed service account](/ai-platform/prediction/docs/custom-service-account#default) must have permission to pull (read) the Docker image at this URI. The AI Platform Google-managed service account has the following format: `service-{PROJECT_NUMBER}@cloud-ml.google.com.iam.gserviceaccount.com` {PROJECT_NUMBER} is replaced by your Google Cloud project number. By default, this service account has necessary permissions to pull an Artifact Registry image in the same Google Cloud project where you are using AI Platform Prediction. In this case, no configuration is necessary. If you want to use an image from a different Google Cloud project, learn how to [grant the Artifact Registry Reader (roles/artifactregistry.reader) role for a repository](/artifact-registry/docs/access-control#grant-repo) to your projet's AI Platform Google-managed service account. To learn about the requirements for the Docker image itself, read [Custom container requirements](/ai-platform/prediction/docs/custom-container-requirements). */
   image?: string;
+  /** Immutable. Specifies the command that runs when the container starts. This overrides the container's [`ENTRYPOINT`](https://docs.docker.com/engine/reference/builder/#entrypoint). Specify this field as an array of executable and arguments, similar to a Docker `ENTRYPOINT`'s "exec" form, not its "shell" form. If you do not specify this field, then the container's `ENTRYPOINT` runs, in conjunction with the args field or the container's [`CMD`](https://docs.docker.com/engine/reference/builder/#cmd), if either exists. If this field is not specified and the container does not have an `ENTRYPOINT`, then refer to the [Docker documentation about how `CMD` and `ENTRYPOINT` interact](https://docs.docker.com/engine/reference/builder/#understand-how-cmd-and-entrypoint-interact). If you specify this field, then you can also specify the `args` field to provide additional arguments for this command. However, if you specify this field, then the container's `CMD` is ignored. See the [Kubernetes documentation about how the `command` and `args` fields interact with a container's `ENTRYPOINT` and `CMD`](https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#notes). In this field, you can reference [environment variables set by AI Platform Prediction](/ai-platform/prediction/docs/custom-container-requirements#aip-variables) and environment variables set in the env field. You cannot reference environment variables set in the Docker image. In order for environment variables to be expanded, reference them by using the following syntax: $( VARIABLE_NAME) Note that this differs from Bash variable expansion, which does not use parentheses. If a variable cannot be resolved, the reference in the input string is used unchanged. To avoid variable expansion, you can escape this syntax with `$$`; for example: $$(VARIABLE_NAME) This field corresponds to the `command` field of the [Kubernetes Containers v1 core API](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#container-v1-core). */
+  command?: StringList;
+  /** Immutable. Specifies arguments for the command that runs when the container starts. This overrides the container's [`CMD`](https://docs.docker.com/engine/reference/builder/#cmd). Specify this field as an array of executable and arguments, similar to a Docker `CMD`'s "default parameters" form. If you don't specify this field but do specify the command field, then the command from the `command` field runs without any additional arguments. See the [Kubernetes documentation about how the `command` and `args` fields interact with a container's `ENTRYPOINT` and `CMD`](https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#notes). If you don't specify this field and don't specify the `commmand` field, then the container's [`ENTRYPOINT`](https://docs.docker.com/engine/reference/builder/#cmd) and `CMD` determine what runs based on their default behavior. See the [Docker documentation about how `CMD` and `ENTRYPOINT` interact](https://docs.docker.com/engine/reference/builder/#understand-how-cmd-and-entrypoint-interact). In this field, you can reference [environment variables set by AI Platform Prediction](/ai-platform/prediction/docs/custom-container-requirements#aip-variables) and environment variables set in the env field. You cannot reference environment variables set in the Docker image. In order for environment variables to be expanded, reference them by using the following syntax: $( VARIABLE_NAME) Note that this differs from Bash variable expansion, which does not use parentheses. If a variable cannot be resolved, the reference in the input string is used unchanged. To avoid variable expansion, you can escape this syntax with `$$`; for example: $$(VARIABLE_NAME) This field corresponds to the `args` field of the [Kubernetes Containers v1 core API](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#container-v1-core). */
+  args?: StringList;
+  /** Immutable. List of environment variables to set in the container. After the container starts running, code running in the container can read these environment variables. Additionally, the command and args fields can reference these variables. Later entries in this list can also reference earlier entries. For example, the following example sets the variable `VAR_2` to have the value `foo bar`: ```json [ { "name": "VAR_1", "value": "foo" }, { "name": "VAR_2", "value": "$(VAR_1) bar" } ] ``` If you switch the order of the variables in the example, then the expansion does not occur. This field corresponds to the `env` field of the [Kubernetes Containers v1 core API](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#container-v1-core). */
+  env?: GoogleCloudMlV1__EnvVarList;
+  /** Immutable. List of ports to expose from the container. AI Platform Prediction sends any prediction requests that it receives to the first port on this list. AI Platform Prediction also sends [liveness and health checks](/ai-platform/prediction/docs/custom-container-requirements#health) to this port. If you do not specify this field, it defaults to following value: ```json [ { "containerPort": 8080 } ] ``` AI Platform Prediction does not use ports other than the first one listed. This field corresponds to the `ports` field of the [Kubernetes Containers v1 core API](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#container-v1-core). */
+  ports?: GoogleCloudMlV1__ContainerPortList;
 }
 export const GoogleCloudMlV1__ContainerSpec = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    env: S.optional(GoogleCloudMlV1__EnvVarList),
-    args: S.optional(StringList),
-    ports: S.optional(GoogleCloudMlV1__ContainerPortList),
-    command: S.optional(StringList),
     image: S.optional(S.String),
+    command: S.optional(StringList),
+    args: S.optional(StringList),
+    env: S.optional(GoogleCloudMlV1__EnvVarList),
+    ports: S.optional(GoogleCloudMlV1__ContainerPortList),
   }),
 ).annotate({
   identifier: "GoogleCloudMlV1__ContainerSpec",
 }) as any as S.Schema<GoogleCloudMlV1__ContainerSpec>;
 
-export type GoogleCloudMlV1__VersionStateEnum =
-  | "UNKNOWN"
-  | "READY"
-  | "CREATING"
-  | "FAILED"
-  | "DELETING"
-  | "UPDATING";
-export const GoogleCloudMlV1__VersionStateEnum = /*@__PURE__*/ S.String;
+export type GoogleCloudMlV1__MetricSpecNameEnum =
+  | "METRIC_NAME_UNSPECIFIED"
+  | "CPU_USAGE"
+  | "GPU_DUTY_CYCLE";
+export const GoogleCloudMlV1__MetricSpecNameEnum = /*@__PURE__*/ S.String;
+
+/** MetricSpec contains the specifications to use to calculate the desired nodes count when autoscaling is enabled. */
+export interface GoogleCloudMlV1__MetricSpec {
+  /** metric name. */
+  name?: GoogleCloudMlV1__MetricSpecNameEnum | (string & {});
+  /** Target specifies the target value for the given metric; once real metric deviates from the threshold by a certain percentage, the node count changes. */
+  target?: number;
+}
+export const GoogleCloudMlV1__MetricSpec = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(GoogleCloudMlV1__MetricSpecNameEnum),
+    target: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "GoogleCloudMlV1__MetricSpec",
+}) as any as S.Schema<GoogleCloudMlV1__MetricSpec>;
+
+export type GoogleCloudMlV1__MetricSpecList =
+  Array<GoogleCloudMlV1__MetricSpec>;
+export const GoogleCloudMlV1__MetricSpecList = /*@__PURE__*/ S.Array(
+  GoogleCloudMlV1__MetricSpec,
+) as any as S.Schema<GoogleCloudMlV1__MetricSpecList>;
+
+/** Options for automatically scaling a model. */
+export interface GoogleCloudMlV1__AutoScaling {
+  /** MetricSpec contains the specifications to use to calculate the desired nodes count. */
+  metrics?: GoogleCloudMlV1__MetricSpecList;
+  /** The maximum number of nodes to scale this model under load. The actual value will depend on resource quota and availability. */
+  maxNodes?: number;
+  /** Optional. The minimum number of nodes to allocate for this model. These nodes are always up, starting from the time the model is deployed. Therefore, the cost of operating this model will be at least `rate` * `min_nodes` * number of hours since last billing cycle, where `rate` is the cost per node-hour as documented in the [pricing guide](/ml-engine/docs/pricing), even if no predictions are performed. There is additional cost for each prediction performed. Unlike manual scaling, if the load gets too heavy for the nodes that are up, the service will automatically add nodes to handle the increased load as well as scale back as traffic drops, always maintaining at least `min_nodes`. You will be charged for the time in which additional nodes are used. If `min_nodes` is not specified and AutoScaling is used with a [legacy (MLS1) machine type](/ml-engine/docs/machine-types-online-prediction), `min_nodes` defaults to 0, in which case, when traffic to a model stops (and after a cool-down period), nodes will be shut down and no charges will be incurred until traffic to the model resumes. If `min_nodes` is not specified and AutoScaling is used with a [Compute Engine (N1) machine type](/ml-engine/docs/machine-types-online-prediction), `min_nodes` defaults to 1. `min_nodes` must be at least 1 for use with a Compute Engine machine type. You can set `min_nodes` when creating the model version, and you can also update `min_nodes` for an existing version: update_body.json: { 'autoScaling': { 'minNodes': 5 } } HTTP request: PATCH https://ml.googleapis.com/v1/{name=projects/*\/models/*\/versions/*}?update_mask=autoScaling.minNodes -d @./update_body.json */
+  minNodes?: number;
+}
+export const GoogleCloudMlV1__AutoScaling = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    metrics: S.optional(GoogleCloudMlV1__MetricSpecList),
+    maxNodes: S.optional(S.Number),
+    minNodes: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "GoogleCloudMlV1__AutoScaling",
+}) as any as S.Schema<GoogleCloudMlV1__AutoScaling>;
+
+/** Attributes credit by computing the XRAI taking advantage of the model's fully differentiable structure. Refer to this paper for more details: https://arxiv.org/abs/1906.02825 Currently only implemented for models with natural image inputs. */
+export interface GoogleCloudMlV1__XraiAttribution {
+  /** Number of steps for approximating the path integral. A good value to start is 50 and gradually increase until the sum to diff property is met within the desired error range. */
+  numIntegralSteps?: number;
+}
+export const GoogleCloudMlV1__XraiAttribution = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    numIntegralSteps: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "GoogleCloudMlV1__XraiAttribution",
+}) as any as S.Schema<GoogleCloudMlV1__XraiAttribution>;
+
+/** Attributes credit by computing the Aumann-Shapley value taking advantage of the model's fully differentiable structure. Refer to this paper for more details: https://arxiv.org/abs/1703.01365 */
+export type GoogleCloudMlV1__IntegratedGradientsAttribution =
+  GoogleCloudMlV1__XraiAttribution;
+export const GoogleCloudMlV1__IntegratedGradientsAttribution =
+  GoogleCloudMlV1__XraiAttribution;
+
+/** An attribution method that approximates Shapley values for features that contribute to the label being predicted. A sampling strategy is used to approximate the value rather than considering all subsets of features. */
+export interface GoogleCloudMlV1__SampledShapleyAttribution {
+  /** The number of feature permutations to consider when approximating the Shapley values. */
+  numPaths?: number;
+}
+export const GoogleCloudMlV1__SampledShapleyAttribution =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      numPaths: S.optional(S.Number),
+    }),
+  ).annotate({
+    identifier: "GoogleCloudMlV1__SampledShapleyAttribution",
+  }) as any as S.Schema<GoogleCloudMlV1__SampledShapleyAttribution>;
+
+/** Message holding configuration options for explaining model predictions. There are three feature attribution methods supported for TensorFlow models: integrated gradients, sampled Shapley, and XRAI. [Learn more about feature attributions.](/ai-platform/prediction/docs/ai-explanations/overview) */
+export interface GoogleCloudMlV1__ExplanationConfig {
+  /** Attributes credit by computing the XRAI taking advantage of the model's fully differentiable structure. Refer to this paper for more details: https://arxiv.org/abs/1906.02825 Currently only implemented for models with natural image inputs. */
+  xraiAttribution?: GoogleCloudMlV1__XraiAttribution;
+  /** Attributes credit by computing the Aumann-Shapley value taking advantage of the model's fully differentiable structure. Refer to this paper for more details: https://arxiv.org/abs/1703.01365 */
+  integratedGradientsAttribution?: GoogleCloudMlV1__XraiAttribution;
+  /** An attribution method that approximates Shapley values for features that contribute to the label being predicted. A sampling strategy is used to approximate the value rather than considering all subsets of features. */
+  sampledShapleyAttribution?: GoogleCloudMlV1__SampledShapleyAttribution;
+}
+export const GoogleCloudMlV1__ExplanationConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    xraiAttribution: S.optional(GoogleCloudMlV1__XraiAttribution),
+    integratedGradientsAttribution: S.optional(
+      GoogleCloudMlV1__XraiAttribution,
+    ),
+    sampledShapleyAttribution: S.optional(
+      GoogleCloudMlV1__SampledShapleyAttribution,
+    ),
+  }),
+).annotate({
+  identifier: "GoogleCloudMlV1__ExplanationConfig",
+}) as any as S.Schema<GoogleCloudMlV1__ExplanationConfig>;
+
+/** Specifies HTTP paths served by a custom container. AI Platform Prediction sends requests to these paths on the container; the custom container must run an HTTP server that responds to these requests with appropriate responses. Read [Custom container requirements](/ai-platform/prediction/docs/custom-container-requirements) for details on how to create your container image to meet these requirements. */
+export interface GoogleCloudMlV1__RouteMap {
+  /** HTTP path on the container to send health checkss to. AI Platform Prediction intermittently sends GET requests to this path on the container's IP address and port to check that the container is healthy. Read more about [health checks](/ai-platform/prediction/docs/custom-container-requirements#checks). For example, if you set this field to `/bar`, then AI Platform Prediction intermittently sends a GET request to the `/bar` path on the port of your container specified by the first value of Version.container.ports. If you don't specify this field, it defaults to the following value: /v1/models/ MODEL/versions/VERSION The placeholders in this value are replaced as follows: * MODEL: The name of the parent Model. This does not include the "projects/PROJECT_ID/models/" prefix that the API returns in output; it is the bare model name, as provided to projects.models.create. * VERSION: The name of the model version. This does not include the "projects/PROJECT_ID /models/MODEL/versions/" prefix that the API returns in output; it is the bare version name, as provided to projects.models.versions.create. */
+  health?: string;
+  /** HTTP path on the container to send prediction requests to. AI Platform Prediction forwards requests sent using projects.predict to this path on the container's IP address and port. AI Platform Prediction then returns the container's response in the API response. For example, if you set this field to `/foo`, then when AI Platform Prediction receives a prediction request, it forwards the request body in a POST request to the `/foo` path on the port of your container specified by the first value of Version.container.ports. If you don't specify this field, it defaults to the following value: /v1/models/MODEL/versions/VERSION:predict The placeholders in this value are replaced as follows: * MODEL: The name of the parent Model. This does not include the "projects/PROJECT_ID/models/" prefix that the API returns in output; it is the bare model name, as provided to projects.models.create. * VERSION: The name of the model version. This does not include the "projects/PROJECT_ID/models/MODEL/versions/" prefix that the API returns in output; it is the bare version name, as provided to projects.models.versions.create. */
+  predict?: string;
+}
+export const GoogleCloudMlV1__RouteMap = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    health: S.optional(S.String),
+    predict: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GoogleCloudMlV1__RouteMap",
+}) as any as S.Schema<GoogleCloudMlV1__RouteMap>;
 
 /** Options for manually scaling a model. */
 export interface GoogleCloudMlV1__ManualScaling {
@@ -1678,89 +1645,122 @@ export const GoogleCloudMlV1__ManualScaling = /*@__PURE__*/ S.suspend(() =>
   identifier: "GoogleCloudMlV1__ManualScaling",
 }) as any as S.Schema<GoogleCloudMlV1__ManualScaling>;
 
+/** Configuration for logging request-response pairs to a BigQuery table. Online prediction requests to a model version and the responses to these requests are converted to raw strings and saved to the specified BigQuery table. Logging is constrained by [BigQuery quotas and limits](/bigquery/quotas). If your project exceeds BigQuery quotas or limits, AI Platform Prediction does not log request-response pairs, but it continues to serve predictions. If you are using [continuous evaluation](/ml-engine/docs/continuous-evaluation/), you do not need to specify this configuration manually. Setting up continuous evaluation automatically enables logging of request-response pairs. */
+export interface GoogleCloudMlV1__RequestLoggingConfig {
+  /** Percentage of requests to be logged, expressed as a fraction from 0 to 1. For example, if you want to log 10% of requests, enter `0.1`. The sampling window is the lifetime of the model version. Defaults to 0. */
+  samplingPercentage?: number;
+  /** Required. Fully qualified BigQuery table name in the following format: " project_id.dataset_name.table_name" The specified table must already exist, and the "Cloud ML Service Agent" for your project must have permission to write to it. The table must have the following [schema](/bigquery/docs/schemas): Field name Type Mode model STRING REQUIRED model_version STRING REQUIRED time TIMESTAMP REQUIRED raw_data STRING REQUIRED raw_prediction STRING NULLABLE groundtruth STRING NULLABLE */
+  bigqueryTableName?: string;
+}
+export const GoogleCloudMlV1__RequestLoggingConfig = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      samplingPercentage: S.optional(S.Number),
+      bigqueryTableName: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "GoogleCloudMlV1__RequestLoggingConfig",
+}) as any as S.Schema<GoogleCloudMlV1__RequestLoggingConfig>;
+
+export type GoogleCloudMlV1__VersionFrameworkEnum =
+  | "FRAMEWORK_UNSPECIFIED"
+  | "TENSORFLOW"
+  | "SCIKIT_LEARN"
+  | "XGBOOST";
+export const GoogleCloudMlV1__VersionFrameworkEnum = /*@__PURE__*/ S.String;
+
+export type GoogleCloudMlV1__VersionStateEnum =
+  | "UNKNOWN"
+  | "READY"
+  | "CREATING"
+  | "FAILED"
+  | "DELETING"
+  | "UPDATING";
+export const GoogleCloudMlV1__VersionStateEnum = /*@__PURE__*/ S.String;
+
 /** Represents a version of the model. Each version is a trained model deployed in the cloud, ready to handle prediction requests. A model can have multiple versions. You can get information about all of the versions of a given model by calling projects.models.versions.list. */
 export interface GoogleCloudMlV1__Version {
-  /** Output only. The [AI Platform (Unified) `Model`](https://cloud.google.com/ai-platform-unified/docs/reference/rest/v1beta1/projects.locations.models) ID for the last [model migration](https://cloud.google.com/ai-platform-unified/docs/start/migrating-to-ai-platform-unified). */
-  lastMigrationModelId?: string;
-  /** `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a model from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform model updates in order to avoid race conditions: An `etag` is returned in the response to `GetVersion`, and systems are expected to put that etag in the request to `UpdateVersion` to ensure that their change will be applied to the model as intended. */
-  etag?: string;
-  /** Required. The AI Platform runtime version to use for this deployment. For more information, see the [runtime version list](/ml-engine/docs/runtime-version-list) and [how to manage runtime versions](/ml-engine/docs/versioning). */
-  runtimeVersion?: string;
-  /** Output only. The details of a failure or a cancellation. */
-  errorMessage?: string;
-  /** Optional. The type of machine on which to serve the model. Currently only applies to online prediction service. To learn about valid values for this field, read [Choosing a machine type for online prediction](/ai-platform/prediction/docs/machine-types-online-prediction). If this field is not specified and you are using a [regional endpoint](/ai-platform/prediction/docs/regional-endpoints), then the machine type defaults to `n1-standard-2`. If this field is not specified and you are using the global endpoint (`ml.googleapis.com`), then the machine type defaults to `mls1-c1-m2`. */
-  machineType?: string;
-  /** Optional. The fully qualified name (module_name.class_name) of a class that implements the Predictor interface described in this reference field. The module containing this class should be included in a package provided to the [`packageUris` field](#Version.FIELDS.package_uris). Specify this field if and only if you are deploying a [custom prediction routine (beta)](/ml-engine/docs/tensorflow/custom-prediction-routines). If you specify this field, you must set [`runtimeVersion`](#Version.FIELDS.runtime_version) to 1.4 or greater and you must set `machineType` to a [legacy (MLS1) machine type](/ml-engine/docs/machine-types-online-prediction). The following code sample provides the Predictor interface: class Predictor(object): """Interface for constructing custom predictors.""" def predict(self, instances, **kwargs): """Performs custom prediction. Instances are the decoded values from the request. They have already been deserialized from JSON. Args: instances: A list of prediction input instances. **kwargs: A dictionary of keyword args provided as additional fields on the predict request body. Returns: A list of outputs containing the prediction results. This list must be JSON serializable. """ raise NotImplementedError() @classmethod def from_path(cls, model_dir): """Creates an instance of Predictor using the given path. Loading of the predictor should be done in this method. Args: model_dir: The local directory that contains the exported model file along with any additional files uploaded when creating the version resource. Returns: An instance implementing this Predictor class. """ raise NotImplementedError() Learn more about [the Predictor interface and custom prediction routines](/ml-engine/docs/tensorflow/custom-prediction-routines). */
-  predictionClass?: string;
-  /** Optional. The description specified for the version when it was created. */
-  description?: string;
-  /** Optional. Specifies the service account for resource access control. If you specify this field, then you must also specify either the `containerSpec` or the `predictionClass` field. Learn more about [using a custom service account](/ai-platform/prediction/docs/custom-service-account). */
-  serviceAccount?: string;
-  /** The Cloud Storage URI of a directory containing trained model artifacts to be used to create the model version. See the [guide to deploying models](/ai-platform/prediction/docs/deploying-models) for more information. The total number of files under this directory must not exceed 1000. During projects.models.versions.create, AI Platform Prediction copies all files from the specified directory to a location managed by the service. From then on, AI Platform Prediction uses these copies of the model artifacts to serve predictions, not the original files in Cloud Storage, so this location is useful only as a historical record. If you specify container, then this field is optional. Otherwise, it is required. Learn [how to use this field with a custom container](/ai-platform/prediction/docs/custom-container-requirements#artifacts). */
-  deploymentUri?: string;
-  /** Optional. *Only* specify this field in a projects.models.versions.patch request. Specifying it in a projects.models.versions.create request has no effect. Configures the request-response pair logging on predictions from this Version. */
-  requestLoggingConfig?: GoogleCloudMlV1__RequestLoggingConfig;
-  /** Required. The version of Python used in prediction. The following Python versions are available: * Python '3.7' is available when `runtime_version` is set to '1.15' or later. * Python '3.5' is available when `runtime_version` is set to a version from '1.4' to '1.14'. * Python '2.7' is available when `runtime_version` is set to '1.15' or earlier. Read more about the Python versions available for [each runtime version](/ml-engine/docs/runtime-version-list). */
-  pythonVersion?: string;
-  /** Optional. Accelerator config for using GPUs for online prediction (beta). Only specify this field if you have specified a Compute Engine (N1) machine type in the `machineType` field. Learn more about [using GPUs for online prediction](/ml-engine/docs/machine-types-online-prediction#gpus). */
-  acceleratorConfig?: GoogleCloudMlV1__AcceleratorConfig;
-  /** Required. The name specified for the version when it was created. The version name must be unique within the model it is created in. */
-  name?: string;
+  /** Optional. Cloud Storage paths (`gs://…`) of packages for [custom prediction routines](/ml-engine/docs/tensorflow/custom-prediction-routines) or [scikit-learn pipelines with custom code](/ml-engine/docs/scikit/exporting-for-prediction#custom-pipeline-code). For a custom prediction routine, one of these packages must contain your Predictor class (see [`predictionClass`](#Version.FIELDS.prediction_class)). Additionally, include any dependencies used by your Predictor or scikit-learn pipeline uses that are not already included in your selected [runtime version](/ml-engine/docs/tensorflow/runtime-version-list). If you specify this field, you must also set [`runtimeVersion`](#Version.FIELDS.runtime_version) to 1.4 or greater. */
+  packageUris?: StringList;
+  /** Optional. Specifies a custom container to use for serving predictions. If you specify this field, then `machineType` is required. If you specify this field, then `deploymentUri` is optional. If you specify this field, then you must not specify `runtimeVersion`, `packageUris`, `framework`, `pythonVersion`, or `predictionClass`. */
+  container?: GoogleCloudMlV1__ContainerSpec;
+  /** Automatically scale the number of nodes used to serve the model in response to increases and decreases in traffic. Care should be taken to ramp up traffic according to the model's ability to scale or you will start seeing increases in latency and 429 response codes. */
+  autoScaling?: GoogleCloudMlV1__AutoScaling;
   /** Optional. Configures explainability features on the model's version. Some explanation features require additional metadata to be loaded as part of the model payload. */
   explanationConfig?: GoogleCloudMlV1__ExplanationConfig;
+  /** Required. The AI Platform runtime version to use for this deployment. For more information, see the [runtime version list](/ml-engine/docs/runtime-version-list) and [how to manage runtime versions](/ml-engine/docs/versioning). */
+  runtimeVersion?: string;
+  /** Required. The version of Python used in prediction. The following Python versions are available: * Python '3.7' is available when `runtime_version` is set to '1.15' or later. * Python '3.5' is available when `runtime_version` is set to a version from '1.4' to '1.14'. * Python '2.7' is available when `runtime_version` is set to '1.15' or earlier. Read more about the Python versions available for [each runtime version](/ml-engine/docs/runtime-version-list). */
+  pythonVersion?: string;
+  /** Optional. The type of machine on which to serve the model. Currently only applies to online prediction service. To learn about valid values for this field, read [Choosing a machine type for online prediction](/ai-platform/prediction/docs/machine-types-online-prediction). If this field is not specified and you are using a [regional endpoint](/ai-platform/prediction/docs/regional-endpoints), then the machine type defaults to `n1-standard-2`. If this field is not specified and you are using the global endpoint (`ml.googleapis.com`), then the machine type defaults to `mls1-c1-m2`. */
+  machineType?: string;
   /** Output only. The last time this version was successfully [migrated to AI Platform (Unified)](https://cloud.google.com/ai-platform-unified/docs/start/migrating-to-ai-platform-unified). */
   lastMigrationTime?: string;
   /** Output only. If true, this version will be used to handle prediction requests that do not specify a version. You can change the default version by calling projects.methods.versions.setDefault. */
   isDefault?: boolean;
-  /** Optional. One or more labels that you can add, to organize your model versions. Each label is a key-value pair, where both the key and the value are arbitrary strings that you supply. For more information, see the documentation on using labels. Note that this field is not updatable for mls1* models. */
-  labels?: StringMap;
-  /** Output only. The time the version was last used for prediction. */
-  lastUseTime?: string;
-  /** Automatically scale the number of nodes used to serve the model in response to increases and decreases in traffic. Care should be taken to ramp up traffic according to the model's ability to scale or you will start seeing increases in latency and 429 response codes. */
-  autoScaling?: GoogleCloudMlV1__AutoScaling;
-  /** Optional. Specifies paths on a custom container's HTTP server where AI Platform Prediction sends certain requests. If you specify this field, then you must also specify the `container` field. If you specify the `container` field and do not specify this field, it defaults to the following: ```json { "predict": "/v1/models/MODEL/versions/VERSION:predict", "health": "/v1/models/MODEL/versions/VERSION" } ``` See RouteMap for more details about these default values. */
-  routes?: GoogleCloudMlV1__RouteMap;
-  /** Optional. The machine learning framework AI Platform uses to train this version of the model. Valid values are `TENSORFLOW`, `SCIKIT_LEARN`, `XGBOOST`. If you do not specify a framework, AI Platform will analyze files in the deployment_uri to determine a framework. If you choose `SCIKIT_LEARN` or `XGBOOST`, you must also set the runtime version of the model to 1.4 or greater. Do **not** specify a framework if you're deploying a [custom prediction routine](/ai-platform/prediction/docs/custom-prediction-routines) or if you're using a [custom container](/ai-platform/prediction/docs/use-custom-container). */
-  framework?: GoogleCloudMlV1__VersionFrameworkEnum | (string & {});
-  /** Optional. Specifies a custom container to use for serving predictions. If you specify this field, then `machineType` is required. If you specify this field, then `deploymentUri` is optional. If you specify this field, then you must not specify `runtimeVersion`, `packageUris`, `framework`, `pythonVersion`, or `predictionClass`. */
-  container?: GoogleCloudMlV1__ContainerSpec;
-  /** Output only. The state of a version. */
-  state?: GoogleCloudMlV1__VersionStateEnum | (string & {});
-  /** Optional. Cloud Storage paths (`gs://…`) of packages for [custom prediction routines](/ml-engine/docs/tensorflow/custom-prediction-routines) or [scikit-learn pipelines with custom code](/ml-engine/docs/scikit/exporting-for-prediction#custom-pipeline-code). For a custom prediction routine, one of these packages must contain your Predictor class (see [`predictionClass`](#Version.FIELDS.prediction_class)). Additionally, include any dependencies used by your Predictor or scikit-learn pipeline uses that are not already included in your selected [runtime version](/ml-engine/docs/tensorflow/runtime-version-list). If you specify this field, you must also set [`runtimeVersion`](#Version.FIELDS.runtime_version) to 1.4 or greater. */
-  packageUris?: StringList;
-  /** Manually select the number of nodes to use for serving the model. You should generally use `auto_scaling` with an appropriate `min_nodes` instead, but this option is available if you want more predictable billing. Beware that latency and error rates will increase if the traffic exceeds that capability of the system to serve it based on the selected number of nodes. */
-  manualScaling?: GoogleCloudMlV1__ManualScaling;
+  /** Required. The name specified for the version when it was created. The version name must be unique within the model it is created in. */
+  name?: string;
+  /** Output only. The details of a failure or a cancellation. */
+  errorMessage?: string;
+  /** Optional. The description specified for the version when it was created. */
+  description?: string;
   /** Output only. The time the version was created. */
   createTime?: string;
+  /** `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a model from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform model updates in order to avoid race conditions: An `etag` is returned in the response to `GetVersion`, and systems are expected to put that etag in the request to `UpdateVersion` to ensure that their change will be applied to the model as intended. */
+  etag?: string;
+  /** The Cloud Storage URI of a directory containing trained model artifacts to be used to create the model version. See the [guide to deploying models](/ai-platform/prediction/docs/deploying-models) for more information. The total number of files under this directory must not exceed 1000. During projects.models.versions.create, AI Platform Prediction copies all files from the specified directory to a location managed by the service. From then on, AI Platform Prediction uses these copies of the model artifacts to serve predictions, not the original files in Cloud Storage, so this location is useful only as a historical record. If you specify container, then this field is optional. Otherwise, it is required. Learn [how to use this field with a custom container](/ai-platform/prediction/docs/custom-container-requirements#artifacts). */
+  deploymentUri?: string;
+  /** Optional. Specifies the service account for resource access control. If you specify this field, then you must also specify either the `containerSpec` or the `predictionClass` field. Learn more about [using a custom service account](/ai-platform/prediction/docs/custom-service-account). */
+  serviceAccount?: string;
+  /** Optional. One or more labels that you can add, to organize your model versions. Each label is a key-value pair, where both the key and the value are arbitrary strings that you supply. For more information, see the documentation on using labels. Note that this field is not updatable for mls1* models. */
+  labels?: StringMap;
+  /** Optional. Specifies paths on a custom container's HTTP server where AI Platform Prediction sends certain requests. If you specify this field, then you must also specify the `container` field. If you specify the `container` field and do not specify this field, it defaults to the following: ```json { "predict": "/v1/models/MODEL/versions/VERSION:predict", "health": "/v1/models/MODEL/versions/VERSION" } ``` See RouteMap for more details about these default values. */
+  routes?: GoogleCloudMlV1__RouteMap;
+  /** Manually select the number of nodes to use for serving the model. You should generally use `auto_scaling` with an appropriate `min_nodes` instead, but this option is available if you want more predictable billing. Beware that latency and error rates will increase if the traffic exceeds that capability of the system to serve it based on the selected number of nodes. */
+  manualScaling?: GoogleCloudMlV1__ManualScaling;
+  /** Optional. The fully qualified name (module_name.class_name) of a class that implements the Predictor interface described in this reference field. The module containing this class should be included in a package provided to the [`packageUris` field](#Version.FIELDS.package_uris). Specify this field if and only if you are deploying a [custom prediction routine (beta)](/ml-engine/docs/tensorflow/custom-prediction-routines). If you specify this field, you must set [`runtimeVersion`](#Version.FIELDS.runtime_version) to 1.4 or greater and you must set `machineType` to a [legacy (MLS1) machine type](/ml-engine/docs/machine-types-online-prediction). The following code sample provides the Predictor interface: class Predictor(object): """Interface for constructing custom predictors.""" def predict(self, instances, **kwargs): """Performs custom prediction. Instances are the decoded values from the request. They have already been deserialized from JSON. Args: instances: A list of prediction input instances. **kwargs: A dictionary of keyword args provided as additional fields on the predict request body. Returns: A list of outputs containing the prediction results. This list must be JSON serializable. """ raise NotImplementedError() @classmethod def from_path(cls, model_dir): """Creates an instance of Predictor using the given path. Loading of the predictor should be done in this method. Args: model_dir: The local directory that contains the exported model file along with any additional files uploaded when creating the version resource. Returns: An instance implementing this Predictor class. """ raise NotImplementedError() Learn more about [the Predictor interface and custom prediction routines](/ml-engine/docs/tensorflow/custom-prediction-routines). */
+  predictionClass?: string;
+  /** Output only. The [AI Platform (Unified) `Model`](https://cloud.google.com/ai-platform-unified/docs/reference/rest/v1beta1/projects.locations.models) ID for the last [model migration](https://cloud.google.com/ai-platform-unified/docs/start/migrating-to-ai-platform-unified). */
+  lastMigrationModelId?: string;
+  /** Optional. *Only* specify this field in a projects.models.versions.patch request. Specifying it in a projects.models.versions.create request has no effect. Configures the request-response pair logging on predictions from this Version. */
+  requestLoggingConfig?: GoogleCloudMlV1__RequestLoggingConfig;
+  /** Output only. The time the version was last used for prediction. */
+  lastUseTime?: string;
+  /** Optional. The machine learning framework AI Platform uses to train this version of the model. Valid values are `TENSORFLOW`, `SCIKIT_LEARN`, `XGBOOST`. If you do not specify a framework, AI Platform will analyze files in the deployment_uri to determine a framework. If you choose `SCIKIT_LEARN` or `XGBOOST`, you must also set the runtime version of the model to 1.4 or greater. Do **not** specify a framework if you're deploying a [custom prediction routine](/ai-platform/prediction/docs/custom-prediction-routines) or if you're using a [custom container](/ai-platform/prediction/docs/use-custom-container). */
+  framework?: GoogleCloudMlV1__VersionFrameworkEnum | (string & {});
+  /** Output only. The state of a version. */
+  state?: GoogleCloudMlV1__VersionStateEnum | (string & {});
+  /** Optional. Accelerator config for using GPUs for online prediction (beta). Only specify this field if you have specified a Compute Engine (N1) machine type in the `machineType` field. Learn more about [using GPUs for online prediction](/ml-engine/docs/machine-types-online-prediction#gpus). */
+  acceleratorConfig?: GoogleCloudMlV1__AcceleratorConfig;
 }
 export const GoogleCloudMlV1__Version = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    lastMigrationModelId: S.optional(S.String),
-    etag: S.optional(S.String),
-    runtimeVersion: S.optional(S.String),
-    errorMessage: S.optional(S.String),
-    machineType: S.optional(S.String),
-    predictionClass: S.optional(S.String),
-    description: S.optional(S.String),
-    serviceAccount: S.optional(S.String),
-    deploymentUri: S.optional(S.String),
-    requestLoggingConfig: S.optional(GoogleCloudMlV1__RequestLoggingConfig),
-    pythonVersion: S.optional(S.String),
-    acceleratorConfig: S.optional(GoogleCloudMlV1__AcceleratorConfig),
-    name: S.optional(S.String),
+    packageUris: S.optional(StringList),
+    container: S.optional(GoogleCloudMlV1__ContainerSpec),
+    autoScaling: S.optional(GoogleCloudMlV1__AutoScaling),
     explanationConfig: S.optional(GoogleCloudMlV1__ExplanationConfig),
+    runtimeVersion: S.optional(S.String),
+    pythonVersion: S.optional(S.String),
+    machineType: S.optional(S.String),
     lastMigrationTime: S.optional(S.String),
     isDefault: S.optional(S.Boolean),
-    labels: S.optional(StringMap),
-    lastUseTime: S.optional(S.String),
-    autoScaling: S.optional(GoogleCloudMlV1__AutoScaling),
-    routes: S.optional(GoogleCloudMlV1__RouteMap),
-    framework: S.optional(GoogleCloudMlV1__VersionFrameworkEnum),
-    container: S.optional(GoogleCloudMlV1__ContainerSpec),
-    state: S.optional(GoogleCloudMlV1__VersionStateEnum),
-    packageUris: S.optional(StringList),
-    manualScaling: S.optional(GoogleCloudMlV1__ManualScaling),
+    name: S.optional(S.String),
+    errorMessage: S.optional(S.String),
+    description: S.optional(S.String),
     createTime: S.optional(S.String),
+    etag: S.optional(S.String),
+    deploymentUri: S.optional(S.String),
+    serviceAccount: S.optional(S.String),
+    labels: S.optional(StringMap),
+    routes: S.optional(GoogleCloudMlV1__RouteMap),
+    manualScaling: S.optional(GoogleCloudMlV1__ManualScaling),
+    predictionClass: S.optional(S.String),
+    lastMigrationModelId: S.optional(S.String),
+    requestLoggingConfig: S.optional(GoogleCloudMlV1__RequestLoggingConfig),
+    lastUseTime: S.optional(S.String),
+    framework: S.optional(GoogleCloudMlV1__VersionFrameworkEnum),
+    state: S.optional(GoogleCloudMlV1__VersionStateEnum),
+    acceleratorConfig: S.optional(GoogleCloudMlV1__AcceleratorConfig),
   }),
 ).annotate({
   identifier: "GoogleCloudMlV1__Version",
@@ -1768,33 +1768,33 @@ export const GoogleCloudMlV1__Version = /*@__PURE__*/ S.suspend(() =>
 
 /** Represents a machine learning solution. A model can have multiple versions, each of which is a deployed, trained model ready to receive prediction requests. The model itself is just a container. */
 export interface GoogleCloudMlV1__Model {
-  /** Output only. The default version of the model. This version will be used to handle prediction requests that do not specify a version. You can change the default version by calling projects.models.versions.setDefault. */
-  defaultVersion?: GoogleCloudMlV1__Version;
-  /** Optional. The description specified for the model when it was created. */
-  description?: string;
   /** Optional. If true, online prediction nodes send `stderr` and `stdout` streams to Cloud Logging. These can be more verbose than the standard access logs (see `onlinePredictionLogging`) and can incur higher cost. However, they are helpful for debugging. Note that [logs may incur a cost](/stackdriver/pricing), especially if your project receives prediction requests at a high QPS. Estimate your costs before enabling this option. Default is false. */
   onlinePredictionConsoleLogging?: boolean;
   /** Optional. The list of regions where the model is going to be deployed. Only one region per model is supported. Defaults to 'us-central1' if nothing is set. See the available regions for AI Platform services. Note: * No matter where a model is deployed, it can always be accessed by users from anywhere, both for online and batch prediction. * The region for a batch prediction job is set by the region field when submitting the batch prediction job and does not take its value from this field. */
   regions?: StringList;
-  /** Required. The name specified for the model when it was created. The model name must be unique within the project it is created in. */
-  name?: string;
-  /** `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a model from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform model updates in order to avoid race conditions: An `etag` is returned in the response to `GetModel`, and systems are expected to put that etag in the request to `UpdateModel` to ensure that their change will be applied to the model as intended. */
-  etag?: string;
+  /** Optional. The description specified for the model when it was created. */
+  description?: string;
   /** Optional. If true, online prediction access logs are sent to Cloud Logging. These logs are like standard server access logs, containing information like timestamp and latency for each request. Note that [logs may incur a cost](/stackdriver/pricing), especially if your project receives prediction requests at a high queries per second rate (QPS). Estimate your costs before enabling this option. Default is false. */
   onlinePredictionLogging?: boolean;
   /** Optional. One or more labels that you can add, to organize your models. Each label is a key-value pair, where both the key and the value are arbitrary strings that you supply. For more information, see the documentation on using labels. Note that this field is not updatable for mls1* models. */
   labels?: StringMap;
+  /** `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a model from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform model updates in order to avoid race conditions: An `etag` is returned in the response to `GetModel`, and systems are expected to put that etag in the request to `UpdateModel` to ensure that their change will be applied to the model as intended. */
+  etag?: string;
+  /** Required. The name specified for the model when it was created. The model name must be unique within the project it is created in. */
+  name?: string;
+  /** Output only. The default version of the model. This version will be used to handle prediction requests that do not specify a version. You can change the default version by calling projects.models.versions.setDefault. */
+  defaultVersion?: GoogleCloudMlV1__Version;
 }
 export const GoogleCloudMlV1__Model = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    defaultVersion: S.optional(GoogleCloudMlV1__Version),
-    description: S.optional(S.String),
     onlinePredictionConsoleLogging: S.optional(S.Boolean),
     regions: S.optional(StringList),
-    name: S.optional(S.String),
-    etag: S.optional(S.String),
+    description: S.optional(S.String),
     onlinePredictionLogging: S.optional(S.Boolean),
     labels: S.optional(StringMap),
+    etag: S.optional(S.String),
+    name: S.optional(S.String),
+    defaultVersion: S.optional(GoogleCloudMlV1__Version),
   }),
 ).annotate({
   identifier: "GoogleCloudMlV1__Model",
@@ -1920,16 +1920,16 @@ export const DeleteProjectsModelsVersionsRequest = /*@__PURE__*/ S.suspend(() =>
 export interface GoogleApi__HttpBody {
   /** The HTTP request/response body as raw binary. */
   data?: string;
-  /** Application specific response metadata. Must be set in the first response for streaming APIs. */
-  extensions?: DocumentMapList;
   /** The HTTP Content-Type header value specifying the content type of the body. */
   contentType?: string;
+  /** Application specific response metadata. Must be set in the first response for streaming APIs. */
+  extensions?: DocumentMapList;
 }
 export const GoogleApi__HttpBody = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     data: S.optional(S.String),
-    extensions: S.optional(DocumentMapList),
     contentType: S.optional(S.String),
+    extensions: S.optional(DocumentMapList),
   }),
 ).annotate({
   identifier: "GoogleApi__HttpBody",
@@ -2001,17 +2001,17 @@ export const GoogleCloudMlV1__Config = /*@__PURE__*/ S.suspend(() =>
 
 /** Returns service account information associated with a project. */
 export interface GoogleCloudMlV1__GetConfigResponse {
-  /** The project number for `service_account`. */
-  serviceAccountProject?: string;
   config?: GoogleCloudMlV1__Config;
   /** The service account Cloud ML uses to access resources in the project. */
   serviceAccount?: string;
+  /** The project number for `service_account`. */
+  serviceAccountProject?: string;
 }
 export const GoogleCloudMlV1__GetConfigResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    serviceAccountProject: S.optional(S.String),
     config: S.optional(GoogleCloudMlV1__Config),
     serviceAccount: S.optional(S.String),
+    serviceAccountProject: S.optional(S.String),
   }),
 ).annotate({
   identifier: "GoogleCloudMlV1__GetConfigResponse",
@@ -2038,52 +2038,6 @@ export const GetIamPolicyProjectsJobsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetIamPolicyProjectsJobsRequest",
 }) as any as S.Schema<GetIamPolicyProjectsJobsRequest>;
 
-/** Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information. */
-export interface GoogleType__Expr {
-  /** Optional. Description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI. */
-  description?: string;
-  /** Optional. String indicating the location of the expression for error reporting, e.g. a file name and a position in the file. */
-  location?: string;
-  /** Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression. */
-  title?: string;
-  /** Textual representation of an expression in Common Expression Language syntax. */
-  expression?: string;
-}
-export const GoogleType__Expr = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    description: S.optional(S.String),
-    location: S.optional(S.String),
-    title: S.optional(S.String),
-    expression: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "GoogleType__Expr",
-}) as any as S.Schema<GoogleType__Expr>;
-
-/** Associates `members`, or principals, with a `role`. */
-export interface GoogleIamV1__Binding {
-  /** The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the principals in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). */
-  condition?: GoogleType__Expr;
-  /** Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles). */
-  role?: string;
-  /** Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. * `principal://iam.googleapis.com/locations/global/workforcePools/{pool_id}/subject/{subject_attribute_value}`: A single identity in a workforce identity pool. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/group/{group_id}`: All workforce identities in a group. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/attribute.{attribute_name}/{attribute_value}`: All workforce identities with a specific attribute value. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/*`: All identities in a workforce identity pool. * `principal://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/subject/{subject_attribute_value}`: A single identity in a workload identity pool. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/group/{group_id}`: A workload identity pool group. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/attribute.{attribute_name}/{attribute_value}`: All identities in a workload identity pool with a certain attribute. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/*`: All identities in a workload identity pool. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `deleted:principal://iam.googleapis.com/locations/global/workforcePools/{pool_id}/subject/{subject_attribute_value}`: Deleted single identity in a workforce identity pool. For example, `deleted:principal://iam.googleapis.com/locations/global/workforcePools/my-pool-id/subject/my-subject-attribute-value`. */
-  members?: StringList;
-}
-export const GoogleIamV1__Binding = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    condition: S.optional(GoogleType__Expr),
-    role: S.optional(S.String),
-    members: S.optional(StringList),
-  }),
-).annotate({
-  identifier: "GoogleIamV1__Binding",
-}) as any as S.Schema<GoogleIamV1__Binding>;
-
-export type GoogleIamV1__BindingList = Array<GoogleIamV1__Binding>;
-export const GoogleIamV1__BindingList = /*@__PURE__*/ S.Array(
-  GoogleIamV1__Binding,
-) as any as S.Schema<GoogleIamV1__BindingList>;
-
 export type GoogleIamV1__AuditLogConfigLogTypeEnum =
   | "LOG_TYPE_UNSPECIFIED"
   | "ADMIN_READ"
@@ -2093,15 +2047,15 @@ export const GoogleIamV1__AuditLogConfigLogTypeEnum = /*@__PURE__*/ S.String;
 
 /** Provides the configuration for logging a type of permissions. Example: { "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] }, { "log_type": "DATA_WRITE" } ] } This enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting jose@example.com from DATA_READ logging. */
 export interface GoogleIamV1__AuditLogConfig {
-  /** Specifies the identities that do not cause logging for this type of permission. Follows the same format of Binding.members. */
-  exemptedMembers?: StringList;
   /** The log type that this config enables. */
   logType?: GoogleIamV1__AuditLogConfigLogTypeEnum | (string & {});
+  /** Specifies the identities that do not cause logging for this type of permission. Follows the same format of Binding.members. */
+  exemptedMembers?: StringList;
 }
 export const GoogleIamV1__AuditLogConfig = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    exemptedMembers: S.optional(StringList),
     logType: S.optional(GoogleIamV1__AuditLogConfigLogTypeEnum),
+    exemptedMembers: S.optional(StringList),
   }),
 ).annotate({
   identifier: "GoogleIamV1__AuditLogConfig",
@@ -2115,15 +2069,15 @@ export const GoogleIamV1__AuditLogConfigList = /*@__PURE__*/ S.Array(
 
 /** Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] }, { "log_type": "DATA_WRITE" }, { "log_type": "ADMIN_READ" } ] }, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" }, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] } ] } ] } For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts `jose@example.com` from DATA_READ logging, and `aliya@example.com` from DATA_WRITE logging. */
 export interface GoogleIamV1__AuditConfig {
-  /** The configuration for logging of each type of permission. */
-  auditLogConfigs?: GoogleIamV1__AuditLogConfigList;
   /** Specifies a service that will be enabled for audit logging. For example, `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a special value that covers all services. */
   service?: string;
+  /** The configuration for logging of each type of permission. */
+  auditLogConfigs?: GoogleIamV1__AuditLogConfigList;
 }
 export const GoogleIamV1__AuditConfig = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    auditLogConfigs: S.optional(GoogleIamV1__AuditLogConfigList),
     service: S.optional(S.String),
+    auditLogConfigs: S.optional(GoogleIamV1__AuditLogConfigList),
   }),
 ).annotate({
   identifier: "GoogleIamV1__AuditConfig",
@@ -2134,23 +2088,69 @@ export const GoogleIamV1__AuditConfigList = /*@__PURE__*/ S.Array(
   GoogleIamV1__AuditConfig,
 ) as any as S.Schema<GoogleIamV1__AuditConfigList>;
 
+/** Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information. */
+export interface GoogleType__Expr {
+  /** Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression. */
+  title?: string;
+  /** Optional. String indicating the location of the expression for error reporting, e.g. a file name and a position in the file. */
+  location?: string;
+  /** Optional. Description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI. */
+  description?: string;
+  /** Textual representation of an expression in Common Expression Language syntax. */
+  expression?: string;
+}
+export const GoogleType__Expr = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    title: S.optional(S.String),
+    location: S.optional(S.String),
+    description: S.optional(S.String),
+    expression: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GoogleType__Expr",
+}) as any as S.Schema<GoogleType__Expr>;
+
+/** Associates `members`, or principals, with a `role`. */
+export interface GoogleIamV1__Binding {
+  /** Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles). */
+  role?: string;
+  /** The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the principals in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). */
+  condition?: GoogleType__Expr;
+  /** Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. * `principal://iam.googleapis.com/locations/global/workforcePools/{pool_id}/subject/{subject_attribute_value}`: A single identity in a workforce identity pool. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/group/{group_id}`: All workforce identities in a group. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/attribute.{attribute_name}/{attribute_value}`: All workforce identities with a specific attribute value. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/*`: All identities in a workforce identity pool. * `principal://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/subject/{subject_attribute_value}`: A single identity in a workload identity pool. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/group/{group_id}`: A workload identity pool group. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/attribute.{attribute_name}/{attribute_value}`: All identities in a workload identity pool with a certain attribute. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/*`: All identities in a workload identity pool. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `deleted:principal://iam.googleapis.com/locations/global/workforcePools/{pool_id}/subject/{subject_attribute_value}`: Deleted single identity in a workforce identity pool. For example, `deleted:principal://iam.googleapis.com/locations/global/workforcePools/my-pool-id/subject/my-subject-attribute-value`. */
+  members?: StringList;
+}
+export const GoogleIamV1__Binding = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    role: S.optional(S.String),
+    condition: S.optional(GoogleType__Expr),
+    members: S.optional(StringList),
+  }),
+).annotate({
+  identifier: "GoogleIamV1__Binding",
+}) as any as S.Schema<GoogleIamV1__Binding>;
+
+export type GoogleIamV1__BindingList = Array<GoogleIamV1__Binding>;
+export const GoogleIamV1__BindingList = /*@__PURE__*/ S.Array(
+  GoogleIamV1__Binding,
+) as any as S.Schema<GoogleIamV1__BindingList>;
+
 /** An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] }, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", } } ], "etag": "BwWWja0YfJA=", "version": 3 } ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/). */
 export interface GoogleIamV1__Policy {
-  /** Associates a list of `members`, or principals, with a `role`. Optionally, may specify a `condition` that determines how and when the `bindings` are applied. Each of the `bindings` must contain at least one principal. The `bindings` in a `Policy` can refer to up to 1,500 principals; up to 250 of these principals can be Google groups. Each occurrence of a principal counts towards these limits. For example, if the `bindings` grant 50 different roles to `user:alice@example.com`, and not to any other principal, then you can add another 1,450 principals to the `bindings` in the `Policy`. */
-  bindings?: GoogleIamV1__BindingList;
-  /** `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy. **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. */
-  etag?: string;
   /** Specifies cloud audit logging configuration for this policy. */
   auditConfigs?: GoogleIamV1__AuditConfigList;
   /** Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). */
   version?: number;
+  /** Associates a list of `members`, or principals, with a `role`. Optionally, may specify a `condition` that determines how and when the `bindings` are applied. Each of the `bindings` must contain at least one principal. The `bindings` in a `Policy` can refer to up to 1,500 principals; up to 250 of these principals can be Google groups. Each occurrence of a principal counts towards these limits. For example, if the `bindings` grant 50 different roles to `user:alice@example.com`, and not to any other principal, then you can add another 1,450 principals to the `bindings` in the `Policy`. */
+  bindings?: GoogleIamV1__BindingList;
+  /** `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy. **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. */
+  etag?: string;
 }
 export const GoogleIamV1__Policy = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    bindings: S.optional(GoogleIamV1__BindingList),
-    etag: S.optional(S.String),
     auditConfigs: S.optional(GoogleIamV1__AuditConfigList),
     version: S.optional(S.Number),
+    bindings: S.optional(GoogleIamV1__BindingList),
+    etag: S.optional(S.String),
   }),
 ).annotate({
   identifier: "GoogleIamV1__Policy",
@@ -2213,6 +2213,13 @@ export const GetProjectsLocationsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetProjectsLocationsRequest",
 }) as any as S.Schema<GetProjectsLocationsRequest>;
 
+export type GoogleCloudMlV1__CapabilityTypeEnum =
+  | "TYPE_UNSPECIFIED"
+  | "TRAINING"
+  | "BATCH_PREDICTION"
+  | "ONLINE_PREDICTION";
+export const GoogleCloudMlV1__CapabilityTypeEnum = /*@__PURE__*/ S.String;
+
 export type GoogleCloudMlV1__CapabilityAvailableAcceleratorsItemEnum =
   | "ACCELERATOR_TYPE_UNSPECIFIED"
   | "NVIDIA_TESLA_K80"
@@ -2236,24 +2243,17 @@ export const GoogleCloudMlV1__CapabilityAvailableAcceleratorsItemEnumList =
     GoogleCloudMlV1__CapabilityAvailableAcceleratorsItemEnum,
   ) as any as S.Schema<GoogleCloudMlV1__CapabilityAvailableAcceleratorsItemEnumList>;
 
-export type GoogleCloudMlV1__CapabilityTypeEnum =
-  | "TYPE_UNSPECIFIED"
-  | "TRAINING"
-  | "BATCH_PREDICTION"
-  | "ONLINE_PREDICTION";
-export const GoogleCloudMlV1__CapabilityTypeEnum = /*@__PURE__*/ S.String;
-
 export interface GoogleCloudMlV1__Capability {
+  type?: GoogleCloudMlV1__CapabilityTypeEnum;
   /** Available accelerators for the capability. */
   availableAccelerators?: GoogleCloudMlV1__CapabilityAvailableAcceleratorsItemEnumList;
-  type?: GoogleCloudMlV1__CapabilityTypeEnum;
 }
 export const GoogleCloudMlV1__Capability = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    type: S.optional(GoogleCloudMlV1__CapabilityTypeEnum),
     availableAccelerators: S.optional(
       GoogleCloudMlV1__CapabilityAvailableAcceleratorsItemEnumList,
     ),
-    type: S.optional(GoogleCloudMlV1__CapabilityTypeEnum),
   }),
 ).annotate({
   identifier: "GoogleCloudMlV1__Capability",
@@ -2487,16 +2487,16 @@ export const GoogleCloudMlV1__ListJobsResponse = /*@__PURE__*/ S.suspend(() =>
 export interface ListProjectsLocationsRequest {
   /** Required. The name of the project for which available locations are to be listed (since some locations might be whitelisted for specific projects). */
   parent: string;
-  /** Optional. A page token to request the next page of results. You get the token from the `next_page_token` field of the response from the previous call. */
-  pageToken?: string;
   /** Optional. The number of locations to retrieve per "page" of results. If there are more remaining results than this number, the response message will contain a valid value in the `next_page_token` field. The default value is 20, and the maximum page size is 100. */
   pageSize?: number;
+  /** Optional. A page token to request the next page of results. You get the token from the `next_page_token` field of the response from the previous call. */
+  pageToken?: string;
 }
 export const ListProjectsLocationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     parent: S.String.pipe(T.Label()),
-    pageToken: S.optional(S.String.pipe(T.Query())),
     pageSize: S.optional(S.Number.pipe(T.Query())),
+    pageToken: S.optional(S.String.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -2600,19 +2600,19 @@ export const GoogleCloudMlV1__ListTrialsResponse = /*@__PURE__*/ S.suspend(() =>
 export interface ListProjectsModelsRequest {
   /** Optional. A page token to request the next page of results. You get the token from the `next_page_token` field of the response from the previous call. */
   pageToken?: string;
+  /** Optional. The number of models to retrieve per "page" of results. If there are more remaining results than this number, the response message will contain a valid value in the `next_page_token` field. The default value is 20, and the maximum page size is 100. */
+  pageSize?: number;
   /** Required. The name of the project whose models are to be listed. */
   parent: string;
   /** Optional. Specifies the subset of models to retrieve. */
   filter?: string;
-  /** Optional. The number of models to retrieve per "page" of results. If there are more remaining results than this number, the response message will contain a valid value in the `next_page_token` field. The default value is 20, and the maximum page size is 100. */
-  pageSize?: number;
 }
 export const ListProjectsModelsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     pageToken: S.optional(S.String.pipe(T.Query())),
+    pageSize: S.optional(S.Number.pipe(T.Query())),
     parent: S.String.pipe(T.Label()),
     filter: S.optional(S.String.pipe(T.Query())),
-    pageSize: S.optional(S.Number.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -2646,21 +2646,21 @@ export const GoogleCloudMlV1__ListModelsResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GoogleCloudMlV1__ListModelsResponse>;
 
 export interface ListProjectsModelsVersionsRequest {
+  /** Optional. A page token to request the next page of results. You get the token from the `next_page_token` field of the response from the previous call. */
+  pageToken?: string;
   /** Optional. Specifies the subset of versions to retrieve. */
   filter?: string;
   /** Optional. The number of versions to retrieve per "page" of results. If there are more remaining results than this number, the response message will contain a valid value in the `next_page_token` field. The default value is 20, and the maximum page size is 100. */
   pageSize?: number;
   /** Required. The name of the model for which to list the version. */
   parent: string;
-  /** Optional. A page token to request the next page of results. You get the token from the `next_page_token` field of the response from the previous call. */
-  pageToken?: string;
 }
 export const ListProjectsModelsVersionsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    pageToken: S.optional(S.String.pipe(T.Query())),
     filter: S.optional(S.String.pipe(T.Query())),
     pageSize: S.optional(S.Number.pipe(T.Query())),
     parent: S.String.pipe(T.Label()),
-    pageToken: S.optional(S.String.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -2697,22 +2697,22 @@ export const GoogleCloudMlV1__ListVersionsResponse = /*@__PURE__*/ S.suspend(
 export interface ListProjectsOperationsRequest {
   /** The standard list filter. */
   filter?: string;
-  /** The name of the operation's parent resource. */
-  name: string;
   /** The standard list page size. */
   pageSize?: number;
-  /** The standard list page token. */
-  pageToken?: string;
+  /** The name of the operation's parent resource. */
+  name: string;
   /** When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `"projects/example/locations/-"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation. */
   returnPartialSuccess?: boolean;
+  /** The standard list page token. */
+  pageToken?: string;
 }
 export const ListProjectsOperationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     filter: S.optional(S.String.pipe(T.Query())),
-    name: S.String.pipe(T.Label()),
     pageSize: S.optional(S.Number.pipe(T.Query())),
-    pageToken: S.optional(S.String.pipe(T.Query())),
+    name: S.String.pipe(T.Label()),
     returnPartialSuccess: S.optional(S.Boolean.pipe(T.Query())),
+    pageToken: S.optional(S.String.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",
@@ -2732,18 +2732,18 @@ export const GoogleLongrunning__OperationList = /*@__PURE__*/ S.Array(
 
 /** The response message for Operations.ListOperations. */
 export interface GoogleLongrunning__ListOperationsResponse {
-  /** The standard List next-page token. */
-  nextPageToken?: string;
   /** Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations. */
   unreachable?: StringList;
+  /** The standard List next-page token. */
+  nextPageToken?: string;
   /** A list of operations that matches the specified filter in the request. */
   operations?: GoogleLongrunning__OperationList;
 }
 export const GoogleLongrunning__ListOperationsResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      nextPageToken: S.optional(S.String),
       unreachable: S.optional(StringList),
+      nextPageToken: S.optional(S.String),
       operations: S.optional(GoogleLongrunning__OperationList),
     }),
   ).annotate({
@@ -2751,17 +2751,17 @@ export const GoogleLongrunning__ListOperationsResponse =
   }) as any as S.Schema<GoogleLongrunning__ListOperationsResponse>;
 
 export interface PatchProjectsJobsRequest {
-  /** Required. Specifies the path, relative to `Job`, of the field to update. To adopt etag mechanism, include `etag` field in the mask, and include the `etag` value in your job resource. For example, to change the labels of a job, the `update_mask` parameter would be specified as `labels`, `etag`, and the `PATCH` request body would specify the new value, as follows: { "labels": { "owner": "Google", "color": "Blue" } "etag": "33a64df551425fcc55e4d42a148795d9f25f89d4" } If `etag` matches the one on the server, the labels of the job will be replaced with the given ones, and the server end `etag` will be recalculated. Currently the only supported update masks are `labels` and `etag`. */
-  updateMask?: string;
   /** Required. The job name. */
   name: string;
+  /** Required. Specifies the path, relative to `Job`, of the field to update. To adopt etag mechanism, include `etag` field in the mask, and include the `etag` value in your job resource. For example, to change the labels of a job, the `update_mask` parameter would be specified as `labels`, `etag`, and the `PATCH` request body would specify the new value, as follows: { "labels": { "owner": "Google", "color": "Blue" } "etag": "33a64df551425fcc55e4d42a148795d9f25f89d4" } If `etag` matches the one on the server, the labels of the job will be replaced with the given ones, and the server end `etag` will be recalculated. Currently the only supported update masks are `labels` and `etag`. */
+  updateMask?: string;
   /** Request body */
   body?: GoogleCloudMlV1__Job;
 }
 export const PatchProjectsJobsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    updateMask: S.optional(S.String.pipe(T.Query())),
     name: S.String.pipe(T.Label()),
+    updateMask: S.optional(S.String.pipe(T.Query())),
     body: S.optional(GoogleCloudMlV1__Job.pipe(T.HttpBody())),
   }).pipe(
     T.Http({
@@ -2775,17 +2775,17 @@ export const PatchProjectsJobsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PatchProjectsJobsRequest>;
 
 export interface PatchProjectsModelsRequest {
-  /** Required. Specifies the path, relative to `Model`, of the field to update. For example, to change the description of a model to "foo" and set its default version to "version_1", the `update_mask` parameter would be specified as `description`, `default_version.name`, and the `PATCH` request body would specify the new value, as follows: { "description": "foo", "defaultVersion": { "name":"version_1" } } Currently the supported update masks are `description` and `default_version.name`. */
-  updateMask?: string;
   /** Required. The project name. */
   name: string;
+  /** Required. Specifies the path, relative to `Model`, of the field to update. For example, to change the description of a model to "foo" and set its default version to "version_1", the `update_mask` parameter would be specified as `description`, `default_version.name`, and the `PATCH` request body would specify the new value, as follows: { "description": "foo", "defaultVersion": { "name":"version_1" } } Currently the supported update masks are `description` and `default_version.name`. */
+  updateMask?: string;
   /** Request body */
   body?: GoogleCloudMlV1__Model;
 }
 export const PatchProjectsModelsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    updateMask: S.optional(S.String.pipe(T.Query())),
     name: S.String.pipe(T.Label()),
+    updateMask: S.optional(S.String.pipe(T.Query())),
     body: S.optional(GoogleCloudMlV1__Model.pipe(T.HttpBody())),
   }).pipe(
     T.Http({
@@ -2799,17 +2799,17 @@ export const PatchProjectsModelsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PatchProjectsModelsRequest>;
 
 export interface PatchProjectsModelsVersionsRequest {
-  /** Required. Specifies the path, relative to `Version`, of the field to update. Must be present and non-empty. For example, to change the description of a version to "foo", the `update_mask` parameter would be specified as `description`, and the `PATCH` request body would specify the new value, as follows: ``` { "description": "foo" } ``` Currently the only supported update mask fields are `description`, `requestLoggingConfig`, `autoScaling.minNodes`, and `manualScaling.nodes`. However, you can only update `manualScaling.nodes` if the version uses a [Compute Engine (N1) machine type](/ml-engine/docs/machine-types-online-prediction). */
-  updateMask?: string;
   /** Required. The name of the model. */
   name: string;
+  /** Required. Specifies the path, relative to `Version`, of the field to update. Must be present and non-empty. For example, to change the description of a version to "foo", the `update_mask` parameter would be specified as `description`, and the `PATCH` request body would specify the new value, as follows: ``` { "description": "foo" } ``` Currently the only supported update mask fields are `description`, `requestLoggingConfig`, `autoScaling.minNodes`, and `manualScaling.nodes`. However, you can only update `manualScaling.nodes` if the version uses a [Compute Engine (N1) machine type](/ml-engine/docs/machine-types-online-prediction). */
+  updateMask?: string;
   /** Request body */
   body?: GoogleCloudMlV1__Version;
 }
 export const PatchProjectsModelsVersionsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    updateMask: S.optional(S.String.pipe(T.Query())),
     name: S.String.pipe(T.Label()),
+    updateMask: S.optional(S.String.pipe(T.Query())),
     body: S.optional(GoogleCloudMlV1__Version.pipe(T.HttpBody())),
   }).pipe(
     T.Http({
@@ -2886,15 +2886,15 @@ export const SetDefaultProjectsModelsVersionsRequest = /*@__PURE__*/ S.suspend(
 
 /** Request message for `SetIamPolicy` method. */
 export interface GoogleIamV1__SetIamPolicyRequest {
-  /** REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Google Cloud services (such as Projects) might reject them. */
-  policy?: GoogleIamV1__Policy;
   /** OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: `paths: "bindings, etag"` */
   updateMask?: string;
+  /** REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Google Cloud services (such as Projects) might reject them. */
+  policy?: GoogleIamV1__Policy;
 }
 export const GoogleIamV1__SetIamPolicyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    policy: S.optional(GoogleIamV1__Policy),
     updateMask: S.optional(S.String),
+    policy: S.optional(GoogleIamV1__Policy),
   }),
 ).annotate({
   identifier: "GoogleIamV1__SetIamPolicyRequest",

@@ -12,8 +12,8 @@ import * as Retry from "../retry.ts";
 
 export type { ModalOpError, ModalOpContext };
 
-export interface ServiceUserListRequest {}
-export const ServiceUserListRequest = /*@__PURE__*/ S.suspend(() =>
+export interface ListServiceUserRequest {}
+export const ListServiceUserRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
     T.Http({
       method: "POST",
@@ -22,8 +22,8 @@ export const ServiceUserListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "ServiceUserListRequest",
-}) as any as S.Schema<ServiceUserListRequest>;
+  identifier: "ListServiceUserRequest",
+}) as any as S.Schema<ListServiceUserRequest>;
 
 export interface ServiceUser {
   name?: string;
@@ -51,27 +51,27 @@ export const ServiceUserList2 = /*@__PURE__*/ S.Array(
   ServiceUser,
 ) as any as S.Schema<ServiceUserList2>;
 
-export interface ServiceUserListResponse {
+export interface ListServiceUserResponse {
   serviceUsers?: ServiceUserList2;
 }
-export const ServiceUserListResponse = /*@__PURE__*/ S.suspend(() =>
+export const ListServiceUserResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     serviceUsers: S.optional(ServiceUserList2),
   }),
 ).annotate({
-  identifier: "ServiceUserListResponse",
-}) as any as S.Schema<ServiceUserListResponse>;
+  identifier: "ListServiceUserResponse",
+}) as any as S.Schema<ListServiceUserResponse>;
 
-export type ServiceUserListError = ModalOpError;
+export type ListServiceUserError = ModalOpError;
 /** Service users */
-export const serviceUserList: API.OperationMethod<
-  ServiceUserListRequest,
-  ServiceUserListResponse,
-  ServiceUserListError,
+export const listServiceUser: API.OperationMethod<
+  ListServiceUserRequest,
+  ListServiceUserResponse,
+  ListServiceUserError,
   ModalOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: ServiceUserListRequest,
-  output: ServiceUserListResponse,
+  input: ListServiceUserRequest,
+  output: ListServiceUserResponse,
   errors: [UnknownModalError],
   protocol: ModalProtocol,
   retry: Retry.Retry,

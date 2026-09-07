@@ -65,353 +65,6 @@ export class NotFound
     [{ status: 404 }],
   ) {}
 
-export type StringList = Array<string>;
-export const StringList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<StringList>;
-
-/** Used to combine dimension values to a single dimension. */
-export interface ConcatenateExpression {
-  /** Names of dimensions. The names must refer back to names in the dimensions field of the request. */
-  dimensionNames?: StringList;
-  /** The delimiter placed between dimension names. Delimiters are often single characters such as "|" or "," but can be longer strings. If a dimension value contains the delimiter, both will be present in response with no distinction. For example if dimension 1 value = "US,FR", dimension 2 value = "JP", and delimiter = ",", then the response will contain "US,FR,JP". */
-  delimiter?: string;
-}
-export const ConcatenateExpression = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    dimensionNames: S.optional(StringList),
-    delimiter: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "ConcatenateExpression",
-}) as any as S.Schema<ConcatenateExpression>;
-
-/** Used to convert a dimension value to a single case. */
-export interface CaseExpression {
-  /** Name of a dimension. The name must refer back to a name in dimensions field of the request. */
-  dimensionName?: string;
-}
-export const CaseExpression = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    dimensionName: S.optional(S.String),
-  }),
-).annotate({ identifier: "CaseExpression" }) as any as S.Schema<CaseExpression>;
-
-/** Used to express a dimension which is the result of a formula of multiple dimensions. Example usages: 1) lower_case(dimension) 2) concatenate(dimension1, symbol, dimension2). */
-export interface DimensionExpression {
-  /** Used to combine dimension values to a single dimension. For example, dimension "country, city": concatenate(country, ", ", city). */
-  concatenate?: ConcatenateExpression;
-  /** Used to convert a dimension value to lower case. */
-  lowerCase?: CaseExpression;
-  /** Used to convert a dimension value to upper case. */
-  upperCase?: CaseExpression;
-}
-export const DimensionExpression = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    concatenate: S.optional(ConcatenateExpression),
-    lowerCase: S.optional(CaseExpression),
-    upperCase: S.optional(CaseExpression),
-  }),
-).annotate({
-  identifier: "DimensionExpression",
-}) as any as S.Schema<DimensionExpression>;
-
-/** Dimensions are attributes of your data. For example, the dimension city indicates the city from which an event originates. Dimension values in report responses are strings; for example, the city could be "Paris" or "New York". Requests are allowed up to 9 dimensions. */
-export interface Dimension {
-  /** The name of the dimension. See the [API Dimensions](https://developers.google.com/analytics/devguides/reporting/data/v1/api-schema#dimensions) for the list of dimension names supported by core reporting methods such as `runReport` and `batchRunReports`. See [Realtime Dimensions](https://developers.google.com/analytics/devguides/reporting/data/v1/realtime-api-schema#dimensions) for the list of dimension names supported by the `runRealtimeReport` method. See [Funnel Dimensions](https://developers.google.com/analytics/devguides/reporting/data/v1/exploration-api-schema#dimensions) for the list of dimension names supported by the `runFunnelReport` method. If `dimensionExpression` is specified, `name` can be any string that you would like within the allowed character set. For example if a `dimensionExpression` concatenates `country` and `city`, you could call that dimension `countryAndCity`. Dimension names that you choose must match the regular expression `^[a-zA-Z0-9_]$`. Dimensions are referenced by `name` in `dimensionFilter`, `orderBys`, `dimensionExpression`, and `pivots`. */
-  name?: string;
-  /** One dimension can be the result of an expression of multiple dimensions. For example, dimension "country, city": concatenate(country, ", ", city). */
-  dimensionExpression?: DimensionExpression;
-}
-export const Dimension = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    dimensionExpression: S.optional(DimensionExpression),
-  }),
-).annotate({ identifier: "Dimension" }) as any as S.Schema<Dimension>;
-
-export type DimensionList = Array<Dimension>;
-export const DimensionList = /*@__PURE__*/ S.Array(
-  Dimension,
-) as any as S.Schema<DimensionList>;
-
-export type FilterExpressionList_ = Array<FilterExpression>;
-export const FilterExpressionList_ = /*@__PURE__*/ S.Array(
-  S.suspend(() => FilterExpression),
-) as any as S.Schema<FilterExpressionList_>;
-
-/** A list of filter expressions. */
-export interface FilterExpressionList {
-  /** A list of filter expressions. */
-  expressions?: FilterExpressionList_;
-}
-export const FilterExpressionList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    expressions: S.optional(FilterExpressionList_),
-  }),
-).annotate({
-  identifier: "FilterExpressionList",
-}) as any as S.Schema<FilterExpressionList>;
-
-export type NumericFilterOperationEnum =
-  | "OPERATION_UNSPECIFIED"
-  | "EQUAL"
-  | "LESS_THAN"
-  | "LESS_THAN_OR_EQUAL"
-  | "GREATER_THAN"
-  | "GREATER_THAN_OR_EQUAL";
-export const NumericFilterOperationEnum = /*@__PURE__*/ S.String;
-
-/** To represent a number. */
-export interface NumericValue {
-  /** Double value */
-  doubleValue?: number;
-  /** Integer value */
-  int64Value?: string;
-}
-export const NumericValue = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    doubleValue: S.optional(S.Number),
-    int64Value: S.optional(S.String),
-  }),
-).annotate({ identifier: "NumericValue" }) as any as S.Schema<NumericValue>;
-
-/** Filters for numeric or date values. */
-export interface NumericFilter {
-  /** The operation type for this filter. */
-  operation?: NumericFilterOperationEnum | (string & {});
-  /** A numeric value or a date value. */
-  value?: NumericValue;
-}
-export const NumericFilter = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    operation: S.optional(NumericFilterOperationEnum),
-    value: S.optional(NumericValue),
-  }),
-).annotate({ identifier: "NumericFilter" }) as any as S.Schema<NumericFilter>;
-
-export type StringFilterMatchTypeEnum =
-  | "MATCH_TYPE_UNSPECIFIED"
-  | "EXACT"
-  | "BEGINS_WITH"
-  | "ENDS_WITH"
-  | "CONTAINS"
-  | "FULL_REGEXP"
-  | "PARTIAL_REGEXP";
-export const StringFilterMatchTypeEnum = /*@__PURE__*/ S.String;
-
-/** The filter for string */
-export interface StringFilter {
-  /** The match type for this filter. */
-  matchType?: StringFilterMatchTypeEnum | (string & {});
-  /** The string value used for the matching. */
-  value?: string;
-  /** If true, the string value is case sensitive. */
-  caseSensitive?: boolean;
-}
-export const StringFilter = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    matchType: S.optional(StringFilterMatchTypeEnum),
-    value: S.optional(S.String),
-    caseSensitive: S.optional(S.Boolean),
-  }),
-).annotate({ identifier: "StringFilter" }) as any as S.Schema<StringFilter>;
-
-/** The result needs to be in a list of string values. */
-export interface InListFilter {
-  /** If true, the string value is case sensitive. */
-  caseSensitive?: boolean;
-  /** The list of string values. Must be non-empty. */
-  values?: StringList;
-}
-export const InListFilter = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    caseSensitive: S.optional(S.Boolean),
-    values: S.optional(StringList),
-  }),
-).annotate({ identifier: "InListFilter" }) as any as S.Schema<InListFilter>;
-
-/** Filter for empty values. */
-export interface EmptyFilter {}
-export const EmptyFilter = /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate(
-  { identifier: "EmptyFilter" },
-) as any as S.Schema<EmptyFilter>;
-
-/** To express that the result needs to be between two numbers (inclusive). */
-export interface BetweenFilter {
-  /** Ends with this number. */
-  toValue?: NumericValue;
-  /** Begins with this number. */
-  fromValue?: NumericValue;
-}
-export const BetweenFilter = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    toValue: S.optional(NumericValue),
-    fromValue: S.optional(NumericValue),
-  }),
-).annotate({ identifier: "BetweenFilter" }) as any as S.Schema<BetweenFilter>;
-
-/** An expression to filter dimension or metric values. */
-export interface Filter {
-  /** A filter for numeric or date values. */
-  numericFilter?: NumericFilter;
-  /** Strings related filter. */
-  stringFilter?: StringFilter;
-  /** A filter for in list values. */
-  inListFilter?: InListFilter;
-  /** The dimension name or metric name. In most methods, dimensions & metrics can be used for the first time in this field. However in a RunPivotReportRequest, this field must be additionally specified by name in the RunPivotReportRequest's dimensions or metrics. */
-  fieldName?: string;
-  /** A filter for empty values such as "(not set)" and "" values. */
-  emptyFilter?: EmptyFilter;
-  /** A filter for two values. */
-  betweenFilter?: BetweenFilter;
-}
-export const Filter = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    numericFilter: S.optional(NumericFilter),
-    stringFilter: S.optional(StringFilter),
-    inListFilter: S.optional(InListFilter),
-    fieldName: S.optional(S.String),
-    emptyFilter: S.optional(EmptyFilter),
-    betweenFilter: S.optional(BetweenFilter),
-  }),
-).annotate({ identifier: "Filter" }) as any as S.Schema<Filter>;
-
-/** To express dimension or metric filters. The fields in the same FilterExpression need to be either all dimensions or all metrics. */
-export interface FilterExpression {
-  /** The FilterExpressions in or_group have an OR relationship. */
-  orGroup?: FilterExpressionList;
-  /** A primitive filter. In the same FilterExpression, all of the filter's field names need to be either all dimensions or all metrics. */
-  filter?: Filter;
-  /** The FilterExpression is NOT of not_expression. */
-  notExpression?: FilterExpression;
-  /** The FilterExpressions in and_group have an AND relationship. */
-  andGroup?: FilterExpressionList;
-}
-export const FilterExpression = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    orGroup: S.optional(FilterExpressionList),
-    filter: S.optional(Filter),
-    notExpression: S.optional(FilterExpression),
-    andGroup: S.optional(FilterExpressionList),
-  }),
-).annotate({
-  identifier: "FilterExpression",
-}) as any as S.Schema<FilterExpression>;
-
-/** A contiguous set of days: `startDate`, `startDate + 1`, ..., `endDate`. Requests are allowed up to 4 date ranges. */
-export interface DateRange {
-  /** The inclusive end date for the query in the format `YYYY-MM-DD`. Cannot be before `start_date`. The format `NdaysAgo`, `yesterday`, or `today` is also accepted, and in that case, the date is inferred based on the property's reporting time zone. */
-  endDate?: string;
-  /** Assigns a name to this date range. The dimension `dateRange` is valued to this name in a report response. If set, cannot begin with `date_range_` or `RESERVED_`. If not set, date ranges are named by their zero based index in the request: `date_range_0`, `date_range_1`, etc. */
-  name?: string;
-  /** The inclusive start date for the query in the format `YYYY-MM-DD`. Cannot be after `end_date`. The format `NdaysAgo`, `yesterday`, or `today` is also accepted, and in that case, the date is inferred based on the property's reporting time zone. */
-  startDate?: string;
-}
-export const DateRange = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    endDate: S.optional(S.String),
-    name: S.optional(S.String),
-    startDate: S.optional(S.String),
-  }),
-).annotate({ identifier: "DateRange" }) as any as S.Schema<DateRange>;
-
-export type DateRangeList = Array<DateRange>;
-export const DateRangeList = /*@__PURE__*/ S.Array(
-  DateRange,
-) as any as S.Schema<DateRangeList>;
-
-/** Defines a cohort selection criteria. A cohort is a group of users who share a common characteristic. For example, users with the same `firstSessionDate` belong to the same cohort. */
-export interface Cohort {
-  /** Assigns a name to this cohort. The dimension `cohort` is valued to this name in a report response. If set, cannot begin with `cohort_` or `RESERVED_`. If not set, cohorts are named by their zero based index `cohort_0`, `cohort_1`, etc. */
-  name?: string;
-  /** Dimension used by the cohort. Required and only supports `firstSessionDate`. */
-  dimension?: string;
-  /** The cohort selects users whose first touch date is between start date and end date defined in the `dateRange`. This `dateRange` does not specify the full date range of event data that is present in a cohort report. In a cohort report, this `dateRange` is extended by the granularity and offset present in the `cohortsRange`; event data for the extended reporting date range is present in a cohort report. In a cohort request, this `dateRange` is required and the `dateRanges` in the `RunReportRequest` or `RunPivotReportRequest` must be unspecified. This `dateRange` should generally be aligned with the cohort's granularity. If `CohortsRange` uses daily granularity, this `dateRange` can be a single day. If `CohortsRange` uses weekly granularity, this `dateRange` can be aligned to a week boundary, starting at Sunday and ending Saturday. If `CohortsRange` uses monthly granularity, this `dateRange` can be aligned to a month, starting at the first and ending on the last day of the month. */
-  dateRange?: DateRange;
-}
-export const Cohort = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    dimension: S.optional(S.String),
-    dateRange: S.optional(DateRange),
-  }),
-).annotate({ identifier: "Cohort" }) as any as S.Schema<Cohort>;
-
-export type CohortList = Array<Cohort>;
-export const CohortList = /*@__PURE__*/ S.Array(
-  Cohort,
-) as any as S.Schema<CohortList>;
-
-export type CohortsRangeGranularityEnum =
-  | "GRANULARITY_UNSPECIFIED"
-  | "DAILY"
-  | "WEEKLY"
-  | "MONTHLY";
-export const CohortsRangeGranularityEnum = /*@__PURE__*/ S.String;
-
-/** Configures the extended reporting date range for a cohort report. Specifies an offset duration to follow the cohorts over. */
-export interface CohortsRange {
-  /** Required. The granularity used to interpret the `startOffset` and `endOffset` for the extended reporting date range for a cohort report. */
-  granularity?: CohortsRangeGranularityEnum | (string & {});
-  /** `startOffset` specifies the start date of the extended reporting date range for a cohort report. `startOffset` is commonly set to 0 so that reports contain data from the acquisition of the cohort forward. If `granularity` is `DAILY`, the `startDate` of the extended reporting date range is `startDate` of the cohort plus `startOffset` days. If `granularity` is `WEEKLY`, the `startDate` of the extended reporting date range is `startDate` of the cohort plus `startOffset * 7` days. If `granularity` is `MONTHLY`, the `startDate` of the extended reporting date range is `startDate` of the cohort plus `startOffset * 30` days. */
-  startOffset?: number;
-  /** Required. `endOffset` specifies the end date of the extended reporting date range for a cohort report. `endOffset` can be any positive integer but is commonly set to 5 to 10 so that reports contain data on the cohort for the next several granularity time periods. If `granularity` is `DAILY`, the `endDate` of the extended reporting date range is `endDate` of the cohort plus `endOffset` days. If `granularity` is `WEEKLY`, the `endDate` of the extended reporting date range is `endDate` of the cohort plus `endOffset * 7` days. If `granularity` is `MONTHLY`, the `endDate` of the extended reporting date range is `endDate` of the cohort plus `endOffset * 30` days. */
-  endOffset?: number;
-}
-export const CohortsRange = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    granularity: S.optional(CohortsRangeGranularityEnum),
-    startOffset: S.optional(S.Number),
-    endOffset: S.optional(S.Number),
-  }),
-).annotate({ identifier: "CohortsRange" }) as any as S.Schema<CohortsRange>;
-
-/** Optional settings of a cohort report. */
-export interface CohortReportSettings {
-  /** If true, accumulates the result from first touch day to the end day. Not supported in `RunReportRequest`. */
-  accumulate?: boolean;
-}
-export const CohortReportSettings = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    accumulate: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "CohortReportSettings",
-}) as any as S.Schema<CohortReportSettings>;
-
-/** The specification of cohorts for a cohort report. Cohort reports create a time series of user retention for the cohort. For example, you could select the cohort of users that were acquired in the first week of September and follow that cohort for the next six weeks. Selecting the users acquired in the first week of September cohort is specified in the `cohort` object. Following that cohort for the next six weeks is specified in the `cohortsRange` object. For examples, see [Cohort Report Examples](https://developers.google.com/analytics/devguides/reporting/data/v1/advanced#cohort_report_examples). The report response could show a weekly time series where say your app has retained 60% of this cohort after three weeks and 25% of this cohort after six weeks. These two percentages can be calculated by the metric `cohortActiveUsers/cohortTotalUsers` and will be separate rows in the report. */
-export interface CohortSpec {
-  /** Defines the selection criteria to group users into cohorts. Most cohort reports define only a single cohort. If multiple cohorts are specified, each cohort can be recognized in the report by their name. */
-  cohorts?: CohortList;
-  /** Cohort reports follow cohorts over an extended reporting date range. This range specifies an offset duration to follow the cohorts over. */
-  cohortsRange?: CohortsRange;
-  /** Optional settings for a cohort report. */
-  cohortReportSettings?: CohortReportSettings;
-}
-export const CohortSpec = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    cohorts: S.optional(CohortList),
-    cohortsRange: S.optional(CohortsRange),
-    cohortReportSettings: S.optional(CohortReportSettings),
-  }),
-).annotate({ identifier: "CohortSpec" }) as any as S.Schema<CohortSpec>;
-
-export type PivotMetricAggregationsItemEnum =
-  | "METRIC_AGGREGATION_UNSPECIFIED"
-  | "TOTAL"
-  | "MINIMUM"
-  | "MAXIMUM"
-  | "COUNT";
-export const PivotMetricAggregationsItemEnum = /*@__PURE__*/ S.String;
-
-export type PivotMetricAggregationsItemEnumList = Array<
-  PivotMetricAggregationsItemEnum | (string & {})
->;
-export const PivotMetricAggregationsItemEnumList = /*@__PURE__*/ S.Array(
-  PivotMetricAggregationsItemEnum,
-) as any as S.Schema<PivotMetricAggregationsItemEnumList>;
-
 export type DimensionOrderByOrderTypeEnum =
   | "ORDER_TYPE_UNSPECIFIED"
   | "ALPHANUMERIC"
@@ -456,15 +109,15 @@ export const PivotSelectionList = /*@__PURE__*/ S.Array(
 
 /** Sorts by a pivot column group. */
 export interface PivotOrderBy {
-  /** Used to select a dimension name and value pivot. If multiple pivot selections are given, the sort occurs on rows where all pivot selection dimension name and value pairs match the row's dimension name and value pair. */
-  pivotSelections?: PivotSelectionList;
   /** In the response to order by, order rows by this column. Must be a metric name from the request. */
   metricName?: string;
+  /** Used to select a dimension name and value pivot. If multiple pivot selections are given, the sort occurs on rows where all pivot selection dimension name and value pairs match the row's dimension name and value pair. */
+  pivotSelections?: PivotSelectionList;
 }
 export const PivotOrderBy = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    pivotSelections: S.optional(PivotSelectionList),
     metricName: S.optional(S.String),
+    pivotSelections: S.optional(PivotSelectionList),
   }),
 ).annotate({ identifier: "PivotOrderBy" }) as any as S.Schema<PivotOrderBy>;
 
@@ -504,26 +157,46 @@ export const OrderByList = /*@__PURE__*/ S.Array(
   OrderBy,
 ) as any as S.Schema<OrderByList>;
 
+export type StringList = Array<string>;
+export const StringList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<StringList>;
+
+export type PivotMetricAggregationsItemEnum =
+  | "METRIC_AGGREGATION_UNSPECIFIED"
+  | "TOTAL"
+  | "MINIMUM"
+  | "MAXIMUM"
+  | "COUNT";
+export const PivotMetricAggregationsItemEnum = /*@__PURE__*/ S.String;
+
+export type PivotMetricAggregationsItemEnumList = Array<
+  PivotMetricAggregationsItemEnum | (string & {})
+>;
+export const PivotMetricAggregationsItemEnumList = /*@__PURE__*/ S.Array(
+  PivotMetricAggregationsItemEnum,
+) as any as S.Schema<PivotMetricAggregationsItemEnumList>;
+
 /** Describes the visible dimension columns and rows in the report response. */
 export interface Pivot {
-  /** Dimension names for visible columns in the report response. Including "dateRange" produces a date range column; for each row in the response, dimension values in the date range column will indicate the corresponding date range from the request. */
-  fieldNames?: StringList;
-  /** The row count of the start row. The first row is counted as row 0. */
-  offset?: string;
-  /** Aggregate the metrics by dimensions in this pivot using the specified metric_aggregations. */
-  metricAggregations?: PivotMetricAggregationsItemEnumList;
-  /** The number of unique combinations of dimension values to return in this pivot. The `limit` parameter is required. A `limit` of 10,000 is common for single pivot requests. The product of the `limit` for each `pivot` in a `RunPivotReportRequest` must not exceed 250,000. For example, a two pivot request with `limit: 1000` in each pivot will fail because the product is `1,000,000`. */
-  limit?: string;
   /** Specifies how dimensions are ordered in the pivot. In the first Pivot, the OrderBys determine Row and PivotDimensionHeader ordering; in subsequent Pivots, the OrderBys determine only PivotDimensionHeader ordering. Dimensions specified in these OrderBys must be a subset of Pivot.field_names. */
   orderBys?: OrderByList;
+  /** The row count of the start row. The first row is counted as row 0. */
+  offset?: string;
+  /** The number of unique combinations of dimension values to return in this pivot. The `limit` parameter is required. A `limit` of 10,000 is common for single pivot requests. The product of the `limit` for each `pivot` in a `RunPivotReportRequest` must not exceed 250,000. For example, a two pivot request with `limit: 1000` in each pivot will fail because the product is `1,000,000`. */
+  limit?: string;
+  /** Dimension names for visible columns in the report response. Including "dateRange" produces a date range column; for each row in the response, dimension values in the date range column will indicate the corresponding date range from the request. */
+  fieldNames?: StringList;
+  /** Aggregate the metrics by dimensions in this pivot using the specified metric_aggregations. */
+  metricAggregations?: PivotMetricAggregationsItemEnumList;
 }
 export const Pivot = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    fieldNames: S.optional(StringList),
-    offset: S.optional(S.String),
-    metricAggregations: S.optional(PivotMetricAggregationsItemEnumList),
-    limit: S.optional(S.String),
     orderBys: S.optional(OrderByList),
+    offset: S.optional(S.String),
+    limit: S.optional(S.String),
+    fieldNames: S.optional(StringList),
+    metricAggregations: S.optional(PivotMetricAggregationsItemEnumList),
   }),
 ).annotate({ identifier: "Pivot" }) as any as S.Schema<Pivot>;
 
@@ -534,18 +207,18 @@ export const PivotList = /*@__PURE__*/ S.Array(
 
 /** The quantitative measurements of a report. For example, the metric `eventCount` is the total number of events. Requests are allowed up to 10 metrics. */
 export interface Metric {
+  /** The name of the metric. See the [API Metrics](https://developers.google.com/analytics/devguides/reporting/data/v1/api-schema#metrics) for the list of metric names supported by core reporting methods such as `runReport` and `batchRunReports`. See [Realtime Metrics](https://developers.google.com/analytics/devguides/reporting/data/v1/realtime-api-schema#metrics) for the list of metric names supported by the `runRealtimeReport` method. See [Funnel Metrics](https://developers.google.com/analytics/devguides/reporting/data/v1/exploration-api-schema#metrics) for the list of metric names supported by the `runFunnelReport` method. If `expression` is specified, `name` can be any string that you would like within the allowed character set. For example if `expression` is `screenPageViews/sessions`, you could call that metric's name = `viewsPerSession`. Metric names that you choose must match the regular expression `^[a-zA-Z0-9_]$`. Metrics are referenced by `name` in `metricFilter`, `orderBys`, and metric `expression`. */
+  name?: string;
   /** A mathematical expression for derived metrics. For example, the metric Event count per user is `eventCount/totalUsers`. */
   expression?: string;
   /** Indicates if a metric is invisible in the report response. If a metric is invisible, the metric will not produce a column in the response, but can be used in `metricFilter`, `orderBys`, or a metric `expression`. */
   invisible?: boolean;
-  /** The name of the metric. See the [API Metrics](https://developers.google.com/analytics/devguides/reporting/data/v1/api-schema#metrics) for the list of metric names supported by core reporting methods such as `runReport` and `batchRunReports`. See [Realtime Metrics](https://developers.google.com/analytics/devguides/reporting/data/v1/realtime-api-schema#metrics) for the list of metric names supported by the `runRealtimeReport` method. See [Funnel Metrics](https://developers.google.com/analytics/devguides/reporting/data/v1/exploration-api-schema#metrics) for the list of metric names supported by the `runFunnelReport` method. If `expression` is specified, `name` can be any string that you would like within the allowed character set. For example if `expression` is `screenPageViews/sessions`, you could call that metric's name = `viewsPerSession`. Metric names that you choose must match the regular expression `^[a-zA-Z0-9_]$`. Metrics are referenced by `name` in `metricFilter`, `orderBys`, and metric `expression`. */
-  name?: string;
 }
 export const Metric = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    name: S.optional(S.String),
     expression: S.optional(S.String),
     invisible: S.optional(S.Boolean),
-    name: S.optional(S.String),
   }),
 ).annotate({ identifier: "Metric" }) as any as S.Schema<Metric>;
 
@@ -554,20 +227,206 @@ export const MetricList = /*@__PURE__*/ S.Array(
   Metric,
 ) as any as S.Schema<MetricList>;
 
+/** A contiguous set of days: `startDate`, `startDate + 1`, ..., `endDate`. Requests are allowed up to 4 date ranges. */
+export interface DateRange {
+  /** Assigns a name to this date range. The dimension `dateRange` is valued to this name in a report response. If set, cannot begin with `date_range_` or `RESERVED_`. If not set, date ranges are named by their zero based index in the request: `date_range_0`, `date_range_1`, etc. */
+  name?: string;
+  /** The inclusive end date for the query in the format `YYYY-MM-DD`. Cannot be before `start_date`. The format `NdaysAgo`, `yesterday`, or `today` is also accepted, and in that case, the date is inferred based on the property's reporting time zone. */
+  endDate?: string;
+  /** The inclusive start date for the query in the format `YYYY-MM-DD`. Cannot be after `end_date`. The format `NdaysAgo`, `yesterday`, or `today` is also accepted, and in that case, the date is inferred based on the property's reporting time zone. */
+  startDate?: string;
+}
+export const DateRange = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    endDate: S.optional(S.String),
+    startDate: S.optional(S.String),
+  }),
+).annotate({ identifier: "DateRange" }) as any as S.Schema<DateRange>;
+
+export type DateRangeList = Array<DateRange>;
+export const DateRangeList = /*@__PURE__*/ S.Array(
+  DateRange,
+) as any as S.Schema<DateRangeList>;
+
+export type FilterExpressionList_ = Array<FilterExpression>;
+export const FilterExpressionList_ = /*@__PURE__*/ S.Array(
+  S.suspend(() => FilterExpression),
+) as any as S.Schema<FilterExpressionList_>;
+
+/** A list of filter expressions. */
+export interface FilterExpressionList {
+  /** A list of filter expressions. */
+  expressions?: FilterExpressionList_;
+}
+export const FilterExpressionList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    expressions: S.optional(FilterExpressionList_),
+  }),
+).annotate({
+  identifier: "FilterExpressionList",
+}) as any as S.Schema<FilterExpressionList>;
+
+/** Filter for empty values. */
+export interface EmptyFilter {}
+export const EmptyFilter = /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate(
+  { identifier: "EmptyFilter" },
+) as any as S.Schema<EmptyFilter>;
+
+/** The result needs to be in a list of string values. */
+export interface InListFilter {
+  /** The list of string values. Must be non-empty. */
+  values?: StringList;
+  /** If true, the string value is case sensitive. */
+  caseSensitive?: boolean;
+}
+export const InListFilter = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    values: S.optional(StringList),
+    caseSensitive: S.optional(S.Boolean),
+  }),
+).annotate({ identifier: "InListFilter" }) as any as S.Schema<InListFilter>;
+
+/** To represent a number. */
+export interface NumericValue {
+  /** Integer value */
+  int64Value?: string;
+  /** Double value */
+  doubleValue?: number;
+}
+export const NumericValue = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    int64Value: S.optional(S.String),
+    doubleValue: S.optional(S.Number),
+  }),
+).annotate({ identifier: "NumericValue" }) as any as S.Schema<NumericValue>;
+
+export type NumericFilterOperationEnum =
+  | "OPERATION_UNSPECIFIED"
+  | "EQUAL"
+  | "LESS_THAN"
+  | "LESS_THAN_OR_EQUAL"
+  | "GREATER_THAN"
+  | "GREATER_THAN_OR_EQUAL";
+export const NumericFilterOperationEnum = /*@__PURE__*/ S.String;
+
+/** Filters for numeric or date values. */
+export interface NumericFilter {
+  /** A numeric value or a date value. */
+  value?: NumericValue;
+  /** The operation type for this filter. */
+  operation?: NumericFilterOperationEnum | (string & {});
+}
+export const NumericFilter = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(NumericValue),
+    operation: S.optional(NumericFilterOperationEnum),
+  }),
+).annotate({ identifier: "NumericFilter" }) as any as S.Schema<NumericFilter>;
+
+/** To express that the result needs to be between two numbers (inclusive). */
+export interface BetweenFilter {
+  /** Begins with this number. */
+  fromValue?: NumericValue;
+  /** Ends with this number. */
+  toValue?: NumericValue;
+}
+export const BetweenFilter = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    fromValue: S.optional(NumericValue),
+    toValue: S.optional(NumericValue),
+  }),
+).annotate({ identifier: "BetweenFilter" }) as any as S.Schema<BetweenFilter>;
+
+export type StringFilterMatchTypeEnum =
+  | "MATCH_TYPE_UNSPECIFIED"
+  | "EXACT"
+  | "BEGINS_WITH"
+  | "ENDS_WITH"
+  | "CONTAINS"
+  | "FULL_REGEXP"
+  | "PARTIAL_REGEXP";
+export const StringFilterMatchTypeEnum = /*@__PURE__*/ S.String;
+
+/** The filter for string */
+export interface StringFilter {
+  /** If true, the string value is case sensitive. */
+  caseSensitive?: boolean;
+  /** The string value used for the matching. */
+  value?: string;
+  /** The match type for this filter. */
+  matchType?: StringFilterMatchTypeEnum | (string & {});
+}
+export const StringFilter = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    caseSensitive: S.optional(S.Boolean),
+    value: S.optional(S.String),
+    matchType: S.optional(StringFilterMatchTypeEnum),
+  }),
+).annotate({ identifier: "StringFilter" }) as any as S.Schema<StringFilter>;
+
+/** An expression to filter dimension or metric values. */
+export interface Filter {
+  /** The dimension name or metric name. In most methods, dimensions & metrics can be used for the first time in this field. However in a RunPivotReportRequest, this field must be additionally specified by name in the RunPivotReportRequest's dimensions or metrics. */
+  fieldName?: string;
+  /** A filter for empty values such as "(not set)" and "" values. */
+  emptyFilter?: EmptyFilter;
+  /** A filter for in list values. */
+  inListFilter?: InListFilter;
+  /** A filter for numeric or date values. */
+  numericFilter?: NumericFilter;
+  /** A filter for two values. */
+  betweenFilter?: BetweenFilter;
+  /** Strings related filter. */
+  stringFilter?: StringFilter;
+}
+export const Filter = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    fieldName: S.optional(S.String),
+    emptyFilter: S.optional(EmptyFilter),
+    inListFilter: S.optional(InListFilter),
+    numericFilter: S.optional(NumericFilter),
+    betweenFilter: S.optional(BetweenFilter),
+    stringFilter: S.optional(StringFilter),
+  }),
+).annotate({ identifier: "Filter" }) as any as S.Schema<Filter>;
+
+/** To express dimension or metric filters. The fields in the same FilterExpression need to be either all dimensions or all metrics. */
+export interface FilterExpression {
+  /** The FilterExpression is NOT of not_expression. */
+  notExpression?: FilterExpression;
+  /** The FilterExpressions in or_group have an OR relationship. */
+  orGroup?: FilterExpressionList;
+  /** The FilterExpressions in and_group have an AND relationship. */
+  andGroup?: FilterExpressionList;
+  /** A primitive filter. In the same FilterExpression, all of the filter's field names need to be either all dimensions or all metrics. */
+  filter?: Filter;
+}
+export const FilterExpression = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    notExpression: S.optional(FilterExpression),
+    orGroup: S.optional(FilterExpressionList),
+    andGroup: S.optional(FilterExpressionList),
+    filter: S.optional(Filter),
+  }),
+).annotate({
+  identifier: "FilterExpression",
+}) as any as S.Schema<FilterExpression>;
+
 /** Defines an individual comparison. Most requests will include multiple comparisons so that the report compares between the comparisons. */
 export interface Comparison {
-  /** Each comparison produces separate rows in the response. In the response, this comparison is identified by this name. If name is unspecified, we will use the saved comparisons display name. */
-  name?: string;
   /** A saved comparison identified by the comparison's resource name. For example, 'comparisons/1234'. */
   comparison?: string;
   /** A basic comparison. */
   dimensionFilter?: FilterExpression;
+  /** Each comparison produces separate rows in the response. In the response, this comparison is identified by this name. If name is unspecified, we will use the saved comparisons display name. */
+  name?: string;
 }
 export const Comparison = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    name: S.optional(S.String),
     comparison: S.optional(S.String),
     dimensionFilter: S.optional(FilterExpression),
+    name: S.optional(S.String),
   }),
 ).annotate({ identifier: "Comparison" }) as any as S.Schema<Comparison>;
 
@@ -576,47 +435,188 @@ export const ComparisonList = /*@__PURE__*/ S.Array(
   Comparison,
 ) as any as S.Schema<ComparisonList>;
 
+/** Optional settings of a cohort report. */
+export interface CohortReportSettings {
+  /** If true, accumulates the result from first touch day to the end day. Not supported in `RunReportRequest`. */
+  accumulate?: boolean;
+}
+export const CohortReportSettings = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    accumulate: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "CohortReportSettings",
+}) as any as S.Schema<CohortReportSettings>;
+
+/** Defines a cohort selection criteria. A cohort is a group of users who share a common characteristic. For example, users with the same `firstSessionDate` belong to the same cohort. */
+export interface Cohort {
+  /** Assigns a name to this cohort. The dimension `cohort` is valued to this name in a report response. If set, cannot begin with `cohort_` or `RESERVED_`. If not set, cohorts are named by their zero based index `cohort_0`, `cohort_1`, etc. */
+  name?: string;
+  /** The cohort selects users whose first touch date is between start date and end date defined in the `dateRange`. This `dateRange` does not specify the full date range of event data that is present in a cohort report. In a cohort report, this `dateRange` is extended by the granularity and offset present in the `cohortsRange`; event data for the extended reporting date range is present in a cohort report. In a cohort request, this `dateRange` is required and the `dateRanges` in the `RunReportRequest` or `RunPivotReportRequest` must be unspecified. This `dateRange` should generally be aligned with the cohort's granularity. If `CohortsRange` uses daily granularity, this `dateRange` can be a single day. If `CohortsRange` uses weekly granularity, this `dateRange` can be aligned to a week boundary, starting at Sunday and ending Saturday. If `CohortsRange` uses monthly granularity, this `dateRange` can be aligned to a month, starting at the first and ending on the last day of the month. */
+  dateRange?: DateRange;
+  /** Dimension used by the cohort. Required and only supports `firstSessionDate`. */
+  dimension?: string;
+}
+export const Cohort = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    dateRange: S.optional(DateRange),
+    dimension: S.optional(S.String),
+  }),
+).annotate({ identifier: "Cohort" }) as any as S.Schema<Cohort>;
+
+export type CohortList = Array<Cohort>;
+export const CohortList = /*@__PURE__*/ S.Array(
+  Cohort,
+) as any as S.Schema<CohortList>;
+
+export type CohortsRangeGranularityEnum =
+  | "GRANULARITY_UNSPECIFIED"
+  | "DAILY"
+  | "WEEKLY"
+  | "MONTHLY";
+export const CohortsRangeGranularityEnum = /*@__PURE__*/ S.String;
+
+/** Configures the extended reporting date range for a cohort report. Specifies an offset duration to follow the cohorts over. */
+export interface CohortsRange {
+  /** Required. The granularity used to interpret the `startOffset` and `endOffset` for the extended reporting date range for a cohort report. */
+  granularity?: CohortsRangeGranularityEnum | (string & {});
+  /** `startOffset` specifies the start date of the extended reporting date range for a cohort report. `startOffset` is commonly set to 0 so that reports contain data from the acquisition of the cohort forward. If `granularity` is `DAILY`, the `startDate` of the extended reporting date range is `startDate` of the cohort plus `startOffset` days. If `granularity` is `WEEKLY`, the `startDate` of the extended reporting date range is `startDate` of the cohort plus `startOffset * 7` days. If `granularity` is `MONTHLY`, the `startDate` of the extended reporting date range is `startDate` of the cohort plus `startOffset * 30` days. */
+  startOffset?: number;
+  /** Required. `endOffset` specifies the end date of the extended reporting date range for a cohort report. `endOffset` can be any positive integer but is commonly set to 5 to 10 so that reports contain data on the cohort for the next several granularity time periods. If `granularity` is `DAILY`, the `endDate` of the extended reporting date range is `endDate` of the cohort plus `endOffset` days. If `granularity` is `WEEKLY`, the `endDate` of the extended reporting date range is `endDate` of the cohort plus `endOffset * 7` days. If `granularity` is `MONTHLY`, the `endDate` of the extended reporting date range is `endDate` of the cohort plus `endOffset * 30` days. */
+  endOffset?: number;
+}
+export const CohortsRange = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    granularity: S.optional(CohortsRangeGranularityEnum),
+    startOffset: S.optional(S.Number),
+    endOffset: S.optional(S.Number),
+  }),
+).annotate({ identifier: "CohortsRange" }) as any as S.Schema<CohortsRange>;
+
+/** The specification of cohorts for a cohort report. Cohort reports create a time series of user retention for the cohort. For example, you could select the cohort of users that were acquired in the first week of September and follow that cohort for the next six weeks. Selecting the users acquired in the first week of September cohort is specified in the `cohort` object. Following that cohort for the next six weeks is specified in the `cohortsRange` object. For examples, see [Cohort Report Examples](https://developers.google.com/analytics/devguides/reporting/data/v1/advanced#cohort_report_examples). The report response could show a weekly time series where say your app has retained 60% of this cohort after three weeks and 25% of this cohort after six weeks. These two percentages can be calculated by the metric `cohortActiveUsers/cohortTotalUsers` and will be separate rows in the report. */
+export interface CohortSpec {
+  /** Optional settings for a cohort report. */
+  cohortReportSettings?: CohortReportSettings;
+  /** Defines the selection criteria to group users into cohorts. Most cohort reports define only a single cohort. If multiple cohorts are specified, each cohort can be recognized in the report by their name. */
+  cohorts?: CohortList;
+  /** Cohort reports follow cohorts over an extended reporting date range. This range specifies an offset duration to follow the cohorts over. */
+  cohortsRange?: CohortsRange;
+}
+export const CohortSpec = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    cohortReportSettings: S.optional(CohortReportSettings),
+    cohorts: S.optional(CohortList),
+    cohortsRange: S.optional(CohortsRange),
+  }),
+).annotate({ identifier: "CohortSpec" }) as any as S.Schema<CohortSpec>;
+
+/** Used to convert a dimension value to a single case. */
+export interface CaseExpression {
+  /** Name of a dimension. The name must refer back to a name in dimensions field of the request. */
+  dimensionName?: string;
+}
+export const CaseExpression = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    dimensionName: S.optional(S.String),
+  }),
+).annotate({ identifier: "CaseExpression" }) as any as S.Schema<CaseExpression>;
+
+/** Used to combine dimension values to a single dimension. */
+export interface ConcatenateExpression {
+  /** Names of dimensions. The names must refer back to names in the dimensions field of the request. */
+  dimensionNames?: StringList;
+  /** The delimiter placed between dimension names. Delimiters are often single characters such as "|" or "," but can be longer strings. If a dimension value contains the delimiter, both will be present in response with no distinction. For example if dimension 1 value = "US,FR", dimension 2 value = "JP", and delimiter = ",", then the response will contain "US,FR,JP". */
+  delimiter?: string;
+}
+export const ConcatenateExpression = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    dimensionNames: S.optional(StringList),
+    delimiter: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ConcatenateExpression",
+}) as any as S.Schema<ConcatenateExpression>;
+
+/** Used to express a dimension which is the result of a formula of multiple dimensions. Example usages: 1) lower_case(dimension) 2) concatenate(dimension1, symbol, dimension2). */
+export interface DimensionExpression {
+  /** Used to convert a dimension value to lower case. */
+  lowerCase?: CaseExpression;
+  /** Used to convert a dimension value to upper case. */
+  upperCase?: CaseExpression;
+  /** Used to combine dimension values to a single dimension. For example, dimension "country, city": concatenate(country, ", ", city). */
+  concatenate?: ConcatenateExpression;
+}
+export const DimensionExpression = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    lowerCase: S.optional(CaseExpression),
+    upperCase: S.optional(CaseExpression),
+    concatenate: S.optional(ConcatenateExpression),
+  }),
+).annotate({
+  identifier: "DimensionExpression",
+}) as any as S.Schema<DimensionExpression>;
+
+/** Dimensions are attributes of your data. For example, the dimension city indicates the city from which an event originates. Dimension values in report responses are strings; for example, the city could be "Paris" or "New York". Requests are allowed up to 9 dimensions. */
+export interface Dimension {
+  /** One dimension can be the result of an expression of multiple dimensions. For example, dimension "country, city": concatenate(country, ", ", city). */
+  dimensionExpression?: DimensionExpression;
+  /** The name of the dimension. See the [API Dimensions](https://developers.google.com/analytics/devguides/reporting/data/v1/api-schema#dimensions) for the list of dimension names supported by core reporting methods such as `runReport` and `batchRunReports`. See [Realtime Dimensions](https://developers.google.com/analytics/devguides/reporting/data/v1/realtime-api-schema#dimensions) for the list of dimension names supported by the `runRealtimeReport` method. See [Funnel Dimensions](https://developers.google.com/analytics/devguides/reporting/data/v1/exploration-api-schema#dimensions) for the list of dimension names supported by the `runFunnelReport` method. If `dimensionExpression` is specified, `name` can be any string that you would like within the allowed character set. For example if a `dimensionExpression` concatenates `country` and `city`, you could call that dimension `countryAndCity`. Dimension names that you choose must match the regular expression `^[a-zA-Z0-9_]$`. Dimensions are referenced by `name` in `dimensionFilter`, `orderBys`, `dimensionExpression`, and `pivots`. */
+  name?: string;
+}
+export const Dimension = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    dimensionExpression: S.optional(DimensionExpression),
+    name: S.optional(S.String),
+  }),
+).annotate({ identifier: "Dimension" }) as any as S.Schema<Dimension>;
+
+export type DimensionList = Array<Dimension>;
+export const DimensionList = /*@__PURE__*/ S.Array(
+  Dimension,
+) as any as S.Schema<DimensionList>;
+
 /** The request to generate a pivot report. */
 export interface RunPivotReportRequest {
+  /** Describes the visual format of the report's dimensions in columns or rows. The union of the fieldNames (dimension names) in all pivots must be a subset of dimension names defined in Dimensions. No two pivots can share a dimension. A dimension is only visible if it appears in a pivot. */
+  pivots?: PivotList;
+  /** A currency code in ISO4217 format, such as "AED", "USD", "JPY". If the field is empty, the report uses the property's default currency. */
+  currencyCode?: string;
+  /** Toggles whether to return the current state of this Google Analytics property's quota. Quota is returned in [PropertyQuota](#PropertyQuota). */
+  returnPropertyQuota?: boolean;
+  /** A Google Analytics property identifier whose events are tracked. Specified in the URL path and not the body. To learn more, see [where to find your Property ID](https://developers.google.com/analytics/devguides/reporting/data/v1/property-id). Within a batch request, this property should either be unspecified or consistent with the batch-level property. Example: properties/1234 */
+  property?: string;
+  /** The metrics requested, at least one metric needs to be specified. All defined metrics must be used by one of the following: metric_expression, metric_filter, order_bys. */
+  metrics?: MetricList;
+  /** The date range to retrieve event data for the report. If multiple date ranges are specified, event data from each date range is used in the report. A special dimension with field name "dateRange" can be included in a Pivot's field names; if included, the report compares between date ranges. In a cohort request, this `dateRanges` must be unspecified. */
+  dateRanges?: DateRangeList;
+  /** The filter clause of dimensions. Dimensions must be requested to be used in this filter. Metrics cannot be used in this filter. */
+  dimensionFilter?: FilterExpression;
   /** If false or unspecified, each row with all metrics equal to 0 will not be returned. If true, these rows will be returned if they are not separately removed by a filter. Regardless of this `keep_empty_rows` setting, only data recorded by the Google Analytics property can be displayed in a report. For example if a property never logs a `purchase` event, then a query for the `eventName` dimension and `eventCount` metric will not have a row eventName: "purchase" and eventCount: 0. */
   keepEmptyRows?: boolean;
+  /** Optional. The configuration of comparisons requested and displayed. The request requires both a comparisons field and a comparisons dimension to receive a comparison column in the response. */
+  comparisons?: ComparisonList;
+  /** Cohort group associated with this request. If there is a cohort group in the request the 'cohort' dimension must be present. */
+  cohortSpec?: CohortSpec;
   /** The dimensions requested. All defined dimensions must be used by one of the following: dimension_expression, dimension_filter, pivots, order_bys. */
   dimensions?: DimensionList;
   /** The filter clause of metrics. Applied at post aggregation phase, similar to SQL having-clause. Metrics must be requested to be used in this filter. Dimensions cannot be used in this filter. */
   metricFilter?: FilterExpression;
-  /** The date range to retrieve event data for the report. If multiple date ranges are specified, event data from each date range is used in the report. A special dimension with field name "dateRange" can be included in a Pivot's field names; if included, the report compares between date ranges. In a cohort request, this `dateRanges` must be unspecified. */
-  dateRanges?: DateRangeList;
-  /** A currency code in ISO4217 format, such as "AED", "USD", "JPY". If the field is empty, the report uses the property's default currency. */
-  currencyCode?: string;
-  /** A Google Analytics property identifier whose events are tracked. Specified in the URL path and not the body. To learn more, see [where to find your Property ID](https://developers.google.com/analytics/devguides/reporting/data/v1/property-id). Within a batch request, this property should either be unspecified or consistent with the batch-level property. Example: properties/1234 */
-  property?: string;
-  /** Cohort group associated with this request. If there is a cohort group in the request the 'cohort' dimension must be present. */
-  cohortSpec?: CohortSpec;
-  /** The filter clause of dimensions. Dimensions must be requested to be used in this filter. Metrics cannot be used in this filter. */
-  dimensionFilter?: FilterExpression;
-  /** Toggles whether to return the current state of this Google Analytics property's quota. Quota is returned in [PropertyQuota](#PropertyQuota). */
-  returnPropertyQuota?: boolean;
-  /** Describes the visual format of the report's dimensions in columns or rows. The union of the fieldNames (dimension names) in all pivots must be a subset of dimension names defined in Dimensions. No two pivots can share a dimension. A dimension is only visible if it appears in a pivot. */
-  pivots?: PivotList;
-  /** The metrics requested, at least one metric needs to be specified. All defined metrics must be used by one of the following: metric_expression, metric_filter, order_bys. */
-  metrics?: MetricList;
-  /** Optional. The configuration of comparisons requested and displayed. The request requires both a comparisons field and a comparisons dimension to receive a comparison column in the response. */
-  comparisons?: ComparisonList;
 }
 export const RunPivotReportRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    pivots: S.optional(PivotList),
+    currencyCode: S.optional(S.String),
+    returnPropertyQuota: S.optional(S.Boolean),
+    property: S.optional(S.String),
+    metrics: S.optional(MetricList),
+    dateRanges: S.optional(DateRangeList),
+    dimensionFilter: S.optional(FilterExpression),
     keepEmptyRows: S.optional(S.Boolean),
+    comparisons: S.optional(ComparisonList),
+    cohortSpec: S.optional(CohortSpec),
     dimensions: S.optional(DimensionList),
     metricFilter: S.optional(FilterExpression),
-    dateRanges: S.optional(DateRangeList),
-    currencyCode: S.optional(S.String),
-    property: S.optional(S.String),
-    cohortSpec: S.optional(CohortSpec),
-    dimensionFilter: S.optional(FilterExpression),
-    returnPropertyQuota: S.optional(S.Boolean),
-    pivots: S.optional(PivotList),
-    metrics: S.optional(MetricList),
-    comparisons: S.optional(ComparisonList),
   }),
 ).annotate({
   identifier: "RunPivotReportRequest",
@@ -661,130 +661,6 @@ export const BatchRunPivotReportsPropertiesRequest = /*@__PURE__*/ S.suspend(
 ).annotate({
   identifier: "BatchRunPivotReportsPropertiesRequest",
 }) as any as S.Schema<BatchRunPivotReportsPropertiesRequest>;
-
-/** Current state for a particular quota group. */
-export interface QuotaStatus {
-  /** Quota remaining after this request. */
-  remaining?: number;
-  /** Quota consumed by this request. */
-  consumed?: number;
-}
-export const QuotaStatus = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    remaining: S.optional(S.Number),
-    consumed: S.optional(S.Number),
-  }),
-).annotate({ identifier: "QuotaStatus" }) as any as S.Schema<QuotaStatus>;
-
-/** Current state of all quotas for this Analytics Property. If any quota for a property is exhausted, all requests to that property will return Resource Exhausted errors. */
-export interface PropertyQuota {
-  /** Standard Analytics Properties can send up to 10 concurrent requests; Analytics 360 Properties can use up to 50 concurrent requests. */
-  concurrentRequests?: QuotaStatus;
-  /** Analytics Properties can use up to 35% of their tokens per project per hour. This amounts to standard Analytics Properties can use up to 14,000 tokens per project per hour, and Analytics 360 Properties can use 140,000 tokens per project per hour. An API request consumes a single number of tokens, and that number is deducted from all of the hourly, daily, and per project hourly quotas. */
-  tokensPerProjectPerHour?: QuotaStatus;
-  /** Standard Analytics Properties can use up to 40,000 tokens per hour; Analytics 360 Properties can use 400,000 tokens per hour. An API request consumes a single number of tokens, and that number is deducted from all of the hourly, daily, and per project hourly quotas. */
-  tokensPerHour?: QuotaStatus;
-  /** Standard Analytics Properties and cloud project pairs can have up to 10 server errors per hour; Analytics 360 Properties and cloud project pairs can have up to 50 server errors per hour. */
-  serverErrorsPerProjectPerHour?: QuotaStatus;
-  /** Analytics Properties can send up to 120 requests with potentially thresholded dimensions per hour. In a batch request, each report request is individually counted for this quota if the request contains potentially thresholded dimensions. */
-  potentiallyThresholdedRequestsPerHour?: QuotaStatus;
-  /** Standard Analytics Properties can use up to 200,000 tokens per day; Analytics 360 Properties can use 2,000,000 tokens per day. Most requests consume fewer than 10 tokens. */
-  tokensPerDay?: QuotaStatus;
-}
-export const PropertyQuota = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    concurrentRequests: S.optional(QuotaStatus),
-    tokensPerProjectPerHour: S.optional(QuotaStatus),
-    tokensPerHour: S.optional(QuotaStatus),
-    serverErrorsPerProjectPerHour: S.optional(QuotaStatus),
-    potentiallyThresholdedRequestsPerHour: S.optional(QuotaStatus),
-    tokensPerDay: S.optional(QuotaStatus),
-  }),
-).annotate({ identifier: "PropertyQuota" }) as any as S.Schema<PropertyQuota>;
-
-/** The value of a metric. */
-export interface MetricValue {
-  /** Measurement value. See MetricHeader for type. */
-  value?: string;
-}
-export const MetricValue = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(S.String),
-  }),
-).annotate({ identifier: "MetricValue" }) as any as S.Schema<MetricValue>;
-
-export type MetricValueList = Array<MetricValue>;
-export const MetricValueList = /*@__PURE__*/ S.Array(
-  MetricValue,
-) as any as S.Schema<MetricValueList>;
-
-/** The value of a dimension. */
-export interface DimensionValue {
-  /** Value as a string if the dimension type is a string. */
-  value?: string;
-}
-export const DimensionValue = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(S.String),
-  }),
-).annotate({ identifier: "DimensionValue" }) as any as S.Schema<DimensionValue>;
-
-export type DimensionValueList = Array<DimensionValue>;
-export const DimensionValueList = /*@__PURE__*/ S.Array(
-  DimensionValue,
-) as any as S.Schema<DimensionValueList>;
-
-/** Report data for each row. For example if RunReportRequest contains: ```none "dimensions": [ { "name": "eventName" }, { "name": "countryId" } ], "metrics": [ { "name": "eventCount" } ] ``` One row with 'in_app_purchase' as the eventName, 'JP' as the countryId, and 15 as the eventCount, would be: ```none "dimensionValues": [ { "value": "in_app_purchase" }, { "value": "JP" } ], "metricValues": [ { "value": "15" } ] ``` */
-export interface Row {
-  /** List of requested visible metric values. */
-  metricValues?: MetricValueList;
-  /** List of requested dimension values. In a PivotReport, dimension_values are only listed for dimensions included in a pivot. */
-  dimensionValues?: DimensionValueList;
-}
-export const Row = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    metricValues: S.optional(MetricValueList),
-    dimensionValues: S.optional(DimensionValueList),
-  }),
-).annotate({ identifier: "Row" }) as any as S.Schema<Row>;
-
-export type RowList = Array<Row>;
-export const RowList = /*@__PURE__*/ S.Array(Row) as any as S.Schema<RowList>;
-
-export type MetricHeaderTypeEnum =
-  | "METRIC_TYPE_UNSPECIFIED"
-  | "TYPE_INTEGER"
-  | "TYPE_FLOAT"
-  | "TYPE_SECONDS"
-  | "TYPE_MILLISECONDS"
-  | "TYPE_MINUTES"
-  | "TYPE_HOURS"
-  | "TYPE_STANDARD"
-  | "TYPE_CURRENCY"
-  | "TYPE_FEET"
-  | "TYPE_MILES"
-  | "TYPE_METERS"
-  | "TYPE_KILOMETERS";
-export const MetricHeaderTypeEnum = /*@__PURE__*/ S.String;
-
-/** Describes a metric column in the report. Visible metrics requested in a report produce column entries within rows and MetricHeaders. However, metrics used exclusively within filters or expressions do not produce columns in a report; correspondingly, those metrics do not produce headers. */
-export interface MetricHeader {
-  /** The metric's name. */
-  name?: string;
-  /** The metric's data type. */
-  type?: MetricHeaderTypeEnum;
-}
-export const MetricHeader = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    type: S.optional(MetricHeaderTypeEnum),
-  }),
-).annotate({ identifier: "MetricHeader" }) as any as S.Schema<MetricHeader>;
-
-export type MetricHeaderList = Array<MetricHeader>;
-export const MetricHeaderList = /*@__PURE__*/ S.Array(
-  MetricHeader,
-) as any as S.Schema<MetricHeaderList>;
 
 export type ActiveMetricRestrictionRestrictedMetricTypesItemEnum =
   | "RESTRICTED_METRIC_TYPE_UNSPECIFIED"
@@ -838,15 +714,15 @@ export const SchemaRestrictionResponse = /*@__PURE__*/ S.suspend(() =>
 
 /** If this report results is [sampled](https://support.google.com/analytics/answer/13331292), this describes the percentage of events used in this report. Sampling is the practice of analyzing a subset of all data in order to uncover the meaningful information in the larger data set. */
 export interface SamplingMetadata {
-  /** The total number of events present in this property's data that could have been analyzed in this report for a date range. Sampling uncovers the meaningful information about the larger data set, and this is the size of the larger data set. To calculate the percentage of available data that was used in this report, compute `samplesReadCount/samplingSpaceSize`. */
-  samplingSpaceSize?: string;
   /** The total number of events read in this sampled report for a date range. This is the size of the subset this property's data that was analyzed in this report. */
   samplesReadCount?: string;
+  /** The total number of events present in this property's data that could have been analyzed in this report for a date range. Sampling uncovers the meaningful information about the larger data set, and this is the size of the larger data set. To calculate the percentage of available data that was used in this report, compute `samplesReadCount/samplingSpaceSize`. */
+  samplingSpaceSize?: string;
 }
 export const SamplingMetadata = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    samplingSpaceSize: S.optional(S.String),
     samplesReadCount: S.optional(S.String),
+    samplingSpaceSize: S.optional(S.String),
   }),
 ).annotate({
   identifier: "SamplingMetadata",
@@ -859,34 +735,101 @@ export const SamplingMetadataList = /*@__PURE__*/ S.Array(
 
 /** Response's metadata carrying additional information about the report content. */
 export interface ResponseMetaData {
-  /** If true, indicates some buckets of dimension combinations are rolled into "(other)" row. This can happen for high cardinality reports. The metadata parameter dataLossFromOtherRow is populated based on the aggregated data table used in the report. The parameter will be accurately populated regardless of the filters and limits in the report. For example, the (other) row could be dropped from the report because the request contains a filter on sessionSource = google. This parameter will still be populated if data loss from other row was present in the input aggregate data used to generate this report. To learn more, see [About the (other) row and data sampling](https://support.google.com/analytics/answer/13208658#reports). */
-  dataLossFromOtherRow?: boolean;
-  /** If empty reason is specified, the report is empty for this reason. */
-  emptyReason?: string;
+  /** The currency code used in this report. Intended to be used in formatting currency metrics like `purchaseRevenue` for visualization. If currency_code was specified in the request, this response parameter will echo the request parameter; otherwise, this response parameter is the property's current currency_code. Currency codes are string encodings of currency types from the ISO 4217 standard (https://en.wikipedia.org/wiki/ISO_4217); for example "USD", "EUR", "JPY". To learn more, see https://support.google.com/analytics/answer/9796179. */
+  currencyCode?: string;
   /** Describes the schema restrictions actively enforced in creating this report. To learn more, see [Access and data-restriction management](https://support.google.com/analytics/answer/10851388). */
   schemaRestrictionResponse?: SchemaRestrictionResponse;
   /** The property's current timezone. Intended to be used to interpret time-based dimensions like `hour` and `minute`. Formatted as strings from the IANA Time Zone database (https://www.iana.org/time-zones); for example "America/New_York" or "Asia/Tokyo". */
   timeZone?: string;
-  /** If this report results is [sampled](https://support.google.com/analytics/answer/13331292), this describes the percentage of events used in this report. One `samplingMetadatas` is populated for each date range. Each `samplingMetadatas` corresponds to a date range in order that date ranges were specified in the request. However if the results are not sampled, this field will not be defined. */
-  samplingMetadatas?: SamplingMetadataList;
+  /** If true, indicates some buckets of dimension combinations are rolled into "(other)" row. This can happen for high cardinality reports. The metadata parameter dataLossFromOtherRow is populated based on the aggregated data table used in the report. The parameter will be accurately populated regardless of the filters and limits in the report. For example, the (other) row could be dropped from the report because the request contains a filter on sessionSource = google. This parameter will still be populated if data loss from other row was present in the input aggregate data used to generate this report. To learn more, see [About the (other) row and data sampling](https://support.google.com/analytics/answer/13208658#reports). */
+  dataLossFromOtherRow?: boolean;
   /** If `subjectToThresholding` is true, this report is subject to thresholding and only returns data that meets the minimum aggregation thresholds. It is possible for a request to be subject to thresholding thresholding and no data is absent from the report, and this happens when all data is above the thresholds. To learn more, see [Data thresholds](https://support.google.com/analytics/answer/9383630). */
   subjectToThresholding?: boolean;
-  /** The currency code used in this report. Intended to be used in formatting currency metrics like `purchaseRevenue` for visualization. If currency_code was specified in the request, this response parameter will echo the request parameter; otherwise, this response parameter is the property's current currency_code. Currency codes are string encodings of currency types from the ISO 4217 standard (https://en.wikipedia.org/wiki/ISO_4217); for example "USD", "EUR", "JPY". To learn more, see https://support.google.com/analytics/answer/9796179. */
-  currencyCode?: string;
+  /** If this report results is [sampled](https://support.google.com/analytics/answer/13331292), this describes the percentage of events used in this report. One `samplingMetadatas` is populated for each date range. Each `samplingMetadatas` corresponds to a date range in order that date ranges were specified in the request. However if the results are not sampled, this field will not be defined. */
+  samplingMetadatas?: SamplingMetadataList;
+  /** If empty reason is specified, the report is empty for this reason. */
+  emptyReason?: string;
 }
 export const ResponseMetaData = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    dataLossFromOtherRow: S.optional(S.Boolean),
-    emptyReason: S.optional(S.String),
+    currencyCode: S.optional(S.String),
     schemaRestrictionResponse: S.optional(SchemaRestrictionResponse),
     timeZone: S.optional(S.String),
-    samplingMetadatas: S.optional(SamplingMetadataList),
+    dataLossFromOtherRow: S.optional(S.Boolean),
     subjectToThresholding: S.optional(S.Boolean),
-    currencyCode: S.optional(S.String),
+    samplingMetadatas: S.optional(SamplingMetadataList),
+    emptyReason: S.optional(S.String),
   }),
 ).annotate({
   identifier: "ResponseMetaData",
 }) as any as S.Schema<ResponseMetaData>;
+
+/** The value of a dimension. */
+export interface DimensionValue {
+  /** Value as a string if the dimension type is a string. */
+  value?: string;
+}
+export const DimensionValue = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(S.String),
+  }),
+).annotate({ identifier: "DimensionValue" }) as any as S.Schema<DimensionValue>;
+
+export type DimensionValueList = Array<DimensionValue>;
+export const DimensionValueList = /*@__PURE__*/ S.Array(
+  DimensionValue,
+) as any as S.Schema<DimensionValueList>;
+
+/** The value of a metric. */
+export interface MetricValue {
+  /** Measurement value. See MetricHeader for type. */
+  value?: string;
+}
+export const MetricValue = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(S.String),
+  }),
+).annotate({ identifier: "MetricValue" }) as any as S.Schema<MetricValue>;
+
+export type MetricValueList = Array<MetricValue>;
+export const MetricValueList = /*@__PURE__*/ S.Array(
+  MetricValue,
+) as any as S.Schema<MetricValueList>;
+
+/** Report data for each row. For example if RunReportRequest contains: ```none "dimensions": [ { "name": "eventName" }, { "name": "countryId" } ], "metrics": [ { "name": "eventCount" } ] ``` One row with 'in_app_purchase' as the eventName, 'JP' as the countryId, and 15 as the eventCount, would be: ```none "dimensionValues": [ { "value": "in_app_purchase" }, { "value": "JP" } ], "metricValues": [ { "value": "15" } ] ``` */
+export interface Row {
+  /** List of requested dimension values. In a PivotReport, dimension_values are only listed for dimensions included in a pivot. */
+  dimensionValues?: DimensionValueList;
+  /** List of requested visible metric values. */
+  metricValues?: MetricValueList;
+}
+export const Row = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    dimensionValues: S.optional(DimensionValueList),
+    metricValues: S.optional(MetricValueList),
+  }),
+).annotate({ identifier: "Row" }) as any as S.Schema<Row>;
+
+export type RowList = Array<Row>;
+export const RowList = /*@__PURE__*/ S.Array(Row) as any as S.Schema<RowList>;
+
+/** Describes a dimension column in the report. Dimensions requested in a report produce column entries within rows and DimensionHeaders. However, dimensions used exclusively within filters or expressions do not produce columns in a report; correspondingly, those dimensions do not produce headers. */
+export interface DimensionHeader {
+  /** The dimension's name. */
+  name?: string;
+}
+export const DimensionHeader = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "DimensionHeader",
+}) as any as S.Schema<DimensionHeader>;
+
+export type DimensionHeaderList = Array<DimensionHeader>;
+export const DimensionHeaderList = /*@__PURE__*/ S.Array(
+  DimensionHeader,
+) as any as S.Schema<DimensionHeaderList>;
 
 /** Summarizes dimension values from a row for this pivot. */
 export interface PivotDimensionHeader {
@@ -925,53 +868,110 @@ export const PivotHeaderList = /*@__PURE__*/ S.Array(
   PivotHeader,
 ) as any as S.Schema<PivotHeaderList>;
 
-/** Describes a dimension column in the report. Dimensions requested in a report produce column entries within rows and DimensionHeaders. However, dimensions used exclusively within filters or expressions do not produce columns in a report; correspondingly, those dimensions do not produce headers. */
-export interface DimensionHeader {
-  /** The dimension's name. */
+export type MetricHeaderTypeEnum =
+  | "METRIC_TYPE_UNSPECIFIED"
+  | "TYPE_INTEGER"
+  | "TYPE_FLOAT"
+  | "TYPE_SECONDS"
+  | "TYPE_MILLISECONDS"
+  | "TYPE_MINUTES"
+  | "TYPE_HOURS"
+  | "TYPE_STANDARD"
+  | "TYPE_CURRENCY"
+  | "TYPE_FEET"
+  | "TYPE_MILES"
+  | "TYPE_METERS"
+  | "TYPE_KILOMETERS";
+export const MetricHeaderTypeEnum = /*@__PURE__*/ S.String;
+
+/** Describes a metric column in the report. Visible metrics requested in a report produce column entries within rows and MetricHeaders. However, metrics used exclusively within filters or expressions do not produce columns in a report; correspondingly, those metrics do not produce headers. */
+export interface MetricHeader {
+  /** The metric's name. */
   name?: string;
+  /** The metric's data type. */
+  type?: MetricHeaderTypeEnum;
 }
-export const DimensionHeader = /*@__PURE__*/ S.suspend(() =>
+export const MetricHeader = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     name: S.optional(S.String),
+    type: S.optional(MetricHeaderTypeEnum),
   }),
-).annotate({
-  identifier: "DimensionHeader",
-}) as any as S.Schema<DimensionHeader>;
+).annotate({ identifier: "MetricHeader" }) as any as S.Schema<MetricHeader>;
 
-export type DimensionHeaderList = Array<DimensionHeader>;
-export const DimensionHeaderList = /*@__PURE__*/ S.Array(
-  DimensionHeader,
-) as any as S.Schema<DimensionHeaderList>;
+export type MetricHeaderList = Array<MetricHeader>;
+export const MetricHeaderList = /*@__PURE__*/ S.Array(
+  MetricHeader,
+) as any as S.Schema<MetricHeaderList>;
+
+/** Current state for a particular quota group. */
+export interface QuotaStatus {
+  /** Quota consumed by this request. */
+  consumed?: number;
+  /** Quota remaining after this request. */
+  remaining?: number;
+}
+export const QuotaStatus = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    consumed: S.optional(S.Number),
+    remaining: S.optional(S.Number),
+  }),
+).annotate({ identifier: "QuotaStatus" }) as any as S.Schema<QuotaStatus>;
+
+/** Current state of all quotas for this Analytics Property. If any quota for a property is exhausted, all requests to that property will return Resource Exhausted errors. */
+export interface PropertyQuota {
+  /** Analytics Properties can send up to 120 requests with potentially thresholded dimensions per hour. In a batch request, each report request is individually counted for this quota if the request contains potentially thresholded dimensions. */
+  potentiallyThresholdedRequestsPerHour?: QuotaStatus;
+  /** Analytics Properties can use up to 35% of their tokens per project per hour. This amounts to standard Analytics Properties can use up to 14,000 tokens per project per hour, and Analytics 360 Properties can use 140,000 tokens per project per hour. An API request consumes a single number of tokens, and that number is deducted from all of the hourly, daily, and per project hourly quotas. */
+  tokensPerProjectPerHour?: QuotaStatus;
+  /** Standard Analytics Properties can use up to 40,000 tokens per hour; Analytics 360 Properties can use 400,000 tokens per hour. An API request consumes a single number of tokens, and that number is deducted from all of the hourly, daily, and per project hourly quotas. */
+  tokensPerHour?: QuotaStatus;
+  /** Standard Analytics Properties can use up to 200,000 tokens per day; Analytics 360 Properties can use 2,000,000 tokens per day. Most requests consume fewer than 10 tokens. */
+  tokensPerDay?: QuotaStatus;
+  /** Standard Analytics Properties can send up to 10 concurrent requests; Analytics 360 Properties can use up to 50 concurrent requests. */
+  concurrentRequests?: QuotaStatus;
+  /** Standard Analytics Properties and cloud project pairs can have up to 10 server errors per hour; Analytics 360 Properties and cloud project pairs can have up to 50 server errors per hour. */
+  serverErrorsPerProjectPerHour?: QuotaStatus;
+}
+export const PropertyQuota = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    potentiallyThresholdedRequestsPerHour: S.optional(QuotaStatus),
+    tokensPerProjectPerHour: S.optional(QuotaStatus),
+    tokensPerHour: S.optional(QuotaStatus),
+    tokensPerDay: S.optional(QuotaStatus),
+    concurrentRequests: S.optional(QuotaStatus),
+    serverErrorsPerProjectPerHour: S.optional(QuotaStatus),
+  }),
+).annotate({ identifier: "PropertyQuota" }) as any as S.Schema<PropertyQuota>;
 
 /** The response pivot report table corresponding to a pivot request. */
 export interface RunPivotReportResponse {
-  /** This Google Analytics property's quota state including this request. */
-  propertyQuota?: PropertyQuota;
-  /** Aggregation of metric values. Can be totals, minimums, or maximums. The returned aggregations are controlled by the metric_aggregations in the pivot. The type of aggregation returned in each row is shown by the dimension_values which are set to "RESERVED_". */
-  aggregates?: RowList;
-  /** Rows of dimension value combinations and metric values in the report. */
-  rows?: RowList;
-  /** Describes metric columns. The number of MetricHeaders and ordering of MetricHeaders matches the metrics present in rows. */
-  metricHeaders?: MetricHeaderList;
   /** Metadata for the report. */
   metadata?: ResponseMetaData;
-  /** Summarizes the columns and rows created by a pivot. Each pivot in the request produces one header in the response. If we have a request like this: "pivots": [{ "fieldNames": ["country", "city"] }, { "fieldNames": "eventName" }] We will have the following `pivotHeaders` in the response: "pivotHeaders" : [{ "dimensionHeaders": [{ "dimensionValues": [ { "value": "United Kingdom" }, { "value": "London" } ] }, { "dimensionValues": [ { "value": "Japan" }, { "value": "Osaka" } ] }] }, { "dimensionHeaders": [{ "dimensionValues": [{ "value": "session_start" }] }, { "dimensionValues": [{ "value": "scroll" }] }] }] */
-  pivotHeaders?: PivotHeaderList;
-  /** Identifies what kind of resource this message is. This `kind` is always the fixed string "analyticsData#runPivotReport". Useful to distinguish between response types in JSON. */
-  kind?: string;
+  /** Aggregation of metric values. Can be totals, minimums, or maximums. The returned aggregations are controlled by the metric_aggregations in the pivot. The type of aggregation returned in each row is shown by the dimension_values which are set to "RESERVED_". */
+  aggregates?: RowList;
   /** Describes dimension columns. The number of DimensionHeaders and ordering of DimensionHeaders matches the dimensions present in rows. */
   dimensionHeaders?: DimensionHeaderList;
+  /** Identifies what kind of resource this message is. This `kind` is always the fixed string "analyticsData#runPivotReport". Useful to distinguish between response types in JSON. */
+  kind?: string;
+  /** Rows of dimension value combinations and metric values in the report. */
+  rows?: RowList;
+  /** Summarizes the columns and rows created by a pivot. Each pivot in the request produces one header in the response. If we have a request like this: "pivots": [{ "fieldNames": ["country", "city"] }, { "fieldNames": "eventName" }] We will have the following `pivotHeaders` in the response: "pivotHeaders" : [{ "dimensionHeaders": [{ "dimensionValues": [ { "value": "United Kingdom" }, { "value": "London" } ] }, { "dimensionValues": [ { "value": "Japan" }, { "value": "Osaka" } ] }] }, { "dimensionHeaders": [{ "dimensionValues": [{ "value": "session_start" }] }, { "dimensionValues": [{ "value": "scroll" }] }] }] */
+  pivotHeaders?: PivotHeaderList;
+  /** Describes metric columns. The number of MetricHeaders and ordering of MetricHeaders matches the metrics present in rows. */
+  metricHeaders?: MetricHeaderList;
+  /** This Google Analytics property's quota state including this request. */
+  propertyQuota?: PropertyQuota;
 }
 export const RunPivotReportResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    propertyQuota: S.optional(PropertyQuota),
-    aggregates: S.optional(RowList),
-    rows: S.optional(RowList),
-    metricHeaders: S.optional(MetricHeaderList),
     metadata: S.optional(ResponseMetaData),
-    pivotHeaders: S.optional(PivotHeaderList),
-    kind: S.optional(S.String),
+    aggregates: S.optional(RowList),
     dimensionHeaders: S.optional(DimensionHeaderList),
+    kind: S.optional(S.String),
+    rows: S.optional(RowList),
+    pivotHeaders: S.optional(PivotHeaderList),
+    metricHeaders: S.optional(MetricHeaderList),
+    propertyQuota: S.optional(PropertyQuota),
   }),
 ).annotate({
   identifier: "RunPivotReportResponse",
@@ -984,15 +984,15 @@ export const RunPivotReportResponseList = /*@__PURE__*/ S.Array(
 
 /** The batch response containing multiple pivot reports. */
 export interface BatchRunPivotReportsResponse {
-  /** Identifies what kind of resource this message is. This `kind` is always the fixed string "analyticsData#batchRunPivotReports". Useful to distinguish between response types in JSON. */
-  kind?: string;
   /** Individual responses. Each response has a separate pivot report request. */
   pivotReports?: RunPivotReportResponseList;
+  /** Identifies what kind of resource this message is. This `kind` is always the fixed string "analyticsData#batchRunPivotReports". Useful to distinguish between response types in JSON. */
+  kind?: string;
 }
 export const BatchRunPivotReportsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    kind: S.optional(S.String),
     pivotReports: S.optional(RunPivotReportResponseList),
+    kind: S.optional(S.String),
   }),
 ).annotate({
   identifier: "BatchRunPivotReportsResponse",
@@ -1017,56 +1017,56 @@ export const RunReportRequestMetricAggregationsItemEnumList =
 
 /** The request to generate a report. */
 export interface RunReportRequest {
-  /** The filter clause of metrics. Applied after aggregating the report's rows, similar to SQL having-clause. Dimensions cannot be used in this filter. */
-  metricFilter?: FilterExpression;
+  /** The dimensions requested and displayed. */
+  dimensions?: DimensionList;
   /** The number of rows to return. If unspecified, 10,000 rows are returned. The API returns a maximum of 250,000 rows per request, no matter how many you ask for. `limit` must be positive. The API can also return fewer rows than the requested `limit`, if there aren't as many dimension values as the `limit`. For instance, there are fewer than 300 possible values for the dimension `country`, so when reporting on only `country`, you can't get more than 300 rows, even if you set `limit` to a higher value. To learn more about this pagination parameter, see [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination). */
   limit?: string;
+  /** The metrics requested and displayed. */
+  metrics?: MetricList;
+  /** Aggregation of metrics. Aggregated metric values will be shown in rows where the dimension_values are set to "RESERVED_(MetricAggregation)". Aggregates including both comparisons and multiple date ranges will be aggregated based on the date ranges. */
+  metricAggregations?: RunReportRequestMetricAggregationsItemEnumList;
+  /** The row count of the start row. The first row is counted as row 0. When paging, the first request does not specify offset; or equivalently, sets offset to 0; the first request returns the first `limit` of rows. The second request sets offset to the `limit` of the first request; the second request returns the second `limit` of rows. To learn more about this pagination parameter, see [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination). */
+  offset?: string;
+  /** Date ranges of data to read. If multiple date ranges are requested, each response row will contain a zero based date range index. If two date ranges overlap, the event data for the overlapping days is included in the response rows for both date ranges. In a cohort request, this `dateRanges` must be unspecified. */
+  dateRanges?: DateRangeList;
+  /** Dimension filters let you ask for only specific dimension values in the report. To learn more, see [Fundamentals of Dimension Filters](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#dimension_filters) for examples. Metrics cannot be used in this filter. */
+  dimensionFilter?: FilterExpression;
+  /** The filter clause of metrics. Applied after aggregating the report's rows, similar to SQL having-clause. Dimensions cannot be used in this filter. */
+  metricFilter?: FilterExpression;
   /** A currency code in ISO4217 format, such as "AED", "USD", "JPY". If the field is empty, the report uses the property's default currency. */
   currencyCode?: string;
   /** If false or unspecified, each row with all metrics equal to 0 will not be returned. If true, these rows will be returned if they are not separately removed by a filter. Regardless of this `keep_empty_rows` setting, only data recorded by the Google Analytics property can be displayed in a report. For example if a property never logs a `purchase` event, then a query for the `eventName` dimension and `eventCount` metric will not have a row eventName: "purchase" and eventCount: 0. */
   keepEmptyRows?: boolean;
-  /** The row count of the start row. The first row is counted as row 0. When paging, the first request does not specify offset; or equivalently, sets offset to 0; the first request returns the first `limit` of rows. The second request sets offset to the `limit` of the first request; the second request returns the second `limit` of rows. To learn more about this pagination parameter, see [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination). */
-  offset?: string;
   /** Optional. The configuration of comparisons requested and displayed. The request only requires a comparisons field in order to receive a comparison column in the response. */
   comparisons?: ComparisonList;
-  /** The metrics requested and displayed. */
-  metrics?: MetricList;
-  /** Date ranges of data to read. If multiple date ranges are requested, each response row will contain a zero based date range index. If two date ranges overlap, the event data for the overlapping days is included in the response rows for both date ranges. In a cohort request, this `dateRanges` must be unspecified. */
-  dateRanges?: DateRangeList;
   /** Cohort group associated with this request. If there is a cohort group in the request the 'cohort' dimension must be present. */
   cohortSpec?: CohortSpec;
   /** A Google Analytics property identifier whose events are tracked. Specified in the URL path and not the body. To learn more, see [where to find your Property ID](https://developers.google.com/analytics/devguides/reporting/data/v1/property-id). Within a batch request, this property should either be unspecified or consistent with the batch-level property. Example: properties/1234 */
   property?: string;
-  /** The dimensions requested and displayed. */
-  dimensions?: DimensionList;
-  /** Aggregation of metrics. Aggregated metric values will be shown in rows where the dimension_values are set to "RESERVED_(MetricAggregation)". Aggregates including both comparisons and multiple date ranges will be aggregated based on the date ranges. */
-  metricAggregations?: RunReportRequestMetricAggregationsItemEnumList;
-  /** Toggles whether to return the current state of this Google Analytics property's quota. Quota is returned in [PropertyQuota](#PropertyQuota). */
-  returnPropertyQuota?: boolean;
-  /** Dimension filters let you ask for only specific dimension values in the report. To learn more, see [Fundamentals of Dimension Filters](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#dimension_filters) for examples. Metrics cannot be used in this filter. */
-  dimensionFilter?: FilterExpression;
   /** Specifies how rows are ordered in the response. Requests including both comparisons and multiple date ranges will have order bys applied on the comparisons. */
   orderBys?: OrderByList;
+  /** Toggles whether to return the current state of this Google Analytics property's quota. Quota is returned in [PropertyQuota](#PropertyQuota). */
+  returnPropertyQuota?: boolean;
 }
 export const RunReportRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    metricFilter: S.optional(FilterExpression),
-    limit: S.optional(S.String),
-    currencyCode: S.optional(S.String),
-    keepEmptyRows: S.optional(S.Boolean),
-    offset: S.optional(S.String),
-    comparisons: S.optional(ComparisonList),
-    metrics: S.optional(MetricList),
-    dateRanges: S.optional(DateRangeList),
-    cohortSpec: S.optional(CohortSpec),
-    property: S.optional(S.String),
     dimensions: S.optional(DimensionList),
+    limit: S.optional(S.String),
+    metrics: S.optional(MetricList),
     metricAggregations: S.optional(
       RunReportRequestMetricAggregationsItemEnumList,
     ),
-    returnPropertyQuota: S.optional(S.Boolean),
+    offset: S.optional(S.String),
+    dateRanges: S.optional(DateRangeList),
     dimensionFilter: S.optional(FilterExpression),
+    metricFilter: S.optional(FilterExpression),
+    currencyCode: S.optional(S.String),
+    keepEmptyRows: S.optional(S.Boolean),
+    comparisons: S.optional(ComparisonList),
+    cohortSpec: S.optional(CohortSpec),
+    property: S.optional(S.String),
     orderBys: S.optional(OrderByList),
+    returnPropertyQuota: S.optional(S.Boolean),
   }),
 ).annotate({
   identifier: "RunReportRequest",
@@ -1113,39 +1113,39 @@ export const BatchRunReportsPropertiesRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The response report table corresponding to a request. */
 export interface RunReportResponse {
+  /** Identifies what kind of resource this message is. This `kind` is always the fixed string "analyticsData#runReport". Useful to distinguish between response types in JSON. */
+  kind?: string;
   /** If requested, the maximum values of metrics. */
   maximums?: RowList;
   /** Describes metric columns. The number of MetricHeaders and ordering of MetricHeaders matches the metrics present in rows. */
   metricHeaders?: MetricHeaderList;
-  /** Metadata for the report. */
-  metadata?: ResponseMetaData;
-  /** Rows of dimension value combinations and metric values in the report. */
-  rows?: RowList;
-  /** Describes dimension columns. The number of DimensionHeaders and ordering of DimensionHeaders matches the dimensions present in rows. */
-  dimensionHeaders?: DimensionHeaderList;
   /** This Google Analytics property's quota state including this request. */
   propertyQuota?: PropertyQuota;
-  /** If requested, the totaled values of metrics. */
-  totals?: RowList;
   /** The total number of rows in the query result. `rowCount` is independent of the number of rows returned in the response, the `limit` request parameter, and the `offset` request parameter. For example if a query returns 175 rows and includes `limit` of 50 in the API request, the response will contain `rowCount` of 175 but only 50 rows. To learn more about this pagination parameter, see [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination). */
   rowCount?: number;
-  /** Identifies what kind of resource this message is. This `kind` is always the fixed string "analyticsData#runReport". Useful to distinguish between response types in JSON. */
-  kind?: string;
+  /** Rows of dimension value combinations and metric values in the report. */
+  rows?: RowList;
+  /** Metadata for the report. */
+  metadata?: ResponseMetaData;
+  /** If requested, the totaled values of metrics. */
+  totals?: RowList;
   /** If requested, the minimum values of metrics. */
   minimums?: RowList;
+  /** Describes dimension columns. The number of DimensionHeaders and ordering of DimensionHeaders matches the dimensions present in rows. */
+  dimensionHeaders?: DimensionHeaderList;
 }
 export const RunReportResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    kind: S.optional(S.String),
     maximums: S.optional(RowList),
     metricHeaders: S.optional(MetricHeaderList),
-    metadata: S.optional(ResponseMetaData),
-    rows: S.optional(RowList),
-    dimensionHeaders: S.optional(DimensionHeaderList),
     propertyQuota: S.optional(PropertyQuota),
-    totals: S.optional(RowList),
     rowCount: S.optional(S.Number),
-    kind: S.optional(S.String),
+    rows: S.optional(RowList),
+    metadata: S.optional(ResponseMetaData),
+    totals: S.optional(RowList),
     minimums: S.optional(RowList),
+    dimensionHeaders: S.optional(DimensionHeaderList),
   }),
 ).annotate({
   identifier: "RunReportResponse",
@@ -1158,15 +1158,15 @@ export const RunReportResponseList = /*@__PURE__*/ S.Array(
 
 /** The batch response containing multiple reports. */
 export interface BatchRunReportsResponse {
-  /** Individual responses. Each response has a separate report request. */
-  reports?: RunReportResponseList;
   /** Identifies what kind of resource this message is. This `kind` is always the fixed string "analyticsData#batchRunReports". Useful to distinguish between response types in JSON. */
   kind?: string;
+  /** Individual responses. Each response has a separate report request. */
+  reports?: RunReportResponseList;
 }
 export const BatchRunReportsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    reports: S.optional(RunReportResponseList),
     kind: S.optional(S.String),
+    reports: S.optional(RunReportResponseList),
   }),
 ).annotate({
   identifier: "BatchRunReportsResponse",
@@ -1181,6 +1181,8 @@ export const CheckCompatibilityRequestCompatibilityFilterEnum =
 
 /** The request for compatibility information for a report's dimensions and metrics. Check compatibility provides a preview of the compatibility of a report; fields shared with the `runReport` request should be the same values as in your `runReport` request. */
 export interface CheckCompatibilityRequest {
+  /** The dimensions in this report. `dimensions` should be the same value as in your `runReport` request. */
+  dimensions?: DimensionList;
   /** The metrics in this report. `metrics` should be the same value as in your `runReport` request. */
   metrics?: MetricList;
   /** The filter clause of dimensions. `dimensionFilter` should be the same value as in your `runReport` request. */
@@ -1191,18 +1193,16 @@ export interface CheckCompatibilityRequest {
   compatibilityFilter?:
     | CheckCompatibilityRequestCompatibilityFilterEnum
     | (string & {});
-  /** The dimensions in this report. `dimensions` should be the same value as in your `runReport` request. */
-  dimensions?: DimensionList;
 }
 export const CheckCompatibilityRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    dimensions: S.optional(DimensionList),
     metrics: S.optional(MetricList),
     dimensionFilter: S.optional(FilterExpression),
     metricFilter: S.optional(FilterExpression),
     compatibilityFilter: S.optional(
       CheckCompatibilityRequestCompatibilityFilterEnum,
     ),
-    dimensions: S.optional(DimensionList),
   }),
 ).annotate({
   identifier: "CheckCompatibilityRequest",
@@ -1229,24 +1229,6 @@ export const CheckCompatibilityPropertiesRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "CheckCompatibilityPropertiesRequest",
 }) as any as S.Schema<CheckCompatibilityPropertiesRequest>;
 
-export type MetricCompatibilityCompatibilityEnum =
-  | "COMPATIBILITY_UNSPECIFIED"
-  | "COMPATIBLE"
-  | "INCOMPATIBLE";
-export const MetricCompatibilityCompatibilityEnum = /*@__PURE__*/ S.String;
-
-export type MetricMetadataBlockedReasonsItemEnum =
-  | "BLOCKED_REASON_UNSPECIFIED"
-  | "NO_REVENUE_METRICS"
-  | "NO_COST_METRICS";
-export const MetricMetadataBlockedReasonsItemEnum = /*@__PURE__*/ S.String;
-
-export type MetricMetadataBlockedReasonsItemEnumList =
-  Array<MetricMetadataBlockedReasonsItemEnum>;
-export const MetricMetadataBlockedReasonsItemEnumList = /*@__PURE__*/ S.Array(
-  MetricMetadataBlockedReasonsItemEnum,
-) as any as S.Schema<MetricMetadataBlockedReasonsItemEnumList>;
-
 export type MetricMetadataTypeEnum =
   | "METRIC_TYPE_UNSPECIFIED"
   | "TYPE_INTEGER"
@@ -1263,52 +1245,70 @@ export type MetricMetadataTypeEnum =
   | "TYPE_KILOMETERS";
 export const MetricMetadataTypeEnum = /*@__PURE__*/ S.String;
 
+export type MetricMetadataBlockedReasonsItemEnum =
+  | "BLOCKED_REASON_UNSPECIFIED"
+  | "NO_REVENUE_METRICS"
+  | "NO_COST_METRICS";
+export const MetricMetadataBlockedReasonsItemEnum = /*@__PURE__*/ S.String;
+
+export type MetricMetadataBlockedReasonsItemEnumList =
+  Array<MetricMetadataBlockedReasonsItemEnum>;
+export const MetricMetadataBlockedReasonsItemEnumList = /*@__PURE__*/ S.Array(
+  MetricMetadataBlockedReasonsItemEnum,
+) as any as S.Schema<MetricMetadataBlockedReasonsItemEnumList>;
+
 /** Explains a metric. */
 export interface MetricMetadata {
-  /** The mathematical expression for this derived metric. Can be used in [Metric](#Metric)'s `expression` field for equivalent reports. Most metrics are not expressions, and for non-expressions, this field is empty. */
-  expression?: string;
-  /** If reasons are specified, your access is blocked to this metric for this property. API requests from you to this property for this metric will succeed; however, the report will contain only zeros for this metric. API requests with metric filters on blocked metrics will fail. If reasons are empty, you have access to this metric. To learn more, see [Access and data-restriction management](https://support.google.com/analytics/answer/10851388). */
-  blockedReasons?: MetricMetadataBlockedReasonsItemEnumList;
-  /** This metric's name within the Google Analytics user interface. For example, `Event count`. */
-  uiName?: string;
-  /** Still usable but deprecated names for this metric. If populated, this metric is available by either `apiName` or one of `deprecatedApiNames` for a period of time. After the deprecation period, the metric will be available only by `apiName`. */
-  deprecatedApiNames?: StringList;
-  /** Description of how this metric is used and calculated. */
-  description?: string;
-  /** True if the metric is a custom metric for this property. */
-  customDefinition?: boolean;
-  /** A metric name. Useable in [Metric](#Metric)'s `name`. For example, `eventCount`. */
-  apiName?: string;
   /** The type of this metric. */
   type?: MetricMetadataTypeEnum;
+  /** Still usable but deprecated names for this metric. If populated, this metric is available by either `apiName` or one of `deprecatedApiNames` for a period of time. After the deprecation period, the metric will be available only by `apiName`. */
+  deprecatedApiNames?: StringList;
   /** The display name of the category that this metrics belongs to. Similar dimensions and metrics are categorized together. */
   category?: string;
+  /** This metric's name within the Google Analytics user interface. For example, `Event count`. */
+  uiName?: string;
+  /** A metric name. Useable in [Metric](#Metric)'s `name`. For example, `eventCount`. */
+  apiName?: string;
+  /** The mathematical expression for this derived metric. Can be used in [Metric](#Metric)'s `expression` field for equivalent reports. Most metrics are not expressions, and for non-expressions, this field is empty. */
+  expression?: string;
+  /** True if the metric is a custom metric for this property. */
+  customDefinition?: boolean;
+  /** Description of how this metric is used and calculated. */
+  description?: string;
+  /** If reasons are specified, your access is blocked to this metric for this property. API requests from you to this property for this metric will succeed; however, the report will contain only zeros for this metric. API requests with metric filters on blocked metrics will fail. If reasons are empty, you have access to this metric. To learn more, see [Access and data-restriction management](https://support.google.com/analytics/answer/10851388). */
+  blockedReasons?: MetricMetadataBlockedReasonsItemEnumList;
 }
 export const MetricMetadata = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    expression: S.optional(S.String),
-    blockedReasons: S.optional(MetricMetadataBlockedReasonsItemEnumList),
-    uiName: S.optional(S.String),
-    deprecatedApiNames: S.optional(StringList),
-    description: S.optional(S.String),
-    customDefinition: S.optional(S.Boolean),
-    apiName: S.optional(S.String),
     type: S.optional(MetricMetadataTypeEnum),
+    deprecatedApiNames: S.optional(StringList),
     category: S.optional(S.String),
+    uiName: S.optional(S.String),
+    apiName: S.optional(S.String),
+    expression: S.optional(S.String),
+    customDefinition: S.optional(S.Boolean),
+    description: S.optional(S.String),
+    blockedReasons: S.optional(MetricMetadataBlockedReasonsItemEnumList),
   }),
 ).annotate({ identifier: "MetricMetadata" }) as any as S.Schema<MetricMetadata>;
 
+export type MetricCompatibilityCompatibilityEnum =
+  | "COMPATIBILITY_UNSPECIFIED"
+  | "COMPATIBLE"
+  | "INCOMPATIBLE";
+export const MetricCompatibilityCompatibilityEnum = /*@__PURE__*/ S.String;
+
 /** The compatibility for a single metric. */
 export interface MetricCompatibility {
-  /** The compatibility of this metric. If the compatibility is COMPATIBLE, this metric can be successfully added to the report. */
-  compatibility?: MetricCompatibilityCompatibilityEnum;
   /** The metric metadata contains the API name for this compatibility information. The metric metadata also contains other helpful information like the UI name and description. */
   metricMetadata?: MetricMetadata;
+  /** The compatibility of this metric. If the compatibility is COMPATIBLE, this metric can be successfully added to the report. */
+  compatibility?: MetricCompatibilityCompatibilityEnum;
 }
 export const MetricCompatibility = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    compatibility: S.optional(MetricCompatibilityCompatibilityEnum),
     metricMetadata: S.optional(MetricMetadata),
+    compatibility: S.optional(MetricCompatibilityCompatibilityEnum),
   }),
 ).annotate({
   identifier: "MetricCompatibility",
@@ -1319,51 +1319,51 @@ export const MetricCompatibilityList = /*@__PURE__*/ S.Array(
   MetricCompatibility,
 ) as any as S.Schema<MetricCompatibilityList>;
 
-/** Explains a dimension. */
-export interface DimensionMetadata {
-  /** Description of how this dimension is used and calculated. */
-  description?: string;
-  /** Still usable but deprecated names for this dimension. If populated, this dimension is available by either `apiName` or one of `deprecatedApiNames` for a period of time. After the deprecation period, the dimension will be available only by `apiName`. */
-  deprecatedApiNames?: StringList;
-  /** This dimension's name. Useable in [Dimension](#Dimension)'s `name`. For example, `eventName`. */
-  apiName?: string;
-  /** True if the dimension is custom to this property. This includes user, event, & item scoped custom dimensions; to learn more about custom dimensions, see https://support.google.com/analytics/answer/14240153. This also include custom channel groups; to learn more about custom channel groups, see https://support.google.com/analytics/answer/13051316. */
-  customDefinition?: boolean;
-  /** The display name of the category that this dimension belongs to. Similar dimensions and metrics are categorized together. */
-  category?: string;
-  /** This dimension's name within the Google Analytics user interface. For example, `Event name`. */
-  uiName?: string;
-}
-export const DimensionMetadata = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    description: S.optional(S.String),
-    deprecatedApiNames: S.optional(StringList),
-    apiName: S.optional(S.String),
-    customDefinition: S.optional(S.Boolean),
-    category: S.optional(S.String),
-    uiName: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "DimensionMetadata",
-}) as any as S.Schema<DimensionMetadata>;
-
 export type DimensionCompatibilityCompatibilityEnum =
   | "COMPATIBILITY_UNSPECIFIED"
   | "COMPATIBLE"
   | "INCOMPATIBLE";
 export const DimensionCompatibilityCompatibilityEnum = /*@__PURE__*/ S.String;
 
+/** Explains a dimension. */
+export interface DimensionMetadata {
+  /** This dimension's name. Useable in [Dimension](#Dimension)'s `name`. For example, `eventName`. */
+  apiName?: string;
+  /** Description of how this dimension is used and calculated. */
+  description?: string;
+  /** The display name of the category that this dimension belongs to. Similar dimensions and metrics are categorized together. */
+  category?: string;
+  /** True if the dimension is custom to this property. This includes user, event, & item scoped custom dimensions; to learn more about custom dimensions, see https://support.google.com/analytics/answer/14240153. This also include custom channel groups; to learn more about custom channel groups, see https://support.google.com/analytics/answer/13051316. */
+  customDefinition?: boolean;
+  /** This dimension's name within the Google Analytics user interface. For example, `Event name`. */
+  uiName?: string;
+  /** Still usable but deprecated names for this dimension. If populated, this dimension is available by either `apiName` or one of `deprecatedApiNames` for a period of time. After the deprecation period, the dimension will be available only by `apiName`. */
+  deprecatedApiNames?: StringList;
+}
+export const DimensionMetadata = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    apiName: S.optional(S.String),
+    description: S.optional(S.String),
+    category: S.optional(S.String),
+    customDefinition: S.optional(S.Boolean),
+    uiName: S.optional(S.String),
+    deprecatedApiNames: S.optional(StringList),
+  }),
+).annotate({
+  identifier: "DimensionMetadata",
+}) as any as S.Schema<DimensionMetadata>;
+
 /** The compatibility for a single dimension. */
 export interface DimensionCompatibility {
-  /** The dimension metadata contains the API name for this compatibility information. The dimension metadata also contains other helpful information like the UI name and description. */
-  dimensionMetadata?: DimensionMetadata;
   /** The compatibility of this dimension. If the compatibility is COMPATIBLE, this dimension can be successfully added to the report. */
   compatibility?: DimensionCompatibilityCompatibilityEnum;
+  /** The dimension metadata contains the API name for this compatibility information. The dimension metadata also contains other helpful information like the UI name and description. */
+  dimensionMetadata?: DimensionMetadata;
 }
 export const DimensionCompatibility = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    dimensionMetadata: S.optional(DimensionMetadata),
     compatibility: S.optional(DimensionCompatibilityCompatibilityEnum),
+    dimensionMetadata: S.optional(DimensionMetadata),
   }),
 ).annotate({
   identifier: "DimensionCompatibility",
@@ -1390,13 +1390,6 @@ export const CheckCompatibilityResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "CheckCompatibilityResponse",
 }) as any as S.Schema<CheckCompatibilityResponse>;
 
-export type AudienceExportStateEnum =
-  | "STATE_UNSPECIFIED"
-  | "CREATING"
-  | "ACTIVE"
-  | "FAILED";
-export const AudienceExportStateEnum = /*@__PURE__*/ S.String;
-
 /** An audience dimension is a user attribute. Specific user attributed are requested and then later returned in the `QueryAudienceExportResponse`. */
 export interface V1betaAudienceDimension {
   /** Optional. The API name of the dimension. See the [API Dimensions](https://developers.google.com/analytics/devguides/reporting/data/v1/audience-list-api-schema#dimensions) for the list of dimension names. */
@@ -1415,41 +1408,48 @@ export const V1betaAudienceDimensionList = /*@__PURE__*/ S.Array(
   V1betaAudienceDimension,
 ) as any as S.Schema<V1betaAudienceDimensionList>;
 
+export type AudienceExportStateEnum =
+  | "STATE_UNSPECIFIED"
+  | "CREATING"
+  | "ACTIVE"
+  | "FAILED";
+export const AudienceExportStateEnum = /*@__PURE__*/ S.String;
+
 /** An audience export is a list of users in an audience at the time of the list's creation. One audience may have multiple audience exports created for different days. */
 export interface AudienceExport {
   /** Output only. The descriptive display name for this audience. For example, "Purchasers". */
   audienceDisplayName?: string;
-  /** Required. The audience resource name. This resource name identifies the audience being listed and is shared between the Analytics Data & Admin APIs. Format: `properties/{property}/audiences/{audience}` */
-  audience?: string;
+  /** Output only. The time when CreateAudienceExport was called and the AudienceExport began the `CREATING` state. */
+  beginCreatingTime?: string;
   /** Output only. The total quota tokens charged during creation of the AudienceExport. Because this token count is based on activity from the `CREATING` state, this tokens charged will be fixed once an AudienceExport enters the `ACTIVE` or `FAILED` states. */
   creationQuotaTokensCharged?: number;
+  /** Required. The dimensions requested and displayed in the query response. */
+  dimensions?: V1betaAudienceDimensionList;
+  /** Required. The audience resource name. This resource name identifies the audience being listed and is shared between the Analytics Data & Admin APIs. Format: `properties/{property}/audiences/{audience}` */
+  audience?: string;
   /** Output only. The total number of rows in the AudienceExport result. */
   rowCount?: number;
   /** Output only. The current state for this AudienceExport. */
   state?: AudienceExportStateEnum | (string & {});
-  /** Output only. Identifier. The audience export resource name assigned during creation. This resource name identifies this `AudienceExport`. Format: `properties/{property}/audienceExports/{audience_export}` */
-  name?: string;
-  /** Required. The dimensions requested and displayed in the query response. */
-  dimensions?: V1betaAudienceDimensionList;
-  /** Output only. The time when CreateAudienceExport was called and the AudienceExport began the `CREATING` state. */
-  beginCreatingTime?: string;
   /** Output only. The percentage completed for this audience export ranging between 0 to 100. */
   percentageCompleted?: number;
   /** Output only. Error message is populated when an audience export fails during creation. A common reason for such a failure is quota exhaustion. */
   errorMessage?: string;
+  /** Output only. Identifier. The audience export resource name assigned during creation. This resource name identifies this `AudienceExport`. Format: `properties/{property}/audienceExports/{audience_export}` */
+  name?: string;
 }
 export const AudienceExport = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     audienceDisplayName: S.optional(S.String),
-    audience: S.optional(S.String),
+    beginCreatingTime: S.optional(S.String),
     creationQuotaTokensCharged: S.optional(S.Number),
+    dimensions: S.optional(V1betaAudienceDimensionList),
+    audience: S.optional(S.String),
     rowCount: S.optional(S.Number),
     state: S.optional(AudienceExportStateEnum),
-    name: S.optional(S.String),
-    dimensions: S.optional(V1betaAudienceDimensionList),
-    beginCreatingTime: S.optional(S.String),
     percentageCompleted: S.optional(S.Number),
     errorMessage: S.optional(S.String),
+    name: S.optional(S.String),
   }),
 ).annotate({ identifier: "AudienceExport" }) as any as S.Schema<AudienceExport>;
 
@@ -1488,40 +1488,40 @@ export const DocumentMapList = /*@__PURE__*/ S.Array(
 
 /** The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors). */
 export interface Status {
-  /** A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client. */
-  message?: string;
   /** The status code, which should be an enum value of google.rpc.Code. */
   code?: number;
+  /** A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client. */
+  message?: string;
   /** A list of messages that carry the error details. There is a common set of message types for APIs to use. */
   details?: DocumentMapList;
 }
 export const Status = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    message: S.optional(S.String),
     code: S.optional(S.Number),
+    message: S.optional(S.String),
     details: S.optional(DocumentMapList),
   }),
 ).annotate({ identifier: "Status" }) as any as S.Schema<Status>;
 
 /** This resource represents a long-running operation that is the result of a network API call. */
 export interface Operation {
-  /** If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available. */
-  done?: boolean;
-  /** The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`. */
-  response?: DocumentMap;
   /** The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`. */
   name?: string;
   /** The error result of the operation in case of failure or cancellation. */
   error?: Status;
+  /** If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available. */
+  done?: boolean;
+  /** The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`. */
+  response?: DocumentMap;
   /** Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any. */
   metadata?: DocumentMap;
 }
 export const Operation = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    done: S.optional(S.Boolean),
-    response: S.optional(DocumentMap),
     name: S.optional(S.String),
     error: S.optional(Status),
+    done: S.optional(S.Boolean),
+    response: S.optional(DocumentMap),
     metadata: S.optional(DocumentMap),
   }),
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
@@ -1544,20 +1544,25 @@ export const GetMetadataPropertiesRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "GetMetadataPropertiesRequest",
 }) as any as S.Schema<GetMetadataPropertiesRequest>;
 
+export type DimensionMetadataList = Array<DimensionMetadata>;
+export const DimensionMetadataList = /*@__PURE__*/ S.Array(
+  DimensionMetadata,
+) as any as S.Schema<DimensionMetadataList>;
+
 /** The metadata for a single comparison. */
 export interface ComparisonMetadata {
+  /** This comparison's description. */
+  description?: string;
   /** This comparison's resource name. Useable in [Comparison](#Comparison)'s `comparison` field. For example, 'comparisons/1234'. */
   apiName?: string;
   /** This comparison's name within the Google Analytics user interface. */
   uiName?: string;
-  /** This comparison's description. */
-  description?: string;
 }
 export const ComparisonMetadata = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    description: S.optional(S.String),
     apiName: S.optional(S.String),
     uiName: S.optional(S.String),
-    description: S.optional(S.String),
   }),
 ).annotate({
   identifier: "ComparisonMetadata",
@@ -1568,11 +1573,6 @@ export const ComparisonMetadataList = /*@__PURE__*/ S.Array(
   ComparisonMetadata,
 ) as any as S.Schema<ComparisonMetadataList>;
 
-export type DimensionMetadataList = Array<DimensionMetadata>;
-export const DimensionMetadataList = /*@__PURE__*/ S.Array(
-  DimensionMetadata,
-) as any as S.Schema<DimensionMetadataList>;
-
 export type MetricMetadataList = Array<MetricMetadata>;
 export const MetricMetadataList = /*@__PURE__*/ S.Array(
   MetricMetadata,
@@ -1582,18 +1582,18 @@ export const MetricMetadataList = /*@__PURE__*/ S.Array(
 export interface Metadata {
   /** Resource name of this metadata. */
   name?: string;
-  /** The comparison descriptions. */
-  comparisons?: ComparisonMetadataList;
   /** The dimension descriptions. */
   dimensions?: DimensionMetadataList;
+  /** The comparison descriptions. */
+  comparisons?: ComparisonMetadataList;
   /** The metric descriptions. */
   metrics?: MetricMetadataList;
 }
 export const Metadata = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     name: S.optional(S.String),
-    comparisons: S.optional(ComparisonMetadataList),
     dimensions: S.optional(DimensionMetadataList),
+    comparisons: S.optional(ComparisonMetadataList),
     metrics: S.optional(MetricMetadataList),
   }),
 ).annotate({ identifier: "Metadata" }) as any as S.Schema<Metadata>;
@@ -1617,19 +1617,19 @@ export const GetPropertiesAudienceExportsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetPropertiesAudienceExportsRequest>;
 
 export interface ListPropertiesAudienceExportsRequest {
-  /** Optional. A page token, received from a previous `ListAudienceExports` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListAudienceExports` must match the call that provided the page token. */
-  pageToken?: string;
   /** Required. All audience exports for this property will be listed in the response. Format: `properties/{property}` */
   parent: string;
   /** Optional. The maximum number of audience exports to return. The service may return fewer than this value. If unspecified, at most 200 audience exports will be returned. The maximum value is 1000 (higher values will be coerced to the maximum). */
   pageSize?: number;
+  /** Optional. A page token, received from a previous `ListAudienceExports` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListAudienceExports` must match the call that provided the page token. */
+  pageToken?: string;
 }
 export const ListPropertiesAudienceExportsRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
-      pageToken: S.optional(S.String.pipe(T.Query())),
       parent: S.String.pipe(T.Label()),
       pageSize: S.optional(S.Number.pipe(T.Query())),
+      pageToken: S.optional(S.String.pipe(T.Query())),
     }).pipe(
       T.Http({
         method: "GET",
@@ -1729,18 +1729,18 @@ export const V1betaAudienceRowList = /*@__PURE__*/ S.Array(
 
 /** A list of users in an audience export. */
 export interface QueryAudienceExportResponse {
-  /** The total number of rows in the AudienceExport result. `rowCount` is independent of the number of rows returned in the response, the `limit` request parameter, and the `offset` request parameter. For example if a query returns 175 rows and includes `limit` of 50 in the API request, the response will contain `rowCount` of 175 but only 50 rows. To learn more about this pagination parameter, see [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination). */
-  rowCount?: number;
   /** Configuration data about AudienceExport being queried. Returned to help interpret the audience rows in this response. For example, the dimensions in this AudienceExport correspond to the columns in the AudienceRows. */
   audienceExport?: AudienceExport;
   /** Rows for each user in an audience export. The number of rows in this response will be less than or equal to request's page size. */
   audienceRows?: V1betaAudienceRowList;
+  /** The total number of rows in the AudienceExport result. `rowCount` is independent of the number of rows returned in the response, the `limit` request parameter, and the `offset` request parameter. For example if a query returns 175 rows and includes `limit` of 50 in the API request, the response will contain `rowCount` of 175 but only 50 rows. To learn more about this pagination parameter, see [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination). */
+  rowCount?: number;
 }
 export const QueryAudienceExportResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    rowCount: S.optional(S.Number),
     audienceExport: S.optional(AudienceExport),
     audienceRows: S.optional(V1betaAudienceRowList),
+    rowCount: S.optional(S.Number),
   }),
 ).annotate({
   identifier: "QueryAudienceExportResponse",
@@ -1767,6 +1767,23 @@ export const RunPivotReportPropertiesRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "RunPivotReportPropertiesRequest",
 }) as any as S.Schema<RunPivotReportPropertiesRequest>;
 
+export type RunRealtimeReportRequestMetricAggregationsItemEnum =
+  | "METRIC_AGGREGATION_UNSPECIFIED"
+  | "TOTAL"
+  | "MINIMUM"
+  | "MAXIMUM"
+  | "COUNT";
+export const RunRealtimeReportRequestMetricAggregationsItemEnum =
+  /*@__PURE__*/ S.String;
+
+export type RunRealtimeReportRequestMetricAggregationsItemEnumList = Array<
+  RunRealtimeReportRequestMetricAggregationsItemEnum | (string & {})
+>;
+export const RunRealtimeReportRequestMetricAggregationsItemEnumList =
+  /*@__PURE__*/ S.Array(
+    RunRealtimeReportRequestMetricAggregationsItemEnum,
+  ) as any as S.Schema<RunRealtimeReportRequestMetricAggregationsItemEnumList>;
+
 /** A contiguous set of minutes: `startMinutesAgo`, `startMinutesAgo + 1`, ..., `endMinutesAgo`. Requests are allowed up to 2 minute ranges. */
 export interface MinuteRange {
   /** The inclusive start minute for the query as a number of minutes before now. For example, `"startMinutesAgo": 29` specifies the report should include event data from 29 minutes ago and after. Cannot be after `endMinutesAgo`. If unspecified, `startMinutesAgo` is defaulted to 29. Standard Analytics properties can request up to the last 30 minutes of event data (`startMinutesAgo <= 29`), and 360 Analytics properties can request up to the last 60 minutes of event data (`startMinutesAgo <= 59`). */
@@ -1789,57 +1806,40 @@ export const MinuteRangeList = /*@__PURE__*/ S.Array(
   MinuteRange,
 ) as any as S.Schema<MinuteRangeList>;
 
-export type RunRealtimeReportRequestMetricAggregationsItemEnum =
-  | "METRIC_AGGREGATION_UNSPECIFIED"
-  | "TOTAL"
-  | "MINIMUM"
-  | "MAXIMUM"
-  | "COUNT";
-export const RunRealtimeReportRequestMetricAggregationsItemEnum =
-  /*@__PURE__*/ S.String;
-
-export type RunRealtimeReportRequestMetricAggregationsItemEnumList = Array<
-  RunRealtimeReportRequestMetricAggregationsItemEnum | (string & {})
->;
-export const RunRealtimeReportRequestMetricAggregationsItemEnumList =
-  /*@__PURE__*/ S.Array(
-    RunRealtimeReportRequestMetricAggregationsItemEnum,
-  ) as any as S.Schema<RunRealtimeReportRequestMetricAggregationsItemEnumList>;
-
 /** The request to generate a realtime report. */
 export interface RunRealtimeReportRequest {
+  /** The dimensions requested and displayed. */
+  dimensions?: DimensionList;
+  /** The metrics requested and displayed. */
+  metrics?: MetricList;
+  /** Aggregation of metrics. Aggregated metric values will be shown in rows where the dimension_values are set to "RESERVED_(MetricAggregation)". */
+  metricAggregations?: RunRealtimeReportRequestMetricAggregationsItemEnumList;
+  /** Toggles whether to return the current state of this Google Analytics property's Realtime quota. Quota is returned in [PropertyQuota](#PropertyQuota). */
+  returnPropertyQuota?: boolean;
+  /** The minute ranges of event data to read. If unspecified, one minute range for the last 30 minutes will be used. If multiple minute ranges are requested, each response row will contain a zero based minute range index. If two minute ranges overlap, the event data for the overlapping minutes is included in the response rows for both minute ranges. */
+  minuteRanges?: MinuteRangeList;
+  /** The filter clause of dimensions. Metrics cannot be used in this filter. */
+  dimensionFilter?: FilterExpression;
   /** Specifies how rows are ordered in the response. */
   orderBys?: OrderByList;
   /** The number of rows to return. If unspecified, 10,000 rows are returned. The API returns a maximum of 250,000 rows per request, no matter how many you ask for. `limit` must be positive. The API can also return fewer rows than the requested `limit`, if there aren't as many dimension values as the `limit`. For instance, there are fewer than 300 possible values for the dimension `country`, so when reporting on only `country`, you can't get more than 300 rows, even if you set `limit` to a higher value. */
   limit?: string;
   /** The filter clause of metrics. Applied at post aggregation phase, similar to SQL having-clause. Dimensions cannot be used in this filter. */
   metricFilter?: FilterExpression;
-  /** Toggles whether to return the current state of this Google Analytics property's Realtime quota. Quota is returned in [PropertyQuota](#PropertyQuota). */
-  returnPropertyQuota?: boolean;
-  /** The minute ranges of event data to read. If unspecified, one minute range for the last 30 minutes will be used. If multiple minute ranges are requested, each response row will contain a zero based minute range index. If two minute ranges overlap, the event data for the overlapping minutes is included in the response rows for both minute ranges. */
-  minuteRanges?: MinuteRangeList;
-  /** The metrics requested and displayed. */
-  metrics?: MetricList;
-  /** The dimensions requested and displayed. */
-  dimensions?: DimensionList;
-  /** The filter clause of dimensions. Metrics cannot be used in this filter. */
-  dimensionFilter?: FilterExpression;
-  /** Aggregation of metrics. Aggregated metric values will be shown in rows where the dimension_values are set to "RESERVED_(MetricAggregation)". */
-  metricAggregations?: RunRealtimeReportRequestMetricAggregationsItemEnumList;
 }
 export const RunRealtimeReportRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    orderBys: S.optional(OrderByList),
-    limit: S.optional(S.String),
-    metricFilter: S.optional(FilterExpression),
-    returnPropertyQuota: S.optional(S.Boolean),
-    minuteRanges: S.optional(MinuteRangeList),
-    metrics: S.optional(MetricList),
     dimensions: S.optional(DimensionList),
-    dimensionFilter: S.optional(FilterExpression),
+    metrics: S.optional(MetricList),
     metricAggregations: S.optional(
       RunRealtimeReportRequestMetricAggregationsItemEnumList,
     ),
+    returnPropertyQuota: S.optional(S.Boolean),
+    minuteRanges: S.optional(MinuteRangeList),
+    dimensionFilter: S.optional(FilterExpression),
+    orderBys: S.optional(OrderByList),
+    limit: S.optional(S.String),
+    metricFilter: S.optional(FilterExpression),
   }),
 ).annotate({
   identifier: "RunRealtimeReportRequest",
@@ -1868,35 +1868,35 @@ export const RunRealtimeReportPropertiesRequest = /*@__PURE__*/ S.suspend(() =>
 
 /** The response realtime report table corresponding to a request. */
 export interface RunRealtimeReportResponse {
-  /** Describes metric columns. The number of MetricHeaders and ordering of MetricHeaders matches the metrics present in rows. */
-  metricHeaders?: MetricHeaderList;
-  /** If requested, the maximum values of metrics. */
-  maximums?: RowList;
-  /** Rows of dimension value combinations and metric values in the report. */
-  rows?: RowList;
-  /** The total number of rows in the query result. `rowCount` is independent of the number of rows returned in the response and the `limit` request parameter. For example if a query returns 175 rows and includes `limit` of 50 in the API request, the response will contain `rowCount` of 175 but only 50 rows. */
-  rowCount?: number;
-  /** Describes dimension columns. The number of DimensionHeaders and ordering of DimensionHeaders matches the dimensions present in rows. */
-  dimensionHeaders?: DimensionHeaderList;
-  /** This Google Analytics property's Realtime quota state including this request. */
-  propertyQuota?: PropertyQuota;
   /** Identifies what kind of resource this message is. This `kind` is always the fixed string "analyticsData#runRealtimeReport". Useful to distinguish between response types in JSON. */
   kind?: string;
   /** If requested, the minimum values of metrics. */
   minimums?: RowList;
+  /** Describes dimension columns. The number of DimensionHeaders and ordering of DimensionHeaders matches the dimensions present in rows. */
+  dimensionHeaders?: DimensionHeaderList;
+  /** The total number of rows in the query result. `rowCount` is independent of the number of rows returned in the response and the `limit` request parameter. For example if a query returns 175 rows and includes `limit` of 50 in the API request, the response will contain `rowCount` of 175 but only 50 rows. */
+  rowCount?: number;
+  /** If requested, the maximum values of metrics. */
+  maximums?: RowList;
+  /** Describes metric columns. The number of MetricHeaders and ordering of MetricHeaders matches the metrics present in rows. */
+  metricHeaders?: MetricHeaderList;
+  /** This Google Analytics property's Realtime quota state including this request. */
+  propertyQuota?: PropertyQuota;
+  /** Rows of dimension value combinations and metric values in the report. */
+  rows?: RowList;
   /** If requested, the totaled values of metrics. */
   totals?: RowList;
 }
 export const RunRealtimeReportResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    metricHeaders: S.optional(MetricHeaderList),
-    maximums: S.optional(RowList),
-    rows: S.optional(RowList),
-    rowCount: S.optional(S.Number),
-    dimensionHeaders: S.optional(DimensionHeaderList),
-    propertyQuota: S.optional(PropertyQuota),
     kind: S.optional(S.String),
     minimums: S.optional(RowList),
+    dimensionHeaders: S.optional(DimensionHeaderList),
+    rowCount: S.optional(S.Number),
+    maximums: S.optional(RowList),
+    metricHeaders: S.optional(MetricHeaderList),
+    propertyQuota: S.optional(PropertyQuota),
+    rows: S.optional(RowList),
     totals: S.optional(RowList),
   }),
 ).annotate({

@@ -109,18 +109,18 @@ export const Bucket = /*@__PURE__*/ S.suspend(() =>
 export interface DefaultBucket {
   /** Identifier. Resource name of the default bucket. */
   name?: string;
-  /** Required. Immutable. Location of the default bucket. */
-  location?: string;
   /** Immutable. Storage class of the default bucket. Supported values are available at https://cloud.google.com/storage/docs/storage-classes#classes. */
   storageClass?: string;
+  /** Required. Immutable. Location of the default bucket. */
+  location?: string;
   /** Output only. Underlying bucket resource. */
   bucket?: Bucket;
 }
 export const DefaultBucket = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     name: S.optional(S.String),
-    location: S.optional(S.String),
     storageClass: S.optional(S.String),
+    location: S.optional(S.String),
     bucket: S.optional(Bucket),
   }),
 ).annotate({ identifier: "DefaultBucket" }) as any as S.Schema<DefaultBucket>;
@@ -207,18 +207,18 @@ export const GetProjectsBucketsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<GetProjectsBucketsRequest>;
 
 export interface ListProjectsBucketsRequest {
+  /** The maximum number of buckets to return. If not set, the server will use a reasonable default. */
+  pageSize?: number;
   /** Required. Resource name of the parent Firebase project, `projects/{project_id_or_number}`. */
   parent: string;
   /** A page token, received from a previous `ListBuckets` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListBuckets` must match the call that provided the page token. */
   pageToken?: string;
-  /** The maximum number of buckets to return. If not set, the server will use a reasonable default. */
-  pageSize?: number;
 }
 export const ListProjectsBucketsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
+    pageSize: S.optional(S.Number.pipe(T.Query())),
     parent: S.String.pipe(T.Label()),
     pageToken: S.optional(S.String.pipe(T.Query())),
-    pageSize: S.optional(S.Number.pipe(T.Query())),
   }).pipe(
     T.Http({
       method: "GET",

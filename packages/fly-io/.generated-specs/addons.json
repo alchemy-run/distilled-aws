@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.flyio.addons#AddOnRequest": {
@@ -322,7 +323,8 @@
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#required": {},
-            "com.flyio.graphql#nullable": {}
+            "com.flyio.graphql#nullable": {},
+            "smithy.api#sensitive": {}
           }
         },
         "privateIp": {
@@ -336,7 +338,8 @@
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#required": {},
-            "com.flyio.graphql#nullable": {}
+            "com.flyio.graphql#nullable": {},
+            "smithy.api#sensitive": {}
           }
         },
         "ssoLink": {
@@ -831,7 +834,8 @@
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#required": {},
-            "com.flyio.graphql#nullable": {}
+            "com.flyio.graphql#nullable": {},
+            "smithy.api#sensitive": {}
           }
         },
         "privateIp": {
@@ -845,7 +849,8 @@
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#required": {},
-            "com.flyio.graphql#nullable": {}
+            "com.flyio.graphql#nullable": {},
+            "smithy.api#sensitive": {}
           }
         },
         "ssoLink": {
@@ -1005,7 +1010,8 @@
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#required": {},
-            "com.flyio.graphql#nullable": {}
+            "com.flyio.graphql#nullable": {},
+            "smithy.api#sensitive": {}
           }
         },
         "privateIp": {
@@ -1019,7 +1025,8 @@
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#required": {},
-            "com.flyio.graphql#nullable": {}
+            "com.flyio.graphql#nullable": {},
+            "smithy.api#sensitive": {}
           }
         },
         "ssoLink": {
@@ -1668,7 +1675,8 @@
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#required": {},
-            "com.flyio.graphql#nullable": {}
+            "com.flyio.graphql#nullable": {},
+            "smithy.api#sensitive": {}
           }
         },
         "privateIp": {
@@ -1682,7 +1690,8 @@
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#required": {},
-            "com.flyio.graphql#nullable": {}
+            "com.flyio.graphql#nullable": {},
+            "smithy.api#sensitive": {}
           }
         },
         "ssoLink": {
@@ -2037,7 +2046,8 @@
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#required": {},
-            "com.flyio.graphql#nullable": {}
+            "com.flyio.graphql#nullable": {},
+            "smithy.api#sensitive": {}
           }
         },
         "privateIp": {
@@ -2051,7 +2061,8 @@
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#required": {},
-            "com.flyio.graphql#nullable": {}
+            "com.flyio.graphql#nullable": {},
+            "smithy.api#sensitive": {}
           }
         },
         "ssoLink": {
@@ -2274,7 +2285,8 @@
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#required": {},
-            "com.flyio.graphql#nullable": {}
+            "com.flyio.graphql#nullable": {},
+            "smithy.api#sensitive": {}
           }
         },
         "privateIp": {
@@ -2288,7 +2300,8 @@
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#required": {},
-            "com.flyio.graphql#nullable": {}
+            "com.flyio.graphql#nullable": {},
+            "smithy.api#sensitive": {}
           }
         },
         "ssoLink": {
@@ -2637,7 +2650,8 @@
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#required": {},
-            "com.flyio.graphql#nullable": {}
+            "com.flyio.graphql#nullable": {},
+            "smithy.api#sensitive": {}
           }
         },
         "privateIp": {
@@ -2651,7 +2665,8 @@
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#required": {},
-            "com.flyio.graphql#nullable": {}
+            "com.flyio.graphql#nullable": {},
+            "smithy.api#sensitive": {}
           }
         },
         "ssoLink": {

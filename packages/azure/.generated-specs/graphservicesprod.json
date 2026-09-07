@@ -14,16 +14,17 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.graphservicesprod#OperationsList": {
+    "com.azure.graphservicesprod#ListOperations": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
       },
       "output": {
-        "target": "com.azure.graphservicesprod#OperationsListResponse"
+        "target": "com.azure.graphservicesprod#ListOperationsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -36,11 +37,11 @@
         "com.distilled.openapi#apiVersion": "2023-04-13"
       }
     },
-    "com.azure.graphservicesprod#OperationsListResponse": {
+    "com.azure.graphservicesprod#ListOperationsResponse": {
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.graphservicesprod#OperationsListResponseValueList",
+          "target": "com.azure.graphservicesprod#ListOperationsResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of operations supported by the resource provider"
           }
@@ -56,7 +57,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.graphservicesprod#OperationsListResponseValueList": {
+    "com.azure.graphservicesprod#ListOperationsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.graphservicesprod#Operation"
@@ -175,10 +176,10 @@
         "smithy.api#documentation": "Localized display information for this particular operation."
       }
     },
-    "com.azure.graphservicesprod#AccountsDelete": {
+    "com.azure.graphservicesprod#DeleteAccount": {
       "type": "operation",
       "input": {
-        "target": "com.azure.graphservicesprod#AccountsDeleteRequest"
+        "target": "com.azure.graphservicesprod#DeleteAccountRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -194,7 +195,7 @@
         "com.distilled.openapi#apiVersion": "2023-04-13"
       }
     },
-    "com.azure.graphservicesprod#AccountsDeleteRequest": {
+    "com.azure.graphservicesprod#DeleteAccountRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -226,13 +227,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.graphservicesprod#AccountsUpdate": {
+    "com.azure.graphservicesprod#UpdateAccount": {
       "type": "operation",
       "input": {
-        "target": "com.azure.graphservicesprod#AccountsUpdateRequest"
+        "target": "com.azure.graphservicesprod#UpdateAccountRequest"
       },
       "output": {
-        "target": "com.azure.graphservicesprod#AccountsUpdateResponse"
+        "target": "com.azure.graphservicesprod#UpdateAccountResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -245,7 +246,7 @@
         "com.distilled.openapi#apiVersion": "2023-04-13"
       }
     },
-    "com.azure.graphservicesprod#AccountsUpdateResponse": {
+    "com.azure.graphservicesprod#UpdateAccountResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -273,19 +274,19 @@
           }
         },
         "tags": {
-          "target": "com.azure.graphservicesprod#AccountsUpdateResponseTagsMap",
+          "target": "com.azure.graphservicesprod#UpdateAccountResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "resource tags."
           }
         },
         "systemData": {
-          "target": "com.azure.graphservicesprod#AccountsUpdateResponseSystemData",
+          "target": "com.azure.graphservicesprod#UpdateAccountResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
         },
         "properties": {
-          "target": "com.azure.graphservicesprod#AccountsUpdateResponseProperties",
+          "target": "com.azure.graphservicesprod#UpdateAccountResponseProperties",
           "traits": {
             "smithy.api#documentation": "Property bag from billing account",
             "smithy.api#required": {}
@@ -296,11 +297,11 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.graphservicesprod#AccountsUpdateResponseProperties": {
+    "com.azure.graphservicesprod#UpdateAccountResponseProperties": {
       "type": "structure",
       "members": {
         "provisioningState": {
-          "target": "com.azure.graphservicesprod#AccountsUpdateResponsePropertiesProvisioningState",
+          "target": "com.azure.graphservicesprod#UpdateAccountResponsePropertiesProvisioningState",
           "traits": {
             "smithy.api#documentation": "Provisioning state."
           }
@@ -323,7 +324,7 @@
         "smithy.api#documentation": "Property bag from billing account"
       }
     },
-    "com.azure.graphservicesprod#AccountsUpdateResponsePropertiesProvisioningState": {
+    "com.azure.graphservicesprod#UpdateAccountResponsePropertiesProvisioningState": {
       "type": "enum",
       "members": {
         "SUCCEEDED": {
@@ -349,11 +350,11 @@
         "smithy.api#documentation": "Provisioning state."
       }
     },
-    "com.azure.graphservicesprod#AccountsUpdateResponseSystemData": {
+    "com.azure.graphservicesprod#UpdateAccountResponseSystemData": {
       "type": "structure",
       "members": {
         "createdByType": {
-          "target": "com.azure.graphservicesprod#AccountsUpdateResponseSystemDataCreatedByType",
+          "target": "com.azure.graphservicesprod#UpdateAccountResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -365,7 +366,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.graphservicesprod#AccountsUpdateResponseSystemDataLastModifiedByType",
+          "target": "com.azure.graphservicesprod#UpdateAccountResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -381,7 +382,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.graphservicesprod#AccountsUpdateResponseSystemDataLastModifiedByType": {
+    "com.azure.graphservicesprod#UpdateAccountResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -413,7 +414,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.graphservicesprod#AccountsUpdateResponseSystemDataCreatedByType": {
+    "com.azure.graphservicesprod#UpdateAccountResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -445,7 +446,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.graphservicesprod#AccountsUpdateResponseTagsMap": {
+    "com.azure.graphservicesprod#UpdateAccountResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -457,7 +458,7 @@
         "smithy.api#documentation": "resource tags."
       }
     },
-    "com.azure.graphservicesprod#AccountsUpdateRequest": {
+    "com.azure.graphservicesprod#UpdateAccountRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -485,7 +486,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.graphservicesprod#AccountsUpdateRequestTagsMap",
+          "target": "com.azure.graphservicesprod#UpdateAccountRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "List of key value pairs that describe the resource. This will overwrite the existing tags."
           }
@@ -495,7 +496,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.graphservicesprod#AccountsUpdateRequestTagsMap": {
+    "com.azure.graphservicesprod#UpdateAccountRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -816,13 +817,13 @@
         "smithy.api#documentation": "resource tags."
       }
     },
-    "com.azure.graphservicesprod#AccountsGet": {
+    "com.azure.graphservicesprod#GetAccount": {
       "type": "operation",
       "input": {
-        "target": "com.azure.graphservicesprod#AccountsGetRequest"
+        "target": "com.azure.graphservicesprod#GetAccountRequest"
       },
       "output": {
-        "target": "com.azure.graphservicesprod#AccountsGetResponse"
+        "target": "com.azure.graphservicesprod#GetAccountResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -835,7 +836,7 @@
         "com.distilled.openapi#apiVersion": "2023-04-13"
       }
     },
-    "com.azure.graphservicesprod#AccountsGetResponse": {
+    "com.azure.graphservicesprod#GetAccountResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -863,19 +864,19 @@
           }
         },
         "tags": {
-          "target": "com.azure.graphservicesprod#AccountsGetResponseTagsMap",
+          "target": "com.azure.graphservicesprod#GetAccountResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "resource tags."
           }
         },
         "systemData": {
-          "target": "com.azure.graphservicesprod#AccountsGetResponseSystemData",
+          "target": "com.azure.graphservicesprod#GetAccountResponseSystemData",
           "traits": {
             "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
           }
         },
         "properties": {
-          "target": "com.azure.graphservicesprod#AccountsGetResponseProperties",
+          "target": "com.azure.graphservicesprod#GetAccountResponseProperties",
           "traits": {
             "smithy.api#documentation": "Property bag from billing account",
             "smithy.api#required": {}
@@ -886,11 +887,11 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.graphservicesprod#AccountsGetResponseProperties": {
+    "com.azure.graphservicesprod#GetAccountResponseProperties": {
       "type": "structure",
       "members": {
         "provisioningState": {
-          "target": "com.azure.graphservicesprod#AccountsGetResponsePropertiesProvisioningState",
+          "target": "com.azure.graphservicesprod#GetAccountResponsePropertiesProvisioningState",
           "traits": {
             "smithy.api#documentation": "Provisioning state."
           }
@@ -913,7 +914,7 @@
         "smithy.api#documentation": "Property bag from billing account"
       }
     },
-    "com.azure.graphservicesprod#AccountsGetResponsePropertiesProvisioningState": {
+    "com.azure.graphservicesprod#GetAccountResponsePropertiesProvisioningState": {
       "type": "enum",
       "members": {
         "SUCCEEDED": {
@@ -939,11 +940,11 @@
         "smithy.api#documentation": "Provisioning state."
       }
     },
-    "com.azure.graphservicesprod#AccountsGetResponseSystemData": {
+    "com.azure.graphservicesprod#GetAccountResponseSystemData": {
       "type": "structure",
       "members": {
         "createdByType": {
-          "target": "com.azure.graphservicesprod#AccountsGetResponseSystemDataCreatedByType",
+          "target": "com.azure.graphservicesprod#GetAccountResponseSystemDataCreatedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that created the resource."
           }
@@ -955,7 +956,7 @@
           }
         },
         "lastModifiedByType": {
-          "target": "com.azure.graphservicesprod#AccountsGetResponseSystemDataLastModifiedByType",
+          "target": "com.azure.graphservicesprod#GetAccountResponseSystemDataLastModifiedByType",
           "traits": {
             "smithy.api#documentation": "The type of identity that last modified the resource."
           }
@@ -971,7 +972,7 @@
         "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
       }
     },
-    "com.azure.graphservicesprod#AccountsGetResponseSystemDataLastModifiedByType": {
+    "com.azure.graphservicesprod#GetAccountResponseSystemDataLastModifiedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -1003,7 +1004,7 @@
         "smithy.api#documentation": "The type of identity that last modified the resource."
       }
     },
-    "com.azure.graphservicesprod#AccountsGetResponseSystemDataCreatedByType": {
+    "com.azure.graphservicesprod#GetAccountResponseSystemDataCreatedByType": {
       "type": "enum",
       "members": {
         "USER": {
@@ -1035,7 +1036,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.graphservicesprod#AccountsGetResponseTagsMap": {
+    "com.azure.graphservicesprod#GetAccountResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1047,7 +1048,7 @@
         "smithy.api#documentation": "resource tags."
       }
     },
-    "com.azure.graphservicesprod#AccountsGetRequest": {
+    "com.azure.graphservicesprod#GetAccountRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1079,10 +1080,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.graphservicesprod#AccountsListBySubscription": {
+    "com.azure.graphservicesprod#ListAccountBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.graphservicesprod#AccountsListBySubscriptionRequest"
+        "target": "com.azure.graphservicesprod#ListAccountBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.graphservicesprod#AccountResourceList"
@@ -1339,7 +1340,7 @@
         "smithy.api#documentation": "resource tags."
       }
     },
-    "com.azure.graphservicesprod#AccountsListBySubscriptionRequest": {
+    "com.azure.graphservicesprod#ListAccountBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1355,10 +1356,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.graphservicesprod#AccountsListByResourceGroup": {
+    "com.azure.graphservicesprod#ListAccountByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.graphservicesprod#AccountsListByResourceGroupRequest"
+        "target": "com.azure.graphservicesprod#ListAccountByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.graphservicesprod#AccountResourceList"
@@ -1374,7 +1375,7 @@
         "com.distilled.openapi#apiVersion": "2023-04-13"
       }
     },
-    "com.azure.graphservicesprod#AccountsListByResourceGroupRequest": {
+    "com.azure.graphservicesprod#ListAccountByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1403,25 +1404,25 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.graphservicesprod#OperationsList"
+          "target": "com.azure.graphservicesprod#ListOperations"
         },
         {
-          "target": "com.azure.graphservicesprod#AccountsDelete"
+          "target": "com.azure.graphservicesprod#DeleteAccount"
         },
         {
-          "target": "com.azure.graphservicesprod#AccountsUpdate"
+          "target": "com.azure.graphservicesprod#UpdateAccount"
         },
         {
           "target": "com.azure.graphservicesprod#AccountsCreateAndUpdate"
         },
         {
-          "target": "com.azure.graphservicesprod#AccountsGet"
+          "target": "com.azure.graphservicesprod#GetAccount"
         },
         {
-          "target": "com.azure.graphservicesprod#AccountsListBySubscription"
+          "target": "com.azure.graphservicesprod#ListAccountBySubscription"
         },
         {
-          "target": "com.azure.graphservicesprod#AccountsListByResourceGroup"
+          "target": "com.azure.graphservicesprod#ListAccountByResourceGroup"
         }
       ],
       "traits": {

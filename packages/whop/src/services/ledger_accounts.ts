@@ -48,17 +48,17 @@ export class UnprocessableEntity
     [{ status: 422 }],
   ) {}
 
-export interface RetrieveLedgerAccountRequest {
+export interface GetLedgerAccountRequest {
   /** The identifier to look up the ledger account. Accepts a user ID ('user_xxx'), company ID ('biz_xxx'), or ledger account ID ('ldgr_xxx'). */
   id: string;
 }
-export const RetrieveLedgerAccountRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetLedgerAccountRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String.pipe(T.Label()),
   }).pipe(T.Http({ method: "GET", uri: "/ledger_accounts/{id}", code: 200 })),
 ).annotate({
-  identifier: "RetrieveLedgerAccountRequest",
-}) as any as S.Schema<RetrieveLedgerAccountRequest>;
+  identifier: "GetLedgerAccountRequest",
+}) as any as S.Schema<GetLedgerAccountRequest>;
 
 /** The available currencies on the platform */
 export type Currencies =
@@ -476,20 +476,20 @@ export const LedgerAccount = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "LedgerAccount" }) as any as S.Schema<LedgerAccount>;
 
-export type RetrieveLedgerAccountError =
+export type GetLedgerAccountError =
   | BadRequest
   | Forbidden
   | NotFound
   | UnprocessableEntity
   | WhopOpError;
 /** Retrieve ledger account [Legacy API — https://docs.whop.com/api-reference] Retrieves the details of an existing ledger account. Required permissions: - `company:balance:read` - `payout:account:read` */
-export const retrieveLedgerAccount: API.OperationMethod<
-  RetrieveLedgerAccountRequest,
+export const getLedgerAccount: API.OperationMethod<
+  GetLedgerAccountRequest,
   LedgerAccount,
-  RetrieveLedgerAccountError,
+  GetLedgerAccountError,
   WhopOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveLedgerAccountRequest,
+  input: GetLedgerAccountRequest,
   output: LedgerAccount,
   errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
   protocol: WhopProtocol,

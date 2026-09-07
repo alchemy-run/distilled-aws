@@ -14,7 +14,13 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "keyDictionary": {
+      "acceptAll": "accept_all",
+      "confirmMyChoices": "confirm_my_choices",
+      "rejectAll": "reject_all"
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.zaraz#UpdateRequestWorkflow": {
@@ -34,29 +40,6 @@
         }
       }
     },
-    "com.cloudflare.zaraz#UpdateRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "workflow": {
-          "target": "com.cloudflare.zaraz#UpdateRequestWorkflow",
-          "traits": {
-            "smithy.api#documentation": "Zaraz workflow.",
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.zaraz#UpdateResult": {
       "type": "enum",
       "members": {
@@ -72,55 +55,6 @@
             "smithy.api#enumValue": "preview"
           }
         }
-      }
-    },
-    "com.cloudflare.zaraz#UpdateResponse": {
-      "type": "structure",
-      "members": {
-        "result": {
-          "target": "com.cloudflare.zaraz#UpdateResult",
-          "traits": {
-            "com.cloudflare.protocols#envelopePayload": {},
-            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.zaraz#Update": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.zaraz#UpdateRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.zaraz#UpdateResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "PUT",
-          "uri": "/zones/{zone_id}/settings/zaraz/workflow",
-          "code": 200
-        },
-        "smithy.api#documentation": "Updates Zaraz workflow for a zone.",
-        "smithy.api#idempotent": {}
-      }
-    },
-    "com.cloudflare.zaraz#ConfigGetRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.zaraz#ConfigGetResponseSettingsContextEnricher": {
@@ -2044,100 +1978,6 @@
         }
       }
     },
-    "com.cloudflare.zaraz#ConfigGetResponse": {
-      "type": "structure",
-      "members": {
-        "dataLayer": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Data layer compatibility mode enabled.",
-            "smithy.api#required": {}
-          }
-        },
-        "debugKey": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The key for Zaraz debug mode.",
-            "smithy.api#required": {}
-          }
-        },
-        "settings": {
-          "target": "com.cloudflare.zaraz#ConfigGetResponseSettings",
-          "traits": {
-            "smithy.api#documentation": "General Zaraz settings.",
-            "smithy.api#required": {}
-          }
-        },
-        "tools": {
-          "target": "com.cloudflare.zaraz#ConfigGetResponseTools",
-          "traits": {
-            "smithy.api#documentation": "Tools set up under Zaraz configuration, where key is the alpha-numeric tool ID and value is the tool configuration object.",
-            "smithy.api#required": {}
-          }
-        },
-        "triggers": {
-          "target": "com.cloudflare.zaraz#ConfigGetResponseTriggersMap",
-          "traits": {
-            "smithy.api#documentation": "Triggers set up under Zaraz configuration, where key is the trigger alpha-numeric ID and value is the trigger configuration.",
-            "smithy.api#required": {}
-          }
-        },
-        "variables": {
-          "target": "com.cloudflare.zaraz#ConfigGetResponseVariables",
-          "traits": {
-            "smithy.api#documentation": "Variables set up under Zaraz configuration, where key is the variable alpha-numeric ID and value is the variable configuration. Values of variables of type secret are not included.",
-            "smithy.api#required": {}
-          }
-        },
-        "zarazVersion": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Zaraz internal version of the config.",
-            "smithy.api#required": {}
-          }
-        },
-        "analytics": {
-          "target": "com.cloudflare.zaraz#ConfigGetResponseAnalytics",
-          "traits": {
-            "smithy.api#documentation": "Cloudflare Monitoring settings."
-          }
-        },
-        "consent": {
-          "target": "com.cloudflare.zaraz#ConfigGetResponseConsent",
-          "traits": {
-            "smithy.api#documentation": "Consent management configuration."
-          }
-        },
-        "historyChange": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Single Page Application support enabled."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.zaraz#ConfigGet": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.zaraz#ConfigGetRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.zaraz#ConfigGetResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/zones/{zone_id}/settings/zaraz/config",
-          "code": 200
-        },
-        "smithy.api#documentation": "Gets latest Zaraz configuration for a zone. It can be preview or published configuration, whichever was the last updated. Secret variables values will not be included.",
-        "smithy.api#readonly": {}
-      }
-    },
     "com.cloudflare.zaraz#ConfigUpdateRequestSettingsContextEnricher": {
       "type": "structure",
       "members": {
@@ -4057,89 +3897,6 @@
         "tcfCompliant": {
           "target": "smithy.api#Boolean"
         }
-      }
-    },
-    "com.cloudflare.zaraz#ConfigUpdateRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "dataLayer": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Data layer compatibility mode enabled.",
-            "smithy.api#required": {}
-          }
-        },
-        "debugKey": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The key for Zaraz debug mode.",
-            "smithy.api#required": {}
-          }
-        },
-        "settings": {
-          "target": "com.cloudflare.zaraz#ConfigUpdateRequestSettings",
-          "traits": {
-            "smithy.api#documentation": "General Zaraz settings.",
-            "smithy.api#required": {}
-          }
-        },
-        "tools": {
-          "target": "com.cloudflare.zaraz#ConfigUpdateRequestTools",
-          "traits": {
-            "smithy.api#documentation": "Tools set up under Zaraz configuration, where key is the alpha-numeric tool ID and value is the tool configuration object.",
-            "smithy.api#required": {}
-          }
-        },
-        "triggers": {
-          "target": "com.cloudflare.zaraz#ConfigUpdateRequestTriggersMap",
-          "traits": {
-            "smithy.api#documentation": "Triggers set up under Zaraz configuration, where key is the trigger alpha-numeric ID and value is the trigger configuration.",
-            "smithy.api#required": {}
-          }
-        },
-        "variables": {
-          "target": "com.cloudflare.zaraz#ConfigUpdateRequestVariables",
-          "traits": {
-            "smithy.api#documentation": "Variables set up under Zaraz configuration, where key is the variable alpha-numeric ID and value is the variable configuration. Values of variables of type secret are not included.",
-            "smithy.api#required": {}
-          }
-        },
-        "zarazVersion": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Zaraz internal version of the config.",
-            "smithy.api#required": {}
-          }
-        },
-        "analytics": {
-          "target": "com.cloudflare.zaraz#ConfigUpdateRequestAnalytics",
-          "traits": {
-            "smithy.api#documentation": "Cloudflare Monitoring settings."
-          }
-        },
-        "consent": {
-          "target": "com.cloudflare.zaraz#ConfigUpdateRequestConsent",
-          "traits": {
-            "smithy.api#documentation": "Consent management configuration."
-          }
-        },
-        "historyChange": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Single Page Application support enabled."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.zaraz#ConfigUpdateResponseSettingsContextEnricher": {
@@ -6063,116 +5820,6 @@
         }
       }
     },
-    "com.cloudflare.zaraz#ConfigUpdateResponse": {
-      "type": "structure",
-      "members": {
-        "dataLayer": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Data layer compatibility mode enabled.",
-            "smithy.api#required": {}
-          }
-        },
-        "debugKey": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The key for Zaraz debug mode.",
-            "smithy.api#required": {}
-          }
-        },
-        "settings": {
-          "target": "com.cloudflare.zaraz#ConfigUpdateResponseSettings",
-          "traits": {
-            "smithy.api#documentation": "General Zaraz settings.",
-            "smithy.api#required": {}
-          }
-        },
-        "tools": {
-          "target": "com.cloudflare.zaraz#ConfigUpdateResponseTools",
-          "traits": {
-            "smithy.api#documentation": "Tools set up under Zaraz configuration, where key is the alpha-numeric tool ID and value is the tool configuration object.",
-            "smithy.api#required": {}
-          }
-        },
-        "triggers": {
-          "target": "com.cloudflare.zaraz#ConfigUpdateResponseTriggersMap",
-          "traits": {
-            "smithy.api#documentation": "Triggers set up under Zaraz configuration, where key is the trigger alpha-numeric ID and value is the trigger configuration.",
-            "smithy.api#required": {}
-          }
-        },
-        "variables": {
-          "target": "com.cloudflare.zaraz#ConfigUpdateResponseVariables",
-          "traits": {
-            "smithy.api#documentation": "Variables set up under Zaraz configuration, where key is the variable alpha-numeric ID and value is the variable configuration. Values of variables of type secret are not included.",
-            "smithy.api#required": {}
-          }
-        },
-        "zarazVersion": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Zaraz internal version of the config.",
-            "smithy.api#required": {}
-          }
-        },
-        "analytics": {
-          "target": "com.cloudflare.zaraz#ConfigUpdateResponseAnalytics",
-          "traits": {
-            "smithy.api#documentation": "Cloudflare Monitoring settings."
-          }
-        },
-        "consent": {
-          "target": "com.cloudflare.zaraz#ConfigUpdateResponseConsent",
-          "traits": {
-            "smithy.api#documentation": "Consent management configuration."
-          }
-        },
-        "historyChange": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Single Page Application support enabled."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.zaraz#ConfigUpdate": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.zaraz#ConfigUpdateRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.zaraz#ConfigUpdateResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "PUT",
-          "uri": "/zones/{zone_id}/settings/zaraz/config",
-          "code": 200
-        },
-        "smithy.api#documentation": "Updates Zaraz configuration for a zone.",
-        "smithy.api#idempotent": {}
-      }
-    },
-    "com.cloudflare.zaraz#DefaultGetRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.zaraz#DefaultGetResponseSettingsContextEnricher": {
       "type": "structure",
       "members": {
@@ -8094,142 +7741,6 @@
         }
       }
     },
-    "com.cloudflare.zaraz#DefaultGetResponse": {
-      "type": "structure",
-      "members": {
-        "dataLayer": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Data layer compatibility mode enabled.",
-            "smithy.api#required": {}
-          }
-        },
-        "debugKey": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The key for Zaraz debug mode.",
-            "smithy.api#required": {}
-          }
-        },
-        "settings": {
-          "target": "com.cloudflare.zaraz#DefaultGetResponseSettings",
-          "traits": {
-            "smithy.api#documentation": "General Zaraz settings.",
-            "smithy.api#required": {}
-          }
-        },
-        "tools": {
-          "target": "com.cloudflare.zaraz#DefaultGetResponseTools",
-          "traits": {
-            "smithy.api#documentation": "Tools set up under Zaraz configuration, where key is the alpha-numeric tool ID and value is the tool configuration object.",
-            "smithy.api#required": {}
-          }
-        },
-        "triggers": {
-          "target": "com.cloudflare.zaraz#DefaultGetResponseTriggersMap",
-          "traits": {
-            "smithy.api#documentation": "Triggers set up under Zaraz configuration, where key is the trigger alpha-numeric ID and value is the trigger configuration.",
-            "smithy.api#required": {}
-          }
-        },
-        "variables": {
-          "target": "com.cloudflare.zaraz#DefaultGetResponseVariables",
-          "traits": {
-            "smithy.api#documentation": "Variables set up under Zaraz configuration, where key is the variable alpha-numeric ID and value is the variable configuration. Values of variables of type secret are not included.",
-            "smithy.api#required": {}
-          }
-        },
-        "zarazVersion": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Zaraz internal version of the config.",
-            "smithy.api#required": {}
-          }
-        },
-        "analytics": {
-          "target": "com.cloudflare.zaraz#DefaultGetResponseAnalytics",
-          "traits": {
-            "smithy.api#documentation": "Cloudflare Monitoring settings."
-          }
-        },
-        "consent": {
-          "target": "com.cloudflare.zaraz#DefaultGetResponseConsent",
-          "traits": {
-            "smithy.api#documentation": "Consent management configuration."
-          }
-        },
-        "historyChange": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Single Page Application support enabled."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.zaraz#DefaultGet": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.zaraz#DefaultGetRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.zaraz#DefaultGetResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/zones/{zone_id}/settings/zaraz/default",
-          "code": 200
-        },
-        "smithy.api#documentation": "Gets default Zaraz configuration for a zone.",
-        "smithy.api#readonly": {}
-      }
-    },
-    "com.cloudflare.zaraz#ExportGetRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.zaraz#ExportGetResponse": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Raw response payload (operation does not use the standard v4 result envelope)."
-      }
-    },
-    "com.cloudflare.zaraz#ExportGet": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.zaraz#ExportGetRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.zaraz#ExportGetResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/zones/{zone_id}/settings/zaraz/export",
-          "code": 200
-        },
-        "smithy.api#documentation": "Exports full current published Zaraz configuration for a zone, secret variables included.",
-        "smithy.api#readonly": {}
-      }
-    },
     "com.cloudflare.zaraz#HistoryListRequestSortField": {
       "type": "enum",
       "members": {
@@ -8282,50 +7793,6 @@
         }
       }
     },
-    "com.cloudflare.zaraz#HistoryListRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "limit": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Maximum amount of results to list. Default value is 10.",
-            "smithy.api#httpQuery": "limit"
-          }
-        },
-        "offset": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Ordinal number to start listing the results with. Default value is 0.",
-            "smithy.api#httpQuery": "offset"
-          }
-        },
-        "sortField": {
-          "target": "com.cloudflare.zaraz#HistoryListRequestSortField",
-          "traits": {
-            "smithy.api#documentation": "The field to sort by. Default is updated_at.",
-            "smithy.api#httpQuery": "sortField"
-          }
-        },
-        "sortOrder": {
-          "target": "com.cloudflare.zaraz#HistoryListRequestSortOrder",
-          "traits": {
-            "smithy.api#documentation": "Sorting order. Default is DESC.",
-            "smithy.api#httpQuery": "sortOrder"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.zaraz#HistoryListResultItem": {
       "type": "structure",
       "members": {
@@ -8370,63 +7837,6 @@
       "type": "list",
       "member": {
         "target": "com.cloudflare.zaraz#HistoryListResultItem"
-      }
-    },
-    "com.cloudflare.zaraz#HistoryListResponse": {
-      "type": "structure",
-      "members": {
-        "result": {
-          "target": "com.cloudflare.zaraz#HistoryListResultList",
-          "traits": {
-            "com.cloudflare.protocols#envelopePayload": {},
-            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.zaraz#HistoryList": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.zaraz#HistoryListRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.zaraz#HistoryListResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/zones/{zone_id}/settings/zaraz/history",
-          "code": 200
-        },
-        "smithy.api#documentation": "Lists a history of published Zaraz configuration records for a zone.",
-        "smithy.api#readonly": {}
-      }
-    },
-    "com.cloudflare.zaraz#HistoryUpdateRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "ID of the Zaraz configuration to restore.",
-            "smithy.api#required": {},
-            "smithy.api#httpPayload": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.zaraz#HistoryUpdateResponseSettingsContextEnricher": {
@@ -10350,128 +9760,10 @@
         }
       }
     },
-    "com.cloudflare.zaraz#HistoryUpdateResponse": {
-      "type": "structure",
-      "members": {
-        "dataLayer": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Data layer compatibility mode enabled.",
-            "smithy.api#required": {}
-          }
-        },
-        "debugKey": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The key for Zaraz debug mode.",
-            "smithy.api#required": {}
-          }
-        },
-        "settings": {
-          "target": "com.cloudflare.zaraz#HistoryUpdateResponseSettings",
-          "traits": {
-            "smithy.api#documentation": "General Zaraz settings.",
-            "smithy.api#required": {}
-          }
-        },
-        "tools": {
-          "target": "com.cloudflare.zaraz#HistoryUpdateResponseTools",
-          "traits": {
-            "smithy.api#documentation": "Tools set up under Zaraz configuration, where key is the alpha-numeric tool ID and value is the tool configuration object.",
-            "smithy.api#required": {}
-          }
-        },
-        "triggers": {
-          "target": "com.cloudflare.zaraz#HistoryUpdateResponseTriggersMap",
-          "traits": {
-            "smithy.api#documentation": "Triggers set up under Zaraz configuration, where key is the trigger alpha-numeric ID and value is the trigger configuration.",
-            "smithy.api#required": {}
-          }
-        },
-        "variables": {
-          "target": "com.cloudflare.zaraz#HistoryUpdateResponseVariables",
-          "traits": {
-            "smithy.api#documentation": "Variables set up under Zaraz configuration, where key is the variable alpha-numeric ID and value is the variable configuration. Values of variables of type secret are not included.",
-            "smithy.api#required": {}
-          }
-        },
-        "zarazVersion": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Zaraz internal version of the config.",
-            "smithy.api#required": {}
-          }
-        },
-        "analytics": {
-          "target": "com.cloudflare.zaraz#HistoryUpdateResponseAnalytics",
-          "traits": {
-            "smithy.api#documentation": "Cloudflare Monitoring settings."
-          }
-        },
-        "consent": {
-          "target": "com.cloudflare.zaraz#HistoryUpdateResponseConsent",
-          "traits": {
-            "smithy.api#documentation": "Consent management configuration."
-          }
-        },
-        "historyChange": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Single Page Application support enabled."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.zaraz#HistoryUpdate": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.zaraz#HistoryUpdateRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.zaraz#HistoryUpdateResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "PUT",
-          "uri": "/zones/{zone_id}/settings/zaraz/history",
-          "code": 200
-        },
-        "smithy.api#documentation": "Restores a historical published Zaraz configuration by ID for a zone.",
-        "smithy.api#idempotent": {}
-      }
-    },
     "com.cloudflare.zaraz#HistoryConfigsGetRequestIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Double"
-      }
-    },
-    "com.cloudflare.zaraz#HistoryConfigsGetRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "ids": {
-          "target": "com.cloudflare.zaraz#HistoryConfigsGetRequestIdsList",
-          "traits": {
-            "smithy.api#documentation": "Comma separated list of Zaraz configuration IDs.",
-            "smithy.api#httpQuery": "ids",
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.zaraz#HistoryConfigsGetResultValueConfigSettingsContextEnricher": {
@@ -12420,21 +11712,21 @@
           }
         },
         "tools": {
-          "target": "com.cloudflare.zaraz#HistoryConfigsGetResultValueConfigTools",
+          "target": "com.cloudflare.zaraz#UntypedConfigMap",
           "traits": {
             "smithy.api#documentation": "Tools set up under Zaraz configuration, where key is the alpha-numeric tool ID and value is the tool configuration object.",
             "smithy.api#required": {}
           }
         },
         "triggers": {
-          "target": "com.cloudflare.zaraz#HistoryConfigsGetResultValueConfigTriggersMap",
+          "target": "com.cloudflare.zaraz#UntypedConfigMap",
           "traits": {
             "smithy.api#documentation": "Triggers set up under Zaraz configuration, where key is the trigger alpha-numeric ID and value is the trigger configuration.",
             "smithy.api#required": {}
           }
         },
         "variables": {
-          "target": "com.cloudflare.zaraz#HistoryConfigsGetResultValueConfigVariables",
+          "target": "com.cloudflare.zaraz#UntypedConfigMap",
           "traits": {
             "smithy.api#documentation": "Variables set up under Zaraz configuration, where key is the variable alpha-numeric ID and value is the variable configuration. Values of variables of type secret are not included.",
             "smithy.api#required": {}
@@ -12516,40 +11808,120 @@
         "target": "com.cloudflare.zaraz#HistoryConfigsGetResultValue"
       }
     },
-    "com.cloudflare.zaraz#HistoryConfigsGetResponse": {
+    "com.cloudflare.zaraz#WorkflowGetResult": {
+      "type": "enum",
+      "members": {
+        "REALTIME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "realtime"
+          }
+        },
+        "PREVIEW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "preview"
+          }
+        }
+      }
+    },
+    "com.cloudflare.zaraz#Zaraz": {
+      "type": "service",
+      "version": "4.0",
+      "operations": [
+        {
+          "target": "com.cloudflare.zaraz#CreatePublish"
+        },
+        {
+          "target": "com.cloudflare.zaraz#GetConfig"
+        },
+        {
+          "target": "com.cloudflare.zaraz#GetDefault"
+        },
+        {
+          "target": "com.cloudflare.zaraz#GetExport"
+        },
+        {
+          "target": "com.cloudflare.zaraz#GetHistoryConfig"
+        },
+        {
+          "target": "com.cloudflare.zaraz#GetWorkflow"
+        },
+        {
+          "target": "com.cloudflare.zaraz#ListHistories"
+        },
+        {
+          "target": "com.cloudflare.zaraz#PutConfig"
+        },
+        {
+          "target": "com.cloudflare.zaraz#PutHistory"
+        },
+        {
+          "target": "com.cloudflare.zaraz#PutZaraz"
+        }
+      ],
+      "traits": {
+        "com.cloudflare.protocols#v4Json": {},
+        "smithy.api#title": "Cloudflare Zaraz",
+        "smithy.api#documentation": "Cloudflare API — zaraz resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+      }
+    },
+    "com.cloudflare.zaraz#Forbidden": {
       "type": "structure",
       "members": {
-        "result": {
-          "target": "com.cloudflare.zaraz#HistoryConfigsGetResultMap",
-          "traits": {
-            "com.cloudflare.protocols#envelopePayload": {},
-            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
-          }
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
         }
       },
       "traits": {
-        "smithy.api#output": {}
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
       }
     },
-    "com.cloudflare.zaraz#HistoryConfigsGet": {
+    "com.cloudflare.zaraz#NotFound": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.cloudflare.zaraz#CreatePublish": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.zaraz#HistoryConfigsGetRequest"
+        "target": "com.cloudflare.zaraz#CreatePublishRequest"
       },
       "output": {
-        "target": "com.cloudflare.zaraz#HistoryConfigsGetResponse"
+        "target": "com.cloudflare.zaraz#CreatePublishResponse"
       },
       "traits": {
         "smithy.api#http": {
-          "method": "GET",
-          "uri": "/zones/{zone_id}/settings/zaraz/history/configs",
+          "method": "POST",
+          "uri": "/zones/{zone_id}/settings/zaraz/publish",
           "code": 200
         },
-        "smithy.api#documentation": "Gets a history of published Zaraz configurations by ID(s) for a zone.",
-        "smithy.api#readonly": {}
+        "smithy.api#documentation": "Publish current Zaraz preview configuration for a zone."
       }
     },
-    "com.cloudflare.zaraz#PublishCreateRequest": {
+    "com.cloudflare.zaraz#CreatePublishRequest": {
       "type": "structure",
       "members": {
         "zone_id": {
@@ -12572,7 +11944,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.zaraz#PublishCreateResponse": {
+    "com.cloudflare.zaraz#CreatePublishResponse": {
       "type": "structure",
       "members": {
         "result": {
@@ -12587,24 +11959,33 @@
         "smithy.api#output": {}
       }
     },
-    "com.cloudflare.zaraz#PublishCreate": {
+    "com.cloudflare.zaraz#GetConfig": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.zaraz#PublishCreateRequest"
+        "target": "com.cloudflare.zaraz#GetConfigRequest"
       },
       "output": {
-        "target": "com.cloudflare.zaraz#PublishCreateResponse"
+        "target": "com.cloudflare.zaraz#GetConfigResponse"
       },
       "traits": {
         "smithy.api#http": {
-          "method": "POST",
-          "uri": "/zones/{zone_id}/settings/zaraz/publish",
+          "method": "GET",
+          "uri": "/zones/{zone_id}/settings/zaraz/config",
           "code": 200
         },
-        "smithy.api#documentation": "Publish current Zaraz preview configuration for a zone."
-      }
+        "smithy.api#documentation": "Gets latest Zaraz configuration for a zone. It can be preview or published configuration, whichever was the last updated. Secret variables values will not be included.",
+        "smithy.api#readonly": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.zaraz#Forbidden"
+        },
+        {
+          "target": "com.cloudflare.zaraz#NotFound"
+        }
+      ]
     },
-    "com.cloudflare.zaraz#WorkflowGetRequest": {
+    "com.cloudflare.zaraz#GetConfigRequest": {
       "type": "structure",
       "members": {
         "zone_id": {
@@ -12620,24 +12001,334 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.zaraz#WorkflowGetResult": {
-      "type": "enum",
+    "com.cloudflare.zaraz#GetConfigResponse": {
+      "type": "structure",
       "members": {
-        "REALTIME": {
-          "target": "smithy.api#Unit",
+        "dataLayer": {
+          "target": "smithy.api#Boolean",
           "traits": {
-            "smithy.api#enumValue": "realtime"
+            "smithy.api#documentation": "Data layer compatibility mode enabled.",
+            "smithy.api#required": {}
           }
         },
-        "PREVIEW": {
-          "target": "smithy.api#Unit",
+        "debugKey": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#enumValue": "preview"
+            "smithy.api#documentation": "The key for Zaraz debug mode.",
+            "smithy.api#required": {}
+          }
+        },
+        "settings": {
+          "target": "com.cloudflare.zaraz#ConfigGetResponseSettings",
+          "traits": {
+            "smithy.api#documentation": "General Zaraz settings.",
+            "smithy.api#required": {}
+          }
+        },
+        "tools": {
+          "target": "com.cloudflare.zaraz#UntypedConfigMap",
+          "traits": {
+            "smithy.api#documentation": "Tools set up under Zaraz configuration, where key is the alpha-numeric tool ID and value is the tool configuration object.",
+            "smithy.api#required": {}
+          }
+        },
+        "triggers": {
+          "target": "com.cloudflare.zaraz#UntypedConfigMap",
+          "traits": {
+            "smithy.api#documentation": "Triggers set up under Zaraz configuration, where key is the trigger alpha-numeric ID and value is the trigger configuration.",
+            "smithy.api#required": {}
+          }
+        },
+        "variables": {
+          "target": "com.cloudflare.zaraz#UntypedConfigMap",
+          "traits": {
+            "smithy.api#documentation": "Variables set up under Zaraz configuration, where key is the variable alpha-numeric ID and value is the variable configuration. Values of variables of type secret are not included.",
+            "smithy.api#required": {}
+          }
+        },
+        "zarazVersion": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Zaraz internal version of the config.",
+            "smithy.api#required": {}
+          }
+        },
+        "analytics": {
+          "target": "com.cloudflare.zaraz#ConfigGetResponseAnalytics",
+          "traits": {
+            "smithy.api#documentation": "Cloudflare Monitoring settings."
+          }
+        },
+        "consent": {
+          "target": "com.cloudflare.zaraz#ConfigGetResponseConsent",
+          "traits": {
+            "smithy.api#documentation": "Consent management configuration."
+          }
+        },
+        "historyChange": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Single Page Application support enabled."
           }
         }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
       }
     },
-    "com.cloudflare.zaraz#WorkflowGetResponse": {
+    "com.cloudflare.zaraz#GetDefault": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.zaraz#GetDefaultRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.zaraz#GetDefaultResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/settings/zaraz/default",
+          "code": 200
+        },
+        "smithy.api#documentation": "Gets default Zaraz configuration for a zone.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.zaraz#GetDefaultRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.zaraz#GetDefaultResponse": {
+      "type": "structure",
+      "members": {
+        "dataLayer": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Data layer compatibility mode enabled.",
+            "smithy.api#required": {}
+          }
+        },
+        "debugKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The key for Zaraz debug mode.",
+            "smithy.api#required": {}
+          }
+        },
+        "settings": {
+          "target": "com.cloudflare.zaraz#DefaultGetResponseSettings",
+          "traits": {
+            "smithy.api#documentation": "General Zaraz settings.",
+            "smithy.api#required": {}
+          }
+        },
+        "tools": {
+          "target": "com.cloudflare.zaraz#UntypedConfigMap",
+          "traits": {
+            "smithy.api#documentation": "Tools set up under Zaraz configuration, where key is the alpha-numeric tool ID and value is the tool configuration object.",
+            "smithy.api#required": {}
+          }
+        },
+        "triggers": {
+          "target": "com.cloudflare.zaraz#UntypedConfigMap",
+          "traits": {
+            "smithy.api#documentation": "Triggers set up under Zaraz configuration, where key is the trigger alpha-numeric ID and value is the trigger configuration.",
+            "smithy.api#required": {}
+          }
+        },
+        "variables": {
+          "target": "com.cloudflare.zaraz#UntypedConfigMap",
+          "traits": {
+            "smithy.api#documentation": "Variables set up under Zaraz configuration, where key is the variable alpha-numeric ID and value is the variable configuration. Values of variables of type secret are not included.",
+            "smithy.api#required": {}
+          }
+        },
+        "zarazVersion": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Zaraz internal version of the config.",
+            "smithy.api#required": {}
+          }
+        },
+        "analytics": {
+          "target": "com.cloudflare.zaraz#DefaultGetResponseAnalytics",
+          "traits": {
+            "smithy.api#documentation": "Cloudflare Monitoring settings."
+          }
+        },
+        "consent": {
+          "target": "com.cloudflare.zaraz#DefaultGetResponseConsent",
+          "traits": {
+            "smithy.api#documentation": "Consent management configuration."
+          }
+        },
+        "historyChange": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Single Page Application support enabled."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.zaraz#GetExport": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.zaraz#GetExportRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.zaraz#GetExportResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/settings/zaraz/export",
+          "code": 200
+        },
+        "smithy.api#documentation": "Exports full current published Zaraz configuration for a zone, secret variables included.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.zaraz#GetExportRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.zaraz#GetExportResponse": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Raw response payload (operation does not use the standard v4 result envelope)."
+      }
+    },
+    "com.cloudflare.zaraz#GetHistoryConfig": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.zaraz#GetHistoryConfigRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.zaraz#GetHistoryConfigResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/settings/zaraz/history/configs",
+          "code": 200
+        },
+        "smithy.api#documentation": "Gets a history of published Zaraz configurations by ID(s) for a zone.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.zaraz#GetHistoryConfigRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "ids": {
+          "target": "com.cloudflare.zaraz#HistoryConfigsGetRequestIdsList",
+          "traits": {
+            "smithy.api#documentation": "Comma separated list of Zaraz configuration IDs.",
+            "smithy.api#httpQuery": "ids",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.zaraz#GetHistoryConfigResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.zaraz#HistoryConfigsGetResultMap",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.zaraz#GetWorkflow": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.zaraz#GetWorkflowRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.zaraz#GetWorkflowResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/settings/zaraz/workflow",
+          "code": 200
+        },
+        "smithy.api#documentation": "Gets Zaraz workflow for a zone.",
+        "smithy.api#readonly": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.zaraz#Forbidden"
+        },
+        {
+          "target": "com.cloudflare.zaraz#NotFound"
+        }
+      ]
+    },
+    "com.cloudflare.zaraz#GetWorkflowRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.zaraz#GetWorkflowResponse": {
       "type": "structure",
       "members": {
         "result": {
@@ -12652,63 +12343,445 @@
         "smithy.api#output": {}
       }
     },
-    "com.cloudflare.zaraz#WorkflowGet": {
+    "com.cloudflare.zaraz#ListHistories": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.zaraz#WorkflowGetRequest"
+        "target": "com.cloudflare.zaraz#ListHistoriesRequest"
       },
       "output": {
-        "target": "com.cloudflare.zaraz#WorkflowGetResponse"
+        "target": "com.cloudflare.zaraz#ListHistoriesResponse"
       },
       "traits": {
         "smithy.api#http": {
           "method": "GET",
+          "uri": "/zones/{zone_id}/settings/zaraz/history",
+          "code": 200
+        },
+        "smithy.api#documentation": "Lists a history of published Zaraz configuration records for a zone.",
+        "smithy.api#readonly": {},
+        "smithy.api#paginated": {
+          "mode": "single",
+          "items": "result"
+        }
+      }
+    },
+    "com.cloudflare.zaraz#ListHistoriesRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Maximum amount of results to list. Default value is 10.",
+            "smithy.api#httpQuery": "limit"
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Ordinal number to start listing the results with. Default value is 0.",
+            "smithy.api#httpQuery": "offset"
+          }
+        },
+        "sortField": {
+          "target": "com.cloudflare.zaraz#HistoryListRequestSortField",
+          "traits": {
+            "smithy.api#documentation": "The field to sort by. Default is updated_at.",
+            "smithy.api#httpQuery": "sortField"
+          }
+        },
+        "sortOrder": {
+          "target": "com.cloudflare.zaraz#HistoryListRequestSortOrder",
+          "traits": {
+            "smithy.api#documentation": "Sorting order. Default is DESC.",
+            "smithy.api#httpQuery": "sortOrder"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.zaraz#ListHistoriesResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.zaraz#HistoryListResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.zaraz#PutConfig": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.zaraz#PutConfigRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.zaraz#PutConfigResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/zones/{zone_id}/settings/zaraz/config",
+          "code": 200
+        },
+        "smithy.api#documentation": "Updates Zaraz configuration for a zone.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.zaraz#PutConfigRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "dataLayer": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Data layer compatibility mode enabled.",
+            "smithy.api#required": {}
+          }
+        },
+        "debugKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The key for Zaraz debug mode.",
+            "smithy.api#required": {}
+          }
+        },
+        "settings": {
+          "target": "com.cloudflare.zaraz#ConfigUpdateRequestSettings",
+          "traits": {
+            "smithy.api#documentation": "General Zaraz settings.",
+            "smithy.api#required": {}
+          }
+        },
+        "tools": {
+          "target": "com.cloudflare.zaraz#UntypedConfigMap",
+          "traits": {
+            "smithy.api#documentation": "Tools set up under Zaraz configuration, where key is the alpha-numeric tool ID and value is the tool configuration object.",
+            "smithy.api#required": {}
+          }
+        },
+        "triggers": {
+          "target": "com.cloudflare.zaraz#UntypedConfigMap",
+          "traits": {
+            "smithy.api#documentation": "Triggers set up under Zaraz configuration, where key is the trigger alpha-numeric ID and value is the trigger configuration.",
+            "smithy.api#required": {}
+          }
+        },
+        "variables": {
+          "target": "com.cloudflare.zaraz#UntypedConfigMap",
+          "traits": {
+            "smithy.api#documentation": "Variables set up under Zaraz configuration, where key is the variable alpha-numeric ID and value is the variable configuration. Values of variables of type secret are not included.",
+            "smithy.api#required": {}
+          }
+        },
+        "zarazVersion": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Zaraz internal version of the config.",
+            "smithy.api#required": {}
+          }
+        },
+        "analytics": {
+          "target": "com.cloudflare.zaraz#ConfigUpdateRequestAnalytics",
+          "traits": {
+            "smithy.api#documentation": "Cloudflare Monitoring settings."
+          }
+        },
+        "consent": {
+          "target": "com.cloudflare.zaraz#ConfigUpdateRequestConsent",
+          "traits": {
+            "smithy.api#documentation": "Consent management configuration."
+          }
+        },
+        "historyChange": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Single Page Application support enabled."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.zaraz#PutConfigResponse": {
+      "type": "structure",
+      "members": {
+        "dataLayer": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Data layer compatibility mode enabled.",
+            "smithy.api#required": {}
+          }
+        },
+        "debugKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The key for Zaraz debug mode.",
+            "smithy.api#required": {}
+          }
+        },
+        "settings": {
+          "target": "com.cloudflare.zaraz#ConfigUpdateResponseSettings",
+          "traits": {
+            "smithy.api#documentation": "General Zaraz settings.",
+            "smithy.api#required": {}
+          }
+        },
+        "tools": {
+          "target": "com.cloudflare.zaraz#UntypedConfigMap",
+          "traits": {
+            "smithy.api#documentation": "Tools set up under Zaraz configuration, where key is the alpha-numeric tool ID and value is the tool configuration object.",
+            "smithy.api#required": {}
+          }
+        },
+        "triggers": {
+          "target": "com.cloudflare.zaraz#UntypedConfigMap",
+          "traits": {
+            "smithy.api#documentation": "Triggers set up under Zaraz configuration, where key is the trigger alpha-numeric ID and value is the trigger configuration.",
+            "smithy.api#required": {}
+          }
+        },
+        "variables": {
+          "target": "com.cloudflare.zaraz#UntypedConfigMap",
+          "traits": {
+            "smithy.api#documentation": "Variables set up under Zaraz configuration, where key is the variable alpha-numeric ID and value is the variable configuration. Values of variables of type secret are not included.",
+            "smithy.api#required": {}
+          }
+        },
+        "zarazVersion": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Zaraz internal version of the config.",
+            "smithy.api#required": {}
+          }
+        },
+        "analytics": {
+          "target": "com.cloudflare.zaraz#ConfigUpdateResponseAnalytics",
+          "traits": {
+            "smithy.api#documentation": "Cloudflare Monitoring settings."
+          }
+        },
+        "consent": {
+          "target": "com.cloudflare.zaraz#ConfigUpdateResponseConsent",
+          "traits": {
+            "smithy.api#documentation": "Consent management configuration."
+          }
+        },
+        "historyChange": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Single Page Application support enabled."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.zaraz#PutHistory": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.zaraz#PutHistoryRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.zaraz#PutHistoryResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/zones/{zone_id}/settings/zaraz/history",
+          "code": 200
+        },
+        "smithy.api#documentation": "Restores a historical published Zaraz configuration by ID for a zone.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.zaraz#PutHistoryRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "ID of the Zaraz configuration to restore.",
+            "smithy.api#required": {},
+            "smithy.api#httpPayload": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.zaraz#PutHistoryResponse": {
+      "type": "structure",
+      "members": {
+        "dataLayer": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Data layer compatibility mode enabled.",
+            "smithy.api#required": {}
+          }
+        },
+        "debugKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The key for Zaraz debug mode.",
+            "smithy.api#required": {}
+          }
+        },
+        "settings": {
+          "target": "com.cloudflare.zaraz#HistoryUpdateResponseSettings",
+          "traits": {
+            "smithy.api#documentation": "General Zaraz settings.",
+            "smithy.api#required": {}
+          }
+        },
+        "tools": {
+          "target": "com.cloudflare.zaraz#UntypedConfigMap",
+          "traits": {
+            "smithy.api#documentation": "Tools set up under Zaraz configuration, where key is the alpha-numeric tool ID and value is the tool configuration object.",
+            "smithy.api#required": {}
+          }
+        },
+        "triggers": {
+          "target": "com.cloudflare.zaraz#UntypedConfigMap",
+          "traits": {
+            "smithy.api#documentation": "Triggers set up under Zaraz configuration, where key is the trigger alpha-numeric ID and value is the trigger configuration.",
+            "smithy.api#required": {}
+          }
+        },
+        "variables": {
+          "target": "com.cloudflare.zaraz#UntypedConfigMap",
+          "traits": {
+            "smithy.api#documentation": "Variables set up under Zaraz configuration, where key is the variable alpha-numeric ID and value is the variable configuration. Values of variables of type secret are not included.",
+            "smithy.api#required": {}
+          }
+        },
+        "zarazVersion": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Zaraz internal version of the config.",
+            "smithy.api#required": {}
+          }
+        },
+        "analytics": {
+          "target": "com.cloudflare.zaraz#HistoryUpdateResponseAnalytics",
+          "traits": {
+            "smithy.api#documentation": "Cloudflare Monitoring settings."
+          }
+        },
+        "consent": {
+          "target": "com.cloudflare.zaraz#HistoryUpdateResponseConsent",
+          "traits": {
+            "smithy.api#documentation": "Consent management configuration."
+          }
+        },
+        "historyChange": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Single Page Application support enabled."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.zaraz#PutZaraz": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.zaraz#PutZarazRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.zaraz#PutZarazResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
           "uri": "/zones/{zone_id}/settings/zaraz/workflow",
           "code": 200
         },
-        "smithy.api#documentation": "Gets Zaraz workflow for a zone.",
-        "smithy.api#readonly": {}
+        "smithy.api#documentation": "Updates Zaraz workflow for a zone.",
+        "smithy.api#idempotent": {}
       }
     },
-    "com.cloudflare.zaraz#Zaraz": {
-      "type": "service",
-      "version": "4.0",
-      "operations": [
-        {
-          "target": "com.cloudflare.zaraz#Update"
+    "com.cloudflare.zaraz#PutZarazRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
         },
-        {
-          "target": "com.cloudflare.zaraz#ConfigGet"
-        },
-        {
-          "target": "com.cloudflare.zaraz#ConfigUpdate"
-        },
-        {
-          "target": "com.cloudflare.zaraz#DefaultGet"
-        },
-        {
-          "target": "com.cloudflare.zaraz#ExportGet"
-        },
-        {
-          "target": "com.cloudflare.zaraz#HistoryList"
-        },
-        {
-          "target": "com.cloudflare.zaraz#HistoryUpdate"
-        },
-        {
-          "target": "com.cloudflare.zaraz#HistoryConfigsGet"
-        },
-        {
-          "target": "com.cloudflare.zaraz#PublishCreate"
-        },
-        {
-          "target": "com.cloudflare.zaraz#WorkflowGet"
+        "workflow": {
+          "target": "com.cloudflare.zaraz#UpdateRequestWorkflow",
+          "traits": {
+            "smithy.api#documentation": "Zaraz workflow.",
+            "smithy.api#required": {}
+          }
         }
-      ],
+      },
       "traits": {
-        "com.cloudflare.protocols#v4Json": {},
-        "smithy.api#title": "Cloudflare Zaraz",
-        "smithy.api#documentation": "Cloudflare API — zaraz resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.zaraz#PutZarazResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.zaraz#UpdateResult",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.zaraz#UntypedConfigMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
       }
     }
   }

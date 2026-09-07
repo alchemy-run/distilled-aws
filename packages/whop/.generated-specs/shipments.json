@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.whop.shipments#ListShipmentsRequestStatus": {
@@ -619,7 +620,7 @@
         "smithy.api#documentation": "Create Shipment\n\nAttaches a carrier tracking number to a payment and begins tracking it."
       }
     },
-    "com.whop.shipments#RetrieveShipmentRequest": {
+    "com.whop.shipments#GetShipmentRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -635,10 +636,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.whop.shipments#RetrieveShipment": {
+    "com.whop.shipments#GetShipment": {
       "type": "operation",
       "input": {
-        "target": "com.whop.shipments#RetrieveShipmentRequest"
+        "target": "com.whop.shipments#GetShipmentRequest"
       },
       "output": {
         "target": "com.whop.shipments#Shipment"
@@ -774,7 +775,7 @@
           "target": "com.whop.shipments#CreateShipment"
         },
         {
-          "target": "com.whop.shipments#RetrieveShipment"
+          "target": "com.whop.shipments#GetShipment"
         },
         {
           "target": "com.whop.shipments#UpdateShipment"

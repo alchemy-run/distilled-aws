@@ -14,13 +14,14 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.azurefleet#FleetsListVirtualMachineScaleSets": {
+    "com.azure.azurefleet#ListFleetVirtualMachineScaleSets": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurefleet#FleetsListVirtualMachineScaleSetsRequest"
+        "target": "com.azure.azurefleet#ListFleetVirtualMachineScaleSetsRequest"
       },
       "output": {
         "target": "com.azure.azurefleet#VirtualMachineScaleSetListResult"
@@ -250,7 +251,7 @@
         "smithy.api#documentation": "The status of the current operation."
       }
     },
-    "com.azure.azurefleet#FleetsListVirtualMachineScaleSetsRequest": {
+    "com.azure.azurefleet#ListFleetVirtualMachineScaleSetsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -282,10 +283,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurefleet#FleetsDelete": {
+    "com.azure.azurefleet#DeleteFleet": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurefleet#FleetsDeleteRequest"
+        "target": "com.azure.azurefleet#DeleteFleetRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -301,7 +302,7 @@
         "com.distilled.openapi#apiVersion": "2024-11-01"
       }
     },
-    "com.azure.azurefleet#FleetsDeleteRequest": {
+    "com.azure.azurefleet#DeleteFleetRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -333,13 +334,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurefleet#FleetsUpdate": {
+    "com.azure.azurefleet#UpdateFleet": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurefleet#FleetsUpdateRequest"
+        "target": "com.azure.azurefleet#UpdateFleetRequest"
       },
       "output": {
-        "target": "com.azure.azurefleet#FleetsUpdateResponse"
+        "target": "com.azure.azurefleet#UpdateFleetResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -352,7 +353,7 @@
         "com.distilled.openapi#apiVersion": "2024-11-01"
       }
     },
-    "com.azure.azurefleet#FleetsUpdateResponse": {
+    "com.azure.azurefleet#UpdateFleetResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -380,7 +381,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.azurefleet#FleetsUpdateResponseTagsMap",
+          "target": "com.azure.azurefleet#UpdateFleetResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -399,19 +400,19 @@
           }
         },
         "zones": {
-          "target": "com.azure.azurefleet#FleetsUpdateResponseZonesList",
+          "target": "com.azure.azurefleet#UpdateFleetResponseZonesList",
           "traits": {
             "smithy.api#documentation": "Zones in which the Compute Fleet is available"
           }
         },
         "identity": {
-          "target": "com.azure.azurefleet#FleetsUpdateResponseIdentity",
+          "target": "com.azure.azurefleet#UpdateFleetResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
         },
         "plan": {
-          "target": "com.azure.azurefleet#FleetsUpdateResponsePlan",
+          "target": "com.azure.azurefleet#UpdateFleetResponsePlan",
           "traits": {
             "smithy.api#documentation": "Plan for the resource."
           }
@@ -421,7 +422,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.azurefleet#FleetsUpdateResponsePlan": {
+    "com.azure.azurefleet#UpdateFleetResponsePlan": {
       "type": "structure",
       "members": {
         "name": {
@@ -462,7 +463,7 @@
         "smithy.api#documentation": "Plan for the resource."
       }
     },
-    "com.azure.azurefleet#FleetsUpdateResponseIdentity": {
+    "com.azure.azurefleet#UpdateFleetResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -555,7 +556,7 @@
         "smithy.api#documentation": "Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed)."
       }
     },
-    "com.azure.azurefleet#FleetsUpdateResponseZonesList": {
+    "com.azure.azurefleet#UpdateFleetResponseZonesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -3882,7 +3883,7 @@
         "smithy.api#documentation": "Different kind of eviction policies"
       }
     },
-    "com.azure.azurefleet#FleetsUpdateResponseTagsMap": {
+    "com.azure.azurefleet#UpdateFleetResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4002,7 +4003,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.azurefleet#FleetsUpdateRequest": {
+    "com.azure.azurefleet#UpdateFleetRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4030,7 +4031,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.azurefleet#FleetsUpdateRequestTagsMap",
+          "target": "com.azure.azurefleet#UpdateFleetRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4639,7 +4640,7 @@
         "smithy.api#documentation": "Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed)."
       }
     },
-    "com.azure.azurefleet#FleetsUpdateRequestTagsMap": {
+    "com.azure.azurefleet#UpdateFleetRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -4997,13 +4998,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.azurefleet#FleetsGet": {
+    "com.azure.azurefleet#GetFleet": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurefleet#FleetsGetRequest"
+        "target": "com.azure.azurefleet#GetFleetRequest"
       },
       "output": {
-        "target": "com.azure.azurefleet#FleetsGetResponse"
+        "target": "com.azure.azurefleet#GetFleetResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5016,7 +5017,7 @@
         "com.distilled.openapi#apiVersion": "2024-11-01"
       }
     },
-    "com.azure.azurefleet#FleetsGetResponse": {
+    "com.azure.azurefleet#GetFleetResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -5044,7 +5045,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.azurefleet#FleetsGetResponseTagsMap",
+          "target": "com.azure.azurefleet#GetFleetResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -5063,19 +5064,19 @@
           }
         },
         "zones": {
-          "target": "com.azure.azurefleet#FleetsGetResponseZonesList",
+          "target": "com.azure.azurefleet#GetFleetResponseZonesList",
           "traits": {
             "smithy.api#documentation": "Zones in which the Compute Fleet is available"
           }
         },
         "identity": {
-          "target": "com.azure.azurefleet#FleetsGetResponseIdentity",
+          "target": "com.azure.azurefleet#GetFleetResponseIdentity",
           "traits": {
             "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
           }
         },
         "plan": {
-          "target": "com.azure.azurefleet#FleetsGetResponsePlan",
+          "target": "com.azure.azurefleet#GetFleetResponsePlan",
           "traits": {
             "smithy.api#documentation": "Plan for the resource."
           }
@@ -5085,7 +5086,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.azurefleet#FleetsGetResponsePlan": {
+    "com.azure.azurefleet#GetFleetResponsePlan": {
       "type": "structure",
       "members": {
         "name": {
@@ -5126,7 +5127,7 @@
         "smithy.api#documentation": "Plan for the resource."
       }
     },
-    "com.azure.azurefleet#FleetsGetResponseIdentity": {
+    "com.azure.azurefleet#GetFleetResponseIdentity": {
       "type": "structure",
       "members": {
         "principalId": {
@@ -5155,7 +5156,7 @@
         "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
       }
     },
-    "com.azure.azurefleet#FleetsGetResponseZonesList": {
+    "com.azure.azurefleet#GetFleetResponseZonesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -5164,7 +5165,7 @@
         "smithy.api#documentation": "Zones in which the Compute Fleet is available"
       }
     },
-    "com.azure.azurefleet#FleetsGetResponseTagsMap": {
+    "com.azure.azurefleet#GetFleetResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5176,7 +5177,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.azurefleet#FleetsGetRequest": {
+    "com.azure.azurefleet#GetFleetRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5208,10 +5209,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurefleet#FleetsListByResourceGroup": {
+    "com.azure.azurefleet#ListFleetByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurefleet#FleetsListByResourceGroupRequest"
+        "target": "com.azure.azurefleet#ListFleetByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.azurefleet#FleetListResult"
@@ -5417,7 +5418,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.azurefleet#FleetsListByResourceGroupRequest": {
+    "com.azure.azurefleet#ListFleetByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5441,10 +5442,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurefleet#FleetsListBySubscription": {
+    "com.azure.azurefleet#ListFleetBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.azurefleet#FleetsListBySubscriptionRequest"
+        "target": "com.azure.azurefleet#ListFleetBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.azurefleet#FleetListResult"
@@ -5460,7 +5461,7 @@
         "com.distilled.openapi#apiVersion": "2024-11-01"
       }
     },
-    "com.azure.azurefleet#FleetsListBySubscriptionRequest": {
+    "com.azure.azurefleet#ListFleetBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5476,13 +5477,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.azurefleet#OperationsList": {
+    "com.azure.azurefleet#ListOperations": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
       },
       "output": {
-        "target": "com.azure.azurefleet#OperationsListResponse"
+        "target": "com.azure.azurefleet#ListOperationsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5495,11 +5496,11 @@
         "com.distilled.openapi#apiVersion": "2024-11-01"
       }
     },
-    "com.azure.azurefleet#OperationsListResponse": {
+    "com.azure.azurefleet#ListOperationsResponse": {
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.azurefleet#OperationsListResponseValueList",
+          "target": "com.azure.azurefleet#ListOperationsResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of operations supported by the resource provider"
           }
@@ -5515,7 +5516,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.azurefleet#OperationsListResponseValueList": {
+    "com.azure.azurefleet#ListOperationsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.azurefleet#Operation"
@@ -5639,28 +5640,28 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.azurefleet#FleetsListVirtualMachineScaleSets"
+          "target": "com.azure.azurefleet#ListFleetVirtualMachineScaleSets"
         },
         {
-          "target": "com.azure.azurefleet#FleetsDelete"
+          "target": "com.azure.azurefleet#DeleteFleet"
         },
         {
-          "target": "com.azure.azurefleet#FleetsUpdate"
+          "target": "com.azure.azurefleet#UpdateFleet"
         },
         {
           "target": "com.azure.azurefleet#FleetsCreateOrUpdate"
         },
         {
-          "target": "com.azure.azurefleet#FleetsGet"
+          "target": "com.azure.azurefleet#GetFleet"
         },
         {
-          "target": "com.azure.azurefleet#FleetsListByResourceGroup"
+          "target": "com.azure.azurefleet#ListFleetByResourceGroup"
         },
         {
-          "target": "com.azure.azurefleet#FleetsListBySubscription"
+          "target": "com.azure.azurefleet#ListFleetBySubscription"
         },
         {
-          "target": "com.azure.azurefleet#OperationsList"
+          "target": "com.azure.azurefleet#ListOperations"
         }
       ],
       "traits": {

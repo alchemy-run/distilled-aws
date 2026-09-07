@@ -43,6 +43,8 @@ import * as FileSystem from "effect/FileSystem";
 import * as Path from "effect/Path";
 import { Flag } from "effect/unstable/cli";
 import { Command } from "effect/unstable/cli";
+import { finalizeConvert } from "@distilled.cloud/core/codegen/patches";
+import { dedupeScopeTwins } from "./dedupe-scope-twins.ts";
 
 // ============================================================================
 // Namespaces
@@ -1722,6 +1724,24 @@ const command = Command.make(
         const fp = path.join(outDir, `${sanitizeNsSegment(top)}.json`);
         yield* fs.writeFileString(fp, `${JSON.stringify(model, null, 2)}\n`);
       }
+
+      const convertedResources = new Set(
+        [...bags.keys()].map((top) => sanitizeNsSegment(top)),
+      );
+      yield* Effect.promise(() =>
+        finalizeConvert({
+          root,
+          outDir,
+          exclude: (f) => f === "cloudflare.protocols.json",
+          include: (resource) => convertedResources.has(resource),
+          transform: (model, resource) => {
+            const { families, removed } = dedupeScopeTwins(model);
+            return families
+              ? `♻️  ${resource}: collapsed ${families} scope-twin famil${families === 1 ? "y" : "ies"} (${removed} shapes)`
+              : undefined;
+          },
+        }),
+      );
 
       yield* Console.log(
         `\n✅ Done. ${converted} operations across ${bags.size} resources` +

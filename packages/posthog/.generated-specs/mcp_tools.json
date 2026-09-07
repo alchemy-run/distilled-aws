@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.mcp_tools#McpToolsCreateRequest": {
+    "com.posthog.mcp_tools#CreateMcpToolRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -40,7 +41,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.mcp_tools#McpToolsCreateResponseBodyMap": {
+    "com.posthog.mcp_tools#CreateMcpToolResponseBodyMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -50,11 +51,11 @@
       },
       "traits": {}
     },
-    "com.posthog.mcp_tools#McpToolsCreateResponse": {
+    "com.posthog.mcp_tools#CreateMcpToolResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.posthog.mcp_tools#McpToolsCreateResponseBodyMap",
+          "target": "com.posthog.mcp_tools#CreateMcpToolResponseBodyMap",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -65,13 +66,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.posthog.mcp_tools#McpToolsCreate": {
+    "com.posthog.mcp_tools#CreateMcpTool": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.mcp_tools#McpToolsCreateRequest"
+        "target": "com.posthog.mcp_tools#CreateMcpToolRequest"
       },
       "output": {
-        "target": "com.posthog.mcp_tools#McpToolsCreateResponse"
+        "target": "com.posthog.mcp_tools#CreateMcpToolResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -87,7 +88,7 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.mcp_tools#McpToolsCreate"
+          "target": "com.posthog.mcp_tools#CreateMcpTool"
         }
       ],
       "traits": {

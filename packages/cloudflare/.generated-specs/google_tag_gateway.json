@@ -14,75 +14,53 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.cloudflare.google_tag_gateway#ConfigGetRequest": {
+    "com.cloudflare.google_tag_gateway#GoogleTagGateway": {
+      "type": "service",
+      "version": "4.0",
+      "operations": [
+        {
+          "target": "com.cloudflare.google_tag_gateway#GetConfig"
+        },
+        {
+          "target": "com.cloudflare.google_tag_gateway#PutConfig"
+        }
+      ],
+      "traits": {
+        "com.cloudflare.protocols#v4Json": {},
+        "smithy.api#title": "Cloudflare GoogleTagGateway",
+        "smithy.api#documentation": "Cloudflare API — google_tag_gateway resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+      }
+    },
+    "com.cloudflare.google_tag_gateway#Forbidden": {
       "type": "structure",
       "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
         }
       },
       "traits": {
-        "smithy.api#input": {}
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
       }
     },
-    "com.cloudflare.google_tag_gateway#ConfigGetResponse": {
-      "type": "structure",
-      "members": {
-        "enabled": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Enables or disables Google Tag Gateway for this zone.",
-            "smithy.api#required": {}
-          }
-        },
-        "endpoint": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Specifies the endpoint path for proxying Google Tag Manager requests. Use an absolute path starting with '/', with no nested paths and alphanumeric characters only (e.g. /metrics).",
-            "smithy.api#required": {}
-          }
-        },
-        "hideOriginalIp": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Hides the original client IP address from Google when enabled.",
-            "smithy.api#required": {}
-          }
-        },
-        "measurementId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Specify the Google Tag Manager container or measurement ID (e.g. GTM-XXXXXXX or G-XXXXXXXXXX).",
-            "smithy.api#required": {}
-          }
-        },
-        "setUpTag": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Set up the associated Google Tag on the zone automatically when enabled."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.google_tag_gateway#ConfigGet": {
+    "com.cloudflare.google_tag_gateway#GetConfig": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.google_tag_gateway#ConfigGetRequest"
+        "target": "com.cloudflare.google_tag_gateway#GetConfigRequest"
       },
       "output": {
-        "target": "com.cloudflare.google_tag_gateway#ConfigGetResponse"
+        "target": "com.cloudflare.google_tag_gateway#GetConfigResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -92,9 +70,96 @@
         },
         "smithy.api#documentation": "Gets the Google Tag Gateway configuration for a zone.",
         "smithy.api#readonly": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.google_tag_gateway#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.google_tag_gateway#GetConfigRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
       }
     },
-    "com.cloudflare.google_tag_gateway#ConfigUpdateRequest": {
+    "com.cloudflare.google_tag_gateway#GetConfigResponse": {
+      "type": "structure",
+      "members": {
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Enables or disables Google Tag Gateway for this zone.",
+            "smithy.api#required": {}
+          }
+        },
+        "endpoint": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the endpoint path for proxying Google Tag Manager requests. Use an absolute path starting with '/', with no nested paths and alphanumeric characters only (e.g. /metrics).",
+            "smithy.api#required": {}
+          }
+        },
+        "hideOriginalIp": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Hides the original client IP address from Google when enabled.",
+            "smithy.api#required": {}
+          }
+        },
+        "measurementId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specify the Google Tag Manager container or measurement ID (e.g. GTM-XXXXXXX or G-XXXXXXXXXX).",
+            "smithy.api#required": {}
+          }
+        },
+        "setUpTag": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Set up the associated Google Tag on the zone automatically when enabled."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.google_tag_gateway#PutConfig": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.google_tag_gateway#PutConfigRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.google_tag_gateway#PutConfigResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/zones/{zone_id}/settings/google-tag-gateway/config",
+          "code": 200
+        },
+        "smithy.api#documentation": "Updates the Google Tag Gateway configuration for a zone.",
+        "smithy.api#idempotent": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.google_tag_gateway#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.google_tag_gateway#PutConfigRequest": {
       "type": "structure",
       "members": {
         "zone_id": {
@@ -144,7 +209,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.google_tag_gateway#ConfigUpdateResponse": {
+    "com.cloudflare.google_tag_gateway#PutConfigResponse": {
       "type": "structure",
       "members": {
         "enabled": {
@@ -185,41 +250,6 @@
       "traits": {
         "smithy.api#output": {},
         "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.google_tag_gateway#ConfigUpdate": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.google_tag_gateway#ConfigUpdateRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.google_tag_gateway#ConfigUpdateResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "PUT",
-          "uri": "/zones/{zone_id}/settings/google-tag-gateway/config",
-          "code": 200
-        },
-        "smithy.api#documentation": "Updates the Google Tag Gateway configuration for a zone.",
-        "smithy.api#idempotent": {}
-      }
-    },
-    "com.cloudflare.google_tag_gateway#GoogleTagGateway": {
-      "type": "service",
-      "version": "4.0",
-      "operations": [
-        {
-          "target": "com.cloudflare.google_tag_gateway#ConfigGet"
-        },
-        {
-          "target": "com.cloudflare.google_tag_gateway#ConfigUpdate"
-        }
-      ],
-      "traits": {
-        "com.cloudflare.protocols#v4Json": {},
-        "smithy.api#title": "Cloudflare GoogleTagGateway",
-        "smithy.api#documentation": "Cloudflare API — google_tag_gateway resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
       }
     }
   }

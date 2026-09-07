@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.whop.reactions#ListReactionRequest": {
@@ -358,7 +359,7 @@
         "smithy.api#documentation": "Create reaction\n\n[Legacy API — https://docs.whop.com/api-reference]\n\nAdd an emoji reaction or poll vote to a message or forum post. In forums, the reaction is always a like.\n\nRequired permissions (one of):\n - `chat:read`\n - `dms:read`\n - `forum:read`\n - `livestream:chat:read`\n - `support_chat:read`"
       }
     },
-    "com.whop.reactions#RetrieveReactionRequest": {
+    "com.whop.reactions#GetReactionRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -374,10 +375,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.whop.reactions#RetrieveReaction": {
+    "com.whop.reactions#GetReaction": {
       "type": "operation",
       "input": {
-        "target": "com.whop.reactions#RetrieveReactionRequest"
+        "target": "com.whop.reactions#GetReactionRequest"
       },
       "output": {
         "target": "com.whop.reactions#Reaction"
@@ -536,7 +537,7 @@
           "target": "com.whop.reactions#CreateReaction"
         },
         {
-          "target": "com.whop.reactions#RetrieveReaction"
+          "target": "com.whop.reactions#GetReaction"
         },
         {
           "target": "com.whop.reactions#DeleteReaction"

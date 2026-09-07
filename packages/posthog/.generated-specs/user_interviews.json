@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.user_interviews#UserInterviewsListRequest": {
+    "com.posthog.user_interviews#ListUserInterviewsRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -274,7 +275,7 @@
       },
       "traits": {}
     },
-    "com.posthog.user_interviews#ClassificationsEnum": {
+    "com.posthog.user_interviews#UserInterviewClassificationEnum": {
       "type": "enum",
       "members": {
         "ABANDONED": {
@@ -297,7 +298,7 @@
     "com.posthog.user_interviews#UserInterviewOutputClassificationsList": {
       "type": "list",
       "member": {
-        "target": "com.posthog.user_interviews#ClassificationsEnum"
+        "target": "com.posthog.user_interviews#UserInterviewClassificationEnum"
       },
       "traits": {
         "smithy.api#documentation": "Searchable classifications on the response. `abandoned` is auto-derived from the transcript when the interview is recorded; `off-topic` is set manually. Sending `classifications` on an update replaces the whole list — pass the full desired set, not a delta."
@@ -310,10 +311,10 @@
       },
       "traits": {}
     },
-    "com.posthog.user_interviews#UserInterviewsList": {
+    "com.posthog.user_interviews#ListUserInterviews": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.user_interviews#UserInterviewsListRequest"
+        "target": "com.posthog.user_interviews#ListUserInterviewsRequest"
       },
       "output": {
         "target": "com.posthog.user_interviews#PaginatedUserInterviewListOutput"
@@ -326,23 +327,23 @@
         }
       }
     },
-    "com.posthog.user_interviews#UserInterviewsCreateRequestIntervieweeEmailsList": {
+    "com.posthog.user_interviews#CreateUserInterviewRequestIntervieweeEmailsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.posthog.user_interviews#UserInterviewsCreateRequestClassificationsList": {
+    "com.posthog.user_interviews#CreateUserInterviewRequestClassificationsList": {
       "type": "list",
       "member": {
-        "target": "com.posthog.user_interviews#ClassificationsEnum"
+        "target": "com.posthog.user_interviews#UserInterviewClassificationEnum"
       },
       "traits": {
         "smithy.api#documentation": "Searchable classifications on the response. `abandoned` is auto-derived from the transcript when the interview is recorded; `off-topic` is set manually. Sending `classifications` on an update replaces the whole list — pass the full desired set, not a delta."
       }
     },
-    "com.posthog.user_interviews#UserInterviewsCreateRequest": {
+    "com.posthog.user_interviews#CreateUserInterviewRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -354,13 +355,13 @@
           }
         },
         "interviewee_emails": {
-          "target": "com.posthog.user_interviews#UserInterviewsCreateRequestIntervieweeEmailsList"
+          "target": "com.posthog.user_interviews#CreateUserInterviewRequestIntervieweeEmailsList"
         },
         "summary": {
           "target": "smithy.api#String"
         },
         "classifications": {
-          "target": "com.posthog.user_interviews#UserInterviewsCreateRequestClassificationsList",
+          "target": "com.posthog.user_interviews#CreateUserInterviewRequestClassificationsList",
           "traits": {
             "smithy.api#documentation": "Searchable classifications on the response. `abandoned` is auto-derived from the transcript when the interview is recorded; `off-topic` is set manually. Sending `classifications` on an update replaces the whole list — pass the full desired set, not a delta."
           }
@@ -373,10 +374,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.user_interviews#UserInterviewsCreate": {
+    "com.posthog.user_interviews#CreateUserInterview": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.user_interviews#UserInterviewsCreateRequest"
+        "target": "com.posthog.user_interviews#CreateUserInterviewRequest"
       },
       "output": {
         "target": "com.posthog.user_interviews#UserInterviewOutput"
@@ -389,7 +390,7 @@
         }
       }
     },
-    "com.posthog.user_interviews#UserInterviewsRetrieveRequest": {
+    "com.posthog.user_interviews#GetUserInterviewRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -413,10 +414,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.user_interviews#UserInterviewsRetrieve": {
+    "com.posthog.user_interviews#GetUserInterview": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.user_interviews#UserInterviewsRetrieveRequest"
+        "target": "com.posthog.user_interviews#GetUserInterviewRequest"
       },
       "output": {
         "target": "com.posthog.user_interviews#UserInterviewOutput"
@@ -429,23 +430,23 @@
         }
       }
     },
-    "com.posthog.user_interviews#UserInterviewsUpdateRequestIntervieweeEmailsList": {
+    "com.posthog.user_interviews#UpdateUserInterviewRequestIntervieweeEmailsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.posthog.user_interviews#UserInterviewsUpdateRequestClassificationsList": {
+    "com.posthog.user_interviews#UpdateUserInterviewRequestClassificationsList": {
       "type": "list",
       "member": {
-        "target": "com.posthog.user_interviews#ClassificationsEnum"
+        "target": "com.posthog.user_interviews#UserInterviewClassificationEnum"
       },
       "traits": {
         "smithy.api#documentation": "Searchable classifications on the response. `abandoned` is auto-derived from the transcript when the interview is recorded; `off-topic` is set manually. Sending `classifications` on an update replaces the whole list — pass the full desired set, not a delta."
       }
     },
-    "com.posthog.user_interviews#UserInterviewsUpdateRequest": {
+    "com.posthog.user_interviews#UpdateUserInterviewRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -465,13 +466,13 @@
           }
         },
         "interviewee_emails": {
-          "target": "com.posthog.user_interviews#UserInterviewsUpdateRequestIntervieweeEmailsList"
+          "target": "com.posthog.user_interviews#UpdateUserInterviewRequestIntervieweeEmailsList"
         },
         "summary": {
           "target": "smithy.api#String"
         },
         "classifications": {
-          "target": "com.posthog.user_interviews#UserInterviewsUpdateRequestClassificationsList",
+          "target": "com.posthog.user_interviews#UpdateUserInterviewRequestClassificationsList",
           "traits": {
             "smithy.api#documentation": "Searchable classifications on the response. `abandoned` is auto-derived from the transcript when the interview is recorded; `off-topic` is set manually. Sending `classifications` on an update replaces the whole list — pass the full desired set, not a delta."
           }
@@ -484,10 +485,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.user_interviews#UserInterviewsUpdate": {
+    "com.posthog.user_interviews#UpdateUserInterview": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.user_interviews#UserInterviewsUpdateRequest"
+        "target": "com.posthog.user_interviews#UpdateUserInterviewRequest"
       },
       "output": {
         "target": "com.posthog.user_interviews#UserInterviewOutput"
@@ -500,23 +501,23 @@
         }
       }
     },
-    "com.posthog.user_interviews#UserInterviewsPartialUpdateRequestIntervieweeEmailsList": {
+    "com.posthog.user_interviews#UpdateUserInterviewsPartialRequestIntervieweeEmailsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.posthog.user_interviews#UserInterviewsPartialUpdateRequestClassificationsList": {
+    "com.posthog.user_interviews#UpdateUserInterviewsPartialRequestClassificationsList": {
       "type": "list",
       "member": {
-        "target": "com.posthog.user_interviews#ClassificationsEnum"
+        "target": "com.posthog.user_interviews#UserInterviewClassificationEnum"
       },
       "traits": {
         "smithy.api#documentation": "Searchable classifications on the response. `abandoned` is auto-derived from the transcript when the interview is recorded; `off-topic` is set manually. Sending `classifications` on an update replaces the whole list — pass the full desired set, not a delta."
       }
     },
-    "com.posthog.user_interviews#UserInterviewsPartialUpdateRequest": {
+    "com.posthog.user_interviews#UpdateUserInterviewsPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -536,13 +537,13 @@
           }
         },
         "interviewee_emails": {
-          "target": "com.posthog.user_interviews#UserInterviewsPartialUpdateRequestIntervieweeEmailsList"
+          "target": "com.posthog.user_interviews#UpdateUserInterviewsPartialRequestIntervieweeEmailsList"
         },
         "summary": {
           "target": "smithy.api#String"
         },
         "classifications": {
-          "target": "com.posthog.user_interviews#UserInterviewsPartialUpdateRequestClassificationsList",
+          "target": "com.posthog.user_interviews#UpdateUserInterviewsPartialRequestClassificationsList",
           "traits": {
             "smithy.api#documentation": "Searchable classifications on the response. `abandoned` is auto-derived from the transcript when the interview is recorded; `off-topic` is set manually. Sending `classifications` on an update replaces the whole list — pass the full desired set, not a delta."
           }
@@ -555,10 +556,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.user_interviews#UserInterviewsPartialUpdate": {
+    "com.posthog.user_interviews#UpdateUserInterviewsPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.user_interviews#UserInterviewsPartialUpdateRequest"
+        "target": "com.posthog.user_interviews#UpdateUserInterviewsPartialRequest"
       },
       "output": {
         "target": "com.posthog.user_interviews#UserInterviewOutput"
@@ -643,7 +644,7 @@
     "com.posthog.user_interviews#UserInterviewsSearchCreateRequestClassificationsList": {
       "type": "list",
       "member": {
-        "target": "com.posthog.user_interviews#ClassificationsEnum"
+        "target": "com.posthog.user_interviews#UserInterviewClassificationEnum"
       },
       "traits": {
         "smithy.api#documentation": "Optional. Restrict results to interviews carrying any of these classifications (OR). Combines with `topic_id` as AND."
@@ -797,19 +798,19 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.user_interviews#UserInterviewsList"
+          "target": "com.posthog.user_interviews#ListUserInterviews"
         },
         {
-          "target": "com.posthog.user_interviews#UserInterviewsCreate"
+          "target": "com.posthog.user_interviews#CreateUserInterview"
         },
         {
-          "target": "com.posthog.user_interviews#UserInterviewsRetrieve"
+          "target": "com.posthog.user_interviews#GetUserInterview"
         },
         {
-          "target": "com.posthog.user_interviews#UserInterviewsUpdate"
+          "target": "com.posthog.user_interviews#UpdateUserInterview"
         },
         {
-          "target": "com.posthog.user_interviews#UserInterviewsPartialUpdate"
+          "target": "com.posthog.user_interviews#UpdateUserInterviewsPartial"
         },
         {
           "target": "com.posthog.user_interviews#UserInterviewsDestroy"

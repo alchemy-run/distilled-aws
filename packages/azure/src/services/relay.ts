@@ -12,23 +12,59 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
-/** Properties of the HybridConnection. */
-export interface HybridConnectionPropertiesInput {
-  /** Returns true if client authorization is needed for this hybrid connection; otherwise, false. */
-  requiresClientAuthorization?: boolean;
-  /** The usermetadata is a placeholder to store user-defined string data for the hybrid connection endpoint. For example, it can be used to store descriptive data, such as a list of teams and their contact information. Also, user-defined configuration settings can be stored. */
-  userMetadata?: string;
+export interface CheckNamespaceNameAvailabilityRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The namespace name to check for availability. The namespace name can contain only letters, numbers, and hyphens. The namespace must start with a letter, and it must end with a letter or number. */
+  name: string;
 }
-export const HybridConnectionPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+export const CheckNamespaceNameAvailabilityRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      name: S.String,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Relay/checkNameAvailability",
+        code: 200,
+        apiVersion: "2026-01-01",
+      }),
+    ),
+).annotate({
+  identifier: "CheckNamespaceNameAvailabilityRequest",
+}) as any as S.Schema<CheckNamespaceNameAvailabilityRequest>;
+
+/** Specifies the reason for the unavailability of the service. */
+export type UnavailableReason =
+  | "None"
+  | "InvalidName"
+  | "SubscriptionIsDisabled"
+  | "NameInUse"
+  | "NameInLockdown"
+  | "TooManyNamespaceInCurrentSubscription";
+export const UnavailableReason = /*@__PURE__*/ S.String;
+
+/** Description of the check name availability request properties. */
+export interface CheckNameAvailabilityResult {
+  /** The detailed info regarding the reason associated with the namespace. */
+  message?: string;
+  /** Value indicating namespace is available. Returns true if the namespace is available; otherwise, false. */
+  nameAvailable?: boolean;
+  /** The reason for unavailability of a namespace. */
+  reason?: UnavailableReason;
+}
+export const CheckNameAvailabilityResult = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    requiresClientAuthorization: S.optional(S.Boolean),
-    userMetadata: S.optional(S.String),
+    message: S.optional(S.String),
+    nameAvailable: S.optional(S.Boolean),
+    reason: S.optional(UnavailableReason),
   }),
 ).annotate({
-  identifier: "HybridConnectionPropertiesInput",
-}) as any as S.Schema<HybridConnectionPropertiesInput>;
+  identifier: "CheckNameAvailabilityResult",
+}) as any as S.Schema<CheckNameAvailabilityResult>;
 
-export interface HybridConnectionsCreateOrUpdateRequest {
+export interface DeleteHybridConnectionRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -37,28 +73,275 @@ export interface HybridConnectionsCreateOrUpdateRequest {
   namespaceName: string;
   /** The hybrid connection name. */
   hybridConnectionName: string;
-  /** Properties of the HybridConnection. */
-  properties?: HybridConnectionPropertiesInput;
 }
-export const HybridConnectionsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
-  () =>
+export const DeleteHybridConnectionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    namespaceName: S.String.pipe(T.Label()),
+    hybridConnectionName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Relay/namespaces/{namespaceName}/hybridConnections/{hybridConnectionName}",
+      code: 200,
+      apiVersion: "2026-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteHybridConnectionRequest",
+}) as any as S.Schema<DeleteHybridConnectionRequest>;
+
+export interface DeleteHybridConnectionResponse {}
+export const DeleteHybridConnectionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteHybridConnectionResponse",
+}) as any as S.Schema<DeleteHybridConnectionResponse>;
+
+export interface DeleteHybridConnectionAuthorizationRuleRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+  /** The hybrid connection name. */
+  hybridConnectionName: string;
+  /** The authorization rule name. */
+  authorizationRuleName: string;
+}
+export const DeleteHybridConnectionAuthorizationRuleRequest =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       namespaceName: S.String.pipe(T.Label()),
       hybridConnectionName: S.String.pipe(T.Label()),
-      properties: S.optional(HybridConnectionPropertiesInput),
+      authorizationRuleName: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Relay/namespaces/{namespaceName}/hybridConnections/{hybridConnectionName}",
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Relay/namespaces/{namespaceName}/hybridConnections/{hybridConnectionName}/authorizationRules/{authorizationRuleName}",
+        code: 200,
+        apiVersion: "2026-01-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "DeleteHybridConnectionAuthorizationRuleRequest",
+  }) as any as S.Schema<DeleteHybridConnectionAuthorizationRuleRequest>;
+
+export interface DeleteHybridConnectionAuthorizationRuleResponse {}
+export const DeleteHybridConnectionAuthorizationRuleResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "DeleteHybridConnectionAuthorizationRuleResponse",
+  }) as any as S.Schema<DeleteHybridConnectionAuthorizationRuleResponse>;
+
+export interface DeleteNamespaceRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+}
+export const DeleteNamespaceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    namespaceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Relay/namespaces/{namespaceName}",
+      code: 200,
+      apiVersion: "2026-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteNamespaceRequest",
+}) as any as S.Schema<DeleteNamespaceRequest>;
+
+export interface DeleteNamespaceResponse {}
+export const DeleteNamespaceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteNamespaceResponse",
+}) as any as S.Schema<DeleteNamespaceResponse>;
+
+export interface DeleteNamespaceAuthorizationRuleRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+  /** The authorization rule name. */
+  authorizationRuleName: string;
+}
+export const DeleteNamespaceAuthorizationRuleRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      namespaceName: S.String.pipe(T.Label()),
+      authorizationRuleName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Relay/namespaces/{namespaceName}/authorizationRules/{authorizationRuleName}",
         code: 200,
         apiVersion: "2026-01-01",
       }),
     ),
 ).annotate({
-  identifier: "HybridConnectionsCreateOrUpdateRequest",
-}) as any as S.Schema<HybridConnectionsCreateOrUpdateRequest>;
+  identifier: "DeleteNamespaceAuthorizationRuleRequest",
+}) as any as S.Schema<DeleteNamespaceAuthorizationRuleRequest>;
+
+export interface DeleteNamespaceAuthorizationRuleResponse {}
+export const DeleteNamespaceAuthorizationRuleResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "DeleteNamespaceAuthorizationRuleResponse",
+}) as any as S.Schema<DeleteNamespaceAuthorizationRuleResponse>;
+
+export interface DeletePrivateEndpointConnectionRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+  /** The PrivateEndpointConnection name */
+  privateEndpointConnectionName: string;
+}
+export const DeletePrivateEndpointConnectionRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      namespaceName: S.String.pipe(T.Label()),
+      privateEndpointConnectionName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Relay/namespaces/{namespaceName}/privateEndpointConnections/{privateEndpointConnectionName}",
+        code: 200,
+        apiVersion: "2026-01-01",
+      }),
+    ),
+).annotate({
+  identifier: "DeletePrivateEndpointConnectionRequest",
+}) as any as S.Schema<DeletePrivateEndpointConnectionRequest>;
+
+export interface DeletePrivateEndpointConnectionResponse {}
+export const DeletePrivateEndpointConnectionResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "DeletePrivateEndpointConnectionResponse",
+}) as any as S.Schema<DeletePrivateEndpointConnectionResponse>;
+
+export interface DeleteWCFRelaysRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+  /** The relay name. */
+  relayName: string;
+}
+export const DeleteWCFRelaysRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    namespaceName: S.String.pipe(T.Label()),
+    relayName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Relay/namespaces/{namespaceName}/wcfRelays/{relayName}",
+      code: 200,
+      apiVersion: "2026-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteWCFRelaysRequest",
+}) as any as S.Schema<DeleteWCFRelaysRequest>;
+
+export interface DeleteWCFRelaysResponse {}
+export const DeleteWCFRelaysResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteWCFRelaysResponse",
+}) as any as S.Schema<DeleteWCFRelaysResponse>;
+
+export interface DeleteWCFRelaysAuthorizationRuleRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+  /** The relay name. */
+  relayName: string;
+  /** The authorization rule name. */
+  authorizationRuleName: string;
+}
+export const DeleteWCFRelaysAuthorizationRuleRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      namespaceName: S.String.pipe(T.Label()),
+      relayName: S.String.pipe(T.Label()),
+      authorizationRuleName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Relay/namespaces/{namespaceName}/wcfRelays/{relayName}/authorizationRules/{authorizationRuleName}",
+        code: 200,
+        apiVersion: "2026-01-01",
+      }),
+    ),
+).annotate({
+  identifier: "DeleteWCFRelaysAuthorizationRuleRequest",
+}) as any as S.Schema<DeleteWCFRelaysAuthorizationRuleRequest>;
+
+export interface DeleteWCFRelaysAuthorizationRuleResponse {}
+export const DeleteWCFRelaysAuthorizationRuleResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "DeleteWCFRelaysAuthorizationRuleResponse",
+}) as any as S.Schema<DeleteWCFRelaysAuthorizationRuleResponse>;
+
+export interface GetHybridConnectionRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+  /** The hybrid connection name. */
+  hybridConnectionName: string;
+}
+export const GetHybridConnectionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    namespaceName: S.String.pipe(T.Label()),
+    hybridConnectionName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Relay/namespaces/{namespaceName}/hybridConnections/{hybridConnectionName}",
+      code: 200,
+      apiVersion: "2026-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetHybridConnectionRequest",
+}) as any as S.Schema<GetHybridConnectionRequest>;
 
 /** The type of identity that created the resource. */
 export type SystemDataCreatedByType =
@@ -127,7 +410,7 @@ export const HybridConnectionProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "HybridConnectionProperties",
 }) as any as S.Schema<HybridConnectionProperties>;
 
-export interface HybridConnectionsCreateOrUpdateResponse {
+export interface GetHybridConnectionResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -141,19 +424,50 @@ export interface HybridConnectionsCreateOrUpdateResponse {
   /** The geo-location where the resource lives */
   location?: string;
 }
-export const HybridConnectionsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(HybridConnectionProperties),
-      location: S.optional(S.String),
-    }),
+export const GetHybridConnectionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(HybridConnectionProperties),
+    location: S.optional(S.String),
+  }),
 ).annotate({
-  identifier: "HybridConnectionsCreateOrUpdateResponse",
-}) as any as S.Schema<HybridConnectionsCreateOrUpdateResponse>;
+  identifier: "GetHybridConnectionResponse",
+}) as any as S.Schema<GetHybridConnectionResponse>;
+
+export interface GetHybridConnectionAuthorizationRuleRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+  /** The hybrid connection name. */
+  hybridConnectionName: string;
+  /** The authorization rule name. */
+  authorizationRuleName: string;
+}
+export const GetHybridConnectionAuthorizationRuleRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      namespaceName: S.String.pipe(T.Label()),
+      hybridConnectionName: S.String.pipe(T.Label()),
+      authorizationRuleName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Relay/namespaces/{namespaceName}/hybridConnections/{hybridConnectionName}/authorizationRules/{authorizationRuleName}",
+        code: 200,
+        apiVersion: "2026-01-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "GetHybridConnectionAuthorizationRuleRequest",
+  }) as any as S.Schema<GetHybridConnectionAuthorizationRuleRequest>;
 
 export type AccessRights = "Manage" | "Send" | "Listen";
 export const AccessRights = /*@__PURE__*/ S.String;
@@ -179,42 +493,7 @@ export const AuthorizationRuleProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "AuthorizationRuleProperties",
 }) as any as S.Schema<AuthorizationRuleProperties>;
 
-export interface HybridConnectionsCreateOrUpdateAuthorizationRuleRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-  /** The hybrid connection name. */
-  hybridConnectionName: string;
-  /** The authorization rule name. */
-  authorizationRuleName: string;
-  /** Properties supplied to create or update AuthorizationRule */
-  properties?: AuthorizationRuleProperties;
-}
-export const HybridConnectionsCreateOrUpdateAuthorizationRuleRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      namespaceName: S.String.pipe(T.Label()),
-      hybridConnectionName: S.String.pipe(T.Label()),
-      authorizationRuleName: S.String.pipe(T.Label()),
-      properties: S.optional(AuthorizationRuleProperties),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Relay/namespaces/{namespaceName}/hybridConnections/{hybridConnectionName}/authorizationRules/{authorizationRuleName}",
-        code: 200,
-        apiVersion: "2026-01-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "HybridConnectionsCreateOrUpdateAuthorizationRuleRequest",
-  }) as any as S.Schema<HybridConnectionsCreateOrUpdateAuthorizationRuleRequest>;
-
-export interface HybridConnectionsCreateOrUpdateAuthorizationRuleResponse {
+export interface GetHybridConnectionAuthorizationRuleResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -228,7 +507,7 @@ export interface HybridConnectionsCreateOrUpdateAuthorizationRuleResponse {
   /** The geo-location where the resource lives */
   location?: string;
 }
-export const HybridConnectionsCreateOrUpdateAuthorizationRuleResponse =
+export const GetHybridConnectionAuthorizationRuleResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
@@ -239,508 +518,40 @@ export const HybridConnectionsCreateOrUpdateAuthorizationRuleResponse =
       location: S.optional(S.String),
     }),
   ).annotate({
-    identifier: "HybridConnectionsCreateOrUpdateAuthorizationRuleResponse",
-  }) as any as S.Schema<HybridConnectionsCreateOrUpdateAuthorizationRuleResponse>;
+    identifier: "GetHybridConnectionAuthorizationRuleResponse",
+  }) as any as S.Schema<GetHybridConnectionAuthorizationRuleResponse>;
 
-export interface HybridConnectionsDeleteRequest {
+export interface GetNamespaceRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The namespace name */
   namespaceName: string;
-  /** The hybrid connection name. */
-  hybridConnectionName: string;
 }
-export const HybridConnectionsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetNamespaceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     namespaceName: S.String.pipe(T.Label()),
-    hybridConnectionName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Relay/namespaces/{namespaceName}/hybridConnections/{hybridConnectionName}",
-      code: 200,
-      apiVersion: "2026-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "HybridConnectionsDeleteRequest",
-}) as any as S.Schema<HybridConnectionsDeleteRequest>;
-
-export interface HybridConnectionsDeleteResponse {}
-export const HybridConnectionsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "HybridConnectionsDeleteResponse",
-}) as any as S.Schema<HybridConnectionsDeleteResponse>;
-
-export interface HybridConnectionsDeleteAuthorizationRuleRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-  /** The hybrid connection name. */
-  hybridConnectionName: string;
-  /** The authorization rule name. */
-  authorizationRuleName: string;
-}
-export const HybridConnectionsDeleteAuthorizationRuleRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      namespaceName: S.String.pipe(T.Label()),
-      hybridConnectionName: S.String.pipe(T.Label()),
-      authorizationRuleName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Relay/namespaces/{namespaceName}/hybridConnections/{hybridConnectionName}/authorizationRules/{authorizationRuleName}",
-        code: 200,
-        apiVersion: "2026-01-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "HybridConnectionsDeleteAuthorizationRuleRequest",
-  }) as any as S.Schema<HybridConnectionsDeleteAuthorizationRuleRequest>;
-
-export interface HybridConnectionsDeleteAuthorizationRuleResponse {}
-export const HybridConnectionsDeleteAuthorizationRuleResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "HybridConnectionsDeleteAuthorizationRuleResponse",
-  }) as any as S.Schema<HybridConnectionsDeleteAuthorizationRuleResponse>;
-
-export interface HybridConnectionsGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-  /** The hybrid connection name. */
-  hybridConnectionName: string;
-}
-export const HybridConnectionsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    namespaceName: S.String.pipe(T.Label()),
-    hybridConnectionName: S.String.pipe(T.Label()),
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Relay/namespaces/{namespaceName}/hybridConnections/{hybridConnectionName}",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Relay/namespaces/{namespaceName}",
       code: 200,
       apiVersion: "2026-01-01",
     }),
   ),
 ).annotate({
-  identifier: "HybridConnectionsGetRequest",
-}) as any as S.Schema<HybridConnectionsGetRequest>;
-
-export interface HybridConnectionsGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of the HybridConnection. */
-  properties?: HybridConnectionProperties;
-  /** The geo-location where the resource lives */
-  location?: string;
-}
-export const HybridConnectionsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(HybridConnectionProperties),
-    location: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "HybridConnectionsGetResponse",
-}) as any as S.Schema<HybridConnectionsGetResponse>;
-
-export interface HybridConnectionsGetAuthorizationRuleRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-  /** The hybrid connection name. */
-  hybridConnectionName: string;
-  /** The authorization rule name. */
-  authorizationRuleName: string;
-}
-export const HybridConnectionsGetAuthorizationRuleRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      namespaceName: S.String.pipe(T.Label()),
-      hybridConnectionName: S.String.pipe(T.Label()),
-      authorizationRuleName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Relay/namespaces/{namespaceName}/hybridConnections/{hybridConnectionName}/authorizationRules/{authorizationRuleName}",
-        code: 200,
-        apiVersion: "2026-01-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "HybridConnectionsGetAuthorizationRuleRequest",
-  }) as any as S.Schema<HybridConnectionsGetAuthorizationRuleRequest>;
-
-export interface HybridConnectionsGetAuthorizationRuleResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties supplied to create or update AuthorizationRule */
-  properties?: AuthorizationRuleProperties;
-  /** The geo-location where the resource lives */
-  location?: string;
-}
-export const HybridConnectionsGetAuthorizationRuleResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(AuthorizationRuleProperties),
-      location: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "HybridConnectionsGetAuthorizationRuleResponse",
-  }) as any as S.Schema<HybridConnectionsGetAuthorizationRuleResponse>;
-
-export interface HybridConnectionsListAuthorizationRulesRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-  /** The hybrid connection name. */
-  hybridConnectionName: string;
-}
-export const HybridConnectionsListAuthorizationRulesRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      namespaceName: S.String.pipe(T.Label()),
-      hybridConnectionName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Relay/namespaces/{namespaceName}/hybridConnections/{hybridConnectionName}/authorizationRules",
-        code: 200,
-        apiVersion: "2026-01-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "HybridConnectionsListAuthorizationRulesRequest",
-  }) as any as S.Schema<HybridConnectionsListAuthorizationRulesRequest>;
-
-/** Single item in a List or Get AuthorizationRule operation */
-export interface AuthorizationRule {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties supplied to create or update AuthorizationRule */
-  properties?: AuthorizationRuleProperties;
-  /** The geo-location where the resource lives */
-  location?: string;
-}
-export const AuthorizationRule = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(AuthorizationRuleProperties),
-    location: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AuthorizationRule",
-}) as any as S.Schema<AuthorizationRule>;
-
-/** The AuthorizationRule items on this page */
-export type AuthorizationRuleListResultValueList = Array<AuthorizationRule>;
-export const AuthorizationRuleListResultValueList = /*@__PURE__*/ S.Array(
-  AuthorizationRule,
-) as any as S.Schema<AuthorizationRuleListResultValueList>;
-
-/** The response of a AuthorizationRule list operation. */
-export interface AuthorizationRuleListResult {
-  /** The AuthorizationRule items on this page */
-  value: AuthorizationRuleListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const AuthorizationRuleListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: AuthorizationRuleListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "AuthorizationRuleListResult",
-}) as any as S.Schema<AuthorizationRuleListResult>;
-
-export interface HybridConnectionsListByNamespaceRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-}
-export const HybridConnectionsListByNamespaceRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      namespaceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Relay/namespaces/{namespaceName}/hybridConnections",
-        code: 200,
-        apiVersion: "2026-01-01",
-      }),
-    ),
-).annotate({
-  identifier: "HybridConnectionsListByNamespaceRequest",
-}) as any as S.Schema<HybridConnectionsListByNamespaceRequest>;
-
-/** Description of hybrid connection resource. */
-export interface HybridConnection {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of the HybridConnection. */
-  properties?: HybridConnectionProperties;
-  /** The geo-location where the resource lives */
-  location?: string;
-}
-export const HybridConnection = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(HybridConnectionProperties),
-    location: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "HybridConnection",
-}) as any as S.Schema<HybridConnection>;
-
-/** The HybridConnection items on this page */
-export type HybridConnectionListResultValueList = Array<HybridConnection>;
-export const HybridConnectionListResultValueList = /*@__PURE__*/ S.Array(
-  HybridConnection,
-) as any as S.Schema<HybridConnectionListResultValueList>;
-
-/** The response of a HybridConnection list operation. */
-export interface HybridConnectionListResult {
-  /** The HybridConnection items on this page */
-  value: HybridConnectionListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const HybridConnectionListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: HybridConnectionListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "HybridConnectionListResult",
-}) as any as S.Schema<HybridConnectionListResult>;
-
-export interface HybridConnectionsListKeysRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-  /** The hybrid connection name. */
-  hybridConnectionName: string;
-  /** The authorization rule name. */
-  authorizationRuleName: string;
-}
-export const HybridConnectionsListKeysRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    namespaceName: S.String.pipe(T.Label()),
-    hybridConnectionName: S.String.pipe(T.Label()),
-    authorizationRuleName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Relay/namespaces/{namespaceName}/hybridConnections/{hybridConnectionName}/authorizationRules/{authorizationRuleName}/listKeys",
-      code: 200,
-      apiVersion: "2026-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "HybridConnectionsListKeysRequest",
-}) as any as S.Schema<HybridConnectionsListKeysRequest>;
-
-/** Namespace/Relay Connection String */
-export interface AccessKeys {
-  /** Primary connection string of the created namespace authorization rule. */
-  primaryConnectionString?: string;
-  /** Secondary connection string of the created namespace authorization rule. */
-  secondaryConnectionString?: string;
-  /** A base64-encoded 256-bit primary key for signing and validating the SAS token. */
-  primaryKey?: string;
-  /** A base64-encoded 256-bit secondary key for signing and validating the SAS token. */
-  secondaryKey?: string;
-  /** A string that describes the authorization rule. */
-  keyName?: string;
-}
-export const AccessKeys = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    primaryConnectionString: S.optional(S.String),
-    secondaryConnectionString: S.optional(S.String),
-    primaryKey: S.optional(S.String),
-    secondaryKey: S.optional(S.String),
-    keyName: S.optional(S.String),
-  }),
-).annotate({ identifier: "AccessKeys" }) as any as S.Schema<AccessKeys>;
-
-/** The access key to regenerate. */
-export type KeyType = "PrimaryKey" | "SecondaryKey";
-export const KeyType = /*@__PURE__*/ S.String;
-
-export interface HybridConnectionsRegenerateKeysRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-  /** The hybrid connection name. */
-  hybridConnectionName: string;
-  /** The authorization rule name. */
-  authorizationRuleName: string;
-  /** The access key to regenerate. */
-  keyType: KeyType | (string & {});
-  /** Optional. If the key value is provided, this is set to key type, or autogenerated key value set for key type. */
-  key?: string;
-}
-export const HybridConnectionsRegenerateKeysRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      namespaceName: S.String.pipe(T.Label()),
-      hybridConnectionName: S.String.pipe(T.Label()),
-      authorizationRuleName: S.String.pipe(T.Label()),
-      keyType: KeyType,
-      key: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Relay/namespaces/{namespaceName}/hybridConnections/{hybridConnectionName}/authorizationRules/{authorizationRuleName}/regenerateKeys",
-        code: 200,
-        apiVersion: "2026-01-01",
-      }),
-    ),
-).annotate({
-  identifier: "HybridConnectionsRegenerateKeysRequest",
-}) as any as S.Schema<HybridConnectionsRegenerateKeysRequest>;
-
-export interface NamespacesCheckNameAvailabilityRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The namespace name to check for availability. The namespace name can contain only letters, numbers, and hyphens. The namespace must start with a letter, and it must end with a letter or number. */
-  name: string;
-}
-export const NamespacesCheckNameAvailabilityRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      name: S.String,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Relay/checkNameAvailability",
-        code: 200,
-        apiVersion: "2026-01-01",
-      }),
-    ),
-).annotate({
-  identifier: "NamespacesCheckNameAvailabilityRequest",
-}) as any as S.Schema<NamespacesCheckNameAvailabilityRequest>;
-
-/** Specifies the reason for the unavailability of the service. */
-export type UnavailableReason =
-  | "None"
-  | "InvalidName"
-  | "SubscriptionIsDisabled"
-  | "NameInUse"
-  | "NameInLockdown"
-  | "TooManyNamespaceInCurrentSubscription";
-export const UnavailableReason = /*@__PURE__*/ S.String;
-
-/** Description of the check name availability request properties. */
-export interface CheckNameAvailabilityResult {
-  /** The detailed info regarding the reason associated with the namespace. */
-  message?: string;
-  /** Value indicating namespace is available. Returns true if the namespace is available; otherwise, false. */
-  nameAvailable?: boolean;
-  /** The reason for unavailability of a namespace. */
-  reason?: UnavailableReason;
-}
-export const CheckNameAvailabilityResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    message: S.optional(S.String),
-    nameAvailable: S.optional(S.Boolean),
-    reason: S.optional(UnavailableReason),
-  }),
-).annotate({
-  identifier: "CheckNameAvailabilityResult",
-}) as any as S.Schema<CheckNameAvailabilityResult>;
+  identifier: "GetNamespaceRequest",
+}) as any as S.Schema<GetNamespaceRequest>;
 
 /** Resource tags. */
-export type NamespacesCreateOrUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const NamespacesCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type GetNamespaceResponseTagsMap = { [key: string]: string | undefined };
+export const GetNamespaceResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<NamespacesCreateOrUpdateRequestTagsMap>;
+) as any as S.Schema<GetNamespaceResponseTagsMap>;
 
 /** PrivateEndpoint information. */
 export interface PrivateEndpoint {
@@ -809,6 +620,1467 @@ export const PrivateEndpointConnectionProperties = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<PrivateEndpointConnectionProperties>;
 
 /** Properties of the PrivateEndpointConnection. */
+export interface PrivateEndpointConnection {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of the PrivateEndpointConnection. */
+  properties?: PrivateEndpointConnectionProperties;
+  /** The geo-location where the resource lives */
+  location?: string;
+}
+export const PrivateEndpointConnection = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(PrivateEndpointConnectionProperties),
+    location: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PrivateEndpointConnection",
+}) as any as S.Schema<PrivateEndpointConnection>;
+
+/** List of private endpoint connections. */
+export type RelayNamespacePropertiesPrivateEndpointConnectionsList =
+  Array<PrivateEndpointConnection>;
+export const RelayNamespacePropertiesPrivateEndpointConnectionsList =
+  /*@__PURE__*/ S.Array(
+    PrivateEndpointConnection,
+  ) as any as S.Schema<RelayNamespacePropertiesPrivateEndpointConnectionsList>;
+
+/** This determines if traffic is allowed over public network. By default it is enabled. */
+export type RelayNamespacePropertiesPublicNetworkAccess =
+  | "Enabled"
+  | "Disabled"
+  | "SecuredByPerimeter";
+export const RelayNamespacePropertiesPublicNetworkAccess =
+  /*@__PURE__*/ S.String;
+
+/** TLS versions supported by Relay namespaces. */
+export type TlsVersion = "1.2" | "1.3";
+export const TlsVersion = /*@__PURE__*/ S.String;
+
+/** Properties of the namespace. */
+export interface RelayNamespaceProperties {
+  /** Provisioning state of the Namespace. */
+  provisioningState?: string;
+  /** Status of the Namespace. */
+  status?: string;
+  /** The time the namespace was created. */
+  createdAt?: string;
+  /** The time the namespace was updated. */
+  updatedAt?: string;
+  /** Endpoint you can use to perform Service Bus operations. */
+  serviceBusEndpoint?: string;
+  /** Identifier for Azure Insights metrics. */
+  metricId?: string;
+  /** List of private endpoint connections. */
+  privateEndpointConnections?: RelayNamespacePropertiesPrivateEndpointConnectionsList;
+  /** This determines if traffic is allowed over public network. By default it is enabled. */
+  publicNetworkAccess?: RelayNamespacePropertiesPublicNetworkAccess;
+  /** The minimum TLS version for the namespace. Supported values are 1.2 and 1.3. The service defaults to 1.2 when the property is omitted. Existing namespaces configured with TLS 1.0 or 1.1 are reported as TLS 1.2. */
+  minimumTlsVersion?: TlsVersion;
+}
+export const RelayNamespaceProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provisioningState: S.optional(S.String),
+    status: S.optional(S.String),
+    createdAt: S.optional(S.String),
+    updatedAt: S.optional(S.String),
+    serviceBusEndpoint: S.optional(S.String),
+    metricId: S.optional(S.String),
+    privateEndpointConnections: S.optional(
+      RelayNamespacePropertiesPrivateEndpointConnectionsList,
+    ),
+    publicNetworkAccess: S.optional(
+      RelayNamespacePropertiesPublicNetworkAccess,
+    ),
+    minimumTlsVersion: S.optional(TlsVersion),
+  }),
+).annotate({
+  identifier: "RelayNamespaceProperties",
+}) as any as S.Schema<RelayNamespaceProperties>;
+
+/** Name of this SKU. */
+export type SkuName = "Standard";
+export const SkuName = /*@__PURE__*/ S.String;
+
+/** The tier of this SKU. */
+export type SkuTier = "Standard";
+export const SkuTier = /*@__PURE__*/ S.String;
+
+/** SKU of the namespace. */
+export interface Sku {
+  /** Name of this SKU. */
+  name: SkuName | (string & {});
+  /** The tier of this SKU. */
+  tier?: SkuTier | (string & {});
+}
+export const Sku = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: SkuName,
+    tier: S.optional(SkuTier),
+  }),
+).annotate({ identifier: "Sku" }) as any as S.Schema<Sku>;
+
+export interface GetNamespaceResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetNamespaceResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Description of Relay namespace */
+  properties?: RelayNamespaceProperties;
+  /** SKU of the namespace. */
+  sku?: Sku;
+}
+export const GetNamespaceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetNamespaceResponseTagsMap),
+    location: S.String,
+    properties: S.optional(RelayNamespaceProperties),
+    sku: S.optional(Sku),
+  }),
+).annotate({
+  identifier: "GetNamespaceResponse",
+}) as any as S.Schema<GetNamespaceResponse>;
+
+export interface GetNamespaceAuthorizationRuleRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+  /** The authorization rule name. */
+  authorizationRuleName: string;
+}
+export const GetNamespaceAuthorizationRuleRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      namespaceName: S.String.pipe(T.Label()),
+      authorizationRuleName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Relay/namespaces/{namespaceName}/authorizationRules/{authorizationRuleName}",
+        code: 200,
+        apiVersion: "2026-01-01",
+      }),
+    ),
+).annotate({
+  identifier: "GetNamespaceAuthorizationRuleRequest",
+}) as any as S.Schema<GetNamespaceAuthorizationRuleRequest>;
+
+export interface GetNamespaceAuthorizationRuleResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties supplied to create or update AuthorizationRule */
+  properties?: AuthorizationRuleProperties;
+  /** The geo-location where the resource lives */
+  location?: string;
+}
+export const GetNamespaceAuthorizationRuleResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(AuthorizationRuleProperties),
+      location: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "GetNamespaceAuthorizationRuleResponse",
+}) as any as S.Schema<GetNamespaceAuthorizationRuleResponse>;
+
+export interface GetNamespaceNetworkRuleSetRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+}
+export const GetNamespaceNetworkRuleSetRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    namespaceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Relay/namespaces/{namespaceName}/networkRuleSets/default",
+      code: 200,
+      apiVersion: "2026-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetNamespaceNetworkRuleSetRequest",
+}) as any as S.Schema<GetNamespaceNetworkRuleSetRequest>;
+
+/** Default Action for Network Rule Set */
+export type DefaultAction = "Allow" | "Deny";
+export const DefaultAction = /*@__PURE__*/ S.String;
+
+/** This determines if traffic is allowed over public network. By default it is enabled. */
+export type PublicNetworkAccess = "Enabled" | "Disabled" | "SecuredByPerimeter";
+export const PublicNetworkAccess = /*@__PURE__*/ S.String;
+
+/** The IP Filter Action */
+export type NetworkRuleIPAction = "Allow";
+export const NetworkRuleIPAction = /*@__PURE__*/ S.String;
+
+/** The response from the List namespace operation. */
+export interface NWRuleSetIpRules {
+  /** IP Mask */
+  ipMask?: string;
+  /** The IP Filter Action */
+  action?: NetworkRuleIPAction | (string & {});
+}
+export const NWRuleSetIpRules = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ipMask: S.optional(S.String),
+    action: S.optional(NetworkRuleIPAction),
+  }),
+).annotate({
+  identifier: "NWRuleSetIpRules",
+}) as any as S.Schema<NWRuleSetIpRules>;
+
+/** List of IpRules */
+export type NetworkRuleSetPropertiesIpRulesList = Array<NWRuleSetIpRules>;
+export const NetworkRuleSetPropertiesIpRulesList = /*@__PURE__*/ S.Array(
+  NWRuleSetIpRules,
+) as any as S.Schema<NetworkRuleSetPropertiesIpRulesList>;
+
+/** NetworkRuleSet properties */
+export interface NetworkRuleSetProperties {
+  /** Value that indicates whether Trusted Service Access is Enabled or not. */
+  trustedServiceAccessEnabled?: boolean;
+  /** Default Action for Network Rule Set */
+  defaultAction?: DefaultAction | (string & {});
+  /** This determines if traffic is allowed over public network. By default it is enabled */
+  publicNetworkAccess?: PublicNetworkAccess | (string & {});
+  /** List of IpRules */
+  ipRules?: NetworkRuleSetPropertiesIpRulesList;
+}
+export const NetworkRuleSetProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    trustedServiceAccessEnabled: S.optional(S.Boolean),
+    defaultAction: S.optional(DefaultAction),
+    publicNetworkAccess: S.optional(PublicNetworkAccess),
+    ipRules: S.optional(NetworkRuleSetPropertiesIpRulesList),
+  }),
+).annotate({
+  identifier: "NetworkRuleSetProperties",
+}) as any as S.Schema<NetworkRuleSetProperties>;
+
+export interface GetNamespaceNetworkRuleSetResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** NetworkRuleSet properties */
+  properties?: NetworkRuleSetProperties;
+}
+export const GetNamespaceNetworkRuleSetResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(NetworkRuleSetProperties),
+  }),
+).annotate({
+  identifier: "GetNamespaceNetworkRuleSetResponse",
+}) as any as S.Schema<GetNamespaceNetworkRuleSetResponse>;
+
+export interface GetPrivateEndpointConnectionRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+  /** The PrivateEndpointConnection name */
+  privateEndpointConnectionName: string;
+}
+export const GetPrivateEndpointConnectionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    namespaceName: S.String.pipe(T.Label()),
+    privateEndpointConnectionName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Relay/namespaces/{namespaceName}/privateEndpointConnections/{privateEndpointConnectionName}",
+      code: 200,
+      apiVersion: "2026-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetPrivateEndpointConnectionRequest",
+}) as any as S.Schema<GetPrivateEndpointConnectionRequest>;
+
+export interface GetPrivateEndpointConnectionResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of the PrivateEndpointConnection. */
+  properties?: PrivateEndpointConnectionProperties;
+  /** The geo-location where the resource lives */
+  location?: string;
+}
+export const GetPrivateEndpointConnectionResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(PrivateEndpointConnectionProperties),
+      location: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "GetPrivateEndpointConnectionResponse",
+}) as any as S.Schema<GetPrivateEndpointConnectionResponse>;
+
+export interface GetPrivateLinkResourceRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+  /** The name of the private link resource. */
+  privateLinkResourceName: string;
+}
+export const GetPrivateLinkResourceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    namespaceName: S.String.pipe(T.Label()),
+    privateLinkResourceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Relay/namespaces/{namespaceName}/privateLinkResources/{privateLinkResourceName}",
+      code: 200,
+      apiVersion: "2026-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetPrivateLinkResourceRequest",
+}) as any as S.Schema<GetPrivateLinkResourceRequest>;
+
+/** The private link resource required member names. */
+export type PrivateLinkResourcePropertiesRequiredMembersList = Array<string>;
+export const PrivateLinkResourcePropertiesRequiredMembersList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<PrivateLinkResourcePropertiesRequiredMembersList>;
+
+/** The private link resource Private link DNS zone name. */
+export type PrivateLinkResourcePropertiesRequiredZoneNamesList = Array<string>;
+export const PrivateLinkResourcePropertiesRequiredZoneNamesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<PrivateLinkResourcePropertiesRequiredZoneNamesList>;
+
+/** Properties of PrivateLinkResource */
+export interface PrivateLinkResourceProperties {
+  /** The private link resource group id. */
+  groupId?: string;
+  /** The private link resource required member names. */
+  requiredMembers?: PrivateLinkResourcePropertiesRequiredMembersList;
+  /** The private link resource Private link DNS zone name. */
+  requiredZoneNames?: PrivateLinkResourcePropertiesRequiredZoneNamesList;
+}
+export const PrivateLinkResourceProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    groupId: S.optional(S.String),
+    requiredMembers: S.optional(
+      PrivateLinkResourcePropertiesRequiredMembersList,
+    ),
+    requiredZoneNames: S.optional(
+      PrivateLinkResourcePropertiesRequiredZoneNamesList,
+    ),
+  }),
+).annotate({
+  identifier: "PrivateLinkResourceProperties",
+}) as any as S.Schema<PrivateLinkResourceProperties>;
+
+export interface GetPrivateLinkResourceResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** A resource that supports private link capabilities. */
+  properties?: PrivateLinkResourceProperties;
+}
+export const GetPrivateLinkResourceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(PrivateLinkResourceProperties),
+  }),
+).annotate({
+  identifier: "GetPrivateLinkResourceResponse",
+}) as any as S.Schema<GetPrivateLinkResourceResponse>;
+
+export interface GetWCFRelaysRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+  /** The relay name. */
+  relayName: string;
+}
+export const GetWCFRelaysRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    namespaceName: S.String.pipe(T.Label()),
+    relayName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Relay/namespaces/{namespaceName}/wcfRelays/{relayName}",
+      code: 200,
+      apiVersion: "2026-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetWCFRelaysRequest",
+}) as any as S.Schema<GetWCFRelaysRequest>;
+
+/** WCF relay type. */
+export type Relaytype = "NetTcp" | "Http";
+export const Relaytype = /*@__PURE__*/ S.String;
+
+/** Properties of the WCF relay. */
+export interface WcfRelayProperties {
+  /** Returns true if the relay is dynamic; otherwise, false. */
+  isDynamic?: boolean;
+  /** The time the WCF relay was created. */
+  createdAt?: string;
+  /** The time the namespace was updated. */
+  updatedAt?: string;
+  /** The number of listeners for this relay. Note that min :1 and max:25 are supported. */
+  listenerCount?: number;
+  /** WCF relay type. */
+  relayType?: Relaytype;
+  /** Returns true if client authorization is needed for this relay; otherwise, false. */
+  requiresClientAuthorization?: boolean;
+  /** Returns true if transport security is needed for this relay; otherwise, false. */
+  requiresTransportSecurity?: boolean;
+  /** The usermetadata is a placeholder to store user-defined string data for the WCF Relay endpoint. For example, it can be used to store descriptive data, such as list of teams and their contact information. Also, user-defined configuration settings can be stored. */
+  userMetadata?: string;
+}
+export const WcfRelayProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    isDynamic: S.optional(S.Boolean),
+    createdAt: S.optional(S.String),
+    updatedAt: S.optional(S.String),
+    listenerCount: S.optional(S.Number),
+    relayType: S.optional(Relaytype),
+    requiresClientAuthorization: S.optional(S.Boolean),
+    requiresTransportSecurity: S.optional(S.Boolean),
+    userMetadata: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "WcfRelayProperties",
+}) as any as S.Schema<WcfRelayProperties>;
+
+export interface GetWCFRelaysResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of the WCF relay. */
+  properties?: WcfRelayProperties;
+  /** The geo-location where the resource lives */
+  location?: string;
+}
+export const GetWCFRelaysResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(WcfRelayProperties),
+    location: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "GetWCFRelaysResponse",
+}) as any as S.Schema<GetWCFRelaysResponse>;
+
+export interface GetWCFRelaysAuthorizationRuleRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+  /** The relay name. */
+  relayName: string;
+  /** The authorization rule name. */
+  authorizationRuleName: string;
+}
+export const GetWCFRelaysAuthorizationRuleRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      namespaceName: S.String.pipe(T.Label()),
+      relayName: S.String.pipe(T.Label()),
+      authorizationRuleName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Relay/namespaces/{namespaceName}/wcfRelays/{relayName}/authorizationRules/{authorizationRuleName}",
+        code: 200,
+        apiVersion: "2026-01-01",
+      }),
+    ),
+).annotate({
+  identifier: "GetWCFRelaysAuthorizationRuleRequest",
+}) as any as S.Schema<GetWCFRelaysAuthorizationRuleRequest>;
+
+export interface GetWCFRelaysAuthorizationRuleResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties supplied to create or update AuthorizationRule */
+  properties?: AuthorizationRuleProperties;
+  /** The geo-location where the resource lives */
+  location?: string;
+}
+export const GetWCFRelaysAuthorizationRuleResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(AuthorizationRuleProperties),
+      location: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "GetWCFRelaysAuthorizationRuleResponse",
+}) as any as S.Schema<GetWCFRelaysAuthorizationRuleResponse>;
+
+/** Properties of the HybridConnection. */
+export interface HybridConnectionPropertiesInput {
+  /** Returns true if client authorization is needed for this hybrid connection; otherwise, false. */
+  requiresClientAuthorization?: boolean;
+  /** The usermetadata is a placeholder to store user-defined string data for the hybrid connection endpoint. For example, it can be used to store descriptive data, such as a list of teams and their contact information. Also, user-defined configuration settings can be stored. */
+  userMetadata?: string;
+}
+export const HybridConnectionPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    requiresClientAuthorization: S.optional(S.Boolean),
+    userMetadata: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "HybridConnectionPropertiesInput",
+}) as any as S.Schema<HybridConnectionPropertiesInput>;
+
+export interface HybridConnectionsCreateOrUpdateRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+  /** The hybrid connection name. */
+  hybridConnectionName: string;
+  /** Properties of the HybridConnection. */
+  properties?: HybridConnectionPropertiesInput;
+}
+export const HybridConnectionsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      namespaceName: S.String.pipe(T.Label()),
+      hybridConnectionName: S.String.pipe(T.Label()),
+      properties: S.optional(HybridConnectionPropertiesInput),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Relay/namespaces/{namespaceName}/hybridConnections/{hybridConnectionName}",
+        code: 200,
+        apiVersion: "2026-01-01",
+      }),
+    ),
+).annotate({
+  identifier: "HybridConnectionsCreateOrUpdateRequest",
+}) as any as S.Schema<HybridConnectionsCreateOrUpdateRequest>;
+
+export interface HybridConnectionsCreateOrUpdateResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of the HybridConnection. */
+  properties?: HybridConnectionProperties;
+  /** The geo-location where the resource lives */
+  location?: string;
+}
+export const HybridConnectionsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(HybridConnectionProperties),
+      location: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "HybridConnectionsCreateOrUpdateResponse",
+}) as any as S.Schema<HybridConnectionsCreateOrUpdateResponse>;
+
+export interface HybridConnectionsCreateOrUpdateAuthorizationRuleRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+  /** The hybrid connection name. */
+  hybridConnectionName: string;
+  /** The authorization rule name. */
+  authorizationRuleName: string;
+  /** Properties supplied to create or update AuthorizationRule */
+  properties?: AuthorizationRuleProperties;
+}
+export const HybridConnectionsCreateOrUpdateAuthorizationRuleRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      namespaceName: S.String.pipe(T.Label()),
+      hybridConnectionName: S.String.pipe(T.Label()),
+      authorizationRuleName: S.String.pipe(T.Label()),
+      properties: S.optional(AuthorizationRuleProperties),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Relay/namespaces/{namespaceName}/hybridConnections/{hybridConnectionName}/authorizationRules/{authorizationRuleName}",
+        code: 200,
+        apiVersion: "2026-01-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "HybridConnectionsCreateOrUpdateAuthorizationRuleRequest",
+  }) as any as S.Schema<HybridConnectionsCreateOrUpdateAuthorizationRuleRequest>;
+
+export interface HybridConnectionsCreateOrUpdateAuthorizationRuleResponse {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties supplied to create or update AuthorizationRule */
+  properties?: AuthorizationRuleProperties;
+  /** The geo-location where the resource lives */
+  location?: string;
+}
+export const HybridConnectionsCreateOrUpdateAuthorizationRuleResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(AuthorizationRuleProperties),
+      location: S.optional(S.String),
+    }),
+  ).annotate({
+    identifier: "HybridConnectionsCreateOrUpdateAuthorizationRuleResponse",
+  }) as any as S.Schema<HybridConnectionsCreateOrUpdateAuthorizationRuleResponse>;
+
+export interface ListHybridConnectionAuthorizationRulesRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+  /** The hybrid connection name. */
+  hybridConnectionName: string;
+}
+export const ListHybridConnectionAuthorizationRulesRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      namespaceName: S.String.pipe(T.Label()),
+      hybridConnectionName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Relay/namespaces/{namespaceName}/hybridConnections/{hybridConnectionName}/authorizationRules",
+        code: 200,
+        apiVersion: "2026-01-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListHybridConnectionAuthorizationRulesRequest",
+  }) as any as S.Schema<ListHybridConnectionAuthorizationRulesRequest>;
+
+/** Single item in a List or Get AuthorizationRule operation */
+export interface AuthorizationRule {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties supplied to create or update AuthorizationRule */
+  properties?: AuthorizationRuleProperties;
+  /** The geo-location where the resource lives */
+  location?: string;
+}
+export const AuthorizationRule = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(AuthorizationRuleProperties),
+    location: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "AuthorizationRule",
+}) as any as S.Schema<AuthorizationRule>;
+
+/** The AuthorizationRule items on this page */
+export type AuthorizationRuleListResultValueList = Array<AuthorizationRule>;
+export const AuthorizationRuleListResultValueList = /*@__PURE__*/ S.Array(
+  AuthorizationRule,
+) as any as S.Schema<AuthorizationRuleListResultValueList>;
+
+/** The response of a AuthorizationRule list operation. */
+export interface AuthorizationRuleListResult {
+  /** The AuthorizationRule items on this page */
+  value: AuthorizationRuleListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const AuthorizationRuleListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: AuthorizationRuleListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "AuthorizationRuleListResult",
+}) as any as S.Schema<AuthorizationRuleListResult>;
+
+export interface ListHybridConnectionByNamespaceRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+}
+export const ListHybridConnectionByNamespaceRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      namespaceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Relay/namespaces/{namespaceName}/hybridConnections",
+        code: 200,
+        apiVersion: "2026-01-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListHybridConnectionByNamespaceRequest",
+}) as any as S.Schema<ListHybridConnectionByNamespaceRequest>;
+
+/** Description of hybrid connection resource. */
+export interface HybridConnection {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of the HybridConnection. */
+  properties?: HybridConnectionProperties;
+  /** The geo-location where the resource lives */
+  location?: string;
+}
+export const HybridConnection = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(HybridConnectionProperties),
+    location: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "HybridConnection",
+}) as any as S.Schema<HybridConnection>;
+
+/** The HybridConnection items on this page */
+export type HybridConnectionListResultValueList = Array<HybridConnection>;
+export const HybridConnectionListResultValueList = /*@__PURE__*/ S.Array(
+  HybridConnection,
+) as any as S.Schema<HybridConnectionListResultValueList>;
+
+/** The response of a HybridConnection list operation. */
+export interface HybridConnectionListResult {
+  /** The HybridConnection items on this page */
+  value: HybridConnectionListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const HybridConnectionListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: HybridConnectionListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "HybridConnectionListResult",
+}) as any as S.Schema<HybridConnectionListResult>;
+
+export interface ListHybridConnectionKeysRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+  /** The hybrid connection name. */
+  hybridConnectionName: string;
+  /** The authorization rule name. */
+  authorizationRuleName: string;
+}
+export const ListHybridConnectionKeysRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    namespaceName: S.String.pipe(T.Label()),
+    hybridConnectionName: S.String.pipe(T.Label()),
+    authorizationRuleName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Relay/namespaces/{namespaceName}/hybridConnections/{hybridConnectionName}/authorizationRules/{authorizationRuleName}/listKeys",
+      code: 200,
+      apiVersion: "2026-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListHybridConnectionKeysRequest",
+}) as any as S.Schema<ListHybridConnectionKeysRequest>;
+
+/** Namespace/Relay Connection String */
+export interface AccessKeys {
+  /** Primary connection string of the created namespace authorization rule. */
+  primaryConnectionString?: string;
+  /** Secondary connection string of the created namespace authorization rule. */
+  secondaryConnectionString?: string;
+  /** A base64-encoded 256-bit primary key for signing and validating the SAS token. */
+  primaryKey?: string;
+  /** A base64-encoded 256-bit secondary key for signing and validating the SAS token. */
+  secondaryKey?: string;
+  /** A string that describes the authorization rule. */
+  keyName?: string;
+}
+export const AccessKeys = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    primaryConnectionString: S.optional(S.String),
+    secondaryConnectionString: S.optional(S.String),
+    primaryKey: S.optional(S.String),
+    secondaryKey: S.optional(S.String),
+    keyName: S.optional(S.String),
+  }),
+).annotate({ identifier: "AccessKeys" }) as any as S.Schema<AccessKeys>;
+
+export interface ListNamespaceAuthorizationRulesRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+}
+export const ListNamespaceAuthorizationRulesRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      namespaceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Relay/namespaces/{namespaceName}/authorizationRules",
+        code: 200,
+        apiVersion: "2026-01-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListNamespaceAuthorizationRulesRequest",
+}) as any as S.Schema<ListNamespaceAuthorizationRulesRequest>;
+
+export interface ListNamespaceByResourceGroupRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+}
+export const ListNamespaceByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Relay/namespaces",
+      code: 200,
+      apiVersion: "2026-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListNamespaceByResourceGroupRequest",
+}) as any as S.Schema<ListNamespaceByResourceGroupRequest>;
+
+/** Resource tags. */
+export type RelayNamespaceTagsMap = { [key: string]: string | undefined };
+export const RelayNamespaceTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<RelayNamespaceTagsMap>;
+
+/** Description of a namespace resource. */
+export interface RelayNamespace {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: RelayNamespaceTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** Description of Relay namespace */
+  properties?: RelayNamespaceProperties;
+  /** SKU of the namespace. */
+  sku?: Sku;
+}
+export const RelayNamespace = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(RelayNamespaceTagsMap),
+    location: S.String,
+    properties: S.optional(RelayNamespaceProperties),
+    sku: S.optional(Sku),
+  }),
+).annotate({ identifier: "RelayNamespace" }) as any as S.Schema<RelayNamespace>;
+
+/** The RelayNamespace items on this page */
+export type RelayNamespaceListResultValueList = Array<RelayNamespace>;
+export const RelayNamespaceListResultValueList = /*@__PURE__*/ S.Array(
+  RelayNamespace,
+) as any as S.Schema<RelayNamespaceListResultValueList>;
+
+/** The response of a RelayNamespace list operation. */
+export interface RelayNamespaceListResult {
+  /** The RelayNamespace items on this page */
+  value: RelayNamespaceListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const RelayNamespaceListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: RelayNamespaceListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "RelayNamespaceListResult",
+}) as any as S.Schema<RelayNamespaceListResult>;
+
+export interface ListNamespaceKeysRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+  /** The authorization rule name. */
+  authorizationRuleName: string;
+}
+export const ListNamespaceKeysRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    namespaceName: S.String.pipe(T.Label()),
+    authorizationRuleName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Relay/namespaces/{namespaceName}/authorizationRules/{authorizationRuleName}/listKeys",
+      code: 200,
+      apiVersion: "2026-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListNamespaceKeysRequest",
+}) as any as S.Schema<ListNamespaceKeysRequest>;
+
+export interface ListNamespacesRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+}
+export const ListNamespacesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Relay/namespaces",
+      code: 200,
+      apiVersion: "2026-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListNamespacesRequest",
+}) as any as S.Schema<ListNamespacesRequest>;
+
+export interface ListOperationsRequest {}
+export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/providers/Microsoft.Relay/operations",
+      code: 200,
+      apiVersion: "2026-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListOperationsRequest",
+}) as any as S.Schema<ListOperationsRequest>;
+
+/** Localized display information for this particular operation. */
+export interface OperationDisplay {
+  /** The localized friendly form of the resource provider name, e.g. "Microsoft Monitoring Insights" or "Microsoft Compute". */
+  provider?: string;
+  /** The localized friendly name of the resource type related to this operation. E.g. "Virtual Machines" or "Job Schedule Collections". */
+  resource?: string;
+  /** The concise, localized friendly name for the operation; suitable for dropdowns. E.g. "Create or Update Virtual Machine", "Restart Virtual Machine". */
+  operation?: string;
+  /** The short, localized friendly description of the operation; suitable for tool tips and detailed views. */
+  description?: string;
+}
+export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provider: S.optional(S.String),
+    resource: S.optional(S.String),
+    operation: S.optional(S.String),
+    description: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "OperationDisplay",
+}) as any as S.Schema<OperationDisplay>;
+
+/** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
+export type OperationOrigin = "user" | "system" | "user,system";
+export const OperationOrigin = /*@__PURE__*/ S.String;
+
+/** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
+export type OperationActionType = "Internal";
+export const OperationActionType = /*@__PURE__*/ S.String;
+
+/** Details of a REST API operation, returned from the Resource Provider Operations API */
+export interface Operation {
+  /** The name of the operation, as per Resource-Based Access Control (RBAC). Examples: "Microsoft.Compute/virtualMachines/write", "Microsoft.Compute/virtualMachines/capture/action" */
+  name?: string;
+  /** Whether the operation applies to data-plane. This is "true" for data-plane operations and "false" for ARM/control-plane operations. */
+  isDataAction?: boolean;
+  /** Localized display information for this particular operation. */
+  display?: OperationDisplay;
+  /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
+  origin?: OperationOrigin;
+  /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
+  actionType?: OperationActionType;
+}
+export const Operation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    isDataAction: S.optional(S.Boolean),
+    display: S.optional(OperationDisplay),
+    origin: S.optional(OperationOrigin),
+    actionType: S.optional(OperationActionType),
+  }),
+).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
+
+/** List of operations supported by the resource provider */
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
+  Operation,
+) as any as S.Schema<ListOperationsResponseValueList>;
+
+export interface ListOperationsResponse {
+  /** List of operations supported by the resource provider */
+  value?: ListOperationsResponseValueList;
+  /** URL to get the next set of operation list results (if there are any). */
+  nextLink?: string;
+}
+export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(ListOperationsResponseValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ListOperationsResponse",
+}) as any as S.Schema<ListOperationsResponse>;
+
+export interface ListPrivateEndpointConnectionsRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+}
+export const ListPrivateEndpointConnectionsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      namespaceName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Relay/namespaces/{namespaceName}/privateEndpointConnections",
+        code: 200,
+        apiVersion: "2026-01-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListPrivateEndpointConnectionsRequest",
+}) as any as S.Schema<ListPrivateEndpointConnectionsRequest>;
+
+/** The PrivateEndpointConnection items on this page */
+export type PrivateEndpointConnectionListResultValueList =
+  Array<PrivateEndpointConnection>;
+export const PrivateEndpointConnectionListResultValueList =
+  /*@__PURE__*/ S.Array(
+    PrivateEndpointConnection,
+  ) as any as S.Schema<PrivateEndpointConnectionListResultValueList>;
+
+/** The response of a PrivateEndpointConnection list operation. */
+export interface PrivateEndpointConnectionListResult {
+  /** The PrivateEndpointConnection items on this page */
+  value: PrivateEndpointConnectionListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const PrivateEndpointConnectionListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: PrivateEndpointConnectionListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PrivateEndpointConnectionListResult",
+}) as any as S.Schema<PrivateEndpointConnectionListResult>;
+
+export interface ListPrivateLinkResourcesRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+}
+export const ListPrivateLinkResourcesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    namespaceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Relay/namespaces/{namespaceName}/privateLinkResources",
+      code: 200,
+      apiVersion: "2026-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListPrivateLinkResourcesRequest",
+}) as any as S.Schema<ListPrivateLinkResourcesRequest>;
+
+/** A resource that supports private link capabilities. */
+export interface PrivateLinkResource {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** A resource that supports private link capabilities. */
+  properties?: PrivateLinkResourceProperties;
+}
+export const PrivateLinkResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(PrivateLinkResourceProperties),
+  }),
+).annotate({
+  identifier: "PrivateLinkResource",
+}) as any as S.Schema<PrivateLinkResource>;
+
+/** A collection of private link resources */
+export type PrivateLinkResourcesListResultValueList =
+  Array<PrivateLinkResource>;
+export const PrivateLinkResourcesListResultValueList = /*@__PURE__*/ S.Array(
+  PrivateLinkResource,
+) as any as S.Schema<PrivateLinkResourcesListResultValueList>;
+
+/** Result of the List private link resources operation. */
+export interface PrivateLinkResourcesListResult {
+  /** A collection of private link resources */
+  value: PrivateLinkResourcesListResultValueList;
+  /** A link for the next page of private link resources. */
+  nextLink?: string;
+}
+export const PrivateLinkResourcesListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: PrivateLinkResourcesListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PrivateLinkResourcesListResult",
+}) as any as S.Schema<PrivateLinkResourcesListResult>;
+
+export interface ListWCFRelaysAuthorizationRulesRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+  /** The relay name. */
+  relayName: string;
+}
+export const ListWCFRelaysAuthorizationRulesRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      namespaceName: S.String.pipe(T.Label()),
+      relayName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Relay/namespaces/{namespaceName}/wcfRelays/{relayName}/authorizationRules",
+        code: 200,
+        apiVersion: "2026-01-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListWCFRelaysAuthorizationRulesRequest",
+}) as any as S.Schema<ListWCFRelaysAuthorizationRulesRequest>;
+
+export interface ListWCFRelaysByNamespaceRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+}
+export const ListWCFRelaysByNamespaceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    namespaceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Relay/namespaces/{namespaceName}/wcfRelays",
+      code: 200,
+      apiVersion: "2026-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListWCFRelaysByNamespaceRequest",
+}) as any as S.Schema<ListWCFRelaysByNamespaceRequest>;
+
+/** Description of the WCF relay resource. */
+export interface WcfRelay {
+  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Properties of the WCF relay. */
+  properties?: WcfRelayProperties;
+  /** The geo-location where the resource lives */
+  location?: string;
+}
+export const WcfRelay = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(WcfRelayProperties),
+    location: S.optional(S.String),
+  }),
+).annotate({ identifier: "WcfRelay" }) as any as S.Schema<WcfRelay>;
+
+/** The WcfRelay items on this page */
+export type WcfRelaysListResultValueList = Array<WcfRelay>;
+export const WcfRelaysListResultValueList = /*@__PURE__*/ S.Array(
+  WcfRelay,
+) as any as S.Schema<WcfRelaysListResultValueList>;
+
+/** The response of the list WCF relay operation. */
+export interface WcfRelaysListResult {
+  /** The WcfRelay items on this page */
+  value: WcfRelaysListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const WcfRelaysListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: WcfRelaysListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "WcfRelaysListResult",
+}) as any as S.Schema<WcfRelaysListResult>;
+
+export interface ListWCFRelaysKeysRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+  /** The relay name. */
+  relayName: string;
+  /** The authorization rule name. */
+  authorizationRuleName: string;
+}
+export const ListWCFRelaysKeysRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    namespaceName: S.String.pipe(T.Label()),
+    relayName: S.String.pipe(T.Label()),
+    authorizationRuleName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Relay/namespaces/{namespaceName}/wcfRelays/{relayName}/authorizationRules/{authorizationRuleName}/listKeys",
+      code: 200,
+      apiVersion: "2026-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListWCFRelaysKeysRequest",
+}) as any as S.Schema<ListWCFRelaysKeysRequest>;
+
+/** Resource tags. */
+export type NamespacesCreateOrUpdateRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const NamespacesCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<NamespacesCreateOrUpdateRequestTagsMap>;
+
+/** Properties of the PrivateEndpointConnection. */
 export interface PrivateEndpointConnectionInput {
   /** Properties of the PrivateEndpointConnection. */
   properties?: PrivateEndpointConnectionProperties;
@@ -837,10 +2109,6 @@ export type RelayNamespacePropertiesInputPublicNetworkAccess =
 export const RelayNamespacePropertiesInputPublicNetworkAccess =
   /*@__PURE__*/ S.String;
 
-/** TLS versions supported by Relay namespaces. */
-export type TlsVersion = "1.2" | "1.3";
-export const TlsVersion = /*@__PURE__*/ S.String;
-
 /** Properties of the namespace. */
 export interface RelayNamespacePropertiesInput {
   /** List of private endpoint connections. */
@@ -865,28 +2133,6 @@ export const RelayNamespacePropertiesInput = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "RelayNamespacePropertiesInput",
 }) as any as S.Schema<RelayNamespacePropertiesInput>;
-
-/** Name of this SKU. */
-export type SkuName = "Standard";
-export const SkuName = /*@__PURE__*/ S.String;
-
-/** The tier of this SKU. */
-export type SkuTier = "Standard";
-export const SkuTier = /*@__PURE__*/ S.String;
-
-/** SKU of the namespace. */
-export interface Sku {
-  /** Name of this SKU. */
-  name: SkuName | (string & {});
-  /** The tier of this SKU. */
-  tier?: SkuTier | (string & {});
-}
-export const Sku = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: SkuName,
-    tier: S.optional(SkuTier),
-  }),
-).annotate({ identifier: "Sku" }) as any as S.Schema<Sku>;
 
 export interface NamespacesCreateOrUpdateRequest {
   /** The ID of the target subscription. */
@@ -933,91 +2179,6 @@ export const NamespacesCreateOrUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
 ) as any as S.Schema<NamespacesCreateOrUpdateResponseTagsMap>;
-
-/** Properties of the PrivateEndpointConnection. */
-export interface PrivateEndpointConnection {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of the PrivateEndpointConnection. */
-  properties?: PrivateEndpointConnectionProperties;
-  /** The geo-location where the resource lives */
-  location?: string;
-}
-export const PrivateEndpointConnection = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(PrivateEndpointConnectionProperties),
-    location: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PrivateEndpointConnection",
-}) as any as S.Schema<PrivateEndpointConnection>;
-
-/** List of private endpoint connections. */
-export type RelayNamespacePropertiesPrivateEndpointConnectionsList =
-  Array<PrivateEndpointConnection>;
-export const RelayNamespacePropertiesPrivateEndpointConnectionsList =
-  /*@__PURE__*/ S.Array(
-    PrivateEndpointConnection,
-  ) as any as S.Schema<RelayNamespacePropertiesPrivateEndpointConnectionsList>;
-
-/** This determines if traffic is allowed over public network. By default it is enabled. */
-export type RelayNamespacePropertiesPublicNetworkAccess =
-  | "Enabled"
-  | "Disabled"
-  | "SecuredByPerimeter";
-export const RelayNamespacePropertiesPublicNetworkAccess =
-  /*@__PURE__*/ S.String;
-
-/** Properties of the namespace. */
-export interface RelayNamespaceProperties {
-  /** Provisioning state of the Namespace. */
-  provisioningState?: string;
-  /** Status of the Namespace. */
-  status?: string;
-  /** The time the namespace was created. */
-  createdAt?: string;
-  /** The time the namespace was updated. */
-  updatedAt?: string;
-  /** Endpoint you can use to perform Service Bus operations. */
-  serviceBusEndpoint?: string;
-  /** Identifier for Azure Insights metrics. */
-  metricId?: string;
-  /** List of private endpoint connections. */
-  privateEndpointConnections?: RelayNamespacePropertiesPrivateEndpointConnectionsList;
-  /** This determines if traffic is allowed over public network. By default it is enabled. */
-  publicNetworkAccess?: RelayNamespacePropertiesPublicNetworkAccess;
-  /** The minimum TLS version for the namespace. Supported values are 1.2 and 1.3. The service defaults to 1.2 when the property is omitted. Existing namespaces configured with TLS 1.0 or 1.1 are reported as TLS 1.2. */
-  minimumTlsVersion?: TlsVersion;
-}
-export const RelayNamespaceProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provisioningState: S.optional(S.String),
-    status: S.optional(S.String),
-    createdAt: S.optional(S.String),
-    updatedAt: S.optional(S.String),
-    serviceBusEndpoint: S.optional(S.String),
-    metricId: S.optional(S.String),
-    privateEndpointConnections: S.optional(
-      RelayNamespacePropertiesPrivateEndpointConnectionsList,
-    ),
-    publicNetworkAccess: S.optional(
-      RelayNamespacePropertiesPublicNetworkAccess,
-    ),
-    minimumTlsVersion: S.optional(TlsVersion),
-  }),
-).annotate({
-  identifier: "RelayNamespaceProperties",
-}) as any as S.Schema<RelayNamespaceProperties>;
 
 export interface NamespacesCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -1112,62 +2273,6 @@ export const NamespacesCreateOrUpdateAuthorizationRuleResponse =
     identifier: "NamespacesCreateOrUpdateAuthorizationRuleResponse",
   }) as any as S.Schema<NamespacesCreateOrUpdateAuthorizationRuleResponse>;
 
-/** Default Action for Network Rule Set */
-export type DefaultAction = "Allow" | "Deny";
-export const DefaultAction = /*@__PURE__*/ S.String;
-
-/** This determines if traffic is allowed over public network. By default it is enabled. */
-export type PublicNetworkAccess = "Enabled" | "Disabled" | "SecuredByPerimeter";
-export const PublicNetworkAccess = /*@__PURE__*/ S.String;
-
-/** The IP Filter Action */
-export type NetworkRuleIPAction = "Allow";
-export const NetworkRuleIPAction = /*@__PURE__*/ S.String;
-
-/** The response from the List namespace operation. */
-export interface NWRuleSetIpRules {
-  /** IP Mask */
-  ipMask?: string;
-  /** The IP Filter Action */
-  action?: NetworkRuleIPAction | (string & {});
-}
-export const NWRuleSetIpRules = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ipMask: S.optional(S.String),
-    action: S.optional(NetworkRuleIPAction),
-  }),
-).annotate({
-  identifier: "NWRuleSetIpRules",
-}) as any as S.Schema<NWRuleSetIpRules>;
-
-/** List of IpRules */
-export type NetworkRuleSetPropertiesIpRulesList = Array<NWRuleSetIpRules>;
-export const NetworkRuleSetPropertiesIpRulesList = /*@__PURE__*/ S.Array(
-  NWRuleSetIpRules,
-) as any as S.Schema<NetworkRuleSetPropertiesIpRulesList>;
-
-/** NetworkRuleSet properties */
-export interface NetworkRuleSetProperties {
-  /** Value that indicates whether Trusted Service Access is Enabled or not. */
-  trustedServiceAccessEnabled?: boolean;
-  /** Default Action for Network Rule Set */
-  defaultAction?: DefaultAction | (string & {});
-  /** This determines if traffic is allowed over public network. By default it is enabled */
-  publicNetworkAccess?: PublicNetworkAccess | (string & {});
-  /** List of IpRules */
-  ipRules?: NetworkRuleSetPropertiesIpRulesList;
-}
-export const NetworkRuleSetProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    trustedServiceAccessEnabled: S.optional(S.Boolean),
-    defaultAction: S.optional(DefaultAction),
-    publicNetworkAccess: S.optional(PublicNetworkAccess),
-    ipRules: S.optional(NetworkRuleSetPropertiesIpRulesList),
-  }),
-).annotate({
-  identifier: "NetworkRuleSetProperties",
-}) as any as S.Schema<NetworkRuleSetProperties>;
-
 export interface NamespacesCreateOrUpdateNetworkRuleSetRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
@@ -1221,610 +2326,6 @@ export const NamespacesCreateOrUpdateNetworkRuleSetResponse =
   ).annotate({
     identifier: "NamespacesCreateOrUpdateNetworkRuleSetResponse",
   }) as any as S.Schema<NamespacesCreateOrUpdateNetworkRuleSetResponse>;
-
-export interface NamespacesDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-}
-export const NamespacesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    namespaceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Relay/namespaces/{namespaceName}",
-      code: 200,
-      apiVersion: "2026-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "NamespacesDeleteRequest",
-}) as any as S.Schema<NamespacesDeleteRequest>;
-
-export interface NamespacesDeleteResponse {}
-export const NamespacesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "NamespacesDeleteResponse",
-}) as any as S.Schema<NamespacesDeleteResponse>;
-
-export interface NamespacesDeleteAuthorizationRuleRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-  /** The authorization rule name. */
-  authorizationRuleName: string;
-}
-export const NamespacesDeleteAuthorizationRuleRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      namespaceName: S.String.pipe(T.Label()),
-      authorizationRuleName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Relay/namespaces/{namespaceName}/authorizationRules/{authorizationRuleName}",
-        code: 200,
-        apiVersion: "2026-01-01",
-      }),
-    ),
-).annotate({
-  identifier: "NamespacesDeleteAuthorizationRuleRequest",
-}) as any as S.Schema<NamespacesDeleteAuthorizationRuleRequest>;
-
-export interface NamespacesDeleteAuthorizationRuleResponse {}
-export const NamespacesDeleteAuthorizationRuleResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "NamespacesDeleteAuthorizationRuleResponse",
-  }) as any as S.Schema<NamespacesDeleteAuthorizationRuleResponse>;
-
-export interface NamespacesGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-}
-export const NamespacesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    namespaceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Relay/namespaces/{namespaceName}",
-      code: 200,
-      apiVersion: "2026-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "NamespacesGetRequest",
-}) as any as S.Schema<NamespacesGetRequest>;
-
-/** Resource tags. */
-export type NamespacesGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const NamespacesGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<NamespacesGetResponseTagsMap>;
-
-export interface NamespacesGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: NamespacesGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Description of Relay namespace */
-  properties?: RelayNamespaceProperties;
-  /** SKU of the namespace. */
-  sku?: Sku;
-}
-export const NamespacesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(NamespacesGetResponseTagsMap),
-    location: S.String,
-    properties: S.optional(RelayNamespaceProperties),
-    sku: S.optional(Sku),
-  }),
-).annotate({
-  identifier: "NamespacesGetResponse",
-}) as any as S.Schema<NamespacesGetResponse>;
-
-export interface NamespacesGetAuthorizationRuleRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-  /** The authorization rule name. */
-  authorizationRuleName: string;
-}
-export const NamespacesGetAuthorizationRuleRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      namespaceName: S.String.pipe(T.Label()),
-      authorizationRuleName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Relay/namespaces/{namespaceName}/authorizationRules/{authorizationRuleName}",
-        code: 200,
-        apiVersion: "2026-01-01",
-      }),
-    ),
-).annotate({
-  identifier: "NamespacesGetAuthorizationRuleRequest",
-}) as any as S.Schema<NamespacesGetAuthorizationRuleRequest>;
-
-export interface NamespacesGetAuthorizationRuleResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties supplied to create or update AuthorizationRule */
-  properties?: AuthorizationRuleProperties;
-  /** The geo-location where the resource lives */
-  location?: string;
-}
-export const NamespacesGetAuthorizationRuleResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(AuthorizationRuleProperties),
-      location: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "NamespacesGetAuthorizationRuleResponse",
-}) as any as S.Schema<NamespacesGetAuthorizationRuleResponse>;
-
-export interface NamespacesGetNetworkRuleSetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-}
-export const NamespacesGetNetworkRuleSetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    namespaceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Relay/namespaces/{namespaceName}/networkRuleSets/default",
-      code: 200,
-      apiVersion: "2026-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "NamespacesGetNetworkRuleSetRequest",
-}) as any as S.Schema<NamespacesGetNetworkRuleSetRequest>;
-
-export interface NamespacesGetNetworkRuleSetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** NetworkRuleSet properties */
-  properties?: NetworkRuleSetProperties;
-}
-export const NamespacesGetNetworkRuleSetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(NetworkRuleSetProperties),
-  }),
-).annotate({
-  identifier: "NamespacesGetNetworkRuleSetResponse",
-}) as any as S.Schema<NamespacesGetNetworkRuleSetResponse>;
-
-export interface NamespacesListRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-}
-export const NamespacesListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Relay/namespaces",
-      code: 200,
-      apiVersion: "2026-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "NamespacesListRequest",
-}) as any as S.Schema<NamespacesListRequest>;
-
-/** Resource tags. */
-export type RelayNamespaceTagsMap = { [key: string]: string | undefined };
-export const RelayNamespaceTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<RelayNamespaceTagsMap>;
-
-/** Description of a namespace resource. */
-export interface RelayNamespace {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: RelayNamespaceTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Description of Relay namespace */
-  properties?: RelayNamespaceProperties;
-  /** SKU of the namespace. */
-  sku?: Sku;
-}
-export const RelayNamespace = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(RelayNamespaceTagsMap),
-    location: S.String,
-    properties: S.optional(RelayNamespaceProperties),
-    sku: S.optional(Sku),
-  }),
-).annotate({ identifier: "RelayNamespace" }) as any as S.Schema<RelayNamespace>;
-
-/** The RelayNamespace items on this page */
-export type RelayNamespaceListResultValueList = Array<RelayNamespace>;
-export const RelayNamespaceListResultValueList = /*@__PURE__*/ S.Array(
-  RelayNamespace,
-) as any as S.Schema<RelayNamespaceListResultValueList>;
-
-/** The response of a RelayNamespace list operation. */
-export interface RelayNamespaceListResult {
-  /** The RelayNamespace items on this page */
-  value: RelayNamespaceListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const RelayNamespaceListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: RelayNamespaceListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "RelayNamespaceListResult",
-}) as any as S.Schema<RelayNamespaceListResult>;
-
-export interface NamespacesListAuthorizationRulesRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-}
-export const NamespacesListAuthorizationRulesRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      namespaceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Relay/namespaces/{namespaceName}/authorizationRules",
-        code: 200,
-        apiVersion: "2026-01-01",
-      }),
-    ),
-).annotate({
-  identifier: "NamespacesListAuthorizationRulesRequest",
-}) as any as S.Schema<NamespacesListAuthorizationRulesRequest>;
-
-export interface NamespacesListByResourceGroupRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-}
-export const NamespacesListByResourceGroupRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Relay/namespaces",
-        code: 200,
-        apiVersion: "2026-01-01",
-      }),
-    ),
-).annotate({
-  identifier: "NamespacesListByResourceGroupRequest",
-}) as any as S.Schema<NamespacesListByResourceGroupRequest>;
-
-export interface NamespacesListKeysRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-  /** The authorization rule name. */
-  authorizationRuleName: string;
-}
-export const NamespacesListKeysRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    namespaceName: S.String.pipe(T.Label()),
-    authorizationRuleName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Relay/namespaces/{namespaceName}/authorizationRules/{authorizationRuleName}/listKeys",
-      code: 200,
-      apiVersion: "2026-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "NamespacesListKeysRequest",
-}) as any as S.Schema<NamespacesListKeysRequest>;
-
-export interface NamespacesRegenerateKeysRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-  /** The authorization rule name. */
-  authorizationRuleName: string;
-  /** The access key to regenerate. */
-  keyType: KeyType | (string & {});
-  /** Optional. If the key value is provided, this is set to key type, or autogenerated key value set for key type. */
-  key?: string;
-}
-export const NamespacesRegenerateKeysRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    namespaceName: S.String.pipe(T.Label()),
-    authorizationRuleName: S.String.pipe(T.Label()),
-    keyType: KeyType,
-    key: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Relay/namespaces/{namespaceName}/authorizationRules/{authorizationRuleName}/regenerateKeys",
-      code: 200,
-      apiVersion: "2026-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "NamespacesRegenerateKeysRequest",
-}) as any as S.Schema<NamespacesRegenerateKeysRequest>;
-
-/** Resource tags. */
-export type NamespacesUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const NamespacesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<NamespacesUpdateRequestTagsMap>;
-
-export interface NamespacesUpdateRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-  /** Resource tags. */
-  tags?: NamespacesUpdateRequestTagsMap;
-  /** SKU of the namespace. */
-  sku?: Sku;
-  /** Description of Relay namespace. */
-  properties?: RelayNamespacePropertiesInput;
-}
-export const NamespacesUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    namespaceName: S.String.pipe(T.Label()),
-    tags: S.optional(NamespacesUpdateRequestTagsMap),
-    sku: S.optional(Sku),
-    properties: S.optional(RelayNamespacePropertiesInput),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Relay/namespaces/{namespaceName}",
-      code: 200,
-      apiVersion: "2026-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "NamespacesUpdateRequest",
-}) as any as S.Schema<NamespacesUpdateRequest>;
-
-/** Resource tags. */
-export type NamespacesUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const NamespacesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<NamespacesUpdateResponseTagsMap>;
-
-export interface NamespacesUpdateResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: NamespacesUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** Description of Relay namespace */
-  properties?: RelayNamespaceProperties;
-  /** SKU of the namespace. */
-  sku?: Sku;
-}
-export const NamespacesUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(NamespacesUpdateResponseTagsMap),
-    location: S.String,
-    properties: S.optional(RelayNamespaceProperties),
-    sku: S.optional(Sku),
-  }),
-).annotate({
-  identifier: "NamespacesUpdateResponse",
-}) as any as S.Schema<NamespacesUpdateResponse>;
-
-export interface OperationsListRequest {}
-export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/providers/Microsoft.Relay/operations",
-      code: 200,
-      apiVersion: "2026-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "OperationsListRequest",
-}) as any as S.Schema<OperationsListRequest>;
-
-/** Localized display information for this particular operation. */
-export interface OperationDisplay {
-  /** The localized friendly form of the resource provider name, e.g. "Microsoft Monitoring Insights" or "Microsoft Compute". */
-  provider?: string;
-  /** The localized friendly name of the resource type related to this operation. E.g. "Virtual Machines" or "Job Schedule Collections". */
-  resource?: string;
-  /** The concise, localized friendly name for the operation; suitable for dropdowns. E.g. "Create or Update Virtual Machine", "Restart Virtual Machine". */
-  operation?: string;
-  /** The short, localized friendly description of the operation; suitable for tool tips and detailed views. */
-  description?: string;
-}
-export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provider: S.optional(S.String),
-    resource: S.optional(S.String),
-    operation: S.optional(S.String),
-    description: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OperationDisplay",
-}) as any as S.Schema<OperationDisplay>;
-
-/** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
-export type OperationOrigin = "user" | "system" | "user,system";
-export const OperationOrigin = /*@__PURE__*/ S.String;
-
-/** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
-export type OperationActionType = "Internal";
-export const OperationActionType = /*@__PURE__*/ S.String;
-
-/** Details of a REST API operation, returned from the Resource Provider Operations API */
-export interface Operation {
-  /** The name of the operation, as per Resource-Based Access Control (RBAC). Examples: "Microsoft.Compute/virtualMachines/write", "Microsoft.Compute/virtualMachines/capture/action" */
-  name?: string;
-  /** Whether the operation applies to data-plane. This is "true" for data-plane operations and "false" for ARM/control-plane operations. */
-  isDataAction?: boolean;
-  /** Localized display information for this particular operation. */
-  display?: OperationDisplay;
-  /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
-  origin?: OperationOrigin;
-  /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
-  actionType?: OperationActionType;
-}
-export const Operation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    isDataAction: S.optional(S.Boolean),
-    display: S.optional(OperationDisplay),
-    origin: S.optional(OperationOrigin),
-    actionType: S.optional(OperationActionType),
-  }),
-).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
-
-/** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
-  Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
-
-export interface OperationsListResponse {
-  /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
-  /** URL to get the next set of operation list results (if there are any). */
-  nextLink?: string;
-}
-export const OperationsListResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(OperationsListResponseValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OperationsListResponse",
-}) as any as S.Schema<OperationsListResponse>;
 
 export interface PrivateEndpointConnectionsCreateOrUpdateRequest {
   /** The ID of the target subscription. */
@@ -1886,72 +2387,172 @@ export const PrivateEndpointConnectionsCreateOrUpdateResponse =
     identifier: "PrivateEndpointConnectionsCreateOrUpdateResponse",
   }) as any as S.Schema<PrivateEndpointConnectionsCreateOrUpdateResponse>;
 
-export interface PrivateEndpointConnectionsDeleteRequest {
+/** The access key to regenerate. */
+export type KeyType = "PrimaryKey" | "SecondaryKey";
+export const KeyType = /*@__PURE__*/ S.String;
+
+export interface RegenerateHybridConnectionKeysRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The namespace name */
   namespaceName: string;
-  /** The PrivateEndpointConnection name */
-  privateEndpointConnectionName: string;
+  /** The hybrid connection name. */
+  hybridConnectionName: string;
+  /** The authorization rule name. */
+  authorizationRuleName: string;
+  /** The access key to regenerate. */
+  keyType: KeyType | (string & {});
+  /** Optional. If the key value is provided, this is set to key type, or autogenerated key value set for key type. */
+  key?: string;
 }
-export const PrivateEndpointConnectionsDeleteRequest = /*@__PURE__*/ S.suspend(
+export const RegenerateHybridConnectionKeysRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       namespaceName: S.String.pipe(T.Label()),
-      privateEndpointConnectionName: S.String.pipe(T.Label()),
+      hybridConnectionName: S.String.pipe(T.Label()),
+      authorizationRuleName: S.String.pipe(T.Label()),
+      keyType: KeyType,
+      key: S.optional(S.String),
     }).pipe(
       T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Relay/namespaces/{namespaceName}/privateEndpointConnections/{privateEndpointConnectionName}",
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Relay/namespaces/{namespaceName}/hybridConnections/{hybridConnectionName}/authorizationRules/{authorizationRuleName}/regenerateKeys",
         code: 200,
         apiVersion: "2026-01-01",
       }),
     ),
 ).annotate({
-  identifier: "PrivateEndpointConnectionsDeleteRequest",
-}) as any as S.Schema<PrivateEndpointConnectionsDeleteRequest>;
+  identifier: "RegenerateHybridConnectionKeysRequest",
+}) as any as S.Schema<RegenerateHybridConnectionKeysRequest>;
 
-export interface PrivateEndpointConnectionsDeleteResponse {}
-export const PrivateEndpointConnectionsDeleteResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "PrivateEndpointConnectionsDeleteResponse",
-}) as any as S.Schema<PrivateEndpointConnectionsDeleteResponse>;
-
-export interface PrivateEndpointConnectionsGetRequest {
+export interface RegenerateNamespaceKeysRequest {
   /** The ID of the target subscription. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The namespace name */
   namespaceName: string;
-  /** The PrivateEndpointConnection name */
-  privateEndpointConnectionName: string;
+  /** The authorization rule name. */
+  authorizationRuleName: string;
+  /** The access key to regenerate. */
+  keyType: KeyType | (string & {});
+  /** Optional. If the key value is provided, this is set to key type, or autogenerated key value set for key type. */
+  key?: string;
 }
-export const PrivateEndpointConnectionsGetRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      namespaceName: S.String.pipe(T.Label()),
-      privateEndpointConnectionName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Relay/namespaces/{namespaceName}/privateEndpointConnections/{privateEndpointConnectionName}",
-        code: 200,
-        apiVersion: "2026-01-01",
-      }),
-    ),
+export const RegenerateNamespaceKeysRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    namespaceName: S.String.pipe(T.Label()),
+    authorizationRuleName: S.String.pipe(T.Label()),
+    keyType: KeyType,
+    key: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Relay/namespaces/{namespaceName}/authorizationRules/{authorizationRuleName}/regenerateKeys",
+      code: 200,
+      apiVersion: "2026-01-01",
+    }),
+  ),
 ).annotate({
-  identifier: "PrivateEndpointConnectionsGetRequest",
-}) as any as S.Schema<PrivateEndpointConnectionsGetRequest>;
+  identifier: "RegenerateNamespaceKeysRequest",
+}) as any as S.Schema<RegenerateNamespaceKeysRequest>;
 
-export interface PrivateEndpointConnectionsGetResponse {
+export interface RegenerateWCFRelaysKeysRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+  /** The relay name. */
+  relayName: string;
+  /** The authorization rule name. */
+  authorizationRuleName: string;
+  /** The access key to regenerate. */
+  keyType: KeyType | (string & {});
+  /** Optional. If the key value is provided, this is set to key type, or autogenerated key value set for key type. */
+  key?: string;
+}
+export const RegenerateWCFRelaysKeysRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    namespaceName: S.String.pipe(T.Label()),
+    relayName: S.String.pipe(T.Label()),
+    authorizationRuleName: S.String.pipe(T.Label()),
+    keyType: KeyType,
+    key: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Relay/namespaces/{namespaceName}/wcfRelays/{relayName}/authorizationRules/{authorizationRuleName}/regenerateKeys",
+      code: 200,
+      apiVersion: "2026-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "RegenerateWCFRelaysKeysRequest",
+}) as any as S.Schema<RegenerateWCFRelaysKeysRequest>;
+
+/** Resource tags. */
+export type UpdateNamespaceRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateNamespaceRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateNamespaceRequestTagsMap>;
+
+export interface UpdateNamespaceRequest {
+  /** The ID of the target subscription. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The namespace name */
+  namespaceName: string;
+  /** Resource tags. */
+  tags?: UpdateNamespaceRequestTagsMap;
+  /** SKU of the namespace. */
+  sku?: Sku;
+  /** Description of Relay namespace. */
+  properties?: RelayNamespacePropertiesInput;
+}
+export const UpdateNamespaceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    namespaceName: S.String.pipe(T.Label()),
+    tags: S.optional(UpdateNamespaceRequestTagsMap),
+    sku: S.optional(Sku),
+    properties: S.optional(RelayNamespacePropertiesInput),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Relay/namespaces/{namespaceName}",
+      code: 200,
+      apiVersion: "2026-01-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateNamespaceRequest",
+}) as any as S.Schema<UpdateNamespaceRequest>;
+
+/** Resource tags. */
+export type UpdateNamespaceResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateNamespaceResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateNamespaceResponseTagsMap>;
+
+export interface UpdateNamespaceResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
   id?: string;
   /** The name of the resource */
@@ -1960,240 +2561,29 @@ export interface PrivateEndpointConnectionsGetResponse {
   type?: string;
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
-  /** Properties of the PrivateEndpointConnection. */
-  properties?: PrivateEndpointConnectionProperties;
+  /** Resource tags. */
+  tags?: UpdateNamespaceResponseTagsMap;
   /** The geo-location where the resource lives */
-  location?: string;
+  location: string;
+  /** Description of Relay namespace */
+  properties?: RelayNamespaceProperties;
+  /** SKU of the namespace. */
+  sku?: Sku;
 }
-export const PrivateEndpointConnectionsGetResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(PrivateEndpointConnectionProperties),
-      location: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "PrivateEndpointConnectionsGetResponse",
-}) as any as S.Schema<PrivateEndpointConnectionsGetResponse>;
-
-export interface PrivateEndpointConnectionsListRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-}
-export const PrivateEndpointConnectionsListRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      namespaceName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Relay/namespaces/{namespaceName}/privateEndpointConnections",
-        code: 200,
-        apiVersion: "2026-01-01",
-      }),
-    ),
-).annotate({
-  identifier: "PrivateEndpointConnectionsListRequest",
-}) as any as S.Schema<PrivateEndpointConnectionsListRequest>;
-
-/** The PrivateEndpointConnection items on this page */
-export type PrivateEndpointConnectionListResultValueList =
-  Array<PrivateEndpointConnection>;
-export const PrivateEndpointConnectionListResultValueList =
-  /*@__PURE__*/ S.Array(
-    PrivateEndpointConnection,
-  ) as any as S.Schema<PrivateEndpointConnectionListResultValueList>;
-
-/** The response of a PrivateEndpointConnection list operation. */
-export interface PrivateEndpointConnectionListResult {
-  /** The PrivateEndpointConnection items on this page */
-  value: PrivateEndpointConnectionListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const PrivateEndpointConnectionListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: PrivateEndpointConnectionListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PrivateEndpointConnectionListResult",
-}) as any as S.Schema<PrivateEndpointConnectionListResult>;
-
-export interface PrivateLinkResourcesGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-  /** The name of the private link resource. */
-  privateLinkResourceName: string;
-}
-export const PrivateLinkResourcesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    namespaceName: S.String.pipe(T.Label()),
-    privateLinkResourceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Relay/namespaces/{namespaceName}/privateLinkResources/{privateLinkResourceName}",
-      code: 200,
-      apiVersion: "2026-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "PrivateLinkResourcesGetRequest",
-}) as any as S.Schema<PrivateLinkResourcesGetRequest>;
-
-/** The private link resource required member names. */
-export type PrivateLinkResourcePropertiesRequiredMembersList = Array<string>;
-export const PrivateLinkResourcePropertiesRequiredMembersList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PrivateLinkResourcePropertiesRequiredMembersList>;
-
-/** The private link resource Private link DNS zone name. */
-export type PrivateLinkResourcePropertiesRequiredZoneNamesList = Array<string>;
-export const PrivateLinkResourcePropertiesRequiredZoneNamesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PrivateLinkResourcePropertiesRequiredZoneNamesList>;
-
-/** Properties of PrivateLinkResource */
-export interface PrivateLinkResourceProperties {
-  /** The private link resource group id. */
-  groupId?: string;
-  /** The private link resource required member names. */
-  requiredMembers?: PrivateLinkResourcePropertiesRequiredMembersList;
-  /** The private link resource Private link DNS zone name. */
-  requiredZoneNames?: PrivateLinkResourcePropertiesRequiredZoneNamesList;
-}
-export const PrivateLinkResourceProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    groupId: S.optional(S.String),
-    requiredMembers: S.optional(
-      PrivateLinkResourcePropertiesRequiredMembersList,
-    ),
-    requiredZoneNames: S.optional(
-      PrivateLinkResourcePropertiesRequiredZoneNamesList,
-    ),
-  }),
-).annotate({
-  identifier: "PrivateLinkResourceProperties",
-}) as any as S.Schema<PrivateLinkResourceProperties>;
-
-export interface PrivateLinkResourcesGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** A resource that supports private link capabilities. */
-  properties?: PrivateLinkResourceProperties;
-}
-export const PrivateLinkResourcesGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateNamespaceResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    properties: S.optional(PrivateLinkResourceProperties),
+    tags: S.optional(UpdateNamespaceResponseTagsMap),
+    location: S.String,
+    properties: S.optional(RelayNamespaceProperties),
+    sku: S.optional(Sku),
   }),
 ).annotate({
-  identifier: "PrivateLinkResourcesGetResponse",
-}) as any as S.Schema<PrivateLinkResourcesGetResponse>;
-
-export interface PrivateLinkResourcesListRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-}
-export const PrivateLinkResourcesListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    namespaceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Relay/namespaces/{namespaceName}/privateLinkResources",
-      code: 200,
-      apiVersion: "2026-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "PrivateLinkResourcesListRequest",
-}) as any as S.Schema<PrivateLinkResourcesListRequest>;
-
-/** A resource that supports private link capabilities. */
-export interface PrivateLinkResource {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** A resource that supports private link capabilities. */
-  properties?: PrivateLinkResourceProperties;
-}
-export const PrivateLinkResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(PrivateLinkResourceProperties),
-  }),
-).annotate({
-  identifier: "PrivateLinkResource",
-}) as any as S.Schema<PrivateLinkResource>;
-
-/** A collection of private link resources */
-export type PrivateLinkResourcesListResultValueList =
-  Array<PrivateLinkResource>;
-export const PrivateLinkResourcesListResultValueList = /*@__PURE__*/ S.Array(
-  PrivateLinkResource,
-) as any as S.Schema<PrivateLinkResourcesListResultValueList>;
-
-/** Result of the List private link resources operation. */
-export interface PrivateLinkResourcesListResult {
-  /** A collection of private link resources */
-  value: PrivateLinkResourcesListResultValueList;
-  /** A link for the next page of private link resources. */
-  nextLink?: string;
-}
-export const PrivateLinkResourcesListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: PrivateLinkResourcesListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PrivateLinkResourcesListResult",
-}) as any as S.Schema<PrivateLinkResourcesListResult>;
-
-/** WCF relay type. */
-export type Relaytype = "NetTcp" | "Http";
-export const Relaytype = /*@__PURE__*/ S.String;
+  identifier: "UpdateNamespaceResponse",
+}) as any as S.Schema<UpdateNamespaceResponse>;
 
 /** Properties of the WCF relay. */
 export interface WcfRelayPropertiesInput {
@@ -2247,40 +2637,6 @@ export const WCFRelaysCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "WCFRelaysCreateOrUpdateRequest",
 }) as any as S.Schema<WCFRelaysCreateOrUpdateRequest>;
-
-/** Properties of the WCF relay. */
-export interface WcfRelayProperties {
-  /** Returns true if the relay is dynamic; otherwise, false. */
-  isDynamic?: boolean;
-  /** The time the WCF relay was created. */
-  createdAt?: string;
-  /** The time the namespace was updated. */
-  updatedAt?: string;
-  /** The number of listeners for this relay. Note that min :1 and max:25 are supported. */
-  listenerCount?: number;
-  /** WCF relay type. */
-  relayType?: Relaytype;
-  /** Returns true if client authorization is needed for this relay; otherwise, false. */
-  requiresClientAuthorization?: boolean;
-  /** Returns true if transport security is needed for this relay; otherwise, false. */
-  requiresTransportSecurity?: boolean;
-  /** The usermetadata is a placeholder to store user-defined string data for the WCF Relay endpoint. For example, it can be used to store descriptive data, such as list of teams and their contact information. Also, user-defined configuration settings can be stored. */
-  userMetadata?: string;
-}
-export const WcfRelayProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    isDynamic: S.optional(S.Boolean),
-    createdAt: S.optional(S.String),
-    updatedAt: S.optional(S.String),
-    listenerCount: S.optional(S.Number),
-    relayType: S.optional(Relaytype),
-    requiresClientAuthorization: S.optional(S.Boolean),
-    requiresTransportSecurity: S.optional(S.Boolean),
-    userMetadata: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "WcfRelayProperties",
-}) as any as S.Schema<WcfRelayProperties>;
 
 export interface WCFRelaysCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
@@ -2372,364 +2728,260 @@ export const WCFRelaysCreateOrUpdateAuthorizationRuleResponse =
     identifier: "WCFRelaysCreateOrUpdateAuthorizationRuleResponse",
   }) as any as S.Schema<WCFRelaysCreateOrUpdateAuthorizationRuleResponse>;
 
-export interface WCFRelaysDeleteRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-  /** The relay name. */
-  relayName: string;
-}
-export const WCFRelaysDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    namespaceName: S.String.pipe(T.Label()),
-    relayName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Relay/namespaces/{namespaceName}/wcfRelays/{relayName}",
-      code: 200,
-      apiVersion: "2026-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "WCFRelaysDeleteRequest",
-}) as any as S.Schema<WCFRelaysDeleteRequest>;
+export type CheckNamespaceNameAvailabilityError = AzureOpError;
+/** Check the specified namespace name availability. */
+export const CheckNamespaceNameAvailability: API.OperationMethod<
+  CheckNamespaceNameAvailabilityRequest,
+  CheckNameAvailabilityResult,
+  CheckNamespaceNameAvailabilityError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CheckNamespaceNameAvailabilityRequest,
+  output: CheckNameAvailabilityResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
-export interface WCFRelaysDeleteResponse {}
-export const WCFRelaysDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "WCFRelaysDeleteResponse",
-}) as any as S.Schema<WCFRelaysDeleteResponse>;
+export type DeleteHybridConnectionError = AzureOpError;
+/** Deletes a hybrid connection. */
+export const DeleteHybridConnection: API.OperationMethod<
+  DeleteHybridConnectionRequest,
+  DeleteHybridConnectionResponse,
+  DeleteHybridConnectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteHybridConnectionRequest,
+  output: DeleteHybridConnectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
-export interface WCFRelaysDeleteAuthorizationRuleRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-  /** The relay name. */
-  relayName: string;
-  /** The authorization rule name. */
-  authorizationRuleName: string;
-}
-export const WCFRelaysDeleteAuthorizationRuleRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      namespaceName: S.String.pipe(T.Label()),
-      relayName: S.String.pipe(T.Label()),
-      authorizationRuleName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Relay/namespaces/{namespaceName}/wcfRelays/{relayName}/authorizationRules/{authorizationRuleName}",
-        code: 200,
-        apiVersion: "2026-01-01",
-      }),
-    ),
-).annotate({
-  identifier: "WCFRelaysDeleteAuthorizationRuleRequest",
-}) as any as S.Schema<WCFRelaysDeleteAuthorizationRuleRequest>;
+export type DeleteHybridConnectionAuthorizationRuleError = AzureOpError;
+/** Deletes a hybrid connection authorization rule. */
+export const DeleteHybridConnectionAuthorizationRule: API.OperationMethod<
+  DeleteHybridConnectionAuthorizationRuleRequest,
+  DeleteHybridConnectionAuthorizationRuleResponse,
+  DeleteHybridConnectionAuthorizationRuleError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteHybridConnectionAuthorizationRuleRequest,
+  output: DeleteHybridConnectionAuthorizationRuleResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
-export interface WCFRelaysDeleteAuthorizationRuleResponse {}
-export const WCFRelaysDeleteAuthorizationRuleResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "WCFRelaysDeleteAuthorizationRuleResponse",
-}) as any as S.Schema<WCFRelaysDeleteAuthorizationRuleResponse>;
+export type DeleteNamespaceError = AzureOpError;
+/** Deletes an existing namespace. This operation also removes all associated resources under the namespace. */
+export const DeleteNamespace: API.OperationMethod<
+  DeleteNamespaceRequest,
+  DeleteNamespaceResponse,
+  DeleteNamespaceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteNamespaceRequest,
+  output: DeleteNamespaceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
-export interface WCFRelaysGetRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-  /** The relay name. */
-  relayName: string;
-}
-export const WCFRelaysGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    namespaceName: S.String.pipe(T.Label()),
-    relayName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Relay/namespaces/{namespaceName}/wcfRelays/{relayName}",
-      code: 200,
-      apiVersion: "2026-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "WCFRelaysGetRequest",
-}) as any as S.Schema<WCFRelaysGetRequest>;
+export type DeleteNamespaceAuthorizationRuleError = AzureOpError;
+/** Deletes a namespace authorization rule. */
+export const DeleteNamespaceAuthorizationRule: API.OperationMethod<
+  DeleteNamespaceAuthorizationRuleRequest,
+  DeleteNamespaceAuthorizationRuleResponse,
+  DeleteNamespaceAuthorizationRuleError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteNamespaceAuthorizationRuleRequest,
+  output: DeleteNamespaceAuthorizationRuleResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
-export interface WCFRelaysGetResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of the WCF relay. */
-  properties?: WcfRelayProperties;
-  /** The geo-location where the resource lives */
-  location?: string;
-}
-export const WCFRelaysGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(WcfRelayProperties),
-    location: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "WCFRelaysGetResponse",
-}) as any as S.Schema<WCFRelaysGetResponse>;
+export type DeletePrivateEndpointConnectionError = AzureOpError;
+/** Deletes an existing namespace. This operation also removes all associated resources under the namespace. */
+export const DeletePrivateEndpointConnection: API.OperationMethod<
+  DeletePrivateEndpointConnectionRequest,
+  DeletePrivateEndpointConnectionResponse,
+  DeletePrivateEndpointConnectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeletePrivateEndpointConnectionRequest,
+  output: DeletePrivateEndpointConnectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
-export interface WCFRelaysGetAuthorizationRuleRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-  /** The relay name. */
-  relayName: string;
-  /** The authorization rule name. */
-  authorizationRuleName: string;
-}
-export const WCFRelaysGetAuthorizationRuleRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      namespaceName: S.String.pipe(T.Label()),
-      relayName: S.String.pipe(T.Label()),
-      authorizationRuleName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Relay/namespaces/{namespaceName}/wcfRelays/{relayName}/authorizationRules/{authorizationRuleName}",
-        code: 200,
-        apiVersion: "2026-01-01",
-      }),
-    ),
-).annotate({
-  identifier: "WCFRelaysGetAuthorizationRuleRequest",
-}) as any as S.Schema<WCFRelaysGetAuthorizationRuleRequest>;
+export type DeleteWCFRelaysError = AzureOpError;
+/** Deletes a WCF relay. */
+export const DeleteWCFRelays: API.OperationMethod<
+  DeleteWCFRelaysRequest,
+  DeleteWCFRelaysResponse,
+  DeleteWCFRelaysError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteWCFRelaysRequest,
+  output: DeleteWCFRelaysResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
-export interface WCFRelaysGetAuthorizationRuleResponse {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties supplied to create or update AuthorizationRule */
-  properties?: AuthorizationRuleProperties;
-  /** The geo-location where the resource lives */
-  location?: string;
-}
-export const WCFRelaysGetAuthorizationRuleResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(AuthorizationRuleProperties),
-      location: S.optional(S.String),
-    }),
-).annotate({
-  identifier: "WCFRelaysGetAuthorizationRuleResponse",
-}) as any as S.Schema<WCFRelaysGetAuthorizationRuleResponse>;
+export type DeleteWCFRelaysAuthorizationRuleError = AzureOpError;
+/** Deletes a WCF relay authorization rule. */
+export const DeleteWCFRelaysAuthorizationRule: API.OperationMethod<
+  DeleteWCFRelaysAuthorizationRuleRequest,
+  DeleteWCFRelaysAuthorizationRuleResponse,
+  DeleteWCFRelaysAuthorizationRuleError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteWCFRelaysAuthorizationRuleRequest,
+  output: DeleteWCFRelaysAuthorizationRuleResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
-export interface WCFRelaysListAuthorizationRulesRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-  /** The relay name. */
-  relayName: string;
-}
-export const WCFRelaysListAuthorizationRulesRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      namespaceName: S.String.pipe(T.Label()),
-      relayName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Relay/namespaces/{namespaceName}/wcfRelays/{relayName}/authorizationRules",
-        code: 200,
-        apiVersion: "2026-01-01",
-      }),
-    ),
-).annotate({
-  identifier: "WCFRelaysListAuthorizationRulesRequest",
-}) as any as S.Schema<WCFRelaysListAuthorizationRulesRequest>;
+export type GetHybridConnectionError = AzureOpError;
+/** Returns the description for the specified hybrid connection. */
+export const GetHybridConnection: API.OperationMethod<
+  GetHybridConnectionRequest,
+  GetHybridConnectionResponse,
+  GetHybridConnectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetHybridConnectionRequest,
+  output: GetHybridConnectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
-export interface WCFRelaysListByNamespaceRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-}
-export const WCFRelaysListByNamespaceRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    namespaceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Relay/namespaces/{namespaceName}/wcfRelays",
-      code: 200,
-      apiVersion: "2026-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "WCFRelaysListByNamespaceRequest",
-}) as any as S.Schema<WCFRelaysListByNamespaceRequest>;
+export type GetHybridConnectionAuthorizationRuleError = AzureOpError;
+/** Hybrid connection authorization rule for a hybrid connection by name. */
+export const GetHybridConnectionAuthorizationRule: API.OperationMethod<
+  GetHybridConnectionAuthorizationRuleRequest,
+  GetHybridConnectionAuthorizationRuleResponse,
+  GetHybridConnectionAuthorizationRuleError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetHybridConnectionAuthorizationRuleRequest,
+  output: GetHybridConnectionAuthorizationRuleResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
-/** Description of the WCF relay resource. */
-export interface WcfRelay {
-  /** Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName} */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Properties of the WCF relay. */
-  properties?: WcfRelayProperties;
-  /** The geo-location where the resource lives */
-  location?: string;
-}
-export const WcfRelay = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(WcfRelayProperties),
-    location: S.optional(S.String),
-  }),
-).annotate({ identifier: "WcfRelay" }) as any as S.Schema<WcfRelay>;
+export type GetNamespaceError = AzureOpError;
+/** Returns the description for the specified namespace. */
+export const GetNamespace: API.OperationMethod<
+  GetNamespaceRequest,
+  GetNamespaceResponse,
+  GetNamespaceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetNamespaceRequest,
+  output: GetNamespaceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
-/** The WcfRelay items on this page */
-export type WcfRelaysListResultValueList = Array<WcfRelay>;
-export const WcfRelaysListResultValueList = /*@__PURE__*/ S.Array(
-  WcfRelay,
-) as any as S.Schema<WcfRelaysListResultValueList>;
+export type GetNamespaceAuthorizationRuleError = AzureOpError;
+/** Authorization rule for a namespace by name. */
+export const GetNamespaceAuthorizationRule: API.OperationMethod<
+  GetNamespaceAuthorizationRuleRequest,
+  GetNamespaceAuthorizationRuleResponse,
+  GetNamespaceAuthorizationRuleError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetNamespaceAuthorizationRuleRequest,
+  output: GetNamespaceAuthorizationRuleResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
-/** The response of the list WCF relay operation. */
-export interface WcfRelaysListResult {
-  /** The WcfRelay items on this page */
-  value: WcfRelaysListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const WcfRelaysListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: WcfRelaysListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "WcfRelaysListResult",
-}) as any as S.Schema<WcfRelaysListResult>;
+export type GetNamespaceNetworkRuleSetError = AzureOpError;
+/** Gets NetworkRuleSet for a Namespace. */
+export const GetNamespaceNetworkRuleSet: API.OperationMethod<
+  GetNamespaceNetworkRuleSetRequest,
+  GetNamespaceNetworkRuleSetResponse,
+  GetNamespaceNetworkRuleSetError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetNamespaceNetworkRuleSetRequest,
+  output: GetNamespaceNetworkRuleSetResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
-export interface WCFRelaysListKeysRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-  /** The relay name. */
-  relayName: string;
-  /** The authorization rule name. */
-  authorizationRuleName: string;
-}
-export const WCFRelaysListKeysRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    namespaceName: S.String.pipe(T.Label()),
-    relayName: S.String.pipe(T.Label()),
-    authorizationRuleName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Relay/namespaces/{namespaceName}/wcfRelays/{relayName}/authorizationRules/{authorizationRuleName}/listKeys",
-      code: 200,
-      apiVersion: "2026-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "WCFRelaysListKeysRequest",
-}) as any as S.Schema<WCFRelaysListKeysRequest>;
+export type GetPrivateEndpointConnectionError = AzureOpError;
+/** Gets a description for the specified Private Endpoint Connection name. */
+export const GetPrivateEndpointConnection: API.OperationMethod<
+  GetPrivateEndpointConnectionRequest,
+  GetPrivateEndpointConnectionResponse,
+  GetPrivateEndpointConnectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPrivateEndpointConnectionRequest,
+  output: GetPrivateEndpointConnectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
-export interface WCFRelaysRegenerateKeysRequest {
-  /** The ID of the target subscription. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The namespace name */
-  namespaceName: string;
-  /** The relay name. */
-  relayName: string;
-  /** The authorization rule name. */
-  authorizationRuleName: string;
-  /** The access key to regenerate. */
-  keyType: KeyType | (string & {});
-  /** Optional. If the key value is provided, this is set to key type, or autogenerated key value set for key type. */
-  key?: string;
-}
-export const WCFRelaysRegenerateKeysRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    namespaceName: S.String.pipe(T.Label()),
-    relayName: S.String.pipe(T.Label()),
-    authorizationRuleName: S.String.pipe(T.Label()),
-    keyType: KeyType,
-    key: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Relay/namespaces/{namespaceName}/wcfRelays/{relayName}/authorizationRules/{authorizationRuleName}/regenerateKeys",
-      code: 200,
-      apiVersion: "2026-01-01",
-    }),
-  ),
-).annotate({
-  identifier: "WCFRelaysRegenerateKeysRequest",
-}) as any as S.Schema<WCFRelaysRegenerateKeysRequest>;
+export type GetPrivateLinkResourceError = AzureOpError;
+/** Gets a private link resource by a specified group name for a container registry. */
+export const GetPrivateLinkResource: API.OperationMethod<
+  GetPrivateLinkResourceRequest,
+  GetPrivateLinkResourceResponse,
+  GetPrivateLinkResourceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPrivateLinkResourceRequest,
+  output: GetPrivateLinkResourceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetWCFRelaysError = AzureOpError;
+/** Returns the description for the specified WCF relay. */
+export const GetWCFRelays: API.OperationMethod<
+  GetWCFRelaysRequest,
+  GetWCFRelaysResponse,
+  GetWCFRelaysError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetWCFRelaysRequest,
+  output: GetWCFRelaysResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetWCFRelaysAuthorizationRuleError = AzureOpError;
+/** Get authorizationRule for a WCF relay by name. */
+export const GetWCFRelaysAuthorizationRule: API.OperationMethod<
+  GetWCFRelaysAuthorizationRuleRequest,
+  GetWCFRelaysAuthorizationRuleResponse,
+  GetWCFRelaysAuthorizationRuleError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetWCFRelaysAuthorizationRuleRequest,
+  output: GetWCFRelaysAuthorizationRuleResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
 
 export type HybridConnectionsCreateOrUpdateError = AzureOpError;
 /** Creates or updates a service hybrid connection. This operation is idempotent. */
@@ -2762,136 +3014,196 @@ export const HybridConnectionsCreateOrUpdateAuthorizationRule: API.OperationMeth
   retry: Retry.Retry,
 }));
 
-export type HybridConnectionsDeleteError = AzureOpError;
-/** Deletes a hybrid connection. */
-export const HybridConnectionsDelete: API.OperationMethod<
-  HybridConnectionsDeleteRequest,
-  HybridConnectionsDeleteResponse,
-  HybridConnectionsDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: HybridConnectionsDeleteRequest,
-  output: HybridConnectionsDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type HybridConnectionsDeleteAuthorizationRuleError = AzureOpError;
-/** Deletes a hybrid connection authorization rule. */
-export const HybridConnectionsDeleteAuthorizationRule: API.OperationMethod<
-  HybridConnectionsDeleteAuthorizationRuleRequest,
-  HybridConnectionsDeleteAuthorizationRuleResponse,
-  HybridConnectionsDeleteAuthorizationRuleError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: HybridConnectionsDeleteAuthorizationRuleRequest,
-  output: HybridConnectionsDeleteAuthorizationRuleResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type HybridConnectionsGetError = AzureOpError;
-/** Returns the description for the specified hybrid connection. */
-export const HybridConnectionsGet: API.OperationMethod<
-  HybridConnectionsGetRequest,
-  HybridConnectionsGetResponse,
-  HybridConnectionsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: HybridConnectionsGetRequest,
-  output: HybridConnectionsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type HybridConnectionsGetAuthorizationRuleError = AzureOpError;
-/** Hybrid connection authorization rule for a hybrid connection by name. */
-export const HybridConnectionsGetAuthorizationRule: API.OperationMethod<
-  HybridConnectionsGetAuthorizationRuleRequest,
-  HybridConnectionsGetAuthorizationRuleResponse,
-  HybridConnectionsGetAuthorizationRuleError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: HybridConnectionsGetAuthorizationRuleRequest,
-  output: HybridConnectionsGetAuthorizationRuleResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type HybridConnectionsListAuthorizationRulesError = AzureOpError;
+export type ListHybridConnectionAuthorizationRulesError = AzureOpError;
 /** Authorization rules for a hybrid connection. */
-export const HybridConnectionsListAuthorizationRules: API.OperationMethod<
-  HybridConnectionsListAuthorizationRulesRequest,
+export const ListHybridConnectionAuthorizationRules: API.OperationMethod<
+  ListHybridConnectionAuthorizationRulesRequest,
   AuthorizationRuleListResult,
-  HybridConnectionsListAuthorizationRulesError,
+  ListHybridConnectionAuthorizationRulesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: HybridConnectionsListAuthorizationRulesRequest,
+  input: ListHybridConnectionAuthorizationRulesRequest,
   output: AuthorizationRuleListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type HybridConnectionsListByNamespaceError = AzureOpError;
+export type ListHybridConnectionByNamespaceError = AzureOpError;
 /** Lists the hybrid connection within the namespace. */
-export const HybridConnectionsListByNamespace: API.OperationMethod<
-  HybridConnectionsListByNamespaceRequest,
+export const ListHybridConnectionByNamespace: API.OperationMethod<
+  ListHybridConnectionByNamespaceRequest,
   HybridConnectionListResult,
-  HybridConnectionsListByNamespaceError,
+  ListHybridConnectionByNamespaceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: HybridConnectionsListByNamespaceRequest,
+  input: ListHybridConnectionByNamespaceRequest,
   output: HybridConnectionListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type HybridConnectionsListKeysError = AzureOpError;
+export type ListHybridConnectionKeysError = AzureOpError;
 /** Primary and secondary connection strings to the hybrid connection. */
-export const HybridConnectionsListKeys: API.OperationMethod<
-  HybridConnectionsListKeysRequest,
+export const ListHybridConnectionKeys: API.OperationMethod<
+  ListHybridConnectionKeysRequest,
   AccessKeys,
-  HybridConnectionsListKeysError,
+  ListHybridConnectionKeysError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: HybridConnectionsListKeysRequest,
+  input: ListHybridConnectionKeysRequest,
   output: AccessKeys,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type HybridConnectionsRegenerateKeysError = AzureOpError;
-/** Regenerates the primary or secondary connection strings to the hybrid connection. */
-export const HybridConnectionsRegenerateKeys: API.OperationMethod<
-  HybridConnectionsRegenerateKeysRequest,
-  AccessKeys,
-  HybridConnectionsRegenerateKeysError,
+export type ListNamespaceAuthorizationRulesError = AzureOpError;
+/** Authorization rules for a namespace. */
+export const ListNamespaceAuthorizationRules: API.OperationMethod<
+  ListNamespaceAuthorizationRulesRequest,
+  AuthorizationRuleListResult,
+  ListNamespaceAuthorizationRulesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: HybridConnectionsRegenerateKeysRequest,
+  input: ListNamespaceAuthorizationRulesRequest,
+  output: AuthorizationRuleListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListNamespaceByResourceGroupError = AzureOpError;
+/** Lists all the available namespaces within the ResourceGroup. */
+export const ListNamespaceByResourceGroup: API.OperationMethod<
+  ListNamespaceByResourceGroupRequest,
+  RelayNamespaceListResult,
+  ListNamespaceByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListNamespaceByResourceGroupRequest,
+  output: RelayNamespaceListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListNamespaceKeysError = AzureOpError;
+/** Primary and secondary connection strings to the namespace. */
+export const ListNamespaceKeys: API.OperationMethod<
+  ListNamespaceKeysRequest,
+  AccessKeys,
+  ListNamespaceKeysError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListNamespaceKeysRequest,
   output: AccessKeys,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type NamespacesCheckNameAvailabilityError = AzureOpError;
-/** Check the specified namespace name availability. */
-export const NamespacesCheckNameAvailability: API.OperationMethod<
-  NamespacesCheckNameAvailabilityRequest,
-  CheckNameAvailabilityResult,
-  NamespacesCheckNameAvailabilityError,
+export type ListNamespacesError = AzureOpError;
+/** Lists all the available namespaces within the subscription regardless of the resourceGroups. */
+export const ListNamespaces: API.OperationMethod<
+  ListNamespacesRequest,
+  RelayNamespaceListResult,
+  ListNamespacesError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: NamespacesCheckNameAvailabilityRequest,
-  output: CheckNameAvailabilityResult,
+  input: ListNamespacesRequest,
+  output: RelayNamespaceListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListOperationsError = AzureOpError;
+/** List the operations for the provider */
+export const ListOperations: API.OperationMethod<
+  ListOperationsRequest,
+  ListOperationsResponse,
+  ListOperationsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListOperationsRequest,
+  output: ListOperationsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListPrivateEndpointConnectionsError = AzureOpError;
+/** Gets the available PrivateEndpointConnections within a namespace. */
+export const ListPrivateEndpointConnections: API.OperationMethod<
+  ListPrivateEndpointConnectionsRequest,
+  PrivateEndpointConnectionListResult,
+  ListPrivateEndpointConnectionsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListPrivateEndpointConnectionsRequest,
+  output: PrivateEndpointConnectionListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListPrivateLinkResourcesError = AzureOpError;
+/** Lists the private link resources for a container registry. */
+export const ListPrivateLinkResources: API.OperationMethod<
+  ListPrivateLinkResourcesRequest,
+  PrivateLinkResourcesListResult,
+  ListPrivateLinkResourcesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListPrivateLinkResourcesRequest,
+  output: PrivateLinkResourcesListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListWCFRelaysAuthorizationRulesError = AzureOpError;
+/** Authorization rules for a WCF relay. */
+export const ListWCFRelaysAuthorizationRules: API.OperationMethod<
+  ListWCFRelaysAuthorizationRulesRequest,
+  AuthorizationRuleListResult,
+  ListWCFRelaysAuthorizationRulesError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListWCFRelaysAuthorizationRulesRequest,
+  output: AuthorizationRuleListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListWCFRelaysByNamespaceError = AzureOpError;
+/** Lists the WCF relays within the namespace. */
+export const ListWCFRelaysByNamespace: API.OperationMethod<
+  ListWCFRelaysByNamespaceRequest,
+  WcfRelaysListResult,
+  ListWCFRelaysByNamespaceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListWCFRelaysByNamespaceRequest,
+  output: WcfRelaysListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListWCFRelaysKeysError = AzureOpError;
+/** Primary and secondary connection strings to the WCF relay. */
+export const ListWCFRelaysKeys: API.OperationMethod<
+  ListWCFRelaysKeysRequest,
+  AccessKeys,
+  ListWCFRelaysKeysError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListWCFRelaysKeysRequest,
+  output: AccessKeys,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -2942,186 +3254,6 @@ export const NamespacesCreateOrUpdateNetworkRuleSet: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type NamespacesDeleteError = AzureOpError;
-/** Deletes an existing namespace. This operation also removes all associated resources under the namespace. */
-export const NamespacesDelete: API.OperationMethod<
-  NamespacesDeleteRequest,
-  NamespacesDeleteResponse,
-  NamespacesDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NamespacesDeleteRequest,
-  output: NamespacesDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type NamespacesDeleteAuthorizationRuleError = AzureOpError;
-/** Deletes a namespace authorization rule. */
-export const NamespacesDeleteAuthorizationRule: API.OperationMethod<
-  NamespacesDeleteAuthorizationRuleRequest,
-  NamespacesDeleteAuthorizationRuleResponse,
-  NamespacesDeleteAuthorizationRuleError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NamespacesDeleteAuthorizationRuleRequest,
-  output: NamespacesDeleteAuthorizationRuleResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type NamespacesGetError = AzureOpError;
-/** Returns the description for the specified namespace. */
-export const NamespacesGet: API.OperationMethod<
-  NamespacesGetRequest,
-  NamespacesGetResponse,
-  NamespacesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NamespacesGetRequest,
-  output: NamespacesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type NamespacesGetAuthorizationRuleError = AzureOpError;
-/** Authorization rule for a namespace by name. */
-export const NamespacesGetAuthorizationRule: API.OperationMethod<
-  NamespacesGetAuthorizationRuleRequest,
-  NamespacesGetAuthorizationRuleResponse,
-  NamespacesGetAuthorizationRuleError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NamespacesGetAuthorizationRuleRequest,
-  output: NamespacesGetAuthorizationRuleResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type NamespacesGetNetworkRuleSetError = AzureOpError;
-/** Gets NetworkRuleSet for a Namespace. */
-export const NamespacesGetNetworkRuleSet: API.OperationMethod<
-  NamespacesGetNetworkRuleSetRequest,
-  NamespacesGetNetworkRuleSetResponse,
-  NamespacesGetNetworkRuleSetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NamespacesGetNetworkRuleSetRequest,
-  output: NamespacesGetNetworkRuleSetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type NamespacesListError = AzureOpError;
-/** Lists all the available namespaces within the subscription regardless of the resourceGroups. */
-export const NamespacesList: API.OperationMethod<
-  NamespacesListRequest,
-  RelayNamespaceListResult,
-  NamespacesListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NamespacesListRequest,
-  output: RelayNamespaceListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type NamespacesListAuthorizationRulesError = AzureOpError;
-/** Authorization rules for a namespace. */
-export const NamespacesListAuthorizationRules: API.OperationMethod<
-  NamespacesListAuthorizationRulesRequest,
-  AuthorizationRuleListResult,
-  NamespacesListAuthorizationRulesError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NamespacesListAuthorizationRulesRequest,
-  output: AuthorizationRuleListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type NamespacesListByResourceGroupError = AzureOpError;
-/** Lists all the available namespaces within the ResourceGroup. */
-export const NamespacesListByResourceGroup: API.OperationMethod<
-  NamespacesListByResourceGroupRequest,
-  RelayNamespaceListResult,
-  NamespacesListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NamespacesListByResourceGroupRequest,
-  output: RelayNamespaceListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type NamespacesListKeysError = AzureOpError;
-/** Primary and secondary connection strings to the namespace. */
-export const NamespacesListKeys: API.OperationMethod<
-  NamespacesListKeysRequest,
-  AccessKeys,
-  NamespacesListKeysError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NamespacesListKeysRequest,
-  output: AccessKeys,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type NamespacesRegenerateKeysError = AzureOpError;
-/** Regenerates the primary or secondary connection strings to the namespace. */
-export const NamespacesRegenerateKeys: API.OperationMethod<
-  NamespacesRegenerateKeysRequest,
-  AccessKeys,
-  NamespacesRegenerateKeysError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NamespacesRegenerateKeysRequest,
-  output: AccessKeys,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type NamespacesUpdateError = AzureOpError;
-/** Creates or updates a namespace. Once created, this namespace's resource manifest is immutable. This operation is idempotent. */
-export const NamespacesUpdate: API.OperationMethod<
-  NamespacesUpdateRequest,
-  NamespacesUpdateResponse,
-  NamespacesUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: NamespacesUpdateRequest,
-  output: NamespacesUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type OperationsListError = AzureOpError;
-/** List the operations for the provider */
-export const OperationsList: API.OperationMethod<
-  OperationsListRequest,
-  OperationsListResponse,
-  OperationsListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: OperationsListRequest,
-  output: OperationsListResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type PrivateEndpointConnectionsCreateOrUpdateError = AzureOpError;
 /** Creates or updates PrivateEndpointConnections of service namespace. */
 export const PrivateEndpointConnectionsCreateOrUpdate: API.OperationMethod<
@@ -3137,76 +3269,61 @@ export const PrivateEndpointConnectionsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type PrivateEndpointConnectionsDeleteError = AzureOpError;
-/** Deletes an existing namespace. This operation also removes all associated resources under the namespace. */
-export const PrivateEndpointConnectionsDelete: API.OperationMethod<
-  PrivateEndpointConnectionsDeleteRequest,
-  PrivateEndpointConnectionsDeleteResponse,
-  PrivateEndpointConnectionsDeleteError,
+export type RegenerateHybridConnectionKeysError = AzureOpError;
+/** Regenerates the primary or secondary connection strings to the hybrid connection. */
+export const RegenerateHybridConnectionKeys: API.OperationMethod<
+  RegenerateHybridConnectionKeysRequest,
+  AccessKeys,
+  RegenerateHybridConnectionKeysError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PrivateEndpointConnectionsDeleteRequest,
-  output: PrivateEndpointConnectionsDeleteResponse,
+  input: RegenerateHybridConnectionKeysRequest,
+  output: AccessKeys,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type PrivateEndpointConnectionsGetError = AzureOpError;
-/** Gets a description for the specified Private Endpoint Connection name. */
-export const PrivateEndpointConnectionsGet: API.OperationMethod<
-  PrivateEndpointConnectionsGetRequest,
-  PrivateEndpointConnectionsGetResponse,
-  PrivateEndpointConnectionsGetError,
+export type RegenerateNamespaceKeysError = AzureOpError;
+/** Regenerates the primary or secondary connection strings to the namespace. */
+export const RegenerateNamespaceKeys: API.OperationMethod<
+  RegenerateNamespaceKeysRequest,
+  AccessKeys,
+  RegenerateNamespaceKeysError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PrivateEndpointConnectionsGetRequest,
-  output: PrivateEndpointConnectionsGetResponse,
+  input: RegenerateNamespaceKeysRequest,
+  output: AccessKeys,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type PrivateEndpointConnectionsListError = AzureOpError;
-/** Gets the available PrivateEndpointConnections within a namespace. */
-export const PrivateEndpointConnectionsList: API.OperationMethod<
-  PrivateEndpointConnectionsListRequest,
-  PrivateEndpointConnectionListResult,
-  PrivateEndpointConnectionsListError,
+export type RegenerateWCFRelaysKeysError = AzureOpError;
+/** Regenerates the primary or secondary connection strings to the WCF relay. */
+export const RegenerateWCFRelaysKeys: API.OperationMethod<
+  RegenerateWCFRelaysKeysRequest,
+  AccessKeys,
+  RegenerateWCFRelaysKeysError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PrivateEndpointConnectionsListRequest,
-  output: PrivateEndpointConnectionListResult,
+  input: RegenerateWCFRelaysKeysRequest,
+  output: AccessKeys,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type PrivateLinkResourcesGetError = AzureOpError;
-/** Gets a private link resource by a specified group name for a container registry. */
-export const PrivateLinkResourcesGet: API.OperationMethod<
-  PrivateLinkResourcesGetRequest,
-  PrivateLinkResourcesGetResponse,
-  PrivateLinkResourcesGetError,
+export type UpdateNamespaceError = AzureOpError;
+/** Creates or updates a namespace. Once created, this namespace's resource manifest is immutable. This operation is idempotent. */
+export const UpdateNamespace: API.OperationMethod<
+  UpdateNamespaceRequest,
+  UpdateNamespaceResponse,
+  UpdateNamespaceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PrivateLinkResourcesGetRequest,
-  output: PrivateLinkResourcesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateLinkResourcesListError = AzureOpError;
-/** Lists the private link resources for a container registry. */
-export const PrivateLinkResourcesList: API.OperationMethod<
-  PrivateLinkResourcesListRequest,
-  PrivateLinkResourcesListResult,
-  PrivateLinkResourcesListError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateLinkResourcesListRequest,
-  output: PrivateLinkResourcesListResult,
+  input: UpdateNamespaceRequest,
+  output: UpdateNamespaceResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -3237,126 +3354,6 @@ export const WCFRelaysCreateOrUpdateAuthorizationRule: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: WCFRelaysCreateOrUpdateAuthorizationRuleRequest,
   output: WCFRelaysCreateOrUpdateAuthorizationRuleResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WCFRelaysDeleteError = AzureOpError;
-/** Deletes a WCF relay. */
-export const WCFRelaysDelete: API.OperationMethod<
-  WCFRelaysDeleteRequest,
-  WCFRelaysDeleteResponse,
-  WCFRelaysDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WCFRelaysDeleteRequest,
-  output: WCFRelaysDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WCFRelaysDeleteAuthorizationRuleError = AzureOpError;
-/** Deletes a WCF relay authorization rule. */
-export const WCFRelaysDeleteAuthorizationRule: API.OperationMethod<
-  WCFRelaysDeleteAuthorizationRuleRequest,
-  WCFRelaysDeleteAuthorizationRuleResponse,
-  WCFRelaysDeleteAuthorizationRuleError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WCFRelaysDeleteAuthorizationRuleRequest,
-  output: WCFRelaysDeleteAuthorizationRuleResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WCFRelaysGetError = AzureOpError;
-/** Returns the description for the specified WCF relay. */
-export const WCFRelaysGet: API.OperationMethod<
-  WCFRelaysGetRequest,
-  WCFRelaysGetResponse,
-  WCFRelaysGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WCFRelaysGetRequest,
-  output: WCFRelaysGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WCFRelaysGetAuthorizationRuleError = AzureOpError;
-/** Get authorizationRule for a WCF relay by name. */
-export const WCFRelaysGetAuthorizationRule: API.OperationMethod<
-  WCFRelaysGetAuthorizationRuleRequest,
-  WCFRelaysGetAuthorizationRuleResponse,
-  WCFRelaysGetAuthorizationRuleError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WCFRelaysGetAuthorizationRuleRequest,
-  output: WCFRelaysGetAuthorizationRuleResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WCFRelaysListAuthorizationRulesError = AzureOpError;
-/** Authorization rules for a WCF relay. */
-export const WCFRelaysListAuthorizationRules: API.OperationMethod<
-  WCFRelaysListAuthorizationRulesRequest,
-  AuthorizationRuleListResult,
-  WCFRelaysListAuthorizationRulesError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WCFRelaysListAuthorizationRulesRequest,
-  output: AuthorizationRuleListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WCFRelaysListByNamespaceError = AzureOpError;
-/** Lists the WCF relays within the namespace. */
-export const WCFRelaysListByNamespace: API.OperationMethod<
-  WCFRelaysListByNamespaceRequest,
-  WcfRelaysListResult,
-  WCFRelaysListByNamespaceError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WCFRelaysListByNamespaceRequest,
-  output: WcfRelaysListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WCFRelaysListKeysError = AzureOpError;
-/** Primary and secondary connection strings to the WCF relay. */
-export const WCFRelaysListKeys: API.OperationMethod<
-  WCFRelaysListKeysRequest,
-  AccessKeys,
-  WCFRelaysListKeysError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WCFRelaysListKeysRequest,
-  output: AccessKeys,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WCFRelaysRegenerateKeysError = AzureOpError;
-/** Regenerates the primary or secondary connection strings to the WCF relay. */
-export const WCFRelaysRegenerateKeys: API.OperationMethod<
-  WCFRelaysRegenerateKeysRequest,
-  AccessKeys,
-  WCFRelaysRegenerateKeysError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WCFRelaysRegenerateKeysRequest,
-  output: AccessKeys,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

@@ -63,90 +63,94 @@ export const V1AcceptInviteExternalJitAccessRequest = /*@__PURE__*/ S.suspend(
   identifier: "V1AcceptInviteExternalJitAccessRequest",
 }) as any as S.Schema<V1AcceptInviteExternalJitAccessRequest>;
 
-export interface JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsItem {
+export interface JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem {
   cidr: string;
 }
-export const JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsItem =
+export const JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       cidr: S.String,
     }),
   ).annotate({
-    identifier: "JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsItem",
-  }) as any as S.Schema<JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsItem>;
+    identifier:
+      "JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem",
+  }) as any as S.Schema<JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem>;
 
-export type JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsList =
-  Array<JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsItem>;
-export const JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsList =
+export type JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsList =
+  Array<JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem>;
+export const JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsList =
   /*@__PURE__*/ S.Array(
-    JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsItem,
-  ) as any as S.Schema<JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsList>;
+    JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem,
+  ) as any as S.Schema<JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsList>;
 
-export type JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsV6Item =
-  JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsItem;
-export const JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsV6Item =
-  JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsItem;
+export type JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsV6Item =
+  JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem;
+export const JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsV6Item =
+  JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem;
 
-export type JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsV6List =
-  Array<JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsItem>;
-export const JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsV6List =
+export type JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsV6List =
+  Array<JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem>;
+export const JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsV6List =
   /*@__PURE__*/ S.Array(
-    JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsItem,
-  ) as any as S.Schema<JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsV6List>;
+    JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem,
+  ) as any as S.Schema<JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsV6List>;
 
-export interface JitAccessResponseUserRolesItemAllowedNetworks {
-  allowed_cidrs?: JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsList;
-  allowed_cidrs_v6?: JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsV6List;
+export interface JitAccessResponseOutputUserRolesItemAllowedNetworks {
+  allowed_cidrs?: JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsList;
+  allowed_cidrs_v6?: JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsV6List;
 }
-export const JitAccessResponseUserRolesItemAllowedNetworks =
+export const JitAccessResponseOutputUserRolesItemAllowedNetworks =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       allowed_cidrs: S.optional(
-        JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsList,
+        JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsList,
       ),
       allowed_cidrs_v6: S.optional(
-        JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsV6List,
+        JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsV6List,
       ),
     }),
   ).annotate({
-    identifier: "JitAccessResponseUserRolesItemAllowedNetworks",
-  }) as any as S.Schema<JitAccessResponseUserRolesItemAllowedNetworks>;
+    identifier: "JitAccessResponseOutputUserRolesItemAllowedNetworks",
+  }) as any as S.Schema<JitAccessResponseOutputUserRolesItemAllowedNetworks>;
 
-export interface JitAccessResponseUserRolesItem {
+export interface JitAccessResponseOutputUserRolesItem {
   role: string;
   expires_at?: number;
-  allowed_networks?: JitAccessResponseUserRolesItemAllowedNetworks;
+  allowed_networks?: JitAccessResponseOutputUserRolesItemAllowedNetworks;
   branches_only?: boolean;
 }
-export const JitAccessResponseUserRolesItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    role: S.String,
-    expires_at: S.optional(S.Number),
-    allowed_networks: S.optional(JitAccessResponseUserRolesItemAllowedNetworks),
-    branches_only: S.optional(S.Boolean),
-  }),
+export const JitAccessResponseOutputUserRolesItem = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      role: S.String,
+      expires_at: S.optional(S.Number),
+      allowed_networks: S.optional(
+        JitAccessResponseOutputUserRolesItemAllowedNetworks,
+      ),
+      branches_only: S.optional(S.Boolean),
+    }),
 ).annotate({
-  identifier: "JitAccessResponseUserRolesItem",
-}) as any as S.Schema<JitAccessResponseUserRolesItem>;
+  identifier: "JitAccessResponseOutputUserRolesItem",
+}) as any as S.Schema<JitAccessResponseOutputUserRolesItem>;
 
-export type JitAccessResponseUserRolesList =
-  Array<JitAccessResponseUserRolesItem>;
-export const JitAccessResponseUserRolesList = /*@__PURE__*/ S.Array(
-  JitAccessResponseUserRolesItem,
-) as any as S.Schema<JitAccessResponseUserRolesList>;
+export type JitAccessResponseOutputUserRolesList =
+  Array<JitAccessResponseOutputUserRolesItem>;
+export const JitAccessResponseOutputUserRolesList = /*@__PURE__*/ S.Array(
+  JitAccessResponseOutputUserRolesItem,
+) as any as S.Schema<JitAccessResponseOutputUserRolesList>;
 
-export interface JitAccessResponse {
+export interface JitAccessResponseOutput {
   user_id?: string;
-  user_roles: JitAccessResponseUserRolesList;
+  user_roles: JitAccessResponseOutputUserRolesList;
 }
-export const JitAccessResponse = /*@__PURE__*/ S.suspend(() =>
+export const JitAccessResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     user_id: S.optional(S.String),
-    user_roles: JitAccessResponseUserRolesList,
+    user_roles: JitAccessResponseOutputUserRolesList,
   }),
 ).annotate({
-  identifier: "JitAccessResponse",
-}) as any as S.Schema<JitAccessResponse>;
+  identifier: "JitAccessResponseOutput",
+}) as any as S.Schema<JitAccessResponseOutput>;
 
 export interface V1ActivateCustomHostnameRequest {
   /** Project ref */
@@ -166,63 +170,60 @@ export const V1ActivateCustomHostnameRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1ActivateCustomHostnameRequest",
 }) as any as S.Schema<V1ActivateCustomHostnameRequest>;
 
-export type UpdateCustomHostnameResponseStatus =
+export type UpdateCustomHostnameResponseOutputStatus =
   | "1_not_started"
   | "2_initiated"
   | "3_challenge_verified"
   | "4_origin_setup_completed"
   | "5_services_reconfigured";
-export const UpdateCustomHostnameResponseStatus = /*@__PURE__*/ S.String;
+export const UpdateCustomHostnameResponseOutputStatus = /*@__PURE__*/ S.String;
 
-export type UpdateCustomHostnameResponseJsonValueCase0 =
-  | string
-  | number
-  | boolean;
-export const UpdateCustomHostnameResponseJsonValueCase0 =
-  /*@__PURE__*/ S.Unknown.pipe(T.UnionCases([[], [], []]));
+export type JsonValueOutputCase0 = string | number | boolean;
+export const JsonValueOutputCase0 = /*@__PURE__*/ S.Unknown.pipe(
+  T.UnionCases([[], [], []]),
+);
 
-export type UpdateCustomHostnameResponseJsonValueCase1List =
-  Array<UpdateCustomHostnameResponseJsonValue>;
-export const UpdateCustomHostnameResponseJsonValueCase1List =
-  /*@__PURE__*/ S.Array(
-    S.suspend(() => UpdateCustomHostnameResponseJsonValue),
-  ) as any as S.Schema<UpdateCustomHostnameResponseJsonValueCase1List>;
+export type JsonValueOutputCase1List = Array<JsonValueOutput>;
+export const JsonValueOutputCase1List = /*@__PURE__*/ S.Array(
+  S.suspend(() => JsonValueOutput),
+) as any as S.Schema<JsonValueOutputCase1List>;
 
-export type UpdateCustomHostnameResponseJsonValueCase2Map = {
-  [key: string]: UpdateCustomHostnameResponseJsonValue | undefined;
+export type JsonValueOutputCase2Map = {
+  [key: string]: JsonValueOutput | undefined;
 };
-export const UpdateCustomHostnameResponseJsonValueCase2Map =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.suspend(() => UpdateCustomHostnameResponseJsonValue),
-  ) as any as S.Schema<UpdateCustomHostnameResponseJsonValueCase2Map>;
+export const JsonValueOutputCase2Map = /*@__PURE__*/ S.Record(
+  S.String,
+  S.suspend(() => JsonValueOutput),
+) as any as S.Schema<JsonValueOutputCase2Map>;
 
 /** Any JSON-serializable value */
-export type UpdateCustomHostnameResponseJsonValue =
-  | UpdateCustomHostnameResponseJsonValueCase0
-  | UpdateCustomHostnameResponseJsonValueCase1List
-  | UpdateCustomHostnameResponseJsonValueCase2Map;
-export const UpdateCustomHostnameResponseJsonValue =
-  /*@__PURE__*/ S.Unknown.pipe(T.UnionCases([[], [], []]));
+export type JsonValueOutput =
+  | JsonValueOutputCase0
+  | JsonValueOutputCase1List
+  | JsonValueOutputCase2Map;
+export const JsonValueOutput = /*@__PURE__*/ S.Unknown.pipe(
+  T.UnionCases([[], [], []]),
+);
 
-export type UpdateCustomHostnameResponseDataErrorsList =
-  Array<UpdateCustomHostnameResponseJsonValue>;
-export const UpdateCustomHostnameResponseDataErrorsList = /*@__PURE__*/ S.Array(
-  UpdateCustomHostnameResponseJsonValue,
-) as any as S.Schema<UpdateCustomHostnameResponseDataErrorsList>;
-
-export type UpdateCustomHostnameResponseDataMessagesList =
-  Array<UpdateCustomHostnameResponseJsonValue>;
-export const UpdateCustomHostnameResponseDataMessagesList =
+export type UpdateCustomHostnameResponseOutputDataErrorsList =
+  Array<JsonValueOutput>;
+export const UpdateCustomHostnameResponseOutputDataErrorsList =
   /*@__PURE__*/ S.Array(
-    UpdateCustomHostnameResponseJsonValue,
-  ) as any as S.Schema<UpdateCustomHostnameResponseDataMessagesList>;
+    JsonValueOutput,
+  ) as any as S.Schema<UpdateCustomHostnameResponseOutputDataErrorsList>;
 
-export interface UpdateCustomHostnameResponseDataResultSslValidationRecordsItem {
+export type UpdateCustomHostnameResponseOutputDataMessagesList =
+  Array<JsonValueOutput>;
+export const UpdateCustomHostnameResponseOutputDataMessagesList =
+  /*@__PURE__*/ S.Array(
+    JsonValueOutput,
+  ) as any as S.Schema<UpdateCustomHostnameResponseOutputDataMessagesList>;
+
+export interface UpdateCustomHostnameResponseOutputDataResultSslValidationRecordsItem {
   txt_name: string;
   txt_value: string;
 }
-export const UpdateCustomHostnameResponseDataResultSslValidationRecordsItem =
+export const UpdateCustomHostnameResponseOutputDataResultSslValidationRecordsItem =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       txt_name: S.String,
@@ -230,60 +231,62 @@ export const UpdateCustomHostnameResponseDataResultSslValidationRecordsItem =
     }),
   ).annotate({
     identifier:
-      "UpdateCustomHostnameResponseDataResultSslValidationRecordsItem",
-  }) as any as S.Schema<UpdateCustomHostnameResponseDataResultSslValidationRecordsItem>;
+      "UpdateCustomHostnameResponseOutputDataResultSslValidationRecordsItem",
+  }) as any as S.Schema<UpdateCustomHostnameResponseOutputDataResultSslValidationRecordsItem>;
 
-export type UpdateCustomHostnameResponseDataResultSslValidationRecordsList =
-  Array<UpdateCustomHostnameResponseDataResultSslValidationRecordsItem>;
-export const UpdateCustomHostnameResponseDataResultSslValidationRecordsList =
+export type UpdateCustomHostnameResponseOutputDataResultSslValidationRecordsList =
+  Array<UpdateCustomHostnameResponseOutputDataResultSslValidationRecordsItem>;
+export const UpdateCustomHostnameResponseOutputDataResultSslValidationRecordsList =
   /*@__PURE__*/ S.Array(
-    UpdateCustomHostnameResponseDataResultSslValidationRecordsItem,
-  ) as any as S.Schema<UpdateCustomHostnameResponseDataResultSslValidationRecordsList>;
+    UpdateCustomHostnameResponseOutputDataResultSslValidationRecordsItem,
+  ) as any as S.Schema<UpdateCustomHostnameResponseOutputDataResultSslValidationRecordsList>;
 
-export interface UpdateCustomHostnameResponseDataResultSslValidationErrorsItem {
+export interface UpdateCustomHostnameResponseOutputDataResultSslValidationErrorsItem {
   message: string;
 }
-export const UpdateCustomHostnameResponseDataResultSslValidationErrorsItem =
+export const UpdateCustomHostnameResponseOutputDataResultSslValidationErrorsItem =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       message: S.String,
     }),
   ).annotate({
-    identifier: "UpdateCustomHostnameResponseDataResultSslValidationErrorsItem",
-  }) as any as S.Schema<UpdateCustomHostnameResponseDataResultSslValidationErrorsItem>;
+    identifier:
+      "UpdateCustomHostnameResponseOutputDataResultSslValidationErrorsItem",
+  }) as any as S.Schema<UpdateCustomHostnameResponseOutputDataResultSslValidationErrorsItem>;
 
-export type UpdateCustomHostnameResponseDataResultSslValidationErrorsList =
-  Array<UpdateCustomHostnameResponseDataResultSslValidationErrorsItem>;
-export const UpdateCustomHostnameResponseDataResultSslValidationErrorsList =
+export type UpdateCustomHostnameResponseOutputDataResultSslValidationErrorsList =
+  Array<UpdateCustomHostnameResponseOutputDataResultSslValidationErrorsItem>;
+export const UpdateCustomHostnameResponseOutputDataResultSslValidationErrorsList =
   /*@__PURE__*/ S.Array(
-    UpdateCustomHostnameResponseDataResultSslValidationErrorsItem,
-  ) as any as S.Schema<UpdateCustomHostnameResponseDataResultSslValidationErrorsList>;
+    UpdateCustomHostnameResponseOutputDataResultSslValidationErrorsItem,
+  ) as any as S.Schema<UpdateCustomHostnameResponseOutputDataResultSslValidationErrorsList>;
 
-export interface UpdateCustomHostnameResponseDataResultSsl {
+export interface UpdateCustomHostnameResponseOutputDataResultSsl {
   status: string;
-  validation_records: UpdateCustomHostnameResponseDataResultSslValidationRecordsList;
-  validation_errors?: UpdateCustomHostnameResponseDataResultSslValidationErrorsList;
+  validation_records?: UpdateCustomHostnameResponseOutputDataResultSslValidationRecordsList;
+  validation_errors?: UpdateCustomHostnameResponseOutputDataResultSslValidationErrorsList;
 }
-export const UpdateCustomHostnameResponseDataResultSsl =
+export const UpdateCustomHostnameResponseOutputDataResultSsl =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       status: S.String,
-      validation_records:
-        UpdateCustomHostnameResponseDataResultSslValidationRecordsList,
+      validation_records: S.optional(
+        UpdateCustomHostnameResponseOutputDataResultSslValidationRecordsList,
+      ),
       validation_errors: S.optional(
-        UpdateCustomHostnameResponseDataResultSslValidationErrorsList,
+        UpdateCustomHostnameResponseOutputDataResultSslValidationErrorsList,
       ),
     }),
   ).annotate({
-    identifier: "UpdateCustomHostnameResponseDataResultSsl",
-  }) as any as S.Schema<UpdateCustomHostnameResponseDataResultSsl>;
+    identifier: "UpdateCustomHostnameResponseOutputDataResultSsl",
+  }) as any as S.Schema<UpdateCustomHostnameResponseOutputDataResultSsl>;
 
-export interface UpdateCustomHostnameResponseDataResultOwnershipVerification {
+export interface UpdateCustomHostnameResponseOutputDataResultOwnershipVerification {
   type: string;
   name: string;
   value: string;
 }
-export const UpdateCustomHostnameResponseDataResultOwnershipVerification =
+export const UpdateCustomHostnameResponseOutputDataResultOwnershipVerification =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       type: S.String,
@@ -291,74 +294,77 @@ export const UpdateCustomHostnameResponseDataResultOwnershipVerification =
       value: S.String,
     }),
   ).annotate({
-    identifier: "UpdateCustomHostnameResponseDataResultOwnershipVerification",
-  }) as any as S.Schema<UpdateCustomHostnameResponseDataResultOwnershipVerification>;
+    identifier:
+      "UpdateCustomHostnameResponseOutputDataResultOwnershipVerification",
+  }) as any as S.Schema<UpdateCustomHostnameResponseOutputDataResultOwnershipVerification>;
 
-export type UpdateCustomHostnameResponseDataResultVerificationErrorsList =
+export type UpdateCustomHostnameResponseOutputDataResultVerificationErrorsList =
   Array<string>;
-export const UpdateCustomHostnameResponseDataResultVerificationErrorsList =
+export const UpdateCustomHostnameResponseOutputDataResultVerificationErrorsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<UpdateCustomHostnameResponseDataResultVerificationErrorsList>;
+  ) as any as S.Schema<UpdateCustomHostnameResponseOutputDataResultVerificationErrorsList>;
 
-export interface UpdateCustomHostnameResponseDataResult {
+export interface UpdateCustomHostnameResponseOutputDataResult {
   id: string;
   hostname: string;
-  ssl: UpdateCustomHostnameResponseDataResultSsl;
-  ownership_verification: UpdateCustomHostnameResponseDataResultOwnershipVerification;
+  ssl: UpdateCustomHostnameResponseOutputDataResultSsl;
+  ownership_verification?: UpdateCustomHostnameResponseOutputDataResultOwnershipVerification;
   custom_origin_server: string;
-  verification_errors?: UpdateCustomHostnameResponseDataResultVerificationErrorsList;
+  verification_errors?: UpdateCustomHostnameResponseOutputDataResultVerificationErrorsList;
   status: string;
 }
-export const UpdateCustomHostnameResponseDataResult = /*@__PURE__*/ S.suspend(
-  () =>
+export const UpdateCustomHostnameResponseOutputDataResult =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.String,
       hostname: S.String,
-      ssl: UpdateCustomHostnameResponseDataResultSsl,
-      ownership_verification:
-        UpdateCustomHostnameResponseDataResultOwnershipVerification,
+      ssl: UpdateCustomHostnameResponseOutputDataResultSsl,
+      ownership_verification: S.optional(
+        UpdateCustomHostnameResponseOutputDataResultOwnershipVerification,
+      ),
       custom_origin_server: S.String,
       verification_errors: S.optional(
-        UpdateCustomHostnameResponseDataResultVerificationErrorsList,
+        UpdateCustomHostnameResponseOutputDataResultVerificationErrorsList,
       ),
       status: S.String,
     }),
-).annotate({
-  identifier: "UpdateCustomHostnameResponseDataResult",
-}) as any as S.Schema<UpdateCustomHostnameResponseDataResult>;
+  ).annotate({
+    identifier: "UpdateCustomHostnameResponseOutputDataResult",
+  }) as any as S.Schema<UpdateCustomHostnameResponseOutputDataResult>;
 
-export interface UpdateCustomHostnameResponseData {
+export interface UpdateCustomHostnameResponseOutputData {
   success: boolean;
-  errors: UpdateCustomHostnameResponseDataErrorsList;
-  messages: UpdateCustomHostnameResponseDataMessagesList;
-  result: UpdateCustomHostnameResponseDataResult;
+  errors: UpdateCustomHostnameResponseOutputDataErrorsList;
+  messages: UpdateCustomHostnameResponseOutputDataMessagesList;
+  result: UpdateCustomHostnameResponseOutputDataResult;
 }
-export const UpdateCustomHostnameResponseData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    success: S.Boolean,
-    errors: UpdateCustomHostnameResponseDataErrorsList,
-    messages: UpdateCustomHostnameResponseDataMessagesList,
-    result: UpdateCustomHostnameResponseDataResult,
-  }),
+export const UpdateCustomHostnameResponseOutputData = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      success: S.Boolean,
+      errors: UpdateCustomHostnameResponseOutputDataErrorsList,
+      messages: UpdateCustomHostnameResponseOutputDataMessagesList,
+      result: UpdateCustomHostnameResponseOutputDataResult,
+    }),
 ).annotate({
-  identifier: "UpdateCustomHostnameResponseData",
-}) as any as S.Schema<UpdateCustomHostnameResponseData>;
+  identifier: "UpdateCustomHostnameResponseOutputData",
+}) as any as S.Schema<UpdateCustomHostnameResponseOutputData>;
 
-export interface UpdateCustomHostnameResponse {
-  status: UpdateCustomHostnameResponseStatus;
+export interface UpdateCustomHostnameResponseOutput {
+  status: UpdateCustomHostnameResponseOutputStatus;
   custom_hostname: string;
-  data: UpdateCustomHostnameResponseData;
+  data: UpdateCustomHostnameResponseOutputData;
 }
-export const UpdateCustomHostnameResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateCustomHostnameResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    status: UpdateCustomHostnameResponseStatus,
+    status: UpdateCustomHostnameResponseOutputStatus,
     custom_hostname: S.String,
-    data: UpdateCustomHostnameResponseData,
+    data: UpdateCustomHostnameResponseOutputData,
   }),
 ).annotate({
-  identifier: "UpdateCustomHostnameResponse",
-}) as any as S.Schema<UpdateCustomHostnameResponse>;
+  identifier: "UpdateCustomHostnameResponseOutput",
+}) as any as S.Schema<UpdateCustomHostnameResponseOutput>;
 
 export interface V1ActivateVanitySubdomainConfigRequest {
   /** Project ref */
@@ -381,16 +387,17 @@ export const V1ActivateVanitySubdomainConfigRequest = /*@__PURE__*/ S.suspend(
   identifier: "V1ActivateVanitySubdomainConfigRequest",
 }) as any as S.Schema<V1ActivateVanitySubdomainConfigRequest>;
 
-export interface ActivateVanitySubdomainResponse {
+export interface ActivateVanitySubdomainResponseOutput {
   custom_domain: string;
 }
-export const ActivateVanitySubdomainResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    custom_domain: S.String,
-  }),
+export const ActivateVanitySubdomainResponseOutput = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      custom_domain: S.String,
+    }),
 ).annotate({
-  identifier: "ActivateVanitySubdomainResponse",
-}) as any as S.Schema<ActivateVanitySubdomainResponse>;
+  identifier: "ActivateVanitySubdomainResponseOutput",
+}) as any as S.Schema<ActivateVanitySubdomainResponseOutput>;
 
 export interface V1ApplyAMigrationRequest {
   /** Project ref */
@@ -534,79 +541,80 @@ export const V1AuthorizeJitAccessRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1AuthorizeJitAccessRequest",
 }) as any as S.Schema<V1AuthorizeJitAccessRequest>;
 
-export type JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsItem =
-  JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsItem;
-export const JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsItem =
-  JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsItem;
+export type JitAuthorizeAccessResponseOutputUserRoleAllowedNetworksAllowedCidrsItem =
+  JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem;
+export const JitAuthorizeAccessResponseOutputUserRoleAllowedNetworksAllowedCidrsItem =
+  JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem;
 
-export type JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsList =
-  Array<JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsItem>;
-export const JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsList =
+export type JitAuthorizeAccessResponseOutputUserRoleAllowedNetworksAllowedCidrsList =
+  Array<JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem>;
+export const JitAuthorizeAccessResponseOutputUserRoleAllowedNetworksAllowedCidrsList =
   /*@__PURE__*/ S.Array(
-    JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsItem,
-  ) as any as S.Schema<JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsList>;
+    JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem,
+  ) as any as S.Schema<JitAuthorizeAccessResponseOutputUserRoleAllowedNetworksAllowedCidrsList>;
 
-export type JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsV6Item =
-  JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsItem;
-export const JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsV6Item =
-  JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsItem;
+export type JitAuthorizeAccessResponseOutputUserRoleAllowedNetworksAllowedCidrsV6Item =
+  JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem;
+export const JitAuthorizeAccessResponseOutputUserRoleAllowedNetworksAllowedCidrsV6Item =
+  JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem;
 
-export type JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsV6List =
-  Array<JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsItem>;
-export const JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsV6List =
+export type JitAuthorizeAccessResponseOutputUserRoleAllowedNetworksAllowedCidrsV6List =
+  Array<JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem>;
+export const JitAuthorizeAccessResponseOutputUserRoleAllowedNetworksAllowedCidrsV6List =
   /*@__PURE__*/ S.Array(
-    JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsItem,
-  ) as any as S.Schema<JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsV6List>;
+    JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem,
+  ) as any as S.Schema<JitAuthorizeAccessResponseOutputUserRoleAllowedNetworksAllowedCidrsV6List>;
 
-export interface JitAuthorizeAccessResponseUserRoleAllowedNetworks {
-  allowed_cidrs?: JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsList;
-  allowed_cidrs_v6?: JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsV6List;
+export interface JitAuthorizeAccessResponseOutputUserRoleAllowedNetworks {
+  allowed_cidrs?: JitAuthorizeAccessResponseOutputUserRoleAllowedNetworksAllowedCidrsList;
+  allowed_cidrs_v6?: JitAuthorizeAccessResponseOutputUserRoleAllowedNetworksAllowedCidrsV6List;
 }
-export const JitAuthorizeAccessResponseUserRoleAllowedNetworks =
+export const JitAuthorizeAccessResponseOutputUserRoleAllowedNetworks =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       allowed_cidrs: S.optional(
-        JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsList,
+        JitAuthorizeAccessResponseOutputUserRoleAllowedNetworksAllowedCidrsList,
       ),
       allowed_cidrs_v6: S.optional(
-        JitAuthorizeAccessResponseUserRoleAllowedNetworksAllowedCidrsV6List,
+        JitAuthorizeAccessResponseOutputUserRoleAllowedNetworksAllowedCidrsV6List,
       ),
     }),
   ).annotate({
-    identifier: "JitAuthorizeAccessResponseUserRoleAllowedNetworks",
-  }) as any as S.Schema<JitAuthorizeAccessResponseUserRoleAllowedNetworks>;
+    identifier: "JitAuthorizeAccessResponseOutputUserRoleAllowedNetworks",
+  }) as any as S.Schema<JitAuthorizeAccessResponseOutputUserRoleAllowedNetworks>;
 
-export interface JitAuthorizeAccessResponseUserRole {
+export interface JitAuthorizeAccessResponseOutputUserRole {
   role: string;
   expires_at?: number;
-  allowed_networks?: JitAuthorizeAccessResponseUserRoleAllowedNetworks;
+  allowed_networks?: JitAuthorizeAccessResponseOutputUserRoleAllowedNetworks;
   branches_only?: boolean;
 }
-export const JitAuthorizeAccessResponseUserRole = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    role: S.String,
-    expires_at: S.optional(S.Number),
-    allowed_networks: S.optional(
-      JitAuthorizeAccessResponseUserRoleAllowedNetworks,
-    ),
-    branches_only: S.optional(S.Boolean),
-  }),
+export const JitAuthorizeAccessResponseOutputUserRole = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      role: S.String,
+      expires_at: S.optional(S.Number),
+      allowed_networks: S.optional(
+        JitAuthorizeAccessResponseOutputUserRoleAllowedNetworks,
+      ),
+      branches_only: S.optional(S.Boolean),
+    }),
 ).annotate({
-  identifier: "JitAuthorizeAccessResponseUserRole",
-}) as any as S.Schema<JitAuthorizeAccessResponseUserRole>;
+  identifier: "JitAuthorizeAccessResponseOutputUserRole",
+}) as any as S.Schema<JitAuthorizeAccessResponseOutputUserRole>;
 
-export interface JitAuthorizeAccessResponse {
+export interface JitAuthorizeAccessResponseOutput {
   user_id: string;
-  user_role: JitAuthorizeAccessResponseUserRole;
+  user_role: JitAuthorizeAccessResponseOutputUserRole;
 }
-export const JitAuthorizeAccessResponse = /*@__PURE__*/ S.suspend(() =>
+export const JitAuthorizeAccessResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     user_id: S.String,
-    user_role: JitAuthorizeAccessResponseUserRole,
+    user_role: JitAuthorizeAccessResponseOutputUserRole,
   }),
 ).annotate({
-  identifier: "JitAuthorizeAccessResponse",
-}) as any as S.Schema<JitAuthorizeAccessResponse>;
+  identifier: "JitAuthorizeAccessResponseOutput",
+}) as any as S.Schema<JitAuthorizeAccessResponseOutput>;
 
 export type V1AuthorizeUserRequestResponseType =
   | "code"
@@ -792,18 +800,18 @@ export const V1BulkUpdateFunctionsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1BulkUpdateFunctionsRequest",
 }) as any as S.Schema<V1BulkUpdateFunctionsRequest>;
 
-export type BulkUpdateFunctionResponseFunctionsItemStatus =
+export type BulkUpdateFunctionResponseOutputFunctionsItemStatus =
   | "ACTIVE"
   | "REMOVED"
   | "THROTTLED";
-export const BulkUpdateFunctionResponseFunctionsItemStatus =
+export const BulkUpdateFunctionResponseOutputFunctionsItemStatus =
   /*@__PURE__*/ S.String;
 
-export interface BulkUpdateFunctionResponseFunctionsItem {
+export interface BulkUpdateFunctionResponseOutputFunctionsItem {
   id: string;
   slug: string;
   name: string;
-  status: BulkUpdateFunctionResponseFunctionsItemStatus;
+  status: BulkUpdateFunctionResponseOutputFunctionsItemStatus;
   version: number;
   created_at: number;
   updated_at: number;
@@ -813,13 +821,13 @@ export interface BulkUpdateFunctionResponseFunctionsItem {
   import_map_path?: string;
   ezbr_sha256?: string;
 }
-export const BulkUpdateFunctionResponseFunctionsItem = /*@__PURE__*/ S.suspend(
-  () =>
+export const BulkUpdateFunctionResponseOutputFunctionsItem =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.String,
       slug: S.String,
       name: S.String,
-      status: BulkUpdateFunctionResponseFunctionsItemStatus,
+      status: BulkUpdateFunctionResponseOutputFunctionsItemStatus,
       version: S.Number,
       created_at: S.Number,
       updated_at: S.Number,
@@ -829,26 +837,27 @@ export const BulkUpdateFunctionResponseFunctionsItem = /*@__PURE__*/ S.suspend(
       import_map_path: S.optional(S.String),
       ezbr_sha256: S.optional(S.String),
     }),
-).annotate({
-  identifier: "BulkUpdateFunctionResponseFunctionsItem",
-}) as any as S.Schema<BulkUpdateFunctionResponseFunctionsItem>;
+  ).annotate({
+    identifier: "BulkUpdateFunctionResponseOutputFunctionsItem",
+  }) as any as S.Schema<BulkUpdateFunctionResponseOutputFunctionsItem>;
 
-export type BulkUpdateFunctionResponseFunctionsList =
-  Array<BulkUpdateFunctionResponseFunctionsItem>;
-export const BulkUpdateFunctionResponseFunctionsList = /*@__PURE__*/ S.Array(
-  BulkUpdateFunctionResponseFunctionsItem,
-) as any as S.Schema<BulkUpdateFunctionResponseFunctionsList>;
+export type BulkUpdateFunctionResponseOutputFunctionsList =
+  Array<BulkUpdateFunctionResponseOutputFunctionsItem>;
+export const BulkUpdateFunctionResponseOutputFunctionsList =
+  /*@__PURE__*/ S.Array(
+    BulkUpdateFunctionResponseOutputFunctionsItem,
+  ) as any as S.Schema<BulkUpdateFunctionResponseOutputFunctionsList>;
 
-export interface BulkUpdateFunctionResponse {
-  functions: BulkUpdateFunctionResponseFunctionsList;
+export interface BulkUpdateFunctionResponseOutput {
+  functions: BulkUpdateFunctionResponseOutputFunctionsList;
 }
-export const BulkUpdateFunctionResponse = /*@__PURE__*/ S.suspend(() =>
+export const BulkUpdateFunctionResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    functions: BulkUpdateFunctionResponseFunctionsList,
+    functions: BulkUpdateFunctionResponseOutputFunctionsList,
   }),
 ).annotate({
-  identifier: "BulkUpdateFunctionResponse",
-}) as any as S.Schema<BulkUpdateFunctionResponse>;
+  identifier: "BulkUpdateFunctionResponseOutput",
+}) as any as S.Schema<BulkUpdateFunctionResponseOutput>;
 
 export interface V1CancelAProjectRestorationRequest {
   /** Project ref */
@@ -896,16 +905,16 @@ export const V1CheckVanitySubdomainAvailabilityRequest =
     identifier: "V1CheckVanitySubdomainAvailabilityRequest",
   }) as any as S.Schema<V1CheckVanitySubdomainAvailabilityRequest>;
 
-export interface SubdomainAvailabilityResponse {
+export interface SubdomainAvailabilityResponseOutput {
   available: boolean;
 }
-export const SubdomainAvailabilityResponse = /*@__PURE__*/ S.suspend(() =>
+export const SubdomainAvailabilityResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     available: S.Boolean,
   }),
 ).annotate({
-  identifier: "SubdomainAvailabilityResponse",
-}) as any as S.Schema<SubdomainAvailabilityResponse>;
+  identifier: "SubdomainAvailabilityResponseOutput",
+}) as any as S.Schema<SubdomainAvailabilityResponseOutput>;
 
 export interface V1ClaimProjectForOrganizationRequest {
   /** Organization slug */
@@ -1024,16 +1033,16 @@ export const V1CreateABranchRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<V1CreateABranchRequest>;
 
 /** This field is deprecated. List action runs to get branch status instead. */
-export type BranchResponseStatus =
+export type BranchResponseOutputStatus =
   | "CREATING_PROJECT"
   | "RUNNING_MIGRATIONS"
   | "MIGRATIONS_PASSED"
   | "MIGRATIONS_FAILED"
   | "FUNCTIONS_DEPLOYED"
   | "FUNCTIONS_FAILED";
-export const BranchResponseStatus = /*@__PURE__*/ S.String;
+export const BranchResponseOutputStatus = /*@__PURE__*/ S.String;
 
-export type BranchResponsePreviewProjectStatus =
+export type BranchResponseOutputPreviewProjectStatus =
   | "INACTIVE"
   | "ACTIVE_HEALTHY"
   | "ACTIVE_UNHEALTHY"
@@ -1049,9 +1058,9 @@ export type BranchResponsePreviewProjectStatus =
   | "RESTARTING"
   | "PAUSE_FAILED"
   | "RESIZING";
-export const BranchResponsePreviewProjectStatus = /*@__PURE__*/ S.String;
+export const BranchResponseOutputPreviewProjectStatus = /*@__PURE__*/ S.String;
 
-export interface BranchResponse {
+export interface BranchResponseOutput {
   id: string;
   name: string;
   project_ref: string;
@@ -1063,16 +1072,16 @@ export interface BranchResponse {
   latest_check_run_id?: number;
   persistent: boolean;
   /** This field is deprecated. List action runs to get branch status instead. */
-  status: BranchResponseStatus;
+  status: BranchResponseOutputStatus;
   created_at: string;
   updated_at: string;
   review_requested_at?: string;
   with_data: boolean;
   notify_url?: string;
   deletion_scheduled_at?: string;
-  preview_project_status?: BranchResponsePreviewProjectStatus;
+  preview_project_status?: BranchResponseOutputPreviewProjectStatus;
 }
-export const BranchResponse = /*@__PURE__*/ S.suspend(() =>
+export const BranchResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String,
     name: S.String,
@@ -1083,16 +1092,20 @@ export const BranchResponse = /*@__PURE__*/ S.suspend(() =>
     pr_number: S.optional(S.Number),
     latest_check_run_id: S.optional(S.Number),
     persistent: S.Boolean,
-    status: BranchResponseStatus,
+    status: BranchResponseOutputStatus,
     created_at: S.String,
     updated_at: S.String,
     review_requested_at: S.optional(S.String),
     with_data: S.Boolean,
     notify_url: S.optional(S.String),
     deletion_scheduled_at: S.optional(S.String),
-    preview_project_status: S.optional(BranchResponsePreviewProjectStatus),
+    preview_project_status: S.optional(
+      BranchResponseOutputPreviewProjectStatus,
+    ),
   }),
-).annotate({ identifier: "BranchResponse" }) as any as S.Schema<BranchResponse>;
+).annotate({
+  identifier: "BranchResponseOutput",
+}) as any as S.Schema<BranchResponseOutput>;
 
 export interface V1CreateAnOrganizationRequest {
   name: string;
@@ -1105,22 +1118,22 @@ export const V1CreateAnOrganizationRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1CreateAnOrganizationRequest",
 }) as any as S.Schema<V1CreateAnOrganizationRequest>;
 
-export interface OrganizationResponseV1 {
+export interface OrganizationResponseV1Output {
   /** Deprecated: Use `slug` instead. */
   id: string;
   /** Organization slug */
   slug: string;
   name: string;
 }
-export const OrganizationResponseV1 = /*@__PURE__*/ S.suspend(() =>
+export const OrganizationResponseV1Output = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String,
     slug: S.String,
     name: S.String,
   }),
 ).annotate({
-  identifier: "OrganizationResponseV1",
-}) as any as S.Schema<OrganizationResponseV1>;
+  identifier: "OrganizationResponseV1Output",
+}) as any as S.Schema<OrganizationResponseV1Output>;
 
 /** Subscription Plan is now set on organization level and is ignored in this request */
 export type V1CreateAProjectRequestPlan = "free" | "pro";
@@ -1303,7 +1316,7 @@ export const V1CreateAProjectRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1CreateAProjectRequest",
 }) as any as S.Schema<V1CreateAProjectRequest>;
 
-export type V1ProjectResponseStatus =
+export type V1ProjectResponseOutputStatus =
   | "INACTIVE"
   | "ACTIVE_HEALTHY"
   | "ACTIVE_UNHEALTHY"
@@ -1319,9 +1332,9 @@ export type V1ProjectResponseStatus =
   | "RESTARTING"
   | "PAUSE_FAILED"
   | "RESIZING";
-export const V1ProjectResponseStatus = /*@__PURE__*/ S.String;
+export const V1ProjectResponseOutputStatus = /*@__PURE__*/ S.String;
 
-export interface V1ProjectResponse {
+export interface V1ProjectResponseOutput {
   /** Deprecated: Use `ref` instead. */
   id: string;
   /** Project ref */
@@ -1336,9 +1349,9 @@ export interface V1ProjectResponse {
   region: string;
   /** Creation timestamp */
   created_at: string;
-  status: V1ProjectResponseStatus;
+  status: V1ProjectResponseOutputStatus;
 }
-export const V1ProjectResponse = /*@__PURE__*/ S.suspend(() =>
+export const V1ProjectResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String,
     ref: S.String,
@@ -1347,11 +1360,11 @@ export const V1ProjectResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.String,
     region: S.String,
     created_at: S.String,
-    status: V1ProjectResponseStatus,
+    status: V1ProjectResponseOutputStatus,
   }),
 ).annotate({
-  identifier: "V1ProjectResponse",
-}) as any as S.Schema<V1ProjectResponse>;
+  identifier: "V1ProjectResponseOutput",
+}) as any as S.Schema<V1ProjectResponseOutput>;
 
 /** What type of provider will be created */
 export type V1CreateASsoProviderRequestType = "saml";
@@ -1380,8 +1393,8 @@ export const V1CreateASsoProviderRequestAttributeMappingKeysValueDefault =
 export interface V1CreateASsoProviderRequestAttributeMappingKeysValue {
   name?: string;
   names?: V1CreateASsoProviderRequestAttributeMappingKeysValueNamesList;
-  default?: V1CreateASsoProviderRequestAttributeMappingKeysValueDefault;
   array?: boolean;
+  default?: V1CreateASsoProviderRequestAttributeMappingKeysValueDefault;
 }
 export const V1CreateASsoProviderRequestAttributeMappingKeysValue =
   /*@__PURE__*/ S.suspend(() =>
@@ -1390,10 +1403,10 @@ export const V1CreateASsoProviderRequestAttributeMappingKeysValue =
       names: S.optional(
         V1CreateASsoProviderRequestAttributeMappingKeysValueNamesList,
       ),
+      array: S.optional(S.Boolean),
       default: S.optional(
         V1CreateASsoProviderRequestAttributeMappingKeysValueDefault,
       ),
-      array: S.optional(S.Boolean),
     }),
   ).annotate({
     identifier: "V1CreateASsoProviderRequestAttributeMappingKeysValue",
@@ -1460,131 +1473,135 @@ export const V1CreateASsoProviderRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1CreateASsoProviderRequest",
 }) as any as S.Schema<V1CreateASsoProviderRequest>;
 
-export type CreateProviderResponseSamlAttributeMappingKeysValueNamesList =
+export type CreateProviderResponseOutputSamlAttributeMappingKeysValueNamesList =
   Array<string>;
-export const CreateProviderResponseSamlAttributeMappingKeysValueNamesList =
+export const CreateProviderResponseOutputSamlAttributeMappingKeysValueNamesList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<CreateProviderResponseSamlAttributeMappingKeysValueNamesList>;
+  ) as any as S.Schema<CreateProviderResponseOutputSamlAttributeMappingKeysValueNamesList>;
 
-export type CreateProviderResponseSamlAttributeMappingKeysValueDefault =
+export type CreateProviderResponseOutputSamlAttributeMappingKeysValueDefault =
   | unknown
   | number
   | string
   | boolean;
-export const CreateProviderResponseSamlAttributeMappingKeysValueDefault =
+export const CreateProviderResponseOutputSamlAttributeMappingKeysValueDefault =
   /*@__PURE__*/ S.Unknown.pipe(T.UnionCases([[], [], [], []]));
 
-export interface CreateProviderResponseSamlAttributeMappingKeysValue {
+export interface CreateProviderResponseOutputSamlAttributeMappingKeysValue {
   name?: string;
-  names?: CreateProviderResponseSamlAttributeMappingKeysValueNamesList;
-  default?: CreateProviderResponseSamlAttributeMappingKeysValueDefault;
+  names?: CreateProviderResponseOutputSamlAttributeMappingKeysValueNamesList;
   array?: boolean;
+  default?: CreateProviderResponseOutputSamlAttributeMappingKeysValueDefault;
 }
-export const CreateProviderResponseSamlAttributeMappingKeysValue =
+export const CreateProviderResponseOutputSamlAttributeMappingKeysValue =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       name: S.optional(S.String),
       names: S.optional(
-        CreateProviderResponseSamlAttributeMappingKeysValueNamesList,
-      ),
-      default: S.optional(
-        CreateProviderResponseSamlAttributeMappingKeysValueDefault,
+        CreateProviderResponseOutputSamlAttributeMappingKeysValueNamesList,
       ),
       array: S.optional(S.Boolean),
+      default: S.optional(
+        CreateProviderResponseOutputSamlAttributeMappingKeysValueDefault,
+      ),
     }),
   ).annotate({
-    identifier: "CreateProviderResponseSamlAttributeMappingKeysValue",
-  }) as any as S.Schema<CreateProviderResponseSamlAttributeMappingKeysValue>;
+    identifier: "CreateProviderResponseOutputSamlAttributeMappingKeysValue",
+  }) as any as S.Schema<CreateProviderResponseOutputSamlAttributeMappingKeysValue>;
 
-export type CreateProviderResponseSamlAttributeMappingKeysMap = {
+export type CreateProviderResponseOutputSamlAttributeMappingKeysMap = {
   [key: string]:
-    | CreateProviderResponseSamlAttributeMappingKeysValue
+    | CreateProviderResponseOutputSamlAttributeMappingKeysValue
     | undefined;
 };
-export const CreateProviderResponseSamlAttributeMappingKeysMap =
+export const CreateProviderResponseOutputSamlAttributeMappingKeysMap =
   /*@__PURE__*/ S.Record(
     S.String,
-    CreateProviderResponseSamlAttributeMappingKeysValue,
-  ) as any as S.Schema<CreateProviderResponseSamlAttributeMappingKeysMap>;
+    CreateProviderResponseOutputSamlAttributeMappingKeysValue,
+  ) as any as S.Schema<CreateProviderResponseOutputSamlAttributeMappingKeysMap>;
 
-export interface CreateProviderResponseSamlAttributeMapping {
-  keys: CreateProviderResponseSamlAttributeMappingKeysMap;
+export interface CreateProviderResponseOutputSamlAttributeMapping {
+  keys: CreateProviderResponseOutputSamlAttributeMappingKeysMap;
 }
-export const CreateProviderResponseSamlAttributeMapping =
+export const CreateProviderResponseOutputSamlAttributeMapping =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      keys: CreateProviderResponseSamlAttributeMappingKeysMap,
+      keys: CreateProviderResponseOutputSamlAttributeMappingKeysMap,
     }),
   ).annotate({
-    identifier: "CreateProviderResponseSamlAttributeMapping",
-  }) as any as S.Schema<CreateProviderResponseSamlAttributeMapping>;
+    identifier: "CreateProviderResponseOutputSamlAttributeMapping",
+  }) as any as S.Schema<CreateProviderResponseOutputSamlAttributeMapping>;
 
-export type CreateProviderResponseSamlNameIdFormat =
+export type CreateProviderResponseOutputSamlNameIdFormat =
   | "urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified"
   | "urn:oasis:names:tc:SAML:2.0:nameid-format:transient"
   | "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress"
   | "urn:oasis:names:tc:SAML:2.0:nameid-format:persistent";
-export const CreateProviderResponseSamlNameIdFormat = /*@__PURE__*/ S.String;
+export const CreateProviderResponseOutputSamlNameIdFormat =
+  /*@__PURE__*/ S.String;
 
-export interface CreateProviderResponseSaml {
+export interface CreateProviderResponseOutputSaml {
   entity_id: string;
   metadata_url?: string;
   metadata_xml?: string;
-  attribute_mapping?: CreateProviderResponseSamlAttributeMapping;
-  name_id_format?: CreateProviderResponseSamlNameIdFormat;
+  attribute_mapping?: CreateProviderResponseOutputSamlAttributeMapping;
+  name_id_format?: CreateProviderResponseOutputSamlNameIdFormat;
 }
-export const CreateProviderResponseSaml = /*@__PURE__*/ S.suspend(() =>
+export const CreateProviderResponseOutputSaml = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     entity_id: S.String,
     metadata_url: S.optional(S.String),
     metadata_xml: S.optional(S.String),
-    attribute_mapping: S.optional(CreateProviderResponseSamlAttributeMapping),
-    name_id_format: S.optional(CreateProviderResponseSamlNameIdFormat),
+    attribute_mapping: S.optional(
+      CreateProviderResponseOutputSamlAttributeMapping,
+    ),
+    name_id_format: S.optional(CreateProviderResponseOutputSamlNameIdFormat),
   }),
 ).annotate({
-  identifier: "CreateProviderResponseSaml",
-}) as any as S.Schema<CreateProviderResponseSaml>;
+  identifier: "CreateProviderResponseOutputSaml",
+}) as any as S.Schema<CreateProviderResponseOutputSaml>;
 
-export interface CreateProviderResponseDomainsItem {
+export interface CreateProviderResponseOutputDomainsItem {
   domain?: string;
   created_at?: string;
   updated_at?: string;
 }
-export const CreateProviderResponseDomainsItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    domain: S.optional(S.String),
-    created_at: S.optional(S.String),
-    updated_at: S.optional(S.String),
-  }),
+export const CreateProviderResponseOutputDomainsItem = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      domain: S.optional(S.String),
+      created_at: S.optional(S.String),
+      updated_at: S.optional(S.String),
+    }),
 ).annotate({
-  identifier: "CreateProviderResponseDomainsItem",
-}) as any as S.Schema<CreateProviderResponseDomainsItem>;
+  identifier: "CreateProviderResponseOutputDomainsItem",
+}) as any as S.Schema<CreateProviderResponseOutputDomainsItem>;
 
-export type CreateProviderResponseDomainsList =
-  Array<CreateProviderResponseDomainsItem>;
-export const CreateProviderResponseDomainsList = /*@__PURE__*/ S.Array(
-  CreateProviderResponseDomainsItem,
-) as any as S.Schema<CreateProviderResponseDomainsList>;
+export type CreateProviderResponseOutputDomainsList =
+  Array<CreateProviderResponseOutputDomainsItem>;
+export const CreateProviderResponseOutputDomainsList = /*@__PURE__*/ S.Array(
+  CreateProviderResponseOutputDomainsItem,
+) as any as S.Schema<CreateProviderResponseOutputDomainsList>;
 
-export interface CreateProviderResponse {
+export interface CreateProviderResponseOutput {
   id: string;
-  saml?: CreateProviderResponseSaml;
-  domains?: CreateProviderResponseDomainsList;
+  saml?: CreateProviderResponseOutputSaml;
+  domains?: CreateProviderResponseOutputDomainsList;
   created_at?: string;
   updated_at?: string;
 }
-export const CreateProviderResponse = /*@__PURE__*/ S.suspend(() =>
+export const CreateProviderResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String,
-    saml: S.optional(CreateProviderResponseSaml),
-    domains: S.optional(CreateProviderResponseDomainsList),
+    saml: S.optional(CreateProviderResponseOutputSaml),
+    domains: S.optional(CreateProviderResponseOutputDomainsList),
     created_at: S.optional(S.String),
     updated_at: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "CreateProviderResponse",
-}) as any as S.Schema<CreateProviderResponse>;
+  identifier: "CreateProviderResponseOutput",
+}) as any as S.Schema<CreateProviderResponseOutput>;
 
 export interface V1CreateLegacySigningKeyRequest {
   /** Project ref */
@@ -1604,36 +1621,40 @@ export const V1CreateLegacySigningKeyRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1CreateLegacySigningKeyRequest",
 }) as any as S.Schema<V1CreateLegacySigningKeyRequest>;
 
-export type SigningKeyResponseAlgorithm = "EdDSA" | "ES256" | "RS256" | "HS256";
-export const SigningKeyResponseAlgorithm = /*@__PURE__*/ S.String;
+export type SigningKeyResponseOutputAlgorithm =
+  | "EdDSA"
+  | "ES256"
+  | "RS256"
+  | "HS256";
+export const SigningKeyResponseOutputAlgorithm = /*@__PURE__*/ S.String;
 
-export type SigningKeyResponseStatus =
+export type SigningKeyResponseOutputStatus =
   | "in_use"
   | "previously_used"
   | "revoked"
   | "standby";
-export const SigningKeyResponseStatus = /*@__PURE__*/ S.String;
+export const SigningKeyResponseOutputStatus = /*@__PURE__*/ S.String;
 
-export interface SigningKeyResponse {
+export interface SigningKeyResponseOutput {
   id: string;
-  algorithm: SigningKeyResponseAlgorithm;
-  status: SigningKeyResponseStatus;
+  algorithm: SigningKeyResponseOutputAlgorithm;
+  status: SigningKeyResponseOutputStatus;
   public_jwk: unknown | null;
   created_at: string;
   updated_at: string;
 }
-export const SigningKeyResponse = /*@__PURE__*/ S.suspend(() =>
+export const SigningKeyResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String,
-    algorithm: SigningKeyResponseAlgorithm,
-    status: SigningKeyResponseStatus,
+    algorithm: SigningKeyResponseOutputAlgorithm,
+    status: SigningKeyResponseOutputStatus,
     public_jwk: S.NullOr(S.Unknown),
     created_at: S.String,
     updated_at: S.String,
   }),
 ).annotate({
-  identifier: "SigningKeyResponse",
-}) as any as S.Schema<SigningKeyResponse>;
+  identifier: "SigningKeyResponseOutput",
+}) as any as S.Schema<SigningKeyResponseOutput>;
 
 export interface V1CreateLoginRoleRequest {
   /** Project ref */
@@ -1655,20 +1676,20 @@ export const V1CreateLoginRoleRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1CreateLoginRoleRequest",
 }) as any as S.Schema<V1CreateLoginRoleRequest>;
 
-export interface CreateRoleResponse {
+export interface CreateRoleResponseOutput {
   role: string;
   password: T.Sensitive;
   ttl_seconds: number;
 }
-export const CreateRoleResponse = /*@__PURE__*/ S.suspend(() =>
+export const CreateRoleResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     role: S.String,
     password: S.String.pipe(T.SensitiveValue({})),
     ttl_seconds: S.Number,
   }),
 ).annotate({
-  identifier: "CreateRoleResponse",
-}) as any as S.Schema<CreateRoleResponse>;
+  identifier: "CreateRoleResponseOutput",
+}) as any as S.Schema<CreateRoleResponseOutput>;
 
 export type V1CreateProjectApiKeyRequestType = "publishable" | "secret";
 export const V1CreateProjectApiKeyRequestType = /*@__PURE__*/ S.String;
@@ -1709,45 +1730,47 @@ export const V1CreateProjectApiKeyRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1CreateProjectApiKeyRequest",
 }) as any as S.Schema<V1CreateProjectApiKeyRequest>;
 
-export type ApiKeyResponseType = "legacy" | "publishable" | "secret";
-export const ApiKeyResponseType = /*@__PURE__*/ S.String;
+export type ApiKeyResponseOutputType = "legacy" | "publishable" | "secret";
+export const ApiKeyResponseOutputType = /*@__PURE__*/ S.String;
 
-export type ApiKeyResponseSecretJwtTemplateMap = {
+export type ApiKeyResponseOutputSecretJwtTemplateMap = {
   [key: string]: unknown | undefined;
 };
-export const ApiKeyResponseSecretJwtTemplateMap = /*@__PURE__*/ S.Record(
+export const ApiKeyResponseOutputSecretJwtTemplateMap = /*@__PURE__*/ S.Record(
   S.String,
   S.Unknown,
-) as any as S.Schema<ApiKeyResponseSecretJwtTemplateMap>;
+) as any as S.Schema<ApiKeyResponseOutputSecretJwtTemplateMap>;
 
-export interface ApiKeyResponse {
+export interface ApiKeyResponseOutput {
   api_key?: T.Sensitive | null;
   id?: string | null;
-  type?: ApiKeyResponseType | null;
+  type?: ApiKeyResponseOutputType | null;
   prefix?: string | null;
   name: string;
   description?: string | null;
   hash?: string | null;
-  secret_jwt_template?: ApiKeyResponseSecretJwtTemplateMap | null;
+  secret_jwt_template?: ApiKeyResponseOutputSecretJwtTemplateMap | null;
   inserted_at?: string | null;
   updated_at?: string | null;
 }
-export const ApiKeyResponse = /*@__PURE__*/ S.suspend(() =>
+export const ApiKeyResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     api_key: S.optional(S.NullOr(S.String).pipe(T.SensitiveValue({}))),
     id: S.optional(S.NullOr(S.String)),
-    type: S.optional(S.NullOr(ApiKeyResponseType)),
+    type: S.optional(S.NullOr(ApiKeyResponseOutputType)),
     prefix: S.optional(S.NullOr(S.String)),
     name: S.String,
     description: S.optional(S.NullOr(S.String)),
     hash: S.optional(S.NullOr(S.String)),
     secret_jwt_template: S.optional(
-      S.NullOr(ApiKeyResponseSecretJwtTemplateMap),
+      S.NullOr(ApiKeyResponseOutputSecretJwtTemplateMap),
     ),
     inserted_at: S.optional(S.NullOr(S.String)),
     updated_at: S.optional(S.NullOr(S.String)),
   }),
-).annotate({ identifier: "ApiKeyResponse" }) as any as S.Schema<ApiKeyResponse>;
+).annotate({
+  identifier: "ApiKeyResponseOutput",
+}) as any as S.Schema<ApiKeyResponseOutput>;
 
 export interface V1CreateProjectClaimTokenRequest {
   /** Project ref */
@@ -1767,24 +1790,25 @@ export const V1CreateProjectClaimTokenRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1CreateProjectClaimTokenRequest",
 }) as any as S.Schema<V1CreateProjectClaimTokenRequest>;
 
-export interface CreateProjectClaimTokenResponse {
+export interface CreateProjectClaimTokenResponseOutput {
   token: string;
   token_alias: string;
   expires_at: string;
   created_at: string;
   created_by: string;
 }
-export const CreateProjectClaimTokenResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    token: S.String,
-    token_alias: S.String,
-    expires_at: S.String,
-    created_at: S.String,
-    created_by: S.String,
-  }),
+export const CreateProjectClaimTokenResponseOutput = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      token: S.String,
+      token_alias: S.String,
+      expires_at: S.String,
+      created_at: S.String,
+      created_by: S.String,
+    }),
 ).annotate({
-  identifier: "CreateProjectClaimTokenResponse",
-}) as any as S.Schema<CreateProjectClaimTokenResponse>;
+  identifier: "CreateProjectClaimTokenResponseOutput",
+}) as any as S.Schema<CreateProjectClaimTokenResponseOutput>;
 
 export type V1CreateProjectSigningKeyRequestAlgorithm =
   | "EdDSA"
@@ -2119,7 +2143,7 @@ export const V1CreateProjectTpaIntegrationRequest = /*@__PURE__*/ S.suspend(
   identifier: "V1CreateProjectTpaIntegrationRequest",
 }) as any as S.Schema<V1CreateProjectTpaIntegrationRequest>;
 
-export interface ThirdPartyAuth {
+export interface ThirdPartyAuthOutput {
   id: string;
   type: string;
   oidc_issuer_url?: string | null;
@@ -2130,7 +2154,7 @@ export interface ThirdPartyAuth {
   updated_at: string;
   resolved_at?: string | null;
 }
-export const ThirdPartyAuth = /*@__PURE__*/ S.suspend(() =>
+export const ThirdPartyAuthOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String,
     type: S.String,
@@ -2142,7 +2166,9 @@ export const ThirdPartyAuth = /*@__PURE__*/ S.suspend(() =>
     updated_at: S.String,
     resolved_at: S.optional(S.NullOr(S.String)),
   }),
-).annotate({ identifier: "ThirdPartyAuth" }) as any as S.Schema<ThirdPartyAuth>;
+).annotate({
+  identifier: "ThirdPartyAuthOutput",
+}) as any as S.Schema<ThirdPartyAuthOutput>;
 
 export interface V1CreateRestorePointRequest {
   /** Project ref */
@@ -2232,19 +2258,19 @@ export const V1DeleteABranchRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1DeleteABranchRequest",
 }) as any as S.Schema<V1DeleteABranchRequest>;
 
-export type BranchDeleteResponseMessage = "ok";
-export const BranchDeleteResponseMessage = /*@__PURE__*/ S.String;
+export type BranchDeleteResponseOutputMessage = "ok";
+export const BranchDeleteResponseOutputMessage = /*@__PURE__*/ S.String;
 
-export interface BranchDeleteResponse {
-  message: BranchDeleteResponseMessage;
+export interface BranchDeleteResponseOutput {
+  message: BranchDeleteResponseOutputMessage;
 }
-export const BranchDeleteResponse = /*@__PURE__*/ S.suspend(() =>
+export const BranchDeleteResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    message: BranchDeleteResponseMessage,
+    message: BranchDeleteResponseOutputMessage,
   }),
 ).annotate({
-  identifier: "BranchDeleteResponse",
-}) as any as S.Schema<BranchDeleteResponse>;
+  identifier: "BranchDeleteResponseOutput",
+}) as any as S.Schema<BranchDeleteResponseOutput>;
 
 export interface V1DeleteAFunctionRequest {
   /** Project ref */
@@ -2286,20 +2312,20 @@ export const V1DeleteAProjectRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1DeleteAProjectRequest",
 }) as any as S.Schema<V1DeleteAProjectRequest>;
 
-export interface V1ProjectRefResponse {
+export interface V1ProjectRefResponseOutput {
   id: number;
   ref: string;
   name: string;
 }
-export const V1ProjectRefResponse = /*@__PURE__*/ S.suspend(() =>
+export const V1ProjectRefResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.Number,
     ref: S.String,
     name: S.String,
   }),
 ).annotate({
-  identifier: "V1ProjectRefResponse",
-}) as any as S.Schema<V1ProjectRefResponse>;
+  identifier: "V1ProjectRefResponseOutput",
+}) as any as S.Schema<V1ProjectRefResponseOutput>;
 
 export interface V1DeleteASsoProviderRequest {
   /** Project ref */
@@ -2321,121 +2347,124 @@ export const V1DeleteASsoProviderRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1DeleteASsoProviderRequest",
 }) as any as S.Schema<V1DeleteASsoProviderRequest>;
 
-export type DeleteProviderResponseSamlAttributeMappingKeysValueNamesList =
+export type DeleteProviderResponseOutputSamlAttributeMappingKeysValueNamesList =
   Array<string>;
-export const DeleteProviderResponseSamlAttributeMappingKeysValueNamesList =
+export const DeleteProviderResponseOutputSamlAttributeMappingKeysValueNamesList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<DeleteProviderResponseSamlAttributeMappingKeysValueNamesList>;
+  ) as any as S.Schema<DeleteProviderResponseOutputSamlAttributeMappingKeysValueNamesList>;
 
-export type DeleteProviderResponseSamlAttributeMappingKeysValueDefault =
+export type DeleteProviderResponseOutputSamlAttributeMappingKeysValueDefault =
   | unknown
   | number
   | string
   | boolean;
-export const DeleteProviderResponseSamlAttributeMappingKeysValueDefault =
+export const DeleteProviderResponseOutputSamlAttributeMappingKeysValueDefault =
   /*@__PURE__*/ S.Unknown.pipe(T.UnionCases([[], [], [], []]));
 
-export interface DeleteProviderResponseSamlAttributeMappingKeysValue {
+export interface DeleteProviderResponseOutputSamlAttributeMappingKeysValue {
   name?: string;
-  names?: DeleteProviderResponseSamlAttributeMappingKeysValueNamesList;
-  default?: DeleteProviderResponseSamlAttributeMappingKeysValueDefault;
+  names?: DeleteProviderResponseOutputSamlAttributeMappingKeysValueNamesList;
   array?: boolean;
+  default?: DeleteProviderResponseOutputSamlAttributeMappingKeysValueDefault;
 }
-export const DeleteProviderResponseSamlAttributeMappingKeysValue =
+export const DeleteProviderResponseOutputSamlAttributeMappingKeysValue =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       name: S.optional(S.String),
       names: S.optional(
-        DeleteProviderResponseSamlAttributeMappingKeysValueNamesList,
-      ),
-      default: S.optional(
-        DeleteProviderResponseSamlAttributeMappingKeysValueDefault,
+        DeleteProviderResponseOutputSamlAttributeMappingKeysValueNamesList,
       ),
       array: S.optional(S.Boolean),
+      default: S.optional(
+        DeleteProviderResponseOutputSamlAttributeMappingKeysValueDefault,
+      ),
     }),
   ).annotate({
-    identifier: "DeleteProviderResponseSamlAttributeMappingKeysValue",
-  }) as any as S.Schema<DeleteProviderResponseSamlAttributeMappingKeysValue>;
+    identifier: "DeleteProviderResponseOutputSamlAttributeMappingKeysValue",
+  }) as any as S.Schema<DeleteProviderResponseOutputSamlAttributeMappingKeysValue>;
 
-export type DeleteProviderResponseSamlAttributeMappingKeysMap = {
+export type DeleteProviderResponseOutputSamlAttributeMappingKeysMap = {
   [key: string]:
-    | DeleteProviderResponseSamlAttributeMappingKeysValue
+    | DeleteProviderResponseOutputSamlAttributeMappingKeysValue
     | undefined;
 };
-export const DeleteProviderResponseSamlAttributeMappingKeysMap =
+export const DeleteProviderResponseOutputSamlAttributeMappingKeysMap =
   /*@__PURE__*/ S.Record(
     S.String,
-    DeleteProviderResponseSamlAttributeMappingKeysValue,
-  ) as any as S.Schema<DeleteProviderResponseSamlAttributeMappingKeysMap>;
+    DeleteProviderResponseOutputSamlAttributeMappingKeysValue,
+  ) as any as S.Schema<DeleteProviderResponseOutputSamlAttributeMappingKeysMap>;
 
-export interface DeleteProviderResponseSamlAttributeMapping {
-  keys: DeleteProviderResponseSamlAttributeMappingKeysMap;
+export interface DeleteProviderResponseOutputSamlAttributeMapping {
+  keys: DeleteProviderResponseOutputSamlAttributeMappingKeysMap;
 }
-export const DeleteProviderResponseSamlAttributeMapping =
+export const DeleteProviderResponseOutputSamlAttributeMapping =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      keys: DeleteProviderResponseSamlAttributeMappingKeysMap,
+      keys: DeleteProviderResponseOutputSamlAttributeMappingKeysMap,
     }),
   ).annotate({
-    identifier: "DeleteProviderResponseSamlAttributeMapping",
-  }) as any as S.Schema<DeleteProviderResponseSamlAttributeMapping>;
+    identifier: "DeleteProviderResponseOutputSamlAttributeMapping",
+  }) as any as S.Schema<DeleteProviderResponseOutputSamlAttributeMapping>;
 
-export type DeleteProviderResponseSamlNameIdFormat =
+export type DeleteProviderResponseOutputSamlNameIdFormat =
   | "urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified"
   | "urn:oasis:names:tc:SAML:2.0:nameid-format:transient"
   | "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress"
   | "urn:oasis:names:tc:SAML:2.0:nameid-format:persistent";
-export const DeleteProviderResponseSamlNameIdFormat = /*@__PURE__*/ S.String;
+export const DeleteProviderResponseOutputSamlNameIdFormat =
+  /*@__PURE__*/ S.String;
 
-export interface DeleteProviderResponseSaml {
+export interface DeleteProviderResponseOutputSaml {
   entity_id: string;
   metadata_url?: string;
   metadata_xml?: string;
-  attribute_mapping?: DeleteProviderResponseSamlAttributeMapping;
-  name_id_format?: DeleteProviderResponseSamlNameIdFormat;
+  attribute_mapping?: DeleteProviderResponseOutputSamlAttributeMapping;
+  name_id_format?: DeleteProviderResponseOutputSamlNameIdFormat;
 }
-export const DeleteProviderResponseSaml = /*@__PURE__*/ S.suspend(() =>
+export const DeleteProviderResponseOutputSaml = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     entity_id: S.String,
     metadata_url: S.optional(S.String),
     metadata_xml: S.optional(S.String),
-    attribute_mapping: S.optional(DeleteProviderResponseSamlAttributeMapping),
-    name_id_format: S.optional(DeleteProviderResponseSamlNameIdFormat),
+    attribute_mapping: S.optional(
+      DeleteProviderResponseOutputSamlAttributeMapping,
+    ),
+    name_id_format: S.optional(DeleteProviderResponseOutputSamlNameIdFormat),
   }),
 ).annotate({
-  identifier: "DeleteProviderResponseSaml",
-}) as any as S.Schema<DeleteProviderResponseSaml>;
+  identifier: "DeleteProviderResponseOutputSaml",
+}) as any as S.Schema<DeleteProviderResponseOutputSaml>;
 
-export type DeleteProviderResponseDomainsItem =
-  CreateProviderResponseDomainsItem;
-export const DeleteProviderResponseDomainsItem =
-  CreateProviderResponseDomainsItem;
+export type DeleteProviderResponseOutputDomainsItem =
+  CreateProviderResponseOutputDomainsItem;
+export const DeleteProviderResponseOutputDomainsItem =
+  CreateProviderResponseOutputDomainsItem;
 
-export type DeleteProviderResponseDomainsList =
-  Array<CreateProviderResponseDomainsItem>;
-export const DeleteProviderResponseDomainsList = /*@__PURE__*/ S.Array(
-  CreateProviderResponseDomainsItem,
-) as any as S.Schema<DeleteProviderResponseDomainsList>;
+export type DeleteProviderResponseOutputDomainsList =
+  Array<CreateProviderResponseOutputDomainsItem>;
+export const DeleteProviderResponseOutputDomainsList = /*@__PURE__*/ S.Array(
+  CreateProviderResponseOutputDomainsItem,
+) as any as S.Schema<DeleteProviderResponseOutputDomainsList>;
 
-export interface DeleteProviderResponse {
+export interface DeleteProviderResponseOutput {
   id: string;
-  saml?: DeleteProviderResponseSaml;
-  domains?: DeleteProviderResponseDomainsList;
+  saml?: DeleteProviderResponseOutputSaml;
+  domains?: DeleteProviderResponseOutputDomainsList;
   created_at?: string;
   updated_at?: string;
 }
-export const DeleteProviderResponse = /*@__PURE__*/ S.suspend(() =>
+export const DeleteProviderResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String,
-    saml: S.optional(DeleteProviderResponseSaml),
-    domains: S.optional(DeleteProviderResponseDomainsList),
+    saml: S.optional(DeleteProviderResponseOutputSaml),
+    domains: S.optional(DeleteProviderResponseOutputDomainsList),
     created_at: S.optional(S.String),
     updated_at: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "DeleteProviderResponse",
-}) as any as S.Schema<DeleteProviderResponse>;
+  identifier: "DeleteProviderResponseOutput",
+}) as any as S.Schema<DeleteProviderResponseOutput>;
 
 export interface V1DeleteHostnameConfigRequest {
   /** Project ref */
@@ -2538,19 +2567,19 @@ export const V1DeleteLoginRolesRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1DeleteLoginRolesRequest",
 }) as any as S.Schema<V1DeleteLoginRolesRequest>;
 
-export type DeleteRolesResponseMessage = "ok";
-export const DeleteRolesResponseMessage = /*@__PURE__*/ S.String;
+export type DeleteRolesResponseOutputMessage = "ok";
+export const DeleteRolesResponseOutputMessage = /*@__PURE__*/ S.String;
 
-export interface DeleteRolesResponse {
-  message: DeleteRolesResponseMessage;
+export interface DeleteRolesResponseOutput {
+  message: DeleteRolesResponseOutputMessage;
 }
-export const DeleteRolesResponse = /*@__PURE__*/ S.suspend(() =>
+export const DeleteRolesResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    message: DeleteRolesResponseMessage,
+    message: DeleteRolesResponseOutputMessage,
   }),
 ).annotate({
-  identifier: "DeleteRolesResponse",
-}) as any as S.Schema<DeleteRolesResponse>;
+  identifier: "DeleteRolesResponseOutput",
+}) as any as S.Schema<DeleteRolesResponseOutput>;
 
 /** List of IP addresses to unban. */
 export type V1DeleteNetworkBansRequestIpv4AddressesList = Array<string>;
@@ -2725,14 +2754,17 @@ export const V1DeployAFunctionRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1DeployAFunctionRequest",
 }) as any as S.Schema<V1DeployAFunctionRequest>;
 
-export type DeployFunctionResponseStatus = "ACTIVE" | "REMOVED" | "THROTTLED";
-export const DeployFunctionResponseStatus = /*@__PURE__*/ S.String;
+export type DeployFunctionResponseOutputStatus =
+  | "ACTIVE"
+  | "REMOVED"
+  | "THROTTLED";
+export const DeployFunctionResponseOutputStatus = /*@__PURE__*/ S.String;
 
-export interface DeployFunctionResponse {
+export interface DeployFunctionResponseOutput {
   id: string;
   slug: string;
   name: string;
-  status: DeployFunctionResponseStatus;
+  status: DeployFunctionResponseOutputStatus;
   version: number;
   created_at?: number;
   updated_at?: number;
@@ -2742,12 +2774,12 @@ export interface DeployFunctionResponse {
   import_map_path?: string;
   ezbr_sha256?: string;
 }
-export const DeployFunctionResponse = /*@__PURE__*/ S.suspend(() =>
+export const DeployFunctionResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String,
     slug: S.String,
     name: S.String,
-    status: DeployFunctionResponseStatus,
+    status: DeployFunctionResponseOutputStatus,
     version: S.Number,
     created_at: S.optional(S.Number),
     updated_at: S.optional(S.Number),
@@ -2758,8 +2790,8 @@ export const DeployFunctionResponse = /*@__PURE__*/ S.suspend(() =>
     ezbr_sha256: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "DeployFunctionResponse",
-}) as any as S.Schema<DeployFunctionResponse>;
+  identifier: "DeployFunctionResponseOutput",
+}) as any as S.Schema<DeployFunctionResponseOutput>;
 
 export interface V1DiffABranchRequest {
   /** Branch ref or deprecated branch ID */
@@ -2907,26 +2939,26 @@ export const V1ExchangeOauthTokenRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1ExchangeOauthTokenRequest",
 }) as any as S.Schema<V1ExchangeOauthTokenRequest>;
 
-export type OAuthTokenResponseTokenType = "Bearer";
-export const OAuthTokenResponseTokenType = /*@__PURE__*/ S.String;
+export type OAuthTokenResponseOutputTokenType = "Bearer";
+export const OAuthTokenResponseOutputTokenType = /*@__PURE__*/ S.String;
 
-export interface OAuthTokenResponse {
+export interface OAuthTokenResponseOutput {
   access_token: T.Sensitive;
   /** The `urn:ietf:params:oauth:grant-type:jwt-bearer` grant type issues access tokens only, no refresh token is returned and the token cannot be revoked via `/v1/oauth/revoke`. */
   refresh_token?: T.Sensitive;
   expires_in: number;
-  token_type: OAuthTokenResponseTokenType;
+  token_type: OAuthTokenResponseOutputTokenType;
 }
-export const OAuthTokenResponse = /*@__PURE__*/ S.suspend(() =>
+export const OAuthTokenResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     access_token: S.String.pipe(T.SensitiveValue({})),
     refresh_token: S.optional(S.String.pipe(T.SensitiveValue({}))),
     expires_in: S.Number,
-    token_type: OAuthTokenResponseTokenType,
+    token_type: OAuthTokenResponseOutputTokenType,
   }),
 ).annotate({
-  identifier: "OAuthTokenResponse",
-}) as any as S.Schema<OAuthTokenResponse>;
+  identifier: "OAuthTokenResponseOutput",
+}) as any as S.Schema<OAuthTokenResponseOutput>;
 
 export interface V1GenerateTypescriptTypesRequest {
   /** Project ref */
@@ -2948,16 +2980,16 @@ export const V1GenerateTypescriptTypesRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1GenerateTypescriptTypesRequest",
 }) as any as S.Schema<V1GenerateTypescriptTypesRequest>;
 
-export interface TypescriptResponse {
+export interface TypescriptResponseOutput {
   types: string;
 }
-export const TypescriptResponse = /*@__PURE__*/ S.suspend(() =>
+export const TypescriptResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     types: S.String,
   }),
 ).annotate({
-  identifier: "TypescriptResponse",
-}) as any as S.Schema<TypescriptResponse>;
+  identifier: "TypescriptResponseOutput",
+}) as any as S.Schema<TypescriptResponseOutput>;
 
 export interface V1GetABranchRequest {
   /** Project ref */
@@ -2997,7 +3029,7 @@ export const V1GetABranchConfigRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1GetABranchConfigRequest",
 }) as any as S.Schema<V1GetABranchConfigRequest>;
 
-export type BranchDetailResponseStatus =
+export type BranchDetailResponseOutputStatus =
   | "INACTIVE"
   | "ACTIVE_HEALTHY"
   | "ACTIVE_UNHEALTHY"
@@ -3013,27 +3045,27 @@ export type BranchDetailResponseStatus =
   | "RESTARTING"
   | "PAUSE_FAILED"
   | "RESIZING";
-export const BranchDetailResponseStatus = /*@__PURE__*/ S.String;
+export const BranchDetailResponseOutputStatus = /*@__PURE__*/ S.String;
 
-export interface BranchDetailResponse {
+export interface BranchDetailResponseOutput {
   ref: string;
   postgres_version: string;
   postgres_engine: string;
   release_channel: string;
-  status: BranchDetailResponseStatus;
+  status: BranchDetailResponseOutputStatus;
   db_host: string;
   db_port: number;
   db_user?: string;
   db_pass?: string;
   jwt_secret?: T.Sensitive;
 }
-export const BranchDetailResponse = /*@__PURE__*/ S.suspend(() =>
+export const BranchDetailResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String,
     postgres_version: S.String,
     postgres_engine: S.String,
     release_channel: S.String,
-    status: BranchDetailResponseStatus,
+    status: BranchDetailResponseOutputStatus,
     db_host: S.String,
     db_port: S.Number,
     db_user: S.optional(S.String),
@@ -3041,8 +3073,8 @@ export const BranchDetailResponse = /*@__PURE__*/ S.suspend(() =>
     jwt_secret: S.optional(S.String.pipe(T.SensitiveValue({}))),
   }),
 ).annotate({
-  identifier: "BranchDetailResponse",
-}) as any as S.Schema<BranchDetailResponse>;
+  identifier: "BranchDetailResponseOutput",
+}) as any as S.Schema<BranchDetailResponseOutput>;
 
 export interface V1GetActionRunRequest {
   /** Project ref */
@@ -3065,7 +3097,7 @@ export const V1GetActionRunRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1GetActionRunRequest",
 }) as any as S.Schema<V1GetActionRunRequest>;
 
-export type ActionRunResponseRunStepsItemName =
+export type ActionRunResponseOutputRunStepsItemName =
   | "clone"
   | "pull"
   | "health"
@@ -3073,9 +3105,9 @@ export type ActionRunResponseRunStepsItemName =
   | "migrate"
   | "seed"
   | "deploy";
-export const ActionRunResponseRunStepsItemName = /*@__PURE__*/ S.String;
+export const ActionRunResponseOutputRunStepsItemName = /*@__PURE__*/ S.String;
 
-export type ActionRunResponseRunStepsItemStatus =
+export type ActionRunResponseOutputRunStepsItemStatus =
   | "CREATED"
   | "DEAD"
   | "EXITED"
@@ -3083,46 +3115,46 @@ export type ActionRunResponseRunStepsItemStatus =
   | "REMOVING"
   | "RESTARTING"
   | "RUNNING";
-export const ActionRunResponseRunStepsItemStatus = /*@__PURE__*/ S.String;
+export const ActionRunResponseOutputRunStepsItemStatus = /*@__PURE__*/ S.String;
 
-export interface ActionRunResponseRunStepsItem {
-  name: ActionRunResponseRunStepsItemName;
-  status: ActionRunResponseRunStepsItemStatus;
+export interface ActionRunResponseOutputRunStepsItem {
+  name: ActionRunResponseOutputRunStepsItemName;
+  status: ActionRunResponseOutputRunStepsItemStatus;
   created_at: string;
   updated_at: string;
 }
-export const ActionRunResponseRunStepsItem = /*@__PURE__*/ S.suspend(() =>
+export const ActionRunResponseOutputRunStepsItem = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    name: ActionRunResponseRunStepsItemName,
-    status: ActionRunResponseRunStepsItemStatus,
+    name: ActionRunResponseOutputRunStepsItemName,
+    status: ActionRunResponseOutputRunStepsItemStatus,
     created_at: S.String,
     updated_at: S.String,
   }),
 ).annotate({
-  identifier: "ActionRunResponseRunStepsItem",
-}) as any as S.Schema<ActionRunResponseRunStepsItem>;
+  identifier: "ActionRunResponseOutputRunStepsItem",
+}) as any as S.Schema<ActionRunResponseOutputRunStepsItem>;
 
-export type ActionRunResponseRunStepsList =
-  Array<ActionRunResponseRunStepsItem>;
-export const ActionRunResponseRunStepsList = /*@__PURE__*/ S.Array(
-  ActionRunResponseRunStepsItem,
-) as any as S.Schema<ActionRunResponseRunStepsList>;
+export type ActionRunResponseOutputRunStepsList =
+  Array<ActionRunResponseOutputRunStepsItem>;
+export const ActionRunResponseOutputRunStepsList = /*@__PURE__*/ S.Array(
+  ActionRunResponseOutputRunStepsItem,
+) as any as S.Schema<ActionRunResponseOutputRunStepsList>;
 
-export interface ActionRunResponse {
+export interface ActionRunResponseOutput {
   id: string;
   branch_id: string;
-  run_steps: ActionRunResponseRunStepsList;
+  run_steps: ActionRunResponseOutputRunStepsList;
   git_config?: unknown | null;
   workdir: string | null;
   check_run_id: number | null;
   created_at: string;
   updated_at: string;
 }
-export const ActionRunResponse = /*@__PURE__*/ S.suspend(() =>
+export const ActionRunResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String,
     branch_id: S.String,
-    run_steps: ActionRunResponseRunStepsList,
+    run_steps: ActionRunResponseOutputRunStepsList,
     git_config: S.optional(S.NullOr(S.Unknown)),
     workdir: S.NullOr(S.String),
     check_run_id: S.NullOr(S.Number),
@@ -3130,8 +3162,8 @@ export const ActionRunResponse = /*@__PURE__*/ S.suspend(() =>
     updated_at: S.String,
   }),
 ).annotate({
-  identifier: "ActionRunResponse",
-}) as any as S.Schema<ActionRunResponse>;
+  identifier: "ActionRunResponseOutput",
+}) as any as S.Schema<ActionRunResponseOutput>;
 
 export interface V1GetActionRunLogsRequest {
   /** Project ref */
@@ -3182,14 +3214,17 @@ export const V1GetAFunctionRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1GetAFunctionRequest",
 }) as any as S.Schema<V1GetAFunctionRequest>;
 
-export type FunctionSlugResponseStatus = "ACTIVE" | "REMOVED" | "THROTTLED";
-export const FunctionSlugResponseStatus = /*@__PURE__*/ S.String;
+export type FunctionSlugResponseOutputStatus =
+  | "ACTIVE"
+  | "REMOVED"
+  | "THROTTLED";
+export const FunctionSlugResponseOutputStatus = /*@__PURE__*/ S.String;
 
-export interface FunctionSlugResponse {
+export interface FunctionSlugResponseOutput {
   id: string;
   slug: string;
   name: string;
-  status: FunctionSlugResponseStatus;
+  status: FunctionSlugResponseOutputStatus;
   version: number;
   created_at: number;
   updated_at: number;
@@ -3199,12 +3234,12 @@ export interface FunctionSlugResponse {
   import_map_path?: string;
   ezbr_sha256?: string;
 }
-export const FunctionSlugResponse = /*@__PURE__*/ S.suspend(() =>
+export const FunctionSlugResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String,
     slug: S.String,
     name: S.String,
-    status: FunctionSlugResponseStatus,
+    status: FunctionSlugResponseOutputStatus,
     version: S.Number,
     created_at: S.Number,
     updated_at: S.Number,
@@ -3215,8 +3250,8 @@ export const FunctionSlugResponse = /*@__PURE__*/ S.suspend(() =>
     ezbr_sha256: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "FunctionSlugResponse",
-}) as any as S.Schema<FunctionSlugResponse>;
+  identifier: "FunctionSlugResponseOutput",
+}) as any as S.Schema<FunctionSlugResponseOutput>;
 
 export interface V1GetAFunctionBodyRequest {
   /** Project ref */
@@ -3290,7 +3325,7 @@ export const V1GetAllProjectsForOrganizationRequest = /*@__PURE__*/ S.suspend(
   identifier: "V1GetAllProjectsForOrganizationRequest",
 }) as any as S.Schema<V1GetAllProjectsForOrganizationRequest>;
 
-export type OrganizationProjectsResponseProjectsItemStatus =
+export type OrganizationProjectsResponseOutputProjectsItemStatus =
   | "INACTIVE"
   | "ACTIVE_HEALTHY"
   | "ACTIVE_UNHEALTHY"
@@ -3306,10 +3341,10 @@ export type OrganizationProjectsResponseProjectsItemStatus =
   | "RESTARTING"
   | "PAUSE_FAILED"
   | "RESIZING";
-export const OrganizationProjectsResponseProjectsItemStatus =
+export const OrganizationProjectsResponseOutputProjectsItemStatus =
   /*@__PURE__*/ S.String;
 
-export type OrganizationProjectsResponseProjectsItemDatabasesItemInfraComputeSize =
+export type OrganizationProjectsResponseOutputProjectsItemDatabasesItemInfraComputeSize =
   | "pico"
   | "nano"
   | "micro"
@@ -3330,10 +3365,10 @@ export type OrganizationProjectsResponseProjectsItemDatabasesItemInfraComputeSiz
   | "48xlarge_optimized_memory"
   | "48xlarge_optimized_cpu"
   | "48xlarge_high_memory";
-export const OrganizationProjectsResponseProjectsItemDatabasesItemInfraComputeSize =
+export const OrganizationProjectsResponseOutputProjectsItemDatabasesItemInfraComputeSize =
   /*@__PURE__*/ S.String;
 
-export type OrganizationProjectsResponseProjectsItemDatabasesItemStatus =
+export type OrganizationProjectsResponseOutputProjectsItemDatabasesItemStatus =
   | "ACTIVE_HEALTHY"
   | "ACTIVE_UNHEALTHY"
   | "COMING_UP"
@@ -3346,95 +3381,96 @@ export type OrganizationProjectsResponseProjectsItemDatabasesItemStatus =
   | "INIT_READ_REPLICA_FAILED"
   | "RESTARTING"
   | "RESIZING";
-export const OrganizationProjectsResponseProjectsItemDatabasesItemStatus =
+export const OrganizationProjectsResponseOutputProjectsItemDatabasesItemStatus =
   /*@__PURE__*/ S.String;
 
-export type OrganizationProjectsResponseProjectsItemDatabasesItemType =
+export type OrganizationProjectsResponseOutputProjectsItemDatabasesItemType =
   | "PRIMARY"
   | "READ_REPLICA";
-export const OrganizationProjectsResponseProjectsItemDatabasesItemType =
+export const OrganizationProjectsResponseOutputProjectsItemDatabasesItemType =
   /*@__PURE__*/ S.String;
 
-export type OrganizationProjectsResponseProjectsItemDatabasesItemDiskType =
+export type OrganizationProjectsResponseOutputProjectsItemDatabasesItemDiskType =
   | "gp3"
   | "io2";
-export const OrganizationProjectsResponseProjectsItemDatabasesItemDiskType =
+export const OrganizationProjectsResponseOutputProjectsItemDatabasesItemDiskType =
   /*@__PURE__*/ S.String;
 
-export interface OrganizationProjectsResponseProjectsItemDatabasesItem {
-  infra_compute_size?: OrganizationProjectsResponseProjectsItemDatabasesItemInfraComputeSize;
+export interface OrganizationProjectsResponseOutputProjectsItemDatabasesItem {
+  infra_compute_size?: OrganizationProjectsResponseOutputProjectsItemDatabasesItemInfraComputeSize;
   region: string;
-  status: OrganizationProjectsResponseProjectsItemDatabasesItemStatus;
+  status: OrganizationProjectsResponseOutputProjectsItemDatabasesItemStatus;
   cloud_provider: string;
   identifier: string;
-  type: OrganizationProjectsResponseProjectsItemDatabasesItemType;
+  type: OrganizationProjectsResponseOutputProjectsItemDatabasesItemType;
   disk_volume_size_gb?: number;
-  disk_type?: OrganizationProjectsResponseProjectsItemDatabasesItemDiskType;
+  disk_type?: OrganizationProjectsResponseOutputProjectsItemDatabasesItemDiskType;
   disk_throughput_mbps?: number;
   disk_last_modified_at?: string;
 }
-export const OrganizationProjectsResponseProjectsItemDatabasesItem =
+export const OrganizationProjectsResponseOutputProjectsItemDatabasesItem =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       infra_compute_size: S.optional(
-        OrganizationProjectsResponseProjectsItemDatabasesItemInfraComputeSize,
+        OrganizationProjectsResponseOutputProjectsItemDatabasesItemInfraComputeSize,
       ),
       region: S.String,
-      status: OrganizationProjectsResponseProjectsItemDatabasesItemStatus,
+      status: OrganizationProjectsResponseOutputProjectsItemDatabasesItemStatus,
       cloud_provider: S.String,
       identifier: S.String,
-      type: OrganizationProjectsResponseProjectsItemDatabasesItemType,
+      type: OrganizationProjectsResponseOutputProjectsItemDatabasesItemType,
       disk_volume_size_gb: S.optional(S.Number),
       disk_type: S.optional(
-        OrganizationProjectsResponseProjectsItemDatabasesItemDiskType,
+        OrganizationProjectsResponseOutputProjectsItemDatabasesItemDiskType,
       ),
       disk_throughput_mbps: S.optional(S.Number),
       disk_last_modified_at: S.optional(S.String),
     }),
   ).annotate({
-    identifier: "OrganizationProjectsResponseProjectsItemDatabasesItem",
-  }) as any as S.Schema<OrganizationProjectsResponseProjectsItemDatabasesItem>;
+    identifier: "OrganizationProjectsResponseOutputProjectsItemDatabasesItem",
+  }) as any as S.Schema<OrganizationProjectsResponseOutputProjectsItemDatabasesItem>;
 
-export type OrganizationProjectsResponseProjectsItemDatabasesList =
-  Array<OrganizationProjectsResponseProjectsItemDatabasesItem>;
-export const OrganizationProjectsResponseProjectsItemDatabasesList =
+export type OrganizationProjectsResponseOutputProjectsItemDatabasesList =
+  Array<OrganizationProjectsResponseOutputProjectsItemDatabasesItem>;
+export const OrganizationProjectsResponseOutputProjectsItemDatabasesList =
   /*@__PURE__*/ S.Array(
-    OrganizationProjectsResponseProjectsItemDatabasesItem,
-  ) as any as S.Schema<OrganizationProjectsResponseProjectsItemDatabasesList>;
+    OrganizationProjectsResponseOutputProjectsItemDatabasesItem,
+  ) as any as S.Schema<OrganizationProjectsResponseOutputProjectsItemDatabasesList>;
 
-export interface OrganizationProjectsResponseProjectsItem {
+export interface OrganizationProjectsResponseOutputProjectsItem {
   ref: string;
   name: string;
   cloud_provider: string;
   region: string;
   is_branch: boolean;
-  status: OrganizationProjectsResponseProjectsItemStatus;
+  status: OrganizationProjectsResponseOutputProjectsItemStatus;
   inserted_at: string;
-  databases: OrganizationProjectsResponseProjectsItemDatabasesList;
+  databases: OrganizationProjectsResponseOutputProjectsItemDatabasesList;
 }
-export const OrganizationProjectsResponseProjectsItem = /*@__PURE__*/ S.suspend(
-  () =>
+export const OrganizationProjectsResponseOutputProjectsItem =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       ref: S.String,
       name: S.String,
       cloud_provider: S.String,
       region: S.String,
       is_branch: S.Boolean,
-      status: OrganizationProjectsResponseProjectsItemStatus,
+      status: OrganizationProjectsResponseOutputProjectsItemStatus,
       inserted_at: S.String,
-      databases: OrganizationProjectsResponseProjectsItemDatabasesList,
+      databases: OrganizationProjectsResponseOutputProjectsItemDatabasesList,
     }),
-).annotate({
-  identifier: "OrganizationProjectsResponseProjectsItem",
-}) as any as S.Schema<OrganizationProjectsResponseProjectsItem>;
+  ).annotate({
+    identifier: "OrganizationProjectsResponseOutputProjectsItem",
+  }) as any as S.Schema<OrganizationProjectsResponseOutputProjectsItem>;
 
-export type OrganizationProjectsResponseProjectsList =
-  Array<OrganizationProjectsResponseProjectsItem>;
-export const OrganizationProjectsResponseProjectsList = /*@__PURE__*/ S.Array(
-  OrganizationProjectsResponseProjectsItem,
-) as any as S.Schema<OrganizationProjectsResponseProjectsList>;
+export type OrganizationProjectsResponseOutputProjectsList =
+  Array<OrganizationProjectsResponseOutputProjectsItem>;
+export const OrganizationProjectsResponseOutputProjectsList =
+  /*@__PURE__*/ S.Array(
+    OrganizationProjectsResponseOutputProjectsItem,
+  ) as any as S.Schema<OrganizationProjectsResponseOutputProjectsList>;
 
-export interface OrganizationProjectsResponsePagination {
+export interface OrganizationProjectsResponseOutputPagination {
   /** Total number of projects. Use this to calculate the total number of pages. */
   count: number;
   /** Maximum number of projects per page */
@@ -3442,29 +3478,29 @@ export interface OrganizationProjectsResponsePagination {
   /** Number of projects skipped in this response */
   offset: number;
 }
-export const OrganizationProjectsResponsePagination = /*@__PURE__*/ S.suspend(
-  () =>
+export const OrganizationProjectsResponseOutputPagination =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       count: S.Number,
       limit: S.Number,
       offset: S.Number,
     }),
-).annotate({
-  identifier: "OrganizationProjectsResponsePagination",
-}) as any as S.Schema<OrganizationProjectsResponsePagination>;
+  ).annotate({
+    identifier: "OrganizationProjectsResponseOutputPagination",
+  }) as any as S.Schema<OrganizationProjectsResponseOutputPagination>;
 
-export interface OrganizationProjectsResponse {
-  projects: OrganizationProjectsResponseProjectsList;
-  pagination: OrganizationProjectsResponsePagination;
+export interface OrganizationProjectsResponseOutput {
+  projects: OrganizationProjectsResponseOutputProjectsList;
+  pagination: OrganizationProjectsResponseOutputPagination;
 }
-export const OrganizationProjectsResponse = /*@__PURE__*/ S.suspend(() =>
+export const OrganizationProjectsResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    projects: OrganizationProjectsResponseProjectsList,
-    pagination: OrganizationProjectsResponsePagination,
+    projects: OrganizationProjectsResponseOutputProjectsList,
+    pagination: OrganizationProjectsResponseOutputPagination,
   }),
 ).annotate({
-  identifier: "OrganizationProjectsResponse",
-}) as any as S.Schema<OrganizationProjectsResponse>;
+  identifier: "OrganizationProjectsResponseOutput",
+}) as any as S.Schema<OrganizationProjectsResponseOutput>;
 
 export interface V1GetAMigrationRequest {
   /** Project ref */
@@ -3486,36 +3522,36 @@ export const V1GetAMigrationRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1GetAMigrationRequest",
 }) as any as S.Schema<V1GetAMigrationRequest>;
 
-export type V1GetMigrationResponseStatementsList = Array<string>;
-export const V1GetMigrationResponseStatementsList = /*@__PURE__*/ S.Array(
+export type V1GetMigrationResponseOutputStatementsList = Array<string>;
+export const V1GetMigrationResponseOutputStatementsList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<V1GetMigrationResponseStatementsList>;
+) as any as S.Schema<V1GetMigrationResponseOutputStatementsList>;
 
-export type V1GetMigrationResponseRollbackList = Array<string>;
-export const V1GetMigrationResponseRollbackList = /*@__PURE__*/ S.Array(
+export type V1GetMigrationResponseOutputRollbackList = Array<string>;
+export const V1GetMigrationResponseOutputRollbackList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<V1GetMigrationResponseRollbackList>;
+) as any as S.Schema<V1GetMigrationResponseOutputRollbackList>;
 
-export interface V1GetMigrationResponse {
+export interface V1GetMigrationResponseOutput {
   version: string;
   name?: string;
-  statements?: V1GetMigrationResponseStatementsList;
-  rollback?: V1GetMigrationResponseRollbackList;
+  statements?: V1GetMigrationResponseOutputStatementsList;
+  rollback?: V1GetMigrationResponseOutputRollbackList;
   created_by?: string;
   idempotency_key?: string;
 }
-export const V1GetMigrationResponse = /*@__PURE__*/ S.suspend(() =>
+export const V1GetMigrationResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     version: S.String,
     name: S.optional(S.String),
-    statements: S.optional(V1GetMigrationResponseStatementsList),
-    rollback: S.optional(V1GetMigrationResponseRollbackList),
+    statements: S.optional(V1GetMigrationResponseOutputStatementsList),
+    rollback: S.optional(V1GetMigrationResponseOutputRollbackList),
     created_by: S.optional(S.String),
     idempotency_key: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "V1GetMigrationResponse",
-}) as any as S.Schema<V1GetMigrationResponse>;
+  identifier: "V1GetMigrationResponseOutput",
+}) as any as S.Schema<V1GetMigrationResponseOutput>;
 
 export interface V1GetAnOrganizationRequest {
   /** Organization slug */
@@ -3531,62 +3567,64 @@ export const V1GetAnOrganizationRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1GetAnOrganizationRequest",
 }) as any as S.Schema<V1GetAnOrganizationRequest>;
 
-export type V1OrganizationSlugResponsePlan =
+export type V1OrganizationSlugResponseOutputPlan =
   | "free"
   | "pro"
   | "team"
   | "enterprise"
   | "platform";
-export const V1OrganizationSlugResponsePlan = /*@__PURE__*/ S.String;
+export const V1OrganizationSlugResponseOutputPlan = /*@__PURE__*/ S.String;
 
-export type V1OrganizationSlugResponseOptInTagsItem =
+export type V1OrganizationSlugResponseOutputOptInTagsItem =
   | "AI_SQL_GENERATOR_OPT_IN"
   | "AI_DATA_GENERATOR_OPT_IN"
   | "AI_LOG_GENERATOR_OPT_IN";
-export const V1OrganizationSlugResponseOptInTagsItem = /*@__PURE__*/ S.String;
+export const V1OrganizationSlugResponseOutputOptInTagsItem =
+  /*@__PURE__*/ S.String;
 
-export type V1OrganizationSlugResponseOptInTagsList =
-  Array<V1OrganizationSlugResponseOptInTagsItem>;
-export const V1OrganizationSlugResponseOptInTagsList = /*@__PURE__*/ S.Array(
-  V1OrganizationSlugResponseOptInTagsItem,
-) as any as S.Schema<V1OrganizationSlugResponseOptInTagsList>;
+export type V1OrganizationSlugResponseOutputOptInTagsList =
+  Array<V1OrganizationSlugResponseOutputOptInTagsItem>;
+export const V1OrganizationSlugResponseOutputOptInTagsList =
+  /*@__PURE__*/ S.Array(
+    V1OrganizationSlugResponseOutputOptInTagsItem,
+  ) as any as S.Schema<V1OrganizationSlugResponseOutputOptInTagsList>;
 
-export type V1OrganizationSlugResponseAllowedReleaseChannelsItem =
+export type V1OrganizationSlugResponseOutputAllowedReleaseChannelsItem =
   | "internal"
   | "alpha"
   | "beta"
   | "ga"
   | "withdrawn"
   | "preview";
-export const V1OrganizationSlugResponseAllowedReleaseChannelsItem =
+export const V1OrganizationSlugResponseOutputAllowedReleaseChannelsItem =
   /*@__PURE__*/ S.String;
 
-export type V1OrganizationSlugResponseAllowedReleaseChannelsList =
-  Array<V1OrganizationSlugResponseAllowedReleaseChannelsItem>;
-export const V1OrganizationSlugResponseAllowedReleaseChannelsList =
+export type V1OrganizationSlugResponseOutputAllowedReleaseChannelsList =
+  Array<V1OrganizationSlugResponseOutputAllowedReleaseChannelsItem>;
+export const V1OrganizationSlugResponseOutputAllowedReleaseChannelsList =
   /*@__PURE__*/ S.Array(
-    V1OrganizationSlugResponseAllowedReleaseChannelsItem,
-  ) as any as S.Schema<V1OrganizationSlugResponseAllowedReleaseChannelsList>;
+    V1OrganizationSlugResponseOutputAllowedReleaseChannelsItem,
+  ) as any as S.Schema<V1OrganizationSlugResponseOutputAllowedReleaseChannelsList>;
 
-export interface V1OrganizationSlugResponse {
+export interface V1OrganizationSlugResponseOutput {
   id: string;
   name: string;
-  plan?: V1OrganizationSlugResponsePlan;
-  opt_in_tags: V1OrganizationSlugResponseOptInTagsList;
-  allowed_release_channels: V1OrganizationSlugResponseAllowedReleaseChannelsList;
+  plan?: V1OrganizationSlugResponseOutputPlan;
+  opt_in_tags: V1OrganizationSlugResponseOutputOptInTagsList;
+  allowed_release_channels: V1OrganizationSlugResponseOutputAllowedReleaseChannelsList;
 }
-export const V1OrganizationSlugResponse = /*@__PURE__*/ S.suspend(() =>
+export const V1OrganizationSlugResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String,
     name: S.String,
-    plan: S.optional(V1OrganizationSlugResponsePlan),
-    opt_in_tags: V1OrganizationSlugResponseOptInTagsList,
+    plan: S.optional(V1OrganizationSlugResponseOutputPlan),
+    opt_in_tags: V1OrganizationSlugResponseOutputOptInTagsList,
     allowed_release_channels:
-      V1OrganizationSlugResponseAllowedReleaseChannelsList,
+      V1OrganizationSlugResponseOutputAllowedReleaseChannelsList,
   }),
 ).annotate({
-  identifier: "V1OrganizationSlugResponse",
-}) as any as S.Schema<V1OrganizationSlugResponse>;
+  identifier: "V1OrganizationSlugResponseOutput",
+}) as any as S.Schema<V1OrganizationSlugResponseOutput>;
 
 export interface V1GetASnippetRequest {
   id: string;
@@ -3599,89 +3637,93 @@ export const V1GetASnippetRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1GetASnippetRequest",
 }) as any as S.Schema<V1GetASnippetRequest>;
 
-export type SnippetResponseType = "sql";
-export const SnippetResponseType = /*@__PURE__*/ S.String;
+export type SnippetResponseOutputType = "sql";
+export const SnippetResponseOutputType = /*@__PURE__*/ S.String;
 
-export type SnippetResponseVisibility = "user" | "project" | "org" | "public";
-export const SnippetResponseVisibility = /*@__PURE__*/ S.String;
+export type SnippetResponseOutputVisibility =
+  | "user"
+  | "project"
+  | "org"
+  | "public";
+export const SnippetResponseOutputVisibility = /*@__PURE__*/ S.String;
 
-export interface SnippetResponseProject {
+export interface SnippetResponseOutputProject {
   id: number;
   name: string;
 }
-export const SnippetResponseProject = /*@__PURE__*/ S.suspend(() =>
+export const SnippetResponseOutputProject = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.Number,
     name: S.String,
   }),
 ).annotate({
-  identifier: "SnippetResponseProject",
-}) as any as S.Schema<SnippetResponseProject>;
+  identifier: "SnippetResponseOutputProject",
+}) as any as S.Schema<SnippetResponseOutputProject>;
 
-export interface SnippetResponseOwner {
+export interface SnippetResponseOutputOwner {
   id: number;
   username: string;
 }
-export const SnippetResponseOwner = /*@__PURE__*/ S.suspend(() =>
+export const SnippetResponseOutputOwner = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.Number,
     username: S.String,
   }),
 ).annotate({
-  identifier: "SnippetResponseOwner",
-}) as any as S.Schema<SnippetResponseOwner>;
+  identifier: "SnippetResponseOutputOwner",
+}) as any as S.Schema<SnippetResponseOutputOwner>;
 
-export type SnippetResponseUpdatedBy = SnippetResponseOwner;
-export const SnippetResponseUpdatedBy = SnippetResponseOwner;
+export type SnippetResponseOutputUpdatedBy = SnippetResponseOutputOwner;
+export const SnippetResponseOutputUpdatedBy = SnippetResponseOutputOwner;
 
-export interface SnippetResponseContent {
+export interface SnippetResponseOutputContent {
   /** Deprecated: Rely on root-level favorite property instead. */
   favorite?: boolean;
   schema_version: string;
   sql: string;
 }
-export const SnippetResponseContent = /*@__PURE__*/ S.suspend(() =>
+export const SnippetResponseOutputContent = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     favorite: S.optional(S.Boolean),
     schema_version: S.String,
     sql: S.String,
   }),
 ).annotate({
-  identifier: "SnippetResponseContent",
-}) as any as S.Schema<SnippetResponseContent>;
+  identifier: "SnippetResponseOutputContent",
+}) as any as S.Schema<SnippetResponseOutputContent>;
 
-export interface SnippetResponse {
+export interface SnippetResponseOutput {
   id: string;
   inserted_at: string;
   updated_at: string;
-  type: SnippetResponseType;
-  visibility: SnippetResponseVisibility;
+  type: SnippetResponseOutputType;
+  visibility: SnippetResponseOutputVisibility;
   name: string;
   description: string | null;
-  project: SnippetResponseProject;
-  owner: SnippetResponseOwner;
-  updated_by: SnippetResponseOwner;
+  project: SnippetResponseOutputProject;
+  owner: SnippetResponseOutputOwner;
+  updated_by: SnippetResponseOutputOwner;
   favorite: boolean;
-  content: SnippetResponseContent;
+  content: SnippetResponseOutputContent;
 }
-export const SnippetResponse = /*@__PURE__*/ S.suspend(() =>
+export const SnippetResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String,
     inserted_at: S.String,
     updated_at: S.String,
-    type: SnippetResponseType,
-    visibility: SnippetResponseVisibility,
+    type: SnippetResponseOutputType,
+    visibility: SnippetResponseOutputVisibility,
     name: S.String,
     description: S.NullOr(S.String),
-    project: SnippetResponseProject,
-    owner: SnippetResponseOwner,
-    updated_by: SnippetResponseOwner,
+    project: SnippetResponseOutputProject,
+    owner: SnippetResponseOutputOwner,
+    updated_by: SnippetResponseOutputOwner,
     favorite: S.Boolean,
-    content: SnippetResponseContent,
+    content: SnippetResponseOutputContent,
   }),
 ).annotate({
-  identifier: "SnippetResponse",
-}) as any as S.Schema<SnippetResponse>;
+  identifier: "SnippetResponseOutput",
+}) as any as S.Schema<SnippetResponseOutput>;
 
 export interface V1GetASsoProviderRequest {
   /** Project ref */
@@ -3703,117 +3745,123 @@ export const V1GetASsoProviderRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1GetASsoProviderRequest",
 }) as any as S.Schema<V1GetASsoProviderRequest>;
 
-export type GetProviderResponseSamlAttributeMappingKeysValueNamesList =
+export type GetProviderResponseOutputSamlAttributeMappingKeysValueNamesList =
   Array<string>;
-export const GetProviderResponseSamlAttributeMappingKeysValueNamesList =
+export const GetProviderResponseOutputSamlAttributeMappingKeysValueNamesList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<GetProviderResponseSamlAttributeMappingKeysValueNamesList>;
+  ) as any as S.Schema<GetProviderResponseOutputSamlAttributeMappingKeysValueNamesList>;
 
-export type GetProviderResponseSamlAttributeMappingKeysValueDefault =
+export type GetProviderResponseOutputSamlAttributeMappingKeysValueDefault =
   | unknown
   | number
   | string
   | boolean;
-export const GetProviderResponseSamlAttributeMappingKeysValueDefault =
+export const GetProviderResponseOutputSamlAttributeMappingKeysValueDefault =
   /*@__PURE__*/ S.Unknown.pipe(T.UnionCases([[], [], [], []]));
 
-export interface GetProviderResponseSamlAttributeMappingKeysValue {
+export interface GetProviderResponseOutputSamlAttributeMappingKeysValue {
   name?: string;
-  names?: GetProviderResponseSamlAttributeMappingKeysValueNamesList;
-  default?: GetProviderResponseSamlAttributeMappingKeysValueDefault;
+  names?: GetProviderResponseOutputSamlAttributeMappingKeysValueNamesList;
   array?: boolean;
+  default?: GetProviderResponseOutputSamlAttributeMappingKeysValueDefault;
 }
-export const GetProviderResponseSamlAttributeMappingKeysValue =
+export const GetProviderResponseOutputSamlAttributeMappingKeysValue =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       name: S.optional(S.String),
       names: S.optional(
-        GetProviderResponseSamlAttributeMappingKeysValueNamesList,
-      ),
-      default: S.optional(
-        GetProviderResponseSamlAttributeMappingKeysValueDefault,
+        GetProviderResponseOutputSamlAttributeMappingKeysValueNamesList,
       ),
       array: S.optional(S.Boolean),
+      default: S.optional(
+        GetProviderResponseOutputSamlAttributeMappingKeysValueDefault,
+      ),
     }),
   ).annotate({
-    identifier: "GetProviderResponseSamlAttributeMappingKeysValue",
-  }) as any as S.Schema<GetProviderResponseSamlAttributeMappingKeysValue>;
+    identifier: "GetProviderResponseOutputSamlAttributeMappingKeysValue",
+  }) as any as S.Schema<GetProviderResponseOutputSamlAttributeMappingKeysValue>;
 
-export type GetProviderResponseSamlAttributeMappingKeysMap = {
-  [key: string]: GetProviderResponseSamlAttributeMappingKeysValue | undefined;
+export type GetProviderResponseOutputSamlAttributeMappingKeysMap = {
+  [key: string]:
+    | GetProviderResponseOutputSamlAttributeMappingKeysValue
+    | undefined;
 };
-export const GetProviderResponseSamlAttributeMappingKeysMap =
+export const GetProviderResponseOutputSamlAttributeMappingKeysMap =
   /*@__PURE__*/ S.Record(
     S.String,
-    GetProviderResponseSamlAttributeMappingKeysValue,
-  ) as any as S.Schema<GetProviderResponseSamlAttributeMappingKeysMap>;
+    GetProviderResponseOutputSamlAttributeMappingKeysValue,
+  ) as any as S.Schema<GetProviderResponseOutputSamlAttributeMappingKeysMap>;
 
-export interface GetProviderResponseSamlAttributeMapping {
-  keys: GetProviderResponseSamlAttributeMappingKeysMap;
+export interface GetProviderResponseOutputSamlAttributeMapping {
+  keys: GetProviderResponseOutputSamlAttributeMappingKeysMap;
 }
-export const GetProviderResponseSamlAttributeMapping = /*@__PURE__*/ S.suspend(
-  () =>
+export const GetProviderResponseOutputSamlAttributeMapping =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      keys: GetProviderResponseSamlAttributeMappingKeysMap,
+      keys: GetProviderResponseOutputSamlAttributeMappingKeysMap,
     }),
-).annotate({
-  identifier: "GetProviderResponseSamlAttributeMapping",
-}) as any as S.Schema<GetProviderResponseSamlAttributeMapping>;
+  ).annotate({
+    identifier: "GetProviderResponseOutputSamlAttributeMapping",
+  }) as any as S.Schema<GetProviderResponseOutputSamlAttributeMapping>;
 
-export type GetProviderResponseSamlNameIdFormat =
+export type GetProviderResponseOutputSamlNameIdFormat =
   | "urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified"
   | "urn:oasis:names:tc:SAML:2.0:nameid-format:transient"
   | "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress"
   | "urn:oasis:names:tc:SAML:2.0:nameid-format:persistent";
-export const GetProviderResponseSamlNameIdFormat = /*@__PURE__*/ S.String;
+export const GetProviderResponseOutputSamlNameIdFormat = /*@__PURE__*/ S.String;
 
-export interface GetProviderResponseSaml {
+export interface GetProviderResponseOutputSaml {
   entity_id: string;
   metadata_url?: string;
   metadata_xml?: string;
-  attribute_mapping?: GetProviderResponseSamlAttributeMapping;
-  name_id_format?: GetProviderResponseSamlNameIdFormat;
+  attribute_mapping?: GetProviderResponseOutputSamlAttributeMapping;
+  name_id_format?: GetProviderResponseOutputSamlNameIdFormat;
 }
-export const GetProviderResponseSaml = /*@__PURE__*/ S.suspend(() =>
+export const GetProviderResponseOutputSaml = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     entity_id: S.String,
     metadata_url: S.optional(S.String),
     metadata_xml: S.optional(S.String),
-    attribute_mapping: S.optional(GetProviderResponseSamlAttributeMapping),
-    name_id_format: S.optional(GetProviderResponseSamlNameIdFormat),
+    attribute_mapping: S.optional(
+      GetProviderResponseOutputSamlAttributeMapping,
+    ),
+    name_id_format: S.optional(GetProviderResponseOutputSamlNameIdFormat),
   }),
 ).annotate({
-  identifier: "GetProviderResponseSaml",
-}) as any as S.Schema<GetProviderResponseSaml>;
+  identifier: "GetProviderResponseOutputSaml",
+}) as any as S.Schema<GetProviderResponseOutputSaml>;
 
-export type GetProviderResponseDomainsItem = CreateProviderResponseDomainsItem;
-export const GetProviderResponseDomainsItem = CreateProviderResponseDomainsItem;
+export type GetProviderResponseOutputDomainsItem =
+  CreateProviderResponseOutputDomainsItem;
+export const GetProviderResponseOutputDomainsItem =
+  CreateProviderResponseOutputDomainsItem;
 
-export type GetProviderResponseDomainsList =
-  Array<CreateProviderResponseDomainsItem>;
-export const GetProviderResponseDomainsList = /*@__PURE__*/ S.Array(
-  CreateProviderResponseDomainsItem,
-) as any as S.Schema<GetProviderResponseDomainsList>;
+export type GetProviderResponseOutputDomainsList =
+  Array<CreateProviderResponseOutputDomainsItem>;
+export const GetProviderResponseOutputDomainsList = /*@__PURE__*/ S.Array(
+  CreateProviderResponseOutputDomainsItem,
+) as any as S.Schema<GetProviderResponseOutputDomainsList>;
 
-export interface GetProviderResponse {
+export interface GetProviderResponseOutput {
   id: string;
-  saml?: GetProviderResponseSaml;
-  domains?: GetProviderResponseDomainsList;
+  saml?: GetProviderResponseOutputSaml;
+  domains?: GetProviderResponseOutputDomainsList;
   created_at?: string;
   updated_at?: string;
 }
-export const GetProviderResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetProviderResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String,
-    saml: S.optional(GetProviderResponseSaml),
-    domains: S.optional(GetProviderResponseDomainsList),
+    saml: S.optional(GetProviderResponseOutputSaml),
+    domains: S.optional(GetProviderResponseOutputDomainsList),
     created_at: S.optional(S.String),
     updated_at: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "GetProviderResponse",
-}) as any as S.Schema<GetProviderResponse>;
+  identifier: "GetProviderResponseOutput",
+}) as any as S.Schema<GetProviderResponseOutput>;
 
 export interface V1GetAuthServiceConfigRequest {
   /** Project ref */
@@ -3829,34 +3877,37 @@ export const V1GetAuthServiceConfigRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1GetAuthServiceConfigRequest",
 }) as any as S.Schema<V1GetAuthServiceConfigRequest>;
 
-export type AuthConfigResponseDbMaxPoolSizeUnit = "connections" | "percent";
-export const AuthConfigResponseDbMaxPoolSizeUnit = /*@__PURE__*/ S.String;
+export type AuthConfigResponseOutputDbMaxPoolSizeUnit =
+  | "connections"
+  | "percent";
+export const AuthConfigResponseOutputDbMaxPoolSizeUnit = /*@__PURE__*/ S.String;
 
-export type AuthConfigResponsePasswordRequiredCharacters =
+export type AuthConfigResponseOutputPasswordRequiredCharacters =
   | "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ:0123456789"
   | "abcdefghijklmnopqrstuvwxyz:ABCDEFGHIJKLMNOPQRSTUVWXYZ:0123456789"
   | "abcdefghijklmnopqrstuvwxyz:ABCDEFGHIJKLMNOPQRSTUVWXYZ:0123456789:!@#$%^&*()_+-=[]{};'\\\\:\"|<>?,./`~"
   | "";
-export const AuthConfigResponsePasswordRequiredCharacters =
+export const AuthConfigResponseOutputPasswordRequiredCharacters =
   /*@__PURE__*/ S.String;
 
-export type AuthConfigResponseSecurityCaptchaProvider =
+export type AuthConfigResponseOutputSecurityCaptchaProvider =
   | "turnstile"
   | "hcaptcha";
-export const AuthConfigResponseSecurityCaptchaProvider = /*@__PURE__*/ S.String;
+export const AuthConfigResponseOutputSecurityCaptchaProvider =
+  /*@__PURE__*/ S.String;
 
-export type AuthConfigResponseSmsProvider =
+export type AuthConfigResponseOutputSmsProvider =
   | "messagebird"
   | "textlocal"
   | "twilio"
   | "twilio_verify"
   | "vonage";
-export const AuthConfigResponseSmsProvider = /*@__PURE__*/ S.String;
+export const AuthConfigResponseOutputSmsProvider = /*@__PURE__*/ S.String;
 
-export interface AuthConfigResponse {
+export interface AuthConfigResponseOutput {
   api_max_request_duration: number | null;
   db_max_pool_size: number | null;
-  db_max_pool_size_unit: AuthConfigResponseDbMaxPoolSizeUnit | null;
+  db_max_pool_size_unit: AuthConfigResponseOutputDbMaxPoolSizeUnit | null;
   disable_signup: boolean | null;
   external_anonymous_users_enabled: boolean | null;
   external_apple_additional_client_ids: string | null;
@@ -4032,7 +4083,7 @@ export interface AuthConfigResponse {
   nimbus_oauth_client_secret: T.Sensitive | null;
   password_hibp_enabled: boolean | null;
   password_min_length: number | null;
-  password_required_characters: AuthConfigResponsePasswordRequiredCharacters | null;
+  password_required_characters: AuthConfigResponseOutputPasswordRequiredCharacters | null;
   rate_limit_anonymous_users: number | null;
   rate_limit_email_sent: number | null;
   rate_limit_sms_sent: number | null;
@@ -4046,7 +4097,7 @@ export interface AuthConfigResponse {
   saml_allow_encrypted_assertions: boolean | null;
   security_sb_forwarded_for_enabled: boolean | null;
   security_captcha_enabled: boolean | null;
-  security_captcha_provider: AuthConfigResponseSecurityCaptchaProvider | null;
+  security_captcha_provider: AuthConfigResponseOutputSecurityCaptchaProvider | null;
   security_captcha_secret: T.Sensitive | null;
   security_manual_linking_enabled: boolean | null;
   security_refresh_token_reuse_interval: number | null;
@@ -4062,7 +4113,7 @@ export interface AuthConfigResponse {
   sms_messagebird_originator: string | null;
   sms_otp_exp: number | null;
   sms_otp_length: number;
-  sms_provider: AuthConfigResponseSmsProvider | null;
+  sms_provider: AuthConfigResponseOutputSmsProvider | null;
   sms_template: string | null;
   sms_test_otp: string | null;
   sms_test_otp_valid_until: string | null;
@@ -4092,11 +4143,11 @@ export interface AuthConfigResponse {
   custom_oauth_enabled: boolean;
   custom_oauth_max_providers: number;
 }
-export const AuthConfigResponse = /*@__PURE__*/ S.suspend(() =>
+export const AuthConfigResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     api_max_request_duration: S.NullOr(S.Number),
     db_max_pool_size: S.NullOr(S.Number),
-    db_max_pool_size_unit: S.NullOr(AuthConfigResponseDbMaxPoolSizeUnit),
+    db_max_pool_size_unit: S.NullOr(AuthConfigResponseOutputDbMaxPoolSizeUnit),
     disable_signup: S.NullOr(S.Boolean),
     external_anonymous_users_enabled: S.NullOr(S.Boolean),
     external_apple_additional_client_ids: S.NullOr(S.String),
@@ -4287,7 +4338,7 @@ export const AuthConfigResponse = /*@__PURE__*/ S.suspend(() =>
     password_hibp_enabled: S.NullOr(S.Boolean),
     password_min_length: S.NullOr(S.Number),
     password_required_characters: S.NullOr(
-      AuthConfigResponsePasswordRequiredCharacters,
+      AuthConfigResponseOutputPasswordRequiredCharacters,
     ),
     rate_limit_anonymous_users: S.NullOr(S.Number),
     rate_limit_email_sent: S.NullOr(S.Number),
@@ -4303,7 +4354,7 @@ export const AuthConfigResponse = /*@__PURE__*/ S.suspend(() =>
     security_sb_forwarded_for_enabled: S.NullOr(S.Boolean),
     security_captcha_enabled: S.NullOr(S.Boolean),
     security_captcha_provider: S.NullOr(
-      AuthConfigResponseSecurityCaptchaProvider,
+      AuthConfigResponseOutputSecurityCaptchaProvider,
     ),
     security_captcha_secret: S.NullOr(S.String).pipe(T.SensitiveValue({})),
     security_manual_linking_enabled: S.NullOr(S.Boolean),
@@ -4320,7 +4371,7 @@ export const AuthConfigResponse = /*@__PURE__*/ S.suspend(() =>
     sms_messagebird_originator: S.NullOr(S.String),
     sms_otp_exp: S.NullOr(S.Number),
     sms_otp_length: S.Number,
-    sms_provider: S.NullOr(AuthConfigResponseSmsProvider),
+    sms_provider: S.NullOr(AuthConfigResponseOutputSmsProvider),
     sms_template: S.NullOr(S.String),
     sms_test_otp: S.NullOr(S.String),
     sms_test_otp_valid_until: S.NullOr(S.String),
@@ -4351,8 +4402,8 @@ export const AuthConfigResponse = /*@__PURE__*/ S.suspend(() =>
     custom_oauth_max_providers: S.Number,
   }),
 ).annotate({
-  identifier: "AuthConfigResponse",
-}) as any as S.Schema<AuthConfigResponse>;
+  identifier: "AuthConfigResponseOutput",
+}) as any as S.Schema<AuthConfigResponseOutput>;
 
 export type V1GetAvailableRegionsRequestContinent =
   | "NA"
@@ -4413,32 +4464,34 @@ export const V1GetAvailableRegionsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1GetAvailableRegionsRequest",
 }) as any as S.Schema<V1GetAvailableRegionsRequest>;
 
-export type RegionsInfoRecommendationsSmartGroupCode =
+export type RegionsInfoOutputRecommendationsSmartGroupCode =
   | "americas"
   | "emea"
   | "apac";
-export const RegionsInfoRecommendationsSmartGroupCode = /*@__PURE__*/ S.String;
+export const RegionsInfoOutputRecommendationsSmartGroupCode =
+  /*@__PURE__*/ S.String;
 
-export type RegionsInfoRecommendationsSmartGroupType = "smartGroup";
-export const RegionsInfoRecommendationsSmartGroupType = /*@__PURE__*/ S.String;
+export type RegionsInfoOutputRecommendationsSmartGroupType = "smartGroup";
+export const RegionsInfoOutputRecommendationsSmartGroupType =
+  /*@__PURE__*/ S.String;
 
-export interface RegionsInfoRecommendationsSmartGroup {
+export interface RegionsInfoOutputRecommendationsSmartGroup {
   name: string;
-  code: RegionsInfoRecommendationsSmartGroupCode;
-  type: RegionsInfoRecommendationsSmartGroupType;
+  code: RegionsInfoOutputRecommendationsSmartGroupCode;
+  type: RegionsInfoOutputRecommendationsSmartGroupType;
 }
-export const RegionsInfoRecommendationsSmartGroup = /*@__PURE__*/ S.suspend(
-  () =>
+export const RegionsInfoOutputRecommendationsSmartGroup =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       name: S.String,
-      code: RegionsInfoRecommendationsSmartGroupCode,
-      type: RegionsInfoRecommendationsSmartGroupType,
+      code: RegionsInfoOutputRecommendationsSmartGroupCode,
+      type: RegionsInfoOutputRecommendationsSmartGroupType,
     }),
-).annotate({
-  identifier: "RegionsInfoRecommendationsSmartGroup",
-}) as any as S.Schema<RegionsInfoRecommendationsSmartGroup>;
+  ).annotate({
+    identifier: "RegionsInfoOutputRecommendationsSmartGroup",
+  }) as any as S.Schema<RegionsInfoOutputRecommendationsSmartGroup>;
 
-export type RegionsInfoRecommendationsSpecificItemCode =
+export type RegionsInfoOutputRecommendationsSpecificItemCode =
   | "us-east-1"
   | "us-east-2"
   | "us-west-1"
@@ -4457,90 +4510,97 @@ export type RegionsInfoRecommendationsSpecificItemCode =
   | "ca-central-1"
   | "ap-south-1"
   | "sa-east-1";
-export const RegionsInfoRecommendationsSpecificItemCode =
+export const RegionsInfoOutputRecommendationsSpecificItemCode =
   /*@__PURE__*/ S.String;
 
-export type RegionsInfoRecommendationsSpecificItemType = "specific";
-export const RegionsInfoRecommendationsSpecificItemType =
+export type RegionsInfoOutputRecommendationsSpecificItemType = "specific";
+export const RegionsInfoOutputRecommendationsSpecificItemType =
   /*@__PURE__*/ S.String;
 
-export type RegionsInfoRecommendationsSpecificItemProvider =
+export type RegionsInfoOutputRecommendationsSpecificItemProvider =
   | "AWS"
   | "AWS_K8S"
   | "AWS_NIMBUS";
-export const RegionsInfoRecommendationsSpecificItemProvider =
+export const RegionsInfoOutputRecommendationsSpecificItemProvider =
   /*@__PURE__*/ S.String;
 
-export type RegionsInfoRecommendationsSpecificItemStatus = "capacity" | "other";
-export const RegionsInfoRecommendationsSpecificItemStatus =
+export type RegionsInfoOutputRecommendationsSpecificItemStatus =
+  | "capacity"
+  | "other";
+export const RegionsInfoOutputRecommendationsSpecificItemStatus =
   /*@__PURE__*/ S.String;
 
-export interface RegionsInfoRecommendationsSpecificItem {
+export interface RegionsInfoOutputRecommendationsSpecificItem {
   name: string;
-  code: RegionsInfoRecommendationsSpecificItemCode;
-  type: RegionsInfoRecommendationsSpecificItemType;
-  provider: RegionsInfoRecommendationsSpecificItemProvider;
-  status?: RegionsInfoRecommendationsSpecificItemStatus;
+  code: RegionsInfoOutputRecommendationsSpecificItemCode;
+  type: RegionsInfoOutputRecommendationsSpecificItemType;
+  provider: RegionsInfoOutputRecommendationsSpecificItemProvider;
+  status?: RegionsInfoOutputRecommendationsSpecificItemStatus;
 }
-export const RegionsInfoRecommendationsSpecificItem = /*@__PURE__*/ S.suspend(
-  () =>
+export const RegionsInfoOutputRecommendationsSpecificItem =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       name: S.String,
-      code: RegionsInfoRecommendationsSpecificItemCode,
-      type: RegionsInfoRecommendationsSpecificItemType,
-      provider: RegionsInfoRecommendationsSpecificItemProvider,
-      status: S.optional(RegionsInfoRecommendationsSpecificItemStatus),
+      code: RegionsInfoOutputRecommendationsSpecificItemCode,
+      type: RegionsInfoOutputRecommendationsSpecificItemType,
+      provider: RegionsInfoOutputRecommendationsSpecificItemProvider,
+      status: S.optional(RegionsInfoOutputRecommendationsSpecificItemStatus),
     }),
-).annotate({
-  identifier: "RegionsInfoRecommendationsSpecificItem",
-}) as any as S.Schema<RegionsInfoRecommendationsSpecificItem>;
+  ).annotate({
+    identifier: "RegionsInfoOutputRecommendationsSpecificItem",
+  }) as any as S.Schema<RegionsInfoOutputRecommendationsSpecificItem>;
 
-export type RegionsInfoRecommendationsSpecificList =
-  Array<RegionsInfoRecommendationsSpecificItem>;
-export const RegionsInfoRecommendationsSpecificList = /*@__PURE__*/ S.Array(
-  RegionsInfoRecommendationsSpecificItem,
-) as any as S.Schema<RegionsInfoRecommendationsSpecificList>;
+export type RegionsInfoOutputRecommendationsSpecificList =
+  Array<RegionsInfoOutputRecommendationsSpecificItem>;
+export const RegionsInfoOutputRecommendationsSpecificList =
+  /*@__PURE__*/ S.Array(
+    RegionsInfoOutputRecommendationsSpecificItem,
+  ) as any as S.Schema<RegionsInfoOutputRecommendationsSpecificList>;
 
-export interface RegionsInfoRecommendations {
-  smartGroup: RegionsInfoRecommendationsSmartGroup;
-  specific: RegionsInfoRecommendationsSpecificList;
+export interface RegionsInfoOutputRecommendations {
+  smartGroup: RegionsInfoOutputRecommendationsSmartGroup;
+  specific: RegionsInfoOutputRecommendationsSpecificList;
 }
-export const RegionsInfoRecommendations = /*@__PURE__*/ S.suspend(() =>
+export const RegionsInfoOutputRecommendations = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    smartGroup: RegionsInfoRecommendationsSmartGroup,
-    specific: RegionsInfoRecommendationsSpecificList,
+    smartGroup: RegionsInfoOutputRecommendationsSmartGroup,
+    specific: RegionsInfoOutputRecommendationsSpecificList,
   }),
 ).annotate({
-  identifier: "RegionsInfoRecommendations",
-}) as any as S.Schema<RegionsInfoRecommendations>;
+  identifier: "RegionsInfoOutputRecommendations",
+}) as any as S.Schema<RegionsInfoOutputRecommendations>;
 
-export type RegionsInfoAllSmartGroupItemCode = "americas" | "emea" | "apac";
-export const RegionsInfoAllSmartGroupItemCode = /*@__PURE__*/ S.String;
+export type RegionsInfoOutputAllSmartGroupItemCode =
+  | "americas"
+  | "emea"
+  | "apac";
+export const RegionsInfoOutputAllSmartGroupItemCode = /*@__PURE__*/ S.String;
 
-export type RegionsInfoAllSmartGroupItemType = "smartGroup";
-export const RegionsInfoAllSmartGroupItemType = /*@__PURE__*/ S.String;
+export type RegionsInfoOutputAllSmartGroupItemType = "smartGroup";
+export const RegionsInfoOutputAllSmartGroupItemType = /*@__PURE__*/ S.String;
 
-export interface RegionsInfoAllSmartGroupItem {
+export interface RegionsInfoOutputAllSmartGroupItem {
   name: string;
-  code: RegionsInfoAllSmartGroupItemCode;
-  type: RegionsInfoAllSmartGroupItemType;
+  code: RegionsInfoOutputAllSmartGroupItemCode;
+  type: RegionsInfoOutputAllSmartGroupItemType;
 }
-export const RegionsInfoAllSmartGroupItem = /*@__PURE__*/ S.suspend(() =>
+export const RegionsInfoOutputAllSmartGroupItem = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     name: S.String,
-    code: RegionsInfoAllSmartGroupItemCode,
-    type: RegionsInfoAllSmartGroupItemType,
+    code: RegionsInfoOutputAllSmartGroupItemCode,
+    type: RegionsInfoOutputAllSmartGroupItemType,
   }),
 ).annotate({
-  identifier: "RegionsInfoAllSmartGroupItem",
-}) as any as S.Schema<RegionsInfoAllSmartGroupItem>;
+  identifier: "RegionsInfoOutputAllSmartGroupItem",
+}) as any as S.Schema<RegionsInfoOutputAllSmartGroupItem>;
 
-export type RegionsInfoAllSmartGroupList = Array<RegionsInfoAllSmartGroupItem>;
-export const RegionsInfoAllSmartGroupList = /*@__PURE__*/ S.Array(
-  RegionsInfoAllSmartGroupItem,
-) as any as S.Schema<RegionsInfoAllSmartGroupList>;
+export type RegionsInfoOutputAllSmartGroupList =
+  Array<RegionsInfoOutputAllSmartGroupItem>;
+export const RegionsInfoOutputAllSmartGroupList = /*@__PURE__*/ S.Array(
+  RegionsInfoOutputAllSmartGroupItem,
+) as any as S.Schema<RegionsInfoOutputAllSmartGroupList>;
 
-export type RegionsInfoAllSpecificItemCode =
+export type RegionsInfoOutputAllSpecificItemCode =
   | "us-east-1"
   | "us-east-2"
   | "us-west-1"
@@ -4559,65 +4619,70 @@ export type RegionsInfoAllSpecificItemCode =
   | "ca-central-1"
   | "ap-south-1"
   | "sa-east-1";
-export const RegionsInfoAllSpecificItemCode = /*@__PURE__*/ S.String;
+export const RegionsInfoOutputAllSpecificItemCode = /*@__PURE__*/ S.String;
 
-export type RegionsInfoAllSpecificItemType = "specific";
-export const RegionsInfoAllSpecificItemType = /*@__PURE__*/ S.String;
+export type RegionsInfoOutputAllSpecificItemType = "specific";
+export const RegionsInfoOutputAllSpecificItemType = /*@__PURE__*/ S.String;
 
-export type RegionsInfoAllSpecificItemProvider =
+export type RegionsInfoOutputAllSpecificItemProvider =
   | "AWS"
   | "AWS_K8S"
   | "AWS_NIMBUS";
-export const RegionsInfoAllSpecificItemProvider = /*@__PURE__*/ S.String;
+export const RegionsInfoOutputAllSpecificItemProvider = /*@__PURE__*/ S.String;
 
-export type RegionsInfoAllSpecificItemStatus = "capacity" | "other";
-export const RegionsInfoAllSpecificItemStatus = /*@__PURE__*/ S.String;
+export type RegionsInfoOutputAllSpecificItemStatus = "capacity" | "other";
+export const RegionsInfoOutputAllSpecificItemStatus = /*@__PURE__*/ S.String;
 
-export interface RegionsInfoAllSpecificItem {
+export interface RegionsInfoOutputAllSpecificItem {
   name: string;
-  code: RegionsInfoAllSpecificItemCode;
-  type: RegionsInfoAllSpecificItemType;
-  provider: RegionsInfoAllSpecificItemProvider;
-  status?: RegionsInfoAllSpecificItemStatus;
+  code: RegionsInfoOutputAllSpecificItemCode;
+  type: RegionsInfoOutputAllSpecificItemType;
+  provider: RegionsInfoOutputAllSpecificItemProvider;
+  status?: RegionsInfoOutputAllSpecificItemStatus;
 }
-export const RegionsInfoAllSpecificItem = /*@__PURE__*/ S.suspend(() =>
+export const RegionsInfoOutputAllSpecificItem = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     name: S.String,
-    code: RegionsInfoAllSpecificItemCode,
-    type: RegionsInfoAllSpecificItemType,
-    provider: RegionsInfoAllSpecificItemProvider,
-    status: S.optional(RegionsInfoAllSpecificItemStatus),
+    code: RegionsInfoOutputAllSpecificItemCode,
+    type: RegionsInfoOutputAllSpecificItemType,
+    provider: RegionsInfoOutputAllSpecificItemProvider,
+    status: S.optional(RegionsInfoOutputAllSpecificItemStatus),
   }),
 ).annotate({
-  identifier: "RegionsInfoAllSpecificItem",
-}) as any as S.Schema<RegionsInfoAllSpecificItem>;
+  identifier: "RegionsInfoOutputAllSpecificItem",
+}) as any as S.Schema<RegionsInfoOutputAllSpecificItem>;
 
-export type RegionsInfoAllSpecificList = Array<RegionsInfoAllSpecificItem>;
-export const RegionsInfoAllSpecificList = /*@__PURE__*/ S.Array(
-  RegionsInfoAllSpecificItem,
-) as any as S.Schema<RegionsInfoAllSpecificList>;
+export type RegionsInfoOutputAllSpecificList =
+  Array<RegionsInfoOutputAllSpecificItem>;
+export const RegionsInfoOutputAllSpecificList = /*@__PURE__*/ S.Array(
+  RegionsInfoOutputAllSpecificItem,
+) as any as S.Schema<RegionsInfoOutputAllSpecificList>;
 
-export interface RegionsInfoAll {
-  smartGroup: RegionsInfoAllSmartGroupList;
-  specific: RegionsInfoAllSpecificList;
+export interface RegionsInfoOutputAll {
+  smartGroup: RegionsInfoOutputAllSmartGroupList;
+  specific: RegionsInfoOutputAllSpecificList;
 }
-export const RegionsInfoAll = /*@__PURE__*/ S.suspend(() =>
+export const RegionsInfoOutputAll = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    smartGroup: RegionsInfoAllSmartGroupList,
-    specific: RegionsInfoAllSpecificList,
+    smartGroup: RegionsInfoOutputAllSmartGroupList,
+    specific: RegionsInfoOutputAllSpecificList,
   }),
-).annotate({ identifier: "RegionsInfoAll" }) as any as S.Schema<RegionsInfoAll>;
+).annotate({
+  identifier: "RegionsInfoOutputAll",
+}) as any as S.Schema<RegionsInfoOutputAll>;
 
-export interface RegionsInfo {
-  recommendations: RegionsInfoRecommendations;
-  all: RegionsInfoAll;
+export interface RegionsInfoOutput {
+  recommendations: RegionsInfoOutputRecommendations;
+  all: RegionsInfoOutputAll;
 }
-export const RegionsInfo = /*@__PURE__*/ S.suspend(() =>
+export const RegionsInfoOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    recommendations: RegionsInfoRecommendations,
-    all: RegionsInfoAll,
+    recommendations: RegionsInfoOutputRecommendations,
+    all: RegionsInfoOutputAll,
   }),
-).annotate({ identifier: "RegionsInfo" }) as any as S.Schema<RegionsInfo>;
+).annotate({
+  identifier: "RegionsInfoOutput",
+}) as any as S.Schema<RegionsInfoOutput>;
 
 export interface V1GetBackupScheduleRequest {
   /** Project ref */
@@ -4637,20 +4702,20 @@ export const V1GetBackupScheduleRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1GetBackupScheduleRequest",
 }) as any as S.Schema<V1GetBackupScheduleRequest>;
 
-export interface V1BackupScheduleResponse {
+export interface V1BackupScheduleResponseOutput {
   /** Time of day to schedule daily backups, in UTC. Format: HH:MM:SS. */
   schedule_for: string;
   /** Timestamp of when the backup schedule was last updated. */
   updated_at: string;
 }
-export const V1BackupScheduleResponse = /*@__PURE__*/ S.suspend(() =>
+export const V1BackupScheduleResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     schedule_for: S.String,
     updated_at: S.String,
   }),
 ).annotate({
-  identifier: "V1BackupScheduleResponse",
-}) as any as S.Schema<V1BackupScheduleResponse>;
+  identifier: "V1BackupScheduleResponseOutput",
+}) as any as S.Schema<V1BackupScheduleResponseOutput>;
 
 export interface V1GetDatabaseDiskRequest {
   /** Project ref */
@@ -4666,64 +4731,66 @@ export const V1GetDatabaseDiskRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1GetDatabaseDiskRequest",
 }) as any as S.Schema<V1GetDatabaseDiskRequest>;
 
-export type DiskResponseAttributesCase0Type = "gp3";
-export const DiskResponseAttributesCase0Type = /*@__PURE__*/ S.String;
+export type DiskResponseOutputAttributesCase0Type = "gp3";
+export const DiskResponseOutputAttributesCase0Type = /*@__PURE__*/ S.String;
 
-export interface DiskResponseAttributesCase0 {
+export interface DiskResponseOutputAttributesCase0 {
   iops: number;
   size_gb: number;
   throughput_mibps?: number;
-  type: DiskResponseAttributesCase0Type;
+  type: DiskResponseOutputAttributesCase0Type;
 }
-export const DiskResponseAttributesCase0 = /*@__PURE__*/ S.suspend(() =>
+export const DiskResponseOutputAttributesCase0 = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     iops: S.Number,
     size_gb: S.Number,
     throughput_mibps: S.optional(S.Number),
-    type: DiskResponseAttributesCase0Type,
+    type: DiskResponseOutputAttributesCase0Type,
   }),
 ).annotate({
-  identifier: "DiskResponseAttributesCase0",
-}) as any as S.Schema<DiskResponseAttributesCase0>;
+  identifier: "DiskResponseOutputAttributesCase0",
+}) as any as S.Schema<DiskResponseOutputAttributesCase0>;
 
-export type DiskResponseAttributesCase1Type = "io2";
-export const DiskResponseAttributesCase1Type = /*@__PURE__*/ S.String;
+export type DiskResponseOutputAttributesCase1Type = "io2";
+export const DiskResponseOutputAttributesCase1Type = /*@__PURE__*/ S.String;
 
-export interface DiskResponseAttributesCase1 {
+export interface DiskResponseOutputAttributesCase1 {
   iops: number;
   size_gb: number;
-  type: DiskResponseAttributesCase1Type;
+  type: DiskResponseOutputAttributesCase1Type;
 }
-export const DiskResponseAttributesCase1 = /*@__PURE__*/ S.suspend(() =>
+export const DiskResponseOutputAttributesCase1 = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     iops: S.Number,
     size_gb: S.Number,
-    type: DiskResponseAttributesCase1Type,
+    type: DiskResponseOutputAttributesCase1Type,
   }),
 ).annotate({
-  identifier: "DiskResponseAttributesCase1",
-}) as any as S.Schema<DiskResponseAttributesCase1>;
+  identifier: "DiskResponseOutputAttributesCase1",
+}) as any as S.Schema<DiskResponseOutputAttributesCase1>;
 
-export type DiskResponseAttributes =
-  | DiskResponseAttributesCase0
-  | DiskResponseAttributesCase1;
-export const DiskResponseAttributes = /*@__PURE__*/ S.Unknown.pipe(
+export type DiskResponseOutputAttributes =
+  | DiskResponseOutputAttributesCase0
+  | DiskResponseOutputAttributesCase1;
+export const DiskResponseOutputAttributes = /*@__PURE__*/ S.Unknown.pipe(
   T.UnionCases([
     ["iops", "size_gb", "throughput_mibps", "type"],
     ["iops", "size_gb", "type"],
   ]),
 );
 
-export interface DiskResponse {
-  attributes: DiskResponseAttributes;
+export interface DiskResponseOutput {
+  attributes: DiskResponseOutputAttributes;
   last_modified_at?: string;
 }
-export const DiskResponse = /*@__PURE__*/ S.suspend(() =>
+export const DiskResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    attributes: DiskResponseAttributes,
+    attributes: DiskResponseOutputAttributes,
     last_modified_at: S.optional(S.String),
   }),
-).annotate({ identifier: "DiskResponse" }) as any as S.Schema<DiskResponse>;
+).annotate({
+  identifier: "DiskResponseOutput",
+}) as any as S.Schema<DiskResponseOutput>;
 
 export interface V1GetDatabaseOpenapiRequest {
   /** Project ref */
@@ -4771,33 +4838,34 @@ export const V1GetDiskUtilizationRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1GetDiskUtilizationRequest",
 }) as any as S.Schema<V1GetDiskUtilizationRequest>;
 
-export interface DiskUtilMetricsResponseMetrics {
+export interface DiskUtilMetricsResponseOutputMetrics {
   fs_size_bytes: number;
   fs_avail_bytes: number;
   fs_used_bytes: number;
 }
-export const DiskUtilMetricsResponseMetrics = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    fs_size_bytes: S.Number,
-    fs_avail_bytes: S.Number,
-    fs_used_bytes: S.Number,
-  }),
+export const DiskUtilMetricsResponseOutputMetrics = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      fs_size_bytes: S.Number,
+      fs_avail_bytes: S.Number,
+      fs_used_bytes: S.Number,
+    }),
 ).annotate({
-  identifier: "DiskUtilMetricsResponseMetrics",
-}) as any as S.Schema<DiskUtilMetricsResponseMetrics>;
+  identifier: "DiskUtilMetricsResponseOutputMetrics",
+}) as any as S.Schema<DiskUtilMetricsResponseOutputMetrics>;
 
-export interface DiskUtilMetricsResponse {
+export interface DiskUtilMetricsResponseOutput {
   timestamp: string;
-  metrics: DiskUtilMetricsResponseMetrics;
+  metrics: DiskUtilMetricsResponseOutputMetrics;
 }
-export const DiskUtilMetricsResponse = /*@__PURE__*/ S.suspend(() =>
+export const DiskUtilMetricsResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     timestamp: S.String,
-    metrics: DiskUtilMetricsResponseMetrics,
+    metrics: DiskUtilMetricsResponseOutputMetrics,
   }),
 ).annotate({
-  identifier: "DiskUtilMetricsResponse",
-}) as any as S.Schema<DiskUtilMetricsResponse>;
+  identifier: "DiskUtilMetricsResponseOutput",
+}) as any as S.Schema<DiskUtilMetricsResponseOutput>;
 
 export interface V1GetHostnameConfigRequest {
   /** Project ref */
@@ -4868,6 +4936,7 @@ export const V1GetJitAccessConfigResponseBodyCase0 = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<V1GetJitAccessConfigResponseBodyCase0>;
 
 export type V1GetJitAccessConfigResponseBodyCase1UnavailableReason =
+  | "platform_unsupported"
   | "postgres_upgrade_required"
   | "ssl_enforcement_required"
   | "temporarily_unavailable";
@@ -4941,98 +5010,103 @@ export const V1GetNetworkRestrictionsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1GetNetworkRestrictionsRequest",
 }) as any as S.Schema<V1GetNetworkRestrictionsRequest>;
 
-export type NetworkRestrictionsResponseEntitlement = "disallowed" | "allowed";
-export const NetworkRestrictionsResponseEntitlement = /*@__PURE__*/ S.String;
+export type NetworkRestrictionsResponseOutputEntitlement =
+  | "disallowed"
+  | "allowed";
+export const NetworkRestrictionsResponseOutputEntitlement =
+  /*@__PURE__*/ S.String;
 
-export type NetworkRestrictionsResponseConfigDbAllowedCidrsList = Array<string>;
-export const NetworkRestrictionsResponseConfigDbAllowedCidrsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<NetworkRestrictionsResponseConfigDbAllowedCidrsList>;
-
-export type NetworkRestrictionsResponseConfigDbAllowedCidrsV6List =
+export type NetworkRestrictionsResponseOutputConfigDbAllowedCidrsList =
   Array<string>;
-export const NetworkRestrictionsResponseConfigDbAllowedCidrsV6List =
+export const NetworkRestrictionsResponseOutputConfigDbAllowedCidrsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<NetworkRestrictionsResponseConfigDbAllowedCidrsV6List>;
+  ) as any as S.Schema<NetworkRestrictionsResponseOutputConfigDbAllowedCidrsList>;
+
+export type NetworkRestrictionsResponseOutputConfigDbAllowedCidrsV6List =
+  Array<string>;
+export const NetworkRestrictionsResponseOutputConfigDbAllowedCidrsV6List =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<NetworkRestrictionsResponseOutputConfigDbAllowedCidrsV6List>;
 
 /** At any given point in time, this is the config that the user has requested be applied to their project. The `status` field indicates if it has been applied to the project, or is pending. When an updated config is received, the applied config is moved to `old_config`. */
-export interface NetworkRestrictionsResponseConfig {
-  dbAllowedCidrs?: NetworkRestrictionsResponseConfigDbAllowedCidrsList;
-  dbAllowedCidrsV6?: NetworkRestrictionsResponseConfigDbAllowedCidrsV6List;
+export interface NetworkRestrictionsResponseOutputConfig {
+  dbAllowedCidrs?: NetworkRestrictionsResponseOutputConfigDbAllowedCidrsList;
+  dbAllowedCidrsV6?: NetworkRestrictionsResponseOutputConfigDbAllowedCidrsV6List;
 }
-export const NetworkRestrictionsResponseConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    dbAllowedCidrs: S.optional(
-      NetworkRestrictionsResponseConfigDbAllowedCidrsList,
-    ),
-    dbAllowedCidrsV6: S.optional(
-      NetworkRestrictionsResponseConfigDbAllowedCidrsV6List,
-    ),
-  }),
-).annotate({
-  identifier: "NetworkRestrictionsResponseConfig",
-}) as any as S.Schema<NetworkRestrictionsResponseConfig>;
-
-export type NetworkRestrictionsResponseOldConfigDbAllowedCidrsList =
-  Array<string>;
-export const NetworkRestrictionsResponseOldConfigDbAllowedCidrsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<NetworkRestrictionsResponseOldConfigDbAllowedCidrsList>;
-
-export type NetworkRestrictionsResponseOldConfigDbAllowedCidrsV6List =
-  Array<string>;
-export const NetworkRestrictionsResponseOldConfigDbAllowedCidrsV6List =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<NetworkRestrictionsResponseOldConfigDbAllowedCidrsV6List>;
-
-/** Populated when a new config has been received, but not registered as successfully applied to a project. */
-export interface NetworkRestrictionsResponseOldConfig {
-  dbAllowedCidrs?: NetworkRestrictionsResponseOldConfigDbAllowedCidrsList;
-  dbAllowedCidrsV6?: NetworkRestrictionsResponseOldConfigDbAllowedCidrsV6List;
-}
-export const NetworkRestrictionsResponseOldConfig = /*@__PURE__*/ S.suspend(
+export const NetworkRestrictionsResponseOutputConfig = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       dbAllowedCidrs: S.optional(
-        NetworkRestrictionsResponseOldConfigDbAllowedCidrsList,
+        NetworkRestrictionsResponseOutputConfigDbAllowedCidrsList,
       ),
       dbAllowedCidrsV6: S.optional(
-        NetworkRestrictionsResponseOldConfigDbAllowedCidrsV6List,
+        NetworkRestrictionsResponseOutputConfigDbAllowedCidrsV6List,
       ),
     }),
 ).annotate({
-  identifier: "NetworkRestrictionsResponseOldConfig",
-}) as any as S.Schema<NetworkRestrictionsResponseOldConfig>;
+  identifier: "NetworkRestrictionsResponseOutputConfig",
+}) as any as S.Schema<NetworkRestrictionsResponseOutputConfig>;
 
-export type NetworkRestrictionsResponseStatus = "stored" | "applied";
-export const NetworkRestrictionsResponseStatus = /*@__PURE__*/ S.String;
+export type NetworkRestrictionsResponseOutputOldConfigDbAllowedCidrsList =
+  Array<string>;
+export const NetworkRestrictionsResponseOutputOldConfigDbAllowedCidrsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<NetworkRestrictionsResponseOutputOldConfigDbAllowedCidrsList>;
 
-export interface NetworkRestrictionsResponse {
-  entitlement: NetworkRestrictionsResponseEntitlement;
+export type NetworkRestrictionsResponseOutputOldConfigDbAllowedCidrsV6List =
+  Array<string>;
+export const NetworkRestrictionsResponseOutputOldConfigDbAllowedCidrsV6List =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<NetworkRestrictionsResponseOutputOldConfigDbAllowedCidrsV6List>;
+
+/** Populated when a new config has been received, but not registered as successfully applied to a project. */
+export interface NetworkRestrictionsResponseOutputOldConfig {
+  dbAllowedCidrs?: NetworkRestrictionsResponseOutputOldConfigDbAllowedCidrsList;
+  dbAllowedCidrsV6?: NetworkRestrictionsResponseOutputOldConfigDbAllowedCidrsV6List;
+}
+export const NetworkRestrictionsResponseOutputOldConfig =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      dbAllowedCidrs: S.optional(
+        NetworkRestrictionsResponseOutputOldConfigDbAllowedCidrsList,
+      ),
+      dbAllowedCidrsV6: S.optional(
+        NetworkRestrictionsResponseOutputOldConfigDbAllowedCidrsV6List,
+      ),
+    }),
+  ).annotate({
+    identifier: "NetworkRestrictionsResponseOutputOldConfig",
+  }) as any as S.Schema<NetworkRestrictionsResponseOutputOldConfig>;
+
+export type NetworkRestrictionsResponseOutputStatus = "stored" | "applied";
+export const NetworkRestrictionsResponseOutputStatus = /*@__PURE__*/ S.String;
+
+export interface NetworkRestrictionsResponseOutput {
+  entitlement: NetworkRestrictionsResponseOutputEntitlement;
   /** At any given point in time, this is the config that the user has requested be applied to their project. The `status` field indicates if it has been applied to the project, or is pending. When an updated config is received, the applied config is moved to `old_config`. */
-  config: NetworkRestrictionsResponseConfig;
+  config: NetworkRestrictionsResponseOutputConfig;
   /** Populated when a new config has been received, but not registered as successfully applied to a project. */
-  old_config?: NetworkRestrictionsResponseOldConfig;
-  status: NetworkRestrictionsResponseStatus;
+  old_config?: NetworkRestrictionsResponseOutputOldConfig;
+  status: NetworkRestrictionsResponseOutputStatus;
   updated_at?: string;
   applied_at?: string;
 }
-export const NetworkRestrictionsResponse = /*@__PURE__*/ S.suspend(() =>
+export const NetworkRestrictionsResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    entitlement: NetworkRestrictionsResponseEntitlement,
-    config: NetworkRestrictionsResponseConfig,
-    old_config: S.optional(NetworkRestrictionsResponseOldConfig),
-    status: NetworkRestrictionsResponseStatus,
+    entitlement: NetworkRestrictionsResponseOutputEntitlement,
+    config: NetworkRestrictionsResponseOutputConfig,
+    old_config: S.optional(NetworkRestrictionsResponseOutputOldConfig),
+    status: NetworkRestrictionsResponseOutputStatus,
     updated_at: S.optional(S.String),
     applied_at: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "NetworkRestrictionsResponse",
-}) as any as S.Schema<NetworkRestrictionsResponse>;
+  identifier: "NetworkRestrictionsResponseOutput",
+}) as any as S.Schema<NetworkRestrictionsResponseOutput>;
 
 export interface V1GetOrganizationEntitlementsRequest {
   /** Organization slug */
@@ -5053,7 +5127,7 @@ export const V1GetOrganizationEntitlementsRequest = /*@__PURE__*/ S.suspend(
   identifier: "V1GetOrganizationEntitlementsRequest",
 }) as any as S.Schema<V1GetOrganizationEntitlementsRequest>;
 
-export type V1ListEntitlementsResponseEntitlementsItemFeatureKey =
+export type V1ListEntitlementsResponseOutputEntitlementsItemFeatureKey =
   | "instances.compute_update_available_sizes"
   | "instances.read_replicas"
   | "instances.disk_modifications"
@@ -5118,56 +5192,56 @@ export type V1ListEntitlementsResponseEntitlementsItemFeatureKey =
   | "observability.dashboard_advanced_metrics"
   | "api.members.invitations"
   | "api.members.roles";
-export const V1ListEntitlementsResponseEntitlementsItemFeatureKey =
+export const V1ListEntitlementsResponseOutputEntitlementsItemFeatureKey =
   /*@__PURE__*/ S.String;
 
-export type V1ListEntitlementsResponseEntitlementsItemFeatureType =
+export type V1ListEntitlementsResponseOutputEntitlementsItemFeatureType =
   | "boolean"
   | "numeric"
   | "set";
-export const V1ListEntitlementsResponseEntitlementsItemFeatureType =
+export const V1ListEntitlementsResponseOutputEntitlementsItemFeatureType =
   /*@__PURE__*/ S.String;
 
-export interface V1ListEntitlementsResponseEntitlementsItemFeature {
-  key: V1ListEntitlementsResponseEntitlementsItemFeatureKey;
-  type: V1ListEntitlementsResponseEntitlementsItemFeatureType;
+export interface V1ListEntitlementsResponseOutputEntitlementsItemFeature {
+  key: V1ListEntitlementsResponseOutputEntitlementsItemFeatureKey;
+  type: V1ListEntitlementsResponseOutputEntitlementsItemFeatureType;
 }
-export const V1ListEntitlementsResponseEntitlementsItemFeature =
+export const V1ListEntitlementsResponseOutputEntitlementsItemFeature =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      key: V1ListEntitlementsResponseEntitlementsItemFeatureKey,
-      type: V1ListEntitlementsResponseEntitlementsItemFeatureType,
+      key: V1ListEntitlementsResponseOutputEntitlementsItemFeatureKey,
+      type: V1ListEntitlementsResponseOutputEntitlementsItemFeatureType,
     }),
   ).annotate({
-    identifier: "V1ListEntitlementsResponseEntitlementsItemFeature",
-  }) as any as S.Schema<V1ListEntitlementsResponseEntitlementsItemFeature>;
+    identifier: "V1ListEntitlementsResponseOutputEntitlementsItemFeature",
+  }) as any as S.Schema<V1ListEntitlementsResponseOutputEntitlementsItemFeature>;
 
-export type V1ListEntitlementsResponseEntitlementsItemType =
+export type V1ListEntitlementsResponseOutputEntitlementsItemType =
   | "boolean"
   | "numeric"
   | "set";
-export const V1ListEntitlementsResponseEntitlementsItemType =
+export const V1ListEntitlementsResponseOutputEntitlementsItemType =
   /*@__PURE__*/ S.String;
 
-export interface V1ListEntitlementsResponseEntitlementsItemConfigCase0 {
+export interface V1ListEntitlementsResponseOutputEntitlementsItemConfigCase0 {
   enabled: boolean;
 }
-export const V1ListEntitlementsResponseEntitlementsItemConfigCase0 =
+export const V1ListEntitlementsResponseOutputEntitlementsItemConfigCase0 =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       enabled: S.Boolean,
     }),
   ).annotate({
-    identifier: "V1ListEntitlementsResponseEntitlementsItemConfigCase0",
-  }) as any as S.Schema<V1ListEntitlementsResponseEntitlementsItemConfigCase0>;
+    identifier: "V1ListEntitlementsResponseOutputEntitlementsItemConfigCase0",
+  }) as any as S.Schema<V1ListEntitlementsResponseOutputEntitlementsItemConfigCase0>;
 
-export interface V1ListEntitlementsResponseEntitlementsItemConfigCase1 {
+export interface V1ListEntitlementsResponseOutputEntitlementsItemConfigCase1 {
   enabled: boolean;
   value: number;
   unlimited: boolean;
   unit: string;
 }
-export const V1ListEntitlementsResponseEntitlementsItemConfigCase1 =
+export const V1ListEntitlementsResponseOutputEntitlementsItemConfigCase1 =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       enabled: S.Boolean,
@@ -5176,35 +5250,35 @@ export const V1ListEntitlementsResponseEntitlementsItemConfigCase1 =
       unit: S.String,
     }),
   ).annotate({
-    identifier: "V1ListEntitlementsResponseEntitlementsItemConfigCase1",
-  }) as any as S.Schema<V1ListEntitlementsResponseEntitlementsItemConfigCase1>;
+    identifier: "V1ListEntitlementsResponseOutputEntitlementsItemConfigCase1",
+  }) as any as S.Schema<V1ListEntitlementsResponseOutputEntitlementsItemConfigCase1>;
 
-export type V1ListEntitlementsResponseEntitlementsItemConfigCase2SetList =
+export type V1ListEntitlementsResponseOutputEntitlementsItemConfigCase2SetList =
   Array<string>;
-export const V1ListEntitlementsResponseEntitlementsItemConfigCase2SetList =
+export const V1ListEntitlementsResponseOutputEntitlementsItemConfigCase2SetList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<V1ListEntitlementsResponseEntitlementsItemConfigCase2SetList>;
+  ) as any as S.Schema<V1ListEntitlementsResponseOutputEntitlementsItemConfigCase2SetList>;
 
-export interface V1ListEntitlementsResponseEntitlementsItemConfigCase2 {
+export interface V1ListEntitlementsResponseOutputEntitlementsItemConfigCase2 {
   enabled: boolean;
-  set: V1ListEntitlementsResponseEntitlementsItemConfigCase2SetList;
+  set: V1ListEntitlementsResponseOutputEntitlementsItemConfigCase2SetList;
 }
-export const V1ListEntitlementsResponseEntitlementsItemConfigCase2 =
+export const V1ListEntitlementsResponseOutputEntitlementsItemConfigCase2 =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       enabled: S.Boolean,
-      set: V1ListEntitlementsResponseEntitlementsItemConfigCase2SetList,
+      set: V1ListEntitlementsResponseOutputEntitlementsItemConfigCase2SetList,
     }),
   ).annotate({
-    identifier: "V1ListEntitlementsResponseEntitlementsItemConfigCase2",
-  }) as any as S.Schema<V1ListEntitlementsResponseEntitlementsItemConfigCase2>;
+    identifier: "V1ListEntitlementsResponseOutputEntitlementsItemConfigCase2",
+  }) as any as S.Schema<V1ListEntitlementsResponseOutputEntitlementsItemConfigCase2>;
 
-export type V1ListEntitlementsResponseEntitlementsItemConfig =
-  | V1ListEntitlementsResponseEntitlementsItemConfigCase0
-  | V1ListEntitlementsResponseEntitlementsItemConfigCase1
-  | V1ListEntitlementsResponseEntitlementsItemConfigCase2;
-export const V1ListEntitlementsResponseEntitlementsItemConfig =
+export type V1ListEntitlementsResponseOutputEntitlementsItemConfig =
+  | V1ListEntitlementsResponseOutputEntitlementsItemConfigCase0
+  | V1ListEntitlementsResponseOutputEntitlementsItemConfigCase1
+  | V1ListEntitlementsResponseOutputEntitlementsItemConfigCase2;
+export const V1ListEntitlementsResponseOutputEntitlementsItemConfig =
   /*@__PURE__*/ S.Unknown.pipe(
     T.UnionCases([
       ["enabled"],
@@ -5213,40 +5287,41 @@ export const V1ListEntitlementsResponseEntitlementsItemConfig =
     ]),
   );
 
-export interface V1ListEntitlementsResponseEntitlementsItem {
-  feature: V1ListEntitlementsResponseEntitlementsItemFeature;
+export interface V1ListEntitlementsResponseOutputEntitlementsItem {
+  feature: V1ListEntitlementsResponseOutputEntitlementsItemFeature;
   hasAccess: boolean;
-  type: V1ListEntitlementsResponseEntitlementsItemType;
-  config: V1ListEntitlementsResponseEntitlementsItemConfig;
+  type: V1ListEntitlementsResponseOutputEntitlementsItemType;
+  config: V1ListEntitlementsResponseOutputEntitlementsItemConfig;
 }
-export const V1ListEntitlementsResponseEntitlementsItem =
+export const V1ListEntitlementsResponseOutputEntitlementsItem =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      feature: V1ListEntitlementsResponseEntitlementsItemFeature,
+      feature: V1ListEntitlementsResponseOutputEntitlementsItemFeature,
       hasAccess: S.Boolean,
-      type: V1ListEntitlementsResponseEntitlementsItemType,
-      config: V1ListEntitlementsResponseEntitlementsItemConfig,
+      type: V1ListEntitlementsResponseOutputEntitlementsItemType,
+      config: V1ListEntitlementsResponseOutputEntitlementsItemConfig,
     }),
   ).annotate({
-    identifier: "V1ListEntitlementsResponseEntitlementsItem",
-  }) as any as S.Schema<V1ListEntitlementsResponseEntitlementsItem>;
+    identifier: "V1ListEntitlementsResponseOutputEntitlementsItem",
+  }) as any as S.Schema<V1ListEntitlementsResponseOutputEntitlementsItem>;
 
-export type V1ListEntitlementsResponseEntitlementsList =
-  Array<V1ListEntitlementsResponseEntitlementsItem>;
-export const V1ListEntitlementsResponseEntitlementsList = /*@__PURE__*/ S.Array(
-  V1ListEntitlementsResponseEntitlementsItem,
-) as any as S.Schema<V1ListEntitlementsResponseEntitlementsList>;
+export type V1ListEntitlementsResponseOutputEntitlementsList =
+  Array<V1ListEntitlementsResponseOutputEntitlementsItem>;
+export const V1ListEntitlementsResponseOutputEntitlementsList =
+  /*@__PURE__*/ S.Array(
+    V1ListEntitlementsResponseOutputEntitlementsItem,
+  ) as any as S.Schema<V1ListEntitlementsResponseOutputEntitlementsList>;
 
-export interface V1ListEntitlementsResponse {
-  entitlements: V1ListEntitlementsResponseEntitlementsList;
+export interface V1ListEntitlementsResponseOutput {
+  entitlements: V1ListEntitlementsResponseOutputEntitlementsList;
 }
-export const V1ListEntitlementsResponse = /*@__PURE__*/ S.suspend(() =>
+export const V1ListEntitlementsResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    entitlements: V1ListEntitlementsResponseEntitlementsList,
+    entitlements: V1ListEntitlementsResponseOutputEntitlementsList,
   }),
 ).annotate({
-  identifier: "V1ListEntitlementsResponse",
-}) as any as S.Schema<V1ListEntitlementsResponse>;
+  identifier: "V1ListEntitlementsResponseOutput",
+}) as any as S.Schema<V1ListEntitlementsResponseOutput>;
 
 export interface V1GetOrganizationProjectClaimRequest {
   /** Organization slug */
@@ -5269,70 +5344,70 @@ export const V1GetOrganizationProjectClaimRequest = /*@__PURE__*/ S.suspend(
   identifier: "V1GetOrganizationProjectClaimRequest",
 }) as any as S.Schema<V1GetOrganizationProjectClaimRequest>;
 
-export interface OrganizationProjectClaimResponseProject {
+export interface OrganizationProjectClaimResponseOutputProject {
   ref: string;
   name: string;
 }
-export const OrganizationProjectClaimResponseProject = /*@__PURE__*/ S.suspend(
-  () =>
+export const OrganizationProjectClaimResponseOutputProject =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       ref: S.String,
       name: S.String,
     }),
-).annotate({
-  identifier: "OrganizationProjectClaimResponseProject",
-}) as any as S.Schema<OrganizationProjectClaimResponseProject>;
+  ).annotate({
+    identifier: "OrganizationProjectClaimResponseOutputProject",
+  }) as any as S.Schema<OrganizationProjectClaimResponseOutputProject>;
 
-export interface OrganizationProjectClaimResponsePreviewWarningsItem {
+export interface OrganizationProjectClaimResponseOutputPreviewWarningsItem {
   key: string;
   message: string;
 }
-export const OrganizationProjectClaimResponsePreviewWarningsItem =
+export const OrganizationProjectClaimResponseOutputPreviewWarningsItem =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       key: S.String,
       message: S.String,
     }),
   ).annotate({
-    identifier: "OrganizationProjectClaimResponsePreviewWarningsItem",
-  }) as any as S.Schema<OrganizationProjectClaimResponsePreviewWarningsItem>;
+    identifier: "OrganizationProjectClaimResponseOutputPreviewWarningsItem",
+  }) as any as S.Schema<OrganizationProjectClaimResponseOutputPreviewWarningsItem>;
 
-export type OrganizationProjectClaimResponsePreviewWarningsList =
-  Array<OrganizationProjectClaimResponsePreviewWarningsItem>;
-export const OrganizationProjectClaimResponsePreviewWarningsList =
+export type OrganizationProjectClaimResponseOutputPreviewWarningsList =
+  Array<OrganizationProjectClaimResponseOutputPreviewWarningsItem>;
+export const OrganizationProjectClaimResponseOutputPreviewWarningsList =
   /*@__PURE__*/ S.Array(
-    OrganizationProjectClaimResponsePreviewWarningsItem,
-  ) as any as S.Schema<OrganizationProjectClaimResponsePreviewWarningsList>;
+    OrganizationProjectClaimResponseOutputPreviewWarningsItem,
+  ) as any as S.Schema<OrganizationProjectClaimResponseOutputPreviewWarningsList>;
 
-export type OrganizationProjectClaimResponsePreviewErrorsItem =
-  OrganizationProjectClaimResponsePreviewWarningsItem;
-export const OrganizationProjectClaimResponsePreviewErrorsItem =
-  OrganizationProjectClaimResponsePreviewWarningsItem;
+export type OrganizationProjectClaimResponseOutputPreviewErrorsItem =
+  OrganizationProjectClaimResponseOutputPreviewWarningsItem;
+export const OrganizationProjectClaimResponseOutputPreviewErrorsItem =
+  OrganizationProjectClaimResponseOutputPreviewWarningsItem;
 
-export type OrganizationProjectClaimResponsePreviewErrorsList =
-  Array<OrganizationProjectClaimResponsePreviewWarningsItem>;
-export const OrganizationProjectClaimResponsePreviewErrorsList =
+export type OrganizationProjectClaimResponseOutputPreviewErrorsList =
+  Array<OrganizationProjectClaimResponseOutputPreviewWarningsItem>;
+export const OrganizationProjectClaimResponseOutputPreviewErrorsList =
   /*@__PURE__*/ S.Array(
-    OrganizationProjectClaimResponsePreviewWarningsItem,
-  ) as any as S.Schema<OrganizationProjectClaimResponsePreviewErrorsList>;
+    OrganizationProjectClaimResponseOutputPreviewWarningsItem,
+  ) as any as S.Schema<OrganizationProjectClaimResponseOutputPreviewErrorsList>;
 
-export type OrganizationProjectClaimResponsePreviewInfoItem =
-  OrganizationProjectClaimResponsePreviewWarningsItem;
-export const OrganizationProjectClaimResponsePreviewInfoItem =
-  OrganizationProjectClaimResponsePreviewWarningsItem;
+export type OrganizationProjectClaimResponseOutputPreviewInfoItem =
+  OrganizationProjectClaimResponseOutputPreviewWarningsItem;
+export const OrganizationProjectClaimResponseOutputPreviewInfoItem =
+  OrganizationProjectClaimResponseOutputPreviewWarningsItem;
 
-export type OrganizationProjectClaimResponsePreviewInfoList =
-  Array<OrganizationProjectClaimResponsePreviewWarningsItem>;
-export const OrganizationProjectClaimResponsePreviewInfoList =
+export type OrganizationProjectClaimResponseOutputPreviewInfoList =
+  Array<OrganizationProjectClaimResponseOutputPreviewWarningsItem>;
+export const OrganizationProjectClaimResponseOutputPreviewInfoList =
   /*@__PURE__*/ S.Array(
-    OrganizationProjectClaimResponsePreviewWarningsItem,
-  ) as any as S.Schema<OrganizationProjectClaimResponsePreviewInfoList>;
+    OrganizationProjectClaimResponseOutputPreviewWarningsItem,
+  ) as any as S.Schema<OrganizationProjectClaimResponseOutputPreviewInfoList>;
 
-export interface OrganizationProjectClaimResponsePreviewMembersExceedingFreeProjectLimitItem {
+export interface OrganizationProjectClaimResponseOutputPreviewMembersExceedingFreeProjectLimitItem {
   name: string;
   limit: number;
 }
-export const OrganizationProjectClaimResponsePreviewMembersExceedingFreeProjectLimitItem =
+export const OrganizationProjectClaimResponseOutputPreviewMembersExceedingFreeProjectLimitItem =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       name: S.String,
@@ -5340,80 +5415,81 @@ export const OrganizationProjectClaimResponsePreviewMembersExceedingFreeProjectL
     }),
   ).annotate({
     identifier:
-      "OrganizationProjectClaimResponsePreviewMembersExceedingFreeProjectLimitItem",
-  }) as any as S.Schema<OrganizationProjectClaimResponsePreviewMembersExceedingFreeProjectLimitItem>;
+      "OrganizationProjectClaimResponseOutputPreviewMembersExceedingFreeProjectLimitItem",
+  }) as any as S.Schema<OrganizationProjectClaimResponseOutputPreviewMembersExceedingFreeProjectLimitItem>;
 
-export type OrganizationProjectClaimResponsePreviewMembersExceedingFreeProjectLimitList =
-  Array<OrganizationProjectClaimResponsePreviewMembersExceedingFreeProjectLimitItem>;
-export const OrganizationProjectClaimResponsePreviewMembersExceedingFreeProjectLimitList =
+export type OrganizationProjectClaimResponseOutputPreviewMembersExceedingFreeProjectLimitList =
+  Array<OrganizationProjectClaimResponseOutputPreviewMembersExceedingFreeProjectLimitItem>;
+export const OrganizationProjectClaimResponseOutputPreviewMembersExceedingFreeProjectLimitList =
   /*@__PURE__*/ S.Array(
-    OrganizationProjectClaimResponsePreviewMembersExceedingFreeProjectLimitItem,
-  ) as any as S.Schema<OrganizationProjectClaimResponsePreviewMembersExceedingFreeProjectLimitList>;
+    OrganizationProjectClaimResponseOutputPreviewMembersExceedingFreeProjectLimitItem,
+  ) as any as S.Schema<OrganizationProjectClaimResponseOutputPreviewMembersExceedingFreeProjectLimitList>;
 
-export type OrganizationProjectClaimResponsePreviewSourceSubscriptionPlan =
+export type OrganizationProjectClaimResponseOutputPreviewSourceSubscriptionPlan =
   | "free"
   | "pro"
   | "team"
   | "enterprise"
   | "platform";
-export const OrganizationProjectClaimResponsePreviewSourceSubscriptionPlan =
+export const OrganizationProjectClaimResponseOutputPreviewSourceSubscriptionPlan =
   /*@__PURE__*/ S.String;
 
-export type OrganizationProjectClaimResponsePreviewTargetSubscriptionPlan =
+export type OrganizationProjectClaimResponseOutputPreviewTargetSubscriptionPlan =
   | "free"
   | "pro"
   | "team"
   | "enterprise"
   | "platform";
-export const OrganizationProjectClaimResponsePreviewTargetSubscriptionPlan =
+export const OrganizationProjectClaimResponseOutputPreviewTargetSubscriptionPlan =
   /*@__PURE__*/ S.String;
 
-export interface OrganizationProjectClaimResponsePreview {
+export interface OrganizationProjectClaimResponseOutputPreview {
   valid: boolean;
-  warnings: OrganizationProjectClaimResponsePreviewWarningsList;
-  errors: OrganizationProjectClaimResponsePreviewErrorsList;
-  info: OrganizationProjectClaimResponsePreviewInfoList;
-  members_exceeding_free_project_limit: OrganizationProjectClaimResponsePreviewMembersExceedingFreeProjectLimitList;
-  source_subscription_plan: OrganizationProjectClaimResponsePreviewSourceSubscriptionPlan;
-  target_subscription_plan: OrganizationProjectClaimResponsePreviewTargetSubscriptionPlan | null;
+  warnings: OrganizationProjectClaimResponseOutputPreviewWarningsList;
+  errors: OrganizationProjectClaimResponseOutputPreviewErrorsList;
+  info: OrganizationProjectClaimResponseOutputPreviewInfoList;
+  members_exceeding_free_project_limit: OrganizationProjectClaimResponseOutputPreviewMembersExceedingFreeProjectLimitList;
+  source_subscription_plan: OrganizationProjectClaimResponseOutputPreviewSourceSubscriptionPlan;
+  target_subscription_plan: OrganizationProjectClaimResponseOutputPreviewTargetSubscriptionPlan | null;
 }
-export const OrganizationProjectClaimResponsePreview = /*@__PURE__*/ S.suspend(
-  () =>
+export const OrganizationProjectClaimResponseOutputPreview =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       valid: S.Boolean,
-      warnings: OrganizationProjectClaimResponsePreviewWarningsList,
-      errors: OrganizationProjectClaimResponsePreviewErrorsList,
-      info: OrganizationProjectClaimResponsePreviewInfoList,
+      warnings: OrganizationProjectClaimResponseOutputPreviewWarningsList,
+      errors: OrganizationProjectClaimResponseOutputPreviewErrorsList,
+      info: OrganizationProjectClaimResponseOutputPreviewInfoList,
       members_exceeding_free_project_limit:
-        OrganizationProjectClaimResponsePreviewMembersExceedingFreeProjectLimitList,
+        OrganizationProjectClaimResponseOutputPreviewMembersExceedingFreeProjectLimitList,
       source_subscription_plan:
-        OrganizationProjectClaimResponsePreviewSourceSubscriptionPlan,
+        OrganizationProjectClaimResponseOutputPreviewSourceSubscriptionPlan,
       target_subscription_plan: S.NullOr(
-        OrganizationProjectClaimResponsePreviewTargetSubscriptionPlan,
+        OrganizationProjectClaimResponseOutputPreviewTargetSubscriptionPlan,
       ),
     }),
-).annotate({
-  identifier: "OrganizationProjectClaimResponsePreview",
-}) as any as S.Schema<OrganizationProjectClaimResponsePreview>;
+  ).annotate({
+    identifier: "OrganizationProjectClaimResponseOutputPreview",
+  }) as any as S.Schema<OrganizationProjectClaimResponseOutputPreview>;
 
-export interface OrganizationProjectClaimResponse {
-  project: OrganizationProjectClaimResponseProject;
-  preview: OrganizationProjectClaimResponsePreview;
+export interface OrganizationProjectClaimResponseOutput {
+  project: OrganizationProjectClaimResponseOutputProject;
+  preview: OrganizationProjectClaimResponseOutputPreview;
   expires_at: string;
   created_at: string;
   created_by: string;
 }
-export const OrganizationProjectClaimResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project: OrganizationProjectClaimResponseProject,
-    preview: OrganizationProjectClaimResponsePreview,
-    expires_at: S.String,
-    created_at: S.String,
-    created_by: S.String,
-  }),
+export const OrganizationProjectClaimResponseOutput = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project: OrganizationProjectClaimResponseOutputProject,
+      preview: OrganizationProjectClaimResponseOutputPreview,
+      expires_at: S.String,
+      created_at: S.String,
+      created_by: S.String,
+    }),
 ).annotate({
-  identifier: "OrganizationProjectClaimResponse",
-}) as any as S.Schema<OrganizationProjectClaimResponse>;
+  identifier: "OrganizationProjectClaimResponseOutput",
+}) as any as S.Schema<OrganizationProjectClaimResponseOutput>;
 
 export interface V1GetPgsodiumConfigRequest {
   /** Project ref */
@@ -5429,17 +5505,17 @@ export const V1GetPgsodiumConfigRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1GetPgsodiumConfigRequest",
 }) as any as S.Schema<V1GetPgsodiumConfigRequest>;
 
-export interface PgsodiumConfigResponse {
+export interface PgsodiumConfigResponseOutput {
   /** The pgsodium root key: 32 bytes, hex-encoded (64 characters). */
   root_key: string;
 }
-export const PgsodiumConfigResponse = /*@__PURE__*/ S.suspend(() =>
+export const PgsodiumConfigResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     root_key: S.String,
   }),
 ).annotate({
-  identifier: "PgsodiumConfigResponse",
-}) as any as S.Schema<PgsodiumConfigResponse>;
+  identifier: "PgsodiumConfigResponseOutput",
+}) as any as S.Schema<PgsodiumConfigResponseOutput>;
 
 export interface V1GetPoolerConfigRequest {
   /** Project ref */
@@ -5459,15 +5535,17 @@ export const V1GetPoolerConfigRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1GetPoolerConfigRequest",
 }) as any as S.Schema<V1GetPoolerConfigRequest>;
 
-export type SupavisorConfigResponseDatabaseType = "PRIMARY" | "READ_REPLICA";
-export const SupavisorConfigResponseDatabaseType = /*@__PURE__*/ S.String;
+export type SupavisorConfigResponseOutputDatabaseType =
+  | "PRIMARY"
+  | "READ_REPLICA";
+export const SupavisorConfigResponseOutputDatabaseType = /*@__PURE__*/ S.String;
 
-export type SupavisorConfigResponsePoolMode = "transaction" | "session";
-export const SupavisorConfigResponsePoolMode = /*@__PURE__*/ S.String;
+export type SupavisorConfigResponseOutputPoolMode = "transaction" | "session";
+export const SupavisorConfigResponseOutputPoolMode = /*@__PURE__*/ S.String;
 
-export interface SupavisorConfigResponse {
+export interface SupavisorConfigResponseOutput {
   identifier: string;
-  database_type: SupavisorConfigResponseDatabaseType;
+  database_type: SupavisorConfigResponseOutputDatabaseType;
   is_using_scram_auth: boolean;
   db_user: string;
   db_host: string;
@@ -5478,12 +5556,12 @@ export interface SupavisorConfigResponse {
   connectionString: T.Sensitive;
   default_pool_size: number | null;
   max_client_conn: number | null;
-  pool_mode: SupavisorConfigResponsePoolMode;
+  pool_mode: SupavisorConfigResponseOutputPoolMode;
 }
-export const SupavisorConfigResponse = /*@__PURE__*/ S.suspend(() =>
+export const SupavisorConfigResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     identifier: S.String,
-    database_type: SupavisorConfigResponseDatabaseType,
+    database_type: SupavisorConfigResponseOutputDatabaseType,
     is_using_scram_auth: S.Boolean,
     db_user: S.String,
     db_host: S.String,
@@ -5493,15 +5571,16 @@ export const SupavisorConfigResponse = /*@__PURE__*/ S.suspend(() =>
     connectionString: S.String.pipe(T.SensitiveValue({})),
     default_pool_size: S.NullOr(S.Number),
     max_client_conn: S.NullOr(S.Number),
-    pool_mode: SupavisorConfigResponsePoolMode,
+    pool_mode: SupavisorConfigResponseOutputPoolMode,
   }),
 ).annotate({
-  identifier: "SupavisorConfigResponse",
-}) as any as S.Schema<SupavisorConfigResponse>;
+  identifier: "SupavisorConfigResponseOutput",
+}) as any as S.Schema<SupavisorConfigResponseOutput>;
 
-export type V1GetPoolerConfigResponseBodyList = Array<SupavisorConfigResponse>;
+export type V1GetPoolerConfigResponseBodyList =
+  Array<SupavisorConfigResponseOutput>;
 export const V1GetPoolerConfigResponseBodyList = /*@__PURE__*/ S.Array(
-  SupavisorConfigResponse,
+  SupavisorConfigResponseOutput,
 ) as any as S.Schema<V1GetPoolerConfigResponseBodyList>;
 
 export type V1GetPoolerConfigResponse = V1GetPoolerConfigResponseBodyList;
@@ -5529,14 +5608,14 @@ export const V1GetPostgresConfigRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1GetPostgresConfigRequest",
 }) as any as S.Schema<V1GetPostgresConfigRequest>;
 
-export type PostgresConfigResponseSessionReplicationRole =
+export type PostgresConfigResponseOutputSessionReplicationRole =
   | "origin"
   | "replica"
   | "local";
-export const PostgresConfigResponseSessionReplicationRole =
+export const PostgresConfigResponseOutputSessionReplicationRole =
   /*@__PURE__*/ S.String;
 
-export interface PostgresConfigResponse {
+export interface PostgresConfigResponseOutput {
   effective_cache_size?: string;
   logical_decoding_work_mem?: string;
   cron_log_statement?: boolean;
@@ -5568,7 +5647,7 @@ export interface PostgresConfigResponse {
   max_wal_size?: string;
   max_wal_senders?: number;
   max_worker_processes?: number;
-  session_replication_role?: PostgresConfigResponseSessionReplicationRole;
+  session_replication_role?: PostgresConfigResponseOutputSessionReplicationRole;
   shared_buffers?: string;
   /** Default unit: ms */
   statement_timeout?: string;
@@ -5581,7 +5660,7 @@ export interface PostgresConfigResponse {
   checkpoint_timeout?: string;
   hot_standby_feedback?: boolean;
 }
-export const PostgresConfigResponse = /*@__PURE__*/ S.suspend(() =>
+export const PostgresConfigResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     effective_cache_size: S.optional(S.String),
     logical_decoding_work_mem: S.optional(S.String),
@@ -5615,7 +5694,7 @@ export const PostgresConfigResponse = /*@__PURE__*/ S.suspend(() =>
     max_wal_senders: S.optional(S.Number),
     max_worker_processes: S.optional(S.Number),
     session_replication_role: S.optional(
-      PostgresConfigResponseSessionReplicationRole,
+      PostgresConfigResponseOutputSessionReplicationRole,
     ),
     shared_buffers: S.optional(S.String),
     statement_timeout: S.optional(S.String),
@@ -5627,8 +5706,8 @@ export const PostgresConfigResponse = /*@__PURE__*/ S.suspend(() =>
     hot_standby_feedback: S.optional(S.Boolean),
   }),
 ).annotate({
-  identifier: "PostgresConfigResponse",
-}) as any as S.Schema<PostgresConfigResponse>;
+  identifier: "PostgresConfigResponseOutput",
+}) as any as S.Schema<PostgresConfigResponseOutput>;
 
 export interface V1GetPostgrestServiceConfigRequest {
   /** Project ref */
@@ -5644,7 +5723,7 @@ export const V1GetPostgrestServiceConfigRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1GetPostgrestServiceConfigRequest",
 }) as any as S.Schema<V1GetPostgrestServiceConfigRequest>;
 
-export interface PostgrestConfigWithJWTSecretResponse {
+export interface PostgrestConfigWithJWTSecretResponseOutput {
   db_schema: string;
   max_rows: number;
   db_extra_search_path: string;
@@ -5654,8 +5733,8 @@ export interface PostgrestConfigWithJWTSecretResponse {
   db_pool_acquisition_timeout: number | null;
   jwt_secret?: T.Sensitive;
 }
-export const PostgrestConfigWithJWTSecretResponse = /*@__PURE__*/ S.suspend(
-  () =>
+export const PostgrestConfigWithJWTSecretResponseOutput =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       db_schema: S.String,
       max_rows: S.Number,
@@ -5664,9 +5743,9 @@ export const PostgrestConfigWithJWTSecretResponse = /*@__PURE__*/ S.suspend(
       db_pool_acquisition_timeout: S.NullOr(S.Number),
       jwt_secret: S.optional(S.String.pipe(T.SensitiveValue({}))),
     }),
-).annotate({
-  identifier: "PostgrestConfigWithJWTSecretResponse",
-}) as any as S.Schema<PostgrestConfigWithJWTSecretResponse>;
+  ).annotate({
+    identifier: "PostgrestConfigWithJWTSecretResponseOutput",
+  }) as any as S.Schema<PostgrestConfigWithJWTSecretResponseOutput>;
 
 export interface V1GetPostgresUpgradeEligibilityRequest {
   /** Project ref */
@@ -5687,332 +5766,343 @@ export const V1GetPostgresUpgradeEligibilityRequest = /*@__PURE__*/ S.suspend(
   identifier: "V1GetPostgresUpgradeEligibilityRequest",
 }) as any as S.Schema<V1GetPostgresUpgradeEligibilityRequest>;
 
-export type ProjectUpgradeEligibilityResponseCurrentAppVersionReleaseChannel =
+export type ProjectUpgradeEligibilityResponseOutputCurrentAppVersionReleaseChannel =
   | "internal"
   | "alpha"
   | "beta"
   | "ga"
   | "withdrawn"
   | "preview";
-export const ProjectUpgradeEligibilityResponseCurrentAppVersionReleaseChannel =
+export const ProjectUpgradeEligibilityResponseOutputCurrentAppVersionReleaseChannel =
   /*@__PURE__*/ S.String;
 
-export type ProjectUpgradeEligibilityResponseTargetUpgradeVersionsItemPostgresVersion =
+export type ProjectUpgradeEligibilityResponseOutputTargetUpgradeVersionsItemPostgresVersion =
   | "13"
   | "14"
   | "15"
   | "17"
   | "17-oriole";
-export const ProjectUpgradeEligibilityResponseTargetUpgradeVersionsItemPostgresVersion =
+export const ProjectUpgradeEligibilityResponseOutputTargetUpgradeVersionsItemPostgresVersion =
   /*@__PURE__*/ S.String;
 
-export type ProjectUpgradeEligibilityResponseTargetUpgradeVersionsItemReleaseChannel =
+export type ProjectUpgradeEligibilityResponseOutputTargetUpgradeVersionsItemReleaseChannel =
   | "internal"
   | "alpha"
   | "beta"
   | "ga"
   | "withdrawn"
   | "preview";
-export const ProjectUpgradeEligibilityResponseTargetUpgradeVersionsItemReleaseChannel =
+export const ProjectUpgradeEligibilityResponseOutputTargetUpgradeVersionsItemReleaseChannel =
   /*@__PURE__*/ S.String;
 
-export interface ProjectUpgradeEligibilityResponseTargetUpgradeVersionsItem {
-  postgres_version: ProjectUpgradeEligibilityResponseTargetUpgradeVersionsItemPostgresVersion;
-  release_channel: ProjectUpgradeEligibilityResponseTargetUpgradeVersionsItemReleaseChannel;
+export interface ProjectUpgradeEligibilityResponseOutputTargetUpgradeVersionsItem {
+  postgres_version: ProjectUpgradeEligibilityResponseOutputTargetUpgradeVersionsItemPostgresVersion;
+  release_channel: ProjectUpgradeEligibilityResponseOutputTargetUpgradeVersionsItemReleaseChannel;
   app_version: string;
 }
-export const ProjectUpgradeEligibilityResponseTargetUpgradeVersionsItem =
+export const ProjectUpgradeEligibilityResponseOutputTargetUpgradeVersionsItem =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       postgres_version:
-        ProjectUpgradeEligibilityResponseTargetUpgradeVersionsItemPostgresVersion,
+        ProjectUpgradeEligibilityResponseOutputTargetUpgradeVersionsItemPostgresVersion,
       release_channel:
-        ProjectUpgradeEligibilityResponseTargetUpgradeVersionsItemReleaseChannel,
+        ProjectUpgradeEligibilityResponseOutputTargetUpgradeVersionsItemReleaseChannel,
       app_version: S.String,
     }),
   ).annotate({
-    identifier: "ProjectUpgradeEligibilityResponseTargetUpgradeVersionsItem",
-  }) as any as S.Schema<ProjectUpgradeEligibilityResponseTargetUpgradeVersionsItem>;
+    identifier:
+      "ProjectUpgradeEligibilityResponseOutputTargetUpgradeVersionsItem",
+  }) as any as S.Schema<ProjectUpgradeEligibilityResponseOutputTargetUpgradeVersionsItem>;
 
-export type ProjectUpgradeEligibilityResponseTargetUpgradeVersionsList =
-  Array<ProjectUpgradeEligibilityResponseTargetUpgradeVersionsItem>;
-export const ProjectUpgradeEligibilityResponseTargetUpgradeVersionsList =
+export type ProjectUpgradeEligibilityResponseOutputTargetUpgradeVersionsList =
+  Array<ProjectUpgradeEligibilityResponseOutputTargetUpgradeVersionsItem>;
+export const ProjectUpgradeEligibilityResponseOutputTargetUpgradeVersionsList =
   /*@__PURE__*/ S.Array(
-    ProjectUpgradeEligibilityResponseTargetUpgradeVersionsItem,
-  ) as any as S.Schema<ProjectUpgradeEligibilityResponseTargetUpgradeVersionsList>;
+    ProjectUpgradeEligibilityResponseOutputTargetUpgradeVersionsItem,
+  ) as any as S.Schema<ProjectUpgradeEligibilityResponseOutputTargetUpgradeVersionsList>;
 
-export type ProjectUpgradeEligibilityResponseLegacyAuthCustomRolesList =
+export type ProjectUpgradeEligibilityResponseOutputLegacyAuthCustomRolesList =
   Array<string>;
-export const ProjectUpgradeEligibilityResponseLegacyAuthCustomRolesList =
+export const ProjectUpgradeEligibilityResponseOutputLegacyAuthCustomRolesList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<ProjectUpgradeEligibilityResponseLegacyAuthCustomRolesList>;
+  ) as any as S.Schema<ProjectUpgradeEligibilityResponseOutputLegacyAuthCustomRolesList>;
 
 /** Use validation_errors instead. */
-export type ProjectUpgradeEligibilityResponseObjectsToBeDroppedList =
+export type ProjectUpgradeEligibilityResponseOutputObjectsToBeDroppedList =
   Array<string>;
-export const ProjectUpgradeEligibilityResponseObjectsToBeDroppedList =
+export const ProjectUpgradeEligibilityResponseOutputObjectsToBeDroppedList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<ProjectUpgradeEligibilityResponseObjectsToBeDroppedList>;
+  ) as any as S.Schema<ProjectUpgradeEligibilityResponseOutputObjectsToBeDroppedList>;
 
 /** Use validation_errors instead. */
-export type ProjectUpgradeEligibilityResponseUnsupportedExtensionsList =
+export type ProjectUpgradeEligibilityResponseOutputUnsupportedExtensionsList =
   Array<string>;
-export const ProjectUpgradeEligibilityResponseUnsupportedExtensionsList =
+export const ProjectUpgradeEligibilityResponseOutputUnsupportedExtensionsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<ProjectUpgradeEligibilityResponseUnsupportedExtensionsList>;
+  ) as any as S.Schema<ProjectUpgradeEligibilityResponseOutputUnsupportedExtensionsList>;
 
 /** Use validation_errors instead. */
-export type ProjectUpgradeEligibilityResponseUserDefinedObjectsInInternalSchemasList =
+export type ProjectUpgradeEligibilityResponseOutputUserDefinedObjectsInInternalSchemasList =
   Array<string>;
-export const ProjectUpgradeEligibilityResponseUserDefinedObjectsInInternalSchemasList =
+export const ProjectUpgradeEligibilityResponseOutputUserDefinedObjectsInInternalSchemasList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<ProjectUpgradeEligibilityResponseUserDefinedObjectsInInternalSchemasList>;
+  ) as any as S.Schema<ProjectUpgradeEligibilityResponseOutputUserDefinedObjectsInInternalSchemasList>;
 
-export type ProjectUpgradeEligibilityResponseValidationErrorsItemCase0Type =
+export type ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase0Type =
   "objects_depending_on_pg_cron";
-export const ProjectUpgradeEligibilityResponseValidationErrorsItemCase0Type =
+export const ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase0Type =
   /*@__PURE__*/ S.String;
 
-export type ProjectUpgradeEligibilityResponseValidationErrorsItemCase0DependentsList =
+export type ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase0DependentsList =
   Array<string>;
-export const ProjectUpgradeEligibilityResponseValidationErrorsItemCase0DependentsList =
+export const ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase0DependentsList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<ProjectUpgradeEligibilityResponseValidationErrorsItemCase0DependentsList>;
+  ) as any as S.Schema<ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase0DependentsList>;
 
-export interface ProjectUpgradeEligibilityResponseValidationErrorsItemCase0 {
-  type: ProjectUpgradeEligibilityResponseValidationErrorsItemCase0Type;
-  dependents: ProjectUpgradeEligibilityResponseValidationErrorsItemCase0DependentsList;
+export interface ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase0 {
+  type: ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase0Type;
+  dependents: ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase0DependentsList;
 }
-export const ProjectUpgradeEligibilityResponseValidationErrorsItemCase0 =
+export const ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase0 =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      type: ProjectUpgradeEligibilityResponseValidationErrorsItemCase0Type,
+      type: ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase0Type,
       dependents:
-        ProjectUpgradeEligibilityResponseValidationErrorsItemCase0DependentsList,
+        ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase0DependentsList,
     }),
   ).annotate({
-    identifier: "ProjectUpgradeEligibilityResponseValidationErrorsItemCase0",
-  }) as any as S.Schema<ProjectUpgradeEligibilityResponseValidationErrorsItemCase0>;
+    identifier:
+      "ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase0",
+  }) as any as S.Schema<ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase0>;
 
-export type ProjectUpgradeEligibilityResponseValidationErrorsItemCase1Type =
+export type ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase1Type =
   "indexes_referencing_ll_to_earth";
-export const ProjectUpgradeEligibilityResponseValidationErrorsItemCase1Type =
+export const ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase1Type =
   /*@__PURE__*/ S.String;
 
-export interface ProjectUpgradeEligibilityResponseValidationErrorsItemCase1 {
-  type: ProjectUpgradeEligibilityResponseValidationErrorsItemCase1Type;
+export interface ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase1 {
+  type: ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase1Type;
   schema_name: string;
   table_name: string;
   index_name: string;
 }
-export const ProjectUpgradeEligibilityResponseValidationErrorsItemCase1 =
+export const ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase1 =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      type: ProjectUpgradeEligibilityResponseValidationErrorsItemCase1Type,
+      type: ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase1Type,
       schema_name: S.String,
       table_name: S.String,
       index_name: S.String,
     }),
   ).annotate({
-    identifier: "ProjectUpgradeEligibilityResponseValidationErrorsItemCase1",
-  }) as any as S.Schema<ProjectUpgradeEligibilityResponseValidationErrorsItemCase1>;
+    identifier:
+      "ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase1",
+  }) as any as S.Schema<ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase1>;
 
-export type ProjectUpgradeEligibilityResponseValidationErrorsItemCase2Type =
+export type ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase2Type =
   "function_using_obsolete_lang";
-export const ProjectUpgradeEligibilityResponseValidationErrorsItemCase2Type =
+export const ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase2Type =
   /*@__PURE__*/ S.String;
 
-export interface ProjectUpgradeEligibilityResponseValidationErrorsItemCase2 {
-  type: ProjectUpgradeEligibilityResponseValidationErrorsItemCase2Type;
+export interface ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase2 {
+  type: ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase2Type;
   schema_name: string;
   function_name: string;
   lang_name: string;
 }
-export const ProjectUpgradeEligibilityResponseValidationErrorsItemCase2 =
+export const ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase2 =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      type: ProjectUpgradeEligibilityResponseValidationErrorsItemCase2Type,
+      type: ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase2Type,
       schema_name: S.String,
       function_name: S.String,
       lang_name: S.String,
     }),
   ).annotate({
-    identifier: "ProjectUpgradeEligibilityResponseValidationErrorsItemCase2",
-  }) as any as S.Schema<ProjectUpgradeEligibilityResponseValidationErrorsItemCase2>;
+    identifier:
+      "ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase2",
+  }) as any as S.Schema<ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase2>;
 
-export type ProjectUpgradeEligibilityResponseValidationErrorsItemCase3Type =
+export type ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase3Type =
   "unsupported_extension";
-export const ProjectUpgradeEligibilityResponseValidationErrorsItemCase3Type =
+export const ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase3Type =
   /*@__PURE__*/ S.String;
 
-export interface ProjectUpgradeEligibilityResponseValidationErrorsItemCase3 {
-  type: ProjectUpgradeEligibilityResponseValidationErrorsItemCase3Type;
+export interface ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase3 {
+  type: ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase3Type;
   extension_name: string;
 }
-export const ProjectUpgradeEligibilityResponseValidationErrorsItemCase3 =
+export const ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase3 =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      type: ProjectUpgradeEligibilityResponseValidationErrorsItemCase3Type,
+      type: ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase3Type,
       extension_name: S.String,
     }),
   ).annotate({
-    identifier: "ProjectUpgradeEligibilityResponseValidationErrorsItemCase3",
-  }) as any as S.Schema<ProjectUpgradeEligibilityResponseValidationErrorsItemCase3>;
+    identifier:
+      "ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase3",
+  }) as any as S.Schema<ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase3>;
 
-export type ProjectUpgradeEligibilityResponseValidationErrorsItemCase4Type =
+export type ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase4Type =
   "unsupported_fdw_handler";
-export const ProjectUpgradeEligibilityResponseValidationErrorsItemCase4Type =
+export const ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase4Type =
   /*@__PURE__*/ S.String;
 
-export interface ProjectUpgradeEligibilityResponseValidationErrorsItemCase4 {
-  type: ProjectUpgradeEligibilityResponseValidationErrorsItemCase4Type;
+export interface ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase4 {
+  type: ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase4Type;
   fdw_name: string;
   fdw_handler_name: string;
 }
-export const ProjectUpgradeEligibilityResponseValidationErrorsItemCase4 =
+export const ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase4 =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      type: ProjectUpgradeEligibilityResponseValidationErrorsItemCase4Type,
+      type: ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase4Type,
       fdw_name: S.String,
       fdw_handler_name: S.String,
     }),
   ).annotate({
-    identifier: "ProjectUpgradeEligibilityResponseValidationErrorsItemCase4",
-  }) as any as S.Schema<ProjectUpgradeEligibilityResponseValidationErrorsItemCase4>;
+    identifier:
+      "ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase4",
+  }) as any as S.Schema<ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase4>;
 
-export type ProjectUpgradeEligibilityResponseValidationErrorsItemCase5Type =
+export type ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase5Type =
   "unlogged_table_with_persistent_sequence";
-export const ProjectUpgradeEligibilityResponseValidationErrorsItemCase5Type =
+export const ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase5Type =
   /*@__PURE__*/ S.String;
 
-export interface ProjectUpgradeEligibilityResponseValidationErrorsItemCase5 {
-  type: ProjectUpgradeEligibilityResponseValidationErrorsItemCase5Type;
+export interface ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase5 {
+  type: ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase5Type;
   schema_name: string;
   table_name: string;
   sequence_name: string;
 }
-export const ProjectUpgradeEligibilityResponseValidationErrorsItemCase5 =
+export const ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase5 =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      type: ProjectUpgradeEligibilityResponseValidationErrorsItemCase5Type,
+      type: ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase5Type,
       schema_name: S.String,
       table_name: S.String,
       sequence_name: S.String,
     }),
   ).annotate({
-    identifier: "ProjectUpgradeEligibilityResponseValidationErrorsItemCase5",
-  }) as any as S.Schema<ProjectUpgradeEligibilityResponseValidationErrorsItemCase5>;
+    identifier:
+      "ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase5",
+  }) as any as S.Schema<ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase5>;
 
-export type ProjectUpgradeEligibilityResponseValidationErrorsItemCase6Type =
+export type ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase6Type =
   "user_defined_objects_in_internal_schemas";
-export const ProjectUpgradeEligibilityResponseValidationErrorsItemCase6Type =
+export const ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase6Type =
   /*@__PURE__*/ S.String;
 
-export type ProjectUpgradeEligibilityResponseValidationErrorsItemCase6ObjTypeCase0 =
+export type ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase6ObjTypeCase0 =
   "table";
-export const ProjectUpgradeEligibilityResponseValidationErrorsItemCase6ObjTypeCase0 =
+export const ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase6ObjTypeCase0 =
   /*@__PURE__*/ S.String;
 
-export type ProjectUpgradeEligibilityResponseValidationErrorsItemCase6ObjTypeCase1 =
+export type ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase6ObjTypeCase1 =
   "function";
-export const ProjectUpgradeEligibilityResponseValidationErrorsItemCase6ObjTypeCase1 =
+export const ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase6ObjTypeCase1 =
   /*@__PURE__*/ S.String;
 
-export type ProjectUpgradeEligibilityResponseValidationErrorsItemCase6ObjType =
-  | ProjectUpgradeEligibilityResponseValidationErrorsItemCase6ObjTypeCase0
-  | ProjectUpgradeEligibilityResponseValidationErrorsItemCase6ObjTypeCase1;
-export const ProjectUpgradeEligibilityResponseValidationErrorsItemCase6ObjType =
+export type ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase6ObjType =
+  | ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase6ObjTypeCase0
+  | ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase6ObjTypeCase1;
+export const ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase6ObjType =
   /*@__PURE__*/ S.Unknown.pipe(T.UnionCases([[], []]));
 
-export interface ProjectUpgradeEligibilityResponseValidationErrorsItemCase6 {
-  type: ProjectUpgradeEligibilityResponseValidationErrorsItemCase6Type;
-  obj_type: ProjectUpgradeEligibilityResponseValidationErrorsItemCase6ObjType;
+export interface ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase6 {
+  type: ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase6Type;
+  obj_type: ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase6ObjType;
   schema_name: string;
   obj_name: string;
 }
-export const ProjectUpgradeEligibilityResponseValidationErrorsItemCase6 =
+export const ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase6 =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      type: ProjectUpgradeEligibilityResponseValidationErrorsItemCase6Type,
+      type: ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase6Type,
       obj_type:
-        ProjectUpgradeEligibilityResponseValidationErrorsItemCase6ObjType,
+        ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase6ObjType,
       schema_name: S.String,
       obj_name: S.String,
     }),
   ).annotate({
-    identifier: "ProjectUpgradeEligibilityResponseValidationErrorsItemCase6",
-  }) as any as S.Schema<ProjectUpgradeEligibilityResponseValidationErrorsItemCase6>;
+    identifier:
+      "ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase6",
+  }) as any as S.Schema<ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase6>;
 
-export type ProjectUpgradeEligibilityResponseValidationErrorsItemCase7Type =
+export type ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase7Type =
   "active_replication_slot";
-export const ProjectUpgradeEligibilityResponseValidationErrorsItemCase7Type =
+export const ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase7Type =
   /*@__PURE__*/ S.String;
 
-export interface ProjectUpgradeEligibilityResponseValidationErrorsItemCase7 {
-  type: ProjectUpgradeEligibilityResponseValidationErrorsItemCase7Type;
+export interface ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase7 {
+  type: ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase7Type;
   slot_name: string;
 }
-export const ProjectUpgradeEligibilityResponseValidationErrorsItemCase7 =
+export const ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase7 =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      type: ProjectUpgradeEligibilityResponseValidationErrorsItemCase7Type,
+      type: ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase7Type,
       slot_name: S.String,
     }),
   ).annotate({
-    identifier: "ProjectUpgradeEligibilityResponseValidationErrorsItemCase7",
-  }) as any as S.Schema<ProjectUpgradeEligibilityResponseValidationErrorsItemCase7>;
+    identifier:
+      "ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase7",
+  }) as any as S.Schema<ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase7>;
 
-export type ProjectUpgradeEligibilityResponseValidationErrorsItemCase8Type =
+export type ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase8Type =
   "x86_architecture";
-export const ProjectUpgradeEligibilityResponseValidationErrorsItemCase8Type =
+export const ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase8Type =
   /*@__PURE__*/ S.String;
 
-export interface ProjectUpgradeEligibilityResponseValidationErrorsItemCase8 {
-  type: ProjectUpgradeEligibilityResponseValidationErrorsItemCase8Type;
+export interface ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase8 {
+  type: ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase8Type;
 }
-export const ProjectUpgradeEligibilityResponseValidationErrorsItemCase8 =
+export const ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase8 =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      type: ProjectUpgradeEligibilityResponseValidationErrorsItemCase8Type,
+      type: ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase8Type,
     }),
   ).annotate({
-    identifier: "ProjectUpgradeEligibilityResponseValidationErrorsItemCase8",
-  }) as any as S.Schema<ProjectUpgradeEligibilityResponseValidationErrorsItemCase8>;
+    identifier:
+      "ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase8",
+  }) as any as S.Schema<ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase8>;
 
-export type ProjectUpgradeEligibilityResponseValidationErrorsItemCase9Type =
+export type ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase9Type =
   "project_hibernating";
-export const ProjectUpgradeEligibilityResponseValidationErrorsItemCase9Type =
+export const ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase9Type =
   /*@__PURE__*/ S.String;
 
-export interface ProjectUpgradeEligibilityResponseValidationErrorsItemCase9 {
-  type: ProjectUpgradeEligibilityResponseValidationErrorsItemCase9Type;
+export interface ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase9 {
+  type: ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase9Type;
 }
-export const ProjectUpgradeEligibilityResponseValidationErrorsItemCase9 =
+export const ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase9 =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      type: ProjectUpgradeEligibilityResponseValidationErrorsItemCase9Type,
+      type: ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase9Type,
     }),
   ).annotate({
-    identifier: "ProjectUpgradeEligibilityResponseValidationErrorsItemCase9",
-  }) as any as S.Schema<ProjectUpgradeEligibilityResponseValidationErrorsItemCase9>;
+    identifier:
+      "ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase9",
+  }) as any as S.Schema<ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase9>;
 
-export type ProjectUpgradeEligibilityResponseValidationErrorsItem =
-  | ProjectUpgradeEligibilityResponseValidationErrorsItemCase0
-  | ProjectUpgradeEligibilityResponseValidationErrorsItemCase1
-  | ProjectUpgradeEligibilityResponseValidationErrorsItemCase2
-  | ProjectUpgradeEligibilityResponseValidationErrorsItemCase3
-  | ProjectUpgradeEligibilityResponseValidationErrorsItemCase4
-  | ProjectUpgradeEligibilityResponseValidationErrorsItemCase5
-  | ProjectUpgradeEligibilityResponseValidationErrorsItemCase6
-  | ProjectUpgradeEligibilityResponseValidationErrorsItemCase7
-  | ProjectUpgradeEligibilityResponseValidationErrorsItemCase8
-  | ProjectUpgradeEligibilityResponseValidationErrorsItemCase9;
-export const ProjectUpgradeEligibilityResponseValidationErrorsItem =
+export type ProjectUpgradeEligibilityResponseOutputValidationErrorsItem =
+  | ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase0
+  | ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase1
+  | ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase2
+  | ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase3
+  | ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase4
+  | ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase5
+  | ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase6
+  | ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase7
+  | ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase8
+  | ProjectUpgradeEligibilityResponseOutputValidationErrorsItemCase9;
+export const ProjectUpgradeEligibilityResponseOutputValidationErrorsItem =
   /*@__PURE__*/ S.Unknown.pipe(
     T.UnionCases([
       ["type", "dependents"],
@@ -6028,119 +6118,141 @@ export const ProjectUpgradeEligibilityResponseValidationErrorsItem =
     ]),
   );
 
-export type ProjectUpgradeEligibilityResponseValidationErrorsList =
-  Array<ProjectUpgradeEligibilityResponseValidationErrorsItem>;
-export const ProjectUpgradeEligibilityResponseValidationErrorsList =
+export type ProjectUpgradeEligibilityResponseOutputValidationErrorsList =
+  Array<ProjectUpgradeEligibilityResponseOutputValidationErrorsItem>;
+export const ProjectUpgradeEligibilityResponseOutputValidationErrorsList =
   /*@__PURE__*/ S.Array(
-    ProjectUpgradeEligibilityResponseValidationErrorsItem,
-  ) as any as S.Schema<ProjectUpgradeEligibilityResponseValidationErrorsList>;
+    ProjectUpgradeEligibilityResponseOutputValidationErrorsItem,
+  ) as any as S.Schema<ProjectUpgradeEligibilityResponseOutputValidationErrorsList>;
 
-export type ProjectUpgradeEligibilityResponseWarningsItemCase0Type =
+export type ProjectUpgradeEligibilityResponseOutputWarningsItemCase0Type =
   "pg_graphql_introspection_change";
-export const ProjectUpgradeEligibilityResponseWarningsItemCase0Type =
+export const ProjectUpgradeEligibilityResponseOutputWarningsItemCase0Type =
   /*@__PURE__*/ S.String;
 
-export interface ProjectUpgradeEligibilityResponseWarningsItemCase0 {
-  type: ProjectUpgradeEligibilityResponseWarningsItemCase0Type;
+export interface ProjectUpgradeEligibilityResponseOutputWarningsItemCase0 {
+  type: ProjectUpgradeEligibilityResponseOutputWarningsItemCase0Type;
 }
-export const ProjectUpgradeEligibilityResponseWarningsItemCase0 =
+export const ProjectUpgradeEligibilityResponseOutputWarningsItemCase0 =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      type: ProjectUpgradeEligibilityResponseWarningsItemCase0Type,
+      type: ProjectUpgradeEligibilityResponseOutputWarningsItemCase0Type,
     }),
   ).annotate({
-    identifier: "ProjectUpgradeEligibilityResponseWarningsItemCase0",
-  }) as any as S.Schema<ProjectUpgradeEligibilityResponseWarningsItemCase0>;
+    identifier: "ProjectUpgradeEligibilityResponseOutputWarningsItemCase0",
+  }) as any as S.Schema<ProjectUpgradeEligibilityResponseOutputWarningsItemCase0>;
 
-export type ProjectUpgradeEligibilityResponseWarningsItemCase1Type =
+export type ProjectUpgradeEligibilityResponseOutputWarningsItemCase1Type =
   "ltree_reindex_required";
-export const ProjectUpgradeEligibilityResponseWarningsItemCase1Type =
+export const ProjectUpgradeEligibilityResponseOutputWarningsItemCase1Type =
   /*@__PURE__*/ S.String;
 
-export interface ProjectUpgradeEligibilityResponseWarningsItemCase1 {
-  type: ProjectUpgradeEligibilityResponseWarningsItemCase1Type;
+export interface ProjectUpgradeEligibilityResponseOutputWarningsItemCase1 {
+  type: ProjectUpgradeEligibilityResponseOutputWarningsItemCase1Type;
 }
-export const ProjectUpgradeEligibilityResponseWarningsItemCase1 =
+export const ProjectUpgradeEligibilityResponseOutputWarningsItemCase1 =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      type: ProjectUpgradeEligibilityResponseWarningsItemCase1Type,
+      type: ProjectUpgradeEligibilityResponseOutputWarningsItemCase1Type,
     }),
   ).annotate({
-    identifier: "ProjectUpgradeEligibilityResponseWarningsItemCase1",
-  }) as any as S.Schema<ProjectUpgradeEligibilityResponseWarningsItemCase1>;
+    identifier: "ProjectUpgradeEligibilityResponseOutputWarningsItemCase1",
+  }) as any as S.Schema<ProjectUpgradeEligibilityResponseOutputWarningsItemCase1>;
 
-export type ProjectUpgradeEligibilityResponseWarningsItemCase2Type =
+export type ProjectUpgradeEligibilityResponseOutputWarningsItemCase2Type =
   "operator_estimator_gate";
-export const ProjectUpgradeEligibilityResponseWarningsItemCase2Type =
+export const ProjectUpgradeEligibilityResponseOutputWarningsItemCase2Type =
   /*@__PURE__*/ S.String;
 
-export interface ProjectUpgradeEligibilityResponseWarningsItemCase2 {
-  type: ProjectUpgradeEligibilityResponseWarningsItemCase2Type;
+export interface ProjectUpgradeEligibilityResponseOutputWarningsItemCase2 {
+  type: ProjectUpgradeEligibilityResponseOutputWarningsItemCase2Type;
 }
-export const ProjectUpgradeEligibilityResponseWarningsItemCase2 =
+export const ProjectUpgradeEligibilityResponseOutputWarningsItemCase2 =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      type: ProjectUpgradeEligibilityResponseWarningsItemCase2Type,
+      type: ProjectUpgradeEligibilityResponseOutputWarningsItemCase2Type,
     }),
   ).annotate({
-    identifier: "ProjectUpgradeEligibilityResponseWarningsItemCase2",
-  }) as any as S.Schema<ProjectUpgradeEligibilityResponseWarningsItemCase2>;
+    identifier: "ProjectUpgradeEligibilityResponseOutputWarningsItemCase2",
+  }) as any as S.Schema<ProjectUpgradeEligibilityResponseOutputWarningsItemCase2>;
 
-export type ProjectUpgradeEligibilityResponseWarningsItem =
-  | ProjectUpgradeEligibilityResponseWarningsItemCase0
-  | ProjectUpgradeEligibilityResponseWarningsItemCase1
-  | ProjectUpgradeEligibilityResponseWarningsItemCase2;
-export const ProjectUpgradeEligibilityResponseWarningsItem =
-  /*@__PURE__*/ S.Unknown.pipe(T.UnionCases([["type"], ["type"], ["type"]]));
+export type ProjectUpgradeEligibilityResponseOutputWarningsItemCase3Type =
+  "btree_gist_nan_reindex";
+export const ProjectUpgradeEligibilityResponseOutputWarningsItemCase3Type =
+  /*@__PURE__*/ S.String;
 
-export type ProjectUpgradeEligibilityResponseWarningsList =
-  Array<ProjectUpgradeEligibilityResponseWarningsItem>;
-export const ProjectUpgradeEligibilityResponseWarningsList =
+export interface ProjectUpgradeEligibilityResponseOutputWarningsItemCase3 {
+  type: ProjectUpgradeEligibilityResponseOutputWarningsItemCase3Type;
+}
+export const ProjectUpgradeEligibilityResponseOutputWarningsItemCase3 =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      type: ProjectUpgradeEligibilityResponseOutputWarningsItemCase3Type,
+    }),
+  ).annotate({
+    identifier: "ProjectUpgradeEligibilityResponseOutputWarningsItemCase3",
+  }) as any as S.Schema<ProjectUpgradeEligibilityResponseOutputWarningsItemCase3>;
+
+export type ProjectUpgradeEligibilityResponseOutputWarningsItem =
+  | ProjectUpgradeEligibilityResponseOutputWarningsItemCase0
+  | ProjectUpgradeEligibilityResponseOutputWarningsItemCase1
+  | ProjectUpgradeEligibilityResponseOutputWarningsItemCase2
+  | ProjectUpgradeEligibilityResponseOutputWarningsItemCase3;
+export const ProjectUpgradeEligibilityResponseOutputWarningsItem =
+  /*@__PURE__*/ S.Unknown.pipe(
+    T.UnionCases([["type"], ["type"], ["type"], ["type"]]),
+  );
+
+export type ProjectUpgradeEligibilityResponseOutputWarningsList =
+  Array<ProjectUpgradeEligibilityResponseOutputWarningsItem>;
+export const ProjectUpgradeEligibilityResponseOutputWarningsList =
   /*@__PURE__*/ S.Array(
-    ProjectUpgradeEligibilityResponseWarningsItem,
-  ) as any as S.Schema<ProjectUpgradeEligibilityResponseWarningsList>;
+    ProjectUpgradeEligibilityResponseOutputWarningsItem,
+  ) as any as S.Schema<ProjectUpgradeEligibilityResponseOutputWarningsList>;
 
-export interface ProjectUpgradeEligibilityResponse {
+export interface ProjectUpgradeEligibilityResponseOutput {
   eligible: boolean;
   current_app_version: string;
-  current_app_version_release_channel: ProjectUpgradeEligibilityResponseCurrentAppVersionReleaseChannel;
+  current_app_version_release_channel: ProjectUpgradeEligibilityResponseOutputCurrentAppVersionReleaseChannel;
   latest_app_version: string;
-  target_upgrade_versions: ProjectUpgradeEligibilityResponseTargetUpgradeVersionsList;
+  target_upgrade_versions: ProjectUpgradeEligibilityResponseOutputTargetUpgradeVersionsList;
   duration_estimate_hours: number;
-  legacy_auth_custom_roles: ProjectUpgradeEligibilityResponseLegacyAuthCustomRolesList;
+  legacy_auth_custom_roles: ProjectUpgradeEligibilityResponseOutputLegacyAuthCustomRolesList;
   /** Use validation_errors instead. */
-  objects_to_be_dropped: ProjectUpgradeEligibilityResponseObjectsToBeDroppedList;
+  objects_to_be_dropped: ProjectUpgradeEligibilityResponseOutputObjectsToBeDroppedList;
   /** Use validation_errors instead. */
-  unsupported_extensions: ProjectUpgradeEligibilityResponseUnsupportedExtensionsList;
+  unsupported_extensions: ProjectUpgradeEligibilityResponseOutputUnsupportedExtensionsList;
   /** Use validation_errors instead. */
-  user_defined_objects_in_internal_schemas: ProjectUpgradeEligibilityResponseUserDefinedObjectsInInternalSchemasList;
-  validation_errors: ProjectUpgradeEligibilityResponseValidationErrorsList;
-  warnings: ProjectUpgradeEligibilityResponseWarningsList;
+  user_defined_objects_in_internal_schemas: ProjectUpgradeEligibilityResponseOutputUserDefinedObjectsInInternalSchemasList;
+  validation_errors: ProjectUpgradeEligibilityResponseOutputValidationErrorsList;
+  warnings: ProjectUpgradeEligibilityResponseOutputWarningsList;
 }
-export const ProjectUpgradeEligibilityResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    eligible: S.Boolean,
-    current_app_version: S.String,
-    current_app_version_release_channel:
-      ProjectUpgradeEligibilityResponseCurrentAppVersionReleaseChannel,
-    latest_app_version: S.String,
-    target_upgrade_versions:
-      ProjectUpgradeEligibilityResponseTargetUpgradeVersionsList,
-    duration_estimate_hours: S.Number,
-    legacy_auth_custom_roles:
-      ProjectUpgradeEligibilityResponseLegacyAuthCustomRolesList,
-    objects_to_be_dropped:
-      ProjectUpgradeEligibilityResponseObjectsToBeDroppedList,
-    unsupported_extensions:
-      ProjectUpgradeEligibilityResponseUnsupportedExtensionsList,
-    user_defined_objects_in_internal_schemas:
-      ProjectUpgradeEligibilityResponseUserDefinedObjectsInInternalSchemasList,
-    validation_errors: ProjectUpgradeEligibilityResponseValidationErrorsList,
-    warnings: ProjectUpgradeEligibilityResponseWarningsList,
-  }),
+export const ProjectUpgradeEligibilityResponseOutput = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      eligible: S.Boolean,
+      current_app_version: S.String,
+      current_app_version_release_channel:
+        ProjectUpgradeEligibilityResponseOutputCurrentAppVersionReleaseChannel,
+      latest_app_version: S.String,
+      target_upgrade_versions:
+        ProjectUpgradeEligibilityResponseOutputTargetUpgradeVersionsList,
+      duration_estimate_hours: S.Number,
+      legacy_auth_custom_roles:
+        ProjectUpgradeEligibilityResponseOutputLegacyAuthCustomRolesList,
+      objects_to_be_dropped:
+        ProjectUpgradeEligibilityResponseOutputObjectsToBeDroppedList,
+      unsupported_extensions:
+        ProjectUpgradeEligibilityResponseOutputUnsupportedExtensionsList,
+      user_defined_objects_in_internal_schemas:
+        ProjectUpgradeEligibilityResponseOutputUserDefinedObjectsInInternalSchemasList,
+      validation_errors:
+        ProjectUpgradeEligibilityResponseOutputValidationErrorsList,
+      warnings: ProjectUpgradeEligibilityResponseOutputWarningsList,
+    }),
 ).annotate({
-  identifier: "ProjectUpgradeEligibilityResponse",
-}) as any as S.Schema<ProjectUpgradeEligibilityResponse>;
+  identifier: "ProjectUpgradeEligibilityResponseOutput",
+}) as any as S.Schema<ProjectUpgradeEligibilityResponseOutput>;
 
 export interface V1GetPostgresUpgradeStatusRequest {
   /** Project ref */
@@ -6162,7 +6274,7 @@ export const V1GetPostgresUpgradeStatusRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1GetPostgresUpgradeStatusRequest",
 }) as any as S.Schema<V1GetPostgresUpgradeStatusRequest>;
 
-export type DatabaseUpgradeStatusResponseDatabaseUpgradeStatusError =
+export type DatabaseUpgradeStatusResponseOutputDatabaseUpgradeStatusError =
   | "1_upgraded_instance_launch_failed"
   | "2_volume_detachchment_from_upgraded_instance_failed"
   | "3_volume_attachment_to_original_instance_failed"
@@ -6172,10 +6284,10 @@ export type DatabaseUpgradeStatusResponseDatabaseUpgradeStatusError =
   | "7_volume_attachment_to_upgraded_instance_failed"
   | "8_upgrade_completion_failed"
   | "9_post_physical_backup_failed";
-export const DatabaseUpgradeStatusResponseDatabaseUpgradeStatusError =
+export const DatabaseUpgradeStatusResponseOutputDatabaseUpgradeStatusError =
   /*@__PURE__*/ S.String;
 
-export type DatabaseUpgradeStatusResponseDatabaseUpgradeStatusProgress =
+export type DatabaseUpgradeStatusResponseOutputDatabaseUpgradeStatusProgress =
   | "0_requested"
   | "1_started"
   | "2_launched_upgraded_instance"
@@ -6187,47 +6299,47 @@ export type DatabaseUpgradeStatusResponseDatabaseUpgradeStatusProgress =
   | "8_attached_volume_to_upgraded_instance"
   | "9_completed_upgrade"
   | "10_completed_post_physical_backup";
-export const DatabaseUpgradeStatusResponseDatabaseUpgradeStatusProgress =
+export const DatabaseUpgradeStatusResponseOutputDatabaseUpgradeStatusProgress =
   /*@__PURE__*/ S.String;
 
-export interface DatabaseUpgradeStatusResponseDatabaseUpgradeStatus {
+export interface DatabaseUpgradeStatusResponseOutputDatabaseUpgradeStatus {
   initiated_at: string;
   latest_status_at: string;
-  target_version: number;
-  error?: DatabaseUpgradeStatusResponseDatabaseUpgradeStatusError;
-  progress?: DatabaseUpgradeStatusResponseDatabaseUpgradeStatusProgress;
+  target_version: string;
+  error?: DatabaseUpgradeStatusResponseOutputDatabaseUpgradeStatusError;
+  progress?: DatabaseUpgradeStatusResponseOutputDatabaseUpgradeStatusProgress;
   status: number;
 }
-export const DatabaseUpgradeStatusResponseDatabaseUpgradeStatus =
+export const DatabaseUpgradeStatusResponseOutputDatabaseUpgradeStatus =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       initiated_at: S.String,
       latest_status_at: S.String,
-      target_version: S.Number,
+      target_version: S.String,
       error: S.optional(
-        DatabaseUpgradeStatusResponseDatabaseUpgradeStatusError,
+        DatabaseUpgradeStatusResponseOutputDatabaseUpgradeStatusError,
       ),
       progress: S.optional(
-        DatabaseUpgradeStatusResponseDatabaseUpgradeStatusProgress,
+        DatabaseUpgradeStatusResponseOutputDatabaseUpgradeStatusProgress,
       ),
       status: S.Number,
     }),
   ).annotate({
-    identifier: "DatabaseUpgradeStatusResponseDatabaseUpgradeStatus",
-  }) as any as S.Schema<DatabaseUpgradeStatusResponseDatabaseUpgradeStatus>;
+    identifier: "DatabaseUpgradeStatusResponseOutputDatabaseUpgradeStatus",
+  }) as any as S.Schema<DatabaseUpgradeStatusResponseOutputDatabaseUpgradeStatus>;
 
-export interface DatabaseUpgradeStatusResponse {
-  databaseUpgradeStatus: DatabaseUpgradeStatusResponseDatabaseUpgradeStatus | null;
+export interface DatabaseUpgradeStatusResponseOutput {
+  databaseUpgradeStatus: DatabaseUpgradeStatusResponseOutputDatabaseUpgradeStatus | null;
 }
-export const DatabaseUpgradeStatusResponse = /*@__PURE__*/ S.suspend(() =>
+export const DatabaseUpgradeStatusResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     databaseUpgradeStatus: S.NullOr(
-      DatabaseUpgradeStatusResponseDatabaseUpgradeStatus,
+      DatabaseUpgradeStatusResponseOutputDatabaseUpgradeStatus,
     ),
   }),
 ).annotate({
-  identifier: "DatabaseUpgradeStatusResponse",
-}) as any as S.Schema<DatabaseUpgradeStatusResponse>;
+  identifier: "DatabaseUpgradeStatusResponseOutput",
+}) as any as S.Schema<DatabaseUpgradeStatusResponseOutput>;
 
 export interface V1GetProfileRequest {}
 export const V1GetProfileRequest = /*@__PURE__*/ S.suspend(() =>
@@ -6236,20 +6348,20 @@ export const V1GetProfileRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1GetProfileRequest",
 }) as any as S.Schema<V1GetProfileRequest>;
 
-export interface V1ProfileResponse {
+export interface V1ProfileResponseOutput {
   gotrue_id: string;
   primary_email: string;
   username: string;
 }
-export const V1ProfileResponse = /*@__PURE__*/ S.suspend(() =>
+export const V1ProfileResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     gotrue_id: S.String,
     primary_email: S.String,
     username: S.String,
   }),
 ).annotate({
-  identifier: "V1ProfileResponse",
-}) as any as S.Schema<V1ProfileResponse>;
+  identifier: "V1ProfileResponseOutput",
+}) as any as S.Schema<V1ProfileResponseOutput>;
 
 export interface V1GetProjectRequest {
   /** Project ref */
@@ -6263,7 +6375,7 @@ export const V1GetProjectRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1GetProjectRequest",
 }) as any as S.Schema<V1GetProjectRequest>;
 
-export type V1ProjectWithDatabaseResponseStatus =
+export type V1ProjectWithDatabaseResponseOutputStatus =
   | "INACTIVE"
   | "ACTIVE_HEALTHY"
   | "ACTIVE_UNHEALTHY"
@@ -6279,9 +6391,9 @@ export type V1ProjectWithDatabaseResponseStatus =
   | "RESTARTING"
   | "PAUSE_FAILED"
   | "RESIZING";
-export const V1ProjectWithDatabaseResponseStatus = /*@__PURE__*/ S.String;
+export const V1ProjectWithDatabaseResponseOutputStatus = /*@__PURE__*/ S.String;
 
-export interface V1ProjectWithDatabaseResponseDatabase {
+export interface V1ProjectWithDatabaseResponseOutputDatabase {
   /** Database host */
   host: string;
   /** Database version */
@@ -6291,19 +6403,19 @@ export interface V1ProjectWithDatabaseResponseDatabase {
   /** Release channel */
   release_channel: string;
 }
-export const V1ProjectWithDatabaseResponseDatabase = /*@__PURE__*/ S.suspend(
-  () =>
+export const V1ProjectWithDatabaseResponseOutputDatabase =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       host: S.String,
       version: S.String,
       postgres_engine: S.String,
       release_channel: S.String,
     }),
-).annotate({
-  identifier: "V1ProjectWithDatabaseResponseDatabase",
-}) as any as S.Schema<V1ProjectWithDatabaseResponseDatabase>;
+  ).annotate({
+    identifier: "V1ProjectWithDatabaseResponseOutputDatabase",
+  }) as any as S.Schema<V1ProjectWithDatabaseResponseOutputDatabase>;
 
-export interface V1ProjectWithDatabaseResponse {
+export interface V1ProjectWithDatabaseResponseOutput {
   /** Deprecated: Use `ref` instead. */
   id: string;
   /** Project ref */
@@ -6318,10 +6430,10 @@ export interface V1ProjectWithDatabaseResponse {
   region: string;
   /** Creation timestamp */
   created_at: string;
-  status: V1ProjectWithDatabaseResponseStatus;
-  database: V1ProjectWithDatabaseResponseDatabase;
+  status: V1ProjectWithDatabaseResponseOutputStatus;
+  database: V1ProjectWithDatabaseResponseOutputDatabase;
 }
-export const V1ProjectWithDatabaseResponse = /*@__PURE__*/ S.suspend(() =>
+export const V1ProjectWithDatabaseResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String,
     ref: S.String,
@@ -6330,12 +6442,12 @@ export const V1ProjectWithDatabaseResponse = /*@__PURE__*/ S.suspend(() =>
     name: S.String,
     region: S.String,
     created_at: S.String,
-    status: V1ProjectWithDatabaseResponseStatus,
-    database: V1ProjectWithDatabaseResponseDatabase,
+    status: V1ProjectWithDatabaseResponseOutputStatus,
+    database: V1ProjectWithDatabaseResponseOutputDatabase,
   }),
 ).annotate({
-  identifier: "V1ProjectWithDatabaseResponse",
-}) as any as S.Schema<V1ProjectWithDatabaseResponse>;
+  identifier: "V1ProjectWithDatabaseResponseOutput",
+}) as any as S.Schema<V1ProjectWithDatabaseResponseOutput>;
 
 export interface V1GetProjectApiKeyRequest {
   /** Project ref */
@@ -6377,9 +6489,9 @@ export const V1GetProjectApiKeysRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1GetProjectApiKeysRequest",
 }) as any as S.Schema<V1GetProjectApiKeysRequest>;
 
-export type V1GetProjectApiKeysResponseBodyList = Array<ApiKeyResponse>;
+export type V1GetProjectApiKeysResponseBodyList = Array<ApiKeyResponseOutput>;
 export const V1GetProjectApiKeysResponseBodyList = /*@__PURE__*/ S.Array(
-  ApiKeyResponse,
+  ApiKeyResponseOutput,
 ) as any as S.Schema<V1GetProjectApiKeysResponseBodyList>;
 
 export type V1GetProjectApiKeysResponse = V1GetProjectApiKeysResponseBodyList;
@@ -6403,13 +6515,13 @@ export const V1GetProjectClaimTokenRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1GetProjectClaimTokenRequest",
 }) as any as S.Schema<V1GetProjectClaimTokenRequest>;
 
-export interface ProjectClaimTokenResponse {
+export interface ProjectClaimTokenResponseOutput {
   token_alias: string;
   expires_at: string;
   created_at: string;
   created_by: string;
 }
-export const ProjectClaimTokenResponse = /*@__PURE__*/ S.suspend(() =>
+export const ProjectClaimTokenResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     token_alias: S.String,
     expires_at: S.String,
@@ -6417,8 +6529,8 @@ export const ProjectClaimTokenResponse = /*@__PURE__*/ S.suspend(() =>
     created_by: S.String,
   }),
 ).annotate({
-  identifier: "ProjectClaimTokenResponse",
-}) as any as S.Schema<ProjectClaimTokenResponse>;
+  identifier: "ProjectClaimTokenResponseOutput",
+}) as any as S.Schema<ProjectClaimTokenResponseOutput>;
 
 export interface V1GetProjectDiskAutoscaleConfigRequest {
   /** Project ref */
@@ -6439,7 +6551,7 @@ export const V1GetProjectDiskAutoscaleConfigRequest = /*@__PURE__*/ S.suspend(
   identifier: "V1GetProjectDiskAutoscaleConfigRequest",
 }) as any as S.Schema<V1GetProjectDiskAutoscaleConfigRequest>;
 
-export interface DiskAutoscaleConfig {
+export interface DiskAutoscaleConfigOutput {
   /** Growth percentage for disk autoscaling */
   growth_percent: number | null;
   /** Minimum increment size for disk autoscaling in GB */
@@ -6447,15 +6559,15 @@ export interface DiskAutoscaleConfig {
   /** Maximum limit the disk size will grow to in GB */
   max_size_gb: number | null;
 }
-export const DiskAutoscaleConfig = /*@__PURE__*/ S.suspend(() =>
+export const DiskAutoscaleConfigOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     growth_percent: S.NullOr(S.Number),
     min_increment_gb: S.NullOr(S.Number),
     max_size_gb: S.NullOr(S.Number),
   }),
 ).annotate({
-  identifier: "DiskAutoscaleConfig",
-}) as any as S.Schema<DiskAutoscaleConfig>;
+  identifier: "DiskAutoscaleConfigOutput",
+}) as any as S.Schema<DiskAutoscaleConfigOutput>;
 
 export type V1GetProjectFunctionCombinedStatsRequestInterval =
   | "15min"
@@ -6490,20 +6602,20 @@ export const V1GetProjectFunctionCombinedStatsRequest = /*@__PURE__*/ S.suspend(
   identifier: "V1GetProjectFunctionCombinedStatsRequest",
 }) as any as S.Schema<V1GetProjectFunctionCombinedStatsRequest>;
 
-export type AnalyticsResponseResultList = Array<unknown>;
-export const AnalyticsResponseResultList = /*@__PURE__*/ S.Array(
+export type AnalyticsResponseOutputResultList = Array<unknown>;
+export const AnalyticsResponseOutputResultList = /*@__PURE__*/ S.Array(
   S.Unknown,
-) as any as S.Schema<AnalyticsResponseResultList>;
+) as any as S.Schema<AnalyticsResponseOutputResultList>;
 
-export interface AnalyticsResponseErrorCase1ErrorsItem {
+export interface AnalyticsResponseOutputErrorCase1ErrorsItem {
   domain: string;
   location: string;
   locationType: string;
   message: string;
   reason: string;
 }
-export const AnalyticsResponseErrorCase1ErrorsItem = /*@__PURE__*/ S.suspend(
-  () =>
+export const AnalyticsResponseOutputErrorCase1ErrorsItem =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       domain: S.String,
       location: S.String,
@@ -6511,50 +6623,53 @@ export const AnalyticsResponseErrorCase1ErrorsItem = /*@__PURE__*/ S.suspend(
       message: S.String,
       reason: S.String,
     }),
-).annotate({
-  identifier: "AnalyticsResponseErrorCase1ErrorsItem",
-}) as any as S.Schema<AnalyticsResponseErrorCase1ErrorsItem>;
+  ).annotate({
+    identifier: "AnalyticsResponseOutputErrorCase1ErrorsItem",
+  }) as any as S.Schema<AnalyticsResponseOutputErrorCase1ErrorsItem>;
 
-export type AnalyticsResponseErrorCase1ErrorsList =
-  Array<AnalyticsResponseErrorCase1ErrorsItem>;
-export const AnalyticsResponseErrorCase1ErrorsList = /*@__PURE__*/ S.Array(
-  AnalyticsResponseErrorCase1ErrorsItem,
-) as any as S.Schema<AnalyticsResponseErrorCase1ErrorsList>;
+export type AnalyticsResponseOutputErrorCase1ErrorsList =
+  Array<AnalyticsResponseOutputErrorCase1ErrorsItem>;
+export const AnalyticsResponseOutputErrorCase1ErrorsList =
+  /*@__PURE__*/ S.Array(
+    AnalyticsResponseOutputErrorCase1ErrorsItem,
+  ) as any as S.Schema<AnalyticsResponseOutputErrorCase1ErrorsList>;
 
-export interface AnalyticsResponseErrorCase1 {
+export interface AnalyticsResponseOutputErrorCase1 {
   code: number;
-  errors: AnalyticsResponseErrorCase1ErrorsList;
+  errors: AnalyticsResponseOutputErrorCase1ErrorsList;
   message: string;
   status: string;
 }
-export const AnalyticsResponseErrorCase1 = /*@__PURE__*/ S.suspend(() =>
+export const AnalyticsResponseOutputErrorCase1 = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     code: S.Number,
-    errors: AnalyticsResponseErrorCase1ErrorsList,
+    errors: AnalyticsResponseOutputErrorCase1ErrorsList,
     message: S.String,
     status: S.String,
   }),
 ).annotate({
-  identifier: "AnalyticsResponseErrorCase1",
-}) as any as S.Schema<AnalyticsResponseErrorCase1>;
+  identifier: "AnalyticsResponseOutputErrorCase1",
+}) as any as S.Schema<AnalyticsResponseOutputErrorCase1>;
 
-export type AnalyticsResponseError = string | AnalyticsResponseErrorCase1;
-export const AnalyticsResponseError = /*@__PURE__*/ S.Unknown.pipe(
+export type AnalyticsResponseOutputError =
+  | string
+  | AnalyticsResponseOutputErrorCase1;
+export const AnalyticsResponseOutputError = /*@__PURE__*/ S.Unknown.pipe(
   T.UnionCases([[], ["code", "errors", "message", "status"]]),
 );
 
-export interface AnalyticsResponse {
-  result?: AnalyticsResponseResultList;
-  error?: AnalyticsResponseError;
+export interface AnalyticsResponseOutput {
+  result?: AnalyticsResponseOutputResultList;
+  error?: AnalyticsResponseOutputError;
 }
-export const AnalyticsResponse = /*@__PURE__*/ S.suspend(() =>
+export const AnalyticsResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    result: S.optional(AnalyticsResponseResultList),
-    error: S.optional(AnalyticsResponseError),
+    result: S.optional(AnalyticsResponseOutputResultList),
+    error: S.optional(AnalyticsResponseOutputError),
   }),
 ).annotate({
-  identifier: "AnalyticsResponse",
-}) as any as S.Schema<AnalyticsResponse>;
+  identifier: "AnalyticsResponseOutput",
+}) as any as S.Schema<AnalyticsResponseOutput>;
 
 export interface V1GetProjectLegacyApiKeysRequest {
   /** Project ref */
@@ -6574,16 +6689,16 @@ export const V1GetProjectLegacyApiKeysRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1GetProjectLegacyApiKeysRequest",
 }) as any as S.Schema<V1GetProjectLegacyApiKeysRequest>;
 
-export interface LegacyApiKeysResponse {
+export interface LegacyApiKeysResponseOutput {
   enabled: boolean;
 }
-export const LegacyApiKeysResponse = /*@__PURE__*/ S.suspend(() =>
+export const LegacyApiKeysResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     enabled: S.Boolean,
   }),
 ).annotate({
-  identifier: "LegacyApiKeysResponse",
-}) as any as S.Schema<LegacyApiKeysResponse>;
+  identifier: "LegacyApiKeysResponseOutput",
+}) as any as S.Schema<LegacyApiKeysResponseOutput>;
 
 export interface V1GetProjectLogsRequest {
   /** Project ref */
@@ -6628,29 +6743,29 @@ export const V1GetProjectPgbouncerConfigRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1GetProjectPgbouncerConfigRequest",
 }) as any as S.Schema<V1GetProjectPgbouncerConfigRequest>;
 
-export type V1PgbouncerConfigResponsePoolMode =
+export type V1PgbouncerConfigResponseOutputPoolMode =
   | "transaction"
   | "session"
   | "statement";
-export const V1PgbouncerConfigResponsePoolMode = /*@__PURE__*/ S.String;
+export const V1PgbouncerConfigResponseOutputPoolMode = /*@__PURE__*/ S.String;
 
-export interface V1PgbouncerConfigResponse {
+export interface V1PgbouncerConfigResponseOutput {
   default_pool_size?: number;
   ignore_startup_parameters?: string;
   max_client_conn?: number;
-  pool_mode?: V1PgbouncerConfigResponsePoolMode;
+  pool_mode?: V1PgbouncerConfigResponseOutputPoolMode;
   connection_string?: T.Sensitive;
   server_idle_timeout?: number;
   server_lifetime?: number;
   query_wait_timeout?: number;
   reserve_pool_size?: number;
 }
-export const V1PgbouncerConfigResponse = /*@__PURE__*/ S.suspend(() =>
+export const V1PgbouncerConfigResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     default_pool_size: S.optional(S.Number),
     ignore_startup_parameters: S.optional(S.String),
     max_client_conn: S.optional(S.Number),
-    pool_mode: S.optional(V1PgbouncerConfigResponsePoolMode),
+    pool_mode: S.optional(V1PgbouncerConfigResponseOutputPoolMode),
     connection_string: S.optional(S.String.pipe(T.SensitiveValue({}))),
     server_idle_timeout: S.optional(S.Number),
     server_lifetime: S.optional(S.Number),
@@ -6658,8 +6773,8 @@ export const V1PgbouncerConfigResponse = /*@__PURE__*/ S.suspend(() =>
     reserve_pool_size: S.optional(S.Number),
   }),
 ).annotate({
-  identifier: "V1PgbouncerConfigResponse",
-}) as any as S.Schema<V1PgbouncerConfigResponse>;
+  identifier: "V1PgbouncerConfigResponseOutput",
+}) as any as S.Schema<V1PgbouncerConfigResponseOutput>;
 
 export interface V1GetProjectSigningKeyRequest {
   /** Project ref */
@@ -6699,56 +6814,58 @@ export const V1GetProjectSigningKeysRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1GetProjectSigningKeysRequest",
 }) as any as S.Schema<V1GetProjectSigningKeysRequest>;
 
-export type SigningKeysResponseKeysItemAlgorithm =
+export type SigningKeysResponseOutputKeysItemAlgorithm =
   | "EdDSA"
   | "ES256"
   | "RS256"
   | "HS256";
-export const SigningKeysResponseKeysItemAlgorithm = /*@__PURE__*/ S.String;
+export const SigningKeysResponseOutputKeysItemAlgorithm =
+  /*@__PURE__*/ S.String;
 
-export type SigningKeysResponseKeysItemStatus =
+export type SigningKeysResponseOutputKeysItemStatus =
   | "in_use"
   | "previously_used"
   | "revoked"
   | "standby";
-export const SigningKeysResponseKeysItemStatus = /*@__PURE__*/ S.String;
+export const SigningKeysResponseOutputKeysItemStatus = /*@__PURE__*/ S.String;
 
-export interface SigningKeysResponseKeysItem {
+export interface SigningKeysResponseOutputKeysItem {
   id: string;
-  algorithm: SigningKeysResponseKeysItemAlgorithm;
-  status: SigningKeysResponseKeysItemStatus;
+  algorithm: SigningKeysResponseOutputKeysItemAlgorithm;
+  status: SigningKeysResponseOutputKeysItemStatus;
   public_jwk: unknown | null;
   created_at: string;
   updated_at: string;
 }
-export const SigningKeysResponseKeysItem = /*@__PURE__*/ S.suspend(() =>
+export const SigningKeysResponseOutputKeysItem = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String,
-    algorithm: SigningKeysResponseKeysItemAlgorithm,
-    status: SigningKeysResponseKeysItemStatus,
+    algorithm: SigningKeysResponseOutputKeysItemAlgorithm,
+    status: SigningKeysResponseOutputKeysItemStatus,
     public_jwk: S.NullOr(S.Unknown),
     created_at: S.String,
     updated_at: S.String,
   }),
 ).annotate({
-  identifier: "SigningKeysResponseKeysItem",
-}) as any as S.Schema<SigningKeysResponseKeysItem>;
+  identifier: "SigningKeysResponseOutputKeysItem",
+}) as any as S.Schema<SigningKeysResponseOutputKeysItem>;
 
-export type SigningKeysResponseKeysList = Array<SigningKeysResponseKeysItem>;
-export const SigningKeysResponseKeysList = /*@__PURE__*/ S.Array(
-  SigningKeysResponseKeysItem,
-) as any as S.Schema<SigningKeysResponseKeysList>;
+export type SigningKeysResponseOutputKeysList =
+  Array<SigningKeysResponseOutputKeysItem>;
+export const SigningKeysResponseOutputKeysList = /*@__PURE__*/ S.Array(
+  SigningKeysResponseOutputKeysItem,
+) as any as S.Schema<SigningKeysResponseOutputKeysList>;
 
-export interface SigningKeysResponse {
-  keys: SigningKeysResponseKeysList;
+export interface SigningKeysResponseOutput {
+  keys: SigningKeysResponseOutputKeysList;
 }
-export const SigningKeysResponse = /*@__PURE__*/ S.suspend(() =>
+export const SigningKeysResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    keys: SigningKeysResponseKeysList,
+    keys: SigningKeysResponseOutputKeysList,
   }),
 ).annotate({
-  identifier: "SigningKeysResponse",
-}) as any as S.Schema<SigningKeysResponse>;
+  identifier: "SigningKeysResponseOutput",
+}) as any as S.Schema<SigningKeysResponseOutput>;
 
 export interface V1GetProjectTpaIntegrationRequest {
   /** Project ref */
@@ -6802,15 +6919,15 @@ export const V1GetProjectUsageApiCountRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1GetProjectUsageApiCountRequest",
 }) as any as S.Schema<V1GetProjectUsageApiCountRequest>;
 
-export interface V1GetUsageApiCountResponseResultItem {
+export interface V1GetUsageApiCountResponseOutputResultItem {
   timestamp: string;
   total_auth_requests: number;
   total_realtime_requests: number;
   total_rest_requests: number;
   total_storage_requests: number;
 }
-export const V1GetUsageApiCountResponseResultItem = /*@__PURE__*/ S.suspend(
-  () =>
+export const V1GetUsageApiCountResponseOutputResultItem =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       timestamp: S.String,
       total_auth_requests: S.Number,
@@ -6818,65 +6935,66 @@ export const V1GetUsageApiCountResponseResultItem = /*@__PURE__*/ S.suspend(
       total_rest_requests: S.Number,
       total_storage_requests: S.Number,
     }),
-).annotate({
-  identifier: "V1GetUsageApiCountResponseResultItem",
-}) as any as S.Schema<V1GetUsageApiCountResponseResultItem>;
+  ).annotate({
+    identifier: "V1GetUsageApiCountResponseOutputResultItem",
+  }) as any as S.Schema<V1GetUsageApiCountResponseOutputResultItem>;
 
-export type V1GetUsageApiCountResponseResultList =
-  Array<V1GetUsageApiCountResponseResultItem>;
-export const V1GetUsageApiCountResponseResultList = /*@__PURE__*/ S.Array(
-  V1GetUsageApiCountResponseResultItem,
-) as any as S.Schema<V1GetUsageApiCountResponseResultList>;
+export type V1GetUsageApiCountResponseOutputResultList =
+  Array<V1GetUsageApiCountResponseOutputResultItem>;
+export const V1GetUsageApiCountResponseOutputResultList = /*@__PURE__*/ S.Array(
+  V1GetUsageApiCountResponseOutputResultItem,
+) as any as S.Schema<V1GetUsageApiCountResponseOutputResultList>;
 
-export type V1GetUsageApiCountResponseErrorCase1ErrorsItem =
-  AnalyticsResponseErrorCase1ErrorsItem;
-export const V1GetUsageApiCountResponseErrorCase1ErrorsItem =
-  AnalyticsResponseErrorCase1ErrorsItem;
+export type V1GetUsageApiCountResponseOutputErrorCase1ErrorsItem =
+  AnalyticsResponseOutputErrorCase1ErrorsItem;
+export const V1GetUsageApiCountResponseOutputErrorCase1ErrorsItem =
+  AnalyticsResponseOutputErrorCase1ErrorsItem;
 
-export type V1GetUsageApiCountResponseErrorCase1ErrorsList =
-  Array<AnalyticsResponseErrorCase1ErrorsItem>;
-export const V1GetUsageApiCountResponseErrorCase1ErrorsList =
+export type V1GetUsageApiCountResponseOutputErrorCase1ErrorsList =
+  Array<AnalyticsResponseOutputErrorCase1ErrorsItem>;
+export const V1GetUsageApiCountResponseOutputErrorCase1ErrorsList =
   /*@__PURE__*/ S.Array(
-    AnalyticsResponseErrorCase1ErrorsItem,
-  ) as any as S.Schema<V1GetUsageApiCountResponseErrorCase1ErrorsList>;
+    AnalyticsResponseOutputErrorCase1ErrorsItem,
+  ) as any as S.Schema<V1GetUsageApiCountResponseOutputErrorCase1ErrorsList>;
 
-export interface V1GetUsageApiCountResponseErrorCase1 {
+export interface V1GetUsageApiCountResponseOutputErrorCase1 {
   code: number;
-  errors: V1GetUsageApiCountResponseErrorCase1ErrorsList;
+  errors: V1GetUsageApiCountResponseOutputErrorCase1ErrorsList;
   message: string;
   status: string;
 }
-export const V1GetUsageApiCountResponseErrorCase1 = /*@__PURE__*/ S.suspend(
-  () =>
+export const V1GetUsageApiCountResponseOutputErrorCase1 =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       code: S.Number,
-      errors: V1GetUsageApiCountResponseErrorCase1ErrorsList,
+      errors: V1GetUsageApiCountResponseOutputErrorCase1ErrorsList,
       message: S.String,
       status: S.String,
     }),
-).annotate({
-  identifier: "V1GetUsageApiCountResponseErrorCase1",
-}) as any as S.Schema<V1GetUsageApiCountResponseErrorCase1>;
+  ).annotate({
+    identifier: "V1GetUsageApiCountResponseOutputErrorCase1",
+  }) as any as S.Schema<V1GetUsageApiCountResponseOutputErrorCase1>;
 
-export type V1GetUsageApiCountResponseError =
+export type V1GetUsageApiCountResponseOutputError =
   | string
-  | V1GetUsageApiCountResponseErrorCase1;
-export const V1GetUsageApiCountResponseError = /*@__PURE__*/ S.Unknown.pipe(
-  T.UnionCases([[], ["code", "errors", "message", "status"]]),
-);
+  | V1GetUsageApiCountResponseOutputErrorCase1;
+export const V1GetUsageApiCountResponseOutputError =
+  /*@__PURE__*/ S.Unknown.pipe(
+    T.UnionCases([[], ["code", "errors", "message", "status"]]),
+  );
 
-export interface V1GetUsageApiCountResponse {
-  result?: V1GetUsageApiCountResponseResultList;
-  error?: V1GetUsageApiCountResponseError;
+export interface V1GetUsageApiCountResponseOutput {
+  result?: V1GetUsageApiCountResponseOutputResultList;
+  error?: V1GetUsageApiCountResponseOutputError;
 }
-export const V1GetUsageApiCountResponse = /*@__PURE__*/ S.suspend(() =>
+export const V1GetUsageApiCountResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    result: S.optional(V1GetUsageApiCountResponseResultList),
-    error: S.optional(V1GetUsageApiCountResponseError),
+    result: S.optional(V1GetUsageApiCountResponseOutputResultList),
+    error: S.optional(V1GetUsageApiCountResponseOutputError),
   }),
 ).annotate({
-  identifier: "V1GetUsageApiCountResponse",
-}) as any as S.Schema<V1GetUsageApiCountResponse>;
+  identifier: "V1GetUsageApiCountResponseOutput",
+}) as any as S.Schema<V1GetUsageApiCountResponseOutput>;
 
 export interface V1GetProjectUsageRequestCountRequest {
   /** Project ref */
@@ -6897,75 +7015,76 @@ export const V1GetProjectUsageRequestCountRequest = /*@__PURE__*/ S.suspend(
   identifier: "V1GetProjectUsageRequestCountRequest",
 }) as any as S.Schema<V1GetProjectUsageRequestCountRequest>;
 
-export interface V1GetUsageApiRequestsCountResponseResultItem {
+export interface V1GetUsageApiRequestsCountResponseOutputResultItem {
   count: number;
 }
-export const V1GetUsageApiRequestsCountResponseResultItem =
+export const V1GetUsageApiRequestsCountResponseOutputResultItem =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       count: S.Number,
     }),
   ).annotate({
-    identifier: "V1GetUsageApiRequestsCountResponseResultItem",
-  }) as any as S.Schema<V1GetUsageApiRequestsCountResponseResultItem>;
+    identifier: "V1GetUsageApiRequestsCountResponseOutputResultItem",
+  }) as any as S.Schema<V1GetUsageApiRequestsCountResponseOutputResultItem>;
 
-export type V1GetUsageApiRequestsCountResponseResultList =
-  Array<V1GetUsageApiRequestsCountResponseResultItem>;
-export const V1GetUsageApiRequestsCountResponseResultList =
+export type V1GetUsageApiRequestsCountResponseOutputResultList =
+  Array<V1GetUsageApiRequestsCountResponseOutputResultItem>;
+export const V1GetUsageApiRequestsCountResponseOutputResultList =
   /*@__PURE__*/ S.Array(
-    V1GetUsageApiRequestsCountResponseResultItem,
-  ) as any as S.Schema<V1GetUsageApiRequestsCountResponseResultList>;
+    V1GetUsageApiRequestsCountResponseOutputResultItem,
+  ) as any as S.Schema<V1GetUsageApiRequestsCountResponseOutputResultList>;
 
-export type V1GetUsageApiRequestsCountResponseErrorCase1ErrorsItem =
-  AnalyticsResponseErrorCase1ErrorsItem;
-export const V1GetUsageApiRequestsCountResponseErrorCase1ErrorsItem =
-  AnalyticsResponseErrorCase1ErrorsItem;
+export type V1GetUsageApiRequestsCountResponseOutputErrorCase1ErrorsItem =
+  AnalyticsResponseOutputErrorCase1ErrorsItem;
+export const V1GetUsageApiRequestsCountResponseOutputErrorCase1ErrorsItem =
+  AnalyticsResponseOutputErrorCase1ErrorsItem;
 
-export type V1GetUsageApiRequestsCountResponseErrorCase1ErrorsList =
-  Array<AnalyticsResponseErrorCase1ErrorsItem>;
-export const V1GetUsageApiRequestsCountResponseErrorCase1ErrorsList =
+export type V1GetUsageApiRequestsCountResponseOutputErrorCase1ErrorsList =
+  Array<AnalyticsResponseOutputErrorCase1ErrorsItem>;
+export const V1GetUsageApiRequestsCountResponseOutputErrorCase1ErrorsList =
   /*@__PURE__*/ S.Array(
-    AnalyticsResponseErrorCase1ErrorsItem,
-  ) as any as S.Schema<V1GetUsageApiRequestsCountResponseErrorCase1ErrorsList>;
+    AnalyticsResponseOutputErrorCase1ErrorsItem,
+  ) as any as S.Schema<V1GetUsageApiRequestsCountResponseOutputErrorCase1ErrorsList>;
 
-export interface V1GetUsageApiRequestsCountResponseErrorCase1 {
+export interface V1GetUsageApiRequestsCountResponseOutputErrorCase1 {
   code: number;
-  errors: V1GetUsageApiRequestsCountResponseErrorCase1ErrorsList;
+  errors: V1GetUsageApiRequestsCountResponseOutputErrorCase1ErrorsList;
   message: string;
   status: string;
 }
-export const V1GetUsageApiRequestsCountResponseErrorCase1 =
+export const V1GetUsageApiRequestsCountResponseOutputErrorCase1 =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       code: S.Number,
-      errors: V1GetUsageApiRequestsCountResponseErrorCase1ErrorsList,
+      errors: V1GetUsageApiRequestsCountResponseOutputErrorCase1ErrorsList,
       message: S.String,
       status: S.String,
     }),
   ).annotate({
-    identifier: "V1GetUsageApiRequestsCountResponseErrorCase1",
-  }) as any as S.Schema<V1GetUsageApiRequestsCountResponseErrorCase1>;
+    identifier: "V1GetUsageApiRequestsCountResponseOutputErrorCase1",
+  }) as any as S.Schema<V1GetUsageApiRequestsCountResponseOutputErrorCase1>;
 
-export type V1GetUsageApiRequestsCountResponseError =
+export type V1GetUsageApiRequestsCountResponseOutputError =
   | string
-  | V1GetUsageApiRequestsCountResponseErrorCase1;
-export const V1GetUsageApiRequestsCountResponseError =
+  | V1GetUsageApiRequestsCountResponseOutputErrorCase1;
+export const V1GetUsageApiRequestsCountResponseOutputError =
   /*@__PURE__*/ S.Unknown.pipe(
     T.UnionCases([[], ["code", "errors", "message", "status"]]),
   );
 
-export interface V1GetUsageApiRequestsCountResponse {
-  result?: V1GetUsageApiRequestsCountResponseResultList;
-  error?: V1GetUsageApiRequestsCountResponseError;
+export interface V1GetUsageApiRequestsCountResponseOutput {
+  result?: V1GetUsageApiRequestsCountResponseOutputResultList;
+  error?: V1GetUsageApiRequestsCountResponseOutputError;
 }
-export const V1GetUsageApiRequestsCountResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    result: S.optional(V1GetUsageApiRequestsCountResponseResultList),
-    error: S.optional(V1GetUsageApiRequestsCountResponseError),
-  }),
+export const V1GetUsageApiRequestsCountResponseOutput = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      result: S.optional(V1GetUsageApiRequestsCountResponseOutputResultList),
+      error: S.optional(V1GetUsageApiRequestsCountResponseOutputError),
+    }),
 ).annotate({
-  identifier: "V1GetUsageApiRequestsCountResponse",
-}) as any as S.Schema<V1GetUsageApiRequestsCountResponse>;
+  identifier: "V1GetUsageApiRequestsCountResponseOutput",
+}) as any as S.Schema<V1GetUsageApiRequestsCountResponseOutput>;
 
 export interface V1GetReadonlyModeStatusRequest {
   /** Project ref */
@@ -6981,20 +7100,20 @@ export const V1GetReadonlyModeStatusRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1GetReadonlyModeStatusRequest",
 }) as any as S.Schema<V1GetReadonlyModeStatusRequest>;
 
-export interface ReadOnlyStatusResponse {
+export interface ReadOnlyStatusResponseOutput {
   enabled: boolean;
   override_enabled: boolean;
   override_active_until: string;
 }
-export const ReadOnlyStatusResponse = /*@__PURE__*/ S.suspend(() =>
+export const ReadOnlyStatusResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     enabled: S.Boolean,
     override_enabled: S.Boolean,
     override_active_until: S.String,
   }),
 ).annotate({
-  identifier: "ReadOnlyStatusResponse",
-}) as any as S.Schema<ReadOnlyStatusResponse>;
+  identifier: "ReadOnlyStatusResponseOutput",
+}) as any as S.Schema<ReadOnlyStatusResponseOutput>;
 
 export interface V1GetRealtimeConfigRequest {
   /** Project ref */
@@ -7014,7 +7133,7 @@ export const V1GetRealtimeConfigRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1GetRealtimeConfigRequest",
 }) as any as S.Schema<V1GetRealtimeConfigRequest>;
 
-export interface RealtimeConfigResponse {
+export interface RealtimeConfigResponseOutput {
   /** Whether to only allow private channels */
   private_only: boolean | null;
   /** Sets connection pool size for Realtime Authorization */
@@ -7040,7 +7159,7 @@ export interface RealtimeConfigResponse {
   /** Whether to enable presence */
   presence_enabled: boolean;
 }
-export const RealtimeConfigResponse = /*@__PURE__*/ S.suspend(() =>
+export const RealtimeConfigResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     private_only: S.NullOr(S.Boolean),
     connection_pool: S.NullOr(S.Number),
@@ -7056,8 +7175,8 @@ export const RealtimeConfigResponse = /*@__PURE__*/ S.suspend(() =>
     presence_enabled: S.Boolean,
   }),
 ).annotate({
-  identifier: "RealtimeConfigResponse",
-}) as any as S.Schema<RealtimeConfigResponse>;
+  identifier: "RealtimeConfigResponseOutput",
+}) as any as S.Schema<RealtimeConfigResponseOutput>;
 
 export interface V1GetRestorePointRequest {
   /** Project ref */
@@ -7126,7 +7245,7 @@ export const V1GetServicesHealthRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1GetServicesHealthRequest",
 }) as any as S.Schema<V1GetServicesHealthRequest>;
 
-export type V1ServiceHealthResponseName =
+export type V1ServiceHealthResponseOutputName =
   | "auth"
   | "db"
   | "db_postgres_user"
@@ -7135,66 +7254,70 @@ export type V1ServiceHealthResponseName =
   | "rest"
   | "storage"
   | "pg_bouncer";
-export const V1ServiceHealthResponseName = /*@__PURE__*/ S.String;
+export const V1ServiceHealthResponseOutputName = /*@__PURE__*/ S.String;
 
-export type V1ServiceHealthResponseStatus =
+export type V1ServiceHealthResponseOutputStatus =
   | "COMING_UP"
   | "ACTIVE_HEALTHY"
   | "UNHEALTHY";
-export const V1ServiceHealthResponseStatus = /*@__PURE__*/ S.String;
+export const V1ServiceHealthResponseOutputStatus = /*@__PURE__*/ S.String;
 
-export type V1ServiceHealthResponseInfoCase0Name = "GoTrue";
-export const V1ServiceHealthResponseInfoCase0Name = /*@__PURE__*/ S.String;
+export type V1ServiceHealthResponseOutputInfoCase0Name = "GoTrue";
+export const V1ServiceHealthResponseOutputInfoCase0Name =
+  /*@__PURE__*/ S.String;
 
-export interface V1ServiceHealthResponseInfoCase0 {
-  name: V1ServiceHealthResponseInfoCase0Name;
+export interface V1ServiceHealthResponseOutputInfoCase0 {
+  name: V1ServiceHealthResponseOutputInfoCase0Name;
   version: string;
   description: string;
 }
-export const V1ServiceHealthResponseInfoCase0 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: V1ServiceHealthResponseInfoCase0Name,
-    version: S.String,
-    description: S.String,
-  }),
+export const V1ServiceHealthResponseOutputInfoCase0 = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      name: V1ServiceHealthResponseOutputInfoCase0Name,
+      version: S.String,
+      description: S.String,
+    }),
 ).annotate({
-  identifier: "V1ServiceHealthResponseInfoCase0",
-}) as any as S.Schema<V1ServiceHealthResponseInfoCase0>;
+  identifier: "V1ServiceHealthResponseOutputInfoCase0",
+}) as any as S.Schema<V1ServiceHealthResponseOutputInfoCase0>;
 
-export interface V1ServiceHealthResponseInfoCase1 {
+export interface V1ServiceHealthResponseOutputInfoCase1 {
   /** Deprecated. Use `status` instead. */
   healthy: boolean;
   db_connected: boolean;
   replication_connected: boolean;
   connected_cluster: number;
 }
-export const V1ServiceHealthResponseInfoCase1 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    healthy: S.Boolean,
-    db_connected: S.Boolean,
-    replication_connected: S.Boolean,
-    connected_cluster: S.Number,
-  }),
+export const V1ServiceHealthResponseOutputInfoCase1 = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      healthy: S.Boolean,
+      db_connected: S.Boolean,
+      replication_connected: S.Boolean,
+      connected_cluster: S.Number,
+    }),
 ).annotate({
-  identifier: "V1ServiceHealthResponseInfoCase1",
-}) as any as S.Schema<V1ServiceHealthResponseInfoCase1>;
+  identifier: "V1ServiceHealthResponseOutputInfoCase1",
+}) as any as S.Schema<V1ServiceHealthResponseOutputInfoCase1>;
 
-export interface V1ServiceHealthResponseInfoCase2 {
+export interface V1ServiceHealthResponseOutputInfoCase2 {
   db_schema: string;
 }
-export const V1ServiceHealthResponseInfoCase2 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    db_schema: S.String,
-  }),
+export const V1ServiceHealthResponseOutputInfoCase2 = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      db_schema: S.String,
+    }),
 ).annotate({
-  identifier: "V1ServiceHealthResponseInfoCase2",
-}) as any as S.Schema<V1ServiceHealthResponseInfoCase2>;
+  identifier: "V1ServiceHealthResponseOutputInfoCase2",
+}) as any as S.Schema<V1ServiceHealthResponseOutputInfoCase2>;
 
-export type V1ServiceHealthResponseInfo =
-  | V1ServiceHealthResponseInfoCase0
-  | V1ServiceHealthResponseInfoCase1
-  | V1ServiceHealthResponseInfoCase2;
-export const V1ServiceHealthResponseInfo = /*@__PURE__*/ S.Unknown.pipe(
+export type V1ServiceHealthResponseOutputInfo =
+  | V1ServiceHealthResponseOutputInfoCase0
+  | V1ServiceHealthResponseOutputInfoCase1
+  | V1ServiceHealthResponseOutputInfoCase2;
+export const V1ServiceHealthResponseOutputInfo = /*@__PURE__*/ S.Unknown.pipe(
   T.UnionCases([
     ["name", "version", "description"],
     ["healthy", "db_connected", "replication_connected", "connected_cluster"],
@@ -7202,30 +7325,30 @@ export const V1ServiceHealthResponseInfo = /*@__PURE__*/ S.Unknown.pipe(
   ]),
 );
 
-export interface V1ServiceHealthResponse {
-  name: V1ServiceHealthResponseName;
+export interface V1ServiceHealthResponseOutput {
+  name: V1ServiceHealthResponseOutputName;
   /** Deprecated. Use `status` instead. */
   healthy: boolean;
-  status: V1ServiceHealthResponseStatus;
-  info?: V1ServiceHealthResponseInfo;
+  status: V1ServiceHealthResponseOutputStatus;
+  info?: V1ServiceHealthResponseOutputInfo;
   error?: string;
 }
-export const V1ServiceHealthResponse = /*@__PURE__*/ S.suspend(() =>
+export const V1ServiceHealthResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    name: V1ServiceHealthResponseName,
+    name: V1ServiceHealthResponseOutputName,
     healthy: S.Boolean,
-    status: V1ServiceHealthResponseStatus,
-    info: S.optional(V1ServiceHealthResponseInfo),
+    status: V1ServiceHealthResponseOutputStatus,
+    info: S.optional(V1ServiceHealthResponseOutputInfo),
     error: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "V1ServiceHealthResponse",
-}) as any as S.Schema<V1ServiceHealthResponse>;
+  identifier: "V1ServiceHealthResponseOutput",
+}) as any as S.Schema<V1ServiceHealthResponseOutput>;
 
 export type V1GetServicesHealthResponseBodyList =
-  Array<V1ServiceHealthResponse>;
+  Array<V1ServiceHealthResponseOutput>;
 export const V1GetServicesHealthResponseBodyList = /*@__PURE__*/ S.Array(
-  V1ServiceHealthResponse,
+  V1ServiceHealthResponseOutput,
 ) as any as S.Schema<V1GetServicesHealthResponseBodyList>;
 
 export type V1GetServicesHealthResponse = V1GetServicesHealthResponseBodyList;
@@ -7253,29 +7376,30 @@ export const V1GetSslEnforcementConfigRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1GetSslEnforcementConfigRequest",
 }) as any as S.Schema<V1GetSslEnforcementConfigRequest>;
 
-export interface SslEnforcementResponseCurrentConfig {
+export interface SslEnforcementResponseOutputCurrentConfig {
   database: boolean;
 }
-export const SslEnforcementResponseCurrentConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    database: S.Boolean,
-  }),
-).annotate({
-  identifier: "SslEnforcementResponseCurrentConfig",
-}) as any as S.Schema<SslEnforcementResponseCurrentConfig>;
+export const SslEnforcementResponseOutputCurrentConfig =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      database: S.Boolean,
+    }),
+  ).annotate({
+    identifier: "SslEnforcementResponseOutputCurrentConfig",
+  }) as any as S.Schema<SslEnforcementResponseOutputCurrentConfig>;
 
-export interface SslEnforcementResponse {
-  currentConfig: SslEnforcementResponseCurrentConfig;
+export interface SslEnforcementResponseOutput {
+  currentConfig: SslEnforcementResponseOutputCurrentConfig;
   appliedSuccessfully: boolean;
 }
-export const SslEnforcementResponse = /*@__PURE__*/ S.suspend(() =>
+export const SslEnforcementResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    currentConfig: SslEnforcementResponseCurrentConfig,
+    currentConfig: SslEnforcementResponseOutputCurrentConfig,
     appliedSuccessfully: S.Boolean,
   }),
 ).annotate({
-  identifier: "SslEnforcementResponse",
-}) as any as S.Schema<SslEnforcementResponse>;
+  identifier: "SslEnforcementResponseOutput",
+}) as any as S.Schema<SslEnforcementResponseOutput>;
 
 export interface V1GetStorageConfigRequest {
   /** Project ref */
@@ -7295,28 +7419,28 @@ export const V1GetStorageConfigRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1GetStorageConfigRequest",
 }) as any as S.Schema<V1GetStorageConfigRequest>;
 
-export type StorageConfigResponseFeaturesImageTransformation =
-  V1ListEntitlementsResponseEntitlementsItemConfigCase0;
-export const StorageConfigResponseFeaturesImageTransformation =
-  V1ListEntitlementsResponseEntitlementsItemConfigCase0;
+export type StorageConfigResponseOutputFeaturesImageTransformation =
+  V1ListEntitlementsResponseOutputEntitlementsItemConfigCase0;
+export const StorageConfigResponseOutputFeaturesImageTransformation =
+  V1ListEntitlementsResponseOutputEntitlementsItemConfigCase0;
 
-export type StorageConfigResponseFeaturesS3Protocol =
-  V1ListEntitlementsResponseEntitlementsItemConfigCase0;
-export const StorageConfigResponseFeaturesS3Protocol =
-  V1ListEntitlementsResponseEntitlementsItemConfigCase0;
+export type StorageConfigResponseOutputFeaturesS3Protocol =
+  V1ListEntitlementsResponseOutputEntitlementsItemConfigCase0;
+export const StorageConfigResponseOutputFeaturesS3Protocol =
+  V1ListEntitlementsResponseOutputEntitlementsItemConfigCase0;
 
-export type StorageConfigResponseFeaturesPurgeCache =
-  V1ListEntitlementsResponseEntitlementsItemConfigCase0;
-export const StorageConfigResponseFeaturesPurgeCache =
-  V1ListEntitlementsResponseEntitlementsItemConfigCase0;
+export type StorageConfigResponseOutputFeaturesPurgeCache =
+  V1ListEntitlementsResponseOutputEntitlementsItemConfigCase0;
+export const StorageConfigResponseOutputFeaturesPurgeCache =
+  V1ListEntitlementsResponseOutputEntitlementsItemConfigCase0;
 
-export interface StorageConfigResponseFeaturesIcebergCatalog {
+export interface StorageConfigResponseOutputFeaturesIcebergCatalog {
   enabled: boolean;
   maxNamespaces: number;
   maxTables: number;
   maxCatalogs: number;
 }
-export const StorageConfigResponseFeaturesIcebergCatalog =
+export const StorageConfigResponseOutputFeaturesIcebergCatalog =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       enabled: S.Boolean,
@@ -7325,15 +7449,15 @@ export const StorageConfigResponseFeaturesIcebergCatalog =
       maxCatalogs: S.Number,
     }),
   ).annotate({
-    identifier: "StorageConfigResponseFeaturesIcebergCatalog",
-  }) as any as S.Schema<StorageConfigResponseFeaturesIcebergCatalog>;
+    identifier: "StorageConfigResponseOutputFeaturesIcebergCatalog",
+  }) as any as S.Schema<StorageConfigResponseOutputFeaturesIcebergCatalog>;
 
-export interface StorageConfigResponseFeaturesVectorBuckets {
+export interface StorageConfigResponseOutputFeaturesVectorBuckets {
   enabled: boolean;
   maxBuckets: number;
   maxIndexes: number;
 }
-export const StorageConfigResponseFeaturesVectorBuckets =
+export const StorageConfigResponseOutputFeaturesVectorBuckets =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       enabled: S.Boolean,
@@ -7341,76 +7465,78 @@ export const StorageConfigResponseFeaturesVectorBuckets =
       maxIndexes: S.Number,
     }),
   ).annotate({
-    identifier: "StorageConfigResponseFeaturesVectorBuckets",
-  }) as any as S.Schema<StorageConfigResponseFeaturesVectorBuckets>;
+    identifier: "StorageConfigResponseOutputFeaturesVectorBuckets",
+  }) as any as S.Schema<StorageConfigResponseOutputFeaturesVectorBuckets>;
 
-export interface StorageConfigResponseFeatures {
-  imageTransformation: V1ListEntitlementsResponseEntitlementsItemConfigCase0;
-  s3Protocol: V1ListEntitlementsResponseEntitlementsItemConfigCase0;
-  purgeCache: V1ListEntitlementsResponseEntitlementsItemConfigCase0;
-  icebergCatalog: StorageConfigResponseFeaturesIcebergCatalog;
-  vectorBuckets: StorageConfigResponseFeaturesVectorBuckets;
+export interface StorageConfigResponseOutputFeatures {
+  imageTransformation: V1ListEntitlementsResponseOutputEntitlementsItemConfigCase0;
+  s3Protocol: V1ListEntitlementsResponseOutputEntitlementsItemConfigCase0;
+  purgeCache: V1ListEntitlementsResponseOutputEntitlementsItemConfigCase0;
+  icebergCatalog: StorageConfigResponseOutputFeaturesIcebergCatalog;
+  vectorBuckets: StorageConfigResponseOutputFeaturesVectorBuckets;
 }
-export const StorageConfigResponseFeatures = /*@__PURE__*/ S.suspend(() =>
+export const StorageConfigResponseOutputFeatures = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    imageTransformation: V1ListEntitlementsResponseEntitlementsItemConfigCase0,
-    s3Protocol: V1ListEntitlementsResponseEntitlementsItemConfigCase0,
-    purgeCache: V1ListEntitlementsResponseEntitlementsItemConfigCase0,
-    icebergCatalog: StorageConfigResponseFeaturesIcebergCatalog,
-    vectorBuckets: StorageConfigResponseFeaturesVectorBuckets,
+    imageTransformation:
+      V1ListEntitlementsResponseOutputEntitlementsItemConfigCase0,
+    s3Protocol: V1ListEntitlementsResponseOutputEntitlementsItemConfigCase0,
+    purgeCache: V1ListEntitlementsResponseOutputEntitlementsItemConfigCase0,
+    icebergCatalog: StorageConfigResponseOutputFeaturesIcebergCatalog,
+    vectorBuckets: StorageConfigResponseOutputFeaturesVectorBuckets,
   }),
 ).annotate({
-  identifier: "StorageConfigResponseFeatures",
-}) as any as S.Schema<StorageConfigResponseFeatures>;
+  identifier: "StorageConfigResponseOutputFeatures",
+}) as any as S.Schema<StorageConfigResponseOutputFeatures>;
 
-export interface StorageConfigResponseCapabilities {
+export interface StorageConfigResponseOutputCapabilities {
   list_v2: boolean;
   iceberg_catalog: boolean;
 }
-export const StorageConfigResponseCapabilities = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    list_v2: S.Boolean,
-    iceberg_catalog: S.Boolean,
-  }),
+export const StorageConfigResponseOutputCapabilities = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      list_v2: S.Boolean,
+      iceberg_catalog: S.Boolean,
+    }),
 ).annotate({
-  identifier: "StorageConfigResponseCapabilities",
-}) as any as S.Schema<StorageConfigResponseCapabilities>;
+  identifier: "StorageConfigResponseOutputCapabilities",
+}) as any as S.Schema<StorageConfigResponseOutputCapabilities>;
 
-export type StorageConfigResponseExternalUpstreamTarget = "main" | "canary";
-export const StorageConfigResponseExternalUpstreamTarget =
+export type StorageConfigResponseOutputExternalUpstreamTarget =
+  | "main"
+  | "canary";
+export const StorageConfigResponseOutputExternalUpstreamTarget =
   /*@__PURE__*/ S.String;
 
-export interface StorageConfigResponseExternal {
-  upstreamTarget: StorageConfigResponseExternalUpstreamTarget;
+export interface StorageConfigResponseOutputExternal {
+  upstreamTarget: StorageConfigResponseOutputExternalUpstreamTarget;
 }
-export const StorageConfigResponseExternal = /*@__PURE__*/ S.suspend(() =>
+export const StorageConfigResponseOutputExternal = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    upstreamTarget: StorageConfigResponseExternalUpstreamTarget,
+    upstreamTarget: StorageConfigResponseOutputExternalUpstreamTarget,
   }),
 ).annotate({
-  identifier: "StorageConfigResponseExternal",
-}) as any as S.Schema<StorageConfigResponseExternal>;
+  identifier: "StorageConfigResponseOutputExternal",
+}) as any as S.Schema<StorageConfigResponseOutputExternal>;
 
-export interface StorageConfigResponse {
+export interface StorageConfigResponseOutput {
   fileSizeLimit: number;
-  features: StorageConfigResponseFeatures;
-  capabilities: StorageConfigResponseCapabilities;
-  external: StorageConfigResponseExternal;
+  features: StorageConfigResponseOutputFeatures;
+  capabilities: StorageConfigResponseOutputCapabilities;
+  external: StorageConfigResponseOutputExternal;
   migrationVersion: string;
-  databasePoolMode: string;
 }
-export const StorageConfigResponse = /*@__PURE__*/ S.suspend(() =>
+export const StorageConfigResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     fileSizeLimit: S.Number,
-    features: StorageConfigResponseFeatures,
-    capabilities: StorageConfigResponseCapabilities,
-    external: StorageConfigResponseExternal,
+    features: StorageConfigResponseOutputFeatures,
+    capabilities: StorageConfigResponseOutputCapabilities,
+    external: StorageConfigResponseOutputExternal,
     migrationVersion: S.String,
-    databasePoolMode: S.String,
   }),
 ).annotate({
-  identifier: "StorageConfigResponse",
-}) as any as S.Schema<StorageConfigResponse>;
+  identifier: "StorageConfigResponseOutput",
+}) as any as S.Schema<StorageConfigResponseOutput>;
 
 export interface V1GetVanitySubdomainConfigRequest {
   /** Project ref */
@@ -7430,47 +7556,47 @@ export const V1GetVanitySubdomainConfigRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1GetVanitySubdomainConfigRequest",
 }) as any as S.Schema<V1GetVanitySubdomainConfigRequest>;
 
-export type VanitySubdomainConfigResponseStatus =
+export type VanitySubdomainConfigResponseOutputStatus =
   | "not-used"
   | "custom-domain-used"
   | "active";
-export const VanitySubdomainConfigResponseStatus = /*@__PURE__*/ S.String;
+export const VanitySubdomainConfigResponseOutputStatus = /*@__PURE__*/ S.String;
 
-export interface VanitySubdomainConfigResponse {
-  status: VanitySubdomainConfigResponseStatus;
+export interface VanitySubdomainConfigResponseOutput {
+  status: VanitySubdomainConfigResponseOutputStatus;
   custom_domain?: string;
 }
-export const VanitySubdomainConfigResponse = /*@__PURE__*/ S.suspend(() =>
+export const VanitySubdomainConfigResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    status: VanitySubdomainConfigResponseStatus,
+    status: VanitySubdomainConfigResponseOutputStatus,
     custom_domain: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "VanitySubdomainConfigResponse",
-}) as any as S.Schema<VanitySubdomainConfigResponse>;
+  identifier: "VanitySubdomainConfigResponseOutput",
+}) as any as S.Schema<VanitySubdomainConfigResponseOutput>;
 
 export type V1InviteExternalJitAccessRequestRolesItemAllowedNetworksAllowedCidrsItem =
-  JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsItem;
+  JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem;
 export const V1InviteExternalJitAccessRequestRolesItemAllowedNetworksAllowedCidrsItem =
-  JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsItem;
+  JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem;
 
 export type V1InviteExternalJitAccessRequestRolesItemAllowedNetworksAllowedCidrsList =
-  Array<JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsItem>;
+  Array<JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem>;
 export const V1InviteExternalJitAccessRequestRolesItemAllowedNetworksAllowedCidrsList =
   /*@__PURE__*/ S.Array(
-    JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsItem,
+    JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem,
   ) as any as S.Schema<V1InviteExternalJitAccessRequestRolesItemAllowedNetworksAllowedCidrsList>;
 
 export type V1InviteExternalJitAccessRequestRolesItemAllowedNetworksAllowedCidrsV6Item =
-  JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsItem;
+  JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem;
 export const V1InviteExternalJitAccessRequestRolesItemAllowedNetworksAllowedCidrsV6Item =
-  JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsItem;
+  JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem;
 
 export type V1InviteExternalJitAccessRequestRolesItemAllowedNetworksAllowedCidrsV6List =
-  Array<JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsItem>;
+  Array<JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem>;
 export const V1InviteExternalJitAccessRequestRolesItemAllowedNetworksAllowedCidrsV6List =
   /*@__PURE__*/ S.Array(
-    JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsItem,
+    JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem,
   ) as any as S.Schema<V1InviteExternalJitAccessRequestRolesItemAllowedNetworksAllowedCidrsV6List>;
 
 export interface V1InviteExternalJitAccessRequestRolesItemAllowedNetworks {
@@ -7539,88 +7665,90 @@ export const V1InviteExternalJitAccessRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1InviteExternalJitAccessRequest",
 }) as any as S.Schema<V1InviteExternalJitAccessRequest>;
 
-export type InviteExternalUserJitResponseUserRolesItemAllowedNetworksAllowedCidrsItem =
-  JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsItem;
-export const InviteExternalUserJitResponseUserRolesItemAllowedNetworksAllowedCidrsItem =
-  JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsItem;
+export type InviteExternalUserJitResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem =
+  JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem;
+export const InviteExternalUserJitResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem =
+  JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem;
 
-export type InviteExternalUserJitResponseUserRolesItemAllowedNetworksAllowedCidrsList =
-  Array<JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsItem>;
-export const InviteExternalUserJitResponseUserRolesItemAllowedNetworksAllowedCidrsList =
+export type InviteExternalUserJitResponseOutputUserRolesItemAllowedNetworksAllowedCidrsList =
+  Array<JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem>;
+export const InviteExternalUserJitResponseOutputUserRolesItemAllowedNetworksAllowedCidrsList =
   /*@__PURE__*/ S.Array(
-    JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsItem,
-  ) as any as S.Schema<InviteExternalUserJitResponseUserRolesItemAllowedNetworksAllowedCidrsList>;
+    JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem,
+  ) as any as S.Schema<InviteExternalUserJitResponseOutputUserRolesItemAllowedNetworksAllowedCidrsList>;
 
-export type InviteExternalUserJitResponseUserRolesItemAllowedNetworksAllowedCidrsV6Item =
-  JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsItem;
-export const InviteExternalUserJitResponseUserRolesItemAllowedNetworksAllowedCidrsV6Item =
-  JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsItem;
+export type InviteExternalUserJitResponseOutputUserRolesItemAllowedNetworksAllowedCidrsV6Item =
+  JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem;
+export const InviteExternalUserJitResponseOutputUserRolesItemAllowedNetworksAllowedCidrsV6Item =
+  JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem;
 
-export type InviteExternalUserJitResponseUserRolesItemAllowedNetworksAllowedCidrsV6List =
-  Array<JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsItem>;
-export const InviteExternalUserJitResponseUserRolesItemAllowedNetworksAllowedCidrsV6List =
+export type InviteExternalUserJitResponseOutputUserRolesItemAllowedNetworksAllowedCidrsV6List =
+  Array<JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem>;
+export const InviteExternalUserJitResponseOutputUserRolesItemAllowedNetworksAllowedCidrsV6List =
   /*@__PURE__*/ S.Array(
-    JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsItem,
-  ) as any as S.Schema<InviteExternalUserJitResponseUserRolesItemAllowedNetworksAllowedCidrsV6List>;
+    JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem,
+  ) as any as S.Schema<InviteExternalUserJitResponseOutputUserRolesItemAllowedNetworksAllowedCidrsV6List>;
 
-export interface InviteExternalUserJitResponseUserRolesItemAllowedNetworks {
-  allowed_cidrs?: InviteExternalUserJitResponseUserRolesItemAllowedNetworksAllowedCidrsList;
-  allowed_cidrs_v6?: InviteExternalUserJitResponseUserRolesItemAllowedNetworksAllowedCidrsV6List;
+export interface InviteExternalUserJitResponseOutputUserRolesItemAllowedNetworks {
+  allowed_cidrs?: InviteExternalUserJitResponseOutputUserRolesItemAllowedNetworksAllowedCidrsList;
+  allowed_cidrs_v6?: InviteExternalUserJitResponseOutputUserRolesItemAllowedNetworksAllowedCidrsV6List;
 }
-export const InviteExternalUserJitResponseUserRolesItemAllowedNetworks =
+export const InviteExternalUserJitResponseOutputUserRolesItemAllowedNetworks =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       allowed_cidrs: S.optional(
-        InviteExternalUserJitResponseUserRolesItemAllowedNetworksAllowedCidrsList,
+        InviteExternalUserJitResponseOutputUserRolesItemAllowedNetworksAllowedCidrsList,
       ),
       allowed_cidrs_v6: S.optional(
-        InviteExternalUserJitResponseUserRolesItemAllowedNetworksAllowedCidrsV6List,
+        InviteExternalUserJitResponseOutputUserRolesItemAllowedNetworksAllowedCidrsV6List,
       ),
     }),
   ).annotate({
-    identifier: "InviteExternalUserJitResponseUserRolesItemAllowedNetworks",
-  }) as any as S.Schema<InviteExternalUserJitResponseUserRolesItemAllowedNetworks>;
+    identifier:
+      "InviteExternalUserJitResponseOutputUserRolesItemAllowedNetworks",
+  }) as any as S.Schema<InviteExternalUserJitResponseOutputUserRolesItemAllowedNetworks>;
 
-export interface InviteExternalUserJitResponseUserRolesItem {
+export interface InviteExternalUserJitResponseOutputUserRolesItem {
   role: string;
   expires_at?: number;
-  allowed_networks?: InviteExternalUserJitResponseUserRolesItemAllowedNetworks;
+  allowed_networks?: InviteExternalUserJitResponseOutputUserRolesItemAllowedNetworks;
   branches_only?: boolean;
 }
-export const InviteExternalUserJitResponseUserRolesItem =
+export const InviteExternalUserJitResponseOutputUserRolesItem =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       role: S.String,
       expires_at: S.optional(S.Number),
       allowed_networks: S.optional(
-        InviteExternalUserJitResponseUserRolesItemAllowedNetworks,
+        InviteExternalUserJitResponseOutputUserRolesItemAllowedNetworks,
       ),
       branches_only: S.optional(S.Boolean),
     }),
   ).annotate({
-    identifier: "InviteExternalUserJitResponseUserRolesItem",
-  }) as any as S.Schema<InviteExternalUserJitResponseUserRolesItem>;
+    identifier: "InviteExternalUserJitResponseOutputUserRolesItem",
+  }) as any as S.Schema<InviteExternalUserJitResponseOutputUserRolesItem>;
 
-export type InviteExternalUserJitResponseUserRolesList =
-  Array<InviteExternalUserJitResponseUserRolesItem>;
-export const InviteExternalUserJitResponseUserRolesList = /*@__PURE__*/ S.Array(
-  InviteExternalUserJitResponseUserRolesItem,
-) as any as S.Schema<InviteExternalUserJitResponseUserRolesList>;
+export type InviteExternalUserJitResponseOutputUserRolesList =
+  Array<InviteExternalUserJitResponseOutputUserRolesItem>;
+export const InviteExternalUserJitResponseOutputUserRolesList =
+  /*@__PURE__*/ S.Array(
+    InviteExternalUserJitResponseOutputUserRolesItem,
+  ) as any as S.Schema<InviteExternalUserJitResponseOutputUserRolesList>;
 
-export interface InviteExternalUserJitResponse {
+export interface InviteExternalUserJitResponseOutput {
   email: string;
   invite_id: string;
-  user_roles: InviteExternalUserJitResponseUserRolesList;
+  user_roles: InviteExternalUserJitResponseOutputUserRolesList;
 }
-export const InviteExternalUserJitResponse = /*@__PURE__*/ S.suspend(() =>
+export const InviteExternalUserJitResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     email: S.String,
     invite_id: S.String,
-    user_roles: InviteExternalUserJitResponseUserRolesList,
+    user_roles: InviteExternalUserJitResponseOutputUserRolesList,
   }),
 ).annotate({
-  identifier: "InviteExternalUserJitResponse",
-}) as any as S.Schema<InviteExternalUserJitResponse>;
+  identifier: "InviteExternalUserJitResponseOutput",
+}) as any as S.Schema<InviteExternalUserJitResponseOutput>;
 
 export interface V1ListActionRunsRequest {
   /** Project ref */
@@ -7640,7 +7768,7 @@ export const V1ListActionRunsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1ListActionRunsRequest",
 }) as any as S.Schema<V1ListActionRunsRequest>;
 
-export type ListActionRunResponseItemRunStepsItemName =
+export type ListActionRunResponseOutputItemRunStepsItemName =
   | "clone"
   | "pull"
   | "health"
@@ -7648,9 +7776,10 @@ export type ListActionRunResponseItemRunStepsItemName =
   | "migrate"
   | "seed"
   | "deploy";
-export const ListActionRunResponseItemRunStepsItemName = /*@__PURE__*/ S.String;
+export const ListActionRunResponseOutputItemRunStepsItemName =
+  /*@__PURE__*/ S.String;
 
-export type ListActionRunResponseItemRunStepsItemStatus =
+export type ListActionRunResponseOutputItemRunStepsItemStatus =
   | "CREATED"
   | "DEAD"
   | "EXITED"
@@ -7658,48 +7787,49 @@ export type ListActionRunResponseItemRunStepsItemStatus =
   | "REMOVING"
   | "RESTARTING"
   | "RUNNING";
-export const ListActionRunResponseItemRunStepsItemStatus =
+export const ListActionRunResponseOutputItemRunStepsItemStatus =
   /*@__PURE__*/ S.String;
 
-export interface ListActionRunResponseItemRunStepsItem {
-  name: ListActionRunResponseItemRunStepsItemName;
-  status: ListActionRunResponseItemRunStepsItemStatus;
+export interface ListActionRunResponseOutputItemRunStepsItem {
+  name: ListActionRunResponseOutputItemRunStepsItemName;
+  status: ListActionRunResponseOutputItemRunStepsItemStatus;
   created_at: string;
   updated_at: string;
 }
-export const ListActionRunResponseItemRunStepsItem = /*@__PURE__*/ S.suspend(
-  () =>
+export const ListActionRunResponseOutputItemRunStepsItem =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      name: ListActionRunResponseItemRunStepsItemName,
-      status: ListActionRunResponseItemRunStepsItemStatus,
+      name: ListActionRunResponseOutputItemRunStepsItemName,
+      status: ListActionRunResponseOutputItemRunStepsItemStatus,
       created_at: S.String,
       updated_at: S.String,
     }),
-).annotate({
-  identifier: "ListActionRunResponseItemRunStepsItem",
-}) as any as S.Schema<ListActionRunResponseItemRunStepsItem>;
+  ).annotate({
+    identifier: "ListActionRunResponseOutputItemRunStepsItem",
+  }) as any as S.Schema<ListActionRunResponseOutputItemRunStepsItem>;
 
-export type ListActionRunResponseItemRunStepsList =
-  Array<ListActionRunResponseItemRunStepsItem>;
-export const ListActionRunResponseItemRunStepsList = /*@__PURE__*/ S.Array(
-  ListActionRunResponseItemRunStepsItem,
-) as any as S.Schema<ListActionRunResponseItemRunStepsList>;
+export type ListActionRunResponseOutputItemRunStepsList =
+  Array<ListActionRunResponseOutputItemRunStepsItem>;
+export const ListActionRunResponseOutputItemRunStepsList =
+  /*@__PURE__*/ S.Array(
+    ListActionRunResponseOutputItemRunStepsItem,
+  ) as any as S.Schema<ListActionRunResponseOutputItemRunStepsList>;
 
-export interface ListActionRunResponseItem {
+export interface ListActionRunResponseOutputItem {
   id: string;
   branch_id: string;
-  run_steps: ListActionRunResponseItemRunStepsList;
+  run_steps: ListActionRunResponseOutputItemRunStepsList;
   git_config?: unknown | null;
   workdir: string | null;
   check_run_id: number | null;
   created_at: string;
   updated_at: string;
 }
-export const ListActionRunResponseItem = /*@__PURE__*/ S.suspend(() =>
+export const ListActionRunResponseOutputItem = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String,
     branch_id: S.String,
-    run_steps: ListActionRunResponseItemRunStepsList,
+    run_steps: ListActionRunResponseOutputItemRunStepsList,
     git_config: S.optional(S.NullOr(S.Unknown)),
     workdir: S.NullOr(S.String),
     check_run_id: S.NullOr(S.Number),
@@ -7707,17 +7837,18 @@ export const ListActionRunResponseItem = /*@__PURE__*/ S.suspend(() =>
     updated_at: S.String,
   }),
 ).annotate({
-  identifier: "ListActionRunResponseItem",
-}) as any as S.Schema<ListActionRunResponseItem>;
+  identifier: "ListActionRunResponseOutputItem",
+}) as any as S.Schema<ListActionRunResponseOutputItem>;
 
-export type ListActionRunResponse = Array<ListActionRunResponseItem>;
-export const ListActionRunResponse = /*@__PURE__*/ S.Array(
-  ListActionRunResponseItem,
-) as any as S.Schema<ListActionRunResponse>;
+export type ListActionRunResponseOutput =
+  Array<ListActionRunResponseOutputItem>;
+export const ListActionRunResponseOutput = /*@__PURE__*/ S.Array(
+  ListActionRunResponseOutputItem,
+) as any as S.Schema<ListActionRunResponseOutput>;
 
-export type V1ListActionRunsResponse = ListActionRunResponse;
+export type V1ListActionRunsResponse = ListActionRunResponseOutput;
 export const V1ListActionRunsResponse = /*@__PURE__*/ S.suspend(() =>
-  ListActionRunResponse.pipe(T.RawResponseRoot()),
+  ListActionRunResponseOutput.pipe(T.RawResponseRoot()),
 ).annotate({
   identifier: "V1ListActionRunsResponse",
 }) as any as S.Schema<V1ListActionRunsResponse>;
@@ -7740,68 +7871,70 @@ export const V1ListAllBackupsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1ListAllBackupsRequest",
 }) as any as S.Schema<V1ListAllBackupsRequest>;
 
-export type V1BackupsResponseBackupsItemStatus =
+export type V1BackupsResponseOutputBackupsItemStatus =
   | "COMPLETED"
   | "FAILED"
   | "PENDING"
   | "REMOVED"
   | "ARCHIVED"
   | "CANCELLED";
-export const V1BackupsResponseBackupsItemStatus = /*@__PURE__*/ S.String;
+export const V1BackupsResponseOutputBackupsItemStatus = /*@__PURE__*/ S.String;
 
-export interface V1BackupsResponseBackupsItem {
+export interface V1BackupsResponseOutputBackupsItem {
   id: number;
   is_physical_backup: boolean;
-  status: V1BackupsResponseBackupsItemStatus;
+  status: V1BackupsResponseOutputBackupsItemStatus;
   inserted_at: string;
 }
-export const V1BackupsResponseBackupsItem = /*@__PURE__*/ S.suspend(() =>
+export const V1BackupsResponseOutputBackupsItem = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.Number,
     is_physical_backup: S.Boolean,
-    status: V1BackupsResponseBackupsItemStatus,
+    status: V1BackupsResponseOutputBackupsItemStatus,
     inserted_at: S.String,
   }),
 ).annotate({
-  identifier: "V1BackupsResponseBackupsItem",
-}) as any as S.Schema<V1BackupsResponseBackupsItem>;
+  identifier: "V1BackupsResponseOutputBackupsItem",
+}) as any as S.Schema<V1BackupsResponseOutputBackupsItem>;
 
-export type V1BackupsResponseBackupsList = Array<V1BackupsResponseBackupsItem>;
-export const V1BackupsResponseBackupsList = /*@__PURE__*/ S.Array(
-  V1BackupsResponseBackupsItem,
-) as any as S.Schema<V1BackupsResponseBackupsList>;
+export type V1BackupsResponseOutputBackupsList =
+  Array<V1BackupsResponseOutputBackupsItem>;
+export const V1BackupsResponseOutputBackupsList = /*@__PURE__*/ S.Array(
+  V1BackupsResponseOutputBackupsItem,
+) as any as S.Schema<V1BackupsResponseOutputBackupsList>;
 
-export interface V1BackupsResponsePhysicalBackupData {
+export interface V1BackupsResponseOutputPhysicalBackupData {
   earliest_physical_backup_date_unix?: number;
   latest_physical_backup_date_unix?: number;
 }
-export const V1BackupsResponsePhysicalBackupData = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    earliest_physical_backup_date_unix: S.optional(S.Number),
-    latest_physical_backup_date_unix: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "V1BackupsResponsePhysicalBackupData",
-}) as any as S.Schema<V1BackupsResponsePhysicalBackupData>;
+export const V1BackupsResponseOutputPhysicalBackupData =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      earliest_physical_backup_date_unix: S.optional(S.Number),
+      latest_physical_backup_date_unix: S.optional(S.Number),
+    }),
+  ).annotate({
+    identifier: "V1BackupsResponseOutputPhysicalBackupData",
+  }) as any as S.Schema<V1BackupsResponseOutputPhysicalBackupData>;
 
-export interface V1BackupsResponse {
+export interface V1BackupsResponseOutput {
   region: string;
   walg_enabled: boolean;
   pitr_enabled: boolean;
-  backups: V1BackupsResponseBackupsList;
-  physical_backup_data: V1BackupsResponsePhysicalBackupData;
+  backups: V1BackupsResponseOutputBackupsList;
+  physical_backup_data: V1BackupsResponseOutputPhysicalBackupData;
 }
-export const V1BackupsResponse = /*@__PURE__*/ S.suspend(() =>
+export const V1BackupsResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     region: S.String,
     walg_enabled: S.Boolean,
     pitr_enabled: S.Boolean,
-    backups: V1BackupsResponseBackupsList,
-    physical_backup_data: V1BackupsResponsePhysicalBackupData,
+    backups: V1BackupsResponseOutputBackupsList,
+    physical_backup_data: V1BackupsResponseOutputPhysicalBackupData,
   }),
 ).annotate({
-  identifier: "V1BackupsResponse",
-}) as any as S.Schema<V1BackupsResponse>;
+  identifier: "V1BackupsResponseOutput",
+}) as any as S.Schema<V1BackupsResponseOutput>;
 
 export interface V1ListAllBranchesRequest {
   /** Project ref */
@@ -7817,9 +7950,9 @@ export const V1ListAllBranchesRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1ListAllBranchesRequest",
 }) as any as S.Schema<V1ListAllBranchesRequest>;
 
-export type V1ListAllBranchesResponseBodyList = Array<BranchResponse>;
+export type V1ListAllBranchesResponseBodyList = Array<BranchResponseOutput>;
 export const V1ListAllBranchesResponseBodyList = /*@__PURE__*/ S.Array(
-  BranchResponse,
+  BranchResponseOutput,
 ) as any as S.Schema<V1ListAllBranchesResponseBodyList>;
 
 export type V1ListAllBranchesResponse = V1ListAllBranchesResponseBodyList;
@@ -7847,7 +7980,7 @@ export const V1ListAllBucketsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1ListAllBucketsRequest",
 }) as any as S.Schema<V1ListAllBucketsRequest>;
 
-export interface V1StorageBucketResponse {
+export interface V1StorageBucketResponseOutput {
   id: string;
   name: string;
   owner: string;
@@ -7855,7 +7988,7 @@ export interface V1StorageBucketResponse {
   updated_at: string;
   public: boolean;
 }
-export const V1StorageBucketResponse = /*@__PURE__*/ S.suspend(() =>
+export const V1StorageBucketResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String,
     name: S.String,
@@ -7865,12 +7998,13 @@ export const V1StorageBucketResponse = /*@__PURE__*/ S.suspend(() =>
     public: S.Boolean,
   }),
 ).annotate({
-  identifier: "V1StorageBucketResponse",
-}) as any as S.Schema<V1StorageBucketResponse>;
+  identifier: "V1StorageBucketResponseOutput",
+}) as any as S.Schema<V1StorageBucketResponseOutput>;
 
-export type V1ListAllBucketsResponseBodyList = Array<V1StorageBucketResponse>;
+export type V1ListAllBucketsResponseBodyList =
+  Array<V1StorageBucketResponseOutput>;
 export const V1ListAllBucketsResponseBodyList = /*@__PURE__*/ S.Array(
-  V1StorageBucketResponse,
+  V1StorageBucketResponseOutput,
 ) as any as S.Schema<V1ListAllBucketsResponseBodyList>;
 
 export type V1ListAllBucketsResponse = V1ListAllBucketsResponseBodyList;
@@ -7894,14 +8028,14 @@ export const V1ListAllFunctionsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1ListAllFunctionsRequest",
 }) as any as S.Schema<V1ListAllFunctionsRequest>;
 
-export type FunctionResponseStatus = "ACTIVE" | "REMOVED" | "THROTTLED";
-export const FunctionResponseStatus = /*@__PURE__*/ S.String;
+export type FunctionResponseOutputStatus = "ACTIVE" | "REMOVED" | "THROTTLED";
+export const FunctionResponseOutputStatus = /*@__PURE__*/ S.String;
 
-export interface FunctionResponse {
+export interface FunctionResponseOutput {
   id: string;
   slug: string;
   name: string;
-  status: FunctionResponseStatus;
+  status: FunctionResponseOutputStatus;
   version: number;
   created_at: number;
   updated_at: number;
@@ -7911,12 +8045,12 @@ export interface FunctionResponse {
   import_map_path?: string;
   ezbr_sha256?: string;
 }
-export const FunctionResponse = /*@__PURE__*/ S.suspend(() =>
+export const FunctionResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String,
     slug: S.String,
     name: S.String,
-    status: FunctionResponseStatus,
+    status: FunctionResponseOutputStatus,
     version: S.Number,
     created_at: S.Number,
     updated_at: S.Number,
@@ -7927,12 +8061,12 @@ export const FunctionResponse = /*@__PURE__*/ S.suspend(() =>
     ezbr_sha256: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "FunctionResponse",
-}) as any as S.Schema<FunctionResponse>;
+  identifier: "FunctionResponseOutput",
+}) as any as S.Schema<FunctionResponseOutput>;
 
-export type V1ListAllFunctionsResponseBodyList = Array<FunctionResponse>;
+export type V1ListAllFunctionsResponseBodyList = Array<FunctionResponseOutput>;
 export const V1ListAllFunctionsResponseBodyList = /*@__PURE__*/ S.Array(
-  FunctionResponse,
+  FunctionResponseOutput,
 ) as any as S.Schema<V1ListAllFunctionsResponseBodyList>;
 
 export type V1ListAllFunctionsResponse = V1ListAllFunctionsResponseBodyList;
@@ -7960,21 +8094,22 @@ export const V1ListAllNetworkBansRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1ListAllNetworkBansRequest",
 }) as any as S.Schema<V1ListAllNetworkBansRequest>;
 
-export type NetworkBanResponseBannedIpv4AddressesList = Array<string>;
-export const NetworkBanResponseBannedIpv4AddressesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<NetworkBanResponseBannedIpv4AddressesList>;
+export type NetworkBanResponseOutputBannedIpv4AddressesList = Array<string>;
+export const NetworkBanResponseOutputBannedIpv4AddressesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<NetworkBanResponseOutputBannedIpv4AddressesList>;
 
-export interface NetworkBanResponse {
-  banned_ipv4_addresses: NetworkBanResponseBannedIpv4AddressesList;
+export interface NetworkBanResponseOutput {
+  banned_ipv4_addresses: NetworkBanResponseOutputBannedIpv4AddressesList;
 }
-export const NetworkBanResponse = /*@__PURE__*/ S.suspend(() =>
+export const NetworkBanResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    banned_ipv4_addresses: NetworkBanResponseBannedIpv4AddressesList,
+    banned_ipv4_addresses: NetworkBanResponseOutputBannedIpv4AddressesList,
   }),
 ).annotate({
-  identifier: "NetworkBanResponse",
-}) as any as S.Schema<NetworkBanResponse>;
+  identifier: "NetworkBanResponseOutput",
+}) as any as S.Schema<NetworkBanResponseOutput>;
 
 export interface V1ListAllNetworkBansEnrichedRequest {
   /** Project ref */
@@ -7994,12 +8129,12 @@ export const V1ListAllNetworkBansEnrichedRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1ListAllNetworkBansEnrichedRequest",
 }) as any as S.Schema<V1ListAllNetworkBansEnrichedRequest>;
 
-export interface NetworkBanResponseEnrichedBannedIpv4AddressesItem {
+export interface NetworkBanResponseEnrichedOutputBannedIpv4AddressesItem {
   banned_address: string;
   identifier: string;
   type: string;
 }
-export const NetworkBanResponseEnrichedBannedIpv4AddressesItem =
+export const NetworkBanResponseEnrichedOutputBannedIpv4AddressesItem =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       banned_address: S.String,
@@ -8007,26 +8142,27 @@ export const NetworkBanResponseEnrichedBannedIpv4AddressesItem =
       type: S.String,
     }),
   ).annotate({
-    identifier: "NetworkBanResponseEnrichedBannedIpv4AddressesItem",
-  }) as any as S.Schema<NetworkBanResponseEnrichedBannedIpv4AddressesItem>;
+    identifier: "NetworkBanResponseEnrichedOutputBannedIpv4AddressesItem",
+  }) as any as S.Schema<NetworkBanResponseEnrichedOutputBannedIpv4AddressesItem>;
 
-export type NetworkBanResponseEnrichedBannedIpv4AddressesList =
-  Array<NetworkBanResponseEnrichedBannedIpv4AddressesItem>;
-export const NetworkBanResponseEnrichedBannedIpv4AddressesList =
+export type NetworkBanResponseEnrichedOutputBannedIpv4AddressesList =
+  Array<NetworkBanResponseEnrichedOutputBannedIpv4AddressesItem>;
+export const NetworkBanResponseEnrichedOutputBannedIpv4AddressesList =
   /*@__PURE__*/ S.Array(
-    NetworkBanResponseEnrichedBannedIpv4AddressesItem,
-  ) as any as S.Schema<NetworkBanResponseEnrichedBannedIpv4AddressesList>;
+    NetworkBanResponseEnrichedOutputBannedIpv4AddressesItem,
+  ) as any as S.Schema<NetworkBanResponseEnrichedOutputBannedIpv4AddressesList>;
 
-export interface NetworkBanResponseEnriched {
-  banned_ipv4_addresses: NetworkBanResponseEnrichedBannedIpv4AddressesList;
+export interface NetworkBanResponseEnrichedOutput {
+  banned_ipv4_addresses: NetworkBanResponseEnrichedOutputBannedIpv4AddressesList;
 }
-export const NetworkBanResponseEnriched = /*@__PURE__*/ S.suspend(() =>
+export const NetworkBanResponseEnrichedOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    banned_ipv4_addresses: NetworkBanResponseEnrichedBannedIpv4AddressesList,
+    banned_ipv4_addresses:
+      NetworkBanResponseEnrichedOutputBannedIpv4AddressesList,
   }),
 ).annotate({
-  identifier: "NetworkBanResponseEnriched",
-}) as any as S.Schema<NetworkBanResponseEnriched>;
+  identifier: "NetworkBanResponseEnrichedOutput",
+}) as any as S.Schema<NetworkBanResponseEnrichedOutput>;
 
 export interface V1ListAllOrganizationsRequest {}
 export const V1ListAllOrganizationsRequest = /*@__PURE__*/ S.suspend(() =>
@@ -8038,9 +8174,9 @@ export const V1ListAllOrganizationsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<V1ListAllOrganizationsRequest>;
 
 export type V1ListAllOrganizationsResponseBodyList =
-  Array<OrganizationResponseV1>;
+  Array<OrganizationResponseV1Output>;
 export const V1ListAllOrganizationsResponseBodyList = /*@__PURE__*/ S.Array(
-  OrganizationResponseV1,
+  OrganizationResponseV1Output,
 ) as any as S.Schema<V1ListAllOrganizationsResponseBodyList>;
 
 export type V1ListAllOrganizationsResponse =
@@ -8059,9 +8195,9 @@ export const V1ListAllProjectsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<V1ListAllProjectsRequest>;
 
 export type V1ListAllProjectsResponseBodyList =
-  Array<V1ProjectWithDatabaseResponse>;
+  Array<V1ProjectWithDatabaseResponseOutput>;
 export const V1ListAllProjectsResponseBodyList = /*@__PURE__*/ S.Array(
-  V1ProjectWithDatabaseResponse,
+  V1ProjectWithDatabaseResponseOutput,
 ) as any as S.Schema<V1ListAllProjectsResponseBodyList>;
 
 export type V1ListAllProjectsResponse = V1ListAllProjectsResponseBodyList;
@@ -8085,22 +8221,24 @@ export const V1ListAllSecretsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1ListAllSecretsRequest",
 }) as any as S.Schema<V1ListAllSecretsRequest>;
 
-export interface SecretResponse {
+export interface SecretResponseOutput {
   name: string;
   value: string;
   updated_at?: string;
 }
-export const SecretResponse = /*@__PURE__*/ S.suspend(() =>
+export const SecretResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     name: S.String,
     value: S.String,
     updated_at: S.optional(S.String),
   }),
-).annotate({ identifier: "SecretResponse" }) as any as S.Schema<SecretResponse>;
+).annotate({
+  identifier: "SecretResponseOutput",
+}) as any as S.Schema<SecretResponseOutput>;
 
-export type V1ListAllSecretsResponseBodyList = Array<SecretResponse>;
+export type V1ListAllSecretsResponseBodyList = Array<SecretResponseOutput>;
 export const V1ListAllSecretsResponseBodyList = /*@__PURE__*/ S.Array(
-  SecretResponse,
+  SecretResponseOutput,
 ) as any as S.Schema<V1ListAllSecretsResponseBodyList>;
 
 export type V1ListAllSecretsResponse = V1ListAllSecretsResponseBodyList;
@@ -8136,71 +8274,73 @@ export const V1ListAllSnippetsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1ListAllSnippetsRequest",
 }) as any as S.Schema<V1ListAllSnippetsRequest>;
 
-export type SnippetListDataItemType = "sql";
-export const SnippetListDataItemType = /*@__PURE__*/ S.String;
+export type SnippetListOutputDataItemType = "sql";
+export const SnippetListOutputDataItemType = /*@__PURE__*/ S.String;
 
-export type SnippetListDataItemVisibility =
+export type SnippetListOutputDataItemVisibility =
   | "user"
   | "project"
   | "org"
   | "public";
-export const SnippetListDataItemVisibility = /*@__PURE__*/ S.String;
+export const SnippetListOutputDataItemVisibility = /*@__PURE__*/ S.String;
 
-export type SnippetListDataItemProject = SnippetResponseProject;
-export const SnippetListDataItemProject = SnippetResponseProject;
+export type SnippetListOutputDataItemProject = SnippetResponseOutputProject;
+export const SnippetListOutputDataItemProject = SnippetResponseOutputProject;
 
-export type SnippetListDataItemOwner = SnippetResponseOwner;
-export const SnippetListDataItemOwner = SnippetResponseOwner;
+export type SnippetListOutputDataItemOwner = SnippetResponseOutputOwner;
+export const SnippetListOutputDataItemOwner = SnippetResponseOutputOwner;
 
-export type SnippetListDataItemUpdatedBy = SnippetResponseOwner;
-export const SnippetListDataItemUpdatedBy = SnippetResponseOwner;
+export type SnippetListOutputDataItemUpdatedBy = SnippetResponseOutputOwner;
+export const SnippetListOutputDataItemUpdatedBy = SnippetResponseOutputOwner;
 
-export interface SnippetListDataItem {
+export interface SnippetListOutputDataItem {
   id: string;
   inserted_at: string;
   updated_at: string;
-  type: SnippetListDataItemType;
-  visibility: SnippetListDataItemVisibility;
+  type: SnippetListOutputDataItemType;
+  visibility: SnippetListOutputDataItemVisibility;
   name: string;
   description: string | null;
-  project: SnippetResponseProject;
-  owner: SnippetResponseOwner;
-  updated_by: SnippetResponseOwner;
+  project: SnippetResponseOutputProject;
+  owner: SnippetResponseOutputOwner;
+  updated_by: SnippetResponseOutputOwner;
   favorite: boolean;
 }
-export const SnippetListDataItem = /*@__PURE__*/ S.suspend(() =>
+export const SnippetListOutputDataItem = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String,
     inserted_at: S.String,
     updated_at: S.String,
-    type: SnippetListDataItemType,
-    visibility: SnippetListDataItemVisibility,
+    type: SnippetListOutputDataItemType,
+    visibility: SnippetListOutputDataItemVisibility,
     name: S.String,
     description: S.NullOr(S.String),
-    project: SnippetResponseProject,
-    owner: SnippetResponseOwner,
-    updated_by: SnippetResponseOwner,
+    project: SnippetResponseOutputProject,
+    owner: SnippetResponseOutputOwner,
+    updated_by: SnippetResponseOutputOwner,
     favorite: S.Boolean,
   }),
 ).annotate({
-  identifier: "SnippetListDataItem",
-}) as any as S.Schema<SnippetListDataItem>;
+  identifier: "SnippetListOutputDataItem",
+}) as any as S.Schema<SnippetListOutputDataItem>;
 
-export type SnippetListDataList = Array<SnippetListDataItem>;
-export const SnippetListDataList = /*@__PURE__*/ S.Array(
-  SnippetListDataItem,
-) as any as S.Schema<SnippetListDataList>;
+export type SnippetListOutputDataList = Array<SnippetListOutputDataItem>;
+export const SnippetListOutputDataList = /*@__PURE__*/ S.Array(
+  SnippetListOutputDataItem,
+) as any as S.Schema<SnippetListOutputDataList>;
 
-export interface SnippetList {
-  data: SnippetListDataList;
+export interface SnippetListOutput {
+  data: SnippetListOutputDataList;
   cursor?: string;
 }
-export const SnippetList = /*@__PURE__*/ S.suspend(() =>
+export const SnippetListOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    data: SnippetListDataList,
+    data: SnippetListOutputDataList,
     cursor: S.optional(S.String),
   }),
-).annotate({ identifier: "SnippetList" }) as any as S.Schema<SnippetList>;
+).annotate({
+  identifier: "SnippetListOutput",
+}) as any as S.Schema<SnippetListOutput>;
 
 export interface V1ListAllSsoProviderRequest {
   /** Project ref */
@@ -8220,141 +8360,147 @@ export const V1ListAllSsoProviderRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1ListAllSsoProviderRequest",
 }) as any as S.Schema<V1ListAllSsoProviderRequest>;
 
-export type ListProvidersResponseItemsItemSamlAttributeMappingKeysValueNamesList =
+export type ListProvidersResponseOutputItemsItemSamlAttributeMappingKeysValueNamesList =
   Array<string>;
-export const ListProvidersResponseItemsItemSamlAttributeMappingKeysValueNamesList =
+export const ListProvidersResponseOutputItemsItemSamlAttributeMappingKeysValueNamesList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<ListProvidersResponseItemsItemSamlAttributeMappingKeysValueNamesList>;
+  ) as any as S.Schema<ListProvidersResponseOutputItemsItemSamlAttributeMappingKeysValueNamesList>;
 
-export type ListProvidersResponseItemsItemSamlAttributeMappingKeysValueDefault =
+export type ListProvidersResponseOutputItemsItemSamlAttributeMappingKeysValueDefault =
   | unknown
   | number
   | string
   | boolean;
-export const ListProvidersResponseItemsItemSamlAttributeMappingKeysValueDefault =
+export const ListProvidersResponseOutputItemsItemSamlAttributeMappingKeysValueDefault =
   /*@__PURE__*/ S.Unknown.pipe(T.UnionCases([[], [], [], []]));
 
-export interface ListProvidersResponseItemsItemSamlAttributeMappingKeysValue {
+export interface ListProvidersResponseOutputItemsItemSamlAttributeMappingKeysValue {
   name?: string;
-  names?: ListProvidersResponseItemsItemSamlAttributeMappingKeysValueNamesList;
-  default?: ListProvidersResponseItemsItemSamlAttributeMappingKeysValueDefault;
+  names?: ListProvidersResponseOutputItemsItemSamlAttributeMappingKeysValueNamesList;
   array?: boolean;
+  default?: ListProvidersResponseOutputItemsItemSamlAttributeMappingKeysValueDefault;
 }
-export const ListProvidersResponseItemsItemSamlAttributeMappingKeysValue =
+export const ListProvidersResponseOutputItemsItemSamlAttributeMappingKeysValue =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       name: S.optional(S.String),
       names: S.optional(
-        ListProvidersResponseItemsItemSamlAttributeMappingKeysValueNamesList,
-      ),
-      default: S.optional(
-        ListProvidersResponseItemsItemSamlAttributeMappingKeysValueDefault,
+        ListProvidersResponseOutputItemsItemSamlAttributeMappingKeysValueNamesList,
       ),
       array: S.optional(S.Boolean),
+      default: S.optional(
+        ListProvidersResponseOutputItemsItemSamlAttributeMappingKeysValueDefault,
+      ),
     }),
   ).annotate({
-    identifier: "ListProvidersResponseItemsItemSamlAttributeMappingKeysValue",
-  }) as any as S.Schema<ListProvidersResponseItemsItemSamlAttributeMappingKeysValue>;
+    identifier:
+      "ListProvidersResponseOutputItemsItemSamlAttributeMappingKeysValue",
+  }) as any as S.Schema<ListProvidersResponseOutputItemsItemSamlAttributeMappingKeysValue>;
 
-export type ListProvidersResponseItemsItemSamlAttributeMappingKeysMap = {
+export type ListProvidersResponseOutputItemsItemSamlAttributeMappingKeysMap = {
   [key: string]:
-    | ListProvidersResponseItemsItemSamlAttributeMappingKeysValue
+    | ListProvidersResponseOutputItemsItemSamlAttributeMappingKeysValue
     | undefined;
 };
-export const ListProvidersResponseItemsItemSamlAttributeMappingKeysMap =
+export const ListProvidersResponseOutputItemsItemSamlAttributeMappingKeysMap =
   /*@__PURE__*/ S.Record(
     S.String,
-    ListProvidersResponseItemsItemSamlAttributeMappingKeysValue,
-  ) as any as S.Schema<ListProvidersResponseItemsItemSamlAttributeMappingKeysMap>;
+    ListProvidersResponseOutputItemsItemSamlAttributeMappingKeysValue,
+  ) as any as S.Schema<ListProvidersResponseOutputItemsItemSamlAttributeMappingKeysMap>;
 
-export interface ListProvidersResponseItemsItemSamlAttributeMapping {
-  keys: ListProvidersResponseItemsItemSamlAttributeMappingKeysMap;
+export interface ListProvidersResponseOutputItemsItemSamlAttributeMapping {
+  keys: ListProvidersResponseOutputItemsItemSamlAttributeMappingKeysMap;
 }
-export const ListProvidersResponseItemsItemSamlAttributeMapping =
+export const ListProvidersResponseOutputItemsItemSamlAttributeMapping =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      keys: ListProvidersResponseItemsItemSamlAttributeMappingKeysMap,
+      keys: ListProvidersResponseOutputItemsItemSamlAttributeMappingKeysMap,
     }),
   ).annotate({
-    identifier: "ListProvidersResponseItemsItemSamlAttributeMapping",
-  }) as any as S.Schema<ListProvidersResponseItemsItemSamlAttributeMapping>;
+    identifier: "ListProvidersResponseOutputItemsItemSamlAttributeMapping",
+  }) as any as S.Schema<ListProvidersResponseOutputItemsItemSamlAttributeMapping>;
 
-export type ListProvidersResponseItemsItemSamlNameIdFormat =
+export type ListProvidersResponseOutputItemsItemSamlNameIdFormat =
   | "urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified"
   | "urn:oasis:names:tc:SAML:2.0:nameid-format:transient"
   | "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress"
   | "urn:oasis:names:tc:SAML:2.0:nameid-format:persistent";
-export const ListProvidersResponseItemsItemSamlNameIdFormat =
+export const ListProvidersResponseOutputItemsItemSamlNameIdFormat =
   /*@__PURE__*/ S.String;
 
-export interface ListProvidersResponseItemsItemSaml {
+export interface ListProvidersResponseOutputItemsItemSaml {
   entity_id: string;
   metadata_url?: string;
   metadata_xml?: string;
-  attribute_mapping?: ListProvidersResponseItemsItemSamlAttributeMapping;
-  name_id_format?: ListProvidersResponseItemsItemSamlNameIdFormat;
+  attribute_mapping?: ListProvidersResponseOutputItemsItemSamlAttributeMapping;
+  name_id_format?: ListProvidersResponseOutputItemsItemSamlNameIdFormat;
 }
-export const ListProvidersResponseItemsItemSaml = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    entity_id: S.String,
-    metadata_url: S.optional(S.String),
-    metadata_xml: S.optional(S.String),
-    attribute_mapping: S.optional(
-      ListProvidersResponseItemsItemSamlAttributeMapping,
-    ),
-    name_id_format: S.optional(ListProvidersResponseItemsItemSamlNameIdFormat),
-  }),
+export const ListProvidersResponseOutputItemsItemSaml = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      entity_id: S.String,
+      metadata_url: S.optional(S.String),
+      metadata_xml: S.optional(S.String),
+      attribute_mapping: S.optional(
+        ListProvidersResponseOutputItemsItemSamlAttributeMapping,
+      ),
+      name_id_format: S.optional(
+        ListProvidersResponseOutputItemsItemSamlNameIdFormat,
+      ),
+    }),
 ).annotate({
-  identifier: "ListProvidersResponseItemsItemSaml",
-}) as any as S.Schema<ListProvidersResponseItemsItemSaml>;
+  identifier: "ListProvidersResponseOutputItemsItemSaml",
+}) as any as S.Schema<ListProvidersResponseOutputItemsItemSaml>;
 
-export type ListProvidersResponseItemsItemDomainsItem =
-  CreateProviderResponseDomainsItem;
-export const ListProvidersResponseItemsItemDomainsItem =
-  CreateProviderResponseDomainsItem;
+export type ListProvidersResponseOutputItemsItemDomainsItem =
+  CreateProviderResponseOutputDomainsItem;
+export const ListProvidersResponseOutputItemsItemDomainsItem =
+  CreateProviderResponseOutputDomainsItem;
 
-export type ListProvidersResponseItemsItemDomainsList =
-  Array<CreateProviderResponseDomainsItem>;
-export const ListProvidersResponseItemsItemDomainsList = /*@__PURE__*/ S.Array(
-  CreateProviderResponseDomainsItem,
-) as any as S.Schema<ListProvidersResponseItemsItemDomainsList>;
+export type ListProvidersResponseOutputItemsItemDomainsList =
+  Array<CreateProviderResponseOutputDomainsItem>;
+export const ListProvidersResponseOutputItemsItemDomainsList =
+  /*@__PURE__*/ S.Array(
+    CreateProviderResponseOutputDomainsItem,
+  ) as any as S.Schema<ListProvidersResponseOutputItemsItemDomainsList>;
 
-export interface ListProvidersResponseItemsItem {
+export interface ListProvidersResponseOutputItemsItem {
   id: string;
-  saml?: ListProvidersResponseItemsItemSaml;
-  domains?: ListProvidersResponseItemsItemDomainsList;
+  saml?: ListProvidersResponseOutputItemsItemSaml;
+  domains?: ListProvidersResponseOutputItemsItemDomainsList;
   created_at?: string;
   updated_at?: string;
 }
-export const ListProvidersResponseItemsItem = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    saml: S.optional(ListProvidersResponseItemsItemSaml),
-    domains: S.optional(ListProvidersResponseItemsItemDomainsList),
-    created_at: S.optional(S.String),
-    updated_at: S.optional(S.String),
-  }),
+export const ListProvidersResponseOutputItemsItem = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.String,
+      saml: S.optional(ListProvidersResponseOutputItemsItemSaml),
+      domains: S.optional(ListProvidersResponseOutputItemsItemDomainsList),
+      created_at: S.optional(S.String),
+      updated_at: S.optional(S.String),
+    }),
 ).annotate({
-  identifier: "ListProvidersResponseItemsItem",
-}) as any as S.Schema<ListProvidersResponseItemsItem>;
+  identifier: "ListProvidersResponseOutputItemsItem",
+}) as any as S.Schema<ListProvidersResponseOutputItemsItem>;
 
-export type ListProvidersResponseItemsList =
-  Array<ListProvidersResponseItemsItem>;
-export const ListProvidersResponseItemsList = /*@__PURE__*/ S.Array(
-  ListProvidersResponseItemsItem,
-) as any as S.Schema<ListProvidersResponseItemsList>;
+export type ListProvidersResponseOutputItemsList =
+  Array<ListProvidersResponseOutputItemsItem>;
+export const ListProvidersResponseOutputItemsList = /*@__PURE__*/ S.Array(
+  ListProvidersResponseOutputItemsItem,
+) as any as S.Schema<ListProvidersResponseOutputItemsList>;
 
-export interface ListProvidersResponse {
-  items: ListProvidersResponseItemsList;
+export interface ListProvidersResponseOutput {
+  items: ListProvidersResponseOutputItemsList;
 }
-export const ListProvidersResponse = /*@__PURE__*/ S.suspend(() =>
+export const ListProvidersResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    items: ListProvidersResponseItemsList,
+    items: ListProvidersResponseOutputItemsList,
   }),
 ).annotate({
-  identifier: "ListProvidersResponse",
-}) as any as S.Schema<ListProvidersResponse>;
+  identifier: "ListProvidersResponseOutput",
+}) as any as S.Schema<ListProvidersResponseOutput>;
 
 export interface V1ListAvailableRestoreVersionsRequest {
   /** Project ref */
@@ -8371,63 +8517,63 @@ export const V1ListAvailableRestoreVersionsRequest = /*@__PURE__*/ S.suspend(
   identifier: "V1ListAvailableRestoreVersionsRequest",
 }) as any as S.Schema<V1ListAvailableRestoreVersionsRequest>;
 
-export type GetProjectAvailableRestoreVersionsResponseAvailableVersionsItemReleaseChannel =
+export type GetProjectAvailableRestoreVersionsResponseOutputAvailableVersionsItemReleaseChannel =
   | "internal"
   | "alpha"
   | "beta"
   | "ga"
   | "withdrawn"
   | "preview";
-export const GetProjectAvailableRestoreVersionsResponseAvailableVersionsItemReleaseChannel =
+export const GetProjectAvailableRestoreVersionsResponseOutputAvailableVersionsItemReleaseChannel =
   /*@__PURE__*/ S.String;
 
-export type GetProjectAvailableRestoreVersionsResponseAvailableVersionsItemPostgresEngine =
+export type GetProjectAvailableRestoreVersionsResponseOutputAvailableVersionsItemPostgresEngine =
   | "13"
   | "14"
   | "15"
   | "17"
   | "17-oriole";
-export const GetProjectAvailableRestoreVersionsResponseAvailableVersionsItemPostgresEngine =
+export const GetProjectAvailableRestoreVersionsResponseOutputAvailableVersionsItemPostgresEngine =
   /*@__PURE__*/ S.String;
 
-export interface GetProjectAvailableRestoreVersionsResponseAvailableVersionsItem {
+export interface GetProjectAvailableRestoreVersionsResponseOutputAvailableVersionsItem {
   version: string;
-  release_channel: GetProjectAvailableRestoreVersionsResponseAvailableVersionsItemReleaseChannel;
-  postgres_engine: GetProjectAvailableRestoreVersionsResponseAvailableVersionsItemPostgresEngine;
+  release_channel: GetProjectAvailableRestoreVersionsResponseOutputAvailableVersionsItemReleaseChannel;
+  postgres_engine: GetProjectAvailableRestoreVersionsResponseOutputAvailableVersionsItemPostgresEngine;
 }
-export const GetProjectAvailableRestoreVersionsResponseAvailableVersionsItem =
+export const GetProjectAvailableRestoreVersionsResponseOutputAvailableVersionsItem =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       version: S.String,
       release_channel:
-        GetProjectAvailableRestoreVersionsResponseAvailableVersionsItemReleaseChannel,
+        GetProjectAvailableRestoreVersionsResponseOutputAvailableVersionsItemReleaseChannel,
       postgres_engine:
-        GetProjectAvailableRestoreVersionsResponseAvailableVersionsItemPostgresEngine,
+        GetProjectAvailableRestoreVersionsResponseOutputAvailableVersionsItemPostgresEngine,
     }),
   ).annotate({
     identifier:
-      "GetProjectAvailableRestoreVersionsResponseAvailableVersionsItem",
-  }) as any as S.Schema<GetProjectAvailableRestoreVersionsResponseAvailableVersionsItem>;
+      "GetProjectAvailableRestoreVersionsResponseOutputAvailableVersionsItem",
+  }) as any as S.Schema<GetProjectAvailableRestoreVersionsResponseOutputAvailableVersionsItem>;
 
-export type GetProjectAvailableRestoreVersionsResponseAvailableVersionsList =
-  Array<GetProjectAvailableRestoreVersionsResponseAvailableVersionsItem>;
-export const GetProjectAvailableRestoreVersionsResponseAvailableVersionsList =
+export type GetProjectAvailableRestoreVersionsResponseOutputAvailableVersionsList =
+  Array<GetProjectAvailableRestoreVersionsResponseOutputAvailableVersionsItem>;
+export const GetProjectAvailableRestoreVersionsResponseOutputAvailableVersionsList =
   /*@__PURE__*/ S.Array(
-    GetProjectAvailableRestoreVersionsResponseAvailableVersionsItem,
-  ) as any as S.Schema<GetProjectAvailableRestoreVersionsResponseAvailableVersionsList>;
+    GetProjectAvailableRestoreVersionsResponseOutputAvailableVersionsItem,
+  ) as any as S.Schema<GetProjectAvailableRestoreVersionsResponseOutputAvailableVersionsList>;
 
-export interface GetProjectAvailableRestoreVersionsResponse {
-  available_versions: GetProjectAvailableRestoreVersionsResponseAvailableVersionsList;
+export interface GetProjectAvailableRestoreVersionsResponseOutput {
+  available_versions: GetProjectAvailableRestoreVersionsResponseOutputAvailableVersionsList;
 }
-export const GetProjectAvailableRestoreVersionsResponse =
+export const GetProjectAvailableRestoreVersionsResponseOutput =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       available_versions:
-        GetProjectAvailableRestoreVersionsResponseAvailableVersionsList,
+        GetProjectAvailableRestoreVersionsResponseOutputAvailableVersionsList,
     }),
   ).annotate({
-    identifier: "GetProjectAvailableRestoreVersionsResponse",
-  }) as any as S.Schema<GetProjectAvailableRestoreVersionsResponse>;
+    identifier: "GetProjectAvailableRestoreVersionsResponseOutput",
+  }) as any as S.Schema<GetProjectAvailableRestoreVersionsResponseOutput>;
 
 export interface V1ListJitAccessRequest {
   /** Project ref */
@@ -8447,210 +8593,213 @@ export const V1ListJitAccessRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1ListJitAccessRequest",
 }) as any as S.Schema<V1ListJitAccessRequest>;
 
-export type JitListAccessResponseItemsItemCase0UserRolesItemAllowedNetworksAllowedCidrsItem =
-  JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsItem;
-export const JitListAccessResponseItemsItemCase0UserRolesItemAllowedNetworksAllowedCidrsItem =
-  JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsItem;
+export type JitListAccessResponseOutputItemsItemCase0UserRolesItemAllowedNetworksAllowedCidrsItem =
+  JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem;
+export const JitListAccessResponseOutputItemsItemCase0UserRolesItemAllowedNetworksAllowedCidrsItem =
+  JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem;
 
-export type JitListAccessResponseItemsItemCase0UserRolesItemAllowedNetworksAllowedCidrsList =
-  Array<JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsItem>;
-export const JitListAccessResponseItemsItemCase0UserRolesItemAllowedNetworksAllowedCidrsList =
+export type JitListAccessResponseOutputItemsItemCase0UserRolesItemAllowedNetworksAllowedCidrsList =
+  Array<JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem>;
+export const JitListAccessResponseOutputItemsItemCase0UserRolesItemAllowedNetworksAllowedCidrsList =
   /*@__PURE__*/ S.Array(
-    JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsItem,
-  ) as any as S.Schema<JitListAccessResponseItemsItemCase0UserRolesItemAllowedNetworksAllowedCidrsList>;
+    JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem,
+  ) as any as S.Schema<JitListAccessResponseOutputItemsItemCase0UserRolesItemAllowedNetworksAllowedCidrsList>;
 
-export type JitListAccessResponseItemsItemCase0UserRolesItemAllowedNetworksAllowedCidrsV6Item =
-  JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsItem;
-export const JitListAccessResponseItemsItemCase0UserRolesItemAllowedNetworksAllowedCidrsV6Item =
-  JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsItem;
+export type JitListAccessResponseOutputItemsItemCase0UserRolesItemAllowedNetworksAllowedCidrsV6Item =
+  JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem;
+export const JitListAccessResponseOutputItemsItemCase0UserRolesItemAllowedNetworksAllowedCidrsV6Item =
+  JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem;
 
-export type JitListAccessResponseItemsItemCase0UserRolesItemAllowedNetworksAllowedCidrsV6List =
-  Array<JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsItem>;
-export const JitListAccessResponseItemsItemCase0UserRolesItemAllowedNetworksAllowedCidrsV6List =
+export type JitListAccessResponseOutputItemsItemCase0UserRolesItemAllowedNetworksAllowedCidrsV6List =
+  Array<JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem>;
+export const JitListAccessResponseOutputItemsItemCase0UserRolesItemAllowedNetworksAllowedCidrsV6List =
   /*@__PURE__*/ S.Array(
-    JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsItem,
-  ) as any as S.Schema<JitListAccessResponseItemsItemCase0UserRolesItemAllowedNetworksAllowedCidrsV6List>;
+    JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem,
+  ) as any as S.Schema<JitListAccessResponseOutputItemsItemCase0UserRolesItemAllowedNetworksAllowedCidrsV6List>;
 
-export interface JitListAccessResponseItemsItemCase0UserRolesItemAllowedNetworks {
-  allowed_cidrs?: JitListAccessResponseItemsItemCase0UserRolesItemAllowedNetworksAllowedCidrsList;
-  allowed_cidrs_v6?: JitListAccessResponseItemsItemCase0UserRolesItemAllowedNetworksAllowedCidrsV6List;
+export interface JitListAccessResponseOutputItemsItemCase0UserRolesItemAllowedNetworks {
+  allowed_cidrs?: JitListAccessResponseOutputItemsItemCase0UserRolesItemAllowedNetworksAllowedCidrsList;
+  allowed_cidrs_v6?: JitListAccessResponseOutputItemsItemCase0UserRolesItemAllowedNetworksAllowedCidrsV6List;
 }
-export const JitListAccessResponseItemsItemCase0UserRolesItemAllowedNetworks =
+export const JitListAccessResponseOutputItemsItemCase0UserRolesItemAllowedNetworks =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       allowed_cidrs: S.optional(
-        JitListAccessResponseItemsItemCase0UserRolesItemAllowedNetworksAllowedCidrsList,
+        JitListAccessResponseOutputItemsItemCase0UserRolesItemAllowedNetworksAllowedCidrsList,
       ),
       allowed_cidrs_v6: S.optional(
-        JitListAccessResponseItemsItemCase0UserRolesItemAllowedNetworksAllowedCidrsV6List,
+        JitListAccessResponseOutputItemsItemCase0UserRolesItemAllowedNetworksAllowedCidrsV6List,
       ),
     }),
   ).annotate({
     identifier:
-      "JitListAccessResponseItemsItemCase0UserRolesItemAllowedNetworks",
-  }) as any as S.Schema<JitListAccessResponseItemsItemCase0UserRolesItemAllowedNetworks>;
+      "JitListAccessResponseOutputItemsItemCase0UserRolesItemAllowedNetworks",
+  }) as any as S.Schema<JitListAccessResponseOutputItemsItemCase0UserRolesItemAllowedNetworks>;
 
-export interface JitListAccessResponseItemsItemCase0UserRolesItem {
+export interface JitListAccessResponseOutputItemsItemCase0UserRolesItem {
   role: string;
   expires_at?: number;
-  allowed_networks?: JitListAccessResponseItemsItemCase0UserRolesItemAllowedNetworks;
+  allowed_networks?: JitListAccessResponseOutputItemsItemCase0UserRolesItemAllowedNetworks;
   branches_only?: boolean;
 }
-export const JitListAccessResponseItemsItemCase0UserRolesItem =
+export const JitListAccessResponseOutputItemsItemCase0UserRolesItem =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       role: S.String,
       expires_at: S.optional(S.Number),
       allowed_networks: S.optional(
-        JitListAccessResponseItemsItemCase0UserRolesItemAllowedNetworks,
+        JitListAccessResponseOutputItemsItemCase0UserRolesItemAllowedNetworks,
       ),
       branches_only: S.optional(S.Boolean),
     }),
   ).annotate({
-    identifier: "JitListAccessResponseItemsItemCase0UserRolesItem",
-  }) as any as S.Schema<JitListAccessResponseItemsItemCase0UserRolesItem>;
+    identifier: "JitListAccessResponseOutputItemsItemCase0UserRolesItem",
+  }) as any as S.Schema<JitListAccessResponseOutputItemsItemCase0UserRolesItem>;
 
-export type JitListAccessResponseItemsItemCase0UserRolesList =
-  Array<JitListAccessResponseItemsItemCase0UserRolesItem>;
-export const JitListAccessResponseItemsItemCase0UserRolesList =
+export type JitListAccessResponseOutputItemsItemCase0UserRolesList =
+  Array<JitListAccessResponseOutputItemsItemCase0UserRolesItem>;
+export const JitListAccessResponseOutputItemsItemCase0UserRolesList =
   /*@__PURE__*/ S.Array(
-    JitListAccessResponseItemsItemCase0UserRolesItem,
-  ) as any as S.Schema<JitListAccessResponseItemsItemCase0UserRolesList>;
+    JitListAccessResponseOutputItemsItemCase0UserRolesItem,
+  ) as any as S.Schema<JitListAccessResponseOutputItemsItemCase0UserRolesList>;
 
-export interface JitListAccessResponseItemsItemCase0 {
+export interface JitListAccessResponseOutputItemsItemCase0 {
   user_id: string;
   primary_email: string | null;
   invite_id: unknown | null;
   expires_at: unknown | null;
-  user_roles: JitListAccessResponseItemsItemCase0UserRolesList;
+  user_roles: JitListAccessResponseOutputItemsItemCase0UserRolesList;
 }
-export const JitListAccessResponseItemsItemCase0 = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    user_id: S.String,
-    primary_email: S.NullOr(S.String),
-    invite_id: S.NullOr(S.Unknown),
-    expires_at: S.NullOr(S.Unknown),
-    user_roles: JitListAccessResponseItemsItemCase0UserRolesList,
-  }),
-).annotate({
-  identifier: "JitListAccessResponseItemsItemCase0",
-}) as any as S.Schema<JitListAccessResponseItemsItemCase0>;
+export const JitListAccessResponseOutputItemsItemCase0 =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      user_id: S.String,
+      primary_email: S.NullOr(S.String),
+      invite_id: S.NullOr(S.Unknown),
+      expires_at: S.NullOr(S.Unknown),
+      user_roles: JitListAccessResponseOutputItemsItemCase0UserRolesList,
+    }),
+  ).annotate({
+    identifier: "JitListAccessResponseOutputItemsItemCase0",
+  }) as any as S.Schema<JitListAccessResponseOutputItemsItemCase0>;
 
-export type JitListAccessResponseItemsItemCase1UserRolesItemAllowedNetworksAllowedCidrsItem =
-  JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsItem;
-export const JitListAccessResponseItemsItemCase1UserRolesItemAllowedNetworksAllowedCidrsItem =
-  JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsItem;
+export type JitListAccessResponseOutputItemsItemCase1UserRolesItemAllowedNetworksAllowedCidrsItem =
+  JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem;
+export const JitListAccessResponseOutputItemsItemCase1UserRolesItemAllowedNetworksAllowedCidrsItem =
+  JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem;
 
-export type JitListAccessResponseItemsItemCase1UserRolesItemAllowedNetworksAllowedCidrsList =
-  Array<JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsItem>;
-export const JitListAccessResponseItemsItemCase1UserRolesItemAllowedNetworksAllowedCidrsList =
+export type JitListAccessResponseOutputItemsItemCase1UserRolesItemAllowedNetworksAllowedCidrsList =
+  Array<JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem>;
+export const JitListAccessResponseOutputItemsItemCase1UserRolesItemAllowedNetworksAllowedCidrsList =
   /*@__PURE__*/ S.Array(
-    JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsItem,
-  ) as any as S.Schema<JitListAccessResponseItemsItemCase1UserRolesItemAllowedNetworksAllowedCidrsList>;
+    JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem,
+  ) as any as S.Schema<JitListAccessResponseOutputItemsItemCase1UserRolesItemAllowedNetworksAllowedCidrsList>;
 
-export type JitListAccessResponseItemsItemCase1UserRolesItemAllowedNetworksAllowedCidrsV6Item =
-  JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsItem;
-export const JitListAccessResponseItemsItemCase1UserRolesItemAllowedNetworksAllowedCidrsV6Item =
-  JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsItem;
+export type JitListAccessResponseOutputItemsItemCase1UserRolesItemAllowedNetworksAllowedCidrsV6Item =
+  JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem;
+export const JitListAccessResponseOutputItemsItemCase1UserRolesItemAllowedNetworksAllowedCidrsV6Item =
+  JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem;
 
-export type JitListAccessResponseItemsItemCase1UserRolesItemAllowedNetworksAllowedCidrsV6List =
-  Array<JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsItem>;
-export const JitListAccessResponseItemsItemCase1UserRolesItemAllowedNetworksAllowedCidrsV6List =
+export type JitListAccessResponseOutputItemsItemCase1UserRolesItemAllowedNetworksAllowedCidrsV6List =
+  Array<JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem>;
+export const JitListAccessResponseOutputItemsItemCase1UserRolesItemAllowedNetworksAllowedCidrsV6List =
   /*@__PURE__*/ S.Array(
-    JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsItem,
-  ) as any as S.Schema<JitListAccessResponseItemsItemCase1UserRolesItemAllowedNetworksAllowedCidrsV6List>;
+    JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem,
+  ) as any as S.Schema<JitListAccessResponseOutputItemsItemCase1UserRolesItemAllowedNetworksAllowedCidrsV6List>;
 
-export interface JitListAccessResponseItemsItemCase1UserRolesItemAllowedNetworks {
-  allowed_cidrs?: JitListAccessResponseItemsItemCase1UserRolesItemAllowedNetworksAllowedCidrsList;
-  allowed_cidrs_v6?: JitListAccessResponseItemsItemCase1UserRolesItemAllowedNetworksAllowedCidrsV6List;
+export interface JitListAccessResponseOutputItemsItemCase1UserRolesItemAllowedNetworks {
+  allowed_cidrs?: JitListAccessResponseOutputItemsItemCase1UserRolesItemAllowedNetworksAllowedCidrsList;
+  allowed_cidrs_v6?: JitListAccessResponseOutputItemsItemCase1UserRolesItemAllowedNetworksAllowedCidrsV6List;
 }
-export const JitListAccessResponseItemsItemCase1UserRolesItemAllowedNetworks =
+export const JitListAccessResponseOutputItemsItemCase1UserRolesItemAllowedNetworks =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       allowed_cidrs: S.optional(
-        JitListAccessResponseItemsItemCase1UserRolesItemAllowedNetworksAllowedCidrsList,
+        JitListAccessResponseOutputItemsItemCase1UserRolesItemAllowedNetworksAllowedCidrsList,
       ),
       allowed_cidrs_v6: S.optional(
-        JitListAccessResponseItemsItemCase1UserRolesItemAllowedNetworksAllowedCidrsV6List,
+        JitListAccessResponseOutputItemsItemCase1UserRolesItemAllowedNetworksAllowedCidrsV6List,
       ),
     }),
   ).annotate({
     identifier:
-      "JitListAccessResponseItemsItemCase1UserRolesItemAllowedNetworks",
-  }) as any as S.Schema<JitListAccessResponseItemsItemCase1UserRolesItemAllowedNetworks>;
+      "JitListAccessResponseOutputItemsItemCase1UserRolesItemAllowedNetworks",
+  }) as any as S.Schema<JitListAccessResponseOutputItemsItemCase1UserRolesItemAllowedNetworks>;
 
-export interface JitListAccessResponseItemsItemCase1UserRolesItem {
+export interface JitListAccessResponseOutputItemsItemCase1UserRolesItem {
   role: string;
   expires_at?: number;
-  allowed_networks?: JitListAccessResponseItemsItemCase1UserRolesItemAllowedNetworks;
+  allowed_networks?: JitListAccessResponseOutputItemsItemCase1UserRolesItemAllowedNetworks;
   branches_only?: boolean;
 }
-export const JitListAccessResponseItemsItemCase1UserRolesItem =
+export const JitListAccessResponseOutputItemsItemCase1UserRolesItem =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       role: S.String,
       expires_at: S.optional(S.Number),
       allowed_networks: S.optional(
-        JitListAccessResponseItemsItemCase1UserRolesItemAllowedNetworks,
+        JitListAccessResponseOutputItemsItemCase1UserRolesItemAllowedNetworks,
       ),
       branches_only: S.optional(S.Boolean),
     }),
   ).annotate({
-    identifier: "JitListAccessResponseItemsItemCase1UserRolesItem",
-  }) as any as S.Schema<JitListAccessResponseItemsItemCase1UserRolesItem>;
+    identifier: "JitListAccessResponseOutputItemsItemCase1UserRolesItem",
+  }) as any as S.Schema<JitListAccessResponseOutputItemsItemCase1UserRolesItem>;
 
-export type JitListAccessResponseItemsItemCase1UserRolesList =
-  Array<JitListAccessResponseItemsItemCase1UserRolesItem>;
-export const JitListAccessResponseItemsItemCase1UserRolesList =
+export type JitListAccessResponseOutputItemsItemCase1UserRolesList =
+  Array<JitListAccessResponseOutputItemsItemCase1UserRolesItem>;
+export const JitListAccessResponseOutputItemsItemCase1UserRolesList =
   /*@__PURE__*/ S.Array(
-    JitListAccessResponseItemsItemCase1UserRolesItem,
-  ) as any as S.Schema<JitListAccessResponseItemsItemCase1UserRolesList>;
+    JitListAccessResponseOutputItemsItemCase1UserRolesItem,
+  ) as any as S.Schema<JitListAccessResponseOutputItemsItemCase1UserRolesList>;
 
-export interface JitListAccessResponseItemsItemCase1 {
+export interface JitListAccessResponseOutputItemsItemCase1 {
   user_id: unknown | null;
   primary_email: string;
   invite_id: string;
   expires_at: string;
-  user_roles: JitListAccessResponseItemsItemCase1UserRolesList;
+  user_roles: JitListAccessResponseOutputItemsItemCase1UserRolesList;
 }
-export const JitListAccessResponseItemsItemCase1 = /*@__PURE__*/ S.suspend(() =>
+export const JitListAccessResponseOutputItemsItemCase1 =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      user_id: S.NullOr(S.Unknown),
+      primary_email: S.String,
+      invite_id: S.String,
+      expires_at: S.String,
+      user_roles: JitListAccessResponseOutputItemsItemCase1UserRolesList,
+    }),
+  ).annotate({
+    identifier: "JitListAccessResponseOutputItemsItemCase1",
+  }) as any as S.Schema<JitListAccessResponseOutputItemsItemCase1>;
+
+export type JitListAccessResponseOutputItemsItem =
+  | JitListAccessResponseOutputItemsItemCase0
+  | JitListAccessResponseOutputItemsItemCase1;
+export const JitListAccessResponseOutputItemsItem =
+  /*@__PURE__*/ S.Unknown.pipe(
+    T.UnionCases([
+      ["user_id", "primary_email", "invite_id", "expires_at", "user_roles"],
+      ["user_id", "primary_email", "invite_id", "expires_at", "user_roles"],
+    ]),
+  );
+
+export type JitListAccessResponseOutputItemsList =
+  Array<JitListAccessResponseOutputItemsItem>;
+export const JitListAccessResponseOutputItemsList = /*@__PURE__*/ S.Array(
+  JitListAccessResponseOutputItemsItem,
+) as any as S.Schema<JitListAccessResponseOutputItemsList>;
+
+export interface JitListAccessResponseOutput {
+  items: JitListAccessResponseOutputItemsList;
+}
+export const JitListAccessResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    user_id: S.NullOr(S.Unknown),
-    primary_email: S.String,
-    invite_id: S.String,
-    expires_at: S.String,
-    user_roles: JitListAccessResponseItemsItemCase1UserRolesList,
+    items: JitListAccessResponseOutputItemsList,
   }),
 ).annotate({
-  identifier: "JitListAccessResponseItemsItemCase1",
-}) as any as S.Schema<JitListAccessResponseItemsItemCase1>;
-
-export type JitListAccessResponseItemsItem =
-  | JitListAccessResponseItemsItemCase0
-  | JitListAccessResponseItemsItemCase1;
-export const JitListAccessResponseItemsItem = /*@__PURE__*/ S.Unknown.pipe(
-  T.UnionCases([
-    ["user_id", "primary_email", "invite_id", "expires_at", "user_roles"],
-    ["user_id", "primary_email", "invite_id", "expires_at", "user_roles"],
-  ]),
-);
-
-export type JitListAccessResponseItemsList =
-  Array<JitListAccessResponseItemsItem>;
-export const JitListAccessResponseItemsList = /*@__PURE__*/ S.Array(
-  JitListAccessResponseItemsItem,
-) as any as S.Schema<JitListAccessResponseItemsList>;
-
-export interface JitListAccessResponse {
-  items: JitListAccessResponseItemsList;
-}
-export const JitListAccessResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    items: JitListAccessResponseItemsList,
-  }),
-).annotate({
-  identifier: "JitListAccessResponse",
-}) as any as S.Schema<JitListAccessResponse>;
+  identifier: "JitListAccessResponseOutput",
+}) as any as S.Schema<JitListAccessResponseOutput>;
 
 export interface V1ListMigrationHistoryRequest {
   /** Project ref */
@@ -8670,27 +8819,28 @@ export const V1ListMigrationHistoryRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1ListMigrationHistoryRequest",
 }) as any as S.Schema<V1ListMigrationHistoryRequest>;
 
-export interface V1ListMigrationsResponseItem {
+export interface V1ListMigrationsResponseOutputItem {
   version: string;
   name?: string;
 }
-export const V1ListMigrationsResponseItem = /*@__PURE__*/ S.suspend(() =>
+export const V1ListMigrationsResponseOutputItem = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     version: S.String,
     name: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "V1ListMigrationsResponseItem",
-}) as any as S.Schema<V1ListMigrationsResponseItem>;
+  identifier: "V1ListMigrationsResponseOutputItem",
+}) as any as S.Schema<V1ListMigrationsResponseOutputItem>;
 
-export type V1ListMigrationsResponse = Array<V1ListMigrationsResponseItem>;
-export const V1ListMigrationsResponse = /*@__PURE__*/ S.Array(
-  V1ListMigrationsResponseItem,
-) as any as S.Schema<V1ListMigrationsResponse>;
+export type V1ListMigrationsResponseOutput =
+  Array<V1ListMigrationsResponseOutputItem>;
+export const V1ListMigrationsResponseOutput = /*@__PURE__*/ S.Array(
+  V1ListMigrationsResponseOutputItem,
+) as any as S.Schema<V1ListMigrationsResponseOutput>;
 
-export type V1ListMigrationHistoryResponse = V1ListMigrationsResponse;
+export type V1ListMigrationHistoryResponse = V1ListMigrationsResponseOutput;
 export const V1ListMigrationHistoryResponse = /*@__PURE__*/ S.suspend(() =>
-  V1ListMigrationsResponse.pipe(T.RawResponseRoot()),
+  V1ListMigrationsResponseOutput.pipe(T.RawResponseRoot()),
 ).annotate({
   identifier: "V1ListMigrationHistoryResponse",
 }) as any as S.Schema<V1ListMigrationHistoryResponse>;
@@ -8713,31 +8863,31 @@ export const V1ListOrganizationMembersRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1ListOrganizationMembersRequest",
 }) as any as S.Schema<V1ListOrganizationMembersRequest>;
 
-export interface V1OrganizationMemberResponse {
+export interface V1OrganizationMemberResponseOutput {
   user_id: string;
   user_name: string;
   email?: string;
-  role_name: string;
+  role_name?: string;
   mfa_enabled: boolean;
   avatar_url: string | null;
 }
-export const V1OrganizationMemberResponse = /*@__PURE__*/ S.suspend(() =>
+export const V1OrganizationMemberResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     user_id: S.String,
     user_name: S.String,
     email: S.optional(S.String),
-    role_name: S.String,
+    role_name: S.optional(S.String),
     mfa_enabled: S.Boolean,
     avatar_url: S.NullOr(S.String),
   }),
 ).annotate({
-  identifier: "V1OrganizationMemberResponse",
-}) as any as S.Schema<V1OrganizationMemberResponse>;
+  identifier: "V1OrganizationMemberResponseOutput",
+}) as any as S.Schema<V1OrganizationMemberResponseOutput>;
 
 export type V1ListOrganizationMembersResponseBodyList =
-  Array<V1OrganizationMemberResponse>;
+  Array<V1OrganizationMemberResponseOutput>;
 export const V1ListOrganizationMembersResponseBodyList = /*@__PURE__*/ S.Array(
-  V1OrganizationMemberResponse,
+  V1OrganizationMemberResponseOutput,
 ) as any as S.Schema<V1ListOrganizationMembersResponseBodyList>;
 
 export type V1ListOrganizationMembersResponse =
@@ -8766,7 +8916,7 @@ export const V1ListProjectAddonsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1ListProjectAddonsRequest",
 }) as any as S.Schema<V1ListProjectAddonsRequest>;
 
-export type ListProjectAddonsResponseSelectedAddonsItemType =
+export type ListProjectAddonsResponseOutputSelectedAddonsItemType =
   | "custom_domain"
   | "compute_instance"
   | "pitr"
@@ -8775,10 +8925,10 @@ export type ListProjectAddonsResponseSelectedAddonsItemType =
   | "auth_mfa_web_authn"
   | "log_drain"
   | "etl_pipeline";
-export const ListProjectAddonsResponseSelectedAddonsItemType =
+export const ListProjectAddonsResponseOutputSelectedAddonsItemType =
   /*@__PURE__*/ S.String;
 
-export type ListProjectAddonsResponseSelectedAddonsItemVariantIdCase0 =
+export type ListProjectAddonsResponseOutputSelectedAddonsItemVariantIdCase0 =
   | "ci_micro"
   | "ci_small"
   | "ci_medium"
@@ -8797,330 +8947,305 @@ export type ListProjectAddonsResponseSelectedAddonsItemVariantIdCase0 =
   | "ci_48xlarge_optimized_cpu"
   | "ci_48xlarge_optimized_memory"
   | "ci_48xlarge_high_memory";
-export const ListProjectAddonsResponseSelectedAddonsItemVariantIdCase0 =
+export const ListProjectAddonsResponseOutputSelectedAddonsItemVariantIdCase0 =
   /*@__PURE__*/ S.String;
 
-export type ListProjectAddonsResponseSelectedAddonsItemVariantIdCase1 =
+export type ListProjectAddonsResponseOutputSelectedAddonsItemVariantIdCase1 =
   "cd_default";
-export const ListProjectAddonsResponseSelectedAddonsItemVariantIdCase1 =
+export const ListProjectAddonsResponseOutputSelectedAddonsItemVariantIdCase1 =
   /*@__PURE__*/ S.String;
 
-export type ListProjectAddonsResponseSelectedAddonsItemVariantIdCase2 =
+export type ListProjectAddonsResponseOutputSelectedAddonsItemVariantIdCase2 =
   | "pitr_7"
   | "pitr_14"
   | "pitr_28";
-export const ListProjectAddonsResponseSelectedAddonsItemVariantIdCase2 =
+export const ListProjectAddonsResponseOutputSelectedAddonsItemVariantIdCase2 =
   /*@__PURE__*/ S.String;
 
-export type ListProjectAddonsResponseSelectedAddonsItemVariantIdCase3 =
+export type ListProjectAddonsResponseOutputSelectedAddonsItemVariantIdCase3 =
   "ipv4_default";
-export const ListProjectAddonsResponseSelectedAddonsItemVariantIdCase3 =
+export const ListProjectAddonsResponseOutputSelectedAddonsItemVariantIdCase3 =
   /*@__PURE__*/ S.String;
 
-export type ListProjectAddonsResponseSelectedAddonsItemVariantIdCase4 =
+export type ListProjectAddonsResponseOutputSelectedAddonsItemVariantIdCase4 =
   "auth_mfa_phone_default";
-export const ListProjectAddonsResponseSelectedAddonsItemVariantIdCase4 =
+export const ListProjectAddonsResponseOutputSelectedAddonsItemVariantIdCase4 =
   /*@__PURE__*/ S.String;
 
-export type ListProjectAddonsResponseSelectedAddonsItemVariantIdCase5 =
+export type ListProjectAddonsResponseOutputSelectedAddonsItemVariantIdCase5 =
   "auth_mfa_web_authn_default";
-export const ListProjectAddonsResponseSelectedAddonsItemVariantIdCase5 =
+export const ListProjectAddonsResponseOutputSelectedAddonsItemVariantIdCase5 =
   /*@__PURE__*/ S.String;
 
-export type ListProjectAddonsResponseSelectedAddonsItemVariantIdCase6 =
+export type ListProjectAddonsResponseOutputSelectedAddonsItemVariantIdCase6 =
   "log_drain_default";
-export const ListProjectAddonsResponseSelectedAddonsItemVariantIdCase6 =
+export const ListProjectAddonsResponseOutputSelectedAddonsItemVariantIdCase6 =
   /*@__PURE__*/ S.String;
 
-export type ListProjectAddonsResponseSelectedAddonsItemVariantIdCase7 =
+export type ListProjectAddonsResponseOutputSelectedAddonsItemVariantIdCase7 =
   "etl_pipeline_default";
-export const ListProjectAddonsResponseSelectedAddonsItemVariantIdCase7 =
+export const ListProjectAddonsResponseOutputSelectedAddonsItemVariantIdCase7 =
   /*@__PURE__*/ S.String;
 
-export type ListProjectAddonsResponseSelectedAddonsItemVariantId =
-  | ListProjectAddonsResponseSelectedAddonsItemVariantIdCase0
-  | ListProjectAddonsResponseSelectedAddonsItemVariantIdCase1
-  | ListProjectAddonsResponseSelectedAddonsItemVariantIdCase2
-  | ListProjectAddonsResponseSelectedAddonsItemVariantIdCase3
-  | ListProjectAddonsResponseSelectedAddonsItemVariantIdCase4
-  | ListProjectAddonsResponseSelectedAddonsItemVariantIdCase5
-  | ListProjectAddonsResponseSelectedAddonsItemVariantIdCase6
-  | ListProjectAddonsResponseSelectedAddonsItemVariantIdCase7;
-export const ListProjectAddonsResponseSelectedAddonsItemVariantId =
+export type ListProjectAddonsResponseOutputSelectedAddonsItemVariantId =
+  | ListProjectAddonsResponseOutputSelectedAddonsItemVariantIdCase0
+  | ListProjectAddonsResponseOutputSelectedAddonsItemVariantIdCase1
+  | ListProjectAddonsResponseOutputSelectedAddonsItemVariantIdCase2
+  | ListProjectAddonsResponseOutputSelectedAddonsItemVariantIdCase3
+  | ListProjectAddonsResponseOutputSelectedAddonsItemVariantIdCase4
+  | ListProjectAddonsResponseOutputSelectedAddonsItemVariantIdCase5
+  | ListProjectAddonsResponseOutputSelectedAddonsItemVariantIdCase6
+  | ListProjectAddonsResponseOutputSelectedAddonsItemVariantIdCase7;
+export const ListProjectAddonsResponseOutputSelectedAddonsItemVariantId =
   /*@__PURE__*/ S.Unknown.pipe(T.UnionCases([[], [], [], [], [], [], [], []]));
 
-export type ListProjectAddonsResponseSelectedAddonsItemVariantPriceType =
+export type ListProjectAddonsResponseOutputSelectedAddonsItemVariantPriceType =
   | "fixed"
   | "usage";
-export const ListProjectAddonsResponseSelectedAddonsItemVariantPriceType =
+export const ListProjectAddonsResponseOutputSelectedAddonsItemVariantPriceType =
   /*@__PURE__*/ S.String;
 
-export type ListProjectAddonsResponseSelectedAddonsItemVariantPriceInterval =
+export type ListProjectAddonsResponseOutputSelectedAddonsItemVariantPriceInterval =
   | "monthly"
   | "hourly";
-export const ListProjectAddonsResponseSelectedAddonsItemVariantPriceInterval =
+export const ListProjectAddonsResponseOutputSelectedAddonsItemVariantPriceInterval =
   /*@__PURE__*/ S.String;
 
-export interface ListProjectAddonsResponseSelectedAddonsItemVariantPrice {
+export interface ListProjectAddonsResponseOutputSelectedAddonsItemVariantPrice {
   description: string;
-  type: ListProjectAddonsResponseSelectedAddonsItemVariantPriceType;
-  interval: ListProjectAddonsResponseSelectedAddonsItemVariantPriceInterval;
+  type: ListProjectAddonsResponseOutputSelectedAddonsItemVariantPriceType;
+  interval: ListProjectAddonsResponseOutputSelectedAddonsItemVariantPriceInterval;
   amount: number;
 }
-export const ListProjectAddonsResponseSelectedAddonsItemVariantPrice =
+export const ListProjectAddonsResponseOutputSelectedAddonsItemVariantPrice =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       description: S.String,
-      type: ListProjectAddonsResponseSelectedAddonsItemVariantPriceType,
-      interval: ListProjectAddonsResponseSelectedAddonsItemVariantPriceInterval,
-      amount: S.Number,
-    }),
-  ).annotate({
-    identifier: "ListProjectAddonsResponseSelectedAddonsItemVariantPrice",
-  }) as any as S.Schema<ListProjectAddonsResponseSelectedAddonsItemVariantPrice>;
-
-export type ListProjectAddonsResponseJsonValueCase0 = string | number | boolean;
-export const ListProjectAddonsResponseJsonValueCase0 =
-  /*@__PURE__*/ S.Unknown.pipe(T.UnionCases([[], [], []]));
-
-export type ListProjectAddonsResponseJsonValueCase1List =
-  Array<ListProjectAddonsResponseJsonValue>;
-export const ListProjectAddonsResponseJsonValueCase1List =
-  /*@__PURE__*/ S.Array(
-    S.suspend(() => ListProjectAddonsResponseJsonValue),
-  ) as any as S.Schema<ListProjectAddonsResponseJsonValueCase1List>;
-
-export type ListProjectAddonsResponseJsonValueCase2Map = {
-  [key: string]: ListProjectAddonsResponseJsonValue | undefined;
-};
-export const ListProjectAddonsResponseJsonValueCase2Map =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.suspend(() => ListProjectAddonsResponseJsonValue),
-  ) as any as S.Schema<ListProjectAddonsResponseJsonValueCase2Map>;
-
-/** Any JSON-serializable value */
-export type ListProjectAddonsResponseJsonValue =
-  | ListProjectAddonsResponseJsonValueCase0
-  | ListProjectAddonsResponseJsonValueCase1List
-  | ListProjectAddonsResponseJsonValueCase2Map;
-export const ListProjectAddonsResponseJsonValue = /*@__PURE__*/ S.Unknown.pipe(
-  T.UnionCases([[], [], []]),
-);
-
-export interface ListProjectAddonsResponseSelectedAddonsItemVariant {
-  id: ListProjectAddonsResponseSelectedAddonsItemVariantId;
-  name: string;
-  price: ListProjectAddonsResponseSelectedAddonsItemVariantPrice;
-  meta?: ListProjectAddonsResponseJsonValue;
-}
-export const ListProjectAddonsResponseSelectedAddonsItemVariant =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: ListProjectAddonsResponseSelectedAddonsItemVariantId,
-      name: S.String,
-      price: ListProjectAddonsResponseSelectedAddonsItemVariantPrice,
-      meta: S.optional(ListProjectAddonsResponseJsonValue),
-    }),
-  ).annotate({
-    identifier: "ListProjectAddonsResponseSelectedAddonsItemVariant",
-  }) as any as S.Schema<ListProjectAddonsResponseSelectedAddonsItemVariant>;
-
-export interface ListProjectAddonsResponseSelectedAddonsItem {
-  type: ListProjectAddonsResponseSelectedAddonsItemType;
-  variant: ListProjectAddonsResponseSelectedAddonsItemVariant;
-}
-export const ListProjectAddonsResponseSelectedAddonsItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      type: ListProjectAddonsResponseSelectedAddonsItemType,
-      variant: ListProjectAddonsResponseSelectedAddonsItemVariant,
-    }),
-  ).annotate({
-    identifier: "ListProjectAddonsResponseSelectedAddonsItem",
-  }) as any as S.Schema<ListProjectAddonsResponseSelectedAddonsItem>;
-
-export type ListProjectAddonsResponseSelectedAddonsList =
-  Array<ListProjectAddonsResponseSelectedAddonsItem>;
-export const ListProjectAddonsResponseSelectedAddonsList =
-  /*@__PURE__*/ S.Array(
-    ListProjectAddonsResponseSelectedAddonsItem,
-  ) as any as S.Schema<ListProjectAddonsResponseSelectedAddonsList>;
-
-export type ListProjectAddonsResponseAvailableAddonsItemType =
-  | "custom_domain"
-  | "compute_instance"
-  | "pitr"
-  | "ipv4"
-  | "auth_mfa_phone"
-  | "auth_mfa_web_authn"
-  | "log_drain"
-  | "etl_pipeline";
-export const ListProjectAddonsResponseAvailableAddonsItemType =
-  /*@__PURE__*/ S.String;
-
-export type ListProjectAddonsResponseAvailableAddonsItemVariantsItemIdCase0 =
-  | "ci_micro"
-  | "ci_small"
-  | "ci_medium"
-  | "ci_large"
-  | "ci_xlarge"
-  | "ci_2xlarge"
-  | "ci_4xlarge"
-  | "ci_8xlarge"
-  | "ci_12xlarge"
-  | "ci_16xlarge"
-  | "ci_24xlarge"
-  | "ci_24xlarge_optimized_cpu"
-  | "ci_24xlarge_optimized_memory"
-  | "ci_24xlarge_high_memory"
-  | "ci_48xlarge"
-  | "ci_48xlarge_optimized_cpu"
-  | "ci_48xlarge_optimized_memory"
-  | "ci_48xlarge_high_memory";
-export const ListProjectAddonsResponseAvailableAddonsItemVariantsItemIdCase0 =
-  /*@__PURE__*/ S.String;
-
-export type ListProjectAddonsResponseAvailableAddonsItemVariantsItemIdCase1 =
-  "cd_default";
-export const ListProjectAddonsResponseAvailableAddonsItemVariantsItemIdCase1 =
-  /*@__PURE__*/ S.String;
-
-export type ListProjectAddonsResponseAvailableAddonsItemVariantsItemIdCase2 =
-  | "pitr_7"
-  | "pitr_14"
-  | "pitr_28";
-export const ListProjectAddonsResponseAvailableAddonsItemVariantsItemIdCase2 =
-  /*@__PURE__*/ S.String;
-
-export type ListProjectAddonsResponseAvailableAddonsItemVariantsItemIdCase3 =
-  "ipv4_default";
-export const ListProjectAddonsResponseAvailableAddonsItemVariantsItemIdCase3 =
-  /*@__PURE__*/ S.String;
-
-export type ListProjectAddonsResponseAvailableAddonsItemVariantsItemIdCase4 =
-  "auth_mfa_phone_default";
-export const ListProjectAddonsResponseAvailableAddonsItemVariantsItemIdCase4 =
-  /*@__PURE__*/ S.String;
-
-export type ListProjectAddonsResponseAvailableAddonsItemVariantsItemIdCase5 =
-  "auth_mfa_web_authn_default";
-export const ListProjectAddonsResponseAvailableAddonsItemVariantsItemIdCase5 =
-  /*@__PURE__*/ S.String;
-
-export type ListProjectAddonsResponseAvailableAddonsItemVariantsItemIdCase6 =
-  "log_drain_default";
-export const ListProjectAddonsResponseAvailableAddonsItemVariantsItemIdCase6 =
-  /*@__PURE__*/ S.String;
-
-export type ListProjectAddonsResponseAvailableAddonsItemVariantsItemIdCase7 =
-  "etl_pipeline_default";
-export const ListProjectAddonsResponseAvailableAddonsItemVariantsItemIdCase7 =
-  /*@__PURE__*/ S.String;
-
-export type ListProjectAddonsResponseAvailableAddonsItemVariantsItemId =
-  | ListProjectAddonsResponseAvailableAddonsItemVariantsItemIdCase0
-  | ListProjectAddonsResponseAvailableAddonsItemVariantsItemIdCase1
-  | ListProjectAddonsResponseAvailableAddonsItemVariantsItemIdCase2
-  | ListProjectAddonsResponseAvailableAddonsItemVariantsItemIdCase3
-  | ListProjectAddonsResponseAvailableAddonsItemVariantsItemIdCase4
-  | ListProjectAddonsResponseAvailableAddonsItemVariantsItemIdCase5
-  | ListProjectAddonsResponseAvailableAddonsItemVariantsItemIdCase6
-  | ListProjectAddonsResponseAvailableAddonsItemVariantsItemIdCase7;
-export const ListProjectAddonsResponseAvailableAddonsItemVariantsItemId =
-  /*@__PURE__*/ S.Unknown.pipe(T.UnionCases([[], [], [], [], [], [], [], []]));
-
-export type ListProjectAddonsResponseAvailableAddonsItemVariantsItemPriceType =
-  | "fixed"
-  | "usage";
-export const ListProjectAddonsResponseAvailableAddonsItemVariantsItemPriceType =
-  /*@__PURE__*/ S.String;
-
-export type ListProjectAddonsResponseAvailableAddonsItemVariantsItemPriceInterval =
-  | "monthly"
-  | "hourly";
-export const ListProjectAddonsResponseAvailableAddonsItemVariantsItemPriceInterval =
-  /*@__PURE__*/ S.String;
-
-export interface ListProjectAddonsResponseAvailableAddonsItemVariantsItemPrice {
-  description: string;
-  type: ListProjectAddonsResponseAvailableAddonsItemVariantsItemPriceType;
-  interval: ListProjectAddonsResponseAvailableAddonsItemVariantsItemPriceInterval;
-  amount: number;
-}
-export const ListProjectAddonsResponseAvailableAddonsItemVariantsItemPrice =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      description: S.String,
-      type: ListProjectAddonsResponseAvailableAddonsItemVariantsItemPriceType,
+      type: ListProjectAddonsResponseOutputSelectedAddonsItemVariantPriceType,
       interval:
-        ListProjectAddonsResponseAvailableAddonsItemVariantsItemPriceInterval,
+        ListProjectAddonsResponseOutputSelectedAddonsItemVariantPriceInterval,
       amount: S.Number,
     }),
   ).annotate({
-    identifier: "ListProjectAddonsResponseAvailableAddonsItemVariantsItemPrice",
-  }) as any as S.Schema<ListProjectAddonsResponseAvailableAddonsItemVariantsItemPrice>;
+    identifier: "ListProjectAddonsResponseOutputSelectedAddonsItemVariantPrice",
+  }) as any as S.Schema<ListProjectAddonsResponseOutputSelectedAddonsItemVariantPrice>;
 
-export interface ListProjectAddonsResponseAvailableAddonsItemVariantsItem {
-  id: ListProjectAddonsResponseAvailableAddonsItemVariantsItemId;
+export interface ListProjectAddonsResponseOutputSelectedAddonsItemVariant {
+  id: ListProjectAddonsResponseOutputSelectedAddonsItemVariantId;
   name: string;
-  price: ListProjectAddonsResponseAvailableAddonsItemVariantsItemPrice;
-  meta?: ListProjectAddonsResponseJsonValue;
+  price: ListProjectAddonsResponseOutputSelectedAddonsItemVariantPrice;
+  meta?: JsonValueOutput;
 }
-export const ListProjectAddonsResponseAvailableAddonsItemVariantsItem =
+export const ListProjectAddonsResponseOutputSelectedAddonsItemVariant =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      id: ListProjectAddonsResponseAvailableAddonsItemVariantsItemId,
+      id: ListProjectAddonsResponseOutputSelectedAddonsItemVariantId,
       name: S.String,
-      price: ListProjectAddonsResponseAvailableAddonsItemVariantsItemPrice,
-      meta: S.optional(ListProjectAddonsResponseJsonValue),
+      price: ListProjectAddonsResponseOutputSelectedAddonsItemVariantPrice,
+      meta: S.optional(JsonValueOutput),
     }),
   ).annotate({
-    identifier: "ListProjectAddonsResponseAvailableAddonsItemVariantsItem",
-  }) as any as S.Schema<ListProjectAddonsResponseAvailableAddonsItemVariantsItem>;
+    identifier: "ListProjectAddonsResponseOutputSelectedAddonsItemVariant",
+  }) as any as S.Schema<ListProjectAddonsResponseOutputSelectedAddonsItemVariant>;
 
-export type ListProjectAddonsResponseAvailableAddonsItemVariantsList =
-  Array<ListProjectAddonsResponseAvailableAddonsItemVariantsItem>;
-export const ListProjectAddonsResponseAvailableAddonsItemVariantsList =
-  /*@__PURE__*/ S.Array(
-    ListProjectAddonsResponseAvailableAddonsItemVariantsItem,
-  ) as any as S.Schema<ListProjectAddonsResponseAvailableAddonsItemVariantsList>;
-
-export interface ListProjectAddonsResponseAvailableAddonsItem {
-  type: ListProjectAddonsResponseAvailableAddonsItemType;
-  name: string;
-  variants: ListProjectAddonsResponseAvailableAddonsItemVariantsList;
+export interface ListProjectAddonsResponseOutputSelectedAddonsItem {
+  type: ListProjectAddonsResponseOutputSelectedAddonsItemType;
+  variant: ListProjectAddonsResponseOutputSelectedAddonsItemVariant;
 }
-export const ListProjectAddonsResponseAvailableAddonsItem =
+export const ListProjectAddonsResponseOutputSelectedAddonsItem =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      type: ListProjectAddonsResponseAvailableAddonsItemType,
-      name: S.String,
-      variants: ListProjectAddonsResponseAvailableAddonsItemVariantsList,
+      type: ListProjectAddonsResponseOutputSelectedAddonsItemType,
+      variant: ListProjectAddonsResponseOutputSelectedAddonsItemVariant,
     }),
   ).annotate({
-    identifier: "ListProjectAddonsResponseAvailableAddonsItem",
-  }) as any as S.Schema<ListProjectAddonsResponseAvailableAddonsItem>;
+    identifier: "ListProjectAddonsResponseOutputSelectedAddonsItem",
+  }) as any as S.Schema<ListProjectAddonsResponseOutputSelectedAddonsItem>;
 
-export type ListProjectAddonsResponseAvailableAddonsList =
-  Array<ListProjectAddonsResponseAvailableAddonsItem>;
-export const ListProjectAddonsResponseAvailableAddonsList =
+export type ListProjectAddonsResponseOutputSelectedAddonsList =
+  Array<ListProjectAddonsResponseOutputSelectedAddonsItem>;
+export const ListProjectAddonsResponseOutputSelectedAddonsList =
   /*@__PURE__*/ S.Array(
-    ListProjectAddonsResponseAvailableAddonsItem,
-  ) as any as S.Schema<ListProjectAddonsResponseAvailableAddonsList>;
+    ListProjectAddonsResponseOutputSelectedAddonsItem,
+  ) as any as S.Schema<ListProjectAddonsResponseOutputSelectedAddonsList>;
 
-export interface ListProjectAddonsResponse {
-  selected_addons: ListProjectAddonsResponseSelectedAddonsList;
-  available_addons: ListProjectAddonsResponseAvailableAddonsList;
+export type ListProjectAddonsResponseOutputAvailableAddonsItemType =
+  | "custom_domain"
+  | "compute_instance"
+  | "pitr"
+  | "ipv4"
+  | "auth_mfa_phone"
+  | "auth_mfa_web_authn"
+  | "log_drain"
+  | "etl_pipeline";
+export const ListProjectAddonsResponseOutputAvailableAddonsItemType =
+  /*@__PURE__*/ S.String;
+
+export type ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemIdCase0 =
+  | "ci_micro"
+  | "ci_small"
+  | "ci_medium"
+  | "ci_large"
+  | "ci_xlarge"
+  | "ci_2xlarge"
+  | "ci_4xlarge"
+  | "ci_8xlarge"
+  | "ci_12xlarge"
+  | "ci_16xlarge"
+  | "ci_24xlarge"
+  | "ci_24xlarge_optimized_cpu"
+  | "ci_24xlarge_optimized_memory"
+  | "ci_24xlarge_high_memory"
+  | "ci_48xlarge"
+  | "ci_48xlarge_optimized_cpu"
+  | "ci_48xlarge_optimized_memory"
+  | "ci_48xlarge_high_memory";
+export const ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemIdCase0 =
+  /*@__PURE__*/ S.String;
+
+export type ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemIdCase1 =
+  "cd_default";
+export const ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemIdCase1 =
+  /*@__PURE__*/ S.String;
+
+export type ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemIdCase2 =
+  | "pitr_7"
+  | "pitr_14"
+  | "pitr_28";
+export const ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemIdCase2 =
+  /*@__PURE__*/ S.String;
+
+export type ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemIdCase3 =
+  "ipv4_default";
+export const ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemIdCase3 =
+  /*@__PURE__*/ S.String;
+
+export type ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemIdCase4 =
+  "auth_mfa_phone_default";
+export const ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemIdCase4 =
+  /*@__PURE__*/ S.String;
+
+export type ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemIdCase5 =
+  "auth_mfa_web_authn_default";
+export const ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemIdCase5 =
+  /*@__PURE__*/ S.String;
+
+export type ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemIdCase6 =
+  "log_drain_default";
+export const ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemIdCase6 =
+  /*@__PURE__*/ S.String;
+
+export type ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemIdCase7 =
+  "etl_pipeline_default";
+export const ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemIdCase7 =
+  /*@__PURE__*/ S.String;
+
+export type ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemId =
+  | ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemIdCase0
+  | ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemIdCase1
+  | ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemIdCase2
+  | ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemIdCase3
+  | ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemIdCase4
+  | ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemIdCase5
+  | ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemIdCase6
+  | ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemIdCase7;
+export const ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemId =
+  /*@__PURE__*/ S.Unknown.pipe(T.UnionCases([[], [], [], [], [], [], [], []]));
+
+export type ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemPriceType =
+  | "fixed"
+  | "usage";
+export const ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemPriceType =
+  /*@__PURE__*/ S.String;
+
+export type ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemPriceInterval =
+  | "monthly"
+  | "hourly";
+export const ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemPriceInterval =
+  /*@__PURE__*/ S.String;
+
+export interface ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemPrice {
+  description: string;
+  type: ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemPriceType;
+  interval: ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemPriceInterval;
+  amount: number;
 }
-export const ListProjectAddonsResponse = /*@__PURE__*/ S.suspend(() =>
+export const ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemPrice =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      description: S.String,
+      type: ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemPriceType,
+      interval:
+        ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemPriceInterval,
+      amount: S.Number,
+    }),
+  ).annotate({
+    identifier:
+      "ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemPrice",
+  }) as any as S.Schema<ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemPrice>;
+
+export interface ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItem {
+  id: ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemId;
+  name: string;
+  price: ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemPrice;
+  meta?: JsonValueOutput;
+}
+export const ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemId,
+      name: S.String,
+      price:
+        ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItemPrice,
+      meta: S.optional(JsonValueOutput),
+    }),
+  ).annotate({
+    identifier:
+      "ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItem",
+  }) as any as S.Schema<ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItem>;
+
+export type ListProjectAddonsResponseOutputAvailableAddonsItemVariantsList =
+  Array<ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItem>;
+export const ListProjectAddonsResponseOutputAvailableAddonsItemVariantsList =
+  /*@__PURE__*/ S.Array(
+    ListProjectAddonsResponseOutputAvailableAddonsItemVariantsItem,
+  ) as any as S.Schema<ListProjectAddonsResponseOutputAvailableAddonsItemVariantsList>;
+
+export interface ListProjectAddonsResponseOutputAvailableAddonsItem {
+  type: ListProjectAddonsResponseOutputAvailableAddonsItemType;
+  name: string;
+  variants: ListProjectAddonsResponseOutputAvailableAddonsItemVariantsList;
+}
+export const ListProjectAddonsResponseOutputAvailableAddonsItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      type: ListProjectAddonsResponseOutputAvailableAddonsItemType,
+      name: S.String,
+      variants: ListProjectAddonsResponseOutputAvailableAddonsItemVariantsList,
+    }),
+  ).annotate({
+    identifier: "ListProjectAddonsResponseOutputAvailableAddonsItem",
+  }) as any as S.Schema<ListProjectAddonsResponseOutputAvailableAddonsItem>;
+
+export type ListProjectAddonsResponseOutputAvailableAddonsList =
+  Array<ListProjectAddonsResponseOutputAvailableAddonsItem>;
+export const ListProjectAddonsResponseOutputAvailableAddonsList =
+  /*@__PURE__*/ S.Array(
+    ListProjectAddonsResponseOutputAvailableAddonsItem,
+  ) as any as S.Schema<ListProjectAddonsResponseOutputAvailableAddonsList>;
+
+export interface ListProjectAddonsResponseOutput {
+  selected_addons: ListProjectAddonsResponseOutputSelectedAddonsList;
+  available_addons: ListProjectAddonsResponseOutputAvailableAddonsList;
+}
+export const ListProjectAddonsResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    selected_addons: ListProjectAddonsResponseSelectedAddonsList,
-    available_addons: ListProjectAddonsResponseAvailableAddonsList,
+    selected_addons: ListProjectAddonsResponseOutputSelectedAddonsList,
+    available_addons: ListProjectAddonsResponseOutputAvailableAddonsList,
   }),
 ).annotate({
-  identifier: "ListProjectAddonsResponse",
-}) as any as S.Schema<ListProjectAddonsResponse>;
+  identifier: "ListProjectAddonsResponseOutput",
+}) as any as S.Schema<ListProjectAddonsResponseOutput>;
 
 export interface V1ListProjectTpaIntegrationsRequest {
   /** Project ref */
@@ -9141,10 +9266,10 @@ export const V1ListProjectTpaIntegrationsRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<V1ListProjectTpaIntegrationsRequest>;
 
 export type V1ListProjectTpaIntegrationsResponseBodyList =
-  Array<ThirdPartyAuth>;
+  Array<ThirdPartyAuthOutput>;
 export const V1ListProjectTpaIntegrationsResponseBodyList =
   /*@__PURE__*/ S.Array(
-    ThirdPartyAuth,
+    ThirdPartyAuthOutput,
   ) as any as S.Schema<V1ListProjectTpaIntegrationsResponseBodyList>;
 
 export type V1ListProjectTpaIntegrationsResponse =
@@ -9175,21 +9300,21 @@ export const V1MergeABranchRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1MergeABranchRequest",
 }) as any as S.Schema<V1MergeABranchRequest>;
 
-export type BranchUpdateResponseMessage = "ok";
-export const BranchUpdateResponseMessage = /*@__PURE__*/ S.String;
+export type BranchUpdateResponseOutputMessage = "ok";
+export const BranchUpdateResponseOutputMessage = /*@__PURE__*/ S.String;
 
-export interface BranchUpdateResponse {
+export interface BranchUpdateResponseOutput {
   workflow_run_id: string;
-  message: BranchUpdateResponseMessage;
+  message: BranchUpdateResponseOutputMessage;
 }
-export const BranchUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const BranchUpdateResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     workflow_run_id: S.String,
-    message: BranchUpdateResponseMessage,
+    message: BranchUpdateResponseOutputMessage,
   }),
 ).annotate({
-  identifier: "BranchUpdateResponse",
-}) as any as S.Schema<BranchUpdateResponse>;
+  identifier: "BranchUpdateResponseOutput",
+}) as any as S.Schema<BranchUpdateResponseOutput>;
 
 export type V1ModifyDatabaseDiskRequestAttributesCase0Type = "gp3";
 export const V1ModifyDatabaseDiskRequestAttributesCase0Type =
@@ -9449,117 +9574,122 @@ export const V1PatchNetworkRestrictionsRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1PatchNetworkRestrictionsRequest",
 }) as any as S.Schema<V1PatchNetworkRestrictionsRequest>;
 
-export type NetworkRestrictionsV2ResponseEntitlement = "disallowed" | "allowed";
-export const NetworkRestrictionsV2ResponseEntitlement = /*@__PURE__*/ S.String;
-
-export type NetworkRestrictionsV2ResponseConfigDbAllowedCidrsItemType =
-  | "v4"
-  | "v6";
-export const NetworkRestrictionsV2ResponseConfigDbAllowedCidrsItemType =
+export type NetworkRestrictionsV2ResponseOutputEntitlement =
+  | "disallowed"
+  | "allowed";
+export const NetworkRestrictionsV2ResponseOutputEntitlement =
   /*@__PURE__*/ S.String;
 
-export interface NetworkRestrictionsV2ResponseConfigDbAllowedCidrsItem {
+export type NetworkRestrictionsV2ResponseOutputConfigDbAllowedCidrsItemType =
+  | "v4"
+  | "v6";
+export const NetworkRestrictionsV2ResponseOutputConfigDbAllowedCidrsItemType =
+  /*@__PURE__*/ S.String;
+
+export interface NetworkRestrictionsV2ResponseOutputConfigDbAllowedCidrsItem {
   address: string;
-  type: NetworkRestrictionsV2ResponseConfigDbAllowedCidrsItemType;
+  type: NetworkRestrictionsV2ResponseOutputConfigDbAllowedCidrsItemType;
 }
-export const NetworkRestrictionsV2ResponseConfigDbAllowedCidrsItem =
+export const NetworkRestrictionsV2ResponseOutputConfigDbAllowedCidrsItem =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       address: S.String,
-      type: NetworkRestrictionsV2ResponseConfigDbAllowedCidrsItemType,
+      type: NetworkRestrictionsV2ResponseOutputConfigDbAllowedCidrsItemType,
     }),
   ).annotate({
-    identifier: "NetworkRestrictionsV2ResponseConfigDbAllowedCidrsItem",
-  }) as any as S.Schema<NetworkRestrictionsV2ResponseConfigDbAllowedCidrsItem>;
+    identifier: "NetworkRestrictionsV2ResponseOutputConfigDbAllowedCidrsItem",
+  }) as any as S.Schema<NetworkRestrictionsV2ResponseOutputConfigDbAllowedCidrsItem>;
 
-export type NetworkRestrictionsV2ResponseConfigDbAllowedCidrsList =
-  Array<NetworkRestrictionsV2ResponseConfigDbAllowedCidrsItem>;
-export const NetworkRestrictionsV2ResponseConfigDbAllowedCidrsList =
+export type NetworkRestrictionsV2ResponseOutputConfigDbAllowedCidrsList =
+  Array<NetworkRestrictionsV2ResponseOutputConfigDbAllowedCidrsItem>;
+export const NetworkRestrictionsV2ResponseOutputConfigDbAllowedCidrsList =
   /*@__PURE__*/ S.Array(
-    NetworkRestrictionsV2ResponseConfigDbAllowedCidrsItem,
-  ) as any as S.Schema<NetworkRestrictionsV2ResponseConfigDbAllowedCidrsList>;
+    NetworkRestrictionsV2ResponseOutputConfigDbAllowedCidrsItem,
+  ) as any as S.Schema<NetworkRestrictionsV2ResponseOutputConfigDbAllowedCidrsList>;
 
 /** At any given point in time, this is the config that the user has requested be applied to their project. The `status` field indicates if it has been applied to the project, or is pending. When an updated config is received, the applied config is moved to `old_config`. */
-export interface NetworkRestrictionsV2ResponseConfig {
-  dbAllowedCidrs?: NetworkRestrictionsV2ResponseConfigDbAllowedCidrsList;
+export interface NetworkRestrictionsV2ResponseOutputConfig {
+  dbAllowedCidrs?: NetworkRestrictionsV2ResponseOutputConfigDbAllowedCidrsList;
 }
-export const NetworkRestrictionsV2ResponseConfig = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    dbAllowedCidrs: S.optional(
-      NetworkRestrictionsV2ResponseConfigDbAllowedCidrsList,
-    ),
-  }),
-).annotate({
-  identifier: "NetworkRestrictionsV2ResponseConfig",
-}) as any as S.Schema<NetworkRestrictionsV2ResponseConfig>;
+export const NetworkRestrictionsV2ResponseOutputConfig =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      dbAllowedCidrs: S.optional(
+        NetworkRestrictionsV2ResponseOutputConfigDbAllowedCidrsList,
+      ),
+    }),
+  ).annotate({
+    identifier: "NetworkRestrictionsV2ResponseOutputConfig",
+  }) as any as S.Schema<NetworkRestrictionsV2ResponseOutputConfig>;
 
-export type NetworkRestrictionsV2ResponseOldConfigDbAllowedCidrsItemType =
+export type NetworkRestrictionsV2ResponseOutputOldConfigDbAllowedCidrsItemType =
   | "v4"
   | "v6";
-export const NetworkRestrictionsV2ResponseOldConfigDbAllowedCidrsItemType =
+export const NetworkRestrictionsV2ResponseOutputOldConfigDbAllowedCidrsItemType =
   /*@__PURE__*/ S.String;
 
-export interface NetworkRestrictionsV2ResponseOldConfigDbAllowedCidrsItem {
+export interface NetworkRestrictionsV2ResponseOutputOldConfigDbAllowedCidrsItem {
   address: string;
-  type: NetworkRestrictionsV2ResponseOldConfigDbAllowedCidrsItemType;
+  type: NetworkRestrictionsV2ResponseOutputOldConfigDbAllowedCidrsItemType;
 }
-export const NetworkRestrictionsV2ResponseOldConfigDbAllowedCidrsItem =
+export const NetworkRestrictionsV2ResponseOutputOldConfigDbAllowedCidrsItem =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       address: S.String,
-      type: NetworkRestrictionsV2ResponseOldConfigDbAllowedCidrsItemType,
+      type: NetworkRestrictionsV2ResponseOutputOldConfigDbAllowedCidrsItemType,
     }),
   ).annotate({
-    identifier: "NetworkRestrictionsV2ResponseOldConfigDbAllowedCidrsItem",
-  }) as any as S.Schema<NetworkRestrictionsV2ResponseOldConfigDbAllowedCidrsItem>;
+    identifier:
+      "NetworkRestrictionsV2ResponseOutputOldConfigDbAllowedCidrsItem",
+  }) as any as S.Schema<NetworkRestrictionsV2ResponseOutputOldConfigDbAllowedCidrsItem>;
 
-export type NetworkRestrictionsV2ResponseOldConfigDbAllowedCidrsList =
-  Array<NetworkRestrictionsV2ResponseOldConfigDbAllowedCidrsItem>;
-export const NetworkRestrictionsV2ResponseOldConfigDbAllowedCidrsList =
+export type NetworkRestrictionsV2ResponseOutputOldConfigDbAllowedCidrsList =
+  Array<NetworkRestrictionsV2ResponseOutputOldConfigDbAllowedCidrsItem>;
+export const NetworkRestrictionsV2ResponseOutputOldConfigDbAllowedCidrsList =
   /*@__PURE__*/ S.Array(
-    NetworkRestrictionsV2ResponseOldConfigDbAllowedCidrsItem,
-  ) as any as S.Schema<NetworkRestrictionsV2ResponseOldConfigDbAllowedCidrsList>;
+    NetworkRestrictionsV2ResponseOutputOldConfigDbAllowedCidrsItem,
+  ) as any as S.Schema<NetworkRestrictionsV2ResponseOutputOldConfigDbAllowedCidrsList>;
 
 /** Populated when a new config has been received, but not registered as successfully applied to a project. */
-export interface NetworkRestrictionsV2ResponseOldConfig {
-  dbAllowedCidrs?: NetworkRestrictionsV2ResponseOldConfigDbAllowedCidrsList;
+export interface NetworkRestrictionsV2ResponseOutputOldConfig {
+  dbAllowedCidrs?: NetworkRestrictionsV2ResponseOutputOldConfigDbAllowedCidrsList;
 }
-export const NetworkRestrictionsV2ResponseOldConfig = /*@__PURE__*/ S.suspend(
-  () =>
+export const NetworkRestrictionsV2ResponseOutputOldConfig =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       dbAllowedCidrs: S.optional(
-        NetworkRestrictionsV2ResponseOldConfigDbAllowedCidrsList,
+        NetworkRestrictionsV2ResponseOutputOldConfigDbAllowedCidrsList,
       ),
     }),
-).annotate({
-  identifier: "NetworkRestrictionsV2ResponseOldConfig",
-}) as any as S.Schema<NetworkRestrictionsV2ResponseOldConfig>;
+  ).annotate({
+    identifier: "NetworkRestrictionsV2ResponseOutputOldConfig",
+  }) as any as S.Schema<NetworkRestrictionsV2ResponseOutputOldConfig>;
 
-export type NetworkRestrictionsV2ResponseStatus = "stored" | "applied";
-export const NetworkRestrictionsV2ResponseStatus = /*@__PURE__*/ S.String;
+export type NetworkRestrictionsV2ResponseOutputStatus = "stored" | "applied";
+export const NetworkRestrictionsV2ResponseOutputStatus = /*@__PURE__*/ S.String;
 
-export interface NetworkRestrictionsV2Response {
-  entitlement: NetworkRestrictionsV2ResponseEntitlement;
+export interface NetworkRestrictionsV2ResponseOutput {
+  entitlement: NetworkRestrictionsV2ResponseOutputEntitlement;
   /** At any given point in time, this is the config that the user has requested be applied to their project. The `status` field indicates if it has been applied to the project, or is pending. When an updated config is received, the applied config is moved to `old_config`. */
-  config: NetworkRestrictionsV2ResponseConfig;
+  config: NetworkRestrictionsV2ResponseOutputConfig;
   /** Populated when a new config has been received, but not registered as successfully applied to a project. */
-  old_config?: NetworkRestrictionsV2ResponseOldConfig;
+  old_config?: NetworkRestrictionsV2ResponseOutputOldConfig;
   updated_at?: string;
   applied_at?: string;
-  status: NetworkRestrictionsV2ResponseStatus;
+  status: NetworkRestrictionsV2ResponseOutputStatus;
 }
-export const NetworkRestrictionsV2Response = /*@__PURE__*/ S.suspend(() =>
+export const NetworkRestrictionsV2ResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    entitlement: NetworkRestrictionsV2ResponseEntitlement,
-    config: NetworkRestrictionsV2ResponseConfig,
-    old_config: S.optional(NetworkRestrictionsV2ResponseOldConfig),
+    entitlement: NetworkRestrictionsV2ResponseOutputEntitlement,
+    config: NetworkRestrictionsV2ResponseOutputConfig,
+    old_config: S.optional(NetworkRestrictionsV2ResponseOutputOldConfig),
     updated_at: S.optional(S.String),
     applied_at: S.optional(S.String),
-    status: NetworkRestrictionsV2ResponseStatus,
+    status: NetworkRestrictionsV2ResponseOutputStatus,
   }),
 ).annotate({
-  identifier: "NetworkRestrictionsV2Response",
-}) as any as S.Schema<NetworkRestrictionsV2Response>;
+  identifier: "NetworkRestrictionsV2ResponseOutput",
+}) as any as S.Schema<NetworkRestrictionsV2ResponseOutput>;
 
 export interface V1PauseAProjectRequest {
   /** Project ref */
@@ -9769,19 +9899,19 @@ export const V1RestoreABranchRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1RestoreABranchRequest",
 }) as any as S.Schema<V1RestoreABranchRequest>;
 
-export type BranchRestoreResponseMessage = "Branch restoration initiated";
-export const BranchRestoreResponseMessage = /*@__PURE__*/ S.String;
+export type BranchRestoreResponseOutputMessage = "Branch restoration initiated";
+export const BranchRestoreResponseOutputMessage = /*@__PURE__*/ S.String;
 
-export interface BranchRestoreResponse {
-  message: BranchRestoreResponseMessage;
+export interface BranchRestoreResponseOutput {
+  message: BranchRestoreResponseOutputMessage;
 }
-export const BranchRestoreResponse = /*@__PURE__*/ S.suspend(() =>
+export const BranchRestoreResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    message: BranchRestoreResponseMessage,
+    message: BranchRestoreResponseOutputMessage,
   }),
 ).annotate({
-  identifier: "BranchRestoreResponse",
-}) as any as S.Schema<BranchRestoreResponse>;
+  identifier: "BranchRestoreResponseOutput",
+}) as any as S.Schema<BranchRestoreResponseOutput>;
 
 export interface V1RestoreAProjectRequest {
   /** Project ref */
@@ -10218,19 +10348,19 @@ export const V1UpdateActionRunStatusRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1UpdateActionRunStatusRequest",
 }) as any as S.Schema<V1UpdateActionRunStatusRequest>;
 
-export type UpdateRunStatusResponseMessage = "ok";
-export const UpdateRunStatusResponseMessage = /*@__PURE__*/ S.String;
+export type UpdateRunStatusResponseOutputMessage = "ok";
+export const UpdateRunStatusResponseOutputMessage = /*@__PURE__*/ S.String;
 
-export interface UpdateRunStatusResponse {
-  message: UpdateRunStatusResponseMessage;
+export interface UpdateRunStatusResponseOutput {
+  message: UpdateRunStatusResponseOutputMessage;
 }
-export const UpdateRunStatusResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateRunStatusResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    message: UpdateRunStatusResponseMessage,
+    message: UpdateRunStatusResponseOutputMessage,
   }),
 ).annotate({
-  identifier: "UpdateRunStatusResponse",
-}) as any as S.Schema<UpdateRunStatusResponse>;
+  identifier: "UpdateRunStatusResponseOutput",
+}) as any as S.Schema<UpdateRunStatusResponseOutput>;
 
 export interface V1UpdateAFunctionRequest {
   /** Project ref */
@@ -10306,8 +10436,8 @@ export const V1UpdateASsoProviderRequestAttributeMappingKeysValueDefault =
 export interface V1UpdateASsoProviderRequestAttributeMappingKeysValue {
   name?: string;
   names?: V1UpdateASsoProviderRequestAttributeMappingKeysValueNamesList;
-  default?: V1UpdateASsoProviderRequestAttributeMappingKeysValueDefault;
   array?: boolean;
+  default?: V1UpdateASsoProviderRequestAttributeMappingKeysValueDefault;
 }
 export const V1UpdateASsoProviderRequestAttributeMappingKeysValue =
   /*@__PURE__*/ S.suspend(() =>
@@ -10316,10 +10446,10 @@ export const V1UpdateASsoProviderRequestAttributeMappingKeysValue =
       names: S.optional(
         V1UpdateASsoProviderRequestAttributeMappingKeysValueNamesList,
       ),
+      array: S.optional(S.Boolean),
       default: S.optional(
         V1UpdateASsoProviderRequestAttributeMappingKeysValueDefault,
       ),
-      array: S.optional(S.Boolean),
     }),
   ).annotate({
     identifier: "V1UpdateASsoProviderRequestAttributeMappingKeysValue",
@@ -10385,121 +10515,124 @@ export const V1UpdateASsoProviderRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1UpdateASsoProviderRequest",
 }) as any as S.Schema<V1UpdateASsoProviderRequest>;
 
-export type UpdateProviderResponseSamlAttributeMappingKeysValueNamesList =
+export type UpdateProviderResponseOutputSamlAttributeMappingKeysValueNamesList =
   Array<string>;
-export const UpdateProviderResponseSamlAttributeMappingKeysValueNamesList =
+export const UpdateProviderResponseOutputSamlAttributeMappingKeysValueNamesList =
   /*@__PURE__*/ S.Array(
     S.String,
-  ) as any as S.Schema<UpdateProviderResponseSamlAttributeMappingKeysValueNamesList>;
+  ) as any as S.Schema<UpdateProviderResponseOutputSamlAttributeMappingKeysValueNamesList>;
 
-export type UpdateProviderResponseSamlAttributeMappingKeysValueDefault =
+export type UpdateProviderResponseOutputSamlAttributeMappingKeysValueDefault =
   | unknown
   | number
   | string
   | boolean;
-export const UpdateProviderResponseSamlAttributeMappingKeysValueDefault =
+export const UpdateProviderResponseOutputSamlAttributeMappingKeysValueDefault =
   /*@__PURE__*/ S.Unknown.pipe(T.UnionCases([[], [], [], []]));
 
-export interface UpdateProviderResponseSamlAttributeMappingKeysValue {
+export interface UpdateProviderResponseOutputSamlAttributeMappingKeysValue {
   name?: string;
-  names?: UpdateProviderResponseSamlAttributeMappingKeysValueNamesList;
-  default?: UpdateProviderResponseSamlAttributeMappingKeysValueDefault;
+  names?: UpdateProviderResponseOutputSamlAttributeMappingKeysValueNamesList;
   array?: boolean;
+  default?: UpdateProviderResponseOutputSamlAttributeMappingKeysValueDefault;
 }
-export const UpdateProviderResponseSamlAttributeMappingKeysValue =
+export const UpdateProviderResponseOutputSamlAttributeMappingKeysValue =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       name: S.optional(S.String),
       names: S.optional(
-        UpdateProviderResponseSamlAttributeMappingKeysValueNamesList,
-      ),
-      default: S.optional(
-        UpdateProviderResponseSamlAttributeMappingKeysValueDefault,
+        UpdateProviderResponseOutputSamlAttributeMappingKeysValueNamesList,
       ),
       array: S.optional(S.Boolean),
+      default: S.optional(
+        UpdateProviderResponseOutputSamlAttributeMappingKeysValueDefault,
+      ),
     }),
   ).annotate({
-    identifier: "UpdateProviderResponseSamlAttributeMappingKeysValue",
-  }) as any as S.Schema<UpdateProviderResponseSamlAttributeMappingKeysValue>;
+    identifier: "UpdateProviderResponseOutputSamlAttributeMappingKeysValue",
+  }) as any as S.Schema<UpdateProviderResponseOutputSamlAttributeMappingKeysValue>;
 
-export type UpdateProviderResponseSamlAttributeMappingKeysMap = {
+export type UpdateProviderResponseOutputSamlAttributeMappingKeysMap = {
   [key: string]:
-    | UpdateProviderResponseSamlAttributeMappingKeysValue
+    | UpdateProviderResponseOutputSamlAttributeMappingKeysValue
     | undefined;
 };
-export const UpdateProviderResponseSamlAttributeMappingKeysMap =
+export const UpdateProviderResponseOutputSamlAttributeMappingKeysMap =
   /*@__PURE__*/ S.Record(
     S.String,
-    UpdateProviderResponseSamlAttributeMappingKeysValue,
-  ) as any as S.Schema<UpdateProviderResponseSamlAttributeMappingKeysMap>;
+    UpdateProviderResponseOutputSamlAttributeMappingKeysValue,
+  ) as any as S.Schema<UpdateProviderResponseOutputSamlAttributeMappingKeysMap>;
 
-export interface UpdateProviderResponseSamlAttributeMapping {
-  keys: UpdateProviderResponseSamlAttributeMappingKeysMap;
+export interface UpdateProviderResponseOutputSamlAttributeMapping {
+  keys: UpdateProviderResponseOutputSamlAttributeMappingKeysMap;
 }
-export const UpdateProviderResponseSamlAttributeMapping =
+export const UpdateProviderResponseOutputSamlAttributeMapping =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
-      keys: UpdateProviderResponseSamlAttributeMappingKeysMap,
+      keys: UpdateProviderResponseOutputSamlAttributeMappingKeysMap,
     }),
   ).annotate({
-    identifier: "UpdateProviderResponseSamlAttributeMapping",
-  }) as any as S.Schema<UpdateProviderResponseSamlAttributeMapping>;
+    identifier: "UpdateProviderResponseOutputSamlAttributeMapping",
+  }) as any as S.Schema<UpdateProviderResponseOutputSamlAttributeMapping>;
 
-export type UpdateProviderResponseSamlNameIdFormat =
+export type UpdateProviderResponseOutputSamlNameIdFormat =
   | "urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified"
   | "urn:oasis:names:tc:SAML:2.0:nameid-format:transient"
   | "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress"
   | "urn:oasis:names:tc:SAML:2.0:nameid-format:persistent";
-export const UpdateProviderResponseSamlNameIdFormat = /*@__PURE__*/ S.String;
+export const UpdateProviderResponseOutputSamlNameIdFormat =
+  /*@__PURE__*/ S.String;
 
-export interface UpdateProviderResponseSaml {
+export interface UpdateProviderResponseOutputSaml {
   entity_id: string;
   metadata_url?: string;
   metadata_xml?: string;
-  attribute_mapping?: UpdateProviderResponseSamlAttributeMapping;
-  name_id_format?: UpdateProviderResponseSamlNameIdFormat;
+  attribute_mapping?: UpdateProviderResponseOutputSamlAttributeMapping;
+  name_id_format?: UpdateProviderResponseOutputSamlNameIdFormat;
 }
-export const UpdateProviderResponseSaml = /*@__PURE__*/ S.suspend(() =>
+export const UpdateProviderResponseOutputSaml = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     entity_id: S.String,
     metadata_url: S.optional(S.String),
     metadata_xml: S.optional(S.String),
-    attribute_mapping: S.optional(UpdateProviderResponseSamlAttributeMapping),
-    name_id_format: S.optional(UpdateProviderResponseSamlNameIdFormat),
+    attribute_mapping: S.optional(
+      UpdateProviderResponseOutputSamlAttributeMapping,
+    ),
+    name_id_format: S.optional(UpdateProviderResponseOutputSamlNameIdFormat),
   }),
 ).annotate({
-  identifier: "UpdateProviderResponseSaml",
-}) as any as S.Schema<UpdateProviderResponseSaml>;
+  identifier: "UpdateProviderResponseOutputSaml",
+}) as any as S.Schema<UpdateProviderResponseOutputSaml>;
 
-export type UpdateProviderResponseDomainsItem =
-  CreateProviderResponseDomainsItem;
-export const UpdateProviderResponseDomainsItem =
-  CreateProviderResponseDomainsItem;
+export type UpdateProviderResponseOutputDomainsItem =
+  CreateProviderResponseOutputDomainsItem;
+export const UpdateProviderResponseOutputDomainsItem =
+  CreateProviderResponseOutputDomainsItem;
 
-export type UpdateProviderResponseDomainsList =
-  Array<CreateProviderResponseDomainsItem>;
-export const UpdateProviderResponseDomainsList = /*@__PURE__*/ S.Array(
-  CreateProviderResponseDomainsItem,
-) as any as S.Schema<UpdateProviderResponseDomainsList>;
+export type UpdateProviderResponseOutputDomainsList =
+  Array<CreateProviderResponseOutputDomainsItem>;
+export const UpdateProviderResponseOutputDomainsList = /*@__PURE__*/ S.Array(
+  CreateProviderResponseOutputDomainsItem,
+) as any as S.Schema<UpdateProviderResponseOutputDomainsList>;
 
-export interface UpdateProviderResponse {
+export interface UpdateProviderResponseOutput {
   id: string;
-  saml?: UpdateProviderResponseSaml;
-  domains?: UpdateProviderResponseDomainsList;
+  saml?: UpdateProviderResponseOutputSaml;
+  domains?: UpdateProviderResponseOutputDomainsList;
   created_at?: string;
   updated_at?: string;
 }
-export const UpdateProviderResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateProviderResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String,
-    saml: S.optional(UpdateProviderResponseSaml),
-    domains: S.optional(UpdateProviderResponseDomainsList),
+    saml: S.optional(UpdateProviderResponseOutputSaml),
+    domains: S.optional(UpdateProviderResponseOutputDomainsList),
     created_at: S.optional(S.String),
     updated_at: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "UpdateProviderResponse",
-}) as any as S.Schema<UpdateProviderResponse>;
+  identifier: "UpdateProviderResponseOutput",
+}) as any as S.Schema<UpdateProviderResponseOutput>;
 
 export type V1UpdateAuthServiceConfigRequestSecurityCaptchaProvider =
   | "turnstile"
@@ -10592,7 +10725,9 @@ export interface V1UpdateAuthServiceConfigRequest {
     | (string & {})
     | null;
   security_captcha_secret?: T.Sensitive | null;
+  /** Session timebox in hours. Maximum 8760 hours (1 year). */
   sessions_timebox?: number | null;
+  /** Session inactivity timeout in hours. Maximum 8760 hours (1 year). */
   sessions_inactivity_timeout?: number | null;
   sessions_single_per_user?: boolean | null;
   sessions_tags?: string | null;
@@ -10613,6 +10748,7 @@ export interface V1UpdateAuthServiceConfigRequest {
     | null;
   security_manual_linking_enabled?: boolean | null;
   security_update_password_require_reauthentication?: boolean | null;
+  /** Refresh token reuse interval in seconds. Maximum 300 seconds (5 minutes). */
   security_refresh_token_reuse_interval?: number | null;
   mailer_otp_exp?: number;
   mailer_otp_length?: number | null;
@@ -11165,16 +11301,16 @@ export const V1UpdateDatabasePasswordRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1UpdateDatabasePasswordRequest",
 }) as any as S.Schema<V1UpdateDatabasePasswordRequest>;
 
-export interface V1UpdatePasswordResponse {
+export interface V1UpdatePasswordResponseOutput {
   message: string;
 }
-export const V1UpdatePasswordResponse = /*@__PURE__*/ S.suspend(() =>
+export const V1UpdatePasswordResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     message: S.String,
   }),
 ).annotate({
-  identifier: "V1UpdatePasswordResponse",
-}) as any as S.Schema<V1UpdatePasswordResponse>;
+  identifier: "V1UpdatePasswordResponseOutput",
+}) as any as S.Schema<V1UpdatePasswordResponseOutput>;
 
 export interface V1UpdateHostnameConfigRequest {
   /** Project ref */
@@ -11197,27 +11333,27 @@ export const V1UpdateHostnameConfigRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<V1UpdateHostnameConfigRequest>;
 
 export type V1UpdateJitAccessRequestRolesItemAllowedNetworksAllowedCidrsItem =
-  JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsItem;
+  JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem;
 export const V1UpdateJitAccessRequestRolesItemAllowedNetworksAllowedCidrsItem =
-  JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsItem;
+  JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem;
 
 export type V1UpdateJitAccessRequestRolesItemAllowedNetworksAllowedCidrsList =
-  Array<JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsItem>;
+  Array<JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem>;
 export const V1UpdateJitAccessRequestRolesItemAllowedNetworksAllowedCidrsList =
   /*@__PURE__*/ S.Array(
-    JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsItem,
+    JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem,
   ) as any as S.Schema<V1UpdateJitAccessRequestRolesItemAllowedNetworksAllowedCidrsList>;
 
 export type V1UpdateJitAccessRequestRolesItemAllowedNetworksAllowedCidrsV6Item =
-  JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsItem;
+  JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem;
 export const V1UpdateJitAccessRequestRolesItemAllowedNetworksAllowedCidrsV6Item =
-  JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsItem;
+  JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem;
 
 export type V1UpdateJitAccessRequestRolesItemAllowedNetworksAllowedCidrsV6List =
-  Array<JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsItem>;
+  Array<JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem>;
 export const V1UpdateJitAccessRequestRolesItemAllowedNetworksAllowedCidrsV6List =
   /*@__PURE__*/ S.Array(
-    JitAccessResponseUserRolesItemAllowedNetworksAllowedCidrsItem,
+    JitAccessResponseOutputUserRolesItemAllowedNetworksAllowedCidrsItem,
   ) as any as S.Schema<V1UpdateJitAccessRequestRolesItemAllowedNetworksAllowedCidrsV6List>;
 
 export interface V1UpdateJitAccessRequestRolesItemAllowedNetworks {
@@ -11325,6 +11461,7 @@ export const V1UpdateJitAccessConfigResponseBodyCase0 = /*@__PURE__*/ S.suspend(
 }) as any as S.Schema<V1UpdateJitAccessConfigResponseBodyCase0>;
 
 export type V1UpdateJitAccessConfigResponseBodyCase1UnavailableReason =
+  | "platform_unsupported"
   | "postgres_upgrade_required"
   | "ssl_enforcement_required"
   | "temporarily_unavailable";
@@ -11448,18 +11585,18 @@ export const V1UpdatePoolerConfigRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1UpdatePoolerConfigRequest",
 }) as any as S.Schema<V1UpdatePoolerConfigRequest>;
 
-export interface UpdateSupavisorConfigResponse {
+export interface UpdateSupavisorConfigResponseOutput {
   default_pool_size: number | null;
   pool_mode: string;
 }
-export const UpdateSupavisorConfigResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateSupavisorConfigResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     default_pool_size: S.NullOr(S.Number),
     pool_mode: S.String,
   }),
 ).annotate({
-  identifier: "UpdateSupavisorConfigResponse",
-}) as any as S.Schema<UpdateSupavisorConfigResponse>;
+  identifier: "UpdateSupavisorConfigResponseOutput",
+}) as any as S.Schema<UpdateSupavisorConfigResponseOutput>;
 
 export type V1UpdatePostgresConfigRequestSessionReplicationRole =
   | "origin"
@@ -11604,7 +11741,7 @@ export const V1UpdatePostgrestServiceConfigRequest = /*@__PURE__*/ S.suspend(
   identifier: "V1UpdatePostgrestServiceConfigRequest",
 }) as any as S.Schema<V1UpdatePostgrestServiceConfigRequest>;
 
-export interface V1PostgrestConfigResponse {
+export interface V1PostgrestConfigResponseOutput {
   db_schema: string;
   max_rows: number;
   db_extra_search_path: string;
@@ -11613,7 +11750,7 @@ export interface V1PostgrestConfigResponse {
   /** If `null`, the value is automatically configured to 10. */
   db_pool_acquisition_timeout: number | null;
 }
-export const V1PostgrestConfigResponse = /*@__PURE__*/ S.suspend(() =>
+export const V1PostgrestConfigResponseOutput = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     db_schema: S.String,
     max_rows: S.Number,
@@ -11622,8 +11759,8 @@ export const V1PostgrestConfigResponse = /*@__PURE__*/ S.suspend(() =>
     db_pool_acquisition_timeout: S.NullOr(S.Number),
   }),
 ).annotate({
-  identifier: "V1PostgrestConfigResponse",
-}) as any as S.Schema<V1PostgrestConfigResponse>;
+  identifier: "V1PostgrestConfigResponseOutput",
+}) as any as S.Schema<V1PostgrestConfigResponseOutput>;
 
 export type V1UpdateProjectApiKeyRequestSecretJwtTemplateMap = {
   [key: string]: unknown | undefined;
@@ -11777,19 +11914,19 @@ export const V1UpdateRealtimeConfigResponse = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<V1UpdateRealtimeConfigResponse>;
 
 export type V1UpdateSslEnforcementConfigRequestRequestedConfig =
-  SslEnforcementResponseCurrentConfig;
+  SslEnforcementResponseOutputCurrentConfig;
 export const V1UpdateSslEnforcementConfigRequestRequestedConfig =
-  SslEnforcementResponseCurrentConfig;
+  SslEnforcementResponseOutputCurrentConfig;
 
 export interface V1UpdateSslEnforcementConfigRequest {
   /** Project ref */
   ref: string;
-  requestedConfig: SslEnforcementResponseCurrentConfig;
+  requestedConfig: SslEnforcementResponseOutputCurrentConfig;
 }
 export const V1UpdateSslEnforcementConfigRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     ref: S.String.pipe(T.Label()),
-    requestedConfig: SslEnforcementResponseCurrentConfig,
+    requestedConfig: SslEnforcementResponseOutputCurrentConfig,
   }).pipe(
     T.Http({
       method: "PUT",
@@ -11802,51 +11939,55 @@ export const V1UpdateSslEnforcementConfigRequest = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<V1UpdateSslEnforcementConfigRequest>;
 
 export type V1UpdateStorageConfigRequestFeaturesImageTransformation =
-  V1ListEntitlementsResponseEntitlementsItemConfigCase0;
+  V1ListEntitlementsResponseOutputEntitlementsItemConfigCase0;
 export const V1UpdateStorageConfigRequestFeaturesImageTransformation =
-  V1ListEntitlementsResponseEntitlementsItemConfigCase0;
+  V1ListEntitlementsResponseOutputEntitlementsItemConfigCase0;
 
 export type V1UpdateStorageConfigRequestFeaturesS3Protocol =
-  V1ListEntitlementsResponseEntitlementsItemConfigCase0;
+  V1ListEntitlementsResponseOutputEntitlementsItemConfigCase0;
 export const V1UpdateStorageConfigRequestFeaturesS3Protocol =
-  V1ListEntitlementsResponseEntitlementsItemConfigCase0;
+  V1ListEntitlementsResponseOutputEntitlementsItemConfigCase0;
 
 export type V1UpdateStorageConfigRequestFeaturesPurgeCache =
-  V1ListEntitlementsResponseEntitlementsItemConfigCase0;
+  V1ListEntitlementsResponseOutputEntitlementsItemConfigCase0;
 export const V1UpdateStorageConfigRequestFeaturesPurgeCache =
-  V1ListEntitlementsResponseEntitlementsItemConfigCase0;
+  V1ListEntitlementsResponseOutputEntitlementsItemConfigCase0;
 
 export type V1UpdateStorageConfigRequestFeaturesIcebergCatalog =
-  StorageConfigResponseFeaturesIcebergCatalog;
+  StorageConfigResponseOutputFeaturesIcebergCatalog;
 export const V1UpdateStorageConfigRequestFeaturesIcebergCatalog =
-  StorageConfigResponseFeaturesIcebergCatalog;
+  StorageConfigResponseOutputFeaturesIcebergCatalog;
 
 export type V1UpdateStorageConfigRequestFeaturesVectorBuckets =
-  StorageConfigResponseFeaturesVectorBuckets;
+  StorageConfigResponseOutputFeaturesVectorBuckets;
 export const V1UpdateStorageConfigRequestFeaturesVectorBuckets =
-  StorageConfigResponseFeaturesVectorBuckets;
+  StorageConfigResponseOutputFeaturesVectorBuckets;
 
 export interface V1UpdateStorageConfigRequestFeatures {
-  imageTransformation?: V1ListEntitlementsResponseEntitlementsItemConfigCase0;
-  s3Protocol?: V1ListEntitlementsResponseEntitlementsItemConfigCase0;
-  purgeCache?: V1ListEntitlementsResponseEntitlementsItemConfigCase0;
-  icebergCatalog?: StorageConfigResponseFeaturesIcebergCatalog;
-  vectorBuckets?: StorageConfigResponseFeaturesVectorBuckets;
+  imageTransformation?: V1ListEntitlementsResponseOutputEntitlementsItemConfigCase0;
+  s3Protocol?: V1ListEntitlementsResponseOutputEntitlementsItemConfigCase0;
+  purgeCache?: V1ListEntitlementsResponseOutputEntitlementsItemConfigCase0;
+  icebergCatalog?: StorageConfigResponseOutputFeaturesIcebergCatalog;
+  vectorBuckets?: StorageConfigResponseOutputFeaturesVectorBuckets;
 }
 export const V1UpdateStorageConfigRequestFeatures = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       imageTransformation: S.optional(
-        V1ListEntitlementsResponseEntitlementsItemConfigCase0,
+        V1ListEntitlementsResponseOutputEntitlementsItemConfigCase0,
       ),
       s3Protocol: S.optional(
-        V1ListEntitlementsResponseEntitlementsItemConfigCase0,
+        V1ListEntitlementsResponseOutputEntitlementsItemConfigCase0,
       ),
       purgeCache: S.optional(
-        V1ListEntitlementsResponseEntitlementsItemConfigCase0,
+        V1ListEntitlementsResponseOutputEntitlementsItemConfigCase0,
       ),
-      icebergCatalog: S.optional(StorageConfigResponseFeaturesIcebergCatalog),
-      vectorBuckets: S.optional(StorageConfigResponseFeaturesVectorBuckets),
+      icebergCatalog: S.optional(
+        StorageConfigResponseOutputFeaturesIcebergCatalog,
+      ),
+      vectorBuckets: S.optional(
+        StorageConfigResponseOutputFeaturesVectorBuckets,
+      ),
     }),
 ).annotate({
   identifier: "V1UpdateStorageConfigRequestFeatures",
@@ -11933,16 +12074,17 @@ export const V1UpgradePostgresVersionRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "V1UpgradePostgresVersionRequest",
 }) as any as S.Schema<V1UpgradePostgresVersionRequest>;
 
-export interface ProjectUpgradeInitiateResponse {
+export interface ProjectUpgradeInitiateResponseOutput {
   tracking_id: string;
 }
-export const ProjectUpgradeInitiateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    tracking_id: S.String,
-  }),
+export const ProjectUpgradeInitiateResponseOutput = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      tracking_id: S.String,
+    }),
 ).annotate({
-  identifier: "ProjectUpgradeInitiateResponse",
-}) as any as S.Schema<ProjectUpgradeInitiateResponse>;
+  identifier: "ProjectUpgradeInitiateResponseOutput",
+}) as any as S.Schema<ProjectUpgradeInitiateResponseOutput>;
 
 export interface V1UpsertAMigrationRequest {
   /** Project ref */
@@ -11997,12 +12139,12 @@ export type V1AcceptInviteExternalJitAccessError = SupabaseOpError;
 /** Accepts invitation for JIT database access Accepts the invitation to JIT database access */
 export const v1AcceptInviteExternalJitAccess: API.OperationMethod<
   V1AcceptInviteExternalJitAccessRequest,
-  JitAccessResponse,
+  JitAccessResponseOutput,
   V1AcceptInviteExternalJitAccessError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1AcceptInviteExternalJitAccessRequest,
-  output: JitAccessResponse,
+  output: JitAccessResponseOutput,
   errors: [],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -12015,12 +12157,12 @@ export type V1ActivateCustomHostnameError =
 /** [Beta] Activates a custom hostname for a project. */
 export const v1ActivateCustomHostname: API.OperationMethod<
   V1ActivateCustomHostnameRequest,
-  UpdateCustomHostnameResponse,
+  UpdateCustomHostnameResponseOutput,
   V1ActivateCustomHostnameError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1ActivateCustomHostnameRequest,
-  output: UpdateCustomHostnameResponse,
+  output: UpdateCustomHostnameResponseOutput,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -12033,12 +12175,12 @@ export type V1ActivateVanitySubdomainConfigError =
 /** [Beta] Activates a vanity subdomain for a project. */
 export const v1ActivateVanitySubdomainConfig: API.OperationMethod<
   V1ActivateVanitySubdomainConfigRequest,
-  ActivateVanitySubdomainResponse,
+  ActivateVanitySubdomainResponseOutput,
   V1ActivateVanitySubdomainConfigError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1ActivateVanitySubdomainConfigRequest,
-  output: ActivateVanitySubdomainResponse,
+  output: ActivateVanitySubdomainResponseOutput,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -12081,12 +12223,12 @@ export type V1AuthorizeJitAccessError =
 /** Authorize user-id to role mappings for JIT access Authorizes the request to assume a role in the project database */
 export const v1AuthorizeJitAccess: API.OperationMethod<
   V1AuthorizeJitAccessRequest,
-  JitAuthorizeAccessResponse,
+  JitAuthorizeAccessResponseOutput,
   V1AuthorizeJitAccessError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1AuthorizeJitAccessRequest,
-  output: JitAuthorizeAccessResponse,
+  output: JitAuthorizeAccessResponseOutput,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -12144,12 +12286,12 @@ export type V1BulkUpdateFunctionsError =
 /** Bulk update functions Bulk update functions. It will create a new function or replace existing. The operation is idempotent. NOTE: You will need to manually bump the version. */
 export const v1BulkUpdateFunctions: API.OperationMethod<
   V1BulkUpdateFunctionsRequest,
-  BulkUpdateFunctionResponse,
+  BulkUpdateFunctionResponseOutput,
   V1BulkUpdateFunctionsError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1BulkUpdateFunctionsRequest,
-  output: BulkUpdateFunctionResponse,
+  output: BulkUpdateFunctionResponseOutput,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -12180,12 +12322,12 @@ export type V1CheckVanitySubdomainAvailabilityError =
 /** [Beta] Checks vanity subdomain availability */
 export const v1CheckVanitySubdomainAvailability: API.OperationMethod<
   V1CheckVanitySubdomainAvailabilityRequest,
-  SubdomainAvailabilityResponse,
+  SubdomainAvailabilityResponseOutput,
   V1CheckVanitySubdomainAvailabilityError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1CheckVanitySubdomainAvailabilityRequest,
-  output: SubdomainAvailabilityResponse,
+  output: SubdomainAvailabilityResponseOutput,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -12214,12 +12356,12 @@ export type V1CreateABranchError = BadRequest | NotFound | SupabaseOpError;
 /** Create a database branch Creates a database branch from the specified project. */
 export const v1CreateABranch: API.OperationMethod<
   V1CreateABranchRequest,
-  BranchResponse,
+  BranchResponseOutput,
   V1CreateABranchError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1CreateABranchRequest,
-  output: BranchResponse,
+  output: BranchResponseOutput,
   errors: [BadRequest, NotFound],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -12232,12 +12374,12 @@ export type V1CreateAnOrganizationError =
 /** Create an organization */
 export const v1CreateAnOrganization: API.OperationMethod<
   V1CreateAnOrganizationRequest,
-  OrganizationResponseV1,
+  OrganizationResponseV1Output,
   V1CreateAnOrganizationError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1CreateAnOrganizationRequest,
-  output: OrganizationResponseV1,
+  output: OrganizationResponseV1Output,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -12247,12 +12389,12 @@ export type V1CreateAProjectError = BadRequest | Forbidden | SupabaseOpError;
 /** Create a project */
 export const v1CreateAProject: API.OperationMethod<
   V1CreateAProjectRequest,
-  V1ProjectResponse,
+  V1ProjectResponseOutput,
   V1CreateAProjectError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1CreateAProjectRequest,
-  output: V1ProjectResponse,
+  output: V1ProjectResponseOutput,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -12266,12 +12408,12 @@ export type V1CreateASsoProviderError =
 /** Creates a new SSO provider */
 export const v1CreateASsoProvider: API.OperationMethod<
   V1CreateASsoProviderRequest,
-  CreateProviderResponse,
+  CreateProviderResponseOutput,
   V1CreateASsoProviderError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1CreateASsoProviderRequest,
-  output: CreateProviderResponse,
+  output: CreateProviderResponseOutput,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -12284,12 +12426,12 @@ export type V1CreateLegacySigningKeyError =
 /** Set up the project's existing JWT secret as an in_use JWT signing key. This endpoint will be removed in the future always check for HTTP 404 Not Found. */
 export const v1CreateLegacySigningKey: API.OperationMethod<
   V1CreateLegacySigningKeyRequest,
-  SigningKeyResponse,
+  SigningKeyResponseOutput,
   V1CreateLegacySigningKeyError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1CreateLegacySigningKeyRequest,
-  output: SigningKeyResponse,
+  output: SigningKeyResponseOutput,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -12299,12 +12441,12 @@ export type V1CreateLoginRoleError = BadRequest | Forbidden | SupabaseOpError;
 /** [Beta] Create a login role for CLI with temporary password */
 export const v1CreateLoginRole: API.OperationMethod<
   V1CreateLoginRoleRequest,
-  CreateRoleResponse,
+  CreateRoleResponseOutput,
   V1CreateLoginRoleError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1CreateLoginRoleRequest,
-  output: CreateRoleResponse,
+  output: CreateRoleResponseOutput,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -12317,12 +12459,12 @@ export type V1CreateProjectApiKeyError =
 /** Creates a new API key for the project */
 export const v1CreateProjectApiKey: API.OperationMethod<
   V1CreateProjectApiKeyRequest,
-  ApiKeyResponse,
+  ApiKeyResponseOutput,
   V1CreateProjectApiKeyError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1CreateProjectApiKeyRequest,
-  output: ApiKeyResponse,
+  output: ApiKeyResponseOutput,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -12335,12 +12477,12 @@ export type V1CreateProjectClaimTokenError =
 /** Creates project claim token */
 export const v1CreateProjectClaimToken: API.OperationMethod<
   V1CreateProjectClaimTokenRequest,
-  CreateProjectClaimTokenResponse,
+  CreateProjectClaimTokenResponseOutput,
   V1CreateProjectClaimTokenError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1CreateProjectClaimTokenRequest,
-  output: CreateProjectClaimTokenResponse,
+  output: CreateProjectClaimTokenResponseOutput,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -12353,12 +12495,12 @@ export type V1CreateProjectSigningKeyError =
 /** Create a new signing key for the project in standby status */
 export const v1CreateProjectSigningKey: API.OperationMethod<
   V1CreateProjectSigningKeyRequest,
-  SigningKeyResponse,
+  SigningKeyResponseOutput,
   V1CreateProjectSigningKeyError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1CreateProjectSigningKeyRequest,
-  output: SigningKeyResponse,
+  output: SigningKeyResponseOutput,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -12371,12 +12513,12 @@ export type V1CreateProjectTpaIntegrationError =
 /** Creates a new third-party auth integration */
 export const v1CreateProjectTpaIntegration: API.OperationMethod<
   V1CreateProjectTpaIntegrationRequest,
-  ThirdPartyAuth,
+  ThirdPartyAuthOutput,
   V1CreateProjectTpaIntegrationError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1CreateProjectTpaIntegrationRequest,
-  output: ThirdPartyAuth,
+  output: ThirdPartyAuthOutput,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -12426,12 +12568,12 @@ export type V1DeleteABranchError =
 /** Delete a database branch Deletes the specified database branch. By default, deletes immediately. Use force=false to schedule deletion with 1-hour grace period (only when soft deletion is enabled). */
 export const v1DeleteABranch: API.OperationMethod<
   V1DeleteABranchRequest,
-  BranchDeleteResponse,
+  BranchDeleteResponseOutput,
   V1DeleteABranchError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1DeleteABranchRequest,
-  output: BranchDeleteResponse,
+  output: BranchDeleteResponseOutput,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -12460,12 +12602,12 @@ export type V1DeleteAProjectError = BadRequest | Forbidden | SupabaseOpError;
 /** Deletes the given project */
 export const v1DeleteAProject: API.OperationMethod<
   V1DeleteAProjectRequest,
-  V1ProjectRefResponse,
+  V1ProjectRefResponseOutput,
   V1DeleteAProjectError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1DeleteAProjectRequest,
-  output: V1ProjectRefResponse,
+  output: V1ProjectRefResponseOutput,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -12479,12 +12621,12 @@ export type V1DeleteASsoProviderError =
 /** Removes a SSO provider by its UUID */
 export const v1DeleteASsoProvider: API.OperationMethod<
   V1DeleteASsoProviderRequest,
-  DeleteProviderResponse,
+  DeleteProviderResponseOutput,
   V1DeleteASsoProviderError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1DeleteASsoProviderRequest,
-  output: DeleteProviderResponse,
+  output: DeleteProviderResponseOutput,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -12546,12 +12688,12 @@ export type V1DeleteLoginRolesError = BadRequest | Forbidden | SupabaseOpError;
 /** [Beta] Delete existing login roles used by CLI */
 export const v1DeleteLoginRoles: API.OperationMethod<
   V1DeleteLoginRolesRequest,
-  DeleteRolesResponse,
+  DeleteRolesResponseOutput,
   V1DeleteLoginRolesError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1DeleteLoginRolesRequest,
-  output: DeleteRolesResponse,
+  output: DeleteRolesResponseOutput,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -12580,12 +12722,12 @@ export type V1DeleteProjectApiKeyError =
 /** Deletes an API key for the project */
 export const v1DeleteProjectApiKey: API.OperationMethod<
   V1DeleteProjectApiKeyRequest,
-  ApiKeyResponse,
+  ApiKeyResponseOutput,
   V1DeleteProjectApiKeyError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1DeleteProjectApiKeyRequest,
-  output: ApiKeyResponse,
+  output: ApiKeyResponseOutput,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -12617,12 +12759,12 @@ export type V1DeleteProjectTpaIntegrationError =
 /** Removes a third-party auth integration */
 export const v1DeleteProjectTpaIntegration: API.OperationMethod<
   V1DeleteProjectTpaIntegrationRequest,
-  ThirdPartyAuth,
+  ThirdPartyAuthOutput,
   V1DeleteProjectTpaIntegrationError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1DeleteProjectTpaIntegrationRequest,
-  output: ThirdPartyAuth,
+  output: ThirdPartyAuthOutput,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -12632,12 +12774,12 @@ export type V1DeployAFunctionError = BadRequest | Forbidden | SupabaseOpError;
 /** Deploy a function A new endpoint to deploy functions. It will create if function does not exist. */
 export const v1DeployAFunction: API.OperationMethod<
   V1DeployAFunctionRequest,
-  DeployFunctionResponse,
+  DeployFunctionResponseOutput,
   V1DeployAFunctionError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1DeployAFunctionRequest,
-  output: DeployFunctionResponse,
+  output: DeployFunctionResponseOutput,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -12724,12 +12866,12 @@ export type V1ExchangeOauthTokenError =
 /** [Beta] Exchange auth code for user's access and refresh token Supports `authorization_code`, `refresh_token`, and `urn:ietf:params:oauth:grant-type:jwt-bearer` grant types. The `jwt-bearer` grant type (IDJAG — identity-directed JWT assertion) is in beta and available on Team and Enterprise plans only. */
 export const v1ExchangeOauthToken: API.OperationMethod<
   V1ExchangeOauthTokenRequest,
-  OAuthTokenResponse,
+  OAuthTokenResponseOutput,
   V1ExchangeOauthTokenError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1ExchangeOauthTokenRequest,
-  output: OAuthTokenResponse,
+  output: OAuthTokenResponseOutput,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -12742,12 +12884,12 @@ export type V1GenerateTypescriptTypesError =
 /** Generate TypeScript types Returns the TypeScript types of your schema for use with supabase-js. */
 export const v1GenerateTypescriptTypes: API.OperationMethod<
   V1GenerateTypescriptTypesRequest,
-  TypescriptResponse,
+  TypescriptResponseOutput,
   V1GenerateTypescriptTypesError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1GenerateTypescriptTypesRequest,
-  output: TypescriptResponse,
+  output: TypescriptResponseOutput,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -12757,12 +12899,12 @@ export type V1GetABranchError = BadRequest | NotFound | SupabaseOpError;
 /** Get a database branch Fetches the specified database branch by its name. */
 export const v1GetABranch: API.OperationMethod<
   V1GetABranchRequest,
-  BranchResponse,
+  BranchResponseOutput,
   V1GetABranchError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1GetABranchRequest,
-  output: BranchResponse,
+  output: BranchResponseOutput,
   errors: [BadRequest, NotFound],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -12776,12 +12918,12 @@ export type V1GetABranchConfigError =
 /** Get database branch config Fetches configurations of the specified database branch */
 export const v1GetABranchConfig: API.OperationMethod<
   V1GetABranchConfigRequest,
-  BranchDetailResponse,
+  BranchDetailResponseOutput,
   V1GetABranchConfigError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1GetABranchConfigRequest,
-  output: BranchDetailResponse,
+  output: BranchDetailResponseOutput,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -12795,12 +12937,12 @@ export type V1GetActionRunError =
 /** Get the status of an action run Returns the current status of the specified action run. */
 export const v1GetActionRun: API.OperationMethod<
   V1GetActionRunRequest,
-  ActionRunResponse,
+  ActionRunResponseOutput,
   V1GetActionRunError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1GetActionRunRequest,
-  output: ActionRunResponse,
+  output: ActionRunResponseOutput,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -12833,12 +12975,12 @@ export type V1GetAFunctionError =
 /** Retrieve a function Retrieves a function with the specified slug and project. */
 export const v1GetAFunction: API.OperationMethod<
   V1GetAFunctionRequest,
-  FunctionSlugResponse,
+  FunctionSlugResponseOutput,
   V1GetAFunctionError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1GetAFunctionRequest,
-  output: FunctionSlugResponse,
+  output: FunctionSlugResponseOutput,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -12871,12 +13013,12 @@ export type V1GetAllProjectsForOrganizationError =
 /** Gets all projects for the given organization Returns a paginated list of projects for the specified organization. This endpoint uses offset-based pagination. Use the `offset` parameter to skip a number of projects and the `limit` parameter to control the number of projects returned per page. */
 export const v1GetAllProjectsForOrganization: API.OperationMethod<
   V1GetAllProjectsForOrganizationRequest,
-  OrganizationProjectsResponse,
+  OrganizationProjectsResponseOutput,
   V1GetAllProjectsForOrganizationError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1GetAllProjectsForOrganizationRequest,
-  output: OrganizationProjectsResponse,
+  output: OrganizationProjectsResponseOutput,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -12890,12 +13032,12 @@ export type V1GetAMigrationError =
 /** Fetch an existing entry from migration history */
 export const v1GetAMigration: API.OperationMethod<
   V1GetAMigrationRequest,
-  V1GetMigrationResponse,
+  V1GetMigrationResponseOutput,
   V1GetAMigrationError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1GetAMigrationRequest,
-  output: V1GetMigrationResponse,
+  output: V1GetMigrationResponseOutput,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -12909,12 +13051,12 @@ export type V1GetAnOrganizationError =
 /** Gets information about the organization */
 export const v1GetAnOrganization: API.OperationMethod<
   V1GetAnOrganizationRequest,
-  V1OrganizationSlugResponse,
+  V1OrganizationSlugResponseOutput,
   V1GetAnOrganizationError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1GetAnOrganizationRequest,
-  output: V1OrganizationSlugResponse,
+  output: V1OrganizationSlugResponseOutput,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -12928,12 +13070,12 @@ export type V1GetASnippetError =
 /** Gets a specific SQL snippet */
 export const v1GetASnippet: API.OperationMethod<
   V1GetASnippetRequest,
-  SnippetResponse,
+  SnippetResponseOutput,
   V1GetASnippetError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1GetASnippetRequest,
-  output: SnippetResponse,
+  output: SnippetResponseOutput,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -12947,12 +13089,12 @@ export type V1GetASsoProviderError =
 /** Gets a SSO provider by its UUID */
 export const v1GetASsoProvider: API.OperationMethod<
   V1GetASsoProviderRequest,
-  GetProviderResponse,
+  GetProviderResponseOutput,
   V1GetASsoProviderError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1GetASsoProviderRequest,
-  output: GetProviderResponse,
+  output: GetProviderResponseOutput,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -12965,12 +13107,12 @@ export type V1GetAuthServiceConfigError =
 /** Gets project's auth config */
 export const v1GetAuthServiceConfig: API.OperationMethod<
   V1GetAuthServiceConfigRequest,
-  AuthConfigResponse,
+  AuthConfigResponseOutput,
   V1GetAuthServiceConfigError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1GetAuthServiceConfigRequest,
-  output: AuthConfigResponse,
+  output: AuthConfigResponseOutput,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -12980,12 +13122,12 @@ export type V1GetAvailableRegionsError = Forbidden | SupabaseOpError;
 /** [Beta] Gets the list of available regions that can be used for a new project */
 export const v1GetAvailableRegions: API.OperationMethod<
   V1GetAvailableRegionsRequest,
-  RegionsInfo,
+  RegionsInfoOutput,
   V1GetAvailableRegionsError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1GetAvailableRegionsRequest,
-  output: RegionsInfo,
+  output: RegionsInfoOutput,
   errors: [Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -12995,12 +13137,12 @@ export type V1GetBackupScheduleError = Forbidden | NotFound | SupabaseOpError;
 /** Gets the backup schedule for a project */
 export const v1GetBackupSchedule: API.OperationMethod<
   V1GetBackupScheduleRequest,
-  V1BackupScheduleResponse,
+  V1BackupScheduleResponseOutput,
   V1GetBackupScheduleError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1GetBackupScheduleRequest,
-  output: V1BackupScheduleResponse,
+  output: V1BackupScheduleResponseOutput,
   errors: [Forbidden, NotFound],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -13010,12 +13152,12 @@ export type V1GetDatabaseDiskError = BadRequest | Forbidden | SupabaseOpError;
 /** Get database disk attributes */
 export const v1GetDatabaseDisk: API.OperationMethod<
   V1GetDatabaseDiskRequest,
-  DiskResponse,
+  DiskResponseOutput,
   V1GetDatabaseDiskError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1GetDatabaseDiskRequest,
-  output: DiskResponse,
+  output: DiskResponseOutput,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -13043,12 +13185,12 @@ export type V1GetDiskUtilizationError =
 /** Get disk utilization */
 export const v1GetDiskUtilization: API.OperationMethod<
   V1GetDiskUtilizationRequest,
-  DiskUtilMetricsResponse,
+  DiskUtilMetricsResponseOutput,
   V1GetDiskUtilizationError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1GetDiskUtilizationRequest,
-  output: DiskUtilMetricsResponse,
+  output: DiskUtilMetricsResponseOutput,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -13058,12 +13200,12 @@ export type V1GetHostnameConfigError = BadRequest | Forbidden | SupabaseOpError;
 /** [Beta] Gets project's custom hostname config */
 export const v1GetHostnameConfig: API.OperationMethod<
   V1GetHostnameConfigRequest,
-  UpdateCustomHostnameResponse,
+  UpdateCustomHostnameResponseOutput,
   V1GetHostnameConfigError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1GetHostnameConfigRequest,
-  output: UpdateCustomHostnameResponse,
+  output: UpdateCustomHostnameResponseOutput,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -13073,12 +13215,12 @@ export type V1GetJitAccessError = BadRequest | Forbidden | SupabaseOpError;
 /** Get user-id to role mappings for JIT access Mappings of roles a user can assume in the project database */
 export const v1GetJitAccess: API.OperationMethod<
   V1GetJitAccessRequest,
-  JitAccessResponse,
+  JitAccessResponseOutput,
   V1GetJitAccessError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1GetJitAccessRequest,
-  output: JitAccessResponse,
+  output: JitAccessResponseOutput,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -13109,12 +13251,12 @@ export type V1GetLegacySigningKeyError =
 /** Get the signing key information for the JWT secret imported as signing key for this project. This endpoint will be removed in the future, check for HTTP 404 Not Found. */
 export const v1GetLegacySigningKey: API.OperationMethod<
   V1GetLegacySigningKeyRequest,
-  SigningKeyResponse,
+  SigningKeyResponseOutput,
   V1GetLegacySigningKeyError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1GetLegacySigningKeyRequest,
-  output: SigningKeyResponse,
+  output: SigningKeyResponseOutput,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -13127,12 +13269,12 @@ export type V1GetNetworkRestrictionsError =
 /** [Beta] Gets project's network restrictions */
 export const v1GetNetworkRestrictions: API.OperationMethod<
   V1GetNetworkRestrictionsRequest,
-  NetworkRestrictionsResponse,
+  NetworkRestrictionsResponseOutput,
   V1GetNetworkRestrictionsError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1GetNetworkRestrictionsRequest,
-  output: NetworkRestrictionsResponse,
+  output: NetworkRestrictionsResponseOutput,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -13142,12 +13284,12 @@ export type V1GetOrganizationEntitlementsError = Forbidden | SupabaseOpError;
 /** Get entitlements for an organization Returns the entitlements available to the organization based on their plan and any overrides. */
 export const v1GetOrganizationEntitlements: API.OperationMethod<
   V1GetOrganizationEntitlementsRequest,
-  V1ListEntitlementsResponse,
+  V1ListEntitlementsResponseOutput,
   V1GetOrganizationEntitlementsError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1GetOrganizationEntitlementsRequest,
-  output: V1ListEntitlementsResponse,
+  output: V1ListEntitlementsResponseOutput,
   errors: [Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -13161,12 +13303,12 @@ export type V1GetOrganizationProjectClaimError =
 /** Gets project details for the specified organization and claim token */
 export const v1GetOrganizationProjectClaim: API.OperationMethod<
   V1GetOrganizationProjectClaimRequest,
-  OrganizationProjectClaimResponse,
+  OrganizationProjectClaimResponseOutput,
   V1GetOrganizationProjectClaimError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1GetOrganizationProjectClaimRequest,
-  output: OrganizationProjectClaimResponse,
+  output: OrganizationProjectClaimResponseOutput,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -13176,12 +13318,12 @@ export type V1GetPgsodiumConfigError = BadRequest | Forbidden | SupabaseOpError;
 /** [Beta] Gets project's pgsodium config */
 export const v1GetPgsodiumConfig: API.OperationMethod<
   V1GetPgsodiumConfigRequest,
-  PgsodiumConfigResponse,
+  PgsodiumConfigResponseOutput,
   V1GetPgsodiumConfigError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1GetPgsodiumConfigRequest,
-  output: PgsodiumConfigResponse,
+  output: PgsodiumConfigResponseOutput,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -13206,12 +13348,12 @@ export type V1GetPostgresConfigError = BadRequest | Forbidden | SupabaseOpError;
 /** Gets project's Postgres config */
 export const v1GetPostgresConfig: API.OperationMethod<
   V1GetPostgresConfigRequest,
-  PostgresConfigResponse,
+  PostgresConfigResponseOutput,
   V1GetPostgresConfigError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1GetPostgresConfigRequest,
-  output: PostgresConfigResponse,
+  output: PostgresConfigResponseOutput,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -13224,12 +13366,12 @@ export type V1GetPostgrestServiceConfigError =
 /** Gets project's postgrest config */
 export const v1GetPostgrestServiceConfig: API.OperationMethod<
   V1GetPostgrestServiceConfigRequest,
-  PostgrestConfigWithJWTSecretResponse,
+  PostgrestConfigWithJWTSecretResponseOutput,
   V1GetPostgrestServiceConfigError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1GetPostgrestServiceConfigRequest,
-  output: PostgrestConfigWithJWTSecretResponse,
+  output: PostgrestConfigWithJWTSecretResponseOutput,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -13242,12 +13384,12 @@ export type V1GetPostgresUpgradeEligibilityError =
 /** [Beta] Returns the project's eligibility for upgrades */
 export const v1GetPostgresUpgradeEligibility: API.OperationMethod<
   V1GetPostgresUpgradeEligibilityRequest,
-  ProjectUpgradeEligibilityResponse,
+  ProjectUpgradeEligibilityResponseOutput,
   V1GetPostgresUpgradeEligibilityError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1GetPostgresUpgradeEligibilityRequest,
-  output: ProjectUpgradeEligibilityResponse,
+  output: ProjectUpgradeEligibilityResponseOutput,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -13260,12 +13402,12 @@ export type V1GetPostgresUpgradeStatusError =
 /** [Beta] Gets the latest status of the project's upgrade */
 export const v1GetPostgresUpgradeStatus: API.OperationMethod<
   V1GetPostgresUpgradeStatusRequest,
-  DatabaseUpgradeStatusResponse,
+  DatabaseUpgradeStatusResponseOutput,
   V1GetPostgresUpgradeStatusError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1GetPostgresUpgradeStatusRequest,
-  output: DatabaseUpgradeStatusResponse,
+  output: DatabaseUpgradeStatusResponseOutput,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -13275,12 +13417,12 @@ export type V1GetProfileError = SupabaseOpError;
 /** Gets the user's profile */
 export const v1GetProfile: API.OperationMethod<
   V1GetProfileRequest,
-  V1ProfileResponse,
+  V1ProfileResponseOutput,
   V1GetProfileError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1GetProfileRequest,
-  output: V1ProfileResponse,
+  output: V1ProfileResponseOutput,
   errors: [],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -13290,12 +13432,12 @@ export type V1GetProjectError = BadRequest | Forbidden | SupabaseOpError;
 /** Gets a specific project that belongs to the authenticated user */
 export const v1GetProject: API.OperationMethod<
   V1GetProjectRequest,
-  V1ProjectWithDatabaseResponse,
+  V1ProjectWithDatabaseResponseOutput,
   V1GetProjectError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1GetProjectRequest,
-  output: V1ProjectWithDatabaseResponse,
+  output: V1ProjectWithDatabaseResponseOutput,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -13309,12 +13451,12 @@ export type V1GetProjectApiKeyError =
 /** Get API key */
 export const v1GetProjectApiKey: API.OperationMethod<
   V1GetProjectApiKeyRequest,
-  ApiKeyResponse,
+  ApiKeyResponseOutput,
   V1GetProjectApiKeyError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1GetProjectApiKeyRequest,
-  output: ApiKeyResponse,
+  output: ApiKeyResponseOutput,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -13342,12 +13484,12 @@ export type V1GetProjectClaimTokenError =
 /** Gets project claim token */
 export const v1GetProjectClaimToken: API.OperationMethod<
   V1GetProjectClaimTokenRequest,
-  ProjectClaimTokenResponse,
+  ProjectClaimTokenResponseOutput,
   V1GetProjectClaimTokenError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1GetProjectClaimTokenRequest,
-  output: ProjectClaimTokenResponse,
+  output: ProjectClaimTokenResponseOutput,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -13360,12 +13502,12 @@ export type V1GetProjectDiskAutoscaleConfigError =
 /** Gets project disk autoscale config */
 export const v1GetProjectDiskAutoscaleConfig: API.OperationMethod<
   V1GetProjectDiskAutoscaleConfigRequest,
-  DiskAutoscaleConfig,
+  DiskAutoscaleConfigOutput,
   V1GetProjectDiskAutoscaleConfigError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1GetProjectDiskAutoscaleConfigRequest,
-  output: DiskAutoscaleConfig,
+  output: DiskAutoscaleConfigOutput,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -13378,12 +13520,12 @@ export type V1GetProjectFunctionCombinedStatsError =
 /** Gets a project's function combined statistics */
 export const v1GetProjectFunctionCombinedStats: API.OperationMethod<
   V1GetProjectFunctionCombinedStatsRequest,
-  AnalyticsResponse,
+  AnalyticsResponseOutput,
   V1GetProjectFunctionCombinedStatsError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1GetProjectFunctionCombinedStatsRequest,
-  output: AnalyticsResponse,
+  output: AnalyticsResponseOutput,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -13396,12 +13538,12 @@ export type V1GetProjectLegacyApiKeysError =
 /** Check whether JWT based legacy (anon, service_role) API keys are enabled. This API endpoint will be removed in the future, check for HTTP 404 Not Found. */
 export const v1GetProjectLegacyApiKeys: API.OperationMethod<
   V1GetProjectLegacyApiKeysRequest,
-  LegacyApiKeysResponse,
+  LegacyApiKeysResponseOutput,
   V1GetProjectLegacyApiKeysError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1GetProjectLegacyApiKeysRequest,
-  output: LegacyApiKeysResponse,
+  output: LegacyApiKeysResponseOutput,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -13411,12 +13553,12 @@ export type V1GetProjectLogsError = Forbidden | SupabaseOpError;
 /** Gets all project's logs in a single log stream Executes an SQL or LQL query on the project's unified logs stream. Either the `iso_timestamp_start` and `iso_timestamp_end` parameters must be provided. If both are not provided, only the last 1 minute of logs will be queried. The timestamp range must be no more than 24 hours and is rounded to the nearest minute. If the range is more than 24 hours, a validation error will be thrown. Filter by the `source` column to specify specific log sources, such as edge_logs, postgres_logs, etc. Note: SQL must be written in **ClickHouse SQL dialect**. */
 export const v1GetProjectLogs: API.OperationMethod<
   V1GetProjectLogsRequest,
-  AnalyticsResponse,
+  AnalyticsResponseOutput,
   V1GetProjectLogsError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1GetProjectLogsRequest,
-  output: AnalyticsResponse,
+  output: AnalyticsResponseOutput,
   errors: [Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -13429,12 +13571,12 @@ export type V1GetProjectPgbouncerConfigError =
 /** Get project's pgbouncer config */
 export const v1GetProjectPgbouncerConfig: API.OperationMethod<
   V1GetProjectPgbouncerConfigRequest,
-  V1PgbouncerConfigResponse,
+  V1PgbouncerConfigResponseOutput,
   V1GetProjectPgbouncerConfigError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1GetProjectPgbouncerConfigRequest,
-  output: V1PgbouncerConfigResponse,
+  output: V1PgbouncerConfigResponseOutput,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -13448,12 +13590,12 @@ export type V1GetProjectSigningKeyError =
 /** Get information about a signing key */
 export const v1GetProjectSigningKey: API.OperationMethod<
   V1GetProjectSigningKeyRequest,
-  SigningKeyResponse,
+  SigningKeyResponseOutput,
   V1GetProjectSigningKeyError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1GetProjectSigningKeyRequest,
-  output: SigningKeyResponse,
+  output: SigningKeyResponseOutput,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -13466,12 +13608,12 @@ export type V1GetProjectSigningKeysError =
 /** List all signing keys for the project */
 export const v1GetProjectSigningKeys: API.OperationMethod<
   V1GetProjectSigningKeysRequest,
-  SigningKeysResponse,
+  SigningKeysResponseOutput,
   V1GetProjectSigningKeysError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1GetProjectSigningKeysRequest,
-  output: SigningKeysResponse,
+  output: SigningKeysResponseOutput,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -13485,12 +13627,12 @@ export type V1GetProjectTpaIntegrationError =
 /** Get a third-party integration */
 export const v1GetProjectTpaIntegration: API.OperationMethod<
   V1GetProjectTpaIntegrationRequest,
-  ThirdPartyAuth,
+  ThirdPartyAuthOutput,
   V1GetProjectTpaIntegrationError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1GetProjectTpaIntegrationRequest,
-  output: ThirdPartyAuth,
+  output: ThirdPartyAuthOutput,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -13503,12 +13645,12 @@ export type V1GetProjectUsageApiCountError =
 /** Gets project's usage api counts */
 export const v1GetProjectUsageApiCount: API.OperationMethod<
   V1GetProjectUsageApiCountRequest,
-  V1GetUsageApiCountResponse,
+  V1GetUsageApiCountResponseOutput,
   V1GetProjectUsageApiCountError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1GetProjectUsageApiCountRequest,
-  output: V1GetUsageApiCountResponse,
+  output: V1GetUsageApiCountResponseOutput,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -13521,12 +13663,12 @@ export type V1GetProjectUsageRequestCountError =
 /** Gets project's usage api requests count */
 export const v1GetProjectUsageRequestCount: API.OperationMethod<
   V1GetProjectUsageRequestCountRequest,
-  V1GetUsageApiRequestsCountResponse,
+  V1GetUsageApiRequestsCountResponseOutput,
   V1GetProjectUsageRequestCountError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1GetProjectUsageRequestCountRequest,
-  output: V1GetUsageApiRequestsCountResponse,
+  output: V1GetUsageApiRequestsCountResponseOutput,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -13539,12 +13681,12 @@ export type V1GetReadonlyModeStatusError =
 /** Returns project's readonly mode status */
 export const v1GetReadonlyModeStatus: API.OperationMethod<
   V1GetReadonlyModeStatusRequest,
-  ReadOnlyStatusResponse,
+  ReadOnlyStatusResponseOutput,
   V1GetReadonlyModeStatusError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1GetReadonlyModeStatusRequest,
-  output: ReadOnlyStatusResponse,
+  output: ReadOnlyStatusResponseOutput,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -13554,12 +13696,12 @@ export type V1GetRealtimeConfigError = BadRequest | Forbidden | SupabaseOpError;
 /** Gets realtime configuration */
 export const v1GetRealtimeConfig: API.OperationMethod<
   V1GetRealtimeConfigRequest,
-  RealtimeConfigResponse,
+  RealtimeConfigResponseOutput,
   V1GetRealtimeConfigError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1GetRealtimeConfigRequest,
-  output: RealtimeConfigResponse,
+  output: RealtimeConfigResponseOutput,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -13602,12 +13744,12 @@ export type V1GetSslEnforcementConfigError =
 /** [Beta] Get project's SSL enforcement configuration. */
 export const v1GetSslEnforcementConfig: API.OperationMethod<
   V1GetSslEnforcementConfigRequest,
-  SslEnforcementResponse,
+  SslEnforcementResponseOutput,
   V1GetSslEnforcementConfigError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1GetSslEnforcementConfigRequest,
-  output: SslEnforcementResponse,
+  output: SslEnforcementResponseOutput,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -13617,12 +13759,12 @@ export type V1GetStorageConfigError = BadRequest | Forbidden | SupabaseOpError;
 /** Gets project's storage config */
 export const v1GetStorageConfig: API.OperationMethod<
   V1GetStorageConfigRequest,
-  StorageConfigResponse,
+  StorageConfigResponseOutput,
   V1GetStorageConfigError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1GetStorageConfigRequest,
-  output: StorageConfigResponse,
+  output: StorageConfigResponseOutput,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -13635,12 +13777,12 @@ export type V1GetVanitySubdomainConfigError =
 /** [Beta] Gets current vanity subdomain config */
 export const v1GetVanitySubdomainConfig: API.OperationMethod<
   V1GetVanitySubdomainConfigRequest,
-  VanitySubdomainConfigResponse,
+  VanitySubdomainConfigResponseOutput,
   V1GetVanitySubdomainConfigError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1GetVanitySubdomainConfigRequest,
-  output: VanitySubdomainConfigResponse,
+  output: VanitySubdomainConfigResponseOutput,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -13650,12 +13792,12 @@ export type V1InviteExternalJitAccessError = Forbidden | SupabaseOpError;
 /** Invites an external user to a database for JIT access Invites the external user and sets initial roles that can be assumed and for how long */
 export const v1InviteExternalJitAccess: API.OperationMethod<
   V1InviteExternalJitAccessRequest,
-  InviteExternalUserJitResponse,
+  InviteExternalUserJitResponseOutput,
   V1InviteExternalJitAccessError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1InviteExternalJitAccessRequest,
-  output: InviteExternalUserJitResponse,
+  output: InviteExternalUserJitResponseOutput,
   errors: [Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -13680,12 +13822,12 @@ export type V1ListAllBackupsError = BadRequest | Forbidden | SupabaseOpError;
 /** Lists all backups */
 export const v1ListAllBackups: API.OperationMethod<
   V1ListAllBackupsRequest,
-  V1BackupsResponse,
+  V1BackupsResponseOutput,
   V1ListAllBackupsError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1ListAllBackupsRequest,
-  output: V1BackupsResponse,
+  output: V1BackupsResponseOutput,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -13743,12 +13885,12 @@ export type V1ListAllNetworkBansError =
 /** [Beta] Gets project's network bans */
 export const v1ListAllNetworkBans: API.OperationMethod<
   V1ListAllNetworkBansRequest,
-  NetworkBanResponse,
+  NetworkBanResponseOutput,
   V1ListAllNetworkBansError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1ListAllNetworkBansRequest,
-  output: NetworkBanResponse,
+  output: NetworkBanResponseOutput,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -13761,12 +13903,12 @@ export type V1ListAllNetworkBansEnrichedError =
 /** [Beta] Gets project's network bans with additional information about which databases they affect */
 export const v1ListAllNetworkBansEnriched: API.OperationMethod<
   V1ListAllNetworkBansEnrichedRequest,
-  NetworkBanResponseEnriched,
+  NetworkBanResponseEnrichedOutput,
   V1ListAllNetworkBansEnrichedError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1ListAllNetworkBansEnrichedRequest,
-  output: NetworkBanResponseEnriched,
+  output: NetworkBanResponseEnrichedOutput,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -13821,12 +13963,12 @@ export type V1ListAllSnippetsError = Forbidden | SupabaseOpError;
 /** Lists SQL snippets for the logged in user */
 export const v1ListAllSnippets: API.OperationMethod<
   V1ListAllSnippetsRequest,
-  SnippetList,
+  SnippetListOutput,
   V1ListAllSnippetsError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1ListAllSnippetsRequest,
-  output: SnippetList,
+  output: SnippetListOutput,
   errors: [Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -13840,12 +13982,12 @@ export type V1ListAllSsoProviderError =
 /** Lists all SSO providers */
 export const v1ListAllSsoProvider: API.OperationMethod<
   V1ListAllSsoProviderRequest,
-  ListProvidersResponse,
+  ListProvidersResponseOutput,
   V1ListAllSsoProviderError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1ListAllSsoProviderRequest,
-  output: ListProvidersResponse,
+  output: ListProvidersResponseOutput,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -13858,12 +14000,12 @@ export type V1ListAvailableRestoreVersionsError =
 /** Lists available restore versions for the given project */
 export const v1ListAvailableRestoreVersions: API.OperationMethod<
   V1ListAvailableRestoreVersionsRequest,
-  GetProjectAvailableRestoreVersionsResponse,
+  GetProjectAvailableRestoreVersionsResponseOutput,
   V1ListAvailableRestoreVersionsError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1ListAvailableRestoreVersionsRequest,
-  output: GetProjectAvailableRestoreVersionsResponse,
+  output: GetProjectAvailableRestoreVersionsResponseOutput,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -13873,12 +14015,12 @@ export type V1ListJitAccessError = BadRequest | Forbidden | SupabaseOpError;
 /** List all user-id to role mappings for JIT access Mappings of roles a user can assume in the project database */
 export const v1ListJitAccess: API.OperationMethod<
   V1ListJitAccessRequest,
-  JitListAccessResponse,
+  JitListAccessResponseOutput,
   V1ListJitAccessError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1ListJitAccessRequest,
-  output: JitListAccessResponse,
+  output: JitListAccessResponseOutput,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -13925,12 +14067,12 @@ export type V1ListProjectAddonsError = BadRequest | Forbidden | SupabaseOpError;
 /** List billing addons and compute instance selections Returns the billing addons that are currently applied, including the active compute instance size, and lists every addon option that can be provisioned with pricing metadata. */
 export const v1ListProjectAddons: API.OperationMethod<
   V1ListProjectAddonsRequest,
-  ListProjectAddonsResponse,
+  ListProjectAddonsResponseOutput,
   V1ListProjectAddonsError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1ListProjectAddonsRequest,
-  output: ListProjectAddonsResponse,
+  output: ListProjectAddonsResponseOutput,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -13962,12 +14104,12 @@ export type V1MergeABranchError =
 /** Merges a database branch Merges the specified database branch */
 export const v1MergeABranch: API.OperationMethod<
   V1MergeABranchRequest,
-  BranchUpdateResponse,
+  BranchUpdateResponseOutput,
   V1MergeABranchError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1MergeABranchRequest,
-  output: BranchUpdateResponse,
+  output: BranchUpdateResponseOutput,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -14032,12 +14174,12 @@ export type V1PatchNetworkRestrictionsError =
 /** [Alpha] Updates project's network restrictions by adding or removing CIDRs */
 export const v1PatchNetworkRestrictions: API.OperationMethod<
   V1PatchNetworkRestrictionsRequest,
-  NetworkRestrictionsV2Response,
+  NetworkRestrictionsV2ResponseOutput,
   V1PatchNetworkRestrictionsError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1PatchNetworkRestrictionsRequest,
-  output: NetworkRestrictionsV2Response,
+  output: NetworkRestrictionsV2ResponseOutput,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -14066,12 +14208,12 @@ export type V1PushABranchError =
 /** Pushes a database branch Pushes the specified database branch */
 export const v1PushABranch: API.OperationMethod<
   V1PushABranchRequest,
-  BranchUpdateResponse,
+  BranchUpdateResponseOutput,
   V1PushABranchError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1PushABranchRequest,
-  output: BranchUpdateResponse,
+  output: BranchUpdateResponseOutput,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -14137,12 +14279,12 @@ export type V1RemoveProjectSigningKeyError =
 /** Remove a signing key from a project. Only possible if the key has been in revoked status for a while. */
 export const v1RemoveProjectSigningKey: API.OperationMethod<
   V1RemoveProjectSigningKeyRequest,
-  SigningKeyResponse,
+  SigningKeyResponseOutput,
   V1RemoveProjectSigningKeyError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1RemoveProjectSigningKeyRequest,
-  output: SigningKeyResponse,
+  output: SigningKeyResponseOutput,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -14156,12 +14298,12 @@ export type V1ResetABranchError =
 /** Resets a database branch Resets the specified database branch */
 export const v1ResetABranch: API.OperationMethod<
   V1ResetABranchRequest,
-  BranchUpdateResponse,
+  BranchUpdateResponseOutput,
   V1ResetABranchError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1ResetABranchRequest,
-  output: BranchUpdateResponse,
+  output: BranchUpdateResponseOutput,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -14190,12 +14332,12 @@ export type V1RestoreABranchError =
 /** Restore a scheduled branch deletion Cancels scheduled deletion and restores the branch to active state */
 export const v1RestoreABranch: API.OperationMethod<
   V1RestoreABranchRequest,
-  BranchRestoreResponse,
+  BranchRestoreResponseOutput,
   V1RestoreABranchError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1RestoreABranchRequest,
-  output: BranchRestoreResponse,
+  output: BranchRestoreResponseOutput,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -14369,12 +14511,12 @@ export type V1UpdateABranchConfigError =
 /** Update database branch config Updates the configuration of the specified database branch */
 export const v1UpdateABranchConfig: API.OperationMethod<
   V1UpdateABranchConfigRequest,
-  BranchResponse,
+  BranchResponseOutput,
   V1UpdateABranchConfigError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1UpdateABranchConfigRequest,
-  output: BranchResponse,
+  output: BranchResponseOutput,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -14388,12 +14530,12 @@ export type V1UpdateActionRunStatusError =
 /** Update the status of an action run Updates the status of an ongoing action run. */
 export const v1UpdateActionRunStatus: API.OperationMethod<
   V1UpdateActionRunStatusRequest,
-  UpdateRunStatusResponse,
+  UpdateRunStatusResponseOutput,
   V1UpdateActionRunStatusError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1UpdateActionRunStatusRequest,
-  output: UpdateRunStatusResponse,
+  output: UpdateRunStatusResponseOutput,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -14407,12 +14549,12 @@ export type V1UpdateAFunctionError =
 /** Update a function Updates a function with the specified slug and project. */
 export const v1UpdateAFunction: API.OperationMethod<
   V1UpdateAFunctionRequest,
-  FunctionResponse,
+  FunctionSlugResponseOutput,
   V1UpdateAFunctionError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1UpdateAFunctionRequest,
-  output: FunctionResponse,
+  output: FunctionSlugResponseOutput,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -14422,12 +14564,12 @@ export type V1UpdateAProjectError = BadRequest | Forbidden | SupabaseOpError;
 /** Updates the given project */
 export const v1UpdateAProject: API.OperationMethod<
   V1UpdateAProjectRequest,
-  V1ProjectRefResponse,
+  V1ProjectRefResponseOutput,
   V1UpdateAProjectError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1UpdateAProjectRequest,
-  output: V1ProjectRefResponse,
+  output: V1ProjectRefResponseOutput,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -14441,12 +14583,12 @@ export type V1UpdateASsoProviderError =
 /** Updates a SSO provider by its UUID */
 export const v1UpdateASsoProvider: API.OperationMethod<
   V1UpdateASsoProviderRequest,
-  UpdateProviderResponse,
+  UpdateProviderResponseOutput,
   V1UpdateASsoProviderError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1UpdateASsoProviderRequest,
-  output: UpdateProviderResponse,
+  output: UpdateProviderResponseOutput,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -14459,12 +14601,12 @@ export type V1UpdateAuthServiceConfigError =
 /** Updates a project's auth config */
 export const v1UpdateAuthServiceConfig: API.OperationMethod<
   V1UpdateAuthServiceConfigRequest,
-  AuthConfigResponse,
+  AuthConfigResponseOutput,
   V1UpdateAuthServiceConfigError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1UpdateAuthServiceConfigRequest,
-  output: AuthConfigResponse,
+  output: AuthConfigResponseOutput,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -14478,12 +14620,12 @@ export type V1UpdateBackupScheduleError =
 /** Updates the backup schedule time for a project Sets the time at which the daily backup runs. The change takes effect on the next backup window that includes the new time. If the new time has already passed for today, the first backup at the new time will occur the following day. It can only be updated 3 times per 24 hours. */
 export const v1UpdateBackupSchedule: API.OperationMethod<
   V1UpdateBackupScheduleRequest,
-  V1BackupScheduleResponse,
+  V1BackupScheduleResponseOutput,
   V1UpdateBackupScheduleError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1UpdateBackupScheduleRequest,
-  output: V1BackupScheduleResponse,
+  output: V1BackupScheduleResponseOutput,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -14496,12 +14638,12 @@ export type V1UpdateDatabasePasswordError =
 /** Updates the database password */
 export const v1UpdateDatabasePassword: API.OperationMethod<
   V1UpdateDatabasePasswordRequest,
-  V1UpdatePasswordResponse,
+  V1UpdatePasswordResponseOutput,
   V1UpdateDatabasePasswordError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1UpdateDatabasePasswordRequest,
-  output: V1UpdatePasswordResponse,
+  output: V1UpdatePasswordResponseOutput,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -14514,12 +14656,12 @@ export type V1UpdateHostnameConfigError =
 /** [Beta] Updates project's custom hostname configuration */
 export const v1UpdateHostnameConfig: API.OperationMethod<
   V1UpdateHostnameConfigRequest,
-  UpdateCustomHostnameResponse,
+  UpdateCustomHostnameResponseOutput,
   V1UpdateHostnameConfigError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1UpdateHostnameConfigRequest,
-  output: UpdateCustomHostnameResponse,
+  output: UpdateCustomHostnameResponseOutput,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -14529,12 +14671,12 @@ export type V1UpdateJitAccessError = BadRequest | Forbidden | SupabaseOpError;
 /** Updates a user mapping for JIT access Modifies the roles that can be assumed and for how long */
 export const v1UpdateJitAccess: API.OperationMethod<
   V1UpdateJitAccessRequest,
-  JitAccessResponse,
+  JitAccessResponseOutput,
   V1UpdateJitAccessError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1UpdateJitAccessRequest,
-  output: JitAccessResponse,
+  output: JitAccessResponseOutput,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -14565,12 +14707,12 @@ export type V1UpdateNetworkRestrictionsError =
 /** [Beta] Updates project's network restrictions */
 export const v1UpdateNetworkRestrictions: API.OperationMethod<
   V1UpdateNetworkRestrictionsRequest,
-  NetworkRestrictionsResponse,
+  NetworkRestrictionsResponseOutput,
   V1UpdateNetworkRestrictionsError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1UpdateNetworkRestrictionsRequest,
-  output: NetworkRestrictionsResponse,
+  output: NetworkRestrictionsResponseOutput,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -14583,12 +14725,12 @@ export type V1UpdatePgsodiumConfigError =
 /** [Beta] Updates project's pgsodium config. Updating the root_key can cause all data encrypted with the older key to become inaccessible. */
 export const v1UpdatePgsodiumConfig: API.OperationMethod<
   V1UpdatePgsodiumConfigRequest,
-  PgsodiumConfigResponse,
+  PgsodiumConfigResponseOutput,
   V1UpdatePgsodiumConfigError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1UpdatePgsodiumConfigRequest,
-  output: PgsodiumConfigResponse,
+  output: PgsodiumConfigResponseOutput,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -14601,12 +14743,12 @@ export type V1UpdatePoolerConfigError =
 /** Updates project's supavisor config */
 export const v1UpdatePoolerConfig: API.OperationMethod<
   V1UpdatePoolerConfigRequest,
-  UpdateSupavisorConfigResponse,
+  UpdateSupavisorConfigResponseOutput,
   V1UpdatePoolerConfigError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1UpdatePoolerConfigRequest,
-  output: UpdateSupavisorConfigResponse,
+  output: UpdateSupavisorConfigResponseOutput,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -14619,12 +14761,12 @@ export type V1UpdatePostgresConfigError =
 /** Updates project's Postgres config */
 export const v1UpdatePostgresConfig: API.OperationMethod<
   V1UpdatePostgresConfigRequest,
-  PostgresConfigResponse,
+  PostgresConfigResponseOutput,
   V1UpdatePostgresConfigError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1UpdatePostgresConfigRequest,
-  output: PostgresConfigResponse,
+  output: PostgresConfigResponseOutput,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -14637,12 +14779,12 @@ export type V1UpdatePostgrestServiceConfigError =
 /** Updates project's postgrest config */
 export const v1UpdatePostgrestServiceConfig: API.OperationMethod<
   V1UpdatePostgrestServiceConfigRequest,
-  V1PostgrestConfigResponse,
+  V1PostgrestConfigResponseOutput,
   V1UpdatePostgrestServiceConfigError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1UpdatePostgrestServiceConfigRequest,
-  output: V1PostgrestConfigResponse,
+  output: V1PostgrestConfigResponseOutput,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -14656,12 +14798,12 @@ export type V1UpdateProjectApiKeyError =
 /** Updates an API key for the project */
 export const v1UpdateProjectApiKey: API.OperationMethod<
   V1UpdateProjectApiKeyRequest,
-  ApiKeyResponse,
+  ApiKeyResponseOutput,
   V1UpdateProjectApiKeyError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1UpdateProjectApiKeyRequest,
-  output: ApiKeyResponse,
+  output: ApiKeyResponseOutput,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -14674,12 +14816,12 @@ export type V1UpdateProjectLegacyApiKeysError =
 /** Disable or re-enable JWT based legacy (anon, service_role) API keys. This API endpoint will be removed in the future, check for HTTP 404 Not Found. */
 export const v1UpdateProjectLegacyApiKeys: API.OperationMethod<
   V1UpdateProjectLegacyApiKeysRequest,
-  LegacyApiKeysResponse,
+  LegacyApiKeysResponseOutput,
   V1UpdateProjectLegacyApiKeysError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1UpdateProjectLegacyApiKeysRequest,
-  output: LegacyApiKeysResponse,
+  output: LegacyApiKeysResponseOutput,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -14693,12 +14835,12 @@ export type V1UpdateProjectSigningKeyError =
 /** Update a signing key, mainly its status */
 export const v1UpdateProjectSigningKey: API.OperationMethod<
   V1UpdateProjectSigningKeyRequest,
-  SigningKeyResponse,
+  SigningKeyResponseOutput,
   V1UpdateProjectSigningKeyError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1UpdateProjectSigningKeyRequest,
-  output: SigningKeyResponse,
+  output: SigningKeyResponseOutput,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -14729,12 +14871,12 @@ export type V1UpdateSslEnforcementConfigError =
 /** [Beta] Update project's SSL enforcement configuration. */
 export const v1UpdateSslEnforcementConfig: API.OperationMethod<
   V1UpdateSslEnforcementConfigRequest,
-  SslEnforcementResponse,
+  SslEnforcementResponseOutput,
   V1UpdateSslEnforcementConfigError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1UpdateSslEnforcementConfigRequest,
-  output: SslEnforcementResponse,
+  output: SslEnforcementResponseOutput,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -14765,12 +14907,12 @@ export type V1UpgradePostgresVersionError =
 /** [Beta] Upgrades the project's Postgres version */
 export const v1UpgradePostgresVersion: API.OperationMethod<
   V1UpgradePostgresVersionRequest,
-  ProjectUpgradeInitiateResponse,
+  ProjectUpgradeInitiateResponseOutput,
   V1UpgradePostgresVersionError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1UpgradePostgresVersionRequest,
-  output: ProjectUpgradeInitiateResponse,
+  output: ProjectUpgradeInitiateResponseOutput,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,
@@ -14795,12 +14937,12 @@ export type V1VerifyDnsConfigError = BadRequest | Forbidden | SupabaseOpError;
 /** [Beta] Attempts to verify the DNS configuration for project's custom hostname configuration */
 export const v1VerifyDnsConfig: API.OperationMethod<
   V1VerifyDnsConfigRequest,
-  UpdateCustomHostnameResponse,
+  UpdateCustomHostnameResponseOutput,
   V1VerifyDnsConfigError,
   SupabaseOpContext
 > = /*@__PURE__*/ API.make(() => ({
   input: V1VerifyDnsConfigRequest,
-  output: UpdateCustomHostnameResponse,
+  output: UpdateCustomHostnameResponseOutput,
   errors: [BadRequest, Forbidden],
   protocol: SupabaseProtocol,
   retry: Retry.Retry,

@@ -14,13 +14,14 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.cpim#GuestUsagesListByResourceGroup": {
+    "com.azure.cpim#ListGuestUsageByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cpim#GuestUsagesListByResourceGroupRequest"
+        "target": "com.azure.cpim#ListGuestUsageByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.cpim#GuestUsagesResourceList"
@@ -243,7 +244,7 @@
         "smithy.api#documentation": "Key-value pairs of additional resource provisioning properties."
       }
     },
-    "com.azure.cpim#GuestUsagesListByResourceGroupRequest": {
+    "com.azure.cpim#ListGuestUsageByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -267,10 +268,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cpim#GuestUsagesListBySubscription": {
+    "com.azure.cpim#ListGuestUsageBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cpim#GuestUsagesListBySubscriptionRequest"
+        "target": "com.azure.cpim#ListGuestUsageBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.cpim#GuestUsagesResourceList"
@@ -286,7 +287,7 @@
         "com.distilled.openapi#apiVersion": "2021-04-01"
       }
     },
-    "com.azure.cpim#GuestUsagesListBySubscriptionRequest": {
+    "com.azure.cpim#ListGuestUsageBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -302,10 +303,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cpim#GuestUsagesDelete": {
+    "com.azure.cpim#DeleteGuestUsage": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cpim#GuestUsagesDeleteRequest"
+        "target": "com.azure.cpim#DeleteGuestUsageRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -321,7 +322,7 @@
         "com.distilled.openapi#apiVersion": "2021-04-01"
       }
     },
-    "com.azure.cpim#GuestUsagesDeleteRequest": {
+    "com.azure.cpim#DeleteGuestUsageRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -353,10 +354,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cpim#GuestUsagesUpdate": {
+    "com.azure.cpim#UpdateGuestUsage": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cpim#GuestUsagesUpdateRequest"
+        "target": "com.azure.cpim#UpdateGuestUsageRequest"
       },
       "output": {
         "target": "com.azure.cpim#GuestUsagesResource"
@@ -372,7 +373,7 @@
         "com.distilled.openapi#apiVersion": "2021-04-01"
       }
     },
-    "com.azure.cpim#GuestUsagesUpdateRequest": {
+    "com.azure.cpim#UpdateGuestUsageRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -400,7 +401,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.cpim#GuestUsagesUpdateRequestTagsMap",
+          "target": "com.azure.cpim#UpdateGuestUsageRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Key-value pairs of additional resource provisioning properties."
           }
@@ -410,7 +411,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cpim#GuestUsagesUpdateRequestTagsMap": {
+    "com.azure.cpim#UpdateGuestUsageRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -422,10 +423,10 @@
         "smithy.api#documentation": "Key-value pairs of additional resource provisioning properties."
       }
     },
-    "com.azure.cpim#GuestUsagesCreate": {
+    "com.azure.cpim#CreateGuestUsage": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cpim#GuestUsagesCreateRequest"
+        "target": "com.azure.cpim#CreateGuestUsageRequest"
       },
       "output": {
         "target": "com.azure.cpim#GuestUsagesResource"
@@ -441,7 +442,7 @@
         "com.distilled.openapi#apiVersion": "2021-04-01"
       }
     },
-    "com.azure.cpim#GuestUsagesCreateRequest": {
+    "com.azure.cpim#CreateGuestUsageRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -475,7 +476,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.cpim#GuestUsagesCreateRequestTagsMap",
+          "target": "com.azure.cpim#CreateGuestUsageRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Key-value pairs of additional resource provisioning properties."
           }
@@ -491,7 +492,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cpim#GuestUsagesCreateRequestTagsMap": {
+    "com.azure.cpim#CreateGuestUsageRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -503,10 +504,10 @@
         "smithy.api#documentation": "Key-value pairs of additional resource provisioning properties."
       }
     },
-    "com.azure.cpim#GuestUsagesGet": {
+    "com.azure.cpim#GetGuestUsage": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cpim#GuestUsagesGetRequest"
+        "target": "com.azure.cpim#GetGuestUsageRequest"
       },
       "output": {
         "target": "com.azure.cpim#GuestUsagesResource"
@@ -522,7 +523,7 @@
         "com.distilled.openapi#apiVersion": "2021-04-01"
       }
     },
-    "com.azure.cpim#GuestUsagesGetRequest": {
+    "com.azure.cpim#GetGuestUsageRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -554,7 +555,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cpim#OperationsList": {
+    "com.azure.cpim#ListOperations": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -666,10 +667,10 @@
         "smithy.api#documentation": "Operation display payload"
       }
     },
-    "com.azure.cpim#B2CTenantsDelete": {
+    "com.azure.cpim#DeleteB2CTenant": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cpim#B2CTenantsDeleteRequest"
+        "target": "com.azure.cpim#DeleteB2CTenantRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -685,7 +686,7 @@
         "com.distilled.openapi#apiVersion": "2021-04-01"
       }
     },
-    "com.azure.cpim#B2CTenantsDeleteRequest": {
+    "com.azure.cpim#DeleteB2CTenantRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -717,10 +718,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cpim#B2CTenantsUpdate": {
+    "com.azure.cpim#UpdateB2CTenant": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cpim#B2CTenantsUpdateRequest"
+        "target": "com.azure.cpim#UpdateB2CTenantRequest"
       },
       "output": {
         "target": "com.azure.cpim#B2CTenantResource"
@@ -1045,7 +1046,7 @@
         "smithy.api#documentation": "The type of the B2C tenant resource."
       }
     },
-    "com.azure.cpim#B2CTenantsUpdateRequest": {
+    "com.azure.cpim#UpdateB2CTenantRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1082,7 +1083,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.cpim#B2CTenantsUpdateRequestTagsMap",
+          "target": "com.azure.cpim#UpdateB2CTenantRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource Tags"
           }
@@ -1092,7 +1093,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cpim#B2CTenantsUpdateRequestTagsMap": {
+    "com.azure.cpim#UpdateB2CTenantRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1158,10 +1159,10 @@
         "smithy.api#documentation": "The type of billing. Will be MAU for all new customers. If 'Auths', it can be updated to 'MAU'. Cannot be changed if value is 'MAU'. Learn more about Azure AD B2C billing at [aka.ms/b2cBilling](https://aka.ms/b2cbilling)."
       }
     },
-    "com.azure.cpim#B2CTenantsCreate": {
+    "com.azure.cpim#CreateB2CTenant": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cpim#B2CTenantsCreateRequest"
+        "target": "com.azure.cpim#CreateB2CTenantRequest"
       },
       "output": {
         "target": "com.azure.cpim#B2CTenantResource"
@@ -1177,7 +1178,7 @@
         "com.distilled.openapi#apiVersion": "2021-04-01"
       }
     },
-    "com.azure.cpim#B2CTenantsCreateRequest": {
+    "com.azure.cpim#CreateB2CTenantRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1212,7 +1213,7 @@
           }
         },
         "properties": {
-          "target": "com.azure.cpim#B2CTenantsCreateRequestProperties",
+          "target": "com.azure.cpim#CreateB2CTenantRequestProperties",
           "traits": {
             "smithy.api#required": {}
           }
@@ -1224,7 +1225,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.cpim#B2CTenantsCreateRequestTagsMap",
+          "target": "com.azure.cpim#CreateB2CTenantRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource Tags"
           }
@@ -1234,7 +1235,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cpim#B2CTenantsCreateRequestTagsMap": {
+    "com.azure.cpim#CreateB2CTenantRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1246,7 +1247,7 @@
         "smithy.api#documentation": "Resource Tags"
       }
     },
-    "com.azure.cpim#B2CTenantsCreateRequestProperties": {
+    "com.azure.cpim#CreateB2CTenantRequestProperties": {
       "type": "structure",
       "members": {
         "createTenantProperties": {
@@ -1272,10 +1273,10 @@
         "smithy.api#documentation": "These properties are used to create the Azure AD B2C tenant. These properties are not part of the Azure resource."
       }
     },
-    "com.azure.cpim#B2CTenantsGet": {
+    "com.azure.cpim#GetB2CTenant": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cpim#B2CTenantsGetRequest"
+        "target": "com.azure.cpim#GetB2CTenantRequest"
       },
       "output": {
         "target": "com.azure.cpim#B2CTenantResource"
@@ -1291,7 +1292,7 @@
         "com.distilled.openapi#apiVersion": "2021-04-01"
       }
     },
-    "com.azure.cpim#B2CTenantsGetRequest": {
+    "com.azure.cpim#GetB2CTenantRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1323,10 +1324,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cpim#B2CTenantsListBySubscription": {
+    "com.azure.cpim#ListB2CTenantBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cpim#B2CTenantsListBySubscriptionRequest"
+        "target": "com.azure.cpim#ListB2CTenantBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.cpim#B2CTenantResourceList"
@@ -1365,7 +1366,7 @@
         "smithy.api#documentation": "List of Azure AD B2C tenant resources"
       }
     },
-    "com.azure.cpim#B2CTenantsListBySubscriptionRequest": {
+    "com.azure.cpim#ListB2CTenantBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1381,10 +1382,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cpim#B2CTenantsListByResourceGroup": {
+    "com.azure.cpim#ListB2CTenantByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cpim#B2CTenantsListByResourceGroupRequest"
+        "target": "com.azure.cpim#ListB2CTenantByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.cpim#B2CTenantResourceList"
@@ -1400,7 +1401,7 @@
         "com.distilled.openapi#apiVersion": "2021-04-01"
       }
     },
-    "com.azure.cpim#B2CTenantsListByResourceGroupRequest": {
+    "com.azure.cpim#ListB2CTenantByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1424,10 +1425,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.cpim#B2CTenantsCheckNameAvailability": {
+    "com.azure.cpim#CheckB2CTenantNameAvailability": {
       "type": "operation",
       "input": {
-        "target": "com.azure.cpim#B2CTenantsCheckNameAvailabilityRequest"
+        "target": "com.azure.cpim#CheckB2CTenantNameAvailabilityRequest"
       },
       "output": {
         "target": "com.azure.cpim#NameAvailabilityResponse"
@@ -1486,7 +1487,7 @@
         "smithy.api#documentation": "Describes the reason for the 'nameAvailable' value."
       }
     },
-    "com.azure.cpim#B2CTenantsCheckNameAvailabilityRequest": {
+    "com.azure.cpim#CheckB2CTenantNameAvailabilityRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1520,46 +1521,46 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.cpim#GuestUsagesListByResourceGroup"
+          "target": "com.azure.cpim#ListGuestUsageByResourceGroup"
         },
         {
-          "target": "com.azure.cpim#GuestUsagesListBySubscription"
+          "target": "com.azure.cpim#ListGuestUsageBySubscription"
         },
         {
-          "target": "com.azure.cpim#GuestUsagesDelete"
+          "target": "com.azure.cpim#DeleteGuestUsage"
         },
         {
-          "target": "com.azure.cpim#GuestUsagesUpdate"
+          "target": "com.azure.cpim#UpdateGuestUsage"
         },
         {
-          "target": "com.azure.cpim#GuestUsagesCreate"
+          "target": "com.azure.cpim#CreateGuestUsage"
         },
         {
-          "target": "com.azure.cpim#GuestUsagesGet"
+          "target": "com.azure.cpim#GetGuestUsage"
         },
         {
-          "target": "com.azure.cpim#OperationsList"
+          "target": "com.azure.cpim#ListOperations"
         },
         {
-          "target": "com.azure.cpim#B2CTenantsDelete"
+          "target": "com.azure.cpim#DeleteB2CTenant"
         },
         {
-          "target": "com.azure.cpim#B2CTenantsUpdate"
+          "target": "com.azure.cpim#UpdateB2CTenant"
         },
         {
-          "target": "com.azure.cpim#B2CTenantsCreate"
+          "target": "com.azure.cpim#CreateB2CTenant"
         },
         {
-          "target": "com.azure.cpim#B2CTenantsGet"
+          "target": "com.azure.cpim#GetB2CTenant"
         },
         {
-          "target": "com.azure.cpim#B2CTenantsListBySubscription"
+          "target": "com.azure.cpim#ListB2CTenantBySubscription"
         },
         {
-          "target": "com.azure.cpim#B2CTenantsListByResourceGroup"
+          "target": "com.azure.cpim#ListB2CTenantByResourceGroup"
         },
         {
-          "target": "com.azure.cpim#B2CTenantsCheckNameAvailability"
+          "target": "com.azure.cpim#CheckB2CTenantNameAvailability"
         }
       ],
       "traits": {

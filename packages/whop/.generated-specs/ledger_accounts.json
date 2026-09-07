@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.whop.ledger_accounts#RetrieveLedgerAccountRequest": {
+    "com.whop.ledger_accounts#GetLedgerAccountRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -1378,10 +1379,10 @@
         "smithy.api#documentation": "The balance cache associated with the account by currency."
       }
     },
-    "com.whop.ledger_accounts#RetrieveLedgerAccount": {
+    "com.whop.ledger_accounts#GetLedgerAccount": {
       "type": "operation",
       "input": {
-        "target": "com.whop.ledger_accounts#RetrieveLedgerAccountRequest"
+        "target": "com.whop.ledger_accounts#GetLedgerAccountRequest"
       },
       "output": {
         "target": "com.whop.ledger_accounts#LedgerAccount"
@@ -1466,7 +1467,7 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.whop.ledger_accounts#RetrieveLedgerAccount"
+          "target": "com.whop.ledger_accounts#GetLedgerAccount"
         }
       ],
       "traits": {

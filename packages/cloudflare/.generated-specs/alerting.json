@@ -14,25 +14,55 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "keyDictionary": {
+      "affectedAsns": "affected_asns",
+      "affectedComponents": "affected_components",
+      "affectedLocations": "affected_locations",
+      "airportCode": "airport_code",
+      "alertBody": "alert_body",
+      "alertInterval": "alert_interval",
+      "alertTriggerPreferences": "alert_trigger_preferences",
+      "alertTriggerPreferencesValue": "alert_trigger_preferences_value",
+      "alertType": "alert_type",
+      "createdAt": "created_at",
+      "endTime": "end_time",
+      "eventSource": "event_source",
+      "eventType": "event_type",
+      "groupBy": "group_by",
+      "healthCheckId": "health_check_id",
+      "incidentImpact": "incident_impact",
+      "inputId": "input_id",
+      "insightClass": "insight_class",
+      "lastFailure": "last_failure",
+      "lastSuccess": "last_success",
+      "logoTag": "logo_tag",
+      "mechanismType": "mechanism_type",
+      "megabitsPerSecond": "megabits_per_second",
+      "newHealth": "new_health",
+      "newStatus": "new_status",
+      "packetsPerSecond": "packets_per_second",
+      "perPage": "per_page",
+      "policyId": "policy_id",
+      "poolId": "pool_id",
+      "popNames": "pop_names",
+      "projectId": "project_id",
+      "queryTag": "query_tag",
+      "requestsPerSecond": "requests_per_second",
+      "resultInfo": "result_info",
+      "startTime": "start_time",
+      "targetHostname": "target_hostname",
+      "targetIp": "target_ip",
+      "targetZoneName": "target_zone_name",
+      "totalCount": "total_count",
+      "trafficExclusions": "traffic_exclusions",
+      "tunnelId": "tunnel_id",
+      "tunnelName": "tunnel_name",
+      "updatedAt": "updated_at"
+    },
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.cloudflare.alerting#AvailableAlertsListRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The account id",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.alerting#AvailableAlertsListResultValueItemFilterOptionsList": {
       "type": "list",
       "member": {
@@ -81,55 +111,6 @@
       },
       "value": {
         "target": "com.cloudflare.alerting#AvailableAlertsListResultValueList"
-      }
-    },
-    "com.cloudflare.alerting#AvailableAlertsListResponse": {
-      "type": "structure",
-      "members": {
-        "result": {
-          "target": "com.cloudflare.alerting#AvailableAlertsListResultMap",
-          "traits": {
-            "com.cloudflare.protocols#envelopePayload": {},
-            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.alerting#AvailableAlertsList": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.alerting#AvailableAlertsListRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.alerting#AvailableAlertsListResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/accounts/{account_id}/alerting/v3/available_alerts",
-          "code": 200
-        },
-        "smithy.api#documentation": "Gets a list of all alert types for which an account is eligible.",
-        "smithy.api#readonly": {}
-      }
-    },
-    "com.cloudflare.alerting#DestinationsEligibleGetRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The account id",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.alerting#DestinationsEligibleGetResultValueItemType": {
@@ -193,137 +174,6 @@
         "target": "com.cloudflare.alerting#DestinationsEligibleGetResultValueList"
       }
     },
-    "com.cloudflare.alerting#DestinationsEligibleGetResponse": {
-      "type": "structure",
-      "members": {
-        "result": {
-          "target": "com.cloudflare.alerting#DestinationsEligibleGetResultMap",
-          "traits": {
-            "com.cloudflare.protocols#envelopePayload": {},
-            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.alerting#DestinationsEligibleGet": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.alerting#DestinationsEligibleGetRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.alerting#DestinationsEligibleGetResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/accounts/{account_id}/alerting/v3/destinations/eligible",
-          "code": 200
-        },
-        "smithy.api#documentation": "Get a list of all delivery mechanism types for which an account is eligible.",
-        "smithy.api#readonly": {}
-      }
-    },
-    "com.cloudflare.alerting#DestinationsPagerdutyCreateRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The account id",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.alerting#DestinationsPagerdutyCreateResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "token in form of UUID"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.alerting#DestinationsPagerdutyCreate": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.alerting#DestinationsPagerdutyCreateRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.alerting#DestinationsPagerdutyCreateResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "/accounts/{account_id}/alerting/v3/destinations/pagerduty/connect",
-          "code": 200
-        },
-        "smithy.api#documentation": "Creates a new token for integrating with PagerDuty."
-      }
-    },
-    "com.cloudflare.alerting#DestinationsPagerdutyDeleteRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The account id",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.alerting#DestinationsPagerdutyDelete": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.alerting#DestinationsPagerdutyDeleteRequest"
-      },
-      "output": {
-        "target": "smithy.api#Unit"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "/accounts/{account_id}/alerting/v3/destinations/pagerduty",
-          "code": 200
-        },
-        "smithy.api#documentation": "Deletes all the PagerDuty Services connected to the account.",
-        "smithy.api#idempotent": {}
-      }
-    },
-    "com.cloudflare.alerting#DestinationsPagerdutyGetRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The account id",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.alerting#DestinationsPagerdutyGetResultItem": {
       "type": "structure",
       "members": {
@@ -345,230 +195,6 @@
       "type": "list",
       "member": {
         "target": "com.cloudflare.alerting#DestinationsPagerdutyGetResultItem"
-      }
-    },
-    "com.cloudflare.alerting#DestinationsPagerdutyGetResponse": {
-      "type": "structure",
-      "members": {
-        "result": {
-          "target": "com.cloudflare.alerting#DestinationsPagerdutyGetResultList",
-          "traits": {
-            "com.cloudflare.protocols#envelopePayload": {},
-            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.alerting#DestinationsPagerdutyGet": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.alerting#DestinationsPagerdutyGetRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.alerting#DestinationsPagerdutyGetResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/accounts/{account_id}/alerting/v3/destinations/pagerduty",
-          "code": 200
-        },
-        "smithy.api#documentation": "Get a list of all configured PagerDuty services.",
-        "smithy.api#readonly": {}
-      }
-    },
-    "com.cloudflare.alerting#DestinationsPagerdutyLinkRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The account id",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "token_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The token integration key",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.alerting#DestinationsPagerdutyLinkResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "UUID"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.alerting#DestinationsPagerdutyLink": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.alerting#DestinationsPagerdutyLinkRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.alerting#DestinationsPagerdutyLinkResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/accounts/{account_id}/alerting/v3/destinations/pagerduty/connect/{token_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Links PagerDuty with the account using the integration token.",
-        "smithy.api#readonly": {}
-      }
-    },
-    "com.cloudflare.alerting#DestinationsWebhooksCreateRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The account id",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name of the webhook destination. This will be included in the request body when you receive a webhook notification.",
-            "smithy.api#required": {}
-          }
-        },
-        "url": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The POST endpoint to call when dispatching a notification.",
-            "smithy.api#required": {}
-          }
-        },
-        "secret": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional secret that will be passed in the `cf-webhook-auth` header when dispatching generic webhook notifications or formatted for supported destinations. Secrets are not returned in any API response body."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.alerting#DestinationsWebhooksCreateResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "UUID"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.alerting#DestinationsWebhooksCreate": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.alerting#DestinationsWebhooksCreateRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.alerting#DestinationsWebhooksCreateResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "/accounts/{account_id}/alerting/v3/destinations/webhooks",
-          "code": 200
-        },
-        "smithy.api#documentation": "Creates a new webhook destination."
-      }
-    },
-    "com.cloudflare.alerting#DestinationsWebhooksDeleteRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The account id",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "webhook_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The unique identifier of a webhook",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.alerting#DestinationsWebhooksDelete": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.alerting#DestinationsWebhooksDeleteRequest"
-      },
-      "output": {
-        "target": "smithy.api#Unit"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "/accounts/{account_id}/alerting/v3/destinations/webhooks/{webhook_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Delete a configured webhook destination.",
-        "smithy.api#idempotent": {}
-      }
-    },
-    "com.cloudflare.alerting#DestinationsWebhooksGetRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The account id",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "webhook_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The unique identifier of a webhook",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.alerting#DestinationsWebhooksGetResponseType": {
@@ -622,97 +248,6 @@
             "smithy.api#enumValue": "splunk"
           }
         }
-      }
-    },
-    "com.cloudflare.alerting#DestinationsWebhooksGetResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The unique identifier of a webhook"
-          }
-        },
-        "created_at": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Timestamp of when the webhook destination was created."
-          }
-        },
-        "last_failure": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Timestamp of the last time an attempt to dispatch a notification to this webhook failed."
-          }
-        },
-        "last_success": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Timestamp of the last time Cloudflare was able to successfully dispatch a notification using this webhook."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name of the webhook destination. This will be included in the request body when you receive a webhook notification."
-          }
-        },
-        "secret": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional secret that will be passed in the `cf-webhook-auth` header when dispatching generic webhook notifications or formatted for supported destinations. Secrets are not returned in any API response body."
-          }
-        },
-        "type": {
-          "target": "com.cloudflare.alerting#DestinationsWebhooksGetResponseType",
-          "traits": {
-            "smithy.api#documentation": "Type of webhook endpoint."
-          }
-        },
-        "url": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The POST endpoint to call when dispatching a notification."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.alerting#DestinationsWebhooksGet": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.alerting#DestinationsWebhooksGetRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.alerting#DestinationsWebhooksGetResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/accounts/{account_id}/alerting/v3/destinations/webhooks/{webhook_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Get details for a single webhooks destination.",
-        "smithy.api#readonly": {}
-      }
-    },
-    "com.cloudflare.alerting#DestinationsWebhooksListRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The account id",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.alerting#DestinationsWebhooksListResultItemType": {
@@ -827,160 +362,6 @@
         "target": "com.cloudflare.alerting#DestinationsWebhooksListResultItem"
       }
     },
-    "com.cloudflare.alerting#DestinationsWebhooksListResponse": {
-      "type": "structure",
-      "members": {
-        "result": {
-          "target": "com.cloudflare.alerting#DestinationsWebhooksListResultList",
-          "traits": {
-            "com.cloudflare.protocols#envelopePayload": {},
-            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.alerting#DestinationsWebhooksList": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.alerting#DestinationsWebhooksListRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.alerting#DestinationsWebhooksListResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/accounts/{account_id}/alerting/v3/destinations/webhooks",
-          "code": 200
-        },
-        "smithy.api#documentation": "Gets a list of all configured webhook destinations.",
-        "smithy.api#readonly": {}
-      }
-    },
-    "com.cloudflare.alerting#DestinationsWebhooksUpdateRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The account id",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "webhook_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The unique identifier of a webhook",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name of the webhook destination. This will be included in the request body when you receive a webhook notification.",
-            "smithy.api#required": {}
-          }
-        },
-        "url": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The POST endpoint to call when dispatching a notification.",
-            "smithy.api#required": {}
-          }
-        },
-        "secret": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional secret that will be passed in the `cf-webhook-auth` header when dispatching generic webhook notifications or formatted for supported destinations. Secrets are not returned in any API response body."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.alerting#DestinationsWebhooksUpdateResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "UUID"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.alerting#DestinationsWebhooksUpdate": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.alerting#DestinationsWebhooksUpdateRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.alerting#DestinationsWebhooksUpdateResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "PUT",
-          "uri": "/accounts/{account_id}/alerting/v3/destinations/webhooks/{webhook_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Update a webhook destination.",
-        "smithy.api#idempotent": {}
-      }
-    },
-    "com.cloudflare.alerting#HistoryListRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The account id",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "before": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Limit the returned results to history records older than the specified date. This must be a timestamp that conforms to RFC3339.",
-            "smithy.api#httpQuery": "before"
-          }
-        },
-        "page": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Page number of paginated results.",
-            "smithy.api#httpQuery": "page"
-          }
-        },
-        "per_page": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Number of items per page.",
-            "smithy.api#httpQuery": "per_page"
-          }
-        },
-        "since": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Limit the returned results to history records newer than the specified date. This must be a timestamp that conforms to RFC3339.",
-            "smithy.api#httpQuery": "since"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.alerting#HistoryListResultItemMechanismType": {
       "type": "enum",
       "members": {
@@ -1067,39 +448,6 @@
       "type": "list",
       "member": {
         "target": "com.cloudflare.alerting#HistoryListResultItem"
-      }
-    },
-    "com.cloudflare.alerting#HistoryListResponse": {
-      "type": "structure",
-      "members": {
-        "result": {
-          "target": "com.cloudflare.alerting#HistoryListResultList",
-          "traits": {
-            "com.cloudflare.protocols#envelopePayload": {},
-            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.alerting#HistoryList": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.alerting#HistoryListRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.alerting#HistoryListResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/accounts/{account_id}/alerting/v3/history",
-          "code": 200
-        },
-        "smithy.api#documentation": "Gets a list of history records for notifications sent to an account. The records are displayed for last `x` number of days based on the zone plan (free = 30, pro = 30, biz = 30, ent = 90).",
-        "smithy.api#readonly": {}
       }
     },
     "com.cloudflare.alerting#PoliciesCreateRequestAlertType": {
@@ -2147,166 +1495,6 @@
         }
       }
     },
-    "com.cloudflare.alerting#PoliciesCreateRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The account id",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "alert_type": {
-          "target": "com.cloudflare.alerting#PoliciesCreateRequestAlertType",
-          "traits": {
-            "smithy.api#documentation": "Refers to which event will trigger a Notification dispatch. You can use the endpoint to get available alert types which then will give you a list of possible values.",
-            "smithy.api#required": {}
-          }
-        },
-        "enabled": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether or not the Notification policy is enabled.",
-            "smithy.api#required": {}
-          }
-        },
-        "mechanisms": {
-          "target": "com.cloudflare.alerting#PoliciesCreateRequestMechanisms",
-          "traits": {
-            "smithy.api#documentation": "List of IDs that will be used when dispatching a notification. IDs for email type will be the email address.",
-            "smithy.api#required": {}
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Name of the policy.",
-            "smithy.api#required": {}
-          }
-        },
-        "alert_interval": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional specification of how often to re-alert from the same incident, not support on all alert types."
-          }
-        },
-        "description": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional description for the Notification policy."
-          }
-        },
-        "filters": {
-          "target": "com.cloudflare.alerting#PoliciesCreateRequestFilters",
-          "traits": {
-            "smithy.api#documentation": "Optional filters that allow you to be alerted only on a subset of events for that alert type based on some criteria. This is only available for select alert types. See alert type documentation for more details."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.alerting#PoliciesCreateResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "UUID"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.alerting#PoliciesCreate": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.alerting#PoliciesCreateRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.alerting#PoliciesCreateResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "/accounts/{account_id}/alerting/v3/policies",
-          "code": 200
-        },
-        "smithy.api#documentation": "Creates a new Notification policy."
-      }
-    },
-    "com.cloudflare.alerting#PoliciesDeleteRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The account id",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "policy_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The unique identifier of a notification policy",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.alerting#PoliciesDelete": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.alerting#PoliciesDeleteRequest"
-      },
-      "output": {
-        "target": "smithy.api#Unit"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "/accounts/{account_id}/alerting/v3/policies/{policy_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Delete a Notification policy.",
-        "smithy.api#idempotent": {}
-      }
-    },
-    "com.cloudflare.alerting#PoliciesGetRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The account id",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "policy_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The unique identifier of a notification policy",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.alerting#PoliciesGetResponseAlertType": {
       "type": "enum",
       "members": {
@@ -3350,103 +2538,6 @@
         "webhooks": {
           "target": "com.cloudflare.alerting#PoliciesGetResponseMechanismsWebhooksList"
         }
-      }
-    },
-    "com.cloudflare.alerting#PoliciesGetResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The unique identifier of a notification policy"
-          }
-        },
-        "alert_interval": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional specification of how often to re-alert from the same incident, not support on all alert types."
-          }
-        },
-        "alert_type": {
-          "target": "com.cloudflare.alerting#PoliciesGetResponseAlertType",
-          "traits": {
-            "smithy.api#documentation": "Refers to which event will trigger a Notification dispatch. You can use the endpoint to get available alert types which then will give you a list of possible values."
-          }
-        },
-        "created": {
-          "target": "smithy.api#String"
-        },
-        "description": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional description for the Notification policy."
-          }
-        },
-        "enabled": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether or not the Notification policy is enabled."
-          }
-        },
-        "filters": {
-          "target": "com.cloudflare.alerting#PoliciesGetResponseFilters",
-          "traits": {
-            "smithy.api#documentation": "Optional filters that allow you to be alerted only on a subset of events for that alert type based on some criteria. This is only available for select alert types. See alert type documentation for more details."
-          }
-        },
-        "mechanisms": {
-          "target": "com.cloudflare.alerting#PoliciesGetResponseMechanisms",
-          "traits": {
-            "smithy.api#documentation": "List of IDs that will be used when dispatching a notification. IDs for email type will be the email address."
-          }
-        },
-        "modified": {
-          "target": "smithy.api#String"
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Name of the policy."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.alerting#PoliciesGet": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.alerting#PoliciesGetRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.alerting#PoliciesGetResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/accounts/{account_id}/alerting/v3/policies/{policy_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Get details for a single policy.",
-        "smithy.api#readonly": {}
-      }
-    },
-    "com.cloudflare.alerting#PoliciesListRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The account id",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.alerting#PoliciesListResultItemAlertType": {
@@ -4559,39 +3650,6 @@
         "target": "com.cloudflare.alerting#PoliciesListResultItem"
       }
     },
-    "com.cloudflare.alerting#PoliciesListResponse": {
-      "type": "structure",
-      "members": {
-        "result": {
-          "target": "com.cloudflare.alerting#PoliciesListResultList",
-          "traits": {
-            "com.cloudflare.protocols#envelopePayload": {},
-            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.alerting#PoliciesList": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.alerting#PoliciesListRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.alerting#PoliciesListResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/accounts/{account_id}/alerting/v3/policies",
-          "code": 200
-        },
-        "smithy.api#documentation": "Get a list of all Notification policies.",
-        "smithy.api#readonly": {}
-      }
-    },
     "com.cloudflare.alerting#PoliciesUpdateRequestAlertType": {
       "type": "enum",
       "members": {
@@ -5637,7 +4695,1841 @@
         }
       }
     },
-    "com.cloudflare.alerting#PoliciesUpdateRequest": {
+    "com.cloudflare.alerting#SilencesCreateRequestBodyItem": {
+      "type": "structure",
+      "members": {
+        "end_time": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the silence ends."
+          }
+        },
+        "policy_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of a notification policy"
+          }
+        },
+        "start_time": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the silence starts."
+          }
+        }
+      }
+    },
+    "com.cloudflare.alerting#SilencesCreateRequestBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.alerting#SilencesCreateRequestBodyItem"
+      }
+    },
+    "com.cloudflare.alerting#SilencesListResultItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Silence ID"
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the silence was created."
+          }
+        },
+        "end_time": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the silence ends."
+          }
+        },
+        "policy_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of a notification policy"
+          }
+        },
+        "start_time": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the silence starts."
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the silence was modified."
+          }
+        }
+      }
+    },
+    "com.cloudflare.alerting#SilencesListResultList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.alerting#SilencesListResultItem"
+      }
+    },
+    "com.cloudflare.alerting#SilencesUpdateRequestBodyItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Silence ID"
+          }
+        },
+        "end_time": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the silence ends."
+          }
+        },
+        "start_time": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the silence starts."
+          }
+        }
+      }
+    },
+    "com.cloudflare.alerting#SilencesUpdateRequestBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.alerting#SilencesUpdateRequestBodyItem"
+      }
+    },
+    "com.cloudflare.alerting#SilencesUpdateResultItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Silence ID"
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the silence was created."
+          }
+        },
+        "end_time": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the silence ends."
+          }
+        },
+        "policy_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of a notification policy"
+          }
+        },
+        "start_time": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the silence starts."
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the silence was modified."
+          }
+        }
+      }
+    },
+    "com.cloudflare.alerting#SilencesUpdateResultList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.alerting#SilencesUpdateResultItem"
+      }
+    },
+    "com.cloudflare.alerting#Alerting": {
+      "type": "service",
+      "version": "4.0",
+      "operations": [
+        {
+          "target": "com.cloudflare.alerting#CreateDestinationPagerduty"
+        },
+        {
+          "target": "com.cloudflare.alerting#CreateDestinationWebhook"
+        },
+        {
+          "target": "com.cloudflare.alerting#CreatePolicy"
+        },
+        {
+          "target": "com.cloudflare.alerting#CreateSilence"
+        },
+        {
+          "target": "com.cloudflare.alerting#DeleteDestinationPagerduty"
+        },
+        {
+          "target": "com.cloudflare.alerting#DeleteDestinationWebhook"
+        },
+        {
+          "target": "com.cloudflare.alerting#DeletePolicy"
+        },
+        {
+          "target": "com.cloudflare.alerting#DeleteSilence"
+        },
+        {
+          "target": "com.cloudflare.alerting#GetDestinationEligible"
+        },
+        {
+          "target": "com.cloudflare.alerting#GetDestinationPagerduty"
+        },
+        {
+          "target": "com.cloudflare.alerting#GetDestinationWebhook"
+        },
+        {
+          "target": "com.cloudflare.alerting#GetPolicy"
+        },
+        {
+          "target": "com.cloudflare.alerting#GetSilence"
+        },
+        {
+          "target": "com.cloudflare.alerting#LinkDestinationPagerduty"
+        },
+        {
+          "target": "com.cloudflare.alerting#ListAvailableAlerts"
+        },
+        {
+          "target": "com.cloudflare.alerting#ListDestinationWebhooks"
+        },
+        {
+          "target": "com.cloudflare.alerting#ListHistories"
+        },
+        {
+          "target": "com.cloudflare.alerting#ListPolicies"
+        },
+        {
+          "target": "com.cloudflare.alerting#ListSilences"
+        },
+        {
+          "target": "com.cloudflare.alerting#UpdateDestinationWebhook"
+        },
+        {
+          "target": "com.cloudflare.alerting#UpdatePolicy"
+        },
+        {
+          "target": "com.cloudflare.alerting#UpdateSilence"
+        }
+      ],
+      "traits": {
+        "com.cloudflare.protocols#v4Json": {},
+        "smithy.api#title": "Cloudflare Alerting",
+        "smithy.api#documentation": "Cloudflare API — alerting resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+      }
+    },
+    "com.cloudflare.alerting#FiltersRequired": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "code": 17103
+          }
+        ]
+      }
+    },
+    "com.cloudflare.alerting#InvalidAlertType": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "code": 17004
+          }
+        ]
+      }
+    },
+    "com.cloudflare.alerting#InvalidRoute": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "code": 7003
+          }
+        ]
+      }
+    },
+    "com.cloudflare.alerting#InvalidSilence": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "code": 0,
+            "message": {
+              "includes": "invalid silence"
+            }
+          }
+        ]
+      }
+    },
+    "com.cloudflare.alerting#InvalidWebhookId": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "code": 0,
+            "message": {
+              "includes": "invalid Webhook ID"
+            }
+          }
+        ]
+      }
+    },
+    "com.cloudflare.alerting#MechanismRequired": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "code": 17102
+          }
+        ]
+      }
+    },
+    "com.cloudflare.alerting#PolicyNotFound": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "code": 0,
+            "message": {
+              "includes": "Policy not found"
+            }
+          }
+        ]
+      }
+    },
+    "com.cloudflare.alerting#SilenceAlreadyExists": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "code": 15000
+          }
+        ]
+      }
+    },
+    "com.cloudflare.alerting#SilenceNotFound": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "code": 0,
+            "message": {
+              "includes": "silence not found"
+            }
+          }
+        ]
+      }
+    },
+    "com.cloudflare.alerting#WebhookNotFound": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "code": 0,
+            "message": {
+              "includes": "Webhook not found"
+            }
+          }
+        ]
+      }
+    },
+    "com.cloudflare.alerting#WebhookTestFailed": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "code": 0,
+            "message": {
+              "includes": "Webhook test failed"
+            }
+          },
+          {
+            "status": 422,
+            "message": {
+              "includes": "Webhook test request failed"
+            }
+          }
+        ]
+      }
+    },
+    "com.cloudflare.alerting#CreateDestinationPagerduty": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.alerting#CreateDestinationPagerdutyRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.alerting#CreateDestinationPagerdutyResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/alerting/v3/destinations/pagerduty/connect",
+          "code": 200
+        },
+        "smithy.api#documentation": "Creates a new token for integrating with PagerDuty."
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.alerting#InvalidRoute"
+        }
+      ]
+    },
+    "com.cloudflare.alerting#CreateDestinationPagerdutyRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The account id",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.alerting#CreateDestinationPagerdutyResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "token in form of UUID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.alerting#CreateDestinationWebhook": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.alerting#CreateDestinationWebhookRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.alerting#CreateDestinationWebhookResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/alerting/v3/destinations/webhooks",
+          "code": 200
+        },
+        "smithy.api#documentation": "Creates a new webhook destination."
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.alerting#InvalidRoute"
+        },
+        {
+          "target": "com.cloudflare.alerting#WebhookTestFailed"
+        }
+      ]
+    },
+    "com.cloudflare.alerting#CreateDestinationWebhookRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The account id",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the webhook destination. This will be included in the request body when you receive a webhook notification.",
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The POST endpoint to call when dispatching a notification.",
+            "smithy.api#required": {}
+          }
+        },
+        "secret": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional secret that will be passed in the `cf-webhook-auth` header when dispatching generic webhook notifications or formatted for supported destinations. Secrets are not returned in any API response body."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.alerting#CreateDestinationWebhookResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UUID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.alerting#CreatePolicy": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.alerting#CreatePolicyRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.alerting#CreatePolicyResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/alerting/v3/policies",
+          "code": 200
+        },
+        "smithy.api#documentation": "Creates a new Notification policy."
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.alerting#InvalidRoute"
+        },
+        {
+          "target": "com.cloudflare.alerting#FiltersRequired"
+        },
+        {
+          "target": "com.cloudflare.alerting#MechanismRequired"
+        }
+      ]
+    },
+    "com.cloudflare.alerting#CreatePolicyRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The account id",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "alert_type": {
+          "target": "com.cloudflare.alerting#PoliciesCreateRequestAlertType",
+          "traits": {
+            "smithy.api#documentation": "Refers to which event will trigger a Notification dispatch. You can use the endpoint to get available alert types which then will give you a list of possible values.",
+            "smithy.api#required": {}
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether or not the Notification policy is enabled.",
+            "smithy.api#required": {}
+          }
+        },
+        "mechanisms": {
+          "target": "com.cloudflare.alerting#PoliciesCreateRequestMechanisms",
+          "traits": {
+            "smithy.api#documentation": "List of IDs that will be used when dispatching a notification. IDs for email type will be the email address.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the policy.",
+            "smithy.api#required": {}
+          }
+        },
+        "alert_interval": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional specification of how often to re-alert from the same incident, not support on all alert types."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional description for the Notification policy."
+          }
+        },
+        "filters": {
+          "target": "com.cloudflare.alerting#PoliciesCreateRequestFilters",
+          "traits": {
+            "smithy.api#documentation": "Optional filters that allow you to be alerted only on a subset of events for that alert type based on some criteria. This is only available for select alert types. See alert type documentation for more details."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.alerting#CreatePolicyResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UUID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.alerting#CreateSilence": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.alerting#CreateSilenceRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/alerting/v3/silences",
+          "code": 200
+        },
+        "smithy.api#documentation": "Creates a new silence for an account."
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.alerting#InvalidRoute"
+        },
+        {
+          "target": "com.cloudflare.alerting#InvalidSilence"
+        },
+        {
+          "target": "com.cloudflare.alerting#SilenceAlreadyExists"
+        }
+      ]
+    },
+    "com.cloudflare.alerting#CreateSilenceRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The account id",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.cloudflare.alerting#SilencesCreateRequestBodyList",
+          "traits": {
+            "smithy.api#required": {},
+            "smithy.api#httpPayload": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.alerting#DeleteDestinationPagerduty": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.alerting#DeleteDestinationPagerdutyRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/accounts/{account_id}/alerting/v3/destinations/pagerduty",
+          "code": 200
+        },
+        "smithy.api#documentation": "Deletes all the PagerDuty Services connected to the account.",
+        "smithy.api#idempotent": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.alerting#InvalidRoute"
+        }
+      ]
+    },
+    "com.cloudflare.alerting#DeleteDestinationPagerdutyRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The account id",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.alerting#DeleteDestinationWebhook": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.alerting#DeleteDestinationWebhookRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/accounts/{account_id}/alerting/v3/destinations/webhooks/{webhook_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a configured webhook destination.",
+        "smithy.api#idempotent": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.alerting#InvalidRoute"
+        }
+      ]
+    },
+    "com.cloudflare.alerting#DeleteDestinationWebhookRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The account id",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "webhook_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of a webhook",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.alerting#DeletePolicy": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.alerting#DeletePolicyRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/accounts/{account_id}/alerting/v3/policies/{policy_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a Notification policy.",
+        "smithy.api#idempotent": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.alerting#InvalidRoute"
+        },
+        {
+          "target": "com.cloudflare.alerting#PolicyNotFound"
+        }
+      ]
+    },
+    "com.cloudflare.alerting#DeletePolicyRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The account id",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "policy_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of a notification policy",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.alerting#DeleteSilence": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.alerting#DeleteSilenceRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/accounts/{account_id}/alerting/v3/silences/{silence_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Deletes an existing silence for an account.",
+        "smithy.api#idempotent": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.alerting#InvalidRoute"
+        },
+        {
+          "target": "com.cloudflare.alerting#SilenceNotFound"
+        }
+      ]
+    },
+    "com.cloudflare.alerting#DeleteSilenceRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The account id",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "silence_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Silence ID",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.alerting#GetDestinationEligible": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.alerting#GetDestinationEligibleRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.alerting#GetDestinationEligibleResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/alerting/v3/destinations/eligible",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a list of all delivery mechanism types for which an account is eligible.",
+        "smithy.api#readonly": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.alerting#InvalidRoute"
+        }
+      ]
+    },
+    "com.cloudflare.alerting#GetDestinationEligibleRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The account id",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.alerting#GetDestinationEligibleResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.alerting#DestinationsEligibleGetResultMap",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.alerting#GetDestinationPagerduty": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.alerting#GetDestinationPagerdutyRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.alerting#GetDestinationPagerdutyResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/alerting/v3/destinations/pagerduty",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a list of all configured PagerDuty services.",
+        "smithy.api#readonly": {},
+        "smithy.api#paginated": {
+          "mode": "single",
+          "items": "result"
+        }
+      }
+    },
+    "com.cloudflare.alerting#GetDestinationPagerdutyRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The account id",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.alerting#GetDestinationPagerdutyResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.alerting#DestinationsPagerdutyGetResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.alerting#GetDestinationWebhook": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.alerting#GetDestinationWebhookRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.alerting#GetDestinationWebhookResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/alerting/v3/destinations/webhooks/{webhook_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get details for a single webhooks destination.",
+        "smithy.api#readonly": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.alerting#InvalidRoute"
+        },
+        {
+          "target": "com.cloudflare.alerting#WebhookNotFound"
+        }
+      ]
+    },
+    "com.cloudflare.alerting#GetDestinationWebhookRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The account id",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "webhook_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of a webhook",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.alerting#GetDestinationWebhookResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of a webhook"
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp of when the webhook destination was created."
+          }
+        },
+        "last_failure": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp of the last time an attempt to dispatch a notification to this webhook failed."
+          }
+        },
+        "last_success": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp of the last time Cloudflare was able to successfully dispatch a notification using this webhook."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the webhook destination. This will be included in the request body when you receive a webhook notification."
+          }
+        },
+        "secret": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional secret that will be passed in the `cf-webhook-auth` header when dispatching generic webhook notifications or formatted for supported destinations. Secrets are not returned in any API response body."
+          }
+        },
+        "type": {
+          "target": "com.cloudflare.alerting#DestinationsWebhooksGetResponseType",
+          "traits": {
+            "smithy.api#documentation": "Type of webhook endpoint."
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The POST endpoint to call when dispatching a notification."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.alerting#GetPolicy": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.alerting#GetPolicyRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.alerting#GetPolicyResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/alerting/v3/policies/{policy_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get details for a single policy.",
+        "smithy.api#readonly": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.alerting#InvalidRoute"
+        },
+        {
+          "target": "com.cloudflare.alerting#PolicyNotFound"
+        }
+      ]
+    },
+    "com.cloudflare.alerting#GetPolicyRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The account id",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "policy_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of a notification policy",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.alerting#GetPolicyResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of a notification policy"
+          }
+        },
+        "alert_interval": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional specification of how often to re-alert from the same incident, not support on all alert types."
+          }
+        },
+        "alert_type": {
+          "target": "com.cloudflare.alerting#PoliciesGetResponseAlertType",
+          "traits": {
+            "smithy.api#documentation": "Refers to which event will trigger a Notification dispatch. You can use the endpoint to get available alert types which then will give you a list of possible values."
+          }
+        },
+        "created": {
+          "target": "smithy.api#String"
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional description for the Notification policy."
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether or not the Notification policy is enabled."
+          }
+        },
+        "filters": {
+          "target": "com.cloudflare.alerting#PoliciesGetResponseFilters",
+          "traits": {
+            "smithy.api#documentation": "Optional filters that allow you to be alerted only on a subset of events for that alert type based on some criteria. This is only available for select alert types. See alert type documentation for more details."
+          }
+        },
+        "mechanisms": {
+          "target": "com.cloudflare.alerting#PoliciesGetResponseMechanisms",
+          "traits": {
+            "smithy.api#documentation": "List of IDs that will be used when dispatching a notification. IDs for email type will be the email address."
+          }
+        },
+        "modified": {
+          "target": "smithy.api#String"
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the policy."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.alerting#GetSilence": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.alerting#GetSilenceRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.alerting#GetSilenceResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/alerting/v3/silences/{silence_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Gets a specific silence for an account.",
+        "smithy.api#readonly": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.alerting#InvalidRoute"
+        },
+        {
+          "target": "com.cloudflare.alerting#SilenceNotFound"
+        }
+      ]
+    },
+    "com.cloudflare.alerting#GetSilenceRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The account id",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "silence_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Silence ID",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.alerting#GetSilenceResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Silence ID"
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the silence was created."
+          }
+        },
+        "end_time": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the silence ends."
+          }
+        },
+        "policy_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of a notification policy"
+          }
+        },
+        "start_time": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the silence starts."
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the silence was modified."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.alerting#LinkDestinationPagerduty": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.alerting#LinkDestinationPagerdutyRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.alerting#LinkDestinationPagerdutyResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/alerting/v3/destinations/pagerduty/connect/{token_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Links PagerDuty with the account using the integration token.",
+        "smithy.api#readonly": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.alerting#InvalidRoute"
+        }
+      ]
+    },
+    "com.cloudflare.alerting#LinkDestinationPagerdutyRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The account id",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "token_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The token integration key",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.alerting#LinkDestinationPagerdutyResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UUID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.alerting#ListAvailableAlerts": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.alerting#ListAvailableAlertsRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.alerting#ListAvailableAlertsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/alerting/v3/available_alerts",
+          "code": 200
+        },
+        "smithy.api#documentation": "Gets a list of all alert types for which an account is eligible.",
+        "smithy.api#readonly": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.alerting#InvalidRoute"
+        }
+      ]
+    },
+    "com.cloudflare.alerting#ListAvailableAlertsRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The account id",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.alerting#ListAvailableAlertsResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.alerting#AvailableAlertsListResultMap",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.alerting#ListDestinationWebhooks": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.alerting#ListDestinationWebhooksRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.alerting#ListDestinationWebhooksResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/alerting/v3/destinations/webhooks",
+          "code": 200
+        },
+        "smithy.api#documentation": "Gets a list of all configured webhook destinations.",
+        "smithy.api#readonly": {},
+        "smithy.api#paginated": {
+          "mode": "single",
+          "items": "result"
+        }
+      }
+    },
+    "com.cloudflare.alerting#ListDestinationWebhooksRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The account id",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.alerting#ListDestinationWebhooksResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.alerting#DestinationsWebhooksListResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.alerting#ListHistories": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.alerting#ListHistoriesRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.alerting#ListHistoriesResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/alerting/v3/history",
+          "code": 200
+        },
+        "smithy.api#documentation": "Gets a list of history records for notifications sent to an account. The records are displayed for last `x` number of days based on the zone plan (free = 30, pro = 30, biz = 30, ent = 90).",
+        "smithy.api#readonly": {},
+        "smithy.api#paginated": {
+          "mode": "page",
+          "inputToken": "page",
+          "outputToken": "resultInfo.page",
+          "items": "result",
+          "pageSize": "perPage"
+        }
+      }
+    },
+    "com.cloudflare.alerting#ListHistoriesRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The account id",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "before": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Limit the returned results to history records older than the specified date. This must be a timestamp that conforms to RFC3339.",
+            "smithy.api#httpQuery": "before"
+          }
+        },
+        "page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Page number of paginated results.",
+            "smithy.api#httpQuery": "page"
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Number of items per page.",
+            "smithy.api#httpQuery": "per_page"
+          }
+        },
+        "since": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Limit the returned results to history records newer than the specified date. This must be a timestamp that conforms to RFC3339.",
+            "smithy.api#httpQuery": "since"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.alerting#ListHistoriesResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.alerting#HistoryListResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.alerting#ListPolicies": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.alerting#ListPoliciesRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.alerting#ListPoliciesResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/alerting/v3/policies",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a list of all Notification policies.",
+        "smithy.api#readonly": {},
+        "smithy.api#paginated": {
+          "mode": "single",
+          "items": "result"
+        }
+      }
+    },
+    "com.cloudflare.alerting#ListPoliciesRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The account id",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.alerting#ListPoliciesResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.alerting#PoliciesListResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.alerting#ListSilences": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.alerting#ListSilencesRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.alerting#ListSilencesResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/alerting/v3/silences",
+          "code": 200
+        },
+        "smithy.api#documentation": "Gets a list of silences for an account.",
+        "smithy.api#readonly": {},
+        "smithy.api#paginated": {
+          "mode": "single",
+          "items": "result"
+        }
+      }
+    },
+    "com.cloudflare.alerting#ListSilencesRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The account id",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.alerting#ListSilencesResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.alerting#SilencesListResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.alerting#UpdateDestinationWebhook": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.alerting#UpdateDestinationWebhookRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.alerting#UpdateDestinationWebhookResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/accounts/{account_id}/alerting/v3/destinations/webhooks/{webhook_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update a webhook destination.",
+        "smithy.api#idempotent": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.alerting#InvalidRoute"
+        },
+        {
+          "target": "com.cloudflare.alerting#InvalidWebhookId"
+        },
+        {
+          "target": "com.cloudflare.alerting#WebhookTestFailed"
+        }
+      ]
+    },
+    "com.cloudflare.alerting#UpdateDestinationWebhookRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The account id",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "webhook_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of a webhook",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the webhook destination. This will be included in the request body when you receive a webhook notification.",
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The POST endpoint to call when dispatching a notification.",
+            "smithy.api#required": {}
+          }
+        },
+        "secret": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional secret that will be passed in the `cf-webhook-auth` header when dispatching generic webhook notifications or formatted for supported destinations. Secrets are not returned in any API response body."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.alerting#UpdateDestinationWebhookResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UUID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.alerting#UpdatePolicy": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.alerting#UpdatePolicyRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.alerting#UpdatePolicyResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/accounts/{account_id}/alerting/v3/policies/{policy_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update a Notification policy.",
+        "smithy.api#idempotent": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.alerting#InvalidRoute"
+        },
+        {
+          "target": "com.cloudflare.alerting#PolicyNotFound"
+        },
+        {
+          "target": "com.cloudflare.alerting#InvalidAlertType"
+        },
+        {
+          "target": "com.cloudflare.alerting#MechanismRequired"
+        }
+      ]
+    },
+    "com.cloudflare.alerting#UpdatePolicyRequest": {
       "type": "structure",
       "members": {
         "account_id": {
@@ -5703,7 +6595,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.alerting#PoliciesUpdateResponse": {
+    "com.cloudflare.alerting#UpdatePolicyResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -5718,348 +6610,37 @@
         "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
       }
     },
-    "com.cloudflare.alerting#PoliciesUpdate": {
+    "com.cloudflare.alerting#UpdateSilence": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.alerting#PoliciesUpdateRequest"
+        "target": "com.cloudflare.alerting#UpdateSilenceRequest"
       },
       "output": {
-        "target": "com.cloudflare.alerting#PoliciesUpdateResponse"
+        "target": "com.cloudflare.alerting#UpdateSilenceResponse"
       },
       "traits": {
         "smithy.api#http": {
           "method": "PUT",
-          "uri": "/accounts/{account_id}/alerting/v3/policies/{policy_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Update a Notification policy.",
-        "smithy.api#idempotent": {}
-      }
-    },
-    "com.cloudflare.alerting#SilencesCreateRequestBodyItem": {
-      "type": "structure",
-      "members": {
-        "end_time": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "When the silence ends."
-          }
-        },
-        "policy_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The unique identifier of a notification policy"
-          }
-        },
-        "start_time": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "When the silence starts."
-          }
-        }
-      }
-    },
-    "com.cloudflare.alerting#SilencesCreateRequestBodyList": {
-      "type": "list",
-      "member": {
-        "target": "com.cloudflare.alerting#SilencesCreateRequestBodyItem"
-      }
-    },
-    "com.cloudflare.alerting#SilencesCreateRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The account id",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.cloudflare.alerting#SilencesCreateRequestBodyList",
-          "traits": {
-            "smithy.api#required": {},
-            "smithy.api#httpPayload": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.alerting#SilencesCreate": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.alerting#SilencesCreateRequest"
-      },
-      "output": {
-        "target": "smithy.api#Unit"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
           "uri": "/accounts/{account_id}/alerting/v3/silences",
           "code": 200
         },
-        "smithy.api#documentation": "Creates a new silence for an account."
-      }
-    },
-    "com.cloudflare.alerting#SilencesDeleteRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The account id",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "silence_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Silence ID",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
+        "smithy.api#documentation": "Updates existing silences for an account.",
+        "smithy.api#idempotent": {},
+        "smithy.api#paginated": {
+          "mode": "single",
+          "items": "result"
         }
       },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.alerting#SilencesDelete": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.alerting#SilencesDeleteRequest"
-      },
-      "output": {
-        "target": "smithy.api#Unit"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "/accounts/{account_id}/alerting/v3/silences/{silence_id}",
-          "code": 200
+      "errors": [
+        {
+          "target": "com.cloudflare.alerting#SilenceNotFound"
         },
-        "smithy.api#documentation": "Deletes an existing silence for an account.",
-        "smithy.api#idempotent": {}
-      }
-    },
-    "com.cloudflare.alerting#SilencesGetRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The account id",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "silence_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Silence ID",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
+        {
+          "target": "com.cloudflare.alerting#InvalidSilence"
         }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
+      ]
     },
-    "com.cloudflare.alerting#SilencesGetResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Silence ID"
-          }
-        },
-        "created_at": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "When the silence was created."
-          }
-        },
-        "end_time": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "When the silence ends."
-          }
-        },
-        "policy_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The unique identifier of a notification policy"
-          }
-        },
-        "start_time": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "When the silence starts."
-          }
-        },
-        "updated_at": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "When the silence was modified."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.alerting#SilencesGet": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.alerting#SilencesGetRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.alerting#SilencesGetResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/accounts/{account_id}/alerting/v3/silences/{silence_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Gets a specific silence for an account.",
-        "smithy.api#readonly": {}
-      }
-    },
-    "com.cloudflare.alerting#SilencesListRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The account id",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.alerting#SilencesListResultItem": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Silence ID"
-          }
-        },
-        "created_at": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "When the silence was created."
-          }
-        },
-        "end_time": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "When the silence ends."
-          }
-        },
-        "policy_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The unique identifier of a notification policy"
-          }
-        },
-        "start_time": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "When the silence starts."
-          }
-        },
-        "updated_at": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "When the silence was modified."
-          }
-        }
-      }
-    },
-    "com.cloudflare.alerting#SilencesListResultList": {
-      "type": "list",
-      "member": {
-        "target": "com.cloudflare.alerting#SilencesListResultItem"
-      }
-    },
-    "com.cloudflare.alerting#SilencesListResponse": {
-      "type": "structure",
-      "members": {
-        "result": {
-          "target": "com.cloudflare.alerting#SilencesListResultList",
-          "traits": {
-            "com.cloudflare.protocols#envelopePayload": {},
-            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.alerting#SilencesList": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.alerting#SilencesListRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.alerting#SilencesListResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/accounts/{account_id}/alerting/v3/silences",
-          "code": 200
-        },
-        "smithy.api#documentation": "Gets a list of silences for an account.",
-        "smithy.api#readonly": {}
-      }
-    },
-    "com.cloudflare.alerting#SilencesUpdateRequestBodyItem": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Silence ID"
-          }
-        },
-        "end_time": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "When the silence ends."
-          }
-        },
-        "start_time": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "When the silence starts."
-          }
-        }
-      }
-    },
-    "com.cloudflare.alerting#SilencesUpdateRequestBodyList": {
-      "type": "list",
-      "member": {
-        "target": "com.cloudflare.alerting#SilencesUpdateRequestBodyItem"
-      }
-    },
-    "com.cloudflare.alerting#SilencesUpdateRequest": {
+    "com.cloudflare.alerting#UpdateSilenceRequest": {
       "type": "structure",
       "members": {
         "account_id": {
@@ -6082,54 +6663,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.alerting#SilencesUpdateResultItem": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Silence ID"
-          }
-        },
-        "created_at": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "When the silence was created."
-          }
-        },
-        "end_time": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "When the silence ends."
-          }
-        },
-        "policy_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The unique identifier of a notification policy"
-          }
-        },
-        "start_time": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "When the silence starts."
-          }
-        },
-        "updated_at": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "When the silence was modified."
-          }
-        }
-      }
-    },
-    "com.cloudflare.alerting#SilencesUpdateResultList": {
-      "type": "list",
-      "member": {
-        "target": "com.cloudflare.alerting#SilencesUpdateResultItem"
-      }
-    },
-    "com.cloudflare.alerting#SilencesUpdateResponse": {
+    "com.cloudflare.alerting#UpdateSilenceResponse": {
       "type": "structure",
       "members": {
         "result": {
@@ -6142,101 +6676,6 @@
       },
       "traits": {
         "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.alerting#SilencesUpdate": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.alerting#SilencesUpdateRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.alerting#SilencesUpdateResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "PUT",
-          "uri": "/accounts/{account_id}/alerting/v3/silences",
-          "code": 200
-        },
-        "smithy.api#documentation": "Updates existing silences for an account.",
-        "smithy.api#idempotent": {}
-      }
-    },
-    "com.cloudflare.alerting#Alerting": {
-      "type": "service",
-      "version": "4.0",
-      "operations": [
-        {
-          "target": "com.cloudflare.alerting#AvailableAlertsList"
-        },
-        {
-          "target": "com.cloudflare.alerting#DestinationsEligibleGet"
-        },
-        {
-          "target": "com.cloudflare.alerting#DestinationsPagerdutyCreate"
-        },
-        {
-          "target": "com.cloudflare.alerting#DestinationsPagerdutyDelete"
-        },
-        {
-          "target": "com.cloudflare.alerting#DestinationsPagerdutyGet"
-        },
-        {
-          "target": "com.cloudflare.alerting#DestinationsPagerdutyLink"
-        },
-        {
-          "target": "com.cloudflare.alerting#DestinationsWebhooksCreate"
-        },
-        {
-          "target": "com.cloudflare.alerting#DestinationsWebhooksDelete"
-        },
-        {
-          "target": "com.cloudflare.alerting#DestinationsWebhooksGet"
-        },
-        {
-          "target": "com.cloudflare.alerting#DestinationsWebhooksList"
-        },
-        {
-          "target": "com.cloudflare.alerting#DestinationsWebhooksUpdate"
-        },
-        {
-          "target": "com.cloudflare.alerting#HistoryList"
-        },
-        {
-          "target": "com.cloudflare.alerting#PoliciesCreate"
-        },
-        {
-          "target": "com.cloudflare.alerting#PoliciesDelete"
-        },
-        {
-          "target": "com.cloudflare.alerting#PoliciesGet"
-        },
-        {
-          "target": "com.cloudflare.alerting#PoliciesList"
-        },
-        {
-          "target": "com.cloudflare.alerting#PoliciesUpdate"
-        },
-        {
-          "target": "com.cloudflare.alerting#SilencesCreate"
-        },
-        {
-          "target": "com.cloudflare.alerting#SilencesDelete"
-        },
-        {
-          "target": "com.cloudflare.alerting#SilencesGet"
-        },
-        {
-          "target": "com.cloudflare.alerting#SilencesList"
-        },
-        {
-          "target": "com.cloudflare.alerting#SilencesUpdate"
-        }
-      ],
-      "traits": {
-        "com.cloudflare.protocols#v4Json": {},
-        "smithy.api#title": "Cloudflare Alerting",
-        "smithy.api#documentation": "Cloudflare API — alerting resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
       }
     }
   }

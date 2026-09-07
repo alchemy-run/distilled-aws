@@ -84,46 +84,46 @@ export const ProfileProfileTypeEnum = /*@__PURE__*/ S.String;
 
 /** Deployment contains the deployment identification information. */
 export interface Deployment {
-  /** Project ID is the ID of a cloud project. Validation regex: `^a-z{4,61}[a-z0-9]$`. */
-  projectId?: string;
   /** Target is the service name used to group related deployments: * Service name for App Engine Flex / Standard. * Cluster and container name for GKE. * User-specified string for direct Compute Engine profiling (e.g. Java). * Job name for Dataflow. Validation regex: `^[a-z0-9]([-a-z0-9_.]{0,253}[a-z0-9])?$`. */
   target?: string;
   /** Labels identify the deployment within the user universe and same target. Validation regex for label names: `^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?$`. Value for an individual label must be <= 512 bytes, the total size of all label names and values must be <= 1024 bytes. Label named "language" can be used to record the programming language of the profiled deployment. The standard choices for the value include "java", "go", "python", "ruby", "nodejs", "php", "dotnet". For deployments running on Google Cloud Platform, "zone" or "region" label should be present describing the deployment location. An example of a zone is "us-central1-a", an example of a region is "us-central1" or "us-central". */
   labels?: StringMap;
+  /** Project ID is the ID of a cloud project. Validation regex: `^a-z{4,61}[a-z0-9]$`. */
+  projectId?: string;
 }
 export const Deployment = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    projectId: S.optional(S.String),
     target: S.optional(S.String),
     labels: S.optional(StringMap),
+    projectId: S.optional(S.String),
   }),
 ).annotate({ identifier: "Deployment" }) as any as S.Schema<Deployment>;
 
 /** Profile resource. */
 export interface Profile {
-  /** Output only. Start time for the profile. This output is only present in response from the ListProfiles method. */
-  startTime?: string;
-  /** Input only. Labels associated to this specific profile. These labels will get merged with the deployment labels for the final data set. See documentation on deployment labels for validation rules and limits. */
-  labels?: StringMap;
-  /** Duration of the profiling session. Input (for the offline mode) or output (for the online mode). The field represents requested profiling duration. It may slightly differ from the effective profiling duration, which is recorded in the profile data, in case the profiling can't be stopped immediately (e.g. in case stopping the profiling is handled asynchronously). */
-  duration?: string;
-  /** Output only. Opaque, server-assigned, unique ID for this profile. */
-  name?: string;
-  /** Type of profile. For offline mode, this must be specified when creating the profile. For online mode it is assigned and returned by the server. */
-  profileType?: ProfileProfileTypeEnum | (string & {});
   /** Input only. Profile bytes, as a gzip compressed serialized proto, the format is https://github.com/google/pprof/blob/master/proto/profile.proto. */
   profileBytes?: string;
+  /** Duration of the profiling session. Input (for the offline mode) or output (for the online mode). The field represents requested profiling duration. It may slightly differ from the effective profiling duration, which is recorded in the profile data, in case the profiling can't be stopped immediately (e.g. in case stopping the profiling is handled asynchronously). */
+  duration?: string;
+  /** Input only. Labels associated to this specific profile. These labels will get merged with the deployment labels for the final data set. See documentation on deployment labels for validation rules and limits. */
+  labels?: StringMap;
+  /** Output only. Start time for the profile. This output is only present in response from the ListProfiles method. */
+  startTime?: string;
+  /** Type of profile. For offline mode, this must be specified when creating the profile. For online mode it is assigned and returned by the server. */
+  profileType?: ProfileProfileTypeEnum | (string & {});
+  /** Output only. Opaque, server-assigned, unique ID for this profile. */
+  name?: string;
   /** Deployment this profile corresponds to. */
   deployment?: Deployment;
 }
 export const Profile = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    startTime: S.optional(S.String),
-    labels: S.optional(StringMap),
-    duration: S.optional(S.String),
-    name: S.optional(S.String),
-    profileType: S.optional(ProfileProfileTypeEnum),
     profileBytes: S.optional(S.String),
+    duration: S.optional(S.String),
+    labels: S.optional(StringMap),
+    startTime: S.optional(S.String),
+    profileType: S.optional(ProfileProfileTypeEnum),
+    name: S.optional(S.String),
     deployment: S.optional(Deployment),
   }),
 ).annotate({ identifier: "Profile" }) as any as S.Schema<Profile>;
@@ -237,35 +237,35 @@ export const ProfileList = /*@__PURE__*/ S.Array(
 
 /** ListProfileResponse contains the list of collected profiles for deployments in projects which the user has permissions to view. */
 export interface ListProfilesResponse {
-  /** Number of profiles that were skipped in the current page since they were not able to be fetched successfully. This should typically be zero. A non-zero value may indicate a transient failure, in which case if the number is too high for your use case, the call may be retried. */
-  skippedProfiles?: number;
-  /** Token to receive the next page of results. This field maybe empty if there are no more profiles to fetch. */
-  nextPageToken?: string;
   /** List of profiles fetched. */
   profiles?: ProfileList;
+  /** Token to receive the next page of results. This field maybe empty if there are no more profiles to fetch. */
+  nextPageToken?: string;
+  /** Number of profiles that were skipped in the current page since they were not able to be fetched successfully. This should typically be zero. A non-zero value may indicate a transient failure, in which case if the number is too high for your use case, the call may be retried. */
+  skippedProfiles?: number;
 }
 export const ListProfilesResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    skippedProfiles: S.optional(S.Number),
-    nextPageToken: S.optional(S.String),
     profiles: S.optional(ProfileList),
+    nextPageToken: S.optional(S.String),
+    skippedProfiles: S.optional(S.Number),
   }),
 ).annotate({
   identifier: "ListProfilesResponse",
 }) as any as S.Schema<ListProfilesResponse>;
 
 export interface PatchProjectsProfilesRequest {
-  /** Output only. Opaque, server-assigned, unique ID for this profile. */
-  name: string;
   /** Field mask used to specify the fields to be overwritten. Currently only profile_bytes and labels fields are supported by UpdateProfile, so only those fields can be specified in the mask. When no mask is provided, all fields are overwritten. */
   updateMask?: string;
+  /** Output only. Opaque, server-assigned, unique ID for this profile. */
+  name: string;
   /** Request body */
   body?: Profile;
 }
 export const PatchProjectsProfilesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    name: S.String.pipe(T.Label()),
     updateMask: S.optional(S.String.pipe(T.Query())),
+    name: S.String.pipe(T.Label()),
     body: S.optional(Profile.pipe(T.HttpBody())),
   }).pipe(
     T.Http({

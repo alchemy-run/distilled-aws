@@ -172,6 +172,18 @@ export const DeleteAiChatResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteAiChatResponse",
 }) as any as S.Schema<DeleteAiChatResponse>;
 
+export interface GetAiChatRequest {
+  /** The unique identifier of the AI chat to retrieve. */
+  id: string;
+}
+export const GetAiChatRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/ai_chats/{id}", code: 200 })),
+).annotate({
+  identifier: "GetAiChatRequest",
+}) as any as S.Schema<GetAiChatRequest>;
+
 export interface ListAiChatRequest {
   after?: string;
   before?: string;
@@ -271,18 +283,6 @@ export const ListAiChatResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListAiChatResponse",
 }) as any as S.Schema<ListAiChatResponse>;
 
-export interface RetrieveAiChatRequest {
-  /** The unique identifier of the AI chat to retrieve. */
-  id: string;
-}
-export const RetrieveAiChatRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/ai_chats/{id}", code: 200 })),
-).annotate({
-  identifier: "RetrieveAiChatRequest",
-}) as any as S.Schema<RetrieveAiChatRequest>;
-
 export interface UpdateAiChatRequest {
   /** The unique identifier of the AI chat to update (e.g., "ai_chat_XXXXX"). */
   id: string;
@@ -349,6 +349,26 @@ export const deleteAiChat: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetAiChatError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | UnprocessableEntity
+  | WhopOpError;
+/** Retrieve ai chat [Legacy API — https://docs.whop.com/api-reference] Retrieves the details of an existing AI chat. */
+export const getAiChat: API.OperationMethod<
+  GetAiChatRequest,
+  AiChat,
+  GetAiChatError,
+  WhopOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetAiChatRequest,
+  output: AiChat,
+  errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
+  protocol: WhopProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListAiChatError =
   | BadRequest
   | Forbidden
@@ -380,26 +400,6 @@ export const listAiChat: API.PaginatedOperationMethod<
   }),
   paginateRelay,
 ) as any;
-
-export type RetrieveAiChatError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | UnprocessableEntity
-  | WhopOpError;
-/** Retrieve ai chat [Legacy API — https://docs.whop.com/api-reference] Retrieves the details of an existing AI chat. */
-export const retrieveAiChat: API.OperationMethod<
-  RetrieveAiChatRequest,
-  AiChat,
-  RetrieveAiChatError,
-  WhopOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveAiChatRequest,
-  output: AiChat,
-  errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
-  protocol: WhopProtocol,
-  retry: Retry.Retry,
-}));
 
 export type UpdateAiChatError =
   | BadRequest

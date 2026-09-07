@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.analysisservices#OperationsList": {
+    "com.azure.analysisservices#ListOperations": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -280,10 +281,10 @@
         "smithy.api#documentation": "The object that represents the operation."
       }
     },
-    "com.azure.analysisservices#ServersListOperationStatuses": {
+    "com.azure.analysisservices#ListServerOperationStatuses": {
       "type": "operation",
       "input": {
-        "target": "com.azure.analysisservices#ServersListOperationStatusesRequest"
+        "target": "com.azure.analysisservices#ListServerOperationStatusesRequest"
       },
       "output": {
         "target": "com.azure.analysisservices#OperationStatus"
@@ -437,7 +438,7 @@
         "smithy.api#documentation": "The error details."
       }
     },
-    "com.azure.analysisservices#ServersListOperationStatusesRequest": {
+    "com.azure.analysisservices#ListServerOperationStatusesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -469,10 +470,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.analysisservices#ServersListOperationResults": {
+    "com.azure.analysisservices#ListServerOperationResults": {
       "type": "operation",
       "input": {
-        "target": "com.azure.analysisservices#ServersListOperationResultsRequest"
+        "target": "com.azure.analysisservices#ListServerOperationResultsRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -488,7 +489,7 @@
         "com.distilled.openapi#apiVersion": "2017-08-01"
       }
     },
-    "com.azure.analysisservices#ServersListOperationResultsRequest": {
+    "com.azure.analysisservices#ListServerOperationResultsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -520,10 +521,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.analysisservices#ServersCheckNameAvailability": {
+    "com.azure.analysisservices#CheckServerNameAvailability": {
       "type": "operation",
       "input": {
-        "target": "com.azure.analysisservices#ServersCheckNameAvailabilityRequest"
+        "target": "com.azure.analysisservices#CheckServerNameAvailabilityRequest"
       },
       "output": {
         "target": "com.azure.analysisservices#CheckServerNameAvailabilityResult"
@@ -565,7 +566,7 @@
         "smithy.api#documentation": "The checking result of server name availability."
       }
     },
-    "com.azure.analysisservices#ServersCheckNameAvailabilityRequest": {
+    "com.azure.analysisservices#CheckServerNameAvailabilityRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -652,10 +653,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.analysisservices#ServersListGatewayStatus": {
+    "com.azure.analysisservices#ListServerGatewayStatus": {
       "type": "operation",
       "input": {
-        "target": "com.azure.analysisservices#ServersListGatewayStatusRequest"
+        "target": "com.azure.analysisservices#ListServerGatewayStatusRequest"
       },
       "output": {
         "target": "com.azure.analysisservices#GatewayListStatusLive"
@@ -699,7 +700,7 @@
         "smithy.api#documentation": "Live message of list gateway. Status: 0 - Live"
       }
     },
-    "com.azure.analysisservices#ServersListGatewayStatusRequest": {
+    "com.azure.analysisservices#ListServerGatewayStatusRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -731,10 +732,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.analysisservices#ServersListSkusForExisting": {
+    "com.azure.analysisservices#ListServerSkusForExisting": {
       "type": "operation",
       "input": {
-        "target": "com.azure.analysisservices#ServersListSkusForExistingRequest"
+        "target": "com.azure.analysisservices#ListServerSkusForExistingRequest"
       },
       "output": {
         "target": "com.azure.analysisservices#SkuEnumerationForExistingResourceResult"
@@ -846,7 +847,7 @@
         "smithy.api#documentation": "The name of the Azure pricing tier to which the SKU applies."
       }
     },
-    "com.azure.analysisservices#ServersListSkusForExistingRequest": {
+    "com.azure.analysisservices#ListServerSkusForExistingRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -878,10 +879,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.analysisservices#ServersListSkusForNew": {
+    "com.azure.analysisservices#ListServerSkusForNew": {
       "type": "operation",
       "input": {
-        "target": "com.azure.analysisservices#ServersListSkusForNewRequest"
+        "target": "com.azure.analysisservices#ListServerSkusForNewRequest"
       },
       "output": {
         "target": "com.azure.analysisservices#SkuEnumerationForNewResourceResult"
@@ -920,7 +921,7 @@
         "smithy.api#documentation": "The collection of available SKUs for new resources."
       }
     },
-    "com.azure.analysisservices#ServersListSkusForNewRequest": {
+    "com.azure.analysisservices#ListServerSkusForNewRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -936,10 +937,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.analysisservices#ServersList": {
+    "com.azure.analysisservices#ListServers": {
       "type": "operation",
       "input": {
-        "target": "com.azure.analysisservices#ServersListRequest"
+        "target": "com.azure.analysisservices#ListServersRequest"
       },
       "output": {
         "target": "com.azure.analysisservices#AnalysisServicesServers"
@@ -1441,7 +1442,7 @@
         "smithy.api#documentation": "Key-value pairs of additional resource provisioning properties."
       }
     },
-    "com.azure.analysisservices#ServersListRequest": {
+    "com.azure.analysisservices#ListServersRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1457,10 +1458,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.analysisservices#ServersListByResourceGroup": {
+    "com.azure.analysisservices#ListServerByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.analysisservices#ServersListByResourceGroupRequest"
+        "target": "com.azure.analysisservices#ListServerByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.analysisservices#AnalysisServicesServers"
@@ -1476,7 +1477,7 @@
         "com.distilled.openapi#apiVersion": "2017-08-01"
       }
     },
-    "com.azure.analysisservices#ServersListByResourceGroupRequest": {
+    "com.azure.analysisservices#ListServerByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1500,10 +1501,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.analysisservices#ServersResume": {
+    "com.azure.analysisservices#ResumeServer": {
       "type": "operation",
       "input": {
-        "target": "com.azure.analysisservices#ServersResumeRequest"
+        "target": "com.azure.analysisservices#ResumeServerRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1519,7 +1520,7 @@
         "com.distilled.openapi#apiVersion": "2017-08-01"
       }
     },
-    "com.azure.analysisservices#ServersResumeRequest": {
+    "com.azure.analysisservices#ResumeServerRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1551,10 +1552,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.analysisservices#ServersSuspend": {
+    "com.azure.analysisservices#SuspendServer": {
       "type": "operation",
       "input": {
-        "target": "com.azure.analysisservices#ServersSuspendRequest"
+        "target": "com.azure.analysisservices#SuspendServerRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1570,7 +1571,7 @@
         "com.distilled.openapi#apiVersion": "2017-08-01"
       }
     },
-    "com.azure.analysisservices#ServersSuspendRequest": {
+    "com.azure.analysisservices#SuspendServerRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1602,10 +1603,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.analysisservices#ServersDelete": {
+    "com.azure.analysisservices#DeleteServer": {
       "type": "operation",
       "input": {
-        "target": "com.azure.analysisservices#ServersDeleteRequest"
+        "target": "com.azure.analysisservices#DeleteServerRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1621,7 +1622,7 @@
         "com.distilled.openapi#apiVersion": "2017-08-01"
       }
     },
-    "com.azure.analysisservices#ServersDeleteRequest": {
+    "com.azure.analysisservices#DeleteServerRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1653,13 +1654,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.analysisservices#ServersUpdate": {
+    "com.azure.analysisservices#UpdateServer": {
       "type": "operation",
       "input": {
-        "target": "com.azure.analysisservices#ServersUpdateRequest"
+        "target": "com.azure.analysisservices#UpdateServerRequest"
       },
       "output": {
-        "target": "com.azure.analysisservices#ServersUpdateResponse"
+        "target": "com.azure.analysisservices#UpdateServerResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1672,7 +1673,7 @@
         "com.distilled.openapi#apiVersion": "2017-08-01"
       }
     },
-    "com.azure.analysisservices#ServersUpdateResponse": {
+    "com.azure.analysisservices#UpdateServerResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1708,7 +1709,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.analysisservices#ServersUpdateResponseTagsMap",
+          "target": "com.azure.analysisservices#UpdateServerResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Key-value pairs of additional resource provisioning properties."
           }
@@ -1724,7 +1725,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.analysisservices#ServersUpdateResponseTagsMap": {
+    "com.azure.analysisservices#UpdateServerResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1736,7 +1737,7 @@
         "smithy.api#documentation": "Key-value pairs of additional resource provisioning properties."
       }
     },
-    "com.azure.analysisservices#ServersUpdateRequest": {
+    "com.azure.analysisservices#UpdateServerRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1770,7 +1771,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.analysisservices#ServersUpdateRequestTagsMap",
+          "target": "com.azure.analysisservices#UpdateServerRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Key-value pairs of additional provisioning properties."
           }
@@ -1910,7 +1911,7 @@
         "smithy.api#documentation": "The gateway details."
       }
     },
-    "com.azure.analysisservices#ServersUpdateRequestTagsMap": {
+    "com.azure.analysisservices#UpdateServerRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -1922,13 +1923,13 @@
         "smithy.api#documentation": "Key-value pairs of additional provisioning properties."
       }
     },
-    "com.azure.analysisservices#ServersCreate": {
+    "com.azure.analysisservices#CreateServer": {
       "type": "operation",
       "input": {
-        "target": "com.azure.analysisservices#ServersCreateRequest"
+        "target": "com.azure.analysisservices#CreateServerRequest"
       },
       "output": {
-        "target": "com.azure.analysisservices#ServersCreateResponse"
+        "target": "com.azure.analysisservices#CreateServerResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1941,7 +1942,7 @@
         "com.distilled.openapi#apiVersion": "2017-08-01"
       }
     },
-    "com.azure.analysisservices#ServersCreateResponse": {
+    "com.azure.analysisservices#CreateServerResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -1977,7 +1978,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.analysisservices#ServersCreateResponseTagsMap",
+          "target": "com.azure.analysisservices#CreateServerResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Key-value pairs of additional resource provisioning properties."
           }
@@ -1993,7 +1994,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.analysisservices#ServersCreateResponseTagsMap": {
+    "com.azure.analysisservices#CreateServerResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2005,7 +2006,7 @@
         "smithy.api#documentation": "Key-value pairs of additional resource provisioning properties."
       }
     },
-    "com.azure.analysisservices#ServersCreateRequest": {
+    "com.azure.analysisservices#CreateServerRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2047,7 +2048,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.analysisservices#ServersCreateRequestTagsMap",
+          "target": "com.azure.analysisservices#CreateServerRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Key-value pairs of additional resource provisioning properties."
           }
@@ -2179,7 +2180,7 @@
         "smithy.api#documentation": "How the read-write server's participation in the query pool is controlled.<br/>It can have the following values: <ul><li>readOnly - indicates that the read-write server is intended not to participate in query operations</li><li>all - indicates that the read-write server can participate in query operations</li></ul>Specifying readOnly when capacity is 1 results in error."
       }
     },
-    "com.azure.analysisservices#ServersCreateRequestTagsMap": {
+    "com.azure.analysisservices#CreateServerRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2191,13 +2192,13 @@
         "smithy.api#documentation": "Key-value pairs of additional resource provisioning properties."
       }
     },
-    "com.azure.analysisservices#ServersGetDetails": {
+    "com.azure.analysisservices#GetServerDetails": {
       "type": "operation",
       "input": {
-        "target": "com.azure.analysisservices#ServersGetDetailsRequest"
+        "target": "com.azure.analysisservices#GetServerDetailsRequest"
       },
       "output": {
-        "target": "com.azure.analysisservices#ServersGetDetailsResponse"
+        "target": "com.azure.analysisservices#GetServerDetailsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -2210,7 +2211,7 @@
         "com.distilled.openapi#apiVersion": "2017-08-01"
       }
     },
-    "com.azure.analysisservices#ServersGetDetailsResponse": {
+    "com.azure.analysisservices#GetServerDetailsResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2246,7 +2247,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.analysisservices#ServersGetDetailsResponseTagsMap",
+          "target": "com.azure.analysisservices#GetServerDetailsResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Key-value pairs of additional resource provisioning properties."
           }
@@ -2262,7 +2263,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.analysisservices#ServersGetDetailsResponseTagsMap": {
+    "com.azure.analysisservices#GetServerDetailsResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2274,7 +2275,7 @@
         "smithy.api#documentation": "Key-value pairs of additional resource provisioning properties."
       }
     },
-    "com.azure.analysisservices#ServersGetDetailsRequest": {
+    "com.azure.analysisservices#GetServerDetailsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2311,52 +2312,52 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.analysisservices#OperationsList"
+          "target": "com.azure.analysisservices#ListOperations"
         },
         {
-          "target": "com.azure.analysisservices#ServersListOperationStatuses"
+          "target": "com.azure.analysisservices#ListServerOperationStatuses"
         },
         {
-          "target": "com.azure.analysisservices#ServersListOperationResults"
+          "target": "com.azure.analysisservices#ListServerOperationResults"
         },
         {
-          "target": "com.azure.analysisservices#ServersCheckNameAvailability"
+          "target": "com.azure.analysisservices#CheckServerNameAvailability"
         },
         {
           "target": "com.azure.analysisservices#ServersDissociateGateway"
         },
         {
-          "target": "com.azure.analysisservices#ServersListGatewayStatus"
+          "target": "com.azure.analysisservices#ListServerGatewayStatus"
         },
         {
-          "target": "com.azure.analysisservices#ServersListSkusForExisting"
+          "target": "com.azure.analysisservices#ListServerSkusForExisting"
         },
         {
-          "target": "com.azure.analysisservices#ServersListSkusForNew"
+          "target": "com.azure.analysisservices#ListServerSkusForNew"
         },
         {
-          "target": "com.azure.analysisservices#ServersList"
+          "target": "com.azure.analysisservices#ListServers"
         },
         {
-          "target": "com.azure.analysisservices#ServersListByResourceGroup"
+          "target": "com.azure.analysisservices#ListServerByResourceGroup"
         },
         {
-          "target": "com.azure.analysisservices#ServersResume"
+          "target": "com.azure.analysisservices#ResumeServer"
         },
         {
-          "target": "com.azure.analysisservices#ServersSuspend"
+          "target": "com.azure.analysisservices#SuspendServer"
         },
         {
-          "target": "com.azure.analysisservices#ServersDelete"
+          "target": "com.azure.analysisservices#DeleteServer"
         },
         {
-          "target": "com.azure.analysisservices#ServersUpdate"
+          "target": "com.azure.analysisservices#UpdateServer"
         },
         {
-          "target": "com.azure.analysisservices#ServersCreate"
+          "target": "com.azure.analysisservices#CreateServer"
         },
         {
-          "target": "com.azure.analysisservices#ServersGetDetails"
+          "target": "com.azure.analysisservices#GetServerDetails"
         }
       ],
       "traits": {

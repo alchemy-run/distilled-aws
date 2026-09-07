@@ -14,25 +14,13 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "keyDictionary": {
+      "modifiedOn": "modified_on"
+    },
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.cloudflare.origin_post_quantum_encryption#GetRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.origin_post_quantum_encryption#GetResponseId": {
       "type": "enum",
       "members": {
@@ -67,60 +55,6 @@
         }
       }
     },
-    "com.cloudflare.origin_post_quantum_encryption#GetResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "com.cloudflare.origin_post_quantum_encryption#GetResponseId",
-          "traits": {
-            "smithy.api#documentation": "The identifier of the caching setting.",
-            "smithy.api#required": {}
-          }
-        },
-        "editable": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Whether the setting is editable.",
-            "smithy.api#required": {}
-          }
-        },
-        "value": {
-          "target": "com.cloudflare.origin_post_quantum_encryption#GetResponseValue",
-          "traits": {
-            "smithy.api#documentation": "Value of the Origin Post Quantum Encryption Setting.",
-            "smithy.api#required": {}
-          }
-        },
-        "modified_on": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Last time this setting was modified."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.origin_post_quantum_encryption#Get": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.origin_post_quantum_encryption#GetRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.origin_post_quantum_encryption#GetResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/zones/{zone_id}/cache/origin_post_quantum_encryption",
-          "code": 200
-        },
-        "smithy.api#documentation": "Instructs Cloudflare to use Post-Quantum (PQ) key agreement algorithms when connecting to your origin. Preferred instructs Cloudflare to opportunistically send a Post-Quantum keyshare in the first message to the origin (for fastest connections when the origin supports and prefers PQ), supported means that PQ algorithms are advertised but only used when requested by the origin, and off means that PQ algorithms are not advertised.",
-        "smithy.api#readonly": {}
-      }
-    },
     "com.cloudflare.origin_post_quantum_encryption#UpdateRequestValue": {
       "type": "enum",
       "members": {
@@ -142,29 +76,6 @@
             "smithy.api#enumValue": "off"
           }
         }
-      }
-    },
-    "com.cloudflare.origin_post_quantum_encryption#UpdateRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "value": {
-          "target": "com.cloudflare.origin_post_quantum_encryption#UpdateRequestValue",
-          "traits": {
-            "smithy.api#documentation": "Value of the Origin Post Quantum Encryption Setting.",
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.origin_post_quantum_encryption#UpdateResponseId": {
@@ -201,7 +112,214 @@
         }
       }
     },
-    "com.cloudflare.origin_post_quantum_encryption#UpdateResponse": {
+    "com.cloudflare.origin_post_quantum_encryption#OriginPostQuantumEncryption": {
+      "type": "service",
+      "version": "4.0",
+      "operations": [
+        {
+          "target": "com.cloudflare.origin_post_quantum_encryption#GetOriginPostQuantumEncryption"
+        },
+        {
+          "target": "com.cloudflare.origin_post_quantum_encryption#PutOriginPostQuantumEncryption"
+        }
+      ],
+      "traits": {
+        "com.cloudflare.protocols#v4Json": {},
+        "smithy.api#title": "Cloudflare OriginPostQuantumEncryption",
+        "smithy.api#documentation": "Cloudflare API — origin_post_quantum_encryption resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+      }
+    },
+    "com.cloudflare.origin_post_quantum_encryption#Forbidden": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.cloudflare.origin_post_quantum_encryption#InvalidSettingValue": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "code": 1146,
+            "message": {
+              "includes": "origin_post_quantum_encryption"
+            }
+          }
+        ]
+      }
+    },
+    "com.cloudflare.origin_post_quantum_encryption#InvalidZoneIdentifier": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "code": 7003
+          }
+        ]
+      }
+    },
+    "com.cloudflare.origin_post_quantum_encryption#GetOriginPostQuantumEncryption": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.origin_post_quantum_encryption#GetOriginPostQuantumEncryptionRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.origin_post_quantum_encryption#GetOriginPostQuantumEncryptionResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/cache/origin_post_quantum_encryption",
+          "code": 200
+        },
+        "smithy.api#documentation": "Instructs Cloudflare to use Post-Quantum (PQ) key agreement algorithms when connecting to your origin. Preferred instructs Cloudflare to opportunistically send a Post-Quantum keyshare in the first message to the origin (for fastest connections when the origin supports and prefers PQ), supported means that PQ algorithms are advertised but only used when requested by the origin, and off means that PQ algorithms are not advertised.",
+        "smithy.api#readonly": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.origin_post_quantum_encryption#InvalidZoneIdentifier"
+        },
+        {
+          "target": "com.cloudflare.origin_post_quantum_encryption#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.origin_post_quantum_encryption#GetOriginPostQuantumEncryptionRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.origin_post_quantum_encryption#GetOriginPostQuantumEncryptionResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "com.cloudflare.origin_post_quantum_encryption#GetResponseId",
+          "traits": {
+            "smithy.api#documentation": "The identifier of the caching setting.",
+            "smithy.api#required": {}
+          }
+        },
+        "editable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the setting is editable.",
+            "smithy.api#required": {}
+          }
+        },
+        "value": {
+          "target": "com.cloudflare.origin_post_quantum_encryption#GetResponseValue",
+          "traits": {
+            "smithy.api#documentation": "Value of the Origin Post Quantum Encryption Setting.",
+            "smithy.api#required": {}
+          }
+        },
+        "modified_on": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last time this setting was modified."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.origin_post_quantum_encryption#PutOriginPostQuantumEncryption": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.origin_post_quantum_encryption#PutOriginPostQuantumEncryptionRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.origin_post_quantum_encryption#PutOriginPostQuantumEncryptionResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/zones/{zone_id}/cache/origin_post_quantum_encryption",
+          "code": 200
+        },
+        "smithy.api#documentation": "Instructs Cloudflare to use Post-Quantum (PQ) key agreement algorithms when connecting to your origin. Preferred instructs Cloudflare to opportunistically send a Post-Quantum keyshare in the first message to the origin (for fastest connections when the origin supports and prefers PQ), supported means that PQ algorithms are advertised but only used when requested by the origin, and off means that PQ algorithms are not advertised.",
+        "smithy.api#idempotent": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.origin_post_quantum_encryption#InvalidZoneIdentifier"
+        },
+        {
+          "target": "com.cloudflare.origin_post_quantum_encryption#InvalidSettingValue"
+        },
+        {
+          "target": "com.cloudflare.origin_post_quantum_encryption#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.origin_post_quantum_encryption#PutOriginPostQuantumEncryptionRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "value": {
+          "target": "com.cloudflare.origin_post_quantum_encryption#UpdateRequestValue",
+          "traits": {
+            "smithy.api#documentation": "Value of the Origin Post Quantum Encryption Setting.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.origin_post_quantum_encryption#PutOriginPostQuantumEncryptionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -235,41 +353,6 @@
       "traits": {
         "smithy.api#output": {},
         "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.origin_post_quantum_encryption#Update": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.origin_post_quantum_encryption#UpdateRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.origin_post_quantum_encryption#UpdateResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "PUT",
-          "uri": "/zones/{zone_id}/cache/origin_post_quantum_encryption",
-          "code": 200
-        },
-        "smithy.api#documentation": "Instructs Cloudflare to use Post-Quantum (PQ) key agreement algorithms when connecting to your origin. Preferred instructs Cloudflare to opportunistically send a Post-Quantum keyshare in the first message to the origin (for fastest connections when the origin supports and prefers PQ), supported means that PQ algorithms are advertised but only used when requested by the origin, and off means that PQ algorithms are not advertised.",
-        "smithy.api#idempotent": {}
-      }
-    },
-    "com.cloudflare.origin_post_quantum_encryption#OriginPostQuantumEncryption": {
-      "type": "service",
-      "version": "4.0",
-      "operations": [
-        {
-          "target": "com.cloudflare.origin_post_quantum_encryption#Get"
-        },
-        {
-          "target": "com.cloudflare.origin_post_quantum_encryption#Update"
-        }
-      ],
-      "traits": {
-        "com.cloudflare.protocols#v4Json": {},
-        "smithy.api#title": "Cloudflare OriginPostQuantumEncryption",
-        "smithy.api#documentation": "Cloudflare API — origin_post_quantum_encryption resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
       }
     }
   }

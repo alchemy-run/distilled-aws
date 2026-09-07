@@ -81,108 +81,6 @@ export class Forbidden
     [{ status: 403 }],
   ) {}
 
-export interface AutomaticUpgraderGetRequest {
-  zoneId: string;
-}
-export const AutomaticUpgraderGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    zoneId: S.String.pipe(T.Label("zone_id")),
-  })
-    .pipe(
-      T.Http({
-        method: "GET",
-        uri: "/zones/{zone_id}/settings/ssl_automatic_mode",
-        code: 200,
-      }),
-    )
-    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "AutomaticUpgraderGetRequest",
-}) as any as S.Schema<AutomaticUpgraderGetRequest>;
-
-export type AutomaticUpgraderGetResponseValue = "auto" | "custom";
-export const AutomaticUpgraderGetResponseValue = /*@__PURE__*/ S.String;
-
-/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
-export interface AutomaticUpgraderGetResponse {
-  id: string;
-  /** Whether this setting can be updated or not. */
-  editable: boolean;
-  /** Last time this setting was modified. */
-  modifiedOn: string;
-  /** Current setting of the automatic SSL/TLS. */
-  value: AutomaticUpgraderGetResponseValue;
-  /** Next time this zone will be scanned by the Automatic SSL/TLS. */
-  nextScheduledScan?: string | null;
-}
-export const AutomaticUpgraderGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    editable: S.Boolean,
-    modifiedOn: S.String.pipe(T.Body("modified_on")),
-    value: AutomaticUpgraderGetResponseValue,
-    nextScheduledScan: S.optional(
-      S.NullOr(S.String).pipe(T.Body("next_scheduled_scan")),
-    ),
-  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "AutomaticUpgraderGetResponse",
-}) as any as S.Schema<AutomaticUpgraderGetResponse>;
-
-export type AutomaticUpgraderPatchRequestValue = "auto" | "custom";
-export const AutomaticUpgraderPatchRequestValue = /*@__PURE__*/ S.String;
-
-export interface AutomaticUpgraderPatchRequest {
-  zoneId: string;
-  /** Controls enablement of Automatic SSL/TLS. */
-  value: AutomaticUpgraderPatchRequestValue | (string & {});
-}
-export const AutomaticUpgraderPatchRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    zoneId: S.String.pipe(T.Label("zone_id")),
-    value: AutomaticUpgraderPatchRequestValue,
-  })
-    .pipe(
-      T.Http({
-        method: "PATCH",
-        uri: "/zones/{zone_id}/settings/ssl_automatic_mode",
-        code: 200,
-      }),
-    )
-    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "AutomaticUpgraderPatchRequest",
-}) as any as S.Schema<AutomaticUpgraderPatchRequest>;
-
-export type AutomaticUpgraderPatchResponseValue = "auto" | "custom";
-export const AutomaticUpgraderPatchResponseValue = /*@__PURE__*/ S.String;
-
-/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
-export interface AutomaticUpgraderPatchResponse {
-  id: string;
-  /** Whether this setting can be updated or not. */
-  editable: boolean;
-  /** Last time this setting was modified. */
-  modifiedOn: string;
-  /** Current setting of the automatic SSL/TLS. */
-  value: AutomaticUpgraderPatchResponseValue;
-  /** Next time this zone will be scanned by the Automatic SSL/TLS. */
-  nextScheduledScan?: string | null;
-}
-export const AutomaticUpgraderPatchResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    editable: S.Boolean,
-    modifiedOn: S.String.pipe(T.Body("modified_on")),
-    value: AutomaticUpgraderPatchResponseValue,
-    nextScheduledScan: S.optional(
-      S.NullOr(S.String).pipe(T.Body("next_scheduled_scan")),
-    ),
-  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
-).annotate({
-  identifier: "AutomaticUpgraderPatchResponse",
-}) as any as S.Schema<AutomaticUpgraderPatchResponse>;
-
 export type AnalyzeCreateRequestBundleMethod =
   | "ubiquitous"
   | "optimal"
@@ -681,6 +579,54 @@ export const DeleteCertificatePackResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "DeleteCertificatePackResponse",
 }) as any as S.Schema<DeleteCertificatePackResponse>;
+
+export interface GetAutomaticUpgraderRequest {
+  zoneId: string;
+}
+export const GetAutomaticUpgraderRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    zoneId: S.String.pipe(T.Label("zone_id")),
+  })
+    .pipe(
+      T.Http({
+        method: "GET",
+        uri: "/zones/{zone_id}/settings/ssl_automatic_mode",
+        code: 200,
+      }),
+    )
+    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "GetAutomaticUpgraderRequest",
+}) as any as S.Schema<GetAutomaticUpgraderRequest>;
+
+export type GetAutomaticUpgraderResponseValue = "auto" | "custom";
+export const GetAutomaticUpgraderResponseValue = /*@__PURE__*/ S.String;
+
+/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
+export interface GetAutomaticUpgraderResponse {
+  id: string;
+  /** Whether this setting can be updated or not. */
+  editable: boolean;
+  /** Last time this setting was modified. */
+  modifiedOn: string;
+  /** Current setting of the automatic SSL/TLS. */
+  value: GetAutomaticUpgraderResponseValue;
+  /** Next time this zone will be scanned by the Automatic SSL/TLS. */
+  nextScheduledScan?: string | null;
+}
+export const GetAutomaticUpgraderResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    editable: S.Boolean,
+    modifiedOn: S.String.pipe(T.Body("modified_on")),
+    value: GetAutomaticUpgraderResponseValue,
+    nextScheduledScan: S.optional(
+      S.NullOr(S.String).pipe(T.Body("next_scheduled_scan")),
+    ),
+  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "GetAutomaticUpgraderResponse",
+}) as any as S.Schema<GetAutomaticUpgraderResponse>;
 
 export interface GetAutoOriginTlsKexRequest {
   zoneId: string;
@@ -1708,6 +1654,60 @@ export const ListCertificatePacksResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListCertificatePacksResponse",
 }) as any as S.Schema<ListCertificatePacksResponse>;
 
+export type PatchAutomaticUpgraderRequestValue = "auto" | "custom";
+export const PatchAutomaticUpgraderRequestValue = /*@__PURE__*/ S.String;
+
+export interface PatchAutomaticUpgraderRequest {
+  zoneId: string;
+  /** Controls enablement of Automatic SSL/TLS. */
+  value: PatchAutomaticUpgraderRequestValue | (string & {});
+}
+export const PatchAutomaticUpgraderRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    zoneId: S.String.pipe(T.Label("zone_id")),
+    value: PatchAutomaticUpgraderRequestValue,
+  })
+    .pipe(
+      T.Http({
+        method: "PATCH",
+        uri: "/zones/{zone_id}/settings/ssl_automatic_mode",
+        code: 200,
+      }),
+    )
+    .pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "PatchAutomaticUpgraderRequest",
+}) as any as S.Schema<PatchAutomaticUpgraderRequest>;
+
+export type PatchAutomaticUpgraderResponseValue = "auto" | "custom";
+export const PatchAutomaticUpgraderResponseValue = /*@__PURE__*/ S.String;
+
+/** Unwrapped `result` payload of the Cloudflare v4 response envelope. */
+export interface PatchAutomaticUpgraderResponse {
+  id: string;
+  /** Whether this setting can be updated or not. */
+  editable: boolean;
+  /** Last time this setting was modified. */
+  modifiedOn: string;
+  /** Current setting of the automatic SSL/TLS. */
+  value: PatchAutomaticUpgraderResponseValue;
+  /** Next time this zone will be scanned by the Automatic SSL/TLS. */
+  nextScheduledScan?: string | null;
+}
+export const PatchAutomaticUpgraderResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    editable: S.Boolean,
+    modifiedOn: S.String.pipe(T.Body("modified_on")),
+    value: PatchAutomaticUpgraderResponseValue,
+    nextScheduledScan: S.optional(
+      S.NullOr(S.String).pipe(T.Body("next_scheduled_scan")),
+    ),
+  }).pipe(T.KeyDictionary(KEY_DICTIONARY)),
+).annotate({
+  identifier: "PatchAutomaticUpgraderResponse",
+}) as any as S.Schema<PatchAutomaticUpgraderResponse>;
+
 export interface PatchAutoOriginTlsKexRequest {
   zoneId: string;
   /** Controls enablement of Auto-Origin TLS KEX selection for the zone. */
@@ -2211,36 +2211,6 @@ export const PatchVerificationResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "PatchVerificationResponse",
 }) as any as S.Schema<PatchVerificationResponse>;
 
-export type AutomaticUpgraderGetError = CloudflareOpError;
-/** If the system is enabled, the response will include next_scheduled_scan, representing the next time this zone will be scanned and the zone's ssl/tls encryption mode is potentially upgraded by the system. If the system is disabled, next_scheduled_scan will not be present in the response body. */
-export const automaticUpgraderGet: API.OperationMethod<
-  AutomaticUpgraderGetRequest,
-  AutomaticUpgraderGetResponse,
-  AutomaticUpgraderGetError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AutomaticUpgraderGetRequest,
-  output: AutomaticUpgraderGetResponse,
-  errors: [CloudflareRateLimited, CloudflareError],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AutomaticUpgraderPatchError = CloudflareOpError;
-/** The automatic system is enabled when this endpoint is hit with value in the request body is set to "auto", and disabled when the request body value is set to "custom". */
-export const automaticUpgraderPatch: API.OperationMethod<
-  AutomaticUpgraderPatchRequest,
-  AutomaticUpgraderPatchResponse,
-  AutomaticUpgraderPatchError,
-  CloudflareOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AutomaticUpgraderPatchRequest,
-  output: AutomaticUpgraderPatchResponse,
-  errors: [CloudflareRateLimited, CloudflareError],
-  protocol: CloudflareProtocol,
-  retry: Retry.Retry,
-}));
-
 export type CreateAnalyzeError = CloudflareOpError;
 /** Returns the set of hostnames, the signature algorithm, and the expiration date of the certificate. */
 export const createAnalyze: API.OperationMethod<
@@ -2298,6 +2268,21 @@ export const deleteCertificatePack: API.OperationMethod<
     CloudflareRateLimited,
     CloudflareError,
   ],
+  protocol: CloudflareProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetAutomaticUpgraderError = CloudflareOpError;
+/** If the system is enabled, the response will include next_scheduled_scan, representing the next time this zone will be scanned and the zone's ssl/tls encryption mode is potentially upgraded by the system. If the system is disabled, next_scheduled_scan will not be present in the response body. */
+export const getAutomaticUpgrader: API.OperationMethod<
+  GetAutomaticUpgraderRequest,
+  GetAutomaticUpgraderResponse,
+  GetAutomaticUpgraderError,
+  CloudflareOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetAutomaticUpgraderRequest,
+  output: GetAutomaticUpgraderResponse,
+  errors: [CloudflareRateLimited, CloudflareError],
   protocol: CloudflareProtocol,
   retry: Retry.Retry,
 }));
@@ -2410,6 +2395,21 @@ export const listCertificatePacks: API.PaginatedOperationMethod<
   }),
   cloudflarePaginate,
 ) as any;
+
+export type PatchAutomaticUpgraderError = CloudflareOpError;
+/** The automatic system is enabled when this endpoint is hit with value in the request body is set to "auto", and disabled when the request body value is set to "custom". */
+export const patchAutomaticUpgrader: API.OperationMethod<
+  PatchAutomaticUpgraderRequest,
+  PatchAutomaticUpgraderResponse,
+  PatchAutomaticUpgraderError,
+  CloudflareOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: PatchAutomaticUpgraderRequest,
+  output: PatchAutomaticUpgraderResponse,
+  errors: [CloudflareRateLimited, CloudflareError],
+  protocol: CloudflareProtocol,
+  retry: Retry.Retry,
+}));
 
 export type PatchAutoOriginTlsKexError = CloudflareOpError;
 /** Enable or disable Auto-Origin TLS KEX selection for the zone by sending `{"enabled": true}` or `{"enabled": false}`. When enabled, Cloudflare runs a periodic scan of the zone's origins to determine the preferred key-exchange algorithm and writes that preference to the edge so it is sent first in the TLS ClientHello to the origin. */

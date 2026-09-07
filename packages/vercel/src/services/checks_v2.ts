@@ -340,6 +340,7 @@ export interface CreateDeploymentCheckRunResponseBodyCase1SourceCase0 {
   subKind: CreateDeploymentCheckRunResponseBodyCase1SourceCase0SubKind;
   origin: CreateDeploymentCheckRunResponseBodyCase1SourceCase0Origin;
   invocationId: string;
+  invocationAttempt?: number;
   jobDefinitionId: string;
 }
 export const CreateDeploymentCheckRunResponseBodyCase1SourceCase0 =
@@ -348,6 +349,7 @@ export const CreateDeploymentCheckRunResponseBodyCase1SourceCase0 =
       subKind: CreateDeploymentCheckRunResponseBodyCase1SourceCase0SubKind,
       origin: CreateDeploymentCheckRunResponseBodyCase1SourceCase0Origin,
       invocationId: S.String,
+      invocationAttempt: S.optional(S.Number),
       jobDefinitionId: S.String,
     }),
   ).annotate({
@@ -1034,6 +1036,7 @@ export interface GetDeploymentCheckRunResponseBodyCase1SourceCase0 {
   subKind: GetDeploymentCheckRunResponseBodyCase1SourceCase0SubKind;
   origin: GetDeploymentCheckRunResponseBodyCase1SourceCase0Origin;
   invocationId: string;
+  invocationAttempt?: number;
   jobDefinitionId: string;
 }
 export const GetDeploymentCheckRunResponseBodyCase1SourceCase0 =
@@ -1042,6 +1045,7 @@ export const GetDeploymentCheckRunResponseBodyCase1SourceCase0 =
       subKind: GetDeploymentCheckRunResponseBodyCase1SourceCase0SubKind,
       origin: GetDeploymentCheckRunResponseBodyCase1SourceCase0Origin,
       invocationId: S.String,
+      invocationAttempt: S.optional(S.Number),
       jobDefinitionId: S.String,
     }),
   ).annotate({
@@ -1589,6 +1593,7 @@ export interface ListCheckRunsResponseRunsItemCase1SourceCase0 {
   subKind: ListCheckRunsResponseRunsItemCase1SourceCase0SubKind;
   origin: ListCheckRunsResponseRunsItemCase1SourceCase0Origin;
   invocationId: string;
+  invocationAttempt?: number;
   jobDefinitionId: string;
 }
 export const ListCheckRunsResponseRunsItemCase1SourceCase0 =
@@ -1597,6 +1602,7 @@ export const ListCheckRunsResponseRunsItemCase1SourceCase0 =
       subKind: ListCheckRunsResponseRunsItemCase1SourceCase0SubKind,
       origin: ListCheckRunsResponseRunsItemCase1SourceCase0Origin,
       invocationId: S.String,
+      invocationAttempt: S.optional(S.Number),
       jobDefinitionId: S.String,
     }),
   ).annotate({
@@ -2007,6 +2013,7 @@ export interface ListDeploymentCheckRunsResponseRunsItemCase1SourceCase0 {
   subKind: ListDeploymentCheckRunsResponseRunsItemCase1SourceCase0SubKind;
   origin: ListDeploymentCheckRunsResponseRunsItemCase1SourceCase0Origin;
   invocationId: string;
+  invocationAttempt?: number;
   jobDefinitionId: string;
 }
 export const ListDeploymentCheckRunsResponseRunsItemCase1SourceCase0 =
@@ -2015,6 +2022,7 @@ export const ListDeploymentCheckRunsResponseRunsItemCase1SourceCase0 =
       subKind: ListDeploymentCheckRunsResponseRunsItemCase1SourceCase0SubKind,
       origin: ListDeploymentCheckRunsResponseRunsItemCase1SourceCase0Origin,
       invocationId: S.String,
+      invocationAttempt: S.optional(S.Number),
       jobDefinitionId: S.String,
     }),
   ).annotate({
@@ -2657,6 +2665,7 @@ export interface UpdateDeploymentCheckRunResponseBodyCase1SourceCase0 {
   subKind: UpdateDeploymentCheckRunResponseBodyCase1SourceCase0SubKind;
   origin: UpdateDeploymentCheckRunResponseBodyCase1SourceCase0Origin;
   invocationId: string;
+  invocationAttempt?: number;
   jobDefinitionId: string;
 }
 export const UpdateDeploymentCheckRunResponseBodyCase1SourceCase0 =
@@ -2665,6 +2674,7 @@ export const UpdateDeploymentCheckRunResponseBodyCase1SourceCase0 =
       subKind: UpdateDeploymentCheckRunResponseBodyCase1SourceCase0SubKind,
       origin: UpdateDeploymentCheckRunResponseBodyCase1SourceCase0Origin,
       invocationId: S.String,
+      invocationAttempt: S.optional(S.Number),
       jobDefinitionId: S.String,
     }),
   ).annotate({

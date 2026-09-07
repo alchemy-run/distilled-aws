@@ -3,7 +3,7 @@
   "patches": [
     {
       "op": "replace",
-      "path": "/shapes/com.railway.api#VolumeInstanceBackupLockRequest/traits/com.railway.graphql#operation/query",
+      "path": "/shapes/com.railway.api#LockVolumeInstanceBackupRequest/traits/com.railway.graphql#operation/query",
       "value": "mutation volumeInstanceBackupLock($volumeInstanceBackupId: String!, $volumeInstanceId: String!) {\n  volumeInstanceBackupLock(volumeInstanceBackupId: $volumeInstanceBackupId, volumeInstanceId: $volumeInstanceId)\n}"
     }
   ]

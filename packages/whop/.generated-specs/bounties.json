@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.whop.bounties#ListBountiesRequestStatus": {
@@ -2822,7 +2823,7 @@
         }
       }
     },
-    "com.whop.bounties#RetrievePublicBountySubmissionRequest": {
+    "com.whop.bounties#GetPublicBountySubmissionRequest": {
       "type": "structure",
       "members": {
         "bounty_id": {
@@ -2846,10 +2847,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.whop.bounties#RetrievePublicBountySubmission": {
+    "com.whop.bounties#GetPublicBountySubmission": {
       "type": "operation",
       "input": {
-        "target": "com.whop.bounties#RetrievePublicBountySubmissionRequest"
+        "target": "com.whop.bounties#GetPublicBountySubmissionRequest"
       },
       "output": {
         "target": "com.whop.bounties#PublicBountySubmission"
@@ -2868,7 +2869,7 @@
         "smithy.api#documentation": "Retrieve Public Submission\n\nRetrieves one of a bounty's publicly visible submissions in the reduced public shape — the read behind a shared proof link, whose submission is usually outside the bounty page's capped preview. Authentication is optional; a bounty that is not publicly visible, and a submission that is not publicly visible work on it, both return `404`."
       }
     },
-    "com.whop.bounties#RetrieveBountyRequest": {
+    "com.whop.bounties#GetBountyRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -2884,10 +2885,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.whop.bounties#RetrieveBounty": {
+    "com.whop.bounties#GetBounty": {
       "type": "operation",
       "input": {
-        "target": "com.whop.bounties#RetrieveBountyRequest"
+        "target": "com.whop.bounties#GetBountyRequest"
       },
       "output": {
         "target": "com.whop.bounties#Bounty"
@@ -3227,10 +3228,10 @@
           "target": "com.whop.bounties#ListPublicBountySubmissions"
         },
         {
-          "target": "com.whop.bounties#RetrievePublicBountySubmission"
+          "target": "com.whop.bounties#GetPublicBountySubmission"
         },
         {
-          "target": "com.whop.bounties#RetrieveBounty"
+          "target": "com.whop.bounties#GetBounty"
         },
         {
           "target": "com.whop.bounties#UpdateBounty"

@@ -4,42 +4,57 @@
     "service": "safebrowsing",
     "version": "v5",
     "title": "Safe Browsing API",
-    "baseUrl": "https://safebrowsing.googleapis.com/"
+    "baseUrl": "https://safebrowsing.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5HashListMetadata": {
+    "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5SearchUrlsResponse": {
       "type": "structure",
       "members": {
-        "threatTypes": {
-          "target": "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5HashListMetadataThreatTypesItemEnumList",
-          "traits": {
-            "smithy.api#documentation": "Unordered list. If not empty, this specifies that the hash list is a kind of threat list, and this enumerates the kind of threats associated with hashes or hash prefixes in this hash list. May be empty if the entry does not represent a threat, i.e. in the case that it represents a likely safe type."
-          }
-        },
-        "description": {
+        "cacheDuration": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "A human-readable description about this list. Written in English."
+            "smithy.api#documentation": "The client-side cache duration. The client MUST add this duration to the current time to determine the expiration time. The expiration time then applies to every URL queried by the client in the request, regardless of how many URLs are returned in the response. Even if the server returns no matches for a particular URL, this fact MUST also be cached by the client. If and only if the field `threats` is empty, the client MAY increase the `cache_duration` to determine a new expiration that is later than that specified by the server. In any case, the increased cache duration must not be longer than 24 hours. Important: the client MUST NOT assume that the server will return the same cache duration for all responses. The server MAY choose different cache durations for different responses depending on the situation."
           }
         },
-        "hashLength": {
-          "target": "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5HashListMetadataHashLengthEnum",
+        "threats": {
+          "target": "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5ThreatUrlList",
           "traits": {
-            "smithy.api#documentation": "The supported hash length for this hash list. Each hash list will support exactly one length. If a different hash length is introduced for the same set of threat types or safe types, it will be introduced as a separate list with a distinct name and respective hash length set."
-          }
-        },
-        "likelySafeTypes": {
-          "target": "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5HashListMetadataLikelySafeTypesItemEnumList",
-          "traits": {
-            "smithy.api#documentation": "Unordered list. If not empty, this specifies that the hash list represents a list of likely safe hashes, and this enumerates the ways they are considered likely safe. This field is mutually exclusive with the threat_types field."
+            "smithy.api#documentation": "Unordered list. The unordered list of threat matches found. Each entry contains a URL and the threat types that were found matching that URL. The list size can be greater than the number of URLs in the request as the all expressions of the URL would've been considered."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Metadata about a particular hash list."
+        "smithy.api#documentation": "The response returned after searching threats matching the specified URLs. If nothing is found, the server will return an OK status (HTTP status code 200) with the `threats` field empty, rather than returning a NOT_FOUND status (HTTP status code 404)."
       }
     },
-    "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5HashListMetadataThreatTypesItemEnum": {
+    "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5ThreatUrlList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5ThreatUrl"
+      }
+    },
+    "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5ThreatUrl": {
+      "type": "structure",
+      "members": {
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The requested URL that was matched by one or more threats."
+          }
+        },
+        "threatTypes": {
+          "target": "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5ThreatUrlThreatTypesItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "Unordered list. The unordered list of threat that the URL is classified as."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A URL matching one or more threats."
+      }
+    },
+    "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5ThreatUrlThreatTypesItemEnum": {
       "type": "enum",
       "members": {
         "THREAT_TYPE_UNSPECIFIED": {
@@ -74,189 +89,37 @@
         }
       }
     },
-    "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5HashListMetadataThreatTypesItemEnumList": {
+    "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5ThreatUrlThreatTypesItemEnumList": {
       "type": "list",
       "member": {
-        "target": "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5HashListMetadataThreatTypesItemEnum"
+        "target": "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5ThreatUrlThreatTypesItemEnum"
       }
     },
-    "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5HashListMetadataHashLengthEnum": {
-      "type": "enum",
-      "members": {
-        "HASH_LENGTH_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "HASH_LENGTH_UNSPECIFIED"
-          }
-        },
-        "FOUR_BYTES": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "FOUR_BYTES"
-          }
-        },
-        "EIGHT_BYTES": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "EIGHT_BYTES"
-          }
-        },
-        "SIXTEEN_BYTES": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "SIXTEEN_BYTES"
-          }
-        },
-        "THIRTY_TWO_BYTES": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "THIRTY_TWO_BYTES"
-          }
-        }
-      }
-    },
-    "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5HashListMetadataLikelySafeTypesItemEnum": {
-      "type": "enum",
-      "members": {
-        "LIKELY_SAFE_TYPE_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "LIKELY_SAFE_TYPE_UNSPECIFIED"
-          }
-        },
-        "GENERAL_BROWSING": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "GENERAL_BROWSING"
-          }
-        },
-        "CSD": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "CSD"
-          }
-        },
-        "DOWNLOAD": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "DOWNLOAD"
-          }
-        }
-      }
-    },
-    "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5HashListMetadataLikelySafeTypesItemEnumList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5HashListMetadataLikelySafeTypesItemEnum"
-      }
-    },
-    "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5SearchHashesResponse": {
+    "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5RiceDeltaEncoded128Bit": {
       "type": "structure",
       "members": {
-        "cacheDuration": {
+        "entriesCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of entries that are delta encoded in the encoded data. If only a single integer was encoded, this will be zero and the single value will be stored in `first_value`."
+          }
+        },
+        "firstValueLo": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The client-side cache duration. The client MUST add this duration to the current time to determine the expiration time. The expiration time then applies to every hash prefix queried by the client in the request, regardless of how many full hashes are returned in the response. Even if the server returns no full hashes for a particular hash prefix, this fact MUST also be cached by the client. If and only if the field `full_hashes` is empty, the client MAY increase the `cache_duration` to determine a new expiration that is later than that specified by the server. In any case, the increased cache duration must not be longer than 24 hours. Important: the client MUST NOT assume that the server will return the same cache duration for all responses. The server MAY choose different cache durations for different responses depending on the situation."
+            "smithy.api#documentation": "The lower 64 bits of the first entry in the encoded data (hashes). If the field is empty, the lower 64 bits are all zero."
           }
         },
-        "fullHashes": {
-          "target": "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5FullHashList",
-          "traits": {
-            "smithy.api#documentation": "Unordered list. The unordered list of full hashes found."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The response returned after searching threat hashes. If nothing is found, the server will return an OK status (HTTP status code 200) with the `full_hashes` field empty, rather than returning a NOT_FOUND status (HTTP status code 404). **What's new in V5**: There is a separation between `FullHash` and `FullHashDetail`. In the case when a hash represents a site having multiple threats (e.g. both MALWARE and SOCIAL_ENGINEERING), the full hash does not need to be sent twice as in V4. Furthermore, the cache duration has been simplified into a single `cache_duration` field."
-      }
-    },
-    "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5FullHashList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5FullHash"
-      }
-    },
-    "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5HashList": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name of the hash list. Note that the Global Cache is also just a hash list and can be referred to here."
-          }
-        },
-        "additionsSixteenBytes": {
-          "target": "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5RiceDeltaEncoded128Bit",
-          "traits": {
-            "smithy.api#documentation": "The 16-byte additions."
-          }
-        },
-        "additionsFourBytes": {
-          "target": "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5RiceDeltaEncoded32Bit",
-          "traits": {
-            "smithy.api#documentation": "The 4-byte additions."
-          }
-        },
-        "sha256Checksum": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The sorted list of all hashes, hashed again with SHA256. This is the checksum for the sorted list of all hashes present in the database after applying the provided update. In the case that no updates were provided, the server will omit this field to indicate that the client should use the existing checksum."
-          }
-        },
-        "minimumWaitDuration": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Clients should wait at least this long to get the hash list again. If omitted or zero, clients SHOULD fetch immediately because it indicates that the server has an additional update to be sent to the client, but could not due to the client-specified constraints."
-          }
-        },
-        "compressedRemovals": {
-          "target": "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5RiceDeltaEncoded32Bit",
-          "traits": {
-            "smithy.api#documentation": "The Rice-delta encoded version of removal indices. Since each hash list definitely has less than 2^32 entries, the indices are treated as 32-bit integers and encoded."
-          }
-        },
-        "version": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The version of the hash list. The client MUST NOT manipulate those bytes."
-          }
-        },
-        "metadata": {
-          "target": "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5HashListMetadata",
-          "traits": {
-            "smithy.api#documentation": "Metadata about the hash list. This is not populated by the `GetHashList` method, but this is populated by the `ListHashLists` method."
-          }
-        },
-        "partialUpdate": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "When true, this is a partial diff containing additions and removals based on what the client already has. When false, this is the complete hash list. When false, the client MUST delete any locally stored version for this hash list. This means that either the version possessed by the client is seriously out-of-date or the client data is believed to be corrupt. The `compressed_removals` field will be empty. When true, the client MUST apply an incremental update by applying removals and then additions."
-          }
-        },
-        "additionsThirtyTwoBytes": {
-          "target": "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5RiceDeltaEncoded256Bit",
-          "traits": {
-            "smithy.api#documentation": "The 32-byte additions."
-          }
-        },
-        "additionsEightBytes": {
-          "target": "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5RiceDeltaEncoded64Bit",
-          "traits": {
-            "smithy.api#documentation": "The 8-byte additions."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A list of hashes identified by its name."
-      }
-    },
-    "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5RiceDeltaEncoded32Bit": {
-      "type": "structure",
-      "members": {
         "riceParameter": {
           "target": "smithy.api#Integer",
           "traits": {
-            "smithy.api#documentation": "The Golomb-Rice parameter. This parameter is guaranteed to be between 3 and 30, inclusive."
+            "smithy.api#documentation": "The Golomb-Rice parameter. This parameter is guaranteed to be between 99 and 126, inclusive."
+          }
+        },
+        "firstValueHi": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The upper 64 bits of the first entry in the encoded data (hashes). If the field is empty, the upper 64 bits are all zero."
           }
         },
         "encodedData": {
@@ -264,22 +127,36 @@
           "traits": {
             "smithy.api#documentation": "The encoded deltas that are encoded using the Golomb-Rice coder."
           }
-        },
-        "firstValue": {
-          "target": "smithy.api#Integer",
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Same as `RiceDeltaEncoded32Bit` except this encodes 128-bit numbers."
+      }
+    },
+    "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5ListHashListsResponse": {
+      "type": "structure",
+      "members": {
+        "hashLists": {
+          "target": "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5HashListList",
           "traits": {
-            "smithy.api#documentation": "The first entry in the encoded data (hashes or indices), or, if only a single hash prefix or index was encoded, that entry's value. If the field is empty, the entry is zero."
+            "smithy.api#documentation": "The hash lists in an arbitrary order. Only metadata about the hash lists will be included, not the contents."
           }
         },
-        "entriesCount": {
-          "target": "smithy.api#Integer",
+        "nextPageToken": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The number of entries that are delta encoded in the encoded data. If only a single integer was encoded, this will be zero and the single value will be stored in `first_value`."
+            "smithy.api#documentation": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "The Rice-Golomb encoded data. Used for either hashes or removal indices. It is guaranteed that every hash or index here has the same length, and this length is exactly 32 bits. Generally speaking, if we sort all the entries lexicographically, we will find that the higher order bits tend not to change as frequently as lower order bits. This means that if we also take the adjacent difference between entries, the higher order bits have a high probability of being zero. This exploits this high probability of zero by essentially choosing a certain number of bits; all bits more significant than this are likely to be zero so we use unary encoding. See the `rice_parameter` field. Historical note: the Rice-delta encoding was first used in V4 of this API. In V5, two significant improvements were made: firstly, the Rice-delta encoding is now available with hash prefixes longer than 4 bytes; secondly, the encoded data are now treated as big-endian so as to avoid a costly sorting step."
+        "smithy.api#documentation": "The response containing metadata about hash lists."
+      }
+    },
+    "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5HashListList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5HashList"
       }
     },
     "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5FullHashFullHashDetail": {
@@ -366,30 +243,110 @@
         "target": "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5FullHashFullHashDetailAttributesItemEnum"
       }
     },
-    "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5FullHash": {
+    "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5HashList": {
       "type": "structure",
       "members": {
-        "fullHashDetails": {
-          "target": "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5FullHashFullHashDetailList",
+        "additionsFourBytes": {
+          "target": "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5RiceDeltaEncoded32Bit",
           "traits": {
-            "smithy.api#documentation": "Unordered list. A repeated field identifying the details relevant to this full hash."
+            "smithy.api#documentation": "The 4-byte additions."
           }
         },
-        "fullHash": {
+        "compressedRemovals": {
+          "target": "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5RiceDeltaEncoded32Bit",
+          "traits": {
+            "smithy.api#documentation": "The Rice-delta encoded version of removal indices. Since each hash list definitely has less than 2^32 entries, the indices are treated as 32-bit integers and encoded."
+          }
+        },
+        "additionsEightBytes": {
+          "target": "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5RiceDeltaEncoded64Bit",
+          "traits": {
+            "smithy.api#documentation": "The 8-byte additions."
+          }
+        },
+        "minimumWaitDuration": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The matching full hash. This is the SHA256 hash. The length will be exactly 32 bytes."
+            "smithy.api#documentation": "Clients should wait at least this long to get the hash list again. If omitted or zero, clients SHOULD fetch immediately because it indicates that the server has an additional update to be sent to the client, but could not due to the client-specified constraints."
+          }
+        },
+        "additionsThirtyTwoBytes": {
+          "target": "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5RiceDeltaEncoded256Bit",
+          "traits": {
+            "smithy.api#documentation": "The 32-byte additions."
+          }
+        },
+        "additionsSixteenBytes": {
+          "target": "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5RiceDeltaEncoded128Bit",
+          "traits": {
+            "smithy.api#documentation": "The 16-byte additions."
+          }
+        },
+        "partialUpdate": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When true, this is a partial diff containing additions and removals based on what the client already has. When false, this is the complete hash list. When false, the client MUST delete any locally stored version for this hash list. This means that either the version possessed by the client is seriously out-of-date or the client data is believed to be corrupt. The `compressed_removals` field will be empty. When true, the client MUST apply an incremental update by applying removals and then additions."
+          }
+        },
+        "version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The version of the hash list. The client MUST NOT manipulate those bytes."
+          }
+        },
+        "sha256Checksum": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The sorted list of all hashes, hashed again with SHA256. This is the checksum for the sorted list of all hashes present in the database after applying the provided update. In the case that no updates were provided, the server will omit this field to indicate that the client should use the existing checksum."
+          }
+        },
+        "metadata": {
+          "target": "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5HashListMetadata",
+          "traits": {
+            "smithy.api#documentation": "Metadata about the hash list. This is not populated by the `GetHashList` method, but this is populated by the `ListHashLists` method."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the hash list. Note that the Global Cache is also just a hash list and can be referred to here."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "The full hash identified with one or more matches."
+        "smithy.api#documentation": "A list of hashes identified by its name."
       }
     },
-    "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5FullHashFullHashDetailList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5FullHashFullHashDetail"
+    "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5RiceDeltaEncoded32Bit": {
+      "type": "structure",
+      "members": {
+        "entriesCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of entries that are delta encoded in the encoded data. If only a single integer was encoded, this will be zero and the single value will be stored in `first_value`."
+          }
+        },
+        "encodedData": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The encoded deltas that are encoded using the Golomb-Rice coder."
+          }
+        },
+        "firstValue": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The first entry in the encoded data (hashes or indices), or, if only a single hash prefix or index was encoded, that entry's value. If the field is empty, the entry is zero."
+          }
+        },
+        "riceParameter": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The Golomb-Rice parameter. This parameter is guaranteed to be between 3 and 30, inclusive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The Rice-Golomb encoded data. Used for either hashes or removal indices. It is guaranteed that every hash or index here has the same length, and this length is exactly 32 bits. Generally speaking, if we sort all the entries lexicographically, we will find that the higher order bits tend not to change as frequently as lower order bits. This means that if we also take the adjacent difference between entries, the higher order bits have a high probability of being zero. This exploits this high probability of zero by essentially choosing a certain number of bits; all bits more significant than this are likely to be zero so we use unary encoding. See the `rice_parameter` field. Historical note: the Rice-delta encoding was first used in V4 of this API. In V5, two significant improvements were made: firstly, the Rice-delta encoding is now available with hash prefixes longer than 4 bytes; secondly, the encoded data are now treated as big-endian so as to avoid a costly sorting step."
       }
     },
     "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5RiceDeltaEncoded64Bit": {
@@ -401,16 +358,16 @@
             "smithy.api#documentation": "The encoded deltas that are encoded using the Golomb-Rice coder."
           }
         },
-        "firstValue": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The first entry in the encoded data (hashes), or, if only a single hash prefix was encoded, that entry's value. If the field is empty, the entry is zero."
-          }
-        },
         "riceParameter": {
           "target": "smithy.api#Integer",
           "traits": {
             "smithy.api#documentation": "The Golomb-Rice parameter. This parameter is guaranteed to be between 35 and 62, inclusive."
+          }
+        },
+        "firstValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The first entry in the encoded data (hashes), or, if only a single hash prefix was encoded, that entry's value. If the field is empty, the entry is zero."
           }
         },
         "entriesCount": {
@@ -424,27 +381,135 @@
         "smithy.api#documentation": "Same as `RiceDeltaEncoded32Bit` except this encodes 64-bit numbers."
       }
     },
-    "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5ThreatUrl": {
+    "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5SearchHashesResponse": {
       "type": "structure",
       "members": {
-        "threatTypes": {
-          "target": "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5ThreatUrlThreatTypesItemEnumList",
-          "traits": {
-            "smithy.api#documentation": "Unordered list. The unordered list of threat that the URL is classified as."
-          }
-        },
-        "url": {
+        "cacheDuration": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The requested URL that was matched by one or more threats."
+            "smithy.api#documentation": "The client-side cache duration. The client MUST add this duration to the current time to determine the expiration time. The expiration time then applies to every hash prefix queried by the client in the request, regardless of how many full hashes are returned in the response. Even if the server returns no full hashes for a particular hash prefix, this fact MUST also be cached by the client. If and only if the field `full_hashes` is empty, the client MAY increase the `cache_duration` to determine a new expiration that is later than that specified by the server. In any case, the increased cache duration must not be longer than 24 hours. Important: the client MUST NOT assume that the server will return the same cache duration for all responses. The server MAY choose different cache durations for different responses depending on the situation."
+          }
+        },
+        "fullHashes": {
+          "target": "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5FullHashList",
+          "traits": {
+            "smithy.api#documentation": "Unordered list. The unordered list of full hashes found."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "A URL matching one or more threats."
+        "smithy.api#documentation": "The response returned after searching threat hashes. If nothing is found, the server will return an OK status (HTTP status code 200) with the `full_hashes` field empty, rather than returning a NOT_FOUND status (HTTP status code 404). **What's new in V5**: There is a separation between `FullHash` and `FullHashDetail`. In the case when a hash represents a site having multiple threats (e.g. both MALWARE and SOCIAL_ENGINEERING), the full hash does not need to be sent twice as in V4. Furthermore, the cache duration has been simplified into a single `cache_duration` field."
       }
     },
-    "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5ThreatUrlThreatTypesItemEnum": {
+    "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5FullHashList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5FullHash"
+      }
+    },
+    "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5HashListMetadata": {
+      "type": "structure",
+      "members": {
+        "hashLength": {
+          "target": "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5HashListMetadataHashLengthEnum",
+          "traits": {
+            "smithy.api#documentation": "The supported hash length for this hash list. Each hash list will support exactly one length. If a different hash length is introduced for the same set of threat types or safe types, it will be introduced as a separate list with a distinct name and respective hash length set."
+          }
+        },
+        "likelySafeTypes": {
+          "target": "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5HashListMetadataLikelySafeTypesItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "Unordered list. If not empty, this specifies that the hash list represents a list of likely safe hashes, and this enumerates the ways they are considered likely safe. This field is mutually exclusive with the threat_types field."
+          }
+        },
+        "threatTypes": {
+          "target": "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5HashListMetadataThreatTypesItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "Unordered list. If not empty, this specifies that the hash list is a kind of threat list, and this enumerates the kind of threats associated with hashes or hash prefixes in this hash list. May be empty if the entry does not represent a threat, i.e. in the case that it represents a likely safe type."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A human-readable description about this list. Written in English."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata about a particular hash list."
+      }
+    },
+    "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5HashListMetadataHashLengthEnum": {
+      "type": "enum",
+      "members": {
+        "HASH_LENGTH_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HASH_LENGTH_UNSPECIFIED"
+          }
+        },
+        "FOUR_BYTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FOUR_BYTES"
+          }
+        },
+        "EIGHT_BYTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EIGHT_BYTES"
+          }
+        },
+        "SIXTEEN_BYTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SIXTEEN_BYTES"
+          }
+        },
+        "THIRTY_TWO_BYTES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "THIRTY_TWO_BYTES"
+          }
+        }
+      }
+    },
+    "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5HashListMetadataLikelySafeTypesItemEnum": {
+      "type": "enum",
+      "members": {
+        "LIKELY_SAFE_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LIKELY_SAFE_TYPE_UNSPECIFIED"
+          }
+        },
+        "GENERAL_BROWSING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GENERAL_BROWSING"
+          }
+        },
+        "CSD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CSD"
+          }
+        },
+        "DOWNLOAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DOWNLOAD"
+          }
+        }
+      }
+    },
+    "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5HashListMetadataLikelySafeTypesItemEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5HashListMetadataLikelySafeTypesItemEnum"
+      }
+    },
+    "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5HashListMetadataThreatTypesItemEnum": {
       "type": "enum",
       "members": {
         "THREAT_TYPE_UNSPECIFIED": {
@@ -479,150 +544,10 @@
         }
       }
     },
-    "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5ThreatUrlThreatTypesItemEnumList": {
+    "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5HashListMetadataThreatTypesItemEnumList": {
       "type": "list",
       "member": {
-        "target": "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5ThreatUrlThreatTypesItemEnum"
-      }
-    },
-    "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5RiceDeltaEncoded256Bit": {
-      "type": "structure",
-      "members": {
-        "encodedData": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The encoded deltas that are encoded using the Golomb-Rice coder."
-          }
-        },
-        "riceParameter": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The Golomb-Rice parameter. This parameter is guaranteed to be between 227 and 254, inclusive."
-          }
-        },
-        "firstValueSecondPart": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The 65 through 128th bits of the first entry in the encoded data (hashes). If the field is empty, the 65 through 128th bits are all zero."
-          }
-        },
-        "firstValueFirstPart": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The first 64 bits of the first entry in the encoded data (hashes). If the field is empty, the first 64 bits are all zero."
-          }
-        },
-        "firstValueThirdPart": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The 129 through 192th bits of the first entry in the encoded data (hashes). If the field is empty, the 129 through 192th bits are all zero."
-          }
-        },
-        "firstValueFourthPart": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The last 64 bits of the first entry in the encoded data (hashes). If the field is empty, the last 64 bits are all zero."
-          }
-        },
-        "entriesCount": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The number of entries that are delta encoded in the encoded data. If only a single integer was encoded, this will be zero and the single value will be stored in `first_value`."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Same as `RiceDeltaEncoded32Bit` except this encodes 256-bit numbers."
-      }
-    },
-    "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5RiceDeltaEncoded128Bit": {
-      "type": "structure",
-      "members": {
-        "encodedData": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The encoded deltas that are encoded using the Golomb-Rice coder."
-          }
-        },
-        "firstValueLo": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The lower 64 bits of the first entry in the encoded data (hashes). If the field is empty, the lower 64 bits are all zero."
-          }
-        },
-        "riceParameter": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The Golomb-Rice parameter. This parameter is guaranteed to be between 99 and 126, inclusive."
-          }
-        },
-        "firstValueHi": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The upper 64 bits of the first entry in the encoded data (hashes). If the field is empty, the upper 64 bits are all zero."
-          }
-        },
-        "entriesCount": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The number of entries that are delta encoded in the encoded data. If only a single integer was encoded, this will be zero and the single value will be stored in `first_value`."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Same as `RiceDeltaEncoded32Bit` except this encodes 128-bit numbers."
-      }
-    },
-    "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5SearchUrlsResponse": {
-      "type": "structure",
-      "members": {
-        "threats": {
-          "target": "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5ThreatUrlList",
-          "traits": {
-            "smithy.api#documentation": "Unordered list. The unordered list of threat matches found. Each entry contains a URL and the threat types that were found matching that URL. The list size can be greater than the number of URLs in the request as the all expressions of the URL would've been considered."
-          }
-        },
-        "cacheDuration": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The client-side cache duration. The client MUST add this duration to the current time to determine the expiration time. The expiration time then applies to every URL queried by the client in the request, regardless of how many URLs are returned in the response. Even if the server returns no matches for a particular URL, this fact MUST also be cached by the client. If and only if the field `threats` is empty, the client MAY increase the `cache_duration` to determine a new expiration that is later than that specified by the server. In any case, the increased cache duration must not be longer than 24 hours. Important: the client MUST NOT assume that the server will return the same cache duration for all responses. The server MAY choose different cache durations for different responses depending on the situation."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The response returned after searching threats matching the specified URLs. If nothing is found, the server will return an OK status (HTTP status code 200) with the `threats` field empty, rather than returning a NOT_FOUND status (HTTP status code 404)."
-      }
-    },
-    "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5ThreatUrlList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5ThreatUrl"
-      }
-    },
-    "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5ListHashListsResponse": {
-      "type": "structure",
-      "members": {
-        "nextPageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages."
-          }
-        },
-        "hashLists": {
-          "target": "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5HashListList",
-          "traits": {
-            "smithy.api#documentation": "The hash lists in an arbitrary order. Only metadata about the hash lists will be included, not the contents."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The response containing metadata about hash lists."
-      }
-    },
-    "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5HashListList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5HashList"
+        "target": "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5HashListMetadataThreatTypesItemEnum"
       }
     },
     "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5BatchGetHashListsResponse": {
@@ -639,21 +564,96 @@
         "smithy.api#documentation": "The response containing multiple hash lists."
       }
     },
-    "com.gcp.safebrowsing_v5#ListHashListsRequest": {
+    "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5RiceDeltaEncoded256Bit": {
       "type": "structure",
       "members": {
-        "pageToken": {
+        "firstValueFirstPart": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "A page token, received from a previous `ListHashLists` call. Provide this to retrieve the subsequent page.",
-            "smithy.api#httpQuery": "pageToken"
+            "smithy.api#documentation": "The first 64 bits of the first entry in the encoded data (hashes). If the field is empty, the first 64 bits are all zero."
           }
         },
-        "pageSize": {
+        "riceParameter": {
           "target": "smithy.api#Integer",
           "traits": {
-            "smithy.api#documentation": "The maximum number of hash lists to return. The service may return fewer than this value. If unspecified, the server will choose a page size, which may be larger than the number of hash lists so that pagination is not necessary.",
-            "smithy.api#httpQuery": "pageSize"
+            "smithy.api#documentation": "The Golomb-Rice parameter. This parameter is guaranteed to be between 227 and 254, inclusive."
+          }
+        },
+        "entriesCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of entries that are delta encoded in the encoded data. If only a single integer was encoded, this will be zero and the single value will be stored in `first_value`."
+          }
+        },
+        "firstValueFourthPart": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The last 64 bits of the first entry in the encoded data (hashes). If the field is empty, the last 64 bits are all zero."
+          }
+        },
+        "firstValueThirdPart": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The 129 through 192th bits of the first entry in the encoded data (hashes). If the field is empty, the 129 through 192th bits are all zero."
+          }
+        },
+        "firstValueSecondPart": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The 65 through 128th bits of the first entry in the encoded data (hashes). If the field is empty, the 65 through 128th bits are all zero."
+          }
+        },
+        "encodedData": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The encoded deltas that are encoded using the Golomb-Rice coder."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Same as `RiceDeltaEncoded32Bit` except this encodes 256-bit numbers."
+      }
+    },
+    "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5FullHash": {
+      "type": "structure",
+      "members": {
+        "fullHashDetails": {
+          "target": "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5FullHashFullHashDetailList",
+          "traits": {
+            "smithy.api#documentation": "Unordered list. A repeated field identifying the details relevant to this full hash."
+          }
+        },
+        "fullHash": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The matching full hash. This is the SHA256 hash. The length will be exactly 32 bytes."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The full hash identified with one or more matches."
+      }
+    },
+    "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5FullHashFullHashDetailList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5FullHashFullHashDetail"
+      }
+    },
+    "com.gcp.safebrowsing_v5#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.safebrowsing_v5#SearchUrlsRequest": {
+      "type": "structure",
+      "members": {
+        "urls": {
+          "target": "com.gcp.safebrowsing_v5#StringList",
+          "traits": {
+            "smithy.api#documentation": "Required. The URLs to be looked up. Clients MUST NOT send more than 50 URLs.",
+            "smithy.api#httpQuery": "urls"
           }
         }
       }
@@ -684,13 +684,13 @@
         ]
       }
     },
-    "com.gcp.safebrowsing_v5#ListHashLists": {
+    "com.gcp.safebrowsing_v5#SearchUrls": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.safebrowsing_v5#ListHashListsRequest"
+        "target": "com.gcp.safebrowsing_v5#SearchUrlsRequest"
       },
       "output": {
-        "target": "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5ListHashListsResponse"
+        "target": "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5SearchUrlsResponse"
       },
       "errors": [
         {
@@ -703,24 +703,21 @@
       "traits": {
         "smithy.api#http": {
           "method": "GET",
-          "uri": "v5/hashLists"
+          "uri": "v5/urls:search"
         },
-        "smithy.api#documentation": "Lists hash lists. In the V5 API, Google will never remove a hash list that has ever been returned by this method. This enables clients to skip using this method and simply hard-code all hash lists they need. This is a standard List method as defined by https://google.aip.dev/132 and the HTTP method is GET.",
-        "smithy.api#paginated": {
-          "inputToken": "pageToken",
-          "outputToken": "nextPageToken"
-        }
-      }
-    },
-    "com.gcp.safebrowsing_v5#StringList": {
-      "type": "list",
-      "member": {
-        "target": "smithy.api#String"
+        "smithy.api#documentation": "Searches for URLs matching known threats. Each URL and it's host-suffix and path-prefix expressions (up to a limited depth) are checked. This means that the response may contain URLs that were not included in the request, but are expressions of the requested URLs."
       }
     },
     "com.gcp.safebrowsing_v5#BatchGetHashListsRequest": {
       "type": "structure",
       "members": {
+        "sizeConstraints.maxDatabaseEntries": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Sets the maximum number of entries that the client is willing to have in the local database for the list. (The server MAY cause the client to store less than this number of entries.) If omitted or zero, no database size limit is set.",
+            "smithy.api#httpQuery": "sizeConstraints.maxDatabaseEntries"
+          }
+        },
         "version": {
           "target": "com.gcp.safebrowsing_v5#StringList",
           "traits": {
@@ -740,13 +737,6 @@
           "traits": {
             "smithy.api#documentation": "The maximum size in number of entries. The update will not contain more entries than this value, but it is possible that the update will contain fewer entries than this value. This MUST be at least 1024. If omitted or zero, no update size limit is set.",
             "smithy.api#httpQuery": "sizeConstraints.maxUpdateEntries"
-          }
-        },
-        "sizeConstraints.maxDatabaseEntries": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Sets the maximum number of entries that the client is willing to have in the local database for the list. (The server MAY cause the client to store less than this number of entries.) If omitted or zero, no database size limit is set.",
-            "smithy.api#httpQuery": "sizeConstraints.maxDatabaseEntries"
           }
         }
       }
@@ -775,6 +765,53 @@
         "smithy.api#documentation": "Gets multiple hash lists at once. It is very common for a client to need to get multiple hash lists. Using this method is preferred over using the regular Get method multiple times. This is a standard batch Get method as defined by https://google.aip.dev/231 and the HTTP method is also GET."
       }
     },
+    "com.gcp.safebrowsing_v5#ListHashListsRequest": {
+      "type": "structure",
+      "members": {
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A page token, received from a previous `ListHashLists` call. Provide this to retrieve the subsequent page.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of hash lists to return. The service may return fewer than this value. If unspecified, the server will choose a page size, which may be larger than the number of hash lists so that pagination is not necessary.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        }
+      }
+    },
+    "com.gcp.safebrowsing_v5#ListHashLists": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.safebrowsing_v5#ListHashListsRequest"
+      },
+      "output": {
+        "target": "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5ListHashListsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.safebrowsing_v5#NotFound"
+        },
+        {
+          "target": "com.gcp.safebrowsing_v5#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v5/hashLists"
+        },
+        "smithy.api#documentation": "Lists hash lists. In the V5 API, Google will never remove a hash list that has ever been returned by this method. This enables clients to skip using this method and simply hard-code all hash lists they need. This is a standard List method as defined by https://google.aip.dev/132 and the HTTP method is GET.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
     "com.gcp.safebrowsing_v5#GetHashListRequest": {
       "type": "structure",
       "members": {
@@ -785,12 +822,11 @@
             "smithy.api#httpQuery": "sizeConstraints.maxUpdateEntries"
           }
         },
-        "name": {
+        "version": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Required. The name of this particular hash list. It may be a threat list, or it may be the Global Cache.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
+            "smithy.api#documentation": "The version of the hash list that the client already has. If this is the first time the client is fetching the hash list, this field MUST be left empty. Otherwise, the client SHOULD supply the version previously received from the server. The client MUST NOT manipulate those bytes. **What's new in V5**: in V4 of the API, this was called `states`; it is now renamed to `version` for clarity.",
+            "smithy.api#httpQuery": "version"
           }
         },
         "sizeConstraints.maxDatabaseEntries": {
@@ -800,11 +836,12 @@
             "smithy.api#httpQuery": "sizeConstraints.maxDatabaseEntries"
           }
         },
-        "version": {
+        "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The version of the hash list that the client already has. If this is the first time the client is fetching the hash list, this field MUST be left empty. Otherwise, the client SHOULD supply the version previously received from the server. The client MUST NOT manipulate those bytes. **What's new in V5**: in V4 of the API, this was called `states`; it is now renamed to `version` for clarity.",
-            "smithy.api#httpQuery": "version"
+            "smithy.api#documentation": "Required. The name of this particular hash list. It may be a threat list, or it may be the Global Cache.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
           }
         }
       }
@@ -867,42 +904,6 @@
           "uri": "v5/hashes:search"
         },
         "smithy.api#documentation": "Searches for full hashes matching the specified prefixes. This is a custom method as defined by https://google.aip.dev/136 (the custom method refers to this method having a custom name within Google's general API development nomenclature; it does not refer to using a custom HTTP method)."
-      }
-    },
-    "com.gcp.safebrowsing_v5#SearchUrlsRequest": {
-      "type": "structure",
-      "members": {
-        "urls": {
-          "target": "com.gcp.safebrowsing_v5#StringList",
-          "traits": {
-            "smithy.api#documentation": "Required. The URLs to be looked up. Clients MUST NOT send more than 50 URLs.",
-            "smithy.api#httpQuery": "urls"
-          }
-        }
-      }
-    },
-    "com.gcp.safebrowsing_v5#SearchUrls": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.safebrowsing_v5#SearchUrlsRequest"
-      },
-      "output": {
-        "target": "com.gcp.safebrowsing_v5#GoogleSecuritySafebrowsingV5SearchUrlsResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.safebrowsing_v5#NotFound"
-        },
-        {
-          "target": "com.gcp.safebrowsing_v5#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v5/urls:search"
-        },
-        "smithy.api#documentation": "Searches for URLs matching known threats. Each URL and it's host-suffix and path-prefix expressions (up to a limited depth) are checked. This means that the response may contain URLs that were not included in the request, but are expressions of the requested URLs."
       }
     }
   }

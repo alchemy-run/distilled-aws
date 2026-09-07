@@ -4,230 +4,10 @@
     "service": "agenciesandbrands",
     "version": "v1",
     "title": "Agencies and Brands API",
-    "baseUrl": "https://agenciesandbrands.googleapis.com/"
+    "baseUrl": "https://agenciesandbrands.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.gcp.agenciesandbrands_v1#DoubleList": {
-      "type": "structure",
-      "members": {
-        "values": {
-          "target": "com.gcp.agenciesandbrands_v1#DoubleList_",
-          "traits": {
-            "smithy.api#documentation": "The values"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A list of double values."
-      }
-    },
-    "com.gcp.agenciesandbrands_v1#DoubleList_": {
-      "type": "list",
-      "member": {
-        "target": "smithy.api#Double"
-      }
-    },
-    "com.gcp.agenciesandbrands_v1#ListReportsResponse": {
-      "type": "structure",
-      "members": {
-        "totalSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Total number of `Report` objects. If a filter was included in the request, this reflects the total number after the filtering is applied. `total_size` won't be calculated in the response unless it has been included in a response field mask. The response field mask can be provided to the method by using the URL parameter `$fields` or `fields`, or by using the HTTP/gRPC header `X-Goog-FieldMask`. For more information, see https://developers.google.com/ad-manager/api/beta/field-masks"
-          }
-        },
-        "nextPageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages."
-          }
-        },
-        "reports": {
-          "target": "com.gcp.agenciesandbrands_v1#ReportList",
-          "traits": {
-            "smithy.api#documentation": "The `Report` objects from the specified network."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Response object for `ListReportsResponse` containing matching `Report` objects."
-      }
-    },
-    "com.gcp.agenciesandbrands_v1#ReportList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.agenciesandbrands_v1#Report"
-      }
-    },
-    "com.gcp.agenciesandbrands_v1#ReportValue": {
-      "type": "structure",
-      "members": {
-        "intListValue": {
-          "target": "com.gcp.agenciesandbrands_v1#IntList",
-          "traits": {
-            "smithy.api#documentation": "For lists of integer values."
-          }
-        },
-        "doubleValue": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "For double values."
-          }
-        },
-        "stringListValue": {
-          "target": "com.gcp.agenciesandbrands_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "For lists of string values."
-          }
-        },
-        "bytesValue": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "For bytes values."
-          }
-        },
-        "boolValue": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "For boolean values."
-          }
-        },
-        "stringValue": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "For string values."
-          }
-        },
-        "intValue": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "For integer values."
-          }
-        },
-        "doubleListValue": {
-          "target": "com.gcp.agenciesandbrands_v1#DoubleList",
-          "traits": {
-            "smithy.api#documentation": "For lists of double values."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Represents a single value in a report."
-      }
-    },
-    "com.gcp.agenciesandbrands_v1#RunReportRequest": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#documentation": "Request message for a running a report."
-      }
-    },
-    "com.gcp.agenciesandbrands_v1#FixedDateRange": {
-      "type": "structure",
-      "members": {
-        "endDate": {
-          "target": "com.gcp.agenciesandbrands_v1#Agenciesandbrands_Date",
-          "traits": {
-            "smithy.api#documentation": "Required. The end date (inclusive) of this date range."
-          }
-        },
-        "startDate": {
-          "target": "com.gcp.agenciesandbrands_v1#Agenciesandbrands_Date",
-          "traits": {
-            "smithy.api#documentation": "Required. The start date of this date range."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A date range between two fixed dates (inclusive of end date)."
-      }
-    },
-    "com.gcp.agenciesandbrands_v1#RunReportResponse": {
-      "type": "structure",
-      "members": {
-        "reportResult": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The unique name of the generated result. Use with `FetchReportResultRows` to retrieve data."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Response message for a completed `RunReport` operation."
-      }
-    },
-    "com.gcp.agenciesandbrands_v1#Sort": {
-      "type": "structure",
-      "members": {
-        "field": {
-          "target": "com.gcp.agenciesandbrands_v1#Field",
-          "traits": {
-            "smithy.api#documentation": "Required. A field (dimension or metric) to sort by."
-          }
-        },
-        "descending": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Optional. The sort order. If true the sort will be descending."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Represents a sorting in a report."
-      }
-    },
-    "com.gcp.agenciesandbrands_v1#FilterList": {
-      "type": "structure",
-      "members": {
-        "filters": {
-          "target": "com.gcp.agenciesandbrands_v1#FilterList_",
-          "traits": {
-            "smithy.api#documentation": "Required. A list of filters."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A list of filters."
-      }
-    },
-    "com.gcp.agenciesandbrands_v1#FilterList_": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.agenciesandbrands_v1#Filter"
-      }
-    },
-    "com.gcp.agenciesandbrands_v1#Filter": {
-      "type": "structure",
-      "members": {
-        "andFilter": {
-          "target": "com.gcp.agenciesandbrands_v1#FilterList",
-          "traits": {
-            "smithy.api#documentation": "A list of filters whose results are AND-ed."
-          }
-        },
-        "fieldFilter": {
-          "target": "com.gcp.agenciesandbrands_v1#FieldFilter",
-          "traits": {
-            "smithy.api#documentation": "A filter on a single field."
-          }
-        },
-        "notFilter": {
-          "target": "com.gcp.agenciesandbrands_v1#Filter",
-          "traits": {
-            "smithy.api#documentation": "A filter whose result is negated."
-          }
-        },
-        "orFilter": {
-          "target": "com.gcp.agenciesandbrands_v1#FilterList",
-          "traits": {
-            "smithy.api#documentation": "A list of filters whose results are OR-ed."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A filter over one or more fields."
-      }
-    },
     "com.gcp.agenciesandbrands_v1#RunReportMetadata": {
       "type": "structure",
       "members": {
@@ -248,91 +28,50 @@
         "smithy.api#documentation": "`RunReport` operation metadata."
       }
     },
-    "com.gcp.agenciesandbrands_v1#Operation": {
+    "com.gcp.agenciesandbrands_v1#StringList": {
       "type": "structure",
       "members": {
-        "metadata": {
-          "target": "com.gcp.agenciesandbrands_v1#DocumentMap",
+        "values": {
+          "target": "com.gcp.agenciesandbrands_v1#StringList_",
           "traits": {
-            "smithy.api#documentation": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any."
-          }
-        },
-        "response": {
-          "target": "com.gcp.agenciesandbrands_v1#DocumentMap",
-          "traits": {
-            "smithy.api#documentation": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`."
-          }
-        },
-        "done": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
-          }
-        },
-        "error": {
-          "target": "com.gcp.agenciesandbrands_v1#Status",
-          "traits": {
-            "smithy.api#documentation": "The error result of the operation in case of failure or cancellation."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
+            "smithy.api#documentation": "The values"
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "This resource represents a long-running operation that is the result of a network API call."
+        "smithy.api#documentation": "A list of string values."
       }
     },
-    "com.gcp.agenciesandbrands_v1#DocumentMap": {
-      "type": "map",
-      "key": {
+    "com.gcp.agenciesandbrands_v1#StringList_": {
+      "type": "list",
+      "member": {
         "target": "smithy.api#String"
-      },
-      "value": {
-        "target": "smithy.api#Document"
       }
     },
-    "com.gcp.agenciesandbrands_v1#Agenciesandbrands_Date": {
+    "com.gcp.agenciesandbrands_v1#Row": {
       "type": "structure",
       "members": {
-        "month": {
-          "target": "smithy.api#Integer",
+        "metricValueGroups": {
+          "target": "com.gcp.agenciesandbrands_v1#MetricValueGroupList",
           "traits": {
-            "smithy.api#documentation": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day."
+            "smithy.api#documentation": " The length of the metric_value_groups field will be equal to the length of the date_ranges field in the fetch response. The metric_value_groups field is ordered such that each index corresponds to the date_range at the same index. For example, given date_ranges [x, y], metric_value_groups will have a length of two. The first entry in metric_value_groups represents the metrics for date x and the second entry in metric_value_groups represents the metrics for date y."
           }
         },
-        "day": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant."
-          }
-        },
-        "year": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp"
-      }
-    },
-    "com.gcp.agenciesandbrands_v1#MetricValueGroup": {
-      "type": "structure",
-      "members": {
-        "primaryValues": {
+        "dimensionValues": {
           "target": "com.gcp.agenciesandbrands_v1#ReportValueList",
           "traits": {
-            "smithy.api#documentation": "Data for the PRIMARY MetricValueType."
+            "smithy.api#documentation": "The order of the dimension values is the same as the order of the dimensions specified in the request."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Contains all metric values requested for a single date range and set of column dimension values (returned in the columns field of the response). The order of the metrics in each field corresponds to the order of the metrics specified in the request."
+        "smithy.api#documentation": "A row of report data."
+      }
+    },
+    "com.gcp.agenciesandbrands_v1#MetricValueGroupList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.agenciesandbrands_v1#MetricValueGroup"
       }
     },
     "com.gcp.agenciesandbrands_v1#ReportValueList": {
@@ -341,70 +80,31 @@
         "target": "com.gcp.agenciesandbrands_v1#ReportValue"
       }
     },
-    "com.gcp.agenciesandbrands_v1#Empty": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
-      }
-    },
-    "com.gcp.agenciesandbrands_v1#Report": {
-      "type": "structure",
-      "members": {
-        "displayName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Display name for the report."
-          }
-        },
-        "locale": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The locale of this report. Locale is set from the user's locale at the time of the request. Locale can't be modified."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier. The resource name of the report. Report resource name have the form: `agencies/{account_id}/reports/{report_id}`"
-          }
-        },
-        "reportDefinition": {
-          "target": "com.gcp.agenciesandbrands_v1#ReportDefinition",
-          "traits": {
-            "smithy.api#documentation": "Required. The report definition of the report."
-          }
-        },
-        "createTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The instant this report was created."
-          }
-        },
-        "updateTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The instant this report was last modified."
-          }
-        },
-        "reportId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Report ID."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The `Report` resource."
-      }
-    },
     "com.gcp.agenciesandbrands_v1#ReportDefinition": {
       "type": "structure",
       "members": {
+        "currencyCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The ISO 4217 currency code for this report. Defaults to account currency code if not specified."
+          }
+        },
+        "timeZone": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. If time_zone_source is PROVIDED, this is the time zone to use for this report. Leave empty for any other time zone source. Time zone in IANA format. For example, \"America/New_York\"."
+          }
+        },
         "dateRange": {
           "target": "com.gcp.agenciesandbrands_v1#DateRange",
           "traits": {
             "smithy.api#documentation": "Required. The primary date range of this report."
+          }
+        },
+        "sorts": {
+          "target": "com.gcp.agenciesandbrands_v1#SortList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Default sorts to apply to this report."
           }
         },
         "dimensions": {
@@ -419,39 +119,27 @@
             "smithy.api#documentation": "Optional. Where to get the time zone for this report. Defaults to using the Pacific time zone (PT). If source is PROVIDED, the time_zone field in the report definition must also set a time zone."
           }
         },
-        "metrics": {
-          "target": "com.gcp.agenciesandbrands_v1#ReportDefinitionMetricsItemEnumList",
-          "traits": {
-            "smithy.api#documentation": "Required. The list of metrics to report on. If empty, the report will have no metrics."
-          }
-        },
-        "timeZone": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. If time_zone_source is PROVIDED, this is the time zone to use for this report. Leave empty for any other time zone source. Time zone in IANA format. For example, \"America/New_York\"."
-          }
-        },
-        "sorts": {
-          "target": "com.gcp.agenciesandbrands_v1#SortList",
-          "traits": {
-            "smithy.api#documentation": "Optional. Default sorts to apply to this report."
-          }
-        },
         "filters": {
           "target": "com.gcp.agenciesandbrands_v1#FilterList_",
           "traits": {
             "smithy.api#documentation": "Optional. The filters for this report."
           }
         },
-        "currencyCode": {
-          "target": "smithy.api#String",
+        "metrics": {
+          "target": "com.gcp.agenciesandbrands_v1#ReportDefinitionMetricsItemEnumList",
           "traits": {
-            "smithy.api#documentation": "Optional. The ISO 4217 currency code for this report. Defaults to account currency code if not specified."
+            "smithy.api#documentation": "Required. The list of metrics to report on. If empty, the report will have no metrics."
           }
         }
       },
       "traits": {
         "smithy.api#documentation": "The definition of how a report should be run."
+      }
+    },
+    "com.gcp.agenciesandbrands_v1#SortList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.agenciesandbrands_v1#Sort"
       }
     },
     "com.gcp.agenciesandbrands_v1#ReportDefinitionDimensionsItemEnum": {
@@ -782,6 +470,12 @@
         }
       }
     },
+    "com.gcp.agenciesandbrands_v1#FilterList_": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.agenciesandbrands_v1#Filter"
+      }
+    },
     "com.gcp.agenciesandbrands_v1#ReportDefinitionMetricsItemEnum": {
       "type": "enum",
       "members": {
@@ -959,120 +653,6 @@
       "type": "list",
       "member": {
         "target": "com.gcp.agenciesandbrands_v1#ReportDefinitionMetricsItemEnum"
-      }
-    },
-    "com.gcp.agenciesandbrands_v1#SortList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.agenciesandbrands_v1#Sort"
-      }
-    },
-    "com.gcp.agenciesandbrands_v1#Row": {
-      "type": "structure",
-      "members": {
-        "dimensionValues": {
-          "target": "com.gcp.agenciesandbrands_v1#ReportValueList",
-          "traits": {
-            "smithy.api#documentation": "The order of the dimension values is the same as the order of the dimensions specified in the request."
-          }
-        },
-        "metricValueGroups": {
-          "target": "com.gcp.agenciesandbrands_v1#MetricValueGroupList",
-          "traits": {
-            "smithy.api#documentation": " The length of the metric_value_groups field will be equal to the length of the date_ranges field in the fetch response. The metric_value_groups field is ordered such that each index corresponds to the date_range at the same index. For example, given date_ranges [x, y], metric_value_groups will have a length of two. The first entry in metric_value_groups represents the metrics for date x and the second entry in metric_value_groups represents the metrics for date y."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A row of report data."
-      }
-    },
-    "com.gcp.agenciesandbrands_v1#MetricValueGroupList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.agenciesandbrands_v1#MetricValueGroup"
-      }
-    },
-    "com.gcp.agenciesandbrands_v1#Status": {
-      "type": "structure",
-      "members": {
-        "message": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
-          }
-        },
-        "code": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The status code, which should be an enum value of google.rpc.Code."
-          }
-        },
-        "details": {
-          "target": "com.gcp.agenciesandbrands_v1#DocumentMapList",
-          "traits": {
-            "smithy.api#documentation": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
-      }
-    },
-    "com.gcp.agenciesandbrands_v1#DocumentMapList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.agenciesandbrands_v1#DocumentMap"
-      }
-    },
-    "com.gcp.agenciesandbrands_v1#FetchReportResultRowsResponse": {
-      "type": "structure",
-      "members": {
-        "totalRowCount": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The total number of rows available from this report. Useful for pagination. Only returned with the first page of results (when page_token is not included in the request)."
-          }
-        },
-        "nextPageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages."
-          }
-        },
-        "rows": {
-          "target": "com.gcp.agenciesandbrands_v1#RowList",
-          "traits": {
-            "smithy.api#documentation": "Up to `page_size` rows of report data."
-          }
-        },
-        "runTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The time at which the report was scheduled to run. For non-scheduled reports, this is the time at which the report was requested to be run."
-          }
-        },
-        "dateRanges": {
-          "target": "com.gcp.agenciesandbrands_v1#FixedDateRangeList",
-          "traits": {
-            "smithy.api#documentation": "The computed fixed date ranges this report includes. Only returned with the first page of results (when page_token is not included in the request)."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The response message for the fetch report result rows endpoint."
-      }
-    },
-    "com.gcp.agenciesandbrands_v1#RowList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.agenciesandbrands_v1#Row"
-      }
-    },
-    "com.gcp.agenciesandbrands_v1#FixedDateRangeList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.agenciesandbrands_v1#FixedDateRange"
       }
     },
     "com.gcp.agenciesandbrands_v1#DateRange": {
@@ -1268,6 +848,156 @@
         }
       }
     },
+    "com.gcp.agenciesandbrands_v1#DoubleList": {
+      "type": "structure",
+      "members": {
+        "values": {
+          "target": "com.gcp.agenciesandbrands_v1#DoubleList_",
+          "traits": {
+            "smithy.api#documentation": "The values"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of double values."
+      }
+    },
+    "com.gcp.agenciesandbrands_v1#DoubleList_": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Double"
+      }
+    },
+    "com.gcp.agenciesandbrands_v1#RunReportResponse": {
+      "type": "structure",
+      "members": {
+        "reportResult": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique name of the generated result. Use with `FetchReportResultRows` to retrieve data."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for a completed `RunReport` operation."
+      }
+    },
+    "com.gcp.agenciesandbrands_v1#Sort": {
+      "type": "structure",
+      "members": {
+        "field": {
+          "target": "com.gcp.agenciesandbrands_v1#Field",
+          "traits": {
+            "smithy.api#documentation": "Required. A field (dimension or metric) to sort by."
+          }
+        },
+        "descending": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. The sort order. If true the sort will be descending."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a sorting in a report."
+      }
+    },
+    "com.gcp.agenciesandbrands_v1#MetricValueGroup": {
+      "type": "structure",
+      "members": {
+        "primaryValues": {
+          "target": "com.gcp.agenciesandbrands_v1#ReportValueList",
+          "traits": {
+            "smithy.api#documentation": "Data for the PRIMARY MetricValueType."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Contains all metric values requested for a single date range and set of column dimension values (returned in the columns field of the response). The order of the metrics in each field corresponds to the order of the metrics specified in the request."
+      }
+    },
+    "com.gcp.agenciesandbrands_v1#FetchReportResultRowsResponse": {
+      "type": "structure",
+      "members": {
+        "runTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time at which the report was scheduled to run. For non-scheduled reports, this is the time at which the report was requested to be run."
+          }
+        },
+        "totalRowCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The total number of rows available from this report. Useful for pagination. Only returned with the first page of results (when page_token is not included in the request)."
+          }
+        },
+        "rows": {
+          "target": "com.gcp.agenciesandbrands_v1#RowList",
+          "traits": {
+            "smithy.api#documentation": "Up to `page_size` rows of report data."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages."
+          }
+        },
+        "dateRanges": {
+          "target": "com.gcp.agenciesandbrands_v1#FixedDateRangeList",
+          "traits": {
+            "smithy.api#documentation": "The computed fixed date ranges this report includes. Only returned with the first page of results (when page_token is not included in the request)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response message for the fetch report result rows endpoint."
+      }
+    },
+    "com.gcp.agenciesandbrands_v1#RowList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.agenciesandbrands_v1#Row"
+      }
+    },
+    "com.gcp.agenciesandbrands_v1#FixedDateRangeList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.agenciesandbrands_v1#FixedDateRange"
+      }
+    },
+    "com.gcp.agenciesandbrands_v1#ListReportsResponse": {
+      "type": "structure",
+      "members": {
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages."
+          }
+        },
+        "totalSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Total number of `Report` objects. If a filter was included in the request, this reflects the total number after the filtering is applied. `total_size` won't be calculated in the response unless it has been included in a response field mask. The response field mask can be provided to the method by using the URL parameter `$fields` or `fields`, or by using the HTTP/gRPC header `X-Goog-FieldMask`. For more information, see https://developers.google.com/ad-manager/api/beta/field-masks"
+          }
+        },
+        "reports": {
+          "target": "com.gcp.agenciesandbrands_v1#ReportList",
+          "traits": {
+            "smithy.api#documentation": "The `Report` objects from the specified network."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response object for `ListReportsResponse` containing matching `Report` objects."
+      }
+    },
+    "com.gcp.agenciesandbrands_v1#ReportList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.agenciesandbrands_v1#Report"
+      }
+    },
     "com.gcp.agenciesandbrands_v1#IntList": {
       "type": "structure",
       "members": {
@@ -1282,24 +1012,260 @@
         "smithy.api#documentation": "A list of integer values."
       }
     },
-    "com.gcp.agenciesandbrands_v1#StringList_": {
-      "type": "list",
-      "member": {
-        "target": "smithy.api#String"
+    "com.gcp.agenciesandbrands_v1#RunReportRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Request message for a running a report."
       }
     },
-    "com.gcp.agenciesandbrands_v1#StringList": {
+    "com.gcp.agenciesandbrands_v1#Report": {
       "type": "structure",
       "members": {
-        "values": {
-          "target": "com.gcp.agenciesandbrands_v1#StringList_",
+        "updateTime": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The values"
+            "smithy.api#documentation": "Output only. The instant this report was last modified."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The instant this report was created."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Display name for the report."
+          }
+        },
+        "reportId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Report ID."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. The resource name of the report. Report resource name have the form: `agencies/{account_id}/reports/{report_id}`"
+          }
+        },
+        "locale": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The locale of this report. Locale is set from the user's locale at the time of the request. Locale can't be modified."
+          }
+        },
+        "reportDefinition": {
+          "target": "com.gcp.agenciesandbrands_v1#ReportDefinition",
+          "traits": {
+            "smithy.api#documentation": "Required. The report definition of the report."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "A list of string values."
+        "smithy.api#documentation": "The `Report` resource."
+      }
+    },
+    "com.gcp.agenciesandbrands_v1#FixedDateRange": {
+      "type": "structure",
+      "members": {
+        "endDate": {
+          "target": "com.gcp.agenciesandbrands_v1#Agenciesandbrands_Date",
+          "traits": {
+            "smithy.api#documentation": "Required. The end date (inclusive) of this date range."
+          }
+        },
+        "startDate": {
+          "target": "com.gcp.agenciesandbrands_v1#Agenciesandbrands_Date",
+          "traits": {
+            "smithy.api#documentation": "Required. The start date of this date range."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A date range between two fixed dates (inclusive of end date)."
+      }
+    },
+    "com.gcp.agenciesandbrands_v1#FieldFilter": {
+      "type": "structure",
+      "members": {
+        "operation": {
+          "target": "com.gcp.agenciesandbrands_v1#FieldFilterOperationEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. The operation of this filter."
+          }
+        },
+        "field": {
+          "target": "com.gcp.agenciesandbrands_v1#Field",
+          "traits": {
+            "smithy.api#documentation": "Required. The field to filter on."
+          }
+        },
+        "values": {
+          "target": "com.gcp.agenciesandbrands_v1#ReportValueList",
+          "traits": {
+            "smithy.api#documentation": "Required. Values to filter to."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A filter on a specific field."
+      }
+    },
+    "com.gcp.agenciesandbrands_v1#FieldFilterOperationEnum": {
+      "type": "enum",
+      "members": {
+        "IN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IN"
+          }
+        },
+        "NOT_IN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_IN"
+          }
+        },
+        "CONTAINS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONTAINS"
+          }
+        },
+        "NOT_CONTAINS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_CONTAINS"
+          }
+        },
+        "LESS_THAN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LESS_THAN"
+          }
+        },
+        "LESS_THAN_EQUALS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LESS_THAN_EQUALS"
+          }
+        },
+        "GREATER_THAN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GREATER_THAN"
+          }
+        },
+        "GREATER_THAN_EQUALS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GREATER_THAN_EQUALS"
+          }
+        },
+        "BETWEEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BETWEEN"
+          }
+        },
+        "MATCHES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MATCHES"
+          }
+        },
+        "NOT_MATCHES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_MATCHES"
+          }
+        }
+      }
+    },
+    "com.gcp.agenciesandbrands_v1#Agenciesandbrands_Date": {
+      "type": "structure",
+      "members": {
+        "day": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant."
+          }
+        },
+        "month": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day."
+          }
+        },
+        "year": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp"
+      }
+    },
+    "com.gcp.agenciesandbrands_v1#ReportValue": {
+      "type": "structure",
+      "members": {
+        "stringListValue": {
+          "target": "com.gcp.agenciesandbrands_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "For lists of string values."
+          }
+        },
+        "bytesValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "For bytes values."
+          }
+        },
+        "intValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "For integer values."
+          }
+        },
+        "boolValue": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "For boolean values."
+          }
+        },
+        "intListValue": {
+          "target": "com.gcp.agenciesandbrands_v1#IntList",
+          "traits": {
+            "smithy.api#documentation": "For lists of integer values."
+          }
+        },
+        "doubleValue": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "For double values."
+          }
+        },
+        "doubleListValue": {
+          "target": "com.gcp.agenciesandbrands_v1#DoubleList",
+          "traits": {
+            "smithy.api#documentation": "For lists of double values."
+          }
+        },
+        "stringValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "For string values."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a single value in a report."
       }
     },
     "com.gcp.agenciesandbrands_v1#Field": {
@@ -1782,112 +1748,161 @@
         }
       }
     },
-    "com.gcp.agenciesandbrands_v1#FieldFilter": {
+    "com.gcp.agenciesandbrands_v1#Filter": {
       "type": "structure",
       "members": {
-        "values": {
-          "target": "com.gcp.agenciesandbrands_v1#ReportValueList",
+        "fieldFilter": {
+          "target": "com.gcp.agenciesandbrands_v1#FieldFilter",
           "traits": {
-            "smithy.api#documentation": "Required. Values to filter to."
+            "smithy.api#documentation": "A filter on a single field."
           }
         },
-        "operation": {
-          "target": "com.gcp.agenciesandbrands_v1#FieldFilterOperationEnum",
+        "orFilter": {
+          "target": "com.gcp.agenciesandbrands_v1#FilterList",
           "traits": {
-            "smithy.api#documentation": "Required. The operation of this filter."
+            "smithy.api#documentation": "A list of filters whose results are OR-ed."
           }
         },
-        "field": {
-          "target": "com.gcp.agenciesandbrands_v1#Field",
+        "andFilter": {
+          "target": "com.gcp.agenciesandbrands_v1#FilterList",
           "traits": {
-            "smithy.api#documentation": "Required. The field to filter on."
+            "smithy.api#documentation": "A list of filters whose results are AND-ed."
+          }
+        },
+        "notFilter": {
+          "target": "com.gcp.agenciesandbrands_v1#Filter",
+          "traits": {
+            "smithy.api#documentation": "A filter whose result is negated."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "A filter on a specific field."
+        "smithy.api#documentation": "A filter over one or more fields."
       }
     },
-    "com.gcp.agenciesandbrands_v1#FieldFilterOperationEnum": {
-      "type": "enum",
+    "com.gcp.agenciesandbrands_v1#FilterList": {
+      "type": "structure",
       "members": {
-        "IN": {
-          "target": "smithy.api#Unit",
+        "filters": {
+          "target": "com.gcp.agenciesandbrands_v1#FilterList_",
           "traits": {
-            "smithy.api#enumValue": "IN"
-          }
-        },
-        "NOT_IN": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "NOT_IN"
-          }
-        },
-        "CONTAINS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "CONTAINS"
-          }
-        },
-        "NOT_CONTAINS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "NOT_CONTAINS"
-          }
-        },
-        "LESS_THAN": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "LESS_THAN"
-          }
-        },
-        "LESS_THAN_EQUALS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "LESS_THAN_EQUALS"
-          }
-        },
-        "GREATER_THAN": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "GREATER_THAN"
-          }
-        },
-        "GREATER_THAN_EQUALS": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "GREATER_THAN_EQUALS"
-          }
-        },
-        "BETWEEN": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "BETWEEN"
-          }
-        },
-        "MATCHES": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "MATCHES"
-          }
-        },
-        "NOT_MATCHES": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "NOT_MATCHES"
+            "smithy.api#documentation": "Required. A list of filters."
           }
         }
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of filters."
       }
     },
-    "com.gcp.agenciesandbrands_v1#GetAgenciesReportsRequest": {
+    "com.gcp.agenciesandbrands_v1#Status": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The status code, which should be an enum value of google.rpc.Code."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+          }
+        },
+        "details": {
+          "target": "com.gcp.agenciesandbrands_v1#DocumentMapList",
+          "traits": {
+            "smithy.api#documentation": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+      }
+    },
+    "com.gcp.agenciesandbrands_v1#DocumentMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.gcp.agenciesandbrands_v1#DocumentMapList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.agenciesandbrands_v1#DocumentMap"
+      }
+    },
+    "com.gcp.agenciesandbrands_v1#Empty": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+      }
+    },
+    "com.gcp.agenciesandbrands_v1#Operation": {
       "type": "structure",
       "members": {
         "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Required. The resource name of the report. Format: `agencies/{account_id}/reports/{report_id}`",
+            "smithy.api#documentation": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
+          }
+        },
+        "done": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
+          }
+        },
+        "metadata": {
+          "target": "com.gcp.agenciesandbrands_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any."
+          }
+        },
+        "error": {
+          "target": "com.gcp.agenciesandbrands_v1#Status",
+          "traits": {
+            "smithy.api#documentation": "The error result of the operation in case of failure or cancellation."
+          }
+        },
+        "response": {
+          "target": "com.gcp.agenciesandbrands_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "This resource represents a long-running operation that is the result of a network API call."
+      }
+    },
+    "com.gcp.agenciesandbrands_v1#PatchAgenciesReportsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. The resource name of the report. Report resource name have the form: `agencies/{account_id}/reports/{report_id}`",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The list of fields to update.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "body": {
+          "target": "com.gcp.agenciesandbrands_v1#Report",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
           }
         }
       }
@@ -1916,6 +1931,75 @@
             "status": 403
           }
         ]
+      }
+    },
+    "com.gcp.agenciesandbrands_v1#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.gcp.agenciesandbrands_v1#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.gcp.agenciesandbrands_v1#PatchAgenciesReports": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.agenciesandbrands_v1#PatchAgenciesReportsRequest"
+      },
+      "output": {
+        "target": "com.gcp.agenciesandbrands_v1#Report"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.agenciesandbrands_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.agenciesandbrands_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.agenciesandbrands_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.agenciesandbrands_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Updates a `Report` object."
+      }
+    },
+    "com.gcp.agenciesandbrands_v1#GetAgenciesReportsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name of the report. Format: `agencies/{account_id}/reports/{report_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
       }
     },
     "com.gcp.agenciesandbrands_v1#GetAgenciesReports": {
@@ -1962,32 +2046,6 @@
         }
       }
     },
-    "com.gcp.agenciesandbrands_v1#BadRequest": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#error": "client",
-        "smithy.api#httpError": 400,
-        "com.gcp.protocols#errorMatchers": [
-          {
-            "status": 400
-          }
-        ]
-      }
-    },
-    "com.gcp.agenciesandbrands_v1#Conflict": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#error": "client",
-        "smithy.api#httpError": 409,
-        "com.gcp.protocols#errorMatchers": [
-          {
-            "status": 409
-          }
-        ]
-      }
-    },
     "com.gcp.agenciesandbrands_v1#RunAgenciesReports": {
       "type": "operation",
       "input": {
@@ -2018,15 +2076,64 @@
         "smithy.api#documentation": "Initiates the execution of an existing report asynchronously. Users can get the report by polling this operation using `OperationsService.GetOperation`. Poll every 5 seconds initially, with an exponential backoff. Once a report is complete, the operation will contain a `RunReportResponse` in its response field containing a report_result that can be passed to the `FetchReportResultRows` method to retrieve the report data."
       }
     },
-    "com.gcp.agenciesandbrands_v1#ListAgenciesReportsRequest": {
+    "com.gcp.agenciesandbrands_v1#CreateAgenciesReportsRequest": {
       "type": "structure",
       "members": {
         "parent": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Required. The parent, which owns this collection of reports. Format: `agencies/{account_id}`",
+            "smithy.api#documentation": "Required. The parent resource where this `Report` will be created. Format: `agencies/{account_id}`",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.agenciesandbrands_v1#Report",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.agenciesandbrands_v1#CreateAgenciesReports": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.agenciesandbrands_v1#CreateAgenciesReportsRequest"
+      },
+      "output": {
+        "target": "com.gcp.agenciesandbrands_v1#Report"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.agenciesandbrands_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.agenciesandbrands_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.agenciesandbrands_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.agenciesandbrands_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+parent}/reports"
+        },
+        "smithy.api#documentation": "Creates a `Report` object."
+      }
+    },
+    "com.gcp.agenciesandbrands_v1#ListAgenciesReportsRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum number of `Reports` to return. The service may return fewer than this value. If unspecified, at most 50 `Reports` will be returned. The maximum value is 1000; values greater than 1000 will be coerced to 1000.",
+            "smithy.api#httpQuery": "pageSize"
           }
         },
         "filter": {
@@ -2036,11 +2143,12 @@
             "smithy.api#httpQuery": "filter"
           }
         },
-        "pageToken": {
+        "parent": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Optional. A page token, received from a previous `ListReports` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListReports` must match the call that provided the page token.",
-            "smithy.api#httpQuery": "pageToken"
+            "smithy.api#documentation": "Required. The parent, which owns this collection of reports. Format: `agencies/{account_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
           }
         },
         "orderBy": {
@@ -2050,11 +2158,11 @@
             "smithy.api#httpQuery": "orderBy"
           }
         },
-        "pageSize": {
-          "target": "smithy.api#Integer",
+        "pageToken": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Optional. The maximum number of `Reports` to return. The service may return fewer than this value. If unspecified, at most 50 `Reports` will be returned. The maximum value is 1000; values greater than 1000 will be coerced to 1000.",
-            "smithy.api#httpQuery": "pageSize"
+            "smithy.api#documentation": "Optional. A page token, received from a previous `ListReports` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListReports` must match the call that provided the page token.",
+            "smithy.api#httpQuery": "pageToken"
           }
         },
         "skip": {
@@ -2137,116 +2245,16 @@
         "smithy.api#documentation": "Deletes a `Report` object."
       }
     },
-    "com.gcp.agenciesandbrands_v1#PatchAgenciesReportsRequest": {
-      "type": "structure",
-      "members": {
-        "updateMask": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The list of fields to update.",
-            "smithy.api#httpQuery": "updateMask"
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier. The resource name of the report. Report resource name have the form: `agencies/{account_id}/reports/{report_id}`",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.agenciesandbrands_v1#Report",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.agenciesandbrands_v1#PatchAgenciesReports": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.agenciesandbrands_v1#PatchAgenciesReportsRequest"
-      },
-      "output": {
-        "target": "com.gcp.agenciesandbrands_v1#Report"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.agenciesandbrands_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.agenciesandbrands_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.agenciesandbrands_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.agenciesandbrands_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "PATCH",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Updates a `Report` object."
-      }
-    },
-    "com.gcp.agenciesandbrands_v1#CreateAgenciesReportsRequest": {
-      "type": "structure",
-      "members": {
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The parent resource where this `Report` will be created. Format: `agencies/{account_id}`",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.agenciesandbrands_v1#Report",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.agenciesandbrands_v1#CreateAgenciesReports": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.agenciesandbrands_v1#CreateAgenciesReportsRequest"
-      },
-      "output": {
-        "target": "com.gcp.agenciesandbrands_v1#Report"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.agenciesandbrands_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.agenciesandbrands_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.agenciesandbrands_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.agenciesandbrands_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1/{+parent}/reports"
-        },
-        "smithy.api#documentation": "Creates a `Report` object."
-      }
-    },
     "com.gcp.agenciesandbrands_v1#FetchRowsAgenciesReportsResultsRequest": {
       "type": "structure",
       "members": {
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A page token, received from a previous `FetchReportResultRows` call. Provide this to retrieve the second and subsequent batches of rows.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
         "name": {
           "target": "smithy.api#String",
           "traits": {
@@ -2260,13 +2268,6 @@
           "traits": {
             "smithy.api#documentation": "Optional. The maximum number of rows to return. The service may return fewer than this value. If unspecified, at most 1,000 rows will be returned. The maximum value is 10,000; values greater than 10,000 will be reduced to 10,000.",
             "smithy.api#httpQuery": "pageSize"
-          }
-        },
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. A page token, received from a previous `FetchReportResultRows` call. Provide this to retrieve the second and subsequent batches of rows.",
-            "smithy.api#httpQuery": "pageToken"
           }
         }
       }

@@ -4,62 +4,23 @@
     "service": "indexing",
     "version": "v3",
     "title": "Web Search Indexing API",
-    "baseUrl": "https://indexing.googleapis.com/"
+    "baseUrl": "https://indexing.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.gcp.indexing_v3#UrlNotificationMetadata": {
-      "type": "structure",
-      "members": {
-        "url": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "URL to which this metadata refers."
-          }
-        },
-        "latestUpdate": {
-          "target": "com.gcp.indexing_v3#UrlNotification",
-          "traits": {
-            "smithy.api#documentation": "Latest notification received with type `URL_UPDATED`."
-          }
-        },
-        "latestRemove": {
-          "target": "com.gcp.indexing_v3#UrlNotification",
-          "traits": {
-            "smithy.api#documentation": "Latest notification received with type `URL_REMOVED`."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Summary of the most recent Indexing API notifications successfully received, for a given URL."
-      }
-    },
-    "com.gcp.indexing_v3#PublishUrlNotificationResponse": {
-      "type": "structure",
-      "members": {
-        "urlNotificationMetadata": {
-          "target": "com.gcp.indexing_v3#UrlNotificationMetadata",
-          "traits": {
-            "smithy.api#documentation": "Description of the notification events received for this URL."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Output for PublishUrlNotification"
-      }
-    },
     "com.gcp.indexing_v3#UrlNotification": {
       "type": "structure",
       "members": {
-        "notifyTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Creation timestamp for this notification. Users should _not_ specify it, the field is ignored at the request time."
-          }
-        },
         "url": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "The object of this notification. The URL must be owned by the publisher of this notification and, in case of `URL_UPDATED` notifications, it _must_ be crawlable by Google."
+          }
+        },
+        "notifyTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Creation timestamp for this notification. Users should _not_ specify it, the field is ignored at the request time."
           }
         },
         "type": {
@@ -94,6 +55,46 @@
             "smithy.api#enumValue": "URL_DELETED"
           }
         }
+      }
+    },
+    "com.gcp.indexing_v3#PublishUrlNotificationResponse": {
+      "type": "structure",
+      "members": {
+        "urlNotificationMetadata": {
+          "target": "com.gcp.indexing_v3#UrlNotificationMetadata",
+          "traits": {
+            "smithy.api#documentation": "Description of the notification events received for this URL."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Output for PublishUrlNotification"
+      }
+    },
+    "com.gcp.indexing_v3#UrlNotificationMetadata": {
+      "type": "structure",
+      "members": {
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to which this metadata refers."
+          }
+        },
+        "latestRemove": {
+          "target": "com.gcp.indexing_v3#UrlNotification",
+          "traits": {
+            "smithy.api#documentation": "Latest notification received with type `URL_REMOVED`."
+          }
+        },
+        "latestUpdate": {
+          "target": "com.gcp.indexing_v3#UrlNotification",
+          "traits": {
+            "smithy.api#documentation": "Latest notification received with type `URL_UPDATED`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Summary of the most recent Indexing API notifications successfully received, for a given URL."
       }
     },
     "com.gcp.indexing_v3#GetMetadataUrlNotificationsRequest": {

@@ -39,33 +39,48 @@ export class NotFound
     [{ status: 404 }],
   ) {}
 
-export interface EnvironmentsActivityRetrieveRequest {
+export interface CreateEnvironmentsEvaluationContextSuggestionRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A unique integer value identifying this environment (aka team). */
   id: number;
+  /** Name of the evaluation context to hide from (POST) or restore to (DELETE) the flag editor's suggestion list. Case-insensitive and whitespace-trimmed. */
+  context_name: string;
 }
-export const EnvironmentsActivityRetrieveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    project_id: S.String.pipe(T.Label()),
-    id: S.Number.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/api/projects/{project_id}/environments/{id}/activity/",
-      code: 200,
-    }),
-  ),
-).annotate({
-  identifier: "EnvironmentsActivityRetrieveRequest",
-}) as any as S.Schema<EnvironmentsActivityRetrieveRequest>;
+export const CreateEnvironmentsEvaluationContextSuggestionRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      id: S.Number.pipe(T.Label()),
+      context_name: S.String,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/projects/{project_id}/environments/{id}/evaluation_context_suggestions/",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "CreateEnvironmentsEvaluationContextSuggestionRequest",
+  }) as any as S.Schema<CreateEnvironmentsEvaluationContextSuggestionRequest>;
 
-export interface EnvironmentsActivityRetrieveResponse {}
-export const EnvironmentsActivityRetrieveResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
+export interface EvaluationContextSuggestionResponse {
+  /** Whether the suggestion visibility change was applied. */
+  success: boolean;
+  /** Normalized name of the affected evaluation context. */
+  name: string;
+  /** Whether the context is now hidden from the flag editor's suggestion list. */
+  hidden_from_suggestions: boolean;
+}
+export const EvaluationContextSuggestionResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    success: S.Boolean,
+    name: S.String,
+    hidden_from_suggestions: S.Boolean,
+  }),
 ).annotate({
-  identifier: "EnvironmentsActivityRetrieveResponse",
-}) as any as S.Schema<EnvironmentsActivityRetrieveResponse>;
+  identifier: "EvaluationContextSuggestionResponse",
+}) as any as S.Schema<EvaluationContextSuggestionResponse>;
 
 export type EnvironmentsAddProductIntentPartialUpdateRequestAppUrlsList =
   Array<string>;
@@ -727,6 +742,18 @@ export const EnvironmentsAddProductIntentPartialUpdateRequestRecordingDomainsLis
 /** * `0` - Disabled * `1` - Stateless * `2` - Stateful */
 export type CookielessServerHashModeEnum = 0 | 1 | 2;
 export const CookielessServerHashModeEnum = /*@__PURE__*/ S.Number;
+
+export interface TeamFeatureFlagPolicyConfig {
+  /** When enabled, a new feature flag needs at least one tag, and a tagged flag cannot lose its last one. A create that declares it comes from a survey, experiment, early access feature, product tour, or web experiment is exempt, because those forms have no tag input. The caller sets that declaration, so a flag can still be created without a tag. */
+  require_tags?: boolean;
+}
+export const TeamFeatureFlagPolicyConfig = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    require_tags: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "TeamFeatureFlagPolicyConfig",
+}) as any as S.Schema<TeamFeatureFlagPolicyConfig>;
 
 /** * `AED` - AED * `AFN` - AFN * `ALL` - ALL * `AMD` - AMD * `ANG` - ANG * `AOA` - AOA * `ARS` - ARS * `AUD` - AUD * `AWG` - AWG * `AZN` - AZN * `BAM` - BAM * `BBD` - BBD * `BDT` - BDT * `BGN` - BGN * `BHD` - BHD * `BIF` - BIF * `BMD` - BMD * `BND` - BND * `BOB` - BOB * `BRL` - BRL * `BSD` - BSD * `BTC` - BTC * `BTN` - BTN * `BWP` - BWP * `BYN` - BYN * `BZD` - BZD * `CAD` - CAD * `CDF` - CDF * `CHF` - CHF * `CLP` - CLP * `CNY` - CNY * `COP` - COP * `CRC` - CRC * `CVE` - CVE * `CZK` - CZK * `DJF` - DJF * `DKK` - DKK * `DOP` - DOP * `DZD` - DZD * `EGP` - EGP * `ERN` - ERN * `ETB` - ETB * `EUR` - EUR * `FJD` - FJD * `GBP` - GBP * `GEL` - GEL * `GHS` - GHS * `GIP` - GIP * `GMD` - GMD * `GNF` - GNF * `GTQ` - GTQ * `GYD` - GYD * `HKD` - HKD * `HNL` - HNL * `HRK` - HRK * `HTG` - HTG * `HUF` - HUF * `IDR` - IDR * `ILS` - ILS * `INR` - INR * `IQD` - IQD * `IRR` - IRR * `ISK` - ISK * `JMD` - JMD * `JOD` - JOD * `JPY` - JPY * `KES` - KES * `KGS` - KGS * `KHR` - KHR * `KMF` - KMF * `KRW` - KRW * `KWD` - KWD * `KYD` - KYD * `KZT` - KZT * `LAK` - LAK * `LBP` - LBP * `LKR` - LKR * `LRD` - LRD * `LTL` - LTL * `LVL` - LVL * `LSL` - LSL * `LYD` - LYD * `MAD` - MAD * `MDL` - MDL * `MGA` - MGA * `MKD` - MKD * `MMK` - MMK * `MNT` - MNT * `MOP` - MOP * `MRU` - MRU * `MTL` - MTL * `MUR` - MUR * `MVR` - MVR * `MWK` - MWK * `MXN` - MXN * `MYR` - MYR * `MZN` - MZN * `NAD` - NAD * `NGN` - NGN * `NIO` - NIO * `NOK` - NOK * `NPR` - NPR * `NZD` - NZD * `OMR` - OMR * `PAB` - PAB * `PEN` - PEN * `PGK` - PGK * `PHP` - PHP * `PKR` - PKR * `PLN` - PLN * `PYG` - PYG * `QAR` - QAR * `RON` - RON * `RSD` - RSD * `RUB` - RUB * `RWF` - RWF * `SAR` - SAR * `SBD` - SBD * `SCR` - SCR * `SDG` - SDG * `SEK` - SEK * `SGD` - SGD * `SRD` - SRD * `SSP` - SSP * `STN` - STN * `SYP` - SYP * `SZL` - SZL * `THB` - THB * `TJS` - TJS * `TMT` - TMT * `TND` - TND * `TOP` - TOP * `TRY` - TRY * `TTD` - TTD * `TWD` - TWD * `TZS` - TZS * `UAH` - UAH * `UGX` - UGX * `USD` - USD * `UYU` - UYU * `UZS` - UZS * `VES` - VES * `VND` - VND * `VUV` - VUV * `WST` - WST * `XAF` - XAF * `XCD` - XCD * `XOF` - XOF * `XPF` - XPF * `YER` - YER * `ZAR` - ZAR * `ZMW` - ZMW */
 export type BaseCurrencyEnum =
@@ -1987,7 +2014,7 @@ export interface EnvironmentsAddProductIntentPartialUpdateRequest {
   app_urls?: EnvironmentsAddProductIntentPartialUpdateRequestAppUrlsList;
   anonymize_ips?: boolean;
   completed_snippet_onboarding?: boolean;
-  /** Filters used to identify internal/test users. Each entry is a property filter. Supported entry types and the exact shape each accepts: # Person property — match (or exclude) by a person property {"key": "email", "type": "person", "value": "@example.com", "operator": "icontains"} # Event property — match by an event property {"key": "$host", "type": "event", "value": "localhost", "operator": "icontains"} # Cohort membership — match (or exclude) members of a cohort. # Use operator "in" for inclusion and "not_in" for exclusion. Do NOT use a # `negation` field here — `negation` is specific to cohort *definitions* # (the inner sub-filters that build a cohort) and is rejected by the # property-filter schema. {"key": "id", "type": "cohort", "value": 8814, "operator": "not_in"} Common operators: "exact", "is_not", "icontains", "not_icontains", "regex", "not_regex", "gt", "lt", "gte", "lte", "is_set", "is_not_set", "in", "not_in". */
+  /** Filters used to identify internal/test users. Each entry is a property filter. Supported entry types and the exact shape each accepts: # Person property — match (or exclude) by a person property {"key": "email", "type": "person", "value": "@example.com", "operator": "ends_with"} # Event property — match by an event property {"key": "$host", "type": "event", "value": "localhost", "operator": "icontains"} # Cohort membership — match (or exclude) members of a cohort. # Use operator "in" for inclusion and "not_in" for exclusion. Do NOT use a # `negation` field here — `negation` is specific to cohort *definitions* # (the inner sub-filters that build a cohort) and is rejected by the # property-filter schema. {"key": "id", "type": "cohort", "value": 8814, "operator": "not_in"} Common operators: "exact", "is_not", "icontains", "not_icontains", "starts_with", "not_starts_with", "ends_with", "not_ends_with", "regex", "not_regex", "gt", "lt", "gte", "lte", "is_set", "is_not_set", "in", "not_in". */
   test_account_filters?: unknown;
   test_account_filters_default_checked?: boolean | null;
   path_cleaning_filters?: unknown;
@@ -2043,6 +2070,7 @@ export interface EnvironmentsAddProductIntentPartialUpdateRequest {
   default_evaluation_contexts_enabled?: boolean | null;
   /** Whether to require at least one evaluation context tag when creating new feature flags */
   require_evaluation_contexts?: boolean | null;
+  feature_flag_policy_config?: TeamFeatureFlagPolicyConfig;
   capture_dead_clicks?: boolean | null;
   default_data_theme?: number | null;
   revenue_analytics_config?: TeamRevenueAnalyticsConfig;
@@ -2150,6 +2178,7 @@ export const EnvironmentsAddProductIntentPartialUpdateRequest =
       feature_flag_confirmation_message: S.optional(S.NullOr(S.String)),
       default_evaluation_contexts_enabled: S.optional(S.NullOr(S.Boolean)),
       require_evaluation_contexts: S.optional(S.NullOr(S.Boolean)),
+      feature_flag_policy_config: S.optional(TeamFeatureFlagPolicyConfig),
       capture_dead_clicks: S.optional(S.NullOr(S.Boolean)),
       default_data_theme: S.optional(S.NullOr(S.Number)),
       revenue_analytics_config: S.optional(TeamRevenueAnalyticsConfig),
@@ -2184,272 +2213,6 @@ export const EnvironmentsAddProductIntentPartialUpdateResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
     identifier: "EnvironmentsAddProductIntentPartialUpdateResponse",
   }) as any as S.Schema<EnvironmentsAddProductIntentPartialUpdateResponse>;
-
-export type EnvironmentsCompleteProductOnboardingPartialUpdateRequestAppUrlsList =
-  Array<string>;
-export const EnvironmentsCompleteProductOnboardingPartialUpdateRequestAppUrlsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<EnvironmentsCompleteProductOnboardingPartialUpdateRequestAppUrlsList>;
-
-export type EnvironmentsCompleteProductOnboardingPartialUpdateRequestPersonDisplayNamePropertiesList =
-  Array<string>;
-export const EnvironmentsCompleteProductOnboardingPartialUpdateRequestPersonDisplayNamePropertiesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<EnvironmentsCompleteProductOnboardingPartialUpdateRequestPersonDisplayNamePropertiesList>;
-
-export type EnvironmentsCompleteProductOnboardingPartialUpdateRequestSessionRecordingUrlTriggerConfigList =
-  Array<unknown>;
-export const EnvironmentsCompleteProductOnboardingPartialUpdateRequestSessionRecordingUrlTriggerConfigList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<EnvironmentsCompleteProductOnboardingPartialUpdateRequestSessionRecordingUrlTriggerConfigList>;
-
-export type EnvironmentsCompleteProductOnboardingPartialUpdateRequestSessionRecordingUrlBlocklistConfigList =
-  Array<unknown>;
-export const EnvironmentsCompleteProductOnboardingPartialUpdateRequestSessionRecordingUrlBlocklistConfigList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<EnvironmentsCompleteProductOnboardingPartialUpdateRequestSessionRecordingUrlBlocklistConfigList>;
-
-export type EnvironmentsCompleteProductOnboardingPartialUpdateRequestSessionRecordingEventTriggerConfigList =
-  Array<string>;
-export const EnvironmentsCompleteProductOnboardingPartialUpdateRequestSessionRecordingEventTriggerConfigList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<EnvironmentsCompleteProductOnboardingPartialUpdateRequestSessionRecordingEventTriggerConfigList>;
-
-export type EnvironmentsCompleteProductOnboardingPartialUpdateRequestLiveEventsColumnsList =
-  Array<string>;
-export const EnvironmentsCompleteProductOnboardingPartialUpdateRequestLiveEventsColumnsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<EnvironmentsCompleteProductOnboardingPartialUpdateRequestLiveEventsColumnsList>;
-
-export type EnvironmentsCompleteProductOnboardingPartialUpdateRequestRecordingDomainsList =
-  Array<string>;
-export const EnvironmentsCompleteProductOnboardingPartialUpdateRequestRecordingDomainsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<EnvironmentsCompleteProductOnboardingPartialUpdateRequestRecordingDomainsList>;
-
-/** Whether this project serves B2B or B2C customers, used to optimize the UI layout. * `b2b` - B2B * `b2c` - B2C * `other` - Other */
-export type EnvironmentsCompleteProductOnboardingPartialUpdateRequestBusinessModel =
-  | BusinessModelEnum
-  | BlankEnum;
-export const EnvironmentsCompleteProductOnboardingPartialUpdateRequestBusinessModel =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EnvironmentsCompleteProductOnboardingPartialUpdateRequestBusinessModel>;
-
-export interface EnvironmentsCompleteProductOnboardingPartialUpdateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A unique integer value identifying this environment (aka team). */
-  id: number;
-  name?: string;
-  access_control?: boolean;
-  app_urls?: EnvironmentsCompleteProductOnboardingPartialUpdateRequestAppUrlsList;
-  anonymize_ips?: boolean;
-  completed_snippet_onboarding?: boolean;
-  /** Filters used to identify internal/test users. Each entry is a property filter. Supported entry types and the exact shape each accepts: # Person property — match (or exclude) by a person property {"key": "email", "type": "person", "value": "@example.com", "operator": "icontains"} # Event property — match by an event property {"key": "$host", "type": "event", "value": "localhost", "operator": "icontains"} # Cohort membership — match (or exclude) members of a cohort. # Use operator "in" for inclusion and "not_in" for exclusion. Do NOT use a # `negation` field here — `negation` is specific to cohort *definitions* # (the inner sub-filters that build a cohort) and is rejected by the # property-filter schema. {"key": "id", "type": "cohort", "value": 8814, "operator": "not_in"} Common operators: "exact", "is_not", "icontains", "not_icontains", "regex", "not_regex", "gt", "lt", "gte", "lte", "is_set", "is_not_set", "in", "not_in". */
-  test_account_filters?: unknown;
-  test_account_filters_default_checked?: boolean | null;
-  path_cleaning_filters?: unknown;
-  is_demo?: boolean;
-  timezone?: TimezoneEnum | (string & {});
-  data_attributes?: unknown;
-  person_display_name_properties?: EnvironmentsCompleteProductOnboardingPartialUpdateRequestPersonDisplayNamePropertiesList | null;
-  correlation_config?: unknown;
-  autocapture_opt_out?: boolean | null;
-  autocapture_exceptions_opt_in?: boolean | null;
-  autocapture_web_vitals_opt_in?: boolean | null;
-  autocapture_web_vitals_allowed_metrics?: unknown;
-  autocapture_exceptions_errors_to_ignore?: unknown;
-  capture_console_log_opt_in?: boolean | null;
-  logs_settings?: unknown;
-  capture_performance_opt_in?: boolean | null;
-  session_recording_opt_in?: boolean;
-  session_recording_sample_rate?: string | null;
-  session_recording_minimum_duration_milliseconds?: number | null;
-  session_recording_linked_flag?: unknown;
-  session_recording_network_payload_capture_config?: unknown;
-  session_recording_masking_config?: unknown;
-  session_recording_url_trigger_config?: EnvironmentsCompleteProductOnboardingPartialUpdateRequestSessionRecordingUrlTriggerConfigList | null;
-  session_recording_url_blocklist_config?: EnvironmentsCompleteProductOnboardingPartialUpdateRequestSessionRecordingUrlBlocklistConfigList | null;
-  session_recording_event_trigger_config?: EnvironmentsCompleteProductOnboardingPartialUpdateRequestSessionRecordingEventTriggerConfigList | null;
-  session_recording_trigger_match_type_config?: string | null;
-  /** V2 trigger groups configuration for session recording. If present, takes precedence over legacy trigger fields. */
-  session_recording_trigger_groups?: unknown;
-  session_recording_retention_period?:
-    | SessionRecordingRetentionPeriodEnum
-    | (string & {});
-  session_replay_config?: unknown;
-  survey_config?: unknown;
-  week_start_day?: WeekStartDayEnum | (number & {}) | null;
-  primary_dashboard?: number | null;
-  live_events_columns?: EnvironmentsCompleteProductOnboardingPartialUpdateRequestLiveEventsColumnsList | null;
-  recording_domains?: EnvironmentsCompleteProductOnboardingPartialUpdateRequestRecordingDomainsList | null;
-  cookieless_server_hash_mode?:
-    | CookielessServerHashModeEnum
-    | (number & {})
-    | null;
-  human_friendly_comparison_periods?: boolean | null;
-  inject_web_apps?: boolean | null;
-  extra_settings?: unknown;
-  modifiers?: unknown;
-  has_completed_onboarding_for?: unknown;
-  surveys_opt_in?: boolean | null;
-  heatmaps_opt_in?: boolean | null;
-  flags_persistence_default?: boolean | null;
-  feature_flag_confirmation_enabled?: boolean | null;
-  feature_flag_confirmation_message?: string | null;
-  /** Whether to automatically apply default evaluation contexts to new feature flags */
-  default_evaluation_contexts_enabled?: boolean | null;
-  /** Whether to require at least one evaluation context tag when creating new feature flags */
-  require_evaluation_contexts?: boolean | null;
-  capture_dead_clicks?: boolean | null;
-  default_data_theme?: number | null;
-  revenue_analytics_config?: TeamRevenueAnalyticsConfig;
-  marketing_analytics_config?: TeamMarketingAnalyticsConfig;
-  customer_analytics_config?: TeamCustomerAnalyticsConfig;
-  onboarding_tasks?: unknown;
-  base_currency?: BaseCurrencyEnum | (string & {});
-  web_analytics_pre_aggregated_tables_enabled?: boolean | null;
-  receive_org_level_activity_logs?: boolean | null;
-  /** Whether this project serves B2B or B2C customers, used to optimize the UI layout. * `b2b` - B2B * `b2c` - B2C * `other` - Other */
-  business_model?: EnvironmentsCompleteProductOnboardingPartialUpdateRequestBusinessModel | null;
-  conversations_enabled?: boolean | null;
-  conversations_settings?: unknown;
-  proactive_tasks_enabled?: boolean | null;
-  workflows_config?: TeamWorkflowsConfig;
-}
-export const EnvironmentsCompleteProductOnboardingPartialUpdateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.Number.pipe(T.Label()),
-      name: S.optional(S.String),
-      access_control: S.optional(S.Boolean),
-      app_urls: S.optional(
-        EnvironmentsCompleteProductOnboardingPartialUpdateRequestAppUrlsList,
-      ),
-      anonymize_ips: S.optional(S.Boolean),
-      completed_snippet_onboarding: S.optional(S.Boolean),
-      test_account_filters: S.optional(S.Unknown),
-      test_account_filters_default_checked: S.optional(S.NullOr(S.Boolean)),
-      path_cleaning_filters: S.optional(S.Unknown),
-      is_demo: S.optional(S.Boolean),
-      timezone: S.optional(TimezoneEnum),
-      data_attributes: S.optional(S.Unknown),
-      person_display_name_properties: S.optional(
-        S.NullOr(
-          EnvironmentsCompleteProductOnboardingPartialUpdateRequestPersonDisplayNamePropertiesList,
-        ),
-      ),
-      correlation_config: S.optional(S.Unknown),
-      autocapture_opt_out: S.optional(S.NullOr(S.Boolean)),
-      autocapture_exceptions_opt_in: S.optional(S.NullOr(S.Boolean)),
-      autocapture_web_vitals_opt_in: S.optional(S.NullOr(S.Boolean)),
-      autocapture_web_vitals_allowed_metrics: S.optional(S.Unknown),
-      autocapture_exceptions_errors_to_ignore: S.optional(S.Unknown),
-      capture_console_log_opt_in: S.optional(S.NullOr(S.Boolean)),
-      logs_settings: S.optional(S.Unknown),
-      capture_performance_opt_in: S.optional(S.NullOr(S.Boolean)),
-      session_recording_opt_in: S.optional(S.Boolean),
-      session_recording_sample_rate: S.optional(S.NullOr(S.String)),
-      session_recording_minimum_duration_milliseconds: S.optional(
-        S.NullOr(S.Number),
-      ),
-      session_recording_linked_flag: S.optional(S.Unknown),
-      session_recording_network_payload_capture_config: S.optional(S.Unknown),
-      session_recording_masking_config: S.optional(S.Unknown),
-      session_recording_url_trigger_config: S.optional(
-        S.NullOr(
-          EnvironmentsCompleteProductOnboardingPartialUpdateRequestSessionRecordingUrlTriggerConfigList,
-        ),
-      ),
-      session_recording_url_blocklist_config: S.optional(
-        S.NullOr(
-          EnvironmentsCompleteProductOnboardingPartialUpdateRequestSessionRecordingUrlBlocklistConfigList,
-        ),
-      ),
-      session_recording_event_trigger_config: S.optional(
-        S.NullOr(
-          EnvironmentsCompleteProductOnboardingPartialUpdateRequestSessionRecordingEventTriggerConfigList,
-        ),
-      ),
-      session_recording_trigger_match_type_config: S.optional(
-        S.NullOr(S.String),
-      ),
-      session_recording_trigger_groups: S.optional(S.Unknown),
-      session_recording_retention_period: S.optional(
-        SessionRecordingRetentionPeriodEnum,
-      ),
-      session_replay_config: S.optional(S.Unknown),
-      survey_config: S.optional(S.Unknown),
-      week_start_day: S.optional(S.NullOr(WeekStartDayEnum)),
-      primary_dashboard: S.optional(S.NullOr(S.Number)),
-      live_events_columns: S.optional(
-        S.NullOr(
-          EnvironmentsCompleteProductOnboardingPartialUpdateRequestLiveEventsColumnsList,
-        ),
-      ),
-      recording_domains: S.optional(
-        S.NullOr(
-          EnvironmentsCompleteProductOnboardingPartialUpdateRequestRecordingDomainsList,
-        ),
-      ),
-      cookieless_server_hash_mode: S.optional(
-        S.NullOr(CookielessServerHashModeEnum),
-      ),
-      human_friendly_comparison_periods: S.optional(S.NullOr(S.Boolean)),
-      inject_web_apps: S.optional(S.NullOr(S.Boolean)),
-      extra_settings: S.optional(S.Unknown),
-      modifiers: S.optional(S.Unknown),
-      has_completed_onboarding_for: S.optional(S.Unknown),
-      surveys_opt_in: S.optional(S.NullOr(S.Boolean)),
-      heatmaps_opt_in: S.optional(S.NullOr(S.Boolean)),
-      flags_persistence_default: S.optional(S.NullOr(S.Boolean)),
-      feature_flag_confirmation_enabled: S.optional(S.NullOr(S.Boolean)),
-      feature_flag_confirmation_message: S.optional(S.NullOr(S.String)),
-      default_evaluation_contexts_enabled: S.optional(S.NullOr(S.Boolean)),
-      require_evaluation_contexts: S.optional(S.NullOr(S.Boolean)),
-      capture_dead_clicks: S.optional(S.NullOr(S.Boolean)),
-      default_data_theme: S.optional(S.NullOr(S.Number)),
-      revenue_analytics_config: S.optional(TeamRevenueAnalyticsConfig),
-      marketing_analytics_config: S.optional(TeamMarketingAnalyticsConfig),
-      customer_analytics_config: S.optional(TeamCustomerAnalyticsConfig),
-      onboarding_tasks: S.optional(S.Unknown),
-      base_currency: S.optional(BaseCurrencyEnum),
-      web_analytics_pre_aggregated_tables_enabled: S.optional(
-        S.NullOr(S.Boolean),
-      ),
-      receive_org_level_activity_logs: S.optional(S.NullOr(S.Boolean)),
-      business_model: S.optional(
-        S.NullOr(
-          EnvironmentsCompleteProductOnboardingPartialUpdateRequestBusinessModel,
-        ),
-      ),
-      conversations_enabled: S.optional(S.NullOr(S.Boolean)),
-      conversations_settings: S.optional(S.Unknown),
-      proactive_tasks_enabled: S.optional(S.NullOr(S.Boolean)),
-      workflows_config: S.optional(TeamWorkflowsConfig),
-    }).pipe(
-      T.Http({
-        method: "PATCH",
-        uri: "/api/projects/{project_id}/environments/{id}/complete_product_onboarding/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "EnvironmentsCompleteProductOnboardingPartialUpdateRequest",
-  }) as any as S.Schema<EnvironmentsCompleteProductOnboardingPartialUpdateRequest>;
-
-export interface EnvironmentsCompleteProductOnboardingPartialUpdateResponse {}
-export const EnvironmentsCompleteProductOnboardingPartialUpdateResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "EnvironmentsCompleteProductOnboardingPartialUpdateResponse",
-  }) as any as S.Schema<EnvironmentsCompleteProductOnboardingPartialUpdateResponse>;
 
 export type EnvironmentsDeleteSecretTokenBackupPartialUpdateRequestAppUrlsList =
   Array<string>;
@@ -2517,7 +2280,7 @@ export interface EnvironmentsDeleteSecretTokenBackupPartialUpdateRequest {
   app_urls?: EnvironmentsDeleteSecretTokenBackupPartialUpdateRequestAppUrlsList;
   anonymize_ips?: boolean;
   completed_snippet_onboarding?: boolean;
-  /** Filters used to identify internal/test users. Each entry is a property filter. Supported entry types and the exact shape each accepts: # Person property — match (or exclude) by a person property {"key": "email", "type": "person", "value": "@example.com", "operator": "icontains"} # Event property — match by an event property {"key": "$host", "type": "event", "value": "localhost", "operator": "icontains"} # Cohort membership — match (or exclude) members of a cohort. # Use operator "in" for inclusion and "not_in" for exclusion. Do NOT use a # `negation` field here — `negation` is specific to cohort *definitions* # (the inner sub-filters that build a cohort) and is rejected by the # property-filter schema. {"key": "id", "type": "cohort", "value": 8814, "operator": "not_in"} Common operators: "exact", "is_not", "icontains", "not_icontains", "regex", "not_regex", "gt", "lt", "gte", "lte", "is_set", "is_not_set", "in", "not_in". */
+  /** Filters used to identify internal/test users. Each entry is a property filter. Supported entry types and the exact shape each accepts: # Person property — match (or exclude) by a person property {"key": "email", "type": "person", "value": "@example.com", "operator": "ends_with"} # Event property — match by an event property {"key": "$host", "type": "event", "value": "localhost", "operator": "icontains"} # Cohort membership — match (or exclude) members of a cohort. # Use operator "in" for inclusion and "not_in" for exclusion. Do NOT use a # `negation` field here — `negation` is specific to cohort *definitions* # (the inner sub-filters that build a cohort) and is rejected by the # property-filter schema. {"key": "id", "type": "cohort", "value": 8814, "operator": "not_in"} Common operators: "exact", "is_not", "icontains", "not_icontains", "starts_with", "not_starts_with", "ends_with", "not_ends_with", "regex", "not_regex", "gt", "lt", "gte", "lte", "is_set", "is_not_set", "in", "not_in". */
   test_account_filters?: unknown;
   test_account_filters_default_checked?: boolean | null;
   path_cleaning_filters?: unknown;
@@ -2573,6 +2336,7 @@ export interface EnvironmentsDeleteSecretTokenBackupPartialUpdateRequest {
   default_evaluation_contexts_enabled?: boolean | null;
   /** Whether to require at least one evaluation context tag when creating new feature flags */
   require_evaluation_contexts?: boolean | null;
+  feature_flag_policy_config?: TeamFeatureFlagPolicyConfig;
   capture_dead_clicks?: boolean | null;
   default_data_theme?: number | null;
   revenue_analytics_config?: TeamRevenueAnalyticsConfig;
@@ -2680,6 +2444,7 @@ export const EnvironmentsDeleteSecretTokenBackupPartialUpdateRequest =
       feature_flag_confirmation_message: S.optional(S.NullOr(S.String)),
       default_evaluation_contexts_enabled: S.optional(S.NullOr(S.Boolean)),
       require_evaluation_contexts: S.optional(S.NullOr(S.Boolean)),
+      feature_flag_policy_config: S.optional(TeamFeatureFlagPolicyConfig),
       capture_dead_clicks: S.optional(S.NullOr(S.Boolean)),
       default_data_theme: S.optional(S.NullOr(S.Number)),
       revenue_analytics_config: S.optional(TeamRevenueAnalyticsConfig),
@@ -2717,49 +2482,6 @@ export const EnvironmentsDeleteSecretTokenBackupPartialUpdateResponse =
     identifier: "EnvironmentsDeleteSecretTokenBackupPartialUpdateResponse",
   }) as any as S.Schema<EnvironmentsDeleteSecretTokenBackupPartialUpdateResponse>;
 
-export interface EnvironmentsEvaluationContextSuggestionsCreateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A unique integer value identifying this environment (aka team). */
-  id: number;
-  /** Name of the evaluation context to hide from (POST) or restore to (DELETE) the flag editor's suggestion list. Case-insensitive and whitespace-trimmed. */
-  context_name: string;
-}
-export const EnvironmentsEvaluationContextSuggestionsCreateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.Number.pipe(T.Label()),
-      context_name: S.String,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/api/projects/{project_id}/environments/{id}/evaluation_context_suggestions/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "EnvironmentsEvaluationContextSuggestionsCreateRequest",
-  }) as any as S.Schema<EnvironmentsEvaluationContextSuggestionsCreateRequest>;
-
-export interface EvaluationContextSuggestionResponse {
-  /** Whether the suggestion visibility change was applied. */
-  success: boolean;
-  /** Normalized name of the affected evaluation context. */
-  name: string;
-  /** Whether the context is now hidden from the flag editor's suggestion list. */
-  hidden_from_suggestions: boolean;
-}
-export const EvaluationContextSuggestionResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    success: S.Boolean,
-    name: S.String,
-    hidden_from_suggestions: S.Boolean,
-  }),
-).annotate({
-  identifier: "EvaluationContextSuggestionResponse",
-}) as any as S.Schema<EvaluationContextSuggestionResponse>;
-
 export interface EnvironmentsEvaluationContextSuggestionsDestroyRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
@@ -2784,415 +2506,6 @@ export const EnvironmentsEvaluationContextSuggestionsDestroyRequest =
   ).annotate({
     identifier: "EnvironmentsEvaluationContextSuggestionsDestroyRequest",
   }) as any as S.Schema<EnvironmentsEvaluationContextSuggestionsDestroyRequest>;
-
-export interface EnvironmentsEventIngestionRestrictionsListRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A unique integer value identifying this environment (aka team). */
-  id: number;
-}
-export const EnvironmentsEventIngestionRestrictionsListRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.Number.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/environments/{id}/event_ingestion_restrictions/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "EnvironmentsEventIngestionRestrictionsListRequest",
-  }) as any as S.Schema<EnvironmentsEventIngestionRestrictionsListRequest>;
-
-/** * `skip_person_processing` - Skip Person Processing * `drop_event_from_ingestion` - Drop Event From Ingestion * `force_overflow_from_ingestion` - Force Overflow From Ingestion * `redirect_to_dlq` - Redirect To Dlq * `redirect_to_topic` - Redirect To Topic */
-export type RestrictionTypeEnum =
-  | "skip_person_processing"
-  | "drop_event_from_ingestion"
-  | "force_overflow_from_ingestion"
-  | "redirect_to_dlq"
-  | "redirect_to_topic";
-export const RestrictionTypeEnum = /*@__PURE__*/ S.String;
-
-/** Distinct IDs the restriction applies to. Empty means it is not filtered by distinct ID. */
-export type EventIngestionRestrictionDistinctIdsList = Array<string>;
-export const EventIngestionRestrictionDistinctIdsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<EventIngestionRestrictionDistinctIdsList>;
-
-/** Session IDs the restriction applies to. Empty means it is not filtered by session ID. */
-export type EventIngestionRestrictionSessionIdsList = Array<string>;
-export const EventIngestionRestrictionSessionIdsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<EventIngestionRestrictionSessionIdsList>;
-
-/** Event names the restriction applies to. Empty means it is not filtered by event name. */
-export type EventIngestionRestrictionEventNamesList = Array<string>;
-export const EventIngestionRestrictionEventNamesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<EventIngestionRestrictionEventNamesList>;
-
-/** Event UUIDs the restriction applies to. Empty means it is not filtered by event UUID. */
-export type EventIngestionRestrictionEventUuidsList = Array<string>;
-export const EventIngestionRestrictionEventUuidsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<EventIngestionRestrictionEventUuidsList>;
-
-/** * `analytics` - Analytics * `session_recordings` - Session Recordings * `errortracking` - Errortracking * `clientwarnings` - Clientwarnings * `ai` - Ai */
-export type PipelinesEnum =
-  | "analytics"
-  | "session_recordings"
-  | "errortracking"
-  | "clientwarnings"
-  | "ai";
-export const PipelinesEnum = /*@__PURE__*/ S.String;
-
-/** Ingestion pipelines the restriction applies to. Filters combine with AND; values within a filter combine with OR. */
-export type EventIngestionRestrictionPipelinesList = Array<PipelinesEnum>;
-export const EventIngestionRestrictionPipelinesList = /*@__PURE__*/ S.Array(
-  PipelinesEnum,
-) as any as S.Schema<EventIngestionRestrictionPipelinesList>;
-
-export interface EventIngestionRestriction {
-  /** What happens to matching events: dropped, sent to the overflow lane, or ingested without person processing. * `skip_person_processing` - Skip Person Processing * `drop_event_from_ingestion` - Drop Event From Ingestion * `force_overflow_from_ingestion` - Force Overflow From Ingestion * `redirect_to_dlq` - Redirect To Dlq * `redirect_to_topic` - Redirect To Topic */
-  restriction_type: RestrictionTypeEnum;
-  /** Distinct IDs the restriction applies to. Empty means it is not filtered by distinct ID. */
-  distinct_ids: EventIngestionRestrictionDistinctIdsList;
-  /** Session IDs the restriction applies to. Empty means it is not filtered by session ID. */
-  session_ids: EventIngestionRestrictionSessionIdsList;
-  /** Event names the restriction applies to. Empty means it is not filtered by event name. */
-  event_names: EventIngestionRestrictionEventNamesList;
-  /** Event UUIDs the restriction applies to. Empty means it is not filtered by event UUID. */
-  event_uuids: EventIngestionRestrictionEventUuidsList;
-  /** Ingestion pipelines the restriction applies to. Filters combine with AND; values within a filter combine with OR. */
-  pipelines: EventIngestionRestrictionPipelinesList;
-}
-export const EventIngestionRestriction = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    restriction_type: RestrictionTypeEnum,
-    distinct_ids: EventIngestionRestrictionDistinctIdsList,
-    session_ids: EventIngestionRestrictionSessionIdsList,
-    event_names: EventIngestionRestrictionEventNamesList,
-    event_uuids: EventIngestionRestrictionEventUuidsList,
-    pipelines: EventIngestionRestrictionPipelinesList,
-  }),
-).annotate({
-  identifier: "EventIngestionRestriction",
-}) as any as S.Schema<EventIngestionRestriction>;
-
-export type EnvironmentsEventIngestionRestrictionsListResponseBodyList =
-  Array<EventIngestionRestriction>;
-export const EnvironmentsEventIngestionRestrictionsListResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    EventIngestionRestriction,
-  ) as any as S.Schema<EnvironmentsEventIngestionRestrictionsListResponseBodyList>;
-
-export type EnvironmentsEventIngestionRestrictionsListResponse =
-  EnvironmentsEventIngestionRestrictionsListResponseBodyList;
-export const EnvironmentsEventIngestionRestrictionsListResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    EnvironmentsEventIngestionRestrictionsListResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "EnvironmentsEventIngestionRestrictionsListResponse",
-  }) as any as S.Schema<EnvironmentsEventIngestionRestrictionsListResponse>;
-
-export type EnvironmentsExperimentsConfigPartialUpdateRequestAppUrlsList =
-  Array<string>;
-export const EnvironmentsExperimentsConfigPartialUpdateRequestAppUrlsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<EnvironmentsExperimentsConfigPartialUpdateRequestAppUrlsList>;
-
-export type EnvironmentsExperimentsConfigPartialUpdateRequestPersonDisplayNamePropertiesList =
-  Array<string>;
-export const EnvironmentsExperimentsConfigPartialUpdateRequestPersonDisplayNamePropertiesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<EnvironmentsExperimentsConfigPartialUpdateRequestPersonDisplayNamePropertiesList>;
-
-export type EnvironmentsExperimentsConfigPartialUpdateRequestSessionRecordingUrlTriggerConfigList =
-  Array<unknown>;
-export const EnvironmentsExperimentsConfigPartialUpdateRequestSessionRecordingUrlTriggerConfigList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<EnvironmentsExperimentsConfigPartialUpdateRequestSessionRecordingUrlTriggerConfigList>;
-
-export type EnvironmentsExperimentsConfigPartialUpdateRequestSessionRecordingUrlBlocklistConfigList =
-  Array<unknown>;
-export const EnvironmentsExperimentsConfigPartialUpdateRequestSessionRecordingUrlBlocklistConfigList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<EnvironmentsExperimentsConfigPartialUpdateRequestSessionRecordingUrlBlocklistConfigList>;
-
-export type EnvironmentsExperimentsConfigPartialUpdateRequestSessionRecordingEventTriggerConfigList =
-  Array<string>;
-export const EnvironmentsExperimentsConfigPartialUpdateRequestSessionRecordingEventTriggerConfigList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<EnvironmentsExperimentsConfigPartialUpdateRequestSessionRecordingEventTriggerConfigList>;
-
-export type EnvironmentsExperimentsConfigPartialUpdateRequestLiveEventsColumnsList =
-  Array<string>;
-export const EnvironmentsExperimentsConfigPartialUpdateRequestLiveEventsColumnsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<EnvironmentsExperimentsConfigPartialUpdateRequestLiveEventsColumnsList>;
-
-export type EnvironmentsExperimentsConfigPartialUpdateRequestRecordingDomainsList =
-  Array<string>;
-export const EnvironmentsExperimentsConfigPartialUpdateRequestRecordingDomainsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<EnvironmentsExperimentsConfigPartialUpdateRequestRecordingDomainsList>;
-
-/** Whether this project serves B2B or B2C customers, used to optimize the UI layout. * `b2b` - B2B * `b2c` - B2C * `other` - Other */
-export type EnvironmentsExperimentsConfigPartialUpdateRequestBusinessModel =
-  | BusinessModelEnum
-  | BlankEnum;
-export const EnvironmentsExperimentsConfigPartialUpdateRequestBusinessModel =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EnvironmentsExperimentsConfigPartialUpdateRequestBusinessModel>;
-
-export interface EnvironmentsExperimentsConfigPartialUpdateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A unique integer value identifying this environment (aka team). */
-  id: number;
-  name?: string;
-  access_control?: boolean;
-  app_urls?: EnvironmentsExperimentsConfigPartialUpdateRequestAppUrlsList;
-  anonymize_ips?: boolean;
-  completed_snippet_onboarding?: boolean;
-  /** Filters used to identify internal/test users. Each entry is a property filter. Supported entry types and the exact shape each accepts: # Person property — match (or exclude) by a person property {"key": "email", "type": "person", "value": "@example.com", "operator": "icontains"} # Event property — match by an event property {"key": "$host", "type": "event", "value": "localhost", "operator": "icontains"} # Cohort membership — match (or exclude) members of a cohort. # Use operator "in" for inclusion and "not_in" for exclusion. Do NOT use a # `negation` field here — `negation` is specific to cohort *definitions* # (the inner sub-filters that build a cohort) and is rejected by the # property-filter schema. {"key": "id", "type": "cohort", "value": 8814, "operator": "not_in"} Common operators: "exact", "is_not", "icontains", "not_icontains", "regex", "not_regex", "gt", "lt", "gte", "lte", "is_set", "is_not_set", "in", "not_in". */
-  test_account_filters?: unknown;
-  test_account_filters_default_checked?: boolean | null;
-  path_cleaning_filters?: unknown;
-  is_demo?: boolean;
-  timezone?: TimezoneEnum | (string & {});
-  data_attributes?: unknown;
-  person_display_name_properties?: EnvironmentsExperimentsConfigPartialUpdateRequestPersonDisplayNamePropertiesList | null;
-  correlation_config?: unknown;
-  autocapture_opt_out?: boolean | null;
-  autocapture_exceptions_opt_in?: boolean | null;
-  autocapture_web_vitals_opt_in?: boolean | null;
-  autocapture_web_vitals_allowed_metrics?: unknown;
-  autocapture_exceptions_errors_to_ignore?: unknown;
-  capture_console_log_opt_in?: boolean | null;
-  logs_settings?: unknown;
-  capture_performance_opt_in?: boolean | null;
-  session_recording_opt_in?: boolean;
-  session_recording_sample_rate?: string | null;
-  session_recording_minimum_duration_milliseconds?: number | null;
-  session_recording_linked_flag?: unknown;
-  session_recording_network_payload_capture_config?: unknown;
-  session_recording_masking_config?: unknown;
-  session_recording_url_trigger_config?: EnvironmentsExperimentsConfigPartialUpdateRequestSessionRecordingUrlTriggerConfigList | null;
-  session_recording_url_blocklist_config?: EnvironmentsExperimentsConfigPartialUpdateRequestSessionRecordingUrlBlocklistConfigList | null;
-  session_recording_event_trigger_config?: EnvironmentsExperimentsConfigPartialUpdateRequestSessionRecordingEventTriggerConfigList | null;
-  session_recording_trigger_match_type_config?: string | null;
-  /** V2 trigger groups configuration for session recording. If present, takes precedence over legacy trigger fields. */
-  session_recording_trigger_groups?: unknown;
-  session_recording_retention_period?:
-    | SessionRecordingRetentionPeriodEnum
-    | (string & {});
-  session_replay_config?: unknown;
-  survey_config?: unknown;
-  week_start_day?: WeekStartDayEnum | (number & {}) | null;
-  primary_dashboard?: number | null;
-  live_events_columns?: EnvironmentsExperimentsConfigPartialUpdateRequestLiveEventsColumnsList | null;
-  recording_domains?: EnvironmentsExperimentsConfigPartialUpdateRequestRecordingDomainsList | null;
-  cookieless_server_hash_mode?:
-    | CookielessServerHashModeEnum
-    | (number & {})
-    | null;
-  human_friendly_comparison_periods?: boolean | null;
-  inject_web_apps?: boolean | null;
-  extra_settings?: unknown;
-  modifiers?: unknown;
-  has_completed_onboarding_for?: unknown;
-  surveys_opt_in?: boolean | null;
-  heatmaps_opt_in?: boolean | null;
-  flags_persistence_default?: boolean | null;
-  feature_flag_confirmation_enabled?: boolean | null;
-  feature_flag_confirmation_message?: string | null;
-  /** Whether to automatically apply default evaluation contexts to new feature flags */
-  default_evaluation_contexts_enabled?: boolean | null;
-  /** Whether to require at least one evaluation context tag when creating new feature flags */
-  require_evaluation_contexts?: boolean | null;
-  capture_dead_clicks?: boolean | null;
-  default_data_theme?: number | null;
-  revenue_analytics_config?: TeamRevenueAnalyticsConfig;
-  marketing_analytics_config?: TeamMarketingAnalyticsConfig;
-  customer_analytics_config?: TeamCustomerAnalyticsConfig;
-  onboarding_tasks?: unknown;
-  base_currency?: BaseCurrencyEnum | (string & {});
-  web_analytics_pre_aggregated_tables_enabled?: boolean | null;
-  receive_org_level_activity_logs?: boolean | null;
-  /** Whether this project serves B2B or B2C customers, used to optimize the UI layout. * `b2b` - B2B * `b2c` - B2C * `other` - Other */
-  business_model?: EnvironmentsExperimentsConfigPartialUpdateRequestBusinessModel | null;
-  conversations_enabled?: boolean | null;
-  conversations_settings?: unknown;
-  proactive_tasks_enabled?: boolean | null;
-  workflows_config?: TeamWorkflowsConfig;
-}
-export const EnvironmentsExperimentsConfigPartialUpdateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.Number.pipe(T.Label()),
-      name: S.optional(S.String),
-      access_control: S.optional(S.Boolean),
-      app_urls: S.optional(
-        EnvironmentsExperimentsConfigPartialUpdateRequestAppUrlsList,
-      ),
-      anonymize_ips: S.optional(S.Boolean),
-      completed_snippet_onboarding: S.optional(S.Boolean),
-      test_account_filters: S.optional(S.Unknown),
-      test_account_filters_default_checked: S.optional(S.NullOr(S.Boolean)),
-      path_cleaning_filters: S.optional(S.Unknown),
-      is_demo: S.optional(S.Boolean),
-      timezone: S.optional(TimezoneEnum),
-      data_attributes: S.optional(S.Unknown),
-      person_display_name_properties: S.optional(
-        S.NullOr(
-          EnvironmentsExperimentsConfigPartialUpdateRequestPersonDisplayNamePropertiesList,
-        ),
-      ),
-      correlation_config: S.optional(S.Unknown),
-      autocapture_opt_out: S.optional(S.NullOr(S.Boolean)),
-      autocapture_exceptions_opt_in: S.optional(S.NullOr(S.Boolean)),
-      autocapture_web_vitals_opt_in: S.optional(S.NullOr(S.Boolean)),
-      autocapture_web_vitals_allowed_metrics: S.optional(S.Unknown),
-      autocapture_exceptions_errors_to_ignore: S.optional(S.Unknown),
-      capture_console_log_opt_in: S.optional(S.NullOr(S.Boolean)),
-      logs_settings: S.optional(S.Unknown),
-      capture_performance_opt_in: S.optional(S.NullOr(S.Boolean)),
-      session_recording_opt_in: S.optional(S.Boolean),
-      session_recording_sample_rate: S.optional(S.NullOr(S.String)),
-      session_recording_minimum_duration_milliseconds: S.optional(
-        S.NullOr(S.Number),
-      ),
-      session_recording_linked_flag: S.optional(S.Unknown),
-      session_recording_network_payload_capture_config: S.optional(S.Unknown),
-      session_recording_masking_config: S.optional(S.Unknown),
-      session_recording_url_trigger_config: S.optional(
-        S.NullOr(
-          EnvironmentsExperimentsConfigPartialUpdateRequestSessionRecordingUrlTriggerConfigList,
-        ),
-      ),
-      session_recording_url_blocklist_config: S.optional(
-        S.NullOr(
-          EnvironmentsExperimentsConfigPartialUpdateRequestSessionRecordingUrlBlocklistConfigList,
-        ),
-      ),
-      session_recording_event_trigger_config: S.optional(
-        S.NullOr(
-          EnvironmentsExperimentsConfigPartialUpdateRequestSessionRecordingEventTriggerConfigList,
-        ),
-      ),
-      session_recording_trigger_match_type_config: S.optional(
-        S.NullOr(S.String),
-      ),
-      session_recording_trigger_groups: S.optional(S.Unknown),
-      session_recording_retention_period: S.optional(
-        SessionRecordingRetentionPeriodEnum,
-      ),
-      session_replay_config: S.optional(S.Unknown),
-      survey_config: S.optional(S.Unknown),
-      week_start_day: S.optional(S.NullOr(WeekStartDayEnum)),
-      primary_dashboard: S.optional(S.NullOr(S.Number)),
-      live_events_columns: S.optional(
-        S.NullOr(
-          EnvironmentsExperimentsConfigPartialUpdateRequestLiveEventsColumnsList,
-        ),
-      ),
-      recording_domains: S.optional(
-        S.NullOr(
-          EnvironmentsExperimentsConfigPartialUpdateRequestRecordingDomainsList,
-        ),
-      ),
-      cookieless_server_hash_mode: S.optional(
-        S.NullOr(CookielessServerHashModeEnum),
-      ),
-      human_friendly_comparison_periods: S.optional(S.NullOr(S.Boolean)),
-      inject_web_apps: S.optional(S.NullOr(S.Boolean)),
-      extra_settings: S.optional(S.Unknown),
-      modifiers: S.optional(S.Unknown),
-      has_completed_onboarding_for: S.optional(S.Unknown),
-      surveys_opt_in: S.optional(S.NullOr(S.Boolean)),
-      heatmaps_opt_in: S.optional(S.NullOr(S.Boolean)),
-      flags_persistence_default: S.optional(S.NullOr(S.Boolean)),
-      feature_flag_confirmation_enabled: S.optional(S.NullOr(S.Boolean)),
-      feature_flag_confirmation_message: S.optional(S.NullOr(S.String)),
-      default_evaluation_contexts_enabled: S.optional(S.NullOr(S.Boolean)),
-      require_evaluation_contexts: S.optional(S.NullOr(S.Boolean)),
-      capture_dead_clicks: S.optional(S.NullOr(S.Boolean)),
-      default_data_theme: S.optional(S.NullOr(S.Number)),
-      revenue_analytics_config: S.optional(TeamRevenueAnalyticsConfig),
-      marketing_analytics_config: S.optional(TeamMarketingAnalyticsConfig),
-      customer_analytics_config: S.optional(TeamCustomerAnalyticsConfig),
-      onboarding_tasks: S.optional(S.Unknown),
-      base_currency: S.optional(BaseCurrencyEnum),
-      web_analytics_pre_aggregated_tables_enabled: S.optional(
-        S.NullOr(S.Boolean),
-      ),
-      receive_org_level_activity_logs: S.optional(S.NullOr(S.Boolean)),
-      business_model: S.optional(
-        S.NullOr(
-          EnvironmentsExperimentsConfigPartialUpdateRequestBusinessModel,
-        ),
-      ),
-      conversations_enabled: S.optional(S.NullOr(S.Boolean)),
-      conversations_settings: S.optional(S.Unknown),
-      proactive_tasks_enabled: S.optional(S.NullOr(S.Boolean)),
-      workflows_config: S.optional(TeamWorkflowsConfig),
-    }).pipe(
-      T.Http({
-        method: "PATCH",
-        uri: "/api/projects/{project_id}/environments/{id}/experiments_config/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "EnvironmentsExperimentsConfigPartialUpdateRequest",
-  }) as any as S.Schema<EnvironmentsExperimentsConfigPartialUpdateRequest>;
-
-export interface EnvironmentsExperimentsConfigPartialUpdateResponse {}
-export const EnvironmentsExperimentsConfigPartialUpdateResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "EnvironmentsExperimentsConfigPartialUpdateResponse",
-  }) as any as S.Schema<EnvironmentsExperimentsConfigPartialUpdateResponse>;
-
-export interface EnvironmentsExperimentsConfigRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A unique integer value identifying this environment (aka team). */
-  id: number;
-}
-export const EnvironmentsExperimentsConfigRetrieveRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.Number.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/environments/{id}/experiments_config/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "EnvironmentsExperimentsConfigRetrieveRequest",
-  }) as any as S.Schema<EnvironmentsExperimentsConfigRetrieveRequest>;
-
-export interface EnvironmentsExperimentsConfigRetrieveResponse {}
-export const EnvironmentsExperimentsConfigRetrieveResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "EnvironmentsExperimentsConfigRetrieveResponse",
-  }) as any as S.Schema<EnvironmentsExperimentsConfigRetrieveResponse>;
 
 export type EnvironmentsGenerateConversationsPublicTokenCreateRequestAppUrlsList =
   Array<string>;
@@ -3260,7 +2573,7 @@ export interface EnvironmentsGenerateConversationsPublicTokenCreateRequest {
   app_urls?: EnvironmentsGenerateConversationsPublicTokenCreateRequestAppUrlsList;
   anonymize_ips?: boolean;
   completed_snippet_onboarding?: boolean;
-  /** Filters used to identify internal/test users. Each entry is a property filter. Supported entry types and the exact shape each accepts: # Person property — match (or exclude) by a person property {"key": "email", "type": "person", "value": "@example.com", "operator": "icontains"} # Event property — match by an event property {"key": "$host", "type": "event", "value": "localhost", "operator": "icontains"} # Cohort membership — match (or exclude) members of a cohort. # Use operator "in" for inclusion and "not_in" for exclusion. Do NOT use a # `negation` field here — `negation` is specific to cohort *definitions* # (the inner sub-filters that build a cohort) and is rejected by the # property-filter schema. {"key": "id", "type": "cohort", "value": 8814, "operator": "not_in"} Common operators: "exact", "is_not", "icontains", "not_icontains", "regex", "not_regex", "gt", "lt", "gte", "lte", "is_set", "is_not_set", "in", "not_in". */
+  /** Filters used to identify internal/test users. Each entry is a property filter. Supported entry types and the exact shape each accepts: # Person property — match (or exclude) by a person property {"key": "email", "type": "person", "value": "@example.com", "operator": "ends_with"} # Event property — match by an event property {"key": "$host", "type": "event", "value": "localhost", "operator": "icontains"} # Cohort membership — match (or exclude) members of a cohort. # Use operator "in" for inclusion and "not_in" for exclusion. Do NOT use a # `negation` field here — `negation` is specific to cohort *definitions* # (the inner sub-filters that build a cohort) and is rejected by the # property-filter schema. {"key": "id", "type": "cohort", "value": 8814, "operator": "not_in"} Common operators: "exact", "is_not", "icontains", "not_icontains", "starts_with", "not_starts_with", "ends_with", "not_ends_with", "regex", "not_regex", "gt", "lt", "gte", "lte", "is_set", "is_not_set", "in", "not_in". */
   test_account_filters?: unknown;
   test_account_filters_default_checked?: boolean | null;
   path_cleaning_filters?: unknown;
@@ -3316,6 +2629,7 @@ export interface EnvironmentsGenerateConversationsPublicTokenCreateRequest {
   default_evaluation_contexts_enabled?: boolean | null;
   /** Whether to require at least one evaluation context tag when creating new feature flags */
   require_evaluation_contexts?: boolean | null;
+  feature_flag_policy_config?: TeamFeatureFlagPolicyConfig;
   capture_dead_clicks?: boolean | null;
   default_data_theme?: number | null;
   revenue_analytics_config?: TeamRevenueAnalyticsConfig;
@@ -3423,6 +2737,7 @@ export const EnvironmentsGenerateConversationsPublicTokenCreateRequest =
       feature_flag_confirmation_message: S.optional(S.NullOr(S.String)),
       default_evaluation_contexts_enabled: S.optional(S.NullOr(S.Boolean)),
       require_evaluation_contexts: S.optional(S.NullOr(S.Boolean)),
+      feature_flag_policy_config: S.optional(TeamFeatureFlagPolicyConfig),
       capture_dead_clicks: S.optional(S.NullOr(S.Boolean)),
       default_data_theme: S.optional(S.NullOr(S.Number)),
       revenue_analytics_config: S.optional(TeamRevenueAnalyticsConfig),
@@ -3459,327 +2774,6 @@ export const EnvironmentsGenerateConversationsPublicTokenCreateResponse =
   /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
     identifier: "EnvironmentsGenerateConversationsPublicTokenCreateResponse",
   }) as any as S.Schema<EnvironmentsGenerateConversationsPublicTokenCreateResponse>;
-
-export interface EnvironmentsIsGeneratingDemoDataRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A unique integer value identifying this environment (aka team). */
-  id: number;
-}
-export const EnvironmentsIsGeneratingDemoDataRetrieveRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.Number.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/environments/{id}/is_generating_demo_data/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "EnvironmentsIsGeneratingDemoDataRetrieveRequest",
-  }) as any as S.Schema<EnvironmentsIsGeneratingDemoDataRetrieveRequest>;
-
-export interface EnvironmentsIsGeneratingDemoDataRetrieveResponse {}
-export const EnvironmentsIsGeneratingDemoDataRetrieveResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "EnvironmentsIsGeneratingDemoDataRetrieveResponse",
-  }) as any as S.Schema<EnvironmentsIsGeneratingDemoDataRetrieveResponse>;
-
-export type EnvironmentsLogsConfigPartialUpdateRequestAppUrlsList =
-  Array<string>;
-export const EnvironmentsLogsConfigPartialUpdateRequestAppUrlsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<EnvironmentsLogsConfigPartialUpdateRequestAppUrlsList>;
-
-export type EnvironmentsLogsConfigPartialUpdateRequestPersonDisplayNamePropertiesList =
-  Array<string>;
-export const EnvironmentsLogsConfigPartialUpdateRequestPersonDisplayNamePropertiesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<EnvironmentsLogsConfigPartialUpdateRequestPersonDisplayNamePropertiesList>;
-
-export type EnvironmentsLogsConfigPartialUpdateRequestSessionRecordingUrlTriggerConfigList =
-  Array<unknown>;
-export const EnvironmentsLogsConfigPartialUpdateRequestSessionRecordingUrlTriggerConfigList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<EnvironmentsLogsConfigPartialUpdateRequestSessionRecordingUrlTriggerConfigList>;
-
-export type EnvironmentsLogsConfigPartialUpdateRequestSessionRecordingUrlBlocklistConfigList =
-  Array<unknown>;
-export const EnvironmentsLogsConfigPartialUpdateRequestSessionRecordingUrlBlocklistConfigList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<EnvironmentsLogsConfigPartialUpdateRequestSessionRecordingUrlBlocklistConfigList>;
-
-export type EnvironmentsLogsConfigPartialUpdateRequestSessionRecordingEventTriggerConfigList =
-  Array<string>;
-export const EnvironmentsLogsConfigPartialUpdateRequestSessionRecordingEventTriggerConfigList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<EnvironmentsLogsConfigPartialUpdateRequestSessionRecordingEventTriggerConfigList>;
-
-export type EnvironmentsLogsConfigPartialUpdateRequestLiveEventsColumnsList =
-  Array<string>;
-export const EnvironmentsLogsConfigPartialUpdateRequestLiveEventsColumnsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<EnvironmentsLogsConfigPartialUpdateRequestLiveEventsColumnsList>;
-
-export type EnvironmentsLogsConfigPartialUpdateRequestRecordingDomainsList =
-  Array<string>;
-export const EnvironmentsLogsConfigPartialUpdateRequestRecordingDomainsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<EnvironmentsLogsConfigPartialUpdateRequestRecordingDomainsList>;
-
-/** Whether this project serves B2B or B2C customers, used to optimize the UI layout. * `b2b` - B2B * `b2c` - B2C * `other` - Other */
-export type EnvironmentsLogsConfigPartialUpdateRequestBusinessModel =
-  | BusinessModelEnum
-  | BlankEnum;
-export const EnvironmentsLogsConfigPartialUpdateRequestBusinessModel =
-  /*@__PURE__*/ S.Unknown as any as S.Schema<EnvironmentsLogsConfigPartialUpdateRequestBusinessModel>;
-
-export interface EnvironmentsLogsConfigPartialUpdateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A unique integer value identifying this environment (aka team). */
-  id: number;
-  name?: string;
-  access_control?: boolean;
-  app_urls?: EnvironmentsLogsConfigPartialUpdateRequestAppUrlsList;
-  anonymize_ips?: boolean;
-  completed_snippet_onboarding?: boolean;
-  /** Filters used to identify internal/test users. Each entry is a property filter. Supported entry types and the exact shape each accepts: # Person property — match (or exclude) by a person property {"key": "email", "type": "person", "value": "@example.com", "operator": "icontains"} # Event property — match by an event property {"key": "$host", "type": "event", "value": "localhost", "operator": "icontains"} # Cohort membership — match (or exclude) members of a cohort. # Use operator "in" for inclusion and "not_in" for exclusion. Do NOT use a # `negation` field here — `negation` is specific to cohort *definitions* # (the inner sub-filters that build a cohort) and is rejected by the # property-filter schema. {"key": "id", "type": "cohort", "value": 8814, "operator": "not_in"} Common operators: "exact", "is_not", "icontains", "not_icontains", "regex", "not_regex", "gt", "lt", "gte", "lte", "is_set", "is_not_set", "in", "not_in". */
-  test_account_filters?: unknown;
-  test_account_filters_default_checked?: boolean | null;
-  path_cleaning_filters?: unknown;
-  is_demo?: boolean;
-  timezone?: TimezoneEnum | (string & {});
-  data_attributes?: unknown;
-  person_display_name_properties?: EnvironmentsLogsConfigPartialUpdateRequestPersonDisplayNamePropertiesList | null;
-  correlation_config?: unknown;
-  autocapture_opt_out?: boolean | null;
-  autocapture_exceptions_opt_in?: boolean | null;
-  autocapture_web_vitals_opt_in?: boolean | null;
-  autocapture_web_vitals_allowed_metrics?: unknown;
-  autocapture_exceptions_errors_to_ignore?: unknown;
-  capture_console_log_opt_in?: boolean | null;
-  logs_settings?: unknown;
-  capture_performance_opt_in?: boolean | null;
-  session_recording_opt_in?: boolean;
-  session_recording_sample_rate?: string | null;
-  session_recording_minimum_duration_milliseconds?: number | null;
-  session_recording_linked_flag?: unknown;
-  session_recording_network_payload_capture_config?: unknown;
-  session_recording_masking_config?: unknown;
-  session_recording_url_trigger_config?: EnvironmentsLogsConfigPartialUpdateRequestSessionRecordingUrlTriggerConfigList | null;
-  session_recording_url_blocklist_config?: EnvironmentsLogsConfigPartialUpdateRequestSessionRecordingUrlBlocklistConfigList | null;
-  session_recording_event_trigger_config?: EnvironmentsLogsConfigPartialUpdateRequestSessionRecordingEventTriggerConfigList | null;
-  session_recording_trigger_match_type_config?: string | null;
-  /** V2 trigger groups configuration for session recording. If present, takes precedence over legacy trigger fields. */
-  session_recording_trigger_groups?: unknown;
-  session_recording_retention_period?:
-    | SessionRecordingRetentionPeriodEnum
-    | (string & {});
-  session_replay_config?: unknown;
-  survey_config?: unknown;
-  week_start_day?: WeekStartDayEnum | (number & {}) | null;
-  primary_dashboard?: number | null;
-  live_events_columns?: EnvironmentsLogsConfigPartialUpdateRequestLiveEventsColumnsList | null;
-  recording_domains?: EnvironmentsLogsConfigPartialUpdateRequestRecordingDomainsList | null;
-  cookieless_server_hash_mode?:
-    | CookielessServerHashModeEnum
-    | (number & {})
-    | null;
-  human_friendly_comparison_periods?: boolean | null;
-  inject_web_apps?: boolean | null;
-  extra_settings?: unknown;
-  modifiers?: unknown;
-  has_completed_onboarding_for?: unknown;
-  surveys_opt_in?: boolean | null;
-  heatmaps_opt_in?: boolean | null;
-  flags_persistence_default?: boolean | null;
-  feature_flag_confirmation_enabled?: boolean | null;
-  feature_flag_confirmation_message?: string | null;
-  /** Whether to automatically apply default evaluation contexts to new feature flags */
-  default_evaluation_contexts_enabled?: boolean | null;
-  /** Whether to require at least one evaluation context tag when creating new feature flags */
-  require_evaluation_contexts?: boolean | null;
-  capture_dead_clicks?: boolean | null;
-  default_data_theme?: number | null;
-  revenue_analytics_config?: TeamRevenueAnalyticsConfig;
-  marketing_analytics_config?: TeamMarketingAnalyticsConfig;
-  customer_analytics_config?: TeamCustomerAnalyticsConfig;
-  onboarding_tasks?: unknown;
-  base_currency?: BaseCurrencyEnum | (string & {});
-  web_analytics_pre_aggregated_tables_enabled?: boolean | null;
-  receive_org_level_activity_logs?: boolean | null;
-  /** Whether this project serves B2B or B2C customers, used to optimize the UI layout. * `b2b` - B2B * `b2c` - B2C * `other` - Other */
-  business_model?: EnvironmentsLogsConfigPartialUpdateRequestBusinessModel | null;
-  conversations_enabled?: boolean | null;
-  conversations_settings?: unknown;
-  proactive_tasks_enabled?: boolean | null;
-  workflows_config?: TeamWorkflowsConfig;
-}
-export const EnvironmentsLogsConfigPartialUpdateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.Number.pipe(T.Label()),
-      name: S.optional(S.String),
-      access_control: S.optional(S.Boolean),
-      app_urls: S.optional(
-        EnvironmentsLogsConfigPartialUpdateRequestAppUrlsList,
-      ),
-      anonymize_ips: S.optional(S.Boolean),
-      completed_snippet_onboarding: S.optional(S.Boolean),
-      test_account_filters: S.optional(S.Unknown),
-      test_account_filters_default_checked: S.optional(S.NullOr(S.Boolean)),
-      path_cleaning_filters: S.optional(S.Unknown),
-      is_demo: S.optional(S.Boolean),
-      timezone: S.optional(TimezoneEnum),
-      data_attributes: S.optional(S.Unknown),
-      person_display_name_properties: S.optional(
-        S.NullOr(
-          EnvironmentsLogsConfigPartialUpdateRequestPersonDisplayNamePropertiesList,
-        ),
-      ),
-      correlation_config: S.optional(S.Unknown),
-      autocapture_opt_out: S.optional(S.NullOr(S.Boolean)),
-      autocapture_exceptions_opt_in: S.optional(S.NullOr(S.Boolean)),
-      autocapture_web_vitals_opt_in: S.optional(S.NullOr(S.Boolean)),
-      autocapture_web_vitals_allowed_metrics: S.optional(S.Unknown),
-      autocapture_exceptions_errors_to_ignore: S.optional(S.Unknown),
-      capture_console_log_opt_in: S.optional(S.NullOr(S.Boolean)),
-      logs_settings: S.optional(S.Unknown),
-      capture_performance_opt_in: S.optional(S.NullOr(S.Boolean)),
-      session_recording_opt_in: S.optional(S.Boolean),
-      session_recording_sample_rate: S.optional(S.NullOr(S.String)),
-      session_recording_minimum_duration_milliseconds: S.optional(
-        S.NullOr(S.Number),
-      ),
-      session_recording_linked_flag: S.optional(S.Unknown),
-      session_recording_network_payload_capture_config: S.optional(S.Unknown),
-      session_recording_masking_config: S.optional(S.Unknown),
-      session_recording_url_trigger_config: S.optional(
-        S.NullOr(
-          EnvironmentsLogsConfigPartialUpdateRequestSessionRecordingUrlTriggerConfigList,
-        ),
-      ),
-      session_recording_url_blocklist_config: S.optional(
-        S.NullOr(
-          EnvironmentsLogsConfigPartialUpdateRequestSessionRecordingUrlBlocklistConfigList,
-        ),
-      ),
-      session_recording_event_trigger_config: S.optional(
-        S.NullOr(
-          EnvironmentsLogsConfigPartialUpdateRequestSessionRecordingEventTriggerConfigList,
-        ),
-      ),
-      session_recording_trigger_match_type_config: S.optional(
-        S.NullOr(S.String),
-      ),
-      session_recording_trigger_groups: S.optional(S.Unknown),
-      session_recording_retention_period: S.optional(
-        SessionRecordingRetentionPeriodEnum,
-      ),
-      session_replay_config: S.optional(S.Unknown),
-      survey_config: S.optional(S.Unknown),
-      week_start_day: S.optional(S.NullOr(WeekStartDayEnum)),
-      primary_dashboard: S.optional(S.NullOr(S.Number)),
-      live_events_columns: S.optional(
-        S.NullOr(
-          EnvironmentsLogsConfigPartialUpdateRequestLiveEventsColumnsList,
-        ),
-      ),
-      recording_domains: S.optional(
-        S.NullOr(
-          EnvironmentsLogsConfigPartialUpdateRequestRecordingDomainsList,
-        ),
-      ),
-      cookieless_server_hash_mode: S.optional(
-        S.NullOr(CookielessServerHashModeEnum),
-      ),
-      human_friendly_comparison_periods: S.optional(S.NullOr(S.Boolean)),
-      inject_web_apps: S.optional(S.NullOr(S.Boolean)),
-      extra_settings: S.optional(S.Unknown),
-      modifiers: S.optional(S.Unknown),
-      has_completed_onboarding_for: S.optional(S.Unknown),
-      surveys_opt_in: S.optional(S.NullOr(S.Boolean)),
-      heatmaps_opt_in: S.optional(S.NullOr(S.Boolean)),
-      flags_persistence_default: S.optional(S.NullOr(S.Boolean)),
-      feature_flag_confirmation_enabled: S.optional(S.NullOr(S.Boolean)),
-      feature_flag_confirmation_message: S.optional(S.NullOr(S.String)),
-      default_evaluation_contexts_enabled: S.optional(S.NullOr(S.Boolean)),
-      require_evaluation_contexts: S.optional(S.NullOr(S.Boolean)),
-      capture_dead_clicks: S.optional(S.NullOr(S.Boolean)),
-      default_data_theme: S.optional(S.NullOr(S.Number)),
-      revenue_analytics_config: S.optional(TeamRevenueAnalyticsConfig),
-      marketing_analytics_config: S.optional(TeamMarketingAnalyticsConfig),
-      customer_analytics_config: S.optional(TeamCustomerAnalyticsConfig),
-      onboarding_tasks: S.optional(S.Unknown),
-      base_currency: S.optional(BaseCurrencyEnum),
-      web_analytics_pre_aggregated_tables_enabled: S.optional(
-        S.NullOr(S.Boolean),
-      ),
-      receive_org_level_activity_logs: S.optional(S.NullOr(S.Boolean)),
-      business_model: S.optional(
-        S.NullOr(EnvironmentsLogsConfigPartialUpdateRequestBusinessModel),
-      ),
-      conversations_enabled: S.optional(S.NullOr(S.Boolean)),
-      conversations_settings: S.optional(S.Unknown),
-      proactive_tasks_enabled: S.optional(S.NullOr(S.Boolean)),
-      workflows_config: S.optional(TeamWorkflowsConfig),
-    }).pipe(
-      T.Http({
-        method: "PATCH",
-        uri: "/api/projects/{project_id}/environments/{id}/logs_config/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "EnvironmentsLogsConfigPartialUpdateRequest",
-  }) as any as S.Schema<EnvironmentsLogsConfigPartialUpdateRequest>;
-
-export interface EnvironmentsLogsConfigPartialUpdateResponse {}
-export const EnvironmentsLogsConfigPartialUpdateResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "EnvironmentsLogsConfigPartialUpdateResponse",
-  }) as any as S.Schema<EnvironmentsLogsConfigPartialUpdateResponse>;
-
-export interface EnvironmentsLogsConfigRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A unique integer value identifying this environment (aka team). */
-  id: number;
-}
-export const EnvironmentsLogsConfigRetrieveRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.Number.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/environments/{id}/logs_config/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "EnvironmentsLogsConfigRetrieveRequest",
-}) as any as S.Schema<EnvironmentsLogsConfigRetrieveRequest>;
-
-export interface EnvironmentsLogsConfigRetrieveResponse {}
-export const EnvironmentsLogsConfigRetrieveResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "EnvironmentsLogsConfigRetrieveResponse",
-}) as any as S.Schema<EnvironmentsLogsConfigRetrieveResponse>;
 
 export type EnvironmentsResetTokenPartialUpdateRequestAppUrlsList =
   Array<string>;
@@ -3847,7 +2841,7 @@ export interface EnvironmentsResetTokenPartialUpdateRequest {
   app_urls?: EnvironmentsResetTokenPartialUpdateRequestAppUrlsList;
   anonymize_ips?: boolean;
   completed_snippet_onboarding?: boolean;
-  /** Filters used to identify internal/test users. Each entry is a property filter. Supported entry types and the exact shape each accepts: # Person property — match (or exclude) by a person property {"key": "email", "type": "person", "value": "@example.com", "operator": "icontains"} # Event property — match by an event property {"key": "$host", "type": "event", "value": "localhost", "operator": "icontains"} # Cohort membership — match (or exclude) members of a cohort. # Use operator "in" for inclusion and "not_in" for exclusion. Do NOT use a # `negation` field here — `negation` is specific to cohort *definitions* # (the inner sub-filters that build a cohort) and is rejected by the # property-filter schema. {"key": "id", "type": "cohort", "value": 8814, "operator": "not_in"} Common operators: "exact", "is_not", "icontains", "not_icontains", "regex", "not_regex", "gt", "lt", "gte", "lte", "is_set", "is_not_set", "in", "not_in". */
+  /** Filters used to identify internal/test users. Each entry is a property filter. Supported entry types and the exact shape each accepts: # Person property — match (or exclude) by a person property {"key": "email", "type": "person", "value": "@example.com", "operator": "ends_with"} # Event property — match by an event property {"key": "$host", "type": "event", "value": "localhost", "operator": "icontains"} # Cohort membership — match (or exclude) members of a cohort. # Use operator "in" for inclusion and "not_in" for exclusion. Do NOT use a # `negation` field here — `negation` is specific to cohort *definitions* # (the inner sub-filters that build a cohort) and is rejected by the # property-filter schema. {"key": "id", "type": "cohort", "value": 8814, "operator": "not_in"} Common operators: "exact", "is_not", "icontains", "not_icontains", "starts_with", "not_starts_with", "ends_with", "not_ends_with", "regex", "not_regex", "gt", "lt", "gte", "lte", "is_set", "is_not_set", "in", "not_in". */
   test_account_filters?: unknown;
   test_account_filters_default_checked?: boolean | null;
   path_cleaning_filters?: unknown;
@@ -3903,6 +2897,7 @@ export interface EnvironmentsResetTokenPartialUpdateRequest {
   default_evaluation_contexts_enabled?: boolean | null;
   /** Whether to require at least one evaluation context tag when creating new feature flags */
   require_evaluation_contexts?: boolean | null;
+  feature_flag_policy_config?: TeamFeatureFlagPolicyConfig;
   capture_dead_clicks?: boolean | null;
   default_data_theme?: number | null;
   revenue_analytics_config?: TeamRevenueAnalyticsConfig;
@@ -4010,6 +3005,7 @@ export const EnvironmentsResetTokenPartialUpdateRequest =
       feature_flag_confirmation_message: S.optional(S.NullOr(S.String)),
       default_evaluation_contexts_enabled: S.optional(S.NullOr(S.Boolean)),
       require_evaluation_contexts: S.optional(S.NullOr(S.Boolean)),
+      feature_flag_policy_config: S.optional(TeamFeatureFlagPolicyConfig),
       capture_dead_clicks: S.optional(S.NullOr(S.Boolean)),
       default_data_theme: S.optional(S.NullOr(S.Number)),
       revenue_analytics_config: S.optional(TeamRevenueAnalyticsConfig),
@@ -4111,7 +3107,7 @@ export interface EnvironmentsRotateSecretTokenPartialUpdateRequest {
   app_urls?: EnvironmentsRotateSecretTokenPartialUpdateRequestAppUrlsList;
   anonymize_ips?: boolean;
   completed_snippet_onboarding?: boolean;
-  /** Filters used to identify internal/test users. Each entry is a property filter. Supported entry types and the exact shape each accepts: # Person property — match (or exclude) by a person property {"key": "email", "type": "person", "value": "@example.com", "operator": "icontains"} # Event property — match by an event property {"key": "$host", "type": "event", "value": "localhost", "operator": "icontains"} # Cohort membership — match (or exclude) members of a cohort. # Use operator "in" for inclusion and "not_in" for exclusion. Do NOT use a # `negation` field here — `negation` is specific to cohort *definitions* # (the inner sub-filters that build a cohort) and is rejected by the # property-filter schema. {"key": "id", "type": "cohort", "value": 8814, "operator": "not_in"} Common operators: "exact", "is_not", "icontains", "not_icontains", "regex", "not_regex", "gt", "lt", "gte", "lte", "is_set", "is_not_set", "in", "not_in". */
+  /** Filters used to identify internal/test users. Each entry is a property filter. Supported entry types and the exact shape each accepts: # Person property — match (or exclude) by a person property {"key": "email", "type": "person", "value": "@example.com", "operator": "ends_with"} # Event property — match by an event property {"key": "$host", "type": "event", "value": "localhost", "operator": "icontains"} # Cohort membership — match (or exclude) members of a cohort. # Use operator "in" for inclusion and "not_in" for exclusion. Do NOT use a # `negation` field here — `negation` is specific to cohort *definitions* # (the inner sub-filters that build a cohort) and is rejected by the # property-filter schema. {"key": "id", "type": "cohort", "value": 8814, "operator": "not_in"} Common operators: "exact", "is_not", "icontains", "not_icontains", "starts_with", "not_starts_with", "ends_with", "not_ends_with", "regex", "not_regex", "gt", "lt", "gte", "lte", "is_set", "is_not_set", "in", "not_in". */
   test_account_filters?: unknown;
   test_account_filters_default_checked?: boolean | null;
   path_cleaning_filters?: unknown;
@@ -4167,6 +3163,7 @@ export interface EnvironmentsRotateSecretTokenPartialUpdateRequest {
   default_evaluation_contexts_enabled?: boolean | null;
   /** Whether to require at least one evaluation context tag when creating new feature flags */
   require_evaluation_contexts?: boolean | null;
+  feature_flag_policy_config?: TeamFeatureFlagPolicyConfig;
   capture_dead_clicks?: boolean | null;
   default_data_theme?: number | null;
   revenue_analytics_config?: TeamRevenueAnalyticsConfig;
@@ -4274,6 +3271,7 @@ export const EnvironmentsRotateSecretTokenPartialUpdateRequest =
       feature_flag_confirmation_message: S.optional(S.NullOr(S.String)),
       default_evaluation_contexts_enabled: S.optional(S.NullOr(S.Boolean)),
       require_evaluation_contexts: S.optional(S.NullOr(S.Boolean)),
+      feature_flag_policy_config: S.optional(TeamFeatureFlagPolicyConfig),
       capture_dead_clicks: S.optional(S.NullOr(S.Boolean)),
       default_data_theme: S.optional(S.NullOr(S.Number)),
       revenue_analytics_config: S.optional(TeamRevenueAnalyticsConfig),
@@ -4311,13 +3309,41 @@ export const EnvironmentsRotateSecretTokenPartialUpdateResponse =
     identifier: "EnvironmentsRotateSecretTokenPartialUpdateResponse",
   }) as any as S.Schema<EnvironmentsRotateSecretTokenPartialUpdateResponse>;
 
-export interface EnvironmentsSettingsAsOfRetrieveRequest {
+export interface GetEnvironmentsActivityRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A unique integer value identifying this environment (aka team). */
   id: number;
 }
-export const EnvironmentsSettingsAsOfRetrieveRequest = /*@__PURE__*/ S.suspend(
+export const GetEnvironmentsActivityRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/environments/{id}/activity/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetEnvironmentsActivityRequest",
+}) as any as S.Schema<GetEnvironmentsActivityRequest>;
+
+export interface GetEnvironmentsActivityResponse {}
+export const GetEnvironmentsActivityResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "GetEnvironmentsActivityResponse",
+}) as any as S.Schema<GetEnvironmentsActivityResponse>;
+
+export interface GetEnvironmentsExperimentsConfigRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A unique integer value identifying this environment (aka team). */
+  id: number;
+}
+export const GetEnvironmentsExperimentsConfigRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
@@ -4325,35 +3351,1034 @@ export const EnvironmentsSettingsAsOfRetrieveRequest = /*@__PURE__*/ S.suspend(
     }).pipe(
       T.Http({
         method: "GET",
-        uri: "/api/projects/{project_id}/environments/{id}/settings_as_of/",
+        uri: "/api/projects/{project_id}/environments/{id}/experiments_config/",
         code: 200,
       }),
     ),
 ).annotate({
-  identifier: "EnvironmentsSettingsAsOfRetrieveRequest",
-}) as any as S.Schema<EnvironmentsSettingsAsOfRetrieveRequest>;
+  identifier: "GetEnvironmentsExperimentsConfigRequest",
+}) as any as S.Schema<GetEnvironmentsExperimentsConfigRequest>;
 
-export interface EnvironmentsSettingsAsOfRetrieveResponse {}
-export const EnvironmentsSettingsAsOfRetrieveResponse = /*@__PURE__*/ S.suspend(
+export interface GetEnvironmentsExperimentsConfigResponse {}
+export const GetEnvironmentsExperimentsConfigResponse = /*@__PURE__*/ S.suspend(
   () => S.Struct({}),
 ).annotate({
-  identifier: "EnvironmentsSettingsAsOfRetrieveResponse",
-}) as any as S.Schema<EnvironmentsSettingsAsOfRetrieveResponse>;
+  identifier: "GetEnvironmentsExperimentsConfigResponse",
+}) as any as S.Schema<GetEnvironmentsExperimentsConfigResponse>;
 
-export type EnvironmentsActivityRetrieveError =
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** Deprecated: use /api/environments/{id}/ instead. */
-export const environmentsActivityRetrieve: API.OperationMethod<
-  EnvironmentsActivityRetrieveRequest,
-  EnvironmentsActivityRetrieveResponse,
-  EnvironmentsActivityRetrieveError,
+export interface GetEnvironmentsIsGeneratingDemoDataRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A unique integer value identifying this environment (aka team). */
+  id: number;
+}
+export const GetEnvironmentsIsGeneratingDemoDataRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      id: S.Number.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/projects/{project_id}/environments/{id}/is_generating_demo_data/",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "GetEnvironmentsIsGeneratingDemoDataRequest",
+  }) as any as S.Schema<GetEnvironmentsIsGeneratingDemoDataRequest>;
+
+export interface GetEnvironmentsIsGeneratingDemoDataResponse {}
+export const GetEnvironmentsIsGeneratingDemoDataResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "GetEnvironmentsIsGeneratingDemoDataResponse",
+  }) as any as S.Schema<GetEnvironmentsIsGeneratingDemoDataResponse>;
+
+export interface GetEnvironmentsLogsConfigRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A unique integer value identifying this environment (aka team). */
+  id: number;
+}
+export const GetEnvironmentsLogsConfigRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/environments/{id}/logs_config/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetEnvironmentsLogsConfigRequest",
+}) as any as S.Schema<GetEnvironmentsLogsConfigRequest>;
+
+export interface GetEnvironmentsLogsConfigResponse {}
+export const GetEnvironmentsLogsConfigResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "GetEnvironmentsLogsConfigResponse",
+}) as any as S.Schema<GetEnvironmentsLogsConfigResponse>;
+
+export interface GetEnvironmentsSettingsAsOfRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A unique integer value identifying this environment (aka team). */
+  id: number;
+}
+export const GetEnvironmentsSettingsAsOfRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.Number.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/environments/{id}/settings_as_of/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetEnvironmentsSettingsAsOfRequest",
+}) as any as S.Schema<GetEnvironmentsSettingsAsOfRequest>;
+
+export interface GetEnvironmentsSettingsAsOfResponse {}
+export const GetEnvironmentsSettingsAsOfResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "GetEnvironmentsSettingsAsOfResponse",
+}) as any as S.Schema<GetEnvironmentsSettingsAsOfResponse>;
+
+export interface ListEnvironmentsEventIngestionRestrictionsRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A unique integer value identifying this environment (aka team). */
+  id: number;
+}
+export const ListEnvironmentsEventIngestionRestrictionsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      id: S.Number.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/projects/{project_id}/environments/{id}/event_ingestion_restrictions/",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "ListEnvironmentsEventIngestionRestrictionsRequest",
+  }) as any as S.Schema<ListEnvironmentsEventIngestionRestrictionsRequest>;
+
+/** * `skip_person_processing` - Skip Person Processing * `drop_event_from_ingestion` - Drop Event From Ingestion * `force_overflow_from_ingestion` - Force Overflow From Ingestion * `redirect_to_dlq` - Redirect To Dlq * `redirect_to_topic` - Redirect To Topic */
+export type RestrictionTypeEnum =
+  | "skip_person_processing"
+  | "drop_event_from_ingestion"
+  | "force_overflow_from_ingestion"
+  | "redirect_to_dlq"
+  | "redirect_to_topic";
+export const RestrictionTypeEnum = /*@__PURE__*/ S.String;
+
+/** Distinct IDs the restriction applies to. Empty means it is not filtered by distinct ID. */
+export type EventIngestionRestrictionDistinctIdsList = Array<string>;
+export const EventIngestionRestrictionDistinctIdsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<EventIngestionRestrictionDistinctIdsList>;
+
+/** Session IDs the restriction applies to. Empty means it is not filtered by session ID. */
+export type EventIngestionRestrictionSessionIdsList = Array<string>;
+export const EventIngestionRestrictionSessionIdsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<EventIngestionRestrictionSessionIdsList>;
+
+/** Event names the restriction applies to. Empty means it is not filtered by event name. */
+export type EventIngestionRestrictionEventNamesList = Array<string>;
+export const EventIngestionRestrictionEventNamesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<EventIngestionRestrictionEventNamesList>;
+
+/** Event UUIDs the restriction applies to. Empty means it is not filtered by event UUID. */
+export type EventIngestionRestrictionEventUuidsList = Array<string>;
+export const EventIngestionRestrictionEventUuidsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<EventIngestionRestrictionEventUuidsList>;
+
+/** * `analytics` - Analytics * `session_recordings` - Session Recordings * `errortracking` - Errortracking * `clientwarnings` - Clientwarnings * `ai` - Ai */
+export type IngestionPipelineEnum =
+  | "analytics"
+  | "session_recordings"
+  | "errortracking"
+  | "clientwarnings"
+  | "ai";
+export const IngestionPipelineEnum = /*@__PURE__*/ S.String;
+
+/** Ingestion pipelines the restriction applies to. Filters combine with AND; values within a filter combine with OR. */
+export type EventIngestionRestrictionPipelinesList =
+  Array<IngestionPipelineEnum>;
+export const EventIngestionRestrictionPipelinesList = /*@__PURE__*/ S.Array(
+  IngestionPipelineEnum,
+) as any as S.Schema<EventIngestionRestrictionPipelinesList>;
+
+export interface EventIngestionRestriction {
+  /** What happens to matching events: dropped, sent to the overflow lane, or ingested without person processing. * `skip_person_processing` - Skip Person Processing * `drop_event_from_ingestion` - Drop Event From Ingestion * `force_overflow_from_ingestion` - Force Overflow From Ingestion * `redirect_to_dlq` - Redirect To Dlq * `redirect_to_topic` - Redirect To Topic */
+  restriction_type: RestrictionTypeEnum;
+  /** Distinct IDs the restriction applies to. Empty means it is not filtered by distinct ID. */
+  distinct_ids: EventIngestionRestrictionDistinctIdsList;
+  /** Session IDs the restriction applies to. Empty means it is not filtered by session ID. */
+  session_ids: EventIngestionRestrictionSessionIdsList;
+  /** Event names the restriction applies to. Empty means it is not filtered by event name. */
+  event_names: EventIngestionRestrictionEventNamesList;
+  /** Event UUIDs the restriction applies to. Empty means it is not filtered by event UUID. */
+  event_uuids: EventIngestionRestrictionEventUuidsList;
+  /** Ingestion pipelines the restriction applies to. Filters combine with AND; values within a filter combine with OR. */
+  pipelines: EventIngestionRestrictionPipelinesList;
+}
+export const EventIngestionRestriction = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    restriction_type: RestrictionTypeEnum,
+    distinct_ids: EventIngestionRestrictionDistinctIdsList,
+    session_ids: EventIngestionRestrictionSessionIdsList,
+    event_names: EventIngestionRestrictionEventNamesList,
+    event_uuids: EventIngestionRestrictionEventUuidsList,
+    pipelines: EventIngestionRestrictionPipelinesList,
+  }),
+).annotate({
+  identifier: "EventIngestionRestriction",
+}) as any as S.Schema<EventIngestionRestriction>;
+
+export type ListEnvironmentsEventIngestionRestrictionsResponseBodyList =
+  Array<EventIngestionRestriction>;
+export const ListEnvironmentsEventIngestionRestrictionsResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    EventIngestionRestriction,
+  ) as any as S.Schema<ListEnvironmentsEventIngestionRestrictionsResponseBodyList>;
+
+export type ListEnvironmentsEventIngestionRestrictionsResponse =
+  ListEnvironmentsEventIngestionRestrictionsResponseBodyList;
+export const ListEnvironmentsEventIngestionRestrictionsResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    ListEnvironmentsEventIngestionRestrictionsResponseBodyList.pipe(
+      T.RawResponseRoot(),
+    ),
+  ).annotate({
+    identifier: "ListEnvironmentsEventIngestionRestrictionsResponse",
+  }) as any as S.Schema<ListEnvironmentsEventIngestionRestrictionsResponse>;
+
+export type UpdateEnvironmentsCompleteProductOnboardingPartialRequestAppUrlsList =
+  Array<string>;
+export const UpdateEnvironmentsCompleteProductOnboardingPartialRequestAppUrlsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<UpdateEnvironmentsCompleteProductOnboardingPartialRequestAppUrlsList>;
+
+export type UpdateEnvironmentsCompleteProductOnboardingPartialRequestPersonDisplayNamePropertiesList =
+  Array<string>;
+export const UpdateEnvironmentsCompleteProductOnboardingPartialRequestPersonDisplayNamePropertiesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<UpdateEnvironmentsCompleteProductOnboardingPartialRequestPersonDisplayNamePropertiesList>;
+
+export type UpdateEnvironmentsCompleteProductOnboardingPartialRequestSessionRecordingUrlTriggerConfigList =
+  Array<unknown>;
+export const UpdateEnvironmentsCompleteProductOnboardingPartialRequestSessionRecordingUrlTriggerConfigList =
+  /*@__PURE__*/ S.Array(
+    S.Unknown,
+  ) as any as S.Schema<UpdateEnvironmentsCompleteProductOnboardingPartialRequestSessionRecordingUrlTriggerConfigList>;
+
+export type UpdateEnvironmentsCompleteProductOnboardingPartialRequestSessionRecordingUrlBlocklistConfigList =
+  Array<unknown>;
+export const UpdateEnvironmentsCompleteProductOnboardingPartialRequestSessionRecordingUrlBlocklistConfigList =
+  /*@__PURE__*/ S.Array(
+    S.Unknown,
+  ) as any as S.Schema<UpdateEnvironmentsCompleteProductOnboardingPartialRequestSessionRecordingUrlBlocklistConfigList>;
+
+export type UpdateEnvironmentsCompleteProductOnboardingPartialRequestSessionRecordingEventTriggerConfigList =
+  Array<string>;
+export const UpdateEnvironmentsCompleteProductOnboardingPartialRequestSessionRecordingEventTriggerConfigList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<UpdateEnvironmentsCompleteProductOnboardingPartialRequestSessionRecordingEventTriggerConfigList>;
+
+export type UpdateEnvironmentsCompleteProductOnboardingPartialRequestLiveEventsColumnsList =
+  Array<string>;
+export const UpdateEnvironmentsCompleteProductOnboardingPartialRequestLiveEventsColumnsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<UpdateEnvironmentsCompleteProductOnboardingPartialRequestLiveEventsColumnsList>;
+
+export type UpdateEnvironmentsCompleteProductOnboardingPartialRequestRecordingDomainsList =
+  Array<string>;
+export const UpdateEnvironmentsCompleteProductOnboardingPartialRequestRecordingDomainsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<UpdateEnvironmentsCompleteProductOnboardingPartialRequestRecordingDomainsList>;
+
+/** Whether this project serves B2B or B2C customers, used to optimize the UI layout. * `b2b` - B2B * `b2c` - B2C * `other` - Other */
+export type UpdateEnvironmentsCompleteProductOnboardingPartialRequestBusinessModel =
+  | BusinessModelEnum
+  | BlankEnum;
+export const UpdateEnvironmentsCompleteProductOnboardingPartialRequestBusinessModel =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateEnvironmentsCompleteProductOnboardingPartialRequestBusinessModel>;
+
+export interface UpdateEnvironmentsCompleteProductOnboardingPartialRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A unique integer value identifying this environment (aka team). */
+  id: number;
+  name?: string;
+  access_control?: boolean;
+  app_urls?: UpdateEnvironmentsCompleteProductOnboardingPartialRequestAppUrlsList;
+  anonymize_ips?: boolean;
+  completed_snippet_onboarding?: boolean;
+  /** Filters used to identify internal/test users. Each entry is a property filter. Supported entry types and the exact shape each accepts: # Person property — match (or exclude) by a person property {"key": "email", "type": "person", "value": "@example.com", "operator": "ends_with"} # Event property — match by an event property {"key": "$host", "type": "event", "value": "localhost", "operator": "icontains"} # Cohort membership — match (or exclude) members of a cohort. # Use operator "in" for inclusion and "not_in" for exclusion. Do NOT use a # `negation` field here — `negation` is specific to cohort *definitions* # (the inner sub-filters that build a cohort) and is rejected by the # property-filter schema. {"key": "id", "type": "cohort", "value": 8814, "operator": "not_in"} Common operators: "exact", "is_not", "icontains", "not_icontains", "starts_with", "not_starts_with", "ends_with", "not_ends_with", "regex", "not_regex", "gt", "lt", "gte", "lte", "is_set", "is_not_set", "in", "not_in". */
+  test_account_filters?: unknown;
+  test_account_filters_default_checked?: boolean | null;
+  path_cleaning_filters?: unknown;
+  is_demo?: boolean;
+  timezone?: TimezoneEnum | (string & {});
+  data_attributes?: unknown;
+  person_display_name_properties?: UpdateEnvironmentsCompleteProductOnboardingPartialRequestPersonDisplayNamePropertiesList | null;
+  correlation_config?: unknown;
+  autocapture_opt_out?: boolean | null;
+  autocapture_exceptions_opt_in?: boolean | null;
+  autocapture_web_vitals_opt_in?: boolean | null;
+  autocapture_web_vitals_allowed_metrics?: unknown;
+  autocapture_exceptions_errors_to_ignore?: unknown;
+  capture_console_log_opt_in?: boolean | null;
+  logs_settings?: unknown;
+  capture_performance_opt_in?: boolean | null;
+  session_recording_opt_in?: boolean;
+  session_recording_sample_rate?: string | null;
+  session_recording_minimum_duration_milliseconds?: number | null;
+  session_recording_linked_flag?: unknown;
+  session_recording_network_payload_capture_config?: unknown;
+  session_recording_masking_config?: unknown;
+  session_recording_url_trigger_config?: UpdateEnvironmentsCompleteProductOnboardingPartialRequestSessionRecordingUrlTriggerConfigList | null;
+  session_recording_url_blocklist_config?: UpdateEnvironmentsCompleteProductOnboardingPartialRequestSessionRecordingUrlBlocklistConfigList | null;
+  session_recording_event_trigger_config?: UpdateEnvironmentsCompleteProductOnboardingPartialRequestSessionRecordingEventTriggerConfigList | null;
+  session_recording_trigger_match_type_config?: string | null;
+  /** V2 trigger groups configuration for session recording. If present, takes precedence over legacy trigger fields. */
+  session_recording_trigger_groups?: unknown;
+  session_recording_retention_period?:
+    | SessionRecordingRetentionPeriodEnum
+    | (string & {});
+  session_replay_config?: unknown;
+  survey_config?: unknown;
+  week_start_day?: WeekStartDayEnum | (number & {}) | null;
+  primary_dashboard?: number | null;
+  live_events_columns?: UpdateEnvironmentsCompleteProductOnboardingPartialRequestLiveEventsColumnsList | null;
+  recording_domains?: UpdateEnvironmentsCompleteProductOnboardingPartialRequestRecordingDomainsList | null;
+  cookieless_server_hash_mode?:
+    | CookielessServerHashModeEnum
+    | (number & {})
+    | null;
+  human_friendly_comparison_periods?: boolean | null;
+  inject_web_apps?: boolean | null;
+  extra_settings?: unknown;
+  modifiers?: unknown;
+  has_completed_onboarding_for?: unknown;
+  surveys_opt_in?: boolean | null;
+  heatmaps_opt_in?: boolean | null;
+  flags_persistence_default?: boolean | null;
+  feature_flag_confirmation_enabled?: boolean | null;
+  feature_flag_confirmation_message?: string | null;
+  /** Whether to automatically apply default evaluation contexts to new feature flags */
+  default_evaluation_contexts_enabled?: boolean | null;
+  /** Whether to require at least one evaluation context tag when creating new feature flags */
+  require_evaluation_contexts?: boolean | null;
+  feature_flag_policy_config?: TeamFeatureFlagPolicyConfig;
+  capture_dead_clicks?: boolean | null;
+  default_data_theme?: number | null;
+  revenue_analytics_config?: TeamRevenueAnalyticsConfig;
+  marketing_analytics_config?: TeamMarketingAnalyticsConfig;
+  customer_analytics_config?: TeamCustomerAnalyticsConfig;
+  onboarding_tasks?: unknown;
+  base_currency?: BaseCurrencyEnum | (string & {});
+  web_analytics_pre_aggregated_tables_enabled?: boolean | null;
+  receive_org_level_activity_logs?: boolean | null;
+  /** Whether this project serves B2B or B2C customers, used to optimize the UI layout. * `b2b` - B2B * `b2c` - B2C * `other` - Other */
+  business_model?: UpdateEnvironmentsCompleteProductOnboardingPartialRequestBusinessModel | null;
+  conversations_enabled?: boolean | null;
+  conversations_settings?: unknown;
+  proactive_tasks_enabled?: boolean | null;
+  workflows_config?: TeamWorkflowsConfig;
+}
+export const UpdateEnvironmentsCompleteProductOnboardingPartialRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      id: S.Number.pipe(T.Label()),
+      name: S.optional(S.String),
+      access_control: S.optional(S.Boolean),
+      app_urls: S.optional(
+        UpdateEnvironmentsCompleteProductOnboardingPartialRequestAppUrlsList,
+      ),
+      anonymize_ips: S.optional(S.Boolean),
+      completed_snippet_onboarding: S.optional(S.Boolean),
+      test_account_filters: S.optional(S.Unknown),
+      test_account_filters_default_checked: S.optional(S.NullOr(S.Boolean)),
+      path_cleaning_filters: S.optional(S.Unknown),
+      is_demo: S.optional(S.Boolean),
+      timezone: S.optional(TimezoneEnum),
+      data_attributes: S.optional(S.Unknown),
+      person_display_name_properties: S.optional(
+        S.NullOr(
+          UpdateEnvironmentsCompleteProductOnboardingPartialRequestPersonDisplayNamePropertiesList,
+        ),
+      ),
+      correlation_config: S.optional(S.Unknown),
+      autocapture_opt_out: S.optional(S.NullOr(S.Boolean)),
+      autocapture_exceptions_opt_in: S.optional(S.NullOr(S.Boolean)),
+      autocapture_web_vitals_opt_in: S.optional(S.NullOr(S.Boolean)),
+      autocapture_web_vitals_allowed_metrics: S.optional(S.Unknown),
+      autocapture_exceptions_errors_to_ignore: S.optional(S.Unknown),
+      capture_console_log_opt_in: S.optional(S.NullOr(S.Boolean)),
+      logs_settings: S.optional(S.Unknown),
+      capture_performance_opt_in: S.optional(S.NullOr(S.Boolean)),
+      session_recording_opt_in: S.optional(S.Boolean),
+      session_recording_sample_rate: S.optional(S.NullOr(S.String)),
+      session_recording_minimum_duration_milliseconds: S.optional(
+        S.NullOr(S.Number),
+      ),
+      session_recording_linked_flag: S.optional(S.Unknown),
+      session_recording_network_payload_capture_config: S.optional(S.Unknown),
+      session_recording_masking_config: S.optional(S.Unknown),
+      session_recording_url_trigger_config: S.optional(
+        S.NullOr(
+          UpdateEnvironmentsCompleteProductOnboardingPartialRequestSessionRecordingUrlTriggerConfigList,
+        ),
+      ),
+      session_recording_url_blocklist_config: S.optional(
+        S.NullOr(
+          UpdateEnvironmentsCompleteProductOnboardingPartialRequestSessionRecordingUrlBlocklistConfigList,
+        ),
+      ),
+      session_recording_event_trigger_config: S.optional(
+        S.NullOr(
+          UpdateEnvironmentsCompleteProductOnboardingPartialRequestSessionRecordingEventTriggerConfigList,
+        ),
+      ),
+      session_recording_trigger_match_type_config: S.optional(
+        S.NullOr(S.String),
+      ),
+      session_recording_trigger_groups: S.optional(S.Unknown),
+      session_recording_retention_period: S.optional(
+        SessionRecordingRetentionPeriodEnum,
+      ),
+      session_replay_config: S.optional(S.Unknown),
+      survey_config: S.optional(S.Unknown),
+      week_start_day: S.optional(S.NullOr(WeekStartDayEnum)),
+      primary_dashboard: S.optional(S.NullOr(S.Number)),
+      live_events_columns: S.optional(
+        S.NullOr(
+          UpdateEnvironmentsCompleteProductOnboardingPartialRequestLiveEventsColumnsList,
+        ),
+      ),
+      recording_domains: S.optional(
+        S.NullOr(
+          UpdateEnvironmentsCompleteProductOnboardingPartialRequestRecordingDomainsList,
+        ),
+      ),
+      cookieless_server_hash_mode: S.optional(
+        S.NullOr(CookielessServerHashModeEnum),
+      ),
+      human_friendly_comparison_periods: S.optional(S.NullOr(S.Boolean)),
+      inject_web_apps: S.optional(S.NullOr(S.Boolean)),
+      extra_settings: S.optional(S.Unknown),
+      modifiers: S.optional(S.Unknown),
+      has_completed_onboarding_for: S.optional(S.Unknown),
+      surveys_opt_in: S.optional(S.NullOr(S.Boolean)),
+      heatmaps_opt_in: S.optional(S.NullOr(S.Boolean)),
+      flags_persistence_default: S.optional(S.NullOr(S.Boolean)),
+      feature_flag_confirmation_enabled: S.optional(S.NullOr(S.Boolean)),
+      feature_flag_confirmation_message: S.optional(S.NullOr(S.String)),
+      default_evaluation_contexts_enabled: S.optional(S.NullOr(S.Boolean)),
+      require_evaluation_contexts: S.optional(S.NullOr(S.Boolean)),
+      feature_flag_policy_config: S.optional(TeamFeatureFlagPolicyConfig),
+      capture_dead_clicks: S.optional(S.NullOr(S.Boolean)),
+      default_data_theme: S.optional(S.NullOr(S.Number)),
+      revenue_analytics_config: S.optional(TeamRevenueAnalyticsConfig),
+      marketing_analytics_config: S.optional(TeamMarketingAnalyticsConfig),
+      customer_analytics_config: S.optional(TeamCustomerAnalyticsConfig),
+      onboarding_tasks: S.optional(S.Unknown),
+      base_currency: S.optional(BaseCurrencyEnum),
+      web_analytics_pre_aggregated_tables_enabled: S.optional(
+        S.NullOr(S.Boolean),
+      ),
+      receive_org_level_activity_logs: S.optional(S.NullOr(S.Boolean)),
+      business_model: S.optional(
+        S.NullOr(
+          UpdateEnvironmentsCompleteProductOnboardingPartialRequestBusinessModel,
+        ),
+      ),
+      conversations_enabled: S.optional(S.NullOr(S.Boolean)),
+      conversations_settings: S.optional(S.Unknown),
+      proactive_tasks_enabled: S.optional(S.NullOr(S.Boolean)),
+      workflows_config: S.optional(TeamWorkflowsConfig),
+    }).pipe(
+      T.Http({
+        method: "PATCH",
+        uri: "/api/projects/{project_id}/environments/{id}/complete_product_onboarding/",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "UpdateEnvironmentsCompleteProductOnboardingPartialRequest",
+  }) as any as S.Schema<UpdateEnvironmentsCompleteProductOnboardingPartialRequest>;
+
+export interface UpdateEnvironmentsCompleteProductOnboardingPartialResponse {}
+export const UpdateEnvironmentsCompleteProductOnboardingPartialResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "UpdateEnvironmentsCompleteProductOnboardingPartialResponse",
+  }) as any as S.Schema<UpdateEnvironmentsCompleteProductOnboardingPartialResponse>;
+
+export type UpdateEnvironmentsExperimentsConfigPartialRequestAppUrlsList =
+  Array<string>;
+export const UpdateEnvironmentsExperimentsConfigPartialRequestAppUrlsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<UpdateEnvironmentsExperimentsConfigPartialRequestAppUrlsList>;
+
+export type UpdateEnvironmentsExperimentsConfigPartialRequestPersonDisplayNamePropertiesList =
+  Array<string>;
+export const UpdateEnvironmentsExperimentsConfigPartialRequestPersonDisplayNamePropertiesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<UpdateEnvironmentsExperimentsConfigPartialRequestPersonDisplayNamePropertiesList>;
+
+export type UpdateEnvironmentsExperimentsConfigPartialRequestSessionRecordingUrlTriggerConfigList =
+  Array<unknown>;
+export const UpdateEnvironmentsExperimentsConfigPartialRequestSessionRecordingUrlTriggerConfigList =
+  /*@__PURE__*/ S.Array(
+    S.Unknown,
+  ) as any as S.Schema<UpdateEnvironmentsExperimentsConfigPartialRequestSessionRecordingUrlTriggerConfigList>;
+
+export type UpdateEnvironmentsExperimentsConfigPartialRequestSessionRecordingUrlBlocklistConfigList =
+  Array<unknown>;
+export const UpdateEnvironmentsExperimentsConfigPartialRequestSessionRecordingUrlBlocklistConfigList =
+  /*@__PURE__*/ S.Array(
+    S.Unknown,
+  ) as any as S.Schema<UpdateEnvironmentsExperimentsConfigPartialRequestSessionRecordingUrlBlocklistConfigList>;
+
+export type UpdateEnvironmentsExperimentsConfigPartialRequestSessionRecordingEventTriggerConfigList =
+  Array<string>;
+export const UpdateEnvironmentsExperimentsConfigPartialRequestSessionRecordingEventTriggerConfigList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<UpdateEnvironmentsExperimentsConfigPartialRequestSessionRecordingEventTriggerConfigList>;
+
+export type UpdateEnvironmentsExperimentsConfigPartialRequestLiveEventsColumnsList =
+  Array<string>;
+export const UpdateEnvironmentsExperimentsConfigPartialRequestLiveEventsColumnsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<UpdateEnvironmentsExperimentsConfigPartialRequestLiveEventsColumnsList>;
+
+export type UpdateEnvironmentsExperimentsConfigPartialRequestRecordingDomainsList =
+  Array<string>;
+export const UpdateEnvironmentsExperimentsConfigPartialRequestRecordingDomainsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<UpdateEnvironmentsExperimentsConfigPartialRequestRecordingDomainsList>;
+
+/** Whether this project serves B2B or B2C customers, used to optimize the UI layout. * `b2b` - B2B * `b2c` - B2C * `other` - Other */
+export type UpdateEnvironmentsExperimentsConfigPartialRequestBusinessModel =
+  | BusinessModelEnum
+  | BlankEnum;
+export const UpdateEnvironmentsExperimentsConfigPartialRequestBusinessModel =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateEnvironmentsExperimentsConfigPartialRequestBusinessModel>;
+
+export interface UpdateEnvironmentsExperimentsConfigPartialRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A unique integer value identifying this environment (aka team). */
+  id: number;
+  name?: string;
+  access_control?: boolean;
+  app_urls?: UpdateEnvironmentsExperimentsConfigPartialRequestAppUrlsList;
+  anonymize_ips?: boolean;
+  completed_snippet_onboarding?: boolean;
+  /** Filters used to identify internal/test users. Each entry is a property filter. Supported entry types and the exact shape each accepts: # Person property — match (or exclude) by a person property {"key": "email", "type": "person", "value": "@example.com", "operator": "ends_with"} # Event property — match by an event property {"key": "$host", "type": "event", "value": "localhost", "operator": "icontains"} # Cohort membership — match (or exclude) members of a cohort. # Use operator "in" for inclusion and "not_in" for exclusion. Do NOT use a # `negation` field here — `negation` is specific to cohort *definitions* # (the inner sub-filters that build a cohort) and is rejected by the # property-filter schema. {"key": "id", "type": "cohort", "value": 8814, "operator": "not_in"} Common operators: "exact", "is_not", "icontains", "not_icontains", "starts_with", "not_starts_with", "ends_with", "not_ends_with", "regex", "not_regex", "gt", "lt", "gte", "lte", "is_set", "is_not_set", "in", "not_in". */
+  test_account_filters?: unknown;
+  test_account_filters_default_checked?: boolean | null;
+  path_cleaning_filters?: unknown;
+  is_demo?: boolean;
+  timezone?: TimezoneEnum | (string & {});
+  data_attributes?: unknown;
+  person_display_name_properties?: UpdateEnvironmentsExperimentsConfigPartialRequestPersonDisplayNamePropertiesList | null;
+  correlation_config?: unknown;
+  autocapture_opt_out?: boolean | null;
+  autocapture_exceptions_opt_in?: boolean | null;
+  autocapture_web_vitals_opt_in?: boolean | null;
+  autocapture_web_vitals_allowed_metrics?: unknown;
+  autocapture_exceptions_errors_to_ignore?: unknown;
+  capture_console_log_opt_in?: boolean | null;
+  logs_settings?: unknown;
+  capture_performance_opt_in?: boolean | null;
+  session_recording_opt_in?: boolean;
+  session_recording_sample_rate?: string | null;
+  session_recording_minimum_duration_milliseconds?: number | null;
+  session_recording_linked_flag?: unknown;
+  session_recording_network_payload_capture_config?: unknown;
+  session_recording_masking_config?: unknown;
+  session_recording_url_trigger_config?: UpdateEnvironmentsExperimentsConfigPartialRequestSessionRecordingUrlTriggerConfigList | null;
+  session_recording_url_blocklist_config?: UpdateEnvironmentsExperimentsConfigPartialRequestSessionRecordingUrlBlocklistConfigList | null;
+  session_recording_event_trigger_config?: UpdateEnvironmentsExperimentsConfigPartialRequestSessionRecordingEventTriggerConfigList | null;
+  session_recording_trigger_match_type_config?: string | null;
+  /** V2 trigger groups configuration for session recording. If present, takes precedence over legacy trigger fields. */
+  session_recording_trigger_groups?: unknown;
+  session_recording_retention_period?:
+    | SessionRecordingRetentionPeriodEnum
+    | (string & {});
+  session_replay_config?: unknown;
+  survey_config?: unknown;
+  week_start_day?: WeekStartDayEnum | (number & {}) | null;
+  primary_dashboard?: number | null;
+  live_events_columns?: UpdateEnvironmentsExperimentsConfigPartialRequestLiveEventsColumnsList | null;
+  recording_domains?: UpdateEnvironmentsExperimentsConfigPartialRequestRecordingDomainsList | null;
+  cookieless_server_hash_mode?:
+    | CookielessServerHashModeEnum
+    | (number & {})
+    | null;
+  human_friendly_comparison_periods?: boolean | null;
+  inject_web_apps?: boolean | null;
+  extra_settings?: unknown;
+  modifiers?: unknown;
+  has_completed_onboarding_for?: unknown;
+  surveys_opt_in?: boolean | null;
+  heatmaps_opt_in?: boolean | null;
+  flags_persistence_default?: boolean | null;
+  feature_flag_confirmation_enabled?: boolean | null;
+  feature_flag_confirmation_message?: string | null;
+  /** Whether to automatically apply default evaluation contexts to new feature flags */
+  default_evaluation_contexts_enabled?: boolean | null;
+  /** Whether to require at least one evaluation context tag when creating new feature flags */
+  require_evaluation_contexts?: boolean | null;
+  feature_flag_policy_config?: TeamFeatureFlagPolicyConfig;
+  capture_dead_clicks?: boolean | null;
+  default_data_theme?: number | null;
+  revenue_analytics_config?: TeamRevenueAnalyticsConfig;
+  marketing_analytics_config?: TeamMarketingAnalyticsConfig;
+  customer_analytics_config?: TeamCustomerAnalyticsConfig;
+  onboarding_tasks?: unknown;
+  base_currency?: BaseCurrencyEnum | (string & {});
+  web_analytics_pre_aggregated_tables_enabled?: boolean | null;
+  receive_org_level_activity_logs?: boolean | null;
+  /** Whether this project serves B2B or B2C customers, used to optimize the UI layout. * `b2b` - B2B * `b2c` - B2C * `other` - Other */
+  business_model?: UpdateEnvironmentsExperimentsConfigPartialRequestBusinessModel | null;
+  conversations_enabled?: boolean | null;
+  conversations_settings?: unknown;
+  proactive_tasks_enabled?: boolean | null;
+  workflows_config?: TeamWorkflowsConfig;
+}
+export const UpdateEnvironmentsExperimentsConfigPartialRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      id: S.Number.pipe(T.Label()),
+      name: S.optional(S.String),
+      access_control: S.optional(S.Boolean),
+      app_urls: S.optional(
+        UpdateEnvironmentsExperimentsConfigPartialRequestAppUrlsList,
+      ),
+      anonymize_ips: S.optional(S.Boolean),
+      completed_snippet_onboarding: S.optional(S.Boolean),
+      test_account_filters: S.optional(S.Unknown),
+      test_account_filters_default_checked: S.optional(S.NullOr(S.Boolean)),
+      path_cleaning_filters: S.optional(S.Unknown),
+      is_demo: S.optional(S.Boolean),
+      timezone: S.optional(TimezoneEnum),
+      data_attributes: S.optional(S.Unknown),
+      person_display_name_properties: S.optional(
+        S.NullOr(
+          UpdateEnvironmentsExperimentsConfigPartialRequestPersonDisplayNamePropertiesList,
+        ),
+      ),
+      correlation_config: S.optional(S.Unknown),
+      autocapture_opt_out: S.optional(S.NullOr(S.Boolean)),
+      autocapture_exceptions_opt_in: S.optional(S.NullOr(S.Boolean)),
+      autocapture_web_vitals_opt_in: S.optional(S.NullOr(S.Boolean)),
+      autocapture_web_vitals_allowed_metrics: S.optional(S.Unknown),
+      autocapture_exceptions_errors_to_ignore: S.optional(S.Unknown),
+      capture_console_log_opt_in: S.optional(S.NullOr(S.Boolean)),
+      logs_settings: S.optional(S.Unknown),
+      capture_performance_opt_in: S.optional(S.NullOr(S.Boolean)),
+      session_recording_opt_in: S.optional(S.Boolean),
+      session_recording_sample_rate: S.optional(S.NullOr(S.String)),
+      session_recording_minimum_duration_milliseconds: S.optional(
+        S.NullOr(S.Number),
+      ),
+      session_recording_linked_flag: S.optional(S.Unknown),
+      session_recording_network_payload_capture_config: S.optional(S.Unknown),
+      session_recording_masking_config: S.optional(S.Unknown),
+      session_recording_url_trigger_config: S.optional(
+        S.NullOr(
+          UpdateEnvironmentsExperimentsConfigPartialRequestSessionRecordingUrlTriggerConfigList,
+        ),
+      ),
+      session_recording_url_blocklist_config: S.optional(
+        S.NullOr(
+          UpdateEnvironmentsExperimentsConfigPartialRequestSessionRecordingUrlBlocklistConfigList,
+        ),
+      ),
+      session_recording_event_trigger_config: S.optional(
+        S.NullOr(
+          UpdateEnvironmentsExperimentsConfigPartialRequestSessionRecordingEventTriggerConfigList,
+        ),
+      ),
+      session_recording_trigger_match_type_config: S.optional(
+        S.NullOr(S.String),
+      ),
+      session_recording_trigger_groups: S.optional(S.Unknown),
+      session_recording_retention_period: S.optional(
+        SessionRecordingRetentionPeriodEnum,
+      ),
+      session_replay_config: S.optional(S.Unknown),
+      survey_config: S.optional(S.Unknown),
+      week_start_day: S.optional(S.NullOr(WeekStartDayEnum)),
+      primary_dashboard: S.optional(S.NullOr(S.Number)),
+      live_events_columns: S.optional(
+        S.NullOr(
+          UpdateEnvironmentsExperimentsConfigPartialRequestLiveEventsColumnsList,
+        ),
+      ),
+      recording_domains: S.optional(
+        S.NullOr(
+          UpdateEnvironmentsExperimentsConfigPartialRequestRecordingDomainsList,
+        ),
+      ),
+      cookieless_server_hash_mode: S.optional(
+        S.NullOr(CookielessServerHashModeEnum),
+      ),
+      human_friendly_comparison_periods: S.optional(S.NullOr(S.Boolean)),
+      inject_web_apps: S.optional(S.NullOr(S.Boolean)),
+      extra_settings: S.optional(S.Unknown),
+      modifiers: S.optional(S.Unknown),
+      has_completed_onboarding_for: S.optional(S.Unknown),
+      surveys_opt_in: S.optional(S.NullOr(S.Boolean)),
+      heatmaps_opt_in: S.optional(S.NullOr(S.Boolean)),
+      flags_persistence_default: S.optional(S.NullOr(S.Boolean)),
+      feature_flag_confirmation_enabled: S.optional(S.NullOr(S.Boolean)),
+      feature_flag_confirmation_message: S.optional(S.NullOr(S.String)),
+      default_evaluation_contexts_enabled: S.optional(S.NullOr(S.Boolean)),
+      require_evaluation_contexts: S.optional(S.NullOr(S.Boolean)),
+      feature_flag_policy_config: S.optional(TeamFeatureFlagPolicyConfig),
+      capture_dead_clicks: S.optional(S.NullOr(S.Boolean)),
+      default_data_theme: S.optional(S.NullOr(S.Number)),
+      revenue_analytics_config: S.optional(TeamRevenueAnalyticsConfig),
+      marketing_analytics_config: S.optional(TeamMarketingAnalyticsConfig),
+      customer_analytics_config: S.optional(TeamCustomerAnalyticsConfig),
+      onboarding_tasks: S.optional(S.Unknown),
+      base_currency: S.optional(BaseCurrencyEnum),
+      web_analytics_pre_aggregated_tables_enabled: S.optional(
+        S.NullOr(S.Boolean),
+      ),
+      receive_org_level_activity_logs: S.optional(S.NullOr(S.Boolean)),
+      business_model: S.optional(
+        S.NullOr(
+          UpdateEnvironmentsExperimentsConfigPartialRequestBusinessModel,
+        ),
+      ),
+      conversations_enabled: S.optional(S.NullOr(S.Boolean)),
+      conversations_settings: S.optional(S.Unknown),
+      proactive_tasks_enabled: S.optional(S.NullOr(S.Boolean)),
+      workflows_config: S.optional(TeamWorkflowsConfig),
+    }).pipe(
+      T.Http({
+        method: "PATCH",
+        uri: "/api/projects/{project_id}/environments/{id}/experiments_config/",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "UpdateEnvironmentsExperimentsConfigPartialRequest",
+  }) as any as S.Schema<UpdateEnvironmentsExperimentsConfigPartialRequest>;
+
+export interface UpdateEnvironmentsExperimentsConfigPartialResponse {}
+export const UpdateEnvironmentsExperimentsConfigPartialResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "UpdateEnvironmentsExperimentsConfigPartialResponse",
+  }) as any as S.Schema<UpdateEnvironmentsExperimentsConfigPartialResponse>;
+
+export type UpdateEnvironmentsLogsConfigPartialRequestAppUrlsList =
+  Array<string>;
+export const UpdateEnvironmentsLogsConfigPartialRequestAppUrlsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<UpdateEnvironmentsLogsConfigPartialRequestAppUrlsList>;
+
+export type UpdateEnvironmentsLogsConfigPartialRequestPersonDisplayNamePropertiesList =
+  Array<string>;
+export const UpdateEnvironmentsLogsConfigPartialRequestPersonDisplayNamePropertiesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<UpdateEnvironmentsLogsConfigPartialRequestPersonDisplayNamePropertiesList>;
+
+export type UpdateEnvironmentsLogsConfigPartialRequestSessionRecordingUrlTriggerConfigList =
+  Array<unknown>;
+export const UpdateEnvironmentsLogsConfigPartialRequestSessionRecordingUrlTriggerConfigList =
+  /*@__PURE__*/ S.Array(
+    S.Unknown,
+  ) as any as S.Schema<UpdateEnvironmentsLogsConfigPartialRequestSessionRecordingUrlTriggerConfigList>;
+
+export type UpdateEnvironmentsLogsConfigPartialRequestSessionRecordingUrlBlocklistConfigList =
+  Array<unknown>;
+export const UpdateEnvironmentsLogsConfigPartialRequestSessionRecordingUrlBlocklistConfigList =
+  /*@__PURE__*/ S.Array(
+    S.Unknown,
+  ) as any as S.Schema<UpdateEnvironmentsLogsConfigPartialRequestSessionRecordingUrlBlocklistConfigList>;
+
+export type UpdateEnvironmentsLogsConfigPartialRequestSessionRecordingEventTriggerConfigList =
+  Array<string>;
+export const UpdateEnvironmentsLogsConfigPartialRequestSessionRecordingEventTriggerConfigList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<UpdateEnvironmentsLogsConfigPartialRequestSessionRecordingEventTriggerConfigList>;
+
+export type UpdateEnvironmentsLogsConfigPartialRequestLiveEventsColumnsList =
+  Array<string>;
+export const UpdateEnvironmentsLogsConfigPartialRequestLiveEventsColumnsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<UpdateEnvironmentsLogsConfigPartialRequestLiveEventsColumnsList>;
+
+export type UpdateEnvironmentsLogsConfigPartialRequestRecordingDomainsList =
+  Array<string>;
+export const UpdateEnvironmentsLogsConfigPartialRequestRecordingDomainsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<UpdateEnvironmentsLogsConfigPartialRequestRecordingDomainsList>;
+
+/** Whether this project serves B2B or B2C customers, used to optimize the UI layout. * `b2b` - B2B * `b2c` - B2C * `other` - Other */
+export type UpdateEnvironmentsLogsConfigPartialRequestBusinessModel =
+  | BusinessModelEnum
+  | BlankEnum;
+export const UpdateEnvironmentsLogsConfigPartialRequestBusinessModel =
+  /*@__PURE__*/ S.Unknown as any as S.Schema<UpdateEnvironmentsLogsConfigPartialRequestBusinessModel>;
+
+export interface UpdateEnvironmentsLogsConfigPartialRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A unique integer value identifying this environment (aka team). */
+  id: number;
+  name?: string;
+  access_control?: boolean;
+  app_urls?: UpdateEnvironmentsLogsConfigPartialRequestAppUrlsList;
+  anonymize_ips?: boolean;
+  completed_snippet_onboarding?: boolean;
+  /** Filters used to identify internal/test users. Each entry is a property filter. Supported entry types and the exact shape each accepts: # Person property — match (or exclude) by a person property {"key": "email", "type": "person", "value": "@example.com", "operator": "ends_with"} # Event property — match by an event property {"key": "$host", "type": "event", "value": "localhost", "operator": "icontains"} # Cohort membership — match (or exclude) members of a cohort. # Use operator "in" for inclusion and "not_in" for exclusion. Do NOT use a # `negation` field here — `negation` is specific to cohort *definitions* # (the inner sub-filters that build a cohort) and is rejected by the # property-filter schema. {"key": "id", "type": "cohort", "value": 8814, "operator": "not_in"} Common operators: "exact", "is_not", "icontains", "not_icontains", "starts_with", "not_starts_with", "ends_with", "not_ends_with", "regex", "not_regex", "gt", "lt", "gte", "lte", "is_set", "is_not_set", "in", "not_in". */
+  test_account_filters?: unknown;
+  test_account_filters_default_checked?: boolean | null;
+  path_cleaning_filters?: unknown;
+  is_demo?: boolean;
+  timezone?: TimezoneEnum | (string & {});
+  data_attributes?: unknown;
+  person_display_name_properties?: UpdateEnvironmentsLogsConfigPartialRequestPersonDisplayNamePropertiesList | null;
+  correlation_config?: unknown;
+  autocapture_opt_out?: boolean | null;
+  autocapture_exceptions_opt_in?: boolean | null;
+  autocapture_web_vitals_opt_in?: boolean | null;
+  autocapture_web_vitals_allowed_metrics?: unknown;
+  autocapture_exceptions_errors_to_ignore?: unknown;
+  capture_console_log_opt_in?: boolean | null;
+  logs_settings?: unknown;
+  capture_performance_opt_in?: boolean | null;
+  session_recording_opt_in?: boolean;
+  session_recording_sample_rate?: string | null;
+  session_recording_minimum_duration_milliseconds?: number | null;
+  session_recording_linked_flag?: unknown;
+  session_recording_network_payload_capture_config?: unknown;
+  session_recording_masking_config?: unknown;
+  session_recording_url_trigger_config?: UpdateEnvironmentsLogsConfigPartialRequestSessionRecordingUrlTriggerConfigList | null;
+  session_recording_url_blocklist_config?: UpdateEnvironmentsLogsConfigPartialRequestSessionRecordingUrlBlocklistConfigList | null;
+  session_recording_event_trigger_config?: UpdateEnvironmentsLogsConfigPartialRequestSessionRecordingEventTriggerConfigList | null;
+  session_recording_trigger_match_type_config?: string | null;
+  /** V2 trigger groups configuration for session recording. If present, takes precedence over legacy trigger fields. */
+  session_recording_trigger_groups?: unknown;
+  session_recording_retention_period?:
+    | SessionRecordingRetentionPeriodEnum
+    | (string & {});
+  session_replay_config?: unknown;
+  survey_config?: unknown;
+  week_start_day?: WeekStartDayEnum | (number & {}) | null;
+  primary_dashboard?: number | null;
+  live_events_columns?: UpdateEnvironmentsLogsConfigPartialRequestLiveEventsColumnsList | null;
+  recording_domains?: UpdateEnvironmentsLogsConfigPartialRequestRecordingDomainsList | null;
+  cookieless_server_hash_mode?:
+    | CookielessServerHashModeEnum
+    | (number & {})
+    | null;
+  human_friendly_comparison_periods?: boolean | null;
+  inject_web_apps?: boolean | null;
+  extra_settings?: unknown;
+  modifiers?: unknown;
+  has_completed_onboarding_for?: unknown;
+  surveys_opt_in?: boolean | null;
+  heatmaps_opt_in?: boolean | null;
+  flags_persistence_default?: boolean | null;
+  feature_flag_confirmation_enabled?: boolean | null;
+  feature_flag_confirmation_message?: string | null;
+  /** Whether to automatically apply default evaluation contexts to new feature flags */
+  default_evaluation_contexts_enabled?: boolean | null;
+  /** Whether to require at least one evaluation context tag when creating new feature flags */
+  require_evaluation_contexts?: boolean | null;
+  feature_flag_policy_config?: TeamFeatureFlagPolicyConfig;
+  capture_dead_clicks?: boolean | null;
+  default_data_theme?: number | null;
+  revenue_analytics_config?: TeamRevenueAnalyticsConfig;
+  marketing_analytics_config?: TeamMarketingAnalyticsConfig;
+  customer_analytics_config?: TeamCustomerAnalyticsConfig;
+  onboarding_tasks?: unknown;
+  base_currency?: BaseCurrencyEnum | (string & {});
+  web_analytics_pre_aggregated_tables_enabled?: boolean | null;
+  receive_org_level_activity_logs?: boolean | null;
+  /** Whether this project serves B2B or B2C customers, used to optimize the UI layout. * `b2b` - B2B * `b2c` - B2C * `other` - Other */
+  business_model?: UpdateEnvironmentsLogsConfigPartialRequestBusinessModel | null;
+  conversations_enabled?: boolean | null;
+  conversations_settings?: unknown;
+  proactive_tasks_enabled?: boolean | null;
+  workflows_config?: TeamWorkflowsConfig;
+}
+export const UpdateEnvironmentsLogsConfigPartialRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      id: S.Number.pipe(T.Label()),
+      name: S.optional(S.String),
+      access_control: S.optional(S.Boolean),
+      app_urls: S.optional(
+        UpdateEnvironmentsLogsConfigPartialRequestAppUrlsList,
+      ),
+      anonymize_ips: S.optional(S.Boolean),
+      completed_snippet_onboarding: S.optional(S.Boolean),
+      test_account_filters: S.optional(S.Unknown),
+      test_account_filters_default_checked: S.optional(S.NullOr(S.Boolean)),
+      path_cleaning_filters: S.optional(S.Unknown),
+      is_demo: S.optional(S.Boolean),
+      timezone: S.optional(TimezoneEnum),
+      data_attributes: S.optional(S.Unknown),
+      person_display_name_properties: S.optional(
+        S.NullOr(
+          UpdateEnvironmentsLogsConfigPartialRequestPersonDisplayNamePropertiesList,
+        ),
+      ),
+      correlation_config: S.optional(S.Unknown),
+      autocapture_opt_out: S.optional(S.NullOr(S.Boolean)),
+      autocapture_exceptions_opt_in: S.optional(S.NullOr(S.Boolean)),
+      autocapture_web_vitals_opt_in: S.optional(S.NullOr(S.Boolean)),
+      autocapture_web_vitals_allowed_metrics: S.optional(S.Unknown),
+      autocapture_exceptions_errors_to_ignore: S.optional(S.Unknown),
+      capture_console_log_opt_in: S.optional(S.NullOr(S.Boolean)),
+      logs_settings: S.optional(S.Unknown),
+      capture_performance_opt_in: S.optional(S.NullOr(S.Boolean)),
+      session_recording_opt_in: S.optional(S.Boolean),
+      session_recording_sample_rate: S.optional(S.NullOr(S.String)),
+      session_recording_minimum_duration_milliseconds: S.optional(
+        S.NullOr(S.Number),
+      ),
+      session_recording_linked_flag: S.optional(S.Unknown),
+      session_recording_network_payload_capture_config: S.optional(S.Unknown),
+      session_recording_masking_config: S.optional(S.Unknown),
+      session_recording_url_trigger_config: S.optional(
+        S.NullOr(
+          UpdateEnvironmentsLogsConfigPartialRequestSessionRecordingUrlTriggerConfigList,
+        ),
+      ),
+      session_recording_url_blocklist_config: S.optional(
+        S.NullOr(
+          UpdateEnvironmentsLogsConfigPartialRequestSessionRecordingUrlBlocklistConfigList,
+        ),
+      ),
+      session_recording_event_trigger_config: S.optional(
+        S.NullOr(
+          UpdateEnvironmentsLogsConfigPartialRequestSessionRecordingEventTriggerConfigList,
+        ),
+      ),
+      session_recording_trigger_match_type_config: S.optional(
+        S.NullOr(S.String),
+      ),
+      session_recording_trigger_groups: S.optional(S.Unknown),
+      session_recording_retention_period: S.optional(
+        SessionRecordingRetentionPeriodEnum,
+      ),
+      session_replay_config: S.optional(S.Unknown),
+      survey_config: S.optional(S.Unknown),
+      week_start_day: S.optional(S.NullOr(WeekStartDayEnum)),
+      primary_dashboard: S.optional(S.NullOr(S.Number)),
+      live_events_columns: S.optional(
+        S.NullOr(
+          UpdateEnvironmentsLogsConfigPartialRequestLiveEventsColumnsList,
+        ),
+      ),
+      recording_domains: S.optional(
+        S.NullOr(
+          UpdateEnvironmentsLogsConfigPartialRequestRecordingDomainsList,
+        ),
+      ),
+      cookieless_server_hash_mode: S.optional(
+        S.NullOr(CookielessServerHashModeEnum),
+      ),
+      human_friendly_comparison_periods: S.optional(S.NullOr(S.Boolean)),
+      inject_web_apps: S.optional(S.NullOr(S.Boolean)),
+      extra_settings: S.optional(S.Unknown),
+      modifiers: S.optional(S.Unknown),
+      has_completed_onboarding_for: S.optional(S.Unknown),
+      surveys_opt_in: S.optional(S.NullOr(S.Boolean)),
+      heatmaps_opt_in: S.optional(S.NullOr(S.Boolean)),
+      flags_persistence_default: S.optional(S.NullOr(S.Boolean)),
+      feature_flag_confirmation_enabled: S.optional(S.NullOr(S.Boolean)),
+      feature_flag_confirmation_message: S.optional(S.NullOr(S.String)),
+      default_evaluation_contexts_enabled: S.optional(S.NullOr(S.Boolean)),
+      require_evaluation_contexts: S.optional(S.NullOr(S.Boolean)),
+      feature_flag_policy_config: S.optional(TeamFeatureFlagPolicyConfig),
+      capture_dead_clicks: S.optional(S.NullOr(S.Boolean)),
+      default_data_theme: S.optional(S.NullOr(S.Number)),
+      revenue_analytics_config: S.optional(TeamRevenueAnalyticsConfig),
+      marketing_analytics_config: S.optional(TeamMarketingAnalyticsConfig),
+      customer_analytics_config: S.optional(TeamCustomerAnalyticsConfig),
+      onboarding_tasks: S.optional(S.Unknown),
+      base_currency: S.optional(BaseCurrencyEnum),
+      web_analytics_pre_aggregated_tables_enabled: S.optional(
+        S.NullOr(S.Boolean),
+      ),
+      receive_org_level_activity_logs: S.optional(S.NullOr(S.Boolean)),
+      business_model: S.optional(
+        S.NullOr(UpdateEnvironmentsLogsConfigPartialRequestBusinessModel),
+      ),
+      conversations_enabled: S.optional(S.NullOr(S.Boolean)),
+      conversations_settings: S.optional(S.Unknown),
+      proactive_tasks_enabled: S.optional(S.NullOr(S.Boolean)),
+      workflows_config: S.optional(TeamWorkflowsConfig),
+    }).pipe(
+      T.Http({
+        method: "PATCH",
+        uri: "/api/projects/{project_id}/environments/{id}/logs_config/",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "UpdateEnvironmentsLogsConfigPartialRequest",
+  }) as any as S.Schema<UpdateEnvironmentsLogsConfigPartialRequest>;
+
+export interface UpdateEnvironmentsLogsConfigPartialResponse {}
+export const UpdateEnvironmentsLogsConfigPartialResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "UpdateEnvironmentsLogsConfigPartialResponse",
+  }) as any as S.Schema<UpdateEnvironmentsLogsConfigPartialResponse>;
+
+export type CreateEnvironmentsEvaluationContextSuggestionError = PosthogOpError;
+/** Hide an evaluation context name from the flag editor's suggestion list, or restore it. POST hides the name; DELETE restores it. The underlying context row and any flags already using it are never modified — this only controls what gets suggested. */
+export const createEnvironmentsEvaluationContextSuggestion: API.OperationMethod<
+  CreateEnvironmentsEvaluationContextSuggestionRequest,
+  EvaluationContextSuggestionResponse,
+  CreateEnvironmentsEvaluationContextSuggestionError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: EnvironmentsActivityRetrieveRequest,
-  output: EnvironmentsActivityRetrieveResponse,
-  errors: [Forbidden, NotFound],
+  input: CreateEnvironmentsEvaluationContextSuggestionRequest,
+  output: EvaluationContextSuggestionResponse,
+  errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
@@ -4372,25 +4397,6 @@ export const environmentsAddProductIntentPartialUpdate: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: EnvironmentsAddProductIntentPartialUpdateRequest,
   output: EnvironmentsAddProductIntentPartialUpdateResponse,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type EnvironmentsCompleteProductOnboardingPartialUpdateError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** Deprecated: use /api/environments/{id}/ instead. */
-export const environmentsCompleteProductOnboardingPartialUpdate: API.OperationMethod<
-  EnvironmentsCompleteProductOnboardingPartialUpdateRequest,
-  EnvironmentsCompleteProductOnboardingPartialUpdateResponse,
-  EnvironmentsCompleteProductOnboardingPartialUpdateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: EnvironmentsCompleteProductOnboardingPartialUpdateRequest,
-  output: EnvironmentsCompleteProductOnboardingPartialUpdateResponse,
   errors: [BadRequest, Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
@@ -4415,22 +4421,6 @@ export const environmentsDeleteSecretTokenBackupPartialUpdate: API.OperationMeth
   retry: Retry.Retry,
 }));
 
-export type EnvironmentsEvaluationContextSuggestionsCreateError =
-  PosthogOpError;
-/** Hide an evaluation context name from the flag editor's suggestion list, or restore it. POST hides the name; DELETE restores it. The underlying context row and any flags already using it are never modified — this only controls what gets suggested. */
-export const environmentsEvaluationContextSuggestionsCreate: API.OperationMethod<
-  EnvironmentsEvaluationContextSuggestionsCreateRequest,
-  EvaluationContextSuggestionResponse,
-  EnvironmentsEvaluationContextSuggestionsCreateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: EnvironmentsEvaluationContextSuggestionsCreateRequest,
-  output: EvaluationContextSuggestionResponse,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
 export type EnvironmentsEvaluationContextSuggestionsDestroyError =
   PosthogOpError;
 /** Hide an evaluation context name from the flag editor's suggestion list, or restore it. POST hides the name; DELETE restores it. The underlying context row and any flags already using it are never modified — this only controls what gets suggested. */
@@ -4443,61 +4433,6 @@ export const environmentsEvaluationContextSuggestionsDestroy: API.OperationMetho
   input: EnvironmentsEvaluationContextSuggestionsDestroyRequest,
   output: EvaluationContextSuggestionResponse,
   errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type EnvironmentsEventIngestionRestrictionsListError =
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** Deprecated: use /api/environments/{id}/ instead. */
-export const environmentsEventIngestionRestrictionsList: API.OperationMethod<
-  EnvironmentsEventIngestionRestrictionsListRequest,
-  EnvironmentsEventIngestionRestrictionsListResponse,
-  EnvironmentsEventIngestionRestrictionsListError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: EnvironmentsEventIngestionRestrictionsListRequest,
-  output: EnvironmentsEventIngestionRestrictionsListResponse,
-  errors: [Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type EnvironmentsExperimentsConfigPartialUpdateError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** Manage experiment configuration for this environment. */
-export const environmentsExperimentsConfigPartialUpdate: API.OperationMethod<
-  EnvironmentsExperimentsConfigPartialUpdateRequest,
-  EnvironmentsExperimentsConfigPartialUpdateResponse,
-  EnvironmentsExperimentsConfigPartialUpdateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: EnvironmentsExperimentsConfigPartialUpdateRequest,
-  output: EnvironmentsExperimentsConfigPartialUpdateResponse,
-  errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type EnvironmentsExperimentsConfigRetrieveError =
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** Manage experiment configuration for this environment. */
-export const environmentsExperimentsConfigRetrieve: API.OperationMethod<
-  EnvironmentsExperimentsConfigRetrieveRequest,
-  EnvironmentsExperimentsConfigRetrieveResponse,
-  EnvironmentsExperimentsConfigRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: EnvironmentsExperimentsConfigRetrieveRequest,
-  output: EnvironmentsExperimentsConfigRetrieveResponse,
-  errors: [Forbidden, NotFound],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
@@ -4517,54 +4452,6 @@ export const environmentsGenerateConversationsPublicTokenCreate: API.OperationMe
   input: EnvironmentsGenerateConversationsPublicTokenCreateRequest,
   output: EnvironmentsGenerateConversationsPublicTokenCreateResponse,
   errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type EnvironmentsIsGeneratingDemoDataRetrieveError =
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** Deprecated: use /api/environments/{id}/ instead. */
-export const environmentsIsGeneratingDemoDataRetrieve: API.OperationMethod<
-  EnvironmentsIsGeneratingDemoDataRetrieveRequest,
-  EnvironmentsIsGeneratingDemoDataRetrieveResponse,
-  EnvironmentsIsGeneratingDemoDataRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: EnvironmentsIsGeneratingDemoDataRetrieveRequest,
-  output: EnvironmentsIsGeneratingDemoDataRetrieveResponse,
-  errors: [Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type EnvironmentsLogsConfigPartialUpdateError = PosthogOpError;
-/** Manage logs product configuration for this environment. Members can read; writing requires project admin, matching the admin-only settings UI. */
-export const environmentsLogsConfigPartialUpdate: API.OperationMethod<
-  EnvironmentsLogsConfigPartialUpdateRequest,
-  EnvironmentsLogsConfigPartialUpdateResponse,
-  EnvironmentsLogsConfigPartialUpdateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: EnvironmentsLogsConfigPartialUpdateRequest,
-  output: EnvironmentsLogsConfigPartialUpdateResponse,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type EnvironmentsLogsConfigRetrieveError = PosthogOpError;
-/** Manage logs product configuration for this environment. Members can read; writing requires project admin, matching the admin-only settings UI. */
-export const environmentsLogsConfigRetrieve: API.OperationMethod<
-  EnvironmentsLogsConfigRetrieveRequest,
-  EnvironmentsLogsConfigRetrieveResponse,
-  EnvironmentsLogsConfigRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: EnvironmentsLogsConfigRetrieveRequest,
-  output: EnvironmentsLogsConfigRetrieveResponse,
-  errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
@@ -4607,20 +4494,160 @@ export const environmentsRotateSecretTokenPartialUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type EnvironmentsSettingsAsOfRetrieveError =
+export type GetEnvironmentsActivityError =
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+/** Deprecated: use /api/environments/{id}/ instead. */
+export const getEnvironmentsActivity: API.OperationMethod<
+  GetEnvironmentsActivityRequest,
+  GetEnvironmentsActivityResponse,
+  GetEnvironmentsActivityError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetEnvironmentsActivityRequest,
+  output: GetEnvironmentsActivityResponse,
+  errors: [Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetEnvironmentsExperimentsConfigError =
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+/** Manage experiment configuration for this environment. */
+export const getEnvironmentsExperimentsConfig: API.OperationMethod<
+  GetEnvironmentsExperimentsConfigRequest,
+  GetEnvironmentsExperimentsConfigResponse,
+  GetEnvironmentsExperimentsConfigError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetEnvironmentsExperimentsConfigRequest,
+  output: GetEnvironmentsExperimentsConfigResponse,
+  errors: [Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetEnvironmentsIsGeneratingDemoDataError =
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+/** Deprecated: use /api/environments/{id}/ instead. */
+export const getEnvironmentsIsGeneratingDemoData: API.OperationMethod<
+  GetEnvironmentsIsGeneratingDemoDataRequest,
+  GetEnvironmentsIsGeneratingDemoDataResponse,
+  GetEnvironmentsIsGeneratingDemoDataError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetEnvironmentsIsGeneratingDemoDataRequest,
+  output: GetEnvironmentsIsGeneratingDemoDataResponse,
+  errors: [Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetEnvironmentsLogsConfigError = PosthogOpError;
+/** Manage logs product configuration for this environment. Members can read; writing requires project admin, matching the admin-only settings UI. */
+export const getEnvironmentsLogsConfig: API.OperationMethod<
+  GetEnvironmentsLogsConfigRequest,
+  GetEnvironmentsLogsConfigResponse,
+  GetEnvironmentsLogsConfigError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetEnvironmentsLogsConfigRequest,
+  output: GetEnvironmentsLogsConfigResponse,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetEnvironmentsSettingsAsOfError =
   | Forbidden
   | NotFound
   | PosthogOpError;
 /** Return the team settings as of the provided timestamp. Query params: - at: ISO8601 datetime (required) - scope: optional, one or multiple keys to filter the returned settings */
-export const environmentsSettingsAsOfRetrieve: API.OperationMethod<
-  EnvironmentsSettingsAsOfRetrieveRequest,
-  EnvironmentsSettingsAsOfRetrieveResponse,
-  EnvironmentsSettingsAsOfRetrieveError,
+export const getEnvironmentsSettingsAsOf: API.OperationMethod<
+  GetEnvironmentsSettingsAsOfRequest,
+  GetEnvironmentsSettingsAsOfResponse,
+  GetEnvironmentsSettingsAsOfError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: EnvironmentsSettingsAsOfRetrieveRequest,
-  output: EnvironmentsSettingsAsOfRetrieveResponse,
+  input: GetEnvironmentsSettingsAsOfRequest,
+  output: GetEnvironmentsSettingsAsOfResponse,
   errors: [Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListEnvironmentsEventIngestionRestrictionsError =
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+/** Deprecated: use /api/environments/{id}/ instead. */
+export const listEnvironmentsEventIngestionRestrictions: API.OperationMethod<
+  ListEnvironmentsEventIngestionRestrictionsRequest,
+  ListEnvironmentsEventIngestionRestrictionsResponse,
+  ListEnvironmentsEventIngestionRestrictionsError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListEnvironmentsEventIngestionRestrictionsRequest,
+  output: ListEnvironmentsEventIngestionRestrictionsResponse,
+  errors: [Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateEnvironmentsCompleteProductOnboardingPartialError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+/** Deprecated: use /api/environments/{id}/ instead. */
+export const updateEnvironmentsCompleteProductOnboardingPartial: API.OperationMethod<
+  UpdateEnvironmentsCompleteProductOnboardingPartialRequest,
+  UpdateEnvironmentsCompleteProductOnboardingPartialResponse,
+  UpdateEnvironmentsCompleteProductOnboardingPartialError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateEnvironmentsCompleteProductOnboardingPartialRequest,
+  output: UpdateEnvironmentsCompleteProductOnboardingPartialResponse,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateEnvironmentsExperimentsConfigPartialError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+/** Manage experiment configuration for this environment. */
+export const updateEnvironmentsExperimentsConfigPartial: API.OperationMethod<
+  UpdateEnvironmentsExperimentsConfigPartialRequest,
+  UpdateEnvironmentsExperimentsConfigPartialResponse,
+  UpdateEnvironmentsExperimentsConfigPartialError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateEnvironmentsExperimentsConfigPartialRequest,
+  output: UpdateEnvironmentsExperimentsConfigPartialResponse,
+  errors: [BadRequest, Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateEnvironmentsLogsConfigPartialError = PosthogOpError;
+/** Manage logs product configuration for this environment. Members can read; writing requires project admin, matching the admin-only settings UI. */
+export const updateEnvironmentsLogsConfigPartial: API.OperationMethod<
+  UpdateEnvironmentsLogsConfigPartialRequest,
+  UpdateEnvironmentsLogsConfigPartialResponse,
+  UpdateEnvironmentsLogsConfigPartialError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateEnvironmentsLogsConfigPartialRequest,
+  output: UpdateEnvironmentsLogsConfigPartialResponse,
+  errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));

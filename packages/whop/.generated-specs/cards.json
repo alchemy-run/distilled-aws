@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.whop.cards#ListCardTransactionsRequestTransactionIdsList": {
@@ -471,7 +472,7 @@
         }
       }
     },
-    "com.whop.cards#RetrieveCardTransactionRequest": {
+    "com.whop.cards#GetCardTransactionRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -494,10 +495,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.whop.cards#RetrieveCardTransaction": {
+    "com.whop.cards#GetCardTransaction": {
       "type": "operation",
       "input": {
-        "target": "com.whop.cards#RetrieveCardTransactionRequest"
+        "target": "com.whop.cards#GetCardTransactionRequest"
       },
       "output": {
         "target": "com.whop.cards#CardTransaction"
@@ -1404,7 +1405,7 @@
         "smithy.api#documentation": "Create Card\n\nIssue a virtual card, or apply for card issuing."
       }
     },
-    "com.whop.cards#RetrieveCardRequest": {
+    "com.whop.cards#GetCardRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -1434,7 +1435,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.whop.cards#RetrieveCardResponseBilling": {
+    "com.whop.cards#GetCardResponseBilling": {
       "type": "structure",
       "members": {
         "city": {
@@ -1490,7 +1491,7 @@
         "smithy.api#documentation": "The billing address."
       }
     },
-    "com.whop.cards#RetrieveCardResponseLimitFrequency": {
+    "com.whop.cards#GetCardResponseLimitFrequency": {
       "type": "enum",
       "members": {
         "DAILY": {
@@ -1528,7 +1529,7 @@
         "smithy.api#documentation": "The window the limit amount applies to. `per_transaction` caps each individual authorization and is what a limit set with `transaction_limit` reports."
       }
     },
-    "com.whop.cards#RetrieveCardResponseLimit": {
+    "com.whop.cards#GetCardResponseLimit": {
       "type": "structure",
       "members": {
         "amount": {
@@ -1539,7 +1540,7 @@
           }
         },
         "frequency": {
-          "target": "com.whop.cards#RetrieveCardResponseLimitFrequency",
+          "target": "com.whop.cards#GetCardResponseLimitFrequency",
           "traits": {
             "smithy.api#documentation": "The window the limit amount applies to. `per_transaction` caps each individual authorization and is what a limit set with `transaction_limit` reports.",
             "smithy.api#required": {}
@@ -1550,7 +1551,7 @@
         "smithy.api#documentation": "The spending limit configuration."
       }
     },
-    "com.whop.cards#RetrieveCardResponseObject": {
+    "com.whop.cards#GetCardResponseObject": {
       "type": "enum",
       "members": {
         "CARD": {
@@ -1562,7 +1563,7 @@
       },
       "traits": {}
     },
-    "com.whop.cards#RetrieveCardResponseSecrets": {
+    "com.whop.cards#GetCardResponseSecrets": {
       "type": "structure",
       "members": {
         "card_number": {
@@ -1600,7 +1601,7 @@
         "smithy.api#documentation": "Sensitive card details. Present only on `GET /cards/:id` for active cards; `null` when the card is inactive or details cannot be retrieved."
       }
     },
-    "com.whop.cards#RetrieveCardResponseStatus": {
+    "com.whop.cards#GetCardResponseStatus": {
       "type": "enum",
       "members": {
         "ACTIVE": {
@@ -1638,7 +1639,7 @@
         "smithy.api#documentation": "The card status. `denied` means the issuer declined the cardholder, so the card will never be issued."
       }
     },
-    "com.whop.cards#RetrieveCardResponseType": {
+    "com.whop.cards#GetCardResponseType": {
       "type": "enum",
       "members": {
         "VIRTUAL": {
@@ -1658,11 +1659,11 @@
         "smithy.api#documentation": "The card type."
       }
     },
-    "com.whop.cards#RetrieveCardResponse": {
+    "com.whop.cards#GetCardResponse": {
       "type": "structure",
       "members": {
         "billing": {
-          "target": "com.whop.cards#RetrieveCardResponseBilling",
+          "target": "com.whop.cards#GetCardResponseBilling",
           "traits": {
             "smithy.api#documentation": "The billing address.",
             "smithy.api#required": {},
@@ -1717,7 +1718,7 @@
           }
         },
         "limit": {
-          "target": "com.whop.cards#RetrieveCardResponseLimit",
+          "target": "com.whop.cards#GetCardResponseLimit",
           "traits": {
             "smithy.api#documentation": "The spending limit configuration.",
             "smithy.api#required": {},
@@ -1733,13 +1734,13 @@
           }
         },
         "object": {
-          "target": "com.whop.cards#RetrieveCardResponseObject",
+          "target": "com.whop.cards#GetCardResponseObject",
           "traits": {
             "smithy.api#required": {}
           }
         },
         "secrets": {
-          "target": "com.whop.cards#RetrieveCardResponseSecrets",
+          "target": "com.whop.cards#GetCardResponseSecrets",
           "traits": {
             "smithy.api#documentation": "Sensitive card details. Present only on `GET /cards/:id` for active cards; `null` when the card is inactive or details cannot be retrieved.",
             "com.distilled.openapi#nullable": {}
@@ -1754,7 +1755,7 @@
           }
         },
         "status": {
-          "target": "com.whop.cards#RetrieveCardResponseStatus",
+          "target": "com.whop.cards#GetCardResponseStatus",
           "traits": {
             "smithy.api#documentation": "The card status. `denied` means the issuer declined the cardholder, so the card will never be issued.",
             "smithy.api#required": {},
@@ -1762,7 +1763,7 @@
           }
         },
         "type": {
-          "target": "com.whop.cards#RetrieveCardResponseType",
+          "target": "com.whop.cards#GetCardResponseType",
           "traits": {
             "smithy.api#documentation": "The card type.",
             "smithy.api#required": {},
@@ -1782,13 +1783,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.whop.cards#RetrieveCard": {
+    "com.whop.cards#GetCard": {
       "type": "operation",
       "input": {
-        "target": "com.whop.cards#RetrieveCardRequest"
+        "target": "com.whop.cards#GetCardRequest"
       },
       "output": {
-        "target": "com.whop.cards#RetrieveCardResponse"
+        "target": "com.whop.cards#GetCardResponse"
       },
       "errors": [
         {
@@ -2406,7 +2407,7 @@
           "target": "com.whop.cards#ListCardTransactions"
         },
         {
-          "target": "com.whop.cards#RetrieveCardTransaction"
+          "target": "com.whop.cards#GetCardTransaction"
         },
         {
           "target": "com.whop.cards#ListCards"
@@ -2415,7 +2416,7 @@
           "target": "com.whop.cards#CreateCard"
         },
         {
-          "target": "com.whop.cards#RetrieveCard"
+          "target": "com.whop.cards#GetCard"
         },
         {
           "target": "com.whop.cards#UpdateCard"

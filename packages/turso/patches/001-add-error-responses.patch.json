@@ -114,7 +114,7 @@
     },
     {
       "op": "add",
-      "path": "/paths/~1v1~1organizations~1{organizationSlug}~1invites/post/responses/400",
+      "path": "/paths/~1v2~1organizations~1{organizationSlug}~1invites/post/responses/400",
       "value": {
         "description": "Bad Request - plan restriction or invalid input",
         "content": {

@@ -4,12 +4,77 @@
     "service": "observability",
     "version": "v1",
     "title": "Observability API",
-    "baseUrl": "https://observability.googleapis.com/"
+    "baseUrl": "https://observability.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
+    "com.gcp.observability_v1#CmekSettings": {
+      "type": "structure",
+      "members": {
+        "kmsKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The resource name for the configured Cloud KMS key. The format is: projects/[PROJECT_ID]/locations/[LOCATION]/keyRings/[KEYRING]/cryptoKeys/[KEY] For example: projects/my-project/locations/us-central1/keyRings/my-ring/cryptoKeys/my-key"
+          }
+        },
+        "kmsKeyVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The CryptoKeyVersion resource name for the configured Cloud KMS key. The format is: projects/[PROJECT_ID]/locations/[LOCATION]/keyRings/[KEYRING]/cryptoKeys/[KEY]/cryptoKeyVersions/[VERSION] For example: projects/my-project/locations/us-central1/keyRings/my-ring/cryptoKeys/my-key/cryptoKeyVersions/1 This read-only field is used to convey the specific configured CryptoKeyVersion of the `kms_key` that has been configured. It is populated when the CMEK settings are bound to a single key version."
+          }
+        },
+        "serviceAccountId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The service account used to access the key."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Settings for configuring CMEK for a bucket."
+      }
+    },
+    "com.gcp.observability_v1#Settings": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. The resource name of the settings."
+          }
+        },
+        "serviceAccountId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The service account for the given resource container, such as project or folder. This will be used by Cloud Observability to perform actions in the container's project like access KMS keys or create Links. Always the same service account per resource container regardless of region."
+          }
+        },
+        "defaultStorageLocation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The location which should be used when any regional resources are provisioned by Google Cloud."
+          }
+        },
+        "kmsKeyName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The resource name for the configured Cloud KMS key. KMS key name format: \"projects/[PROJECT_ID]/locations/[LOCATION]/keyRings/[KEYRING]/cryptoKeys/[KEY]\" For example: `\"projects/my-project/locations/us-central1/keyRings/my-ring/cryptoKeys/my-key\"`"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes the settings associated with a project, organization, or folder."
+      }
+    },
     "com.gcp.observability_v1#Link": {
       "type": "structure",
       "members": {
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Description of the link."
+          }
+        },
         "displayName": {
           "target": "smithy.api#String",
           "traits": {
@@ -27,87 +92,19 @@
           "traits": {
             "smithy.api#documentation": "Output only. Create timestamp."
           }
-        },
-        "description": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Description of the link."
-          }
         }
       },
       "traits": {
         "smithy.api#documentation": "A link lets a dataset be accessible to BigQuery via usage of linked datasets."
       }
     },
-    "com.gcp.observability_v1#Bucket": {
-      "type": "structure",
-      "members": {
-        "displayName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. User friendly display name."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier. Name of the bucket. The format is: projects/[PROJECT_ID]/locations/[LOCATION]/buckets/[BUCKET_ID]"
-          }
-        },
-        "purgeTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Timestamp when the bucket in soft-deleted state is purged."
-          }
-        },
-        "deleteTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Delete timestamp."
-          }
-        },
-        "cmekSettings": {
-          "target": "com.gcp.observability_v1#CmekSettings",
-          "traits": {
-            "smithy.api#documentation": "Optional. Settings for configuring CMEK on a bucket."
-          }
-        },
-        "createTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Create timestamp."
-          }
-        },
-        "updateTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Update timestamp."
-          }
-        },
-        "description": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Description of the bucket."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Bucket configuration for storing observability data."
-      }
-    },
     "com.gcp.observability_v1#TraceScope": {
       "type": "structure",
       "members": {
-        "description": {
+        "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Optional. Describes this trace scope. The maximum length of the description is 8000 characters."
-          }
-        },
-        "createTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The creation timestamp of the trace scope."
+            "smithy.api#documentation": "Identifier. The resource name of the trace scope. For example: projects/my-project/locations/global/traceScopes/my-trace-scope"
           }
         },
         "updateTime": {
@@ -116,10 +113,16 @@
             "smithy.api#documentation": "Output only. The last update timestamp of the trace scope."
           }
         },
-        "name": {
+        "createTime": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Identifier. The resource name of the trace scope. For example: projects/my-project/locations/global/traceScopes/my-trace-scope"
+            "smithy.api#documentation": "Output only. The creation timestamp of the trace scope."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Describes this trace scope. The maximum length of the description is 8000 characters."
           }
         },
         "resourceNames": {
@@ -139,31 +142,20 @@
         "target": "smithy.api#String"
       }
     },
+    "com.gcp.observability_v1#Empty": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+      }
+    },
     "com.gcp.observability_v1#OperationMetadata": {
       "type": "structure",
       "members": {
-        "target": {
+        "createTime": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Output only. Server-defined resource path for the target of the operation."
-          }
-        },
-        "apiVersion": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. API version used to start the operation."
-          }
-        },
-        "statusMessage": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Human-readable status of the operation, if any."
-          }
-        },
-        "endTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The time the operation finished running."
+            "smithy.api#documentation": "Output only. The time the operation was created."
           }
         },
         "requestedCancellation": {
@@ -172,227 +164,39 @@
             "smithy.api#documentation": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have been cancelled successfully have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`."
           }
         },
-        "createTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The time the operation was created."
-          }
-        },
         "verb": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Output only. Name of the verb executed by the operation."
           }
+        },
+        "target": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Server-defined resource path for the target of the operation."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time the operation finished running."
+          }
+        },
+        "statusMessage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Human-readable status of the operation, if any."
+          }
+        },
+        "apiVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. API version used to start the operation."
+          }
         }
       },
       "traits": {
         "smithy.api#documentation": "Represents the metadata of the long-running operation."
-      }
-    },
-    "com.gcp.observability_v1#Location": {
-      "type": "structure",
-      "members": {
-        "metadata": {
-          "target": "com.gcp.observability_v1#DocumentMap",
-          "traits": {
-            "smithy.api#documentation": "Service-specific metadata. For example the available capacity at the given location."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Resource name for the location, which may vary between implementations. For example: `\"projects/example-project/locations/us-east1\"`"
-          }
-        },
-        "labels": {
-          "target": "com.gcp.observability_v1#StringMap",
-          "traits": {
-            "smithy.api#documentation": "Cross-service attributes for the location. For example {\"cloud.googleapis.com/region\": \"us-east1\"}"
-          }
-        },
-        "locationId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The canonical id for this location. For example: `\"us-east1\"`."
-          }
-        },
-        "displayName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The friendly name for this location, typically a nearby city name. For example, \"Tokyo\"."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A resource that represents a Google Cloud location."
-      }
-    },
-    "com.gcp.observability_v1#DocumentMap": {
-      "type": "map",
-      "key": {
-        "target": "smithy.api#String"
-      },
-      "value": {
-        "target": "smithy.api#Document"
-      }
-    },
-    "com.gcp.observability_v1#StringMap": {
-      "type": "map",
-      "key": {
-        "target": "smithy.api#String"
-      },
-      "value": {
-        "target": "smithy.api#String"
-      }
-    },
-    "com.gcp.observability_v1#ListViewsResponse": {
-      "type": "structure",
-      "members": {
-        "nextPageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. A token that can be sent as `page_token` to retrieve the next page. When this field is omitted, there are no subsequent pages."
-          }
-        },
-        "views": {
-          "target": "com.gcp.observability_v1#ViewList",
-          "traits": {
-            "smithy.api#documentation": "The list of views."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Response for listing views."
-      }
-    },
-    "com.gcp.observability_v1#ViewList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.observability_v1#View"
-      }
-    },
-    "com.gcp.observability_v1#Status": {
-      "type": "structure",
-      "members": {
-        "code": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The status code, which should be an enum value of google.rpc.Code."
-          }
-        },
-        "message": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
-          }
-        },
-        "details": {
-          "target": "com.gcp.observability_v1#DocumentMapList",
-          "traits": {
-            "smithy.api#documentation": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
-      }
-    },
-    "com.gcp.observability_v1#DocumentMapList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.observability_v1#DocumentMap"
-      }
-    },
-    "com.gcp.observability_v1#ListDatasetsResponse": {
-      "type": "structure",
-      "members": {
-        "datasets": {
-          "target": "com.gcp.observability_v1#DatasetList",
-          "traits": {
-            "smithy.api#documentation": "The list of datasets."
-          }
-        },
-        "nextPageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A token that can be sent as `page_token` to retrieve the next page. When this field is omitted, there are no subsequent pages."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Response for listing datasets."
-      }
-    },
-    "com.gcp.observability_v1#DatasetList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.observability_v1#Dataset"
-      }
-    },
-    "com.gcp.observability_v1#ListTraceScopesResponse": {
-      "type": "structure",
-      "members": {
-        "nextPageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. If there might be more results than appear in this response, then `next_page_token` is included. To get the next set of results, call the same method again using the value of `next_page_token` as `page_token`."
-          }
-        },
-        "traceScopes": {
-          "target": "com.gcp.observability_v1#TraceScopeList",
-          "traits": {
-            "smithy.api#documentation": "Optional. A list of trace scopes."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Response for listing TraceScopes."
-      }
-    },
-    "com.gcp.observability_v1#TraceScopeList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.observability_v1#TraceScope"
-      }
-    },
-    "com.gcp.observability_v1#Empty": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
-      }
-    },
-    "com.gcp.observability_v1#CancelOperationRequest": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#documentation": "The request message for Operations.CancelOperation."
-      }
-    },
-    "com.gcp.observability_v1#CmekSettings": {
-      "type": "structure",
-      "members": {
-        "kmsKeyVersion": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The CryptoKeyVersion resource name for the configured Cloud KMS key. The format is: projects/[PROJECT_ID]/locations/[LOCATION]/keyRings/[KEYRING]/cryptoKeys/[KEY]/cryptoKeyVersions/[VERSION] For example: projects/my-project/locations/us-central1/keyRings/my-ring/cryptoKeys/my-key/cryptoKeyVersions/1 This read-only field is used to convey the specific configured CryptoKeyVersion of the `kms_key` that has been configured. It is populated when the CMEK settings are bound to a single key version."
-          }
-        },
-        "kmsKey": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The resource name for the configured Cloud KMS key. The format is: projects/[PROJECT_ID]/locations/[LOCATION]/keyRings/[KEYRING]/cryptoKeys/[KEY] For example: projects/my-project/locations/us-central1/keyRings/my-ring/cryptoKeys/my-key"
-          }
-        },
-        "serviceAccountId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The service account used to access the key."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Settings for configuring CMEK for a bucket."
       }
     },
     "com.gcp.observability_v1#ListLinksResponse": {
@@ -421,83 +225,66 @@
         "target": "com.gcp.observability_v1#Link"
       }
     },
-    "com.gcp.observability_v1#ListBucketsResponse": {
+    "com.gcp.observability_v1#Status": {
       "type": "structure",
       "members": {
-        "nextPageToken": {
-          "target": "smithy.api#String",
+        "details": {
+          "target": "com.gcp.observability_v1#DocumentMapList",
           "traits": {
-            "smithy.api#documentation": "Optional. A token that can be sent as `page_token` to retrieve the next page. When this field is omitted, there are no subsequent pages."
+            "smithy.api#documentation": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
           }
         },
-        "buckets": {
-          "target": "com.gcp.observability_v1#BucketList",
+        "code": {
+          "target": "smithy.api#Integer",
           "traits": {
-            "smithy.api#documentation": "Optional. The list of buckets."
+            "smithy.api#documentation": "The status code, which should be an enum value of google.rpc.Code."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Response for listing buckets."
+        "smithy.api#documentation": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
       }
     },
-    "com.gcp.observability_v1#BucketList": {
+    "com.gcp.observability_v1#DocumentMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.gcp.observability_v1#DocumentMapList": {
       "type": "list",
       "member": {
-        "target": "com.gcp.observability_v1#Bucket"
+        "target": "com.gcp.observability_v1#DocumentMap"
       }
     },
-    "com.gcp.observability_v1#Settings": {
+    "com.gcp.observability_v1#Bucket": {
       "type": "structure",
       "members": {
-        "defaultStorageLocation": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The location which should be used when any regional resources are provisioned by Google Cloud."
-          }
-        },
-        "serviceAccountId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The service account for the given resource container, such as project or folder. This will be used by Cloud Observability to perform actions in the container's project like access KMS keys or create Links. Always the same service account per resource container regardless of region."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier. The resource name of the settings."
-          }
-        },
-        "kmsKeyName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The resource name for the configured Cloud KMS key. KMS key name format: \"projects/[PROJECT_ID]/locations/[LOCATION]/keyRings/[KEYRING]/cryptoKeys/[KEY]\" For example: `\"projects/my-project/locations/us-central1/keyRings/my-ring/cryptoKeys/my-key\"`"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Describes the settings associated with a project, organization, or folder."
-      }
-    },
-    "com.gcp.observability_v1#Dataset": {
-      "type": "structure",
-      "members": {
-        "deleteTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Delete timestamp."
-          }
-        },
         "createTime": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "Output only. Create timestamp."
           }
         },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. Name of the bucket. The format is: projects/[PROJECT_ID]/locations/[LOCATION]/buckets/[BUCKET_ID]"
+          }
+        },
         "purgeTime": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Output only. Timestamp when the dataset in soft-deleted state is purged."
+            "smithy.api#documentation": "Output only. Timestamp when the bucket in soft-deleted state is purged."
           }
         },
         "displayName": {
@@ -506,53 +293,33 @@
             "smithy.api#documentation": "Optional. User friendly display name."
           }
         },
-        "description": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Description of the dataset."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier. Name of the dataset. The format is: projects/[PROJECT_ID]/locations/[LOCATION]/buckets/[BUCKET_ID]/datasets/[DATASET_ID]"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "A dataset is a collection of data that has a specific configuration. A dataset can be backed by multiple tables. One bucket can have multiple datasets."
-      }
-    },
-    "com.gcp.observability_v1#Scope": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier. Name of the resource. The format is: projects/{project}/locations/{location}/scopes/{scope} The `{location}` field must be set to `global`. The `{scope}` field must be set to `_Default`."
-          }
-        },
-        "logScope": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The full resource name of the `LogScope`. For example: //logging.googleapis.com/projects/myproject/locations/global/logScopes/my-log-scope"
-          }
-        },
         "updateTime": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Output only. Update timestamp. Note: The Update timestamp for the default scope is initially unset."
+            "smithy.api#documentation": "Output only. Update timestamp."
           }
         },
-        "traceScope": {
+        "description": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Required. The resource name of the `TraceScope`. For example: projects/myproject/locations/global/traceScopes/my-trace-scope"
+            "smithy.api#documentation": "Optional. Description of the bucket."
+          }
+        },
+        "cmekSettings": {
+          "target": "com.gcp.observability_v1#CmekSettings",
+          "traits": {
+            "smithy.api#documentation": "Optional. Settings for configuring CMEK on a bucket."
+          }
+        },
+        "deleteTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Delete timestamp."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "Message describing Scope object"
+        "smithy.api#documentation": "Bucket configuration for storing observability data."
       }
     },
     "com.gcp.observability_v1#ListOperationsResponse": {
@@ -564,16 +331,16 @@
             "smithy.api#documentation": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations."
           }
         },
-        "operations": {
-          "target": "com.gcp.observability_v1#OperationList",
-          "traits": {
-            "smithy.api#documentation": "A list of operations that matches the specified filter in the request."
-          }
-        },
         "nextPageToken": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "The standard List next-page token."
+          }
+        },
+        "operations": {
+          "target": "com.gcp.observability_v1#OperationList",
+          "traits": {
+            "smithy.api#documentation": "A list of operations that matches the specified filter in the request."
           }
         }
       },
@@ -587,19 +354,66 @@
         "target": "com.gcp.observability_v1#Operation"
       }
     },
+    "com.gcp.observability_v1#Location": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name for the location, which may vary between implementations. For example: `\"projects/example-project/locations/us-east1\"`"
+          }
+        },
+        "metadata": {
+          "target": "com.gcp.observability_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Service-specific metadata. For example the available capacity at the given location."
+          }
+        },
+        "locationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The canonical id for this location. For example: `\"us-east1\"`."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The friendly name for this location, typically a nearby city name. For example, \"Tokyo\"."
+          }
+        },
+        "labels": {
+          "target": "com.gcp.observability_v1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Cross-service attributes for the location. For example {\"cloud.googleapis.com/region\": \"us-east1\"}"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A resource that represents a Google Cloud location."
+      }
+    },
+    "com.gcp.observability_v1#StringMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      }
+    },
     "com.gcp.observability_v1#ListLocationsResponse": {
       "type": "structure",
       "members": {
-        "nextPageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The standard List next-page token."
-          }
-        },
         "locations": {
           "target": "com.gcp.observability_v1#LocationList",
           "traits": {
             "smithy.api#documentation": "A list of locations that matches the specified filter in the request."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard List next-page token."
           }
         }
       },
@@ -613,9 +427,47 @@
         "target": "com.gcp.observability_v1#Location"
       }
     },
+    "com.gcp.observability_v1#ListViewsResponse": {
+      "type": "structure",
+      "members": {
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A token that can be sent as `page_token` to retrieve the next page. When this field is omitted, there are no subsequent pages."
+          }
+        },
+        "views": {
+          "target": "com.gcp.observability_v1#ViewList",
+          "traits": {
+            "smithy.api#documentation": "The list of views."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response for listing views."
+      }
+    },
+    "com.gcp.observability_v1#ViewList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.observability_v1#View"
+      }
+    },
     "com.gcp.observability_v1#Operation": {
       "type": "structure",
       "members": {
+        "error": {
+          "target": "com.gcp.observability_v1#Status",
+          "traits": {
+            "smithy.api#documentation": "The error result of the operation in case of failure or cancellation."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
+          }
+        },
         "response": {
           "target": "com.gcp.observability_v1#DocumentMap",
           "traits": {
@@ -633,27 +485,188 @@
           "traits": {
             "smithy.api#documentation": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any."
           }
-        },
-        "error": {
-          "target": "com.gcp.observability_v1#Status",
-          "traits": {
-            "smithy.api#documentation": "The error result of the operation in case of failure or cancellation."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
-          }
         }
       },
       "traits": {
         "smithy.api#documentation": "This resource represents a long-running operation that is the result of a network API call."
       }
     },
+    "com.gcp.observability_v1#ListBucketsResponse": {
+      "type": "structure",
+      "members": {
+        "buckets": {
+          "target": "com.gcp.observability_v1#BucketList",
+          "traits": {
+            "smithy.api#documentation": "Optional. The list of buckets."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A token that can be sent as `page_token` to retrieve the next page. When this field is omitted, there are no subsequent pages."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response for listing buckets."
+      }
+    },
+    "com.gcp.observability_v1#BucketList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.observability_v1#Bucket"
+      }
+    },
+    "com.gcp.observability_v1#ListDatasetsResponse": {
+      "type": "structure",
+      "members": {
+        "datasets": {
+          "target": "com.gcp.observability_v1#DatasetList",
+          "traits": {
+            "smithy.api#documentation": "The list of datasets."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A token that can be sent as `page_token` to retrieve the next page. When this field is omitted, there are no subsequent pages."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response for listing datasets."
+      }
+    },
+    "com.gcp.observability_v1#DatasetList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.observability_v1#Dataset"
+      }
+    },
+    "com.gcp.observability_v1#Dataset": {
+      "type": "structure",
+      "members": {
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. User friendly display name."
+          }
+        },
+        "purgeTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Timestamp when the dataset in soft-deleted state is purged."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Description of the dataset."
+          }
+        },
+        "deleteTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Delete timestamp."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Create timestamp."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. Name of the dataset. The format is: projects/[PROJECT_ID]/locations/[LOCATION]/buckets/[BUCKET_ID]/datasets/[DATASET_ID]"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A dataset is a collection of data that has a specific configuration. A dataset can be backed by multiple tables. One bucket can have multiple datasets."
+      }
+    },
+    "com.gcp.observability_v1#Scope": {
+      "type": "structure",
+      "members": {
+        "logScope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The full resource name of the `LogScope`. For example: //logging.googleapis.com/projects/myproject/locations/global/logScopes/my-log-scope"
+          }
+        },
+        "traceScope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name of the `TraceScope`. For example: projects/myproject/locations/global/traceScopes/my-trace-scope"
+          }
+        },
+        "updateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Update timestamp. Note: The Update timestamp for the default scope is initially unset."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. Name of the resource. The format is: projects/{project}/locations/{location}/scopes/{scope} The `{location}` field must be set to `global`. The `{scope}` field must be set to `_Default`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Message describing Scope object"
+      }
+    },
+    "com.gcp.observability_v1#CancelOperationRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "The request message for Operations.CancelOperation."
+      }
+    },
+    "com.gcp.observability_v1#ListTraceScopesResponse": {
+      "type": "structure",
+      "members": {
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. If there might be more results than appear in this response, then `next_page_token` is included. To get the next set of results, call the same method again using the value of `next_page_token` as `page_token`."
+          }
+        },
+        "traceScopes": {
+          "target": "com.gcp.observability_v1#TraceScopeList",
+          "traits": {
+            "smithy.api#documentation": "Optional. A list of trace scopes."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response for listing TraceScopes."
+      }
+    },
+    "com.gcp.observability_v1#TraceScopeList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.observability_v1#TraceScope"
+      }
+    },
     "com.gcp.observability_v1#View": {
       "type": "structure",
       "members": {
+        "updateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Update timestamp."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Create timestamp."
+          }
+        },
         "description": {
           "target": "smithy.api#String",
           "traits": {
@@ -671,47 +684,21 @@
           "traits": {
             "smithy.api#documentation": "Optional. User friendly display name."
           }
-        },
-        "createTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Create timestamp."
-          }
-        },
-        "updateTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Update timestamp."
-          }
         }
       },
       "traits": {
         "smithy.api#documentation": "A view corresponds to a read-only representation of a subset of the data in a dataset."
       }
     },
-    "com.gcp.observability_v1#UpdateSettingsProjectsLocationsRequest": {
+    "com.gcp.observability_v1#GetSettingsFoldersLocationsRequest": {
       "type": "structure",
       "members": {
         "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Identifier. The resource name of the settings.",
+            "smithy.api#documentation": "Required. Name of the settings to retrieve. Name format: \"projects/[PROJECT_ID]/locations/[LOCATION]/settings\" \"folders/[FOLDER_ID]/locations/[LOCATION]/settings\" \"organizations/[ORGANIZATION_ID]/locations/[LOCATION]/settings\"",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
-          }
-        },
-        "updateMask": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The field mask specifying which fields of the settings are to be updated.",
-            "smithy.api#httpQuery": "updateMask"
-          }
-        },
-        "body": {
-          "target": "com.gcp.observability_v1#Settings",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
           }
         }
       }
@@ -742,6 +729,126 @@
         ]
       }
     },
+    "com.gcp.observability_v1#GetSettingsFoldersLocations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.observability_v1#GetSettingsFoldersLocationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.observability_v1#Settings"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.observability_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.observability_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Get Settings"
+      }
+    },
+    "com.gcp.observability_v1#ListFoldersLocationsRequest": {
+      "type": "structure",
+      "members": {
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "extraLocationTypes": {
+          "target": "com.gcp.observability_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Do not use this field unless explicitly documented otherwise. This is primarily for internal usage.",
+            "smithy.api#httpQuery": "extraLocationTypes"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of results to return. If not set, the service selects a default.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource that owns the locations collection, if applicable.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.observability_v1#ListFoldersLocations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.observability_v1#ListFoldersLocationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.observability_v1#ListLocationsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.observability_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.observability_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}/locations"
+        },
+        "smithy.api#documentation": "Lists information about the supported locations for this service. This method lists locations based on the resource scope provided in the ListLocationsRequest.name field: * **Global locations**: If `name` is empty, the method lists the public locations available to all projects. * **Project-specific locations**: If `name` follows the format `projects/{project}`, the method lists locations visible to that specific project. This includes public, private, or other project-specific locations enabled for the project. For gRPC and client library implementations, the resource name is passed as the `name` field. For direct service calls, the resource name is incorporated into the request path based on the specific service implementation and version.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.observability_v1#UpdateSettingsFoldersLocationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. The resource name of the settings.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The field mask specifying which fields of the settings are to be updated.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "body": {
+          "target": "com.gcp.observability_v1#Settings",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
     "com.gcp.observability_v1#BadRequest": {
       "type": "structure",
       "members": {},
@@ -768,10 +875,10 @@
         ]
       }
     },
-    "com.gcp.observability_v1#UpdateSettingsProjectsLocations": {
+    "com.gcp.observability_v1#UpdateSettingsFoldersLocations": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.observability_v1#UpdateSettingsProjectsLocationsRequest"
+        "target": "com.gcp.observability_v1#UpdateSettingsFoldersLocationsRequest"
       },
       "output": {
         "target": "com.gcp.observability_v1#Operation"
@@ -798,113 +905,7 @@
         "smithy.api#documentation": "Update Settings"
       }
     },
-    "com.gcp.observability_v1#GetSettingsProjectsLocationsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Name of the settings to retrieve. Name format: \"projects/[PROJECT_ID]/locations/[LOCATION]/settings\" \"folders/[FOLDER_ID]/locations/[LOCATION]/settings\" \"organizations/[ORGANIZATION_ID]/locations/[LOCATION]/settings\"",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.observability_v1#GetSettingsProjectsLocations": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.observability_v1#GetSettingsProjectsLocationsRequest"
-      },
-      "output": {
-        "target": "com.gcp.observability_v1#Settings"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.observability_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.observability_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Get Settings"
-      }
-    },
-    "com.gcp.observability_v1#ListProjectsLocationsRequest": {
-      "type": "structure",
-      "members": {
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The maximum number of results to return. If not set, the service selects a default.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        },
-        "extraLocationTypes": {
-          "target": "com.gcp.observability_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "Optional. Do not use this field unless explicitly documented otherwise. This is primarily for internal usage.",
-            "smithy.api#httpQuery": "extraLocationTypes"
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The resource that owns the locations collection, if applicable.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        },
-        "filter": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
-            "smithy.api#httpQuery": "filter"
-          }
-        }
-      }
-    },
-    "com.gcp.observability_v1#ListProjectsLocations": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.observability_v1#ListProjectsLocationsRequest"
-      },
-      "output": {
-        "target": "com.gcp.observability_v1#ListLocationsResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.observability_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.observability_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+name}/locations"
-        },
-        "smithy.api#documentation": "Lists information about the supported locations for this service. This method lists locations based on the resource scope provided in the ListLocationsRequest.name field: * **Global locations**: If `name` is empty, the method lists the public locations available to all projects. * **Project-specific locations**: If `name` follows the format `projects/{project}`, the method lists locations visible to that specific project. This includes public, private, or other project-specific locations enabled for the project. For gRPC and client library implementations, the resource name is passed as the `name` field. For direct service calls, the resource name is incorporated into the request path based on the specific service implementation and version.",
-        "smithy.api#paginated": {
-          "inputToken": "pageToken",
-          "outputToken": "nextPageToken"
-        }
-      }
-    },
-    "com.gcp.observability_v1#GetProjectsLocationsRequest": {
+    "com.gcp.observability_v1#GetFoldersLocationsRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -917,10 +918,10 @@
         }
       }
     },
-    "com.gcp.observability_v1#GetProjectsLocations": {
+    "com.gcp.observability_v1#GetFoldersLocations": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.observability_v1#GetProjectsLocationsRequest"
+        "target": "com.gcp.observability_v1#GetFoldersLocationsRequest"
       },
       "output": {
         "target": "com.gcp.observability_v1#Location"
@@ -941,44 +942,7 @@
         "smithy.api#documentation": "Gets information about a location."
       }
     },
-    "com.gcp.observability_v1#GetProjectsLocationsOperationsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name of the operation resource.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.observability_v1#GetProjectsLocationsOperations": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.observability_v1#GetProjectsLocationsOperationsRequest"
-      },
-      "output": {
-        "target": "com.gcp.observability_v1#Operation"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.observability_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.observability_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service."
-      }
-    },
-    "com.gcp.observability_v1#DeleteProjectsLocationsOperationsRequest": {
+    "com.gcp.observability_v1#DeleteFoldersLocationsOperationsRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -991,10 +955,10 @@
         }
       }
     },
-    "com.gcp.observability_v1#DeleteProjectsLocationsOperations": {
+    "com.gcp.observability_v1#DeleteFoldersLocationsOperations": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.observability_v1#DeleteProjectsLocationsOperationsRequest"
+        "target": "com.gcp.observability_v1#DeleteFoldersLocationsOperationsRequest"
       },
       "output": {
         "target": "com.gcp.observability_v1#Empty"
@@ -1021,76 +985,7 @@
         "smithy.api#documentation": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`."
       }
     },
-    "com.gcp.observability_v1#ListProjectsLocationsOperationsRequest": {
-      "type": "structure",
-      "members": {
-        "returnPartialSuccess": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
-            "smithy.api#httpQuery": "returnPartialSuccess"
-          }
-        },
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The standard list page token.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        },
-        "filter": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The standard list filter.",
-            "smithy.api#httpQuery": "filter"
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name of the operation's parent resource.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The standard list page size.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        }
-      }
-    },
-    "com.gcp.observability_v1#ListProjectsLocationsOperations": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.observability_v1#ListProjectsLocationsOperationsRequest"
-      },
-      "output": {
-        "target": "com.gcp.observability_v1#ListOperationsResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.observability_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.observability_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+name}/operations"
-        },
-        "smithy.api#documentation": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
-        "smithy.api#paginated": {
-          "inputToken": "pageToken",
-          "outputToken": "nextPageToken"
-        }
-      }
-    },
-    "com.gcp.observability_v1#CancelProjectsLocationsOperationsRequest": {
+    "com.gcp.observability_v1#CancelFoldersLocationsOperationsRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -1110,10 +1005,10 @@
         }
       }
     },
-    "com.gcp.observability_v1#CancelProjectsLocationsOperations": {
+    "com.gcp.observability_v1#CancelFoldersLocationsOperations": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.observability_v1#CancelProjectsLocationsOperationsRequest"
+        "target": "com.gcp.observability_v1#CancelFoldersLocationsOperationsRequest"
       },
       "output": {
         "target": "com.gcp.observability_v1#Empty"
@@ -1140,270 +1035,71 @@
         "smithy.api#documentation": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`."
       }
     },
-    "com.gcp.observability_v1#ListProjectsLocationsBucketsRequest": {
+    "com.gcp.observability_v1#GetFoldersLocationsOperationsRequest": {
       "type": "structure",
       "members": {
-        "showDeleted": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.observability_v1#GetFoldersLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.observability_v1#GetFoldersLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.observability_v1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.observability_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.observability_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service."
+      }
+    },
+    "com.gcp.observability_v1#ListFoldersLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The standard list page size.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard list filter.",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "returnPartialSuccess": {
           "target": "smithy.api#Boolean",
           "traits": {
-            "smithy.api#documentation": "Optional. If true, then the response will include deleted buckets.",
-            "smithy.api#httpQuery": "showDeleted"
+            "smithy.api#documentation": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+            "smithy.api#httpQuery": "returnPartialSuccess"
           }
         },
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. A page token, received from a previous `ListBuckets` call. Provide this to retrieve the subsequent page.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        },
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The parent, which owns this collection of buckets. The format is: projects/[PROJECT_ID]/locations/[LOCATION]",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Optional. The maximum number of buckets to return. If unspecified, then at most 100 buckets are returned. The maximum value is 1000; values above 1000 are coerced to 1000.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        }
-      }
-    },
-    "com.gcp.observability_v1#ListProjectsLocationsBuckets": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.observability_v1#ListProjectsLocationsBucketsRequest"
-      },
-      "output": {
-        "target": "com.gcp.observability_v1#ListBucketsResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.observability_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.observability_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+parent}/buckets"
-        },
-        "smithy.api#documentation": "List buckets of a project in a particular location.",
-        "smithy.api#paginated": {
-          "inputToken": "pageToken",
-          "outputToken": "nextPageToken"
-        }
-      }
-    },
-    "com.gcp.observability_v1#CreateProjectsLocationsBucketsRequest": {
-      "type": "structure",
-      "members": {
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Name of the project and location for the bucket. The format is: projects/[PROJECT_ID]/locations/[LOCATION]",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "bucketId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Id of the bucket to create.",
-            "smithy.api#httpQuery": "bucketId"
-          }
-        },
-        "body": {
-          "target": "com.gcp.observability_v1#Bucket",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.observability_v1#CreateProjectsLocationsBuckets": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.observability_v1#CreateProjectsLocationsBucketsRequest"
-      },
-      "output": {
-        "target": "com.gcp.observability_v1#Operation"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.observability_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.observability_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.observability_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.observability_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1/{+parent}/buckets"
-        },
-        "smithy.api#documentation": "Create a new bucket."
-      }
-    },
-    "com.gcp.observability_v1#PatchProjectsLocationsBucketsRequest": {
-      "type": "structure",
-      "members": {
         "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Identifier. Name of the bucket. The format is: projects/[PROJECT_ID]/locations/[LOCATION]/buckets/[BUCKET_ID]",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "updateMask": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The list of fields to update.",
-            "smithy.api#httpQuery": "updateMask"
-          }
-        },
-        "body": {
-          "target": "com.gcp.observability_v1#Bucket",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.observability_v1#PatchProjectsLocationsBuckets": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.observability_v1#PatchProjectsLocationsBucketsRequest"
-      },
-      "output": {
-        "target": "com.gcp.observability_v1#Operation"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.observability_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.observability_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.observability_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.observability_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "PATCH",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Update a bucket."
-      }
-    },
-    "com.gcp.observability_v1#GetProjectsLocationsBucketsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Name of the bucket to retrieve. The format is: projects/[PROJECT_ID]/locations/[LOCATION]/buckets/[BUCKET_ID]",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.observability_v1#GetProjectsLocationsBuckets": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.observability_v1#GetProjectsLocationsBucketsRequest"
-      },
-      "output": {
-        "target": "com.gcp.observability_v1#Bucket"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.observability_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.observability_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Get bucket resource."
-      }
-    },
-    "com.gcp.observability_v1#GetProjectsLocationsBucketsDatasetsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Name of the dataset to retrieve. The format is: projects/[PROJECT_ID]/locations/[LOCATION]/buckets/[BUCKET_ID]/datasets/[DATASET_ID]",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.observability_v1#GetProjectsLocationsBucketsDatasets": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.observability_v1#GetProjectsLocationsBucketsDatasetsRequest"
-      },
-      "output": {
-        "target": "com.gcp.observability_v1#Dataset"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.observability_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.observability_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Get a dataset."
-      }
-    },
-    "com.gcp.observability_v1#ListProjectsLocationsBucketsDatasetsRequest": {
-      "type": "structure",
-      "members": {
-        "showDeleted": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Optional. If true, then the response will include deleted datasets.",
-            "smithy.api#httpQuery": "showDeleted"
-          }
-        },
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The parent bucket that owns this collection of datasets. The format is: projects/[PROJECT_ID]/locations/[LOCATION]/buckets/[BUCKET_ID]",
+            "smithy.api#documentation": "The name of the operation's parent resource.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
           }
@@ -1411,81 +1107,19 @@
         "pageToken": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Optional. A page token, received from a previous `ListDatasets` call. Provide this to retrieve the subsequent page.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        },
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Optional. The maximum number of datasets to return. If unspecified, then at most 100 datasets are returned. The maximum value is 1000; values above 1000 are coerced to 1000.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        }
-      }
-    },
-    "com.gcp.observability_v1#ListProjectsLocationsBucketsDatasets": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.observability_v1#ListProjectsLocationsBucketsDatasetsRequest"
-      },
-      "output": {
-        "target": "com.gcp.observability_v1#ListDatasetsResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.observability_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.observability_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+parent}/datasets"
-        },
-        "smithy.api#documentation": "List datasets of a bucket.",
-        "smithy.api#paginated": {
-          "inputToken": "pageToken",
-          "outputToken": "nextPageToken"
-        }
-      }
-    },
-    "com.gcp.observability_v1#ListProjectsLocationsBucketsDatasetsLinksRequest": {
-      "type": "structure",
-      "members": {
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Optional. The maximum number of links to return. If unspecified, then at most 100 links are returned. The maximum value is 1000; values above 1000 are coerced to 1000.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        },
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The parent dataset that owns this collection of links. The format is: projects/[PROJECT_ID]/locations/[LOCATION]/buckets/[BUCKET_ID]/datasets/[DATASET_ID]",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. A page token, received from a previous `ListLinks` call. Provide this to retrieve the subsequent page.",
+            "smithy.api#documentation": "The standard list page token.",
             "smithy.api#httpQuery": "pageToken"
           }
         }
       }
     },
-    "com.gcp.observability_v1#ListProjectsLocationsBucketsDatasetsLinks": {
+    "com.gcp.observability_v1#ListFoldersLocationsOperations": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.observability_v1#ListProjectsLocationsBucketsDatasetsLinksRequest"
+        "target": "com.gcp.observability_v1#ListFoldersLocationsOperationsRequest"
       },
       "output": {
-        "target": "com.gcp.observability_v1#ListLinksResponse"
+        "target": "com.gcp.observability_v1#ListOperationsResponse"
       },
       "errors": [
         {
@@ -1498,679 +1132,13 @@
       "traits": {
         "smithy.api#http": {
           "method": "GET",
-          "uri": "v1/{+parent}/links"
+          "uri": "v1/{+name}/operations"
         },
-        "smithy.api#documentation": "List links of a dataset.",
+        "smithy.api#documentation": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
         "smithy.api#paginated": {
           "inputToken": "pageToken",
           "outputToken": "nextPageToken"
         }
-      }
-    },
-    "com.gcp.observability_v1#GetProjectsLocationsBucketsDatasetsLinksRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Name of the link to retrieve. The format is: projects/[PROJECT_ID]/locations/[LOCATION]/buckets/[BUCKET_ID]/datasets/[DATASET_ID]/links/[LINK_ID]",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.observability_v1#GetProjectsLocationsBucketsDatasetsLinks": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.observability_v1#GetProjectsLocationsBucketsDatasetsLinksRequest"
-      },
-      "output": {
-        "target": "com.gcp.observability_v1#Link"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.observability_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.observability_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Get a link."
-      }
-    },
-    "com.gcp.observability_v1#PatchProjectsLocationsBucketsDatasetsLinksRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier. Name of the link. The format is: projects/[PROJECT_ID]/locations/[LOCATION]/buckets/[BUCKET_ID]/datasets/[DATASET_ID]/links/[LINK_ID]",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "updateMask": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The list of fields to update.",
-            "smithy.api#httpQuery": "updateMask"
-          }
-        },
-        "body": {
-          "target": "com.gcp.observability_v1#Link",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.observability_v1#PatchProjectsLocationsBucketsDatasetsLinks": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.observability_v1#PatchProjectsLocationsBucketsDatasetsLinksRequest"
-      },
-      "output": {
-        "target": "com.gcp.observability_v1#Operation"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.observability_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.observability_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.observability_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.observability_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "PATCH",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Update a link."
-      }
-    },
-    "com.gcp.observability_v1#CreateProjectsLocationsBucketsDatasetsLinksRequest": {
-      "type": "structure",
-      "members": {
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Name of the containing dataset for this link. The format is: projects/[PROJECT_ID]/locations/[LOCATION]/buckets/[BUCKET_ID]/datasets/[DATASET_ID]",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "linkId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Id of the link to create.",
-            "smithy.api#httpQuery": "linkId"
-          }
-        },
-        "body": {
-          "target": "com.gcp.observability_v1#Link",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.observability_v1#CreateProjectsLocationsBucketsDatasetsLinks": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.observability_v1#CreateProjectsLocationsBucketsDatasetsLinksRequest"
-      },
-      "output": {
-        "target": "com.gcp.observability_v1#Operation"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.observability_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.observability_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.observability_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.observability_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1/{+parent}/links"
-        },
-        "smithy.api#documentation": "Create a new link."
-      }
-    },
-    "com.gcp.observability_v1#DeleteProjectsLocationsBucketsDatasetsLinksRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Name of the link to delete. The format is: projects/[PROJECT_ID]/locations/[LOCATION]/buckets/[BUCKET_ID]/datasets/[DATASET_ID]/links/[LINK_ID]",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.observability_v1#DeleteProjectsLocationsBucketsDatasetsLinks": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.observability_v1#DeleteProjectsLocationsBucketsDatasetsLinksRequest"
-      },
-      "output": {
-        "target": "com.gcp.observability_v1#Operation"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.observability_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.observability_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.observability_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.observability_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Delete a link."
-      }
-    },
-    "com.gcp.observability_v1#ListProjectsLocationsBucketsDatasetsViewsRequest": {
-      "type": "structure",
-      "members": {
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Dataset whose views are to be listed. The format is: projects/[PROJECT_ID]/locations/[LOCATION]/buckets/[BUCKET_ID]/datasets/[DATASET_ID]",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Optional. The maximum number of views to return. If unspecified, then at most 100 views are returned. The maximum value is 1000; values above 1000 are coerced to 1000.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        },
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. A page token, received from a previous `ListViews` call. Provide this to retrieve the subsequent page.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        }
-      }
-    },
-    "com.gcp.observability_v1#ListProjectsLocationsBucketsDatasetsViews": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.observability_v1#ListProjectsLocationsBucketsDatasetsViewsRequest"
-      },
-      "output": {
-        "target": "com.gcp.observability_v1#ListViewsResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.observability_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.observability_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+parent}/views"
-        },
-        "smithy.api#documentation": "List views of a dataset.",
-        "smithy.api#paginated": {
-          "inputToken": "pageToken",
-          "outputToken": "nextPageToken"
-        }
-      }
-    },
-    "com.gcp.observability_v1#GetProjectsLocationsBucketsDatasetsViewsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Name of the view to retrieve. The format is: projects/[PROJECT_ID]/locations/[LOCATION]/buckets/[BUCKET_ID]/datasets/[DATASET_ID]/views/[VIEW_ID]",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.observability_v1#GetProjectsLocationsBucketsDatasetsViews": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.observability_v1#GetProjectsLocationsBucketsDatasetsViewsRequest"
-      },
-      "output": {
-        "target": "com.gcp.observability_v1#View"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.observability_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.observability_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Get a view."
-      }
-    },
-    "com.gcp.observability_v1#GetProjectsLocationsScopesRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Name of the resource. The format is: projects/{project}/locations/{location}/scopes/{scope} The `{location}` field must be set to `global`. The `{scope}` field must be set to `_Default`.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.observability_v1#GetProjectsLocationsScopes": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.observability_v1#GetProjectsLocationsScopesRequest"
-      },
-      "output": {
-        "target": "com.gcp.observability_v1#Scope"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.observability_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.observability_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Gets details of a single Scope."
-      }
-    },
-    "com.gcp.observability_v1#PatchProjectsLocationsScopesRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier. Name of the resource. The format is: projects/{project}/locations/{location}/scopes/{scope} The `{location}` field must be set to `global`. The `{scope}` field must be set to `_Default`.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "updateMask": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. Field mask is used to specify the fields to be overwritten in the Scope resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field is overwritten when it is in the mask. If the user does not provide a mask, then all fields present in the request are overwritten.",
-            "smithy.api#httpQuery": "updateMask"
-          }
-        },
-        "body": {
-          "target": "com.gcp.observability_v1#Scope",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.observability_v1#PatchProjectsLocationsScopes": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.observability_v1#PatchProjectsLocationsScopesRequest"
-      },
-      "output": {
-        "target": "com.gcp.observability_v1#Scope"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.observability_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.observability_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.observability_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.observability_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "PATCH",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Updates the parameters of a single Scope."
-      }
-    },
-    "com.gcp.observability_v1#PatchProjectsLocationsTraceScopesRequest": {
-      "type": "structure",
-      "members": {
-        "updateMask": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. The list of fields to update.",
-            "smithy.api#httpQuery": "updateMask"
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier. The resource name of the trace scope. For example: projects/my-project/locations/global/traceScopes/my-trace-scope",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.observability_v1#TraceScope",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.observability_v1#PatchProjectsLocationsTraceScopes": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.observability_v1#PatchProjectsLocationsTraceScopesRequest"
-      },
-      "output": {
-        "target": "com.gcp.observability_v1#TraceScope"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.observability_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.observability_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.observability_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.observability_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "PATCH",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Update a TraceScope."
-      }
-    },
-    "com.gcp.observability_v1#GetProjectsLocationsTraceScopesRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The resource name of the trace scope: projects/[PROJECT_ID]/locations/[LOCATION_ID]/traceScopes/[TRACE_SCOPE_ID] For example: projects/my-project/locations/global/traceScopes/my-trace-scope",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.observability_v1#GetProjectsLocationsTraceScopes": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.observability_v1#GetProjectsLocationsTraceScopesRequest"
-      },
-      "output": {
-        "target": "com.gcp.observability_v1#TraceScope"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.observability_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.observability_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Get TraceScope resource."
-      }
-    },
-    "com.gcp.observability_v1#DeleteProjectsLocationsTraceScopesRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The full resource name of the trace scope to delete: projects/[PROJECT_ID]/locations/[LOCATION_ID]/traceScopes/[TRACE_SCOPE_ID] For example: projects/my-project/locations/global/traceScopes/my-trace-scope",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.observability_v1#DeleteProjectsLocationsTraceScopes": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.observability_v1#DeleteProjectsLocationsTraceScopesRequest"
-      },
-      "output": {
-        "target": "com.gcp.observability_v1#Empty"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.observability_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.observability_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.observability_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.observability_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Delete a TraceScope."
-      }
-    },
-    "com.gcp.observability_v1#ListProjectsLocationsTraceScopesRequest": {
-      "type": "structure",
-      "members": {
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of `next_page_token` in the response indicates that more results might be available.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        },
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Optional. If present, then retrieve the next batch of results from the preceding call to this method. `page_token` must be the value of `next_page_token` from the previous response. The values of other method parameters should be identical to those in the previous call.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        },
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The full resource name of the location to look for trace scopes: projects/[PROJECT_ID]/locations/[LOCATION_ID] For example: projects/my-project/locations/global",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.observability_v1#ListProjectsLocationsTraceScopes": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.observability_v1#ListProjectsLocationsTraceScopesRequest"
-      },
-      "output": {
-        "target": "com.gcp.observability_v1#ListTraceScopesResponse"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.observability_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.observability_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+parent}/traceScopes"
-        },
-        "smithy.api#documentation": "List TraceScopes of a project in a particular location.",
-        "smithy.api#paginated": {
-          "inputToken": "pageToken",
-          "outputToken": "nextPageToken"
-        }
-      }
-    },
-    "com.gcp.observability_v1#CreateProjectsLocationsTraceScopesRequest": {
-      "type": "structure",
-      "members": {
-        "traceScopeId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. A client-assigned identifier for the trace scope.",
-            "smithy.api#httpQuery": "traceScopeId"
-          }
-        },
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The full resource name of the location where the trace scope should be created projects/[PROJECT_ID]/locations/[LOCATION_ID] For example: projects/my-project/locations/global",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "body": {
-          "target": "com.gcp.observability_v1#TraceScope",
-          "traits": {
-            "smithy.api#httpPayload": {},
-            "smithy.api#documentation": "Request body"
-          }
-        }
-      }
-    },
-    "com.gcp.observability_v1#CreateProjectsLocationsTraceScopes": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.observability_v1#CreateProjectsLocationsTraceScopesRequest"
-      },
-      "output": {
-        "target": "com.gcp.observability_v1#TraceScope"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.observability_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.observability_v1#Forbidden"
-        },
-        {
-          "target": "com.gcp.observability_v1#BadRequest"
-        },
-        {
-          "target": "com.gcp.observability_v1#Conflict"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1/{+parent}/traceScopes"
-        },
-        "smithy.api#documentation": "Create a new TraceScope."
-      }
-    },
-    "com.gcp.observability_v1#GetSettingsOrganizationsLocationsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. Name of the settings to retrieve. Name format: \"projects/[PROJECT_ID]/locations/[LOCATION]/settings\" \"folders/[FOLDER_ID]/locations/[LOCATION]/settings\" \"organizations/[ORGANIZATION_ID]/locations/[LOCATION]/settings\"",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.observability_v1#GetSettingsOrganizationsLocations": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.observability_v1#GetSettingsOrganizationsLocationsRequest"
-      },
-      "output": {
-        "target": "com.gcp.observability_v1#Settings"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.observability_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.observability_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Get Settings"
       }
     },
     "com.gcp.observability_v1#UpdateSettingsOrganizationsLocationsRequest": {
@@ -2230,6 +1198,75 @@
         "smithy.api#documentation": "Update Settings"
       }
     },
+    "com.gcp.observability_v1#ListOrganizationsLocationsRequest": {
+      "type": "structure",
+      "members": {
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource that owns the locations collection, if applicable.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "extraLocationTypes": {
+          "target": "com.gcp.observability_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Do not use this field unless explicitly documented otherwise. This is primarily for internal usage.",
+            "smithy.api#httpQuery": "extraLocationTypes"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of results to return. If not set, the service selects a default.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        }
+      }
+    },
+    "com.gcp.observability_v1#ListOrganizationsLocations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.observability_v1#ListOrganizationsLocationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.observability_v1#ListLocationsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.observability_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.observability_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}/locations"
+        },
+        "smithy.api#documentation": "Lists information about the supported locations for this service. This method lists locations based on the resource scope provided in the ListLocationsRequest.name field: * **Global locations**: If `name` is empty, the method lists the public locations available to all projects. * **Project-specific locations**: If `name` follows the format `projects/{project}`, the method lists locations visible to that specific project. This includes public, private, or other project-specific locations enabled for the project. For gRPC and client library implementations, the resource name is passed as the `name` field. For direct service calls, the resource name is incorporated into the request path based on the specific service implementation and version.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
     "com.gcp.observability_v1#GetOrganizationsLocationsRequest": {
       "type": "structure",
       "members": {
@@ -2267,54 +1304,26 @@
         "smithy.api#documentation": "Gets information about a location."
       }
     },
-    "com.gcp.observability_v1#ListOrganizationsLocationsRequest": {
+    "com.gcp.observability_v1#GetSettingsOrganizationsLocationsRequest": {
       "type": "structure",
       "members": {
-        "extraLocationTypes": {
-          "target": "com.gcp.observability_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "Optional. Do not use this field unless explicitly documented otherwise. This is primarily for internal usage.",
-            "smithy.api#httpQuery": "extraLocationTypes"
-          }
-        },
         "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The resource that owns the locations collection, if applicable.",
+            "smithy.api#documentation": "Required. Name of the settings to retrieve. Name format: \"projects/[PROJECT_ID]/locations/[LOCATION]/settings\" \"folders/[FOLDER_ID]/locations/[LOCATION]/settings\" \"organizations/[ORGANIZATION_ID]/locations/[LOCATION]/settings\"",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
-          }
-        },
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.",
-            "smithy.api#httpQuery": "pageToken"
-          }
-        },
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The maximum number of results to return. If not set, the service selects a default.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        },
-        "filter": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
-            "smithy.api#httpQuery": "filter"
           }
         }
       }
     },
-    "com.gcp.observability_v1#ListOrganizationsLocations": {
+    "com.gcp.observability_v1#GetSettingsOrganizationsLocations": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.observability_v1#ListOrganizationsLocationsRequest"
+        "target": "com.gcp.observability_v1#GetSettingsOrganizationsLocationsRequest"
       },
       "output": {
-        "target": "com.gcp.observability_v1#ListLocationsResponse"
+        "target": "com.gcp.observability_v1#Settings"
       },
       "errors": [
         {
@@ -2327,13 +1336,9 @@
       "traits": {
         "smithy.api#http": {
           "method": "GET",
-          "uri": "v1/{+name}/locations"
+          "uri": "v1/{+name}"
         },
-        "smithy.api#documentation": "Lists information about the supported locations for this service. This method lists locations based on the resource scope provided in the ListLocationsRequest.name field: * **Global locations**: If `name` is empty, the method lists the public locations available to all projects. * **Project-specific locations**: If `name` follows the format `projects/{project}`, the method lists locations visible to that specific project. This includes public, private, or other project-specific locations enabled for the project. For gRPC and client library implementations, the resource name is passed as the `name` field. For direct service calls, the resource name is incorporated into the request path based on the specific service implementation and version.",
-        "smithy.api#paginated": {
-          "inputToken": "pageToken",
-          "outputToken": "nextPageToken"
-        }
+        "smithy.api#documentation": "Get Settings"
       }
     },
     "com.gcp.observability_v1#DeleteOrganizationsLocationsOperationsRequest": {
@@ -2484,13 +1489,6 @@
             "smithy.api#httpQuery": "returnPartialSuccess"
           }
         },
-        "filter": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The standard list filter.",
-            "smithy.api#httpQuery": "filter"
-          }
-        },
         "pageSize": {
           "target": "smithy.api#Integer",
           "traits": {
@@ -2503,6 +1501,13 @@
           "traits": {
             "smithy.api#documentation": "The standard list page token.",
             "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard list filter.",
+            "smithy.api#httpQuery": "filter"
           }
         }
       }
@@ -2535,7 +1540,7 @@
         }
       }
     },
-    "com.gcp.observability_v1#GetFoldersLocationsRequest": {
+    "com.gcp.observability_v1#GetProjectsLocationsRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -2548,10 +1553,10 @@
         }
       }
     },
-    "com.gcp.observability_v1#GetFoldersLocations": {
+    "com.gcp.observability_v1#GetProjectsLocations": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.observability_v1#GetFoldersLocationsRequest"
+        "target": "com.gcp.observability_v1#GetProjectsLocationsRequest"
       },
       "output": {
         "target": "com.gcp.observability_v1#Location"
@@ -2572,7 +1577,7 @@
         "smithy.api#documentation": "Gets information about a location."
       }
     },
-    "com.gcp.observability_v1#UpdateSettingsFoldersLocationsRequest": {
+    "com.gcp.observability_v1#UpdateSettingsProjectsLocationsRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -2599,10 +1604,10 @@
         }
       }
     },
-    "com.gcp.observability_v1#UpdateSettingsFoldersLocations": {
+    "com.gcp.observability_v1#UpdateSettingsProjectsLocations": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.observability_v1#UpdateSettingsFoldersLocationsRequest"
+        "target": "com.gcp.observability_v1#UpdateSettingsProjectsLocationsRequest"
       },
       "output": {
         "target": "com.gcp.observability_v1#Operation"
@@ -2629,7 +1634,7 @@
         "smithy.api#documentation": "Update Settings"
       }
     },
-    "com.gcp.observability_v1#GetSettingsFoldersLocationsRequest": {
+    "com.gcp.observability_v1#GetSettingsProjectsLocationsRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -2642,10 +1647,10 @@
         }
       }
     },
-    "com.gcp.observability_v1#GetSettingsFoldersLocations": {
+    "com.gcp.observability_v1#GetSettingsProjectsLocations": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.observability_v1#GetSettingsFoldersLocationsRequest"
+        "target": "com.gcp.observability_v1#GetSettingsProjectsLocationsRequest"
       },
       "output": {
         "target": "com.gcp.observability_v1#Settings"
@@ -2666,29 +1671,15 @@
         "smithy.api#documentation": "Get Settings"
       }
     },
-    "com.gcp.observability_v1#ListFoldersLocationsRequest": {
+    "com.gcp.observability_v1#ListProjectsLocationsRequest": {
       "type": "structure",
       "members": {
-        "filter": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
-            "smithy.api#httpQuery": "filter"
-          }
-        },
         "name": {
           "target": "smithy.api#String",
           "traits": {
             "smithy.api#documentation": "The resource that owns the locations collection, if applicable.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
-          }
-        },
-        "extraLocationTypes": {
-          "target": "com.gcp.observability_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "Optional. Do not use this field unless explicitly documented otherwise. This is primarily for internal usage.",
-            "smithy.api#httpQuery": "extraLocationTypes"
           }
         },
         "pageSize": {
@@ -2704,13 +1695,27 @@
             "smithy.api#documentation": "A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.",
             "smithy.api#httpQuery": "pageToken"
           }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "extraLocationTypes": {
+          "target": "com.gcp.observability_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Do not use this field unless explicitly documented otherwise. This is primarily for internal usage.",
+            "smithy.api#httpQuery": "extraLocationTypes"
+          }
         }
       }
     },
-    "com.gcp.observability_v1#ListFoldersLocations": {
+    "com.gcp.observability_v1#ListProjectsLocations": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.observability_v1#ListFoldersLocationsRequest"
+        "target": "com.gcp.observability_v1#ListProjectsLocationsRequest"
       },
       "output": {
         "target": "com.gcp.observability_v1#ListLocationsResponse"
@@ -2735,7 +1740,1040 @@
         }
       }
     },
-    "com.gcp.observability_v1#CancelFoldersLocationsOperationsRequest": {
+    "com.gcp.observability_v1#ListProjectsLocationsBucketsRequest": {
+      "type": "structure",
+      "members": {
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A page token, received from a previous `ListBuckets` call. Provide this to retrieve the subsequent page.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent, which owns this collection of buckets. The format is: projects/[PROJECT_ID]/locations/[LOCATION]",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "showDeleted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. If true, then the response will include deleted buckets.",
+            "smithy.api#httpQuery": "showDeleted"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum number of buckets to return. If unspecified, then at most 100 buckets are returned. The maximum value is 1000; values above 1000 are coerced to 1000.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        }
+      }
+    },
+    "com.gcp.observability_v1#ListProjectsLocationsBuckets": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.observability_v1#ListProjectsLocationsBucketsRequest"
+      },
+      "output": {
+        "target": "com.gcp.observability_v1#ListBucketsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.observability_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.observability_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/buckets"
+        },
+        "smithy.api#documentation": "List buckets of a project in a particular location.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.observability_v1#GetProjectsLocationsBucketsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the bucket to retrieve. The format is: projects/[PROJECT_ID]/locations/[LOCATION]/buckets/[BUCKET_ID]",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.observability_v1#GetProjectsLocationsBuckets": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.observability_v1#GetProjectsLocationsBucketsRequest"
+      },
+      "output": {
+        "target": "com.gcp.observability_v1#Bucket"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.observability_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.observability_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Get bucket resource."
+      }
+    },
+    "com.gcp.observability_v1#CreateProjectsLocationsBucketsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the project and location for the bucket. The format is: projects/[PROJECT_ID]/locations/[LOCATION]",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "bucketId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Id of the bucket to create.",
+            "smithy.api#httpQuery": "bucketId"
+          }
+        },
+        "body": {
+          "target": "com.gcp.observability_v1#Bucket",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.observability_v1#CreateProjectsLocationsBuckets": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.observability_v1#CreateProjectsLocationsBucketsRequest"
+      },
+      "output": {
+        "target": "com.gcp.observability_v1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.observability_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.observability_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.observability_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.observability_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+parent}/buckets"
+        },
+        "smithy.api#documentation": "Create a new bucket."
+      }
+    },
+    "com.gcp.observability_v1#PatchProjectsLocationsBucketsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. Name of the bucket. The format is: projects/[PROJECT_ID]/locations/[LOCATION]/buckets/[BUCKET_ID]",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The list of fields to update.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "body": {
+          "target": "com.gcp.observability_v1#Bucket",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.observability_v1#PatchProjectsLocationsBuckets": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.observability_v1#PatchProjectsLocationsBucketsRequest"
+      },
+      "output": {
+        "target": "com.gcp.observability_v1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.observability_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.observability_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.observability_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.observability_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Update a bucket."
+      }
+    },
+    "com.gcp.observability_v1#ListProjectsLocationsBucketsDatasetsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent bucket that owns this collection of datasets. The format is: projects/[PROJECT_ID]/locations/[LOCATION]/buckets/[BUCKET_ID]",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum number of datasets to return. If unspecified, then at most 100 datasets are returned. The maximum value is 1000; values above 1000 are coerced to 1000.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A page token, received from a previous `ListDatasets` call. Provide this to retrieve the subsequent page.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "showDeleted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. If true, then the response will include deleted datasets.",
+            "smithy.api#httpQuery": "showDeleted"
+          }
+        }
+      }
+    },
+    "com.gcp.observability_v1#ListProjectsLocationsBucketsDatasets": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.observability_v1#ListProjectsLocationsBucketsDatasetsRequest"
+      },
+      "output": {
+        "target": "com.gcp.observability_v1#ListDatasetsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.observability_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.observability_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/datasets"
+        },
+        "smithy.api#documentation": "List datasets of a bucket.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.observability_v1#GetProjectsLocationsBucketsDatasetsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the dataset to retrieve. The format is: projects/[PROJECT_ID]/locations/[LOCATION]/buckets/[BUCKET_ID]/datasets/[DATASET_ID]",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.observability_v1#GetProjectsLocationsBucketsDatasets": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.observability_v1#GetProjectsLocationsBucketsDatasetsRequest"
+      },
+      "output": {
+        "target": "com.gcp.observability_v1#Dataset"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.observability_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.observability_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Get a dataset."
+      }
+    },
+    "com.gcp.observability_v1#DeleteProjectsLocationsBucketsDatasetsLinksRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the link to delete. The format is: projects/[PROJECT_ID]/locations/[LOCATION]/buckets/[BUCKET_ID]/datasets/[DATASET_ID]/links/[LINK_ID]",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.observability_v1#DeleteProjectsLocationsBucketsDatasetsLinks": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.observability_v1#DeleteProjectsLocationsBucketsDatasetsLinksRequest"
+      },
+      "output": {
+        "target": "com.gcp.observability_v1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.observability_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.observability_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.observability_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.observability_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Delete a link."
+      }
+    },
+    "com.gcp.observability_v1#GetProjectsLocationsBucketsDatasetsLinksRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the link to retrieve. The format is: projects/[PROJECT_ID]/locations/[LOCATION]/buckets/[BUCKET_ID]/datasets/[DATASET_ID]/links/[LINK_ID]",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.observability_v1#GetProjectsLocationsBucketsDatasetsLinks": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.observability_v1#GetProjectsLocationsBucketsDatasetsLinksRequest"
+      },
+      "output": {
+        "target": "com.gcp.observability_v1#Link"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.observability_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.observability_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Get a link."
+      }
+    },
+    "com.gcp.observability_v1#ListProjectsLocationsBucketsDatasetsLinksRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent dataset that owns this collection of links. The format is: projects/[PROJECT_ID]/locations/[LOCATION]/buckets/[BUCKET_ID]/datasets/[DATASET_ID]",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A page token, received from a previous `ListLinks` call. Provide this to retrieve the subsequent page.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum number of links to return. If unspecified, then at most 100 links are returned. The maximum value is 1000; values above 1000 are coerced to 1000.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        }
+      }
+    },
+    "com.gcp.observability_v1#ListProjectsLocationsBucketsDatasetsLinks": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.observability_v1#ListProjectsLocationsBucketsDatasetsLinksRequest"
+      },
+      "output": {
+        "target": "com.gcp.observability_v1#ListLinksResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.observability_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.observability_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/links"
+        },
+        "smithy.api#documentation": "List links of a dataset.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.observability_v1#PatchProjectsLocationsBucketsDatasetsLinksRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. Name of the link. The format is: projects/[PROJECT_ID]/locations/[LOCATION]/buckets/[BUCKET_ID]/datasets/[DATASET_ID]/links/[LINK_ID]",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The list of fields to update.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "body": {
+          "target": "com.gcp.observability_v1#Link",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.observability_v1#PatchProjectsLocationsBucketsDatasetsLinks": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.observability_v1#PatchProjectsLocationsBucketsDatasetsLinksRequest"
+      },
+      "output": {
+        "target": "com.gcp.observability_v1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.observability_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.observability_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.observability_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.observability_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Update a link."
+      }
+    },
+    "com.gcp.observability_v1#CreateProjectsLocationsBucketsDatasetsLinksRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the containing dataset for this link. The format is: projects/[PROJECT_ID]/locations/[LOCATION]/buckets/[BUCKET_ID]/datasets/[DATASET_ID]",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "linkId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Id of the link to create.",
+            "smithy.api#httpQuery": "linkId"
+          }
+        },
+        "body": {
+          "target": "com.gcp.observability_v1#Link",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.observability_v1#CreateProjectsLocationsBucketsDatasetsLinks": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.observability_v1#CreateProjectsLocationsBucketsDatasetsLinksRequest"
+      },
+      "output": {
+        "target": "com.gcp.observability_v1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.observability_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.observability_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.observability_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.observability_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+parent}/links"
+        },
+        "smithy.api#documentation": "Create a new link."
+      }
+    },
+    "com.gcp.observability_v1#ListProjectsLocationsBucketsDatasetsViewsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Dataset whose views are to be listed. The format is: projects/[PROJECT_ID]/locations/[LOCATION]/buckets/[BUCKET_ID]/datasets/[DATASET_ID]",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum number of views to return. If unspecified, then at most 100 views are returned. The maximum value is 1000; values above 1000 are coerced to 1000.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A page token, received from a previous `ListViews` call. Provide this to retrieve the subsequent page.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.observability_v1#ListProjectsLocationsBucketsDatasetsViews": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.observability_v1#ListProjectsLocationsBucketsDatasetsViewsRequest"
+      },
+      "output": {
+        "target": "com.gcp.observability_v1#ListViewsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.observability_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.observability_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/views"
+        },
+        "smithy.api#documentation": "List views of a dataset.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.observability_v1#GetProjectsLocationsBucketsDatasetsViewsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the view to retrieve. The format is: projects/[PROJECT_ID]/locations/[LOCATION]/buckets/[BUCKET_ID]/datasets/[DATASET_ID]/views/[VIEW_ID]",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.observability_v1#GetProjectsLocationsBucketsDatasetsViews": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.observability_v1#GetProjectsLocationsBucketsDatasetsViewsRequest"
+      },
+      "output": {
+        "target": "com.gcp.observability_v1#View"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.observability_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.observability_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Get a view."
+      }
+    },
+    "com.gcp.observability_v1#PatchProjectsLocationsScopesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. Name of the resource. The format is: projects/{project}/locations/{location}/scopes/{scope} The `{location}` field must be set to `global`. The `{scope}` field must be set to `_Default`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Field mask is used to specify the fields to be overwritten in the Scope resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field is overwritten when it is in the mask. If the user does not provide a mask, then all fields present in the request are overwritten.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "body": {
+          "target": "com.gcp.observability_v1#Scope",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.observability_v1#PatchProjectsLocationsScopes": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.observability_v1#PatchProjectsLocationsScopesRequest"
+      },
+      "output": {
+        "target": "com.gcp.observability_v1#Scope"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.observability_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.observability_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.observability_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.observability_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Updates the parameters of a single Scope."
+      }
+    },
+    "com.gcp.observability_v1#GetProjectsLocationsScopesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the resource. The format is: projects/{project}/locations/{location}/scopes/{scope} The `{location}` field must be set to `global`. The `{scope}` field must be set to `_Default`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.observability_v1#GetProjectsLocationsScopes": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.observability_v1#GetProjectsLocationsScopesRequest"
+      },
+      "output": {
+        "target": "com.gcp.observability_v1#Scope"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.observability_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.observability_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Gets details of a single Scope."
+      }
+    },
+    "com.gcp.observability_v1#DeleteProjectsLocationsTraceScopesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The full resource name of the trace scope to delete: projects/[PROJECT_ID]/locations/[LOCATION_ID]/traceScopes/[TRACE_SCOPE_ID] For example: projects/my-project/locations/global/traceScopes/my-trace-scope",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.observability_v1#DeleteProjectsLocationsTraceScopes": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.observability_v1#DeleteProjectsLocationsTraceScopesRequest"
+      },
+      "output": {
+        "target": "com.gcp.observability_v1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.observability_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.observability_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.observability_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.observability_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Delete a TraceScope."
+      }
+    },
+    "com.gcp.observability_v1#ListProjectsLocationsTraceScopesRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of `next_page_token` in the response indicates that more results might be available.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The full resource name of the location to look for trace scopes: projects/[PROJECT_ID]/locations/[LOCATION_ID] For example: projects/my-project/locations/global",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. If present, then retrieve the next batch of results from the preceding call to this method. `page_token` must be the value of `next_page_token` from the previous response. The values of other method parameters should be identical to those in the previous call.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.observability_v1#ListProjectsLocationsTraceScopes": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.observability_v1#ListProjectsLocationsTraceScopesRequest"
+      },
+      "output": {
+        "target": "com.gcp.observability_v1#ListTraceScopesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.observability_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.observability_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+parent}/traceScopes"
+        },
+        "smithy.api#documentation": "List TraceScopes of a project in a particular location.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.observability_v1#PatchProjectsLocationsTraceScopesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier. The resource name of the trace scope. For example: projects/my-project/locations/global/traceScopes/my-trace-scope",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The list of fields to update.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "body": {
+          "target": "com.gcp.observability_v1#TraceScope",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.observability_v1#PatchProjectsLocationsTraceScopes": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.observability_v1#PatchProjectsLocationsTraceScopesRequest"
+      },
+      "output": {
+        "target": "com.gcp.observability_v1#TraceScope"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.observability_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.observability_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.observability_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.observability_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Update a TraceScope."
+      }
+    },
+    "com.gcp.observability_v1#CreateProjectsLocationsTraceScopesRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The full resource name of the location where the trace scope should be created projects/[PROJECT_ID]/locations/[LOCATION_ID] For example: projects/my-project/locations/global",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "traceScopeId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. A client-assigned identifier for the trace scope.",
+            "smithy.api#httpQuery": "traceScopeId"
+          }
+        },
+        "body": {
+          "target": "com.gcp.observability_v1#TraceScope",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.observability_v1#CreateProjectsLocationsTraceScopes": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.observability_v1#CreateProjectsLocationsTraceScopesRequest"
+      },
+      "output": {
+        "target": "com.gcp.observability_v1#TraceScope"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.observability_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.observability_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.observability_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.observability_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+parent}/traceScopes"
+        },
+        "smithy.api#documentation": "Create a new TraceScope."
+      }
+    },
+    "com.gcp.observability_v1#GetProjectsLocationsTraceScopesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The resource name of the trace scope: projects/[PROJECT_ID]/locations/[LOCATION_ID]/traceScopes/[TRACE_SCOPE_ID] For example: projects/my-project/locations/global/traceScopes/my-trace-scope",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.observability_v1#GetProjectsLocationsTraceScopes": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.observability_v1#GetProjectsLocationsTraceScopesRequest"
+      },
+      "output": {
+        "target": "com.gcp.observability_v1#TraceScope"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.observability_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.observability_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Get TraceScope resource."
+      }
+    },
+    "com.gcp.observability_v1#GetProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.observability_v1#GetProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.observability_v1#GetProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.observability_v1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.observability_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.observability_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service."
+      }
+    },
+    "com.gcp.observability_v1#CancelProjectsLocationsOperationsRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -2755,10 +2793,10 @@
         }
       }
     },
-    "com.gcp.observability_v1#CancelFoldersLocationsOperations": {
+    "com.gcp.observability_v1#CancelProjectsLocationsOperations": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.observability_v1#CancelFoldersLocationsOperationsRequest"
+        "target": "com.gcp.observability_v1#CancelProjectsLocationsOperationsRequest"
       },
       "output": {
         "target": "com.gcp.observability_v1#Empty"
@@ -2785,14 +2823,22 @@
         "smithy.api#documentation": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`."
       }
     },
-    "com.gcp.observability_v1#ListFoldersLocationsOperationsRequest": {
+    "com.gcp.observability_v1#ListProjectsLocationsOperationsRequest": {
       "type": "structure",
       "members": {
-        "filter": {
+        "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The standard list filter.",
-            "smithy.api#httpQuery": "filter"
+            "smithy.api#documentation": "The name of the operation's parent resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The standard list page size.",
+            "smithy.api#httpQuery": "pageSize"
           }
         },
         "returnPartialSuccess": {
@@ -2809,27 +2855,19 @@
             "smithy.api#httpQuery": "pageToken"
           }
         },
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The standard list page size.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        },
-        "name": {
+        "filter": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The name of the operation's parent resource.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
+            "smithy.api#documentation": "The standard list filter.",
+            "smithy.api#httpQuery": "filter"
           }
         }
       }
     },
-    "com.gcp.observability_v1#ListFoldersLocationsOperations": {
+    "com.gcp.observability_v1#ListProjectsLocationsOperations": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.observability_v1#ListFoldersLocationsOperationsRequest"
+        "target": "com.gcp.observability_v1#ListProjectsLocationsOperationsRequest"
       },
       "output": {
         "target": "com.gcp.observability_v1#ListOperationsResponse"
@@ -2854,7 +2892,7 @@
         }
       }
     },
-    "com.gcp.observability_v1#DeleteFoldersLocationsOperationsRequest": {
+    "com.gcp.observability_v1#DeleteProjectsLocationsOperationsRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -2867,10 +2905,10 @@
         }
       }
     },
-    "com.gcp.observability_v1#DeleteFoldersLocationsOperations": {
+    "com.gcp.observability_v1#DeleteProjectsLocationsOperations": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.observability_v1#DeleteFoldersLocationsOperationsRequest"
+        "target": "com.gcp.observability_v1#DeleteProjectsLocationsOperationsRequest"
       },
       "output": {
         "target": "com.gcp.observability_v1#Empty"
@@ -2895,43 +2933,6 @@
           "uri": "v1/{+name}"
         },
         "smithy.api#documentation": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`."
-      }
-    },
-    "com.gcp.observability_v1#GetFoldersLocationsOperationsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name of the operation resource.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.observability_v1#GetFoldersLocationsOperations": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.observability_v1#GetFoldersLocationsOperationsRequest"
-      },
-      "output": {
-        "target": "com.gcp.observability_v1#Operation"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.observability_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.observability_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service."
       }
     }
   }

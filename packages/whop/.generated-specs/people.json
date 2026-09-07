@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.whop.people#ListPeopleRequestSourceList": {
@@ -977,7 +978,7 @@
         }
       }
     },
-    "com.whop.people#RetrievePersonRequest": {
+    "com.whop.people#GetPersonRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -1000,21 +1001,21 @@
         "smithy.api#input": {}
       }
     },
-    "com.whop.people#RetrievePersonResponseAudienceIdsList": {
+    "com.whop.people#GetPersonResponseAudienceIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.whop.people#RetrievePersonResponseCustomEventNamesList": {
+    "com.whop.people#GetPersonResponseCustomEventNamesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.whop.people#RetrievePersonResponseDevice": {
+    "com.whop.people#GetPersonResponseDevice": {
       "type": "structure",
       "members": {
         "browser": {
@@ -1038,7 +1039,7 @@
       },
       "traits": {}
     },
-    "com.whop.people#RetrievePersonResponseEmailsList": {
+    "com.whop.people#GetPersonResponseEmailsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -1047,14 +1048,14 @@
         "smithy.api#documentation": "Every linked email, primary first."
       }
     },
-    "com.whop.people#RetrievePersonResponseEventNamesList": {
+    "com.whop.people#GetPersonResponseEventNamesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.whop.people#RetrievePersonResponseFirstSourceAd": {
+    "com.whop.people#GetPersonResponseFirstSourceAd": {
       "type": "structure",
       "members": {
         "id": {
@@ -1078,7 +1079,7 @@
       },
       "traits": {}
     },
-    "com.whop.people#RetrievePersonResponseFirstSourceAdGroup": {
+    "com.whop.people#GetPersonResponseFirstSourceAdGroup": {
       "type": "structure",
       "members": {
         "id": {
@@ -1102,7 +1103,7 @@
       },
       "traits": {}
     },
-    "com.whop.people#RetrievePersonResponseFirstSourceCampaign": {
+    "com.whop.people#GetPersonResponseFirstSourceCampaign": {
       "type": "structure",
       "members": {
         "id": {
@@ -1126,7 +1127,7 @@
       },
       "traits": {}
     },
-    "com.whop.people#RetrievePersonResponseFirstSourceType": {
+    "com.whop.people#GetPersonResponseFirstSourceType": {
       "type": "enum",
       "members": {
         "AD_CLICK": {
@@ -1162,23 +1163,23 @@
       },
       "traits": {}
     },
-    "com.whop.people#RetrievePersonResponseFirstSource": {
+    "com.whop.people#GetPersonResponseFirstSource": {
       "type": "structure",
       "members": {
         "ad": {
-          "target": "com.whop.people#RetrievePersonResponseFirstSourceAd",
+          "target": "com.whop.people#GetPersonResponseFirstSourceAd",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
         },
         "ad_group": {
-          "target": "com.whop.people#RetrievePersonResponseFirstSourceAdGroup",
+          "target": "com.whop.people#GetPersonResponseFirstSourceAdGroup",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
         },
         "campaign": {
-          "target": "com.whop.people#RetrievePersonResponseFirstSourceCampaign",
+          "target": "com.whop.people#GetPersonResponseFirstSourceCampaign",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
@@ -1202,7 +1203,7 @@
           }
         },
         "type": {
-          "target": "com.whop.people#RetrievePersonResponseFirstSourceType",
+          "target": "com.whop.people#GetPersonResponseFirstSourceType",
           "traits": {
             "smithy.api#required": {}
           }
@@ -1218,7 +1219,7 @@
         "smithy.api#documentation": "Where a visit came from: a whop ad click, a lead form, an external ad, or a referring site."
       }
     },
-    "com.whop.people#RetrievePersonResponseLastSourceAd": {
+    "com.whop.people#GetPersonResponseLastSourceAd": {
       "type": "structure",
       "members": {
         "id": {
@@ -1242,7 +1243,7 @@
       },
       "traits": {}
     },
-    "com.whop.people#RetrievePersonResponseLastSourceAdGroup": {
+    "com.whop.people#GetPersonResponseLastSourceAdGroup": {
       "type": "structure",
       "members": {
         "id": {
@@ -1266,7 +1267,7 @@
       },
       "traits": {}
     },
-    "com.whop.people#RetrievePersonResponseLastSourceCampaign": {
+    "com.whop.people#GetPersonResponseLastSourceCampaign": {
       "type": "structure",
       "members": {
         "id": {
@@ -1290,7 +1291,7 @@
       },
       "traits": {}
     },
-    "com.whop.people#RetrievePersonResponseLastSourceType": {
+    "com.whop.people#GetPersonResponseLastSourceType": {
       "type": "enum",
       "members": {
         "AD_CLICK": {
@@ -1326,23 +1327,23 @@
       },
       "traits": {}
     },
-    "com.whop.people#RetrievePersonResponseLastSource": {
+    "com.whop.people#GetPersonResponseLastSource": {
       "type": "structure",
       "members": {
         "ad": {
-          "target": "com.whop.people#RetrievePersonResponseLastSourceAd",
+          "target": "com.whop.people#GetPersonResponseLastSourceAd",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
         },
         "ad_group": {
-          "target": "com.whop.people#RetrievePersonResponseLastSourceAdGroup",
+          "target": "com.whop.people#GetPersonResponseLastSourceAdGroup",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
         },
         "campaign": {
-          "target": "com.whop.people#RetrievePersonResponseLastSourceCampaign",
+          "target": "com.whop.people#GetPersonResponseLastSourceCampaign",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
@@ -1366,7 +1367,7 @@
           }
         },
         "type": {
-          "target": "com.whop.people#RetrievePersonResponseLastSourceType",
+          "target": "com.whop.people#GetPersonResponseLastSourceType",
           "traits": {
             "smithy.api#required": {}
           }
@@ -1382,7 +1383,7 @@
         "smithy.api#documentation": "Where a visit came from: a whop ad click, a lead form, an external ad, or a referring site."
       }
     },
-    "com.whop.people#RetrievePersonResponseLocation": {
+    "com.whop.people#GetPersonResponseLocation": {
       "type": "structure",
       "members": {
         "city": {
@@ -1406,7 +1407,7 @@
       },
       "traits": {}
     },
-    "com.whop.people#RetrievePersonResponseMember": {
+    "com.whop.people#GetPersonResponseMember": {
       "type": "structure",
       "members": {
         "id": {
@@ -1435,7 +1436,7 @@
         "smithy.api#documentation": "The user's member record at this account, when they are a member of it."
       }
     },
-    "com.whop.people#RetrievePersonResponseNamesList": {
+    "com.whop.people#GetPersonResponseNamesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -1444,7 +1445,7 @@
         "smithy.api#documentation": "Every name the person's linked identities carried, primary first."
       }
     },
-    "com.whop.people#RetrievePersonResponsePhonesList": {
+    "com.whop.people#GetPersonResponsePhonesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -1453,7 +1454,7 @@
         "smithy.api#documentation": "Every linked phone, primary first."
       }
     },
-    "com.whop.people#RetrievePersonResponsePurchasesItem": {
+    "com.whop.people#GetPersonResponsePurchasesItem": {
       "type": "structure",
       "members": {
         "event_id": {
@@ -1477,21 +1478,21 @@
       },
       "traits": {}
     },
-    "com.whop.people#RetrievePersonResponsePurchasesList": {
+    "com.whop.people#GetPersonResponsePurchasesList": {
       "type": "list",
       "member": {
-        "target": "com.whop.people#RetrievePersonResponsePurchasesItem"
+        "target": "com.whop.people#GetPersonResponsePurchasesItem"
       },
       "traits": {}
     },
-    "com.whop.people#RetrievePersonResponseRolesList": {
+    "com.whop.people#GetPersonResponseRolesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.whop.people#RetrievePersonResponseSourcesItemAd": {
+    "com.whop.people#GetPersonResponseSourcesItemAd": {
       "type": "structure",
       "members": {
         "id": {
@@ -1515,7 +1516,7 @@
       },
       "traits": {}
     },
-    "com.whop.people#RetrievePersonResponseSourcesItemAdGroup": {
+    "com.whop.people#GetPersonResponseSourcesItemAdGroup": {
       "type": "structure",
       "members": {
         "id": {
@@ -1539,7 +1540,7 @@
       },
       "traits": {}
     },
-    "com.whop.people#RetrievePersonResponseSourcesItemCampaign": {
+    "com.whop.people#GetPersonResponseSourcesItemCampaign": {
       "type": "structure",
       "members": {
         "id": {
@@ -1563,7 +1564,7 @@
       },
       "traits": {}
     },
-    "com.whop.people#RetrievePersonResponseSourcesItemType": {
+    "com.whop.people#GetPersonResponseSourcesItemType": {
       "type": "enum",
       "members": {
         "AD_CLICK": {
@@ -1599,23 +1600,23 @@
       },
       "traits": {}
     },
-    "com.whop.people#RetrievePersonResponseSourcesItem": {
+    "com.whop.people#GetPersonResponseSourcesItem": {
       "type": "structure",
       "members": {
         "ad": {
-          "target": "com.whop.people#RetrievePersonResponseSourcesItemAd",
+          "target": "com.whop.people#GetPersonResponseSourcesItemAd",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
         },
         "ad_group": {
-          "target": "com.whop.people#RetrievePersonResponseSourcesItemAdGroup",
+          "target": "com.whop.people#GetPersonResponseSourcesItemAdGroup",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
         },
         "campaign": {
-          "target": "com.whop.people#RetrievePersonResponseSourcesItemCampaign",
+          "target": "com.whop.people#GetPersonResponseSourcesItemCampaign",
           "traits": {
             "com.distilled.openapi#nullable": {}
           }
@@ -1639,7 +1640,7 @@
           }
         },
         "type": {
-          "target": "com.whop.people#RetrievePersonResponseSourcesItemType",
+          "target": "com.whop.people#GetPersonResponseSourcesItemType",
           "traits": {
             "smithy.api#required": {}
           }
@@ -1655,16 +1656,16 @@
         "smithy.api#documentation": "Where a visit came from: a whop ad click, a lead form, an external ad, or a referring site."
       }
     },
-    "com.whop.people#RetrievePersonResponseSourcesList": {
+    "com.whop.people#GetPersonResponseSourcesList": {
       "type": "list",
       "member": {
-        "target": "com.whop.people#RetrievePersonResponseSourcesItem"
+        "target": "com.whop.people#GetPersonResponseSourcesItem"
       },
       "traits": {
         "smithy.api#documentation": "Every distinct acquisition signal the person ever carried, ad entities hydrated."
       }
     },
-    "com.whop.people#RetrievePersonResponseUsageBrowserItem": {
+    "com.whop.people#GetPersonResponseUsageBrowserItem": {
       "type": "structure",
       "members": {
         "events": {
@@ -1682,14 +1683,14 @@
       },
       "traits": {}
     },
-    "com.whop.people#RetrievePersonResponseUsageBrowserList": {
+    "com.whop.people#GetPersonResponseUsageBrowserList": {
       "type": "list",
       "member": {
-        "target": "com.whop.people#RetrievePersonResponseUsageBrowserItem"
+        "target": "com.whop.people#GetPersonResponseUsageBrowserItem"
       },
       "traits": {}
     },
-    "com.whop.people#RetrievePersonResponseUsageCityItem": {
+    "com.whop.people#GetPersonResponseUsageCityItem": {
       "type": "structure",
       "members": {
         "events": {
@@ -1707,14 +1708,14 @@
       },
       "traits": {}
     },
-    "com.whop.people#RetrievePersonResponseUsageCityList": {
+    "com.whop.people#GetPersonResponseUsageCityList": {
       "type": "list",
       "member": {
-        "target": "com.whop.people#RetrievePersonResponseUsageCityItem"
+        "target": "com.whop.people#GetPersonResponseUsageCityItem"
       },
       "traits": {}
     },
-    "com.whop.people#RetrievePersonResponseUsageCountryItem": {
+    "com.whop.people#GetPersonResponseUsageCountryItem": {
       "type": "structure",
       "members": {
         "events": {
@@ -1732,14 +1733,14 @@
       },
       "traits": {}
     },
-    "com.whop.people#RetrievePersonResponseUsageCountryList": {
+    "com.whop.people#GetPersonResponseUsageCountryList": {
       "type": "list",
       "member": {
-        "target": "com.whop.people#RetrievePersonResponseUsageCountryItem"
+        "target": "com.whop.people#GetPersonResponseUsageCountryItem"
       },
       "traits": {}
     },
-    "com.whop.people#RetrievePersonResponseUsageDeviceItem": {
+    "com.whop.people#GetPersonResponseUsageDeviceItem": {
       "type": "structure",
       "members": {
         "events": {
@@ -1757,14 +1758,14 @@
       },
       "traits": {}
     },
-    "com.whop.people#RetrievePersonResponseUsageDeviceList": {
+    "com.whop.people#GetPersonResponseUsageDeviceList": {
       "type": "list",
       "member": {
-        "target": "com.whop.people#RetrievePersonResponseUsageDeviceItem"
+        "target": "com.whop.people#GetPersonResponseUsageDeviceItem"
       },
       "traits": {}
     },
-    "com.whop.people#RetrievePersonResponseUsageIpItem": {
+    "com.whop.people#GetPersonResponseUsageIpItem": {
       "type": "structure",
       "members": {
         "events": {
@@ -1782,14 +1783,14 @@
       },
       "traits": {}
     },
-    "com.whop.people#RetrievePersonResponseUsageIpList": {
+    "com.whop.people#GetPersonResponseUsageIpList": {
       "type": "list",
       "member": {
-        "target": "com.whop.people#RetrievePersonResponseUsageIpItem"
+        "target": "com.whop.people#GetPersonResponseUsageIpItem"
       },
       "traits": {}
     },
-    "com.whop.people#RetrievePersonResponseUsageOsItem": {
+    "com.whop.people#GetPersonResponseUsageOsItem": {
       "type": "structure",
       "members": {
         "events": {
@@ -1807,14 +1808,14 @@
       },
       "traits": {}
     },
-    "com.whop.people#RetrievePersonResponseUsageOsList": {
+    "com.whop.people#GetPersonResponseUsageOsList": {
       "type": "list",
       "member": {
-        "target": "com.whop.people#RetrievePersonResponseUsageOsItem"
+        "target": "com.whop.people#GetPersonResponseUsageOsItem"
       },
       "traits": {}
     },
-    "com.whop.people#RetrievePersonResponseUsageReferrerItem": {
+    "com.whop.people#GetPersonResponseUsageReferrerItem": {
       "type": "structure",
       "members": {
         "events": {
@@ -1832,14 +1833,14 @@
       },
       "traits": {}
     },
-    "com.whop.people#RetrievePersonResponseUsageReferrerList": {
+    "com.whop.people#GetPersonResponseUsageReferrerList": {
       "type": "list",
       "member": {
-        "target": "com.whop.people#RetrievePersonResponseUsageReferrerItem"
+        "target": "com.whop.people#GetPersonResponseUsageReferrerItem"
       },
       "traits": {}
     },
-    "com.whop.people#RetrievePersonResponseUsageTimezoneItem": {
+    "com.whop.people#GetPersonResponseUsageTimezoneItem": {
       "type": "structure",
       "members": {
         "events": {
@@ -1857,46 +1858,46 @@
       },
       "traits": {}
     },
-    "com.whop.people#RetrievePersonResponseUsageTimezoneList": {
+    "com.whop.people#GetPersonResponseUsageTimezoneList": {
       "type": "list",
       "member": {
-        "target": "com.whop.people#RetrievePersonResponseUsageTimezoneItem"
+        "target": "com.whop.people#GetPersonResponseUsageTimezoneItem"
       },
       "traits": {}
     },
-    "com.whop.people#RetrievePersonResponseUsage": {
+    "com.whop.people#GetPersonResponseUsage": {
       "type": "structure",
       "members": {
         "browser": {
-          "target": "com.whop.people#RetrievePersonResponseUsageBrowserList"
+          "target": "com.whop.people#GetPersonResponseUsageBrowserList"
         },
         "city": {
-          "target": "com.whop.people#RetrievePersonResponseUsageCityList"
+          "target": "com.whop.people#GetPersonResponseUsageCityList"
         },
         "country": {
-          "target": "com.whop.people#RetrievePersonResponseUsageCountryList"
+          "target": "com.whop.people#GetPersonResponseUsageCountryList"
         },
         "device": {
-          "target": "com.whop.people#RetrievePersonResponseUsageDeviceList"
+          "target": "com.whop.people#GetPersonResponseUsageDeviceList"
         },
         "ip": {
-          "target": "com.whop.people#RetrievePersonResponseUsageIpList"
+          "target": "com.whop.people#GetPersonResponseUsageIpList"
         },
         "os": {
-          "target": "com.whop.people#RetrievePersonResponseUsageOsList"
+          "target": "com.whop.people#GetPersonResponseUsageOsList"
         },
         "referrer": {
-          "target": "com.whop.people#RetrievePersonResponseUsageReferrerList"
+          "target": "com.whop.people#GetPersonResponseUsageReferrerList"
         },
         "timezone": {
-          "target": "com.whop.people#RetrievePersonResponseUsageTimezoneList"
+          "target": "com.whop.people#GetPersonResponseUsageTimezoneList"
         }
       },
       "traits": {
         "smithy.api#documentation": "Exact usage breakdowns for the person's browser traffic (distinct events per value)."
       }
     },
-    "com.whop.people#RetrievePersonResponseUser": {
+    "com.whop.people#GetPersonResponseUser": {
       "type": "structure",
       "members": {
         "id": {
@@ -1928,7 +1929,7 @@
         "smithy.api#documentation": "The person's primary whop user, when one of their identities is a whop account."
       }
     },
-    "com.whop.people#RetrievePersonResponseUserIdsList": {
+    "com.whop.people#GetPersonResponseUserIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -1937,7 +1938,7 @@
         "smithy.api#documentation": "Every linked whop account, the most used one first."
       }
     },
-    "com.whop.people#RetrievePersonResponse": {
+    "com.whop.people#GetPersonResponse": {
       "type": "structure",
       "members": {
         "account_id": {
@@ -1950,13 +1951,13 @@
           "target": "smithy.api#Double"
         },
         "audience_ids": {
-          "target": "com.whop.people#RetrievePersonResponseAudienceIdsList"
+          "target": "com.whop.people#GetPersonResponseAudienceIdsList"
         },
         "custom_event_names": {
-          "target": "com.whop.people#RetrievePersonResponseCustomEventNamesList"
+          "target": "com.whop.people#GetPersonResponseCustomEventNamesList"
         },
         "device": {
-          "target": "com.whop.people#RetrievePersonResponseDevice"
+          "target": "com.whop.people#GetPersonResponseDevice"
         },
         "email": {
           "target": "smithy.api#String",
@@ -1966,7 +1967,7 @@
           }
         },
         "emails": {
-          "target": "com.whop.people#RetrievePersonResponseEmailsList",
+          "target": "com.whop.people#GetPersonResponseEmailsList",
           "traits": {
             "smithy.api#documentation": "Every linked email, primary first."
           }
@@ -1978,7 +1979,7 @@
           }
         },
         "event_names": {
-          "target": "com.whop.people#RetrievePersonResponseEventNamesList"
+          "target": "com.whop.people#GetPersonResponseEventNamesList"
         },
         "first_purchase_at": {
           "target": "smithy.api#String",
@@ -1993,7 +1994,7 @@
           }
         },
         "first_source": {
-          "target": "com.whop.people#RetrievePersonResponseFirstSource",
+          "target": "com.whop.people#GetPersonResponseFirstSource",
           "traits": {
             "smithy.api#documentation": "Where a visit came from: a whop ad click, a lead form, an external ad, or a referring site.",
             "com.distilled.openapi#nullable": {}
@@ -2024,20 +2025,20 @@
           }
         },
         "last_source": {
-          "target": "com.whop.people#RetrievePersonResponseLastSource",
+          "target": "com.whop.people#GetPersonResponseLastSource",
           "traits": {
             "smithy.api#documentation": "Where a visit came from: a whop ad click, a lead form, an external ad, or a referring site.",
             "com.distilled.openapi#nullable": {}
           }
         },
         "location": {
-          "target": "com.whop.people#RetrievePersonResponseLocation"
+          "target": "com.whop.people#GetPersonResponseLocation"
         },
         "ltv": {
           "target": "smithy.api#Double"
         },
         "member": {
-          "target": "com.whop.people#RetrievePersonResponseMember",
+          "target": "com.whop.people#GetPersonResponseMember",
           "traits": {
             "smithy.api#documentation": "The user's member record at this account, when they are a member of it.",
             "com.distilled.openapi#nullable": {}
@@ -2051,7 +2052,7 @@
           }
         },
         "names": {
-          "target": "com.whop.people#RetrievePersonResponseNamesList",
+          "target": "com.whop.people#GetPersonResponseNamesList",
           "traits": {
             "smithy.api#documentation": "Every name the person's linked identities carried, primary first."
           }
@@ -2064,7 +2065,7 @@
           }
         },
         "phones": {
-          "target": "com.whop.people#RetrievePersonResponsePhonesList",
+          "target": "com.whop.people#GetPersonResponsePhonesList",
           "traits": {
             "smithy.api#documentation": "Every linked phone, primary first."
           }
@@ -2076,13 +2077,13 @@
           }
         },
         "purchases": {
-          "target": "com.whop.people#RetrievePersonResponsePurchasesList"
+          "target": "com.whop.people#GetPersonResponsePurchasesList"
         },
         "roles": {
-          "target": "com.whop.people#RetrievePersonResponseRolesList"
+          "target": "com.whop.people#GetPersonResponseRolesList"
         },
         "sources": {
-          "target": "com.whop.people#RetrievePersonResponseSourcesList",
+          "target": "com.whop.people#GetPersonResponseSourcesList",
           "traits": {
             "smithy.api#documentation": "Every distinct acquisition signal the person ever carried, ad entities hydrated."
           }
@@ -2094,20 +2095,20 @@
           }
         },
         "usage": {
-          "target": "com.whop.people#RetrievePersonResponseUsage",
+          "target": "com.whop.people#GetPersonResponseUsage",
           "traits": {
             "smithy.api#documentation": "Exact usage breakdowns for the person's browser traffic (distinct events per value)."
           }
         },
         "user": {
-          "target": "com.whop.people#RetrievePersonResponseUser",
+          "target": "com.whop.people#GetPersonResponseUser",
           "traits": {
             "smithy.api#documentation": "The person's primary whop user, when one of their identities is a whop account.",
             "com.distilled.openapi#nullable": {}
           }
         },
         "user_ids": {
-          "target": "com.whop.people#RetrievePersonResponseUserIdsList",
+          "target": "com.whop.people#GetPersonResponseUserIdsList",
           "traits": {
             "smithy.api#documentation": "Every linked whop account, the most used one first."
           }
@@ -2117,13 +2118,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.whop.people#RetrievePerson": {
+    "com.whop.people#GetPerson": {
       "type": "operation",
       "input": {
-        "target": "com.whop.people#RetrievePersonRequest"
+        "target": "com.whop.people#GetPersonRequest"
       },
       "output": {
-        "target": "com.whop.people#RetrievePersonResponse"
+        "target": "com.whop.people#GetPersonResponse"
       },
       "errors": [
         {
@@ -2173,7 +2174,7 @@
           "target": "com.whop.people#ListPeople"
         },
         {
-          "target": "com.whop.people#RetrievePerson"
+          "target": "com.whop.people#GetPerson"
         }
       ],
       "traits": {

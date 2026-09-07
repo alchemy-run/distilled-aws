@@ -14,59 +14,10 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.cloudflare.url_normalization#DeleteRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The unique ID of the zone.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
-    "com.cloudflare.url_normalization#Delete": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.url_normalization#DeleteRequest"
-      },
-      "output": {
-        "target": "smithy.api#Unit"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "/zones/{zone_id}/url_normalization",
-          "code": 200
-        },
-        "smithy.api#documentation": "Deletes the URL Normalization settings.",
-        "smithy.api#idempotent": {}
-      }
-    },
-    "com.cloudflare.url_normalization#GetRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The unique ID of the zone.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.url_normalization#GetResponseScope": {
       "type": "enum",
       "members": {
@@ -105,47 +56,6 @@
             "smithy.api#enumValue": "rfc3986"
           }
         }
-      }
-    },
-    "com.cloudflare.url_normalization#GetResponse": {
-      "type": "structure",
-      "members": {
-        "scope": {
-          "target": "com.cloudflare.url_normalization#GetResponseScope",
-          "traits": {
-            "smithy.api#documentation": "The scope of the URL normalization.",
-            "smithy.api#required": {}
-          }
-        },
-        "type": {
-          "target": "com.cloudflare.url_normalization#GetResponseType",
-          "traits": {
-            "smithy.api#documentation": "The type of URL normalization performed by Cloudflare.",
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.url_normalization#Get": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.url_normalization#GetRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.url_normalization#GetResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/zones/{zone_id}/url_normalization",
-          "code": 200
-        },
-        "smithy.api#documentation": "Fetches the current URL Normalization settings.",
-        "smithy.api#readonly": {}
       }
     },
     "com.cloudflare.url_normalization#UpdateRequestScope": {
@@ -188,36 +98,6 @@
         }
       }
     },
-    "com.cloudflare.url_normalization#UpdateRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The unique ID of the zone.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "scope": {
-          "target": "com.cloudflare.url_normalization#UpdateRequestScope",
-          "traits": {
-            "smithy.api#documentation": "The scope of the URL normalization.",
-            "smithy.api#required": {}
-          }
-        },
-        "type": {
-          "target": "com.cloudflare.url_normalization#UpdateRequestType",
-          "traits": {
-            "smithy.api#documentation": "The type of URL normalization performed by Cloudflare.",
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.url_normalization#UpdateResponseScope": {
       "type": "enum",
       "members": {
@@ -258,7 +138,200 @@
         }
       }
     },
-    "com.cloudflare.url_normalization#UpdateResponse": {
+    "com.cloudflare.url_normalization#UrlNormalization": {
+      "type": "service",
+      "version": "4.0",
+      "operations": [
+        {
+          "target": "com.cloudflare.url_normalization#DeleteUrlNormalization"
+        },
+        {
+          "target": "com.cloudflare.url_normalization#GetUrlNormalization"
+        },
+        {
+          "target": "com.cloudflare.url_normalization#PutUrlNormalization"
+        }
+      ],
+      "traits": {
+        "com.cloudflare.protocols#v4Json": {},
+        "smithy.api#title": "Cloudflare UrlNormalization",
+        "smithy.api#documentation": "Cloudflare API — url_normalization resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+      }
+    },
+    "com.cloudflare.url_normalization#Forbidden": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.cloudflare.url_normalization#DeleteUrlNormalization": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.url_normalization#DeleteUrlNormalizationRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/zones/{zone_id}/url_normalization",
+          "code": 200
+        },
+        "smithy.api#documentation": "Deletes the URL Normalization settings.",
+        "smithy.api#idempotent": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.url_normalization#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.url_normalization#DeleteUrlNormalizationRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique ID of the zone.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.url_normalization#GetUrlNormalization": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.url_normalization#GetUrlNormalizationRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.url_normalization#GetUrlNormalizationResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/url_normalization",
+          "code": 200
+        },
+        "smithy.api#documentation": "Fetches the current URL Normalization settings.",
+        "smithy.api#readonly": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.url_normalization#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.url_normalization#GetUrlNormalizationRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique ID of the zone.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.url_normalization#GetUrlNormalizationResponse": {
+      "type": "structure",
+      "members": {
+        "scope": {
+          "target": "com.cloudflare.url_normalization#GetResponseScope",
+          "traits": {
+            "smithy.api#documentation": "The scope of the URL normalization.",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.cloudflare.url_normalization#GetResponseType",
+          "traits": {
+            "smithy.api#documentation": "The type of URL normalization performed by Cloudflare.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.url_normalization#PutUrlNormalization": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.url_normalization#PutUrlNormalizationRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.url_normalization#PutUrlNormalizationResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/zones/{zone_id}/url_normalization",
+          "code": 200
+        },
+        "smithy.api#documentation": "Updates the URL Normalization settings.",
+        "smithy.api#idempotent": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.url_normalization#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.url_normalization#PutUrlNormalizationRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique ID of the zone.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "scope": {
+          "target": "com.cloudflare.url_normalization#UpdateRequestScope",
+          "traits": {
+            "smithy.api#documentation": "The scope of the URL normalization.",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.cloudflare.url_normalization#UpdateRequestType",
+          "traits": {
+            "smithy.api#documentation": "The type of URL normalization performed by Cloudflare.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.url_normalization#PutUrlNormalizationResponse": {
       "type": "structure",
       "members": {
         "scope": {
@@ -279,44 +352,6 @@
       "traits": {
         "smithy.api#output": {},
         "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.url_normalization#Update": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.url_normalization#UpdateRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.url_normalization#UpdateResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "PUT",
-          "uri": "/zones/{zone_id}/url_normalization",
-          "code": 200
-        },
-        "smithy.api#documentation": "Updates the URL Normalization settings.",
-        "smithy.api#idempotent": {}
-      }
-    },
-    "com.cloudflare.url_normalization#UrlNormalization": {
-      "type": "service",
-      "version": "4.0",
-      "operations": [
-        {
-          "target": "com.cloudflare.url_normalization#Delete"
-        },
-        {
-          "target": "com.cloudflare.url_normalization#Get"
-        },
-        {
-          "target": "com.cloudflare.url_normalization#Update"
-        }
-      ],
-      "traits": {
-        "com.cloudflare.protocols#v4Json": {},
-        "smithy.api#title": "Cloudflare UrlNormalization",
-        "smithy.api#documentation": "Cloudflare API — url_normalization resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
       }
     }
   }

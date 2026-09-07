@@ -12,8 +12,8 @@ import * as Retry from "../retry.ts";
 
 export type { ModalOpError, ModalOpContext };
 
-export interface AuthTokenGetRequest {}
-export const AuthTokenGetRequest = /*@__PURE__*/ S.suspend(() =>
+export interface GetAuthTokenRequest {}
+export const GetAuthTokenRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
     T.Http({
       method: "POST",
@@ -22,30 +22,30 @@ export const AuthTokenGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "AuthTokenGetRequest",
-}) as any as S.Schema<AuthTokenGetRequest>;
+  identifier: "GetAuthTokenRequest",
+}) as any as S.Schema<GetAuthTokenRequest>;
 
-export interface AuthTokenGetResponse {
+export interface GetAuthTokenResponse {
   token?: string;
 }
-export const AuthTokenGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetAuthTokenResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     token: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "AuthTokenGetResponse",
-}) as any as S.Schema<AuthTokenGetResponse>;
+  identifier: "GetAuthTokenResponse",
+}) as any as S.Schema<GetAuthTokenResponse>;
 
-export type AuthTokenGetError = ModalOpError;
+export type GetAuthTokenError = ModalOpError;
 /** Auth Token */
-export const authTokenGet: API.OperationMethod<
-  AuthTokenGetRequest,
-  AuthTokenGetResponse,
-  AuthTokenGetError,
+export const getAuthToken: API.OperationMethod<
+  GetAuthTokenRequest,
+  GetAuthTokenResponse,
+  GetAuthTokenError,
   ModalOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AuthTokenGetRequest,
-  output: AuthTokenGetResponse,
+  input: GetAuthTokenRequest,
+  output: GetAuthTokenResponse,
   errors: [UnknownModalError],
   protocol: ModalProtocol,
   retry: Retry.Retry,

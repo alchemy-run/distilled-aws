@@ -14,24 +14,15 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "keyDictionary": {
+      "ipv4Cidrs": "ipv4_cidrs",
+      "ipv6Cidrs": "ipv6_cidrs",
+      "jdcloudCidrs": "jdcloud_cidrs"
+    },
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.cloudflare.ips#ListRequest": {
-      "type": "structure",
-      "members": {
-        "networks": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Specified as `jdcloud` to list IPs used by JD Cloud data centers.",
-            "smithy.api#httpQuery": "networks"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.ips#ListResultPublicIPIPsIpv4CidrsList": {
       "type": "list",
       "member": {
@@ -125,7 +116,54 @@
         }
       }
     },
-    "com.cloudflare.ips#ListResponse": {
+    "com.cloudflare.ips#Ips": {
+      "type": "service",
+      "version": "4.0",
+      "operations": [
+        {
+          "target": "com.cloudflare.ips#ListIps"
+        }
+      ],
+      "traits": {
+        "com.cloudflare.protocols#v4Json": {},
+        "smithy.api#title": "Cloudflare Ips",
+        "smithy.api#documentation": "Cloudflare API — ips resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+      }
+    },
+    "com.cloudflare.ips#ListIps": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.ips#ListIpsRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.ips#ListIpsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/ips",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get IPs used on the Cloudflare/JD Cloud network, see https://www.cloudflare.com/ips for Cloudflare IPs or https://developers.cloudflare.com/china-network/reference/infrastructure/ for JD Cloud IPs.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.ips#ListIpsRequest": {
+      "type": "structure",
+      "members": {
+        "networks": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specified as `jdcloud` to list IPs used by JD Cloud data centers.",
+            "smithy.api#httpQuery": "networks"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.ips#ListIpsResponse": {
       "type": "structure",
       "members": {
         "result": {
@@ -138,38 +176,6 @@
       },
       "traits": {
         "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.ips#List": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.ips#ListRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.ips#ListResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/ips",
-          "code": 200
-        },
-        "smithy.api#documentation": "Get IPs used on the Cloudflare/JD Cloud network, see https://www.cloudflare.com/ips for Cloudflare IPs or https://developers.cloudflare.com/china-network/reference/infrastructure/ for JD Cloud IPs.",
-        "smithy.api#readonly": {}
-      }
-    },
-    "com.cloudflare.ips#Ips": {
-      "type": "service",
-      "version": "4.0",
-      "operations": [
-        {
-          "target": "com.cloudflare.ips#List"
-        }
-      ],
-      "traits": {
-        "com.cloudflare.protocols#v4Json": {},
-        "smithy.api#title": "Cloudflare Ips",
-        "smithy.api#documentation": "Cloudflare API — ips resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
       }
     }
   }

@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.warehouse_expressions#WarehouseExpressionsListRequest": {
+    "com.posthog.warehouse_expressions#ListWarehouseExpressionsRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -291,10 +292,10 @@
       },
       "traits": {}
     },
-    "com.posthog.warehouse_expressions#WarehouseExpressionsList": {
+    "com.posthog.warehouse_expressions#ListWarehouseExpressions": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.warehouse_expressions#WarehouseExpressionsListRequest"
+        "target": "com.posthog.warehouse_expressions#ListWarehouseExpressionsRequest"
       },
       "output": {
         "target": "com.posthog.warehouse_expressions#PaginatedDataWarehouseExpressionList"
@@ -308,7 +309,7 @@
         "smithy.api#documentation": "Create, read, update and delete saved HogQL expressions that appear as virtual fields on tables."
       }
     },
-    "com.posthog.warehouse_expressions#WarehouseExpressionsCreateRequest": {
+    "com.posthog.warehouse_expressions#CreateWarehouseExpressionRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -359,10 +360,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.warehouse_expressions#WarehouseExpressionsCreate": {
+    "com.posthog.warehouse_expressions#CreateWarehouseExpression": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.warehouse_expressions#WarehouseExpressionsCreateRequest"
+        "target": "com.posthog.warehouse_expressions#CreateWarehouseExpressionRequest"
       },
       "output": {
         "target": "com.posthog.warehouse_expressions#DataWarehouseExpression"
@@ -376,7 +377,7 @@
         "smithy.api#documentation": "Create, read, update and delete saved HogQL expressions that appear as virtual fields on tables."
       }
     },
-    "com.posthog.warehouse_expressions#WarehouseExpressionsRetrieveRequest": {
+    "com.posthog.warehouse_expressions#GetWarehouseExpressionRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -400,10 +401,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.warehouse_expressions#WarehouseExpressionsRetrieve": {
+    "com.posthog.warehouse_expressions#GetWarehouseExpression": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.warehouse_expressions#WarehouseExpressionsRetrieveRequest"
+        "target": "com.posthog.warehouse_expressions#GetWarehouseExpressionRequest"
       },
       "output": {
         "target": "com.posthog.warehouse_expressions#DataWarehouseExpression"
@@ -417,7 +418,7 @@
         "smithy.api#documentation": "Create, read, update and delete saved HogQL expressions that appear as virtual fields on tables."
       }
     },
-    "com.posthog.warehouse_expressions#WarehouseExpressionsUpdateRequest": {
+    "com.posthog.warehouse_expressions#UpdateWarehouseExpressionRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -476,10 +477,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.warehouse_expressions#WarehouseExpressionsUpdate": {
+    "com.posthog.warehouse_expressions#UpdateWarehouseExpression": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.warehouse_expressions#WarehouseExpressionsUpdateRequest"
+        "target": "com.posthog.warehouse_expressions#UpdateWarehouseExpressionRequest"
       },
       "output": {
         "target": "com.posthog.warehouse_expressions#DataWarehouseExpression"
@@ -493,7 +494,7 @@
         "smithy.api#documentation": "Create, read, update and delete saved HogQL expressions that appear as virtual fields on tables."
       }
     },
-    "com.posthog.warehouse_expressions#WarehouseExpressionsPartialUpdateRequest": {
+    "com.posthog.warehouse_expressions#UpdateWarehouseExpressionsPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -549,10 +550,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.warehouse_expressions#WarehouseExpressionsPartialUpdate": {
+    "com.posthog.warehouse_expressions#UpdateWarehouseExpressionsPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.warehouse_expressions#WarehouseExpressionsPartialUpdateRequest"
+        "target": "com.posthog.warehouse_expressions#UpdateWarehouseExpressionsPartialRequest"
       },
       "output": {
         "target": "com.posthog.warehouse_expressions#DataWarehouseExpression"
@@ -612,19 +613,19 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.warehouse_expressions#WarehouseExpressionsList"
+          "target": "com.posthog.warehouse_expressions#ListWarehouseExpressions"
         },
         {
-          "target": "com.posthog.warehouse_expressions#WarehouseExpressionsCreate"
+          "target": "com.posthog.warehouse_expressions#CreateWarehouseExpression"
         },
         {
-          "target": "com.posthog.warehouse_expressions#WarehouseExpressionsRetrieve"
+          "target": "com.posthog.warehouse_expressions#GetWarehouseExpression"
         },
         {
-          "target": "com.posthog.warehouse_expressions#WarehouseExpressionsUpdate"
+          "target": "com.posthog.warehouse_expressions#UpdateWarehouseExpression"
         },
         {
-          "target": "com.posthog.warehouse_expressions#WarehouseExpressionsPartialUpdate"
+          "target": "com.posthog.warehouse_expressions#UpdateWarehouseExpressionsPartial"
         },
         {
           "target": "com.posthog.warehouse_expressions#WarehouseExpressionsDestroy"

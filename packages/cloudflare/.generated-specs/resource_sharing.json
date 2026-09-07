@@ -14,7 +14,28 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "keyDictionary": {
+      "accountId": "account_id",
+      "accountName": "account_name",
+      "associatedRecipientCount": "associated_recipient_count",
+      "associatingRecipientCount": "associating_recipient_count",
+      "associationStatus": "association_status",
+      "bodyAccountId": "body_account_id",
+      "disassociatedRecipientCount": "disassociated_recipient_count",
+      "disassociatingRecipientCount": "disassociating_recipient_count",
+      "organizationId": "organization_id",
+      "perPage": "per_page",
+      "recipientAccountId": "recipient_account_id",
+      "resourceAccountId": "resource_account_id",
+      "resourceId": "resource_id",
+      "resourceType": "resource_type",
+      "resourceVersion": "resource_version",
+      "resultInfo": "result_info",
+      "targetType": "target_type",
+      "totalCount": "total_count"
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.resource_sharing#CreateRequestRecipientsItem": {
@@ -124,41 +145,6 @@
       "type": "list",
       "member": {
         "target": "com.cloudflare.resource_sharing#CreateRequestResourcesItem"
-      }
-    },
-    "com.cloudflare.resource_sharing#CreateRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Account identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name of the share.",
-            "smithy.api#required": {}
-          }
-        },
-        "recipients": {
-          "target": "com.cloudflare.resource_sharing#CreateRequestRecipientsList",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "resources": {
-          "target": "com.cloudflare.resource_sharing#CreateRequestResourcesList",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.resource_sharing#CreateResponseStatus": {
@@ -356,150 +342,6 @@
         "target": "com.cloudflare.resource_sharing#CreateResponseResourcesItem"
       }
     },
-    "com.cloudflare.resource_sharing#CreateResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Share identifier tag.",
-            "smithy.api#required": {}
-          }
-        },
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Account identifier.",
-            "smithy.api#required": {}
-          }
-        },
-        "account_name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The display name of an account.",
-            "smithy.api#required": {}
-          }
-        },
-        "created": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "When the share was created.",
-            "smithy.api#required": {}
-          }
-        },
-        "modified": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "When the share was modified.",
-            "smithy.api#required": {}
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name of the share.",
-            "smithy.api#required": {}
-          }
-        },
-        "organization_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Organization identifier.",
-            "smithy.api#required": {}
-          }
-        },
-        "status": {
-          "target": "com.cloudflare.resource_sharing#CreateResponseStatus",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "target_type": {
-          "target": "com.cloudflare.resource_sharing#CreateResponseTargetType",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "associated_recipient_count": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The number of recipients in the 'associated' state. This field is only included when requested via the 'include_recipient_counts' parameter."
-          }
-        },
-        "associating_recipient_count": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The number of recipients in the 'associating' state. This field is only included when requested via the 'include_recipient_counts' parameter."
-          }
-        },
-        "disassociated_recipient_count": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The number of recipients in the 'disassociated' state. This field is only included when requested via the 'include_recipient_counts' parameter."
-          }
-        },
-        "disassociating_recipient_count": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The number of recipients in the 'disassociating' state. This field is only included when requested via the 'include_recipient_counts' parameter."
-          }
-        },
-        "kind": {
-          "target": "com.cloudflare.resource_sharing#CreateResponseKind"
-        },
-        "resources": {
-          "target": "com.cloudflare.resource_sharing#CreateResponseResourcesList",
-          "traits": {
-            "smithy.api#documentation": "A list of resources that are part of the share. This field is only included when requested via the 'include_resources' parameter."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.resource_sharing#Create": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.resource_sharing#CreateRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.resource_sharing#CreateResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "/accounts/{account_id}/shares",
-          "code": 200
-        },
-        "smithy.api#documentation": "Creates a new resource share for sharing Cloudflare resources with other accounts or organizations."
-      }
-    },
-    "com.cloudflare.resource_sharing#DeleteRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Account identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "share_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Share identifier tag.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.resource_sharing#DeleteResponseStatus": {
       "type": "enum",
       "members": {
@@ -693,165 +535,6 @@
       "type": "list",
       "member": {
         "target": "com.cloudflare.resource_sharing#DeleteResponseResourcesItem"
-      }
-    },
-    "com.cloudflare.resource_sharing#DeleteResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Share identifier tag.",
-            "smithy.api#required": {}
-          }
-        },
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Account identifier.",
-            "smithy.api#required": {}
-          }
-        },
-        "account_name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The display name of an account.",
-            "smithy.api#required": {}
-          }
-        },
-        "created": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "When the share was created.",
-            "smithy.api#required": {}
-          }
-        },
-        "modified": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "When the share was modified.",
-            "smithy.api#required": {}
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name of the share.",
-            "smithy.api#required": {}
-          }
-        },
-        "organization_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Organization identifier.",
-            "smithy.api#required": {}
-          }
-        },
-        "status": {
-          "target": "com.cloudflare.resource_sharing#DeleteResponseStatus",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "target_type": {
-          "target": "com.cloudflare.resource_sharing#DeleteResponseTargetType",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "associated_recipient_count": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The number of recipients in the 'associated' state. This field is only included when requested via the 'include_recipient_counts' parameter."
-          }
-        },
-        "associating_recipient_count": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The number of recipients in the 'associating' state. This field is only included when requested via the 'include_recipient_counts' parameter."
-          }
-        },
-        "disassociated_recipient_count": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The number of recipients in the 'disassociated' state. This field is only included when requested via the 'include_recipient_counts' parameter."
-          }
-        },
-        "disassociating_recipient_count": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The number of recipients in the 'disassociating' state. This field is only included when requested via the 'include_recipient_counts' parameter."
-          }
-        },
-        "kind": {
-          "target": "com.cloudflare.resource_sharing#DeleteResponseKind"
-        },
-        "resources": {
-          "target": "com.cloudflare.resource_sharing#DeleteResponseResourcesList",
-          "traits": {
-            "smithy.api#documentation": "A list of resources that are part of the share. This field is only included when requested via the 'include_resources' parameter."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.resource_sharing#Delete": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.resource_sharing#DeleteRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.resource_sharing#DeleteResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "/accounts/{account_id}/shares/{share_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Deletion is not immediate, an updated share object with a new status will be returned.",
-        "smithy.api#idempotent": {}
-      }
-    },
-    "com.cloudflare.resource_sharing#GetRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Account identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "share_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Share identifier tag.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "include_recipient_counts": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Include recipient counts in the response.",
-            "smithy.api#httpQuery": "include_recipient_counts"
-          }
-        },
-        "include_resources": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Include resources in the response.",
-            "smithy.api#httpQuery": "include_resources"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.resource_sharing#GetResponseStatus": {
@@ -1049,127 +732,6 @@
         "target": "com.cloudflare.resource_sharing#GetResponseResourcesItem"
       }
     },
-    "com.cloudflare.resource_sharing#GetResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Share identifier tag.",
-            "smithy.api#required": {}
-          }
-        },
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Account identifier.",
-            "smithy.api#required": {}
-          }
-        },
-        "account_name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The display name of an account.",
-            "smithy.api#required": {}
-          }
-        },
-        "created": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "When the share was created.",
-            "smithy.api#required": {}
-          }
-        },
-        "modified": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "When the share was modified.",
-            "smithy.api#required": {}
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name of the share.",
-            "smithy.api#required": {}
-          }
-        },
-        "organization_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Organization identifier.",
-            "smithy.api#required": {}
-          }
-        },
-        "status": {
-          "target": "com.cloudflare.resource_sharing#GetResponseStatus",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "target_type": {
-          "target": "com.cloudflare.resource_sharing#GetResponseTargetType",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "associated_recipient_count": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The number of recipients in the 'associated' state. This field is only included when requested via the 'include_recipient_counts' parameter."
-          }
-        },
-        "associating_recipient_count": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The number of recipients in the 'associating' state. This field is only included when requested via the 'include_recipient_counts' parameter."
-          }
-        },
-        "disassociated_recipient_count": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The number of recipients in the 'disassociated' state. This field is only included when requested via the 'include_recipient_counts' parameter."
-          }
-        },
-        "disassociating_recipient_count": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The number of recipients in the 'disassociating' state. This field is only included when requested via the 'include_recipient_counts' parameter."
-          }
-        },
-        "kind": {
-          "target": "com.cloudflare.resource_sharing#GetResponseKind"
-        },
-        "resources": {
-          "target": "com.cloudflare.resource_sharing#GetResponseResourcesList",
-          "traits": {
-            "smithy.api#documentation": "A list of resources that are part of the share. This field is only included when requested via the 'include_resources' parameter."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.resource_sharing#Get": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.resource_sharing#GetRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.resource_sharing#GetResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/accounts/{account_id}/shares/{share_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Fetches share by ID.",
-        "smithy.api#readonly": {}
-      }
-    },
     "com.cloudflare.resource_sharing#ListRequestDirection": {
       "type": "enum",
       "members": {
@@ -1312,99 +874,6 @@
             "smithy.api#enumValue": "organization"
           }
         }
-      }
-    },
-    "com.cloudflare.resource_sharing#ListRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Account identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "direction": {
-          "target": "com.cloudflare.resource_sharing#ListRequestDirection",
-          "traits": {
-            "smithy.api#documentation": "Direction to sort objects.",
-            "smithy.api#httpQuery": "direction"
-          }
-        },
-        "include_recipient_counts": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Include recipient counts in the response.",
-            "smithy.api#httpQuery": "include_recipient_counts"
-          }
-        },
-        "include_resources": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Include resources in the response.",
-            "smithy.api#httpQuery": "include_resources"
-          }
-        },
-        "kind": {
-          "target": "com.cloudflare.resource_sharing#ListRequestKind",
-          "traits": {
-            "smithy.api#documentation": "Filter shares by kind.",
-            "smithy.api#httpQuery": "kind"
-          }
-        },
-        "order": {
-          "target": "com.cloudflare.resource_sharing#ListRequestOrder",
-          "traits": {
-            "smithy.api#documentation": "Order shares by values in the given field.",
-            "smithy.api#httpQuery": "order"
-          }
-        },
-        "page": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Page number. Defaults to `1` when `per_page` is supplied without",
-            "smithy.api#httpQuery": "page"
-          }
-        },
-        "per_page": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Number of objects to return per page. Defaults to `20` when `page`",
-            "smithy.api#httpQuery": "per_page"
-          }
-        },
-        "resource_types": {
-          "target": "com.cloudflare.resource_sharing#ListRequestResourceTypesList",
-          "traits": {
-            "smithy.api#documentation": "Filter share resources by resource_types.",
-            "smithy.api#httpQuery": "resource_types"
-          }
-        },
-        "status": {
-          "target": "com.cloudflare.resource_sharing#ListRequestStatus",
-          "traits": {
-            "smithy.api#documentation": "Filter shares by status.",
-            "smithy.api#httpQuery": "status"
-          }
-        },
-        "tag": {
-          "target": "com.cloudflare.resource_sharing#ListRequestTagList",
-          "traits": {
-            "smithy.api#documentation": "Filter shares by tag. Each value is either `key=value` (matches shares whose tags contain that key/value pair) or `key` alone (matches shares that have any value for that key). May be repeated; multiple `tag` parameters are ANDed together. Maximum 20 `tag` parameters per request.",
-            "smithy.api#httpQuery": "tag"
-          }
-        },
-        "target_type": {
-          "target": "com.cloudflare.resource_sharing#ListRequestTargetType",
-          "traits": {
-            "smithy.api#documentation": "Filter shares by target_type.",
-            "smithy.api#httpQuery": "target_type"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.resource_sharing#ListResultItemStatus": {
@@ -1707,70 +1176,6 @@
         "target": "com.cloudflare.resource_sharing#ListResultItem"
       }
     },
-    "com.cloudflare.resource_sharing#ListResponse": {
-      "type": "structure",
-      "members": {
-        "result": {
-          "target": "com.cloudflare.resource_sharing#ListResultList",
-          "traits": {
-            "com.cloudflare.protocols#envelopePayload": {},
-            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.resource_sharing#List": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.resource_sharing#ListRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.resource_sharing#ListResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/accounts/{account_id}/shares",
-          "code": 200
-        },
-        "smithy.api#documentation": "Lists all account shares.",
-        "smithy.api#readonly": {}
-      }
-    },
-    "com.cloudflare.resource_sharing#UpdateRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Account identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "share_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Share identifier tag.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name of the share.",
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.resource_sharing#UpdateResponseStatus": {
       "type": "enum",
       "members": {
@@ -1966,170 +1371,6 @@
         "target": "com.cloudflare.resource_sharing#UpdateResponseResourcesItem"
       }
     },
-    "com.cloudflare.resource_sharing#UpdateResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Share identifier tag.",
-            "smithy.api#required": {}
-          }
-        },
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Account identifier.",
-            "smithy.api#required": {}
-          }
-        },
-        "account_name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The display name of an account.",
-            "smithy.api#required": {}
-          }
-        },
-        "created": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "When the share was created.",
-            "smithy.api#required": {}
-          }
-        },
-        "modified": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "When the share was modified.",
-            "smithy.api#required": {}
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name of the share.",
-            "smithy.api#required": {}
-          }
-        },
-        "organization_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Organization identifier.",
-            "smithy.api#required": {}
-          }
-        },
-        "status": {
-          "target": "com.cloudflare.resource_sharing#UpdateResponseStatus",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "target_type": {
-          "target": "com.cloudflare.resource_sharing#UpdateResponseTargetType",
-          "traits": {
-            "smithy.api#required": {}
-          }
-        },
-        "associated_recipient_count": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The number of recipients in the 'associated' state. This field is only included when requested via the 'include_recipient_counts' parameter."
-          }
-        },
-        "associating_recipient_count": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The number of recipients in the 'associating' state. This field is only included when requested via the 'include_recipient_counts' parameter."
-          }
-        },
-        "disassociated_recipient_count": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The number of recipients in the 'disassociated' state. This field is only included when requested via the 'include_recipient_counts' parameter."
-          }
-        },
-        "disassociating_recipient_count": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "The number of recipients in the 'disassociating' state. This field is only included when requested via the 'include_recipient_counts' parameter."
-          }
-        },
-        "kind": {
-          "target": "com.cloudflare.resource_sharing#UpdateResponseKind"
-        },
-        "resources": {
-          "target": "com.cloudflare.resource_sharing#UpdateResponseResourcesList",
-          "traits": {
-            "smithy.api#documentation": "A list of resources that are part of the share. This field is only included when requested via the 'include_resources' parameter."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.resource_sharing#Update": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.resource_sharing#UpdateRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.resource_sharing#UpdateResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "PUT",
-          "uri": "/accounts/{account_id}/shares/{share_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Updating is not immediate, an updated share object with a new status will be returned.",
-        "smithy.api#idempotent": {}
-      }
-    },
-    "com.cloudflare.resource_sharing#RecipientsCreateRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Account identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "share_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Share identifier tag.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "account_id_2": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Deprecated alias for `recipient_account_id`. Use `recipient_account_id` instead.",
-            "smithy.api#jsonName": "account_id"
-          }
-        },
-        "organization_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Organization identifier."
-          }
-        },
-        "recipient_account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The account that will receive the share."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.resource_sharing#RecipientsCreateResponseAssociationStatus": {
       "type": "enum",
       "members": {
@@ -2196,102 +1437,6 @@
       "type": "list",
       "member": {
         "target": "com.cloudflare.resource_sharing#RecipientsCreateResponseResourcesItem"
-      }
-    },
-    "com.cloudflare.resource_sharing#RecipientsCreateResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Share Recipient identifier tag.",
-            "smithy.api#required": {}
-          }
-        },
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Account identifier.",
-            "smithy.api#required": {}
-          }
-        },
-        "association_status": {
-          "target": "com.cloudflare.resource_sharing#RecipientsCreateResponseAssociationStatus",
-          "traits": {
-            "smithy.api#documentation": "Share Recipient association status.",
-            "smithy.api#required": {}
-          }
-        },
-        "created": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "When the share was created.",
-            "smithy.api#required": {}
-          }
-        },
-        "modified": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "When the share was modified.",
-            "smithy.api#required": {}
-          }
-        },
-        "resources": {
-          "target": "com.cloudflare.resource_sharing#RecipientsCreateResponseResourcesList"
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.resource_sharing#RecipientsCreate": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.resource_sharing#RecipientsCreateRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.resource_sharing#RecipientsCreateResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "/accounts/{account_id}/shares/{share_id}/recipients",
-          "code": 200
-        },
-        "smithy.api#documentation": "Adds a recipient to a resource share, granting them access to the shared resources."
-      }
-    },
-    "com.cloudflare.resource_sharing#RecipientsDeleteRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Account identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "share_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Share identifier tag.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "recipient_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Share Recipient identifier tag.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.resource_sharing#RecipientsDeleteResponseAssociationStatus": {
@@ -2362,110 +1507,6 @@
         "target": "com.cloudflare.resource_sharing#RecipientsDeleteResponseResourcesItem"
       }
     },
-    "com.cloudflare.resource_sharing#RecipientsDeleteResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Share Recipient identifier tag.",
-            "smithy.api#required": {}
-          }
-        },
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Account identifier.",
-            "smithy.api#required": {}
-          }
-        },
-        "association_status": {
-          "target": "com.cloudflare.resource_sharing#RecipientsDeleteResponseAssociationStatus",
-          "traits": {
-            "smithy.api#documentation": "Share Recipient association status.",
-            "smithy.api#required": {}
-          }
-        },
-        "created": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "When the share was created.",
-            "smithy.api#required": {}
-          }
-        },
-        "modified": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "When the share was modified.",
-            "smithy.api#required": {}
-          }
-        },
-        "resources": {
-          "target": "com.cloudflare.resource_sharing#RecipientsDeleteResponseResourcesList"
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.resource_sharing#RecipientsDelete": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.resource_sharing#RecipientsDeleteRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.resource_sharing#RecipientsDeleteResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "/accounts/{account_id}/shares/{share_id}/recipients/{recipient_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Deletion is not immediate, an updated share recipient object with a new status will be returned.",
-        "smithy.api#idempotent": {}
-      }
-    },
-    "com.cloudflare.resource_sharing#RecipientsGetRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Account identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "share_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Share identifier tag.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "recipient_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Share Recipient identifier tag.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "include_resources": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Include resources in the response.",
-            "smithy.api#httpQuery": "include_resources"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.resource_sharing#RecipientsGetResponseAssociationStatus": {
       "type": "enum",
       "members": {
@@ -2532,116 +1573,6 @@
       "type": "list",
       "member": {
         "target": "com.cloudflare.resource_sharing#RecipientsGetResponseResourcesItem"
-      }
-    },
-    "com.cloudflare.resource_sharing#RecipientsGetResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Share Recipient identifier tag.",
-            "smithy.api#required": {}
-          }
-        },
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Account identifier.",
-            "smithy.api#required": {}
-          }
-        },
-        "association_status": {
-          "target": "com.cloudflare.resource_sharing#RecipientsGetResponseAssociationStatus",
-          "traits": {
-            "smithy.api#documentation": "Share Recipient association status.",
-            "smithy.api#required": {}
-          }
-        },
-        "created": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "When the share was created.",
-            "smithy.api#required": {}
-          }
-        },
-        "modified": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "When the share was modified.",
-            "smithy.api#required": {}
-          }
-        },
-        "resources": {
-          "target": "com.cloudflare.resource_sharing#RecipientsGetResponseResourcesList"
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.resource_sharing#RecipientsGet": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.resource_sharing#RecipientsGetRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.resource_sharing#RecipientsGetResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/accounts/{account_id}/shares/{share_id}/recipients/{recipient_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Get share recipient by ID.",
-        "smithy.api#readonly": {}
-      }
-    },
-    "com.cloudflare.resource_sharing#RecipientsListRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Account identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "share_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Share identifier tag.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "include_resources": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Include resources in the response.",
-            "smithy.api#httpQuery": "include_resources"
-          }
-        },
-        "page": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Page number. Defaults to `1` when `per_page` is supplied without",
-            "smithy.api#httpQuery": "page"
-          }
-        },
-        "per_page": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Number of objects to return per page. Defaults to `20` when `page`",
-            "smithy.api#httpQuery": "per_page"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.resource_sharing#RecipientsListResultItemAssociationStatus": {
@@ -2761,39 +1692,6 @@
         "target": "com.cloudflare.resource_sharing#RecipientsListResultItem"
       }
     },
-    "com.cloudflare.resource_sharing#RecipientsListResponse": {
-      "type": "structure",
-      "members": {
-        "result": {
-          "target": "com.cloudflare.resource_sharing#RecipientsListResultList",
-          "traits": {
-            "com.cloudflare.protocols#envelopePayload": {},
-            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.resource_sharing#RecipientsList": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.resource_sharing#RecipientsListRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.resource_sharing#RecipientsListResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/accounts/{account_id}/shares/{share_id}/recipients",
-          "code": 200
-        },
-        "smithy.api#documentation": "List share recipients by share ID.",
-        "smithy.api#readonly": {}
-      }
-    },
     "com.cloudflare.resource_sharing#ResourcesCreateRequestResourceType": {
       "type": "enum",
       "members": {
@@ -2833,58 +1731,6 @@
             "smithy.api#enumValue": "idp-federation-grant"
           }
         }
-      }
-    },
-    "com.cloudflare.resource_sharing#ResourcesCreateRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Account identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "share_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Share identifier tag.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "meta": {
-          "target": "smithy.api#Document",
-          "traits": {
-            "smithy.api#documentation": "Resource Metadata.",
-            "smithy.api#required": {}
-          }
-        },
-        "resource_account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Account identifier.",
-            "smithy.api#required": {}
-          }
-        },
-        "resource_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Share Resource identifier.",
-            "smithy.api#required": {}
-          }
-        },
-        "resource_type": {
-          "target": "com.cloudflare.resource_sharing#ResourcesCreateRequestResourceType",
-          "traits": {
-            "smithy.api#documentation": "Resource Type.",
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.resource_sharing#ResourcesCreateResponseResourceType": {
@@ -2951,127 +1797,6 @@
         }
       }
     },
-    "com.cloudflare.resource_sharing#ResourcesCreateResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Share Resource identifier.",
-            "smithy.api#required": {}
-          }
-        },
-        "created": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "When the share was created.",
-            "smithy.api#required": {}
-          }
-        },
-        "meta": {
-          "target": "smithy.api#Document",
-          "traits": {
-            "smithy.api#documentation": "Resource Metadata.",
-            "smithy.api#required": {}
-          }
-        },
-        "modified": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "When the share was modified.",
-            "smithy.api#required": {}
-          }
-        },
-        "resource_account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Account identifier.",
-            "smithy.api#required": {}
-          }
-        },
-        "resource_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Share Resource identifier.",
-            "smithy.api#required": {}
-          }
-        },
-        "resource_type": {
-          "target": "com.cloudflare.resource_sharing#ResourcesCreateResponseResourceType",
-          "traits": {
-            "smithy.api#documentation": "Resource Type.",
-            "smithy.api#required": {}
-          }
-        },
-        "resource_version": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Resource Version.",
-            "smithy.api#required": {}
-          }
-        },
-        "status": {
-          "target": "com.cloudflare.resource_sharing#ResourcesCreateResponseStatus",
-          "traits": {
-            "smithy.api#documentation": "Resource Status.",
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.resource_sharing#ResourcesCreate": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.resource_sharing#ResourcesCreateRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.resource_sharing#ResourcesCreateResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "POST",
-          "uri": "/accounts/{account_id}/shares/{share_id}/resources",
-          "code": 200
-        },
-        "smithy.api#documentation": "Adds a resource to an existing share, making it available to share recipients."
-      }
-    },
-    "com.cloudflare.resource_sharing#ResourcesDeleteRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Account identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "share_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Share identifier tag.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "share_resource_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Share Resource identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.resource_sharing#ResourcesDeleteResponseResourceType": {
       "type": "enum",
       "members": {
@@ -3134,128 +1859,6 @@
             "smithy.api#enumValue": "deleted"
           }
         }
-      }
-    },
-    "com.cloudflare.resource_sharing#ResourcesDeleteResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Share Resource identifier.",
-            "smithy.api#required": {}
-          }
-        },
-        "created": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "When the share was created.",
-            "smithy.api#required": {}
-          }
-        },
-        "meta": {
-          "target": "smithy.api#Document",
-          "traits": {
-            "smithy.api#documentation": "Resource Metadata.",
-            "smithy.api#required": {}
-          }
-        },
-        "modified": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "When the share was modified.",
-            "smithy.api#required": {}
-          }
-        },
-        "resource_account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Account identifier.",
-            "smithy.api#required": {}
-          }
-        },
-        "resource_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Share Resource identifier.",
-            "smithy.api#required": {}
-          }
-        },
-        "resource_type": {
-          "target": "com.cloudflare.resource_sharing#ResourcesDeleteResponseResourceType",
-          "traits": {
-            "smithy.api#documentation": "Resource Type.",
-            "smithy.api#required": {}
-          }
-        },
-        "resource_version": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Resource Version.",
-            "smithy.api#required": {}
-          }
-        },
-        "status": {
-          "target": "com.cloudflare.resource_sharing#ResourcesDeleteResponseStatus",
-          "traits": {
-            "smithy.api#documentation": "Resource Status.",
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.resource_sharing#ResourcesDelete": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.resource_sharing#ResourcesDeleteRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.resource_sharing#ResourcesDeleteResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "/accounts/{account_id}/shares/{share_id}/resources/{share_resource_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Deletion is not immediate, an updated share resource object with a new status will be returned.",
-        "smithy.api#idempotent": {}
-      }
-    },
-    "com.cloudflare.resource_sharing#ResourcesGetRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Account identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "share_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Share identifier tag.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "share_resource_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Share Resource identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.resource_sharing#ResourcesGetResponseResourceType": {
@@ -3322,96 +1925,6 @@
         }
       }
     },
-    "com.cloudflare.resource_sharing#ResourcesGetResponse": {
-      "type": "structure",
-      "members": {
-        "id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Share Resource identifier.",
-            "smithy.api#required": {}
-          }
-        },
-        "created": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "When the share was created.",
-            "smithy.api#required": {}
-          }
-        },
-        "meta": {
-          "target": "smithy.api#Document",
-          "traits": {
-            "smithy.api#documentation": "Resource Metadata.",
-            "smithy.api#required": {}
-          }
-        },
-        "modified": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "When the share was modified.",
-            "smithy.api#required": {}
-          }
-        },
-        "resource_account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Account identifier.",
-            "smithy.api#required": {}
-          }
-        },
-        "resource_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Share Resource identifier.",
-            "smithy.api#required": {}
-          }
-        },
-        "resource_type": {
-          "target": "com.cloudflare.resource_sharing#ResourcesGetResponseResourceType",
-          "traits": {
-            "smithy.api#documentation": "Resource Type.",
-            "smithy.api#required": {}
-          }
-        },
-        "resource_version": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Resource Version.",
-            "smithy.api#required": {}
-          }
-        },
-        "status": {
-          "target": "com.cloudflare.resource_sharing#ResourcesGetResponseStatus",
-          "traits": {
-            "smithy.api#documentation": "Resource Status.",
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.resource_sharing#ResourcesGet": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.resource_sharing#ResourcesGetRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.resource_sharing#ResourcesGetResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/accounts/{account_id}/shares/{share_id}/resources/{share_resource_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Get share resource by ID.",
-        "smithy.api#readonly": {}
-      }
-    },
     "com.cloudflare.resource_sharing#ResourcesListRequestResourceType": {
       "type": "enum",
       "members": {
@@ -3474,58 +1987,6 @@
             "smithy.api#enumValue": "deleted"
           }
         }
-      }
-    },
-    "com.cloudflare.resource_sharing#ResourcesListRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Account identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "share_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Share identifier tag.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "page": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Page number. Defaults to `1` when `per_page` is supplied without",
-            "smithy.api#httpQuery": "page"
-          }
-        },
-        "per_page": {
-          "target": "smithy.api#Double",
-          "traits": {
-            "smithy.api#documentation": "Number of objects to return per page. Defaults to `20` when `page`",
-            "smithy.api#httpQuery": "per_page"
-          }
-        },
-        "resource_type": {
-          "target": "com.cloudflare.resource_sharing#ResourcesListRequestResourceType",
-          "traits": {
-            "smithy.api#documentation": "Filter share resources by resource_type.",
-            "smithy.api#httpQuery": "resource_type"
-          }
-        },
-        "status": {
-          "target": "com.cloudflare.resource_sharing#ResourcesListRequestStatus",
-          "traits": {
-            "smithy.api#documentation": "Filter share resources by status.",
-            "smithy.api#httpQuery": "status"
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.resource_sharing#ResourcesListResultItemResourceType": {
@@ -3666,78 +2127,6 @@
         "target": "com.cloudflare.resource_sharing#ResourcesListResultItem"
       }
     },
-    "com.cloudflare.resource_sharing#ResourcesListResponse": {
-      "type": "structure",
-      "members": {
-        "result": {
-          "target": "com.cloudflare.resource_sharing#ResourcesListResultList",
-          "traits": {
-            "com.cloudflare.protocols#envelopePayload": {},
-            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.resource_sharing#ResourcesList": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.resource_sharing#ResourcesListRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.resource_sharing#ResourcesListResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/accounts/{account_id}/shares/{share_id}/resources",
-          "code": 200
-        },
-        "smithy.api#documentation": "List share resources by share ID.",
-        "smithy.api#readonly": {}
-      }
-    },
-    "com.cloudflare.resource_sharing#ResourcesUpdateRequest": {
-      "type": "structure",
-      "members": {
-        "account_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Account identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "share_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Share identifier tag.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "share_resource_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Share Resource identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "meta": {
-          "target": "smithy.api#Document",
-          "traits": {
-            "smithy.api#documentation": "Resource Metadata.",
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.resource_sharing#ResourcesUpdateResponseResourceType": {
       "type": "enum",
       "members": {
@@ -3802,7 +2191,1755 @@
         }
       }
     },
-    "com.cloudflare.resource_sharing#ResourcesUpdateResponse": {
+    "com.cloudflare.resource_sharing#ResourceSharing": {
+      "type": "service",
+      "version": "4.0",
+      "operations": [
+        {
+          "target": "com.cloudflare.resource_sharing#CreateRecipient"
+        },
+        {
+          "target": "com.cloudflare.resource_sharing#CreateResource"
+        },
+        {
+          "target": "com.cloudflare.resource_sharing#CreateResourceSharing"
+        },
+        {
+          "target": "com.cloudflare.resource_sharing#DeleteRecipient"
+        },
+        {
+          "target": "com.cloudflare.resource_sharing#DeleteResource"
+        },
+        {
+          "target": "com.cloudflare.resource_sharing#DeleteResourceSharing"
+        },
+        {
+          "target": "com.cloudflare.resource_sharing#GetRecipient"
+        },
+        {
+          "target": "com.cloudflare.resource_sharing#GetResource"
+        },
+        {
+          "target": "com.cloudflare.resource_sharing#GetResourceSharing"
+        },
+        {
+          "target": "com.cloudflare.resource_sharing#ListRecipients"
+        },
+        {
+          "target": "com.cloudflare.resource_sharing#ListResources"
+        },
+        {
+          "target": "com.cloudflare.resource_sharing#ListResourceSharings"
+        },
+        {
+          "target": "com.cloudflare.resource_sharing#UpdateResource"
+        },
+        {
+          "target": "com.cloudflare.resource_sharing#UpdateResourceSharing"
+        }
+      ],
+      "traits": {
+        "com.cloudflare.protocols#v4Json": {},
+        "smithy.api#title": "Cloudflare ResourceSharing",
+        "smithy.api#documentation": "Cloudflare API — resource_sharing resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+      }
+    },
+    "com.cloudflare.resource_sharing#Forbidden": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.cloudflare.resource_sharing#ShareNotFound": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "code": 1004
+          },
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.cloudflare.resource_sharing#ShareRecipientNotFound": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "code": 1004
+          },
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.cloudflare.resource_sharing#ShareResourceNotFound": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "code": 1004
+          },
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.cloudflare.resource_sharing#CreateRecipient": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.resource_sharing#CreateRecipientRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.resource_sharing#CreateRecipientResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/shares/{share_id}/recipients",
+          "code": 200
+        },
+        "smithy.api#documentation": "Adds a recipient to a resource share, granting them access to the shared resources."
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.resource_sharing#ShareNotFound"
+        },
+        {
+          "target": "com.cloudflare.resource_sharing#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.resource_sharing#CreateRecipientRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "share_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Share identifier tag.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "organization_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Organization identifier."
+          }
+        },
+        "recipient_account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The account that will receive the share."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.resource_sharing#CreateRecipientResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Share Recipient identifier tag.",
+            "smithy.api#required": {}
+          }
+        },
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier.",
+            "smithy.api#required": {}
+          }
+        },
+        "association_status": {
+          "target": "com.cloudflare.resource_sharing#RecipientsCreateResponseAssociationStatus",
+          "traits": {
+            "smithy.api#documentation": "Share Recipient association status.",
+            "smithy.api#required": {}
+          }
+        },
+        "created": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the share was created.",
+            "smithy.api#required": {}
+          }
+        },
+        "modified": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the share was modified.",
+            "smithy.api#required": {}
+          }
+        },
+        "resources": {
+          "target": "com.cloudflare.resource_sharing#RecipientsCreateResponseResourcesList"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.resource_sharing#CreateResource": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.resource_sharing#CreateResourceRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.resource_sharing#CreateResourceResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/shares/{share_id}/resources",
+          "code": 200
+        },
+        "smithy.api#documentation": "Adds a resource to an existing share, making it available to share recipients."
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.resource_sharing#ShareNotFound"
+        },
+        {
+          "target": "com.cloudflare.resource_sharing#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.resource_sharing#CreateResourceRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "share_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Share identifier tag.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "meta": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Resource Metadata.",
+            "smithy.api#required": {}
+          }
+        },
+        "resource_account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier.",
+            "smithy.api#required": {}
+          }
+        },
+        "resource_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Share Resource identifier.",
+            "smithy.api#required": {}
+          }
+        },
+        "resource_type": {
+          "target": "com.cloudflare.resource_sharing#ResourcesCreateRequestResourceType",
+          "traits": {
+            "smithy.api#documentation": "Resource Type.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.resource_sharing#CreateResourceResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Share Resource identifier.",
+            "smithy.api#required": {}
+          }
+        },
+        "created": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the share was created.",
+            "smithy.api#required": {}
+          }
+        },
+        "meta": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Resource Metadata.",
+            "smithy.api#required": {}
+          }
+        },
+        "modified": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the share was modified.",
+            "smithy.api#required": {}
+          }
+        },
+        "resource_account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier.",
+            "smithy.api#required": {}
+          }
+        },
+        "resource_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Share Resource identifier.",
+            "smithy.api#required": {}
+          }
+        },
+        "resource_type": {
+          "target": "com.cloudflare.resource_sharing#ResourcesCreateResponseResourceType",
+          "traits": {
+            "smithy.api#documentation": "Resource Type.",
+            "smithy.api#required": {}
+          }
+        },
+        "resource_version": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Resource Version.",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.cloudflare.resource_sharing#ResourcesCreateResponseStatus",
+          "traits": {
+            "smithy.api#documentation": "Resource Status.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.resource_sharing#CreateResourceSharing": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.resource_sharing#CreateResourceSharingRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.resource_sharing#CreateResourceSharingResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/accounts/{account_id}/shares",
+          "code": 200
+        },
+        "smithy.api#documentation": "Creates a new resource share for sharing Cloudflare resources with other accounts or organizations."
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.resource_sharing#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.resource_sharing#CreateResourceSharingRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the share.",
+            "smithy.api#required": {}
+          }
+        },
+        "recipients": {
+          "target": "com.cloudflare.resource_sharing#CreateRequestRecipientsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "resources": {
+          "target": "com.cloudflare.resource_sharing#CreateRequestResourcesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.resource_sharing#CreateResourceSharingResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Share identifier tag.",
+            "smithy.api#required": {}
+          }
+        },
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier.",
+            "smithy.api#required": {}
+          }
+        },
+        "account_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The display name of an account.",
+            "smithy.api#required": {}
+          }
+        },
+        "created": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the share was created.",
+            "smithy.api#required": {}
+          }
+        },
+        "modified": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the share was modified.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the share.",
+            "smithy.api#required": {}
+          }
+        },
+        "organization_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Organization identifier.",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.cloudflare.resource_sharing#CreateResponseStatus",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "target_type": {
+          "target": "com.cloudflare.resource_sharing#CreateResponseTargetType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "associated_recipient_count": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of recipients in the 'associated' state. This field is only included when requested via the 'include_recipient_counts' parameter."
+          }
+        },
+        "associating_recipient_count": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of recipients in the 'associating' state. This field is only included when requested via the 'include_recipient_counts' parameter."
+          }
+        },
+        "disassociated_recipient_count": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of recipients in the 'disassociated' state. This field is only included when requested via the 'include_recipient_counts' parameter."
+          }
+        },
+        "disassociating_recipient_count": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of recipients in the 'disassociating' state. This field is only included when requested via the 'include_recipient_counts' parameter."
+          }
+        },
+        "kind": {
+          "target": "com.cloudflare.resource_sharing#CreateResponseKind"
+        },
+        "resources": {
+          "target": "com.cloudflare.resource_sharing#CreateResponseResourcesList",
+          "traits": {
+            "smithy.api#documentation": "A list of resources that are part of the share. This field is only included when requested via the 'include_resources' parameter."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.resource_sharing#DeleteRecipient": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.resource_sharing#DeleteRecipientRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.resource_sharing#DeleteRecipientResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/accounts/{account_id}/shares/{share_id}/recipients/{recipient_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Deletion is not immediate, an updated share recipient object with a new status will be returned.",
+        "smithy.api#idempotent": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.resource_sharing#ShareRecipientNotFound"
+        },
+        {
+          "target": "com.cloudflare.resource_sharing#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.resource_sharing#DeleteRecipientRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "share_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Share identifier tag.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "recipient_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Share Recipient identifier tag.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.resource_sharing#DeleteRecipientResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Share Recipient identifier tag.",
+            "smithy.api#required": {}
+          }
+        },
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier.",
+            "smithy.api#required": {}
+          }
+        },
+        "association_status": {
+          "target": "com.cloudflare.resource_sharing#RecipientsDeleteResponseAssociationStatus",
+          "traits": {
+            "smithy.api#documentation": "Share Recipient association status.",
+            "smithy.api#required": {}
+          }
+        },
+        "created": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the share was created.",
+            "smithy.api#required": {}
+          }
+        },
+        "modified": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the share was modified.",
+            "smithy.api#required": {}
+          }
+        },
+        "resources": {
+          "target": "com.cloudflare.resource_sharing#RecipientsDeleteResponseResourcesList"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.resource_sharing#DeleteResource": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.resource_sharing#DeleteResourceRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.resource_sharing#DeleteResourceResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/accounts/{account_id}/shares/{share_id}/resources/{share_resource_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Deletion is not immediate, an updated share resource object with a new status will be returned.",
+        "smithy.api#idempotent": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.resource_sharing#ShareResourceNotFound"
+        },
+        {
+          "target": "com.cloudflare.resource_sharing#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.resource_sharing#DeleteResourceRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "share_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Share identifier tag.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "share_resource_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Share Resource identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.resource_sharing#DeleteResourceResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Share Resource identifier.",
+            "smithy.api#required": {}
+          }
+        },
+        "created": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the share was created.",
+            "smithy.api#required": {}
+          }
+        },
+        "meta": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Resource Metadata.",
+            "smithy.api#required": {}
+          }
+        },
+        "modified": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the share was modified.",
+            "smithy.api#required": {}
+          }
+        },
+        "resource_account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier.",
+            "smithy.api#required": {}
+          }
+        },
+        "resource_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Share Resource identifier.",
+            "smithy.api#required": {}
+          }
+        },
+        "resource_type": {
+          "target": "com.cloudflare.resource_sharing#ResourcesDeleteResponseResourceType",
+          "traits": {
+            "smithy.api#documentation": "Resource Type.",
+            "smithy.api#required": {}
+          }
+        },
+        "resource_version": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Resource Version.",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.cloudflare.resource_sharing#ResourcesDeleteResponseStatus",
+          "traits": {
+            "smithy.api#documentation": "Resource Status.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.resource_sharing#DeleteResourceSharing": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.resource_sharing#DeleteResourceSharingRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.resource_sharing#DeleteResourceSharingResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/accounts/{account_id}/shares/{share_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Deletion is not immediate, an updated share object with a new status will be returned.",
+        "smithy.api#idempotent": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.resource_sharing#ShareNotFound"
+        },
+        {
+          "target": "com.cloudflare.resource_sharing#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.resource_sharing#DeleteResourceSharingRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "share_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Share identifier tag.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.resource_sharing#DeleteResourceSharingResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Share identifier tag.",
+            "smithy.api#required": {}
+          }
+        },
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier.",
+            "smithy.api#required": {}
+          }
+        },
+        "account_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The display name of an account.",
+            "smithy.api#required": {}
+          }
+        },
+        "created": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the share was created.",
+            "smithy.api#required": {}
+          }
+        },
+        "modified": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the share was modified.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the share.",
+            "smithy.api#required": {}
+          }
+        },
+        "organization_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Organization identifier.",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.cloudflare.resource_sharing#DeleteResponseStatus",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "target_type": {
+          "target": "com.cloudflare.resource_sharing#DeleteResponseTargetType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "associated_recipient_count": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of recipients in the 'associated' state. This field is only included when requested via the 'include_recipient_counts' parameter."
+          }
+        },
+        "associating_recipient_count": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of recipients in the 'associating' state. This field is only included when requested via the 'include_recipient_counts' parameter."
+          }
+        },
+        "disassociated_recipient_count": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of recipients in the 'disassociated' state. This field is only included when requested via the 'include_recipient_counts' parameter."
+          }
+        },
+        "disassociating_recipient_count": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of recipients in the 'disassociating' state. This field is only included when requested via the 'include_recipient_counts' parameter."
+          }
+        },
+        "kind": {
+          "target": "com.cloudflare.resource_sharing#DeleteResponseKind"
+        },
+        "resources": {
+          "target": "com.cloudflare.resource_sharing#DeleteResponseResourcesList",
+          "traits": {
+            "smithy.api#documentation": "A list of resources that are part of the share. This field is only included when requested via the 'include_resources' parameter."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.resource_sharing#GetRecipient": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.resource_sharing#GetRecipientRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.resource_sharing#GetRecipientResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/shares/{share_id}/recipients/{recipient_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get share recipient by ID.",
+        "smithy.api#readonly": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.resource_sharing#ShareRecipientNotFound"
+        },
+        {
+          "target": "com.cloudflare.resource_sharing#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.resource_sharing#GetRecipientRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "share_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Share identifier tag.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "recipient_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Share Recipient identifier tag.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "include_resources": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Include resources in the response.",
+            "smithy.api#httpQuery": "include_resources"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.resource_sharing#GetRecipientResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Share Recipient identifier tag.",
+            "smithy.api#required": {}
+          }
+        },
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier.",
+            "smithy.api#required": {}
+          }
+        },
+        "association_status": {
+          "target": "com.cloudflare.resource_sharing#RecipientsGetResponseAssociationStatus",
+          "traits": {
+            "smithy.api#documentation": "Share Recipient association status.",
+            "smithy.api#required": {}
+          }
+        },
+        "created": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the share was created.",
+            "smithy.api#required": {}
+          }
+        },
+        "modified": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the share was modified.",
+            "smithy.api#required": {}
+          }
+        },
+        "resources": {
+          "target": "com.cloudflare.resource_sharing#RecipientsGetResponseResourcesList"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.resource_sharing#GetResource": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.resource_sharing#GetResourceRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.resource_sharing#GetResourceResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/shares/{share_id}/resources/{share_resource_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get share resource by ID.",
+        "smithy.api#readonly": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.resource_sharing#ShareResourceNotFound"
+        },
+        {
+          "target": "com.cloudflare.resource_sharing#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.resource_sharing#GetResourceRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "share_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Share identifier tag.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "share_resource_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Share Resource identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.resource_sharing#GetResourceResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Share Resource identifier.",
+            "smithy.api#required": {}
+          }
+        },
+        "created": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the share was created.",
+            "smithy.api#required": {}
+          }
+        },
+        "meta": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Resource Metadata.",
+            "smithy.api#required": {}
+          }
+        },
+        "modified": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the share was modified.",
+            "smithy.api#required": {}
+          }
+        },
+        "resource_account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier.",
+            "smithy.api#required": {}
+          }
+        },
+        "resource_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Share Resource identifier.",
+            "smithy.api#required": {}
+          }
+        },
+        "resource_type": {
+          "target": "com.cloudflare.resource_sharing#ResourcesGetResponseResourceType",
+          "traits": {
+            "smithy.api#documentation": "Resource Type.",
+            "smithy.api#required": {}
+          }
+        },
+        "resource_version": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Resource Version.",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.cloudflare.resource_sharing#ResourcesGetResponseStatus",
+          "traits": {
+            "smithy.api#documentation": "Resource Status.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.resource_sharing#GetResourceSharing": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.resource_sharing#GetResourceSharingRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.resource_sharing#GetResourceSharingResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/shares/{share_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Fetches share by ID.",
+        "smithy.api#readonly": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.resource_sharing#ShareNotFound"
+        },
+        {
+          "target": "com.cloudflare.resource_sharing#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.resource_sharing#GetResourceSharingRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "share_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Share identifier tag.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "include_recipient_counts": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Include recipient counts in the response.",
+            "smithy.api#httpQuery": "include_recipient_counts"
+          }
+        },
+        "include_resources": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Include resources in the response.",
+            "smithy.api#httpQuery": "include_resources"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.resource_sharing#GetResourceSharingResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Share identifier tag.",
+            "smithy.api#required": {}
+          }
+        },
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier.",
+            "smithy.api#required": {}
+          }
+        },
+        "account_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The display name of an account.",
+            "smithy.api#required": {}
+          }
+        },
+        "created": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the share was created.",
+            "smithy.api#required": {}
+          }
+        },
+        "modified": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the share was modified.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the share.",
+            "smithy.api#required": {}
+          }
+        },
+        "organization_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Organization identifier.",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.cloudflare.resource_sharing#GetResponseStatus",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "target_type": {
+          "target": "com.cloudflare.resource_sharing#GetResponseTargetType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "associated_recipient_count": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of recipients in the 'associated' state. This field is only included when requested via the 'include_recipient_counts' parameter."
+          }
+        },
+        "associating_recipient_count": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of recipients in the 'associating' state. This field is only included when requested via the 'include_recipient_counts' parameter."
+          }
+        },
+        "disassociated_recipient_count": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of recipients in the 'disassociated' state. This field is only included when requested via the 'include_recipient_counts' parameter."
+          }
+        },
+        "disassociating_recipient_count": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of recipients in the 'disassociating' state. This field is only included when requested via the 'include_recipient_counts' parameter."
+          }
+        },
+        "kind": {
+          "target": "com.cloudflare.resource_sharing#GetResponseKind"
+        },
+        "resources": {
+          "target": "com.cloudflare.resource_sharing#GetResponseResourcesList",
+          "traits": {
+            "smithy.api#documentation": "A list of resources that are part of the share. This field is only included when requested via the 'include_resources' parameter."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.resource_sharing#ListRecipients": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.resource_sharing#ListRecipientsRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.resource_sharing#ListRecipientsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/shares/{share_id}/recipients",
+          "code": 200
+        },
+        "smithy.api#documentation": "List share recipients by share ID.",
+        "smithy.api#readonly": {},
+        "smithy.api#paginated": {
+          "mode": "page",
+          "inputToken": "page",
+          "outputToken": "resultInfo.page",
+          "items": "result",
+          "pageSize": "perPage"
+        }
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.resource_sharing#ShareNotFound"
+        },
+        {
+          "target": "com.cloudflare.resource_sharing#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.resource_sharing#ListRecipientsRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "share_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Share identifier tag.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "include_resources": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Include resources in the response.",
+            "smithy.api#httpQuery": "include_resources"
+          }
+        },
+        "page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Page number. Defaults to `1` when `per_page` is supplied without",
+            "smithy.api#httpQuery": "page"
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Number of objects to return per page. Defaults to `20` when `page`",
+            "smithy.api#httpQuery": "per_page"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.resource_sharing#ListRecipientsResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.resource_sharing#RecipientsListResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.resource_sharing#ListResources": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.resource_sharing#ListResourcesRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.resource_sharing#ListResourcesResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/shares/{share_id}/resources",
+          "code": 200
+        },
+        "smithy.api#documentation": "List share resources by share ID.",
+        "smithy.api#readonly": {},
+        "smithy.api#paginated": {
+          "mode": "page",
+          "inputToken": "page",
+          "outputToken": "resultInfo.page",
+          "items": "result",
+          "pageSize": "perPage"
+        }
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.resource_sharing#ShareNotFound"
+        },
+        {
+          "target": "com.cloudflare.resource_sharing#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.resource_sharing#ListResourcesRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "share_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Share identifier tag.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Page number. Defaults to `1` when `per_page` is supplied without",
+            "smithy.api#httpQuery": "page"
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Number of objects to return per page. Defaults to `20` when `page`",
+            "smithy.api#httpQuery": "per_page"
+          }
+        },
+        "resource_type": {
+          "target": "com.cloudflare.resource_sharing#ResourcesListRequestResourceType",
+          "traits": {
+            "smithy.api#documentation": "Filter share resources by resource_type.",
+            "smithy.api#httpQuery": "resource_type"
+          }
+        },
+        "status": {
+          "target": "com.cloudflare.resource_sharing#ResourcesListRequestStatus",
+          "traits": {
+            "smithy.api#documentation": "Filter share resources by status.",
+            "smithy.api#httpQuery": "status"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.resource_sharing#ListResourcesResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.resource_sharing#ResourcesListResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.resource_sharing#ListResourceSharings": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.resource_sharing#ListResourceSharingsRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.resource_sharing#ListResourceSharingsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/accounts/{account_id}/shares",
+          "code": 200
+        },
+        "smithy.api#documentation": "Lists all account shares.",
+        "smithy.api#readonly": {},
+        "smithy.api#paginated": {
+          "mode": "page",
+          "inputToken": "page",
+          "outputToken": "resultInfo.page",
+          "items": "result",
+          "pageSize": "perPage"
+        }
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.resource_sharing#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.resource_sharing#ListResourceSharingsRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "direction": {
+          "target": "com.cloudflare.resource_sharing#ListRequestDirection",
+          "traits": {
+            "smithy.api#documentation": "Direction to sort objects.",
+            "smithy.api#httpQuery": "direction"
+          }
+        },
+        "include_recipient_counts": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Include recipient counts in the response.",
+            "smithy.api#httpQuery": "include_recipient_counts"
+          }
+        },
+        "include_resources": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Include resources in the response.",
+            "smithy.api#httpQuery": "include_resources"
+          }
+        },
+        "kind": {
+          "target": "com.cloudflare.resource_sharing#ListRequestKind",
+          "traits": {
+            "smithy.api#documentation": "Filter shares by kind.",
+            "smithy.api#httpQuery": "kind"
+          }
+        },
+        "order": {
+          "target": "com.cloudflare.resource_sharing#ListRequestOrder",
+          "traits": {
+            "smithy.api#documentation": "Order shares by values in the given field.",
+            "smithy.api#httpQuery": "order"
+          }
+        },
+        "page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Page number. Defaults to `1` when `per_page` is supplied without",
+            "smithy.api#httpQuery": "page"
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Number of objects to return per page. Defaults to `20` when `page`",
+            "smithy.api#httpQuery": "per_page"
+          }
+        },
+        "resource_types": {
+          "target": "com.cloudflare.resource_sharing#ListRequestResourceTypesList",
+          "traits": {
+            "smithy.api#documentation": "Filter share resources by resource_types.",
+            "smithy.api#httpQuery": "resource_types"
+          }
+        },
+        "status": {
+          "target": "com.cloudflare.resource_sharing#ListRequestStatus",
+          "traits": {
+            "smithy.api#documentation": "Filter shares by status.",
+            "smithy.api#httpQuery": "status"
+          }
+        },
+        "tag": {
+          "target": "com.cloudflare.resource_sharing#ListRequestTagList",
+          "traits": {
+            "smithy.api#documentation": "Filter shares by tag. Each value is either `key=value` (matches shares whose tags contain that key/value pair) or `key` alone (matches shares that have any value for that key). May be repeated; multiple `tag` parameters are ANDed together. Maximum 20 `tag` parameters per request.",
+            "smithy.api#httpQuery": "tag"
+          }
+        },
+        "target_type": {
+          "target": "com.cloudflare.resource_sharing#ListRequestTargetType",
+          "traits": {
+            "smithy.api#documentation": "Filter shares by target_type.",
+            "smithy.api#httpQuery": "target_type"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.resource_sharing#ListResourceSharingsResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.resource_sharing#ListResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.resource_sharing#UpdateResource": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.resource_sharing#UpdateResourceRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.resource_sharing#UpdateResourceResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/accounts/{account_id}/shares/{share_id}/resources/{share_resource_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update is not immediate, an updated share resource object with a new status will be returned.",
+        "smithy.api#idempotent": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.resource_sharing#ShareResourceNotFound"
+        },
+        {
+          "target": "com.cloudflare.resource_sharing#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.resource_sharing#UpdateResourceRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "share_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Share identifier tag.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "share_resource_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Share Resource identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "meta": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Resource Metadata.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.resource_sharing#UpdateResourceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3874,75 +4011,164 @@
         "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
       }
     },
-    "com.cloudflare.resource_sharing#ResourcesUpdate": {
+    "com.cloudflare.resource_sharing#UpdateResourceSharing": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.resource_sharing#ResourcesUpdateRequest"
+        "target": "com.cloudflare.resource_sharing#UpdateResourceSharingRequest"
       },
       "output": {
-        "target": "com.cloudflare.resource_sharing#ResourcesUpdateResponse"
+        "target": "com.cloudflare.resource_sharing#UpdateResourceSharingResponse"
       },
       "traits": {
         "smithy.api#http": {
           "method": "PUT",
-          "uri": "/accounts/{account_id}/shares/{share_id}/resources/{share_resource_id}",
+          "uri": "/accounts/{account_id}/shares/{share_id}",
           "code": 200
         },
-        "smithy.api#documentation": "Update is not immediate, an updated share resource object with a new status will be returned.",
+        "smithy.api#documentation": "Updating is not immediate, an updated share object with a new status will be returned.",
         "smithy.api#idempotent": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.resource_sharing#ShareNotFound"
+        },
+        {
+          "target": "com.cloudflare.resource_sharing#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.resource_sharing#UpdateResourceSharingRequest": {
+      "type": "structure",
+      "members": {
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "share_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Share identifier tag.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the share.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
       }
     },
-    "com.cloudflare.resource_sharing#ResourceSharing": {
-      "type": "service",
-      "version": "4.0",
-      "operations": [
-        {
-          "target": "com.cloudflare.resource_sharing#Create"
+    "com.cloudflare.resource_sharing#UpdateResourceSharingResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Share identifier tag.",
+            "smithy.api#required": {}
+          }
         },
-        {
-          "target": "com.cloudflare.resource_sharing#Delete"
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account identifier.",
+            "smithy.api#required": {}
+          }
         },
-        {
-          "target": "com.cloudflare.resource_sharing#Get"
+        "account_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The display name of an account.",
+            "smithy.api#required": {}
+          }
         },
-        {
-          "target": "com.cloudflare.resource_sharing#List"
+        "created": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the share was created.",
+            "smithy.api#required": {}
+          }
         },
-        {
-          "target": "com.cloudflare.resource_sharing#Update"
+        "modified": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the share was modified.",
+            "smithy.api#required": {}
+          }
         },
-        {
-          "target": "com.cloudflare.resource_sharing#RecipientsCreate"
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the share.",
+            "smithy.api#required": {}
+          }
         },
-        {
-          "target": "com.cloudflare.resource_sharing#RecipientsDelete"
+        "organization_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Organization identifier.",
+            "smithy.api#required": {}
+          }
         },
-        {
-          "target": "com.cloudflare.resource_sharing#RecipientsGet"
+        "status": {
+          "target": "com.cloudflare.resource_sharing#UpdateResponseStatus",
+          "traits": {
+            "smithy.api#required": {}
+          }
         },
-        {
-          "target": "com.cloudflare.resource_sharing#RecipientsList"
+        "target_type": {
+          "target": "com.cloudflare.resource_sharing#UpdateResponseTargetType",
+          "traits": {
+            "smithy.api#required": {}
+          }
         },
-        {
-          "target": "com.cloudflare.resource_sharing#ResourcesCreate"
+        "associated_recipient_count": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of recipients in the 'associated' state. This field is only included when requested via the 'include_recipient_counts' parameter."
+          }
         },
-        {
-          "target": "com.cloudflare.resource_sharing#ResourcesDelete"
+        "associating_recipient_count": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of recipients in the 'associating' state. This field is only included when requested via the 'include_recipient_counts' parameter."
+          }
         },
-        {
-          "target": "com.cloudflare.resource_sharing#ResourcesGet"
+        "disassociated_recipient_count": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of recipients in the 'disassociated' state. This field is only included when requested via the 'include_recipient_counts' parameter."
+          }
         },
-        {
-          "target": "com.cloudflare.resource_sharing#ResourcesList"
+        "disassociating_recipient_count": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The number of recipients in the 'disassociating' state. This field is only included when requested via the 'include_recipient_counts' parameter."
+          }
         },
-        {
-          "target": "com.cloudflare.resource_sharing#ResourcesUpdate"
+        "kind": {
+          "target": "com.cloudflare.resource_sharing#UpdateResponseKind"
+        },
+        "resources": {
+          "target": "com.cloudflare.resource_sharing#UpdateResponseResourcesList",
+          "traits": {
+            "smithy.api#documentation": "A list of resources that are part of the share. This field is only included when requested via the 'include_resources' parameter."
+          }
         }
-      ],
+      },
       "traits": {
-        "com.cloudflare.protocols#v4Json": {},
-        "smithy.api#title": "Cloudflare ResourceSharing",
-        "smithy.api#documentation": "Cloudflare API — resource_sharing resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
       }
     }
   }

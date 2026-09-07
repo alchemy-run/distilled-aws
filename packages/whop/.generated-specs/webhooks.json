@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.whop.webhooks#ListWebhooksRequest": {
@@ -3006,7 +3007,7 @@
         "smithy.api#documentation": "Create Webhook\n\nCreates a webhook endpoint that receives event notifications via HTTP POST."
       }
     },
-    "com.whop.webhooks#RetrieveWebhookRequest": {
+    "com.whop.webhooks#GetWebhookRequest": {
       "type": "structure",
       "members": {
         "id": {
@@ -3022,10 +3023,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.whop.webhooks#RetrieveWebhook": {
+    "com.whop.webhooks#GetWebhook": {
       "type": "operation",
       "input": {
-        "target": "com.whop.webhooks#RetrieveWebhookRequest"
+        "target": "com.whop.webhooks#GetWebhookRequest"
       },
       "output": {
         "target": "com.whop.webhooks#Webhook"
@@ -4670,7 +4671,7 @@
           "target": "com.whop.webhooks#CreateWebhook"
         },
         {
-          "target": "com.whop.webhooks#RetrieveWebhook"
+          "target": "com.whop.webhooks#GetWebhook"
         },
         {
           "target": "com.whop.webhooks#UpdateWebhook"

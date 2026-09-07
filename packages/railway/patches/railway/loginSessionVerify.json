@@ -3,7 +3,7 @@
   "patches": [
     {
       "op": "replace",
-      "path": "/shapes/com.railway.api#LoginSessionVerifyRequest/traits/com.railway.graphql#operation/query",
+      "path": "/shapes/com.railway.api#VerifyLoginSessionRequest/traits/com.railway.graphql#operation/query",
       "value": "mutation loginSessionVerify($code: String!) {\n  loginSessionVerify(code: $code)\n}"
     }
   ]

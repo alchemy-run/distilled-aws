@@ -7,8 +7,8 @@
  *   mpg.json       → src/services/mpg.ts        FlyApiProtocol (api.fly.io REST)
  *   addons.json    → src/services/addons.ts     FlyGraphqlProtocol
  *
- * OpenAPI patches apply in scripts/convert.ts. This run uses patchesDir:
- * false so machines OpenAPI patches are never re-applied as Smithy patches.
+ * Patches and model stamps apply in scripts/convert.ts. Generate only
+ * compiles the already-patched Smithy models.
  */
 import { type SdkSpec } from "@distilled.cloud/core/codegen/generator";
 import { runGeneratorCli } from "@distilled.cloud/core/codegen/cli";
@@ -298,25 +298,5 @@ runGeneratorCli({
       return addonsSpec(model);
     }
     return machinesSpec;
-  },
-  transformModel: (model, resource) => {
-    if (resource !== "addons") return;
-    // Stamp sensitive on add-on secret members (password, environment JSON
-    // containing Tigris keys / Redis URLs, publicUrl with embedded creds).
-    let n = 0;
-    for (const def of Object.values(model.shapes ?? {}) as any[]) {
-      if (def?.type !== "structure") continue;
-      for (const [name, member] of Object.entries(def.members ?? {}) as any[]) {
-        if (name === "password" || name === "publicUrl") {
-          member.traits = {
-            ...(member.traits ?? {}),
-            "smithy.api#sensitive": {},
-          };
-          n++;
-        }
-      }
-    }
-    if (n)
-      return `stamped smithy.api#sensitive on ${n} add-on secret member(s)`;
   },
 });

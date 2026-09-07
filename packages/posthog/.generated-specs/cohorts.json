@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.cohorts#CohortsListRequest": {
+    "com.posthog.cohorts#ListCohortsRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -239,7 +240,7 @@
       "type": "structure",
       "members": {
         "type": {
-          "target": "com.posthog.cohorts#PropertyGroupOperator"
+          "target": "com.posthog.cohorts#PropertyGroupOperatorEnum"
         },
         "values": {
           "target": "com.posthog.cohorts#CohortFilterGroupValuesList"
@@ -249,7 +250,7 @@
         "smithy.api#documentation": "AND/OR group containing cohort filters. Named to avoid collision with analytics Group model."
       }
     },
-    "com.posthog.cohorts#PropertyGroupOperator": {
+    "com.posthog.cohorts#PropertyGroupOperatorEnum": {
       "type": "enum",
       "members": {
         "AND": {
@@ -924,10 +925,10 @@
       },
       "traits": {}
     },
-    "com.posthog.cohorts#CohortsList": {
+    "com.posthog.cohorts#ListCohorts": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.cohorts#CohortsListRequest"
+        "target": "com.posthog.cohorts#ListCohortsRequest"
       },
       "output": {
         "target": "com.posthog.cohorts#PaginatedCohortListOutput"
@@ -951,7 +952,7 @@
         }
       }
     },
-    "com.posthog.cohorts#CohortsCreateRequestCohortType": {
+    "com.posthog.cohorts#CreateCohortRequestCohortType": {
       "type": "union",
       "members": {
         "CohortTypeEnum": {
@@ -965,14 +966,14 @@
         "smithy.api#documentation": "Type of cohort based on filter complexity\n\n* `static` - static\n* `person_property` - person_property\n* `behavioral` - behavioral\n* `realtime` - realtime\n* `analytical` - analytical"
       }
     },
-    "com.posthog.cohorts#CohortsCreateRequestCreateStaticPersonIdsList": {
+    "com.posthog.cohorts#CreateCohortRequestCreateStaticPersonIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.posthog.cohorts#CohortsCreateRequest": {
+    "com.posthog.cohorts#CreateCohortRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1011,7 +1012,7 @@
           "target": "smithy.api#Boolean"
         },
         "cohort_type": {
-          "target": "com.posthog.cohorts#CohortsCreateRequestCohortType",
+          "target": "com.posthog.cohorts#CreateCohortRequestCohortType",
           "traits": {
             "smithy.api#documentation": "Type of cohort based on filter complexity\n\n* `static` - static\n* `person_property` - person_property\n* `behavioral` - behavioral\n* `realtime` - realtime\n* `analytical` - analytical",
             "com.distilled.openapi#nullable": {}
@@ -1021,17 +1022,17 @@
           "target": "smithy.api#String"
         },
         "_create_static_person_ids": {
-          "target": "com.posthog.cohorts#CohortsCreateRequestCreateStaticPersonIdsList"
+          "target": "com.posthog.cohorts#CreateCohortRequestCreateStaticPersonIdsList"
         }
       },
       "traits": {
         "smithy.api#input": {}
       }
     },
-    "com.posthog.cohorts#CohortsCreate": {
+    "com.posthog.cohorts#CreateCohort": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.cohorts#CohortsCreateRequest"
+        "target": "com.posthog.cohorts#CreateCohortRequest"
       },
       "output": {
         "target": "com.posthog.cohorts#CohortOutput"
@@ -1055,7 +1056,7 @@
         }
       }
     },
-    "com.posthog.cohorts#CohortsRetrieveRequest": {
+    "com.posthog.cohorts#GetCohortRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1079,10 +1080,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.cohorts#CohortsRetrieve": {
+    "com.posthog.cohorts#GetCohort": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.cohorts#CohortsRetrieveRequest"
+        "target": "com.posthog.cohorts#GetCohortRequest"
       },
       "output": {
         "target": "com.posthog.cohorts#CohortOutput"
@@ -1103,7 +1104,7 @@
         }
       }
     },
-    "com.posthog.cohorts#CohortsUpdateRequestCohortType": {
+    "com.posthog.cohorts#UpdateCohortRequestCohortType": {
       "type": "union",
       "members": {
         "CohortTypeEnum": {
@@ -1117,14 +1118,14 @@
         "smithy.api#documentation": "Type of cohort based on filter complexity\n\n* `static` - static\n* `person_property` - person_property\n* `behavioral` - behavioral\n* `realtime` - realtime\n* `analytical` - analytical"
       }
     },
-    "com.posthog.cohorts#CohortsUpdateRequestCreateStaticPersonIdsList": {
+    "com.posthog.cohorts#UpdateCohortRequestCreateStaticPersonIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.posthog.cohorts#CohortsUpdateRequest": {
+    "com.posthog.cohorts#UpdateCohortRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1171,7 +1172,7 @@
           "target": "smithy.api#Boolean"
         },
         "cohort_type": {
-          "target": "com.posthog.cohorts#CohortsUpdateRequestCohortType",
+          "target": "com.posthog.cohorts#UpdateCohortRequestCohortType",
           "traits": {
             "smithy.api#documentation": "Type of cohort based on filter complexity\n\n* `static` - static\n* `person_property` - person_property\n* `behavioral` - behavioral\n* `realtime` - realtime\n* `analytical` - analytical",
             "com.distilled.openapi#nullable": {}
@@ -1181,17 +1182,17 @@
           "target": "smithy.api#String"
         },
         "_create_static_person_ids": {
-          "target": "com.posthog.cohorts#CohortsUpdateRequestCreateStaticPersonIdsList"
+          "target": "com.posthog.cohorts#UpdateCohortRequestCreateStaticPersonIdsList"
         }
       },
       "traits": {
         "smithy.api#input": {}
       }
     },
-    "com.posthog.cohorts#CohortsUpdate": {
+    "com.posthog.cohorts#UpdateCohort": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.cohorts#CohortsUpdateRequest"
+        "target": "com.posthog.cohorts#UpdateCohortRequest"
       },
       "output": {
         "target": "com.posthog.cohorts#CohortOutput"
@@ -1215,7 +1216,7 @@
         }
       }
     },
-    "com.posthog.cohorts#CohortsPartialUpdateRequestCohortType": {
+    "com.posthog.cohorts#UpdateCohortsPartialRequestCohortType": {
       "type": "union",
       "members": {
         "CohortTypeEnum": {
@@ -1229,14 +1230,14 @@
         "smithy.api#documentation": "Type of cohort based on filter complexity\n\n* `static` - static\n* `person_property` - person_property\n* `behavioral` - behavioral\n* `realtime` - realtime\n* `analytical` - analytical"
       }
     },
-    "com.posthog.cohorts#CohortsPartialUpdateRequestCreateStaticPersonIdsList": {
+    "com.posthog.cohorts#UpdateCohortsPartialRequestCreateStaticPersonIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
       },
       "traits": {}
     },
-    "com.posthog.cohorts#CohortsPartialUpdateRequest": {
+    "com.posthog.cohorts#UpdateCohortsPartialRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1283,7 +1284,7 @@
           "target": "smithy.api#Boolean"
         },
         "cohort_type": {
-          "target": "com.posthog.cohorts#CohortsPartialUpdateRequestCohortType",
+          "target": "com.posthog.cohorts#UpdateCohortsPartialRequestCohortType",
           "traits": {
             "smithy.api#documentation": "Type of cohort based on filter complexity\n\n* `static` - static\n* `person_property` - person_property\n* `behavioral` - behavioral\n* `realtime` - realtime\n* `analytical` - analytical",
             "com.distilled.openapi#nullable": {}
@@ -1293,17 +1294,17 @@
           "target": "smithy.api#String"
         },
         "_create_static_person_ids": {
-          "target": "com.posthog.cohorts#CohortsPartialUpdateRequestCreateStaticPersonIdsList"
+          "target": "com.posthog.cohorts#UpdateCohortsPartialRequestCreateStaticPersonIdsList"
         }
       },
       "traits": {
         "smithy.api#input": {}
       }
     },
-    "com.posthog.cohorts#CohortsPartialUpdate": {
+    "com.posthog.cohorts#UpdateCohortsPartial": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.cohorts#CohortsPartialUpdateRequest"
+        "target": "com.posthog.cohorts#UpdateCohortsPartialRequest"
       },
       "output": {
         "target": "com.posthog.cohorts#CohortOutput"
@@ -1376,7 +1377,7 @@
         "smithy.api#documentation": "Hard delete of this model is not allowed. Use a patch API call to set \"deleted\" to true"
       }
     },
-    "com.posthog.cohorts#CohortsActivityRetrieveRequest": {
+    "com.posthog.cohorts#GetCohortsActivityRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1400,10 +1401,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.cohorts#CohortsActivityRetrieve": {
+    "com.posthog.cohorts#GetCohortsActivity": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.cohorts#CohortsActivityRetrieveRequest"
+        "target": "com.posthog.cohorts#GetCohortsActivityRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1490,7 +1491,7 @@
         }
       }
     },
-    "com.posthog.cohorts#CohortsCalculationHistoryRetrieveRequest": {
+    "com.posthog.cohorts#GetCohortsCalculationHistoryRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1514,10 +1515,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.cohorts#CohortsCalculationHistoryRetrieve": {
+    "com.posthog.cohorts#GetCohortsCalculationHistory": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.cohorts#CohortsCalculationHistoryRetrieveRequest"
+        "target": "com.posthog.cohorts#GetCohortsCalculationHistoryRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -1538,7 +1539,7 @@
         }
       }
     },
-    "com.posthog.cohorts#CohortsPersonsRetrieveRequestFormat": {
+    "com.posthog.cohorts#GetCohortsPersonRequestFormat": {
       "type": "enum",
       "members": {
         "CSV": {
@@ -1556,7 +1557,7 @@
       },
       "traits": {}
     },
-    "com.posthog.cohorts#CohortsPersonsRetrieveRequest": {
+    "com.posthog.cohorts#GetCohortsPersonRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -1576,7 +1577,7 @@
           }
         },
         "format": {
-          "target": "com.posthog.cohorts#CohortsPersonsRetrieveRequestFormat",
+          "target": "com.posthog.cohorts#GetCohortsPersonRequestFormat",
           "traits": {
             "smithy.api#httpQuery": "format"
           }
@@ -1757,10 +1758,10 @@
       },
       "traits": {}
     },
-    "com.posthog.cohorts#CohortsPersonsRetrieve": {
+    "com.posthog.cohorts#GetCohortsPerson": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.cohorts#CohortsPersonsRetrieveRequest"
+        "target": "com.posthog.cohorts#GetCohortsPersonRequest"
       },
       "output": {
         "target": "com.posthog.cohorts#CohortPersonsResponse"
@@ -1841,7 +1842,7 @@
         }
       }
     },
-    "com.posthog.cohorts#CohortsUsedInRetrieveRequest": {
+    "com.posthog.cohorts#GetCohortsUsedInRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2075,10 +2076,10 @@
         "smithy.api#documentation": "Cohorts that include this cohort as a criterion, capped at 100 results"
       }
     },
-    "com.posthog.cohorts#CohortsUsedInRetrieve": {
+    "com.posthog.cohorts#GetCohortsUsedIn": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.cohorts#CohortsUsedInRetrieveRequest"
+        "target": "com.posthog.cohorts#GetCohortsUsedInRequest"
       },
       "output": {
         "target": "com.posthog.cohorts#CohortUsedInResponse"
@@ -2091,7 +2092,7 @@
         }
       }
     },
-    "com.posthog.cohorts#CohortsAllActivityRetrieveRequest": {
+    "com.posthog.cohorts#GetCohortsAllActivityRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -2107,10 +2108,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.cohorts#CohortsAllActivityRetrieve": {
+    "com.posthog.cohorts#GetCohortsAllActivity": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.cohorts#CohortsAllActivityRetrieveRequest"
+        "target": "com.posthog.cohorts#GetCohortsAllActivityRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2175,43 +2176,43 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.cohorts#CohortsList"
+          "target": "com.posthog.cohorts#ListCohorts"
         },
         {
-          "target": "com.posthog.cohorts#CohortsCreate"
+          "target": "com.posthog.cohorts#CreateCohort"
         },
         {
-          "target": "com.posthog.cohorts#CohortsRetrieve"
+          "target": "com.posthog.cohorts#GetCohort"
         },
         {
-          "target": "com.posthog.cohorts#CohortsUpdate"
+          "target": "com.posthog.cohorts#UpdateCohort"
         },
         {
-          "target": "com.posthog.cohorts#CohortsPartialUpdate"
+          "target": "com.posthog.cohorts#UpdateCohortsPartial"
         },
         {
           "target": "com.posthog.cohorts#CohortsDestroy"
         },
         {
-          "target": "com.posthog.cohorts#CohortsActivityRetrieve"
+          "target": "com.posthog.cohorts#GetCohortsActivity"
         },
         {
           "target": "com.posthog.cohorts#CohortsAddPersonsToStaticCohortPartialUpdate"
         },
         {
-          "target": "com.posthog.cohorts#CohortsCalculationHistoryRetrieve"
+          "target": "com.posthog.cohorts#GetCohortsCalculationHistory"
         },
         {
-          "target": "com.posthog.cohorts#CohortsPersonsRetrieve"
+          "target": "com.posthog.cohorts#GetCohortsPerson"
         },
         {
           "target": "com.posthog.cohorts#CohortsRemovePersonFromStaticCohortPartialUpdate"
         },
         {
-          "target": "com.posthog.cohorts#CohortsUsedInRetrieve"
+          "target": "com.posthog.cohorts#GetCohortsUsedIn"
         },
         {
-          "target": "com.posthog.cohorts#CohortsAllActivityRetrieve"
+          "target": "com.posthog.cohorts#GetCohortsAllActivity"
         }
       ],
       "traits": {

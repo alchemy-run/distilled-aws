@@ -49,6 +49,80 @@ export class UnprocessableEntity
     [{ status: 422 }],
   ) {}
 
+export interface GetChatChannelRequest {
+  /** The unique identifier of the chat channel or experience to retrieve. */
+  id: string;
+}
+export const GetChatChannelRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/chat_channels/{id}", code: 200 })),
+).annotate({
+  identifier: "GetChatChannelRequest",
+}) as any as S.Schema<GetChatChannelRequest>;
+
+/** A list of words that are automatically filtered from messages in this chat. */
+export type ChatChannelBannedWordsList = Array<string>;
+export const ChatChannelBannedWordsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<ChatChannelBannedWordsList>;
+
+/** The experience this chat feed is attached to. */
+export interface ChatChannelExperience {
+  /** The unique identifier for the experience. */
+  id: string;
+  /** The display name of this experience shown to users in the product navigation. Maximum 255 characters. */
+  name: string;
+}
+export const ChatChannelExperience = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    name: S.String,
+  }),
+).annotate({
+  identifier: "ChatChannelExperience",
+}) as any as S.Schema<ChatChannelExperience>;
+
+/** Who can post on a chat feed */
+export type WhoCanPostTypes = "everyone" | "admins";
+export const WhoCanPostTypes = /*@__PURE__*/ S.String;
+
+/** Who can react on a chat feed */
+export type WhoCanReactTypes = "everyone" | "no_one";
+export const WhoCanReactTypes = /*@__PURE__*/ S.String;
+
+/** A real-time chat feed attached to an experience, with configurable moderation and posting permissions. */
+export interface ChatChannel {
+  /** Whether media uploads such as images and videos are blocked in this chat. */
+  ban_media: boolean;
+  /** Whether URL links are blocked from being posted in this chat. */
+  ban_urls: boolean;
+  /** A list of words that are automatically filtered from messages in this chat. */
+  banned_words: ChatChannelBannedWordsList;
+  /** The experience this chat feed is attached to. */
+  experience: ChatChannelExperience;
+  /** The unique identifier for the entity */
+  id: string;
+  /** The minimum number of seconds a user must wait between consecutive messages. Null if no cooldown is enforced. */
+  user_posts_cooldown_seconds: number | null;
+  /** The permission level controlling which users can send messages in this chat. */
+  who_can_post: WhoCanPostTypes;
+  /** The permission level controlling which users can add reactions in this chat. */
+  who_can_react: WhoCanReactTypes;
+}
+export const ChatChannel = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ban_media: S.Boolean,
+    ban_urls: S.Boolean,
+    banned_words: ChatChannelBannedWordsList,
+    experience: ChatChannelExperience,
+    id: S.String,
+    user_posts_cooldown_seconds: S.NullOr(S.Number),
+    who_can_post: WhoCanPostTypes,
+    who_can_react: WhoCanReactTypes,
+  }),
+).annotate({ identifier: "ChatChannel" }) as any as S.Schema<ChatChannel>;
+
 export interface ListChatChannelRequest {
   after?: string;
   before?: string;
@@ -77,28 +151,8 @@ export const ChatChannelListItemBannedWordsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<ChatChannelListItemBannedWordsList>;
 
 /** The experience this chat feed is attached to. */
-export interface ChatChannelListItemExperience {
-  /** The unique identifier for the experience. */
-  id: string;
-  /** The display name of this experience shown to users in the product navigation. Maximum 255 characters. */
-  name: string;
-}
-export const ChatChannelListItemExperience = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    name: S.String,
-  }),
-).annotate({
-  identifier: "ChatChannelListItemExperience",
-}) as any as S.Schema<ChatChannelListItemExperience>;
-
-/** Who can post on a chat feed */
-export type WhoCanPostTypes = "everyone" | "admins";
-export const WhoCanPostTypes = /*@__PURE__*/ S.String;
-
-/** Who can react on a chat feed */
-export type WhoCanReactTypes = "everyone" | "no_one";
-export const WhoCanReactTypes = /*@__PURE__*/ S.String;
+export type ChatChannelListItemExperience = ChatChannelExperience;
+export const ChatChannelListItemExperience = ChatChannelExperience;
 
 /** A real-time chat feed attached to an experience, with configurable moderation and posting permissions. */
 export interface ChatChannelListItem {
@@ -109,7 +163,7 @@ export interface ChatChannelListItem {
   /** A list of words that are automatically filtered from messages in this chat. */
   banned_words: ChatChannelListItemBannedWordsList;
   /** The experience this chat feed is attached to. */
-  experience: ChatChannelListItemExperience;
+  experience: ChatChannelExperience;
   /** The unique identifier for the entity */
   id: string;
   /** The minimum number of seconds a user must wait between consecutive messages. Null if no cooldown is enforced. */
@@ -124,7 +178,7 @@ export const ChatChannelListItem = /*@__PURE__*/ S.suspend(() =>
     ban_media: S.Boolean,
     ban_urls: S.Boolean,
     banned_words: ChatChannelListItemBannedWordsList,
-    experience: ChatChannelListItemExperience,
+    experience: ChatChannelExperience,
     id: S.String,
     user_posts_cooldown_seconds: S.NullOr(S.Number),
     who_can_post: WhoCanPostTypes,
@@ -175,60 +229,6 @@ export const ListChatChannelResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListChatChannelResponse",
 }) as any as S.Schema<ListChatChannelResponse>;
 
-export interface RetrieveChatChannelRequest {
-  /** The unique identifier of the chat channel or experience to retrieve. */
-  id: string;
-}
-export const RetrieveChatChannelRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/chat_channels/{id}", code: 200 })),
-).annotate({
-  identifier: "RetrieveChatChannelRequest",
-}) as any as S.Schema<RetrieveChatChannelRequest>;
-
-/** A list of words that are automatically filtered from messages in this chat. */
-export type ChatChannelBannedWordsList = Array<string>;
-export const ChatChannelBannedWordsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<ChatChannelBannedWordsList>;
-
-/** The experience this chat feed is attached to. */
-export type ChatChannelExperience = ChatChannelListItemExperience;
-export const ChatChannelExperience = ChatChannelListItemExperience;
-
-/** A real-time chat feed attached to an experience, with configurable moderation and posting permissions. */
-export interface ChatChannel {
-  /** Whether media uploads such as images and videos are blocked in this chat. */
-  ban_media: boolean;
-  /** Whether URL links are blocked from being posted in this chat. */
-  ban_urls: boolean;
-  /** A list of words that are automatically filtered from messages in this chat. */
-  banned_words: ChatChannelBannedWordsList;
-  /** The experience this chat feed is attached to. */
-  experience: ChatChannelListItemExperience;
-  /** The unique identifier for the entity */
-  id: string;
-  /** The minimum number of seconds a user must wait between consecutive messages. Null if no cooldown is enforced. */
-  user_posts_cooldown_seconds: number | null;
-  /** The permission level controlling which users can send messages in this chat. */
-  who_can_post: WhoCanPostTypes;
-  /** The permission level controlling which users can add reactions in this chat. */
-  who_can_react: WhoCanReactTypes;
-}
-export const ChatChannel = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ban_media: S.Boolean,
-    ban_urls: S.Boolean,
-    banned_words: ChatChannelBannedWordsList,
-    experience: ChatChannelListItemExperience,
-    id: S.String,
-    user_posts_cooldown_seconds: S.NullOr(S.Number),
-    who_can_post: WhoCanPostTypes,
-    who_can_react: WhoCanReactTypes,
-  }),
-).annotate({ identifier: "ChatChannel" }) as any as S.Schema<ChatChannel>;
-
 /** A list of words that are automatically blocked from messages in this chat channel. For example, ['spam', 'scam']. */
 export type UpdateChatChannelRequestBannedWordsList = Array<string>;
 export const UpdateChatChannelRequestBannedWordsList = /*@__PURE__*/ S.Array(
@@ -265,6 +265,26 @@ export const UpdateChatChannelRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "UpdateChatChannelRequest",
 }) as any as S.Schema<UpdateChatChannelRequest>;
 
+export type GetChatChannelError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | UnprocessableEntity
+  | WhopOpError;
+/** Retrieve chat channel [Legacy API — https://docs.whop.com/api-reference] Retrieves the details of an existing chat channel. Required permissions: - `chat:read` */
+export const getChatChannel: API.OperationMethod<
+  GetChatChannelRequest,
+  ChatChannel,
+  GetChatChannelError,
+  WhopOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetChatChannelRequest,
+  output: ChatChannel,
+  errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
+  protocol: WhopProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListChatChannelError =
   | BadRequest
   | Forbidden
@@ -296,26 +316,6 @@ export const listChatChannel: API.PaginatedOperationMethod<
   }),
   paginateRelay,
 ) as any;
-
-export type RetrieveChatChannelError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | UnprocessableEntity
-  | WhopOpError;
-/** Retrieve chat channel [Legacy API — https://docs.whop.com/api-reference] Retrieves the details of an existing chat channel. Required permissions: - `chat:read` */
-export const retrieveChatChannel: API.OperationMethod<
-  RetrieveChatChannelRequest,
-  ChatChannel,
-  RetrieveChatChannelError,
-  WhopOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveChatChannelRequest,
-  output: ChatChannel,
-  errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
-  protocol: WhopProtocol,
-  retry: Retry.Retry,
-}));
 
 export type UpdateChatChannelError =
   | BadRequest

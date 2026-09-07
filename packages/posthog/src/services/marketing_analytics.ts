@@ -39,72 +39,51 @@ export class NotFound
     [{ status: 404 }],
   ) {}
 
-/** Operations to apply, in order. Send `apply` payloads returned verbatim by setup_plan — never hand-craft one. Navigate-only ops (open_oauth, open_source_wizard, open_settings, fix_platform_urls) are rejected: they describe something a browser or a human does. */
-export type MarketingAnalyticsApplySetupOpsCreateRequestOpsList =
-  Array<unknown>;
-export const MarketingAnalyticsApplySetupOpsCreateRequestOpsList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<MarketingAnalyticsApplySetupOpsCreateRequestOpsList>;
-
-/** * `setup_tab` - setup_tab * `apply_all_safe` - apply_all_safe * `mcp` - mcp */
-export type ApplySetupOpsSourceEnum = "setup_tab" | "apply_all_safe" | "mcp";
-export const ApplySetupOpsSourceEnum = /*@__PURE__*/ S.String;
-
-export interface MarketingAnalyticsApplySetupOpsCreateRequest {
+export interface CreateMarketingAnalyticsTestMappingRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
-  /** Operations to apply, in order. Send `apply` payloads returned verbatim by setup_plan — never hand-craft one. Navigate-only ops (open_oauth, open_source_wizard, open_settings, fix_platform_urls) are rejected: they describe something a browser or a human does. */
-  ops: MarketingAnalyticsApplySetupOpsCreateRequestOpsList;
-  /** Where the request came from, recorded in the activity log * `setup_tab` - setup_tab * `apply_all_safe` - apply_all_safe * `mcp` - mcp */
-  source?: ApplySetupOpsSourceEnum | (string & {});
 }
-export const MarketingAnalyticsApplySetupOpsCreateRequest =
+export const CreateMarketingAnalyticsTestMappingRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
-      ops: MarketingAnalyticsApplySetupOpsCreateRequestOpsList,
-      source: S.optional(ApplySetupOpsSourceEnum),
     }).pipe(
       T.Http({
         method: "POST",
-        uri: "/api/projects/{project_id}/marketing_analytics/apply_setup_ops/",
+        uri: "/api/projects/{project_id}/marketing_analytics/test_mapping/",
         code: 200,
       }),
     ),
   ).annotate({
-    identifier: "MarketingAnalyticsApplySetupOpsCreateRequest",
-  }) as any as S.Schema<MarketingAnalyticsApplySetupOpsCreateRequest>;
+    identifier: "CreateMarketingAnalyticsTestMappingRequest",
+  }) as any as S.Schema<CreateMarketingAnalyticsTestMappingRequest>;
 
-/** The operations that were applied */
-export type ApplySetupOpsResponseAppliedList = Array<unknown>;
-export const ApplySetupOpsResponseAppliedList = /*@__PURE__*/ S.Array(
-  S.Unknown,
-) as any as S.Schema<ApplySetupOpsResponseAppliedList>;
+export interface CreateMarketingAnalyticsTestMappingResponse {}
+export const CreateMarketingAnalyticsTestMappingResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "CreateMarketingAnalyticsTestMappingResponse",
+  }) as any as S.Schema<CreateMarketingAnalyticsTestMappingResponse>;
 
-/** Operations that reverse this batch, in the order they should be sent. Computed server-side from the pre-change state — POST them back to undo. */
-export type ApplySetupOpsResponseUndoOpsList = Array<unknown>;
-export const ApplySetupOpsResponseUndoOpsList = /*@__PURE__*/ S.Array(
-  S.Unknown,
-) as any as S.Schema<ApplySetupOpsResponseUndoOpsList>;
-
-export interface ApplySetupOpsResponse {
-  /** The operations that were applied */
-  applied: ApplySetupOpsResponseAppliedList;
-  /** Operations that reverse this batch, in the order they should be sent. Computed server-side from the pre-change state — POST them back to undo. */
-  undo_ops: ApplySetupOpsResponseUndoOpsList;
-  /** The config as it now stands */
-  marketing_analytics_config: unknown;
+export interface DeleteMarketingAnalyticsConversionGoalDestroyRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  conversion_goal_id: string;
 }
-export const ApplySetupOpsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    applied: ApplySetupOpsResponseAppliedList,
-    undo_ops: ApplySetupOpsResponseUndoOpsList,
-    marketing_analytics_config: S.Unknown,
-  }),
-).annotate({
-  identifier: "ApplySetupOpsResponse",
-}) as any as S.Schema<ApplySetupOpsResponse>;
+export const DeleteMarketingAnalyticsConversionGoalDestroyRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      conversion_goal_id: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/api/projects/{project_id}/marketing_analytics/conversion_goals/{conversion_goal_id}/delete/",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "DeleteMarketingAnalyticsConversionGoalDestroyRequest",
+  }) as any as S.Schema<DeleteMarketingAnalyticsConversionGoalDestroyRequest>;
 
 export type PropertyOperator =
   | "exact"
@@ -1819,28 +1798,6 @@ export type ConversionGoal =
 export const ConversionGoal =
   /*@__PURE__*/ S.Unknown as any as S.Schema<ConversionGoal>;
 
-export interface MarketingAnalyticsConversionGoalsCreateCreateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** The conversion goal. Must match one of the ConversionGoalFilter shapes: an events node, an actions node or a data warehouse node. conversion_goal_id is assigned by the server and any value sent is ignored. */
-  goal: ConversionGoal;
-}
-export const MarketingAnalyticsConversionGoalsCreateCreateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      goal: ConversionGoal,
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/api/projects/{project_id}/marketing_analytics/conversion_goals/create/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "MarketingAnalyticsConversionGoalsCreateCreateRequest",
-  }) as any as S.Schema<MarketingAnalyticsConversionGoalsCreateCreateRequest>;
-
 export type ConversionGoalWrittenListItem =
   | ConversionGoalFilter1
   | ConversionGoalFilter2
@@ -1869,32 +1826,11 @@ export const ConversionGoalWriteResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ConversionGoalWriteResponse",
 }) as any as S.Schema<ConversionGoalWriteResponse>;
 
-export interface MarketingAnalyticsConversionGoalsDeleteDestroyRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  conversion_goal_id: string;
-}
-export const MarketingAnalyticsConversionGoalsDeleteDestroyRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      conversion_goal_id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/api/projects/{project_id}/marketing_analytics/conversion_goals/{conversion_goal_id}/delete/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "MarketingAnalyticsConversionGoalsDeleteDestroyRequest",
-  }) as any as S.Schema<MarketingAnalyticsConversionGoalsDeleteDestroyRequest>;
-
-export interface MarketingAnalyticsConversionGoalsRetrieveRequest {
+export interface GetMarketingAnalyticsConversionGoalRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
 }
-export const MarketingAnalyticsConversionGoalsRetrieveRequest =
+export const GetMarketingAnalyticsConversionGoalRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
@@ -1906,8 +1842,8 @@ export const MarketingAnalyticsConversionGoalsRetrieveRequest =
       }),
     ),
   ).annotate({
-    identifier: "MarketingAnalyticsConversionGoalsRetrieveRequest",
-  }) as any as S.Schema<MarketingAnalyticsConversionGoalsRetrieveRequest>;
+    identifier: "GetMarketingAnalyticsConversionGoalRequest",
+  }) as any as S.Schema<GetMarketingAnalyticsConversionGoalRequest>;
 
 /** * `EventsNode` - EventsNode * `ActionsNode` - ActionsNode * `DataWarehouseNode` - DataWarehouseNode */
 export type ConversionGoalKindEnum =
@@ -1993,6 +1929,1336 @@ export const ConversionGoalsListResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ConversionGoalsListResponse",
 }) as any as S.Schema<ConversionGoalsListResponse>;
+
+export interface GetMarketingAnalyticsDataSourceRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** Optional. Restrict to one integration (e.g. 'GoogleAds'). */
+  source_type?: string;
+}
+export const GetMarketingAnalyticsDataSourceRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      source_type: S.optional(S.String.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/projects/{project_id}/marketing_analytics/data_sources/",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "GetMarketingAnalyticsDataSourceRequest",
+}) as any as S.Schema<GetMarketingAnalyticsDataSourceRequest>;
+
+/** Schema columns currently mapped for this source */
+export type DataSourceHealthEntrySchemaColumnsMappedList = Array<string>;
+export const DataSourceHealthEntrySchemaColumnsMappedList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<DataSourceHealthEntrySchemaColumnsMappedList>;
+
+/** Required schema columns that are not yet mapped */
+export type DataSourceHealthEntrySchemaColumnsRequiredMissingList =
+  Array<string>;
+export const DataSourceHealthEntrySchemaColumnsRequiredMissingList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<DataSourceHealthEntrySchemaColumnsRequiredMissingList>;
+
+export interface RequiredTableStatus {
+  /** Name of the required source table (e.g. 'campaign', 'campaign_stats') */
+  table_name: string;
+  /** Whether the table exists as a schema on the connected source */
+  present: boolean;
+  /** Whether the table is enabled for sync */
+  should_sync: boolean;
+  /** ExternalDataSchema status: Completed/Running/Failed/Paused/Cancelled, or null */
+  status: string | null;
+  /** When this table last completed a sync */
+  last_synced_at: string | null;
+}
+export const RequiredTableStatus = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    table_name: S.String,
+    present: S.Boolean,
+    should_sync: S.Boolean,
+    status: S.NullOr(S.String),
+    last_synced_at: S.NullOr(S.String),
+  }),
+).annotate({
+  identifier: "RequiredTableStatus",
+}) as any as S.Schema<RequiredTableStatus>;
+
+/** Per-required-table sync status for this integration */
+export type DataSourceHealthEntryRequiredTablesList =
+  Array<RequiredTableStatus>;
+export const DataSourceHealthEntryRequiredTablesList = /*@__PURE__*/ S.Array(
+  RequiredTableStatus,
+) as any as S.Schema<DataSourceHealthEntryRequiredTablesList>;
+
+export interface DataSourceHealthEntry {
+  /** External data source type key (e.g. 'GoogleAds', 'MetaAds') */
+  source_type: string;
+  /** Whether this is a native marketing integration */
+  is_native: boolean;
+  /** Human-readable integration name (e.g. 'Google Ads') */
+  display_name: string;
+  /** Whether a live source of this type is connected */
+  connected: boolean;
+  /** When the source last completed a sync */
+  last_sync_at: string | null;
+  /** Sync status: ok/error/stale/tables_failed/not_connected/never */
+  last_sync_status: string;
+  /** Latest unresolved sync error message, if any */
+  last_error: string | null;
+  /** Rows synced in the last 24 hours */
+  rows_last_24h: number;
+  /** Rows synced in the last 7 days */
+  rows_last_7d: number;
+  /** Whether a column mapping exists for this source */
+  sources_map_present: boolean;
+  /** Schema columns currently mapped for this source */
+  schema_columns_mapped: DataSourceHealthEntrySchemaColumnsMappedList;
+  /** Required schema columns that are not yet mapped */
+  schema_columns_required_missing: DataSourceHealthEntrySchemaColumnsRequiredMissingList;
+  /** Per-required-table sync status for this integration */
+  required_tables: DataSourceHealthEntryRequiredTablesList;
+  /** URL to the Marketing analytics global settings page */
+  settings_url: string;
+  /** URL to the per-source Schemas tab, or null if not connected */
+  schemas_url: string | null;
+  /** Human-readable diagnosis of this source's health */
+  diagnosis: string;
+  /** Suggested fix when the source is unhealthy */
+  fix_suggestion: string | null;
+}
+export const DataSourceHealthEntry = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    source_type: S.String,
+    is_native: S.Boolean,
+    display_name: S.String,
+    connected: S.Boolean,
+    last_sync_at: S.NullOr(S.String),
+    last_sync_status: S.String,
+    last_error: S.NullOr(S.String),
+    rows_last_24h: S.Number,
+    rows_last_7d: S.Number,
+    sources_map_present: S.Boolean,
+    schema_columns_mapped: DataSourceHealthEntrySchemaColumnsMappedList,
+    schema_columns_required_missing:
+      DataSourceHealthEntrySchemaColumnsRequiredMissingList,
+    required_tables: DataSourceHealthEntryRequiredTablesList,
+    settings_url: S.String,
+    schemas_url: S.NullOr(S.String),
+    diagnosis: S.String,
+    fix_suggestion: S.NullOr(S.String),
+  }),
+).annotate({
+  identifier: "DataSourceHealthEntry",
+}) as any as S.Schema<DataSourceHealthEntry>;
+
+/** One health entry per native integration */
+export type DataSourceHealthResponseIntegrationsList =
+  Array<DataSourceHealthEntry>;
+export const DataSourceHealthResponseIntegrationsList = /*@__PURE__*/ S.Array(
+  DataSourceHealthEntry,
+) as any as S.Schema<DataSourceHealthResponseIntegrationsList>;
+
+/** Short human-readable summary of detected issues */
+export type DataSourceHealthResponseIssuesSummaryList = Array<string>;
+export const DataSourceHealthResponseIssuesSummaryList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<DataSourceHealthResponseIssuesSummaryList>;
+
+export interface DataSourceHealthResponse {
+  /** One health entry per native integration */
+  integrations: DataSourceHealthResponseIntegrationsList;
+  /** True if any integration synced rows in the last 7 days */
+  has_any_data: boolean;
+  /** Overall: healthy/degraded/broken/no_sources */
+  overall_status: string;
+  /** Short human-readable summary of detected issues */
+  issues_summary: DataSourceHealthResponseIssuesSummaryList;
+}
+export const DataSourceHealthResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    integrations: DataSourceHealthResponseIntegrationsList,
+    has_any_data: S.Boolean,
+    overall_status: S.String,
+    issues_summary: DataSourceHealthResponseIssuesSummaryList,
+  }),
+).annotate({
+  identifier: "DataSourceHealthResponse",
+}) as any as S.Schema<DataSourceHealthResponse>;
+
+export interface GetMarketingAnalyticsDiagnoseRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** Lookback window for attribution health (1-365 days); defaults to 7 */
+  attribution_lookback_days?: number;
+  /** Whether to include the conversion-goal summary in the diagnostic */
+  include_conversion_goals?: boolean;
+  /** Optional integration filter */
+  source_type?: string;
+}
+export const GetMarketingAnalyticsDiagnoseRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      attribution_lookback_days: S.optional(S.Number.pipe(T.Query())),
+      include_conversion_goals: S.optional(S.Boolean.pipe(T.Query())),
+      source_type: S.optional(S.String.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/projects/{project_id}/marketing_analytics/diagnose/",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "GetMarketingAnalyticsDiagnoseRequest",
+}) as any as S.Schema<GetMarketingAnalyticsDiagnoseRequest>;
+
+export interface UnmatchedUtmSample {
+  /** A raw utm_source value that doesn't match the integration exactly */
+  raw_value: string;
+  /** Number of events with this raw value in the window */
+  event_count: number;
+  /** Integration suggested by token match, if any */
+  suggested_integration: string | null;
+}
+export const UnmatchedUtmSample = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    raw_value: S.String,
+    event_count: S.Number,
+    suggested_integration: S.NullOr(S.String),
+  }),
+).annotate({
+  identifier: "UnmatchedUtmSample",
+}) as any as S.Schema<UnmatchedUtmSample>;
+
+/** Sample of likely-yours unmatched utm_source values */
+export type AttributionHealthEntrySampleUnmatchedUtmSourcesList =
+  Array<UnmatchedUtmSample>;
+export const AttributionHealthEntrySampleUnmatchedUtmSourcesList =
+  /*@__PURE__*/ S.Array(
+    UnmatchedUtmSample,
+  ) as any as S.Schema<AttributionHealthEntrySampleUnmatchedUtmSourcesList>;
+
+export interface AttributionHealthEntry {
+  /** Integration key (e.g. 'google', 'meta') */
+  integration_key: string;
+  /** Human-readable integration name */
+  display_name: string;
+  /** Total events with any utm_source in the window */
+  events_with_utm_last_7d: number;
+  /** Events whose utm_source matched this integration */
+  events_matched_last_7d: number;
+  /** Events that look like this integration's but don't match exactly */
+  events_unmatched_likely_yours_last_7d: number;
+  /** Timestamp of the most recent matched event */
+  last_event_with_matching_utm_at: string | null;
+  /** Percentage of UTM events matched to this integration */
+  matched_pct: number;
+  /** Sample of likely-yours unmatched utm_source values */
+  sample_unmatched_utm_sources: AttributionHealthEntrySampleUnmatchedUtmSourcesList;
+  /** Of the matched events, how many look paid: a cost-bearing utm_medium (cpc, cpm, cpv, cpa, ppc, retargeting, or anything starting with 'paid') or a gclid/gad_source click id. */
+  events_matched_paid_last_7d: number;
+  /** Of the matched events, how many carry any utm_medium. Zero paid with a non-zero count here means the traffic is tagged and organic; both zero means the team doesn't tag medium, which says nothing. */
+  events_matched_tagged_medium_last_7d: number;
+}
+export const AttributionHealthEntry = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    integration_key: S.String,
+    display_name: S.String,
+    events_with_utm_last_7d: S.Number,
+    events_matched_last_7d: S.Number,
+    events_unmatched_likely_yours_last_7d: S.Number,
+    last_event_with_matching_utm_at: S.NullOr(S.String),
+    matched_pct: S.Number,
+    sample_unmatched_utm_sources:
+      AttributionHealthEntrySampleUnmatchedUtmSourcesList,
+    events_matched_paid_last_7d: S.Number,
+    events_matched_tagged_medium_last_7d: S.Number,
+  }),
+).annotate({
+  identifier: "AttributionHealthEntry",
+}) as any as S.Schema<AttributionHealthEntry>;
+
+export interface RecommendedAction {
+  /** Short title of the recommended action */
+  title: string;
+  /** Detailed explanation of the action */
+  detail: string;
+  /** Action severity */
+  severity: string;
+  /** Follow-up tool to call next, if any */
+  target_tool: string | null;
+}
+export const RecommendedAction = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    title: S.String,
+    detail: S.String,
+    severity: S.String,
+    target_tool: S.NullOr(S.String),
+  }),
+).annotate({
+  identifier: "RecommendedAction",
+}) as any as S.Schema<RecommendedAction>;
+
+/** Recommended next steps for this integration */
+export type IntegrationDiagnosticRecommendedActionsList =
+  Array<RecommendedAction>;
+export const IntegrationDiagnosticRecommendedActionsList =
+  /*@__PURE__*/ S.Array(
+    RecommendedAction,
+  ) as any as S.Schema<IntegrationDiagnosticRecommendedActionsList>;
+
+export interface IntegrationDiagnostic {
+  /** Integration key (e.g. 'google', 'meta') */
+  integration_key: string;
+  /** External data source type key (e.g. 'GoogleAds') */
+  source_type: string;
+  /** Human-readable integration name */
+  display_name: string;
+  /** Per-integration status */
+  overall_status: string;
+  /** Human-readable cross-domain diagnosis */
+  diagnosis: string;
+  /** Data-source (sync) side health, or null if not connected */
+  data_source?: DataSourceHealthEntry | null;
+  /** Attribution (UTM events) side health, or null if no data */
+  attribution?: AttributionHealthEntry | null;
+  /** Recommended next steps for this integration */
+  recommended_actions: IntegrationDiagnosticRecommendedActionsList;
+}
+export const IntegrationDiagnostic = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    integration_key: S.String,
+    source_type: S.String,
+    display_name: S.String,
+    overall_status: S.String,
+    diagnosis: S.String,
+    data_source: S.optional(S.NullOr(DataSourceHealthEntry)),
+    attribution: S.optional(S.NullOr(AttributionHealthEntry)),
+    recommended_actions: IntegrationDiagnosticRecommendedActionsList,
+  }),
+).annotate({
+  identifier: "IntegrationDiagnostic",
+}) as any as S.Schema<IntegrationDiagnostic>;
+
+/** Per-integration cross-domain diagnostics */
+export type MarketingDiagnosticResponseIntegrationsList =
+  Array<IntegrationDiagnostic>;
+export const MarketingDiagnosticResponseIntegrationsList =
+  /*@__PURE__*/ S.Array(
+    IntegrationDiagnostic,
+  ) as any as S.Schema<MarketingDiagnosticResponseIntegrationsList>;
+
+/** Top global recommended actions across all integrations */
+export type MarketingDiagnosticResponseRecommendedActionsList =
+  Array<RecommendedAction>;
+export const MarketingDiagnosticResponseRecommendedActionsList =
+  /*@__PURE__*/ S.Array(
+    RecommendedAction,
+  ) as any as S.Schema<MarketingDiagnosticResponseRecommendedActionsList>;
+
+export interface MarketingDiagnosticResponse {
+  /** Per-integration cross-domain diagnostics */
+  integrations: MarketingDiagnosticResponseIntegrationsList;
+  /** healthy/degraded/broken/no_sources */
+  overall_status: string;
+  /** One-line plain-English summary of the diagnostic */
+  summary: string;
+  /** Conversion goal summary, when requested */
+  conversion_goals?: ConversionGoalsListResponse | null;
+  /** Top global recommended actions across all integrations */
+  recommended_actions: MarketingDiagnosticResponseRecommendedActionsList;
+}
+export const MarketingDiagnosticResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    integrations: MarketingDiagnosticResponseIntegrationsList,
+    overall_status: S.String,
+    summary: S.String,
+    conversion_goals: S.optional(S.NullOr(ConversionGoalsListResponse)),
+    recommended_actions: MarketingDiagnosticResponseRecommendedActionsList,
+  }),
+).annotate({
+  identifier: "MarketingDiagnosticResponse",
+}) as any as S.Schema<MarketingDiagnosticResponse>;
+
+export interface GetMarketingAnalyticsExplainConversionGoalRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** conversion_goal_id of the goal to explain, as returned by the conversion_goals list endpoint. */
+  conversion_goal_id: string;
+  /** ISO start; defaults to 30 days ago */
+  date_from?: string;
+  /** ISO end; defaults to now */
+  date_to?: string;
+}
+export const GetMarketingAnalyticsExplainConversionGoalRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      conversion_goal_id: S.String.pipe(T.Query()),
+      date_from: S.optional(S.String.pipe(T.Query())),
+      date_to: S.optional(S.String.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/projects/{project_id}/marketing_analytics/explain_conversion_goal/",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "GetMarketingAnalyticsExplainConversionGoalRequest",
+  }) as any as S.Schema<GetMarketingAnalyticsExplainConversionGoalRequest>;
+
+export interface GoalExplanationPeriod {
+  /** Start of the analyzed period (ISO) */
+  date_from: string | null;
+  /** End of the analyzed period (ISO) */
+  date_to: string | null;
+}
+export const GoalExplanationPeriod = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    date_from: S.NullOr(S.String),
+    date_to: S.NullOr(S.String),
+  }),
+).annotate({
+  identifier: "GoalExplanationPeriod",
+}) as any as S.Schema<GoalExplanationPeriod>;
+
+export type GoalExplanationByEventItemList = Array<unknown>;
+export const GoalExplanationByEventItemList = /*@__PURE__*/ S.Array(
+  S.Unknown,
+) as any as S.Schema<GoalExplanationByEventItemList>;
+
+/** List of [event_name, count] pairs */
+export type GoalExplanationByEventList = Array<GoalExplanationByEventItemList>;
+export const GoalExplanationByEventList = /*@__PURE__*/ S.Array(
+  GoalExplanationByEventItemList,
+) as any as S.Schema<GoalExplanationByEventList>;
+
+export type GoalExplanationByUtmSourceItemList = Array<unknown>;
+export const GoalExplanationByUtmSourceItemList = /*@__PURE__*/ S.Array(
+  S.Unknown,
+) as any as S.Schema<GoalExplanationByUtmSourceItemList>;
+
+/** List of [utm_source, count] pairs */
+export type GoalExplanationByUtmSourceList =
+  Array<GoalExplanationByUtmSourceItemList>;
+export const GoalExplanationByUtmSourceList = /*@__PURE__*/ S.Array(
+  GoalExplanationByUtmSourceItemList,
+) as any as S.Schema<GoalExplanationByUtmSourceList>;
+
+export type GoalExplanationByMatchedIntegrationItemList = Array<unknown>;
+export const GoalExplanationByMatchedIntegrationItemList =
+  /*@__PURE__*/ S.Array(
+    S.Unknown,
+  ) as any as S.Schema<GoalExplanationByMatchedIntegrationItemList>;
+
+/** List of [integration, count] pairs */
+export type GoalExplanationByMatchedIntegrationList =
+  Array<GoalExplanationByMatchedIntegrationItemList>;
+export const GoalExplanationByMatchedIntegrationList = /*@__PURE__*/ S.Array(
+  GoalExplanationByMatchedIntegrationItemList,
+) as any as S.Schema<GoalExplanationByMatchedIntegrationList>;
+
+export interface GoalEventSample {
+  /** UUID of the sampled conversion event */
+  event_uuid: string;
+  /** When the event occurred */
+  timestamp: string;
+  /** Distinct id associated with the event */
+  distinct_id: string;
+  /** utm_source value on the event, if any */
+  utm_source: string | null;
+  /** utm_campaign value on the event, if any */
+  utm_campaign: string | null;
+  /** Integration the utm_source matched, if any */
+  matched_integration: string | null;
+}
+export const GoalEventSample = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    event_uuid: S.String,
+    timestamp: S.String,
+    distinct_id: S.String,
+    utm_source: S.NullOr(S.String),
+    utm_campaign: S.NullOr(S.String),
+    matched_integration: S.NullOr(S.String),
+  }),
+).annotate({
+  identifier: "GoalEventSample",
+}) as any as S.Schema<GoalEventSample>;
+
+/** A small sample of matching events */
+export type GoalExplanationSamplesList = Array<GoalEventSample>;
+export const GoalExplanationSamplesList = /*@__PURE__*/ S.Array(
+  GoalEventSample,
+) as any as S.Schema<GoalExplanationSamplesList>;
+
+/** Caveats about the breakdown (sampling, attribution, etc.) */
+export type GoalExplanationNotesList = Array<string>;
+export const GoalExplanationNotesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<GoalExplanationNotesList>;
+
+export interface GoalExplanation {
+  /** conversion_goal_id of the explained goal */
+  conversion_goal_id: string;
+  /** Display name of the conversion goal */
+  goal_name: string;
+  /** Goal type: EventsNode (PostHog event), ActionsNode (PostHog action), or DataWarehouseNode (external table) * `EventsNode` - EventsNode * `ActionsNode` - ActionsNode * `DataWarehouseNode` - DataWarehouseNode */
+  kind: ConversionGoalKindEnum;
+  /** The period the breakdown was computed over */
+  period: GoalExplanationPeriod;
+  /** Total matching conversion events in the period */
+  total_count: number;
+  /** Events whose utm_source matched a known integration. Null for DataWarehouseNode. */
+  integrated_count: number | null;
+  /** Events with no utm_source at all. Null for DataWarehouseNode. */
+  events_without_utm_source: number | null;
+  /** Events with a utm_source matching no integration. Null for DataWarehouseNode. */
+  events_with_unmatched_utm_source: number | null;
+  /** Total non-integrated events (without + unmatched). Null for DataWarehouseNode. */
+  non_integrated_count: number | null;
+  /** List of [event_name, count] pairs */
+  by_event: GoalExplanationByEventList;
+  /** List of [utm_source, count] pairs */
+  by_utm_source: GoalExplanationByUtmSourceList;
+  /** List of [integration, count] pairs */
+  by_matched_integration: GoalExplanationByMatchedIntegrationList;
+  /** A small sample of matching events */
+  samples: GoalExplanationSamplesList;
+  /** Caveats about the breakdown (sampling, attribution, etc.) */
+  notes: GoalExplanationNotesList;
+}
+export const GoalExplanation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    conversion_goal_id: S.String,
+    goal_name: S.String,
+    kind: ConversionGoalKindEnum,
+    period: GoalExplanationPeriod,
+    total_count: S.Number,
+    integrated_count: S.NullOr(S.Number),
+    events_without_utm_source: S.NullOr(S.Number),
+    events_with_unmatched_utm_source: S.NullOr(S.Number),
+    non_integrated_count: S.NullOr(S.Number),
+    by_event: GoalExplanationByEventList,
+    by_utm_source: GoalExplanationByUtmSourceList,
+    by_matched_integration: GoalExplanationByMatchedIntegrationList,
+    samples: GoalExplanationSamplesList,
+    notes: GoalExplanationNotesList,
+  }),
+).annotate({
+  identifier: "GoalExplanation",
+}) as any as S.Schema<GoalExplanation>;
+
+export interface GetMarketingAnalyticsSetupPlanRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** Window for campaign spend and the UTM catalogue, as a relative range (e.g. '-30d'); defaults to -30d */
+  date_from?: string;
+  /** Re-run every check instead of serving a recent result. Use right after changing something. */
+  refresh?: boolean;
+}
+export const GetMarketingAnalyticsSetupPlanRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      date_from: S.optional(S.String.pipe(T.Query())),
+      refresh: S.optional(S.Boolean.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/projects/{project_id}/marketing_analytics/setup_plan/",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "GetMarketingAnalyticsSetupPlanRequest",
+}) as any as S.Schema<GetMarketingAnalyticsSetupPlanRequest>;
+
+/** Capabilities this unblocks: cost, attribution, roas, cac */
+export type SuggestionUnlocksList = Array<string>;
+export const SuggestionUnlocksList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<SuggestionUnlocksList>;
+
+/** Advice shown alongside the action. Mapping suggestions always carry a 'fix_platform_urls' entry, because a mapping is a workaround and correcting the ad platform's tracking template is the real fix. */
+export type SuggestionAlsoRecommendedList = Array<unknown>;
+export const SuggestionAlsoRecommendedList = /*@__PURE__*/ S.Array(
+  S.Unknown,
+) as any as S.Schema<SuggestionAlsoRecommendedList>;
+
+export interface Suggestion {
+  /** Stable identifier for this finding. Deterministic across scans, so clients can dedupe and remember dismissals by it. */
+  id: string;
+  /** Suggestion kind, e.g. connect_source / add_source_mapping */
+  kind: string;
+  /** 'deterministic' or 'ai' — how this suggestion was produced */
+  source: string;
+  /** error/warning/info */
+  severity: string;
+  /** 0-1. Never 1.0: these are inferences, not proofs. */
+  confidence: number;
+  /** Short imperative title, e.g. 'Connect Meta Ads' */
+  title: string;
+  /** The concrete numbers behind the suggestion, so a user can sanity-check it without taking it on faith */
+  evidence: string;
+  /** Capabilities this unblocks: cost, attribution, roas, cac */
+  unlocks: SuggestionUnlocksList;
+  /** The operation that applies this suggestion, or null when there's nothing to automate. An object with an 'op' discriminator — see the ApplyOp union in setup_types. Pass it verbatim to apply_setup_ops; never hand-craft one. */
+  apply: unknown;
+  /** Advice shown alongside the action. Mapping suggestions always carry a 'fix_platform_urls' entry, because a mapping is a workaround and correcting the ad platform's tracking template is the real fix. */
+  also_recommended: SuggestionAlsoRecommendedList;
+  /** True only for high-confidence, reversible operations — what an 'apply all safe' button may include */
+  safe_to_batch: boolean;
+  /** Ranking score; higher first. Unblocking actions dominate. */
+  rank_score: number;
+  /** Integration this concerns, if any */
+  integration: string | null;
+  /** In-app URL to resolve this manually, if any */
+  deep_link: string | null;
+  /** Documentation link, if any */
+  docs_url: string | null;
+  /** Ad spend currently mis- or un-attributed because of this */
+  spend_at_risk: number;
+  /** Events affected in the window */
+  event_volume: number;
+}
+export const Suggestion = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    kind: S.String,
+    source: S.String,
+    severity: S.String,
+    confidence: S.Number,
+    title: S.String,
+    evidence: S.String,
+    unlocks: SuggestionUnlocksList,
+    apply: S.Unknown,
+    also_recommended: SuggestionAlsoRecommendedList,
+    safe_to_batch: S.Boolean,
+    rank_score: S.Number,
+    integration: S.NullOr(S.String),
+    deep_link: S.NullOr(S.String),
+    docs_url: S.NullOr(S.String),
+    spend_at_risk: S.Number,
+    event_volume: S.Number,
+  }),
+).annotate({ identifier: "Suggestion" }) as any as S.Schema<Suggestion>;
+
+/** Ranked suggestions, most important first */
+export type SetupPlanResponseSuggestionsList = Array<Suggestion>;
+export const SetupPlanResponseSuggestionsList = /*@__PURE__*/ S.Array(
+  Suggestion,
+) as any as S.Schema<SetupPlanResponseSuggestionsList>;
+
+/** Suggestion ids that unblock this capability — the link from a blocked metric to its fixes */
+export type CapabilityReadinessBlockedByList = Array<string>;
+export const CapabilityReadinessBlockedByList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<CapabilityReadinessBlockedByList>;
+
+export interface CapabilityReadiness {
+  /** cost/attribution/roas/cac */
+  capability: string;
+  /** unlocked/partial/blocked */
+  status: string;
+  /** Why it's in that state, in plain English */
+  explanation: string;
+  /** Suggestion ids that unblock this capability — the link from a blocked metric to its fixes */
+  blocked_by: CapabilityReadinessBlockedByList;
+}
+export const CapabilityReadiness = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    capability: S.String,
+    status: S.String,
+    explanation: S.String,
+    blocked_by: CapabilityReadinessBlockedByList,
+  }),
+).annotate({
+  identifier: "CapabilityReadiness",
+}) as any as S.Schema<CapabilityReadiness>;
+
+/** Per-capability readiness, with the suggestions blocking each */
+export type SetupPlanResponseReadinessList = Array<CapabilityReadiness>;
+export const SetupPlanResponseReadinessList = /*@__PURE__*/ S.Array(
+  CapabilityReadiness,
+) as any as S.Schema<SetupPlanResponseReadinessList>;
+
+/** Sub-services that failed. Their suggestions are missing, so do NOT present the plan as a complete clean bill of health when this is non-empty. */
+export type SetupPlanResponseDegradedList = Array<string>;
+export const SetupPlanResponseDegradedList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<SetupPlanResponseDegradedList>;
+
+export interface SetupPlanResponse {
+  /** Ranked suggestions, most important first */
+  suggestions: SetupPlanResponseSuggestionsList;
+  /** Per-capability readiness, with the suggestions blocking each */
+  readiness: SetupPlanResponseReadinessList;
+  /** Sub-services that failed. Their suggestions are missing, so do NOT present the plan as a complete clean bill of health when this is non-empty. */
+  degraded: SetupPlanResponseDegradedList;
+  /** True when the campaign or UTM queries hit their row caps. Rates and totals are then top-N subtotals — present them as approximate rather than exact. */
+  truncated: boolean;
+  /** One-line summary of the plan */
+  summary: string;
+}
+export const SetupPlanResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    suggestions: SetupPlanResponseSuggestionsList,
+    readiness: SetupPlanResponseReadinessList,
+    degraded: SetupPlanResponseDegradedList,
+    truncated: S.Boolean,
+    summary: S.String,
+  }),
+).annotate({
+  identifier: "SetupPlanResponse",
+}) as any as S.Schema<SetupPlanResponse>;
+
+export interface GetMarketingAnalyticsSuggestConversionGoalRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** Minimum 30d event count to be a candidate */
+  min_count?: number;
+  /** Max candidates to return */
+  top_n?: number;
+}
+export const GetMarketingAnalyticsSuggestConversionGoalRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      min_count: S.optional(S.Number.pipe(T.Query())),
+      top_n: S.optional(S.Number.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/projects/{project_id}/marketing_analytics/suggest_conversion_goals/",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "GetMarketingAnalyticsSuggestConversionGoalRequest",
+  }) as any as S.Schema<GetMarketingAnalyticsSuggestConversionGoalRequest>;
+
+export type CandidateEventTopUtmSourcesItemList = Array<unknown>;
+export const CandidateEventTopUtmSourcesItemList = /*@__PURE__*/ S.Array(
+  S.Unknown,
+) as any as S.Schema<CandidateEventTopUtmSourcesItemList>;
+
+/** List of [utm_source, count] pairs */
+export type CandidateEventTopUtmSourcesList =
+  Array<CandidateEventTopUtmSourcesItemList>;
+export const CandidateEventTopUtmSourcesList = /*@__PURE__*/ S.Array(
+  CandidateEventTopUtmSourcesItemList,
+) as any as S.Schema<CandidateEventTopUtmSourcesList>;
+
+export interface CandidateEvent {
+  /** Name of the candidate event */
+  event_name: string;
+  /** Count of this event in the last 30 days */
+  last_30d_count: number;
+  /** Distinct users who triggered the event in 30 days */
+  distinct_users_30d: number;
+  /** Percentage of events that carry a utm_source */
+  pct_with_utm_source: number;
+  /** Percentage of events that carry a utm_campaign */
+  pct_with_utm_campaign: number;
+  /** List of [utm_source, count] pairs */
+  top_utm_sources: CandidateEventTopUtmSourcesList;
+  /** Whether this event is already configured as a goal */
+  is_already_a_goal: boolean;
+  /** Ranking score (higher is a stronger candidate) */
+  suggestion_score: number;
+  /** Human-readable rationale for the suggestion */
+  suggestion_reason: string;
+}
+export const CandidateEvent = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    event_name: S.String,
+    last_30d_count: S.Number,
+    distinct_users_30d: S.Number,
+    pct_with_utm_source: S.Number,
+    pct_with_utm_campaign: S.Number,
+    top_utm_sources: CandidateEventTopUtmSourcesList,
+    is_already_a_goal: S.Boolean,
+    suggestion_score: S.Number,
+    suggestion_reason: S.String,
+  }),
+).annotate({ identifier: "CandidateEvent" }) as any as S.Schema<CandidateEvent>;
+
+/** Ranked candidate events for conversion goals */
+export type EventSuggestionsResponseCandidatesList = Array<CandidateEvent>;
+export const EventSuggestionsResponseCandidatesList = /*@__PURE__*/ S.Array(
+  CandidateEvent,
+) as any as S.Schema<EventSuggestionsResponseCandidatesList>;
+
+export interface EventSuggestionsResponse {
+  /** Ranked candidate events for conversion goals */
+  candidates: EventSuggestionsResponseCandidatesList;
+  /** Lookback window in days used for the analysis */
+  lookback_days: number;
+  /** Number of system/autocaptured events excluded */
+  excluded_events_count: number;
+}
+export const EventSuggestionsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    candidates: EventSuggestionsResponseCandidatesList,
+    lookback_days: S.Number,
+    excluded_events_count: S.Number,
+  }),
+).annotate({
+  identifier: "EventSuggestionsResponse",
+}) as any as S.Schema<EventSuggestionsResponse>;
+
+export interface GetMarketingAnalyticsSuggestUtmMappingRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** Days of history to inspect (1-365); defaults to 90 */
+  lookback_days?: number;
+  /** Only suggest for raw values with >= this many events */
+  min_event_count?: number;
+}
+export const GetMarketingAnalyticsSuggestUtmMappingRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      lookback_days: S.optional(S.Number.pipe(T.Query())),
+      min_event_count: S.optional(S.Number.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/projects/{project_id}/marketing_analytics/suggest_utm_mappings/",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "GetMarketingAnalyticsSuggestUtmMappingRequest",
+  }) as any as S.Schema<GetMarketingAnalyticsSuggestUtmMappingRequest>;
+
+export interface SourceMappingSuggestion {
+  /** The raw utm_source value seen on events */
+  raw_utm_source: string;
+  /** Integration key it maps to */
+  suggested_target: string;
+  /** Human-readable name of the suggested integration */
+  suggested_target_display_name: string;
+  /** Why this mapping is suggested */
+  reason: string;
+  /** Events carrying this raw utm_source in the window. Suggestions are ordered by it. */
+  event_count_30d: number;
+}
+export const SourceMappingSuggestion = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    raw_utm_source: S.String,
+    suggested_target: S.String,
+    suggested_target_display_name: S.String,
+    reason: S.String,
+    event_count_30d: S.Number,
+  }),
+).annotate({
+  identifier: "SourceMappingSuggestion",
+}) as any as S.Schema<SourceMappingSuggestion>;
+
+/** Suggested custom_source_mappings entries */
+export type UtmMappingSuggestionsResponseSourceSuggestionsList =
+  Array<SourceMappingSuggestion>;
+export const UtmMappingSuggestionsResponseSourceSuggestionsList =
+  /*@__PURE__*/ S.Array(
+    SourceMappingSuggestion,
+  ) as any as S.Schema<UtmMappingSuggestionsResponseSourceSuggestionsList>;
+
+/** Raw campaign values clustered under this clean name */
+export type CampaignMappingSuggestionRawCampaignValuesList = Array<string>;
+export const CampaignMappingSuggestionRawCampaignValuesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<CampaignMappingSuggestionRawCampaignValuesList>;
+
+export interface CampaignMappingSuggestion {
+  /** Integration key the campaign values belong to */
+  integration: string;
+  /** Human-readable integration name */
+  integration_display_name: string;
+  /** Proposed canonical campaign name */
+  suggested_clean_name: string;
+  /** Raw campaign values clustered under this clean name */
+  raw_campaign_values: CampaignMappingSuggestionRawCampaignValuesList;
+  /** Confidence score for the clustering (0-1) */
+  confidence: number;
+  /** Mapping method */
+  method: string;
+  /** Why these campaign values were clustered together */
+  reason: string;
+  /** Events across every raw value folded into this suggestion. Suggestions are ordered by it. */
+  event_count_30d: number;
+}
+export const CampaignMappingSuggestion = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    integration: S.String,
+    integration_display_name: S.String,
+    suggested_clean_name: S.String,
+    raw_campaign_values: CampaignMappingSuggestionRawCampaignValuesList,
+    confidence: S.Number,
+    method: S.String,
+    reason: S.String,
+    event_count_30d: S.Number,
+  }),
+).annotate({
+  identifier: "CampaignMappingSuggestion",
+}) as any as S.Schema<CampaignMappingSuggestion>;
+
+/** campaign_name_mappings entries for orphaned utm_campaign values that fuzzy-match a real campaign. Near-ties are withheld, so an absent campaign may still be mappable by hand. */
+export type UtmMappingSuggestionsResponseCampaignSuggestionsList =
+  Array<CampaignMappingSuggestion>;
+export const UtmMappingSuggestionsResponseCampaignSuggestionsList =
+  /*@__PURE__*/ S.Array(
+    CampaignMappingSuggestion,
+  ) as any as S.Schema<UtmMappingSuggestionsResponseCampaignSuggestionsList>;
+
+export interface RawUnmatchedSample {
+  /** A raw utm_source value matching no integration */
+  raw_utm_source: string;
+  /** Number of events with this raw value in the window */
+  event_count: number;
+  /** Integration suggested by token match, if any */
+  suggested_integration: string | null;
+}
+export const RawUnmatchedSample = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    raw_utm_source: S.String,
+    event_count: S.Number,
+    suggested_integration: S.NullOr(S.String),
+  }),
+).annotate({
+  identifier: "RawUnmatchedSample",
+}) as any as S.Schema<RawUnmatchedSample>;
+
+/** All unmatched raw utm_source values worth reviewing */
+export type UtmMappingSuggestionsResponseRawUnmatchedSamplesList =
+  Array<RawUnmatchedSample>;
+export const UtmMappingSuggestionsResponseRawUnmatchedSamplesList =
+  /*@__PURE__*/ S.Array(
+    RawUnmatchedSample,
+  ) as any as S.Schema<UtmMappingSuggestionsResponseRawUnmatchedSamplesList>;
+
+export interface CatalogueEntry {
+  /** A raw utm_source value seen in the window */
+  raw_utm_source: string;
+  /** Number of events with this value */
+  event_count: number;
+  /** Integration this value exactly matches, if any */
+  matched_integration: string | null;
+  /** Human-readable name of the matched integration, if any */
+  matched_integration_display_name: string | null;
+  /** Integration suggested by token match, if any */
+  suggested_integration: string | null;
+}
+export const CatalogueEntry = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    raw_utm_source: S.String,
+    event_count: S.Number,
+    matched_integration: S.NullOr(S.String),
+    matched_integration_display_name: S.NullOr(S.String),
+    suggested_integration: S.NullOr(S.String),
+  }),
+).annotate({ identifier: "CatalogueEntry" }) as any as S.Schema<CatalogueEntry>;
+
+/** Every utm_source value seen in the window, matched or not */
+export type UtmMappingSuggestionsResponseFullUtmSourceCatalogueList =
+  Array<CatalogueEntry>;
+export const UtmMappingSuggestionsResponseFullUtmSourceCatalogueList =
+  /*@__PURE__*/ S.Array(
+    CatalogueEntry,
+  ) as any as S.Schema<UtmMappingSuggestionsResponseFullUtmSourceCatalogueList>;
+
+export interface CurrentMapping {
+  /** A utm_source value already mapped to an integration */
+  raw_utm_source: string;
+  /** Integration key it maps to */
+  target: string;
+  /** Human-readable name of the target integration */
+  target_display_name: string;
+  /** canonical or team_custom */
+  source: string;
+}
+export const CurrentMapping = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    raw_utm_source: S.String,
+    target: S.String,
+    target_display_name: S.String,
+    source: S.String,
+  }),
+).annotate({ identifier: "CurrentMapping" }) as any as S.Schema<CurrentMapping>;
+
+/** Mappings already in effect (canonical + team_custom) */
+export type UtmMappingSuggestionsResponseCurrentMappingsList =
+  Array<CurrentMapping>;
+export const UtmMappingSuggestionsResponseCurrentMappingsList =
+  /*@__PURE__*/ S.Array(
+    CurrentMapping,
+  ) as any as S.Schema<UtmMappingSuggestionsResponseCurrentMappingsList>;
+
+/** Caveats and guidance about the suggestions */
+export type UtmMappingSuggestionsResponseNotesList = Array<string>;
+export const UtmMappingSuggestionsResponseNotesList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<UtmMappingSuggestionsResponseNotesList>;
+
+export interface UtmMappingSuggestionsResponse {
+  /** Suggested custom_source_mappings entries */
+  source_suggestions: UtmMappingSuggestionsResponseSourceSuggestionsList;
+  /** campaign_name_mappings entries for orphaned utm_campaign values that fuzzy-match a real campaign. Near-ties are withheld, so an absent campaign may still be mappable by hand. */
+  campaign_suggestions: UtmMappingSuggestionsResponseCampaignSuggestionsList;
+  /** All unmatched raw utm_source values worth reviewing */
+  raw_unmatched_samples: UtmMappingSuggestionsResponseRawUnmatchedSamplesList;
+  /** Every utm_source value seen in the window, matched or not */
+  full_utm_source_catalogue: UtmMappingSuggestionsResponseFullUtmSourceCatalogueList;
+  /** Mappings already in effect (canonical + team_custom) */
+  current_mappings: UtmMappingSuggestionsResponseCurrentMappingsList;
+  /** Total events with an unmatched utm_source */
+  total_unmatched_events_in_window: number;
+  /** Total events with any utm_source */
+  total_events_with_utm_in_window: number;
+  /** Lookback window in days used for the analysis */
+  lookback_days_used: number;
+  /** Caveats and guidance about the suggestions */
+  notes: UtmMappingSuggestionsResponseNotesList;
+}
+export const UtmMappingSuggestionsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    source_suggestions: UtmMappingSuggestionsResponseSourceSuggestionsList,
+    campaign_suggestions: UtmMappingSuggestionsResponseCampaignSuggestionsList,
+    raw_unmatched_samples: UtmMappingSuggestionsResponseRawUnmatchedSamplesList,
+    full_utm_source_catalogue:
+      UtmMappingSuggestionsResponseFullUtmSourceCatalogueList,
+    current_mappings: UtmMappingSuggestionsResponseCurrentMappingsList,
+    total_unmatched_events_in_window: S.Number,
+    total_events_with_utm_in_window: S.Number,
+    lookback_days_used: S.Number,
+    notes: UtmMappingSuggestionsResponseNotesList,
+  }),
+).annotate({
+  identifier: "UtmMappingSuggestionsResponse",
+}) as any as S.Schema<UtmMappingSuggestionsResponse>;
+
+export interface GetMarketingAnalyticsUtmAuditRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** Start date for the audit period */
+  date_from?: string;
+  /** End date for the audit period */
+  date_to?: string;
+}
+export const GetMarketingAnalyticsUtmAuditRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      date_from: S.optional(S.String.pipe(T.Query())),
+      date_to: S.optional(S.String.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/projects/{project_id}/marketing_analytics/utm_audit/",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "GetMarketingAnalyticsUtmAuditRequest",
+}) as any as S.Schema<GetMarketingAnalyticsUtmAuditRequest>;
+
+/** * `error` - error * `warning` - warning */
+export type DiagnosticSeverityEnum = "error" | "warning";
+export const DiagnosticSeverityEnum = /*@__PURE__*/ S.String;
+
+/** * `not_linked` - not_linked * `name_collision` - name_collision * `no_tagged_events` - no_tagged_events * `unknown_source` - unknown_source * `missing_source` - missing_source */
+export type UtmIssueKindEnum =
+  | "not_linked"
+  | "name_collision"
+  | "no_tagged_events"
+  | "unknown_source"
+  | "missing_source";
+export const UtmIssueKindEnum = /*@__PURE__*/ S.String;
+
+export interface UtmAlternativeSource {
+  /** A utm_source value found on this campaign's pageviews */
+  utm_source: string;
+  /** Number of pageview events with this utm_source */
+  event_count: number;
+}
+export const UtmAlternativeSource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    utm_source: S.String,
+    event_count: S.Number,
+  }),
+).annotate({
+  identifier: "UtmAlternativeSource",
+}) as any as S.Schema<UtmAlternativeSource>;
+
+/** utm_source values actually found on this campaign's pageviews, ordered by event count */
+export type UtmIssueAlternativeSourcesList = Array<UtmAlternativeSource>;
+export const UtmIssueAlternativeSourcesList = /*@__PURE__*/ S.Array(
+  UtmAlternativeSource,
+) as any as S.Schema<UtmIssueAlternativeSourcesList>;
+
+/** Other integrations whose campaigns share this campaign's name (name_collision only) */
+export type UtmIssueSharedWithIntegrationsList = Array<string>;
+export const UtmIssueSharedWithIntegrationsList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<UtmIssueSharedWithIntegrationsList>;
+
+/** * `fix_platform_urls` - fix_platform_urls * `add_source_mapping` - add_source_mapping * `switch_to_id_match` - switch_to_id_match * `add_campaign_name_mapping` - add_campaign_name_mapping */
+export type SuggestedActionsEnum =
+  | "fix_platform_urls"
+  | "add_source_mapping"
+  | "switch_to_id_match"
+  | "add_campaign_name_mapping";
+export const SuggestedActionsEnum = /*@__PURE__*/ S.String;
+
+/** Recommended remediations, most-recommended first. fix_platform_urls cures the tagging bug itself; the others are workarounds that leave the bad URLs in place. */
+export type UtmIssueSuggestedActionsList = Array<SuggestedActionsEnum>;
+export const UtmIssueSuggestedActionsList = /*@__PURE__*/ S.Array(
+  SuggestedActionsEnum,
+) as any as S.Schema<UtmIssueSuggestedActionsList>;
+
+export interface UtmIssue {
+  /** The UTM field with the issue (e.g. utm_campaign, utm_source) */
+  field: string;
+  /** Issue severity level * `error` - error * `warning` - warning */
+  severity: DiagnosticSeverityEnum;
+  /** Which kind of UTM problem this campaign has * `not_linked` - not_linked * `name_collision` - name_collision * `no_tagged_events` - no_tagged_events * `unknown_source` - unknown_source * `missing_source` - missing_source */
+  kind: UtmIssueKindEnum;
+  /** Human-readable headline; the frontend composes richer text from the fields below */
+  message: string;
+  /** utm_source values actually found on this campaign's pageviews, ordered by event count */
+  alternative_sources: UtmIssueAlternativeSourcesList;
+  /** Other integrations whose campaigns share this campaign's name (name_collision only) */
+  shared_with_integrations: UtmIssueSharedWithIntegrationsList;
+  /** Pageviews that matched this campaign but carried no utm_source, on any issue kind */
+  missing_source_count: number;
+  /** Recommended remediations, most-recommended first. fix_platform_urls cures the tagging bug itself; the others are workarounds that leave the bad URLs in place. */
+  suggested_actions: UtmIssueSuggestedActionsList;
+  /** The orphaned utm_campaign value that looks like a typo of this campaign, when one was found confidently. Set only alongside add_campaign_name_mapping; empty otherwise, including when several candidates tie and picking one could misattribute spend. */
+  mapping_candidate: string;
+}
+export const UtmIssue = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    field: S.String,
+    severity: DiagnosticSeverityEnum,
+    kind: UtmIssueKindEnum,
+    message: S.String,
+    alternative_sources: UtmIssueAlternativeSourcesList,
+    shared_with_integrations: UtmIssueSharedWithIntegrationsList,
+    missing_source_count: S.Number,
+    suggested_actions: UtmIssueSuggestedActionsList,
+    mapping_candidate: S.String,
+  }),
+).annotate({ identifier: "UtmIssue" }) as any as S.Schema<UtmIssue>;
+
+/** List of detected UTM configuration issues */
+export type CampaignAuditResultIssuesList = Array<UtmIssue>;
+export const CampaignAuditResultIssuesList = /*@__PURE__*/ S.Array(
+  UtmIssue,
+) as any as S.Schema<CampaignAuditResultIssuesList>;
+
+export interface CampaignAuditResult {
+  /** Campaign name from the ad platform */
+  campaign_name: string;
+  /** Campaign ID from the ad platform */
+  campaign_id: string;
+  /** Integration source name (e.g. google, meta) */
+  source_name: string;
+  /** Total spend for this campaign in the period */
+  spend: number;
+  /** Total clicks for this campaign */
+  clicks: number;
+  /** Total impressions for this campaign */
+  impressions: number;
+  /** Whether matching UTM pageview events were found */
+  has_utm_events: boolean;
+  /** Number of matching UTM pageview events */
+  event_count: number;
+  /** List of detected UTM configuration issues */
+  issues: CampaignAuditResultIssuesList;
+}
+export const CampaignAuditResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    campaign_name: S.String,
+    campaign_id: S.String,
+    source_name: S.String,
+    spend: S.Number,
+    clicks: S.Number,
+    impressions: S.Number,
+    has_utm_events: S.Boolean,
+    event_count: S.Number,
+    issues: CampaignAuditResultIssuesList,
+  }),
+).annotate({
+  identifier: "CampaignAuditResult",
+}) as any as S.Schema<CampaignAuditResult>;
+
+/** Audit results per campaign */
+export type UtmAuditResponseResultsList = Array<CampaignAuditResult>;
+export const UtmAuditResponseResultsList = /*@__PURE__*/ S.Array(
+  CampaignAuditResult,
+) as any as S.Schema<UtmAuditResponseResultsList>;
+
+/** * `none` - none * `auto` - auto * `mapped` - mapped */
+export type SourceMatchEnum = "none" | "auto" | "mapped";
+export const SourceMatchEnum = /*@__PURE__*/ S.String;
+
+export interface UtmEvent {
+  /** UTM campaign value from pageview events */
+  utm_campaign: string;
+  /** UTM source value from pageview events */
+  utm_source: string;
+  /** Number of pageview events with this UTM combination */
+  event_count: number;
+  /** How utm_campaign matched: none, auto (direct name/id), or mapped (manual mapping) * `none` - none * `auto` - auto * `mapped` - mapped */
+  campaign_match: SourceMatchEnum;
+  /** How utm_source matched: none, auto (default source), or mapped (custom mapping) * `none` - none * `auto` - auto * `mapped` - mapped */
+  source_match: SourceMatchEnum;
+  /** Name of the matched campaign, if any */
+  matched_campaign: string | null;
+}
+export const UtmEvent = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    utm_campaign: S.String,
+    utm_source: S.String,
+    event_count: S.Number,
+    campaign_match: SourceMatchEnum,
+    source_match: SourceMatchEnum,
+    matched_campaign: S.NullOr(S.String),
+  }),
+).annotate({ identifier: "UtmEvent" }) as any as S.Schema<UtmEvent>;
+
+/** All UTM events with match status */
+export type UtmAuditResponseAllUtmEventsList = Array<UtmEvent>;
+export const UtmAuditResponseAllUtmEventsList = /*@__PURE__*/ S.Array(
+  UtmEvent,
+) as any as S.Schema<UtmAuditResponseAllUtmEventsList>;
+
+export interface UtmAuditResponse {
+  /** Total number of campaigns with spend */
+  total_campaigns: number;
+  /** Number of campaigns with UTM issues */
+  campaigns_with_issues: number;
+  /** Number of campaigns without issues */
+  campaigns_without_issues: number;
+  /** Total spend on campaigns with UTM issues */
+  total_spend_at_risk: number;
+  /** Audit results per campaign */
+  results: UtmAuditResponseResultsList;
+  /** All UTM events with match status */
+  all_utm_events: UtmAuditResponseAllUtmEventsList;
+}
+export const UtmAuditResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    total_campaigns: S.Number,
+    campaigns_with_issues: S.Number,
+    campaigns_without_issues: S.Number,
+    total_spend_at_risk: S.Number,
+    results: UtmAuditResponseResultsList,
+    all_utm_events: UtmAuditResponseAllUtmEventsList,
+  }),
+).annotate({
+  identifier: "UtmAuditResponse",
+}) as any as S.Schema<UtmAuditResponse>;
+
+/** Operations to apply, in order. Send `apply` payloads returned verbatim by setup_plan — never hand-craft one. Navigate-only ops (open_oauth, open_source_wizard, open_settings, fix_platform_urls) are rejected: they describe something a browser or a human does. */
+export type MarketingAnalyticsApplySetupOpsCreateRequestOpsList =
+  Array<unknown>;
+export const MarketingAnalyticsApplySetupOpsCreateRequestOpsList =
+  /*@__PURE__*/ S.Array(
+    S.Unknown,
+  ) as any as S.Schema<MarketingAnalyticsApplySetupOpsCreateRequestOpsList>;
+
+/** * `setup_tab` - setup_tab * `apply_all_safe` - apply_all_safe * `mcp` - mcp */
+export type ApplySetupOpsSourceEnum = "setup_tab" | "apply_all_safe" | "mcp";
+export const ApplySetupOpsSourceEnum = /*@__PURE__*/ S.String;
+
+export interface MarketingAnalyticsApplySetupOpsCreateRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** Operations to apply, in order. Send `apply` payloads returned verbatim by setup_plan — never hand-craft one. Navigate-only ops (open_oauth, open_source_wizard, open_settings, fix_platform_urls) are rejected: they describe something a browser or a human does. */
+  ops: MarketingAnalyticsApplySetupOpsCreateRequestOpsList;
+  /** Where the request came from, recorded in the activity log * `setup_tab` - setup_tab * `apply_all_safe` - apply_all_safe * `mcp` - mcp */
+  source?: ApplySetupOpsSourceEnum | (string & {});
+}
+export const MarketingAnalyticsApplySetupOpsCreateRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      ops: MarketingAnalyticsApplySetupOpsCreateRequestOpsList,
+      source: S.optional(ApplySetupOpsSourceEnum),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/projects/{project_id}/marketing_analytics/apply_setup_ops/",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "MarketingAnalyticsApplySetupOpsCreateRequest",
+  }) as any as S.Schema<MarketingAnalyticsApplySetupOpsCreateRequest>;
+
+/** The operations that were applied */
+export type ApplySetupOpsResponseAppliedList = Array<unknown>;
+export const ApplySetupOpsResponseAppliedList = /*@__PURE__*/ S.Array(
+  S.Unknown,
+) as any as S.Schema<ApplySetupOpsResponseAppliedList>;
+
+/** Operations that reverse this batch, in the order they should be sent. Computed server-side from the pre-change state — POST them back to undo. */
+export type ApplySetupOpsResponseUndoOpsList = Array<unknown>;
+export const ApplySetupOpsResponseUndoOpsList = /*@__PURE__*/ S.Array(
+  S.Unknown,
+) as any as S.Schema<ApplySetupOpsResponseUndoOpsList>;
+
+export interface ApplySetupOpsResponse {
+  /** The operations that were applied */
+  applied: ApplySetupOpsResponseAppliedList;
+  /** Operations that reverse this batch, in the order they should be sent. Computed server-side from the pre-change state — POST them back to undo. */
+  undo_ops: ApplySetupOpsResponseUndoOpsList;
+  /** The config as it now stands */
+  marketing_analytics_config: unknown;
+}
+export const ApplySetupOpsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    applied: ApplySetupOpsResponseAppliedList,
+    undo_ops: ApplySetupOpsResponseUndoOpsList,
+    marketing_analytics_config: S.Unknown,
+  }),
+).annotate({
+  identifier: "ApplySetupOpsResponse",
+}) as any as S.Schema<ApplySetupOpsResponse>;
+
+export interface MarketingAnalyticsConversionGoalsCreateCreateRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** The conversion goal. Must match one of the ConversionGoalFilter shapes: an events node, an actions node or a data warehouse node. conversion_goal_id is assigned by the server and any value sent is ignored. */
+  goal: ConversionGoal;
+}
+export const MarketingAnalyticsConversionGoalsCreateCreateRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      goal: ConversionGoal,
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/projects/{project_id}/marketing_analytics/conversion_goals/create/",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "MarketingAnalyticsConversionGoalsCreateCreateRequest",
+  }) as any as S.Schema<MarketingAnalyticsConversionGoalsCreateCreateRequest>;
 
 export type PartialConversionGoalFilter1FixedPropertiesItem =
   | EventPropertyFilter
@@ -2521,1271 +3787,157 @@ export const MarketingAnalyticsConversionGoalsUpdatePartialUpdateRequest =
     identifier: "MarketingAnalyticsConversionGoalsUpdatePartialUpdateRequest",
   }) as any as S.Schema<MarketingAnalyticsConversionGoalsUpdatePartialUpdateRequest>;
 
-export interface MarketingAnalyticsDataSourcesRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** Optional. Restrict to one integration (e.g. 'GoogleAds'). */
-  source_type?: string;
-}
-export const MarketingAnalyticsDataSourcesRetrieveRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      source_type: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/marketing_analytics/data_sources/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "MarketingAnalyticsDataSourcesRetrieveRequest",
-  }) as any as S.Schema<MarketingAnalyticsDataSourcesRetrieveRequest>;
-
-/** Schema columns currently mapped for this source */
-export type DataSourceHealthEntrySchemaColumnsMappedList = Array<string>;
-export const DataSourceHealthEntrySchemaColumnsMappedList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<DataSourceHealthEntrySchemaColumnsMappedList>;
-
-/** Required schema columns that are not yet mapped */
-export type DataSourceHealthEntrySchemaColumnsRequiredMissingList =
-  Array<string>;
-export const DataSourceHealthEntrySchemaColumnsRequiredMissingList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<DataSourceHealthEntrySchemaColumnsRequiredMissingList>;
-
-export interface RequiredTableStatus {
-  /** Name of the required source table (e.g. 'campaign', 'campaign_stats') */
-  table_name: string;
-  /** Whether the table exists as a schema on the connected source */
-  present: boolean;
-  /** Whether the table is enabled for sync */
-  should_sync: boolean;
-  /** ExternalDataSchema status: Completed/Running/Failed/Paused/Cancelled, or null */
-  status: string | null;
-  /** When this table last completed a sync */
-  last_synced_at: string | null;
-}
-export const RequiredTableStatus = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    table_name: S.String,
-    present: S.Boolean,
-    should_sync: S.Boolean,
-    status: S.NullOr(S.String),
-    last_synced_at: S.NullOr(S.String),
-  }),
-).annotate({
-  identifier: "RequiredTableStatus",
-}) as any as S.Schema<RequiredTableStatus>;
-
-/** Per-required-table sync status for this integration */
-export type DataSourceHealthEntryRequiredTablesList =
-  Array<RequiredTableStatus>;
-export const DataSourceHealthEntryRequiredTablesList = /*@__PURE__*/ S.Array(
-  RequiredTableStatus,
-) as any as S.Schema<DataSourceHealthEntryRequiredTablesList>;
-
-export interface DataSourceHealthEntry {
-  /** External data source type key (e.g. 'GoogleAds', 'MetaAds') */
-  source_type: string;
-  /** Whether this is a native marketing integration */
-  is_native: boolean;
-  /** Human-readable integration name (e.g. 'Google Ads') */
-  display_name: string;
-  /** Whether a live source of this type is connected */
-  connected: boolean;
-  /** When the source last completed a sync */
-  last_sync_at: string | null;
-  /** Sync status: ok/error/stale/tables_failed/not_connected/never */
-  last_sync_status: string;
-  /** Latest unresolved sync error message, if any */
-  last_error: string | null;
-  /** Rows synced in the last 24 hours */
-  rows_last_24h: number;
-  /** Rows synced in the last 7 days */
-  rows_last_7d: number;
-  /** Whether a column mapping exists for this source */
-  sources_map_present: boolean;
-  /** Schema columns currently mapped for this source */
-  schema_columns_mapped: DataSourceHealthEntrySchemaColumnsMappedList;
-  /** Required schema columns that are not yet mapped */
-  schema_columns_required_missing: DataSourceHealthEntrySchemaColumnsRequiredMissingList;
-  /** Per-required-table sync status for this integration */
-  required_tables: DataSourceHealthEntryRequiredTablesList;
-  /** URL to the Marketing analytics global settings page */
-  settings_url: string;
-  /** URL to the per-source Schemas tab, or null if not connected */
-  schemas_url: string | null;
-  /** Human-readable diagnosis of this source's health */
-  diagnosis: string;
-  /** Suggested fix when the source is unhealthy */
-  fix_suggestion: string | null;
-}
-export const DataSourceHealthEntry = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    source_type: S.String,
-    is_native: S.Boolean,
-    display_name: S.String,
-    connected: S.Boolean,
-    last_sync_at: S.NullOr(S.String),
-    last_sync_status: S.String,
-    last_error: S.NullOr(S.String),
-    rows_last_24h: S.Number,
-    rows_last_7d: S.Number,
-    sources_map_present: S.Boolean,
-    schema_columns_mapped: DataSourceHealthEntrySchemaColumnsMappedList,
-    schema_columns_required_missing:
-      DataSourceHealthEntrySchemaColumnsRequiredMissingList,
-    required_tables: DataSourceHealthEntryRequiredTablesList,
-    settings_url: S.String,
-    schemas_url: S.NullOr(S.String),
-    diagnosis: S.String,
-    fix_suggestion: S.NullOr(S.String),
-  }),
-).annotate({
-  identifier: "DataSourceHealthEntry",
-}) as any as S.Schema<DataSourceHealthEntry>;
-
-/** One health entry per native integration */
-export type DataSourceHealthResponseIntegrationsList =
-  Array<DataSourceHealthEntry>;
-export const DataSourceHealthResponseIntegrationsList = /*@__PURE__*/ S.Array(
-  DataSourceHealthEntry,
-) as any as S.Schema<DataSourceHealthResponseIntegrationsList>;
-
-/** Short human-readable summary of detected issues */
-export type DataSourceHealthResponseIssuesSummaryList = Array<string>;
-export const DataSourceHealthResponseIssuesSummaryList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<DataSourceHealthResponseIssuesSummaryList>;
-
-export interface DataSourceHealthResponse {
-  /** One health entry per native integration */
-  integrations: DataSourceHealthResponseIntegrationsList;
-  /** True if any integration synced rows in the last 7 days */
-  has_any_data: boolean;
-  /** Overall: healthy/degraded/broken/no_sources */
-  overall_status: string;
-  /** Short human-readable summary of detected issues */
-  issues_summary: DataSourceHealthResponseIssuesSummaryList;
-}
-export const DataSourceHealthResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    integrations: DataSourceHealthResponseIntegrationsList,
-    has_any_data: S.Boolean,
-    overall_status: S.String,
-    issues_summary: DataSourceHealthResponseIssuesSummaryList,
-  }),
-).annotate({
-  identifier: "DataSourceHealthResponse",
-}) as any as S.Schema<DataSourceHealthResponse>;
-
-export interface MarketingAnalyticsDiagnoseRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** Lookback window for attribution health (1-365 days); defaults to 7 */
-  attribution_lookback_days?: number;
-  /** Whether to include the conversion-goal summary in the diagnostic */
-  include_conversion_goals?: boolean;
-  /** Optional integration filter */
-  source_type?: string;
-}
-export const MarketingAnalyticsDiagnoseRetrieveRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      attribution_lookback_days: S.optional(S.Number.pipe(T.Query())),
-      include_conversion_goals: S.optional(S.Boolean.pipe(T.Query())),
-      source_type: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/marketing_analytics/diagnose/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "MarketingAnalyticsDiagnoseRetrieveRequest",
-  }) as any as S.Schema<MarketingAnalyticsDiagnoseRetrieveRequest>;
-
-export interface UnmatchedUtmSample {
-  /** A raw utm_source value that doesn't match the integration exactly */
-  raw_value: string;
-  /** Number of events with this raw value in the window */
-  event_count: number;
-  /** Integration suggested by token match, if any */
-  suggested_integration: string | null;
-}
-export const UnmatchedUtmSample = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    raw_value: S.String,
-    event_count: S.Number,
-    suggested_integration: S.NullOr(S.String),
-  }),
-).annotate({
-  identifier: "UnmatchedUtmSample",
-}) as any as S.Schema<UnmatchedUtmSample>;
-
-/** Sample of likely-yours unmatched utm_source values */
-export type AttributionHealthEntrySampleUnmatchedUtmSourcesList =
-  Array<UnmatchedUtmSample>;
-export const AttributionHealthEntrySampleUnmatchedUtmSourcesList =
-  /*@__PURE__*/ S.Array(
-    UnmatchedUtmSample,
-  ) as any as S.Schema<AttributionHealthEntrySampleUnmatchedUtmSourcesList>;
-
-export interface AttributionHealthEntry {
-  /** Integration key (e.g. 'google', 'meta') */
-  integration_key: string;
-  /** Human-readable integration name */
-  display_name: string;
-  /** Total events with any utm_source in the window */
-  events_with_utm_last_7d: number;
-  /** Events whose utm_source matched this integration */
-  events_matched_last_7d: number;
-  /** Events that look like this integration's but don't match exactly */
-  events_unmatched_likely_yours_last_7d: number;
-  /** Timestamp of the most recent matched event */
-  last_event_with_matching_utm_at: string | null;
-  /** Percentage of UTM events matched to this integration */
-  matched_pct: number;
-  /** Sample of likely-yours unmatched utm_source values */
-  sample_unmatched_utm_sources: AttributionHealthEntrySampleUnmatchedUtmSourcesList;
-  /** Of the matched events, how many look paid: a cost-bearing utm_medium (cpc, cpm, cpv, cpa, ppc, retargeting, or anything starting with 'paid') or a gclid/gad_source click id. */
-  events_matched_paid_last_7d: number;
-  /** Of the matched events, how many carry any utm_medium. Zero paid with a non-zero count here means the traffic is tagged and organic; both zero means the team doesn't tag medium, which says nothing. */
-  events_matched_tagged_medium_last_7d: number;
-}
-export const AttributionHealthEntry = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    integration_key: S.String,
-    display_name: S.String,
-    events_with_utm_last_7d: S.Number,
-    events_matched_last_7d: S.Number,
-    events_unmatched_likely_yours_last_7d: S.Number,
-    last_event_with_matching_utm_at: S.NullOr(S.String),
-    matched_pct: S.Number,
-    sample_unmatched_utm_sources:
-      AttributionHealthEntrySampleUnmatchedUtmSourcesList,
-    events_matched_paid_last_7d: S.Number,
-    events_matched_tagged_medium_last_7d: S.Number,
-  }),
-).annotate({
-  identifier: "AttributionHealthEntry",
-}) as any as S.Schema<AttributionHealthEntry>;
-
-export interface RecommendedAction {
-  /** Short title of the recommended action */
-  title: string;
-  /** Detailed explanation of the action */
-  detail: string;
-  /** Action severity */
-  severity: string;
-  /** Follow-up tool to call next, if any */
-  target_tool: string | null;
-}
-export const RecommendedAction = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    title: S.String,
-    detail: S.String,
-    severity: S.String,
-    target_tool: S.NullOr(S.String),
-  }),
-).annotate({
-  identifier: "RecommendedAction",
-}) as any as S.Schema<RecommendedAction>;
-
-/** Recommended next steps for this integration */
-export type IntegrationDiagnosticRecommendedActionsList =
-  Array<RecommendedAction>;
-export const IntegrationDiagnosticRecommendedActionsList =
-  /*@__PURE__*/ S.Array(
-    RecommendedAction,
-  ) as any as S.Schema<IntegrationDiagnosticRecommendedActionsList>;
-
-export interface IntegrationDiagnostic {
-  /** Integration key (e.g. 'google', 'meta') */
-  integration_key: string;
-  /** External data source type key (e.g. 'GoogleAds') */
-  source_type: string;
-  /** Human-readable integration name */
-  display_name: string;
-  /** Per-integration status */
-  overall_status: string;
-  /** Human-readable cross-domain diagnosis */
-  diagnosis: string;
-  /** Data-source (sync) side health, or null if not connected */
-  data_source?: DataSourceHealthEntry | null;
-  /** Attribution (UTM events) side health, or null if no data */
-  attribution?: AttributionHealthEntry | null;
-  /** Recommended next steps for this integration */
-  recommended_actions: IntegrationDiagnosticRecommendedActionsList;
-}
-export const IntegrationDiagnostic = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    integration_key: S.String,
-    source_type: S.String,
-    display_name: S.String,
-    overall_status: S.String,
-    diagnosis: S.String,
-    data_source: S.optional(S.NullOr(DataSourceHealthEntry)),
-    attribution: S.optional(S.NullOr(AttributionHealthEntry)),
-    recommended_actions: IntegrationDiagnosticRecommendedActionsList,
-  }),
-).annotate({
-  identifier: "IntegrationDiagnostic",
-}) as any as S.Schema<IntegrationDiagnostic>;
-
-/** Per-integration cross-domain diagnostics */
-export type MarketingDiagnosticResponseIntegrationsList =
-  Array<IntegrationDiagnostic>;
-export const MarketingDiagnosticResponseIntegrationsList =
-  /*@__PURE__*/ S.Array(
-    IntegrationDiagnostic,
-  ) as any as S.Schema<MarketingDiagnosticResponseIntegrationsList>;
-
-/** Top global recommended actions across all integrations */
-export type MarketingDiagnosticResponseRecommendedActionsList =
-  Array<RecommendedAction>;
-export const MarketingDiagnosticResponseRecommendedActionsList =
-  /*@__PURE__*/ S.Array(
-    RecommendedAction,
-  ) as any as S.Schema<MarketingDiagnosticResponseRecommendedActionsList>;
-
-export interface MarketingDiagnosticResponse {
-  /** Per-integration cross-domain diagnostics */
-  integrations: MarketingDiagnosticResponseIntegrationsList;
-  /** healthy/degraded/broken/no_sources */
-  overall_status: string;
-  /** One-line plain-English summary of the diagnostic */
-  summary: string;
-  /** Conversion goal summary, when requested */
-  conversion_goals?: ConversionGoalsListResponse | null;
-  /** Top global recommended actions across all integrations */
-  recommended_actions: MarketingDiagnosticResponseRecommendedActionsList;
-}
-export const MarketingDiagnosticResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    integrations: MarketingDiagnosticResponseIntegrationsList,
-    overall_status: S.String,
-    summary: S.String,
-    conversion_goals: S.optional(S.NullOr(ConversionGoalsListResponse)),
-    recommended_actions: MarketingDiagnosticResponseRecommendedActionsList,
-  }),
-).annotate({
-  identifier: "MarketingDiagnosticResponse",
-}) as any as S.Schema<MarketingDiagnosticResponse>;
-
-export interface MarketingAnalyticsExplainConversionGoalRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** conversion_goal_id of the goal to explain, as returned by the conversion_goals list endpoint. */
-  conversion_goal_id: string;
-  /** ISO start; defaults to 30 days ago */
-  date_from?: string;
-  /** ISO end; defaults to now */
-  date_to?: string;
-}
-export const MarketingAnalyticsExplainConversionGoalRetrieveRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      conversion_goal_id: S.String.pipe(T.Query()),
-      date_from: S.optional(S.String.pipe(T.Query())),
-      date_to: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/marketing_analytics/explain_conversion_goal/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "MarketingAnalyticsExplainConversionGoalRetrieveRequest",
-  }) as any as S.Schema<MarketingAnalyticsExplainConversionGoalRetrieveRequest>;
-
-export interface GoalExplanationPeriod {
-  /** Start of the analyzed period (ISO) */
-  date_from: string | null;
-  /** End of the analyzed period (ISO) */
-  date_to: string | null;
-}
-export const GoalExplanationPeriod = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    date_from: S.NullOr(S.String),
-    date_to: S.NullOr(S.String),
-  }),
-).annotate({
-  identifier: "GoalExplanationPeriod",
-}) as any as S.Schema<GoalExplanationPeriod>;
-
-export type GoalExplanationByEventItemList = Array<unknown>;
-export const GoalExplanationByEventItemList = /*@__PURE__*/ S.Array(
-  S.Unknown,
-) as any as S.Schema<GoalExplanationByEventItemList>;
-
-/** List of [event_name, count] pairs */
-export type GoalExplanationByEventList = Array<GoalExplanationByEventItemList>;
-export const GoalExplanationByEventList = /*@__PURE__*/ S.Array(
-  GoalExplanationByEventItemList,
-) as any as S.Schema<GoalExplanationByEventList>;
-
-export type GoalExplanationByUtmSourceItemList = Array<unknown>;
-export const GoalExplanationByUtmSourceItemList = /*@__PURE__*/ S.Array(
-  S.Unknown,
-) as any as S.Schema<GoalExplanationByUtmSourceItemList>;
-
-/** List of [utm_source, count] pairs */
-export type GoalExplanationByUtmSourceList =
-  Array<GoalExplanationByUtmSourceItemList>;
-export const GoalExplanationByUtmSourceList = /*@__PURE__*/ S.Array(
-  GoalExplanationByUtmSourceItemList,
-) as any as S.Schema<GoalExplanationByUtmSourceList>;
-
-export type GoalExplanationByMatchedIntegrationItemList = Array<unknown>;
-export const GoalExplanationByMatchedIntegrationItemList =
-  /*@__PURE__*/ S.Array(
-    S.Unknown,
-  ) as any as S.Schema<GoalExplanationByMatchedIntegrationItemList>;
-
-/** List of [integration, count] pairs */
-export type GoalExplanationByMatchedIntegrationList =
-  Array<GoalExplanationByMatchedIntegrationItemList>;
-export const GoalExplanationByMatchedIntegrationList = /*@__PURE__*/ S.Array(
-  GoalExplanationByMatchedIntegrationItemList,
-) as any as S.Schema<GoalExplanationByMatchedIntegrationList>;
-
-export interface GoalEventSample {
-  /** UUID of the sampled conversion event */
-  event_uuid: string;
-  /** When the event occurred */
-  timestamp: string;
-  /** Distinct id associated with the event */
-  distinct_id: string;
-  /** utm_source value on the event, if any */
-  utm_source: string | null;
-  /** utm_campaign value on the event, if any */
-  utm_campaign: string | null;
-  /** Integration the utm_source matched, if any */
-  matched_integration: string | null;
-}
-export const GoalEventSample = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    event_uuid: S.String,
-    timestamp: S.String,
-    distinct_id: S.String,
-    utm_source: S.NullOr(S.String),
-    utm_campaign: S.NullOr(S.String),
-    matched_integration: S.NullOr(S.String),
-  }),
-).annotate({
-  identifier: "GoalEventSample",
-}) as any as S.Schema<GoalEventSample>;
-
-/** A small sample of matching events */
-export type GoalExplanationSamplesList = Array<GoalEventSample>;
-export const GoalExplanationSamplesList = /*@__PURE__*/ S.Array(
-  GoalEventSample,
-) as any as S.Schema<GoalExplanationSamplesList>;
-
-/** Caveats about the breakdown (sampling, attribution, etc.) */
-export type GoalExplanationNotesList = Array<string>;
-export const GoalExplanationNotesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<GoalExplanationNotesList>;
-
-export interface GoalExplanation {
-  /** conversion_goal_id of the explained goal */
-  conversion_goal_id: string;
-  /** Display name of the conversion goal */
-  goal_name: string;
-  /** Goal type: EventsNode (PostHog event), ActionsNode (PostHog action), or DataWarehouseNode (external table) * `EventsNode` - EventsNode * `ActionsNode` - ActionsNode * `DataWarehouseNode` - DataWarehouseNode */
-  kind: ConversionGoalKindEnum;
-  /** The period the breakdown was computed over */
-  period: GoalExplanationPeriod;
-  /** Total matching conversion events in the period */
-  total_count: number;
-  /** Events whose utm_source matched a known integration. Null for DataWarehouseNode. */
-  integrated_count: number | null;
-  /** Events with no utm_source at all. Null for DataWarehouseNode. */
-  events_without_utm_source: number | null;
-  /** Events with a utm_source matching no integration. Null for DataWarehouseNode. */
-  events_with_unmatched_utm_source: number | null;
-  /** Total non-integrated events (without + unmatched). Null for DataWarehouseNode. */
-  non_integrated_count: number | null;
-  /** List of [event_name, count] pairs */
-  by_event: GoalExplanationByEventList;
-  /** List of [utm_source, count] pairs */
-  by_utm_source: GoalExplanationByUtmSourceList;
-  /** List of [integration, count] pairs */
-  by_matched_integration: GoalExplanationByMatchedIntegrationList;
-  /** A small sample of matching events */
-  samples: GoalExplanationSamplesList;
-  /** Caveats about the breakdown (sampling, attribution, etc.) */
-  notes: GoalExplanationNotesList;
-}
-export const GoalExplanation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    conversion_goal_id: S.String,
-    goal_name: S.String,
-    kind: ConversionGoalKindEnum,
-    period: GoalExplanationPeriod,
-    total_count: S.Number,
-    integrated_count: S.NullOr(S.Number),
-    events_without_utm_source: S.NullOr(S.Number),
-    events_with_unmatched_utm_source: S.NullOr(S.Number),
-    non_integrated_count: S.NullOr(S.Number),
-    by_event: GoalExplanationByEventList,
-    by_utm_source: GoalExplanationByUtmSourceList,
-    by_matched_integration: GoalExplanationByMatchedIntegrationList,
-    samples: GoalExplanationSamplesList,
-    notes: GoalExplanationNotesList,
-  }),
-).annotate({
-  identifier: "GoalExplanation",
-}) as any as S.Schema<GoalExplanation>;
-
-export interface MarketingAnalyticsSetupPlanRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** Window for campaign spend and the UTM catalogue, as a relative range (e.g. '-30d'); defaults to -30d */
-  date_from?: string;
-  /** Re-run every check instead of serving a recent result. Use right after changing something. */
-  refresh?: boolean;
-}
-export const MarketingAnalyticsSetupPlanRetrieveRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      date_from: S.optional(S.String.pipe(T.Query())),
-      refresh: S.optional(S.Boolean.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/marketing_analytics/setup_plan/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "MarketingAnalyticsSetupPlanRetrieveRequest",
-  }) as any as S.Schema<MarketingAnalyticsSetupPlanRetrieveRequest>;
-
-/** Capabilities this unblocks: cost, attribution, roas, cac */
-export type SuggestionUnlocksList = Array<string>;
-export const SuggestionUnlocksList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<SuggestionUnlocksList>;
-
-/** Advice shown alongside the action. Mapping suggestions always carry a 'fix_platform_urls' entry, because a mapping is a workaround and correcting the ad platform's tracking template is the real fix. */
-export type SuggestionAlsoRecommendedList = Array<unknown>;
-export const SuggestionAlsoRecommendedList = /*@__PURE__*/ S.Array(
-  S.Unknown,
-) as any as S.Schema<SuggestionAlsoRecommendedList>;
-
-export interface Suggestion {
-  /** Stable identifier for this finding. Deterministic across scans, so clients can dedupe and remember dismissals by it. */
-  id: string;
-  /** Suggestion kind, e.g. connect_source / add_source_mapping */
-  kind: string;
-  /** 'deterministic' or 'ai' — how this suggestion was produced */
-  source: string;
-  /** error/warning/info */
-  severity: string;
-  /** 0-1. Never 1.0: these are inferences, not proofs. */
-  confidence: number;
-  /** Short imperative title, e.g. 'Connect Meta Ads' */
-  title: string;
-  /** The concrete numbers behind the suggestion, so a user can sanity-check it without taking it on faith */
-  evidence: string;
-  /** Capabilities this unblocks: cost, attribution, roas, cac */
-  unlocks: SuggestionUnlocksList;
-  /** The operation that applies this suggestion, or null when there's nothing to automate. An object with an 'op' discriminator — see the ApplyOp union in setup_types. Pass it verbatim to apply_setup_ops; never hand-craft one. */
-  apply: unknown;
-  /** Advice shown alongside the action. Mapping suggestions always carry a 'fix_platform_urls' entry, because a mapping is a workaround and correcting the ad platform's tracking template is the real fix. */
-  also_recommended: SuggestionAlsoRecommendedList;
-  /** True only for high-confidence, reversible operations — what an 'apply all safe' button may include */
-  safe_to_batch: boolean;
-  /** Ranking score; higher first. Unblocking actions dominate. */
-  rank_score: number;
-  /** Integration this concerns, if any */
-  integration: string | null;
-  /** In-app URL to resolve this manually, if any */
-  deep_link: string | null;
-  /** Documentation link, if any */
-  docs_url: string | null;
-  /** Ad spend currently mis- or un-attributed because of this */
-  spend_at_risk: number;
-  /** Events affected in the window */
-  event_volume: number;
-}
-export const Suggestion = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    kind: S.String,
-    source: S.String,
-    severity: S.String,
-    confidence: S.Number,
-    title: S.String,
-    evidence: S.String,
-    unlocks: SuggestionUnlocksList,
-    apply: S.Unknown,
-    also_recommended: SuggestionAlsoRecommendedList,
-    safe_to_batch: S.Boolean,
-    rank_score: S.Number,
-    integration: S.NullOr(S.String),
-    deep_link: S.NullOr(S.String),
-    docs_url: S.NullOr(S.String),
-    spend_at_risk: S.Number,
-    event_volume: S.Number,
-  }),
-).annotate({ identifier: "Suggestion" }) as any as S.Schema<Suggestion>;
-
-/** Ranked suggestions, most important first */
-export type SetupPlanResponseSuggestionsList = Array<Suggestion>;
-export const SetupPlanResponseSuggestionsList = /*@__PURE__*/ S.Array(
-  Suggestion,
-) as any as S.Schema<SetupPlanResponseSuggestionsList>;
-
-/** Suggestion ids that unblock this capability — the link from a blocked metric to its fixes */
-export type CapabilityReadinessBlockedByList = Array<string>;
-export const CapabilityReadinessBlockedByList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<CapabilityReadinessBlockedByList>;
-
-export interface CapabilityReadiness {
-  /** cost/attribution/roas/cac */
-  capability: string;
-  /** unlocked/partial/blocked */
-  status: string;
-  /** Why it's in that state, in plain English */
-  explanation: string;
-  /** Suggestion ids that unblock this capability — the link from a blocked metric to its fixes */
-  blocked_by: CapabilityReadinessBlockedByList;
-}
-export const CapabilityReadiness = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    capability: S.String,
-    status: S.String,
-    explanation: S.String,
-    blocked_by: CapabilityReadinessBlockedByList,
-  }),
-).annotate({
-  identifier: "CapabilityReadiness",
-}) as any as S.Schema<CapabilityReadiness>;
-
-/** Per-capability readiness, with the suggestions blocking each */
-export type SetupPlanResponseReadinessList = Array<CapabilityReadiness>;
-export const SetupPlanResponseReadinessList = /*@__PURE__*/ S.Array(
-  CapabilityReadiness,
-) as any as S.Schema<SetupPlanResponseReadinessList>;
-
-/** Sub-services that failed. Their suggestions are missing, so do NOT present the plan as a complete clean bill of health when this is non-empty. */
-export type SetupPlanResponseDegradedList = Array<string>;
-export const SetupPlanResponseDegradedList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<SetupPlanResponseDegradedList>;
-
-export interface SetupPlanResponse {
-  /** Ranked suggestions, most important first */
-  suggestions: SetupPlanResponseSuggestionsList;
-  /** Per-capability readiness, with the suggestions blocking each */
-  readiness: SetupPlanResponseReadinessList;
-  /** Sub-services that failed. Their suggestions are missing, so do NOT present the plan as a complete clean bill of health when this is non-empty. */
-  degraded: SetupPlanResponseDegradedList;
-  /** True when the campaign or UTM queries hit their row caps. Rates and totals are then top-N subtotals — present them as approximate rather than exact. */
-  truncated: boolean;
-  /** One-line summary of the plan */
-  summary: string;
-}
-export const SetupPlanResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    suggestions: SetupPlanResponseSuggestionsList,
-    readiness: SetupPlanResponseReadinessList,
-    degraded: SetupPlanResponseDegradedList,
-    truncated: S.Boolean,
-    summary: S.String,
-  }),
-).annotate({
-  identifier: "SetupPlanResponse",
-}) as any as S.Schema<SetupPlanResponse>;
-
-export interface MarketingAnalyticsSuggestConversionGoalsRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** Minimum 30d event count to be a candidate */
-  min_count?: number;
-  /** Max candidates to return */
-  top_n?: number;
-}
-export const MarketingAnalyticsSuggestConversionGoalsRetrieveRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      min_count: S.optional(S.Number.pipe(T.Query())),
-      top_n: S.optional(S.Number.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/marketing_analytics/suggest_conversion_goals/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "MarketingAnalyticsSuggestConversionGoalsRetrieveRequest",
-  }) as any as S.Schema<MarketingAnalyticsSuggestConversionGoalsRetrieveRequest>;
-
-export type CandidateEventTopUtmSourcesItemList = Array<unknown>;
-export const CandidateEventTopUtmSourcesItemList = /*@__PURE__*/ S.Array(
-  S.Unknown,
-) as any as S.Schema<CandidateEventTopUtmSourcesItemList>;
-
-/** List of [utm_source, count] pairs */
-export type CandidateEventTopUtmSourcesList =
-  Array<CandidateEventTopUtmSourcesItemList>;
-export const CandidateEventTopUtmSourcesList = /*@__PURE__*/ S.Array(
-  CandidateEventTopUtmSourcesItemList,
-) as any as S.Schema<CandidateEventTopUtmSourcesList>;
-
-export interface CandidateEvent {
-  /** Name of the candidate event */
-  event_name: string;
-  /** Count of this event in the last 30 days */
-  last_30d_count: number;
-  /** Distinct users who triggered the event in 30 days */
-  distinct_users_30d: number;
-  /** Percentage of events that carry a utm_source */
-  pct_with_utm_source: number;
-  /** Percentage of events that carry a utm_campaign */
-  pct_with_utm_campaign: number;
-  /** List of [utm_source, count] pairs */
-  top_utm_sources: CandidateEventTopUtmSourcesList;
-  /** Whether this event is already configured as a goal */
-  is_already_a_goal: boolean;
-  /** Ranking score (higher is a stronger candidate) */
-  suggestion_score: number;
-  /** Human-readable rationale for the suggestion */
-  suggestion_reason: string;
-}
-export const CandidateEvent = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    event_name: S.String,
-    last_30d_count: S.Number,
-    distinct_users_30d: S.Number,
-    pct_with_utm_source: S.Number,
-    pct_with_utm_campaign: S.Number,
-    top_utm_sources: CandidateEventTopUtmSourcesList,
-    is_already_a_goal: S.Boolean,
-    suggestion_score: S.Number,
-    suggestion_reason: S.String,
-  }),
-).annotate({ identifier: "CandidateEvent" }) as any as S.Schema<CandidateEvent>;
-
-/** Ranked candidate events for conversion goals */
-export type EventSuggestionsResponseCandidatesList = Array<CandidateEvent>;
-export const EventSuggestionsResponseCandidatesList = /*@__PURE__*/ S.Array(
-  CandidateEvent,
-) as any as S.Schema<EventSuggestionsResponseCandidatesList>;
-
-export interface EventSuggestionsResponse {
-  /** Ranked candidate events for conversion goals */
-  candidates: EventSuggestionsResponseCandidatesList;
-  /** Lookback window in days used for the analysis */
-  lookback_days: number;
-  /** Number of system/autocaptured events excluded */
-  excluded_events_count: number;
-}
-export const EventSuggestionsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    candidates: EventSuggestionsResponseCandidatesList,
-    lookback_days: S.Number,
-    excluded_events_count: S.Number,
-  }),
-).annotate({
-  identifier: "EventSuggestionsResponse",
-}) as any as S.Schema<EventSuggestionsResponse>;
-
-export interface MarketingAnalyticsSuggestUtmMappingsRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** Days of history to inspect (1-365); defaults to 90 */
-  lookback_days?: number;
-  /** Only suggest for raw values with >= this many events */
-  min_event_count?: number;
-}
-export const MarketingAnalyticsSuggestUtmMappingsRetrieveRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      lookback_days: S.optional(S.Number.pipe(T.Query())),
-      min_event_count: S.optional(S.Number.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/marketing_analytics/suggest_utm_mappings/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "MarketingAnalyticsSuggestUtmMappingsRetrieveRequest",
-  }) as any as S.Schema<MarketingAnalyticsSuggestUtmMappingsRetrieveRequest>;
-
-export interface SourceMappingSuggestion {
-  /** The raw utm_source value seen on events */
-  raw_utm_source: string;
-  /** Integration key it maps to */
-  suggested_target: string;
-  /** Human-readable name of the suggested integration */
-  suggested_target_display_name: string;
-  /** Why this mapping is suggested */
-  reason: string;
-  /** Events carrying this raw utm_source in the window. Suggestions are ordered by it. */
-  event_count_30d: number;
-}
-export const SourceMappingSuggestion = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    raw_utm_source: S.String,
-    suggested_target: S.String,
-    suggested_target_display_name: S.String,
-    reason: S.String,
-    event_count_30d: S.Number,
-  }),
-).annotate({
-  identifier: "SourceMappingSuggestion",
-}) as any as S.Schema<SourceMappingSuggestion>;
-
-/** Suggested custom_source_mappings entries */
-export type UtmMappingSuggestionsResponseSourceSuggestionsList =
-  Array<SourceMappingSuggestion>;
-export const UtmMappingSuggestionsResponseSourceSuggestionsList =
-  /*@__PURE__*/ S.Array(
-    SourceMappingSuggestion,
-  ) as any as S.Schema<UtmMappingSuggestionsResponseSourceSuggestionsList>;
-
-/** Raw campaign values clustered under this clean name */
-export type CampaignMappingSuggestionRawCampaignValuesList = Array<string>;
-export const CampaignMappingSuggestionRawCampaignValuesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<CampaignMappingSuggestionRawCampaignValuesList>;
-
-export interface CampaignMappingSuggestion {
-  /** Integration key the campaign values belong to */
-  integration: string;
-  /** Human-readable integration name */
-  integration_display_name: string;
-  /** Proposed canonical campaign name */
-  suggested_clean_name: string;
-  /** Raw campaign values clustered under this clean name */
-  raw_campaign_values: CampaignMappingSuggestionRawCampaignValuesList;
-  /** Confidence score for the clustering (0-1) */
-  confidence: number;
-  /** Mapping method */
-  method: string;
-  /** Why these campaign values were clustered together */
-  reason: string;
-  /** Events across every raw value folded into this suggestion. Suggestions are ordered by it. */
-  event_count_30d: number;
-}
-export const CampaignMappingSuggestion = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    integration: S.String,
-    integration_display_name: S.String,
-    suggested_clean_name: S.String,
-    raw_campaign_values: CampaignMappingSuggestionRawCampaignValuesList,
-    confidence: S.Number,
-    method: S.String,
-    reason: S.String,
-    event_count_30d: S.Number,
-  }),
-).annotate({
-  identifier: "CampaignMappingSuggestion",
-}) as any as S.Schema<CampaignMappingSuggestion>;
-
-/** campaign_name_mappings entries for orphaned utm_campaign values that fuzzy-match a real campaign. Near-ties are withheld, so an absent campaign may still be mappable by hand. */
-export type UtmMappingSuggestionsResponseCampaignSuggestionsList =
-  Array<CampaignMappingSuggestion>;
-export const UtmMappingSuggestionsResponseCampaignSuggestionsList =
-  /*@__PURE__*/ S.Array(
-    CampaignMappingSuggestion,
-  ) as any as S.Schema<UtmMappingSuggestionsResponseCampaignSuggestionsList>;
-
-export interface RawUnmatchedSample {
-  /** A raw utm_source value matching no integration */
-  raw_utm_source: string;
-  /** Number of events with this raw value in the window */
-  event_count: number;
-  /** Integration suggested by token match, if any */
-  suggested_integration: string | null;
-}
-export const RawUnmatchedSample = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    raw_utm_source: S.String,
-    event_count: S.Number,
-    suggested_integration: S.NullOr(S.String),
-  }),
-).annotate({
-  identifier: "RawUnmatchedSample",
-}) as any as S.Schema<RawUnmatchedSample>;
-
-/** All unmatched raw utm_source values worth reviewing */
-export type UtmMappingSuggestionsResponseRawUnmatchedSamplesList =
-  Array<RawUnmatchedSample>;
-export const UtmMappingSuggestionsResponseRawUnmatchedSamplesList =
-  /*@__PURE__*/ S.Array(
-    RawUnmatchedSample,
-  ) as any as S.Schema<UtmMappingSuggestionsResponseRawUnmatchedSamplesList>;
-
-export interface CatalogueEntry {
-  /** A raw utm_source value seen in the window */
-  raw_utm_source: string;
-  /** Number of events with this value */
-  event_count: number;
-  /** Integration this value exactly matches, if any */
-  matched_integration: string | null;
-  /** Human-readable name of the matched integration, if any */
-  matched_integration_display_name: string | null;
-  /** Integration suggested by token match, if any */
-  suggested_integration: string | null;
-}
-export const CatalogueEntry = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    raw_utm_source: S.String,
-    event_count: S.Number,
-    matched_integration: S.NullOr(S.String),
-    matched_integration_display_name: S.NullOr(S.String),
-    suggested_integration: S.NullOr(S.String),
-  }),
-).annotate({ identifier: "CatalogueEntry" }) as any as S.Schema<CatalogueEntry>;
-
-/** Every utm_source value seen in the window, matched or not */
-export type UtmMappingSuggestionsResponseFullUtmSourceCatalogueList =
-  Array<CatalogueEntry>;
-export const UtmMappingSuggestionsResponseFullUtmSourceCatalogueList =
-  /*@__PURE__*/ S.Array(
-    CatalogueEntry,
-  ) as any as S.Schema<UtmMappingSuggestionsResponseFullUtmSourceCatalogueList>;
-
-export interface CurrentMapping {
-  /** A utm_source value already mapped to an integration */
-  raw_utm_source: string;
-  /** Integration key it maps to */
-  target: string;
-  /** Human-readable name of the target integration */
-  target_display_name: string;
-  /** canonical or team_custom */
-  source: string;
-}
-export const CurrentMapping = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    raw_utm_source: S.String,
-    target: S.String,
-    target_display_name: S.String,
-    source: S.String,
-  }),
-).annotate({ identifier: "CurrentMapping" }) as any as S.Schema<CurrentMapping>;
-
-/** Mappings already in effect (canonical + team_custom) */
-export type UtmMappingSuggestionsResponseCurrentMappingsList =
-  Array<CurrentMapping>;
-export const UtmMappingSuggestionsResponseCurrentMappingsList =
-  /*@__PURE__*/ S.Array(
-    CurrentMapping,
-  ) as any as S.Schema<UtmMappingSuggestionsResponseCurrentMappingsList>;
-
-/** Caveats and guidance about the suggestions */
-export type UtmMappingSuggestionsResponseNotesList = Array<string>;
-export const UtmMappingSuggestionsResponseNotesList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<UtmMappingSuggestionsResponseNotesList>;
-
-export interface UtmMappingSuggestionsResponse {
-  /** Suggested custom_source_mappings entries */
-  source_suggestions: UtmMappingSuggestionsResponseSourceSuggestionsList;
-  /** campaign_name_mappings entries for orphaned utm_campaign values that fuzzy-match a real campaign. Near-ties are withheld, so an absent campaign may still be mappable by hand. */
-  campaign_suggestions: UtmMappingSuggestionsResponseCampaignSuggestionsList;
-  /** All unmatched raw utm_source values worth reviewing */
-  raw_unmatched_samples: UtmMappingSuggestionsResponseRawUnmatchedSamplesList;
-  /** Every utm_source value seen in the window, matched or not */
-  full_utm_source_catalogue: UtmMappingSuggestionsResponseFullUtmSourceCatalogueList;
-  /** Mappings already in effect (canonical + team_custom) */
-  current_mappings: UtmMappingSuggestionsResponseCurrentMappingsList;
-  /** Total events with an unmatched utm_source */
-  total_unmatched_events_in_window: number;
-  /** Total events with any utm_source */
-  total_events_with_utm_in_window: number;
-  /** Lookback window in days used for the analysis */
-  lookback_days_used: number;
-  /** Caveats and guidance about the suggestions */
-  notes: UtmMappingSuggestionsResponseNotesList;
-}
-export const UtmMappingSuggestionsResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    source_suggestions: UtmMappingSuggestionsResponseSourceSuggestionsList,
-    campaign_suggestions: UtmMappingSuggestionsResponseCampaignSuggestionsList,
-    raw_unmatched_samples: UtmMappingSuggestionsResponseRawUnmatchedSamplesList,
-    full_utm_source_catalogue:
-      UtmMappingSuggestionsResponseFullUtmSourceCatalogueList,
-    current_mappings: UtmMappingSuggestionsResponseCurrentMappingsList,
-    total_unmatched_events_in_window: S.Number,
-    total_events_with_utm_in_window: S.Number,
-    lookback_days_used: S.Number,
-    notes: UtmMappingSuggestionsResponseNotesList,
-  }),
-).annotate({
-  identifier: "UtmMappingSuggestionsResponse",
-}) as any as S.Schema<UtmMappingSuggestionsResponse>;
-
-export interface MarketingAnalyticsTestMappingCreateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-}
-export const MarketingAnalyticsTestMappingCreateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/api/projects/{project_id}/marketing_analytics/test_mapping/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "MarketingAnalyticsTestMappingCreateRequest",
-  }) as any as S.Schema<MarketingAnalyticsTestMappingCreateRequest>;
-
-export interface MarketingAnalyticsTestMappingCreateResponse {}
-export const MarketingAnalyticsTestMappingCreateResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "MarketingAnalyticsTestMappingCreateResponse",
-  }) as any as S.Schema<MarketingAnalyticsTestMappingCreateResponse>;
-
-export interface MarketingAnalyticsUtmAuditRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** Start date for the audit period */
-  date_from?: string;
-  /** End date for the audit period */
-  date_to?: string;
-}
-export const MarketingAnalyticsUtmAuditRetrieveRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      date_from: S.optional(S.String.pipe(T.Query())),
-      date_to: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/marketing_analytics/utm_audit/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "MarketingAnalyticsUtmAuditRetrieveRequest",
-  }) as any as S.Schema<MarketingAnalyticsUtmAuditRetrieveRequest>;
-
-/** * `error` - error * `warning` - warning */
-export type DiagnosticSeverityEnum = "error" | "warning";
-export const DiagnosticSeverityEnum = /*@__PURE__*/ S.String;
-
-/** * `not_linked` - not_linked * `name_collision` - name_collision * `no_tagged_events` - no_tagged_events * `unknown_source` - unknown_source * `missing_source` - missing_source */
-export type UtmIssueKindEnum =
-  | "not_linked"
-  | "name_collision"
-  | "no_tagged_events"
-  | "unknown_source"
-  | "missing_source";
-export const UtmIssueKindEnum = /*@__PURE__*/ S.String;
-
-export interface UtmAlternativeSource {
-  /** A utm_source value found on this campaign's pageviews */
-  utm_source: string;
-  /** Number of pageview events with this utm_source */
-  event_count: number;
-}
-export const UtmAlternativeSource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    utm_source: S.String,
-    event_count: S.Number,
-  }),
-).annotate({
-  identifier: "UtmAlternativeSource",
-}) as any as S.Schema<UtmAlternativeSource>;
-
-/** utm_source values actually found on this campaign's pageviews, ordered by event count */
-export type UtmIssueAlternativeSourcesList = Array<UtmAlternativeSource>;
-export const UtmIssueAlternativeSourcesList = /*@__PURE__*/ S.Array(
-  UtmAlternativeSource,
-) as any as S.Schema<UtmIssueAlternativeSourcesList>;
-
-/** Other integrations whose campaigns share this campaign's name (name_collision only) */
-export type UtmIssueSharedWithIntegrationsList = Array<string>;
-export const UtmIssueSharedWithIntegrationsList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<UtmIssueSharedWithIntegrationsList>;
-
-/** * `fix_platform_urls` - fix_platform_urls * `add_source_mapping` - add_source_mapping * `switch_to_id_match` - switch_to_id_match * `add_campaign_name_mapping` - add_campaign_name_mapping */
-export type SuggestedActionsEnum =
-  | "fix_platform_urls"
-  | "add_source_mapping"
-  | "switch_to_id_match"
-  | "add_campaign_name_mapping";
-export const SuggestedActionsEnum = /*@__PURE__*/ S.String;
-
-/** Recommended remediations, most-recommended first. fix_platform_urls cures the tagging bug itself; the others are workarounds that leave the bad URLs in place. */
-export type UtmIssueSuggestedActionsList = Array<SuggestedActionsEnum>;
-export const UtmIssueSuggestedActionsList = /*@__PURE__*/ S.Array(
-  SuggestedActionsEnum,
-) as any as S.Schema<UtmIssueSuggestedActionsList>;
-
-export interface UtmIssue {
-  /** The UTM field with the issue (e.g. utm_campaign, utm_source) */
-  field: string;
-  /** Issue severity level * `error` - error * `warning` - warning */
-  severity: DiagnosticSeverityEnum;
-  /** Which kind of UTM problem this campaign has * `not_linked` - not_linked * `name_collision` - name_collision * `no_tagged_events` - no_tagged_events * `unknown_source` - unknown_source * `missing_source` - missing_source */
-  kind: UtmIssueKindEnum;
-  /** Human-readable headline; the frontend composes richer text from the fields below */
-  message: string;
-  /** utm_source values actually found on this campaign's pageviews, ordered by event count */
-  alternative_sources: UtmIssueAlternativeSourcesList;
-  /** Other integrations whose campaigns share this campaign's name (name_collision only) */
-  shared_with_integrations: UtmIssueSharedWithIntegrationsList;
-  /** Pageviews that matched this campaign but carried no utm_source, on any issue kind */
-  missing_source_count: number;
-  /** Recommended remediations, most-recommended first. fix_platform_urls cures the tagging bug itself; the others are workarounds that leave the bad URLs in place. */
-  suggested_actions: UtmIssueSuggestedActionsList;
-  /** The orphaned utm_campaign value that looks like a typo of this campaign, when one was found confidently. Set only alongside add_campaign_name_mapping; empty otherwise, including when several candidates tie and picking one could misattribute spend. */
-  mapping_candidate: string;
-}
-export const UtmIssue = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    field: S.String,
-    severity: DiagnosticSeverityEnum,
-    kind: UtmIssueKindEnum,
-    message: S.String,
-    alternative_sources: UtmIssueAlternativeSourcesList,
-    shared_with_integrations: UtmIssueSharedWithIntegrationsList,
-    missing_source_count: S.Number,
-    suggested_actions: UtmIssueSuggestedActionsList,
-    mapping_candidate: S.String,
-  }),
-).annotate({ identifier: "UtmIssue" }) as any as S.Schema<UtmIssue>;
-
-/** List of detected UTM configuration issues */
-export type CampaignAuditResultIssuesList = Array<UtmIssue>;
-export const CampaignAuditResultIssuesList = /*@__PURE__*/ S.Array(
-  UtmIssue,
-) as any as S.Schema<CampaignAuditResultIssuesList>;
-
-export interface CampaignAuditResult {
-  /** Campaign name from the ad platform */
-  campaign_name: string;
-  /** Campaign ID from the ad platform */
-  campaign_id: string;
-  /** Integration source name (e.g. google, meta) */
-  source_name: string;
-  /** Total spend for this campaign in the period */
-  spend: number;
-  /** Total clicks for this campaign */
-  clicks: number;
-  /** Total impressions for this campaign */
-  impressions: number;
-  /** Whether matching UTM pageview events were found */
-  has_utm_events: boolean;
-  /** Number of matching UTM pageview events */
-  event_count: number;
-  /** List of detected UTM configuration issues */
-  issues: CampaignAuditResultIssuesList;
-}
-export const CampaignAuditResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    campaign_name: S.String,
-    campaign_id: S.String,
-    source_name: S.String,
-    spend: S.Number,
-    clicks: S.Number,
-    impressions: S.Number,
-    has_utm_events: S.Boolean,
-    event_count: S.Number,
-    issues: CampaignAuditResultIssuesList,
-  }),
-).annotate({
-  identifier: "CampaignAuditResult",
-}) as any as S.Schema<CampaignAuditResult>;
-
-/** Audit results per campaign */
-export type UtmAuditResponseResultsList = Array<CampaignAuditResult>;
-export const UtmAuditResponseResultsList = /*@__PURE__*/ S.Array(
-  CampaignAuditResult,
-) as any as S.Schema<UtmAuditResponseResultsList>;
-
-/** * `none` - none * `auto` - auto * `mapped` - mapped */
-export type SourceMatchEnum = "none" | "auto" | "mapped";
-export const SourceMatchEnum = /*@__PURE__*/ S.String;
-
-export interface UtmEvent {
-  /** UTM campaign value from pageview events */
-  utm_campaign: string;
-  /** UTM source value from pageview events */
-  utm_source: string;
-  /** Number of pageview events with this UTM combination */
-  event_count: number;
-  /** How utm_campaign matched: none, auto (direct name/id), or mapped (manual mapping) * `none` - none * `auto` - auto * `mapped` - mapped */
-  campaign_match: SourceMatchEnum;
-  /** How utm_source matched: none, auto (default source), or mapped (custom mapping) * `none` - none * `auto` - auto * `mapped` - mapped */
-  source_match: SourceMatchEnum;
-  /** Name of the matched campaign, if any */
-  matched_campaign: string | null;
-}
-export const UtmEvent = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    utm_campaign: S.String,
-    utm_source: S.String,
-    event_count: S.Number,
-    campaign_match: SourceMatchEnum,
-    source_match: SourceMatchEnum,
-    matched_campaign: S.NullOr(S.String),
-  }),
-).annotate({ identifier: "UtmEvent" }) as any as S.Schema<UtmEvent>;
-
-/** All UTM events with match status */
-export type UtmAuditResponseAllUtmEventsList = Array<UtmEvent>;
-export const UtmAuditResponseAllUtmEventsList = /*@__PURE__*/ S.Array(
-  UtmEvent,
-) as any as S.Schema<UtmAuditResponseAllUtmEventsList>;
-
-export interface UtmAuditResponse {
-  /** Total number of campaigns with spend */
-  total_campaigns: number;
-  /** Number of campaigns with UTM issues */
-  campaigns_with_issues: number;
-  /** Number of campaigns without issues */
-  campaigns_without_issues: number;
-  /** Total spend on campaigns with UTM issues */
-  total_spend_at_risk: number;
-  /** Audit results per campaign */
-  results: UtmAuditResponseResultsList;
-  /** All UTM events with match status */
-  all_utm_events: UtmAuditResponseAllUtmEventsList;
-}
-export const UtmAuditResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    total_campaigns: S.Number,
-    campaigns_with_issues: S.Number,
-    campaigns_without_issues: S.Number,
-    total_spend_at_risk: S.Number,
-    results: UtmAuditResponseResultsList,
-    all_utm_events: UtmAuditResponseAllUtmEventsList,
-  }),
-).annotate({
-  identifier: "UtmAuditResponse",
-}) as any as S.Schema<UtmAuditResponse>;
+export type CreateMarketingAnalyticsTestMappingError = PosthogOpError;
+export const createMarketingAnalyticsTestMapping: API.OperationMethod<
+  CreateMarketingAnalyticsTestMappingRequest,
+  CreateMarketingAnalyticsTestMappingResponse,
+  CreateMarketingAnalyticsTestMappingError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateMarketingAnalyticsTestMappingRequest,
+  output: CreateMarketingAnalyticsTestMappingResponse,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteMarketingAnalyticsConversionGoalDestroyError =
+  | Forbidden
+  | NotFound
+  | PosthogOpError;
+/** Delete conversion goal Remove one conversion goal from the project, leaving the others in place. */
+export const deleteMarketingAnalyticsConversionGoalDestroy: API.OperationMethod<
+  DeleteMarketingAnalyticsConversionGoalDestroyRequest,
+  ConversionGoalWriteResponse,
+  DeleteMarketingAnalyticsConversionGoalDestroyError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteMarketingAnalyticsConversionGoalDestroyRequest,
+  output: ConversionGoalWriteResponse,
+  errors: [Forbidden, NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetMarketingAnalyticsConversionGoalError = PosthogOpError;
+/** List conversion goals Read the configured conversion goals for the current project — each with its kind, target, last-30d count, integrated vs non-integrated split, and a misconfiguration flag. Read-only. */
+export const getMarketingAnalyticsConversionGoal: API.OperationMethod<
+  GetMarketingAnalyticsConversionGoalRequest,
+  ConversionGoalsListResponse,
+  GetMarketingAnalyticsConversionGoalError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetMarketingAnalyticsConversionGoalRequest,
+  output: ConversionGoalsListResponse,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetMarketingAnalyticsDataSourceError = PosthogOpError;
+/** List marketing data sources Check the platform → data-warehouse side of every native marketing integration: connection state, sync recency, row counts, required-table status, and schema-mapping coverage. Read-only. */
+export const getMarketingAnalyticsDataSource: API.OperationMethod<
+  GetMarketingAnalyticsDataSourceRequest,
+  DataSourceHealthResponse,
+  GetMarketingAnalyticsDataSourceError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetMarketingAnalyticsDataSourceRequest,
+  output: DataSourceHealthResponse,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetMarketingAnalyticsDiagnoseError = PosthogOpError;
+/** Diagnose marketing analytics Aggregate data-source sync health, UTM attribution health, and conversion-goal config into a single per-integration diagnostic with recommended actions. Read-only. */
+export const getMarketingAnalyticsDiagnose: API.OperationMethod<
+  GetMarketingAnalyticsDiagnoseRequest,
+  MarketingDiagnosticResponse,
+  GetMarketingAnalyticsDiagnoseError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetMarketingAnalyticsDiagnoseRequest,
+  output: MarketingDiagnosticResponse,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetMarketingAnalyticsExplainConversionGoalError = PosthogOpError;
+/** Explain a conversion goal Break down a single conversion goal's events over a period by event name, utm_source, and matched integration, with a small sample of events. Read-only. */
+export const getMarketingAnalyticsExplainConversionGoal: API.OperationMethod<
+  GetMarketingAnalyticsExplainConversionGoalRequest,
+  GoalExplanation,
+  GetMarketingAnalyticsExplainConversionGoalError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetMarketingAnalyticsExplainConversionGoalRequest,
+  output: GoalExplanation,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetMarketingAnalyticsSetupPlanError = NotFound | PosthogOpError;
+/** Get the marketing analytics setup plan Rank everything wrong with a team's marketing analytics setup into concrete suggestions, each carrying the evidence behind it and — where one exists — an `apply` operation to pass straight to apply_setup_ops, plus a `readiness` block saying which capabilities (cost, ROAS, cost per customer, retention by channel) are unlocked and which suggestion is blocking each. Prefer this over `diagnose` when the question is 'what should I fix next': diagnose explains what is wrong, setup_plan says what to do about it in a form you can act on. Read-only. */
+export const getMarketingAnalyticsSetupPlan: API.OperationMethod<
+  GetMarketingAnalyticsSetupPlanRequest,
+  SetupPlanResponse,
+  GetMarketingAnalyticsSetupPlanError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetMarketingAnalyticsSetupPlanRequest,
+  output: SetupPlanResponse,
+  errors: [NotFound],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetMarketingAnalyticsSuggestConversionGoalError = PosthogOpError;
+/** Suggest conversion goals Rank existing custom events as conversion-goal candidates by volume, UTM-tag coverage, and unique users, excluding system/autocaptured events. Read-only. */
+export const getMarketingAnalyticsSuggestConversionGoal: API.OperationMethod<
+  GetMarketingAnalyticsSuggestConversionGoalRequest,
+  EventSuggestionsResponse,
+  GetMarketingAnalyticsSuggestConversionGoalError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetMarketingAnalyticsSuggestConversionGoalRequest,
+  output: EventSuggestionsResponse,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetMarketingAnalyticsSuggestUtmMappingError = PosthogOpError;
+/** Suggest UTM source mappings Detect unmatched utm_source values from recent events and propose custom_source_mappings entries, alongside the full utm_source catalogue and current mappings. Read-only. */
+export const getMarketingAnalyticsSuggestUtmMapping: API.OperationMethod<
+  GetMarketingAnalyticsSuggestUtmMappingRequest,
+  UtmMappingSuggestionsResponse,
+  GetMarketingAnalyticsSuggestUtmMappingError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetMarketingAnalyticsSuggestUtmMappingRequest,
+  output: UtmMappingSuggestionsResponse,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetMarketingAnalyticsUtmAuditError = PosthogOpError;
+/** Run UTM audit Cross-reference campaigns with spend from ad platforms against pageview events with UTM parameters to identify tracking issues. */
+export const getMarketingAnalyticsUtmAudit: API.OperationMethod<
+  GetMarketingAnalyticsUtmAuditRequest,
+  UtmAuditResponse,
+  GetMarketingAnalyticsUtmAuditError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetMarketingAnalyticsUtmAuditRequest,
+  output: UtmAuditResponse,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
 
 export type MarketingAnalyticsApplySetupOpsCreateError =
   | BadRequest
@@ -3823,39 +3975,6 @@ export const marketingAnalyticsConversionGoalsCreateCreate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type MarketingAnalyticsConversionGoalsDeleteDestroyError =
-  | Forbidden
-  | NotFound
-  | PosthogOpError;
-/** Delete conversion goal Remove one conversion goal from the project, leaving the others in place. */
-export const marketingAnalyticsConversionGoalsDeleteDestroy: API.OperationMethod<
-  MarketingAnalyticsConversionGoalsDeleteDestroyRequest,
-  ConversionGoalWriteResponse,
-  MarketingAnalyticsConversionGoalsDeleteDestroyError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: MarketingAnalyticsConversionGoalsDeleteDestroyRequest,
-  output: ConversionGoalWriteResponse,
-  errors: [Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type MarketingAnalyticsConversionGoalsRetrieveError = PosthogOpError;
-/** List conversion goals Read the configured conversion goals for the current project — each with its kind, target, last-30d count, integrated vs non-integrated split, and a misconfiguration flag. Read-only. */
-export const marketingAnalyticsConversionGoalsRetrieve: API.OperationMethod<
-  MarketingAnalyticsConversionGoalsRetrieveRequest,
-  ConversionGoalsListResponse,
-  MarketingAnalyticsConversionGoalsRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: MarketingAnalyticsConversionGoalsRetrieveRequest,
-  output: ConversionGoalsListResponse,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
 export type MarketingAnalyticsConversionGoalsUpdatePartialUpdateError =
   | BadRequest
   | Forbidden
@@ -3871,129 +3990,6 @@ export const marketingAnalyticsConversionGoalsUpdatePartialUpdate: API.Operation
   input: MarketingAnalyticsConversionGoalsUpdatePartialUpdateRequest,
   output: ConversionGoalWriteResponse,
   errors: [BadRequest, Forbidden, NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type MarketingAnalyticsDataSourcesRetrieveError = PosthogOpError;
-/** List marketing data sources Check the platform → data-warehouse side of every native marketing integration: connection state, sync recency, row counts, required-table status, and schema-mapping coverage. Read-only. */
-export const marketingAnalyticsDataSourcesRetrieve: API.OperationMethod<
-  MarketingAnalyticsDataSourcesRetrieveRequest,
-  DataSourceHealthResponse,
-  MarketingAnalyticsDataSourcesRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: MarketingAnalyticsDataSourcesRetrieveRequest,
-  output: DataSourceHealthResponse,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type MarketingAnalyticsDiagnoseRetrieveError = PosthogOpError;
-/** Diagnose marketing analytics Aggregate data-source sync health, UTM attribution health, and conversion-goal config into a single per-integration diagnostic with recommended actions. Read-only. */
-export const marketingAnalyticsDiagnoseRetrieve: API.OperationMethod<
-  MarketingAnalyticsDiagnoseRetrieveRequest,
-  MarketingDiagnosticResponse,
-  MarketingAnalyticsDiagnoseRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: MarketingAnalyticsDiagnoseRetrieveRequest,
-  output: MarketingDiagnosticResponse,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type MarketingAnalyticsExplainConversionGoalRetrieveError =
-  PosthogOpError;
-/** Explain a conversion goal Break down a single conversion goal's events over a period by event name, utm_source, and matched integration, with a small sample of events. Read-only. */
-export const marketingAnalyticsExplainConversionGoalRetrieve: API.OperationMethod<
-  MarketingAnalyticsExplainConversionGoalRetrieveRequest,
-  GoalExplanation,
-  MarketingAnalyticsExplainConversionGoalRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: MarketingAnalyticsExplainConversionGoalRetrieveRequest,
-  output: GoalExplanation,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type MarketingAnalyticsSetupPlanRetrieveError =
-  | NotFound
-  | PosthogOpError;
-/** Get the marketing analytics setup plan Rank everything wrong with a team's marketing analytics setup into concrete suggestions, each carrying the evidence behind it and — where one exists — an `apply` operation to pass straight to apply_setup_ops, plus a `readiness` block saying which capabilities (cost, ROAS, cost per customer, retention by channel) are unlocked and which suggestion is blocking each. Prefer this over `diagnose` when the question is 'what should I fix next': diagnose explains what is wrong, setup_plan says what to do about it in a form you can act on. Read-only. */
-export const marketingAnalyticsSetupPlanRetrieve: API.OperationMethod<
-  MarketingAnalyticsSetupPlanRetrieveRequest,
-  SetupPlanResponse,
-  MarketingAnalyticsSetupPlanRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: MarketingAnalyticsSetupPlanRetrieveRequest,
-  output: SetupPlanResponse,
-  errors: [NotFound],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type MarketingAnalyticsSuggestConversionGoalsRetrieveError =
-  PosthogOpError;
-/** Suggest conversion goals Rank existing custom events as conversion-goal candidates by volume, UTM-tag coverage, and unique users, excluding system/autocaptured events. Read-only. */
-export const marketingAnalyticsSuggestConversionGoalsRetrieve: API.OperationMethod<
-  MarketingAnalyticsSuggestConversionGoalsRetrieveRequest,
-  EventSuggestionsResponse,
-  MarketingAnalyticsSuggestConversionGoalsRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: MarketingAnalyticsSuggestConversionGoalsRetrieveRequest,
-  output: EventSuggestionsResponse,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type MarketingAnalyticsSuggestUtmMappingsRetrieveError = PosthogOpError;
-/** Suggest UTM source mappings Detect unmatched utm_source values from recent events and propose custom_source_mappings entries, alongside the full utm_source catalogue and current mappings. Read-only. */
-export const marketingAnalyticsSuggestUtmMappingsRetrieve: API.OperationMethod<
-  MarketingAnalyticsSuggestUtmMappingsRetrieveRequest,
-  UtmMappingSuggestionsResponse,
-  MarketingAnalyticsSuggestUtmMappingsRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: MarketingAnalyticsSuggestUtmMappingsRetrieveRequest,
-  output: UtmMappingSuggestionsResponse,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type MarketingAnalyticsTestMappingCreateError = PosthogOpError;
-export const marketingAnalyticsTestMappingCreate: API.OperationMethod<
-  MarketingAnalyticsTestMappingCreateRequest,
-  MarketingAnalyticsTestMappingCreateResponse,
-  MarketingAnalyticsTestMappingCreateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: MarketingAnalyticsTestMappingCreateRequest,
-  output: MarketingAnalyticsTestMappingCreateResponse,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type MarketingAnalyticsUtmAuditRetrieveError = PosthogOpError;
-/** Run UTM audit Cross-reference campaigns with spend from ad platforms against pageview events with UTM parameters to identify tracking issues. */
-export const marketingAnalyticsUtmAuditRetrieve: API.OperationMethod<
-  MarketingAnalyticsUtmAuditRetrieveRequest,
-  UtmAuditResponse,
-  MarketingAnalyticsUtmAuditRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: MarketingAnalyticsUtmAuditRetrieveRequest,
-  output: UtmAuditResponse,
-  errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));

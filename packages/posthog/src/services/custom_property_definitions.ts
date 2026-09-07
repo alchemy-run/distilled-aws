@@ -65,14 +65,14 @@ export const CustomPropertyOption = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<CustomPropertyOption>;
 
 /** For select properties: the allowed options. Required (non-empty) when display_type is 'select'; cleared server-side for other types. */
-export type CustomPropertyDefinitionsCreateRequestOptionsList =
+export type CreateCustomPropertyDefinitionRequestOptionsList =
   Array<CustomPropertyOption>;
-export const CustomPropertyDefinitionsCreateRequestOptionsList =
+export const CreateCustomPropertyDefinitionRequestOptionsList =
   /*@__PURE__*/ S.Array(
     CustomPropertyOption,
-  ) as any as S.Schema<CustomPropertyDefinitionsCreateRequestOptionsList>;
+  ) as any as S.Schema<CreateCustomPropertyDefinitionRequestOptionsList>;
 
-export interface CustomPropertyDefinitionsCreateRequest {
+export interface CreateCustomPropertyDefinitionRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** Human-readable name of the custom property. Unique within the team. */
@@ -88,9 +88,9 @@ export interface CustomPropertyDefinitionsCreateRequest {
   /** Abbreviate large numbers (e.g. 10,000 → 10K). Only applies to numeric properties. */
   is_big_number?: boolean;
   /** For select properties: the allowed options. Required (non-empty) when display_type is 'select'; cleared server-side for other types. */
-  options?: CustomPropertyDefinitionsCreateRequestOptionsList | null;
+  options?: CreateCustomPropertyDefinitionRequestOptionsList | null;
 }
-export const CustomPropertyDefinitionsCreateRequest = /*@__PURE__*/ S.suspend(
+export const CreateCustomPropertyDefinitionRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
@@ -101,7 +101,7 @@ export const CustomPropertyDefinitionsCreateRequest = /*@__PURE__*/ S.suspend(
       group_type_index: S.optional(S.NullOr(S.Number)),
       is_big_number: S.optional(S.Boolean),
       options: S.optional(
-        S.NullOr(CustomPropertyDefinitionsCreateRequestOptionsList),
+        S.NullOr(CreateCustomPropertyDefinitionRequestOptionsList),
       ),
     }).pipe(
       T.Http({
@@ -111,8 +111,8 @@ export const CustomPropertyDefinitionsCreateRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "CustomPropertyDefinitionsCreateRequest",
-}) as any as S.Schema<CustomPropertyDefinitionsCreateRequest>;
+  identifier: "CreateCustomPropertyDefinitionRequest",
+}) as any as S.Schema<CreateCustomPropertyDefinitionRequest>;
 
 /** For select properties: the allowed options. Required (non-empty) when display_type is 'select'; cleared server-side for other types. */
 export type CustomPropertyDefinitionOptionsList = Array<CustomPropertyOption>;
@@ -121,8 +121,8 @@ export const CustomPropertyDefinitionOptionsList = /*@__PURE__*/ S.Array(
 ) as any as S.Schema<CustomPropertyDefinitionOptionsList>;
 
 /** * `tracked` - tracked * `ignored` - ignored */
-export type AccountSegmentEnum = "tracked" | "ignored";
-export const AccountSegmentEnum = /*@__PURE__*/ S.String;
+export type SyncSegmentEnum = "tracked" | "ignored";
+export const SyncSegmentEnum = /*@__PURE__*/ S.String;
 
 /** * `staging` - staging * `dispatching` - dispatching * `syncing` - syncing * `completed` - completed */
 export type SyncPhaseEnum = "staging" | "dispatching" | "syncing" | "completed";
@@ -134,7 +134,7 @@ export interface CustomPropertySyncRun {
   /** Warehouse import or materialization job associated with the run, if any. */
   job_id: string | null;
   /** Account segment processed by this run. Person and group property runs return null. * `tracked` - tracked * `ignored` - ignored */
-  account_segment: AccountSegmentEnum | null;
+  account_segment: SyncSegmentEnum | null;
   /** Current account sync phase. Person and group property runs return null. * `staging` - staging * `dispatching` - dispatching * `syncing` - syncing * `completed` - completed */
   sync_phase: SyncPhaseEnum | null;
   /** Latest Temporal activity attempt for the current account sync phase. */
@@ -172,7 +172,7 @@ export const CustomPropertySyncRun = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.String,
     job_id: S.NullOr(S.String),
-    account_segment: S.NullOr(AccountSegmentEnum),
+    account_segment: S.NullOr(SyncSegmentEnum),
     sync_phase: S.NullOr(SyncPhaseEnum),
     attempt: S.NullOr(S.Number),
     workflow_id: S.NullOr(S.String),
@@ -285,7 +285,7 @@ export const CustomPropertyReference = /*@__PURE__*/ S.suspend(() =>
   identifier: "CustomPropertyReference",
 }) as any as S.Schema<CustomPropertyReference>;
 
-/** Workflows that use this property, resolved by definition id. */
+/** Workflows that use this property, resolved by definition id when the caller can view workflows. */
 export type CustomPropertyDefinitionReferencesList =
   Array<CustomPropertyReference>;
 export const CustomPropertyDefinitionReferencesList = /*@__PURE__*/ S.Array(
@@ -316,8 +316,10 @@ export interface CustomPropertyDefinition {
   created_at: string;
   created_by: number | null;
   updated_at: string | null;
-  /** Workflows that use this property, resolved by definition id. */
+  /** Workflows that use this property, resolved by definition id when the caller can view workflows. */
   references: CustomPropertyDefinitionReferencesList;
+  /** Whether a workflow updates this property. Always returned, even when workflow details are hidden. */
+  has_workflow_reference: boolean;
 }
 export const CustomPropertyDefinition = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
@@ -335,6 +337,7 @@ export const CustomPropertyDefinition = /*@__PURE__*/ S.suspend(() =>
     created_by: S.NullOr(S.Number),
     updated_at: S.NullOr(S.String),
     references: CustomPropertyDefinitionReferencesList,
+    has_workflow_reference: S.Boolean,
   }),
 ).annotate({
   identifier: "CustomPropertyDefinition",
@@ -368,182 +371,27 @@ export const CustomPropertyDefinitionsDestroyResponse = /*@__PURE__*/ S.suspend(
   identifier: "CustomPropertyDefinitionsDestroyResponse",
 }) as any as S.Schema<CustomPropertyDefinitionsDestroyResponse>;
 
-export interface CustomPropertyDefinitionsListRequest {
+export interface GetCustomPropertyDefinitionRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
-  /** Number of results to return per page. */
-  limit?: number;
-  /** The initial index from which to return the results. */
-  offset?: number;
+  id: string;
 }
-export const CustomPropertyDefinitionsListRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      limit: S.optional(S.Number.pipe(T.Query())),
-      offset: S.optional(S.Number.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/custom_property_definitions/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "CustomPropertyDefinitionsListRequest",
-}) as any as S.Schema<CustomPropertyDefinitionsListRequest>;
-
-export type PaginatedCustomPropertyDefinitionListResultsList =
-  Array<CustomPropertyDefinition>;
-export const PaginatedCustomPropertyDefinitionListResultsList =
-  /*@__PURE__*/ S.Array(
-    CustomPropertyDefinition,
-  ) as any as S.Schema<PaginatedCustomPropertyDefinitionListResultsList>;
-
-export interface PaginatedCustomPropertyDefinitionList {
-  count: number;
-  next?: string | null;
-  previous?: string | null;
-  results: PaginatedCustomPropertyDefinitionListResultsList;
-}
-export const PaginatedCustomPropertyDefinitionList = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      count: S.Number,
-      next: S.optional(S.NullOr(S.String)),
-      previous: S.optional(S.NullOr(S.String)),
-      results: PaginatedCustomPropertyDefinitionListResultsList,
+export const GetCustomPropertyDefinitionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/custom_property_definitions/{id}/",
+      code: 200,
     }),
+  ),
 ).annotate({
-  identifier: "PaginatedCustomPropertyDefinitionList",
-}) as any as S.Schema<PaginatedCustomPropertyDefinitionList>;
+  identifier: "GetCustomPropertyDefinitionRequest",
+}) as any as S.Schema<GetCustomPropertyDefinitionRequest>;
 
-/** For select properties: the allowed options. Required (non-empty) when display_type is 'select'; cleared server-side for other types. */
-export type CustomPropertyDefinitionsPartialUpdateRequestOptionsList =
-  Array<CustomPropertyOption>;
-export const CustomPropertyDefinitionsPartialUpdateRequestOptionsList =
-  /*@__PURE__*/ S.Array(
-    CustomPropertyOption,
-  ) as any as S.Schema<CustomPropertyDefinitionsPartialUpdateRequestOptionsList>;
-
-export interface CustomPropertyDefinitionsPartialUpdateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  id: string;
-  /** Human-readable name of the custom property. Unique within the team. */
-  name?: string;
-  /** Optional description of what the property represents. */
-  description?: string | null;
-  /** How the property is interpreted and rendered: 'text', 'link', 'number', 'currency', 'percent', 'date', 'datetime', 'boolean', or 'select'. Links require an HTTP or HTTPS URL. * `text` - text * `link` - link * `number` - number * `currency` - currency * `percent` - percent * `date` - date * `datetime` - datetime * `boolean` - boolean * `select` - select */
-  display_type?: CustomPropertyDisplayTypeEnum | (string & {});
-  /** What entity this property is attached to: 'account' (default), 'person', or 'group'. Person and group properties are populated from a warehouse schema and become usable like any other person/group property (feature flags, cohorts, insights). * `account` - account * `person` - person * `group` - group */
-  target_type?: CustomPropertyDefinitionTargetTypeEnum | (string & {});
-  /** For 'group' targets only: which group type (0-4) the property attaches to. Required when target_type is 'group'; must be omitted otherwise. Create-only. */
-  group_type_index?: number | null;
-  /** Abbreviate large numbers (e.g. 10,000 → 10K). Only applies to numeric properties. */
-  is_big_number?: boolean;
-  /** For select properties: the allowed options. Required (non-empty) when display_type is 'select'; cleared server-side for other types. */
-  options?: CustomPropertyDefinitionsPartialUpdateRequestOptionsList | null;
-}
-export const CustomPropertyDefinitionsPartialUpdateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-      name: S.optional(S.String),
-      description: S.optional(S.NullOr(S.String)),
-      display_type: S.optional(CustomPropertyDisplayTypeEnum),
-      target_type: S.optional(CustomPropertyDefinitionTargetTypeEnum),
-      group_type_index: S.optional(S.NullOr(S.Number)),
-      is_big_number: S.optional(S.Boolean),
-      options: S.optional(
-        S.NullOr(CustomPropertyDefinitionsPartialUpdateRequestOptionsList),
-      ),
-    }).pipe(
-      T.Http({
-        method: "PATCH",
-        uri: "/api/projects/{project_id}/custom_property_definitions/{id}/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "CustomPropertyDefinitionsPartialUpdateRequest",
-  }) as any as S.Schema<CustomPropertyDefinitionsPartialUpdateRequest>;
-
-export interface CustomPropertyDefinitionsRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  id: string;
-}
-export const CustomPropertyDefinitionsRetrieveRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/custom_property_definitions/{id}/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "CustomPropertyDefinitionsRetrieveRequest",
-}) as any as S.Schema<CustomPropertyDefinitionsRetrieveRequest>;
-
-/** For select properties: the allowed options. Required (non-empty) when display_type is 'select'; cleared server-side for other types. */
-export type CustomPropertyDefinitionsUpdateRequestOptionsList =
-  Array<CustomPropertyOption>;
-export const CustomPropertyDefinitionsUpdateRequestOptionsList =
-  /*@__PURE__*/ S.Array(
-    CustomPropertyOption,
-  ) as any as S.Schema<CustomPropertyDefinitionsUpdateRequestOptionsList>;
-
-export interface CustomPropertyDefinitionsUpdateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  id: string;
-  /** Human-readable name of the custom property. Unique within the team. */
-  name: string;
-  /** Optional description of what the property represents. */
-  description?: string | null;
-  /** How the property is interpreted and rendered: 'text', 'link', 'number', 'currency', 'percent', 'date', 'datetime', 'boolean', or 'select'. Links require an HTTP or HTTPS URL. * `text` - text * `link` - link * `number` - number * `currency` - currency * `percent` - percent * `date` - date * `datetime` - datetime * `boolean` - boolean * `select` - select */
-  display_type: CustomPropertyDisplayTypeEnum | (string & {});
-  /** What entity this property is attached to: 'account' (default), 'person', or 'group'. Person and group properties are populated from a warehouse schema and become usable like any other person/group property (feature flags, cohorts, insights). * `account` - account * `person` - person * `group` - group */
-  target_type?: CustomPropertyDefinitionTargetTypeEnum | (string & {});
-  /** For 'group' targets only: which group type (0-4) the property attaches to. Required when target_type is 'group'; must be omitted otherwise. Create-only. */
-  group_type_index?: number | null;
-  /** Abbreviate large numbers (e.g. 10,000 → 10K). Only applies to numeric properties. */
-  is_big_number?: boolean;
-  /** For select properties: the allowed options. Required (non-empty) when display_type is 'select'; cleared server-side for other types. */
-  options?: CustomPropertyDefinitionsUpdateRequestOptionsList | null;
-}
-export const CustomPropertyDefinitionsUpdateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-      name: S.String,
-      description: S.optional(S.NullOr(S.String)),
-      display_type: CustomPropertyDisplayTypeEnum,
-      target_type: S.optional(CustomPropertyDefinitionTargetTypeEnum),
-      group_type_index: S.optional(S.NullOr(S.Number)),
-      is_big_number: S.optional(S.Boolean),
-      options: S.optional(
-        S.NullOr(CustomPropertyDefinitionsUpdateRequestOptionsList),
-      ),
-    }).pipe(
-      T.Http({
-        method: "PUT",
-        uri: "/api/projects/{project_id}/custom_property_definitions/{id}/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "CustomPropertyDefinitionsUpdateRequest",
-}) as any as S.Schema<CustomPropertyDefinitionsUpdateRequest>;
-
-export interface CustomPropertyDefinitionsValuesRetrieveRequest {
+export interface GetCustomPropertyDefinitionsValueRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** Id of the custom property definition to suggest values for. */
@@ -551,8 +399,8 @@ export interface CustomPropertyDefinitionsValuesRetrieveRequest {
   /** Case-insensitive substring to narrow the suggestions. */
   value?: string;
 }
-export const CustomPropertyDefinitionsValuesRetrieveRequest =
-  /*@__PURE__*/ S.suspend(() =>
+export const GetCustomPropertyDefinitionsValueRequest = /*@__PURE__*/ S.suspend(
+  () =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
       key: S.String.pipe(T.Query()),
@@ -564,9 +412,9 @@ export const CustomPropertyDefinitionsValuesRetrieveRequest =
         code: 200,
       }),
     ),
-  ).annotate({
-    identifier: "CustomPropertyDefinitionsValuesRetrieveRequest",
-  }) as any as S.Schema<CustomPropertyDefinitionsValuesRetrieveRequest>;
+).annotate({
+  identifier: "GetCustomPropertyDefinitionsValueRequest",
+}) as any as S.Schema<GetCustomPropertyDefinitionsValueRequest>;
 
 /** One suggested filter value for a custom property. */
 export interface CustomPropertyValueSuggestion {
@@ -606,14 +454,168 @@ export const CustomPropertyValueSuggestionsResponse = /*@__PURE__*/ S.suspend(
   identifier: "CustomPropertyValueSuggestionsResponse",
 }) as any as S.Schema<CustomPropertyValueSuggestionsResponse>;
 
-export type CustomPropertyDefinitionsCreateError = PosthogOpError;
-export const customPropertyDefinitionsCreate: API.OperationMethod<
-  CustomPropertyDefinitionsCreateRequest,
+export interface ListCustomPropertyDefinitionsRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** Number of results to return per page. */
+  limit?: number;
+  /** The initial index from which to return the results. */
+  offset?: number;
+}
+export const ListCustomPropertyDefinitionsRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      limit: S.optional(S.Number.pipe(T.Query())),
+      offset: S.optional(S.Number.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/projects/{project_id}/custom_property_definitions/",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "ListCustomPropertyDefinitionsRequest",
+}) as any as S.Schema<ListCustomPropertyDefinitionsRequest>;
+
+export type PaginatedCustomPropertyDefinitionListResultsList =
+  Array<CustomPropertyDefinition>;
+export const PaginatedCustomPropertyDefinitionListResultsList =
+  /*@__PURE__*/ S.Array(
+    CustomPropertyDefinition,
+  ) as any as S.Schema<PaginatedCustomPropertyDefinitionListResultsList>;
+
+export interface PaginatedCustomPropertyDefinitionList {
+  count: number;
+  next?: string | null;
+  previous?: string | null;
+  results: PaginatedCustomPropertyDefinitionListResultsList;
+}
+export const PaginatedCustomPropertyDefinitionList = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      count: S.Number,
+      next: S.optional(S.NullOr(S.String)),
+      previous: S.optional(S.NullOr(S.String)),
+      results: PaginatedCustomPropertyDefinitionListResultsList,
+    }),
+).annotate({
+  identifier: "PaginatedCustomPropertyDefinitionList",
+}) as any as S.Schema<PaginatedCustomPropertyDefinitionList>;
+
+/** For select properties: the allowed options. Required (non-empty) when display_type is 'select'; cleared server-side for other types. */
+export type UpdateCustomPropertyDefinitionRequestOptionsList =
+  Array<CustomPropertyOption>;
+export const UpdateCustomPropertyDefinitionRequestOptionsList =
+  /*@__PURE__*/ S.Array(
+    CustomPropertyOption,
+  ) as any as S.Schema<UpdateCustomPropertyDefinitionRequestOptionsList>;
+
+export interface UpdateCustomPropertyDefinitionRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  id: string;
+  /** Human-readable name of the custom property. Unique within the team. */
+  name: string;
+  /** Optional description of what the property represents. */
+  description?: string | null;
+  /** How the property is interpreted and rendered: 'text', 'link', 'number', 'currency', 'percent', 'date', 'datetime', 'boolean', or 'select'. Links require an HTTP or HTTPS URL. * `text` - text * `link` - link * `number` - number * `currency` - currency * `percent` - percent * `date` - date * `datetime` - datetime * `boolean` - boolean * `select` - select */
+  display_type: CustomPropertyDisplayTypeEnum | (string & {});
+  /** What entity this property is attached to: 'account' (default), 'person', or 'group'. Person and group properties are populated from a warehouse schema and become usable like any other person/group property (feature flags, cohorts, insights). * `account` - account * `person` - person * `group` - group */
+  target_type?: CustomPropertyDefinitionTargetTypeEnum | (string & {});
+  /** For 'group' targets only: which group type (0-4) the property attaches to. Required when target_type is 'group'; must be omitted otherwise. Create-only. */
+  group_type_index?: number | null;
+  /** Abbreviate large numbers (e.g. 10,000 → 10K). Only applies to numeric properties. */
+  is_big_number?: boolean;
+  /** For select properties: the allowed options. Required (non-empty) when display_type is 'select'; cleared server-side for other types. */
+  options?: UpdateCustomPropertyDefinitionRequestOptionsList | null;
+}
+export const UpdateCustomPropertyDefinitionRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      id: S.String.pipe(T.Label()),
+      name: S.String,
+      description: S.optional(S.NullOr(S.String)),
+      display_type: CustomPropertyDisplayTypeEnum,
+      target_type: S.optional(CustomPropertyDefinitionTargetTypeEnum),
+      group_type_index: S.optional(S.NullOr(S.Number)),
+      is_big_number: S.optional(S.Boolean),
+      options: S.optional(
+        S.NullOr(UpdateCustomPropertyDefinitionRequestOptionsList),
+      ),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/api/projects/{project_id}/custom_property_definitions/{id}/",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "UpdateCustomPropertyDefinitionRequest",
+}) as any as S.Schema<UpdateCustomPropertyDefinitionRequest>;
+
+/** For select properties: the allowed options. Required (non-empty) when display_type is 'select'; cleared server-side for other types. */
+export type UpdateCustomPropertyDefinitionsPartialRequestOptionsList =
+  Array<CustomPropertyOption>;
+export const UpdateCustomPropertyDefinitionsPartialRequestOptionsList =
+  /*@__PURE__*/ S.Array(
+    CustomPropertyOption,
+  ) as any as S.Schema<UpdateCustomPropertyDefinitionsPartialRequestOptionsList>;
+
+export interface UpdateCustomPropertyDefinitionsPartialRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  id: string;
+  /** Human-readable name of the custom property. Unique within the team. */
+  name?: string;
+  /** Optional description of what the property represents. */
+  description?: string | null;
+  /** How the property is interpreted and rendered: 'text', 'link', 'number', 'currency', 'percent', 'date', 'datetime', 'boolean', or 'select'. Links require an HTTP or HTTPS URL. * `text` - text * `link` - link * `number` - number * `currency` - currency * `percent` - percent * `date` - date * `datetime` - datetime * `boolean` - boolean * `select` - select */
+  display_type?: CustomPropertyDisplayTypeEnum | (string & {});
+  /** What entity this property is attached to: 'account' (default), 'person', or 'group'. Person and group properties are populated from a warehouse schema and become usable like any other person/group property (feature flags, cohorts, insights). * `account` - account * `person` - person * `group` - group */
+  target_type?: CustomPropertyDefinitionTargetTypeEnum | (string & {});
+  /** For 'group' targets only: which group type (0-4) the property attaches to. Required when target_type is 'group'; must be omitted otherwise. Create-only. */
+  group_type_index?: number | null;
+  /** Abbreviate large numbers (e.g. 10,000 → 10K). Only applies to numeric properties. */
+  is_big_number?: boolean;
+  /** For select properties: the allowed options. Required (non-empty) when display_type is 'select'; cleared server-side for other types. */
+  options?: UpdateCustomPropertyDefinitionsPartialRequestOptionsList | null;
+}
+export const UpdateCustomPropertyDefinitionsPartialRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      id: S.String.pipe(T.Label()),
+      name: S.optional(S.String),
+      description: S.optional(S.NullOr(S.String)),
+      display_type: S.optional(CustomPropertyDisplayTypeEnum),
+      target_type: S.optional(CustomPropertyDefinitionTargetTypeEnum),
+      group_type_index: S.optional(S.NullOr(S.Number)),
+      is_big_number: S.optional(S.Boolean),
+      options: S.optional(
+        S.NullOr(UpdateCustomPropertyDefinitionsPartialRequestOptionsList),
+      ),
+    }).pipe(
+      T.Http({
+        method: "PATCH",
+        uri: "/api/projects/{project_id}/custom_property_definitions/{id}/",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "UpdateCustomPropertyDefinitionsPartialRequest",
+  }) as any as S.Schema<UpdateCustomPropertyDefinitionsPartialRequest>;
+
+export type CreateCustomPropertyDefinitionError = PosthogOpError;
+export const createCustomPropertyDefinition: API.OperationMethod<
+  CreateCustomPropertyDefinitionRequest,
   CustomPropertyDefinition,
-  CustomPropertyDefinitionsCreateError,
+  CreateCustomPropertyDefinitionError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CustomPropertyDefinitionsCreateRequest,
+  input: CreateCustomPropertyDefinitionRequest,
   output: CustomPropertyDefinition,
   errors: [],
   protocol: PosthogProtocol,
@@ -634,71 +636,71 @@ export const customPropertyDefinitionsDestroy: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type CustomPropertyDefinitionsListError = PosthogOpError;
-export const customPropertyDefinitionsList: API.OperationMethod<
-  CustomPropertyDefinitionsListRequest,
-  PaginatedCustomPropertyDefinitionList,
-  CustomPropertyDefinitionsListError,
+export type GetCustomPropertyDefinitionError = PosthogOpError;
+export const getCustomPropertyDefinition: API.OperationMethod<
+  GetCustomPropertyDefinitionRequest,
+  CustomPropertyDefinition,
+  GetCustomPropertyDefinitionError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CustomPropertyDefinitionsListRequest,
+  input: GetCustomPropertyDefinitionRequest,
+  output: CustomPropertyDefinition,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetCustomPropertyDefinitionsValueError = PosthogOpError;
+export const getCustomPropertyDefinitionsValue: API.OperationMethod<
+  GetCustomPropertyDefinitionsValueRequest,
+  CustomPropertyValueSuggestionsResponse,
+  GetCustomPropertyDefinitionsValueError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetCustomPropertyDefinitionsValueRequest,
+  output: CustomPropertyValueSuggestionsResponse,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListCustomPropertyDefinitionsError = PosthogOpError;
+export const listCustomPropertyDefinitions: API.OperationMethod<
+  ListCustomPropertyDefinitionsRequest,
+  PaginatedCustomPropertyDefinitionList,
+  ListCustomPropertyDefinitionsError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListCustomPropertyDefinitionsRequest,
   output: PaginatedCustomPropertyDefinitionList,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type CustomPropertyDefinitionsPartialUpdateError = PosthogOpError;
-export const customPropertyDefinitionsPartialUpdate: API.OperationMethod<
-  CustomPropertyDefinitionsPartialUpdateRequest,
+export type UpdateCustomPropertyDefinitionError = PosthogOpError;
+export const updateCustomPropertyDefinition: API.OperationMethod<
+  UpdateCustomPropertyDefinitionRequest,
   CustomPropertyDefinition,
-  CustomPropertyDefinitionsPartialUpdateError,
+  UpdateCustomPropertyDefinitionError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CustomPropertyDefinitionsPartialUpdateRequest,
+  input: UpdateCustomPropertyDefinitionRequest,
   output: CustomPropertyDefinition,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type CustomPropertyDefinitionsRetrieveError = PosthogOpError;
-export const customPropertyDefinitionsRetrieve: API.OperationMethod<
-  CustomPropertyDefinitionsRetrieveRequest,
+export type UpdateCustomPropertyDefinitionsPartialError = PosthogOpError;
+export const updateCustomPropertyDefinitionsPartial: API.OperationMethod<
+  UpdateCustomPropertyDefinitionsPartialRequest,
   CustomPropertyDefinition,
-  CustomPropertyDefinitionsRetrieveError,
+  UpdateCustomPropertyDefinitionsPartialError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CustomPropertyDefinitionsRetrieveRequest,
+  input: UpdateCustomPropertyDefinitionsPartialRequest,
   output: CustomPropertyDefinition,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CustomPropertyDefinitionsUpdateError = PosthogOpError;
-export const customPropertyDefinitionsUpdate: API.OperationMethod<
-  CustomPropertyDefinitionsUpdateRequest,
-  CustomPropertyDefinition,
-  CustomPropertyDefinitionsUpdateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CustomPropertyDefinitionsUpdateRequest,
-  output: CustomPropertyDefinition,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type CustomPropertyDefinitionsValuesRetrieveError = PosthogOpError;
-export const customPropertyDefinitionsValuesRetrieve: API.OperationMethod<
-  CustomPropertyDefinitionsValuesRetrieveRequest,
-  CustomPropertyValueSuggestionsResponse,
-  CustomPropertyDefinitionsValuesRetrieveError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: CustomPropertyDefinitionsValuesRetrieveRequest,
-  output: CustomPropertyValueSuggestionsResponse,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,

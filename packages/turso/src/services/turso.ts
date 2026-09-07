@@ -3047,7 +3047,7 @@ export const invalidateGroupTokens: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type InviteOrganizationMemberV2Error = TursoOpError;
+export type InviteOrganizationMemberV2Error = BadRequest | TursoOpError;
 /** Invite Organization Member Invite a user to an organization. If the user isn't already registered with Turso, they will receive a signup link. If an existing pending invite exists for the same email, it will be replaced. */
 export const inviteOrganizationMemberV2: API.OperationMethod<
   InviteOrganizationMemberV2Request,
@@ -3057,7 +3057,7 @@ export const inviteOrganizationMemberV2: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: InviteOrganizationMemberV2Request,
   output: InviteOrganizationMemberV2Response,
-  errors: [],
+  errors: [BadRequest],
   protocol: TursoProtocol,
   retry: Retry.Retry,
 }));

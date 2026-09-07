@@ -12,169 +12,164 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
-export interface OperationsListRequest {}
-export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/providers/Microsoft.DurableTask/operations",
-      code: 200,
-      apiVersion: "2026-02-01",
-    }),
-  ),
-).annotate({
-  identifier: "OperationsListRequest",
-}) as any as S.Schema<OperationsListRequest>;
-
-/** Localized display information for this particular operation. */
-export interface OperationDisplay {
-  /** The localized friendly form of the resource provider name, e.g. "Microsoft Monitoring Insights" or "Microsoft Compute". */
-  provider?: string;
-  /** The localized friendly name of the resource type related to this operation. E.g. "Virtual Machines" or "Job Schedule Collections". */
-  resource?: string;
-  /** The concise, localized friendly name for the operation; suitable for dropdowns. E.g. "Create or Update Virtual Machine", "Restart Virtual Machine". */
-  operation?: string;
-  /** The short, localized friendly description of the operation; suitable for tool tips and detailed views. */
-  description?: string;
-}
-export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provider: S.optional(S.String),
-    resource: S.optional(S.String),
-    operation: S.optional(S.String),
-    description: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OperationDisplay",
-}) as any as S.Schema<OperationDisplay>;
-
-/** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
-export type OperationOrigin = "user" | "system" | "user,system";
-export const OperationOrigin = /*@__PURE__*/ S.String;
-
-/** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
-export type OperationActionType = "Internal";
-export const OperationActionType = /*@__PURE__*/ S.String;
-
-/** Details of a REST API operation, returned from the Resource Provider Operations API */
-export interface Operation {
-  /** The name of the operation, as per Resource-Based Access Control (RBAC). Examples: "Microsoft.Compute/virtualMachines/write", "Microsoft.Compute/virtualMachines/capture/action" */
-  name?: string;
-  /** Whether the operation applies to data-plane. This is "true" for data-plane operations and "false" for ARM/control-plane operations. */
-  isDataAction?: boolean;
-  /** Localized display information for this particular operation. */
-  display?: OperationDisplay;
-  /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
-  origin?: OperationOrigin;
-  /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
-  actionType?: OperationActionType;
-}
-export const Operation = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.optional(S.String),
-    isDataAction: S.optional(S.Boolean),
-    display: S.optional(OperationDisplay),
-    origin: S.optional(OperationOrigin),
-    actionType: S.optional(OperationActionType),
-  }),
-).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
-
-/** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
-  Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
-
-export interface OperationsListResponse {
-  /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
-  /** URL to get the next set of operation list results (if there are any). */
-  nextLink?: string;
-}
-export const OperationsListResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(OperationsListResponseValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "OperationsListResponse",
-}) as any as S.Schema<OperationsListResponse>;
-
-/** Purgeable orchestration state to be used in retention policies */
-export type PurgeableOrchestrationState =
-  | "Completed"
-  | "Failed"
-  | "Terminated"
-  | "Canceled";
-export const PurgeableOrchestrationState = /*@__PURE__*/ S.String;
-
-/** The properties of a retention policy */
-export interface RetentionPolicyDetails {
-  /** The retention period in days after which the orchestration will be purged automatically */
-  retentionPeriodInDays: number;
-  /** The orchestration state to which this policy applies. If omitted, the policy applies to all purgeable orchestration states. */
-  orchestrationState?: PurgeableOrchestrationState | (string & {});
-}
-export const RetentionPolicyDetails = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    retentionPeriodInDays: S.Number,
-    orchestrationState: S.optional(PurgeableOrchestrationState),
-  }),
-).annotate({
-  identifier: "RetentionPolicyDetails",
-}) as any as S.Schema<RetentionPolicyDetails>;
-
-/** The orchestration retention policies */
-export type RetentionPolicyPropertiesInputRetentionPoliciesList =
-  Array<RetentionPolicyDetails>;
-export const RetentionPolicyPropertiesInputRetentionPoliciesList =
-  /*@__PURE__*/ S.Array(
-    RetentionPolicyDetails,
-  ) as any as S.Schema<RetentionPolicyPropertiesInputRetentionPoliciesList>;
-
-/** The retention policy settings for the resource */
-export interface RetentionPolicyPropertiesInput {
-  /** The orchestration retention policies */
-  retentionPolicies?: RetentionPolicyPropertiesInputRetentionPoliciesList;
-}
-export const RetentionPolicyPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    retentionPolicies: S.optional(
-      RetentionPolicyPropertiesInputRetentionPoliciesList,
-    ),
-  }),
-).annotate({
-  identifier: "RetentionPolicyPropertiesInput",
-}) as any as S.Schema<RetentionPolicyPropertiesInput>;
-
-export interface RetentionPoliciesCreateOrReplaceRequest {
+export interface DeleteRetentionPolicyRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of the Scheduler */
   schedulerName: string;
-  /** The resource-specific properties for this resource. */
-  properties?: RetentionPolicyPropertiesInput;
 }
-export const RetentionPoliciesCreateOrReplaceRequest = /*@__PURE__*/ S.suspend(
-  () =>
+export const DeleteRetentionPolicyRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    schedulerName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DurableTask/schedulers/{schedulerName}/retentionPolicies/default",
+      code: 200,
+      apiVersion: "2026-02-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteRetentionPolicyRequest",
+}) as any as S.Schema<DeleteRetentionPolicyRequest>;
+
+export interface DeleteRetentionPolicyResponse {}
+export const DeleteRetentionPolicyResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteRetentionPolicyResponse",
+}) as any as S.Schema<DeleteRetentionPolicyResponse>;
+
+export interface DeleteSchedulerRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Scheduler */
+  schedulerName: string;
+}
+export const DeleteSchedulerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    schedulerName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DurableTask/schedulers/{schedulerName}",
+      code: 200,
+      apiVersion: "2026-02-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteSchedulerRequest",
+}) as any as S.Schema<DeleteSchedulerRequest>;
+
+export interface DeleteSchedulerResponse {}
+export const DeleteSchedulerResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteSchedulerResponse",
+}) as any as S.Schema<DeleteSchedulerResponse>;
+
+export interface DeleteSchedulerPrivateEndpointConnectionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Scheduler */
+  schedulerName: string;
+  /** The name of the private endpoint connection associated with the Azure resource. */
+  privateEndpointConnectionName: string;
+}
+export const DeleteSchedulerPrivateEndpointConnectionRequest =
+  /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
       resourceGroupName: S.String.pipe(T.Label()),
       schedulerName: S.String.pipe(T.Label()),
-      properties: S.optional(RetentionPolicyPropertiesInput),
+      privateEndpointConnectionName: S.String.pipe(T.Label()),
     }).pipe(
       T.Http({
-        method: "PUT",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DurableTask/schedulers/{schedulerName}/retentionPolicies/default",
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DurableTask/schedulers/{schedulerName}/privateEndpointConnections/{privateEndpointConnectionName}",
         code: 200,
         apiVersion: "2026-02-01",
       }),
     ),
+  ).annotate({
+    identifier: "DeleteSchedulerPrivateEndpointConnectionRequest",
+  }) as any as S.Schema<DeleteSchedulerPrivateEndpointConnectionRequest>;
+
+export interface DeleteSchedulerPrivateEndpointConnectionResponse {}
+export const DeleteSchedulerPrivateEndpointConnectionResponse =
+  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
+    identifier: "DeleteSchedulerPrivateEndpointConnectionResponse",
+  }) as any as S.Schema<DeleteSchedulerPrivateEndpointConnectionResponse>;
+
+export interface DeleteTaskHubRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Scheduler */
+  schedulerName: string;
+  /** The name of the TaskHub */
+  taskHubName: string;
+}
+export const DeleteTaskHubRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    schedulerName: S.String.pipe(T.Label()),
+    taskHubName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DurableTask/schedulers/{schedulerName}/taskHubs/{taskHubName}",
+      code: 200,
+      apiVersion: "2026-02-01",
+    }),
+  ),
 ).annotate({
-  identifier: "RetentionPoliciesCreateOrReplaceRequest",
-}) as any as S.Schema<RetentionPoliciesCreateOrReplaceRequest>;
+  identifier: "DeleteTaskHubRequest",
+}) as any as S.Schema<DeleteTaskHubRequest>;
+
+export interface DeleteTaskHubResponse {}
+export const DeleteTaskHubResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteTaskHubResponse",
+}) as any as S.Schema<DeleteTaskHubResponse>;
+
+export interface GetRetentionPolicyRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Scheduler */
+  schedulerName: string;
+}
+export const GetRetentionPolicyRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    schedulerName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DurableTask/schedulers/{schedulerName}/retentionPolicies/default",
+      code: 200,
+      apiVersion: "2026-02-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetRetentionPolicyRequest",
+}) as any as S.Schema<GetRetentionPolicyRequest>;
 
 /** The type of identity that created the resource. */
 export type SystemDataCreatedByType =
@@ -229,6 +224,30 @@ export type ProvisioningState =
   | "Accepted";
 export const ProvisioningState = /*@__PURE__*/ S.String;
 
+/** Purgeable orchestration state to be used in retention policies */
+export type PurgeableOrchestrationState =
+  | "Completed"
+  | "Failed"
+  | "Terminated"
+  | "Canceled";
+export const PurgeableOrchestrationState = /*@__PURE__*/ S.String;
+
+/** The properties of a retention policy */
+export interface RetentionPolicyDetails {
+  /** The retention period in days after which the orchestration will be purged automatically */
+  retentionPeriodInDays: number;
+  /** The orchestration state to which this policy applies. If omitted, the policy applies to all purgeable orchestration states. */
+  orchestrationState?: PurgeableOrchestrationState | (string & {});
+}
+export const RetentionPolicyDetails = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    retentionPeriodInDays: S.Number,
+    orchestrationState: S.optional(PurgeableOrchestrationState),
+  }),
+).annotate({
+  identifier: "RetentionPolicyDetails",
+}) as any as S.Schema<RetentionPolicyDetails>;
+
 /** The orchestration retention policies */
 export type RetentionPolicyPropertiesRetentionPoliciesList =
   Array<RetentionPolicyDetails>;
@@ -255,7 +274,7 @@ export const RetentionPolicyProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "RetentionPolicyProperties",
 }) as any as S.Schema<RetentionPolicyProperties>;
 
-export interface RetentionPoliciesCreateOrReplaceResponse {
+export interface GetRetentionPolicyResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -267,52 +286,19 @@ export interface RetentionPoliciesCreateOrReplaceResponse {
   /** The resource-specific properties for this resource. */
   properties?: RetentionPolicyProperties;
 }
-export const RetentionPoliciesCreateOrReplaceResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(RetentionPolicyProperties),
-    }),
-).annotate({
-  identifier: "RetentionPoliciesCreateOrReplaceResponse",
-}) as any as S.Schema<RetentionPoliciesCreateOrReplaceResponse>;
-
-export interface RetentionPoliciesDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Scheduler */
-  schedulerName: string;
-}
-export const RetentionPoliciesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetRetentionPolicyResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    schedulerName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DurableTask/schedulers/{schedulerName}/retentionPolicies/default",
-      code: 200,
-      apiVersion: "2026-02-01",
-    }),
-  ),
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(RetentionPolicyProperties),
+  }),
 ).annotate({
-  identifier: "RetentionPoliciesDeleteRequest",
-}) as any as S.Schema<RetentionPoliciesDeleteRequest>;
+  identifier: "GetRetentionPolicyResponse",
+}) as any as S.Schema<GetRetentionPolicyResponse>;
 
-export interface RetentionPoliciesDeleteResponse {}
-export const RetentionPoliciesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "RetentionPoliciesDeleteResponse",
-}) as any as S.Schema<RetentionPoliciesDeleteResponse>;
-
-export interface RetentionPoliciesGetRequest {
+export interface GetSchedulerRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -320,7 +306,7 @@ export interface RetentionPoliciesGetRequest {
   /** The name of the Scheduler */
   schedulerName: string;
 }
-export const RetentionPoliciesGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetSchedulerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -328,178 +314,27 @@ export const RetentionPoliciesGetRequest = /*@__PURE__*/ S.suspend(() =>
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DurableTask/schedulers/{schedulerName}/retentionPolicies/default",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DurableTask/schedulers/{schedulerName}",
       code: 200,
       apiVersion: "2026-02-01",
     }),
   ),
 ).annotate({
-  identifier: "RetentionPoliciesGetRequest",
-}) as any as S.Schema<RetentionPoliciesGetRequest>;
-
-export interface RetentionPoliciesGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: RetentionPolicyProperties;
-}
-export const RetentionPoliciesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(RetentionPolicyProperties),
-  }),
-).annotate({
-  identifier: "RetentionPoliciesGetResponse",
-}) as any as S.Schema<RetentionPoliciesGetResponse>;
-
-export interface RetentionPoliciesListBySchedulerRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Scheduler */
-  schedulerName: string;
-}
-export const RetentionPoliciesListBySchedulerRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      schedulerName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DurableTask/schedulers/{schedulerName}/retentionPolicies",
-        code: 200,
-        apiVersion: "2026-02-01",
-      }),
-    ),
-).annotate({
-  identifier: "RetentionPoliciesListBySchedulerRequest",
-}) as any as S.Schema<RetentionPoliciesListBySchedulerRequest>;
-
-/** A retention policy resource belonging to the scheduler */
-export interface RetentionPolicy {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: RetentionPolicyProperties;
-}
-export const RetentionPolicy = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(RetentionPolicyProperties),
-  }),
-).annotate({
-  identifier: "RetentionPolicy",
-}) as any as S.Schema<RetentionPolicy>;
-
-/** The RetentionPolicy items on this page */
-export type RetentionPolicyListResultValueList = Array<RetentionPolicy>;
-export const RetentionPolicyListResultValueList = /*@__PURE__*/ S.Array(
-  RetentionPolicy,
-) as any as S.Schema<RetentionPolicyListResultValueList>;
-
-/** The response of a RetentionPolicy list operation. */
-export interface RetentionPolicyListResult {
-  /** The RetentionPolicy items on this page */
-  value: RetentionPolicyListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const RetentionPolicyListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: RetentionPolicyListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "RetentionPolicyListResult",
-}) as any as S.Schema<RetentionPolicyListResult>;
-
-export interface RetentionPoliciesUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Scheduler */
-  schedulerName: string;
-  /** The resource-specific properties for this resource. */
-  properties?: RetentionPolicyPropertiesInput;
-}
-export const RetentionPoliciesUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    schedulerName: S.String.pipe(T.Label()),
-    properties: S.optional(RetentionPolicyPropertiesInput),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DurableTask/schedulers/{schedulerName}/retentionPolicies/default",
-      code: 200,
-      apiVersion: "2026-02-01",
-    }),
-  ),
-).annotate({
-  identifier: "RetentionPoliciesUpdateRequest",
-}) as any as S.Schema<RetentionPoliciesUpdateRequest>;
-
-export interface RetentionPoliciesUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: RetentionPolicyProperties;
-}
-export const RetentionPoliciesUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(RetentionPolicyProperties),
-  }),
-).annotate({
-  identifier: "RetentionPoliciesUpdateResponse",
-}) as any as S.Schema<RetentionPoliciesUpdateResponse>;
+  identifier: "GetSchedulerRequest",
+}) as any as S.Schema<GetSchedulerRequest>;
 
 /** Resource tags. */
-export type SchedulersCreateOrUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const SchedulersCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export type GetSchedulerResponseTagsMap = { [key: string]: string | undefined };
+export const GetSchedulerResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<SchedulersCreateOrUpdateRequestTagsMap>;
+) as any as S.Schema<GetSchedulerResponseTagsMap>;
 
 /** IP allow list for durable task scheduler. Values can be IPv4, IPv6 or CIDR */
-export type SchedulerPropertiesInputIpAllowlistList = Array<string>;
-export const SchedulerPropertiesInputIpAllowlistList = /*@__PURE__*/ S.Array(
+export type SchedulerPropertiesIpAllowlistList = Array<string>;
+export const SchedulerPropertiesIpAllowlistList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<SchedulerPropertiesInputIpAllowlistList>;
+) as any as S.Schema<SchedulerPropertiesIpAllowlistList>;
 
 /** The name of the Stock Keeping Unit (SKU) of a Durable Task Scheduler */
 export type SchedulerSkuName = "Dedicated" | "Consumption";
@@ -529,74 +364,6 @@ export const SchedulerSku = /*@__PURE__*/ S.suspend(() =>
 /** State of the public network access. */
 export type PublicNetworkAccess = "Enabled" | "Disabled";
 export const PublicNetworkAccess = /*@__PURE__*/ S.String;
-
-/** Details of the Scheduler */
-export interface SchedulerPropertiesInput {
-  /** IP allow list for durable task scheduler. Values can be IPv4, IPv6 or CIDR */
-  ipAllowlist: SchedulerPropertiesInputIpAllowlistList;
-  /** SKU of the durable task scheduler */
-  sku: SchedulerSku;
-  /** Allow or disallow public network access to durable task scheduler */
-  publicNetworkAccess?: PublicNetworkAccess | (string & {});
-}
-export const SchedulerPropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    ipAllowlist: SchedulerPropertiesInputIpAllowlistList,
-    sku: SchedulerSku,
-    publicNetworkAccess: S.optional(PublicNetworkAccess),
-  }),
-).annotate({
-  identifier: "SchedulerPropertiesInput",
-}) as any as S.Schema<SchedulerPropertiesInput>;
-
-export interface SchedulersCreateOrUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Scheduler */
-  schedulerName: string;
-  /** Resource tags. */
-  tags?: SchedulersCreateOrUpdateRequestTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: SchedulerPropertiesInput;
-}
-export const SchedulersCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    schedulerName: S.String.pipe(T.Label()),
-    tags: S.optional(SchedulersCreateOrUpdateRequestTagsMap),
-    location: S.String,
-    properties: S.optional(SchedulerPropertiesInput),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DurableTask/schedulers/{schedulerName}",
-      code: 200,
-      apiVersion: "2026-02-01",
-    }),
-  ),
-).annotate({
-  identifier: "SchedulersCreateOrUpdateRequest",
-}) as any as S.Schema<SchedulersCreateOrUpdateRequest>;
-
-/** Resource tags. */
-export type SchedulersCreateOrUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const SchedulersCreateOrUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<SchedulersCreateOrUpdateResponseTagsMap>;
-
-/** IP allow list for durable task scheduler. Values can be IPv4, IPv6 or CIDR */
-export type SchedulerPropertiesIpAllowlistList = Array<string>;
-export const SchedulerPropertiesIpAllowlistList = /*@__PURE__*/ S.Array(
-  S.String,
-) as any as S.Schema<SchedulerPropertiesIpAllowlistList>;
 
 /** The group ids for the private endpoint resource. */
 export type PrivateEndpointConnectionPropertiesGroupIdsList = Array<string>;
@@ -739,6 +506,863 @@ export const SchedulerProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "SchedulerProperties",
 }) as any as S.Schema<SchedulerProperties>;
 
+export interface GetSchedulerResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetSchedulerResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: SchedulerProperties;
+}
+export const GetSchedulerResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetSchedulerResponseTagsMap),
+    location: S.String,
+    properties: S.optional(SchedulerProperties),
+  }),
+).annotate({
+  identifier: "GetSchedulerResponse",
+}) as any as S.Schema<GetSchedulerResponse>;
+
+export interface GetSchedulerPrivateEndpointConnectionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Scheduler */
+  schedulerName: string;
+  /** The name of the private endpoint connection associated with the Azure resource. */
+  privateEndpointConnectionName: string;
+}
+export const GetSchedulerPrivateEndpointConnectionRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      schedulerName: S.String.pipe(T.Label()),
+      privateEndpointConnectionName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DurableTask/schedulers/{schedulerName}/privateEndpointConnections/{privateEndpointConnectionName}",
+        code: 200,
+        apiVersion: "2026-02-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "GetSchedulerPrivateEndpointConnectionRequest",
+  }) as any as S.Schema<GetSchedulerPrivateEndpointConnectionRequest>;
+
+export interface GetSchedulerPrivateEndpointConnectionResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource properties. */
+  properties?: PrivateEndpointConnectionProperties;
+}
+export const GetSchedulerPrivateEndpointConnectionResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(PrivateEndpointConnectionProperties),
+    }),
+  ).annotate({
+    identifier: "GetSchedulerPrivateEndpointConnectionResponse",
+  }) as any as S.Schema<GetSchedulerPrivateEndpointConnectionResponse>;
+
+export interface GetSchedulerPrivateLinkRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Scheduler */
+  schedulerName: string;
+  /** The name of the private link associated with the Azure resource. */
+  privateLinkResourceName: string;
+}
+export const GetSchedulerPrivateLinkRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    schedulerName: S.String.pipe(T.Label()),
+    privateLinkResourceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DurableTask/schedulers/{schedulerName}/privateLinkResources/{privateLinkResourceName}",
+      code: 200,
+      apiVersion: "2026-02-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetSchedulerPrivateLinkRequest",
+}) as any as S.Schema<GetSchedulerPrivateLinkRequest>;
+
+/** The private link resource required member names. */
+export type PrivateLinkResourcePropertiesRequiredMembersList = Array<string>;
+export const PrivateLinkResourcePropertiesRequiredMembersList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<PrivateLinkResourcePropertiesRequiredMembersList>;
+
+/** The private link resource private link DNS zone name. */
+export type PrivateLinkResourcePropertiesRequiredZoneNamesList = Array<string>;
+export const PrivateLinkResourcePropertiesRequiredZoneNamesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<PrivateLinkResourcePropertiesRequiredZoneNamesList>;
+
+/** Properties of a private link resource. */
+export interface PrivateLinkResourceProperties {
+  /** The private link resource group id. */
+  groupId?: string;
+  /** The private link resource required member names. */
+  requiredMembers?: PrivateLinkResourcePropertiesRequiredMembersList;
+  /** The private link resource private link DNS zone name. */
+  requiredZoneNames?: PrivateLinkResourcePropertiesRequiredZoneNamesList;
+}
+export const PrivateLinkResourceProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    groupId: S.optional(S.String),
+    requiredMembers: S.optional(
+      PrivateLinkResourcePropertiesRequiredMembersList,
+    ),
+    requiredZoneNames: S.optional(
+      PrivateLinkResourcePropertiesRequiredZoneNamesList,
+    ),
+  }),
+).annotate({
+  identifier: "PrivateLinkResourceProperties",
+}) as any as S.Schema<PrivateLinkResourceProperties>;
+
+export interface GetSchedulerPrivateLinkResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource properties. */
+  properties?: PrivateLinkResourceProperties;
+}
+export const GetSchedulerPrivateLinkResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(PrivateLinkResourceProperties),
+  }),
+).annotate({
+  identifier: "GetSchedulerPrivateLinkResponse",
+}) as any as S.Schema<GetSchedulerPrivateLinkResponse>;
+
+export interface GetTaskHubRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Scheduler */
+  schedulerName: string;
+  /** The name of the TaskHub */
+  taskHubName: string;
+}
+export const GetTaskHubRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    schedulerName: S.String.pipe(T.Label()),
+    taskHubName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DurableTask/schedulers/{schedulerName}/taskHubs/{taskHubName}",
+      code: 200,
+      apiVersion: "2026-02-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetTaskHubRequest",
+}) as any as S.Schema<GetTaskHubRequest>;
+
+/** The properties of Task Hub */
+export interface TaskHubProperties {
+  /** The status of the last operation */
+  provisioningState?: ProvisioningState;
+  /** URL of the durable task scheduler dashboard */
+  dashboardUrl?: string;
+}
+export const TaskHubProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provisioningState: S.optional(ProvisioningState),
+    dashboardUrl: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "TaskHubProperties",
+}) as any as S.Schema<TaskHubProperties>;
+
+export interface GetTaskHubResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: TaskHubProperties;
+}
+export const GetTaskHubResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(TaskHubProperties),
+  }),
+).annotate({
+  identifier: "GetTaskHubResponse",
+}) as any as S.Schema<GetTaskHubResponse>;
+
+export interface ListOperationsRequest {}
+export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/providers/Microsoft.DurableTask/operations",
+      code: 200,
+      apiVersion: "2026-02-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListOperationsRequest",
+}) as any as S.Schema<ListOperationsRequest>;
+
+/** Localized display information for this particular operation. */
+export interface OperationDisplay {
+  /** The localized friendly form of the resource provider name, e.g. "Microsoft Monitoring Insights" or "Microsoft Compute". */
+  provider?: string;
+  /** The localized friendly name of the resource type related to this operation. E.g. "Virtual Machines" or "Job Schedule Collections". */
+  resource?: string;
+  /** The concise, localized friendly name for the operation; suitable for dropdowns. E.g. "Create or Update Virtual Machine", "Restart Virtual Machine". */
+  operation?: string;
+  /** The short, localized friendly description of the operation; suitable for tool tips and detailed views. */
+  description?: string;
+}
+export const OperationDisplay = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provider: S.optional(S.String),
+    resource: S.optional(S.String),
+    operation: S.optional(S.String),
+    description: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "OperationDisplay",
+}) as any as S.Schema<OperationDisplay>;
+
+/** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
+export type OperationOrigin = "user" | "system" | "user,system";
+export const OperationOrigin = /*@__PURE__*/ S.String;
+
+/** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
+export type OperationActionType = "Internal";
+export const OperationActionType = /*@__PURE__*/ S.String;
+
+/** Details of a REST API operation, returned from the Resource Provider Operations API */
+export interface Operation {
+  /** The name of the operation, as per Resource-Based Access Control (RBAC). Examples: "Microsoft.Compute/virtualMachines/write", "Microsoft.Compute/virtualMachines/capture/action" */
+  name?: string;
+  /** Whether the operation applies to data-plane. This is "true" for data-plane operations and "false" for ARM/control-plane operations. */
+  isDataAction?: boolean;
+  /** Localized display information for this particular operation. */
+  display?: OperationDisplay;
+  /** The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is "user,system" */
+  origin?: OperationOrigin;
+  /** Enum. Indicates the action type. "Internal" refers to actions that are for internal only APIs. */
+  actionType?: OperationActionType;
+}
+export const Operation = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.optional(S.String),
+    isDataAction: S.optional(S.Boolean),
+    display: S.optional(OperationDisplay),
+    origin: S.optional(OperationOrigin),
+    actionType: S.optional(OperationActionType),
+  }),
+).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
+
+/** List of operations supported by the resource provider */
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
+  Operation,
+) as any as S.Schema<ListOperationsResponseValueList>;
+
+export interface ListOperationsResponse {
+  /** List of operations supported by the resource provider */
+  value?: ListOperationsResponseValueList;
+  /** URL to get the next set of operation list results (if there are any). */
+  nextLink?: string;
+}
+export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(ListOperationsResponseValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "ListOperationsResponse",
+}) as any as S.Schema<ListOperationsResponse>;
+
+export interface ListRetentionPolicyBySchedulerRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Scheduler */
+  schedulerName: string;
+}
+export const ListRetentionPolicyBySchedulerRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      schedulerName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DurableTask/schedulers/{schedulerName}/retentionPolicies",
+        code: 200,
+        apiVersion: "2026-02-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListRetentionPolicyBySchedulerRequest",
+}) as any as S.Schema<ListRetentionPolicyBySchedulerRequest>;
+
+/** A retention policy resource belonging to the scheduler */
+export interface RetentionPolicy {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: RetentionPolicyProperties;
+}
+export const RetentionPolicy = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(RetentionPolicyProperties),
+  }),
+).annotate({
+  identifier: "RetentionPolicy",
+}) as any as S.Schema<RetentionPolicy>;
+
+/** The RetentionPolicy items on this page */
+export type RetentionPolicyListResultValueList = Array<RetentionPolicy>;
+export const RetentionPolicyListResultValueList = /*@__PURE__*/ S.Array(
+  RetentionPolicy,
+) as any as S.Schema<RetentionPolicyListResultValueList>;
+
+/** The response of a RetentionPolicy list operation. */
+export interface RetentionPolicyListResult {
+  /** The RetentionPolicy items on this page */
+  value: RetentionPolicyListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const RetentionPolicyListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: RetentionPolicyListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "RetentionPolicyListResult",
+}) as any as S.Schema<RetentionPolicyListResult>;
+
+export interface ListSchedulerByResourceGroupRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+}
+export const ListSchedulerByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DurableTask/schedulers",
+      code: 200,
+      apiVersion: "2026-02-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListSchedulerByResourceGroupRequest",
+}) as any as S.Schema<ListSchedulerByResourceGroupRequest>;
+
+/** Resource tags. */
+export type SchedulerTagsMap = { [key: string]: string | undefined };
+export const SchedulerTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<SchedulerTagsMap>;
+
+/** A Durable Task Scheduler resource */
+export interface Scheduler {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: SchedulerTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: SchedulerProperties;
+}
+export const Scheduler = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(SchedulerTagsMap),
+    location: S.String,
+    properties: S.optional(SchedulerProperties),
+  }),
+).annotate({ identifier: "Scheduler" }) as any as S.Schema<Scheduler>;
+
+/** The Scheduler items on this page */
+export type SchedulerListResultValueList = Array<Scheduler>;
+export const SchedulerListResultValueList = /*@__PURE__*/ S.Array(
+  Scheduler,
+) as any as S.Schema<SchedulerListResultValueList>;
+
+/** The response of a Scheduler list operation. */
+export interface SchedulerListResult {
+  /** The Scheduler items on this page */
+  value: SchedulerListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const SchedulerListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: SchedulerListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "SchedulerListResult",
+}) as any as S.Schema<SchedulerListResult>;
+
+export interface ListSchedulerBySubscriptionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+}
+export const ListSchedulerBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.DurableTask/schedulers",
+      code: 200,
+      apiVersion: "2026-02-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListSchedulerBySubscriptionRequest",
+}) as any as S.Schema<ListSchedulerBySubscriptionRequest>;
+
+export interface ListSchedulerPrivateEndpointConnectionsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Scheduler */
+  schedulerName: string;
+}
+export const ListSchedulerPrivateEndpointConnectionsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      schedulerName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DurableTask/schedulers/{schedulerName}/privateEndpointConnections",
+        code: 200,
+        apiVersion: "2026-02-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListSchedulerPrivateEndpointConnectionsRequest",
+  }) as any as S.Schema<ListSchedulerPrivateEndpointConnectionsRequest>;
+
+/** The private endpoint connection resource. */
+export type PrivateEndpointConnectionListResultValueItem =
+  SchedulerPropertiesPrivateEndpointConnectionsItem;
+export const PrivateEndpointConnectionListResultValueItem =
+  SchedulerPropertiesPrivateEndpointConnectionsItem;
+
+/** The PrivateEndpointConnection items on this page */
+export type PrivateEndpointConnectionListResultValueList =
+  Array<SchedulerPropertiesPrivateEndpointConnectionsItem>;
+export const PrivateEndpointConnectionListResultValueList =
+  /*@__PURE__*/ S.Array(
+    SchedulerPropertiesPrivateEndpointConnectionsItem,
+  ) as any as S.Schema<PrivateEndpointConnectionListResultValueList>;
+
+/** The response of a PrivateEndpointConnection list operation. */
+export interface PrivateEndpointConnectionListResult {
+  /** The PrivateEndpointConnection items on this page */
+  value: PrivateEndpointConnectionListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const PrivateEndpointConnectionListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: PrivateEndpointConnectionListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PrivateEndpointConnectionListResult",
+}) as any as S.Schema<PrivateEndpointConnectionListResult>;
+
+export interface ListSchedulerPrivateLinksRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Scheduler */
+  schedulerName: string;
+}
+export const ListSchedulerPrivateLinksRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    schedulerName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DurableTask/schedulers/{schedulerName}/privateLinkResources",
+      code: 200,
+      apiVersion: "2026-02-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListSchedulerPrivateLinksRequest",
+}) as any as S.Schema<ListSchedulerPrivateLinksRequest>;
+
+/** A private link resource. */
+export interface SchedulerPrivateLinkResourceListResultValueItem {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource properties. */
+  properties?: PrivateLinkResourceProperties;
+}
+export const SchedulerPrivateLinkResourceListResultValueItem =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(PrivateLinkResourceProperties),
+    }),
+  ).annotate({
+    identifier: "SchedulerPrivateLinkResourceListResultValueItem",
+  }) as any as S.Schema<SchedulerPrivateLinkResourceListResultValueItem>;
+
+/** The SchedulerPrivateLinkResource items on this page */
+export type SchedulerPrivateLinkResourceListResultValueList =
+  Array<SchedulerPrivateLinkResourceListResultValueItem>;
+export const SchedulerPrivateLinkResourceListResultValueList =
+  /*@__PURE__*/ S.Array(
+    SchedulerPrivateLinkResourceListResultValueItem,
+  ) as any as S.Schema<SchedulerPrivateLinkResourceListResultValueList>;
+
+/** The response of a SchedulerPrivateLinkResource list operation. */
+export interface SchedulerPrivateLinkResourceListResult {
+  /** The SchedulerPrivateLinkResource items on this page */
+  value: SchedulerPrivateLinkResourceListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const SchedulerPrivateLinkResourceListResult = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      value: SchedulerPrivateLinkResourceListResultValueList,
+      nextLink: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "SchedulerPrivateLinkResourceListResult",
+}) as any as S.Schema<SchedulerPrivateLinkResourceListResult>;
+
+export interface ListTaskHubBySchedulerRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Scheduler */
+  schedulerName: string;
+}
+export const ListTaskHubBySchedulerRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    schedulerName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DurableTask/schedulers/{schedulerName}/taskHubs",
+      code: 200,
+      apiVersion: "2026-02-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListTaskHubBySchedulerRequest",
+}) as any as S.Schema<ListTaskHubBySchedulerRequest>;
+
+/** A Task Hub resource belonging to the scheduler */
+export interface TaskHub {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: TaskHubProperties;
+}
+export const TaskHub = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(TaskHubProperties),
+  }),
+).annotate({ identifier: "TaskHub" }) as any as S.Schema<TaskHub>;
+
+/** The TaskHub items on this page */
+export type TaskHubListResultValueList = Array<TaskHub>;
+export const TaskHubListResultValueList = /*@__PURE__*/ S.Array(
+  TaskHub,
+) as any as S.Schema<TaskHubListResultValueList>;
+
+/** The response of a TaskHub list operation. */
+export interface TaskHubListResult {
+  /** The TaskHub items on this page */
+  value: TaskHubListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const TaskHubListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: TaskHubListResultValueList,
+    nextLink: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "TaskHubListResult",
+}) as any as S.Schema<TaskHubListResult>;
+
+/** The orchestration retention policies */
+export type RetentionPolicyPropertiesInputRetentionPoliciesList =
+  Array<RetentionPolicyDetails>;
+export const RetentionPolicyPropertiesInputRetentionPoliciesList =
+  /*@__PURE__*/ S.Array(
+    RetentionPolicyDetails,
+  ) as any as S.Schema<RetentionPolicyPropertiesInputRetentionPoliciesList>;
+
+/** The retention policy settings for the resource */
+export interface RetentionPolicyPropertiesInput {
+  /** The orchestration retention policies */
+  retentionPolicies?: RetentionPolicyPropertiesInputRetentionPoliciesList;
+}
+export const RetentionPolicyPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    retentionPolicies: S.optional(
+      RetentionPolicyPropertiesInputRetentionPoliciesList,
+    ),
+  }),
+).annotate({
+  identifier: "RetentionPolicyPropertiesInput",
+}) as any as S.Schema<RetentionPolicyPropertiesInput>;
+
+export interface RetentionPoliciesCreateOrReplaceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Scheduler */
+  schedulerName: string;
+  /** The resource-specific properties for this resource. */
+  properties?: RetentionPolicyPropertiesInput;
+}
+export const RetentionPoliciesCreateOrReplaceRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      schedulerName: S.String.pipe(T.Label()),
+      properties: S.optional(RetentionPolicyPropertiesInput),
+    }).pipe(
+      T.Http({
+        method: "PUT",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DurableTask/schedulers/{schedulerName}/retentionPolicies/default",
+        code: 200,
+        apiVersion: "2026-02-01",
+      }),
+    ),
+).annotate({
+  identifier: "RetentionPoliciesCreateOrReplaceRequest",
+}) as any as S.Schema<RetentionPoliciesCreateOrReplaceRequest>;
+
+export interface RetentionPoliciesCreateOrReplaceResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: RetentionPolicyProperties;
+}
+export const RetentionPoliciesCreateOrReplaceResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      type: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      properties: S.optional(RetentionPolicyProperties),
+    }),
+).annotate({
+  identifier: "RetentionPoliciesCreateOrReplaceResponse",
+}) as any as S.Schema<RetentionPoliciesCreateOrReplaceResponse>;
+
+/** Resource tags. */
+export type SchedulersCreateOrUpdateRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const SchedulersCreateOrUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<SchedulersCreateOrUpdateRequestTagsMap>;
+
+/** IP allow list for durable task scheduler. Values can be IPv4, IPv6 or CIDR */
+export type SchedulerPropertiesInputIpAllowlistList = Array<string>;
+export const SchedulerPropertiesInputIpAllowlistList = /*@__PURE__*/ S.Array(
+  S.String,
+) as any as S.Schema<SchedulerPropertiesInputIpAllowlistList>;
+
+/** Details of the Scheduler */
+export interface SchedulerPropertiesInput {
+  /** IP allow list for durable task scheduler. Values can be IPv4, IPv6 or CIDR */
+  ipAllowlist: SchedulerPropertiesInputIpAllowlistList;
+  /** SKU of the durable task scheduler */
+  sku: SchedulerSku;
+  /** Allow or disallow public network access to durable task scheduler */
+  publicNetworkAccess?: PublicNetworkAccess | (string & {});
+}
+export const SchedulerPropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    ipAllowlist: SchedulerPropertiesInputIpAllowlistList,
+    sku: SchedulerSku,
+    publicNetworkAccess: S.optional(PublicNetworkAccess),
+  }),
+).annotate({
+  identifier: "SchedulerPropertiesInput",
+}) as any as S.Schema<SchedulerPropertiesInput>;
+
+export interface SchedulersCreateOrUpdateRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the Scheduler */
+  schedulerName: string;
+  /** Resource tags. */
+  tags?: SchedulersCreateOrUpdateRequestTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: SchedulerPropertiesInput;
+}
+export const SchedulersCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    schedulerName: S.String.pipe(T.Label()),
+    tags: S.optional(SchedulersCreateOrUpdateRequestTagsMap),
+    location: S.String,
+    properties: S.optional(SchedulerPropertiesInput),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DurableTask/schedulers/{schedulerName}",
+      code: 200,
+      apiVersion: "2026-02-01",
+    }),
+  ),
+).annotate({
+  identifier: "SchedulersCreateOrUpdateRequest",
+}) as any as S.Schema<SchedulersCreateOrUpdateRequest>;
+
+/** Resource tags. */
+export type SchedulersCreateOrUpdateResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const SchedulersCreateOrUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<SchedulersCreateOrUpdateResponseTagsMap>;
+
 export interface SchedulersCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
@@ -851,257 +1475,42 @@ export const SchedulersCreateOrUpdatePrivateEndpointConnectionResponse =
     identifier: "SchedulersCreateOrUpdatePrivateEndpointConnectionResponse",
   }) as any as S.Schema<SchedulersCreateOrUpdatePrivateEndpointConnectionResponse>;
 
-export interface SchedulersDeleteRequest {
+/** The properties of Task Hub */
+export type TaskHubPropertiesInput = PrivateEndpointInput;
+export const TaskHubPropertiesInput = PrivateEndpointInput;
+
+export interface TaskHubsCreateOrUpdateRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of the Scheduler */
   schedulerName: string;
-}
-export const SchedulersDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    schedulerName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DurableTask/schedulers/{schedulerName}",
-      code: 200,
-      apiVersion: "2026-02-01",
-    }),
-  ),
-).annotate({
-  identifier: "SchedulersDeleteRequest",
-}) as any as S.Schema<SchedulersDeleteRequest>;
-
-export interface SchedulersDeleteResponse {}
-export const SchedulersDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "SchedulersDeleteResponse",
-}) as any as S.Schema<SchedulersDeleteResponse>;
-
-export interface SchedulersDeletePrivateEndpointConnectionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Scheduler */
-  schedulerName: string;
-  /** The name of the private endpoint connection associated with the Azure resource. */
-  privateEndpointConnectionName: string;
-}
-export const SchedulersDeletePrivateEndpointConnectionRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      schedulerName: S.String.pipe(T.Label()),
-      privateEndpointConnectionName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DurableTask/schedulers/{schedulerName}/privateEndpointConnections/{privateEndpointConnectionName}",
-        code: 200,
-        apiVersion: "2026-02-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "SchedulersDeletePrivateEndpointConnectionRequest",
-  }) as any as S.Schema<SchedulersDeletePrivateEndpointConnectionRequest>;
-
-export interface SchedulersDeletePrivateEndpointConnectionResponse {}
-export const SchedulersDeletePrivateEndpointConnectionResponse =
-  /*@__PURE__*/ S.suspend(() => S.Struct({})).annotate({
-    identifier: "SchedulersDeletePrivateEndpointConnectionResponse",
-  }) as any as S.Schema<SchedulersDeletePrivateEndpointConnectionResponse>;
-
-export interface SchedulersGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Scheduler */
-  schedulerName: string;
-}
-export const SchedulersGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    schedulerName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DurableTask/schedulers/{schedulerName}",
-      code: 200,
-      apiVersion: "2026-02-01",
-    }),
-  ),
-).annotate({
-  identifier: "SchedulersGetRequest",
-}) as any as S.Schema<SchedulersGetRequest>;
-
-/** Resource tags. */
-export type SchedulersGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const SchedulersGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<SchedulersGetResponseTagsMap>;
-
-export interface SchedulersGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: SchedulersGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
+  /** The name of the TaskHub */
+  taskHubName: string;
   /** The resource-specific properties for this resource. */
-  properties?: SchedulerProperties;
+  properties?: PrivateEndpointInput;
 }
-export const SchedulersGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(SchedulersGetResponseTagsMap),
-    location: S.String,
-    properties: S.optional(SchedulerProperties),
-  }),
-).annotate({
-  identifier: "SchedulersGetResponse",
-}) as any as S.Schema<SchedulersGetResponse>;
-
-export interface SchedulersGetPrivateEndpointConnectionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Scheduler */
-  schedulerName: string;
-  /** The name of the private endpoint connection associated with the Azure resource. */
-  privateEndpointConnectionName: string;
-}
-export const SchedulersGetPrivateEndpointConnectionRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      schedulerName: S.String.pipe(T.Label()),
-      privateEndpointConnectionName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DurableTask/schedulers/{schedulerName}/privateEndpointConnections/{privateEndpointConnectionName}",
-        code: 200,
-        apiVersion: "2026-02-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "SchedulersGetPrivateEndpointConnectionRequest",
-  }) as any as S.Schema<SchedulersGetPrivateEndpointConnectionRequest>;
-
-export interface SchedulersGetPrivateEndpointConnectionResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource properties. */
-  properties?: PrivateEndpointConnectionProperties;
-}
-export const SchedulersGetPrivateEndpointConnectionResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(PrivateEndpointConnectionProperties),
-    }),
-  ).annotate({
-    identifier: "SchedulersGetPrivateEndpointConnectionResponse",
-  }) as any as S.Schema<SchedulersGetPrivateEndpointConnectionResponse>;
-
-export interface SchedulersGetPrivateLinkRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Scheduler */
-  schedulerName: string;
-  /** The name of the private link associated with the Azure resource. */
-  privateLinkResourceName: string;
-}
-export const SchedulersGetPrivateLinkRequest = /*@__PURE__*/ S.suspend(() =>
+export const TaskHubsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     schedulerName: S.String.pipe(T.Label()),
-    privateLinkResourceName: S.String.pipe(T.Label()),
+    taskHubName: S.String.pipe(T.Label()),
+    properties: S.optional(PrivateEndpointInput),
   }).pipe(
     T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DurableTask/schedulers/{schedulerName}/privateLinkResources/{privateLinkResourceName}",
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DurableTask/schedulers/{schedulerName}/taskHubs/{taskHubName}",
       code: 200,
       apiVersion: "2026-02-01",
     }),
   ),
 ).annotate({
-  identifier: "SchedulersGetPrivateLinkRequest",
-}) as any as S.Schema<SchedulersGetPrivateLinkRequest>;
+  identifier: "TaskHubsCreateOrUpdateRequest",
+}) as any as S.Schema<TaskHubsCreateOrUpdateRequest>;
 
-/** The private link resource required member names. */
-export type PrivateLinkResourcePropertiesRequiredMembersList = Array<string>;
-export const PrivateLinkResourcePropertiesRequiredMembersList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PrivateLinkResourcePropertiesRequiredMembersList>;
-
-/** The private link resource private link DNS zone name. */
-export type PrivateLinkResourcePropertiesRequiredZoneNamesList = Array<string>;
-export const PrivateLinkResourcePropertiesRequiredZoneNamesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PrivateLinkResourcePropertiesRequiredZoneNamesList>;
-
-/** Properties of a private link resource. */
-export interface PrivateLinkResourceProperties {
-  /** The private link resource group id. */
-  groupId?: string;
-  /** The private link resource required member names. */
-  requiredMembers?: PrivateLinkResourcePropertiesRequiredMembersList;
-  /** The private link resource private link DNS zone name. */
-  requiredZoneNames?: PrivateLinkResourcePropertiesRequiredZoneNamesList;
-}
-export const PrivateLinkResourceProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    groupId: S.optional(S.String),
-    requiredMembers: S.optional(
-      PrivateLinkResourcePropertiesRequiredMembersList,
-    ),
-    requiredZoneNames: S.optional(
-      PrivateLinkResourcePropertiesRequiredZoneNamesList,
-    ),
-  }),
-).annotate({
-  identifier: "PrivateLinkResourceProperties",
-}) as any as S.Schema<PrivateLinkResourceProperties>;
-
-export interface SchedulersGetPrivateLinkResponse {
+export interface TaskHubsCreateOrUpdateResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -1110,204 +1519,50 @@ export interface SchedulersGetPrivateLinkResponse {
   type?: string;
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
-  /** Resource properties. */
-  properties?: PrivateLinkResourceProperties;
-}
-export const SchedulersGetPrivateLinkResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(PrivateLinkResourceProperties),
-  }),
-).annotate({
-  identifier: "SchedulersGetPrivateLinkResponse",
-}) as any as S.Schema<SchedulersGetPrivateLinkResponse>;
-
-export interface SchedulersListByResourceGroupRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-}
-export const SchedulersListByResourceGroupRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DurableTask/schedulers",
-        code: 200,
-        apiVersion: "2026-02-01",
-      }),
-    ),
-).annotate({
-  identifier: "SchedulersListByResourceGroupRequest",
-}) as any as S.Schema<SchedulersListByResourceGroupRequest>;
-
-/** Resource tags. */
-export type SchedulerTagsMap = { [key: string]: string | undefined };
-export const SchedulerTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<SchedulerTagsMap>;
-
-/** A Durable Task Scheduler resource */
-export interface Scheduler {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: SchedulerTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
   /** The resource-specific properties for this resource. */
-  properties?: SchedulerProperties;
+  properties?: TaskHubProperties;
 }
-export const Scheduler = /*@__PURE__*/ S.suspend(() =>
+export const TaskHubsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(SchedulerTagsMap),
-    location: S.String,
-    properties: S.optional(SchedulerProperties),
-  }),
-).annotate({ identifier: "Scheduler" }) as any as S.Schema<Scheduler>;
-
-/** The Scheduler items on this page */
-export type SchedulerListResultValueList = Array<Scheduler>;
-export const SchedulerListResultValueList = /*@__PURE__*/ S.Array(
-  Scheduler,
-) as any as S.Schema<SchedulerListResultValueList>;
-
-/** The response of a Scheduler list operation. */
-export interface SchedulerListResult {
-  /** The Scheduler items on this page */
-  value: SchedulerListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const SchedulerListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: SchedulerListResultValueList,
-    nextLink: S.optional(S.String),
+    properties: S.optional(TaskHubProperties),
   }),
 ).annotate({
-  identifier: "SchedulerListResult",
-}) as any as S.Schema<SchedulerListResult>;
+  identifier: "TaskHubsCreateOrUpdateResponse",
+}) as any as S.Schema<TaskHubsCreateOrUpdateResponse>;
 
-export interface SchedulersListBySubscriptionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-}
-export const SchedulersListBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.DurableTask/schedulers",
-      code: 200,
-      apiVersion: "2026-02-01",
-    }),
-  ),
-).annotate({
-  identifier: "SchedulersListBySubscriptionRequest",
-}) as any as S.Schema<SchedulersListBySubscriptionRequest>;
-
-export interface SchedulersListPrivateEndpointConnectionsRequest {
+export interface UpdateRetentionPolicyRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of the Scheduler */
   schedulerName: string;
+  /** The resource-specific properties for this resource. */
+  properties?: RetentionPolicyPropertiesInput;
 }
-export const SchedulersListPrivateEndpointConnectionsRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      schedulerName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DurableTask/schedulers/{schedulerName}/privateEndpointConnections",
-        code: 200,
-        apiVersion: "2026-02-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "SchedulersListPrivateEndpointConnectionsRequest",
-  }) as any as S.Schema<SchedulersListPrivateEndpointConnectionsRequest>;
-
-/** The private endpoint connection resource. */
-export type PrivateEndpointConnectionListResultValueItem =
-  SchedulerPropertiesPrivateEndpointConnectionsItem;
-export const PrivateEndpointConnectionListResultValueItem =
-  SchedulerPropertiesPrivateEndpointConnectionsItem;
-
-/** The PrivateEndpointConnection items on this page */
-export type PrivateEndpointConnectionListResultValueList =
-  Array<SchedulerPropertiesPrivateEndpointConnectionsItem>;
-export const PrivateEndpointConnectionListResultValueList =
-  /*@__PURE__*/ S.Array(
-    SchedulerPropertiesPrivateEndpointConnectionsItem,
-  ) as any as S.Schema<PrivateEndpointConnectionListResultValueList>;
-
-/** The response of a PrivateEndpointConnection list operation. */
-export interface PrivateEndpointConnectionListResult {
-  /** The PrivateEndpointConnection items on this page */
-  value: PrivateEndpointConnectionListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const PrivateEndpointConnectionListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: PrivateEndpointConnectionListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PrivateEndpointConnectionListResult",
-}) as any as S.Schema<PrivateEndpointConnectionListResult>;
-
-export interface SchedulersListPrivateLinksRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Scheduler */
-  schedulerName: string;
-}
-export const SchedulersListPrivateLinksRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateRetentionPolicyRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     schedulerName: S.String.pipe(T.Label()),
+    properties: S.optional(RetentionPolicyPropertiesInput),
   }).pipe(
     T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DurableTask/schedulers/{schedulerName}/privateLinkResources",
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DurableTask/schedulers/{schedulerName}/retentionPolicies/default",
       code: 200,
       apiVersion: "2026-02-01",
     }),
   ),
 ).annotate({
-  identifier: "SchedulersListPrivateLinksRequest",
-}) as any as S.Schema<SchedulersListPrivateLinksRequest>;
+  identifier: "UpdateRetentionPolicyRequest",
+}) as any as S.Schema<UpdateRetentionPolicyRequest>;
 
-/** A private link resource. */
-export interface SchedulerPrivateLinkResourceListResultValueItem {
+export interface UpdateRetentionPolicyResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -1316,46 +1571,20 @@ export interface SchedulerPrivateLinkResourceListResultValueItem {
   type?: string;
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
-  /** Resource properties. */
-  properties?: PrivateLinkResourceProperties;
+  /** The resource-specific properties for this resource. */
+  properties?: RetentionPolicyProperties;
 }
-export const SchedulerPrivateLinkResourceListResultValueItem =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      properties: S.optional(PrivateLinkResourceProperties),
-    }),
-  ).annotate({
-    identifier: "SchedulerPrivateLinkResourceListResultValueItem",
-  }) as any as S.Schema<SchedulerPrivateLinkResourceListResultValueItem>;
-
-/** The SchedulerPrivateLinkResource items on this page */
-export type SchedulerPrivateLinkResourceListResultValueList =
-  Array<SchedulerPrivateLinkResourceListResultValueItem>;
-export const SchedulerPrivateLinkResourceListResultValueList =
-  /*@__PURE__*/ S.Array(
-    SchedulerPrivateLinkResourceListResultValueItem,
-  ) as any as S.Schema<SchedulerPrivateLinkResourceListResultValueList>;
-
-/** The response of a SchedulerPrivateLinkResource list operation. */
-export interface SchedulerPrivateLinkResourceListResult {
-  /** The SchedulerPrivateLinkResource items on this page */
-  value: SchedulerPrivateLinkResourceListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const SchedulerPrivateLinkResourceListResult = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      value: SchedulerPrivateLinkResourceListResultValueList,
-      nextLink: S.optional(S.String),
-    }),
+export const UpdateRetentionPolicyResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(RetentionPolicyProperties),
+  }),
 ).annotate({
-  identifier: "SchedulerPrivateLinkResourceListResult",
-}) as any as S.Schema<SchedulerPrivateLinkResourceListResult>;
+  identifier: "UpdateRetentionPolicyResponse",
+}) as any as S.Schema<UpdateRetentionPolicyResponse>;
 
 /** IP allow list for durable task scheduler. Values can be IPv4, IPv6 or CIDR */
 export type SchedulerPropertiesUpdateInputIpAllowlistList = Array<string>;
@@ -1400,15 +1629,15 @@ export const SchedulerPropertiesUpdateInput = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<SchedulerPropertiesUpdateInput>;
 
 /** Resource tags. */
-export type SchedulersUpdateRequestTagsMap = {
+export type UpdateSchedulerRequestTagsMap = {
   [key: string]: string | undefined;
 };
-export const SchedulersUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateSchedulerRequestTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<SchedulersUpdateRequestTagsMap>;
+) as any as S.Schema<UpdateSchedulerRequestTagsMap>;
 
-export interface SchedulersUpdateRequest {
+export interface UpdateSchedulerRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1418,15 +1647,15 @@ export interface SchedulersUpdateRequest {
   /** The resource-specific properties for this resource. */
   properties?: SchedulerPropertiesUpdateInput;
   /** Resource tags. */
-  tags?: SchedulersUpdateRequestTagsMap;
+  tags?: UpdateSchedulerRequestTagsMap;
 }
-export const SchedulersUpdateRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateSchedulerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     schedulerName: S.String.pipe(T.Label()),
     properties: S.optional(SchedulerPropertiesUpdateInput),
-    tags: S.optional(SchedulersUpdateRequestTagsMap),
+    tags: S.optional(UpdateSchedulerRequestTagsMap),
   }).pipe(
     T.Http({
       method: "PATCH",
@@ -1436,19 +1665,19 @@ export const SchedulersUpdateRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "SchedulersUpdateRequest",
-}) as any as S.Schema<SchedulersUpdateRequest>;
+  identifier: "UpdateSchedulerRequest",
+}) as any as S.Schema<UpdateSchedulerRequest>;
 
 /** Resource tags. */
-export type SchedulersUpdateResponseTagsMap = {
+export type UpdateSchedulerResponseTagsMap = {
   [key: string]: string | undefined;
 };
-export const SchedulersUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
+export const UpdateSchedulerResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<SchedulersUpdateResponseTagsMap>;
+) as any as S.Schema<UpdateSchedulerResponseTagsMap>;
 
-export interface SchedulersUpdateResponse {
+export interface UpdateSchedulerResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -1458,46 +1687,46 @@ export interface SchedulersUpdateResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: SchedulersUpdateResponseTagsMap;
+  tags?: UpdateSchedulerResponseTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: SchedulerProperties;
 }
-export const SchedulersUpdateResponse = /*@__PURE__*/ S.suspend(() =>
+export const UpdateSchedulerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(SchedulersUpdateResponseTagsMap),
+    tags: S.optional(UpdateSchedulerResponseTagsMap),
     location: S.String,
     properties: S.optional(SchedulerProperties),
   }),
 ).annotate({
-  identifier: "SchedulersUpdateResponse",
-}) as any as S.Schema<SchedulersUpdateResponse>;
+  identifier: "UpdateSchedulerResponse",
+}) as any as S.Schema<UpdateSchedulerResponse>;
 
 /** The private endpoint resource. */
-export type SchedulersUpdatePrivateEndpointConnectionRequestPropertiesPrivateEndpoint =
+export type UpdateSchedulerPrivateEndpointConnectionRequestPropertiesPrivateEndpoint =
   PrivateEndpointInput;
-export const SchedulersUpdatePrivateEndpointConnectionRequestPropertiesPrivateEndpoint =
+export const UpdateSchedulerPrivateEndpointConnectionRequestPropertiesPrivateEndpoint =
   PrivateEndpointInput;
 
 /** A collection of information about the state of the connection between service consumer and provider. */
-export type SchedulersUpdatePrivateEndpointConnectionRequestPropertiesPrivateLinkServiceConnectionState =
+export type UpdateSchedulerPrivateEndpointConnectionRequestPropertiesPrivateLinkServiceConnectionState =
   PrivateLinkServiceConnectionState;
-export const SchedulersUpdatePrivateEndpointConnectionRequestPropertiesPrivateLinkServiceConnectionState =
+export const UpdateSchedulerPrivateEndpointConnectionRequestPropertiesPrivateLinkServiceConnectionState =
   PrivateLinkServiceConnectionState;
 
 /** The private endpoint connection properties */
-export interface SchedulersUpdatePrivateEndpointConnectionRequestProperties {
+export interface UpdateSchedulerPrivateEndpointConnectionRequestProperties {
   /** The private endpoint resource. */
   privateEndpoint?: PrivateEndpointInput;
   /** A collection of information about the state of the connection between service consumer and provider. */
   privateLinkServiceConnectionState?: PrivateLinkServiceConnectionState;
 }
-export const SchedulersUpdatePrivateEndpointConnectionRequestProperties =
+export const UpdateSchedulerPrivateEndpointConnectionRequestProperties =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       privateEndpoint: S.optional(PrivateEndpointInput),
@@ -1506,10 +1735,10 @@ export const SchedulersUpdatePrivateEndpointConnectionRequestProperties =
       ),
     }),
   ).annotate({
-    identifier: "SchedulersUpdatePrivateEndpointConnectionRequestProperties",
-  }) as any as S.Schema<SchedulersUpdatePrivateEndpointConnectionRequestProperties>;
+    identifier: "UpdateSchedulerPrivateEndpointConnectionRequestProperties",
+  }) as any as S.Schema<UpdateSchedulerPrivateEndpointConnectionRequestProperties>;
 
-export interface SchedulersUpdatePrivateEndpointConnectionRequest {
+export interface UpdateSchedulerPrivateEndpointConnectionRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1519,9 +1748,9 @@ export interface SchedulersUpdatePrivateEndpointConnectionRequest {
   /** The name of the private endpoint connection associated with the Azure resource. */
   privateEndpointConnectionName: string;
   /** The private endpoint connection properties */
-  properties?: SchedulersUpdatePrivateEndpointConnectionRequestProperties;
+  properties?: UpdateSchedulerPrivateEndpointConnectionRequestProperties;
 }
-export const SchedulersUpdatePrivateEndpointConnectionRequest =
+export const UpdateSchedulerPrivateEndpointConnectionRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -1529,7 +1758,7 @@ export const SchedulersUpdatePrivateEndpointConnectionRequest =
       schedulerName: S.String.pipe(T.Label()),
       privateEndpointConnectionName: S.String.pipe(T.Label()),
       properties: S.optional(
-        SchedulersUpdatePrivateEndpointConnectionRequestProperties,
+        UpdateSchedulerPrivateEndpointConnectionRequestProperties,
       ),
     }).pipe(
       T.Http({
@@ -1540,10 +1769,10 @@ export const SchedulersUpdatePrivateEndpointConnectionRequest =
       }),
     ),
   ).annotate({
-    identifier: "SchedulersUpdatePrivateEndpointConnectionRequest",
-  }) as any as S.Schema<SchedulersUpdatePrivateEndpointConnectionRequest>;
+    identifier: "UpdateSchedulerPrivateEndpointConnectionRequest",
+  }) as any as S.Schema<UpdateSchedulerPrivateEndpointConnectionRequest>;
 
-export interface SchedulersUpdatePrivateEndpointConnectionResponse {
+export interface UpdateSchedulerPrivateEndpointConnectionResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -1555,7 +1784,7 @@ export interface SchedulersUpdatePrivateEndpointConnectionResponse {
   /** Resource properties. */
   properties?: PrivateEndpointConnectionProperties;
 }
-export const SchedulersUpdatePrivateEndpointConnectionResponse =
+export const UpdateSchedulerPrivateEndpointConnectionResponse =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       id: S.optional(S.String),
@@ -1565,251 +1794,244 @@ export const SchedulersUpdatePrivateEndpointConnectionResponse =
       properties: S.optional(PrivateEndpointConnectionProperties),
     }),
   ).annotate({
-    identifier: "SchedulersUpdatePrivateEndpointConnectionResponse",
-  }) as any as S.Schema<SchedulersUpdatePrivateEndpointConnectionResponse>;
+    identifier: "UpdateSchedulerPrivateEndpointConnectionResponse",
+  }) as any as S.Schema<UpdateSchedulerPrivateEndpointConnectionResponse>;
 
-/** The properties of Task Hub */
-export type TaskHubPropertiesInput = PrivateEndpointInput;
-export const TaskHubPropertiesInput = PrivateEndpointInput;
-
-export interface TaskHubsCreateOrUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Scheduler */
-  schedulerName: string;
-  /** The name of the TaskHub */
-  taskHubName: string;
-  /** The resource-specific properties for this resource. */
-  properties?: PrivateEndpointInput;
-}
-export const TaskHubsCreateOrUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    schedulerName: S.String.pipe(T.Label()),
-    taskHubName: S.String.pipe(T.Label()),
-    properties: S.optional(PrivateEndpointInput),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DurableTask/schedulers/{schedulerName}/taskHubs/{taskHubName}",
-      code: 200,
-      apiVersion: "2026-02-01",
-    }),
-  ),
-).annotate({
-  identifier: "TaskHubsCreateOrUpdateRequest",
-}) as any as S.Schema<TaskHubsCreateOrUpdateRequest>;
-
-/** The properties of Task Hub */
-export interface TaskHubProperties {
-  /** The status of the last operation */
-  provisioningState?: ProvisioningState;
-  /** URL of the durable task scheduler dashboard */
-  dashboardUrl?: string;
-}
-export const TaskHubProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provisioningState: S.optional(ProvisioningState),
-    dashboardUrl: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "TaskHubProperties",
-}) as any as S.Schema<TaskHubProperties>;
-
-export interface TaskHubsCreateOrUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: TaskHubProperties;
-}
-export const TaskHubsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(TaskHubProperties),
-  }),
-).annotate({
-  identifier: "TaskHubsCreateOrUpdateResponse",
-}) as any as S.Schema<TaskHubsCreateOrUpdateResponse>;
-
-export interface TaskHubsDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Scheduler */
-  schedulerName: string;
-  /** The name of the TaskHub */
-  taskHubName: string;
-}
-export const TaskHubsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    schedulerName: S.String.pipe(T.Label()),
-    taskHubName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DurableTask/schedulers/{schedulerName}/taskHubs/{taskHubName}",
-      code: 200,
-      apiVersion: "2026-02-01",
-    }),
-  ),
-).annotate({
-  identifier: "TaskHubsDeleteRequest",
-}) as any as S.Schema<TaskHubsDeleteRequest>;
-
-export interface TaskHubsDeleteResponse {}
-export const TaskHubsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "TaskHubsDeleteResponse",
-}) as any as S.Schema<TaskHubsDeleteResponse>;
-
-export interface TaskHubsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Scheduler */
-  schedulerName: string;
-  /** The name of the TaskHub */
-  taskHubName: string;
-}
-export const TaskHubsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    schedulerName: S.String.pipe(T.Label()),
-    taskHubName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DurableTask/schedulers/{schedulerName}/taskHubs/{taskHubName}",
-      code: 200,
-      apiVersion: "2026-02-01",
-    }),
-  ),
-).annotate({
-  identifier: "TaskHubsGetRequest",
-}) as any as S.Schema<TaskHubsGetRequest>;
-
-export interface TaskHubsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: TaskHubProperties;
-}
-export const TaskHubsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(TaskHubProperties),
-  }),
-).annotate({
-  identifier: "TaskHubsGetResponse",
-}) as any as S.Schema<TaskHubsGetResponse>;
-
-export interface TaskHubsListBySchedulerRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the Scheduler */
-  schedulerName: string;
-}
-export const TaskHubsListBySchedulerRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    schedulerName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DurableTask/schedulers/{schedulerName}/taskHubs",
-      code: 200,
-      apiVersion: "2026-02-01",
-    }),
-  ),
-).annotate({
-  identifier: "TaskHubsListBySchedulerRequest",
-}) as any as S.Schema<TaskHubsListBySchedulerRequest>;
-
-/** A Task Hub resource belonging to the scheduler */
-export interface TaskHub {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: TaskHubProperties;
-}
-export const TaskHub = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(TaskHubProperties),
-  }),
-).annotate({ identifier: "TaskHub" }) as any as S.Schema<TaskHub>;
-
-/** The TaskHub items on this page */
-export type TaskHubListResultValueList = Array<TaskHub>;
-export const TaskHubListResultValueList = /*@__PURE__*/ S.Array(
-  TaskHub,
-) as any as S.Schema<TaskHubListResultValueList>;
-
-/** The response of a TaskHub list operation. */
-export interface TaskHubListResult {
-  /** The TaskHub items on this page */
-  value: TaskHubListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const TaskHubListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: TaskHubListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "TaskHubListResult",
-}) as any as S.Schema<TaskHubListResult>;
-
-export type OperationsListError = AzureOpError;
-/** List the operations for the provider */
-export const OperationsList: API.OperationMethod<
-  OperationsListRequest,
-  OperationsListResponse,
-  OperationsListError,
+export type DeleteRetentionPolicyError = AzureOpError;
+/** Delete a Retention Policy */
+export const DeleteRetentionPolicy: API.OperationMethod<
+  DeleteRetentionPolicyRequest,
+  DeleteRetentionPolicyResponse,
+  DeleteRetentionPolicyError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OperationsListRequest,
-  output: OperationsListResponse,
+  input: DeleteRetentionPolicyRequest,
+  output: DeleteRetentionPolicyResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteSchedulerError = AzureOpError;
+/** Delete a Scheduler */
+export const DeleteScheduler: API.OperationMethod<
+  DeleteSchedulerRequest,
+  DeleteSchedulerResponse,
+  DeleteSchedulerError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteSchedulerRequest,
+  output: DeleteSchedulerResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteSchedulerPrivateEndpointConnectionError = AzureOpError;
+/** Delete a private endpoint connection for the durable task scheduler */
+export const DeleteSchedulerPrivateEndpointConnection: API.OperationMethod<
+  DeleteSchedulerPrivateEndpointConnectionRequest,
+  DeleteSchedulerPrivateEndpointConnectionResponse,
+  DeleteSchedulerPrivateEndpointConnectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteSchedulerPrivateEndpointConnectionRequest,
+  output: DeleteSchedulerPrivateEndpointConnectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteTaskHubError = AzureOpError;
+/** Delete a Task Hub */
+export const DeleteTaskHub: API.OperationMethod<
+  DeleteTaskHubRequest,
+  DeleteTaskHubResponse,
+  DeleteTaskHubError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteTaskHubRequest,
+  output: DeleteTaskHubResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetRetentionPolicyError = AzureOpError;
+/** Get a Retention Policy */
+export const GetRetentionPolicy: API.OperationMethod<
+  GetRetentionPolicyRequest,
+  GetRetentionPolicyResponse,
+  GetRetentionPolicyError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetRetentionPolicyRequest,
+  output: GetRetentionPolicyResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSchedulerError = AzureOpError;
+/** Get a Scheduler */
+export const GetScheduler: API.OperationMethod<
+  GetSchedulerRequest,
+  GetSchedulerResponse,
+  GetSchedulerError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSchedulerRequest,
+  output: GetSchedulerResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSchedulerPrivateEndpointConnectionError = AzureOpError;
+/** Get a private endpoint connection for the durable task scheduler */
+export const GetSchedulerPrivateEndpointConnection: API.OperationMethod<
+  GetSchedulerPrivateEndpointConnectionRequest,
+  GetSchedulerPrivateEndpointConnectionResponse,
+  GetSchedulerPrivateEndpointConnectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSchedulerPrivateEndpointConnectionRequest,
+  output: GetSchedulerPrivateEndpointConnectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSchedulerPrivateLinkError = AzureOpError;
+/** Get a private link resource for the durable task scheduler */
+export const GetSchedulerPrivateLink: API.OperationMethod<
+  GetSchedulerPrivateLinkRequest,
+  GetSchedulerPrivateLinkResponse,
+  GetSchedulerPrivateLinkError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSchedulerPrivateLinkRequest,
+  output: GetSchedulerPrivateLinkResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetTaskHubError = AzureOpError;
+/** Get a Task Hub */
+export const GetTaskHub: API.OperationMethod<
+  GetTaskHubRequest,
+  GetTaskHubResponse,
+  GetTaskHubError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetTaskHubRequest,
+  output: GetTaskHubResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListOperationsError = AzureOpError;
+/** List the operations for the provider */
+export const ListOperations: API.OperationMethod<
+  ListOperationsRequest,
+  ListOperationsResponse,
+  ListOperationsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListOperationsRequest,
+  output: ListOperationsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListRetentionPolicyBySchedulerError = AzureOpError;
+/** List Retention Policies */
+export const ListRetentionPolicyByScheduler: API.OperationMethod<
+  ListRetentionPolicyBySchedulerRequest,
+  RetentionPolicyListResult,
+  ListRetentionPolicyBySchedulerError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListRetentionPolicyBySchedulerRequest,
+  output: RetentionPolicyListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSchedulerByResourceGroupError = AzureOpError;
+/** List Schedulers by resource group */
+export const ListSchedulerByResourceGroup: API.OperationMethod<
+  ListSchedulerByResourceGroupRequest,
+  SchedulerListResult,
+  ListSchedulerByResourceGroupError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSchedulerByResourceGroupRequest,
+  output: SchedulerListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSchedulerBySubscriptionError = AzureOpError;
+/** List Schedulers by subscription */
+export const ListSchedulerBySubscription: API.OperationMethod<
+  ListSchedulerBySubscriptionRequest,
+  SchedulerListResult,
+  ListSchedulerBySubscriptionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSchedulerBySubscriptionRequest,
+  output: SchedulerListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSchedulerPrivateEndpointConnectionsError = AzureOpError;
+/** List private endpoint connections for the durable task scheduler */
+export const ListSchedulerPrivateEndpointConnections: API.OperationMethod<
+  ListSchedulerPrivateEndpointConnectionsRequest,
+  PrivateEndpointConnectionListResult,
+  ListSchedulerPrivateEndpointConnectionsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSchedulerPrivateEndpointConnectionsRequest,
+  output: PrivateEndpointConnectionListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListSchedulerPrivateLinksError = AzureOpError;
+/** List private link resources for the durable task scheduler */
+export const ListSchedulerPrivateLinks: API.OperationMethod<
+  ListSchedulerPrivateLinksRequest,
+  SchedulerPrivateLinkResourceListResult,
+  ListSchedulerPrivateLinksError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListSchedulerPrivateLinksRequest,
+  output: SchedulerPrivateLinkResourceListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListTaskHubBySchedulerError = AzureOpError;
+/** List Task Hubs */
+export const ListTaskHubByScheduler: API.OperationMethod<
+  ListTaskHubBySchedulerRequest,
+  TaskHubListResult,
+  ListTaskHubBySchedulerError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListTaskHubBySchedulerRequest,
+  output: TaskHubListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -1825,66 +2047,6 @@ export const RetentionPoliciesCreateOrReplace: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: RetentionPoliciesCreateOrReplaceRequest,
   output: RetentionPoliciesCreateOrReplaceResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetentionPoliciesDeleteError = AzureOpError;
-/** Delete a Retention Policy */
-export const RetentionPoliciesDelete: API.OperationMethod<
-  RetentionPoliciesDeleteRequest,
-  RetentionPoliciesDeleteResponse,
-  RetentionPoliciesDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetentionPoliciesDeleteRequest,
-  output: RetentionPoliciesDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetentionPoliciesGetError = AzureOpError;
-/** Get a Retention Policy */
-export const RetentionPoliciesGet: API.OperationMethod<
-  RetentionPoliciesGetRequest,
-  RetentionPoliciesGetResponse,
-  RetentionPoliciesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetentionPoliciesGetRequest,
-  output: RetentionPoliciesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetentionPoliciesListBySchedulerError = AzureOpError;
-/** List Retention Policies */
-export const RetentionPoliciesListByScheduler: API.OperationMethod<
-  RetentionPoliciesListBySchedulerRequest,
-  RetentionPolicyListResult,
-  RetentionPoliciesListBySchedulerError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetentionPoliciesListBySchedulerRequest,
-  output: RetentionPolicyListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetentionPoliciesUpdateError = AzureOpError;
-/** Update a Retention Policy */
-export const RetentionPoliciesUpdate: API.OperationMethod<
-  RetentionPoliciesUpdateRequest,
-  RetentionPoliciesUpdateResponse,
-  RetentionPoliciesUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetentionPoliciesUpdateRequest,
-  output: RetentionPoliciesUpdateResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -1921,171 +2083,6 @@ export const SchedulersCreateOrUpdatePrivateEndpointConnection: API.OperationMet
   retry: Retry.Retry,
 }));
 
-export type SchedulersDeleteError = AzureOpError;
-/** Delete a Scheduler */
-export const SchedulersDelete: API.OperationMethod<
-  SchedulersDeleteRequest,
-  SchedulersDeleteResponse,
-  SchedulersDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SchedulersDeleteRequest,
-  output: SchedulersDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SchedulersDeletePrivateEndpointConnectionError = AzureOpError;
-/** Delete a private endpoint connection for the durable task scheduler */
-export const SchedulersDeletePrivateEndpointConnection: API.OperationMethod<
-  SchedulersDeletePrivateEndpointConnectionRequest,
-  SchedulersDeletePrivateEndpointConnectionResponse,
-  SchedulersDeletePrivateEndpointConnectionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SchedulersDeletePrivateEndpointConnectionRequest,
-  output: SchedulersDeletePrivateEndpointConnectionResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SchedulersGetError = AzureOpError;
-/** Get a Scheduler */
-export const SchedulersGet: API.OperationMethod<
-  SchedulersGetRequest,
-  SchedulersGetResponse,
-  SchedulersGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SchedulersGetRequest,
-  output: SchedulersGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SchedulersGetPrivateEndpointConnectionError = AzureOpError;
-/** Get a private endpoint connection for the durable task scheduler */
-export const SchedulersGetPrivateEndpointConnection: API.OperationMethod<
-  SchedulersGetPrivateEndpointConnectionRequest,
-  SchedulersGetPrivateEndpointConnectionResponse,
-  SchedulersGetPrivateEndpointConnectionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SchedulersGetPrivateEndpointConnectionRequest,
-  output: SchedulersGetPrivateEndpointConnectionResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SchedulersGetPrivateLinkError = AzureOpError;
-/** Get a private link resource for the durable task scheduler */
-export const SchedulersGetPrivateLink: API.OperationMethod<
-  SchedulersGetPrivateLinkRequest,
-  SchedulersGetPrivateLinkResponse,
-  SchedulersGetPrivateLinkError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SchedulersGetPrivateLinkRequest,
-  output: SchedulersGetPrivateLinkResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SchedulersListByResourceGroupError = AzureOpError;
-/** List Schedulers by resource group */
-export const SchedulersListByResourceGroup: API.OperationMethod<
-  SchedulersListByResourceGroupRequest,
-  SchedulerListResult,
-  SchedulersListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SchedulersListByResourceGroupRequest,
-  output: SchedulerListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SchedulersListBySubscriptionError = AzureOpError;
-/** List Schedulers by subscription */
-export const SchedulersListBySubscription: API.OperationMethod<
-  SchedulersListBySubscriptionRequest,
-  SchedulerListResult,
-  SchedulersListBySubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SchedulersListBySubscriptionRequest,
-  output: SchedulerListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SchedulersListPrivateEndpointConnectionsError = AzureOpError;
-/** List private endpoint connections for the durable task scheduler */
-export const SchedulersListPrivateEndpointConnections: API.OperationMethod<
-  SchedulersListPrivateEndpointConnectionsRequest,
-  PrivateEndpointConnectionListResult,
-  SchedulersListPrivateEndpointConnectionsError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SchedulersListPrivateEndpointConnectionsRequest,
-  output: PrivateEndpointConnectionListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SchedulersListPrivateLinksError = AzureOpError;
-/** List private link resources for the durable task scheduler */
-export const SchedulersListPrivateLinks: API.OperationMethod<
-  SchedulersListPrivateLinksRequest,
-  SchedulerPrivateLinkResourceListResult,
-  SchedulersListPrivateLinksError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SchedulersListPrivateLinksRequest,
-  output: SchedulerPrivateLinkResourceListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SchedulersUpdateError = AzureOpError;
-/** Update a Scheduler */
-export const SchedulersUpdate: API.OperationMethod<
-  SchedulersUpdateRequest,
-  SchedulersUpdateResponse,
-  SchedulersUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SchedulersUpdateRequest,
-  output: SchedulersUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SchedulersUpdatePrivateEndpointConnectionError = AzureOpError;
-/** Update a private endpoint connection for the durable task scheduler */
-export const SchedulersUpdatePrivateEndpointConnection: API.OperationMethod<
-  SchedulersUpdatePrivateEndpointConnectionRequest,
-  SchedulersUpdatePrivateEndpointConnectionResponse,
-  SchedulersUpdatePrivateEndpointConnectionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SchedulersUpdatePrivateEndpointConnectionRequest,
-  output: SchedulersUpdatePrivateEndpointConnectionResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
 export type TaskHubsCreateOrUpdateError = AzureOpError;
 /** Create or Update a Task Hub */
 export const TaskHubsCreateOrUpdate: API.OperationMethod<
@@ -2101,46 +2098,46 @@ export const TaskHubsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type TaskHubsDeleteError = AzureOpError;
-/** Delete a Task Hub */
-export const TaskHubsDelete: API.OperationMethod<
-  TaskHubsDeleteRequest,
-  TaskHubsDeleteResponse,
-  TaskHubsDeleteError,
+export type UpdateRetentionPolicyError = AzureOpError;
+/** Update a Retention Policy */
+export const UpdateRetentionPolicy: API.OperationMethod<
+  UpdateRetentionPolicyRequest,
+  UpdateRetentionPolicyResponse,
+  UpdateRetentionPolicyError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: TaskHubsDeleteRequest,
-  output: TaskHubsDeleteResponse,
+  input: UpdateRetentionPolicyRequest,
+  output: UpdateRetentionPolicyResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type TaskHubsGetError = AzureOpError;
-/** Get a Task Hub */
-export const TaskHubsGet: API.OperationMethod<
-  TaskHubsGetRequest,
-  TaskHubsGetResponse,
-  TaskHubsGetError,
+export type UpdateSchedulerError = AzureOpError;
+/** Update a Scheduler */
+export const UpdateScheduler: API.OperationMethod<
+  UpdateSchedulerRequest,
+  UpdateSchedulerResponse,
+  UpdateSchedulerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: TaskHubsGetRequest,
-  output: TaskHubsGetResponse,
+  input: UpdateSchedulerRequest,
+  output: UpdateSchedulerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type TaskHubsListBySchedulerError = AzureOpError;
-/** List Task Hubs */
-export const TaskHubsListByScheduler: API.OperationMethod<
-  TaskHubsListBySchedulerRequest,
-  TaskHubListResult,
-  TaskHubsListBySchedulerError,
+export type UpdateSchedulerPrivateEndpointConnectionError = AzureOpError;
+/** Update a private endpoint connection for the durable task scheduler */
+export const UpdateSchedulerPrivateEndpointConnection: API.OperationMethod<
+  UpdateSchedulerPrivateEndpointConnectionRequest,
+  UpdateSchedulerPrivateEndpointConnectionResponse,
+  UpdateSchedulerPrivateEndpointConnectionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: TaskHubsListBySchedulerRequest,
-  output: TaskHubListResult,
+  input: UpdateSchedulerPrivateEndpointConnectionRequest,
+  output: UpdateSchedulerPrivateEndpointConnectionResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

@@ -4,9 +4,48 @@
     "service": "ids",
     "version": "v1",
     "title": "Cloud IDS API",
-    "baseUrl": "https://ids.googleapis.com/"
+    "baseUrl": "https://ids.googleapis.com/",
+    "distilled.finalized": true
   },
   "shapes": {
+    "com.gcp.ids_v1#ListOperationsResponse": {
+      "type": "structure",
+      "members": {
+        "operations": {
+          "target": "com.gcp.ids_v1#OperationList",
+          "traits": {
+            "smithy.api#documentation": "A list of operations that matches the specified filter in the request."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard List next-page token."
+          }
+        },
+        "unreachable": {
+          "target": "com.gcp.ids_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response message for Operations.ListOperations."
+      }
+    },
+    "com.gcp.ids_v1#OperationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.ids_v1#Operation"
+      }
+    },
+    "com.gcp.ids_v1#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
     "com.gcp.ids_v1#Operation": {
       "type": "structure",
       "members": {
@@ -16,10 +55,10 @@
             "smithy.api#documentation": "The error result of the operation in case of failure or cancellation."
           }
         },
-        "name": {
-          "target": "smithy.api#String",
+        "response": {
+          "target": "com.gcp.ids_v1#DocumentMap",
           "traits": {
-            "smithy.api#documentation": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
+            "smithy.api#documentation": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`."
           }
         },
         "metadata": {
@@ -28,16 +67,16 @@
             "smithy.api#documentation": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any."
           }
         },
-        "response": {
-          "target": "com.gcp.ids_v1#DocumentMap",
-          "traits": {
-            "smithy.api#documentation": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`."
-          }
-        },
         "done": {
           "target": "smithy.api#Boolean",
           "traits": {
             "smithy.api#documentation": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
           }
         }
       },
@@ -54,51 +93,6 @@
         "target": "smithy.api#Document"
       }
     },
-    "com.gcp.ids_v1#Empty": {
-      "type": "structure",
-      "members": {},
-      "traits": {
-        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
-      }
-    },
-    "com.gcp.ids_v1#ListOperationsResponse": {
-      "type": "structure",
-      "members": {
-        "unreachable": {
-          "target": "com.gcp.ids_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations."
-          }
-        },
-        "nextPageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The standard List next-page token."
-          }
-        },
-        "operations": {
-          "target": "com.gcp.ids_v1#OperationList",
-          "traits": {
-            "smithy.api#documentation": "A list of operations that matches the specified filter in the request."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "The response message for Operations.ListOperations."
-      }
-    },
-    "com.gcp.ids_v1#StringList": {
-      "type": "list",
-      "member": {
-        "target": "smithy.api#String"
-      }
-    },
-    "com.gcp.ids_v1#OperationList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.ids_v1#Operation"
-      }
-    },
     "com.gcp.ids_v1#ListEndpointsResponse": {
       "type": "structure",
       "members": {
@@ -108,16 +102,16 @@
             "smithy.api#documentation": "Locations that could not be reached."
           }
         },
-        "nextPageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages."
-          }
-        },
         "endpoints": {
           "target": "com.gcp.ids_v1#EndpointList",
           "traits": {
             "smithy.api#documentation": "The list of endpoints response."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages."
           }
         }
       }
@@ -135,57 +129,147 @@
         "smithy.api#documentation": "The request message for Operations.CancelOperation."
       }
     },
-    "com.gcp.ids_v1#ListLocationsResponse": {
+    "com.gcp.ids_v1#Empty": {
       "type": "structure",
-      "members": {
-        "nextPageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The standard List next-page token."
-          }
-        },
-        "locations": {
-          "target": "com.gcp.ids_v1#LocationList",
-          "traits": {
-            "smithy.api#documentation": "A list of locations that matches the specified filter in the request."
-          }
-        }
-      },
+      "members": {},
       "traits": {
-        "smithy.api#documentation": "The response message for Locations.ListLocations."
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
       }
     },
-    "com.gcp.ids_v1#LocationList": {
-      "type": "list",
-      "member": {
-        "target": "com.gcp.ids_v1#Location"
-      }
-    },
-    "com.gcp.ids_v1#Endpoint": {
+    "com.gcp.ids_v1#Location": {
       "type": "structure",
       "members": {
-        "network": {
+        "displayName": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Required. The fully qualified URL of the network to which the IDS Endpoint is attached."
+            "smithy.api#documentation": "The friendly name for this location, typically a nearby city name. For example, \"Tokyo\"."
           }
         },
-        "satisfiesPzi": {
-          "target": "smithy.api#Boolean",
+        "locationId": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Output only. [Output Only] Reserved for future use."
+            "smithy.api#documentation": "The canonical id for this location. For example: `\"us-east1\"`."
+          }
+        },
+        "labels": {
+          "target": "com.gcp.ids_v1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Cross-service attributes for the location. For example {\"cloud.googleapis.com/region\": \"us-east1\"}"
+          }
+        },
+        "metadata": {
+          "target": "com.gcp.ids_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Service-specific metadata. For example the available capacity at the given location."
           }
         },
         "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Output only. The name of the endpoint."
+            "smithy.api#documentation": "Resource name for the location, which may vary between implementations. For example: `\"projects/example-project/locations/us-east1\"`"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A resource that represents a Google Cloud location."
+      }
+    },
+    "com.gcp.ids_v1#StringMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.ids_v1#OperationMetadata": {
+      "type": "structure",
+      "members": {
+        "verb": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Name of the verb executed by the operation."
           }
         },
+        "target": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Server-defined resource path for the target of the operation."
+          }
+        },
+        "requestedCancellation": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have google.longrunning.Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time the operation was created."
+          }
+        },
+        "apiVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. API version used to start the operation."
+          }
+        },
+        "statusMessage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Human-readable status of the operation, if any."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time the operation finished running."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents the metadata of the long-running operation."
+      }
+    },
+    "com.gcp.ids_v1#Endpoint": {
+      "type": "structure",
+      "members": {
         "trafficLogs": {
           "target": "smithy.api#Boolean",
           "traits": {
             "smithy.api#documentation": "Whether the endpoint should report traffic logs in addition to threat logs."
+          }
+        },
+        "endpointIp": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The IP address of the IDS Endpoint's ILB."
+          }
+        },
+        "threatExceptions": {
+          "target": "com.gcp.ids_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "List of threat IDs to be excepted from generating alerts."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "User-provided description of the endpoint"
+          }
+        },
+        "labels": {
+          "target": "com.gcp.ids_v1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "The labels of the endpoint."
+          }
+        },
+        "network": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The fully qualified URL of the network to which the IDS Endpoint is attached."
           }
         },
         "endpointForwardingRule": {
@@ -194,7 +278,25 @@
             "smithy.api#documentation": "Output only. The fully qualified URL of the endpoint's ILB Forwarding Rule."
           }
         },
-        "satisfiesPzs": {
+        "state": {
+          "target": "com.gcp.ids_v1#EndpointStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. Current state of the endpoint."
+          }
+        },
+        "updateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The update time timestamp."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The create time timestamp."
+          }
+        },
+        "satisfiesPzi": {
           "target": "smithy.api#Boolean",
           "traits": {
             "smithy.api#documentation": "Output only. [Output Only] Reserved for future use."
@@ -206,51 +308,56 @@
             "smithy.api#documentation": "Required. Lowest threat severity that this endpoint will alert on."
           }
         },
-        "createTime": {
+        "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Output only. The create time timestamp."
+            "smithy.api#documentation": "Output only. The name of the endpoint."
           }
         },
-        "endpointIp": {
-          "target": "smithy.api#String",
+        "satisfiesPzs": {
+          "target": "smithy.api#Boolean",
           "traits": {
-            "smithy.api#documentation": "Output only. The IP address of the IDS Endpoint's ILB."
-          }
-        },
-        "labels": {
-          "target": "com.gcp.ids_v1#StringMap",
-          "traits": {
-            "smithy.api#documentation": "The labels of the endpoint."
-          }
-        },
-        "updateTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The update time timestamp."
-          }
-        },
-        "threatExceptions": {
-          "target": "com.gcp.ids_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "List of threat IDs to be excepted from generating alerts."
-          }
-        },
-        "state": {
-          "target": "com.gcp.ids_v1#EndpointStateEnum",
-          "traits": {
-            "smithy.api#documentation": "Output only. Current state of the endpoint."
-          }
-        },
-        "description": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "User-provided description of the endpoint"
+            "smithy.api#documentation": "Output only. [Output Only] Reserved for future use."
           }
         }
       },
       "traits": {
         "smithy.api#documentation": "Endpoint describes a single IDS endpoint. It defines a forwarding rule to which packets can be sent for IDS inspection."
+      }
+    },
+    "com.gcp.ids_v1#EndpointStateEnum": {
+      "type": "enum",
+      "members": {
+        "STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_UNSPECIFIED"
+          }
+        },
+        "CREATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CREATING"
+          }
+        },
+        "READY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "READY"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELETING"
+          }
+        },
+        "UPDATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UPDATING"
+          }
+        }
       }
     },
     "com.gcp.ids_v1#EndpointSeverityEnum": {
@@ -294,107 +401,13 @@
         }
       }
     },
-    "com.gcp.ids_v1#StringMap": {
-      "type": "map",
-      "key": {
-        "target": "smithy.api#String"
-      },
-      "value": {
-        "target": "smithy.api#String"
-      }
-    },
-    "com.gcp.ids_v1#EndpointStateEnum": {
-      "type": "enum",
-      "members": {
-        "STATE_UNSPECIFIED": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "STATE_UNSPECIFIED"
-          }
-        },
-        "CREATING": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "CREATING"
-          }
-        },
-        "READY": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "READY"
-          }
-        },
-        "DELETING": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "DELETING"
-          }
-        },
-        "UPDATING": {
-          "target": "smithy.api#Unit",
-          "traits": {
-            "smithy.api#enumValue": "UPDATING"
-          }
-        }
-      }
-    },
-    "com.gcp.ids_v1#OperationMetadata": {
-      "type": "structure",
-      "members": {
-        "requestedCancellation": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have google.longrunning.Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`."
-          }
-        },
-        "createTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The time the operation was created."
-          }
-        },
-        "target": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Server-defined resource path for the target of the operation."
-          }
-        },
-        "endTime": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. The time the operation finished running."
-          }
-        },
-        "verb": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Name of the verb executed by the operation."
-          }
-        },
-        "statusMessage": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. Human-readable status of the operation, if any."
-          }
-        },
-        "apiVersion": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Output only. API version used to start the operation."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#documentation": "Represents the metadata of the long-running operation."
-      }
-    },
     "com.gcp.ids_v1#Status": {
       "type": "structure",
       "members": {
-        "message": {
-          "target": "smithy.api#String",
+        "details": {
+          "target": "com.gcp.ids_v1#DocumentMapList",
           "traits": {
-            "smithy.api#documentation": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+            "smithy.api#documentation": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
           }
         },
         "code": {
@@ -403,10 +416,10 @@
             "smithy.api#documentation": "The status code, which should be an enum value of google.rpc.Code."
           }
         },
-        "details": {
-          "target": "com.gcp.ids_v1#DocumentMapList",
+        "message": {
+          "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+            "smithy.api#documentation": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
           }
         }
       },
@@ -420,81 +433,41 @@
         "target": "com.gcp.ids_v1#DocumentMap"
       }
     },
-    "com.gcp.ids_v1#Location": {
+    "com.gcp.ids_v1#ListLocationsResponse": {
       "type": "structure",
       "members": {
-        "locationId": {
+        "locations": {
+          "target": "com.gcp.ids_v1#LocationList",
+          "traits": {
+            "smithy.api#documentation": "A list of locations that matches the specified filter in the request."
+          }
+        },
+        "nextPageToken": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The canonical id for this location. For example: `\"us-east1\"`."
-          }
-        },
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Resource name for the location, which may vary between implementations. For example: `\"projects/example-project/locations/us-east1\"`"
-          }
-        },
-        "metadata": {
-          "target": "com.gcp.ids_v1#DocumentMap",
-          "traits": {
-            "smithy.api#documentation": "Service-specific metadata. For example the available capacity at the given location."
-          }
-        },
-        "displayName": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The friendly name for this location, typically a nearby city name. For example, \"Tokyo\"."
-          }
-        },
-        "labels": {
-          "target": "com.gcp.ids_v1#StringMap",
-          "traits": {
-            "smithy.api#documentation": "Cross-service attributes for the location. For example {\"cloud.googleapis.com/region\": \"us-east1\"}"
+            "smithy.api#documentation": "The standard List next-page token."
           }
         }
       },
       "traits": {
-        "smithy.api#documentation": "A resource that represents a Google Cloud location."
+        "smithy.api#documentation": "The response message for Locations.ListLocations."
       }
     },
-    "com.gcp.ids_v1#ListProjectsLocationsRequest": {
+    "com.gcp.ids_v1#LocationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.ids_v1#Location"
+      }
+    },
+    "com.gcp.ids_v1#GetProjectsLocationsRequest": {
       "type": "structure",
       "members": {
-        "extraLocationTypes": {
-          "target": "com.gcp.ids_v1#StringList",
-          "traits": {
-            "smithy.api#documentation": "Optional. Do not use this field unless explicitly documented otherwise. This is primarily for internal usage.",
-            "smithy.api#httpQuery": "extraLocationTypes"
-          }
-        },
-        "filter": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
-            "smithy.api#httpQuery": "filter"
-          }
-        },
         "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The resource that owns the locations collection, if applicable.",
+            "smithy.api#documentation": "Resource name for the location.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
-          }
-        },
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "The maximum number of results to return. If not set, the service selects a default.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        },
-        "pageToken": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.",
-            "smithy.api#httpQuery": "pageToken"
           }
         }
       }
@@ -525,6 +498,71 @@
         ]
       }
     },
+    "com.gcp.ids_v1#GetProjectsLocations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.ids_v1#GetProjectsLocationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.ids_v1#Location"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.ids_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.ids_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Gets information about a location."
+      }
+    },
+    "com.gcp.ids_v1#ListProjectsLocationsRequest": {
+      "type": "structure",
+      "members": {
+        "extraLocationTypes": {
+          "target": "com.gcp.ids_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Do not use this field unless explicitly documented otherwise. This is primarily for internal usage.",
+            "smithy.api#httpQuery": "extraLocationTypes"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of results to return. If not set, the service selects a default.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource that owns the locations collection, if applicable.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
     "com.gcp.ids_v1#ListProjectsLocations": {
       "type": "operation",
       "input": {
@@ -553,91 +591,54 @@
         }
       }
     },
-    "com.gcp.ids_v1#GetProjectsLocationsRequest": {
+    "com.gcp.ids_v1#ListProjectsLocationsEndpointsRequest": {
       "type": "structure",
       "members": {
-        "name": {
+        "filter": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Resource name for the location.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      }
-    },
-    "com.gcp.ids_v1#GetProjectsLocations": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.ids_v1#GetProjectsLocationsRequest"
-      },
-      "output": {
-        "target": "com.gcp.ids_v1#Location"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.ids_v1#NotFound"
-        },
-        {
-          "target": "com.gcp.ids_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Gets information about a location."
-      }
-    },
-    "com.gcp.ids_v1#ListProjectsLocationsOperationsRequest": {
-      "type": "structure",
-      "members": {
-        "name": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The name of the operation's parent resource.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "returnPartialSuccess": {
-          "target": "smithy.api#Boolean",
-          "traits": {
-            "smithy.api#documentation": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
-            "smithy.api#httpQuery": "returnPartialSuccess"
+            "smithy.api#documentation": "Optional. The filter expression, following the syntax outlined in https://google.aip.dev/160.",
+            "smithy.api#httpQuery": "filter"
           }
         },
         "pageSize": {
           "target": "smithy.api#Integer",
           "traits": {
-            "smithy.api#documentation": "The standard list page size.",
+            "smithy.api#documentation": "Optional. The maximum number of endpoints to return. The service may return fewer than this value.",
             "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent, which owns this collection of endpoints.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "orderBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. One or more fields to compare and use to sort the output. See https://google.aip.dev/132#ordering.",
+            "smithy.api#httpQuery": "orderBy"
           }
         },
         "pageToken": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The standard list page token.",
+            "smithy.api#documentation": "Optional. A page token, received from a previous `ListEndpoints` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListEndpoints` must match the call that provided the page token.",
             "smithy.api#httpQuery": "pageToken"
-          }
-        },
-        "filter": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The standard list filter.",
-            "smithy.api#httpQuery": "filter"
           }
         }
       }
     },
-    "com.gcp.ids_v1#ListProjectsLocationsOperations": {
+    "com.gcp.ids_v1#ListProjectsLocationsEndpoints": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.ids_v1#ListProjectsLocationsOperationsRequest"
+        "target": "com.gcp.ids_v1#ListProjectsLocationsEndpointsRequest"
       },
       "output": {
-        "target": "com.gcp.ids_v1#ListOperationsResponse"
+        "target": "com.gcp.ids_v1#ListEndpointsResponse"
       },
       "errors": [
         {
@@ -650,59 +651,29 @@
       "traits": {
         "smithy.api#http": {
           "method": "GET",
-          "uri": "v1/{+name}/operations"
+          "uri": "v1/{+parent}/endpoints"
         },
-        "smithy.api#documentation": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
+        "smithy.api#documentation": "Lists Endpoints in a given project and location.",
         "smithy.api#paginated": {
           "inputToken": "pageToken",
           "outputToken": "nextPageToken"
         }
       }
     },
-    "com.gcp.ids_v1#GetProjectsLocationsOperationsRequest": {
+    "com.gcp.ids_v1#DeleteProjectsLocationsEndpointsRequest": {
       "type": "structure",
       "members": {
-        "name": {
+        "requestId": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The name of the operation resource.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
+            "smithy.api#documentation": "An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+            "smithy.api#httpQuery": "requestId"
           }
-        }
-      }
-    },
-    "com.gcp.ids_v1#GetProjectsLocationsOperations": {
-      "type": "operation",
-      "input": {
-        "target": "com.gcp.ids_v1#GetProjectsLocationsOperationsRequest"
-      },
-      "output": {
-        "target": "com.gcp.ids_v1#Operation"
-      },
-      "errors": [
-        {
-          "target": "com.gcp.ids_v1#NotFound"
         },
-        {
-          "target": "com.gcp.ids_v1#Forbidden"
-        }
-      ],
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "v1/{+name}"
-        },
-        "smithy.api#documentation": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service."
-      }
-    },
-    "com.gcp.ids_v1#DeleteProjectsLocationsOperationsRequest": {
-      "type": "structure",
-      "members": {
         "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The name of the operation resource to be deleted.",
+            "smithy.api#documentation": "Required. The name of the endpoint to delete.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
           }
@@ -735,13 +706,13 @@
         ]
       }
     },
-    "com.gcp.ids_v1#DeleteProjectsLocationsOperations": {
+    "com.gcp.ids_v1#DeleteProjectsLocationsEndpoints": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.ids_v1#DeleteProjectsLocationsOperationsRequest"
+        "target": "com.gcp.ids_v1#DeleteProjectsLocationsEndpointsRequest"
       },
       "output": {
-        "target": "com.gcp.ids_v1#Empty"
+        "target": "com.gcp.ids_v1#Operation"
       },
       "errors": [
         {
@@ -762,22 +733,36 @@
           "method": "DELETE",
           "uri": "v1/{+name}"
         },
-        "smithy.api#documentation": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`."
+        "smithy.api#documentation": "Deletes a single Endpoint."
       }
     },
-    "com.gcp.ids_v1#CancelProjectsLocationsOperationsRequest": {
+    "com.gcp.ids_v1#PatchProjectsLocationsEndpointsRequest": {
       "type": "structure",
       "members": {
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Field mask is used to specify the fields to be overwritten in the Endpoint resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
         "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "The name of the operation resource to be cancelled.",
+            "smithy.api#documentation": "Output only. The name of the endpoint.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
           }
         },
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+            "smithy.api#httpQuery": "requestId"
+          }
+        },
         "body": {
-          "target": "com.gcp.ids_v1#CancelOperationRequest",
+          "target": "com.gcp.ids_v1#Endpoint",
           "traits": {
             "smithy.api#httpPayload": {},
             "smithy.api#documentation": "Request body"
@@ -785,13 +770,13 @@
         }
       }
     },
-    "com.gcp.ids_v1#CancelProjectsLocationsOperations": {
+    "com.gcp.ids_v1#PatchProjectsLocationsEndpoints": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.ids_v1#CancelProjectsLocationsOperationsRequest"
+        "target": "com.gcp.ids_v1#PatchProjectsLocationsEndpointsRequest"
       },
       "output": {
-        "target": "com.gcp.ids_v1#Empty"
+        "target": "com.gcp.ids_v1#Operation"
       },
       "errors": [
         {
@@ -809,15 +794,22 @@
       ],
       "traits": {
         "smithy.api#http": {
-          "method": "POST",
-          "uri": "v1/{+name}:cancel"
+          "method": "PATCH",
+          "uri": "v1/{+name}"
         },
-        "smithy.api#documentation": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`."
+        "smithy.api#documentation": "Updates the parameters of a single Endpoint."
       }
     },
     "com.gcp.ids_v1#CreateProjectsLocationsEndpointsRequest": {
       "type": "structure",
       "members": {
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+            "smithy.api#httpQuery": "requestId"
+          }
+        },
         "parent": {
           "target": "smithy.api#String",
           "traits": {
@@ -831,13 +823,6 @@
           "traits": {
             "smithy.api#documentation": "Required. The endpoint identifier. This will be part of the endpoint's resource name. This value must start with a lowercase letter followed by up to 62 lowercase letters, numbers, or hyphens, and cannot end with a hyphen. Values that do not match this pattern will trigger an INVALID_ARGUMENT error.",
             "smithy.api#httpQuery": "endpointId"
-          }
-        },
-        "requestId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
-            "smithy.api#httpQuery": "requestId"
           }
         },
         "body": {
@@ -916,33 +901,19 @@
         "smithy.api#documentation": "Gets details of a single Endpoint."
       }
     },
-    "com.gcp.ids_v1#PatchProjectsLocationsEndpointsRequest": {
+    "com.gcp.ids_v1#CancelProjectsLocationsOperationsRequest": {
       "type": "structure",
       "members": {
         "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Output only. The name of the endpoint.",
+            "smithy.api#documentation": "The name of the operation resource to be cancelled.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
           }
         },
-        "updateMask": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Field mask is used to specify the fields to be overwritten in the Endpoint resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.",
-            "smithy.api#httpQuery": "updateMask"
-          }
-        },
-        "requestId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
-            "smithy.api#httpQuery": "requestId"
-          }
-        },
         "body": {
-          "target": "com.gcp.ids_v1#Endpoint",
+          "target": "com.gcp.ids_v1#CancelOperationRequest",
           "traits": {
             "smithy.api#httpPayload": {},
             "smithy.api#documentation": "Request body"
@@ -950,13 +921,13 @@
         }
       }
     },
-    "com.gcp.ids_v1#PatchProjectsLocationsEndpoints": {
+    "com.gcp.ids_v1#CancelProjectsLocationsOperations": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.ids_v1#PatchProjectsLocationsEndpointsRequest"
+        "target": "com.gcp.ids_v1#CancelProjectsLocationsOperationsRequest"
       },
       "output": {
-        "target": "com.gcp.ids_v1#Operation"
+        "target": "com.gcp.ids_v1#Empty"
       },
       "errors": [
         {
@@ -974,39 +945,32 @@
       ],
       "traits": {
         "smithy.api#http": {
-          "method": "PATCH",
-          "uri": "v1/{+name}"
+          "method": "POST",
+          "uri": "v1/{+name}:cancel"
         },
-        "smithy.api#documentation": "Updates the parameters of a single Endpoint."
+        "smithy.api#documentation": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`."
       }
     },
-    "com.gcp.ids_v1#DeleteProjectsLocationsEndpointsRequest": {
+    "com.gcp.ids_v1#DeleteProjectsLocationsOperationsRequest": {
       "type": "structure",
       "members": {
         "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Required. The name of the endpoint to delete.",
+            "smithy.api#documentation": "The name of the operation resource to be deleted.",
             "smithy.api#httpLabel": {},
             "smithy.api#required": {}
-          }
-        },
-        "requestId": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
-            "smithy.api#httpQuery": "requestId"
           }
         }
       }
     },
-    "com.gcp.ids_v1#DeleteProjectsLocationsEndpoints": {
+    "com.gcp.ids_v1#DeleteProjectsLocationsOperations": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.ids_v1#DeleteProjectsLocationsEndpointsRequest"
+        "target": "com.gcp.ids_v1#DeleteProjectsLocationsOperationsRequest"
       },
       "output": {
-        "target": "com.gcp.ids_v1#Operation"
+        "target": "com.gcp.ids_v1#Empty"
       },
       "errors": [
         {
@@ -1027,57 +991,57 @@
           "method": "DELETE",
           "uri": "v1/{+name}"
         },
-        "smithy.api#documentation": "Deletes a single Endpoint."
+        "smithy.api#documentation": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`."
       }
     },
-    "com.gcp.ids_v1#ListProjectsLocationsEndpointsRequest": {
+    "com.gcp.ids_v1#ListProjectsLocationsOperationsRequest": {
       "type": "structure",
       "members": {
-        "parent": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Required. The parent, which owns this collection of endpoints.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "pageSize": {
-          "target": "smithy.api#Integer",
-          "traits": {
-            "smithy.api#documentation": "Optional. The maximum number of endpoints to return. The service may return fewer than this value.",
-            "smithy.api#httpQuery": "pageSize"
-          }
-        },
         "filter": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Optional. The filter expression, following the syntax outlined in https://google.aip.dev/160.",
+            "smithy.api#documentation": "The standard list filter.",
             "smithy.api#httpQuery": "filter"
           }
         },
-        "orderBy": {
+        "name": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Optional. One or more fields to compare and use to sort the output. See https://google.aip.dev/132#ordering.",
-            "smithy.api#httpQuery": "orderBy"
+            "smithy.api#documentation": "The name of the operation's parent resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
           }
         },
         "pageToken": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#documentation": "Optional. A page token, received from a previous `ListEndpoints` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListEndpoints` must match the call that provided the page token.",
+            "smithy.api#documentation": "The standard list page token.",
             "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "returnPartialSuccess": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+            "smithy.api#httpQuery": "returnPartialSuccess"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The standard list page size.",
+            "smithy.api#httpQuery": "pageSize"
           }
         }
       }
     },
-    "com.gcp.ids_v1#ListProjectsLocationsEndpoints": {
+    "com.gcp.ids_v1#ListProjectsLocationsOperations": {
       "type": "operation",
       "input": {
-        "target": "com.gcp.ids_v1#ListProjectsLocationsEndpointsRequest"
+        "target": "com.gcp.ids_v1#ListProjectsLocationsOperationsRequest"
       },
       "output": {
-        "target": "com.gcp.ids_v1#ListEndpointsResponse"
+        "target": "com.gcp.ids_v1#ListOperationsResponse"
       },
       "errors": [
         {
@@ -1090,13 +1054,50 @@
       "traits": {
         "smithy.api#http": {
           "method": "GET",
-          "uri": "v1/{+parent}/endpoints"
+          "uri": "v1/{+name}/operations"
         },
-        "smithy.api#documentation": "Lists Endpoints in a given project and location.",
+        "smithy.api#documentation": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
         "smithy.api#paginated": {
           "inputToken": "pageToken",
           "outputToken": "nextPageToken"
         }
+      }
+    },
+    "com.gcp.ids_v1#GetProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.ids_v1#GetProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.ids_v1#GetProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.ids_v1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.ids_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.ids_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service."
       }
     }
   }

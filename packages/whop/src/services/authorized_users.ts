@@ -209,6 +209,18 @@ export const DeleteAuthorizedUserResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeleteAuthorizedUserResponse",
 }) as any as S.Schema<DeleteAuthorizedUserResponse>;
 
+export interface GetAuthorizedUserRequest {
+  /** The unique identifier of the authorized user to retrieve. */
+  id: string;
+}
+export const GetAuthorizedUserRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/authorized_users/{id}", code: 200 })),
+).annotate({
+  identifier: "GetAuthorizedUserRequest",
+}) as any as S.Schema<GetAuthorizedUserRequest>;
+
 export interface ListAuthorizedUserRequest {
   after?: string;
   before?: string;
@@ -307,18 +319,6 @@ export const ListAuthorizedUserResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListAuthorizedUserResponse",
 }) as any as S.Schema<ListAuthorizedUserResponse>;
 
-export interface RetrieveAuthorizedUserRequest {
-  /** The unique identifier of the authorized user to retrieve. */
-  id: string;
-}
-export const RetrieveAuthorizedUserRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/authorized_users/{id}", code: 200 })),
-).annotate({
-  identifier: "RetrieveAuthorizedUserRequest",
-}) as any as S.Schema<RetrieveAuthorizedUserRequest>;
-
 export type CreateAuthorizedUserError =
   | BadRequest
   | Forbidden
@@ -359,6 +359,26 @@ export const deleteAuthorizedUser: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetAuthorizedUserError =
+  | BadRequest
+  | Forbidden
+  | NotFound
+  | UnprocessableEntity
+  | WhopOpError;
+/** Retrieve authorized user [Legacy API — https://docs.whop.com/api-reference] Retrieves the details of an existing authorized user. Required permissions: - `company:authorized_user:read` - `member:email:read` */
+export const getAuthorizedUser: API.OperationMethod<
+  GetAuthorizedUserRequest,
+  AuthorizedUser,
+  GetAuthorizedUserError,
+  WhopOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetAuthorizedUserRequest,
+  output: AuthorizedUser,
+  errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
+  protocol: WhopProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListAuthorizedUserError =
   | BadRequest
   | Forbidden
@@ -390,23 +410,3 @@ export const listAuthorizedUser: API.PaginatedOperationMethod<
   }),
   paginateRelay,
 ) as any;
-
-export type RetrieveAuthorizedUserError =
-  | BadRequest
-  | Forbidden
-  | NotFound
-  | UnprocessableEntity
-  | WhopOpError;
-/** Retrieve authorized user [Legacy API — https://docs.whop.com/api-reference] Retrieves the details of an existing authorized user. Required permissions: - `company:authorized_user:read` - `member:email:read` */
-export const retrieveAuthorizedUser: API.OperationMethod<
-  RetrieveAuthorizedUserRequest,
-  AuthorizedUser,
-  RetrieveAuthorizedUserError,
-  WhopOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveAuthorizedUserRequest,
-  output: AuthorizedUser,
-  errors: [BadRequest, Forbidden, NotFound, UnprocessableEntity],
-  protocol: WhopProtocol,
-  retry: Retry.Retry,
-}));

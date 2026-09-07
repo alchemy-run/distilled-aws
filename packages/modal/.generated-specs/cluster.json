@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.modal.cluster#ClusterGetRequest": {
+    "com.modal.cluster#GetClusterRequest": {
       "type": "structure",
       "members": {
         "clusterId": {
@@ -51,7 +52,7 @@
         "target": "smithy.api#String"
       }
     },
-    "com.modal.cluster#ClusterGetResponse": {
+    "com.modal.cluster#GetClusterResponse": {
       "type": "structure",
       "members": {
         "cluster": {
@@ -62,13 +63,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.modal.cluster#ClusterGet": {
+    "com.modal.cluster#GetCluster": {
       "type": "operation",
       "input": {
-        "target": "com.modal.cluster#ClusterGetRequest"
+        "target": "com.modal.cluster#GetClusterRequest"
       },
       "output": {
-        "target": "com.modal.cluster#ClusterGetResponse"
+        "target": "com.modal.cluster#GetClusterResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -79,7 +80,7 @@
         "smithy.api#documentation": "Clusters"
       }
     },
-    "com.modal.cluster#ClusterListRequest": {
+    "com.modal.cluster#ListClusterRequest": {
       "type": "structure",
       "members": {
         "environmentName": {
@@ -96,7 +97,7 @@
         "target": "com.modal.cluster#ClusterStats"
       }
     },
-    "com.modal.cluster#ClusterListResponse": {
+    "com.modal.cluster#ListClusterResponse": {
       "type": "structure",
       "members": {
         "clusters": {
@@ -107,13 +108,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.modal.cluster#ClusterList": {
+    "com.modal.cluster#ListCluster": {
       "type": "operation",
       "input": {
-        "target": "com.modal.cluster#ClusterListRequest"
+        "target": "com.modal.cluster#ListClusterRequest"
       },
       "output": {
-        "target": "com.modal.cluster#ClusterListResponse"
+        "target": "com.modal.cluster#ListClusterResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -128,10 +129,10 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.modal.cluster#ClusterGet"
+          "target": "com.modal.cluster#GetCluster"
         },
         {
-          "target": "com.modal.cluster#ClusterList"
+          "target": "com.modal.cluster#ListCluster"
         }
       ],
       "traits": {

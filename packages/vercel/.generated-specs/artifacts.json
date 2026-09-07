@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.vercel.artifacts#RecordEventsRequestBodyItemSource": {
@@ -124,14 +125,14 @@
         "xArtifactClientCi": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#httpHeader": "x-Artifact-Client-Ci",
+            "smithy.api#httpHeader": "x-artifact-client-ci",
             "smithy.api#documentation": "The continuous integration or delivery environment where this artifact is downloaded."
           }
         },
         "xArtifactClientInteractive": {
           "target": "smithy.api#Integer",
           "traits": {
-            "smithy.api#httpHeader": "x-Artifact-Client-Interactive",
+            "smithy.api#httpHeader": "x-artifact-client-interactive",
             "smithy.api#documentation": "1 if the client is an interactive shell. Otherwise 0"
           }
         },
@@ -334,14 +335,14 @@
         "xArtifactClientCi": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#httpHeader": "x-Artifact-Client-Ci",
+            "smithy.api#httpHeader": "x-artifact-client-ci",
             "smithy.api#documentation": "The continuous integration or delivery environment where this artifact is downloaded."
           }
         },
         "xArtifactClientInteractive": {
           "target": "smithy.api#Integer",
           "traits": {
-            "smithy.api#httpHeader": "x-Artifact-Client-Interactive",
+            "smithy.api#httpHeader": "x-artifact-client-interactive",
             "smithy.api#documentation": "1 if the client is an interactive shell. Otherwise 0"
           }
         }
@@ -424,49 +425,50 @@
         "contentLength": {
           "target": "smithy.api#Double",
           "traits": {
-            "smithy.api#httpHeader": "content-Length",
+            "smithy.api#httpHeader": "Content-Length",
+            "smithy.api#required": {},
             "smithy.api#documentation": "The artifact size in bytes"
           }
         },
         "xArtifactDuration": {
           "target": "smithy.api#Double",
           "traits": {
-            "smithy.api#httpHeader": "x-Artifact-Duration",
+            "smithy.api#httpHeader": "x-artifact-duration",
             "smithy.api#documentation": "The time taken to generate the uploaded artifact in milliseconds."
           }
         },
         "xArtifactClientCi": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#httpHeader": "x-Artifact-Client-Ci",
+            "smithy.api#httpHeader": "x-artifact-client-ci",
             "smithy.api#documentation": "The continuous integration or delivery environment where this artifact was generated."
           }
         },
         "xArtifactClientInteractive": {
           "target": "smithy.api#Integer",
           "traits": {
-            "smithy.api#httpHeader": "x-Artifact-Client-Interactive",
+            "smithy.api#httpHeader": "x-artifact-client-interactive",
             "smithy.api#documentation": "1 if the client is an interactive shell. Otherwise 0"
           }
         },
         "xArtifactTag": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#httpHeader": "x-Artifact-Tag",
+            "smithy.api#httpHeader": "x-artifact-tag",
             "smithy.api#documentation": "The base64 encoded tag for this artifact. The value is sent back to clients when the artifact is downloaded as the header `x-artifact-tag`"
           }
         },
         "xArtifactSha": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#httpHeader": "x-Artifact-Sha",
+            "smithy.api#httpHeader": "x-artifact-sha",
             "smithy.api#documentation": "The SHA of the source control revision that generated this artifact."
           }
         },
         "xArtifactDirtyHash": {
           "target": "smithy.api#String",
           "traits": {
-            "smithy.api#httpHeader": "x-Artifact-Dirty-Hash",
+            "smithy.api#httpHeader": "x-artifact-dirty-hash",
             "smithy.api#documentation": "A hash representing uncommitted changes in the working directory when this artifact was generated."
           }
         }

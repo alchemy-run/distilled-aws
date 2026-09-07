@@ -3,7 +3,7 @@
   "patches": [
     {
       "op": "replace",
-      "path": "/shapes/com.railway.api#LoginSessionCreateRequest/traits/com.railway.graphql#operation/query",
+      "path": "/shapes/com.railway.api#CreateLoginSessionRequest/traits/com.railway.graphql#operation/query",
       "value": "mutation loginSessionCreate {\n  loginSessionCreate\n}"
     }
   ]

@@ -619,6 +619,18 @@ export const DeliveriesWebhookResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeliveriesWebhookResponse",
 }) as any as S.Schema<DeliveriesWebhookResponse>;
 
+export interface GetWebhookRequest {
+  /** Webhook ID, prefixed `hook_`. */
+  id: string;
+}
+export const GetWebhookRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/webhooks/{id}", code: 200 })),
+).annotate({
+  identifier: "GetWebhookRequest",
+}) as any as S.Schema<GetWebhookRequest>;
+
 export interface ListWebhookDeliveriesRequest {
   /** Webhook ID, prefixed `hook_`. */
   id: string;
@@ -1026,18 +1038,6 @@ export const ReplayWebhookDeliveryResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ReplayWebhookDeliveryResponse",
 }) as any as S.Schema<ReplayWebhookDeliveryResponse>;
 
-export interface RetrieveWebhookRequest {
-  /** Webhook ID, prefixed `hook_`. */
-  id: string;
-}
-export const RetrieveWebhookRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/webhooks/{id}", code: 200 })),
-).annotate({
-  identifier: "RetrieveWebhookRequest",
-}) as any as S.Schema<RetrieveWebhookRequest>;
-
 export interface TestWebhookRequest {
   /** Webhook ID, prefixed `hook_`. */
   id: string;
@@ -1294,6 +1294,21 @@ export const deliveriesWebhook: API.PaginatedOperationMethod<
   paginateRelay,
 ) as any;
 
+export type GetWebhookError = Forbidden | NotFound | WhopOpError;
+/** Retrieve Webhook Retrieves the details of an existing webhook. */
+export const getWebhook: API.OperationMethod<
+  GetWebhookRequest,
+  Webhook,
+  GetWebhookError,
+  WhopOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetWebhookRequest,
+  output: Webhook,
+  errors: [Forbidden, NotFound],
+  protocol: WhopProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListWebhookDeliveriesError = Forbidden | NotFound | WhopOpError;
 /** List Deliveries Returns a paginated list of delivery attempts for a webhook, ordered by most recent first. Includes the request payload, response body, response code, and timing for each attempt. */
 export const listWebhookDeliveries: API.PaginatedOperationMethod<
@@ -1384,21 +1399,6 @@ export const replayWebhookDelivery: API.OperationMethod<
   input: ReplayWebhookDeliveryRequest,
   output: ReplayWebhookDeliveryResponse,
   errors: [BadRequest, Forbidden, NotFound, Conflict],
-  protocol: WhopProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveWebhookError = Forbidden | NotFound | WhopOpError;
-/** Retrieve Webhook Retrieves the details of an existing webhook. */
-export const retrieveWebhook: API.OperationMethod<
-  RetrieveWebhookRequest,
-  Webhook,
-  RetrieveWebhookError,
-  WhopOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveWebhookRequest,
-  output: Webhook,
-  errors: [Forbidden, NotFound],
   protocol: WhopProtocol,
   retry: Retry.Retry,
 }));

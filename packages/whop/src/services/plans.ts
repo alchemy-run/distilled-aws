@@ -807,6 +807,16 @@ export const DeletePlanResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DeletePlanResponse",
 }) as any as S.Schema<DeletePlanResponse>;
 
+export interface GetPlanRequest {
+  /** Plan ID, prefixed `plan_`. */
+  id: string;
+}
+export const GetPlanRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/plans/{id}", code: 200 })),
+).annotate({ identifier: "GetPlanRequest" }) as any as S.Schema<GetPlanRequest>;
+
 export type ListPlansRequestDirection = "asc" | "desc";
 export const ListPlansRequestDirection = /*@__PURE__*/ S.String;
 
@@ -1062,18 +1072,6 @@ export const ListPlansResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListPlansResponse",
 }) as any as S.Schema<ListPlansResponse>;
 
-export interface RetrievePlanRequest {
-  /** Plan ID, prefixed `plan_`. */
-  id: string;
-}
-export const RetrievePlanRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/plans/{id}", code: 200 })),
-).annotate({
-  identifier: "RetrievePlanRequest",
-}) as any as S.Schema<RetrievePlanRequest>;
-
 /** The type of the custom field. */
 export type UpdatePlanRequestCustomFieldsItemFieldType = "text";
 export const UpdatePlanRequestCustomFieldsItemFieldType =
@@ -1300,6 +1298,21 @@ export const deletePlan: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
+export type GetPlanError = NotFound | WhopOpError;
+/** Retrieve Plan Retrieves the details of an existing plan. */
+export const getPlan: API.OperationMethod<
+  GetPlanRequest,
+  Plan,
+  GetPlanError,
+  WhopOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPlanRequest,
+  output: Plan,
+  errors: [NotFound],
+  protocol: WhopProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListPlansError = BadRequest | WhopOpError;
 /** List Plans Returns a paginated list of plans. Omit `account_id` and pass `product_ids` to list a product's public buyable plans. */
 export const listPlans: API.PaginatedOperationMethod<
@@ -1326,21 +1339,6 @@ export const listPlans: API.PaginatedOperationMethod<
   }),
   paginateRelay,
 ) as any;
-
-export type RetrievePlanError = NotFound | WhopOpError;
-/** Retrieve Plan Retrieves the details of an existing plan. */
-export const retrievePlan: API.OperationMethod<
-  RetrievePlanRequest,
-  Plan,
-  RetrievePlanError,
-  WhopOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrievePlanRequest,
-  output: Plan,
-  errors: [NotFound],
-  protocol: WhopProtocol,
-  retry: Retry.Retry,
-}));
 
 export type UpdatePlanError = WhopOpError;
 /** Update Plan Update a plan's pricing, billing interval, visibility, stock, and other settings. */

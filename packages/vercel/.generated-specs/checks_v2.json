@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.vercel.checks_v2#ListProjectChecksRequestBlocks": {
@@ -2702,6 +2703,9 @@
             "smithy.api#required": {}
           }
         },
+        "invocationAttempt": {
+          "target": "smithy.api#Double"
+        },
         "jobDefinitionId": {
           "target": "smithy.api#String",
           "traits": {
@@ -3567,6 +3571,9 @@
           "traits": {
             "smithy.api#required": {}
           }
+        },
+        "invocationAttempt": {
+          "target": "smithy.api#Double"
         },
         "jobDefinitionId": {
           "target": "smithy.api#String",
@@ -4440,6 +4447,9 @@
             "smithy.api#required": {}
           }
         },
+        "invocationAttempt": {
+          "target": "smithy.api#Double"
+        },
         "jobDefinitionId": {
           "target": "smithy.api#String",
           "traits": {
@@ -5310,6 +5320,9 @@
           "traits": {
             "smithy.api#required": {}
           }
+        },
+        "invocationAttempt": {
+          "target": "smithy.api#Double"
         },
         "jobDefinitionId": {
           "target": "smithy.api#String",
@@ -6267,6 +6280,9 @@
           "traits": {
             "smithy.api#required": {}
           }
+        },
+        "invocationAttempt": {
+          "target": "smithy.api#Double"
         },
         "jobDefinitionId": {
           "target": "smithy.api#String",

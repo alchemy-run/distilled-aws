@@ -13,7 +13,65 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
-export interface BinaryHardeningListByFirmwareRequest {
+/** The status of a firmware analysis job. */
+export type Status = "Pending" | "Extracting" | "Analyzing" | "Ready" | "Error";
+export const Status = /*@__PURE__*/ S.String;
+
+/** Error and status message */
+export interface StatusMessage {
+  /** The error code */
+  errorCode?: number;
+  /** The error or status message */
+  message?: string;
+}
+export const StatusMessage = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    errorCode: S.optional(S.Number),
+    message: S.optional(S.String),
+  }),
+).annotate({ identifier: "StatusMessage" }) as any as S.Schema<StatusMessage>;
+
+/** A list of errors or other messages generated during firmware analysis */
+export type FirmwarePropertiesInputStatusMessagesList = Array<StatusMessage>;
+export const FirmwarePropertiesInputStatusMessagesList = /*@__PURE__*/ S.Array(
+  StatusMessage,
+) as any as S.Schema<FirmwarePropertiesInputStatusMessagesList>;
+
+/** Firmware properties. */
+export interface FirmwarePropertiesInput {
+  /** File name for a firmware that user uploaded. */
+  fileName?: string;
+  /** Firmware vendor. */
+  vendor?: string;
+  /** Firmware model. */
+  model?: string;
+  /** Firmware version. */
+  version?: string;
+  /** User-specified description of the firmware. */
+  description?: string;
+  /** File size of the uploaded firmware image. */
+  fileSize?: number;
+  /** The status of firmware scan. */
+  status?: Status | (string & {});
+  /** A list of errors or other messages generated during firmware analysis */
+  statusMessages?: FirmwarePropertiesInputStatusMessagesList;
+}
+export const FirmwarePropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    fileName: S.optional(S.String),
+    vendor: S.optional(S.String),
+    model: S.optional(S.String),
+    version: S.optional(S.String),
+    description: S.optional(S.String),
+    fileSize: S.optional(S.Number),
+    status: S.optional(Status),
+    statusMessages: S.optional(FirmwarePropertiesInputStatusMessagesList),
+  }),
+).annotate({
+  identifier: "FirmwarePropertiesInput",
+}) as any as S.Schema<FirmwarePropertiesInput>;
+
+export interface CreateFirmwareRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -22,25 +80,27 @@ export interface BinaryHardeningListByFirmwareRequest {
   workspaceName: string;
   /** The id of the firmware. */
   firmwareId: string;
+  /** The resource-specific properties for this resource. */
+  properties?: FirmwarePropertiesInput;
 }
-export const BinaryHardeningListByFirmwareRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      workspaceName: S.String.pipe(T.Label()),
-      firmwareId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTFirmwareDefense/workspaces/{workspaceName}/firmwares/{firmwareId}/binaryHardeningResults",
-        code: 200,
-        apiVersion: "2025-08-02",
-      }),
-    ),
+export const CreateFirmwareRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    firmwareId: S.String.pipe(T.Label()),
+    properties: S.optional(FirmwarePropertiesInput),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTFirmwareDefense/workspaces/{workspaceName}/firmwares/{firmwareId}",
+      code: 200,
+      apiVersion: "2025-08-02",
+    }),
+  ),
 ).annotate({
-  identifier: "BinaryHardeningListByFirmwareRequest",
-}) as any as S.Schema<BinaryHardeningListByFirmwareRequest>;
+  identifier: "CreateFirmwareRequest",
+}) as any as S.Schema<CreateFirmwareRequest>;
 
 /** The type of identity that created the resource. */
 export type SystemDataCreatedByType =
@@ -84,6 +144,620 @@ export const SystemData = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "SystemData" }) as any as S.Schema<SystemData>;
 
+/** A list of errors or other messages generated during firmware analysis */
+export type FirmwarePropertiesStatusMessagesList = Array<StatusMessage>;
+export const FirmwarePropertiesStatusMessagesList = /*@__PURE__*/ S.Array(
+  StatusMessage,
+) as any as S.Schema<FirmwarePropertiesStatusMessagesList>;
+
+/** The status of a firmware analysis job. */
+export type ProvisioningState =
+  | "Succeeded"
+  | "Failed"
+  | "Canceled"
+  | "Pending"
+  | "Extracting"
+  | "Analyzing";
+export const ProvisioningState = /*@__PURE__*/ S.String;
+
+/** Firmware properties. */
+export interface FirmwareProperties {
+  /** File name for a firmware that user uploaded. */
+  fileName?: string;
+  /** Firmware vendor. */
+  vendor?: string;
+  /** Firmware model. */
+  model?: string;
+  /** Firmware version. */
+  version?: string;
+  /** User-specified description of the firmware. */
+  description?: string;
+  /** File size of the uploaded firmware image. */
+  fileSize?: number;
+  /** The status of firmware scan. */
+  status?: Status;
+  /** A list of errors or other messages generated during firmware analysis */
+  statusMessages?: FirmwarePropertiesStatusMessagesList;
+  /** Provisioning state of the resource. */
+  provisioningState?: ProvisioningState;
+}
+export const FirmwareProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    fileName: S.optional(S.String),
+    vendor: S.optional(S.String),
+    model: S.optional(S.String),
+    version: S.optional(S.String),
+    description: S.optional(S.String),
+    fileSize: S.optional(S.Number),
+    status: S.optional(Status),
+    statusMessages: S.optional(FirmwarePropertiesStatusMessagesList),
+    provisioningState: S.optional(ProvisioningState),
+  }),
+).annotate({
+  identifier: "FirmwareProperties",
+}) as any as S.Schema<FirmwareProperties>;
+
+export interface CreateFirmwareResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: FirmwareProperties;
+}
+export const CreateFirmwareResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(FirmwareProperties),
+  }),
+).annotate({
+  identifier: "CreateFirmwareResponse",
+}) as any as S.Schema<CreateFirmwareResponse>;
+
+/** Resource tags. */
+export type CreateWorkspaceRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const CreateWorkspaceRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<CreateWorkspaceRequestTagsMap>;
+
+/** Workspace properties. */
+export interface WorkspacePropertiesInput {}
+export const WorkspacePropertiesInput = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "WorkspacePropertiesInput",
+}) as any as S.Schema<WorkspacePropertiesInput>;
+
+/** This field is required to be implemented by the Resource Provider if the service has more than one tier, but is not required on a PUT. */
+export type SkuTier = "Free" | "Basic" | "Standard" | "Premium";
+export const SkuTier = /*@__PURE__*/ S.String;
+
+/** The resource model definition representing SKU */
+export interface CreateWorkspaceRequestSku {
+  /** The name of the SKU. E.g. P3. It is typically a letter+number code */
+  name: string;
+  tier?: SkuTier | (string & {});
+  /** The SKU size. When the name field is the combination of tier and some other value, this would be the standalone code. */
+  size?: string;
+  /** If the service has different generations of hardware, for the same SKU, then that can be captured here. */
+  family?: string;
+  /** If the SKU supports scale out/in then the capacity integer should be included. If scale out/in is not possible for the resource this may be omitted. */
+  capacity?: number;
+}
+export const CreateWorkspaceRequestSku = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String,
+    tier: S.optional(SkuTier),
+    size: S.optional(S.String),
+    family: S.optional(S.String),
+    capacity: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "CreateWorkspaceRequestSku",
+}) as any as S.Schema<CreateWorkspaceRequestSku>;
+
+export interface CreateWorkspaceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the firmware analysis workspace. */
+  workspaceName: string;
+  /** Resource tags. */
+  tags?: CreateWorkspaceRequestTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: WorkspacePropertiesInput;
+  /** The resource model definition representing SKU */
+  sku?: CreateWorkspaceRequestSku;
+}
+export const CreateWorkspaceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    tags: S.optional(CreateWorkspaceRequestTagsMap),
+    location: S.String,
+    properties: S.optional(WorkspacePropertiesInput),
+    sku: S.optional(CreateWorkspaceRequestSku),
+  }).pipe(
+    T.Http({
+      method: "PUT",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTFirmwareDefense/workspaces/{workspaceName}",
+      code: 200,
+      apiVersion: "2025-08-02",
+    }),
+  ),
+).annotate({
+  identifier: "CreateWorkspaceRequest",
+}) as any as S.Schema<CreateWorkspaceRequest>;
+
+/** Resource tags. */
+export type CreateWorkspaceResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const CreateWorkspaceResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<CreateWorkspaceResponseTagsMap>;
+
+/** Workspace properties. */
+export interface WorkspaceProperties {
+  /** Provisioning state of the resource. */
+  provisioningState?: ProvisioningState;
+}
+export const WorkspaceProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    provisioningState: S.optional(ProvisioningState),
+  }),
+).annotate({
+  identifier: "WorkspaceProperties",
+}) as any as S.Schema<WorkspaceProperties>;
+
+/** The resource model definition representing SKU */
+export interface CreateWorkspaceResponseSku {
+  /** The name of the SKU. E.g. P3. It is typically a letter+number code */
+  name: string;
+  tier?: SkuTier;
+  /** The SKU size. When the name field is the combination of tier and some other value, this would be the standalone code. */
+  size?: string;
+  /** If the service has different generations of hardware, for the same SKU, then that can be captured here. */
+  family?: string;
+  /** If the SKU supports scale out/in then the capacity integer should be included. If scale out/in is not possible for the resource this may be omitted. */
+  capacity?: number;
+}
+export const CreateWorkspaceResponseSku = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    name: S.String,
+    tier: S.optional(SkuTier),
+    size: S.optional(S.String),
+    family: S.optional(S.String),
+    capacity: S.optional(S.Number),
+  }),
+).annotate({
+  identifier: "CreateWorkspaceResponseSku",
+}) as any as S.Schema<CreateWorkspaceResponseSku>;
+
+export interface CreateWorkspaceResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: CreateWorkspaceResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: WorkspaceProperties;
+  /** The resource model definition representing SKU */
+  sku?: CreateWorkspaceResponseSku;
+}
+export const CreateWorkspaceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(CreateWorkspaceResponseTagsMap),
+    location: S.String,
+    properties: S.optional(WorkspaceProperties),
+    sku: S.optional(CreateWorkspaceResponseSku),
+  }),
+).annotate({
+  identifier: "CreateWorkspaceResponse",
+}) as any as S.Schema<CreateWorkspaceResponse>;
+
+export interface DeleteFirmwareRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the firmware analysis workspace. */
+  workspaceName: string;
+  /** The id of the firmware. */
+  firmwareId: string;
+}
+export const DeleteFirmwareRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    firmwareId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTFirmwareDefense/workspaces/{workspaceName}/firmwares/{firmwareId}",
+      code: 200,
+      apiVersion: "2025-08-02",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteFirmwareRequest",
+}) as any as S.Schema<DeleteFirmwareRequest>;
+
+export interface DeleteFirmwareResponse {}
+export const DeleteFirmwareResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteFirmwareResponse",
+}) as any as S.Schema<DeleteFirmwareResponse>;
+
+export interface DeleteWorkspaceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the firmware analysis workspace. */
+  workspaceName: string;
+}
+export const DeleteWorkspaceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTFirmwareDefense/workspaces/{workspaceName}",
+      code: 200,
+      apiVersion: "2025-08-02",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteWorkspaceRequest",
+}) as any as S.Schema<DeleteWorkspaceRequest>;
+
+export interface DeleteWorkspaceResponse {}
+export const DeleteWorkspaceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteWorkspaceResponse",
+}) as any as S.Schema<DeleteWorkspaceResponse>;
+
+export interface GetFirmwareRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the firmware analysis workspace. */
+  workspaceName: string;
+  /** The id of the firmware. */
+  firmwareId: string;
+}
+export const GetFirmwareRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    firmwareId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTFirmwareDefense/workspaces/{workspaceName}/firmwares/{firmwareId}",
+      code: 200,
+      apiVersion: "2025-08-02",
+    }),
+  ),
+).annotate({
+  identifier: "GetFirmwareRequest",
+}) as any as S.Schema<GetFirmwareRequest>;
+
+export interface GetFirmwareResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: FirmwareProperties;
+}
+export const GetFirmwareResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(FirmwareProperties),
+  }),
+).annotate({
+  identifier: "GetFirmwareResponse",
+}) as any as S.Schema<GetFirmwareResponse>;
+
+export type GetSummaryRequestSummaryType =
+  | "Firmware"
+  | "CommonVulnerabilitiesAndExposures"
+  | "BinaryHardening"
+  | "CryptoCertificate"
+  | "CryptoKey";
+export const GetSummaryRequestSummaryType = /*@__PURE__*/ S.String;
+
+export interface GetSummaryRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the firmware analysis workspace. */
+  workspaceName: string;
+  /** The id of the firmware. */
+  firmwareId: string;
+  /** The Firmware analysis summary name describing the type of summary. */
+  summaryType: GetSummaryRequestSummaryType | (string & {});
+}
+export const GetSummaryRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    firmwareId: S.String.pipe(T.Label()),
+    summaryType: GetSummaryRequestSummaryType.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTFirmwareDefense/workspaces/{workspaceName}/firmwares/{firmwareId}/summaries/{summaryType}",
+      code: 200,
+      apiVersion: "2025-08-02",
+    }),
+  ),
+).annotate({
+  identifier: "GetSummaryRequest",
+}) as any as S.Schema<GetSummaryRequest>;
+
+/** Describes the type of summary. */
+export type SummaryType =
+  | "Firmware"
+  | "CommonVulnerabilitiesAndExposures"
+  | "BinaryHardening"
+  | "CryptoCertificate"
+  | "CryptoKey";
+export const SummaryType = /*@__PURE__*/ S.String;
+
+/** Properties of an analysis summary. */
+export interface SummaryResourceProperties {
+  /** The type of summary. */
+  summaryType: SummaryType;
+  /** The status of the last operation. */
+  provisioningState?: ProvisioningState;
+}
+export const SummaryResourceProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    summaryType: SummaryType,
+    provisioningState: S.optional(ProvisioningState),
+  }),
+).annotate({
+  identifier: "SummaryResourceProperties",
+}) as any as S.Schema<SummaryResourceProperties>;
+
+export interface GetSummaryResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: SummaryResourceProperties;
+}
+export const GetSummaryResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(SummaryResourceProperties),
+  }),
+).annotate({
+  identifier: "GetSummaryResponse",
+}) as any as S.Schema<GetSummaryResponse>;
+
+export interface GetUsageMetricsRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the firmware analysis workspace. */
+  workspaceName: string;
+  /** The Firmware analysis summary name describing the type of summary. */
+  name: string;
+}
+export const GetUsageMetricsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    name: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTFirmwareDefense/workspaces/{workspaceName}/usageMetrics/{name}",
+      code: 200,
+      apiVersion: "2025-08-02",
+    }),
+  ),
+).annotate({
+  identifier: "GetUsageMetricsRequest",
+}) as any as S.Schema<GetUsageMetricsRequest>;
+
+/** Properties of a workspaces usage metrics. */
+export interface UsageMetricProperties {
+  /** The number of firmware analysis jobs that have been submitted in the current month. */
+  monthlyFirmwareUploadCount: number;
+  /** The total number of firmwares that are in the workspace. */
+  totalFirmwareCount: number;
+  /** The status of the last operation. */
+  provisioningState?: ProvisioningState;
+}
+export const UsageMetricProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    monthlyFirmwareUploadCount: S.Number,
+    totalFirmwareCount: S.Number,
+    provisioningState: S.optional(ProvisioningState),
+  }),
+).annotate({
+  identifier: "UsageMetricProperties",
+}) as any as S.Schema<UsageMetricProperties>;
+
+export interface GetUsageMetricsResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: UsageMetricProperties;
+}
+export const GetUsageMetricsResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(UsageMetricProperties),
+  }),
+).annotate({
+  identifier: "GetUsageMetricsResponse",
+}) as any as S.Schema<GetUsageMetricsResponse>;
+
+export interface GetWorkspaceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the firmware analysis workspace. */
+  workspaceName: string;
+}
+export const GetWorkspaceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTFirmwareDefense/workspaces/{workspaceName}",
+      code: 200,
+      apiVersion: "2025-08-02",
+    }),
+  ),
+).annotate({
+  identifier: "GetWorkspaceRequest",
+}) as any as S.Schema<GetWorkspaceRequest>;
+
+/** Resource tags. */
+export type GetWorkspaceResponseTagsMap = { [key: string]: string | undefined };
+export const GetWorkspaceResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<GetWorkspaceResponseTagsMap>;
+
+/** The resource model definition representing SKU */
+export type GetWorkspaceResponseSku = CreateWorkspaceResponseSku;
+export const GetWorkspaceResponseSku = CreateWorkspaceResponseSku;
+
+export interface GetWorkspaceResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: GetWorkspaceResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: WorkspaceProperties;
+  /** The resource model definition representing SKU */
+  sku?: CreateWorkspaceResponseSku;
+}
+export const GetWorkspaceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(GetWorkspaceResponseTagsMap),
+    location: S.String,
+    properties: S.optional(WorkspaceProperties),
+    sku: S.optional(CreateWorkspaceResponseSku),
+  }),
+).annotate({
+  identifier: "GetWorkspaceResponse",
+}) as any as S.Schema<GetWorkspaceResponse>;
+
+export interface ListBinaryHardeningByFirmwareRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the firmware analysis workspace. */
+  workspaceName: string;
+  /** The id of the firmware. */
+  firmwareId: string;
+}
+export const ListBinaryHardeningByFirmwareRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      workspaceName: S.String.pipe(T.Label()),
+      firmwareId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTFirmwareDefense/workspaces/{workspaceName}/firmwares/{firmwareId}/binaryHardeningResults",
+        code: 200,
+        apiVersion: "2025-08-02",
+      }),
+    ),
+).annotate({
+  identifier: "ListBinaryHardeningByFirmwareRequest",
+}) as any as S.Schema<ListBinaryHardeningByFirmwareRequest>;
+
 /** Binary hardening features. */
 export interface BinaryHardeningFeatures {
   /** Flag indicating the binary's stack is set to NX (no-execute). */
@@ -112,16 +786,6 @@ export const BinaryHardeningFeatures = /*@__PURE__*/ S.suspend(() =>
 /** String to indicate if the executable is 32 or 64 bit. */
 export type ExecutableClass = "x86" | "x64";
 export const ExecutableClass = /*@__PURE__*/ S.String;
-
-/** The status of a firmware analysis job. */
-export type ProvisioningState =
-  | "Succeeded"
-  | "Failed"
-  | "Canceled"
-  | "Pending"
-  | "Extracting"
-  | "Analyzing";
-export const ProvisioningState = /*@__PURE__*/ S.String;
 
 /** Binary hardening of a firmware. */
 export interface BinaryHardeningResult {
@@ -205,7 +869,7 @@ export const BinaryHardeningResourceListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "BinaryHardeningResourceListResult",
 }) as any as S.Schema<BinaryHardeningResourceListResult>;
 
-export interface CryptoCertificatesListByFirmwareRequest {
+export interface ListCryptoCertificateByFirmwareRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -215,7 +879,7 @@ export interface CryptoCertificatesListByFirmwareRequest {
   /** The id of the firmware. */
   firmwareId: string;
 }
-export const CryptoCertificatesListByFirmwareRequest = /*@__PURE__*/ S.suspend(
+export const ListCryptoCertificateByFirmwareRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -231,8 +895,8 @@ export const CryptoCertificatesListByFirmwareRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "CryptoCertificatesListByFirmwareRequest",
-}) as any as S.Schema<CryptoCertificatesListByFirmwareRequest>;
+  identifier: "ListCryptoCertificateByFirmwareRequest",
+}) as any as S.Schema<ListCryptoCertificateByFirmwareRequest>;
 
 /** Information on an entity (distinguished name) in a cryptographic certificate. */
 export interface CryptoCertificateEntity {
@@ -427,7 +1091,7 @@ export const CryptoCertificateResourceListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "CryptoCertificateResourceListResult",
 }) as any as S.Schema<CryptoCertificateResourceListResult>;
 
-export interface CryptoKeysListByFirmwareRequest {
+export interface ListCryptoKeysByFirmwareRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -437,7 +1101,7 @@ export interface CryptoKeysListByFirmwareRequest {
   /** The id of the firmware. */
   firmwareId: string;
 }
-export const CryptoKeysListByFirmwareRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListCryptoKeysByFirmwareRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -452,8 +1116,8 @@ export const CryptoKeysListByFirmwareRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "CryptoKeysListByFirmwareRequest",
-}) as any as S.Schema<CryptoKeysListByFirmwareRequest>;
+  identifier: "ListCryptoKeysByFirmwareRequest",
+}) as any as S.Schema<ListCryptoKeysByFirmwareRequest>;
 
 /** Different types of cryptographic keys. */
 export type CryptoKeyType = "Public" | "Private";
@@ -553,7 +1217,7 @@ export const CryptoKeyResourceListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "CryptoKeyResourceListResult",
 }) as any as S.Schema<CryptoKeyResourceListResult>;
 
-export interface CvesListByFirmwareRequest {
+export interface ListCveByFirmwareRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -563,7 +1227,7 @@ export interface CvesListByFirmwareRequest {
   /** The id of the firmware. */
   firmwareId: string;
 }
-export const CvesListByFirmwareRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListCveByFirmwareRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -578,8 +1242,8 @@ export const CvesListByFirmwareRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "CvesListByFirmwareRequest",
-}) as any as S.Schema<CvesListByFirmwareRequest>;
+  identifier: "ListCveByFirmwareRequest",
+}) as any as S.Schema<ListCveByFirmwareRequest>;
 
 /** Legacy component of a CVE result. */
 export interface CveComponent {
@@ -742,250 +1406,7 @@ export const CveResourceListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "CveResourceListResult",
 }) as any as S.Schema<CveResourceListResult>;
 
-/** The status of a firmware analysis job. */
-export type Status = "Pending" | "Extracting" | "Analyzing" | "Ready" | "Error";
-export const Status = /*@__PURE__*/ S.String;
-
-/** Error and status message */
-export interface StatusMessage {
-  /** The error code */
-  errorCode?: number;
-  /** The error or status message */
-  message?: string;
-}
-export const StatusMessage = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    errorCode: S.optional(S.Number),
-    message: S.optional(S.String),
-  }),
-).annotate({ identifier: "StatusMessage" }) as any as S.Schema<StatusMessage>;
-
-/** A list of errors or other messages generated during firmware analysis */
-export type FirmwarePropertiesInputStatusMessagesList = Array<StatusMessage>;
-export const FirmwarePropertiesInputStatusMessagesList = /*@__PURE__*/ S.Array(
-  StatusMessage,
-) as any as S.Schema<FirmwarePropertiesInputStatusMessagesList>;
-
-/** Firmware properties. */
-export interface FirmwarePropertiesInput {
-  /** File name for a firmware that user uploaded. */
-  fileName?: string;
-  /** Firmware vendor. */
-  vendor?: string;
-  /** Firmware model. */
-  model?: string;
-  /** Firmware version. */
-  version?: string;
-  /** User-specified description of the firmware. */
-  description?: string;
-  /** File size of the uploaded firmware image. */
-  fileSize?: number;
-  /** The status of firmware scan. */
-  status?: Status | (string & {});
-  /** A list of errors or other messages generated during firmware analysis */
-  statusMessages?: FirmwarePropertiesInputStatusMessagesList;
-}
-export const FirmwarePropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    fileName: S.optional(S.String),
-    vendor: S.optional(S.String),
-    model: S.optional(S.String),
-    version: S.optional(S.String),
-    description: S.optional(S.String),
-    fileSize: S.optional(S.Number),
-    status: S.optional(Status),
-    statusMessages: S.optional(FirmwarePropertiesInputStatusMessagesList),
-  }),
-).annotate({
-  identifier: "FirmwarePropertiesInput",
-}) as any as S.Schema<FirmwarePropertiesInput>;
-
-export interface FirmwaresCreateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the firmware analysis workspace. */
-  workspaceName: string;
-  /** The id of the firmware. */
-  firmwareId: string;
-  /** The resource-specific properties for this resource. */
-  properties?: FirmwarePropertiesInput;
-}
-export const FirmwaresCreateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    firmwareId: S.String.pipe(T.Label()),
-    properties: S.optional(FirmwarePropertiesInput),
-  }).pipe(
-    T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTFirmwareDefense/workspaces/{workspaceName}/firmwares/{firmwareId}",
-      code: 200,
-      apiVersion: "2025-08-02",
-    }),
-  ),
-).annotate({
-  identifier: "FirmwaresCreateRequest",
-}) as any as S.Schema<FirmwaresCreateRequest>;
-
-/** A list of errors or other messages generated during firmware analysis */
-export type FirmwarePropertiesStatusMessagesList = Array<StatusMessage>;
-export const FirmwarePropertiesStatusMessagesList = /*@__PURE__*/ S.Array(
-  StatusMessage,
-) as any as S.Schema<FirmwarePropertiesStatusMessagesList>;
-
-/** Firmware properties. */
-export interface FirmwareProperties {
-  /** File name for a firmware that user uploaded. */
-  fileName?: string;
-  /** Firmware vendor. */
-  vendor?: string;
-  /** Firmware model. */
-  model?: string;
-  /** Firmware version. */
-  version?: string;
-  /** User-specified description of the firmware. */
-  description?: string;
-  /** File size of the uploaded firmware image. */
-  fileSize?: number;
-  /** The status of firmware scan. */
-  status?: Status;
-  /** A list of errors or other messages generated during firmware analysis */
-  statusMessages?: FirmwarePropertiesStatusMessagesList;
-  /** Provisioning state of the resource. */
-  provisioningState?: ProvisioningState;
-}
-export const FirmwareProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    fileName: S.optional(S.String),
-    vendor: S.optional(S.String),
-    model: S.optional(S.String),
-    version: S.optional(S.String),
-    description: S.optional(S.String),
-    fileSize: S.optional(S.Number),
-    status: S.optional(Status),
-    statusMessages: S.optional(FirmwarePropertiesStatusMessagesList),
-    provisioningState: S.optional(ProvisioningState),
-  }),
-).annotate({
-  identifier: "FirmwareProperties",
-}) as any as S.Schema<FirmwareProperties>;
-
-export interface FirmwaresCreateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: FirmwareProperties;
-}
-export const FirmwaresCreateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(FirmwareProperties),
-  }),
-).annotate({
-  identifier: "FirmwaresCreateResponse",
-}) as any as S.Schema<FirmwaresCreateResponse>;
-
-export interface FirmwaresDeleteRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the firmware analysis workspace. */
-  workspaceName: string;
-  /** The id of the firmware. */
-  firmwareId: string;
-}
-export const FirmwaresDeleteRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    firmwareId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTFirmwareDefense/workspaces/{workspaceName}/firmwares/{firmwareId}",
-      code: 200,
-      apiVersion: "2025-08-02",
-    }),
-  ),
-).annotate({
-  identifier: "FirmwaresDeleteRequest",
-}) as any as S.Schema<FirmwaresDeleteRequest>;
-
-export interface FirmwaresDeleteResponse {}
-export const FirmwaresDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "FirmwaresDeleteResponse",
-}) as any as S.Schema<FirmwaresDeleteResponse>;
-
-export interface FirmwaresGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the firmware analysis workspace. */
-  workspaceName: string;
-  /** The id of the firmware. */
-  firmwareId: string;
-}
-export const FirmwaresGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    firmwareId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTFirmwareDefense/workspaces/{workspaceName}/firmwares/{firmwareId}",
-      code: 200,
-      apiVersion: "2025-08-02",
-    }),
-  ),
-).annotate({
-  identifier: "FirmwaresGetRequest",
-}) as any as S.Schema<FirmwaresGetRequest>;
-
-export interface FirmwaresGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: FirmwareProperties;
-}
-export const FirmwaresGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(FirmwareProperties),
-  }),
-).annotate({
-  identifier: "FirmwaresGetResponse",
-}) as any as S.Schema<FirmwaresGetResponse>;
-
-export interface FirmwaresListByWorkspaceRequest {
+export interface ListFirmwareByWorkspaceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -993,7 +1414,7 @@ export interface FirmwaresListByWorkspaceRequest {
   /** The name of the firmware analysis workspace. */
   workspaceName: string;
 }
-export const FirmwaresListByWorkspaceRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListFirmwareByWorkspaceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1007,8 +1428,8 @@ export const FirmwaresListByWorkspaceRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "FirmwaresListByWorkspaceRequest",
-}) as any as S.Schema<FirmwaresListByWorkspaceRequest>;
+  identifier: "ListFirmwareByWorkspaceRequest",
+}) as any as S.Schema<ListFirmwareByWorkspaceRequest>;
 
 /** Firmware definition */
 export interface Firmware {
@@ -1055,63 +1476,8 @@ export const FirmwareListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "FirmwareListResult",
 }) as any as S.Schema<FirmwareListResult>;
 
-export interface FirmwaresUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the firmware analysis workspace. */
-  workspaceName: string;
-  /** The id of the firmware. */
-  firmwareId: string;
-  /** The editable properties of a firmware */
-  properties?: FirmwarePropertiesInput;
-}
-export const FirmwaresUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    firmwareId: S.String.pipe(T.Label()),
-    properties: S.optional(FirmwarePropertiesInput),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTFirmwareDefense/workspaces/{workspaceName}/firmwares/{firmwareId}",
-      code: 200,
-      apiVersion: "2025-08-02",
-    }),
-  ),
-).annotate({
-  identifier: "FirmwaresUpdateRequest",
-}) as any as S.Schema<FirmwaresUpdateRequest>;
-
-export interface FirmwaresUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: FirmwareProperties;
-}
-export const FirmwaresUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(FirmwareProperties),
-  }),
-).annotate({
-  identifier: "FirmwaresUpdateResponse",
-}) as any as S.Schema<FirmwaresUpdateResponse>;
-
-export interface OperationsListRequest {}
-export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
+export interface ListOperationsRequest {}
+export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
     T.Http({
       method: "GET",
@@ -1121,8 +1487,8 @@ export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "OperationsListRequest",
-}) as any as S.Schema<OperationsListRequest>;
+  identifier: "ListOperationsRequest",
+}) as any as S.Schema<ListOperationsRequest>;
 
 /** Localized display information for this particular operation. */
 export interface OperationDisplay {
@@ -1178,27 +1544,27 @@ export const Operation = /*@__PURE__*/ S.suspend(() =>
 ).annotate({ identifier: "Operation" }) as any as S.Schema<Operation>;
 
 /** List of operations supported by the resource provider */
-export type OperationsListResponseValueList = Array<Operation>;
-export const OperationsListResponseValueList = /*@__PURE__*/ S.Array(
+export type ListOperationsResponseValueList = Array<Operation>;
+export const ListOperationsResponseValueList = /*@__PURE__*/ S.Array(
   Operation,
-) as any as S.Schema<OperationsListResponseValueList>;
+) as any as S.Schema<ListOperationsResponseValueList>;
 
-export interface OperationsListResponse {
+export interface ListOperationsResponse {
   /** List of operations supported by the resource provider */
-  value?: OperationsListResponseValueList;
+  value?: ListOperationsResponseValueList;
   /** URL to get the next set of operation list results (if there are any). */
   nextLink?: string;
 }
-export const OperationsListResponse = /*@__PURE__*/ S.suspend(() =>
+export const ListOperationsResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    value: S.optional(OperationsListResponseValueList),
+    value: S.optional(ListOperationsResponseValueList),
     nextLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "OperationsListResponse",
-}) as any as S.Schema<OperationsListResponse>;
+  identifier: "ListOperationsResponse",
+}) as any as S.Schema<ListOperationsResponse>;
 
-export interface PasswordHashesListByFirmwareRequest {
+export interface ListPasswordHashByFirmwareRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1208,7 +1574,7 @@ export interface PasswordHashesListByFirmwareRequest {
   /** The id of the firmware. */
   firmwareId: string;
 }
-export const PasswordHashesListByFirmwareRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListPasswordHashByFirmwareRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1223,8 +1589,8 @@ export const PasswordHashesListByFirmwareRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "PasswordHashesListByFirmwareRequest",
-}) as any as S.Schema<PasswordHashesListByFirmwareRequest>;
+  identifier: "ListPasswordHashByFirmwareRequest",
+}) as any as S.Schema<ListPasswordHashByFirmwareRequest>;
 
 /** Password hash properties */
 export interface PasswordHash {
@@ -1306,7 +1672,7 @@ export const PasswordHashResourceListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "PasswordHashResourceListResult",
 }) as any as S.Schema<PasswordHashResourceListResult>;
 
-export interface SbomComponentsListByFirmwareRequest {
+export interface ListSbomComponentByFirmwareRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1316,7 +1682,7 @@ export interface SbomComponentsListByFirmwareRequest {
   /** The id of the firmware. */
   firmwareId: string;
 }
-export const SbomComponentsListByFirmwareRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListSbomComponentByFirmwareRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1331,8 +1697,8 @@ export const SbomComponentsListByFirmwareRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "SbomComponentsListByFirmwareRequest",
-}) as any as S.Schema<SbomComponentsListByFirmwareRequest>;
+  identifier: "ListSbomComponentByFirmwareRequest",
+}) as any as S.Schema<ListSbomComponentByFirmwareRequest>;
 
 /** File paths related to the component. Note, relatedFiles should be used instead of this property. */
 export type SbomComponentFilePathsList = Array<string>;
@@ -1414,95 +1780,7 @@ export const SbomComponentResourceListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "SbomComponentResourceListResult",
 }) as any as S.Schema<SbomComponentResourceListResult>;
 
-export type SummariesGetRequestSummaryType =
-  | "Firmware"
-  | "CommonVulnerabilitiesAndExposures"
-  | "BinaryHardening"
-  | "CryptoCertificate"
-  | "CryptoKey";
-export const SummariesGetRequestSummaryType = /*@__PURE__*/ S.String;
-
-export interface SummariesGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the firmware analysis workspace. */
-  workspaceName: string;
-  /** The id of the firmware. */
-  firmwareId: string;
-  /** The Firmware analysis summary name describing the type of summary. */
-  summaryType: SummariesGetRequestSummaryType | (string & {});
-}
-export const SummariesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    firmwareId: S.String.pipe(T.Label()),
-    summaryType: SummariesGetRequestSummaryType.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTFirmwareDefense/workspaces/{workspaceName}/firmwares/{firmwareId}/summaries/{summaryType}",
-      code: 200,
-      apiVersion: "2025-08-02",
-    }),
-  ),
-).annotate({
-  identifier: "SummariesGetRequest",
-}) as any as S.Schema<SummariesGetRequest>;
-
-/** Describes the type of summary. */
-export type SummaryType =
-  | "Firmware"
-  | "CommonVulnerabilitiesAndExposures"
-  | "BinaryHardening"
-  | "CryptoCertificate"
-  | "CryptoKey";
-export const SummaryType = /*@__PURE__*/ S.String;
-
-/** Properties of an analysis summary. */
-export interface SummaryResourceProperties {
-  /** The type of summary. */
-  summaryType: SummaryType;
-  /** The status of the last operation. */
-  provisioningState?: ProvisioningState;
-}
-export const SummaryResourceProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    summaryType: SummaryType,
-    provisioningState: S.optional(ProvisioningState),
-  }),
-).annotate({
-  identifier: "SummaryResourceProperties",
-}) as any as S.Schema<SummaryResourceProperties>;
-
-export interface SummariesGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: SummaryResourceProperties;
-}
-export const SummariesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(SummaryResourceProperties),
-  }),
-).annotate({
-  identifier: "SummariesGetResponse",
-}) as any as S.Schema<SummariesGetResponse>;
-
-export interface SummariesListByFirmwareRequest {
+export interface ListSummaryByFirmwareRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1512,7 +1790,7 @@ export interface SummariesListByFirmwareRequest {
   /** The id of the firmware. */
   firmwareId: string;
 }
-export const SummariesListByFirmwareRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListSummaryByFirmwareRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1527,8 +1805,8 @@ export const SummariesListByFirmwareRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "SummariesListByFirmwareRequest",
-}) as any as S.Schema<SummariesListByFirmwareRequest>;
+  identifier: "ListSummaryByFirmwareRequest",
+}) as any as S.Schema<ListSummaryByFirmwareRequest>;
 
 /** The object representing a firmware analysis summary resource. */
 export interface SummaryResource {
@@ -1577,78 +1855,7 @@ export const SummaryResourceListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "SummaryResourceListResult",
 }) as any as S.Schema<SummaryResourceListResult>;
 
-export interface UsageMetricsGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the firmware analysis workspace. */
-  workspaceName: string;
-  /** The Firmware analysis summary name describing the type of summary. */
-  name: string;
-}
-export const UsageMetricsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    name: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTFirmwareDefense/workspaces/{workspaceName}/usageMetrics/{name}",
-      code: 200,
-      apiVersion: "2025-08-02",
-    }),
-  ),
-).annotate({
-  identifier: "UsageMetricsGetRequest",
-}) as any as S.Schema<UsageMetricsGetRequest>;
-
-/** Properties of a workspaces usage metrics. */
-export interface UsageMetricProperties {
-  /** The number of firmware analysis jobs that have been submitted in the current month. */
-  monthlyFirmwareUploadCount: number;
-  /** The total number of firmwares that are in the workspace. */
-  totalFirmwareCount: number;
-  /** The status of the last operation. */
-  provisioningState?: ProvisioningState;
-}
-export const UsageMetricProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    monthlyFirmwareUploadCount: S.Number,
-    totalFirmwareCount: S.Number,
-    provisioningState: S.optional(ProvisioningState),
-  }),
-).annotate({
-  identifier: "UsageMetricProperties",
-}) as any as S.Schema<UsageMetricProperties>;
-
-export interface UsageMetricsGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** The resource-specific properties for this resource. */
-  properties?: UsageMetricProperties;
-}
-export const UsageMetricsGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    properties: S.optional(UsageMetricProperties),
-  }),
-).annotate({
-  identifier: "UsageMetricsGetResponse",
-}) as any as S.Schema<UsageMetricsGetResponse>;
-
-export interface UsageMetricsListByWorkspaceRequest {
+export interface ListUsageMetricsByWorkspaceRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
@@ -1656,7 +1863,7 @@ export interface UsageMetricsListByWorkspaceRequest {
   /** The name of the firmware analysis workspace. */
   workspaceName: string;
 }
-export const UsageMetricsListByWorkspaceRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListUsageMetricsByWorkspaceRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -1670,8 +1877,8 @@ export const UsageMetricsListByWorkspaceRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "UsageMetricsListByWorkspaceRequest",
-}) as any as S.Schema<UsageMetricsListByWorkspaceRequest>;
+  identifier: "ListUsageMetricsByWorkspaceRequest",
+}) as any as S.Schema<ListUsageMetricsByWorkspaceRequest>;
 
 /** The object representing how many firmwares the user has uploaded to the workspace. */
 export interface UsageMetric {
@@ -1718,135 +1925,41 @@ export const UsageMetricListResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "UsageMetricListResult",
 }) as any as S.Schema<UsageMetricListResult>;
 
-/** Resource tags. */
-export type WorkspacesCreateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const WorkspacesCreateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<WorkspacesCreateRequestTagsMap>;
-
-/** Workspace properties. */
-export interface WorkspacePropertiesInput {}
-export const WorkspacePropertiesInput = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "WorkspacePropertiesInput",
-}) as any as S.Schema<WorkspacePropertiesInput>;
-
-/** This field is required to be implemented by the Resource Provider if the service has more than one tier, but is not required on a PUT. */
-export type SkuTier = "Free" | "Basic" | "Standard" | "Premium";
-export const SkuTier = /*@__PURE__*/ S.String;
-
-/** The resource model definition representing SKU */
-export interface WorkspacesCreateRequestSku {
-  /** The name of the SKU. E.g. P3. It is typically a letter+number code */
-  name: string;
-  tier?: SkuTier | (string & {});
-  /** The SKU size. When the name field is the combination of tier and some other value, this would be the standalone code. */
-  size?: string;
-  /** If the service has different generations of hardware, for the same SKU, then that can be captured here. */
-  family?: string;
-  /** If the SKU supports scale out/in then the capacity integer should be included. If scale out/in is not possible for the resource this may be omitted. */
-  capacity?: number;
-}
-export const WorkspacesCreateRequestSku = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String,
-    tier: S.optional(SkuTier),
-    size: S.optional(S.String),
-    family: S.optional(S.String),
-    capacity: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "WorkspacesCreateRequestSku",
-}) as any as S.Schema<WorkspacesCreateRequestSku>;
-
-export interface WorkspacesCreateRequest {
+export interface ListWorkspaceByResourceGroupRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
-  /** The name of the firmware analysis workspace. */
-  workspaceName: string;
-  /** Resource tags. */
-  tags?: WorkspacesCreateRequestTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: WorkspacePropertiesInput;
-  /** The resource model definition representing SKU */
-  sku?: WorkspacesCreateRequestSku;
 }
-export const WorkspacesCreateRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListWorkspaceByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    tags: S.optional(WorkspacesCreateRequestTagsMap),
-    location: S.String,
-    properties: S.optional(WorkspacePropertiesInput),
-    sku: S.optional(WorkspacesCreateRequestSku),
   }).pipe(
     T.Http({
-      method: "PUT",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTFirmwareDefense/workspaces/{workspaceName}",
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTFirmwareDefense/workspaces",
       code: 200,
       apiVersion: "2025-08-02",
     }),
   ),
 ).annotate({
-  identifier: "WorkspacesCreateRequest",
-}) as any as S.Schema<WorkspacesCreateRequest>;
+  identifier: "ListWorkspaceByResourceGroupRequest",
+}) as any as S.Schema<ListWorkspaceByResourceGroupRequest>;
 
 /** Resource tags. */
-export type WorkspacesCreateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const WorkspacesCreateResponseTagsMap = /*@__PURE__*/ S.Record(
+export type WorkspaceTagsMap = { [key: string]: string | undefined };
+export const WorkspaceTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<WorkspacesCreateResponseTagsMap>;
-
-/** Workspace properties. */
-export interface WorkspaceProperties {
-  /** Provisioning state of the resource. */
-  provisioningState?: ProvisioningState;
-}
-export const WorkspaceProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    provisioningState: S.optional(ProvisioningState),
-  }),
-).annotate({
-  identifier: "WorkspaceProperties",
-}) as any as S.Schema<WorkspaceProperties>;
+) as any as S.Schema<WorkspaceTagsMap>;
 
 /** The resource model definition representing SKU */
-export interface WorkspacesCreateResponseSku {
-  /** The name of the SKU. E.g. P3. It is typically a letter+number code */
-  name: string;
-  tier?: SkuTier;
-  /** The SKU size. When the name field is the combination of tier and some other value, this would be the standalone code. */
-  size?: string;
-  /** If the service has different generations of hardware, for the same SKU, then that can be captured here. */
-  family?: string;
-  /** If the SKU supports scale out/in then the capacity integer should be included. If scale out/in is not possible for the resource this may be omitted. */
-  capacity?: number;
-}
-export const WorkspacesCreateResponseSku = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    name: S.String,
-    tier: S.optional(SkuTier),
-    size: S.optional(S.String),
-    family: S.optional(S.String),
-    capacity: S.optional(S.Number),
-  }),
-).annotate({
-  identifier: "WorkspacesCreateResponseSku",
-}) as any as S.Schema<WorkspacesCreateResponseSku>;
+export type WorkspaceSku = CreateWorkspaceResponseSku;
+export const WorkspaceSku = CreateWorkspaceResponseSku;
 
-export interface WorkspacesCreateResponse {
+/** Firmware analysis workspace. */
+export interface Workspace {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -1856,60 +1969,243 @@ export interface WorkspacesCreateResponse {
   /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
   systemData?: SystemData;
   /** Resource tags. */
-  tags?: WorkspacesCreateResponseTagsMap;
+  tags?: WorkspaceTagsMap;
   /** The geo-location where the resource lives */
   location: string;
   /** The resource-specific properties for this resource. */
   properties?: WorkspaceProperties;
   /** The resource model definition representing SKU */
-  sku?: WorkspacesCreateResponseSku;
+  sku?: CreateWorkspaceResponseSku;
 }
-export const WorkspacesCreateResponse = /*@__PURE__*/ S.suspend(() =>
+export const Workspace = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(WorkspacesCreateResponseTagsMap),
+    tags: S.optional(WorkspaceTagsMap),
     location: S.String,
     properties: S.optional(WorkspaceProperties),
-    sku: S.optional(WorkspacesCreateResponseSku),
+    sku: S.optional(CreateWorkspaceResponseSku),
+  }),
+).annotate({ identifier: "Workspace" }) as any as S.Schema<Workspace>;
+
+/** The Workspace items on this page */
+export type WorkspaceListResultValueList = Array<Workspace>;
+export const WorkspaceListResultValueList = /*@__PURE__*/ S.Array(
+  Workspace,
+) as any as S.Schema<WorkspaceListResultValueList>;
+
+/** The response of a Workspace list operation. */
+export interface WorkspaceListResult {
+  /** The Workspace items on this page */
+  value: WorkspaceListResultValueList;
+  /** The link to the next page of items */
+  nextLink?: string;
+}
+export const WorkspaceListResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: WorkspaceListResultValueList,
+    nextLink: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "WorkspacesCreateResponse",
-}) as any as S.Schema<WorkspacesCreateResponse>;
+  identifier: "WorkspaceListResult",
+}) as any as S.Schema<WorkspaceListResult>;
 
-export interface WorkspacesDeleteRequest {
+export interface ListWorkspaceBySubscriptionRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+}
+export const ListWorkspaceBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.IoTFirmwareDefense/workspaces",
+      code: 200,
+      apiVersion: "2025-08-02",
+    }),
+  ),
+).annotate({
+  identifier: "ListWorkspaceBySubscriptionRequest",
+}) as any as S.Schema<ListWorkspaceBySubscriptionRequest>;
+
+export interface UpdateFirmwareRequest {
   /** The ID of the target subscription. The value must be an UUID. */
   subscriptionId: string;
   /** The name of the resource group. The name is case insensitive. */
   resourceGroupName: string;
   /** The name of the firmware analysis workspace. */
   workspaceName: string;
+  /** The id of the firmware. */
+  firmwareId: string;
+  /** The editable properties of a firmware */
+  properties?: FirmwarePropertiesInput;
 }
-export const WorkspacesDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const UpdateFirmwareRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     workspaceName: S.String.pipe(T.Label()),
+    firmwareId: S.String.pipe(T.Label()),
+    properties: S.optional(FirmwarePropertiesInput),
   }).pipe(
     T.Http({
-      method: "DELETE",
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTFirmwareDefense/workspaces/{workspaceName}/firmwares/{firmwareId}",
+      code: 200,
+      apiVersion: "2025-08-02",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateFirmwareRequest",
+}) as any as S.Schema<UpdateFirmwareRequest>;
+
+export interface UpdateFirmwareResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** The resource-specific properties for this resource. */
+  properties?: FirmwareProperties;
+}
+export const UpdateFirmwareResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    properties: S.optional(FirmwareProperties),
+  }),
+).annotate({
+  identifier: "UpdateFirmwareResponse",
+}) as any as S.Schema<UpdateFirmwareResponse>;
+
+/** This field is required to be implemented by the Resource Provider if the service has more than one tier, but is not required on a PUT. */
+export type AzureResourceManagerCommonTypesSkuUpdateTier =
+  | "Free"
+  | "Basic"
+  | "Standard"
+  | "Premium";
+export const AzureResourceManagerCommonTypesSkuUpdateTier =
+  /*@__PURE__*/ S.String;
+
+/** The resource model definition representing SKU */
+export interface AzureResourceManagerCommonTypesSkuUpdate {
+  /** The name of the SKU. Ex - P3. It is typically a letter+number code */
+  name?: string;
+  /** This field is required to be implemented by the Resource Provider if the service has more than one tier, but is not required on a PUT. */
+  tier?: AzureResourceManagerCommonTypesSkuUpdateTier | (string & {});
+  /** The SKU size. When the name field is the combination of tier and some other value, this would be the standalone code. */
+  size?: string;
+  /** If the service has different generations of hardware, for the same SKU, then that can be captured here. */
+  family?: string;
+  /** If the SKU supports scale out/in then the capacity integer should be included. If scale out/in is not possible for the resource this may be omitted. */
+  capacity?: number;
+}
+export const AzureResourceManagerCommonTypesSkuUpdate = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      name: S.optional(S.String),
+      tier: S.optional(AzureResourceManagerCommonTypesSkuUpdateTier),
+      size: S.optional(S.String),
+      family: S.optional(S.String),
+      capacity: S.optional(S.Number),
+    }),
+).annotate({
+  identifier: "AzureResourceManagerCommonTypesSkuUpdate",
+}) as any as S.Schema<AzureResourceManagerCommonTypesSkuUpdate>;
+
+/** Resource tags. */
+export type UpdateWorkspaceRequestTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateWorkspaceRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateWorkspaceRequestTagsMap>;
+
+export interface UpdateWorkspaceRequest {
+  /** The ID of the target subscription. The value must be an UUID. */
+  subscriptionId: string;
+  /** The name of the resource group. The name is case insensitive. */
+  resourceGroupName: string;
+  /** The name of the firmware analysis workspace. */
+  workspaceName: string;
+  /** The SKU (Stock Keeping Unit) assigned to this resource. */
+  sku?: AzureResourceManagerCommonTypesSkuUpdate;
+  /** Resource tags. */
+  tags?: UpdateWorkspaceRequestTagsMap;
+}
+export const UpdateWorkspaceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    workspaceName: S.String.pipe(T.Label()),
+    sku: S.optional(AzureResourceManagerCommonTypesSkuUpdate),
+    tags: S.optional(UpdateWorkspaceRequestTagsMap),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
       uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTFirmwareDefense/workspaces/{workspaceName}",
       code: 200,
       apiVersion: "2025-08-02",
     }),
   ),
 ).annotate({
-  identifier: "WorkspacesDeleteRequest",
-}) as any as S.Schema<WorkspacesDeleteRequest>;
+  identifier: "UpdateWorkspaceRequest",
+}) as any as S.Schema<UpdateWorkspaceRequest>;
 
-export interface WorkspacesDeleteResponse {}
-export const WorkspacesDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
+/** Resource tags. */
+export type UpdateWorkspaceResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateWorkspaceResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateWorkspaceResponseTagsMap>;
+
+/** The resource model definition representing SKU */
+export type UpdateWorkspaceResponseSku = CreateWorkspaceResponseSku;
+export const UpdateWorkspaceResponseSku = CreateWorkspaceResponseSku;
+
+export interface UpdateWorkspaceResponse {
+  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
+  id?: string;
+  /** The name of the resource */
+  name?: string;
+  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
+  type?: string;
+  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
+  systemData?: SystemData;
+  /** Resource tags. */
+  tags?: UpdateWorkspaceResponseTagsMap;
+  /** The geo-location where the resource lives */
+  location: string;
+  /** The resource-specific properties for this resource. */
+  properties?: WorkspaceProperties;
+  /** The resource model definition representing SKU */
+  sku?: CreateWorkspaceResponseSku;
+}
+export const UpdateWorkspaceResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateWorkspaceResponseTagsMap),
+    location: S.String,
+    properties: S.optional(WorkspaceProperties),
+    sku: S.optional(CreateWorkspaceResponseSku),
+  }),
 ).annotate({
-  identifier: "WorkspacesDeleteResponse",
-}) as any as S.Schema<WorkspacesDeleteResponse>;
+  identifier: "UpdateWorkspaceResponse",
+}) as any as S.Schema<UpdateWorkspaceResponse>;
 
 export interface WorkspacesGenerateUploadUrlRequest {
   /** The ID of the target subscription. The value must be an UUID. */
@@ -1950,570 +2246,331 @@ export const UrlToken = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "UrlToken" }) as any as S.Schema<UrlToken>;
 
-export interface WorkspacesGetRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the firmware analysis workspace. */
-  workspaceName: string;
-}
-export const WorkspacesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTFirmwareDefense/workspaces/{workspaceName}",
-      code: 200,
-      apiVersion: "2025-08-02",
-    }),
-  ),
-).annotate({
-  identifier: "WorkspacesGetRequest",
-}) as any as S.Schema<WorkspacesGetRequest>;
-
-/** Resource tags. */
-export type WorkspacesGetResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const WorkspacesGetResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<WorkspacesGetResponseTagsMap>;
-
-/** The resource model definition representing SKU */
-export type WorkspacesGetResponseSku = WorkspacesCreateResponseSku;
-export const WorkspacesGetResponseSku = WorkspacesCreateResponseSku;
-
-export interface WorkspacesGetResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: WorkspacesGetResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: WorkspaceProperties;
-  /** The resource model definition representing SKU */
-  sku?: WorkspacesCreateResponseSku;
-}
-export const WorkspacesGetResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(WorkspacesGetResponseTagsMap),
-    location: S.String,
-    properties: S.optional(WorkspaceProperties),
-    sku: S.optional(WorkspacesCreateResponseSku),
-  }),
-).annotate({
-  identifier: "WorkspacesGetResponse",
-}) as any as S.Schema<WorkspacesGetResponse>;
-
-export interface WorkspacesListByResourceGroupRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-}
-export const WorkspacesListByResourceGroupRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTFirmwareDefense/workspaces",
-        code: 200,
-        apiVersion: "2025-08-02",
-      }),
-    ),
-).annotate({
-  identifier: "WorkspacesListByResourceGroupRequest",
-}) as any as S.Schema<WorkspacesListByResourceGroupRequest>;
-
-/** Resource tags. */
-export type WorkspaceTagsMap = { [key: string]: string | undefined };
-export const WorkspaceTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<WorkspaceTagsMap>;
-
-/** The resource model definition representing SKU */
-export type WorkspaceSku = WorkspacesCreateResponseSku;
-export const WorkspaceSku = WorkspacesCreateResponseSku;
-
-/** Firmware analysis workspace. */
-export interface Workspace {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: WorkspaceTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: WorkspaceProperties;
-  /** The resource model definition representing SKU */
-  sku?: WorkspacesCreateResponseSku;
-}
-export const Workspace = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(WorkspaceTagsMap),
-    location: S.String,
-    properties: S.optional(WorkspaceProperties),
-    sku: S.optional(WorkspacesCreateResponseSku),
-  }),
-).annotate({ identifier: "Workspace" }) as any as S.Schema<Workspace>;
-
-/** The Workspace items on this page */
-export type WorkspaceListResultValueList = Array<Workspace>;
-export const WorkspaceListResultValueList = /*@__PURE__*/ S.Array(
-  Workspace,
-) as any as S.Schema<WorkspaceListResultValueList>;
-
-/** The response of a Workspace list operation. */
-export interface WorkspaceListResult {
-  /** The Workspace items on this page */
-  value: WorkspaceListResultValueList;
-  /** The link to the next page of items */
-  nextLink?: string;
-}
-export const WorkspaceListResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: WorkspaceListResultValueList,
-    nextLink: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "WorkspaceListResult",
-}) as any as S.Schema<WorkspaceListResult>;
-
-export interface WorkspacesListBySubscriptionRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-}
-export const WorkspacesListBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.IoTFirmwareDefense/workspaces",
-      code: 200,
-      apiVersion: "2025-08-02",
-    }),
-  ),
-).annotate({
-  identifier: "WorkspacesListBySubscriptionRequest",
-}) as any as S.Schema<WorkspacesListBySubscriptionRequest>;
-
-/** This field is required to be implemented by the Resource Provider if the service has more than one tier, but is not required on a PUT. */
-export type AzureResourceManagerCommonTypesSkuUpdateTier =
-  | "Free"
-  | "Basic"
-  | "Standard"
-  | "Premium";
-export const AzureResourceManagerCommonTypesSkuUpdateTier =
-  /*@__PURE__*/ S.String;
-
-/** The resource model definition representing SKU */
-export interface AzureResourceManagerCommonTypesSkuUpdate {
-  /** The name of the SKU. Ex - P3. It is typically a letter+number code */
-  name?: string;
-  /** This field is required to be implemented by the Resource Provider if the service has more than one tier, but is not required on a PUT. */
-  tier?: AzureResourceManagerCommonTypesSkuUpdateTier | (string & {});
-  /** The SKU size. When the name field is the combination of tier and some other value, this would be the standalone code. */
-  size?: string;
-  /** If the service has different generations of hardware, for the same SKU, then that can be captured here. */
-  family?: string;
-  /** If the SKU supports scale out/in then the capacity integer should be included. If scale out/in is not possible for the resource this may be omitted. */
-  capacity?: number;
-}
-export const AzureResourceManagerCommonTypesSkuUpdate = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      name: S.optional(S.String),
-      tier: S.optional(AzureResourceManagerCommonTypesSkuUpdateTier),
-      size: S.optional(S.String),
-      family: S.optional(S.String),
-      capacity: S.optional(S.Number),
-    }),
-).annotate({
-  identifier: "AzureResourceManagerCommonTypesSkuUpdate",
-}) as any as S.Schema<AzureResourceManagerCommonTypesSkuUpdate>;
-
-/** Resource tags. */
-export type WorkspacesUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const WorkspacesUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<WorkspacesUpdateRequestTagsMap>;
-
-export interface WorkspacesUpdateRequest {
-  /** The ID of the target subscription. The value must be an UUID. */
-  subscriptionId: string;
-  /** The name of the resource group. The name is case insensitive. */
-  resourceGroupName: string;
-  /** The name of the firmware analysis workspace. */
-  workspaceName: string;
-  /** The SKU (Stock Keeping Unit) assigned to this resource. */
-  sku?: AzureResourceManagerCommonTypesSkuUpdate;
-  /** Resource tags. */
-  tags?: WorkspacesUpdateRequestTagsMap;
-}
-export const WorkspacesUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    workspaceName: S.String.pipe(T.Label()),
-    sku: S.optional(AzureResourceManagerCommonTypesSkuUpdate),
-    tags: S.optional(WorkspacesUpdateRequestTagsMap),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTFirmwareDefense/workspaces/{workspaceName}",
-      code: 200,
-      apiVersion: "2025-08-02",
-    }),
-  ),
-).annotate({
-  identifier: "WorkspacesUpdateRequest",
-}) as any as S.Schema<WorkspacesUpdateRequest>;
-
-/** Resource tags. */
-export type WorkspacesUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const WorkspacesUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<WorkspacesUpdateResponseTagsMap>;
-
-/** The resource model definition representing SKU */
-export type WorkspacesUpdateResponseSku = WorkspacesCreateResponseSku;
-export const WorkspacesUpdateResponseSku = WorkspacesCreateResponseSku;
-
-export interface WorkspacesUpdateResponse {
-  /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
-  id?: string;
-  /** The name of the resource */
-  name?: string;
-  /** The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts" */
-  type?: string;
-  /** Azure Resource Manager metadata containing createdBy and modifiedBy information. */
-  systemData?: SystemData;
-  /** Resource tags. */
-  tags?: WorkspacesUpdateResponseTagsMap;
-  /** The geo-location where the resource lives */
-  location: string;
-  /** The resource-specific properties for this resource. */
-  properties?: WorkspaceProperties;
-  /** The resource model definition representing SKU */
-  sku?: WorkspacesCreateResponseSku;
-}
-export const WorkspacesUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    type: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(WorkspacesUpdateResponseTagsMap),
-    location: S.String,
-    properties: S.optional(WorkspaceProperties),
-    sku: S.optional(WorkspacesCreateResponseSku),
-  }),
-).annotate({
-  identifier: "WorkspacesUpdateResponse",
-}) as any as S.Schema<WorkspacesUpdateResponse>;
-
-export type BinaryHardeningListByFirmwareError = AzureOpError;
-/** Lists binary hardening analysis results of a firmware. */
-export const BinaryHardeningListByFirmware: API.OperationMethod<
-  BinaryHardeningListByFirmwareRequest,
-  BinaryHardeningResourceListResult,
-  BinaryHardeningListByFirmwareError,
+export type CreateFirmwareError = AzureOpError;
+/** The operation to create a firmware. */
+export const CreateFirmware: API.OperationMethod<
+  CreateFirmwareRequest,
+  CreateFirmwareResponse,
+  CreateFirmwareError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: BinaryHardeningListByFirmwareRequest,
+  input: CreateFirmwareRequest,
+  output: CreateFirmwareResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateWorkspaceError = AzureOpError;
+/** The operation to create or update a firmware analysis workspace. */
+export const CreateWorkspace: API.OperationMethod<
+  CreateWorkspaceRequest,
+  CreateWorkspaceResponse,
+  CreateWorkspaceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateWorkspaceRequest,
+  output: CreateWorkspaceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteFirmwareError = AzureOpError;
+/** The operation to delete a firmware. */
+export const DeleteFirmware: API.OperationMethod<
+  DeleteFirmwareRequest,
+  DeleteFirmwareResponse,
+  DeleteFirmwareError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteFirmwareRequest,
+  output: DeleteFirmwareResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteWorkspaceError = AzureOpError;
+/** The operation to delete a firmware analysis workspace. */
+export const DeleteWorkspace: API.OperationMethod<
+  DeleteWorkspaceRequest,
+  DeleteWorkspaceResponse,
+  DeleteWorkspaceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteWorkspaceRequest,
+  output: DeleteWorkspaceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetFirmwareError = AzureOpError;
+/** Get firmware. */
+export const GetFirmware: API.OperationMethod<
+  GetFirmwareRequest,
+  GetFirmwareResponse,
+  GetFirmwareError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetFirmwareRequest,
+  output: GetFirmwareResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetSummaryError = AzureOpError;
+/** Get an analysis result summary of a firmware by name. */
+export const GetSummary: API.OperationMethod<
+  GetSummaryRequest,
+  GetSummaryResponse,
+  GetSummaryError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetSummaryRequest,
+  output: GetSummaryResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetUsageMetricsError = AzureOpError;
+/** Gets monthly usage information for a workspace. */
+export const GetUsageMetrics: API.OperationMethod<
+  GetUsageMetricsRequest,
+  GetUsageMetricsResponse,
+  GetUsageMetricsError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetUsageMetricsRequest,
+  output: GetUsageMetricsResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetWorkspaceError = AzureOpError;
+/** Get firmware analysis workspace. */
+export const GetWorkspace: API.OperationMethod<
+  GetWorkspaceRequest,
+  GetWorkspaceResponse,
+  GetWorkspaceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetWorkspaceRequest,
+  output: GetWorkspaceResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListBinaryHardeningByFirmwareError = AzureOpError;
+/** Lists binary hardening analysis results of a firmware. */
+export const ListBinaryHardeningByFirmware: API.OperationMethod<
+  ListBinaryHardeningByFirmwareRequest,
+  BinaryHardeningResourceListResult,
+  ListBinaryHardeningByFirmwareError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListBinaryHardeningByFirmwareRequest,
   output: BinaryHardeningResourceListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type CryptoCertificatesListByFirmwareError = AzureOpError;
+export type ListCryptoCertificateByFirmwareError = AzureOpError;
 /** Lists crypto certificate analysis results of a firmware. */
-export const CryptoCertificatesListByFirmware: API.OperationMethod<
-  CryptoCertificatesListByFirmwareRequest,
+export const ListCryptoCertificateByFirmware: API.OperationMethod<
+  ListCryptoCertificateByFirmwareRequest,
   CryptoCertificateResourceListResult,
-  CryptoCertificatesListByFirmwareError,
+  ListCryptoCertificateByFirmwareError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CryptoCertificatesListByFirmwareRequest,
+  input: ListCryptoCertificateByFirmwareRequest,
   output: CryptoCertificateResourceListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type CryptoKeysListByFirmwareError = AzureOpError;
+export type ListCryptoKeysByFirmwareError = AzureOpError;
 /** Lists crypto key analysis results of a firmware. */
-export const CryptoKeysListByFirmware: API.OperationMethod<
-  CryptoKeysListByFirmwareRequest,
+export const ListCryptoKeysByFirmware: API.OperationMethod<
+  ListCryptoKeysByFirmwareRequest,
   CryptoKeyResourceListResult,
-  CryptoKeysListByFirmwareError,
+  ListCryptoKeysByFirmwareError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CryptoKeysListByFirmwareRequest,
+  input: ListCryptoKeysByFirmwareRequest,
   output: CryptoKeyResourceListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type CvesListByFirmwareError = AzureOpError;
+export type ListCveByFirmwareError = AzureOpError;
 /** Lists CVE analysis results of a firmware. */
-export const CvesListByFirmware: API.OperationMethod<
-  CvesListByFirmwareRequest,
+export const ListCveByFirmware: API.OperationMethod<
+  ListCveByFirmwareRequest,
   CveResourceListResult,
-  CvesListByFirmwareError,
+  ListCveByFirmwareError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CvesListByFirmwareRequest,
+  input: ListCveByFirmwareRequest,
   output: CveResourceListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type FirmwaresCreateError = AzureOpError;
-/** The operation to create a firmware. */
-export const FirmwaresCreate: API.OperationMethod<
-  FirmwaresCreateRequest,
-  FirmwaresCreateResponse,
-  FirmwaresCreateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FirmwaresCreateRequest,
-  output: FirmwaresCreateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type FirmwaresDeleteError = AzureOpError;
-/** The operation to delete a firmware. */
-export const FirmwaresDelete: API.OperationMethod<
-  FirmwaresDeleteRequest,
-  FirmwaresDeleteResponse,
-  FirmwaresDeleteError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FirmwaresDeleteRequest,
-  output: FirmwaresDeleteResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type FirmwaresGetError = AzureOpError;
-/** Get firmware. */
-export const FirmwaresGet: API.OperationMethod<
-  FirmwaresGetRequest,
-  FirmwaresGetResponse,
-  FirmwaresGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FirmwaresGetRequest,
-  output: FirmwaresGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type FirmwaresListByWorkspaceError = AzureOpError;
+export type ListFirmwareByWorkspaceError = AzureOpError;
 /** Lists all of firmwares inside a workspace. */
-export const FirmwaresListByWorkspace: API.OperationMethod<
-  FirmwaresListByWorkspaceRequest,
+export const ListFirmwareByWorkspace: API.OperationMethod<
+  ListFirmwareByWorkspaceRequest,
   FirmwareListResult,
-  FirmwaresListByWorkspaceError,
+  ListFirmwareByWorkspaceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FirmwaresListByWorkspaceRequest,
+  input: ListFirmwareByWorkspaceRequest,
   output: FirmwareListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type FirmwaresUpdateError = AzureOpError;
-/** The operation to update firmware. */
-export const FirmwaresUpdate: API.OperationMethod<
-  FirmwaresUpdateRequest,
-  FirmwaresUpdateResponse,
-  FirmwaresUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: FirmwaresUpdateRequest,
-  output: FirmwaresUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type OperationsListError = AzureOpError;
+export type ListOperationsError = AzureOpError;
 /** List the operations for the provider */
-export const OperationsList: API.OperationMethod<
-  OperationsListRequest,
-  OperationsListResponse,
-  OperationsListError,
+export const ListOperations: API.OperationMethod<
+  ListOperationsRequest,
+  ListOperationsResponse,
+  ListOperationsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OperationsListRequest,
-  output: OperationsListResponse,
+  input: ListOperationsRequest,
+  output: ListOperationsResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type PasswordHashesListByFirmwareError = AzureOpError;
+export type ListPasswordHashByFirmwareError = AzureOpError;
 /** Lists password hash analysis results of a firmware. */
-export const PasswordHashesListByFirmware: API.OperationMethod<
-  PasswordHashesListByFirmwareRequest,
+export const ListPasswordHashByFirmware: API.OperationMethod<
+  ListPasswordHashByFirmwareRequest,
   PasswordHashResourceListResult,
-  PasswordHashesListByFirmwareError,
+  ListPasswordHashByFirmwareError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PasswordHashesListByFirmwareRequest,
+  input: ListPasswordHashByFirmwareRequest,
   output: PasswordHashResourceListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type SbomComponentsListByFirmwareError = AzureOpError;
+export type ListSbomComponentByFirmwareError = AzureOpError;
 /** Lists sbom analysis results of a firmware. */
-export const SbomComponentsListByFirmware: API.OperationMethod<
-  SbomComponentsListByFirmwareRequest,
+export const ListSbomComponentByFirmware: API.OperationMethod<
+  ListSbomComponentByFirmwareRequest,
   SbomComponentResourceListResult,
-  SbomComponentsListByFirmwareError,
+  ListSbomComponentByFirmwareError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SbomComponentsListByFirmwareRequest,
+  input: ListSbomComponentByFirmwareRequest,
   output: SbomComponentResourceListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type SummariesGetError = AzureOpError;
-/** Get an analysis result summary of a firmware by name. */
-export const SummariesGet: API.OperationMethod<
-  SummariesGetRequest,
-  SummariesGetResponse,
-  SummariesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: SummariesGetRequest,
-  output: SummariesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type SummariesListByFirmwareError = AzureOpError;
+export type ListSummaryByFirmwareError = AzureOpError;
 /** Lists analysis result summary names of a firmware. To fetch the full summary data, get that summary by name. */
-export const SummariesListByFirmware: API.OperationMethod<
-  SummariesListByFirmwareRequest,
+export const ListSummaryByFirmware: API.OperationMethod<
+  ListSummaryByFirmwareRequest,
   SummaryResourceListResult,
-  SummariesListByFirmwareError,
+  ListSummaryByFirmwareError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: SummariesListByFirmwareRequest,
+  input: ListSummaryByFirmwareRequest,
   output: SummaryResourceListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type UsageMetricsGetError = AzureOpError;
-/** Gets monthly usage information for a workspace. */
-export const UsageMetricsGet: API.OperationMethod<
-  UsageMetricsGetRequest,
-  UsageMetricsGetResponse,
-  UsageMetricsGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UsageMetricsGetRequest,
-  output: UsageMetricsGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UsageMetricsListByWorkspaceError = AzureOpError;
+export type ListUsageMetricsByWorkspaceError = AzureOpError;
 /** Lists monthly usage information for a workspace. */
-export const UsageMetricsListByWorkspace: API.OperationMethod<
-  UsageMetricsListByWorkspaceRequest,
+export const ListUsageMetricsByWorkspace: API.OperationMethod<
+  ListUsageMetricsByWorkspaceRequest,
   UsageMetricListResult,
-  UsageMetricsListByWorkspaceError,
+  ListUsageMetricsByWorkspaceError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: UsageMetricsListByWorkspaceRequest,
+  input: ListUsageMetricsByWorkspaceRequest,
   output: UsageMetricListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type WorkspacesCreateError = AzureOpError;
-/** The operation to create or update a firmware analysis workspace. */
-export const WorkspacesCreate: API.OperationMethod<
-  WorkspacesCreateRequest,
-  WorkspacesCreateResponse,
-  WorkspacesCreateError,
+export type ListWorkspaceByResourceGroupError = AzureOpError;
+/** Lists all of the firmware analysis workspaces in the specified resource group. */
+export const ListWorkspaceByResourceGroup: API.OperationMethod<
+  ListWorkspaceByResourceGroupRequest,
+  WorkspaceListResult,
+  ListWorkspaceByResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: WorkspacesCreateRequest,
-  output: WorkspacesCreateResponse,
+  input: ListWorkspaceByResourceGroupRequest,
+  output: WorkspaceListResult,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type WorkspacesDeleteError = AzureOpError;
-/** The operation to delete a firmware analysis workspace. */
-export const WorkspacesDelete: API.OperationMethod<
-  WorkspacesDeleteRequest,
-  WorkspacesDeleteResponse,
-  WorkspacesDeleteError,
+export type ListWorkspaceBySubscriptionError = AzureOpError;
+/** Lists all of the firmware analysis workspaces in the specified subscription. */
+export const ListWorkspaceBySubscription: API.OperationMethod<
+  ListWorkspaceBySubscriptionRequest,
+  WorkspaceListResult,
+  ListWorkspaceBySubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: WorkspacesDeleteRequest,
-  output: WorkspacesDeleteResponse,
+  input: ListWorkspaceBySubscriptionRequest,
+  output: WorkspaceListResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateFirmwareError = AzureOpError;
+/** The operation to update firmware. */
+export const UpdateFirmware: API.OperationMethod<
+  UpdateFirmwareRequest,
+  UpdateFirmwareResponse,
+  UpdateFirmwareError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateFirmwareRequest,
+  output: UpdateFirmwareResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateWorkspaceError = AzureOpError;
+/** The operation to update a firmware analysis workspaces. */
+export const UpdateWorkspace: API.OperationMethod<
+  UpdateWorkspaceRequest,
+  UpdateWorkspaceResponse,
+  UpdateWorkspaceError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateWorkspaceRequest,
+  output: UpdateWorkspaceResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -2529,66 +2586,6 @@ export const WorkspacesGenerateUploadUrl: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: WorkspacesGenerateUploadUrlRequest,
   output: UrlToken,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkspacesGetError = AzureOpError;
-/** Get firmware analysis workspace. */
-export const WorkspacesGet: API.OperationMethod<
-  WorkspacesGetRequest,
-  WorkspacesGetResponse,
-  WorkspacesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkspacesGetRequest,
-  output: WorkspacesGetResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkspacesListByResourceGroupError = AzureOpError;
-/** Lists all of the firmware analysis workspaces in the specified resource group. */
-export const WorkspacesListByResourceGroup: API.OperationMethod<
-  WorkspacesListByResourceGroupRequest,
-  WorkspaceListResult,
-  WorkspacesListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkspacesListByResourceGroupRequest,
-  output: WorkspaceListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkspacesListBySubscriptionError = AzureOpError;
-/** Lists all of the firmware analysis workspaces in the specified subscription. */
-export const WorkspacesListBySubscription: API.OperationMethod<
-  WorkspacesListBySubscriptionRequest,
-  WorkspaceListResult,
-  WorkspacesListBySubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkspacesListBySubscriptionRequest,
-  output: WorkspaceListResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type WorkspacesUpdateError = AzureOpError;
-/** The operation to update a firmware analysis workspaces. */
-export const WorkspacesUpdate: API.OperationMethod<
-  WorkspacesUpdateRequest,
-  WorkspacesUpdateResponse,
-  WorkspacesUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: WorkspacesUpdateRequest,
-  output: WorkspacesUpdateResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.modal.proxy#ProxyAddIpRequest": {
@@ -111,7 +112,7 @@
         "smithy.api#documentation": "Proxies"
       }
     },
-    "com.modal.proxy#ProxyCreateRequest": {
+    "com.modal.proxy#CreateProxyRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -157,7 +158,7 @@
         "target": "com.modal.proxy#ProxyIp"
       }
     },
-    "com.modal.proxy#ProxyCreateResponse": {
+    "com.modal.proxy#CreateProxyResponse": {
       "type": "structure",
       "members": {
         "proxy": {
@@ -168,13 +169,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.modal.proxy#ProxyCreate": {
+    "com.modal.proxy#CreateProxy": {
       "type": "operation",
       "input": {
-        "target": "com.modal.proxy#ProxyCreateRequest"
+        "target": "com.modal.proxy#CreateProxyRequest"
       },
       "output": {
-        "target": "com.modal.proxy#ProxyCreateResponse"
+        "target": "com.modal.proxy#CreateProxyResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -184,7 +185,7 @@
         }
       }
     },
-    "com.modal.proxy#ProxyDeleteRequest": {
+    "com.modal.proxy#DeleteProxyRequest": {
       "type": "structure",
       "members": {
         "proxyId": {
@@ -195,10 +196,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.modal.proxy#ProxyDelete": {
+    "com.modal.proxy#DeleteProxy": {
       "type": "operation",
       "input": {
-        "target": "com.modal.proxy#ProxyDeleteRequest"
+        "target": "com.modal.proxy#DeleteProxyRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -211,7 +212,7 @@
         }
       }
     },
-    "com.modal.proxy#ProxyGetRequest": {
+    "com.modal.proxy#GetProxyRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -225,7 +226,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.modal.proxy#ProxyGetResponse": {
+    "com.modal.proxy#GetProxyResponse": {
       "type": "structure",
       "members": {
         "proxy": {
@@ -236,13 +237,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.modal.proxy#ProxyGet": {
+    "com.modal.proxy#GetProxy": {
       "type": "operation",
       "input": {
-        "target": "com.modal.proxy#ProxyGetRequest"
+        "target": "com.modal.proxy#GetProxyRequest"
       },
       "output": {
-        "target": "com.modal.proxy#ProxyGetResponse"
+        "target": "com.modal.proxy#GetProxyResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -348,7 +349,7 @@
         "target": "com.modal.proxy#Proxy"
       }
     },
-    "com.modal.proxy#ProxyListResponse": {
+    "com.modal.proxy#ListProxyResponse": {
       "type": "structure",
       "members": {
         "proxies": {
@@ -359,13 +360,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.modal.proxy#ProxyList": {
+    "com.modal.proxy#ListProxy": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
       },
       "output": {
-        "target": "com.modal.proxy#ProxyListResponse"
+        "target": "com.modal.proxy#ListProxyResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -410,19 +411,19 @@
           "target": "com.modal.proxy#ProxyAddIp"
         },
         {
-          "target": "com.modal.proxy#ProxyCreate"
+          "target": "com.modal.proxy#CreateProxy"
         },
         {
-          "target": "com.modal.proxy#ProxyDelete"
+          "target": "com.modal.proxy#DeleteProxy"
         },
         {
-          "target": "com.modal.proxy#ProxyGet"
+          "target": "com.modal.proxy#GetProxy"
         },
         {
           "target": "com.modal.proxy#ProxyGetOrCreate"
         },
         {
-          "target": "com.modal.proxy#ProxyList"
+          "target": "com.modal.proxy#ListProxy"
         },
         {
           "target": "com.modal.proxy#ProxyRemoveIp"

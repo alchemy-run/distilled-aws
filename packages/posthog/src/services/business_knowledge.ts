@@ -94,80 +94,6 @@ export const BusinessKnowledgeDocumentsSearchListResponse =
     identifier: "BusinessKnowledgeDocumentsSearchListResponse",
   }) as any as S.Schema<BusinessKnowledgeDocumentsSearchListResponse>;
 
-export interface BusinessKnowledgeDocumentsWindowListRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this knowledge document. */
-  id: string;
-  /** Zero-based chunk ordinal to center the window on (from a search result). */
-  around_ordinal: number;
-  /** Number of chunks before and after the center to include. Defaults to 5, clamped to [0, 15]. */
-  radius?: number;
-}
-export const BusinessKnowledgeDocumentsWindowListRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-      around_ordinal: S.Number.pipe(T.Query()),
-      radius: S.optional(S.Number.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/business_knowledge/documents/{id}/window/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "BusinessKnowledgeDocumentsWindowListRequest",
-  }) as any as S.Schema<BusinessKnowledgeDocumentsWindowListRequest>;
-
-/** One chunk in a drill-down window over a single knowledge document. Output-only — the rows come from the `get_document_window` logic helper (a `KnowledgeSearchResult` dataclass), not the ORM, so this is a plain read serializer rather than a `ModelSerializer`. */
-export interface KnowledgeDocumentWindow {
-  /** Stable identifier of this chunk. Same value used in search results. */
-  chunk_id: string;
-  /** Zero-based position of this chunk within its document. Use it as `around_ordinal` to recenter the window. */
-  ordinal: number;
-  /** The chunk's text content. */
-  content: string;
-  /** Breadcrumb of section headings this chunk sits under. Empty when the document has no heading structure. */
-  heading_path: string;
-  /** Human label of the knowledge source this chunk belongs to. */
-  source_name: string;
-  /** Title of the document this chunk belongs to. */
-  document_title: string;
-}
-export const KnowledgeDocumentWindow = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    chunk_id: S.String,
-    ordinal: S.Number,
-    content: S.String,
-    heading_path: S.String,
-    source_name: S.String,
-    document_title: S.String,
-  }),
-).annotate({
-  identifier: "KnowledgeDocumentWindow",
-}) as any as S.Schema<KnowledgeDocumentWindow>;
-
-export type BusinessKnowledgeDocumentsWindowListResponseBodyList =
-  Array<KnowledgeDocumentWindow>;
-export const BusinessKnowledgeDocumentsWindowListResponseBodyList =
-  /*@__PURE__*/ S.Array(
-    KnowledgeDocumentWindow,
-  ) as any as S.Schema<BusinessKnowledgeDocumentsWindowListResponseBodyList>;
-
-export type BusinessKnowledgeDocumentsWindowListResponse =
-  BusinessKnowledgeDocumentsWindowListResponseBodyList;
-export const BusinessKnowledgeDocumentsWindowListResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    BusinessKnowledgeDocumentsWindowListResponseBodyList.pipe(
-      T.RawResponseRoot(),
-    ),
-  ).annotate({
-    identifier: "BusinessKnowledgeDocumentsWindowListResponse",
-  }) as any as S.Schema<BusinessKnowledgeDocumentsWindowListResponse>;
-
 export interface BusinessKnowledgeGapSuggestionsAcceptCreateRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
@@ -269,226 +195,6 @@ export const GapTopicActionResult = /*@__PURE__*/ S.suspend(() =>
   identifier: "GapTopicActionResult",
 }) as any as S.Schema<GapTopicActionResult>;
 
-export interface BusinessKnowledgeGapSuggestionsDismissCreateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this knowledge gap suggestion. */
-  id: string;
-}
-export const BusinessKnowledgeGapSuggestionsDismissCreateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/api/projects/{project_id}/business_knowledge/gap_suggestions/{id}/dismiss/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "BusinessKnowledgeGapSuggestionsDismissCreateRequest",
-  }) as any as S.Schema<BusinessKnowledgeGapSuggestionsDismissCreateRequest>;
-
-export interface BusinessKnowledgeGapSuggestionsDismissTopicCreateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** The normalized topic key identifying the gap cluster to act on. */
-  normalized_topic: string;
-  /** Optional knowledge source to link when accepting. */
-  resolved_source_id?: string | null;
-}
-export const BusinessKnowledgeGapSuggestionsDismissTopicCreateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      normalized_topic: S.String,
-      resolved_source_id: S.optional(S.NullOr(S.String)),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/api/projects/{project_id}/business_knowledge/gap_suggestions/dismiss_topic/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "BusinessKnowledgeGapSuggestionsDismissTopicCreateRequest",
-  }) as any as S.Schema<BusinessKnowledgeGapSuggestionsDismissTopicCreateRequest>;
-
-export interface BusinessKnowledgeGapSuggestionsListRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** Number of results to return per page. */
-  limit?: number;
-  /** The initial index from which to return the results. */
-  offset?: number;
-  /** When provided, returns per-ticket gap rows instead of aggregated view. Requires `ticket:read` scope in addition to `business_knowledge:read`. */
-  ticket_id?: string;
-}
-export const BusinessKnowledgeGapSuggestionsListRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      limit: S.optional(S.Number.pipe(T.Query())),
-      offset: S.optional(S.Number.pipe(T.Query())),
-      ticket_id: S.optional(S.String.pipe(T.Query())),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/business_knowledge/gap_suggestions/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "BusinessKnowledgeGapSuggestionsListRequest",
-  }) as any as S.Schema<BusinessKnowledgeGapSuggestionsListRequest>;
-
-export type PaginatedKnowledgeGapSuggestionListResultsList =
-  Array<KnowledgeGapSuggestion>;
-export const PaginatedKnowledgeGapSuggestionListResultsList =
-  /*@__PURE__*/ S.Array(
-    KnowledgeGapSuggestion,
-  ) as any as S.Schema<PaginatedKnowledgeGapSuggestionListResultsList>;
-
-export interface PaginatedKnowledgeGapSuggestionList {
-  count: number;
-  next?: string | null;
-  previous?: string | null;
-  results: PaginatedKnowledgeGapSuggestionListResultsList;
-}
-export const PaginatedKnowledgeGapSuggestionList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    count: S.Number,
-    next: S.optional(S.NullOr(S.String)),
-    previous: S.optional(S.NullOr(S.String)),
-    results: PaginatedKnowledgeGapSuggestionListResultsList,
-  }),
-).annotate({
-  identifier: "PaginatedKnowledgeGapSuggestionList",
-}) as any as S.Schema<PaginatedKnowledgeGapSuggestionList>;
-
-export interface BusinessKnowledgeSourcesCreateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** Short human label for the source. Shown in the settings list and in agent citations. */
-  name: string;
-  /** Raw text to index. Capped at 1 MB; larger payloads should be split into multiple sources or wait for URL/file support in Stage 2/3. */
-  text: string;
-  /** When true, this source's content is injected into every support reply prompt as general context (tone, policies, direction). */
-  always_include?: boolean;
-}
-export const BusinessKnowledgeSourcesCreateRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      name: S.String,
-      text: S.String,
-      always_include: S.optional(S.Boolean),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/api/projects/{project_id}/business_knowledge/sources/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "BusinessKnowledgeSourcesCreateRequest",
-}) as any as S.Schema<BusinessKnowledgeSourcesCreateRequest>;
-
-/** * `text` - Text * `url` - URL * `file` - File */
-export type KnowledgeSourceSourceTypeEnum = "text" | "url" | "file";
-export const KnowledgeSourceSourceTypeEnum = /*@__PURE__*/ S.String;
-
-/** * `pending` - Pending * `processing` - Processing * `ready` - Ready * `error` - Error */
-export type KnowledgeSourceStatusEnum =
-  | "pending"
-  | "processing"
-  | "ready"
-  | "error";
-export const KnowledgeSourceStatusEnum = /*@__PURE__*/ S.String;
-
-/** * `success` - Success * `not_modified` - Not modified * `error` - Error */
-export type LastRefreshStatusEnum = "success" | "not_modified" | "error";
-export const LastRefreshStatusEnum = /*@__PURE__*/ S.String;
-
-/** * `manual` - Manual only * `1h` - Every hour * `6h` - Every 6 hours * `24h` - Every day * `7d` - Every week */
-export type RefreshIntervalEnum = "manual" | "1h" | "6h" | "24h" | "7d";
-export const RefreshIntervalEnum = /*@__PURE__*/ S.String;
-
-export type EmbeddingStatusEnum = "pending" | "completed" | "disabled";
-export const EmbeddingStatusEnum = /*@__PURE__*/ S.String;
-
-/** * `single` - Single page * `sitemap` - Sitemap * `same_origin` - Same origin crawl * `github_repo` - GitHub repository */
-export type CrawlModeEnum =
-  | "single"
-  | "sitemap"
-  | "same_origin"
-  | "github_repo";
-export const CrawlModeEnum = /*@__PURE__*/ S.String;
-
-export interface KnowledgeSource {
-  id: string;
-  team_id: number;
-  name: string;
-  source_type: KnowledgeSourceSourceTypeEnum;
-  status: KnowledgeSourceStatusEnum;
-  error_message: string;
-  /** Number of documents belonging to this source. */
-  document_count: number;
-  /** Number of chunks belonging to this source. */
-  chunk_count: number;
-  created_at: string;
-  updated_at: string | null;
-  source_url: string;
-  last_refresh_at: string | null;
-  last_refresh_status: LastRefreshStatusEnum;
-  last_refresh_error: string;
-  refresh_interval: RefreshIntervalEnum;
-  /** When the background coordinator will next auto-refresh this source. Null for manual sources or sources never refreshed. */
-  next_refresh_at: string | null;
-  /** True when at least one document in this source was flagged unsafe by the content classifier and is therefore excluded from agent search. */
-  has_unsafe_documents: boolean;
-  /** Semantic-index state of this source. A `ready` source serves keyword (full-text) search immediately, but semantic search needs a background job to classify and embed its documents, which can take up to an hour. `pending` — at least one document is still awaiting classification or embedding. `completed` — every eligible document has been submitted to the embedding pipeline. `disabled` — the organization has not approved AI data processing, so embeddings never run and search stays keyword-only. Only meaningful while `status` is `ready`. */
-  embedding_status: EmbeddingStatusEnum;
-  crawl_mode: CrawlModeEnum;
-  crawl_config: unknown;
-  original_filename: string;
-  file_content_type: string;
-  file_size_bytes: number | null;
-  always_include: boolean;
-}
-export const KnowledgeSource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    team_id: S.Number,
-    name: S.String,
-    source_type: KnowledgeSourceSourceTypeEnum,
-    status: KnowledgeSourceStatusEnum,
-    error_message: S.String,
-    document_count: S.Number,
-    chunk_count: S.Number,
-    created_at: S.String,
-    updated_at: S.NullOr(S.String),
-    source_url: S.String,
-    last_refresh_at: S.NullOr(S.String),
-    last_refresh_status: LastRefreshStatusEnum,
-    last_refresh_error: S.String,
-    refresh_interval: RefreshIntervalEnum,
-    next_refresh_at: S.NullOr(S.String),
-    has_unsafe_documents: S.Boolean,
-    embedding_status: EmbeddingStatusEnum,
-    crawl_mode: CrawlModeEnum,
-    crawl_config: S.Unknown,
-    original_filename: S.String,
-    file_content_type: S.String,
-    file_size_bytes: S.NullOr(S.Number),
-    always_include: S.Boolean,
-  }),
-).annotate({
-  identifier: "KnowledgeSource",
-}) as any as S.Schema<KnowledgeSource>;
-
 export interface BusinessKnowledgeSourcesDestroyRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
@@ -518,7 +224,374 @@ export const BusinessKnowledgeSourcesDestroyResponse = /*@__PURE__*/ S.suspend(
   identifier: "BusinessKnowledgeSourcesDestroyResponse",
 }) as any as S.Schema<BusinessKnowledgeSourcesDestroyResponse>;
 
-export interface BusinessKnowledgeSourcesListRequest {
+export interface BusinessKnowledgeSourcesRefreshCreateRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this knowledge source. */
+  id: string;
+}
+export const BusinessKnowledgeSourcesRefreshCreateRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      id: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/projects/{project_id}/business_knowledge/sources/{id}/refresh/",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "BusinessKnowledgeSourcesRefreshCreateRequest",
+  }) as any as S.Schema<BusinessKnowledgeSourcesRefreshCreateRequest>;
+
+/** * `text` - Text * `url` - URL * `file` - File */
+export type SourceTypeEnum = "text" | "url" | "file";
+export const SourceTypeEnum = /*@__PURE__*/ S.String;
+
+/** * `pending` - Pending * `processing` - Processing * `ready` - Ready * `error` - Error */
+export type SourceStatusEnum = "pending" | "processing" | "ready" | "error";
+export const SourceStatusEnum = /*@__PURE__*/ S.String;
+
+/** * `success` - Success * `not_modified` - Not modified * `error` - Error */
+export type RefreshStatusEnum = "success" | "not_modified" | "error";
+export const RefreshStatusEnum = /*@__PURE__*/ S.String;
+
+/** * `manual` - Manual only * `1h` - Every hour * `6h` - Every 6 hours * `24h` - Every day * `7d` - Every week */
+export type RefreshIntervalEnum = "manual" | "1h" | "6h" | "24h" | "7d";
+export const RefreshIntervalEnum = /*@__PURE__*/ S.String;
+
+export type EmbeddingStatusEnum = "pending" | "completed" | "disabled";
+export const EmbeddingStatusEnum = /*@__PURE__*/ S.String;
+
+/** * `single` - Single page * `sitemap` - Sitemap * `same_origin` - Same origin crawl * `github_repo` - GitHub repository */
+export type CrawlModeEnum =
+  | "single"
+  | "sitemap"
+  | "same_origin"
+  | "github_repo";
+export const CrawlModeEnum = /*@__PURE__*/ S.String;
+
+export interface KnowledgeSource {
+  id: string;
+  team_id: number;
+  name: string;
+  source_type: SourceTypeEnum;
+  status: SourceStatusEnum;
+  error_message: string;
+  /** Number of documents belonging to this source. */
+  document_count: number;
+  /** Number of chunks belonging to this source. */
+  chunk_count: number;
+  created_at: string;
+  updated_at: string | null;
+  source_url: string;
+  last_refresh_at: string | null;
+  last_refresh_status: RefreshStatusEnum;
+  last_refresh_error: string;
+  refresh_interval: RefreshIntervalEnum;
+  /** When the background coordinator will next auto-refresh this source. Null for manual sources or sources never refreshed. */
+  next_refresh_at: string | null;
+  /** True when at least one document in this source was flagged unsafe by the content classifier and is therefore excluded from agent search. */
+  has_unsafe_documents: boolean;
+  /** Semantic-index state of this source. A `ready` source serves keyword (full-text) search immediately, but semantic search needs a background job to classify and embed its documents, which can take up to an hour. `pending` — at least one document is still awaiting classification or embedding. `completed` — every eligible document has been submitted to the embedding pipeline. `disabled` — the organization has not approved AI data processing, so embeddings never run and search stays keyword-only. Only meaningful while `status` is `ready`. */
+  embedding_status: EmbeddingStatusEnum;
+  crawl_mode: CrawlModeEnum;
+  crawl_config: unknown;
+  original_filename: string;
+  file_content_type: string;
+  file_size_bytes: number | null;
+  always_include: boolean;
+}
+export const KnowledgeSource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    team_id: S.Number,
+    name: S.String,
+    source_type: SourceTypeEnum,
+    status: SourceStatusEnum,
+    error_message: S.String,
+    document_count: S.Number,
+    chunk_count: S.Number,
+    created_at: S.String,
+    updated_at: S.NullOr(S.String),
+    source_url: S.String,
+    last_refresh_at: S.NullOr(S.String),
+    last_refresh_status: RefreshStatusEnum,
+    last_refresh_error: S.String,
+    refresh_interval: RefreshIntervalEnum,
+    next_refresh_at: S.NullOr(S.String),
+    has_unsafe_documents: S.Boolean,
+    embedding_status: EmbeddingStatusEnum,
+    crawl_mode: CrawlModeEnum,
+    crawl_config: S.Unknown,
+    original_filename: S.String,
+    file_content_type: S.String,
+    file_size_bytes: S.NullOr(S.Number),
+    always_include: S.Boolean,
+  }),
+).annotate({
+  identifier: "KnowledgeSource",
+}) as any as S.Schema<KnowledgeSource>;
+
+export interface CreateBusinessKnowledgeGapSuggestionsDismissRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this knowledge gap suggestion. */
+  id: string;
+}
+export const CreateBusinessKnowledgeGapSuggestionsDismissRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      id: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/projects/{project_id}/business_knowledge/gap_suggestions/{id}/dismiss/",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "CreateBusinessKnowledgeGapSuggestionsDismissRequest",
+  }) as any as S.Schema<CreateBusinessKnowledgeGapSuggestionsDismissRequest>;
+
+export interface CreateBusinessKnowledgeGapSuggestionsDismissTopicRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** The normalized topic key identifying the gap cluster to act on. */
+  normalized_topic: string;
+  /** Optional knowledge source to link when accepting. */
+  resolved_source_id?: string | null;
+}
+export const CreateBusinessKnowledgeGapSuggestionsDismissTopicRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      normalized_topic: S.String,
+      resolved_source_id: S.optional(S.NullOr(S.String)),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/projects/{project_id}/business_knowledge/gap_suggestions/dismiss_topic/",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "CreateBusinessKnowledgeGapSuggestionsDismissTopicRequest",
+  }) as any as S.Schema<CreateBusinessKnowledgeGapSuggestionsDismissTopicRequest>;
+
+export interface CreateBusinessKnowledgeSourceRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** Short human label for the source. Shown in the settings list and in agent citations. */
+  name: string;
+  /** Raw text to index. Capped at 1 MB; larger payloads should be split into multiple sources or wait for URL/file support in Stage 2/3. */
+  text: string;
+  /** When true, this source's content is injected into every support reply prompt as general context (tone, policies, direction). */
+  always_include?: boolean;
+}
+export const CreateBusinessKnowledgeSourceRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      name: S.String,
+      text: S.String,
+      always_include: S.optional(S.Boolean),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/projects/{project_id}/business_knowledge/sources/",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "CreateBusinessKnowledgeSourceRequest",
+}) as any as S.Schema<CreateBusinessKnowledgeSourceRequest>;
+
+export interface GetBusinessKnowledgeSourceRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this knowledge source. */
+  id: string;
+}
+export const GetBusinessKnowledgeSourceRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    project_id: S.String.pipe(T.Label()),
+    id: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/api/projects/{project_id}/business_knowledge/sources/{id}/",
+      code: 200,
+    }),
+  ),
+).annotate({
+  identifier: "GetBusinessKnowledgeSourceRequest",
+}) as any as S.Schema<GetBusinessKnowledgeSourceRequest>;
+
+export interface GetBusinessKnowledgeSourcesTextRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this knowledge source. */
+  id: string;
+}
+export const GetBusinessKnowledgeSourcesTextRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      id: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/projects/{project_id}/business_knowledge/sources/{id}/text/",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "GetBusinessKnowledgeSourcesTextRequest",
+}) as any as S.Schema<GetBusinessKnowledgeSourcesTextRequest>;
+
+export interface GetBusinessKnowledgeSourcesTextResponse {
+  text?: string;
+}
+export const GetBusinessKnowledgeSourcesTextResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      text: S.optional(S.String),
+    }),
+).annotate({
+  identifier: "GetBusinessKnowledgeSourcesTextResponse",
+}) as any as S.Schema<GetBusinessKnowledgeSourcesTextResponse>;
+
+export interface ListBusinessKnowledgeDocumentsWindowRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** A UUID string identifying this knowledge document. */
+  id: string;
+  /** Zero-based chunk ordinal to center the window on (from a search result). */
+  around_ordinal: number;
+  /** Number of chunks before and after the center to include. Defaults to 5, clamped to [0, 15]. */
+  radius?: number;
+}
+export const ListBusinessKnowledgeDocumentsWindowRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      id: S.String.pipe(T.Label()),
+      around_ordinal: S.Number.pipe(T.Query()),
+      radius: S.optional(S.Number.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/projects/{project_id}/business_knowledge/documents/{id}/window/",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "ListBusinessKnowledgeDocumentsWindowRequest",
+  }) as any as S.Schema<ListBusinessKnowledgeDocumentsWindowRequest>;
+
+/** One chunk in a drill-down window over a single knowledge document. Output-only — the rows come from the `get_document_window` logic helper (a `KnowledgeSearchResult` dataclass), not the ORM, so this is a plain read serializer rather than a `ModelSerializer`. */
+export interface KnowledgeDocumentWindow {
+  /** Stable identifier of this chunk. Same value used in search results. */
+  chunk_id: string;
+  /** Zero-based position of this chunk within its document. Use it as `around_ordinal` to recenter the window. */
+  ordinal: number;
+  /** The chunk's text content. */
+  content: string;
+  /** Breadcrumb of section headings this chunk sits under. Empty when the document has no heading structure. */
+  heading_path: string;
+  /** Human label of the knowledge source this chunk belongs to. */
+  source_name: string;
+  /** Title of the document this chunk belongs to. */
+  document_title: string;
+}
+export const KnowledgeDocumentWindow = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    chunk_id: S.String,
+    ordinal: S.Number,
+    content: S.String,
+    heading_path: S.String,
+    source_name: S.String,
+    document_title: S.String,
+  }),
+).annotate({
+  identifier: "KnowledgeDocumentWindow",
+}) as any as S.Schema<KnowledgeDocumentWindow>;
+
+export type ListBusinessKnowledgeDocumentsWindowResponseBodyList =
+  Array<KnowledgeDocumentWindow>;
+export const ListBusinessKnowledgeDocumentsWindowResponseBodyList =
+  /*@__PURE__*/ S.Array(
+    KnowledgeDocumentWindow,
+  ) as any as S.Schema<ListBusinessKnowledgeDocumentsWindowResponseBodyList>;
+
+export type ListBusinessKnowledgeDocumentsWindowResponse =
+  ListBusinessKnowledgeDocumentsWindowResponseBodyList;
+export const ListBusinessKnowledgeDocumentsWindowResponse =
+  /*@__PURE__*/ S.suspend(() =>
+    ListBusinessKnowledgeDocumentsWindowResponseBodyList.pipe(
+      T.RawResponseRoot(),
+    ),
+  ).annotate({
+    identifier: "ListBusinessKnowledgeDocumentsWindowResponse",
+  }) as any as S.Schema<ListBusinessKnowledgeDocumentsWindowResponse>;
+
+export interface ListBusinessKnowledgeGapSuggestionsRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** Number of results to return per page. */
+  limit?: number;
+  /** The initial index from which to return the results. */
+  offset?: number;
+  /** When provided, returns per-ticket gap rows instead of aggregated view. Requires `ticket:read` scope in addition to `business_knowledge:read`. */
+  ticket_id?: string;
+}
+export const ListBusinessKnowledgeGapSuggestionsRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      limit: S.optional(S.Number.pipe(T.Query())),
+      offset: S.optional(S.Number.pipe(T.Query())),
+      ticket_id: S.optional(S.String.pipe(T.Query())),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/projects/{project_id}/business_knowledge/gap_suggestions/",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "ListBusinessKnowledgeGapSuggestionsRequest",
+  }) as any as S.Schema<ListBusinessKnowledgeGapSuggestionsRequest>;
+
+export type PaginatedKnowledgeGapSuggestionListResultsList =
+  Array<KnowledgeGapSuggestion>;
+export const PaginatedKnowledgeGapSuggestionListResultsList =
+  /*@__PURE__*/ S.Array(
+    KnowledgeGapSuggestion,
+  ) as any as S.Schema<PaginatedKnowledgeGapSuggestionListResultsList>;
+
+export interface PaginatedKnowledgeGapSuggestionList {
+  count: number;
+  next?: string | null;
+  previous?: string | null;
+  results: PaginatedKnowledgeGapSuggestionListResultsList;
+}
+export const PaginatedKnowledgeGapSuggestionList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    count: S.Number,
+    next: S.optional(S.NullOr(S.String)),
+    previous: S.optional(S.NullOr(S.String)),
+    results: PaginatedKnowledgeGapSuggestionListResultsList,
+  }),
+).annotate({
+  identifier: "PaginatedKnowledgeGapSuggestionList",
+}) as any as S.Schema<PaginatedKnowledgeGapSuggestionList>;
+
+export interface ListBusinessKnowledgeSourcesRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** Number of results to return per page. */
@@ -526,7 +599,7 @@ export interface BusinessKnowledgeSourcesListRequest {
   /** The initial index from which to return the results. */
   offset?: number;
 }
-export const BusinessKnowledgeSourcesListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListBusinessKnowledgeSourcesRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     limit: S.optional(S.Number.pipe(T.Query())),
@@ -539,8 +612,8 @@ export const BusinessKnowledgeSourcesListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "BusinessKnowledgeSourcesListRequest",
-}) as any as S.Schema<BusinessKnowledgeSourcesListRequest>;
+  identifier: "ListBusinessKnowledgeSourcesRequest",
+}) as any as S.Schema<ListBusinessKnowledgeSourcesRequest>;
 
 export type PaginatedKnowledgeSourceListResultsList = Array<KnowledgeSource>;
 export const PaginatedKnowledgeSourceListResultsList = /*@__PURE__*/ S.Array(
@@ -564,7 +637,7 @@ export const PaginatedKnowledgeSourceList = /*@__PURE__*/ S.suspend(() =>
   identifier: "PaginatedKnowledgeSourceList",
 }) as any as S.Schema<PaginatedKnowledgeSourceList>;
 
-export interface BusinessKnowledgeSourcesPartialUpdateRequest {
+export interface UpdateBusinessKnowledgeSourcesPartialRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** A UUID string identifying this knowledge source. */
@@ -576,7 +649,7 @@ export interface BusinessKnowledgeSourcesPartialUpdateRequest {
   /** When true, this source's content is injected into every support reply prompt as general context. */
   always_include?: boolean;
 }
-export const BusinessKnowledgeSourcesPartialUpdateRequest =
+export const UpdateBusinessKnowledgeSourcesPartialRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
@@ -592,86 +665,8 @@ export const BusinessKnowledgeSourcesPartialUpdateRequest =
       }),
     ),
   ).annotate({
-    identifier: "BusinessKnowledgeSourcesPartialUpdateRequest",
-  }) as any as S.Schema<BusinessKnowledgeSourcesPartialUpdateRequest>;
-
-export interface BusinessKnowledgeSourcesRefreshCreateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this knowledge source. */
-  id: string;
-}
-export const BusinessKnowledgeSourcesRefreshCreateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/api/projects/{project_id}/business_knowledge/sources/{id}/refresh/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "BusinessKnowledgeSourcesRefreshCreateRequest",
-  }) as any as S.Schema<BusinessKnowledgeSourcesRefreshCreateRequest>;
-
-export interface BusinessKnowledgeSourcesRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this knowledge source. */
-  id: string;
-}
-export const BusinessKnowledgeSourcesRetrieveRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/business_knowledge/sources/{id}/",
-        code: 200,
-      }),
-    ),
-).annotate({
-  identifier: "BusinessKnowledgeSourcesRetrieveRequest",
-}) as any as S.Schema<BusinessKnowledgeSourcesRetrieveRequest>;
-
-export interface BusinessKnowledgeSourcesTextRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** A UUID string identifying this knowledge source. */
-  id: string;
-}
-export const BusinessKnowledgeSourcesTextRetrieveRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/business_knowledge/sources/{id}/text/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "BusinessKnowledgeSourcesTextRetrieveRequest",
-  }) as any as S.Schema<BusinessKnowledgeSourcesTextRetrieveRequest>;
-
-export interface BusinessKnowledgeSourcesTextRetrieveResponse {
-  text?: string;
-}
-export const BusinessKnowledgeSourcesTextRetrieveResponse =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      text: S.optional(S.String),
-    }),
-  ).annotate({
-    identifier: "BusinessKnowledgeSourcesTextRetrieveResponse",
-  }) as any as S.Schema<BusinessKnowledgeSourcesTextRetrieveResponse>;
+    identifier: "UpdateBusinessKnowledgeSourcesPartialRequest",
+  }) as any as S.Schema<UpdateBusinessKnowledgeSourcesPartialRequest>;
 
 export type BusinessKnowledgeDocumentsSearchListError = PosthogOpError;
 /** Read-only access to parsed knowledge documents. Exposes hybrid search (``search``) and a drill-down window (``window``) so an agent (PHAI or MCP) can find and explore business knowledge chunks. */
@@ -683,21 +678,6 @@ export const businessKnowledgeDocumentsSearchList: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: BusinessKnowledgeDocumentsSearchListRequest,
   output: BusinessKnowledgeDocumentsSearchListResponse,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BusinessKnowledgeDocumentsWindowListError = PosthogOpError;
-/** Read-only access to parsed knowledge documents. Exposes hybrid search (``search``) and a drill-down window (``window``) so an agent (PHAI or MCP) can find and explore business knowledge chunks. */
-export const businessKnowledgeDocumentsWindowList: API.OperationMethod<
-  BusinessKnowledgeDocumentsWindowListRequest,
-  BusinessKnowledgeDocumentsWindowListResponse,
-  BusinessKnowledgeDocumentsWindowListError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BusinessKnowledgeDocumentsWindowListRequest,
-  output: BusinessKnowledgeDocumentsWindowListResponse,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
@@ -734,66 +714,6 @@ export const businessKnowledgeGapSuggestionsAcceptTopicCreate: API.OperationMeth
   retry: Retry.Retry,
 }));
 
-export type BusinessKnowledgeGapSuggestionsDismissCreateError = PosthogOpError;
-/** Surfaces topics the support AI couldn't answer from the knowledge base. Two list shapes controlled by the ``ticket_id`` query param: - **per-ticket** (``?ticket_id=<uuid>``): individual gap rows for that ticket. - **aggregated** (no ``ticket_id``): gaps grouped by normalized topic with counts, for the Business knowledge suggestions panel. */
-export const businessKnowledgeGapSuggestionsDismissCreate: API.OperationMethod<
-  BusinessKnowledgeGapSuggestionsDismissCreateRequest,
-  KnowledgeGapSuggestion,
-  BusinessKnowledgeGapSuggestionsDismissCreateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BusinessKnowledgeGapSuggestionsDismissCreateRequest,
-  output: KnowledgeGapSuggestion,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BusinessKnowledgeGapSuggestionsDismissTopicCreateError =
-  PosthogOpError;
-/** Dismiss all pending suggestions for a normalized topic cluster. */
-export const businessKnowledgeGapSuggestionsDismissTopicCreate: API.OperationMethod<
-  BusinessKnowledgeGapSuggestionsDismissTopicCreateRequest,
-  GapTopicActionResult,
-  BusinessKnowledgeGapSuggestionsDismissTopicCreateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BusinessKnowledgeGapSuggestionsDismissTopicCreateRequest,
-  output: GapTopicActionResult,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BusinessKnowledgeGapSuggestionsListError = PosthogOpError;
-/** Surfaces topics the support AI couldn't answer from the knowledge base. Two list shapes controlled by the ``ticket_id`` query param: - **per-ticket** (``?ticket_id=<uuid>``): individual gap rows for that ticket. - **aggregated** (no ``ticket_id``): gaps grouped by normalized topic with counts, for the Business knowledge suggestions panel. */
-export const businessKnowledgeGapSuggestionsList: API.OperationMethod<
-  BusinessKnowledgeGapSuggestionsListRequest,
-  PaginatedKnowledgeGapSuggestionList,
-  BusinessKnowledgeGapSuggestionsListError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BusinessKnowledgeGapSuggestionsListRequest,
-  output: PaginatedKnowledgeGapSuggestionList,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BusinessKnowledgeSourcesCreateError = PosthogOpError;
-export const businessKnowledgeSourcesCreate: API.OperationMethod<
-  BusinessKnowledgeSourcesCreateRequest,
-  KnowledgeSource,
-  BusinessKnowledgeSourcesCreateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BusinessKnowledgeSourcesCreateRequest,
-  output: KnowledgeSource,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
 export type BusinessKnowledgeSourcesDestroyError = PosthogOpError;
 export const businessKnowledgeSourcesDestroy: API.OperationMethod<
   BusinessKnowledgeSourcesDestroyRequest,
@@ -803,34 +723,6 @@ export const businessKnowledgeSourcesDestroy: API.OperationMethod<
 > = /*@__PURE__*/ API.make(() => ({
   input: BusinessKnowledgeSourcesDestroyRequest,
   output: BusinessKnowledgeSourcesDestroyResponse,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BusinessKnowledgeSourcesListError = PosthogOpError;
-export const businessKnowledgeSourcesList: API.OperationMethod<
-  BusinessKnowledgeSourcesListRequest,
-  PaginatedKnowledgeSourceList,
-  BusinessKnowledgeSourcesListError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BusinessKnowledgeSourcesListRequest,
-  output: PaginatedKnowledgeSourceList,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type BusinessKnowledgeSourcesPartialUpdateError = PosthogOpError;
-export const businessKnowledgeSourcesPartialUpdate: API.OperationMethod<
-  BusinessKnowledgeSourcesPartialUpdateRequest,
-  KnowledgeSource,
-  BusinessKnowledgeSourcesPartialUpdateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: BusinessKnowledgeSourcesPartialUpdateRequest,
-  output: KnowledgeSource,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
@@ -850,29 +742,132 @@ export const businessKnowledgeSourcesRefreshCreate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type BusinessKnowledgeSourcesRetrieveError = PosthogOpError;
-export const businessKnowledgeSourcesRetrieve: API.OperationMethod<
-  BusinessKnowledgeSourcesRetrieveRequest,
-  KnowledgeSource,
-  BusinessKnowledgeSourcesRetrieveError,
+export type CreateBusinessKnowledgeGapSuggestionsDismissError = PosthogOpError;
+/** Surfaces topics the support AI couldn't answer from the knowledge base. Two list shapes controlled by the ``ticket_id`` query param: - **per-ticket** (``?ticket_id=<uuid>``): individual gap rows for that ticket. - **aggregated** (no ``ticket_id``): gaps grouped by normalized topic with counts, for the Business knowledge suggestions panel. */
+export const createBusinessKnowledgeGapSuggestionsDismiss: API.OperationMethod<
+  CreateBusinessKnowledgeGapSuggestionsDismissRequest,
+  KnowledgeGapSuggestion,
+  CreateBusinessKnowledgeGapSuggestionsDismissError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: BusinessKnowledgeSourcesRetrieveRequest,
+  input: CreateBusinessKnowledgeGapSuggestionsDismissRequest,
+  output: KnowledgeGapSuggestion,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateBusinessKnowledgeGapSuggestionsDismissTopicError =
+  PosthogOpError;
+/** Dismiss all pending suggestions for a normalized topic cluster. */
+export const createBusinessKnowledgeGapSuggestionsDismissTopic: API.OperationMethod<
+  CreateBusinessKnowledgeGapSuggestionsDismissTopicRequest,
+  GapTopicActionResult,
+  CreateBusinessKnowledgeGapSuggestionsDismissTopicError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateBusinessKnowledgeGapSuggestionsDismissTopicRequest,
+  output: GapTopicActionResult,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CreateBusinessKnowledgeSourceError = PosthogOpError;
+export const createBusinessKnowledgeSource: API.OperationMethod<
+  CreateBusinessKnowledgeSourceRequest,
+  KnowledgeSource,
+  CreateBusinessKnowledgeSourceError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CreateBusinessKnowledgeSourceRequest,
   output: KnowledgeSource,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type BusinessKnowledgeSourcesTextRetrieveError = PosthogOpError;
-export const businessKnowledgeSourcesTextRetrieve: API.OperationMethod<
-  BusinessKnowledgeSourcesTextRetrieveRequest,
-  BusinessKnowledgeSourcesTextRetrieveResponse,
-  BusinessKnowledgeSourcesTextRetrieveError,
+export type GetBusinessKnowledgeSourceError = PosthogOpError;
+export const getBusinessKnowledgeSource: API.OperationMethod<
+  GetBusinessKnowledgeSourceRequest,
+  KnowledgeSource,
+  GetBusinessKnowledgeSourceError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: BusinessKnowledgeSourcesTextRetrieveRequest,
-  output: BusinessKnowledgeSourcesTextRetrieveResponse,
+  input: GetBusinessKnowledgeSourceRequest,
+  output: KnowledgeSource,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetBusinessKnowledgeSourcesTextError = PosthogOpError;
+export const getBusinessKnowledgeSourcesText: API.OperationMethod<
+  GetBusinessKnowledgeSourcesTextRequest,
+  GetBusinessKnowledgeSourcesTextResponse,
+  GetBusinessKnowledgeSourcesTextError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetBusinessKnowledgeSourcesTextRequest,
+  output: GetBusinessKnowledgeSourcesTextResponse,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListBusinessKnowledgeDocumentsWindowError = PosthogOpError;
+/** Read-only access to parsed knowledge documents. Exposes hybrid search (``search``) and a drill-down window (``window``) so an agent (PHAI or MCP) can find and explore business knowledge chunks. */
+export const listBusinessKnowledgeDocumentsWindow: API.OperationMethod<
+  ListBusinessKnowledgeDocumentsWindowRequest,
+  ListBusinessKnowledgeDocumentsWindowResponse,
+  ListBusinessKnowledgeDocumentsWindowError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListBusinessKnowledgeDocumentsWindowRequest,
+  output: ListBusinessKnowledgeDocumentsWindowResponse,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListBusinessKnowledgeGapSuggestionsError = PosthogOpError;
+/** Surfaces topics the support AI couldn't answer from the knowledge base. Two list shapes controlled by the ``ticket_id`` query param: - **per-ticket** (``?ticket_id=<uuid>``): individual gap rows for that ticket. - **aggregated** (no ``ticket_id``): gaps grouped by normalized topic with counts, for the Business knowledge suggestions panel. */
+export const listBusinessKnowledgeGapSuggestions: API.OperationMethod<
+  ListBusinessKnowledgeGapSuggestionsRequest,
+  PaginatedKnowledgeGapSuggestionList,
+  ListBusinessKnowledgeGapSuggestionsError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListBusinessKnowledgeGapSuggestionsRequest,
+  output: PaginatedKnowledgeGapSuggestionList,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListBusinessKnowledgeSourcesError = PosthogOpError;
+export const listBusinessKnowledgeSources: API.OperationMethod<
+  ListBusinessKnowledgeSourcesRequest,
+  PaginatedKnowledgeSourceList,
+  ListBusinessKnowledgeSourcesError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListBusinessKnowledgeSourcesRequest,
+  output: PaginatedKnowledgeSourceList,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type UpdateBusinessKnowledgeSourcesPartialError = PosthogOpError;
+export const updateBusinessKnowledgeSourcesPartial: API.OperationMethod<
+  UpdateBusinessKnowledgeSourcesPartialRequest,
+  KnowledgeSource,
+  UpdateBusinessKnowledgeSourcesPartialError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: UpdateBusinessKnowledgeSourcesPartialRequest,
+  output: KnowledgeSource,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,

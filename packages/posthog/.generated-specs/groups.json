@@ -14,10 +14,11 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.posthog.groups#GroupsListRequest": {
+    "com.posthog.groups#ListGroupsRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -80,18 +81,18 @@
       },
       "traits": {}
     },
-    "com.posthog.groups#GroupsListResponseBodyList": {
+    "com.posthog.groups#ListGroupsResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.posthog.groups#Group"
       },
       "traits": {}
     },
-    "com.posthog.groups#GroupsListResponse": {
+    "com.posthog.groups#ListGroupsResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.posthog.groups#GroupsListResponseBodyList",
+          "target": "com.posthog.groups#ListGroupsResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -102,13 +103,13 @@
         "smithy.api#output": {}
       }
     },
-    "com.posthog.groups#GroupsList": {
+    "com.posthog.groups#ListGroups": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.groups#GroupsListRequest"
+        "target": "com.posthog.groups#ListGroupsRequest"
       },
       "output": {
-        "target": "com.posthog.groups#GroupsListResponse"
+        "target": "com.posthog.groups#ListGroupsResponse"
       },
       "errors": [
         {
@@ -130,7 +131,7 @@
         "smithy.api#documentation": "List all groups of a specific group type. You must pass ?group_type_index= in the URL.\nTo get a list of valid group types, call /api/:project_id/groups_types/.\n\nUses forward-only keyset pagination via the `cursor` parameter.\nThe `previous` field in the response envelope is always null."
       }
     },
-    "com.posthog.groups#GroupsCreateRequest": {
+    "com.posthog.groups#CreateGroupRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -155,10 +156,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.groups#GroupsCreate": {
+    "com.posthog.groups#CreateGroup": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.groups#GroupsCreateRequest"
+        "target": "com.posthog.groups#CreateGroupRequest"
       },
       "output": {
         "target": "com.posthog.groups#Group"
@@ -182,7 +183,7 @@
         }
       }
     },
-    "com.posthog.groups#GroupsActivityRetrieveRequest": {
+    "com.posthog.groups#GetGroupsActivityRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -214,10 +215,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.groups#GroupsActivityRetrieve": {
+    "com.posthog.groups#GetGroupsActivity": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.groups#GroupsActivityRetrieveRequest"
+        "target": "com.posthog.groups#GetGroupsActivityRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -303,7 +304,7 @@
         }
       }
     },
-    "com.posthog.groups#GroupsFindRetrieveRequest": {
+    "com.posthog.groups#GetGroupsFindRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -342,10 +343,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.groups#GroupsFindRetrieve": {
+    "com.posthog.groups#GetGroupsFind": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.groups#GroupsFindRetrieveRequest"
+        "target": "com.posthog.groups#GetGroupsFindRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -369,7 +370,7 @@
         }
       }
     },
-    "com.posthog.groups#GroupsPropertyValuesRetrieveRequest": {
+    "com.posthog.groups#GetGroupsPropertyValueRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -385,10 +386,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.groups#GroupsPropertyValuesRetrieve": {
+    "com.posthog.groups#GetGroupsPropertyValue": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.groups#GroupsPropertyValuesRetrieveRequest"
+        "target": "com.posthog.groups#GetGroupsPropertyValueRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -409,7 +410,7 @@
         }
       }
     },
-    "com.posthog.groups#GroupsRelatedRetrieveRequest": {
+    "com.posthog.groups#GetGroupsRelatedRequest": {
       "type": "structure",
       "members": {
         "project_id": {
@@ -441,10 +442,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.posthog.groups#GroupsRelatedRetrieve": {
+    "com.posthog.groups#GetGroupsRelated": {
       "type": "operation",
       "input": {
-        "target": "com.posthog.groups#GroupsRelatedRetrieveRequest"
+        "target": "com.posthog.groups#GetGroupsRelatedRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -574,25 +575,25 @@
       "version": "1.0.0",
       "operations": [
         {
-          "target": "com.posthog.groups#GroupsList"
+          "target": "com.posthog.groups#ListGroups"
         },
         {
-          "target": "com.posthog.groups#GroupsCreate"
+          "target": "com.posthog.groups#CreateGroup"
         },
         {
-          "target": "com.posthog.groups#GroupsActivityRetrieve"
+          "target": "com.posthog.groups#GetGroupsActivity"
         },
         {
           "target": "com.posthog.groups#GroupsDeletePropertyCreate"
         },
         {
-          "target": "com.posthog.groups#GroupsFindRetrieve"
+          "target": "com.posthog.groups#GetGroupsFind"
         },
         {
-          "target": "com.posthog.groups#GroupsPropertyValuesRetrieve"
+          "target": "com.posthog.groups#GetGroupsPropertyValue"
         },
         {
-          "target": "com.posthog.groups#GroupsRelatedRetrieve"
+          "target": "com.posthog.groups#GetGroupsRelated"
         },
         {
           "target": "com.posthog.groups#GroupsUpdatePropertyCreate"

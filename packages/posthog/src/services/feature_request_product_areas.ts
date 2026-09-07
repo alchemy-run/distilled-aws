@@ -11,7 +11,7 @@ import * as Retry from "../retry.ts";
 
 export type { PosthogOpError, PosthogOpContext };
 
-export interface FeatureRequestProductAreasCreateRequest {
+export interface CreateFeatureRequestProductAreasRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** Team-maintained product area name. */
@@ -21,7 +21,7 @@ export interface FeatureRequestProductAreasCreateRequest {
   /** Whether editors can select this product area for new requests. */
   is_active?: boolean;
 }
-export const FeatureRequestProductAreasCreateRequest = /*@__PURE__*/ S.suspend(
+export const CreateFeatureRequestProductAreasRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
@@ -36,8 +36,8 @@ export const FeatureRequestProductAreasCreateRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "FeatureRequestProductAreasCreateRequest",
-}) as any as S.Schema<FeatureRequestProductAreasCreateRequest>;
+  identifier: "CreateFeatureRequestProductAreasRequest",
+}) as any as S.Schema<CreateFeatureRequestProductAreasRequest>;
 
 export interface FeatureRequestProductArea {
   /** Stable product area ID. */
@@ -66,13 +66,13 @@ export const FeatureRequestProductArea = /*@__PURE__*/ S.suspend(() =>
   identifier: "FeatureRequestProductArea",
 }) as any as S.Schema<FeatureRequestProductArea>;
 
-export interface FeatureRequestProductAreasListRequest {
+export interface ListFeatureRequestProductAreasRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** Include inactive product areas. Defaults to false. */
   include_inactive?: boolean;
 }
-export const FeatureRequestProductAreasListRequest = /*@__PURE__*/ S.suspend(
+export const ListFeatureRequestProductAreasRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
@@ -85,56 +85,26 @@ export const FeatureRequestProductAreasListRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "FeatureRequestProductAreasListRequest",
-}) as any as S.Schema<FeatureRequestProductAreasListRequest>;
+  identifier: "ListFeatureRequestProductAreasRequest",
+}) as any as S.Schema<ListFeatureRequestProductAreasRequest>;
 
-export type FeatureRequestProductAreasListResponseBodyList =
+export type ListFeatureRequestProductAreasResponseBodyList =
   Array<FeatureRequestProductArea>;
-export const FeatureRequestProductAreasListResponseBodyList =
+export const ListFeatureRequestProductAreasResponseBodyList =
   /*@__PURE__*/ S.Array(
     FeatureRequestProductArea,
-  ) as any as S.Schema<FeatureRequestProductAreasListResponseBodyList>;
+  ) as any as S.Schema<ListFeatureRequestProductAreasResponseBodyList>;
 
-export type FeatureRequestProductAreasListResponse =
-  FeatureRequestProductAreasListResponseBodyList;
-export const FeatureRequestProductAreasListResponse = /*@__PURE__*/ S.suspend(
+export type ListFeatureRequestProductAreasResponse =
+  ListFeatureRequestProductAreasResponseBodyList;
+export const ListFeatureRequestProductAreasResponse = /*@__PURE__*/ S.suspend(
   () =>
-    FeatureRequestProductAreasListResponseBodyList.pipe(T.RawResponseRoot()),
+    ListFeatureRequestProductAreasResponseBodyList.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "FeatureRequestProductAreasListResponse",
-}) as any as S.Schema<FeatureRequestProductAreasListResponse>;
+  identifier: "ListFeatureRequestProductAreasResponse",
+}) as any as S.Schema<ListFeatureRequestProductAreasResponse>;
 
-export interface FeatureRequestProductAreasPartialUpdateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  id: string;
-  /** Team-maintained product area name. */
-  name?: string;
-  /** Position in product area selectors. Lower values appear first. */
-  display_order?: number;
-  /** Whether editors can select this product area for new requests. */
-  is_active?: boolean;
-}
-export const FeatureRequestProductAreasPartialUpdateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-      name: S.optional(S.String),
-      display_order: S.optional(S.Number),
-      is_active: S.optional(S.Boolean),
-    }).pipe(
-      T.Http({
-        method: "PATCH",
-        uri: "/api/projects/{project_id}/feature_request_product_areas/{id}/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "FeatureRequestProductAreasPartialUpdateRequest",
-  }) as any as S.Schema<FeatureRequestProductAreasPartialUpdateRequest>;
-
-export interface FeatureRequestProductAreasUpdateRequest {
+export interface UpdateFeatureRequestProductAreasRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   id: string;
@@ -145,7 +115,7 @@ export interface FeatureRequestProductAreasUpdateRequest {
   /** Whether editors can select this product area for new requests. */
   is_active?: boolean;
 }
-export const FeatureRequestProductAreasUpdateRequest = /*@__PURE__*/ S.suspend(
+export const UpdateFeatureRequestProductAreasRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
@@ -161,59 +131,89 @@ export const FeatureRequestProductAreasUpdateRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "FeatureRequestProductAreasUpdateRequest",
-}) as any as S.Schema<FeatureRequestProductAreasUpdateRequest>;
+  identifier: "UpdateFeatureRequestProductAreasRequest",
+}) as any as S.Schema<UpdateFeatureRequestProductAreasRequest>;
 
-export type FeatureRequestProductAreasCreateError = PosthogOpError;
-export const featureRequestProductAreasCreate: API.OperationMethod<
-  FeatureRequestProductAreasCreateRequest,
+export interface UpdateFeatureRequestProductAreasPartialRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  id: string;
+  /** Team-maintained product area name. */
+  name?: string;
+  /** Position in product area selectors. Lower values appear first. */
+  display_order?: number;
+  /** Whether editors can select this product area for new requests. */
+  is_active?: boolean;
+}
+export const UpdateFeatureRequestProductAreasPartialRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      id: S.String.pipe(T.Label()),
+      name: S.optional(S.String),
+      display_order: S.optional(S.Number),
+      is_active: S.optional(S.Boolean),
+    }).pipe(
+      T.Http({
+        method: "PATCH",
+        uri: "/api/projects/{project_id}/feature_request_product_areas/{id}/",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "UpdateFeatureRequestProductAreasPartialRequest",
+  }) as any as S.Schema<UpdateFeatureRequestProductAreasPartialRequest>;
+
+export type CreateFeatureRequestProductAreasError = PosthogOpError;
+export const createFeatureRequestProductAreas: API.OperationMethod<
+  CreateFeatureRequestProductAreasRequest,
   FeatureRequestProductArea,
-  FeatureRequestProductAreasCreateError,
+  CreateFeatureRequestProductAreasError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FeatureRequestProductAreasCreateRequest,
+  input: CreateFeatureRequestProductAreasRequest,
   output: FeatureRequestProductArea,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type FeatureRequestProductAreasListError = PosthogOpError;
-export const featureRequestProductAreasList: API.OperationMethod<
-  FeatureRequestProductAreasListRequest,
-  FeatureRequestProductAreasListResponse,
-  FeatureRequestProductAreasListError,
+export type ListFeatureRequestProductAreasError = PosthogOpError;
+export const listFeatureRequestProductAreas: API.OperationMethod<
+  ListFeatureRequestProductAreasRequest,
+  ListFeatureRequestProductAreasResponse,
+  ListFeatureRequestProductAreasError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FeatureRequestProductAreasListRequest,
-  output: FeatureRequestProductAreasListResponse,
+  input: ListFeatureRequestProductAreasRequest,
+  output: ListFeatureRequestProductAreasResponse,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type FeatureRequestProductAreasPartialUpdateError = PosthogOpError;
-export const featureRequestProductAreasPartialUpdate: API.OperationMethod<
-  FeatureRequestProductAreasPartialUpdateRequest,
+export type UpdateFeatureRequestProductAreasError = PosthogOpError;
+export const updateFeatureRequestProductAreas: API.OperationMethod<
+  UpdateFeatureRequestProductAreasRequest,
   FeatureRequestProductArea,
-  FeatureRequestProductAreasPartialUpdateError,
+  UpdateFeatureRequestProductAreasError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FeatureRequestProductAreasPartialUpdateRequest,
+  input: UpdateFeatureRequestProductAreasRequest,
   output: FeatureRequestProductArea,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type FeatureRequestProductAreasUpdateError = PosthogOpError;
-export const featureRequestProductAreasUpdate: API.OperationMethod<
-  FeatureRequestProductAreasUpdateRequest,
+export type UpdateFeatureRequestProductAreasPartialError = PosthogOpError;
+export const updateFeatureRequestProductAreasPartial: API.OperationMethod<
+  UpdateFeatureRequestProductAreasPartialRequest,
   FeatureRequestProductArea,
-  FeatureRequestProductAreasUpdateError,
+  UpdateFeatureRequestProductAreasPartialError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FeatureRequestProductAreasUpdateRequest,
+  input: UpdateFeatureRequestProductAreasPartialRequest,
   output: FeatureRequestProductArea,
   errors: [],
   protocol: PosthogProtocol,

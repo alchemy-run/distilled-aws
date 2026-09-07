@@ -14,13 +14,14 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.appcomplianceautomation#ProviderActionsTriggerEvaluation": {
+    "com.azure.appcomplianceautomation#TriggerProviderActionEvaluation": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appcomplianceautomation#ProviderActionsTriggerEvaluationRequest"
+        "target": "com.azure.appcomplianceautomation#TriggerProviderActionEvaluationRequest"
       },
       "output": {
         "target": "com.azure.appcomplianceautomation#TriggerEvaluationResponse"
@@ -170,11 +171,11 @@
         "smithy.api#documentation": "List of resource ids to be evaluated"
       }
     },
-    "com.azure.appcomplianceautomation#ProviderActionsTriggerEvaluationRequest": {
+    "com.azure.appcomplianceautomation#TriggerProviderActionEvaluationRequest": {
       "type": "structure",
       "members": {
         "resourceIds": {
-          "target": "com.azure.appcomplianceautomation#ProviderActionsTriggerEvaluationRequestResourceIdsList",
+          "target": "com.azure.appcomplianceautomation#TriggerProviderActionEvaluationRequestResourceIdsList",
           "traits": {
             "smithy.api#documentation": "List of resource ids to be evaluated",
             "smithy.api#required": {}
@@ -185,7 +186,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appcomplianceautomation#ProviderActionsTriggerEvaluationRequestResourceIdsList": {
+    "com.azure.appcomplianceautomation#TriggerProviderActionEvaluationRequestResourceIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -194,10 +195,10 @@
         "smithy.api#documentation": "List of resource ids to be evaluated"
       }
     },
-    "com.azure.appcomplianceautomation#WebhookDelete": {
+    "com.azure.appcomplianceautomation#DeleteWebhook": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appcomplianceautomation#WebhookDeleteRequest"
+        "target": "com.azure.appcomplianceautomation#DeleteWebhookRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -213,7 +214,7 @@
         "com.distilled.openapi#apiVersion": "2024-06-27"
       }
     },
-    "com.azure.appcomplianceautomation#WebhookDeleteRequest": {
+    "com.azure.appcomplianceautomation#DeleteWebhookRequest": {
       "type": "structure",
       "members": {
         "reportName": {
@@ -237,13 +238,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appcomplianceautomation#WebhookUpdate": {
+    "com.azure.appcomplianceautomation#UpdateWebhook": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appcomplianceautomation#WebhookUpdateRequest"
+        "target": "com.azure.appcomplianceautomation#UpdateWebhookRequest"
       },
       "output": {
-        "target": "com.azure.appcomplianceautomation#WebhookUpdateResponse"
+        "target": "com.azure.appcomplianceautomation#UpdateWebhookResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -256,7 +257,7 @@
         "com.distilled.openapi#apiVersion": "2024-06-27"
       }
     },
-    "com.azure.appcomplianceautomation#WebhookUpdateResponse": {
+    "com.azure.appcomplianceautomation#UpdateWebhookResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -732,7 +733,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.appcomplianceautomation#WebhookUpdateRequest": {
+    "com.azure.appcomplianceautomation#UpdateWebhookRequest": {
       "type": "structure",
       "members": {
         "reportName": {
@@ -916,13 +917,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appcomplianceautomation#WebhookGet": {
+    "com.azure.appcomplianceautomation#GetWebhook": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appcomplianceautomation#WebhookGetRequest"
+        "target": "com.azure.appcomplianceautomation#GetWebhookRequest"
       },
       "output": {
-        "target": "com.azure.appcomplianceautomation#WebhookGetResponse"
+        "target": "com.azure.appcomplianceautomation#GetWebhookResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -935,7 +936,7 @@
         "com.distilled.openapi#apiVersion": "2024-06-27"
       }
     },
-    "com.azure.appcomplianceautomation#WebhookGetResponse": {
+    "com.azure.appcomplianceautomation#GetWebhookResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -974,7 +975,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.appcomplianceautomation#WebhookGetRequest": {
+    "com.azure.appcomplianceautomation#GetWebhookRequest": {
       "type": "structure",
       "members": {
         "reportName": {
@@ -998,10 +999,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appcomplianceautomation#WebhookList": {
+    "com.azure.appcomplianceautomation#ListWebhook": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appcomplianceautomation#WebhookListRequest"
+        "target": "com.azure.appcomplianceautomation#ListWebhookRequest"
       },
       "output": {
         "target": "com.azure.appcomplianceautomation#WebhookResourceListResult"
@@ -1086,7 +1087,7 @@
         "smithy.api#documentation": "A class represent an AppComplianceAutomation webhook resource."
       }
     },
-    "com.azure.appcomplianceautomation#WebhookListRequest": {
+    "com.azure.appcomplianceautomation#ListWebhookRequest": {
       "type": "structure",
       "members": {
         "reportName": {
@@ -1151,10 +1152,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appcomplianceautomation#ReportVerify": {
+    "com.azure.appcomplianceautomation#VerifyReport": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appcomplianceautomation#ReportVerifyRequest"
+        "target": "com.azure.appcomplianceautomation#VerifyReportRequest"
       },
       "output": {
         "target": "com.azure.appcomplianceautomation#ReportVerificationResult"
@@ -1210,7 +1211,7 @@
         "smithy.api#documentation": "Indicates whether the fix action is Succeeded or Failed."
       }
     },
-    "com.azure.appcomplianceautomation#ReportVerifyRequest": {
+    "com.azure.appcomplianceautomation#VerifyReportRequest": {
       "type": "structure",
       "members": {
         "reportName": {
@@ -1226,10 +1227,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appcomplianceautomation#ReportSyncCertRecord": {
+    "com.azure.appcomplianceautomation#SyncReportCertRecord": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appcomplianceautomation#ReportSyncCertRecordRequest"
+        "target": "com.azure.appcomplianceautomation#SyncReportCertRecordRequest"
       },
       "output": {
         "target": "com.azure.appcomplianceautomation#SyncCertRecordResponse"
@@ -1320,7 +1321,7 @@
         "smithy.api#documentation": "A class represent the control record synchronized from app compliance."
       }
     },
-    "com.azure.appcomplianceautomation#ReportSyncCertRecordRequest": {
+    "com.azure.appcomplianceautomation#SyncReportCertRecordRequest": {
       "type": "structure",
       "members": {
         "reportName": {
@@ -1343,10 +1344,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appcomplianceautomation#SnapshotDownload": {
+    "com.azure.appcomplianceautomation#DownloadSnapshot": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appcomplianceautomation#SnapshotDownloadRequest"
+        "target": "com.azure.appcomplianceautomation#DownloadSnapshotRequest"
       },
       "output": {
         "target": "com.azure.appcomplianceautomation#DownloadResponse"
@@ -1610,7 +1611,7 @@
         "smithy.api#documentation": "Resource Id."
       }
     },
-    "com.azure.appcomplianceautomation#SnapshotDownloadRequest": {
+    "com.azure.appcomplianceautomation#DownloadSnapshotRequest": {
       "type": "structure",
       "members": {
         "reportName": {
@@ -1685,13 +1686,13 @@
         "smithy.api#documentation": "Indicates the download type."
       }
     },
-    "com.azure.appcomplianceautomation#SnapshotGet": {
+    "com.azure.appcomplianceautomation#GetSnapshot": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appcomplianceautomation#SnapshotGetRequest"
+        "target": "com.azure.appcomplianceautomation#GetSnapshotRequest"
       },
       "output": {
-        "target": "com.azure.appcomplianceautomation#SnapshotGetResponse"
+        "target": "com.azure.appcomplianceautomation#GetSnapshotResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -1704,7 +1705,7 @@
         "com.distilled.openapi#apiVersion": "2024-06-27"
       }
     },
-    "com.azure.appcomplianceautomation#SnapshotGetResponse": {
+    "com.azure.appcomplianceautomation#GetSnapshotResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -2786,7 +2787,7 @@
         "smithy.api#documentation": "Single resource Id's metadata."
       }
     },
-    "com.azure.appcomplianceautomation#SnapshotGetRequest": {
+    "com.azure.appcomplianceautomation#GetSnapshotRequest": {
       "type": "structure",
       "members": {
         "reportName": {
@@ -2810,10 +2811,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appcomplianceautomation#SnapshotList": {
+    "com.azure.appcomplianceautomation#ListSnapshot": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appcomplianceautomation#SnapshotListRequest"
+        "target": "com.azure.appcomplianceautomation#ListSnapshotRequest"
       },
       "output": {
         "target": "com.azure.appcomplianceautomation#SnapshotResourceListResult"
@@ -2897,7 +2898,7 @@
         "smithy.api#documentation": "A class represent a AppComplianceAutomation snapshot resource."
       }
     },
-    "com.azure.appcomplianceautomation#SnapshotListRequest": {
+    "com.azure.appcomplianceautomation#ListSnapshotRequest": {
       "type": "structure",
       "members": {
         "reportName": {
@@ -2962,10 +2963,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appcomplianceautomation#ScopingConfigurationDelete": {
+    "com.azure.appcomplianceautomation#DeleteScopingConfiguration": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appcomplianceautomation#ScopingConfigurationDeleteRequest"
+        "target": "com.azure.appcomplianceautomation#DeleteScopingConfigurationRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -2981,7 +2982,7 @@
         "com.distilled.openapi#apiVersion": "2024-06-27"
       }
     },
-    "com.azure.appcomplianceautomation#ScopingConfigurationDeleteRequest": {
+    "com.azure.appcomplianceautomation#DeleteScopingConfigurationRequest": {
       "type": "structure",
       "members": {
         "reportName": {
@@ -3177,13 +3178,13 @@
         "smithy.api#documentation": "List of scoping question answers."
       }
     },
-    "com.azure.appcomplianceautomation#ScopingConfigurationGet": {
+    "com.azure.appcomplianceautomation#GetScopingConfiguration": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appcomplianceautomation#ScopingConfigurationGetRequest"
+        "target": "com.azure.appcomplianceautomation#GetScopingConfigurationRequest"
       },
       "output": {
-        "target": "com.azure.appcomplianceautomation#ScopingConfigurationGetResponse"
+        "target": "com.azure.appcomplianceautomation#GetScopingConfigurationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3196,7 +3197,7 @@
         "com.distilled.openapi#apiVersion": "2024-06-27"
       }
     },
-    "com.azure.appcomplianceautomation#ScopingConfigurationGetResponse": {
+    "com.azure.appcomplianceautomation#GetScopingConfigurationResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3235,7 +3236,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.appcomplianceautomation#ScopingConfigurationGetRequest": {
+    "com.azure.appcomplianceautomation#GetScopingConfigurationRequest": {
       "type": "structure",
       "members": {
         "reportName": {
@@ -3259,10 +3260,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appcomplianceautomation#ScopingConfigurationList": {
+    "com.azure.appcomplianceautomation#ListScopingConfiguration": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appcomplianceautomation#ScopingConfigurationListRequest"
+        "target": "com.azure.appcomplianceautomation#ListScopingConfigurationRequest"
       },
       "output": {
         "target": "com.azure.appcomplianceautomation#ScopingConfigurationResourceListResult"
@@ -3347,7 +3348,7 @@
         "smithy.api#documentation": "A class represent an AppComplianceAutomation scoping configuration resource."
       }
     },
-    "com.azure.appcomplianceautomation#ScopingConfigurationListRequest": {
+    "com.azure.appcomplianceautomation#ListScopingConfigurationRequest": {
       "type": "structure",
       "members": {
         "reportName": {
@@ -3363,10 +3364,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appcomplianceautomation#ReportGetScopingQuestions": {
+    "com.azure.appcomplianceautomation#GetReportScopingQuestions": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appcomplianceautomation#ReportGetScopingQuestionsRequest"
+        "target": "com.azure.appcomplianceautomation#GetReportScopingQuestionsRequest"
       },
       "output": {
         "target": "com.azure.appcomplianceautomation#ScopingQuestions"
@@ -3679,7 +3680,7 @@
         "smithy.api#documentation": "Question input type."
       }
     },
-    "com.azure.appcomplianceautomation#ReportGetScopingQuestionsRequest": {
+    "com.azure.appcomplianceautomation#GetReportScopingQuestionsRequest": {
       "type": "structure",
       "members": {
         "reportName": {
@@ -3750,10 +3751,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appcomplianceautomation#EvidenceDownload": {
+    "com.azure.appcomplianceautomation#DownloadEvidence": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appcomplianceautomation#EvidenceDownloadRequest"
+        "target": "com.azure.appcomplianceautomation#DownloadEvidenceRequest"
       },
       "output": {
         "target": "com.azure.appcomplianceautomation#EvidenceFileDownloadResponse"
@@ -3797,7 +3798,7 @@
         "smithy.api#documentation": "The uri of evidence file"
       }
     },
-    "com.azure.appcomplianceautomation#EvidenceDownloadRequest": {
+    "com.azure.appcomplianceautomation#DownloadEvidenceRequest": {
       "type": "structure",
       "members": {
         "reportName": {
@@ -3833,10 +3834,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appcomplianceautomation#EvidenceDelete": {
+    "com.azure.appcomplianceautomation#DeleteEvidence": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appcomplianceautomation#EvidenceDeleteRequest"
+        "target": "com.azure.appcomplianceautomation#DeleteEvidenceRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3852,7 +3853,7 @@
         "com.distilled.openapi#apiVersion": "2024-06-27"
       }
     },
-    "com.azure.appcomplianceautomation#EvidenceDeleteRequest": {
+    "com.azure.appcomplianceautomation#DeleteEvidenceRequest": {
       "type": "structure",
       "members": {
         "reportName": {
@@ -4089,13 +4090,13 @@
         "smithy.api#documentation": "Evidence's properties."
       }
     },
-    "com.azure.appcomplianceautomation#EvidenceGet": {
+    "com.azure.appcomplianceautomation#GetEvidence": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appcomplianceautomation#EvidenceGetRequest"
+        "target": "com.azure.appcomplianceautomation#GetEvidenceRequest"
       },
       "output": {
-        "target": "com.azure.appcomplianceautomation#EvidenceGetResponse"
+        "target": "com.azure.appcomplianceautomation#GetEvidenceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4108,7 +4109,7 @@
         "com.distilled.openapi#apiVersion": "2024-06-27"
       }
     },
-    "com.azure.appcomplianceautomation#EvidenceGetResponse": {
+    "com.azure.appcomplianceautomation#GetEvidenceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -4147,7 +4148,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.appcomplianceautomation#EvidenceGetRequest": {
+    "com.azure.appcomplianceautomation#GetEvidenceRequest": {
       "type": "structure",
       "members": {
         "reportName": {
@@ -4171,10 +4172,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appcomplianceautomation#EvidenceListByReport": {
+    "com.azure.appcomplianceautomation#ListEvidenceByReport": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appcomplianceautomation#EvidenceListByReportRequest"
+        "target": "com.azure.appcomplianceautomation#ListEvidenceByReportRequest"
       },
       "output": {
         "target": "com.azure.appcomplianceautomation#EvidenceResourceListResult"
@@ -4259,7 +4260,7 @@
         "smithy.api#documentation": "A class represent an AppComplianceAutomation evidence resource."
       }
     },
-    "com.azure.appcomplianceautomation#EvidenceListByReportRequest": {
+    "com.azure.appcomplianceautomation#ListEvidenceByReportRequest": {
       "type": "structure",
       "members": {
         "reportName": {
@@ -4417,10 +4418,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appcomplianceautomation#ReportDelete": {
+    "com.azure.appcomplianceautomation#DeleteReport": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appcomplianceautomation#ReportDeleteRequest"
+        "target": "com.azure.appcomplianceautomation#DeleteReportRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4436,7 +4437,7 @@
         "com.distilled.openapi#apiVersion": "2024-06-27"
       }
     },
-    "com.azure.appcomplianceautomation#ReportDeleteRequest": {
+    "com.azure.appcomplianceautomation#DeleteReportRequest": {
       "type": "structure",
       "members": {
         "reportName": {
@@ -4452,13 +4453,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appcomplianceautomation#ReportUpdate": {
+    "com.azure.appcomplianceautomation#UpdateReport": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appcomplianceautomation#ReportUpdateRequest"
+        "target": "com.azure.appcomplianceautomation#UpdateReportRequest"
       },
       "output": {
-        "target": "com.azure.appcomplianceautomation#ReportUpdateResponse"
+        "target": "com.azure.appcomplianceautomation#UpdateReportResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4471,7 +4472,7 @@
         "com.distilled.openapi#apiVersion": "2024-06-27"
       }
     },
-    "com.azure.appcomplianceautomation#ReportUpdateResponse": {
+    "com.azure.appcomplianceautomation#UpdateReportResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -4510,7 +4511,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.appcomplianceautomation#ReportUpdateRequest": {
+    "com.azure.appcomplianceautomation#UpdateReportRequest": {
       "type": "structure",
       "members": {
         "reportName": {
@@ -4710,13 +4711,13 @@
         "smithy.api#documentation": "List of resource data."
       }
     },
-    "com.azure.appcomplianceautomation#ReportGet": {
+    "com.azure.appcomplianceautomation#GetReport": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appcomplianceautomation#ReportGetRequest"
+        "target": "com.azure.appcomplianceautomation#GetReportRequest"
       },
       "output": {
-        "target": "com.azure.appcomplianceautomation#ReportGetResponse"
+        "target": "com.azure.appcomplianceautomation#GetReportResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4729,7 +4730,7 @@
         "com.distilled.openapi#apiVersion": "2024-06-27"
       }
     },
-    "com.azure.appcomplianceautomation#ReportGetResponse": {
+    "com.azure.appcomplianceautomation#GetReportResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -4768,7 +4769,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.appcomplianceautomation#ReportGetRequest": {
+    "com.azure.appcomplianceautomation#GetReportRequest": {
       "type": "structure",
       "members": {
         "reportName": {
@@ -4784,10 +4785,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appcomplianceautomation#ReportList": {
+    "com.azure.appcomplianceautomation#ListReport": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appcomplianceautomation#ReportListRequest"
+        "target": "com.azure.appcomplianceautomation#ListReportRequest"
       },
       "output": {
         "target": "com.azure.appcomplianceautomation#ReportResourceListResult"
@@ -4872,7 +4873,7 @@
         "smithy.api#documentation": "A class represent an AppComplianceAutomation report resource."
       }
     },
-    "com.azure.appcomplianceautomation#ReportListRequest": {
+    "com.azure.appcomplianceautomation#ListReportRequest": {
       "type": "structure",
       "members": {
         "_skipToken": {
@@ -4929,13 +4930,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appcomplianceautomation#OperationsList": {
+    "com.azure.appcomplianceautomation#ListOperations": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
       },
       "output": {
-        "target": "com.azure.appcomplianceautomation#OperationsListResponse"
+        "target": "com.azure.appcomplianceautomation#ListOperationsResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4948,11 +4949,11 @@
         "com.distilled.openapi#apiVersion": "2024-06-27"
       }
     },
-    "com.azure.appcomplianceautomation#OperationsListResponse": {
+    "com.azure.appcomplianceautomation#ListOperationsResponse": {
       "type": "structure",
       "members": {
         "value": {
-          "target": "com.azure.appcomplianceautomation#OperationsListResponseValueList",
+          "target": "com.azure.appcomplianceautomation#ListOperationsResponseValueList",
           "traits": {
             "smithy.api#documentation": "List of operations supported by the resource provider"
           }
@@ -4968,7 +4969,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.appcomplianceautomation#OperationsListResponseValueList": {
+    "com.azure.appcomplianceautomation#ListOperationsResponseValueList": {
       "type": "list",
       "member": {
         "target": "com.azure.appcomplianceautomation#Operation"
@@ -5153,10 +5154,10 @@
         "smithy.api#documentation": "List of subscription ids to be onboarded"
       }
     },
-    "com.azure.appcomplianceautomation#ProviderActionsListInUseStorageAccounts": {
+    "com.azure.appcomplianceautomation#ListProviderActionInUseStorageAccounts": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appcomplianceautomation#ProviderActionsListInUseStorageAccountsRequest"
+        "target": "com.azure.appcomplianceautomation#ListProviderActionInUseStorageAccountsRequest"
       },
       "output": {
         "target": "com.azure.appcomplianceautomation#ListInUseStorageAccountsResponse"
@@ -5195,11 +5196,11 @@
         "smithy.api#documentation": "The storage account list which in use in related reports."
       }
     },
-    "com.azure.appcomplianceautomation#ProviderActionsListInUseStorageAccountsRequest": {
+    "com.azure.appcomplianceautomation#ListProviderActionInUseStorageAccountsRequest": {
       "type": "structure",
       "members": {
         "subscriptionIds": {
-          "target": "com.azure.appcomplianceautomation#ProviderActionsListInUseStorageAccountsRequestSubscriptionIdsList",
+          "target": "com.azure.appcomplianceautomation#ListProviderActionInUseStorageAccountsRequestSubscriptionIdsList",
           "traits": {
             "smithy.api#documentation": "List of subscription ids to be query. If the list is null or empty, the API will query all the subscriptions of the user."
           }
@@ -5209,7 +5210,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appcomplianceautomation#ProviderActionsListInUseStorageAccountsRequestSubscriptionIdsList": {
+    "com.azure.appcomplianceautomation#ListProviderActionInUseStorageAccountsRequestSubscriptionIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -5218,10 +5219,10 @@
         "smithy.api#documentation": "List of subscription ids to be query. If the list is null or empty, the API will query all the subscriptions of the user."
       }
     },
-    "com.azure.appcomplianceautomation#ProviderActionsGetOverviewStatus": {
+    "com.azure.appcomplianceautomation#GetProviderActionOverviewStatus": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appcomplianceautomation#ProviderActionsGetOverviewStatusRequest"
+        "target": "com.azure.appcomplianceautomation#GetProviderActionOverviewStatusRequest"
       },
       "output": {
         "target": "com.azure.appcomplianceautomation#GetOverviewStatusResponse"
@@ -5280,7 +5281,7 @@
         "smithy.api#documentation": "Single status."
       }
     },
-    "com.azure.appcomplianceautomation#ProviderActionsGetOverviewStatusRequest": {
+    "com.azure.appcomplianceautomation#GetProviderActionOverviewStatusRequest": {
       "type": "structure",
       "members": {
         "type": {
@@ -5294,10 +5295,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appcomplianceautomation#ProviderActionsGetCollectionCount": {
+    "com.azure.appcomplianceautomation#GetProviderActionCollectionCount": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appcomplianceautomation#ProviderActionsGetCollectionCountRequest"
+        "target": "com.azure.appcomplianceautomation#GetProviderActionCollectionCountRequest"
       },
       "output": {
         "target": "com.azure.appcomplianceautomation#GetCollectionCountResponse"
@@ -5327,7 +5328,7 @@
         "smithy.api#documentation": "The get collection count response."
       }
     },
-    "com.azure.appcomplianceautomation#ProviderActionsGetCollectionCountRequest": {
+    "com.azure.appcomplianceautomation#GetProviderActionCollectionCountRequest": {
       "type": "structure",
       "members": {
         "type": {
@@ -5341,13 +5342,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.appcomplianceautomation#ProviderActionsCheckNameAvailability": {
+    "com.azure.appcomplianceautomation#CheckProviderActionNameAvailability": {
       "type": "operation",
       "input": {
-        "target": "com.azure.appcomplianceautomation#ProviderActionsCheckNameAvailabilityRequest"
+        "target": "com.azure.appcomplianceautomation#CheckProviderActionNameAvailabilityRequest"
       },
       "output": {
-        "target": "com.azure.appcomplianceautomation#ProviderActionsCheckNameAvailabilityResponse"
+        "target": "com.azure.appcomplianceautomation#CheckProviderActionNameAvailabilityResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5360,7 +5361,7 @@
         "com.distilled.openapi#apiVersion": "2024-06-27"
       }
     },
-    "com.azure.appcomplianceautomation#ProviderActionsCheckNameAvailabilityResponse": {
+    "com.azure.appcomplianceautomation#CheckProviderActionNameAvailabilityResponse": {
       "type": "structure",
       "members": {
         "nameAvailable": {
@@ -5370,7 +5371,7 @@
           }
         },
         "reason": {
-          "target": "com.azure.appcomplianceautomation#ProviderActionsCheckNameAvailabilityResponseReason",
+          "target": "com.azure.appcomplianceautomation#CheckProviderActionNameAvailabilityResponseReason",
           "traits": {
             "smithy.api#documentation": "The reason why the given name is not available."
           }
@@ -5386,7 +5387,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.appcomplianceautomation#ProviderActionsCheckNameAvailabilityResponseReason": {
+    "com.azure.appcomplianceautomation#CheckProviderActionNameAvailabilityResponseReason": {
       "type": "enum",
       "members": {
         "INVALID": {
@@ -5406,7 +5407,7 @@
         "smithy.api#documentation": "The reason why the given name is not available."
       }
     },
-    "com.azure.appcomplianceautomation#ProviderActionsCheckNameAvailabilityRequest": {
+    "com.azure.appcomplianceautomation#CheckProviderActionNameAvailabilityRequest": {
       "type": "structure",
       "members": {
         "name": {
@@ -5431,106 +5432,106 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.appcomplianceautomation#ProviderActionsTriggerEvaluation"
+          "target": "com.azure.appcomplianceautomation#TriggerProviderActionEvaluation"
         },
         {
-          "target": "com.azure.appcomplianceautomation#WebhookDelete"
+          "target": "com.azure.appcomplianceautomation#DeleteWebhook"
         },
         {
-          "target": "com.azure.appcomplianceautomation#WebhookUpdate"
+          "target": "com.azure.appcomplianceautomation#UpdateWebhook"
         },
         {
           "target": "com.azure.appcomplianceautomation#WebhookCreateOrUpdate"
         },
         {
-          "target": "com.azure.appcomplianceautomation#WebhookGet"
+          "target": "com.azure.appcomplianceautomation#GetWebhook"
         },
         {
-          "target": "com.azure.appcomplianceautomation#WebhookList"
+          "target": "com.azure.appcomplianceautomation#ListWebhook"
         },
         {
-          "target": "com.azure.appcomplianceautomation#ReportVerify"
+          "target": "com.azure.appcomplianceautomation#VerifyReport"
         },
         {
-          "target": "com.azure.appcomplianceautomation#ReportSyncCertRecord"
+          "target": "com.azure.appcomplianceautomation#SyncReportCertRecord"
         },
         {
-          "target": "com.azure.appcomplianceautomation#SnapshotDownload"
+          "target": "com.azure.appcomplianceautomation#DownloadSnapshot"
         },
         {
-          "target": "com.azure.appcomplianceautomation#SnapshotGet"
+          "target": "com.azure.appcomplianceautomation#GetSnapshot"
         },
         {
-          "target": "com.azure.appcomplianceautomation#SnapshotList"
+          "target": "com.azure.appcomplianceautomation#ListSnapshot"
         },
         {
-          "target": "com.azure.appcomplianceautomation#ScopingConfigurationDelete"
+          "target": "com.azure.appcomplianceautomation#DeleteScopingConfiguration"
         },
         {
           "target": "com.azure.appcomplianceautomation#ScopingConfigurationCreateOrUpdate"
         },
         {
-          "target": "com.azure.appcomplianceautomation#ScopingConfigurationGet"
+          "target": "com.azure.appcomplianceautomation#GetScopingConfiguration"
         },
         {
-          "target": "com.azure.appcomplianceautomation#ScopingConfigurationList"
+          "target": "com.azure.appcomplianceautomation#ListScopingConfiguration"
         },
         {
-          "target": "com.azure.appcomplianceautomation#ReportGetScopingQuestions"
+          "target": "com.azure.appcomplianceautomation#GetReportScopingQuestions"
         },
         {
           "target": "com.azure.appcomplianceautomation#ReportFix"
         },
         {
-          "target": "com.azure.appcomplianceautomation#EvidenceDownload"
+          "target": "com.azure.appcomplianceautomation#DownloadEvidence"
         },
         {
-          "target": "com.azure.appcomplianceautomation#EvidenceDelete"
+          "target": "com.azure.appcomplianceautomation#DeleteEvidence"
         },
         {
           "target": "com.azure.appcomplianceautomation#EvidenceCreateOrUpdate"
         },
         {
-          "target": "com.azure.appcomplianceautomation#EvidenceGet"
+          "target": "com.azure.appcomplianceautomation#GetEvidence"
         },
         {
-          "target": "com.azure.appcomplianceautomation#EvidenceListByReport"
+          "target": "com.azure.appcomplianceautomation#ListEvidenceByReport"
         },
         {
           "target": "com.azure.appcomplianceautomation#ReportNestedResourceCheckNameAvailability"
         },
         {
-          "target": "com.azure.appcomplianceautomation#ReportDelete"
+          "target": "com.azure.appcomplianceautomation#DeleteReport"
         },
         {
-          "target": "com.azure.appcomplianceautomation#ReportUpdate"
+          "target": "com.azure.appcomplianceautomation#UpdateReport"
         },
         {
           "target": "com.azure.appcomplianceautomation#ReportCreateOrUpdate"
         },
         {
-          "target": "com.azure.appcomplianceautomation#ReportGet"
+          "target": "com.azure.appcomplianceautomation#GetReport"
         },
         {
-          "target": "com.azure.appcomplianceautomation#ReportList"
+          "target": "com.azure.appcomplianceautomation#ListReport"
         },
         {
-          "target": "com.azure.appcomplianceautomation#OperationsList"
+          "target": "com.azure.appcomplianceautomation#ListOperations"
         },
         {
           "target": "com.azure.appcomplianceautomation#ProviderActionsOnboard"
         },
         {
-          "target": "com.azure.appcomplianceautomation#ProviderActionsListInUseStorageAccounts"
+          "target": "com.azure.appcomplianceautomation#ListProviderActionInUseStorageAccounts"
         },
         {
-          "target": "com.azure.appcomplianceautomation#ProviderActionsGetOverviewStatus"
+          "target": "com.azure.appcomplianceautomation#GetProviderActionOverviewStatus"
         },
         {
-          "target": "com.azure.appcomplianceautomation#ProviderActionsGetCollectionCount"
+          "target": "com.azure.appcomplianceautomation#GetProviderActionCollectionCount"
         },
         {
-          "target": "com.azure.appcomplianceautomation#ProviderActionsCheckNameAvailability"
+          "target": "com.azure.appcomplianceautomation#CheckProviderActionNameAvailability"
         }
       ],
       "traits": {

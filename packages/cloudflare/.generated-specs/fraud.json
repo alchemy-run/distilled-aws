@@ -14,25 +14,18 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "keyDictionary": {
+      "authenticationSettings": "authentication_settings",
+      "failureCriteria": "failure_criteria",
+      "statusCodes": "status_codes",
+      "successCriteria": "success_criteria",
+      "userProfiles": "user_profiles",
+      "usernameExpressions": "username_expressions"
+    },
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.cloudflare.fraud#GetRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.fraud#GetResponseAuthenticationSettingsFailureCriteriaKind": {
       "type": "enum",
       "members": {
@@ -141,51 +134,6 @@
       "type": "list",
       "member": {
         "target": "smithy.api#String"
-      }
-    },
-    "com.cloudflare.fraud#GetResponse": {
-      "type": "structure",
-      "members": {
-        "authentication_settings": {
-          "target": "com.cloudflare.fraud#GetResponseAuthenticationSettings",
-          "traits": {
-            "smithy.api#documentation": "Configuration for classifying login authentication outcomes based on the origin response."
-          }
-        },
-        "user_profiles": {
-          "target": "com.cloudflare.fraud#GetResponseUserProfiles",
-          "traits": {
-            "smithy.api#documentation": "Whether Fraud User Profiles is enabled for the zone."
-          }
-        },
-        "username_expressions": {
-          "target": "com.cloudflare.fraud#GetResponseUsernameExpressionsList",
-          "traits": {
-            "smithy.api#documentation": "List of expressions to detect usernames in write HTTP requests."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.fraud#Get": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.fraud#GetRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.fraud#GetResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/zones/{zone_id}/fraud_detection/settings",
-          "code": 200
-        },
-        "smithy.api#documentation": "Retrieve Fraud Detection settings for a zone.",
-        "smithy.api#readonly": {}
       }
     },
     "com.cloudflare.fraud#UpdateRequestAuthenticationSettingsFailureCriteriaKind": {
@@ -298,40 +246,6 @@
         "target": "smithy.api#String"
       }
     },
-    "com.cloudflare.fraud#UpdateRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "authentication_settings": {
-          "target": "com.cloudflare.fraud#UpdateRequestAuthenticationSettings",
-          "traits": {
-            "smithy.api#documentation": "Configuration for classifying login authentication outcomes based on the origin response."
-          }
-        },
-        "user_profiles": {
-          "target": "com.cloudflare.fraud#UpdateRequestUserProfiles",
-          "traits": {
-            "smithy.api#documentation": "Whether Fraud User Profiles is enabled for the zone."
-          }
-        },
-        "username_expressions": {
-          "target": "com.cloudflare.fraud#UpdateRequestUsernameExpressionsList",
-          "traits": {
-            "smithy.api#documentation": "List of expressions to detect usernames in write HTTP requests."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.fraud#UpdateResponseAuthenticationSettingsFailureCriteriaKind": {
       "type": "enum",
       "members": {
@@ -442,7 +356,188 @@
         "target": "smithy.api#String"
       }
     },
-    "com.cloudflare.fraud#UpdateResponse": {
+    "com.cloudflare.fraud#Fraud": {
+      "type": "service",
+      "version": "4.0",
+      "operations": [
+        {
+          "target": "com.cloudflare.fraud#GetFraud"
+        },
+        {
+          "target": "com.cloudflare.fraud#PutFraud"
+        }
+      ],
+      "traits": {
+        "com.cloudflare.protocols#v4Json": {},
+        "smithy.api#title": "Cloudflare Fraud",
+        "smithy.api#documentation": "Cloudflare API — fraud resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+      }
+    },
+    "com.cloudflare.fraud#Forbidden": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.cloudflare.fraud#FraudDetectionNotEntitled": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "code": 10400
+          }
+        ]
+      }
+    },
+    "com.cloudflare.fraud#GetFraud": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.fraud#GetFraudRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.fraud#GetFraudResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/fraud_detection/settings",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieve Fraud Detection settings for a zone.",
+        "smithy.api#readonly": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.fraud#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.fraud#GetFraudRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.fraud#GetFraudResponse": {
+      "type": "structure",
+      "members": {
+        "authentication_settings": {
+          "target": "com.cloudflare.fraud#GetResponseAuthenticationSettings",
+          "traits": {
+            "smithy.api#documentation": "Configuration for classifying login authentication outcomes based on the origin response."
+          }
+        },
+        "user_profiles": {
+          "target": "com.cloudflare.fraud#GetResponseUserProfiles",
+          "traits": {
+            "smithy.api#documentation": "Whether Fraud User Profiles is enabled for the zone."
+          }
+        },
+        "username_expressions": {
+          "target": "com.cloudflare.fraud#GetResponseUsernameExpressionsList",
+          "traits": {
+            "smithy.api#documentation": "List of expressions to detect usernames in write HTTP requests."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.fraud#PutFraud": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.fraud#PutFraudRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.fraud#PutFraudResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/zones/{zone_id}/fraud_detection/settings",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update Fraud Detection settings for a zone. Notes on `username_expressions` behavior: - If omitted or set to null, expressions are not modified. - If provided as an empty array `[]`, all expressions will be cleared.",
+        "smithy.api#idempotent": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.fraud#Forbidden"
+        },
+        {
+          "target": "com.cloudflare.fraud#FraudDetectionNotEntitled"
+        }
+      ]
+    },
+    "com.cloudflare.fraud#PutFraudRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "authentication_settings": {
+          "target": "com.cloudflare.fraud#UpdateRequestAuthenticationSettings",
+          "traits": {
+            "smithy.api#documentation": "Configuration for classifying login authentication outcomes based on the origin response."
+          }
+        },
+        "user_profiles": {
+          "target": "com.cloudflare.fraud#UpdateRequestUserProfiles",
+          "traits": {
+            "smithy.api#documentation": "Whether Fraud User Profiles is enabled for the zone."
+          }
+        },
+        "username_expressions": {
+          "target": "com.cloudflare.fraud#UpdateRequestUsernameExpressionsList",
+          "traits": {
+            "smithy.api#documentation": "List of expressions to detect usernames in write HTTP requests."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.fraud#PutFraudResponse": {
       "type": "structure",
       "members": {
         "authentication_settings": {
@@ -467,41 +562,6 @@
       "traits": {
         "smithy.api#output": {},
         "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.fraud#Update": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.fraud#UpdateRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.fraud#UpdateResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "PUT",
-          "uri": "/zones/{zone_id}/fraud_detection/settings",
-          "code": 200
-        },
-        "smithy.api#documentation": "Update Fraud Detection settings for a zone. Notes on `username_expressions` behavior: - If omitted or set to null, expressions are not modified. - If provided as an empty array `[]`, all expressions will be cleared.",
-        "smithy.api#idempotent": {}
-      }
-    },
-    "com.cloudflare.fraud#Fraud": {
-      "type": "service",
-      "version": "4.0",
-      "operations": [
-        {
-          "target": "com.cloudflare.fraud#Get"
-        },
-        {
-          "target": "com.cloudflare.fraud#Update"
-        }
-      ],
-      "traits": {
-        "com.cloudflare.protocols#v4Json": {},
-        "smithy.api#title": "Cloudflare Fraud",
-        "smithy.api#documentation": "Cloudflare API — fraud resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
       }
     }
   }

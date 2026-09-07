@@ -11,56 +11,6 @@ import * as Retry from "../retry.ts";
 
 export type { PosthogOpError, PosthogOpContext };
 
-export interface AccountRelationshipDefinitionsCreateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  /** Human-readable name of the relationship. Unique within the team. */
-  name: string;
-  /** What this relationship means, e.g. 'The customer success manager responsible for this account'. */
-  description?: string | null;
-  /** Whether only one user can hold this relationship per account at a time, e.g. a single CSM per account. */
-  is_single_holder?: boolean;
-}
-export const AccountRelationshipDefinitionsCreateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      name: S.String,
-      description: S.optional(S.NullOr(S.String)),
-      is_single_holder: S.optional(S.Boolean),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/api/projects/{project_id}/account_relationship_definitions/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "AccountRelationshipDefinitionsCreateRequest",
-  }) as any as S.Schema<AccountRelationshipDefinitionsCreateRequest>;
-
-/** A team-defined account relationship type (CSM, Onboarding manager, ...). */
-export interface AccountRelationshipDefinition {
-  /** Relationship definition UUID. */
-  id: string;
-  /** Human-readable name of the relationship. Unique within the team. */
-  name: string;
-  /** What this relationship means, e.g. 'The customer success manager responsible for this account'. */
-  description?: string | null;
-  /** Whether only one user can hold this relationship per account at a time, e.g. a single CSM per account. */
-  is_single_holder?: boolean;
-}
-export const AccountRelationshipDefinition = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String,
-    name: S.String,
-    description: S.optional(S.NullOr(S.String)),
-    is_single_holder: S.optional(S.Boolean),
-  }),
-).annotate({
-  identifier: "AccountRelationshipDefinition",
-}) as any as S.Schema<AccountRelationshipDefinition>;
-
 export interface AccountRelationshipDefinitionsDestroyRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
@@ -88,7 +38,78 @@ export const AccountRelationshipDefinitionsDestroyResponse =
     identifier: "AccountRelationshipDefinitionsDestroyResponse",
   }) as any as S.Schema<AccountRelationshipDefinitionsDestroyResponse>;
 
-export interface AccountRelationshipDefinitionsListRequest {
+export interface CreateAccountRelationshipDefinitionRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  /** Human-readable name of the relationship. Unique within the team. */
+  name: string;
+  /** What this relationship means, e.g. 'The customer success manager responsible for this account'. */
+  description?: string | null;
+  /** Whether only one user can hold this relationship per account at a time, e.g. a single CSM per account. */
+  is_single_holder?: boolean;
+}
+export const CreateAccountRelationshipDefinitionRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      name: S.String,
+      description: S.optional(S.NullOr(S.String)),
+      is_single_holder: S.optional(S.Boolean),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/api/projects/{project_id}/account_relationship_definitions/",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "CreateAccountRelationshipDefinitionRequest",
+  }) as any as S.Schema<CreateAccountRelationshipDefinitionRequest>;
+
+/** A team-defined account relationship type (CSM, Onboarding manager, ...). */
+export interface AccountRelationshipDefinition {
+  /** Relationship definition UUID. */
+  id: string;
+  /** Human-readable name of the relationship. Unique within the team. */
+  name: string;
+  /** What this relationship means, e.g. 'The customer success manager responsible for this account'. */
+  description?: string | null;
+  /** Whether only one user can hold this relationship per account at a time, e.g. a single CSM per account. */
+  is_single_holder?: boolean;
+}
+export const AccountRelationshipDefinition = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.String,
+    name: S.String,
+    description: S.optional(S.NullOr(S.String)),
+    is_single_holder: S.optional(S.Boolean),
+  }),
+).annotate({
+  identifier: "AccountRelationshipDefinition",
+}) as any as S.Schema<AccountRelationshipDefinition>;
+
+export interface GetAccountRelationshipDefinitionRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  id: string;
+}
+export const GetAccountRelationshipDefinitionRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      id: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/api/projects/{project_id}/account_relationship_definitions/{id}/",
+        code: 200,
+      }),
+    ),
+).annotate({
+  identifier: "GetAccountRelationshipDefinitionRequest",
+}) as any as S.Schema<GetAccountRelationshipDefinitionRequest>;
+
+export interface ListAccountRelationshipDefinitionsRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** Number of results to return per page. */
@@ -96,7 +117,7 @@ export interface AccountRelationshipDefinitionsListRequest {
   /** The initial index from which to return the results. */
   offset?: number;
 }
-export const AccountRelationshipDefinitionsListRequest =
+export const ListAccountRelationshipDefinitionsRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
@@ -110,8 +131,8 @@ export const AccountRelationshipDefinitionsListRequest =
       }),
     ),
   ).annotate({
-    identifier: "AccountRelationshipDefinitionsListRequest",
-  }) as any as S.Schema<AccountRelationshipDefinitionsListRequest>;
+    identifier: "ListAccountRelationshipDefinitionsRequest",
+  }) as any as S.Schema<ListAccountRelationshipDefinitionsRequest>;
 
 export type PaginatedAccountRelationshipDefinitionListResultsList =
   Array<AccountRelationshipDefinition>;
@@ -138,58 +159,7 @@ export const PaginatedAccountRelationshipDefinitionList =
     identifier: "PaginatedAccountRelationshipDefinitionList",
   }) as any as S.Schema<PaginatedAccountRelationshipDefinitionList>;
 
-export interface AccountRelationshipDefinitionsPartialUpdateRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  id: string;
-  /** Human-readable name of the relationship. Unique within the team. */
-  name?: string;
-  /** What this relationship means, e.g. 'The customer success manager responsible for this account'. */
-  description?: string | null;
-  /** Whether only one user can hold this relationship per account at a time, e.g. a single CSM per account. */
-  is_single_holder?: boolean;
-}
-export const AccountRelationshipDefinitionsPartialUpdateRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-      name: S.optional(S.String),
-      description: S.optional(S.NullOr(S.String)),
-      is_single_holder: S.optional(S.Boolean),
-    }).pipe(
-      T.Http({
-        method: "PATCH",
-        uri: "/api/projects/{project_id}/account_relationship_definitions/{id}/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "AccountRelationshipDefinitionsPartialUpdateRequest",
-  }) as any as S.Schema<AccountRelationshipDefinitionsPartialUpdateRequest>;
-
-export interface AccountRelationshipDefinitionsRetrieveRequest {
-  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
-  project_id: string;
-  id: string;
-}
-export const AccountRelationshipDefinitionsRetrieveRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      project_id: S.String.pipe(T.Label()),
-      id: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/api/projects/{project_id}/account_relationship_definitions/{id}/",
-        code: 200,
-      }),
-    ),
-  ).annotate({
-    identifier: "AccountRelationshipDefinitionsRetrieveRequest",
-  }) as any as S.Schema<AccountRelationshipDefinitionsRetrieveRequest>;
-
-export interface AccountRelationshipDefinitionsUpdateRequest {
+export interface UpdateAccountRelationshipDefinitionRequest {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   id: string;
@@ -200,7 +170,7 @@ export interface AccountRelationshipDefinitionsUpdateRequest {
   /** Whether only one user can hold this relationship per account at a time, e.g. a single CSM per account. */
   is_single_holder?: boolean;
 }
-export const AccountRelationshipDefinitionsUpdateRequest =
+export const UpdateAccountRelationshipDefinitionRequest =
   /*@__PURE__*/ S.suspend(() =>
     S.Struct({
       project_id: S.String.pipe(T.Label()),
@@ -216,22 +186,38 @@ export const AccountRelationshipDefinitionsUpdateRequest =
       }),
     ),
   ).annotate({
-    identifier: "AccountRelationshipDefinitionsUpdateRequest",
-  }) as any as S.Schema<AccountRelationshipDefinitionsUpdateRequest>;
+    identifier: "UpdateAccountRelationshipDefinitionRequest",
+  }) as any as S.Schema<UpdateAccountRelationshipDefinitionRequest>;
 
-export type AccountRelationshipDefinitionsCreateError = PosthogOpError;
-export const accountRelationshipDefinitionsCreate: API.OperationMethod<
-  AccountRelationshipDefinitionsCreateRequest,
-  AccountRelationshipDefinition,
-  AccountRelationshipDefinitionsCreateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccountRelationshipDefinitionsCreateRequest,
-  output: AccountRelationshipDefinition,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
+export interface UpdateAccountRelationshipDefinitionsPartialRequest {
+  /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
+  project_id: string;
+  id: string;
+  /** Human-readable name of the relationship. Unique within the team. */
+  name?: string;
+  /** What this relationship means, e.g. 'The customer success manager responsible for this account'. */
+  description?: string | null;
+  /** Whether only one user can hold this relationship per account at a time, e.g. a single CSM per account. */
+  is_single_holder?: boolean;
+}
+export const UpdateAccountRelationshipDefinitionsPartialRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      project_id: S.String.pipe(T.Label()),
+      id: S.String.pipe(T.Label()),
+      name: S.optional(S.String),
+      description: S.optional(S.NullOr(S.String)),
+      is_single_holder: S.optional(S.Boolean),
+    }).pipe(
+      T.Http({
+        method: "PATCH",
+        uri: "/api/projects/{project_id}/account_relationship_definitions/{id}/",
+        code: 200,
+      }),
+    ),
+  ).annotate({
+    identifier: "UpdateAccountRelationshipDefinitionsPartialRequest",
+  }) as any as S.Schema<UpdateAccountRelationshipDefinitionsPartialRequest>;
 
 export type AccountRelationshipDefinitionsDestroyError = PosthogOpError;
 export const accountRelationshipDefinitionsDestroy: API.OperationMethod<
@@ -247,56 +233,70 @@ export const accountRelationshipDefinitionsDestroy: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type AccountRelationshipDefinitionsListError = PosthogOpError;
-export const accountRelationshipDefinitionsList: API.OperationMethod<
-  AccountRelationshipDefinitionsListRequest,
-  PaginatedAccountRelationshipDefinitionList,
-  AccountRelationshipDefinitionsListError,
+export type CreateAccountRelationshipDefinitionError = PosthogOpError;
+export const createAccountRelationshipDefinition: API.OperationMethod<
+  CreateAccountRelationshipDefinitionRequest,
+  AccountRelationshipDefinition,
+  CreateAccountRelationshipDefinitionError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AccountRelationshipDefinitionsListRequest,
+  input: CreateAccountRelationshipDefinitionRequest,
+  output: AccountRelationshipDefinition,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetAccountRelationshipDefinitionError = PosthogOpError;
+export const getAccountRelationshipDefinition: API.OperationMethod<
+  GetAccountRelationshipDefinitionRequest,
+  AccountRelationshipDefinition,
+  GetAccountRelationshipDefinitionError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetAccountRelationshipDefinitionRequest,
+  output: AccountRelationshipDefinition,
+  errors: [],
+  protocol: PosthogProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListAccountRelationshipDefinitionsError = PosthogOpError;
+export const listAccountRelationshipDefinitions: API.OperationMethod<
+  ListAccountRelationshipDefinitionsRequest,
+  PaginatedAccountRelationshipDefinitionList,
+  ListAccountRelationshipDefinitionsError,
+  PosthogOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListAccountRelationshipDefinitionsRequest,
   output: PaginatedAccountRelationshipDefinitionList,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type AccountRelationshipDefinitionsPartialUpdateError = PosthogOpError;
-export const accountRelationshipDefinitionsPartialUpdate: API.OperationMethod<
-  AccountRelationshipDefinitionsPartialUpdateRequest,
+export type UpdateAccountRelationshipDefinitionError = PosthogOpError;
+export const updateAccountRelationshipDefinition: API.OperationMethod<
+  UpdateAccountRelationshipDefinitionRequest,
   AccountRelationshipDefinition,
-  AccountRelationshipDefinitionsPartialUpdateError,
+  UpdateAccountRelationshipDefinitionError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AccountRelationshipDefinitionsPartialUpdateRequest,
+  input: UpdateAccountRelationshipDefinitionRequest,
   output: AccountRelationshipDefinition,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,
 }));
 
-export type AccountRelationshipDefinitionsRetrieveError = PosthogOpError;
-export const accountRelationshipDefinitionsRetrieve: API.OperationMethod<
-  AccountRelationshipDefinitionsRetrieveRequest,
+export type UpdateAccountRelationshipDefinitionsPartialError = PosthogOpError;
+export const updateAccountRelationshipDefinitionsPartial: API.OperationMethod<
+  UpdateAccountRelationshipDefinitionsPartialRequest,
   AccountRelationshipDefinition,
-  AccountRelationshipDefinitionsRetrieveError,
+  UpdateAccountRelationshipDefinitionsPartialError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AccountRelationshipDefinitionsRetrieveRequest,
-  output: AccountRelationshipDefinition,
-  errors: [],
-  protocol: PosthogProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AccountRelationshipDefinitionsUpdateError = PosthogOpError;
-export const accountRelationshipDefinitionsUpdate: API.OperationMethod<
-  AccountRelationshipDefinitionsUpdateRequest,
-  AccountRelationshipDefinition,
-  AccountRelationshipDefinitionsUpdateError,
-  PosthogOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccountRelationshipDefinitionsUpdateRequest,
+  input: UpdateAccountRelationshipDefinitionsPartialRequest,
   output: AccountRelationshipDefinition,
   errors: [],
   protocol: PosthogProtocol,

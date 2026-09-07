@@ -14,10 +14,91 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "keyDictionary": {
+      "mtlsCertificateId": "mtls_certificate_id"
+    },
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.cloudflare.certificate_authorities#HostnameAssociationsGetRequest": {
+    "com.cloudflare.certificate_authorities#HostnameAssociationsGetResponseHostnamesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.certificate_authorities#HostnameAssociationsUpdateRequestHostnamesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.certificate_authorities#HostnameAssociationsUpdateResponseHostnamesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.certificate_authorities#CertificateAuthorities": {
+      "type": "service",
+      "version": "4.0",
+      "operations": [
+        {
+          "target": "com.cloudflare.certificate_authorities#GetHostnameAssociation"
+        },
+        {
+          "target": "com.cloudflare.certificate_authorities#PutHostnameAssociation"
+        }
+      ],
+      "traits": {
+        "com.cloudflare.protocols#v4Json": {},
+        "smithy.api#title": "Cloudflare CertificateAuthorities",
+        "smithy.api#documentation": "Cloudflare API — certificate_authorities resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+      }
+    },
+    "com.cloudflare.certificate_authorities#Forbidden": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.cloudflare.certificate_authorities#GetHostnameAssociation": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.certificate_authorities#GetHostnameAssociationRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.certificate_authorities#GetHostnameAssociationResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/certificate_authorities/hostname_associations",
+          "code": 200
+        },
+        "smithy.api#documentation": "List Hostname Associations.",
+        "smithy.api#readonly": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.certificate_authorities#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.certificate_authorities#GetHostnameAssociationRequest": {
       "type": "structure",
       "members": {
         "zone_id": {
@@ -40,13 +121,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.certificate_authorities#HostnameAssociationsGetResponseHostnamesList": {
-      "type": "list",
-      "member": {
-        "target": "smithy.api#Document"
-      }
-    },
-    "com.cloudflare.certificate_authorities#HostnameAssociationsGetResponse": {
+    "com.cloudflare.certificate_authorities#GetHostnameAssociationResponse": {
       "type": "structure",
       "members": {
         "hostnames": {
@@ -58,31 +133,30 @@
         "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
       }
     },
-    "com.cloudflare.certificate_authorities#HostnameAssociationsGet": {
+    "com.cloudflare.certificate_authorities#PutHostnameAssociation": {
       "type": "operation",
       "input": {
-        "target": "com.cloudflare.certificate_authorities#HostnameAssociationsGetRequest"
+        "target": "com.cloudflare.certificate_authorities#PutHostnameAssociationRequest"
       },
       "output": {
-        "target": "com.cloudflare.certificate_authorities#HostnameAssociationsGetResponse"
+        "target": "com.cloudflare.certificate_authorities#PutHostnameAssociationResponse"
       },
       "traits": {
         "smithy.api#http": {
-          "method": "GET",
+          "method": "PUT",
           "uri": "/zones/{zone_id}/certificate_authorities/hostname_associations",
           "code": 200
         },
-        "smithy.api#documentation": "List Hostname Associations.",
-        "smithy.api#readonly": {}
-      }
+        "smithy.api#documentation": "Replace Hostname Associations.",
+        "smithy.api#idempotent": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.certificate_authorities#Forbidden"
+        }
+      ]
     },
-    "com.cloudflare.certificate_authorities#HostnameAssociationsUpdateRequestHostnamesList": {
-      "type": "list",
-      "member": {
-        "target": "smithy.api#Document"
-      }
-    },
-    "com.cloudflare.certificate_authorities#HostnameAssociationsUpdateRequest": {
+    "com.cloudflare.certificate_authorities#PutHostnameAssociationRequest": {
       "type": "structure",
       "members": {
         "zone_id": {
@@ -107,13 +181,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.cloudflare.certificate_authorities#HostnameAssociationsUpdateResponseHostnamesList": {
-      "type": "list",
-      "member": {
-        "target": "smithy.api#Document"
-      }
-    },
-    "com.cloudflare.certificate_authorities#HostnameAssociationsUpdateResponse": {
+    "com.cloudflare.certificate_authorities#PutHostnameAssociationResponse": {
       "type": "structure",
       "members": {
         "hostnames": {
@@ -123,41 +191,6 @@
       "traits": {
         "smithy.api#output": {},
         "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.certificate_authorities#HostnameAssociationsUpdate": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.certificate_authorities#HostnameAssociationsUpdateRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.certificate_authorities#HostnameAssociationsUpdateResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "PUT",
-          "uri": "/zones/{zone_id}/certificate_authorities/hostname_associations",
-          "code": 200
-        },
-        "smithy.api#documentation": "Replace Hostname Associations.",
-        "smithy.api#idempotent": {}
-      }
-    },
-    "com.cloudflare.certificate_authorities#CertificateAuthorities": {
-      "type": "service",
-      "version": "4.0",
-      "operations": [
-        {
-          "target": "com.cloudflare.certificate_authorities#HostnameAssociationsGet"
-        },
-        {
-          "target": "com.cloudflare.certificate_authorities#HostnameAssociationsUpdate"
-        }
-      ],
-      "traits": {
-        "com.cloudflare.protocols#v4Json": {},
-        "smithy.api#title": "Cloudflare CertificateAuthorities",
-        "smithy.api#documentation": "Cloudflare API — certificate_authorities resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
       }
     }
   }

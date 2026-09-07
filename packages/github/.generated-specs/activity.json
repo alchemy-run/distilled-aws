@@ -14,7 +14,8 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
     "com.github.activity#ListPublicEventsRequest": {
@@ -6411,7 +6412,7 @@
         "smithy.api#documentation": "List notifications for the authenticated user\n\nList all notifications for the current user, sorted by most recently updated."
       }
     },
-    "com.github.activity#MarkNotificationsAsReadRequest": {
+    "com.github.activity#ReadMarkNotificationsAsRequest": {
       "type": "structure",
       "members": {
         "last_read_at": {
@@ -6431,10 +6432,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.github.activity#MarkNotificationsAsRead": {
+    "com.github.activity#ReadMarkNotificationsAs": {
       "type": "operation",
       "input": {
-        "target": "com.github.activity#MarkNotificationsAsReadRequest"
+        "target": "com.github.activity#ReadMarkNotificationsAsRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -6491,7 +6492,7 @@
         "smithy.api#documentation": "Get a thread\n\nGets information about a notification thread."
       }
     },
-    "com.github.activity#MarkThreadAsReadRequest": {
+    "com.github.activity#ReadMarkThreadAsRequest": {
       "type": "structure",
       "members": {
         "thread_id": {
@@ -6507,10 +6508,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.github.activity#MarkThreadAsRead": {
+    "com.github.activity#ReadMarkThreadAs": {
       "type": "operation",
       "input": {
-        "target": "com.github.activity#MarkThreadAsReadRequest"
+        "target": "com.github.activity#ReadMarkThreadAsRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -6979,7 +6980,7 @@
         "smithy.api#documentation": "List repository notifications for the authenticated user\n\nLists all notifications for the current user in the specified repository."
       }
     },
-    "com.github.activity#MarkRepoNotificationsAsReadRequest": {
+    "com.github.activity#ReadMarkRepoNotificationsAsRequest": {
       "type": "structure",
       "members": {
         "owner": {
@@ -7009,10 +7010,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.github.activity#MarkRepoNotificationsAsRead": {
+    "com.github.activity#ReadMarkRepoNotificationsAs": {
       "type": "operation",
       "input": {
-        "target": "com.github.activity#MarkRepoNotificationsAsReadRequest"
+        "target": "com.github.activity#ReadMarkRepoNotificationsAsRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -7206,6 +7207,126 @@
           "code": 200
         },
         "smithy.api#documentation": "Get stargazer count\n\nGets the current number of users who have starred the repository. Users who previously starred the repository but later removed their star are not included."
+      }
+    },
+    "com.github.activity#GetStargazerHistoryForRepoRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The account owner of the repository. The name is not case sensitive."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the repository without the `.git` extension. The name is not case sensitive."
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "The number of results per page (max 30). For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "The page number of the results to fetch (max 100). For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.activity#StargazerHistory": {
+      "type": "structure",
+      "members": {
+        "days": {
+          "target": "com.github.activity#StargazerHistoryDaysList",
+          "traits": {
+            "smithy.api#documentation": "The number of stars created on each day of the week, starting on Sunday.",
+            "smithy.api#required": {}
+          }
+        },
+        "total": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of stars created during the week.",
+            "smithy.api#required": {}
+          }
+        },
+        "week": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The start of the week, given as a Unix timestamp.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Stargazer History"
+      }
+    },
+    "com.github.activity#StargazerHistoryDaysList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {
+        "smithy.api#documentation": "The number of stars created on each day of the week, starting on Sunday."
+      }
+    },
+    "com.github.activity#GetStargazerHistoryForRepoResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.activity#StargazerHistory"
+      },
+      "traits": {}
+    },
+    "com.github.activity#GetStargazerHistoryForRepoResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.activity#GetStargazerHistoryForRepoResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.activity#GetStargazerHistoryForRepo": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.activity#GetStargazerHistoryForRepoRequest"
+      },
+      "output": {
+        "target": "com.github.activity#GetStargazerHistoryForRepoResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.activity#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/repos/{owner}/{repo}/stargazers/history",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get repository star history\n\nReturns repository stars grouped by calendar weeks, most recent first. Pages move backward toward the repository's creation week, and weeks within a page are ordered newest to oldest, so concatenating pages produces one continuous series. Weeks without stars contain zero counts. Week and day boundaries are not guaranteed to align with UTC. The `days` array contains the number of stars created on each day of the week, starting on Sunday."
       }
     },
     "com.github.activity#ListWatchersForRepoRequest": {
@@ -8312,7 +8433,7 @@
           "uri": "/users/{username}/starred",
           "code": 200
         },
-        "smithy.api#documentation": "List repositories starred by a user\n\nLists repositories a user has starred.\n\nThis endpoint supports the following custom media types. For more information, see \"[Media types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types).\"\n\n- **`application/vnd.github.star+json`**: Includes a timestamp of when the star was created."
+        "smithy.api#documentation": "List repositories starred by a user\n\nLists repositories a user has starred.\n\nIf the specified user has a [private profile](https://docs.github.com/account-and-profile/concepts/personal-profile#private-profiles), this endpoint returns an empty list unless the request is authenticated as that user. A request authenticated as the specified user returns starred repositories visible to the token even if the token has no OAuth scopes.\n\nThis endpoint supports the following custom media types. For more information, see \"[Media types](https://docs.github.com/rest/using-the-rest-api/getting-started-with-the-rest-api#media-types).\"\n\n- **`application/vnd.github.star+json`**: Includes a timestamp of when the star was created."
       }
     },
     "com.github.activity#ListReposWatchedByUserRequest": {
@@ -8440,13 +8561,13 @@
           "target": "com.github.activity#ListNotificationsForAuthenticatedUser"
         },
         {
-          "target": "com.github.activity#MarkNotificationsAsRead"
+          "target": "com.github.activity#ReadMarkNotificationsAs"
         },
         {
           "target": "com.github.activity#GetThread"
         },
         {
-          "target": "com.github.activity#MarkThreadAsRead"
+          "target": "com.github.activity#ReadMarkThreadAs"
         },
         {
           "target": "com.github.activity#MarkThreadAsDone"
@@ -8470,13 +8591,16 @@
           "target": "com.github.activity#ListRepoNotificationsForAuthenticatedUser"
         },
         {
-          "target": "com.github.activity#MarkRepoNotificationsAsRead"
+          "target": "com.github.activity#ReadMarkRepoNotificationsAs"
         },
         {
           "target": "com.github.activity#ListStargazersForRepo"
         },
         {
           "target": "com.github.activity#GetStargazerCountForRepo"
+        },
+        {
+          "target": "com.github.activity#GetStargazerHistoryForRepo"
         },
         {
           "target": "com.github.activity#ListWatchersForRepo"

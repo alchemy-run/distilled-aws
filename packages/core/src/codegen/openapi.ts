@@ -9,7 +9,9 @@
  *
  *   • one operation per (path × get/post/put/patch/delete — plus head/options
  *     when a provider opts in via `extraHttpMethods`), deprecated skipped by
- *     default; op shape name = PascalCase(operationId)
+ *     default; op shape name = PascalCase(operationId), or verbNoun
+ *     (`Apps_list` → `ListApps`) when {@link OpenApiConvertOptions.operationNaming}
+ *     is `"verbNoun"`
  *   • input `<Op>Request`: path params → `smithy.api#httpLabel` (+required),
  *     query params → `smithy.api#httpQuery`, header params →
  *     `smithy.api#httpHeader` when `headerParams` is on (dropped otherwise,
@@ -41,6 +43,12 @@
  *     first top-level array property) → `smithy.api#paginated` on the op
  *     (with the non-standard `mode` member the core runtime dispatches on)
  */
+
+import {
+  resolveOperationName,
+  toVerbNoun,
+  type OperationIdRewrite,
+} from "./rewrite-operation-ids.ts";
 
 // ============================================================================
 // Trait ids (the `com.distilled.openapi` vocabulary)
@@ -177,6 +185,24 @@ export interface OpenApiConvertOptions {
    * {@link ERROR_MATCHERS_TRAIT} traits; overrides are merged over it.
    */
   readonly errorShapes?: Readonly<Record<string, any>>;
+  /**
+   * How to turn an OpenAPI `operationId` into the Smithy/SDK operation name.
+   * This is a convert policy, not a spec patch — the OpenAPI document is
+   * left alone.
+   *
+   * - `"verbNoun"` (default): `Apps_list` / `ConfigsList` / `showContact` →
+   *   `listApps` / `listConfigs` / `getApp`. Already verb-first ids stay.
+   * - `"as-is"`: `PascalCase(operationId)` (`Apps_list` → `AppsList`).
+   *
+   * {@link operationNames} overrides win (lookup by `"METHOD path"`, then
+   * operationId).
+   */
+  readonly operationNaming?: "as-is" | "verbNoun";
+  /**
+   * Per-operation name overrides for {@link operationNaming}. Use
+   * `"METHOD path"` keys when two methods share an `operationId`.
+   */
+  readonly operationNames?: OperationIdRewrite;
 }
 
 export interface SmithyModel {
@@ -1227,11 +1253,21 @@ export const convertOpenApiToSmithy = (
       if (!op || typeof op !== "object") continue;
       if (skipDeprecated && op.deprecated === true) continue;
 
-      const opName = pascal(
+      const rawOperationId =
         typeof op.operationId === "string" && op.operationId
           ? op.operationId
-          : `${method}_${rawPath}`,
-      );
+          : `${method}_${rawPath}`;
+      const named =
+        (options.operationNames !== undefined
+          ? resolveOperationName(options.operationNames, rawOperationId, {
+              path: rawPath,
+              method,
+            })
+          : undefined) ??
+        ((options.operationNaming ?? "verbNoun") === "verbNoun"
+          ? toVerbNoun(rawOperationId)
+          : rawOperationId);
+      const opName = pascal(named);
 
       const params = collectParams(ctx, pathItem, op);
 

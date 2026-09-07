@@ -12,7 +12,7 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
-export interface NotificationGetRequest {
+export interface GetNotificationRequest {
   /** user's subscription id */
   subscription: string;
   /** the notification id */
@@ -20,7 +20,7 @@ export interface NotificationGetRequest {
   /** user's principal id */
   principalId: string;
 }
-export const NotificationGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetNotificationRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscription: S.String.pipe(T.Label()),
     notification: S.String.pipe(T.Label()),
@@ -34,56 +34,56 @@ export const NotificationGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "NotificationGetRequest",
-}) as any as S.Schema<NotificationGetRequest>;
+  identifier: "GetNotificationRequest",
+}) as any as S.Schema<GetNotificationRequest>;
 
 /** The type of identity that created the resource. */
-export type NotificationGetResponseSystemDataCreatedByType =
+export type GetNotificationResponseSystemDataCreatedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const NotificationGetResponseSystemDataCreatedByType =
+export const GetNotificationResponseSystemDataCreatedByType =
   /*@__PURE__*/ S.String;
 
 /** The type of identity that last modified the resource. */
-export type NotificationGetResponseSystemDataLastModifiedByType =
+export type GetNotificationResponseSystemDataLastModifiedByType =
   | "User"
   | "Application"
   | "ManagedIdentity"
   | "Key";
-export const NotificationGetResponseSystemDataLastModifiedByType =
+export const GetNotificationResponseSystemDataLastModifiedByType =
   /*@__PURE__*/ S.String;
 
 /** Metadata pertaining to creation and last modification of the resource. */
-export interface NotificationGetResponseSystemData {
+export interface GetNotificationResponseSystemData {
   /** The identity that created the resource. */
   createdBy?: string;
   /** The type of identity that created the resource. */
-  createdByType?: NotificationGetResponseSystemDataCreatedByType;
+  createdByType?: GetNotificationResponseSystemDataCreatedByType;
   /** The timestamp of resource creation (UTC). */
   createdAt?: string;
   /** The identity that last modified the resource. */
   lastModifiedBy?: string;
   /** The type of identity that last modified the resource. */
-  lastModifiedByType?: NotificationGetResponseSystemDataLastModifiedByType;
+  lastModifiedByType?: GetNotificationResponseSystemDataLastModifiedByType;
   /** The timestamp of resource last modification (UTC) */
   lastModifiedAt?: string;
 }
-export const NotificationGetResponseSystemData = /*@__PURE__*/ S.suspend(() =>
+export const GetNotificationResponseSystemData = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     createdBy: S.optional(S.String),
-    createdByType: S.optional(NotificationGetResponseSystemDataCreatedByType),
+    createdByType: S.optional(GetNotificationResponseSystemDataCreatedByType),
     createdAt: S.optional(S.String),
     lastModifiedBy: S.optional(S.String),
     lastModifiedByType: S.optional(
-      NotificationGetResponseSystemDataLastModifiedByType,
+      GetNotificationResponseSystemDataLastModifiedByType,
     ),
     lastModifiedAt: S.optional(S.String),
   }),
 ).annotate({
-  identifier: "NotificationGetResponseSystemData",
-}) as any as S.Schema<NotificationGetResponseSystemData>;
+  identifier: "GetNotificationResponseSystemData",
+}) as any as S.Schema<GetNotificationResponseSystemData>;
 
 export interface OfferProperties {
   /** legacy offer id of the notification (publisher.offer) */
@@ -106,7 +106,7 @@ export const OfferProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "OfferProperties",
 }) as any as S.Schema<OfferProperties>;
 
-export interface NotificationGetResponse {
+export interface GetNotificationResponse {
   /** The resource ID. */
   id?: string;
   /** The name of the resource. */
@@ -114,24 +114,24 @@ export interface NotificationGetResponse {
   /** The type of the resource. */
   type?: string;
   /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: NotificationGetResponseSystemData;
+  systemData?: GetNotificationResponseSystemData;
   /** The offer data structure. */
   properties?: OfferProperties;
 }
-export const NotificationGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetNotificationResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
     type: S.optional(S.String),
-    systemData: S.optional(NotificationGetResponseSystemData),
+    systemData: S.optional(GetNotificationResponseSystemData),
     properties: S.optional(OfferProperties),
   }),
 ).annotate({
-  identifier: "NotificationGetResponse",
-}) as any as S.Schema<NotificationGetResponse>;
+  identifier: "GetNotificationResponse",
+}) as any as S.Schema<GetNotificationResponse>;
 
-export interface NotificationGetOperationsRequest {}
-export const NotificationGetOperationsRequest = /*@__PURE__*/ S.suspend(() =>
+export interface GetNotificationOperationsRequest {}
+export const GetNotificationOperationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
     T.Http({
       method: "GET",
@@ -141,8 +141,8 @@ export const NotificationGetOperationsRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "NotificationGetOperationsRequest",
-}) as any as S.Schema<NotificationGetOperationsRequest>;
+  identifier: "GetNotificationOperationsRequest",
+}) as any as S.Schema<GetNotificationOperationsRequest>;
 
 /** Operation display payload */
 export interface OperationDisplay {
@@ -213,13 +213,13 @@ export const AvailableOperations = /*@__PURE__*/ S.suspend(() =>
   identifier: "AvailableOperations",
 }) as any as S.Schema<AvailableOperations>;
 
-export interface NotificationsListRequest {
+export interface ListNotificationsRequest {
   /** user's subscription id */
   subscription: string;
   /** user's principal id */
   principalId: string;
 }
-export const NotificationsListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListNotificationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscription: S.String.pipe(T.Label()),
     principalId: S.String.pipe(T.Query()),
@@ -232,8 +232,8 @@ export const NotificationsListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "NotificationsListRequest",
-}) as any as S.Schema<NotificationsListRequest>;
+  identifier: "ListNotificationsRequest",
+}) as any as S.Schema<ListNotificationsRequest>;
 
 /** The type of identity that created the resource. */
 export type NotificationSystemDataCreatedByType =
@@ -322,42 +322,42 @@ export const NotificationList = /*@__PURE__*/ S.suspend(() =>
   identifier: "NotificationList",
 }) as any as S.Schema<NotificationList>;
 
-export type NotificationGetError = AzureOpError;
-export const NotificationGet: API.OperationMethod<
-  NotificationGetRequest,
-  NotificationGetResponse,
-  NotificationGetError,
+export type GetNotificationError = AzureOpError;
+export const GetNotification: API.OperationMethod<
+  GetNotificationRequest,
+  GetNotificationResponse,
+  GetNotificationError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: NotificationGetRequest,
-  output: NotificationGetResponse,
+  input: GetNotificationRequest,
+  output: GetNotificationResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type NotificationGetOperationsError = AzureOpError;
-export const NotificationGetOperations: API.OperationMethod<
-  NotificationGetOperationsRequest,
+export type GetNotificationOperationsError = AzureOpError;
+export const GetNotificationOperations: API.OperationMethod<
+  GetNotificationOperationsRequest,
   AvailableOperations,
-  NotificationGetOperationsError,
+  GetNotificationOperationsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: NotificationGetOperationsRequest,
+  input: GetNotificationOperationsRequest,
   output: AvailableOperations,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type NotificationsListError = AzureOpError;
-export const NotificationsList: API.OperationMethod<
-  NotificationsListRequest,
+export type ListNotificationsError = AzureOpError;
+export const ListNotifications: API.OperationMethod<
+  ListNotificationsRequest,
   NotificationList,
-  NotificationsListError,
+  ListNotificationsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: NotificationsListRequest,
+  input: ListNotificationsRequest,
   output: NotificationList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,

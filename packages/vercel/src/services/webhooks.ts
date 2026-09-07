@@ -591,6 +591,7 @@ export type GetWebhooksResponseBodyCase0ItemProjectsMetadataItemFramework =
   | "ember"
   | "eve"
   | "express"
+  | "factory-eve"
   | "fastapi"
   | "fasthtml"
   | "fastify"

@@ -11,14 +11,14 @@ import * as Retry from "../retry.ts";
 
 export type { PosthogOpError, PosthogOpContext };
 
-export interface CodeSandboxPricingListRequest {}
-export const CodeSandboxPricingListRequest = /*@__PURE__*/ S.suspend(() =>
+export interface ListCodeSandboxPricingRequest {}
+export const ListCodeSandboxPricingRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
     T.Http({ method: "GET", uri: "/api/code/sandbox-pricing/", code: 200 }),
   ),
 ).annotate({
-  identifier: "CodeSandboxPricingListRequest",
-}) as any as S.Schema<CodeSandboxPricingListRequest>;
+  identifier: "ListCodeSandboxPricingRequest",
+}) as any as S.Schema<ListCodeSandboxPricingRequest>;
 
 export interface ComputeRateCard {
   /** Stable identifier for this rate card. */
@@ -65,15 +65,15 @@ export const SandboxComputePricing = /*@__PURE__*/ S.suspend(() =>
   identifier: "SandboxComputePricing",
 }) as any as S.Schema<SandboxComputePricing>;
 
-export type CodeSandboxPricingListError = PosthogOpError;
+export type ListCodeSandboxPricingError = PosthogOpError;
 /** Get sandbox compute pricing Get the current sandbox compute rate card and expired rate-card history. */
-export const codeSandboxPricingList: API.OperationMethod<
-  CodeSandboxPricingListRequest,
+export const listCodeSandboxPricing: API.OperationMethod<
+  ListCodeSandboxPricingRequest,
   SandboxComputePricing,
-  CodeSandboxPricingListError,
+  ListCodeSandboxPricingError,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: CodeSandboxPricingListRequest,
+  input: ListCodeSandboxPricingRequest,
   output: SandboxComputePricing,
   errors: [],
   protocol: PosthogProtocol,

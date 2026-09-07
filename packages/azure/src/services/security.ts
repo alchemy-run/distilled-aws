@@ -145,13 +145,13 @@ export const DataScannersCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "DataScannersCreateOrUpdateResponse",
 }) as any as S.Schema<DataScannersCreateOrUpdateResponse>;
 
-export interface DataScannersDeleteRequest {
+export interface DeleteDataScannerRequest {
   /** The scope of the data scanner. Valid scopes are a subscription (format: 'subscriptions/{subscriptionId}') or a resource group (format: 'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}'). */
   scopeId: string;
   /** The name of the data scanner. */
   scannerName: string;
 }
-export const DataScannersDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteDataScannerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     scopeId: S.String.pipe(T.Label()),
     scannerName: S.String.pipe(T.Label()),
@@ -164,23 +164,23 @@ export const DataScannersDeleteRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DataScannersDeleteRequest",
-}) as any as S.Schema<DataScannersDeleteRequest>;
+  identifier: "DeleteDataScannerRequest",
+}) as any as S.Schema<DeleteDataScannerRequest>;
 
-export interface DataScannersDeleteResponse {}
-export const DataScannersDeleteResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteDataScannerResponse {}
+export const DeleteDataScannerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "DataScannersDeleteResponse",
-}) as any as S.Schema<DataScannersDeleteResponse>;
+  identifier: "DeleteDataScannerResponse",
+}) as any as S.Schema<DeleteDataScannerResponse>;
 
-export interface DataScannersGetRequest {
+export interface GetDataScannerRequest {
   /** The scope of the data scanner. Valid scopes are a subscription (format: 'subscriptions/{subscriptionId}') or a resource group (format: 'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}'). */
   scopeId: string;
   /** The name of the data scanner. */
   scannerName: string;
 }
-export const DataScannersGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetDataScannerRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     scopeId: S.String.pipe(T.Label()),
     scannerName: S.String.pipe(T.Label()),
@@ -193,16 +193,16 @@ export const DataScannersGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DataScannersGetRequest",
-}) as any as S.Schema<DataScannersGetRequest>;
+  identifier: "GetDataScannerRequest",
+}) as any as S.Schema<GetDataScannerRequest>;
 
 /** Managed service identity (either system assigned, or none) */
-export type DataScannersGetResponseIdentity =
+export type GetDataScannerResponseIdentity =
   DataScannersCreateOrUpdateResponseIdentity;
-export const DataScannersGetResponseIdentity =
+export const GetDataScannerResponseIdentity =
   DataScannersCreateOrUpdateResponseIdentity;
 
-export interface DataScannersGetResponse {
+export interface GetDataScannerResponse {
   /** Fully qualified resource ID for the resource. E.g. "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}" */
   id?: string;
   /** The name of the resource */
@@ -216,7 +216,7 @@ export interface DataScannersGetResponse {
   /** Managed service identity (either system assigned, or none) */
   identity?: DataScannersCreateOrUpdateResponseIdentity;
 }
-export const DataScannersGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetDataScannerResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     name: S.optional(S.String),
@@ -226,14 +226,14 @@ export const DataScannersGetResponse = /*@__PURE__*/ S.suspend(() =>
     identity: S.optional(DataScannersCreateOrUpdateResponseIdentity),
   }),
 ).annotate({
-  identifier: "DataScannersGetResponse",
-}) as any as S.Schema<DataScannersGetResponse>;
+  identifier: "GetDataScannerResponse",
+}) as any as S.Schema<GetDataScannerResponse>;
 
-export interface DataScannersListRequest {
+export interface ListDataScannersRequest {
   /** The scope of the data scanner. Valid scopes are a subscription (format: 'subscriptions/{subscriptionId}') or a resource group (format: 'subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}'). */
   scopeId: string;
 }
-export const DataScannersListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListDataScannersRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     scopeId: S.String.pipe(T.Label()),
   }).pipe(
@@ -245,8 +245,8 @@ export const DataScannersListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DataScannersListRequest",
-}) as any as S.Schema<DataScannersListRequest>;
+  identifier: "ListDataScannersRequest",
+}) as any as S.Schema<ListDataScannersRequest>;
 
 /** Managed service identity (either system assigned, or none) */
 export type DataScannerIdentity = DataScannersCreateOrUpdateResponseIdentity;
@@ -315,45 +315,45 @@ export const DataScannersCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type DataScannersDeleteError = AzureOpError;
+export type DeleteDataScannerError = AzureOpError;
 /** Deletes a data scanner resource for the specified scope. */
-export const DataScannersDelete: API.OperationMethod<
-  DataScannersDeleteRequest,
-  DataScannersDeleteResponse,
-  DataScannersDeleteError,
+export const DeleteDataScanner: API.OperationMethod<
+  DeleteDataScannerRequest,
+  DeleteDataScannerResponse,
+  DeleteDataScannerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DataScannersDeleteRequest,
-  output: DataScannersDeleteResponse,
+  input: DeleteDataScannerRequest,
+  output: DeleteDataScannerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DataScannersGetError = AzureOpError;
+export type GetDataScannerError = AzureOpError;
 /** Gets a data scanner resource for the specified scope. */
-export const DataScannersGet: API.OperationMethod<
-  DataScannersGetRequest,
-  DataScannersGetResponse,
-  DataScannersGetError,
+export const GetDataScanner: API.OperationMethod<
+  GetDataScannerRequest,
+  GetDataScannerResponse,
+  GetDataScannerError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DataScannersGetRequest,
-  output: DataScannersGetResponse,
+  input: GetDataScannerRequest,
+  output: GetDataScannerResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DataScannersListError = AzureOpError;
+export type ListDataScannersError = AzureOpError;
 /** Lists all data scanner resources for the specified scope. */
-export const DataScannersList: API.OperationMethod<
-  DataScannersListRequest,
+export const ListDataScanners: API.OperationMethod<
+  ListDataScannersRequest,
   DataScannerList,
-  DataScannersListError,
+  ListDataScannersError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DataScannersListRequest,
+  input: ListDataScannersRequest,
   output: DataScannerList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,

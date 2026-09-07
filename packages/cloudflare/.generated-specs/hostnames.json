@@ -14,7 +14,12 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "keyDictionary": {
+      "createdAt": "created_at",
+      "updatedAt": "updated_at"
+    },
+    "distilled.finalized": true
   },
   "shapes": {
     "com.cloudflare.hostnames#SettingsTlsDeleteRequestSettingId": {
@@ -38,38 +43,6 @@
             "smithy.api#enumValue": "http2"
           }
         }
-      }
-    },
-    "com.cloudflare.hostnames#SettingsTlsDeleteRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "setting_id": {
-          "target": "com.cloudflare.hostnames#SettingsTlsDeleteRequestSettingId",
-          "traits": {
-            "smithy.api#documentation": "The TLS Setting name.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "hostname": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The hostname for which the tls settings are set.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.hostnames#SettingsTlsDeleteResponseValueCase0": {
@@ -130,63 +103,6 @@
         }
       }
     },
-    "com.cloudflare.hostnames#SettingsTlsDeleteResponse": {
-      "type": "structure",
-      "members": {
-        "created_at": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "This is the time the tls setting was originally created for this hostname."
-          }
-        },
-        "hostname": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The hostname for which the tls settings are set."
-          }
-        },
-        "status": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Deployment status for the given tls setting."
-          }
-        },
-        "updated_at": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "This is the time the tls setting was updated."
-          }
-        },
-        "value": {
-          "target": "com.cloudflare.hostnames#SettingsTlsDeleteResponseValue",
-          "traits": {
-            "smithy.api#documentation": "The TLS setting value."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {},
-        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.hostnames#SettingsTlsDelete": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.hostnames#SettingsTlsDeleteRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.hostnames#SettingsTlsDeleteResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "DELETE",
-          "uri": "/zones/{zone_id}/hostnames/settings/{setting_id}/{hostname}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Delete the tls setting value for the hostname.",
-        "smithy.api#idempotent": {}
-      }
-    },
     "com.cloudflare.hostnames#SettingsTlsGetRequestSettingId": {
       "type": "enum",
       "members": {
@@ -208,30 +124,6 @@
             "smithy.api#enumValue": "http2"
           }
         }
-      }
-    },
-    "com.cloudflare.hostnames#SettingsTlsGetRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "setting_id": {
-          "target": "com.cloudflare.hostnames#SettingsTlsGetRequestSettingId",
-          "traits": {
-            "smithy.api#documentation": "The TLS Setting name.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
       }
     },
     "com.cloudflare.hostnames#SettingsTlsGetResultItemValueCase0": {
@@ -333,39 +225,6 @@
         "target": "com.cloudflare.hostnames#SettingsTlsGetResultItem"
       }
     },
-    "com.cloudflare.hostnames#SettingsTlsGetResponse": {
-      "type": "structure",
-      "members": {
-        "result": {
-          "target": "com.cloudflare.hostnames#SettingsTlsGetResultList",
-          "traits": {
-            "com.cloudflare.protocols#envelopePayload": {},
-            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#output": {}
-      }
-    },
-    "com.cloudflare.hostnames#SettingsTlsGet": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.hostnames#SettingsTlsGetRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.hostnames#SettingsTlsGetResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "GET",
-          "uri": "/zones/{zone_id}/hostnames/settings/{setting_id}",
-          "code": 200
-        },
-        "smithy.api#documentation": "List the requested TLS setting for the hostnames under this zone.",
-        "smithy.api#readonly": {}
-      }
-    },
     "com.cloudflare.hostnames#SettingsTlsUpdateRequestSettingId": {
       "type": "enum",
       "members": {
@@ -447,45 +306,6 @@
         }
       }
     },
-    "com.cloudflare.hostnames#SettingsTlsUpdateRequest": {
-      "type": "structure",
-      "members": {
-        "zone_id": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "Identifier.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "setting_id": {
-          "target": "com.cloudflare.hostnames#SettingsTlsUpdateRequestSettingId",
-          "traits": {
-            "smithy.api#documentation": "The TLS Setting name.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "hostname": {
-          "target": "smithy.api#String",
-          "traits": {
-            "smithy.api#documentation": "The hostname for which the tls settings are set.",
-            "smithy.api#httpLabel": {},
-            "smithy.api#required": {}
-          }
-        },
-        "value": {
-          "target": "com.cloudflare.hostnames#SettingsTlsUpdateRequestValue",
-          "traits": {
-            "smithy.api#documentation": "The TLS setting value.",
-            "smithy.api#required": {}
-          }
-        }
-      },
-      "traits": {
-        "smithy.api#input": {}
-      }
-    },
     "com.cloudflare.hostnames#SettingsTlsUpdateResponseValueCase0": {
       "type": "enum",
       "members": {
@@ -544,7 +364,318 @@
         }
       }
     },
-    "com.cloudflare.hostnames#SettingsTlsUpdateResponse": {
+    "com.cloudflare.hostnames#Hostnames": {
+      "type": "service",
+      "version": "4.0",
+      "operations": [
+        {
+          "target": "com.cloudflare.hostnames#DeleteSettingTls"
+        },
+        {
+          "target": "com.cloudflare.hostnames#GetSettingTls"
+        },
+        {
+          "target": "com.cloudflare.hostnames#PutSettingTls"
+        }
+      ],
+      "traits": {
+        "com.cloudflare.protocols#v4Json": {},
+        "smithy.api#title": "Cloudflare Hostnames",
+        "smithy.api#documentation": "Cloudflare API — hostnames resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+      }
+    },
+    "com.cloudflare.hostnames#AdvancedCertificateManagerRequired": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "code": 1450
+          }
+        ]
+      }
+    },
+    "com.cloudflare.hostnames#Forbidden": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.cloudflare.hostnames#HostnameTlsSettingNotFound": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer"
+        },
+        "message": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#error": "client",
+        "com.cloudflare.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.cloudflare.hostnames#DeleteSettingTls": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.hostnames#DeleteSettingTlsRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.hostnames#DeleteSettingTlsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/zones/{zone_id}/hostnames/settings/{setting_id}/{hostname}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete the tls setting value for the hostname.",
+        "smithy.api#idempotent": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.hostnames#AdvancedCertificateManagerRequired"
+        },
+        {
+          "target": "com.cloudflare.hostnames#HostnameTlsSettingNotFound"
+        },
+        {
+          "target": "com.cloudflare.hostnames#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.hostnames#DeleteSettingTlsRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "setting_id": {
+          "target": "com.cloudflare.hostnames#SettingsTlsDeleteRequestSettingId",
+          "traits": {
+            "smithy.api#documentation": "The TLS Setting name.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "hostname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The hostname for which the tls settings are set.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.hostnames#DeleteSettingTlsResponse": {
+      "type": "structure",
+      "members": {
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This is the time the tls setting was originally created for this hostname."
+          }
+        },
+        "hostname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The hostname for which the tls settings are set."
+          }
+        },
+        "status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Deployment status for the given tls setting."
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This is the time the tls setting was updated."
+          }
+        },
+        "value": {
+          "target": "com.cloudflare.hostnames#SettingsTlsDeleteResponseValue",
+          "traits": {
+            "smithy.api#documentation": "The TLS setting value."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.hostnames#GetSettingTls": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.hostnames#GetSettingTlsRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.hostnames#GetSettingTlsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/hostnames/settings/{setting_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "List the requested TLS setting for the hostnames under this zone.",
+        "smithy.api#readonly": {},
+        "smithy.api#paginated": {
+          "mode": "single",
+          "items": "result"
+        }
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.hostnames#AdvancedCertificateManagerRequired"
+        },
+        {
+          "target": "com.cloudflare.hostnames#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.hostnames#GetSettingTlsRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "setting_id": {
+          "target": "com.cloudflare.hostnames#SettingsTlsGetRequestSettingId",
+          "traits": {
+            "smithy.api#documentation": "The TLS Setting name.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.hostnames#GetSettingTlsResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.hostnames#SettingsTlsGetResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.hostnames#PutSettingTls": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.hostnames#PutSettingTlsRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.hostnames#PutSettingTlsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/zones/{zone_id}/hostnames/settings/{setting_id}/{hostname}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update the tls setting value for the hostname.",
+        "smithy.api#idempotent": {}
+      },
+      "errors": [
+        {
+          "target": "com.cloudflare.hostnames#AdvancedCertificateManagerRequired"
+        },
+        {
+          "target": "com.cloudflare.hostnames#Forbidden"
+        }
+      ]
+    },
+    "com.cloudflare.hostnames#PutSettingTlsRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "setting_id": {
+          "target": "com.cloudflare.hostnames#SettingsTlsUpdateRequestSettingId",
+          "traits": {
+            "smithy.api#documentation": "The TLS Setting name.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "hostname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The hostname for which the tls settings are set.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "value": {
+          "target": "com.cloudflare.hostnames#SettingsTlsUpdateRequestValue",
+          "traits": {
+            "smithy.api#documentation": "The TLS setting value.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.hostnames#PutSettingTlsResponse": {
       "type": "structure",
       "members": {
         "created_at": {
@@ -581,44 +712,6 @@
       "traits": {
         "smithy.api#output": {},
         "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
-      }
-    },
-    "com.cloudflare.hostnames#SettingsTlsUpdate": {
-      "type": "operation",
-      "input": {
-        "target": "com.cloudflare.hostnames#SettingsTlsUpdateRequest"
-      },
-      "output": {
-        "target": "com.cloudflare.hostnames#SettingsTlsUpdateResponse"
-      },
-      "traits": {
-        "smithy.api#http": {
-          "method": "PUT",
-          "uri": "/zones/{zone_id}/hostnames/settings/{setting_id}/{hostname}",
-          "code": 200
-        },
-        "smithy.api#documentation": "Update the tls setting value for the hostname.",
-        "smithy.api#idempotent": {}
-      }
-    },
-    "com.cloudflare.hostnames#Hostnames": {
-      "type": "service",
-      "version": "4.0",
-      "operations": [
-        {
-          "target": "com.cloudflare.hostnames#SettingsTlsDelete"
-        },
-        {
-          "target": "com.cloudflare.hostnames#SettingsTlsGet"
-        },
-        {
-          "target": "com.cloudflare.hostnames#SettingsTlsUpdate"
-        }
-      ],
-      "traits": {
-        "com.cloudflare.protocols#v4Json": {},
-        "smithy.api#title": "Cloudflare Hostnames",
-        "smithy.api#documentation": "Cloudflare API — hostnames resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
       }
     }
   }

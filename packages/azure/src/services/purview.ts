@@ -12,91 +12,6 @@ import * as Retry from "../retry.ts";
 
 export type { AzureOpError, AzureOpContext };
 
-export interface AccountsAddRootCollectionAdminRequest {
-  /** The subscription identifier */
-  subscriptionId: string;
-  /** The resource group name. */
-  resourceGroupName: string;
-  /** The name of the account. */
-  accountName: string;
-  /** Gets or sets the object identifier of the admin. */
-  objectId?: string;
-}
-export const AccountsAddRootCollectionAdminRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-      objectId: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Purview/accounts/{accountName}/addRootCollectionAdmin",
-        code: 200,
-        apiVersion: "2021-12-01",
-      }),
-    ),
-).annotate({
-  identifier: "AccountsAddRootCollectionAdminRequest",
-}) as any as S.Schema<AccountsAddRootCollectionAdminRequest>;
-
-export interface AccountsAddRootCollectionAdminResponse {}
-export const AccountsAddRootCollectionAdminResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "AccountsAddRootCollectionAdminResponse",
-}) as any as S.Schema<AccountsAddRootCollectionAdminResponse>;
-
-export interface AccountsCheckNameAvailabilityRequest {
-  /** The subscription identifier */
-  subscriptionId: string;
-  /** Resource name to verify for availability */
-  name?: string;
-  /** Fully qualified resource type which includes provider namespace */
-  type?: string;
-}
-export const AccountsCheckNameAvailabilityRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      name: S.optional(S.String),
-      type: S.optional(S.String),
-    }).pipe(
-      T.Http({
-        method: "POST",
-        uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Purview/checkNameAvailability",
-        code: 200,
-        apiVersion: "2021-12-01",
-      }),
-    ),
-).annotate({
-  identifier: "AccountsCheckNameAvailabilityRequest",
-}) as any as S.Schema<AccountsCheckNameAvailabilityRequest>;
-
-/** The reason the name is not available. */
-export type CheckNameAvailabilityResultReason = "Invalid" | "AlreadyExists";
-export const CheckNameAvailabilityResultReason = /*@__PURE__*/ S.String;
-
-/** The response payload for CheckNameAvailability API */
-export interface CheckNameAvailabilityResult {
-  /** Error message */
-  message?: string;
-  /** Indicates if name is valid and available. */
-  nameAvailable?: boolean;
-  /** The reason the name is not available. */
-  reason?: CheckNameAvailabilityResultReason;
-}
-export const CheckNameAvailabilityResult = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    message: S.optional(S.String),
-    nameAvailable: S.optional(S.Boolean),
-    reason: S.optional(CheckNameAvailabilityResultReason),
-  }),
-).annotate({
-  identifier: "CheckNameAvailabilityResult",
-}) as any as S.Schema<CheckNameAvailabilityResult>;
-
 /** Identity Type */
 export type IdentityInputType = "None" | "SystemAssigned" | "UserAssigned";
 export const IdentityInputType = /*@__PURE__*/ S.String;
@@ -685,7 +600,91 @@ export const AccountsCreateOrUpdateResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "AccountsCreateOrUpdateResponse",
 }) as any as S.Schema<AccountsCreateOrUpdateResponse>;
 
-export interface AccountsDeleteRequest {
+export interface AddAccountRootCollectionAdminRequest {
+  /** The subscription identifier */
+  subscriptionId: string;
+  /** The resource group name. */
+  resourceGroupName: string;
+  /** The name of the account. */
+  accountName: string;
+  /** Gets or sets the object identifier of the admin. */
+  objectId?: string;
+}
+export const AddAccountRootCollectionAdminRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+      objectId: S.optional(S.String),
+    }).pipe(
+      T.Http({
+        method: "POST",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Purview/accounts/{accountName}/addRootCollectionAdmin",
+        code: 200,
+        apiVersion: "2021-12-01",
+      }),
+    ),
+).annotate({
+  identifier: "AddAccountRootCollectionAdminRequest",
+}) as any as S.Schema<AddAccountRootCollectionAdminRequest>;
+
+export interface AddAccountRootCollectionAdminResponse {}
+export const AddAccountRootCollectionAdminResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "AddAccountRootCollectionAdminResponse",
+}) as any as S.Schema<AddAccountRootCollectionAdminResponse>;
+
+export interface CheckAccountNameAvailabilityRequest {
+  /** The subscription identifier */
+  subscriptionId: string;
+  /** Resource name to verify for availability */
+  name?: string;
+  /** Fully qualified resource type which includes provider namespace */
+  type?: string;
+}
+export const CheckAccountNameAvailabilityRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    name: S.optional(S.String),
+    type: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Purview/checkNameAvailability",
+      code: 200,
+      apiVersion: "2021-12-01",
+    }),
+  ),
+).annotate({
+  identifier: "CheckAccountNameAvailabilityRequest",
+}) as any as S.Schema<CheckAccountNameAvailabilityRequest>;
+
+/** The reason the name is not available. */
+export type CheckNameAvailabilityResultReason = "Invalid" | "AlreadyExists";
+export const CheckNameAvailabilityResultReason = /*@__PURE__*/ S.String;
+
+/** The response payload for CheckNameAvailability API */
+export interface CheckNameAvailabilityResult {
+  /** Error message */
+  message?: string;
+  /** Indicates if name is valid and available. */
+  nameAvailable?: boolean;
+  /** The reason the name is not available. */
+  reason?: CheckNameAvailabilityResultReason;
+}
+export const CheckNameAvailabilityResult = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    message: S.optional(S.String),
+    nameAvailable: S.optional(S.Boolean),
+    reason: S.optional(CheckNameAvailabilityResultReason),
+  }),
+).annotate({
+  identifier: "CheckNameAvailabilityResult",
+}) as any as S.Schema<CheckNameAvailabilityResult>;
+
+export interface DeleteAccountRequest {
   /** The subscription identifier */
   subscriptionId: string;
   /** The resource group name. */
@@ -693,7 +692,7 @@ export interface AccountsDeleteRequest {
   /** The name of the account. */
   accountName: string;
 }
-export const AccountsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const DeleteAccountRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -707,17 +706,88 @@ export const AccountsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "AccountsDeleteRequest",
-}) as any as S.Schema<AccountsDeleteRequest>;
+  identifier: "DeleteAccountRequest",
+}) as any as S.Schema<DeleteAccountRequest>;
 
-export interface AccountsDeleteResponse {}
-export const AccountsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
+export interface DeleteAccountResponse {}
+export const DeleteAccountResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}),
 ).annotate({
-  identifier: "AccountsDeleteResponse",
-}) as any as S.Schema<AccountsDeleteResponse>;
+  identifier: "DeleteAccountResponse",
+}) as any as S.Schema<DeleteAccountResponse>;
 
-export interface AccountsGetRequest {
+export interface DeleteKafkaConfigurationRequest {
+  /** The subscription identifier */
+  subscriptionId: string;
+  /** The resource group name. */
+  resourceGroupName: string;
+  /** The name of the account. */
+  accountName: string;
+  /** Name of kafka configuration. */
+  kafkaConfigurationName: string;
+}
+export const DeleteKafkaConfigurationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    kafkaConfigurationName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "DELETE",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Purview/accounts/{accountName}/kafkaConfigurations/{kafkaConfigurationName}",
+      code: 200,
+      apiVersion: "2021-12-01",
+    }),
+  ),
+).annotate({
+  identifier: "DeleteKafkaConfigurationRequest",
+}) as any as S.Schema<DeleteKafkaConfigurationRequest>;
+
+export interface DeleteKafkaConfigurationResponse {}
+export const DeleteKafkaConfigurationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "DeleteKafkaConfigurationResponse",
+}) as any as S.Schema<DeleteKafkaConfigurationResponse>;
+
+export interface DeletePrivateEndpointConnectionRequest {
+  /** The subscription identifier */
+  subscriptionId: string;
+  /** The resource group name. */
+  resourceGroupName: string;
+  /** The name of the account. */
+  accountName: string;
+  /** Name of the private endpoint connection. */
+  privateEndpointConnectionName: string;
+}
+export const DeletePrivateEndpointConnectionRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+      privateEndpointConnectionName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "DELETE",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Purview/accounts/{accountName}/privateEndpointConnections/{privateEndpointConnectionName}",
+        code: 200,
+        apiVersion: "2021-12-01",
+      }),
+    ),
+).annotate({
+  identifier: "DeletePrivateEndpointConnectionRequest",
+}) as any as S.Schema<DeletePrivateEndpointConnectionRequest>;
+
+export interface DeletePrivateEndpointConnectionResponse {}
+export const DeletePrivateEndpointConnectionResponse = /*@__PURE__*/ S.suspend(
+  () => S.Struct({}),
+).annotate({
+  identifier: "DeletePrivateEndpointConnectionResponse",
+}) as any as S.Schema<DeletePrivateEndpointConnectionResponse>;
+
+export interface GetAccountRequest {
   /** The subscription identifier */
   subscriptionId: string;
   /** The resource group name. */
@@ -725,7 +795,7 @@ export interface AccountsGetRequest {
   /** The name of the account. */
   accountName: string;
 }
-export const AccountsGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetAccountRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
@@ -739,17 +809,17 @@ export const AccountsGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "AccountsGetRequest",
-}) as any as S.Schema<AccountsGetRequest>;
+  identifier: "GetAccountRequest",
+}) as any as S.Schema<GetAccountRequest>;
 
 /** Tags on the azure resource. */
-export type AccountsGetResponseTagsMap = { [key: string]: string | undefined };
-export const AccountsGetResponseTagsMap = /*@__PURE__*/ S.Record(
+export type GetAccountResponseTagsMap = { [key: string]: string | undefined };
+export const GetAccountResponseTagsMap = /*@__PURE__*/ S.Record(
   S.String,
   S.String,
-) as any as S.Schema<AccountsGetResponseTagsMap>;
+) as any as S.Schema<GetAccountResponseTagsMap>;
 
-export interface AccountsGetResponse {
+export interface GetAccountResponse {
   /** Gets or sets the identifier. */
   id?: string;
   /** Identity Info on the tracked resource */
@@ -761,7 +831,7 @@ export interface AccountsGetResponse {
   /** Metadata pertaining to creation and last modification of the resource. */
   systemData?: SystemData;
   /** Tags on the azure resource. */
-  tags?: AccountsGetResponseTagsMap;
+  tags?: GetAccountResponseTagsMap;
   /** Gets or sets the type. */
   type?: string;
   /** Gets or sets the properties. */
@@ -769,276 +839,37 @@ export interface AccountsGetResponse {
   /** Gets or sets the Sku. */
   sku?: AccountSku;
 }
-export const AccountsGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const GetAccountResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
     identity: S.optional(Identity),
     location: S.optional(S.String),
     name: S.optional(S.String),
     systemData: S.optional(SystemData),
-    tags: S.optional(AccountsGetResponseTagsMap),
+    tags: S.optional(GetAccountResponseTagsMap),
     type: S.optional(S.String),
     properties: S.optional(AccountProperties),
     sku: S.optional(AccountSku),
   }),
 ).annotate({
-  identifier: "AccountsGetResponse",
-}) as any as S.Schema<AccountsGetResponse>;
+  identifier: "GetAccountResponse",
+}) as any as S.Schema<GetAccountResponse>;
 
-export interface AccountsListByResourceGroupRequest {
-  /** The subscription identifier */
-  subscriptionId: string;
-  /** The resource group name. */
-  resourceGroupName: string;
-  /** The skip token. */
-  _skipToken?: string;
-}
-export const AccountsListByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Purview/accounts",
-      code: 200,
-      apiVersion: "2021-12-01",
-    }),
-  ),
-).annotate({
-  identifier: "AccountsListByResourceGroupRequest",
-}) as any as S.Schema<AccountsListByResourceGroupRequest>;
+export type GetDefaultAccountRequestScopeType = "Tenant" | "Subscription";
+export const GetDefaultAccountRequestScopeType = /*@__PURE__*/ S.String;
 
-/** Tags on the azure resource. */
-export type AccountTagsMap = { [key: string]: string | undefined };
-export const AccountTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<AccountTagsMap>;
-
-/** Account resource */
-export interface Account {
-  /** Gets or sets the identifier. */
-  id?: string;
-  /** Identity Info on the tracked resource */
-  identity?: Identity;
-  /** Gets or sets the location. */
-  location?: string;
-  /** Gets or sets the name. */
-  name?: string;
-  /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: SystemData;
-  /** Tags on the azure resource. */
-  tags?: AccountTagsMap;
-  /** Gets or sets the type. */
-  type?: string;
-  /** Gets or sets the properties. */
-  properties?: AccountProperties;
-  /** Gets or sets the Sku. */
-  sku?: AccountSku;
-}
-export const Account = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    identity: S.optional(Identity),
-    location: S.optional(S.String),
-    name: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(AccountTagsMap),
-    type: S.optional(S.String),
-    properties: S.optional(AccountProperties),
-    sku: S.optional(AccountSku),
-  }),
-).annotate({ identifier: "Account" }) as any as S.Schema<Account>;
-
-/** Collection of items of type results. */
-export type AccountListValueList = Array<Account>;
-export const AccountListValueList = /*@__PURE__*/ S.Array(
-  Account,
-) as any as S.Schema<AccountListValueList>;
-
-/** Paged list of Account resources */
-export interface AccountList {
-  /** Total item count. */
-  count?: number;
-  /** The Url of next result page. */
-  nextLink?: string;
-  /** Collection of items of type results. */
-  value: AccountListValueList;
-}
-export const AccountList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    count: S.optional(S.Number),
-    nextLink: S.optional(S.String),
-    value: AccountListValueList,
-  }),
-).annotate({ identifier: "AccountList" }) as any as S.Schema<AccountList>;
-
-export interface AccountsListBySubscriptionRequest {
-  /** The subscription identifier */
-  subscriptionId: string;
-  /** The skip token. */
-  _skipToken?: string;
-}
-export const AccountsListBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
-  }).pipe(
-    T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Purview/accounts",
-      code: 200,
-      apiVersion: "2021-12-01",
-    }),
-  ),
-).annotate({
-  identifier: "AccountsListBySubscriptionRequest",
-}) as any as S.Schema<AccountsListBySubscriptionRequest>;
-
-export interface AccountsListKeysRequest {
-  /** The subscription identifier */
-  subscriptionId: string;
-  /** The resource group name. */
-  resourceGroupName: string;
-  /** The name of the account. */
-  accountName: string;
-}
-export const AccountsListKeysRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Purview/accounts/{accountName}/listkeys",
-      code: 200,
-      apiVersion: "2021-12-01",
-    }),
-  ),
-).annotate({
-  identifier: "AccountsListKeysRequest",
-}) as any as S.Schema<AccountsListKeysRequest>;
-
-/** The Account access keys. */
-export interface AccessKeys {
-  /** Gets or sets the primary connection string. */
-  atlasKafkaPrimaryEndpoint?: string;
-  /** Gets or sets the secondary connection string. */
-  atlasKafkaSecondaryEndpoint?: string;
-}
-export const AccessKeys = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    atlasKafkaPrimaryEndpoint: S.optional(S.String),
-    atlasKafkaSecondaryEndpoint: S.optional(S.String),
-  }),
-).annotate({ identifier: "AccessKeys" }) as any as S.Schema<AccessKeys>;
-
-/** Tags on the azure resource. */
-export type AccountsUpdateRequestTagsMap = {
-  [key: string]: string | undefined;
-};
-export const AccountsUpdateRequestTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<AccountsUpdateRequestTagsMap>;
-
-export interface AccountsUpdateRequest {
-  /** The subscription identifier */
-  subscriptionId: string;
-  /** The resource group name. */
-  resourceGroupName: string;
-  /** The name of the account. */
-  accountName: string;
-  /** Identity related info to add/remove userAssignedIdentities. */
-  identity?: IdentityInput;
-  /** The account properties. */
-  properties?: AccountPropertiesInput;
-  /** Tags on the azure resource. */
-  tags?: AccountsUpdateRequestTagsMap;
-}
-export const AccountsUpdateRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    identity: S.optional(IdentityInput),
-    properties: S.optional(AccountPropertiesInput),
-    tags: S.optional(AccountsUpdateRequestTagsMap),
-  }).pipe(
-    T.Http({
-      method: "PATCH",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Purview/accounts/{accountName}",
-      code: 200,
-      apiVersion: "2021-12-01",
-    }),
-  ),
-).annotate({
-  identifier: "AccountsUpdateRequest",
-}) as any as S.Schema<AccountsUpdateRequest>;
-
-/** Tags on the azure resource. */
-export type AccountsUpdateResponseTagsMap = {
-  [key: string]: string | undefined;
-};
-export const AccountsUpdateResponseTagsMap = /*@__PURE__*/ S.Record(
-  S.String,
-  S.String,
-) as any as S.Schema<AccountsUpdateResponseTagsMap>;
-
-export interface AccountsUpdateResponse {
-  /** Gets or sets the identifier. */
-  id?: string;
-  /** Identity Info on the tracked resource */
-  identity?: Identity;
-  /** Gets or sets the location. */
-  location?: string;
-  /** Gets or sets the name. */
-  name?: string;
-  /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: SystemData;
-  /** Tags on the azure resource. */
-  tags?: AccountsUpdateResponseTagsMap;
-  /** Gets or sets the type. */
-  type?: string;
-  /** Gets or sets the properties. */
-  properties?: AccountProperties;
-  /** Gets or sets the Sku. */
-  sku?: AccountSku;
-}
-export const AccountsUpdateResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    identity: S.optional(Identity),
-    location: S.optional(S.String),
-    name: S.optional(S.String),
-    systemData: S.optional(SystemData),
-    tags: S.optional(AccountsUpdateResponseTagsMap),
-    type: S.optional(S.String),
-    properties: S.optional(AccountProperties),
-    sku: S.optional(AccountSku),
-  }),
-).annotate({
-  identifier: "AccountsUpdateResponse",
-}) as any as S.Schema<AccountsUpdateResponse>;
-
-export type DefaultAccountsGetRequestScopeType = "Tenant" | "Subscription";
-export const DefaultAccountsGetRequestScopeType = /*@__PURE__*/ S.String;
-
-export interface DefaultAccountsGetRequest {
+export interface GetDefaultAccountRequest {
   /** The tenant ID. */
   scopeTenantId: string;
   /** The scope for the default account. */
-  scopeType: DefaultAccountsGetRequestScopeType | (string & {});
+  scopeType: GetDefaultAccountRequestScopeType | (string & {});
   /** The Id of the scope object, for example if the scope is "Subscription" then it is the ID of that subscription. */
   scope?: string;
 }
-export const DefaultAccountsGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetDefaultAccountRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     scopeTenantId: S.String.pipe(T.Query()),
-    scopeType: DefaultAccountsGetRequestScopeType.pipe(T.Query()),
+    scopeType: GetDefaultAccountRequestScopeType.pipe(T.Query()),
     scope: S.optional(S.String.pipe(T.Query())),
   }).pipe(
     T.Http({
@@ -1049,8 +880,8 @@ export const DefaultAccountsGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "DefaultAccountsGetRequest",
-}) as any as S.Schema<DefaultAccountsGetRequest>;
+  identifier: "GetDefaultAccountRequest",
+}) as any as S.Schema<GetDefaultAccountRequest>;
 
 /** The scope where the default account is set. */
 export type DefaultAccountPayloadScopeType = "Tenant" | "Subscription";
@@ -1084,86 +915,13 @@ export const DefaultAccountPayload = /*@__PURE__*/ S.suspend(() =>
   identifier: "DefaultAccountPayload",
 }) as any as S.Schema<DefaultAccountPayload>;
 
-export type DefaultAccountsRemoveRequestScopeType = "Tenant" | "Subscription";
-export const DefaultAccountsRemoveRequestScopeType = /*@__PURE__*/ S.String;
-
-export interface DefaultAccountsRemoveRequest {
-  /** The tenant ID. */
-  scopeTenantId: string;
-  /** The scope for the default account. */
-  scopeType: DefaultAccountsRemoveRequestScopeType | (string & {});
-  /** The Id of the scope object, for example if the scope is "Subscription" then it is the ID of that subscription. */
-  scope?: string;
-}
-export const DefaultAccountsRemoveRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    scopeTenantId: S.String.pipe(T.Query()),
-    scopeType: DefaultAccountsRemoveRequestScopeType.pipe(T.Query()),
-    scope: S.optional(S.String.pipe(T.Query())),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/providers/Microsoft.Purview/removeDefaultAccount",
-      code: 200,
-      apiVersion: "2021-12-01",
-    }),
-  ),
-).annotate({
-  identifier: "DefaultAccountsRemoveRequest",
-}) as any as S.Schema<DefaultAccountsRemoveRequest>;
-
-export interface DefaultAccountsRemoveResponse {}
-export const DefaultAccountsRemoveResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "DefaultAccountsRemoveResponse",
-}) as any as S.Schema<DefaultAccountsRemoveResponse>;
-
-/** The scope where the default account is set. */
-export type DefaultAccountsSetRequestScopeType = "Tenant" | "Subscription";
-export const DefaultAccountsSetRequestScopeType = /*@__PURE__*/ S.String;
-
-export interface DefaultAccountsSetRequest {
-  /** The name of the account that is set as the default. */
-  accountName?: string;
-  /** The resource group name of the account that is set as the default. */
-  resourceGroupName?: string;
-  /** The scope object ID. For example, sub ID or tenant ID. */
-  scope?: string;
-  /** The scope tenant in which the default account is set. */
-  scopeTenantId?: string;
-  /** The scope where the default account is set. */
-  scopeType?: DefaultAccountsSetRequestScopeType | (string & {});
-  /** The subscription ID of the account that is set as the default. */
-  subscriptionId?: string;
-}
-export const DefaultAccountsSetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    accountName: S.optional(S.String),
-    resourceGroupName: S.optional(S.String),
-    scope: S.optional(S.String),
-    scopeTenantId: S.optional(S.String),
-    scopeType: S.optional(DefaultAccountsSetRequestScopeType),
-    subscriptionId: S.optional(S.String),
-  }).pipe(
-    T.Http({
-      method: "POST",
-      uri: "/providers/Microsoft.Purview/setDefaultAccount",
-      code: 200,
-      apiVersion: "2021-12-01",
-    }),
-  ),
-).annotate({
-  identifier: "DefaultAccountsSetRequest",
-}) as any as S.Schema<DefaultAccountsSetRequest>;
-
 /** Set of features */
-export type FeaturesAccountGetRequestFeaturesList = Array<string>;
-export const FeaturesAccountGetRequestFeaturesList = /*@__PURE__*/ S.Array(
+export type GetFeaturesAccountRequestFeaturesList = Array<string>;
+export const GetFeaturesAccountRequestFeaturesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<FeaturesAccountGetRequestFeaturesList>;
+) as any as S.Schema<GetFeaturesAccountRequestFeaturesList>;
 
-export interface FeaturesAccountGetRequest {
+export interface GetFeaturesAccountRequest {
   /** The subscription identifier */
   subscriptionId: string;
   /** The resource group name. */
@@ -1171,14 +929,14 @@ export interface FeaturesAccountGetRequest {
   /** The name of the account. */
   accountName: string;
   /** Set of features */
-  features?: FeaturesAccountGetRequestFeaturesList;
+  features?: GetFeaturesAccountRequestFeaturesList;
 }
-export const FeaturesAccountGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetFeaturesAccountRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
     accountName: S.String.pipe(T.Label()),
-    features: S.optional(FeaturesAccountGetRequestFeaturesList),
+    features: S.optional(GetFeaturesAccountRequestFeaturesList),
   }).pipe(
     T.Http({
       method: "POST",
@@ -1188,8 +946,8 @@ export const FeaturesAccountGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "FeaturesAccountGetRequest",
-}) as any as S.Schema<FeaturesAccountGetRequest>;
+  identifier: "GetFeaturesAccountRequest",
+}) as any as S.Schema<GetFeaturesAccountRequest>;
 
 /** Features with enabled status */
 export type BatchFeatureStatusFeaturesMap = {
@@ -1214,24 +972,24 @@ export const BatchFeatureStatus = /*@__PURE__*/ S.suspend(() =>
 }) as any as S.Schema<BatchFeatureStatus>;
 
 /** Set of features */
-export type FeaturesSubscriptionGetRequestFeaturesList = Array<string>;
-export const FeaturesSubscriptionGetRequestFeaturesList = /*@__PURE__*/ S.Array(
+export type GetFeaturesSubscriptionRequestFeaturesList = Array<string>;
+export const GetFeaturesSubscriptionRequestFeaturesList = /*@__PURE__*/ S.Array(
   S.String,
-) as any as S.Schema<FeaturesSubscriptionGetRequestFeaturesList>;
+) as any as S.Schema<GetFeaturesSubscriptionRequestFeaturesList>;
 
-export interface FeaturesSubscriptionGetRequest {
+export interface GetFeaturesSubscriptionRequest {
   /** The subscription identifier */
   subscriptionId: string;
   /** Location of feature. */
   locations: string;
   /** Set of features */
-  features?: FeaturesSubscriptionGetRequestFeaturesList;
+  features?: GetFeaturesSubscriptionRequestFeaturesList;
 }
-export const FeaturesSubscriptionGetRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetFeaturesSubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     locations: S.String.pipe(T.Label()),
-    features: S.optional(FeaturesSubscriptionGetRequestFeaturesList),
+    features: S.optional(GetFeaturesSubscriptionRequestFeaturesList),
   }).pipe(
     T.Http({
       method: "POST",
@@ -1241,8 +999,36 @@ export const FeaturesSubscriptionGetRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "FeaturesSubscriptionGetRequest",
-}) as any as S.Schema<FeaturesSubscriptionGetRequest>;
+  identifier: "GetFeaturesSubscriptionRequest",
+}) as any as S.Schema<GetFeaturesSubscriptionRequest>;
+
+export interface GetKafkaConfigurationRequest {
+  /** The subscription identifier */
+  subscriptionId: string;
+  /** The resource group name. */
+  resourceGroupName: string;
+  /** The name of the account. */
+  accountName: string;
+  /** Name of kafka configuration. */
+  kafkaConfigurationName: string;
+}
+export const GetKafkaConfigurationRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    kafkaConfigurationName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Purview/accounts/{accountName}/kafkaConfigurations/{kafkaConfigurationName}",
+      code: 200,
+      apiVersion: "2021-12-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetKafkaConfigurationRequest",
+}) as any as S.Schema<GetKafkaConfigurationRequest>;
 
 /** Identity Type. */
 export type CredentialsType = "None" | "SystemAssigned" | "UserAssigned";
@@ -1319,6 +1105,252 @@ export const KafkaConfigurationProperties = /*@__PURE__*/ S.suspend(() =>
   identifier: "KafkaConfigurationProperties",
 }) as any as S.Schema<KafkaConfigurationProperties>;
 
+export interface GetKafkaConfigurationResponse {
+  /** Gets or sets the identifier. */
+  id?: string;
+  /** Gets or sets the name. */
+  name?: string;
+  /** Metadata pertaining to creation and last modification of the resource. */
+  systemData?: SystemData;
+  /** Gets or sets the type. */
+  type?: string;
+  /** Gets or sets the kafka configuration properties. */
+  properties?: KafkaConfigurationProperties;
+}
+export const GetKafkaConfigurationResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    type: S.optional(S.String),
+    properties: S.optional(KafkaConfigurationProperties),
+  }),
+).annotate({
+  identifier: "GetKafkaConfigurationResponse",
+}) as any as S.Schema<GetKafkaConfigurationResponse>;
+
+export interface GetPrivateEndpointConnectionRequest {
+  /** The subscription identifier */
+  subscriptionId: string;
+  /** The resource group name. */
+  resourceGroupName: string;
+  /** The name of the account. */
+  accountName: string;
+  /** Name of the private endpoint connection. */
+  privateEndpointConnectionName: string;
+}
+export const GetPrivateEndpointConnectionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    privateEndpointConnectionName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Purview/accounts/{accountName}/privateEndpointConnections/{privateEndpointConnectionName}",
+      code: 200,
+      apiVersion: "2021-12-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetPrivateEndpointConnectionRequest",
+}) as any as S.Schema<GetPrivateEndpointConnectionRequest>;
+
+export interface GetPrivateEndpointConnectionResponse {
+  /** Gets or sets the identifier. */
+  id?: string;
+  /** Gets or sets the name. */
+  name?: string;
+  /** Metadata pertaining to creation and last modification of the resource. */
+  systemData?: SystemData;
+  /** Gets or sets the type. */
+  type?: string;
+  /** The connection identifier. */
+  properties?: PrivateEndpointConnectionProperties;
+}
+export const GetPrivateEndpointConnectionResponse = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      id: S.optional(S.String),
+      name: S.optional(S.String),
+      systemData: S.optional(SystemData),
+      type: S.optional(S.String),
+      properties: S.optional(PrivateEndpointConnectionProperties),
+    }),
+).annotate({
+  identifier: "GetPrivateEndpointConnectionResponse",
+}) as any as S.Schema<GetPrivateEndpointConnectionResponse>;
+
+export interface GetPrivateLinkResourceByGroupIdRequest {
+  /** The subscription identifier */
+  subscriptionId: string;
+  /** The resource group name. */
+  resourceGroupName: string;
+  /** The name of the account. */
+  accountName: string;
+  /** The group identifier. */
+  groupId: string;
+}
+export const GetPrivateLinkResourceByGroupIdRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+      groupId: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Purview/accounts/{accountName}/privateLinkResources/{groupId}",
+        code: 200,
+        apiVersion: "2021-12-01",
+      }),
+    ),
+).annotate({
+  identifier: "GetPrivateLinkResourceByGroupIdRequest",
+}) as any as S.Schema<GetPrivateLinkResourceByGroupIdRequest>;
+
+/** This translates to how many Private IPs should be created for each privately linkable resource. */
+export type PrivateLinkResourcePropertiesRequiredMembersList = Array<string>;
+export const PrivateLinkResourcePropertiesRequiredMembersList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<PrivateLinkResourcePropertiesRequiredMembersList>;
+
+/** The required zone names for private link resource. */
+export type PrivateLinkResourcePropertiesRequiredZoneNamesList = Array<string>;
+export const PrivateLinkResourcePropertiesRequiredZoneNamesList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<PrivateLinkResourcePropertiesRequiredZoneNamesList>;
+
+/** A privately linkable resource properties. */
+export interface PrivateLinkResourceProperties {
+  /** The private link resource group identifier. */
+  groupId?: string;
+  /** This translates to how many Private IPs should be created for each privately linkable resource. */
+  requiredMembers?: PrivateLinkResourcePropertiesRequiredMembersList;
+  /** The required zone names for private link resource. */
+  requiredZoneNames?: PrivateLinkResourcePropertiesRequiredZoneNamesList;
+}
+export const PrivateLinkResourceProperties = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    groupId: S.optional(S.String),
+    requiredMembers: S.optional(
+      PrivateLinkResourcePropertiesRequiredMembersList,
+    ),
+    requiredZoneNames: S.optional(
+      PrivateLinkResourcePropertiesRequiredZoneNamesList,
+    ),
+  }),
+).annotate({
+  identifier: "PrivateLinkResourceProperties",
+}) as any as S.Schema<PrivateLinkResourceProperties>;
+
+/** A privately linkable resource. */
+export interface PrivateLinkResource {
+  /** The private link resource identifier. */
+  id?: string;
+  /** The private link resource name. */
+  name?: string;
+  /** The private link resource properties. */
+  properties?: PrivateLinkResourceProperties;
+  /** The private link resource type. */
+  type?: string;
+}
+export const PrivateLinkResource = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    id: S.optional(S.String),
+    name: S.optional(S.String),
+    properties: S.optional(PrivateLinkResourceProperties),
+    type: S.optional(S.String),
+  }),
+).annotate({
+  identifier: "PrivateLinkResource",
+}) as any as S.Schema<PrivateLinkResource>;
+
+export interface GetUsageRequest {
+  /** The subscription identifier */
+  subscriptionId: string;
+  /** The region. */
+  location: string;
+  _filter?: string;
+}
+export const GetUsageRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    location: S.String.pipe(T.Label()),
+    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Purview/locations/{location}/usages",
+      code: 200,
+      apiVersion: "2021-12-01",
+    }),
+  ),
+).annotate({
+  identifier: "GetUsageRequest",
+}) as any as S.Schema<GetUsageRequest>;
+
+/** Quota name */
+export interface QuotaName {
+  /** Gets or sets the localized name value. */
+  localizedValue?: string;
+  /** Gets or sets the name value. */
+  value?: string;
+}
+export const QuotaName = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    localizedValue: S.optional(S.String),
+    value: S.optional(S.String),
+  }),
+).annotate({ identifier: "QuotaName" }) as any as S.Schema<QuotaName>;
+
+/** Response for usage information */
+export interface Usage {
+  /** Current usage quota value */
+  currentValue?: number;
+  /** Fully qualified ARM resource Id */
+  id?: string;
+  /** Usage quota limit */
+  limit?: number;
+  /** Quota name */
+  name?: QuotaName;
+  /** Quota usage unit. */
+  unit?: string;
+}
+export const Usage = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    currentValue: S.optional(S.Number),
+    id: S.optional(S.String),
+    limit: S.optional(S.Number),
+    name: S.optional(QuotaName),
+    unit: S.optional(S.String),
+  }),
+).annotate({ identifier: "Usage" }) as any as S.Schema<Usage>;
+
+/** Collection of usage values. */
+export type UsageListValueList = Array<Usage>;
+export const UsageListValueList = /*@__PURE__*/ S.Array(
+  Usage,
+) as any as S.Schema<UsageListValueList>;
+
+/** Response for usage get request */
+export interface UsageList {
+  /** Collection of usage values. */
+  value?: UsageListValueList;
+  /** The Url of next result page. */
+  nextLink?: string;
+}
+export const UsageList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    value: S.optional(UsageListValueList),
+    nextLink: S.optional(S.String),
+  }),
+).annotate({ identifier: "UsageList" }) as any as S.Schema<UsageList>;
+
 export interface KafkaConfigurationsCreateOrUpdateRequest {
   /** The subscription identifier */
   subscriptionId: string;
@@ -1376,94 +1408,158 @@ export const KafkaConfigurationsCreateOrUpdateResponse =
     identifier: "KafkaConfigurationsCreateOrUpdateResponse",
   }) as any as S.Schema<KafkaConfigurationsCreateOrUpdateResponse>;
 
-export interface KafkaConfigurationsDeleteRequest {
+export interface ListAccountByResourceGroupRequest {
   /** The subscription identifier */
   subscriptionId: string;
   /** The resource group name. */
   resourceGroupName: string;
-  /** The name of the account. */
-  accountName: string;
-  /** Name of kafka configuration. */
-  kafkaConfigurationName: string;
+  /** The skip token. */
+  _skipToken?: string;
 }
-export const KafkaConfigurationsDeleteRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListAccountByResourceGroupRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     subscriptionId: S.String.pipe(T.Label()),
     resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    kafkaConfigurationName: S.String.pipe(T.Label()),
-  }).pipe(
-    T.Http({
-      method: "DELETE",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Purview/accounts/{accountName}/kafkaConfigurations/{kafkaConfigurationName}",
-      code: 200,
-      apiVersion: "2021-12-01",
-    }),
-  ),
-).annotate({
-  identifier: "KafkaConfigurationsDeleteRequest",
-}) as any as S.Schema<KafkaConfigurationsDeleteRequest>;
-
-export interface KafkaConfigurationsDeleteResponse {}
-export const KafkaConfigurationsDeleteResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({}),
-).annotate({
-  identifier: "KafkaConfigurationsDeleteResponse",
-}) as any as S.Schema<KafkaConfigurationsDeleteResponse>;
-
-export interface KafkaConfigurationsGetRequest {
-  /** The subscription identifier */
-  subscriptionId: string;
-  /** The resource group name. */
-  resourceGroupName: string;
-  /** The name of the account. */
-  accountName: string;
-  /** Name of kafka configuration. */
-  kafkaConfigurationName: string;
-}
-export const KafkaConfigurationsGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    resourceGroupName: S.String.pipe(T.Label()),
-    accountName: S.String.pipe(T.Label()),
-    kafkaConfigurationName: S.String.pipe(T.Label()),
+    _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
   }).pipe(
     T.Http({
       method: "GET",
-      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Purview/accounts/{accountName}/kafkaConfigurations/{kafkaConfigurationName}",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Purview/accounts",
       code: 200,
       apiVersion: "2021-12-01",
     }),
   ),
 ).annotate({
-  identifier: "KafkaConfigurationsGetRequest",
-}) as any as S.Schema<KafkaConfigurationsGetRequest>;
+  identifier: "ListAccountByResourceGroupRequest",
+}) as any as S.Schema<ListAccountByResourceGroupRequest>;
 
-export interface KafkaConfigurationsGetResponse {
+/** Tags on the azure resource. */
+export type AccountTagsMap = { [key: string]: string | undefined };
+export const AccountTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<AccountTagsMap>;
+
+/** Account resource */
+export interface Account {
   /** Gets or sets the identifier. */
   id?: string;
+  /** Identity Info on the tracked resource */
+  identity?: Identity;
+  /** Gets or sets the location. */
+  location?: string;
   /** Gets or sets the name. */
   name?: string;
   /** Metadata pertaining to creation and last modification of the resource. */
   systemData?: SystemData;
+  /** Tags on the azure resource. */
+  tags?: AccountTagsMap;
   /** Gets or sets the type. */
   type?: string;
-  /** Gets or sets the kafka configuration properties. */
-  properties?: KafkaConfigurationProperties;
+  /** Gets or sets the properties. */
+  properties?: AccountProperties;
+  /** Gets or sets the Sku. */
+  sku?: AccountSku;
 }
-export const KafkaConfigurationsGetResponse = /*@__PURE__*/ S.suspend(() =>
+export const Account = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     id: S.optional(S.String),
+    identity: S.optional(Identity),
+    location: S.optional(S.String),
     name: S.optional(S.String),
     systemData: S.optional(SystemData),
+    tags: S.optional(AccountTagsMap),
     type: S.optional(S.String),
-    properties: S.optional(KafkaConfigurationProperties),
+    properties: S.optional(AccountProperties),
+    sku: S.optional(AccountSku),
   }),
-).annotate({
-  identifier: "KafkaConfigurationsGetResponse",
-}) as any as S.Schema<KafkaConfigurationsGetResponse>;
+).annotate({ identifier: "Account" }) as any as S.Schema<Account>;
 
-export interface KafkaConfigurationsListByAccountRequest {
+/** Collection of items of type results. */
+export type AccountListValueList = Array<Account>;
+export const AccountListValueList = /*@__PURE__*/ S.Array(
+  Account,
+) as any as S.Schema<AccountListValueList>;
+
+/** Paged list of Account resources */
+export interface AccountList {
+  /** Total item count. */
+  count?: number;
+  /** The Url of next result page. */
+  nextLink?: string;
+  /** Collection of items of type results. */
+  value: AccountListValueList;
+}
+export const AccountList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    count: S.optional(S.Number),
+    nextLink: S.optional(S.String),
+    value: AccountListValueList,
+  }),
+).annotate({ identifier: "AccountList" }) as any as S.Schema<AccountList>;
+
+export interface ListAccountBySubscriptionRequest {
+  /** The subscription identifier */
+  subscriptionId: string;
+  /** The skip token. */
+  _skipToken?: string;
+}
+export const ListAccountBySubscriptionRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
+  }).pipe(
+    T.Http({
+      method: "GET",
+      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Purview/accounts",
+      code: 200,
+      apiVersion: "2021-12-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListAccountBySubscriptionRequest",
+}) as any as S.Schema<ListAccountBySubscriptionRequest>;
+
+export interface ListAccountKeysRequest {
+  /** The subscription identifier */
+  subscriptionId: string;
+  /** The resource group name. */
+  resourceGroupName: string;
+  /** The name of the account. */
+  accountName: string;
+}
+export const ListAccountKeysRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Purview/accounts/{accountName}/listkeys",
+      code: 200,
+      apiVersion: "2021-12-01",
+    }),
+  ),
+).annotate({
+  identifier: "ListAccountKeysRequest",
+}) as any as S.Schema<ListAccountKeysRequest>;
+
+/** The Account access keys. */
+export interface AccessKeys {
+  /** Gets or sets the primary connection string. */
+  atlasKafkaPrimaryEndpoint?: string;
+  /** Gets or sets the secondary connection string. */
+  atlasKafkaSecondaryEndpoint?: string;
+}
+export const AccessKeys = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    atlasKafkaPrimaryEndpoint: S.optional(S.String),
+    atlasKafkaSecondaryEndpoint: S.optional(S.String),
+  }),
+).annotate({ identifier: "AccessKeys" }) as any as S.Schema<AccessKeys>;
+
+export interface ListKafkaConfigurationByAccountRequest {
   /** The subscription identifier */
   subscriptionId: string;
   /** The resource group name. */
@@ -1473,7 +1569,7 @@ export interface KafkaConfigurationsListByAccountRequest {
   /** The skip token. */
   _skipToken?: string;
 }
-export const KafkaConfigurationsListByAccountRequest = /*@__PURE__*/ S.suspend(
+export const ListKafkaConfigurationByAccountRequest = /*@__PURE__*/ S.suspend(
   () =>
     S.Struct({
       subscriptionId: S.String.pipe(T.Label()),
@@ -1489,8 +1585,8 @@ export const KafkaConfigurationsListByAccountRequest = /*@__PURE__*/ S.suspend(
       }),
     ),
 ).annotate({
-  identifier: "KafkaConfigurationsListByAccountRequest",
-}) as any as S.Schema<KafkaConfigurationsListByAccountRequest>;
+  identifier: "ListKafkaConfigurationByAccountRequest",
+}) as any as S.Schema<ListKafkaConfigurationByAccountRequest>;
 
 /** The configuration of the event streaming service resource attached to the Purview account for kafka notifications. */
 export interface KafkaConfiguration {
@@ -1539,8 +1635,8 @@ export const KafkaConfigurationList = /*@__PURE__*/ S.suspend(() =>
   identifier: "KafkaConfigurationList",
 }) as any as S.Schema<KafkaConfigurationList>;
 
-export interface OperationsListRequest {}
-export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
+export interface ListOperationsRequest {}
+export const ListOperationsRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({}).pipe(
     T.Http({
       method: "GET",
@@ -1550,8 +1646,8 @@ export const OperationsListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "OperationsListRequest",
-}) as any as S.Schema<OperationsListRequest>;
+  identifier: "ListOperationsRequest",
+}) as any as S.Schema<ListOperationsRequest>;
 
 /** The response model for get operation properties */
 export interface OperationDisplay {
@@ -1779,6 +1875,106 @@ export const OperationList = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "OperationList" }) as any as S.Schema<OperationList>;
 
+export interface ListPrivateEndpointConnectionByAccountRequest {
+  /** The subscription identifier */
+  subscriptionId: string;
+  /** The resource group name. */
+  resourceGroupName: string;
+  /** The name of the account. */
+  accountName: string;
+  /** The skip token. */
+  _skipToken?: string;
+}
+export const ListPrivateEndpointConnectionByAccountRequest =
+  /*@__PURE__*/ S.suspend(() =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Purview/accounts/{accountName}/privateEndpointConnections",
+        code: 200,
+        apiVersion: "2021-12-01",
+      }),
+    ),
+  ).annotate({
+    identifier: "ListPrivateEndpointConnectionByAccountRequest",
+  }) as any as S.Schema<ListPrivateEndpointConnectionByAccountRequest>;
+
+/** Collection of items of type results. */
+export type PrivateEndpointConnectionListValueList =
+  Array<PrivateEndpointConnection>;
+export const PrivateEndpointConnectionListValueList = /*@__PURE__*/ S.Array(
+  PrivateEndpointConnection,
+) as any as S.Schema<PrivateEndpointConnectionListValueList>;
+
+/** Paged list of private endpoint connections */
+export interface PrivateEndpointConnectionList {
+  /** The Url of next result page. */
+  nextLink?: string;
+  /** Collection of items of type results. */
+  value: PrivateEndpointConnectionListValueList;
+}
+export const PrivateEndpointConnectionList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nextLink: S.optional(S.String),
+    value: PrivateEndpointConnectionListValueList,
+  }),
+).annotate({
+  identifier: "PrivateEndpointConnectionList",
+}) as any as S.Schema<PrivateEndpointConnectionList>;
+
+export interface ListPrivateLinkResourceByAccountRequest {
+  /** The subscription identifier */
+  subscriptionId: string;
+  /** The resource group name. */
+  resourceGroupName: string;
+  /** The name of the account. */
+  accountName: string;
+}
+export const ListPrivateLinkResourceByAccountRequest = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      subscriptionId: S.String.pipe(T.Label()),
+      resourceGroupName: S.String.pipe(T.Label()),
+      accountName: S.String.pipe(T.Label()),
+    }).pipe(
+      T.Http({
+        method: "GET",
+        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Purview/accounts/{accountName}/privateLinkResources",
+        code: 200,
+        apiVersion: "2021-12-01",
+      }),
+    ),
+).annotate({
+  identifier: "ListPrivateLinkResourceByAccountRequest",
+}) as any as S.Schema<ListPrivateLinkResourceByAccountRequest>;
+
+/** Collection of items of type results. */
+export type PrivateLinkResourceListValueList = Array<PrivateLinkResource>;
+export const PrivateLinkResourceListValueList = /*@__PURE__*/ S.Array(
+  PrivateLinkResource,
+) as any as S.Schema<PrivateLinkResourceListValueList>;
+
+/** Paged list of private link resources */
+export interface PrivateLinkResourceList {
+  /** The Url of next result page. */
+  nextLink?: string;
+  /** Collection of items of type results. */
+  value: PrivateLinkResourceListValueList;
+}
+export const PrivateLinkResourceList = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    nextLink: S.optional(S.String),
+    value: PrivateLinkResourceListValueList,
+  }),
+).annotate({
+  identifier: "PrivateLinkResourceList",
+}) as any as S.Schema<PrivateLinkResourceList>;
+
 /** A private endpoint connection properties class. */
 export interface PrivateEndpointConnectionPropertiesInput {
   /** The private endpoint information. */
@@ -1855,394 +2051,164 @@ export const PrivateEndpointConnectionsCreateOrUpdateResponse =
     identifier: "PrivateEndpointConnectionsCreateOrUpdateResponse",
   }) as any as S.Schema<PrivateEndpointConnectionsCreateOrUpdateResponse>;
 
-export interface PrivateEndpointConnectionsDeleteRequest {
-  /** The subscription identifier */
-  subscriptionId: string;
-  /** The resource group name. */
-  resourceGroupName: string;
-  /** The name of the account. */
-  accountName: string;
-  /** Name of the private endpoint connection. */
-  privateEndpointConnectionName: string;
+export type RemoveDefaultAccountRequestScopeType = "Tenant" | "Subscription";
+export const RemoveDefaultAccountRequestScopeType = /*@__PURE__*/ S.String;
+
+export interface RemoveDefaultAccountRequest {
+  /** The tenant ID. */
+  scopeTenantId: string;
+  /** The scope for the default account. */
+  scopeType: RemoveDefaultAccountRequestScopeType | (string & {});
+  /** The Id of the scope object, for example if the scope is "Subscription" then it is the ID of that subscription. */
+  scope?: string;
 }
-export const PrivateEndpointConnectionsDeleteRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-      privateEndpointConnectionName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "DELETE",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Purview/accounts/{accountName}/privateEndpointConnections/{privateEndpointConnectionName}",
-        code: 200,
-        apiVersion: "2021-12-01",
-      }),
-    ),
-).annotate({
-  identifier: "PrivateEndpointConnectionsDeleteRequest",
-}) as any as S.Schema<PrivateEndpointConnectionsDeleteRequest>;
-
-export interface PrivateEndpointConnectionsDeleteResponse {}
-export const PrivateEndpointConnectionsDeleteResponse = /*@__PURE__*/ S.suspend(
-  () => S.Struct({}),
-).annotate({
-  identifier: "PrivateEndpointConnectionsDeleteResponse",
-}) as any as S.Schema<PrivateEndpointConnectionsDeleteResponse>;
-
-export interface PrivateEndpointConnectionsGetRequest {
-  /** The subscription identifier */
-  subscriptionId: string;
-  /** The resource group name. */
-  resourceGroupName: string;
-  /** The name of the account. */
-  accountName: string;
-  /** Name of the private endpoint connection. */
-  privateEndpointConnectionName: string;
-}
-export const PrivateEndpointConnectionsGetRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-      privateEndpointConnectionName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Purview/accounts/{accountName}/privateEndpointConnections/{privateEndpointConnectionName}",
-        code: 200,
-        apiVersion: "2021-12-01",
-      }),
-    ),
-).annotate({
-  identifier: "PrivateEndpointConnectionsGetRequest",
-}) as any as S.Schema<PrivateEndpointConnectionsGetRequest>;
-
-export interface PrivateEndpointConnectionsGetResponse {
-  /** Gets or sets the identifier. */
-  id?: string;
-  /** Gets or sets the name. */
-  name?: string;
-  /** Metadata pertaining to creation and last modification of the resource. */
-  systemData?: SystemData;
-  /** Gets or sets the type. */
-  type?: string;
-  /** The connection identifier. */
-  properties?: PrivateEndpointConnectionProperties;
-}
-export const PrivateEndpointConnectionsGetResponse = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      id: S.optional(S.String),
-      name: S.optional(S.String),
-      systemData: S.optional(SystemData),
-      type: S.optional(S.String),
-      properties: S.optional(PrivateEndpointConnectionProperties),
-    }),
-).annotate({
-  identifier: "PrivateEndpointConnectionsGetResponse",
-}) as any as S.Schema<PrivateEndpointConnectionsGetResponse>;
-
-export interface PrivateEndpointConnectionsListByAccountRequest {
-  /** The subscription identifier */
-  subscriptionId: string;
-  /** The resource group name. */
-  resourceGroupName: string;
-  /** The name of the account. */
-  accountName: string;
-  /** The skip token. */
-  _skipToken?: string;
-}
-export const PrivateEndpointConnectionsListByAccountRequest =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-      _skipToken: S.optional(S.String.pipe(T.Query("$skipToken"))),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Purview/accounts/{accountName}/privateEndpointConnections",
-        code: 200,
-        apiVersion: "2021-12-01",
-      }),
-    ),
-  ).annotate({
-    identifier: "PrivateEndpointConnectionsListByAccountRequest",
-  }) as any as S.Schema<PrivateEndpointConnectionsListByAccountRequest>;
-
-/** Collection of items of type results. */
-export type PrivateEndpointConnectionListValueList =
-  Array<PrivateEndpointConnection>;
-export const PrivateEndpointConnectionListValueList = /*@__PURE__*/ S.Array(
-  PrivateEndpointConnection,
-) as any as S.Schema<PrivateEndpointConnectionListValueList>;
-
-/** Paged list of private endpoint connections */
-export interface PrivateEndpointConnectionList {
-  /** The Url of next result page. */
-  nextLink?: string;
-  /** Collection of items of type results. */
-  value: PrivateEndpointConnectionListValueList;
-}
-export const PrivateEndpointConnectionList = /*@__PURE__*/ S.suspend(() =>
+export const RemoveDefaultAccountRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    nextLink: S.optional(S.String),
-    value: PrivateEndpointConnectionListValueList,
-  }),
-).annotate({
-  identifier: "PrivateEndpointConnectionList",
-}) as any as S.Schema<PrivateEndpointConnectionList>;
-
-export interface PrivateLinkResourcesGetByGroupIdRequest {
-  /** The subscription identifier */
-  subscriptionId: string;
-  /** The resource group name. */
-  resourceGroupName: string;
-  /** The name of the account. */
-  accountName: string;
-  /** The group identifier. */
-  groupId: string;
-}
-export const PrivateLinkResourcesGetByGroupIdRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-      groupId: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Purview/accounts/{accountName}/privateLinkResources/{groupId}",
-        code: 200,
-        apiVersion: "2021-12-01",
-      }),
-    ),
-).annotate({
-  identifier: "PrivateLinkResourcesGetByGroupIdRequest",
-}) as any as S.Schema<PrivateLinkResourcesGetByGroupIdRequest>;
-
-/** This translates to how many Private IPs should be created for each privately linkable resource. */
-export type PrivateLinkResourcePropertiesRequiredMembersList = Array<string>;
-export const PrivateLinkResourcePropertiesRequiredMembersList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PrivateLinkResourcePropertiesRequiredMembersList>;
-
-/** The required zone names for private link resource. */
-export type PrivateLinkResourcePropertiesRequiredZoneNamesList = Array<string>;
-export const PrivateLinkResourcePropertiesRequiredZoneNamesList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<PrivateLinkResourcePropertiesRequiredZoneNamesList>;
-
-/** A privately linkable resource properties. */
-export interface PrivateLinkResourceProperties {
-  /** The private link resource group identifier. */
-  groupId?: string;
-  /** This translates to how many Private IPs should be created for each privately linkable resource. */
-  requiredMembers?: PrivateLinkResourcePropertiesRequiredMembersList;
-  /** The required zone names for private link resource. */
-  requiredZoneNames?: PrivateLinkResourcePropertiesRequiredZoneNamesList;
-}
-export const PrivateLinkResourceProperties = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    groupId: S.optional(S.String),
-    requiredMembers: S.optional(
-      PrivateLinkResourcePropertiesRequiredMembersList,
-    ),
-    requiredZoneNames: S.optional(
-      PrivateLinkResourcePropertiesRequiredZoneNamesList,
-    ),
-  }),
-).annotate({
-  identifier: "PrivateLinkResourceProperties",
-}) as any as S.Schema<PrivateLinkResourceProperties>;
-
-/** A privately linkable resource. */
-export interface PrivateLinkResource {
-  /** The private link resource identifier. */
-  id?: string;
-  /** The private link resource name. */
-  name?: string;
-  /** The private link resource properties. */
-  properties?: PrivateLinkResourceProperties;
-  /** The private link resource type. */
-  type?: string;
-}
-export const PrivateLinkResource = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.optional(S.String),
-    name: S.optional(S.String),
-    properties: S.optional(PrivateLinkResourceProperties),
-    type: S.optional(S.String),
-  }),
-).annotate({
-  identifier: "PrivateLinkResource",
-}) as any as S.Schema<PrivateLinkResource>;
-
-export interface PrivateLinkResourcesListByAccountRequest {
-  /** The subscription identifier */
-  subscriptionId: string;
-  /** The resource group name. */
-  resourceGroupName: string;
-  /** The name of the account. */
-  accountName: string;
-}
-export const PrivateLinkResourcesListByAccountRequest = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      subscriptionId: S.String.pipe(T.Label()),
-      resourceGroupName: S.String.pipe(T.Label()),
-      accountName: S.String.pipe(T.Label()),
-    }).pipe(
-      T.Http({
-        method: "GET",
-        uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Purview/accounts/{accountName}/privateLinkResources",
-        code: 200,
-        apiVersion: "2021-12-01",
-      }),
-    ),
-).annotate({
-  identifier: "PrivateLinkResourcesListByAccountRequest",
-}) as any as S.Schema<PrivateLinkResourcesListByAccountRequest>;
-
-/** Collection of items of type results. */
-export type PrivateLinkResourceListValueList = Array<PrivateLinkResource>;
-export const PrivateLinkResourceListValueList = /*@__PURE__*/ S.Array(
-  PrivateLinkResource,
-) as any as S.Schema<PrivateLinkResourceListValueList>;
-
-/** Paged list of private link resources */
-export interface PrivateLinkResourceList {
-  /** The Url of next result page. */
-  nextLink?: string;
-  /** Collection of items of type results. */
-  value: PrivateLinkResourceListValueList;
-}
-export const PrivateLinkResourceList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    nextLink: S.optional(S.String),
-    value: PrivateLinkResourceListValueList,
-  }),
-).annotate({
-  identifier: "PrivateLinkResourceList",
-}) as any as S.Schema<PrivateLinkResourceList>;
-
-export interface UsagesGetRequest {
-  /** The subscription identifier */
-  subscriptionId: string;
-  /** The region. */
-  location: string;
-  _filter?: string;
-}
-export const UsagesGetRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    subscriptionId: S.String.pipe(T.Label()),
-    location: S.String.pipe(T.Label()),
-    _filter: S.optional(S.String.pipe(T.Query("$filter"))),
+    scopeTenantId: S.String.pipe(T.Query()),
+    scopeType: RemoveDefaultAccountRequestScopeType.pipe(T.Query()),
+    scope: S.optional(S.String.pipe(T.Query())),
   }).pipe(
     T.Http({
-      method: "GET",
-      uri: "/subscriptions/{subscriptionId}/providers/Microsoft.Purview/locations/{location}/usages",
+      method: "POST",
+      uri: "/providers/Microsoft.Purview/removeDefaultAccount",
       code: 200,
       apiVersion: "2021-12-01",
     }),
   ),
 ).annotate({
-  identifier: "UsagesGetRequest",
-}) as any as S.Schema<UsagesGetRequest>;
+  identifier: "RemoveDefaultAccountRequest",
+}) as any as S.Schema<RemoveDefaultAccountRequest>;
 
-/** Quota name */
-export interface QuotaName {
-  /** Gets or sets the localized name value. */
-  localizedValue?: string;
-  /** Gets or sets the name value. */
-  value?: string;
+export interface RemoveDefaultAccountResponse {}
+export const RemoveDefaultAccountResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({}),
+).annotate({
+  identifier: "RemoveDefaultAccountResponse",
+}) as any as S.Schema<RemoveDefaultAccountResponse>;
+
+/** The scope where the default account is set. */
+export type SetDefaultAccountRequestScopeType = "Tenant" | "Subscription";
+export const SetDefaultAccountRequestScopeType = /*@__PURE__*/ S.String;
+
+export interface SetDefaultAccountRequest {
+  /** The name of the account that is set as the default. */
+  accountName?: string;
+  /** The resource group name of the account that is set as the default. */
+  resourceGroupName?: string;
+  /** The scope object ID. For example, sub ID or tenant ID. */
+  scope?: string;
+  /** The scope tenant in which the default account is set. */
+  scopeTenantId?: string;
+  /** The scope where the default account is set. */
+  scopeType?: SetDefaultAccountRequestScopeType | (string & {});
+  /** The subscription ID of the account that is set as the default. */
+  subscriptionId?: string;
 }
-export const QuotaName = /*@__PURE__*/ S.suspend(() =>
+export const SetDefaultAccountRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    localizedValue: S.optional(S.String),
-    value: S.optional(S.String),
-  }),
-).annotate({ identifier: "QuotaName" }) as any as S.Schema<QuotaName>;
+    accountName: S.optional(S.String),
+    resourceGroupName: S.optional(S.String),
+    scope: S.optional(S.String),
+    scopeTenantId: S.optional(S.String),
+    scopeType: S.optional(SetDefaultAccountRequestScopeType),
+    subscriptionId: S.optional(S.String),
+  }).pipe(
+    T.Http({
+      method: "POST",
+      uri: "/providers/Microsoft.Purview/setDefaultAccount",
+      code: 200,
+      apiVersion: "2021-12-01",
+    }),
+  ),
+).annotate({
+  identifier: "SetDefaultAccountRequest",
+}) as any as S.Schema<SetDefaultAccountRequest>;
 
-/** Response for usage information */
-export interface Usage {
-  /** Current usage quota value */
-  currentValue?: number;
-  /** Fully qualified ARM resource Id */
+/** Tags on the azure resource. */
+export type UpdateAccountRequestTagsMap = { [key: string]: string | undefined };
+export const UpdateAccountRequestTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateAccountRequestTagsMap>;
+
+export interface UpdateAccountRequest {
+  /** The subscription identifier */
+  subscriptionId: string;
+  /** The resource group name. */
+  resourceGroupName: string;
+  /** The name of the account. */
+  accountName: string;
+  /** Identity related info to add/remove userAssignedIdentities. */
+  identity?: IdentityInput;
+  /** The account properties. */
+  properties?: AccountPropertiesInput;
+  /** Tags on the azure resource. */
+  tags?: UpdateAccountRequestTagsMap;
+}
+export const UpdateAccountRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    subscriptionId: S.String.pipe(T.Label()),
+    resourceGroupName: S.String.pipe(T.Label()),
+    accountName: S.String.pipe(T.Label()),
+    identity: S.optional(IdentityInput),
+    properties: S.optional(AccountPropertiesInput),
+    tags: S.optional(UpdateAccountRequestTagsMap),
+  }).pipe(
+    T.Http({
+      method: "PATCH",
+      uri: "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Purview/accounts/{accountName}",
+      code: 200,
+      apiVersion: "2021-12-01",
+    }),
+  ),
+).annotate({
+  identifier: "UpdateAccountRequest",
+}) as any as S.Schema<UpdateAccountRequest>;
+
+/** Tags on the azure resource. */
+export type UpdateAccountResponseTagsMap = {
+  [key: string]: string | undefined;
+};
+export const UpdateAccountResponseTagsMap = /*@__PURE__*/ S.Record(
+  S.String,
+  S.String,
+) as any as S.Schema<UpdateAccountResponseTagsMap>;
+
+export interface UpdateAccountResponse {
+  /** Gets or sets the identifier. */
   id?: string;
-  /** Usage quota limit */
-  limit?: number;
-  /** Quota name */
-  name?: QuotaName;
-  /** Quota usage unit. */
-  unit?: string;
+  /** Identity Info on the tracked resource */
+  identity?: Identity;
+  /** Gets or sets the location. */
+  location?: string;
+  /** Gets or sets the name. */
+  name?: string;
+  /** Metadata pertaining to creation and last modification of the resource. */
+  systemData?: SystemData;
+  /** Tags on the azure resource. */
+  tags?: UpdateAccountResponseTagsMap;
+  /** Gets or sets the type. */
+  type?: string;
+  /** Gets or sets the properties. */
+  properties?: AccountProperties;
+  /** Gets or sets the Sku. */
+  sku?: AccountSku;
 }
-export const Usage = /*@__PURE__*/ S.suspend(() =>
+export const UpdateAccountResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    currentValue: S.optional(S.Number),
     id: S.optional(S.String),
-    limit: S.optional(S.Number),
-    name: S.optional(QuotaName),
-    unit: S.optional(S.String),
+    identity: S.optional(Identity),
+    location: S.optional(S.String),
+    name: S.optional(S.String),
+    systemData: S.optional(SystemData),
+    tags: S.optional(UpdateAccountResponseTagsMap),
+    type: S.optional(S.String),
+    properties: S.optional(AccountProperties),
+    sku: S.optional(AccountSku),
   }),
-).annotate({ identifier: "Usage" }) as any as S.Schema<Usage>;
-
-/** Collection of usage values. */
-export type UsageListValueList = Array<Usage>;
-export const UsageListValueList = /*@__PURE__*/ S.Array(
-  Usage,
-) as any as S.Schema<UsageListValueList>;
-
-/** Response for usage get request */
-export interface UsageList {
-  /** Collection of usage values. */
-  value?: UsageListValueList;
-  /** The Url of next result page. */
-  nextLink?: string;
-}
-export const UsageList = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    value: S.optional(UsageListValueList),
-    nextLink: S.optional(S.String),
-  }),
-).annotate({ identifier: "UsageList" }) as any as S.Schema<UsageList>;
-
-export type AccountsAddRootCollectionAdminError = AzureOpError;
-/** Add the administrator for root collection. Add the administrator for root collection associated with this account. */
-export const AccountsAddRootCollectionAdmin: API.OperationMethod<
-  AccountsAddRootCollectionAdminRequest,
-  AccountsAddRootCollectionAdminResponse,
-  AccountsAddRootCollectionAdminError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccountsAddRootCollectionAdminRequest,
-  output: AccountsAddRootCollectionAdminResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AccountsCheckNameAvailabilityError = AzureOpError;
-/** Checks the account name availability. Checks if account name is available. */
-export const AccountsCheckNameAvailability: API.OperationMethod<
-  AccountsCheckNameAvailabilityRequest,
-  CheckNameAvailabilityResult,
-  AccountsCheckNameAvailabilityError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccountsCheckNameAvailabilityRequest,
-  output: CheckNameAvailabilityResult,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
+).annotate({
+  identifier: "UpdateAccountResponse",
+}) as any as S.Schema<UpdateAccountResponse>;
 
 export type AccountsCreateOrUpdateError = AzureOpError;
 /** Create or update an account resource Creates or updates an account */
@@ -2259,166 +2225,196 @@ export const AccountsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type AccountsDeleteError = AzureOpError;
+export type AddAccountRootCollectionAdminError = AzureOpError;
+/** Add the administrator for root collection. Add the administrator for root collection associated with this account. */
+export const AddAccountRootCollectionAdmin: API.OperationMethod<
+  AddAccountRootCollectionAdminRequest,
+  AddAccountRootCollectionAdminResponse,
+  AddAccountRootCollectionAdminError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: AddAccountRootCollectionAdminRequest,
+  output: AddAccountRootCollectionAdminResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type CheckAccountNameAvailabilityError = AzureOpError;
+/** Checks the account name availability. Checks if account name is available. */
+export const CheckAccountNameAvailability: API.OperationMethod<
+  CheckAccountNameAvailabilityRequest,
+  CheckNameAvailabilityResult,
+  CheckAccountNameAvailabilityError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: CheckAccountNameAvailabilityRequest,
+  output: CheckNameAvailabilityResult,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeleteAccountError = AzureOpError;
 /** Deletes the account resource. Deletes an account resource */
-export const AccountsDelete: API.OperationMethod<
-  AccountsDeleteRequest,
-  AccountsDeleteResponse,
-  AccountsDeleteError,
+export const DeleteAccount: API.OperationMethod<
+  DeleteAccountRequest,
+  DeleteAccountResponse,
+  DeleteAccountError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AccountsDeleteRequest,
-  output: AccountsDeleteResponse,
+  input: DeleteAccountRequest,
+  output: DeleteAccountResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type AccountsGetError = AzureOpError;
+export type DeleteKafkaConfigurationError = AzureOpError;
+/** Deletes the kafka configuration on the account. Deletes a KafkaConfiguration resource. */
+export const DeleteKafkaConfiguration: API.OperationMethod<
+  DeleteKafkaConfigurationRequest,
+  DeleteKafkaConfigurationResponse,
+  DeleteKafkaConfigurationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeleteKafkaConfigurationRequest,
+  output: DeleteKafkaConfigurationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type DeletePrivateEndpointConnectionError = AzureOpError;
+/** Deletes private endpoint connection. Delete a private endpoint connection */
+export const DeletePrivateEndpointConnection: API.OperationMethod<
+  DeletePrivateEndpointConnectionRequest,
+  DeletePrivateEndpointConnectionResponse,
+  DeletePrivateEndpointConnectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: DeletePrivateEndpointConnectionRequest,
+  output: DeletePrivateEndpointConnectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetAccountError = AzureOpError;
 /** Gets the account resource. Get an account */
-export const AccountsGet: API.OperationMethod<
-  AccountsGetRequest,
-  AccountsGetResponse,
-  AccountsGetError,
+export const GetAccount: API.OperationMethod<
+  GetAccountRequest,
+  GetAccountResponse,
+  GetAccountError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: AccountsGetRequest,
-  output: AccountsGetResponse,
+  input: GetAccountRequest,
+  output: GetAccountResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type AccountsListByResourceGroupError = AzureOpError;
-/** Gets the accounts resources by resource group. List accounts in ResourceGroup */
-export const AccountsListByResourceGroup: API.OperationMethod<
-  AccountsListByResourceGroupRequest,
-  AccountList,
-  AccountsListByResourceGroupError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccountsListByResourceGroupRequest,
-  output: AccountList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AccountsListBySubscriptionError = AzureOpError;
-/** Gets the accounts resources by subscription. List accounts in Subscription */
-export const AccountsListBySubscription: API.OperationMethod<
-  AccountsListBySubscriptionRequest,
-  AccountList,
-  AccountsListBySubscriptionError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccountsListBySubscriptionRequest,
-  output: AccountList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AccountsListKeysError = AzureOpError;
-/** Lists the keys asynchronous. List the authorization keys associated with this account. */
-export const AccountsListKeys: API.OperationMethod<
-  AccountsListKeysRequest,
-  AccessKeys,
-  AccountsListKeysError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccountsListKeysRequest,
-  output: AccessKeys,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type AccountsUpdateError = AzureOpError;
-/** Patches the account resource. Updates an account */
-export const AccountsUpdate: API.OperationMethod<
-  AccountsUpdateRequest,
-  AccountsUpdateResponse,
-  AccountsUpdateError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: AccountsUpdateRequest,
-  output: AccountsUpdateResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DefaultAccountsGetError = AzureOpError;
+export type GetDefaultAccountError = AzureOpError;
 /** Gets the default account information set for the scope. Get the default account for the scope. */
-export const DefaultAccountsGet: API.OperationMethod<
-  DefaultAccountsGetRequest,
+export const GetDefaultAccount: API.OperationMethod<
+  GetDefaultAccountRequest,
   DefaultAccountPayload,
-  DefaultAccountsGetError,
+  GetDefaultAccountError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: DefaultAccountsGetRequest,
+  input: GetDefaultAccountRequest,
   output: DefaultAccountPayload,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type DefaultAccountsRemoveError = AzureOpError;
-/** Removes the default account from the scope. Removes the default account from the scope. */
-export const DefaultAccountsRemove: API.OperationMethod<
-  DefaultAccountsRemoveRequest,
-  DefaultAccountsRemoveResponse,
-  DefaultAccountsRemoveError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DefaultAccountsRemoveRequest,
-  output: DefaultAccountsRemoveResponse,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type DefaultAccountsSetError = AzureOpError;
-/** Sets the default account for the scope. Sets the default account for the scope. */
-export const DefaultAccountsSet: API.OperationMethod<
-  DefaultAccountsSetRequest,
-  DefaultAccountPayload,
-  DefaultAccountsSetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: DefaultAccountsSetRequest,
-  output: DefaultAccountPayload,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type FeaturesAccountGetError = AzureOpError;
+export type GetFeaturesAccountError = AzureOpError;
 /** Gets a list of features and their status for the account. Status of enabled features will be true. Status of disabled features will be false. Features that don't exist will be excluded from the results. Gets details from a list of feature names. */
-export const FeaturesAccountGet: API.OperationMethod<
-  FeaturesAccountGetRequest,
+export const GetFeaturesAccount: API.OperationMethod<
+  GetFeaturesAccountRequest,
   BatchFeatureStatus,
-  FeaturesAccountGetError,
+  GetFeaturesAccountError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FeaturesAccountGetRequest,
+  input: GetFeaturesAccountRequest,
   output: BatchFeatureStatus,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type FeaturesSubscriptionGetError = AzureOpError;
+export type GetFeaturesSubscriptionError = AzureOpError;
 /** Gets a list of features and their status for the location and subscription. Status of enabled features will be true. Status of disabled features will be false. Features that don't exist will be excluded from the results. Gets details from a list of feature names. */
-export const FeaturesSubscriptionGet: API.OperationMethod<
-  FeaturesSubscriptionGetRequest,
+export const GetFeaturesSubscription: API.OperationMethod<
+  GetFeaturesSubscriptionRequest,
   BatchFeatureStatus,
-  FeaturesSubscriptionGetError,
+  GetFeaturesSubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: FeaturesSubscriptionGetRequest,
+  input: GetFeaturesSubscriptionRequest,
   output: BatchFeatureStatus,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetKafkaConfigurationError = AzureOpError;
+/** Gets the kafka configuration. Gets the kafka configuration for the account */
+export const GetKafkaConfiguration: API.OperationMethod<
+  GetKafkaConfigurationRequest,
+  GetKafkaConfigurationResponse,
+  GetKafkaConfigurationError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetKafkaConfigurationRequest,
+  output: GetKafkaConfigurationResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetPrivateEndpointConnectionError = AzureOpError;
+/** Gets private endpoint connection information. Get a private endpoint connection */
+export const GetPrivateEndpointConnection: API.OperationMethod<
+  GetPrivateEndpointConnectionRequest,
+  GetPrivateEndpointConnectionResponse,
+  GetPrivateEndpointConnectionError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPrivateEndpointConnectionRequest,
+  output: GetPrivateEndpointConnectionResponse,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetPrivateLinkResourceByGroupIdError = AzureOpError;
+/** Gets a privately linkable resources for an account with given group identifier. Gets a privately linkable resources for an account with given group identifier */
+export const GetPrivateLinkResourceByGroupId: API.OperationMethod<
+  GetPrivateLinkResourceByGroupIdRequest,
+  PrivateLinkResource,
+  GetPrivateLinkResourceByGroupIdError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetPrivateLinkResourceByGroupIdRequest,
+  output: PrivateLinkResource,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetUsageError = AzureOpError;
+/** Gets the Usage quota configuration. Get the usage quota configuration */
+export const GetUsage: API.OperationMethod<
+  GetUsageRequest,
+  UsageList,
+  GetUsageError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetUsageRequest,
+  output: UsageList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -2439,61 +2435,106 @@ export const KafkaConfigurationsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type KafkaConfigurationsDeleteError = AzureOpError;
-/** Deletes the kafka configuration on the account. Deletes a KafkaConfiguration resource. */
-export const KafkaConfigurationsDelete: API.OperationMethod<
-  KafkaConfigurationsDeleteRequest,
-  KafkaConfigurationsDeleteResponse,
-  KafkaConfigurationsDeleteError,
+export type ListAccountByResourceGroupError = AzureOpError;
+/** Gets the accounts resources by resource group. List accounts in ResourceGroup */
+export const ListAccountByResourceGroup: API.OperationMethod<
+  ListAccountByResourceGroupRequest,
+  AccountList,
+  ListAccountByResourceGroupError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: KafkaConfigurationsDeleteRequest,
-  output: KafkaConfigurationsDeleteResponse,
+  input: ListAccountByResourceGroupRequest,
+  output: AccountList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type KafkaConfigurationsGetError = AzureOpError;
-/** Gets the kafka configuration. Gets the kafka configuration for the account */
-export const KafkaConfigurationsGet: API.OperationMethod<
-  KafkaConfigurationsGetRequest,
-  KafkaConfigurationsGetResponse,
-  KafkaConfigurationsGetError,
+export type ListAccountBySubscriptionError = AzureOpError;
+/** Gets the accounts resources by subscription. List accounts in Subscription */
+export const ListAccountBySubscription: API.OperationMethod<
+  ListAccountBySubscriptionRequest,
+  AccountList,
+  ListAccountBySubscriptionError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: KafkaConfigurationsGetRequest,
-  output: KafkaConfigurationsGetResponse,
+  input: ListAccountBySubscriptionRequest,
+  output: AccountList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type KafkaConfigurationsListByAccountError = AzureOpError;
+export type ListAccountKeysError = AzureOpError;
+/** Lists the keys asynchronous. List the authorization keys associated with this account. */
+export const ListAccountKeys: API.OperationMethod<
+  ListAccountKeysRequest,
+  AccessKeys,
+  ListAccountKeysError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListAccountKeysRequest,
+  output: AccessKeys,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListKafkaConfigurationByAccountError = AzureOpError;
 /** Gets the list of Kafka configurations for the account. Lists the Kafka configurations in the Account */
-export const KafkaConfigurationsListByAccount: API.OperationMethod<
-  KafkaConfigurationsListByAccountRequest,
+export const ListKafkaConfigurationByAccount: API.OperationMethod<
+  ListKafkaConfigurationByAccountRequest,
   KafkaConfigurationList,
-  KafkaConfigurationsListByAccountError,
+  ListKafkaConfigurationByAccountError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: KafkaConfigurationsListByAccountRequest,
+  input: ListKafkaConfigurationByAccountRequest,
   output: KafkaConfigurationList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type OperationsListError = AzureOpError;
+export type ListOperationsError = AzureOpError;
 /** Lists the available operations List of available operations */
-export const OperationsList: API.OperationMethod<
-  OperationsListRequest,
+export const ListOperations: API.OperationMethod<
+  ListOperationsRequest,
   OperationList,
-  OperationsListError,
+  ListOperationsError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: OperationsListRequest,
+  input: ListOperationsRequest,
   output: OperationList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListPrivateEndpointConnectionByAccountError = AzureOpError;
+/** Gets private endpoint connections. Get private endpoint connections for account */
+export const ListPrivateEndpointConnectionByAccount: API.OperationMethod<
+  ListPrivateEndpointConnectionByAccountRequest,
+  PrivateEndpointConnectionList,
+  ListPrivateEndpointConnectionByAccountError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListPrivateEndpointConnectionByAccountRequest,
+  output: PrivateEndpointConnectionList,
+  errors: [UnknownAzureError],
+  protocol: AzureProtocol,
+  retry: Retry.Retry,
+}));
+
+export type ListPrivateLinkResourceByAccountError = AzureOpError;
+/** Gets a list of privately linkable resources for an account. Gets a list of privately linkable resources for an account */
+export const ListPrivateLinkResourceByAccount: API.OperationMethod<
+  ListPrivateLinkResourceByAccountRequest,
+  PrivateLinkResourceList,
+  ListPrivateLinkResourceByAccountError,
+  AzureOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: ListPrivateLinkResourceByAccountRequest,
+  output: PrivateLinkResourceList,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
@@ -2514,91 +2555,46 @@ export const PrivateEndpointConnectionsCreateOrUpdate: API.OperationMethod<
   retry: Retry.Retry,
 }));
 
-export type PrivateEndpointConnectionsDeleteError = AzureOpError;
-/** Deletes private endpoint connection. Delete a private endpoint connection */
-export const PrivateEndpointConnectionsDelete: API.OperationMethod<
-  PrivateEndpointConnectionsDeleteRequest,
-  PrivateEndpointConnectionsDeleteResponse,
-  PrivateEndpointConnectionsDeleteError,
+export type RemoveDefaultAccountError = AzureOpError;
+/** Removes the default account from the scope. Removes the default account from the scope. */
+export const RemoveDefaultAccount: API.OperationMethod<
+  RemoveDefaultAccountRequest,
+  RemoveDefaultAccountResponse,
+  RemoveDefaultAccountError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PrivateEndpointConnectionsDeleteRequest,
-  output: PrivateEndpointConnectionsDeleteResponse,
+  input: RemoveDefaultAccountRequest,
+  output: RemoveDefaultAccountResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type PrivateEndpointConnectionsGetError = AzureOpError;
-/** Gets private endpoint connection information. Get a private endpoint connection */
-export const PrivateEndpointConnectionsGet: API.OperationMethod<
-  PrivateEndpointConnectionsGetRequest,
-  PrivateEndpointConnectionsGetResponse,
-  PrivateEndpointConnectionsGetError,
+export type SetDefaultAccountError = AzureOpError;
+/** Sets the default account for the scope. Sets the default account for the scope. */
+export const SetDefaultAccount: API.OperationMethod<
+  SetDefaultAccountRequest,
+  DefaultAccountPayload,
+  SetDefaultAccountError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PrivateEndpointConnectionsGetRequest,
-  output: PrivateEndpointConnectionsGetResponse,
+  input: SetDefaultAccountRequest,
+  output: DefaultAccountPayload,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,
 }));
 
-export type PrivateEndpointConnectionsListByAccountError = AzureOpError;
-/** Gets private endpoint connections. Get private endpoint connections for account */
-export const PrivateEndpointConnectionsListByAccount: API.OperationMethod<
-  PrivateEndpointConnectionsListByAccountRequest,
-  PrivateEndpointConnectionList,
-  PrivateEndpointConnectionsListByAccountError,
+export type UpdateAccountError = AzureOpError;
+/** Patches the account resource. Updates an account */
+export const UpdateAccount: API.OperationMethod<
+  UpdateAccountRequest,
+  UpdateAccountResponse,
+  UpdateAccountError,
   AzureOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: PrivateEndpointConnectionsListByAccountRequest,
-  output: PrivateEndpointConnectionList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateLinkResourcesGetByGroupIdError = AzureOpError;
-/** Gets a privately linkable resources for an account with given group identifier. Gets a privately linkable resources for an account with given group identifier */
-export const PrivateLinkResourcesGetByGroupId: API.OperationMethod<
-  PrivateLinkResourcesGetByGroupIdRequest,
-  PrivateLinkResource,
-  PrivateLinkResourcesGetByGroupIdError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateLinkResourcesGetByGroupIdRequest,
-  output: PrivateLinkResource,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type PrivateLinkResourcesListByAccountError = AzureOpError;
-/** Gets a list of privately linkable resources for an account. Gets a list of privately linkable resources for an account */
-export const PrivateLinkResourcesListByAccount: API.OperationMethod<
-  PrivateLinkResourcesListByAccountRequest,
-  PrivateLinkResourceList,
-  PrivateLinkResourcesListByAccountError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: PrivateLinkResourcesListByAccountRequest,
-  output: PrivateLinkResourceList,
-  errors: [UnknownAzureError],
-  protocol: AzureProtocol,
-  retry: Retry.Retry,
-}));
-
-export type UsagesGetError = AzureOpError;
-/** Gets the Usage quota configuration. Get the usage quota configuration */
-export const UsagesGet: API.OperationMethod<
-  UsagesGetRequest,
-  UsageList,
-  UsagesGetError,
-  AzureOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: UsagesGetRequest,
-  output: UsageList,
+  input: UpdateAccountRequest,
+  output: UpdateAccountResponse,
   errors: [UnknownAzureError],
   protocol: AzureProtocol,
   retry: Retry.Retry,

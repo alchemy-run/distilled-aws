@@ -58,71 +58,17 @@ export class UnprocessableEntity
     [{ status: 422 }],
   ) {}
 
-export type ListDisputesRequestOrder =
-  | "created_at"
-  | "amount"
-  | "evidence_due_at";
-export const ListDisputesRequestOrder = /*@__PURE__*/ S.String;
-
-export type ListDisputesRequestDirection = "asc" | "desc";
-export const ListDisputesRequestDirection = /*@__PURE__*/ S.String;
-
-export type ListDisputesRequestStatusItem =
-  | "needs_response"
-  | "under_review"
-  | "won"
-  | "lost"
-  | "closed";
-export const ListDisputesRequestStatusItem = /*@__PURE__*/ S.String;
-
-export type ListDisputesRequestStatusList = Array<
-  ListDisputesRequestStatusItem | (string & {})
->;
-export const ListDisputesRequestStatusList = /*@__PURE__*/ S.Array(
-  ListDisputesRequestStatusItem,
-) as any as S.Schema<ListDisputesRequestStatusList>;
-
-export interface ListDisputesRequest {
-  /** Only disputes filed against this account (`biz_` tag). Omit it to cover every account you can read. */
-  account_id?: string;
-  /** The number of disputes to return (default 20, max 100). */
-  first?: number;
-  /** A cursor; returns disputes after this position. */
-  after?: string;
-  /** The number of disputes to return from the end of the range. */
-  last?: number;
-  /** A cursor; returns disputes before this position. */
-  before?: string;
-  /** The field to sort disputes by. */
-  order?: ListDisputesRequestOrder | (string & {});
-  /** Sort direction. */
-  direction?: ListDisputesRequestDirection | (string & {});
-  /** Only disputes in these statuses. Repeat the parameter to pass several — one paginated list covers all of them. Covers both chargebacks and inquiries at each stage. A `needs_response` dispute whose evidence deadline has passed reports and filters as `under_review` instead. */
-  status?: ListDisputesRequestStatusList;
-  /** Only disputes in this three-letter ISO currency. */
-  currency?: string;
-  /** Only disputes opened before this ISO 8601 timestamp. */
-  created_before?: string;
-  /** Only disputes opened after this ISO 8601 timestamp. */
-  created_after?: string;
+export interface GetDisputeRequest {
+  /** The dispute ID (`dspt_` tag). */
+  id: string;
 }
-export const ListDisputesRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetDisputeRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    account_id: S.optional(S.String.pipe(T.Query())),
-    first: S.optional(S.Number.pipe(T.Query())),
-    after: S.optional(S.String.pipe(T.Query())),
-    last: S.optional(S.Number.pipe(T.Query())),
-    before: S.optional(S.String.pipe(T.Query())),
-    order: S.optional(ListDisputesRequestOrder.pipe(T.Query())),
-    direction: S.optional(ListDisputesRequestDirection.pipe(T.Query())),
-    status: S.optional(ListDisputesRequestStatusList.pipe(T.Query())),
-    currency: S.optional(S.String.pipe(T.Query())),
-    created_before: S.optional(S.String.pipe(T.Query())),
-    created_after: S.optional(S.String.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/disputes", code: 200 })),
+    id: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/disputes/{id}", code: 200 })),
 ).annotate({
-  identifier: "ListDisputesRequest",
-}) as any as S.Schema<ListDisputesRequest>;
+  identifier: "GetDisputeRequest",
+}) as any as S.Schema<GetDisputeRequest>;
 
 export interface DisputeBuyer {
   /** The customer's email address. Requires the `member:email:read` scope; `null` without it. */
@@ -587,6 +533,186 @@ export const Dispute = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "Dispute" }) as any as S.Schema<Dispute>;
 
+export type GetDisputeSummaryRequestGroupsItem = "status" | "currency";
+export const GetDisputeSummaryRequestGroupsItem = /*@__PURE__*/ S.String;
+
+export type GetDisputeSummaryRequestGroupsList = Array<
+  GetDisputeSummaryRequestGroupsItem | (string & {})
+>;
+export const GetDisputeSummaryRequestGroupsList = /*@__PURE__*/ S.Array(
+  GetDisputeSummaryRequestGroupsItem,
+) as any as S.Schema<GetDisputeSummaryRequestGroupsList>;
+
+export type GetDisputeSummaryRequestStatusItem =
+  | "needs_response"
+  | "under_review"
+  | "won"
+  | "lost"
+  | "closed";
+export const GetDisputeSummaryRequestStatusItem = /*@__PURE__*/ S.String;
+
+export type GetDisputeSummaryRequestStatusList = Array<
+  GetDisputeSummaryRequestStatusItem | (string & {})
+>;
+export const GetDisputeSummaryRequestStatusList = /*@__PURE__*/ S.Array(
+  GetDisputeSummaryRequestStatusItem,
+) as any as S.Schema<GetDisputeSummaryRequestStatusList>;
+
+export interface GetDisputeSummaryRequest {
+  /** Which breakdowns to return, keyed by these names under `groups`. Repeat the parameter to ask for several; omit it for all of them. */
+  groups?: GetDisputeSummaryRequestGroupsList;
+  /** Only disputes filed against this account (`biz_` tag). Omit it to cover every account you can read. */
+  account_id?: string;
+  /** Only disputes in these statuses. Repeat the parameter to pass several. A `needs_response` dispute whose evidence deadline has passed reports and filters as `under_review` instead. */
+  status?: GetDisputeSummaryRequestStatusList;
+  /** Only disputes in this three-letter ISO currency. */
+  currency?: string;
+  /** Only disputes opened before this ISO 8601 timestamp. */
+  created_before?: string;
+  /** Only disputes opened after this ISO 8601 timestamp. */
+  created_after?: string;
+}
+export const GetDisputeSummaryRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    groups: S.optional(GetDisputeSummaryRequestGroupsList.pipe(T.Query())),
+    account_id: S.optional(S.String.pipe(T.Query())),
+    status: S.optional(GetDisputeSummaryRequestStatusList.pipe(T.Query())),
+    currency: S.optional(S.String.pipe(T.Query())),
+    created_before: S.optional(S.String.pipe(T.Query())),
+    created_after: S.optional(S.String.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/disputes/summary", code: 200 })),
+).annotate({
+  identifier: "GetDisputeSummaryRequest",
+}) as any as S.Schema<GetDisputeSummaryRequest>;
+
+/** How many of the matching disputes are in each currency, keyed by three-letter ISO code. Only currencies with at least one dispute are present. */
+export type GetDisputeSummaryResponseGroupsCurrencyMap = {
+  [key: string]: number | undefined;
+};
+export const GetDisputeSummaryResponseGroupsCurrencyMap =
+  /*@__PURE__*/ S.Record(
+    S.String,
+    S.Number,
+  ) as any as S.Schema<GetDisputeSummaryResponseGroupsCurrencyMap>;
+
+/** How many of the matching disputes are in each status. Every status is present, including those with a count of zero. */
+export interface GetDisputeSummaryResponseGroupsStatus {
+  closed: number;
+  lost: number;
+  needs_response: number;
+  under_review: number;
+  won: number;
+}
+export const GetDisputeSummaryResponseGroupsStatus = /*@__PURE__*/ S.suspend(
+  () =>
+    S.Struct({
+      closed: S.Number,
+      lost: S.Number,
+      needs_response: S.Number,
+      under_review: S.Number,
+      won: S.Number,
+    }),
+).annotate({
+  identifier: "GetDisputeSummaryResponseGroupsStatus",
+}) as any as S.Schema<GetDisputeSummaryResponseGroupsStatus>;
+
+/** One entry per requested breakdown, keyed by the field it groups on. A field you did not ask for is absent. */
+export interface GetDisputeSummaryResponseGroups {
+  /** How many of the matching disputes are in each currency, keyed by three-letter ISO code. Only currencies with at least one dispute are present. */
+  currency?: GetDisputeSummaryResponseGroupsCurrencyMap;
+  /** How many of the matching disputes are in each status. Every status is present, including those with a count of zero. */
+  status?: GetDisputeSummaryResponseGroupsStatus;
+}
+export const GetDisputeSummaryResponseGroups = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    currency: S.optional(GetDisputeSummaryResponseGroupsCurrencyMap),
+    status: S.optional(GetDisputeSummaryResponseGroupsStatus),
+  }),
+).annotate({
+  identifier: "GetDisputeSummaryResponseGroups",
+}) as any as S.Schema<GetDisputeSummaryResponseGroups>;
+
+export interface GetDisputeSummaryResponse {
+  /** One entry per requested breakdown, keyed by the field it groups on. A field you did not ask for is absent. */
+  groups: GetDisputeSummaryResponseGroups;
+  /** How many disputes match the filters. */
+  total: number;
+}
+export const GetDisputeSummaryResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    groups: GetDisputeSummaryResponseGroups,
+    total: S.Number,
+  }),
+).annotate({
+  identifier: "GetDisputeSummaryResponse",
+}) as any as S.Schema<GetDisputeSummaryResponse>;
+
+export type ListDisputesRequestOrder =
+  | "created_at"
+  | "amount"
+  | "evidence_due_at";
+export const ListDisputesRequestOrder = /*@__PURE__*/ S.String;
+
+export type ListDisputesRequestDirection = "asc" | "desc";
+export const ListDisputesRequestDirection = /*@__PURE__*/ S.String;
+
+export type ListDisputesRequestStatusItem =
+  | "needs_response"
+  | "under_review"
+  | "won"
+  | "lost"
+  | "closed";
+export const ListDisputesRequestStatusItem = /*@__PURE__*/ S.String;
+
+export type ListDisputesRequestStatusList = Array<
+  ListDisputesRequestStatusItem | (string & {})
+>;
+export const ListDisputesRequestStatusList = /*@__PURE__*/ S.Array(
+  ListDisputesRequestStatusItem,
+) as any as S.Schema<ListDisputesRequestStatusList>;
+
+export interface ListDisputesRequest {
+  /** Only disputes filed against this account (`biz_` tag). Omit it to cover every account you can read. */
+  account_id?: string;
+  /** The number of disputes to return (default 20, max 100). */
+  first?: number;
+  /** A cursor; returns disputes after this position. */
+  after?: string;
+  /** The number of disputes to return from the end of the range. */
+  last?: number;
+  /** A cursor; returns disputes before this position. */
+  before?: string;
+  /** The field to sort disputes by. */
+  order?: ListDisputesRequestOrder | (string & {});
+  /** Sort direction. */
+  direction?: ListDisputesRequestDirection | (string & {});
+  /** Only disputes in these statuses. Repeat the parameter to pass several — one paginated list covers all of them. Covers both chargebacks and inquiries at each stage. A `needs_response` dispute whose evidence deadline has passed reports and filters as `under_review` instead. */
+  status?: ListDisputesRequestStatusList;
+  /** Only disputes in this three-letter ISO currency. */
+  currency?: string;
+  /** Only disputes opened before this ISO 8601 timestamp. */
+  created_before?: string;
+  /** Only disputes opened after this ISO 8601 timestamp. */
+  created_after?: string;
+}
+export const ListDisputesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    account_id: S.optional(S.String.pipe(T.Query())),
+    first: S.optional(S.Number.pipe(T.Query())),
+    after: S.optional(S.String.pipe(T.Query())),
+    last: S.optional(S.Number.pipe(T.Query())),
+    before: S.optional(S.String.pipe(T.Query())),
+    order: S.optional(ListDisputesRequestOrder.pipe(T.Query())),
+    direction: S.optional(ListDisputesRequestDirection.pipe(T.Query())),
+    status: S.optional(ListDisputesRequestStatusList.pipe(T.Query())),
+    currency: S.optional(S.String.pipe(T.Query())),
+    created_before: S.optional(S.String.pipe(T.Query())),
+    created_after: S.optional(S.String.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/disputes", code: 200 })),
+).annotate({
+  identifier: "ListDisputesRequest",
+}) as any as S.Schema<ListDisputesRequest>;
+
 export type ListDisputesResponseDataList = Array<Dispute>;
 export const ListDisputesResponseDataList = /*@__PURE__*/ S.Array(
   Dispute,
@@ -621,133 +747,6 @@ export const ListDisputesResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "ListDisputesResponse",
 }) as any as S.Schema<ListDisputesResponse>;
-
-export interface RetrieveDisputeRequest {
-  /** The dispute ID (`dspt_` tag). */
-  id: string;
-}
-export const RetrieveDisputeRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/disputes/{id}", code: 200 })),
-).annotate({
-  identifier: "RetrieveDisputeRequest",
-}) as any as S.Schema<RetrieveDisputeRequest>;
-
-export type RetrieveDisputeSummaryRequestGroupsItem = "status" | "currency";
-export const RetrieveDisputeSummaryRequestGroupsItem = /*@__PURE__*/ S.String;
-
-export type RetrieveDisputeSummaryRequestGroupsList = Array<
-  RetrieveDisputeSummaryRequestGroupsItem | (string & {})
->;
-export const RetrieveDisputeSummaryRequestGroupsList = /*@__PURE__*/ S.Array(
-  RetrieveDisputeSummaryRequestGroupsItem,
-) as any as S.Schema<RetrieveDisputeSummaryRequestGroupsList>;
-
-export type RetrieveDisputeSummaryRequestStatusItem =
-  | "needs_response"
-  | "under_review"
-  | "won"
-  | "lost"
-  | "closed";
-export const RetrieveDisputeSummaryRequestStatusItem = /*@__PURE__*/ S.String;
-
-export type RetrieveDisputeSummaryRequestStatusList = Array<
-  RetrieveDisputeSummaryRequestStatusItem | (string & {})
->;
-export const RetrieveDisputeSummaryRequestStatusList = /*@__PURE__*/ S.Array(
-  RetrieveDisputeSummaryRequestStatusItem,
-) as any as S.Schema<RetrieveDisputeSummaryRequestStatusList>;
-
-export interface RetrieveDisputeSummaryRequest {
-  /** Which breakdowns to return, keyed by these names under `groups`. Repeat the parameter to ask for several; omit it for all of them. */
-  groups?: RetrieveDisputeSummaryRequestGroupsList;
-  /** Only disputes filed against this account (`biz_` tag). Omit it to cover every account you can read. */
-  account_id?: string;
-  /** Only disputes in these statuses. Repeat the parameter to pass several. A `needs_response` dispute whose evidence deadline has passed reports and filters as `under_review` instead. */
-  status?: RetrieveDisputeSummaryRequestStatusList;
-  /** Only disputes in this three-letter ISO currency. */
-  currency?: string;
-  /** Only disputes opened before this ISO 8601 timestamp. */
-  created_before?: string;
-  /** Only disputes opened after this ISO 8601 timestamp. */
-  created_after?: string;
-}
-export const RetrieveDisputeSummaryRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    groups: S.optional(RetrieveDisputeSummaryRequestGroupsList.pipe(T.Query())),
-    account_id: S.optional(S.String.pipe(T.Query())),
-    status: S.optional(RetrieveDisputeSummaryRequestStatusList.pipe(T.Query())),
-    currency: S.optional(S.String.pipe(T.Query())),
-    created_before: S.optional(S.String.pipe(T.Query())),
-    created_after: S.optional(S.String.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/disputes/summary", code: 200 })),
-).annotate({
-  identifier: "RetrieveDisputeSummaryRequest",
-}) as any as S.Schema<RetrieveDisputeSummaryRequest>;
-
-/** How many of the matching disputes are in each currency, keyed by three-letter ISO code. Only currencies with at least one dispute are present. */
-export type RetrieveDisputeSummaryResponseGroupsCurrencyMap = {
-  [key: string]: number | undefined;
-};
-export const RetrieveDisputeSummaryResponseGroupsCurrencyMap =
-  /*@__PURE__*/ S.Record(
-    S.String,
-    S.Number,
-  ) as any as S.Schema<RetrieveDisputeSummaryResponseGroupsCurrencyMap>;
-
-/** How many of the matching disputes are in each status. Every status is present, including those with a count of zero. */
-export interface RetrieveDisputeSummaryResponseGroupsStatus {
-  closed: number;
-  lost: number;
-  needs_response: number;
-  under_review: number;
-  won: number;
-}
-export const RetrieveDisputeSummaryResponseGroupsStatus =
-  /*@__PURE__*/ S.suspend(() =>
-    S.Struct({
-      closed: S.Number,
-      lost: S.Number,
-      needs_response: S.Number,
-      under_review: S.Number,
-      won: S.Number,
-    }),
-  ).annotate({
-    identifier: "RetrieveDisputeSummaryResponseGroupsStatus",
-  }) as any as S.Schema<RetrieveDisputeSummaryResponseGroupsStatus>;
-
-/** One entry per requested breakdown, keyed by the field it groups on. A field you did not ask for is absent. */
-export interface RetrieveDisputeSummaryResponseGroups {
-  /** How many of the matching disputes are in each currency, keyed by three-letter ISO code. Only currencies with at least one dispute are present. */
-  currency?: RetrieveDisputeSummaryResponseGroupsCurrencyMap;
-  /** How many of the matching disputes are in each status. Every status is present, including those with a count of zero. */
-  status?: RetrieveDisputeSummaryResponseGroupsStatus;
-}
-export const RetrieveDisputeSummaryResponseGroups = /*@__PURE__*/ S.suspend(
-  () =>
-    S.Struct({
-      currency: S.optional(RetrieveDisputeSummaryResponseGroupsCurrencyMap),
-      status: S.optional(RetrieveDisputeSummaryResponseGroupsStatus),
-    }),
-).annotate({
-  identifier: "RetrieveDisputeSummaryResponseGroups",
-}) as any as S.Schema<RetrieveDisputeSummaryResponseGroups>;
-
-export interface RetrieveDisputeSummaryResponse {
-  /** One entry per requested breakdown, keyed by the field it groups on. A field you did not ask for is absent. */
-  groups: RetrieveDisputeSummaryResponseGroups;
-  /** How many disputes match the filters. */
-  total: number;
-}
-export const RetrieveDisputeSummaryResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    groups: RetrieveDisputeSummaryResponseGroups,
-    total: S.Number,
-  }),
-).annotate({
-  identifier: "RetrieveDisputeSummaryResponse",
-}) as any as S.Schema<RetrieveDisputeSummaryResponse>;
 
 export interface SubmitDisputeRequest {
   /** The dispute ID (`dspt_` tag). */
@@ -1734,6 +1733,36 @@ export const UploadDisputeEvidenceRequest = /*@__PURE__*/ S.suspend(() =>
   identifier: "UploadDisputeEvidenceRequest",
 }) as any as S.Schema<UploadDisputeEvidenceRequest>;
 
+export type GetDisputeError = NotFound | WhopOpError;
+/** Retrieve Dispute Retrieves a single dispute. */
+export const getDispute: API.OperationMethod<
+  GetDisputeRequest,
+  Dispute,
+  GetDisputeError,
+  WhopOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDisputeRequest,
+  output: Dispute,
+  errors: [NotFound],
+  protocol: WhopProtocol,
+  retry: Retry.Retry,
+}));
+
+export type GetDisputeSummaryError = BadRequest | WhopOpError;
+/** Retrieve Dispute Summary Totals up the same disputes the list returns, so you can build status tabs and totals without paging through them. */
+export const getDisputeSummary: API.OperationMethod<
+  GetDisputeSummaryRequest,
+  GetDisputeSummaryResponse,
+  GetDisputeSummaryError,
+  WhopOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetDisputeSummaryRequest,
+  output: GetDisputeSummaryResponse,
+  errors: [BadRequest],
+  protocol: WhopProtocol,
+  retry: Retry.Retry,
+}));
+
 export type ListDisputesError = BadRequest | Forbidden | WhopOpError;
 /** List Disputes Lists the disputes across the accounts you can read. */
 export const listDisputes: API.PaginatedOperationMethod<
@@ -1760,36 +1789,6 @@ export const listDisputes: API.PaginatedOperationMethod<
   }),
   paginateRelay,
 ) as any;
-
-export type RetrieveDisputeError = NotFound | WhopOpError;
-/** Retrieve Dispute Retrieves a single dispute. */
-export const retrieveDispute: API.OperationMethod<
-  RetrieveDisputeRequest,
-  Dispute,
-  RetrieveDisputeError,
-  WhopOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveDisputeRequest,
-  output: Dispute,
-  errors: [NotFound],
-  protocol: WhopProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveDisputeSummaryError = BadRequest | WhopOpError;
-/** Retrieve Dispute Summary Totals up the same disputes the list returns, so you can build status tabs and totals without paging through them. */
-export const retrieveDisputeSummary: API.OperationMethod<
-  RetrieveDisputeSummaryRequest,
-  RetrieveDisputeSummaryResponse,
-  RetrieveDisputeSummaryError,
-  WhopOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveDisputeSummaryRequest,
-  output: RetrieveDisputeSummaryResponse,
-  errors: [BadRequest],
-  protocol: WhopProtocol,
-  retry: Retry.Retry,
-}));
 
 export type SubmitDisputeError = BadRequest | NotFound | Conflict | WhopOpError;
 /** Submit Dispute Sends a dispute's evidence to the payment processor. This is final — it cannot be edited or sent again. */

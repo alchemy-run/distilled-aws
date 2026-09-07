@@ -11,16 +11,16 @@ import * as Retry from "../retry.ts";
 
 export type { PosthogOpError, PosthogOpContext };
 
-export type IngestionWarningsV2ListRequestOrderBy = "count" | "last_seen";
-export const IngestionWarningsV2ListRequestOrderBy = /*@__PURE__*/ S.String;
+export type ListIngestionWarningsV2RequestOrderBy = "count" | "last_seen";
+export const ListIngestionWarningsV2RequestOrderBy = /*@__PURE__*/ S.String;
 
-export type IngestionWarningsV2ListRequestSeverity =
+export type ListIngestionWarningsV2RequestSeverity =
   | "info"
   | "warning"
   | "error";
-export const IngestionWarningsV2ListRequestSeverity = /*@__PURE__*/ S.String;
+export const ListIngestionWarningsV2RequestSeverity = /*@__PURE__*/ S.String;
 
-export interface IngestionWarningsV2ListRequest {
+export interface ListIngestionWarningsV2Request {
   /** Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/. */
   project_id: string;
   /** Only return warnings in this category (e.g. 'size', 'merge', 'event'). Warnings from producers that don't yet emit a category have category 'unknown'. */
@@ -28,13 +28,13 @@ export interface IngestionWarningsV2ListRequest {
   /** Maximum number of warning types to return (default 100). */
   limit?: number;
   /** Sort order for warning types: 'count' (most frequent first, the default) or 'last_seen' (most recent first). * `count` - count * `last_seen` - last_seen */
-  order_by?: IngestionWarningsV2ListRequestOrderBy | (string & {});
+  order_by?: ListIngestionWarningsV2RequestOrderBy | (string & {});
   /** Only return warnings whose type or details contain this substring (case-sensitive). Useful for finding warnings about a specific distinct ID, event or property. */
   q?: string;
   /** Maximum number of recent sample warnings to return per warning type (default 5). */
   samples?: number;
   /** Only return warnings with this severity. Warnings from producers that don't yet emit a severity have severity 'warning'. * `info` - info * `warning` - warning * `error` - error */
-  severity?: IngestionWarningsV2ListRequestSeverity | (string & {});
+  severity?: ListIngestionWarningsV2RequestSeverity | (string & {});
   /** Start of the time range, as an ISO 8601 datetime (e.g. '2026-07-01T00:00:00Z') or a relative duration (e.g. '-24h', '-7d'). Defaults to 24 hours ago. Warnings are retained for 90 days. */
   since?: string;
   /** Only return warnings of this type (e.g. 'message_size_too_large', 'cannot_merge_already_identified'). */
@@ -42,16 +42,16 @@ export interface IngestionWarningsV2ListRequest {
   /** End of the time range, as an ISO 8601 datetime or a relative duration (e.g. '-1h'). Defaults to now. */
   until?: string;
 }
-export const IngestionWarningsV2ListRequest = /*@__PURE__*/ S.suspend(() =>
+export const ListIngestionWarningsV2Request = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     project_id: S.String.pipe(T.Label()),
     category: S.optional(S.String.pipe(T.Query())),
     limit: S.optional(S.Number.pipe(T.Query())),
-    order_by: S.optional(IngestionWarningsV2ListRequestOrderBy.pipe(T.Query())),
+    order_by: S.optional(ListIngestionWarningsV2RequestOrderBy.pipe(T.Query())),
     q: S.optional(S.String.pipe(T.Query())),
     samples: S.optional(S.Number.pipe(T.Query())),
     severity: S.optional(
-      IngestionWarningsV2ListRequestSeverity.pipe(T.Query()),
+      ListIngestionWarningsV2RequestSeverity.pipe(T.Query()),
     ),
     since: S.optional(S.String.pipe(T.Query())),
     type: S.optional(S.String.pipe(T.Query())),
@@ -64,8 +64,8 @@ export const IngestionWarningsV2ListRequest = /*@__PURE__*/ S.suspend(() =>
     }),
   ),
 ).annotate({
-  identifier: "IngestionWarningsV2ListRequest",
-}) as any as S.Schema<IngestionWarningsV2ListRequest>;
+  identifier: "ListIngestionWarningsV2Request",
+}) as any as S.Schema<ListIngestionWarningsV2Request>;
 
 export interface IngestionWarningV2SparklinePoint {
   /** Start of the time bucket (UTC). */
@@ -168,30 +168,30 @@ export const IngestionWarningsV2Summary = /*@__PURE__*/ S.suspend(() =>
   identifier: "IngestionWarningsV2Summary",
 }) as any as S.Schema<IngestionWarningsV2Summary>;
 
-export type IngestionWarningsV2ListResponseBodyList =
+export type ListIngestionWarningsV2ResponseBodyList =
   Array<IngestionWarningsV2Summary>;
-export const IngestionWarningsV2ListResponseBodyList = /*@__PURE__*/ S.Array(
+export const ListIngestionWarningsV2ResponseBodyList = /*@__PURE__*/ S.Array(
   IngestionWarningsV2Summary,
-) as any as S.Schema<IngestionWarningsV2ListResponseBodyList>;
+) as any as S.Schema<ListIngestionWarningsV2ResponseBodyList>;
 
-export type IngestionWarningsV2ListResponse =
-  IngestionWarningsV2ListResponseBodyList;
-export const IngestionWarningsV2ListResponse = /*@__PURE__*/ S.suspend(() =>
-  IngestionWarningsV2ListResponseBodyList.pipe(T.RawResponseRoot()),
+export type ListIngestionWarningsV2Response =
+  ListIngestionWarningsV2ResponseBodyList;
+export const ListIngestionWarningsV2Response = /*@__PURE__*/ S.suspend(() =>
+  ListIngestionWarningsV2ResponseBodyList.pipe(T.RawResponseRoot()),
 ).annotate({
-  identifier: "IngestionWarningsV2ListResponse",
-}) as any as S.Schema<IngestionWarningsV2ListResponse>;
+  identifier: "ListIngestionWarningsV2Response",
+}) as any as S.Schema<ListIngestionWarningsV2Response>;
 
-export type IngestionWarningsV2ListError = PosthogOpError;
+export type ListIngestionWarningsV2Error = PosthogOpError;
 /** List ingestion warnings Lists this project's ingestion warnings — events or person/group updates that were ingested with problems (oversized messages, rejected person merges, invalid data) — grouped by warning type. Each entry carries the warning's category and severity, the total count and a sparkline over the requested time range, and the most recent sample warnings with the affected event/person/group. Filter by category, type, severity or time range to drill into a specific problem. */
-export const ingestionWarningsV2List: API.OperationMethod<
-  IngestionWarningsV2ListRequest,
-  IngestionWarningsV2ListResponse,
-  IngestionWarningsV2ListError,
+export const listIngestionWarningsV2: API.OperationMethod<
+  ListIngestionWarningsV2Request,
+  ListIngestionWarningsV2Response,
+  ListIngestionWarningsV2Error,
   PosthogOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: IngestionWarningsV2ListRequest,
-  output: IngestionWarningsV2ListResponse,
+  input: ListIngestionWarningsV2Request,
+  output: ListIngestionWarningsV2Response,
   errors: [],
   protocol: PosthogProtocol,
   retry: Retry.Retry,

@@ -14,13 +14,14 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.devspaces#ControllersListConnectionDetails": {
+    "com.azure.devspaces#ListControllerConnectionDetails": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devspaces#ControllersListConnectionDetailsRequest"
+        "target": "com.azure.devspaces#ListControllerConnectionDetailsRequest"
       },
       "output": {
         "target": "com.azure.devspaces#ControllerConnectionDetailsList"
@@ -80,7 +81,7 @@
         "smithy.api#documentation": "Base class for types that supply values used to connect to container orchestrators"
       }
     },
-    "com.azure.devspaces#ControllersListConnectionDetailsRequest": {
+    "com.azure.devspaces#ListControllerConnectionDetailsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -119,10 +120,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devspaces#ControllersList": {
+    "com.azure.devspaces#ListControllers": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devspaces#ControllersListRequest"
+        "target": "com.azure.devspaces#ListControllersRequest"
       },
       "output": {
         "target": "com.azure.devspaces#ControllerList"
@@ -369,7 +370,7 @@
         "smithy.api#documentation": "Tags for the Azure resource."
       }
     },
-    "com.azure.devspaces#ControllersListRequest": {
+    "com.azure.devspaces#ListControllersRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -385,10 +386,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devspaces#ControllersListByResourceGroup": {
+    "com.azure.devspaces#ListControllerByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devspaces#ControllersListByResourceGroupRequest"
+        "target": "com.azure.devspaces#ListControllerByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.devspaces#ControllerList"
@@ -404,7 +405,7 @@
         "com.distilled.openapi#apiVersion": "2019-04-01"
       }
     },
-    "com.azure.devspaces#ControllersListByResourceGroupRequest": {
+    "com.azure.devspaces#ListControllerByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -428,10 +429,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devspaces#ControllersDelete": {
+    "com.azure.devspaces#DeleteController": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devspaces#ControllersDeleteRequest"
+        "target": "com.azure.devspaces#DeleteControllerRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -447,7 +448,7 @@
         "com.distilled.openapi#apiVersion": "2019-04-01"
       }
     },
-    "com.azure.devspaces#ControllersDeleteRequest": {
+    "com.azure.devspaces#DeleteControllerRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -479,13 +480,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devspaces#ControllersUpdate": {
+    "com.azure.devspaces#UpdateController": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devspaces#ControllersUpdateRequest"
+        "target": "com.azure.devspaces#UpdateControllerRequest"
       },
       "output": {
-        "target": "com.azure.devspaces#ControllersUpdateResponse"
+        "target": "com.azure.devspaces#UpdateControllerResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -498,7 +499,7 @@
         "com.distilled.openapi#apiVersion": "2019-04-01"
       }
     },
-    "com.azure.devspaces#ControllersUpdateResponse": {
+    "com.azure.devspaces#UpdateControllerResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -520,7 +521,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devspaces#ControllersUpdateResponseTagsMap",
+          "target": "com.azure.devspaces#UpdateControllerResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Tags for the Azure resource."
           }
@@ -549,7 +550,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devspaces#ControllersUpdateResponseTagsMap": {
+    "com.azure.devspaces#UpdateControllerResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -561,7 +562,7 @@
         "smithy.api#documentation": "Tags for the Azure resource."
       }
     },
-    "com.azure.devspaces#ControllersUpdateRequest": {
+    "com.azure.devspaces#UpdateControllerRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -589,7 +590,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devspaces#ControllersUpdateRequestTagsMap",
+          "target": "com.azure.devspaces#UpdateControllerRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Tags for the Azure Dev Spaces Controller."
           }
@@ -614,7 +615,7 @@
       },
       "traits": {}
     },
-    "com.azure.devspaces#ControllersUpdateRequestTagsMap": {
+    "com.azure.devspaces#UpdateControllerRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -626,13 +627,13 @@
         "smithy.api#documentation": "Tags for the Azure Dev Spaces Controller."
       }
     },
-    "com.azure.devspaces#ControllersCreate": {
+    "com.azure.devspaces#CreateController": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devspaces#ControllersCreateRequest"
+        "target": "com.azure.devspaces#CreateControllerRequest"
       },
       "output": {
-        "target": "com.azure.devspaces#ControllersCreateResponse"
+        "target": "com.azure.devspaces#CreateControllerResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -645,7 +646,7 @@
         "com.distilled.openapi#apiVersion": "2019-04-01"
       }
     },
-    "com.azure.devspaces#ControllersCreateResponse": {
+    "com.azure.devspaces#CreateControllerResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -667,7 +668,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devspaces#ControllersCreateResponseTagsMap",
+          "target": "com.azure.devspaces#CreateControllerResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Tags for the Azure resource."
           }
@@ -696,7 +697,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devspaces#ControllersCreateResponseTagsMap": {
+    "com.azure.devspaces#CreateControllerResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -708,7 +709,7 @@
         "smithy.api#documentation": "Tags for the Azure resource."
       }
     },
-    "com.azure.devspaces#ControllersCreateRequest": {
+    "com.azure.devspaces#CreateControllerRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -736,7 +737,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devspaces#ControllersCreateRequestTagsMap",
+          "target": "com.azure.devspaces#CreateControllerRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Tags for the Azure resource."
           }
@@ -785,7 +786,7 @@
       },
       "traits": {}
     },
-    "com.azure.devspaces#ControllersCreateRequestTagsMap": {
+    "com.azure.devspaces#CreateControllerRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -797,13 +798,13 @@
         "smithy.api#documentation": "Tags for the Azure resource."
       }
     },
-    "com.azure.devspaces#ControllersGet": {
+    "com.azure.devspaces#GetController": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devspaces#ControllersGetRequest"
+        "target": "com.azure.devspaces#GetControllerRequest"
       },
       "output": {
-        "target": "com.azure.devspaces#ControllersGetResponse"
+        "target": "com.azure.devspaces#GetControllerResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -816,7 +817,7 @@
         "com.distilled.openapi#apiVersion": "2019-04-01"
       }
     },
-    "com.azure.devspaces#ControllersGetResponse": {
+    "com.azure.devspaces#GetControllerResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -838,7 +839,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.devspaces#ControllersGetResponseTagsMap",
+          "target": "com.azure.devspaces#GetControllerResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Tags for the Azure resource."
           }
@@ -867,7 +868,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.devspaces#ControllersGetResponseTagsMap": {
+    "com.azure.devspaces#GetControllerResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -879,7 +880,7 @@
         "smithy.api#documentation": "Tags for the Azure resource."
       }
     },
-    "com.azure.devspaces#ControllersGetRequest": {
+    "com.azure.devspaces#GetControllerRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -911,7 +912,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.devspaces#OperationsList": {
+    "com.azure.devspaces#ListOperations": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -1002,10 +1003,10 @@
       },
       "traits": {}
     },
-    "com.azure.devspaces#ContainerHostMappingsGetContainerHostMapping": {
+    "com.azure.devspaces#GetContainerHostMappingContainerHostMapping": {
       "type": "operation",
       "input": {
-        "target": "com.azure.devspaces#ContainerHostMappingsGetContainerHostMappingRequest"
+        "target": "com.azure.devspaces#GetContainerHostMappingContainerHostMappingRequest"
       },
       "output": {
         "target": "com.azure.devspaces#ContainerHostMapping"
@@ -1041,7 +1042,7 @@
         "smithy.api#documentation": "Container host mapping object specifying the Container host resource ID and its associated Controller resource."
       }
     },
-    "com.azure.devspaces#ContainerHostMappingsGetContainerHostMappingRequest": {
+    "com.azure.devspaces#GetContainerHostMappingContainerHostMappingRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -1084,31 +1085,31 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.devspaces#ControllersListConnectionDetails"
+          "target": "com.azure.devspaces#ListControllerConnectionDetails"
         },
         {
-          "target": "com.azure.devspaces#ControllersList"
+          "target": "com.azure.devspaces#ListControllers"
         },
         {
-          "target": "com.azure.devspaces#ControllersListByResourceGroup"
+          "target": "com.azure.devspaces#ListControllerByResourceGroup"
         },
         {
-          "target": "com.azure.devspaces#ControllersDelete"
+          "target": "com.azure.devspaces#DeleteController"
         },
         {
-          "target": "com.azure.devspaces#ControllersUpdate"
+          "target": "com.azure.devspaces#UpdateController"
         },
         {
-          "target": "com.azure.devspaces#ControllersCreate"
+          "target": "com.azure.devspaces#CreateController"
         },
         {
-          "target": "com.azure.devspaces#ControllersGet"
+          "target": "com.azure.devspaces#GetController"
         },
         {
-          "target": "com.azure.devspaces#OperationsList"
+          "target": "com.azure.devspaces#ListOperations"
         },
         {
-          "target": "com.azure.devspaces#ContainerHostMappingsGetContainerHostMapping"
+          "target": "com.azure.devspaces#GetContainerHostMappingContainerHostMapping"
         }
       ],
       "traits": {

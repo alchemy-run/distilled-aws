@@ -14,13 +14,14 @@
         "id": "UnreferencedShape",
         "namespace": "*"
       }
-    ]
+    ],
+    "distilled.finalized": true
   },
   "shapes": {
-    "com.azure.servicefabricmanagedclusters#NodeTypesStart": {
+    "com.azure.servicefabricmanagedclusters#StartNodeType": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicefabricmanagedclusters#NodeTypesStartRequest"
+        "target": "com.azure.servicefabricmanagedclusters#StartNodeTypeRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -36,7 +37,7 @@
         "com.distilled.openapi#apiVersion": "2026-02-01"
       }
     },
-    "com.azure.servicefabricmanagedclusters#NodeTypesStartRequest": {
+    "com.azure.servicefabricmanagedclusters#StartNodeTypeRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -72,7 +73,7 @@
           }
         },
         "nodes": {
-          "target": "com.azure.servicefabricmanagedclusters#NodeTypesStartRequestNodesList",
+          "target": "com.azure.servicefabricmanagedclusters#StartNodeTypeRequestNodesList",
           "traits": {
             "smithy.api#documentation": "List of node names from the node type."
           }
@@ -114,7 +115,7 @@
         "smithy.api#documentation": "Specifies the way the operation will be performed."
       }
     },
-    "com.azure.servicefabricmanagedclusters#NodeTypesStartRequestNodesList": {
+    "com.azure.servicefabricmanagedclusters#StartNodeTypeRequestNodesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -123,10 +124,10 @@
         "smithy.api#documentation": "List of node names from the node type."
       }
     },
-    "com.azure.servicefabricmanagedclusters#NodeTypeSkusList": {
+    "com.azure.servicefabricmanagedclusters#ListNodeTypeSkus": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicefabricmanagedclusters#NodeTypeSkusListRequest"
+        "target": "com.azure.servicefabricmanagedclusters#ListNodeTypeSkusRequest"
       },
       "output": {
         "target": "com.azure.servicefabricmanagedclusters#NodeTypeListSkuResult"
@@ -276,7 +277,7 @@
         "smithy.api#documentation": "Describes a node type supported sku."
       }
     },
-    "com.azure.servicefabricmanagedclusters#NodeTypeSkusListRequest": {
+    "com.azure.servicefabricmanagedclusters#ListNodeTypeSkusRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -316,10 +317,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicefabricmanagedclusters#NodeTypesRestart": {
+    "com.azure.servicefabricmanagedclusters#RestartNodeType": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicefabricmanagedclusters#NodeTypesRestartRequest"
+        "target": "com.azure.servicefabricmanagedclusters#RestartNodeTypeRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -335,7 +336,7 @@
         "com.distilled.openapi#apiVersion": "2026-02-01"
       }
     },
-    "com.azure.servicefabricmanagedclusters#NodeTypesRestartRequest": {
+    "com.azure.servicefabricmanagedclusters#RestartNodeTypeRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -371,7 +372,7 @@
           }
         },
         "nodes": {
-          "target": "com.azure.servicefabricmanagedclusters#NodeTypesRestartRequestNodesList",
+          "target": "com.azure.servicefabricmanagedclusters#RestartNodeTypeRequestNodesList",
           "traits": {
             "smithy.api#documentation": "List of node names from the node type."
           }
@@ -393,7 +394,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicefabricmanagedclusters#NodeTypesRestartRequestNodesList": {
+    "com.azure.servicefabricmanagedclusters#RestartNodeTypeRequestNodesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -488,10 +489,10 @@
         "smithy.api#documentation": "List of node names from the node type."
       }
     },
-    "com.azure.servicefabricmanagedclusters#NodeTypesRedeploy": {
+    "com.azure.servicefabricmanagedclusters#RedeployNodeType": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicefabricmanagedclusters#NodeTypesRedeployRequest"
+        "target": "com.azure.servicefabricmanagedclusters#RedeployNodeTypeRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -507,7 +508,7 @@
         "com.distilled.openapi#apiVersion": "2026-02-01"
       }
     },
-    "com.azure.servicefabricmanagedclusters#NodeTypesRedeployRequest": {
+    "com.azure.servicefabricmanagedclusters#RedeployNodeTypeRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -543,7 +544,7 @@
           }
         },
         "nodes": {
-          "target": "com.azure.servicefabricmanagedclusters#NodeTypesRedeployRequestNodesList",
+          "target": "com.azure.servicefabricmanagedclusters#RedeployNodeTypeRequestNodesList",
           "traits": {
             "smithy.api#documentation": "List of node names from the node type."
           }
@@ -565,7 +566,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicefabricmanagedclusters#NodeTypesRedeployRequestNodesList": {
+    "com.azure.servicefabricmanagedclusters#RedeployNodeTypeRequestNodesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -574,10 +575,10 @@
         "smithy.api#documentation": "List of node names from the node type."
       }
     },
-    "com.azure.servicefabricmanagedclusters#NodeTypesDeleteNode": {
+    "com.azure.servicefabricmanagedclusters#DeleteNodeTypeNode": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicefabricmanagedclusters#NodeTypesDeleteNodeRequest"
+        "target": "com.azure.servicefabricmanagedclusters#DeleteNodeTypeNodeRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -593,7 +594,7 @@
         "com.distilled.openapi#apiVersion": "2026-02-01"
       }
     },
-    "com.azure.servicefabricmanagedclusters#NodeTypesDeleteNodeRequest": {
+    "com.azure.servicefabricmanagedclusters#DeleteNodeTypeNodeRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -629,7 +630,7 @@
           }
         },
         "nodes": {
-          "target": "com.azure.servicefabricmanagedclusters#NodeTypesDeleteNodeRequestNodesList",
+          "target": "com.azure.servicefabricmanagedclusters#DeleteNodeTypeNodeRequestNodesList",
           "traits": {
             "smithy.api#documentation": "List of node names from the node type."
           }
@@ -651,7 +652,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicefabricmanagedclusters#NodeTypesDeleteNodeRequestNodesList": {
+    "com.azure.servicefabricmanagedclusters#DeleteNodeTypeNodeRequestNodesList": {
       "type": "list",
       "member": {
         "target": "smithy.api#String"
@@ -746,10 +747,10 @@
         "smithy.api#documentation": "List of node names from the node type."
       }
     },
-    "com.azure.servicefabricmanagedclusters#NodeTypesDelete": {
+    "com.azure.servicefabricmanagedclusters#DeleteNodeType": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicefabricmanagedclusters#NodeTypesDeleteRequest"
+        "target": "com.azure.servicefabricmanagedclusters#DeleteNodeTypeRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -765,7 +766,7 @@
         "com.distilled.openapi#apiVersion": "2026-02-01"
       }
     },
-    "com.azure.servicefabricmanagedclusters#NodeTypesDeleteRequest": {
+    "com.azure.servicefabricmanagedclusters#DeleteNodeTypeRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -805,13 +806,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicefabricmanagedclusters#NodeTypesUpdate": {
+    "com.azure.servicefabricmanagedclusters#UpdateNodeType": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicefabricmanagedclusters#NodeTypesUpdateRequest"
+        "target": "com.azure.servicefabricmanagedclusters#UpdateNodeTypeRequest"
       },
       "output": {
-        "target": "com.azure.servicefabricmanagedclusters#NodeTypesUpdateResponse"
+        "target": "com.azure.servicefabricmanagedclusters#UpdateNodeTypeResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -824,7 +825,7 @@
         "com.distilled.openapi#apiVersion": "2026-02-01"
       }
     },
-    "com.azure.servicefabricmanagedclusters#NodeTypesUpdateResponse": {
+    "com.azure.servicefabricmanagedclusters#UpdateNodeTypeResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -858,7 +859,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.servicefabricmanagedclusters#NodeTypesUpdateResponseTagsMap",
+          "target": "com.azure.servicefabricmanagedclusters#UpdateNodeTypeResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -901,7 +902,7 @@
         "smithy.api#documentation": "Describes a node type sku."
       }
     },
-    "com.azure.servicefabricmanagedclusters#NodeTypesUpdateResponseTagsMap": {
+    "com.azure.servicefabricmanagedclusters#UpdateNodeTypeResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -2587,7 +2588,7 @@
         "smithy.api#documentation": "The type of identity that created the resource."
       }
     },
-    "com.azure.servicefabricmanagedclusters#NodeTypesUpdateRequest": {
+    "com.azure.servicefabricmanagedclusters#UpdateNodeTypeRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -2623,7 +2624,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.servicefabricmanagedclusters#NodeTypesUpdateRequestTagsMap",
+          "target": "com.azure.servicefabricmanagedclusters#UpdateNodeTypeRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Node type update parameters"
           }
@@ -2639,7 +2640,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicefabricmanagedclusters#NodeTypesUpdateRequestTagsMap": {
+    "com.azure.servicefabricmanagedclusters#UpdateNodeTypeRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3399,13 +3400,13 @@
         "smithy.api#documentation": "Managed data disk type. Specifies the storage account type for the managed disk"
       }
     },
-    "com.azure.servicefabricmanagedclusters#NodeTypesGet": {
+    "com.azure.servicefabricmanagedclusters#GetNodeType": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicefabricmanagedclusters#NodeTypesGetRequest"
+        "target": "com.azure.servicefabricmanagedclusters#GetNodeTypeRequest"
       },
       "output": {
-        "target": "com.azure.servicefabricmanagedclusters#NodeTypesGetResponse"
+        "target": "com.azure.servicefabricmanagedclusters#GetNodeTypeResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -3418,7 +3419,7 @@
         "com.distilled.openapi#apiVersion": "2026-02-01"
       }
     },
-    "com.azure.servicefabricmanagedclusters#NodeTypesGetResponse": {
+    "com.azure.servicefabricmanagedclusters#GetNodeTypeResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -3452,7 +3453,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.servicefabricmanagedclusters#NodeTypesGetResponseTagsMap",
+          "target": "com.azure.servicefabricmanagedclusters#GetNodeTypeResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -3468,7 +3469,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.servicefabricmanagedclusters#NodeTypesGetResponseTagsMap": {
+    "com.azure.servicefabricmanagedclusters#GetNodeTypeResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -3480,7 +3481,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.servicefabricmanagedclusters#NodeTypesGetRequest": {
+    "com.azure.servicefabricmanagedclusters#GetNodeTypeRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3520,10 +3521,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicefabricmanagedclusters#NodeTypesListByManagedClusters": {
+    "com.azure.servicefabricmanagedclusters#ListNodeTypeByManagedClusters": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicefabricmanagedclusters#NodeTypesListByManagedClustersRequest"
+        "target": "com.azure.servicefabricmanagedclusters#ListNodeTypeByManagedClustersRequest"
       },
       "output": {
         "target": "com.azure.servicefabricmanagedclusters#NodeTypeListResult"
@@ -3631,7 +3632,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.servicefabricmanagedclusters#NodeTypesListByManagedClustersRequest": {
+    "com.azure.servicefabricmanagedclusters#ListNodeTypeByManagedClustersRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3663,10 +3664,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicefabricmanagedclusters#ManagedAzResiliencyStatusGet": {
+    "com.azure.servicefabricmanagedclusters#GetManagedAzResiliencyStatus": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicefabricmanagedclusters#ManagedAzResiliencyStatusGetRequest"
+        "target": "com.azure.servicefabricmanagedclusters#GetManagedAzResiliencyStatusRequest"
       },
       "output": {
         "target": "com.azure.servicefabricmanagedclusters#ManagedAzResiliencyStatus"
@@ -3743,7 +3744,7 @@
         "smithy.api#documentation": "Describes Az Resiliency status of Base resources"
       }
     },
-    "com.azure.servicefabricmanagedclusters#ManagedAzResiliencyStatusGetRequest": {
+    "com.azure.servicefabricmanagedclusters#GetManagedAzResiliencyStatusRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3775,10 +3776,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicefabricmanagedclusters#ManagedMaintenanceWindowStatusGet": {
+    "com.azure.servicefabricmanagedclusters#GetManagedMaintenanceWindowStatus": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicefabricmanagedclusters#ManagedMaintenanceWindowStatusGetRequest"
+        "target": "com.azure.servicefabricmanagedclusters#GetManagedMaintenanceWindowStatusRequest"
       },
       "output": {
         "target": "com.azure.servicefabricmanagedclusters#ManagedMaintenanceWindowStatus"
@@ -3844,7 +3845,7 @@
         "smithy.api#documentation": "Describes the maintenance window status of the Service Fabric Managed Cluster."
       }
     },
-    "com.azure.servicefabricmanagedclusters#ManagedMaintenanceWindowStatusGetRequest": {
+    "com.azure.servicefabricmanagedclusters#GetManagedMaintenanceWindowStatusRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3876,10 +3877,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicefabricmanagedclusters#ManagedApplyMaintenanceWindowPost": {
+    "com.azure.servicefabricmanagedclusters#PostManagedApplyMaintenanceWindow": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicefabricmanagedclusters#ManagedApplyMaintenanceWindowPostRequest"
+        "target": "com.azure.servicefabricmanagedclusters#PostManagedApplyMaintenanceWindowRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3895,7 +3896,7 @@
         "com.distilled.openapi#apiVersion": "2026-02-01"
       }
     },
-    "com.azure.servicefabricmanagedclusters#ManagedApplyMaintenanceWindowPostRequest": {
+    "com.azure.servicefabricmanagedclusters#PostManagedApplyMaintenanceWindowRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -3927,10 +3928,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicefabricmanagedclusters#ApplicationsUpdateUpgrade": {
+    "com.azure.servicefabricmanagedclusters#UpdateApplicationUpgrade": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicefabricmanagedclusters#ApplicationsUpdateUpgradeRequest"
+        "target": "com.azure.servicefabricmanagedclusters#UpdateApplicationUpgradeRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -3946,7 +3947,7 @@
         "com.distilled.openapi#apiVersion": "2026-02-01"
       }
     },
-    "com.azure.servicefabricmanagedclusters#ApplicationsUpdateUpgradeRequest": {
+    "com.azure.servicefabricmanagedclusters#UpdateApplicationUpgradeRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4216,10 +4217,10 @@
         "smithy.api#documentation": "Cluster level definition for the kind of upgrade."
       }
     },
-    "com.azure.servicefabricmanagedclusters#ApplicationsStartRollback": {
+    "com.azure.servicefabricmanagedclusters#StartApplicationRollback": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicefabricmanagedclusters#ApplicationsStartRollbackRequest"
+        "target": "com.azure.servicefabricmanagedclusters#StartApplicationRollbackRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4235,7 +4236,7 @@
         "com.distilled.openapi#apiVersion": "2026-02-01"
       }
     },
-    "com.azure.servicefabricmanagedclusters#ApplicationsStartRollbackRequest": {
+    "com.azure.servicefabricmanagedclusters#StartApplicationRollbackRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4275,10 +4276,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicefabricmanagedclusters#ServicesRestartReplica": {
+    "com.azure.servicefabricmanagedclusters#RestartServiceReplica": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicefabricmanagedclusters#ServicesRestartReplicaRequest"
+        "target": "com.azure.servicefabricmanagedclusters#RestartServiceReplicaRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4294,7 +4295,7 @@
         "com.distilled.openapi#apiVersion": "2026-02-01"
       }
     },
-    "com.azure.servicefabricmanagedclusters#ServicesRestartReplicaRequest": {
+    "com.azure.servicefabricmanagedclusters#RestartServiceReplicaRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4345,7 +4346,7 @@
           }
         },
         "replicaIds": {
-          "target": "com.azure.servicefabricmanagedclusters#ServicesRestartReplicaRequestReplicaIdsList",
+          "target": "com.azure.servicefabricmanagedclusters#RestartServiceReplicaRequestReplicaIdsList",
           "traits": {
             "smithy.api#documentation": "The IDs of the replicas to be restarted.",
             "smithy.api#required": {}
@@ -4389,7 +4390,7 @@
         "smithy.api#documentation": "The kind of restart to perform."
       }
     },
-    "com.azure.servicefabricmanagedclusters#ServicesRestartReplicaRequestReplicaIdsList": {
+    "com.azure.servicefabricmanagedclusters#RestartServiceReplicaRequestReplicaIdsList": {
       "type": "list",
       "member": {
         "target": "smithy.api#Integer"
@@ -4398,10 +4399,10 @@
         "smithy.api#documentation": "The IDs of the replicas to be restarted."
       }
     },
-    "com.azure.servicefabricmanagedclusters#ServicesDelete": {
+    "com.azure.servicefabricmanagedclusters#DeleteService": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicefabricmanagedclusters#ServicesDeleteRequest"
+        "target": "com.azure.servicefabricmanagedclusters#DeleteServiceRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -4417,7 +4418,7 @@
         "com.distilled.openapi#apiVersion": "2026-02-01"
       }
     },
-    "com.azure.servicefabricmanagedclusters#ServicesDeleteRequest": {
+    "com.azure.servicefabricmanagedclusters#DeleteServiceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -4465,13 +4466,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicefabricmanagedclusters#ServicesUpdate": {
+    "com.azure.servicefabricmanagedclusters#UpdateService": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicefabricmanagedclusters#ServicesUpdateRequest"
+        "target": "com.azure.servicefabricmanagedclusters#UpdateServiceRequest"
       },
       "output": {
-        "target": "com.azure.servicefabricmanagedclusters#ServicesUpdateResponse"
+        "target": "com.azure.servicefabricmanagedclusters#UpdateServiceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -4484,7 +4485,7 @@
         "com.distilled.openapi#apiVersion": "2026-02-01"
       }
     },
-    "com.azure.servicefabricmanagedclusters#ServicesUpdateResponse": {
+    "com.azure.servicefabricmanagedclusters#UpdateServiceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -4518,7 +4519,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.servicefabricmanagedclusters#ServicesUpdateResponseTagsMap",
+          "target": "com.azure.servicefabricmanagedclusters#UpdateServiceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -4534,7 +4535,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.servicefabricmanagedclusters#ServicesUpdateResponseTagsMap": {
+    "com.azure.servicefabricmanagedclusters#UpdateServiceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5032,7 +5033,7 @@
         "smithy.api#documentation": "The service correlation scheme."
       }
     },
-    "com.azure.servicefabricmanagedclusters#ServicesUpdateRequest": {
+    "com.azure.servicefabricmanagedclusters#UpdateServiceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5076,7 +5077,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.servicefabricmanagedclusters#ServicesUpdateRequestTagsMap",
+          "target": "com.azure.servicefabricmanagedclusters#UpdateServiceRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Service update parameters"
           }
@@ -5086,7 +5087,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicefabricmanagedclusters#ServicesUpdateRequestTagsMap": {
+    "com.azure.servicefabricmanagedclusters#UpdateServiceRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5370,13 +5371,13 @@
         "smithy.api#documentation": "A list that describes the correlation of the service with other services."
       }
     },
-    "com.azure.servicefabricmanagedclusters#ServicesGet": {
+    "com.azure.servicefabricmanagedclusters#GetService": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicefabricmanagedclusters#ServicesGetRequest"
+        "target": "com.azure.servicefabricmanagedclusters#GetServiceRequest"
       },
       "output": {
-        "target": "com.azure.servicefabricmanagedclusters#ServicesGetResponse"
+        "target": "com.azure.servicefabricmanagedclusters#GetServiceResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -5389,7 +5390,7 @@
         "com.distilled.openapi#apiVersion": "2026-02-01"
       }
     },
-    "com.azure.servicefabricmanagedclusters#ServicesGetResponse": {
+    "com.azure.servicefabricmanagedclusters#GetServiceResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -5423,7 +5424,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.servicefabricmanagedclusters#ServicesGetResponseTagsMap",
+          "target": "com.azure.servicefabricmanagedclusters#GetServiceResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -5439,7 +5440,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.servicefabricmanagedclusters#ServicesGetResponseTagsMap": {
+    "com.azure.servicefabricmanagedclusters#GetServiceResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -5451,7 +5452,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.servicefabricmanagedclusters#ServicesGetRequest": {
+    "com.azure.servicefabricmanagedclusters#GetServiceRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5499,10 +5500,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicefabricmanagedclusters#ServicesListByApplications": {
+    "com.azure.servicefabricmanagedclusters#ListServiceByApplications": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicefabricmanagedclusters#ServicesListByApplicationsRequest"
+        "target": "com.azure.servicefabricmanagedclusters#ListServiceByApplicationsRequest"
       },
       "output": {
         "target": "com.azure.servicefabricmanagedclusters#ServiceResourceList"
@@ -5610,7 +5611,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.servicefabricmanagedclusters#ServicesListByApplicationsRequest": {
+    "com.azure.servicefabricmanagedclusters#ListServiceByApplicationsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5650,10 +5651,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicefabricmanagedclusters#ApplicationsResumeUpgrade": {
+    "com.azure.servicefabricmanagedclusters#ResumeApplicationUpgrade": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicefabricmanagedclusters#ApplicationsResumeUpgradeRequest"
+        "target": "com.azure.servicefabricmanagedclusters#ResumeApplicationUpgradeRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -5669,7 +5670,7 @@
         "com.distilled.openapi#apiVersion": "2026-02-01"
       }
     },
-    "com.azure.servicefabricmanagedclusters#ApplicationsResumeUpgradeRequest": {
+    "com.azure.servicefabricmanagedclusters#ResumeApplicationUpgradeRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5715,10 +5716,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicefabricmanagedclusters#ApplicationsRestartDeployedCodePackage": {
+    "com.azure.servicefabricmanagedclusters#RestartApplicationDeployedCodePackage": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicefabricmanagedclusters#ApplicationsRestartDeployedCodePackageRequest"
+        "target": "com.azure.servicefabricmanagedclusters#RestartApplicationDeployedCodePackageRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -5734,7 +5735,7 @@
         "com.distilled.openapi#apiVersion": "2026-02-01"
       }
     },
-    "com.azure.servicefabricmanagedclusters#ApplicationsRestartDeployedCodePackageRequest": {
+    "com.azure.servicefabricmanagedclusters#RestartApplicationDeployedCodePackageRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5808,10 +5809,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicefabricmanagedclusters#ApplicationsReadUpgrade": {
+    "com.azure.servicefabricmanagedclusters#ReadApplicationUpgrade": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicefabricmanagedclusters#ApplicationsReadUpgradeRequest"
+        "target": "com.azure.servicefabricmanagedclusters#ReadApplicationUpgradeRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -5827,7 +5828,7 @@
         "com.distilled.openapi#apiVersion": "2026-02-01"
       }
     },
-    "com.azure.servicefabricmanagedclusters#ApplicationsReadUpgradeRequest": {
+    "com.azure.servicefabricmanagedclusters#ReadApplicationUpgradeRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -5867,10 +5868,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicefabricmanagedclusters#ApplicationsFetchHealth": {
+    "com.azure.servicefabricmanagedclusters#FetchApplicationHealth": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicefabricmanagedclusters#ApplicationsFetchHealthRequest"
+        "target": "com.azure.servicefabricmanagedclusters#FetchApplicationHealthRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -5886,7 +5887,7 @@
         "com.distilled.openapi#apiVersion": "2026-02-01"
       }
     },
-    "com.azure.servicefabricmanagedclusters#ApplicationsFetchHealthRequest": {
+    "com.azure.servicefabricmanagedclusters#FetchApplicationHealthRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6000,10 +6001,10 @@
         "smithy.api#documentation": "Enum for filtering health events."
       }
     },
-    "com.azure.servicefabricmanagedclusters#ApplicationsDelete": {
+    "com.azure.servicefabricmanagedclusters#DeleteApplication": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicefabricmanagedclusters#ApplicationsDeleteRequest"
+        "target": "com.azure.servicefabricmanagedclusters#DeleteApplicationRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -6019,7 +6020,7 @@
         "com.distilled.openapi#apiVersion": "2026-02-01"
       }
     },
-    "com.azure.servicefabricmanagedclusters#ApplicationsDeleteRequest": {
+    "com.azure.servicefabricmanagedclusters#DeleteApplicationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6059,13 +6060,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicefabricmanagedclusters#ApplicationsUpdate": {
+    "com.azure.servicefabricmanagedclusters#UpdateApplication": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicefabricmanagedclusters#ApplicationsUpdateRequest"
+        "target": "com.azure.servicefabricmanagedclusters#UpdateApplicationRequest"
       },
       "output": {
-        "target": "com.azure.servicefabricmanagedclusters#ApplicationsUpdateResponse"
+        "target": "com.azure.servicefabricmanagedclusters#UpdateApplicationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6078,7 +6079,7 @@
         "com.distilled.openapi#apiVersion": "2026-02-01"
       }
     },
-    "com.azure.servicefabricmanagedclusters#ApplicationsUpdateResponse": {
+    "com.azure.servicefabricmanagedclusters#UpdateApplicationResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -6112,7 +6113,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.servicefabricmanagedclusters#ApplicationsUpdateResponseTagsMap",
+          "target": "com.azure.servicefabricmanagedclusters#UpdateApplicationResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -6230,7 +6231,7 @@
         "smithy.api#documentation": "The type of managed identity for the resource."
       }
     },
-    "com.azure.servicefabricmanagedclusters#ApplicationsUpdateResponseTagsMap": {
+    "com.azure.servicefabricmanagedclusters#UpdateApplicationResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6538,7 +6539,7 @@
         "smithy.api#documentation": "User assigned identity for the application."
       }
     },
-    "com.azure.servicefabricmanagedclusters#ApplicationsUpdateRequest": {
+    "com.azure.servicefabricmanagedclusters#UpdateApplicationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -6574,7 +6575,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.servicefabricmanagedclusters#ApplicationsUpdateRequestTagsMap",
+          "target": "com.azure.servicefabricmanagedclusters#UpdateApplicationRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Application update parameters"
           }
@@ -6616,7 +6617,7 @@
         "smithy.api#documentation": "List of application parameters with overridden values from their default values specified in the application manifest."
       }
     },
-    "com.azure.servicefabricmanagedclusters#ApplicationsUpdateRequestTagsMap": {
+    "com.azure.servicefabricmanagedclusters#UpdateApplicationRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6883,13 +6884,13 @@
         "smithy.api#documentation": "List of user assigned identities for the application, each mapped to a friendly name."
       }
     },
-    "com.azure.servicefabricmanagedclusters#ApplicationsGet": {
+    "com.azure.servicefabricmanagedclusters#GetApplication": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicefabricmanagedclusters#ApplicationsGetRequest"
+        "target": "com.azure.servicefabricmanagedclusters#GetApplicationRequest"
       },
       "output": {
-        "target": "com.azure.servicefabricmanagedclusters#ApplicationsGetResponse"
+        "target": "com.azure.servicefabricmanagedclusters#GetApplicationResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -6902,7 +6903,7 @@
         "com.distilled.openapi#apiVersion": "2026-02-01"
       }
     },
-    "com.azure.servicefabricmanagedclusters#ApplicationsGetResponse": {
+    "com.azure.servicefabricmanagedclusters#GetApplicationResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -6936,7 +6937,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.servicefabricmanagedclusters#ApplicationsGetResponseTagsMap",
+          "target": "com.azure.servicefabricmanagedclusters#GetApplicationResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -6958,7 +6959,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.servicefabricmanagedclusters#ApplicationsGetResponseTagsMap": {
+    "com.azure.servicefabricmanagedclusters#GetApplicationResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -6970,7 +6971,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.servicefabricmanagedclusters#ApplicationsGetRequest": {
+    "com.azure.servicefabricmanagedclusters#GetApplicationRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7010,10 +7011,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicefabricmanagedclusters#ApplicationsList": {
+    "com.azure.servicefabricmanagedclusters#ListApplications": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicefabricmanagedclusters#ApplicationsListRequest"
+        "target": "com.azure.servicefabricmanagedclusters#ListApplicationsRequest"
       },
       "output": {
         "target": "com.azure.servicefabricmanagedclusters#ApplicationResourceList"
@@ -7127,7 +7128,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.servicefabricmanagedclusters#ApplicationsListRequest": {
+    "com.azure.servicefabricmanagedclusters#ListApplicationsRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7159,10 +7160,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicefabricmanagedclusters#ApplicationTypeVersionsDelete": {
+    "com.azure.servicefabricmanagedclusters#DeleteApplicationTypeVersion": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicefabricmanagedclusters#ApplicationTypeVersionsDeleteRequest"
+        "target": "com.azure.servicefabricmanagedclusters#DeleteApplicationTypeVersionRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -7178,7 +7179,7 @@
         "com.distilled.openapi#apiVersion": "2026-02-01"
       }
     },
-    "com.azure.servicefabricmanagedclusters#ApplicationTypeVersionsDeleteRequest": {
+    "com.azure.servicefabricmanagedclusters#DeleteApplicationTypeVersionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7226,13 +7227,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicefabricmanagedclusters#ApplicationTypeVersionsUpdate": {
+    "com.azure.servicefabricmanagedclusters#UpdateApplicationTypeVersion": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicefabricmanagedclusters#ApplicationTypeVersionsUpdateRequest"
+        "target": "com.azure.servicefabricmanagedclusters#UpdateApplicationTypeVersionRequest"
       },
       "output": {
-        "target": "com.azure.servicefabricmanagedclusters#ApplicationTypeVersionsUpdateResponse"
+        "target": "com.azure.servicefabricmanagedclusters#UpdateApplicationTypeVersionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7245,7 +7246,7 @@
         "com.distilled.openapi#apiVersion": "2026-02-01"
       }
     },
-    "com.azure.servicefabricmanagedclusters#ApplicationTypeVersionsUpdateResponse": {
+    "com.azure.servicefabricmanagedclusters#UpdateApplicationTypeVersionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -7279,7 +7280,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.servicefabricmanagedclusters#ApplicationTypeVersionsUpdateResponseTagsMap",
+          "target": "com.azure.servicefabricmanagedclusters#UpdateApplicationTypeVersionResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -7295,7 +7296,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.servicefabricmanagedclusters#ApplicationTypeVersionsUpdateResponseTagsMap": {
+    "com.azure.servicefabricmanagedclusters#UpdateApplicationTypeVersionResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7328,7 +7329,7 @@
         "smithy.api#documentation": "The properties of the application type version resource."
       }
     },
-    "com.azure.servicefabricmanagedclusters#ApplicationTypeVersionsUpdateRequest": {
+    "com.azure.servicefabricmanagedclusters#UpdateApplicationTypeVersionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7372,7 +7373,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.servicefabricmanagedclusters#ApplicationTypeVersionsUpdateRequestTagsMap",
+          "target": "com.azure.servicefabricmanagedclusters#UpdateApplicationTypeVersionRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Application type version update parameters"
           }
@@ -7382,7 +7383,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicefabricmanagedclusters#ApplicationTypeVersionsUpdateRequestTagsMap": {
+    "com.azure.servicefabricmanagedclusters#UpdateApplicationTypeVersionRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7568,13 +7569,13 @@
         "smithy.api#documentation": "The properties of the application type version resource."
       }
     },
-    "com.azure.servicefabricmanagedclusters#ApplicationTypeVersionsGet": {
+    "com.azure.servicefabricmanagedclusters#GetApplicationTypeVersion": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicefabricmanagedclusters#ApplicationTypeVersionsGetRequest"
+        "target": "com.azure.servicefabricmanagedclusters#GetApplicationTypeVersionRequest"
       },
       "output": {
-        "target": "com.azure.servicefabricmanagedclusters#ApplicationTypeVersionsGetResponse"
+        "target": "com.azure.servicefabricmanagedclusters#GetApplicationTypeVersionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7587,7 +7588,7 @@
         "com.distilled.openapi#apiVersion": "2026-02-01"
       }
     },
-    "com.azure.servicefabricmanagedclusters#ApplicationTypeVersionsGetResponse": {
+    "com.azure.servicefabricmanagedclusters#GetApplicationTypeVersionResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -7621,7 +7622,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.servicefabricmanagedclusters#ApplicationTypeVersionsGetResponseTagsMap",
+          "target": "com.azure.servicefabricmanagedclusters#GetApplicationTypeVersionResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -7637,7 +7638,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.servicefabricmanagedclusters#ApplicationTypeVersionsGetResponseTagsMap": {
+    "com.azure.servicefabricmanagedclusters#GetApplicationTypeVersionResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -7649,7 +7650,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.servicefabricmanagedclusters#ApplicationTypeVersionsGetRequest": {
+    "com.azure.servicefabricmanagedclusters#GetApplicationTypeVersionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7697,10 +7698,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicefabricmanagedclusters#ApplicationTypeVersionsListByApplicationTypes": {
+    "com.azure.servicefabricmanagedclusters#ListApplicationTypeVersionByApplicationTypes": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicefabricmanagedclusters#ApplicationTypeVersionsListByApplicationTypesRequest"
+        "target": "com.azure.servicefabricmanagedclusters#ListApplicationTypeVersionByApplicationTypesRequest"
       },
       "output": {
         "target": "com.azure.servicefabricmanagedclusters#ApplicationTypeVersionResourceList"
@@ -7808,7 +7809,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.servicefabricmanagedclusters#ApplicationTypeVersionsListByApplicationTypesRequest": {
+    "com.azure.servicefabricmanagedclusters#ListApplicationTypeVersionByApplicationTypesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7848,10 +7849,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicefabricmanagedclusters#ApplicationTypesDelete": {
+    "com.azure.servicefabricmanagedclusters#DeleteApplicationType": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicefabricmanagedclusters#ApplicationTypesDeleteRequest"
+        "target": "com.azure.servicefabricmanagedclusters#DeleteApplicationTypeRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -7867,7 +7868,7 @@
         "com.distilled.openapi#apiVersion": "2026-02-01"
       }
     },
-    "com.azure.servicefabricmanagedclusters#ApplicationTypesDeleteRequest": {
+    "com.azure.servicefabricmanagedclusters#DeleteApplicationTypeRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -7907,13 +7908,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicefabricmanagedclusters#ApplicationTypesUpdate": {
+    "com.azure.servicefabricmanagedclusters#UpdateApplicationType": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicefabricmanagedclusters#ApplicationTypesUpdateRequest"
+        "target": "com.azure.servicefabricmanagedclusters#UpdateApplicationTypeRequest"
       },
       "output": {
-        "target": "com.azure.servicefabricmanagedclusters#ApplicationTypesUpdateResponse"
+        "target": "com.azure.servicefabricmanagedclusters#UpdateApplicationTypeResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -7926,7 +7927,7 @@
         "com.distilled.openapi#apiVersion": "2026-02-01"
       }
     },
-    "com.azure.servicefabricmanagedclusters#ApplicationTypesUpdateResponse": {
+    "com.azure.servicefabricmanagedclusters#UpdateApplicationTypeResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -7960,7 +7961,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.servicefabricmanagedclusters#ApplicationTypesUpdateResponseTagsMap",
+          "target": "com.azure.servicefabricmanagedclusters#UpdateApplicationTypeResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -7976,7 +7977,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.servicefabricmanagedclusters#ApplicationTypesUpdateResponseTagsMap": {
+    "com.azure.servicefabricmanagedclusters#UpdateApplicationTypeResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8002,7 +8003,7 @@
         "smithy.api#documentation": "The application type name properties"
       }
     },
-    "com.azure.servicefabricmanagedclusters#ApplicationTypesUpdateRequest": {
+    "com.azure.servicefabricmanagedclusters#UpdateApplicationTypeRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8038,7 +8039,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.servicefabricmanagedclusters#ApplicationTypesUpdateRequestTagsMap",
+          "target": "com.azure.servicefabricmanagedclusters#UpdateApplicationTypeRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Application type update parameters"
           }
@@ -8048,7 +8049,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicefabricmanagedclusters#ApplicationTypesUpdateRequestTagsMap": {
+    "com.azure.servicefabricmanagedclusters#UpdateApplicationTypeRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8218,13 +8219,13 @@
         "smithy.api#documentation": "The application type name properties"
       }
     },
-    "com.azure.servicefabricmanagedclusters#ApplicationTypesGet": {
+    "com.azure.servicefabricmanagedclusters#GetApplicationType": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicefabricmanagedclusters#ApplicationTypesGetRequest"
+        "target": "com.azure.servicefabricmanagedclusters#GetApplicationTypeRequest"
       },
       "output": {
-        "target": "com.azure.servicefabricmanagedclusters#ApplicationTypesGetResponse"
+        "target": "com.azure.servicefabricmanagedclusters#GetApplicationTypeResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -8237,7 +8238,7 @@
         "com.distilled.openapi#apiVersion": "2026-02-01"
       }
     },
-    "com.azure.servicefabricmanagedclusters#ApplicationTypesGetResponse": {
+    "com.azure.servicefabricmanagedclusters#GetApplicationTypeResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -8271,7 +8272,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.servicefabricmanagedclusters#ApplicationTypesGetResponseTagsMap",
+          "target": "com.azure.servicefabricmanagedclusters#GetApplicationTypeResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -8287,7 +8288,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.servicefabricmanagedclusters#ApplicationTypesGetResponseTagsMap": {
+    "com.azure.servicefabricmanagedclusters#GetApplicationTypeResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -8299,7 +8300,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.servicefabricmanagedclusters#ApplicationTypesGetRequest": {
+    "com.azure.servicefabricmanagedclusters#GetApplicationTypeRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8339,10 +8340,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicefabricmanagedclusters#ApplicationTypesList": {
+    "com.azure.servicefabricmanagedclusters#ListApplicationTypes": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicefabricmanagedclusters#ApplicationTypesListRequest"
+        "target": "com.azure.servicefabricmanagedclusters#ListApplicationTypesRequest"
       },
       "output": {
         "target": "com.azure.servicefabricmanagedclusters#ApplicationTypeResourceList"
@@ -8450,7 +8451,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.servicefabricmanagedclusters#ApplicationTypesListRequest": {
+    "com.azure.servicefabricmanagedclusters#ListApplicationTypesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8482,10 +8483,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicefabricmanagedclusters#ManagedClustersDelete": {
+    "com.azure.servicefabricmanagedclusters#DeleteManagedCluster": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicefabricmanagedclusters#ManagedClustersDeleteRequest"
+        "target": "com.azure.servicefabricmanagedclusters#DeleteManagedClusterRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -8501,7 +8502,7 @@
         "com.distilled.openapi#apiVersion": "2026-02-01"
       }
     },
-    "com.azure.servicefabricmanagedclusters#ManagedClustersDeleteRequest": {
+    "com.azure.servicefabricmanagedclusters#DeleteManagedClusterRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -8533,13 +8534,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicefabricmanagedclusters#ManagedClustersUpdate": {
+    "com.azure.servicefabricmanagedclusters#UpdateManagedCluster": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicefabricmanagedclusters#ManagedClustersUpdateRequest"
+        "target": "com.azure.servicefabricmanagedclusters#UpdateManagedClusterRequest"
       },
       "output": {
-        "target": "com.azure.servicefabricmanagedclusters#ManagedClustersUpdateResponse"
+        "target": "com.azure.servicefabricmanagedclusters#UpdateManagedClusterResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -8552,7 +8553,7 @@
         "com.distilled.openapi#apiVersion": "2026-02-01"
       }
     },
-    "com.azure.servicefabricmanagedclusters#ManagedClustersUpdateResponse": {
+    "com.azure.servicefabricmanagedclusters#UpdateManagedClusterResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -8580,7 +8581,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.servicefabricmanagedclusters#ManagedClustersUpdateResponseTagsMap",
+          "target": "com.azure.servicefabricmanagedclusters#UpdateManagedClusterResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -9647,7 +9648,7 @@
         "smithy.api#documentation": "The current state of the cluster."
       }
     },
-    "com.azure.servicefabricmanagedclusters#ManagedClustersUpdateResponseTagsMap": {
+    "com.azure.servicefabricmanagedclusters#UpdateManagedClusterResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -9659,7 +9660,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.servicefabricmanagedclusters#ManagedClustersUpdateRequest": {
+    "com.azure.servicefabricmanagedclusters#UpdateManagedClusterRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -9687,7 +9688,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.servicefabricmanagedclusters#ManagedClustersUpdateRequestTagsMap",
+          "target": "com.azure.servicefabricmanagedclusters#UpdateManagedClusterRequestTagsMap",
           "traits": {
             "smithy.api#documentation": "Managed cluster update parameters"
           }
@@ -9697,7 +9698,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicefabricmanagedclusters#ManagedClustersUpdateRequestTagsMap": {
+    "com.azure.servicefabricmanagedclusters#UpdateManagedClusterRequestTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -10199,13 +10200,13 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.servicefabricmanagedclusters#ManagedClustersGet": {
+    "com.azure.servicefabricmanagedclusters#GetManagedCluster": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicefabricmanagedclusters#ManagedClustersGetRequest"
+        "target": "com.azure.servicefabricmanagedclusters#GetManagedClusterRequest"
       },
       "output": {
-        "target": "com.azure.servicefabricmanagedclusters#ManagedClustersGetResponse"
+        "target": "com.azure.servicefabricmanagedclusters#GetManagedClusterResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -10218,7 +10219,7 @@
         "com.distilled.openapi#apiVersion": "2026-02-01"
       }
     },
-    "com.azure.servicefabricmanagedclusters#ManagedClustersGetResponse": {
+    "com.azure.servicefabricmanagedclusters#GetManagedClusterResponse": {
       "type": "structure",
       "members": {
         "id": {
@@ -10246,7 +10247,7 @@
           }
         },
         "tags": {
-          "target": "com.azure.servicefabricmanagedclusters#ManagedClustersGetResponseTagsMap",
+          "target": "com.azure.servicefabricmanagedclusters#GetManagedClusterResponseTagsMap",
           "traits": {
             "smithy.api#documentation": "Resource tags."
           }
@@ -10282,7 +10283,7 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.servicefabricmanagedclusters#ManagedClustersGetResponseTagsMap": {
+    "com.azure.servicefabricmanagedclusters#GetManagedClusterResponseTagsMap": {
       "type": "map",
       "key": {
         "target": "smithy.api#String"
@@ -10294,7 +10295,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.servicefabricmanagedclusters#ManagedClustersGetRequest": {
+    "com.azure.servicefabricmanagedclusters#GetManagedClusterRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10326,10 +10327,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicefabricmanagedclusters#ManagedClustersListByResourceGroup": {
+    "com.azure.servicefabricmanagedclusters#ListManagedClusterByResourceGroup": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicefabricmanagedclusters#ManagedClustersListByResourceGroupRequest"
+        "target": "com.azure.servicefabricmanagedclusters#ListManagedClusterByResourceGroupRequest"
       },
       "output": {
         "target": "com.azure.servicefabricmanagedclusters#ManagedClusterListResult"
@@ -10451,7 +10452,7 @@
         "smithy.api#documentation": "Resource tags."
       }
     },
-    "com.azure.servicefabricmanagedclusters#ManagedClustersListByResourceGroupRequest": {
+    "com.azure.servicefabricmanagedclusters#ListManagedClusterByResourceGroupRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10475,10 +10476,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicefabricmanagedclusters#ManagedClustersListBySubscription": {
+    "com.azure.servicefabricmanagedclusters#ListManagedClusterBySubscription": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicefabricmanagedclusters#ManagedClustersListBySubscriptionRequest"
+        "target": "com.azure.servicefabricmanagedclusters#ListManagedClusterBySubscriptionRequest"
       },
       "output": {
         "target": "com.azure.servicefabricmanagedclusters#ManagedClusterListResult"
@@ -10494,7 +10495,7 @@
         "com.distilled.openapi#apiVersion": "2026-02-01"
       }
     },
-    "com.azure.servicefabricmanagedclusters#ManagedClustersListBySubscriptionRequest": {
+    "com.azure.servicefabricmanagedclusters#ListManagedClusterBySubscriptionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10510,10 +10511,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicefabricmanagedclusters#ManagedUnsupportedVMSizesGet": {
+    "com.azure.servicefabricmanagedclusters#GetManagedUnsupportedVMSiz": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicefabricmanagedclusters#ManagedUnsupportedVMSizesGetRequest"
+        "target": "com.azure.servicefabricmanagedclusters#GetManagedUnsupportedVMSizRequest"
       },
       "output": {
         "target": "com.azure.servicefabricmanagedclusters#ManagedVMSize"
@@ -10575,7 +10576,7 @@
         "smithy.api#documentation": "VM Sizes properties."
       }
     },
-    "com.azure.servicefabricmanagedclusters#ManagedUnsupportedVMSizesGetRequest": {
+    "com.azure.servicefabricmanagedclusters#GetManagedUnsupportedVMSizRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10607,10 +10608,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicefabricmanagedclusters#ManagedUnsupportedVMSizesList": {
+    "com.azure.servicefabricmanagedclusters#ListManagedUnsupportedVMSizes": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicefabricmanagedclusters#ManagedUnsupportedVMSizesListRequest"
+        "target": "com.azure.servicefabricmanagedclusters#ListManagedUnsupportedVMSizesRequest"
       },
       "output": {
         "target": "com.azure.servicefabricmanagedclusters#ManagedVMSizesResult"
@@ -10656,7 +10657,7 @@
         "smithy.api#documentation": "The ManagedVMSize items on this page"
       }
     },
-    "com.azure.servicefabricmanagedclusters#ManagedUnsupportedVMSizesListRequest": {
+    "com.azure.servicefabricmanagedclusters#ListManagedUnsupportedVMSizesRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10680,10 +10681,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicefabricmanagedclusters#ManagedClusterVersionGet": {
+    "com.azure.servicefabricmanagedclusters#GetManagedClusterVersion": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicefabricmanagedclusters#ManagedClusterVersionGetRequest"
+        "target": "com.azure.servicefabricmanagedclusters#GetManagedClusterVersionRequest"
       },
       "output": {
         "target": "com.azure.servicefabricmanagedclusters#ManagedClusterCodeVersionResult"
@@ -10771,7 +10772,7 @@
         "smithy.api#documentation": "Cluster operating system, the default will be Windows"
       }
     },
-    "com.azure.servicefabricmanagedclusters#ManagedClusterVersionGetRequest": {
+    "com.azure.servicefabricmanagedclusters#GetManagedClusterVersionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10803,13 +10804,13 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicefabricmanagedclusters#ManagedClusterVersionList": {
+    "com.azure.servicefabricmanagedclusters#ListManagedClusterVersion": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicefabricmanagedclusters#ManagedClusterVersionListRequest"
+        "target": "com.azure.servicefabricmanagedclusters#ListManagedClusterVersionRequest"
       },
       "output": {
-        "target": "com.azure.servicefabricmanagedclusters#ManagedClusterVersionListResponse"
+        "target": "com.azure.servicefabricmanagedclusters#ListManagedClusterVersionResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -10822,11 +10823,11 @@
         "com.distilled.openapi#apiVersion": "2026-02-01"
       }
     },
-    "com.azure.servicefabricmanagedclusters#ManagedClusterVersionListResponse": {
+    "com.azure.servicefabricmanagedclusters#ListManagedClusterVersionResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.azure.servicefabricmanagedclusters#ManagedClusterVersionListResponseBodyList",
+          "target": "com.azure.servicefabricmanagedclusters#ListManagedClusterVersionResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -10837,14 +10838,14 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.servicefabricmanagedclusters#ManagedClusterVersionListResponseBodyList": {
+    "com.azure.servicefabricmanagedclusters#ListManagedClusterVersionResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.azure.servicefabricmanagedclusters#ManagedClusterCodeVersionResult"
       },
       "traits": {}
     },
-    "com.azure.servicefabricmanagedclusters#ManagedClusterVersionListRequest": {
+    "com.azure.servicefabricmanagedclusters#ListManagedClusterVersionRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10868,10 +10869,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicefabricmanagedclusters#OperationStatusGet": {
+    "com.azure.servicefabricmanagedclusters#GetOperationStatus": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicefabricmanagedclusters#OperationStatusGetRequest"
+        "target": "com.azure.servicefabricmanagedclusters#GetOperationStatusRequest"
       },
       "output": {
         "target": "com.azure.servicefabricmanagedclusters#LongRunningOperationResult"
@@ -10951,7 +10952,7 @@
         "smithy.api#documentation": "The error details."
       }
     },
-    "com.azure.servicefabricmanagedclusters#OperationStatusGetRequest": {
+    "com.azure.servicefabricmanagedclusters#GetOperationStatusRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -10983,10 +10984,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicefabricmanagedclusters#OperationResultsGet": {
+    "com.azure.servicefabricmanagedclusters#GetOperationResult": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicefabricmanagedclusters#OperationResultsGetRequest"
+        "target": "com.azure.servicefabricmanagedclusters#GetOperationResultRequest"
       },
       "output": {
         "target": "smithy.api#Unit"
@@ -11002,7 +11003,7 @@
         "com.distilled.openapi#apiVersion": "2026-02-01"
       }
     },
-    "com.azure.servicefabricmanagedclusters#OperationResultsGetRequest": {
+    "com.azure.servicefabricmanagedclusters#GetOperationResultRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11034,10 +11035,10 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicefabricmanagedclusters#ManagedClusterVersionGetByEnvironment": {
+    "com.azure.servicefabricmanagedclusters#GetManagedClusterVersionByEnvironment": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicefabricmanagedclusters#ManagedClusterVersionGetByEnvironmentRequest"
+        "target": "com.azure.servicefabricmanagedclusters#GetManagedClusterVersionByEnvironmentRequest"
       },
       "output": {
         "target": "com.azure.servicefabricmanagedclusters#ManagedClusterCodeVersionResult"
@@ -11053,7 +11054,7 @@
         "com.distilled.openapi#apiVersion": "2026-02-01"
       }
     },
-    "com.azure.servicefabricmanagedclusters#ManagedClusterVersionGetByEnvironmentRequest": {
+    "com.azure.servicefabricmanagedclusters#GetManagedClusterVersionByEnvironmentRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11073,7 +11074,7 @@
           }
         },
         "environment": {
-          "target": "com.azure.servicefabricmanagedclusters#ManagedClusterVersionGetByEnvironmentRequestEnvironment",
+          "target": "com.azure.servicefabricmanagedclusters#GetManagedClusterVersionByEnvironmentRequestEnvironment",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -11093,7 +11094,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicefabricmanagedclusters#ManagedClusterVersionGetByEnvironmentRequestEnvironment": {
+    "com.azure.servicefabricmanagedclusters#GetManagedClusterVersionByEnvironmentRequestEnvironment": {
       "type": "enum",
       "members": {
         "WINDOWS": {
@@ -11105,13 +11106,13 @@
       },
       "traits": {}
     },
-    "com.azure.servicefabricmanagedclusters#ManagedClusterVersionListByEnvironment": {
+    "com.azure.servicefabricmanagedclusters#ListManagedClusterVersionByEnvironment": {
       "type": "operation",
       "input": {
-        "target": "com.azure.servicefabricmanagedclusters#ManagedClusterVersionListByEnvironmentRequest"
+        "target": "com.azure.servicefabricmanagedclusters#ListManagedClusterVersionByEnvironmentRequest"
       },
       "output": {
-        "target": "com.azure.servicefabricmanagedclusters#ManagedClusterVersionListByEnvironmentResponse"
+        "target": "com.azure.servicefabricmanagedclusters#ListManagedClusterVersionByEnvironmentResponse"
       },
       "traits": {
         "smithy.api#http": {
@@ -11124,11 +11125,11 @@
         "com.distilled.openapi#apiVersion": "2026-02-01"
       }
     },
-    "com.azure.servicefabricmanagedclusters#ManagedClusterVersionListByEnvironmentResponse": {
+    "com.azure.servicefabricmanagedclusters#ListManagedClusterVersionByEnvironmentResponse": {
       "type": "structure",
       "members": {
         "body": {
-          "target": "com.azure.servicefabricmanagedclusters#ManagedClusterVersionListByEnvironmentResponseBodyList",
+          "target": "com.azure.servicefabricmanagedclusters#ListManagedClusterVersionByEnvironmentResponseBodyList",
           "traits": {
             "com.distilled.openapi#rawResponse": {},
             "smithy.api#required": {}
@@ -11139,14 +11140,14 @@
         "smithy.api#output": {}
       }
     },
-    "com.azure.servicefabricmanagedclusters#ManagedClusterVersionListByEnvironmentResponseBodyList": {
+    "com.azure.servicefabricmanagedclusters#ListManagedClusterVersionByEnvironmentResponseBodyList": {
       "type": "list",
       "member": {
         "target": "com.azure.servicefabricmanagedclusters#ManagedClusterCodeVersionResult"
       },
       "traits": {}
     },
-    "com.azure.servicefabricmanagedclusters#ManagedClusterVersionListByEnvironmentRequest": {
+    "com.azure.servicefabricmanagedclusters#ListManagedClusterVersionByEnvironmentRequest": {
       "type": "structure",
       "members": {
         "subscriptionId": {
@@ -11166,7 +11167,7 @@
           }
         },
         "environment": {
-          "target": "com.azure.servicefabricmanagedclusters#ManagedClusterVersionListByEnvironmentRequestEnvironment",
+          "target": "com.azure.servicefabricmanagedclusters#ListManagedClusterVersionByEnvironmentRequestEnvironment",
           "traits": {
             "smithy.api#httpLabel": {},
             "smithy.api#required": {},
@@ -11178,7 +11179,7 @@
         "smithy.api#input": {}
       }
     },
-    "com.azure.servicefabricmanagedclusters#ManagedClusterVersionListByEnvironmentRequestEnvironment": {
+    "com.azure.servicefabricmanagedclusters#ListManagedClusterVersionByEnvironmentRequestEnvironment": {
       "type": "enum",
       "members": {
         "WINDOWS": {
@@ -11190,7 +11191,7 @@
       },
       "traits": {}
     },
-    "com.azure.servicefabricmanagedclusters#OperationsList": {
+    "com.azure.servicefabricmanagedclusters#ListOperations": {
       "type": "operation",
       "input": {
         "target": "smithy.api#Unit"
@@ -11314,175 +11315,175 @@
       "version": "1.0",
       "operations": [
         {
-          "target": "com.azure.servicefabricmanagedclusters#NodeTypesStart"
+          "target": "com.azure.servicefabricmanagedclusters#StartNodeType"
         },
         {
-          "target": "com.azure.servicefabricmanagedclusters#NodeTypeSkusList"
+          "target": "com.azure.servicefabricmanagedclusters#ListNodeTypeSkus"
         },
         {
-          "target": "com.azure.servicefabricmanagedclusters#NodeTypesRestart"
+          "target": "com.azure.servicefabricmanagedclusters#RestartNodeType"
         },
         {
           "target": "com.azure.servicefabricmanagedclusters#NodeTypesReimage"
         },
         {
-          "target": "com.azure.servicefabricmanagedclusters#NodeTypesRedeploy"
+          "target": "com.azure.servicefabricmanagedclusters#RedeployNodeType"
         },
         {
-          "target": "com.azure.servicefabricmanagedclusters#NodeTypesDeleteNode"
+          "target": "com.azure.servicefabricmanagedclusters#DeleteNodeTypeNode"
         },
         {
           "target": "com.azure.servicefabricmanagedclusters#NodeTypesDeallocate"
         },
         {
-          "target": "com.azure.servicefabricmanagedclusters#NodeTypesDelete"
+          "target": "com.azure.servicefabricmanagedclusters#DeleteNodeType"
         },
         {
-          "target": "com.azure.servicefabricmanagedclusters#NodeTypesUpdate"
+          "target": "com.azure.servicefabricmanagedclusters#UpdateNodeType"
         },
         {
           "target": "com.azure.servicefabricmanagedclusters#NodeTypesCreateOrUpdate"
         },
         {
-          "target": "com.azure.servicefabricmanagedclusters#NodeTypesGet"
+          "target": "com.azure.servicefabricmanagedclusters#GetNodeType"
         },
         {
-          "target": "com.azure.servicefabricmanagedclusters#NodeTypesListByManagedClusters"
+          "target": "com.azure.servicefabricmanagedclusters#ListNodeTypeByManagedClusters"
         },
         {
-          "target": "com.azure.servicefabricmanagedclusters#ManagedAzResiliencyStatusGet"
+          "target": "com.azure.servicefabricmanagedclusters#GetManagedAzResiliencyStatus"
         },
         {
-          "target": "com.azure.servicefabricmanagedclusters#ManagedMaintenanceWindowStatusGet"
+          "target": "com.azure.servicefabricmanagedclusters#GetManagedMaintenanceWindowStatus"
         },
         {
-          "target": "com.azure.servicefabricmanagedclusters#ManagedApplyMaintenanceWindowPost"
+          "target": "com.azure.servicefabricmanagedclusters#PostManagedApplyMaintenanceWindow"
         },
         {
-          "target": "com.azure.servicefabricmanagedclusters#ApplicationsUpdateUpgrade"
+          "target": "com.azure.servicefabricmanagedclusters#UpdateApplicationUpgrade"
         },
         {
-          "target": "com.azure.servicefabricmanagedclusters#ApplicationsStartRollback"
+          "target": "com.azure.servicefabricmanagedclusters#StartApplicationRollback"
         },
         {
-          "target": "com.azure.servicefabricmanagedclusters#ServicesRestartReplica"
+          "target": "com.azure.servicefabricmanagedclusters#RestartServiceReplica"
         },
         {
-          "target": "com.azure.servicefabricmanagedclusters#ServicesDelete"
+          "target": "com.azure.servicefabricmanagedclusters#DeleteService"
         },
         {
-          "target": "com.azure.servicefabricmanagedclusters#ServicesUpdate"
+          "target": "com.azure.servicefabricmanagedclusters#UpdateService"
         },
         {
           "target": "com.azure.servicefabricmanagedclusters#ServicesCreateOrUpdate"
         },
         {
-          "target": "com.azure.servicefabricmanagedclusters#ServicesGet"
+          "target": "com.azure.servicefabricmanagedclusters#GetService"
         },
         {
-          "target": "com.azure.servicefabricmanagedclusters#ServicesListByApplications"
+          "target": "com.azure.servicefabricmanagedclusters#ListServiceByApplications"
         },
         {
-          "target": "com.azure.servicefabricmanagedclusters#ApplicationsResumeUpgrade"
+          "target": "com.azure.servicefabricmanagedclusters#ResumeApplicationUpgrade"
         },
         {
-          "target": "com.azure.servicefabricmanagedclusters#ApplicationsRestartDeployedCodePackage"
+          "target": "com.azure.servicefabricmanagedclusters#RestartApplicationDeployedCodePackage"
         },
         {
-          "target": "com.azure.servicefabricmanagedclusters#ApplicationsReadUpgrade"
+          "target": "com.azure.servicefabricmanagedclusters#ReadApplicationUpgrade"
         },
         {
-          "target": "com.azure.servicefabricmanagedclusters#ApplicationsFetchHealth"
+          "target": "com.azure.servicefabricmanagedclusters#FetchApplicationHealth"
         },
         {
-          "target": "com.azure.servicefabricmanagedclusters#ApplicationsDelete"
+          "target": "com.azure.servicefabricmanagedclusters#DeleteApplication"
         },
         {
-          "target": "com.azure.servicefabricmanagedclusters#ApplicationsUpdate"
+          "target": "com.azure.servicefabricmanagedclusters#UpdateApplication"
         },
         {
           "target": "com.azure.servicefabricmanagedclusters#ApplicationsCreateOrUpdate"
         },
         {
-          "target": "com.azure.servicefabricmanagedclusters#ApplicationsGet"
+          "target": "com.azure.servicefabricmanagedclusters#GetApplication"
         },
         {
-          "target": "com.azure.servicefabricmanagedclusters#ApplicationsList"
+          "target": "com.azure.servicefabricmanagedclusters#ListApplications"
         },
         {
-          "target": "com.azure.servicefabricmanagedclusters#ApplicationTypeVersionsDelete"
+          "target": "com.azure.servicefabricmanagedclusters#DeleteApplicationTypeVersion"
         },
         {
-          "target": "com.azure.servicefabricmanagedclusters#ApplicationTypeVersionsUpdate"
+          "target": "com.azure.servicefabricmanagedclusters#UpdateApplicationTypeVersion"
         },
         {
           "target": "com.azure.servicefabricmanagedclusters#ApplicationTypeVersionsCreateOrUpdate"
         },
         {
-          "target": "com.azure.servicefabricmanagedclusters#ApplicationTypeVersionsGet"
+          "target": "com.azure.servicefabricmanagedclusters#GetApplicationTypeVersion"
         },
         {
-          "target": "com.azure.servicefabricmanagedclusters#ApplicationTypeVersionsListByApplicationTypes"
+          "target": "com.azure.servicefabricmanagedclusters#ListApplicationTypeVersionByApplicationTypes"
         },
         {
-          "target": "com.azure.servicefabricmanagedclusters#ApplicationTypesDelete"
+          "target": "com.azure.servicefabricmanagedclusters#DeleteApplicationType"
         },
         {
-          "target": "com.azure.servicefabricmanagedclusters#ApplicationTypesUpdate"
+          "target": "com.azure.servicefabricmanagedclusters#UpdateApplicationType"
         },
         {
           "target": "com.azure.servicefabricmanagedclusters#ApplicationTypesCreateOrUpdate"
         },
         {
-          "target": "com.azure.servicefabricmanagedclusters#ApplicationTypesGet"
+          "target": "com.azure.servicefabricmanagedclusters#GetApplicationType"
         },
         {
-          "target": "com.azure.servicefabricmanagedclusters#ApplicationTypesList"
+          "target": "com.azure.servicefabricmanagedclusters#ListApplicationTypes"
         },
         {
-          "target": "com.azure.servicefabricmanagedclusters#ManagedClustersDelete"
+          "target": "com.azure.servicefabricmanagedclusters#DeleteManagedCluster"
         },
         {
-          "target": "com.azure.servicefabricmanagedclusters#ManagedClustersUpdate"
+          "target": "com.azure.servicefabricmanagedclusters#UpdateManagedCluster"
         },
         {
           "target": "com.azure.servicefabricmanagedclusters#ManagedClustersCreateOrUpdate"
         },
         {
-          "target": "com.azure.servicefabricmanagedclusters#ManagedClustersGet"
+          "target": "com.azure.servicefabricmanagedclusters#GetManagedCluster"
         },
         {
-          "target": "com.azure.servicefabricmanagedclusters#ManagedClustersListByResourceGroup"
+          "target": "com.azure.servicefabricmanagedclusters#ListManagedClusterByResourceGroup"
         },
         {
-          "target": "com.azure.servicefabricmanagedclusters#ManagedClustersListBySubscription"
+          "target": "com.azure.servicefabricmanagedclusters#ListManagedClusterBySubscription"
         },
         {
-          "target": "com.azure.servicefabricmanagedclusters#ManagedUnsupportedVMSizesGet"
+          "target": "com.azure.servicefabricmanagedclusters#GetManagedUnsupportedVMSiz"
         },
         {
-          "target": "com.azure.servicefabricmanagedclusters#ManagedUnsupportedVMSizesList"
+          "target": "com.azure.servicefabricmanagedclusters#ListManagedUnsupportedVMSizes"
         },
         {
-          "target": "com.azure.servicefabricmanagedclusters#ManagedClusterVersionGet"
+          "target": "com.azure.servicefabricmanagedclusters#GetManagedClusterVersion"
         },
         {
-          "target": "com.azure.servicefabricmanagedclusters#ManagedClusterVersionList"
+          "target": "com.azure.servicefabricmanagedclusters#ListManagedClusterVersion"
         },
         {
-          "target": "com.azure.servicefabricmanagedclusters#OperationStatusGet"
+          "target": "com.azure.servicefabricmanagedclusters#GetOperationStatus"
         },
         {
-          "target": "com.azure.servicefabricmanagedclusters#OperationResultsGet"
+          "target": "com.azure.servicefabricmanagedclusters#GetOperationResult"
         },
         {
-          "target": "com.azure.servicefabricmanagedclusters#ManagedClusterVersionGetByEnvironment"
+          "target": "com.azure.servicefabricmanagedclusters#GetManagedClusterVersionByEnvironment"
         },
         {
-          "target": "com.azure.servicefabricmanagedclusters#ManagedClusterVersionListByEnvironment"
+          "target": "com.azure.servicefabricmanagedclusters#ListManagedClusterVersionByEnvironment"
         },
         {
-          "target": "com.azure.servicefabricmanagedclusters#OperationsList"
+          "target": "com.azure.servicefabricmanagedclusters#ListOperations"
         }
       ],
       "traits": {

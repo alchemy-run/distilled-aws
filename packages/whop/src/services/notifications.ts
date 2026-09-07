@@ -49,95 +49,17 @@ export class NotFound
     [{ status: 404 }],
   ) {}
 
-export type ListNotificationBadgesRequestExperienceIdsList = Array<string>;
-export const ListNotificationBadgesRequestExperienceIdsList =
-  /*@__PURE__*/ S.Array(
-    S.String,
-  ) as any as S.Schema<ListNotificationBadgesRequestExperienceIdsList>;
-
-export interface ListNotificationBadgesRequest {
-  /** Only return badges for these experiences (`exp_` tags). */
-  experience_ids?: ListNotificationBadgesRequestExperienceIdsList;
-  /** The client's last fetched-at ISO 8601 timestamp, used to partially refresh badges after a websocket message. */
-  last_fetched_at?: string;
+export interface GetNotificationRequest {
+  /** A notification `id` from List Notifications, or the id delivered with a push/websocket event. */
+  id: string;
 }
-export const ListNotificationBadgesRequest = /*@__PURE__*/ S.suspend(() =>
+export const GetNotificationRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    experience_ids: S.optional(
-      ListNotificationBadgesRequestExperienceIdsList.pipe(T.Query()),
-    ),
-    last_fetched_at: S.optional(S.String.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/notifications/badges", code: 200 })),
+    id: S.String.pipe(T.Label()),
+  }).pipe(T.Http({ method: "GET", uri: "/notifications/{id}", code: 200 })),
 ).annotate({
-  identifier: "ListNotificationBadgesRequest",
-}) as any as S.Schema<ListNotificationBadgesRequest>;
-
-export interface NotificationBadge {
-  /** Account the experience belongs to, prefixed `biz_`. */
-  account_id: string | null;
-  /** Experience the badge counts, prefixed `exp_`. */
-  experience_id: string;
-  /** Whether the caller has unread notifications in this experience. */
-  has_unread: boolean;
-  /** Number of unread important (mention) notifications in this experience. */
-  important_count: number;
-  /** When the caller last viewed the experience, as an ISO 8601 timestamp. `null` when never viewed. */
-  last_viewed_at: string | null;
-}
-export const NotificationBadge = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    account_id: S.NullOr(S.String),
-    experience_id: S.String,
-    has_unread: S.Boolean,
-    important_count: S.Number,
-    last_viewed_at: S.NullOr(S.String),
-  }),
-).annotate({
-  identifier: "NotificationBadge",
-}) as any as S.Schema<NotificationBadge>;
-
-export type ListNotificationBadgesResponseDataList = Array<NotificationBadge>;
-export const ListNotificationBadgesResponseDataList = /*@__PURE__*/ S.Array(
-  NotificationBadge,
-) as any as S.Schema<ListNotificationBadgesResponseDataList>;
-
-export interface ListNotificationBadgesResponse {
-  data: ListNotificationBadgesResponseDataList;
-}
-export const ListNotificationBadgesResponse = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    data: ListNotificationBadgesResponseDataList,
-  }),
-).annotate({
-  identifier: "ListNotificationBadgesResponse",
-}) as any as S.Schema<ListNotificationBadgesResponse>;
-
-export interface ListNotificationsRequest {
-  /** Only return notifications created since the user last viewed their source. */
-  unread?: boolean;
-  /** Only return notifications from this experience (`exp_` tag). */
-  experience_id?: string;
-  /** Only return team notifications for this account (`biz_` tag). */
-  account_id?: string;
-  /** Only return notifications that mention the user directly. */
-  mentions?: boolean;
-  /** The number of notifications to return (default 20, max 100). */
-  first?: number;
-  /** A cursor (a notification `id` from a previous page); returns notifications older than it. */
-  after?: string;
-}
-export const ListNotificationsRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    unread: S.optional(S.Boolean.pipe(T.Query())),
-    experience_id: S.optional(S.String.pipe(T.Query())),
-    account_id: S.optional(S.String.pipe(T.Query())),
-    mentions: S.optional(S.Boolean.pipe(T.Query())),
-    first: S.optional(S.Number.pipe(T.Query())),
-    after: S.optional(S.String.pipe(T.Query())),
-  }).pipe(T.Http({ method: "GET", uri: "/notifications", code: 200 })),
-).annotate({
-  identifier: "ListNotificationsRequest",
-}) as any as S.Schema<ListNotificationsRequest>;
+  identifier: "GetNotificationRequest",
+}) as any as S.Schema<GetNotificationRequest>;
 
 export interface NotificationAccount {
   /** Account ID, prefixed `biz_`. */
@@ -285,6 +207,96 @@ export const Notification = /*@__PURE__*/ S.suspend(() =>
   }),
 ).annotate({ identifier: "Notification" }) as any as S.Schema<Notification>;
 
+export type ListNotificationBadgesRequestExperienceIdsList = Array<string>;
+export const ListNotificationBadgesRequestExperienceIdsList =
+  /*@__PURE__*/ S.Array(
+    S.String,
+  ) as any as S.Schema<ListNotificationBadgesRequestExperienceIdsList>;
+
+export interface ListNotificationBadgesRequest {
+  /** Only return badges for these experiences (`exp_` tags). */
+  experience_ids?: ListNotificationBadgesRequestExperienceIdsList;
+  /** The client's last fetched-at ISO 8601 timestamp, used to partially refresh badges after a websocket message. */
+  last_fetched_at?: string;
+}
+export const ListNotificationBadgesRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    experience_ids: S.optional(
+      ListNotificationBadgesRequestExperienceIdsList.pipe(T.Query()),
+    ),
+    last_fetched_at: S.optional(S.String.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/notifications/badges", code: 200 })),
+).annotate({
+  identifier: "ListNotificationBadgesRequest",
+}) as any as S.Schema<ListNotificationBadgesRequest>;
+
+export interface NotificationBadge {
+  /** Account the experience belongs to, prefixed `biz_`. */
+  account_id: string | null;
+  /** Experience the badge counts, prefixed `exp_`. */
+  experience_id: string;
+  /** Whether the caller has unread notifications in this experience. */
+  has_unread: boolean;
+  /** Number of unread important (mention) notifications in this experience. */
+  important_count: number;
+  /** When the caller last viewed the experience, as an ISO 8601 timestamp. `null` when never viewed. */
+  last_viewed_at: string | null;
+}
+export const NotificationBadge = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    account_id: S.NullOr(S.String),
+    experience_id: S.String,
+    has_unread: S.Boolean,
+    important_count: S.Number,
+    last_viewed_at: S.NullOr(S.String),
+  }),
+).annotate({
+  identifier: "NotificationBadge",
+}) as any as S.Schema<NotificationBadge>;
+
+export type ListNotificationBadgesResponseDataList = Array<NotificationBadge>;
+export const ListNotificationBadgesResponseDataList = /*@__PURE__*/ S.Array(
+  NotificationBadge,
+) as any as S.Schema<ListNotificationBadgesResponseDataList>;
+
+export interface ListNotificationBadgesResponse {
+  data: ListNotificationBadgesResponseDataList;
+}
+export const ListNotificationBadgesResponse = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    data: ListNotificationBadgesResponseDataList,
+  }),
+).annotate({
+  identifier: "ListNotificationBadgesResponse",
+}) as any as S.Schema<ListNotificationBadgesResponse>;
+
+export interface ListNotificationsRequest {
+  /** Only return notifications created since the user last viewed their source. */
+  unread?: boolean;
+  /** Only return notifications from this experience (`exp_` tag). */
+  experience_id?: string;
+  /** Only return team notifications for this account (`biz_` tag). */
+  account_id?: string;
+  /** Only return notifications that mention the user directly. */
+  mentions?: boolean;
+  /** The number of notifications to return (default 20, max 100). */
+  first?: number;
+  /** A cursor (a notification `id` from a previous page); returns notifications older than it. */
+  after?: string;
+}
+export const ListNotificationsRequest = /*@__PURE__*/ S.suspend(() =>
+  S.Struct({
+    unread: S.optional(S.Boolean.pipe(T.Query())),
+    experience_id: S.optional(S.String.pipe(T.Query())),
+    account_id: S.optional(S.String.pipe(T.Query())),
+    mentions: S.optional(S.Boolean.pipe(T.Query())),
+    first: S.optional(S.Number.pipe(T.Query())),
+    after: S.optional(S.String.pipe(T.Query())),
+  }).pipe(T.Http({ method: "GET", uri: "/notifications", code: 200 })),
+).annotate({
+  identifier: "ListNotificationsRequest",
+}) as any as S.Schema<ListNotificationsRequest>;
+
 export type ListNotificationsResponseDataList = Array<Notification>;
 export const ListNotificationsResponseDataList = /*@__PURE__*/ S.Array(
   Notification,
@@ -400,7 +412,7 @@ export const ListNotificationTopicsResponse = /*@__PURE__*/ S.suspend(() =>
   identifier: "ListNotificationTopicsResponse",
 }) as any as S.Schema<ListNotificationTopicsResponse>;
 
-export interface MarkNotificationsReadRequest {
+export interface ReadMarkNotificationRequest {
   /** Pass `true` to mark every notification read. Exactly one of `experience_id` or `all` is required. */
   all?: boolean;
   /** Experience to mark read (`exp_` tag). Exactly one of `experience_id` or `all` is required. */
@@ -408,7 +420,7 @@ export interface MarkNotificationsReadRequest {
   /** A unique key that makes this request safe to retry. See [Idempotent requests](https://docs.whop.com/developer/api/idempotency). */
   idempotency_key?: string;
 }
-export const MarkNotificationsReadRequest = /*@__PURE__*/ S.suspend(() =>
+export const ReadMarkNotificationRequest = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
     all: S.optional(S.Boolean),
     experience_id: S.optional(S.String),
@@ -417,36 +429,24 @@ export const MarkNotificationsReadRequest = /*@__PURE__*/ S.suspend(() =>
     T.Http({ method: "POST", uri: "/notifications/mark_read", code: 200 }),
   ),
 ).annotate({
-  identifier: "MarkNotificationsReadRequest",
-}) as any as S.Schema<MarkNotificationsReadRequest>;
+  identifier: "ReadMarkNotificationRequest",
+}) as any as S.Schema<ReadMarkNotificationRequest>;
 
-export type MarkNotificationsReadResponseDataList = Array<NotificationBadge>;
-export const MarkNotificationsReadResponseDataList = /*@__PURE__*/ S.Array(
+export type ReadMarkNotificationResponseDataList = Array<NotificationBadge>;
+export const ReadMarkNotificationResponseDataList = /*@__PURE__*/ S.Array(
   NotificationBadge,
-) as any as S.Schema<MarkNotificationsReadResponseDataList>;
+) as any as S.Schema<ReadMarkNotificationResponseDataList>;
 
-export interface MarkNotificationsReadResponse {
-  data: MarkNotificationsReadResponseDataList;
+export interface ReadMarkNotificationResponse {
+  data: ReadMarkNotificationResponseDataList;
 }
-export const MarkNotificationsReadResponse = /*@__PURE__*/ S.suspend(() =>
+export const ReadMarkNotificationResponse = /*@__PURE__*/ S.suspend(() =>
   S.Struct({
-    data: MarkNotificationsReadResponseDataList,
+    data: ReadMarkNotificationResponseDataList,
   }),
 ).annotate({
-  identifier: "MarkNotificationsReadResponse",
-}) as any as S.Schema<MarkNotificationsReadResponse>;
-
-export interface RetrieveNotificationRequest {
-  /** A notification `id` from List Notifications, or the id delivered with a push/websocket event. */
-  id: string;
-}
-export const RetrieveNotificationRequest = /*@__PURE__*/ S.suspend(() =>
-  S.Struct({
-    id: S.String.pipe(T.Label()),
-  }).pipe(T.Http({ method: "GET", uri: "/notifications/{id}", code: 200 })),
-).annotate({
-  identifier: "RetrieveNotificationRequest",
-}) as any as S.Schema<RetrieveNotificationRequest>;
+  identifier: "ReadMarkNotificationResponse",
+}) as any as S.Schema<ReadMarkNotificationResponse>;
 
 /** Optional `user_` tags narrowing the audience. When provided, only these users are notified (as a mention), provided they are in the targeted experience or account. */
 export type SendNotificationRequestUserIdsList = Array<string>;
@@ -500,6 +500,21 @@ export const SendNotificationResponse = /*@__PURE__*/ S.suspend(() =>
 ).annotate({
   identifier: "SendNotificationResponse",
 }) as any as S.Schema<SendNotificationResponse>;
+
+export type GetNotificationError = NotFound | WhopOpError;
+/** Retrieve Notification Retrieves a single notification by id — either an `id` returned by List Notifications, or the ephemeral id delivered with a push/websocket event. Requires a user credential. */
+export const getNotification: API.OperationMethod<
+  GetNotificationRequest,
+  Notification,
+  GetNotificationError,
+  WhopOpContext
+> = /*@__PURE__*/ API.make(() => ({
+  input: GetNotificationRequest,
+  output: Notification,
+  errors: [NotFound],
+  protocol: WhopProtocol,
+  retry: Retry.Retry,
+}));
 
 export type ListNotificationBadgesError = Forbidden | WhopOpError;
 /** List Notification Badges Lists the authenticated user's per-experience unread badge state. Requires a user credential. Returns one row per experience the user belongs to (or per requested experience). */
@@ -570,37 +585,22 @@ export const listNotificationTopics: API.PaginatedOperationMethod<
   paginateRelay,
 ) as any;
 
-export type MarkNotificationsReadError =
+export type ReadMarkNotificationError =
   | BadRequest
   | Forbidden
   | NotFound
   | Conflict
   | WhopOpError;
 /** Mark Notifications Read Marks the authenticated user's notifications as read: one experience's (`experience_id`) or everything (`all: true`) — exactly one of the two. Requires a user credential. Responds with the refreshed badge rows for the affected scope. */
-export const markNotificationsRead: API.OperationMethod<
-  MarkNotificationsReadRequest,
-  MarkNotificationsReadResponse,
-  MarkNotificationsReadError,
+export const readMarkNotification: API.OperationMethod<
+  ReadMarkNotificationRequest,
+  ReadMarkNotificationResponse,
+  ReadMarkNotificationError,
   WhopOpContext
 > = /*@__PURE__*/ API.make(() => ({
-  input: MarkNotificationsReadRequest,
-  output: MarkNotificationsReadResponse,
+  input: ReadMarkNotificationRequest,
+  output: ReadMarkNotificationResponse,
   errors: [BadRequest, Forbidden, NotFound, Conflict],
-  protocol: WhopProtocol,
-  retry: Retry.Retry,
-}));
-
-export type RetrieveNotificationError = NotFound | WhopOpError;
-/** Retrieve Notification Retrieves a single notification by id — either an `id` returned by List Notifications, or the ephemeral id delivered with a push/websocket event. Requires a user credential. */
-export const retrieveNotification: API.OperationMethod<
-  RetrieveNotificationRequest,
-  Notification,
-  RetrieveNotificationError,
-  WhopOpContext
-> = /*@__PURE__*/ API.make(() => ({
-  input: RetrieveNotificationRequest,
-  output: Notification,
-  errors: [NotFound],
   protocol: WhopProtocol,
   retry: Retry.Retry,
 }));
